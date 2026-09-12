@@ -227,4 +227,8 @@ fabric.properties
 
 # End of https://www.toptal.com/developers/gitignore/api/kotlin,java,android,androidstudio,visualstudiocode
 /.playwright-mcp/
-/.claude/
+# Local Claude Code tooling — agents, commands, skills, worktrees, scratch notes.
+# `rules/` is the exception: those are project conventions, they govern anyone working
+# in this repo, and Claude Code only loads them from this path.
+/.claude/*
+!/.claude/rules/
