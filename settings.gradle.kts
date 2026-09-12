@@ -1,12 +1,14 @@
 // https://developer.android.com/build#settings-file
 pluginManagement {
+    // Convention plugins (cloudstream.kmp.library / cloudstream.kmp.compose).
+    // Must be the first statement in this block.
+    includeBuild("build-logic")
     repositories {
         gradlePluginPortal()
         google()
         mavenCentral()
     }
 }
-
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -19,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "CloudStream"
 include(":app", ":shared", ":library", ":docs", ":desktopApp")
+include(":core:theme", ":core:designsystem")
