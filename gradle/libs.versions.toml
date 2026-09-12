@@ -57,6 +57,10 @@ workRuntimeKtx = "2.11.2"
 zipline = "1.27.0"
 composeMaterial3 = "1.12.0-alpha03"
 composeMultiplatform = "1.12.0"
+composeScreenshotPlugin = "0.0.1-alpha16"
+# The AndroidX Compose that Compose Multiplatform 1.12.0 resolves to on Android.
+# Only the screenshotTest source set needs it directly — the preview renderer is AndroidX.
+androidxComposeUi = "1.11.0"
 lifecycleViewmodelCompose = "2.11.0"
 
 # jvmTarget = "11" is needed for compose, otherwise you will get
@@ -149,14 +153,17 @@ compose-resources  = { module = "org.jetbrains.compose.components:components-res
 compose-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "composeMultiplatform" }
 compose-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "composeMultiplatform" }
 compose-ui-tooling = { module = "org.jetbrains.compose.ui:ui-tooling", version.ref = "composeMultiplatform" }
+androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "androidxComposeUi" }
 compose-ui-tooling-preview = { module = "org.jetbrains.compose.ui:ui-tooling-preview", version.ref = "composeMultiplatform" }
 lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelCompose" }
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
+android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
 android-lint = { id = "com.android.lint", version.ref = "androidGradlePlugin" }
 android-multiplatform-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "androidGradlePlugin" }
+compose-screenshot = { id = "com.android.compose.screenshot", version.ref = "composeScreenshotPlugin" }
 buildkonfig = { id = "com.codingfeline.buildkonfig", version.ref = "buildkonfigGradlePlugin" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokkaGradlePlugin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm" , version.ref = "kotlinGradlePlugin" }
