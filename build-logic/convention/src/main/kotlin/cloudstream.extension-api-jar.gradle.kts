@@ -1,3 +1,5 @@
+import org.gradle.api.artifacts.result.UnresolvedDependencyResult
+import org.gradle.api.artifacts.type.ArtifactTypeDefinition
 import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType
 import java.util.zip.ZipFile
 
@@ -12,16 +14,32 @@ import java.util.zip.ZipFile
  * move it out of this jar, so the modules merged into it are derived, never hand-listed.
  *
  * **Candidates** are every project on `:app`'s resolved `prereleaseDebug` compile and runtime
- * classpaths — direct, transitive or variant-specific. A candidate is **merged**, as its whole `jvm`
- * jar, when it has any `src/<sourceSet>/{kotlin,java}/com/lagradost/cloudstream3` directory.
+ * classpaths — direct, transitive or variant-specific. A candidate is **merged**, whole, when it has
+ * any `src/<sourceSet>/{kotlin,java}/com/lagradost/cloudstream3` directory. What is merged depends on
+ * the module's targets:
  *
- * Only the `jvm` variant of a merged module is published. An `androidMain` file in the package must
- * therefore be an `actual` with a `jvmMain` counterpart at the same path, as `:library` does.
+ * - **jvm-capable** (has a `jvm` variant: `cloudstream.kmp.library`, `cloudstream.kmp.extension-api`,
+ *   `:library`) — its `jvm` jar. Only that variant is published, so an `androidMain` file in the
+ *   package must be an `actual` with a `jvmMain` counterpart at the same path, as `:library` does.
+ * - **android-only** (no `jvm` variant: `cloudstream.kmp.android-only`) — its compiled Android
+ *   classes, exactly as `:app`'s runtime classpath consumes them: the `android-classes-jar` artifact
+ *   of the module's variant on `prereleaseDebugRuntimeClasspath`, so it must not be `compileOnly`
+ *   there. That jar holds the module's Kotlin/Java classes only — AGP keeps `R` in a separate
+ *   artifact, and the KMP Android library plugin generates no `BuildConfig` — and `makeJar` fails if
+ *   either turns up in it. The counterpart check does not apply. **`R` still reaches classes.jar
+ *   another way:** a module with `androidResources` enabled gets its `R` classes compiled into
+ *   `:app`'s own classes jar, as `:shared`'s `R` is today. Keep resources out of android-only
+ *   modules that hold extension API, or accept that their `R` becomes part of the jar.
+ *
+ * A module is android-only when its `jvm` variant request does not resolve. That is the same
+ * request the merge makes, so the classification cannot disagree with what would be merged.
  *
  * `makeJar` fails when a candidate that is left out declares the package anyway, when a merged
- * module contributes no class in it, when an `androidMain` file in it has no `jvmMain` counterpart,
- * or when a sentinel class is missing. **When you move an extension-facing class out of `:app`,
- * add it to [sentinels] in the same change.**
+ * module contributes no class in it, when an `androidMain` file in a jvm-capable merged module has
+ * no `jvmMain` counterpart, when an android-only module brings `R` or `BuildConfig`, or when a
+ * sentinel class is missing; `DuplicatesStrategy.FAIL` fails it when two sources bring the same
+ * entry. **When you move an extension-facing class out of `:app`, add it to [sentinels] in the same
+ * change.**
  */
 
 val apiPackageDir = "com/lagradost/cloudstream3"
@@ -59,22 +77,58 @@ val extensionApiModules: List<String> by lazy {
     }
 }
 
-fun apiJarName(modulePath: String) = modulePath.removePrefix(":").replace(':', '-') + "-jvm.jar"
+/** The module's `jvm` variant, as :library has always contributed library-jvm.jar. */
+fun jvmVariantOf(modulePath: String) = configurations.detachedConfiguration(dependencies.project(modulePath)).apply {
+    isTransitive = false
+    attributes {
+        attribute(KotlinPlatformType.attribute, KotlinPlatformType.jvm)
+        attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage.JAVA_RUNTIME))
+        attribute(Category.CATEGORY_ATTRIBUTE, objects.named(Category.LIBRARY))
+    }
+}
+
+/**
+ * Merged modules with no `jvm` variant, whose Android classes are merged instead. A module whose
+ * `jvm` request fails for any reason other than having no such variant is not android-only, and
+ * fails configuration here rather than being merged the wrong way. Gradle exposes that reason only
+ * as internal exception types, so it is recognised by its message: if an upgrade rewords it, this
+ * fails loudly instead of misclassifying.
+ */
+val androidOnlyModules: List<String> by lazy {
+    extensionApiModules.filter { modulePath ->
+        val failure = jvmVariantOf(modulePath).incoming.resolutionResult.root.dependencies
+            .filterIsInstance<UnresolvedDependencyResult>().firstOrNull()?.failure
+            ?: return@filter false
+        val causes = generateSequence(failure) { it.cause }.mapNotNull { it.message }
+        if (causes.none { it.contains("No matching variant of project $modulePath") }) {
+            throw GradleException("Cannot tell whether $modulePath has a jvm variant", failure)
+        }
+        true
+    }
+}
+
+/**
+ * AGP's artifact type for a library's compiled classes jar (`AndroidArtifacts.ArtifactType.CLASSES_JAR`
+ * is internal API; the string is what its variants publish). No `R`: that is a separate artifact.
+ */
+val androidClassesJarType = "android-classes-jar"
+
+fun apiJarName(modulePath: String) = modulePath.removePrefix(":").replace(':', '-') +
+    if (modulePath in androidOnlyModules) "-android.jar" else "-jvm.jar"
 
 tasks.register<Copy>("copyJar") {
     dependsOn("build")
     from(appClassesJarDir) { include("classes.jar") }
     extensionApiModules.forEach { modulePath ->
-        // The module's `jvm` variant, as :library has always contributed library-jvm.jar.
-        val jvmJar = configurations.detachedConfiguration(dependencies.project(modulePath)).apply {
-            isTransitive = false
-            attributes {
-                attribute(KotlinPlatformType.attribute, KotlinPlatformType.jvm)
-                attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage.JAVA_RUNTIME))
-                attribute(Category.CATEGORY_ATTRIBUTE, objects.named(Category.LIBRARY))
-            }
+        val moduleJar = if (modulePath in androidOnlyModules) {
+            configurations.getByName("${jarVariant}RuntimeClasspath").incoming.artifactView {
+                componentFilter { it is ProjectComponentIdentifier && it.projectPath == modulePath }
+                attributes { attribute(ArtifactTypeDefinition.ARTIFACT_TYPE_ATTRIBUTE, androidClassesJarType) }
+            }.files
+        } else {
+            jvmVariantOf(modulePath)
         }
-        from(jvmJar) { rename(".*", apiJarName(modulePath)) }
+        from(moduleJar) { rename(".*", apiJarName(modulePath)) }
     }
     into("build/app-classes")
 }
@@ -99,16 +153,29 @@ tasks.register<Jar>("makeJar") {
     val leftOutSources = files((appProjectDependencies - extensionApiModules).map { modulePath ->
         fileTree(project(modulePath).file("src")) { include("**/*.kt", "**/*.java") }
     })
-    val platformSourceDirs = extensionApiModules.associate { modulePath ->
+    val androidOnlyModuleJars = mergedModuleJars.filterKeys { it in androidOnlyModules }
+    val platformSourceDirs = (extensionApiModules - androidOnlyModules).associate { modulePath ->
         project(modulePath).file("src/androidMain") to project(modulePath).file("src/jvmMain")
     }
     inputs.files(leftOutSources).withPropertyName("leftOutModuleSources")
     inputs.files(platformSourceDirs.flatMap { (android, jvm) -> listOf(fileTree(android), fileTree(jvm)) })
         .withPropertyName("mergedModulePlatformSources")
 
+    // doFirst: the jar's own copy action expands every module jar before doLast would run.
+    doFirst {
+        val missing = mergedModuleJars.filterValues { !it.isFile }.keys
+        if (missing.isNotEmpty()) {
+            throw GradleException(
+                "classes.jar API check failed: no jar was copied for ${missing.joinToString()}. An android-only " +
+                    "module is taken from :app's runtime classpath, so it must not be compileOnly there."
+            )
+        }
+    }
+
     doLast {
         val packageDecl = Regex("""^\s*package\s+com\.lagradost\.cloudstream3\b""", RegexOption.MULTILINE)
         val platformSuffix = Regex("""\.(android|jvm)$""")
+        val generatedAndroidClass = Regex("""(^|/)(R|R\$[^/]*|BuildConfig)\.class$""")
         val problems = mutableListOf<String>()
 
         leftOutSources.filter { packageDecl.containsMatchIn(it.readText()) }.forEach {
@@ -116,11 +183,20 @@ tasks.register<Jar>("makeJar") {
                 "classes.jar. Put it under src/<sourceSet>/kotlin/$packageDir, or move it out of the package."
         }
 
-        mergedModuleJars.forEach { (modulePath, jar) ->
+        mergedModuleJars.filterValues { it.isFile }.forEach { (modulePath, jar) ->
             val contributes = ZipFile(jar).use { zip ->
                 zip.entries().asSequence().any { it.name.startsWith("$packageDir/") && it.name.endsWith(".class") }
             }
             if (!contributes) problems += "$modulePath is merged into classes.jar but contributes no $packageDir class."
+        }
+
+        androidOnlyModuleJars.filterValues { it.isFile }.forEach { (modulePath, jar) ->
+            ZipFile(jar).use { zip ->
+                zip.entries().asSequence().map { it.name }.filter { generatedAndroidClass.containsMatchIn(it) }.toList()
+            }.forEach { entry ->
+                problems += "$modulePath brings $entry into classes.jar. R and BuildConfig are generated per " +
+                    "module and would become extension API there; rename the class or keep it out of the module."
+            }
         }
 
         platformSourceDirs.filterKeys { it.isDirectory }.forEach { (androidDir, jvmDir) ->
