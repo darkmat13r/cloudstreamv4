@@ -8,8 +8,23 @@ import org.gradle.api.artifacts.VersionCatalogsExtension
  * public surface *is* Compose types (`Color`, `TextStyle`, `Dp`, `Shape`, `Modifier`); consumers
  * could not read that surface through an `implementation` edge.
  *
- * Note that `libs.bundles.compose` intentionally carries `compose-ui-tooling(-preview)` in main
- * rather than debug-only, matching `:shared`, so `@Preview` works in every module.
+ * ## `compose-ui-tooling` is not in `commonMain`
+ *
+ * `libs.bundles.compose` carries `compose-ui-tooling(-preview)` in main rather than debug-only,
+ * matching `:shared`, so `@Preview` works in every module. This plugin adds every entry of the
+ * bundle to `commonMain` **except `compose-ui-tooling`**, which goes to `jvmMain` and to
+ * `androidRuntimeClasspath` instead:
+ *
+ *  - `org.jetbrains.compose.ui:ui-tooling` publishes only Android and desktop variants — no iOS,
+ *    no native. In `commonMain` it makes every module on this plugin unable to add an iOS target:
+ *    the `commonMain` dependency fails to resolve for that platform.
+ *  - Nothing in `commonMain` needs it. `@Preview` comes from `compose-ui-tooling-preview`, which
+ *    does publish every platform and stays in `commonMain`. `ui-tooling` is the preview
+ *    *renderer*, which only the IDE and preview tooling load.
+ *
+ * Consequence: `ui-tooling` is no longer on the Android *compile* classpath of these modules, nor
+ * exported to their Android consumers. Consumers that render previews declare their own tooling
+ * (`:core:screenshot` does).
  */
 
 plugins {
@@ -20,11 +35,20 @@ plugins {
 }
 
 val composeCatalog = extensions.getByType<VersionCatalogsExtension>().named("libs")
+val composeUiTooling = composeCatalog.findLibrary("compose-ui-tooling").get()
 
 kotlin {
     sourceSets {
         commonMain.dependencies {
-            api(composeCatalog.findBundle("compose").get())
+            // The bundle minus ui-tooling: no iOS variant. See the KDoc above.
+            val toolingModule = composeUiTooling.get().module
+            composeCatalog.findBundle("compose").get().get()
+                .filterNot { it.module == toolingModule }
+                .forEach { api(it) }
+        }
+        jvmMain.dependencies {
+            // Desktop preview rendering, which commonMain used to supply.
+            api(composeUiTooling)
         }
     }
 }
