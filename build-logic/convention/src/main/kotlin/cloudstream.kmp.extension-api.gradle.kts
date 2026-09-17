@@ -22,6 +22,13 @@ import org.gradle.api.artifacts.VersionCatalogsExtension
  * Most of `:app` is JVM-bound (java.*, `synchronized`, OkHttp, Jackson) without being Android-bound.
  * Such code lives in `jvmCommonMain`, shared by `androidMain` and `jvmMain` — the layout `:library`
  * uses. The `jvm()` canary still compiles it, so an `android.*` import fails the build.
+ *
+ * ## ABI validation
+ *
+ * The public ABI, `$stable` fields included, is checked against the committed `api/` dump (same
+ * `@Prerelease` / `@InternalAPI` excludes as `:library`); `check` runs `checkKotlinAbi`, so a
+ * dropped member or `$stable` fails the build. Record a deliberate change with
+ * `./gradlew :<module>:updateKotlinAbi` and review the `api/` diff alongside it.
  */
 
 plugins {
@@ -45,5 +52,15 @@ kotlin {
 
         androidMain { dependsOn(jvmCommonMain) }
         jvmMain { dependsOn(jvmCommonMain) }
+    }
+
+    @OptIn(org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation::class)
+    abiValidation {
+        filters {
+            exclude {
+                annotatedWith.add("com.lagradost.cloudstream3.Prerelease")
+                annotatedWith.add("com.lagradost.cloudstream3.InternalAPI")
+            }
+        }
     }
 }

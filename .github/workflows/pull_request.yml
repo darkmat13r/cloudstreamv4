@@ -28,8 +28,10 @@ jobs:
 
     - name: Ensure binary compatibility
       # This is to ensure that your code is backwards compatible.
-      # If this fails you need to add a @Prerelease annotation to new code.
-      run: ./gradlew library:checkKotlinAbi
+      # If this fails in :library you need to add a @Prerelease annotation to new code.
+      # Runs in every project with abiValidation: :library and each cloudstream.kmp.extension-api module.
+      # In a :core module, record an intended change with `./gradlew :core:x:updateKotlinAbi` and review the api/ diff.
+      run: ./gradlew checkKotlinAbi
 
     - name: Run Gradle
       run: ./gradlew assemblePrereleaseDebug lint check
