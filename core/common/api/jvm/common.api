@@ -1,0 +1,47 @@
+public final class com/lagradost/cloudstream3/utils/EmptyEvent {
+	public static final field $stable I
+	public fun <init> ()V
+	public final fun getSize ()I
+	public final fun invoke ()V
+	public final fun minusAssign (Ljava/lang/Runnable;)V
+	public final fun plusAssign (Ljava/lang/Runnable;)V
+}
+
+public final class com/lagradost/cloudstream3/utils/Event {
+	public static final field $stable I
+	public fun <init> ()V
+	public final fun getSize ()I
+	public final fun invoke (Ljava/lang/Object;)V
+	public final fun minusAssign (Lkotlin/jvm/functions/Function1;)V
+	public final fun plusAssign (Lkotlin/jvm/functions/Function1;)V
+}
+
+public abstract interface class com/lagradost/cloudstream3/utils/IDisposable {
+	public abstract fun dispose ()V
+}
+
+public final class com/lagradost/cloudstream3/utils/IDisposableHelper {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/lagradost/cloudstream3/utils/IDisposableHelper;
+	public final fun using (Lcom/lagradost/cloudstream3/utils/IDisposable;Lkotlin/jvm/functions/Function1;)V
+}
+
+public final class com/lagradost/cloudstream3/utils/Vector2 {
+	public static final field $stable I
+	public fun <init> (FF)V
+	public final fun component1 ()F
+	public final fun component2 ()F
+	public final fun copy (FF)Lcom/lagradost/cloudstream3/utils/Vector2;
+	public static synthetic fun copy$default (Lcom/lagradost/cloudstream3/utils/Vector2;FFILjava/lang/Object;)Lcom/lagradost/cloudstream3/utils/Vector2;
+	public final fun distanceTo (Lcom/lagradost/cloudstream3/utils/Vector2;)F
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getLength ()F
+	public final fun getX ()F
+	public final fun getY ()F
+	public fun hashCode ()I
+	public final fun minus (Lcom/lagradost/cloudstream3/utils/Vector2;)Lcom/lagradost/cloudstream3/utils/Vector2;
+	public final fun plus (Lcom/lagradost/cloudstream3/utils/Vector2;)Lcom/lagradost/cloudstream3/utils/Vector2;
+	public final fun times (I)Lcom/lagradost/cloudstream3/utils/Vector2;
+	public fun toString ()Ljava/lang/String;
+}
+
