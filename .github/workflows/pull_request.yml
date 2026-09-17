@@ -36,6 +36,12 @@ jobs:
     - name: Run Gradle
       run: ./gradlew assemblePrereleaseDebug lint check
 
+    - name: Check classes.jar ABI
+      # classes.jar is what third-party extensions compile against; this diffs it, :app included, against app/api/classes-jar.api.
+      # Not part of `check`: makeJar depends on build, so it runs as its own step.
+      # Record an intended change with `./gradlew :app:dumpExtensionApi` and review the api/ diff.
+      run: ./gradlew :app:checkExtensionApi
+
     - name: Upload Artifact
       uses: actions/upload-artifact@v7
       with:
