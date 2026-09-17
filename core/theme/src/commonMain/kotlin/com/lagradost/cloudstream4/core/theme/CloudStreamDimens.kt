@@ -42,13 +42,20 @@ object CloudStreamDimens {
      * target's box and must not change the target's size. Drawn as a transparent border it
      * pushed a card's badge 4px off the step.
      */
-    val FocusRingStroke: Dp = 4.dp
+    val FocusRingStroke: Dp = 2.dp
 
     /** The gap between the target's edge and the inner edge of the ring. */
-    val FocusRingOffset: Dp = 4.dp
+    val FocusRingOffset: Dp = 2.dp
 
-    /** Total space the ring claims outside the target: [FocusRingOffset] + [FocusRingStroke]. */
-    val FocusRingBleed: Dp = 8.dp
+    /**
+     * Total space the ring claims outside the target: [FocusRingOffset] + [FocusRingStroke].
+     *
+     * 4dp, which is the 8 artboard px that [FocusBandInset] reserves. These three were the only
+     * tokens in this file not halved when the artboard was converted — at 4/4/8dp the ring was
+     * twice the drawn width and bled 16px into a margin that reserves 8, so a focusable at the
+     * band edge would have lost its ring to the overscan.
+     */
+    val FocusRingBleed: Dp = 4.dp
 
     /**
      * **The focus lift is 4dp (8px), not 6dp.** A 12px lift takes every focused card off the
