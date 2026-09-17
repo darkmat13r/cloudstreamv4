@@ -467,7 +467,8 @@ tests, adversarial fixtures, CI guard wiring); corrections to the first draft ar
      The 34 styled `<b>` values (1 in base) ship as plain text. Arrays and build-type/flavor overlays are not generated.
   4. *(corrected)* **No generator-side trim**: aapt2 already trims; trimming again breaks quoted and styled values.
   5. Written in CMP 1.12.0 escaping (every `\` doubled, `\n`/`\t`, entities, `\uXXXX` for controls), one
-     `strings.xml` per directory, plus TSV oracles. `values-b+he`/`values-b+id` copies are the **next** PR.
+     `strings.xml` per directory, plus TSV oracles. **Done:** `values-b+he`/`values-b+id` are written as exact copies
+     of the emitted `values-b+iw`/`values-b+in` (`localeCopies`); a real `b+he`/`b+id` source directory fails the build.
   6. Fed through `compose.resources.customDirectory("commonMain", task.flatMap { it.outputDir })`.
 - *(corrected)* **Guards policy (owner decision).** Content guards (Unicode whitespace aapt2 and aaptcompiler treat
   differently, `&#13;`, unmodelled qualifier directories, unresolvable references, predicted parity gaps) follow
@@ -477,7 +478,7 @@ tests, adversarial fixtures, CI guard wiring); corrections to the first draft ar
 - Tests: jvmTest reads the packaged output back through the real CMP runtime — every item vs the aapt2 oracle
   (runtime decoder and raw `.cvr`), and every request in `parity-requests.txt` plus each directory's locale
   (`pt-PT`, `fil`, `tl`, `zh-Hant-TW`, `nb`, `he`/`iw`, `id`/`in`, …) vs the Android model; CMP version pinned.
-  Documented gaps: `zh-HK`/`zh-Hant-HK` (Android `b+zh+TW`, Compose `b+zh`), `he`/`id` until the copies land.
+  Documented gaps: `zh-HK`/`zh-Hant-HK` (Android `b+zh+TW`, Compose `b+zh`); `he`/`he-IL`/`id`/`id-ID` match.
   The model itself was checked once on an API 37 emulator against the APK's real resource lookup; API 23 (pre-N
   matcher) is not modelled.
 - **Unchanged:** `app/src/main/res`, `R` ids, Weblate, `.github/locales.py`, the APK and classes.jar. The APK gains
@@ -505,7 +506,7 @@ exception (§4.1) and the reason §10 O3's SwiftUI option cannot reuse ViewModel
 |---|---|
 | Argument overloads substitute only `%N$s` / `%N$d` | Always fetch the raw pattern, then format with **our commonMain formatter** covering the specifiers present in the strings (`%s`, `%d`, `%1$s`, `%1$d`, `%.1f`, `%.2f`, `%%`). Format **only when args are non-empty** (as `TextUtil.kt` does), so `100%` strings do not throw. A jvmTest runs the formatter over every value in every locale against `java.util.Formatter`. Feature code must not call Compose's argument overloads (rule; not compile-enforced). |
 | Plural lookup throws `NoSuchElementException` for languages without CLDR rules (`apc`, `qt`, `arz`) | Guard: for those languages use the `other` item. A canary test asserts CMP still throws, so the guard is removed when a CMP release contains the fix. |
-| `iw`/`in` vs `he`/`id` | generated `b+he`/`b+id` copies (the PR after S-a; parity test lists them as gaps until then) |
+| `iw`/`in` vs `he`/`id` | generated `b+he`/`b+id` copies (done; `he`, `he-IL`, `id`, `id-ID` are `match` in the parity test) |
 | Only the first locale in the list; `zh-HK`/`zh-Hant-HK` fall back to `b+zh` (Android: `b+zh+TW`) | accepted; a documented gap in `parity-requests.txt` |
 | `Resource.equals` compares `"string:<name>"` with no module, so `:shared`'s `Res.string.ok` equals `:core:strings`' | never rely on `StringResource` equality across modules; consolidate `:shared`'s strings into `:core:strings` later |
 

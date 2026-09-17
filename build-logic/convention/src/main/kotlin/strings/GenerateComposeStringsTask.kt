@@ -8,6 +8,7 @@ import org.gradle.api.GradleException
 import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.file.FileTree
 import org.gradle.api.file.RegularFileProperty
+import org.gradle.api.provider.MapProperty
 import org.gradle.api.provider.Property
 import org.gradle.api.tasks.CacheableTask
 import org.gradle.api.tasks.IgnoreEmptyDirectories
@@ -32,7 +33,8 @@ import org.gradle.process.ExecOperations
  * 3. **Read** the compiled tables ([AaptContainerReader]) and check the entry count against the XML.
  * 4. **Resolve and materialise** ([AndroidResolver], [Materialiser]): references resolve in the requesting locale
  *    and values are copied into locale directories wherever Compose's fallback would otherwise differ from
- *    Android's (`ResTable_config::match` / `isLocaleBetterThan`, API 24+).
+ *    Android's (`ResTable_config::match` / `isLocaleBetterThan`, API 24+). Then [localeCopies] (`values-b+he`,
+ *    `values-b+id`) are added as exact copies of `values-b+iw` / `values-b+in` ([LocaleCopies]).
  * 5. **Write** one `values…/strings.xml` per directory in Compose's escaping ([CmpStringsXml]) to [outputDir], and
  *    the oracles (`decoded.tsv`, `emitted.tsv`, `requests.tsv`, `lookup.tsv`, `findings.tsv`, `report.txt`) to
  *    [oracleDir] for the parity jvmTest.
@@ -67,6 +69,13 @@ abstract class GenerateComposeStringsTask : DefaultTask() {
     @get:PathSensitive(PathSensitivity.NONE)
     abstract val parityRequests: RegularFileProperty
 
+    /**
+     * Target -> source directory copies for languages Compose and Android name differently, see [LocaleCopies].
+     * `cloudstream.kmp.strings` sets [LocaleCopies.DEFAULTS]; a target that exists in the res fails the build.
+     */
+    @get:Input
+    abstract val localeCopies: MapProperty<String, String>
+
     /** `fail` or `report`. */
     @get:Input
     abstract val guardMode: Property<String>
@@ -96,6 +105,7 @@ abstract class GenerateComposeStringsTask : DefaultTask() {
                 sources,
                 StringsOracles.parseAllowlist(visibleDoNotTranslate.get().asFile.readText()),
                 StringsOracles.parseRequests(parityRequests.get().asFile.readText()),
+                localeCopies.get(),
             )
         } catch (e: StringsBuildException) {
             File(oracles, "findings.tsv").writeText(findings.tsv())

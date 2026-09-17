@@ -21,7 +21,7 @@ internal class PipelineResult(
 
 /**
  * Android values -> Compose values, with no Gradle types so the guard fixtures can drive it directly.
- * See `GenerateComposeStringsTask` for the contract and `Materialiser` for the lookup parity rules.
+ * See `GenerateComposeStringsTask` for the contract, `Materialiser` for the lookup parity rules and [LocaleCopies].
  */
 internal class StringsPipeline(private val findings: Findings, private val compiler: ResourceCompiler) {
     private companion object {
@@ -35,9 +35,11 @@ internal class StringsPipeline(private val findings: Findings, private val compi
         sources: List<SourceFile>,
         visibleDoNotTranslate: List<String>,
         extraRequests: List<ParityRequest>,
+        localeCopies: Map<String, String>,
     ): PipelineResult {
         val report = mutableListOf<String>()
         val qualifiers = modelledDirectories(sources.map { it.directory }.distinct().sorted())
+        val copies = LocaleCopies.plan(localeCopies, sources.map { it.directory }.distinct(), findings)
         val modelled = sources.filter { it.directory in qualifiers }.sortedBy { it.location }
 
         val sanitised = modelled.associate { it.location to ValuesSanitizer.sanitise(it.location, it.bytes, findings) }
@@ -85,6 +87,7 @@ internal class StringsPipeline(private val findings: Findings, private val compi
             if (entries.isEmpty()) report += "directory $directory: nothing to emit"
         }
         report += "emitted values by reason: ${materialiser.reasons.toSortedMap()}"
+        report += LocaleCopies.apply(copies, materialiser, qualifiers)
         report += "styled values emitted as plain text: ${materialiser.styledEmitted}"
         decodedRows.filter { (_, e) -> e.value.let { it is DecodedValue.Single && it.item is DecodedItem.Styled } }
             .forEach { (location, e) ->

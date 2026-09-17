@@ -6,8 +6,10 @@ import strings.VerifyStringsGuardsTask
  *
  * - `res/`: escaping and whitespace edge cases (backslash runs, CR/C0 escapes, quotes, CDATA, entities, spans,
  *   xliff, astral characters, BOM, a stray top-level `"`), per-locale references and every locale fallback the
- *   model distinguishes (pt -> pt-BR, fil <-> tl, zh-TW not zh, sr-Latn scripts, legacy `values-fr`). The shared
- *   `jvmTest` sources of `:core:strings` run over it with this module's own `Res`.
+ *   model distinguishes (pt -> pt-BR, fil <-> tl, zh-TW not zh, sr-Latn scripts, legacy `values-fr`, the
+ *   `values-b+he` copy of `values-b+iw`). The shared `jvmTest` sources of `:core:strings` run over it with this
+ *   module's own `Res`.
+ * - `FixtureLocaleCopyTest`: the packaged `values-b+he` is exactly the emitted `values-b+iw`.
  * - `FixtureGoldenDecodeTest`: the generator's decoded table equals `golden-decoded.tsv`, which was produced with
  *   `protobuf-java` + `aapt2-proto` (not the generator's wire reader) and reviewed by hand.
  * - `guard-cases/`: inputs that must fail. `verifyStringsGuards` runs each through the real pipeline and aapt2 in
@@ -17,7 +19,7 @@ plugins {
     id("cloudstream.kmp.strings")
 }
 
-tasks.named<strings.GenerateComposeStringsTask>("generateComposeStrings") {
+val generateComposeStrings = tasks.named<strings.GenerateComposeStringsTask>("generateComposeStrings") {
     resDirectory.set(layout.projectDirectory.dir("res"))
 }
 
@@ -32,7 +34,8 @@ kotlin {
 val verifyStringsGuards = tasks.register<VerifyStringsGuardsTask>("verifyStringsGuards") {
     group = "verification"
     description = "Runs every guard case through the strings pipeline in fail and report mode."
-    aapt2.set(tasks.named<strings.GenerateComposeStringsTask>("generateComposeStrings").flatMap { it.aapt2 })
+    aapt2.set(generateComposeStrings.flatMap { it.aapt2 })
+    localeCopies.set(generateComposeStrings.flatMap { it.localeCopies })
     cases.set(layout.projectDirectory.dir("guard-cases"))
     resultFile.set(layout.buildDirectory.file("verifyStringsGuards/result.txt"))
 }

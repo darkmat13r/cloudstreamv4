@@ -28,6 +28,8 @@ no             no           no   -     -       match
 nb             nb           nb   -     -       match   nb is not equivalent to no on Android either: the default values
 nb-NO          nb-NO        nb   -     NO      match
 iw             iw           iw   -     -       match   Locale.language on API < 35 or targetSdk < 35
-he             he           he   -     -       gap=en  Android maps he to iw (ResourcesImpl.adjustLanguageTag); Compose sees he on API 35+, JDK 17+ and iOS. The values-b+he copy is the next PR
+he             he           he   -     -       match   Android maps he to iw (ResourcesImpl.adjustLanguageTag); Compose sees he on API 35+, JDK 17+ and iOS and reads the generated values-b+he copy (localeCopies)
+he-IL          he-IL        he   -     IL      match
 in             in           in   -     -       match   Locale.language on API < 35 or targetSdk < 35
-id             id           id   -     -       gap=en  as he: Android maps id to in; the values-b+id copy is the next PR
+id             id           id   -     -       match   as he: Android maps id to in; Compose reads the generated values-b+id copy
+id-ID          id-ID        id   -     ID      match

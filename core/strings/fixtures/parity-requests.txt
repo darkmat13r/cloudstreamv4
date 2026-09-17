@@ -15,5 +15,6 @@ sr-Latn-RS     sr-Latn-RS   sr   Latn  RS      match
 sr             sr           sr   -     -       gap=sr-Latn   Android: sr is Cyrl, so the default; Compose falls back to the only sr directory
 fr-CA          fr-CA        fr   -     CA      match         legacy values-fr
 iw             iw           iw   -     -       match
-he             he           he   -     -       gap=en        no values-b+he copy yet
-id             id           id   -     -       match         no values-b+in in the fixtures: the default on both
+he             he           he   -     -       match         the generated values-b+he copy of values-b+iw
+he-IL          he-IL        he   -     IL      match
+id             id           id   -     -       match         no values-b+in in the fixtures, so no copy: the default on both
