@@ -1,5 +1,5 @@
 /**
- * `:core:common` — small, dependency-free utilities shared by every layer.
+ * `:core:common` — small utilities shared by every layer.
  *
  * ## FQN freeze: these classes are published extension API
  *
@@ -13,27 +13,16 @@
  * `cloudstream.extension-api-jar`, in the same change. Only this module's `jvm` jar is published,
  * so nothing extension-facing may live in `androidMain` alone.
  *
- * ## Source sets
+ * ## Source sets and build conventions
+ *
+ * Set up by `cloudstream.kmp.extension-api`, which also applies the Compose compiler so moved
+ * classes keep the `$stable` field `:app` emitted — see that plugin's KDoc.
  *
  * - `commonMain` — pure Kotlin (`IDisposable`, `Vector2`).
- * - `jvmCommonMain` — JVM-bound but Android-free, shared by `androidMain` and `jvmMain`, the same
- *   layout `:library` uses. `Event.kt` lives here: it uses `synchronized()` and exposes
- *   `java.lang.Runnable` in its public API. Porting it to `commonMain` (expect/actual, atomicfu)
- *   would change the bytecode signatures extensions link against.
+ * - `jvmCommonMain` — JVM-bound but Android-free. `Event.kt` lives here: it uses `synchronized()`
+ *   and exposes `java.lang.Runnable` in its public API. Porting it to `commonMain` (expect/actual,
+ *   atomicfu) would change the bytecode signatures extensions link against.
  */
 plugins {
-    id("cloudstream.kmp.library")
-}
-
-kotlin {
-    applyDefaultHierarchyTemplate()
-
-    sourceSets {
-        val jvmCommonMain by creating {
-            dependsOn(commonMain.get())
-        }
-
-        androidMain { dependsOn(jvmCommonMain) }
-        jvmMain { dependsOn(jvmCommonMain) }
-    }
+    id("cloudstream.kmp.extension-api")
 }
