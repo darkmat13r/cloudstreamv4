@@ -1,3 +1,5 @@
+import com.lagradost.cloudstream.buildlogic.CheckExtensionApiTask
+import com.lagradost.cloudstream.buildlogic.DumpExtensionApiTask
 import org.gradle.api.artifacts.result.UnresolvedDependencyResult
 import org.gradle.api.artifacts.type.ArtifactTypeDefinition
 import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType
@@ -40,6 +42,46 @@ import java.util.zip.ZipFile
  * sentinel class is missing; `DuplicatesStrategy.FAIL` fails it when two sources bring the same
  * entry. **When you move an extension-facing class out of `:app`, add it to [sentinels] in the same
  * change.**
+ *
+ * ## ABI dump: `dumpExtensionApi` / `checkExtensionApi`
+ *
+ * Sentinels prove a handful of classes are present; Kotlin `abiValidation` covers `:library` and the
+ * `cloudstream.kmp.extension-api` modules, and dumps nothing for android-only modules. Neither sees
+ * `:app`'s own classes. The dump at [extensionApiDumpPath] covers the whole merged jar, whatever
+ * module a class came from, in one committed text file:
+ *
+ * - every public or protected class under [extensionApiDumpPackages], sorted by name, with its kind
+ *   (class, interface, enum, annotation), modality (abstract, final, open), superclass and interfaces;
+ * - every public or protected field and method with its JVM descriptor and its static, final,
+ *   abstract and synthetic flags — so compiler-emitted API is guarded too: `$stable` (lost when a
+ *   class moves to a module without the Compose compiler), `access$…$cp` accessors, `write$Self$app`,
+ *   and a public data class's `<init>`, `copy`, `copy$default` and `componentN` when a constructor
+ *   property is added;
+ * - `R` and `BuildConfig` field **names** (extensions `getstatic` `R$string` fields by name), so
+ *   adding a string or resource to `:app` also means re-running the dump (it shows as an addition);
+ * - Kotlin `internal` declarations, which are public in bytecode (`…$app`-mangled members such as
+ *   `write$Self$app`), and public anonymous classes such as inline functions' `$$inlined$` copies:
+ *   renaming or renumbering one shows as a removal plus an addition.
+ *
+ * It does **not** guard:
+ * - constant **values** — deliberately left out, because `BuildConfig.BUILD_DATE` / `VERSION_CODE`
+ *   change every build and `R` ids shift whenever a resource is added. A changed compile-time
+ *   constant is still inlined into extensions compiled against the old value;
+ * - inline function bodies, which are copied into extensions (see plan §3.2 — `parseJson`,
+ *   `Context.getKey`), and behaviour of any kind;
+ * - generic signatures, annotations (`@StabilityInferred` included) and Kotlin metadata — only
+ *   what the JVM links against;
+ * - classes outside [extensionApiDumpPackages] — third-party `R` classes and the like, see there.
+ *
+ * `checkExtensionApi` fails with a unified diff (the full diff lands in
+ * `build/reports/extension-api/`). **To change the API on purpose**, run
+ * `./gradlew :app:dumpExtensionApi`, review the `api/` diff as an ABI change — a removed or changed
+ * line can break published extensions; an added one normally does not, unless it is an abstract
+ * member of a type extensions implement — and commit it with the change.
+ *
+ * Both tasks read `makeJar`'s output and are **not** wired into `check` or `build`: `copyJar`
+ * depends on `build`, which depends on `check`, so doing so would be a task cycle. CI runs
+ * `:app:checkExtensionApi` as its own step instead.
  */
 
 val apiPackageDir = "com/lagradost/cloudstream3"
@@ -226,4 +268,40 @@ tasks.register<Jar>("makeJar") {
             throw GradleException("classes.jar API check failed:\n- " + problems.joinToString("\n- "))
         }
     }
+}
+
+/**
+ * The committed dump, next to the `api/` dumps `abiValidation` writes in the modules it covers, so
+ * every ABI file a reviewer has to read lives under a module's `api/` directory.
+ */
+val extensionApiDumpPath = "api/classes-jar.api"
+
+/**
+ * Entry prefixes of the classes dumped: the packages extensions compile against, whichever module
+ * they come from (`com.lagradost.cloudstream3`, `com.lagradost.api`, `com.lagradost.cloudstream4`).
+ * Everything else in the jar is left out — mostly the non-transitive `R` classes of every library
+ * `:app` depends on (`androidx.*`, `com.google.*`, …), which extensions do not use through this
+ * jar and which change on every dependency bump.
+ */
+val extensionApiDumpPackages = listOf("com/lagradost/")
+
+val extensionApiUpdateCommand = "./gradlew $path:dumpExtensionApi"
+val extensionApiJar = tasks.named<Jar>("makeJar").flatMap { it.archiveFile }
+
+tasks.register<DumpExtensionApiTask>("dumpExtensionApi") {
+    group = "extension api"
+    description = "Writes $extensionApiDumpPath, the ABI dump of classes.jar. Review the diff before committing it."
+    jar.set(extensionApiJar)
+    packagePrefixes.set(extensionApiDumpPackages)
+    apiDump.set(layout.projectDirectory.file(extensionApiDumpPath))
+}
+
+tasks.register<CheckExtensionApiTask>("checkExtensionApi") {
+    group = "extension api"
+    description = "Fails when classes.jar's ABI differs from $extensionApiDumpPath. Not part of check: see the plugin KDoc."
+    jar.set(extensionApiJar)
+    packagePrefixes.set(extensionApiDumpPackages)
+    apiDump.set(layout.projectDirectory.file(extensionApiDumpPath))
+    updateCommand.set(extensionApiUpdateCommand)
+    diffReport.set(layout.buildDirectory.file("reports/extension-api/classes-jar.api.diff"))
 }
