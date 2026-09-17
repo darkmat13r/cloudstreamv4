@@ -1,0 +1,2 @@
+kind=INVALID_NAME
+message=not generated

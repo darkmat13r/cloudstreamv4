@@ -1,0 +1,19 @@
+# Fixture parity requests; format as in core/strings/parity-requests.txt.
+# id           androidTag   lang script region  expectation   note
+en             en           en   -     -       match
+en-US          en-US        en   -     US      match
+pt             pt           pt   -     -       match         k_pt_br_only and p_alias_locale come from b+pt+BR
+pt-PT          pt-PT        pt   -     PT      match
+fil            fil          fil  -     -       match         k_everywhere and k_tl_only come from b+tl
+tl             tl           tl   -     -       match         k_fil_only comes from b+fil
+zh             zh           zh   -     -       match
+zh-TW          zh-TW        zh   -     TW      match         k_zh_only is the default value, not b+zh
+zh-Hant-TW     zh-Hant-TW   zh   Hant  TW      match
+zh-Hant-HK     zh-Hant-HK   zh   Hant  HK      gap=zh        Android: b+zh+TW (Hant); Compose: b+zh
+sr-Latn        sr-Latn      sr   Latn  -       match
+sr-Latn-RS     sr-Latn-RS   sr   Latn  RS      match
+sr             sr           sr   -     -       gap=sr-Latn   Android: sr is Cyrl, so the default; Compose falls back to the only sr directory
+fr-CA          fr-CA        fr   -     CA      match         legacy values-fr
+iw             iw           iw   -     -       match
+he             he           he   -     -       gap=en        no values-b+he copy yet
+id             id           id   -     -       match         no values-b+in in the fixtures: the default on both

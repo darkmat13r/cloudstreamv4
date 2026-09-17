@@ -228,7 +228,7 @@ layer 0   :core:theme   :core:common   :library
 | `:core:network` | built | `kmp.extension-api` | android, jvm | yes: frozen extension API only (I2) | yes |
 | `:core:theme`, `:core:designsystem` | built | `kmp.compose` | android, jvm | no | yes, macOS runner (§6.3) |
 | `:core:screenshot` | built | `com.android.library` | android | no | never |
-| `:core:strings` | planned | `kmp.library` + CMP Gradle plugin + Compose compiler in its own build file; commonMain `api` is only `compose-runtime` + `compose-resources` (not `kmp.compose`, §7 Phase 3) | android, jvm | **no** (I2) | yes, macOS runner (`components-resources` → `foundation` → `ui`) |
+| `:core:strings` | planned | `kmp.strings` (`kmp.library` + CMP Gradle plugin + Compose compiler); commonMain `api` is only `compose-runtime` + `compose-resources` (not `kmp.compose`, §7 Phase 3) | android, jvm | **no** (I2) | yes, by hand on macOS until the G4 job exists (`components-resources` → `foundation` → `ui`) |
 | `:core:http` | planned | `kmp.library` + `jvmCommonMain` declared in its build file (§7 Phase 4) | android, jvm | **no** (I2) | yes |
 | `:core:ui` | planned | `kmp.compose` | android, jvm | no | yes, macOS runner |
 | `:core:model`, `:core:data` | planned | `kmp.extension-api` | android, jvm | yes: frozen-API (§5.2) | yes, subject to rule 4 |
@@ -418,7 +418,7 @@ sized (it depends on upstream), and no iOS app work is sized: the plan only keep
 | 7 | B1 `:core:data` key constants | 2 | unblocked |
 | 8 | B2 `:core:model` bootstrap, then B3, B6 | 2 | unblocked |
 | 9 | B4 `DdosGuardKiller`; B5 after security review; B7 into `:core:common`; B8 with owner sign-off on the synthetic delta | 2 | unblocked |
-| 10 | Phase 3 S-a: `:core:strings` + generator | 4 | unblocked; approvals possibly needed (§9) |
+| 10 | Phase 3 S-a: `:core:strings` + generator | 4 | unblocked; no new dependency (§9) |
 | 11 | Phase 3 S-b: text type, formatter, plural guard, `UiText` deprecation | 10 | unblocked |
 | 12 | Phase 4 H-a: catalog `ktor` ref 3.5.0 → 3.6.0 only (URL-behaviour tests + extension-author note), then client artifacts with `:core:http` | — | approved (I3) |
 | 13 | Phase 4 H-b: `:core:http` | 12 | unblocked |
@@ -443,34 +443,45 @@ moved class identical before and after (or the accepted delta listed in the PR).
 
 ### Phase 3 — Strings pipeline and the new text type (S1, S2, D4) · ~2 weeks
 
-**S-a. `:core:strings` generates Compose resources from Android res.**
-- Module: **not** `cloudstream.kmp.compose`, which exports the whole `compose` bundle (ui, foundation,
-  material3, coil-compose, lifecycle) as commonMain `api`. The build file applies `cloudstream.kmp.library`,
-  the CMP Gradle plugin (resource generation) and the Compose compiler (`@Composable resolve()`), and
-  declares commonMain `api(compose-runtime)` + `api(compose-resources)` only. `androidResources { enable = true }`
-  (without it nothing is packaged), `publicResClass = true`, package `com.lagradost.cloudstream4.core.strings`.
-  No `com/lagradost/cloudstream3` directory, so not merged.
-- Task `generateComposeStrings` (configuration-cache safe, abstract inputs, injected `ExecOperations`):
-  1. Inputs: `app/src/main/res/values*/strings.xml` (source files, not an `:app` task output), plus
-     the visible entries of `values/donottranslate-strings.xml` named in an explicit list; the rest
-     of that file are persisted preference keys and view tags, not text.
-  2. aapt2 (`androidComponents.sdkComponents.aapt2`, public API) `compile` + `link --proto-format`,
-     then read the proto `ResourceTable`. aapt2's decoded value is the oracle; aapt2 escaping is
-     never re-implemented.
-  3. Write each value in CMP escaping (Compose decodes only `\n`, `\t`, `\uXXXX`, `\\`). Whole-value
-     `@string/` references resolve to the target's value in that configuration. Arrays are not
-     generated. Build-type/flavor overlays (`debug` build type, `prerelease` flavor `app_name`) are not generated.
-  4. Trim ASCII space/`\n`/`\t` only, never Kotlin `trim()` (keeps NBSP and `ar`/`iw` RLM/LRM prefixes).
-  5. Copy `values-b+iw` → `values-b+he`, `values-b+in` → `values-b+id` (CMP matches `Locale.language`,
-     which is `he`/`id` on API 35+ with targetSdk 36 and on JDK 17+). Skip the empty `values-arz`;
-     all 61 `values-b+*` names are valid CMP qualifiers.
-  6. Feed `compose.resources.customDirectory("commonMain", task.flatMap { it.outputDir })`; the
-     provider carries the task dependency.
-- Tests: a jvmTest per locale directory asserting `getString(res)` equals the aapt2-decoded value.
-  Compare against the plugin's real output (`.cvr` or runtime `getString`), not a port of its
-  unescaper, and pin the CMP version in the test.
-- **Unchanged:** `app/src/main/res`, `R` ids, Weblate, `.github/locales.py`. The APK gains only
-  assets under `composeResources/com.lagradost.cloudstream4.core.strings…` once `:app` depends on it.
+**S-a. `:core:strings` generates Compose resources from Android res.** Built in one PR (module, generator, parity
+tests, adversarial fixtures, CI guard wiring); corrections to the first draft are marked *(corrected)*.
+- Module: **not** `cloudstream.kmp.compose`. `cloudstream.kmp.strings` (build-logic) applies `cloudstream.kmp.library`,
+  the CMP Gradle plugin and the Compose compiler; commonMain `api` is only `compose-runtime` + `compose-resources`;
+  `androidResources { enable = true }`; `Res` is public in `com.lagradost.cloudstream4.core.strings.generated.resources`,
+  `generateResClass = always`. No `com/lagradost/cloudstream3` directory, so not merged. `:core:strings:fixtures`
+  runs the same pipeline over adversarial inputs. No new dependency.
+- Task `generateComposeStrings` (`strings.GenerateComposeStringsTask`: cacheable, relocatable, CC-safe):
+  1. Inputs: `app/src/main/res/values*/strings.xml` read as files (`:app` is never configured), plus the names in
+     `core/strings/visible-donottranslate.txt` (22) from `values/donottranslate-strings.xml`.
+  2. *(corrected)* **Sanitise, then `aapt2 compile --legacy` only.** No `link --proto-format` (it needs `android.jar`
+     and fails on library ids); `--legacy` matches AGP's in-process compiler. The sanitiser removes the 31 stray
+     top-level `"` nodes by splicing the original text (no XML re-serialisation, so `&#13;`/CR never change), proves
+     the result event-identical, and runs StAX with DTDs and external entities disabled: a DOCTYPE fails the build.
+     The `.flat` table is read with a JDK-only protobuf wire reader, checked against the XML element count and, on
+     the fixtures, against a golden decode made with `protobuf-java`. aapt2's decoded value is the oracle.
+  3. *(corrected)* **Aliases resolve in the requesting locale** (`duplicate_cancel` = the locale's `cancel`), and
+     values are **materialised** into locale directories wherever Compose's fallback would differ from Android's.
+     **Owner decision: Compose matches Android's API 24+ fallback exactly** — AOSP `ResTable_config::match` /
+     `isLocaleBetterThan` and `LocaleData.cpp` are ported (`tl`≡`fil`; `he`→`iw`, `id`→`in`; same-script regions:
+     `pt`/`pt-PT` fall back to `b+pt+BR`; `zh-TW` never falls back to Hans `b+zh`, so its missing keys get the default).
+     The 34 styled `<b>` values (1 in base) ship as plain text. Arrays and build-type/flavor overlays are not generated.
+  4. *(corrected)* **No generator-side trim**: aapt2 already trims; trimming again breaks quoted and styled values.
+  5. Written in CMP 1.12.0 escaping (every `\` doubled, `\n`/`\t`, entities, `\uXXXX` for controls), one
+     `strings.xml` per directory, plus TSV oracles. `values-b+he`/`values-b+id` copies are the **next** PR.
+  6. Fed through `compose.resources.customDirectory("commonMain", task.flatMap { it.outputDir })`.
+- *(corrected)* **Guards policy (owner decision).** Content guards (Unicode whitespace aapt2 and aaptcompiler treat
+  differently, `&#13;`, unmodelled qualifier directories, unresolvable references, predicted parity gaps) follow
+  `-Pcloudstream.strings.guards=fail|report`: `fail` in `check` on pull requests (`pull_request.yml` passes it); `report` (the default, so a translation on master never breaks local, IDE or release builds) in
+  `.github/workflows/strings_guards.yml` on pushes to master (Weblate), as warning annotations. aapt2 failures,
+  DOCTYPEs and duplicates fail in both modes, with aapt2's own messages.
+- Tests: jvmTest reads the packaged output back through the real CMP runtime — every item vs the aapt2 oracle
+  (runtime decoder and raw `.cvr`), and every request in `parity-requests.txt` plus each directory's locale
+  (`pt-PT`, `fil`, `tl`, `zh-Hant-TW`, `nb`, `he`/`iw`, `id`/`in`, …) vs the Android model; CMP version pinned.
+  Documented gaps: `zh-HK`/`zh-Hant-HK` (Android `b+zh+TW`, Compose `b+zh`), `he`/`id` until the copies land.
+  The model itself was checked once on an API 37 emulator against the APK's real resource lookup; API 23 (pre-N
+  matcher) is not modelled.
+- **Unchanged:** `app/src/main/res`, `R` ids, Weblate, `.github/locales.py`, the APK and classes.jar. The APK gains
+  only assets under `composeResources/com.lagradost.cloudstream4.core.strings…` once `:app` depends on it.
 
 **S-b. The text type (working name `UiString`) in `:core:strings` commonMain.**
 ```kotlin
@@ -494,8 +505,8 @@ exception (§4.1) and the reason §10 O3's SwiftUI option cannot reuse ViewModel
 |---|---|
 | Argument overloads substitute only `%N$s` / `%N$d` | Always fetch the raw pattern, then format with **our commonMain formatter** covering the specifiers present in the strings (`%s`, `%d`, `%1$s`, `%1$d`, `%.1f`, `%.2f`, `%%`). Format **only when args are non-empty** (as `TextUtil.kt` does), so `100%` strings do not throw. A jvmTest runs the formatter over every value in every locale against `java.util.Formatter`. Feature code must not call Compose's argument overloads (rule; not compile-enforced). |
 | Plural lookup throws `NoSuchElementException` for languages without CLDR rules (`apc`, `qt`, `arz`) | Guard: for those languages use the `other` item. A canary test asserts CMP still throws, so the guard is removed when a CMP release contains the fix. |
-| `iw`/`in` vs `he`/`id` | generated `b+he`/`b+id` copies (S-a step 5) |
-| Only the first locale in the list; `zh-Hant-HK` falls back to `b+zh` | accepted |
+| `iw`/`in` vs `he`/`id` | generated `b+he`/`b+id` copies (the PR after S-a; parity test lists them as gaps until then) |
+| Only the first locale in the list; `zh-HK`/`zh-Hant-HK` fall back to `b+zh` (Android: `b+zh+TW`) | accepted; a documented gap in `parity-requests.txt` |
 | `Resource.equals` compares `"string:<name>"` with no module, so `:shared`'s `Res.string.ok` equals `:core:strings`' | never rely on `StringResource` equality across modules; consolidate `:shared`'s strings into `:core:strings` later |
 
 - Android: locale follows `Locale.current` after `CommonActivity.setLocale` + `recreate()`.
@@ -616,11 +627,11 @@ Drop `viewBinding`, delete `res/layout` (145 files), replace the XML nav graph w
 | "Keep iOS possible" used to justify an ABI change | every extension breaks | §2.4 rule |
 | Module depends on `:library` from commonMain | iOS closes for that module until Track L | rule 4 exemption list that only shrinks |
 | iOS canary green on Linux but Compose klibs need a Mac | false confidence | macOS runner for Compose modules (G4) |
-| Strings generator decodes differently from aapt2/CMP | wrong text on Compose screens | aapt2 as oracle; tests against the plugin's real output; ASCII-only trimming |
+| Strings generator decodes or falls back differently from aapt2/Android/CMP | wrong text on Compose screens | aapt2 as oracle; ported `ResTable_config` fallback; tests against the plugin's real output; golden decode; content guards (fail on PRs, report on master) |
 | Weblate source flipped before translate-toolkit is fixed | 61 quoted values, `sv` blank, leading-`@` values silently change | S1: no flip until fixed upstream |
 | `UiString` (S2) puts Compose UI (`components-resources` → `foundation` → `ui`) on every ViewModel's classpath | a tvOS app over shared Kotlin cannot reuse ViewModels | recorded as the rule 5 exception; `:core:strings` exports only runtime + resources; §10 O3 stays open |
 | CMP plural crash (`apc`, `qt`, `arz`); Compose argument overloads used directly | crash; `%s` / `%.2f` rendered literally | plural guard + canary test; common formatter via `UiString`; review rule |
-| `aapt2-proto` not on build-logic's runtime classpath; jvmTest needs skiko natives | generator or string tests cannot run | verify first; otherwise a separate approval request (§9) |
+| AGP or CMP bump changes aapt2 output, the `.flat` format or runtime internals the tests reflect on | generator or string tests break | CMP version pinned in the test; fixtures + golden decode rerun on every bump |
 | Ktor 3.6.0: OkHttp 5.3.2 → 5.5.0, okio → 3.18.2 at runtime | every loaded extension runs on the newer OkHttp (NiceHttp is compiled against 5.3.2) | accepted (I3); smoke-test real extensions in the catalog PR |
 | Ktor 3.6.0 URL parsing (`ktor-http` is shared with extensions at runtime) | `updateUrl` / `Url.encodedPath` return percent-encoded paths; `Url(...)` throws on whitespace in the host where ~10 built-in extractors have no local catch | accepted (I3); `:library` tests pin the behaviour; extension-author note in the bump PR |
 | Ktor client `close()` on the shared client | kills `app.baseClient`'s dispatcher and pool app-wide | never close (Phase 4) |
@@ -639,8 +650,8 @@ Drop `viewBinding`, delete `res/layout` (145 files), replace the XML nav graph w
 | `io.ktor:ktor-client-okhttp` 3.6.0 | **approved (I3)** | `:core:http` jvmCommonMain (Ktor publishes a jvm variant only) |
 | `ktor` ref 3.5.0 → 3.6.0 | **approved (I3)** | also `:library`'s `ktor-http` |
 | `io.ktor:ktor-client-darwin`, `coil-network-ktor3` | deferred until an iOS target exists | `appleMain` |
-| `aapt2-proto` (explicit) | only if not already on build-logic's runtime classpath via AGP 9.1.1 | build-logic |
-| skiko / `compose.desktop.currentOs` (test-only) | only if the string jvmTest cannot run headless | `:core:strings` jvmTest |
+| `aapt2-proto` (explicit) | **not needed**: S-a reads the `.flat` table with a JDK-only wire reader | build-logic |
+| skiko / `compose.desktop.currentOs` (test-only) | **not needed**: the jvmTest builds `ResourceEnvironment` headless | `:core:strings` jvmTest |
 | `org.jetbrains.androidx.navigation3:navigation3-ui` | to be proposed at Phase N | `:app`, `:core:ui` |
 
 **Ktor record (dependency-security.md; approved as I3).**

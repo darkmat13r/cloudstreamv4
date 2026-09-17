@@ -1,0 +1,3 @@
+# Fails closed: an escaped \u2028 is flagged too; a human decides.
+kind=UNICODE_WHITESPACE
+message=U+2028

@@ -1,0 +1,3 @@
+# zh-Hant-HK gets values-b+zh+TW on Android but values-b+zh in Compose; claiming 'match' must fail.
+kind=PREDICTED_PARITY_GAP
+message=zh-Hant-HK

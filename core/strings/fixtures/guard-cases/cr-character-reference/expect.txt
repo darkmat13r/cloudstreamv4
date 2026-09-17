@@ -1,0 +1,2 @@
+kind=CR_CHARACTER_REFERENCE
+message=&#13;

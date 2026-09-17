@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" xmlns:tools="http://schemas.android.com/tools">
+    <string name="s_apos">Don\'t</string>
+    <string name="s_dq_esc">Say \"hi\"</string>
+    <string name="s_quote_wrap">"  two  spaces  "</string>
+    <string name="s_unescaped_quotes">Press "OK"   now</string>
+    <string name="s_apos_in_quotes">"Don't  stop"</string>
+    <string name="s_at">\@home</string>
+    <string name="s_q">exit\?</string>
+    <string name="s_hash">\#1</string>
+    <string name="s_ws">
+        Line one
+        line two\n  line three
+    </string>
+    <string name="s_trailing">text </string>
+    <string name="s_unicode">a b…</string>
+    <string name="s_nbsp_literal"> a  b </string>
+    <string name="s_b">Hello <b>%s</b> world</string>
+    <string name="s_nested"><b><i>x</i></b> <u>u</u></string>
+    <string name="s_b_spaces">This <b> is </b> spaced</string>
+    <string name="s_xliff"><xliff:g id="n" example="3">%1$d</xliff:g>   items</string>
+    <string name="s_cdata"><![CDATA[<b>not a tag</b> & raw \' "q" ]]></string>
+    <string name="s_cdata_ws">a<![CDATA[   ]]>b</string>
+    <string name="s_alias">@string/s_apos</string>
+    <string name="s_alias_trailing">@string/s_apos </string>
+    <string name="s_alias_ws">
+        @string/s_apos
+    </string>
+    <string name="s_alias_escaped">\@string/s_apos</string>
+    <string name="s_formatted_false" formatted="false">100% %d %s</string>
+    <string name="s_translatable_false" translatable="false">Keep me</string>
+    <string name="s_entities">&amp; &lt; &#169; &gt;</string>
+    <string name="s_empty">""</string>
+    <string name="s_empty2"></string>
+    <string name="s_tab">a\tb	c</string>
+    <string name="s_backslash">a\\b</string>
+    <string name="s_html_a">see <a href="https://x.y/?a=1&amp;b=2">link</a></string>
+    <string name="s_font">in <font color="#ff0000">red</font></string>
+    <string name="s_unknown_tag">x <foo bar="baz">y</foo></string>
+    <string name="s_span_edge"> <b>bold</b> </string>
+    <string name="s_only_escape_n">\n</string>
+    <string name="s_quote_mid">a "b  c" d</string>
+    <string name="s_escaped_other">\z\%</string>
+    <string name="s_tools" tools:ignore="MissingTranslation">tools attr</string>
+    <string name="s_emoji">😀 emoji</string>
+    <string name="s_xliff_ws">a <xliff:g id="x"> sp </xliff:g> b</string>
+    <plurals name="p_items">
+        <item quantity="one">%d item\'s</item>
+        <item quantity="other"><b>%d</b>   items</item>
+    </plurals>
+    <plurals name="p_alias">
+        <item quantity="other">@string/s_apos</item>
+    </plurals>
+    <string name="x_lit_bs_n">a\\nb</string>
+    <string name="x_lit_bs_u">\\u0041</string>
+    <string name="x_three_bs_n">\\\\\\n</string>
+    <string name="x_bs_then_newline">x\\\ny</string>
+    <string name="x_trailing_bs">end\\</string>
+    <string name="x_ctrl_u0001">a\u0001b</string>
+    <string name="x_cr_escape">a\u000Db</string>
+    <string name="x_bom">\uFEFFx</string>
+    <string name="x_u005c">a\u005Cnb</string>
+    <string name="x_gt_amp">a &gt; b &amp;&amp; c &lt;d&gt;</string>
+    <string name="x_astral">&#x1F600;&#x10000;</string>
+    <string name="x_percent">%1$s and %2$d 100%%</string>
+    <string name="x_only_spaces">"   "</string>
+    <string name="x_tab_escape_run">\t\t</string>
+    <string name="x_quote_newline">"line1
+line2"</string>
+    <plurals name="x_plural_bs"><item quantity="one">\\n</item><item quantity="other">%d \"x\"</item></plurals>
+    <string name="k_everywhere">Everywhere (default)</string>"
+    <string name="k_pt_br_only">Only in pt-BR (default)</string>
+    <string name="k_tl_only">Only in tl (default)</string>
+    <string name="k_fil_only">Only in fil (default)</string>
+    <string name="k_zh_only">Only in zh (default)</string>
+    <string name="k_latn_only">Only in sr-Latn (default)</string>
+    <string name="a_alias_everywhere">@string/k_everywhere</string>
+    <string name="a_chain">@string/s_alias</string>
+    <plurals name="p_alias_locale">
+        <item quantity="one">@string/k_everywhere</item>
+        <item quantity="other">@string/k_pt_br_only</item>
+    </plurals>
+</resources>

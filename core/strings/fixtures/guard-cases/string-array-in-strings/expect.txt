@@ -1,0 +1,2 @@
+kind=UNSUPPORTED_VALUE
+message=string-array

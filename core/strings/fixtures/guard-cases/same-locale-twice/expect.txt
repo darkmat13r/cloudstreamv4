@@ -1,0 +1,2 @@
+kind=AMBIGUOUS_LOCALE
+message=same locale
