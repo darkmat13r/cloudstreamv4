@@ -1,0 +1,28 @@
+public final class com/lagradost/cloudstream3/utils/DataStoreHelperKt {
+	public static final field KEY_RESULT_SORT Ljava/lang/String;
+	public static final field RESULT_DUB Ljava/lang/String;
+	public static final field RESULT_EPISODE Ljava/lang/String;
+	public static final field RESULT_FAVORITES_STATE_DATA Ljava/lang/String;
+	public static final field RESULT_RESUME_WATCHING Ljava/lang/String;
+	public static final field RESULT_RESUME_WATCHING_HAS_MIGRATED Ljava/lang/String;
+	public static final field RESULT_RESUME_WATCHING_OLD Ljava/lang/String;
+	public static final field RESULT_SEASON Ljava/lang/String;
+	public static final field RESULT_SUBSCRIBED_STATE_DATA Ljava/lang/String;
+	public static final field RESULT_WATCH_STATE Ljava/lang/String;
+	public static final field RESULT_WATCH_STATE_DATA Ljava/lang/String;
+	public static final field USER_PINNED_PROVIDERS Ljava/lang/String;
+	public static final field VIDEO_POS_DUR Ljava/lang/String;
+	public static final field VIDEO_WATCH_STATE Ljava/lang/String;
+}
+
+public final class com/lagradost/cloudstream3/utils/DataStoreKt {
+	public static final field DOWNLOAD_EPISODE_CACHE Ljava/lang/String;
+	public static final field DOWNLOAD_EPISODE_CACHE_BACKUP Ljava/lang/String;
+	public static final field DOWNLOAD_HEADER_CACHE Ljava/lang/String;
+	public static final field DOWNLOAD_HEADER_CACHE_BACKUP Ljava/lang/String;
+	public static final field PREFERENCES_NAME Ljava/lang/String;
+	public static final field USER_PROVIDER_API Ljava/lang/String;
+	public static final field USER_SELECTED_HOMEPAGE_API Ljava/lang/String;
+	public static final field VIDEO_PLAYER_BRIGHTNESS Ljava/lang/String;
+}
+
