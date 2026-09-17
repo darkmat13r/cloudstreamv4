@@ -300,6 +300,7 @@ dependencies {
     implementation(project(":shared"))
     implementation(project(":core:common"))
     implementation(project(":core:network"))
+    implementation(project(":core:data"))
 }
 
 tasks.register<Jar>("androidSourcesJar") {

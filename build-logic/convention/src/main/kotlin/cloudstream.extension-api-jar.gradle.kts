@@ -58,6 +58,8 @@ val sentinels = mapOf(
     "$apiPackageDir/utils/IDisposableHelper.class" to ":core:common - no in-repo users; only this sees its loss",
     "$apiPackageDir/utils/Vector2.class" to ":core:common",
     "$apiPackageDir/network/DohProvidersKt.class" to ":core:network - OkHttpClient.Builder DoH extensions",
+    "$apiPackageDir/utils/DataStoreKt.class" to ":core:data - storage key consts; :app's DataStore.kt must declare no top-level members",
+    "$apiPackageDir/utils/DataStoreHelperKt.class" to ":core:data - storage key consts; :app's DataStoreHelper.kt must declare no top-level members",
 )
 
 /** Every project dependency `:app` is built with for [jarVariant], direct or transitive. */
