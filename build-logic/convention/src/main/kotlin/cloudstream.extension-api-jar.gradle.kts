@@ -39,6 +39,7 @@ val sentinels = mapOf(
     "$apiPackageDir/utils/IDisposable.class" to ":core:common",
     "$apiPackageDir/utils/IDisposableHelper.class" to ":core:common - no in-repo users; only this sees its loss",
     "$apiPackageDir/utils/Vector2.class" to ":core:common",
+    "$apiPackageDir/network/DohProvidersKt.class" to ":core:network - OkHttpClient.Builder DoH extensions",
 )
 
 /** Every project dependency `:app` is built with for [jarVariant], direct or transitive. */
