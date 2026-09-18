@@ -1,3 +1,10 @@
+public final class com/lagradost/cloudstream3/network/DdosGuardKiller : okhttp3/Interceptor {
+	public static final field $stable I
+	public fun <init> (Z)V
+	public final fun getSavedCookiesMap ()Ljava/util/Map;
+	public fun intercept (Lokhttp3/Interceptor$Chain;)Lokhttp3/Response;
+}
+
 public final class com/lagradost/cloudstream3/network/DohProvidersKt {
 	public static final fun addAdGuardDns (Lokhttp3/OkHttpClient$Builder;)Lokhttp3/OkHttpClient$Builder;
 	public static final fun addCanadianShieldDns (Lokhttp3/OkHttpClient$Builder;)Lokhttp3/OkHttpClient$Builder;

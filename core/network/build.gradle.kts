@@ -1,5 +1,5 @@
 /**
- * `:core:network` — OkHttp plumbing: today the DNS-over-HTTPS providers.
+ * `:core:network` — OkHttp plumbing: the DNS-over-HTTPS providers and the DDoS-Guard interceptor.
  *
  * ## FQN freeze: these classes are published extension API
  *
@@ -18,6 +18,12 @@
  * - `api(libs.nicehttp)` — `okhttp3.OkHttpClient$Builder` is in `DohProvidersKt`'s public
  *   signatures, so callers need OkHttp on their compile classpath. NiceHttp exposes `okhttp` and
  *   `okhttp-dnsoverhttps` through its own `api`.
+ * - `implementation(project(":library"))` — `DdosGuardKiller` uses the `app` Requests singleton and
+ *   `USER_AGENT`. Neither is in its public signatures, so `implementation`, not `api`.
+ * - `implementation(libs.kotlinx.coroutines.core)` — `DdosGuardKiller.intercept` is a blocking
+ *   `Interceptor` method wrapping a suspend body in `runBlocking`.
+ * - `implementation(libs.annotation)` — `@AnyThread` on `DdosGuardKiller`. The KMP `annotation-jvm`
+ *   variant carries it, so it resolves without an Android dependency.
  */
 plugins {
     id("cloudstream.kmp.extension-api")
@@ -27,6 +33,9 @@ kotlin {
     sourceSets {
         getByName("jvmCommonMain").dependencies {
             api(libs.nicehttp)
+            implementation(project(":library"))
+            implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.annotation)
         }
     }
 }
