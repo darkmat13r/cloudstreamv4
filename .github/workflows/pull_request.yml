@@ -34,7 +34,8 @@ jobs:
       run: ./gradlew checkKotlinAbi
 
     - name: Run Gradle
-      run: ./gradlew assemblePrereleaseDebug lint check
+      # -Pcloudstream.strings.guards=fail: :core:strings content guards fail pull requests (they only report elsewhere).
+      run: ./gradlew assemblePrereleaseDebug lint check -Pcloudstream.strings.guards=fail
 
     - name: Check classes.jar ABI
       # classes.jar is what third-party extensions compile against; this diffs it, :app included, against app/api/classes-jar.api.

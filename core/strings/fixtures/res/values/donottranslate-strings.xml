@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hidden_pref_key">hidden_pref_key</string>
+    <string name="visible_format" formatted="true">%1$s • %2$s</string>
+    <string name="visible_alias">@string/k_everywhere</string>
+</resources>

@@ -1,0 +1,95 @@
+# Golden decode of core/strings/fixtures/res: location, type, name, plural category or -, kind, value, spans.
+# Produced with aapt2 9.1.1-14792394 compile --legacy and com.android.aapt.Resources (aapt2-proto) + protobuf-java,
+# NOT the generator's wire reader, then reviewed by hand against aapt2's documented escaping. Cells escape \\ \n \t \r.
+values-b+fil/strings.xml	string	k_fil_only	-	STR	Sa fil	
+values-b+iw/strings.xml	string	k_everywhere	-	STR	‏בכל מקום	
+values-b+iw/strings.xml	string	s_apos	-	STR	עברית	
+values-b+pt/strings.xml	string	k_everywhere	-	STR	Em todo lugar (pt)	
+values-b+pt+BR/strings.xml	string	k_everywhere	-	STR	Em todo lugar (pt-BR)	
+values-b+pt+BR/strings.xml	string	k_pt_br_only	-	STR	Só no pt-BR	
+values-b+pt+BR/strings.xml	string	s_apos	-	STR	Não	
+values-b+sr+Latn/strings.xml	string	k_everywhere	-	STR	Svuda	
+values-b+sr+Latn/strings.xml	string	k_latn_only	-	STR	Samo latinica	
+values-b+tl/strings.xml	string	k_everywhere	-	STR	Kahit saan (tl)	
+values-b+tl/strings.xml	string	k_tl_only	-	STR	Sa tl	
+values-b+zh/strings.xml	string	k_everywhere	-	STR	到处	
+values-b+zh/strings.xml	string	k_zh_only	-	STR	仅简体	
+values-b+zh+TW/strings.xml	string	k_everywhere	-	STR	到處	
+values-fr/strings.xml	plurals	p_items	many	STR	%d éléments	
+values-fr/strings.xml	plurals	p_items	one	STR	%d élément	
+values-fr/strings.xml	plurals	p_items	other	STR	%d éléments	
+values-fr/strings.xml	string	k_everywhere	-	STR	Partout	
+values-fr/strings.xml	string	s_alias	-	REF	string/s_apos	
+values-fr/strings.xml	string	s_apos	-	STR	N'arrête	
+values/donottranslate-strings.xml	string	hidden_pref_key	-	STR	hidden_pref_key	
+values/donottranslate-strings.xml	string	visible_alias	-	REF	string/k_everywhere	
+values/donottranslate-strings.xml	string	visible_format	-	STR	%1$s • %2$s	
+values/strings.xml	plurals	p_alias	other	REF	string/s_apos	
+values/strings.xml	plurals	p_alias_locale	one	REF	string/k_everywhere	
+values/strings.xml	plurals	p_alias_locale	other	REF	string/k_pt_br_only	
+values/strings.xml	plurals	p_items	one	STR	%d item's	
+values/strings.xml	plurals	p_items	other	STYLED	%d items	b:0-1;
+values/strings.xml	plurals	x_plural_bs	one	STR	\\n	
+values/strings.xml	plurals	x_plural_bs	other	STR	%d "x"	
+values/strings.xml	string	a_alias_everywhere	-	REF	string/k_everywhere	
+values/strings.xml	string	a_chain	-	REF	string/s_alias	
+values/strings.xml	string	k_everywhere	-	STR	Everywhere (default)	
+values/strings.xml	string	k_fil_only	-	STR	Only in fil (default)	
+values/strings.xml	string	k_latn_only	-	STR	Only in sr-Latn (default)	
+values/strings.xml	string	k_pt_br_only	-	STR	Only in pt-BR (default)	
+values/strings.xml	string	k_tl_only	-	STR	Only in tl (default)	
+values/strings.xml	string	k_zh_only	-	STR	Only in zh (default)	
+values/strings.xml	string	s_alias	-	REF	string/s_apos	
+values/strings.xml	string	s_alias_escaped	-	STR	@string/s_apos	
+values/strings.xml	string	s_alias_trailing	-	REF	string/s_apos	
+values/strings.xml	string	s_alias_ws	-	REF	string/s_apos	
+values/strings.xml	string	s_apos	-	STR	Don't	
+values/strings.xml	string	s_apos_in_quotes	-	STR	Don't  stop	
+values/strings.xml	string	s_at	-	STR	@home	
+values/strings.xml	string	s_b	-	STYLED	Hello %s world	b:6-7;
+values/strings.xml	string	s_b_spaces	-	STYLED	This  is  spaced	b:5-8;
+values/strings.xml	string	s_backslash	-	STR	a\\b	
+values/strings.xml	string	s_cdata	-	STR	<b>not a tag</b> & raw ' q	
+values/strings.xml	string	s_cdata_ws	-	STR	a b	
+values/strings.xml	string	s_dq_esc	-	STR	Say "hi"	
+values/strings.xml	string	s_emoji	-	STR	😀 emoji	
+values/strings.xml	string	s_empty	-	STR		
+values/strings.xml	string	s_empty2	-	STR		
+values/strings.xml	string	s_entities	-	STR	& < © >	
+values/strings.xml	string	s_escaped_other	-	STR	z%	
+values/strings.xml	string	s_font	-	STYLED	in red	font;color=#ff0000:3-5;
+values/strings.xml	string	s_formatted_false	-	STR	100% %d %s	
+values/strings.xml	string	s_hash	-	STR	#1	
+values/strings.xml	string	s_html_a	-	STYLED	see link	a;href=https://x.y/?a=1&b=2:4-7;
+values/strings.xml	string	s_nbsp_literal	-	STR	 a  b 	
+values/strings.xml	string	s_nested	-	STYLED	x u	b:0-0;i:0-0;u:2-2;
+values/strings.xml	string	s_only_escape_n	-	STR	\n	
+values/strings.xml	string	s_q	-	STR	exit?	
+values/strings.xml	string	s_quote_mid	-	STR	a b  c d	
+values/strings.xml	string	s_quote_wrap	-	STR	  two  spaces  	
+values/strings.xml	string	s_span_edge	-	STYLED	 bold 	b:1-4;
+values/strings.xml	string	s_tab	-	STR	a\tb c	
+values/strings.xml	string	s_tools	-	STR	tools attr	
+values/strings.xml	string	s_trailing	-	STR	text	
+values/strings.xml	string	s_translatable_false	-	STR	Keep me	
+values/strings.xml	string	s_unescaped_quotes	-	STR	Press OK now	
+values/strings.xml	string	s_unicode	-	STR	a b…	
+values/strings.xml	string	s_unknown_tag	-	STYLED	x y	foo;bar=baz:2-2;
+values/strings.xml	string	s_ws	-	STR	Line one line two\n line three	
+values/strings.xml	string	s_xliff	-	STR	%1$d items	
+values/strings.xml	string	s_xliff_ws	-	STR	a sp b	
+values/strings.xml	string	x_astral	-	STR	😀𐀀	
+values/strings.xml	string	x_bom	-	STR	﻿x	
+values/strings.xml	string	x_bs_then_newline	-	STR	x\\\ny	
+values/strings.xml	string	x_cr_escape	-	STR	a\rb	
+values/strings.xml	string	x_ctrl_u0001	-	STR	ab	
+values/strings.xml	string	x_gt_amp	-	STR	a > b && c <d>	
+values/strings.xml	string	x_lit_bs_n	-	STR	a\\nb	
+values/strings.xml	string	x_lit_bs_u	-	STR	\\u0041	
+values/strings.xml	string	x_only_spaces	-	STR	   	
+values/strings.xml	string	x_percent	-	STR	%1$s and %2$d 100%%	
+values/strings.xml	string	x_quote_newline	-	STR	line1\nline2	
+values/strings.xml	string	x_tab_escape_run	-	STR	\t\t	
+values/strings.xml	string	x_three_bs_n	-	STR	\\\\\\n	
+values/strings.xml	string	x_trailing_bs	-	STR	end\\	
+values/strings.xml	string	x_u005c	-	STR	a\\nb	

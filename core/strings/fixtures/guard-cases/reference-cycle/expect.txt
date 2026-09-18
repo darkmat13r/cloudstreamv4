@@ -1,0 +1,2 @@
+kind=UNRESOLVED_REFERENCE
+message=cycle

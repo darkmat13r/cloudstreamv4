@@ -1,0 +1,2 @@
+kind=UNKNOWN_ALLOWLIST_NAME
+message=listed but not defined

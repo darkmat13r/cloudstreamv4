@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="s_apos">N\'arrête</string>
+    <string name="s_alias">@string/s_apos</string>
+    <string name="k_everywhere">Partout</string>
+    <plurals name="p_items">
+        <item quantity="one">%d élément</item>
+        <item quantity="many">%d éléments</item>
+        <item quantity="other">%d éléments</item>
+    </plurals>
+</resources>

@@ -1,0 +1,3 @@
+# Breaks :app too, so it fails in report mode as well, with aapt2's own message.
+kind=AAPT2_FAILED
+message=unescaped apostrophe

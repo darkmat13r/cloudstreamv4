@@ -1,0 +1,2 @@
+# Never resolved: the sanitiser rejects the DOCTYPE before any parser or aapt2 reads the entity.
+kind=DOCTYPE

@@ -1,0 +1,30 @@
+# Names in app/src/main/res/values/donottranslate-strings.xml that are user-visible text and are generated into
+# :core:strings. Everything else in that file is a SharedPreferences key or a view tag. A listed name that does not
+# exist fails generateComposeStrings (guard UNKNOWN_ALLOWLIST_NAME).
+
+# Format patterns (episode_text "S1E1" is a placeholder, not listed)
+extra_info_format
+storage_size_format
+download_format
+download_size_format
+episode_name_format
+ffw_text_format
+rew_text_format
+ffw_text_regular_format
+rew_text_regular_format
+rating_format
+year_format
+
+# Aliases of translated strings, resolved in each locale
+episode_play_img_des
+change_providers_img_des
+result_plot
+subtitles_none
+type_none
+duplicate_cancel
+sort_cancel
+default_subtitles
+default_account
+
+legal_notice_text
+episodes

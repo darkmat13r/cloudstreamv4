@@ -1,0 +1,33 @@
+# Locale requests the :core:strings parity test checks beyond each values directory's own locale (those are added
+# automatically). Columns: id, Android BCP 47 tag, the Compose environment (language, script, region; - = empty)
+# as Locale.current reports it on a device with that locale, expectation, note.
+#
+# expectation:
+#   match        Compose returns Android's value (API 24+ ResTable_config::match / isLocaleBetterThan) for every key
+#   gap=<id>     known gap: Compose returns exactly what request <id> gets on Android, and differs for >= 1 key.
+#                The generator fails (guard PREDICTED_PARITY_GAP) when a gap closes or changes, so it stays honest.
+#
+# id           androidTag   lang script region  expectation  note
+en             en           en   -     -       match   no English directory: the default values
+en-US          en-US        en   -     US      match
+en-GB          en-GB        en   -     GB      match
+pt             pt           pt   -     -       match   b+pt, then b+pt+BR for keys b+pt lacks (same script, any match beats the default)
+pt-PT          pt-PT        pt   -     PT      match   b+pt wins as pt-PT's ancestor; b+pt+BR before the default
+pt-BR          pt-BR        pt   -     BR      match
+fil            fil          fil  -     -       match   b+fil, then b+tl (tl and fil are equivalent languages)
+tl             tl           tl   -     -       match   b+tl, then b+fil
+fil-PH         fil-PH       fil  -     PH      match
+zh             zh           zh   -     -       match   Hans: b+zh; never b+zh+TW (Hant)
+zh-CN          zh-CN        zh   -     CN      match
+zh-Hans-CN     zh-Hans-CN   zh   Hans  CN      match   Compose has no Hans directory and uses the script-less b+zh
+zh-TW          zh-TW        zh   -     TW      match   Hant: b+zh+TW, then the default, never b+zh (Hans)
+zh-Hant-TW     zh-Hant-TW   zh   Hant  TW      match
+zh-HK          zh-HK        zh   -     HK      gap=zh  Android: likely script Hant, so b+zh+TW. Compose: no Hant directory, falls back to b+zh
+zh-Hant-HK     zh-Hant-HK   zh   Hant  HK      gap=zh  as zh-HK; a values-b+zh+Hant copy would close it (not in S-a)
+no             no           no   -     -       match
+nb             nb           nb   -     -       match   nb is not equivalent to no on Android either: the default values
+nb-NO          nb-NO        nb   -     NO      match
+iw             iw           iw   -     -       match   Locale.language on API < 35 or targetSdk < 35
+he             he           he   -     -       gap=en  Android maps he to iw (ResourcesImpl.adjustLanguageTag); Compose sees he on API 35+, JDK 17+ and iOS. The values-b+he copy is the next PR
+in             in           in   -     -       match   Locale.language on API < 35 or targetSdk < 35
+id             id           id   -     -       gap=en  as he: Android maps id to in; the values-b+id copy is the next PR

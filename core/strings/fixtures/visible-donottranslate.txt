@@ -1,0 +1,3 @@
+# Fixture allowlist: hidden_pref_key stays out of the generated resources.
+visible_format
+visible_alias
