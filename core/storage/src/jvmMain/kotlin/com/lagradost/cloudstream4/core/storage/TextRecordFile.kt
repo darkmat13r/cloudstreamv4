@@ -16,40 +16,6 @@ import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.withLock
 
 /**
- * Told when a store found a file it could not read, so the app can surface it instead of silently
- * starting from empty.
- *
- * It is handed the paths and the cause and **never the contents**: a corrupt settings or record
- * file can hold OAuth tokens, and this module does not put those in a log.
- *
- * @see StorageCorruptionListener.STDERR the default — one line on `System.err`, no contents.
- */
-fun interface StorageCorruptionListener {
-
-    /**
-     * @param file the store's own path, which now reads as empty.
-     * @param quarantined where the damaged file was moved, or `null` when it could not be moved
-     * (it is then left exactly as it was, and the store is empty **in memory only** until the next
-     * write replaces it).
-     */
-    fun onCorruption(file: Path, quarantined: Path?, cause: Throwable)
-
-    companion object {
-        /** Reports the paths and the exception's message on `System.err`. Never the file's contents. */
-        val STDERR: StorageCorruptionListener = StorageCorruptionListener { file, quarantined, cause ->
-            System.err.println(
-                "core:storage: $file could not be read (${cause::class.java.simpleName}: ${cause.message}); " +
-                    "recovered as empty, damaged file " +
-                    if (quarantined != null) "kept at $quarantined" else "left in place",
-            )
-        }
-    }
-}
-
-/** A line of the store's file did not parse. Distinct from an I/O failure, which is not the file's fault. */
-internal class StorageFormatException(message: String) : IOException(message)
-
-/**
  * A `Map<String, String>` in one file, written atomically.
  *
  * This is the whole of the JVM persistence story: [FileKeyValueJsonStore] stores its JSON records
@@ -310,78 +276,4 @@ internal class TextRecordFile(
         /** Suffix of the same-directory temp file. Never the target path, so [load] ignores it. */
         const val TEMP_SUFFIX: String = ".tmp"
     }
-}
-
-/**
- * Backslash-escapes the five characters the format reserves, leaving every other character —
- * including quotes, tabs and anything outside the BMP — exactly as it is.
- */
-internal fun escape(raw: String): String = buildString(raw.length) {
-    for (character in raw) {
-        when (character) {
-            '\\' -> append("\\\\")
-            '\n' -> append("\\n")
-            '\r' -> append("\\r")
-            '=' -> append("\\=")
-            ',' -> append("\\,")
-            else -> append(character)
-        }
-    }
-}
-
-/** Inverse of [escape]. Strict: an unknown or dangling escape is corruption, not a literal backslash. */
-internal fun unescape(escaped: String): String = buildString(escaped.length) {
-    var index = 0
-    while (index < escaped.length) {
-        val character = escaped[index]
-        if (character != '\\') {
-            append(character)
-            index++
-            continue
-        }
-        if (index + 1 == escaped.length) throw StorageFormatException("a line ends in a backslash")
-        when (val escapedCharacter = escaped[index + 1]) {
-            '\\', '=', ',' -> append(escapedCharacter)
-            'n' -> append('\n')
-            'r' -> append('\r')
-            else -> throw StorageFormatException("unknown escape '\\$escapedCharacter'")
-        }
-        index += 2
-    }
-}
-
-/** The index of the first [delimiter] that is not part of an escape, or `null` when there is none. */
-internal fun String.indexOfUnescaped(delimiter: Char): Int? {
-    var index = 0
-    while (index < length) {
-        when (this[index]) {
-            '\\' -> index += 2
-            delimiter -> return index
-            else -> index++
-        }
-    }
-    return null
-}
-
-/**
- * Splits on unescaped [delimiter]s, keeping escaped ones inside the parts. The parts are still
- * escaped; the caller runs [unescape] on each.
- */
-internal fun String.splitUnescaped(delimiter: Char): List<String> {
-    val parts = mutableListOf<String>()
-    var start = 0
-    var index = 0
-    while (index < length) {
-        when (this[index]) {
-            '\\' -> index += 2
-            delimiter -> {
-                parts += substring(start, index)
-                index++
-                start = index
-            }
-            else -> index++
-        }
-    }
-    parts += substring(start.coerceAtMost(length))
-    return parts
 }
