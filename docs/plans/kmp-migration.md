@@ -298,6 +298,28 @@ not imports.
 | `:core:common` | `IDisposable`, `IDisposableHelper`, `Vector2` | commonMain | #4 |
 | `:core:common` | `Event`, `EmptyEvent` (`synchronized`, `Runnable`) | jvmCommonMain | #4, `$stable` restored in #5 |
 | `:core:network` | `DohProviders.kt` → `DohProvidersKt` (8 `OkHttpClient.Builder` extensions) | jvmCommonMain | #6 |
+| `:core:data` | B1: `DataStoreKt` (8 consts), `DataStoreHelperKt` (14 consts) | commonMain | #14 |
+| `:core:model` | B2: `AbstractSubtitleEntities` (+nested), `SyncSearchViewModel` (+nested), `IGeneratorKt` (4 `LOADTYPE_*` vals); `:app`'s `IGenerator.kt` renamed `VideoGenerator.kt` | commonMain | #16 |
+| `:core:model` | B3: `AuthToken`, `AuthUser`, `AuthData`, `AuthLoginResponse` (+`$Companion`, `$$serializer`, `annotationImpl`) | jvmCommonMain (`AuthDtos.kt`) | this branch |
+
+**B3's accepted ABI delta.** Moving those four cost exactly four lines in `app/api/classes-jar.api`:
+the synthetic `write$Self$app` methods became `write$Self$CloudStream_core_model`, because Kotlin
+mangles `internal` members with the JVM module name and `:core:model`'s is `CloudStream.core:model`.
+Nothing else changed — same 3763 `com/lagradost` jar entries, and a whole-jar scan of all 910
+`$stable` initialisers reports zero differences, so this is **not** a repeat of the B2 hazard: no
+class reads these DTOs' `$stable` with `getstatic`, before or after. The methods are `ACC_SYNTHETIC`
+and their only callers are the co-located `$$serializer.serialize` bodies, which moved with them; the
+same mangling is already in the committed dump as 122 `write$Self$CloudStream_library` entries next
+to 236 `write$Self$app`. Two mitigations were measured and rejected: `@Immutable` on the DTOs hides
+the rename from nothing and silently flips `AuthUser`/`AuthData` `$stable` from 8 to 0, and pinning
+`:core:model`'s module name to `app` makes `makeJar` fail on a duplicate `META-INF/app.kotlin_module`.
+
+**`AuthLoginPage`, `AuthPinData` and `AuthLoginRequirement` did not move with B2** and are not in §5.2:
+`:app`'s Compose-compiled `AuthAPI` has an `AuthLoginRequirement` field, so across modules its `$stable`
+initialiser becomes `getstatic AuthLoginRequirement.$stable` (0) instead of the constant 8, turning
+`AuthAPI`, `SubtitleAPI`, `BackupAPI`, `AuthRepo` and `PlainAuthRepo` Compose-stable at runtime with no
+signature change (they reach composables in `SettingsAccountScreen`). They move with `AuthAPI`, or with an
+explicit decision to accept that.
 
 ### 5.2 Movable next (no open ABI decision)
 
@@ -306,9 +328,6 @@ sentinels and a clean `checkKotlinAbi` / javap comparison.
 
 | # | Members | Target | Prerequisites and notes |
 |---|---|---|---|
-| B1 | `DataStoreKt` (8 consts), `DataStoreHelperKt` (14 consts) | new `:core:data` commonMain | Files keep their names. `:app`'s `DataStore.kt` / `DataStoreHelper.kt` must never again declare top-level members (duplicate facade → `DuplicatesStrategy.FAIL`). No dependencies. |
-| B2 | `AbstractSubtitleEntities` (+nested), `SyncSearchViewModel` (+nested; no callers), `IGeneratorKt` (4 `LOADTYPE_*` vals), `AuthLoginPage`, `AuthPinData`, `AuthLoginRequirement` | new `:core:model` commonMain | commonMain `project(":library")` (rule 4). New file named `IGenerator.kt`; rename `:app`'s remaining `IGenerator.kt` (e.g. `VideoGenerator.kt`). Split the DTOs out of `AuthAPI.kt` (no `AuthAPIKt` facade). |
-| B3 | `AuthToken`, `AuthUser`, `AuthData`, `AuthLoginResponse` (+`$Companion`, `$$serializer`) | `:core:model` jvmCommonMain | All four together. Apply the serialization plugin or `$$serializer` silently vanishes. Jackson annotations via existing `jackson-module-kotlin`. `@JsonProperty` names verbatim (persisted `auth_tokens`). Accept the `write$Self$app` rename. |
 | B4 | `DdosGuardKiller` | `:core:network` jvmCommonMain | Body-only change first: a private header merge replaces the call to `:app`'s `RequestsHelperKt.getHeaders`. Adds `:library`, coroutines, `annotation`. |
 | B5 | `SSLTrustManager`, `DownloaderTestImpl` | `:core:network` jvmCommonMain | Security review first: trust-all manager becomes reachable from a shared module. `DownloaderTestImpl` needs `newpipeextractor` (in catalog). Optional. |
 | B6 | `TestingUtils` (+8 nested) | `:core:model` commonMain | Needs `:library` + coroutines, so **not** `:core:common` (rule 2). |
@@ -416,7 +435,7 @@ sized (it depends on upstream), and no iOS app work is sized: the plan only keep
 | 5 | D3 android-only merge + `cloudstream.kmp.android-only`, proven with one tiny module | — | unblocked |
 | 6 | javap tripwire for classes.jar | — | unblocked |
 | 7 | B1 `:core:data` key constants | 2 | unblocked |
-| 8 | B2 `:core:model` bootstrap, then B3, B6 | 2 | unblocked |
+| 8 | B2 `:core:model` bootstrap, then B3, B6 | 2 | B2 landed (#16); B3 done (§5.1); B6 unblocked |
 | 9 | B4 `DdosGuardKiller`; B5 after security review; B7 into `:core:common`; B8 with owner sign-off on the synthetic delta | 2 | unblocked |
 | 10 | Phase 3 S-a: `:core:strings` + generator | 4 | unblocked; no new dependency (§9) |
 | 11 | Phase 3 S-b: text type, formatter, plural guard, `UiText` deprecation | 10 | unblocked |

@@ -86,6 +86,151 @@ public final class com/lagradost/cloudstream3/subtitles/AbstractSubtitleEntities
 	public fun toString ()Ljava/lang/String;
 }
 
+public final class com/lagradost/cloudstream3/syncproviders/AuthData {
+	public static final field $stable I
+	public static final field Companion Lcom/lagradost/cloudstream3/syncproviders/AuthData$Companion;
+	public fun <init> (Lcom/lagradost/cloudstream3/syncproviders/AuthUser;Lcom/lagradost/cloudstream3/syncproviders/AuthToken;)V
+	public final fun component1 ()Lcom/lagradost/cloudstream3/syncproviders/AuthUser;
+	public final fun component2 ()Lcom/lagradost/cloudstream3/syncproviders/AuthToken;
+	public final fun copy (Lcom/lagradost/cloudstream3/syncproviders/AuthUser;Lcom/lagradost/cloudstream3/syncproviders/AuthToken;)Lcom/lagradost/cloudstream3/syncproviders/AuthData;
+	public static synthetic fun copy$default (Lcom/lagradost/cloudstream3/syncproviders/AuthData;Lcom/lagradost/cloudstream3/syncproviders/AuthUser;Lcom/lagradost/cloudstream3/syncproviders/AuthToken;ILjava/lang/Object;)Lcom/lagradost/cloudstream3/syncproviders/AuthData;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getToken ()Lcom/lagradost/cloudstream3/syncproviders/AuthToken;
+	public final fun getUser ()Lcom/lagradost/cloudstream3/syncproviders/AuthUser;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class com/lagradost/cloudstream3/syncproviders/AuthData$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/lagradost/cloudstream3/syncproviders/AuthData$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/lagradost/cloudstream3/syncproviders/AuthData;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/lagradost/cloudstream3/syncproviders/AuthData;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/lagradost/cloudstream3/syncproviders/AuthData$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/lagradost/cloudstream3/syncproviders/AuthLoginResponse {
+	public static final field $stable I
+	public static final field Companion Lcom/lagradost/cloudstream3/syncproviders/AuthLoginResponse$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/lagradost/cloudstream3/syncproviders/AuthLoginResponse;
+	public static synthetic fun copy$default (Lcom/lagradost/cloudstream3/syncproviders/AuthLoginResponse;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/lagradost/cloudstream3/syncproviders/AuthLoginResponse;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getEmail ()Ljava/lang/String;
+	public final fun getPassword ()Ljava/lang/String;
+	public final fun getServer ()Ljava/lang/String;
+	public final fun getUsername ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class com/lagradost/cloudstream3/syncproviders/AuthLoginResponse$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/lagradost/cloudstream3/syncproviders/AuthLoginResponse$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/lagradost/cloudstream3/syncproviders/AuthLoginResponse;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/lagradost/cloudstream3/syncproviders/AuthLoginResponse;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/lagradost/cloudstream3/syncproviders/AuthLoginResponse$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/lagradost/cloudstream3/syncproviders/AuthToken {
+	public static final field $stable I
+	public static final field Companion Lcom/lagradost/cloudstream3/syncproviders/AuthToken$Companion;
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/Long;
+	public final fun component4 ()Ljava/lang/Long;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/String;)Lcom/lagradost/cloudstream3/syncproviders/AuthToken;
+	public static synthetic fun copy$default (Lcom/lagradost/cloudstream3/syncproviders/AuthToken;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/String;ILjava/lang/Object;)Lcom/lagradost/cloudstream3/syncproviders/AuthToken;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAccessToken ()Ljava/lang/String;
+	public final fun getAccessTokenLifetime ()Ljava/lang/Long;
+	public final fun getPayload ()Ljava/lang/String;
+	public final fun getRefreshToken ()Ljava/lang/String;
+	public final fun getRefreshTokenLifetime ()Ljava/lang/Long;
+	public fun hashCode ()I
+	public final fun isAccessTokenExpired (J)Z
+	public static synthetic fun isAccessTokenExpired$default (Lcom/lagradost/cloudstream3/syncproviders/AuthToken;JILjava/lang/Object;)Z
+	public final fun isRefreshTokenExpired (J)Z
+	public static synthetic fun isRefreshTokenExpired$default (Lcom/lagradost/cloudstream3/syncproviders/AuthToken;JILjava/lang/Object;)Z
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class com/lagradost/cloudstream3/syncproviders/AuthToken$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/lagradost/cloudstream3/syncproviders/AuthToken$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/lagradost/cloudstream3/syncproviders/AuthToken;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/lagradost/cloudstream3/syncproviders/AuthToken;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/lagradost/cloudstream3/syncproviders/AuthToken$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/lagradost/cloudstream3/syncproviders/AuthUser {
+	public static final field $stable I
+	public static final field Companion Lcom/lagradost/cloudstream3/syncproviders/AuthUser$Companion;
+	public fun <init> (Ljava/lang/String;ILjava/lang/String;Ljava/util/Map;)V
+	public synthetic fun <init> (Ljava/lang/String;ILjava/lang/String;Ljava/util/Map;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()I
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/util/Map;
+	public final fun copy (Ljava/lang/String;ILjava/lang/String;Ljava/util/Map;)Lcom/lagradost/cloudstream3/syncproviders/AuthUser;
+	public static synthetic fun copy$default (Lcom/lagradost/cloudstream3/syncproviders/AuthUser;Ljava/lang/String;ILjava/lang/String;Ljava/util/Map;ILjava/lang/Object;)Lcom/lagradost/cloudstream3/syncproviders/AuthUser;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getId ()I
+	public final fun getName ()Ljava/lang/String;
+	public final fun getProfilePicture ()Ljava/lang/String;
+	public final fun getProfilePictureHeaders ()Ljava/util/Map;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class com/lagradost/cloudstream3/syncproviders/AuthUser$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/lagradost/cloudstream3/syncproviders/AuthUser$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/lagradost/cloudstream3/syncproviders/AuthUser;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/lagradost/cloudstream3/syncproviders/AuthUser;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/lagradost/cloudstream3/syncproviders/AuthUser$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class com/lagradost/cloudstream3/ui/player/IGeneratorKt {
 	public static final fun getLOADTYPE_ALL ()Ljava/util/Set;
 	public static final fun getLOADTYPE_CHROMECAST ()Ljava/util/Set;

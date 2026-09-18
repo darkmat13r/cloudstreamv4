@@ -16543,7 +16543,7 @@ public final class com/lagradost/cloudstream3/syncproviders/AuthData : java/lang
 	public static synthetic fun getUser$annotations ()V
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final synthetic fun write$Self$app (Lcom/lagradost/cloudstream3/syncproviders/AuthData;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self$CloudStream_core_model (Lcom/lagradost/cloudstream3/syncproviders/AuthData;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final static synthetic class com/lagradost/cloudstream3/syncproviders/AuthData$$serializer : java/lang/Object, kotlinx/serialization/internal/GeneratedSerializer {
@@ -16620,7 +16620,7 @@ public final class com/lagradost/cloudstream3/syncproviders/AuthLoginResponse : 
 	public static synthetic fun getUsername$annotations ()V
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final synthetic fun write$Self$app (Lcom/lagradost/cloudstream3/syncproviders/AuthLoginResponse;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self$CloudStream_core_model (Lcom/lagradost/cloudstream3/syncproviders/AuthLoginResponse;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final static synthetic class com/lagradost/cloudstream3/syncproviders/AuthLoginResponse$$serializer : java/lang/Object, kotlinx/serialization/internal/GeneratedSerializer {
@@ -16729,7 +16729,7 @@ public final class com/lagradost/cloudstream3/syncproviders/AuthToken : java/lan
 	public final fun isRefreshTokenExpired (J)Z
 	public static synthetic fun isRefreshTokenExpired$default (Lcom/lagradost/cloudstream3/syncproviders/AuthToken;JILjava/lang/Object;)Z
 	public fun toString ()Ljava/lang/String;
-	public static final synthetic fun write$Self$app (Lcom/lagradost/cloudstream3/syncproviders/AuthToken;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self$CloudStream_core_model (Lcom/lagradost/cloudstream3/syncproviders/AuthToken;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final static synthetic class com/lagradost/cloudstream3/syncproviders/AuthToken$$serializer : java/lang/Object, kotlinx/serialization/internal/GeneratedSerializer {
@@ -16773,7 +16773,7 @@ public final class com/lagradost/cloudstream3/syncproviders/AuthUser : java/lang
 	public static synthetic fun getProfilePictureHeaders$annotations ()V
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final synthetic fun write$Self$app (Lcom/lagradost/cloudstream3/syncproviders/AuthUser;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self$CloudStream_core_model (Lcom/lagradost/cloudstream3/syncproviders/AuthUser;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final static synthetic class com/lagradost/cloudstream3/syncproviders/AuthUser$$serializer : java/lang/Object, kotlinx/serialization/internal/GeneratedSerializer {
