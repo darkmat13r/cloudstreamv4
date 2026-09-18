@@ -278,3 +278,74 @@ public final class com/lagradost/cloudstream3/ui/search/SyncSearchViewModel$Sync
 	public fun toString ()Ljava/lang/String;
 }
 
+public final class com/lagradost/cloudstream3/utils/TestingUtils {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/lagradost/cloudstream3/utils/TestingUtils;
+	public final fun getDeferredProviderTests (Lkotlinx/coroutines/CoroutineScope;[Lcom/lagradost/cloudstream3/MainAPI;Lkotlin/jvm/functions/Function2;)V
+	public final fun testHomepage (Lcom/lagradost/cloudstream3/MainAPI;Lcom/lagradost/cloudstream3/utils/TestingUtils$Logger;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class com/lagradost/cloudstream3/utils/TestingUtils$Logger {
+	public static final field $stable I
+	public fun <init> ()V
+	public final fun error (Ljava/lang/String;)V
+	public final fun getRawLog ()Ljava/util/List;
+	public final fun log (Ljava/lang/String;)V
+	public final fun warn (Ljava/lang/String;)V
+}
+
+public final class com/lagradost/cloudstream3/utils/TestingUtils$Logger$LogLevel : java/lang/Enum {
+	public static final field Error Lcom/lagradost/cloudstream3/utils/TestingUtils$Logger$LogLevel;
+	public static final field Normal Lcom/lagradost/cloudstream3/utils/TestingUtils$Logger$LogLevel;
+	public static final field Warning Lcom/lagradost/cloudstream3/utils/TestingUtils$Logger$LogLevel;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/lagradost/cloudstream3/utils/TestingUtils$Logger$LogLevel;
+	public static fun values ()[Lcom/lagradost/cloudstream3/utils/TestingUtils$Logger$LogLevel;
+}
+
+public final class com/lagradost/cloudstream3/utils/TestingUtils$Logger$Message {
+	public static final field $stable I
+	public fun <init> (Lcom/lagradost/cloudstream3/utils/TestingUtils$Logger$LogLevel;Ljava/lang/String;)V
+	public final fun component1 ()Lcom/lagradost/cloudstream3/utils/TestingUtils$Logger$LogLevel;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Lcom/lagradost/cloudstream3/utils/TestingUtils$Logger$LogLevel;Ljava/lang/String;)Lcom/lagradost/cloudstream3/utils/TestingUtils$Logger$Message;
+	public static synthetic fun copy$default (Lcom/lagradost/cloudstream3/utils/TestingUtils$Logger$Message;Lcom/lagradost/cloudstream3/utils/TestingUtils$Logger$LogLevel;Ljava/lang/String;ILjava/lang/Object;)Lcom/lagradost/cloudstream3/utils/TestingUtils$Logger$Message;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getLevel ()Lcom/lagradost/cloudstream3/utils/TestingUtils$Logger$LogLevel;
+	public final fun getMessage ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public class com/lagradost/cloudstream3/utils/TestingUtils$TestResult {
+	public static final field $stable I
+	public static final field Companion Lcom/lagradost/cloudstream3/utils/TestingUtils$TestResult$Companion;
+	public fun <init> (Z)V
+	public final fun getSuccess ()Z
+}
+
+public final class com/lagradost/cloudstream3/utils/TestingUtils$TestResult$Companion {
+	public final fun getFail ()Lcom/lagradost/cloudstream3/utils/TestingUtils$TestResult;
+	public final fun getPass ()Lcom/lagradost/cloudstream3/utils/TestingUtils$TestResult;
+}
+
+public final class com/lagradost/cloudstream3/utils/TestingUtils$TestResultList : com/lagradost/cloudstream3/utils/TestingUtils$TestResult {
+	public static final field $stable I
+	public fun <init> (Ljava/util/List;)V
+	public final fun getResults ()Ljava/util/List;
+}
+
+public final class com/lagradost/cloudstream3/utils/TestingUtils$TestResultLoad : com/lagradost/cloudstream3/utils/TestingUtils$TestResult {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;Z)V
+	public final fun getExtractorData ()Ljava/lang/String;
+	public final fun getShouldLoadLinks ()Z
+}
+
+public final class com/lagradost/cloudstream3/utils/TestingUtils$TestResultProvider : com/lagradost/cloudstream3/utils/TestingUtils$TestResult {
+	public static final field $stable I
+	public fun <init> (ZLjava/util/List;Ljava/lang/Throwable;)V
+	public final fun getException ()Ljava/lang/Throwable;
+	public final fun getLog ()Ljava/util/List;
+}
+
