@@ -113,6 +113,19 @@ val sentinels = mapOf(
     "$apiPackageDir/syncproviders/AuthUser.class" to ":core:model - AuthAPI.user return type",
     "$apiPackageDir/syncproviders/AuthData.class" to ":core:model - the persisted 'auth_tokens' element",
     "$apiPackageDir/syncproviders/AuthLoginResponse.class" to ":core:model - AuthAPI.login(form) parameter",
+    // All eight declared nested classes, matching the precedent set by AbstractSubtitleEntities (3/3),
+    // SyncSearchViewModel (2/2) and the Auth DTOs (4/4). The ninth binary name in the dump,
+    // TestingUtils${'$'}Logger${'$'}Message${'$'}WhenMappings, is a compiler-synthesised switch map: the dump guards it,
+    // but it is an artefact of `when` over an enum, not a name an extension can reference.
+    "$apiPackageDir/utils/TestingUtils.class" to ":core:model - outer of \$Logger / \$TestResult*",
+    "$apiPackageDir/utils/TestingUtils\$Logger.class" to ":core:model - testHomepage parameter type",
+    "$apiPackageDir/utils/TestingUtils\$Logger\$LogLevel.class" to ":core:model - Logger.log level parameter",
+    "$apiPackageDir/utils/TestingUtils\$Logger\$Message.class" to ":core:model - Logger message element",
+    "$apiPackageDir/utils/TestingUtils\$TestResult.class" to ":core:model - superclass of the three result types",
+    "$apiPackageDir/utils/TestingUtils\$TestResult\$Companion.class" to ":core:model - TestResult.Companion",
+    "$apiPackageDir/utils/TestingUtils\$TestResultList.class" to ":core:model - TestResult subtype",
+    "$apiPackageDir/utils/TestingUtils\$TestResultLoad.class" to ":core:model - TestResult subtype",
+    "$apiPackageDir/utils/TestingUtils\$TestResultProvider.class" to ":core:model - getDeferredProviderTests callback type",
 )
 
 /** Every project dependency `:app` is built with for [jarVariant], direct or transitive. */

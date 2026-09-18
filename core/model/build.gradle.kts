@@ -24,6 +24,16 @@
  *   become *stable* at runtime. They are passed to composables (`SettingsAccountScreen`). No
  *   signature changes, so neither `abiValidation` nor the jar dump sees it. Move them together with
  *   `AuthAPI`, or with an explicit decision to accept that stability change.
+ * - `utils/TestingUtils.kt` holds `TestingUtils` and nine nested binary names — eight declared
+ *   (`$Logger`, `$Logger$LogLevel`, `$Logger$Message`, `$TestResult`, `$TestResult$Companion`,
+ *   `$TestResultList`, `$TestResultLoad`, `$TestResultProvider`) plus the compiler-synthesised
+ *   `$Logger$Message$WhenMappings`, a switch map emitted for `when` over an enum. Every one of
+ *   those binary names is in `app/api/classes-jar.api`, so a nested class pulled to top level
+ *   breaks published extensions. **The file declares no top-level
+ *   members, so it emits no `TestingUtilsKt` facade, and it must not acquire one**: `:app` has no
+ *   `TestingUtils.kt` any more, but adding a top-level member here would create a facade class that
+ *   is not in the committed dump. This is the `IGenerator.kt` hazard above in reverse — there the
+ *   facade must keep existing, here it must keep not existing.
  * - **`AuthToken`, `AuthUser`, `AuthData` and `AuthLoginResponse` did move** (`AuthDtos.kt`, plan
  *   §5.1), because the hazard above does not reach them: no class in `classes.jar` reads any
  *   of their `$stable` fields with `getstatic`, before or after, so a whole-jar scan of all 910
@@ -44,7 +54,9 @@
  * Set up by `cloudstream.kmp.extension-api`, which applies the Compose compiler so moved classes
  * keep the `$stable` field `:app` emitted. See that plugin's KDoc.
  *
- * - `commonMain`: pure Kotlin. Nothing here uses `java.*`, Jackson or `synchronized`.
+ * - `commonMain`: pure Kotlin. Nothing here uses `java.*`, Jackson or `synchronized`. Checked by
+ *   reading, not by a build: this module has no iOS target (see below), so its `commonMain`
+ *   metadata compilation resolves against a JVM platform and would accept `java.*` silently.
  * - `jvmCommonMain`: the Auth DTOs, which carry Jackson annotations. Jackson is JVM-only, so they
  *   cannot sit in `commonMain`. `kotlinx-serialization-json` is `api` because `Companion.serializer()`
  *   is public ABI; `jackson-module-kotlin` is `implementation` because only the annotations are used
