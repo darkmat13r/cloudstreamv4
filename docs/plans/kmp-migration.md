@@ -300,7 +300,7 @@ not imports.
 | `:core:network` | `DohProviders.kt` → `DohProvidersKt` (8 `OkHttpClient.Builder` extensions) | jvmCommonMain | #6 |
 | `:core:data` | B1: `DataStoreKt` (8 consts), `DataStoreHelperKt` (14 consts) | commonMain | #14 |
 | `:core:model` | B2: `AbstractSubtitleEntities` (+nested), `SyncSearchViewModel` (+nested), `IGeneratorKt` (4 `LOADTYPE_*` vals); `:app`'s `IGenerator.kt` renamed `VideoGenerator.kt` | commonMain | #16 |
-| `:core:model` | B3: `AuthToken`, `AuthUser`, `AuthData`, `AuthLoginResponse` (+`$Companion`, `$$serializer`, `annotationImpl`) | jvmCommonMain (`AuthDtos.kt`) | this branch |
+| `:core:model` | B3: `AuthToken`, `AuthUser`, `AuthData`, `AuthLoginResponse` (+`$Companion`, `$$serializer`, `annotationImpl`) | jvmCommonMain (`AuthDtos.kt`) | #19 |
 
 **B3's accepted ABI delta.** Moving those four cost exactly four lines in `app/api/classes-jar.api`:
 the synthetic `write$Self$app` methods became `write$Self$CloudStream_core_model`, because Kotlin
@@ -320,6 +320,11 @@ initialiser becomes `getstatic AuthLoginRequirement.$stable` (0) instead of the 
 `AuthAPI`, `SubtitleAPI`, `BackupAPI`, `AuthRepo` and `PlainAuthRepo` Compose-stable at runtime with no
 signature change (they reach composables in `SettingsAccountScreen`). They move with `AuthAPI`, or with an
 explicit decision to accept that.
+
+**New modules that took no `:app` code.** `:core:strings` (#17, #18) generates Compose resources
+from `app/src/main/res` rather than moving anything; `:core:http` (#11) wraps `app.baseClient`;
+`:core:storage` (#20, #22) is new ports plus Android and JVM implementations, and nothing in `:app`
+calls it yet. None of them appear in `classes.jar`, so none of them has an ABI delta.
 
 ### 5.2 Movable next (no open ABI decision)
 
@@ -426,28 +431,47 @@ sized (it depends on upstream), and no iOS app work is sized: the plan only keep
 
 ### Next PRs, in order
 
+Rows 1–13 and 16 of the original list are merged; see §5.1 and the table below for what they became.
+Everything still open is listed here.
+
 | # | PR | Depends on | State |
 |---|---|---|---|
-| 1 | This plan update | — | this branch |
-| 2 | `abiValidation` on extension-api modules (D2) | — | #7 open |
-| 3 | G1 ui-tooling out of commonMain | — | #8 open |
-| 4 | G2 + G3 + G4 hierarchy template, gated canary, CI job | 3 | unblocked for local verification; the CI job's runner waits on §10 O4 |
-| 5 | D3 android-only merge + `cloudstream.kmp.android-only`, proven with one tiny module | — | unblocked |
-| 6 | javap tripwire for classes.jar | — | unblocked |
-| 7 | B1 `:core:data` key constants | 2 | unblocked |
-| 8 | B2 `:core:model` bootstrap, then B3, B6 | 2 | B2 landed (#16); B3 done (§5.1); B6 unblocked |
-| 9 | B4 `DdosGuardKiller`; B5 after security review; B7 into `:core:common`; B8 with owner sign-off on the synthetic delta | 2 | unblocked |
-| 10 | Phase 3 S-a: `:core:strings` + generator | 4 | unblocked; no new dependency (§9) |
-| 11 | Phase 3 S-b: text type, formatter, plural guard, `UiText` deprecation | 10 | unblocked |
-| 12 | Phase 4 H-a: catalog `ktor` ref 3.5.0 → 3.6.0 only (URL-behaviour tests + extension-author note), then client artifacts with `:core:http` | — | approved (I3) |
-| 13 | Phase 4 H-b: `:core:http` | 12 | unblocked |
-| 14 | Phase 5: split `:shared` into `:core:ui` + `:core:designsystem` | 3, 4 | unblocked; upstream coordination |
-| 15 | `:media:model` skeleton (contracts only) | 4 | unblocked |
-| 16 | `:core:storage` (interfaces + Android actuals) | — | unblocked |
-| 17 | `:feature:extensions` prep: `ExtensionRuntime` seam, repository model in commonMain | 6 | touches existing `:app` plugin code: needs the owner's explicit go-ahead |
-| 18 | First vertical (search + quicksearch) | 11, 14 | ViewModel needs Track L for iOS (rule 4) |
+| 14 | Phase 5: split `:shared` into `:core:ui` + `:core:designsystem` | — | next; upstream coordination |
+| 15 | `:media:model` skeleton (contracts only) | — | unblocked |
+| 19 | B4 `DdosGuardKiller` into `:core:network` | — | unblocked |
+| 20 | B5 `SSLTrustManager`, `DownloaderTestImpl` | 19 | needs a security review first (a trust-all manager becomes reachable from a shared module) |
+| 21 | B6 `TestingUtils` into `:core:model` | — | unblocked |
+| 22 | B7 `fcast/Packets.kt` into `:core:common` | — | placement is an owner call in the PR (§5.2) |
+| 23 | B8 `APIRepository` into `:core:data` | — | removes a public synthetic accessor; owner must accept that delta in the PR |
+| 17 | `:feature:extensions` prep: `ExtensionRuntime` seam, repository model in commonMain | 14 | touches existing `:app` plugin code: needs the owner's explicit go-ahead |
+| 18 | First vertical (search + quicksearch) | 14 | ViewModel needs Track L for iOS (rule 4) |
+| L | Track L: `:library` iOS surgery | — | design workflow first (§2.4); blocked on O2 |
 
-### Phase 0 — build-logic + jar safety · **done except D2 (#7 open)**
+**What landed in rows 1–13 and 16**
+
+| Row | PR | Note |
+|---|---|---|
+| 2 | #7 | `abiValidation` on extension-api modules; CI runs `checkKotlinAbi` |
+| 3 | #8 | G1 `ui-tooling` out of commonMain |
+| 4 | #12 | G2 + G3 gated iOS klib canary. **G4's CI job is still not built** — it waits on §10 O4 (which runner), and no CI has ever run it |
+| 5 | #13 | D3 android-only merge + `cloudstream.kmp.android-only` |
+| 6 | #15 | javap tripwire: `app/api/classes-jar.api` + `:app:checkExtensionApi` |
+| 7 | #14 | B1 `:core:data` |
+| 8 | #16, #19 | B2 then B3. B6 did **not** ship with them and is row 21 above |
+| 10 | #17, #18 | S-a `:core:strings` + generator; the `values-b+he` / `values-b+id` copies |
+| 11 | #21, #23 | S-b `UiString`, formatter, plural guard, `UiText` deprecation; then the platform-locale reversal |
+| 12, 13 | #10, #11 | ktor 3.6.0, then `:core:http` |
+| 16 | #20, #22 | `:core:storage` interfaces + Android actuals + persistent JVM stores, then the file split |
+
+**Row 9 was split.** It bundled B4, B5, B7 and B8 into one PR; they have different prerequisites
+(B5 needs a security review, B7 needs a placement decision, B8 needs an accepted ABI delta), so
+they are rows 19–23 above, one each.
+
+> **No CI has run on any of this.** GitHub Actions has been failing account-wide in ~2s with a
+> billing error for the whole series. Every check quoted in a PR body was run locally, on one
+> machine, with one JDK. That is the single largest gap in the evidence behind this plan.
+
+### Phase 0 — build-logic + jar safety · **done**
 
 ### Phase 1 — Guardrails · ~1 week
 G1–G4 (§6.3), D3 android-only merge, javap tripwire.
