@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Synthetic. Every value here exists to make exactly one encoder branch fail if it is deleted.
+  Unlike the corpus slice next door, nothing in this file is owned by a translator, so no rule
+  can silently lose its only guard when a translation changes.
+-->
+<resources>
+    <string name="amp">"fish &amp; chips"</string>
+    <string name="lt">"a &lt; b"</string>
+    <string name="gt">"b &gt; a"</string>
+    <string name="lt_gt_amp">"&lt;tag&gt; &amp; more"</string>
+    <string name="backslash_single">"a\\b"</string>
+    <string name="backslash_trailing">"ends with\\"</string>
+    <string name="backslash_then_q">"\\\"quoted\\\""</string>
+    <string name="dquote">"say \"hi\" now"</string>
+    <string name="dquote_only">"\""</string>
+    <string name="newline">"line1\nline2"</string>
+    <string name="tab">"col1\tcol2"</string>
+    <string name="c0_bell">"bell\u0007here"</string>
+    <string name="c0_soh">"soh\u0001here"</string>
+    <string name="c0_vt_ff">"vt\u000bff\u000c"</string>
+    <string name="apostrophe">"Don't stop"</string>
+    <string name="leading_at">"@string/home_play"</string>
+    <string name="leading_q">"?attr/colorPrimary"</string>
+    <string name="only_space">" "</string>
+    <string name="padded">"  two  spaces  "</string>
+    <string name="whitespace_only">"   "</string>
+    <string name="empty">""</string>
+    <string name="nbsp">"a b"</string>
+    <string name="rlm">"a‏b"</string>
+    <string name="emoji_astral">"grin 😀 done"</string>
+    <string name="literal_backslash_n">"not a newline: \\n"</string>
+    <string name="entity_text">"&amp;amp; is text"</string>
+    <string name="percent_specs">"%1$s and %2$d and %%"</string>
+</resources>

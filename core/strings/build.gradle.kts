@@ -45,3 +45,39 @@ kotlin {
         }
     }
 }
+
+// `oracle-baseline/` is the frozen pre-flip output of `generateComposeStrings`, compared by `OracleBaselineTest`.
+// It belongs to this module only: fixtures generates from its own `res` and has nothing to compare.
+tasks.named<Test>("jvmTest") {
+    jvmArgumentProviders.add(
+        objects.newInstance<strings.StringsBaselineArgument>().apply {
+            baselineDir.set(layout.projectDirectory.dir("oracle-baseline"))
+        },
+    )
+}
+
+// The strings flip is loss-free only if the authored Compose tree survives a full round trip through Android res
+// and back. `verifyStringsRoundTrip` asserts that; see `strings.VerifyStringsRoundTripTask`. It belongs to this
+// module only, for the same reason as the baseline: fixtures has no authored tree and no frozen lookup.
+val generateComposeStrings = tasks.named<strings.GenerateComposeStringsTask>("generateComposeStrings")
+
+val verifyStringsRoundTrip = tasks.register<strings.VerifyStringsRoundTripTask>("verifyStringsRoundTrip") {
+    group = "verification"
+    description = "Re-encodes the authored Compose values as Android res and asserts the generator's fixed point."
+    aapt2.set(generateComposeStrings.flatMap { it.aapt2 })
+    resDirectory.set(generateComposeStrings.flatMap { it.resDirectory })
+    visibleDoNotTranslate.set(generateComposeStrings.flatMap { it.visibleDoNotTranslate })
+    parityRequests.set(generateComposeStrings.flatMap { it.parityRequests })
+    localeCopies.set(generateComposeStrings.flatMap { it.localeCopies })
+    guardMode.set(generateComposeStrings.flatMap { it.guardMode })
+    additions.set(layout.projectDirectory.file("authored-additions.tsv"))
+    baselineLookup.set(layout.projectDirectory.file("oracle-baseline/lookup.tsv"))
+    // 33100 values the pre-flip generator emitted outside the two localeCopies directories, plus the five of
+    // `authored-additions.tsv`. Every one of them must come from the directory that declares it: OWN and nothing else.
+    expectedOwn.set(33105)
+    outputDir.set(layout.buildDirectory.dir("stringsRoundTrip"))
+}
+
+tasks.named("check") {
+    dependsOn(verifyStringsRoundTrip)
+}
