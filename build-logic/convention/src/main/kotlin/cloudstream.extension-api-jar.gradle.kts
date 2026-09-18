@@ -108,6 +108,10 @@ val sentinels = mapOf(
     "$apiPackageDir/ui/search/SyncSearchViewModel.class" to ":core:model - no in-repo users; only this sees its loss",
     "$apiPackageDir/ui/search/SyncSearchViewModel\$SyncSearchResultSearchResponse.class" to ":core:model - no in-repo users",
     "$apiPackageDir/ui/player/IGeneratorKt.class" to ":core:model - LOADTYPE_* facade; file must stay IGenerator.kt",
+    "$apiPackageDir/syncproviders/AuthToken.class" to ":core:model - AuthAPI.login/refreshToken return type",
+    "$apiPackageDir/syncproviders/AuthUser.class" to ":core:model - AuthAPI.user return type",
+    "$apiPackageDir/syncproviders/AuthData.class" to ":core:model - the persisted 'auth_tokens' element",
+    "$apiPackageDir/syncproviders/AuthLoginResponse.class" to ":core:model - AuthAPI.login(form) parameter",
 )
 
 /** Every project dependency `:app` is built with for [jarVariant], direct or transitive. */

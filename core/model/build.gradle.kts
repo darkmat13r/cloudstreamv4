@@ -24,6 +24,20 @@
  *   become *stable* at runtime. They are passed to composables (`SettingsAccountScreen`). No
  *   signature changes, so neither `abiValidation` nor the jar dump sees it. Move them together with
  *   `AuthAPI`, or with an explicit decision to accept that stability change.
+ * - **`AuthToken`, `AuthUser`, `AuthData` and `AuthLoginResponse` did move** (`AuthDtos.kt`, plan
+ *   §5.1), because the hazard above does not reach them: no class in `classes.jar` reads any
+ *   of their `$stable` fields with `getstatic`, before or after, so a whole-jar scan of all 910
+ *   `$stable` initialisers shows zero changes. `AuthAPI` stays folded to the constant `8`. The move
+ *   was taken with **one accepted ABI change**, recorded in `app/api/classes-jar.api`: the four
+ *   `internal` synthetic `write$Self$app` methods are renamed to `write$Self$CloudStream_core_model`,
+ *   because Kotlin mangles `internal` members with the JVM module name and this module's is
+ *   `CloudStream.core:model`. They are `ACC_SYNTHETIC` and their only callers are the co-located
+ *   `$$serializer.serialize` bodies, which moved with them; the same mangling is already visible in
+ *   the committed dump as 122 `write$Self$CloudStream_library` entries. Do **not** try to suppress
+ *   the rename by forcing the module name to `app` — `makeJar` then fails on a duplicate
+ *   `META-INF/app.kotlin_module` — and do **not** add `@Immutable`/`@Stable` to these DTOs: it
+ *   removes the `$stable` initialiser and silently flips `AuthUser` and `AuthData` from `8` to `0`,
+ *   which is exactly the hazard described above and is invisible to both checkers.
  *
  * ## Source sets and dependencies
  *
@@ -31,9 +45,17 @@
  * keep the `$stable` field `:app` emitted. See that plugin's KDoc.
  *
  * - `commonMain`: pure Kotlin. Nothing here uses `java.*`, Jackson or `synchronized`.
+ * - `jvmCommonMain`: the Auth DTOs, which carry Jackson annotations. Jackson is JVM-only, so they
+ *   cannot sit in `commonMain`. `kotlinx-serialization-json` is `api` because `Companion.serializer()`
+ *   is public ABI; `jackson-module-kotlin` is `implementation` because only the annotations are used
+ *   and they are `CLASS`-retained. `:library` declares both the same way, so this module must
+ *   declare them itself rather than inherit them.
  * - `api(project(":library"))`: `TvType`, `SearchResponse`, `SearchQuality`, `Score` and
  *   `ExtractorLinkType` are in these classes' public signatures, so callers need `:library` on
  *   their compile classpath.
+ * - The Kotlin serialization plugin is applied for the `@Serializable` DTOs. Without it the
+ *   `$$serializer` and `$Companion` classes are simply not generated — no error, just a jar that
+ *   silently loses them.
  *
  * ## iOS canary: exempt until Track L
  *
@@ -45,12 +67,20 @@
  */
 plugins {
     id("cloudstream.kmp.extension-api")
+    alias(libs.plugins.kotlin.serialization)
 }
 
 kotlin {
     sourceSets {
         commonMain.dependencies {
             api(project(":library"))
+        }
+
+        named("jvmCommonMain") {
+            dependencies {
+                api(libs.kotlinx.serialization.json)
+                implementation(libs.jackson.module.kotlin)
+            }
         }
     }
 }
