@@ -18,7 +18,8 @@ import java.nio.file.Path
  * | values | the caller's JSON string, verbatim | the caller's JSON string, verbatim |
  * | `keysIn` / `removeIn` | the interface defaults | the same interface defaults |
  * | missing key | `null` | `null` |
- * | unreadable value | `null` (caught `ClassCastException`) | `null` (no value is unreadable here — every stored value is a string) |
+ * | unreadable value | `null` (caught `ClassCastException`) | `null` (nothing is unreadable here: every
+ *   stored value is a string) |
  * | `edit` | one `apply()` | one file write |
  *
  * The one behavioural difference worth knowing is **where a wrong-typed value can come from**.

@@ -31,7 +31,8 @@ import java.nio.file.Path
  * | `I` | `Int` | `toString` |
  * | `F` | `Float` | `toString` |
  * | `B` | `Boolean` | `true` / `false` |
- * | `X` | `Set<String>` | each member escaped and followed by `,` — so the empty set is empty and a set holding one empty string is `,` |
+ * | `X` | `Set<String>` | each member escaped and followed by `,`, so the empty set is empty and a
+ *   set holding one empty string is `,` |
  *
  * This is **not** the JSON-record encoding: settings are primitives on both platforms, exactly as
  * `SharedPreferences` keeps them, and this module still owns no JSON codec.
