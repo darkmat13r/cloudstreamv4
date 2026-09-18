@@ -1,10 +1,13 @@
 package com.lagradost.cloudstream3.network
 
 import androidx.annotation.AnyThread
+import com.lagradost.cloudstream3.USER_AGENT
 import com.lagradost.cloudstream3.app
 import com.lagradost.nicehttp.Requests
 import com.lagradost.nicehttp.cookies
 import kotlinx.coroutines.runBlocking
+import okhttp3.Headers
+import okhttp3.Headers.Companion.toHeaders
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
@@ -30,6 +33,25 @@ class DdosGuardKiller(private val alwaysBypass: Boolean) : Interceptor {
         } else response
     }
 
+    /**
+     * Set headers > Set cookies > Default headers > Default Cookies.
+     *
+     * A private copy of `RequestsHelperKt.getHeaders`, which lives in `:app` and cannot be reached
+     * from here.
+     */
+    private fun mergeHeaders(
+        headers: Map<String, String>,
+        cookie: Map<String, String>
+    ): Headers {
+        val cookieMap =
+            if (cookie.isNotEmpty()) mapOf(
+                "Cookie" to cookie.entries.joinToString(" ") {
+                    "${it.key}=${it.value};"
+                }) else mapOf()
+        val tempHeaders = (mapOf("user-agent" to USER_AGENT) + headers + cookieMap)
+        return tempHeaders.toHeaders()
+    }
+
     private suspend fun bypassDdosGuard(request: Request): Response {
         ddosBypassPath = ddosBypassPath ?: Regex("'(.*?)'").find(
             app.get(
@@ -47,7 +69,7 @@ class DdosGuardKiller(private val alwaysBypass: Boolean) : Interceptor {
                     }
                 }
 
-        val headers = getHeaders(request.headers.toMap(), cookies + request.cookies)
+        val headers = mergeHeaders(request.headers.toMap(), cookies + request.cookies)
         return app.baseClient.newCall(
             request.newBuilder()
                 .headers(headers)
