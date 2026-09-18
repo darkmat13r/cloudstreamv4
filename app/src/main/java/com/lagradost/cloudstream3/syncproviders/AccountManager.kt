@@ -160,6 +160,11 @@ abstract class AccountManager {
             if (minutes < 0) {
                 return completedValue
             }
+            // The leftover seconds are already in secondsLong; show them when they
+            // are all there is, so the last minute does not render as "0m".
+            if (days == 0L && hours == 0L && minutes == 0L && secondsLong > 0L) {
+                return "${secondsLong}s"
+            }
             //println("$days $hours $minutes")
             return "${if (days != 0L) "$days" + "d " else ""}${if (hours != 0L) "$hours" + "h " else ""}${minutes}m"
         }
