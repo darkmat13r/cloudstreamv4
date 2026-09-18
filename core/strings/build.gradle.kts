@@ -35,3 +35,13 @@
 plugins {
     id("cloudstream.kmp.strings")
 }
+
+kotlin {
+    sourceSets {
+        jvmTest {
+            // `src/jvmTest/kotlin` is compiled by `:core:strings:fixtures` too, over its own adversarial resources
+            // and its own `Res`; it has no `UiString`. The S-b suite is this module's alone.
+            kotlin.srcDir("src/jvmTestUiString/kotlin")
+        }
+    }
+}

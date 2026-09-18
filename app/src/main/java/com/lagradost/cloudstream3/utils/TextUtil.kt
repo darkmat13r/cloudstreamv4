@@ -9,6 +9,23 @@ import androidx.core.view.isVisible
 import com.lagradost.cloudstream3.mvvm.logError
 import com.lagradost.cloudstream3.utils.AppContextUtils.html
 
+/**
+ * Superseded by `com.lagradost.cloudstream4.core.strings.UiString` (migration plan §7 Phase 3 S-b, D4).
+ *
+ * `UiString` is the same idea without a `Context`: `Raw` for text that is already final, `Resource`/`Plural` for a
+ * Compose Multiplatform `StringResource`, resolved with `resolve()` inside a composition or `load()` outside one.
+ * It lives in `:core:strings`, so a ViewModel in `commonMain` can hold one, which `UiText` — `@StringRes Int` plus
+ * `Context` — cannot.
+ *
+ * Nothing is removed: every existing call site keeps working, and deprecating rather than deleting is what lets
+ * third-party extensions, which compile against `classes.jar`, see the warning before the type eventually goes.
+ * There is no adapter between the two on purpose: an adapter written in `:app` would itself land in `classes.jar`
+ * as new frozen API, and no consumer needs one yet.
+ */
+@Deprecated(
+    "Use com.lagradost.cloudstream4.core.strings.UiString; see the KDoc above.",
+    level = DeprecationLevel.WARNING,
+)
 sealed class UiText {
     companion object {
         const val TAG = "UiText"
@@ -73,19 +90,35 @@ sealed class UiText {
     }
 }
 
+@Deprecated(
+    "Use com.lagradost.cloudstream4.core.strings.UiString.Raw(value).",
+    level = DeprecationLevel.WARNING,
+)
 fun txt(value: String): UiText {
     return UiText.DynamicString(value)
 }
 
+@Deprecated(
+    "Use com.lagradost.cloudstream4.core.strings.UiString.Raw, as value?.let(UiString::Raw).",
+    level = DeprecationLevel.WARNING,
+)
 @JvmName("txtNull")
 fun txt(value: String?): UiText? {
     return UiText.DynamicString(value ?: return null)
 }
 
+@Deprecated(
+    "Use com.lagradost.cloudstream4.core.strings.UiString.Resource(res, args.toList()).",
+    level = DeprecationLevel.WARNING,
+)
 fun txt(@StringRes resId: Int, vararg args: Any): UiText {
     return UiText.StringResource(resId, args.toList())
 }
 
+@Deprecated(
+    "Use com.lagradost.cloudstream4.core.strings.UiString.Resource(res, args.toList()).",
+    level = DeprecationLevel.WARNING,
+)
 @JvmName("txtNull")
 fun txt(@StringRes resId: Int?, vararg args: Any?): UiText? {
     if (resId == null || args.any { it == null }) {
