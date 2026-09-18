@@ -10,6 +10,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Build.VERSION.SDK_INT
+import android.text.format.Formatter.formatShortFileSize
 import android.util.Log
 import android.widget.Toast
 import androidx.annotation.DrawableRes
@@ -311,27 +312,26 @@ object VideoDownloadManager {
                 }
 
                 val progressPercentage: Long
-                val progressMbString: String
-                val totalMbString: String
+                val sizeString: String
                 val suffix: String
-
-                val mbFormat = "%.1f MB"
 
                 if (hlsProgress != null && hlsTotal != null) {
                     progressPercentage = hlsProgress * 100 / hlsTotal
-                    progressMbString = hlsProgress.toString()
-                    totalMbString = hlsTotal.toString()
-                    suffix = " - $mbFormat".format(progress / 1000000f)
+                    // hlsProgress/hlsTotal are SEGMENT COUNTS, not bytes — not a file size.
+                    sizeString = "$hlsProgress/$hlsTotal"
+                    suffix = " - " + formatShortFileSize(context, progress)
                 } else {
                     progressPercentage = progress * 100 / total
-                    progressMbString = mbFormat.format(progress / 1000000f)
-                    totalMbString = mbFormat.format(total / 1000000f)
+                    sizeString = context.getString(R.string.download_size_format).format(
+                        formatShortFileSize(context, progress),
+                        formatShortFileSize(context, total)
+                    )
                     suffix = ""
                 }
 
-                val mbPerSecondString =
+                val speedString =
                     if (state == DownloadType.IsDownloading) {
-                        " ($mbFormat/s)".format(bytesPerSecond.toFloat() / 1000000f)
+                        " (%s/s)".format(formatShortFileSize(context, bytesPerSecond))
                     } else ""
 
                 val remainingTime =
@@ -342,7 +342,7 @@ object VideoDownloadManager {
                 val bigText =
                     when (state) {
                         DownloadType.IsDownloading, DownloadType.IsPaused -> {
-                            (if (linkName == null) "" else "$linkName\n") + "$rowTwo\n$progressPercentage % ($progressMbString/$totalMbString)$suffix$mbPerSecondString $remainingTime"
+                            (if (linkName == null) "" else "$linkName\n") + "$rowTwo\n$progressPercentage % ($sizeString)$suffix$speedString $remainingTime"
                         }
 
                         DownloadType.IsPending -> {
