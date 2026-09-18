@@ -15,6 +15,9 @@
  *   (the rest of `donottranslate-strings.xml` are preference keys and view tags);
  * - `@string/` references resolved in each requesting locale, and values copied into locale directories wherever
  *   Compose's locale fallback would otherwise return something other than Android's (API 24+ `ResTable_config`);
+ * - `values-b+he` / `values-b+id` as exact copies of `values-b+iw` / `values-b+in`: Android maps `he`/`id` to
+ *   `iw`/`in`, Compose asks for `he`/`id` on API 35+, JVM and iOS (`localeCopies`, `strings.LocaleCopies`). Adding a
+ *   real `values-b+he` or `values-b+id` to `app/src/main/res` fails the build until its copy entry is removed;
  * - styled text (`<b>`) as plain text; no arrays; no build-type or flavor overlays.
  *
  * ## Checks

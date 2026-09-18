@@ -1,0 +1,3 @@
+# values-b+he is a localeCopies target (a copy of values-b+iw); a real values-b+he must fail, never be overwritten.
+kind=LOCALE_COPY_COLLISION
+message=localeCopies writes values-b+he as a copy of values-b+iw and would overwrite this directory

@@ -38,7 +38,14 @@ internal class Materialiser(
     private val resolver: AndroidResolver,
     private val findings: Findings,
 ) {
-    val emitted: Map<String, MutableMap<ResourceKey, TextValue>> = qualifiers.keys.associateWith { sortedMapOf() }
+    private val locales = LinkedHashMap(qualifiers)
+
+    /** Directories written by `localeCopies`; they carry their own locale and join [requests]. */
+    private val copied = linkedMapOf<String, LocaleQualifier>()
+    private val emittedByDirectory = qualifiers.keys.associateWithTo(LinkedHashMap()) {
+        sortedMapOf<ResourceKey, TextValue>()
+    }
+    val emitted: Map<String, MutableMap<ResourceKey, TextValue>> get() = emittedByDirectory
     val reasons = HashMap<CopyReason, Int>()
     var styledEmitted = 0
         private set
@@ -91,9 +98,22 @@ internal class Materialiser(
         } while (changed)
     }
 
+    /**
+     * Adds [target] with exactly the values emitted for [source] ([LocaleCopies]), after [run]. It joins the Compose
+     * model, not the Android table or the directory requests. Returns the number of values copied.
+     */
+    fun copyDirectory(target: String, locale: LocaleQualifier, source: String): Int {
+        check(target !in locales) { "$target is already a directory" }
+        locales[target] = locale
+        copied[target] = locale
+        val values = sortedMapOf<ResourceKey, TextValue>().apply { putAll(emitted.getValue(source)) }
+        emittedByDirectory[target] = values
+        return values.size
+    }
+
     /** What Compose returns for [key] in [environment] given the emitted directories, or null (runtime error). */
     fun composeValue(environment: ComposeEnvironment, key: ResourceKey): TextValue? {
-        val candidates = emitted.filterValues { key in it }.keys.map { it to qualifiers.getValue(it) }
+        val candidates = emitted.filterValues { key in it }.keys.map { it to locales.getValue(it) }
         val chosen = selectCompose(environment, candidates) { tied ->
             findings.add(
                 FindingKind.AMBIGUOUS_LOCALE, tied.joinToString(), key.toString(), "Compose finds more than one file",
@@ -108,7 +128,16 @@ internal class Materialiser(
             val environment = ComposeEnvironment(q.language, q.script, q.region)
             ParityRequest(directory, q.bcp47, environment, "match", "directory locale")
         }
-        return fromDirectories.sortedBy { it.id } + extra
+        // A copy's own locale (he for values-b+he) is never a source directory, so it would otherwise be
+        // generated with nothing asserting it. Skip the ones parity-requests.txt already covers.
+        val covered = extra.map { it.androidTag }.toSet()
+        val fromCopies = copied
+            .filterValues { it.bcp47 !in covered }
+            .map { (directory, q) ->
+                val environment = ComposeEnvironment(q.language, q.script, q.region)
+                ParityRequest(directory, q.bcp47, environment, "match", "locale copy")
+            }
+        return (fromDirectories + fromCopies).sortedBy { it.id } + extra
     }
 
     /** Android's value for every request x visible key, and a guard for every request the prediction contradicts. */

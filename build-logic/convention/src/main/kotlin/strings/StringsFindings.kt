@@ -39,6 +39,7 @@ enum class FindingKind(val severity: Severity, val summary: String) {
     DUPLICATE_DEFINITION(Severity.BROKEN, "same type and name defined twice in one directory"),
     SANITISER_MISMATCH(Severity.BROKEN, "stray text could not be removed without changing the document"),
     DECODE_COUNT_MISMATCH(Severity.BROKEN, "decoded entry count differs from the XML element count"),
+    LOCALE_COPY_COLLISION(Severity.BROKEN, "a localeCopies target already exists as a source directory"),
 
     UNICODE_WHITESPACE(Severity.GUARD, "non-ASCII whitespace native aapt2 and AGP's aaptcompiler treat differently"),
     CR_CHARACTER_REFERENCE(Severity.GUARD, "&#13; character reference, whose value AGP's merger re-serialises"),

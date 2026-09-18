@@ -7,8 +7,10 @@ import org.gradle.api.DefaultTask
 import org.gradle.api.GradleException
 import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.file.RegularFileProperty
+import org.gradle.api.provider.MapProperty
 import org.gradle.api.provider.Property
 import org.gradle.api.tasks.CacheableTask
+import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.InputDirectory
 import org.gradle.api.tasks.Nested
 import org.gradle.api.tasks.OutputFile
@@ -21,7 +23,7 @@ import org.gradle.process.ExecOperations
  * Proves the generator's guards on inputs that must not pass: every directory under [cases] is one case with a
  * `res/` tree and an `expect.txt` naming the [FindingKind] it must raise (`kind=UNICODE_WHITESPACE`) and, optionally,
  * text the failure message must contain (`message=…`). Optional `visible-donottranslate.txt` and
- * `parity-requests.txt` next to them are used as the generator's inputs.
+ * `parity-requests.txt` next to them are used as the generator's inputs, with [localeCopies].
  *
  * Each case runs through the real pipeline and aapt2 twice:
  * - `fail` mode must throw, naming the kind;
@@ -35,6 +37,10 @@ abstract class VerifyStringsGuardsTask : DefaultTask() {
     @get:InputDirectory
     @get:PathSensitive(PathSensitivity.RELATIVE)
     abstract val cases: DirectoryProperty
+
+    /** As `GenerateComposeStringsTask.localeCopies`. */
+    @get:Input
+    abstract val localeCopies: MapProperty<String, String>
 
     @get:OutputFile
     abstract val resultFile: RegularFileProperty
@@ -88,6 +94,7 @@ abstract class VerifyStringsGuardsTask : DefaultTask() {
                 sources,
                 StringsOracles.parseAllowlist(optional("visible-donottranslate.txt")),
                 StringsOracles.parseRequests(optional("parity-requests.txt")),
+                localeCopies.get(),
             )
             findings.throwIfGuardsFailed()
             null to findings.all

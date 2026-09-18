@@ -1,6 +1,7 @@
 import com.android.build.api.variant.KotlinMultiplatformAndroidComponentsExtension
 import org.gradle.api.artifacts.VersionCatalogsExtension
 import strings.GenerateComposeStringsTask
+import strings.LocaleCopies
 import strings.StringsOracleArgument
 
 /**
@@ -15,6 +16,8 @@ import strings.StringsOracleArgument
  *   the task dependency to every resource task, the accessors and IDE sync. Its inputs default to
  *   `app/src/main/res` (read as files; `:app` is never configured), `visible-donottranslate.txt` and
  *   `parity-requests.txt` in the module directory; a module overrides them on the task.
+ * - `localeCopies` defaults to `values-b+he` <- `values-b+iw` and `values-b+id` <- `values-b+in` (Compose asks for
+ *   `he`/`id` where Android asks for `iw`/`in`, see `strings.LocaleCopies`); a module sets its own map on the task.
  * - `-Pcloudstream.strings.guards=fail|report` (default `report`; pull requests pass `fail`), see `strings.GuardMode`.
  * - `Res` is public, in `com.lagradost.cloudstream4.core.strings.generated.resources`, generated `always`:
  *   `auto` compares an exact `components-resources` coordinate and silently stops generating on a catalog change.
@@ -57,6 +60,7 @@ val generateComposeStrings = tasks.register<GenerateComposeStringsTask>("generat
     resDirectory.convention(layout.settingsDirectory.dir("app/src/main/res"))
     visibleDoNotTranslate.convention(layout.projectDirectory.file("visible-donottranslate.txt"))
     parityRequests.convention(layout.projectDirectory.file("parity-requests.txt"))
+    localeCopies.convention(LocaleCopies.DEFAULTS)
     guardMode.set(providers.gradleProperty("cloudstream.strings.guards").orElse("report"))
     outputDir.set(layout.buildDirectory.dir("generated/composeStrings"))
     oracleDir.set(layout.buildDirectory.dir("stringsOracle"))
