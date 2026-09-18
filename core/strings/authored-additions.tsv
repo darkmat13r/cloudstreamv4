@@ -1,0 +1,24 @@
+# Values the authored Compose tree must carry that the forward generator does not emit, one per row:
+# directory, type, name, plural category (`-` for a <string>), text. Cells escape \\ \n \t \r as the oracles do;
+# `#` starts a comment. Read by `verifyStringsRoundTrip` (strings.VerifyStringsRoundTripTask).
+#
+# All five are base-only `@string/` aliases of `values/donottranslate-strings.xml`, which Android re-resolves in the
+# *requesting* locale rather than copying. The forward generator leaves them out of these two directories because
+# Compose already returns Android's value there — and it does, as long as the alias is still an alias:
+#
+#   values-b+tl    change_providers_img_des = @string/home_change_provider_img_des, and values-b+tl defines that
+#                  target itself ("Change Provider", untranslated). An identical language beats an equivalent one
+#                  (ResTable_config, tl and fil are equivalent), so Android reads tl's own target, not fil's.
+#   values-b+zh+TW change_providers_img_des, duplicate_cancel, sort_cancel and plurals/episodes resolve to targets
+#                  values-b+zh+TW defines, so Android stays in Traditional Chinese.
+#
+# Flattening the alias to literal text moves the decision from the target to the alias, and the alias is base-only:
+# Android would then read values-b+fil for `tl` and the default English for `zh-TW`. Writing the resolved value into
+# the directory restores the identical-locale win. Each text below is the cell `oracle-baseline/lookup.tsv` froze
+# for that request before the flip, so the post-flip lookup diff is zero lines rather than six.
+values-b+tl	string	change_providers_img_des	-	Change Provider
+values-b+zh+TW	string	change_providers_img_des	-	更改片源
+values-b+zh+TW	string	duplicate_cancel	-	取消
+values-b+zh+TW	string	sort_cancel	-	取消
+values-b+zh+TW	plurals	episodes	one	集
+values-b+zh+TW	plurals	episodes	other	集

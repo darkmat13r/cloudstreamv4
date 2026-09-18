@@ -19,3 +19,19 @@ abstract class StringsOracleArgument : CommandLineArgumentProvider {
 
     override fun asArguments(): Iterable<String> = listOf("-Dstrings.oracles=${oracleDir.get().asFile.absolutePath}")
 }
+
+/**
+ * Hands the checked-in pre-flip baseline to the jvmTest as `-Dstrings.baseline=<dir>`, on the same terms as
+ * [StringsOracleArgument]: a relative-path-sensitive input, so the absolute path never enters the cache key.
+ *
+ * Only `:core:strings` sets this; `:core:strings:fixtures` runs the same pipeline over its own adversarial
+ * resources and has no baseline of its own.
+ */
+abstract class StringsBaselineArgument : CommandLineArgumentProvider {
+    @get:InputDirectory
+    @get:PathSensitive(PathSensitivity.RELATIVE)
+    abstract val baselineDir: DirectoryProperty
+
+    override fun asArguments(): Iterable<String> =
+        listOf("-Dstrings.baseline=${baselineDir.get().asFile.absolutePath}")
+}

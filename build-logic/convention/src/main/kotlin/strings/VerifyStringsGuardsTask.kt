@@ -28,6 +28,9 @@ import org.gradle.process.ExecOperations
  * Each case runs through the real pipeline and aapt2 twice:
  * - `fail` mode must throw, naming the kind;
  * - `report` mode must throw for [Severity.BROKEN] kinds and must complete with the finding recorded otherwise.
+ *
+ * A case whose `expect.txt` says `check=roundtrip` instead is the opposite shape — an input that must pass — and
+ * runs [runRoundTrip] in both modes rather than the pipeline.
  */
 @CacheableTask
 abstract class VerifyStringsGuardsTask : DefaultTask() {
@@ -57,6 +60,15 @@ abstract class VerifyStringsGuardsTask : DefaultTask() {
             val expect = File(case, "expect.txt").readLines().filter { '=' in it }.associate {
                 it.substringBefore('=').trim() to it.substringAfter('=').trim()
             }
+            if (expect["check"] == "roundtrip") {
+                for (mode in GuardMode.entries) {
+                    val (summary, problems) = runRoundTrip(case, mode, executable, expect)
+                    lines += summary
+                    problems.take(3).forEach { lines += "    | $it" }
+                    if (problems.isNotEmpty()) failures += "$summary\n" + problems.joinToString("\n")
+                }
+                return@forEach
+            }
             val kind = FindingKind.valueOf(expect.getValue("kind"))
             val message = expect["message"]
             for (mode in GuardMode.entries) {
@@ -79,6 +91,93 @@ abstract class VerifyStringsGuardsTask : DefaultTask() {
         resultFile.get().asFile.writeText(lines.joinToString("\n", postfix = "\n"))
         lines.forEach { logger.lifecycle(it) }
         if (failures.isNotEmpty()) throw GradleException("strings guard fixtures:\n" + failures.joinToString("\n\n"))
+    }
+
+    /**
+     * A `check=roundtrip` case: proves [AndroidStringsXml] is a total inverse of aapt2's decode over the case's res.
+     * The res is compiled, every decoded text is written straight back through the encoder, the result is compiled
+     * again, and the two decoded tables are compared value by value — so the only thing under test is the encoder.
+     *
+     * A reference or an unsupported value has no text to re-encode and is counted instead; `values=` and `skipped=`
+     * in `expect.txt` pin both counts, so the case cannot quietly stop covering a hazard. A styled value is
+     * round-tripped as its plain text, which is what the generator already emits, and the comparison requires the
+     * re-decoded value to be plain text: a quoted value must never come back styled or as a reference.
+     */
+    private fun runRoundTrip(
+        case: File,
+        mode: GuardMode,
+        executable: File,
+        expect: Map<String, String>,
+    ): Pair<String, List<String>> {
+        val findings = Findings(mode)
+        val res = File(case, "res")
+        val sources = res.walkTopDown().filter { it.isFile && it.extension == "xml" }
+            .map { SourceFile(it.relativeTo(res).invariantSeparatorsPath, it.readBytes()) }
+            .sortedBy { it.location }.toList()
+        val work = File(temporaryDir, "${case.name}-${mode.name.lowercase()}")
+        val compiler = Aapt2Compiler(exec, executable, work, findings)
+        val skipped = mutableListOf<String>()
+        val problems = mutableListOf<String>()
+        val decoded = compiler.compile(
+            sources.associate { it.location to ValuesSanitizer.sanitise(it.location, it.bytes, findings).text },
+        )
+        val before = decoded.mapValues { (location, entries) ->
+            entries.mapNotNull { entry ->
+                val text = roundTrippable(entry.value)
+                if (text == null) skipped += "$location ${entry.type}/${entry.name}"
+                text?.let { ResourceKey(entry.type, entry.name) to it }
+            }.toMap()
+        }
+        val after = compiler.compile(before.mapValues { AndroidStringsXml.write(it.value) })
+            .mapValues { (_, entries) -> entries.associate { ResourceKey(it.type, it.name) to it.value } }
+        before.forEach { (location, expected) ->
+            val actual = after[location].orEmpty()
+            (expected.keys - actual.keys).forEach { problems += "$location $it: lost by the round trip" }
+            (actual.keys - expected.keys).forEach { problems += "$location $it: invented by the round trip" }
+            expected.forEach { (key, value) ->
+                val back = plainTextValue(actual[key] ?: return@forEach)
+                if (back != value) problems += "$location $key: ${describe(value)} -> ${describe(back)}"
+            }
+        }
+        findings.all.filter { it.kind.severity == Severity.GUARD }.forEach { problems += "guard fired: $it" }
+        val values = before.values.sumOf { it.size }
+        expect["values"]?.toInt()?.takeIf { it != values }
+            ?.let { problems += "expect.txt says values=$it, the case round-tripped $values" }
+        expect["skipped"]?.toInt()?.takeIf { it != skipped.size }
+            ?.let { problems += "expect.txt says skipped=$it, the case skipped ${skipped.size}: ${skipped.take(8)}" }
+        val summary = "${case.name} [${mode.name.lowercase()}] roundtrip $values values in ${before.size} files, " +
+            "${skipped.size} skipped -> ${if (problems.isEmpty()) "OK" else "WRONG"}"
+        return summary to problems
+    }
+
+    /** aapt2's decoded value as text, or null when there is none: a reference, `@null`, or an unsupported item. */
+    private fun roundTrippable(value: DecodedValue): TextValue? = when (value) {
+        is DecodedValue.Single -> text(value.item)?.let { TextValue.Single(it) }
+        is DecodedValue.Plural -> value.items
+            .map { (category, item) -> category to (text(item) ?: return null) }
+            .let { TextValue.Plural(it.toMap()) }
+        is DecodedValue.Other -> null
+    }
+
+    /** As [roundTrippable], but a styled or referenced value is a mismatch rather than a skip. */
+    private fun plainTextValue(value: DecodedValue): TextValue? = when (value) {
+        is DecodedValue.Single -> (value.item as? DecodedItem.Text)?.let { TextValue.Single(it.text) }
+        is DecodedValue.Plural -> value.items
+            .map { (category, item) -> category to (item as? DecodedItem.Text ?: return null).text }
+            .let { TextValue.Plural(it.toMap()) }
+        is DecodedValue.Other -> null
+    }
+
+    private fun text(item: DecodedItem): String? = when (item) {
+        is DecodedItem.Text -> item.text
+        is DecodedItem.Styled -> item.text
+        else -> null
+    }
+
+    private fun describe(value: TextValue?): String = when (value) {
+        null -> "<not plain text>"
+        is TextValue.Single -> Tsv.escape(value.text)
+        is TextValue.Plural -> value.items.entries.joinToString(" ") { "${it.key}=${Tsv.escape(it.value)}" }
     }
 
     private fun runCase(case: File, mode: GuardMode, executable: File): Pair<String?, List<Finding>> {
