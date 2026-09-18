@@ -38,8 +38,15 @@ import kotlin.test.assertEquals
  * It does **not** prove that `AppUtils.toJsonLiteral` still produces these strings; that is
  * `:library`'s own contract and its own tests. And it does not exercise `SharedPreferences` — see
  * `AndroidStorage`'s KDoc.
+ *
+ * Every case goes through [newStore], so [FileJsonRecordEncodingTest] re-runs the whole fixture set
+ * against the file-backed store — where "verbatim" has teeth, because the value is escaped on the
+ * way to disk and unescaped on the way back.
  */
-class JsonRecordEncodingTest {
+open class JsonRecordEncodingTest {
+
+    /** The store under test. A subclass overrides this and inherits every case below. */
+    protected open fun newStore(): KeyValueJsonStore = InMemoryKeyValueJsonStore()
 
     private companion object {
         /**
@@ -77,7 +84,7 @@ class JsonRecordEncodingTest {
 
     @Test
     fun `every record round-trips character for character`() {
-        val store = InMemoryKeyValueJsonStore()
+        val store = newStore()
         FIXTURES.forEach { (name, json) -> store.set(name, json) }
         FIXTURES.forEach { (name, json) ->
             assertEquals(json, store.get(name), "record '$name' was not stored verbatim")
@@ -86,7 +93,7 @@ class JsonRecordEncodingTest {
 
     @Test
     fun `a batched write stores records verbatim too`() {
-        val store = InMemoryKeyValueJsonStore()
+        val store = newStore()
         store.edit { FIXTURES.forEach { (name, json) -> set(name, json) } }
         FIXTURES.forEach { (name, json) -> assertEquals(json, store.get(name)) }
     }
@@ -111,7 +118,7 @@ class JsonRecordEncodingTest {
     fun `secret keys are the ones app writes today`() {
         // AccountManager.updateAccounts writes setKey(ACCOUNT_TOKEN, "$prefix/$currentAccount", …),
         // i.e. the flat key "auth_tokens/MAL/0". A SecretStore over the prefix must address it.
-        val records = InMemoryKeyValueJsonStore()
+        val records = newStore()
         val secrets = KeyValueJsonSecretStore(records, prefix = "auth_tokens")
 
         secrets.set("MAL/0", FIXTURES.getValue("array of objects"))

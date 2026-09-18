@@ -38,7 +38,16 @@
  *   beyond the Android SDK: the settings store takes a `SharedPreferences` rather than reaching for
  *   `androidx.preference.PreferenceManager`, so `:app` keeps deciding what "default preferences"
  *   means and this module adds no dependency.
- * - `jvmTest` — the behavioural contract, run against the in-memory implementations.
+ * - `jvmMain` — file-backed implementations of the same three ports, for Compose for Desktop.
+ *   **The JDK and nothing else**: one text file per store, written atomically, under a per-OS
+ *   application directory. `java.util.prefs.Preferences` is deliberately not used — its 8192-character
+ *   value limit cannot hold a CloudStream JSON record; `TextRecordFile`'s KDoc has the details. This
+ *   is the one source set where the `jvm()` target is more than the purity canary
+ *   `cloudstream.kmp.library` declares it as: `:desktopApp` is a real consumer. The canary still
+ *   works exactly as before — `commonMain` still has to compile against the intersection.
+ * - `jvmTest` — the behavioural contract, run against the in-memory implementations **and, by
+ *   subclassing the same suites, against the file-backed ones**, plus what only a file has
+ *   (persistence, atomicity, corruption recovery, permissions).
  *   **Robolectric is not available and must not be added**, so the `SharedPreferences`
  *   implementations are not covered here; see the KDoc of `AndroidStorage` for what that leaves
  *   unverified.

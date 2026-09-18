@@ -12,13 +12,25 @@ import kotlin.test.assertTrue
  * [KeyValueJsonSecretStore] is `commonMain` code over a [KeyValueJsonStore], so this covers the
  * whole of the implementation `:app` will use on Android — everything except the
  * `SharedPreferences` layer underneath it. [InMemorySecretStore] is held to the same contract.
+ *
+ * The shared cases go through [stores], so a JVM-runnable backing store is held to the same
+ * contract by subclassing — [FileSecretStoreTest] runs all of them over a file.
  */
-class SecretStoreTest {
+open class SecretStoreTest {
 
-    private fun stores(): List<SecretStore> = listOf(
+    /** The stores under test. A subclass overrides this and inherits every shared case below. */
+    protected open fun stores(): List<SecretStore> = listOf(
         InMemorySecretStore(),
-        KeyValueJsonSecretStore(InMemoryKeyValueJsonStore(), prefix = "auth_tokens"),
+        KeyValueJsonSecretStore(newRecords(), prefix = "auth_tokens"),
     )
+
+    /**
+     * The records a [KeyValueJsonSecretStore] is built over, holding [initial]. Overriding this
+     * alone re-runs the "where the bytes actually land" cases against another backing store.
+     * A **fresh** store per call.
+     */
+    protected open fun newRecords(initial: Map<String, String> = emptyMap()): KeyValueJsonStore =
+        InMemoryKeyValueJsonStore(initial)
 
     @Test
     fun `an absent secret reads as null`() {
@@ -81,7 +93,7 @@ class SecretStoreTest {
 
     @Test
     fun `secrets land under the prefix, as flat keys app already writes`() {
-        val records = InMemoryKeyValueJsonStore()
+        val records = newRecords()
         val secrets = KeyValueJsonSecretStore(records, prefix = "auth_tokens")
 
         secrets.set("MAL/0", "[]")
@@ -93,7 +105,7 @@ class SecretStoreTest {
     @Test
     fun `it reads secrets an existing install already has`() {
         // No migration: the tokens are where :app left them.
-        val records = InMemoryKeyValueJsonStore(
+        val records = newRecords(
             mapOf(
                 "auth_tokens/MAL/0" to "[{\"accessToken\":\"existing\"}]",
                 "data_store_helper/account" to "[{\"keyIndex\":0}]",
@@ -107,7 +119,7 @@ class SecretStoreTest {
 
     @Test
     fun `it touches nothing outside its prefix`() {
-        val records = InMemoryKeyValueJsonStore(
+        val records = newRecords(
             mapOf("auth_tokens/MAL/0" to "a", "auth_ids/MAL/0" to "1", "unrelated" to "x"),
         )
         val secrets = KeyValueJsonSecretStore(records, prefix = "auth_tokens")
@@ -120,7 +132,7 @@ class SecretStoreTest {
     @Test
     fun `a sibling prefix is not part of the folder`() {
         // "auth_tokens_backup" must not be swept up by a store scoped to "auth_tokens".
-        val records = InMemoryKeyValueJsonStore(
+        val records = newRecords(
             mapOf("auth_tokens/MAL/0" to "a", "auth_tokens_backup/MAL/0" to "b"),
         )
         val secrets = KeyValueJsonSecretStore(records, prefix = "auth_tokens")

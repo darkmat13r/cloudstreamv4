@@ -11,24 +11,37 @@ import kotlin.test.assertTrue
  *
  * [KeyValueJsonStore.keysIn] and [KeyValueJsonStore.removeIn] are interface defaults, so what is
  * pinned here is what every implementation inherits, the `SharedPreferences` one included.
+ *
+ * Every case goes through [newStore], so an implementation that can run on the JVM is held to this
+ * same contract by subclassing rather than by a second copy of these assertions —
+ * [FileKeyValueJsonStoreTest] does exactly that.
  */
-class KeyValueJsonStoreTest {
+open class KeyValueJsonStoreTest {
+
+    /**
+     * The store under test, holding [initial] before the case starts.
+     *
+     * A subclass overrides this and inherits every case below. It must return a **fresh** store per
+     * call: some cases build more than one.
+     */
+    protected open fun newStore(initial: Map<String, String> = emptyMap()): KeyValueJsonStore =
+        InMemoryKeyValueJsonStore(initial)
 
     @Test
     fun `absent key reads as null`() {
-        assertNull(InMemoryKeyValueJsonStore().get("nothing"))
+        assertNull(newStore().get("nothing"))
     }
 
     @Test
     fun `set then get returns the value`() {
-        val store = InMemoryKeyValueJsonStore()
+        val store = newStore()
         store.set("a", "{\"x\":1}")
         assertEquals("{\"x\":1}", store.get("a"))
     }
 
     @Test
     fun `contains distinguishes absent from stored`() {
-        val store = InMemoryKeyValueJsonStore()
+        val store = newStore()
         assertFalse(store.contains("a"))
         store.set("a", "null")
         assertTrue(store.contains("a"))
@@ -38,7 +51,7 @@ class KeyValueJsonStoreTest {
 
     @Test
     fun `remove deletes the key`() {
-        val store = InMemoryKeyValueJsonStore(mapOf("a" to "1"))
+        val store = newStore(mapOf("a" to "1"))
         store.remove("a")
         assertFalse(store.contains("a"))
         assertNull(store.get("a"))
@@ -46,20 +59,20 @@ class KeyValueJsonStoreTest {
 
     @Test
     fun `removing an absent key is a no-op`() {
-        val store = InMemoryKeyValueJsonStore(mapOf("a" to "1"))
+        val store = newStore(mapOf("a" to "1"))
         store.remove("b")
         assertEquals(setOf("a"), store.keys())
     }
 
     @Test
     fun `keys lists every record`() {
-        val store = InMemoryKeyValueJsonStore(mapOf("a" to "1", "b/c" to "2"))
+        val store = newStore(mapOf("a" to "1", "b/c" to "2"))
         assertEquals(setOf("a", "b/c"), store.keys())
     }
 
     @Test
     fun `edit applies every write in the batch`() {
-        val store = InMemoryKeyValueJsonStore(mapOf("keep" to "1", "drop" to "2"))
+        val store = newStore(mapOf("keep" to "1", "drop" to "2"))
         store.edit {
             set("added", "3")
             remove("drop")
@@ -73,7 +86,7 @@ class KeyValueJsonStoreTest {
 
     @Test
     fun `keysIn matches only keys one level under the folder prefix`() {
-        val store = InMemoryKeyValueJsonStore(
+        val store = newStore(
             mapOf(
                 "result/1" to "a",
                 "result/2" to "b",
@@ -89,7 +102,7 @@ class KeyValueJsonStoreTest {
 
     @Test
     fun `keysIn normalises trailing slashes like DataStore does`() {
-        val store = InMemoryKeyValueJsonStore(mapOf("a/1" to "x", "a/b/2" to "y", "ab/3" to "z"))
+        val store = newStore(mapOf("a/1" to "x", "a/b/2" to "y", "ab/3" to "z"))
         val expected = listOf("a/1", "a/b/2")
         assertEquals(expected, store.keysIn("a").sorted())
         assertEquals(expected, store.keysIn("a/").sorted())
@@ -100,14 +113,14 @@ class KeyValueJsonStoreTest {
     fun `keysIn is recursive, as a flat prefix scan must be`() {
         // "auth_tokens/MAL/0" is under "auth_tokens" as well as under "auth_tokens/MAL":
         // there are no real folders, only key prefixes.
-        val store = InMemoryKeyValueJsonStore(mapOf("auth_tokens/MAL/0" to "[]"))
+        val store = newStore(mapOf("auth_tokens/MAL/0" to "[]"))
         assertEquals(listOf("auth_tokens/MAL/0"), store.keysIn("auth_tokens"))
         assertEquals(listOf("auth_tokens/MAL/0"), store.keysIn("auth_tokens/MAL"))
     }
 
     @Test
     fun `removeIn removes the folder and returns the count`() {
-        val store = InMemoryKeyValueJsonStore(
+        val store = newStore(
             mapOf("f/1" to "a", "f/2" to "b", "g/1" to "c", "f" to "d"),
         )
         assertEquals(2, store.removeIn("f"))
@@ -173,7 +186,7 @@ class KeyValueJsonStoreTest {
 
     @Test
     fun `removeIn on an empty folder returns zero`() {
-        val store = InMemoryKeyValueJsonStore(mapOf("g/1" to "c"))
+        val store = newStore(mapOf("g/1" to "c"))
         assertEquals(0, store.removeIn("f"))
         assertEquals(setOf("g/1"), store.keys())
     }
@@ -192,7 +205,7 @@ class KeyValueJsonStoreTest {
 
     @Test
     fun `the folder-scoped extensions address the same flat key`() {
-        val store = InMemoryKeyValueJsonStore()
+        val store = newStore()
         store.set("auth_tokens", "MAL/0", "[]")
         assertEquals("[]", store.get("auth_tokens/MAL/0"))
         assertEquals("[]", store.get("auth_tokens", "MAL/0"))
