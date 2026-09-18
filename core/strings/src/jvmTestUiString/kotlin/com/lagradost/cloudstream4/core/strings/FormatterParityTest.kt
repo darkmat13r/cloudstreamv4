@@ -1,8 +1,12 @@
 package com.lagradost.cloudstream4.core.strings
 
+import com.lagradost.cloudstream4.core.strings.FormatCorpus.ARGUMENT_SETS
+import com.lagradost.cloudstream4.core.strings.FormatCorpus.argumentsFor
+import com.lagradost.cloudstream4.core.strings.FormatCorpus.scan
 import com.lagradost.cloudstream4.core.strings.StringsOracle.show
-import java.util.Formatter
 import java.util.Locale
+import kotlin.test.AfterTest
+import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -18,13 +22,19 @@ import kotlin.test.fail
  * test if we would format it differently from Android's `String.format`, and a translator who writes `100 %` in an
  * argument-less string changes nothing, because nothing formats an argument-less string.
  *
- * `Locale.ROOT` is the parity target on purpose; see the `UiStringFormat` KDoc on locale.
+ * [UiStringFormat] reads the **process default locale**, so every case here runs with it pinned to `Locale.ROOT`:
+ * this suite is the shape-by-shape half, and `LocaleNumberParityTest` is the locale-by-locale half.
  */
 class FormatterParityTest {
 
-    private val corpus = StringsOracle.emitted.entries
-        .filter { it.value.contains('%') }
-        .sortedBy { it.key.toString() }
+    private val corpus = FormatCorpus.values
+    private val previousLocale = Locale.getDefault()
+
+    @BeforeTest
+    fun formatInTheRootLocale() = Locale.setDefault(Locale.ROOT)
+
+    @AfterTest
+    fun restoreTheDefaultLocale() = Locale.setDefault(previousLocale)
 
     /**
      * The values `%f` reaches that are not finite numbers. `java.util.Formatter` still applies the sign flags to
@@ -219,72 +229,5 @@ class FormatterParityTest {
     }
 
     private fun javaFormat(pattern: String, args: List<Any>): String =
-        StringBuilder().also { Formatter(it, Locale.ROOT).use { f -> f.format(pattern, *args.toTypedArray()) } }
-            .toString()
-
-    /** One argument-consuming specifier found by the test's own scanner, deliberately not [UiStringFormat]'s. */
-    private data class Specifier(val position: Int, val conversion: Char, val flags: String, val shape: String)
-
-    private fun scan(pattern: String): List<Specifier> {
-        val found = mutableListOf<Specifier>()
-        var ordinary = 0
-        SPECIFIER.findAll(pattern).forEach { match ->
-            // A '%' the regex could not complete — a trailing one, as in "…100%". Neither formatter accepts it,
-            // so it counts as an unsupported specifier rather than as no specifier at all.
-            val conversion = match.groupValues[5].firstOrNull() ?: run {
-                found += Specifier(-1, DANGLING, "", "%<end>")
-                return@forEach
-            }
-            val shape = "%" + (if (match.groupValues[1].isNotEmpty()) "N$" else "") + match.groupValues[2] +
-                (if (match.groupValues[3].isNotEmpty()) "W" else "") + match.groupValues[4] + conversion
-            if (conversion == '%') {
-                found += Specifier(-1, conversion, match.groupValues[2], shape)
-                return@forEach
-            }
-            val explicit = match.groupValues[1].removeSuffix("$").toIntOrNull()
-            val position = if (explicit != null && explicit > 0) explicit - 1 else ordinary++
-            found += Specifier(position, conversion, match.groupValues[2], shape)
-        }
-        return found
-    }
-
-    /**
-     * Arguments for [pattern], never empty: a pattern with no argument-consuming specifier (`…100%`) still has to
-     * be *parsed* by both formatters, and [UiStringFormat.format] deliberately short-circuits on an empty list.
-     * `emptyArgumentsNeverTouchThePattern` covers the short circuit itself.
-     */
-    private fun argumentsFor(pattern: String, pool: ArgumentPool): List<Any> {
-        val types = HashMap<Int, Char>()
-        scan(pattern).filter { it.position >= 0 }.forEach { types.putIfAbsent(it.position, it.conversion) }
-        val size = (types.keys.maxOrNull() ?: -1) + 1
-        if (size == 0) return listOf("unused")
-        return (0 until size).map { position ->
-            when (types[position]) {
-                'd' -> pool.integers[position % pool.integers.size]
-                'f' -> pool.decimals[position % pool.decimals.size]
-                // Unsupported conversions get an Int: %b, %o, %x and %h accept one, so java's verdict is about the
-                // conversion rather than about the argument we happened to pick.
-                else -> pool.texts[position % pool.texts.size].takeIf { types[position] in listOf('s', 'S', null) }
-                    ?: position + 1
-            }
-        }
-    }
-
-    private data class ArgumentPool(val texts: List<String>, val integers: List<Long>, val decimals: List<Double>)
-
-    private companion object {
-        const val DANGLING = '\u0000'
-
-        val SPECIFIER = Regex("%(\\d+\\$)?([-#+ 0,(]*)(\\d+)?(\\.\\d+)?([\\s\\S])?")
-
-        val ARGUMENT_SETS = listOf(
-            ArgumentPool(listOf("Episode", "Naruto", "S1"), listOf(7L, 42L, 3L), listOf(8.475, 1.05, 0.0)),
-            ArgumentPool(listOf("", " ", "x"), listOf(0L, 1L, -1L), listOf(0.0, -0.005, 99.995)),
-            ArgumentPool(
-                listOf("100%s", "%d", "a\nb"),
-                listOf(-1234567L, Long.MAX_VALUE, Long.MIN_VALUE),
-                listOf(1.0 / 3.0, 1.0e20, -12345.6789),
-            ),
-        )
-    }
+        FormatCorpus.javaFormat(Locale.ROOT, pattern, args)
 }

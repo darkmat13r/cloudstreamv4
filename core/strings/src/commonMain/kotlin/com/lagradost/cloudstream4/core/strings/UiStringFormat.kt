@@ -13,7 +13,8 @@ package com.lagradost.cloudstream4.core.strings
  *
  * ## What it covers
  *
- * `%[argument_index$][flags][width][.precision]conversion`, matching `java.util.Formatter` **with `Locale.ROOT`**:
+ * `%[argument_index$][flags][width][.precision]conversion`, matching `java.util.Formatter` **with the platform
+ * locale** (see `## Locale`):
  *
  * - conversions `s`, `S`, `d`, `f` and the literal `%%`;
  * - flags `-` (left justify), `0` (zero pad), `+`, `' '` (space), `,` (grouping) and `(` (negatives in parentheses);
@@ -28,12 +29,15 @@ package com.lagradost.cloudstream4.core.strings
  *
  * ## Locale
  *
- * The output is locale-invariant: `%.2f` writes `1.50`, never `1,50`, and `%,d` groups with `,`. `UiText.asString`
- * used `String.format` with the platform default locale, so a decimal comma in `de`/`fr` is a deliberate behaviour
- * change — there is no common-code access to a locale's decimal separator, and `:core:strings` must compile for iOS.
+ * Numbers follow the platform locale, as `UiText.asString`'s `String.format` did: `%.2f` writes `1,50` in `de`,
+ * `%,d` groups with `.`, and `ar` writes Arabic-Indic digits. The digits and separators come from
+ * [localeNumberSymbols], read **once per [format] call** and threaded down as a parameter; see [NumberSymbols] for
+ * what was measured against `java.util.Formatter` and on which JDK. An earlier revision of this file was
+ * locale-invariant and said so here; that was reverted by owner decision on 2026-09-18.
  *
  * `%f` rounds the way `java.util.Formatter` does — half-up over the **shortest decimal representation** of the
- * double (`8.475` -> `8.48`), not half-up over its exact binary value (`8.47`, what `BigDecimal` would give).
+ * double (`8.475` -> `8.48`), not half-up over its exact binary value (`8.47`, what `BigDecimal` would give); the
+ * digits themselves come from [fixedDigits], which is the one part of this that is neither flags nor locale.
  */
 internal object UiStringFormat {
 
@@ -45,6 +49,8 @@ internal object UiStringFormat {
      */
     fun format(pattern: String, args: List<Any>): String {
         if (args.isEmpty()) return pattern
+        // Once per call, never in a property: an in-app language change moves the default locale under us.
+        val symbols = localeNumberSymbols()
         val out = StringBuilder(pattern.length + ESTIMATED_GROWTH)
         var index = 0
         var ordinaryArgument = 0
@@ -99,7 +105,7 @@ internal object UiStringFormat {
             require(position in args.indices) {
                 "\"$pattern\" wants argument ${position + 1}, got ${args.size}"
             }
-            out.append(render(conversion, args[position], flags, width, precision, pattern))
+            out.append(render(conversion, args[position], flags, width, precision, pattern, symbols))
         }
         return out.toString()
     }
@@ -117,10 +123,11 @@ internal object UiStringFormat {
         width: Int,
         precision: Int,
         pattern: String,
+        symbols: NumberSymbols,
     ): String = when (conversion) {
         's', 'S' -> renderString(conversion, argument, flags, width, precision, pattern)
-        'd' -> renderInteger(argument, flags, width, precision, pattern)
-        'f' -> renderFixed(argument, flags, width, precision, pattern)
+        'd' -> renderInteger(argument, flags, width, precision, pattern, symbols)
+        'f' -> renderFixed(argument, flags, width, precision, pattern, symbols)
         else -> throw IllegalArgumentException(
             "Unsupported conversion '%$conversion' in \"$pattern\": only %s, %S, %d, %f and %% are formatted. " +
                 "Add it to UiStringFormat (and to FormatterParityTest) rather than working around it at the call site."
@@ -142,7 +149,14 @@ internal object UiStringFormat {
         return pad(text, width, flags.has(MINUS))
     }
 
-    private fun renderInteger(argument: Any, flags: Int, width: Int, precision: Int, pattern: String): String {
+    private fun renderInteger(
+        argument: Any,
+        flags: Int,
+        width: Int,
+        precision: Int,
+        pattern: String,
+        symbols: NumberSymbols,
+    ): String {
         require(precision < 0) { "Precision on %d in \"$pattern\"" }
         val value = when (argument) {
             is Int -> argument.toLong()
@@ -155,10 +169,17 @@ internal object UiStringFormat {
         }
         // Long.MIN_VALUE has no positive counterpart, so the magnitude comes from the text, not from abs().
         val magnitude = value.toString().removePrefix("-")
-        return signAndPad(magnitude, value < 0, flags, width, pattern)
+        return signAndPad(magnitude, value < 0, flags, width, pattern, symbols)
     }
 
-    private fun renderFixed(argument: Any, flags: Int, width: Int, precision: Int, pattern: String): String {
+    private fun renderFixed(
+        argument: Any,
+        flags: Int,
+        width: Int,
+        precision: Int,
+        pattern: String,
+        symbols: NumberSymbols,
+    ): String {
         val value = when (argument) {
             is Double -> argument
             is Float -> argument.toDouble()
@@ -171,18 +192,29 @@ internal object UiStringFormat {
         // java.util.Formatter applies the sign flags to Infinity too, '(' included: "%(f" of -Infinity
         // is "(Infinity)". Zero padding and grouping are not applied to a non-numeric value.
         if (value.isInfinite()) {
-            return signAndPad("Infinity", negative, flags and ZERO.inv() and COMMA.inv(), width, pattern)
+            return signAndPad("Infinity", negative, flags and ZERO.inv() and COMMA.inv(), width, pattern, symbols)
         }
-        val magnitude = fixedDigits(if (negative) -value else value, if (precision < 0) DEFAULT_PRECISION else precision)
-        return signAndPad(magnitude, negative, flags, width, pattern)
+        val digits = if (precision < 0) DEFAULT_PRECISION else precision
+        return signAndPad(fixedDigits(if (negative) -value else value, digits), negative, flags, width, pattern, symbols)
     }
 
-    /** `magnitude` (already unsigned) with the sign the flags ask for, zero padded or space padded to `width`. */
-    private fun signAndPad(magnitude: String, negative: Boolean, flags: Int, width: Int, pattern: String): String {
+    /**
+     * `magnitude` (already unsigned, ASCII) with the sign the flags ask for, grouped, zero or space padded to
+     * `width`, and finally written in `symbols`' digits — the order `java.util.Formatter` uses. The sign is never
+     * localised and the zero padding is: `%,010d` of `1234567` in `de` is `01.234.567`.
+     */
+    private fun signAndPad(
+        magnitude: String,
+        negative: Boolean,
+        flags: Int,
+        width: Int,
+        pattern: String,
+        symbols: NumberSymbols,
+    ): String {
         require(!(flags.has(PLUS) && flags.has(SPACE))) { "Both '+' and ' ' in \"$pattern\"" }
         require(!(flags.has(MINUS) && flags.has(ZERO))) { "Both '-' and '0' in \"$pattern\"" }
         require(!(flags.has(ZERO) && width < 0)) { "'0' with no width in \"$pattern\"" }
-        val grouped = if (flags.has(COMMA)) group(magnitude) else magnitude
+        val grouped = if (flags.has(COMMA)) symbols.group(magnitude) else magnitude
         val prefix = when {
             negative && flags.has(PAREN) -> "("
             negative -> "-"
@@ -191,9 +223,9 @@ internal object UiStringFormat {
         val suffix = if (negative && flags.has(PAREN)) ")" else ""
         if (flags.has(ZERO)) {
             val zeros = width - prefix.length - grouped.length - suffix.length
-            return prefix + "0".repeat(maxOf(zeros, 0)) + grouped + suffix
+            return prefix + symbols.localize("0".repeat(maxOf(zeros, 0)) + grouped) + suffix
         }
-        return pad(prefix + grouped + suffix, width, flags.has(MINUS))
+        return pad(prefix + symbols.localize(grouped) + suffix, width, flags.has(MINUS))
     }
 
     private fun signOf(flags: Int): String = when {
@@ -208,70 +240,7 @@ internal object UiStringFormat {
         return if (left) text + " ".repeat(missing) else " ".repeat(missing) + text
     }
 
-    /** Groups the integer part of an unsigned decimal with `,`, like `java.util.Formatter` under `Locale.ROOT`. */
-    private fun group(magnitude: String): String {
-        val dot = magnitude.indexOf('.')
-        val whole = if (dot < 0) magnitude else magnitude.substring(0, dot)
-        val rest = if (dot < 0) "" else magnitude.substring(dot)
-        val out = StringBuilder(whole.length + whole.length / GROUP_SIZE + rest.length)
-        whole.forEachIndexed { at, digit ->
-            if (at > 0 && (whole.length - at) % GROUP_SIZE == 0) out.append(',')
-            out.append(digit)
-        }
-        return out.append(rest).toString()
-    }
-
-    /**
-     * `value` (finite, >= 0) with exactly `precision` fraction digits.
-     *
-     * `java.util.Formatter` rounds half-up over the *shortest decimal representation* of the double — the digits
-     * `Double.toString` produces — not over its exact binary value, so `%.2f` of `8.475` is `8.48`. Working from
-     * `toString()` reproduces that, and keeps values that do not survive a `* 100` round trip exact.
-     */
-    private fun fixedDigits(value: Double, precision: Int): String {
-        val text = value.toString()
-        val exponentAt = text.indexOfFirst { it == 'e' || it == 'E' }
-        val mantissa = if (exponentAt < 0) text else text.substring(0, exponentAt)
-        val exponent = if (exponentAt < 0) 0 else text.substring(exponentAt + 1).toInt()
-        val dot = mantissa.indexOf('.')
-        val digits = StringBuilder(if (dot < 0) mantissa else mantissa.removeRange(dot, dot + 1))
-        // Digits before the decimal point; may be <= 0 (0.001 is "1" at -2) or past the end (1e20 is "1" at 21).
-        var point = (if (dot < 0) mantissa.length else dot) + exponent
-
-        var leading = 0
-        while (leading < digits.length - 1 && digits[leading] == '0') leading++
-        digits.deleteRange(0, leading)
-        point -= leading
-        // One guard zero so the rounding position is always inside the string and a carry never grows it.
-        while (point < 1) {
-            digits.insert(0, '0')
-            point++
-        }
-        digits.insert(0, '0')
-        point++
-
-        val cut = point + precision
-        while (digits.length < cut) digits.append('0')
-        val kept = StringBuilder(digits.substring(0, cut))
-        if (cut < digits.length && digits[cut] >= '5') {
-            var at = cut - 1
-            while (at >= 0) {
-                if (kept[at] == '9') {
-                    kept[at] = '0'
-                    at--
-                } else {
-                    kept[at] = kept[at] + 1
-                    break
-                }
-            }
-        }
-        val whole = kept.substring(0, point).trimStart('0').ifEmpty { "0" }
-        val fraction = kept.substring(point)
-        return if (fraction.isEmpty()) whole else "$whole.$fraction"
-    }
-
     private const val DEFAULT_PRECISION = 6
-    private const val GROUP_SIZE = 3
     private const val ESTIMATED_GROWTH = 16
 
     private const val MINUS = 1

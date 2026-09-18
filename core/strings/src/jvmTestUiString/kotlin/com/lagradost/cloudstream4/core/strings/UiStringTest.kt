@@ -68,18 +68,25 @@ class UiStringTest {
             val other = itemOf(language, "other")
             val one = itemOf(language, "one")
             assertTrue(other.isNotEmpty(), "$language has no `other` item to fall back to")
+            // Both sides format inside the block: UiStringFormat reads the default locale, which of() moves.
             for (quantity in listOf(0, 1, 2, 3, 5, 11, 100)) {
-                val text = SystemEnvironment.of(language) {
-                    runBlocking { UiString.Plural(Res.plurals.links_hidden, quantity).load() }
+                val (expected, text) = SystemEnvironment.of(language) {
+                    runBlocking {
+                        UiStringFormat.format(other, listOf(quantity)) to
+                            UiString.Plural(Res.plurals.links_hidden, quantity).load()
+                    }
                 }
-                assertEquals(UiStringFormat.format(other, listOf(quantity)), text, "$language quantity=$quantity")
+                assertEquals(expected, text, "$language quantity=$quantity")
             }
             // quantity 1 too: the guard is "always other", not "Compose's category when it has one".
             if (one != other) {
-                val singular = SystemEnvironment.of(language) {
-                    runBlocking { UiString.Plural(Res.plurals.links_hidden, 1).load() }
+                val (singularOne, singular) = SystemEnvironment.of(language) {
+                    runBlocking {
+                        UiStringFormat.format(one, listOf(1)) to
+                            UiString.Plural(Res.plurals.links_hidden, 1).load()
+                    }
                 }
-                assertNotEquals(UiStringFormat.format(one, listOf(1)), singular, "$language used the `one` item")
+                assertNotEquals(singularOne, singular, "$language used the `one` item")
             }
         }
     }
@@ -89,11 +96,10 @@ class UiStringTest {
      * `resolve()` also is — the two differ only in which Compose accessor fetches the raw value
      * (`stringResource`/`pluralStringResource` against `getString`/`getPluralString`).
      *
-     * `resolve()` itself is **not** exercised here: composing it needs `DefaultComposeEnvironment`, which calls
-     * `isSystemInDarkTheme()`, which on the JVM target asks skiko for the system theme and dies in a headless test
-     * JVM — and Compose UI is not on this module's classpath to provide `LocalSystemTheme` or `LocalDensity`
-     * around it. Covering the composable half needs a Robolectric `androidUnitTest` or a Compose UI test, both of
-     * which are new dependencies; it is in the PR's open questions.
+     * `resolve()` itself is exercised by `UiStringResolveTest`, over `HeadlessComposition` — which provides a
+     * `ComposeEnvironment` of its own rather than `DefaultComposeEnvironment`, whose `isSystemInDarkTheme()` and
+     * `LocalDensity.current` are Compose UI and foundation and are on neither this module's classpath nor a
+     * headless JVM's skiko.
      */
     @Test
     fun loadIsTheRawValuePlusOurFormatter() = SystemEnvironment.of("en") {
