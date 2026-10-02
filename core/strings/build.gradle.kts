@@ -7,6 +7,14 @@
  * Package `com.lagradost.cloudstream4.core.strings`, no `com/lagradost/cloudstream3` directory: never merged into
  * `:app:makeJar`'s `classes.jar` (I2). Nothing depends on this module yet (S-b adds the text type and consumers).
  *
+ * ## Where the values live
+ *
+ * `src/commonMain/composeResources/values…/strings.xml` is the authored tree and is what Compose packages, by way
+ * of `materialiseComposeStrings`. `generateComposeStrings` still runs over `app/src/main/res` on every build, but
+ * now as the **oracle** the authored tree is checked against rather than as the thing that feeds Compose. The two
+ * trees are redundant by construction and every value of both is compared; the flip that drops one of them is a
+ * later change.
+ *
  * ## What is generated
  *
  * Set up by `cloudstream.kmp.strings` — see that plugin and `strings.GenerateComposeStringsTask`.
@@ -60,6 +68,17 @@ tasks.named<Test>("jvmTest") {
 // and back. `verifyStringsRoundTrip` asserts that; see `strings.VerifyStringsRoundTripTask`. It belongs to this
 // module only, for the same reason as the baseline: fixtures has no authored tree and no frozen lookup.
 val generateComposeStrings = tasks.named<strings.GenerateComposeStringsTask>("generateComposeStrings")
+
+// Compose packages `src/commonMain/composeResources` — the authored tree — rather than the generator's output.
+// In this change the two hold the same values: the authored tree is a verbatim copy of what `generateComposeStrings`
+// emits, and `GeneratedResourcesParityTest` compares every packaged value with that generator's aapt2-decoded
+// oracle, through the real Compose runtime. So both trees are live and each is checked against the other.
+// `materialiseComposeStrings` adds `values-b+he` and `values-b+id`, which are byte copies of `values-b+iw` and
+// `values-b+in` and so must not be checked in twice (`strings.LocaleCopies`).
+tasks.named<strings.MaterialiseComposeStringsTask>("materialiseComposeStrings") {
+    sourceDirectory.set(layout.projectDirectory.dir("src/commonMain/composeResources"))
+    localeCopies.set(generateComposeStrings.flatMap { it.localeCopies })
+}
 
 val verifyStringsRoundTrip = tasks.register<strings.VerifyStringsRoundTripTask>("verifyStringsRoundTrip") {
     group = "verification"

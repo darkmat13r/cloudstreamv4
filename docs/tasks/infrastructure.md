@@ -69,6 +69,56 @@ See also `KMP-09` for the `$stable` trap, which **neither** guard catches on its
 
 ---
 
+## INF-06 — `jvmTest` runs on the daemon JVM, not the pinned toolchain · **measured 2026-10-02**
+
+**Status:** open · needs a decision before it is fixed (a repo-wide convention change)
+
+`gradle/libs.versions.toml:70` pins `jdkToolchain = "17"`, and exactly **one** place consumes it:
+`app/build.gradle.kts:192-195`, for legacy `:app`'s javac. No `jvmToolchain(...)`, `javaLauncher`
+or `kotlin.jvmToolchain` exists anywhere in `build-logic/convention/`, and there is no
+`gradle/gradle-daemon-jvm.properties`. The conventions set `jvmTarget` — a bytecode level, not a
+toolchain. So **every `:core:*` module compiles and tests on whatever JVM started the daemon.**
+
+Proven by `--info`: the worker command line is
+`…/corretto-24.0.2/Contents/Home/bin/java … GradleWorkerMain`, and it tracks `JAVA_HOME` exactly.
+
+**What it already broke.** On this machine (`JAVA_HOME` = Corretto 24) two tests of
+`LocaleNumberParityTest` fail on clean master; with `JAVA_HOME` set to the pinned Temurin
+17.0.20.1 the same command is `BUILD SUCCESSFUL`, 6 tests, 0 failures. Same tree, same commit —
+only the JVM changed.
+
+The cause is real, not a flake: JDK 24 bumped the bundled CLDR to 46, which moved the default
+numbering system for the **bare, region-less `ar`** from `arab` to `latn`
+([JDK-8333582](https://bugs.openjdk.org/browse/JDK-8333582), citing CLDR-17553).
+
+| locale | JDK 17 / 21 | JDK 24 / 25 |
+|---|---|---|
+| `ar` | `٠` `٫` `٬` | **`0` `.` `,`** |
+| `ar-u-nu-arab`, `ar-EG`, `ar-SA` | `٠` `٫` `٬` | unchanged |
+| the other 11 pinned locales | — | unchanged |
+
+`localeNumberSymbols()` is **not** wrong on either JDK: the parity tests that compare it with
+`java.util.Formatter` pass on both (`ar: 3513 values, 10263 agreed`). Only the two tests holding
+hardcoded Arabic literals fail. This is a stale pinned expectation plus an unpinned JVM.
+
+**Why nobody noticed:** all six workflows pin `temurin` / `java-version: 17`, so CI would be green
+— if CI ran at all (`INF-01`, `DEC-01`). The divergence is local-only.
+
+- [ ] Decide: pin the test toolchain in `cloudstream.kmp.base` (makes the suite match its KDoc and
+      match CI; costs a second JVM launch; defers the `ar` question to the next bump), **or**
+      re-measure the table (breaks CI, where the JVM still says `٠` — the two cannot both be
+      satisfied by one set of literals, and re-recording is what that test exists to catch)
+- [ ] Either way, fix two KDoc claims that rest on the false premise:
+      `NumberSymbols.kt:9` and `LocaleNumberParityTest.kt:124` both cite `jdkToolchain = "17"` as
+      if it governed this module
+- [ ] Until then: run `:core:*` tests with `JAVA_HOME` set to the Temurin 17 the toolchain names,
+      or local runs disagree with CI
+
+Same gap, not failing today: `:core:storage`, `:core:http`, `:core:strings:fixtures` jvmTest, and
+all Kotlin/Android compilation in every `:core:*` module.
+
+---
+
 ## INF-05 — Local workflow notes
 
 Reference, so the same half-hour is not lost twice.
