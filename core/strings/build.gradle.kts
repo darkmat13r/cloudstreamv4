@@ -67,7 +67,12 @@ tasks.named<Test>("jvmTest") {
 // The strings flip is loss-free only if the authored Compose tree survives a full round trip through Android res
 // and back. `verifyStringsRoundTrip` asserts that; see `strings.VerifyStringsRoundTripTask`. It belongs to this
 // module only, for the same reason as the baseline: fixtures has no authored tree and no frozen lookup.
-val generateComposeStrings = tasks.named<strings.GenerateComposeStringsTask>("generateComposeStrings")
+// The five values of `authored-additions.tsv` are part of the authored tree, so the generator that produces that
+// tree emits them too. They reach the emitted map only - never `lookup`, which is Android's own answer and is what
+// `verifyStringsRoundTrip` holds to a zero-line diff.
+val generateComposeStrings = tasks.named<strings.GenerateComposeStringsTask>("generateComposeStrings") {
+    additions.set(layout.projectDirectory.file("authored-additions.tsv"))
+}
 
 // Compose packages `src/commonMain/composeResources` — the authored tree — rather than the generator's output.
 // In this change the two hold the same values: the authored tree is a verbatim copy of what `generateComposeStrings`

@@ -161,18 +161,8 @@ abstract class VerifyStringsRoundTripTask : DefaultTask() {
         lines: MutableList<String>,
     ): Map<String, Map<ResourceKey, TextValue>> {
         val copyTargets = localeCopies.get().keys
-        val authored = forward.emitted.filterKeys { it !in copyTargets }
-            .mapValues { (_, values) -> sortedMapOf<ResourceKey, TextValue>().apply { putAll(values) } }
-            .toSortedMap()
-        val added = parseAdditions(additions.get().asFile.readText())
-        added.forEach { (directory, key, value) ->
-            val target = authored[directory]
-            when {
-                target == null -> problems += "addition $directory $key: no such authored directory"
-                target.put(key, value) != null ->
-                    problems += "addition $directory $key: the forward pass already emits this value"
-            }
-        }
+        val added = AuthoredAdditions.parse(additions.get().asFile.readText())
+        val authored = AuthoredAdditions.apply(forward.emitted.filterKeys { it !in copyTargets }, added, problems)
         val values = authored.values.sumOf { it.size }
         lines += "authored tree: ${authored.size} directories, $values values " +
             "(${added.size} from ${additions.get().asFile.name}, ${copyTargets.sorted()} left to localeCopies)"
@@ -352,41 +342,6 @@ abstract class VerifyStringsRoundTripTask : DefaultTask() {
             "(${baseline.size} baseline cells, ${live.size} round-trip cells)"
     }
 
-    /**
-     * `directory`, `type`, `name`, plural category (`-` for a `<string>`) and the text, TSV-escaped as the oracles
-     * are; `#` starts a comment. Rows of one directory, type and name are one plural value.
-     */
-    private fun parseAdditions(text: String): List<Triple<String, ResourceKey, TextValue>> = text.lines()
-        .filter { it.isNotBlank() && !it.startsWith("#") }
-        .map { line ->
-            val cells = line.split('\t')
-            require(cells.size == 5) { "an addition needs 5 tab-separated cells, got ${cells.size}: $line" }
-            Triple(cells[0], ResourceKey(cells[1], cells[2]), cells[3] to unescape(cells[4]))
-        }
-        .groupBy({ it.first to it.second }, { it.third })
-        .map { (key, items) ->
-            val value = if (items.singleOrNull()?.first == "-") {
-                TextValue.Single(items.single().second)
-            } else {
-                TextValue.Plural(items.toMap())
-            }
-            Triple(key.first, key.second, value)
-        }
-
-    private fun unescape(cell: String): String = buildString {
-        var escaped = false
-        cell.forEach { c ->
-            when {
-                escaped -> {
-                    append(if (c == 'n') '\n' else if (c == 't') '\t' else if (c == 'r') '\r' else c)
-                    escaped = false
-                }
-                c == '\\' -> escaped = true
-                else -> append(c)
-            }
-        }
-        require(!escaped) { "an addition ends in a dangling backslash: $cell" }
-    }
 
     /** aapt2's decoded value, required to be plain text: a quoted value must never come back styled or a reference. */
     private fun plainTextValue(value: DecodedValue): TextValue? = when (value) {
