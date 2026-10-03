@@ -86,6 +86,7 @@ data class ResourceKey(val type: String, val name: String) : Comparable<Resource
  */
 internal object CmpStringsReader {
     fun read(text: String): Map<ResourceKey, TextValue> {
+        rejectDoctype(text)
         val reader = factory().createXMLStreamReader(java.io.StringReader(text))
         val entries = sortedMapOf<ResourceKey, TextValue>()
         var name: String? = null
@@ -148,6 +149,34 @@ internal object CmpStringsReader {
             }
         }
     }
+
+    /**
+     * Refuses a DOCTYPE before any parser sees the document.
+     *
+     * [factory] already turns DTD support off, so StAX would throw too — but with a message about an unexpected
+     * token, which reads as a typo rather than as the thing it is. More to the point, Compose Multiplatform's own
+     * `XmlValuesConverterTask` parses these files with a `DocumentBuilderFactory` it does **not** harden
+     * (`PrepareComposeResources.kt`), and the authored tree is now a checked-in source anyone can edit. A document
+     * that never reaches a parser with entity resolution enabled is the only guarantee worth having, so this check
+     * runs first and names the file's problem plainly.
+     *
+     * [ValuesSanitizer] does the same for `app/src/main/res` ([FindingKind.DOCTYPE], covered by the
+     * `doctype-external-entity` guard case); this is that rule on the Compose side of the flip.
+     */
+    private fun rejectDoctype(text: String) {
+        val prolog = text.take(DOCTYPE_SCAN)
+        if (DOCTYPE.containsMatchIn(prolog)) {
+            throw StringsBuildException(
+                "DOCTYPE in a Compose values file. External entities are never resolved here, and Compose " +
+                    "Multiplatform's own reader would not refuse one: remove it.",
+            )
+        }
+    }
+
+    private val DOCTYPE = Regex("""<!DOCTYPE""", RegexOption.IGNORE_CASE)
+
+    /** A DOCTYPE is only legal in the prolog, so there is no reason to scan a 60 kB file to the end. */
+    private const val DOCTYPE_SCAN = 4096
 
     private fun factory(): XMLInputFactory = XMLInputFactory.newDefaultFactory().apply {
         setProperty(XMLInputFactory.SUPPORT_DTD, false)

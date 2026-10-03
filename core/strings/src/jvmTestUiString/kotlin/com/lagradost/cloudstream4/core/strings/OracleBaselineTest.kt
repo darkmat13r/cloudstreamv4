@@ -35,7 +35,7 @@ class OracleBaselineTest {
         "lookup.tsv" to 66_315,
         "requests.tsv" to 87,
         "findings.tsv" to 0,
-        "report.txt" to 13,
+        "report.txt" to 12,
     )
 
     @Test

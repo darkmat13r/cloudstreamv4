@@ -64,7 +64,7 @@ coordinate before each phase.
 2,042 · `ui/account` 993 · `ui/library` 970 · `ui/setup` 417 · `utils` 9,793 · `syncproviders`
 5,867 · `network` 282. Largest files: `ResultViewModel2.kt` 2,709 · `GeneratorPlayer.kt` 2,402 ·
 `MainActivity.kt` 2,076 · `CS3IPlayer.kt` 2,023. About 1,200 `R.string.` references in
-`app/src/main`; 145 layouts; 62 `values-*` locale dirs (61 `values-b+*` plus an empty `values-arz`).
+`app/src/main`; 145 layouts; 61 `values-b+*` locale dirs (the empty `values-arz` was deleted in `I18N-07` PR 5).
 
 **"No android import" does not mean movable.** The javap audit found files with few or no
 `android.*` imports (`AuthAPI.kt`, `AuthRepo.kt`, `SyncRepo.kt`, `LocalList.kt`, `APIRepository.kt`)
