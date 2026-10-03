@@ -17,6 +17,7 @@ import org.gradle.api.tasks.InputFile
 import org.gradle.api.tasks.InputFiles
 import org.gradle.api.tasks.Internal
 import org.gradle.api.tasks.Nested
+import org.gradle.api.tasks.Optional
 import org.gradle.api.tasks.OutputDirectory
 import org.gradle.api.tasks.PathSensitive
 import org.gradle.api.tasks.PathSensitivity
@@ -70,6 +71,15 @@ abstract class GenerateComposeStringsTask : DefaultTask() {
     abstract val parityRequests: RegularFileProperty
 
     /**
+     * Values the authored tree carries that this pass does not derive, see [AuthoredAdditions] and
+     * `authored-additions.tsv`. Applied to the emitted tree only, never to the lookup.
+     */
+    @get:InputFile
+    @get:Optional
+    @get:PathSensitive(PathSensitivity.NONE)
+    abstract val additions: RegularFileProperty
+
+    /**
      * Target -> source directory copies for languages Compose and Android name differently, see [LocaleCopies].
      * `cloudstream.kmp.strings` sets [LocaleCopies.DEFAULTS]; a target that exists in the res fails the build.
      */
@@ -112,18 +122,30 @@ abstract class GenerateComposeStringsTask : DefaultTask() {
             throw GradleException("generateComposeStrings: ${e.message}", e)
         }
 
-        result.emitted.forEach { (directory, entries) ->
+        val problems = mutableListOf<String>()
+        val emitted = AuthoredAdditions.apply(
+            result.emitted,
+            AuthoredAdditions.parse(additions.orNull?.asFile?.readText().orEmpty()),
+            problems,
+        )
+        if (problems.isNotEmpty()) {
+            throw GradleException(
+                "generateComposeStrings, ${additions.get().asFile.name}:\n" +
+                    problems.joinToString("\n") { "  $it" },
+            )
+        }
+        emitted.forEach { (directory, entries) ->
             File(out, "$directory/strings.xml").apply { parentFile.mkdirs() }.writeText(CmpStringsXml.write(entries))
         }
         File(oracles, "decoded.tsv").writeText(StringsOracles.decoded(result.decoded))
-        File(oracles, "emitted.tsv").writeText(StringsOracles.emitted(result.emitted))
+        File(oracles, "emitted.tsv").writeText(StringsOracles.emitted(emitted))
         File(oracles, "requests.tsv").writeText(StringsOracles.requests(result.requests))
         File(oracles, "lookup.tsv").writeText(StringsOracles.lookup(result.lookup))
         File(oracles, "findings.tsv").writeText(findings.tsv())
         val report = buildList {
             add("aapt2 ${aapt2.version.get()} compile --legacy; guards=${guardMode.get()}")
             addAll(result.report)
-            add("emitted directories: ${result.emitted.size}, values: ${result.emitted.values.sumOf { it.size }}")
+            add("emitted directories: ${emitted.size}, values: ${emitted.values.sumOf { it.size }}")
             findings.all.groupingBy { it.kind }.eachCount().toSortedMap()
                 .forEach { (kind, n) -> add("finding $kind: $n") }
         }

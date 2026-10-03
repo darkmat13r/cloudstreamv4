@@ -26,7 +26,7 @@ and decides — in a commit of its own that says so — to move the baseline.
 | File | Rows | What it holds |
 |---|---:|---|
 | `decoded.tsv` | 32,649 | aapt2's decoded table, one row per item: source file, type, name, plural category, kind (`STR`/`STYLED`/`REF`/`ATTR`/`UNSUPPORTED`), text, spans. The raw oracle, before resolution. |
-| `emitted.tsv` | 34,561 | What the generator wrote: one row per emitted value, keyed by output directory, type, name, plural category. Includes resolved references, locale-fallback copies and the `values-b+he` / `values-b+id` copies. |
+| `emitted.tsv` | 34,567 | What the generator wrote: one row per emitted value, keyed by output directory, type, name, plural category. Includes resolved references, locale-fallback copies and the `values-b+he` / `values-b+id` copies. |
 | `lookup.tsv` | 66,315 | For each of the 87 parity requests, the value Android resolves for every key — the per-locale lookup table the parity test compares Compose against. |
 | `requests.tsv` | 87 | The parsed `parity-requests.txt`: request id, Android tag, Compose language/script/region, expectation, note. |
 | `findings.tsv` | 65 | Every finding the pipeline raised, sorted by severity then kind then location. All `INFO` here: 31 `STRAY_TEXT_REMOVED`, 34 `STYLED_AS_PLAIN_TEXT`. |

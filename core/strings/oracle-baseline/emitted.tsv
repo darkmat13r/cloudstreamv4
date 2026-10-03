@@ -29955,6 +29955,7 @@ values-b+tl	string	cancel	-	Kanselahin
 values-b+tl	string	cartoons	-	Cartoons
 values-b+tl	string	cast_format	-	I-Cast: %s
 values-b+tl	string	category_general	-	Pangkalahatan
+values-b+tl	string	change_providers_img_des	-	Change Provider
 values-b+tl	string	check_for_update	-	Tingnan kung may bagong update
 values-b+tl	string	chromecast_subtitles_settings	-	Mga Subtitle ng Chromecast
 values-b+tl	string	chromecast_subtitles_settings_des	-	Mga setting ng mga subtitle ng Chromecast
@@ -33820,6 +33821,8 @@ values-b+zh	string	year	-	年份
 values-b+zh	string	yes	-	是
 values-b+zh+TW	plurals	downloads_active	other	%d 個正在下載
 values-b+zh+TW	plurals	downloads_queued	other	佇列中有 %d 個下載
+values-b+zh+TW	plurals	episodes	one	集
+values-b+zh+TW	plurals	episodes	other	集
 values-b+zh+TW	plurals	links_hidden	one	%d hidden link
 values-b+zh+TW	plurals	links_hidden	other	%d hidden links
 values-b+zh+TW	string	account	-	帳號
@@ -33939,6 +33942,7 @@ values-b+zh+TW	string	category_provider_test	-	片源測試
 values-b+zh+TW	string	category_providers	-	片源
 values-b+zh+TW	string	category_ui	-	佈局
 values-b+zh+TW	string	category_updates	-	更新和備份
+values-b+zh+TW	string	change_providers_img_des	-	更改片源
 values-b+zh+TW	string	check_for_update	-	檢查更新
 values-b+zh+TW	string	chromecast_subtitles_settings	-	Chromecast 字幕
 values-b+zh+TW	string	chromecast_subtitles_settings_des	-	Chromecast 字幕設定
@@ -34016,6 +34020,7 @@ values-b+zh+TW	string	downloading	-	下載中
 values-b+zh+TW	string	downloads_delete_select	-	選擇要刪除的項目
 values-b+zh+TW	string	downloads_empty	-	目前沒有任何下載。
 values-b+zh+TW	string	duplicate_add	-	加入
+values-b+zh+TW	string	duplicate_cancel	-	取消
 values-b+zh+TW	string	duplicate_message_multiple	-	您的媒體庫中似乎有多個重覆的項目： \n \n%s \n \n您要強制加入、取代已有項目、還是取消操作？
 values-b+zh+TW	string	duplicate_message_single	-	您的媒體庫中似乎有重覆的項目：「%s」。 \n \n您要強制加入、取代已有項目、還是取消操作？
 values-b+zh+TW	string	duplicate_replace	-	取代
@@ -34398,6 +34403,7 @@ values-b+zh+TW	string	sort_button_date	-	日期 %s
 values-b+zh+TW	string	sort_button_episode	-	第 %s 集
 values-b+zh+TW	string	sort_button_rating	-	評分 %s
 values-b+zh+TW	string	sort_by	-	排序方式
+values-b+zh+TW	string	sort_cancel	-	取消
 values-b+zh+TW	string	sort_clear	-	清除
 values-b+zh+TW	string	sort_close	-	關閉
 values-b+zh+TW	string	sort_copy	-	複製
