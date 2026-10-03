@@ -25,14 +25,19 @@ extensions compile against. It is guarded by `app/api/classes-jar.api` and `:app
 
 ## KMP-01 — B4: `DdosGuardKiller` → `:core:network`
 
-**Status:** open · **Size:** one PR
+**Status:** done · #30 · **Size:** one PR
+
+Merged: `DdosGuardKiller` moved to `:core:network`. Added 1 sentinel to
+`cloudstream.extension-api-jar.gradle.kts`; `app/api/classes-jar.api` md5 unchanged before and
+after (`48709d3ac28143a2fe251ca28bcf14c1`). Local run, not CI (see `INF-01`). The checklist below is
+the original plan, left as written; ticked items are the ones #30's description evidences.
 
 Body-only change first: a private header merge replaces the call to `:app`'s
 `RequestsHelperKt.getHeaders`. Adds `:library`, coroutines and `annotation` to `:core:network`.
 
 - [ ] Run the `$stable` scan before moving (see `KMP-09`)
 - [ ] Replace the `getHeaders` call with a private merge
-- [ ] Move, verify javap identical, `checkExtensionApi` dump unchanged
+- [x] Move, verify javap identical, `checkExtensionApi` dump unchanged (md5 above)
 
 ---
 
@@ -54,7 +59,15 @@ Optional. If the review says no, close this and say why.
 
 ## KMP-03 — B6: `TestingUtils` (+8 nested) → `:core:model`
 
-**Status:** open · **Size:** one PR
+**Status:** done · #31 · **Size:** one PR
+
+Merged: `TestingUtils` moved to `:core:model` as a pure rename — 0 lines changed, identical
+sha256 on both sides. Added **9 sentinels** to `cloudstream.extension-api-jar.gradle.kts`: the
+outer class plus its 8 declared nested classes (13 lines, 4 of them comment). A tenth binary name,
+`TestingUtils$Logger$Message$WhenMappings`, is in the dump but deliberately **not** sentinelled —
+it is a compiler-synthesised switch map for `when` over an enum, not a name an extension can
+reference. `app/api/classes-jar.api` md5 unchanged (`48709d3a`) before and after `makeJar`.
+Local run, not CI (see `INF-01`).
 
 Needs `:library` and coroutines, so **not** `:core:common` (dependency rule 2). Straightforward;
 it was originally bundled with B2/B3 and did not ship with them.
