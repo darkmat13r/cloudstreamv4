@@ -67,12 +67,7 @@ tasks.named<Test>("jvmTest") {
 // The strings flip is loss-free only if the authored Compose tree survives a full round trip through Android res
 // and back. `verifyStringsRoundTrip` asserts that; see `strings.VerifyStringsRoundTripTask`. It belongs to this
 // module only, for the same reason as the baseline: fixtures has no authored tree and no frozen lookup.
-// The five values of `authored-additions.tsv` are part of the authored tree, so the generator that produces that
-// tree emits them too. They reach the emitted map only - never `lookup`, which is Android's own answer and is what
-// `verifyStringsRoundTrip` holds to a zero-line diff.
-val generateComposeStrings = tasks.named<strings.GenerateComposeStringsTask>("generateComposeStrings") {
-    additions.set(layout.projectDirectory.file("authored-additions.tsv"))
-}
+val generateComposeStrings = tasks.named<strings.GenerateComposeStringsTask>("generateComposeStrings")
 
 // Compose packages `src/commonMain/composeResources` — the authored tree — rather than the generator's output.
 // In this change the two hold the same values: the authored tree is a verbatim copy of what `generateComposeStrings`
@@ -83,6 +78,37 @@ val generateComposeStrings = tasks.named<strings.GenerateComposeStringsTask>("ge
 tasks.named<strings.MaterialiseComposeStringsTask>("materialiseComposeStrings") {
     sourceDirectory.set(layout.projectDirectory.dir("src/commonMain/composeResources"))
     localeCopies.set(generateComposeStrings.flatMap { it.localeCopies })
+    guardMode.set(generateComposeStrings.flatMap { it.guardMode })
+    aliases.set(layout.projectDirectory.file("authored-aliases.tsv"))
+}
+
+// `app/src/main/res` is generated from the same lean authored tree (I18N-07 step 4.2), one directory to one
+// directory with nothing added. Committed rather than generated at build time because `R.string` field names are
+// published extension ABI, and a res materialising into a build directory would take every one of them out of
+// review. `values-arz` emits no values at all, so the authored tree has no counterpart for it; PR 5 deletes it.
+val androidStringsCommon: strings.AndroidStringsTask.() -> Unit = {
+    authoredDirectory.set(layout.projectDirectory.dir("src/commonMain/composeResources"))
+    resDirectory.set(layout.settingsDirectory.dir("app/src/main/res"))
+    localeCopyTargets.set(generateComposeStrings.map { it.localeCopies.get().keys })
+    unmanagedDirectories.set(setOf("values-arz"))
+    aliases.set(layout.projectDirectory.file("authored-aliases.tsv"))
+}
+
+tasks.register<strings.AndroidStringsTask>("writeAndroidStrings") {
+    group = "build"
+    description = "Rewrites app/src/main/res/values*/strings.xml from the authored Compose tree. Review the diff."
+    androidStringsCommon()
+    check.set(false)
+    reportFile.set(layout.buildDirectory.file("androidStrings/write.txt"))
+    outputs.upToDateWhen { false }
+}
+
+val checkAndroidStrings = tasks.register<strings.AndroidStringsTask>("checkAndroidStrings") {
+    group = "verification"
+    description = "Fails if app/src/main/res/values*/strings.xml is not what the authored Compose tree produces."
+    androidStringsCommon()
+    check.set(true)
+    reportFile.set(layout.buildDirectory.file("androidStrings/check.txt"))
 }
 
 val verifyStringsRoundTrip = tasks.register<strings.VerifyStringsRoundTripTask>("verifyStringsRoundTrip") {
@@ -94,14 +120,13 @@ val verifyStringsRoundTrip = tasks.register<strings.VerifyStringsRoundTripTask>(
     parityRequests.set(generateComposeStrings.flatMap { it.parityRequests })
     localeCopies.set(generateComposeStrings.flatMap { it.localeCopies })
     guardMode.set(generateComposeStrings.flatMap { it.guardMode })
-    additions.set(layout.projectDirectory.file("authored-additions.tsv"))
     baselineLookup.set(layout.projectDirectory.file("oracle-baseline/lookup.tsv"))
-    // 33100 values the pre-flip generator emitted outside the two localeCopies directories, plus the five of
-    // `authored-additions.tsv`. Every one of them must come from the directory that declares it: OWN and nothing else.
-    expectedOwn.set(33105)
+    // Every value emitted outside the two localeCopies directories; each must come from the directory that
+    // declares it. A REFERENCE_IN_LOCALE or ANDROID_FALLBACK in the second pass means a value is missing.
+    expectedOwn.set(32428)
     outputDir.set(layout.buildDirectory.dir("stringsRoundTrip"))
 }
 
 tasks.named("check") {
-    dependsOn(verifyStringsRoundTrip)
+    dependsOn(verifyStringsRoundTrip, checkAndroidStrings)
 }

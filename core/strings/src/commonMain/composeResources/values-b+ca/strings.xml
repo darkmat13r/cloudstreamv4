@@ -43,7 +43,6 @@
 <string name="category_provider_test">Comprova els proveïdors</string>
 <string name="category_providers">Proveïdors</string>
 <string name="category_ui">Disseny</string>
-<string name="change_providers_img_des">Canvia el proveïdor</string>
 <string name="check_for_update">Comprova si hi ha actualitzacions</string>
 <string name="coming_soon">Aviat…</string>
 <string name="continue_watching">Continua mirant</string>
@@ -92,7 +91,6 @@
 <string name="episode_action_play_mirror">Reprodueix en duplicat</string>
 <string name="episode_action_reload_links">Torna a carregar els enllaços</string>
 <string name="episode_more_options_des">Més opcions</string>
-<string name="episode_play_img_des">Reprodueix l'episodi</string>
 <string name="episode_poster_img_des">Cartell de l'episodi</string>
 <string name="error">Error</string>
 <string name="error_bookmarks_text">Favorits</string>
@@ -284,7 +282,6 @@
 <string name="subtitles_encoding">Codificació dels subtítols</string>
 <string name="subtitles_example_text">Jove xef, porti whisky amb quinze glaçons d'hidrogen, coi</string>
 <string name="subtitles_filter_lang">Filtra per l'idioma preferit</string>
-<string name="subtitles_none">Cap</string>
 <string name="subtitles_outline">Vora</string>
 <string name="subtitles_raised">Elevat</string>
 <string name="subtitles_remove_bloat">Eliminar contingut irrellevant dels subtítols</string>
@@ -312,7 +309,6 @@
 <string name="tv_layout">Disseny a la TV</string>
 <string name="type_completed">Completat</string>
 <string name="type_dropped">Descartat</string>
-<string name="type_none">Cap</string>
 <string name="type_on_hold">En espera</string>
 <string name="type_plan_to_watch">Planeja mirar</string>
 <string name="type_re_watching">Tornant a mirar</string>

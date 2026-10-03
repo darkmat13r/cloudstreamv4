@@ -6,6 +6,40 @@ than the description.
 
 ---
 
+## BUG-08 — `addDate` reads an offset-less date-time as UTC, not device time · **medium**
+
+**Status:** open · found 2026-10-03 while verifying `I18N-07` locally
+
+`MainAPI.kt:2578-2605` documents that a date-time with no offset "falls back to device timezone",
+and implements it as
+`runCatching { components.toInstantUsingOffset() }.recoverCatching { … currentSystemDefault() }`.
+Under kotlinx-datetime 0.8.0 the first call **does not throw** on an offset-less input — it returns
+a UTC reading — so the documented device-timezone branch is dead for exactly the inputs it was
+written for. Date-only inputs still take it, because `toInstantUsingOffset` does throw for those.
+
+Measured: `:library:jvmTest --tests "*EpisodeDateTest*"` fails two tests on any machine whose
+offset is not zero, and passes under `TZ=UTC` or `TZ=Etc/GMT`. On this machine (`Asia/Kolkata`) the
+actual values are exactly 19,800,000 ms — 5h30m — from the expected ones.
+
+| Test | Expects | Gets |
+|---|---|---|
+| `2026-05-17T10:30:00` | 04:30Z (10:30 IST) | 10:30Z |
+| `17/05/2026 14:35` | 09:05Z (14:35 IST) | 14:35Z |
+
+**Why nobody noticed:** no workflow sets `TZ`, and GitHub's Ubuntu runners default to UTC, so CI
+would be green — if CI ran at all (`DEC-01`). The six passing tests in that file compute their
+expected value with the same `currentSystemDefault()` call as the code, so they are tautological
+and would pass whatever the timezone.
+
+- [ ] Decide which behaviour is the contract: extension-supplied dates with no offset are currently
+      read as UTC, and the KDoc says device-local. Changing it shifts what users see for every
+      provider that returns a bare date-time
+- [ ] Only then consider pinning `TZ` for the test task — pinning first would freeze the dead
+      branch in place and keep the device-timezone path untested
+- [ ] Until then: run `:library:jvmTest` with `TZ=UTC`
+
+---
+
 ## BUG-01 — `dur * 60` overflows on untrusted input · **medium**
 
 **Status:** open · `ResultViewModel2.kt:345`, `EpisodeAdapter.kt:329`

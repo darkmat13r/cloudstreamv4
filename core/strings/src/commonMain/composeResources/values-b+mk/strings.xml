@@ -3,7 +3,6 @@
 <resources>
 <plurals name="downloads_active"><item quantity="one">%d активно преземање</item><item quantity="other">%d активни преземања</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d преземање во редицата</item><item quantity="other">%d преземања во редицата</item></plurals>
-<plurals name="episodes"><item quantity="one">Епизода</item><item quantity="other">Епизоди</item></plurals>
 <string name="account">Корисничко име</string>
 <string name="action_add_to_bookmarks">Постави статус на пратење</string>
 <string name="action_add_to_favorites">Додади во омилени</string>
@@ -121,7 +120,6 @@
 <string name="category_providers">Провајдери</string>
 <string name="category_ui">Изглед</string>
 <string name="category_updates">Ажурирање и резервна копија</string>
-<string name="change_providers_img_des">Смени провајдер</string>
 <string name="check_for_update">Провери дали има нови верзии за апликацијата</string>
 <string name="chromecast_subtitles_settings">Преводи на Chromecast</string>
 <string name="chromecast_subtitles_settings_des">Поставки за преводи на Chromecast</string>
@@ -142,8 +140,6 @@
 <string name="cs3wiki">CloudStream Wiki</string>
 <string name="custom">Прилагодено</string>
 <string name="custom_media_singular">Медиуми</string>
-<string name="default_account">Стандардно</string>
-<string name="default_subtitles">Стандардно</string>
 <string name="delayed_update_notice">Апликацијата ќе се ажурира по излегувањето</string>
 <string name="delete">Избриши</string>
 <string name="delete_file">Избриши датотека</string>
@@ -199,7 +195,6 @@
 <string name="downloads_delete_select">Одбери ставки за бришење</string>
 <string name="downloads_empty">Во моментов нема преземања.</string>
 <string name="duplicate_add">Додади</string>
-<string name="duplicate_cancel">Откажи</string>
 <string name="duplicate_message_multiple">Пронајдени се потенцијални дупликатни ставки во твојата библиотека:\n\n%s\n\nДали сакаш да ја додадеш оваа ставка, да ги замениш постојните или да ја откажеш акцијата?</string>
 <string name="duplicate_message_single">Се чини дека потенцијален дупликат веќе постои во твојата библиотека: „%s“.\n\nДали сепак сакаш да ја додадеш оваа ставка, да ја замениш постојната или да го откажеш дејството?</string>
 <string name="duplicate_replace">Замени</string>
@@ -237,7 +232,6 @@
 <string name="episode_action_reload_links">Вчитај ги повторно линковите</string>
 <string name="episode_format">%1$d %2$s</string>
 <string name="episode_more_options_des">Повеќе опции</string>
-<string name="episode_play_img_des">Вклучи епизода</string>
 <string name="episode_poster_img_des">Постер за епизода</string>
 <string name="episode_short">Е</string>
 <string name="episode_sync_settings">Ажурирај го напредокот на гледање</string>
@@ -508,7 +502,6 @@
 <string name="restore_settings">Врати ги податоците од резервна копија</string>
 <string name="restore_success">Вчитана резервна датотека</string>
 <string name="result_open_in_browser">Отвори во прелистувач</string>
-<string name="result_plot">Крат</string>
 <string name="result_poster_img_des">Постер</string>
 <string name="result_search_tooltip">Пребарај во други екстензии</string>
 <string name="result_share">Сподели</string>
@@ -579,7 +572,6 @@
 <string name="sort_button_episode">Еп %s</string>
 <string name="sort_button_rating">Рејтинг %s</string>
 <string name="sort_by">Подреди по</string>
-<string name="sort_cancel">Откажи</string>
 <string name="sort_clear">Исчисти</string>
 <string name="sort_close">Затвори</string>
 <string name="sort_copy">Копирај</string>
@@ -646,7 +638,6 @@
 <string name="subtitles_filter_lang">Филтрирај по претпочитан медиумски јазик</string>
 <string name="subtitles_from_embedded">Вграден</string>
 <string name="subtitles_from_online">Онлајн</string>
-<string name="subtitles_none">Ништо</string>
 <string name="subtitles_outline">Надворешна контура</string>
 <string name="subtitles_raised">Подигнат</string>
 <string name="subtitles_remove_bloat">Отстрани непотребен текст од преводите</string>
@@ -692,7 +683,6 @@
 <string name="tv_series_singular">Серија</string>
 <string name="type_completed">Изгледанo</string>
 <string name="type_dropped">Прекинато</string>
-<string name="type_none">Ништо</string>
 <string name="type_on_hold">Паузирано</string>
 <string name="type_plan_to_watch">За гледање</string>
 <string name="type_re_watching">Повторно гледање</string>

@@ -3,7 +3,6 @@
 <resources>
 <plurals name="downloads_active"><item quantity="one">%d descarga activa</item><item quantity="many">%d descargas activas</item><item quantity="other">%d descargas activas</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d descarga encolada</item><item quantity="many">%d descargas encoladas</item><item quantity="other">%d descargas encoladas</item></plurals>
-<plurals name="episodes"><item quantity="one">Episodio</item><item quantity="other">Episodios</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d enlace oculto</item><item quantity="many">%d enlaces ocultos</item><item quantity="other">%d enlaces ocultos</item></plurals>
 <string name="account">Cuenta</string>
 <string name="action_add_to_bookmarks">Seleccionar estado de visualización</string>
@@ -122,7 +121,6 @@
 <string name="category_providers">Proveedores</string>
 <string name="category_ui">Diseño</string>
 <string name="category_updates">Actualizaciones y copias de seguridad</string>
-<string name="change_providers_img_des">Cambiar proveedor</string>
 <string name="check_for_update">Buscar actualizaciones</string>
 <string name="chromecast_subtitles_settings">Subtítulos de Chomecast</string>
 <string name="chromecast_subtitles_settings_des">Configuración de subtítulos de Chromecast</string>
@@ -143,8 +141,6 @@
 <string name="cs3wiki">Wiki de CloudStream</string>
 <string name="custom">Personalizada</string>
 <string name="custom_media_singular">Media</string>
-<string name="default_account">Predeterminado</string>
-<string name="default_subtitles">Predeterminado</string>
 <string name="delayed_update_notice">La aplicación se actualizará al salir</string>
 <string name="delete">Borrar</string>
 <string name="delete_file">Borrar Archivo</string>
@@ -200,7 +196,6 @@
 <string name="downloads_delete_select">Seleccionar elementos para eliminar</string>
 <string name="downloads_empty">Actualmente no hay descargas disponibles.</string>
 <string name="duplicate_add">Añadir</string>
-<string name="duplicate_cancel">Cancelar</string>
 <string name="duplicate_message_multiple">Se han encontrado posibles elementos duplicados en su biblioteca: \n \n%s \n \n¿Desea añadir este elemento de todos modos, sustituir los existentes o cancelar la acción?</string>
 <string name="duplicate_message_single">Parece que ya existe un elemento potencialmente duplicado en su colección: «%s». \n \n¿Quiere añadir este elemento de todos modos, sustituir el existente o cancelar la acción?</string>
 <string name="duplicate_replace">Remplazar</string>
@@ -238,7 +233,6 @@
 <string name="episode_action_reload_links">Recargar enlaces</string>
 <string name="episode_format">%1$d %2$s</string>
 <string name="episode_more_options_des">Más opciones</string>
-<string name="episode_play_img_des">Reproducir Episodio</string>
 <string name="episode_poster_img_des">Póster del episodio</string>
 <string name="episode_short">E</string>
 <string name="episode_sync_settings">Actualizar progreso de lo visto</string>
@@ -512,7 +506,6 @@
 <string name="restore_settings">Restaurar datos desde el backup</string>
 <string name="restore_success">Archivo de backup cargado</string>
 <string name="result_open_in_browser">Abrir en navegador</string>
-<string name="result_plot">Sinopsis</string>
 <string name="result_poster_img_des">Póster</string>
 <string name="result_search_tooltip">Buscar en otras extensiones</string>
 <string name="result_share">Compartir</string>
@@ -583,7 +576,6 @@
 <string name="sort_button_episode">Ep %s</string>
 <string name="sort_button_rating">Puntuar %s</string>
 <string name="sort_by">Ordenar por</string>
-<string name="sort_cancel">Cancelar</string>
 <string name="sort_clear">Limpiar</string>
 <string name="sort_close">Cerrar</string>
 <string name="sort_copy">Copiar</string>
@@ -650,7 +642,6 @@
 <string name="subtitles_filter_lang">Filtrar por idioma preferido</string>
 <string name="subtitles_from_embedded">Integrado</string>
 <string name="subtitles_from_online">En línea</string>
-<string name="subtitles_none">Ninguno</string>
 <string name="subtitles_outline">Contorno</string>
 <string name="subtitles_raised">Elevado</string>
 <string name="subtitles_remove_bloat">Eliminar excedente (bloat) de los subtítulos</string>
@@ -698,7 +689,6 @@
 <string name="tv_series_singular">Serie</string>
 <string name="type_completed">Completado</string>
 <string name="type_dropped">Descartado</string>
-<string name="type_none">Ninguno</string>
 <string name="type_on_hold">En espera</string>
 <string name="type_plan_to_watch">Planeando ver</string>
 <string name="type_re_watching">Volviendo a mirar</string>

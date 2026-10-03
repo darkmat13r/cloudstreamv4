@@ -3,7 +3,6 @@
 <resources>
 <plurals name="downloads_active"><item quantity="one">%d aktivní stahování</item><item quantity="few">%d aktivní stahování</item><item quantity="many">%d aktivních stahování</item><item quantity="other">%d aktivních stahování</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d stahování uloženo do fronty</item><item quantity="few">%d stahování uložena do fronty</item><item quantity="many">%d stahování uloženo do fronty</item><item quantity="other">%d stahování uloženo do fronty</item></plurals>
-<plurals name="episodes"><item quantity="one">Epizoda</item><item quantity="other">Epizody</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d skrytý odkaz</item><item quantity="few">%d skryté odkazy</item><item quantity="many">%d skrytých odkazů</item><item quantity="other">%d skrytých odkazů</item></plurals>
 <string name="account">účet</string>
 <string name="action_add_to_bookmarks">Nastavit stav sledování</string>
@@ -122,7 +121,6 @@
 <string name="category_providers">Poskytovatelé</string>
 <string name="category_ui">Rozložení</string>
 <string name="category_updates">Aktualizace a záloha</string>
-<string name="change_providers_img_des">Změnit poskytovatele</string>
 <string name="check_for_update">Zkontrolovat aktualizace</string>
 <string name="chromecast_subtitles_settings">Titulky Chromecastu</string>
 <string name="chromecast_subtitles_settings_des">Natavení titulků Chromecastu</string>
@@ -143,8 +141,6 @@
 <string name="cs3wiki">CloudStream Wiki</string>
 <string name="custom">Vlastní</string>
 <string name="custom_media_singular">Média</string>
-<string name="default_account">Výchozí</string>
-<string name="default_subtitles">Výchozí</string>
 <string name="delayed_update_notice">Aplikace bude po ukončení aktualizována</string>
 <string name="delete">Smazat</string>
 <string name="delete_file">Smazat soubor</string>
@@ -200,7 +196,6 @@
 <string name="downloads_delete_select">Zvolte položky k odstranění</string>
 <string name="downloads_empty">Aktuálně neprobíhají žádná stahování.</string>
 <string name="duplicate_add">Přidat</string>
-<string name="duplicate_cancel">Zrušit</string>
 <string name="duplicate_message_multiple">Ve vaší knihovně byl nalezen potenciální duplikát: \n \n%s \n \nChcete přesto přidat tuto položku, nahradit existující nebo zrušit akci?</string>
 <string name="duplicate_message_single">Vypadá to, že ve vaší knihovně již existuje potenciální duplikát: „%s“. \n \nChcete přesto přidat tuto položku, nahradit existující nebo zrušit akci?</string>
 <string name="duplicate_replace">Nahradit</string>
@@ -238,7 +233,6 @@
 <string name="episode_action_reload_links">Obnovit odkazy</string>
 <string name="episode_format">%1$d %2$s</string>
 <string name="episode_more_options_des">Další možnosti</string>
-<string name="episode_play_img_des">Přehrát epizodu</string>
 <string name="episode_poster_img_des">Plakát epizody</string>
 <string name="episode_short">E</string>
 <string name="episode_sync_settings">Aktualizovat postup sledování</string>
@@ -512,7 +506,6 @@
 <string name="restore_settings">Obnovit data ze zálohy</string>
 <string name="restore_success">Načten soubor zálohy</string>
 <string name="result_open_in_browser">Otevřít v prohlížeči</string>
-<string name="result_plot">Synopse</string>
 <string name="result_poster_img_des">Plakát</string>
 <string name="result_search_tooltip">Hledat v ostatních rozšířeních</string>
 <string name="result_share">Sdílet</string>
@@ -583,7 +576,6 @@
 <string name="sort_button_episode">Ep %s</string>
 <string name="sort_button_rating">Hodnocení %s</string>
 <string name="sort_by">Seřadit podle</string>
-<string name="sort_cancel">Zrušit</string>
 <string name="sort_clear">Vymazat</string>
 <string name="sort_close">Zavřít</string>
 <string name="sort_copy">Kopírovat</string>
@@ -650,7 +642,6 @@
 <string name="subtitles_filter_lang">Filtrování podle preferovaného jazyka médií</string>
 <string name="subtitles_from_embedded">Vložené</string>
 <string name="subtitles_from_online">Online</string>
-<string name="subtitles_none">Žádné</string>
 <string name="subtitles_outline">Ohraničení</string>
 <string name="subtitles_raised">Vyvýšené</string>
 <string name="subtitles_remove_bloat">Odstranit nadbytečné titulky</string>
@@ -698,7 +689,6 @@
 <string name="tv_series_singular">Seriál</string>
 <string name="type_completed">Dokončeno</string>
 <string name="type_dropped">Zahozeno</string>
-<string name="type_none">Žádné</string>
 <string name="type_on_hold">Pozastaveno</string>
 <string name="type_plan_to_watch">Plánuji sledovat</string>
 <string name="type_re_watching">Opětovné sledování</string>

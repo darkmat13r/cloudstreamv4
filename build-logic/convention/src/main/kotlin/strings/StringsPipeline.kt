@@ -13,6 +13,19 @@ internal fun interface ResourceCompiler {
 
 internal class PipelineResult(
     val emitted: Map<String, Map<ResourceKey, TextValue>>,
+    /**
+     * The **lean** tree: for each directory, only the visible keys that directory itself declares, carrying the
+     * value Android resolves for that directory's own locale (so an `@string/` alias is already resolved in it).
+     *
+     * This is [Materialiser]'s step 1 and nothing else — [emitted] is this plus the copies step 2 adds so that
+     * Compose's fallback lands where Android's does. The two are kept apart because they have different jobs:
+     * the lean tree is what `app/src/main/res` holds, and the copies are a Compose concern that Android resolves
+     * for itself. Writing the copies into the res adds entries Android does not need and makes locale files
+     * declare plurals with only the categories their source had, which Android lint rightly rejects.
+     */
+    val lean: Map<String, Map<ResourceKey, TextValue>>,
+    /** Every `@string/…` the res holds instead of literal text, see [AuthoredAliases]. */
+    val aliases: List<AuthoredAliases.Alias>,
     val decoded: List<Pair<String, DecodedEntry>>,
     val requests: List<ParityRequest>,
     val lookup: Map<String, Map<ResourceKey, TextValue>>,
@@ -99,6 +112,22 @@ internal class StringsPipeline(private val findings: Findings, private val compi
         report += "parity requests: ${requests.size} (${extraRequests.size} beyond directory locales)"
         return PipelineResult(
             emitted = materialiser.emitted.filterValues { it.isNotEmpty() },
+            aliases = table.flatMap { (directory, entries) ->
+                entries.mapNotNull { (key, entry) ->
+                    val byCategory = when (val v = entry.value) {
+                        is DecodedValue.Single -> (v.item as? DecodedItem.Ref)
+                            ?.let { mapOf(AuthoredAliases.SINGLE to "@" + it.name) }
+                        is DecodedValue.Plural -> v.items.mapNotNull { (c, i) ->
+                            (i as? DecodedItem.Ref)?.let { c to "@" + it.name }
+                        }.takeIf { it.isNotEmpty() }?.toMap()
+                        is DecodedValue.Other -> null
+                    }
+                    byCategory?.let { AuthoredAliases.Alias(directory, key, it) }
+                }
+            },
+            lean = materialiser.emitted
+                .mapValues { (directory, values) -> values.filterKeys { it in own[directory].orEmpty() } }
+                .filterValues { it.isNotEmpty() },
             decoded = decodedRows.sortedWith(compareBy({ it.first }, { it.second.type }, { it.second.name })),
             requests = requests,
             lookup = lookup,

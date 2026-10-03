@@ -3,7 +3,6 @@
 <resources>
 <plurals name="downloads_active"><item quantity="one">%d актыўнае спампоўванне</item><item quantity="few">%d актыўных спампоўвання</item><item quantity="many">%d актыўных спампоўванняў</item><item quantity="other">%d актыўных спампоўванняў</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d спампоўванне ў чарзе</item><item quantity="few">%d спампоўвання ў чарзе</item><item quantity="many">%d спампоўванняў у чарзе</item><item quantity="other">%d спампоўванняў у чарзе</item></plurals>
-<plurals name="episodes"><item quantity="one">Серыя</item><item quantity="other">Серый</item></plurals>
 <string name="account">уліковы запіс</string>
 <string name="action_add_to_bookmarks">Задаць статус прагляду</string>
 <string name="action_add_to_favorites">Дадаць у абранае</string>
@@ -121,7 +120,6 @@
 <string name="category_providers">Пастаўшчыкі</string>
 <string name="category_ui">Макет</string>
 <string name="category_updates">Абнаўленні і рэзервовае капіраванне</string>
-<string name="change_providers_img_des">Змяніць пастаўшчыка</string>
 <string name="check_for_update">Праверыць на абнаўленні</string>
 <string name="chromecast_subtitles_settings">Субцітры Chromecast</string>
 <string name="chromecast_subtitles_settings_des">Налады субцітраў Chromecast</string>
@@ -142,8 +140,6 @@
 <string name="cs3wiki">CloudStream-Вікі</string>
 <string name="custom">Уласнае</string>
 <string name="custom_media_singular">Медыя</string>
-<string name="default_account">Прадвызначаны</string>
-<string name="default_subtitles">Прадвызначаны</string>
 <string name="delayed_update_notice">Праграма будзе абноўлена пасля выхаду</string>
 <string name="delete">Выдаліць</string>
 <string name="delete_file">Выдаліць файл</string>
@@ -199,7 +195,6 @@
 <string name="downloads_delete_select">Выберыце элементы для выдалення</string>
 <string name="downloads_empty">Спамповак пакуль што няма.</string>
 <string name="duplicate_add">Дадаць</string>
-<string name="duplicate_cancel">Скасаваць</string>
 <string name="duplicate_message_multiple">У вашай бібліятэцы знойдзены магчымыя дублікаты: \n\n%s \n\nЦі хочаце вы ўсё роўна яго дадаць, замяніць ужо існуючыя, або скасаваць дзеянне?</string>
 <string name="duplicate_message_single">Падобна на тое, што ў вашай бібліятэцы ёсць дублікат гэтага элемента: ‹%s.›\n\nЦі хочаце вы ўсё роўна яго дадаць, замяніць ужо існуючы, або скасаваць дзеянне?</string>
 <string name="duplicate_replace">Замяніць</string>
@@ -237,7 +232,6 @@
 <string name="episode_action_reload_links">Абнавіць спасылкі</string>
 <string name="episode_format">%1$d %2$s</string>
 <string name="episode_more_options_des">Больш параметраў</string>
-<string name="episode_play_img_des">Прайграць серыю</string>
 <string name="episode_poster_img_des">Плакат серыі</string>
 <string name="episode_short">Сер</string>
 <string name="episode_sync_settings">Абнаўляць працэс прагляду</string>
@@ -508,7 +502,6 @@
 <string name="restore_settings">Аднавіць дадзеныя з рэзервовай копіі</string>
 <string name="restore_success">Загружаны файл рэзервовай копіі</string>
 <string name="result_open_in_browser">Адкрыць у браўзеры</string>
-<string name="result_plot">Сціслы агляд</string>
 <string name="result_poster_img_des">Плакат</string>
 <string name="result_search_tooltip">Пошук у іншых пашырэннях</string>
 <string name="result_share">Абагуліць</string>
@@ -579,7 +572,6 @@
 <string name="sort_button_episode">Сер. %s</string>
 <string name="sort_button_rating">Рэйтынг %s</string>
 <string name="sort_by">Сартаваць па</string>
-<string name="sort_cancel">Скасаваць</string>
 <string name="sort_clear">Ачысціць</string>
 <string name="sort_close">Закрыць</string>
 <string name="sort_copy">Скапіраваць</string>
@@ -646,7 +638,6 @@
 <string name="subtitles_filter_lang">Фільтраваць па прыярытэтнай мове медыя</string>
 <string name="subtitles_from_embedded">Убудаваны</string>
 <string name="subtitles_from_online">Сеткавы</string>
-<string name="subtitles_none">Нічога</string>
 <string name="subtitles_outline">Контур</string>
 <string name="subtitles_raised">Паднятыя</string>
 <string name="subtitles_remove_bloat">Прыбраць раздуванне з субцітраў</string>
@@ -692,7 +683,6 @@
 <string name="tv_series_singular">Серыял</string>
 <string name="type_completed">Завершана</string>
 <string name="type_dropped">Пакінута</string>
-<string name="type_none">Нічога</string>
 <string name="type_on_hold">На ўтрыманні</string>
 <string name="type_plan_to_watch">Планірую глядзець</string>
 <string name="type_re_watching">Пераглядваю</string>

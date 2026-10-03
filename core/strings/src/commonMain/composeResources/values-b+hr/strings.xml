@@ -3,7 +3,6 @@
 <resources>
 <plurals name="downloads_active"><item quantity="one">%d aktivno preuzimanje</item><item quantity="few">%d aktivna preuzimanja</item><item quantity="other">%d aktivnih preuzimanja</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d preuzimanje u redu čekanja</item><item quantity="few">%d preuzimanja u redu čekanja</item><item quantity="other">%d preuzimanja u redu čekanja</item></plurals>
-<plurals name="episodes"><item quantity="one">Epizoda</item><item quantity="other">Epizoda</item></plurals>
 <string name="account">račun</string>
 <string name="action_add_to_bookmarks">Postavi status gledanja</string>
 <string name="action_add_to_favorites">Dodaj u favorite</string>
@@ -121,7 +120,6 @@
 <string name="category_providers">Pružatelji usluga</string>
 <string name="category_ui">Raspored</string>
 <string name="category_updates">Ažuriranja i sigurnosna kopija</string>
-<string name="change_providers_img_des">Promijeni pružatelja usluge</string>
 <string name="check_for_update">Provjeri ažuriranja</string>
 <string name="chromecast_subtitles_settings">Chromecast titlovi</string>
 <string name="chromecast_subtitles_settings_des">Postavke Chromecast titlova</string>
@@ -142,8 +140,6 @@
 <string name="cs3wiki">CloudStream Wiki</string>
 <string name="custom">Prilagođeno</string>
 <string name="custom_media_singular">Medij</string>
-<string name="default_account">Zadano</string>
-<string name="default_subtitles">Zadano</string>
 <string name="delayed_update_notice">Aplikacija će se ažurirati tijekom zatvaranja</string>
 <string name="delete">Izbriši</string>
 <string name="delete_file">Izbriši datoteku</string>
@@ -199,7 +195,6 @@
 <string name="downloads_delete_select">Odaberi stavke za brisanje</string>
 <string name="downloads_empty">Trenutačno nema preuzimanja.</string>
 <string name="duplicate_add">Dodaj</string>
-<string name="duplicate_cancel">Odustani</string>
 <string name="duplicate_message_multiple">Potencijalni duplikati pronađeni su u vašoj biblioteci: \n \n%s \n \nŽelite li ipak dodati ovu stavku koja zamjenjuje postojeće ili poništiti radnju?</string>
 <string name="duplicate_message_single">Čini se da potencijalno duplicirana stavka već postoji u vašoj biblioteci: '%s.' \n \nŽelite li ipak dodati ovu stavku koja zamjenjuje postojeću ili poništiti radnju?</string>
 <string name="duplicate_replace">Zamjeni</string>
@@ -237,7 +232,6 @@
 <string name="episode_action_reload_links">Ponovo učitaj poveznice</string>
 <string name="episode_format">%1$d %2$s</string>
 <string name="episode_more_options_des">Više opcija</string>
-<string name="episode_play_img_des">Pokreni epizodu</string>
 <string name="episode_poster_img_des">Poster epizode</string>
 <string name="episode_short">E</string>
 <string name="episode_sync_settings">Ažuriraj napredak gledanja</string>
@@ -508,7 +502,6 @@
 <string name="restore_settings">Obnovi podatke iz sigurnosne kopije</string>
 <string name="restore_success">Datoteka sigurnosne kopije je učitana</string>
 <string name="result_open_in_browser">Otvori u pregledniku</string>
-<string name="result_plot">Sinopsis</string>
 <string name="result_poster_img_des">Poster</string>
 <string name="result_search_tooltip">Traži u drugim proširenjima</string>
 <string name="result_share">Dijeli</string>
@@ -579,7 +572,6 @@
 <string name="sort_button_episode">Ep %s</string>
 <string name="sort_button_rating">Ocjena %s</string>
 <string name="sort_by">Sortiraj prema</string>
-<string name="sort_cancel">Odustani</string>
 <string name="sort_clear">Izbriši</string>
 <string name="sort_close">Zatvori</string>
 <string name="sort_copy">Kopiraj</string>
@@ -646,7 +638,6 @@
 <string name="subtitles_filter_lang">Filtriraj po preferiranom jeziku medija</string>
 <string name="subtitles_from_embedded">Ugrađen</string>
 <string name="subtitles_from_online">Online</string>
-<string name="subtitles_none">Nijedan</string>
 <string name="subtitles_outline">Kontura</string>
 <string name="subtitles_raised">Izdignuto</string>
 <string name="subtitles_remove_bloat">Ukloni nepotrebne elemente iz titlova (npr. oglase)</string>
@@ -692,7 +683,6 @@
 <string name="tv_series_singular">Serija</string>
 <string name="type_completed">Dovršeno</string>
 <string name="type_dropped">Ispušteno</string>
-<string name="type_none">Nijedan</string>
 <string name="type_on_hold">Na čekanju</string>
 <string name="type_plan_to_watch">Planiram gledati</string>
 <string name="type_re_watching">Ponovo gledam</string>

@@ -3,7 +3,6 @@
 <resources>
 <plurals name="downloads_active"><item quantity="other">%d đang tải xuống</item></plurals>
 <plurals name="downloads_queued"><item quantity="other">%d tải xuống đang chờ</item></plurals>
-<plurals name="episodes"><item quantity="one">Tập</item><item quantity="other">Tập</item></plurals>
 <plurals name="links_hidden"><item quantity="other">%d liên kết bị ẩn</item></plurals>
 <string name="account">tài khoản</string>
 <string name="action_add_to_bookmarks">Đặt trạng thái xem</string>
@@ -122,7 +121,6 @@
 <string name="category_providers">Nguồn phim</string>
 <string name="category_ui">Giao diện</string>
 <string name="category_updates">Cập nhật và Sao lưu</string>
-<string name="change_providers_img_des">Thay đổi Nguồn phim</string>
 <string name="check_for_update">Kiểm tra cập nhật</string>
 <string name="chromecast_subtitles_settings">Phụ đề Chromecast</string>
 <string name="chromecast_subtitles_settings_des">Cài đặt phụ đề Chromecast</string>
@@ -143,8 +141,6 @@
 <string name="cs3wiki">CloudStream Wiki</string>
 <string name="custom">Tuỳ chỉnh</string>
 <string name="custom_media_singular">Phương tiện</string>
-<string name="default_account">Mặc định</string>
-<string name="default_subtitles">Mặc định</string>
 <string name="delayed_update_notice">Ứng dụng sẽ được cập nhật sau khi thoát</string>
 <string name="delete">Xóa</string>
 <string name="delete_file">Xóa Tệp</string>
@@ -200,7 +196,6 @@
 <string name="downloads_delete_select">Chọn mục để xoá</string>
 <string name="downloads_empty">Không có tải xuống nào.</string>
 <string name="duplicate_add">Thêm vào</string>
-<string name="duplicate_cancel">Hủy bỏ</string>
 <string name="duplicate_message_multiple">Các mục có thể trùng lặp đã được tìm thấy trong thư viện của bạn: \n \n%s \n \nBạn vẫn muốn thêm mục này, thay thế những mục hiện có hay hủy hành động?</string>
 <string name="duplicate_message_single">Có vẻ như một mục có khả năng trùng lặp đã tồn tại trong thư viện của bạn: '%s.' \n \nBạn vẫn muốn thêm mục này, thay thế mục hiện có hay hủy hành động?</string>
 <string name="duplicate_replace">Thay thế</string>
@@ -238,7 +233,6 @@
 <string name="episode_action_reload_links">Tải lại các liên kết</string>
 <string name="episode_format">%1$d %2$s</string>
 <string name="episode_more_options_des">Thêm tuỳ chọn</string>
-<string name="episode_play_img_des">Phát Tập phim</string>
 <string name="episode_poster_img_des">Poster tập phim</string>
 <string name="episode_short">Tập</string>
 <string name="episode_sync_settings">Cập nhật tiến trình xem</string>
@@ -512,7 +506,6 @@
 <string name="restore_settings">Khôi phục dữ liệu từ bản sao lưu</string>
 <string name="restore_success">Đã tải tệp sao lưu</string>
 <string name="result_open_in_browser">Phát bằng Trình duyệt</string>
-<string name="result_plot">Tóm tắt phim</string>
 <string name="result_poster_img_des">Poster</string>
 <string name="result_search_tooltip">Tìm kiếm trong tiện ích mở rộng khác</string>
 <string name="result_share">Chia sẻ</string>
@@ -583,7 +576,6 @@
 <string name="sort_button_episode">Tập %s</string>
 <string name="sort_button_rating">Xếp hạng %s</string>
 <string name="sort_by">Sắp xếp theo</string>
-<string name="sort_cancel">Hủy bỏ</string>
 <string name="sort_clear">Xóa</string>
 <string name="sort_close">Đóng</string>
 <string name="sort_copy">Sao chép</string>
@@ -650,7 +642,6 @@
 <string name="subtitles_filter_lang">Lọc theo ngôn ngữ ưu tiên</string>
 <string name="subtitles_from_embedded">Được nhúng</string>
 <string name="subtitles_from_online">Trực tuyến</string>
-<string name="subtitles_none">Không có</string>
 <string name="subtitles_outline">Viền</string>
 <string name="subtitles_raised">Nâng</string>
 <string name="subtitles_remove_bloat">Xóa bỏ nội dung thừa trong phụ đề</string>
@@ -698,7 +689,6 @@
 <string name="tv_series_singular">Phim Bộ</string>
 <string name="type_completed">Đã xem</string>
 <string name="type_dropped">Bỏ xem</string>
-<string name="type_none">Không có</string>
 <string name="type_on_hold">Đang chờ</string>
 <string name="type_plan_to_watch">Xem sau</string>
 <string name="type_re_watching">Xem lại</string>

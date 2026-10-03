@@ -3,7 +3,6 @@
 <resources>
 <plurals name="downloads_active"><item quantity="zero">%d لا يوجد تنزيل نشط</item><item quantity="one">%d تنزيل واحد نشط</item><item quantity="two">%d تنزيلان نشطان</item><item quantity="few">%d تنزيلات نشطة</item><item quantity="many">%d تنزيل نشط</item><item quantity="other">%d تنزيل نشط</item></plurals>
 <plurals name="downloads_queued"><item quantity="zero">%d لا يوجد تنزيلات في قائمة الانتظار</item><item quantity="one">%d تنزيل واحد قيد الانتظار</item><item quantity="two">%d تنزيلان قيد الانتظار</item><item quantity="few">%d تنزيلات قيد الانتظار</item><item quantity="many">%d تنزيل قيد الانتظار</item><item quantity="other">%d تنزيل قيد الانتظار</item></plurals>
-<plurals name="episodes"><item quantity="one">حلقة</item><item quantity="other">حلقات</item></plurals>
 <string name="account">حساب</string>
 <string name="action_add_to_bookmarks">إعداد حالة المشاهدة</string>
 <string name="action_add_to_favorites">اضافة الى المفضلة</string>
@@ -121,7 +120,6 @@
 <string name="category_providers">المصادر</string>
 <string name="category_ui">الواجهة</string>
 <string name="category_updates">التحديثات والنسخ الاحتياطية</string>
-<string name="change_providers_img_des">تغيير المصدر</string>
 <string name="check_for_update">تحقق من التحديثات</string>
 <string name="chromecast_subtitles_settings">ترجمة كروم كاست</string>
 <string name="chromecast_subtitles_settings_des">إعدادات ترجمة كروم كاست</string>
@@ -142,8 +140,6 @@
 <string name="cs3wiki">CloudStream ويكي</string>
 <string name="custom">مخصص</string>
 <string name="custom_media_singular">الوسائط</string>
-<string name="default_account">الإفتراضي</string>
-<string name="default_subtitles">الإفتراضي</string>
 <string name="delayed_update_notice">سيتم تحديث التطبيق عند الخروج</string>
 <string name="delete">حذف</string>
 <string name="delete_file">حذف الملف</string>
@@ -199,7 +195,6 @@
 <string name="downloads_delete_select">الرجاء تحديد العناصر للحذف</string>
 <string name="downloads_empty">لا يوجد حالياً اى تنزيلات.</string>
 <string name="duplicate_add">اضافة</string>
-<string name="duplicate_cancel">إلغاء</string>
 <string name="duplicate_message_multiple">احتمال وجود تكرارات في مكتبتك. \n \n%s \n \nهل تريد الاضافة على اي حال مستبدلاً النسخة الموجودة بالفعل, أم تفضل إلغاء العملية؟</string>
 <string name="duplicate_message_single">يبدو أن هناك عنصرًا مكررًا موجود بالفعل في مكتبتك: '%s'. \n \nهل ترغب في إضافة هذا العنصر على أية حال، أو استبدال العنصر الموجود، أو إلغاء الإجراء؟</string>
 <string name="duplicate_replace">استبدال</string>
@@ -237,7 +232,6 @@
 <string name="episode_action_reload_links">إعادة تحميل الروابط</string>
 <string name="episode_format">%1$d %2$s</string>
 <string name="episode_more_options_des">المزيد من الخيارات</string>
-<string name="episode_play_img_des">تشغيل الحلقة</string>
 <string name="episode_poster_img_des">ملصق الحلقة</string>
 <string name="episode_short">ح</string>
 <string name="episode_sync_settings">تحديث تقدم المشاهدة</string>
@@ -511,7 +505,6 @@
 <string name="restore_settings">إسترجاع البيانات من النسخة الإحتياطية</string>
 <string name="restore_success">تم تحميل ملف النسخة الاحتياطية</string>
 <string name="result_open_in_browser">فتح في الويب</string>
-<string name="result_plot">القصة</string>
 <string name="result_poster_img_des">ملصق</string>
 <string name="result_search_tooltip">البحث في امتدادات أخرى</string>
 <string name="result_share">مشاركة</string>
@@ -582,7 +575,6 @@
 <string name="sort_button_episode">ح %s</string>
 <string name="sort_button_rating">تقييم %s</string>
 <string name="sort_by">فرز حسب</string>
-<string name="sort_cancel">إلغاء</string>
 <string name="sort_clear">مسح</string>
 <string name="sort_close">إغلاق</string>
 <string name="sort_copy">نسخ</string>
@@ -649,7 +641,6 @@
 <string name="subtitles_filter_lang">تصفية حسب لغة الوسائط المفضلة</string>
 <string name="subtitles_from_embedded">داخلياً</string>
 <string name="subtitles_from_online">اونلاين</string>
-<string name="subtitles_none">لا شيء</string>
 <string name="subtitles_outline">الخطوط المحيطة</string>
 <string name="subtitles_raised">رفع</string>
 <string name="subtitles_remove_bloat">ازالة البرمجيات الخبيثة من الترجمة</string>
@@ -697,7 +688,6 @@
 <string name="tv_series_singular">مسلسل</string>
 <string name="type_completed">مكتمل</string>
 <string name="type_dropped">مهمل</string>
-<string name="type_none">لا شيء</string>
 <string name="type_on_hold">في الإنتظار</string>
 <string name="type_plan_to_watch">أخطط لمشاهدته</string>
 <string name="type_re_watching">إعادة المشاهدة</string>
