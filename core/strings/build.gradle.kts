@@ -1,6 +1,11 @@
 /**
- * `:core:strings` — Compose Multiplatform string resources generated from `app/src/main/res` (plan S1, §7 Phase 3
- * S-a). Android res and Weblate stay the source; `:app`, its `R` ids and `.github/locales.py` do not change.
+ * `:core:strings` — the authored Compose Multiplatform string resources, and the generator that keeps
+ * `app/src/main/res` in step with them.
+ *
+ * **The direction is the reverse of plan S1.** That decision said Android res and Weblate stay the source; this
+ * repo is not connected to that Weblate project, and the owner's instruction is that all strings are Compose
+ * resources. `I18N-07` carries the six steps and the evidence. `:app` and its `R` ids are unchanged either way —
+ * `R.string` field names are published extension ABI and `:app:checkExtensionApi` is the gate.
  *
  * ## Not extension API
  *
@@ -85,12 +90,15 @@ tasks.named<strings.MaterialiseComposeStringsTask>("materialiseComposeStrings") 
 // `app/src/main/res` is generated from the same lean authored tree (I18N-07 step 4.2), one directory to one
 // directory with nothing added. Committed rather than generated at build time because `R.string` field names are
 // published extension ABI, and a res materialising into a build directory would take every one of them out of
-// review. `values-arz` emits no values at all, so the authored tree has no counterpart for it; PR 5 deletes it.
+// review. Every values directory of the res is generated: `values-arz` held no values at all and was deleted in
+// PR 5, with `arz` pinned in parity-requests.txt so the locale is still checked.
 val androidStringsCommon: strings.AndroidStringsTask.() -> Unit = {
     authoredDirectory.set(layout.projectDirectory.dir("src/commonMain/composeResources"))
     resDirectory.set(layout.settingsDirectory.dir("app/src/main/res"))
     localeCopyTargets.set(generateComposeStrings.map { it.localeCopies.get().keys })
-    unmanagedDirectories.set(setOf("values-arz"))
+    // Empty on purpose: every values directory of the res is generated from the authored tree. A name here would
+    // be a directory nothing checks, so adding one needs a reason written beside it.
+    unmanagedDirectories.set(emptySet<String>())
     aliases.set(layout.projectDirectory.file("authored-aliases.tsv"))
 }
 

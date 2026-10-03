@@ -33,3 +33,4 @@ he-IL          he-IL        he   -     IL      match
 in             in           in   -     -       match   Locale.language on API < 35 or targetSdk < 35
 id             id           id   -     -       match   as he: Android maps id to in; Compose reads the generated values-b+id copy
 id-ID          id-ID        id   -     ID      match
+arz            arz          arz  -     -       match   values-arz held no values and was deleted (I18N-07 PR 5); pinned here so the locale is still checked

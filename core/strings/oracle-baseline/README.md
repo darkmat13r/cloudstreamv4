@@ -30,7 +30,7 @@ and decides — in a commit of its own that says so — to move the baseline.
 | `lookup.tsv` | 66,315 | For each of the 87 parity requests, the value Android resolves for every key — the per-locale lookup table the parity test compares Compose against. |
 | `requests.tsv` | 87 | The parsed `parity-requests.txt`: request id, Android tag, Compose language/script/region, expectation, note. |
 | `findings.tsv` | 0 | Every finding the pipeline raised. **Empty since the flip** — it was 31 `STRAY_TEXT_REMOVED` and 34 `STYLED_AS_PLAIN_TEXT`, and a generated res has neither stray text nor `<b>`. |
-| `report.txt` | 13 | The human-readable run summary. |
+| `report.txt` | 12 | The human-readable run summary. |
 
 
 ## What the flip moved, and what it did not
@@ -48,6 +48,11 @@ recaptured. The two that decide whether anyone notices did not move at all:
 
 `emitted.tsv` returning to its PR 0 bytes is the strongest statement available here: the tree Compose packages after
 regenerating the res from it is the same tree that was frozen before any of this started.
+
+**PR 5 then re-keyed `lookup.tsv` without changing it.** Deleting the empty `values-arz` moved `arz` from a
+directory-derived request to a pinned one in `parity-requests.txt`, so 762 rows changed id from `values-arz` to
+`arz`. 762 lost, 762 invented, **0 with a different value** — and the sorted value column of the whole file has the
+same md5 before and after (`3a1c1253…`). The row keys moved; nothing a user reads did.
 
 What does change is `decoded.tsv`'s `location` column for 22 keys, because they moved from
 `values/donottranslate-strings.xml` into `values/strings.xml`, where every other user-visible string already lived.
