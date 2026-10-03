@@ -17,10 +17,10 @@ import strings.StringsOracleArgument
  *   inputs default to `app/src/main/res` (read as files; `:app` is never configured), `visible-donottranslate.txt`
  *   and `parity-requests.txt` in the module directory; a module overrides them on the task.
  * - `materialiseComposeStrings` ([MaterialiseComposeStringsTask]) feeds `compose.resources.customDirectory`, which
- *   carries the task dependency to every resource task, the accessors and IDE sync. By default it copies
- *   `generateComposeStrings`'s output through unchanged, with no `localeCopies` of its own — the generator has
- *   already applied them. A module with an **authored** values tree points `sourceDirectory` at it and hands over
- *   `localeCopies`, which is what `:core:strings` does; see that build file and the task's KDoc.
+ *   carries the task dependency to every resource task, the accessors and IDE sync. It takes a **lean** values tree
+ *   — only what each directory declares — and adds the copies that make Compose's lookup land where Android's does,
+ *   plus the `localeCopies` directories. By default that lean tree is `generateComposeStrings.leanDir`; `:core:strings`
+ *   points it at its committed authored tree instead, which is the strings flip (I18N-07).
  * - `localeCopies` defaults to `values-b+he` <- `values-b+iw` and `values-b+id` <- `values-b+in` (Compose asks for
  *   `he`/`id` where Android asks for `iw`/`in`, see `strings.LocaleCopies`); a module sets its own map on the task.
  * - `-Pcloudstream.strings.guards=fail|report` (default `report`; pull requests pass `fail`), see `strings.GuardMode`.
@@ -68,6 +68,8 @@ val generateComposeStrings = tasks.register<GenerateComposeStringsTask>("generat
     localeCopies.convention(LocaleCopies.DEFAULTS)
     guardMode.set(providers.gradleProperty("cloudstream.strings.guards").orElse("report"))
     outputDir.set(layout.buildDirectory.dir("generated/composeStrings"))
+    leanDir.set(layout.buildDirectory.dir("generated/leanComposeStrings"))
+    aliasesFile.set(layout.buildDirectory.file("generated/authored-aliases.tsv"))
     oracleDir.set(layout.buildDirectory.dir("stringsOracle"))
 }
 
@@ -79,8 +81,10 @@ val generateComposeStrings = tasks.register<GenerateComposeStringsTask>("generat
 val materialiseComposeStrings = tasks.register<MaterialiseComposeStringsTask>("materialiseComposeStrings") {
     group = "build"
     description = "Assembles the Compose values tree Compose Multiplatform packages, locale copies included."
-    sourceDirectory.convention(generateComposeStrings.flatMap { it.outputDir })
-    localeCopies.convention(emptyMap())
+    sourceDirectory.convention(generateComposeStrings.flatMap { it.leanDir })
+    localeCopies.convention(generateComposeStrings.flatMap { it.localeCopies })
+    guardMode.convention(generateComposeStrings.flatMap { it.guardMode })
+    aliases.convention(generateComposeStrings.flatMap { it.aliasesFile })
     outputDir.set(layout.buildDirectory.dir("generated/materialisedComposeStrings"))
 }
 

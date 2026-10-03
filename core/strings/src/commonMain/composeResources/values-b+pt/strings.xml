@@ -3,8 +3,6 @@
 <resources>
 <plurals name="downloads_active"><item quantity="one">%d download ativo</item><item quantity="many">%d downloads ativos</item><item quantity="other">%d downloads ativos</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d download na fila</item><item quantity="many">%d downloads na fila</item><item quantity="other">%d downloads na fila</item></plurals>
-<plurals name="episodes"><item quantity="one">Episódio</item><item quantity="other">Episódios</item></plurals>
-<plurals name="links_hidden"><item quantity="one">%d link oculto</item><item quantity="many">%d link ocultos</item><item quantity="other">%d link ocultos</item></plurals>
 <string name="account">Conta</string>
 <string name="action_add_to_bookmarks">Marcar como visto/não visto</string>
 <string name="action_add_to_favorites">Adicionar aos favoritos</string>
@@ -122,7 +120,6 @@
 <string name="category_providers">Fornecedores</string>
 <string name="category_ui">Layout</string>
 <string name="category_updates">Atualizações e cópias de segurança</string>
-<string name="change_providers_img_des">Alterar Provedor</string>
 <string name="check_for_update">Procurar Atualização</string>
 <string name="chromecast_subtitles_settings">Legendas do Chromecast</string>
 <string name="chromecast_subtitles_settings_des">Configurações de legendas do Chromecast</string>
@@ -143,8 +140,6 @@
 <string name="cs3wiki">Wiki do CloudStream</string>
 <string name="custom">Personalizado</string>
 <string name="custom_media_singular">Multimédia</string>
-<string name="default_account">Padrão</string>
-<string name="default_subtitles">Padrão</string>
 <string name="delayed_update_notice">O aplicativo será atualizado ao sair</string>
 <string name="delete">Eliminar</string>
 <string name="delete_file">Eliminar Ficheiro</string>
@@ -200,7 +195,6 @@
 <string name="downloads_delete_select">Selecionar Items para Eliminar</string>
 <string name="downloads_empty">Não existem downloads disponíveis.</string>
 <string name="duplicate_add">Adicionar</string>
-<string name="duplicate_cancel">Cancelar</string>
 <string name="duplicate_message_multiple">Potenciais itens duplicados foram encontrados na sua biblioteca: \n \n%s \n \nDeseja adicionar esse item mesmo assim, subtituir os existentes, ou cancelar a ação?</string>
 <string name="duplicate_message_single">Parece que já existe um item potencialmente duplicado na sua biblioteca: '%s.' \n \nDeseja adicionar esse item mesmo assim, subtituir o existente, ou cancelar a ação?</string>
 <string name="duplicate_replace">Substituir</string>
@@ -238,7 +232,6 @@
 <string name="episode_action_reload_links">Recarregar links</string>
 <string name="episode_format">%1$d %2$s</string>
 <string name="episode_more_options_des">Mais opções</string>
-<string name="episode_play_img_des">Reproduzir episódio</string>
 <string name="episode_poster_img_des">Pôster do episódio</string>
 <string name="episode_short">E</string>
 <string name="episode_sync_settings">Atualizar progresso</string>
@@ -455,10 +448,7 @@
 <string name="previous">Anterior</string>
 <string name="primary_color_settings">Cor Primária</string>
 <string name="profile_background_des">Perfil de fundo</string>
-<string name="profile_hide_error_sources">Ocultar fontes com erros</string>
-<string name="profile_hide_negative_sources">Ocultar fontes com prioridade negativa</string>
 <string name="profile_number">Perfil %d</string>
-<string name="profile_settings">Configurações de perfil</string>
 <string name="profiles">Perfis</string>
 <string name="provider_info_meta">Metadados não são oferecidos pelo site, o carregamento do vídeo irá falhar se ele não existir no site.</string>
 <string name="provider_lang_settings">Línguas de extensão</string>
@@ -512,7 +502,6 @@
 <string name="restore_settings">Restaurar dados a partir de backup</string>
 <string name="restore_success">Arquivo de backup carregado</string>
 <string name="result_open_in_browser">Abrir no navegador</string>
-<string name="result_plot">Sinopse</string>
 <string name="result_poster_img_des">Poster</string>
 <string name="result_search_tooltip">Procurar noutras extensões</string>
 <string name="result_share">Compartilhar</string>
@@ -583,7 +572,6 @@
 <string name="sort_button_episode">Ep %s</string>
 <string name="sort_button_rating">Avaliação %s</string>
 <string name="sort_by">Ordenar por</string>
-<string name="sort_cancel">Cancelar</string>
 <string name="sort_clear">Limpar</string>
 <string name="sort_close">Fechar</string>
 <string name="sort_copy">Copiar</string>
@@ -650,7 +638,6 @@
 <string name="subtitles_filter_lang">Filtrar por linguagem preferida</string>
 <string name="subtitles_from_embedded">Incorporada</string>
 <string name="subtitles_from_online">Online</string>
-<string name="subtitles_none">Nenhuma</string>
 <string name="subtitles_outline">Contornado</string>
 <string name="subtitles_raised">Em Relevo</string>
 <string name="subtitles_remove_bloat">Remover bloat das legendas</string>
@@ -692,13 +679,10 @@
 <string name="tracks">Faixas</string>
 <string name="trailer">Trailer</string>
 <string name="tv_layout">Layout de TV</string>
-<string name="tv_layout_clock_settings">Mostrar relógio em tempo real</string>
-<string name="tv_layout_clock_settings_des">Exiba um relógio em tempo real na parte superior da tela. Aplica-se à página inicial e ao player</string>
 <string name="tv_series">Séries</string>
 <string name="tv_series_singular">Série</string>
 <string name="type_completed">Concluído</string>
 <string name="type_dropped">Desistido</string>
-<string name="type_none">Nenhuma</string>
 <string name="type_on_hold">Em espera</string>
 <string name="type_plan_to_watch">Pretendo assistir</string>
 <string name="type_re_watching">Reassistindo</string>

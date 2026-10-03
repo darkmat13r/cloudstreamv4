@@ -1,5 +1,7 @@
 package strings
 
+import javax.xml.stream.XMLInputFactory
+
 /** A value as Compose must return it: one text, or plural texts by category (`zero` … `other`). */
 internal sealed interface TextValue {
     data class Single(val text: String) : TextValue
@@ -64,4 +66,92 @@ data class ResourceKey(val type: String, val name: String) : Comparable<Resource
     override fun compareTo(other: ResourceKey): Int = compareValuesBy(this, other, { it.type }, { it.name })
 
     override fun toString(): String = "$type/$name"
+}
+
+/**
+ * Reads back what [CmpStringsXml.write] produced: the authored Compose tree, as the values it holds.
+ *
+ * This is the **exact inverse of [CmpStringsXml.encode]**, not a reimplementation of Compose Multiplatform's own
+ * reader. `encode` emits exactly four backslash escapes (`\\`, `\n`, `\t`, `\uXXXX`) and three XML entities, so one
+ * left-to-right pass decodes it unambiguously. CMP's `handleSpecialCharacters` decodes in a different order
+ * (`\n`/`\t`/`\uXXXX` first, then `\\` -> `\`), which disagrees on inputs this encoder never emits; that CMP reads
+ * these files correctly is a separate fact, and it is what `GeneratedResourcesParityTest` measures through the real
+ * runtime.
+ *
+ * `verifyStringsRoundTrip` asserts that reading the committed tree reproduces the pipeline's own emitted map, value
+ * for value, so this reader cannot drift from the writer without a build failing.
+ *
+ * DTD and external entities are off, matching [ValuesSanitizer]: these files are generated, but a reader that
+ * resolves entities is a liability wherever it is pointed next.
+ */
+internal object CmpStringsReader {
+    fun read(text: String): Map<ResourceKey, TextValue> {
+        val reader = factory().createXMLStreamReader(java.io.StringReader(text))
+        val entries = sortedMapOf<ResourceKey, TextValue>()
+        var name: String? = null
+        var type: String? = null
+        var quantity: String? = null
+        val chars = StringBuilder()
+        val plural = LinkedHashMap<String, String>()
+        while (reader.hasNext()) {
+            when (reader.next()) {
+                javax.xml.stream.XMLStreamConstants.START_ELEMENT -> when (reader.localName) {
+                    "string", "plurals" -> {
+                        type = reader.localName
+                        name = reader.getAttributeValue(null, "name")
+                            ?: throw StringsBuildException("a <${reader.localName}> has no name attribute")
+                        chars.setLength(0)
+                        plural.clear()
+                    }
+                    "item" -> {
+                        quantity = reader.getAttributeValue(null, "quantity")
+                            ?: throw StringsBuildException("a plural <item> of '$name' has no quantity")
+                        chars.setLength(0)
+                    }
+                }
+                javax.xml.stream.XMLStreamConstants.CHARACTERS,
+                javax.xml.stream.XMLStreamConstants.CDATA,
+                -> chars.append(reader.text)
+                javax.xml.stream.XMLStreamConstants.END_ELEMENT -> when (reader.localName) {
+                    "string" -> entries[ResourceKey("string", name!!)] = TextValue.Single(unescape(chars.toString()))
+                    "item" -> plural[quantity!!] = unescape(chars.toString())
+                    "plurals" -> entries[ResourceKey("plurals", name!!)] = TextValue.Plural(LinkedHashMap(plural))
+                }
+            }
+        }
+        reader.close()
+        check(type == null || entries.isNotEmpty()) { "no entries read" }
+        return entries
+    }
+
+    /** The inverse of [CmpStringsXml.encode]: one pass, and any other escape is the writer having changed. */
+    private fun unescape(text: String): String = buildString {
+        var i = 0
+        while (i < text.length) {
+            val c = text[i]
+            if (c != '\\') {
+                append(c)
+                i++
+                continue
+            }
+            if (i + 1 >= text.length) throw StringsBuildException("value ends in a dangling backslash: $text")
+            when (val e = text[i + 1]) {
+                '\\' -> { append('\\'); i += 2 }
+                'n' -> { append('\n'); i += 2 }
+                't' -> { append('\t'); i += 2 }
+                'u' -> {
+                    if (i + 6 > text.length) throw StringsBuildException("truncated \\u escape in: $text")
+                    append(text.substring(i + 2, i + 6).toInt(16).toChar())
+                    i += 6
+                }
+                else -> throw StringsBuildException("CmpStringsXml.encode never emits the escape '\\$e': $text")
+            }
+        }
+    }
+
+    private fun factory(): XMLInputFactory = XMLInputFactory.newDefaultFactory().apply {
+        setProperty(XMLInputFactory.SUPPORT_DTD, false)
+        setProperty(XMLInputFactory.IS_SUPPORTING_EXTERNAL_ENTITIES, false)
+        setProperty(XMLInputFactory.IS_NAMESPACE_AWARE, true)
+    }
 }

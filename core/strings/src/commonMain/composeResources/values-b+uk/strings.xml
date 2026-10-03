@@ -3,7 +3,6 @@
 <resources>
 <plurals name="downloads_active"><item quantity="one">%d активне завантаження</item><item quantity="few">%d активні завантаження</item><item quantity="many">%d активних завантажень</item><item quantity="other">%d активних завантажень</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d завантаження в черзі</item><item quantity="few">%d завантаження в черзі</item><item quantity="many">%d завантажень у черзі</item><item quantity="other">%d завантажень у черзі</item></plurals>
-<plurals name="episodes"><item quantity="one">Епізод</item><item quantity="other">Епізоди</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d приховане посилання</item><item quantity="few">%d приховані посилання</item><item quantity="many">%d прихованих посилань</item><item quantity="other">%d прихованих посилань</item></plurals>
 <string name="account">обліковий запис</string>
 <string name="action_add_to_bookmarks">Змінити стан перегляду</string>
@@ -122,7 +121,6 @@
 <string name="category_providers">Постачальники</string>
 <string name="category_ui">Макет</string>
 <string name="category_updates">Оновлення та резервне копіювання</string>
-<string name="change_providers_img_des">Змінити постачальника</string>
 <string name="check_for_update">Перевірити наявність оновлень</string>
 <string name="chromecast_subtitles_settings">Субтитри Chromecast</string>
 <string name="chromecast_subtitles_settings_des">Налаштування субтитрів Chromecast</string>
@@ -143,8 +141,6 @@
 <string name="cs3wiki">CloudStream Wiki</string>
 <string name="custom">Власний</string>
 <string name="custom_media_singular">Медіа</string>
-<string name="default_account">Типово</string>
-<string name="default_subtitles">Типово</string>
 <string name="delayed_update_notice">Застосунок буде оновлено після виходу</string>
 <string name="delete">Видалити</string>
 <string name="delete_file">Видалити файл</string>
@@ -200,7 +196,6 @@
 <string name="downloads_delete_select">Оберіть елементи для видалення</string>
 <string name="downloads_empty">Наразі завантажень немає.</string>
 <string name="duplicate_add">Додати</string>
-<string name="duplicate_cancel">Скасувати</string>
 <string name="duplicate_message_multiple">У вашій бібліотеці виявлено можливі дублікати:\n\n%s\n\nУсе одно хочете додати цей елемент, замінити наявні чи скасувати дію?</string>
 <string name="duplicate_message_single">Схоже, що у вашій бібліотеці вже є можливий дублікат: '%s.'\n\nУсе одно хочете додати цей елемент, замінити наявний чи скасувати дію?</string>
 <string name="duplicate_replace">Замінити</string>
@@ -238,7 +233,6 @@
 <string name="episode_action_reload_links">Перезавантажити посилання</string>
 <string name="episode_format">%1$d %2$s</string>
 <string name="episode_more_options_des">Більше налаштувань</string>
-<string name="episode_play_img_des">Відтворити епізод</string>
 <string name="episode_poster_img_des">Постер епізоду</string>
 <string name="episode_short">Е</string>
 <string name="episode_sync_settings">Оновлювати прогрес перегляду</string>
@@ -512,7 +506,6 @@
 <string name="restore_settings">Відновлення даних із резервної копії</string>
 <string name="restore_success">Завантажено файл резервної копії</string>
 <string name="result_open_in_browser">Відкрити в браузері</string>
-<string name="result_plot">Стислий зміст</string>
 <string name="result_poster_img_des">Плакат</string>
 <string name="result_search_tooltip">Пошук в інших розширеннях</string>
 <string name="result_share">Поділитися</string>
@@ -583,7 +576,6 @@
 <string name="sort_button_episode">Еп. %s</string>
 <string name="sort_button_rating">Рейтинг %s</string>
 <string name="sort_by">Сортувати за</string>
-<string name="sort_cancel">Скасувати</string>
 <string name="sort_clear">Очистити</string>
 <string name="sort_close">Закрити</string>
 <string name="sort_copy">Скопіювати</string>
@@ -650,7 +642,6 @@
 <string name="subtitles_filter_lang">Фільтрувати за бажаною мовою медіа</string>
 <string name="subtitles_from_embedded">Вбудовані</string>
 <string name="subtitles_from_online">Мережеві</string>
-<string name="subtitles_none">Нічого</string>
 <string name="subtitles_outline">Обведення</string>
 <string name="subtitles_raised">Підняті</string>
 <string name="subtitles_remove_bloat">Вилучати роздуття субтитрів</string>
@@ -698,7 +689,6 @@
 <string name="tv_series_singular">Серіал</string>
 <string name="type_completed">Завершено</string>
 <string name="type_dropped">Покинуто</string>
-<string name="type_none">Нічого</string>
 <string name="type_on_hold">Відкладено</string>
 <string name="type_plan_to_watch">Заплановано</string>
 <string name="type_re_watching">Передивляюся</string>

@@ -121,7 +121,6 @@
 <string name="category_providers">Fornecedores</string>
 <string name="category_ui">Layout</string>
 <string name="category_updates">Atualizações e Backup</string>
-<string name="change_providers_img_des">Alterar provedor</string>
 <string name="check_for_update">Procurar atualização</string>
 <string name="chromecast_subtitles_settings">Modificar legendas do Chromecast</string>
 <string name="chromecast_subtitles_settings_des">Alterar legendas exibidas no Chromecast</string>
@@ -643,7 +642,6 @@
 <string name="subtitles_filter_lang">Filtrar por linguagem preferida</string>
 <string name="subtitles_from_embedded">Incorporada</string>
 <string name="subtitles_from_online">Online</string>
-<string name="subtitles_none">Nenhum</string>
 <string name="subtitles_outline">Contornado</string>
 <string name="subtitles_raised">Em Relevo</string>
 <string name="subtitles_remove_bloat">Remover bloat das legendas</string>
@@ -691,7 +689,6 @@
 <string name="tv_series_singular">Série</string>
 <string name="type_completed">Concluído</string>
 <string name="type_dropped">Desisti de ver</string>
-<string name="type_none">Nenhum</string>
 <string name="type_on_hold">Em espera</string>
 <string name="type_plan_to_watch">Planejo assistir</string>
 <string name="type_re_watching">Reassistindo</string>

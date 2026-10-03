@@ -3,7 +3,6 @@
 <resources>
 <plurals name="downloads_active"><item quantity="one">%d téléchargement actif</item><item quantity="many">%d téléchargements actifs</item><item quantity="other">%d téléchargements actifs</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d téléchargement en attente</item><item quantity="many">%d téléchargements en attente</item><item quantity="other">%d téléchargements en attente</item></plurals>
-<plurals name="episodes"><item quantity="one">Épisode</item><item quantity="other">Épisodes</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d lien caché</item><item quantity="many">%d liens cachés</item><item quantity="other">%d liens cachés</item></plurals>
 <string name="account">compte</string>
 <string name="action_add_to_bookmarks">Définir le statut de visionage</string>
@@ -122,7 +121,6 @@
 <string name="category_providers">Fournisseurs</string>
 <string name="category_ui">Disposition</string>
 <string name="category_updates">Mises à jour et Sauvegarde</string>
-<string name="change_providers_img_des">Changer le fournisseur</string>
 <string name="check_for_update">Vérifier les mise-à-jour</string>
 <string name="chromecast_subtitles_settings">Sous-titres Chromecast</string>
 <string name="chromecast_subtitles_settings_des">Paramètres des sous-titres Chromecast</string>
@@ -143,8 +141,6 @@
 <string name="cs3wiki">Wiki de CloudStream</string>
 <string name="custom">Personnalisé</string>
 <string name="custom_media_singular">Média</string>
-<string name="default_account">Défault</string>
-<string name="default_subtitles">Défault</string>
 <string name="delayed_update_notice">L'application sera mise à jour dès la fin de la session</string>
 <string name="delete">Supprimer</string>
 <string name="delete_file">Supprimer le Fichier</string>
@@ -200,7 +196,6 @@
 <string name="downloads_delete_select">Sélectionner les éléments à supprimer</string>
 <string name="downloads_empty">Aucun téléchargement.</string>
 <string name="duplicate_add">Ajouter</string>
-<string name="duplicate_cancel">Annuler</string>
 <string name="duplicate_message_multiple">Des doublons potentiels ont été trouvés dans votre bibliothèque : \n \n%s \n \nSouhaitez-vous ajouter cet élément, remplacer les éléments existants ou annuler l'action ?</string>
 <string name="duplicate_message_single">Il semble qu'un élément potentiellement dupliqué existe déjà dans votre bibliothèque : '%s. \n \nSouhaitez-vous ajouter cet élément, remplacer l'élément existant ou annuler l'action ?</string>
 <string name="duplicate_replace">Remplacer</string>
@@ -238,7 +233,6 @@
 <string name="episode_action_reload_links">Recharger les liens</string>
 <string name="episode_format">%1$d %2$s</string>
 <string name="episode_more_options_des">Plus d'options</string>
-<string name="episode_play_img_des">Lire l'Épisode</string>
 <string name="episode_poster_img_des">Affiche de l'épisode</string>
 <string name="episode_short">E</string>
 <string name="episode_sync_settings">Mise à jour de la progression du visionnage</string>
@@ -582,7 +576,6 @@
 <string name="sort_button_episode">Ép %s</string>
 <string name="sort_button_rating">Note %s</string>
 <string name="sort_by">Trier par</string>
-<string name="sort_cancel">Annuler</string>
 <string name="sort_clear">Vider</string>
 <string name="sort_close">Fermer</string>
 <string name="sort_copy">Copier</string>
@@ -649,7 +642,6 @@
 <string name="subtitles_filter_lang">Filtrez par langue préférée</string>
 <string name="subtitles_from_embedded">Intégré</string>
 <string name="subtitles_from_online">En ligne</string>
-<string name="subtitles_none">Aucun</string>
 <string name="subtitles_outline">Contour</string>
 <string name="subtitles_raised">Élévation</string>
 <string name="subtitles_remove_bloat">Supprimer les éléments superflus des sous-titres</string>
@@ -697,7 +689,6 @@
 <string name="tv_series_singular">Séries</string>
 <string name="type_completed">Terminé</string>
 <string name="type_dropped">Abandonné</string>
-<string name="type_none">Aucun</string>
 <string name="type_on_hold">En pause</string>
 <string name="type_plan_to_watch">À regarder</string>
 <string name="type_re_watching">À re-regarder</string>

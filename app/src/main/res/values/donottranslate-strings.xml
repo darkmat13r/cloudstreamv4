@@ -110,54 +110,14 @@
     <string name="tv_no_focus_tag">tv_no_focus_tag</string>
 
     <!-- FORMAT WILL CAUSE CRASH IF APPLIED WRONG -->
-    <string name="extra_info_format" formatted="true">%1$d %2$s | %3$s</string>
-    <string name="storage_size_format" formatted="true">%1$s • %2$s</string>
-    <string name="download_format" formatted="true">%1$s - %2$s</string>
-    <string name="download_size_format" formatted="true">%1$s / %2$s</string>
-    <string name="episode_name_format" formatted="true">%1$s %2$s</string>
     <string name="episode_text">S1E1</string>
-    <string name="ffw_text_format" formatted="true">+%d</string>
-    <string name="rew_text_format" formatted="true">-%d</string>
-    <string name="ffw_text_regular_format" formatted="true">%d</string>
-    <string name="rew_text_regular_format" formatted="true">%d</string>
-    <string name="rating_format" formatted="true">%s/10.0</string>
-    <string name="year_format" formatted="true">%d</string>
 
-    <string name="episode_play_img_des">@string/play_episode</string>
-    <string name="change_providers_img_des">@string/home_change_provider_img_des</string>
-    <string name="result_plot">@string/synopsis</string>
 
-    <string name="subtitles_none">@string/none</string>
-    <string name="type_none">@string/none</string>
-    <string name="duplicate_cancel">@string/cancel</string>
-    <string name="sort_cancel">@string/cancel</string>
-    <string name="default_subtitles">@string/action_default</string>
-    <string name="default_account">@string/action_default</string>
 
     <string name="show_name_key">show_name</string>
     <string name="show_resolution_key">show_resolution</string>
     <string name="show_media_info_key">show_media_info</string>
     <string name="prefer_title_limit_key">prefer_title_limit</string>
 
-    <string name="legal_notice_text">Any legal issues regarding the content on this application
-        should be taken up with the actual file hosts and providers themselves as we are not affiliated with them.
 
-        \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites.
-
-        \n\nThe app is purely for educational and personal use.
-
-        \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down.
-        CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or
-        manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient,
-        user-friendly interface.
-
-        \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the
-        responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use
-        CloudStream at your own risk.
-    </string>
-
-    <plurals name="episodes">
-        <item quantity="one">@string/episode</item>
-        <item quantity="other">@string/episodes</item>
-    </plurals>
 </resources>

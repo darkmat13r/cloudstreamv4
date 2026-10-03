@@ -1,30 +1,11 @@
 # Names in app/src/main/res/values/donottranslate-strings.xml that are user-visible text and are generated into
 # :core:strings. Everything else in that file is a SharedPreferences key or a view tag. A listed name that does not
 # exist fails generateComposeStrings (guard UNKNOWN_ALLOWLIST_NAME).
-
-# Format patterns (episode_text "S1E1" is a placeholder, not listed)
-extra_info_format
-storage_size_format
-download_format
-download_size_format
-episode_name_format
-ffw_text_format
-rew_text_format
-ffw_text_regular_format
-rew_text_regular_format
-rating_format
-year_format
-
-# Aliases of translated strings, resolved in each locale
-episode_play_img_des
-change_providers_img_des
-result_plot
-subtitles_none
-type_none
-duplicate_cancel
-sort_cancel
-default_subtitles
-default_account
-
-legal_notice_text
-episodes
+#
+# Empty since I18N-07 step 4.2. The 22 names that were here are user-visible text, and the authored Compose tree is
+# now the source for all user-visible text, so they sit in values/strings.xml like every other such string. They
+# were defined in both files for exactly as long as it took to move them, which is why that step had to delete them
+# from donottranslate-strings.xml in the same change.
+#
+# The mechanism stays wired while that file still exists: anything user-visible that lands in it again belongs in
+# strings.xml instead, and listing it here is the stopgap. I18N-07 PR 5 decides whether the file and this list go.

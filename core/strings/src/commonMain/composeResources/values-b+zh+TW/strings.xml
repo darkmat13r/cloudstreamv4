@@ -3,8 +3,6 @@
 <resources>
 <plurals name="downloads_active"><item quantity="other">%d 個正在下載</item></plurals>
 <plurals name="downloads_queued"><item quantity="other">佇列中有 %d 個下載</item></plurals>
-<plurals name="episodes"><item quantity="one">集</item><item quantity="other">集</item></plurals>
-<plurals name="links_hidden"><item quantity="one">%d hidden link</item><item quantity="other">%d hidden links</item></plurals>
 <string name="account">帳號</string>
 <string name="action_add_to_bookmarks">設定觀看狀態</string>
 <string name="action_add_to_favorites">加入我的最愛</string>
@@ -122,7 +120,6 @@
 <string name="category_providers">片源</string>
 <string name="category_ui">佈局</string>
 <string name="category_updates">更新和備份</string>
-<string name="change_providers_img_des">更改片源</string>
 <string name="check_for_update">檢查更新</string>
 <string name="chromecast_subtitles_settings">Chromecast 字幕</string>
 <string name="chromecast_subtitles_settings_des">Chromecast 字幕設定</string>
@@ -143,8 +140,6 @@
 <string name="cs3wiki">CloudStream Wiki</string>
 <string name="custom">自訂</string>
 <string name="custom_media_singular">媒體</string>
-<string name="default_account">預設</string>
-<string name="default_subtitles">預設</string>
 <string name="delayed_update_notice">應用程式將在關閉時更新</string>
 <string name="delete">刪除</string>
 <string name="delete_file">刪除檔案</string>
@@ -200,7 +195,6 @@
 <string name="downloads_delete_select">選擇要刪除的項目</string>
 <string name="downloads_empty">目前沒有任何下載。</string>
 <string name="duplicate_add">加入</string>
-<string name="duplicate_cancel">取消</string>
 <string name="duplicate_message_multiple">您的媒體庫中似乎有多個重覆的項目： \n \n%s \n \n您要強制加入、取代已有項目、還是取消操作？</string>
 <string name="duplicate_message_single">您的媒體庫中似乎有重覆的項目：「%s」。 \n \n您要強制加入、取代已有項目、還是取消操作？</string>
 <string name="duplicate_replace">取代</string>
@@ -238,7 +232,6 @@
 <string name="episode_action_reload_links">重新載入連結</string>
 <string name="episode_format">%1$d %2$s</string>
 <string name="episode_more_options_des">更多選項</string>
-<string name="episode_play_img_des">播放劇集</string>
 <string name="episode_poster_img_des">劇集封面</string>
 <string name="episode_short">E</string>
 <string name="episode_sync_settings">更新觀看進度</string>
@@ -455,10 +448,7 @@
 <string name="previous">上一個</string>
 <string name="primary_color_settings">主題色</string>
 <string name="profile_background_des">設定檔背景</string>
-<string name="profile_hide_error_sources">Hide sources with errors</string>
-<string name="profile_hide_negative_sources">Hide sources with a negative priority</string>
 <string name="profile_number">設定檔 %d</string>
-<string name="profile_settings">Profile settings</string>
 <string name="profiles">設定檔</string>
 <string name="provider_info_meta">站點不提供元數據，如果站點上不存在元數據，影片載入將失敗。</string>
 <string name="provider_lang_settings">擴充功能語言</string>
@@ -512,7 +502,6 @@
 <string name="restore_settings">從備份中恢復資料</string>
 <string name="restore_success">已載入備份資料</string>
 <string name="result_open_in_browser">在瀏覽器中打開</string>
-<string name="result_plot">簡介</string>
 <string name="result_poster_img_des">封面</string>
 <string name="result_search_tooltip">在其他擴充功能中搜尋</string>
 <string name="result_share">分享</string>
@@ -583,7 +572,6 @@
 <string name="sort_button_episode">第 %s 集</string>
 <string name="sort_button_rating">評分 %s</string>
 <string name="sort_by">排序方式</string>
-<string name="sort_cancel">取消</string>
 <string name="sort_clear">清除</string>
 <string name="sort_close">關閉</string>
 <string name="sort_copy">複製</string>
@@ -650,7 +638,6 @@
 <string name="subtitles_filter_lang">按偏好的片源語言篩選</string>
 <string name="subtitles_from_embedded">內嵌</string>
 <string name="subtitles_from_online">線上</string>
-<string name="subtitles_none">無</string>
 <string name="subtitles_outline">輪廓</string>
 <string name="subtitles_raised">凸出</string>
 <string name="subtitles_remove_bloat">移除字幕廣告</string>
@@ -692,13 +679,10 @@
 <string name="tracks">軌道</string>
 <string name="trailer">預告片</string>
 <string name="tv_layout">電視版面配置</string>
-<string name="tv_layout_clock_settings">Show real time clock</string>
-<string name="tv_layout_clock_settings_des">Show a real time clock at the top of the screen. Applies to the homepage and player</string>
 <string name="tv_series">電視劇</string>
 <string name="tv_series_singular">電視劇</string>
 <string name="type_completed">觀看完畢</string>
 <string name="type_dropped">放棄觀看</string>
-<string name="type_none">無</string>
 <string name="type_on_hold">暫時擱置</string>
 <string name="type_plan_to_watch">計畫觀看</string>
 <string name="type_re_watching">重新觀看</string>

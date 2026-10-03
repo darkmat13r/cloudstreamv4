@@ -22,7 +22,6 @@
 <string name="cast_format">Oyunçu heyəti: %s</string>
 <string name="category_account">Hesablar və Təhlükəsizlik</string>
 <string name="category_updates">Yeniləmələr və Ehtiyat Nüsxələmə</string>
-<string name="change_providers_img_des">Provayderi dəyişdir</string>
 <string name="chromecast_subtitles_settings">Chromecast Subtitrləri</string>
 <string name="chromecast_subtitles_settings_des">Chromecast subtitr parametrləri</string>
 <string name="copy_link_toast">Link mübadilə buferinə nüsxələndi</string>
@@ -47,14 +46,12 @@
 <string name="downloading">Yüklənir</string>
 <string name="downloads_delete_select">Silinəcək faylları seçin</string>
 <string name="downloads_empty">Hal-hazırda heç bir yükləmə yoxdur.</string>
-<string name="duplicate_cancel">Ləğv et</string>
 <string name="duration_format">%d dəqiqə</string>
 <string name="eigengraumode_settings">Pleyer oynadılma sürəti</string>
 <string name="encoding_error">Kodlama xətası</string>
 <string name="episode_action_cast_mirror">Ekran yansıtma</string>
 <string name="episode_format">%1$d%2$s</string>
 <string name="episode_more_options_des">Daha çox seçimlər</string>
-<string name="episode_play_img_des">Bölümü oynat</string>
 <string name="episode_poster_img_des">Bölüm Afişası</string>
 <string name="episodes_range">%1$d-%2$d</string>
 <string name="go_back">Geri dön</string>
@@ -123,7 +120,6 @@
 <string name="settings_info">Məlumat</string>
 <string name="show_trailers_settings">Treylerləri göstər</string>
 <string name="skip_loading">Yükləməni keç</string>
-<string name="sort_cancel">Ləğv et</string>
 <string name="source_error">Mənbə xətası</string>
 <string name="start">Başlat</string>
 <string name="storage_error">Yükləmə xətası, yaddaş icazələrini yoxlayın</string>

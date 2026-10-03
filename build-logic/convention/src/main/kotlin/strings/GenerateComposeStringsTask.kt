@@ -17,7 +17,6 @@ import org.gradle.api.tasks.InputFile
 import org.gradle.api.tasks.InputFiles
 import org.gradle.api.tasks.Internal
 import org.gradle.api.tasks.Nested
-import org.gradle.api.tasks.Optional
 import org.gradle.api.tasks.OutputDirectory
 import org.gradle.api.tasks.PathSensitive
 import org.gradle.api.tasks.PathSensitivity
@@ -70,14 +69,6 @@ abstract class GenerateComposeStringsTask : DefaultTask() {
     @get:PathSensitive(PathSensitivity.NONE)
     abstract val parityRequests: RegularFileProperty
 
-    /**
-     * Values the authored tree carries that this pass does not derive, see [AuthoredAdditions] and
-     * `authored-additions.tsv`. Applied to the emitted tree only, never to the lookup.
-     */
-    @get:InputFile
-    @get:Optional
-    @get:PathSensitive(PathSensitivity.NONE)
-    abstract val additions: RegularFileProperty
 
     /**
      * Target -> source directory copies for languages Compose and Android name differently, see [LocaleCopies].
@@ -90,8 +81,20 @@ abstract class GenerateComposeStringsTask : DefaultTask() {
     @get:Input
     abstract val guardMode: Property<String>
 
+    /** The materialised tree Compose packages: [leanDir] plus the copies that make its fallback match Android's. */
     @get:OutputDirectory
     abstract val outputDir: DirectoryProperty
+
+    /**
+     * The **lean** tree — only what each directory declares, references resolved. This is the shape the authored
+     * source is committed in and the shape `app/src/main/res` is written back in; see [PipelineResult.lean].
+     */
+    @get:OutputDirectory
+    abstract val leanDir: DirectoryProperty
+
+    /** Every `@string/…` reference the res holds, so the res can be written back as it was; [AuthoredAliases]. */
+    @get:org.gradle.api.tasks.OutputFile
+    abstract val aliasesFile: RegularFileProperty
 
     @get:OutputDirectory
     abstract val oracleDir: DirectoryProperty
@@ -106,6 +109,7 @@ abstract class GenerateComposeStringsTask : DefaultTask() {
         val sources = ArrayList<SourceFile>()
         sourceFiles.visit { if (!isDirectory) sources += SourceFile(relativePath.pathString, file.readBytes()) }
         val out = outputDir.get().asFile.apply { deleteRecursively(); mkdirs() }
+        val lean = leanDir.get().asFile.apply { deleteRecursively(); mkdirs() }
         val oracles = oracleDir.get().asFile.apply { deleteRecursively(); mkdirs() }
         val aapt2 = aapt2.get()
         val compiler = Aapt2Compiler(exec, aapt2.executable.get().asFile, File(temporaryDir, "aapt2"), findings)
@@ -122,20 +126,14 @@ abstract class GenerateComposeStringsTask : DefaultTask() {
             throw GradleException("generateComposeStrings: ${e.message}", e)
         }
 
-        val problems = mutableListOf<String>()
-        val emitted = AuthoredAdditions.apply(
-            result.emitted,
-            AuthoredAdditions.parse(additions.orNull?.asFile?.readText().orEmpty()),
-            problems,
-        )
-        if (problems.isNotEmpty()) {
-            throw GradleException(
-                "generateComposeStrings, ${additions.get().asFile.name}:\n" +
-                    problems.joinToString("\n") { "  $it" },
-            )
-        }
+        val emitted = result.emitted
+        val leanTree = result.lean
         emitted.forEach { (directory, entries) ->
             File(out, "$directory/strings.xml").apply { parentFile.mkdirs() }.writeText(CmpStringsXml.write(entries))
+        }
+        aliasesFile.get().asFile.apply { parentFile.mkdirs() }.writeText(AuthoredAliases.format(result.aliases))
+        leanTree.forEach { (directory, entries) ->
+            File(lean, "$directory/strings.xml").apply { parentFile.mkdirs() }.writeText(CmpStringsXml.write(entries))
         }
         File(oracles, "decoded.tsv").writeText(StringsOracles.decoded(result.decoded))
         File(oracles, "emitted.tsv").writeText(StringsOracles.emitted(emitted))
@@ -146,6 +144,8 @@ abstract class GenerateComposeStringsTask : DefaultTask() {
             add("aapt2 ${aapt2.version.get()} compile --legacy; guards=${guardMode.get()}")
             addAll(result.report)
             add("emitted directories: ${emitted.size}, values: ${emitted.values.sumOf { it.size }}")
+            add("lean directories: ${leanTree.size}, values: ${leanTree.values.sumOf { it.size }}")
+            add("@string references preserved: ${result.aliases.size}")
             findings.all.groupingBy { it.kind }.eachCount().toSortedMap()
                 .forEach { (kind, n) -> add("finding $kind: $n") }
         }

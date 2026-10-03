@@ -3,7 +3,6 @@
 <resources>
 <plurals name="downloads_active"><item quantity="one">م شي عم يتنزل</item><item quantity="other">شي واحد عم يتنزل</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">مافي شي بعد بده يبلش يتنزل</item><item quantity="other">فيه شي واحد بعد بده يبلش يتنزل</item></plurals>
-<plurals name="episodes"><item quantity="one">حلقة</item><item quantity="other">حلقات</item></plurals>
 <string name="account">أكونت</string>
 <string name="action_add_to_bookmarks">عدل حالة الحَضِر</string>
 <string name="action_add_to_favorites">زيدو ع المفضل</string>
@@ -121,7 +120,6 @@
 <string name="category_providers">المصادر</string>
 <string name="category_ui">الشكل</string>
 <string name="category_updates">التجديدات وال نسخات الاحتياطية</string>
-<string name="change_providers_img_des">غير المصدر</string>
 <string name="check_for_update">شوف إزا فيه تجديد</string>
 <string name="chromecast_subtitles_settings">ترجمة "كروم كاست"</string>
 <string name="chromecast_subtitles_settings_des">سَتِنگز تبع ترجمة "كروم كاست"</string>
@@ -142,8 +140,6 @@
 <string name="cs3wiki">ويكي "كلود ستريم"</string>
 <string name="custom">حدد غير محل</string>
 <string name="custom_media_singular">الميديا</string>
-<string name="default_account">الإفتراضي</string>
-<string name="default_subtitles">الإفتراضي</string>
 <string name="delayed_update_notice">رح يتجدد الآپ وقتا تطلعو مِنو</string>
 <string name="delete">محي</string>
 <string name="delete_file">محي الملف</string>
@@ -199,7 +195,6 @@
 <string name="downloads_delete_select">نقي الإشيا اللي بدك تمحيها</string>
 <string name="downloads_empty">مافي تنزيلات هلّق.</string>
 <string name="duplicate_add">زيد</string>
-<string name="duplicate_cancel">كَنسِل</string>
 <string name="duplicate_message_multiple">مبين إنو فيه عنصر متل هيدا موجود بال مكتبة عندكن: \n \n%s \n \nبدكن تزيدو هيدا العنصر بأيّ حال، أو تستبدلوه مع العنصر الموجود، أو تلغو الإجراء؟</string>
 <string name="duplicate_message_single">مبين إنو في عنصر متل هيدا موجود بالمكتبة عندكن: \n"%s" \n \nبدكن تزيدو هيدا العنصر بأيّ حال، أو تستبدلوّ مع العنصر الموجود، أو تلغو الإجراء؟</string>
 <string name="duplicate_replace">ستبدل</string>
@@ -237,7 +232,6 @@
 <string name="episode_action_reload_links">رجاع عمول لُود لَلروابط</string>
 <string name="episode_format">%1$d %2$s</string>
 <string name="episode_more_options_des">بعد خيارات</string>
-<string name="episode_play_img_des">مشّي الحلقة</string>
 <string name="episode_poster_img_des">پوستر تبع الحلقة</string>
 <string name="episode_short">ح</string>
 <string name="episode_sync_settings">سيّڤ تاريخ المشاهدة</string>
@@ -508,7 +502,6 @@
 <string name="restore_settings">عوز النسخة الإحتياطية</string>
 <string name="restore_success">رجِعِت ع النسخة الإحتياطية</string>
 <string name="result_open_in_browser">فتحو بمتصفح الوَب</string>
-<string name="result_plot">القصة</string>
 <string name="result_poster_img_des">پوستر</string>
 <string name="result_search_tooltip">نبش بغير مصادر</string>
 <string name="result_share">شّار</string>
@@ -579,7 +572,6 @@
 <string name="sort_button_episode">ح %s</string>
 <string name="sort_button_rating">رايتينگ %s</string>
 <string name="sort_by">ترتيب حسب</string>
-<string name="sort_cancel">كَنسِل</string>
 <string name="sort_clear">فضّى</string>
 <string name="sort_close">سكّر</string>
 <string name="sort_copy">نسخ</string>
@@ -646,7 +638,6 @@
 <string name="subtitles_filter_lang">فَلتِر حسب اللغة المفضلة</string>
 <string name="subtitles_from_embedded">داخلياً</string>
 <string name="subtitles_from_online">اونلاين</string>
-<string name="subtitles_none">ولا شي</string>
 <string name="subtitles_outline">حدود خطية</string>
 <string name="subtitles_raised">معلى</string>
 <string name="subtitles_remove_bloat">شيل الإعلانات من الترجمة</string>
@@ -692,7 +683,6 @@
 <string name="tv_series_singular">مسلسل</string>
 <string name="type_completed">مخلص</string>
 <string name="type_dropped">موقف</string>
-<string name="type_none">ولا شي</string>
 <string name="type_on_hold">موقف موقتًا</string>
 <string name="type_plan_to_watch">ناوي إحضر</string>
 <string name="type_re_watching">عم إرجع إحضر</string>

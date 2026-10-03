@@ -16,7 +16,6 @@
 <string name="benene_count_text_none">ಯಾವುದೇ ಬೆನೆನ್ಸ್ ನೀಡಿಲ್ಲ</string>
 <string name="browser">ಬ್ರೌಸರ್</string>
 <string name="cast_format">ಕ್ಯಾಸ್ಟ್:%s</string>
-<string name="change_providers_img_des">ಪ್ರೊವೈಡರ್ ಬದಲಾಯಿಸಿ</string>
 <string name="chromecast_subtitles_settings">ಕ್ರೋಮ್ ಕ್ಯಾಸ್ಟ್ ಸಬ್ ಟೈಟಲ್ಸ್</string>
 <string name="chromecast_subtitles_settings_des">ಕ್ರೋಮ್ ಕ್ಯಾಸ್ಟ್ ಸಬ್ ಟೈಟಲ್ಸ್ ಸೆಟ್ಟಿಂಗ್ಸ್</string>
 <string name="continue_watching">ಕಂಟಿನ್ಯೂ ವಾಟಚಿಂಗ್</string>
@@ -32,7 +31,6 @@
 <string name="downloading">ಡೌನ್‌ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ</string>
 <string name="duration_format">%dಮಿನ</string>
 <string name="episode_more_options_des">ಹೆಚ್ಚಿನ ಆಯ್ಕೆ</string>
-<string name="episode_play_img_des">ಸಂಚಿಕೆಯನ್ನು ಪ್ಲೇ ಮಾಡಿ</string>
 <string name="episode_poster_img_des">ಸಂಚಿಕೆ ಪೋಸ್ಟರ್</string>
 <string name="error_bookmarks_text">ಬುಕ್‌ಮಾರ್ಕ್‌</string>
 <string name="error_loading_links_toast">ಲೋಡಿಂಗ್ ಲಿಂಕ್ ಎರರ್ ಬಂದಿದೆ</string>

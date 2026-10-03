@@ -3,7 +3,6 @@
 <resources>
 <plurals name="downloads_active"><item quantity="one">%d செயலில் பதிவிறக்கம்</item><item quantity="other">%d செயலில் உள்ள பதிவிறக்கங்கள்</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d பதிவிறக்கம் வரிசையில் உள்ளது</item><item quantity="other">%d பதிவிறக்கங்கள் வரிசையில் உள்ளன</item></plurals>
-<plurals name="episodes"><item quantity="one">அத்தியாயம்</item><item quantity="other">அத்தியாயங்கள்</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d மறைக்கப்பட்ட இணைப்பு</item><item quantity="other">%d மறைக்கப்பட்ட இணைப்புகள்</item></plurals>
 <string name="account">கணக்கு</string>
 <string name="action_add_to_bookmarks">கடிகார நிலையை அமைக்கவும்</string>
@@ -122,7 +121,6 @@
 <string name="category_providers">வழங்குநர்கள்</string>
 <string name="category_ui">மனையமைவு</string>
 <string name="category_updates">புதுப்பிப்புகள் மற்றும் காப்புப்பிரதி</string>
-<string name="change_providers_img_des">வழங்குநரை மாற்றவும்</string>
 <string name="check_for_update">மேம்படுத்தல் சோதிக்க</string>
 <string name="chromecast_subtitles_settings">Chromecast வசன வரிகள்</string>
 <string name="chromecast_subtitles_settings_des">Chromecast வசன வரிகள் அமைப்புகள்</string>
@@ -143,8 +141,6 @@
 <string name="cs3wiki">கிளவுட்ச்ட்ரீம் விக்கி</string>
 <string name="custom">தனிப்பயன்</string>
 <string name="custom_media_singular">ஊடகம்</string>
-<string name="default_account">இயல்புநிலை</string>
-<string name="default_subtitles">இயல்புநிலை</string>
 <string name="delayed_update_notice">வெளியேறியதும் பயன்பாடு புதுப்பிக்கப்படும்</string>
 <string name="delete">அழி</string>
 <string name="delete_file">கோப்பை அழி</string>
@@ -200,7 +196,6 @@
 <string name="downloads_delete_select">அழிப்பதற்கு தேர்ந்தெடுக்கவும்</string>
 <string name="downloads_empty">தற்போது பதிவிறக்கங்கள் எதுவும் இல்லை.</string>
 <string name="duplicate_add">கூட்டு</string>
-<string name="duplicate_cancel">ரத்துசெய்</string>
 <string name="duplicate_message_multiple">உங்கள் நூலகத்தில் சாத்தியமான நகல் உருப்படிகள் கண்டறியப்பட்டுள்ளன:\n\n %s\n\n இந்த உருப்படியை எப்படியும் சேர்க்க விரும்புகிறீர்களா, ஏற்கனவே உள்ளவற்றை மாற்ற விரும்புகிறீர்களா அல்லது செயலை ரத்து செய்ய விரும்புகிறீர்களா?</string>
 <string name="duplicate_message_single">உங்கள் நூலகத்தில் ஏற்கனவே ஒரு நகல் உருப்படி இருப்பதாகத் தெரிகிறது: '%s.'\n\n இந்த உருப்படியை எப்படியும் சேர்க்க விரும்புகிறீர்களா, இருக்கும் ஒன்றை மாற்ற விரும்புகிறீர்களா அல்லது செயலை ரத்து செய்ய விரும்புகிறீர்களா?</string>
 <string name="duplicate_replace">மாற்றவும்</string>
@@ -238,7 +233,6 @@
 <string name="episode_action_reload_links">இணைப்புகளை மீண்டும் ஏற்றவும்</string>
 <string name="episode_format">%1$d %2$s</string>
 <string name="episode_more_options_des">மேலும் விருப்பங்கள்</string>
-<string name="episode_play_img_des">அத்தியாயத்தை இயக்கு</string>
 <string name="episode_poster_img_des">எபிசோட்டின் போச்டர்</string>
 <string name="episode_short">இ</string>
 <string name="episode_sync_settings">வாட்ச் முன்னேற்றத்தைப் புதுப்பிக்கவும்</string>
@@ -512,7 +506,6 @@
 <string name="restore_settings">காப்புப்பிரதியிலிருந்து தரவை மீட்டெடுக்கவும்</string>
 <string name="restore_success">ஏற்றப்பட்ட காப்புப்பிரதி கோப்பு</string>
 <string name="result_open_in_browser">உலாவியில் திற</string>
-<string name="result_plot">சுருக்கம்</string>
 <string name="result_poster_img_des">போச்டர்</string>
 <string name="result_search_tooltip">பிற நீட்டிப்புகளில் தேடுங்கள்</string>
 <string name="result_share">பங்கு</string>
@@ -583,7 +576,6 @@
 <string name="sort_button_episode">பாகம் %s</string>
 <string name="sort_button_rating">மதிப்பீடு %s</string>
 <string name="sort_by">வரிசைப்படுத்தவும்</string>
-<string name="sort_cancel">ரத்துசெய்</string>
 <string name="sort_clear">தெளிவான</string>
 <string name="sort_close">மூடு</string>
 <string name="sort_copy">நகலெடு</string>
@@ -650,7 +642,6 @@
 <string name="subtitles_filter_lang">விருப்பமான ஊடக மொழியால் வடிகட்டவும்</string>
 <string name="subtitles_from_embedded">உட்பொதிக்கப்பட்டது</string>
 <string name="subtitles_from_online">ஆன்லைனில்</string>
-<string name="subtitles_none">எதுவுமில்லை</string>
 <string name="subtitles_outline">அவுட்லைன்</string>
 <string name="subtitles_raised">எழுப்பப்பட்ட</string>
 <string name="subtitles_remove_bloat">வசனங்களிலிருந்து வீக்கத்தை அகற்று</string>
@@ -698,7 +689,6 @@
 <string name="tv_series_singular">தொடர்</string>
 <string name="type_completed">முடிந்தது</string>
 <string name="type_dropped">கைவிடப்பட்டது</string>
-<string name="type_none">எதுவுமில்லை</string>
 <string name="type_on_hold">ஆன்-ஓல்ட்</string>
 <string name="type_plan_to_watch">பார்க்கத் திட்டமிடப்பட்டுள்ளது</string>
 <string name="type_re_watching">மீண்டும் பார்க்கத் தொடங்கியது</string>

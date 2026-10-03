@@ -3,7 +3,6 @@
 <resources>
 <plurals name="downloads_active"><item quantity="one">%d aktif indirme</item><item quantity="other">%d aktif indirmeler</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d indirme kuyrukta</item><item quantity="other">%d indirilecekler kuyruğa alındı</item></plurals>
-<plurals name="episodes"><item quantity="one">Bölüm</item><item quantity="other">Bölüm</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d gizli bağlantı</item><item quantity="other">%d gizli bağlantı</item></plurals>
 <string name="account">hesap</string>
 <string name="action_add_to_bookmarks">İzleme durumunu ayarla</string>
@@ -122,7 +121,6 @@
 <string name="category_providers">Sağlayıcılar</string>
 <string name="category_ui">Düzen</string>
 <string name="category_updates">Güncellemeler ve Yedekleme</string>
-<string name="change_providers_img_des">Sağlayıcıyı Değiştir</string>
 <string name="check_for_update">Güncellemeleri denetle</string>
 <string name="chromecast_subtitles_settings">Chromecast altyazıları</string>
 <string name="chromecast_subtitles_settings_des">Chromecast altyazı ayarları</string>
@@ -143,8 +141,6 @@
 <string name="cs3wiki">CloudStream bilgi</string>
 <string name="custom">Özel</string>
 <string name="custom_media_singular">Medya</string>
-<string name="default_account">Varsayılan</string>
-<string name="default_subtitles">Varsayılan</string>
 <string name="delayed_update_notice">Uygulama çıkışta güncellenecektir</string>
 <string name="delete">Sil</string>
 <string name="delete_file">Dosyayı sil</string>
@@ -200,7 +196,6 @@
 <string name="downloads_delete_select">Silinecek Öğeleri Seçin</string>
 <string name="downloads_empty">Şu an hiç bir indirme bulunmamaktadır.</string>
 <string name="duplicate_add">Ekle</string>
-<string name="duplicate_cancel">İptal</string>
 <string name="duplicate_message_multiple">Kütüphanenizde potensiyel kopya ürünler bulundu: \n \n%s \n \nYine de ekleyerek var olanları değiştirmek mi istersiniz, yoksa iptal etmek mi?</string>
 <string name="duplicate_message_single">Görünüşe göre potansiyel bir kopya kütüphanenizde zaten bulunuyor: '%s' \n \nYine de ekleyerek var olanı değiştirmek mi istersiniz, yoksa iptal etmek mi?</string>
 <string name="duplicate_replace">Değiştir</string>
@@ -238,7 +233,6 @@
 <string name="episode_action_reload_links">Bağlantıları yenile</string>
 <string name="episode_format">%1$d %2$s</string>
 <string name="episode_more_options_des">Daha Fazla Seçenek</string>
-<string name="episode_play_img_des">Bölümü Oynat</string>
 <string name="episode_poster_img_des">Bölüm Afişi</string>
 <string name="episode_short">B</string>
 <string name="episode_sync_settings">İzleme ilerlemesini güncelle</string>
@@ -512,7 +506,6 @@
 <string name="restore_settings">Verileri yedekten geri yükle</string>
 <string name="restore_success">Yedek dosyası yüklendi</string>
 <string name="result_open_in_browser">Tarayıcıda aç</string>
-<string name="result_plot">Özet</string>
 <string name="result_poster_img_des">Afiş</string>
 <string name="result_search_tooltip">Diğer uzantılarda ara</string>
 <string name="result_share">Paylaş</string>
@@ -583,7 +576,6 @@
 <string name="sort_button_episode">Bölüm %s</string>
 <string name="sort_button_rating">Puanlama %s</string>
 <string name="sort_by">Şuna Göre Sırala</string>
-<string name="sort_cancel">İptal</string>
 <string name="sort_clear">Temizle</string>
 <string name="sort_close">Kapat</string>
 <string name="sort_copy">Kopyala</string>
@@ -650,7 +642,6 @@
 <string name="subtitles_filter_lang">Tercih edilen medya diline göre filtrele</string>
 <string name="subtitles_from_embedded">Yerleştir</string>
 <string name="subtitles_from_online">Çevrimiçi</string>
-<string name="subtitles_none">Yok</string>
 <string name="subtitles_outline">Dış hat</string>
 <string name="subtitles_raised">Yükseltilmiş</string>
 <string name="subtitles_remove_bloat">Altyazılardaki şişkinliği kaldır</string>
@@ -698,7 +689,6 @@
 <string name="tv_series_singular">Dizi</string>
 <string name="type_completed">Tamamlandı</string>
 <string name="type_dropped">Bırakıldı</string>
-<string name="type_none">Yok</string>
 <string name="type_on_hold">Beklemede</string>
 <string name="type_plan_to_watch">Planlandı</string>
 <string name="type_re_watching">Yeniden izleniyor</string>

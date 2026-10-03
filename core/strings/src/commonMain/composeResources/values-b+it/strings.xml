@@ -3,7 +3,6 @@
 <resources>
 <plurals name="downloads_active"><item quantity="one">%d download attivo</item><item quantity="many">%d download attivi</item><item quantity="other">%d download attivi</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d download in coda</item><item quantity="many">%d download in coda</item><item quantity="other">%d download in coda</item></plurals>
-<plurals name="episodes"><item quantity="one">Episodio</item><item quantity="other">Episodi</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d collegamento nascosto</item><item quantity="many">%d collegamenti nascosti</item><item quantity="other">%d collegamenti nascosti</item></plurals>
 <string name="account">account</string>
 <string name="action_add_to_bookmarks">Imposta stato riproduzione</string>
@@ -122,7 +121,6 @@
 <string name="category_providers">Provider</string>
 <string name="category_ui">Interfaccia utente</string>
 <string name="category_updates">Aggiornamenti e Backup</string>
-<string name="change_providers_img_des">Cambia provider</string>
 <string name="check_for_update">Controlla aggiornamenti</string>
 <string name="chromecast_subtitles_settings">Sottotitoli Chromecast</string>
 <string name="chromecast_subtitles_settings_des">Impostazioni sottotitoli Chromecast</string>
@@ -198,7 +196,6 @@
 <string name="downloads_delete_select">Seleziona elementi da eliminare</string>
 <string name="downloads_empty">Al momento non ci sono download.</string>
 <string name="duplicate_add">Aggiungi</string>
-<string name="duplicate_cancel">Annulla</string>
 <string name="duplicate_message_multiple">Dei possibili duplicati sono stati trovati nella tua libreria: \n \n%s \n \nVorresti aggiungere l'oggetto alla libreria comunque, rimpiazzare l'esistente, o cancellare l'azione?</string>
 <string name="duplicate_message_single">Sembra che nella tua libreria esista già un elemento potenzialmente duplicato: '%s.' \n \nDesideri aggiungere comunque questo elemento, sostituire quello esistente o annullare l'azione?</string>
 <string name="duplicate_replace">Sostituisci</string>
@@ -236,7 +233,6 @@
 <string name="episode_action_reload_links">Ricarica link</string>
 <string name="episode_format">%1$d %2$s</string>
 <string name="episode_more_options_des">Più impostazioni</string>
-<string name="episode_play_img_des">Riproduci episodio</string>
 <string name="episode_poster_img_des">Poster episodio</string>
 <string name="episode_short">E</string>
 <string name="episode_sync_settings">Aggiorna progresso di visione</string>
@@ -510,7 +506,6 @@
 <string name="restore_settings">Ripristina dati da un backup</string>
 <string name="restore_success">File di backup caricato</string>
 <string name="result_open_in_browser">Apri nel browser</string>
-<string name="result_plot">Sinossi</string>
 <string name="result_poster_img_des">Poster</string>
 <string name="result_search_tooltip">Cerca in altre estensioni</string>
 <string name="result_share">Condividi</string>
@@ -581,7 +576,6 @@
 <string name="sort_button_episode">Ep %s</string>
 <string name="sort_button_rating">Valutazione %s</string>
 <string name="sort_by">Ordina per</string>
-<string name="sort_cancel">Annulla</string>
 <string name="sort_clear">Cancella</string>
 <string name="sort_close">Chiudi</string>
 <string name="sort_copy">Copia</string>
@@ -648,7 +642,6 @@
 <string name="subtitles_filter_lang">Filtra in base alla lingua preferita</string>
 <string name="subtitles_from_embedded">Incorporato</string>
 <string name="subtitles_from_online">In linea</string>
-<string name="subtitles_none">Nessuno</string>
 <string name="subtitles_outline">Contorno</string>
 <string name="subtitles_raised">Rilievo</string>
 <string name="subtitles_remove_bloat">Rimuovi il bloat dai sottotitoli</string>
@@ -696,7 +689,6 @@
 <string name="tv_series_singular">Serie</string>
 <string name="type_completed">Completato</string>
 <string name="type_dropped">Abbandonato</string>
-<string name="type_none">Nessuno</string>
 <string name="type_on_hold">In attesa</string>
 <string name="type_plan_to_watch">Da guardare</string>
 <string name="type_re_watching">Riguardando</string>

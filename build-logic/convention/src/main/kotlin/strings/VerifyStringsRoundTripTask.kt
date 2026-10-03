@@ -33,8 +33,7 @@ import org.gradle.process.ExecOperations
  * 1. **Authored tree.** [StringsPipeline] runs over [resDirectory] exactly as `GenerateComposeStringsTask` does;
  *    its emitted values are the authored tree. The `localeCopies` targets (`values-b+he`, `values-b+id`) are left
  *    out — they are Compose-only directories whose Android locales are `values-b+iw` / `values-b+in`, and feeding
- *    one back as a source directory is [FindingKind.LOCALE_COPY_COLLISION] by design. [additions] is then applied
- *    (see that file for why those values cannot be derived).
+ *    one back as a source directory is [FindingKind.LOCALE_COPY_COLLISION] by design.
  * 2. **Re-encode and compile.** Every directory is written with [AndroidStringsXml] and compiled with the same
  *    `aapt2 compile --legacy` the pipeline uses. aapt2 errors are [Severity.BROKEN] and throw; an aapt2 **warning**
  *    is a failure here, because the authored tree is supposed to be the input aapt2 is happiest with.
@@ -77,10 +76,6 @@ abstract class VerifyStringsRoundTripTask : DefaultTask() {
     @get:PathSensitive(PathSensitivity.NONE)
     abstract val parityRequests: RegularFileProperty
 
-    /** Values the authored tree must carry that the forward pass does not emit; see the file's own header. */
-    @get:InputFile
-    @get:PathSensitive(PathSensitivity.NONE)
-    abstract val additions: RegularFileProperty
 
     /** `oracle-baseline/lookup.tsv`: what Android resolved for every request and key before the flip. */
     @get:InputFile
@@ -115,9 +110,14 @@ abstract class VerifyStringsRoundTripTask : DefaultTask() {
 
         val forward = forwardPass(mode, executable)
         val authored = authoredTree(forward, problems, lines)
-        val encoded = authored.mapValues { AndroidStringsXml.write(it.value) }
+        // The res holds `@string/…` references, and Android re-resolves them in the requesting locale. Re-encode
+        // them as references or the second pass sees a flattened tree and every per-locale resolution collapses to
+        // the base value - which is exactly what the lookup diff would then report.
+        val encoded = authored.mapValues { (directory, values) ->
+            AndroidStringsXml.write(values, AuthoredAliases.byKey(forward.aliases, directory))
+        }
         writeRes(encoded)
-        readBack(mode, executable, authored, encoded, problems, lines)
+        readBack(mode, executable, authored, encoded, forward.aliases, problems, lines)
         link(executable, problems, lines)
         fixedPoint(mode, executable, forward, authored, encoded, problems, lines)
 
@@ -161,11 +161,16 @@ abstract class VerifyStringsRoundTripTask : DefaultTask() {
         lines: MutableList<String>,
     ): Map<String, Map<ResourceKey, TextValue>> {
         val copyTargets = localeCopies.get().keys
-        val added = AuthoredAdditions.parse(additions.get().asFile.readText())
-        val authored = AuthoredAdditions.apply(forward.emitted.filterKeys { it !in copyTargets }, added, problems)
+        // The LEAN tree, not the materialised one. Writing the materialised tree back as Android res would put the
+        // Compose-only copies into it, and those copies change what Android itself resolves: a value copied into
+        // values-b+fil wins the `tl` lookup over the base alias, because an equivalent language beats the default.
+        // That is the whole reason the copies stay out of the res, so the harness must not reintroduce them.
+        val authored = forward.lean.filterKeys { it !in copyTargets }
+            .mapValues { (_, values) -> sortedMapOf<ResourceKey, TextValue>().apply { putAll(values) } }
+            .toSortedMap()
         val values = authored.values.sumOf { it.size }
         lines += "authored tree: ${authored.size} directories, $values values " +
-            "(${added.size} from ${additions.get().asFile.name}, ${copyTargets.sorted()} left to localeCopies)"
+            "(${copyTargets.sorted()} left to localeCopies)"
         if (values != expectedOwn.get()) {
             problems += "the authored tree holds $values values, expectedOwn is ${expectedOwn.get()}"
         }
@@ -185,6 +190,7 @@ abstract class VerifyStringsRoundTripTask : DefaultTask() {
         executable: File,
         authored: Map<String, Map<ResourceKey, TextValue>>,
         encoded: Map<String, String>,
+        aliases: List<AuthoredAliases.Alias>,
         problems: MutableList<String>,
         lines: MutableList<String>,
     ) {
@@ -201,9 +207,19 @@ abstract class VerifyStringsRoundTripTask : DefaultTask() {
             val actual = decoded[location].orEmpty().associate { ResourceKey(it.type, it.name) to it.value }
             (expected.keys - actual.keys).forEach { problems += "$location $it: lost by the round trip" }
             (actual.keys - expected.keys).forEach { problems += "$location $it: invented by the round trip" }
+            val aliased = AuthoredAliases.byKey(aliases, directory)
             expected.forEach { (key, value) ->
-                val back = plainTextValue(actual[key] ?: return@forEach)
+                val decoded = actual[key] ?: return@forEach
                 compared++
+                // A key the res holds as `@string/…` must come back as that reference, not as text: the reference
+                // is the thing Android re-resolves per locale, and flattening it is the regression this guards.
+                val targets = aliased[key]
+                if (targets != null) {
+                    val back = referenceTargets(decoded)
+                    if (back != targets) problems += "$location $key: alias $targets came back as $back"
+                    return@forEach
+                }
+                val back = plainTextValue(decoded)
                 if (back != value) problems += "$location $key: ${describe(value)} -> ${describe(back)}"
             }
         }
@@ -289,24 +305,26 @@ abstract class VerifyStringsRoundTripTask : DefaultTask() {
         findings.all.filter { it.kind.severity != Severity.INFO }
             .forEach { problems += "second pass finding: $it" }
 
+        // Res -> lean tree -> res is the identity, so the second pass must reach the same answer the first did,
+        // copy reasons and all. An OWN-only expectation would only hold for a res carrying every copy already.
         val reasons = second.report.single { it.startsWith(REASONS) }
-        val expected = "$REASONS {OWN=${expectedOwn.get()}}"
+        val expected = forward.report.single { it.startsWith(REASONS) }
         if (reasons != expected) problems += "fixed point not reached: expected '$expected', got '$reasons'"
 
-        compareTree(authored, second, problems, lines)
+        compareTree(forward.emitted.filterKeys { it !in localeCopies.get().keys }, second, problems, lines)
         compareLookup(second, problems, lines)
     }
 
     /** The second pass must re-emit the authored Compose tree, `localeCopies` and all, byte-for-byte. */
     private fun compareTree(
-        authored: Map<String, Map<ResourceKey, TextValue>>,
+        materialised: Map<String, Map<ResourceKey, TextValue>>,
         second: PipelineResult,
         problems: MutableList<String>,
         lines: MutableList<String>,
     ) {
-        val expected = LinkedHashMap<String, Map<ResourceKey, TextValue>>(authored)
+        val expected = LinkedHashMap<String, Map<ResourceKey, TextValue>>(materialised)
         localeCopies.get().toSortedMap().forEach { (target, source) ->
-            authored[source]?.let { expected[target] = it }
+            materialised[source]?.let { expected[target] = it }
         }
         (expected.keys - second.emitted.keys).forEach { problems += "second pass emits no $it" }
         (second.emitted.keys - expected.keys).forEach { problems += "second pass emits an unexpected $it" }
@@ -322,7 +340,7 @@ abstract class VerifyStringsRoundTripTask : DefaultTask() {
                 problems += "$directory/strings.xml differs from the authored tree: ${keys.take(4)}"
             }
         }
-        lines += "authored Compose tree re-emitted byte-for-byte: $identical of ${expected.size} directories"
+        lines += "materialised Compose tree re-emitted byte-for-byte: $identical of ${expected.size} directories"
     }
 
     /** Every request x key cell must hold the value the pre-flip baseline froze. */
@@ -349,6 +367,16 @@ abstract class VerifyStringsRoundTripTask : DefaultTask() {
         is DecodedValue.Plural -> value.items
             .map { (category, item) -> category to (item as? DecodedItem.Text ?: return null).text }
             .let { TextValue.Plural(it.toMap()) }
+        is DecodedValue.Other -> null
+    }
+
+    /** The `@…` targets a decoded value holds, by plural category, or null if it is not a reference. */
+    private fun referenceTargets(value: DecodedValue): Map<String, String>? = when (value) {
+        is DecodedValue.Single -> (value.item as? DecodedItem.Ref)
+            ?.let { mapOf(AuthoredAliases.SINGLE to "@" + it.name) }
+        is DecodedValue.Plural -> value.items
+            .mapNotNull { (c, i) -> (i as? DecodedItem.Ref)?.let { c to "@" + it.name } }
+            .takeIf { it.isNotEmpty() }?.toMap()
         is DecodedValue.Other -> null
     }
 

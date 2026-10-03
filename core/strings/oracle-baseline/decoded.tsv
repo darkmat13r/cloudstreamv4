@@ -383,7 +383,7 @@ values-b+apc/strings.xml	string	deselect_all	-	STR	شيل التنقاية
 values-b+apc/strings.xml	string	device_pin_counter_text	-	STR	بتخلص مدة الپِن ب %1$d دقايق و%2$d ثانية	
 values-b+apc/strings.xml	string	device_pin_error_message	-	STR	فشلنا ب فتح پِن الجهاز، جرب تفوت ع أكونت محليًا	
 values-b+apc/strings.xml	string	device_pin_expired_message	-	STR	خلصت مدة الپِن!	
-values-b+apc/strings.xml	string	device_pin_url_message	-	STYLED	فتاح %s ع تلفونك أو كمپيوترك، وحط الكود اللي فوق	b:5-6;
+values-b+apc/strings.xml	string	device_pin_url_message	-	STR	فتاح %s ع تلفونك أو كمپيوترك، وحط الكود اللي فوق	
 values-b+apc/strings.xml	string	disable	-	STR	طفي	
 values-b+apc/strings.xml	string	discord	-	STR	انضم لگروپ "كلود ستريم" ع الـ"ديسكورد"	
 values-b+apc/strings.xml	string	dismiss	-	STR	تجاهل	
@@ -1122,7 +1122,7 @@ values-b+ar/strings.xml	string	deselect_all	-	STR	إلغاء تحديد الكل
 values-b+ar/strings.xml	string	device_pin_counter_text	-	STR	تنتهي صلاحية الرمز خلال %1$dm %2$ds	
 values-b+ar/strings.xml	string	device_pin_error_message	-	STR	لا يمكن الحصول على رمز PIN للجهاز، حاول المصادقة المحلية	
 values-b+ar/strings.xml	string	device_pin_expired_message	-	STR	لقد انتهت صلاحية الرمز السري الآن!	
-values-b+ar/strings.xml	string	device_pin_url_message	-	STYLED	قم بزيارة %s على هاتفك الذكي أو جهاز الكمبيوتر وأدخل الرمز أعلاه	b:10-11;
+values-b+ar/strings.xml	string	device_pin_url_message	-	STR	قم بزيارة %s على هاتفك الذكي أو جهاز الكمبيوتر وأدخل الرمز أعلاه	
 values-b+ar/strings.xml	string	disable	-	STR	تعطيل	
 values-b+ar/strings.xml	string	discord	-	STR	انضم إلى الديسكورد	
 values-b+ar/strings.xml	string	dismiss	-	STR	تجاهَل	
@@ -2173,7 +2173,7 @@ values-b+as/strings.xml	string	deselect_all	-	STR	সকলো বাদ দি�
 values-b+as/strings.xml	string	device_pin_counter_text	-	STR	ক'ড মেয়াদ শেষ হব %1$dm %2$ds	
 values-b+as/strings.xml	string	device_pin_error_message	-	STR	ডিভাইচ পিন ক'ড পোৱা নাই, স্থানীয় প্ৰমাণীকৰণ চেষ্টা কৰক	
 values-b+as/strings.xml	string	device_pin_expired_message	-	STR	পিন ক'ডৰ মেয়াদ শেষ হৈছে!	
-values-b+as/strings.xml	string	device_pin_url_message	-	STYLED	আপোনাৰ স্মাৰ্টফোন বা কম্পিউটাৰত %s লগ কৰক আৰু ওপৰৰ ক'ডটো প্ৰৱিষ্ট কৰক	b:32-33;
+values-b+as/strings.xml	string	device_pin_url_message	-	STR	আপোনাৰ স্মাৰ্টফোন বা কম্পিউটাৰত %s লগ কৰক আৰু ওপৰৰ ক'ডটো প্ৰৱিষ্ট কৰক	
 values-b+as/strings.xml	string	disable	-	STR	বন্ধ কৰক	
 values-b+as/strings.xml	string	discord	-	STR	Discordত যোগদান কৰক	
 values-b+as/strings.xml	string	dismiss	-	STR	এৰি দিয়া	
@@ -2976,7 +2976,7 @@ values-b+be/strings.xml	string	deselect_all	-	STR	Зняць выбар
 values-b+be/strings.xml	string	device_pin_counter_text	-	STR	Код мінуе праз %1$dхв %2$dс	
 values-b+be/strings.xml	string	device_pin_error_message	-	STR	Не ўдалося атрымаць PIN-код прылады, паспрабуйце лакальную праверку сапраўднасці	
 values-b+be/strings.xml	string	device_pin_expired_message	-	STR	PIN-код састарэў!	
-values-b+be/strings.xml	string	device_pin_url_message	-	STYLED	Наведайце %s на вашым смартфоне або камп'ютары і ўвядзіце код вышэй	b:10-11;
+values-b+be/strings.xml	string	device_pin_url_message	-	STR	Наведайце %s на вашым смартфоне або камп'ютары і ўвядзіце код вышэй	
 values-b+be/strings.xml	string	disable	-	STR	Выключыць	
 values-b+be/strings.xml	string	discord	-	STR	Далучайцеся да Discord	
 values-b+be/strings.xml	string	dismiss	-	STR	Адхіліць	
@@ -3707,7 +3707,7 @@ values-b+bg/strings.xml	string	deselect_all	-	STR	Премахване на из
 values-b+bg/strings.xml	string	device_pin_counter_text	-	STR	Кодът изтича след %1$dm %2$ds	
 values-b+bg/strings.xml	string	device_pin_error_message	-	STR	Не може да се получи PIN кода на устройството, опитайте локално удостоверяване	
 values-b+bg/strings.xml	string	device_pin_expired_message	-	STR	PIN кодът е изтекъл !	
-values-b+bg/strings.xml	string	device_pin_url_message	-	STYLED	Посетете %s на вашия смартфон или компютър и въведете горния код	b:9-10;
+values-b+bg/strings.xml	string	device_pin_url_message	-	STR	Посетете %s на вашия смартфон или компютър и въведете горния код	
 values-b+bg/strings.xml	string	disable	-	STR	Деактивиране	
 values-b+bg/strings.xml	string	discord	-	STR	Присъединете се към Discord	
 values-b+bg/strings.xml	string	dismiss	-	STR	Отхвърли	
@@ -5249,7 +5249,7 @@ values-b+cs/strings.xml	string	deselect_all	-	STR	Zrušit výběr všeho
 values-b+cs/strings.xml	string	device_pin_counter_text	-	STR	Kód vyprší za %1$dm %2$ds	
 values-b+cs/strings.xml	string	device_pin_error_message	-	STR	Nepodařilo se získat PIN kód, zkuste místní ověření	
 values-b+cs/strings.xml	string	device_pin_expired_message	-	STR	PIN kód vypršel!	
-values-b+cs/strings.xml	string	device_pin_url_message	-	STYLED	Navštivte %s na vašem zařízení nebo počítači a zadejte kód výše	b:10-11;
+values-b+cs/strings.xml	string	device_pin_url_message	-	STR	Navštivte %s na vašem zařízení nebo počítači a zadejte kód výše	
 values-b+cs/strings.xml	string	disable	-	STR	Vypnout	
 values-b+cs/strings.xml	string	discord	-	STR	Připojte se na Discord	
 values-b+cs/strings.xml	string	dismiss	-	STR	Zavřít	
@@ -5987,7 +5987,7 @@ values-b+de/strings.xml	string	deselect_all	-	STR	Alle abwählen
 values-b+de/strings.xml	string	device_pin_counter_text	-	STR	Code läuft ab in %1$dm %2$ds	
 values-b+de/strings.xml	string	device_pin_error_message	-	STR	PIN-Code vom Gerät nicht abrufbar, versuche lokale Authentifizierung	
 values-b+de/strings.xml	string	device_pin_expired_message	-	STR	PIN-Code ist jetzt abgelaufen!	
-values-b+de/strings.xml	string	device_pin_url_message	-	STYLED	Besuche %s auf dem Smartphone oder Computer und gebe den obenstehenden Code ein	b:8-9;
+values-b+de/strings.xml	string	device_pin_url_message	-	STR	Besuche %s auf dem Smartphone oder Computer und gebe den obenstehenden Code ein	
 values-b+de/strings.xml	string	disable	-	STR	Deaktivieren	
 values-b+de/strings.xml	string	discord	-	STR	Trete dem Discord Server bei	
 values-b+de/strings.xml	string	dismiss	-	STR	Verwerfen	
@@ -6708,7 +6708,7 @@ values-b+el/strings.xml	string	deselect_all	-	STR	Αποεπιλογή Όλων
 values-b+el/strings.xml	string	device_pin_counter_text	-	STR	Ο Κωδικός λήγει σε %1$dm %2$ds	
 values-b+el/strings.xml	string	device_pin_error_message	-	STR	Δεν μπορείτε να λάβετε τον κωδικό PIN της συσκευής, δοκιμάστε τοπική αυθεντικοποίηση	
 values-b+el/strings.xml	string	device_pin_expired_message	-	STR	Ο κωδικός PIN έχει λήξει !	
-values-b+el/strings.xml	string	device_pin_url_message	-	STYLED	Επισκεφθείτε το %s στο κινητό ή τον υπολογιστή σας και πληκτρολογήστε τον παραπάνω κωδικό	b:16-17;
+values-b+el/strings.xml	string	device_pin_url_message	-	STR	Επισκεφθείτε το %s στο κινητό ή τον υπολογιστή σας και πληκτρολογήστε τον παραπάνω κωδικό	
 values-b+el/strings.xml	string	disable	-	STR	Απενεργοποιημένο	
 values-b+el/strings.xml	string	discord	-	STR	Βρείτε μας στο Discord	
 values-b+el/strings.xml	string	dismiss	-	STR	Απόρριψη	
@@ -7570,7 +7570,7 @@ values-b+es/strings.xml	string	deselect_all	-	STR	Deseleccionar todo
 values-b+es/strings.xml	string	device_pin_counter_text	-	STR	El código caduca en %1$d mín y %2$d s	
 values-b+es/strings.xml	string	device_pin_error_message	-	STR	No puedo obtener el código PIN del dispositivo; intente con la autenticación local	
 values-b+es/strings.xml	string	device_pin_expired_message	-	STR	¡El código PIN ya ha caducado!	
-values-b+es/strings.xml	string	device_pin_url_message	-	STYLED	Visita %s en tu smartphone o equipo e introduce el código anterior	b:7-8;
+values-b+es/strings.xml	string	device_pin_url_message	-	STR	Visita %s en tu smartphone o equipo e introduce el código anterior	
 values-b+es/strings.xml	string	disable	-	STR	Deshabilitar	
 values-b+es/strings.xml	string	discord	-	STR	Únete a Discord	
 values-b+es/strings.xml	string	dismiss	-	STR	Descartar	
@@ -8814,7 +8814,7 @@ values-b+fr/strings.xml	string	deselect_all	-	STR	Tout désélectionner
 values-b+fr/strings.xml	string	device_pin_counter_text	-	STR	Code expire dans %1$dm %2$ds	
 values-b+fr/strings.xml	string	device_pin_error_message	-	STR	Impossible d’obtenir le code PIN de l’appareil, essayez l’authentification locale	
 values-b+fr/strings.xml	string	device_pin_expired_message	-	STR	Le code PIN est maintenant expiré !	
-values-b+fr/strings.xml	string	device_pin_url_message	-	STYLED	Visitez %s sur votre téléphone ou votre ordinateur et saisissez le code ci-dessus	b:8-9;
+values-b+fr/strings.xml	string	device_pin_url_message	-	STR	Visitez %s sur votre téléphone ou votre ordinateur et saisissez le code ci-dessus	
 values-b+fr/strings.xml	string	disable	-	STR	Désactivé	
 values-b+fr/strings.xml	string	discord	-	STR	Rejoignez le Discord	
 values-b+fr/strings.xml	string	dismiss	-	STR	Ignorer	
@@ -10251,7 +10251,7 @@ values-b+hr/strings.xml	string	deselect_all	-	STR	Odznači sve
 values-b+hr/strings.xml	string	device_pin_counter_text	-	STR	Kod isteče za %1$d min %2$d s	
 values-b+hr/strings.xml	string	device_pin_error_message	-	STR	Neuspjelo dobivanje PIN koda uređaja, pokušaj s lokalnom autentifikacijom	
 values-b+hr/strings.xml	string	device_pin_expired_message	-	STR	PIN kod je sada istekao!	
-values-b+hr/strings.xml	string	device_pin_url_message	-	STYLED	Posjeti %s na svom mobitelu ili računalu i unesi gore navedeni kod	b:8-9;
+values-b+hr/strings.xml	string	device_pin_url_message	-	STR	Posjeti %s na svom mobitelu ili računalu i unesi gore navedeni kod	
 values-b+hr/strings.xml	string	disable	-	STR	Onemogući	
 values-b+hr/strings.xml	string	discord	-	STR	Pridruži se Discordu	
 values-b+hr/strings.xml	string	dismiss	-	STR	Odbaci	
@@ -10954,7 +10954,7 @@ values-b+hu/strings.xml	string	deselect_all	-	STR	Mindent Kijelölés Eltávolí
 values-b+hu/strings.xml	string	device_pin_counter_text	-	STR	A kód %1$dm %2$ds után lejár	
 values-b+hu/strings.xml	string	device_pin_error_message	-	STR	Nem működik az eszköz PIN-kódja, próbálkozzon helyi hitelesítéssel	
 values-b+hu/strings.xml	string	device_pin_expired_message	-	STR	A PIN-kód most lejárt!	
-values-b+hu/strings.xml	string	device_pin_url_message	-	STYLED	Látogasson el %s okostelefonján vagy számítógépén, és írja be a fenti kódot	b:14-15;
+values-b+hu/strings.xml	string	device_pin_url_message	-	STR	Látogasson el %s okostelefonján vagy számítógépén, és írja be a fenti kódot	
 values-b+hu/strings.xml	string	disable	-	STR	Kikapcsolás	
 values-b+hu/strings.xml	string	discord	-	STR	Csatlakozz a Discordhoz	
 values-b+hu/strings.xml	string	dismiss	-	STR	Elutasítás	
@@ -11615,7 +11615,7 @@ values-b+in/strings.xml	string	deselect_all	-	STR	Batal Pilih Semua
 values-b+in/strings.xml	string	device_pin_counter_text	-	STR	Kode kedaluwarsa dalam %1$dm %2$dd	
 values-b+in/strings.xml	string	device_pin_error_message	-	STR	Tidak bisa mendapatkan kode PIN perangkat, coba autentikasi lokal	
 values-b+in/strings.xml	string	device_pin_expired_message	-	STR	Kode PIN sudah kedaluwarsa!	
-values-b+in/strings.xml	string	device_pin_url_message	-	STYLED	Kunjungi %s di ponsel pintar atau komputer Anda dan masukkan kode di atas	b:9-10;
+values-b+in/strings.xml	string	device_pin_url_message	-	STR	Kunjungi %s di ponsel pintar atau komputer Anda dan masukkan kode di atas	
 values-b+in/strings.xml	string	disable	-	STR	Nonaktif	
 values-b+in/strings.xml	string	discord	-	STR	Bergabung dengan Discord	
 values-b+in/strings.xml	string	dismiss	-	STR	Tutup	
@@ -12356,7 +12356,7 @@ values-b+it/strings.xml	string	deselect_all	-	STR	Deseleziona tutto
 values-b+it/strings.xml	string	device_pin_counter_text	-	STR	Il codice scadrà tra %1$dm %2$ds	
 values-b+it/strings.xml	string	device_pin_error_message	-	STR	Impossibile ottenere il codice PIN del dispositivo, prova l'autenticazione locale	
 values-b+it/strings.xml	string	device_pin_expired_message	-	STR	Il codice PIN è scaduto!	
-values-b+it/strings.xml	string	device_pin_url_message	-	STYLED	Visita %s sul tuo smartphone o computer e inserisci il codice sopra	b:7-8;
+values-b+it/strings.xml	string	device_pin_url_message	-	STR	Visita %s sul tuo smartphone o computer e inserisci il codice sopra	
 values-b+it/strings.xml	string	disable	-	STR	Disabilita	
 values-b+it/strings.xml	string	discord	-	STR	Entra in Discord	
 values-b+it/strings.xml	string	dismiss	-	STR	Respingi	
@@ -13635,7 +13635,7 @@ values-b+ja/strings.xml	string	deselect_all	-	STR	すべて選択解除
 values-b+ja/strings.xml	string	device_pin_counter_text	-	STR	%1$dm %2$ds でコードが切れます	
 values-b+ja/strings.xml	string	device_pin_error_message	-	STR	デバイスPINコードを取得できません。ローカル認証を試してください	
 values-b+ja/strings.xml	string	device_pin_expired_message	-	STR	PINコードが期限切れになりました！	
-values-b+ja/strings.xml	string	device_pin_url_message	-	STYLED	スマホやパソコンで %s にアクセスし、上記のコードを入力してください	b:10-11;
+values-b+ja/strings.xml	string	device_pin_url_message	-	STR	スマホやパソコンで %s にアクセスし、上記のコードを入力してください	
 values-b+ja/strings.xml	string	disable	-	STR	無効化	
 values-b+ja/strings.xml	string	discord	-	STR	Discordに参加	
 values-b+ja/strings.xml	string	dismiss	-	STR	閉じる	
@@ -14497,7 +14497,7 @@ values-b+ko/strings.xml	string	deselect_all	-	STR	모두 선택해제
 values-b+ko/strings.xml	string	device_pin_counter_text	-	STR	코드 만료까지 남은 시간: %1$dm %2$ds	
 values-b+ko/strings.xml	string	device_pin_error_message	-	STR	장치 PIN 코드를 가져올 수 없습니다, 로컬 인증을 시도하세요	
 values-b+ko/strings.xml	string	device_pin_expired_message	-	STR	PIN 코드가 만료되었습니다!	
-values-b+ko/strings.xml	string	device_pin_url_message	-	STYLED	스마트폰이나 컴퓨터에서 %s 위의 코드를 입력하세요	b:13-14;
+values-b+ko/strings.xml	string	device_pin_url_message	-	STR	스마트폰이나 컴퓨터에서 %s 위의 코드를 입력하세요	
 values-b+ko/strings.xml	string	disable	-	STR	사용 불가능	
 values-b+ko/strings.xml	string	discord	-	STR	Discord에 참여하기	
 values-b+ko/strings.xml	string	dismiss	-	STR	취소	
@@ -16135,7 +16135,7 @@ values-b+mk/strings.xml	string	deselect_all	-	STR	Деселектирај сѐ
 values-b+mk/strings.xml	string	device_pin_counter_text	-	STR	Кодот истекува за %1$d минута/и и %2$d секунда/и	
 values-b+mk/strings.xml	string	device_pin_error_message	-	STR	Не може да се добие PIN-кодот на уредот, обиди се со локална автентикација	
 values-b+mk/strings.xml	string	device_pin_expired_message	-	STR	ПИН-кодот сега е истечен!	
-values-b+mk/strings.xml	string	device_pin_url_message	-	STYLED	Посети го %s на твојот паметен телефон или компјутер и внеси го горниот код	b:10-11;
+values-b+mk/strings.xml	string	device_pin_url_message	-	STR	Посети го %s на твојот паметен телефон или компјутер и внеси го горниот код	
 values-b+mk/strings.xml	string	disable	-	STR	Оневозможи	
 values-b+mk/strings.xml	string	discord	-	STR	Придружи се на Discord	
 values-b+mk/strings.xml	string	dismiss	-	STR	Отфрли	
@@ -17112,7 +17112,7 @@ values-b+ms/strings.xml	string	deselect_all	-	STR	Nyahpilih semua
 values-b+ms/strings.xml	string	device_pin_counter_text	-	STR	Kod luput dalam %1$dm%2$ds	
 values-b+ms/strings.xml	string	device_pin_error_message	-	STR	Tidak dapat Kod PIN peranti, cuba pengesahan lokal	
 values-b+ms/strings.xml	string	device_pin_expired_message	-	STR	Kod PIN telah luput!	
-values-b+ms/strings.xml	string	device_pin_url_message	-	STYLED	Lawati %s di telefon pintar atau komputer dan masukkan kod diatas	b:7-8;
+values-b+ms/strings.xml	string	device_pin_url_message	-	STR	Lawati %s di telefon pintar atau komputer dan masukkan kod diatas	
 values-b+ms/strings.xml	string	disable	-	STR	Lumpuhkan	
 values-b+ms/strings.xml	string	discord	-	STR	Menyertai Discord	
 values-b+ms/strings.xml	string	dismiss	-	STR	Tolak	
@@ -18434,7 +18434,7 @@ values-b+nl/strings.xml	string	deselect_all	-	STR	Deselecteer alles
 values-b+nl/strings.xml	string	device_pin_counter_text	-	STR	Code verloopt in %1$dm %2$ds	
 values-b+nl/strings.xml	string	device_pin_error_message	-	STR	Kon de apparaat PIN niet vinden, probeer locale authenticatie	
 values-b+nl/strings.xml	string	device_pin_expired_message	-	STR	PIN-code is nu verlopen!	
-values-b+nl/strings.xml	string	device_pin_url_message	-	STYLED	Ga naar %s op je smartphone of computer en voeren de bovenstaande code in	b:8-9;
+values-b+nl/strings.xml	string	device_pin_url_message	-	STR	Ga naar %s op je smartphone of computer en voeren de bovenstaande code in	
 values-b+nl/strings.xml	string	disable	-	STR	Uitzetten	
 values-b+nl/strings.xml	string	discord	-	STR	Word lid van ons Discord kanaal	
 values-b+nl/strings.xml	string	dismiss	-	STR	Afwijzen	
@@ -20008,7 +20008,7 @@ values-b+pl/strings.xml	string	deselect_all	-	STR	Odznacz wszystkie
 values-b+pl/strings.xml	string	device_pin_counter_text	-	STR	Kod wygasa za %1$dm %2$ds	
 values-b+pl/strings.xml	string	device_pin_error_message	-	STR	Nie można uzyskać kodu PIN urządzenia. Spróbuj uwierzytelnienia lokalnego	
 values-b+pl/strings.xml	string	device_pin_expired_message	-	STR	Kod PIN stracił ważność!	
-values-b+pl/strings.xml	string	device_pin_url_message	-	STYLED	Odwiedź %s na swoim smartfonie lub komputerze i wprowadź powyższy kod	b:8-9;
+values-b+pl/strings.xml	string	device_pin_url_message	-	STR	Odwiedź %s na swoim smartfonie lub komputerze i wprowadź powyższy kod	
 values-b+pl/strings.xml	string	disable	-	STR	Wyłączać	
 values-b+pl/strings.xml	string	discord	-	STR	Serwer Discord	
 values-b+pl/strings.xml	string	dismiss	-	STR	Odrzuć	
@@ -20749,7 +20749,7 @@ values-b+pt+BR/strings.xml	string	deselect_all	-	STR	Desmarcar todos
 values-b+pt+BR/strings.xml	string	device_pin_counter_text	-	STR	O código expira em %1$dm %2$ds	
 values-b+pt+BR/strings.xml	string	device_pin_error_message	-	STR	Não é possível obter o código PIN do dispositivo, tente a autenticação local	
 values-b+pt+BR/strings.xml	string	device_pin_expired_message	-	STR	O código PIN expirou!	
-values-b+pt+BR/strings.xml	string	device_pin_url_message	-	STYLED	Acesse %s em seu smartphone ou computador e digite o código acima	b:7-8;
+values-b+pt+BR/strings.xml	string	device_pin_url_message	-	STR	Acesse %s em seu smartphone ou computador e digite o código acima	
 values-b+pt+BR/strings.xml	string	disable	-	STR	Desativar	
 values-b+pt+BR/strings.xml	string	discord	-	STR	Entre no servidor do Discord	
 values-b+pt+BR/strings.xml	string	dismiss	-	STR	Descartar	
@@ -21487,7 +21487,7 @@ values-b+pt/strings.xml	string	deselect_all	-	STR	Desselecionar todos
 values-b+pt/strings.xml	string	device_pin_counter_text	-	STR	O código expira em %1$dm %2$ds	
 values-b+pt/strings.xml	string	device_pin_error_message	-	STR	Não é possível receber o PIN do dispositivo, tentando autenticação local	
 values-b+pt/strings.xml	string	device_pin_expired_message	-	STR	O código PIN está agora expirado !	
-values-b+pt/strings.xml	string	device_pin_url_message	-	STYLED	Visite %s no seu smartphone ou computador e introduza o código acima	b:7-8;
+values-b+pt/strings.xml	string	device_pin_url_message	-	STR	Visite %s no seu smartphone ou computador e introduza o código acima	
 values-b+pt/strings.xml	string	disable	-	STR	Desativar	
 values-b+pt/strings.xml	string	discord	-	STR	Junte-se ao Discord	
 values-b+pt/strings.xml	string	dismiss	-	STR	Dispensar	
@@ -22196,7 +22196,7 @@ values-b+qt/strings.xml	string	deselect_all	-	STR	eeeeeekh uug
 values-b+qt/strings.xml	string	device_pin_counter_text	-	STR	aagg uuuuggg og %1$dm %2$ds	
 values-b+qt/strings.xml	string	device_pin_error_message	-	STR	Can\t aah uuh aaaagg oog code, uuh ooogg uuuuggguuuuggg	
 values-b+qt/strings.xml	string	device_pin_expired_message	-	STR	ooh uuuk oh aah oooohhh !	
-values-b+qt/strings.xml	string	device_pin_url_message	-	STYLED	ooogg%s on your smartphone or computer and enter the above code	b:5-6;
+values-b+qt/strings.xml	string	device_pin_url_message	-	STR	ooogg%s on your smartphone or computer and enter the above code	
 values-b+qt/strings.xml	string	disable	-	STR	aaaaggg	
 values-b+qt/strings.xml	string	discord	-	STR	ooooohaa ahhh aauuhahhahh	
 values-b+qt/strings.xml	string	dismiss	-	STR	uuuuuuk	
@@ -23472,7 +23472,7 @@ values-b+ru/strings.xml	string	deselect_all	-	STR	Отменить выбор
 values-b+ru/strings.xml	string	device_pin_counter_text	-	STR	Код истекает через %1$dмин %2$dсек	
 values-b+ru/strings.xml	string	device_pin_error_message	-	STR	Невозможно получить ПИН-код устройства, попробуйте локальную аутентификацию	
 values-b+ru/strings.xml	string	device_pin_expired_message	-	STR	ПИН-код больше не действителен !	
-values-b+ru/strings.xml	string	device_pin_url_message	-	STYLED	Откройте %s на вашем смартфоне или компьютере и введите данный код	b:9-10;
+values-b+ru/strings.xml	string	device_pin_url_message	-	STR	Откройте %s на вашем смартфоне или компьютере и введите данный код	
 values-b+ru/strings.xml	string	disable	-	STR	Выключить	
 values-b+ru/strings.xml	string	discord	-	STR	Присоединиться к Discord-серверу	
 values-b+ru/strings.xml	string	dismiss	-	STR	Пропустить	
@@ -25188,7 +25188,7 @@ values-b+sq/strings.xml	string	deselect_all	-	STR	Çzgjidh të gjitha
 values-b+sq/strings.xml	string	device_pin_counter_text	-	STR	Kodi skadon pas %1$dm %2$ds	
 values-b+sq/strings.xml	string	device_pin_error_message	-	STR	Nuk u mor kodi PIN i pajisjes, provo verifikim lokal	
 values-b+sq/strings.xml	string	device_pin_expired_message	-	STR	PIN-i ka skaduar!	
-values-b+sq/strings.xml	string	device_pin_url_message	-	STYLED	Vizitoni %s në telefonin ose kompjuterin tuaj dhe futni kodin e mësipërm	b:9-10;
+values-b+sq/strings.xml	string	device_pin_url_message	-	STR	Vizitoni %s në telefonin ose kompjuterin tuaj dhe futni kodin e mësipërm	
 values-b+sq/strings.xml	string	disable	-	STR	Çaktivizuar	
 values-b+sq/strings.xml	string	discord	-	STR	Na u bashko në Discord	
 values-b+sq/strings.xml	string	dismiss	-	STR	Largo	
@@ -25926,7 +25926,7 @@ values-b+sv/strings.xml	string	deselect_all	-	STR	Avmarkera alla
 values-b+sv/strings.xml	string	device_pin_counter_text	-	STR	Koden löper ut om %1$dm %2$ds	
 values-b+sv/strings.xml	string	device_pin_error_message	-	STR	Det går inte att hämta enhetens PIN-kod, prova lokal autentisering	
 values-b+sv/strings.xml	string	device_pin_expired_message	-	STR	PIN-koden har upphört att gälla!	
-values-b+sv/strings.xml	string	device_pin_url_message	-	STYLED	Besök %s på din smartphone eller dator och ange koden ovan	b:6-7;
+values-b+sv/strings.xml	string	device_pin_url_message	-	STR	Besök %s på din smartphone eller dator och ange koden ovan	
 values-b+sv/strings.xml	string	disable	-	STR	Inaktivera	
 values-b+sv/strings.xml	string	discord	-	STR	Gå med i Discord-gruppen	
 values-b+sv/strings.xml	string	dismiss	-	STR	Avfärda	
@@ -26664,7 +26664,7 @@ values-b+ta/strings.xml	string	deselect_all	-	STR	அனைத்தையும
 values-b+ta/strings.xml	string	device_pin_counter_text	-	STR	குறியீடு %1$dm %2$ds இல் காலாவதியாகிறது	
 values-b+ta/strings.xml	string	device_pin_error_message	-	STR	சாதன முள் குறியீட்டைப் பெற முடியாது, உள்ளக அங்கீகாரத்தை முயற்சிக்கவும்	
 values-b+ta/strings.xml	string	device_pin_expired_message	-	STR	முள் குறியீடு இப்போது காலாவதியானது!	
-values-b+ta/strings.xml	string	device_pin_url_message	-	STYLED	உங்கள் ச்மார்ட்போன் அல்லது கணினியில் %s ஐப் பார்வையிட்டு மேலே உள்ள குறியீட்டை உள்ளிடவும்	b:37-38;
+values-b+ta/strings.xml	string	device_pin_url_message	-	STR	உங்கள் ச்மார்ட்போன் அல்லது கணினியில் %s ஐப் பார்வையிட்டு மேலே உள்ள குறியீட்டை உள்ளிடவும்	
 values-b+ta/strings.xml	string	disable	-	STR	முடக்கு	
 values-b+ta/strings.xml	string	discord	-	STR	முரண்பாட்டில் சேரவும்	
 values-b+ta/strings.xml	string	dismiss	-	STR	தள்ளுபடி	
@@ -27655,7 +27655,7 @@ values-b+tr/strings.xml	string	deselect_all	-	STR	Tüm Seçimi Kaldır
 values-b+tr/strings.xml	string	device_pin_counter_text	-	STR	Kodun süresi %1$dm %2$ds içinde doluyor	
 values-b+tr/strings.xml	string	device_pin_error_message	-	STR	Cihaz PIN kodu alınamıyor, yerel kimlik doğrulamayı deneyin	
 values-b+tr/strings.xml	string	device_pin_expired_message	-	STR	PIN kodunun süresi doldu!	
-values-b+tr/strings.xml	string	device_pin_url_message	-	STYLED	Akıllı telefonunuzda veya bilgisayarınızda %s adresini ziyaret edin ve yukarıdaki kodu girin	b:43-44;
+values-b+tr/strings.xml	string	device_pin_url_message	-	STR	Akıllı telefonunuzda veya bilgisayarınızda %s adresini ziyaret edin ve yukarıdaki kodu girin	
 values-b+tr/strings.xml	string	disable	-	STR	Devre dışı bırak	
 values-b+tr/strings.xml	string	discord	-	STR	Discord'a katıl	
 values-b+tr/strings.xml	string	dismiss	-	STR	Yoksay	
@@ -28399,7 +28399,7 @@ values-b+uk/strings.xml	string	deselect_all	-	STR	Зняти виділення
 values-b+uk/strings.xml	string	device_pin_counter_text	-	STR	Термін дії коду закінчується через %1$d хв %2$d с	
 values-b+uk/strings.xml	string	device_pin_error_message	-	STR	Не вдається отримати PIN-код пристрою, спробуйте локальну автентифікацію	
 values-b+uk/strings.xml	string	device_pin_expired_message	-	STR	Термін дії PIN-коду закінчився!	
-values-b+uk/strings.xml	string	device_pin_url_message	-	STYLED	Відвідайте %s на своєму смартфоні або комп’ютері та введіть вищевказаний код	b:11-12;
+values-b+uk/strings.xml	string	device_pin_url_message	-	STR	Відвідайте %s на своєму смартфоні або комп’ютері та введіть вищевказаний код	
 values-b+uk/strings.xml	string	disable	-	STR	Вимкнути	
 values-b+uk/strings.xml	string	discord	-	STR	Приєднуйтеся до Discord	
 values-b+uk/strings.xml	string	dismiss	-	STR	Відхилити	
@@ -29102,7 +29102,7 @@ values-b+ur/strings.xml	string	delete_message	-	STR	یہ مستقل طور پر 
 values-b+ur/strings.xml	string	delete_repository	-	STR	ذخیرہ کو حذف کریں	
 values-b+ur/strings.xml	string	delete_repository_plugins	-	STR	اس سے تمام ریپوزٹری پلگ ان بھی حذف ہو جائیں گے	
 values-b+ur/strings.xml	string	deselect_all	-	STR	سب غیر منتخب کریں	
-values-b+ur/strings.xml	string	device_pin_url_message	-	STYLED	اپنے اسمارٹ فون یا کمپیوٹر پر یہ %s وزٹ کریں اور مندرجہ بالا کوڈ ڈالیں	b:33-34;
+values-b+ur/strings.xml	string	device_pin_url_message	-	STR	اپنے اسمارٹ فون یا کمپیوٹر پر یہ %s وزٹ کریں اور مندرجہ بالا کوڈ ڈالیں	
 values-b+ur/strings.xml	string	disable	-	STR	غیرفعال کریں	
 values-b+ur/strings.xml	string	discord	-	STR	ڈسکارڈ میں شامل ہوں	
 values-b+ur/strings.xml	string	display_subbed_dubbed_settings	-	STR	ڈسپلے Dubbed/Subbed Anime	
@@ -29734,7 +29734,7 @@ values-b+vi/strings.xml	string	deselect_all	-	STR	Bỏ chọn tất cả
 values-b+vi/strings.xml	string	device_pin_counter_text	-	STR	Mã sẽ hết hạn trong %1$d phút %2$d giây	
 values-b+vi/strings.xml	string	device_pin_error_message	-	STR	Không lấy được mã PIN, vui lòng thử xác thực cục bộ	
 values-b+vi/strings.xml	string	device_pin_expired_message	-	STR	Mã PIN đã hết hạn!	
-values-b+vi/strings.xml	string	device_pin_url_message	-	STYLED	Truy cập %s trên điện thoại hoặc máy tính và nhập mã bên trên	b:9-10;
+values-b+vi/strings.xml	string	device_pin_url_message	-	STR	Truy cập %s trên điện thoại hoặc máy tính và nhập mã bên trên	
 values-b+vi/strings.xml	string	disable	-	STR	Tắt	
 values-b+vi/strings.xml	string	discord	-	STR	Tham gia cộng đồng trên Discord	
 values-b+vi/strings.xml	string	dismiss	-	STR	Bỏ qua	
@@ -30468,7 +30468,7 @@ values-b+zh+TW/strings.xml	string	deselect_all	-	STR	取消全選
 values-b+zh+TW/strings.xml	string	device_pin_counter_text	-	STR	驗證碼將在 %1$d 分 %2$d 秒後過期	
 values-b+zh+TW/strings.xml	string	device_pin_error_message	-	STR	無法取得裝置 PIN 碼，請嘗試本機驗證	
 values-b+zh+TW/strings.xml	string	device_pin_expired_message	-	STR	PIN 碼已過期！	
-values-b+zh+TW/strings.xml	string	device_pin_url_message	-	STYLED	請在您的智慧型手機或電腦上造訪 %s 並輸入上方的驗證碼	b:16-17;
+values-b+zh+TW/strings.xml	string	device_pin_url_message	-	STR	請在您的智慧型手機或電腦上造訪 %s 並輸入上方的驗證碼	
 values-b+zh+TW/strings.xml	string	disable	-	STR	停用	
 values-b+zh+TW/strings.xml	string	discord	-	STR	加入 Discord	
 values-b+zh+TW/strings.xml	string	dismiss	-	STR	關閉	
@@ -31198,7 +31198,7 @@ values-b+zh/strings.xml	string	deselect_all	-	STR	全不选
 values-b+zh/strings.xml	string	device_pin_counter_text	-	STR	验证码 %1$dm %2$ds 后过期	
 values-b+zh/strings.xml	string	device_pin_error_message	-	STR	无法获取设备 PIN 码，尝试本地身份验证	
 values-b+zh/strings.xml	string	device_pin_expired_message	-	STR	PIN 码现已过期！	
-values-b+zh/strings.xml	string	device_pin_url_message	-	STYLED	访问智能手机或电脑上的 %s 并输入上述代码	b:12-13;
+values-b+zh/strings.xml	string	device_pin_url_message	-	STR	访问智能手机或电脑上的 %s 并输入上述代码	
 values-b+zh/strings.xml	string	disable	-	STR	禁用	
 values-b+zh/strings.xml	string	discord	-	STR	加入 Discord	
 values-b+zh/strings.xml	string	dismiss	-	STR	取消	
@@ -31776,8 +31776,6 @@ values-b+zh/strings.xml	string	watch_quality_pref_data	-	STR	首选播放画质�
 values-b+zh/strings.xml	string	wifi	-	STR	无线网络	
 values-b+zh/strings.xml	string	year	-	STR	年份	
 values-b+zh/strings.xml	string	yes	-	STR	是	
-values/donottranslate-strings.xml	plurals	episodes	one	REF	string/episode	
-values/donottranslate-strings.xml	plurals	episodes	other	REF	string/episodes	
 values/donottranslate-strings.xml	string	android_tv_interface_off_seek_key	-	STR	android_tv_interface_off_seek_key	
 values/donottranslate-strings.xml	string	android_tv_interface_on_seek_key	-	STR	android_tv_interface_on_seek_key	
 values/donottranslate-strings.xml	string	anilist_key	-	STR	anilist_key	
@@ -31799,39 +31797,27 @@ values/donottranslate-strings.xml	string	battery_optimisation_key	-	STR	battery_
 values/donottranslate-strings.xml	string	benene_count	-	STR	benene_count	
 values/donottranslate-strings.xml	string	biometric_key	-	STR	biometric_key	
 values/donottranslate-strings.xml	string	bottom_title_key	-	STR	bottom_title_key	
-values/donottranslate-strings.xml	string	change_providers_img_des	-	REF	string/home_change_provider_img_des	
 values/donottranslate-strings.xml	string	confirm_exit_key	-	STR	confirm_exit_key	
-values/donottranslate-strings.xml	string	default_account	-	REF	string/action_default	
-values/donottranslate-strings.xml	string	default_subtitles	-	REF	string/action_default	
 values/donottranslate-strings.xml	string	display_sub_key	-	STR	display_sub_key	
 values/donottranslate-strings.xml	string	dns_key	-	STR	dns_key	
 values/donottranslate-strings.xml	string	double_tap_enabled_key	-	STR	double_tap_enabled_key	
 values/donottranslate-strings.xml	string	double_tap_pause_enabled_key	-	STR	double_tap_pause_enabled_key	
 values/donottranslate-strings.xml	string	double_tap_seek_time_key	-	STR	double_tap_seek_time_key2	
 values/donottranslate-strings.xml	string	download_concurrent_key	-	STR	download_concurrent_key	
-values/donottranslate-strings.xml	string	download_format	-	STR	%1$s - %2$s	
 values/donottranslate-strings.xml	string	download_parallel_key	-	STR	download_parallel_key	
 values/donottranslate-strings.xml	string	download_path_key	-	STR	download_path_key	
 values/donottranslate-strings.xml	string	download_path_key_visual	-	STR	download_path_key_visual	
-values/donottranslate-strings.xml	string	download_size_format	-	STR	%1$s / %2$s	
-values/donottranslate-strings.xml	string	duplicate_cancel	-	REF	string/cancel	
 values/donottranslate-strings.xml	string	enable_nsfw_on_providers_key	-	STR	enable_nsfw_on_providers_key	
 values/donottranslate-strings.xml	string	enable_skip_op_from_database	-	STR	enable_skip_op_from_database	
-values/donottranslate-strings.xml	string	episode_name_format	-	STR	%1$s %2$s	
-values/donottranslate-strings.xml	string	episode_play_img_des	-	REF	string/play_episode	
 values/donottranslate-strings.xml	string	episode_sync_enabled_key	-	STR	episode_sync_enabled_key	
 values/donottranslate-strings.xml	string	episode_text	-	STR	S1E1	
-values/donottranslate-strings.xml	string	extra_info_format	-	STR	%1$d %2$s | %3$s	
 values/donottranslate-strings.xml	string	fast_forward_button_time_key	-	STR	fast_forward_button_time	
-values/donottranslate-strings.xml	string	ffw_text_format	-	STR	+%d	
-values/donottranslate-strings.xml	string	ffw_text_regular_format	-	STR	%d	
 values/donottranslate-strings.xml	string	filter_sub_lang_key	-	STR	filter_sub_lang_key	
 values/donottranslate-strings.xml	string	hide_player_control_names_key	-	STR	hide_player_control_names_key	
 values/donottranslate-strings.xml	string	install_prerelease_key	-	STR	install_prerelease_key	
 values/donottranslate-strings.xml	string	jsdelivr_proxy_key	-	STR	jsdelivr_proxy_key	
 values/donottranslate-strings.xml	string	kitsu_key	-	STR	kitsu_key	
 values/donottranslate-strings.xml	string	legal_notice_key	-	STR	legal_notice_key	
-values/donottranslate-strings.xml	string	legal_notice_text	-	STR	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.	
 values/donottranslate-strings.xml	string	locale_key	-	STR	app_locale	
 values/donottranslate-strings.xml	string	log_enabled_key	-	STR	log_enabled_key	
 values/donottranslate-strings.xml	string	mal_key	-	STR	mal_key	
@@ -31861,12 +31847,8 @@ values/donottranslate-strings.xml	string	provider_lang_key	-	STR	provider_lang_k
 values/donottranslate-strings.xml	string	quality_pref_key	-	STR	quality_pref_key	
 values/donottranslate-strings.xml	string	quality_pref_mobile_data_key	-	STR	quality_pref_mobile_data_key	
 values/donottranslate-strings.xml	string	random_button_key	-	STR	random_button_key	
-values/donottranslate-strings.xml	string	rating_format	-	STR	%s/10.0	
 values/donottranslate-strings.xml	string	redo_setup_key	-	STR	redo_setup_key	
 values/donottranslate-strings.xml	string	restore_key	-	STR	restore_key	
-values/donottranslate-strings.xml	string	result_plot	-	REF	string/synopsis	
-values/donottranslate-strings.xml	string	rew_text_format	-	STR	-%d	
-values/donottranslate-strings.xml	string	rew_text_regular_format	-	STR	%d	
 values/donottranslate-strings.xml	string	rotate_video_key	-	STR	rotate_video_key	
 values/donottranslate-strings.xml	string	search_providers_list_key	-	STR	search_providers_list	
 values/donottranslate-strings.xml	string	search_types_list_key	-	STR	search_type_list	
@@ -31889,30 +31871,27 @@ values/donottranslate-strings.xml	string	simkl_key	-	STR	simkl_key
 values/donottranslate-strings.xml	string	skip_startup_account_select_key	-	STR	skip_startup_account_select_key	
 values/donottranslate-strings.xml	string	skip_update_key	-	STR	skip_update_key	
 values/donottranslate-strings.xml	string	software_decoding_key	-	STR	software_decoding_key2	
-values/donottranslate-strings.xml	string	sort_cancel	-	REF	string/cancel	
 values/donottranslate-strings.xml	string	speedup_key	-	STR	speedup_key	
-values/donottranslate-strings.xml	string	storage_size_format	-	STR	%1$s • %2$s	
 values/donottranslate-strings.xml	string	subdl_key	-	STR	subdl_key	
 values/donottranslate-strings.xml	string	subtitle_settings_chromecast_key	-	STR	subtitle_settings_chromecast_key	
 values/donottranslate-strings.xml	string	subtitle_settings_key	-	STR	subtitle_settings_key	
 values/donottranslate-strings.xml	string	subtitles_encoding_key	-	STR	subtitles_encoding_key	
-values/donottranslate-strings.xml	string	subtitles_none	-	REF	string/none	
 values/donottranslate-strings.xml	string	swipe_enabled_key	-	STR	swipe_enabled_key	
 values/donottranslate-strings.xml	string	swipe_vertical_enabled_key	-	STR	swipe_vertical_enabled_key	
 values/donottranslate-strings.xml	string	test_providers_key	-	STR	test_providers_key	
 values/donottranslate-strings.xml	string	tv_layout_clock_key	-	STR	tv_layout_clock_key	
 values/donottranslate-strings.xml	string	tv_no_focus_tag	-	STR	tv_no_focus_tag	
-values/donottranslate-strings.xml	string	type_none	-	REF	string/none	
 values/donottranslate-strings.xml	string	use_system_brightness_key	-	STR	use_system_brightness_key	
 values/donottranslate-strings.xml	string	video_buffer_clear_key	-	STR	video_buffer_clear_key	
 values/donottranslate-strings.xml	string	video_buffer_disk_key	-	STR	video_buffer_disk_key	
 values/donottranslate-strings.xml	string	video_buffer_length_key	-	STR	video_buffer_length_key	
 values/donottranslate-strings.xml	string	video_buffer_size_key	-	STR	video_buffer_size_key	
-values/donottranslate-strings.xml	string	year_format	-	STR	%d	
 values/strings.xml	plurals	downloads_active	one	STR	%d active download	
 values/strings.xml	plurals	downloads_active	other	STR	%d active downloads	
 values/strings.xml	plurals	downloads_queued	one	STR	%d download queued	
 values/strings.xml	plurals	downloads_queued	other	STR	%d downloads queued	
+values/strings.xml	plurals	episodes	one	REF	string/episode	
+values/strings.xml	plurals	episodes	other	REF	string/episodes	
 values/strings.xml	plurals	links_hidden	one	STR	%d hidden link	
 values/strings.xml	plurals	links_hidden	other	STR	%d hidden links	
 values/strings.xml	string	account	-	STR	account	
@@ -32032,6 +32011,7 @@ values/strings.xml	string	category_provider_test	-	STR	Provider test
 values/strings.xml	string	category_providers	-	STR	Providers	
 values/strings.xml	string	category_ui	-	STR	Layout	
 values/strings.xml	string	category_updates	-	STR	Updates and Backup	
+values/strings.xml	string	change_providers_img_des	-	REF	string/home_change_provider_img_des	
 values/strings.xml	string	check_for_update	-	STR	Check for Update	
 values/strings.xml	string	chromecast_subtitles_settings	-	STR	Chromecast Subtitles	
 values/strings.xml	string	chromecast_subtitles_settings_des	-	STR	Chromecast subtitles settings	
@@ -32052,6 +32032,8 @@ values/strings.xml	string	create_account	-	STR	Create account
 values/strings.xml	string	cs3wiki	-	STR	CloudStream Wiki	
 values/strings.xml	string	custom	-	STR	Custom	
 values/strings.xml	string	custom_media_singular	-	STR	Media	
+values/strings.xml	string	default_account	-	REF	string/action_default	
+values/strings.xml	string	default_subtitles	-	REF	string/action_default	
 values/strings.xml	string	delayed_update_notice	-	STR	App will be updated upon exit	
 values/strings.xml	string	delete	-	STR	Delete	
 values/strings.xml	string	delete_file	-	STR	Delete File	
@@ -32069,7 +32051,7 @@ values/strings.xml	string	deselect_all	-	STR	Deselect All
 values/strings.xml	string	device_pin_counter_text	-	STR	Code expires in %1$dm %2$ds	
 values/strings.xml	string	device_pin_error_message	-	STR	Can't get the device PIN code, try local authentication	
 values/strings.xml	string	device_pin_expired_message	-	STR	PIN code is now expired !	
-values/strings.xml	string	device_pin_url_message	-	STYLED	Visit %s on your smartphone or computer and enter the above code	b:6-7;
+values/strings.xml	string	device_pin_url_message	-	STR	Visit %s on your smartphone or computer and enter the above code	
 values/strings.xml	string	disable	-	STR	Disable	
 values/strings.xml	string	discord	-	STR	Join Discord	
 values/strings.xml	string	dismiss	-	STR	Dismiss	
@@ -32092,10 +32074,12 @@ values/strings.xml	string	download_canceled	-	STR	Download Canceled
 values/strings.xml	string	download_done	-	STR	Download Done	
 values/strings.xml	string	download_episode_range	-	STR	Do you want to download episode %s?	
 values/strings.xml	string	download_failed	-	STR	Download Failed	
+values/strings.xml	string	download_format	-	STR	%1$s - %2$s	
 values/strings.xml	string	download_parallel_settings_des	-	STR	How many different items that can be downloaded in parallel	
 values/strings.xml	string	download_path_pref	-	STR	Download path	
 values/strings.xml	string	download_paused	-	STR	Download Paused	
 values/strings.xml	string	download_queue	-	STR	Download queue	
+values/strings.xml	string	download_size_format	-	STR	%1$s / %2$s	
 values/strings.xml	string	download_started	-	STR	Download Started	
 values/strings.xml	string	download_storage_text	-	STR	Internal Storage	
 values/strings.xml	string	download_time_left_hour_min_sec_format	-	STR	%1$dh %2$dm %3$ds	
@@ -32107,6 +32091,7 @@ values/strings.xml	string	downloading	-	STR	Downloading
 values/strings.xml	string	downloads_delete_select	-	STR	Select Items to Delete	
 values/strings.xml	string	downloads_empty	-	STR	There are currently no downloads.	
 values/strings.xml	string	duplicate_add	-	STR	Add	
+values/strings.xml	string	duplicate_cancel	-	REF	string/cancel	
 values/strings.xml	string	duplicate_message_multiple	-	STR	Potential duplicate items have been found in your library: \n\n%s \n\nWould you like to add this item anyway, replace the existing ones, or cancel the action?	
 values/strings.xml	string	duplicate_message_single	-	STR	It appears that a potentially duplicate item already exists in your library: '%s.' \n\nWould you like to add this item anyway, replace the existing one, or cancel the action?	
 values/strings.xml	string	duplicate_replace	-	STR	Replace	
@@ -32144,6 +32129,8 @@ values/strings.xml	string	episode_action_play_mirror	-	STR	Play mirror
 values/strings.xml	string	episode_action_reload_links	-	STR	Reload links	
 values/strings.xml	string	episode_format	-	STR	%1$d %2$s	
 values/strings.xml	string	episode_more_options_des	-	STR	More Options	
+values/strings.xml	string	episode_name_format	-	STR	%1$s %2$s	
+values/strings.xml	string	episode_play_img_des	-	REF	string/play_episode	
 values/strings.xml	string	episode_poster_img_des	-	STR	Episode Poster	
 values/strings.xml	string	episode_short	-	STR	E	
 values/strings.xml	string	episode_sync_settings	-	STR	Update watch progress	
@@ -32177,11 +32164,14 @@ values/strings.xml	string	extensions	-	STR	Extensions
 values/strings.xml	string	extra_brightness_key	-	STR	extra_brightness_enabled	
 values/strings.xml	string	extra_brightness_settings	-	STR	Extra brightness	
 values/strings.xml	string	extra_brightness_settings_des	-	STR	Enable brightness filter when 100% display brightness is exceeded	
+values/strings.xml	string	extra_info_format	-	STR	%1$d %2$s | %3$s	
 values/strings.xml	string	extras	-	STR	Extras	
 values/strings.xml	string	favorite	-	STR	Favorite	
 values/strings.xml	string	favorite_added	-	STR	%s added to favorites	
 values/strings.xml	string	favorite_removed	-	STR	%s removed from favorites	
 values/strings.xml	string	favorites_list_name	-	STR	Favorites	
+values/strings.xml	string	ffw_text_format	-	STR	+%d	
+values/strings.xml	string	ffw_text_regular_format	-	STR	%d	
 values/strings.xml	string	filler	-	STR	Filler	
 values/strings.xml	string	filter_bookmarks	-	STR	Filter Bookmarks	
 values/strings.xml	string	free_storage	-	STR	Free	
@@ -32211,6 +32201,7 @@ values/strings.xml	string	jsdelivr_proxy	-	STR	GitHub Proxy
 values/strings.xml	string	jsdelivr_proxy_summary	-	STR	Bypass blocking of raw github URLs using jsDelivr. May cause updates to be delayed by few days.	
 values/strings.xml	string	kitsu_settings	-	STR	Show posters from Kitsu	
 values/strings.xml	string	legal_notice	-	STR	Disclaimer	
+values/strings.xml	string	legal_notice_text	-	STR	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.	
 values/strings.xml	string	library	-	STR	Library	
 values/strings.xml	string	lightnovel	-	STR	Light novel app by the same devs	
 values/strings.xml	string	limit_title	-	STR	Video player title max chars	
@@ -32394,6 +32385,7 @@ values/strings.xml	string	random_button_settings	-	STR	Random Button
 values/strings.xml	string	random_button_settings_desc	-	STR	Show random button on Homepage and Library	
 values/strings.xml	string	rated_format	-	STR	Rated: %.1f	
 values/strings.xml	string	rating	-	STR	Rating	
+values/strings.xml	string	rating_format	-	STR	%s/10.0	
 values/strings.xml	string	recommendations_tooltip	-	STR	Show recommendations	
 values/strings.xml	string	recommended	-	STR	Recommended	
 values/strings.xml	string	redo_setup_process	-	STR	Redo setup process	
@@ -32418,6 +32410,7 @@ values/strings.xml	string	restore_failed_format	-	STR	Failed to restore data fro
 values/strings.xml	string	restore_settings	-	STR	Restore data from backup	
 values/strings.xml	string	restore_success	-	STR	Loaded backup file	
 values/strings.xml	string	result_open_in_browser	-	STR	Open In Browser	
+values/strings.xml	string	result_plot	-	REF	string/synopsis	
 values/strings.xml	string	result_poster_img_des	-	STR	Poster	
 values/strings.xml	string	result_search_tooltip	-	STR	Search in other extensions	
 values/strings.xml	string	result_share	-	STR	Share	
@@ -32426,6 +32419,8 @@ values/strings.xml	string	resume	-	STR	Resume
 values/strings.xml	string	resume_remaining	-	STR	%s\nremaining	
 values/strings.xml	string	resume_time_left	-	STR	%dm\nremaining	
 values/strings.xml	string	revert	-	STR	Revert	
+values/strings.xml	string	rew_text_format	-	STR	-%d	
+values/strings.xml	string	rew_text_regular_format	-	STR	%d	
 values/strings.xml	string	rotate_video	-	STR	Rotate	
 values/strings.xml	string	rotate_video_desc	-	STR	Display a toggle button for screen orientation	
 values/strings.xml	string	safe_mode_crash_info	-	STR	View crash info	
@@ -32488,6 +32483,7 @@ values/strings.xml	string	sort_button_date	-	STR	Date %s
 values/strings.xml	string	sort_button_episode	-	STR	Ep %s	
 values/strings.xml	string	sort_button_rating	-	STR	Rating %s	
 values/strings.xml	string	sort_by	-	STR	Sort by	
+values/strings.xml	string	sort_cancel	-	REF	string/cancel	
 values/strings.xml	string	sort_clear	-	STR	Clear	
 values/strings.xml	string	sort_close	-	STR	Close	
 values/strings.xml	string	sort_copy	-	STR	Copy	
@@ -32519,6 +32515,7 @@ values/strings.xml	string	status_completed	-	STR	Completed
 values/strings.xml	string	status_ongoing	-	STR	Ongoing	
 values/strings.xml	string	stop	-	STR	Stop	
 values/strings.xml	string	storage_error	-	STR	Download error, check storage permissions	
+values/strings.xml	string	storage_size_format	-	STR	%1$s • %2$s	
 values/strings.xml	string	stream	-	STR	Network stream	
 values/strings.xml	string	subs_auto_select_language	-	STR	Auto-Select Language	
 values/strings.xml	string	subs_background_color	-	STR	Background Color	
@@ -32554,6 +32551,7 @@ values/strings.xml	string	subtitles_example_text	-	STR	The quick brown fox jumps
 values/strings.xml	string	subtitles_filter_lang	-	STR	Filter by preferred media language	
 values/strings.xml	string	subtitles_from_embedded	-	STR	Embedded	
 values/strings.xml	string	subtitles_from_online	-	STR	Online	
+values/strings.xml	string	subtitles_none	-	REF	string/none	
 values/strings.xml	string	subtitles_outline	-	STR	Outline	
 values/strings.xml	string	subtitles_raised	-	STR	Raised	
 values/strings.xml	string	subtitles_remove_bloat	-	STR	Remove bloat from subtitles	
@@ -32601,6 +32599,7 @@ values/strings.xml	string	tv_series	-	STR	TV Series
 values/strings.xml	string	tv_series_singular	-	STR	Series	
 values/strings.xml	string	type_completed	-	STR	Completed	
 values/strings.xml	string	type_dropped	-	STR	Dropped	
+values/strings.xml	string	type_none	-	REF	string/none	
 values/strings.xml	string	type_on_hold	-	STR	On-Hold	
 values/strings.xml	string	type_plan_to_watch	-	STR	Plan to Watch	
 values/strings.xml	string	type_re_watching	-	STR	Rewatching	
@@ -32647,4 +32646,5 @@ values/strings.xml	string	watch_quality_pref	-	STR	Preferred watch quality (WiFi
 values/strings.xml	string	watch_quality_pref_data	-	STR	Preferred watch quality (Mobile Data)	
 values/strings.xml	string	wifi	-	STR	Wi-Fi	
 values/strings.xml	string	year	-	STR	Year	
+values/strings.xml	string	year_format	-	STR	%d	
 values/strings.xml	string	yes	-	STR	Yes	

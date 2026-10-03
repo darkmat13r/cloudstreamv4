@@ -3,7 +3,6 @@
 <resources>
 <plurals name="downloads_active"><item quantity="other">%d unduhan aktif</item></plurals>
 <plurals name="downloads_queued"><item quantity="other">%d unduhan dalam antrean</item></plurals>
-<plurals name="episodes"><item quantity="one">Episode</item><item quantity="other">Episode</item></plurals>
 <plurals name="links_hidden"><item quantity="other">%d link tersembunyi</item></plurals>
 <string name="account">akun</string>
 <string name="action_add_to_bookmarks">Atur status tontonan</string>
@@ -122,7 +121,6 @@
 <string name="category_providers">Penyedia</string>
 <string name="category_ui">Antarmuka pengguna</string>
 <string name="category_updates">Update dan Cadangan</string>
-<string name="change_providers_img_des">Ganti Penyedia</string>
 <string name="check_for_update">Periksa pembaruan</string>
 <string name="chromecast_subtitles_settings">Subtitel Chromecast</string>
 <string name="chromecast_subtitles_settings_des">Pengaturan subtitel Chromecast</string>
@@ -198,7 +196,6 @@
 <string name="downloads_delete_select">Pilih item untuk Dihapus</string>
 <string name="downloads_empty">Tidak ada unduhan.</string>
 <string name="duplicate_add">Tambahkan</string>
-<string name="duplicate_cancel">Batalkan</string>
 <string name="duplicate_message_multiple">Item duplikat potensial telah ditemukan di pustaka Anda: \n \n%s \n \nApakah Anda tetap ingin menambahkan item ini, mengganti item yang sudah ada, atau membatalkan tindakan?</string>
 <string name="duplicate_message_single">Tampaknya item yang berpotensi duplikat sudah ada di pustaka Anda: '%s.' \n \nApakah Anda tetap ingin menambahkan item ini, mengganti item yang sudah ada, atau membatalkan tindakan?</string>
 <string name="duplicate_replace">Timpa</string>
@@ -236,7 +233,6 @@
 <string name="episode_action_reload_links">Muat ulang tautan</string>
 <string name="episode_format">%1$d %2$s</string>
 <string name="episode_more_options_des">Opsi Lainnya</string>
-<string name="episode_play_img_des">Putar Episode</string>
 <string name="episode_poster_img_des">Poster Episode</string>
 <string name="episode_short">E</string>
 <string name="episode_sync_settings">Perbarui progres tontonan</string>
@@ -510,7 +506,6 @@
 <string name="restore_settings">Pulihkan data dari cadangan</string>
 <string name="restore_success">File cadangan termuat</string>
 <string name="result_open_in_browser">Buka di Peramban</string>
-<string name="result_plot">Sinopsis</string>
 <string name="result_poster_img_des">Poster</string>
 <string name="result_search_tooltip">Cari di ekstensi lainnya</string>
 <string name="result_share">Bagikan</string>
@@ -581,7 +576,6 @@
 <string name="sort_button_episode">Ep %s</string>
 <string name="sort_button_rating">Rating %s</string>
 <string name="sort_by">Urutkan berdasarkan</string>
-<string name="sort_cancel">Batalkan</string>
 <string name="sort_clear">Bersihkan</string>
 <string name="sort_close">Tutup</string>
 <string name="sort_copy">Salin</string>
@@ -648,7 +642,6 @@
 <string name="subtitles_filter_lang">Filter berdasarkan bahasa media pilihan</string>
 <string name="subtitles_from_embedded">Tertanam</string>
 <string name="subtitles_from_online">Daring</string>
-<string name="subtitles_none">Tidak Ada</string>
 <string name="subtitles_outline">Garis luar</string>
 <string name="subtitles_raised">Menonjol</string>
 <string name="subtitles_remove_bloat">Hapus teks tidak perlu pada subtitel</string>
@@ -696,7 +689,6 @@
 <string name="tv_series_singular">Seri</string>
 <string name="type_completed">Selesai</string>
 <string name="type_dropped">Dihentikan</string>
-<string name="type_none">Tidak Ada</string>
 <string name="type_on_hold">Ditunda</string>
 <string name="type_plan_to_watch">Ingin Ditonton</string>
 <string name="type_re_watching">Ditonton Ulang</string>

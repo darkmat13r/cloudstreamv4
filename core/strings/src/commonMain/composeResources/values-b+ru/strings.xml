@@ -3,7 +3,6 @@
 <resources>
 <plurals name="downloads_active"><item quantity="one">%d активная загрузка</item><item quantity="few">%d активные загрузки</item><item quantity="many">%d активных загрузок</item><item quantity="other">%d активных загрузок</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">Запланировано %d загрузка</item><item quantity="few">Запланировано %d загрузки</item><item quantity="many">Запланировано %d загрузок</item><item quantity="other">Запланировано %d загрузок</item></plurals>
-<plurals name="episodes"><item quantity="one">Серия</item><item quantity="other">Серии</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d скрытая ссылка</item><item quantity="few">%d скрытые ссылки</item><item quantity="many">%d скрытых ссылок</item><item quantity="other">%d скрытых ссылок</item></plurals>
 <string name="account">учётная запись</string>
 <string name="action_add_to_bookmarks">Установите смотреть состояние</string>
@@ -122,7 +121,6 @@
 <string name="category_providers">Поставщики</string>
 <string name="category_ui">Расстановка</string>
 <string name="category_updates">Обновления и Резервное копирование</string>
-<string name="change_providers_img_des">Изменить поставщика</string>
 <string name="check_for_update">Проверить обновления</string>
 <string name="chromecast_subtitles_settings">Субтитры Chromecast</string>
 <string name="chromecast_subtitles_settings_des">Настройки субтитров Chromecast</string>
@@ -143,8 +141,6 @@
 <string name="cs3wiki">CloudStream Вики</string>
 <string name="custom">Пользовательский</string>
 <string name="custom_media_singular">Медиа</string>
-<string name="default_account">По умолчанию</string>
-<string name="default_subtitles">По умолчанию</string>
 <string name="delayed_update_notice">Приложение будет обновлено после выхода</string>
 <string name="delete">Удалить</string>
 <string name="delete_file">Удалить файл</string>
@@ -200,7 +196,6 @@
 <string name="downloads_delete_select">Выберите элементы для удаления</string>
 <string name="downloads_empty">В данный момент скачиваний нет.</string>
 <string name="duplicate_add">Добавить</string>
-<string name="duplicate_cancel">Отмена</string>
 <string name="duplicate_message_multiple">В вашей библиотеке есть возможно повторяющиеся элементы: \n \n'%s.' \n \nХотите ли вы всё равно добавить этот элемент в библиотеку, заменить уже существующий или отменить действие?</string>
 <string name="duplicate_message_single">Кажется, что в вашей библиотеке уже есть такой элемент: '%s.' \n \nВы хотите всё равно добавить его, заменить уже существующий или отменить действие?</string>
 <string name="duplicate_replace">Заменить</string>
@@ -238,7 +233,6 @@
 <string name="episode_action_reload_links">Перезагрузить ссылки</string>
 <string name="episode_format">%1$d %2$s</string>
 <string name="episode_more_options_des">Дополнительные опции</string>
-<string name="episode_play_img_des">Смотреть серию</string>
 <string name="episode_poster_img_des">Плакат серии</string>
 <string name="episode_short">Э</string>
 <string name="episode_sync_settings">Обновлять прогресс просмотра</string>
@@ -512,7 +506,6 @@
 <string name="restore_settings">Восстановить данные из резервной копии</string>
 <string name="restore_success">Восстановлено из резервной копии</string>
 <string name="result_open_in_browser">Открыть в Браузере</string>
-<string name="result_plot">Синопсис</string>
 <string name="result_poster_img_des">Плакат</string>
 <string name="result_search_tooltip">Искать в других расширениях</string>
 <string name="result_share">Поделиться</string>
@@ -583,7 +576,6 @@
 <string name="sort_button_episode">Сер %s</string>
 <string name="sort_button_rating">Оценка %s</string>
 <string name="sort_by">Сортировать по</string>
-<string name="sort_cancel">Отмена</string>
 <string name="sort_clear">Очистить</string>
 <string name="sort_close">Закрыть</string>
 <string name="sort_copy">Копия</string>
@@ -650,7 +642,6 @@
 <string name="subtitles_filter_lang">Фильтровать по предпочитаемому языку медиа</string>
 <string name="subtitles_from_embedded">Встроенный</string>
 <string name="subtitles_from_online">Из сети</string>
-<string name="subtitles_none">Нет</string>
 <string name="subtitles_outline">Контурный</string>
 <string name="subtitles_raised">Поднятые</string>
 <string name="subtitles_remove_bloat">Удалять лишнее из субтитров</string>
@@ -698,7 +689,6 @@
 <string name="tv_series_singular">Сериал</string>
 <string name="type_completed">Завершено</string>
 <string name="type_dropped">Брошено</string>
-<string name="type_none">Нет</string>
 <string name="type_on_hold">Приостановлено</string>
 <string name="type_plan_to_watch">Буду смотреть</string>
 <string name="type_re_watching">Пересмотрю</string>
