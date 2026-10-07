@@ -30026,7 +30026,7 @@ public final class com/lagradost/cloudstream3/ui/result/ResumeWatchingStatus : j
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class com/lagradost/cloudstream3/ui/result/RunTimeSecondsKt {
+public final class com/lagradost/cloudstream3/ui/result/RunTimeSecondsKt : java/lang/Object {
 	public static final fun runTimeMinutesToSeconds (Ljava/lang/Integer;)Ljava/lang/Integer;
 }
 

@@ -175,9 +175,15 @@ the block would still be an addition. Accepting it matches how the dump already 
 internals: it holds 289 name-mangled `internal` members by design. And Kotlin extensions cannot call
 an `internal` declaration from another module either way; the compiler enforces that from metadata.
 
-- [x] The 3-line `RunTimeSecondsKt` block added to `app/api/classes-jar.api` by hand, at its sorted
-      position, byte-identical to the block `checkExtensionApi` printed. Carried in #41 because that
-      PR's gate depends on it.
-- [ ] Confirm `:app:checkExtensionApi` exits 0 (local, Temurin 17).
+- [x] The `RunTimeSecondsKt` block added to `app/api/classes-jar.api`, carried in #41 because that
+      PR's gate depends on it. The first attempt was **written by hand and wrong**: it dropped the
+      superclass, ` : java/lang/Object`, which the dump prints on every class. It was the only one
+      of the dump's classes without a supertype. Caught when the owner built it (`checkExtensionApi`:
+      1 changed); `:app:dumpExtensionApi` produces exactly the corrected line.
+- [x] `:app:checkExtensionApi` exits 0 with the corrected line (owner, local, Temurin 17).
+
+**Rule this taught: never hand-write a baseline line.** Regenerate it with `:app:dumpExtensionApi`
+(or `updateKotlinAbi` on 17) and review the diff. A transcription from failure output loses exactly
+the details the dump exists to keep; ` : java/lang/Object` has now been that trap twice.
 
 
