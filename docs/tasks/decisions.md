@@ -6,7 +6,14 @@ Questions only the owner can answer. The ones marked **blocking** are holding up
 
 ## DEC-01 — GitHub Actions billing · **blocking everything**
 
-**Status:** open · **Blocks:** `INF-01`, and the confidence level of every merged PR
+**Status:** resolved in practice — **Actions runs again, observed 2026-10-07**; the owner has not
+recorded what changed · **Unblocked:** `INF-01`
+
+On 2026-10-07 the `Artifact Build` workflow (`pull_request.yml`) ran on PRs #41, #42 and #43. The first
+full green run is #42's head `bce90a8` (run `37647589593`, 42 min): `checkKotlinAbi`,
+`assemblePrereleaseDebug lint check -Pcloudstream.strings.guards=fail` and `:app:checkExtensionApi`
+all passed. The text below is the state before that, kept for the record.
+
 
 Actions fails account-wide in ~2s: *"recent account payments have failed or your spending limit
 needs to be increased"*. Twenty-plus PRs have merged on local verification alone.
