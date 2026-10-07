@@ -177,9 +177,9 @@ internals: it holds 289 name-mangled `internal` members by design. And Kotlin ex
 an `internal` declaration from another module either way; the compiler enforces that from metadata.
 
 - [x] The `RunTimeSecondsKt` block added to `app/api/classes-jar.api`. Meant to ride #41, which
-      merged first, so it lands in its own follow-up PR. The first attempt was **written by hand and wrong**: it dropped the
-      superclass, ` : java/lang/Object`, which the dump prints on every class. It was the only one
-      of the dump's classes without a supertype. Caught when the owner built it (`checkExtensionApi`:
+      merged first, so it lands in its own follow-up PR. The first attempt was **written by hand
+      and wrong**: it dropped the superclass, ` : java/lang/Object`, which the dump prints on every
+      class. It was the only one of the dump's classes without a supertype. Caught when the owner built it (`checkExtensionApi`:
       1 changed); `:app:dumpExtensionApi` produces exactly the corrected line.
 - [x] `:app:checkExtensionApi` exits 0 with the corrected line (owner, local, Temurin 17).
 
