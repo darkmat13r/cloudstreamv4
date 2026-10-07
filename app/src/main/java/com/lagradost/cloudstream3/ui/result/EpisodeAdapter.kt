@@ -326,7 +326,7 @@ class EpisodeAdapter(
 
                     episodeRuntime.setText(
                         txt(
-                            item.runTime?.times(60L)?.toInt()?.let { secondsToReadable(it, "") }
+                            runTimeMinutesToSeconds(item.runTime)?.let { secondsToReadable(it, "") }
                         )
                     )
 
