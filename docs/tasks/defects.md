@@ -40,28 +40,40 @@ and would pass whatever the timezone.
 
 ---
 
-## BUG-01 — `dur * 60` overflows on untrusted input · **medium**
+## BUG-01 — `runTime * 60` overflows on untrusted input · **medium**
 
-**Status:** open · `ResultViewModel2.kt:345`, `EpisodeAdapter.kt:329`
+**Status:** done · `EpisodeAdapter.kt:329` · the `ResultViewModel2.kt` half was already fixed by
+`cf3ce1c6` (#29)
 
-```kotlin
-durationText = if (dur == null || dur <= 0) null else txt(secondsToReadable(dur * 60, "0 mins"))
-```
+**This entry had gone stale.** It was written against two sites. The first, `ResultViewModel2.kt:345`
+(`secondsToReadable(dur * 60, "0 mins")`), was replaced by `cf3ce1c6` with
+`txt(R.string.duration_format, dur)`, which does no arithmetic, and the entry was never updated. Only
+`EpisodeAdapter.kt:329` still had the defect. `ResultViewModel2.kt:2427` was never a `* 60` site.
 
-`duration` is `Int?` **minutes**, so `dur * 60` is Int arithmetic and wraps. Measured:
-`dur = 35_791_395` → `-2_147_483_596` → renders `0 mins`; `dur = 40_000_000` → `-1_894_967_296` →
-`0 mins`. `dur > 0` does not prevent the product going negative.
+The defect as found: a runtime in **minutes** was multiplied by 60 and narrowed to `Int`. Measured on
+the original `Int` form: `dur = 35_791_395` → `-2_147_483_596` → renders `0 mins`; `dur = 40_000_000`
+→ `-1_894_967_296` → `0 mins`. `dur > 0` does not prevent the product going negative. The surviving
+site did the arithmetic in `Long` (`times(60L)`) and then `.toInt()`, which truncates and wraps the
+same way.
 
-`EpisodeAdapter.kt:329` has the same shape via `runTime?.times(60L)?.toInt()`, which truncates a
-`Long`.
-
-**Why it matters beyond cosmetics:** `duration` comes from an extension-supplied `LoadResponse`.
+**Why it mattered beyond cosmetics:** `runTime` comes from an extension-supplied `Episode`.
 `.claude/rules/dependency-security.md` classes extension output as **untrusted input that must be
-validated**. This is that rule's case, not a hypothetical.
+validated**. This was that rule's case, not a hypothetical.
 
-**Note:** this was first reported as *"unreachable dead English"* on the strength of reading the
-`dur <= 0` guard. That was wrong and the overflow was found by running it. A fix that works in
-minutes directly sidesteps the whole thing.
+**Fix:** `runTimeMinutesToSeconds` (`ui/result/RunTimeSeconds.kt`) takes the product in `Long` and
+clamps it to the `Int` range, so an absurd runtime saturates at `Int.MAX_VALUE` seconds instead of
+going negative. Negative input stays negative, so it still renders as the empty `completedValue`
+exactly as before. `EpisodeAdapter.kt:329` calls it.
+
+**Evidence:** `RunTimeSecondsTest` (6 cases), `:app:testStableDebugUnitTest --tests` with `TZ=UTC` and
+JDK 17. Against the unclamped helper: 3 of 6 failed (`35_791_395` / `40_000_000` / `Int.MAX_VALUE`
+returned wrapped values; a negative input became positive). After the clamp: 6 of 6 passed. Full
+`:app:testStableDebugUnitTest`: 19 tests, 0 failures, exit 0.
+
+- [ ] **Open, deliberately not changed:** `MainAPI.kt:2549` documents `Episode.runTime` as **seconds**,
+      while `EpisodeAdapter.kt` treats it as **minutes**. One of them is wrong by 60x. The fix is
+      correct under the minutes reading the display code uses; it does not resolve which is the
+      contract. If the KDoc is right, every episode runtime renders 60x too long
 
 ---
 
