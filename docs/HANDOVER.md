@@ -129,7 +129,8 @@ Nothing below can be settled by reading the code.
 > **has never been built**: that container had no Android SDK and no network route to Maven, Google
 > or Gradle. The owner has since built and run it locally: two of three commands green, the third red
 > on a pre-existing failure (`INF-07`), runtime resources verified. The `$stable` scan is still open;
-> `docs/tasks/kmp.md` has the detail. The text below predates this.
+> `docs/tasks/kmp.md` has the detail. `KMP-06b` (`:core:mihon`) is implemented, unbuilt, on
+> `claude/kmp-06b-core-mihon`, stacked on #41. The text below predates this.
 
 
 `KMP-06b` — move the vendored Mihon tree into its own `:core:mihon` module. This PR

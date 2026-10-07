@@ -33,6 +33,9 @@ kotlin {
             // api: SearchableSettings extends :core:ui's Screen, and :app / :desktopApp reach :core:ui
             // through this edge.
             api(project(":core:ui"))
+            // api: ComposeFragment and DevicePreferenceStore use it, and :app / :desktopApp reach the
+            // vendored Mihon tree through this edge.
+            api(project(":core:mihon"))
             implementation(libs.bundles.compose)
             implementation(libs.kotlinx.collections.immutable)
             implementation(project(":library"))

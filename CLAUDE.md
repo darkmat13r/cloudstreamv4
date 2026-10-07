@@ -19,8 +19,9 @@ restating them. Where they disagree, they win, and this file is the one to fix.
 - `:core:*` — KMP modules (android + a `jvm()` canary), built on the convention plugins in
   `build-logic/convention`: `cloudstream.kmp.library`, `.compose`, `.extension-api`, `.strings`,
   `.android-only`.
-- `:shared` — being retired (`KMP-06`). `:core:ui` holds the first-party Compose layer; the vendored
-  Mihon tree (`com.mihon.*`, Apache-2.0, see `NOTICE`) is still in `:shared` until `KMP-06b`.
+- `:shared` — being retired (`KMP-06`). `:core:ui` holds the first-party Compose layer and
+  `:core:mihon` the vendored Mihon tree (`com.mihon.*`, Apache-2.0, see `NOTICE` — no first-party
+  code there). What remains in `:shared` is placed by `KMP-06d`.
 - `:desktopApp` — a placeholder JVM app.
 
 ## The two constraints on every module move

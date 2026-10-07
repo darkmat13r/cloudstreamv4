@@ -232,20 +232,37 @@ Two names move with it and must not change:
 
 ### KMP-06b — `:core:mihon`, the vendored tree in its own module
 
-**Status:** open · after `KMP-06c`
+**Status:** implemented on `claude/kmp-06b-core-mihon`, stacked on #41 · **not built**: the session
+that wrote it had no Android SDK or Maven access.
 
-29 `.kt` under `com/mihon/**` moved as-is, packages unchanged, plus its `LICENSE` and `readme.md`,
-depending on `:core:ui`. After 06c the Mihon tree's only first-party imports are `:core:ui`'s, so no
-Mihon file needs an edit. The `NOTICE` and the module README name `shared/src/…` paths and move with it.
+Moved by `git mv`, every file's contents unchanged: all 29 `.kt` under `com/mihon/**` (27
+commonMain, 2 androidMain), plus `LICENSE` and `readme.md`, at the same relative paths under
+`core/mihon/src/`. Packages unchanged, so the `com/mihon/presentation/settings/SearchableSettings`
+FQN that `classes-jar.api` names 17 times does not move.
 
-- [ ] Decide whether `com/mihon/common/preference/**` goes to `:core:storage` or stays.
-      Recommended: **stays**, so one licence lives under one root. Those five files are Compose-free.
+- `:core:mihon` is `cloudstream.kmp.compose` with `api(:core:ui)`, plus `kotlinx-collections-immutable`
+  and (androidMain) `preference-ktx` — what `:shared` supplied, nothing new.
+- `:shared` gains `api(:core:mihon)`, so `:app` and `:desktopApp` need no build-file change.
+- `NOTICE` and the vendored `readme.md` point at the new paths.
+- Checked statically before the move: none of the tree's 12 `internal` declarations is used outside
+  it; no `expect`/`actual`; its only first-party imports are `:core:ui`'s.
+- [x] `com/mihon/common/preference/**` **stays** in `:core:mihon`, as recommended: one licence under
+      one root. Moving it to `:core:storage` is a separate decision for whenever `DevicePreferenceStore`
+      moves (06d).
+
+**Verification** — none run yet:
+
+- [ ] The three commands in `docs/HANDOVER.md`; `:app:checkExtensionApi` must show no diff.
+- [ ] `$stable` scan: `javap -p -c` of the moved classes, `:shared`'s jvm jar on #41's head vs
+      `:core:mihon`'s here. Compose module → Compose module, FQNs unchanged; expect no difference.
+- [ ] Runtime: the seven settings screens and settings search render, a list preference opens its
+      dialog, and the desktop app's `SwitchPreferenceWidget` row renders.
 
 ### KMP-06d — retire `:shared`
 
 **Status:** blocked until 06b and 06c land
 
-What will be left after 06b: `ComposeFragment.kt`, `compose/Layout.kt` and `DevicePreferenceStore` ×3.
+What is left after 06b: `ComposeFragment.kt`, `compose/Layout.kt` and `DevicePreferenceStore` ×3.
 Each needs a home: `DevicePreferenceStore` → `:core:storage` per the plan, once `PreferenceStore`
 has one.
 
