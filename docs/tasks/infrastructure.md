@@ -150,7 +150,8 @@ overflow, the "locale-blind" notification, the `Viewmodel.kt` "dead code", the m
 
 ## INF-07 — `:app:checkExtensionApi` is red on master since #38 · **measured 2026-10-07**
 
-**Status:** in pr #41 · decided 2026-10-07: accepted into the dump
+**Status:** in pr (follow-up to #41, which merged before this fix reached it) · decided 2026-10-07:
+accepted into the dump
 
 Found while verifying `KMP-06c`, and reproduced as pre-existing there: on master the check reports
 0 removed, 0 changed, 1 added:
@@ -175,8 +176,8 @@ the block would still be an addition. Accepting it matches how the dump already 
 internals: it holds 289 name-mangled `internal` members by design. And Kotlin extensions cannot call
 an `internal` declaration from another module either way; the compiler enforces that from metadata.
 
-- [x] The `RunTimeSecondsKt` block added to `app/api/classes-jar.api`, carried in #41 because that
-      PR's gate depends on it. The first attempt was **written by hand and wrong**: it dropped the
+- [x] The `RunTimeSecondsKt` block added to `app/api/classes-jar.api`. Meant to ride #41, which
+      merged first, so it lands in its own follow-up PR. The first attempt was **written by hand and wrong**: it dropped the
       superclass, ` : java/lang/Object`, which the dump prints on every class. It was the only one
       of the dump's classes without a supertype. Caught when the owner built it (`checkExtensionApi`:
       1 changed); `:app:dumpExtensionApi` produces exactly the corrected line.
