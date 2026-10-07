@@ -121,6 +121,14 @@ Nothing below can be settled by reading the code.
 
 ## The next thread
 
+> **Update, 2026-10-07 (cloud session).** The order is now **06c → 06b → 06d**. The Mihon tree imports
+> first-party `:shared` code in 12 of its 29 files — `SearchableSettings` extends `compose.Screen` — so
+> it cannot leave first. `KMP-06c` (`:core:ui`) is implemented on `claude/festive-bardeen-3258ln` but
+> **has never been built**: that container had no Android SDK and no network route to Maven, Google
+> or Gradle. Build it and run the three commands above before opening its PR; `docs/tasks/kmp.md`
+> lists what to check. The text below predates this.
+
+
 `KMP-06b` — move the vendored Mihon tree into its own `:core:mihon` module. This PR
 (`KMP-06a`) is its precondition and is now done.
 

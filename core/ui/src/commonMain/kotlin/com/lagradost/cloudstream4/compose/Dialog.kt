@@ -39,8 +39,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.DialogProperties
 import com.lagradost.cloudstream4.generated.resources.Res
 import com.lagradost.cloudstream4.generated.resources.check
-import com.mihon.material.padding
 import org.jetbrains.compose.resources.painterResource
+
+/**
+ * Gap between [ActionDialog]'s icon and its title. Was `MaterialTheme.padding.medium` from the vendored
+ * Mihon `com.mihon.material.Constants`, inlined so this module does not depend on the Mihon tree.
+ */
+private val ActionDialogIconTitleSpacing = 16.dp
 
 @Composable
 fun ActionDialog(
@@ -63,7 +68,7 @@ fun ActionDialog(
             } else {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Icon(painter = icon, modifier = Modifier.size(36.dp), contentDescription = null)
-                    Spacer(modifier = Modifier.size(MaterialTheme.padding.medium))
+                    Spacer(modifier = Modifier.size(ActionDialogIconTitleSpacing))
                     Text(text = title)
                 }
             }

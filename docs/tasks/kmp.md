@@ -98,7 +98,7 @@ public synthetic accessor from the published jar**.
 
 ## KMP-06 — Restructure `:shared`
 
-**Status:** open · **Size:** several PRs · **Partly blocked by** `DEC-09`
+**Status:** open · **Size:** several PRs · **Partly blocked by** `DEC-09` · order is now 06c → 06b → 06d
 
 The plan's "split `:shared` into `:core:ui` + `:core:designsystem`" is **stale**.
 `:core:designsystem` already exists with the redesign system; merging the vendored Mihon tree into
@@ -163,34 +163,88 @@ headers** in any file sampled.
 vendored, and the comparison above is against a moving `main`. The module README says so and asks
 whoever next updates a file to record the commit.
 
+### The order changed: 06c before 06b
+
+The original sizing (29 files, consumed from 23 files via 30 symbols) measured only **who imports
+the Mihon tree**. Measured on 2026-10-07, the Mihon tree also imports first-party `:shared` code, in
+**12 of its 29 files** — 8 import `compose`/`theme` symbols, 10 import `Res`, overlapping — so moving
+it out first would have created a module cycle:
+
+| Mihon file(s) | first-party symbol |
+|---|---|
+| `SearchableSettings.kt` | `compose.Screen` — its supertype, and both FQNs are in `app/api/classes-jar.api` |
+| `ListPreferenceWidget.kt`, `MultiSelectListPreferenceWidget.kt` | `SingleSelectDialog`, `MultiSelectDialog` |
+| `BasePreferenceWidget.kt`, `material/SettingsItems.kt` | `focusOutline`, `whiteOutline` |
+| 4 widget/item previews | `theme.CloudStreamPreviewTheme` — and with it all of `theme/**`, Product Sans included |
+| 10 files | `:shared`'s `Res`: 8 drawables and 6 strings used, plus an unused `lorem_title` import |
+
+The other direction is 5 files (4 by `import com.mihon`, plus `Dialog.kt`, whose import came out in 06c): `ComposeFragment.kt` (`LocalBackPress`, `collectAsState`),
+`DevicePreferenceStore` ×3 (`PreferenceStore` and its stores) and `Dialog.kt` (one
+`MaterialTheme.padding.medium`). `Screen` alone forces the first-party layer below the Mihon tree,
+so `:core:ui` comes first (owner's choice, 2026-10-07).
+
+### KMP-06c — `:core:ui` for the first-party Compose layer
+
+**Status:** implemented on `claude/festive-bardeen-3258ln` — **never built**: the session that wrote
+it had no Android SDK and no network route to Maven, Google or Gradle. Not in a PR until it has been
+built and the three `docs/HANDOVER.md` commands pass.
+
+Moved by `git mv`, every file's contents unchanged except `Dialog.kt`'s (below):
+
+- `compose/`: `Colors`, `Dialog`, `Modifiers`, `Screen`, `Viewmodel`; `theme/**` in all three source
+  sets; the whole `composeResources` tree (strings, 9 vector drawables, `default_icon.png`, the 12 Product
+  Sans fonts, unchanged — `DEC-02` is unaffected by where they sit).
+- `Dialog.kt`: `MaterialTheme.padding.medium` (Mihon's `Padding`, `16.dp`) became a private
+  `ActionDialogIconTitleSpacing = 16.dp`, and the `com.mihon.material.padding` import went. Same value;
+  it is the only cycle edge that needed an edit.
+- **Stayed in `:shared`:** `ComposeFragment.kt` and `DevicePreferenceStore` ×3, which import Mihon;
+  and `compose/Layout.kt`, because `ComposeFragment` calls its `internal` `layoutToFlag`, and moving
+  it would have meant widening a visibility. 06d places them.
+- `Viewmodel.kt` moved, as `.claude/rules/mvi-viewmodel.md` requires.
+- `DEC-09` (`BaseComposeFragment`) is untouched — that class is in `:app`, not `:shared`.
+
+Two names move with it and must not change:
+
+- **`Res`** at `com.lagradost.cloudstream4.generated.resources`, `publicResClass`. `:shared` now has
+  `generateResClass = never`; its Mihon files import `:core:ui`'s `Res` unchanged.
+- **Android namespace `com.lagradost.cloudstream4`**, whose empty `R` is in `classes-jar.api`. It
+  moved to `:core:ui` with `androidResources`; `:shared` became `com.lagradost.cloudstream4.shared`
+  without them. Otherwise retiring `:shared` would later drop that `R` from the jar.
+
+`:shared` depends on `:core:ui` as `api` — `SearchableSettings : Screen` is public API — so `:app` and
+`:desktopApp` needed no build-file change.
+
+**To verify before the PR** — none of this has been executed:
+
+- [ ] The three commands in `docs/HANDOVER.md`; `:app:checkExtensionApi` must show **no** diff. The
+      expected risk is `R`: the claim that `:core:ui`'s `R` lands at `com/lagradost/cloudstream4/R`
+      in `:app`'s classes, exactly as `:shared`'s did, rests on the KDoc of
+      `cloudstream.extension-api-jar.gradle.kts`, not on a run.
+- [ ] `$stable` scan: `javap -p -c` of every moved class before and after. All moved classes go
+      Compose-compiled module → Compose-compiled module with FQNs unchanged, so `getstatic` owners
+      should not change; prove it.
+- [ ] Resources at runtime: open a settings screen (fonts, dialogs, the `check` drawable) and the
+      desktop app (`app_name`, `default_icon`, `preview`). A missing `androidResources` shows up only
+      here, never at compile time.
+
 ### KMP-06b — `:core:mihon`, the vendored tree in its own module
 
-**Status:** open · after `KMP-06a`
+**Status:** open · after `KMP-06c`
 
-29 `.kt` under `com/mihon/**` moved as-is, packages unchanged, plus its `LICENSE` and `readme.md`.
-One module, one licence, one `NOTICE`. Keeping it separate is what makes it obvious that a
-different standard applies there — because a different licence does.
+29 `.kt` under `com/mihon/**` moved as-is, packages unchanged, plus its `LICENSE` and `readme.md`,
+depending on `:core:ui`. After 06c the Mihon tree's only first-party imports are `:core:ui`'s, so no
+Mihon file needs an edit. The `NOTICE` and the module README name `shared/src/…` paths and move with it.
 
 - [ ] Decide whether `com/mihon/common/preference/**` goes to `:core:storage` or stays.
       Recommended: **stays**, so one licence lives under one root. Those five files are Compose-free.
 
-### KMP-06c — `:core:ui` for the first-party Compose layer
-
-**Status:** open · after `KMP-06b`
-
-`com/lagradost/cloudstream4/compose/**` and `theme/**`. Takes the `publicResClass` FQN
-`com.lagradost.cloudstream4.generated.resources` — exactly one module may hold it, because two `Res`
-classes at one FQN collide on the classpath (`cloudstream.kmp.compose.gradle.kts` exists to prevent
-this).
-
-- [ ] `Viewmodel.kt` moves rather than being deleted. It is unreferenced *by code* but designated
-      foundation *by rule*: `.claude/rules/mvi-viewmodel.md` names it as the MVI primitives for every
-      `:core:*` and `:feature:*` module not yet written.
-- [ ] `DEC-09` decides whether `BaseComposeFragment` comes along.
-
 ### KMP-06d — retire `:shared`
 
 **Status:** blocked until 06b and 06c land
+
+What will be left after 06b: `ComposeFragment.kt`, `compose/Layout.kt` and `DevicePreferenceStore` ×3.
+Each needs a home: `DevicePreferenceStore` → `:core:storage` per the plan, once `PreferenceStore`
+has one.
 
 ---
 

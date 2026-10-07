@@ -59,7 +59,7 @@ dependencies {
 }
 
 compose.resources {
-    // Must NOT be com.lagradost.cloudstream4.generated.resources — `:shared` owns that package
+    // Must NOT be com.lagradost.cloudstream4.generated.resources — `:core:ui` owns that package
     // and two `Res` classes with the same FQN collide on the classpath.
     packageOfResClass = "com.lagradost.cloudstream4" + project.path.replace(':', '.') + ".generated.resources"
     publicResClass = false
