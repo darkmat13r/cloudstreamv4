@@ -130,7 +130,6 @@
 <string name="downloads_delete_select">Dooro waxyaabaha aad tirayso</string>
 <string name="downloads_empty">Ma jiro muuqaal aad soo degsatay.</string>
 <string name="duration">Muddada</string>
-<string name="duration_format">%d dqq</string>
 <string name="eigengraumode_settings">Xawaaraha muuqaalka</string>
 <string name="emulator_layout">Qaab emulator</string>
 <string name="enable_nsfw_on_providers">Tusi CEEBta qaybiyayaasha ku shaqeeya</string>
@@ -223,7 +222,6 @@
 <string name="next_episode">Xalqadda xigta</string>
 <string name="next_episode_format">Xalqadda %d waxa lasoo deyn doonaa</string>
 <string name="next_episode_time_day_format">%1$dm %2$ds %3$dd</string>
-<string name="next_episode_time_hour_format">%1$ds %2$dd</string>
 <string name="next_episode_time_min_format">%dd</string>
 <string name="next_season_episode_format">Seasonka %1$d Xalqada %2$d waxaa la soo deyn doonaa</string>
 <string name="nginx_url_pref">Haybta Seerfarka NGINX</string>

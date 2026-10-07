@@ -223,7 +223,7 @@
 <string name="next_episode">"နောက်အပိုင်း"</string>
 <string name="next_episode_format" formatted="true">"အပိုင်း %d ထုတ်လွှင့်ပြသမည်"</string>
 <string name="next_episode_time_day_format" formatted="true">"%1$dရက် %2$ddနာရီ %3$ddမိနစ်"</string>
-<string name="next_episode_time_hour_format" formatted="true">"%1$ddနာရီ %2$ddမိနစ်"</string>
+<string name="next_episode_time_hour_format" formatted="true">"%1$dနာရီ %2$dမိနစ်"</string>
 <string name="next_episode_time_min_format" formatted="true">"%ddမိနစ်"</string>
 <string name="nginx_url_pref">"NGINX ဆာဗာ URL"</string>
 <string name="no">"မသေချာပါ"</string>

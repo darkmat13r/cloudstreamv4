@@ -25,8 +25,8 @@ and decides — in a commit of its own that says so — to move the baseline.
 
 | File | Rows | What it holds |
 |---|---:|---|
-| `decoded.tsv` | 32,649 | aapt2's decoded table, one row per item: source file, type, name, plural category, kind (`STR`/`STYLED`/`REF`/`ATTR`/`UNSUPPORTED`), text, spans. The raw oracle, before resolution. |
-| `emitted.tsv` | 34,561 | What the generator wrote: one row per emitted value, keyed by output directory, type, name, plural category. Includes resolved references, locale-fallback copies and the `values-b+he` / `values-b+id` copies. |
+| `decoded.tsv` | 32,646 | aapt2's decoded table, one row per item: source file, type, name, plural category, kind (`STR`/`STYLED`/`REF`/`ATTR`/`UNSUPPORTED`), text, spans. The raw oracle, before resolution. |
+| `emitted.tsv` | 34,558 | What the generator wrote: one row per emitted value, keyed by output directory, type, name, plural category. Includes resolved references, locale-fallback copies and the `values-b+he` / `values-b+id` copies. |
 | `lookup.tsv` | 66,315 | For each of the 87 parity requests, the value Android resolves for every key — the per-locale lookup table the parity test compares Compose against. |
 | `requests.tsv` | 87 | The parsed `parity-requests.txt`: request id, Android tag, Compose language/script/region, expectation, note. |
 | `findings.tsv` | 0 | Every finding the pipeline raised. **Empty since the flip** — it was 31 `STRAY_TEXT_REMOVED` and 34 `STYLED_AS_PLAIN_TEXT`, and a generated res has neither stray text nor `<b>`. |
@@ -79,3 +79,12 @@ environment, not output: the aapt2 version moves with AGP, and the guard mode mo
 `report`. `OracleBaselineTest` compares `report.txt` from line 2 on and asserts only the *shape* of
 line 1. The other five files were verified byte-identical across both guard modes and across a
 forced rerun; they are compared whole.
+
+## Moved on purpose: `I18N-05`, broken translations
+
+The baseline was moved once after the flip, by hand, in a commit of its own. `lookup.tsv` changed in **9 cells**
+(66,315 rows before and after; 0 lost, 0 invented): `iw`, `he`, `he-IL` and `values-b+iw` for
+`next_episode_time_hour_format`; `values-b+lv`, `values-b+qt` and `values-b+so` for `duration_format`;
+`values-b+my` and `values-b+so` for `next_episode_time_hour_format`. Three keys were deleted from the authored tree
+(`so` x2, `qt` x1), so `decoded.tsv` 32,649 -> 32,646, `emitted.tsv` 34,561 -> 34,558 and `OWN` 32,428 -> 32,425.
+Details and reasoning in `docs/tasks/i18n.md` under `I18N-05`.

@@ -20184,7 +20184,7 @@ values-b+iw	string	next	-	הבא
 values-b+iw	string	next_episode	-	פרק הבא
 values-b+iw	string	next_episode_format	-	פרק %d יצא בעוד
 values-b+iw	string	next_episode_time_day_format	-	%1$dימים %2$dשעות %3$dחודשים
-values-b+iw	string	next_episode_time_hour_format	-	%1$dשעות %2$dחודשים
+values-b+iw	string	next_episode_time_hour_format	-	%1$d שעות %2$d דקות
 values-b+iw	string	next_episode_time_min_format	-	%dחודשים
 values-b+iw	string	next_season_episode_format	-	עונה %1$d פרק %2$d תשודר ב:
 values-b+iw	string	nginx_url_pref	-	NGINX שרת כתובת אתר
@@ -23855,7 +23855,7 @@ values-b+lv	string	duplicate_replace	-	Aizstāt
 values-b+lv	string	duplicate_replace_all	-	Aizstāt visus
 values-b+lv	string	duplicate_title	-	Potential Duplicate Found
 values-b+lv	string	duration	-	Ilgums
-values-b+lv	string	duration_format	-	%d galvenais
+values-b+lv	string	duration_format	-	%d min.
 values-b+lv	string	edit	-	Rediģēt
 values-b+lv	string	edit_account	-	Rediģēt kontu
 values-b+lv	string	edit_profile_image_error_empty	-	URL nav norādīts vai atrodams
@@ -27800,7 +27800,7 @@ values-b+my	string	next	-	ရှေ့သို့
 values-b+my	string	next_episode	-	နောက်အပိုင်း
 values-b+my	string	next_episode_format	-	အပိုင်း %d ထုတ်လွှင့်ပြသမည်
 values-b+my	string	next_episode_time_day_format	-	%1$dရက် %2$ddနာရီ %3$ddမိနစ်
-values-b+my	string	next_episode_time_hour_format	-	%1$ddနာရီ %2$ddမိနစ်
+values-b+my	string	next_episode_time_hour_format	-	%1$dနာရီ %2$dမိနစ်
 values-b+my	string	next_episode_time_min_format	-	%ddမိနစ်
 values-b+my	string	next_season_episode_format	-	Season %1$d Episode %2$d will be released in
 values-b+my	string	nginx_url_pref	-	NGINX ဆာဗာ URL
@@ -34535,7 +34535,7 @@ values-b+qt	string	duplicate_replace	-	aaaahhh
 values-b+qt	string	duplicate_replace_all	-	aaaahhh uuh
 values-b+qt	string	duplicate_title	-	uuuuhhhag aaaagggug aaaak
 values-b+qt	string	duration	-	ahhhooh
-values-b+qt	string	duration_format	-	%d ooaaaugha
+values-b+qt	string	duration_format	-	%d min
 values-b+qt	string	edit	-	aahh
 values-b+qt	string	edit_account	-	aagg uuuuhhh
 values-b+qt	string	edit_profile_image_error_empty	-	No URL Found
@@ -37589,7 +37589,7 @@ values-b+so	string	duplicate_replace	-	Replace
 values-b+so	string	duplicate_replace_all	-	Replace All
 values-b+so	string	duplicate_title	-	Potential Duplicate Found
 values-b+so	string	duration	-	Muddada
-values-b+so	string	duration_format	-	%d dqq
+values-b+so	string	duration_format	-	%d min
 values-b+so	string	edit	-	Edit
 values-b+so	string	edit_account	-	Edit account
 values-b+so	string	edit_profile_image_error_empty	-	No URL Found
@@ -37724,7 +37724,7 @@ values-b+so	string	next	-	Xiga
 values-b+so	string	next_episode	-	Xalqadda xigta
 values-b+so	string	next_episode_format	-	Xalqadda %d waxa lasoo deyn doonaa
 values-b+so	string	next_episode_time_day_format	-	%1$dm %2$ds %3$dd
-values-b+so	string	next_episode_time_hour_format	-	%1$ds %2$dd
+values-b+so	string	next_episode_time_hour_format	-	%1$dh %2$dm
 values-b+so	string	next_episode_time_min_format	-	%dd
 values-b+so	string	next_season_episode_format	-	Seasonka %1$d Xalqada %2$d waxaa la soo deyn doonaa
 values-b+so	string	nginx_url_pref	-	Haybta Seerfarka NGINX
@@ -61336,7 +61336,7 @@ iw	string	next	-	הבא
 iw	string	next_episode	-	פרק הבא
 iw	string	next_episode_format	-	פרק %d יצא בעוד
 iw	string	next_episode_time_day_format	-	%1$dימים %2$dשעות %3$dחודשים
-iw	string	next_episode_time_hour_format	-	%1$dשעות %2$dחודשים
+iw	string	next_episode_time_hour_format	-	%1$d שעות %2$d דקות
 iw	string	next_episode_time_min_format	-	%dחודשים
 iw	string	next_season_episode_format	-	עונה %1$d פרק %2$d תשודר ב:
 iw	string	nginx_url_pref	-	NGINX שרת כתובת אתר
@@ -62098,7 +62098,7 @@ he	string	next	-	הבא
 he	string	next_episode	-	פרק הבא
 he	string	next_episode_format	-	פרק %d יצא בעוד
 he	string	next_episode_time_day_format	-	%1$dימים %2$dשעות %3$dחודשים
-he	string	next_episode_time_hour_format	-	%1$dשעות %2$dחודשים
+he	string	next_episode_time_hour_format	-	%1$d שעות %2$d דקות
 he	string	next_episode_time_min_format	-	%dחודשים
 he	string	next_season_episode_format	-	עונה %1$d פרק %2$d תשודר ב:
 he	string	nginx_url_pref	-	NGINX שרת כתובת אתר
@@ -62860,7 +62860,7 @@ he-IL	string	next	-	הבא
 he-IL	string	next_episode	-	פרק הבא
 he-IL	string	next_episode_format	-	פרק %d יצא בעוד
 he-IL	string	next_episode_time_day_format	-	%1$dימים %2$dשעות %3$dחודשים
-he-IL	string	next_episode_time_hour_format	-	%1$dשעות %2$dחודשים
+he-IL	string	next_episode_time_hour_format	-	%1$d שעות %2$d דקות
 he-IL	string	next_episode_time_min_format	-	%dחודשים
 he-IL	string	next_season_episode_format	-	עונה %1$d פרק %2$d תשודר ב:
 he-IL	string	nginx_url_pref	-	NGINX שרת כתובת אתר

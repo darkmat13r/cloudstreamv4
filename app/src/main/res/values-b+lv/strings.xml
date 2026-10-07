@@ -153,7 +153,7 @@
 <string name="duplicate_replace">"Aizstāt"</string>
 <string name="duplicate_replace_all">"Aizstāt visus"</string>
 <string name="duration">"Ilgums"</string>
-<string name="duration_format" formatted="true">"%d galvenais"</string>
+<string name="duration_format" formatted="true">"%d min."</string>
 <string name="edit">"Rediģēt"</string>
 <string name="edit_account">"Rediģēt kontu"</string>
 <string name="edit_profile_image_error_empty">"URL nav norādīts vai atrodams"</string>
