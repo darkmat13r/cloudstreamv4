@@ -253,7 +253,14 @@ FQN that `classes-jar.api` names 17 times does not move.
 
 - [ ] The three commands in `docs/HANDOVER.md`; `:app:checkExtensionApi` must show no diff.
 - [ ] `$stable` scan: `javap -p -c` of the moved classes, `:shared`'s jvm jar on #41's head vs
-      `:core:mihon`'s here. Compose module → Compose module, FQNs unchanged; expect no difference.
+      `:core:mihon`'s here. Compose module → Compose module, FQNs unchanged. Two things to know
+      before reading the result:
+      - **Expected, not a finding:** `ComposableSingletons$…Kt` accessors rename from
+        `getLambda$…$CloudStream_shared` to `…$CloudStream_core_mihon`. The Compose compiler mangles
+        them with the Kotlin module name; they are absent from `classes-jar.api`. The owner saw the
+        same rename on 06c.
+      - **Baseline is the pre-carve-out parent (#41's head), never `master`.** Once this merges,
+        `master` *is* this branch and the diff comes back vacuously empty, which reads as clean.
 - [ ] Runtime: the seven settings screens and settings search render, a list preference opens its
       dialog, and the desktop app's `SwitchPreferenceWidget` row renders.
 
