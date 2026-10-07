@@ -117,6 +117,13 @@ hardcoded Arabic literals fail. This is a stale pinned expectation plus an unpin
 Same gap, not failing today: `:core:storage`, `:core:http`, `:core:strings:fixtures` jvmTest, and
 all Kotlin/Android compilation in every `:core:*` module.
 
+**It also guards the committed ABI baselines, from JDK 21 on** · measured by the owner, 2026-10-07.
+`checkKotlinAbi` run with Corretto 21 failed on four methods: `addFirst`, `addLast`, `removeFirst`
+and `removeLast` — `java.util.SequencedCollection`, new in Java 21, inherited into the dump by every
+`List` implementor. The committed `api/` dumps were written on 17. So the pin is not optional for
+`checkKotlinAbi` either, and **`updateKotlinAbi` on a 21+ daemon would bake those inherited methods
+into the baseline.**
+
 ---
 
 ## INF-05 — Local workflow notes
@@ -138,3 +145,33 @@ check the `timestamp` attribute when a test count is load-bearing.
 **Verify by re-running, not by reading.** Every claim in this repo's task lists that turned out to
 be false was one that a plausible argument supported and nobody had executed — the `dur * 60`
 overflow, the "locale-blind" notification, the `Viewmodel.kt` "dead code", the missing ABI dump.
+
+---
+
+## INF-07 — `:app:checkExtensionApi` is red on master since #38 · **measured 2026-10-07**
+
+**Status:** open · **needs an ABI decision from the owner**
+
+Found while verifying `KMP-06c`, and reproduced as pre-existing there: on master the check reports
+0 removed, 0 changed, 1 added:
+
+    +public final class com/lagradost/cloudstream3/ui/result/RunTimeSecondsKt {
+    +     public static final fun runTimeMinutesToSeconds (Ljava/lang/Integer;)Ljava/lang/Integer;
+    +}
+
+`app/src/main/java/com/lagradost/cloudstream3/ui/result/RunTimeSeconds.kt` arrived with `0e350324`
+(#38, `BUG-01`) without a matching `app/api/classes-jar.api` update; the dump last moved in
+`a39a56fa`. The check is not part of `check`, and CI has never run (`DEC-01`), so nothing caught it.
+
+The function is declared `internal`, but a **top-level** `internal` function is not name-mangled, so
+it reaches `classes.jar` as an ordinary `public static final` — a Kotlin-internal helper on the
+extension-facing surface. Purely additive: no published extension breaks either way.
+
+- [ ] Decide:
+      - **`@JvmSynthetic` on `runTimeMinutesToSeconds`** — keeps it out of the jar's visible API and
+        leaves the baseline untouched; its only callers (`EpisodeAdapter.kt`, `RunTimeSecondsTest.kt`)
+        are Kotlin, which can still call it. Recommended.
+      - **or** `./gradlew :app:dumpExtensionApi` — accepts it as published API, which then cannot be
+        removed without an ABI break.
+- [ ] One PR, separate from any module move; re-run `:app:checkExtensionApi` to 0 after it.
+

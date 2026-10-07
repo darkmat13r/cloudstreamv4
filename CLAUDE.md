@@ -46,7 +46,8 @@ CI has never run on this repository (`DEC-01`). Every check is a local run, so r
 commands in `docs/HANDOVER.md` and say in the PR that they were local. The traps:
 
 - `TZ=UTC` — `BUG-08`, `EpisodeDateTest` fails off-UTC.
-- `JAVA_HOME=<Temurin 17>` — `INF-06`, `:core:*` tests run on the daemon JVM.
+- `JAVA_HOME=<Temurin 17>` — `INF-06`, `:core:*` tests run on the daemon JVM, and on 21+
+  `checkKotlinAbi` fails against the 17-written baselines. Never run `updateKotlinAbi` on 21+.
 - `-Dorg.gradle.jvmargs="-Xmx14G -Dfile.encoding=UTF-8"` — the 4G default OOMs D8 in a full run.
 - `-x :app:generateGitHash` — only in a git worktree.
 - **A piped Gradle run reports the pipe's exit code.** `./gradlew … | tail` exits 0 on a failed

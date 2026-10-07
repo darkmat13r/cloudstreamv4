@@ -68,7 +68,9 @@ None of these are caused by recent work; all three cost real time to find.
 **1. Pin the JDK.** `INF-06`. `jdkToolchain = "17"` is consumed only by `:app`, so every `:core:*`
 module compiles and tests on whatever JVM started the Gradle daemon. On a JDK 24+ daemon, two
 `LocaleNumberParityTest` cases fail on clean master, because JDK 24's CLDR 46 moved bare `ar` from
-Arabic-Indic digits to ASCII.
+Arabic-Indic digits to ASCII. **It also guards the ABI baselines:** on JDK 21+ `checkKotlinAbi` fails
+on `SequencedCollection`'s `addFirst`/`addLast`/`removeFirst`/`removeLast`, inherited by every `List`
+implementor; the committed dumps were written on 17. Never run `updateKotlinAbi` on 21+.
 
     JAVA_HOME=/path/to/temurin-17.0.20.1
 
@@ -125,8 +127,9 @@ Nothing below can be settled by reading the code.
 > first-party `:shared` code in 12 of its 29 files — `SearchableSettings` extends `compose.Screen` — so
 > it cannot leave first. `KMP-06c` (`:core:ui`) is implemented on `claude/festive-bardeen-3258ln` but
 > **has never been built**: that container had no Android SDK and no network route to Maven, Google
-> or Gradle. Build it and run the three commands above before opening its PR; `docs/tasks/kmp.md`
-> lists what to check. The text below predates this.
+> or Gradle. The owner has since built and run it locally: two of three commands green, the third red
+> on a pre-existing failure (`INF-07`), runtime resources verified. The `$stable` scan is still open;
+> `docs/tasks/kmp.md` has the detail. The text below predates this.
 
 
 `KMP-06b` — move the vendored Mihon tree into its own `:core:mihon` module. This PR

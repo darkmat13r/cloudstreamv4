@@ -185,9 +185,8 @@ so `:core:ui` comes first (owner's choice, 2026-10-07).
 
 ### KMP-06c — `:core:ui` for the first-party Compose layer
 
-**Status:** implemented on `claude/festive-bardeen-3258ln` — **never built**: the session that wrote
-it had no Android SDK and no network route to Maven, Google or Gradle. Not in a PR until it has been
-built and the three `docs/HANDOVER.md` commands pass.
+**Status:** in pr #41 · built and run locally by the owner on 2026-10-07 (the session that wrote it
+had no Android SDK or Maven access). One check still open — see the list below.
 
 Moved by `git mv`, every file's contents unchanged except `Dialog.kt`'s (below):
 
@@ -214,18 +213,21 @@ Two names move with it and must not change:
 `:shared` depends on `:core:ui` as `api` — `SearchableSettings : Screen` is public API — so `:app` and
 `:desktopApp` needed no build-file change.
 
-**To verify before the PR** — none of this has been executed:
+**Verification** — local runs by the owner, 2026-10-07, Temurin 17, `TZ=UTC`; not CI (`DEC-01`):
 
-- [ ] The three commands in `docs/HANDOVER.md`; `:app:checkExtensionApi` must show **no** diff. The
-      expected risk is `R`: the claim that `:core:ui`'s `R` lands at `com/lagradost/cloudstream4/R`
-      in `:app`'s classes, exactly as `:shared`'s did, rests on the KDoc of
-      `cloudstream.extension-api-jar.gradle.kts`, not on a run.
-- [ ] `$stable` scan: `javap -p -c` of every moved class before and after. All moved classes go
-      Compose-compiled module → Compose-compiled module with FQNs unchanged, so `getstatic` owners
-      should not change; prove it.
-- [ ] Resources at runtime: open a settings screen (fonts, dialogs, the `check` drawable) and the
-      desktop app (`app_name`, `default_icon`, `preview`). A missing `androidResources` shows up only
-      here, never at compile time.
+- [x] `checkKotlinAbi` → exit 0.
+- [x] `assemblePrereleaseDebug lint check -Pcloudstream.strings.guards=fail` → exit 0.
+- [ ] `:app:checkExtensionApi` → **exit 1, pre-existing and not this change**: 0 removed, 0 changed,
+      and the 1 addition is `RunTimeSecondsKt`, from #38 (`INF-07`). The thing this PR risked — the
+      `com/lagradost/cloudstream4/R` line — did **not** move: `:core:ui`'s `R` took `:shared`'s place
+      exactly. Goes to exit 0 once `INF-07` is decided.
+- [ ] `$stable` scan: `javap -p -c` of the moved classes, master vs this branch. **Not yet run.**
+- [x] Runtime: all 23 resources in the APK under one `com.lagradost.cloudstream4.generated.resources`
+      package (12 Product Sans faces, 10 drawables, strings), no `Res` collision; Settings → General,
+      Player, Layout render with Product Sans, not the Roboto fallback; a list-preference dialog
+      draws `Res.drawable.check` on the selected row; settings search shows "No results found"; the
+      desktop window is titled "CloudStream" and the `preview` drawable renders. No
+      `MissingResourceException` in logcat.
 
 ### KMP-06b — `:core:mihon`, the vendored tree in its own module
 
