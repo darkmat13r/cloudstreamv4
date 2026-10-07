@@ -231,7 +231,7 @@ Two names move with it and must not change:
 
 ### KMP-06b — `:core:mihon`, the vendored tree in its own module
 
-**Status:** implemented on `claude/kmp-06b-core-mihon`, stacked on #41 · **not built**: the session
+**Status:** implemented on `claude/kmp-06b-core-mihon`, stacked on #43 · **not built**: the session
 that wrote it had no Android SDK or Maven access.
 
 Moved by `git mv`, every file's contents unchanged: all 29 `.kt` under `com/mihon/**` (27
