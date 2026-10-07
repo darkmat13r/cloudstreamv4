@@ -189,13 +189,14 @@ so `:core:ui` comes first (owner's choice, 2026-10-07).
 it had no Android SDK and no network route to Maven, Google or Gradle. Not in a PR until it has been
 built and the three `docs/HANDOVER.md` commands pass.
 
-Moved by `git mv`, contents unchanged except one line:
+Moved by `git mv`, every file's contents unchanged except `Dialog.kt`'s (below):
 
 - `compose/`: `Colors`, `Dialog`, `Modifiers`, `Screen`, `Viewmodel`; `theme/**` in all three source
   sets; the whole `composeResources` tree (strings, 9 vector drawables, `default_icon.png`, the 12 Product
   Sans fonts, unchanged — `DEC-02` is unaffected by where they sit).
 - `Dialog.kt`: `MaterialTheme.padding.medium` (Mihon's `Padding`, `16.dp`) became a private
-  `ActionDialogIconTitleSpacing = 16.dp`. Same value; it is the only cycle edge that needed an edit.
+  `ActionDialogIconTitleSpacing = 16.dp`, and the `com.mihon.material.padding` import went. Same value;
+  it is the only cycle edge that needed an edit.
 - **Stayed in `:shared`:** `ComposeFragment.kt` and `DevicePreferenceStore` ×3, which import Mihon;
   and `compose/Layout.kt`, because `ComposeFragment` calls its `internal` `layoutToFlag`, and moving
   it would have meant widening a visibility. 06d places them.
