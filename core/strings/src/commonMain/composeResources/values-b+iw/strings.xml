@@ -232,7 +232,7 @@
 <string name="next_episode">פרק הבא</string>
 <string name="next_episode_format">פרק %d יצא בעוד</string>
 <string name="next_episode_time_day_format">%1$dימים %2$dשעות %3$dחודשים</string>
-<string name="next_episode_time_hour_format">%1$dשעות %2$dחודשים</string>
+<string name="next_episode_time_hour_format">%1$d שעות %2$d דקות</string>
 <string name="next_episode_time_min_format">%dחודשים</string>
 <string name="next_season_episode_format">עונה %1$d פרק %2$d תשודר ב:</string>
 <string name="nginx_url_pref">NGINX שרת כתובת אתר</string>
