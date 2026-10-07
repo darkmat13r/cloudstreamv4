@@ -30026,6 +30026,10 @@ public final class com/lagradost/cloudstream3/ui/result/ResumeWatchingStatus : j
 	public fun toString ()Ljava/lang/String;
 }
 
+public final class com/lagradost/cloudstream3/ui/result/RunTimeSecondsKt {
+	public static final fun runTimeMinutesToSeconds (Ljava/lang/Integer;)Ljava/lang/Integer;
+}
+
 public final class com/lagradost/cloudstream3/ui/result/SelectAdaptor : com/lagradost/cloudstream3/ui/NoStateAdapter {
 	public static final field $stable I
 	public fun <init> (Lkotlin/jvm/functions/Function1;)V

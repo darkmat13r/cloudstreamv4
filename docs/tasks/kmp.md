@@ -220,7 +220,8 @@ Two names move with it and must not change:
 - [ ] `:app:checkExtensionApi` → **exit 1, pre-existing and not this change**: 0 removed, 0 changed,
       and the 1 addition is `RunTimeSecondsKt`, from #38 (`INF-07`). The thing this PR risked — the
       `com/lagradost/cloudstream4/R` line — did **not** move: `:core:ui`'s `R` took `:shared`'s place
-      exactly. Goes to exit 0 once `INF-07` is decided.
+      exactly. `INF-07` was decided as "accept", and its block is now in the dump on this branch;
+      re-run to confirm exit 0.
 - [ ] `$stable` scan: `javap -p -c` of the moved classes, master vs this branch. **Not yet run.**
 - [x] Runtime: all 23 resources in the APK under one `com.lagradost.cloudstream4.generated.resources`
       package (12 Product Sans faces, 10 drawables, strings), no `Res` collision; Settings → General,

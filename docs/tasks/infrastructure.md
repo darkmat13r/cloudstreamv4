@@ -150,7 +150,7 @@ overflow, the "locale-blind" notification, the `Viewmodel.kt` "dead code", the m
 
 ## INF-07 — `:app:checkExtensionApi` is red on master since #38 · **measured 2026-10-07**
 
-**Status:** open · **needs an ABI decision from the owner**
+**Status:** in pr #41 · decided 2026-10-07: accepted into the dump
 
 Found while verifying `KMP-06c`, and reproduced as pre-existing there: on master the check reports
 0 removed, 0 changed, 1 added:
@@ -167,11 +167,17 @@ The function is declared `internal`, but a **top-level** `internal` function is 
 it reaches `classes.jar` as an ordinary `public static final` — a Kotlin-internal helper on the
 extension-facing surface. Purely additive: no published extension breaks either way.
 
-- [ ] Decide:
-      - **`@JvmSynthetic` on `runTimeMinutesToSeconds`** — keeps it out of the jar's visible API and
-        leaves the baseline untouched; its only callers (`EpisodeAdapter.kt`, `RunTimeSecondsTest.kt`)
-        are Kotlin, which can still call it. Recommended.
-      - **or** `./gradlew :app:dumpExtensionApi` — accepts it as published API, which then cannot be
-        removed without an ABI break.
-- [ ] One PR, separate from any module move; re-run `:app:checkExtensionApi` to 0 after it.
+**Decision: accept it into the dump.** `@JvmSynthetic` was the first recommendation, and it was
+wrong. Reading `ExtensionApiDump.kt` showed why: the dump records synthetic methods (with a
+`synthetic` flag) rather than skipping them, and records every public class whatever its members.
+So the annotation would only have changed the added line to `public static final synthetic fun …`;
+the block would still be an addition. Accepting it matches how the dump already treats `:app`'s
+internals: it holds 289 name-mangled `internal` members by design. And Kotlin extensions cannot call
+an `internal` declaration from another module either way; the compiler enforces that from metadata.
+
+- [x] The 3-line `RunTimeSecondsKt` block added to `app/api/classes-jar.api` by hand, at its sorted
+      position, byte-identical to the block `checkExtensionApi` printed. Carried in #41 because that
+      PR's gate depends on it.
+- [ ] Confirm `:app:checkExtensionApi` exits 0 (local, Temurin 17).
+
 
