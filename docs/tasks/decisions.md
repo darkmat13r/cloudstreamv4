@@ -27,7 +27,7 @@ Not 12 files but **24**: two byte-identical sets of 12 (`cmp` reports no differe
 | Location | Added |
 |---|---|
 | `app/src/main/res/font/productsans_*.ttf` | `1549f67c` "init", 2021-05-12 — the repo's first commit |
-| `shared/src/commonMain/composeResources/font/productsans_*.ttf` | `92b3ea92` "Compose work (#3151)", 2026-09-08 |
+| `shared/src/commonMain/composeResources/font/productsans_*.ttf` — moved unchanged to `core/ui/` in KMP-06c | `92b3ea92` "Compose work (#3151)", 2026-09-08 |
 
 Reading the embedded name table rather than trusting the filename, every file says:
 

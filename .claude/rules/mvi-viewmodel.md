@@ -9,7 +9,7 @@ paths:
 ## The containers, not a base class
 
 There is no `BaseViewModel` here and one should not be added. The primitives are three small
-interfaces in `shared/src/commonMain/kotlin/com/lagradost/cloudstream4/compose/Viewmodel.kt`:
+interfaces in `core/ui/src/commonMain/kotlin/com/lagradost/cloudstream4/compose/Viewmodel.kt`:
 
 | | |
 |---|---|
