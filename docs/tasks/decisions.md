@@ -18,14 +18,68 @@ independent check that anything works on a machine other than this one.
 
 ## DEC-02 — Product Sans provenance · **blocking `DS-05`**
 
-**Status:** open
+**Status:** open · **provenance now measured, 2026-10-07** — the decision is still yours
 
-`shared/src/commonMain/composeResources/font/` contains **12 committed `productsans_*.ttf` files**,
-and `shared/.../theme/Font.kt` builds all fifteen Material3 type roles from them. Product Sans is
-not, as far as anyone here can establish, an openly licensed typeface, and nobody has established
-where these binaries came from.
+### What the files actually are
 
-While the project stays private this is dormant — see DEC-03. It wakes up on first distribution.
+Not 12 files but **24**: two byte-identical sets of 12 (`cmp` reports no difference).
+
+| Location | Added |
+|---|---|
+| `app/src/main/res/font/productsans_*.ttf` | `1549f67c` "init", 2021-05-12 — the repo's first commit |
+| `shared/src/commonMain/composeResources/font/productsans_*.ttf` | `92b3ea92` "Compose work (#3151)", 2026-09-08 |
+
+Reading the embedded name table rather than trusting the filename, every file says:
+
+| Field | Value |
+|---|---|
+| Unique ID (name 3) | `1.009;GOOG;ProductSans-<Style>` |
+| PostScript (name 6) | `ProductSans-<Style>` |
+| Version (name 5) | `Version 1.009` |
+| **Copyright (name 0)** | **empty string** |
+| Licence description (name 13) | **absent** |
+| Licence URL (name 14) | `https://www.google.com/fonts/license/productsans` |
+| OS/2 `achVendID` | `GOOG` |
+
+There is also a glyph named `Google.logo`. For contrast, the other fonts in the same directory do
+carry real licence text — `open_sans` says "Licensed under the Apache License, Version 2.0" and
+`poppins_regular` says "SIL Open Font License, Version 1.1".
+
+**This is genuine Google Product Sans**, a proprietary corporate typeface that has never been
+released openly and is not on Google Fonts. The licence URL is a pointer to a page that does not
+exist; it is not a grant. The empty copyright field means the metadata was stripped, or the files
+came from a copy that already had been. No in-repo doc, commit message or licence file says
+otherwise: there is no `OFL.txt`, no `FONTLOG`, and no font attribution anywhere.
+
+`fsType` is 0 ("installable embedding"), which is a technical flag in the binary and **not** a
+licence grant — worth saying because it is the thing most likely to be mistaken for one.
+
+### Where they are used
+
+`app/src/main/res/font/google_sans.xml` wraps all 12 by weight and style, and `google_sans` is the
+`android:fontFamily` in several layouts including `fragment_home_tv.xml` and
+`player_custom_layout_tv.xml`. `shared/.../theme/Font.kt` imports all 12 and builds the Compose
+family that feeds the Material3 type roles. It is also offered in the subtitle font picker
+(`SubtitlesFragment.kt:655`), labelled "Google Sans".
+
+### The wider pattern, which the narrow question misses
+
+`app/src/main/res/font/` also ships `consola`, `comic_sans`, `verdana` (Microsoft),
+`times_new_roman` (Monotype), `lucida_grande` (Bigelow & Holmes), `gotham` (Hoefler),
+`netflix_sans` (Netflix / Dalton Maag EULA) and `futura` (Bitstream). Each carries its own EULA
+reference in its name table. They appear only in the subtitle font picker, not in the UI
+typography, so only Product Sans blocks `DS-05` — but resolving this narrowly leaves the rest.
+
+All of it was inherited: the `app/` set arrived in upstream CloudStream's initial commit.
+**Inheriting it does not make it licensed.** While the project stays private this is dormant (see
+`DEC-03`); it wakes on first distribution.
+
+### What you need to decide
+
+1. Is there any written permission from Google for these files? Nothing in them says so.
+2. Scope: the `shared/` set that `DS-05` depends on, the `app/` legacy set that leaves with the
+   views, or both? They are the same bytes, so both are affected.
+3. The other eight proprietary fonts — same decision, or a separate one?
 
 **Options:** establish provenance and keep · replace with a licensed face (Manrope is already the
 redesign's measured type — see the type-metrics work) · leave and accept the risk knowingly.

@@ -1,0 +1,79 @@
+CloudStream
+This product includes software developed by third parties, listed below.
+
+The project itself is licensed under the GNU General Public License v3.0; see LICENSE.
+This file records attribution required by the licences of third-party code redistributed
+as part of this repository. It is not a licence grant of its own.
+
+================================================================================
+Mihon — Apache License 2.0
+================================================================================
+
+  Source:    https://github.com/mihonapp/mihon
+  Licence:   Apache License, Version 2.0
+             http://www.apache.org/licenses/LICENSE-2.0
+             A verbatim copy is at shared/src/commonMain/kotlin/com/mihon/LICENSE
+
+  Copyright © 2015 Javier Tomás
+  Copyright © 2024 Mihon Open Source Project
+
+  Both lines are quoted from Mihon's own README.md. Mihon's LICENSE file is the
+  unmodified Apache-2.0 text and names no holder, its source files carry no
+  per-file licence headers, and it ships no NOTICE file — so there is no upstream
+  NOTICE whose contents this file is required to reproduce.
+
+  WHAT IS INCLUDED
+
+  29 Kotlin source files, redistributed under the package `com.mihon`:
+
+    shared/src/commonMain/kotlin/com/mihon/**   (27 files)
+    shared/src/androidMain/kotlin/com/mihon/**  (2 files)
+
+  They provide the Compose settings framework — preference widgets, the preference
+  screen scaffold, settings search — and the Material components it needs. Mihon
+  does not publish these as a library, which is why they are vendored.
+
+  Every one of the 29 has an identified upstream counterpart. The per-file mapping
+  is in shared/src/commonMain/kotlin/com/mihon/readme.md.
+
+  THESE FILES HAVE BEEN MODIFIED
+
+  All 29 differ from upstream. The extent varies, and this notice is precise about
+  that rather than claiming more than is true:
+
+    * Most are ported rather than copied. The package was changed from
+      `eu.kanade.*` / `tachiyomi.*` to `com.mihon.*`, and Android-only and
+      Mihon-specific APIs were replaced so the code builds for Kotlin
+      Multiplatform. In material/SettingsItems.kt, for example, `ImageVector` and
+      Mihon's icon set become Compose `Painter` and `painterResource`, Moko
+      `StringResource` becomes Compose Resources `StringResource`, and
+      `Preference<T>` becomes `PreferenceData<T>`: 30 upstream lines removed and 46
+      added, ours 474 lines against upstream's 458.
+      material/AppBar.kt is the largest divergence: 100 upstream lines removed and
+      57 added, ours 405 against upstream's 449.
+
+    * Three files — material/Constants.kt, material/Pill.kt and
+      material/Typography.kt — differ from upstream in the `package` line and in
+      nothing else. They are otherwise verbatim copies.
+
+    * Three are not same-name copies. common/preference/PreferenceData.kt is
+      upstream's Preference.kt renamed; presentation/Navigation.kt keeps one
+      declaration lifted out of upstream's Navigator.kt; presentation/settings/
+      Search.kt is a substantial rework of upstream's SettingsSearchScreen.kt.
+
+  No individual file carries a change notice. This notice covers all of them,
+  which is how this project satisfies section 4(b) of the Apache License: the
+  modification is stated prominently and in one place, rather than by editing 29
+  headers that would then drift out of date.
+
+  BASELINE
+
+  The tree entered this repository on 2026-09-08 in commit 92b3ea92 ("Compose
+  work (#3151)"), with further changes in 6b7a81ab and 99ce06dd on 2026-09-12. It
+  was vendored upstream in recloudstream/cloudstream and inherited here.
+
+  The upstream Mihon commit it was taken from was not recorded at the time and
+  cannot be recovered from this repository. The file-by-file comparison summarised
+  above was made against Mihon's `main` branch as fetched on 2026-10-07; `main`
+  moves, so those line counts are a snapshot, not a fixed fact. A reviewer wanting
+  to re-diff should start from Mihon's history on or before 2026-09-08.

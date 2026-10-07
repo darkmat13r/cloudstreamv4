@@ -127,15 +127,41 @@ change through any move, and `:app:checkExtensionApi` enforces it:
 
 ### KMP-06a — attribution, before anything moves
 
-**Status:** open · decided 2026-09-18 (see `DEC-03`)
+**Status:** done · decided 2026-09-18 (see `DEC-03`)
 
-All 16 vendored files checked differ from upstream (`AppBar.kt` by 157 lines of 405); none carries
-a change notice; the vendored `LICENSE` **names no copyright holder**; there is no `NOTICE` file
-anywhere in the repo; no upstream commit SHA is recorded, so nobody can re-diff against a baseline.
+- [x] One `NOTICE` at the repo root plus a rewritten module README, naming Mihon, the URL,
+      Apache-2.0, both copyright lines and that the files are modified
+- [x] Per-file upstream mapping for all 29 files, measured by fetching each upstream file and
+      diffing it
+- [x] Not 29 file headers — one notice, as decided
 
-- [ ] One `NOTICE` plus a module README naming Mihon, the URL, Apache-2.0, and that files are modified
-- [ ] Reconstruct the upstream commit if possible, so the fork has a baseline
-- [ ] Not 29 file headers
+**What the measurement changed.** All 29 files were fetched from Mihon `main` on 2026-10-07 and
+diffed. Two claims in the original entry were wrong:
+
+- *"`AppBar.kt` differs by 157 lines of 405"* — 157 is the **sum of both directions**. Ours is 405
+  lines against upstream's 449: 100 upstream-only, 57 ours-only.
+- *"All 16 vendored files checked differ"* — true of all 29, but **three differ in the `package`
+  line and nothing else**: `material/Constants.kt`, `material/Pill.kt`, `material/Typography.kt`.
+  Verified by diff: one line out, one line in. The NOTICE says so rather than implying more.
+
+`material/SettingsItems.kt` is the honest example of real porting: `ImageVector` → Compose
+`Painter`, Moko `StringResource` → Compose Resources, `Preference<T>` → `PreferenceData<T>`; 30
+upstream lines removed, 46 added.
+
+Three files are not same-name copies, which a reviewer would otherwise waste time on:
+`PreferenceData.kt` ← upstream `Preference.kt` (rename), `presentation/Navigation.kt` ← upstream
+`Navigator.kt` (one declaration extracted), `settings/Search.kt` ← upstream
+`SettingsSearchScreen.kt` (substantial rework).
+
+**Also established:** Mihon's `LICENSE` is the bare Apache-2.0 text naming no holder, exactly as our
+vendored copy is — so that copy is faithful, not truncated. The copyright lines come from Mihon's
+README: *Copyright © 2015 Javier Tomás* and *Copyright © 2024 Mihon Open Source Project*. Mihon
+ships **no NOTICE file**, so §4(d) does not apply; and its sources carry **no per-file licence
+headers** in any file sampled.
+
+**Still unrecoverable:** the upstream commit the tree was taken from. It was not recorded when
+vendored, and the comparison above is against a moving `main`. The module README says so and asks
+whoever next updates a file to record the commit.
 
 ### KMP-06b — `:core:mihon`, the vendored tree in its own module
 
