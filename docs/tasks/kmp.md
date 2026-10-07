@@ -185,8 +185,8 @@ so `:core:ui` comes first (owner's choice, 2026-10-07).
 
 ### KMP-06c — `:core:ui` for the first-party Compose layer
 
-**Status:** in pr #41 · built and run locally by the owner on 2026-10-07 (the session that wrote it
-had no Android SDK or Maven access). One check still open — see the list below.
+**Status:** done · #41 (merged at `d646470`, before this verification record was written) · built
+and run locally by the owner on 2026-10-07 at master `0bc8709`. One check still open — see below.
 
 Moved by `git mv`, every file's contents unchanged except `Dialog.kt`'s (below):
 
