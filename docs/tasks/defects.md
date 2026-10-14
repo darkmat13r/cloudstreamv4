@@ -79,10 +79,34 @@ returned wrapped values; a negative input became positive). After the clamp: 6 o
 
 ## BUG-02 — `maxLines="1"` on a two-line string · **low**
 
-**Status:** open · `app/src/main/res/layout/fragment_result.xml:652`
+**Status:** done · in pr · `app/src/main/res/layout/fragment_result.xml:652`
 
 The TextView receives `resume_remaining` = `%s\nremaining`, a deliberately two-line string, under
 `maxLines="1"`. The TV layout (`fragment_result_tv.xml:298`) uses `maxLines="2"`.
+
+**Fix:** `maxLines="1"` → `maxLines="2"` on `result_resume_series_progress_text` at
+`fragment_result.xml:652`, and nothing else. The id is set in `ResultFragmentPhone.kt:751`
+(`setText(progress.progressLeft)`); `progressLeft` is built in `ResultViewModel2.kt:2424` from
+`R.string.resume_remaining`. The string is confirmed two-line in `values/strings.xml:530`
+(`"%s\nremaining"`). No fixed height constrains the view: `layout_height="match_parent"` inside a
+`wrap_content` FrameLayout whose size comes from the `WhiteButton` sibling, with no dp height in
+the style chain. Verified by reading the XML and the call chain only (no Gradle run, per the
+worktree rules); the on-device numbers above are unchanged by this edit and were not re-measured.
+
+**What the user actually saw, and why the recorded `lineCount=2` is not a contradiction.** The
+newline never reached the Layout. `TextUtil.kt`'s `fun TextView?.setText(text: UiText?)` does this
+before assigning:
+
+    val str = text.asStringNull(context)?.let {
+        if (this.maxLines == 1) it.replace("\n", " ") else it
+    }
+
+So under `maxLines="1"` the view was handed `2h 22m remaining` on one line — flattened, not
+truncated or ellipsised. That is why nothing looked broken enough to notice, and why the
+`lineCount=2` measurement below (taken on the Layout for the raw two-line string, not on what the
+TextView received) does not disagree. Raising the cap to 2 makes the same code path leave the
+newline in, so the phone now renders the two lines the string was written for, as the TV layout
+already did.
 
 Measured on device: the Layout produces `lineCount=2`, `measuredHeight=126px` under `maxLines="1"`,
 identically for `0m\nremaining`, `45s\nremaining`, `1m\nremaining` and `2h 22m\nremaining`.
