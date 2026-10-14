@@ -47,7 +47,7 @@ is drawn and reviewed as a design artefact.
 
 ## DS-02 — `Muted` contrast fix
 
-**Status:** in pr #27
+**Status:** done · #27 (merged 2026-09-18)
 
 `#686868` measured **3.77 / 3.43 / 3.17** against Black, InsetSurface and RaisedSurface — below the
 4.5:1 AA floor on all three, in a role carrying 10–12sp secondary text. `#858585` measures
