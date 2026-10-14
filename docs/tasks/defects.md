@@ -189,3 +189,74 @@ across reorderings; the second admits they are not stable. `CSPlayerEvent` is in
 
 **Evidence:** read at `IPlayer.kt:12-25`, `PlayerPipHelper.kt:78-86`, `:96-102`, `PlayerView.kt:500-510`.
 
+---
+
+## BUG-10 — playback turns off TLS verification process-wide, in every build · **high**
+
+**Status:** open · **not changed** — the fix is a behaviour decision, not a correction · found
+2026-10-15 while doing `KMP-02`'s security review
+
+`CS3IPlayer.kt:1893-1902`, inside `loadOnlinePlayer`:
+
+```kotlin
+if (ignoreSSL) {
+    // Disables ssl check
+    val sslContext: SSLContext = SSLContext.getInstance("TLS")
+    sslContext.init(null, arrayOf(SSLTrustManager()), SecureRandom())
+    sslContext.createSSLEngine()
+    HttpsURLConnection.setDefaultHostnameVerifier { _: String, _: SSLSession -> true }
+    HttpsURLConnection.setDefaultSSLSocketFactory(sslContext.socketFactory)
+}
+```
+
+`SSLTrustManager` (`ui/player/SSLTrustManager.kt:6-16`) has empty `checkClientTrusted` and
+`checkServerTrusted` bodies and returns an empty `getAcceptedIssuers`, so it accepts **every**
+certificate chain — expired, self-signed or forged. The verifier beside it accepts every hostname.
+
+**The gate does not gate.** `CS3IPlayer.kt:161` declares `private var ignoreSSL: Boolean = true`, and
+`grep -rn "ignoreSSL"` finds exactly two references in that file: the declaration and the `if` at
+`:1893`. **Nothing ever assigns it.** It is not a setting, not a hidden preference, not
+`BuildConfig.DEBUG`, not a flavour check. `release` is `isDebuggable = false, isMinifyEnabled = false`
+(`app/build.gradle.kts:148-151`), so nothing is compiled out. The branch is taken on **every online
+playback, in every variant, including release**.
+
+**Three things make it worse than "the player ignores bad certs":**
+
+1. **It is a process-wide static default, not a per-connection setting.** `HttpsURLConnection`'s
+   `setDefaultSSLSocketFactory` / `setDefaultHostnameVerifier` are JVM-global.
+2. **Nothing ever unsets it.** One playback of one stream disables verification for the rest of the
+   process's life, including after the user leaves the player.
+3. **It bypasses the opt-in that already exists for exactly this.** `RequestsHelper.kt:25,36` take an
+   `ignoreSSL` parameter defaulting to `false` and carry the comment *"Only use ignoreSSL if you know
+   what you are doing"*; `MainActivity.kt:1184-1186` wires `app` with `ignoreSSL = false` and a
+   separate `insecureApp` with `ignoreSSL = true`, reachable only behind the `@UnsafeSSL`
+   WARNING-level opt-in. The player's hardcoded path routes around that design.
+
+**Scope, not overstated.** The player's own HTTP sources are OkHttp, and OkHttp does **not** read
+`HttpsURLConnection`'s static defaults. What does read them is any `HttpsURLConnection` in the
+process. No repo code opens one directly; the indirect user in this file is `createOfflineSource`'s
+Media3 `DefaultHttpDataSource` (`:836`), which is built on `HttpURLConnection`. Third-party libraries
+were **not** audited for `HttpsURLConnection` use, so "only Media3 is affected" is **not** claimed —
+and the global, permanent nature of the change is the defect regardless of who reads it.
+
+`.claude/rules/dependency-security.md` says "Use HTTPS for all external requests". This satisfies the
+letter and defeats the purpose.
+
+**Why it is not fixed here.** Turning verification on is a user-visible behaviour change: providers
+serving broken or self-signed certificates would stop playing, and that may well be why the line was
+written. That is the owner's call, not a correction to apply silently. Two shapes for it:
+
+- **Scope and reset it** — build the trust-all `SSLSocketFactory` into the one `DataSource` that needs
+  it rather than into the JVM defaults, so it cannot leak past the player or outlive the playback;
+- **Wire it to the opt-in that already exists** — make `ignoreSSL` follow the same `@UnsafeSSL` /
+  `insecureApp` switch the HTTP stack uses, defaulting to `false`.
+
+The first is strictly better and is not much more work; the second is the smaller diff. Either way
+`SSLTrustManager` stays in `classes.jar` (`app/api/classes-jar.api:28106`), so neither is an ABI
+change.
+
+**Evidence:** `SSLTrustManager.kt:6-16`; `CS3IPlayer.kt:161`, `:1801`, `:1893-1902`;
+`RequestsHelper.kt:25,36,45-47`; `MainActivity.kt:1184-1186`; `app/build.gradle.kts:148-151`;
+`app/api/classes-jar.api:28106`. Read, not run. See `KMP-02` in `docs/tasks/kmp.md` for the full
+review this came out of.
+
