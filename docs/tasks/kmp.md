@@ -246,8 +246,10 @@ Two names move with it and must not change:
 
 ### KMP-06b — `:core:mihon`, the vendored tree in its own module
 
-**Status:** implemented on `claude/kmp-06b-core-mihon`, stacked on #43 · written without an Android
-SDK; built and checked locally on 2026-10-14 (below). Runtime UI still unverified.
+**Status:** done · #42 · written without an Android SDK; built and checked locally on 2026-10-14
+(below), and CI green on `bce90a8f`. Runtime UI still unverified: the settings screens have not
+been opened on a device. The `core-ktx` 1.2.0 compile-classpath note below was left as is by the
+owner's choice (2026-10-14).
 
 Moved by `git mv`, every file's contents unchanged: all 29 `.kt` under `com/mihon/**` (27
 commonMain, 2 androidMain), plus `LICENSE` and `readme.md`, at the same relative paths under
@@ -331,7 +333,7 @@ FQN that `classes-jar.api` names 17 times does not move.
 
 ### KMP-06d — retire `:shared`
 
-**Status:** blocked until 06b and 06c land
+**Status:** open · 06c (#41) and 06b (#42) have landed
 
 What is left after 06b: `ComposeFragment.kt`, `compose/Layout.kt` and `DevicePreferenceStore` ×3.
 Each needs a home: `DevicePreferenceStore` → `:core:storage` per the plan, once `PreferenceStore`
