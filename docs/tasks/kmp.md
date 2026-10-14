@@ -655,9 +655,9 @@ decided, because that decides how much of `:library` is worth making iOS-compila
 
 ---
 
-## KMP-10 — `:core:ui` fails the iOS canary · **measured 2026-10-14**
+## KMP-10 — the iOS canary is red · **measured 2026-10-14**
 
-**Status:** open · one module, one error, a ~19-line fix
+**Status:** step 1 in pr #49 (`:core:ui`) · step 2 open (`:core:mihon`)
 
 `./gradlew iosCanary -Pcloudstream.iosCanary=true --continue` is **red on master**, and has been
 since `KMP-06c` (#41) created `:core:ui`. Twelve modules have an `iosCanary` task. Ten pass. One
@@ -674,15 +674,43 @@ Plan §4.2 lists `:core:ui` as canary "yes, macOS runner", so this is a gap betw
 tree, not a decision. Nobody noticed because `INF-02` records that the canary "is run by hand" and
 has no CI job — and by hand, nobody ran it.
 
-**The fix looks mechanical:** `jvmMain`'s actual is 19 lines that return the static scheme and the
-normal primary colour, because desktop has no dynamic theming. iOS has none either, so an
-`iosMain` actual is very nearly a copy. It is not done here because it is `:core:ui`'s code and
-this entry exists to report it (`.claude/rules/no-unsolicited-changes.md`), and because it is worth
-one minute of thought whether iOS should instead track the system accent colour.
+### Step 1 — `:core:ui` · #49
+
+Done. `core/ui/src/iosMain/.../DeviceTheme.ios.kt` returns the static scheme and the normal primary
+colour, which is what `jvmMain` already does.
+
+**There was no design choice to make, though it looked like one.** Android's Material You exposes
+the wallpaper palette through `android.R.color.system_*` and macOS exposes a chosen accent through
+`NSColor.controlAccentColor`, but **iOS publishes no system accent or palette to apps**. There is
+nothing to read. `CloudStreamThemeMode.Dynamic` also already documents itself as falling back "to
+`Dark` on unsupported platforms", so the behaviour was specified before the source set existed.
+
+### Step 2 — `:core:mihon`'s four `String.format` calls · open
+
+Fixing `:core:ui` let `:core:mihon` compile for the first time, and it fails — at **exactly the four
+sites the plan already named** (§7 Phase 5: "Replace `String.format` as the Mihon files move
+(`Preference.kt:74,100,124`, `EditTextPreferenceWidget.kt:41`)"):
+
+    e: core/mihon/.../settings/Preference.kt:74:37   Unresolved reference 'format'.
+    e: core/mihon/.../settings/Preference.kt:100:37  Unresolved reference 'format'.
+    e: core/mihon/.../settings/Preference.kt:124:31  Unresolved reference 'format'.
+    e: core/mihon/.../settings/widget/EditTextPreferenceWidget.kt:41:30  Unresolved reference 'format'.
+
+All four are `subtitle?.format(…)` — `kotlin.text.format`, which is `java.lang.String.format` and
+JVM-only. Each substitutes one value into a preference subtitle template.
+
+**Left for its own PR deliberately.** This is **vendored Apache-2.0 code** (`KMP-06a`, `NOTICE`),
+where every edit widens the diff against upstream that 06a measured file by file, and the module
+boundary exists to make that visible. Four lines of first-party code would not need their own
+review; four lines inside the Mihon tree do. It also wants a decision on *how*: a small `commonMain`
+formatter, or changing the templates so none is needed.
+
+So after #49 the canary is **11 of 12 modules green, `:core:mihon` red with four known sites**.
 
 **Reproduce:** `./gradlew iosCanary -Pcloudstream.iosCanary=true --continue`. Kotlin/Native 2.4.0
 must be in `~/.konan`; it downloads on first run. On this machine the whole canary takes about
-4 seconds warm.
+4 seconds warm — which is the strongest argument for `INF-02` finally giving it a CI job: the thing
+nobody ran for five weeks costs seconds.
 
 ---
 
