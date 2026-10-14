@@ -70,10 +70,15 @@ JDK 17. Against the unclamped helper: 3 of 6 failed (`35_791_395` / `40_000_000`
 returned wrapped values; a negative input became positive). After the clamp: 6 of 6 passed. Full
 `:app:testStableDebugUnitTest`: 19 tests, 0 failures, exit 0.
 
-- [ ] **Open, deliberately not changed:** `MainAPI.kt:2549` documents `Episode.runTime` as **seconds**,
-      while `EpisodeAdapter.kt` treats it as **minutes**. One of them is wrong by 60x. The fix is
-      correct under the minutes reading the display code uses; it does not resolve which is the
-      contract. If the KDoc is right, every episode runtime renders 60x too long
+- [x] **Settled 2026-10-14: the KDoc was wrong, and now says minutes.** `MainAPI.kt:2549` documented
+      `Episode.runTime` as **seconds** while every renderer treats it as **minutes** — one of them was
+      wrong by 60x. The evidence all points one way: `EpisodeAdapter.kt` passes it through
+      `runTimeMinutesToSeconds` before formatting, a helper that exists only because the value is
+      minutes; the home preview renders it with `duration_format` (`%d min`); `I18N-03` now renders the
+      result page the same way; and nobody has ever reported runtimes showing 60x too long, which is
+      what the seconds reading would produce for every title in the app. Changing the KDoc rather than
+      the code is also the only option that breaks nothing: the data is whatever extensions already
+      send, and they are writing minutes
 
 ---
 

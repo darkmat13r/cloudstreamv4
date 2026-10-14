@@ -6,9 +6,17 @@ package com.lagradost.cloudstream4.core.strings
  *
  * ## What was measured, and on what
  *
- * Measured on **Temurin JDK 17.0.20.1** (`jdkToolchain = "17"` in `gradle/libs.versions.toml`, CLDR locale provider,
- * the default since JDK 9) by running `String.format(locale, …)` over all 1017 `Locale.getAvailableLocales()` and
+ * Measured on **Temurin JDK 17.0.20.1** (CLDR locale provider, the default since JDK 9) by running `String.format(locale, …)` over all 1017 `Locale.getAvailableLocales()` and
  * over the 62 locales this module generates. `java.util.Formatter.localizedMagnitude` is the method being mirrored.
+ *
+ * **That JDK is not pinned for this module** (`INF-06`). `jdkToolchain = "17"` in
+ * `gradle/libs.versions.toml` is consumed in exactly one place — `app/build.gradle.kts`, for legacy
+ * `:app`'s javac. No `jvmToolchain(…)` exists anywhere in `build-logic/convention/`, so every
+ * `:core:*` module compiles and tests on **whatever JVM started the Gradle daemon**. An earlier
+ * version of this KDoc cited that property as if it governed this module; it does not, which is why
+ * the table below can disagree with a local run. Set `JAVA_HOME` to the Temurin 17 named above, or
+ * expect drift: JDK 24 bumped CLDR to 46, moving bare `ar` from Arabic-Indic digits to ASCII
+ * (JDK-8333582, CLDR-17553).
  *
  * - **Digits are substituted for `%d` and `%f`, never for `%s`.** `ar` writes `%d` of `1234567` as
  *   `١٢٣٤٥٦٧` and `%s` of the same `Int` as `1234567`, because `%s` is `toString()`. Of the generated locales,

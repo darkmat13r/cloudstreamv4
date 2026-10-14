@@ -2546,7 +2546,8 @@ suspend fun MainAPI.newMovieLoadResponse(
  * @property posterUrl URL of Episode's poster image.
  * @property score Episode rating.
  * @property date Episode air date, see addDate.
- * @property runTime Episode runtime in seconds.
+ * @property runTime Episode runtime in **minutes**. See `BUG-01`: every renderer treats it as
+ *   minutes, and this line said seconds until 2026-10-14.
  * @see newEpisode
  * */
 data class Episode

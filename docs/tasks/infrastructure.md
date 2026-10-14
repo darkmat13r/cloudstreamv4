@@ -122,9 +122,23 @@ hardcoded Arabic literals fail. This is a stale pinned expectation plus an unpin
       match CI; costs a second JVM launch; defers the `ar` question to the next bump), **or**
       re-measure the table (breaks CI, where the JVM still says `٠` — the two cannot both be
       satisfied by one set of literals, and re-recording is what that test exists to catch)
-- [ ] Either way, fix two KDoc claims that rest on the false premise:
-      `NumberSymbols.kt:9` and `LocaleNumberParityTest.kt:124` both cite `jdkToolchain = "17"` as
-      if it governed this module
+- [x] **Done 2026-10-14.** The two KDoc claims that rested on the false premise are corrected.
+      `NumberSymbols.kt` no longer cites `jdkToolchain = "17"` as the reason its table is what it is;
+      it now says in as many words that **no** `jvmToolchain(…)` exists in `build-logic/convention/`,
+      that the module runs on whatever JVM started the daemon, and that `JAVA_HOME` is the only pin.
+      `LocaleNumberParityTest` says the same where it pins the symbol table, and names the JDK 24 /
+      CLDR 46 `ar` change as a platform move rather than a regression. This is the half of `INF-06`
+      that needed no decision
+- [ ] **The actual fix is blocked on a dependency decision, which is why this entry stays open.**
+      Pinning the test toolchain means `jvmToolchain(17)` in `cloudstream.kmp.base`, and Gradle can
+      only satisfy that by auto-detecting a local JDK 17 or **downloading one** — and auto-download
+      needs the `foojay-resolver-convention` plugin in `settings.gradle.kts`, which this repository
+      does not have and which is a new dependency (`.claude/rules/dependency-security.md`: ask
+      first). Measured: no `foojay`, no `toolchainManagement`, no `jvmToolchain` anywhere in
+      `settings.gradle.kts`, `build-logic/` or `gradle/libs.versions.toml`. Without the resolver the
+      pin works on this machine and on CI (both have a 17) and **fails for anyone else** with "No
+      matching toolchain, auto-detection enabled, auto-download disabled". So: adding the resolver is
+      the owner's call
 - [ ] Until then: run `:core:*` tests with `JAVA_HOME` set to the Temurin 17 the toolchain names,
       or local runs disagree with CI
 
