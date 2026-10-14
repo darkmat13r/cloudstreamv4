@@ -62,6 +62,15 @@ lists the runs and the options. The fix is the owner's call, because it changes 
 
 Before the 2026-10-07 change, 38 PRs merged with no CI at all. Treat those PRs' "green" as local only.
 
+**Master's commit status is permanently red, and it is not about the code** (`INF-09`, measured
+2026-10-14). `Pre-release`, `Archive build` and `Dokka` fail on every push to master — 14 of 14 runs
+since 2026-10-03, 0 successful — in 10–15 seconds, at their first step: each mints a token for an
+upstream repository through `tibdex/github-app-token` with `app_id: ${{ secrets.GH_APP_ID }}`, which
+this fork does not set (`Error: Input required and not supplied: app_id`). `Artifact Build`, the
+workflow that gates merges, mints no token and is unaffected. The problem is the masking: a
+genuinely broken master would look exactly like today. Fixing it changes CI gates, so it is the
+owner's call.
+
 ---
 
 ## If you edit a string, read this first
