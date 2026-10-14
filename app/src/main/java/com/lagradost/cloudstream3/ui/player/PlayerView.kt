@@ -501,10 +501,10 @@ class PlayerView @JvmOverloads constructor(
                 pipReceiver = object : BroadcastReceiver() {
                     override fun onReceive(context: Context, intent: Intent) {
                         if (ACTION_MEDIA_CONTROL != intent.action) return
-                        player.handleEvent(
-                            CSPlayerEvent.entries[intent.getIntExtra(EXTRA_CONTROL_TYPE, 0)],
-                            source = PlayerEventSource.UI
-                        )
+                        val code = intent.getIntExtra(EXTRA_CONTROL_TYPE, 0)
+                        val event = CSPlayerEvent.entries.firstOrNull { it.value == code }
+                            ?: return
+                        player.handleEvent(event, source = PlayerEventSource.UI)
                     }
                 }
                 val filter = IntentFilter().apply { addAction(ACTION_MEDIA_CONTROL) }

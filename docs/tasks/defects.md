@@ -155,7 +155,7 @@ for extension callers (the function is on the published ABI).
 
 ## BUG-09 — picture-in-picture buttons write `value` and read `ordinal` · **latent, measured 2026-10-14**
 
-**Status:** open · not reproducible today · found while designing `PlayerCommand` (`KMP-07`)
+**Status:** done · was not reproducible · found while designing `PlayerCommand` (`KMP-07`)
 
 `CSPlayerEvent` declares an explicit `value: Int` (`app/.../ui/player/IPlayer.kt:12-25`). The
 picture-in-picture buttons are Android `RemoteAction`s, so the command has to survive a trip
@@ -186,6 +186,14 @@ defaulting, so a stale `PendingIntent` from a previous version can crash the rec
 the wire format, or delete `value` and use `ordinal` at both ends. The first keeps the ints stable
 across reorderings; the second admits they are not stable. `CSPlayerEvent` is in
 `app/api/classes-jar.api` (18 occurrences), so its case order is published either way.
+
+**Resolution:** the first convention was chosen. `value` is the wire format: `PlayerView`'s receiver
+now finds the case whose `value` equals the received int (`firstOrNull`, inline at the call site,
+so no member is added to the published class) and returns without calling `handleEvent` on an
+unknown code, so a stale `PendingIntent` no longer throws. It was chosen over deleting `value`
+because `CSPlayerEvent` is published and its numbers are already on the wire. The published case
+order and every case's `value` are unchanged. `CSPlayerEventWireValueTest` pins uniqueness, the
+`value` round trip and the unknown-code fallback.
 
 **Evidence:** read at `IPlayer.kt:12-25`, `PlayerPipHelper.kt:78-86`, `:96-102`, `PlayerView.kt:500-510`.
 

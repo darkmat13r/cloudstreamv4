@@ -34,8 +34,9 @@ enum class CommandSource {
  *
  * `CSPlayerEvent` is in `app/api/classes-jar.api`, so its cases and their order are published ABI.
  * It also has a live wire format: `PlayerPipHelper` writes `event.value` into an `Intent` extra and
- * `PlayerView` reads it back as `CSPlayerEvent.entries[int]` — by **ordinal**, not by `value`.
- * Those agree only because every case happens to have `value == ordinal` today (see `BUG-09`).
+ * `PlayerView` reads it back. As of `BUG-09` the reader looks the case up **by `value`**; it used
+ * to index `CSPlayerEvent.entries[int]` by ordinal, which agreed only because every case happens
+ * to have `value == ordinal`. So `value` is the wire format and must stay stable.
  * `:app` keeps the enum and maps; nothing here renumbers anything.
  */
 sealed interface PlayerCommand {
