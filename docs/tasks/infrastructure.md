@@ -218,6 +218,7 @@ the release dex build, with no Gradle error:
 | 38551943012 attempt 1 | #43 `c2ce96ca` | `The operation was canceled`, during `dexBuilderStableRelease` |
 | 38551943012 attempt 2 | #43 `c2ce96ca` | `Process completed with exit code 143` (SIGTERM), during `dexBuilderPrereleaseRelease` |
 | 38613588107 | **#54** `1202400d` | `Process completed with exit code 143` (SIGTERM) after `compileStableReleaseKotlin`, at 28m57s. **0** occurrences of `What went wrong:` in the whole log |
+| 38613700278 | **#56** `83e87fa6` | step **`cancelled`**. **0** occurrences of `What went wrong:`. #56 is **docs-only** — one file, `docs/tasks/defects.md` |
 
 The same step passed on #42 in runs 37647589593 (`bce90a8f`) and 38552020713 (`b8aeffd3`). The
 second of those trees contains #43's head. The workflow sets no `timeout-minutes` and no
@@ -227,9 +228,11 @@ likely cause, but that is **not measured**.
 **Until this is fixed:** read a red run's log before believing it (`gh run view <id> --log-failed`).
 A run that ends in a cancel or exit 143, with no `What went wrong:` before it, never ran the check.
 
-**2026-10-14: the first occurrence outside #43, and it narrows the cause.** Run 38613588107 is on
-**#54**, whose entire diff is `maxLines="1"` → `maxLines="2"` in one XML layout plus a docs entry —
-about as far from "that PR was heavy" as a change gets. The two earlier steps passed on the same run
+**2026-10-14: two occurrences outside #43, and they narrow the cause to the step.** Run 38613588107
+is on **#54**, whose entire diff is `maxLines="1"` → `maxLines="2"` in one XML layout plus a docs
+entry. Run 38613700278 is on **#56**, which is **docs-only** — a single `docs/tasks/defects.md` file,
+not one byte of code, resource or build script. A diff that cannot affect the build at all produces
+the same death, so the diff is not the variable. The two earlier steps passed on the same run
 (`Ensure binary compatibility`, then `Run Gradle` with the full `assemblePrereleaseDebug lint check`),
 so the job reached the third step healthy and died there. That rules out #43's *content* as the cause
 and points at the **step**: it builds every release variant *after* `Run Gradle` has already run, in
@@ -239,6 +242,13 @@ as OOMing D8 in a full run. Still a hypothesis: nothing has measured the runner'
 Practical consequence while it is unfixed: a red tick on this repo means *read the log*. Two of the
 three gates run **before** the fragile step, so a run that dies at `Check classes.jar ABI` has still
 exercised `checkKotlinAbi` and the whole `lint check`.
+
+**Diagnostic trap:** the step dies two ways, and only one of them leaves a log. On #54 it was
+`exit code 143`, which `gh run view <id> --log-failed` shows. On #56 the step was **`cancelled`**, and
+`--log-failed` printed **nothing at all** — an empty result reads like "no failure recorded" when it
+actually means the step was killed before it could fail. Use
+`gh run view <id> --json jobs --jq '.jobs[].steps[] | "\(.name): \(.conclusion)"'` to see the step
+conclusions; that is what distinguishes a cancelled step from a green run.
 
 Options, for the owner: make `makeJar` depend on what it actually reads instead of `build`;
 build one variant in that step; raise Gradle/Kotlin daemon memory limits for CI; or use a larger
