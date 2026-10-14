@@ -11,18 +11,22 @@ package com.lagradost.cloudstream4.core.storage
  *
  * ## Why this is a second copy of an interface that already exists
  *
- * `:shared` declares `com.mihon.common.preference.PreferenceStore` with exactly this shape, and the
- * settings screens are written against it. `:core:storage` cannot depend on `:shared`: `:shared` is
- * deleted in Phase 5 of the migration plan, and depending on a module that is about to be split
- * would put this module's fate in that split's hands. So the shape is restated here, method for
- * method and name for name.
+ * `com.mihon.common.preference.PreferenceStore` has exactly this shape, and the settings screens
+ * are written against it. When this module was written that declaration was in `:shared`, which was
+ * about to be split, so depending on it would have put this module's fate in that split's hands;
+ * the shape was restated here instead, method for method and name for name.
  *
- * **Phase 5 consolidates the two.** The plan (§7 Phase 5) moves `PreferenceStore` out of `:shared`
- * into this module keeping its `com.mihon.*` package, at which point exactly one of these two
- * declarations survives: either the `com.mihon` one becomes a `typealias` to this one, or this one
- * does. Keeping the signatures identical is what makes that a rename rather than a rewrite — do not
- * let them drift. Anything added here before Phase 5 should be added there too, or be additive
- * enough to survive the merge.
+ * **The two are still not consolidated.** `:shared` is gone (`KMP-06d`): the Mihon declaration now
+ * lives in `:core:mihon` and `AppSettings`, the one thing built on it, in `:core:settings`. Merging
+ * them is an open decision rather than a pending plan step, because `:core:storage` taking the
+ * `com.mihon.*` package would give it a vendored-Apache-2.0 root, and `AppSettings` adopting *this*
+ * declaration retypes 62 `preference = settings.…` arguments whose receiving fields are declared in
+ * vendored Mihon code. `docs/tasks/kmp.md` `KMP-06d` has the measurement.
+ *
+ * Either way, exactly one of the two declarations survives it: the `com.mihon` one becomes a
+ * `typealias` to this one, or this one does. Keeping the signatures identical is what makes that a
+ * rename rather than a rewrite — do not let them drift. Anything added here should be added there
+ * too, or be additive enough to survive the merge.
  *
  * ## Encoding
  *

@@ -98,7 +98,8 @@ public synthetic accessor from the published jar**.
 
 ## KMP-06 — Restructure `:shared`
 
-**Status:** open · **Size:** several PRs · **Partly blocked by** `DEC-09` · order is now 06c → 06b → 06d
+**Status:** done · #41, #42, #45, #46 · order was 06c → 06b → 06d. `:shared` no longer exists.
+`DEC-09` (`BaseComposeFragment`) was never on the critical path: that class is `:app`'s.
 
 The plan's "split `:shared` into `:core:ui` + `:core:designsystem`" is **stale**.
 `:core:designsystem` already exists with the redesign system; merging the vendored Mihon tree into
@@ -323,7 +324,8 @@ FQN that `classes-jar.api` names 17 times does not move.
       - **Baseline is the pre-carve-out parent (#41's head), never `master`.** Once this merges,
         `master` *is* this branch and the diff comes back vacuously empty, which reads as clean.
 - [ ] Runtime: the seven settings screens and settings search render, a list preference opens its
-      dialog, and the desktop app's `SwitchPreferenceWidget` row renders. **Not verified.** The
+      dialog, and the desktop app's `SwitchPreferenceWidget` row renders. **The desktop half is now
+      verified** — see 06d below; the Android half is not. The
       prerelease debug APK installed on a Pixel 9a (API 37), and a launch started the process with no
       `FATAL`, `NoClassDefFound`, `NoSuchField`, `NoSuchMethod` or `MissingResource` in logcat. But
       the device was behind a secure keyguard, so no screen rendered. Statically, the APK has all 23
@@ -333,8 +335,8 @@ FQN that `classes-jar.api` names 17 times does not move.
 
 ### KMP-06d — retire `:shared`
 
-**Status:** in pr #45 (step 1 of 2) · 06c (#41) and 06b (#42) have landed · **step 2 needs a
-placement decision — options measured below**
+**Status:** in pr #45 (step 1) and #46 (step 2) · 06c (#41) and 06b (#42) have landed ·
+step 2 takes **option A**, which is reversible; see the options below and `DEC-12`
 
 What is left after 06b: five files, 333 lines, two dependents.
 
@@ -422,6 +424,88 @@ code under the Apache-2.0 vendored root, which is the boundary 06b exists to dra
 `:core:ui/androidMain` on its own — at the cost of widening `DeviceLayout.Companion.layoutToFlag`
 from `internal` to public, because `ComposeFragment.kt:33` is its only caller. Keeping the pair
 together avoids the widening.
+
+#### Step 2 — `:core:settings`, option A · #46
+
+Taken because A is the only option that moves the five files **verbatim**, and because it is
+reversible: B, C and D are a rename and a build-file edit away. `DEC-12` records the one thing it
+deliberately does not settle, the two `PreferenceStore` declarations.
+
+`:core:settings` is `cloudstream.kmp.compose`, `api(:core:ui)` + `api(:core:mihon)` +
+`implementation(:library)`, android + jvm. Two of `:shared`'s dependencies are **not** carried over
+because no file here uses them: `kotlinx-collections-immutable` (the Mihon tree's) and
+`preference-ktx` (`DevicePreferenceStore.android.kt` reaches `SharedPreferences` through Mihon's
+`AndroidPreferenceStore`, which declares it itself). `libs.bundles.compose` is not declared either —
+`cloudstream.kmp.compose` supplies it as `api`.
+
+**`:core:settings` is iOS-canary exempt**, the second entry in `IOS_CANARY_EXEMPT` after
+`:core:model`, because `DevicePreferenceStore.kt` imports `AllLanguagesName`, `DubStatus`,
+`SearchQuality` and `TvType` (plan §4.1 rule 4). The list "may only shrink", so: this is not a new
+`:library` dependency — `:shared` declared the same edge and had no iOS target at all — it is the
+same code compiling under a convention plugin for the first time. It lifts with `:core:model`'s.
+Measured both ways: with the exemption, `:core:settings` has no `iosCanary` task and `:core:ui`
+still has one; with it removed, `:core:settings:dependencies --configuration
+iosArm64CompileKlibraries -Pcloudstream.iosCanary=true` prints `project :library FAILED`.
+
+**Verification** — local runs, 2026-10-14, Temurin 17.0.20.1, `TZ=UTC`, `-Xmx14G`, each command
+redirected to a file with `$?` captured:
+
+- [x] `checkKotlinAbi` → exit 0.
+- [x] `assemblePrereleaseDebug lint check -Pcloudstream.strings.guards=fail` → exit 0.
+- [x] `:app:checkExtensionApi` → exit 0. `:app:dumpExtensionApi` → exit 0 and `git status` clean
+      afterwards, so `app/api/classes-jar.api` is byte-identical. `com/lagradost/cloudstream4/R` is
+      still in `app/build/classes.jar`, and no `com/lagradost/cloudstream4/compose/*` entered it:
+      `:core:settings` declares no `src/*/kotlin/com/lagradost/cloudstream3`, so it is not merged.
+- [x] Move re-measured: `git diff -M100%` shows **5 `R100` renames** for the sources plus one for
+      `shared/readme.md` → `docs/compose-rewrite.md`. No content edit in any of the five.
+- [x] `$stable` scan, baseline **#45's head `5b2c216a`** in a throwaway worktree (never master
+      after the merge, or the diff is vacuously empty). Counted two ways on every side: a regex over
+      `javap -p -c`, and a direct class-file parser (field access flags plus constant-pool
+      `Fieldref` owners).
+      - `:app` `prereleaseDebug`: **2202 classes, 888 `$stable` declarers, 2407 `getstatic`
+        targets, 9276 `Fieldref` owners — identical sets**, not merely identical counts. A
+        byte-level `sha256` comparison of the same 2202 class files adds the one caveat: **2 differ**,
+        `SettingsFragment` and `SettingsFragmentScreen`, and in both the entire diff is one
+        `ldc2_w` operand, `1791992530844` → `1791992051696` — two epoch milliseconds 8 minutes
+        apart, i.e. `BuildConfig.BUILD_DATE` inlined at `SettingsFragment.kt:255`. The same two
+        classes differed for the same reason in 06b. (The set comparison cannot see this: the dump
+        deliberately does not guard constant *values*, and nor does a `$stable`/`getstatic` set.)
+      - `:desktopApp`: 3 classes, 0 `$stable`, 19 `getstatic`, 21 `Fieldref` — identical sets.
+      - The moved files: `:shared` 13 jvm / 18 android → `:core:settings` 13 jvm / 18 android, same
+        class names, **9 → 9 `$stable`** per target with identical declaring-class sets, and
+        identical `Fieldref` owner sets (87 jvm, 99 android). Per-class `javap -p -c` text is
+        **identical for all 31** after normalising constant-pool indices and the module-name suffix.
+      - **Expected, not a finding:** 2 `internal` members rename with the Kotlin module name —
+        `DeviceLayout.and-sihxV88` and `DeviceLayout$Companion.layoutToFlag-PtjY-Ko`,
+        `$CloudStream_shared` → `$CloudStream_core_settings`. Both are 0 matches in
+        `classes-jar.api`. 06b saw 26 such renames, 06c saw 1.
+      - **Expected, not a finding:** `:core:settings` gains 7 classes per target that `:shared` did
+        not have — an empty generated `Res` (`Res`, `Res$array/$drawable/$font/$plurals/$string`,
+        `ActualResourceCollectorsKt`) at `com.lagradost.cloudstream4.core.settings.generated.resources`,
+        carrying 6 of the `$stable` fields and 5 `getstatic`s. `:shared` set `generateResClass =
+        never` to avoid colliding with `:core:ui`'s public `Res`; `cloudstream.kmp.compose`'s
+        default package is per-module, so there is no collision, and `:core:mihon`, `:core:theme`
+        and `:core:designsystem` each carry the identical 7. `publicResClass = false`, so none of
+        them is public API.
+- [ ] Runtime: the seven settings screens, settings search and a list-preference dialog. **Still
+      not verified** — same gap as 06b, and the same cause: the attached Pixel 9a was behind a
+      secure keyguard (`mDreamingLockscreen=true`), so nothing could be driven on screen.
+      What *is* verified statically, in the `prereleaseDebug` APK this branch builds: all 9
+      `AppSettings`/`*Preferences` classes, `DevicePreferenceStore_androidKt`, `DeviceLayout`
+      (+ `$Companion`), `LayoutKt`, `ComposeFragmentKt`, `compose/Screen`,
+      `com/lagradost/cloudstream4/R`, `SearchableSettings`, `AndroidPreferenceStore`,
+      `BaseComposeFragment`, `Globals` and all 7 `Settings*Screen` classes are in its dex —
+      27 of 27 present, 0 missing, out of 49,542 classes. So the module move cannot have produced a
+      `NoClassDefFoundError`; what remains unproven is what the Android screens look like.
+- [x] Runtime, desktop: `:desktopApp:run` on this branch opens the window and it renders — the
+      title "CloudStream" from `stringResource(Res.string.app_name)`, `CloudStreamTheme`'s dark
+      surface, `:core:ui`'s `WhiteButton`/`BlackButton`, and **`:core:mihon`'s
+      `SwitchPreferenceWidget`** with its icon (`Res.drawable.preview`), title and subtitle. That is
+      the item 06b left open ("the desktop app was compiled, not run"), and it exercises what a
+      module move most endangers: Compose resources resolving from `:core:ui`'s `Res` across a
+      module boundary, now two moves from where they started. The window still reads "Hello,
+      World!" because `desktopApp/src/jvmMain/.../Main.kt` is a 62-line placeholder that `KMP-06d`
+      does not touch.
 
 #### Also in step 2
 

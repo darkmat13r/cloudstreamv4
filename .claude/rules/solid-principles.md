@@ -4,7 +4,7 @@ paths:
 ---
 # SOLID Principles (ALL Code)
 
-These apply to all Kotlin in this repo — `:app`, `:library`, `:shared` and every `:core` /
+These apply to all Kotlin in this repo — `:app`, `:library` and every `:core` /
 `:feature` module.
 
 ## Single Responsibility Principle

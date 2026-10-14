@@ -43,9 +43,9 @@ All recorded 2026-09-17 by the owner. They are not options any more; re-open the
 | Module | Plugin | Targets | Role |
 |---|---|---|---|
 | `:library` | KMP + `android.kotlin.multiplatform.library`, own build file | android, jvm (+ uncompiled `webMain`) | Published provider SDK (upstream-owned). commonMain depends on Jackson, jsoup, NiceHttp and Rhino (`library/build.gradle.kts:55-69`): it is JVM-common, not portable. Has `abiValidation` (`library/api/jvm/library.api`). |
-| `:shared` | KMP + Compose, own build file | android, jvm | Mihon settings framework, MVI primitives, `PreferenceStore`, `ComposeFragment`. commonMain depends on `:library` (`shared/build.gradle.kts:38`). To be split up (Phase 5). |
+| `:core:settings` | `cloudstream.kmp.compose` | android, jvm | `AppSettings` and its 8 `*Preferences` classes, plus the `ComposeFragment` host and `DeviceLayout` — the only first-party code above `:core:mihon`. commonMain depends on `:library`, so it is iOS-canary exempt. What was left of `:shared` (`KMP-06d`). |
 | `:app` | `com.android.application` | android | CloudStream 3: 245 Kotlin files, 66,767 lines in `app/src/main`. |
-| `:desktopApp` | KMP + Compose | jvm | Desktop shell over `:shared`. |
+| `:desktopApp` | KMP + Compose | jvm | Desktop shell over `:core:mihon` (`KMP-06d` step 1). |
 | `:core:theme`, `:core:designsystem` | `cloudstream.kmp.compose` | android, jvm | CloudStream 4 tokens and components (`com.lagradost.cloudstream4.*`). Not merged into classes.jar. |
 | `:core:common` | `cloudstream.kmp.extension-api` | android, jvm | Frozen extension API moved from `:app`. Merged. |
 | `:core:network` | `cloudstream.kmp.extension-api` | android, jvm | `DohProviders.kt` in jvmCommonMain, `api(libs.nicehttp)`. Merged. |
@@ -237,7 +237,8 @@ layer 0   :core:theme   :core:common   :library
 | `:feature:*` | planned | `kmp.feature` | android, jvm | no (old classes stay in `:app`) | yes, subject to rule 4 |
 | `:core:notification`, `:media:video/audio/cast/torrent/download` | planned | `kmp.android-only` (Compose compiler per D1) | android | yes, via D3: frozen-API; their new first-party code needs non-merged siblings, named when Phase 6 starts | never |
 | `:library` | exists | own build file | android, jvm | yes | no, until Track L |
-| `:shared` | exists → deleted in Phase 5 | own build file | android, jvm | no | never |
+| `:shared` | **deleted** (`KMP-06d`) → `:core:ui`, `:core:mihon`, `:core:settings` | — | — | no | — |
+| `:core:settings` | exists | `kmp.compose` | android, jvm | no | no, until Track L (rule 4) |
 | `:app` | exists | `com.android.application` | android | yes (its own classes) | never |
 
 Android-only is irreducible for: Media3 and Cronet/nextlib (`:media:video`), Play Services Cast,
@@ -436,7 +437,7 @@ Everything still open is listed here.
 
 | # | PR | Depends on | State |
 |---|---|---|---|
-| 14 | Phase 5: split `:shared` into `:core:ui` + `:core:designsystem` | — | next; upstream coordination |
+| 14 | Phase 5: split `:shared` | — | **done**, differently: `:core:ui` (#41), `:core:mihon` (#42), `:core:settings` (`KMP-06d`). Not `:core:designsystem`, which already existed — see `docs/tasks/kmp.md` `KMP-06`. |
 | 15 | `:media:model` skeleton (contracts only) | — | unblocked |
 | 19 | B4 `DdosGuardKiller` into `:core:network` | — | unblocked |
 | 20 | B5 `SSLTrustManager`, `DownloaderTestImpl` | 19 | needs a security review first (a trust-all manager becomes reachable from a shared module) |
@@ -599,7 +600,17 @@ kotlinx.serialization only. `PreferenceDelegate`/`UserPreferenceDelegate` move o
 `KeyValueJsonStore`. OAuth redirect dispatch moves to `AccountManager.handleRedirect(url)` with
 `MainActivity.handleAppIntentUrl` delegating.
 
-### Phase 5 — Split `:shared` · ~1 week
+### Phase 5 — Split `:shared` · done, not as written below
+**What happened** (`docs/tasks/kmp.md` `KMP-06` has the reasoning and the measurements): `:core:ui`
+took the first-party Compose layer (#41), `:core:mihon` the whole vendored tree (#42) rather than
+splitting it across `:core:ui`/`:core:designsystem` — `:core:designsystem` already existed with the
+redesign system and would have collided on `CloudStreamTheme` — and `:core:settings` took
+`AppSettings` and the Android Compose host (`KMP-06d`), because all three of `ComposeFragment`'s
+edges into `com.mihon` make `:core:ui` a cycle. `DevicePreferenceStore` did **not** go to
+`:core:storage`; that paragraph is costed in `KMP-06d`. Neither new module is canary-on:
+`:core:ui`/`:core:mihon` resolve Compose UI's cinterop-backed iOS klibs, and `:core:settings` has a
+commonMain `:library` edge. The original plan follows, for the record.
+
 Into `:core:ui` (Screen, MVI glue, Mihon presentation) and `:core:designsystem` (Mihon material,
 widgets), both canary-on from the first commit. Replace `String.format` as the Mihon files move
 (`Preference.kt:74,100,124`, `EditTextPreferenceWidget.kt:41`). Move the form-factor type and
