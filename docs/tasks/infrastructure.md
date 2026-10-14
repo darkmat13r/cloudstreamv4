@@ -36,6 +36,19 @@ What that means concretely, beyond the obvious:
 - [ ] When billing is fixed, re-run the full check on a clean checkout **before** trusting the
       backlog of merged work, and expect to find something
 
+**Every green run also prints two red `##[error]` annotations, and they are expected.** Seen on every
+`Artifact Build` run inspected on 2026-10-14, inside the **successful** `Run Gradle` step:
+
+    ##[error]    |     values/strings.xml:4: error: unescaped apostrophe in string
+
+That is `core/strings/fixtures/guard-cases/aapt2-unescaped-apostrophe/res/values/strings.xml:4` —
+`<string name="apostrophe">Don't</string>` — a **deliberately invalid** fixture whose entire purpose is
+to make aapt2 emit that error so the guard can be tested against it. aapt2 writes to stderr, GitHub
+promotes stderr in a step to an error annotation, and the annotation survives even though the step
+concludes `success`. Nothing is wrong, and nothing should be "fixed" in that fixture — escaping the
+apostrophe would delete the case the guard exists for. Recorded because an error annotation on a green
+run is exactly the kind of thing that costs someone an afternoon.
+
 ---
 
 ## INF-02 — G4: CI job for the iOS canary
@@ -219,6 +232,7 @@ the release dex build, with no Gradle error:
 | 38551943012 attempt 2 | #43 `c2ce96ca` | `Process completed with exit code 143` (SIGTERM), during `dexBuilderPrereleaseRelease` |
 | 38613588107 | **#54** `1202400d` | `Process completed with exit code 143` (SIGTERM) after `compileStableReleaseKotlin`, at 28m57s. **0** occurrences of `What went wrong:` in the whole log |
 | 38613700278 | **#56** `83e87fa6` | step **`cancelled`**. **0** occurrences of `What went wrong:`. #56 is **docs-only** — one file, `docs/tasks/defects.md` |
+| 38616851249 | **#60** `995c41e6` | `exit code 143` during `dexBuilderStableRelease`. **0** occurrences of `What went wrong:`. **docs-only** — `docs/HANDOVER.md` + `docs/tasks/kmp.md` |
 
 The same step passed on #42 in runs 37647589593 (`bce90a8f`) and 38552020713 (`b8aeffd3`). The
 second of those trees contains #43's head. The workflow sets no `timeout-minutes` and no
@@ -238,6 +252,20 @@ so the job reached the third step healthy and died there. That rules out #43's *
 and points at the **step**: it builds every release variant *after* `Run Gradle` has already run, in
 the same job, on a runner at `gradle.properties`' `-Xmx4G` — which `docs/HANDOVER.md` already records
 as OOMing D8 in a full run. Still a hypothesis: nothing has measured the runner's memory.
+
+**The sharpest statement the data now supports.** Seven `Artifact Build` runs on 2026-10-14, same
+runner fleet, same day, same workflow:
+
+| | Runs | Diff |
+|---|---|---|
+| `Check classes.jar ABI` **passed** | #53, #55, #57, #58, #61 | real code changes, incl. a `:library` behaviour change with 14 new tests and an `:app` player edit |
+| `Check classes.jar ABI` **died** | #54, #56, #60 | one XML attribute; one docs file; two docs files |
+
+**The three that died had the smallest diffs, and two of them cannot affect the build at all.** The
+outcome is inversely correlated with the work the diff implies, which is the opposite of what a
+content-driven cause would produce. It is runner variance. It also fails three different ways —
+`exit 143` after Kotlin compilation, `exit 143` during `dexBuilderStableRelease`, and a bare
+`cancelled` — which is what resource exhaustion looks like, not a deterministic task failure.
 
 Practical consequence while it is unfixed: a red tick on this repo means *read the log*. Two of the
 three gates run **before** the fragile step, so a run that dies at `Check classes.jar ABI` has still
