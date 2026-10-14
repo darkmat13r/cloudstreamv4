@@ -18,9 +18,14 @@ brief said master was `f29ff63a` and that `KMP-06b` was next. In fact `06c` had 
 
 ## Where things stand
 
-Master is at `71d749b2` (#44). **Two pull requests are open, stacked:** #45 (`KMP-06d` step 1,
-`:desktopApp` off `:shared`) and #46 (step 2, `:core:settings`, which contains #45). Review #45
-first, or merge #46 and #45 goes with it.
+Master is at `493e1273` (#47). **No pull requests are open.** #45 and #46 finished `KMP-06d`, so
+`:shared` no longer exists; #47 recorded `INF-09`.
+
+**Neither #45 nor #46 has a green CI run**, and that is worth knowing before you read the ticks.
+#46's `Artifact Build` was cancelled by hand at the `Check classes.jar ABI` step; on #47, the run
+that *did* get that far passed `Ensure binary compatibility` and `Run Gradle` before being
+cancelled at the same step. Every result quoted in those PRs is a **local** run of the three
+commands below (`INF-01`, and `INF-08` for why that step is the one people cancel).
 
 The `:shared` restructure (`KMP-06`) is two-thirds done:
 

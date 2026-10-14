@@ -335,8 +335,9 @@ FQN that `classes-jar.api` names 17 times does not move.
 
 ### KMP-06d — retire `:shared`
 
-**Status:** in pr #45 (step 1) and #46 (step 2) · 06c (#41) and 06b (#42) have landed ·
-step 2 takes **option A**, which is reversible; see the options below and `DEC-12`
+**Status:** done · #45 (step 1) and #46 (step 2) · 06c (#41) and 06b (#42) landed before them ·
+step 2 took **option A**, which is reversible; the options are below, and `DEC-12` is what it
+deliberately left open
 
 What is left after 06b: five files, 333 lines, two dependents.
 
@@ -347,7 +348,7 @@ What is left after 06b: five files, 333 lines, two dependents.
 | `androidMain/…/compose/ComposeFragment.kt` (50) | `Screen.createComposeView(…)` | one caller: `:app`'s `BaseComposeFragment.kt:22` |
 | `androidMain/…/compose/Layout.kt` (47) | `DeviceLayout`, `PHONE`/`TV`/`EMULATOR`, `isLayout`, `internal layoutToFlag` | `isLayout` and the flags in 6 `:app` settings screens; `DeviceLayout.Companion.isAutoTv` in `Globals.kt:8`. `ComposeFragment.kt:33` is the only caller of the `internal` `layoutToFlag` |
 
-**Step 1 — `:desktopApp` off `:shared`** · in pr #45. Measured: `desktopApp/src/jvmMain/.../Main.kt`
+**Step 1 — `:desktopApp` off `:shared`** · #45. Measured: `desktopApp/src/jvmMain/.../Main.kt`
 imports `:core:ui` (`compose.BlackButton`/`WhiteButton`/`LocalFocusOutlineDefault`, `theme.*`, `Res`)
 and `:core:mihon` (`SwitchPreferenceWidget`) and **nothing `:shared` declares** — not
 `rememberAppSettings`, not `AppSettings`, not `DeviceLayout`. So it depends on `:core:mihon`
