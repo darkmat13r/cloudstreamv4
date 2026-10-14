@@ -28128,6 +28128,21 @@ public final class com/lagradost/cloudstream3/ui/player/StatusEvent : com/lagrad
 	public fun toString ()Ljava/lang/String;
 }
 
+public final class com/lagradost/cloudstream3/ui/player/StreamRequestAdapter : java/lang/Object {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/lagradost/cloudstream3/ui/player/StreamRequestAdapter;
+	public final fun fromLink (Lcom/lagradost/cloudstream3/utils/ExtractorLink;)Lcom/lagradost/cloudstream4/media/model/StreamRequest;
+	public final fun fromUri (Lcom/lagradost/cloudstream3/ui/player/ExtractorUri;)Lcom/lagradost/cloudstream4/media/model/StreamRequest;
+	public final fun localStream (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/lagradost/cloudstream4/media/model/StreamRequest;
+	public final fun protocolOf (Lcom/lagradost/cloudstream3/utils/ExtractorLinkType;)Lcom/lagradost/cloudstream4/media/model/StreamProtocol;
+	public final fun schemeOf (Ljava/util/UUID;)Lcom/lagradost/cloudstream4/media/model/DrmScheme;
+	public final fun schemeOf (Lkotlin/uuid/Uuid;)Lcom/lagradost/cloudstream4/media/model/DrmScheme;
+}
+
+public final static synthetic class com/lagradost/cloudstream3/ui/player/StreamRequestAdapter$WhenMappings : java/lang/Object {
+	public static final synthetic field $EnumSwitchMapping$0 [I
+}
+
 public final class com/lagradost/cloudstream3/ui/player/SubtitleCue : java/lang/Object {
 	public static final field $stable I
 	public fun <init> (JJLjava/util/List;)V
