@@ -15,7 +15,11 @@ kotlin {
                 // compose.desktop.currentOs imports the wrong material 2, so we exclude it
                 exclude(group = "org.jetbrains.compose.material", module = "material")
             }
-            implementation(project(":shared"))
+            // :core:mihon, not :shared (KMP-06d): Main.kt uses SwitchPreferenceWidget from the
+            // vendored Mihon tree and reaches :core:ui's components, theme and `Res` through its
+            // `api` edge. It uses nothing :shared declares, so this is the whole of :shared's
+            // desktop surface.
+            implementation(project(":core:mihon"))
         }
     }
 }

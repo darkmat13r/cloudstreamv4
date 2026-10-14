@@ -333,11 +333,107 @@ FQN that `classes-jar.api` names 17 times does not move.
 
 ### KMP-06d — retire `:shared`
 
-**Status:** open · 06c (#41) and 06b (#42) have landed
+**Status:** in pr #45 (step 1 of 2) · 06c (#41) and 06b (#42) have landed · **step 2 needs a
+placement decision — options measured below**
 
-What is left after 06b: `ComposeFragment.kt`, `compose/Layout.kt` and `DevicePreferenceStore` ×3.
-Each needs a home: `DevicePreferenceStore` → `:core:storage` per the plan, once `PreferenceStore`
-has one.
+What is left after 06b: five files, 333 lines, two dependents.
+
+| File | Declares | Used from outside `:shared` |
+|---|---|---|
+| `commonMain/…/DevicePreferenceStore.kt` (201) | `expect rememberAppSettings`, `AppSettings`, 8 `*Preferences` classes | `rememberAppSettings` in 6 `:app` settings screens; `AppSettings` in `SettingsGeneralScreen`, `SettingsAccountScreen`, `SettingsUpdatesScreen` and `AppContextUtils.kt:485,504`. The `*Preferences` classes are reached only through `AppSettings` |
+| `androidMain/…/DevicePreferenceStore.android.kt` (19), `jvmMain/…/DevicePreferenceStore.jvm.kt` (16) | the `actual`s, plus `AppSettings(context)` / `AppSettings()` | `:app` uses the Android one. **Nothing uses the jvm one** — see step 1 |
+| `androidMain/…/compose/ComposeFragment.kt` (50) | `Screen.createComposeView(…)` | one caller: `:app`'s `BaseComposeFragment.kt:22` |
+| `androidMain/…/compose/Layout.kt` (47) | `DeviceLayout`, `PHONE`/`TV`/`EMULATOR`, `isLayout`, `internal layoutToFlag` | `isLayout` and the flags in 6 `:app` settings screens; `DeviceLayout.Companion.isAutoTv` in `Globals.kt:8`. `ComposeFragment.kt:33` is the only caller of the `internal` `layoutToFlag` |
+
+**Step 1 — `:desktopApp` off `:shared`** · in pr #45. Measured: `desktopApp/src/jvmMain/.../Main.kt`
+imports `:core:ui` (`compose.BlackButton`/`WhiteButton`/`LocalFocusOutlineDefault`, `theme.*`, `Res`)
+and `:core:mihon` (`SwitchPreferenceWidget`) and **nothing `:shared` declares** — not
+`rememberAppSettings`, not `AppSettings`, not `DeviceLayout`. So it depends on `:core:mihon`
+directly, and `:shared` is left with one dependent, `:app`. See the PR for the classpath drift this
+exposed.
+
+#### The jar is not a constraint here — but `:app` is
+
+`grep cloudstream4 app/api/classes-jar.api` returns **4 lines, none of them these five files'**:
+`com/lagradost/cloudstream4/compose/Screen` ×3 as a supertype of `:app`'s `BaseComposeFragment`,
+`SettingsFragment2` and `SettingsFragmentScreen`, and `com/lagradost/cloudstream4/R` — both
+`:core:ui`'s, both staying put. `:app`'s `Globals` declares its **own** `Int`-based `PHONE`/`TV`/
+`EMULATOR`/`isLayout` (`Globals.kt:13-15,45`); `DeviceLayout` is not in the jar, and `Globals`
+imports only `DeviceLayout.Companion.isAutoTv`.
+
+**But `extensionApiDumpPackages` is `com/lagradost/` and `:app`'s own classes jar is merged whole**,
+so moving any of the five **into `:app`** adds its classes to the published dump: ~15 public classes
+(`AppSettings`, the 8 `*Preferences` + `ProviderPreferences$Companion`, the `DevicePreferenceStore*Kt`
+facades, `DeviceLayout` + `$Companion`, `LayoutKt`, `ComposeFragmentKt`). Additions are
+source-compatible, but they are a published contract afterwards.
+
+#### `:core:ui` cannot take `ComposeFragment.kt` — measured, not argued
+
+`:core:mihon` is `api(project(":core:ui"))`, so an import of `com.mihon` from `:core:ui` is a cycle.
+`ComposeFragment.kt` has three such edges, and none of them can be cut inside `:core:ui`:
+
+- `com.mihon.presentation.LocalBackPress` — `SearchableSettings.kt:23` **reads** that exact
+  `staticCompositionLocalOf`, so a re-declaration in `:core:ui` would provide a different local and
+  the back handler would silently stop working.
+- `com.mihon.presentation.settings.collectAsState` (`Preference.kt:195`) — an extension on Mihon's
+  `PreferenceData`.
+- `rememberAppSettings()`, whose `AppSettings` takes `com.mihon.common.preference.PreferenceStore`.
+
+So whatever hosts `ComposeFragment.kt` sits **above** `:core:mihon`, or is `:app`.
+
+#### Step 2: where `DevicePreferenceStore` and the Android pair go
+
+Not settled. The owner decides; each option's cost is measured.
+
+**A — a new module above `:core:mihon`** (e.g. `:core:settings`), `cloudstream.kmp.compose`,
+`api(:core:mihon)` + `:library`, android + jvm. Takes all five files **verbatim**: no content edit,
+no visibility widening, nothing added to the jar, `:shared` deleted. Honest cost: a module replaces
+a module, so the "retirement" is a rename to a scoped name plus a build file that declares what the
+five files actually need (activity-compose, preference-ktx, `:library`) instead of `:shared`'s
+catch-all (which also carries `libs.bundles.compose` and `kotlinx-collections-immutable`).
+
+**B — fold all five into `:app`.** `:shared` disappears and nothing replaces it; `expect`/`actual`
+collapses to one Android function, since nothing uses the jvm `actual` after step 1. Cost: ~290
+lines of first-party Compose code move **back** into `:app`, against the migration's direction, and
+~15 classes join the published `classes.jar` ABI permanently.
+
+**C — `:core:storage`, as `docs/plans/kmp-migration.md` §7 Phase 5 says.** That line predates
+`:core:mihon` existing. It now costs three things, all measured:
+
+1. **`:core:storage` would depend on `:core:mihon`.** The 9 classes take
+   `com.mihon.common.preference.PreferenceStore` and expose `PreferenceData<T>` from the same
+   package. The alternative — porting onto `:core:storage`'s own, deliberately identical-shaped
+   `PreferenceStore`/`PreferenceData` — retypes **62 `preference = settings.…` arguments** across 6
+   `:app` settings screens plus 13 `collectAsState()` calls, because the receiving fields are
+   declared `PreferenceData<…>` in **vendored Mihon code** (`Preference.kt:41,69,112,142`). That is
+   a retype of the Mihon widget API or a new adapter layer, not a move.
+2. **`:core:storage` would depend on `:library`.** `DevicePreferenceStore.kt` imports
+   `AllLanguagesName`, `DubStatus`, `SearchQuality`, `TvType`. `core/storage/build.gradle.kts`'s
+   KDoc states the module takes layer 0 only and **not** `:library`, "so plan §4.1 rule 4 does not
+   apply and this module is not iOS-canary exempt". Adding it reverses a documented property.
+3. **`:core:storage` would need the Compose compiler** for `@Composable expect fun
+   rememberAppSettings()`. It is `cloudstream.kmp.library`, not `cloudstream.kmp.compose`.
+
+**D — put them in `:core:mihon`.** One module, no cycle, nothing added to the jar — and first-party
+code under the Apache-2.0 vendored root, which is the boundary 06b exists to draw
+(`core/mihon/build.gradle.kts`: "no first-party code belongs here").
+
+**Sub-option, independent of A–D:** `Layout.kt` imports nothing from Mihon, so it could go to
+`:core:ui/androidMain` on its own — at the cost of widening `DeviceLayout.Companion.layoutToFlag`
+from `internal` to public, because `ComposeFragment.kt:33` is its only caller. Keeping the pair
+together avoids the widening.
+
+#### Also in step 2
+
+- `settings.gradle.kts:23`, `app/build.gradle.kts:300` lose `:shared`.
+- **`NOTICE` is already clean** — `grep -i shared NOTICE` is 0 matches; 06b repointed it.
+  `docs/HANDOVER.md` says otherwise and is wrong on that point.
+- Two readmes outlive the module and need a decision: `shared/readme.md` is LagradOst's 100-line
+  rationale for the whole Compose rewrite (file structure, MVI, resources, "why compose", the AI
+  usage policy) and is not about this module's mechanics — it belongs in `docs/`.
+  `shared/src/readme.md` is 9 lines of the Compose-Multiplatform template's source-set blurb.
+- `:shared`'s Android namespace `com.lagradost.cloudstream4.shared` generates no `R`, so deleting
+  the module removes nothing from the jar — confirm with `:app:checkExtensionApi`.
 
 ---
 
