@@ -78,8 +78,18 @@ date-only input and the dead branch cannot be reached there. Left alone.
 
 - [x] Decide which behaviour is the contract — device-local
 - [x] Make the code, the KDoc and the tests agree
-- [ ] Drop the `TZ=UTC` instruction from `CLAUDE.md` and `docs/HANDOVER.md` once a Gradle run off-UTC
-      has passed (not done here: that run had not been made when this was written)
+- [x] Dropped the `TZ=UTC` instruction from `CLAUDE.md` and `docs/HANDOVER.md`. The evidence: the
+      full four-gate run (`checkKotlinAbi`; `assemblePrereleaseDebug lint check
+      -Pcloudstream.strings.guards=fail --rerun-tasks`; `:app:checkExtensionApi`; `iosCanary`) with
+      **no `TZ` set** on a machine in `Asia/Kolkata`, and the test JVMs forced to `Asia/Kolkata` by an
+      init script, all exit 0 — 678 of 678 tasks executed. `:library:jvmTest` is 562 tests, 0
+      failures, and also green under `America/New_York` and `Pacific/Kiritimati`. **Control:** the
+      same forced-zone command against a tree whose `:library` is unmodified `master` fails with 548
+      tests, 2 failed — exactly `addDateDateTimeNoOffsetUsesSystemTimezone` and
+      `addDateCustomFormatDateTimeNoOffsetUsesSystemTimezone`, the two this entry names
+- [x] **Worth keeping:** a client-side `TZ=…` on a Gradle command does **not** reach the test JVM when
+      the daemon is reused — the daemon keeps the `TZ` it was started with. Pin it on the `Test` task
+      (`systemProperty("user.timezone", …)` + `environment("TZ", …)`) when a zone is load-bearing
 
 ---
 
