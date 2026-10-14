@@ -335,8 +335,9 @@ FQN that `classes-jar.api` names 17 times does not move.
 
 ### KMP-06d — retire `:shared`
 
-**Status:** in pr #45 (step 1) and #46 (step 2) · 06c (#41) and 06b (#42) have landed ·
-step 2 takes **option A**, which is reversible; see the options below and `DEC-12`
+**Status:** done · #45 (step 1) and #46 (step 2) · 06c (#41) and 06b (#42) landed before them ·
+step 2 took **option A**, which is reversible; the options are below, and `DEC-12` is what it
+deliberately left open
 
 What is left after 06b: five files, 333 lines, two dependents.
 
@@ -347,7 +348,7 @@ What is left after 06b: five files, 333 lines, two dependents.
 | `androidMain/…/compose/ComposeFragment.kt` (50) | `Screen.createComposeView(…)` | one caller: `:app`'s `BaseComposeFragment.kt:22` |
 | `androidMain/…/compose/Layout.kt` (47) | `DeviceLayout`, `PHONE`/`TV`/`EMULATOR`, `isLayout`, `internal layoutToFlag` | `isLayout` and the flags in 6 `:app` settings screens; `DeviceLayout.Companion.isAutoTv` in `Globals.kt:8`. `ComposeFragment.kt:33` is the only caller of the `internal` `layoutToFlag` |
 
-**Step 1 — `:desktopApp` off `:shared`** · in pr #45. Measured: `desktopApp/src/jvmMain/.../Main.kt`
+**Step 1 — `:desktopApp` off `:shared`** · #45. Measured: `desktopApp/src/jvmMain/.../Main.kt`
 imports `:core:ui` (`compose.BlackButton`/`WhiteButton`/`LocalFocusOutlineDefault`, `theme.*`, `Res`)
 and `:core:mihon` (`SwitchPreferenceWidget`) and **nothing `:shared` declares** — not
 `rememberAppSettings`, not `AppSettings`, not `DeviceLayout`. So it depends on `:core:mihon`
@@ -523,7 +524,125 @@ redirected to a file with `$?` captured:
 
 ## KMP-07 — `:media:model` skeleton
 
-**Status:** open · contracts only, no implementation
+**Status:** in pr #48 · contracts only, no implementation
+
+`:media:model` exists: `cloudstream.kmp.library`, android + jvm, **no internal dependencies at
+all**, iOS canary on. Eight files, 39 tests.
+
+### Why it depends on nothing
+
+Plan §4.2 lists this module's canary as plain "yes", not "subject to rule 4" — unlike `:core:model`
+and `:core:settings`, which are exempt because their commonMain takes `:library`. Keeping it that
+way is the whole design constraint: **every shape here is a restatement, not a move**, and `:app`
+owns the adapters. That is not a workaround, it is the point — the contracts have to outlive
+`:library`'s Android-bound declarations for an iOS player sibling to exist (plan §4.3).
+
+It also means no class here is in any ABI dump, nothing is merged into `classes.jar`, and `KMP-09`
+does not apply: there is nothing to scan, because nothing moved.
+
+**`:library` is itself not Kotlin/Native-compilable today**, which settles the "just depend on it"
+shortcut: `ExtractorApi.kt` has `java.util.UUID` in public signatures at `:531` (`newDrmExtractorLink`),
+`:679` (`setUuid`), `:684` (`getUuid`), plus `CLEARKEY_UUID`/`WIDEVINE_UUID`/`PLAYREADY_UUID` built
+with `.toJavaUuid()` at `:492`/`:495`/`:498`. That is `KMP-08`/Track L's problem.
+
+### What is in it
+
+| File | Holds |
+|---|---|
+| `StreamRequest.kt` | `StreamSource` (`Remote`/`Local`), `StreamProtocol`, `AudioTrackSource`, `StreamRequest` |
+| `PlaybackRequest.kt` | `PlaybackRequest` |
+| `Drm.kt` | `DrmScheme`, `DrmConfiguration` |
+| `EngineCapabilities.kt` | `HeaderSupport`, `EngineCapabilities` + `supports(StreamRequest)` |
+| `Subtitle.kt` | `SubtitleCue`, `SubtitleSource`, `SubtitleTrack` |
+| `CaptionStyle.kt` | `ArgbColor`, `CaptionEdge`, `CaptionFont`, `CaptionStyle` |
+| `PlayerCommand.kt` | `CommandSource`, `PlayerCommand` (sealed, 15 cases) |
+| `NowPlaying.kt` | `NowPlaying`, `PlaybackPosition`, `PlaybackState`, `PlaybackStatus` |
+| `PipState.kt` | `AspectRatio`, `PipState` |
+| `DownloadProgress.kt` | `DownloadState`, `DownloadProgress`, `SegmentProgress` |
+
+### The decisions, and what each one costs
+
+Each was taken against a measured shape; the survey behind them is in the PR.
+
+- **No `TvType`, no `Score`, no `LoadResponse`.** `TvType` is the most pervasive `:library` leak
+  across the shapes `NowPlaying` replaces (`ResultEpisode`, `ExtractorUri`, four download DTOs).
+  It is left out rather than restated: no playback surface — notification, lock screen, cast
+  receiver, PiP — branches on it. `NowPlaying.seriesTitle` being null is what separates a film from
+  an episode, which is the only distinction those surfaces draw. **Cost:** anything that does need
+  `TvType` keeps using `:app`'s types.
+- **`StreamSource` is a sealed type, replacing two nullable parameters.** `loadPlayer(link, data, …)`
+  takes `ExtractorLink?` and `ExtractorUri?` and throws `IllegalArgumentException("Requires link or
+  uri")` when both are null — a sum type written as two nulls. Now the invalid case cannot be built.
+- **`DrmScheme` is a new enum.** There is none today: `:library` has three `Uuid` constants and
+  `:app` dispatches with a `when` over `uuid.toJavaUuid()` (`CS3IPlayer.kt:1282`, `:1304-1305`)
+  that falls through to a logged error. A UUID cannot be exhaustively matched, so "this engine
+  cannot play this scheme" is a runtime log instead of a compile-time case. The UUIDs stay; `:app`
+  maps. **Cost:** a mapping table, and `UNKNOWN` for schemes this build has not heard of.
+- **`HeaderSupport` exists because of iOS.** Media3 sets any header; AVPlayer has no public
+  arbitrary-header API but does expose a user agent and cookies (plan §10 O6). Since extensions
+  routinely pin a UA or pass a Cloudflare `cf_clearance` cookie, those two cases survive on an
+  engine that can do nothing else, and `EngineCapabilities.supports()` says so rather than failing
+  at play time.
+- **`CaptionStyle` drops `elevation`, `edgeSize` and `backgroundRadius`** — dp, px and px, resolved
+  only on Android through `TypedValue` and `.toPx`. A contract carrying a px value carries a screen
+  with it. `textSizeSp` is kept: sp is a stated scale, and it is the one the user sets. It also
+  drops `removeCaptions`, `removeBloat` and `upperCase`, which are text *filtering* and belong to
+  `:media:subtitle`. **This is why the type is 10 fields where `SaveCaptionStyle` is 17.**
+- **`CaptionEdge` is an enum because the int is in two incompatible namespaces** — Media3's
+  `CaptionStyleCompat.EDGE_TYPE_*` for the player and Cast's `TextTrackStyle.EDGE_TYPE_*` for
+  Chromecast. The same user setting is stored twice as two different integers today and nothing
+  says so.
+- **`CaptionFont.PlatformDefault` is not "no choice".** `SaveCaptionStyle.typeface` is an Android
+  `@FontRes` id — a lookup into a resource table that exists only in an Android build. There is no
+  portable value with that meaning, so a bundled font is named rather than numbered.
+- **`PipState` models the decision, not the permission.** Whether PiP is possible depends on the
+  SDK level, `PackageManager.FEATURE_PICTURE_IN_PICTURE` and an `AppOpsManager` check the user can
+  revoke; none has a portable form, so `isSupported` is supplied by the platform. The three magic
+  numbers for the aspect clamp (`0.41841f`, `2.39f`, accuracy `100000`) move from local `val`s
+  inside the Android helper into named constants on `AspectRatio`, where they are testable.
+- **`PlayerCommand` is sealed, and does not replace `CSPlayerEvent`.** Half the commands carry a
+  value, which an enum forces into a side channel — which is how `IPlayer` ended up with two
+  command surfaces, an 11-case enum plus ~20 methods that are commands in everything but name. The
+  enum stays in `:app`: it is published ABI and it has a live `Intent` wire format (see `BUG-09`).
+- **`DownloadProgress` prefers segments over bytes.** An HLS download's byte total only counts
+  segments already seen, so a byte-progress bar grows and then jumps backwards. `:app` already
+  carries `hlsProgress`/`hlsTotal` beside the byte counts for this reason.
+- **Unknown totals return `null`, never `0f`.** `PlaybackPosition.fraction`,
+  `DownloadProgress.fraction` and `SegmentProgress.fraction` all do this, so a progress bar stays
+  indeterminate rather than snapping to empty.
+
+### Deliberately not done
+
+- **No kotlinx-serialization.** Nothing here crosses a process or disk boundary yet; `:app`'s
+  persistence keeps operating on its own Jackson-annotated types. Adding the plugin later is
+  additive. Keeping it out is what makes the module dependency-free.
+- **No mime strings.** The engine boundary uses `androidx.media3.common.MimeTypes` on Android and
+  would use `AVFileType` on Apple platforms, and the two disagree even on HLS — `ExtractorLinkType`
+  says `application/x-mpegURL`, Media3 says `MimeTypes.APPLICATION_M3U8`. Declaring one here makes
+  the module wrong for one platform.
+- **No `:app` call site is changed.** This is a skeleton; nothing consumes it yet. The adapters are
+  the next step and are what will prove the shapes.
+
+### Verification
+
+Local, 2026-10-14, Temurin 17.0.20.1, `TZ=UTC`, `-Xmx14G`, each command redirected with `$?` captured.
+
+- [x] `checkKotlinAbi`, `assemblePrereleaseDebug lint check -Pcloudstream.strings.guards=fail`,
+      `:app:checkExtensionApi` → all exit 0. The ABI dump is unchanged, as it must be: nothing moved.
+- [x] `:media:model:jvmTest` → **39 tests, 0 failures, 0 skipped**, counted from the JUnit XML
+      rather than from the task's exit code (the first count was taken with a regex that matched
+      no attribute order and reported 0 — re-measured by parsing the XML).
+- [x] `:media:model:iosCanary -Pcloudstream.iosCanary=true` → exit 0, both `iosArm64` and
+      `iosSimulatorArm64` klibs compiled.
+- [x] **The canary is not decorative — it caught a real error on the first run.** `@JvmInline` on
+      `ArgbColor` compiled for android and jvm and failed for Native with `Unresolved reference
+      'JvmInline'`, because `kotlin.jvm.*` is a default import only on JVM. Fixed with an explicit
+      `import kotlin.jvm.JvmInline`. This is the first module whose `commonMain` purity is enforced
+      by a build rather than by reading — `:core:model`'s KDoc admits its own is "checked by
+      reading, not by a build".
+
+---
+
 
 ---
 
@@ -533,6 +652,37 @@ redirected to a file with `$?` captured:
 
 Needs a design workflow before any code. Cannot be scoped until the iOS extension strategy is
 decided, because that decides how much of `:library` is worth making iOS-compilable.
+
+---
+
+## KMP-10 — `:core:ui` fails the iOS canary · **measured 2026-10-14**
+
+**Status:** open · one module, one error, a ~19-line fix
+
+`./gradlew iosCanary -Pcloudstream.iosCanary=true --continue` is **red on master**, and has been
+since `KMP-06c` (#41) created `:core:ui`. Twelve modules have an `iosCanary` task. Ten pass. One
+fails:
+
+    e: core/ui/src/commonMain/.../theme/DeviceTheme.kt:7:10
+       Expected DeviceTheme has no actual declaration in module <commonMain> for Native
+
+`internal expect object DeviceTheme` has an `androidMain` actual (Material You, via
+`android.R.color.system_*`) and a `jvmMain` one, and no Native one. `:core:mihon` is the twelfth: it
+cannot run at all, because it depends on `:core:ui`.
+
+Plan §4.2 lists `:core:ui` as canary "yes, macOS runner", so this is a gap between the plan and the
+tree, not a decision. Nobody noticed because `INF-02` records that the canary "is run by hand" and
+has no CI job — and by hand, nobody ran it.
+
+**The fix looks mechanical:** `jvmMain`'s actual is 19 lines that return the static scheme and the
+normal primary colour, because desktop has no dynamic theming. iOS has none either, so an
+`iosMain` actual is very nearly a copy. It is not done here because it is `:core:ui`'s code and
+this entry exists to report it (`.claude/rules/no-unsolicited-changes.md`), and because it is worth
+one minute of thought whether iOS should instead track the system accent colour.
+
+**Reproduce:** `./gradlew iosCanary -Pcloudstream.iosCanary=true --continue`. Kotlin/Native 2.4.0
+must be in `~/.konan`; it downloads on first run. On this machine the whole canary takes about
+4 seconds warm.
 
 ---
 

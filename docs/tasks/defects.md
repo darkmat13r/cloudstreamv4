@@ -150,3 +150,42 @@ render `0m` rather than the caller's `completedValue`.
 
 Left as it is in #26 — characterised rather than redefined, because changing it changes behaviour
 for extension callers (the function is on the published ABI).
+
+---
+
+## BUG-09 — picture-in-picture buttons write `value` and read `ordinal` · **latent, measured 2026-10-14**
+
+**Status:** open · not reproducible today · found while designing `PlayerCommand` (`KMP-07`)
+
+`CSPlayerEvent` declares an explicit `value: Int` (`app/.../ui/player/IPlayer.kt:12-25`). The
+picture-in-picture buttons are Android `RemoteAction`s, so the command has to survive a trip
+through an `Intent`. The two ends disagree about what is in it:
+
+| | |
+|---|---|
+| write | `getPen(activity, event.value)` → `Intent(ACTION_MEDIA_CONTROL).putExtra(EXTRA_CONTROL_TYPE, code)` — `PlayerPipHelper.kt:100`, `:83` |
+| read | `CSPlayerEvent.entries[intent.getIntExtra(EXTRA_CONTROL_TYPE, 0)]` — `PlayerView.kt:505` |
+
+`entries[i]` indexes by **ordinal**. The write sends **`value`**. They agree only because all
+eleven cases happen to have `value == ordinal` — `Pause(0)` … `PlayAsAudio(10)`, declared in that
+order. If `value` always equals `ordinal`, the property has no reason to exist; the moment anyone
+uses it as intended, the PiP buttons invoke a different command than the one drawn on them.
+
+**Three ways it breaks, none of which any check would catch:**
+
+- a new case inserted anywhere but the end,
+- a new case given a non-sequential `value` (the obvious thing to do, since `value` looks like a
+  stable wire id),
+- a case removed, which also renumbers every ordinal after it.
+
+`entries[…]` additionally throws `IndexOutOfBoundsException` on an unknown int rather than
+defaulting, so a stale `PendingIntent` from a previous version can crash the receiver.
+
+**Not fixed here**, because the fix is a choice, not a correction: either read by `value`
+(`CSPlayerEvent.entries.first { it.value == code }`, with a null-safe fallback) and treat `value` as
+the wire format, or delete `value` and use `ordinal` at both ends. The first keeps the ints stable
+across reorderings; the second admits they are not stable. `CSPlayerEvent` is in
+`app/api/classes-jar.api` (18 occurrences), so its case order is published either way.
+
+**Evidence:** read at `IPlayer.kt:12-25`, `PlayerPipHelper.kt:78-86`, `:96-102`, `PlayerView.kt:500-510`.
+
