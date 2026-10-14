@@ -67,6 +67,24 @@ Three rows are worth reading twice, because the filename does not tell you where
 from: `Navigation.kt` ← `Navigator.kt`, `PreferenceData.kt` ← `Preference.kt`, and `Search.kt` ←
 `SettingsSearchScreen.kt`.
 
+## Changes made after the 2026-10-07 measurement
+
+The per-file table above was measured on 2026-10-07 (`KMP-06a`). Two files have been edited since,
+and the table's line and diff counts for them are therefore stale by that much:
+
+| File | Change | Why |
+|---|---|---|
+| `presentation/settings/Preference.kt` | 3 × `subtitle?.format(x)` → `subtitle?.withValue(x)`, plus one import | `KMP-10` |
+| `presentation/settings/widget/EditTextPreferenceWidget.kt` | 1 × the same | `KMP-10` |
+
+`kotlin.text.format` is `java.lang.String.format` and is JVM-only, so these four calls made this
+module impossible to compile for Kotlin/Native and kept the iOS canary red. `withValue` is
+first-party, lives in `:core:ui`, and substitutes one `%s` — which is every template in the tree.
+The migration plan has named these four sites since §7 Phase 5.
+
+Anyone re-measuring against upstream should expect exactly these four expressions and two imports
+to differ beyond what the table records.
+
 ## The baseline problem
 
 **No upstream commit SHA was recorded when this was vendored**, so there is no fixed point to diff
