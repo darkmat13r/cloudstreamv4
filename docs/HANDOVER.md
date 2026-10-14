@@ -18,7 +18,9 @@ brief said master was `f29ff63a` and that `KMP-06b` was next. In fact `06c` had 
 
 ## Where things stand
 
-Master is at `d4a9a2c9`. **No pull requests are open.**
+Master is at `71d749b2` (#44). **Two pull requests are open, stacked:** #45 (`KMP-06d` step 1,
+`:desktopApp` off `:shared`) and #46 (step 2, `:core:settings`, which contains #45). Review #45
+first, or merge #46 and #45 goes with it.
 
 The `:shared` restructure (`KMP-06`) is two-thirds done:
 
@@ -28,6 +30,8 @@ The `:shared` restructure (`KMP-06`) is two-thirds done:
 | `KMP-06c` | `:core:ui`: first-party Compose layer, `Res`, the `com.lagradost.cloudstream4` namespace | #41 | Owner, locally (three commands, runtime resources). `$stable` scan on 2026-10-14: 9 of 9 kept, no `getstatic` owner moved |
 | `INF-07` | `:app:checkExtensionApi` red on master since #38; `RunTimeSecondsKt` added to the dump | #43 | Locally; the regenerated dump is byte-identical |
 | `KMP-06b` | `:core:mihon`: the vendored tree, 30 files, 100% renames | #42 | Locally (three commands, `:desktopApp`, `$stable` 18→18 jvm, 29→29 android, `:app` 885→885). **CI green.** Settings screens not opened on a device: the phone was locked |
+| `KMP-06d` | step 1: `:desktopApp` → `:core:mihon`; `:shared` left with one dependent | #45 | Locally (three commands), `:desktopApp` bytecode byte-identical. Found: 7 libraries resolve lower on `:desktopApp:jvmRuntimeClasspath` once `:shared`'s `:library` edge goes; recorded, not changed |
+| `KMP-06d` | step 2: `:core:settings` takes the last five files; **`:shared` deleted** | #46 | Locally (three commands), dump byte-identical, `$stable` scan clean (below). Settings screens not opened on a device |
 
 **How #43 landed:** #43's own CI never went green. In every run, the runner killed the
 `Check classes.jar ABI` step partway through the release dex build: cancelled, or exit 143 (SIGTERM).
@@ -148,53 +152,52 @@ Nothing below can be settled by reading the code.
 | `INF-06` | **Test toolchain** | Pin it, or re-measure the `ar` table — the two cannot both be satisfied, because CI's JDK 17 still says `٠`. |
 | `BUG-08` | **`addDate` contract** | Are offset-less extension dates UTC (what happens) or device-local (what the KDoc says)? Changing it moves what users see for every provider returning a bare date-time. |
 | `DEC-10` | **Screenshot testing** | Wait for a working plugin, or switch to Roborazzi. |
+| `DEC-12` | **The two `PreferenceStore`s** | `:core:mihon`'s and `:core:storage`'s have the same shape and both are live. Raised by `KMP-06d`; `:core:storage`'s Android and JVM implementations are unused until it is settled. |
 | `DEC-04` | **iOS extensions** | Unanswered. |
 | | **`MainAPI.kt:2549`** | Documents `Episode.runTime` as **seconds**; `EpisodeAdapter` treats it as **minutes**. One is wrong by 60×. Recorded in `BUG-01`, deliberately not resolved. |
 
 ---
 
-## The next thread: `KMP-06d`, retire `:shared`
+## `KMP-06` is finished: `:shared` is gone
 
-`:shared` now holds five files and 333 lines, and has two dependents, `:app` and `:desktopApp`.
-Measured 2026-10-14:
+`KMP-06d` landed in two PRs. `:core:settings` (`cloudstream.kmp.compose`, android + jvm) holds the
+five files that were left — `DevicePreferenceStore` ×3, `compose/ComposeFragment.kt`,
+`compose/Layout.kt` — moved verbatim, 0 content edits, 31 classes bytecode-identical after
+normalising constant-pool indices and the module-name suffix. `:app`'s 2202 `prereleaseDebug`
+classes, 888 `$stable` declarers, 2407 `getstatic` targets and 9276 `Fieldref` owners are
+**identical sets** on both sides, and `app/api/classes-jar.api` is byte-identical.
 
-| File | Declares | Used from outside |
-|---|---|---|
-| `commonMain/…/DevicePreferenceStore.kt` (201) | `expect rememberAppSettings`, `AppSettings`, 8 `*Preferences` classes | `rememberAppSettings` in 6 `:app` settings screens, `AppSettings` in 4 `:app` files (one is `AppContextUtils.kt`). The `*Preferences` classes are used only through `AppSettings` |
-| `androidMain/…/DevicePreferenceStore.android.kt` (19), `jvmMain/…/DevicePreferenceStore.jvm.kt` (16) | the `actual`s, plus a public `AppSettings(context)` / `AppSettings()` factory | `:app`, and `:desktopApp`, which uses the jvm one |
-| `androidMain/…/compose/ComposeFragment.kt` (50) | `Screen.createComposeView(…)` | **one** caller: `:app`'s `utils/BaseComposeFragment.kt`, and that class is in `classes.jar` (`DEC-09`) |
-| `androidMain/…/compose/Layout.kt` (47) | `DeviceLayout`, `PHONE`/`TV`/`EMULATOR`, `isLayout`, `internal layoutToFlag` | `isLayout` and the flags in 6 `:app` settings screens; `DeviceLayout.isAutoTv` in `Globals.kt`. `ComposeFragment` calls the `internal` `layoutToFlag`, so these two files move together or the visibility widens |
+Three things that cost time to establish, so they are written down:
 
-**None of these five files has a class in `classes-jar.api`.** Grep the dump for
-`cloudstream4/AppSettings`, `compose/LayoutKt`, `compose/DeviceLayout` and `ComposeFragmentKt`: 0
-matches. A move is therefore less constrained than 06b was, but still run the `$stable` scan and
-`:app:checkExtensionApi`. The one ABI-relevant edge is `BaseComposeFragment`, which is `:app`'s and
-stays put.
+- **`:core:ui` cannot host `ComposeFragment.kt`.** `:core:mihon` is `api(:core:ui)`, and
+  `ComposeFragment` has three edges into `com.mihon`: `LocalBackPress` (which `SearchableSettings`
+  *reads*, so re-declaring it elsewhere silently breaks the settings back handler),
+  `collectAsState`, and `rememberAppSettings`, whose `AppSettings` takes Mihon's `PreferenceStore`.
+  Any one of them is a module cycle.
+- **`Layout.kt` has to travel with it.** `DeviceLayout.and` and `Companion.layoutToFlag` are
+  `internal`, so their binary names carry the Kotlin module name
+  (`layoutToFlag-PtjY-Ko$CloudStream_core_settings`). Splitting the pair needs both a visibility
+  widening and that rename; neither name is in `classes-jar.api`.
+- **`:core:settings` is iOS-canary exempt**, like `:core:model`, because its commonMain depends on
+  `:library` (plan §4.1 rule 4). Verified by removing the exemption: `:core:settings`'s
+  `iosArm64CompileKlibraries` resolution reports `project :library FAILED`. The exemption list
+  "may only shrink" — this entry exists because the code moved under a convention plugin for the
+  first time, not because anything new depends on `:library`, and it lifts with `:core:model`'s on
+  Track L.
 
-Open design questions. These are not settled, so measure before choosing:
+Two readmes moved rather than died: `shared/readme.md` is LagradOst's rationale for the whole
+Compose rewrite and is now `docs/compose-rewrite.md`. `shared/src/readme.md` was 9 lines of the
+Compose-Multiplatform template's source-set blurb and was deleted; #46 quotes it in full.
 
-- **Where `DevicePreferenceStore` goes.** The plan says `:core:storage`. But these classes are built
-  on **Mihon's** `PreferenceStore` (`com.mihon.common.preference`, now in `:core:mihon`), while
-  `:core:storage` has its own `PreferenceStore`/`PreferenceData`. Moving to `:core:storage` would
-  make it depend on `:core:mihon`, or would mean porting onto `:core:storage`'s types. Porting is a
-  behaviour change, not a move. A cheaper first step is `:core:ui`, or a small `:core:settings`.
-  Present the options to the owner.
-- **Where `ComposeFragment.kt` and `Layout.kt` go.** They are Android-only and Compose, so
-  `:core:ui`'s `androidMain` is the natural home. Check that it doesn't create a `:core:ui` →
-  `:core:mihon` edge: `ComposeFragment` imports `LocalBackPress` and `collectAsState` from Mihon.
-  If it does, it is a cycle, because `:core:mihon` depends on `:core:ui`.
-- **The namespace.** `:shared`'s Android namespace is `com.lagradost.cloudstream4.shared`, and it
-  generates no `R`. Deleting the module removes nothing from the jar, but confirm that with
-  `checkExtensionApi`.
-- `settings.gradle.kts`, `app/build.gradle.kts:300` and `desktopApp/build.gradle.kts:18` lose
-  `:shared`. `:app` and `:desktopApp` then depend on the new homes directly.
-- `NOTICE` and `shared/readme.md` mention `:shared`; update them.
+### What is next
 
-It may be two PRs: one for the Android Compose pair, one for the preference store.
-
-Other `KMP` work that is ready: `KMP-07`, the `:media:model` skeleton (contracts only, wants a
-design first). `DS-07` (off-grid `Dp` in the Mihon tree) is unblocked by 06b, but it is
-low-priority, and it means editing vendored code.
+- **`DEC-11`** (new, below): consolidating the two `PreferenceStore` declarations. `:core:storage`
+  and `:core:mihon` each declare one with an identical shape. This is the one thing `KMP-06d` did
+  **not** settle, and it is an owner decision — `docs/tasks/kmp.md` `KMP-06d` costs each option.
+- `KMP-07`, the `:media:model` skeleton (contracts only, wants a design first).
+- `DS-07` (off-grid `Dp` in the Mihon tree) is unblocked by 06b, but it is low-priority and it
+  means editing vendored code.
+- `INF-08`, the runner killing CI's `Check classes.jar ABI` step, is still the owner's call.
 
 ### Housekeeping the task files still owe
 

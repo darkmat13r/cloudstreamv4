@@ -297,7 +297,7 @@ dependencies {
     implementation(libs.kotlinx.io.core) // Logcat parser
 
     implementation(project(":library"))
-    implementation(project(":shared"))
+    implementation(project(":core:settings"))
     implementation(project(":core:common"))
     implementation(project(":core:network"))
     implementation(project(":core:data"))

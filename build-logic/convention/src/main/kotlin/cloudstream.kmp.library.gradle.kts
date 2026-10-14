@@ -59,6 +59,11 @@ plugins {
  */
 val IOS_CANARY_EXEMPT: Set<String> = setOf(
     ":core:model", // commonMain api(project(":library")); lifts when Track L makes :library iOS-compilable
+    // commonMain implementation(project(":library")): AppSettings's preference defaults and value
+    // types are TvType / DubStatus / SearchQuality / AllLanguagesName. Not a new dependency —
+    // `:shared` declared the same edge (KMP-06d moved the code here) and had no iOS target at all,
+    // so iOS readiness is unchanged. Lifts with :core:model's, on the same Track L work.
+    ":core:settings",
 )
 
 val iosCanaryEnabled = providers.gradleProperty("cloudstream.iosCanary").orNull?.toBoolean() == true &&

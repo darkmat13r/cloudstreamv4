@@ -214,3 +214,41 @@ question is which pack covers playback, download state, source status and reposi
 
 **Candidates:** `androidx.compose.material:material-icons-extended` (complete, familiar, large, no
 longer actively expanded) · a Compose port of Lucide or Phosphor.
+
+---
+
+## DEC-12 — Consolidating the two `PreferenceStore` declarations
+
+**Status:** open · blocks nothing today · raised by `KMP-06d`
+
+Two interfaces of the **same shape** exist, both live:
+
+| | Module | Who uses it |
+|---|---|---|
+| `com.mihon.common.preference.PreferenceStore` / `PreferenceData` | `:core:mihon` (vendored, Apache-2.0) | `AppSettings` in `:core:settings`, and every Mihon settings widget — `Preference.PreferenceItem`'s fields are declared `PreferenceData<…>` (`Preference.kt:41,69,112,142`) |
+| `com.lagradost.cloudstream4.core.storage.PreferenceStore` / `PreferenceData` | `:core:storage` (first-party, tested) | nothing in `:app` yet — the module's contract tests only |
+
+`core/storage/.../PreferenceStore.kt`'s KDoc says Phase 5 would merge them by moving the Mihon
+declaration into `:core:storage` keeping its `com.mihon.*` package. `KMP-06d` makes that
+cheaper to see and more awkward to do:
+
+- Moving `com/mihon/common/preference/**` into `:core:storage` puts vendored Apache-2.0 code under a
+  first-party root, which is the boundary `KMP-06b` drew a module to express
+  (`core/mihon/build.gradle.kts`: "no first-party code belongs here"), and it would hand
+  `:core:storage` a second `NOTICE` obligation.
+- Going the other way — `AppSettings` adopting `:core:storage`'s declaration — retypes **62
+  `preference = settings.…` arguments** across 6 `:app` settings screens plus 13 `collectAsState()`
+  calls, because the receiving fields are in vendored code. Either the vendored fields change type
+  (a fork edit) or an adapter wraps every `PreferenceData`.
+- A third option: `typealias` one to the other in whichever module may depend on the other.
+  `:core:settings` already depends on both, so the alias could live there and neither vendored nor
+  `:core:storage` code changes. That makes the duplication explicit without moving anything.
+
+**Why it can wait:** nothing is broken and nothing is blocked. The cost of leaving it is that
+`:core:storage`'s Android and JVM implementations stay unused while the app runs on Mihon's, so the
+module's tests guard code nobody executes. The cost of choosing wrong is a fork edit or 62 call
+sites.
+
+**The decision also needs the signatures kept identical in the meantime** — that part is not open,
+and both KDocs say so.
+
