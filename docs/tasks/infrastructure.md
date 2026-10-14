@@ -230,3 +230,49 @@ Options, for the owner: make `makeJar` depend on what it actually reads instead 
 build one variant in that step; raise Gradle/Kotlin daemon memory limits for CI; or use a larger
 runner. Each one changes a gate, so each wants its own PR, with a run showing it stays green.
 
+---
+
+## INF-09 — every push to master fails three workflows · **measured 2026-10-14**
+
+**Status:** open · needs a decision, because it changes CI gates · **not caused by any merged PR**
+
+`Pre-release`, `Archive build` and `Dokka` all fail on **every** push to `master`, in 10–15
+seconds, at their first step. `gh run list` over the last 40 runs: **14 failed master push runs, 0
+successful**, the oldest 2026-10-03 (the first merge after CI started working, `DEC-01`) and the
+newest 2026-10-14 (#44's merge).
+
+The cause is the same in all three and fully diagnosed:
+
+    Error: Input required and not supplied: app_id
+      at getInput (.../tibdex/github-app-token/v2/dist/main/index.js:1:3828)
+
+Each one's first step mints a token for an **upstream** repository through
+`tibdex/github-app-token@v2` with `app_id: ${{ secrets.GH_APP_ID }}`:
+
+| Workflow | File | Target repository |
+|---|---|---|
+| `Pre-release` | `.github/workflows/prerelease.yml:26-28` | `recloudstream/secrets` |
+| `Archive build` | `.github/workflows/build_to_archive.yml:27-37` | `recloudstream/secrets`, `recloudstream/cloudstream-archive` |
+| `Dokka` | `.github/workflows/generate_dokka.yml:24-26` | `recloudstream/dokka` |
+
+`secrets.GH_APP_ID` is not set in this fork, so the action gets an empty string and exits before
+anything is built. The three workflows are publishing jobs that only the upstream repository can
+run; there is nothing for them to do here even with a token.
+
+**Why it matters, and why it is not urgent:** nothing it builds is used, and `Artifact Build`
+(`pull_request.yml`), the workflow that actually gates merges, is unaffected — it mints no token.
+The cost is that **master's commit status is permanently red**, so a genuinely broken master would
+look exactly like today. It also charges three runner starts per merge.
+
+Options, for the owner:
+
+- gate each job on the repository, e.g. `if: github.repository == 'recloudstream/cloudstream'` —
+  smallest change, keeps the files identical to upstream's otherwise, and they resume working if
+  the fork is ever merged back;
+- set `GH_APP_ID` and the private key as fork secrets and point the targets at fork repositories —
+  only worth it if prereleases and Dokka are actually wanted from here;
+- disable the three workflows in the Actions tab — leaves no trace in the repo, so the next person
+  rediscovers this.
+
+Each changes what CI does on master, so each wants its own PR with a green run behind it.
+
