@@ -462,8 +462,13 @@ redirected to a file with `$?` captured:
       `javap -p -c`, and a direct class-file parser (field access flags plus constant-pool
       `Fieldref` owners).
       - `:app` `prereleaseDebug`: **2202 classes, 888 `$stable` declarers, 2407 `getstatic`
-        targets, 9276 `Fieldref` owners — identical sets**, not merely identical counts. `:app` was
-        not even recompiled differently; no build-date constant drifted this time.
+        targets, 9276 `Fieldref` owners — identical sets**, not merely identical counts. A
+        byte-level `sha256` comparison of the same 2202 class files adds the one caveat: **2 differ**,
+        `SettingsFragment` and `SettingsFragmentScreen`, and in both the entire diff is one
+        `ldc2_w` operand, `1791992530844` → `1791992051696` — two epoch milliseconds 8 minutes
+        apart, i.e. `BuildConfig.BUILD_DATE` inlined at `SettingsFragment.kt:255`. The same two
+        classes differed for the same reason in 06b. (The set comparison cannot see this: the dump
+        deliberately does not guard constant *values*, and nor does a `$stable`/`getstatic` set.)
       - `:desktopApp`: 3 classes, 0 `$stable`, 19 `getstatic`, 21 `Fieldref` — identical sets.
       - The moved files: `:shared` 13 jvm / 18 android → `:core:settings` 13 jvm / 18 android, same
         class names, **9 → 9 `$stable`** per target with identical declaring-class sets, and
