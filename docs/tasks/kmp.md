@@ -324,7 +324,8 @@ FQN that `classes-jar.api` names 17 times does not move.
       - **Baseline is the pre-carve-out parent (#41's head), never `master`.** Once this merges,
         `master` *is* this branch and the diff comes back vacuously empty, which reads as clean.
 - [ ] Runtime: the seven settings screens and settings search render, a list preference opens its
-      dialog, and the desktop app's `SwitchPreferenceWidget` row renders. **Not verified.** The
+      dialog, and the desktop app's `SwitchPreferenceWidget` row renders. **The desktop half is now
+      verified** — see 06d below; the Android half is not. The
       prerelease debug APK installed on a Pixel 9a (API 37), and a launch started the process with no
       `FATAL`, `NoClassDefFound`, `NoSuchField`, `NoSuchMethod` or `MissingResource` in logcat. But
       the device was behind a secure keyguard, so no screen rendered. Statically, the APK has all 23
@@ -495,7 +496,16 @@ redirected to a file with `$?` captured:
       `com/lagradost/cloudstream4/R`, `SearchableSettings`, `AndroidPreferenceStore`,
       `BaseComposeFragment`, `Globals` and all 7 `Settings*Screen` classes are in its dex —
       27 of 27 present, 0 missing, out of 49,542 classes. So the module move cannot have produced a
-      `NoClassDefFoundError`; what remains unproven is what the screens look like.
+      `NoClassDefFoundError`; what remains unproven is what the Android screens look like.
+- [x] Runtime, desktop: `:desktopApp:run` on this branch opens the window and it renders — the
+      title "CloudStream" from `stringResource(Res.string.app_name)`, `CloudStreamTheme`'s dark
+      surface, `:core:ui`'s `WhiteButton`/`BlackButton`, and **`:core:mihon`'s
+      `SwitchPreferenceWidget`** with its icon (`Res.drawable.preview`), title and subtitle. That is
+      the item 06b left open ("the desktop app was compiled, not run"), and it exercises what a
+      module move most endangers: Compose resources resolving from `:core:ui`'s `Res` across a
+      module boundary, now two moves from where they started. The window still reads "Hello,
+      World!" because `desktopApp/src/jvmMain/.../Main.kt` is a 62-line placeholder that `KMP-06d`
+      does not touch.
 
 #### Also in step 2
 
