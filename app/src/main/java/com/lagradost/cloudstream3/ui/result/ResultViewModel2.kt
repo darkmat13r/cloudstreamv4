@@ -2417,16 +2417,17 @@ class ResultViewModel2 : ViewModel() {
         val isMovie = response.isMovie()
 
         val progress = getViewPos(resume.episodeId)?.let { viewPos ->
+            // secondsToReadable returns its completedValue (here "") once the position is a
+            // minute or more past the end; a UiText argument is resolved by UiText.asString,
+            // so the zero case goes through the translated duration_format.
+            val remaining = secondsToReadable(
+                ((viewPos.duration - viewPos.position) / 1_000).toInt(),
+                ""
+            ).ifEmpty { txt(R.string.duration_format, 0) }
             ResumeProgress(
                 progress = (viewPos.position / 1000).toInt(),
                 maxProgress = (viewPos.duration / 1000).toInt(),
-                txt(
-                    R.string.resume_remaining,
-                    secondsToReadable(
-                        ((viewPos.duration - viewPos.position) / 1_000).toInt(),
-                        "0 mins"
-                    )
-                )
+                txt(R.string.resume_remaining, remaining)
             )
         }
 
