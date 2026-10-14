@@ -186,7 +186,7 @@ so `:core:ui` comes first (owner's choice, 2026-10-07).
 ### KMP-06c — `:core:ui` for the first-party Compose layer
 
 **Status:** done · #41 (merged at `d646470`, before this verification record was written) · built
-and run locally by the owner on 2026-10-07 at master `0bc8709`. One check still open — see below.
+and run locally by the owner on 2026-10-07 at master `0bc8709`. All checks closed — see below.
 
 Moved by `git mv`, every file's contents unchanged except `Dialog.kt`'s (below):
 
@@ -221,7 +221,22 @@ Two names move with it and must not change:
       and the 1 addition is `RunTimeSecondsKt`, from #38 (`INF-07`). The thing this PR risked — the
       `com/lagradost/cloudstream4/R` line — did **not** move: `:core:ui`'s `R` took `:shared`'s place
       exactly. With `INF-07`'s block corrected, the owner measured exit 0.
-- [ ] `$stable` scan: `javap -p -c` of the moved classes, master vs this branch. **Not yet run.**
+- [x] `$stable` scan, 2026-10-14, local (Temurin 17, `TZ=UTC`), baseline `f29ff63a` (master before #41)
+      vs `0bc8709` + #43. Classes compiled from the 13 moved `.kt` (`git mv`'d in `f2e0e435`, not
+      `bdd98926`): 30 android, 29 jvm. `public static final int $stable` on **9 → 9** per target,
+      0 dropped (`Colors`, `AppFont`, `CloudStreamColorScheme`, `CloudStreamPalette`, `DeviceTheme`,
+      `DebounceQuery`, `SingleActiveQuery`, `DefaultStateContainer`, `DefaultEffectContainer`).
+      Counted twice: grep over `javap -p -c` text, and a direct class-file parser (field flags +
+      `SourceFile`). `javap -p -c` of all 338 classes on each side (`:shared`/`:core:ui` android
+      and jvm, plus every `:app` `prereleaseDebug` and `:desktopApp` class referencing
+      `cloudstream4/`): 333 identical, 5 not. 3,362 `getstatic` targets per side, 94 of them on a
+      `$stable` (none owned by a moved class), no owner changed; the only `getstatic` difference
+      is `DialogKt`'s intended edit (`MaterialTheme.padding.medium` → `ActionDialogIconTitleSpacing`). The 5: `DialogKt` and
+      `ComposableSingletons$DialogKt` on each target — that edit, plus one accessor renamed by
+      module-name mangling, `getLambda$-338782920$CloudStream_shared` → `…$CloudStream_core_ui`,
+      called only by `DialogKt` and absent from `classes-jar.api` — and `:app`'s
+      `SettingsFragmentScreen`, which differs only by an inlined build timestamp.
+      `com/lagradost/cloudstream4/R` is still in `app/build/classes.jar`.
 - [x] Runtime: all 23 resources in the APK under one `com.lagradost.cloudstream4.generated.resources`
       package (12 Product Sans faces, 10 drawables, strings), no `Res` collision; Settings → General,
       Player, Layout render with Product Sans, not the Roboto fallback; a list-preference dialog
