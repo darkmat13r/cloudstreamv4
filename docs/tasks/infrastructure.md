@@ -234,7 +234,7 @@ runner. Each one changes a gate, so each wants its own PR, with a run showing it
 
 ## INF-09 — every push to master fails three workflows · **measured 2026-10-14**
 
-**Status:** open · needs a decision, because it changes CI gates · **not caused by any merged PR**
+**Status:** done · first option taken on 2026-10-14 · **not caused by any merged PR**
 
 `Pre-release`, `Archive build` and `Dokka` all fail on **every** push to `master`, in 10–15
 seconds, at their first step. `gh run list` over the last 40 runs: **14 failed master push runs, 0
@@ -276,3 +276,20 @@ Options, for the owner:
 
 Each changes what CI does on master, so each wants its own PR with a green run behind it.
 
+**Decision taken: option 1.** Each of the three publishing workflows now has a job-level
+`if: github.repository == 'recloudstream/cloudstream'` as a sibling of `runs-on:` on its single
+`build` job. Nothing else in the three files changed (`on:`, `permissions:`, `concurrency:`, action
+versions and step contents are untouched). A job skipped by a job-level `if` never starts a runner,
+so the gate costs nothing per merge. On this fork the three jobs are skipped, so master's commit
+status no longer carries three permanent failures, and they resume unchanged if the fork is ever
+merged back. Slug evidence: the Dokka job's own commit message names `recloudstream/cloudstream@`,
+NOTICE says the vendored code came from `recloudstream/cloudstream`, and the README and issue
+template link to `github.com/recloudstream/cloudstream`. The fork's `origin` is
+`darkmat13r/cloudstreamv4`, which is not the upstream. Validation: all workflow files parse with
+Ruby's YAML loader (PyYAML is not installed here); the gate was not run on GitHub.
+
+**Also found 2026-10-14, 21:38 local:** all five workflows in this repository were disabled by hand
+in the Actions tab, including `Artifact Build` (`pull_request.yml`). That one is the merge gate and
+is **not** one of the three broken workflows. Gating the three in-file is what makes re-enabling
+them safe: once they are skipped here, re-enabling them no longer turns master red. `Artifact
+Build` is being re-enabled by the parent session.
