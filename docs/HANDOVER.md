@@ -18,8 +18,18 @@ brief said master was `f29ff63a` and that `KMP-06b` was next. In fact `06c` had 
 
 ## Where things stand
 
-Master is at `493e1273` (#47). **No pull requests are open.** #45 and #46 finished `KMP-06d`, so
-`:shared` no longer exists; #47 recorded `INF-09`.
+Master is at `493e1273` (#47). #45 and #46 finished `KMP-06d`, so `:shared` no longer exists; #47
+recorded `INF-09`.
+
+**Three pull requests are open, in one stack:** #48 (`KMP-07`, `:media:model`) ← #49 (`KMP-10`
+step 1, `:core:ui`'s iOS actual) ← #50 (`KMP-10` step 2, `:core:mihon`'s `String.format`). Merging
+#50 takes all three; review from the bottom.
+
+**The iOS canary is green for the first time, 12 of 12 modules**, as of #50. It had been red since
+#41 and nobody noticed, because `INF-02` records that it "is run by hand" and by hand nobody ran
+it. It takes about 4 seconds warm, which is the best argument yet for giving it a CI job:
+
+    ./gradlew iosCanary -Pcloudstream.iosCanary=true --continue
 
 **Neither #45 nor #46 has a green CI run**, and that is worth knowing before you read the ticks.
 #46's `Artifact Build` was cancelled by hand at the `Check classes.jar ABI` step; on #47, the run
@@ -168,6 +178,7 @@ Nothing below can be settled by reading the code.
 | `DEC-10` | **Screenshot testing** | Wait for a working plugin, or switch to Roborazzi. |
 | `DEC-12` | **The two `PreferenceStore`s** | `:core:mihon`'s and `:core:storage`'s have the same shape and both are live. Raised by `KMP-06d`; `:core:storage`'s Android and JVM implementations are unused until it is settled. |
 | `DEC-04` | **iOS extensions** | Unanswered. |
+| `BUG-09` | **PiP buttons: `value` vs `ordinal`** | `PlayerPipHelper` writes `CSPlayerEvent.value` into the `Intent`; `PlayerView` reads it back as `entries[int]`, i.e. by ordinal. They agree only because every case happens to have `value == ordinal`. The fix is a choice between two conventions, both written up in the entry. |
 | | **`MainAPI.kt:2549`** | Documents `Episode.runTime` as **seconds**; `EpisodeAdapter` treats it as **minutes**. One is wrong by 60×. Recorded in `BUG-01`, deliberately not resolved. |
 
 ---
