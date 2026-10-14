@@ -481,9 +481,16 @@ redirected to a file with `$?` captured:
         default package is per-module, so there is no collision, and `:core:mihon`, `:core:theme`
         and `:core:designsystem` each carry the identical 7. `publicResClass = false`, so none of
         them is public API.
-- [ ] Runtime: the seven settings screens, settings search and a list-preference dialog. **Not
-      verified** — same gap as 06b. The bytecode argument is strong (31 of 31 identical, `:app`
-      unchanged), but nobody has looked at the screens.
+- [ ] Runtime: the seven settings screens, settings search and a list-preference dialog. **Still
+      not verified** — same gap as 06b, and the same cause: the attached Pixel 9a was behind a
+      secure keyguard (`mDreamingLockscreen=true`), so nothing could be driven on screen.
+      What *is* verified statically, in the `prereleaseDebug` APK this branch builds: all 9
+      `AppSettings`/`*Preferences` classes, `DevicePreferenceStore_androidKt`, `DeviceLayout`
+      (+ `$Companion`), `LayoutKt`, `ComposeFragmentKt`, `compose/Screen`,
+      `com/lagradost/cloudstream4/R`, `SearchableSettings`, `AndroidPreferenceStore`,
+      `BaseComposeFragment`, `Globals` and all 7 `Settings*Screen` classes are in its dex —
+      27 of 27 present, 0 missing, out of 49,542 classes. So the module move cannot have produced a
+      `NoClassDefFoundError`; what remains unproven is what the screens look like.
 
 #### Also in step 2
 

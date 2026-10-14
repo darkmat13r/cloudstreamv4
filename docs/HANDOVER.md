@@ -203,9 +203,9 @@ Compose-Multiplatform template's source-set blurb and was deleted; #46 quotes it
 
 - `docs/tasks/i18n.md` says `I18N-03` is "in progress", but no open PR or branch was found for it.
   Ask before treating it as abandoned.
-- The `kmp.md` text credits the 06c file moves to `bdd98926`. The 36 renames actually landed in
-  `f2e0e435`, the "Recreate CLAUDE.md" commit, as `git show -M --name-status` shows. History can't
-  change; only the wording can.
+- ~~The `kmp.md` text credits the 06c file moves to `bdd98926`.~~ Already fixed: `kmp.md` says
+  "`git mv`'d in `f2e0e435`, not `bdd98926`". The 36 renames landed in `f2e0e435`, the "Recreate
+  CLAUDE.md" commit, as `git show -M --name-status` shows.
 
 There is also a kanban snapshot of every task. It is the owner's, private, and republished by hand:
 https://claude.ai/artifact/WPYftYL5U9yTvprLfcfjdQ
