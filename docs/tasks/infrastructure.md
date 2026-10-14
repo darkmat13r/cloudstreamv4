@@ -164,7 +164,7 @@ overflow, the "locale-blind" notification, the `Viewmodel.kt` "dead code", the m
 
 ## INF-07 — `:app:checkExtensionApi` is red on master since #38 · **measured 2026-10-07**
 
-**Status:** in pr (follow-up to #41, which merged before this fix reached it) · decided 2026-10-07:
+**Status:** done · #43 (landed through #42's merge, 2026-10-14; see `INF-08`) · decided 2026-10-07:
 accepted into the dump
 
 Found while verifying `KMP-06c`, and reproduced as pre-existing there: on master the check reports
@@ -201,4 +201,32 @@ an `internal` declaration from another module either way; the compiler enforces 
 (or `updateKotlinAbi` on 17) and review the diff. A transcription from failure output loses exactly
 the details the dump exists to keep; ` : java/lang/Object` has now been that trap twice.
 
+---
+
+## INF-08 — CI's `Check classes.jar ABI` step is killed by the runner · **measured 2026-10-14**
+
+**Status:** open · needs a decision, because it changes a CI gate
+
+`:app:checkExtensionApi` depends on `makeJar`, which depends on `build`, so the step builds every
+release variant after `Run Gradle` has already run. On `ubuntu-latest` the runner kills it during
+the release dex build, with no Gradle error:
+
+| Run | Head | Ended |
+|---|---|---|
+| 37647544550 | #43 `a3314cc8` | runner shutdown signal, after `compilePrereleaseReleaseArtProfile` |
+| 37654871353 | #43 `05502bb3` | runner shutdown signal, after `compileStableReleaseKotlin` |
+| 38551943012 attempt 1 | #43 `c2ce96ca` | `The operation was canceled`, during `dexBuilderStableRelease` |
+| 38551943012 attempt 2 | #43 `c2ce96ca` | `Process completed with exit code 143` (SIGTERM), during `dexBuilderPrereleaseRelease` |
+
+The same step passed on #42 in runs 37647589593 (`bce90a8f`) and 38552020713 (`b8aeffd3`). The
+second of those trees contains #43's head. The workflow sets no `timeout-minutes` and no
+`concurrency`, so nothing in the repo cancels the step. Memory pressure on the runner is the
+likely cause, but that is **not measured**.
+
+**Until this is fixed:** read a red run's log before believing it (`gh run view <id> --log-failed`).
+A run that ends in a cancel or exit 143, with no `What went wrong:` before it, never ran the check.
+
+Options, for the owner: make `makeJar` depend on what it actually reads instead of `build`;
+build one variant in that step; raise Gradle/Kotlin daemon memory limits for CI; or use a larger
+runner. Each one changes a gate, so each wants its own PR, with a run showing it stays green.
 

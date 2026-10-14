@@ -1,37 +1,66 @@
-# Handover — 2026-10-07
+# Handover — 2026-10-14
 
-Written to move this work from a local session to a cloud one. It records what is done, what is in
-flight, what is waiting on the owner, and the handful of local facts that will waste an hour if you
-rediscover them.
+This file orients a new session. It records what is done, what is open, what waits on the owner, and
+the local facts that cost an hour each when someone rediscovers them.
 
 `docs/tasks/` is the live task list and stays authoritative. This file is the orientation.
 
 ---
 
+## Before you do anything: check the remote
+
+**Run `git fetch` and `gh pr list --state all` first.** Cloud sessions push branches and open PRs that
+a local checkout, or a handover pasted into a prompt, does not know about. On 2026-10-14 a pasted
+brief said master was `f29ff63a` and that `KMP-06b` was next. In fact `06c` had already merged, and
+`06b` and its follow-up were open PRs. Two parallel agents were started on work that already existed.
+
+---
+
 ## Where things stand
 
-Master is at `722ae4be`. The strings flip (`I18N-07`) is **complete**: eight PRs, #32 through #37,
-all merged. Compose resources under `core/strings/src/commonMain/composeResources` are now the
-source of truth for every user-visible string, and `app/src/main/res` is generated from them.
+Master is at `d4a9a2c9`. **No pull requests are open.**
 
-The two numbers that justify it: `lookup.tsv` is **0 lines different** across 66,315 cells, and
-`emitted.tsv` is **byte-identical to the baseline frozen before the flip began**. Nothing a user
-sees changed.
+The `:shared` restructure (`KMP-06`) is two-thirds done:
 
-### Open pull requests
+| | What | PR | Verified |
+|---|---|---|---|
+| `KMP-06a` | Mihon attribution: one `NOTICE`, per-file upstream mapping | #39 | — |
+| `KMP-06c` | `:core:ui`: first-party Compose layer, `Res`, the `com.lagradost.cloudstream4` namespace | #41 | Owner, locally (three commands, runtime resources). `$stable` scan on 2026-10-14: 9 of 9 kept, no `getstatic` owner moved |
+| `INF-07` | `:app:checkExtensionApi` red on master since #38; `RunTimeSecondsKt` added to the dump | #43 | Locally; the regenerated dump is byte-identical |
+| `KMP-06b` | `:core:mihon`: the vendored tree, 30 files, 100% renames | #42 | Locally (three commands, `:desktopApp`, `$stable` 18→18 jvm, 29→29 android, `:app` 885→885). **CI green.** Settings screens not opened on a device: the phone was locked |
 
-| PR | What | State |
-|---|---|---|
-| #38 | `BUG-01` — clamp the episode runtime conversion | open, verified locally |
+**How #43 landed:** #43's own CI never went green. In every run, the runner killed the
+`Check classes.jar ABI` step partway through the release dex build: cancelled, or exit 143 (SIGTERM).
+No check ever reported. #42 contained #43's head commit and passed every step on that tree, so #42
+was merged, which merged #43 with it. The evidence is in a comment on #42.
 
-### Branches with work not yet pushed
+**Left as is, by the owner's choice:** `:core:mihon` compiles against `androidx.core:core-ktx` 1.2.0,
+pulled in through `preference-ktx`, where `:shared` resolved 1.18.0. Two extra null-check intrinsics
+are inlined, which is harmless at runtime because the app ships 1.18.0. The detail is in
+`docs/tasks/kmp.md`, under `KMP-06b`.
 
-Check these before assuming nothing is stranded:
+**Two findings from the 06b scan, both recorded in `kmp.md`:**
 
-| Branch | Worktree | What |
-|---|---|---|
-| `feat/mihon-attribution` | `app-mihon` | `KMP-06a` — this PR |
-| `fix/broken-translations` | `app-i18n05` | `I18N-05` — was mid-flight when the session ended; **verify its state before reusing the branch name** |
+- `app/build/classes.jar` contains **no** `com/mihon/**` class. The 17 `SearchableSettings` lines in
+  `classes-jar.api` are references from `:app`'s settings classes (supertypes, signatures), not
+  the class itself. `makeJar` merges only modules with a `src/*/kotlin/com/lagradost/cloudstream3`
+  directory, so the FQN must stay stable, but `:core:mihon` needs no sentinels.
+- Compose mangles internal-member and `ComposableSingletons` accessor names with the Kotlin module
+  name (`$CloudStream_shared` → `$CloudStream_core_mihon`). Every module move renames them. None of
+  them is in `classes-jar.api`, so expect it and don't report it as a finding.
+
+### CI: runs again, with one unreliable step
+
+GitHub Actions has run on pull requests since 2026-10-07 (`DEC-01`, `INF-01`). The PR workflow
+(`.github/workflows/pull_request.yml`) mirrors the three local commands.
+
+**The `Check classes.jar ABI` step sometimes dies on the runner.** It builds every release variant,
+and the release dex is where the runner kills it, with no Gradle error. **Read a red run's log before
+you believe it**: `gh run view <id> --log-failed`. If the last line is `The operation was canceled`
+or `exit code 143` and no `What went wrong:` precedes it, no check ran. It is recorded as `INF-08`, which
+lists the runs and the options. The fix is the owner's call, because it changes a CI gate.
+
+Before the 2026-10-07 change, 38 PRs merged with no CI at all. Treat those PRs' "green" as local only.
 
 ---
 
@@ -74,6 +103,9 @@ implementor; the committed dumps were written on 17. Never run `updateKotlinAbi`
 
     JAVA_HOME=/path/to/temurin-17.0.20.1
 
+On the owner's Mac, Gradle has already provisioned one at
+`~/.gradle/jdks/eclipse_adoptium-17-aarch64-os_x.2/jdk-17.0.20.1+1/Contents/Home`.
+
 **2. Pin the timezone.** `BUG-08`. `:library`'s `EpisodeDateTest` fails on any machine not on UTC.
 This is not merely a missing test pin: `addDate`'s documented device-timezone fallback is **dead**
 under kotlinx-datetime 0.8.0, because `toInstantUsingOffset()` does not throw on an offset-less
@@ -111,7 +143,7 @@ Nothing below can be settled by reading the code.
 
 | | | |
 |---|---|---|
-| `DEC-01` | **GitHub Actions billing** | **Runs again since 2026-10-07** (first green run: #42); see `INF-01` for the one runner loss. Before that it blocked everything. **38 PRs have merged and not one has been verified by CI** — every "green" in every PR body is a local run. This is the largest single gap in the project. |
+| `DEC-01` | **GitHub Actions billing** | **Resolved in practice: it has run since 2026-10-07.** The owner has not recorded what changed, so the entry stays open until they do. The ABI step is unreliable; see above. |
 | `DEC-02` | **Product Sans** | Now measured: 24 files, two byte-identical sets of 12, genuine Google Product Sans v1.009 (`GOOG` vendor ID, empty copyright field, licence URL pointing at a page that does not exist). Eight other proprietary fonts sit beside them in the subtitle picker. Dormant while private; wakes on first distribution. Blocks `DS-05`. |
 | `INF-06` | **Test toolchain** | Pin it, or re-measure the `ar` table — the two cannot both be satisfied, because CI's JDK 17 still says `٠`. |
 | `BUG-08` | **`addDate` contract** | Are offset-less extension dates UTC (what happens) or device-local (what the KDoc says)? Changing it moves what users see for every provider returning a bare date-time. |
@@ -121,45 +153,80 @@ Nothing below can be settled by reading the code.
 
 ---
 
-## The next thread
+## The next thread: `KMP-06d`, retire `:shared`
 
-> **Update, 2026-10-07 (cloud session).** The order is now **06c → 06b → 06d**. The Mihon tree imports
-> first-party `:shared` code in 12 of its 29 files — `SearchableSettings` extends `compose.Screen` — so
-> it cannot leave first. `KMP-06c` (`:core:ui`) is implemented on `claude/festive-bardeen-3258ln` but
-> **has never been built**: that container had no Android SDK and no network route to Maven, Google
-> or Gradle. The owner has since built and run it locally: two of three commands green, the third red
-> on a pre-existing failure (`INF-07`), runtime resources verified. The text below predates this.
->
-> **Update, 2026-10-14.** `INF-07` is fixed by #43. The `KMP-06c` `$stable` scan is closed: 9 of 9
-> kept, no `getstatic` owner moved. `KMP-06b` (`:core:mihon`) is merged as #42, built and checked
-> locally (three commands green, extension dump byte-identical, no `$stable` lost) and green on CI.
-> Its settings screens have not been opened on a device. Next is `KMP-06d`, retiring `:shared`.
-> `docs/tasks/kmp.md` has the detail.
+`:shared` now holds five files and 333 lines, and has two dependents, `:app` and `:desktopApp`.
+Measured 2026-10-14:
 
+| File | Declares | Used from outside |
+|---|---|---|
+| `commonMain/…/DevicePreferenceStore.kt` (201) | `expect rememberAppSettings`, `AppSettings`, 8 `*Preferences` classes | `rememberAppSettings` in 6 `:app` settings screens, `AppSettings` in 4 `:app` files (one is `AppContextUtils.kt`). The `*Preferences` classes are used only through `AppSettings` |
+| `androidMain/…/DevicePreferenceStore.android.kt` (19), `jvmMain/…/DevicePreferenceStore.jvm.kt` (16) | the `actual`s, plus a public `AppSettings(context)` / `AppSettings()` factory | `:app`, and `:desktopApp`, which uses the jvm one |
+| `androidMain/…/compose/ComposeFragment.kt` (50) | `Screen.createComposeView(…)` | **one** caller: `:app`'s `utils/BaseComposeFragment.kt`, and that class is in `classes.jar` (`DEC-09`) |
+| `androidMain/…/compose/Layout.kt` (47) | `DeviceLayout`, `PHONE`/`TV`/`EMULATOR`, `isLayout`, `internal layoutToFlag` | `isLayout` and the flags in 6 `:app` settings screens; `DeviceLayout.isAutoTv` in `Globals.kt`. `ComposeFragment` calls the `internal` `layoutToFlag`, so these two files move together or the visibility widens |
 
-`KMP-06b` — move the vendored Mihon tree into its own `:core:mihon` module. This PR
-(`KMP-06a`) is its precondition and is now done.
+**None of these five files has a class in `classes-jar.api`.** Grep the dump for
+`cloudstream4/AppSettings`, `compose/LayoutKt`, `compose/DeviceLayout` and `ComposeFragmentKt`: 0
+matches. A move is therefore less constrained than 06b was, but still run the `$stable` scan and
+`:app:checkExtensionApi`. The one ABI-relevant edge is `BaseComposeFragment`, which is `:app`'s and
+stays put.
 
-The sizing is already measured, so you do not need to redo it: 29 files, 3,323 lines, consumed from
-23 files outside the tree via **30 distinct symbols**. The most-imported are
-`SearchableSettings` (13 files), `Preference` (7) and `collectAsState` (6). Only `:app` and
-`:desktopApp` depend on `:shared`. After `06b` comes `:core:ui` (`06c`), then retiring `:shared`
-(`06d`).
+Open design questions. These are not settled, so measure before choosing:
 
-Two things that constrain any module move, both documented at length in
-`docs/plans/kmp-migration.md`:
+- **Where `DevicePreferenceStore` goes.** The plan says `:core:storage`. But these classes are built
+  on **Mihon's** `PreferenceStore` (`com.mihon.common.preference`, now in `:core:mihon`), while
+  `:core:storage` has its own `PreferenceStore`/`PreferenceData`. Moving to `:core:storage` would
+  make it depend on `:core:mihon`, or would mean porting onto `:core:storage`'s types. Porting is a
+  behaviour change, not a move. A cheaper first step is `:core:ui`, or a small `:core:settings`.
+  Present the options to the owner.
+- **Where `ComposeFragment.kt` and `Layout.kt` go.** They are Android-only and Compose, so
+  `:core:ui`'s `androidMain` is the natural home. Check that it doesn't create a `:core:ui` →
+  `:core:mihon` edge: `ComposeFragment` imports `LocalBackPress` and `collectAsState` from Mihon.
+  If it does, it is a cycle, because `:core:mihon` depends on `:core:ui`.
+- **The namespace.** `:shared`'s Android namespace is `com.lagradost.cloudstream4.shared`, and it
+  generates no `R`. Deleting the module removes nothing from the jar, but confirm that with
+  `checkExtensionApi`.
+- `settings.gradle.kts`, `app/build.gradle.kts:300` and `desktopApp/build.gradle.kts:18` lose
+  `:shared`. `:app` and `:desktopApp` then depend on the new homes directly.
+- `NOTICE` and `shared/readme.md` mention `:shared`; update them.
 
-- **The `$stable` trap.** Moving a Compose-compiled class to a module without the Compose compiler
-  silently drops its `public static final int $stable` field, which extensions read via `getstatic`.
-  Cross-module moves also turn a constant into a `getstatic` against another class — a runtime
-  change that is **invisible to ABI dumps**. Every receiving module must apply
-  `cloudstream.kmp.extension-api`.
-- **`classes.jar` is a published contract.** `:app:checkExtensionApi` is the gate, and it is not
-  part of `check` — run it separately.
+It may be two PRs: one for the Android Compose pair, one for the preference store.
+
+Other `KMP` work that is ready: `KMP-07`, the `:media:model` skeleton (contracts only, wants a
+design first). `DS-07` (off-grid `Dp` in the Mihon tree) is unblocked by 06b, but it is
+low-priority, and it means editing vendored code.
+
+### Housekeeping the task files still owe
+
+- `docs/tasks/i18n.md` says `I18N-03` is "in progress", but no open PR or branch was found for it.
+  Ask before treating it as abandoned.
+- The `kmp.md` text credits the 06c file moves to `bdd98926`. The 36 renames actually landed in
+  `f2e0e435`, the "Recreate CLAUDE.md" commit, as `git show -M --name-status` shows. History can't
+  change; only the wording can.
+
+There is also a kanban snapshot of every task. It is the owner's, private, and republished by hand:
+https://claude.ai/artifact/WPYftYL5U9yTvprLfcfjdQ
 
 ---
 
-## How this session worked, for whatever that is worth
+## Two constraints on any module move
+
+Both are documented at length in `docs/plans/kmp-migration.md`:
+
+- **The `$stable` trap** (`KMP-09`). Moving a Compose-compiled class to a module without the Compose
+  compiler silently drops its `public static final int $stable` field, which extensions read via
+  `getstatic`. Cross-module moves also turn a constant into a `getstatic` against another class.
+  That is a runtime change, and it is **invisible to ABI dumps**. Every module that receives classes
+  from `:app` applies `cloudstream.kmp.extension-api`. For the scan, the baseline is the commit
+  **before** the move, never master after it merges, or the diff comes back vacuously empty. Count
+  two ways: a grep over `javap -p -c`, and a constant-pool `Fieldref` set.
+- **`classes.jar` is a published contract.** `:app:checkExtensionApi` is the gate, and it is not part
+  of `check`, so run it separately. After an intended change, `:app:dumpExtensionApi` regenerates the
+  dump; never hand-write a line (`INF-07`).
+
+---
+
+## How the work has gone, for whatever that is worth
 
 Measure rather than reason. Nearly every wrong claim in this project's history was one a plausible
 argument supported and nobody executed: the `dur * 60` overflow argued unreachable, the
@@ -173,3 +240,9 @@ spurious additions); and a NOTICE draft claiming the vendored changes were "subs
 cosmetic" when three files differ by the `package` line alone. Each was caught by checking, not by
 thinking harder. The habit that catches them is cheap: re-run the measurement a second way before
 writing the number down.
+
+On 2026-10-14 the same habit was applied to subagents. Two parallel verification agents each ran
+in their own git worktree. Their headline numbers (exit codes, renames, the jar contents) were
+re-checked by hand before anything was pushed. One of their claims, that the 06c moves were in
+`f2e0e435`, sounded wrong and turned out to be right. Give parallel agents **separate scratch
+subdirectories**. Two agents sharing one scratchpad overwrote each other's runner script mid-run.
