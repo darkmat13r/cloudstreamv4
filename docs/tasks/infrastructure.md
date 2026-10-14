@@ -217,6 +217,7 @@ the release dex build, with no Gradle error:
 | 37654871353 | #43 `05502bb3` | runner shutdown signal, after `compileStableReleaseKotlin` |
 | 38551943012 attempt 1 | #43 `c2ce96ca` | `The operation was canceled`, during `dexBuilderStableRelease` |
 | 38551943012 attempt 2 | #43 `c2ce96ca` | `Process completed with exit code 143` (SIGTERM), during `dexBuilderPrereleaseRelease` |
+| 38613588107 | **#54** `1202400d` | `Process completed with exit code 143` (SIGTERM) after `compileStableReleaseKotlin`, at 28m57s. **0** occurrences of `What went wrong:` in the whole log |
 
 The same step passed on #42 in runs 37647589593 (`bce90a8f`) and 38552020713 (`b8aeffd3`). The
 second of those trees contains #43's head. The workflow sets no `timeout-minutes` and no
@@ -225,6 +226,19 @@ likely cause, but that is **not measured**.
 
 **Until this is fixed:** read a red run's log before believing it (`gh run view <id> --log-failed`).
 A run that ends in a cancel or exit 143, with no `What went wrong:` before it, never ran the check.
+
+**2026-10-14: the first occurrence outside #43, and it narrows the cause.** Run 38613588107 is on
+**#54**, whose entire diff is `maxLines="1"` → `maxLines="2"` in one XML layout plus a docs entry —
+about as far from "that PR was heavy" as a change gets. The two earlier steps passed on the same run
+(`Ensure binary compatibility`, then `Run Gradle` with the full `assemblePrereleaseDebug lint check`),
+so the job reached the third step healthy and died there. That rules out #43's *content* as the cause
+and points at the **step**: it builds every release variant *after* `Run Gradle` has already run, in
+the same job, on a runner at `gradle.properties`' `-Xmx4G` — which `docs/HANDOVER.md` already records
+as OOMing D8 in a full run. Still a hypothesis: nothing has measured the runner's memory.
+
+Practical consequence while it is unfixed: a red tick on this repo means *read the log*. Two of the
+three gates run **before** the fragile step, so a run that dies at `Check classes.jar ABI` has still
+exercised `checkKotlinAbi` and the whole `lint check`.
 
 Options, for the owner: make `makeJar` depend on what it actually reads instead of `build`;
 build one variant in that step; raise Gradle/Kotlin daemon memory limits for CI; or use a larger
