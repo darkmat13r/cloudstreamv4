@@ -231,8 +231,8 @@ Two names move with it and must not change:
 
 ### KMP-06b — `:core:mihon`, the vendored tree in its own module
 
-**Status:** implemented on `claude/kmp-06b-core-mihon`, stacked on #43 · **not built**: the session
-that wrote it had no Android SDK or Maven access.
+**Status:** implemented on `claude/kmp-06b-core-mihon`, stacked on #43 · written without an Android
+SDK; built and checked locally on 2026-10-14 (below). Runtime UI still unverified.
 
 Moved by `git mv`, every file's contents unchanged: all 29 `.kt` under `com/mihon/**` (27
 commonMain, 2 androidMain), plus `LICENSE` and `readme.md`, at the same relative paths under
@@ -249,12 +249,56 @@ FQN that `classes-jar.api` names 17 times does not move.
       one root. Moving it to `:core:storage` is a separate decision for whenever `DevicePreferenceStore`
       moves (06d).
 
-**Verification** — none run yet:
+**Verification** — local runs, 2026-10-14, Temurin 17.0.20.1, `TZ=UTC`, `-Xmx12G`, branch head
+`bce90a8f`; not CI (`DEC-01`):
 
-- [ ] The three commands in `docs/HANDOVER.md`; `:app:checkExtensionApi` must show no diff.
-- [ ] `$stable` scan: `javap -p -c` of the moved classes, `:shared`'s jvm jar on #41's head vs
-      `:core:mihon`'s here. Compose module → Compose module, FQNs unchanged. Two things to know
-      before reading the result:
+- [x] Move re-measured two ways: `git diff -M100%` against #43's head `a3314cc8` shows 30 `R100`
+      renames (29 `.kt` + `LICENSE`); a blob-hash comparison of `shared/src/**/com/mihon` there vs
+      `core/mihon/src` here matches 30 of 31 blobs. The 31st is `readme.md`, whose only change is the
+      `shared/src/androidMain` → `core/mihon/src/androidMain` path on line 3. The `com/mihon` blobs at
+      `0bc8709` and `a3314cc8` are identical.
+- [x] `checkKotlinAbi` → exit 0.
+- [x] `assemblePrereleaseDebug lint check -Pcloudstream.strings.guards=fail` → exit 0. `:core:mihon`
+      compiled for jvm and android, and its lint ran.
+- [x] `:app:checkExtensionApi` → exit 0. `:app:dumpExtensionApi` → exit 0, and `git status` is clean
+      afterwards, so the dump is byte-identical to `app/api/classes-jar.api`.
+- [x] `classes.jar` holds **no** `com/mihon/` entry, and it held none before this PR either. The 17
+      `SearchableSettings` occurrences in the dump are references from `:app`'s settings classes
+      (supertypes, descriptors), not the class itself. `makeJar` merges a module only when it has
+      `src/*/kotlin/com/lagradost/cloudstream3`, and neither `:shared` (at `0bc8709`) nor `:core:mihon`
+      does. So `:core:mihon` needs no sentinel: there is nothing of it in the jar to guard. Those
+      references resolve at runtime from the APK: all 113 compiled `com/mihon` classes are in its dex.
+- [x] `$stable` scan: baseline `:shared` at `0bc8709` (throwaway worktree) vs `:core:mihon` here, jvm
+      and android outputs, plus `:shared`'s remaining classes, `:app` (`prereleaseDebug`) and
+      `:desktopApp`. Done two ways: `javap -p -c` per class, then `javap -p` / `javap -v`
+      constant-pool `Fieldref …$stable:I` sets.
+      - `$stable` fields: mihon jvm 18 → 18, android 29 → 29; `:shared` rest 9 → 9; `:app` 885 → 885.
+        Declaring-class sets identical. **None dropped.**
+      - `getstatic` owners: mihon jvm/android 37 → 37 each, `:app` 98 → 98, desktop 3 → 3. Fieldref
+        owner sets (40 / 51 / 456) identical. **None changed.** `:app` has no `$stable` Fieldref to a
+        `com/mihon` owner, before or after.
+      - Class sets: 91/91 (jvm) and 113/113 (android). After normalising constant-pool indices and
+        the module-name suffix, every moved class is identical except `AndroidPreference` (below).
+        `:shared`'s rest and `:desktopApp`: 0 classes differ. `:app`: 2 classes differ, both only in
+        the inlined `BuildConfig` build-date constant.
+      - Expected renames: 19 `ComposableSingletons` `getLambda$…` accessors, `$CloudStream_shared` →
+        `$CloudStream_core_mihon`. Also, **not foreseen in the PR**, 7 `internal` member declarations
+        (4 names: `internalSet`, `internalOnValueChanged`, `internalSubtitleProvider`,
+        `InternalIconProvider`) on `Preference$PreferenceItem` subclasses. Nothing outside the module
+        calls them (`:app` and `:shared` bytecode is unchanged), and none of these names is in
+        `classes-jar.api` (0 matches for either suffix).
+      - **Finding: `AndroidPreference` (android only)** gains two
+        `Intrinsics.checkExpressionValueIsNotNull(editor, "editor")` calls. They come from the inlined
+        `SharedPreferences.edit {}`. `:core:mihon`'s `androidCompileClasspath` resolves
+        `androidx.core:core-ktx` **1.2.0** (via `preference-ktx` 1.2.1) and `core` 1.8.0, where
+        `:shared`'s resolved 1.18.0 through `activity-compose`. It is harmless at runtime: the call
+        exists in kotlin-stdlib 2.4.0, and `edit()` never returns null. But "what `:shared` supplied"
+        is not quite true for the transitive compile classpath. Aligning it would add a dependency edge
+        to `:core:mihon`, which is the owner's call, so it is not changed here.
+- [x] `:desktopApp:compileKotlinJvm` / `jvmJar` → exit 0.
+- How the `$stable` scan was set up (the brief it was run against): `javap -p -c` of the moved
+      classes, `:shared`'s jvm jar on #41's head vs `:core:mihon`'s here. Compose module → Compose
+      module, FQNs unchanged. Two things to know before reading the result:
       - **Expected, not a finding:** `ComposableSingletons$…Kt` accessors rename from
         `getLambda$…$CloudStream_shared` to `…$CloudStream_core_mihon`. The Compose compiler mangles
         them with the Kotlin module name; they are absent from `classes-jar.api`. The owner saw the
@@ -262,7 +306,13 @@ FQN that `classes-jar.api` names 17 times does not move.
       - **Baseline is the pre-carve-out parent (#41's head), never `master`.** Once this merges,
         `master` *is* this branch and the diff comes back vacuously empty, which reads as clean.
 - [ ] Runtime: the seven settings screens and settings search render, a list preference opens its
-      dialog, and the desktop app's `SwitchPreferenceWidget` row renders.
+      dialog, and the desktop app's `SwitchPreferenceWidget` row renders. **Not verified.** The
+      prerelease debug APK installed on a Pixel 9a (API 37), and a launch started the process with no
+      `FATAL`, `NoClassDefFound`, `NoSuchField`, `NoSuchMethod` or `MissingResource` in logcat. But
+      the device was behind a secure keyguard, so no screen rendered. Statically, the APK has all 23
+      Compose resources under the one `com.lagradost.cloudstream4.generated.resources` package (as on
+      06c), and all 113 `com/mihon` classes plus 2 desugaring `$-CC` companions are in its dex. The
+      desktop app was compiled, not run.
 
 ### KMP-06d — retire `:shared`
 
