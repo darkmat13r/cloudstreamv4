@@ -302,6 +302,7 @@ dependencies {
     implementation(project(":core:network"))
     implementation(project(":core:data"))
     implementation(project(":core:model"))
+    implementation(project(":media:model"))
 }
 
 tasks.register<Jar>("androidSourcesJar") {
