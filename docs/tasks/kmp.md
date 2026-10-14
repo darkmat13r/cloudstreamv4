@@ -657,7 +657,8 @@ decided, because that decides how much of `:library` is worth making iOS-compila
 
 ## KMP-10 — the iOS canary is red · **measured 2026-10-14**
 
-**Status:** step 1 in pr #49 (`:core:ui`) · step 2 open (`:core:mihon`)
+**Status:** step 1 in pr #49 (`:core:ui`), step 2 in pr #50 (`:core:mihon`) · **after both, the
+iOS canary is green for the first time: 12 of 12 modules**
 
 `./gradlew iosCanary -Pcloudstream.iosCanary=true --continue` is **red on master**, and has been
 since `KMP-06c` (#41) created `:core:ui`. Twelve modules have an `iosCanary` task. Ten pass. One
@@ -685,7 +686,7 @@ the wallpaper palette through `android.R.color.system_*` and macOS exposes a cho
 nothing to read. `CloudStreamThemeMode.Dynamic` also already documents itself as falling back "to
 `Dark` on unsupported platforms", so the behaviour was specified before the source set existed.
 
-### Step 2 — `:core:mihon`'s four `String.format` calls · open
+### Step 2 — `:core:mihon`'s four `String.format` calls · #50
 
 Fixing `:core:ui` let `:core:mihon` compile for the first time, and it fails — at **exactly the four
 sites the plan already named** (§7 Phase 5: "Replace `String.format` as the Mihon files move
@@ -699,13 +700,29 @@ sites the plan already named** (§7 Phase 5: "Replace `String.format` as the Mih
 All four are `subtitle?.format(…)` — `kotlin.text.format`, which is `java.lang.String.format` and
 JVM-only. Each substitutes one value into a preference subtitle template.
 
-**Left for its own PR deliberately.** This is **vendored Apache-2.0 code** (`KMP-06a`, `NOTICE`),
-where every edit widens the diff against upstream that 06a measured file by file, and the module
-boundary exists to make that visible. Four lines of first-party code would not need their own
-review; four lines inside the Mihon tree do. It also wants a decision on *how*: a small `commonMain`
-formatter, or changing the templates so none is needed.
+Its own PR, because this is **vendored Apache-2.0 code** (`KMP-06a`, `NOTICE`), where every edit
+widens the diff against upstream that 06a measured file by file. Four lines of first-party code
+would not need their own review; four lines inside the Mihon tree do. `readme.md` now records the
+edit, so the next person re-measuring against upstream expects it.
 
-So after #49 the canary is **11 of 12 modules green, `:core:mihon` red with four known sites**.
+**The "how" was settled by measuring the corpus, not by choosing.** Every template that reaches
+these calls is exactly one `%s` — the `"%s"` defaults on `ListPreference`, `BasicListPreference`
+and `MultiSelectListPreference`, and four `"%s\n" + stringResource(…)` overrides in `:app`'s
+player and updates screens. The one `"%s %d"` in the tree is in `:app`'s legacy
+`SettingsAccount.kt`, a view-binding fragment that never reaches a preference subtitle. So a
+one-placeholder substitution is faithful, and porting `String.format` properly would be inventing
+capability nothing uses.
+
+`withValue` is first-party and lives in `:core:ui` (`compose/Template.kt`), not in the Mihon tree,
+so the licence boundary holds: the vendored files gain an import and four call sites, and no
+first-party file joins them.
+
+**One real difference, in the safe direction.** `String.format` throws
+`UnknownFormatConversionException` on a stray `%`, and three of the four `:app` templates
+concatenate a *translated* string — so a translator writing "50% off" would have crashed the
+settings screen. `replaceFirst` cannot throw. That is a latent class of crash removed, **not a live
+bug**: across all 49 locale files, none of `video_disk_description`, `video_ram_description` or
+`automatic_plugin_download_summary` contains a `%` today.
 
 **Reproduce:** `./gradlew iosCanary -Pcloudstream.iosCanary=true --continue`. Kotlin/Native 2.4.0
 must be in `~/.konan`; it downloads on first run. On this machine the whole canary takes about

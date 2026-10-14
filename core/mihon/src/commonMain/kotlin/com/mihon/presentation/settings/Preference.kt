@@ -2,6 +2,7 @@ package com.mihon.presentation.settings
 
 import androidx.annotation.IntRange
 import androidx.compose.runtime.Composable
+import com.lagradost.cloudstream4.compose.withValue
 import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
@@ -71,7 +72,7 @@ sealed class Preference {
             override val title: String,
             override val subtitle: String? = "%s",
             val subtitleProvider: @Composable (value: T, entries: Map<T, String>) -> String? =
-                { v, e -> subtitle?.format(e[v]) },
+                { v, e -> subtitle?.withValue(e[v]) },
             override val icon: Painter? = null,
             override val enabled: Boolean = true,
             override val onValueChanged: suspend (value: T) -> Boolean = { true },
@@ -97,7 +98,7 @@ sealed class Preference {
             override val title: String,
             override val subtitle: String? = "%s",
             val subtitleProvider: @Composable (value: String, entries: Map<String, String>) -> String? =
-                { v, e -> subtitle?.format(e[v]) },
+                { v, e -> subtitle?.withValue(e[v]) },
             override val icon: Painter? = null,
             override val enabled: Boolean = true,
             override val onValueChanged: suspend (value: String) -> Unit = {},
@@ -121,7 +122,7 @@ sealed class Preference {
                             .takeUnless { it.isBlank() }
                     }
                         ?: stringResource(Res.string.none)
-                    subtitle?.format(combined)
+                    subtitle?.withValue(combined)
                 },
             override val icon: Painter? = null,
             override val enabled: Boolean = true,
