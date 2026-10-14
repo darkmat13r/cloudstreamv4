@@ -19,8 +19,9 @@ restating them. Where they disagree, they win, and this file is the one to fix.
 - `:core:*` — KMP modules (android + a `jvm()` canary), built on the convention plugins in
   `build-logic/convention`: `cloudstream.kmp.library`, `.compose`, `.extension-api`, `.strings`,
   `.android-only`.
-- `:shared` — being retired (`KMP-06`). `:core:ui` holds the first-party Compose layer; the vendored
-  Mihon tree (`com.mihon.*`, Apache-2.0, see `NOTICE`) is still in `:shared` until `KMP-06b`.
+- `:shared` — being retired (`KMP-06`). `:core:ui` holds the first-party Compose layer and
+  `:core:mihon` the vendored Mihon tree (`com.mihon.*`, Apache-2.0, see `NOTICE` — no first-party
+  code there). What remains in `:shared` is placed by `KMP-06d`.
 - `:desktopApp` — a placeholder JVM app.
 
 ## The two constraints on every module move
@@ -42,11 +43,13 @@ restating them. Where they disagree, they win, and this file is the one to fix.
 
 ## Running checks locally
 
-CI has never run on this repository (`DEC-01`). Every check is a local run, so run all three of the
-commands in `docs/HANDOVER.md` and say in the PR that they were local. The traps:
+CI runs on pull requests since 2026-10-07 (`DEC-01`, `INF-01`); before that, every "green" was a
+local run. Still run all three commands in `docs/HANDOVER.md` locally before pushing, and say in
+the PR which results were local and which were CI. The traps:
 
 - `TZ=UTC` — `BUG-08`, `EpisodeDateTest` fails off-UTC.
-- `JAVA_HOME=<Temurin 17>` — `INF-06`, `:core:*` tests run on the daemon JVM.
+- `JAVA_HOME=<Temurin 17>` — `INF-06`, `:core:*` tests run on the daemon JVM, and on 21+
+  `checkKotlinAbi` fails against the 17-written baselines. Never run `updateKotlinAbi` on 21+.
 - `-Dorg.gradle.jvmargs="-Xmx14G -Dfile.encoding=UTF-8"` — the 4G default OOMs D8 in a full run.
 - `-x :app:generateGitHash` — only in a git worktree.
 - **A piped Gradle run reports the pipe's exit code.** `./gradlew … | tail` exits 0 on a failed

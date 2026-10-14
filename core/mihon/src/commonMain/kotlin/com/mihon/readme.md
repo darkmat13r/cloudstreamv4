@@ -1,6 +1,6 @@
 # Vendored from Mihon — Apache License 2.0
 
-This directory and `shared/src/androidMain/kotlin/com/mihon/` hold **29 Kotlin files vendored from
+This directory and `core/mihon/src/androidMain/kotlin/com/mihon/` hold **29 Kotlin files vendored from
 [Mihon](https://github.com/mihonapp/mihon)**, licensed under the Apache License 2.0. A verbatim copy
 of the licence is in `LICENSE` beside this file; the attribution required when redistributing it is
 in the repository's root `NOTICE`.

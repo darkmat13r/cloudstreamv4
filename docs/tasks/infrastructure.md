@@ -4,7 +4,21 @@
 
 ## INF-01 — CI does not run · **the single largest gap**
 
-**Status:** blocked by `DEC-01`
+**Status:** unblocked 2026-10-07 — CI runs (see `DEC-01`). Open: make it reliable.
+
+First runs, 2026-10-07, all on `pull_request.yml`'s single `build` job:
+
+| PR / head | Result |
+|---|---|
+| #42 `b8c26d5` | died in 51 s resolving `build-logic`'s classpath: Maven Central "could not find" `gson:2.11.0`, `kotlinx-coroutines-core-jvm:1.8.0` and others that exist. Transient; not re-measured |
+| #42 `bce90a8` | **green**, 42 min — the repo's first full CI pass |
+| #43 `a3314cc` | **runner lost** after 36 min, during `:app:mergeDexStableRelease` ("The runner has received a shutdown signal"). Not a task failure. Suspected memory: the job runs at `gradle.properties`' `-Xmx4G`, which `docs/HANDOVER.md` already says OOMs D8 in a full run. Re-run once |
+
+If runner loss recurs, the fix is a workflow change (a larger `-Xmx` via `GRADLE_OPTS` or
+`-Dorg.gradle.jvmargs`, or `lint` in its own job), as its own PR.
+
+The text below is the state before 2026-10-07.
+
 
 GitHub Actions fails account-wide in ~2s with a billing error. **No pull request in this series has
 ever been exercised by CI.** Everything claimed green was run locally, on one machine, with one JDK
@@ -117,6 +131,13 @@ hardcoded Arabic literals fail. This is a stale pinned expectation plus an unpin
 Same gap, not failing today: `:core:storage`, `:core:http`, `:core:strings:fixtures` jvmTest, and
 all Kotlin/Android compilation in every `:core:*` module.
 
+**It also guards the committed ABI baselines, from JDK 21 on** · measured by the owner, 2026-10-07.
+`checkKotlinAbi` run with Corretto 21 failed on four methods: `addFirst`, `addLast`, `removeFirst`
+and `removeLast` — `java.util.SequencedCollection`, new in Java 21, inherited into the dump by every
+`List` implementor. The committed `api/` dumps were written on 17. So the pin is not optional for
+`checkKotlinAbi` either, and **`updateKotlinAbi` on a 21+ daemon would bake those inherited methods
+into the baseline.**
+
 ---
 
 ## INF-05 — Local workflow notes
@@ -138,3 +159,46 @@ check the `timestamp` attribute when a test count is load-bearing.
 **Verify by re-running, not by reading.** Every claim in this repo's task lists that turned out to
 be false was one that a plausible argument supported and nobody had executed — the `dur * 60`
 overflow, the "locale-blind" notification, the `Viewmodel.kt` "dead code", the missing ABI dump.
+
+---
+
+## INF-07 — `:app:checkExtensionApi` is red on master since #38 · **measured 2026-10-07**
+
+**Status:** in pr (follow-up to #41, which merged before this fix reached it) · decided 2026-10-07:
+accepted into the dump
+
+Found while verifying `KMP-06c`, and reproduced as pre-existing there: on master the check reports
+0 removed, 0 changed, 1 added:
+
+    +public final class com/lagradost/cloudstream3/ui/result/RunTimeSecondsKt {
+    +     public static final fun runTimeMinutesToSeconds (Ljava/lang/Integer;)Ljava/lang/Integer;
+    +}
+
+`app/src/main/java/com/lagradost/cloudstream3/ui/result/RunTimeSeconds.kt` arrived with `0e350324`
+(#38, `BUG-01`) without a matching `app/api/classes-jar.api` update; the dump last moved in
+`a39a56fa`. The check is not part of `check`, and CI has never run (`DEC-01`), so nothing caught it.
+
+The function is declared `internal`, but a **top-level** `internal` function is not name-mangled, so
+it reaches `classes.jar` as an ordinary `public static final` — a Kotlin-internal helper on the
+extension-facing surface. Purely additive: no published extension breaks either way.
+
+**Decision: accept it into the dump.** `@JvmSynthetic` was the first recommendation, and it was
+wrong. Reading `ExtensionApiDump.kt` showed why: the dump records synthetic methods (with a
+`synthetic` flag) rather than skipping them, and records every public class whatever its members.
+So the annotation would only have changed the added line to `public static final synthetic fun …`;
+the block would still be an addition. Accepting it matches how the dump already treats `:app`'s
+internals: it holds 289 name-mangled `internal` members by design. And Kotlin extensions cannot call
+an `internal` declaration from another module either way; the compiler enforces that from metadata.
+
+- [x] The `RunTimeSecondsKt` block added to `app/api/classes-jar.api`. Meant to ride #41, which
+      merged first, so it lands in its own follow-up PR. The first attempt was **written by hand
+      and wrong**: it dropped the superclass, ` : java/lang/Object`, which the dump prints on every
+      class. It was the only one of the dump's classes without a supertype. Caught when the owner built it (`checkExtensionApi`:
+      1 changed); `:app:dumpExtensionApi` produces exactly the corrected line.
+- [x] `:app:checkExtensionApi` exits 0 with the corrected line (owner, local, Temurin 17).
+
+**Rule this taught: never hand-write a baseline line.** Regenerate it with `:app:dumpExtensionApi`
+(or `updateKotlinAbi` on 17) and review the diff. A transcription from failure output loses exactly
+the details the dump exists to keep; ` : java/lang/Object` has now been that trap twice.
+
+

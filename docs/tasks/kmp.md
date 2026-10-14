@@ -185,9 +185,8 @@ so `:core:ui` comes first (owner's choice, 2026-10-07).
 
 ### KMP-06c — `:core:ui` for the first-party Compose layer
 
-**Status:** implemented on `claude/festive-bardeen-3258ln` — **never built**: the session that wrote
-it had no Android SDK and no network route to Maven, Google or Gradle. Not in a PR until it has been
-built and the three `docs/HANDOVER.md` commands pass.
+**Status:** done · #41 (merged at `d646470`, before this verification record was written) · built
+and run locally by the owner on 2026-10-07 at master `0bc8709`. All checks closed — see below.
 
 Moved by `git mv`, every file's contents unchanged except `Dialog.kt`'s (below):
 
@@ -214,35 +213,129 @@ Two names move with it and must not change:
 `:shared` depends on `:core:ui` as `api` — `SearchableSettings : Screen` is public API — so `:app` and
 `:desktopApp` needed no build-file change.
 
-**To verify before the PR** — none of this has been executed:
+**Verification** — local runs by the owner, 2026-10-07, Temurin 17, `TZ=UTC`; not CI (`DEC-01`):
 
-- [ ] The three commands in `docs/HANDOVER.md`; `:app:checkExtensionApi` must show **no** diff. The
-      expected risk is `R`: the claim that `:core:ui`'s `R` lands at `com/lagradost/cloudstream4/R`
-      in `:app`'s classes, exactly as `:shared`'s did, rests on the KDoc of
-      `cloudstream.extension-api-jar.gradle.kts`, not on a run.
-- [ ] `$stable` scan: `javap -p -c` of every moved class before and after. All moved classes go
-      Compose-compiled module → Compose-compiled module with FQNs unchanged, so `getstatic` owners
-      should not change; prove it.
-- [ ] Resources at runtime: open a settings screen (fonts, dialogs, the `check` drawable) and the
-      desktop app (`app_name`, `default_icon`, `preview`). A missing `androidResources` shows up only
-      here, never at compile time.
+- [x] `checkKotlinAbi` → exit 0.
+- [x] `assemblePrereleaseDebug lint check -Pcloudstream.strings.guards=fail` → exit 0.
+- [x] `:app:checkExtensionApi` → first **exit 1, pre-existing and not this change**: 0 removed, 0 changed,
+      and the 1 addition is `RunTimeSecondsKt`, from #38 (`INF-07`). The thing this PR risked — the
+      `com/lagradost/cloudstream4/R` line — did **not** move: `:core:ui`'s `R` took `:shared`'s place
+      exactly. With `INF-07`'s block corrected, the owner measured exit 0.
+- [x] `$stable` scan, 2026-10-14, local (Temurin 17, `TZ=UTC`), baseline `f29ff63a` (master before #41)
+      vs `0bc8709` + #43. Classes compiled from the 13 moved `.kt` (`git mv`'d in `f2e0e435`, not
+      `bdd98926`): 30 android, 29 jvm. `public static final int $stable` on **9 → 9** per target,
+      0 dropped (`Colors`, `AppFont`, `CloudStreamColorScheme`, `CloudStreamPalette`, `DeviceTheme`,
+      `DebounceQuery`, `SingleActiveQuery`, `DefaultStateContainer`, `DefaultEffectContainer`).
+      Counted twice: grep over `javap -p -c` text, and a direct class-file parser (field flags +
+      `SourceFile`). `javap -p -c` of all 338 classes on each side (`:shared`/`:core:ui` android
+      and jvm, plus every `:app` `prereleaseDebug` and `:desktopApp` class referencing
+      `cloudstream4/`): 333 identical, 5 not. 3,362 `getstatic` targets per side, 94 of them on a
+      `$stable` (none owned by a moved class), no owner changed; the only `getstatic` difference
+      is `DialogKt`'s intended edit (`MaterialTheme.padding.medium` → `ActionDialogIconTitleSpacing`). The 5: `DialogKt` and
+      `ComposableSingletons$DialogKt` on each target — that edit, plus one accessor renamed by
+      module-name mangling, `getLambda$-338782920$CloudStream_shared` → `…$CloudStream_core_ui`,
+      called only by `DialogKt` and absent from `classes-jar.api` — and `:app`'s
+      `SettingsFragmentScreen`, which differs only by an inlined build timestamp.
+      `com/lagradost/cloudstream4/R` is still in `app/build/classes.jar`.
+- [x] Runtime: all 23 resources in the APK under one `com.lagradost.cloudstream4.generated.resources`
+      package (12 Product Sans faces, 10 drawables, strings), no `Res` collision; Settings → General,
+      Player, Layout render with Product Sans, not the Roboto fallback; a list-preference dialog
+      draws `Res.drawable.check` on the selected row; settings search shows "No results found"; the
+      desktop window is titled "CloudStream" and the `preview` drawable renders. No
+      `MissingResourceException` in logcat.
 
 ### KMP-06b — `:core:mihon`, the vendored tree in its own module
 
-**Status:** open · after `KMP-06c`
+**Status:** done · #42 · written without an Android SDK; built and checked locally on 2026-10-14
+(below), and CI green on `bce90a8f`. Runtime UI still unverified: the settings screens have not
+been opened on a device. The `core-ktx` 1.2.0 compile-classpath note below was left as is by the
+owner's choice (2026-10-14).
 
-29 `.kt` under `com/mihon/**` moved as-is, packages unchanged, plus its `LICENSE` and `readme.md`,
-depending on `:core:ui`. After 06c the Mihon tree's only first-party imports are `:core:ui`'s, so no
-Mihon file needs an edit. The `NOTICE` and the module README name `shared/src/…` paths and move with it.
+Moved by `git mv`, every file's contents unchanged: all 29 `.kt` under `com/mihon/**` (27
+commonMain, 2 androidMain), plus `LICENSE` and `readme.md`, at the same relative paths under
+`core/mihon/src/`. Packages unchanged, so the `com/mihon/presentation/settings/SearchableSettings`
+FQN that `classes-jar.api` names 17 times does not move.
 
-- [ ] Decide whether `com/mihon/common/preference/**` goes to `:core:storage` or stays.
-      Recommended: **stays**, so one licence lives under one root. Those five files are Compose-free.
+- `:core:mihon` is `cloudstream.kmp.compose` with `api(:core:ui)`, plus `kotlinx-collections-immutable`
+  and (androidMain) `preference-ktx` — what `:shared` supplied, nothing new.
+- `:shared` gains `api(:core:mihon)`, so `:app` and `:desktopApp` need no build-file change.
+- `NOTICE` and the vendored `readme.md` point at the new paths.
+- Checked statically before the move: none of the tree's 12 `internal` declarations is used outside
+  it; no `expect`/`actual`; its only first-party imports are `:core:ui`'s.
+- [x] `com/mihon/common/preference/**` **stays** in `:core:mihon`, as recommended: one licence under
+      one root. Moving it to `:core:storage` is a separate decision for whenever `DevicePreferenceStore`
+      moves (06d).
+
+**Verification** — local runs, 2026-10-14, Temurin 17.0.20.1, `TZ=UTC`, `-Xmx12G`, branch head
+`bce90a8f`; not CI (`DEC-01`):
+
+- [x] Move re-measured two ways: `git diff -M100%` against #43's head `a3314cc8` shows 30 `R100`
+      renames (29 `.kt` + `LICENSE`); a blob-hash comparison of `shared/src/**/com/mihon` there vs
+      `core/mihon/src` here matches 30 of 31 blobs. The 31st is `readme.md`, whose only change is the
+      `shared/src/androidMain` → `core/mihon/src/androidMain` path on line 3. The `com/mihon` blobs at
+      `0bc8709` and `a3314cc8` are identical.
+- [x] `checkKotlinAbi` → exit 0.
+- [x] `assemblePrereleaseDebug lint check -Pcloudstream.strings.guards=fail` → exit 0. `:core:mihon`
+      compiled for jvm and android, and its lint ran.
+- [x] `:app:checkExtensionApi` → exit 0. `:app:dumpExtensionApi` → exit 0, and `git status` is clean
+      afterwards, so the dump is byte-identical to `app/api/classes-jar.api`.
+- [x] `classes.jar` holds **no** `com/mihon/` entry, and it held none before this PR either. The 17
+      `SearchableSettings` occurrences in the dump are references from `:app`'s settings classes
+      (supertypes, descriptors), not the class itself. `makeJar` merges a module only when it has
+      `src/*/kotlin/com/lagradost/cloudstream3`, and neither `:shared` (at `0bc8709`) nor `:core:mihon`
+      does. So `:core:mihon` needs no sentinel: there is nothing of it in the jar to guard. Those
+      references resolve at runtime from the APK: all 113 compiled `com/mihon` classes are in its dex.
+- [x] `$stable` scan: baseline `:shared` at `0bc8709` (throwaway worktree) vs `:core:mihon` here, jvm
+      and android outputs, plus `:shared`'s remaining classes, `:app` (`prereleaseDebug`) and
+      `:desktopApp`. Done two ways: `javap -p -c` per class, then `javap -p` / `javap -v`
+      constant-pool `Fieldref …$stable:I` sets.
+      - `$stable` fields: mihon jvm 18 → 18, android 29 → 29; `:shared` rest 9 → 9; `:app` 885 → 885.
+        Declaring-class sets identical. **None dropped.**
+      - `getstatic` owners: mihon jvm/android 37 → 37 each, `:app` 98 → 98, desktop 3 → 3. Fieldref
+        owner sets (40 / 51 / 456) identical. **None changed.** `:app` has no `$stable` Fieldref to a
+        `com/mihon` owner, before or after.
+      - Class sets: 91/91 (jvm) and 113/113 (android). After normalising constant-pool indices and
+        the module-name suffix, every moved class is identical except `AndroidPreference` (below).
+        `:shared`'s rest and `:desktopApp`: 0 classes differ. `:app`: 2 classes differ, both only in
+        the inlined `BuildConfig` build-date constant.
+      - Expected renames: 19 `ComposableSingletons` `getLambda$…` accessors, `$CloudStream_shared` →
+        `$CloudStream_core_mihon`. Also, **not foreseen in the PR**, 7 `internal` member declarations
+        (4 names: `internalSet`, `internalOnValueChanged`, `internalSubtitleProvider`,
+        `InternalIconProvider`) on `Preference$PreferenceItem` subclasses. Nothing outside the module
+        calls them (`:app` and `:shared` bytecode is unchanged), and none of these names is in
+        `classes-jar.api` (0 matches for either suffix).
+      - **Finding: `AndroidPreference` (android only)** gains two
+        `Intrinsics.checkExpressionValueIsNotNull(editor, "editor")` calls. They come from the inlined
+        `SharedPreferences.edit {}`. `:core:mihon`'s `androidCompileClasspath` resolves
+        `androidx.core:core-ktx` **1.2.0** (via `preference-ktx` 1.2.1) and `core` 1.8.0, where
+        `:shared`'s resolved 1.18.0 through `activity-compose`. It is harmless at runtime: the call
+        exists in kotlin-stdlib 2.4.0, and `edit()` never returns null. But "what `:shared` supplied"
+        is not quite true for the transitive compile classpath. Aligning it would add a dependency edge
+        to `:core:mihon`, which is the owner's call, so it is not changed here.
+- [x] `:desktopApp:compileKotlinJvm` / `jvmJar` → exit 0.
+- How the `$stable` scan was set up (the brief it was run against): `javap -p -c` of the moved
+      classes, `:shared`'s jvm jar on #41's head vs `:core:mihon`'s here. Compose module → Compose
+      module, FQNs unchanged. Two things to know before reading the result:
+      - **Expected, not a finding:** `ComposableSingletons$…Kt` accessors rename from
+        `getLambda$…$CloudStream_shared` to `…$CloudStream_core_mihon`. The Compose compiler mangles
+        them with the Kotlin module name; they are absent from `classes-jar.api`. The owner saw the
+        same rename on 06c.
+      - **Baseline is the pre-carve-out parent (#41's head), never `master`.** Once this merges,
+        `master` *is* this branch and the diff comes back vacuously empty, which reads as clean.
+- [ ] Runtime: the seven settings screens and settings search render, a list preference opens its
+      dialog, and the desktop app's `SwitchPreferenceWidget` row renders. **Not verified.** The
+      prerelease debug APK installed on a Pixel 9a (API 37), and a launch started the process with no
+      `FATAL`, `NoClassDefFound`, `NoSuchField`, `NoSuchMethod` or `MissingResource` in logcat. But
+      the device was behind a secure keyguard, so no screen rendered. Statically, the APK has all 23
+      Compose resources under the one `com.lagradost.cloudstream4.generated.resources` package (as on
+      06c), and all 113 `com/mihon` classes plus 2 desugaring `$-CC` companions are in its dex. The
+      desktop app was compiled, not run.
 
 ### KMP-06d — retire `:shared`
 
-**Status:** blocked until 06b and 06c land
+**Status:** open · 06c (#41) and 06b (#42) have landed
 
-What will be left after 06b: `ComposeFragment.kt`, `compose/Layout.kt` and `DevicePreferenceStore` ×3.
+What is left after 06b: `ComposeFragment.kt`, `compose/Layout.kt` and `DevicePreferenceStore` ×3.
 Each needs a home: `DevicePreferenceStore` → `:core:storage` per the plan, once `PreferenceStore`
 has one.
 

@@ -68,7 +68,9 @@ None of these are caused by recent work; all three cost real time to find.
 **1. Pin the JDK.** `INF-06`. `jdkToolchain = "17"` is consumed only by `:app`, so every `:core:*`
 module compiles and tests on whatever JVM started the Gradle daemon. On a JDK 24+ daemon, two
 `LocaleNumberParityTest` cases fail on clean master, because JDK 24's CLDR 46 moved bare `ar` from
-Arabic-Indic digits to ASCII.
+Arabic-Indic digits to ASCII. **It also guards the ABI baselines:** on JDK 21+ `checkKotlinAbi` fails
+on `SequencedCollection`'s `addFirst`/`addLast`/`removeFirst`/`removeLast`, inherited by every `List`
+implementor; the committed dumps were written on 17. Never run `updateKotlinAbi` on 21+.
 
     JAVA_HOME=/path/to/temurin-17.0.20.1
 
@@ -109,7 +111,7 @@ Nothing below can be settled by reading the code.
 
 | | | |
 |---|---|---|
-| `DEC-01` | **GitHub Actions billing** | Blocks everything. **38 PRs have merged and not one has been verified by CI** — every "green" in every PR body is a local run. This is the largest single gap in the project. |
+| `DEC-01` | **GitHub Actions billing** | **Runs again since 2026-10-07** (first green run: #42); see `INF-01` for the one runner loss. Before that it blocked everything. **38 PRs have merged and not one has been verified by CI** — every "green" in every PR body is a local run. This is the largest single gap in the project. |
 | `DEC-02` | **Product Sans** | Now measured: 24 files, two byte-identical sets of 12, genuine Google Product Sans v1.009 (`GOOG` vendor ID, empty copyright field, licence URL pointing at a page that does not exist). Eight other proprietary fonts sit beside them in the subtitle picker. Dormant while private; wakes on first distribution. Blocks `DS-05`. |
 | `INF-06` | **Test toolchain** | Pin it, or re-measure the `ar` table — the two cannot both be satisfied, because CI's JDK 17 still says `٠`. |
 | `BUG-08` | **`addDate` contract** | Are offset-less extension dates UTC (what happens) or device-local (what the KDoc says)? Changing it moves what users see for every provider returning a bare date-time. |
@@ -125,8 +127,14 @@ Nothing below can be settled by reading the code.
 > first-party `:shared` code in 12 of its 29 files — `SearchableSettings` extends `compose.Screen` — so
 > it cannot leave first. `KMP-06c` (`:core:ui`) is implemented on `claude/festive-bardeen-3258ln` but
 > **has never been built**: that container had no Android SDK and no network route to Maven, Google
-> or Gradle. Build it and run the three commands above before opening its PR; `docs/tasks/kmp.md`
-> lists what to check. The text below predates this.
+> or Gradle. The owner has since built and run it locally: two of three commands green, the third red
+> on a pre-existing failure (`INF-07`), runtime resources verified. The text below predates this.
+>
+> **Update, 2026-10-14.** `INF-07` is fixed by #43. The `KMP-06c` `$stable` scan is closed: 9 of 9
+> kept, no `getstatic` owner moved. `KMP-06b` (`:core:mihon`) is merged as #42, built and checked
+> locally (three commands green, extension dump byte-identical, no `$stable` lost) and green on CI.
+> Its settings screens have not been opened on a device. Next is `KMP-06d`, retiring `:shared`.
+> `docs/tasks/kmp.md` has the detail.
 
 
 `KMP-06b` — move the vendored Mihon tree into its own `:core:mihon` module. This PR

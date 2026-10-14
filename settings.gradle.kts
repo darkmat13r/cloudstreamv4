@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "CloudStream"
 include(":app", ":shared", ":library", ":docs", ":desktopApp")
-include(":core:theme", ":core:designsystem", ":core:ui", ":core:common", ":core:network", ":core:data", ":core:http", ":core:model", ":core:screenshot", ":core:storage", ":core:strings", ":core:strings:fixtures")
+include(":core:theme", ":core:designsystem", ":core:ui", ":core:mihon", ":core:common", ":core:network", ":core:data", ":core:http", ":core:model", ":core:screenshot", ":core:storage", ":core:strings", ":core:strings:fixtures")

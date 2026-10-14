@@ -12,7 +12,7 @@ Mihon — Apache License 2.0
   Source:    https://github.com/mihonapp/mihon
   Licence:   Apache License, Version 2.0
              http://www.apache.org/licenses/LICENSE-2.0
-             A verbatim copy is at shared/src/commonMain/kotlin/com/mihon/LICENSE
+             A verbatim copy is at core/mihon/src/commonMain/kotlin/com/mihon/LICENSE
 
   Copyright © 2015 Javier Tomás
   Copyright © 2024 Mihon Open Source Project
@@ -26,15 +26,15 @@ Mihon — Apache License 2.0
 
   29 Kotlin source files, redistributed under the package `com.mihon`:
 
-    shared/src/commonMain/kotlin/com/mihon/**   (27 files)
-    shared/src/androidMain/kotlin/com/mihon/**  (2 files)
+    core/mihon/src/commonMain/kotlin/com/mihon/**   (27 files)
+    core/mihon/src/androidMain/kotlin/com/mihon/**  (2 files)
 
   They provide the Compose settings framework — preference widgets, the preference
   screen scaffold, settings search — and the Material components it needs. Mihon
   does not publish these as a library, which is why they are vendored.
 
   Every one of the 29 has an identified upstream counterpart. The per-file mapping
-  is in shared/src/commonMain/kotlin/com/mihon/readme.md.
+  is in core/mihon/src/commonMain/kotlin/com/mihon/readme.md.
 
   THESE FILES HAVE BEEN MODIFIED
 
