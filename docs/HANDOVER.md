@@ -44,9 +44,9 @@ The `:shared` restructure (`KMP-06`) is two-thirds done:
 | `KMP-06a` | Mihon attribution: one `NOTICE`, per-file upstream mapping | #39 | — |
 | `KMP-06c` | `:core:ui`: first-party Compose layer, `Res`, the `com.lagradost.cloudstream4` namespace | #41 | Owner, locally (three commands, runtime resources). `$stable` scan on 2026-10-14: 9 of 9 kept, no `getstatic` owner moved |
 | `INF-07` | `:app:checkExtensionApi` red on master since #38; `RunTimeSecondsKt` added to the dump | #43 | Locally; the regenerated dump is byte-identical |
-| `KMP-06b` | `:core:mihon`: the vendored tree, 30 files, 100% renames | #42 | Locally (three commands, `:desktopApp`, `$stable` 18→18 jvm, 29→29 android, `:app` 885→885). **CI green.** Settings screens not opened on a device: the phone was locked |
+| `KMP-06b` | `:core:mihon`: the vendored tree, 30 files, 100% renames | #42 | Locally (three commands, `:desktopApp`, `$stable` 18→18 jvm, 29→29 android, `:app` 885→885). **CI green.** Settings screens **opened and verified on an emulator**, 2026-10-14 — see `docs/tasks/kmp.md` |
 | `KMP-06d` | step 1: `:desktopApp` → `:core:mihon`; `:shared` left with one dependent | #45 | Locally (three commands), `:desktopApp` bytecode byte-identical. Found: 7 libraries resolve lower on `:desktopApp:jvmRuntimeClasspath` once `:shared`'s `:library` edge goes; recorded, not changed |
-| `KMP-06d` | step 2: `:core:settings` takes the last five files; **`:shared` deleted** | #46 | Locally (three commands), dump byte-identical, `$stable` scan clean (below). Settings screens not opened on a device |
+| `KMP-06d` | step 2: `:core:settings` takes the last five files; **`:shared` deleted** | #46 | Locally (three commands), dump byte-identical, `$stable` scan clean (below). Settings screens **opened and verified on an emulator**, 2026-10-14 |
 
 **How #43 landed:** #43's own CI never went green. In every run, the runner killed the
 `Check classes.jar ABI` step partway through the release dex build: cancelled, or exit 143 (SIGTERM).
