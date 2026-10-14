@@ -111,7 +111,7 @@ Nothing below can be settled by reading the code.
 
 | | | |
 |---|---|---|
-| `DEC-01` | **GitHub Actions billing** | Blocks everything. **38 PRs have merged and not one has been verified by CI** — every "green" in every PR body is a local run. This is the largest single gap in the project. |
+| `DEC-01` | **GitHub Actions billing** | **Runs again since 2026-10-07** (first green run: #42); see `INF-01` for the one runner loss. Before that it blocked everything. **38 PRs have merged and not one has been verified by CI** — every "green" in every PR body is a local run. This is the largest single gap in the project. |
 | `DEC-02` | **Product Sans** | Now measured: 24 files, two byte-identical sets of 12, genuine Google Product Sans v1.009 (`GOOG` vendor ID, empty copyright field, licence URL pointing at a page that does not exist). Eight other proprietary fonts sit beside them in the subtitle picker. Dormant while private; wakes on first distribution. Blocks `DS-05`. |
 | `INF-06` | **Test toolchain** | Pin it, or re-measure the `ar` table — the two cannot both be satisfied, because CI's JDK 17 still says `٠`. |
 | `BUG-08` | **`addDate` contract** | Are offset-less extension dates UTC (what happens) or device-local (what the KDoc says)? Changing it moves what users see for every provider returning a bare date-time. |

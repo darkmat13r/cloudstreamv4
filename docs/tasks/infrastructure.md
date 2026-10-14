@@ -4,7 +4,21 @@
 
 ## INF-01 — CI does not run · **the single largest gap**
 
-**Status:** blocked by `DEC-01`
+**Status:** unblocked 2026-10-07 — CI runs (see `DEC-01`). Open: make it reliable.
+
+First runs, 2026-10-07, all on `pull_request.yml`'s single `build` job:
+
+| PR / head | Result |
+|---|---|
+| #42 `b8c26d5` | died in 51 s resolving `build-logic`'s classpath: Maven Central "could not find" `gson:2.11.0`, `kotlinx-coroutines-core-jvm:1.8.0` and others that exist. Transient; not re-measured |
+| #42 `bce90a8` | **green**, 42 min — the repo's first full CI pass |
+| #43 `a3314cc` | **runner lost** after 36 min, during `:app:mergeDexStableRelease` ("The runner has received a shutdown signal"). Not a task failure. Suspected memory: the job runs at `gradle.properties`' `-Xmx4G`, which `docs/HANDOVER.md` already says OOMs D8 in a full run. Re-run once |
+
+If runner loss recurs, the fix is a workflow change (a larger `-Xmx` via `GRADLE_OPTS` or
+`-Dorg.gradle.jvmargs`, or `lint` in its own job), as its own PR.
+
+The text below is the state before 2026-10-07.
+
 
 GitHub Actions fails account-wide in ~2s with a billing error. **No pull request in this series has
 ever been exercised by CI.** Everything claimed green was run locally, on one machine, with one JDK

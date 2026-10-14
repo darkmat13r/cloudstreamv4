@@ -45,7 +45,9 @@ nobody remembers why, and the entry is the only place that knows.
 
 ## Standing constraint on everything here
 
-**No CI has ever run on this repository's pull requests.** GitHub Actions fails account-wide in
+**Update 2026-10-07: CI now runs** (`DEC-01`, `INF-01`); the first full green run is on #42. The
+paragraph below describes every PR before that. **Before 2026-10-07, no CI had ever run on this
+repository's pull requests.** GitHub Actions fails account-wide in
 roughly two seconds with a billing error. Every check quoted in every PR body in this series was
 run locally, on one machine, with one JDK, against one or two attached devices. Treat every green
 tick accordingly, and see `INF-01`.

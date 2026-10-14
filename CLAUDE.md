@@ -43,8 +43,9 @@ restating them. Where they disagree, they win, and this file is the one to fix.
 
 ## Running checks locally
 
-CI has never run on this repository (`DEC-01`). Every check is a local run, so run all three of the
-commands in `docs/HANDOVER.md` and say in the PR that they were local. The traps:
+CI runs on pull requests since 2026-10-07 (`DEC-01`, `INF-01`); before that, every "green" was a
+local run. Still run all three commands in `docs/HANDOVER.md` locally before pushing, and say in
+the PR which results were local and which were CI. The traps:
 
 - `TZ=UTC` — `BUG-08`, `EpisodeDateTest` fails off-UTC.
 - `JAVA_HOME=<Temurin 17>` — `INF-06`, `:core:*` tests run on the daemon JVM, and on 21+
