@@ -978,6 +978,139 @@ the `___DO_NOT_CALL_FROM_A_PLUGIN_` entry points, so it is not something to star
 
 ---
 
+## KMP-12 — `:feature:search`: the first feature vertical's state machine
+
+**Status:** **step 1 of 5 done** 2026-10-15 (plan row 18, Phase 7 vertical 1) · screens, glue
+fragment and the nav repoint are **not** started · `:app`'s search path is untouched
+
+`:feature:search` holds the contracts, the provider seam and the MVI state machine. Phase 7's recipe
+is five steps — state machine, screens, glue `Fragment`, repoint one nav node, delete the old
+fragment a release later — and **this is step 1 only**. `SearchFragment` and `:app`'s
+`SearchViewModel` are still the live path and are unchanged.
+
+| File | Holds |
+|---|---|
+| `SearchContracts.kt` | `SearchResultItem`, `SearchResultId`, `SearchSource`, `SearchOutcome` |
+| `SearchMvi.kt` | `SearchState`, `SearchAction`, `SearchEffect`, `SearchPrompts` |
+| `SearchViewModel.kt` | the state machine |
+
+### Row 18's stated blocker does not apply, and that was the point
+
+The plan annotates row 18 *"ViewModel needs Track L for iOS (rule 4)"*, because the old
+`SearchViewModel` consumes `SearchResponse` from `:library`. A `commonMain` edge to `:library` would
+force this module into `IOS_CANARY_EXEMPT`, and that list "may only shrink".
+
+`SearchResultItem` restates the fields the UI reads and `SearchSource` is the seam `:app` implements
+over `APIRepository`, so **there is no `:library` edge, no exemption, and no Track L dependency.**
+Mapping `SearchResponse` happens in `:app`, beside the types it belongs to — the same split `KMP-07`
+used for the player and `KMP-11` for the plugin index.
+
+**Third time this move has paid:** `KMP-05` chose a source set to avoid the edge, `KMP-11` chose a
+field type, and here it removes a blocker the plan had written down. Worth treating as the default
+question for any new module: *what would it take for this not to touch `:library`?*
+
+### `SearchOutcome.Partial` is the defect this vertical exists to fix
+
+`.claude/rules/mvi-viewmodel.md` cites the app's most common defect: a failure that is a `Toast`,
+with one branch reading `// No user indication it failed :( // TODO`. Search is where that bites
+hardest, because searching twelve providers and having three fail **is the normal case**.
+
+So `SearchSource` returns a `SearchOutcome` rather than throwing — a signature that can only succeed
+or throw has nowhere to put "9 of 12 answered" — and `Partial` carries the count plus a
+machine-readable `detail`. The ViewModel maps it to `UiState.Partial`, which keeps the results on
+screen and puts the shortfall in a chip-row banner, instead of replacing usable content with an error
+band.
+
+### `SearchPrompts`: the seam between two rules that disagree
+
+`:core:designsystem`'s `StatePrompt` / `FailureNotice` hold **already-resolved** display strings and a
+required `StateAction` lambda, and that module "never holds display strings". But the migration plan
+says a ViewModel exposes `UiString`, **never** a resource id — and a ViewModel resolving strings
+itself would need a platform string loader in `commonMain`.
+
+`SearchPrompts` is injected, which satisfies both: state is `UiState` as the MVI rule requires, and
+the copy is resolved by whoever constructs the ViewModel (the Android screen from `stringResource`, a
+test from literals). **Flagged for review** — it is the first vertical, so this pattern will be
+copied six more times, and it is cheaper to disagree with it now.
+
+### Reported, not changed: `DebounceQuery` cannot be driven by virtual time
+
+`:core:ui`'s `DebounceQuery` hardcodes `.flowOn(Dispatchers.Default)` and a 200 ms `debounce(...)`;
+neither is injectable. A `TestDispatcher`'s `advanceTimeBy` therefore does **not** move it — the
+pipeline runs on a real dispatcher against the real clock.
+
+Found the hard way: the first draft of `SearchViewModelTest` used `StandardTestDispatcher` +
+`advanceTimeBy(1_000)` and the debounced search never fired, which reads exactly like a product bug
+and is not one. The suite now waits ~600 ms of real time instead, and says so.
+
+```
+Found: `DebounceQuery` hardcodes Dispatchers.Default and 200.milliseconds
+       (core/ui/src/commonMain/kotlin/com/lagradost/cloudstream4/compose/Viewmodel.kt)
+Suggest: take a CoroutineDispatcher and a Duration as constructor parameters, defaulted to today's
+         values, so a test can drive it with virtual time
+Why: `.claude/rules/mvi-viewmodel.md` says "inject dispatchers rather than hardcoding ... so the
+     ViewModel stays testable"; this helper is the one thing on the search path that cannot be
+```
+
+Not changed, per `.claude/rules/no-unsolicited-changes.md` — it is existing `:core:ui` code on the
+path of the seven migrated settings screens. One line of each test's cost until someone decides.
+
+Related: `DefaultEffectContainer` uses an **unbuffered** `Channel`, so a collector that attaches after
+an effect is posted misses it. Correct for one-shot events and not a defect; worth knowing because it
+makes test ordering load-bearing.
+
+### Verified
+
+**7 tests, 0 failures**: starts idle rather than `Loading` (nothing is in flight, so a skeleton would
+be a lie); the query echoes into state immediately; four keystrokes produce **one** quick search and
+**zero** full searches; `Submit` runs the full search without waiting; each of the four
+`SearchOutcome` cases becomes its own `UiState` — with `Partial` keeping its content and its
+`9 of 12 answered` notice, and an empty-but-successful search becoming `Empty` rather than `Error`;
+clearing returns to idle without searching; activating a result posts an effect rather than
+navigating.
+
+`app/api/classes-jar.api` unchanged — nothing merges into the jar.
+
+**The iOS canary earned its place as a gate on this change.** The first run came back `canary=1`:
+
+```
+e: .../SearchContracts.kt:60:2 Unresolved reference 'JvmInline'
+> Task :feature:search:compileKotlinIosSimulatorArm64 FAILED
+> Task :feature:search:compileKotlinIosArm64 FAILED
+```
+
+`@JvmInline` on `SearchResultId` compiles on JVM and Android and **not** on Kotlin/Native, because
+`kotlin.jvm.*` is a default import only on JVM. The fix is one named import — and this repo had
+already written that down, in `media/model/.../CaptionStyle.kt`:
+
+```kotlin
+// kotlin.jvm.* is a default import only on JVM; Kotlin/Native needs it named.
+import kotlin.jvm.JvmInline
+```
+
+Two things worth keeping from it. **A `value class` in commonMain needs that import**, and nothing
+but the canary says so — `abi`, `check` and `extapi` were all green on the broken tree. And a module
+only "joins the canary" once `iosCanary` has actually run for it: the first run's module list had 13
+entries and `:feature:search` was **not** among them, because its compile had failed rather than been
+skipped. Counting the list is not the same as finding your own module in it.
+
+After the import, the second run is `abi=0 check=0 extapi=0 canary=0`, the list has **14** entries and
+`:feature:search:iosCanary` is one of them. **The canary is 14 of 14** — up from 12 at the start of the
+day, having gained `:feature:extensions` (`KMP-11`) and now this.
+
+### Next, in order
+
+- [ ] Screens per form factor in commonMain (recipe step 2), reusable parts to `:core:designsystem`
+- [ ] `SearchSource` implementation in `:app` over `APIRepository`, mapping `SearchResponse` →
+      `SearchResultItem`, and a `SearchPrompts` from `stringResource`
+- [ ] Glue `Fragment` (step 3) and **one** nav node repointed (step 4); the old fragment stays as the
+      rollback lever
+- [ ] Delete the old fragment and layouts a release later (step 5) — that removes
+      `com.lagradost.cloudstream3` classes from `classes.jar`, so it needs the javap tripwire output
+      and owner sign-off
+
+---
+
 ## KMP-08 — Track L: `:library` iOS surgery
 
 **Status:** blocked by `DEC-04`
