@@ -1,4 +1,4 @@
-# Handover — 2026-10-14
+# Handover — 2026-10-15
 
 This file orients a new session. It records what is done, what is open, what waits on the owner, and
 the local facts that cost an hour each when someone rediscovers them.
@@ -14,81 +14,83 @@ a local checkout, or a handover pasted into a prompt, does not know about. On 20
 brief said master was `f29ff63a` and that `KMP-06b` was next. In fact `06c` had already merged, and
 `06b` and its follow-up were open PRs. Two parallel agents were started on work that already existed.
 
+This file is the second-most-likely thing in the repository to be out of date, after a pasted brief.
+It was itself four days stale on 2026-10-15 — still naming `493e1273` as master with three PRs open,
+when twenty-three more had merged since. **Trust `git log` over this heading.**
+
 ---
 
 ## Where things stand
 
-Master is at `493e1273` (#47). #45 and #46 finished `KMP-06d`, so `:shared` no longer exists; #47
-recorded `INF-09`.
+Master is at `618438b9` (#74). **There are no open pull requests.** Everything from #45 to #74 has
+merged; `:shared` is gone (`KMP-06`, done), the five B-series module carves are done (`KMP-01`,
+`KMP-03`, `KMP-04`, `KMP-05`; `KMP-02` was reviewed and deliberately **not** moved), and **Phase 7,
+the feature verticals, has started.**
 
-**Three pull requests are open, in one stack:** #48 (`KMP-07`, `:media:model`) ← #49 (`KMP-10`
-step 1, `:core:ui`'s iOS actual) ← #50 (`KMP-10` step 2, `:core:mihon`'s `String.format`). Merging
-#50 takes all three; review from the bottom.
+**CI is switched off, by the owner's decision.** See the next section before you look for a tick.
 
-**The iOS canary is green for the first time, 12 of 12 modules**, as of #50. It had been red since
-#41 and nobody noticed, because `INF-02` records that it "is run by hand" and by hand nobody ran
-it. It takes about 4 seconds warm, which is the best argument yet for giving it a CI job:
+**The iOS canary is 14 of 14 modules**, up from 12 on 2026-10-14. It grew twice in one day, both
+times because a new module depends on nothing that is not already multiplatform:
+`:feature:extensions` (`KMP-11`) took it to 13 and `:feature:search` (`KMP-12`) to 14. It takes
+about 4 seconds warm:
 
     ./gradlew iosCanary -Pcloudstream.iosCanary=true --continue
 
-**Neither #45 nor #46 has a green CI run**, and that is worth knowing before you read the ticks.
-#46's `Artifact Build` was cancelled by hand at the `Check classes.jar ABI` step; on #47, the run
-that *did* get that far passed `Ensure binary compatibility` and `Run Gradle` before being
-cancelled at the same step. Every result quoted in those PRs is a **local** run of the three
-commands below (`INF-01`, and `INF-08` for why that step is the one people cancel).
+**Phase 7 is two verticals in, both at step 1 of 5** — state machine and contracts, no screens, no
+`:app` wiring, nothing repointed:
 
-The `:shared` restructure (`KMP-06`) is two-thirds done:
-
-| | What | PR | Verified |
+| | Module | Done | Not done |
 |---|---|---|---|
-| `KMP-06a` | Mihon attribution: one `NOTICE`, per-file upstream mapping | #39 | — |
-| `KMP-06c` | `:core:ui`: first-party Compose layer, `Res`, the `com.lagradost.cloudstream4` namespace | #41 | Owner, locally (three commands, runtime resources). `$stable` scan on 2026-10-14: 9 of 9 kept, no `getstatic` owner moved |
-| `INF-07` | `:app:checkExtensionApi` red on master since #38; `RunTimeSecondsKt` added to the dump | #43 | Locally; the regenerated dump is byte-identical |
-| `KMP-06b` | `:core:mihon`: the vendored tree, 30 files, 100% renames | #42 | Locally (three commands, `:desktopApp`, `$stable` 18→18 jvm, 29→29 android, `:app` 885→885). **CI green.** Settings screens **opened and verified on an emulator**, 2026-10-14 — see `docs/tasks/kmp.md` |
-| `KMP-06d` | step 1: `:desktopApp` → `:core:mihon`; `:shared` left with one dependent | #45 | Locally (three commands), `:desktopApp` bytecode byte-identical. Found: 7 libraries resolve lower on `:desktopApp:jvmRuntimeClasspath` once `:shared`'s `:library` edge goes; recorded, not changed |
-| `KMP-06d` | step 2: `:core:settings` takes the last five files; **`:shared` deleted** | #46 | Locally (three commands), dump byte-identical, `$stable` scan clean (below). Settings screens **opened and verified on an emulator**, 2026-10-14 |
+| `KMP-11` (plan row 17) | `:feature:extensions` | `ExtensionRepositoryIndex`, `ExtensionStatus`, `ExtensionListing`, `InstalledExtension`, `ExtensionState`, `ExtensionVerification`, the `ExtensionRuntime` seam. commonMain only, 4 tests | Adapting `:app`'s `PluginManager` (~900 lines, holds `Context`, notification channels, OAT cleanup, `___DO_NOT_CALL_FROM_A_PLUGIN_` entry points) to the seam. **Needs the owner's explicit go-ahead** — see below |
+| `KMP-12` (plan row 18) | `:feature:search` | `SearchResultItem`, `SearchResultId`, `SearchSource`, `SearchOutcome`, the MVI triple and `SearchViewModel` by delegation, 7 tests | Steps 2–5: screens per form factor, the `:app`-side `SearchSource` over `APIRepository`, the glue fragment plus one nav node, and deleting the old fragment a release later |
 
-**How #43 landed:** #43's own CI never went green. In every run, the runner killed the
-`Check classes.jar ABI` step partway through the release dex build: cancelled, or exit 143 (SIGTERM).
-No check ever reported. #42 contained #43's head commit and passed every step on that tree, so #42
-was merged, which merged #43 with it. The evidence is in a comment on #42.
+`:app`'s `SearchFragment` and `SearchViewModel` are untouched and still the live search path.
 
-**Left as is, by the owner's choice:** `:core:mihon` compiles against `androidx.core:core-ktx` 1.2.0,
-pulled in through `preference-ktx`, where `:shared` resolved 1.18.0. Two extra null-check intrinsics
-are inlined, which is harmless at runtime because the app ships 1.18.0. The detail is in
-`docs/tasks/kmp.md`, under `KMP-06b`.
+---
 
-**Two findings from the 06b scan, both recorded in `kmp.md`:**
+## CI does not run, and that is the decision
 
-- `app/build/classes.jar` contains **no** `com/mihon/**` class. The 17 `SearchableSettings` lines in
-  `classes-jar.api` are references from `:app`'s settings classes (supertypes, signatures), not
-  the class itself. `makeJar` merges only modules with a `src/*/kotlin/com/lagradost/cloudstream3`
-  directory, so the FQN must stay stable, but `:core:mihon` needs no sentinels.
-- Compose mangles internal-member and `ComposableSingletons` accessor names with the Kotlin module
-  name (`$CloudStream_shared` → `$CloudStream_core_mihon`). Every module move renames them. None of
-  them is in `classes-jar.api`, so expect it and don't report it as a finding.
+**`DEC-01` was answered by the owner on 2026-10-15: the GitHub Actions billing failure will not be
+fixed, and CI stays off.** All five workflows are `disabled_manually`:
 
-### CI: runs again, with one unreliable step
+    .github/workflows/pull_request.yml        # was the merge gate
+    .github/workflows/instrumented-tests.yml
+    .github/workflows/prerelease.yml          # "Pre-release"
+    .github/workflows/build_to_archive.yml    # "Archive build"
+    .github/workflows/generate_dokka.yml      # "Dokka"
 
-GitHub Actions has run on pull requests since 2026-10-07 (`DEC-01`, `INF-01`). The PR workflow
-(`.github/workflows/pull_request.yml`) mirrors the three local commands.
+**Do not re-enable them.** `pull_request` fires on every push to a PR branch and
+`instrumented-tests` fires on every PR *comment*, so leaving any of them on burns runner minutes
+the account cannot pay for. Verify with
+`gh api repos/darkmat13r/cloudstreamv4/actions/workflows --jq '.workflows[] | "\(.name): \(.state)"'`.
 
-**The `Check classes.jar ABI` step sometimes dies on the runner.** It builds every release variant,
-and the release dex is where the runner kills it, with no Gradle error. **Read a red run's log before
-you believe it**: `gh run view <id> --log-failed`. If the last line is `The operation was canceled`
-or `exit code 143` and no `What went wrong:` precedes it, no check ran. It is recorded as `INF-08`, which
-lists the runs and the options. The fix is the owner's call, because it changes a CI gate.
+**The four local gates below are the agreed verification, not a stopgap.** `pull_request.yml` was
+the merge gate, so what replaces it is the discipline: every PR body names its own `abi` / `check` /
+`extapi` / `canary` exit codes, and a PR with no tick is expected rather than a problem to chase.
+#48–#51 are the counterexample worth remembering — CI had been disabled by hand on 2026-10-14 and
+they merged with no checks at all, which nobody noticed until the next day.
 
-Before the 2026-10-07 change, 38 PRs merged with no CI at all. Treat those PRs' "green" as local only.
+What the billing failure looked like, for recognition: a run that ends in **~2 seconds with zero
+steps** and the annotation *"The job was not started because recent account payments have failed or
+your spending limit needs to be increased."* No check ran. A red tick of that shape says nothing
+about the code, and re-running it is pointless.
 
-**Master's commit status is permanently red, and it is not about the code** (`INF-09`, measured
-2026-10-14). `Pre-release`, `Archive build` and `Dokka` fail on every push to master — 14 of 14 runs
-since 2026-10-03, 0 successful — in 10–15 seconds, at their first step: each mints a token for an
-upstream repository through `tibdex/github-app-token` with `app_id: ${{ secrets.GH_APP_ID }}`, which
-this fork does not set (`Error: Input required and not supplied: app_id`). `Artifact Build`, the
-workflow that gates merges, mints no token and is unaffected. The problem is the masking: a
-genuinely broken master would look exactly like today. Fixing it changes CI gates, so it is the
-owner's call.
+CI did run from **2026-10-07 to 2026-10-15** (`INF-01`, now closed; first full green run on #42).
+Before 2026-10-07 it had never run on this repository's pull requests at all — 38 PRs merged with
+none. Outside that one-week window, **every check quoted in a PR body is a local run.**
+
+`INF-08` — the runner killing the `Check classes.jar ABI` step at random — is **parked**, not solved:
+it only bites when CI runs. Its evidence is worth keeping for whenever that changes, and it carries
+four diagnostic traps that cost real time (`--log-failed` prints nothing for a cancelled variant;
+a killed job's log is **not retained at all**; the jobs endpoint returns only the latest attempt, so
+re-run PRs look as though they never failed; read step conclusions with
+`gh run view <id> --json jobs`).
+
+`INF-09` is the other half of the old red noise, and it is now **confirmed working**: `Pre-release`,
+`Archive build` and `Dokka` used to fail on every push to master because each mints a token for an
+upstream repository with an `app_id` this fork does not set. #52 added a `github.repository` gate,
+and the last three runs before the shutdown all came back **`skipped` with zero steps** — no runner
+consumed, master no longer permanently red.
 
 ---
 
@@ -129,18 +131,28 @@ Three mechanisms are easy to trip over:
   one; if a change moves it, that is a real behaviour change and wants explaining, not a blind
   baseline update.
 
+**The number symbols differ per platform, and that is not a defect** (`I18N-06`, measured on a
+device 2026-10-15). Of 12 pinned locales, 9 agree between Temurin 17 and Android API 36 and 3 do
+not: `fr` groups with `U+202F` on Android and `U+0020` on the JVM, `ru` with `U+00A0` against
+`U+0020`, and `ar` uses ASCII digits on Android where the JVM still gives `U+0660 ٠`. Each platform
+matches its own `String.format`; Android's `java.text` is ICU-backed and already past the CLDR 46
+change the JDK takes in 24. The suite pins **both** tables. Nothing consumes `UiStringFormat` yet,
+so no behaviour has changed — but once `I18N-01` lands, the same locale will format differently on
+desktop JVM and Android.
+
 ---
 
-## Local environment — three traps, all pre-existing
+## Local environment — the gates, and three traps
 
-None of these are caused by recent work; all three cost real time to find.
+None of the traps are caused by recent work; all three cost real time to find.
 
 **1. Pin the JDK.** `INF-06`. `jdkToolchain = "17"` is consumed only by `:app`, so every `:core:*`
 module compiles and tests on whatever JVM started the Gradle daemon. On a JDK 24+ daemon, two
 `LocaleNumberParityTest` cases fail on clean master, because JDK 24's CLDR 46 moved bare `ar` from
 Arabic-Indic digits to ASCII. **It also guards the ABI baselines:** on JDK 21+ `checkKotlinAbi` fails
 on `SequencedCollection`'s `addFirst`/`addLast`/`removeFirst`/`removeLast`, inherited by every `List`
-implementor; the committed dumps were written on 17. Never run `updateKotlinAbi` on 21+.
+implementor; the committed dumps were written on 17. Never run `updateKotlinAbi` on 21+, and never
+hand-write a dump line (`INF-07`).
 
     JAVA_HOME=/path/to/temurin-17.0.20.1
 
@@ -163,8 +175,15 @@ pre-fix tree — fails exactly the two cases `BUG-08` names.
 the `TZ` it was started with, so a client-side `TZ=…` can be silently ignored. If you ever need to
 pin a test JVM's zone, do it on the task:
 
-    // init script, applied with -I
-    allprojects { tasks.withType<Test>().configureEach { systemProperty("user.timezone", zone); environment("TZ", zone) } }
+    // init script, applied with -I <file> -PforceTz=<zone>
+    val zone = providers.gradleProperty("forceTz").get()
+    allprojects {
+        tasks.withType<Test>().configureEach {
+            systemProperty("user.timezone", zone)
+            environment("TZ", zone)
+            jvmArgs("-Duser.timezone=$zone")
+        }
+    }
 
 **3. Raise the heap.** `gradle.properties` sets `-Xmx4G`. A full `assemblePrereleaseDebug lint check`
 OOMs in D8 on a 48 GB machine. Pass it on the command line rather than editing the file:
@@ -173,19 +192,48 @@ OOMs in D8 on a 48 GB machine. Pass it on the command line rather than editing t
 
 **And in a worktree:** `-x :app:generateGitHash`, because `.git` is a file there, not a directory.
 
-Putting it together, the full local equivalent of CI:
+### The four gates
+
+These are what CI used to run, plus the canary CI never ran. **All four, every PR**, and name the
+exit codes in the PR body:
 
     T17=/path/to/temurin-17.0.20.1
-    JAVA_HOME="$T17" ./gradlew checkKotlinAbi -x :app:generateGitHash \
-      -Dorg.gradle.jvmargs="-Xmx14G -Dfile.encoding=UTF-8"
-    JAVA_HOME="$T17" ./gradlew assemblePrereleaseDebug lint check \
-      -Pcloudstream.strings.guards=fail -x :app:generateGitHash \
-      -Dorg.gradle.jvmargs="-Xmx14G -Dfile.encoding=UTF-8"
-    JAVA_HOME="$T17" ./gradlew :app:checkExtensionApi -x :app:generateGitHash \
-      -Dorg.gradle.jvmargs="-Xmx14G -Dfile.encoding=UTF-8"
+    G() { JAVA_HOME="$T17" ./gradlew -Dorg.gradle.jvmargs="-Xmx14G -Dfile.encoding=UTF-8" \
+            -x :app:generateGitHash "$@"; }
+
+    G checkKotlinAbi                                                      # 1  abi
+    G assemblePrereleaseDebug lint check -Pcloudstream.strings.guards=fail # 2  check
+    G :app:checkExtensionApi                                              # 3  extapi
+    G iosCanary -Pcloudstream.iosCanary=true                              # 4  canary
+
+Gate 3 is **not** part of `check`. Gate 4 is not either, and it is the only one that catches a
+Kotlin/Native break — on 2026-10-15 a `@JvmInline` with no import made `abi`, `check` and `extapi`
+all pass on a tree that did not compile for iOS at all. That is the best argument the four-gate
+discipline has.
 
 **A piped Gradle run reports the pipe's exit code, not Gradle's.** `./gradlew … | tail` exits 0 on a
-failed build. This produced a false "green" in this session. Redirect to a file and capture `$?`.
+failed build. This produced a false "green" once already. Redirect to a file and capture `$?`.
+
+**Run the gates serially.** Two concurrent `-Xmx14G` daemons thrash a 48 GB machine. The working
+method for parallel work is to fan the *edits* out to subagents, one git worktree each, with Gradle
+forbidden in the brief, then run every build serially.
+
+### Four traps that each cost a wrong claim
+
+- **`kotlin.jvm.*` is a default import only on JVM.** `@JvmInline`, `@JvmStatic` and friends need a
+  named import in `commonMain`, or `compileKotlinIosArm64` fails with `Unresolved reference`.
+  `media/model/.../CaptionStyle.kt` carries the comment and the import; copy it.
+- **A module "joins the canary" only once `iosCanary` has run for it.** A failing run still prints
+  the full task list with your module *absent*. Grep the log for your own module path; do not count
+  the list.
+- **Never state a gate result before the run's `status` file says `DONE`.** An early "the module
+  joins the canary" was published on 2026-10-15 and came back `canary=1`.
+- **`grep "foo\$bar"` in double quotes** makes `$` a mid-pattern regex anchor and silently matches
+  nothing. Costs a false "the entry is absent". Single-quote patterns containing `$`.
+
+`INF-05` has the rest, including: zsh does not word-split, so `$FLAGS` is one argument; and an
+up-to-date `check` reports the *previous* run's test XML — use `--rerun-tasks` and read the
+`timestamp`.
 
 ---
 
@@ -195,15 +243,56 @@ Nothing below can be settled by reading the code.
 
 | | | |
 |---|---|---|
-| `DEC-01` | **GitHub Actions billing** | **Resolved in practice: it has run since 2026-10-07.** The owner has not recorded what changed, so the entry stays open until they do. The ABI step is unreliable; see above. |
-| `DEC-02` | **Product Sans** | Now measured: 24 files, two byte-identical sets of 12, genuine Google Product Sans v1.009 (`GOOG` vendor ID, empty copyright field, licence URL pointing at a page that does not exist). Eight other proprietary fonts sit beside them in the subtitle picker. Dormant while private; wakes on first distribution. Blocks `DS-05`. |
-| `INF-06` | **Test toolchain** | Pin it, or re-measure the `ar` table — the two cannot both be satisfied, because CI's JDK 17 still says `٠`. |
-| `BUG-08` | **`addDate` contract** | Are offset-less extension dates UTC (what happens) or device-local (what the KDoc says)? Changing it moves what users see for every provider returning a bare date-time. |
-| `DEC-10` | **Screenshot testing** | Wait for a working plugin, or switch to Roborazzi. |
-| `DEC-12` | **The two `PreferenceStore`s** | `:core:mihon`'s and `:core:storage`'s have the same shape and both are live. Raised by `KMP-06d`; `:core:storage`'s Android and JVM implementations are unused until it is settled. |
-| `DEC-04` | **iOS extensions** | Unanswered. |
-| `BUG-09` | **PiP buttons: `value` vs `ordinal`** | `PlayerPipHelper` writes `CSPlayerEvent.value` into the `Intent`; `PlayerView` reads it back as `entries[int]`, i.e. by ordinal. They agree only because every case happens to have `value == ordinal`. The fix is a choice between two conventions, both written up in the entry. |
+| `DEC-02` | **Product Sans** | Measured: 24 files, two byte-identical sets of 12, genuine Google Product Sans v1.009 (`GOOG` vendor ID, empty copyright field, licence URL pointing at a page that does not exist). Eight other proprietary fonts sit beside them in the subtitle picker. Dormant while private; wakes on first distribution. Blocks `DS-05`. |
+| `DEC-04` | **iOS extensions** | Unanswered. Blocks `KMP-08` and the iOS half of plan row 18. |
+| `DEC-05` | **macOS runner, minimum iOS** | Blocks `INF-02`, which is **moot while CI stays off**. |
+| `DEC-06` | **Apple TV** | Blocking nothing today. |
+| `DEC-08` | **`APIRepository`'s one-line ABI delta** | Merged in `KMP-05` ahead of the sign-off the entry asks for. The delta is **one** synthetic out (`access$afterPluginsLoaded`, which existed only so the class's own `init` could reach a private method), one public method in. `DEC-08`'s own prediction — that `access$getAfterPluginsLoadedEvent$cp` would go — is **wrong**; it survives, because nine `:app` files still read the event. |
+| `DEC-09` | **`BaseComposeFragment` leaving `classes.jar`** | Blocks part of `KMP-06`. |
+| `DEC-10` | **Screenshot testing** | Wait for a working plugin, or switch to Roborazzi. Blocks `DS-04`. |
+| `DEC-11` | **Icon pack** | Not blocking, but accruing cost: 80 hand-exported `ic_baseline_*.xml` already. Blocks `DS-06`. See `.claude/rules/icons.md`. |
+| `INF-06` | **Test toolchain** | Pin it, or re-measure the `ar` table — the two cannot both be satisfied. Now also an Android/JVM divergence question, not only a JDK-version one (`I18N-06`). |
+| `INF-04` | **iOS test target** | Open; no iOS test target and no screenshot coverage. |
+| `DS-01`, `DS-03` | **Light scheme, accent role** | Design decisions, not code. Both block `DS-05`. |
+| `I18N-01`, `I18N-02` | **`UiString` adoption, hardcoded time units** | `I18N-02` touches a published ABI. |
+| `BUG-04`, `BUG-05`, `BUG-07` | **Characterised, deliberately not changed** | Each entry says why. |
+| `BUG-08` | **`addDate` contract** | The bug is fixed; the *contract* question is not. Are offset-less extension dates UTC (what happens) or device-local (what the KDoc says)? Changing it moves what users see for every provider returning a bare date-time. |
 | | **`MainAPI.kt:2549`** | Documents `Episode.runTime` as **seconds**; `EpisodeAdapter` treats it as **minutes**. One is wrong by 60×. Recorded in `BUG-01`, deliberately not resolved. |
+
+### New, and each one is a yes/no that unblocks work
+
+- **Row 17's second half.** Adapting `:app`'s `PluginManager` to `ExtensionRuntime`. It is ~900 lines
+  holding `Context`, an `Activity`, notification channels, OAT cleanup and published
+  extension-facing entry points, and the mapping of `Repository`/`SitePlugin`/`PluginData` happens
+  at the edge. The contracts are merged and cost nothing; this is the part that touches live code.
+- **`SearchPrompts` injection** (`KMP-12`). The design system's `StatePrompt`/`FailureNotice` hold
+  **already-resolved** strings and require a `StateAction` lambda, and `:core:designsystem` "never
+  holds display strings"; the plan says a ViewModel exposes `UiString`, never a resource id. Both
+  cannot hold, so the prompts are injected into the ViewModel. **This is the first vertical and the
+  pattern will be copied six more times** — worth agreeing before it is.
+- **`DebounceQuery` injectability.** `:core:ui`'s `DebounceQuery` hardcodes
+  `.flowOn(Dispatchers.Default)` and `200.milliseconds`, neither injectable, so `advanceTimeBy` on a
+  `TestDispatcher` does not move it and a debounce cannot be tested in virtual time. Reported, not
+  changed — it is existing code on the settings screens' path. `:feature:search`'s suite works
+  around it with a real ~600 ms wait.
+- **Lint severity for `TrustAllX509TrustManager`.** Android lint flags `SSLTrustManager.kt` on every
+  run as **Warning** — `TrustAllX509TrustManager` ×2, `CustomX509TrustManager` ×1 — and never
+  aborts. `BUG-10` deleted the process-wide trust-all that used it, but the class itself is
+  ABI-frozen at `classes-jar.api:28106` and stays. Promoting the severity needs an `<ignore path>`
+  for that class and changes the build gate, so it is yours.
+- **`androidx.test:runner` has no catalog alias.** `I18N-06`'s device test leans on
+  `libs.espresso.core`, which brings `runner` 1.6.1 in at compile scope (POM-verified). A proper
+  alias is a `gradle/libs.versions.toml` addition and needs approval
+  (`.claude/rules/dependency-security.md`). Robolectric is absent too.
+
+### Answered recently, with the reasoning in the entry
+
+| | | |
+|---|---|---|
+| `DEC-01` | **CI** | Answered 2026-10-15: the billing failure will not be fixed; CI stays off. Closed `INF-01`, parked `INF-08`, made `INF-02` moot. |
+| `DEC-07` | **`fcast/Packets.kt` placement** | **Dissolved** by measurement 2026-10-15. The whole cost of the move was `:core:common` gaining the serialization plugin and Jackson — and that cost came from `PlayMessage` alone, which is `@Serializable` and whose `write$Self$app` is published. Splitting the file leaves `PlayMessage` in `:app` and sends the other eight to `commonMain`: `:core:common` gains **nothing**. |
+| `DEC-12` | **The two `PreferenceStore`s** | Decided 2026-10-14: **keep both, add no alias.** |
+| `DEC-03` | **Distribution** | Answered 2026-09-18, with a live remainder in the entry. |
 
 ---
 
@@ -234,27 +323,43 @@ Three things that cost time to establish, so they are written down:
   first time, not because anything new depends on `:library`, and it lifts with `:core:model`'s on
   Track L.
 
+The `PreferenceStore` question `KMP-06d` raised is **`DEC-12`**, not `DEC-11` (which is the icon
+pack), and it was **decided on 2026-10-14: keep both, add no alias.**
+
 Two readmes moved rather than died: `shared/readme.md` is LagradOst's rationale for the whole
 Compose rewrite and is now `docs/compose-rewrite.md`. `shared/src/readme.md` was 9 lines of the
 Compose-Multiplatform template's source-set blurb and was deleted; #46 quotes it in full.
 
-### What is next
+---
 
-- **`DEC-11`** (new, below): consolidating the two `PreferenceStore` declarations. `:core:storage`
-  and `:core:mihon` each declare one with an identical shape. This is the one thing `KMP-06d` did
-  **not** settle, and it is an owner decision — `docs/tasks/kmp.md` `KMP-06d` costs each option.
-- `KMP-07`, the `:media:model` skeleton (contracts only, wants a design first).
-- `DS-07` (off-grid `Dp` in the Mihon tree) is unblocked by 06b, but it is low-priority and it
-  means editing vendored code.
-- `INF-08`, the runner killing CI's `Check classes.jar ABI` step, is still the owner's call.
+## What is next
 
-### Housekeeping the task files still owe
+The live queue is `docs/plans/kmp-migration.md` §7, "Next PRs, in order". As of #74 everything in
+rows 1–16 and 19–23 is done, and what is left is Phase 7 plus Track L.
 
-- `docs/tasks/i18n.md` says `I18N-03` is "in progress", but no open PR or branch was found for it.
-  Ask before treating it as abandoned.
-- ~~The `kmp.md` text credits the 06c file moves to `bdd98926`.~~ Already fixed: `kmp.md` says
-  "`git mv`'d in `f2e0e435`, not `bdd98926`". The 36 renames landed in `f2e0e435`, the "Recreate
-  CLAUDE.md" commit, as `git show -M --name-status` shows.
+**Row 18, `:feature:search`, in order** (Phase 7's five-step recipe, §7):
+
+1. ~~`State`/`Action`/`Effect` + ViewModel in commonMain~~ — done, `KMP-12`.
+2. **Screens per form factor in commonMain** (I4, §4.4 — TV, touch, desktop; no `android.*`,
+   `Context`, `Fragment`, `Bundle` or `R`), reusable parts to `:core:designsystem`.
+3. The `SearchSource` implementation in `:app` over `APIRepository`, mapping `SearchResponse` →
+   `SearchResultItem`, plus `SearchPrompts` built from `stringResource`.
+4. The glue `Fragment` in androidMain and **one** node repointed in `res/navigation/mobile_navigation.xml`.
+   The old fragment stays in `:app` as the rollback lever.
+5. Delete the old fragment and layouts a release later. That removes `com.lagradost.cloudstream3`
+   classes from `classes.jar`: list them with the javap tripwire output for owner sign-off.
+
+Steps 3 and 4 are the first ones that touch live `:app` code, so they want the owner's eye rather
+than an assumption.
+
+**Row 17, `:feature:extensions`:** the `PluginManager` adaptation, which needs the go-ahead above.
+
+**Also open:** `DS-07` (off-grid `Dp` in the vendored Mihon tree) is unblocked but low-priority and
+means editing vendored code; `KMP-08` / Track L is blocked on `DEC-04`.
+
+A finding from `KMP-11` that is **recorded and not acted on**: `:app` carries `fileHash` through the
+extension index and **never compares it**. `ExtensionVerification.Skipped` makes that absence
+expressible in the new contracts; the check itself was not added.
 
 There is also a kanban snapshot of every task. It is the owner's, private, and republished by hand:
 https://claude.ai/artifact/WPYftYL5U9yTvprLfcfjdQ
@@ -276,16 +381,40 @@ Both are documented at length in `docs/plans/kmp-migration.md`:
   of `check`, so run it separately. After an intended change, `:app:dumpExtensionApi` regenerates the
   dump; never hand-write a line (`INF-07`).
 
+**A five-point checklist that the B-series settled**, in the order the cost shows up:
+
+1. **Per class, not per file.** `KMP-04` moved 8 of 19 classes out of one file because exactly one
+   of them had a module-suffixed published member. Check each class; a file is not the unit.
+2. **Pick the source set before you pick the module.** `commonMain` is the goal, but a `:library`
+   edge there forces an `IOS_CANARY_EXEMPT` entry, and that list "may only shrink". `KMP-05` chose
+   `jvmCommonMain` and kept the canary whole, following `:core:network`'s precedent.
+3. **Field types are an edge too.** `KMP-11` kept `ExtensionListing.tvTypes` as `List<String>` — the
+   wire shape — rather than `List<TvType>`, for exactly that reason.
+4. **Record the arrivals.** A receiving `:core:*` module needs `:<module>:updateKotlinAbi` on
+   Temurin 17 in the same PR, or `checkKotlinAbi` fails on the new declarations. `KMP-04` learned
+   this as `abi=1`.
+5. **Add the sentinels.** A module whose classes land in the merged jar declares its binary names in
+   `cloudstream.extension-api-jar`.
+
+And a lesson about the task files themselves: **"blocked by `DEC-0x`" does not always mean "wait".**
+`DEC-07` says *"confirm in the PR, or name a different home"*; `DEC-08` says *"needs explicit
+sign-off in that PR"*. Both mean **build it and present the measured delta.** Three rows were idle
+for days on that misreading, and in each case the measurement either dissolved the question
+(`DEC-07`) or shrank it to one line (`DEC-08`). Row 18's stated blocker — "ViewModel needs Track L
+for iOS (rule 4)" — turned out not to apply at all.
+
 ---
 
 ## How the work has gone, for whatever that is worth
 
 Measure rather than reason. Nearly every wrong claim in this project's history was one a plausible
 argument supported and nobody executed: the `dur * 60` overflow argued unreachable, the
-"locale-blind" notification, the ABI dump that supposedly did not exist, and in this session a
-`BUG-01` entry describing a defect that had already been fixed.
+"locale-blind" notification, the ABI dump that supposedly did not exist, a `BUG-01` entry describing
+a defect that had already been fixed, and — on 2026-10-15 — a `BUG-10` option described as "strictly
+better" that `javap` showed does not exist, because `DefaultHttpDataSource.Factory` has nine setters
+and none of them mentions SSL.
 
-Three of this session's own measurements were wrong on the first pass and corrected on the second:
+Three of one session's own measurements were wrong on the first pass and corrected on the second:
 a regex that counted commented-out `<string>` lines as live keys (reported 27 removed, actually 0);
 a regex that missed `formatted="true" name="…"` because the attributes were reversed (reported 26
 spurious additions); and a NOTICE draft claiming the vendored changes were "substantial rather than
@@ -293,8 +422,21 @@ cosmetic" when three files differ by the `package` line alone. Each was caught b
 thinking harder. The habit that catches them is cheap: re-run the measurement a second way before
 writing the number down.
 
+**The largest single retraction so far was a sampling artefact**, and it is worth knowing the shape.
+`INF-08`'s entry claimed CI's failures "split perfectly by content" — 5 of 5 trivial PRs died, 7 of 7
+real ones passed — which is an *inversion* of the obvious hypothesis and was quoted as a finding.
+It was wrong: `gh api .../runs/<id>/jobs` returns only the **latest attempt**, so every re-run PR
+looked as though it had never failed. Read per attempt (19 runs, 22 attempts) it is 10 success / 8
+terminated on attempt 1, a real-code PR died and a docs-only PR passed first time. An API that
+quietly returns a filtered view produces confident numbers from a biased sample.
+
 On 2026-10-14 the same habit was applied to subagents. Two parallel verification agents each ran
 in their own git worktree. Their headline numbers (exit codes, renames, the jar contents) were
 re-checked by hand before anything was pushed. One of their claims, that the 06c moves were in
 `f2e0e435`, sounded wrong and turned out to be right. Give parallel agents **separate scratch
 subdirectories**. Two agents sharing one scratchpad overwrote each other's runner script mid-run.
+
+**More than one session works in `/Volumes/Projects/CloudStream/app` at a time.** Stage explicit
+paths; never `git add -A` or `git commit -a` there. A `git add -A` on 2026-10-14 swept another
+session's uncommitted `design/` folder into a PR, and that session then moved HEAD out from under
+this one mid-task. Work in a `git worktree` when another session is active.
