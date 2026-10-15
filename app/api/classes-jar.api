@@ -24779,7 +24779,6 @@ public final class com/lagradost/cloudstream3/ui/APIRepository : java/lang/Objec
 	public static final field CACHE_SIZE I
 	public static final field Companion Lcom/lagradost/cloudstream3/ui/APIRepository$Companion;
 	public fun <init> (Lcom/lagradost/cloudstream3/MainAPI;)V
-	public static final synthetic fun access$afterPluginsLoaded (Lcom/lagradost/cloudstream3/ui/APIRepository;Z)V
 	public static final synthetic fun access$getCache$cp ()Lcom/lagradost/cloudstream3/utils/AtomicMutableList;
 	public static final synthetic fun access$getCacheIndex$cp ()I
 	public static final synthetic fun access$getDubStatusActive$cp ()Ljava/util/HashSet;
@@ -24812,6 +24811,7 @@ public final static class com/lagradost/cloudstream3/ui/APIRepository$Companion 
 	public final fun getRandomApi ()Lcom/lagradost/cloudstream3/MainAPI;
 	public final fun getTimeout (Ljava/lang/Long;)J
 	public final fun isInvalidData (Ljava/lang/String;)Z
+	public final fun onPluginsLoaded (Z)V
 	public final fun setDubStatusActive (Ljava/util/HashSet;)V
 }
 

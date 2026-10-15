@@ -200,13 +200,69 @@ No `PacketsKt` facade exists, so the eight pure classes could go to commonMain i
 
 ## KMP-05 — B8: `APIRepository` → `:core:data`
 
-**Status:** blocked by `DEC-08`
+**Status:** done 2026-10-15, pending the sign-off `DEC-08` asks for · **the measured ABI delta is one
+synthetic accessor, and it is not the one `DEC-08` named**
 
-After `KMP-01`. Inverts `MainActivity.afterPluginsLoadedEvent` in the same PR, which **removes a
-public synthetic accessor from the published jar**.
+`APIRepository` is in `core/data/src/jvmCommonMain`. The event subscription is inverted:
+`:app`'s `CloudStreamApp.onCreate` subscribes `APIRepository.Companion::onPluginsLoaded` once.
 
-- [ ] Confirm the exact removed entries and list them in the PR body
-- [ ] Get sign-off in that PR, not before
+### The exact delta, which is what `DEC-08` asked to see
+
+```
+- public static final synthetic fun access$afterPluginsLoaded (Lcom/lagradost/cloudstream3/ui/APIRepository;Z)V
++ public final fun onPluginsLoaded (Z)V
+```
+
+**One removal, one addition.** Nothing else in `app/api/classes-jar.api` moved.
+
+**`DEC-08` predicted the wrong entry.** It said the move "removes
+`access$getAfterPluginsLoadedEvent$cp` from the published extension jar". **That entry survives** —
+measured, still present at `MainActivity`'s line in the dump — because
+`MainActivity.Companion.getAfterPluginsLoadedEvent()` still reads the outer class's static backing
+field, and nine other `:app` files still use the event. The move never touched it.
+
+**Why the entry that does go is benign.** `access$afterPluginsLoaded` is a compiler-generated
+accessor that existed for one reason: so the class's own `init` block could take a callable reference
+to a **private instance method**. Kotlin code cannot reference an `access$…` synthetic at all — it is
+not in the Kotlin-visible surface — so only hand-written JVM bytecode or reflection could have called
+it, and doing so would have been invoking a private method through the back door. It is an artefact of
+an implementation detail, not API anyone could depend on deliberately.
+
+That is a much weaker deletion than the entry anticipated. The sign-off question is still the owner's,
+but it is now about this one line.
+
+### Placement: `jvmCommonMain`, not `commonMain` — and why that matters
+
+`APIRepository` needs `:library` (`MainAPI`, `Resource`, `safeApiCall`, `logError`, `atomicListOf` are
+all there). Putting it in `commonMain` would add `:library` to `:core:data`'s commonMain, and plan
+§4.1 rule 4 then forces the module into `IOS_CANARY_EXEMPT` — a list `cloudstream.kmp.library`'s KDoc
+says **"may only shrink"**. It would have dropped the canary from 12 modules to 11, weeks after
+`KMP-10` got it to 12/12 for the first time.
+
+So `:library` and coroutines are declared on **`jvmCommonMain`**, exactly as `:core:network` does for
+`DdosGuardKiller`. `:core:data`'s commonMain keeps `DataStore` / `DataStoreHelper` and stays pure, the
+module keeps its iOS targets, and **the canary stays 12/12**. `DEC-08` and this entry both missed this
+cost; it is the part that actually constrained the design.
+
+### A behaviour change, deliberately
+
+`afterPluginsLoaded` was a `private fun` that **every instance** subscribed from its own `init`, and
+nothing ever unsubscribed. `cache` is a companion property, so all those listeners cleared the *same*
+list. `SearchViewModel` builds one `APIRepository` per installed provider and **rebuilds the whole
+list** on reload (`SearchViewModel.kt:52,71`), so the observer set grew without bound for the life of
+the process. `Event` holds a `Set`, but bound references with different receivers are distinct objects,
+so they did not collapse.
+
+It is now one subscription for the process. That is both what the move requires and a fix for an
+unbounded listener leak — called out here because it is a behaviour change, not just a move.
+
+### Verified
+
+- Dump delta is exactly the two lines above; `:app:checkExtensionApi` passes against it.
+- `:core:data:updateKotlinAbi`: 49 insertions, **0 removals**, generated on Temurin 17 (`INF-07`).
+- Five sentinels added to `cloudstream.extension-api-jar` — all five declared `APIRepository` binary
+  names, matching the `AbstractSubtitleEntities` (3/3) and Auth DTO (4/4) precedent.
+- Four gates, and the canary is the load-bearing one here: it proves the module kept its iOS targets.
 
 ---
 

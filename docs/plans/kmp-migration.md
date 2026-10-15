@@ -338,7 +338,7 @@ sentinels and a clean `checkKotlinAbi` / javap comparison.
 | B5 | `SSLTrustManager`, `DownloaderTestImpl` | `:core:network` jvmCommonMain | Security review first: trust-all manager becomes reachable from a shared module. `DownloaderTestImpl` needs `newpipeextractor` (in catalog). Optional. |
 | B6 | `TestingUtils` (+8 nested) | `:core:model` commonMain | Needs `:library` + coroutines, so **not** `:core:common` (rule 2). |
 | B7 | `fcast/Packets.kt` (`Opcode` + 8 message classes) | `:core:common` jvmCommonMain, whole file (`PlayMessage` uses Jackson) | Default placement, owner confirms in the PR: the audit left it open, and the planned android-only `:media:cast` cannot publish it before D3. `:core:common` gains the serialization plugin, kotlinx-serialization and Jackson annotations (it has no dependencies today; rule 2 concerns internal modules). No `PacketsKt` facade, so the 8 pure classes may go to commonMain if split. |
-| B8 | `APIRepository` (+companion, `SavedLoadResponse`, anonymous `noneApi`/`randomApi`) | `:core:data` jvmCommonMain | After B1. Invert `MainActivity.afterPluginsLoadedEvent` in the same PR; that removes a public synthetic accessor (`access$getAfterPluginsLoadedEvent$cp`), which the owner must accept in that PR. |
+| B8 | `APIRepository` (+companion, `SavedLoadResponse`, anonymous `noneApi`/`randomApi`) | `:core:data` jvmCommonMain — **done** (`KMP-05`) | Inverted: `CloudStreamApp` subscribes `APIRepository.Companion::onPluginsLoaded` once, where every instance used to subscribe and never unsubscribe. **Measured delta: `access$afterPluginsLoaded` out, `onPluginsLoaded` in.** `access$getAfterPluginsLoadedEvent$cp` is **not** removed — `DEC-08` named the wrong entry. jvmCommonMain is load-bearing: commonMain would force `:core:data` into `IOS_CANARY_EXEMPT`. |
 
 ### 5.3 Stays in `:app`, and what would unblock it
 
@@ -443,7 +443,7 @@ Everything still open is listed here.
 | 20 | B5 `SSLTrustManager`, `DownloaderTestImpl` | 19 | needs a security review first (a trust-all manager becomes reachable from a shared module) |
 | 21 | B6 `TestingUtils` into `:core:model` | — | unblocked |
 | 22 | B7 `fcast/Packets.kt` into `:core:common` | — | placement is an owner call in the PR (§5.2) |
-| 23 | B8 `APIRepository` into `:core:data` | — | removes a public synthetic accessor; owner must accept that delta in the PR |
+| 23 | B8 `APIRepository` into `:core:data` | — | **done** (`KMP-05`), awaiting the `DEC-08` sign-off. Delta measured: **one** line out (`access$afterPluginsLoaded`, a synthetic for a private method), one in. `DEC-08`'s predicted entry (`access$getAfterPluginsLoadedEvent$cp`) is **not** removed. Placed in `jvmCommonMain` so `:core:data` stays out of `IOS_CANARY_EXEMPT` and the canary stays 12/12 |
 | 17 | `:feature:extensions` prep: `ExtensionRuntime` seam, repository model in commonMain | 14 | touches existing `:app` plugin code: needs the owner's explicit go-ahead |
 | 18 | First vertical (search + quicksearch) | 14 | ViewModel needs Track L for iOS (rule 4) |
 | L | Track L: `:library` iOS surgery | — | design workflow first (§2.4); blocked on O2 |

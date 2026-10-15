@@ -1,3 +1,52 @@
+public final class com/lagradost/cloudstream3/ui/APIRepository {
+	public static final field $stable I
+	public static final field CACHE_SIZE I
+	public static final field Companion Lcom/lagradost/cloudstream3/ui/APIRepository$Companion;
+	public fun <init> (Lcom/lagradost/cloudstream3/MainAPI;)V
+	public final fun extractorVerifierJob (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun getApi ()Lcom/lagradost/cloudstream3/MainAPI;
+	public final fun getHasMainPage ()Z
+	public final fun getHasQuickSearch ()Z
+	public final fun getMainPage ()Ljava/util/List;
+	public final fun getMainPage (ILjava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun getMainPage$default (Lcom/lagradost/cloudstream3/ui/APIRepository;ILjava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public final fun getMainUrl ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getProviderType ()Lcom/lagradost/cloudstream3/ProviderType;
+	public final fun getVpnStatus ()Lcom/lagradost/cloudstream3/VPNStatus;
+	public final fun load (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun loadLinks (Ljava/lang/String;ZLkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun quickSearch (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun search (Ljava/lang/String;ILkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun waitForHomeDelay (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class com/lagradost/cloudstream3/ui/APIRepository$Companion {
+	public final fun getDubStatusActive ()Ljava/util/HashSet;
+	public final fun getNoneApi ()Lcom/lagradost/cloudstream3/MainAPI;
+	public final fun getRandomApi ()Lcom/lagradost/cloudstream3/MainAPI;
+	public final fun getTimeout (Ljava/lang/Long;)J
+	public final fun isInvalidData (Ljava/lang/String;)Z
+	public final fun onPluginsLoaded (Z)V
+	public final fun setDubStatusActive (Ljava/util/HashSet;)V
+}
+
+public final class com/lagradost/cloudstream3/ui/APIRepository$Companion$SavedLoadResponse {
+	public static final field $stable I
+	public fun <init> (JLcom/lagradost/cloudstream3/LoadResponse;Lkotlin/Pair;)V
+	public final fun component1 ()J
+	public final fun component2 ()Lcom/lagradost/cloudstream3/LoadResponse;
+	public final fun component3 ()Lkotlin/Pair;
+	public final fun copy (JLcom/lagradost/cloudstream3/LoadResponse;Lkotlin/Pair;)Lcom/lagradost/cloudstream3/ui/APIRepository$Companion$SavedLoadResponse;
+	public static synthetic fun copy$default (Lcom/lagradost/cloudstream3/ui/APIRepository$Companion$SavedLoadResponse;JLcom/lagradost/cloudstream3/LoadResponse;Lkotlin/Pair;ILjava/lang/Object;)Lcom/lagradost/cloudstream3/ui/APIRepository$Companion$SavedLoadResponse;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getHash ()Lkotlin/Pair;
+	public final fun getResponse ()Lcom/lagradost/cloudstream3/LoadResponse;
+	public final fun getUnixTime ()J
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
 public final class com/lagradost/cloudstream3/utils/DataStoreHelperKt {
 	public static final field KEY_RESULT_SORT Ljava/lang/String;
 	public static final field RESULT_DUB Ljava/lang/String;

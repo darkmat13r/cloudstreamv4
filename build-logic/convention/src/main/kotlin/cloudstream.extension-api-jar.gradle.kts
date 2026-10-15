@@ -103,6 +103,14 @@ val sentinels = mapOf(
     "$apiPackageDir/network/DdosGuardKiller.class" to ":core:network - the DDoS-Guard bypass Interceptor",
     "$apiPackageDir/utils/DataStoreKt.class" to ":core:data - storage key consts; :app's DataStore.kt must declare no top-level members",
     "$apiPackageDir/utils/DataStoreHelperKt.class" to ":core:data - storage key consts; :app's DataStoreHelper.kt must declare no top-level members",
+    // B8: all five declared APIRepository binary names, matching the precedent set by
+    // AbstractSubtitleEntities (3/3) and the Auth DTOs (4/4). The two anonymous MainAPI subclasses are
+    // `noneApi` / `randomApi`, which `:app` reads by name.
+    "$apiPackageDir/ui/APIRepository.class" to ":core:data - the provider call wrapper every ViewModel uses",
+    "$apiPackageDir/ui/APIRepository\$Companion.class" to ":core:data - dubStatusActive / noneApi / randomApi / getTimeout",
+    "$apiPackageDir/ui/APIRepository\$Companion\$SavedLoadResponse.class" to ":core:data - the load cache entry",
+    "$apiPackageDir/ui/APIRepository\$Companion\$noneApi\$1.class" to ":core:data - the 'None' MainAPI",
+    "$apiPackageDir/ui/APIRepository\$Companion\$randomApi\$1.class" to ":core:data - the 'Random' MainAPI",
     "$apiPackageDir/subtitles/AbstractSubtitleEntities.class" to ":core:model - outer of \$SubtitleEntity / \$SubtitleSearch",
     "$apiPackageDir/subtitles/AbstractSubtitleEntities\$SubtitleEntity.class" to ":core:model - SubtitleAPI search results",
     "$apiPackageDir/subtitles/AbstractSubtitleEntities\$SubtitleSearch.class" to ":core:model - SubtitleAPI search query",
