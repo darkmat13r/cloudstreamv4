@@ -7,6 +7,16 @@ values	plurals	episodes	one	Episode
 values	plurals	episodes	other	Episodes
 values	plurals	links_hidden	one	%d hidden link
 values	plurals	links_hidden	other	%d hidden links
+values	plurals	search_state_no_results_body	one	%d selected source answered and it does not carry it.
+values	plurals	search_state_no_results_body	other	All %d selected sources answered and none of them carry it.
+values	plurals	search_state_partial_headline	one	%d source failed
+values	plurals	search_state_partial_headline	other	%d sources failed
+values	plurals	search_tv_recent_count	one	%d SAVED
+values	plurals	search_tv_recent_count	other	%d SAVED
+values	plurals	search_tv_result_count	one	%d RESULT
+values	plurals	search_tv_result_count	other	%d RESULTS
+values	plurals	search_tv_sources_count	one	%1$d / %2$d
+values	plurals	search_tv_sources_count	other	%1$d / %2$d
 values	string	account	-	account
 values	string	action_add_to_bookmarks	-	Set watch status
 values	string	action_add_to_favorites	-	Add to favorites
@@ -546,8 +556,25 @@ values	string	search_hint_site	-	Search %s…
 values	string	search_poster_img_des	-	Poster
 values	string	search_provider_text_providers	-	Search using providers
 values	string	search_provider_text_types	-	Search using types
+values	string	search_state_failed_body	-	None of your sources answered.
+values	string	search_state_failed_headline	-	Search failed
+values	string	search_state_idle_action	-	Browse home
+values	string	search_state_idle_body	-	Type a title. Results arrive one rail per source.
+values	string	search_state_idle_headline	-	Search every source you have
+values	string	search_state_no_results_action	-	Search everything
+values	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
+values	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
+values	string	search_state_no_results_headline	-	No results
+values	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
+values	string	search_state_offline_headline	-	You are offline
+values	string	search_state_retry	-	Try again
+values	string	search_state_retry_failed	-	Retry failed
 values	string	search_suggestions	-	Search Suggestions
 values	string	search_suggestions_des	-	Show search suggestions while typing
+values	string	search_tv_clear_all	-	Clear all searches
+values	string	search_tv_field_placeholder	-	Search all sources
+values	string	search_tv_recent_headline	-	Recent searches
+values	string	search_tv_sources_label	-	Sources
 values	string	season	-	Season
 values	string	season_format	-	%1$s %2$d%3$s
 values	string	season_short	-	S

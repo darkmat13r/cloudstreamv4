@@ -303,6 +303,12 @@ dependencies {
     implementation(project(":core:data"))
     implementation(project(":core:model"))
     implementation(project(":media:model"))
+
+    // Phase 7 step 3: :app implements the seams :feature:search declares. :core:designsystem is
+    // listed explicitly because :feature:search depends on it with `implementation` scope, so the
+    // UiState types in SearchPrompts' signatures are not transitive.
+    implementation(project(":feature:search"))
+    implementation(project(":core:designsystem"))
 }
 
 tasks.register<Jar>("androidSourcesJar") {

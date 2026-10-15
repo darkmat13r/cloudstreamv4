@@ -20,6 +20,16 @@ kotlin {
             // `api` edge. It uses nothing :shared declares, so this is the whole of :shared's
             // desktop surface.
             implementation(project(":core:mihon"))
+
+            // Desktop first (owner, 2026-10-15): the window hosts the search vertical rather than
+            // a Hello-World placeholder. :library and :core:data are what APIRepository needs;
+            // :core:strings is where the copy comes from, resolved with Compose resources rather
+            // than a Context — see DesktopSearchCopy's KDoc for why that distinction matters.
+            implementation(project(":feature:search"))
+            implementation(project(":core:designsystem"))
+            implementation(project(":core:strings"))
+            implementation(project(":core:data"))
+            implementation(project(":library"))
         }
     }
 }

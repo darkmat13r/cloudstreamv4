@@ -5,6 +5,11 @@
 <plurals name="downloads_queued"><item quantity="one">"%d download queued"</item><item quantity="other">"%d downloads queued"</item></plurals>
 <plurals name="episodes"><item quantity="one">@string/episode</item><item quantity="other">@string/episodes</item></plurals>
 <plurals name="links_hidden"><item quantity="one">"%d hidden link"</item><item quantity="other">"%d hidden links"</item></plurals>
+<plurals name="search_state_no_results_body"><item quantity="one">"%d selected source answered and it does not carry it."</item><item quantity="other">"All %d selected sources answered and none of them carry it."</item></plurals>
+<plurals name="search_state_partial_headline"><item quantity="one">"%d source failed"</item><item quantity="other">"%d sources failed"</item></plurals>
+<plurals name="search_tv_recent_count"><item quantity="one">"%d SAVED"</item><item quantity="other">"%d SAVED"</item></plurals>
+<plurals name="search_tv_result_count"><item quantity="one">"%d RESULT"</item><item quantity="other">"%d RESULTS"</item></plurals>
+<plurals name="search_tv_sources_count"><item quantity="one">"%1$d / %2$d"</item><item quantity="other">"%1$d / %2$d"</item></plurals>
 <string name="account">"account"</string>
 <string name="action_add_to_bookmarks">"Set watch status"</string>
 <string name="action_add_to_favorites">"Add to favorites"</string>
@@ -544,8 +549,25 @@
 <string name="search_poster_img_des">"Poster"</string>
 <string name="search_provider_text_providers">"Search using providers"</string>
 <string name="search_provider_text_types">"Search using types"</string>
+<string name="search_state_failed_body">"None of your sources answered."</string>
+<string name="search_state_failed_headline">"Search failed"</string>
+<string name="search_state_idle_action">"Browse home"</string>
+<string name="search_state_idle_body">"Type a title. Results arrive one rail per source."</string>
+<string name="search_state_idle_headline">"Search every source you have"</string>
+<string name="search_state_no_results_action">"Search everything"</string>
+<string name="search_state_no_results_body_unknown">"Every selected source answered and none of them carry it."</string>
+<string name="search_state_no_results_detail" formatted="true">"%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS"</string>
+<string name="search_state_no_results_headline">"No results"</string>
+<string name="search_state_offline_body">"Search needs a connection. Your downloads are still available."</string>
+<string name="search_state_offline_headline">"You are offline"</string>
+<string name="search_state_retry">"Try again"</string>
+<string name="search_state_retry_failed">"Retry failed"</string>
 <string name="search_suggestions">"Search Suggestions"</string>
 <string name="search_suggestions_des">"Show search suggestions while typing"</string>
+<string name="search_tv_clear_all">"Clear all searches"</string>
+<string name="search_tv_field_placeholder">"Search all sources"</string>
+<string name="search_tv_recent_headline">"Recent searches"</string>
+<string name="search_tv_sources_label">"Sources"</string>
 <string name="season">"Season"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"S"</string>
