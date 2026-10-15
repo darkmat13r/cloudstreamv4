@@ -248,9 +248,9 @@ Two names move with it and must not change:
 ### KMP-06b — `:core:mihon`, the vendored tree in its own module
 
 **Status:** done · #42 · written without an Android SDK; built and checked locally on 2026-10-14
-(below), and CI green on `bce90a8f`. Runtime UI still unverified: the settings screens have not
-been opened on a device. The `core-ktx` 1.2.0 compile-classpath note below was left as is by the
-owner's choice (2026-10-14).
+(below), and CI green on `bce90a8f`. **Runtime UI verified 2026-10-14 — see "The settings screens
+were finally opened" at the end of this file.** The `core-ktx` 1.2.0 compile-classpath note below was
+left as is by the owner's choice (2026-10-14).
 
 Moved by `git mv`, every file's contents unchanged: all 29 `.kt` under `com/mihon/**` (27
 commonMain, 2 androidMain), plus `LICENSE` and `readme.md`, at the same relative paths under
@@ -792,3 +792,63 @@ dump looks identical.
 
 **Always run the `$stable` scan before claiming a move is signature-neutral.** An ABI dump diff
 alone does not catch the cross-module case.
+
+---
+
+## The settings screens were finally opened · **2026-10-14**
+
+`KMP-06b` (#42), `KMP-06d` (#46) and `KMP-10` (#50) each moved or edited the code behind the Android
+settings screens, and each shipped with the same caveat: *not opened on a device*, because the
+attached Pixel 9a was locked every time. It was not a device that was needed — it was **any** device.
+
+**An emulator closes it.** Four AVDs already exist on this machine. Booted headless:
+
+    ~/Library/Android/sdk/emulator/emulator -avd QA_36_1 -no-window -no-audio -no-boot-anim \
+      -gpu swiftshader_indirect -no-snapshot-save -port 5570
+
+API 36, 1080x2400. The APK is the one the verification run already built —
+`app/build/outputs/apk/prerelease/debug/app-prerelease-debug.apk` — installed with `adb install -r -g`.
+The launcher activity is **not** `MainActivity`; resolve it rather than guess:
+
+    adb shell cmd package resolve-activity --brief -c android.intent.category.LAUNCHER \
+      com.lagradost.cloudstream3.prerelease.debug
+    # -> …/com.lagradost.cloudstream3.ui.account.AccountSelectActivity
+
+### What rendered
+
+Every section of the settings root opened and drew correctly: **General**, **Player**, **Layout**,
+**Updates and Backup**, **Accounts and Security**, **Extensions**. The vendored Mihon widgets are
+live — `SwitchPreferenceWidget` toggles, the two sliders on General with their value badges, section
+headers, icons and subtitles all present.
+
+**Direct runtime evidence for `KMP-10` step 2.** The `%s` subtitles that #50 moved off
+`String.format` and onto `:core:ui`'s `withValue` resolve on screen: General shows *App Language →
+`en-US`* and *Extension languages → `All Languages`*, Player shows *Preferred video player →
+`Internal player`*, Layout shows *Primary color → `Normal`*, *App theme → `Dark`*, *App Layout →
+`Auto`*. Those are exactly the call sites `Preference.kt:74,100,124` feed.
+
+A **list-preference dialog** opens, shows its radio rows and its Cancel / Ok buttons, and dismisses —
+the `ListPreference` path #50 also touched.
+
+### Two things found while looking, neither changed
+
+- **`ListPreferenceWidget` does not use Mihon's `AlertDialog`.** It calls `:core:ui`'s
+  `SingleSelectDialog` (`core/ui/.../compose/Dialog.kt`); the upstream `AlertDialog` block is
+  commented out in place at `ListPreferenceWidget.kt:48-75`, with its `DialogRow` helper commented out
+  below the function. Pre-existing and deliberate-looking. `core/mihon/readme.md` does cover the file
+  — the widget row reads "`presentation/settings/widget/` × 8 … `MultiSelectListPreferenceWidget`
+  +30; rest small" — but swapping the dialog implementation for a first-party one is not "small", and
+  it is the sort of divergence the Apache §4(b) record exists to name. Worth a line in that table when
+  someone next touches it; **not** changed here, because the readme's counts were measured at a commit
+  (`KMP-06a`, 2026-10-07) and editing one row by hand desynchronises it from the rest.
+- **The dialog has no visible edge.** `SingleSelectDialog` defaults to
+  `containerColor = MaterialTheme.colorScheme.background`, which in the dark scheme is the same black
+  as the screen behind it, so the dialog reads as floating text rather than a surface. It **is**
+  opaque — the "Features" section header behind it is clipped by its left edge, which is how this was
+  told apart from a transparency bug. Cosmetic, pre-existing, and a `:core:theme` / `DS` question
+  rather than a `KMP` one.
+
+### Caveat
+
+Headless swiftshader, not hardware. It proves the composition builds, resolves its resources and
+responds to input; it does not prove GPU-dependent rendering or anything about the TV layouts.
