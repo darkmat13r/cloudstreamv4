@@ -4,18 +4,37 @@ Questions only the owner can answer. The ones marked **blocking** are holding up
 
 ---
 
-## DEC-01 — GitHub Actions billing · **blocking everything**
+## DEC-01 — GitHub Actions billing · **answered: CI stays off**
 
-**Status:** **OPEN AGAIN — broken 2026-10-15 ~03:52Z.** It ran from 2026-10-07; it does not now.
+**Status:** **ANSWERED 2026-10-15 by the owner — the billing failure will not be fixed, and CI stays
+disabled.** Not a pending task. Verification is local, and that is the decision, not a workaround.
 
-Runs end in **~2 seconds with zero steps executed**, annotated:
+> "Billing (DEC-01) no need, i will keep disable it"
+
+**What this means in practice, and it is the part to carry forward:**
+
+- **Local four-gate runs are the only verification this project has.** Not a stopgap — the agreed
+  method. Run all four and quote them in the PR, every time; `docs/HANDOVER.md` has the commands.
+- **Do not re-enable the workflows**, and do not treat a missing tick as something to chase.
+- **`pull_request.yml` was the merge gate**, so nothing mechanical now prevents an unverified merge.
+  The discipline replacing it is: four gates locally, named in the PR, before merging. #48–#51 are
+  what the alternative looks like — merged with no checks of any kind on 2026-10-14.
+- **`INF-08` is parked, not solved.** It only bites when CI runs, so it stops mattering now; the
+  evidence in `docs/tasks/infrastructure.md` stays for whenever CI comes back.
+- **`INF-02`** (a CI job for the iOS canary) and **`DEC-05`** (a macOS runner) are moot while this
+  holds. The canary still runs locally in about four seconds, which is why it is one of the four gates.
+
+### The failure itself, for the record
+
+It broke 2026-10-15 ~03:52Z, having run from 2026-10-07. Runs ended in **~2 seconds with zero steps
+executed**, annotated:
 
 > The job was not started because recent account payments have failed or your spending limit needs to
 > be increased. Please check the 'Billing & plans' section in your settings
 
 Confirmed account-wide, not per-branch: #68's first run and a re-run of #65 both got it, while three
-runs that had already claimed runners (#64, #66, #67) kept going. **Only the owner can clear it** —
-it is the Billing & plans page, not anything in the repo.
+runs that had already claimed runners (#64, #66, #67) kept going. Only the owner could have cleared it —
+it is the Billing & plans page, not anything in the repo — and the owner has decided not to.
 
 **While it holds, a red tick means no check ran at all.** That is a different failure from `INF-08`'s
 killed ABI step, and re-running does not help: every attempt dies the same way in seconds. #64–#68
@@ -36,7 +55,8 @@ therefore `disabled_manually`:
 | `instrumented-tests.yml` | `on: issue_comment` — fires on every PR comment |
 | `prerelease.yml`, `build_to_archive.yml`, `generate_dokka.yml` | `on: push` to `master` |
 
-**Re-enable all five when billing is sorted**, with:
+**They stay disabled.** The command is recorded only so a future owner can reverse the decision
+deliberately, not as a pending action:
 
 ```
 gh api -X PUT repos/<owner>/<repo>/actions/workflows/<file>/enable

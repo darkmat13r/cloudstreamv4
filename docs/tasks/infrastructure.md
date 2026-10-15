@@ -2,14 +2,13 @@
 
 ---
 
-## INF-01 — CI does not run · **the single largest gap**
+## INF-01 — CI does not run · **closed: it is not going to**
 
-**Status:** **blocked again by `DEC-01` as of 2026-10-15 ~03:52Z** — billing, so no job starts at
-all, and since then **all five workflows are disabled on the owner's instruction** so that nothing is
-even queued. It ran from 2026-10-07 to 2026-10-15. Three separate problems, and they are worth keeping
-apart: CI not running (`DEC-01`, the owner's billing page), CI deliberately switched off until that is
-fixed (same entry, with the re-enable commands), and — when it does run — the ABI step being killed by
-the runner (`INF-08`).
+**Status:** **closed by the owner's answer to `DEC-01`, 2026-10-15 — CI stays off.** Not a task any
+more. It ran 2026-10-07 to 2026-10-15; the workflows are all `disabled_manually` by decision, and
+**local four-gate runs are the agreed verification**, not a stopgap. What remains of this entry is the
+record of what CI found while it ran, and `INF-08` below for the one step the runner kept killing —
+parked, since it only bites when CI runs.
 
 First runs, 2026-10-07, all on `pull_request.yml`'s single `build` job:
 
@@ -58,7 +57,9 @@ run is exactly the kind of thing that costs someone an afternoon.
 
 ## INF-02 — G4: CI job for the iOS canary
 
-**Status:** blocked by `DEC-05`
+**Status:** blocked by `DEC-05`, and **moot while CI stays off** (`DEC-01`, answered 2026-10-15). The
+canary runs locally in about four seconds and is one of the four local gates, which is the coverage
+this was for.
 
 The canary works (`-Pcloudstream.iosCanary=true`, both klib targets) and is run by hand. The CI job
 was never built because nothing decides which runner pays for macOS time.
@@ -242,7 +243,9 @@ the details the dump exists to keep; ` : java/lang/Object` has now been that tra
 
 ## INF-08 — CI's `Check classes.jar ABI` step is killed by the runner · **measured 2026-10-14**
 
-**Status:** open · needs a decision, because it changes a CI gate
+**Status:** **parked 2026-10-15** — it only bites when CI runs, and `DEC-01` settled that CI stays
+off. The measurements below are kept intact for whenever that is reversed; nothing here needs doing
+while the workflows are disabled.
 
 `:app:checkExtensionApi` depends on `makeJar`, which depends on `build`, so the step builds every
 release variant after `Run Gradle` has already run. On `ubuntu-latest` the runner kills it during
