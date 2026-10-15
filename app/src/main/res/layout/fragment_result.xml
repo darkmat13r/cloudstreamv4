@@ -649,7 +649,7 @@
                                     android:clickable="false"
                                     android:focusable="false"
                                     android:gravity="center"
-                                    android:maxLines="1"
+                                    android:maxLines="2"
                                     android:paddingStart="5dp"
                                     android:textAllCaps="false"
                                     android:textColor="?attr/iconGrayBackground"
