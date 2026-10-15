@@ -219,7 +219,35 @@ longer actively expanded) · a Compose port of Lucide or Phosphor.
 
 ## DEC-12 — Consolidating the two `PreferenceStore` declarations
 
-**Status:** open · blocks nothing today · raised by `KMP-06d`
+**Status:** **decided 2026-10-14 — keep both, add no alias** · blocks nothing · raised by `KMP-06d`
+
+### The decision, and why
+
+**Leave the two declarations as they are, and do not add the `typealias`.** The third option below
+looked like the cheap one, and it is the one not to take:
+
+- A `typealias` in `:core:settings` makes the two types *interchangeable at the point where the plan
+  says one of them should eventually win*. It encodes the duplication as intended rather than
+  temporary, and it is the kind of thing that is still there in a year.
+- It would also have **no callers**. Nothing consumes `:core:storage`'s declaration today, so the
+  alias would be dead weight added to argue a point rather than to be used.
+- The cost of waiting is bounded and already being paid: `:core:storage`'s Android and JVM
+  implementations stay unused, and its contract tests guard code nobody executes. That is a cost in
+  confidence, not in correctness, and it does not grow.
+- The cost of choosing wrong **does** grow: a fork edit to vendored Apache-2.0 code, or 62
+  `preference = settings.…` call sites, neither of which gets cheaper by being done sooner.
+
+**The trigger to revisit:** the first time something in `:app` actually consumes `:core:storage`.
+That consumer decides which declaration it wants, and the retyping cost stops being hypothetical.
+Until then the duplication is visible here, which is what this entry is for.
+
+**Unchanged and not open:** the two signatures stay identical, and both KDocs already say so. Worth
+knowing that nothing *enforces* it — a shape-comparison test could live in `:core:settings`, which
+already depends on both, and would turn "keep them identical" from aspiration into a build failure.
+Not written here, because adding a test to pin a duplication this entry exists to remove is a
+judgement call the trigger above should settle first.
+
+### The original write-up, kept
 
 Two interfaces of the **same shape** exist, both live:
 
