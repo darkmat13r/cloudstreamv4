@@ -92,6 +92,19 @@ owner's call.
 
 ---
 
+## The design
+
+The redesign's design files live in **`design/` at the repo root**: `.dc.html` files that open in a
+browser. They were exported on 2026-10-14 from the Claude Design project *CloudStream 4 — Redesign
+(TV / Mobile / Desktop)*, https://claude.ai/design/p/a9ab3c83-bcc5-4ef4-854b-846c95da8438.
+`Design System v2.dc.html` is authoritative. `docs/plans/screen-implementation-handover.md` §2
+lists every file and the ones that are superseded.
+A second Claude Design project, *Project file storage*,
+https://claude.ai/design/p/c5fd7e44-70f5-41b6-8a48-e850eb88334b, holds the same 13 files as
+`design/` (12 `.dc.html` + `support.js`, every size identical, checked 2026-10-15); it is a copy, not a newer version.
+
+---
+
 ## If you edit a string, read this first
 
 `app/src/main/res/values*/strings.xml` is **generated**. Do not hand-edit it. The authored source is

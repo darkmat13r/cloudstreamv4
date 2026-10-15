@@ -13,7 +13,7 @@ authoritative; where these disagree with those, those win. Several entries preda
 - [No indigo for CloudStream](cloudstream4-no-indigo.md) — user rejects the existing #3D50FA accent; wants researched palettes and distinct directions.
 - [CloudStream feature inventory](cloudstream4-inventory.md) — 174 surfaces mapped from the app code; where the raw data lives and what it concluded.
 - [CloudStream 4 decisions](cloudstream4-decisions.md) — settled product calls + the focus-ring geometry contract and the banned 320×180 rung.
-- [CloudStream 4 design state](cloudstream4-design-state.md) — project link, which file is authoritative, and the rules every new screen must pass.
+- [CloudStream 4 design state](cloudstream4-design-state.md) — local `design/` folder + project link, which file is authoritative, and the rules every new screen must pass.
 - [CloudStream 4 pending corrections](cloudstream4-pending.md) — what the drawn files still owe, and the rest of the P0 draw queue
 - [CloudStream 4 cluster specs](cloudstream4-cluster-specs.md) — where the four workflows' source evidence and verified geometry live, and the headline code findings.
 - [CloudStream 4 KMP modules](cloudstream4-kmp-modules.md) — how the design system maps onto :core:theme / :core:designsystem, the px-to-dp rule, and the constraints on any module work.

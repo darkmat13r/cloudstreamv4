@@ -5,8 +5,15 @@ metadata:
   type: project
 ---
 
-Claude Design project **"CloudStream 4 — Redesign (TV / Mobile / Desktop)"**
+Claude Design project **"CloudStream 4 — Redesign (TV / Mobile / Desktop)"**.
+
+**Local copy: `design/` at the repo root** (`/Volumes/Projects/CloudStream/app/design`), exported
+from the Claude Design project on 2026-10-14. Read and update the `.dc.html` files there; they open
+in a browser, with `support.js` beside them. The Claude Design project is where they came from:
 `https://claude.ai/design/p/a9ab3c83-bcc5-4ef4-854b-846c95da8438`
+A second Claude Design project, *Project file storage*,
+https://claude.ai/design/p/c5fd7e44-70f5-41b6-8a48-e850eb88334b, holds the same 13 files as
+`design/` (12 `.dc.html` + `support.js`, every size identical, checked 2026-10-15); it is a copy, not a newer version.
 
 Files, in the order they should be read:
 - `Design System v2.dc.html` — **authoritative**. Geometry contract, 9 colour tokens, three type
@@ -20,6 +27,8 @@ Files, in the order they should be read:
   chrome row 56..152 (field 200..1296 · voice 1320..1416 · Sources 1440..1864), chip row 176..272,
   rail pitch 360 (header 296..352, cards 392..632, next header 656..712, its cards 752..992),
   the 96-tall list row, and the 560-wide right panel.
+- `TV Search Suggestions.dc.html` — **drawn**: suggestions while typing (partial), nothing matches,
+  no results, Quick Search answering, Quick Search empty. See [[cloudstream4-pending]].
 - `TV Library.dc.html` — **drawn and verified**: grid, provider-unreachable, empty page, Sort side
   panel, Provider side panel. Grid is the 192x288 rung on a 240 x 328 pitch, 7 columns from x200
   (ends 1832), rows at 312 and 640 with a third at 968 below the fold. Built on the real model:

@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet data-dc-atomics>
+        <meta name="design_doc_mode" content="canvas" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
+        />
+        <style>
+          /* ============================================================
+             Shared component kit. TV artboard px; halve for dp.
+             Every fixed layout dimension is a multiple of 8px so the dp
+             value lands on the repo's 4dp step. 1-4px strokes are border
+             tokens. Widths that hug content are content-driven by design.
+             ============================================================ */
+          html, body { background: #000000; }
+          body { margin: 0; font-family: Manrope, system-ui, sans-serif; color: #FFFFFF; }
+          a { color: #CD3D4B; text-decoration: none; }
+          a:hover { color: #E05A67; }
+
+          .page { width: 1920px; padding: 64px 72px 96px; box-sizing: border-box; }
+          .kicker { font: 700 12px/1 "JetBrains Mono", monospace; letter-spacing: 0.24em; color: #CD3D4B; }
+          .title { font: 800 52px/1.04 Manrope, sans-serif; letter-spacing: -0.035em; margin: 16px 0 0; }
+          .lede { font: 400 16px/1.68 Manrope, sans-serif; color: rgba(255,255,255,0.68); max-width: 900px; margin: 20px 0 0; text-wrap: pretty; }
+          .lede b { color: #FFFFFF; font-weight: 600; }
+
+          .blk { margin-top: 72px; }
+          .bnum { font: 700 12px/1 "JetBrains Mono", monospace; letter-spacing: 0.2em; color: #686868; }
+          .bttl { font: 800 32px/1.15 Manrope, sans-serif; letter-spacing: -0.02em; margin: 12px 0 0; }
+          .bsub { font: 400 16px/1.68 Manrope, sans-serif; color: rgba(255,255,255,0.6); max-width: 940px; margin: 12px 0 0; text-wrap: pretty; }
+          .bsub b { color: #FFFFFF; font-weight: 600; }
+          .rule { height: 1px; background: #242A31; margin: 28px 0 0; }
+          .note { margin-top: 24px; padding: 16px 20px; border-left: 4px solid #CD3D4B;
+            background: rgba(205,61,75,0.07); font: 400 16px/1.68 Manrope, sans-serif;
+            color: rgba(255,255,255,0.78); max-width: 1160px; text-wrap: pretty; }
+          .note b { color: #FFFFFF; }
+
+          .specs { display: flex; flex-wrap: wrap; gap: 24px; margin-top: 24px; align-items: flex-start; }
+          .spec { background: #05080B; border: 1px solid #242A31; border-radius: 12px; padding: 32px; }
+          .specl { font: 700 12px/1 "JetBrains Mono", monospace; letter-spacing: 0.16em; color: #686868; margin-bottom: 24px; }
+          .specm { font: 400 12px/1.6 "JetBrains Mono", monospace; color: #686868; margin-top: 20px; max-width: 480px; }
+          .specm b { color: #CCCCCC; }
+
+          .tbl { margin-top: 24px; max-width: 1600px; }
+          .tr { display: grid; gap: 16px; padding: 12px 0; border-bottom: 1px solid #15191E; align-items: center; }
+          .tr.hd { padding: 0 0 12px; border-bottom: 1px solid #242A31; }
+          .tr.hd > div { font: 700 12px/1 "JetBrains Mono", monospace; letter-spacing: 0.16em; color: #686868; }
+          .td { font: 400 16px/1.5 Manrope, sans-serif; color: rgba(255,255,255,0.82); }
+          .td.mono { font-family: "JetBrains Mono", monospace; font-size: 12px; }
+          .td.dim { color: #686868; }
+          .td b { color: #FFFFFF; font-weight: 700; }
+          .t-pre .tr { grid-template-columns: 320px 260px 1fr; }
+          .t-anat .tr { grid-template-columns: 240px 200px 1fr; }
+
+          /* ---------- art ---------- */
+          .art { position: relative; overflow: hidden; background:
+            radial-gradient(120% 100% at 62% 26%, #47576A 0%, #26313D 42%, transparent 72%),
+            radial-gradient(90% 80% at 88% 78%, #35414F 0%, transparent 64%),
+            linear-gradient(155deg, #2A3540, #0E141A 82%);
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.07); }
+
+          /* ---------- primitives ---------- */
+          .btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+            height: 64px; min-width: 240px; padding: 0 32px; box-sizing: border-box; border-radius: 8px;
+            font: 700 24px/1 Manrope, sans-serif; background: #15191E; color: #FFFFFF;
+            border: 1px solid rgba(255,255,255,0.2); }
+          .btn.pri { background: #FFFFFF; color: #000000; border-color: #FFFFFF; font-weight: 800; }
+          .btn.foc { outline: 4px solid #FFFFFF; outline-offset: 4px; }
+          .btn.dis { opacity: 0.4; }
+          .tri { width: 0; height: 0; border-left: 12px solid currentColor;
+            border-top: 8px solid transparent; border-bottom: 8px solid transparent; }
+
+          .ibx { width: 96px; height: 96px; display: flex; align-items: center; justify-content: center;
+            border-radius: 12px; box-sizing: border-box; }
+          .ibx.foc { outline: 4px solid #FFFFFF; outline-offset: 4px; }
+          .ivis { width: 48px; height: 48px; border-radius: 8px; background: #15191E; box-sizing: border-box;
+            border: 1px solid #242A31; display: flex; align-items: center; justify-content: center; }
+          .gl { width: 24px; height: 24px; border-radius: 4px; background: #686868; }
+          .ibx.foc .gl { background: #FFFFFF; }
+
+          .spill { display: inline-flex; align-items: center; gap: 8px; height: 48px; padding: 0 16px;
+            box-sizing: border-box; border-radius: 999px; background: #15191E;
+            border: 1px solid #242A31; font: 500 20px/1 "JetBrains Mono", monospace; color: #CCCCCC; }
+          .sg { width: 16px; height: 16px; border-radius: 4px; background: #686868; }
+          .sg.ok { background: #FFFFFF; }
+          .sg.fail { background: transparent; border: 2px solid #686868; box-sizing: border-box; }
+          .sg.play { width: 0; height: 0; border-radius: 0; background: transparent;
+            border-left: 12px solid #CD3D4B; border-top: 8px solid transparent; border-bottom: 8px solid transparent; }
+
+          .panel { background: #0A1016; border: 1px solid #242A31; border-radius: 12px; }
+
+          /* ---------- chips ---------- */
+          .chipcell { height: 96px; display: inline-flex; align-items: center; box-sizing: border-box; }
+          .chipcell.foc { outline: 4px solid #FFFFFF; outline-offset: 4px; border-radius: 12px; }
+          .chip { display: inline-flex; align-items: center; height: 40px; padding: 0 16px;
+            box-sizing: border-box; border-radius: 999px; background: #15191E;
+            border: 1px solid #242A31; font: 600 24px/1 Manrope, sans-serif; color: #686868; }
+          .chip.sel { color: #FFFFFF; border-color: #686868; }
+
+          .seg { display: inline-flex; height: 56px; box-sizing: border-box; border-radius: 8px;
+            background: #15191E; border: 1px solid #242A31; overflow: hidden; }
+          .segi { display: inline-flex; align-items: center; padding: 0 24px;
+            font: 700 24px/1 Manrope, sans-serif; color: #686868; }
+          .segi.on { background: #242A31; color: #FFFFFF; }
+
+          /* ---------- cards ---------- */
+          .poster { width: 160px; }
+          .pa { height: 240px; border-radius: 8px; border: 4px solid transparent; box-sizing: border-box; position: relative; }
+          .poster.foc { transform: translateY(-12px); }
+          .poster.foc .pa { border-color: #FFFFFF; box-shadow: 0 20px 44px rgba(0,0,0,0.7); }
+          .pt { font: 600 24px/1.25 Manrope, sans-serif; margin-top: 16px; }
+          .badges { position: absolute; left: 8px; top: 8px; display: flex; gap: 8px; }
+          .bdg { display: inline-flex; align-items: center; height: 32px; padding: 0 8px; border-radius: 4px;
+            box-sizing: border-box; background: rgba(0,0,0,0.78); font: 700 20px/1 "JetBrains Mono", monospace; color: #FFFFFF; }
+          .ovf { position: absolute; right: 8px; top: 8px; width: 32px; height: 32px; border-radius: 4px;
+            background: rgba(0,0,0,0.78); display: flex; align-items: center; justify-content: center; }
+          .ovfd { width: 4px; height: 16px; background: #FFFFFF; border-radius: 4px; }
+          .pbar { height: 4px; border-radius: 4px; background: rgba(255,255,255,0.18); overflow: hidden; }
+          .pbar i { display: block; height: 100%; border-radius: 4px; }
+          .cardbar { position: absolute; left: 0; right: 0; bottom: 0; }
+
+          .fallback { height: 240px; border-radius: 8px; background: #15191E; border: 1px solid #242A31;
+            box-sizing: border-box; display: flex; align-items: center; justify-content: center;
+            padding: 16px; text-align: center; font: 600 24px/1.3 Manrope, sans-serif; color: #686868; }
+
+          .epcard { width: 256px; }
+          .epa { height: 144px; border-radius: 8px; border: 4px solid transparent; box-sizing: border-box; position: relative; }
+          .epcard.foc .epa { border-color: #FFFFFF; }
+          .epn { position: absolute; left: 8px; top: 8px; height: 32px; padding: 0 8px; border-radius: 4px;
+            display: flex; align-items: center; background: rgba(0,0,0,0.78);
+            font: 700 20px/1 "JetBrains Mono", monospace; }
+          .ept { font: 600 24px/1.25 Manrope, sans-serif; margin-top: 16px; }
+          .epm { font: 500 20px/1 "JetBrains Mono", monospace; color: #686868; margin-top: 8px; }
+
+          /* ---------- list row ---------- */
+          .lrow { display: flex; align-items: center; gap: 16px; width: 720px; height: 96px;
+            box-sizing: border-box; padding: 0 16px; border-radius: 8px; }
+          .lrow.foc { outline: 4px solid #FFFFFF; outline-offset: 4px; }
+          .lrow.sel { background: #15191E; }
+          .lmark { width: 4px; height: 48px; border-radius: 4px; background: transparent; flex: none; }
+          .lrow.sel .lmark { background: #686868; }
+          .lart { width: 128px; height: 72px; border-radius: 4px; flex: none; }
+          .ldisc { width: 48px; height: 48px; border-radius: 999px; background: #15191E;
+            border: 1px solid #242A31; box-sizing: border-box; flex: none; }
+          .lt { font: 600 24px/1 Manrope, sans-serif; color: #FFFFFF; }
+          .ls { font: 400 20px/1 "JetBrains Mono", monospace; color: #686868; margin-top: 8px; }
+          .ltrail { display: flex; align-items: center; gap: 8px; }
+
+          /* ---------- skeleton ---------- */
+          .sk { background: #15191E; border-radius: 8px; }
+          .skline { height: 24px; border-radius: 4px; background: #15191E; }
+
+          /* ---------- state view ---------- */
+          .sv { width: 720px; box-sizing: border-box; padding: 32px; border-radius: 12px;
+            background: #0A1016; border: 1px solid #242A31; }
+          .svh { font: 700 32px/1.2 Manrope, sans-serif; }
+          .svd { font: 400 20px/1.5 "JetBrains Mono", monospace; color: #686868; margin-top: 16px; }
+          .svb { margin-top: 24px; display: flex; gap: 16px; }
+          .banner { display: flex; align-items: center; gap: 16px; width: 720px; height: 64px;
+            box-sizing: border-box; padding: 0 24px; border-radius: 8px;
+            background: #15191E; border: 1px solid #242A31;
+            font: 500 20px/1 "JetBrains Mono", monospace; color: #CCCCCC; }
+
+          /* ---------- side panel (TV) ---------- */
+          .stage { width: 1120px; height: 632px; position: relative; overflow: hidden;
+            border-radius: 12px; background: #000000; border: 1px solid #242A31; box-sizing: border-box; }
+          .stagebg { position: absolute; inset: 0; opacity: 0.5; }
+          .scrim { position: absolute; inset: 0; background: rgba(0,0,0,0.6); }
+          .sidep { position: absolute; right: 0; top: 0; bottom: 0; width: 560px;
+            background: #0A1016; border-left: 1px solid #242A31; padding: 32px; box-sizing: border-box;
+            box-shadow: -32px 0 64px rgba(0,0,0,0.8); }
+          .sph { font: 700 32px/1.2 Manrope, sans-serif; }
+          .spk { font: 500 20px/1 "JetBrains Mono", monospace; color: #686868; margin-top: 8px; }
+          .arrow { position: absolute; left: 40px; top: 50%; display: flex; align-items: center; gap: 16px;
+            font: 500 20px/1 "JetBrains Mono", monospace; color: #686868; }
+          .arrowline { width: 320px; height: 4px; border-radius: 4px;
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, #686868 100%); }
+
+          /* ---------- nav rail ---------- */
+          .nrc { width: 96px; padding: 24px 0; box-sizing: border-box; display: flex;
+            flex-direction: column; align-items: center; gap: 8px; background: #000000;
+            border-right: 1px solid #242A31; }
+          .nre { width: 320px; padding: 24px 16px; box-sizing: border-box; display: flex;
+            flex-direction: column; gap: 8px; background: #0A1016; border-right: 1px solid #242A31; }
+          .nrow { display: flex; align-items: center; gap: 16px; height: 96px; padding: 0 20px;
+            box-sizing: border-box; border-radius: 12px; font: 600 24px/1 Manrope, sans-serif; color: #686868; }
+          .nrow.cur { background: #15191E; color: #CCCCCC; }
+          .nrow.foc { outline: 4px solid #FFFFFF; outline-offset: 4px; color: #FFFFFF; }
+          .nrowc { width: 96px; height: 96px; display: flex; align-items: center; justify-content: center;
+            border-radius: 12px; box-sizing: border-box; }
+          .nrowc.cur { background: #15191E; }
+          .nrowc.foc { outline: 4px solid #FFFFFF; outline-offset: 4px; }
+        </style>
+      </helmet>
+
+      <div class="page">
+        <div class="kicker">CLOUDSTREAM 4 · SHARED COMPONENT KIT v0.1</div>
+        <h1 class="title">Build these before any screen.</h1>
+        <p class="lede">
+          The audit found four primitives reimplemented about five times each in divergent XML —
+          <b>PosterCard alone replaces seven layouts and is used by nine screens</b>, and twelve
+          separately-named “new” row components across six clusters turned out to be one anatomy.
+          Everything here is drawn at TV artboard scale; halve for dp. Focus states are shown live, and
+          every focusable honours the 8px ring footprint and the 96px minimum target from v0.2.
+        </p>
+
+        <!-- ============ PREREQUISITES ============ -->
+        <div class="blk">
+          <div class="bnum">00 · ENGINEERING PREREQUISITES</div>
+          <h2 class="bttl">States that need a signal before they can ship</h2>
+          <p class="bsub">
+            These states are designed and drawn, but the app does not currently emit the signal they
+            bind to. Each is a small, named engineering change — not a redesign. Until it lands, the
+            screen renders without that state.
+          </p>
+          <div class="tbl t-pre">
+            <div class="tr hd"><div>SIGNAL NEEDED</div><div>UNBLOCKS</div><div>WHY IT DOES NOT EXIST TODAY</div></div>
+            <sc-for list="{{ prereqs }}" as="p" hint-placeholder-count="8">
+              <div class="tr">
+                <div class="td mono"><b>{{ p.sig }}</b></div>
+                <div class="td">{{ p.unblocks }}</div>
+                <div class="td dim">{{ p.why }}</div>
+              </div>
+            </sc-for>
+          </div>
+          <div class="rule"></div>
+        </div>
+
+        <!-- ============ PRIMITIVES ============ -->
+        <div class="blk">
+          <div class="bnum">01 · INTERACTION PRIMITIVES</div>
+          <h2 class="bttl">Everything composes these five</h2>
+          <div class="specs">
+            <div class="spec">
+              <div class="specl">BUTTON · h64 · min-width 240</div>
+              <div class="fx col gap16" style="align-items:flex-start">
+                <span class="btn pri"><span class="tri"></span>Resume S2 E4</span>
+                <span class="btn pri foc"><span class="tri"></span>Resume S2 E4</span>
+                <span class="btn">Watch trailer</span>
+                <span class="btn dis">Unavailable</span>
+              </div>
+              <div class="specm"><b>Primary is white fill, black label.</b> There is no coloured button in this system. Disabled is 40% opacity and stays focusable so a loading screen never has zero focus owners.</div>
+            </div>
+
+            <div class="spec">
+              <div class="specl">ICON BUTTON · 48 VISUAL IN A 96 HIT BOX</div>
+              <div class="fx gap24 ac">
+                <span class="ibx"><span class="ivis"><span class="gl"></span></span></span>
+                <span class="ibx foc"><span class="ivis"><span class="gl"></span></span></span>
+              </div>
+              <div class="specm">The ring is drawn on the <b>96px hit box</b>, never the 48px visual — that is what makes an icon button meet the minimum target without becoming visually heavy.</div>
+            </div>
+
+            <div class="spec">
+              <div class="specl">STATUS PILL · h48 · ACHROMATIC</div>
+              <div class="fx gap12 ac" style="flex-wrap:wrap;max-width:560px">
+                <span class="spill"><span class="sg"></span>PROBING</span>
+                <span class="spill"><span class="sg ok"></span>READY</span>
+                <span class="spill"><span class="sg fail"></span>FAILED</span>
+                <span class="spill"><span class="sg play"></span>PLAYING</span>
+              </div>
+              <div class="specm">Filled = ready, hollow = failed, dim = probing. <b>Only PLAYING earns the red</b>, because only PLAYING is playback state.</div>
+            </div>
+
+            <div class="spec">
+              <div class="specl">CHIP · 40 VISUAL IN A 96 HIT CELL</div>
+              <div class="fx gap8 ac">
+                <span class="chipcell"><span class="chip">Movies</span></span>
+                <span class="chipcell"><span class="chip sel">Anime</span></span>
+                <span class="chipcell foc"><span class="chip sel">Series</span></span>
+                <span class="chipcell"><span class="chip">+3 more</span></span>
+              </div>
+              <div class="specm"><b>Selected is not a white fill.</b> Multi-select would put three solid white pills on screen and drown the one white ring that means focus. Selected = ink label + muted border.</div>
+            </div>
+
+            <div class="spec">
+              <div class="specl">SEGMENTED · h56</div>
+              <div class="seg">
+                <span class="segi on">Merged</span>
+                <span class="segi">By source</span>
+              </div>
+              <div class="specm">Two to four options, always visible. More than four becomes a chip row.</div>
+            </div>
+          </div>
+          <div class="rule"></div>
+        </div>
+
+        <!-- ============ CARD FAMILY ============ -->
+        <div class="blk">
+          <div class="bnum">02 · CARD FAMILY</div>
+          <h2 class="bttl">One PosterCard replaces seven layouts</h2>
+          <p class="bsub">
+            Today: <b>home_result_grid</b>, <b>home_result_grid_expanded</b>, <b>home_result_big_grid</b>,
+            <b>search_result_grid</b>, <b>search_result_grid_expanded</b>, <b>home_remove_grid</b> and
+            <b>home_remove_grid_expanded</b> are seven files doing one job, with badge corners swapped at
+            bind time. One component, four props: shape, size rung, title mode, badge set.
+          </p>
+          <div class="specs">
+            <div class="spec">
+              <div class="specl">POSTER CARD · 160×240 · REST / FOCUSED / PROGRESS / FALLBACK</div>
+              <div class="fx gap24" style="align-items:flex-start">
+                <div class="poster">
+                  <div class="art pa"></div>
+                  <div class="pt">Vantage</div>
+                </div>
+                <div class="poster foc">
+                  <div class="art pa">
+                    <span class="badges"><span class="bdg">4K</span></span>
+                    <span class="ovf"><span class="ovfd"></span></span>
+                  </div>
+                  <div class="pt">Salt Road</div>
+                </div>
+                <div class="poster">
+                  <div class="art pa">
+                    <span class="badges"><span class="bdg">DUB</span><span class="bdg">E12</span></span>
+                    <span class="cardbar"><span class="pbar"><i style="width:62%;background:#CD3D4B"></i></span></span>
+                  </div>
+                  <div class="pt">Ashen Field</div>
+                </div>
+                <div class="poster">
+                  <div class="fallback">Borrowed Light</div>
+                  <div class="pt">Borrowed Light</div>
+                </div>
+              </div>
+              <div class="specm"><b>Corner allocation is decided once, here:</b> badges top-left, overflow top-right, progress flush bottom. The overflow dot is a <b>visible</b> affordance — long-press was the only way to reach it before, and on TV it did not exist at all. Fallback prints the title on surface rather than an empty grey box.</div>
+            </div>
+
+            <div class="spec">
+              <div class="specl">EPISODE CARD · 256×144 · backdrop-md</div>
+              <div class="fx gap24" style="align-items:flex-start">
+                <div class="epcard">
+                  <div class="art epa"><span class="epn">E3</span>
+                    <span class="cardbar"><span class="pbar"><i style="width:100%;background:#CD3D4B"></i></span></span></div>
+                  <div class="ept">Deck Four</div>
+                  <div class="epm">46M · WATCHED</div>
+                </div>
+                <div class="epcard foc">
+                  <div class="art epa"><span class="epn">E4</span>
+                    <span class="cardbar"><span class="pbar"><i style="width:62%;background:#CD3D4B"></i></span></span></div>
+                  <div class="ept">The Relay</div>
+                  <div class="epm">48M · 28M LEFT</div>
+                </div>
+                <div class="epcard">
+                  <div class="art epa"><span class="epn">E5</span></div>
+                  <div class="ept">Cold Start</div>
+                  <div class="epm">44M</div>
+                </div>
+              </div>
+              <div class="specm">Was 320×180 — <b>corrected to 256×144</b>, because 180px is 90dp and off the 4dp step. Unwatched episodes render the track with a 0% fill so titles stay on one baseline across the rail.</div>
+            </div>
+
+            <div class="spec">
+              <div class="specl">SKELETON · EXACT FINAL GEOMETRY</div>
+              <div class="fx gap24" style="align-items:flex-start">
+                <div class="poster">
+                  <div class="sk" style="height:240px"></div>
+                  <div class="skline" style="margin-top:16px;width:128px"></div>
+                </div>
+                <div class="poster">
+                  <div class="sk" style="height:240px"></div>
+                  <div class="skline" style="margin-top:16px;width:104px"></div>
+                </div>
+              </div>
+              <div class="specm">A skeleton is the <b>same box at the same coordinates</b> as the thing it replaces — never a spinner, never a different height. Content landing must not move the layout.</div>
+            </div>
+          </div>
+          <div class="rule"></div>
+        </div>
+
+        <!-- ============ ROW FAMILY ============ -->
+        <div class="blk">
+          <div class="bnum">03 · ROW FAMILY</div>
+          <h2 class="bttl">Twelve named components, one anatomy</h2>
+          <p class="bsub">
+            SourceRow, SubtitleRow, ProbeRow, HistoryRow, SuggestionRow, RepoRow, DownloadRow, QueueRow,
+            SelectionRow, StatusOptionCell, CompactResultRow and EpisodeRowCompact are one chassis with
+            different slots filled: <b>96px tall, leading art or disc, two text lines, trailing actions</b>.
+          </p>
+          <div class="tbl t-anat">
+            <div class="tr hd"><div>SLOT</div><div>SIZE</div><div>RULE</div></div>
+            <sc-for list="{{ rowAnat }}" as="a" hint-placeholder-count="5">
+              <div class="tr"><div class="td"><b>{{ a.k }}</b></div><div class="td mono">{{ a.size }}</div><div class="td">{{ a.rule }}</div></div>
+            </sc-for>
+          </div>
+          <div class="specs">
+            <div class="spec">
+              <div class="specl">LIST ROW · h96 · FOUR VARIANTS IN ONE CHASSIS</div>
+              <div class="fx col gap8">
+                <div class="lrow foc"><span class="lmark"></span><span class="spill" style="height:32px;font-size:20px">1080P</span>
+                  <div style="flex:1"><div class="lt">VidPlay</div><div class="ls">HLS · 2.1 GB · EN SUB</div></div>
+                  <div class="ltrail"><span class="spill"><span class="sg ok"></span>42 MS</span></div></div>
+                <div class="lrow"><span class="lmark"></span><span class="art lart"></span>
+                  <div style="flex:1"><div class="lt">The Relay</div><div class="ls">S2 E4 · 48M · vidplay</div></div>
+                  <div class="ltrail"><span class="ibx" style="width:64px;height:64px"><span class="ivis"><span class="gl"></span></span></span></div></div>
+                <div class="lrow sel"><span class="lmark"></span><span class="ldisc"></span>
+                  <div style="flex:1"><div class="lt">AniList</div><div class="ls">CONNECTED · ep 4/12</div></div>
+                  <div class="ltrail"><span class="spill"><span class="sg ok"></span>SYNCED</span></div></div>
+                <div class="lrow"><span class="lmark"></span>
+                  <div style="flex:1"><div class="lt">the long dark</div><div class="ls">2 DAYS AGO</div></div>
+                  <div class="ltrail"><span class="ibx" style="width:64px;height:64px"><span class="ivis"><span class="gl"></span></span></span></div></div>
+              </div>
+              <div class="specm">Top row is focused; third row is <b>selected</b> — raised fill plus a muted 4px marker, never a white bar. The trailing slot is a real focus stop: the download button and overflow glyph were unreachable by D-pad before.</div>
+            </div>
+          </div>
+          <div class="rule"></div>
+        </div>
+
+        <!-- ============ STATEVIEW ============ -->
+        <div class="blk">
+          <div class="bnum">04 · STATEVIEW</div>
+          <h2 class="bttl">Eleven names collapse into one component</h2>
+          <div class="specs">
+            <div class="spec">
+              <div class="specl">REPLACES-REGION · empty / error</div>
+              <div class="fx col gap24">
+                <div class="sv">
+                  <div class="svh">No sources installed</div>
+                  <div class="svd">CloudStream ships empty — add a repository to get started.</div>
+                  <div class="svb"><span class="btn pri foc">Add repository</span></div>
+                </div>
+                <div class="sv">
+                  <div class="svh">vidplay didn’t respond</div>
+                  <div class="svd">4 OF 5 PROVIDERS ANSWERED · TIMEOUT AFTER 8S</div>
+                  <div class="svb"><span class="btn pri foc">Retry</span><span class="btn">Open in browser</span></div>
+                </div>
+              </div>
+              <div class="specm">Headline in Manrope, detail in mono, at most two actions, <b>exactly one focusable</b>. Never a Toast.</div>
+            </div>
+
+            <div class="spec">
+              <div class="specl">BANNER-ABOVE-CONTENT · offline / partial</div>
+              <div class="fx col gap16">
+                <div class="banner"><span class="sg fail"></span>OFFLINE · SHOWING 12 DOWNLOADS</div>
+                <div class="banner"><span class="sg fail"></span>5 SOURCES · 2 PROVIDERS FAILED<span style="margin-left:auto;color:#FFFFFF">DETAILS</span></div>
+                <div class="fx gap24" style="margin-top:8px">
+                  <div class="poster"><div class="art pa"></div></div>
+                  <div class="poster" style="opacity:0.4"><div class="art pa"></div></div>
+                  <div class="poster" style="opacity:0.4"><div class="art pa"></div></div>
+                </div>
+              </div>
+              <div class="specm"><b>The rows stay.</b> Offline and partial both have real content underneath, so a block that replaces the region cannot serve them — downloads at full brightness, unreachable streams at 40%.</div>
+            </div>
+          </div>
+          <div class="note">
+            <b>Partial is only ever bound to a real failure.</b> The audit caught the detail spec printing
+            “Recommendations unavailable” for titles that simply have none — absence is not failure, and
+            claiming it is turns a working screen into a broken-looking one.
+          </div>
+          <div class="rule"></div>
+        </div>
+
+        <!-- ============ SIDE PANEL ============ -->
+        <div class="blk">
+          <div class="bnum">05 · SIDE PANEL</div>
+          <h2 class="bttl">The TV answer to a bottom sheet</h2>
+          <p class="bsub">
+            Bottom sheets stay the mobile idiom. On TV they are replaced by an <b>animated side panel</b>
+            that slides in from the right, 560px wide, full height, with the content behind it scrimmed
+            but not unmounted. Focus moves into the panel and is trapped there; BACK slides it out and
+            returns focus to the exact control that opened it.
+          </p>
+          <div class="specs">
+            <div class="spec">
+              <div class="specl">SIDE PANEL · 560 WIDE · SLIDES FROM RIGHT · 240ms</div>
+              <div class="stage">
+                <div class="art stagebg"></div>
+                <div class="scrim"></div>
+                <div class="arrow"><span class="arrowline"></span>SLIDE IN 240ms ease-out</div>
+                <div class="sidep">
+                  <div class="sph">Sources</div>
+                  <div class="spk">5 FOUND · RESOLVED 1.2S</div>
+                  <div class="fx col gap8" style="margin-top:24px">
+                    <sc-for list="{{ panelRows }}" as="r" hint-placeholder-count="4">
+                      <div class="lrow {{ r.cls }}" style="width:496px">
+                        <span class="lmark"></span>
+                        <span class="spill" style="height:32px;font-size:20px">{{ r.q }}</span>
+                        <div style="flex:1"><div class="lt">{{ r.n }}</div><div class="ls">{{ r.h }}</div></div>
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+              </div>
+              <div class="specm">Panel width 560 leaves the left 560px of the frame legible, so you never lose your place. <b>Content behind stays mounted and non-focusable</b> — dismissing restores scroll position and focus without a reload.</div>
+            </div>
+          </div>
+          <div class="rule"></div>
+        </div>
+
+        <!-- ============ NAV RAIL ============ -->
+        <div class="blk">
+          <div class="bnum">06 · NAV RAIL</div>
+          <h2 class="bttl">96 collapsed, 320 expanded, overlaid</h2>
+          <div class="specs">
+            <div class="spec">
+              <div class="specl">COLLAPSED · 96 · AT REST</div>
+              <div class="nrc">
+                <span class="nrowc cur"><span class="gl" style="background:#FFFFFF"></span></span>
+                <span class="nrowc"><span class="gl"></span></span>
+                <span class="nrowc"><span class="gl"></span></span>
+                <span class="nrowc foc"><span class="gl"></span></span>
+                <span class="nrowc"><span class="gl"></span></span>
+              </div>
+              <div class="specm">Rows are 96 × 96 — the minimum target, so the ring has room.</div>
+            </div>
+            <div class="spec">
+              <div class="specl">EXPANDED · 320 · ON FOCUS, PAINTED OVER CONTENT</div>
+              <div class="nre">
+                <sc-for list="{{ navRows }}" as="n" hint-placeholder-count="5">
+                  <div class="nrow {{ n.cls }}"><span class="gl"></span>{{ n.l }}</div>
+                </sc-for>
+              </div>
+              <div class="specm"><b>The feed never reflows.</b> Expansion paints over content and the current page stays marked while focus travels — committing is what changes the page. RIGHT returns focus to the exact view that yielded it.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </x-dc>
+
+    <script type="text/x-dc" data-dc-script data-props='{}'>
+      class Component extends DCLogic {
+        renderVals() {
+          const prereqs = [
+            { sig: "Typed loadLinks result + per-provider failure reason",
+              unblocks: "Link extraction error / partial; source panel failed rows",
+              why: "loadLinks returns a plain Boolean, so a failure carries no provider or reason." },
+            { sig: "Resource.Failure on _episodes",
+              unblocks: "Episode list error state",
+              why: "Episode loading has no failure branch — a failed load is indistinguishable from an empty season." },
+            { sig: "Per-episode downloaded-on-disk lookup",
+              unblocks: "Downloaded badge on episode cards; offline promotion",
+              why: "Download state is keyed separately and never joined to the episode list." },
+            { sig: "bytesPerSecond StateFlow",
+              unblocks: "Download speed and time-left in the queue",
+              why: "Progress is bytes-only; speed is computed for the notification and discarded." },
+            { sig: "Per-repo plugin counts",
+              unblocks: "Repository row metadata; onboarding ‘N sources’ copy",
+              why: "Plugins are counted globally, never grouped by repository." },
+            { sig: "SyncRepo single-repo commit",
+              unblocks: "Watch-status picker per-service result",
+              why: "A status write fans out to every linked service and cannot report which one failed." },
+            { sig: "ConnectivityFlow",
+              unblocks: "The offline banner on every surface",
+              why: "There is no app-wide connectivity observable; offline is inferred per request." },
+            { sig: "ResultEpisode.resolveError",
+              unblocks: "Per-episode failure marker in the list",
+              why: "Resolution failures are surfaced as a Toast and not retained on the model." }
+          ];
+
+          const rowAnat = [
+            { k: "Row", size: "h 96", rule: "The minimum target. Never 48 or 56 — both appeared in the specs and both fail the ring footprint." },
+            { k: "Selection marker", size: "4 × 48", rule: "Muted #686868, leading edge. Present only when the row is selected." },
+            { k: "Leading art", size: "128 × 72", rule: "backdrop-sm, or a 48px disc for services and profiles. Omitted entirely for text rows." },
+            { k: "Text block", size: "flex", rule: "Title 24 Manrope, meta 20 mono. Meta collapses without leaving a gap." },
+            { k: "Trailing slot", size: "64–96", rule: "A real focus stop with its own ring. This is what made download and overflow buttons unreachable before." }
+          ];
+
+          const panelRows = [
+            { q: "1080P", n: "VidPlay", h: "HLS · 2.1 GB · EN SUB", cls: "foc" },
+            { q: "4K", n: "FileMoon", h: "MP4 · 6.8 GB · MULTI", cls: "" },
+            { q: "1080P", n: "MixDrop", h: "HLS · 1.9 GB · EN SUB", cls: "" },
+            { q: "1080P", n: "On device", h: "MKV · 2.4 GB · SAVED", cls: "sel" }
+          ];
+
+          const navRows = [
+            { l: "Home", cls: "cur" },
+            { l: "Search", cls: "" },
+            { l: "Live TV", cls: "foc" },
+            { l: "Library", cls: "" },
+            { l: "Downloads", cls: "" }
+          ];
+
+          return { prereqs: prereqs, rowAnat: rowAnat, panelRows: panelRows, navRows: navRows };
+        }
+      }
+    </script>
+  </body>
+</html>

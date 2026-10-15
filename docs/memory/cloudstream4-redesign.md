@@ -8,6 +8,9 @@ metadata:
 Started 2026-09-12: full redesign of CloudStream for TV, mobile and desktop, drafted in Claude Design
 (project "CloudStream 4 — Redesign (TV / Mobile / Desktop)",
 https://claude.ai/design/p/a9ab3c83-bcc5-4ef4-854b-846c95da8438).
+Local copy, the place to read and update: `design/` at the repo root
+(`/Volumes/Projects/CloudStream/app/design`), exported 2026-10-14. Copy of the same files:
+https://claude.ai/design/p/c5fd7e44-70f5-41b6-8a48-e850eb88334b ("Project file storage").
 
 Scope decisions the user made:
 - **TV first** — the current TV layout is the worst part of the app, so it leads; mobile and desktop follow.
