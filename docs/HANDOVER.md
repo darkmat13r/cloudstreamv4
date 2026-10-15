@@ -134,13 +134,24 @@ implementor; the committed dumps were written on 17. Never run `updateKotlinAbi`
 On the owner's Mac, Gradle has already provisioned one at
 `~/.gradle/jdks/eclipse_adoptium-17-aarch64-os_x.2/jdk-17.0.20.1+1/Contents/Home`.
 
-**2. Pin the timezone.** `BUG-08`. `:library`'s `EpisodeDateTest` fails on any machine not on UTC.
-This is not merely a missing test pin: `addDate`'s documented device-timezone fallback is **dead**
-under kotlinx-datetime 0.8.0, because `toInstantUsingOffset()` does not throw on an offset-less
-input — it returns a UTC reading. Extension-supplied dates with no offset are read as UTC. CI is
-green only because GitHub runners default to UTC.
+**2. The timezone no longer has to be pinned.** `BUG-08`, **fixed**. It used to: `:library`'s
+`EpisodeDateTest` failed on any machine not on UTC, because `addDate`'s documented device-timezone
+fallback was dead under kotlinx-datetime 0.8.0 — `toInstantUsingOffset()` does not throw on an
+offset-less input, it returns a UTC reading, so extension-supplied dates with no offset were read as
+UTC. `addDate` now branches on what the string actually carried, and the suite passes in any zone.
 
-    TZ=UTC
+Measured when the fix landed: the full four-gate run below, with **no `TZ`** set (machine
+`Asia/Kolkata`) and the test JVMs forced to `Asia/Kolkata`, all exit 0 with 678 of 678 tasks executed
+under `--rerun-tasks`; `:library:jvmTest` is 562 tests, 0 failures, also green under
+`America/New_York` and `Pacific/Kiritimati`. The control — the same forced-zone run against the
+pre-fix tree — fails exactly the two cases `BUG-08` names.
+
+**Setting `TZ` on a Gradle command does not reach the test JVM anyway.** A reused Gradle daemon keeps
+the `TZ` it was started with, so a client-side `TZ=…` can be silently ignored. If you ever need to
+pin a test JVM's zone, do it on the task:
+
+    // init script, applied with -I
+    allprojects { tasks.withType<Test>().configureEach { systemProperty("user.timezone", zone); environment("TZ", zone) } }
 
 **3. Raise the heap.** `gradle.properties` sets `-Xmx4G`. A full `assemblePrereleaseDebug lint check`
 OOMs in D8 on a 48 GB machine. Pass it on the command line rather than editing the file:
@@ -152,12 +163,12 @@ OOMs in D8 on a 48 GB machine. Pass it on the command line rather than editing t
 Putting it together, the full local equivalent of CI:
 
     T17=/path/to/temurin-17.0.20.1
-    TZ=UTC JAVA_HOME="$T17" ./gradlew checkKotlinAbi -x :app:generateGitHash \
+    JAVA_HOME="$T17" ./gradlew checkKotlinAbi -x :app:generateGitHash \
       -Dorg.gradle.jvmargs="-Xmx14G -Dfile.encoding=UTF-8"
-    TZ=UTC JAVA_HOME="$T17" ./gradlew assemblePrereleaseDebug lint check \
+    JAVA_HOME="$T17" ./gradlew assemblePrereleaseDebug lint check \
       -Pcloudstream.strings.guards=fail -x :app:generateGitHash \
       -Dorg.gradle.jvmargs="-Xmx14G -Dfile.encoding=UTF-8"
-    TZ=UTC JAVA_HOME="$T17" ./gradlew :app:checkExtensionApi -x :app:generateGitHash \
+    JAVA_HOME="$T17" ./gradlew :app:checkExtensionApi -x :app:generateGitHash \
       -Dorg.gradle.jvmargs="-Xmx14G -Dfile.encoding=UTF-8"
 
 **A piped Gradle run reports the pipe's exit code, not Gradle's.** `./gradlew … | tail` exits 0 on a

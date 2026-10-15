@@ -8,35 +8,88 @@ than the description.
 
 ## BUG-08 — `addDate` reads an offset-less date-time as UTC, not device time · **medium**
 
-**Status:** open · found 2026-10-03 while verifying `I18N-07` locally
+**Status:** done · found 2026-10-03 while verifying `I18N-07` locally · `MainAPI.kt`, `Episode.addDate(String?, String)`
 
-`MainAPI.kt:2578-2605` documents that a date-time with no offset "falls back to device timezone",
-and implements it as
+**Changes what users see.** Every provider that returns a bare date-time (no offset, no `Z`) now
+gets that date moved by the device's UTC offset: `2026-05-17 14:35` was stored as 14:35Z and is now
+stored as 14:35 in the device zone (09:05Z on a phone in `Asia/Kolkata`, 18:35Z in
+`America/New_York`). Dates that carry an offset or `Z`, and date-only dates, are unchanged.
+
+`MainAPI.kt:2594-2603` (the function starts at 2578; line numbers before the fix) documented that a date-time with no offset "falls back to device timezone",
+and implemented it as
 `runCatching { components.toInstantUsingOffset() }.recoverCatching { … currentSystemDefault() }`.
 Under kotlinx-datetime 0.8.0 the first call **does not throw** on an offset-less input — it returns
-a UTC reading — so the documented device-timezone branch is dead for exactly the inputs it was
-written for. Date-only inputs still take it, because `toInstantUsingOffset` does throw for those.
+a UTC reading — so the documented device-timezone branch was dead for exactly the inputs it was
+written for. Date-only inputs still took it, because `toInstantUsingOffset` does throw for those.
 
-Measured: `:library:jvmTest --tests "*EpisodeDateTest*"` fails two tests on any machine whose
-offset is not zero, and passes under `TZ=UTC` or `TZ=Etc/GMT`. On this machine (`Asia/Kolkata`) the
-actual values are exactly 19,800,000 ms — 5h30m — from the expected ones.
+Why it returns UTC: `DateTimeComponents.toInstantUsingOffset()` calls `toUtcOffset()`, which builds
+`UtcOffset(null, null, null)` when no offset field was parsed, and that is `UtcOffset.ZERO`. Only a
+missing *time* makes it throw (`toLocalTime()` fails).
 
-| Test | Expects | Gets |
+| Input class | `toInstantUsingOffset()` | Produced before | Produced after |
+|---|---|---|---|
+| Date-time with an offset or `Z` | returns the instant for that offset | that instant | unchanged |
+| Date-time with **no** offset | **returns a UTC reading** (does not throw) | wall-clock read as UTC | wall-clock read in the device zone |
+| Date-only (with or without an offset field) | throws | start of day in the device zone | unchanged |
+
+Measured: `:library:jvmTest --tests "*EpisodeDateTest*"` failed two tests on any machine whose
+offset is not zero, and passed under `TZ=UTC` or `TZ=Etc/GMT`. On this machine (`Asia/Kolkata`) the
+actual values were exactly 19,800,000 ms — 5h30m — from the expected ones.
+
+| Test | Expects | Got |
 |---|---|---|
-| `2026-05-17T10:30:00` | 04:30Z (10:30 IST) | 10:30Z |
+| `2026-05-17T10:30:00` | 05:00Z (10:30 IST) | 10:30Z |
 | `17/05/2026 14:35` | 09:05Z (14:35 IST) | 14:35Z |
 
-**Why nobody noticed:** no workflow sets `TZ`, and GitHub's Ubuntu runners default to UTC, so CI
-would be green — if CI ran at all (`DEC-01`). The six passing tests in that file compute their
-expected value with the same `currentSystemDefault()` call as the code, so they are tautological
-and would pass whatever the timezone.
+(The first row of this table originally read `04:30Z`. That was an arithmetic slip: 10:30 at +05:30
+is 05:00Z, and the 19,800,000 ms gap between 10:30Z and 05:00Z is what was measured.)
 
-- [ ] Decide which behaviour is the contract: extension-supplied dates with no offset are currently
-      read as UTC, and the KDoc says device-local. Changing it shifts what users see for every
-      provider that returns a bare date-time
-- [ ] Only then consider pinning `TZ` for the test task — pinning first would freeze the dead
-      branch in place and keep the device-timezone path untested
-- [ ] Until then: run `:library:jvmTest` with `TZ=UTC`
+**Decision: the documented contract wins.** An offset-less date-time is read in the **device
+timezone**. The KDoc said device-local, the tests encoded device-local expectations, and the only
+thing that said UTC was an accident of which `DateTimeComponents` overload happens to throw. Making
+the code device-local is what makes the implementation, its documentation and its tests agree, and
+it removes the need to pin `TZ` for the suite.
+
+**The fix.** The branch is now chosen by what was parsed, not by which call throws: if any of
+`offsetHours` / `offsetMinutesOfHour` / `offsetSecondsOfMinute` was parsed, `toInstantUsingOffset()`
+is used; otherwise the time is read with `toLocalDateTime().toInstant(TimeZone.currentSystemDefault())`;
+a date with no time still falls through to start of day. An explicit `+00:00` or `Z` has a parsed
+offset field, so it is not mistaken for a missing offset (covered by a test). The function signature
+is unchanged, so `classes.jar` is unaffected.
+
+**Verification.** Compiled and run outside Gradle with the real function body lifted from
+`MainAPI.kt` (kotlinc from Gradle's lib dir, kotlinx-datetime 0.8.0 jar, JUnit 4): old logic fails
+4 of the new tests under `UTC` and 8 under `Asia/Kolkata`; new logic passes all 34 under `UTC`,
+`Asia/Kolkata`, `America/New_York`, `Pacific/Kiritimati`, `Australia/Lord_Howe`,
+`America/St_Johns`. The Gradle run is separate.
+
+**Tests.** The pre-existing `addDate(String)` cases that depend on the zone all build their
+expectation from `currentSystemDefault()`, the same call as the code. The five date-only ones can
+never fail on the zone (they would pass whatever it was) and the two offset-less date-time ones are
+the pair that failed off-UTC; nothing pinned a zone, so no case said what a given zone must produce. Added: four round-trip cases in `EpisodeDateTest` (read the stored instant back in the
+device zone and compare with the wall-clock in the string), and `EpisodeDateFixedZoneTest`
+(`jvmTest`), which pins the JVM default zone per case and states the expected instant as a literal:
+offset-less in `Asia/Kolkata` / `America/New_York` (summer and winter) / `UTC`, explicit offset
+winning in four zones, `+00:00` and `Z` not read as missing, date-only unchanged.
+
+**Not touched:** `isUpcoming` (`MainAPI.kt`) has the same `toInstantUsingOffset().recoverCatching`
+shape and the same comment, but its format only accepts `yyyy-MM-dd`, so it only ever sees
+date-only input and the dead branch cannot be reached there. Left alone.
+
+- [x] Decide which behaviour is the contract — device-local
+- [x] Make the code, the KDoc and the tests agree
+- [x] Dropped the `TZ=UTC` instruction from `CLAUDE.md` and `docs/HANDOVER.md`. The evidence: the
+      full four-gate run (`checkKotlinAbi`; `assemblePrereleaseDebug lint check
+      -Pcloudstream.strings.guards=fail --rerun-tasks`; `:app:checkExtensionApi`; `iosCanary`) with
+      **no `TZ` set** on a machine in `Asia/Kolkata`, and the test JVMs forced to `Asia/Kolkata` by an
+      init script, all exit 0 — 678 of 678 tasks executed. `:library:jvmTest` is 562 tests, 0
+      failures, and also green under `America/New_York` and `Pacific/Kiritimati`. **Control:** the
+      same forced-zone command against a tree whose `:library` is unmodified `master` fails with 548
+      tests, 2 failed — exactly `addDateDateTimeNoOffsetUsesSystemTimezone` and
+      `addDateCustomFormatDateTimeNoOffsetUsesSystemTimezone`, the two this entry names
+- [x] **Worth keeping:** a client-side `TZ=…` on a Gradle command does **not** reach the test JVM when
+      the daemon is reused — the daemon keeps the `TZ` it was started with. Pin it on the `Test` task
+      (`systemProperty("user.timezone", …)` + `environment("TZ", …)`) when a zone is load-bearing
 
 ---
 

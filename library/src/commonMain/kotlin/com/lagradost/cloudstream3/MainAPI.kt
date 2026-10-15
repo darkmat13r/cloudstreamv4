@@ -2592,15 +2592,22 @@ fun Episode.addDate(date: String?, format: String = "yyyy-MM-dd") {
                 }.getOrThrow()
 
                 /**
-                 * Try multiple conversions in order of precision for non-ISO-8601 formats,
-                 * since the date string may or may not include time and/or timezone offset:
-                 * 1. If the custom format produced a UTC offset (e.g. "2026-05-17 14:35+02:00"), use it directly
-                 * 2. If it has time but no offset (e.g. "2026-05-17 14:35"), fall back to device timezone
-                 * 3. If it's date-only (e.g. "2026-05-17"), use start of day in device timezone
+                 * Non-ISO-8601 formats, resolved by what the parsed string actually carried:
+                 * 1. A UTC offset (e.g. "2026-05-17 14:35+02:00" or a trailing "Z"): that offset is
+                 *    honoured, never the device timezone.
+                 * 2. A time but no offset (e.g. "2026-05-17 14:35"): read as wall-clock time in the
+                 *    device timezone. `toInstantUsingOffset()` must not be tried here, because it
+                 *    does not throw for a missing offset, it silently reads it as UTC.
+                 * 3. A date only (e.g. "2026-05-17"): start of that day in the device timezone.
                  */
-                runCatching { components.toInstantUsingOffset().toEpochMilliseconds() }
-                    .recoverCatching { components.toLocalDateTime().toInstant(TimeZone.currentSystemDefault()).toEpochMilliseconds() }
-                    .getOrElse { components.toLocalDate().atStartOfDayIn(TimeZone.currentSystemDefault()).toEpochMilliseconds() }
+                val zone = TimeZone.currentSystemDefault()
+                val hasOffset = components.offsetHours != null ||
+                    components.offsetMinutesOfHour != null ||
+                    components.offsetSecondsOfMinute != null
+                val instant = (if (hasOffset) runCatching { components.toInstantUsingOffset() }.getOrNull() else null)
+                    ?: runCatching { components.toLocalDateTime().toInstant(zone) }.getOrNull()
+                    ?: components.toLocalDate().atStartOfDayIn(zone)
+                instant.toEpochMilliseconds()
             }
     }.onFailure { logError(it) }.getOrNull()
 }

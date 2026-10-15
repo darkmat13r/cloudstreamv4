@@ -48,7 +48,8 @@ CI runs on pull requests since 2026-10-07 (`DEC-01`, `INF-01`); before that, eve
 local run. Still run all three commands in `docs/HANDOVER.md` locally before pushing, and say in
 the PR which results were local and which were CI. The traps:
 
-- `TZ=UTC` — `BUG-08`, `EpisodeDateTest` fails off-UTC.
+- ~~`TZ=UTC`~~ — no longer needed. `BUG-08` is fixed; the suite passes in any timezone, and a
+  client-side `TZ=` does not reach a reused daemon's test workers in any case.
 - `JAVA_HOME=<Temurin 17>` — `INF-06`, `:core:*` tests run on the daemon JVM, and on 21+
   `checkKotlinAbi` fails against the 17-written baselines. Never run `updateKotlinAbi` on 21+.
 - `-Dorg.gradle.jvmargs="-Xmx14G -Dfile.encoding=UTF-8"` — the 4G default OOMs D8 in a full run.

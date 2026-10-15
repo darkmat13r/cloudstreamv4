@@ -5,6 +5,7 @@ import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.atStartOfDayIn
 import kotlinx.datetime.toInstant
+import kotlinx.datetime.toLocalDateTime
 import kotlin.time.Instant
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -189,6 +190,46 @@ class EpisodeDateTest {
             .atStartOfDayIn(TimeZone.currentSystemDefault())
             .toEpochMilliseconds()
         assertEquals(expected, ep.date)
+    }
+
+    // The three cases below are written as round trips, not as `expected = <same call as the code>`.
+    // The function reads TimeZone.currentSystemDefault() internally and takes no zone parameter, so a
+    // common test cannot pin the zone, and an expectation built from currentSystemDefault() agrees with
+    // the code in every zone (that is what makes the older cases above tautological about the zone).
+    // Reading the stored instant back in the device zone and comparing it with the wall-clock the
+    // string carried only holds when the string was resolved in the device zone. A UTC reading fails
+    // it on any machine whose offset is not zero. Fixed-zone cases live in EpisodeDateFixedZoneTest.
+
+    @Test
+    fun addDateIsoNoOffsetReadsBackAsTheSameWallClockOnTheDevice() {
+        val ep = episode()
+        ep.addDate("2026-05-17T10:30:00", "yyyy-MM-dd'T'HH:mm:ss")
+        val back = Instant.fromEpochMilliseconds(ep.date!!).toLocalDateTime(TimeZone.currentSystemDefault())
+        assertEquals(LocalDateTime(2026, 5, 17, 10, 30, 0), back)
+    }
+
+    @Test
+    fun addDateCustomFormatNoOffsetReadsBackAsTheSameWallClockOnTheDevice() {
+        val ep = episode()
+        ep.addDate("17/05/2026 14:35", "dd/MM/yyyy HH:mm")
+        val back = Instant.fromEpochMilliseconds(ep.date!!).toLocalDateTime(TimeZone.currentSystemDefault())
+        assertEquals(LocalDateTime(2026, 5, 17, 14, 35, 0), back)
+    }
+
+    @Test
+    fun addDateDateOnlyReadsBackAsMidnightOnTheDevice() {
+        val ep = episode()
+        ep.addDate("17/05/2026", "dd/MM/yyyy")
+        val back = Instant.fromEpochMilliseconds(ep.date!!).toLocalDateTime(TimeZone.currentSystemDefault())
+        assertEquals(LocalDateTime(2026, 5, 17, 0, 0, 0), back)
+    }
+
+    @Test
+    fun addDateCustomFormatWithZUsesExactInstant() {
+        val ep = episode()
+        ep.addDate("17/05/2026 14:35Z", "dd/MM/yyyy HH:mmXXX")
+        // 14:35Z = 2026-05-17T14:35:00Z, whatever the device timezone is
+        assertEquals(1779028500000L, ep.date)
     }
 }
 
