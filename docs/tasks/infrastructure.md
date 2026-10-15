@@ -4,7 +4,9 @@
 
 ## INF-01 — CI does not run · **the single largest gap**
 
-**Status:** unblocked 2026-10-07 — CI runs (see `DEC-01`). Open: make it reliable.
+**Status:** **blocked again by `DEC-01` as of 2026-10-15 ~03:52Z** — billing, so no job starts at
+all. It ran from 2026-10-07 to then. Two separate problems now: CI not running (`DEC-01`, the owner's
+billing page) and, when it does run, the ABI step being killed (`INF-08`).
 
 First runs, 2026-10-07, all on `pull_request.yml`'s single `build` job:
 

@@ -17,7 +17,8 @@ What is actually outstanding, with the evidence behind each item. One file per t
 not renumbered. PR descriptions and commit messages reference these IDs, so reusing a number
 silently rewrites history that is already published.
 
-**Status** is one of:
+**Status** is one of (and a `done` entry should name its PR number, not say "in pr" — four entries
+had gone stale that way by 2026-10-15):
 
 | Status | Meaning |
 |---|---|
@@ -45,9 +46,14 @@ nobody remembers why, and the entry is the only place that knows.
 
 ## Standing constraint on everything here
 
-**Update 2026-10-07: CI now runs** (`DEC-01`, `INF-01`); the first full green run is on #42. The
-paragraph below describes every PR before that. **Before 2026-10-07, no CI had ever run on this
-repository's pull requests.** GitHub Actions fails account-wide in
-roughly two seconds with a billing error. Every check quoted in every PR body in this series was
-run locally, on one machine, with one JDK, against one or two attached devices. Treat every green
-tick accordingly, and see `INF-01`.
+**Update 2026-10-15: CI is down again, on billing** (`DEC-01`). Runs end in ~2 seconds with zero
+steps and a *"recent account payments have failed or your spending limit needs to be increased"*
+annotation. **A red tick currently means no check ran** — it is not a result, and re-running does not
+help. Only the owner can clear it.
+
+CI did run from **2026-10-07** to then (`INF-01`; first full green run on #42), and before 2026-10-07
+it had never run on this repository's pull requests at all. So for everything merged outside that
+window — which is most of this series, including #64–#68 — **every check quoted in a PR body is a
+local run**, on one machine, with one JDK, against one or two attached devices. Treat the ticks
+accordingly, and see `INF-01` for reliability and `INF-08` for the step the runner kills even when
+billing is healthy.
