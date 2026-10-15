@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet data-dc-atomics>
+        <meta name="design_doc_mode" content="canvas" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
+        />
+        <style>
+          html { background: #0a0a0a; }
+          body { margin: 0; background: #0a0a0a; font-family: Manrope, system-ui, sans-serif; }
+
+          .sec { padding: 52px 64px 44px; }
+          .sechd { display: flex; align-items: baseline; gap: 12px; margin: 0 0 8px; }
+          .secid { font: 600 12px/16px "JetBrains Mono", monospace; padding: 4px 8px; background: #f0eee9; color: #14130f; border-radius: 4px; }
+          .secname { font: 700 16px/20px Manrope, sans-serif; color: #f0eee9; }
+          .secsub { font: 400 16px/28px Manrope, sans-serif; color: rgba(240,238,233,0.62); max-width: 1040px; margin: 0 0 32px; text-wrap: pretty; }
+          .secsub b { color: #f0eee9; font-weight: 600; }
+          .shots { display: flex; flex-direction: column; gap: 44px; align-items: flex-start; }
+          .shot { display: flex; flex-direction: column; gap: 12px; }
+          .shotl { display: flex; align-items: baseline; gap: 12px; font: 400 16px/24px Manrope, sans-serif; color: rgba(240,238,233,0.55); max-width: 1560px; }
+          .shotn { font: 700 16px/20px Manrope, sans-serif; color: #f0eee9; white-space: nowrap; }
+          .shotc { border-radius: 12px; overflow: hidden; box-shadow: 0 16px 60px rgba(0,0,0,0.6); }
+          .note { margin-top: 24px; padding: 16px 20px; border-left: 4px solid #CD3D4B;
+            background: rgba(205,61,75,0.07); font: 400 16px/28px Manrope, sans-serif;
+            color: rgba(255,255,255,0.78); max-width: 1180px; text-wrap: pretty; }
+          .note b { color: #FFFFFF; }
+          .note p { margin: 0 0 12px; } .note p:last-child { margin: 0; }
+          .note code { font: 500 14px/20px "JetBrains Mono", monospace; color: #FFFFFF; }
+
+          .tv {
+            --bg:#000000; --surf:#0A1016; --raised:#15191E; --line:#242A31;
+            --ink:#FFFFFF; --ink2:#CCCCCC; --mut:#858585; --acc:#CD3D4B;
+            width: 1920px; height: 1080px; position: relative; overflow: hidden;
+            background: var(--bg); color: var(--ink); font-family: Manrope, sans-serif;
+          }
+          .abs { position: absolute; }
+
+          .art { position: relative; overflow: hidden; background:
+            radial-gradient(120% 100% at 62% 26%, #47576A 0%, #26313D 42%, transparent 72%),
+            radial-gradient(90% 80% at 88% 78%, #35414F 0%, transparent 64%),
+            linear-gradient(155deg, #2A3540, #0E141A 82%);
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.07); }
+          .art::after { content: ""; position: absolute; inset: 0;
+            background: repeating-linear-gradient(115deg, rgba(255,255,255,0.03) 0 2px, transparent 2px 8px); }
+
+          .railc { width: 152px; height: 1080px; box-sizing: border-box; padding: 56px 0 0 56px;
+            display: flex; flex-direction: column; gap: 8px; background: #000000;
+            box-shadow: inset -1px 0 0 var(--line); }
+          .lgm { width: 48px; height: 48px; border-radius: 16px; background: var(--acc); margin: 0 24px 32px; }
+          .nic { width: 96px; height: 96px; border-radius: 8px; display: flex; align-items: center;
+            justify-content: center; box-sizing: border-box; flex: none; position: relative; }
+          .nic .gl { width: 32px; height: 32px; border-radius: 8px; background: var(--mut); }
+          .nic.cur { background: var(--raised); }
+          .nic.cur .gl { background: var(--ink); }
+          .nic.cur::before { content: ""; position: absolute; left: 0; top: 24px;
+            width: 4px; height: 48px; border-radius: 4px; background: var(--mut); }
+
+          /* chrome row — the two-line stack totals 64 (32 + 8 + 24) so it centres in a
+             96 row at +16. A 4px gap makes it 60, which centres at +18. */
+          .cbtn { height: 96px; box-sizing: border-box; padding: 0 24px; border-radius: 8px;
+            background: var(--raised); box-shadow: inset 0 0 0 1px var(--line);
+            display: flex; flex-direction: column; justify-content: center; gap: 8px; overflow: hidden; }
+          .cbtn.foc { outline: 4px solid var(--ink); outline-offset: 4px; box-shadow: none; }
+          .cbl { font: 600 24px/32px Manrope, sans-serif; color: var(--ink);
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+          .cbm { font: 500 20px/24px "JetBrains Mono", monospace; color: var(--mut);
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+          .cbm.bad { color: var(--acc); }
+
+          /* a SINGLE line centred in a 96 row needs a 48px line box: (96-48)/2 = 24 */
+          .field { height: 96px; box-sizing: border-box; padding: 0 24px; border-radius: 8px;
+            background: var(--surf); box-shadow: inset 0 0 0 1px var(--line);
+            display: flex; align-items: center; gap: 16px; overflow: hidden; }
+          .field.foc { outline: 4px solid var(--ink); outline-offset: 4px; box-shadow: none; }
+          .fgl { width: 32px; height: 32px; border-radius: 16px; border: 4px solid var(--mut);
+            box-sizing: border-box; flex: none; }
+          .qtext { font: 400 28px/48px Manrope, sans-serif; color: var(--ink);
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+          .qtext.ph { color: var(--mut); }
+
+          .btncell { height: 96px; display: inline-flex; align-items: center; box-sizing: border-box; }
+          .btncell.foc { outline: 4px solid var(--ink); outline-offset: 4px; border-radius: 8px; }
+          .bbtn { height: 64px; min-width: 240px; padding: 0 32px; box-sizing: border-box;
+            display: inline-flex; align-items: center; justify-content: center; border-radius: 8px;
+            background: var(--ink); color: #000000; font: 800 24px/32px Manrope, sans-serif; white-space: nowrap; }
+
+          /* tabs — 48-tall visual centred in a 96 cell lands at y200.
+             The count's line box is 32, not 24: a 24 box centred in the 48 pill lands at +12. */
+          .tabrow { display: flex; gap: 24px; align-items: center; height: 96px; }
+          .tabcell { height: 96px; display: inline-flex; align-items: center; box-sizing: border-box; }
+          .tabcell.foc { outline: 4px solid var(--ink); outline-offset: 4px; border-radius: 8px; }
+          .tab { display: inline-flex; align-items: center; gap: 12px; height: 48px; padding: 0 24px;
+            box-sizing: border-box; border-radius: 24px; background: var(--raised);
+            box-shadow: inset 0 0 0 1px var(--line); font: 600 24px/32px Manrope, sans-serif;
+            color: var(--mut); white-space: nowrap; }
+          .tab.sel { color: #000000; background: var(--ink); box-shadow: none; }
+          .tabn { font: 500 20px/32px "JetBrains Mono", monospace; color: var(--mut); }
+          .tab.sel .tabn { color: rgba(0,0,0,0.6); }
+
+          /* grid card 192x288 — ring is an outline, lift is 8 */
+          .gc { width: 192px; position: absolute; }
+          .gca { height: 288px; border-radius: 8px; position: relative; }
+          .gc.foc { transform: translateY(-8px); }
+          .gc.foc .gca { outline: 4px solid var(--ink); box-shadow: 0 20px 44px rgba(0,0,0,0.7); }
+          .gc.stale .gca { opacity: 0.72; }
+          .tl { position: absolute; left: 8px; top: 8px; }
+          .tr { position: absolute; right: 8px; top: 8px; }
+          /* The line box equals the chip's own height, so a BOUND value is not centred 4px off. */
+          .bdg { display: inline-flex; align-items: center; height: 32px; padding: 0 8px; border-radius: 8px;
+            box-sizing: border-box; background: rgba(0,0,0,0.78);
+            font: 700 20px/32px "JetBrains Mono", monospace; color: #FFFFFF; }
+          /* 8, not 4: a hairline is exempt in its own axis, not in where its edges land. */
+          .cardbar { position: absolute; left: 0; right: 0; bottom: 0; height: 8px; background: rgba(255,255,255,0.18); }
+          .cardbar .pf { display: block; height: 100%; background: var(--acc); }
+          /* block, not inline — an inline span measures its ink box, not its line box */
+          .revt { position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 16px 16px;
+            background: linear-gradient(0deg, rgba(0,0,0,0.94) 34%, rgba(0,0,0,0)); }
+          .revn { display: block; font: 700 24px/32px Manrope, sans-serif; color: var(--ink);
+            -webkit-line-clamp: 2; overflow: hidden; max-height: 64px; }
+          .revm { display: block; font: 500 20px/24px "JetBrains Mono", monospace; color: var(--ink2);
+            margin-top: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+          .sg { width: 16px; height: 16px; border-radius: 4px; background: var(--mut); flex: none; }
+          .sg.ok { background: var(--ink); }
+          .sg.fail { background: transparent; box-shadow: inset 0 0 0 2px var(--acc); }
+
+          /* state view — 64 inks 83.2, so it needs 88; 28 inks 36.4, so it needs 40 */
+          .svg1 { width: 96px; height: 96px; border-radius: 24px;
+            background: var(--raised); box-shadow: inset 0 0 0 1px var(--line); }
+          .svh { font: 700 64px/88px Manrope, sans-serif; letter-spacing: -0.02em;
+            color: var(--ink); text-align: center; }
+          .svb { font: 400 28px/40px Manrope, sans-serif; color: var(--mut); text-align: center; }
+
+          /* list row — 8px marker, and a 64-tall text stack so it centres at +16 */
+          .lrow { display: flex; align-items: center; gap: 16px; height: 96px; box-sizing: border-box;
+            padding: 0 16px; border-radius: 8px; }
+          .lrow.foc { outline: 4px solid var(--ink); outline-offset: 4px; }
+          .lrow.sel { background: var(--raised); }
+          .lrow.off { opacity: 0.44; }
+          .lmark { width: 8px; height: 48px; border-radius: 4px; background: transparent; flex: none; }
+          .lrow.sel .lmark { background: var(--mut); }
+          .ldisc { width: 48px; height: 48px; border-radius: 24px; background: var(--raised);
+            box-shadow: inset 0 0 0 1px var(--line); flex: none; }
+          .lt { font: 600 24px/32px Manrope, sans-serif; color: var(--ink);
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+          .ls { font: 400 20px/24px "JetBrains Mono", monospace; color: var(--mut); margin-top: 8px;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+          .ltrail { display: flex; align-items: center; gap: 8px; flex: none; }
+          /* 32, not 24 — a 24 box centred in this 48 cell lands at +12 */
+          .dirn { display: inline-flex; align-items: center; height: 48px; padding: 0 16px; box-sizing: border-box;
+            border-radius: 8px; background: var(--raised); box-shadow: inset 0 0 0 1px var(--line);
+            font: 500 20px/32px "JetBrains Mono", monospace; color: var(--ink2); white-space: nowrap; }
+
+          .scrim { position: absolute; inset: 0; background: rgba(0,0,0,0.6); }
+          .panel { position: absolute; right: 0; top: 0; bottom: 0; width: 560px;
+            background: var(--surf);
+            box-shadow: inset 1px 0 0 var(--line), -32px 0 68px rgba(0,0,0,0.85); }
+          .ptitle { font: 700 40px/56px Manrope, sans-serif; color: var(--ink); }
+          .pmeta { font: 500 20px/24px "JetBrains Mono", monospace; color: var(--mut); }
+        </style>
+      </helmet>
+
+      <section class="sec">
+        <div class="sechd">
+          <span class="secid">5</span>
+          <span class="secname">CloudStream 4 — Library cluster</span>
+        </div>
+        <p class="secsub">
+          Library is the only screen whose entire content comes from an account you might not have, on
+          a service that might be down. So the provider is a first-class control in the chrome row —
+          not a 25dp icon — and it is where the failure lands, because the failure belongs to it.
+          Grid cards are the <b>192×288</b> rung rather than Search’s 160×240: a rail is scanned
+          sideways and wants density, a grid is browsed and wants size. Measures <b>0 off-grid,
+          0 clipped, 0 band violations</b> across 629 boxes.
+        </p>
+
+        <div class="shots">
+
+          <!-- 5a GRID -->
+          <div class="shot" id="5a">
+            <div class="shotl">
+              <span class="shotn">5a · Library — grid</span>
+              <span>Provider · filter · sort in the chrome row; <code>WatchType</code> pages as tabs carrying their counts. Each card shows what the model already holds and the UI throws away today: episodes completed of total, your own rating, and the progress bar those two imply.</span>
+            </div>
+            <div class="shotc">
+              <div class="tv" data-screen-label="Library — grid">
+                <div class="railc abs" style="left:0;top:0">
+                  <div class="lgm"></div>
+                  <sc-for list="{{ nav }}" as="n" hint-placeholder-count="6">
+                    <div class="nic {{ n.cls }}"><span class="gl"></span></div>
+                  </sc-for>
+                </div>
+
+                <div class="cbtn abs" style="left:200px;top:56px;width:424px">
+                  <div class="cbl">AniList</div>
+                  <div class="cbm">LAGRADOST · SYNCED 4 MIN</div>
+                </div>
+                <div class="field abs" style="left:648px;top:56px;width:768px">
+                  <span class="fgl"></span><span class="qtext ph">Filter this list</span>
+                </div>
+                <div class="cbtn abs" style="left:1440px;top:56px;width:424px">
+                  <div class="cbl">Sort</div>
+                  <div class="cbm">LAST UPDATED · NEWEST</div>
+                </div>
+
+                <div class="tabrow abs" style="left:200px;top:176px">
+                  <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="5">
+                    <span class="tabcell"><span class="tab {{ t.cls }}">{{ t.l }}<span class="tabn">{{ t.n }}</span></span></span>
+                  </sc-for>
+                </div>
+
+                <sc-for list="{{ grid }}" as="g" hint-placeholder-count="21">
+                  <div class="gc {{ g.cls }}" style="{{ g.pos }}">
+                    <div class="art gca">
+                      <span class="tl"><span class="bdg">{{ g.type }}</span></span>
+                      <sc-if value="{{ g.rated }}" hint-placeholder-val="{{ true }}">
+                        <span class="tr"><span class="bdg">{{ g.rating }}</span></span>
+                      </sc-if>
+                      <sc-if value="{{ g.focused }}" hint-placeholder-val="{{ true }}">
+                        <div class="revt">
+                          <span class="revn">{{ g.name }}</span>
+                          <span class="revm">{{ g.meta }}</span>
+                        </div>
+                      </sc-if>
+                      <span class="cardbar"><i class="pf" style="{{ g.bar }}"></i></span>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5b SYNC FAILED -->
+          <div class="shot" id="5b">
+            <div class="shotl">
+              <span class="shotn">5b · Library — provider unreachable</span>
+              <span>Today this branch is literally <code>// No user indication it failed :( // TODO</code> — the list silently stays as it was. Here the failure lands on the control that owns it, Retry is the next stop to its right, and every card is marked <b>CACHED</b> so nothing pretends to be live.</span>
+            </div>
+            <div class="shotc">
+              <div class="tv" data-screen-label="Library — provider unreachable">
+                <div class="railc abs" style="left:0;top:0">
+                  <div class="lgm"></div>
+                  <sc-for list="{{ nav }}" as="n" hint-placeholder-count="6">
+                    <div class="nic {{ n.cls }}"><span class="gl"></span></div>
+                  </sc-for>
+                </div>
+
+                <div class="cbtn abs foc" style="left:200px;top:56px;width:424px">
+                  <div class="cbl">AniList</div>
+                  <div class="cbm bad">UNREACHABLE · CACHED 2H</div>
+                </div>
+                <div class="btncell abs" style="left:648px;top:56px">
+                  <span class="bbtn" style="min-width:288px">Retry sync</span>
+                </div>
+                <div class="field abs" style="left:960px;top:56px;width:456px">
+                  <span class="fgl"></span><span class="qtext ph">Filter</span>
+                </div>
+                <div class="cbtn abs" style="left:1440px;top:56px;width:424px">
+                  <div class="cbl">Sort</div>
+                  <div class="cbm">LAST UPDATED · NEWEST</div>
+                </div>
+
+                <div class="tabrow abs" style="left:200px;top:176px">
+                  <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="5">
+                    <span class="tabcell"><span class="tab {{ t.cls }}">{{ t.l }}<span class="tabn">{{ t.n }}</span></span></span>
+                  </sc-for>
+                </div>
+
+                <sc-for list="{{ gridStale }}" as="g" hint-placeholder-count="21">
+                  <div class="gc stale" style="{{ g.pos }}">
+                    <div class="art gca">
+                      <span class="tl"><span class="bdg">CACHED</span></span>
+                      <span class="cardbar"><i class="pf" style="{{ g.bar }}"></i></span>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5c EMPTY TAB -->
+          <div class="shot" id="5c">
+            <div class="shotl">
+              <span class="shotn">5c · Library — empty page</span>
+              <span>An empty <code>WatchType</code> page is not an empty Library — the tabs stay, their counts stay, and the action is the one that fills <i>this</i> page. The button is a real focus stop below the tab row, which is the rule eighteen of twenty audited screens broke.</span>
+            </div>
+            <div class="shotc">
+              <div class="tv" data-screen-label="Library — empty page">
+                <div class="railc abs" style="left:0;top:0">
+                  <div class="lgm"></div>
+                  <sc-for list="{{ nav }}" as="n" hint-placeholder-count="6">
+                    <div class="nic {{ n.cls }}"><span class="gl"></span></div>
+                  </sc-for>
+                </div>
+
+                <div class="cbtn abs" style="left:200px;top:56px;width:424px">
+                  <div class="cbl">AniList</div>
+                  <div class="cbm">LAGRADOST · SYNCED 4 MIN</div>
+                </div>
+                <div class="field abs" style="left:648px;top:56px;width:768px">
+                  <span class="fgl"></span><span class="qtext ph">Filter this list</span>
+                </div>
+                <div class="cbtn abs" style="left:1440px;top:56px;width:424px">
+                  <div class="cbl">Sort</div>
+                  <div class="cbm">LAST UPDATED · NEWEST</div>
+                </div>
+
+                <div class="tabrow abs" style="left:200px;top:176px">
+                  <sc-for list="{{ tabsEmpty }}" as="t" hint-placeholder-count="5">
+                    <span class="tabcell"><span class="tab {{ t.cls }}">{{ t.l }}<span class="tabn">{{ t.n }}</span></span></span>
+                  </sc-for>
+                </div>
+
+                <div class="svg1 abs" style="left:984px;top:480px"></div>
+                <div class="svh abs" style="left:200px;top:608px;width:1664px">Nothing on hold</div>
+                <div class="svb abs" style="left:200px;top:720px;width:1664px">
+                  Titles you pause land here. Four are in Watching that you haven’t opened in a month.
+                </div>
+                <div class="btncell abs" style="left:888px;top:792px">
+                  <span class="bbtn" style="min-width:288px">Go to Watching</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5d SORT PANEL -->
+          <div class="shot" id="5d">
+            <div class="shotl">
+              <span class="shotn">5d · Sort — side panel</span>
+              <span><code>ListSorting</code> has nine entries, but eight of them are four criteria × two directions — a flat list of eight makes you read “Alphabetical A” and “Alphabetical Z” to work out they are the same choice. Four rows with a direction each, and the row a provider does not support stays visible and disabled with the reason.</span>
+            </div>
+            <div class="shotc">
+              <div class="tv" data-screen-label="Sort — side panel">
+                <div class="railc abs" style="left:0;top:0">
+                  <div class="lgm"></div>
+                  <sc-for list="{{ nav }}" as="n" hint-placeholder-count="6">
+                    <div class="nic {{ n.cls }}"><span class="gl"></span></div>
+                  </sc-for>
+                </div>
+                <div class="cbtn abs" style="left:200px;top:56px;width:424px">
+                  <div class="cbl">Local</div>
+                  <div class="cbm">ON DEVICE · 308 TITLES</div>
+                </div>
+                <sc-for list="{{ gridStale }}" as="g" hint-placeholder-count="21">
+                  <div class="gc" style="{{ g.pos }}"><div class="art gca"></div></div>
+                </sc-for>
+
+                <div class="scrim"></div>
+                <div class="panel">
+                  <div class="abs" style="left:32px;top:56px;width:472px">
+                    <div class="ptitle">Sort</div>
+                    <div class="pmeta" style="margin-top:8px">LOCAL SUPPORTS 3 OF 4 CRITERIA</div>
+                  </div>
+                  <sc-for list="{{ sorts }}" as="s" hint-placeholder-count="4">
+                    <div class="lrow {{ s.cls }} abs" style="{{ s.pos }}">
+                      <span class="lmark"></span>
+                      <div style="flex:1;min-width:0">
+                        <div class="lt">{{ s.n }}</div>
+                        <div class="ls">{{ s.m }}</div>
+                      </div>
+                      <div class="ltrail"><span class="dirn">{{ s.dir }}</span></div>
+                    </div>
+                  </sc-for>
+                  <div class="lrow abs" style="left:32px;top:928px;width:472px">
+                    <span class="lmark"></span>
+                    <div style="flex:1;min-width:0"><div class="lt">Done</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5e ACCOUNT PANEL -->
+          <div class="shot" id="5e">
+            <div class="shotl">
+              <span class="shotn">5e · Provider — side panel</span>
+              <span>Every <code>SyncAPI</code> in one place with its real state — connected, when it last synced, whether it failed. Local is always present and never fails, which is the fact that makes the other four safe to be honest about.</span>
+            </div>
+            <div class="shotc">
+              <div class="tv" data-screen-label="Provider — side panel">
+                <div class="railc abs" style="left:0;top:0">
+                  <div class="lgm"></div>
+                  <sc-for list="{{ nav }}" as="n" hint-placeholder-count="6">
+                    <div class="nic {{ n.cls }}"><span class="gl"></span></div>
+                  </sc-for>
+                </div>
+                <div class="cbtn abs" style="left:200px;top:56px;width:424px">
+                  <div class="cbl">AniList</div>
+                  <div class="cbm">LAGRADOST · SYNCED 4 MIN</div>
+                </div>
+                <sc-for list="{{ gridStale }}" as="g" hint-placeholder-count="21">
+                  <div class="gc" style="{{ g.pos }}"><div class="art gca"></div></div>
+                </sc-for>
+
+                <div class="scrim"></div>
+                <div class="panel">
+                  <div class="abs" style="left:32px;top:56px;width:472px">
+                    <div class="ptitle">Library source</div>
+                    <div class="pmeta" style="margin-top:8px">ONE AT A TIME · SWITCHING RELOADS</div>
+                  </div>
+                  <sc-for list="{{ accounts }}" as="a" hint-placeholder-count="5">
+                    <div class="lrow {{ a.cls }} abs" style="{{ a.pos }}">
+                      <span class="lmark"></span>
+                      <span class="ldisc"></span>
+                      <div style="flex:1;min-width:0">
+                        <div class="lt">{{ a.n }}</div>
+                        <div class="ls">{{ a.m }}</div>
+                      </div>
+                      <div class="ltrail"><span class="sg {{ a.sg }}"></span></div>
+                    </div>
+                  </sc-for>
+                  <div class="lrow abs" style="left:32px;top:928px;width:472px">
+                    <span class="lmark"></span>
+                    <div style="flex:1;min-width:0"><div class="lt">Done</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="note">
+          <p><b>Re-cut twice after measuring computed boxes rather than declared CSS.</b> The
+          declared-value scanner passed this file. Measuring where elements land found the five
+          systemic causes listed in Search; extending the measurement to <i>text</i> boxes found a
+          sixth, because the first pass only looked at painted elements.</p>
+          <p><b>A text stack must total a multiple of 16 to centre in a 96-tall row.</b> Title 32 plus
+          a 4px gap plus subtitle 24 is 60, which centres at +18 — so every line of every list row and
+          every chrome button sat off the step. The gap is <b>8</b>, the stack is 64, the offset is
+          16. A single line centred alone needs a <b>48px</b> line box to land at +24. And an inline
+          <code>&lt;span&gt;</code> reports its ink box rather than its line box, so reveal text is
+          <code>display: block</code>.</p>
+          <p><b>Then a stricter scanner found 156 more, the worst of any file — and they were four
+          mistakes, not 156.</b> Every one was a small box centred inside a bigger one, which is the
+          single most productive way to turn two on-grid values into an off-grid position. The tab
+          count was a 24 line box in a 48 pill (+12). The badge was a 24 line box in a 32 chip (+4).
+          The sort-direction label was a 24 box in a 48 cell (+12). The card’s progress rule was 4px
+          at the card’s bottom edge, putting its own top at a fraction. Every line box that sits in a
+          48 or 32 cell is now <b>32</b>, and the rule is <b>8</b>. The general fix is never to nudge
+          the offset: make the child’s box equal the parent’s, so there is no offset to be wrong.</p>
+          <p><b>Only the bound badges were wrong.</b> The literal ones — <code>CACHED</code>, typed
+          into the markup — measured clean, and the interpolated ones did not, because a literal is an
+          inline text node whose rect is a font metric while <code>{{ value }}</code> is wrapped in a
+          block that takes a real box and gets centred. A mockup measured only with literal content
+          has not been measured.</p>
+          <p><b>The line-box ramp, measured rather than estimated.</b> The earlier “about 1.3×” rule
+          was an estimate applied to both families at once, and that was the bug. Measured ink is
+          <b>Manrope 1.30×</b> the size at its heaviest weight and <b>JetBrains Mono 1.182×</b>, which
+          is why the same 20px size needs a 32 box in the sans and fits 24 in the mono. Read the box
+          from §03’s table; never derive it from a ratio. Note also that the browser’s content box is
+          larger than the ink and that a line box smaller than it is harmless — Manrope 24/32 measures
+          33 of content box and does not clip, and “fixing” it to 40 would add 8px to every card title
+          in the app.</p>
+          <p><b>Two rows and a peek.</b> Grid pitch is <b>320</b> — rows at 304 and 624 inside the
+          band, a third at 944 crossing it. A row below the fold is the one legitimate exception to
+          “no focusable crosses y1024”, because reaching it scrolls the grid and puts it back inside
+          the band; the verifier allows exactly one such row.</p>
+          <p><b>And one defect that no amount of geometry measurement could find.</b> This file
+          measured 0 off-grid, 0 clipped and 0 band violations while setting <code>--mut</code> to
+          <code>#686868</code> — <b>3.17:1 against the raised fill</b> it sits on in every chrome
+          button, against a 4.5:1 AA floor. It carries the provider name, the sync age, the sort
+          criterion and every list row’s second line. It is now <code>#858585</code>, 4.78:1 on raised
+          and 5.69 on black. A colour moves no boxes, so it passed every scanner ever pointed at this
+          file. See §08 of the design system.</p>
+          <p><b>Three engineering prerequisites this cluster adds</b> to the register in
+          <code>Components.dc.html</code>: a typed failure on the library resource carrying which
+          provider failed and why (today it is <code>Resource.Failure(false, "Unable to fetch
+          library")</code> and the TV branch drops it); a <code>lastSyncedUnixTime</code> per provider
+          so “CACHED 2H” is a fact rather than a guess; and per-page counts on
+          <code>SyncAPI.Page</code> so a tab can carry its number without loading the page.</p>
+        </div>
+      </section>
+    </x-dc>
+
+    <script type="text/x-dc" data-dc-script data-props='{}'>
+      class Component extends DCLogic {
+        renderVals() {
+          const nav = [{ cls: "" }, { cls: "" }, { cls: "cur" }, { cls: "" }, { cls: "" }, { cls: "" }];
+
+          function mkTabs(selIdx) {
+            const src = [["Watching", "142"], ["Completed", "88"], ["On hold", "4"],
+                         ["Dropped", "11"], ["Plan to watch", "63"]];
+            return src.map(function (t, i) {
+              return { l: t[0], n: t[1], cls: i === selIdx ? "sel" : "" };
+            });
+          }
+          const tabs = mkTabs(0);
+          const tabsEmpty = mkTabs(2);
+
+          /* lift 8 => a lifting row sits 32 below what precedes it => pitch 288 + 32 = 320 */
+          const COLS = 7, X0 = 200, PITCH_X = 240, Y0 = 304, PITCH_Y = 320;
+          function cellPos(i) {
+            const c = i % COLS, r = Math.floor(i / COLS);
+            return "left:" + (X0 + c * PITCH_X) + "px;top:" + (Y0 + r * PITCH_Y) + "px";
+          }
+
+          const titles = [
+            ["Frieren: Beyond Journey’s End", "ANIME", "9.1", 12, 28],
+            ["Severance", "TV", "8.8", 9, 10],
+            ["Blade Runner 2049", "MOVIE", "8.4", 1, 1],
+            ["The Long Dark", "TV", null, 3, 8],
+            ["Vinland Saga", "ANIME", "8.9", 24, 24],
+            ["Quiet Harbor", "TV", "7.2", 2, 6],
+            ["Ashen Field", "MOVIE", null, 0, 1],
+            ["Kingfisher", "TV", "8.0", 6, 12],
+            ["Nine Lives", "ANIME", "7.7", 11, 13],
+            ["The Final Cut", "MOVIE", "8.2", 1, 1],
+            ["Northern Line", "TV", null, 4, 10],
+            ["Paper Moons", "ANIME", "9.4", 22, 22],
+            ["Saltwater", "TV", "6.9", 1, 8],
+            ["Dust and Iron", "MOVIE", "7.5", 0, 1],
+            ["Low Tide", "TV", "8.1", 5, 9],
+            ["Grey Harbour", "ANIME", null, 7, 26],
+            ["The Warden", "TV", "7.8", 2, 6],
+            ["Halcyon", "MOVIE", "8.6", 1, 1],
+            ["Summer Ghost", "ANIME", "8.3", 1, 1],
+            ["Redwood", "TV", null, 0, 12],
+            ["Fathom", "ANIME", "7.1", 3, 24]
+          ];
+
+          const grid = titles.map(function (t, i) {
+            const done = t[3], total = t[4];
+            const pct = total ? Math.round((done / total) * 100) : 0;
+            return {
+              name: t[0], type: t[1], rated: !!t[2], rating: "★ " + (t[2] || ""),
+              meta: done + " / " + total + " EPISODES",
+              bar: { width: pct + "%" },
+              focused: i === 8, cls: i === 8 ? "foc" : "",
+              pos: cellPos(i)
+            };
+          });
+
+          const gridStale = titles.map(function (t, i) {
+            const pct = t[4] ? Math.round((t[3] / t[4]) * 100) : 0;
+            return { bar: { width: pct + "%" }, pos: cellPos(i) };
+          });
+
+          const sortSrc = [
+            ["Last updated", "WHEN YOU LAST CHANGED IT", "NEWEST", "foc sel"],
+            ["Title", "ALPHABETICAL", "A → Z", ""],
+            ["Release date", "WHEN IT CAME OUT", "NEWEST", ""],
+            ["Your rating", "NOT STORED BY LOCAL LISTS", "N/A", "off"]
+          ];
+          const sorts = sortSrc.map(function (s, i) {
+            return { n: s[0], m: s[1], dir: s[2], cls: s[3],
+                     pos: "left:32px;top:" + (256 + i * 120) + "px;width:472px" };
+          });
+
+          const accSrc = [
+            ["AniList", "LAGRADOST · SYNCED 4 MIN", "ok", "foc sel"],
+            ["Local", "ON DEVICE · 308 TITLES", "ok", ""],
+            ["MyAnimeList", "NOT CONNECTED", "", ""],
+            ["Simkl", "NOT CONNECTED", "", ""],
+            ["Trakt", "NOT CONNECTED", "", ""]
+          ];
+          const accounts = accSrc.map(function (a, i) {
+            return { n: a[0], m: a[1], sg: a[2], cls: a[3],
+                     pos: "left:32px;top:" + (256 + i * 120) + "px;width:472px" };
+          });
+
+          return { nav: nav, tabs: tabs, tabsEmpty: tabsEmpty, grid: grid, gridStale: gridStale,
+                   sorts: sorts, accounts: accounts };
+        }
+      }
+    </script>
+  </body>
+</html>

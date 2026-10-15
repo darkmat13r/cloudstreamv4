@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet data-dc-atomics>
+        <meta name="design_doc_mode" content="canvas" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
+        />
+        <style>
+          html { background: #0a0a0a; }
+          body { margin: 0; background: #0a0a0a; font-family: Manrope, system-ui, sans-serif; }
+
+          .sec { padding: 52px 64px 44px; }
+          .sechd { display: flex; align-items: baseline; gap: 12px; margin: 0 0 8px; }
+          .secid { font: 600 12px/16px "JetBrains Mono", monospace; padding: 4px 8px; background: #f0eee9; color: #14130f; border-radius: 4px; }
+          .secname { font: 700 16px/20px Manrope, sans-serif; color: #f0eee9; }
+          .secsub { font: 400 16px/28px Manrope, sans-serif; color: rgba(240,238,233,0.62); max-width: 1040px; margin: 0 0 32px; text-wrap: pretty; }
+          .secsub b { color: #f0eee9; font-weight: 600; }
+          .shots { display: flex; flex-direction: column; gap: 44px; align-items: flex-start; }
+          .shot { display: flex; flex-direction: column; gap: 12px; }
+          .shotl { display: flex; align-items: baseline; gap: 12px; font: 400 16px/24px Manrope, sans-serif; color: rgba(240,238,233,0.55); max-width: 1560px; }
+          .shotn { font: 700 16px/20px Manrope, sans-serif; color: #f0eee9; white-space: nowrap; }
+          .shotc { border-radius: 12px; overflow: hidden; box-shadow: 0 16px 60px rgba(0,0,0,0.6); }
+          .note { margin-top: 24px; padding: 16px 20px; border-left: 4px solid #CD3D4B;
+            background: rgba(205,61,75,0.07); font: 400 16px/28px Manrope, sans-serif;
+            color: rgba(255,255,255,0.78); max-width: 1180px; text-wrap: pretty; }
+          .note b { color: #FFFFFF; }
+          .note p { margin: 0 0 12px; }
+          .note p:last-child { margin: 0; }
+          .note code { font: 500 14px/20px "JetBrains Mono", monospace; color: #FFFFFF; }
+
+          .tv {
+            --bg:#000000; --surf:#0A1016; --raised:#15191E; --line:#242A31;
+            --ink:#FFFFFF; --ink2:#CCCCCC; --mut:#858585; --acc:#CD3D4B;
+            width: 1920px; height: 1080px; position: relative; overflow: hidden;
+            background: var(--bg); color: var(--ink); font-family: Manrope, sans-serif;
+          }
+          .abs { position: absolute; }
+
+          /* A HAIRLINE NEVER CONSUMES LAYOUT. Every 1px rule is an inset shadow, never a
+             border — a border shifts the padding box by 1 and puts everything inside it
+             off the 8px step. */
+
+          .art { position: relative; overflow: hidden; background:
+            radial-gradient(120% 100% at 62% 26%, #47576A 0%, #26313D 42%, transparent 72%),
+            radial-gradient(90% 80% at 88% 78%, #35414F 0%, transparent 64%),
+            linear-gradient(155deg, #2A3540, #0E141A 82%);
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.07); }
+          .art::after { content: ""; position: absolute; inset: 0;
+            background: repeating-linear-gradient(115deg, rgba(255,255,255,0.03) 0 2px, transparent 2px 8px); }
+
+          /* nav rail */
+          .railc { width: 152px; height: 1080px; box-sizing: border-box; padding: 56px 0 0 56px;
+            display: flex; flex-direction: column; gap: 8px; background: #000000;
+            box-shadow: inset -1px 0 0 var(--line); }
+          .lgm { width: 48px; height: 48px; border-radius: 12px; background: var(--acc); margin: 0 24px 32px; }
+          .nic { width: 96px; height: 96px; border-radius: 12px; display: flex; align-items: center;
+            justify-content: center; box-sizing: border-box; flex: none; position: relative; }
+          .nic .gl { width: 32px; height: 32px; border-radius: 8px; background: var(--mut); }
+          .nic.cur { background: var(--raised); }
+          .nic.cur .gl { background: var(--ink); }
+          .nic.cur::before { content: ""; position: absolute; left: 0; top: 24px;
+            width: 4px; height: 48px; border-radius: 4px; background: var(--mut); }
+
+          /* chrome — a SINGLE line centred in a 96 row needs a 48px line box:
+             (96-48)/2 = 24. A 40px box would centre at 28, off the step. */
+          .field { height: 96px; box-sizing: border-box; padding: 0 24px; border-radius: 8px;
+            background: var(--surf); box-shadow: inset 0 0 0 1px var(--line);
+            display: flex; align-items: center; gap: 16px; }
+          .field.foc { outline: 4px solid var(--ink); outline-offset: 4px; box-shadow: none; }
+          .fgl { width: 32px; height: 32px; border-radius: 16px; border: 4px solid var(--mut);
+            box-sizing: border-box; flex: none; }
+          .qtext { font: 400 28px/48px Manrope, sans-serif; color: var(--ink); }
+          .qtext.ph { color: var(--mut); }
+          .caret { width: 2px; height: 32px; background: var(--ink); }
+          .ibx { width: 96px; height: 96px; display: flex; align-items: center; justify-content: center;
+            border-radius: 12px; box-sizing: border-box; }
+          .ibx.foc { outline: 4px solid var(--ink); outline-offset: 4px; }
+          .ivis { width: 48px; height: 48px; border-radius: 8px; background: var(--raised);
+            box-shadow: inset 0 0 0 1px var(--line);
+            display: flex; align-items: center; justify-content: center; }
+          .gl2 { width: 32px; height: 32px; border-radius: 8px; background: var(--mut); }
+          .srcbtn { height: 96px; box-sizing: border-box; display: flex; align-items: center;
+            justify-content: space-between; padding: 0 24px; border-radius: 8px;
+            background: var(--raised); box-shadow: inset 0 0 0 1px var(--line); }
+          .srcbtn.foc { outline: 4px solid var(--ink); outline-offset: 4px; }
+          .sl { font: 600 24px/32px Manrope, sans-serif; color: var(--ink); }
+          .sc { font: 500 24px/32px "JetBrains Mono", monospace; color: var(--ink2); }
+
+          /* chips — 48-tall visual centred in a 96 cell lands at y200 */
+          .chiprow { display: flex; gap: 24px; align-items: center; height: 96px; }
+          .chipcell { height: 96px; display: inline-flex; align-items: center; box-sizing: border-box; }
+          .chipcell.foc { outline: 4px solid var(--ink); outline-offset: 4px; border-radius: 8px; }
+          .chip { display: inline-flex; align-items: center; height: 48px; padding: 0 24px;
+            box-sizing: border-box; border-radius: 24px; background: var(--raised);
+            box-shadow: inset 0 0 0 1px var(--line);
+            font: 600 24px/32px Manrope, sans-serif; color: var(--mut); }
+          .chip.sel { color: var(--ink); box-shadow: inset 0 0 0 1px var(--mut); }
+
+          /* rails */
+          /* Both children carry the 56 line box. Baseline alignment cannot land on the step, and
+             Compose's Alignment.Baseline has the same defect — CenterVertically is what this is. */
+          .rhd { display: flex; align-items: center; gap: 16px; height: 56px; }
+          .rt { font: 700 40px/56px Manrope, sans-serif; letter-spacing: -0.02em; color: var(--ink); }
+          .rm { font: 500 24px/56px "JetBrains Mono", monospace; color: var(--mut); }
+          .row { display: flex; align-items: flex-start; gap: 24px; }
+
+          /* THE LIFT IS 8, NOT 12, and the ring is an outline, not a transparent border. */
+          .ps { width: 160px; flex: none; }
+          .psa { height: 240px; border-radius: 8px; position: relative; }
+          .ps.foc { transform: translateY(-8px); }
+          .ps.foc .psa { outline: 4px solid var(--ink); box-shadow: 0 20px 44px rgba(0,0,0,0.7); }
+          /* Manrope 20 inks 26.0 — it has no valid 24 box in any weight. */
+          .revt { display: block; position: absolute; left: 0; right: 0; bottom: 0; padding: 32px 8px 8px;
+            font: 700 20px/32px Manrope, sans-serif; color: var(--ink);
+            background: linear-gradient(0deg, rgba(0,0,0,0.92) 30%, rgba(0,0,0,0)); }
+          .badges { position: absolute; left: 8px; top: 8px; display: flex; gap: 8px; }
+          /* The line box equals the chip's own height, so a BOUND value is not centred 4px off. */
+          .bdg { display: inline-flex; align-items: center; height: 32px; padding: 0 8px; border-radius: 8px;
+            box-sizing: border-box; background: rgba(0,0,0,0.78); font: 700 20px/32px "JetBrains Mono", monospace; color: #FFFFFF; }
+          /* 8, not 4: a hairline is exempt in its own axis, not in where its edges land. */
+          .cardbar { position: absolute; left: 0; right: 0; bottom: 0; height: 8px;
+            background: rgba(255,255,255,0.18); }
+          .cardbar .pf { display: block; height: 100%; background: var(--acc); }
+          .seeall { width: 160px; height: 240px; border-radius: 8px; box-sizing: border-box;
+            outline: 1px dashed var(--line); outline-offset: -1px; background: rgba(10,16,22,0.6);
+            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+            text-align: center; font: 600 24px/32px Manrope, sans-serif; color: var(--ink2); flex: none; }
+          .seeall span { font: 500 20px/24px "JetBrains Mono", monospace; color: var(--mut); }
+
+          /* list row — the marker is an 8px cell, and the two-line text stack totals 64
+             (32 + 8 + 24) so it centres in a 96 row at +16. A 4px gap makes it 60, which
+             centres at +18 and puts every line of every list row off the step. */
+          .lrow { display: flex; align-items: center; gap: 16px; height: 96px; box-sizing: border-box;
+            padding: 0 16px; border-radius: 8px; }
+          .lrow.foc { outline: 4px solid var(--ink); outline-offset: 4px; }
+          .lrow.sel { background: var(--raised); }
+          .lmark { width: 8px; height: 48px; border-radius: 4px; background: transparent; flex: none; }
+          .lrow.sel .lmark { background: var(--mut); }
+          .ldisc { width: 48px; height: 48px; border-radius: 24px; background: var(--raised);
+            box-shadow: inset 0 0 0 1px var(--line); flex: none; }
+          .lt { font: 600 24px/32px Manrope, sans-serif; color: var(--ink);
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+          .ls { font: 400 20px/24px "JetBrains Mono", monospace; color: var(--mut); margin-top: 8px;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+          .ltrail { display: flex; align-items: center; gap: 8px; flex: none; }
+          .tglyph { width: 48px; height: 48px; border-radius: 8px; background: var(--raised);
+            box-shadow: inset 0 0 0 1px var(--line); }
+
+          .sg { width: 16px; height: 16px; border-radius: 4px; background: var(--mut); flex: none; }
+          .sg.ok { background: var(--ink); }
+          .sg.fail { background: transparent; box-shadow: inset 0 0 0 2px var(--mut); }
+
+          /* partial-failure group — rides the chip row, costs no vertical band */
+          .failgrp { display: flex; align-items: center; gap: 24px; height: 96px; }
+          .failpill { display: inline-flex; align-items: center; gap: 12px; height: 48px; padding: 0 24px;
+            box-sizing: border-box; border-radius: 24px; background: var(--raised);
+            box-shadow: inset 0 0 0 1px var(--line); }
+          .fh { font: 600 24px/32px Manrope, sans-serif; color: var(--ink); white-space: nowrap; }
+          .fd { font: 500 20px/32px "JetBrains Mono", monospace; color: var(--mut); white-space: nowrap; }
+          .btncell { height: 96px; display: inline-flex; align-items: center; box-sizing: border-box; }
+          .btncell.foc { outline: 4px solid var(--ink); outline-offset: 4px; border-radius: 8px; }
+          .bbtn { height: 64px; min-width: 240px; padding: 0 32px; box-sizing: border-box;
+            display: inline-flex; align-items: center; justify-content: center; border-radius: 8px;
+            background: var(--ink); color: #000000; font: 800 24px/32px Manrope, sans-serif; white-space: nowrap; }
+
+          /* side panel */
+          .scrim { position: absolute; inset: 0; background: rgba(0,0,0,0.6); }
+          .panel { position: absolute; right: 0; top: 0; bottom: 0; width: 560px;
+            background: var(--surf);
+            box-shadow: inset 1px 0 0 var(--line), -32px 0 68px rgba(0,0,0,0.85); }
+          .ptitle { font: 700 40px/56px Manrope, sans-serif; color: var(--ink); }
+          .pmeta { font: 500 20px/24px "JetBrains Mono", monospace; color: var(--mut); }
+        </style>
+      </helmet>
+
+      <section class="sec">
+        <div class="sechd">
+          <span class="secid">4</span>
+          <span class="secname">CloudStream 4 — Search cluster</span>
+        </div>
+        <p class="secsub">
+          Four screens on one chassis: the same 96px chrome row, the same chip row, the same 96px list
+          row, the same 560-wide right panel. Re-cut twice after measuring <b>computed boxes</b> rather
+          than declared CSS — rails are poster-md 160×240 on a <b>352px pitch</b>, which is what it
+          takes for 24px of clearance to survive the focus lift now that the lift is 8 rather than 12,
+          and every failure action is an explicit focus stop rather than a floating button no D-pad
+          move could reach. It now measures <b>0 off-grid, 0 clipped, 0 band violations</b> across 407
+          boxes.
+        </p>
+
+        <div class="shots">
+
+          <!-- ============ 4a SEARCH RESULTS ============ -->
+          <div class="shot" id="4a">
+            <div class="shotl">
+              <span class="shotn">4a · Search — results</span>
+              <span>One rail per provider, so you can see which source answered. Today the four result views are siblings in a FrameLayout and the chip row’s DOWN target is rewired at runtime; here exactly one result region is mounted at y296, so DOWN is a fixed id.</span>
+            </div>
+            <div class="shotc">
+              <div class="tv" data-screen-label="Search — results">
+                <div class="railc abs" style="left:0;top:0">
+                  <div class="lgm"></div>
+                  <sc-for list="{{ nav }}" as="n" hint-placeholder-count="6">
+                    <div class="nic {{ n.cls }}"><span class="gl"></span></div>
+                  </sc-for>
+                </div>
+
+                <div class="field abs foc" style="left:200px;top:56px;width:1096px">
+                  <span class="fgl"></span><span class="qtext">blade runner</span><span class="caret"></span>
+                </div>
+                <div class="ibx abs" style="left:1320px;top:56px"><span class="ivis"><span class="gl2"></span></span></div>
+                <div class="srcbtn abs" style="left:1440px;top:56px;width:424px">
+                  <span class="sl">Sources</span><span class="sc">12 / 48</span>
+                </div>
+
+                <div class="chiprow abs" style="left:200px;top:176px">
+                  <sc-for list="{{ chips }}" as="c" hint-placeholder-count="7">
+                    <span class="chipcell"><span class="chip {{ c.cls }}">{{ c.l }}</span></span>
+                  </sc-for>
+                </div>
+
+                <sc-for list="{{ rails }}" as="r" hint-placeholder-count="2">
+                  <div class="abs" style="{{ r.hpos }}">
+                    <div class="rhd"><div class="rt">{{ r.name }}</div><div class="rm">{{ r.count }}</div></div>
+                  </div>
+                  <div class="abs row" style="{{ r.cpos }}">
+                    <sc-for list="{{ r.items }}" as="p" hint-placeholder-count="8">
+                      <div class="ps {{ p.cls }}">
+                        <div class="art psa">
+                          <sc-if value="{{ p.badge }}" hint-placeholder-val="{{ true }}">
+                            <span class="badges"><span class="bdg">{{ p.badgeText }}</span></span>
+                          </sc-if>
+                          <sc-if value="{{ p.prog }}" hint-placeholder-val="{{ true }}">
+                            <span class="cardbar"><i class="pf" style="{{ p.bar }}"></i></span>
+                          </sc-if>
+                          <sc-if value="{{ p.focused }}" hint-placeholder-val="{{ true }}">
+                            <span class="revt">{{ p.t }}</span>
+                          </sc-if>
+                        </div>
+                      </div>
+                    </sc-for>
+                    <div class="seeall">See all<span>{{ r.count }}</span></div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+
+          <!-- ============ 4b SEARCH PARTIAL ============ -->
+          <div class="shot" id="4b">
+            <div class="shotl">
+              <span class="shotn">4b · Search — partial</span>
+              <span>Three of twelve sources failed. The failure rides the <b>chip row</b> rather than a band of its own — a full-width banner cost 120px and pushed the second rail past the focus band. Retry is a real stop at the end of a row that already exists in the focus order, and it is bound to a per-provider failure list, not to “this provider returned nothing”.</span>
+            </div>
+            <div class="shotc">
+              <div class="tv" data-screen-label="Search — partial">
+                <div class="railc abs" style="left:0;top:0">
+                  <div class="lgm"></div>
+                  <sc-for list="{{ nav }}" as="n" hint-placeholder-count="6">
+                    <div class="nic {{ n.cls }}"><span class="gl"></span></div>
+                  </sc-for>
+                </div>
+
+                <div class="field abs" style="left:200px;top:56px;width:1096px">
+                  <span class="fgl"></span><span class="qtext">blade runner</span>
+                </div>
+                <div class="ibx abs" style="left:1320px;top:56px"><span class="ivis"><span class="gl2"></span></span></div>
+                <div class="srcbtn abs" style="left:1440px;top:56px;width:424px">
+                  <span class="sl">Sources</span><span class="sc">9 / 48</span>
+                </div>
+
+                <div class="chiprow abs" style="left:200px;top:176px">
+                  <sc-for list="{{ chipsShort }}" as="c" hint-placeholder-count="4">
+                    <span class="chipcell"><span class="chip {{ c.cls }}">{{ c.l }}</span></span>
+                  </sc-for>
+                </div>
+
+                <div class="failgrp abs" style="right:56px;top:176px">
+                  <span class="failpill">
+                    <span class="sg fail"></span>
+                    <span class="fh">3 sources failed</span>
+                    <span class="fd">TIMEOUT 10S</span>
+                  </span>
+                  <span class="btncell foc"><span class="bbtn">Retry failed</span></span>
+                </div>
+
+                <div class="abs" style="left:200px;top:296px">
+                  <div class="rhd"><div class="rt">Filmxy</div><div class="rm">21 RESULTS</div></div>
+                </div>
+                <div class="abs row" style="left:200px;top:384px">
+                  <sc-for list="{{ railPartial }}" as="p" hint-placeholder-count="8">
+                    <div class="ps"><div class="art psa">
+                      <sc-if value="{{ p.badge }}" hint-placeholder-val="{{ true }}">
+                        <span class="badges"><span class="bdg">{{ p.badgeText }}</span></span>
+                      </sc-if>
+                    </div></div>
+                  </sc-for>
+                  <div class="seeall">See all<span>21 RESULTS</span></div>
+                </div>
+
+                <div class="abs" style="left:200px;top:648px">
+                  <div class="rhd"><div class="rt">Vidplay</div><div class="rm">9 RESULTS</div></div>
+                </div>
+                <div class="abs row" style="left:200px;top:736px">
+                  <sc-for list="{{ railPartial }}" as="p" hint-placeholder-count="8">
+                    <div class="ps"><div class="art psa"></div></div>
+                  </sc-for>
+                  <div class="seeall">See all<span>9 RESULTS</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ============ 4c SEARCH HISTORY ============ -->
+          <div class="shot" id="4c">
+            <div class="shotl">
+              <span class="shotn">4c · Search — history (empty query)</span>
+              <span>What you see before typing. Today this is a blank screen for a new user and the stored <code>searchedAt</code> is never shown; here every row carries when it was searched and a per-row remove, with Clear all pinned at the foot rather than scrolling away.</span>
+            </div>
+            <div class="shotc">
+              <div class="tv" data-screen-label="Search — history">
+                <div class="railc abs" style="left:0;top:0">
+                  <div class="lgm"></div>
+                  <sc-for list="{{ nav }}" as="n" hint-placeholder-count="6">
+                    <div class="nic {{ n.cls }}"><span class="gl"></span></div>
+                  </sc-for>
+                </div>
+
+                <div class="field abs foc" style="left:200px;top:56px;width:1096px">
+                  <span class="fgl"></span><span class="qtext ph">Search all sources</span><span class="caret"></span>
+                </div>
+                <div class="ibx abs" style="left:1320px;top:56px"><span class="ivis"><span class="gl2"></span></span></div>
+                <div class="srcbtn abs" style="left:1440px;top:56px;width:424px">
+                  <span class="sl">Sources</span><span class="sc">12 / 48</span>
+                </div>
+
+                <div class="chiprow abs" style="left:200px;top:176px">
+                  <sc-for list="{{ chips }}" as="c" hint-placeholder-count="7">
+                    <span class="chipcell"><span class="chip {{ c.cls }}">{{ c.l }}</span></span>
+                  </sc-for>
+                </div>
+
+                <div class="abs" style="left:200px;top:296px">
+                  <div class="rhd"><div class="rt">Recent searches</div><div class="rm">8 SAVED</div></div>
+                </div>
+
+                <sc-for list="{{ history }}" as="h" hint-placeholder-count="8">
+                  <div class="lrow {{ h.cls }} abs" style="{{ h.pos }}">
+                    <span class="lmark"></span>
+                    <span class="ldisc"></span>
+                    <div style="flex:1;min-width:0">
+                      <div class="lt">{{ h.q }}</div>
+                      <div class="ls">{{ h.when }}</div>
+                    </div>
+                    <div class="ltrail"><span class="tglyph"></span></div>
+                  </div>
+                </sc-for>
+
+                <div class="lrow abs" style="left:200px;top:928px;width:1664px">
+                  <span class="lmark"></span>
+                  <div style="flex:1;min-width:0"><div class="lt">Clear all searches</div></div>
+                  <div class="ltrail"><span class="tglyph"></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ============ 4d SOURCE PICKER ============ -->
+          <div class="shot" id="4d">
+            <div class="shotl">
+              <span class="shotn">4d · Source picker — side panel</span>
+              <span>The TV replacement for a bottom sheet: 560 wide, slides in from the right, content behind scrimmed but still mounted. Today Apply/Cancel exist in code but are <b>visibility=gone</b>, so changes commit on dismiss and Cancel cannot undo — here commit is explicit and the panel says so.</span>
+            </div>
+            <div class="shotc">
+              <div class="tv" data-screen-label="Source picker — side panel">
+                <div class="railc abs" style="left:0;top:0">
+                  <div class="lgm"></div>
+                  <sc-for list="{{ nav }}" as="n" hint-placeholder-count="6">
+                    <div class="nic {{ n.cls }}"><span class="gl"></span></div>
+                  </sc-for>
+                </div>
+                <div class="field abs" style="left:200px;top:56px;width:1096px">
+                  <span class="fgl"></span><span class="qtext">blade runner</span>
+                </div>
+                <div class="abs row" style="left:200px;top:384px">
+                  <sc-for list="{{ railPartial }}" as="p" hint-placeholder-count="6">
+                    <div class="ps"><div class="art psa"></div></div>
+                  </sc-for>
+                </div>
+
+                <div class="scrim"></div>
+                <div class="panel">
+                  <div class="abs" style="left:32px;top:56px;width:472px">
+                    <div class="ptitle">Sources</div>
+                    <div class="pmeta" style="margin-top:8px">12 OF 48 ENABLED · CHANGES APPLY ON DONE</div>
+                  </div>
+                  <sc-for list="{{ providers }}" as="p" hint-placeholder-count="5">
+                    <div class="lrow {{ p.cls }} abs" style="{{ p.pos }}">
+                      <span class="lmark"></span>
+                      <span class="ldisc"></span>
+                      <div style="flex:1;min-width:0">
+                        <div class="lt">{{ p.n }}</div>
+                        <div class="ls">{{ p.m }}</div>
+                      </div>
+                      <div class="ltrail"><span class="sg {{ p.sg }}"></span></div>
+                    </div>
+                  </sc-for>
+                  <div class="lrow abs" style="left:32px;top:928px;width:472px">
+                    <span class="lmark"></span>
+                    <div style="flex:1;min-width:0"><div class="lt">Done</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="note">
+          <p><b>What measuring computed boxes found that measuring declared CSS did not.</b> The first
+          scanner read every px value in the stylesheet and passed this file clean. Re-measuring where
+          elements actually <i>land</i> found 35 off-grid boxes; extending that to text boxes found 15
+          more. Six causes, all systemic:</p>
+          <p><b>1 · A 1px border consumes layout.</b> It shifts the padding box by 1, so the glyph
+          inside the search field landed at x225 and the 560 panel became 561 wide at x1359. Every
+          hairline is now <code>box-shadow: inset 0 0 0 1px</code>, which paints without occupying
+          space.</p>
+          <p><b>2 · A transparent border is not a focus ring.</b> <code>border: 4px solid
+          transparent</code> pushed the card’s badge to x212 and its progress bar to x204. The ring is
+          an <code>outline</code>, so the art box is exactly 160×240.</p>
+          <p><b>3 · The lift was 12.</b> Every focused card sat off the step. The lift is <b>8</b>, so
+          a lifting row sits <b>32px</b> below what precedes it — 24 of clearance plus the 8 it rises.
+          Rail pitch 352: header 296…352, cards 384…624, next header 648…704, its cards 736…976.</p>
+          <p><b>4 · Centring an odd size in an even cell.</b> A 40-tall chip in a 96 cell lands at 204;
+          a 24px glyph lands at x92. The chip visual is <b>48</b> and glyphs are <b>32</b> — both
+          centre onto the step, and both read better at ten feet.</p>
+          <p><b>5 · A text stack must total a multiple of 16 to centre in a 96 row.</b> Title 32 plus a
+          4px gap plus subtitle 24 is 60, which centres at +18 — so every line of every list row was
+          off the step. The gap is <b>8</b>, the stack is 64, the offset is 16. A single line centred
+          alone needs a <b>48px</b> line box, not 40, to land at +24.</p>
+          <p><b>6 · Intrinsic widths are exempt, and the contract now says so.</b> A chip’s width comes
+          from its string, as does the x of every chip after it. In Compose that is
+          <code>wrapContentWidth</code> in a <code>Row</code> with 24dp spacing — no engineer types
+          those numbers, so the 4dp rule does not reach them. The grid governs every dimension a
+          person writes and the origin and size of every fixed-size element, not text measurement.</p>
+
+          <p><b>And then a stricter scanner found sixteen more, plus a clipped run.</b> The six above
+          were real and the file still was not clean, because the scanner that found them was not
+          strict enough. Four further causes, each now fixed here and in the contract:</p>
+          <p><b>7 · Baseline alignment cannot land on the step.</b> The rail header was
+          <code>align-items: baseline</code>, which put the mono count at y315 and y667 — the offset
+          is whatever the two fonts’ baselines happen to differ by. Both children now carry the same
+          <b>56</b> line box. Compose’s <code>Alignment.Baseline</code> has the identical defect;
+          <code>CenterVertically</code> is what this actually is.</p>
+          <p><b>8 · Manrope 20 has no valid 24 box.</b> The poster reveal title was 20/24 and inks
+          <b>26.0</b> at weight 800. It is <b>20/32</b>. The ramp had published 20/24 as a single
+          caption rung, which was true of the mono at that size — mono inks 23.64 — and false of the
+          sans. One ratio for two families was the bug, and it also reached
+          <code>:core:theme</code>.</p>
+          <p><b>9 · A bound value and a literal do not lay out the same.</b> The badge was a 24 line
+          box in a 32 chip, so its text centred 4px off — but only where the text is <i>bound</i>. A
+          literal is an inline text node whose rect is a font metric, not a layout box; an
+          interpolation is wrapped in a block that takes a real box and gets centred. The literal
+          badges measured clean and the bound ones did not. A chip’s line box is now its own height.</p>
+          <p><b>10 · A 4px rule is exempt in its own axis, not in where its edges land.</b> The card’s
+          progress rule sat at the card’s bottom edge, which put its own top at a fraction and would
+          have done the same to anything stacked under it. It is <b>8</b>.</p>
+
+          <p><b>11 · The muted token was below the contrast floor.</b> <code>--mut</code> was
+          <code>#686868</code> — <b>3.77:1</b> on bg, 3.43 on surface, <b>3.17 on raised</b>, against
+          the 4.5:1 AA minimum for normal-size text. On this board it carries the provider meta on
+          every list row, the timeout reason in the failure pill, the search placeholder and the
+          “See all” count. It is now <code>#858585</code>: 5.69 / 5.18 / 4.78. Unlike the ten findings
+          above, this one moves nothing — which is exactly why it survived ten passes of geometry
+          measurement without being noticed.</p>
+        </div>
+      </section>
+    </x-dc>
+
+    <script type="text/x-dc" data-dc-script data-props='{}'>
+      class Component extends DCLogic {
+        renderVals() {
+          const nav = [{ cls: "cur" }, { cls: "" }, { cls: "" }, { cls: "" }, { cls: "" }, { cls: "" }];
+
+          const chips = [
+            { l: "Movies", cls: "sel" }, { l: "TV series", cls: "sel" }, { l: "Anime", cls: "" },
+            { l: "Asian drama", cls: "" }, { l: "Cartoons", cls: "" }, { l: "Documentaries", cls: "" },
+            { l: "Live", cls: "" }
+          ];
+          const chipsShort = [
+            { l: "Movies", cls: "sel" }, { l: "TV series", cls: "sel" },
+            { l: "Anime", cls: "" }, { l: "Live", cls: "" }
+          ];
+
+          function posters(list, focusIdx) {
+            return list.map(function (p, i) {
+              return { t: p[0], badge: !!p[1], badgeText: p[1] || "",
+                       prog: !!p[2], bar: { width: (p[2] || 0) + "%" },
+                       focused: i === focusIdx, cls: i === focusIdx ? "foc" : "" };
+            });
+          }
+
+          const railA = posters([
+            ["Blade Runner 2049", "4K", 62], ["Blade Runner", "1080P"], ["Blade Runner: Black Lotus", "DUB"],
+            ["Blade", null], ["Blade II", null], ["Runner Runner", null], ["Blade Runner: 2036", null],
+            ["The Final Cut", null]
+          ], 0);
+          const railB = posters([
+            ["Blade Runner 2049", "1080P"], ["Blade Runner", null], ["Blade Runner: Black Lotus", "SUB"],
+            ["Blade", null], ["Blade II", null], ["Blade: Trinity", null], ["Runner", null], ["Cut", null]
+          ], -1);
+          const railPartial = posters([
+            ["A", "4K"], ["B", null], ["C", "DUB"], ["D", null], ["E", null], ["F", null], ["G", null], ["H", null]
+          ], -1);
+
+          const rails = [
+            { name: "Vidsrc", count: "24 RESULTS", items: railA,
+              hpos: "left:200px;top:296px;width:1664px", cpos: "left:200px;top:384px" },
+            { name: "Gogoanime", count: "18 RESULTS", items: railB,
+              hpos: "left:200px;top:648px;width:1664px", cpos: "left:200px;top:736px" }
+          ];
+
+          const hq = [
+            ["blade runner", "2 MINUTES AGO"], ["severance", "TODAY 19:04"],
+            ["the long dark", "YESTERDAY"], ["frieren", "YESTERDAY"],
+            ["quiet harbor", "2 DAYS AGO"], ["ashen field", "3 DAYS AGO"],
+            ["nine lives", "LAST WEEK"], ["kingfisher", "LAST WEEK"]
+          ];
+          const history = hq.map(function (h, i) {
+            const col = i % 2, rowN = Math.floor(i / 2);
+            const x = col === 0 ? 200 : 1048;
+            const y = 360 + rowN * 120;
+            return { q: h[0], when: h[1], cls: i === 0 ? "foc" : "",
+                     pos: "left:" + x + "px;top:" + y + "px;width:816px" };
+          });
+
+          const pr = [
+            ["Vidsrc", "EN · MOVIES, TV · PINNED", "ok"],
+            ["Gogoanime", "EN · ANIME", "ok"],
+            ["Filmxy", "EN · MOVIES", "ok"],
+            ["Zoro", "EN · ANIME · FAILED 2 MIN AGO", "fail"],
+            ["Dramacool", "KO · ASIAN DRAMA", ""]
+          ];
+          const providers = pr.map(function (p, i) {
+            return { n: p[0], m: p[1], sg: p[2],
+                     cls: i === 0 ? "foc sel" : (i < 3 ? "sel" : ""),
+                     pos: "left:32px;top:" + (256 + i * 120) + "px;width:472px" };
+          });
+
+          return { nav: nav, chips: chips, chipsShort: chipsShort, rails: rails,
+                   railPartial: railPartial, history: history, providers: providers };
+        }
+      }
+    </script>
+  </body>
+</html>

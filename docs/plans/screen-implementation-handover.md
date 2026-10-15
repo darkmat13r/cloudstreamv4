@@ -32,11 +32,17 @@ hand-rolled TV focus engine. Nothing has been migrated out of it yet.
 
 **1. The designs** — Claude Design project *CloudStream 4 — Redesign (TV / Mobile / Desktop)*:
 
-> https://claude.ai/design/p/a9ab3c83-bcc5-4ef4-854b-846c95da8438
+**Destination: `design/` at the repo root.** Every file below lives there, exported from the
+project on 2026-10-14. Read and update the `.dc.html` files in `design/`; they open in a browser,
+with `support.js` beside them.
 
-Use the **Claude Design MCP** for everything design-related: `list_files`, `read_file`,
-`render_preview`, `finalize_plan` → `write_files`. Per file, append `?file=<name>` — e.g.
-`?file=TV+Home.dc.html`.
+The origin is the Claude Design project,
+https://claude.ai/design/p/a9ab3c83-bcc5-4ef4-854b-846c95da8438. Per file, append `?file=<name>`,
+e.g. `?file=TV+Home.dc.html`. A change made only in the project is not in `design/` until someone
+re-exports it.
+A second Claude Design project, *Project file storage*,
+https://claude.ai/design/p/c5fd7e44-70f5-41b6-8a48-e850eb88334b, holds the same 13 files as
+`design/` (12 `.dc.html` + `support.js`, every size identical, checked 2026-10-15); it is a copy, not a newer version.
 
 | File | Contents |
 |---|---|
@@ -44,6 +50,7 @@ Use the **Claude Design MCP** for everything design-related: `list_files`, `read
 | `Components.dc.html` | Shared kit at TV scale + the engineering-prerequisite register. |
 | `TV Home.dc.html` | Shell focus contract, rail focused, hero, scrolled |
 | `TV Search.dc.html` | Results, partial failure, history, source picker |
+| `TV Search Suggestions.dc.html` | Suggestions while typing, nothing matches, no results, Quick Search answering / empty |
 | `TV Library.dc.html` | Grid, provider unreachable, empty page, sort panel, provider panel |
 | `TV Episodes Downloads.dc.html` | Episode panel, episode-row board, downloads ×3 |
 | `TV Detail Player.dc.html` | Show detail, movie detail, link loading, player HUD, selectors |
