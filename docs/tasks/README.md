@@ -46,14 +46,13 @@ nobody remembers why, and the entry is the only place that knows.
 
 ## Standing constraint on everything here
 
-**Update 2026-10-15: CI is down again, on billing** (`DEC-01`). Runs end in ~2 seconds with zero
-steps and a *"recent account payments have failed or your spending limit needs to be increased"*
-annotation. **A red tick currently means no check ran** — it is not a result, and re-running does not
-help. Only the owner can clear it.
+**CI does not run, by decision.** `DEC-01` was answered on 2026-10-15: the GitHub Actions billing
+failure will not be fixed and all five workflows stay `disabled_manually`. **Local four-gate runs are
+the agreed verification** — not a stopgap — so every PR must name its own `abi` / `check` / `extapi` /
+`canary` results, and a missing tick is expected rather than a problem to chase.
 
-CI did run from **2026-10-07** to then (`INF-01`; first full green run on #42), and before 2026-10-07
-it had never run on this repository's pull requests at all. So for everything merged outside that
-window — which is most of this series, including #64–#68 — **every check quoted in a PR body is a
-local run**, on one machine, with one JDK, against one or two attached devices. Treat the ticks
-accordingly, and see `INF-01` for reliability and `INF-08` for the step the runner kills even when
-billing is healthy.
+CI did run from **2026-10-07 to 2026-10-15** (`INF-01`; first full green run on #42), and before
+2026-10-07 it had never run on this repository's pull requests at all. Outside that window — which is
+most of this series — **every check quoted in a PR body is a local run**, on one machine, with one
+JDK, against one or two attached devices. `INF-08` records the one step the runner kept killing while
+CI was alive; it is parked, not solved.
