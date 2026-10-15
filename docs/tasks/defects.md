@@ -138,17 +138,65 @@ too; the `rowTwoExtra`-absent output is byte-identical in every state.
 
 ---
 
-## BUG-04 — Dead code and an unused string · **trivial**
+## BUG-04 — Dead code and an unused string · **measured; deliberately not done**
 
-**Status:** open
+**Status:** open, and staying open on purpose · re-measured 2026-10-14 · **not trivial after all**
 
-- `prettyCount` — `PluginAdapter.kt:237`. Its only caller is at `:185`, **inside a `/* … */`
-  block** (the block closes at `:190`). A bare grep makes it look live; it is not.
-- `resume_time_left` (`%dm\nremaining`) — no reference in any `.kt` or layout; `resume_remaining`
-  (`%s\nremaining`) is the live one
+It was filed as `trivial`. Both halves were measured, and each one costs more than it saves. The
+measurements are the deliverable here; the code is unchanged.
 
-Deleting a string from `values/strings.xml` while 60 translated copies remain leaves orphans that
-Weblate then has to reconcile. Worth doing deliberately rather than as a drive-by.
+### `prettyCount` is dead, and it is on the published extension surface
+
+`PluginAdapter.kt:237` declares `fun prettyCount(number: Number): String?`. The finding was right
+about reachability: the only call is at `:185`, inside a `/* … */` block that opens at `:178` and
+closes with `}*/` at `:190`, and a repo-wide grep of `*.kt` (excluding `build/`) finds nothing else.
+
+**But it is in the binary contract.** `app/api/classes-jar.api:31094`:
+
+    public final static class com/lagradost/cloudstream3/ui/settings/extensions/PluginAdapter$Companion : java/lang/Object {
+            …
+            public final fun prettyCount (Ljava/lang/Number;)Ljava/lang/String;
+    }
+
+So deleting it is an **ABI deletion**, in the same class as `DEC-08` and `DEC-09`, not a cleanup.
+`:app:checkExtensionApi` would fail, and the only way to make it pass is to re-record the dump —
+which is exactly what a third-party extension compiled against `prettyCount` would not survive.
+Dead in this repository is not the same as unused by an extension.
+
+**Left in place.** If the owner wants it gone, it is one PR that deletes the function, the
+`:178-190` comment block and the dump line together, with the deletion called out — and it should
+also check whether `DecimalFormat`, `floor`, `log10` and `pow` become unused imports in that file
+(not checked).
+
+### `resume_time_left` is unreferenced, and deleting it moves a frozen oracle
+
+Confirmed unreferenced: outside `core/strings/fixtures/` (frozen test inputs) and the generated
+`app/src/main/res/`, the key appears in no `*.kt`, no layout, no menu and no `*.kts`. It is declared
+in **46** authored files under `core/strings/src/commonMain/composeResources/values*/`, counted two
+ways (`grep -l` and `grep -c`); the other 16 authored directories never declared it. It is **not**
+in `core/strings/authored-aliases.tsv`.
+
+**The cost is `core/strings/oracle-baseline/`.** That directory is the pre-flip ground truth, and
+its `README.md` opens with "**Never regenerated.**" `OracleBaselineTest` compares five of its six
+files byte for byte and additionally pins each row count in code
+(`decoded.tsv` 32,646 · `emitted.tsv` 34,558 · `lookup.tsv` 66,315 · `requests.tsv` 87 ·
+`findings.tsv` 0 · `report.txt` 12). Deleting the key from 46 authored files changes `decoded.tsv`,
+`emitted.tsv`, `lookup.tsv` and `report.txt`, so it fails four assertions and requires a deliberate
+baseline move — the `I18N-05` procedure: a commit of its own, with every changed cell accounted for.
+
+**That is a bad trade here.** `I18N-05` moved the baseline because translations were actually
+*wrong*. Nothing is wrong with `resume_time_left`; it is merely unused, and its entire cost is 46
+lines of translation and a few hundred bytes of resource table. The oracle's value is that it has
+never been touched casually. Spending it to delete an unreferenced string makes every later
+comparison slightly less trustworthy for no user-visible gain.
+
+**Left in place.** If it is ever deleted, it should ride along with a change that has to move the
+baseline anyway, and the move should be accounted for cell by cell as `I18N-05`'s was.
+
+### What this entry is for now
+
+Both halves are characterised rather than fixed, in the same spirit as `BUG-06` and `BUG-07`. The
+next person does not need to re-derive either measurement, and neither is a drive-by.
 
 ---
 
