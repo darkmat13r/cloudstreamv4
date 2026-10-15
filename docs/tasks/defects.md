@@ -119,11 +119,22 @@ re-wrap it.
 
 ## BUG-03 — Double newline in the download notification · **low**
 
-**Status:** open · `utils/downloader/DownloadManager.kt:294, :345`
+**Status:** done · `utils/downloader/DownloadManager.kt:295, :345` (were :294, :345 when found)
 
 `rowTwoExtra` already ends in `\n` (`" - ${ep.name}\n"`) and is then joined with another `\n`, so
 the notification body renders `LinkName\nS1:E4 - Title\n\n50 % (…)`. Confirmed both from source and
 from a device capture of `Notification.EXTRA_BIG_TEXT`. Pre-existing; present before and after #25.
+
+**Fix:** the trailing `\n` is dropped from `rowTwoExtra` (`:295`, now `" - ${ep.name}"`); the join at
+`:345` is unchanged. Rendered bodies, with `linkName` set and `IsDownloading`:
+
+| Case | Before | After |
+|---|---|---|
+| `rowTwoExtra` present (`ep.name` set, season + episode) | `LinkName\nS1:E4 - Title\n\n50 % (…)` | `LinkName\nS1:E4 - Title\n50 % (…)` |
+| `rowTwoExtra` absent (`ep.name` null) | `LinkName\nS1:E4\n50 % (…)` | `LinkName\nS1:E4\n50 % (…)` (unchanged) |
+
+The same `rowTwo` feeds the pending, failed and done notifications, which lost a trailing newline
+too; the `rowTwoExtra`-absent output is byte-identical in every state.
 
 ---
 

@@ -292,7 +292,7 @@ object VideoDownloadManager {
                 builder.setProgress(0, 0, true)
             }
 
-            val rowTwoExtra = if (ep.name != null) " - ${ep.name}\n" else ""
+            val rowTwoExtra = if (ep.name != null) " - ${ep.name}" else ""
             val rowTwo = if (ep.season != null && ep.episode != null) {
                 "${context.getString(R.string.season_short)}${ep.season}:${context.getString(R.string.episode_short)}${ep.episode}" + rowTwoExtra
             } else if (ep.episode != null) {
