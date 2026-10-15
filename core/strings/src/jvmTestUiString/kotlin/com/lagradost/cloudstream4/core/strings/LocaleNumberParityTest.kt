@@ -121,7 +121,11 @@ class LocaleNumberParityTest {
      * The measured symbol table, pinned. A JDK or CLDR bump that moves a separator or a digit set fails here
      * first, with the locale named, rather than as a wall of corpus diffs.
      *
-     * Measured on Temurin 17.0.20.1; see the [NumberSymbols] KDoc.
+     * Measured on Temurin 17.0.20.1; see the [NumberSymbols] KDoc. **Nothing in the build pins that
+     * JDK for this module** (`INF-06`): `jdkToolchain = "17"` reaches only `:app`'s javac, so this
+     * test runs on whatever JVM started the daemon. On JDK 24+ it fails on bare `ar`, which CLDR 46
+     * moved from Arabic-Indic digits to ASCII — a real platform change, not a regression here. Run
+     * `:core:strings` tests with `JAVA_HOME` set to Temurin 17, as CI does.
      */
     @Test
     fun theMeasuredSymbolsAreWhatThePlatformStillReports() {
