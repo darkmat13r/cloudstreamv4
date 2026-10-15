@@ -335,9 +335,9 @@ sentinels and a clean `checkKotlinAbi` / javap comparison.
 | # | Members | Target | Prerequisites and notes |
 |---|---|---|---|
 | B4 | `DdosGuardKiller` | `:core:network` jvmCommonMain | Body-only change first: a private header merge replaces the call to `:app`'s `RequestsHelperKt.getHeaders`. Adds `:library`, coroutines, `annotation`. |
-| B5 | `SSLTrustManager`, `DownloaderTestImpl` | `:core:network` jvmCommonMain | Security review first: trust-all manager becomes reachable from a shared module. `DownloaderTestImpl` needs `newpipeextractor` (in catalog). Optional. |
+| B5 | `SSLTrustManager`, `DownloaderTestImpl` | — | **Closed, not moving** (`KMP-02`): the security review found there is no gate to carry over, and both classes are already published from `:app`'s jar. `BUG-10` came out of it — playback was disabling TLS verification process-wide — and is fixed separately. |
 | B6 | `TestingUtils` (+8 nested) | `:core:model` commonMain | Needs `:library` + coroutines, so **not** `:core:common` (rule 2). |
-| B7 | `fcast/Packets.kt` (`Opcode` + 8 message classes) | `:core:common` jvmCommonMain, whole file (`PlayMessage` uses Jackson) | Default placement, owner confirms in the PR: the audit left it open, and the planned android-only `:media:cast` cannot publish it before D3. `:core:common` gains the serialization plugin, kotlinx-serialization and Jackson annotations (it has no dependencies today; rule 2 concerns internal modules). No `PacketsKt` facade, so the 8 pure classes may go to commonMain if split. |
+| B7 | `fcast/Packets.kt` (`Opcode` + 8 message classes) | `:core:common` **commonMain**, split — **done** (`KMP-04`) | **Split, not moved whole.** `PlayMessage` stays in `:app`: `@Serializable` emits `write$Self$app`, carrying `:app`'s module name, and that member is published (`classes-jar.api:5293`), so moving the class is a `DEC-08`-class ABI delta. The other 8 have no module-suffixed member and went to `commonMain`. **`:core:common` therefore gains no dependencies** — no serialization plugin, no Jackson — which is what `DEC-07` was weighing, so that decision dissolved. Dump byte-identical; `$stable` kept on all 7 data classes. |
 | B8 | `APIRepository` (+companion, `SavedLoadResponse`, anonymous `noneApi`/`randomApi`) | `:core:data` jvmCommonMain | After B1. Invert `MainActivity.afterPluginsLoadedEvent` in the same PR; that removes a public synthetic accessor (`access$getAfterPluginsLoadedEvent$cp`), which the owner must accept in that PR. |
 
 ### 5.3 Stays in `:app`, and what would unblock it
@@ -438,11 +438,11 @@ Everything still open is listed here.
 | # | PR | Depends on | State |
 |---|---|---|---|
 | 14 | Phase 5: split `:shared` | — | **done**, differently: `:core:ui` (#41), `:core:mihon` (#42), `:core:settings` (`KMP-06d`). Not `:core:designsystem`, which already existed — see `docs/tasks/kmp.md` `KMP-06`. |
-| 15 | `:media:model` skeleton (contracts only) | — | unblocked |
-| 19 | B4 `DdosGuardKiller` into `:core:network` | — | unblocked |
-| 20 | B5 `SSLTrustManager`, `DownloaderTestImpl` | 19 | needs a security review first (a trust-all manager becomes reachable from a shared module) |
-| 21 | B6 `TestingUtils` into `:core:model` | — | unblocked |
-| 22 | B7 `fcast/Packets.kt` into `:core:common` | — | placement is an owner call in the PR (§5.2) |
+| 15 | `:media:model` skeleton (contracts only) | — | **done** — #48 (`KMP-07`), plus the `StreamRequest` adapter in #59 |
+| 19 | B4 `DdosGuardKiller` into `:core:network` | — | **done** (`KMP-01`) — it is in `core/network/src/jvmCommonMain` |
+| 20 | B5 `SSLTrustManager`, `DownloaderTestImpl` | — | **closed, not moving** (`KMP-02`); the review produced `BUG-10` |
+| 21 | B6 `TestingUtils` into `:core:model` | — | **done** (`KMP-03`) — it is in `core/model/src/commonMain` |
+| 22 | B7 `fcast/Packets.kt` into `:core:common` | — | **done** (`KMP-04`), **split**: 8 classes to `commonMain`, `PlayMessage` stays in `:app` (`write$Self$app`). `DEC-07` dissolved — `:core:common` gains no dependencies |
 | 23 | B8 `APIRepository` into `:core:data` | — | removes a public synthetic accessor; owner must accept that delta in the PR |
 | 17 | `:feature:extensions` prep: `ExtensionRuntime` seam, repository model in commonMain | 14 | touches existing `:app` plugin code: needs the owner's explicit go-ahead |
 | 18 | First vertical (search + quicksearch) | 14 | ViewModel needs Track L for iOS (rule 4) |
@@ -468,9 +468,11 @@ Everything still open is listed here.
 (B5 needs a security review, B7 needs a placement decision, B8 needs an accepted ABI delta), so
 they are rows 19–23 above, one each.
 
-> **No CI has run on any of this.** GitHub Actions has been failing account-wide in ~2s with a
-> billing error for the whole series. Every check quoted in a PR body was run locally, on one
-> machine, with one JDK. That is the single largest gap in the evidence behind this plan.
+> **Out of date.** CI has run on pull requests since 2026-10-07 (`DEC-01`, `INF-01`); the
+> account-wide billing failure is over. Two caveats remain: everything merged **before** 2026-10-07
+> was verified locally only, on one machine with one JDK; and `Check classes.jar ABI` is still killed
+> by the runner at random (`INF-08`), so a red tick on that step means *read the run*, not *the code
+> is broken*.
 
 ### Phase 0 — build-logic + jar safety · **done**
 
