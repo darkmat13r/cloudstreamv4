@@ -901,6 +901,83 @@ Local, 2026-10-14, Temurin 17.0.20.1, `TZ=UTC`, `-Xmx14G`, each command redirect
 
 ---
 
+## KMP-11 — `:feature:extensions`: the `ExtensionRuntime` seam and the catalogue model
+
+**Status:** the **contracts half is done** 2026-10-15 (plan row 17, Phase 7 vertical 6) · the half that
+touches `:app`'s plugin code is **not started and needs the owner's go-ahead**
+
+`:feature:extensions` exists, commonMain only, **contracts and no implementation** — the same shape
+`KMP-07` gave `:media:model`. **Nothing in `:app` changed.**
+
+| File | Holds |
+|---|---|
+| `ExtensionIndex.kt` | `ExtensionRepositoryIndex`, `ExtensionStatus`, `ExtensionListing` |
+| `ExtensionInstall.kt` | `InstalledExtension`, `ExtensionState`, `ExtensionVerification` |
+| `ExtensionRuntime.kt` | `ExtensionRuntime` (install / load / unload / uninstall / loaded), `UnsupportedExtensionRuntime` |
+
+### Zero published-ABI risk, by construction
+
+Package `com.lagradost.cloudstream4.feature.extensions`, no `com/lagradost/cloudstream3` directory,
+so `:app:makeJar` never merges it — plan §4.2 has `:feature:*` as not-merged, old classes staying in
+`:app`. No sentinel is needed and the dump does not move.
+
+`:app`'s `plugins.Repository`, `SitePlugin`, `PluginData` and `PluginWrapper` are **all in
+`app/api/classes-jar.api`** (checked, 3 hits each) and stay exactly where they are. These types
+restate the portable half beside them; they do not replace them.
+
+### Two decisions taken, both reversible
+
+- **`cloudstream.kmp.library`, not a new `cloudstream.kmp.feature`.** §4.2 pencils in `kmp.feature`
+  for `:feature:*`, but it would have the same contents as `cloudstream.kmp.library` — android plus
+  the jvm purity canary, no jar merge — so adding it would be a second name for one behaviour. When a
+  feature module needs the Compose compiler for its screens (Phase 7 recipe step 1),
+  `cloudstream.kmp.compose` already exists. Add `kmp.feature` when it earns distinct behaviour.
+- **`ExtensionListing.tvTypes` stays a `List<String>`**, as it is on the wire, instead of
+  `List<TvType>`. `TvType` is a `:library` type, and that edge from commonMain would make this module
+  iOS-canary exempt under §4.1 rule 4 — and `IOS_CANARY_EXEMPT` "may only shrink". The wire comment on
+  `SitePlugin.tvTypes` says those strings "are yet to be mapped and used" anyway, so the mapping
+  belongs at `:app`'s edge where `TvType` already is. **Same lesson as `KMP-05`:** choosing the source
+  set and the field types to avoid a `:library` edge is what keeps the canary at 12 modules.
+
+The module therefore depends on **nothing** but coroutines, and **joins** the canary: it ran
+`:feature:extensions:iosCanary` and the canary went from **12 modules to 13**. The zero-dependency
+choice did not merely avoid an exemption, it widened iOS coverage.
+
+### What is deliberately absent from the seam
+
+No `Context`, `File` or `Activity` — those are what kept this logic in `:app`. No download or HTTP
+(`:core:http`'s job; `install` takes bytes). No persistence (`:core:storage`'s). **No verification**:
+`ExtensionVerification` names the outcomes and the runtime reports which it reached, so a skipped
+check cannot hide inside a success. `ExtensionVerification.Skipped` exists because `:app` carries
+`fileHash` through the index today and **never compares it** — the check has nowhere to live yet, and
+this is that place.
+
+`UnsupportedExtensionRuntime` refuses every call with a stated reason, so iOS and `:desktopApp` can
+compile and run the catalogue and show an honest "not supported here" while `DEC-04` and §10 O2 are
+open. A build with no runtime at all would fail at the first install, far from the cause.
+
+### Verified
+
+4 tests, 0 failures: the status mapping is total in both directions, an unknown wire code is kept
+rather than collapsed, a `Skipped` verification is not equal to a `Verified` one, and the unsupported
+runtime refuses all four operations with the given message.
+
+Four gates: `abi=0 check=0 extapi=0 canary=0`, and the **canary is 13 of 13** with
+`:feature:extensions` among them. `app/api/classes-jar.api` is **unchanged** — as it must be, since
+nothing merged into the jar.
+
+### Not done — needs the owner's go-ahead
+
+Row 17's other half: making `:app`'s `PluginManager` implement `ExtensionRuntime`, and mapping
+`Repository`/`SitePlugin`/`PluginData` onto these types at the edge. That edits **published,
+extension-facing** code in a ~900-line object holding `Context`, `Activity`, notification channels and
+the `___DO_NOT_CALL_FROM_A_PLUGIN_` entry points, so it is not something to start unasked.
+
+- [ ] Owner go-ahead to adapt `PluginManager` to the seam
+- [ ] Then: the adapter, with the `$stable`/javap scan and dump diff in the PR
+
+---
+
 ## KMP-08 — Track L: `:library` iOS surgery
 
 **Status:** blocked by `DEC-04`

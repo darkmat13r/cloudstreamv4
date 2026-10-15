@@ -444,7 +444,7 @@ Everything still open is listed here.
 | 21 | B6 `TestingUtils` into `:core:model` | — | **done** (`KMP-03`) — it is in `core/model/src/commonMain` |
 | 22 | B7 `fcast/Packets.kt` into `:core:common` | — | **done** (`KMP-04`), **split**: 8 classes to `commonMain`, `PlayMessage` stays in `:app` (`write$Self$app`). `DEC-07` dissolved — `:core:common` gains no dependencies |
 | 23 | B8 `APIRepository` into `:core:data` | — | **done** (`KMP-05`), awaiting the `DEC-08` sign-off. Delta measured: **one** line out (`access$afterPluginsLoaded`, a synthetic for a private method), one in. `DEC-08`'s predicted entry (`access$getAfterPluginsLoadedEvent$cp`) is **not** removed. Placed in `jvmCommonMain` so `:core:data` stays out of `IOS_CANARY_EXEMPT` and the canary stays 12/12 |
-| 17 | `:feature:extensions` prep: `ExtensionRuntime` seam, repository model in commonMain | 14 | touches existing `:app` plugin code: needs the owner's explicit go-ahead |
+| 17 | `:feature:extensions` prep: `ExtensionRuntime` seam, repository model in commonMain | 14 | **contracts half done** (`KMP-11`): the module exists, commonMain only, no `:app` change, no jar merge, and the canary **grew 12 → 13** because the module depends on nothing. The half that **adapts `:app`'s `PluginManager` to the seam still needs the owner's explicit go-ahead** |
 | 18 | First vertical (search + quicksearch) | 14 | ViewModel needs Track L for iOS (rule 4) |
 | L | Track L: `:library` iOS surgery | — | design workflow first (§2.4); blocked on O2 |
 
