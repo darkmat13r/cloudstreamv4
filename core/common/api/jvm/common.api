@@ -1,3 +1,118 @@
+public final class com/lagradost/cloudstream3/actions/temp/fcast/Opcode : java/lang/Enum {
+	public static final field None Lcom/lagradost/cloudstream3/actions/temp/fcast/Opcode;
+	public static final field Pause Lcom/lagradost/cloudstream3/actions/temp/fcast/Opcode;
+	public static final field Ping Lcom/lagradost/cloudstream3/actions/temp/fcast/Opcode;
+	public static final field Play Lcom/lagradost/cloudstream3/actions/temp/fcast/Opcode;
+	public static final field PlaybackError Lcom/lagradost/cloudstream3/actions/temp/fcast/Opcode;
+	public static final field PlaybackUpdate Lcom/lagradost/cloudstream3/actions/temp/fcast/Opcode;
+	public static final field Pong Lcom/lagradost/cloudstream3/actions/temp/fcast/Opcode;
+	public static final field Resume Lcom/lagradost/cloudstream3/actions/temp/fcast/Opcode;
+	public static final field Seek Lcom/lagradost/cloudstream3/actions/temp/fcast/Opcode;
+	public static final field SetSpeed Lcom/lagradost/cloudstream3/actions/temp/fcast/Opcode;
+	public static final field SetVolume Lcom/lagradost/cloudstream3/actions/temp/fcast/Opcode;
+	public static final field Stop Lcom/lagradost/cloudstream3/actions/temp/fcast/Opcode;
+	public static final field Version Lcom/lagradost/cloudstream3/actions/temp/fcast/Opcode;
+	public static final field VolumeUpdate Lcom/lagradost/cloudstream3/actions/temp/fcast/Opcode;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public final fun getValue ()B
+	public static fun valueOf (Ljava/lang/String;)Lcom/lagradost/cloudstream3/actions/temp/fcast/Opcode;
+	public static fun values ()[Lcom/lagradost/cloudstream3/actions/temp/fcast/Opcode;
+}
+
+public final class com/lagradost/cloudstream3/actions/temp/fcast/PlaybackErrorMessage {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lcom/lagradost/cloudstream3/actions/temp/fcast/PlaybackErrorMessage;
+	public static synthetic fun copy$default (Lcom/lagradost/cloudstream3/actions/temp/fcast/PlaybackErrorMessage;Ljava/lang/String;ILjava/lang/Object;)Lcom/lagradost/cloudstream3/actions/temp/fcast/PlaybackErrorMessage;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getMessage ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/lagradost/cloudstream3/actions/temp/fcast/PlaybackUpdateMessage {
+	public static final field $stable I
+	public fun <init> (JDDID)V
+	public final fun component1 ()J
+	public final fun component2 ()D
+	public final fun component3 ()D
+	public final fun component4 ()I
+	public final fun component5 ()D
+	public final fun copy (JDDID)Lcom/lagradost/cloudstream3/actions/temp/fcast/PlaybackUpdateMessage;
+	public static synthetic fun copy$default (Lcom/lagradost/cloudstream3/actions/temp/fcast/PlaybackUpdateMessage;JDDIDILjava/lang/Object;)Lcom/lagradost/cloudstream3/actions/temp/fcast/PlaybackUpdateMessage;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDuration ()D
+	public final fun getGenerationTime ()J
+	public final fun getSpeed ()D
+	public final fun getState ()I
+	public final fun getTime ()D
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/lagradost/cloudstream3/actions/temp/fcast/SeekMessage {
+	public static final field $stable I
+	public fun <init> (D)V
+	public final fun component1 ()D
+	public final fun copy (D)Lcom/lagradost/cloudstream3/actions/temp/fcast/SeekMessage;
+	public static synthetic fun copy$default (Lcom/lagradost/cloudstream3/actions/temp/fcast/SeekMessage;DILjava/lang/Object;)Lcom/lagradost/cloudstream3/actions/temp/fcast/SeekMessage;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getTime ()D
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/lagradost/cloudstream3/actions/temp/fcast/SetSpeedMessage {
+	public static final field $stable I
+	public fun <init> (D)V
+	public final fun component1 ()D
+	public final fun copy (D)Lcom/lagradost/cloudstream3/actions/temp/fcast/SetSpeedMessage;
+	public static synthetic fun copy$default (Lcom/lagradost/cloudstream3/actions/temp/fcast/SetSpeedMessage;DILjava/lang/Object;)Lcom/lagradost/cloudstream3/actions/temp/fcast/SetSpeedMessage;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getSpeed ()D
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/lagradost/cloudstream3/actions/temp/fcast/SetVolumeMessage {
+	public static final field $stable I
+	public fun <init> (D)V
+	public final fun component1 ()D
+	public final fun copy (D)Lcom/lagradost/cloudstream3/actions/temp/fcast/SetVolumeMessage;
+	public static synthetic fun copy$default (Lcom/lagradost/cloudstream3/actions/temp/fcast/SetVolumeMessage;DILjava/lang/Object;)Lcom/lagradost/cloudstream3/actions/temp/fcast/SetVolumeMessage;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getVolume ()D
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/lagradost/cloudstream3/actions/temp/fcast/VersionMessage {
+	public static final field $stable I
+	public fun <init> (J)V
+	public final fun component1 ()J
+	public final fun copy (J)Lcom/lagradost/cloudstream3/actions/temp/fcast/VersionMessage;
+	public static synthetic fun copy$default (Lcom/lagradost/cloudstream3/actions/temp/fcast/VersionMessage;JILjava/lang/Object;)Lcom/lagradost/cloudstream3/actions/temp/fcast/VersionMessage;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getVersion ()J
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/lagradost/cloudstream3/actions/temp/fcast/VolumeUpdateMessage {
+	public static final field $stable I
+	public fun <init> (JD)V
+	public final fun component1 ()J
+	public final fun component2 ()D
+	public final fun copy (JD)Lcom/lagradost/cloudstream3/actions/temp/fcast/VolumeUpdateMessage;
+	public static synthetic fun copy$default (Lcom/lagradost/cloudstream3/actions/temp/fcast/VolumeUpdateMessage;JDILjava/lang/Object;)Lcom/lagradost/cloudstream3/actions/temp/fcast/VolumeUpdateMessage;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getGenerationTime ()J
+	public final fun getVolume ()D
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
 public final class com/lagradost/cloudstream3/utils/EmptyEvent {
 	public static final field $stable I
 	public fun <init> ()V

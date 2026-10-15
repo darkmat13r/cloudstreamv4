@@ -34,8 +34,26 @@ package com.lagradost.cloudstream4.core.strings
  *   `en-US-POSIX` (`#0.######`), which reports size 0 and grouping unused; `Formatter` then emits no separator at
  *   all. [groupingSize] `<= 0` models exactly that case.
  *
- * Android runs the same OpenJDK-derived `Formatter` over the same `java.text` locale data, so the `androidMain`
- * and `jvmMain` actuals read the same two APIs.
+ * ## Android reads the same two APIs over *different* locale data
+ *
+ * Android's `Formatter` is the same OpenJDK one and the `androidMain` actual reads the same two `java.text` APIs,
+ * so each platform matches its own `String.format` — which is the contract. But Android's `java.text` is
+ * **ICU-backed** where the JDK's is CLDR, and `I18N-06` measured the two tables against each other on a device
+ * (API 36). **Nine of the twelve pinned locales agree; three do not:**
+ *
+ * | locale | JVM, Temurin 17.0.20.1 | Android, API 36 |
+ * |---|---|---|
+ * | `fr` grouping separator | `U+0020` SPACE | `U+202F` NARROW NO-BREAK SPACE |
+ * | `ru` grouping separator | `U+0020` SPACE | `U+00A0` NO-BREAK SPACE |
+ * | `ar` zero / decimal / grouping | `U+0660 ٠` / `U+066B ٫` / `U+066C ٬` | `U+0030 0` / `U+002E .` / `U+002C ,` |
+ *
+ * So **everything above is the JVM's answer**, and the `ar` bullet in particular does not hold on a modern
+ * Android: the CLDR 46 change this KDoc warns about for JDK 24+ has already happened in Android's ICU, so Arabic
+ * writes `1,234,567.89` there. `fa` is the contrast — CLDR kept Persian digits, so `fa` is unaffected.
+ *
+ * `AndroidNumberSymbolsTest` (`androidDeviceTest`) pins Android's table and asserts the divergence set is exactly
+ * those three, so a platform change on either side fails with the locale and code point named. It needs a device
+ * and is not part of `check`.
  */
 internal data class NumberSymbols(
     val zeroDigit: Char,

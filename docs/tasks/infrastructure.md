@@ -86,8 +86,13 @@ See also `KMP-09` for the `$stable` trap, which **neither** guard catches on its
 
 **Status:** open
 
-- `:core:strings` has **no Android unit-test target**, so its android actual is untested — see
-  `I18N-06`.
+- `:core:strings` has **no Android unit-test target** (adding one needs Robolectric, which the catalog
+  does not carry), so its android actual was untested. **Closed 2026-10-15** by a device test instead
+  — `androidDeviceTest`, via AGP's KMP `withDeviceTestBuilder`, the first device test in any `:core:*`
+  module. It found a real divergence: Android's ICU locale data disagrees with the JDK's CLDR for
+  `ar`, `fr` and `ru`. See `I18N-06`. Two notes it leaves behind: `androidx.test:runner` has no
+  catalog alias (the source set leans on `espresso-core` to get it transitively — a catalog addition
+  is the owner's call), and the test cannot run on CI, which has no emulator (`DEC-05`).
 - There is **no iOS test target** anywhere; iOS is compile-checked only.
 - `:app` has `junit` for unit tests and Espresso/instancio for instrumented tests. The formatting
   fixes (#25, #26) added the first real measurement harnesses against a device; both were written
@@ -272,25 +277,77 @@ as OOMing D8 in a full run. Still a hypothesis: nothing has measured the runner'
 **The full picture, from twelve PRs run on 2026-10-14** — same fleet, same day, same workflow, and
 the largest sample this failure has ever had.
 
-**On the first attempt**, the step split perfectly along a line that has nothing to do with risk:
+> **Corrected 2026-10-15.** An earlier version of this entry claimed the step "split perfectly" by
+> content — *five of five trivial changes died; seven of seven real ones passed* — and concluded that
+> this **inverted** the content hypothesis. **That was a sampling artefact and it is wrong.** It was
+> built from one run per PR, and `gh api .../runs/<id>/jobs` returns only the **latest attempt**
+> (see the traps below), so a re-run PR looked as though it had never failed and an earlier failing
+> run on a different commit was missed entirely. Re-read per attempt, the content line does not
+> exist. The paragraphs below replace that claim.
 
-| | PRs | What the diff is |
-|---|---|---|
-| **passed** | #52, #53, #55, #57, #58, #59, #61 | every PR containing real code — a `:library` behaviour change with 14 new tests, an `:app` player edit, a new `:app` module edge, three workflow files, and the one PR that deliberately rewrites `classes-jar.api` |
-| **died** | #54, #56, #60, #62, #63 | one XML attribute; and four that are **docs-only** |
+**Measured per attempt**, across every `pull_request.yml` run in the 2026-10-14 fleet — 19 runs, 22
+attempts of the `Check classes.jar ABI` step:
 
-**Five of five trivial changes died; seven of seven real ones passed.** Four of the five that died
-cannot affect a build at all — they touch nothing but `docs/`. If diff content mattered, a docs-only
-PR should be the *most* likely to pass, since nearly all of the build comes from cache. It is the
-least. That inverts the content hypothesis rather than merely failing to support it.
+| Attempt-1 outcome | Count |
+|---|---|
+| success | 10 |
+| `cancelled` or `failure` | 8 |
 
-**It is also non-deterministic on a fixed input.** Re-running with no change at all turned #54, #56,
-#60 and #63 green — same commit, same workflow, opposite outcome. That is the single most useful fact
-here: it rules out everything about the tree and leaves the runner.
+**The content hypothesis is dead in both directions**, which is a stronger and simpler statement than
+the inversion the entry used to claim:
 
-**But re-running is not a remedy.** #62 died a second time, at the same step, on attempt 2. Four of
-five rescued, one not: a coin flip. A docs-only PR that cannot get a green tick in two attempts is
-the clearest statement of how unreliable the step is.
+- A **real-code** PR died. Run `38615342081` on `claude/bug-08-addDate-device-zone` — the `:library`
+  behaviour change with 14 new tests — was **`cancelled` at 7m49s** on its first attempt.
+- A **docs-only** PR passed first time. Run `38615910413` on `claude/docs-settings-walkthrough`
+  succeeded on attempt 1, in 13m26s.
+
+So the step's outcome is **independent of what the PR contains.** Combined with the fact that
+re-running an unchanged tree flips the result — #54, #56, #60 and #63 all went green on attempt 2 —
+everything about the tree is ruled out and the runner is what is left.
+
+**Re-running is still not a remedy.** `claude/dec-12-keep-both` (#62, docs-only) was `cancelled` on
+**both** attempts, at 11m56s and then 5m47s.
+
+**Where the time goes, and why it is always this step.** From the GitHub API, the three Gradle steps
+in a green run:
+
+| Step | Duration |
+|---|---|
+| `Ensure binary compatibility` (`checkKotlinAbi`) | 31–34 s |
+| `Run Gradle` (`assemblePrereleaseDebug lint check`) | 8m49s – 9m48s |
+| **`Check classes.jar ABI`** (`:app:checkExtensionApi`) | **8m40s – 13m26s** |
+
+This is not a cheap tail check — it is about half the job's wall-clock, and it is the only step that
+has ever died. It builds the **stable release** variant, which `Run Gradle` never built, which is why
+`dexBuilderStableRelease` appears in one of the failure modes.
+
+**Termination times do not look like a timeout.** Successful attempts took 8m40s–13m26s; terminated
+ones died at 2m46s, 5m14s, 5m47s, 7m03s, 7m49s, 8m22s, 10m55s and 11m56s. The ranges overlap, so
+there is no limit being hit — the step is simply long, and termination strikes at an arbitrary point
+inside it.
+
+**Two leads chased and disproved on 2026-10-15** — recorded so nobody spends the time again:
+
+- **Not the Gradle heap, on this evidence.** CI inherits `org.gradle.jvmargs=-Xmx4G` from
+  `gradle.properties`, and `CLAUDE.md` does say 4G OOMs D8 in a full run locally, so this looks
+  compelling. But the one memory message in a green run's log — *"The current JVM process isn't
+  compatible with build requirement. The maximum heap size is insufficient."* — comes from
+  `setup-gradle`'s **post-job cache cleanup** (`Executing Gradle to clean up caches`, `--no-daemon`,
+  512m), not from any build step. It is benign and proves nothing about the ABI step. The heap
+  hypothesis is still open; this log line is not evidence for it.
+- **Not disk exhaustion, on this evidence.** No `no space left on device` anywhere, and the restored
+  Gradle caches total roughly 1.4 GB across eight entries.
+
+**Two more diagnostic traps, both of which make a failure look like something else:**
+
+- **`gh api .../actions/runs/<id>/jobs` returns only the latest attempt.** A PR that was re-run shows
+  its *green* attempt and no sign it ever failed — which is how the retracted content claim above was
+  produced. Use `.../runs/<id>/attempts/<n>/jobs`, and read `.run_attempt` first to know how many
+  there are.
+- **The killed job's log is not retained at all.** `gh run view 38619491792 --log` answers
+  `log not found: 116042985447`. So `--log-failed` printing nothing is not a quirk of the cancelled
+  variant — for those runs *there is no log to read*, and the cause cannot be recovered from CI after
+  the fact. Capture what you need from the step conclusions while the run is fresh.
 
 It fails **four** distinct ways — `exit 143` after Kotlin compilation, `exit 143` during
 `dexBuilderStableRelease`, a bare `cancelled`, and `The operation was canceled` — which is what

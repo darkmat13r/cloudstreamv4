@@ -50,11 +50,29 @@ plugins {
 }
 
 kotlin {
+    android {
+        // `I18N-06`: the android actual of `localeNumberSymbols()` reads ICU-backed locale data, where the jvm
+        // actual reads the JDK's CLDR. Nothing compared the two, so the android actual was argued, not measured.
+        // A device test is the only way to read Android's own tables; `jvmTest` cannot reach them.
+        withDeviceTestBuilder { sourceSetTreeName = "test" }
+            .configure { instrumentationRunner = "androidx.test.runner.AndroidJUnitRunner" }
+    }
+
     sourceSets {
         jvmTest {
             // `src/jvmTest/kotlin` is compiled by `:core:strings:fixtures` too, over its own adversarial resources
             // and its own `Res`; it has no `UiString`. The S-b suite is this module's alone.
             kotlin.srcDir("src/jvmTestUiString/kotlin")
+        }
+
+        getByName("androidDeviceTest").dependencies {
+            implementation(libs.kotlin.test)
+            implementation(libs.ext.junit)
+            // Present for `androidx.test:runner`, which the instrumentation runner above loads and which
+            // `gradle/libs.versions.toml` has no alias of its own for; `espresso-core` depends on it at compile
+            // scope. An `androidx-test-runner` alias would say this more honestly — that is a catalog change, so
+            // it is the owner's call (`I18N-06`).
+            implementation(libs.espresso.core)
         }
     }
 }

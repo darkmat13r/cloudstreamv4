@@ -100,6 +100,16 @@ val sentinels = mapOf(
     "$apiPackageDir/utils/IDisposableHelper.class" to ":core:common - no in-repo users; only this sees its loss",
     "$apiPackageDir/utils/Vector2.class" to ":core:common",
     "$apiPackageDir/network/DohProvidersKt.class" to ":core:network - OkHttpClient.Builder DoH extensions",
+    // B7: the eight FCast protocol classes that have no module-suffixed members. `PlayMessage` stays in
+    // `:app` because `@Serializable` emits `write$Self${'$'}app`, which carries the module name.
+    "$apiPackageDir/actions/temp/fcast/Opcode.class" to ":core:common - FCast opcode; FcastSession.sendMessage parameter",
+    "$apiPackageDir/actions/temp/fcast/SeekMessage.class" to ":core:common - FCast protocol; no in-repo users",
+    "$apiPackageDir/actions/temp/fcast/PlaybackUpdateMessage.class" to ":core:common - FCast protocol; no in-repo users",
+    "$apiPackageDir/actions/temp/fcast/VolumeUpdateMessage.class" to ":core:common - FCast protocol; no in-repo users",
+    "$apiPackageDir/actions/temp/fcast/PlaybackErrorMessage.class" to ":core:common - FCast protocol; no in-repo users",
+    "$apiPackageDir/actions/temp/fcast/SetSpeedMessage.class" to ":core:common - FCast protocol; no in-repo users",
+    "$apiPackageDir/actions/temp/fcast/SetVolumeMessage.class" to ":core:common - FCast protocol; no in-repo users",
+    "$apiPackageDir/actions/temp/fcast/VersionMessage.class" to ":core:common - FCast protocol; no in-repo users",
     "$apiPackageDir/network/DdosGuardKiller.class" to ":core:network - the DDoS-Guard bypass Interceptor",
     "$apiPackageDir/utils/DataStoreKt.class" to ":core:data - storage key consts; :app's DataStore.kt must declare no top-level members",
     "$apiPackageDir/utils/DataStoreHelperKt.class" to ":core:data - storage key consts; :app's DataStoreHelper.kt must declare no top-level members",
