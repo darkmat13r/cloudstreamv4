@@ -22,7 +22,7 @@ when twenty-three more had merged since. **Trust `git log` over this heading.**
 
 ## Where things stand
 
-Master is at `618438b9` (#74). **There are no open pull requests.** Everything from #45 to #74 has
+Master is at `539a8867` (#76). **There are no open pull requests.** Everything from #45 to #76 has
 merged; `:shared` is gone (`KMP-06`, done), the five B-series module carves are done (`KMP-01`,
 `KMP-03`, `KMP-04`, `KMP-05`; `KMP-02` was reviewed and deliberately **not** moved), and **Phase 7,
 the feature verticals, has started.**
@@ -36,13 +36,13 @@ about 4 seconds warm:
 
     ./gradlew iosCanary -Pcloudstream.iosCanary=true --continue
 
-**Phase 7 is two verticals in, both at step 1 of 5** — state machine and contracts, no screens, no
-`:app` wiring, nothing repointed:
+**Phase 7 is two verticals in** — `:feature:extensions` at step 1 of 5 and `:feature:search` at
+step 2. No `:app` wiring either way, and nothing repointed:
 
 | | Module | Done | Not done |
 |---|---|---|---|
 | `KMP-11` (plan row 17) | `:feature:extensions` | `ExtensionRepositoryIndex`, `ExtensionStatus`, `ExtensionListing`, `InstalledExtension`, `ExtensionState`, `ExtensionVerification`, the `ExtensionRuntime` seam. commonMain only, 4 tests | Adapting `:app`'s `PluginManager` (~900 lines, holds `Context`, notification channels, OAT cleanup, `___DO_NOT_CALL_FROM_A_PLUGIN_` entry points) to the seam. **Needs the owner's explicit go-ahead** — see below |
-| `KMP-12` (plan row 18) | `:feature:search` | `SearchResultItem`, `SearchResultId`, `SearchSource`, `SearchOutcome`, the MVI triple and `SearchViewModel` by delegation, 7 tests | Steps 2–5: screens per form factor, the `:app`-side `SearchSource` over `APIRepository`, the glue fragment plus one nav node, and deleting the old fragment a release later |
+| `KMP-12` (plan row 18) | `:feature:search` | **Steps 1 and 2.** The contracts, the provider and history seams, the MVI state machine, and the **TV screen** — artboards 4a–4c of `TV Search` plus 8c of `TV Search Suggestions`. 16 tests, 8 previews | Steps 3–5: the `:app`-side `SearchSource` / `SearchHistoryStore` over `APIRepository` and `DataStoreHelper`, the glue fragment plus one nav node, and deleting the old fragment a release later. **Touch and desktop screens are blocked on design** — none exists for either form factor |
 
 `:app`'s `SearchFragment` and `SearchViewModel` are untouched and still the live search path.
 
@@ -265,11 +265,20 @@ Nothing below can be settled by reading the code.
   holding `Context`, an `Activity`, notification channels, OAT cleanup and published
   extension-facing entry points, and the mapping of `Repository`/`SitePlugin`/`PluginData` happens
   at the edge. The contracts are merged and cost nothing; this is the part that touches live code.
-- **`SearchPrompts` injection** (`KMP-12`). The design system's `StatePrompt`/`FailureNotice` hold
+- **The injected-copy pattern** (`KMP-12`), now in two places: `SearchPrompts` for the state copy
+  and `SearchTvCopy` for the screen's words. The design system's `StatePrompt`/`FailureNotice` hold
   **already-resolved** strings and require a `StateAction` lambda, and `:core:designsystem` "never
   holds display strings"; the plan says a ViewModel exposes `UiString`, never a resource id. Both
-  cannot hold, so the prompts are injected into the ViewModel. **This is the first vertical and the
-  pattern will be copied six more times** — worth agreeing before it is.
+  cannot hold, so both are injected. The alternative is for `:feature:*` to depend on `:core:strings`
+  and call `stringResource` in `commonMain`, which is what `I18N-01` implies and would delete both
+  types. **This is a decision about all seven Phase 7 verticals**, so it is worth taking before six
+  more copy it.
+- **Chip-row spacing: the design file contradicts itself.** Its CSS is `.chiprow { gap: 24px }`,
+  which is 12dp at the design system's own `artboard px / 2 = dp`; its own prose says *"In Compose
+  that is `wrapContentWidth` in a `Row` with **24dp** spacing"*. `CloudStreamDimens.ChipRowSpacing`
+  is 24dp and `SkeletonRail` uses it for the gap between rail cards, so `:feature:search`'s rails
+  follow the token — a rail at 12dp behind a skeleton at 24dp is the jump `UiStateHost` warns about.
+  If the CSS is right, the token, `SkeletonRail` and the search rails all move together.
 - **`DebounceQuery` injectability.** `:core:ui`'s `DebounceQuery` hardcodes
   `.flowOn(Dispatchers.Default)` and `200.milliseconds`, neither injectable, so `advanceTimeBy` on a
   `TestDispatcher` does not move it and a debounce cannot be tested in virtual time. Reported, not

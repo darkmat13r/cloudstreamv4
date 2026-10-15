@@ -101,7 +101,9 @@ interface SearchPrompts {
     fun idle(): UiState.Empty
 
     /**
-     * The search succeeded and matched nothing: artboard **8c**.
+     * The search succeeded and matched nothing: artboard **8c** of
+     * `design/TV Search Suggestions.dc.html`. (Two clusters are numbered 8 — the onboarding file
+     * has its own `8a`–`8d` — so an 8-series id without its file name is ambiguous.)
      *
      * [queried] is how many sources were asked, which 8c's copy states in words ("All nine
      * selected sources answered and none of them carry it") *and* in the mono status line

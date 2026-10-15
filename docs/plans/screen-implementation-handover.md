@@ -215,13 +215,32 @@ before repeating it. Three separate agent claims in this project were wrong.
 
 ## 7. What is drawn, and what is not
 
-**TV — 28 artboards drawn and measured clean** (0 off-grid, 0 band violations, 0 clipped text):
+**TV — 34 artboards drawn and measured clean** (0 off-grid, 0 band violations, 0 clipped text).
+Counted from the `shotn` labels in each file on 2026-10-15:
 
-Home ×4 · Search ×4 · Library ×5 · Episodes/Downloads ×5 · Detail/Player ×5 · Onboarding/Extensions ×5
+Home ×4 · Search ×4 · **Suggestions/Quick Search ×5** · Library ×5 · Episodes/Downloads ×5 ·
+Detail/Player ×6 · Onboarding/Extensions ×5
 
-**TV — specced but never drawn.** Search suggestions, no-results and the Quick Search panel have
-a solved and adversarially verified geometry spec sitting in the cluster-specs task output. Draw
-them from that; do not re-derive.
+Two of those are variants rather than new screens — `7a-ii` is `7a` scrolled, and `8a-ii` is `8a`
+with the index unreachable — so 32 distinct screens. The old count of 28 is this list without the
+five Suggestions boards and without `7a-ii`. `TV Screens.dc.html`
+holds five more (`2a`–`2e`) and is **superseded**: §2 lists it, and it still contains the banned
+320×180 rung.
+
+> **Two clusters are both numbered 8.** `design/TV Search Suggestions.dc.html` uses `8a`–`8e` for
+> suggestions, no-results and Quick Search; `design/TV Onboarding Extensions.dc.html` uses `8a`–`8d`
+> for first run, extensions and account select. **Always name the file with the id.** An unqualified
+> "artboard 8c" means "Search — no results" in one file and "Extensions — browse a repo" in the
+> other.
+
+**TV — drawn since this section was written.** Search suggestions, no-results and the Quick Search
+panel were listed here as "specced but never drawn". They are drawn:
+`design/TV Search Suggestions.dc.html` holds five artboards — 8a suggestions while typing, 8b
+nothing matches, 8c search no-results, 8d Quick Search answering, 8e Quick Search empty — and
+reports *"0 off-grid, 0 clipped, 0 overflowing, 0 band violations across 312 boxes"*. The file also
+records that the spec they came from **failed adversarial verification on all three screens, with 28
+violations**, so build from the artboards and not from the spec. Found while implementing 8c
+(`KMP-12` step 2); this section said no when the answer was yes.
 
 **TV — not started.** Settings (7 screens are already Compose and want re-skinning, not
 redesigning), subtitle and audio panels as standalone boards, player quality profile, and the

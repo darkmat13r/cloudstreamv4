@@ -2,10 +2,11 @@
 
 **All dimension values must be a multiple of 4 dp.** No exceptions for "it looked right at 26".
 
-This is the step `CloudStreamDimens` (`:core:theme`) is built on. All 37 of its tokens are
-multiples of 4 — `ListRowHeight` 48, `ChipFocusCell` 48, `ChipVisualHeight` 24, `ChipGlyphSize` 16,
-`SidePanelWidth` 280, `FocusBandInset` 28 — with exactly one exception, `Hairline` 1, which is a
-stroke weight and is covered below. Anything else off that step is drift, not a decision.
+This is the step `CloudStreamDimens` (`:core:theme`) is built on. 34 of its 37 tokens are multiples
+of 4 — `ListRowHeight` 48, `ChipFocusCell` 48, `ChipVisualHeight` 24, `ChipGlyphSize` 16,
+`SidePanelWidth` 280, `FocusBandInset` 28 — and the three that are not are all ring and stroke
+geometry, covered below: `Hairline` 1, `FocusRingStroke` 2, `FocusRingOffset` 2. Anything else off
+that step is drift, not a decision.
 
 The numbers come from a 1920x1080 Android TV artboard where **artboard px / 2 = dp**, which is why
 the artboard works in multiples of 8. Re-derive when moving from a mockup: halve it, never
@@ -14,8 +15,14 @@ transcribe it.
 ## The one real exception: hairlines
 
 Border and stroke *weights* are not layout dimensions and do not belong on the grid — a 4 dp
-border is a slab. `CloudStreamDimens.Hairline` (1) is the only off-step value in the theme, and
-`FocusRingStroke` (4) is a weight that happens to land on it. Use them; do not invent new ones.
+border is a slab. Three tokens are off the step, and all three are the focus ring's own geometry:
+`CloudStreamDimens.Hairline` (1), `FocusRingStroke` (**2**) and `FocusRingOffset` (**2**). Their sum
+is `FocusRingBleed` (4), which *is* on the step and is how much room a focused element needs outside
+its box. Use them; do not invent new ones.
+
+The artboards agree with the tokens, at the usual `artboard px / 2 = dp`: the search cluster draws
+`outline: 4px solid var(--ink); outline-offset: 4px` on a focused field, which is 2 dp of stroke at
+2 dp of offset.
 
 A stroke is exempt **only in its own axis**. A 4 dp progress rule may be 4 tall, but the edge it
 sits on is still on the step.
@@ -50,8 +57,8 @@ decides proportion and hierarchy; the scale decides the number.
 Round to the nearest multiple of 4 that preserves the intent:
 - 26 → 24 (a box) — not 28, unless the content genuinely does not fit
 - 18 → 16 or 20, depending on whether it sits beside 16s or 20s
-- 3 → leave it, if it is a stroke weight. `CloudStreamDimens.Hairline` and
-  `FocusRingStroke` are the two the theme names; a third wants a reason.
+- 3 → leave it, if it is a stroke weight. `CloudStreamDimens.Hairline`, `FocusRingStroke` and
+  `FocusRingOffset` are the three the theme names; a fourth wants a reason.
 
 ## What the grid does not govern
 
