@@ -620,8 +620,53 @@ Each was taken against a measured shape; the survey behind them is in the PR.
   would use `AVFileType` on Apple platforms, and the two disagree even on HLS — `ExtractorLinkType`
   says `application/x-mpegURL`, Media3 says `MimeTypes.APPLICATION_M3U8`. Declaring one here makes
   the module wrong for one platform.
-- **No `:app` call site is changed.** This is a skeleton; nothing consumes it yet. The adapters are
-  the next step and are what will prove the shapes.
+- **No `:app` call site is changed.** This is a skeleton; nothing consumes it yet. The `:app`
+  adapter (below) is the first test of the shapes; rewiring `CS3IPlayer` to use it is still to do.
+
+### The `:app` adapter — the design's first test
+
+`app/src/main/java/com/lagradost/cloudstream3/ui/player/StreamRequestAdapter.kt`, an `internal object`
+beside `CS3IPlayer` and `ExtractorUri` (the two types it reads). One direction only
+(`:library`/`:app` → `:media:model`), pure, no state: `fromLink(ExtractorLink)`, `fromUri(ExtractorUri)`,
+`protocolOf(ExtractorLinkType)` and `schemeOf(Uuid)` / `schemeOf(java.util.UUID)`. `:app` gained
+`implementation(project(":media:model"))`; no catalog entry. Tests:
+`app/src/test/.../ui/player/StreamRequestAdapterTest.kt`. **No call site is changed** — `CS3IPlayer`
+still takes `ExtractorLink` / `ExtractorUri`; rewiring it is its own task.
+
+`fromUri` itself is not unit-tested: `ExtractorUri.uri` is an `android.net.Uri`, which a plain JVM
+test cannot build (no Robolectric/Mockito in the catalog). Its Uri-free body, `localStream`, is.
+
+**Where the design does not fit**, by field. (a) = deliberately dropped by the design; (b) = a gap in
+`:media:model` needing a follow-up; (c) = the adapter derives it honestly.
+
+| Source field | Class | What happens |
+|---|---|---|
+| `ExtractorLinkPlayList` (`url = ""`, `playlist: List<PlayListItem>` with `durationUs`) | **(b)** | `StreamRequest` has no concatenated-slices shape, so `fromLink` returns `null`. `CS3IPlayer` plays it through `ConcatenatingMediaSource2`. Needs either a `StreamSource.Playlist` or a decision that playlists stay `:app`-only. |
+| `ExtractorLink.referer` vs a `Referer` key in `headers` | **(b)**, docs only | `getAllHeaders()` lets an existing header win over the field. `StreamSource.Remote` keeps both and does not say which wins. The adapter passes both through unchanged and does not lift the header into `referer`. One sentence on `Remote` would settle it. |
+| `StreamSource.Remote` KDoc: "fetched over HTTP(S)" | **(b)**, docs only | `TORRENT`/`MAGNET` links carry `magnet:` or `.torrent` urls. `protocol` already distinguishes them; the KDoc is wrong about the url. |
+| `AudioTrackSource.languageTag` | **(b)**, docs only | `AudioFile` is `(url, headers?)` and has no language, so nothing can supply it today; the adapter leaves `null`. The KDoc says "where the extension supplied one", which no extension can. |
+| `StreamRequest.protocol` for a local file | **(c)** | `ExtractorUri` carries nothing to derive it from. `PROGRESSIVE` is what the player already does (`loadOfflinePlayer` opens every local file as `MimeTypes.VIDEO_MP4`). A local HLS/DASH manifest would be mislabelled. |
+| `ExtractorLinkType.MAGNET` | **(a)** | Folded into `TORRENT`; `StreamProtocol` says so. The url prefix keeps the distinction. |
+| `ExtractorLink.quality` | **(a)** | Carried straight through, as designed. `quality` is `Int?` but a link always has one, so `null` is only ever produced by `fromUri`. The `Qualities.Unknown` sentinel (400) and `0` = Auto are carried as numbers, not mapped to `null`. |
+| `ExtractorLink.extractorData`, `getVideoSize()` | **(a)** | Extension concerns; stay on the link (stated in the `StreamSource` KDoc). |
+| `getVideoInterceptor(link)` (looked up by `link.source`) | **(a)** | A runtime object, not data. `providerName` is exactly the key needed to look it up, so the field earns its place. |
+| `DrmExtractorLink.kty` | **(c)**, note | Defaults to `"oct"` for every scheme, Widevine included, though only the ClearKey branch reads it. Passed through; the adapter does not null it by scheme. |
+| `DrmExtractorLink.uuid` not recognised | **(a)** | `DrmScheme.UNKNOWN`, as designed. Nothing is lost that exists today: `CS3IPlayer`'s fall-through logs `drm::class.simpleName`, not the uuid. |
+| `DrmExtractorLink.keyRequestParameters` `HashMap` | **(a)** | Copied into a `Map` (shape change stated on `DrmConfiguration`). |
+| `ExtractorUri.id`, `episode`, `season`, `headerName` | not `StreamRequest`'s | `NowPlaying` has homes for them (`id`, `episode`, `season`, `title`). A separate adapter. |
+| `ExtractorUri.parentId` | **(b)** | No home in `StreamRequest` or `NowPlaying` (`NowPlaying.id` is the episode id; there is no series id). |
+| `ExtractorUri.tvType` | **(a)** | `TvType` is deliberately not restated (see "No `TvType`" above). |
+
+No field was found that `StreamRequest` demands and the source cannot supply, apart from
+`protocol` for a local file (above). The shapes otherwise held.
+
+**ABI.** `internal object` keeps the adapter off the source-level API, but a Kotlin `internal` class is
+public in bytecode, so `classes.jar` gains `StreamRequestAdapter` (and it is not a top-level facade,
+which is the `INF-07` trap). `:media:model` is not merged into the jar — its package is
+`cloudstream4.media.model`, not `cloudstream3` — so the adapter's public descriptors name classes
+that are not in `classes.jar`; harmless unless an extension calls it, which it has no reason to.
+`:app:checkExtensionApi` is expected to report additions only, 0 removed and 0 changed, until
+`:app:dumpExtensionApi` is run.
 
 ### Verification
 
