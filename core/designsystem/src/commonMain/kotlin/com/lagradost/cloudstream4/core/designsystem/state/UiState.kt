@@ -37,8 +37,20 @@ sealed interface UiState<out T> {
     /**
      * The work succeeded and there is nothing to show. Not a failure — the action is usually
      * "go find something" rather than "try again".
+     *
+     * @param detail optional machine-readable detail, rendered in the mono ramp under the body
+     *   copy exactly as [Error]'s is. An empty result is not a failure, but it is still a
+     *   *finding*, and the arithmetic behind it is what tells a user the search was real: the
+     *   search cluster's artboards set `9 QUERIED · 9 ANSWERED · 0 FAILED · 0 RESULTS` under
+     *   "No results" (`design/TV Search Suggestions.dc.html`, 8c), `SUGGESTIONS ANSWERED ·
+     *   0 MATCHES` under 8b, and `12 OF 12 ANSWERED · 0 FAILED` under 8e. Three drawn surfaces
+     *   need it, and without it the only state that could carry a status line was the one that
+     *   had failed.
      */
-    data class Empty(val prompt: StatePrompt) : UiState<Nothing>
+    data class Empty(
+        val prompt: StatePrompt,
+        val detail: String? = null,
+    ) : UiState<Nothing>
 
     /**
      * The work failed outright.

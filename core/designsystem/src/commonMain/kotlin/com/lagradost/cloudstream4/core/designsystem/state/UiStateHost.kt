@@ -51,7 +51,7 @@ fun <T> UiStateHost(
 ) {
     when (state) {
         is UiState.Loading -> skeleton(modifier)
-        is UiState.Empty -> Prompt(state.prompt, modifier) { glyph(state) }
+        is UiState.Empty -> Prompt(state.prompt, modifier, state.detail) { glyph(state) }
         is UiState.Offline -> Prompt(state.prompt, modifier) { glyph(state) }
         is UiState.Error -> Prompt(state.prompt, modifier, state.detail) { glyph(state) }
         is UiState.Partial -> content(state.value)
