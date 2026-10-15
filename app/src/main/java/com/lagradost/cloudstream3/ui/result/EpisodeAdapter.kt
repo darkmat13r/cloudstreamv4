@@ -325,9 +325,7 @@ class EpisodeAdapter(
                     }
 
                     episodeRuntime.setText(
-                        txt(
-                            runTimeMinutesToSeconds(item.runTime)?.let { secondsToReadable(it, "") }
-                        )
+                        txt(R.string.duration_format, item.runTime?.takeIf { it > 0 })
                     )
 
                     if (isLayout(EMULATOR or PHONE)) {
