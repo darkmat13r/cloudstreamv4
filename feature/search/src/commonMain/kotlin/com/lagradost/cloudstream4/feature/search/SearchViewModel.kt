@@ -11,6 +11,7 @@ import com.lagradost.cloudstream4.compose.SingleActiveQuery
 import com.lagradost.cloudstream4.compose.StateContainer
 import com.lagradost.cloudstream4.core.designsystem.state.UiState
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -33,12 +34,25 @@ import kotlinx.coroutines.launch
  *   screen drew nothing at all for a new user and never showed the `searchedAt` it had stored.
  *
  * [dispatcher] is injected rather than hardcoded to `Dispatchers.IO`, so tests drive it.
+ *
+ * ## Why [scope] is a parameter, and why that is not a rule violation
+ *
+ * `.claude/rules/mvi-viewmodel.md` says "`viewModelScope` only, never `GlobalScope`", and the
+ * default here **is** `viewModelScope`. It has to be overridable because `viewModelScope` is
+ * `Dispatchers.Main.immediate`, and on desktop JVM `Dispatchers.Main` has no provider: the app dies
+ * with *"Module with the Main dispatcher is missing"* the moment this class is constructed.
+ * Supplying one means adding `kotlinx-coroutines-swing`, which is a dependency decision
+ * (`.claude/rules/dependency-security.md`); a host that already owns a scope can simply pass it.
+ *
+ * The rule's target is an unowned scope that outlives its screen. A scope the host owns and
+ * cancels is the opposite of that, so this honours it rather than evading it.
  */
 class SearchViewModel(
     private val source: SearchSource,
     private val history: SearchHistoryStore,
     private val prompts: SearchPrompts,
     dispatcher: CoroutineDispatcher = Dispatchers.Default,
+    private val scope: CoroutineScope? = null,
 ) : ViewModel(),
     StateContainer<SearchState> by DefaultStateContainer(SearchState()),
     EffectContainer<SearchEffect> by DefaultEffectContainer(),
@@ -47,16 +61,19 @@ class SearchViewModel(
     private val debounce = DebounceQuery()
     private val inFlight = SingleActiveQuery(dispatcher)
 
+    /** [scope] when the host supplied one, `viewModelScope` otherwise. */
+    private val work: CoroutineScope get() = scope ?: viewModelScope
+
     init {
         // Start on the idle prompt rather than Loading: the history read is fast and local, and a
         // skeleton that flashes for one frame reads as a glitch.
         updateState { copy(content = prompts.idle()) }
-        viewModelScope.launch { refreshIdle() }
-        viewModelScope.launch {
+        work.launch { refreshIdle() }
+        work.launch {
             val sources = source.sources()
             updateState { copy(sources = sources) }
         }
-        viewModelScope.launch {
+        work.launch {
             debounce.launch { settled -> runSearch(settled, quick = true) }
         }
     }
@@ -74,19 +91,19 @@ class SearchViewModel(
             }
 
             is SearchAction.ResultActivated ->
-                viewModelScope.launch { postEffect { SearchEffect.OpenResult(action.id) } }
+                work.launch { postEffect { SearchEffect.OpenResult(action.id) } }
 
             is SearchAction.RecentActivated -> {
                 updateState { copy(query = action.query, content = UiState.Loading) }
-                viewModelScope.launch { runSearch(action.query, quick = false) }
+                work.launch { runSearch(action.query, quick = false) }
             }
 
-            is SearchAction.RecentRemoved -> viewModelScope.launch {
+            is SearchAction.RecentRemoved -> work.launch {
                 history.remove(action.query)
                 refreshIdle()
             }
 
-            SearchAction.RecentCleared -> viewModelScope.launch {
+            SearchAction.RecentCleared -> work.launch {
                 history.clear()
                 refreshIdle()
             }
@@ -99,7 +116,7 @@ class SearchViewModel(
             showIdle()
         } else {
             updateState { copy(content = UiState.Loading) }
-            viewModelScope.launch { debounce.emit(query) }
+            work.launch { debounce.emit(query) }
         }
     }
 
@@ -110,14 +127,14 @@ class SearchViewModel(
             return
         }
         updateState { copy(content = UiState.Loading) }
-        viewModelScope.launch { runSearch(query, quick = false) }
+        work.launch { runSearch(query, quick = false) }
     }
 
     /** Clears any in-flight work: an empty field must not be overwritten by an earlier reply. */
     private fun showIdle() {
-        viewModelScope.launch { inFlight.launch { } }
+        work.launch { inFlight.launch { } }
         updateState { copy(content = prompts.idle()) }
-        viewModelScope.launch { refreshIdle() }
+        work.launch { refreshIdle() }
     }
 
     /**

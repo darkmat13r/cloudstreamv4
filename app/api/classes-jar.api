@@ -3193,6 +3193,11 @@ public final static class com/lagradost/cloudstream3/R$plurals : java/lang/Objec
 	public static field downloads_queued I
 	public static field episodes I
 	public static field links_hidden I
+	public static field search_state_no_results_body I
+	public static field search_state_partial_headline I
+	public static field search_tv_recent_count I
+	public static field search_tv_result_count I
+	public static field search_tv_sources_count I
 }
 
 public final static class com/lagradost/cloudstream3/R$string : java/lang/Object {
@@ -3810,8 +3815,25 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field search_provider_text_providers I
 	public static field search_provider_text_types I
 	public static field search_providers_list_key I
+	public static field search_state_failed_body I
+	public static field search_state_failed_headline I
+	public static field search_state_idle_action I
+	public static field search_state_idle_body I
+	public static field search_state_idle_headline I
+	public static field search_state_no_results_action I
+	public static field search_state_no_results_body_unknown I
+	public static field search_state_no_results_detail I
+	public static field search_state_no_results_headline I
+	public static field search_state_offline_body I
+	public static field search_state_offline_headline I
+	public static field search_state_retry I
+	public static field search_state_retry_failed I
 	public static field search_suggestions I
 	public static field search_suggestions_des I
+	public static field search_tv_clear_all I
+	public static field search_tv_field_placeholder I
+	public static field search_tv_recent_headline I
+	public static field search_tv_sources_label I
 	public static field search_types_list_key I
 	public static field season I
 	public static field season_format I
@@ -36876,6 +36898,80 @@ public final class com/lagradost/cloudstream3/widget/LinearRecycleViewLayoutMana
 }
 
 public final class com/lagradost/cloudstream4/R : java/lang/Object {
+}
+
+public final class com/lagradost/cloudstream4/search/AndroidSearchCopyKt : java/lang/Object {
+	public static final fun rememberSearchTvCopy (Landroidx/compose/runtime/Composer;I)Lcom/lagradost/cloudstream4/feature/search/tv/SearchTvCopy;
+}
+
+public final class com/lagradost/cloudstream4/search/AndroidSearchPrompts : java/lang/Object, com/lagradost/cloudstream4/feature/search/SearchPrompts {
+	public static final field $stable I
+	public fun <init> (Landroid/content/Context;Lkotlin/jvm/functions/Function0;)V
+	public fun failed (Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lcom/lagradost/cloudstream4/core/designsystem/state/UiState$Error;
+	public fun idle ()Lcom/lagradost/cloudstream4/core/designsystem/state/UiState$Empty;
+	public fun noResults (Ljava/lang/String;ILkotlin/jvm/functions/Function0;)Lcom/lagradost/cloudstream4/core/designsystem/state/UiState$Empty;
+	public fun offline (Lkotlin/jvm/functions/Function0;)Lcom/lagradost/cloudstream4/core/designsystem/state/UiState$Offline;
+	public fun partial (IILjava/lang/String;Lkotlin/jvm/functions/Function0;)Lcom/lagradost/cloudstream4/core/designsystem/state/FailureNotice;
+}
+
+public final class com/lagradost/cloudstream4/search/ApiRepositorySearchSource : java/lang/Object, com/lagradost/cloudstream4/feature/search/SearchSource {
+	public static final field $stable I
+	public static final field FIRST_PAGE I
+	public static final field MAX_REASONS I
+	public static final field MAX_REASON_CHARS I
+	public fun <init> (Landroid/content/Context;Lkotlinx/coroutines/CoroutineDispatcher;)V
+	public synthetic fun <init> (Landroid/content/Context;Lkotlinx/coroutines/CoroutineDispatcher;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public static final synthetic fun access$fanOut (Lcom/lagradost/cloudstream4/search/ApiRepositorySearchSource;Ljava/lang/String;ZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final synthetic fun access$fold (Lcom/lagradost/cloudstream4/search/ApiRepositorySearchSource;Ljava/util/List;)Lcom/lagradost/cloudstream4/feature/search/SearchOutcome;
+	public static final synthetic fun access$getContext$p (Lcom/lagradost/cloudstream4/search/ApiRepositorySearchSource;)Landroid/content/Context;
+	public static final synthetic fun access$noTargets (Lcom/lagradost/cloudstream4/search/ApiRepositorySearchSource;ZLjava/util/Set;)Lcom/lagradost/cloudstream4/feature/search/SearchOutcome;
+	public fun quickSearch (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun search (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun sources (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class com/lagradost/cloudstream4/search/ApiRepositorySearchSourceKt : java/lang/Object {
+	public static final fun decodeId-f6qonGo (Ljava/lang/String;)Lcom/lagradost/cloudstream4/search/SearchResultTarget;
+	public static final fun encodeId (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+}
+
+public final class com/lagradost/cloudstream4/search/DataStoreSearchHistory : java/lang/Object, com/lagradost/cloudstream4/feature/search/SearchHistoryStore {
+	public static final field $stable I
+	public fun <init> ()V
+	public static final synthetic fun access$storedItems (Lcom/lagradost/cloudstream4/search/DataStoreSearchHistory;)Ljava/util/List;
+	public fun clear (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun recent (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun remove (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final static class com/lagradost/cloudstream4/search/DataStoreSearchHistory$storedItems$lambda$0$0$$inlined$getKey$1 : com/fasterxml/jackson/core/type/TypeReference {
+	public fun <init> ()V
+}
+
+public final class com/lagradost/cloudstream4/search/DataStoreSearchHistoryKt : java/lang/Object {
+	public static final synthetic fun access$historyFolder ()Ljava/lang/String;
+	public static final synthetic fun access$relativeWhenLabel (JJ)Ljava/lang/String;
+	public static final fun historyKeyOf (Ljava/lang/String;)Ljava/lang/String;
+	public static final fun toRecentEntries (Ljava/util/List;Lkotlin/jvm/functions/Function1;)Ljava/util/List;
+}
+
+public final static class com/lagradost/cloudstream4/search/DataStoreSearchHistoryKt$toRecentEntries$$inlined$sortedByDescending$1 : java/lang/Object, java/util/Comparator {
+	public fun <init> ()V
+	public final fun compare (Ljava/lang/Object;Ljava/lang/Object;)I
+}
+
+public final class com/lagradost/cloudstream4/search/SearchResultTarget : java/lang/Object {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Lcom/lagradost/cloudstream4/search/SearchResultTarget;
+	public static synthetic fun copy$default (Lcom/lagradost/cloudstream4/search/SearchResultTarget;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/lagradost/cloudstream4/search/SearchResultTarget;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getApiName ()Ljava/lang/String;
+	public final fun getUrl ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class com/lagradost/safefile/R : java/lang/Object {

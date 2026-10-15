@@ -1,62 +1,144 @@
 package com.lagradost.cloudstream4
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.DpSize
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
-import com.lagradost.cloudstream4.compose.BlackButton
-import com.lagradost.cloudstream4.compose.LocalFocusOutlineDefault
-import com.lagradost.cloudstream4.compose.WhiteButton
-import com.lagradost.cloudstream4.generated.resources.Res
-import com.lagradost.cloudstream4.generated.resources.app_name
-import com.lagradost.cloudstream4.generated.resources.default_icon
-import com.lagradost.cloudstream4.generated.resources.preview
-import com.lagradost.cloudstream4.theme.CloudStreamTheme
-import com.lagradost.cloudstream4.theme.CloudStreamThemeMode
-import com.mihon.presentation.settings.widget.SwitchPreferenceWidget
-import org.jetbrains.compose.resources.painterResource
-import org.jetbrains.compose.resources.stringResource
+import androidx.compose.ui.window.rememberWindowState
+import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
+import com.lagradost.cloudstream4.feature.search.SearchAction
+import com.lagradost.cloudstream4.feature.search.SearchEffect
+import com.lagradost.cloudstream4.feature.search.SearchViewModel
+import com.lagradost.cloudstream4.feature.search.tv.SearchScreenTv
+import com.lagradost.cloudstream4.search.DesktopSearchHistory
+import com.lagradost.cloudstream4.search.DesktopSearchSource
+import com.lagradost.cloudstream4.search.rememberDesktopSearchCopy
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
 
+/**
+ * The desktop app.
+ *
+ * ## What changed here, and why
+ *
+ * This used to render `Hello, World!`, two theme buttons and one Mihon switch widget. The owner's
+ * direction on 2026-10-15 is **desktop first, tested, then the other platforms**, so the window
+ * now hosts a real feature: the search vertical's screen, driven by its real state machine with
+ * real seams behind it.
+ *
+ * Desktop is the cheapest surface in this project to build on, and that is measurable rather than
+ * a feeling: `:desktopApp` is in no extension-API list and gets no `iosCanary` task, so nothing
+ * here can touch `classes.jar` or the iOS canary. It is also the only host where a `commonMain`
+ * screen can be run without a device.
+ *
+ * ## It is the TV screen, on desktop, and that is temporary
+ *
+ * `docs/plans/kmp-migration.md` §4.4 says screens live in `commonMain` **one per form factor**,
+ * and the desktop one does not exist: `docs/plans/screen-implementation-handover.md` §7 records
+ * "Mobile — nothing. Desktop — nothing", and its Phase B forbids improvising a screen that has no
+ * artboard. So this mounts the drawn TV screen rather than inventing a desktop layout. The window
+ * is sized to the TV artboard (960×540 dp) for that reason.
+ *
+ * ## There are no providers yet
+ *
+ * `APIHolder.apis` is filled only by `PluginManager`, which is Android. Until a JVM extension
+ * runtime exists the chrome row reads `Sources 0 / 0` and every search is honestly empty. See
+ * [DesktopSearchSource]'s KDoc — that runtime is the next piece of desktop work, and it can be
+ * written as new code against `:feature:extensions`' `ExtensionRuntime` seam without touching
+ * `PluginManager`.
+ */
 fun main() = application {
     Window(
         onCloseRequest = ::exitApplication,
-        title = stringResource(Res.string.app_name),
-        icon = painterResource(Res.drawable.default_icon)
+        title = WINDOW_TITLE,
+        state = rememberWindowState(size = DpSize(ARTBOARD_WIDTH, ARTBOARD_HEIGHT)),
     ) {
-        CloudStreamTheme(mode = CloudStreamThemeMode.Dark) {
-            CompositionLocalProvider(LocalFocusOutlineDefault provides false) {
-                Scaffold(
-                    containerColor = MaterialTheme.colorScheme.background,
-                    contentColor = MaterialTheme.colorScheme.onBackground
-                ) {
-                    Column {
-                        Text("Hello, World!")
-                        Row {
-                            WhiteButton("Hello in White") {
-                            }
-                            BlackButton("Hello in Black") {
-                            }
-                        }
-                        var checked by remember { mutableStateOf(false) }
-                        SwitchPreferenceWidget(
-                            title = "hello", subtitle = "world", icon = painterResource(
-                                Res.drawable.preview
-                            ),
-                            checked = checked,
-                            onCheckedChanged = { checked = !checked }
-                        )
-                    }
-                }
+        CloudStreamTheme {
+            Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) {
+                SearchHost()
             }
-
         }
     }
 }
+
+/**
+ * Wires the one screen desktop has.
+ *
+ * The ViewModel is constructed here rather than fetched from a store because there is one window
+ * and one screen; when desktop grows navigation this becomes a real owner. `.claude/rules/mvi-viewmodel.md`
+ * asks the UI to read `uiState.collectAsState()`, which is what happens below — the screen itself
+ * stays stateless so it can be previewed in all six states.
+ */
+@Composable
+private fun SearchHost() {
+    val (copy, prompts) = rememberDesktopSearchCopy()
+    val history = remember { DesktopSearchHistory() }
+
+    // `viewModelScope` is Dispatchers.Main.immediate, and desktop JVM has no Main dispatcher
+    // unless kotlinx-coroutines-swing is on the classpath — it is not, and adding it is a
+    // dependency decision. The host owns a scope instead and cancels it with the composition,
+    // which is what SearchViewModel's `scope` parameter is for.
+    val scope = remember { CoroutineScope(SupervisorJob() + Dispatchers.Default) }
+    DisposableEffect(scope) { onDispose { scope.cancel() } }
+
+    val viewModel = remember(prompts, history, scope) {
+        SearchViewModel(
+            source = DesktopSearchSource(),
+            history = history,
+            prompts = prompts,
+            scope = scope,
+        )
+    }
+    val state by viewModel.state.collectAsState()
+
+    // NOT `:core:ui`'s ObserveEffect, and that is a finding rather than a preference.
+    // `ObserveEffect` wraps `repeatOnLifecycle` (core/ui/.../compose/Viewmodel.kt:95), which does
+    // `withContext(Dispatchers.Main.immediate)` inside — so on desktop JVM it throws
+    // "Module with the Main dispatcher is missing" the first time an effect flow is observed, and
+    // takes the window down with it. `.claude/rules/mvi-viewmodel.md` tells every screen to use it,
+    // so every Phase 7 vertical will hit this on desktop. Reported, not changed: it is existing
+    // `:core:ui` code on the settings screens' path.
+    LaunchedEffect(viewModel) {
+        viewModel.effect.collect { effect ->
+            when (effect) {
+                // Opening a result needs a detail screen, which desktop does not have yet.
+                // Reported rather than silently dropped: a no-op looks like a broken card.
+                is SearchEffect.OpenResult ->
+                    println("OpenResult(${effect.id.value}) — no detail screen on desktop yet")
+            }
+        }
+    }
+    SearchScreenTv(
+        state = state,
+        copy = copy,
+        // Recording a submitted search is the host's job, the same split :app uses — its
+        // SearchViewModel writes history inside search(). The state machine stays unaware of
+        // storage, which is why SearchHistoryStore is a separate seam from SearchSource.
+        onAction = { action ->
+            if (action is SearchAction.Submit) {
+                val query = state.query
+                scope.launch { history.record(query, System.currentTimeMillis()) }
+            }
+            viewModel.onAction(action)
+        },
+    )
+}
+
+private const val WINDOW_TITLE = "CloudStream"
+
+/** The TV artboard at its own size: 1920×1080 artboard px halved. */
+private val ARTBOARD_WIDTH = 960.dp
+private val ARTBOARD_HEIGHT = 540.dp

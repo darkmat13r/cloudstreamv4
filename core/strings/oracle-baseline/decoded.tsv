@@ -31891,6 +31891,16 @@ values/strings.xml	plurals	episodes	one	REF	string/episode
 values/strings.xml	plurals	episodes	other	REF	string/episodes	
 values/strings.xml	plurals	links_hidden	one	STR	%d hidden link	
 values/strings.xml	plurals	links_hidden	other	STR	%d hidden links	
+values/strings.xml	plurals	search_state_no_results_body	one	STR	%d selected source answered and it does not carry it.	
+values/strings.xml	plurals	search_state_no_results_body	other	STR	All %d selected sources answered and none of them carry it.	
+values/strings.xml	plurals	search_state_partial_headline	one	STR	%d source failed	
+values/strings.xml	plurals	search_state_partial_headline	other	STR	%d sources failed	
+values/strings.xml	plurals	search_tv_recent_count	one	STR	%d SAVED	
+values/strings.xml	plurals	search_tv_recent_count	other	STR	%d SAVED	
+values/strings.xml	plurals	search_tv_result_count	one	STR	%d RESULT	
+values/strings.xml	plurals	search_tv_result_count	other	STR	%d RESULTS	
+values/strings.xml	plurals	search_tv_sources_count	one	STR	%1$d / %2$d	
+values/strings.xml	plurals	search_tv_sources_count	other	STR	%1$d / %2$d	
 values/strings.xml	string	account	-	STR	account	
 values/strings.xml	string	action_add_to_bookmarks	-	STR	Set watch status	
 values/strings.xml	string	action_add_to_favorites	-	STR	Add to favorites	
@@ -32430,8 +32440,25 @@ values/strings.xml	string	search_hint_site	-	STR	Search %s…
 values/strings.xml	string	search_poster_img_des	-	STR	Poster	
 values/strings.xml	string	search_provider_text_providers	-	STR	Search using providers	
 values/strings.xml	string	search_provider_text_types	-	STR	Search using types	
+values/strings.xml	string	search_state_failed_body	-	STR	None of your sources answered.	
+values/strings.xml	string	search_state_failed_headline	-	STR	Search failed	
+values/strings.xml	string	search_state_idle_action	-	STR	Browse home	
+values/strings.xml	string	search_state_idle_body	-	STR	Type a title. Results arrive one rail per source.	
+values/strings.xml	string	search_state_idle_headline	-	STR	Search every source you have	
+values/strings.xml	string	search_state_no_results_action	-	STR	Search everything	
+values/strings.xml	string	search_state_no_results_body_unknown	-	STR	Every selected source answered and none of them carry it.	
+values/strings.xml	string	search_state_no_results_detail	-	STR	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS	
+values/strings.xml	string	search_state_no_results_headline	-	STR	No results	
+values/strings.xml	string	search_state_offline_body	-	STR	Search needs a connection. Your downloads are still available.	
+values/strings.xml	string	search_state_offline_headline	-	STR	You are offline	
+values/strings.xml	string	search_state_retry	-	STR	Try again	
+values/strings.xml	string	search_state_retry_failed	-	STR	Retry failed	
 values/strings.xml	string	search_suggestions	-	STR	Search Suggestions	
 values/strings.xml	string	search_suggestions_des	-	STR	Show search suggestions while typing	
+values/strings.xml	string	search_tv_clear_all	-	STR	Clear all searches	
+values/strings.xml	string	search_tv_field_placeholder	-	STR	Search all sources	
+values/strings.xml	string	search_tv_recent_headline	-	STR	Recent searches	
+values/strings.xml	string	search_tv_sources_label	-	STR	Sources	
 values/strings.xml	string	season	-	STR	Season	
 values/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values/strings.xml	string	season_short	-	STR	S	
