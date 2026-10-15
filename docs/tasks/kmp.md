@@ -1042,6 +1042,46 @@ the copy is resolved by whoever constructs the ViewModel (the Android screen fro
 test from literals). **Flagged for review** — it is the first vertical, so this pattern will be
 copied six more times, and it is cheaper to disagree with it now.
 
+### The screen was rendered, and rendering found two defects the gates could not
+
+Compiling a screen says nothing about whether it lays out. `:feature:search` is a KMP module, so
+there is no screenshot suite (see below) and no `compose-ui-test` in the catalog — but Compose
+Desktop ships `androidx.compose.ui.renderComposeScene(width, height, density, content)`, which
+renders to a Skia `Image` with **no window and no screen-capture permission**. A throwaway harness
+in `:desktopApp` (not committed) rendered all five states at 1920×1080 density 2 — the artboard at
+its own size.
+
+Two defects, both measured off the pixels rather than eyeballed:
+
+1. **The rails were 4dp off the content origin, and jumped on load.** `SearchScreenTvDefaults` had a
+   `RailInsetStart` of `ContentInsetStart − FocusRingBleed` on the theory that the `LazyRow` would
+   "give the bleed back" as content padding. It does not work that way: content padding *is* the
+   inset, so the first card landed at 20dp while the skeleton, which the host insets normally, was
+   at 24dp.
+
+   ```
+   before  results-cards x=40px (20.0dp)   skeleton x=48px (24.0dp)
+   after   results-cards x=48px (24.0dp)   skeleton x=48px (24.0dp)
+   ```
+
+   A 4dp horizontal jump every time a search returned, which is the `UiStateHost` skeleton contract
+   failing in the other axis. `RailInsetStart` is gone; the row's content padding is
+   `ContentInsetStart`, and a `LazyRow`'s content padding already leaves the ring its room because
+   it scrolls with the content instead of clipping it.
+
+2. **`Clear all searches` sat flush against the bottom edge**, where its focus ring would have been
+   cut. The screen had horizontal insets and no bottom one. `ContentInsetBottom` mirrors
+   `ContentInsetEnd` / `FocusBandInset`.
+
+The card **pitch** was right first time: 208px = 104dp = an 80dp card plus `ChipRowSpacing`, in both
+the skeleton and the content, which is the measurement that justifies following the token over the
+artboard CSS.
+
+**Worth having as a task:** that harness is ~90 lines and is the only way to look at a `:feature:*`
+screen until the glue fragment exists. A `renderScreens` task in `:desktopApp` writing PNGs to
+`build/` would make it repeatable; it is not screenshot *testing* (nothing compares), but it is the
+difference between a screen that compiles and a screen somebody has seen.
+
 ### Reported, not changed: `DebounceQuery` cannot be driven by virtual time
 
 `:core:ui`'s `DebounceQuery` hardcodes `.flowOn(Dispatchers.Default)` and a 200 ms `debounce(...)`;
