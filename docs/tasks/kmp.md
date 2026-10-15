@@ -190,11 +190,43 @@ it was originally bundled with B2/B3 and did not ship with them.
 
 ## KMP-04 — B7: `fcast/Packets.kt` → `:core:common`
 
-**Status:** blocked by `DEC-07`
+**Status:** done 2026-10-15 — **split, not moved whole**, and the split answers `DEC-07`
 
-Whole file, jvmCommonMain, because `PlayMessage` uses Jackson. `:core:common` gains the
-serialization plugin, kotlinx-serialization and Jackson annotations — it has no dependencies today.
-No `PacketsKt` facade exists, so the eight pure classes could go to commonMain if split.
+The file is split. Eight classes — `Opcode` and the seven non-serializable message classes — moved to
+`:core:common` **`commonMain`**. `PlayMessage` **stays in `:app`**.
+
+### Why the whole file could not move
+
+`PlayMessage` is `@Serializable`, so the compiler emits **`write$Self$app`**, and that `$app` is
+`:app`'s Kotlin module name. It is published — `app/api/classes-jar.api:5293` lists it, and
+`cloudstream.extension-api-jar`'s own KDoc names `write$Self$app` as something the dump deliberately
+guards. Moving the class renames a member third-party extensions link against, which is the
+`DEC-08`/`KMP-05` kind of accepted ABI delta, not a file move. Measured per class — it is the **only**
+one of the nineteen `actions/temp/fcast` classes in the dump with a module-suffixed member.
+
+### Why this is better than the planned whole-file move
+
+The plan's default was jvmCommonMain *because* of `PlayMessage`'s Jackson use, and `DEC-07` priced
+that at "`:core:common` gains the serialization plugin, kotlinx-serialization and Jackson
+annotations". Leaving `PlayMessage` behind means **`:core:common` gains no dependencies at all** — it
+is still dependency-free — and the eight classes land in `commonMain` rather than `jvmCommonMain`, so
+they are iOS-ready. The `write$Self$app` constraint forced the better placement.
+
+### Verified
+
+- `:app:checkExtensionApi` passes and `:app:dumpExtensionApi` regenerates the dump
+  **byte-identically** — zero ABI change.
+- **`$stable` kept on all seven moved data classes**, read with `javap` from the merged
+  `app/build/classes.jar` (`KMP-09`'s trap): 1 each. `Opcode` has none, as before — enums do not get
+  one. `PlayMessage` is untouched and still carries `write$Self$app`.
+- The classes genuinely changed module: `:app`'s `prereleaseDebug` output holds only
+  `PlayMessage.class`; `:core:common`'s android and jvm outputs hold `Opcode` and the message classes.
+- Eight sentinels added to `cloudstream.extension-api-jar` in the same change, as that plugin requires.
+- Four gates: `abi=0 check=0 extapi=0 canary=0`.
+
+Only `Opcode` has in-repo users (`FcastSession.kt:35,38`, `FcastAction.kt:56`). The seven message
+classes have **no callers anywhere in the repo** — they exist purely as published FCast protocol
+surface, which is why the sentinels matter more than usual here.
 
 ---
 

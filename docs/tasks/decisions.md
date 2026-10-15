@@ -146,14 +146,24 @@ currently Android TV.
 
 ## DEC-07 — `fcast/Packets.kt` placement
 
-**Status:** open · **Blocks:** `KMP-04`
+**Status:** **answered by measurement 2026-10-15 — the question dissolves.** Blocks nothing.
 
-The ABI audit left this open. Default placement is `:core:common` jvmCommonMain as a whole file,
-because `PlayMessage` uses Jackson and the planned android-only `:media:cast` cannot publish it.
-That means `:core:common` — which has no dependencies today — gains the serialization plugin,
-kotlinx-serialization and Jackson annotations.
+The question was whether `:core:common` should gain the serialization plugin, kotlinx-serialization
+and Jackson annotations in order to take `Packets.kt` whole, since `PlayMessage` uses Jackson.
 
-**Confirm in the PR**, or name a different home.
+**It does not have to, because `PlayMessage` cannot move anyway.** `@Serializable` makes the compiler
+emit `write$Self$app`, whose `$app` is `:app`'s Kotlin module name, and that member is published
+(`app/api/classes-jar.api:5293`). Moving the class renames something extensions link against — a
+`DEC-08`-class ABI delta rather than a file move.
+
+So `KMP-04` split the file instead: the eight classes with no module-suffixed member went to
+`:core:common` **`commonMain`**, and `PlayMessage` stayed in `:app`. **`:core:common` gains no
+dependencies** — it is still dependency-free — and the eight landed in `commonMain` rather than
+`jvmCommonMain`, which is better for iOS than the default the audit proposed. Nothing was traded away
+to get that; the ABI constraint forced it.
+
+What remains, if anyone wants `PlayMessage` shared later: it needs an accepted ABI delta, which is the
+same decision shape as `DEC-08`. Not needed for anything today.
 
 ---
 
