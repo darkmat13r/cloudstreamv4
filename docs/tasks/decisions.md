@@ -24,6 +24,33 @@ were merged on their local four-gate runs for this reason, which is stated in ea
 Previously: resolved in practice, Actions observed running 2026-10-07; the owner never recorded what
 changed then either, which is why this entry stayed open rather than being closed.
 
+### All five workflows are disabled, on the owner's instruction (2026-10-15)
+
+With billing failing, every push and every PR still *created* a run that died in seconds, so the
+owner's instruction was "do not run anything on jobs, just verify locally". All five workflows are
+therefore `disabled_manually`:
+
+| Workflow | Why it was still generating runs |
+|---|---|
+| `pull_request.yml` | `on: [pull_request]` — fires on PR open **and on every push to a PR branch** |
+| `instrumented-tests.yml` | `on: issue_comment` — fires on every PR comment |
+| `prerelease.yml`, `build_to_archive.yml`, `generate_dokka.yml` | `on: push` to `master` |
+
+**Re-enable all five when billing is sorted**, with:
+
+```
+gh api -X PUT repos/<owner>/<repo>/actions/workflows/<file>/enable
+```
+
+**`pull_request.yml` is the merge gate**, so while it is disabled nothing stops an unverified merge —
+that is how #48–#51 landed with no checks on 2026-10-14. Every merge in this window rests on a local
+four-gate run named in its PR.
+
+One thing confirmed on the way down: `INF-09`'s fix works in production. The last three runs before
+the disable were `Pre-release`, `Archive build` and `Dokka` on a push to master, and all three came
+back **`skipped` with zero steps** — the `github.repository` gate from #52 doing its job, no runner
+consumed and no red tick on master.
+
 On 2026-10-07 the `Artifact Build` workflow (`pull_request.yml`) ran on PRs #41, #42 and #43. The first
 full green run is #42's head `bce90a8` (run `37647589593`, 42 min): `checkKotlinAbi`,
 `assemblePrereleaseDebug lint check -Pcloudstream.strings.guards=fail` and `:app:checkExtensionApi`
