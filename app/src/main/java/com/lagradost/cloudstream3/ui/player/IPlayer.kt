@@ -9,6 +9,7 @@ import com.lagradost.cloudstream3.ui.subtitles.SaveCaptionStyle
 import com.lagradost.cloudstream3.utils.ExtractorLink
 import com.lagradost.cloudstream3.utils.videoskip.VideoSkipStamp
 
+// `value` is the wire format carried through the PiP Intent (EXTRA_CONTROL_TYPE); keep it stable.
 enum class CSPlayerEvent(val value: Int) {
     Pause(0),
     Play(1),
