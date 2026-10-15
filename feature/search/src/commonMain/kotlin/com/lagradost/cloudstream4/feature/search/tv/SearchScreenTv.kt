@@ -91,7 +91,7 @@ fun SearchScreenTv(
 
         UiStateHost(
             state = state.content,
-            modifier = Modifier.contentInset().fillMaxSize(),
+            modifier = Modifier.contentRegionInset().fillMaxSize(),
             skeleton = { skeletonModifier ->
                 SearchSkeleton(modifier = skeletonModifier)
             },
@@ -101,14 +101,16 @@ fun SearchScreenTv(
                     entries = content.entries,
                     copy = copy,
                     onAction = onAction,
-                    modifier = Modifier.contentInset().fillMaxSize(),
+                    modifier = Modifier.contentRegionInset().fillMaxSize(),
                 )
 
                 is SearchContent.Results -> SearchResultRails(
                     groups = content.groups,
                     copy = copy,
                     onAction = onAction,
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier
+                        .padding(bottom = SearchScreenTvDefaults.ContentInsetBottom)
+                        .fillMaxSize(),
                 )
             }
         }
@@ -120,6 +122,10 @@ private fun Modifier.contentInset(): Modifier = padding(
     start = SearchScreenTvDefaults.ContentInsetStart,
     end = SearchScreenTvDefaults.ContentInsetEnd,
 )
+
+/** The content region's inset: horizontal, plus room at the foot for the last row's ring. */
+private fun Modifier.contentRegionInset(): Modifier =
+    contentInset().padding(bottom = SearchScreenTvDefaults.ContentInsetBottom)
 
 /**
  * The geometry this screen writes down, each derived from a token or from a named artboard.
@@ -151,15 +157,13 @@ object SearchScreenTvDefaults {
     val ContentInsetEnd: Dp = CloudStreamDimens.FocusBandInset
 
     /**
-     * Leading inset for a rail, which is [ContentInsetStart] less the ring bleed the `LazyRow`
-     * then adds back as content padding.
+     * Bottom inset, so the last row's focus ring has somewhere to draw.
      *
-     * `PosterCard`'s KDoc: *"give a `LazyRow` at least `CloudStreamDimens.FocusRingBleed` of
-     * content padding or the ring is cut at the viewport edge."* Taking the bleed off the
-     * container and giving it to the row puts the first card's **box** back on the content origin
-     * while leaving the ring somewhere to draw.
+     * Mirrors [ContentInsetEnd] / `FocusBandInset`. Measured rather than assumed: the first render
+     * of artboard 4c put `Clear all searches` flush against the bottom edge, where its ring would
+     * have been cut.
      */
-    val RailInsetStart: Dp = ContentInsetStart - CloudStreamDimens.FocusRingBleed
+    val ContentInsetBottom: Dp = CloudStreamDimens.FocusBandInset
 
     /** `ChipRowTop` (88dp) less `ChromeRowBottom` (76dp). Equals `MinFocusGap`. */
     val ChromeToChipGap: Dp = CloudStreamDimens.ChipRowTop - CloudStreamDimens.ChromeRowBottom

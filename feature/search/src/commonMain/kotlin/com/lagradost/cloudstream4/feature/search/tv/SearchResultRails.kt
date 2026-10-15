@@ -95,9 +95,11 @@ private fun ProviderRail(
             // file's own prose says "a Row with 24dp spacing" — it contradicts itself, so this
             // follows the design system, which already chose. Reported in `KMP-12`.
             horizontalArrangement = Arrangement.spacedBy(CloudStreamDimens.ChipRowSpacing),
-            // The bleed the container gave up, so a focused card's ring is not cut at the edge.
+            // The rail is the one child the screen does not inset, because a `LazyRow` must carry
+            // its own: content padding scrolls with the content and leaves the focus ring room at
+            // the viewport edge, which an outer `padding` would clip (`PosterCard`'s KDoc).
             contentPadding = PaddingValues(
-                start = SearchScreenTvDefaults.RailInsetStart,
+                start = SearchScreenTvDefaults.ContentInsetStart,
                 end = SearchScreenTvDefaults.ContentInsetEnd,
             ),
         ) {
