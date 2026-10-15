@@ -7,7 +7,6 @@ import com.lagradost.cloudstream3.ErrorLoadingException
 import com.lagradost.cloudstream3.HomePageResponse
 import com.lagradost.cloudstream3.LoadResponse
 import com.lagradost.cloudstream3.MainAPI
-import com.lagradost.cloudstream3.MainActivity.Companion.afterPluginsLoadedEvent
 import com.lagradost.cloudstream3.MainPageRequest
 import com.lagradost.cloudstream3.SearchResponseList
 import com.lagradost.cloudstream3.SubtitleFile
@@ -62,16 +61,27 @@ class APIRepository(val api: MainAPI) {
         fun getTimeout(desired: Long?): Long {
             return (desired ?: DEFAULT_TIMEOUT).coerceIn(MIN_TIMEOUT, MAX_TIMEOUT)
         }
-    }
 
-    private fun afterPluginsLoaded(forceReload: Boolean) {
-        if (forceReload) {
-            cache.clear()
+        /**
+         * Drops the shared load cache when plugins are reloaded.
+         *
+         * `:app` subscribes this to `MainActivity.afterPluginsLoadedEvent` **once**, in
+         * `CloudStreamApp.onCreate`. It used to be a `private fun` that every instance subscribed
+         * from its own `init`, which this module cannot do any more — the event lives in `:app`, and
+         * `:core:data` must not depend on it (B8, plan §5.2).
+         *
+         * Subscribing once is also the correct arity. [cache] is a companion property, so every
+         * instance's listener cleared the *same* list, and nothing ever unsubscribed: with one
+         * `APIRepository` per installed provider — `SearchViewModel` builds one for every API and
+         * rebuilds the whole list on reload — the observer set grew without bound for the life of the
+         * process. `Event` holds a `Set`, but bound references with different receivers are distinct,
+         * so they did not collapse.
+         */
+        fun onPluginsLoaded(forceReload: Boolean) {
+            if (forceReload) {
+                cache.clear()
+            }
         }
-    }
-
-    init {
-        afterPluginsLoadedEvent += ::afterPluginsLoaded
     }
 
     val hasMainPage = api.hasMainPage

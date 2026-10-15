@@ -169,13 +169,39 @@ same decision shape as `DEC-08`. Not needed for anything today.
 
 ## DEC-08 — `APIRepository` removes a public synthetic accessor
 
-**Status:** open · **Blocks:** `KMP-05`
+**Status:** open — **still your sign-off, but the delta is measured now and it is one line, not the
+line this entry named.** The work is done in `KMP-05`.
 
-Moving `APIRepository` to `:core:data` requires inverting `MainActivity.afterPluginsLoadedEvent` in
-the same PR, which removes `access$getAfterPluginsLoadedEvent$cp` from the published extension jar.
-That is a real ABI deletion, not a rename.
+This entry said the move "removes `access$getAfterPluginsLoadedEvent$cp` from the published extension
+jar". **Measured: that entry is not removed.** It survives, because
+`MainActivity.Companion.getAfterPluginsLoadedEvent()` still reads the outer class's static backing
+field and nine other `:app` files still use the event. The move never touched `MainActivity`.
 
-**Needs explicit sign-off in that PR.**
+The whole delta in `app/api/classes-jar.api`:
+
+```
+- public static final synthetic fun access$afterPluginsLoaded (Lcom/lagradost/cloudstream3/ui/APIRepository;Z)V
++ public final fun onPluginsLoaded (Z)V
+```
+
+**What is being asked for sign-off:** deleting `access$afterPluginsLoaded`. It is a compiler-generated
+accessor that existed only so `APIRepository`'s own `init` block could take a callable reference to a
+**private instance method**. Kotlin cannot reference an `access$…` synthetic — it is not in the
+Kotlin-visible surface — so only hand-written bytecode or reflection could have called it, and that
+would have been invoking a private method deliberately. No extension can lose a call it could
+reasonably have written.
+
+That is a weaker deletion than this entry assumed. It is still a deletion from a published jar, so the
+call stays yours.
+
+Two things the entry did not cost, both in `KMP-05`:
+
+- **The placement constraint that actually bound the design.** `commonMain` would have added
+  `:library` to `:core:data`'s commonMain and forced the module into `IOS_CANARY_EXEMPT`, a list that
+  "may only shrink", dropping the iOS canary from 12 modules to 11. `jvmCommonMain` avoids it
+  entirely, following `:core:network`'s precedent.
+- **An unbounded listener leak**, fixed as a side effect: the old code subscribed one listener per
+  `APIRepository` instance and never removed any, all clearing the same companion-level cache.
 
 ---
 

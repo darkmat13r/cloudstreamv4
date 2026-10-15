@@ -35,3 +35,17 @@
 plugins {
     id("cloudstream.kmp.extension-api")
 }
+
+kotlin {
+    sourceSets {
+        // `:library` and coroutines are declared on **jvmCommonMain**, not commonMain, which is what
+        // keeps this module out of `IOS_CANARY_EXEMPT` (`cloudstream.kmp.library`): plan §4.1 rule 4
+        // exempts a module whose *commonMain* depends on `:library`, and that list may only shrink.
+        // `APIRepository` therefore lives in jvmCommonMain, exactly as `:core:network`'s
+        // `DdosGuardKiller` does. commonMain keeps `DataStore` / `DataStoreHelper` and stays pure.
+        getByName("jvmCommonMain").dependencies {
+            implementation(project(":library"))
+            implementation(libs.kotlinx.coroutines.core)
+        }
+    }
+}

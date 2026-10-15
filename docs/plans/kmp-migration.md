@@ -338,7 +338,7 @@ sentinels and a clean `checkKotlinAbi` / javap comparison.
 | B5 | `SSLTrustManager`, `DownloaderTestImpl` | — | **Closed, not moving** (`KMP-02`): the security review found there is no gate to carry over, and both classes are already published from `:app`'s jar. `BUG-10` came out of it — playback was disabling TLS verification process-wide — and is fixed separately. |
 | B6 | `TestingUtils` (+8 nested) | `:core:model` commonMain | Needs `:library` + coroutines, so **not** `:core:common` (rule 2). |
 | B7 | `fcast/Packets.kt` (`Opcode` + 8 message classes) | `:core:common` **commonMain**, split — **done** (`KMP-04`) | **Split, not moved whole.** `PlayMessage` stays in `:app`: `@Serializable` emits `write$Self$app`, carrying `:app`'s module name, and that member is published (`classes-jar.api:5293`), so moving the class is a `DEC-08`-class ABI delta. The other 8 have no module-suffixed member and went to `commonMain`. **`:core:common` therefore gains no dependencies** — no serialization plugin, no Jackson — which is what `DEC-07` was weighing, so that decision dissolved. Dump byte-identical; `$stable` kept on all 7 data classes. |
-| B8 | `APIRepository` (+companion, `SavedLoadResponse`, anonymous `noneApi`/`randomApi`) | `:core:data` jvmCommonMain | After B1. Invert `MainActivity.afterPluginsLoadedEvent` in the same PR; that removes a public synthetic accessor (`access$getAfterPluginsLoadedEvent$cp`), which the owner must accept in that PR. |
+| B8 | `APIRepository` (+companion, `SavedLoadResponse`, anonymous `noneApi`/`randomApi`) | `:core:data` jvmCommonMain — **done** (`KMP-05`) | Inverted: `CloudStreamApp` subscribes `APIRepository.Companion::onPluginsLoaded` once, where every instance used to subscribe and never unsubscribe. **Measured delta: `access$afterPluginsLoaded` out, `onPluginsLoaded` in.** `access$getAfterPluginsLoadedEvent$cp` is **not** removed — `DEC-08` named the wrong entry. jvmCommonMain is load-bearing: commonMain would force `:core:data` into `IOS_CANARY_EXEMPT`. |
 
 ### 5.3 Stays in `:app`, and what would unblock it
 
@@ -443,7 +443,7 @@ Everything still open is listed here.
 | 20 | B5 `SSLTrustManager`, `DownloaderTestImpl` | — | **closed, not moving** (`KMP-02`); the review produced `BUG-10` |
 | 21 | B6 `TestingUtils` into `:core:model` | — | **done** (`KMP-03`) — it is in `core/model/src/commonMain` |
 | 22 | B7 `fcast/Packets.kt` into `:core:common` | — | **done** (`KMP-04`), **split**: 8 classes to `commonMain`, `PlayMessage` stays in `:app` (`write$Self$app`). `DEC-07` dissolved — `:core:common` gains no dependencies |
-| 23 | B8 `APIRepository` into `:core:data` | — | removes a public synthetic accessor; owner must accept that delta in the PR |
+| 23 | B8 `APIRepository` into `:core:data` | — | **done** (`KMP-05`), awaiting the `DEC-08` sign-off. Delta measured: **one** line out (`access$afterPluginsLoaded`, a synthetic for a private method), one in. `DEC-08`'s predicted entry (`access$getAfterPluginsLoadedEvent$cp`) is **not** removed. Placed in `jvmCommonMain` so `:core:data` stays out of `IOS_CANARY_EXEMPT` and the canary stays 12/12 |
 | 17 | `:feature:extensions` prep: `ExtensionRuntime` seam, repository model in commonMain | 14 | touches existing `:app` plugin code: needs the owner's explicit go-ahead |
 | 18 | First vertical (search + quicksearch) | 14 | ViewModel needs Track L for iOS (rule 4) |
 | L | Track L: `:library` iOS surgery | — | design workflow first (§2.4); blocked on O2 |
@@ -468,11 +468,17 @@ Everything still open is listed here.
 (B5 needs a security review, B7 needs a placement decision, B8 needs an accepted ABI delta), so
 they are rows 19–23 above, one each.
 
-> **Out of date.** CI has run on pull requests since 2026-10-07 (`DEC-01`, `INF-01`); the
-> account-wide billing failure is over. Two caveats remain: everything merged **before** 2026-10-07
-> was verified locally only, on one machine with one JDK; and `Check classes.jar ABI` is still killed
-> by the runner at random (`INF-08`), so a red tick on that step means *read the run*, not *the code
-> is broken*.
+> **Partly out of date, and the billing failure is back.** CI did run on pull requests from
+> 2026-10-07 (`DEC-01`, `INF-01`), but as of **2026-10-15 ~03:52Z it is failing account-wide again**:
+> runs end in ~2 seconds with zero steps and the annotation *"The job was not started because recent
+> account payments have failed or your spending limit needs to be increased."* Only the owner can
+> clear that. While it holds, **a red tick means nothing at all** — no check ran — and re-running is
+> pointless.
+>
+> Two further caveats, independent of billing: everything merged **before** 2026-10-07 was verified
+> locally only, on one machine with one JDK; and when CI does run, `Check classes.jar ABI` is killed
+> by the runner at random (`INF-08`), so a red tick *on that step* also means *read the run*, not
+> *the code is broken*.
 
 ### Phase 0 — build-logic + jar safety · **done**
 
