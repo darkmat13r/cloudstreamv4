@@ -733,7 +733,8 @@ redirected to a file with `$?` captured:
 
 ## KMP-07 — `:media:model` skeleton
 
-**Status:** in pr #48 · contracts only, no implementation
+**Status:** done · #48 (contracts) and #59 (the `ExtractorLink` / `ExtractorUri` → `StreamRequest`
+adapter, `KMP-07`'s own entry below) · contracts only, no implementation
 
 `:media:model` exists: `cloudstream.kmp.library`, android + jvm, **no internal dependencies at
 all**, iOS canary on. Eight files, 39 tests.
@@ -911,8 +912,9 @@ decided, because that decides how much of `:library` is worth making iOS-compila
 
 ## KMP-10 — the iOS canary is red · **measured 2026-10-14**
 
-**Status:** step 1 in pr #49 (`:core:ui`), step 2 in pr #50 (`:core:mihon`) · **after both, the
-iOS canary is green for the first time: 12 of 12 modules**
+**Status:** done · #49 (step 1, `:core:ui`), #50 (step 2, `:core:mihon`), #51 · **the iOS canary is
+green: 12 of 12 modules**, and has stayed 12/12 through every module move since — the `:core:common`
+arrivals in `KMP-04` and `:core:data`'s in `KMP-05` were both checked against this list
 
 `./gradlew iosCanary -Pcloudstream.iosCanary=true --continue` is **red on master**, and has been
 since `KMP-06c` (#41) created `:core:ui`. Twelve modules have an `iosCanary` task. Ten pass. One

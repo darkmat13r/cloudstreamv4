@@ -137,7 +137,7 @@ returned wrapped values; a negative input became positive). After the clamp: 6 o
 
 ## BUG-02 — `maxLines="1"` on a two-line string · **low**
 
-**Status:** done · in pr · `app/src/main/res/layout/fragment_result.xml:652`
+**Status:** done · #54 · `app/src/main/res/layout/fragment_result.xml:652`
 
 The TextView receives `resume_remaining` = `%s\nremaining`, a deliberately two-line string, under
 `maxLines="1"`. The TV layout (`fragment_result_tv.xml:298`) uses `maxLines="2"`.

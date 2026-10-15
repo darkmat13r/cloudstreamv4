@@ -6,8 +6,23 @@ Questions only the owner can answer. The ones marked **blocking** are holding up
 
 ## DEC-01 — GitHub Actions billing · **blocking everything**
 
-**Status:** resolved in practice — **Actions runs again, observed 2026-10-07**; the owner has not
-recorded what changed · **Unblocked:** `INF-01`
+**Status:** **OPEN AGAIN — broken 2026-10-15 ~03:52Z.** It ran from 2026-10-07; it does not now.
+
+Runs end in **~2 seconds with zero steps executed**, annotated:
+
+> The job was not started because recent account payments have failed or your spending limit needs to
+> be increased. Please check the 'Billing & plans' section in your settings
+
+Confirmed account-wide, not per-branch: #68's first run and a re-run of #65 both got it, while three
+runs that had already claimed runners (#64, #66, #67) kept going. **Only the owner can clear it** —
+it is the Billing & plans page, not anything in the repo.
+
+**While it holds, a red tick means no check ran at all.** That is a different failure from `INF-08`'s
+killed ABI step, and re-running does not help: every attempt dies the same way in seconds. #64–#68
+were merged on their local four-gate runs for this reason, which is stated in each PR.
+
+Previously: resolved in practice, Actions observed running 2026-10-07; the owner never recorded what
+changed then either, which is why this entry stayed open rather than being closed.
 
 On 2026-10-07 the `Artifact Build` workflow (`pull_request.yml`) ran on PRs #41, #42 and #43. The first
 full green run is #42's head `bce90a8` (run `37647589593`, 42 min): `checkKotlinAbi`,
