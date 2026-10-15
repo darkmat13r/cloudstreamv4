@@ -74,6 +74,17 @@ value class SearchResultId(val value: String)
  * succeed or throw has nowhere to put "9 of 12 answered".
  */
 interface SearchSource {
+
+    /**
+     * How many sources a search will query, and how many exist: the chrome row's `Sources 12 / 48`.
+     *
+     * On the seam rather than pushed in from outside because `:app` is the only thing that knows:
+     * the selection lives in the user's provider preferences and changes behind the screen's back
+     * when artboard 4d's side panel commits. Read once per screen, and again after the panel is
+     * built.
+     */
+    suspend fun sources(): SearchSources
+
     /** The full search, for a submitted query. */
     suspend fun search(query: String): SearchOutcome
 

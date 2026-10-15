@@ -7,11 +7,12 @@ import com.lagradost.cloudstream4.core.designsystem.state.UiState
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertIs
+import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
@@ -20,7 +21,8 @@ import kotlinx.coroutines.withContext
 
 /**
  * The behaviours that make this ViewModel worth having: every outcome maps to a distinct `UiState`,
- * and typing is debounced rather than sending one request per keystroke.
+ * typing is debounced rather than sending one request per keystroke, and a blank query is content
+ * rather than a void.
  *
  * ## Why these tests wait on real time instead of advancing virtual time
  *
@@ -48,22 +50,32 @@ class SearchViewModelTest {
         StatePrompt(headline = headline, body = "body", action = StateAction("label") {})
 
     private val prompts = object : SearchPrompts {
-        override fun idle() = prompt("idle")
-        override fun noResults(query: String, onRetry: () -> Unit) = prompt("no results for $query")
-        override fun failed(detail: String, onRetry: () -> Unit) = prompt("failed")
-        override fun offline(onRetry: () -> Unit) = prompt("offline")
+        override fun idle() = UiState.Empty(prompt("idle"))
+
+        override fun noResults(query: String, queried: Int, onRetry: () -> Unit) = UiState.Empty(
+            prompt = prompt("no results for $query"),
+            detail = "$queried QUERIED · $queried ANSWERED · 0 FAILED · 0 RESULTS",
+        )
+
+        override fun failed(detail: String, onRetry: () -> Unit) =
+            UiState.Error(prompt("failed"), detail)
+
+        override fun offline(onRetry: () -> Unit) = UiState.Offline(prompt("offline"))
+
         override fun partial(answered: Int, total: Int, detail: String, onRetry: () -> Unit) =
             FailureNotice("$answered of $total answered", detail, StateAction("retry") {})
     }
 
-    private fun item(title: String) =
-        SearchResultItem(id = SearchResultId(title), title = title, providerName = "p")
+    private fun item(title: String, provider: String = "p") =
+        SearchResultItem(id = SearchResultId("$provider/$title"), title = title, providerName = provider)
 
     private class FakeSource(
         var outcome: SearchOutcome = SearchOutcome.Complete(emptyList()),
+        private val sources: SearchSources = SearchSources(selected = 9, total = 48),
     ) : SearchSource {
         val searched = mutableListOf<String>()
         val quickSearched = mutableListOf<String>()
+        override suspend fun sources(): SearchSources = sources
         override suspend fun search(query: String): SearchOutcome {
             searched += query
             return outcome
@@ -74,32 +86,70 @@ class SearchViewModelTest {
         }
     }
 
-    private fun viewModel(source: SearchSource) =
-        SearchViewModel(source, prompts, dispatcher)
+    private class FakeHistory(vararg initial: String) : SearchHistoryStore {
+        val entries = initial.map { SearchHistoryEntry(it, "2 days ago") }.toMutableList()
+        var cleared = false
+        override suspend fun recent(): List<SearchHistoryEntry> = entries.toList()
+        override suspend fun remove(query: String) {
+            entries.removeAll { it.query == query }
+        }
+        override suspend fun clear() {
+            cleared = true
+            entries.clear()
+        }
+    }
 
-    @Test
-    fun `starts idle rather than loading, because nothing is in flight`() = runTest(dispatcher) {
+    private fun viewModel(source: SearchSource, history: SearchHistoryStore = FakeHistory()) =
+        SearchViewModel(source, history, prompts, dispatcher)
+
+    private fun <T> withMain(block: () -> T): T {
         Dispatchers.setMain(dispatcher)
-        try {
-            val vm = viewModel(FakeSource())
-            val results = vm.state.value.results
-            assertIs<UiState.Empty>(results)
-            assertEquals("idle", results.prompt.headline)
-            assertEquals("", vm.state.value.query)
+        return try {
+            block()
         } finally {
             Dispatchers.resetMain()
         }
     }
 
     @Test
+    fun `with no history, a blank query is the idle prompt and not loading`() =
+        runTest(dispatcher) {
+            withMain {
+                val vm = viewModel(FakeSource())
+                val content = vm.state.value.content
+                assertIs<UiState.Empty>(content)
+                assertEquals("idle", content.prompt.headline)
+                assertEquals("", vm.state.value.query)
+            }
+        }
+
+    @Test
+    fun `with history, a blank query shows it — artboard 4c, not an empty prompt`() =
+        runTest(dispatcher) {
+            withMain {
+                val vm = viewModel(FakeSource(), FakeHistory("dune", "blade runner"))
+                val content = vm.state.value.content
+                assertIs<UiState.Content<SearchContent>>(content)
+                val recent = assertIs<SearchContent.Recent>(content.value)
+                assertEquals(listOf("dune", "blade runner"), recent.entries.map { it.query })
+            }
+        }
+
+    @Test
+    fun `the source counts reach state, because the no-results copy quotes them`() =
+        runTest(dispatcher) {
+            withMain {
+                val vm = viewModel(FakeSource())
+                assertEquals(SearchSources(selected = 9, total = 48), vm.state.value.sources)
+            }
+        }
+
+    @Test
     fun `the query echoes into state immediately`() = runTest(dispatcher) {
-        Dispatchers.setMain(dispatcher)
-        try {
+        withMain {
             val vm = viewModel(FakeSource())
             vm.onAction(SearchAction.QueryChanged("dune"))
             assertEquals("dune", vm.state.value.query)
-        } finally {
-            Dispatchers.resetMain()
         }
     }
 
@@ -121,77 +171,132 @@ class SearchViewModelTest {
 
     @Test
     fun `submit runs the full search without waiting for the debounce`() = runTest(dispatcher) {
-        Dispatchers.setMain(dispatcher)
-        try {
+        withMain {
             val source = FakeSource(SearchOutcome.Complete(listOf(item("Dune"))))
             val vm = viewModel(source)
             vm.onAction(SearchAction.QueryChanged("dune"))
             vm.onAction(SearchAction.Submit)
 
             assertEquals(listOf("dune"), source.searched)
-            assertIs<UiState.Content<List<SearchResultItem>>>(vm.state.value.results)
-        } finally {
-            Dispatchers.resetMain()
+            assertIs<UiState.Content<SearchContent>>(vm.state.value.content)
+        }
+    }
+
+    @Test
+    fun `results arrive grouped one rail per provider — artboard 4a`() = runTest(dispatcher) {
+        withMain {
+            val hits = listOf(
+                item("Dune", "Filmxy"),
+                item("Dune Part Two", "Filmxy"),
+                item("Dune", "Vidplay"),
+            )
+            val source = FakeSource(SearchOutcome.Complete(hits))
+            val vm = viewModel(source)
+            vm.onAction(SearchAction.QueryChanged("dune"))
+            vm.onAction(SearchAction.Submit)
+
+            val content = assertIs<UiState.Content<SearchContent>>(vm.state.value.content)
+            val results = assertIs<SearchContent.Results>(content.value)
+            assertEquals(listOf("Filmxy", "Vidplay"), results.groups.map { it.providerName })
+            assertEquals(listOf(2, 1), results.groups.map { it.items.size })
         }
     }
 
     @Test
     fun `each outcome becomes its own UiState`() = runTest(dispatcher) {
-        Dispatchers.setMain(dispatcher)
-        try {
+        withMain {
             val source = FakeSource()
             val vm = viewModel(source)
             vm.onAction(SearchAction.QueryChanged("dune"))
 
             source.outcome = SearchOutcome.Complete(listOf(item("Dune")))
             vm.onAction(SearchAction.Submit)
-            assertIs<UiState.Content<List<SearchResultItem>>>(vm.state.value.results)
+            assertIs<UiState.Content<SearchContent>>(vm.state.value.content)
 
-            // A successful search that matched nothing is Empty, not Error.
+            // A successful search that matched nothing is Empty, not Error — and it carries the
+            // mono status line artboard 8c draws under the copy.
             source.outcome = SearchOutcome.Complete(emptyList())
             vm.onAction(SearchAction.Submit)
-            assertIs<UiState.Empty>(vm.state.value.results)
+            val empty = assertIs<UiState.Empty>(vm.state.value.content)
+            assertEquals("no results for dune", empty.prompt.headline)
+            assertEquals("9 QUERIED · 9 ANSWERED · 0 FAILED · 0 RESULTS", empty.detail)
 
             // Partial keeps the content and reports the shortfall; it must not become Error.
             source.outcome = SearchOutcome.Partial(listOf(item("Dune")), 9, 12, "host down")
             vm.onAction(SearchAction.Submit)
-            val partial = vm.state.value.results
-            assertIs<UiState.Partial<List<SearchResultItem>>>(partial)
-            assertEquals(1, partial.value.size, "partial content must still be shown")
+            val partial = assertIs<UiState.Partial<SearchContent>>(vm.state.value.content)
+            val partialResults = assertIs<SearchContent.Results>(partial.value)
+            assertEquals(1, partialResults.groups.size, "partial content must still be shown")
             assertEquals("9 of 12 answered", partial.notice.headline)
             assertEquals("host down", partial.notice.detail)
 
             source.outcome = SearchOutcome.Failed("503")
             vm.onAction(SearchAction.Submit)
-            val error = vm.state.value.results
-            assertIs<UiState.Error>(error)
+            val error = assertIs<UiState.Error>(vm.state.value.content)
             assertEquals("503", error.detail)
 
             source.outcome = SearchOutcome.Offline
             vm.onAction(SearchAction.Submit)
-            assertIs<UiState.Offline>(vm.state.value.results)
-        } finally {
-            Dispatchers.resetMain()
+            assertIs<UiState.Offline>(vm.state.value.content)
         }
     }
 
     @Test
-    fun `clearing the field returns to idle and does not search`() = runTest(dispatcher) {
+    fun `clearing the field returns to the history and does not search`() = runTest(dispatcher) {
         Dispatchers.setMain(dispatcher)
         try {
             val source = FakeSource(SearchOutcome.Complete(listOf(item("Dune"))))
-            val vm = viewModel(source)
+            val vm = viewModel(source, FakeHistory("dune"))
             vm.onAction(SearchAction.QueryChanged("dune"))
             settle()
             vm.onAction(SearchAction.Cleared)
             settle()
 
             assertEquals("", vm.state.value.query)
-            val results = vm.state.value.results
-            assertIs<UiState.Empty>(results)
-            assertEquals("idle", results.prompt.headline)
+            val content = assertIs<UiState.Content<SearchContent>>(vm.state.value.content)
+            assertIs<SearchContent.Recent>(content.value)
+            assertTrue(source.searched.isEmpty(), "clearing must not run a search")
         } finally {
             Dispatchers.resetMain()
+        }
+    }
+
+    @Test
+    fun `activating a recent search runs the full search for it`() = runTest(dispatcher) {
+        withMain {
+            val source = FakeSource(SearchOutcome.Complete(listOf(item("Dune"))))
+            val vm = viewModel(source, FakeHistory("dune"))
+            vm.onAction(SearchAction.RecentActivated("dune"))
+
+            assertEquals("dune", vm.state.value.query)
+            assertEquals(listOf("dune"), source.searched)
+        }
+    }
+
+    @Test
+    fun `removing one recent entry re-reads the list`() = runTest(dispatcher) {
+        withMain {
+            val history = FakeHistory("dune", "blade runner")
+            val vm = viewModel(FakeSource(), history)
+            vm.onAction(SearchAction.RecentRemoved("dune"))
+
+            val content = assertIs<UiState.Content<SearchContent>>(vm.state.value.content)
+            val recent = assertIs<SearchContent.Recent>(content.value)
+            assertEquals(listOf("blade runner"), recent.entries.map { it.query })
+        }
+    }
+
+    @Test
+    fun `clearing all history falls back to the idle prompt`() = runTest(dispatcher) {
+        withMain {
+            val history = FakeHistory("dune")
+            val vm = viewModel(FakeSource(), history)
+            vm.onAction(SearchAction.RecentCleared)
+
+            assertTrue(history.cleared)
+            val content = assertIs<UiState.Empty>(vm.state.value.content)
+            assertEquals("idle", content.prompt.headline)
+            assertNull(content.detail, "the idle prompt has no status line to report")
         }
     }
 
@@ -205,11 +310,11 @@ class SearchViewModelTest {
             // is already suspended on the rendezvous channel before the effect is posted —
             // `DefaultEffectContainer` uses an unbuffered `Channel`, so a late collector misses it.
             backgroundScope.launch { vm.effect.collect { received += it } }
-            vm.onAction(SearchAction.ResultActivated(SearchResultId("abc")))
+            vm.onAction(SearchAction.ResultActivated(SearchResultId("p/abc")))
             settle()
 
             assertEquals(
-                listOf<SearchEffect>(SearchEffect.OpenResult(SearchResultId("abc"))),
+                listOf<SearchEffect>(SearchEffect.OpenResult(SearchResultId("p/abc"))),
                 received,
             )
         } finally {

@@ -21,7 +21,7 @@ import kotlinx.coroutines.launch
  * `.claude/rules/mvi-viewmodel.md` — there is no `BaseViewModel` here and one should not be added,
  * because a base class drags its dependencies in and the `jvm()` canary rejects them.
  *
- * Two behaviours it exists to get right, both of which the old `SearchViewModel` did not:
+ * Three behaviours it exists to get right, none of which the old `SearchViewModel` did:
  *
  * - **Typing does not spam providers.** `QueryChanged` echoes into state immediately and feeds
  *   [DebounceQuery], which is `:core:ui`'s 200 ms debounce with `distinctUntilChanged`. Only the
@@ -29,11 +29,14 @@ import kotlinx.coroutines.launch
  * - **A late reply cannot overwrite a newer one.** Every request goes through [SingleActiveQuery],
  *   which cancels and joins the previous job before starting the next, so results arrive in query
  *   order regardless of which provider is slow.
+ * - **A blank query is content, not a void.** Artboard 4c draws recent searches there; the old
+ *   screen drew nothing at all for a new user and never showed the `searchedAt` it had stored.
  *
  * [dispatcher] is injected rather than hardcoded to `Dispatchers.IO`, so tests drive it.
  */
 class SearchViewModel(
     private val source: SearchSource,
+    private val history: SearchHistoryStore,
     private val prompts: SearchPrompts,
     dispatcher: CoroutineDispatcher = Dispatchers.Default,
 ) : ViewModel(),
@@ -45,8 +48,14 @@ class SearchViewModel(
     private val inFlight = SingleActiveQuery(dispatcher)
 
     init {
-        // Start idle rather than Loading: nothing is in flight before anything is typed.
-        updateState { SearchState.idle(prompts.idle()) }
+        // Start on the idle prompt rather than Loading: the history read is fast and local, and a
+        // skeleton that flashes for one frame reads as a glitch.
+        updateState { copy(content = prompts.idle()) }
+        viewModelScope.launch { refreshIdle() }
+        viewModelScope.launch {
+            val sources = source.sources()
+            updateState { copy(sources = sources) }
+        }
         viewModelScope.launch {
             debounce.launch { settled -> runSearch(settled, quick = true) }
         }
@@ -54,15 +63,7 @@ class SearchViewModel(
 
     override fun onAction(action: SearchAction) {
         when (action) {
-            is SearchAction.QueryChanged -> {
-                updateState { copy(query = action.query) }
-                if (action.query.isBlank()) {
-                    showIdle()
-                } else {
-                    updateState { copy(results = UiState.Loading) }
-                    viewModelScope.launch { debounce.emit(action.query) }
-                }
-            }
+            is SearchAction.QueryChanged -> onQueryChanged(action.query)
 
             SearchAction.Submit -> submitCurrentQuery()
             SearchAction.Retry -> submitCurrentQuery()
@@ -74,6 +75,31 @@ class SearchViewModel(
 
             is SearchAction.ResultActivated ->
                 viewModelScope.launch { postEffect { SearchEffect.OpenResult(action.id) } }
+
+            is SearchAction.RecentActivated -> {
+                updateState { copy(query = action.query, content = UiState.Loading) }
+                viewModelScope.launch { runSearch(action.query, quick = false) }
+            }
+
+            is SearchAction.RecentRemoved -> viewModelScope.launch {
+                history.remove(action.query)
+                refreshIdle()
+            }
+
+            SearchAction.RecentCleared -> viewModelScope.launch {
+                history.clear()
+                refreshIdle()
+            }
+        }
+    }
+
+    private fun onQueryChanged(query: String) {
+        updateState { copy(query = query) }
+        if (query.isBlank()) {
+            showIdle()
+        } else {
+            updateState { copy(content = UiState.Loading) }
+            viewModelScope.launch { debounce.emit(query) }
         }
     }
 
@@ -83,30 +109,50 @@ class SearchViewModel(
             showIdle()
             return
         }
-        updateState { copy(results = UiState.Loading) }
+        updateState { copy(content = UiState.Loading) }
         viewModelScope.launch { runSearch(query, quick = false) }
     }
 
     /** Clears any in-flight work: an empty field must not be overwritten by an earlier reply. */
     private fun showIdle() {
         viewModelScope.launch { inFlight.launch { } }
-        updateState { copy(results = UiState.Empty(prompts.idle())) }
+        updateState { copy(content = prompts.idle()) }
+        viewModelScope.launch { refreshIdle() }
+    }
+
+    /**
+     * Re-reads the stored history and shows it, but **only while the field is still blank**.
+     *
+     * The read is asynchronous and the user keeps typing during it, so the guard is what stops a
+     * history list landing on top of a search that started in the meantime.
+     */
+    private suspend fun refreshIdle() {
+        val entries = history.recent()
+        updateState {
+            if (query.isNotBlank()) {
+                this
+            } else if (entries.isEmpty()) {
+                copy(content = prompts.idle())
+            } else {
+                copy(content = UiState.Content(SearchContent.Recent(entries)))
+            }
+        }
     }
 
     private suspend fun runSearch(query: String, quick: Boolean) {
         inFlight.launch {
             val outcome = if (quick) source.quickSearch(query) else source.search(query)
-            updateState { copy(results = outcome.toUiState(query)) }
+            updateState { copy(content = outcome.toUiState(query, sources.selected)) }
         }
     }
 
-    private fun SearchOutcome.toUiState(query: String): UiState<List<SearchResultItem>> =
+    private fun SearchOutcome.toUiState(query: String, queried: Int): UiState<SearchContent> =
         when (this) {
             is SearchOutcome.Complete ->
                 if (items.isEmpty()) {
-                    UiState.Empty(prompts.noResults(query) { onAction(SearchAction.Retry) })
+                    prompts.noResults(query, queried) { onAction(SearchAction.Retry) }
                 } else {
-                    UiState.Content(items)
+                    UiState.Content(SearchContent.Results(items.groupByProvider()))
                 }
 
             is SearchOutcome.Partial ->
@@ -114,19 +160,14 @@ class SearchViewModel(
                 // Deliberately not Error: the results are usable, and replacing them with a failure
                 // band is what `UiState`'s KDoc says Partial exists to prevent.
                 UiState.Partial(
-                    value = items,
+                    value = SearchContent.Results(items.groupByProvider()),
                     notice = prompts.partial(answered, total, detail) {
                         onAction(SearchAction.Retry)
                     },
                 )
 
-            is SearchOutcome.Failed ->
-                UiState.Error(
-                    prompt = prompts.failed(detail) { onAction(SearchAction.Retry) },
-                    detail = detail,
-                )
+            is SearchOutcome.Failed -> prompts.failed(detail) { onAction(SearchAction.Retry) }
 
-            SearchOutcome.Offline ->
-                UiState.Offline(prompts.offline { onAction(SearchAction.Retry) })
+            SearchOutcome.Offline -> prompts.offline { onAction(SearchAction.Retry) }
         }
 }

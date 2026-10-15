@@ -980,19 +980,28 @@ the `___DO_NOT_CALL_FROM_A_PLUGIN_` entry points, so it is not something to star
 
 ## KMP-12 — `:feature:search`: the first feature vertical's state machine
 
-**Status:** **step 1 of 5 done** 2026-10-15 (plan row 18, Phase 7 vertical 1) · screens, glue
-fragment and the nav repoint are **not** started · `:app`'s search path is untouched
+**Status:** **steps 1 and 2 of 5 done** 2026-10-15 (plan row 18, Phase 7 vertical 1) · step 2 is
+**TV only — touch and desktop have no design to build from** · glue fragment and the nav repoint are
+**not** started · `:app`'s search path is untouched
 
-`:feature:search` holds the contracts, the provider seam and the MVI state machine. Phase 7's recipe
-is five steps — state machine, screens, glue `Fragment`, repoint one nav node, delete the old
-fragment a release later — and **this is step 1 only**. `SearchFragment` and `:app`'s
-`SearchViewModel` are still the live path and are unchanged.
+`:feature:search` holds the contracts, the provider seam, the MVI state machine and the TV screen.
+Phase 7's recipe is five steps — state machine, screens, glue `Fragment`, repoint one nav node,
+delete the old fragment a release later. `SearchFragment` and `:app`'s `SearchViewModel` are still
+the live path and are unchanged.
 
 | File | Holds |
 |---|---|
 | `SearchContracts.kt` | `SearchResultItem`, `SearchResultId`, `SearchSource`, `SearchOutcome` |
+| `SearchContent.kt` | `SearchContent` (`Recent` / `Results`), `SearchResultGroup`, `groupByProvider` |
+| `SearchHistory.kt` | `SearchHistoryEntry`, `SearchHistoryStore`, `SearchSources` |
 | `SearchMvi.kt` | `SearchState`, `SearchAction`, `SearchEffect`, `SearchPrompts` |
 | `SearchViewModel.kt` | the state machine |
+| `tv/SearchScreenTv.kt` | the screen and its geometry (`SearchScreenTvDefaults`) |
+| `tv/SearchChromeRow.kt` | the query field, the source chip, the chip row |
+| `tv/SearchResultRails.kt` | one rail per provider, and the poster card |
+| `tv/SearchRecentColumn.kt` | recent searches, and `Clear all` pinned at the foot |
+| `tv/SearchTvCopy.kt` | every word on screen, injected |
+| `tv/SearchScreenTvPreviews.kt` | one preview per state, at the artboard's own 960×540 dp |
 
 ### Row 18's stated blocker does not apply, and that was the point
 
@@ -1061,13 +1070,19 @@ makes test ordering load-bearing.
 
 ### Verified
 
-**7 tests, 0 failures**: starts idle rather than `Loading` (nothing is in flight, so a skeleton would
-be a lie); the query echoes into state immediately; four keystrokes produce **one** quick search and
-**zero** full searches; `Submit` runs the full search without waiting; each of the four
-`SearchOutcome` cases becomes its own `UiState` — with `Partial` keeping its content and its
-`9 of 12 answered` notice, and an empty-but-successful search becoming `Empty` rather than `Error`;
-clearing returns to idle without searching; activating a result posts an effect rather than
-navigating.
+**16 tests, 0 failures** (7 at step 1, 16 after step 2): with no history a blank query is the idle
+prompt and not `Loading` (nothing is in flight, so a skeleton would be a lie); **with** history a
+blank query shows it, which is artboard 4c; the source counts reach state; the query echoes into
+state immediately; four keystrokes produce **one** quick search and **zero** full searches; `Submit`
+runs the full search without waiting; results arrive grouped one rail per provider in first-seen
+order; each of the four `SearchOutcome` cases becomes its own `UiState` — with `Partial` keeping its
+content and its `9 of 12 answered` notice, and an empty-but-successful search becoming `Empty` with
+8c's mono status line rather than `Error`; clearing returns to the history without searching;
+activating a recent search runs the full search for it; removing one entry re-reads the list;
+clearing all history falls back to the idle prompt with no status line; activating a result posts an
+effect rather than navigating. Plus three on `groupByProvider` — one group per provider in first-seen
+order, a header count that is the group's own size so it cannot disagree with the rail, and an empty
+outcome grouping to nothing rather than one empty rail.
 
 `app/api/classes-jar.api` unchanged — nothing merges into the jar.
 
@@ -1098,11 +1113,175 @@ After the import, the second run is `abi=0 check=0 extapi=0 canary=0`, the list 
 `:feature:search:iosCanary` is one of them. **The canary is 14 of 14** — up from 12 at the start of the
 day, having gained `:feature:extensions` (`KMP-11`) and now this.
 
+### Step 2: the TV screen, and what reading the design cost
+
+Step 1's contracts were derived from **the old code** — `SearchFragment`, `SearchViewModel`. Step 2
+is derived from **the drawn design**, and the two disagreed. The cluster is nine artboards across
+two files: `design/TV Search.dc.html` 4a–4d and `design/TV Search Suggestions.dc.html` 8a–8e. Four
+are built.
+
+| Artboard | What it is | Built |
+|---|---|---|
+| 4a | Search — results. One rail per provider | yes |
+| 4b | Search — partial. 3 of 12 failed, reported in the chip row | yes |
+| 4c | Search — history (empty query) | yes, minus the per-row remove |
+| 8c | Search — no results | yes |
+| 4d | Source picker, 560-wide side panel | no — needs the selection state it commits |
+| 8a, 8b | Suggestions while typing, and nothing matches | no — a different content type (one ranked column of dedup'd queries with origins), and the suggestion service is TMDB autocomplete, not the provider seam |
+| 8d, 8e | Quick Search side panel, answering and empty | no — streams results into a panel with its own state |
+
+**Three things the artboards require that step 1 did not model**, each a state change rather than a
+rendering detail:
+
+1. **A blank query is content, not a void.** 4c is captioned *"What you see before typing"* and
+   draws a list of recent searches. Step 1 made it a `UiState.Empty` prompt — a headline, a line of
+   body copy and a button. `SearchState.content` is now `UiState<SearchContent>`, where
+   `SearchContent` is `Recent` or `Results`, so the six states still apply to both and the screen
+   reads one `when` rather than choosing between two fields. `SearchHistoryStore` is the new seam,
+   separate from `SearchSource` because a disk read and a dozen network calls fail differently.
+2. **Results are grouped per provider.** 4a: *"One rail per provider, so you can see which source
+   answered."* A flat list cannot render that, and "which source answered" is the point of a surface
+   that fans out over a dozen of them. `groupByProvider()` is a pure function in first-seen order —
+   not by count, which would reshuffle rails as late replies arrive and move a focused card out from
+   under the user.
+3. **The chrome row's `Sources 12 / 48` is load-bearing.** 8c's copy reads *"All nine selected
+   sources answered and none of them carry it"*, so the number in the chip and the number in the
+   empty state's copy are the same fact and must agree. `SearchSources` is on the state and
+   `SearchSource.sources()` supplies it, because only `:app` knows the user's selection.
+
+### `UiState.Empty` gained a `detail`, and three artboards asked for it
+
+`UiState.Error` carried a machine-readable `detail` for the mono line; `Empty` did not. But 8c sets
+`9 QUERIED · 9 ANSWERED · 0 FAILED · 0 RESULTS` under "No results", 8b sets
+`SUGGESTIONS ANSWERED · 0 MATCHES`, and 8e sets `12 OF 12 ANSWERED · 0 FAILED`. An empty result is
+not a failure, but it is still a finding, and the arithmetic is what tells a user the search was
+real.
+
+So `UiState.Empty(prompt, detail: String? = null)`, and `UiStateHost` passes it exactly as it does
+for `Error`. `StateView` already took a `detail` parameter, so nothing in the renderer changed.
+Measured as safe: `grep -rn "UiState.Empty"` outside this feature returns **one** hit, `UiStateHost`
+itself — the state had no other construction site, so no existing surface renders differently.
+`:core:designsystem` is not ABI-validated (no `core/designsystem/api/`), so no dump moved.
+
+`SearchPrompts` now returns the state rather than the prompt — `noResults(query, queried, onRetry):
+UiState.Empty` — so the copy and the status line that quote the same number come from one call and
+cannot drift. That is the defect the suggestions cluster was re-solved twice over: *"The status line
+and the rows have to agree, and they did not."*
+
+### The chassis was already in the design system, which is the payoff
+
+Every number the screen needed was a `CloudStreamDimens` token, verified against the artboard CSS at
+`artboard px / 2 = dp`:
+
+| Artboard CSS | dp | Token |
+|---|---|---|
+| `.field { height: 96px }`, chrome y56…152 | 48, 28…76 | `ChromeRowHeight`, `ChromeRowTop`, `ChromeRowBottom` |
+| `.chipcell { height: 96px }`, `.chip { height: 48px }` | 48, 24 | `ChipFocusCell`, `ChipVisualHeight` |
+| `.rhd { height: 56px; gap: 16px }` | 28, 8 | `RailHeaderDefaults.Height`, `.TitleCountGap` |
+| `.row { gap: 24px }` (cards) | 12 | `MinFocusGap` |
+| `.seeall { width: 160px; height: 240px }` | 80×120 | `PosterRung.Medium` |
+| `.lrow { height: 96px; gap: 16px; padding: 0 16px }` | 48, 8, 8 | `ListRowHeight`, `ListRowPadding` |
+| `.field.foc { outline: 4px; outline-offset: 4px }` | 2, 2 | `FocusRingStroke`, `FocusRingOffset` |
+| rail pitch 352 | 176 | header 28 + `LiftedRowClearance` 16 + cards 120 + `MinFocusGap` 12 |
+| content x 200…1864 | 100…932 | `ContentOriginX`, `ContentEndX` |
+
+Only three numbers are written in this feature, all in `SearchScreenTvDefaults` with the token or
+artboard each mirrors: `ContentRegionTop` (148dp, the y every artboard mounts its one content region
+at), `ContentInsetStart` (`ContentOriginX − NavRailWidth`, because the nav rail is the shell's) and
+`RailInsetStart` (`ContentInsetStart − FocusRingBleed`, so a `LazyRow` can give the bleed back as
+content padding and still put the first card's box on the content origin).
+
+### Reported, not changed
+
+```
+Found: the design file contradicts itself on chip-row spacing. Its CSS is `.chiprow { gap: 24px }`
+       and `.failgrp { gap: 24px }` — 12dp at the design system's own artboard-px/2 rule, which
+       every other mapping in the table above follows — while its own prose, cause 6, says "In
+       Compose that is wrapContentWidth in a Row with 24dp spacing". CloudStreamDimens.ChipRowSpacing
+       is 24dp, i.e. it follows the prose; SkeletonRail uses the same token for the gap between rail
+       cards and documents it as such.
+Suggest: decide which is the contract. If the prose is right the CSS should read `gap: 48px` and
+       nothing in code changes; if the CSS is right then ChipRowSpacing is 12dp (= MinFocusGap),
+       ChipRow's KDoc claim that chips "sit at twice the minimum" is wrong, and SkeletonRail and
+       this screen move with the token.
+Why: a 2x spacing error is invisible in isolation and obvious beside the artboard, and ChipRow is
+       shared — six more verticals will copy whichever answer stands.
+```
+
+**This screen followed the design system, not the CSS**, and spaces rail cards at `ChipRowSpacing`.
+The deciding argument is not which number is prettier: `SkeletonRail` already spaces its cards at
+`ChipRowSpacing`, and `UiStateHost`'s KDoc warns that a skeleton shaped unlike the content makes the
+screen jump when the content lands. A rail at 12dp behind a skeleton at 24dp is that jump. The first
+measurement of this went into the task file as a flat "the token is 2× the artboard" before the
+file's own prose had been read — corrected here, and a reminder that a design file is a document with
+a body as well as a stylesheet.
+
+```
+Found: `.claude/rules/dimension-scale.md` says `FocusRingStroke` is 4dp ("a weight that happens to
+       land on [the step]"). The token is 2.dp, and the artboards agree with the token
+       (`outline: 4px` at px/2). The rule file also claims Hairline is "the only off-step value in
+       the theme", but FocusRingStroke 2, FocusRingOffset 2 and FocusRingBleed 4 are all strokes.
+Suggest: correct the rule file to match the theme.
+Why: the rule file is authoritative for reviewers, so a reviewer following it would reject a correct
+       2dp ring.
+```
+
+```
+Found: docs/plans/screen-implementation-handover.md §7 lists "Search suggestions, no-results and the
+       Quick Search panel" under "TV — specced but never drawn". They are drawn:
+       design/TV Search Suggestions.dc.html holds 8a–8e and reports "0 off-grid, 0 clipped,
+       0 overflowing, 0 band violations across 312 boxes".
+Suggest: move those three from "specced but never drawn" to "drawn".
+Why: §7 is what a session reads to decide whether it may implement a screen, and this entry says no
+       when the answer is yes.
+```
+
+Also unchanged and already known: `:core:designsystem`'s `ProgressRule` is 2dp on a `bg`@0.6 track
+while the artboard's `.cardbar` is `height: 8px` (4dp) on `rgba(255,255,255,0.18)`, and cards do not
+use the primitive. That is duplication #4 in the screen handover's §8 and one of the two numbers is
+wrong; this feature uses `MediaCardState.progress` and so inherits whichever the card draws.
+
+### What is deliberately missing from the TV screen, and why
+
+- **Touch and desktop screens.** `docs/plans/screen-implementation-handover.md` §7: *"Mobile —
+  nothing. Desktop — nothing."* Phase B of that document is explicit: *"Before implementing any
+  screen, its design must exist and must have been measured … If the screen you are about to build
+  has no artboard, draw it first — do not improvise it in Compose."* So recipe step 2 is **complete
+  for TV and blocked on design for the other two form factors** — not skipped, and not improvised.
+- **The per-row remove on 4c.** It needs either a glyph (forbidden while `DEC-11` is unanswered) or a
+  second focus stop nested inside a row that is itself a focus stop, which the artboard does not draw
+  in enough detail. `SearchAction.RecentRemoved` exists and is tested; nothing emits it yet.
+- **`See all` on a rail.** 4a and 4b draw one. It implies a per-provider destination that does not
+  exist, and `SearchEffect` has nowhere to send it; the rail is a `LazyRow` that scrolls through the
+  whole group instead, so no information is lost. Raise it when there is a destination.
+- **Filter chips.** 8c's copy depends on them — *"Movies only — your type filter is narrowing the
+  search"*, with an action that clears the provider **and** the type filter — so they arrive with the
+  state that models them. The chip row is mounted regardless, because it is a band of the chassis:
+  a row that appears and disappears moves the content region under the user's focus.
+- **A magnifier in the field.** `.claude/rules/icons.md`, `DEC-11`. The placeholder carries the
+  meaning instead, which is what artboard 4c's own *"Search all sources"* does.
+
+### No screenshot tests, and it is not a choice
+
+`.claude/rules/screenshot-testing.md` asks every feature for cases on its load-bearing states.
+`com.android.compose.screenshot:0.0.1-alpha16` renders nothing on this toolchain **and does not
+support KMP modules at all** — applied to a KMP module it contributes zero tasks. `:feature:search`
+is a KMP module, so there is no suite that could hold them. The eight previews in
+`tv/SearchScreenTvPreviews.kt` cover exactly the cases that would be recorded the day a working
+plugin or Roborazzi lands (`DEC-10`), pinned to 960×540 dp so a diff shows what moved rather than a
+resize.
+
+There are also **no composable tests**: `compose-ui-test` is not in the catalog, and adding it is a
+dependency decision (`.claude/rules/dependency-security.md`). What is tested is everything that is
+not a layout — the state machine and the grouping.
+
 ### Next, in order
 
-- [ ] Screens per form factor in commonMain (recipe step 2), reusable parts to `:core:designsystem`
-- [ ] `SearchSource` implementation in `:app` over `APIRepository`, mapping `SearchResponse` →
-      `SearchResultItem`, and a `SearchPrompts` from `stringResource`
+- [x] ~~Screens per form factor in commonMain (recipe step 2)~~ — **TV done**; touch and desktop
+      blocked on design (Phase B), 4d / 8a / 8b / 8d / 8e blocked on the state they commit
+- [ ] `SearchSource` and `SearchHistoryStore` implementations in `:app` over `APIRepository` and
+      `DataStoreHelper`, mapping `SearchResponse` → `SearchResultItem`, plus `SearchPrompts` and
+      `SearchTvCopy` from `stringResource`
 - [ ] Glue `Fragment` (step 3) and **one** nav node repointed (step 4); the old fragment stays as the
       rollback lever
 - [ ] Delete the old fragment and layouts a release later (step 5) — that removes
