@@ -44,9 +44,10 @@ restating them. Where they disagree, they win, and this file is the one to fix.
 
 ## Running checks locally
 
-CI runs on pull requests since 2026-10-07 (`DEC-01`, `INF-01`); before that, every "green" was a
-local run. Still run all three commands in `docs/HANDOVER.md` locally before pushing, and say in
-the PR which results were local and which were CI. The traps:
+**CI does not run** (`DEC-01`, answered 2026-10-15: all five workflows are `disabled_manually`, and
+they stay that way). The **four gates in `docs/HANDOVER.md` are the verification** — `checkKotlinAbi`,
+`assemblePrereleaseDebug lint check`, `:app:checkExtensionApi`, `iosCanary` — and every PR body names
+its own four exit codes. The traps:
 
 - ~~`TZ=UTC`~~ — no longer needed. `BUG-08` is fixed; the suite passes in any timezone, and a
   client-side `TZ=` does not reach a reused daemon's test workers in any case.
@@ -56,6 +57,8 @@ the PR which results were local and which were CI. The traps:
 - `-x :app:generateGitHash` — only in a git worktree.
 - **A piped Gradle run reports the pipe's exit code.** `./gradlew … | tail` exits 0 on a failed
   build. Redirect to a file and capture `$?`.
+- **`iosCanary` is the only gate that sees Kotlin/Native.** `kotlin.jvm.*` is a default import only
+  on JVM, so a `@JvmInline` with no named import passes the other three and fails this one.
 
 ## How work is done here
 

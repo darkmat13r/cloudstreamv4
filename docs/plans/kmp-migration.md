@@ -468,17 +468,16 @@ Everything still open is listed here.
 (B5 needs a security review, B7 needs a placement decision, B8 needs an accepted ABI delta), so
 they are rows 19–23 above, one each.
 
-> **Partly out of date, and the billing failure is back.** CI did run on pull requests from
-> 2026-10-07 (`DEC-01`, `INF-01`), but as of **2026-10-15 ~03:52Z it is failing account-wide again**:
-> runs end in ~2 seconds with zero steps and the annotation *"The job was not started because recent
-> account payments have failed or your spending limit needs to be increased."* Only the owner can
-> clear that. While it holds, **a red tick means nothing at all** — no check ran — and re-running is
-> pointless.
+> **CI does not run, by decision.** `DEC-01` was answered by the owner on **2026-10-15**: the
+> GitHub Actions billing failure will not be fixed, and all five workflows are `disabled_manually`.
+> **Do not re-enable them.** The four local gates — `checkKotlinAbi`, `assemblePrereleaseDebug lint
+> check`, `:app:checkExtensionApi`, `iosCanary` — are the agreed verification, and every PR body
+> names its own exit codes. `docs/HANDOVER.md` has the commands and the traps.
 >
-> Two further caveats, independent of billing: everything merged **before** 2026-10-07 was verified
-> locally only, on one machine with one JDK; and when CI does run, `Check classes.jar ABI` is killed
-> by the runner at random (`INF-08`), so a red tick *on that step* also means *read the run*, not
-> *the code is broken*.
+> CI did run on pull requests from **2026-10-07 to 2026-10-15** (`INF-01`, now closed). Outside that
+> window — which is most of this series — every check quoted in a PR body is a local run, on one
+> machine with one JDK. `INF-08`, the runner killing `Check classes.jar ABI` at random, is **parked**:
+> it only bites when CI runs.
 
 ### Phase 0 — build-logic + jar safety · **done**
 
