@@ -340,12 +340,13 @@ order and every case's `value` are unchanged. `CSPlayerEventWireValueTest` pins 
 
 ---
 
-## BUG-10 — playback turns off TLS verification process-wide, in every build · **high**
+## BUG-10 — playback turned off TLS verification process-wide, in every build · **high**
 
-**Status:** open · **not changed** — the fix is a behaviour decision, not a correction · found
-2026-10-15 while doing `KMP-02`'s security review
+**Status:** done · found 2026-10-15 while doing `KMP-02`'s security review, fixed the same day ·
+`CS3IPlayer.kt`
 
-`CS3IPlayer.kt:1893-1902`, inside `loadOnlinePlayer`:
+`loadOnlinePlayer` installed a trust-everything `SSLSocketFactory` and an accept-any hostname
+verifier as `HttpsURLConnection`'s **JVM-wide static defaults**:
 
 ```kotlin
 if (ignoreSSL) {
@@ -358,54 +359,101 @@ if (ignoreSSL) {
 }
 ```
 
-`SSLTrustManager` (`ui/player/SSLTrustManager.kt:6-16`) has empty `checkClientTrusted` and
-`checkServerTrusted` bodies and returns an empty `getAcceptedIssuers`, so it accepts **every**
-certificate chain — expired, self-signed or forged. The verifier beside it accepts every hostname.
+`ignoreSSL` was `private var ignoreSSL: Boolean = true` with **no assignment anywhere in the repo** —
+not a setting, not `BuildConfig.DEBUG`, not a flavour check — and `release` is
+`isDebuggable = false, isMinifyEnabled = false`, so the branch ran on every online playback in every
+variant. The defaults were process-wide rather than per-connection, nothing ever unset them, and they
+routed around the per-client opt-in that already exists (`insecureApp`, behind `@UnsafeSSL`).
 
-**The gate does not gate.** `CS3IPlayer.kt:161` declares `private var ignoreSSL: Boolean = true`, and
-`grep -rn "ignoreSSL"` finds exactly two references in that file: the declaration and the `if` at
-`:1893`. **Nothing ever assigns it.** It is not a setting, not a hidden preference, not
-`BuildConfig.DEBUG`, not a flavour check. `release` is `isDebuggable = false, isMinifyEnabled = false`
-(`app/build.gradle.kts:148-151`), so nothing is compiled out. The branch is taken on **every online
-playback, in every variant, including release**.
+**The fix: the block, the field and their four imports are deleted.** 17 lines, no replacement.
 
-**Three things make it worse than "the player ignores bad certs":**
+### Why deletion rather than the two shapes this entry first proposed
 
-1. **It is a process-wide static default, not a per-connection setting.** `HttpsURLConnection`'s
-   `setDefaultSSLSocketFactory` / `setDefaultHostnameVerifier` are JVM-global.
-2. **Nothing ever unsets it.** One playback of one stream disables verification for the rest of the
-   process's life, including after the user leaves the player.
-3. **It bypasses the opt-in that already exists for exactly this.** `RequestsHelper.kt:25,36` take an
-   `ignoreSSL` parameter defaulting to `false` and carry the comment *"Only use ignoreSSL if you know
-   what you are doing"*; `MainActivity.kt:1184-1186` wires `app` with `ignoreSSL = false` and a
-   separate `insecureApp` with `ignoreSSL = true`, reachable only behind the `@UnsafeSSL`
-   WARNING-level opt-in. The player's hardcoded path routes around that design.
+Both earlier suggestions were wrong, and measuring the data-source graph is what showed it.
 
-**Scope, not overstated.** The player's own HTTP sources are OkHttp, and OkHttp does **not** read
-`HttpsURLConnection`'s static defaults. What does read them is any `HttpsURLConnection` in the
-process. No repo code opens one directly; the indirect user in this file is `createOfflineSource`'s
-Media3 `DefaultHttpDataSource` (`:836`), which is built on `HttpURLConnection`. Third-party libraries
-were **not** audited for `HttpsURLConnection` use, so "only Media3 is affected" is **not** claimed —
-and the global, permanent nature of the change is the defect regardless of who reads it.
+**"Scope the trust-all factory to the one `DataSource` that needs it" is not implementable.**
+`DefaultHttpDataSource.Factory` exposes no way to supply one — `javap -p` on
+`media3-datasource:1.9.3` lists 9 setters (`setDefaultRequestProperties`, `setUserAgent`,
+`setConnectTimeoutMs`, `setReadTimeoutMs`, `setAllowCrossProtocolRedirects`,
+`setCrossProtocolRedirectsForceOriginal`, `setContentTypePredicate`, `setTransferListener`,
+`setKeepPostFor302Redirects`) and **zero** mentioning SSL or sockets. The entry called this option
+"strictly better"; it does not exist.
 
-`.claude/rules/dependency-security.md` says "Use HTTPS for all external requests". This satisfies the
-letter and defeats the purpose.
+**"Wire `ignoreSSL` to the `@UnsafeSSL` switch" is less secure than deleting it**, because the thing
+being switched is still a JVM-wide default that nothing unsets. It would move the defect behind a
+toggle rather than remove it.
 
-**Why it is not fixed here.** Turning verification on is a user-visible behaviour change: providers
-serving broken or self-signed certificates would stop playing, and that may well be why the line was
-written. That is the owner's call, not a correction to apply silently. Two shapes for it:
+**And the behaviour change the entry was waiting on the owner for does not exist.** The concern was
+that providers with broken certificates would stop playing. Measured, that cannot happen through this
+block, because nothing on any remote path reads what it set:
 
-- **Scope and reset it** — build the trust-all `SSLSocketFactory` into the one `DataSource` that needs
-  it rather than into the JVM defaults, so it cannot leak past the player or outlive the playback;
-- **Wire it to the opt-in that already exists** — make `ignoreSSL` follow the same `@UnsafeSSL` /
-  `insecureApp` switch the HTTP stack uses, defaulting to `false`.
+| Path | Data source | Reads `HttpsURLConnection` defaults? |
+|---|---|---|
+| Online video (`createVideoSource`) | `OkHttpDataSource` / `CronetDataSource` | no |
+| Remote subtitles (`SubtitleOrigin.URL` → `createOnlineSource`) | `OkHttpDataSource` | no |
+| Audio tracks (`getAudioSources` → `createOnlineSource`) | `OkHttpDataSource` | no |
+| DRM / DASH (`dataSourceFactory` over `onlineSource`) | `CacheDataSource` over the above | no |
+| Downloaded media + `DOWNLOADED_FILE` / `EMBEDDED_IN_VIDEO` subtitles (`createOfflineSource`) | `DefaultHttpDataSource` | **yes** |
 
-The first is strictly better and is not much more work; the second is the smaller diff. Either way
-`SSLTrustManager` stays in `classes.jar` (`app/api/classes-jar.api:28106`), so neither is an ABI
-change.
+- **OkHttp does not consult those statics.** Unzipped `okhttp-jvm` 5.3.2 and 5.5.0 and grepped every
+  class: **0** files reference `getDefaultSSLSocketFactory` or `getDefaultHostnameVerifier`. It
+  configures TLS on the `OkHttpClient`, which `MainActivity.kt:1184` builds with `ignoreSSL = false`.
+- **`DefaultHttpDataSource` does**, indirectly: it never names `HttpsURLConnection` (grep: 0 hits in
+  `media3-datasource`) but calls `URL.openConnection()` at 3 sites, and for an `https://` URL the JDK
+  returns an `HttpsURLConnectionImpl` that reads both statics.
+- **`createOfflineSource` is only ever handed local URIs** — the downloaded file in
+  `loadOfflinePlayer`, and subtitles whose origin is `DOWNLOADED_FILE` or `EMBEDDED_IN_VIDEO`.
+  `DefaultDataSource` routes `file://` / `content://` / `asset://` to non-HTTP readers and reaches
+  the HTTP factory only for an `http(s)` scheme, which a downloaded file does not have.
 
-**Evidence:** `SSLTrustManager.kt:6-16`; `CS3IPlayer.kt:161`, `:1801`, `:1893-1902`;
-`RequestsHelper.kt:25,36,45-47`; `MainActivity.kt:1184-1186`; `app/build.gradle.kts:148-151`;
-`app/api/classes-jar.api:28106`. Read, not run. See `KMP-02` in `docs/tasks/kmp.md` for the full
+So the block bought nothing for playback and cost verification for the entire process, including any
+third-party library in it that opens an `HttpsURLConnection`. Third-party libraries were **not**
+audited, and that is an argument for deletion rather than against it.
+
+### What does change
+
+Verification is restored for the offline `DefaultHttpDataSource` (asked only for local URIs, so in
+practice no change) and for every other `HttpsURLConnection` in the process. An extension that needs
+a host with a broken certificate still has `insecureApp`, which is per-client and opt-in.
+
+`SSLTrustManager` **stays**: it is published at `app/api/classes-jar.api:28106`, so deleting the class
+would be an ABI removal of the `DEC-08` kind. It now has no caller in `:app` and carries a KDoc
+saying why it survives and that nothing should install it. **Zero ABI change.**
+
+### The guard, and its control
+
+`app/src/test/java/.../player/NoProcessWideTlsDefaultTest.kt` scans `:app`'s sources and fails on any
+`setDefaultSSLSocketFactory` or `setDefaultHostnameVerifier`. A deletion that nothing stops returning
+is a weak fix; neither setter has a legitimate caller in this module.
+
+Measured both ways, which is what makes the green run mean anything:
+
+| Tree | Result |
+|---|---|
+| Fixed | 2 tests, 0 failures |
+| `CS3IPlayer.kt` restored from `274503f3` (control) | **1 failure**, naming both calls |
+
+The test also asserts it found >100 Kotlin files, so a change in the test's working directory makes
+it red rather than vacuously green — the second test passed in the control run, proving the scan read
+the module.
+
+### Android lint already knew — reported, not acted on
+
+Lint reports this on **every** run and has done all along, as **Warning**, which never fails the
+build: `TrustAllX509TrustManager` ×2 and `CustomX509TrustManager` ×1, all on `SSLTrustManager.kt`.
+`app/lint.xml` does not suppress them; warnings simply do not abort.
+
+Promoting them to `error` would need an `<ignore path>` for `SSLTrustManager.kt`, since that class is
+ABI-frozen and cannot be deleted — so the promotion would guard only against a *new* trust-all
+manager. **Not done here:** changing a lint severity changes the build gate for everyone, which is
+the owner's call. Note too that `BadHostnameVerifier` did **not** fire on the
+`{ _: String, _: SSLSession -> true }` lambda in a tree that still contained it, so lint would not
+have caught the installation either way. The source scan above is the check that does.
+
+**Evidence:** `CS3IPlayer.kt` before the fix at `:161`, `:1893-1902`, with `createVideoSource`
+`:790-831`, `createOnlineSource` `:737-754`, `createOfflineSource` `:833-838`, `getSubSources`
+`:1714-1747`, `getAudioSources` `:1754-1768`, `loadExo`'s factory choice `:1257-1273`;
+`SSLTrustManager.kt`; `RequestsHelper.kt:25,36,45-47`; `MainActivity.kt:1184-1186`;
+`app/api/classes-jar.api:28106`; `javap` on `media3-datasource:1.9.3` and `okhttp-jvm` 5.3.2/5.5.0;
+`app/build/reports/lint-results-prereleaseDebug.xml`. See `KMP-02` in `docs/tasks/kmp.md` for the
 review this came out of.
-

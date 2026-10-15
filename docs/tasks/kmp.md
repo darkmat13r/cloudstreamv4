@@ -45,6 +45,13 @@ Body-only change first: a private header merge replaces the call to `:app`'s
 
 **Status:** closed, not moving — security review done 2026-10-15. **One finding for the owner (below) that is not about the move.**
 
+> **Superseded in part, 2026-10-15.** The finding below became `BUG-10`, and `BUG-10` is now **fixed**:
+> the `if (ignoreSSL)` block, the field and their imports are deleted from `CS3IPlayer.kt`, so nothing
+> installs a process-wide TLS default any more. Everything in sections 1–2 is the state of the tree
+> *before* that fix and is kept as the record of the review — read the present-tense sentences, in
+> particular "the trust-all runs in release today" in section 3, as describing the pre-fix tree.
+> `SSLTrustManager` itself is unchanged apart from a KDoc, and the conclusion not to move it stands.
+
 The entry's premise was *"is it still only reachable behind the same debug/dev gate as today"*.
 **There is no such gate.** Everything below is from reading the tree at `claude/wt-walk`; nothing
 was built or run.
