@@ -45,9 +45,15 @@
  *   is the one source set where the `jvm()` target is more than the purity canary
  *   `cloudstream.kmp.library` declares it as: `:desktopApp` is a real consumer. The canary still
  *   works exactly as before — `commonMain` still has to compile against the intersection.
- * - `jvmTest` — the behavioural contract, run against the in-memory implementations **and, by
- *   subclassing the same suites, against the file-backed ones**, plus what only a file has
- *   (persistence, atomicity, corruption recovery, permissions).
+ * - `commonTest` — the behavioural contract of the three ports plus the JSON-record encoding, run
+ *   against the in-memory implementations. It lives here rather than in `jvmTest` so the
+ *   `-Pcloudstream.iosTest=true` gate (`INF-04`) executes it on an `iosSimulatorArm64` simulator
+ *   too: the four suites need only `kotlin.test`, `runTest` and `commonMain`, so the contract is
+ *   checked on every target the ports claim rather than on the JVM alone.
+ * - `jvmTest` — the same contract **again, by subclassing those suites, against the file-backed
+ *   implementations** (`commonTest` is a parent source set, so they are visible), plus what only a
+ *   file has (persistence, atomicity, corruption recovery, permissions) and the per-OS directory
+ *   algebra.
  *   **Robolectric is not available and must not be added**, so the `SharedPreferences`
  *   implementations are not covered here; see the KDoc of `AndroidStorage` for what that leaves
  *   unverified.
@@ -62,7 +68,13 @@ kotlin {
             api(libs.kotlinx.coroutines.core)
         }
 
-        jvmTest.dependencies {
+        // `commonTest`, not `jvmTest`, for the four port-contract suites: they use `kotlin.test`,
+        // `runTest` and this module's own `commonMain` types, with no `java.*` anywhere, so
+        // `iosSimulatorTest` (`INF-04`) runs them on an `iosSimulatorArm64` simulator as well as on
+        // the JVM. `commonTest` is a parent source set of `jvmTest`, so the file-backed suites that
+        // subclass them (`FileStoreContractTest`) still see both the suites and these dependencies,
+        // so `jvmTest` needs no declaration of its own.
+        commonTest.dependencies {
             implementation(libs.kotlin.test)
             // `PreferenceData.changes()` is a Flow, so its contract needs `runTest` to assert.
             implementation(libs.kotlinx.coroutines.test)

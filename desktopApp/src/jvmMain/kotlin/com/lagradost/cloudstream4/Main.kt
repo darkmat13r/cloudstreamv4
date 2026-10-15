@@ -16,6 +16,7 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
+import com.lagradost.cloudstream4.extensions.DesktopExtensionBootstrap
 import com.lagradost.cloudstream4.feature.search.SearchAction
 import com.lagradost.cloudstream4.feature.search.SearchEffect
 import com.lagradost.cloudstream4.feature.search.SearchViewModel
@@ -28,6 +29,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 /**
  * The desktop app.
@@ -52,23 +54,34 @@ import kotlinx.coroutines.launch
  * artboard. So this mounts the drawn TV screen rather than inventing a desktop layout. The window
  * is sized to the TV artboard (960×540 dp) for that reason.
  *
- * ## There are no providers yet
+ * ## Providers now come from a jar on disk (`KMP-13`)
  *
- * `APIHolder.apis` is filled only by `PluginManager`, which is Android. Until a JVM extension
- * runtime exists the chrome row reads `Sources 0 / 0` and every search is honestly empty. See
- * [DesktopSearchSource]'s KDoc — that runtime is the next piece of desktop work, and it can be
- * written as new code against `:feature:extensions`' `ExtensionRuntime` seam without touching
- * `PluginManager`.
+ * `APIHolder.apis` used to be permanently empty here, because it is filled only by `PluginManager`,
+ * which is Android. [DesktopExtensionBootstrap] now loads the cross-platform extension jars in
+ * `~/.cloudstream4/extensions` through `:feature:extensions`' `JvmExtensionRuntime` before the
+ * window opens, so `Sources` counts what actually registered and a search queries it.
+ *
+ * **Before the window, not inside the composition, and that is forced rather than chosen.**
+ * `SearchViewModel` reads `source.sources()` once in its `init` block
+ * (`SearchViewModel.kt:72-75`), so an extension that loads after the ViewModel exists would leave
+ * the chrome row reading `0 / 0` until something else refreshed it. Loading first costs a directory
+ * scan on an empty directory in the normal case; the trade is named in the bootstrap's KDoc.
  */
-fun main() = application {
-    Window(
-        onCloseRequest = ::exitApplication,
-        title = WINDOW_TITLE,
-        state = rememberWindowState(size = DpSize(ARTBOARD_WIDTH, ARTBOARD_HEIGHT)),
-    ) {
-        CloudStreamTheme {
-            Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) {
-                SearchHost()
+fun main() {
+    // The report is printed, not logged: desktop has no logging and `JvmExtensionRuntime`
+    // deliberately has none either, so the host is where the words belong.
+    runBlocking { DesktopExtensionBootstrap().loadInstalled() }.lines().forEach(::println)
+
+    application {
+        Window(
+            onCloseRequest = ::exitApplication,
+            title = WINDOW_TITLE,
+            state = rememberWindowState(size = DpSize(ARTBOARD_WIDTH, ARTBOARD_HEIGHT)),
+        ) {
+            CloudStreamTheme {
+                Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) {
+                    SearchHost()
+                }
             }
         }
     }

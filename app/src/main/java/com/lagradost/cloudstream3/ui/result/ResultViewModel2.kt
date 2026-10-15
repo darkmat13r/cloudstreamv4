@@ -66,7 +66,6 @@ import com.lagradost.cloudstream3.mvvm.safeApiCall
 import com.lagradost.cloudstream3.runAllAsync
 import com.lagradost.cloudstream3.sortUrls
 import com.lagradost.cloudstream3.syncproviders.AccountManager
-import com.lagradost.cloudstream3.syncproviders.AccountManager.Companion.secondsToReadable
 import com.lagradost.cloudstream3.syncproviders.SyncAPI
 import com.lagradost.cloudstream3.syncproviders.providers.Kitsu
 import com.lagradost.cloudstream3.ui.APIRepository
@@ -225,6 +224,49 @@ fun txt(status: DubStatus?): UiText? {
             else -> null
         }
     )
+}
+
+/**
+ * The span [seconds] covers, in the user's language, or `null` when the span is not positive.
+ *
+ * This is the display half of `I18N-02`. `AccountManager.secondsToReadable` renders `3d 4h 0m` in
+ * hardcoded English letters and is staying that way — its KDoc at `AccountManager.kt:148` records
+ * why, the deciding reason being that it is published extension ABI
+ * (`app/api/classes-jar.api:16485`). So the two places that showed that English *inside a
+ * translated sentence* build their own [UiText] here instead: this file's
+ * `ResultViewModel2.resume()` (`resume_remaining`) and `EpisodeAdapter.onBindContent`
+ * (`episode_upcoming_format`).
+ *
+ * Each magnitude passes **one whole positional resource** and never joins two formatted pieces:
+ * `apc` renders `duration_format` as `دقايق: %d`, number last, so anything concatenated is word
+ * salad there (`I18N-03`, and `ResultDurationTextTest.oneResourceAtEveryMagnitude`).
+ *
+ * Counted over the 61 `values-b+*` directories of `core/strings/src/commonMain/composeResources`,
+ * the resources chosen are present in 59 / 58 / 59 / 40 of them and carry a value that actually
+ * differs from the English base in 39 / 36 / 29 / 22 — the rest either fall back to the base or
+ * duplicate it, which is exactly what every locale shows today, so no locale loses a translation
+ * it already had. Four locale files are *worse* than today's English at some magnitude and they
+ * are pre-existing data defects owned by `I18N-05`, listed in the `I18N-02` entry: `b+iw` says
+ * "months" for minutes at every magnitude, `b+kn` drops the day unit, `b+mk` looks to have its
+ * ден (day) and час (hour) letters swapped, and `b+my` carries a stray Latin `d`.
+ *
+ * The sub-minute branch borrows `download_time_left_sec_format` from the download family because
+ * the `next_episode_time_*` family has no second-granularity sibling. Folding it into `%dm`
+ * instead would undo #26, whose whole point was that the last minute of a video must not read
+ * `0m`.
+ */
+internal fun secondsToReadableText(seconds: Int): UiText? {
+    if (seconds <= 0) return null
+    val total = seconds.toLong()
+    val days = TimeUnit.SECONDS.toDays(total)
+    val hours = TimeUnit.SECONDS.toHours(total) - TimeUnit.DAYS.toHours(days)
+    val minutes = TimeUnit.SECONDS.toMinutes(total) - TimeUnit.SECONDS.toHours(total) * 60
+    return when {
+        days > 0L -> txt(R.string.next_episode_time_day_format, days, hours, minutes)
+        hours > 0L -> txt(R.string.next_episode_time_hour_format, hours, minutes)
+        minutes > 0L -> txt(R.string.next_episode_time_min_format, minutes)
+        else -> txt(R.string.download_time_left_sec_format, total)
+    }
 }
 
 fun LoadResponse.toResultData(repo: APIRepository): ResultData {
@@ -2417,13 +2459,14 @@ class ResultViewModel2 : ViewModel() {
         val isMovie = response.isMovie()
 
         val progress = getViewPos(resume.episodeId)?.let { viewPos ->
-            // secondsToReadable returns its completedValue (here "") once the position is a
-            // minute or more past the end; a UiText argument is resolved by UiText.asString,
-            // so the zero case goes through the translated duration_format.
-            val remaining = secondsToReadable(
-                ((viewPos.duration - viewPos.position) / 1_000).toInt(),
-                ""
-            ).ifEmpty { txt(R.string.duration_format, 0) }
+            // A saved position at or past the end leaves no span to show, and keeps the
+            // translated duration_format(0) tail the previous secondsToReadable call reached
+            // through its empty completedValue. It now also covers the two cases that leaked
+            // English out of that function: a span in (-60s, 0] rendered "0m", and BUG-07 — the
+            // minutes < 0 guard being a remainder test — rendered -3600s as "-1h 0m".
+            val remaining = secondsToReadableText(
+                ((viewPos.duration - viewPos.position) / 1_000).toInt()
+            ) ?: txt(R.string.duration_format, 0)
             ResumeProgress(
                 progress = (viewPos.position / 1000).toInt(),
                 maxProgress = (viewPos.duration / 1000).toInt(),

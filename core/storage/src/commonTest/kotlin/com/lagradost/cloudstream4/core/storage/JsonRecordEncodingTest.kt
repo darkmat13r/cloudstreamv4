@@ -39,9 +39,17 @@ import kotlin.test.assertEquals
  * `:library`'s own contract and its own tests. And it does not exercise `SharedPreferences` — see
  * `AndroidStorage`'s KDoc.
  *
- * Every case goes through [newStore], so [FileJsonRecordEncodingTest] re-runs the whole fixture set
+ * Every case goes through [newStore], so `FileJsonRecordEncodingTest` re-runs the whole fixture set
  * against the file-backed store — where "verbatim" has teeth, because the value is escaped on the
  * way to disk and unescaped on the way back.
+ *
+ * ## Why this suite is in `commonTest`
+ *
+ * It needs `kotlin.test` and this module's own `commonMain` types and nothing else, so
+ * `iosSimulatorTest` (`INF-04`) runs it on a simulator as well as on the JVM. `commonTest` is a
+ * parent source set of `jvmTest`, so the file-backed subclasses in `FileStoreContractTest` still
+ * inherit every case. Backtick names here may not contain a comma — Kotlin/Native rejects it; see
+ * `KeyValueJsonStoreTest` for the detail.
  */
 open class JsonRecordEncodingTest {
 
@@ -99,7 +107,7 @@ open class JsonRecordEncodingTest {
     }
 
     @Test
-    fun `a string record is the quoted form, which is what distinguishes toJsonLiteral from toJson`() {
+    fun `a string record is the quoted form that distinguishes toJsonLiteral from toJson`() {
         // Guards the fixture itself: if someone "tidies" this to "hello", the encoding note above
         // has been lost and a writer built on this store would produce unreadable records.
         assertEquals(7, FIXTURES.getValue("string").length)

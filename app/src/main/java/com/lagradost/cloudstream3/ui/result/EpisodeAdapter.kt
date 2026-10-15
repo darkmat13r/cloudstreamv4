@@ -14,7 +14,6 @@ import com.lagradost.cloudstream3.R
 import com.lagradost.cloudstream3.actions.VideoClickActionHolder
 import com.lagradost.cloudstream3.databinding.ResultEpisodeBinding
 import com.lagradost.cloudstream3.databinding.ResultEpisodeLargeBinding
-import com.lagradost.cloudstream3.syncproviders.AccountManager.Companion.secondsToReadable
 import com.lagradost.cloudstream3.ui.BaseDiffCallback
 import com.lagradost.cloudstream3.ui.NoStateAdapter
 import com.lagradost.cloudstream3.ui.ViewHolderState
@@ -297,14 +296,15 @@ class EpisodeAdapter(
                             episodeProgress.isVisible = false
                             episodePlayIcon.isVisible = false
                             episodeUpcomingIcon.isVisible = !posterVisible
+                            // secondsToReadableText keeps the countdown in the same language as
+                            // the sentence around it (I18N-02); secondsToReadable could not,
+                            // being published extension ABI. null only when airDate is inside
+                            // the current second, where setText(null) hides the line rather
+                            // than showing "Upcoming in 0m".
                             episodeDate.setText(
-                                txt(
-                                    R.string.episode_upcoming_format,
-                                    secondsToReadable(
-                                        item.airDate.minus(unixTimeMS).div(1000).toInt(),
-                                        ""
-                                    )
-                                )
+                                secondsToReadableText(
+                                    item.airDate.minus(unixTimeMS).div(1000).toInt()
+                                )?.let { txt(R.string.episode_upcoming_format, it) }
                             )
                         } else {
                             episodePlayIcon.isVisible = true

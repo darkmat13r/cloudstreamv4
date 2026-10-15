@@ -12,6 +12,19 @@ import kotlinx.coroutines.test.runTest
  *
  * Data classes are not tested for being data classes. What is worth pinning is the behaviour a
  * future change could silently break.
+ *
+ * ## In `commonTest`, not `jvmTest` — `INF-04`
+ *
+ * Moving it is the whole point of the `-Pcloudstream.iosTest=true` gate: `jvmTest` is a JVM source
+ * set that Kotlin/Native never sees, so while every suite in the repository lived there the gate had
+ * nothing to run in any of the 14 canary modules and said so per module
+ * (`cloudstream.kmp.library.gradle.kts:71-79`). Everything asserted here is pure Kotlin —
+ * `kotlin.test`, `runTest`, and types from a module whose `commonMain` depends on nothing — so there
+ * was no cost to pay, only a directory to pick correctly in the first place.
+ *
+ * **Test names must survive Kotlin/Native's identifier rules.** A backticked name containing a comma
+ * is rejected there and compiles fine on the JVM, so the second test below reads "rather than" where
+ * it used to read ", not".
  */
 class ExtensionContractsTest {
 
@@ -33,7 +46,7 @@ class ExtensionContractsTest {
     }
 
     @Test
-    fun `an unknown wire code is kept, not collapsed into a known case`() {
+    fun `an unknown wire code is kept rather than collapsed into a known case`() {
         for (code in listOf(4, 99, -1, Int.MIN_VALUE, Int.MAX_VALUE)) {
             assertEquals(ExtensionStatus.Unrecognised(code), fromWire(code), "code $code")
         }

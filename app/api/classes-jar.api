@@ -30019,6 +30019,7 @@ public final class com/lagradost/cloudstream3/ui/result/ResultViewModel2Kt : jav
 	public static final fun getId (Lcom/lagradost/cloudstream3/LoadResponse;)I
 	public static final fun getOptions (Lcom/lagradost/cloudstream3/ui/result/SelectPopup;Landroid/content/Context;)Ljava/util/List;
 	public static final fun getTitle (Lcom/lagradost/cloudstream3/ui/result/SelectPopup;Landroid/content/Context;)Ljava/lang/String;
+	public static final fun secondsToReadableText (I)Lcom/lagradost/cloudstream3/utils/UiText;
 	public static final fun toResultData (Lcom/lagradost/cloudstream3/LoadResponse;Lcom/lagradost/cloudstream3/ui/APIRepository;)Lcom/lagradost/cloudstream3/ui/result/ResultData;
 	public static final fun transformResult (Lcom/lagradost/cloudstream3/ui/result/SelectPopup;Ljava/lang/Integer;)Ljava/lang/Integer;
 	public static final fun txt (Lcom/lagradost/cloudstream3/DubStatus;)Lcom/lagradost/cloudstream3/utils/UiText;

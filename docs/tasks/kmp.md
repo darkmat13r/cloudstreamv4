@@ -1337,9 +1337,9 @@ not a layout — the state machine and the grouping.
 
 ## KMP-13 — a JVM `ExtensionRuntime` for `:desktopApp` · **measured 2026-10-15**
 
-**Status:** designed on paper, **not started** · no code written, no file outside this one touched ·
-**Size:** one PR, and the measurements below are what make it one · depends on `KMP-11`'s seam (done)
-· **`:app`'s `PluginManager` is not edited and not ported**
+**Status:** **built 2026-10-15** · `JvmExtensionRuntime` + the three `ExtensionListing` fields + the
+desktop bootstrap, 18 new tests · **no gate run** (this branch may not run Gradle — see §7) ·
+`:app`'s `PluginManager` is not edited and not ported · **`classes.jar` gains and loses nothing**
 
 Desktop is the primary target and has **no providers at all**. `APIHolder.apis` starts empty
 (`MainAPI.kt:131`) and is only ever filled by `addPluginMapping` (`MainAPI.kt:134-139`), which only
@@ -1464,16 +1464,66 @@ needs nothing Android: `registerMainAPI` (`:20-25`), `registerExtractorAPI` (`:3
   `NoClassDefFoundError` at load as an expected outcome with a reported `ExtensionState.Failed`, not
   as an invariant violation.
 
+### 7. What was built, and what each file is for
+
+| File | Lines | What it is |
+|---|---|---|
+| `feature/extensions/src/jvmMain/.../JvmExtensionRuntime.kt` | 298 | The runtime. `install` (write + move), `load` (`URLClassLoader` + discovery + `filename` then `load()`), `unload` (purge + close), `uninstall`, `loaded` |
+| `.../ExtensionHash.kt` | 123 | `sha256-<lowercase hex>` and the three `ExtensionVerification` outcomes. **Public**, because the seam deliberately makes verification the host's step |
+| `.../ExtensionJar.kt` | 102 | `internal`. Zip entries → class names → the one `@CloudstreamPlugin` class, resolved with `initialize = false` |
+| `.../ProviderRegistry.kt` | 54 | `internal`. The three `:library` registries an unload has to clear, with the lock discipline `AtomicList` requires |
+| `desktopApp/.../extensions/DesktopExtensionBootstrap.kt` | 259 | Verifies and loads every `*.jar` in `~/.cloudstream4/extensions` before the window opens |
+| `desktopApp/.../extensions/DesktopExtensionPins.kt` | 88 | The 5 official jars' hashes, measured from the index. Not a catalogue |
+
+Plus: three additive nullable fields on `ExtensionListing` (`jarUrl`, `jarHash`,
+`jarFileSizeBytes`), one `jvmMain.dependencies` block (`:library` + coroutines, **no new catalogue
+entry**), `implementation(project(":feature:extensions"))` in `:desktopApp`, and `Main.kt` +
+`DesktopSearchSource.kt` KDoc brought in line.
+
+**Three decisions the design entry left open, taken here:**
+
+- **A mismatch never reaches disk, and the runtime recomputes rather than trusting the verdict.**
+  `install` refuses an `ExtensionVerification.HashMismatch`, and when `listing.jarHash` is present it
+  re-runs the comparison itself. The seam says verification is the caller's policy; this declines to
+  make "did anyone actually check?" a property of the call site. One SHA-256 over ≤126 KB.
+- **`internalName` is whitelisted before it becomes a path**, and `load`/`uninstall` refuse a
+  `location` outside the managed directory. Both are third-party index strings; `../` otherwise turns
+  `load` into "run any jar on this disk".
+- **Two annotated classes in one jar is a refusal, not a choice.** `:app` never faces this — its
+  `manifest.json` names one class — and guessing which arbitrary code to run is not a guess worth
+  making.
+
+**Why there is no catalogue fetch.** Reading the index at runtime needs a JSON parser, and desktop
+has none: every dependency `:library` declares is `implementation`
+(`library/build.gradle.kts:55-69`), so neither Jackson nor `kotlinx.serialization.json` is on a
+consumer's compile classpath. Adding one is a dependency decision, and "launching CloudStream may
+download and execute third-party code unasked" is a product decision. The bootstrap prints `curl`
+lines instead and a human performs the install.
+
+**`ExtensionContractsTest` moved `jvmTest` → `commonTest` (`INF-04`).** It is pure Kotlin, so the
+`-Pcloudstream.iosTest=true` gate now has a suite to run in this module instead of printing the skip
+line its KDoc describes. One test name lost a comma, which Kotlin/Native rejects in a backticked
+identifier and the JVM accepts.
+
 ### Next, in order
 
-- [ ] Owner go-ahead; nothing here is started
-- [ ] `JvmExtensionRuntime` in `:feature:extensions/src/jvmMain` + the three additive
-      `ExtensionListing` fields, with `jvmTest` cases over a fixture jar built in the test
-- [ ] Wire it in `:desktopApp` beside `DesktopSearchSource`, and remove that file's
-      "desktop has no providers" paragraph (`DesktopSearchSource.kt:29-39`) in the same PR
-- [ ] Run it: load the five official extensions, report how many answer a real search, and whether
-      `jarHash` verified
-- [ ] Gates: `abi`, `check`, `extapi`, `canary` — the dump must be **unchanged**
+- [ ] **Run the four gates.** `abi`, `check`, `extapi`, `canary` — nothing here is verified by
+      execution, because the branch that wrote it may not run Gradle. The dump must be **unchanged**:
+      this code is `com.lagradost.cloudstream4.…`, and `makeJar` merges a module only when it has a
+      `src/<sourceSet>/{kotlin,java}/com/lagradost/cloudstream3` directory
+      (`cloudstream.extension-api-jar.gradle.kts:18-21`)
+- [ ] **Run `iosSimulatorTest -Pcloudstream.iosTest=true`.** The moved suite is this module's first
+      workload for the gate — not the gate's first, since `:feature:search`'s `SearchContentTest`
+      already moved to `commonTest`; if KGP's configuration cache misses the new `commonTest`
+      directory, re-run with `--no-configuration-cache` (the convention plugin's KDoc flags this
+      exact uncertainty)
+- [ ] **Run the desktop app against the five official jars** and report, per provider: did `jarHash`
+      verify, did the class load, and did a search return results. §6's `WebViewResolver` trap says
+      loading is not the same as working — `resolveUsingWebView` is `TODO()` on the JVM and **throws**
+- [ ] Confirm `jvmTest` sees `jvmMain`'s `implementation(project(":library"))` through the
+      main↔test compilation association. If it does not, the fixture plugin will not compile and the
+      block moves (or `jvmTest` gets its own `:library` line)
+- [ ] A `docs/HANDOVER.md` row for this, which this branch did not touch
 
 ---
 

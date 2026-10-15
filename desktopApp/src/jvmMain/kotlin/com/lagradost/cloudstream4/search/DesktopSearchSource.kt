@@ -26,17 +26,22 @@ import kotlinx.coroutines.withContext
  * about `:app`'s version: `Context.getApiSettings()` decides which providers are selected, and
  * resolving a `SearchQuality` to a label needs `Context.resources`. Neither exists on desktop.
  *
- * ## Desktop has no providers yet, and that is the honest state
+ * ## Where desktop's providers come from (`KMP-13`)
  *
- * `APIHolder.apis` starts **empty** and is only filled by `APIHolder.addPluginMapping`, which
- * `:app`'s `PluginManager` calls after loading a plugin with a `PathClassLoader` — an Android
- * class. So on desktop this source currently queries nothing and returns
- * [SearchOutcome.Complete] with an empty list, and the chrome row reads `Sources 0 / 0`.
+ * `APIHolder.apis` starts **empty** and is only filled by `APIHolder.addPluginMapping`, which only
+ * `BasePlugin.registerMainAPI` calls, which only a loaded plugin calls. Until `KMP-13` the only
+ * thing that loaded one was `:app`'s `PluginManager`, over a `PathClassLoader` — an Android class —
+ * so this source queried nothing on desktop and the chrome row read `Sources 0 / 0`.
  *
- * That is not a bug to paper over: it is the measurement that says a **JVM extension runtime is
- * the gating piece for desktop**, not an optional extra. `:feature:extensions`' `ExtensionRuntime`
- * seam (`KMP-11`) is the shape it should take, and a desktop runtime over `URLClassLoader` can be
- * written as new code without touching `PluginManager` at all.
+ * It is now filled by `:feature:extensions`' `JvmExtensionRuntime`, which
+ * `DesktopExtensionBootstrap` runs over `~/.cloudstream4/extensions` before the window opens.
+ * Nothing here changed to make that work, and nothing here knows about it: this source reads
+ * `APIHolder.apis`, and the runtime fills the same global list the Android loader does.
+ *
+ * **It is still empty for a user who has installed nothing**, and the `NO_SOURCES` outcome below is
+ * the state that says so. A desktop runtime also only reaches the extensions that publish a plain
+ * jar beside their `.cs3` — 5 of the 235 catalogue entries surveyed in `KMP-13` §2 — because a
+ * `.cs3` is dex-only and cannot be loaded on a JVM at all.
  *
  * ## One state the contracts do not have
  *

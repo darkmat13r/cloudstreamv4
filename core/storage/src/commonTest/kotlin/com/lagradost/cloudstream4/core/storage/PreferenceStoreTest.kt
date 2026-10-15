@@ -15,7 +15,17 @@ import kotlin.test.assertTrue
  *
  * Every case goes through [newStore], so an implementation that can run on the JVM is held to this
  * same contract by subclassing rather than by a second copy of these assertions —
- * [FilePreferenceStoreTest] does exactly that.
+ * `FilePreferenceStoreTest` does exactly that.
+ *
+ * ## Why this suite is in `commonTest`
+ *
+ * It needs `kotlin.test`, `runTest` and this module's own `commonMain` types and nothing else, so
+ * `iosSimulatorTest` (`INF-04`) runs it on a simulator as well as on the JVM. The one coroutine
+ * case only collects the first value of a `MutableSharedFlow`-backed `changes()`: no
+ * `Dispatchers.setMain`, no real-time wait, which is the part of `kotlinx-coroutines-test` whose
+ * Native behaviour is unmeasured here. `commonTest` is a parent source set of `jvmTest`, so
+ * `FilePreferenceStoreTest` still inherits every case. Backtick names here may not contain a
+ * comma — Kotlin/Native rejects it; see `KeyValueJsonStoreTest` for the detail.
  */
 open class PreferenceStoreTest {
 
@@ -143,7 +153,7 @@ open class PreferenceStoreTest {
     }
 
     @Test
-    fun `getEnum round-trips by name, not by ordinal`() {
+    fun `getEnum round-trips by name and not by ordinal`() {
         val store = newStore()
         store.getEnum("level", Level.LOW).set(Level.HIGH)
         // By name: reordering the enum must not silently change what a stored value means.
