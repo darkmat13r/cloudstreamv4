@@ -53,7 +53,8 @@ interface SearchHistoryStore {
 /**
  * How many of the user's sources this search is using: the chrome row's `Sources 12 / 48`.
  *
- * Drawn on every artboard in the cluster, and load-bearing rather than decorative — artboard 8c's
+ * Drawn on every artboard in the cluster, and load-bearing rather than decorative —
+ * `design/TV Search Suggestions.dc.html` 8c's
  * no-results copy reads *"All nine selected sources answered and none of them carry it"*, so the
  * number in the chrome row and the number in the empty state's copy are the same fact and must
  * agree. [selected] is what a search actually queries; [total] is how many are installed.

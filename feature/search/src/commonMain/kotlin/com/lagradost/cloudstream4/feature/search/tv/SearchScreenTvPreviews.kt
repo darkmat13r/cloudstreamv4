@@ -126,7 +126,7 @@ private fun SearchPartialPreview() = PreviewScreen(
 private fun SearchRecentPreview() =
     PreviewScreen(UiState.Content(SearchContent.Recent(PreviewRecent)), query = "")
 
-/** Artboard 8c — every source answered and none of them carry it. */
+/** `TV Search Suggestions` artboard 8c — every source answered and none of them carry it. */
 @Preview(name = "No results", widthDp = TV_WIDTH_DP, heightDp = TV_HEIGHT_DP)
 @Composable
 private fun SearchNoResultsPreview() = PreviewScreen(

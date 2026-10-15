@@ -88,7 +88,8 @@ internal fun SearchChromeRow(
  * mounted even when there is nothing to report, because it is a band of the chassis: a row that
  * appears and disappears moves the content region under the user's focus.
  *
- * The screen's filter chips are not here yet. Artboard 8c's copy depends on them — *"Movies only —
+ * The screen's filter chips are not here yet. `TV Search Suggestions` 8c's copy depends on them —
+ * *"Movies only —
  * your type filter is narrowing the search"*, with an action that clears the provider **and** the
  * type filter — so they arrive with the state that models them.
  */

@@ -1120,6 +1120,11 @@ is derived from **the drawn design**, and the two disagreed. The cluster is nine
 two files: `design/TV Search.dc.html` 4a–4d and `design/TV Search Suggestions.dc.html` 8a–8e. Four
 are built.
 
+**Name the file with the id.** Two clusters are numbered 8: `TV Search Suggestions.dc.html` uses
+`8a`–`8e`, and `TV Onboarding Extensions.dc.html` uses `8a`–`8d` for first run and extensions. An
+unqualified "artboard 8c" means "Search — no results" in one and "Extensions — browse a repo" in the
+other. The 8-series rows below are all the Suggestions file.
+
 | Artboard | What it is | Built |
 |---|---|---|
 | 4a | Search — results. One rail per provider | yes |
