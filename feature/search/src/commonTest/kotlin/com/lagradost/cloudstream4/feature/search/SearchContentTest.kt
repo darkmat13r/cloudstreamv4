@@ -7,6 +7,13 @@ import kotlin.test.assertTrue
 /**
  * [groupByProvider]'s two promises: one rail per provider, and **first-seen order**.
  *
+ * ## Backtick names here may not contain a comma
+ *
+ * This suite is in `commonTest` so `iosSimulatorTest` (`INF-04`) runs it, and Kotlin/Native
+ * rejects a backticked name containing `,` — `Name contains illegal characters: ","`. Every
+ * JVM-only suite in this project uses commas freely, so the first thing that breaks when a test
+ * moves to `commonTest` is its own name. The JVM compiler accepts them, so nothing warns you.
+ *
  * The order is the part worth a test. Sorting by count instead would reshuffle the rails as late
  * replies arrive, which moves a focused card out from under the user — the same class of failure
  * `SingleActiveQuery` prevents at the request level.
@@ -20,7 +27,7 @@ class SearchContentTest {
     )
 
     @Test
-    fun `one group per provider, in the order the providers first appear`() {
+    fun `one group per provider in the order the providers first appear`() {
         val groups = listOf(
             item("Dune", "Vidplay"),
             item("Dune", "Filmxy"),
@@ -32,7 +39,7 @@ class SearchContentTest {
     }
 
     @Test
-    fun `the header count cannot disagree with the rail, because it is the group's own size`() {
+    fun `the header count cannot disagree with the rail because it is the group's own size`() {
         val items = List(21) { item("Hit $it", "Filmxy") }
         val groups = items.groupByProvider()
 

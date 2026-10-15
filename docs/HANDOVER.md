@@ -253,7 +253,7 @@ Nothing below can be settled by reading the code.
 | `DEC-11` | **Icon pack** | Not blocking, but accruing cost: 80 hand-exported `ic_baseline_*.xml` already. Blocks `DS-06`. See `.claude/rules/icons.md`. |
 | `INF-06` | **Test toolchain** | Pin it, or re-measure the `ar` table — the two cannot both be satisfied. Now also an Android/JVM divergence question, not only a JDK-version one (`I18N-06`). |
 | `INF-04` | **iOS test target** | Open; no iOS test target and no screenshot coverage. |
-| `DS-01`, `DS-03` | **Light scheme, accent role** | Design decisions, not code. Both block `DS-05`. |
+| `DS-01` | **Light scheme** | A design decision, not code. Blocks `DS-05`. `DS-03` is **decided** — see `DEC-13`: `:core:theme` gets no accent role, and the user-selectable primary colour plus Material You do not survive the redesign. That is a product call with real user impact, recorded rather than implemented: `:core:ui`'s theme is untouched and the loss is realised per screen in `DS-05`. |
 | `I18N-01`, `I18N-02` | **`UiString` adoption, hardcoded time units** | `I18N-02` touches a published ABI. |
 | `BUG-04`, `BUG-05`, `BUG-07` | **Characterised, deliberately not changed** | Each entry says why. |
 | `BUG-08` | **`addDate` contract** | The bug is fixed; the *contract* question is not. Are offset-less extension dates UTC (what happens) or device-local (what the KDoc says)? Changing it moves what users see for every provider returning a bare date-time. |

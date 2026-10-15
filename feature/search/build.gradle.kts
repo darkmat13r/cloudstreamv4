@@ -44,8 +44,18 @@ kotlin {
             implementation(project(":core:designsystem"))
         }
 
-        jvmTest.dependencies {
+        // `commonTest`, not `jvmTest`, for the half of the suite that is pure Kotlin — that is what
+        // makes `iosSimulatorTest` (INF-04) run anything at all. Before this, the gate reported
+        // "no test sources reach iOS" for all 14 canary modules, because every suite in the project
+        // stopped at the JVM. `SearchContentTest` needs nothing but `kotlin.test` and this module's
+        // own types, so it is the cheapest possible first payload.
+        commonTest.dependencies {
             implementation(libs.kotlin.test)
+        }
+
+        // Stays JVM-only: `SearchViewModelTest` drives `Dispatchers.setMain` and waits on real
+        // time, neither of which is settled on Kotlin/Native. Moving it is its own measurement.
+        jvmTest.dependencies {
             implementation(libs.kotlinx.coroutines.test)
         }
     }

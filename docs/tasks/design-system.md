@@ -29,6 +29,10 @@ calls, not module calls**.
 Adopting `:core:theme` on those screens **before** the gap is closed would delete four shipping
 features, and the settings screens are the very place users change them. Hence the ordering below.
 
+Two of those four rows are now settled rather than open: the user primary colour and Material You
+are **deliberately not carried forward** — `DEC-13`, decided 2026-10-15. They are a cost `DS-05`
+states per screen, not a gap `DS-03` has to close.
+
 ---
 
 ## DS-01 — Light scheme, via Claude Design
@@ -60,16 +64,37 @@ Kept here as the worked example of what `DS-01` has to do for every pair.
 
 ## DS-03 — Accent role and dynamic-colour hook in `:core:theme`
 
-**Status:** open · **Blocks:** `DS-05`
+**Status:** **done 2026-10-15 — decided: no accent role, no dynamic-colour hook.** The decision and
+its evidence are `DEC-13`. **No longer blocks `DS-05`.**
 
-`:core:theme` has no accent role: its KDoc says the primary button is an `ink` fill with a `bg`
-label, *"never a generic accent"*. But `:shared` exposes a user-selectable primary colour and
-Material You. Something has to carry those, or adopting `:core:theme` drops them.
+The question was whether `:core:theme` should grow a tenth role to carry `:core:ui`'s
+user-selectable primary colour and Material You, since adopting `:core:theme` otherwise drops both.
 
-- [ ] Decide whether the new system keeps a user-selectable accent at all — it may be a deliberate
-      simplification rather than a gap
-- [ ] If it does: add the role, and a dynamic-colour hook that is a no-op off Android
-- [ ] If it does not: that is a product decision and belongs in `decisions.md`, not here
+**Answer: it should not.** No code was added — the deliverable of this task is `DEC-13` plus this
+line. The three things that settled it, in the order they were checked:
+
+1. **The drawn system has no accent, and says so on purpose.** `design/Design System v2.dc.html`
+   §04: *"The palette has nine role tokens and exactly one hue. The specs kept reaching for a
+   tenth … Each of those has an achromatic answer, and they are now mandatory."*
+2. **Confirmed against the artboards, not just the spec.** A hex census of the eight live design
+   files returns the nine role values plus `#CD3D4B` and page chrome — zero chromatic value
+   outside `live`. The brand hues (`#F15A55`, `#C1FD20`, `#06C149`) live only in
+   `TV Directions.dc.html`, which is superseded exploration.
+3. **The role would have no permitted call site.** Primary button is `ink` on `bg`, focus is the
+   white ring, selection is a raised fill, both progress roles are `live` and `ink`, and source
+   status is a filled / hollow / dim glyph. Every slot a `primary` would occupy is already
+   assigned by §02 and §04.
+
+And the measurement that makes it more than a preference: of the 20 fixed `CloudStreamPrimaryColor`
+entries, **11 fall below the 4.5:1 text floor** on at least one of the three grounds and **6 fall
+below even 3:1** (`NAVY_BLUE` 1.31, `MAROON` 1.33 on black). The default `#3D50FA` measures
+3.73 / 3.39 / 3.13. §08 audits all nine role values; a user-chosen hue cannot be audited at all.
+Full table, cross-check method and the cost list are in `DEC-13`.
+
+**Not changed:** `:core:ui`'s theme — `CloudStreamPrimaryColor`, `CloudStreamThemeMode`,
+`DeviceTheme` — is untouched and keeps working for every unadopted screen. The loss is realised
+per screen in `DS-05`, whose PRs already have to state which theme modes survive on the screen
+they touch.
 
 ---
 
@@ -88,7 +113,7 @@ file. Say so in each of those PRs rather than implying the usual guard applies.
 
 ## DS-05 — Adopt `:core:theme` on the settings screens, per screen
 
-**Status:** blocked by `DS-01` and `DS-03`
+**Status:** blocked by `DS-01` · `DS-03` is decided, see `DEC-13`
 
 Seven live nav-graph nodes: `SettingsPlayer2`, `SettingsUI2`, `SettingsGeneral2`,
 `SettingsProviders2`, `SettingsUpdates2`, `SettingsAccount2`, `SettingsFragment2`.

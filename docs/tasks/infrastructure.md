@@ -99,13 +99,111 @@ See also `KMP-09` for the `$stable` trap, which **neither** guard catches on its
   `ar`, `fr` and `ru`. See `I18N-06`. Two notes it leaves behind: `androidx.test:runner` has no
   catalog alias (the source set leans on `espresso-core` to get it transitively — a catalog addition
   is the owner's call), and the test cannot run on CI, which has no emulator (`DEC-05`).
-- There is **no iOS test target** anywhere; iOS is compile-checked only.
+- There is **no iOS test target** anywhere; iOS is compile-checked only. **Target wired 2026-10-15**
+  — `-Pcloudstream.iosTest=true` / `iosSimulatorTest`, see below. It runs **zero tests today**, and
+  the reason is not the target: no module has a `commonTest` source set at all.
 - `:app` has `junit` for unit tests and Espresso/instancio for instrumented tests. The formatting
   fixes (#25, #26) added the first real measurement harnesses against a device; both were written
   throwaway and deleted, except `SecondsToReadableTest`.
 - No screenshot coverage at all — see `DEC-10`.
 
+### The iOS test gate · `-Pcloudstream.iosTest=true` · wired 2026-10-15
+
+`cloudstream.kmp.library` now carries a second gated, opt-in iOS block beside `iosCanary`. The
+property declares `iosSimulatorArm64()` (and only that: `iosArm64` is a device target, has no
+`KotlinNativeSimulatorTest` and cannot execute a test binary), links the simulator test binary and
+registers a per-module `iosSimulatorTest` task:
+
+    ./gradlew iosSimulatorTest -Pcloudstream.iosTest=true
+
+With the property absent nothing changes — same targets, same tasks, no `~/.konan` download. The
+two gates are independent and compose; `IOS_CANARY_EXEMPT` governs both and was **not** widened.
+
+**What this machine already has — checked, not assumed.** Xcode 27.0 (`27A266a`) at
+`/Applications/Xcode.app`, iOS Simulator SDK 27.0 in `xcodebuild -showsdks`, five iOS simulator
+runtimes (26.3 → 27.0) with available devices in `xcrun simctl list devices available`, and
+`kotlin-native-prebuilt-macos-aarch64-2.4.0` already in `~/.konan` from the canary. Nothing is
+missing and no dependency is needed. Two things worth recording:
+
+- **Kotlin/Native needs the locally installed Xcode for anything that links.** Every Apple entry in
+  `~/.konan/.../konan/konan.properties` resolves to `remote:internal`
+  (`target-sysroot-xcode_26.4_17E192-iphonesimulator.default = remote:internal`), i.e. JetBrains'
+  bundled Apple toolchain is not publicly downloadable. `minimalXcodeVersion=12.5`, so 27.0 passes
+  the version check — but note the pinned reference is Xcode **26.4**, and 27.0 is newer than the
+  toolchain Kotlin 2.4.0 was built against. First run is the measurement.
+- **No simulator id is pinned, on purpose.** KGP's `XcodeDefaultTestDevicesValueSource` shells out
+  to `xcrun simctl list devices available`, takes a device UUID per OS family and sets it as the
+  task's convention, so there is nothing to re-pin when Xcode's simulator list moves.
+  `--device <udid>` overrides it per run.
+
+**Why the task is wired per module rather than straight to KGP's.** Gradle 9.4.1's
+`AbstractTestTask` conventions `failOnNoDiscoveredTests` to `true` — read out of
+`gradle-testing-base-9.4.1.jar`, where the constructor calls
+`getFailOnNoDiscoveredTests().convention(true)` and the action throws "the test task did not
+discover any tests to execute" on an unfiltered run with zero discovered tests. A test task pointed
+at an empty `commonTest` therefore reports a *misconfigured build*, not "0 tests". Wiring the gate
+naively would have turned it red in all 14 canary modules on day one, red for "there is nothing
+here" — the kind of red that gets silenced with a `= false`. So the plugin enables the link task and
+depends on `iosSimulatorArm64Test` only for a module with a `.kt` file in one of `commonTest`,
+`nativeTest`, `appleTest`, `iosTest`, `iosSimulatorArm64Test`; elsewhere `iosSimulatorTest` names the
+module it skipped and why.
+
+**The open half: there is no `commonTest` anywhere.** Measured two ways — a `find` for
+`src/commonTest` directories, and a per-module listing of `src/*Test*`:
+
+| where the tests are | count |
+|---|---|
+| `src/jvmTest` in the 16 modules on this plugin | 18 `.kt` files |
+| `:core:strings`'s `jvmTestUiString` srcDir (an extra dir on the same `jvmTest`) | 9 `.kt` files |
+| `src/androidDeviceTest` (`:core:strings`) | 1 source set |
+| `src/commonTest` in any module on this plugin | **0** |
+
+The only `commonTest` in the repository is `:library`'s, which does not apply this plugin and is not
+iOS-compilable (Track L, `KMP-08`). `jvmTest` is a JVM source set: Kotlin/Native never sees it, so
+no existing test can run on a simulator without being **moved**, and that is a per-module change
+with a real cost, not something a convention plugin does.
+
+- [ ] Move one suite from `jvmTest` to `commonTest` and let the gate run it. Best first candidates,
+      because their imports are already `kotlin.test` + `kotlinx-coroutines-test` with **no `java.*`
+      and no JVM-only API** (checked by reading every import of each file):
+      `:media:model`'s `MediaModelTest` (333 lines, pure model assertions, module has no
+      dependencies), `:feature:extensions`' `ExtensionContractsTest` (84 lines), and
+      `:feature:search`'s `SearchContentTest` (48 lines). The cost of each: `commonTest` needs its
+      own `implementation(libs.kotlin.test)` (the gate deliberately does not add it for every
+      module, since `commonTest` is a parent of `jvmTest` *and* of `:core:strings`'s
+      `androidDeviceTest`), and a `commonTest` suite then compiles twice instead of once.
+      `:feature:search`'s `SearchViewModelTest` is the one to leave for last: it uses
+      `Dispatchers.setMain` / `resetMain`, which are multiplatform in `kotlinx-coroutines-test`
+      1.11.0 but are the one part of these suites whose Native behaviour has not been measured here.
+- [ ] Run the gate once and record the numbers: whether Xcode 27.0 links against a 2.4.0 toolchain
+      pinned to Xcode 26.4, and what a Compose module's simulator link costs in wall time (the
+      canary's klib-only pass is ~4 s; linking pulls the cinterop-backed Compose UI klibs in).
+
 ---
+
+### Verified 2026-10-15 — the gate runs, and three tests now run on iOS
+
+The agent that wired this could not execute anything (Gradle was forbidden in its brief), so every
+claim below was measured afterwards:
+
+- `./gradlew iosSimulatorTest -Pcloudstream.iosTest=true --continue` → **exit 0, 14 modules**, each
+  printing `iosSimulatorTest: skipped <module> — no test sources reach iOS`. Loud rather than
+  vacuously green, which was the point.
+- The plugin **did not compile** as written: `doLast { task -> task.logger… }` bound to `doLast`'s
+  Groovy `Closure` overload instead of the `Action` one. Naming the lambda parameter is what does
+  it; `doLast { logger.lifecycle(…) }` compiles. A by-inspection review missed this, twice.
+- **`:feature:search`'s `SearchContentTest` moved from `jvmTest` to `commonTest`**, which is what
+  gives the gate a payload. `./gradlew :feature:search:iosSimulatorTest -Pcloudstream.iosTest=true`
+  → `> Task :feature:search:iosSimulatorArm64Test`, **3 tests, 0 failures**, on an
+  `iosSimulatorArm64` simulator. First tests ever executed on iOS in this project.
+- **Kotlin/Native rejects a comma in a backticked test name** — `Name contains illegal characters:
+  ","`. Both multi-clause names in that suite had one, and the JVM compiler accepts them silently,
+  so the first thing that breaks when a suite moves to `commonTest` is its own name. Recorded in
+  the suite's KDoc.
+
+Still open: 13 of the 14 canary modules have no `commonTest` at all, and `SearchViewModelTest` stays
+JVM-only because it drives `Dispatchers.setMain` and waits on real time — moving it is its own
+measurement. The gate names every one of those modules on each run, so the backlog is self-reporting.
 
 ## INF-06 — `jvmTest` runs on the daemon JVM, not the pinned toolchain · **measured 2026-10-02**
 
