@@ -43,17 +43,131 @@ Body-only change first: a private header merge replaces the call to `:app`'s
 
 ## KMP-02 — B5: `SSLTrustManager`, `DownloaderTestImpl` → `:core:network`
 
-**Status:** blocked — needs a security review first
+**Status:** closed, not moving — security review done 2026-10-15. **One finding for the owner (below) that is not about the move.**
 
-A **trust-all manager becomes reachable from a shared module**. That is the whole reason this is
-not KMP-01's sibling. `DownloaderTestImpl` additionally needs `newpipeextractor` (already in the
-catalog).
+The entry's premise was *"is it still only reachable behind the same debug/dev gate as today"*.
+**There is no such gate.** Everything below is from reading the tree at `claude/wt-walk`; nothing
+was built or run.
 
-- [ ] Security review: who can reach `SSLTrustManager` after the move, and is it still only
-      reachable behind the same debug/dev gate as today
-- [ ] Only then: move, verify
+### 1. What `SSLTrustManager` is
 
-Optional. If the review says no, close this and say why.
+`app/src/main/java/com/lagradost/cloudstream3/ui/player/SSLTrustManager.kt:6-16` — a public,
+final-by-default Kotlin `class` (not an `object`) implementing `X509TrustManager`. Both
+`checkClientTrusted` (`:7-8`) and `checkServerTrusted` (`:10-11`) are empty bodies, and
+`getAcceptedIssuers` (`:13-15`) returns an empty array: it accepts **every certificate chain**,
+expired, self-signed or forged. It has no hostname logic of its own.
+
+The hostname half is at the one call site, `CS3IPlayer.kt:1893-1902`: inside `if (ignoreSSL)` it
+builds `SSLContext.getInstance("TLS")`, `init`s it with `SSLTrustManager()` (`:1896`), then installs
+`HttpsURLConnection.setDefaultHostnameVerifier { _, _ -> true }` (`:1898-1900`) and
+`HttpsURLConnection.setDefaultSSLSocketFactory(sslContext.socketFactory)` (`:1901`). So the pair
+disables **both** certificate and hostname verification, and it does so through **process-wide
+static defaults**, not on a per-connection object — once set, nothing in the process unsets it.
+
+`grep -rnE "TrustManager|HostnameVerifier|setDefaultSSLSocketFactory|sslSocketFactory"` over every
+`*.kt/*.kts/*.java` outside `build/` finds only those two files. There is no other `X509TrustManager`.
+
+### 2. Who reaches it today, and what gates it
+
+One caller: `CS3IPlayer.kt:1896`, inside `loadOnlinePlayer` (`:1801`), which is reached from `:310`,
+`:1791` and `:1984` — i.e. every "play this link" path.
+
+The gate is `ignoreSSL`, declared at **`CS3IPlayer.kt:161`: `private var ignoreSSL: Boolean = true`**.
+`grep -rn "ignoreSSL"` across the repo shows exactly two reads/writes in that file — the declaration
+(`:161`) and the test (`:1893`). **It is never assigned.** It is not a developer setting, not a
+hidden preference, not `BuildConfig.DEBUG`, not a flavour check: `grep BuildConfig` finds nothing in
+`CS3IPlayer.kt`, `SSLTrustManager.kt` or `DownloaderTestImpl.kt`. So the branch is taken **on every
+online playback in every variant**. `app/build.gradle.kts` makes no difference: `release` is
+`isDebuggable = false, isMinifyEnabled = false` (`:148-151`), so the class is neither compiled out
+nor shrunk; the `stable`/`prerelease` flavours (`:168-176`) are not consulted by this code.
+
+Scope of the effect, so it is not overstated: the player's own HTTP sources are OkHttp
+(`CS3IPlayer.kt:748, 802, 817`, on `app.baseClient` or a derived client), and OkHttp does not read
+`HttpsURLConnection`'s static defaults. What does read them is any `HttpsURLConnection` in the
+process. Repo code that opens one directly: **none** (`grep openConnection|HttpsURLConnection` in
+`app/`, `library/`, `core/` finds only the `CS3IPlayer.kt` setters); the one indirect user in this
+file is `createOfflineSource`'s `DefaultHttpDataSource` (`:836`). I did not audit third-party libraries
+for `HttpsURLConnection` use, so "nothing else is affected" is **not** claimed.
+
+Related, separate path, noted only so it is not confused with this one: `insecureApp`
+(`library/.../MainActivity.kt:36-39`, `@UnsafeSSL`, a WARNING-level opt-in) is built with
+`ignoreAllSSLErrors()` from NiceHttp (`RequestsHelper.kt:45-47`, set up at `MainActivity.kt:1186`
+and `SettingsGeneralScreen.kt:223`). That is a different, opt-in, annotated mechanism and does not
+use `SSLTrustManager`.
+
+### 3. What the move would change
+
+- **Is `:core:network` in the published jar? Yes — already.** `cloudstream.extension-api-jar.gradle.kts`
+  merges, whole, every project on `:app`'s `prereleaseDebug` classpaths that has a
+  `src/<set>/{kotlin,java}/com/lagradost/cloudstream3` directory (`extensionApiModules`). `:core:network`
+  has one (`core/network/src/jvmCommonMain/kotlin/com/lagradost/cloudstream3/network/`) and carries
+  two sentinels, `DohProvidersKt` and `DdosGuardKiller`. Its KDoc says the same
+  (`core/network/build.gradle.kts`, "FQN freeze: these classes are published extension API").
+- **But this does not make `SSLTrustManager` more exposed, because it is already published.**
+  `app/api/classes-jar.api:28106-28112` lists
+  `public final class com/lagradost/cloudstream3/ui/player/SSLTrustManager : … javax/net/ssl/X509TrustManager`
+  with a public `<init>`, and `:680-693` lists `DownloaderTestImpl` and its `Companion`.
+  `:app`'s own classes are in `classes.jar`; every public class under `com/lagradost/` is in the
+  dump. An extension can already compile `SSLTrustManager()` today. The move is FQN-frozen (a rename
+  or a narrowing is a removal from the dump and can break a published extension), so the jar's
+  contents after the move are the same line for line, `$stable` kept via `cloudstream.kmp.extension-api`.
+  **The premise "becomes a documented, compile-against-able API" is false: it is one already.**
+  (Whether a loaded plugin can *call* it at runtime depends on the plugin classloader, which I did not
+  trace; compile-time reach is what the dump proves.)
+- **Visibility in bytecode:** unchanged, `public` before and after — the class is a plain public
+  class, not `internal`. Making it `internal` would not help: Kotlin `internal` is public in bytecode,
+  and a top-level `internal` is not even mangled (`INF-07`, `docs/tasks/infrastructure.md:181`).
+  The only real narrowing is removal, which is the ABI break just described.
+- **Does the gate survive?** There is nothing to carry. The gate is a runtime field in `CS3IPlayer`
+  that is always `true`, and `CS3IPlayer` stays in `:app` either way. `:core:network` has no
+  `BuildConfig` of its own that anything could consult (the KMP library plugin generates none —
+  `makeJar` fails if one turns up in an android-only module), and a `BuildConfig.DEBUG` check would
+  be the wrong gate anyway: the trust-all runs in release today.
+- **New reach from the move:** `settings.gradle.kts` / `grep core:network` shows the only dependent is
+  `:app` (`app/build.gradle.kts:302`). No other module, `:desktopApp` included, can reach it. So the
+  move would add **no caller and no consumer**: it relocates the file and nothing else.
+
+### 4. `DownloaderTestImpl`
+
+`app/src/main/java/com/lagradost/cloudstream3/DownloaderTestImpl.kt`. Not a security concern in
+itself: it wraps a plain `OkHttpClient.Builder` with a 30 s read timeout (`:14`), does no TLS
+customisation, and turns HTTP 429 into `ReCaptchaException` (`:39-41`). It calls no
+`SSLTrustManager`. One caller: `CommonActivity.kt:252`, `NewPipe.init(DownloaderTestImpl.getInstance())`,
+always via the no-argument default builder, so it is **not** on `app.baseClient` (no DoH, no cache).
+
+The entry's claim holds: it imports `org.schabi.newpipe.extractor.*` (`:6-9`), and
+`newpipeextractor = "v0.26.3"` is already in `gradle/libs.versions.toml:42,134` and used by `:app`
+(`app/build.gradle.kts:261`). Moving it adds `newpipeextractor` to `:core:network`'s
+`jvmCommonMain` — a catalog entry, not a new dependency, but it puts `Downloader` in the public
+signature of an extension-API module, so it would need `api`, widening what that module exposes.
+Already public in the dump (`classes-jar.api:680-693`), so no new exposure, same as above.
+
+### 5. Recommendation: do not move — close `KMP-02`
+
+Both classes have exactly one caller, both in `:app`; no module needs them. The move shrinks `:app`
+by two files and buys nothing else, while it cannot make `SSLTrustManager` any safer (the FQN is
+frozen) and would place a trust-all in the module whose documented purpose is OkHttp plumbing
+for extensions, beside `DdosGuardKiller`. `DownloaderTestImpl` is harmless but would need a new
+`api` edge for no consumer. The entry marked itself *Optional*; the cost is real and the benefit is
+zero. If a second module ever needs a NewPipe `Downloader`, reopen `DownloaderTestImpl` alone — it
+has no security objection.
+
+- [x] Security review: who reaches it after the move, and is it behind the debug/dev gate — it is
+      **not** behind any gate today; the move changes neither its reach nor its exposure.
+- [x] Move: not done, by design.
+
+### For the owner — not part of this task, not changed here
+
+**Playback disables TLS verification for every link, in every build.** `CS3IPlayer.kt:161` defaults
+`ignoreSSL = true` and nothing ever sets it false, so `:1893-1902` runs on every `loadOnlinePlayer`
+and installs a trust-all socket factory and an always-true hostname verifier as the **process-wide**
+`HttpsURLConnection` defaults. Whether that is intended (some streams do have bad certificates; the
+field is a `var`, which suggests a setting was planned) is the one thing only the owner can decide.
+The options are: keep it as a deliberate, documented choice; make `ignoreSSL` follow a setting
+defaulting to `false`; or drop the global-default install and apply trust-all only to the OkHttp
+client for the one link that needs it. Each changes player behaviour and therefore needs the owner's
+call under `no-unsolicited-changes`. It should get its own `BUG-` or `DEC-` entry; this file does not
+file it.
 
 ---
 
