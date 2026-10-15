@@ -378,3 +378,129 @@ sites.
 **The decision also needs the signatures kept identical in the meantime** — that part is not open,
 and both KDocs say so.
 
+---
+
+## DEC-13 — The new design system has no accent role
+
+**Status:** **decided 2026-10-15 — no accent role in `:core:theme`, and no dynamic-colour hook** ·
+raised by `DS-03`, which this unblocks
+
+### The decision
+
+`:core:theme` keeps **nine** colour roles. No tenth `accent` / `primary`, and no
+`expect`/`actual` dynamic-colour hook beside `DeviceTheme`'s. The user-selectable primary colour
+and Material You are **not carried forward** onto screens that adopt `:core:theme`.
+
+Nothing changes today: `:core:ui`'s theme — `CloudStreamPrimaryColor`, `CloudStreamThemeMode`,
+`DeviceTheme` and the `DYNAMIC` / `DYNAMIC_TWO` entries — is untouched and keeps working for every
+screen that has not been adopted. The loss is realised per screen, in `DS-05`, and each of those
+PRs already has to state which theme modes still work on the screen it touches.
+
+### Why — the drawn system has no accent, checked two ways
+
+**The spec says so.** `design/Design System v2.dc.html` §04 is titled *"Four meanings that are not
+allowed to become colours"* and reads: *"The palette has nine role tokens and exactly one hue. The
+specs kept reaching for a tenth — a green for OK, a red for failed, a red for download progress, a
+white bar for selection. Each of those has an achromatic answer, and they are now mandatory."* An
+accent role is precisely the tenth that section exists to refuse.
+
+**The artboards say so too**, which is the second check — a spec can be aspirational, the drawn
+screens cannot. A hex census of the eight live design files (`Components`, `TV Home`, `TV Search`,
+`TV Search Suggestions`, `TV Library`, `TV Episodes Downloads`, `TV Detail Player`,
+`TV Onboarding Extensions`) returns the nine role values, `#CD3D4B`, and the document's own page
+chrome. **Zero chromatic value anywhere outside `live`.** The one file that does hold candidate
+brand hues — `#F15A55`, `#C1FD20`, `#06C149`, `#4F46E5` — is `TV Directions.dc.html`, which
+`docs/memory/cloudstream4-design-state.md` lists as *"earlier exploration. Superseded."*
+
+### Why — the role would have no call site it is allowed to paint
+
+Enumerate everywhere a Material app reaches for `primary`. The design has already assigned every
+one of them, achromatically or to `live`:
+
+| Element | What the design assigns | Where it says so |
+|---|---|---|
+| Primary button | `ink` fill, `bg` label | `CloudStreamColors.kt:26`; design-state: "Primary button is white fill, black label" |
+| Focus ring | white, 4px stroke at 4px offset | v2 §02 — and its 8px bleed is a geometry contract |
+| Selection | raised fill + `ink` label + `muted` 8px marker; *"Never two white marks on one row"* | v2 §04 |
+| Watch progress | `live` | v2 §04 |
+| Download / extraction / install progress | `ink` — *"A download is not playback"* | v2 §04 |
+| Source status | filled glyph = ready, hollow = failed, dim = probing | v2 §04 |
+
+So the role would ship with **nothing it is permitted to colour**. That is `DEC-12`'s objection to
+the `PreferenceStore` typealias — *"it would also have no callers"* — except structural rather than
+incidental: here the absence of callers is the design, not a stage of the migration.
+
+### Why — a user-chosen hue cannot be contrast-audited, and that audit is the palette's warrant
+
+v2 §08 audits all nine values against the three grounds they are ever drawn on. That audit is the
+only reason anyone should trust this palette: it is what caught `muted` at `#686868` — 3.77 / 3.43
+/ 3.17, below the 4.5:1 AA floor on all three — *after* seven files had measured clean on geometry,
+because a colour does not move a box. A colour the user picks cannot be put through it.
+
+Measured, for the **20 fixed** entries of `CloudStreamPrimaryColor` (`core/ui/.../theme/Palette.kt`
+— the enum has 22, but `DYNAMIC` and `DYNAMIC_TWO` carry `#3D50FA` only as a placeholder and
+resolve at runtime) against `bg #000000`, `surface #0A1016` and `raised #15191E`. The contrast
+function was cross-checked by
+reproducing all seven figures §08 publishes — `#858585` at 5.69 / 5.18 / 4.78, `#808080` at 4.47 on
+raised, `live` at 4.36, `ink2` at 13.08, `line` at 1.45 — all exact, with a second independent
+implementation:
+
+- **11 of 20 fall below the 4.5:1 text floor** on at least one of the three grounds — `NORMAL`,
+  `BLUE`, `PURPLE`, `RED`, `CARNATION_PINK`, `MAROON`, `DARK_GREEN`, `NAVY_BLUE`, `GREY`, `BROWN`,
+  `LAVENDER`. (13 of 22 if the two `DYNAMIC` placeholders are counted at their declared value.)
+- **6 of 20 fall below even the 3:1 floor owed by a graphic**: `NAVY_BLUE` 1.31 / 1.19 / 1.10,
+  `MAROON` 1.33 / 1.21 / 1.12, `DARK_GREEN` 1.85 / 1.69 / 1.56, `BROWN` 1.88 / 1.71 / 1.58,
+  `GREY` 2.65 / 2.41 / 2.22, `PURPLE` 2.71 / 2.46 / 2.28.
+- The **default**, `NORMAL #3D50FA`, measures **3.73 / 3.39 / 3.13** — under the text floor on all
+  three grounds.
+
+Material You is not better, it is unmeasurable: `system_accent1_200` is derived from the user's
+wallpaper, so nothing can be asserted about it at all. On a 10-foot screen those numbers are the
+whole argument — `MAROON` at 1.33:1 is a control that cannot be seen from the sofa.
+
+Separately, `#3D50FA` is the one colour the owner has already ruled out
+(`docs/memory/cloudstream4-no-indigo.md`: *"The existing accent `#3D50FA` … is rejected. Brand
+continuity is not a goal."*). Adding the role would mean adding it with that default.
+
+### What it costs — the honest list
+
+- **Material You goes.** API 31+ users lose wallpaper-derived colour on adopted screens. There is
+  no replacement and this entry does not propose one.
+- **The 20-colour picker stops affecting adopted screens.** It stays on `SettingsUIScreen.kt:92`,
+  bound to `settings.ui.primaryColor`, and keeps colouring everything not yet adopted.
+- **What the accent actually paints in Compose today** — measured, so the cost is not guessed:
+  three explicit `MaterialTheme.colorScheme.primary` reads (`:core:mihon`
+  `material/SettingsItems.kt:94,125,391`, all three icon tints) plus **16** Material3 components
+  that default to `primary` without naming it — `Switch`, `Slider`, `Checkbox`, `RadioButton`,
+  `LinearProgressIndicator`, `Button`, `TextButton` — of which **12** are in `:core:mihon`'s
+  settings widgets, 3 in `:core:ui`'s `compose/Dialog.kt` and 1 in `:app`'s `LogcatDialog.kt`.
+  Every one is in the Material3 settings layer; **none** is in the drawn redesign's component set.
+- **The legacy view layer is unaffected.** 35 files under `app/src/main/res/` reference
+  `colorPrimary`; they read it through `attrs.xml`, not through `:core:theme`, and they leave with
+  the views they belong to.
+- **A per-user preference is being taken away, not merely unimplemented.** That is the part that
+  deserves the owner's veto, which is why this is a `DEC-` entry and not a line in the DS track.
+
+### What this does *not* decide
+
+- **Whether the palette eventually gains one brand hue.** `TV Directions` explored exactly that —
+  *"a near-neutral dark shell plus one loud primary used sparingly"*. That would be a change to the
+  nine values, decided once by a designer and audited like every other value. This entry refuses
+  the *mechanism* (per-user and per-wallpaper hue), not a future brand colour.
+- **The light scheme.** `DS-01` is untouched and still belongs to design.
+- **`:core:ui`'s theme.** It is not deprecated, nothing is deleted, and `CloudStreamThemeMode`'s
+  other modes are a separate question from the accent.
+
+### The trigger to revisit
+
+The first drawn screen that needs a hue which is neither `live` nor achromatic. At that point the
+nine-role claim is false on the artboards and the role has a real caller to be shaped around — the
+opposite of the situation today.
+
+### One thing this entry is *not* exposed to
+
+`DS-04` says `DS-01`, `DS-03` and `DS-05` are all changes to what things look like with no
+screenshot guard. That applies to the other two. **This decision renders nothing differently** —
+its whole content is code that does not get written — so there is nothing for a screenshot suite to
+have caught.
+

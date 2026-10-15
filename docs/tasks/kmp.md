@@ -1335,6 +1335,148 @@ not a layout — the state machine and the grouping.
 
 ---
 
+## KMP-13 — a JVM `ExtensionRuntime` for `:desktopApp` · **measured 2026-10-15**
+
+**Status:** designed on paper, **not started** · no code written, no file outside this one touched ·
+**Size:** one PR, and the measurements below are what make it one · depends on `KMP-11`'s seam (done)
+· **`:app`'s `PluginManager` is not edited and not ported**
+
+Desktop is the primary target and has **no providers at all**. `APIHolder.apis` starts empty
+(`MainAPI.kt:131`) and is only ever filled by `addPluginMapping` (`MainAPI.kt:134-139`), which only
+`BasePlugin.registerMainAPI` calls (`BasePlugin.kt:20-25`), which only a loaded plugin calls. Nothing
+loads one off Android, so `DesktopSearchSource` queries nothing and answers
+`NO_SOURCES · 0 INSTALLED` (`DesktopSearchSource.kt:92-93`). This entry is plan row 17's remaining
+half for the **JVM** side, not the Android side — plan §4.3 and vertical 6 name only a
+`PathClassLoader` runtime (`docs/plans/kmp-migration.md:268`, `:656`).
+
+### 1. The crux: a `.cs3` is dex-only, so no JVM `ClassLoader` can load one
+
+Checked two ways, because the whole plan turns on it.
+
+| Measurement | Result |
+|---|---|
+| **Read the producer.** Upstream `recloudstream/gradle@master`, `tasks/Tasks.kt:143-171`: `make` is a plain `Zip` that takes `manifest.json` (`:152`) and `compileDex`'s `classes.dex` (`:153`, output declared `:49`), plus `res.apk`'s contents minus `AndroidManifest.xml` only when `requiresResources` (`:155-160`) | no `.class` entry is ever added |
+| **Open a real artefact.** `YoutubeProvider.cs3` from `recloudstream/extensions@builds` (13,152 B), `unzip -l` | exactly two entries: `manifest.json` 112 B, `classes.dex` 28,800 B |
+
+So the obvious plan — point the existing flow at a JVM loader — **is dead**, and that is the finding
+this entry exists to record. `PathClassLoader` is not an inconvenience in the loader; the artefact
+itself is Dalvik bytecode. A JVM runtime over the `.cs3` would need a dex-to-JVM converter, which is
+not a dependency anyone should be asked to approve for this.
+
+### 2. What makes it possible anyway: a second, plain-JVM artefact already exists
+
+Cross-platform extensions publish a `.jar` beside the `.cs3`, and the index already carries it.
+
+- `CompilePluginJarTask` copies `createFullJarDebug`'s jar to `build/<name>.jar`, gated on
+  `isCrossPlatform` (`Tasks.kt:95-107`, `CompilePluginJarTask.kt:33-39`).
+- `WriteCacheEntryTask` writes `jarUrl` / `jarHash` / `jarFileSize`, non-null exactly when that jar
+  exists (`WriteCacheEntryTask.kt:51`, `:72-74`; `entities/PluginEntry.kt:19-22`). Plan §10 O2 option
+  (c) already noted this (`kmp-migration.md:771`); what was missing is whether it is real in a
+  published index.
+- It is: `recloudstream/extensions@builds/plugins.json` has `jarUrl`, `jarHash` and `jarFileSize` on
+  **all 5** of its entries.
+- `YoutubeProvider.jar` (46,472 B), `unzip -l`: 7 `.class` entries and one
+  `META-INF/*.kotlin_module`. No dex, and **no `META-INF/MANIFEST.MF`**.
+- `javap -c` over every class in it: each `com/lagradost/*` constant-pool reference resolves inside
+  `:library` — `MainAPI`, `MainAPIKt`, `SearchResponse`, `SearchResponseList`, `TvType`, `Episode`,
+  `HomePageResponse`, `plugins/BasePlugin`, `utils/ExtractorApiKt`, all present in
+  `library/api/jvm/library.api` — and there are **zero `android/` references**. `:desktopApp` already
+  depends on `:library` (`desktopApp/build.gradle.kts`), so the classpath a loaded provider needs is
+  already on the host. Class-file major version is 52 (Java 8), below our `jvmTarget`.
+- The plugin class is findable without the `.cs3`: `@CloudstreamPlugin` declares no `@Retention`
+  (`library/src/commonMain/.../plugins/CloudstreamPlugin.kt`), so Kotlin's `RUNTIME` default applies,
+  and `javap -v recloudstream/YoutubePlugin.class` shows it under `RuntimeVisibleAnnotations`.
+  `Class.forName(name, false, loader)` over the jar's entries reads it **without running static
+  initialisers**. The `.cs3`'s `manifest.json` answers the same question
+  (`{"requiresResources":false,"version":1,"pluginClassName":"recloudstream.YoutubePlugin",…}`, and
+  `java.util.zip` can read it even though the dex beside it is unloadable), but that costs a second
+  download for a fact the jar already carries.
+
+**The cost is coverage, and it is the number to put in the PR.** Across the first 14 of the 31
+repositories listed in `recloudstream/cs-repos`' `repos-db.json` (first three plugin lists of each),
+**5 of 235 catalogue entries carry a `jarUrl`, and all 5 are the official repository.** The 86-entry Phisher index does not have the key
+at all. So a desktop runtime starts with five providers and grows only as authors set
+`isCrossPlatform = true`. Honest, and still infinitely better than zero.
+
+### 3. What is Android-only in today's loader
+
+Every one of these is why the runtime is **new code beside the seam**, not a port.
+
+| Android-only | Where |
+|---|---|
+| `dalvik.system.PathClassLoader` — the import, the `classLoaders` map's key type, the construction | `PluginManager.kt:61`, `:201-202`, `:611` |
+| `Context` threaded through every entry point: `context.classLoader`, `filesDir`, `getExternalFilesDir` | `:593`, `:611`, `:169`, `:754`, `:530` |
+| Extension resources by reflection: `AssetManager.addAssetPath` + `Resources(assets, displayMetrics, configuration)` | `:645-659`, and `Plugin.resources` / `load(Context)` / `openSettings` at `Plugin.kt:16,34,39` |
+| OAT-file cleanup to force a dex recompile after an app update | `:164-175`, called from `MainActivity.kt:1228` |
+| Android 14+ dex handling: `file.setReadOnly()`, and the copy from external storage into the app-specific dir that exists only because of it | `:600-609`, `:527-556` |
+| Notification channel and update notifications | `:73-75`, `:901-918`, `:920-966` |
+| `Activity` / `FragmentActivity` in the four `___DO_NOT_CALL_FROM_A_PLUGIN_*` entry points | `:274`, `:352`, `:485`, `:506`, `:830` |
+| `Environment.getExternalStorageDirectory()` for the local-plugin folder and the safe-mode file | `:186-189`, `:579-588` |
+| `showToast` + `R.string.plugin_load_fail` on a load failure | `:679-683` |
+| `getKey` / `setKey` persistence through `CloudStreamApp` | `:26-28`, used `:130`, `:143`, `:179`, `:183` |
+| `context.cacheDir` for the download temp file; `context!!.getString(R.string.jsdelivr_proxy_key)` in the URL rewriter | `RepositoryManager.kt:204`, `:126` |
+
+Already portable, and worth not rewriting: `RepositoryManager.sha256` is plain
+`java.security.MessageDigest` (`:107-122`) and produces the **same** `sha256-<lowercase hex>` form the
+producer writes (`WriteCacheEntryTask.kt:85-97`) — two independent implementations that already
+agree, so `jarHash` can be verified byte-for-byte. `BasePlugin` itself is `:library` `commonMain` and
+needs nothing Android: `registerMainAPI` (`:20-25`), `registerExtractorAPI` (`:31-35`), `load()`
+(`:48`), `filename` (`:62`). `Plugin` — the Android subclass with `Context` — is in `:app`, and
+`EnsureJarCompatibilityTask` means a cross-platform jar cannot reference it.
+
+### 4. The shape of the work
+
+| | |
+|---|---|
+| Module | `:feature:extensions`, **`src/jvmMain`**. `cloudstream.kmp.library` already declares `jvm()` (`cloudstream.kmp.library.gradle.kts:74`), so the source set needs no new convention plugin and no `settings.gradle.kts` edit |
+| Build-file delta | one `jvmMain.dependencies` block: `project(":library")` (for `BasePlugin`, `APIHolder`, `extractorApis`, `app`) and `libs.kotlinx.coroutines.core`. **No new catalog entry** — `java.util.zip`, `java.net`, `URLClassLoader` and `MessageDigest` are the JDK |
+| What it implements | `ExtensionRuntime` (`ExtensionRuntime.kt:28-70`) as, say, `JvmExtensionRuntime`: `install` writes the jar bytes under a host-provided directory and returns `InstalledExtension(location = <abs path>)` — `location` is opaque by contract (`ExtensionInstall.kt:9-18`); `load` opens a `URLClassLoader` whose **parent is this module's own loader** (so `BasePlugin` and `MainAPI` have one identity), finds the `@CloudstreamPlugin` class, instantiates it, sets `filename` *before* `load()` because `registerMainAPI` stamps `sourcePlugin` from it (`BasePlugin.kt:22`); `unload` removes that `filename`'s entries from `APIHolder.apis` (`MainAPI.kt:141-146`), `APIHolder.allProviders` and `extractorApis`, then closes the loader — `unload`'s KDoc already concedes that means "its providers no longer answer", not "its code is gone" (`ExtensionRuntime.kt:62-66`); `uninstall` unloads and deletes |
+| Also in scope | three **additive** nullable fields on `ExtensionListing` (`ExtensionIndex.kt:78-112`) — `jarUrl`, `jarHash`, `jarFileSize` — mirroring `PluginEntry.kt:19-22`. The module stays annotation-free and parser-free, as its KDoc requires. Desktop then becomes the first host that can return `ExtensionVerification.Verified` rather than `Skipped`, which `ExtensionInstall.kt:69-79` records as something `:app` has never done |
+| Must not touch | `PluginManager`, `RepositoryManager`, `Plugin`, `PluginData`, `SitePlugin`, `PluginWrapper` — all published (`app/api/classes-jar.api:15763-16073`; `PluginManager`'s own surface is `:15875-15910`, where every entry point that loads, downloads or reloads a plugin takes `Context` or `Activity` — the state accessors (`getPlugins`, `isSafeMode`, `unloadPlugin(String)`, `deletePlugin(File)`) do not). **`PluginManager` needs no edit at all**: the seam is an `interface`, not an `expect` (`ExtensionRuntime.kt:6-10`), so a second implementation is an addition. `:app` keeps its own loader until someone asks for the adapter in `KMP-11`'s open half |
+| Not in scope | the catalogue UI, `:app`'s adapter, iOS (§10 O2 is open), and `Plugin`-style extensions with Android resources or settings (§10 O5, `kmp-migration.md:807`) |
+
+### 5. What it costs elsewhere
+
+- **`classes.jar`: nothing, gains or loses.** `makeJar` merges a candidate only when it has a
+  `src/<sourceSet>/{kotlin,java}/com/lagradost/cloudstream3` directory
+  (`cloudstream.extension-api-jar.gradle.kts:18-21`); this code is `com.lagradost.cloudstream4.…`.
+  `:feature:search` is already on `:app`'s classpath (`app/build.gradle.kts:310`) and is not merged for
+  exactly that reason (`KMP-12`); `:feature:extensions` is not even on it. No sentinel, no dump line, no
+  `$stable` exposure (`KMP-09` does not apply — nothing moves out of a Compose module).
+- **iOS canary: still 14 of 14.** The `:library` edge is in `jvmMain`, and `IOS_CANARY_EXEMPT` is
+  about `commonMain` only (`cloudstream.kmp.library.gradle.kts:45-48`, `:60-67`); `jvmMain` is never
+  compiled for Native. This is the fourth time choosing the source set has avoided an exemption —
+  `KMP-05`, `KMP-11`, `KMP-12`, here.
+- **No new dependency.** `app` (NiceHttp) is initialised in `:library` itself
+  (`library/src/commonMain/.../MainActivity.kt:30-32`), so fetching the jar bytes needs nothing added;
+  the seam takes bytes, so the fetch stays outside it either way (`ExtensionRuntime.kt:22-23`).
+
+### 6. Two traps to know before writing it
+
+- **`WebViewResolver` is a no-op on the JVM.** `intercept` proceeds unchanged
+  (`WebViewResolver.jvm.kt:31-34`) and `resolveUsingWebView(request, …)` is
+  `TODO("Not yet implemented")` (`:71`), i.e. it **throws `NotImplementedError`**. A provider that
+  needs it will not fail gracefully. Loading providers is therefore not the same as them working, and
+  the PR should say which of the five actually return results.
+- **The cross-platform guarantee is thinner than it reads.** `EnsureJarCompatibilityTask` runs
+  `jdeps --print-module-deps` and greps the output for `"android."`, with `isIgnoreExitValue = true`;
+  when `jdeps` produces nothing it only **warns** (`EnsureJarCompatibilityTask.kt:35-52`). So treat
+  `NoClassDefFoundError` at load as an expected outcome with a reported `ExtensionState.Failed`, not
+  as an invariant violation.
+
+### Next, in order
+
+- [ ] Owner go-ahead; nothing here is started
+- [ ] `JvmExtensionRuntime` in `:feature:extensions/src/jvmMain` + the three additive
+      `ExtensionListing` fields, with `jvmTest` cases over a fixture jar built in the test
+- [ ] Wire it in `:desktopApp` beside `DesktopSearchSource`, and remove that file's
+      "desktop has no providers" paragraph (`DesktopSearchSource.kt:29-39`) in the same PR
+- [ ] Run it: load the five official extensions, report how many answer a real search, and whether
+      `jarHash` verified
+- [ ] Gates: `abi`, `check`, `extapi`, `canary` — the dump must be **unchanged**
+
+---
+
 ## KMP-08 — Track L: `:library` iOS surgery
 
 **Status:** blocked by `DEC-04`
