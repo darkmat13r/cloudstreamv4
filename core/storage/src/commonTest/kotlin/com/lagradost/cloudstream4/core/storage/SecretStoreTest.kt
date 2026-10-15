@@ -14,7 +14,15 @@ import kotlin.test.assertTrue
  * `SharedPreferences` layer underneath it. [InMemorySecretStore] is held to the same contract.
  *
  * The shared cases go through [stores], so a JVM-runnable backing store is held to the same
- * contract by subclassing — [FileSecretStoreTest] runs all of them over a file.
+ * contract by subclassing — `FileSecretStoreTest` runs all of them over a file.
+ *
+ * ## Why this suite is in `commonTest`
+ *
+ * It needs `kotlin.test` and this module's own `commonMain` types and nothing else, so
+ * `iosSimulatorTest` (`INF-04`) runs it on a simulator as well as on the JVM. `commonTest` is a
+ * parent source set of `jvmTest`, so the file-backed subclasses in `FileStoreContractTest` still
+ * inherit every case. Backtick names here may not contain a comma — Kotlin/Native rejects it; see
+ * `KeyValueJsonStoreTest` for the detail.
  */
 open class SecretStoreTest {
 
@@ -82,7 +90,7 @@ open class SecretStoreTest {
     }
 
     @Test
-    fun `every implementation states its protection, and today none encrypts`() {
+    fun `every implementation states its protection and today none encrypts`() {
         // The point of SecretProtection: a caller can ask, and the answer is not flattering.
         stores().forEach { store ->
             assertEquals(SecretProtection.PLAINTEXT, store.protection, "${store::class.simpleName}")
@@ -92,7 +100,7 @@ open class SecretStoreTest {
     // --- KeyValueJsonSecretStore: where the bytes actually land ---
 
     @Test
-    fun `secrets land under the prefix, as flat keys app already writes`() {
+    fun `secrets land under the prefix as flat keys app already writes`() {
         val records = newRecords()
         val secrets = KeyValueJsonSecretStore(records, prefix = "auth_tokens")
 

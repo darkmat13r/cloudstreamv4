@@ -163,9 +163,11 @@ iOS-compilable (Track L, `KMP-08`). `jvmTest` is a JVM source set: Kotlin/Native
 no existing test can run on a simulator without being **moved**, and that is a per-module change
 with a real cost, not something a convention plugin does.
 
-- [ ] Move one suite from `jvmTest` to `commonTest` and let the gate run it. Best first candidates,
-      because their imports are already `kotlin.test` + `kotlinx-coroutines-test` with **no `java.*`
-      and no JVM-only API** (checked by reading every import of each file):
+- [x] **Done.** Move one suite from `jvmTest` to `commonTest` and let the gate run it — `:feature:search`
+      first, then the four `:core:storage` contract suites (see the two dated sections below). The
+      candidate list this item was written with, kept because it is still the shortlist for the rest
+      — their imports are already `kotlin.test` + `kotlinx-coroutines-test` with **no `java.*` and
+      no JVM-only API** (checked by reading every import of each file):
       `:media:model`'s `MediaModelTest` (333 lines, pure model assertions, module has no
       dependencies), `:feature:extensions`' `ExtensionContractsTest` (84 lines), and
       `:feature:search`'s `SearchContentTest` (48 lines). The cost of each: `commonTest` needs its
@@ -204,6 +206,89 @@ claim below was measured afterwards:
 Still open: 13 of the 14 canary modules have no `commonTest` at all, and `SearchViewModelTest` stays
 JVM-only because it drives `Dispatchers.setMain` and waits on real time — moving it is its own
 measurement. The gate names every one of those modules on each run, so the backlog is self-reporting.
+
+That 13 is now 12: the `:core:*` sweep below moves `:core:storage`.
+
+---
+
+### 2026-10-15 — the `:core:*` sweep: `:core:storage` moves, the rest cannot
+
+Every test source of every `:core:*` module was listed and read (not just its imports — the bodies
+too, because a `String.format` in a helper is as fatal as an import). Gradle was forbidden in this
+agent's brief, so **nothing below is a run**; the moves are a source change and the numbers are
+file counts and `@Test` counts, not test results.
+
+**Moved — `:core:storage`, 4 suites, 48 `@Test` functions, `jvmTest` → `commonTest`:**
+
+| suite | `@Test` | what it pins |
+|---|---|---|
+| `KeyValueJsonStoreTest` | 15 | the `KeyValueJsonStore` contract, `keysIn` / `removeIn` interface defaults, the folder-key algebra |
+| `PreferenceStoreTest` | 18 | the `PreferenceStore` contract, object codecs, the `__PRIVATE_` / `__APP_STATE_` prefixes |
+| `SecretStoreTest` | 10 | the `SecretStore` contract and where `KeyValueJsonSecretStore` puts the bytes |
+| `JsonRecordEncodingTest` | 5 | that the store is a verbatim carrier for `:app`'s `toJsonLiteral` records |
+
+Why these four and nothing else in the module: all three ports, their in-memory implementations and
+the key algebra are `commonMain` (`core/storage/src/commonMain/kotlin/.../` — eight files, grepped
+clean of `java.*`, `android.*`, `String.format`, `System.`, `@Jvm*`), and the suites reach nothing
+else. Their only non-`kotlin.test` need is `runTest`, used once, in
+`PreferenceStoreTest.changes emits the current value before anything happens`, which collects the
+first value of a `MutableSharedFlow`-backed `changes()` — no `Dispatchers.setMain`, no real-time
+wait, so it avoids the part of `kotlinx-coroutines-test` that `SearchViewModelTest` is parked on.
+
+`core/storage/build.gradle.kts` moves `libs.kotlin.test` **and** `libs.kotlinx.coroutines.test` from
+`jvmTest.dependencies` to `commonTest.dependencies` rather than duplicating them: `commonTest` is a
+parent source set of `jvmTest`, so the three suites that stay behind keep both. Neither is a new
+catalog entry (`gradle/libs.versions.toml:107,111`).
+
+**The file-backed suites keep working, and that is the point.** `FileStoreContractTest` subclasses
+all four moved suites with one method overridden, so every case still runs a second time against
+`FileKeyValueJsonStore` / `FilePreferenceStore` on the JVM. The contract now runs on three targets
+(JVM in-memory, JVM file-backed, iOS simulator in-memory) from one copy of the assertions.
+
+**Seven test names were reworded** for the Kotlin/Native comma rule — three in
+`KeyValueJsonStoreTest`, two in `SecretStoreTest`, one each in the other two. Each
+rewording drops a comma and keeps the clause (`removeIn commits once, whatever the folder holds` →
+`removeIn commits once whatever the folder holds`). Non-ASCII was avoided in the new names: the
+illegal-character set Kotlin/Native enforces is only known here to include `,`, and an em dash is
+not worth finding out about on a gate run.
+
+**Could not move, with the one blocking reason each.** This is the useful half of the list: it says
+where the real work is.
+
+| module | suite (lines) | the blocker |
+|---|---|---|
+| `:core:storage` | `FileStorageTest` (448) | `java.nio.file.Files`, `PosixFileAttributeView`, `StandardCharsets` — it tests persistence, atomic replace, corruption quarantine and file permissions of a `jvmMain` implementation. There is nothing to move: the subject is the JVM. |
+| `:core:storage` | `FileStoreContractTest` (129) | `Files.createTempDirectory` in its `TemporaryStorageDirectory`. Moving it is also pointless now — it subclasses the four suites that did move, so its contract already reaches iOS through them. |
+| `:core:storage` | `JvmStorageTest` (168) | `java.nio.file` plus the `APPDATA` / `XDG_*` environment algebra of `jvmMain`'s `JvmStorageDirectory`. Same reason as `FileStorageTest`. |
+| `:core:http` | `OkHttpClientFactoryTest` (122) | the subject is `jvmCommonMain`'s OkHttp actual: `okhttp3.*`, `java.util.concurrent.Executors` / `CompletableFuture`, `java.io.IOException`. A Native equivalent would be a different test against a Darwin engine, not this one moved. |
+| `:core:strings` | `GeneratedResourcesParityTest` (74), `LocaleLookupParityTest` (95) | both read the generator's aapt2-decoded TSV oracles through `StringsOracle`, which is `java.io.File` + `System.getProperty("strings.oracles")` (`core/strings/src/jvmTest/.../StringsOracle.kt:23-24`, fed by `StringsOracleArgument` in `cloudstream.kmp.strings`). `GeneratedResourcesParityTest` adds `java.util.Base64`. |
+| `:core:strings` (`jvmTestUiString`) | `FormatterParityTest` (233), `LocaleNumberParityTest` (219) | `java.util.Locale` and `java.util.Formatter` **are the oracle under test** — the suite exists to compare `UiString` with the JDK. |
+| `:core:strings` (`jvmTestUiString`) | `OracleBaselineTest` (102) | `java.io.File` over the committed `oracle-baseline/`, located by the `jvmArgumentProviders` block in `core/strings/build.gradle.kts`. |
+| `:core:strings` (`jvmTestUiString`) | `UiStringTest` (156), `UiStringResolveTest` (134) | `StringsOracle` again, and `HeadlessComposition`'s `java.lang.reflect.Proxy`. |
+| `:core:strings` (`jvmTestUiString`) | `CmpPluralGuardCanaryTest` (65) | **the nearest miss.** Its own imports are clean — `kotlin.test`, `runBlocking`, `getPluralString`. It is blocked on its helper: `ComposeRuntime` reaches `ResourceEnvironment`'s constructor and three internal functions by `Class.forName` / `declaredConstructors` / `isAccessible`, which is JVM reflection with no Native equivalent. Making it portable means a public way to build a `ResourceEnvironment`, not a file move. |
+| `:core:strings:fixtures` | `FixtureGoldenDecodeTest` (28), `FixtureLocaleCopyTest` (31) | `StringsOracle` once more. |
+
+Two traps `:core:strings` carries for anyone who tries again:
+
+- `core/strings/fixtures/build.gradle.kts:28-30` attaches **`:core:strings`'s own `src/jvmTest/kotlin`**
+  via `kotlin.srcDir("../src/jvmTest/kotlin")`, so moving a file out of that directory silently
+  removes it from the fixtures module's compilation as well.
+- `commonTest` in `:core:strings` is a parent of its `androidDeviceTest` too (`withDeviceTestBuilder
+  { sourceSetTreeName = "test" }`), so anything moved there starts running inside the instrumented
+  APK. That is a second gate to re-measure, not a free move.
+
+**Out of this agent's scope, and still the biggest single win:** `:media:model`'s `MediaModelTest`
+(333 lines, pure model assertions, module has no dependencies) and `:feature:extensions`'
+`ExtensionContractsTest` (84 lines). The shortlist above has said so since the gate was wired; this
+brief was `:core:*` only.
+
+- [ ] Run `./gradlew :core:storage:iosSimulatorTest -Pcloudstream.iosTest=true` and record: whether
+      all 48 cases compile and pass on Native, and whether anything beyond `,` is an illegal
+      character in a backticked name (seven names changed; hyphens and apostrophes were kept,
+      unmeasured)
+- [ ] Run gate 2 (`check`) and confirm the JVM side is unchanged — the same 48 cases plus the
+      file-backed subclasses, now from `commonTest`
+
 
 ## INF-06 — `jvmTest` runs on the daemon JVM, not the pinned toolchain · **measured 2026-10-02**
 

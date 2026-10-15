@@ -109,4 +109,38 @@ data class ExtensionListing(
     val fileSizeBytes: Long? = null,
     /** Declared hash of the `.cs3`. [ExtensionVerification] is what decides whether to trust it. */
     val fileHash: String? = null,
+    /**
+     * Where the plain **`.jar`** is fetched from, for a cross-platform extension. `null` otherwise,
+     * and that is the normal case.
+     *
+     * This is the one field that decides whether an extension can run anywhere but Android, because
+     * a `.cs3` is dex-only — `manifest.json` + `classes.dex`, no `.class` entry ever added
+     * (`KMP-13` §1) — and no JVM or Native host can load Dalvik bytecode. The producer writes this
+     * trio only when `isCrossPlatform = true` put a jar beside the `.cs3`
+     * (`WriteCacheEntryTask.kt:51`, `:72-74`; mirrors `PluginEntry.kt:19-22`).
+     *
+     * **Expect it to be absent.** Measured 2026-10-15 over the first 14 of the 31 repositories in
+     * `recloudstream/cs-repos`: 5 of 235 catalogue entries carry it, and all 5 are the official
+     * repository — whose index does carry all three keys on every entry. A reader that treats a
+     * missing `jarUrl` as a defect will call almost the whole catalogue broken.
+     */
+    val jarUrl: String? = null,
+    /**
+     * Declared hash of that jar, as `sha256-<lowercase hex>`.
+     *
+     * Verifiable, unlike most of this type: the producer's digest
+     * (`WriteCacheEntryTask.kt:85-97`) and `:app`'s reader (`RepositoryManager.kt:107-122`) are two
+     * independent implementations that already agree, and `shasum -a 256` over a downloaded
+     * `YoutubeProvider.jar` reproduces the published value byte for byte. A host that compares it can
+     * return [ExtensionVerification.Verified] rather than [ExtensionVerification.Skipped], which
+     * `:app` — carrying [fileHash] and never comparing it — has never done.
+     */
+    val jarHash: String? = null,
+    /**
+     * Declared size of that jar, in bytes.
+     *
+     * Named like [fileSizeBytes] rather than after the wire key `jarFileSize`, for the reason that
+     * field is: a bare `Size` says nothing about its unit, and these two are read side by side.
+     */
+    val jarFileSizeBytes: Long? = null,
 )

@@ -363,8 +363,9 @@ than an assumption.
 
 **Row 17, `:feature:extensions`:** the `PluginManager` adaptation, which needs the go-ahead above.
 
-**Also open:** `DS-07` (off-grid `Dp` in the vendored Mihon tree) is unblocked but low-priority and
-means editing vendored code; `KMP-08` / Track L is blocked on `DEC-04`.
+**Also open:** `KMP-08` / Track L is blocked on `DEC-04`. `DS-07` is **closed as a measured won't
+fix** — the census found 36 `.dp` literals in the vendored Mihon tree, and changing them is a
+permanent divergence from upstream Apache-2.0 code for values nobody is looking at.
 
 A finding from `KMP-11` that is **recorded and not acted on**: `:app` carries `fileHash` through the
 extension index and **never compares it**. `ExtensionVerification.Skipped` makes that absence

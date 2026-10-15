@@ -26,6 +26,11 @@ kotlin {
             // :core:strings is where the copy comes from, resolved with Compose resources rather
             // than a Context — see DesktopSearchCopy's KDoc for why that distinction matters.
             implementation(project(":feature:search"))
+            // KMP-13: `JvmExtensionRuntime` and `ExtensionHash`, from this module's `jvmMain`. It is
+            // the only extension runtime that works off Android — a `.cs3` is dex-only, so the
+            // cross-platform `.jar` is what desktop loads. No catalogue entry is added for it; the
+            // runtime needs nothing but the JDK and `:library`, which is already below.
+            implementation(project(":feature:extensions"))
             implementation(project(":core:designsystem"))
             implementation(project(":core:strings"))
             implementation(project(":core:data"))

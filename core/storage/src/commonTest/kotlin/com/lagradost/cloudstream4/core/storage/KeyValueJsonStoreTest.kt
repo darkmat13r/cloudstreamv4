@@ -14,7 +14,20 @@ import kotlin.test.assertTrue
  *
  * Every case goes through [newStore], so an implementation that can run on the JVM is held to this
  * same contract by subclassing rather than by a second copy of these assertions —
- * [FileKeyValueJsonStoreTest] does exactly that.
+ * `FileKeyValueJsonStoreTest` does exactly that.
+ *
+ * ## Why this suite is in `commonTest`
+ *
+ * Nothing here touches the JVM — `kotlin.test` and this module's own `commonMain` types, and no
+ * `java.*` import in the file or in anything it calls. So it belongs in `commonTest`, where
+ * `iosSimulatorTest` (`INF-04`) runs it on an `iosSimulatorArm64` simulator as well as on the JVM.
+ * The file-backed suites that subclass these cases stay in `jvmTest` and still inherit them:
+ * `commonTest` is a parent source set of `jvmTest`, so `FileStoreContractTest` is unaffected.
+ *
+ * **A backtick name here may not contain a comma.** Kotlin/Native rejects it —
+ * `Name contains illegal characters: ","` — and the JVM compiler accepts it silently, so the first
+ * thing that breaks when a suite moves is its own name. Names that held one were reworded, not
+ * re-scoped; see `docs/tasks/infrastructure.md` under `INF-04`.
  */
 open class KeyValueJsonStoreTest {
 
@@ -110,7 +123,7 @@ open class KeyValueJsonStoreTest {
     }
 
     @Test
-    fun `keysIn is recursive, as a flat prefix scan must be`() {
+    fun `keysIn is recursive as a flat prefix scan must be`() {
         // "auth_tokens/MAL/0" is under "auth_tokens" as well as under "auth_tokens/MAL":
         // there are no real folders, only key prefixes.
         val store = newStore(mapOf("auth_tokens/MAL/0" to "[]"))
@@ -128,7 +141,7 @@ open class KeyValueJsonStoreTest {
     }
 
     @Test
-    fun `removeIn commits once, whatever the folder holds`() {
+    fun `removeIn commits once whatever the folder holds`() {
         // The Android store turns one `edit` into one `apply()`. If `removeIn` fell back to the
         // store's own `remove` it would commit per key, which is the cost `DataStore.Editor` in
         // `:app` exists to avoid ("apply for every key is very expensive on memory").
@@ -194,7 +207,7 @@ open class KeyValueJsonStoreTest {
     // --- folder key algebra ---
 
     @Test
-    fun `folderKey joins with a single slash, matching DataStore getFolderName`() {
+    fun `folderKey joins with a single slash matching DataStore getFolderName`() {
         assertEquals("auth_tokens/MAL/0", folderKey("auth_tokens", "MAL/0"))
         assertEquals("data_store_helper/account", folderKey("data_store_helper", "account"))
         // getFolderName is "${folder}/${path}" with no normalisation: a trailing slash on the
