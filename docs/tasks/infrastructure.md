@@ -86,8 +86,13 @@ See also `KMP-09` for the `$stable` trap, which **neither** guard catches on its
 
 **Status:** open
 
-- `:core:strings` has **no Android unit-test target**, so its android actual is untested — see
-  `I18N-06`.
+- `:core:strings` has **no Android unit-test target** (adding one needs Robolectric, which the catalog
+  does not carry), so its android actual was untested. **Closed 2026-10-15** by a device test instead
+  — `androidDeviceTest`, via AGP's KMP `withDeviceTestBuilder`, the first device test in any `:core:*`
+  module. It found a real divergence: Android's ICU locale data disagrees with the JDK's CLDR for
+  `ar`, `fr` and `ru`. See `I18N-06`. Two notes it leaves behind: `androidx.test:runner` has no
+  catalog alias (the source set leans on `espresso-core` to get it transitively — a catalog addition
+  is the owner's call), and the test cannot run on CI, which has no emulator (`DEC-05`).
 - There is **no iOS test target** anywhere; iOS is compile-checked only.
 - `:app` has `junit` for unit tests and Espresso/instancio for instrumented tests. The formatting
   fixes (#25, #26) added the first real measurement harnesses against a device; both were written
