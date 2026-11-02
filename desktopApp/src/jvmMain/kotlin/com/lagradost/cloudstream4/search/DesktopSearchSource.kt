@@ -68,8 +68,19 @@ class DesktopSearchSource : SearchSource {
     override suspend fun search(query: String): SearchOutcome =
         fanOut(query) { repo -> repo.search(query, FIRST_PAGE) }
 
+    /**
+     * What typing runs, and it asks every source, because the field says it searches all of them.
+     *
+     * A provider without quick search gets a full one. So does one that declares quick search and then
+     * fails it: `MainAPI.quickSearch` throws `NotImplementedError` by default, so a declaration is not
+     * proof. Asking only the providers that declare it told a user typing "Search failed", or with none
+     * of them installed, `NO_SOURCES`, while Return found results (`BUG-12`).
+     */
     override suspend fun quickSearch(query: String): SearchOutcome =
-        fanOut(query, quickOnly = true) { repo -> repo.quickSearch(query) }
+        fanOut(query) { repo ->
+            val quick = if (repo.hasQuickSearch) repo.quickSearch(query) else null
+            quick as? Resource.Success ?: repo.search(query, FIRST_PAGE)
+        }
 
     private fun repositories(): List<APIRepository> =
         APIHolder.apis.withLock { APIHolder.apis.map { APIRepository(it) } }
@@ -84,10 +95,9 @@ class DesktopSearchSource : SearchSource {
      */
     private suspend fun fanOut(
         query: String,
-        quickOnly: Boolean = false,
         request: suspend (APIRepository) -> Resource<com.lagradost.cloudstream3.SearchResponseList>,
     ): SearchOutcome = withContext(Dispatchers.IO) {
-        val repos = repositories().filter { !quickOnly || it.hasQuickSearch }
+        val repos = repositories()
         // Not Complete(emptyList()): that routes to `SearchPrompts.noResults`, whose drawn 8c copy
         // says "All nine selected sources answered and none of them carry it" — with nothing
         // queried that sentence blames the catalogue for a configuration problem. `:app`'s
@@ -127,7 +137,8 @@ class DesktopSearchSource : SearchSource {
      * mono line to say which.
      */
     private fun List<Resource.Failure>.detail(): String =
-        map { it.errorString.trim().ifEmpty { UNKNOWN_ERROR } }
+        // The first line: the rest of errorString is a stack trace, which is not for this screen.
+        map { it.errorString.trim().lineSequence().first().ifEmpty { UNKNOWN_ERROR } }
             .distinct()
             .take(MAX_DETAIL_REASONS)
             .joinToString(DETAIL_SEPARATOR)
