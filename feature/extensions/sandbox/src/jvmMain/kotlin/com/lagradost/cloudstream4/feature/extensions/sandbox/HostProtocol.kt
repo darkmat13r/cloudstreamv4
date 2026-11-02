@@ -116,6 +116,10 @@ data class RemoteLink(
     val url: String,
     val quality: Int,
     val type: String,
+    val referer: String?,
+    val userAgent: String?,
+    /** A separate audio stream, for a video-only link. */
+    val audioUrl: String?,
 )
 
 data class RemoteLinks(val links: List<RemoteLink>, val subtitles: Int)
@@ -202,6 +206,9 @@ internal fun DataOutputStream.writeLinks(links: RemoteLinks) {
         writeText(link.url)
         writeInt(link.quality)
         writeText(link.type)
+        writeOptional(link.referer)
+        writeOptional(link.userAgent)
+        writeOptional(link.audioUrl)
     }
 }
 
@@ -209,7 +216,7 @@ internal fun DataInputStream.readLinks(): RemoteLinks {
     val subtitles = readInt()
     return RemoteLinks(
         links = List(readCount()) {
-            RemoteLink(readText(), readText(), readText(), readInt(), readText())
+            RemoteLink(readText(), readText(), readText(), readInt(), readText(), readOptional(), readOptional(), readOptional())
         },
         subtitles = subtitles,
     )

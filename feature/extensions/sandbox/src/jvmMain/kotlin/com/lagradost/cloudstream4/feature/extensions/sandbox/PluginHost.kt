@@ -143,7 +143,17 @@ object PluginHost {
                             subtitleCallback = { subtitles.incrementAndGet() },
                             callback = { link ->
                                 synchronized(links) {
-                                    links += RemoteLink(link.source, link.name, link.url, link.quality, link.type.name)
+                                    links += RemoteLink(
+                                        source = link.source,
+                                        name = link.name,
+                                        url = link.url,
+                                        quality = link.quality,
+                                        type = link.type.name,
+                                        referer = link.referer,
+                                        userAgent = link.headers.entries
+                                            .firstOrNull { it.key.equals("User-Agent", ignoreCase = true) }?.value,
+                                        audioUrl = link.audioTracks.firstOrNull()?.url,
+                                    )
                                 }
                             },
                         )

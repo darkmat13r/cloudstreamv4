@@ -2,6 +2,7 @@ package com.lagradost.cloudstream4.feature.extensions.sandbox
 
 import java.io.File
 import java.net.InetAddress
+import java.net.URI
 
 /** Decisions about untrusted names and addresses that the app makes outside any sandbox. */
 object SandboxPolicy {
@@ -45,6 +46,35 @@ object SandboxPolicy {
             else -> first and ULA_MASK != ULA_PREFIX
         }
     }
+
+    /**
+     * Whether libVLC may be given [url]: http(s), to a host whose every address is public. Blocking: it
+     * resolves the host. libVLC cannot be checked at connection time, so this is its only gate.
+     *
+     * It checks the exact string that will be played, never a truncated copy: checking only the first
+     * 2048 characters of `http://public:000…80@127.0.0.1/` read the host as `public`, and VLC connected
+     * to loopback. Userinfo is refused outright because it is where URL parsers disagree, and no stream
+     * URL needs it.
+     */
+    fun isPublicHttpUrl(url: String): Boolean {
+        if (url.length > MAX_URL_CHARS || url.any { it.isISOControl() }) return false
+        val parsed = runCatching { URI(url) }.getOrNull() ?: return false
+        if (parsed.rawUserInfo != null || parsed.scheme?.lowercase() !in HTTP_SCHEMES) return false
+        val host = parsed.host?.lowercase()?.trim('[', ']')?.trimEnd('.') ?: return false
+        if (isPrivateHostName(host)) return false
+        val addresses = runCatching { InetAddress.getAllByName(host) }.getOrNull() ?: return false
+        return addresses.isNotEmpty() && addresses.all(::isPublicAddress)
+    }
+
+    /**
+     * [isPublicHttpUrl], and no `#`. libVLC splits `:input-slave` on `#` and opens every part, so
+     * `https://public/a#file:///x` passes as a URL with a fragment and then opens a local file
+     * (measured on VLC 3.0.23).
+     */
+    fun isPublicAudioUrl(url: String): Boolean = '#' !in url && isPublicHttpUrl(url)
+
+    /** Signed stream URLs run long: a googlevideo one is well past the 2048 used for other fields. */
+    const val MAX_URL_CHARS = 16 * 1024
 
     private const val BYTE_MASK = 0xFF
     private const val IPV4_BYTES = 4
