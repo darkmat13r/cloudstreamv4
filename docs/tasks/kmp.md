@@ -1530,7 +1530,7 @@ identifier and the JVM accepts.
 
 ## KMP-14 — sandboxed extensions on desktop, and `.cs3` conversion · **measured 2026-11-02**
 
-**Status:** built 2026-11-02 on `claude/desktop-plugins-sandbox`, not yet in a PR · owner approved
+**Status:** done · #82 · owner approved
 `de.femtopedia.dex2jar:dex-translator` 2.4.38 the same day, reversing `KMP-13` §1's "not a dependency
 anyone should be asked to approve", because 230 of 235 surveyed extensions publish no jar.
 
@@ -1645,7 +1645,7 @@ Why: the fix moves core/strings/oracle-baseline, so it is the owner's call. Desk
 
 ## KMP-15 — desktop detail page, source list and embedded playback · **measured 2026-11-02**
 
-**Status:** built 2026-11-02 on `claude/kmp-15-desktop-playback`, stacked on `KMP-14` (#82). Owner approved
+**Status:** done · #83. Owner approved
 `uk.co.caprica:vlcj` 4.12.1 (GPL-3.0, fits this GPL-3 project; brings JNA; needs VLC installed) the same day,
 choosing embedded playback over handing off to VLC. A 5.x exists only as milestones, so 4.x is pinned.
 
@@ -1710,7 +1710,7 @@ Why: a new key moves core/strings/oracle-baseline, which is the owner's call
 
 ## KMP-16 — libVLC moves out of the app process, into its own sandbox · **measured 2026-11-02**
 
-**Status:** in pr · stacked on `BUG-11` · closes the largest limit `KMP-15` listed
+**Status:** done · #85 · closes the largest limit `KMP-15` listed
 
 libVLC decodes media a third-party plugin chose, so a decoder bug is code execution. It now runs in a
 `--media-host` child of the launcher, one per stream, under `SeatbeltProfile` plus `mediaHostRules`.
@@ -1755,6 +1755,26 @@ output devices found") and `AudioComponentRegistrar` ("cannot find any AudioComp
 - `sandbox-exec` is deprecated, as in `KMP-14`. No CPU or memory quota on the native side.
 - Native code writing to fd 1 would corrupt the stream, which ends that playback as failed.
 - `--check-playback` is the headless check: a URL, or `plugin:<provider>:<query>`.
+
+---
+
+## KMP-17 — desktop's own screens, following Apple's principles · **measured 2026-11-02**
+
+**Status:** in pr · the owner's direction, recorded with every decision in `docs/plans/desktop-design.md`
+
+`SearchScreenDesktop`, `DetailScreenDesktop`, a floating player HUD, and `core/designsystem/desktop`
+(`DesktopDimens`, `DesktopMotion`, `DesktopButton`, `DesktopRow`, `forDesktop()`). The TV screens are
+untouched apart from one `private` becoming `internal`. **Android is unaffected:** nothing in `:app` calls
+these.
+
+**Verified:** rendered offscreen at 1280×800 and 800×520, with real plugins and posters for search and detail.
+`DesktopInteractionTest` drives real pointer and key events through the scene: idle has nothing to press, focus
+survives a search that finds nothing, a card opens on click, the panel dismisses on an outside click but not an
+inside one, and scrubbing seeks once on release. The focus test found a real defect: `StateView`'s initial focus
+would have taken keystrokes mid-typing.
+
+**Not verified:** the live window, which this session cannot drive. No screenshot cases, because the plugin does
+not render here and cannot see KMP modules (`DEC-10`).
 
 ---
 

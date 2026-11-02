@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
@@ -23,7 +24,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
+import com.lagradost.cloudstream4.core.designsystem.desktop.forDesktop
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
+import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
 import com.lagradost.cloudstream4.detail.DesktopDetailViewModels
 import com.lagradost.cloudstream4.detail.rememberDesktopDetailCopy
 import com.lagradost.cloudstream4.extensions.SandboxedExtensions
@@ -33,11 +36,11 @@ import com.lagradost.cloudstream4.feature.extensions.sandbox.PluginHost
 import com.lagradost.cloudstream4.feature.detail.DetailAction
 import com.lagradost.cloudstream4.feature.detail.DetailEffect
 import com.lagradost.cloudstream4.feature.detail.StreamLink
-import com.lagradost.cloudstream4.feature.detail.tv.DetailScreenTv
+import com.lagradost.cloudstream4.feature.detail.desktop.DetailScreenDesktop
 import com.lagradost.cloudstream4.feature.search.SearchAction
 import com.lagradost.cloudstream4.feature.search.SearchEffect
 import com.lagradost.cloudstream4.feature.search.SearchViewModel
-import com.lagradost.cloudstream4.feature.search.tv.SearchScreenTv
+import com.lagradost.cloudstream4.feature.search.desktop.SearchScreenDesktop
 import com.lagradost.cloudstream4.player.MediaHost
 import com.lagradost.cloudstream4.player.PlayerScreen
 import com.lagradost.cloudstream4.player.PlayerUnavailable
@@ -70,13 +73,11 @@ import kotlin.system.exitProcess
  * here can touch `classes.jar` or the iOS canary. It is also the only host where a `commonMain`
  * screen can be run without a device.
  *
- * ## It is the TV screen, on desktop, and that is temporary
+ * ## Desktop has its own screens
  *
- * `docs/plans/kmp-migration.md` §4.4 says screens live in `commonMain` **one per form factor**,
- * and the desktop one does not exist: `docs/plans/screen-implementation-handover.md` §7 records
- * "Mobile — nothing. Desktop — nothing", and its Phase B forbids improvising a screen that has no
- * artboard. So this mounts the drawn TV screen rather than inventing a desktop layout. The window
- * is sized to the TV artboard (960×540 dp) for that reason.
+ * The owner's direction on 2026-11-02 settles what `docs/plans/screen-implementation-handover.md` left
+ * open: colours, type and the 4dp step come from `design/`, and layout and interaction follow Apple's
+ * principles for a resizable pointer-driven window. See `docs/plans/desktop-design.md`.
  *
  * ## Providers now come from a jar on disk (`KMP-13`)
  *
@@ -122,15 +123,20 @@ fun main(args: Array<String>) {
         Window(
             onCloseRequest = ::exitApplication,
             title = WINDOW_TITLE,
-            state = rememberWindowState(size = DpSize(ARTBOARD_WIDTH, ARTBOARD_HEIGHT)),
+            state = rememberWindowState(size = DpSize(WINDOW_WIDTH, WINDOW_HEIGHT)),
             // At the window, because it has to work wherever focus is, including nowhere at all.
             onPreviewKeyEvent = { event ->
                 event.key == Key.Escape && event.type == KeyEventType.KeyDown && escape.handle()
             },
         ) {
+            LaunchedEffect(window) {
+                window.minimumSize = java.awt.Dimension(MIN_WINDOW_WIDTH, MIN_WINDOW_HEIGHT)
+            }
             CloudStreamTheme {
-                Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) {
-                    DesktopApp(escape)
+                CompositionLocalProvider(LocalCloudStreamTypography provides CloudStreamTheme.typography.forDesktop()) {
+                    Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) {
+                        DesktopApp(escape)
+                    }
                 }
             }
         }
@@ -147,8 +153,8 @@ private sealed interface Screen {
 /**
  * Search, a title, and playback.
  *
- * Each screen is the drawn TV one, for the reason in [main]'s KDoc. A title's page stays in the back
- * stack under the player, so leaving the player lands on the source list it came from.
+ * A title's page stays in the back stack under the player, so leaving the player lands on the source
+ * list it came from.
  *
  * `viewModelScope` is Dispatchers.Main.immediate, and desktop JVM has no Main dispatcher unless
  * kotlinx-coroutines-swing is on the classpath. The host owns a scope instead and cancels it with the
@@ -226,7 +232,7 @@ private fun SearchHost(scope: CoroutineScope, onOpen: (String) -> Unit) {
             }
         }
     }
-    SearchScreenTv(
+    SearchScreenDesktop(
         state = state,
         copy = copy,
         // Recording a submitted search is the host's job, the same split :app uses. The state machine
@@ -269,7 +275,7 @@ private fun DetailHost(
             }
         }
     }
-    DetailScreenTv(
+    DetailScreenDesktop(
         state = state,
         copy = copy,
         onAction = viewModel::onAction,
@@ -286,6 +292,7 @@ private const val VERBOSE_ARGUMENT = "--verbose"
 private const val PLAYBACK_CHECK_ARGUMENT = "--check-playback"
 private const val DEFAULT_PLAYBACK_CHECK_SECONDS = 15
 
-/** The TV artboard at its own size: 1920×1080 artboard px halved. */
-private val ARTBOARD_WIDTH = 960.dp
-private val ARTBOARD_HEIGHT = 540.dp
+private val WINDOW_WIDTH = 1280.dp
+private val WINDOW_HEIGHT = 800.dp
+private const val MIN_WINDOW_WIDTH = 800
+private const val MIN_WINDOW_HEIGHT = 520
