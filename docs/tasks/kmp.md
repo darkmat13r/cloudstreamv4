@@ -2115,3 +2115,18 @@ the `ListPreference` path #50 also touched.
 
 Headless swiftshader, not hardware. It proves the composition builds, resolves its resources and
 responds to input; it does not prove GPU-dependent rendering or anything about the TV layouts.
+
+---
+
+## KMP-22 — A conversion can no longer write the extension store
+
+**Status:** in pr · found by `KMP-18`
+
+`.cs3` conversion ran dex2jar with write access to all of `.store`. A dex that exploited dex2jar could have replaced another extension's jar between that jar's scan and its start, which is the guarantee the store exists to give.
+
+`convertIntoStore` now gives each conversion its own empty directory under `.converting`, outside the store. The result is refused unless it is a regular file, and it is copied into the store rather than moved, so a hard link or a process left holding the file open cannot reach what was scanned.
+
+`ConvertIntoStoreTest` plays the taken-over host: a symlink, a directory, a kept hard link, and a failure. No real dex2jar exploit was used, because none is available. The policy side is `writable`, which `SandboxEnforcementTest` already proves.
+
+**Not addressed:** a taken-over conversion can still fill the disk in its directory until the 120 s timeout, and a process it left running is not killed along with it. A jar already in an existing store is not re-checked.
+
