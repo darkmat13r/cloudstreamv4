@@ -320,7 +320,7 @@ which is why this was measured:
 
 **Size.** `:app` has no R8 (`isMinifyEnabled = false` on every build type), so the whole pack ships, unused icons
 included. The AAR's 1264 classes through `d8 --release --min-api 23` come to a 2.39 MB dex, 0.35 MB deflated. The
-desktop jar is 4.05 MB. **The APK delta itself is unmeasured**; it needs two full builds. Turning on R8 is what
+desktop jar is 4.05 MB. **Measured APK delta: +841,541 bytes** (0.84 MB), `app-prerelease-debug.apk` at `67ea7394` against its base `258d689d`, which includes this change's other code. Turning on R8 is what
 would drop the unused icons, and that is not this task.
 
 ### What is left
