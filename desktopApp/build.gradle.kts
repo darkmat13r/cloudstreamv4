@@ -31,10 +31,17 @@ kotlin {
             // cross-platform `.jar` is what desktop loads. No catalogue entry is added for it; the
             // runtime needs nothing but the JDK and `:library`, which is already below.
             implementation(project(":feature:extensions"))
+            // Plugins run in a sandboxed child process, never in this JVM. See SandboxedExtensions.
+            implementation(project(":feature:extensions:sandbox"))
+            // coil-compose comes with the compose bundle; this adds its network fetcher, for posters.
+            implementation(libs.bundles.coil)
             implementation(project(":core:designsystem"))
             implementation(project(":core:strings"))
             implementation(project(":core:data"))
             implementation(project(":library"))
+        }
+        jvmTest.dependencies {
+            implementation(libs.kotlin.test)
         }
     }
 }
@@ -49,6 +56,11 @@ compose.desktop {
         mainClass = "com.lagradost.cloudstream4.MainKt"
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
+            // jlink keeps only what is listed, and nothing fails until a user hits the gap at runtime.
+            // jdk.zipfs: dex2jar writes its jar through it ("cant find zipfs support" without it).
+            // jdk.crypto.ec: TLS to anything offering only EC ciphers. java.naming: JNDI DNS, which
+            // the JDK's own resolver paths and okhttp's logging probe. jdk.unsupported: atomicfu.
+            modules("jdk.zipfs", "jdk.crypto.ec", "java.naming", "jdk.unsupported", "java.net.http", "java.sql")
             packageName = "CloudStream"
             packageVersion = "1.0.0"
 

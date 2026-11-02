@@ -46,6 +46,11 @@ step 2. No `:app` wiring either way, and nothing repointed:
 
 `:app`'s `SearchFragment` and `SearchViewModel` are untouched and still the live search path.
 
+**Desktop runs extensions in a sandbox** (`KMP-14`, `docs/tasks/kmp.md`): one Seatbelt-confined child
+process per extension, scanned first, `.cs3` converted with dex2jar in a no-network sandbox. Plugin code
+no longer runs in the app's JVM, and where there is no sandbox nothing loads. Try it headless:
+`CloudStream --check-extensions "query" --verbose`. Desktop still has no detail screen or player.
+
 ---
 
 ## CI does not run, and that is the decision

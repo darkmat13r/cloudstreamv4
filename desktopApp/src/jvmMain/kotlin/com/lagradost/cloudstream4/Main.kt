@@ -16,13 +16,17 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
-import com.lagradost.cloudstream4.extensions.DesktopExtensionBootstrap
+import com.lagradost.cloudstream4.extensions.SandboxedExtensions
+import com.lagradost.cloudstream4.extensions.runExtensionCheck
+import com.lagradost.cloudstream4.extensions.runExtensionScan
+import com.lagradost.cloudstream4.feature.extensions.sandbox.PluginHost
 import com.lagradost.cloudstream4.feature.search.SearchAction
 import com.lagradost.cloudstream4.feature.search.SearchEffect
 import com.lagradost.cloudstream4.feature.search.SearchViewModel
 import com.lagradost.cloudstream4.feature.search.tv.SearchScreenTv
 import com.lagradost.cloudstream4.search.DesktopSearchHistory
 import com.lagradost.cloudstream4.search.DesktopSearchSource
+import com.lagradost.cloudstream4.search.PosterImage
 import com.lagradost.cloudstream4.search.rememberDesktopSearchCopy
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -30,6 +34,7 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlin.system.exitProcess
 
 /**
  * The desktop app.
@@ -57,9 +62,9 @@ import kotlinx.coroutines.runBlocking
  * ## Providers now come from a jar on disk (`KMP-13`)
  *
  * `APIHolder.apis` used to be permanently empty here, because it is filled only by `PluginManager`,
- * which is Android. [DesktopExtensionBootstrap] now loads the cross-platform extension jars in
- * `~/.cloudstream4/extensions` through `:feature:extensions`' `JvmExtensionRuntime` before the
- * window opens, so `Sources` counts what actually registered and a search queries it.
+ * which is Android. [SandboxedExtensions] now starts everything in `~/.cloudstream4/extensions` in
+ * sandboxed child processes before the window opens, and registers a proxy for each provider, so
+ * `Sources` counts what actually registered and a search queries it. No plugin code runs in this JVM.
  *
  * **Before the window, not inside the composition, and that is forced rather than chosen.**
  * `SearchViewModel` reads `source.sources()` once in its `init` block
@@ -67,10 +72,23 @@ import kotlinx.coroutines.runBlocking
  * the chrome row reading `0 / 0` until something else refreshed it. Loading first costs a directory
  * scan on an empty directory in the normal case; the trade is named in the bootstrap's KDoc.
  */
-fun main() {
-    // The report is printed, not logged: desktop has no logging and `JvmExtensionRuntime`
-    // deliberately has none either, so the host is where the words belong.
-    runBlocking { DesktopExtensionBootstrap().loadInstalled() }.lines().forEach(::println)
+fun main(args: Array<String>) {
+    // First, before any window or toolkit class: a packaged app starts its plugin hosts by running
+    // itself again, because a jpackage runtime has no `bin/java` to run instead.
+    if (args.firstOrNull() == PluginHost.ARGUMENT) {
+        PluginHost.main(args.copyOfRange(1, args.size))
+        return
+    }
+    if (args.firstOrNull() == CHECK_ARGUMENT) {
+        exitProcess(runExtensionCheck(args.getOrNull(1) ?: DEFAULT_CHECK_QUERY, verbose = VERBOSE_ARGUMENT in args))
+    }
+
+    if (args.firstOrNull() == SCAN_ARGUMENT) exitProcess(runExtensionScan())
+
+    // The report is printed, not logged: desktop has no logging, so the host is where the words go.
+    val extensions = SandboxedExtensions()
+    runBlocking { extensions.loadInstalled() }.lines().forEach(::println)
+    Runtime.getRuntime().addShutdownHook(Thread { extensions.close() })
 
     application {
         Window(
@@ -147,10 +165,19 @@ private fun SearchHost() {
             }
             viewModel.onAction(action)
         },
+        artwork = { item ->
+            // Only http(s) URLs to public hosts get this far: `SandboxedProvider`'s client drops the
+            // rest, because this request is made by the app and not from inside the sandbox.
+            PosterImage(url = item.posterUrl, modifier = Modifier.fillMaxSize())
+        },
     )
 }
 
 private const val WINDOW_TITLE = "CloudStream"
+private const val CHECK_ARGUMENT = "--check-extensions"
+private const val SCAN_ARGUMENT = "--scan-extensions"
+private const val DEFAULT_CHECK_QUERY = "nasa"
+private const val VERBOSE_ARGUMENT = "--verbose"
 
 /** The TV artboard at its own size: 1920×1080 artboard px halved. */
 private val ARTBOARD_WIDTH = 960.dp

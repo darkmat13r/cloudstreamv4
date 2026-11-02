@@ -61,6 +61,7 @@ internal fun SearchResultRails(
     groups: List<SearchResultGroup>,
     copy: SearchTvCopy,
     onAction: (SearchAction) -> Unit,
+    artwork: @Composable (SearchResultItem) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
@@ -68,7 +69,7 @@ internal fun SearchResultRails(
         verticalArrangement = Arrangement.spacedBy(CloudStreamDimens.MinFocusGap),
     ) {
         items(items = groups, key = { it.providerName }) { group ->
-            ProviderRail(group = group, copy = copy, onAction = onAction)
+            ProviderRail(group = group, copy = copy, onAction = onAction, artwork = artwork)
         }
     }
 }
@@ -78,6 +79,7 @@ private fun ProviderRail(
     group: SearchResultGroup,
     copy: SearchTvCopy,
     onAction: (SearchAction) -> Unit,
+    artwork: @Composable (SearchResultItem) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(modifier) {
@@ -104,7 +106,7 @@ private fun ProviderRail(
             ),
         ) {
             items(items = group.items, key = { it.id.value }) { item ->
-                ResultCard(item = item, onAction = onAction)
+                ResultCard(item = item, onAction = onAction, artwork = artwork)
             }
         }
     }
@@ -131,6 +133,7 @@ private fun ProviderRail(
 private fun ResultCard(
     item: SearchResultItem,
     onAction: (SearchAction) -> Unit,
+    artwork: @Composable (SearchResultItem) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     var focused by remember { mutableStateOf(false) }
@@ -160,6 +163,6 @@ private fun ResultCard(
     ) {
         // The artwork slot. Image loading is a platform concern and `SearchResultItem.posterUrl`
         // is deliberately a String: Coil's `AsyncImage` goes in the glue, not in commonMain.
-        Box(Modifier.fillMaxSize())
+        Box(Modifier.fillMaxSize()) { artwork(item) }
     }
 }
