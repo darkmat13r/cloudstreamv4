@@ -34,8 +34,10 @@ class HostLauncher internal constructor(
         readOnlyInputs: List<File>,
         writable: File,
         network: Boolean,
+        extraRules: List<String> = emptyList(),
+        jvmOptions: String = JVM_OPTIONS,
     ): Process {
-        val profile = SeatbeltProfile.render(executable, readable, readOnlyInputs, writable, network)
+        val profile = SeatbeltProfile.render(executable, readable, readOnlyInputs, writable, network, extraRules)
         val builder = ProcessBuilder(
             listOf(SeatbeltProfile.SANDBOX_EXEC, "-p", profile, executable.path) +
                 prefixArguments + arguments
@@ -44,9 +46,28 @@ class HostLauncher internal constructor(
         builder.environment().clear()
         builder.environment()["HOME"] = writable.path
         builder.environment()["TMPDIR"] = writable.path
-        builder.environment()["JAVA_TOOL_OPTIONS"] = JVM_OPTIONS
+        builder.environment()["JAVA_TOOL_OPTIONS"] = jvmOptions
         builder.directory(writable)
         return builder.start()
+    }
+
+    /**
+     * Starts the libVLC host under the plugin hosts' policy plus [SeatbeltProfile.mediaHostRules].
+     *
+     * @param vlcApp the VLC bundle. It is read, never written.
+     * @param writable the host's own directory, empty and not shared with anything.
+     */
+    fun startMediaHost(vlcApp: File, writable: File): Process {
+        val app = vlcApp.canonicalFile
+        return start(
+            arguments = emptyList(),
+            readOnlyInputs = emptyList(),
+            writable = writable,
+            network = true,
+            extraRules = SeatbeltProfile.mediaHostRules(app, writable),
+            jvmOptions = "$JVM_OPTIONS -Djava.awt.headless=true -Djava.io.tmpdir=${writable.path} " +
+                "-Djna.tmpdir=${writable.path}",
+        )
     }
 
     companion object {
@@ -55,7 +76,12 @@ class HostLauncher internal constructor(
         private const val DEV_MAIN = "com.lagradost.cloudstream4.feature.extensions.sandbox.PluginHostKt"
 
         /** `null` when this OS has no sandbox. There is no unsandboxed fallback, on purpose. */
-        fun forThisProcess(): HostLauncher? {
+        fun forThisProcess(): HostLauncher? = forHost(PluginHost.ARGUMENT, DEV_MAIN)
+
+        /** The same launcher, for the libVLC host: re-running [argument], or [devMain] out of a bundle. */
+        fun forMediaHost(argument: String, devMain: String): HostLauncher? = forHost(argument, devMain)
+
+        private fun forHost(argument: String, devMain: String): HostLauncher? {
             if (!File(SeatbeltProfile.SANDBOX_EXEC).canExecute()) return null
             val classpath = System.getProperty("java.class.path").orEmpty()
                 .split(File.pathSeparator).filter { it.isNotEmpty() }.map(::File)
@@ -63,12 +89,12 @@ class HostLauncher internal constructor(
             val packaged = System.getProperty("jpackage.app-path")?.let(::File)
             return if (packaged != null) {
                 val bundle = packaged.canonicalFile.parentFile.parentFile // <App>.app/Contents
-                HostLauncher(packaged.canonicalFile, listOf(PluginHost.ARGUMENT), listOf(bundle))
+                HostLauncher(packaged.canonicalFile, listOf(argument), listOf(bundle))
             } else {
                 val java = File(javaHome, "bin/java").canonicalFile
                 HostLauncher(
                     executable = java,
-                    prefixArguments = listOf("-cp", classpath.joinToString(File.pathSeparator), DEV_MAIN),
+                    prefixArguments = listOf("-cp", classpath.joinToString(File.pathSeparator), devMain),
                     readable = classpath + javaHome.canonicalFile,
                 )
             }

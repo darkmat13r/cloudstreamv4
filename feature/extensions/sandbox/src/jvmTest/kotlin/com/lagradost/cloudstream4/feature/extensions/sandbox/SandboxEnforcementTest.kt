@@ -165,6 +165,44 @@ class SandboxEnforcementTest {
         assertEquals(0 to "visible", cat(inside))
     }
 
+    /**
+     * The media policy is the plugin policy plus what libVLC needs, so what it must not gain is checked
+     * through the real `sandbox-exec`. The positive control is a path only those extra rules open.
+     */
+    @Test
+    fun `the media policy opens nothing of the user's`() {
+        if (HostLauncher.forThisProcess() == null) return
+        val writable = File(root, "media").apply { mkdirs() }
+        val vlc = File(root, "VLC.app").apply { mkdirs() }
+        val own = File(vlc, "library").apply { writeText("visible") }
+        val secret = File(outside, "secret.txt").apply { writeText("ssh key") }
+        val profile = SeatbeltProfile.render(
+            executable = File("/bin/cat"),
+            readable = emptyList(),
+            readOnlyInputs = emptyList(),
+            writable = writable,
+            network = true,
+            extraRules = SeatbeltProfile.mediaHostRules(vlc, writable),
+        )
+
+        fun cat(file: File): Pair<Int, String> {
+            val process = ProcessBuilder(SeatbeltProfile.SANDBOX_EXEC, "-p", profile, "/bin/cat", file.path)
+                .redirectErrorStream(true).start()
+            val output = process.inputStream.readBytes().decodeToString()
+            return process.waitFor() to output
+        }
+
+        assertEquals(0 to "visible", cat(own))
+        val (code, output) = cat(secret)
+        assertTrue(code != 0 && "Operation not permitted" in output, output)
+        val home = File(System.getProperty("user.home"))
+        listOf(".zshrc", ".bash_profile", ".profile", ".gitconfig", ".ssh/known_hosts")
+            .map { File(home, it) }.firstOrNull { it.isFile }?.let { profileFile ->
+                val (homeCode, homeOutput) = cat(profileFile)
+                assertTrue(homeCode != 0 && "Operation not permitted" in homeOutput, homeOutput)
+            }
+    }
+
     @Test
     fun `a control character in a path is refused`() {
         assertFailsWith<IllegalArgumentException> {

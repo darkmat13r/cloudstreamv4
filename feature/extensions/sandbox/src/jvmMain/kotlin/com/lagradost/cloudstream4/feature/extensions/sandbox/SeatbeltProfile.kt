@@ -24,6 +24,7 @@ internal object SeatbeltProfile {
      * @param readOnlyInputs the extension's own file.
      * @param writable the only directory the process may change.
      * @param network whether outbound traffic is allowed. Conversion has no use for it.
+     * @param extraRules whole SBPL rules for a host that needs more, from [mediaHostRules].
      */
     fun render(
         executable: File,
@@ -31,6 +32,7 @@ internal object SeatbeltProfile {
         readOnlyInputs: List<File>,
         writable: File,
         network: Boolean,
+        extraRules: List<String> = emptyList(),
     ): String = buildString {
         appendLine("(version 1)")
         appendLine("(deny default)")
@@ -66,7 +68,48 @@ internal object SeatbeltProfile {
             // Keeps a plugin away from services on this machine, the next-easiest thing to attack.
             appendLine("(deny network-outbound (remote ip \"localhost:*\"))")
         }
+        extraRules.forEach(::appendLine)
     }
+
+    /**
+     * What the libVLC host needs beyond a plugin host, and nothing that opens the home directory.
+     *
+     * Each entry was added because a denial stopped playback, read from the system log. Reads VLC's own
+     * bundle, and maps its libraries as code. Mapping from [writable] is for the one library JNA unpacks
+     * there; a host that can already run code gains nothing from it.
+     */
+    fun mediaHostRules(vlcApp: File, writable: File): List<String> = buildList {
+        add("(allow file-read* (subpath ${vlcApp.quoted()}))")
+        add("(allow file-map-executable (subpath ${vlcApp.quoted()}) (subpath ${writable.quoted()}))")
+        // Certificate checks are done by trustd, out of process: without it every https stream fails
+        // with -9808. Audio devices are CoreAudio's: without it, "No audio output devices found".
+        add("(allow mach-lookup")
+        MEDIA_MACH_SERVICES.forEach { add("  (global-name \"$it\")") }
+        add(")")
+        add("(allow ipc-posix-shm-read* ipc-posix-shm-write-data (ipc-posix-name-prefix \"AudioIO\"))")
+        add("(allow file-read*")
+        MEDIA_READS.forEach { add("  (subpath \"$it\")") }
+        add(")")
+    }
+
+    private val MEDIA_MACH_SERVICES = listOf(
+        "com.apple.trustd",
+        "com.apple.trustd.agent",
+        "com.apple.SecurityServer",
+        "com.apple.securityd.xpc",
+        "com.apple.ocspd",
+        "com.apple.audio.coreaudiod",
+        "com.apple.audio.audiohald",
+        "com.apple.audio.AudioComponentRegistrar",
+    )
+
+    /** System trust roots and audio plug-ins. None of it is under the user's home. */
+    private val MEDIA_READS = listOf(
+        "/Library/Keychains",
+        "/Library/Security",
+        "/private/var/db/mds",
+        "/Library/Audio/Plug-Ins",
+    )
 
     /**
      * [File] as an SBPL string literal, after resolving symlinks.

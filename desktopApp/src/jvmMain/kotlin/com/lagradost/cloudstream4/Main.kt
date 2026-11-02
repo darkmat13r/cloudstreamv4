@@ -38,9 +38,11 @@ import com.lagradost.cloudstream4.feature.search.SearchAction
 import com.lagradost.cloudstream4.feature.search.SearchEffect
 import com.lagradost.cloudstream4.feature.search.SearchViewModel
 import com.lagradost.cloudstream4.feature.search.tv.SearchScreenTv
+import com.lagradost.cloudstream4.player.MediaHost
 import com.lagradost.cloudstream4.player.PlayerScreen
 import com.lagradost.cloudstream4.player.PlayerUnavailable
 import com.lagradost.cloudstream4.player.VlcPlayer
+import com.lagradost.cloudstream4.player.runPlaybackCheck
 import com.lagradost.cloudstream4.search.DesktopSearchHistory
 import com.lagradost.cloudstream4.search.DesktopSearchSource
 import com.lagradost.cloudstream4.search.PosterImage
@@ -95,6 +97,14 @@ fun main(args: Array<String>) {
     if (args.firstOrNull() == PluginHost.ARGUMENT) {
         PluginHost.main(args.copyOfRange(1, args.size))
         return
+    }
+    if (args.firstOrNull() == MediaHost.ARGUMENT) {
+        MediaHost.main()
+        return
+    }
+    if (args.firstOrNull() == PLAYBACK_CHECK_ARGUMENT) {
+        val url = requireNotNull(args.getOrNull(1)) { "$PLAYBACK_CHECK_ARGUMENT needs a url" }
+        exitProcess(runPlaybackCheck(url, args.getOrNull(2)?.toIntOrNull() ?: DEFAULT_PLAYBACK_CHECK_SECONDS))
     }
     if (args.firstOrNull() == CHECK_ARGUMENT) {
         exitProcess(runExtensionCheck(args.getOrNull(1) ?: DEFAULT_CHECK_QUERY, verbose = VERBOSE_ARGUMENT in args))
@@ -273,6 +283,8 @@ private const val CHECK_ARGUMENT = "--check-extensions"
 private const val SCAN_ARGUMENT = "--scan-extensions"
 private const val DEFAULT_CHECK_QUERY = "nasa"
 private const val VERBOSE_ARGUMENT = "--verbose"
+private const val PLAYBACK_CHECK_ARGUMENT = "--check-playback"
+private const val DEFAULT_PLAYBACK_CHECK_SECONDS = 15
 
 /** The TV artboard at its own size: 1920×1080 artboard px halved. */
 private val ARTBOARD_WIDTH = 960.dp

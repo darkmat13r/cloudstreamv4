@@ -18,10 +18,10 @@ import kotlinx.coroutines.withContext
 /**
  * Titles and streams, from the sandboxed provider that produced the search result.
  *
- * A link leaves here only if it is http(s) to a public address, because **libVLC runs in this
- * process, outside the sandbox**, and these URLs are chosen by third-party code. The check covers only
- * the URL it is given. It cannot follow a redirect inside libVLC, stop a name changing address
- * afterwards, or see the segments a public HLS playlist points at (`KMP-15`).
+ * A link leaves here only if it is http(s) to a public address. libVLC runs in a sandboxed host, which
+ * cannot reach this machine but can reach its network, so this is what keeps a plugin from aiming it at
+ * the LAN. The check covers only the URL it is given. It cannot follow a redirect inside libVLC, stop a
+ * name changing address afterwards, or see the segments a public HLS playlist points at (`KMP-16`).
  */
 class DesktopDetailSource : DetailSource {
 
