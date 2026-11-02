@@ -185,12 +185,21 @@ fun rememberDesktopSearchCopy(): Pair<SearchTvCopy, SearchPrompts> {
         },
         recentHeadline = stringResource(Res.string.search_tv_recent_headline),
         recentCount = { count ->
-            pluralStringResource(Res.plurals.search_tv_recent_count, count, count)
+            pluralStringResource(Res.plurals.search_tv_recent_count, count, count).withCount(count)
         },
         clearAll = stringResource(Res.string.search_tv_clear_all),
         resultCount = { count ->
-            pluralStringResource(Res.plurals.search_tv_result_count, count, count)
+            pluralStringResource(Res.plurals.search_tv_result_count, count, count).withCount(count)
         },
     )
     return copy to prompts
 }
+
+/**
+ * Fills a bare `%d`, which Compose Resources leaves as literal text.
+ *
+ * It substitutes only positional `%1$d`, and these two plurals are authored with `%d`, which Android
+ * accepts, so the screen rendered "%d RESULTS". The real fix is in the authored strings, and it moves
+ * `core/strings/oracle-baseline`, so it is a decision rather than a side effect of this code.
+ */
+private fun String.withCount(count: Int): String = replace("%d", count.toString())

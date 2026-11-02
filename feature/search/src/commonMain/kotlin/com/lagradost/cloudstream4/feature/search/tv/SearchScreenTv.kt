@@ -17,6 +17,7 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamCardSizes
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.feature.search.SearchAction
 import com.lagradost.cloudstream4.feature.search.SearchContent
+import com.lagradost.cloudstream4.feature.search.SearchResultItem
 import com.lagradost.cloudstream4.feature.search.SearchState
 
 /**
@@ -61,6 +62,8 @@ import com.lagradost.cloudstream4.feature.search.SearchState
  * @param state the screen's state.
  * @param copy every word on screen, resolved. See [SearchTvCopy], and the open question in it.
  * @param onAction where the user's intent goes.
+ * @param artwork draws a result's poster. Image loading is the host's, so this module stays free of
+ *   an image library. The default draws nothing, which leaves the card's own placeholder.
  */
 @Composable
 fun SearchScreenTv(
@@ -68,6 +71,7 @@ fun SearchScreenTv(
     copy: SearchTvCopy,
     onAction: (SearchAction) -> Unit,
     modifier: Modifier = Modifier,
+    artwork: @Composable (SearchResultItem) -> Unit = {},
 ) {
     Column(modifier.fillMaxSize()) {
         Spacer(Modifier.height(CloudStreamDimens.ChromeRowTop))
@@ -108,6 +112,7 @@ fun SearchScreenTv(
                     groups = content.groups,
                     copy = copy,
                     onAction = onAction,
+                    artwork = artwork,
                     modifier = Modifier
                         .padding(bottom = SearchScreenTvDefaults.ContentInsetBottom)
                         .fillMaxSize(),

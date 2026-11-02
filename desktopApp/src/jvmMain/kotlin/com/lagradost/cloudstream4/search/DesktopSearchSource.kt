@@ -33,15 +33,13 @@ import kotlinx.coroutines.withContext
  * thing that loaded one was `:app`'s `PluginManager`, over a `PathClassLoader` — an Android class —
  * so this source queried nothing on desktop and the chrome row read `Sources 0 / 0`.
  *
- * It is now filled by `:feature:extensions`' `JvmExtensionRuntime`, which
- * `DesktopExtensionBootstrap` runs over `~/.cloudstream4/extensions` before the window opens.
+ * It is now filled by `SandboxedExtensions` (`KMP-14`), which starts what is in
+ * `~/.cloudstream4/extensions` in sandboxed child processes and registers a proxy for each provider.
  * Nothing here changed to make that work, and nothing here knows about it: this source reads
- * `APIHolder.apis`, and the runtime fills the same global list the Android loader does.
+ * `APIHolder.apis`, and every entry in it answers by calling across the process boundary.
  *
  * **It is still empty for a user who has installed nothing**, and the `NO_SOURCES` outcome below is
- * the state that says so. A desktop runtime also only reaches the extensions that publish a plain
- * jar beside their `.cs3` — 5 of the 235 catalogue entries surveyed in `KMP-13` §2 — because a
- * `.cs3` is dex-only and cannot be loaded on a JVM at all.
+ * the state that says so.
  *
  * ## One state the contracts do not have
  *
