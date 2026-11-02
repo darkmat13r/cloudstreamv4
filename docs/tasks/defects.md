@@ -462,7 +462,7 @@ review this came out of.
 
 ## BUG-11 — desktop search opened on a blank screen and a blank button · **medium**
 
-**Status:** in pr · found 2026-11-02 by the owner, from a screenshot of the packaged app
+**Status:** done · #84 · found 2026-11-02 by the owner, from a screenshot of the packaged app
 
 `SearchViewModel.init` calls `prompts.idle()` while the host's composition is running, and
 `rememberDesktopSearchCopy` filled the holder that `idle()` reads in a `SideEffect`, which runs after
@@ -473,7 +473,24 @@ search, so none of them showed this screen settled, which is why it reached the 
 Fixed by writing the holder during composition. `DesktopSearchCopyTest` guards it, and it was run
 against the old order to confirm it fails there (`AssertionError` on the headline).
 
-**Left open:** `Browse home` does nothing on desktop (`HolderBackedPrompts.idle`), because there is no
-home screen to go to. It also takes initial focus, so typing needs a click in the field first. Both
-belong to the home vertical (plan §7, Phase 7 row 2), and hiding the button would break `StateView`'s
-rule that a full-surface state always has its one action.
+**Since closed by `KMP-17`:** `Browse home` did nothing on desktop, because there is no home to go to,
+and took initial focus, so typing needed a click first. Desktop's idle state now has no button and the
+field holds focus. TV is unchanged.
+
+---
+
+## BUG-12 — typing a desktop search said "Search failed" · **high**
+
+**Status:** in pr · found 2026-11-02 by rendering the real plugins while typing, with no Return
+
+`DesktopSearchSource.quickSearch` asked only providers declaring `hasQuickSearch`. Declaring it proves
+nothing: `MainAPI.quickSearch` throws `NotImplementedError` by default. So a user who typed and waited got
+"Search failed" with a stack trace on screen, and with no provider declaring it, `NO_SOURCES · 0 INSTALLED`.
+Return ran a full search, which hid it from every earlier check, because they all pressed Return.
+
+Measured with the five official plugins: the screen showed `NotImplementedError` from `CoroutineDebugging.kt`
+through `APIRepository.kt`. After the fix, typing `nasa` with no Return shows results, 26 of them from Dailymotion in the rendered view.
+
+Fixed: typing asks every source, using quick search where it works and a full search otherwise, and the error
+line keeps only its first line. `DesktopSearchSourceTest` covers it, and fails when a failed quick search does
+not fall back. **`:app`'s `SearchSource` was not checked for the same fault.**
