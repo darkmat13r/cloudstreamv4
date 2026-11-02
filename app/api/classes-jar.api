@@ -36901,6 +36901,9 @@ public final class com/lagradost/cloudstream3/widget/LinearRecycleViewLayoutMana
 public final class com/lagradost/cloudstream4/R : java/lang/Object {
 }
 
+public final class com/lagradost/cloudstream4/core/strings/R : java/lang/Object {
+}
+
 public final class com/lagradost/cloudstream4/search/ApiRepositorySearchSource : java/lang/Object, com/lagradost/cloudstream4/feature/search/SearchSource {
 	public static final field $stable I
 	public static final field FIRST_PAGE I
