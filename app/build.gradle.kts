@@ -309,6 +309,9 @@ dependencies {
     // UiState types in SearchPrompts' signatures are not transitive.
     implementation(project(":feature:search"))
     implementation(project(":core:designsystem"))
+
+    // Plan row 17: AndroidExtensionRuntime implements the seam :feature:extensions declares.
+    implementation(project(":feature:extensions"))
 }
 
 tasks.register<Jar>("androidSourcesJar") {
