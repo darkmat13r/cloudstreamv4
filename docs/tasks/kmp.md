@@ -1361,7 +1361,8 @@ Checked two ways, because the whole plan turns on it.
 So the obvious plan — point the existing flow at a JVM loader — **is dead**, and that is the finding
 this entry exists to record. `PathClassLoader` is not an inconvenience in the loader; the artefact
 itself is Dalvik bytecode. A JVM runtime over the `.cs3` would need a dex-to-JVM converter, which is
-not a dependency anyone should be asked to approve for this.
+not a dependency anyone should be asked to approve for this. **Superseded by `KMP-14`:** the owner
+approved one on 2026-11-02.
 
 ### 2. What makes it possible anyway: a second, plain-JVM artefact already exists
 
@@ -1524,6 +1525,120 @@ identifier and the JVM accepts.
       main↔test compilation association. If it does not, the fixture plugin will not compile and the
       block moves (or `jvmTest` gets its own `:library` line)
 - [ ] A `docs/HANDOVER.md` row for this, which this branch did not touch
+
+---
+
+## KMP-14 — sandboxed extensions on desktop, and `.cs3` conversion · **measured 2026-11-02**
+
+**Status:** built 2026-11-02 on `claude/desktop-plugins-sandbox`, not yet in a PR · owner approved
+`de.femtopedia.dex2jar:dex-translator` 2.4.38 the same day, reversing `KMP-13` §1's "not a dependency
+anyone should be asked to approve", because 230 of 235 surveyed extensions publish no jar.
+
+`KMP-13` ran extensions **inside the app's JVM**, with the user's whole account. The owner asked for
+plugins to run in a sandbox, with security checks, converted where needed. `:desktopApp` no longer
+loads a plugin class at all. `JvmExtensionRuntime` is now used only *inside* a host.
+
+### The pipeline, per `*.jar` / `*.cs3`, every launch
+
+| | Step | Runs in | What it can do |
+|---|---|---|---|
+| 1 | Hash, against a `.sha256` sidecar or `DesktopExtensionPins`. Mismatch refuses | app | |
+| 2 | Copy, or convert with dex2jar, to `.store/<sha256>.jar` | sandbox: **no network**, writes only `.store` | parses hostile bytes, runs no plugin code |
+| 3 | `ExtensionScanner`: constant pool, native methods, zip structure | app, so a plugin cannot forge its verdict | never class-loads |
+| 4 | One host process per extension, under Seatbelt | sandbox: network, writes only its own `.sandbox/<name>` | runs plugin code |
+
+`SandboxedProvider` in `APIHolder` proxies across a hand-written frame protocol, so `DesktopSearchSource`
+needed no change. **Java serialization across this boundary would hand a plugin code execution in the
+app**; the protocol can express only strings, numbers and lists of fixed records. Replies are cleaned
+of control characters, capped, and posters are limited to http(s) on public hosts.
+
+No sandbox available (anything but macOS today) means **nothing loads**. There is no in-process fallback.
+
+### What was measured, and how
+
+**Enforcement.** `SandboxEnforcementTest` runs a real child under the real policy, with a positive control
+beside each denial. Denied: reading outside its directory including the real `$HOME`, writing outside
+including its own jar, starting any process, connecting to localhost. Its environment has none of the
+user's variables. **Checked a second way by mutation:** with `(deny default)` changed to `(allow default)`,
+5 of the 11 tests fail, exactly the file and process ones. The localhost rule is an explicit deny and
+holds regardless, as intended.
+
+**Conversion is behaviour-preserving, on the only evidence available.** The five official extensions
+publish both artefacts. Run through the packaged app, `.cs3` and author's `.jar` gave identical
+per-provider outcomes in `--check-extensions`.
+
+**The five official extensions, query `nasa`, packaged `.app`, converted from `.cs3`:**
+
+| Provider | Search | Open | Links | Why |
+|---|---|---|---|---|
+| YouTube | 17 | yes | **14 links**, 21 subtitles | needed `NewPipe.init` in the host |
+| Dailymotion | 26 | yes | 0 | `:library`'s extractor throws: `subtitles.data` is now `[]` where it expects an object. See below |
+| Internet Archive | 26 | yes | 0 for that (audio) item | the first hit was audio on both queries tried; a video item is not yet measured |
+| Twitch | 38 | no | | twitchtracker.com page has no `#app-title` for this JVM. Cause not established |
+| Invidious | 0 | | | the default instance answers `403` (curl agrees). Not ours |
+
+**Scanner and converter across the wider catalogue, with no plugin code run** (`--scan-extensions`, 90 files
+sampled from 34 repositories of 543 entries, static only):
+
+- 89 of 89 real files convert. The 90th was a 0-byte download.
+- 88 clean of blocks, **1 blocked**, for referencing `dalvik/system` (dynamic code loading). 82 have no warnings.
+- By class reference, **50 of 89 now resolve completely** against the host, up from 13 before the shims.
+- 72 of 89 extend `Plugin`, so nothing would have loaded without that shim. 15 of 89 are
+  `requiresResources`, and will fail wherever they touch `R`.
+
+**Of everything sampled, only the five official extensions and test fixtures were ever executed.** "Resolves" is a linkage count, not a
+claim that any of them works; the class-level number is a floor because JVM linking is lazy and settings
+UI classes fail only if opened.
+
+### Limits a reader should not have to discover
+
+- **Static scanning is triage.** It is defeated by anything obfuscated. The sandbox is the boundary.
+- **Network is unrestricted to the public internet.** A plugin can send anything it can see, which is its
+  own directory. Seatbelt can exclude localhost but not LAN ranges, so **a plugin can reach the local
+  network**. There is no per-plugin host allow-list.
+- **No CPU or disk quota.** Heap is capped at 512 MB and `ActiveProcessorCount=4`; a host can still spin
+  and can fill its directory. Calls time out at 60 s.
+- **Posters are fetched and decoded by the app, outside the sandbox.** Hosts are checked as written, so a
+  public name resolving to a private address passes, and a malformed image reaches Skia.
+- **`sandbox-exec` is deprecated by Apple.** It works here (Darwin 27) and has no replacement for an
+  unsigned app. A real distribution would look at App Sandbox with XPC.
+- **Cost:** 85–130 MB RSS per host, one per extension, all started before the window opens.
+- `BuildKonfig` API keys are on the classpath a plugin can read, as they are on Android.
+
+### Found on the way and not fixed
+
+```
+Found: Dailymotion extractor fails on a current API response (`subtitles.data` is `[]`) in :library's extractors
+Suggest: accept the array form
+Why: every provider using it returns 0 links, on Android too if the response is the same. Extractors are extension ABI, so this wants its own change
+
+Found: 7 plurals use bare %d in core/strings values/strings.xml (`search_tv_result_count`, `search_tv_recent_count`, `downloads_active`, `downloads_queued`, `links_hidden`, `search_state_no_results_body`, `search_state_partial_headline`), in 27 files
+Suggest: author them as %1$d. Compose Resources substitutes only positional arguments, so they render literally off Android
+Why: the fix moves core/strings/oracle-baseline, so it is the owner's call. DesktopSearchCopy works around the two it shows
+```
+
+### What is not done
+
+- **Playback and a detail screen.** Opening a result still prints to stdout: no desktop artboard exists, and
+  `screen-implementation-handover.md` §7 Phase B forbids improvising one. `SandboxedProvider.details` and
+  `.links` are ready for it.
+- **A catalogue UI.** Installing is still "put a file in the directory".
+- **The live window was not driven.** On 2026-11-02 macOS refused screen capture and reported no frontmost
+  process, consistent with a locked session. The window was confirmed to open at 960x540 and stay alive, and
+  the screen was verified with `ImageComposeScene` over the real ViewModel and real hosts. **Keyboard input
+  in the real window is unverified.**
+- The scan has no user override, and `requiresResources` gets no resource table.
+- `:feature:extensions:sandbox` has no conversion test: no dex fixture can be committed without a binary.
+  Done by hand with d8: a `Plugin`-style fixture dexed, converted and answering in the packaged app.
+
+### Gates, 2026-11-02, local on this tree
+
+`abi=0 check=0 extapi=0 canary=0`, and `:desktopApp:packageDmg` exit 0. The `app/api` dump is unchanged.
+
+### Running it
+
+    CloudStream --check-extensions "query" [--verbose]   # load, search, open, links, per provider
+    CloudStream --scan-extensions                        # convert and scan; runs no plugin code
 
 ---
 
