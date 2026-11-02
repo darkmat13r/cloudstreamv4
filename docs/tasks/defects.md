@@ -457,3 +457,23 @@ have caught the installation either way. The source scan above is the check that
 `app/api/classes-jar.api:28106`; `javap` on `media3-datasource:1.9.3` and `okhttp-jvm` 5.3.2/5.5.0;
 `app/build/reports/lint-results-prereleaseDebug.xml`. See `KMP-02` in `docs/tasks/kmp.md` for the
 review this came out of.
+
+---
+
+## BUG-11 — desktop search opened on a blank screen and a blank button · **medium**
+
+**Status:** in pr · found 2026-11-02 by the owner, from a screenshot of the packaged app
+
+`SearchViewModel.init` calls `prompts.idle()` while the host's composition is running, and
+`rememberDesktopSearchCopy` filled the holder that `idle()` reads in a `SideEffect`, which runs after
+it. So the idle state was built from empty strings: no headline, no body, a focused button with no
+label. Present on master since the desktop host landed. Earlier offscreen renders went straight to a
+search, so none of them showed this screen settled, which is why it reached the owner.
+
+Fixed by writing the holder during composition. `DesktopSearchCopyTest` guards it, and it was run
+against the old order to confirm it fails there (`AssertionError` on the headline).
+
+**Left open:** `Browse home` does nothing on desktop (`HolderBackedPrompts.idle`), because there is no
+home screen to go to. It also takes initial focus, so typing needs a click in the field first. Both
+belong to the home vertical (plan §7, Phase 7 row 2), and hiding the button would break `StateView`'s
+rule that a full-surface state always has its one action.

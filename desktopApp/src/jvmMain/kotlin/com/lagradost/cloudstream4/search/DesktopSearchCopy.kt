@@ -1,7 +1,6 @@
 package com.lagradost.cloudstream4.search
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.remember
 import com.lagradost.cloudstream4.core.designsystem.state.FailureNotice
 import com.lagradost.cloudstream4.core.designsystem.state.StateAction
@@ -157,22 +156,23 @@ fun rememberDesktopSearchCopy(): Pair<SearchTvCopy, SearchPrompts> {
     val retryFailed = stringResource(Res.string.search_state_retry_failed)
     val partialHeadline = stringResource(Res.string.search_state_failed_headline)
 
-    SideEffect {
-        holder.idleHeadline = idleHeadline
-        holder.idleBody = idleBody
-        holder.idleAction = idleAction
-        holder.noResultsHeadline = noResultsHeadline
-        holder.noResultsBody = noResultsBody
-        holder.noResultsAction = noResultsAction
-        holder.noResultsDetailTemplate = noResultsDetail
-        holder.failedHeadline = failedHeadline
-        holder.failedBody = failedBody
-        holder.offlineHeadline = offlineHeadline
-        holder.offlineBody = offlineBody
-        holder.retry = retry
-        holder.retryFailed = retryFailed
-        holder.partialHeadline = partialHeadline
-    }
+    // Written during composition, not in a SideEffect: the host builds the ViewModel in this same
+    // composition and its init reads idle(), so a later write left the screen with blank words and a
+    // blank button. Each write is an idempotent store of a resolved string.
+    holder.idleHeadline = idleHeadline
+    holder.idleBody = idleBody
+    holder.idleAction = idleAction
+    holder.noResultsHeadline = noResultsHeadline
+    holder.noResultsBody = noResultsBody
+    holder.noResultsAction = noResultsAction
+    holder.noResultsDetailTemplate = noResultsDetail
+    holder.failedHeadline = failedHeadline
+    holder.failedBody = failedBody
+    holder.offlineHeadline = offlineHeadline
+    holder.offlineBody = offlineBody
+    holder.retry = retry
+    holder.retryFailed = retryFailed
+    holder.partialHeadline = partialHeadline
 
     val copy = SearchTvCopy(
         fieldPlaceholder = stringResource(Res.string.search_tv_field_placeholder),
