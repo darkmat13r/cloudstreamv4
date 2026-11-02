@@ -6,10 +6,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.lagradost.cloudstream4.core.designsystem.state.FailureNotice
-import com.lagradost.cloudstream4.core.designsystem.state.StateAction
-import com.lagradost.cloudstream4.core.designsystem.state.StatePrompt
-import com.lagradost.cloudstream4.core.designsystem.state.UiState
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.search.SearchContent
 import com.lagradost.cloudstream4.feature.search.SearchHistoryEntry
@@ -18,6 +14,7 @@ import com.lagradost.cloudstream4.feature.search.SearchResultId
 import com.lagradost.cloudstream4.feature.search.SearchResultItem
 import com.lagradost.cloudstream4.feature.search.SearchSources
 import com.lagradost.cloudstream4.feature.search.SearchState
+import com.lagradost.cloudstream4.feature.search.SearchStatus
 
 /**
  * One preview per state the screen owes, at the artboard's own size.
@@ -37,16 +34,6 @@ import com.lagradost.cloudstream4.feature.search.SearchState
  */
 private const val TV_WIDTH_DP = 960
 private const val TV_HEIGHT_DP = 540
-
-private val PreviewCopy = SearchTvCopy(
-    fieldPlaceholder = "Search all sources",
-    sourcesLabel = "Sources",
-    sourcesCount = { selected, total -> "$selected / $total" },
-    recentHeadline = "Recent searches",
-    recentCount = { "$it SAVED" },
-    clearAll = "Clear all searches",
-    resultCount = { "$it RESULTS" },
-)
 
 private val PreviewSources = SearchSources(selected = 12, total = 48)
 
@@ -79,9 +66,6 @@ private val PreviewRecent = listOf(
     SearchHistoryEntry("dune", "last week"),
 )
 
-private fun prompt(headline: String, body: String, label: String) =
-    StatePrompt(headline = headline, body = body, action = StateAction(label) {})
-
 @Composable
 private fun PreviewGround(content: @Composable () -> Unit) {
     CloudStreamTheme {
@@ -90,11 +74,10 @@ private fun PreviewGround(content: @Composable () -> Unit) {
 }
 
 @Composable
-private fun PreviewScreen(content: UiState<SearchContent>, query: String = "blade runner") {
+private fun PreviewScreen(status: SearchStatus, query: String = "blade runner") {
     PreviewGround {
         SearchScreenTv(
-            state = SearchState(query = query, sources = PreviewSources, content = content),
-            copy = PreviewCopy,
+            state = SearchState(query = query, sources = PreviewSources, status = status),
             onAction = {},
         )
     }
@@ -103,85 +86,42 @@ private fun PreviewScreen(content: UiState<SearchContent>, query: String = "blad
 /** Artboard 4a — one rail per provider. */
 @Preview(name = "Results", widthDp = TV_WIDTH_DP, heightDp = TV_HEIGHT_DP)
 @Composable
-private fun SearchResultsPreview() =
-    PreviewScreen(UiState.Content(SearchContent.Results(PreviewGroups)))
+private fun SearchResultsPreview() = PreviewScreen(SearchStatus.Showing(SearchContent.Results(PreviewGroups)))
 
 /** Artboard 4b — three of twelve sources failed; the shortfall rides the chip row. */
 @Preview(name = "Partial", widthDp = TV_WIDTH_DP, heightDp = TV_HEIGHT_DP)
 @Composable
 private fun SearchPartialPreview() = PreviewScreen(
-    UiState.Partial(
-        value = SearchContent.Results(PreviewGroups),
-        notice = FailureNotice(
-            headline = "3 sources failed",
-            detail = "TIMEOUT 10S",
-            retry = StateAction("Retry failed") {},
-        ),
-    ),
+    SearchStatus.Partial(SearchContent.Results(PreviewGroups), answered = 9, total = 12, detail = "TIMEOUT 10S"),
 )
 
 /** Artboard 4c — what you see before typing. */
 @Preview(name = "Recent", widthDp = TV_WIDTH_DP, heightDp = TV_HEIGHT_DP)
 @Composable
 private fun SearchRecentPreview() =
-    PreviewScreen(UiState.Content(SearchContent.Recent(PreviewRecent)), query = "")
+    PreviewScreen(SearchStatus.Showing(SearchContent.Recent(PreviewRecent)), query = "")
 
 /** `TV Search Suggestions` artboard 8c — every source answered and none of them carry it. */
 @Preview(name = "No results", widthDp = TV_WIDTH_DP, heightDp = TV_HEIGHT_DP)
 @Composable
-private fun SearchNoResultsPreview() = PreviewScreen(
-    UiState.Empty(
-        prompt = prompt(
-            headline = "No results",
-            body = "All twelve selected sources answered and none of them carry it.",
-            label = "Search everything",
-        ),
-        detail = "12 QUERIED · 12 ANSWERED · 0 FAILED · 0 RESULTS",
-    ),
-)
+private fun SearchNoResultsPreview() = PreviewScreen(SearchStatus.NoResults(queried = 12))
 
 /** First run: nothing typed and no history to show. */
 @Preview(name = "Idle", widthDp = TV_WIDTH_DP, heightDp = TV_HEIGHT_DP)
 @Composable
-private fun SearchIdlePreview() = PreviewScreen(
-    UiState.Empty(
-        prompt = prompt(
-            headline = "Search every source you have",
-            body = "Type a title. Results arrive one rail per source.",
-            label = "Browse home",
-        ),
-    ),
-    query = "",
-)
+private fun SearchIdlePreview() = PreviewScreen(SearchStatus.Idle, query = "")
 
 /** The skeleton, which must be a portrait rail and not the host's landscape default. */
 @Preview(name = "Loading", widthDp = TV_WIDTH_DP, heightDp = TV_HEIGHT_DP)
 @Composable
-private fun SearchLoadingPreview() = PreviewScreen(UiState.Loading)
+private fun SearchLoadingPreview() = PreviewScreen(SearchStatus.Loading)
 
 /** Every source failed. The detail is what a user can paste into a bug report. */
 @Preview(name = "Error", widthDp = TV_WIDTH_DP, heightDp = TV_HEIGHT_DP)
 @Composable
-private fun SearchErrorPreview() = PreviewScreen(
-    UiState.Error(
-        prompt = prompt(
-            headline = "Search failed",
-            body = "None of your twelve sources answered.",
-            label = "Try again",
-        ),
-        detail = "12 QUERIED · 0 ANSWERED · 12 FAILED",
-    ),
-)
+private fun SearchErrorPreview() = PreviewScreen(SearchStatus.Failed("12 QUERIED · 0 ANSWERED · 12 FAILED"))
 
 /** No network. Separate from Error because the user's next move differs. */
 @Preview(name = "Offline", widthDp = TV_WIDTH_DP, heightDp = TV_HEIGHT_DP)
 @Composable
-private fun SearchOfflinePreview() = PreviewScreen(
-    UiState.Offline(
-        prompt = prompt(
-            headline = "You are offline",
-            body = "Downloads are still available. Search needs a connection.",
-            label = "Try again",
-        ),
-    ),
-)
+private fun SearchOfflinePreview() = PreviewScreen(SearchStatus.Offline)

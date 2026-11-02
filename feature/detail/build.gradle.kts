@@ -14,6 +14,8 @@ kotlin {
         commonMain.dependencies {
             implementation(project(":core:ui"))
             implementation(project(":core:designsystem"))
+            // Every word on these screens comes from here (I18N-08), resolved where it is drawn.
+            implementation(project(":core:strings"))
         }
         jvmTest.dependencies {
             implementation(libs.kotlin.test)

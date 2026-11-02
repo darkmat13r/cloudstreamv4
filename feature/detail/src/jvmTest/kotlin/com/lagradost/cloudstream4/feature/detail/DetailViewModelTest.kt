@@ -1,8 +1,5 @@
 package com.lagradost.cloudstream4.feature.detail
 
-import com.lagradost.cloudstream4.core.designsystem.state.StateAction
-import com.lagradost.cloudstream4.core.designsystem.state.StatePrompt
-import com.lagradost.cloudstream4.core.designsystem.state.UiState
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertIs
@@ -29,20 +26,13 @@ class DetailViewModelTest {
         override suspend fun links(id: String, data: String) = links()
     }
 
-    private object Prompts : DetailPrompts {
-        private fun prompt(onRetry: () -> Unit) = StatePrompt("h", "b", StateAction("r", onRetry))
-        override fun failed(detail: String, onRetry: () -> Unit) = UiState.Error(prompt(onRetry), detail)
-        override fun linksFailed(detail: String, onRetry: () -> Unit) = UiState.Error(prompt(onRetry), detail)
-        override fun noLinks(onRetry: () -> Unit) = UiState.Empty(prompt(onRetry))
-    }
-
     private fun TestScope.model(source: DetailSource) =
-        DetailViewModel("id", source, Prompts, TestScope(UnconfinedTestDispatcher(testScheduler)))
+        DetailViewModel("id", source, TestScope(UnconfinedTestDispatcher(testScheduler)))
 
     @Test
     fun `a title loads`() = runTest {
         val vm = model(FakeSource({ movie }))
-        assertEquals(UiState.Content(movie), vm.state.value.content)
+        assertEquals(DetailLoad.Loaded(movie), vm.state.value.content)
         assertNull(vm.state.value.links)
     }
 
@@ -50,25 +40,25 @@ class DetailViewModelTest {
     fun `a failed load names the reason, and retry recovers`() = runTest {
         val source = FakeSource({ error("provider exploded") })
         val vm = model(source)
-        assertEquals("provider exploded", assertIs<UiState.Error>(vm.state.value.content).detail)
+        assertEquals("provider exploded", assertIs<DetailLoad.Failed>(vm.state.value.content).detail)
 
         source.detail = { movie }
         vm.onAction(DetailAction.Retry)
-        assertEquals(UiState.Content(movie), vm.state.value.content)
+        assertEquals(DetailLoad.Loaded(movie), vm.state.value.content)
     }
 
     @Test
     fun `asking to play shows the sources`() = runTest {
         val vm = model(FakeSource({ movie }, { listOf(link) }))
         vm.onAction(DetailAction.PlayRequested("data"))
-        assertEquals(UiState.Content(listOf(link)), vm.state.value.links)
+        assertEquals(DetailLoad.Loaded(listOf(link)), vm.state.value.links)
     }
 
     @Test
     fun `no links is empty, not an error`() = runTest {
         val vm = model(FakeSource({ movie }))
         vm.onAction(DetailAction.PlayRequested("data"))
-        assertIs<UiState.Empty>(vm.state.value.links)
+        assertIs<DetailLoad.Empty>(vm.state.value.links)
     }
 
     @Test
@@ -76,12 +66,12 @@ class DetailViewModelTest {
         val source = FakeSource({ movie }, { error("extractor down") })
         val vm = model(source)
         vm.onAction(DetailAction.PlayRequested("data"))
-        val failed = assertIs<UiState.Error>(vm.state.value.links)
+        val failed = assertIs<DetailLoad.Failed>(vm.state.value.links)
         assertEquals("extractor down", failed.detail)
 
         source.links = { listOf(link) }
-        failed.prompt.action?.onActivate?.invoke()
-        assertEquals(UiState.Content(listOf(link)), vm.state.value.links)
+        vm.onAction(DetailAction.RetryLinks)
+        assertEquals(DetailLoad.Loaded(listOf(link)), vm.state.value.links)
     }
 
     @Test
@@ -89,12 +79,12 @@ class DetailViewModelTest {
         val gate = CompletableDeferred<List<StreamLink>>()
         val vm = model(FakeSource({ movie }, { gate.await() }))
         vm.onAction(DetailAction.PlayRequested("data"))
-        assertEquals(UiState.Loading, vm.state.value.links)
+        assertEquals(DetailLoad.Loading, vm.state.value.links)
 
         vm.onAction(DetailAction.LinksDismissed)
         gate.complete(listOf(link))
         assertNull(vm.state.value.links)
-        assertEquals(UiState.Content(movie), vm.state.value.content, "the page does not reload")
+        assertEquals(DetailLoad.Loaded(movie), vm.state.value.content, "the page does not reload")
     }
 
     @Test
@@ -109,7 +99,7 @@ class DetailViewModelTest {
         vm.onAction(DetailAction.PlayRequested("episode 1"))
         vm.onAction(DetailAction.PlayRequested("episode 2"))
         slow.complete(listOf(link))
-        assertEquals(UiState.Content(listOf(newer)), vm.state.value.links)
+        assertEquals(DetailLoad.Loaded(listOf(newer)), vm.state.value.links)
     }
 
     @Test

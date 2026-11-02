@@ -36901,20 +36901,6 @@ public final class com/lagradost/cloudstream3/widget/LinearRecycleViewLayoutMana
 public final class com/lagradost/cloudstream4/R : java/lang/Object {
 }
 
-public final class com/lagradost/cloudstream4/search/AndroidSearchCopyKt : java/lang/Object {
-	public static final fun rememberSearchTvCopy (Landroidx/compose/runtime/Composer;I)Lcom/lagradost/cloudstream4/feature/search/tv/SearchTvCopy;
-}
-
-public final class com/lagradost/cloudstream4/search/AndroidSearchPrompts : java/lang/Object, com/lagradost/cloudstream4/feature/search/SearchPrompts {
-	public static final field $stable I
-	public fun <init> (Landroid/content/Context;Lkotlin/jvm/functions/Function0;)V
-	public fun failed (Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lcom/lagradost/cloudstream4/core/designsystem/state/UiState$Error;
-	public fun idle ()Lcom/lagradost/cloudstream4/core/designsystem/state/UiState$Empty;
-	public fun noResults (Ljava/lang/String;ILkotlin/jvm/functions/Function0;)Lcom/lagradost/cloudstream4/core/designsystem/state/UiState$Empty;
-	public fun offline (Lkotlin/jvm/functions/Function0;)Lcom/lagradost/cloudstream4/core/designsystem/state/UiState$Offline;
-	public fun partial (IILjava/lang/String;Lkotlin/jvm/functions/Function0;)Lcom/lagradost/cloudstream4/core/designsystem/state/FailureNotice;
-}
-
 public final class com/lagradost/cloudstream4/search/ApiRepositorySearchSource : java/lang/Object, com/lagradost/cloudstream4/feature/search/SearchSource {
 	public static final field $stable I
 	public static final field FIRST_PAGE I

@@ -98,7 +98,7 @@ class DesktopSearchSource : SearchSource {
         request: suspend (APIRepository) -> Resource<com.lagradost.cloudstream3.SearchResponseList>,
     ): SearchOutcome = withContext(Dispatchers.IO) {
         val repos = repositories()
-        // Not Complete(emptyList()): that routes to `SearchPrompts.noResults`, whose drawn 8c copy
+        // Not Complete(emptyList()): that routes to `SearchStatus.NoResults`, whose drawn 8c copy
         // says "All nine selected sources answered and none of them carry it" — with nothing
         // queried that sentence blames the catalogue for a configuration problem. `:app`'s
         // implementation reached the same conclusion independently.

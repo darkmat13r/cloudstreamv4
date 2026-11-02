@@ -59,4 +59,3 @@ art scales, because scaling words makes them shimmer.
   an image's shape.
 - The idle body says "one rail per source", and desktop draws a grid. It is the shared string, and changing
   it moves `core/strings/oracle-baseline`.
-- `SearchTvCopy` and `DetailTvCopy` are reused because the words mean the same. The names are now too narrow.

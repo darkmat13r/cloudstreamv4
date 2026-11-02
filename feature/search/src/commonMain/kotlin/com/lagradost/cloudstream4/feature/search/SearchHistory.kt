@@ -12,7 +12,7 @@ import androidx.compose.runtime.Immutable
  * `I18N-06` measured that even the digits differ between Temurin 17 and Android API 36 for `ar`.
  * A `commonMain` module with no string loader cannot do it, and a `Long` on this type would push
  * the problem into the screen, which is the one place that must not hold copy. So the producer
- * resolves it, exactly as `SearchPrompts` resolves the state copy.
+ * resolves it.
  *
  * ## What the stored history does not have
  *

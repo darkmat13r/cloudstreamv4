@@ -28,7 +28,6 @@ import com.lagradost.cloudstream4.core.designsystem.desktop.forDesktop
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
 import com.lagradost.cloudstream4.detail.DesktopDetailViewModels
-import com.lagradost.cloudstream4.detail.rememberDesktopDetailCopy
 import com.lagradost.cloudstream4.extensions.SandboxedExtensions
 import com.lagradost.cloudstream4.extensions.runExtensionCheck
 import com.lagradost.cloudstream4.extensions.runExtensionScan
@@ -49,7 +48,6 @@ import com.lagradost.cloudstream4.player.runPlaybackCheck
 import com.lagradost.cloudstream4.search.DesktopSearchHistory
 import com.lagradost.cloudstream4.search.DesktopSearchSource
 import com.lagradost.cloudstream4.search.PosterImage
-import com.lagradost.cloudstream4.search.rememberDesktopSearchCopy
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -217,11 +215,10 @@ private object DesktopSearchViewModels {
 
 @Composable
 private fun SearchHost(scope: CoroutineScope, onOpen: (String) -> Unit) {
-    val (copy, prompts) = rememberDesktopSearchCopy()
     val history = remember { DesktopSearchHistory() }
     val viewModel = remember {
         DesktopSearchViewModels.live
-            ?: SearchViewModel(source = DesktopSearchSource(), history = history, prompts = prompts, scope = scope)
+            ?: SearchViewModel(source = DesktopSearchSource(), history = history, scope = scope)
                 .also { DesktopSearchViewModels.live = it }
     }
     val state by viewModel.state.collectAsState()
@@ -229,12 +226,13 @@ private fun SearchHost(scope: CoroutineScope, onOpen: (String) -> Unit) {
         viewModel.effect.collect { effect ->
             when (effect) {
                 is SearchEffect.OpenResult -> onOpen(effect.id.value)
+                // Search is the only screen here, and its idle state draws no button that asks for this.
+                SearchEffect.BrowseHome -> Unit
             }
         }
     }
     SearchScreenDesktop(
         state = state,
-        copy = copy,
         // Recording a submitted search is the host's job, the same split :app uses. The state machine
         // stays unaware of storage, which is why it is a separate seam.
         onAction = { action ->
@@ -259,8 +257,7 @@ private fun DetailHost(
     onBack: () -> Unit,
     onPlay: (String, StreamLink) -> Unit,
 ) {
-    val (copy, prompts) = rememberDesktopDetailCopy()
-    val viewModel = remember(id) { DesktopDetailViewModels.get(id, prompts, scope) }
+    val viewModel = remember(id) { DesktopDetailViewModels.get(id, scope) }
     val state by viewModel.state.collectAsState()
     SideEffect {
         // The same two steps as the visible Back button: the source list first, then the page.
@@ -277,7 +274,6 @@ private fun DetailHost(
     }
     DetailScreenDesktop(
         state = state,
-        copy = copy,
         onAction = viewModel::onAction,
         onBack = onBack,
         artwork = { url -> PosterImage(url = url, modifier = Modifier.fillMaxSize()) },

@@ -23,8 +23,8 @@ sealed interface SearchContent {
     /**
      * Recent searches: artboard 4c, and the default state of the screen.
      *
-     * Only reached with a blank query, and only when there is history. With no history the state
-     * is a `UiState.Empty` carrying `SearchPrompts.idle()`, because a header over nothing is not
+     * Only reached with a blank query, and only when there is history. With no history the status
+     * is [SearchStatus.Idle], because a header over nothing is not
      * a screen.
      */
     @Immutable
