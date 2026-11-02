@@ -314,14 +314,15 @@ private fun String.sanitizedLog(): String =
  * A poster URL the app may fetch, or null.
  *
  * The image loader runs in this process, outside the sandbox, so a plugin must not be able to aim it
- * at `file:`, at this machine, or at the local network. Hosts are checked as written: a public name
- * that resolves to a private address gets past this, and that gap is recorded in `KMP-14`.
+ * at `file:`, at this machine, or at the local network. This is the cheap first filter, on the host
+ * as written. The host's poster client re-checks the address it really connects to, on every redirect,
+ * because a public name can resolve to a private address.
  */
 internal fun String?.httpUrlOrNull(): String? {
     val url = this?.sanitized() ?: return null
     val parsed = runCatching { URI(url) }.getOrNull() ?: return null
     if (parsed.scheme?.lowercase() !in HTTP_SCHEMES) return null
-    val host = parsed.host?.lowercase()?.trim('[', ']') ?: return null
+    val host = parsed.host?.lowercase()?.trim('[', ']')?.trimEnd('.') ?: return null
     return url.takeUnless { host == "localhost" || host.endsWith(".local") || PRIVATE_ADDRESS.matches(host) }
 }
 

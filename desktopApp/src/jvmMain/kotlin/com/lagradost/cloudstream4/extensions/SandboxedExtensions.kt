@@ -6,6 +6,7 @@ import com.lagradost.cloudstream4.feature.extensions.ExtensionVerification
 import com.lagradost.cloudstream4.feature.extensions.sandbox.ExtensionScanner
 import com.lagradost.cloudstream4.feature.extensions.sandbox.HostLauncher
 import com.lagradost.cloudstream4.feature.extensions.sandbox.PluginHostClient
+import com.lagradost.cloudstream4.feature.extensions.sandbox.SandboxPolicy
 import com.lagradost.cloudstream4.feature.extensions.sandbox.SandboxedProvider
 import com.lagradost.cloudstream4.feature.extensions.sandbox.ScanReport
 import com.lagradost.cloudstream4.feature.extensions.sandbox.ScanSeverity
@@ -88,6 +89,9 @@ class SandboxedExtensions(
         if (verification is ExtensionVerification.HashMismatch) {
             return refused("published hash ${verification.expected}, file is ${verification.actual}")
         }
+        // First, before anything is written: this directory is what the plugin can change.
+        val data = SandboxPolicy.dataDirectory(sandboxes, source.nameWithoutExtension)
+            ?: return refused("unsafe file name")
         val jar = try {
             toStore(source, launcher)
         } catch (failure: IllegalStateException) {
@@ -97,7 +101,6 @@ class SandboxedExtensions(
         if (scan.blocked) return refused("blocked by the security scan", scan)
         if (!start) return SandboxedLoad(source.name, verification, scan, 0, "scanned only")
 
-        val data = File(sandboxes, source.nameWithoutExtension)
         val (host, started) = PluginHostClient.start(launcher, jar, data, source.nameWithoutExtension)
         val remotes = started.getOrElse { failure ->
             host.close()

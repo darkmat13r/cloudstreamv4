@@ -1598,8 +1598,9 @@ UI classes fail only if opened.
   network**. There is no per-plugin host allow-list.
 - **No CPU or disk quota.** Heap is capped at 512 MB and `ActiveProcessorCount=4`; a host can still spin
   and can fill its directory. Calls time out at 60 s.
-- **Posters are fetched and decoded by the app, outside the sandbox.** Hosts are checked as written, so a
-  public name resolving to a private address passes, and a malformed image reaches Skia.
+- **Posters are fetched and decoded by the app, outside the sandbox.** Only public addresses are connected to,
+  checked at connection time on every redirect hop (`posterHttpClient`), but a malformed image still reaches
+  Skia and a poster request tells a site the user's IP address.
 - **`sandbox-exec` is deprecated by Apple.** It works here (Darwin 27) and has no replacement for an
   unsigned app. A real distribution would look at App Sandbox with XPC.
 - **Cost:** 85–130 MB RSS per host, one per extension, all started before the window opens.

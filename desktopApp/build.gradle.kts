@@ -40,6 +40,9 @@ kotlin {
             implementation(project(":core:data"))
             implementation(project(":library"))
         }
+        jvmTest.dependencies {
+            implementation(libs.kotlin.test)
+        }
     }
 }
 

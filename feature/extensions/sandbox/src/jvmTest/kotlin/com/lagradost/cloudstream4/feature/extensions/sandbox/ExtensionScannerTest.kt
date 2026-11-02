@@ -132,3 +132,23 @@ class ExtensionScannerTest {
         fun titles(query: String): List<String> = listOf(query.trim(), "result")
     }
 }
+
+class SandboxPolicyTest {
+    private val root = File.createTempFile("policy", "").apply { delete(); mkdirs() }.canonicalFile
+
+    @Test
+    fun `an extension name cannot leave the sandboxes directory`() {
+        // `...jar`, `..jar` and `.jar` give these names, and `..` would be the extensions root.
+        listOf("..", ".", "", ".hidden", "a..b", "a/b", "a b", "a\u001Bb", "x".repeat(65)).forEach { name ->
+            kotlin.test.assertNull(SandboxPolicy.dataDirectory(root, name), name)
+        }
+        assertEquals(File(root, "YoutubeProvider"), SandboxPolicy.dataDirectory(root, "YoutubeProvider"))
+    }
+
+    @Test
+    fun `a symlink at the target is refused`() {
+        val elsewhere = File.createTempFile("outside", "").apply { delete(); mkdirs() }
+        java.nio.file.Files.createSymbolicLink(File(root, "Linked").toPath(), elsewhere.toPath())
+        kotlin.test.assertNull(SandboxPolicy.dataDirectory(root, "Linked"))
+    }
+}
