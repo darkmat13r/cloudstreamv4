@@ -1563,7 +1563,7 @@ user's variables. **Checked a second way by mutation:** with `(deny default)` ch
 5 of the 11 tests fail, exactly the file and process ones. The localhost rule is an explicit deny and
 holds regardless, as intended.
 
-**Conversion is behaviour-preserving, on the only evidence available.** The five official extensions
+**Conversion is behaviour-preserving, on the only evidence available.** _Wrong for the wider catalogue: `KMP-18` found two dex2jar defects that broke 30 of 53 and 3 of 53 sampled plugins._ The five official extensions
 publish both artefacts. Run through the packaged app, `.cs3` and author's `.jar` gave identical
 per-provider outcomes in `--check-extensions`.
 
@@ -1775,6 +1775,181 @@ would have taken keystrokes mid-typing.
 
 **Not verified:** the live window, which this session cannot drive. No screenshot cases, because the plugin does
 not render here and cannot see KMP modules (`DEC-10`).
+
+---
+
+## KMP-18 — non-official plugins, reviewed and then run in the sandbox · **measured 2026-11-03**
+
+**Status:** branch `claude/kmp-18-third-party-plugins`, not merged. Owner's authorisation, 2026-11-02: "review
+for security issues before running anything", "convert to our app (as some plugin will contain android
+related things)". Everything was reviewed first, and everything that ran ran under Seatbelt.
+
+### What the sample was
+
+`recloudstream/cs-repos` `repos-db.json`: 34 repositories, 33 reachable, 582 plugins. Dropped by rule, before
+any download: the 5 in the verified official repo, 10 with `NSFW` in `tvTypes`, 42 not `status: 1`. From each
+remaining repo, the first 2 by `sha256("kmp18:" + internalName)`: 56 candidates. Ayu CloudStream Games (2) were
+then dropped unfetched: their 3 to 8 MB files probably bundle game content, and the limit is no media downloads.
+54 fetched, each in a fresh directory, and all converted and scanned statically: 53 jars, 1 conversion failure.
+
+From those, **15 chosen by hand for variety, one from each of 15 repositories**: clean ones, Android-heavy ones,
+`requiresResources`, remote-config, reflection, opaque payloads. So this is a sample picked to stress the
+review, **not** a measure of how many plugins in the catalogue work.
+
+### Verdicts
+
+Review is a second, independent constant-pool parser (no JVM, no class loading) over the jar `.store` holds,
+plus reading the classes it flagged. Secret-shaped strings were reported by class and kind, never by value.
+
+| Plugin (repo) | Verdict | Evidence |
+|---|---|---|
+| InternetArchive (Luna712) | run | one host; no reflection, files, loaders |
+| ARD (German) | run | public broadcasters' APIs only |
+| GuardaSerie (Italian) | run | one host |
+| BambooUA (CakesTwix) | run | one host |
+| 5movierulz (Phisher) | run, noted | `DonationManager`: GET of a goal file and a worker, plus what looks like an ad-network link. All dialog code, needs an activity, and a host has none |
+| BollyFlix (Megix) | run, noted | its base URLs come from a remote `urls.json`, so its targets cannot be fully reviewed in advance |
+| MovieLinkBD (CNC) | run, noted | Android-heavy; a WebView path that fails here; a donation dialog |
+| Nepu (raghav) | run, noted | a proof-of-work solver for the site's own Anubis challenge, sized by `availableProcessors`: CPU, not mining (host capped at 4) |
+| AnimeUnity (doGior) | run, noted | `requiresResources`; `Runtime.exit` in a settings restart, which would end only its host |
+| EgyBest (AllForU) | run, noted | an announcer dialog with a payment link; needs an activity |
+| **Aniyomi Compat** | **refused** | scanner Block: `dalvik/system`, downloads and loads APKs. No sandbox could make that a media provider |
+| **Mega repository** | **refused** | no provider at all; its one job is adding every catalogue repo to the user's repositories. Harmless here (`RepositoryManager` is absent and stays so) and pointless |
+| **Fshare (Vietnamese)** | **refused** | enumerates installed packages and hashes signing certificates, beside long opaque constants, behind deliberately meaningless identifiers (`f0001`, `c0001`). Purpose not established; that is the point |
+| **BingeCloud (FLUMMOX)** | **refused** | undeclared telemetry: a persistent random install ID, extension name and version, POSTed to a personal Cloudflare worker with a hard-coded token. A `Prewarm` class also sends HEAD requests to 9 hosts. It is not exfiltration of anything sensitive; it is not disclosed either |
+| **Eclipsia** | **refused** | More than 50 base64 strings, up to 16 KB each, that decode to JavaScript providers (decoded as data, by the review). Most call `fetch`. Nothing in the jar's constant pools describes what they do, which defeats this review and any scan. They name dozens of further hosts, one a raw IP behind `nip.io`. Also opens a local `ServerSocket`, which the policy does not allow |
+
+Outside the 15, in the static pool only: **AnimeON (CakesTwix) cannot be converted**, `OutOfMemoryError` at the
+conversion host's 512 MB from a 347 KB dex. It fails safely. The cap was not raised and the cause was not chased.
+
+### Two conversion defects, both real, both `KMP-14`'s
+
+The first baseline run found these. KMP-14's "behaviour-preserving" rested on 5 extensions, none of which hit them.
+
+- **dex2jar rewrites `-` to `_` in names.** `kotlin.Result.constructor-impl` became `constructor_impl`, a method
+  that does not exist: `NoSuchMethodError` from any inlined `runCatching`. Measured in the bytes: the dex has the
+  hyphen, the jar the underscore. **30 of 53 jars** refer to such a name on a `kotlin/` class.
+- **Dex 037 or later becomes class version 52, with no stack maps**, and the JVM refuses it: `VerifyError: Expecting
+  a stackmap frame`. Measured: 035 gives version 50, which needs none. **3 of 53.**
+
+`DexConverter` now sets `dontSanitizeNames(true)` and `computeFrames(true)`. Frames are computed from the dex's own
+hierarchy (`Dex2jar$1$1.getCommonSuperClass` reads a map, read in its bytecode), so no plugin class is loaded by it.
+The verifier was never turned off, and that was never an option. The store's name for a converted jar now carries a
+revision (`-c2`): the store persists, so a better converter would otherwise never reach an existing file.
+
+### Conversion: what was added
+
+Measured with `ScanReport.externalClasses`-equivalent lists over 53 jars against the bundle's own classes:
+
+| | before | after |
+|---|---|---|
+| jars that resolve completely | 26 | **41** |
+| distinct `android.*` / `androidx.*` classes missing | 164 | 54 |
+| distinct `com.lagradost.cloudstream3.*` classes missing | 22 | 11 |
+
+- **Real behaviour, because the run path needs it:** `Handler`, `Looper` and `Dispatchers.Main` (one stand-in main
+  thread; 15 of 53 refer to Main), `Bundle`, `Build.VERSION`, `SystemClock`, `Color`, `DataStore` and `CloudStreamApp`
+  keys on the host's own preferences, `Event`.
+- **Types and nothing else** for `android.view`, `android.widget`, `android.app`, fragments, bottom sheets: their real
+  hierarchy, for the verifier. `CommonActivity.activity` is null and `openSettings` is never called, so none is
+  constructed for real. A plugin that does call into one gets `NoSuchMethodError`, the rule `Context` already set.
+- **Failing on purpose.** `WebView` throws from its constructor. `CookieManager` stores nothing. `CloudflareKiller`
+  passes through, so a challenge stays visible to the plugin. `Context` still has no `getPackageManager`. `RepositoryManager`
+  and `PluginManager` stay absent. `WebViewResolver` was not touched and still fails.
+
+`AndroidShimGroupsTest` reads the shims' own constant pools and fails if any names a file, a socket, a process, a loader
+or reflection.
+
+**Not shimmed: `com.google.gson.Gson`**, 3 of 53. It is a real library and adding it is a dependency decision.
+
+### Results, in the packaged `.app`, each alone in a fresh extensions directory
+
+    env -i HOME=<fresh> CLOUDSTREAM4_EXTENSIONS_DIR=<fresh> PATH=/usr/bin:/bin CloudStream --check-extensions <q> --verbose
+
+No `--check-playback`, nothing played or downloaded. Link counts are listing only. Baseline is the same bundle before
+this task's code.
+
+| Plugin | Baseline | Now: load | Search | Open | Links |
+|---|---|---|---|---|---|
+| InternetArchive `nasa` | worked | yes | 26 | yes (audio) | 0 |
+| ARD `nasa` | `NoSuchMethodError: Result.constructor_impl` on open | yes | 31 | yes | **10**, 2 subtitles |
+| AnimeUnity `nasa` | `VerifyError`, no load | yes | 17 | yes, 42 episodes | **1** |
+| BollyFlix `nasa` | `NoClassDefFoundError: CloudflareKiller` | yes | 20 | yes | **5** |
+| MovieLinkBD `earth` (`nasa` gives 0) | `NoClassDefFoundError: AppCompatActivity`, no load | yes | 30 | yes | **1** |
+| EgyBest `earth` (`nasa` gives 0) | `VerifyError`, no load | yes | 4 | yes | **1** |
+| BambooUA `nasa` | `NoClassDefFoundError: Gson` on open | yes | 1 | **`NoClassDefFoundError: com/google/gson/Gson`** | |
+| 5movierulz `nasa`, `earth` | 0 results | yes | 0 | | cause not established; `curl` gets a 301, this plugin's site answers from Cloudflare |
+| Nepu `nasa`, `earth` | `NoClassDefFoundError: DataStore`, no load | yes | 0 | | `curl` gets `403`, `cf-mitigated: challenge`. Its solver needs a WebView, so 0 is expected |
+| GuardaSerie `nasa` | `NoClassDefFoundError: CloudflareKiller`, no load | yes | `UnknownHostException` | | the site's domain no longer resolves. Not ours |
+
+### The sandbox really was in force, and the network was public
+
+- **`sandbox_check(pid, NULL, 0)`, from outside, on every child seen:** 1 for every host, in every run; 0 for its parent
+  app, the control. Parent PID and `--plugin-host` in argv confirmed. A child was occasionally caught as `(CloudStream)` with no arguments, mid-exec; it returned 1 too.
+- **Peers, by `lsof` every 0.5 s:** no private, loopback or link-local address, and no listening socket, for any plugin.
+  Attributed by resolving each plugin's own hosts afterwards: in the final runs, 14 addresses match a host the plugin names. **9
+  public addresses are not attributed**, 8 in Cloudflare's ranges and 1 not. Redirects and extractor hosts would explain them, and
+  that was not established. Short connections can be missed between polls. IPs are all this can see.
+- **The owner's data:** `~/.cloudstream4` was listed before and after, and is unchanged.
+- **Denials could not be observed.** A control denial under `sandbox-exec` left nothing in `log show` here, with or
+  without `--info --debug`, so an empty log means nothing and none is claimed. What can be said is narrower: the host stderr captured
+  (`--verbose` keeps the first 12 lines per provider) never mentions `Operation not permitted` or `Permission denied`. `SandboxEnforcementTest` remains the proof of denial.
+
+### Scanner gaps, closed
+
+Fshare, Eclipsia and BingeCloud all had no Block from the scanner before this task. New rules, measured against all 53 jars before being
+added, where they fire only on what is listed:
+
+| Rule | Fires on | Severity |
+|---|---|---|
+| A long base64 constant decoding to a script, class, dex or zip | both Eclipsia plugins; not the 1 other long base64 string | Block |
+| `PackageManager.getInstalledPackages` / `getInstalledApplications` | Aniyomi, Fshare | Block |
+| Extending `ClassLoader`: inside a subclass, `defineClass` names the subclass, so the method rule never matched | none | Block |
+| Text naming `URLClassLoader`, `ProcessHandle`, `javax.script.`, `jdk.internal.`, `defineClass` and similar: the class rule blocked these only when not reached by reflection | none | Block |
+| `Runtime.exit` (only `halt` and `System.exit` warned), and a string that is exactly a device-ID key | AnimeUnity, NetNaija; BingeCloud, Otakutsu, FootReplays | Warn |
+
+**BingeCloud-style telemetry still only warns.** A key name is a hint, and a POST is ordinary. Static scanning cannot
+tell an analytics ping from a search.
+
+### Mutation checks
+
+Each edited alone, scoped tests run, each restored. All went red.
+
+| Mutation | Fails |
+|---|---|
+| No `dontSanitizeNames` | names test, real-host test |
+| No `computeFrames` | stack-map test, real-host test |
+| Each of 4 scanner rules removed | its test |
+| `WebView` stops throwing | webkit test, sandbox end-to-end |
+| A shim names `java.io.File` | the capability test |
+| Dispatcher guard removed | dispatcher test |
+| Dispatcher service entry removed | sandbox end-to-end |
+
+**The first round caught this task's own false test.** With both converter flags removed, the real-host test still passed:
+the fixture's source was on the test classpath, and a host loads parent-first, so it ran the original rather than the converted
+class. The source now lives outside any source root, and the test asserts it is not on the classpath.
+
+### Limits a reader should not have to discover
+
+- Nothing here is a claim that these 10 are **safe**. They contain nothing this review recognised as hostile, and that review
+  is static, of jars whose remote config and redirects it cannot see. The sandbox stays the boundary.
+- **LAN reachability and unchecked redirects from `KMP-14` are unchanged.** Not exercised against a hostile plugin here.
+- "Loads" is a floor. Only search, open and listing links ran, on the first result. Settings, home pages and most extractors did not.
+- The shims' `android.*` types cover what these 53 reach, and 54 classes remain missing: `Canvas`, `Path`, `Bitmap`, `ClipboardManager`, `MediaStore`.
+  Those were left alone on purpose where they are capabilities, and because nothing that ran needed them.
+
+### Found and not fixed
+
+```
+Found: the conversion host's writable directory is the whole `.store`, in SandboxedExtensions.toStore (`PluginHostClient.convert(launcher, source, staging, store)`)
+Suggest: give each conversion its own empty subdirectory and move the result out
+Why: dex2jar parses hostile bytes. A dex that exploited it could overwrite another extension's scanned jar, between that jar's scan and its host starting. Narrow, and no such exploit is known, and nothing here can test it without one
+```
+
+### Gates, local, scoped (the coordinator runs the full ones)
+
+`:feature:extensions:sandbox:jvmTest` 67 tests, 0 failures. `:desktopApp:jvmTest` 22, 0. `:desktopApp:createDistributable` 0.
+`checkExtensionApi` and `check` were not run here: this module is not on `:app`'s classpath.
 
 ---
 

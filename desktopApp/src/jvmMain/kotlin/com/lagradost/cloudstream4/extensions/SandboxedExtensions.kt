@@ -134,7 +134,10 @@ class SandboxedExtensions(
     private suspend fun toStore(source: File, launcher: HostLauncher): File = withContext(Dispatchers.IO) {
         // This order: extensions load in parallel, and mkdirs() is false for whoever comes second.
         check(store.mkdirs() || store.isDirectory) { "cannot create the extension store" }
-        val target = File(store, "${sha256(source)}$JAR_SUFFIX")
+        // A converted jar is named for its input *and* the converter, or a better converter would never
+        // reach a file converted by a previous one: the store is kept across launches.
+        val converter = if (source.name.endsWith(CS3_SUFFIX)) CONVERTER_REVISION else ""
+        val target = File(store, "${sha256(source)}$converter$JAR_SUFFIX")
         if (target.isFile) return@withContext target
         val staging = File(store, "${target.name}$STAGING_SUFFIX").apply { delete() }
         if (source.name.endsWith(CS3_SUFFIX)) {
@@ -195,6 +198,9 @@ class SandboxedExtensions(
         private const val SANDBOX_DIRECTORY = ".sandbox"
         private const val JAR_SUFFIX = ".jar"
         private const val CS3_SUFFIX = ".cs3"
+
+        /** Bump when `DexConverter`'s output changes. `-c2`: real names and stack maps (`KMP-18`). */
+        private const val CONVERTER_REVISION = "-c2"
         private const val SIDECAR_SUFFIX = ".sha256"
         private const val STAGING_SUFFIX = ".part"
         private const val MAX_SIDECAR_BYTES = 1024L
