@@ -194,7 +194,7 @@ private fun QueryField(
 
 /**
  * What an empty field says. Words only: the action is typing, and the field already has the caret. The
- * prompt's own button is `Browse home`, and desktop has no home to go to.
+ * prompt's own button is `Browse home`, and on desktop home is one press away in the window's own bar.
  */
 @Composable
 private fun IdleHint(prompt: StatePrompt) {
