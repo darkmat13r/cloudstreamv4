@@ -11,6 +11,7 @@ import androidx.compose.ui.InternalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.input.key.Key
 import androidx.compose.ui.input.key.KeyEvent
 import androidx.compose.ui.input.key.KeyEventType
@@ -42,6 +43,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
+import org.jetbrains.skia.Bitmap
 import org.jetbrains.skia.EncodedImageFormat
 
 /**
@@ -131,6 +133,19 @@ class HomeScreenTest {
         scene.click(Offset(WIDTH - 40f, ROW_HEADER_Y))
         assertTrue(actions.isEmpty(), "$actions")
         scene.close()
+    }
+
+    @Test
+    fun `the cards stay put when a row starts loading its next page`() {
+        fun firstCardTop(more: HomeMore): Int {
+            val scene = screen(state(HomeStatus.Showing(listOf(row("Popular").copy(more = more)))))
+            scene.settle()
+            val bitmap = Bitmap.makeFromImage(scene.render(SETTLE_FRAMES * FRAME_NANOS))
+            scene.close()
+            val grey = Color.DarkGray.toArgb()
+            return (0 until HEIGHT).first { bitmap.getColor(CARD_X.toInt() + PAST_ROW_TITLE, it) == grey }
+        }
+        assertEquals(firstCardTop(HomeMore.Idle), firstCardTop(HomeMore.Loading))
     }
 
     @Test
@@ -291,6 +306,8 @@ class HomeScreenTest {
         const val PICKER_X = 100f
         const val ROW_HEADER_Y = 86f
         const val CARD_X = 60f
+        /** Far enough along the first card to clear the row title above it. */
+        const val PAST_ROW_TITLE = 80
         const val CARD_Y = 200f
         const val SECOND_LINE_Y = 480f
         const val FIRST_PANEL_ROW_Y = 88f

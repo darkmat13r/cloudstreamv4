@@ -1778,7 +1778,7 @@ not render here and cannot see KMP modules (`DEC-10`).
 
 ---
 
-## KMP-18 — `:feature:home`: Phase 7's next vertical, on desktop · **measured 2026-11-02**
+## KMP-20 — `:feature:home`: Phase 7's next vertical, on desktop · **measured 2026-11-02**
 
 **Status:** in pr · desktop only. **TV screen not built**, though `design/TV Home.dc.html` covers it (below).
 
@@ -1835,6 +1835,9 @@ and ends the host. A call that passes its 60 s timeout removes its id, so a plug
 whole host, for search as much as for home.
 
 ---
+
+
+**Run against real plugins, in the sandbox, on 2026-11-03.** `--check-extensions` now reports each provider's first main-page section through `DesktopHomeSource`: Invidious 2 rows and 40 titles, Dailymotion 1 and 26, Twitch 1 and 20, Internet Archive and YouTube 0 rows. Later sections of those two were not checked by this command, and no window was driven. A row header now holds the button's height, because cards jumped 8 dp when `Next` became `Loading`; a test pins it and fails without the fix.
 
 ## KMP-08 — Track L: `:library` iOS surgery
 

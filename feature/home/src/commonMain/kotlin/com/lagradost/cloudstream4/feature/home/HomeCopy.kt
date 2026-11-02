@@ -29,7 +29,7 @@ import org.jetbrains.compose.resources.stringResource
 
 /**
  * [HomeStatus] as the design system draws it, in the composition's locale. Existing strings only, so
- * `core/strings/oracle-baseline` does not move (`docs/tasks/kmp.md`, `KMP-18`).
+ * `core/strings/oracle-baseline` does not move (`docs/tasks/kmp.md`, `KMP-20`).
  *
  * @param sourceName the selected source, which the failure sentence names.
  */
