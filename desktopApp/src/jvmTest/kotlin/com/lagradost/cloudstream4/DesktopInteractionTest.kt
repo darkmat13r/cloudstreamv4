@@ -31,6 +31,7 @@ import com.lagradost.cloudstream4.feature.search.SearchResultItem
 import com.lagradost.cloudstream4.feature.search.SearchState
 import com.lagradost.cloudstream4.feature.search.SearchStatus
 import com.lagradost.cloudstream4.feature.search.desktop.SearchScreenDesktop
+import com.lagradost.cloudstream4.player.Hud
 import com.lagradost.cloudstream4.player.PlayerStatus
 import com.lagradost.cloudstream4.player.SeekTrack
 import kotlin.test.Test
@@ -158,6 +159,79 @@ class DesktopInteractionTest {
         scene.close()
     }
 
+    /**
+     * The button leaves the composition as it is pressed, so focus inside it would go with it. Escape is
+     * only heard from inside the field, so it proves focus never left.
+     */
+    @Test
+    fun `the clear button empties the field and leaves focus in it`() {
+        val actions = mutableListOf<SearchAction>()
+        var query by mutableStateOf("nasa")
+        val scene = scene {
+            SearchScreenDesktop(SearchState(query = query, status = SearchStatus.NoResults(1)), { actions += it })
+        }
+        scene.settle()
+        // From the right edge in, because the readout beside the field is as wide as its string.
+        val x = generateSequence(WIDTH - 1f) { it - 4f }.takeWhile { it > 0f }.first { candidate ->
+            scene.sendPointerEvent(PointerEventType.Move, Offset(candidate, FIELD_CENTRE_Y))
+            scene.sendPointerEvent(PointerEventType.Press, Offset(candidate, FIELD_CENTRE_Y))
+            scene.sendPointerEvent(PointerEventType.Release, Offset(candidate, FIELD_CENTRE_Y))
+            scene.render(0)
+            actions.isNotEmpty()
+        }
+        assertEquals(listOf<SearchAction>(SearchAction.Cleared), actions, "at x=$x")
+        query = ""
+        scene.settle()
+
+        query = "again"
+        scene.settle()
+        actions.clear()
+        assertTrue(scene.sendKeyEvent(escape()), "focus is still in the field")
+        assertEquals(listOf<SearchAction>(SearchAction.Cleared), actions)
+        scene.close()
+    }
+
+    /** Nothing else on this screen takes focus, so Tab either wraps to the field or lands on the button. */
+    @Test
+    fun `tab does not land on the clear button`() {
+        val actions = mutableListOf<SearchAction>()
+        val scene = scene {
+            SearchScreenDesktop(SearchState(query = "nasa", status = SearchStatus.Loading), { actions += it })
+        }
+        scene.settle()
+        scene.sendKeyEvent(KeyEvent(Key.Tab, KeyEventType.KeyDown))
+        scene.sendKeyEvent(KeyEvent(Key.Tab, KeyEventType.KeyUp))
+        scene.settle()
+        assertTrue(scene.sendKeyEvent(escape()), "focus is still in the field")
+        assertEquals(listOf<SearchAction>(SearchAction.Cleared), actions)
+        scene.close()
+    }
+
+    @Test
+    fun `the transport buttons skip, toggle and go back`() {
+        val calls = mutableListOf<String>()
+        val status = PlayerStatus(playing = true, buffering = false, positionMillis = 0, lengthMillis = 100_000)
+        val scene = scene {
+            Hud(
+                caption = "T",
+                status = status,
+                onTogglePause = { calls += "toggle" },
+                onSeekTo = { calls += "track" },
+                onSeekBy = { calls += "by $it" },
+                onBack = { calls += "back" },
+            )
+        }
+        scene.settle()
+        // A row 720 wide at most, centred, inset 16, of 36dp buttons 16 apart.
+        val y = HEIGHT - 50f
+        scene.click(Offset(174f, y))
+        scene.click(Offset(226f, y))
+        scene.click(Offset(278f, y))
+        scene.click(Offset(42f, 42f))
+        assertEquals(listOf("by -10000", "toggle", "by 10000", "back"), calls)
+        scene.close()
+    }
+
     private fun escape() = KeyEvent(Key.Escape, KeyEventType.KeyDown)
 
     private companion object {
@@ -170,5 +244,7 @@ class DesktopInteractionTest {
         const val CARD_Y = 200f
         /** Inside the first row: below the panel's title row. */
         const val FIRST_PANEL_ROW_Y = 88f
+        /** A 24dp margin, then half of the 40dp field. */
+        const val FIELD_CENTRE_Y = 44f
     }
 }
