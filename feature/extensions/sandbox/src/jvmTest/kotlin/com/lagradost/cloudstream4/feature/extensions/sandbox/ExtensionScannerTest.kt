@@ -152,3 +152,39 @@ class SandboxPolicyTest {
         kotlin.test.assertNull(SandboxPolicy.dataDirectory(root, "Linked"))
     }
 }
+
+/** Real bypasses found in review. Literal IPs, so these need no DNS. */
+class PlayableUrlTest {
+    private val publicHost = "http://8.8.8.8"
+
+    @Test
+    fun `an ordinary long signed URL passes, including an escape straddling the old limit`() {
+        val query = "x".repeat(2040) + "%20" + "y".repeat(3000)
+        assertTrue(SandboxPolicy.isPublicHttpUrl("$publicHost/v?sig=$query"))
+    }
+
+    @Test
+    fun `padding past the old check length cannot hide the host`() {
+        val padded = "http://8.8.8.8:" + "0".repeat(3000) + "80@127.0.0.1:9999/x"
+        assertFalse(SandboxPolicy.isPublicHttpUrl(padded))
+    }
+
+    @Test
+    fun `userinfo is refused, because the two parsers can disagree about it`() {
+        assertFalse(SandboxPolicy.isPublicHttpUrl("http://8.8.8.8@127.0.0.1/x"))
+        assertFalse(SandboxPolicy.isPublicHttpUrl("http://user:pw@8.8.8.8/x"))
+    }
+
+    @Test
+    fun `a URL longer than anything checked is refused`() {
+        assertFalse(SandboxPolicy.isPublicHttpUrl("$publicHost/" + "a".repeat(SandboxPolicy.MAX_URL_CHARS)))
+    }
+
+    @Test
+    fun `audio cannot smuggle more inputs into libVLC's hash-separated list`() {
+        assertTrue(SandboxPolicy.isPublicAudioUrl("$publicHost/a.m4a"))
+        listOf("#file:///Users/me/x", "#/Users/me/x", "#http://10.0.0.1/").forEach { tail ->
+            assertFalse(SandboxPolicy.isPublicAudioUrl("$publicHost/a.m4a$tail"), tail)
+        }
+    }
+}

@@ -110,15 +110,25 @@ class SandboxedExtensions(
                 scan,
             )
         }
-        synchronized(hosts) { hosts += host }
-        remotes.forEach { remote ->
-            val provider = SandboxedProvider(remote, host)
-            provider.sourcePlugin = source.path
-            APIHolder.allProviders.add(provider)
-            APIHolder.addPluginMapping(provider)
+        val registered = synchronized(hosts) {
+            hosts += host
+            // A result is routed back to its provider by name, so a second plugin claiming a name would
+            // receive the first one's URLs and answer for its titles. Whoever registered first keeps it.
+            remotes.filter { remote ->
+                providers.none { it.name == remote.name }.also { free ->
+                    if (free) {
+                        val provider = SandboxedProvider(remote, host)
+                        provider.sourcePlugin = source.path
+                        APIHolder.allProviders.add(provider)
+                        APIHolder.addPluginMapping(provider)
+                    }
+                }
+            }
         }
         val how = if (source.name.endsWith(CS3_SUFFIX)) "converted, " else ""
-        return SandboxedLoad(source.name, verification, scan, remotes.size, "${how}sandboxed")
+        val refused = remotes.size - registered.size
+        val duplicates = if (refused > 0) ", $refused refused: name already taken" else ""
+        return SandboxedLoad(source.name, verification, scan, registered.size, "$how" + "sandboxed$duplicates")
     }
 
     private suspend fun toStore(source: File, launcher: HostLauncher): File = withContext(Dispatchers.IO) {

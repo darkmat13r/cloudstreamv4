@@ -300,6 +300,7 @@ class PluginHostClient private constructor(
 }
 
 private const val MAX_FIELD_CHARS = 2048
+
 private const val MAX_ITEMS = 500
 private const val MAX_PROVIDER_FIELD_CHARS = 256
 
@@ -323,10 +324,14 @@ internal fun String?.httpUrlOrNull(): String? {
     val parsed = runCatching { URI(url) }.getOrNull() ?: return null
     if (parsed.scheme?.lowercase() !in HTTP_SCHEMES) return null
     val host = parsed.host?.lowercase()?.trim('[', ']')?.trimEnd('.') ?: return null
-    return url.takeUnless { host == "localhost" || host.endsWith(".local") || PRIVATE_ADDRESS.matches(host) }
+    return url.takeUnless { isPrivateHostName(host) }
 }
 
-private val HTTP_SCHEMES = setOf("http", "https")
+internal val HTTP_SCHEMES = setOf("http", "https")
+
+/** The host as written: a lowercased name or IP literal with no brackets or trailing dot. */
+internal fun isPrivateHostName(host: String): Boolean =
+    host == "localhost" || host.endsWith(".localhost") || host.endsWith(".local") || PRIVATE_ADDRESS.matches(host)
 
 /** Loopback, RFC 1918, link-local, the unspecified address, and their IPv6 forms. */
 private val PRIVATE_ADDRESS = Regex(
@@ -366,8 +371,11 @@ private fun RemoteLinks.cleaned() = copy(
         link.copy(
             source = link.source.sanitized(MAX_PROVIDER_FIELD_CHARS),
             name = link.name.sanitized(MAX_PROVIDER_FIELD_CHARS),
-            url = link.url.sanitized(),
+            url = link.url.sanitized(SandboxPolicy.MAX_URL_CHARS + 1),
             type = link.type.sanitized(MAX_PROVIDER_FIELD_CHARS),
+            referer = link.referer?.sanitized(),
+            userAgent = link.userAgent?.sanitized(MAX_PROVIDER_FIELD_CHARS),
+            audioUrl = link.audioUrl?.sanitized(SandboxPolicy.MAX_URL_CHARS + 1),
         )
     },
 )

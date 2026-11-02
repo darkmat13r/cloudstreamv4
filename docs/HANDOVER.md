@@ -49,7 +49,10 @@ step 2. No `:app` wiring either way, and nothing repointed:
 **Desktop runs extensions in a sandbox** (`KMP-14`, `docs/tasks/kmp.md`): one Seatbelt-confined child
 process per extension, scanned first, `.cs3` converted with dex2jar in a no-network sandbox. Plugin code
 no longer runs in the app's JVM, and where there is no sandbox nothing loads. Try it headless:
-`CloudStream --check-extensions "query" --verbose`. Desktop still has no detail screen or player.
+`CloudStream --check-extensions "query" --verbose`.
+
+**Desktop plays video** (`KMP-15`): search, the TV detail page, a source list and an embedded player over the user's
+installed VLC, through vlcj. libVLC runs in the app process, outside the sandbox; that is its largest remaining gap.
 
 ---
 
