@@ -1,17 +1,21 @@
 package com.lagradost.cloudstream4.player
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.gestures.awaitEachGesture
+import androidx.compose.foundation.gestures.awaitFirstDown
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -38,7 +42,6 @@ import androidx.compose.ui.input.key.type
 import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.input.pointer.onPointerEvent
 import androidx.compose.ui.input.pointer.pointerInput
-import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.text.style.TextOverflow
@@ -48,8 +51,8 @@ import com.lagradost.cloudstream4.core.designsystem.primitive.ProgressRule
 import com.lagradost.cloudstream4.core.designsystem.state.StateAction
 import com.lagradost.cloudstream4.core.designsystem.state.StatePrompt
 import com.lagradost.cloudstream4.core.designsystem.state.StateView
-import com.lagradost.cloudstream4.core.designsystem.target.GhostTextButton
-import com.lagradost.cloudstream4.core.designsystem.target.PrimaryTextButton
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButton
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.error_loading_links_toast
 import com.lagradost.cloudstream4.core.strings.generated.resources.go_back
@@ -57,7 +60,6 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.loading
 import com.lagradost.cloudstream4.core.strings.generated.resources.pause
 import com.lagradost.cloudstream4.core.strings.generated.resources.resume
 import com.lagradost.cloudstream4.core.strings.generated.resources.source_error
-import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.detail.StreamLink
 import kotlin.concurrent.thread
@@ -65,12 +67,12 @@ import kotlinx.coroutines.delay
 import org.jetbrains.compose.resources.stringResource
 
 /**
- * Artboard 7d of `design/TV Detail Player.dc.html`, reduced to what works today: full-bleed video, the
- * times, one seek track, and transport. Space pauses, left and right skip; Escape is the window's.
+ * The desktop player (`docs/plans/desktop-design.md`): full-bleed video, one seek track, and transport.
+ * Space pauses, left and right skip; Escape is the window's.
  *
- * Text buttons stand in for the drawn transport icons, which are blocked on the icon pack, and the
- * source, subtitle and audio selectors are not built (`KMP-15`). Lives in `:desktopApp` rather than a
- * shared module because it is bound to [VlcPlayer].
+ * Text buttons stand in for transport icons, which are blocked on the icon pack (`DEC-11`), and the
+ * source, subtitle and audio selectors are not built. Lives in `:desktopApp` rather than a shared module
+ * because it is bound to [VlcPlayer].
  *
  * @param player started and released by this screen, so leaving it stops the audio.
  * @param onBack leaves the screen, which is also what the end of the stream does.
@@ -139,19 +141,30 @@ internal fun PlayerScreen(
                 modifier = Modifier.fillMaxSize(),
             )
         }
-        if (hudVisible || failed) {
+        AnimatedVisibility(
+            visible = hudVisible || failed,
+            enter = fadeIn(),
+            exit = fadeOut(),
+            modifier = Modifier.fillMaxSize(),
+        ) {
             Hud(
                 caption = listOfNotNull(title, link.qualityLabel, link.label).joinToString(SEPARATOR),
                 status = status.copy(failed = failed),
                 onTogglePause = player::togglePause,
                 onSeekTo = player::seekTo,
                 onBack = onBack,
-                modifier = Modifier.align(Alignment.BottomCenter),
             )
         }
     }
 }
 
+/**
+ * Back and the title at the top, transport floating at the bottom, the picture between them.
+ *
+ * The controls float on their own surface, so they read over any frame without a heavy scrim across the
+ * picture, and they stop growing at [PlayerScreenDefaults.ControlsMaxWidth] so a wide window keeps the
+ * play button near the timeline it belongs to.
+ */
 @Composable
 private fun Hud(
     caption: String,
@@ -159,67 +172,105 @@ private fun Hud(
     onTogglePause: () -> Unit,
     onSeekTo: (Float) -> Unit,
     onBack: () -> Unit,
-    modifier: Modifier = Modifier,
 ) {
     val colors = CloudStreamTheme.colors
-    Column(
-        modifier = modifier
-            .fillMaxWidth()
-            .background(Brush.verticalGradient(0f to Color.Transparent, 1f to colors.bg))
-            .padding(PlayerScreenDefaults.HudPadding),
-        verticalArrangement = Arrangement.spacedBy(PlayerScreenDefaults.HudGap),
-    ) {
-        BasicText(
-            text = caption,
-            style = CloudStreamTheme.typography.label.copy(color = colors.ink2),
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis,
-        )
-        when {
-            status.failed -> BasicText(
-                text = stringResource(Res.string.source_error),
-                style = CloudStreamTheme.typography.body.copy(color = colors.live),
+    Box(Modifier.fillMaxSize()) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(DesktopDimens.GroupGap),
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Brush.verticalGradient(0f to colors.bg, 1f to Color.Transparent))
+                .padding(DesktopDimens.WindowMargin),
+        ) {
+            DesktopButton(label = stringResource(Res.string.go_back), onClick = onBack)
+            BasicText(
+                text = caption,
+                style = CloudStreamTheme.typography.label.copy(color = colors.ink),
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
             )
-            status.buffering && status.lengthMillis == 0L -> BasicText(
-                text = stringResource(Res.string.loading),
-                style = CloudStreamTheme.typography.captionMono.copy(color = colors.ink),
-            )
-            else -> {
-                BasicText(
-                    text = "${clock(status.positionMillis)} / ${clock(status.lengthMillis)}",
-                    style = CloudStreamTheme.typography.captionMono.copy(color = colors.ink),
-                )
-                SeekTrack(status, onSeekTo)
-            }
         }
-        Row(horizontalArrangement = Arrangement.spacedBy(PlayerScreenDefaults.HudGap)) {
-            if (!status.failed) {
-                PrimaryTextButton(
-                    label = stringResource(if (status.playing) Res.string.pause else Res.string.resume),
-                    onClick = onTogglePause,
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(DesktopDimens.GroupGap),
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .padding(DesktopDimens.WindowMargin)
+                .widthIn(max = PlayerScreenDefaults.ControlsMaxWidth)
+                .fillMaxWidth()
+                .background(
+                    colors.surface.copy(alpha = PlayerScreenDefaults.ControlsAlpha),
+                    CloudStreamTheme.shapes.extraLarge,
                 )
+                .padding(horizontal = DesktopDimens.GroupGap, vertical = DesktopDimens.RelatedGap),
+        ) {
+            when {
+                status.failed -> BasicText(
+                    text = stringResource(Res.string.source_error),
+                    style = CloudStreamTheme.typography.body.copy(color = colors.ink),
+                )
+                status.buffering && status.lengthMillis == 0L -> BasicText(
+                    text = stringResource(Res.string.loading),
+                    style = CloudStreamTheme.typography.body.copy(color = colors.ink2),
+                )
+                else -> {
+                    DesktopButton(
+                        label = stringResource(if (status.playing) Res.string.pause else Res.string.resume),
+                        onClick = onTogglePause,
+                        primary = true,
+                    )
+                    SeekTrack(status, onSeekTo, Modifier.weight(1f))
+                }
             }
-            GhostTextButton(label = stringResource(Res.string.go_back), onClick = onBack)
         }
     }
 }
 
-/** A click anywhere along it seeks there. The rule itself is thinner than the target it sits in. */
+/**
+ * The picture follows the pointer only on release, because a seek is a network request, but the track
+ * and the time follow it 1:1 from the moment it goes down, wherever it wanders while held.
+ */
 @Composable
-private fun SeekTrack(status: PlayerStatus, onSeekTo: (Float) -> Unit) {
+internal fun SeekTrack(status: PlayerStatus, onSeekTo: (Float) -> Unit, modifier: Modifier = Modifier) {
     var width by remember { mutableStateOf(0) }
-    val progress = if (status.lengthMillis > 0) status.positionMillis.toFloat() / status.lengthMillis else 0f
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(PlayerScreenDefaults.SeekTargetHeight)
-            .onSizeChanged { width = it.width }
-            .pointerInput(Unit) {
-                detectTapGestures { offset -> if (width > 0) onSeekTo(offset.x / width) }
-            },
+    var scrub by remember { mutableStateOf<Float?>(null) }
+    val length = status.lengthMillis
+    val progress = scrub ?: if (length > 0) status.positionMillis.toFloat() / length else 0f
+    val shownPosition = scrub?.let { (it * length).toLong() } ?: status.positionMillis
+    val time = CloudStreamTheme.typography.captionMono.copy(color = CloudStreamTheme.colors.ink)
+    Row(
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RowPadding),
     ) {
-        ProgressRule(progress = progress, modifier = Modifier.fillMaxWidth())
+        BasicText(text = clock(shownPosition), style = time, maxLines = 1)
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier
+                .weight(1f)
+                .height(PlayerScreenDefaults.SeekTargetHeight)
+                .onSizeChanged { width = it.width }
+                .pointerInput(Unit) {
+                    awaitEachGesture {
+                        val down = awaitFirstDown()
+                        if (width <= 0) return@awaitEachGesture
+                        scrub = (down.position.x / width).coerceIn(0f, 1f)
+                        down.consume()
+                        while (true) {
+                            val change = awaitPointerEvent().changes.first()
+                            if (!change.pressed) break
+                            scrub = (change.position.x / width).coerceIn(0f, 1f)
+                            change.consume()
+                        }
+                        scrub?.let(onSeekTo)
+                        scrub = null
+                    }
+                },
+        ) {
+            ProgressRule(progress = progress, modifier = Modifier.fillMaxWidth())
+        }
+        BasicText(text = clock(length), style = time, maxLines = 1)
     }
 }
 
@@ -239,10 +290,10 @@ private const val SECONDS_PER_MINUTE = 60L
 private const val CLOCK_DIGITS = 2
 
 internal object PlayerScreenDefaults {
-    val HudPadding: Dp = CloudStreamDimens.ChromeRowTop
-    val HudGap: Dp = 12.dp
-    /** The artboard's 96px seek cell at px/2. */
-    val SeekTargetHeight: Dp = 48.dp
+    val ControlsMaxWidth: Dp = 720.dp
+    const val ControlsAlpha = 0.88f
+    /** Far taller than the rule it holds, so a pointer does not have to aim at 4dp. */
+    val SeekTargetHeight: Dp = 32.dp
     const val SkipMillis = 10_000L
     const val HudTimeoutMillis = 3_000L
 }

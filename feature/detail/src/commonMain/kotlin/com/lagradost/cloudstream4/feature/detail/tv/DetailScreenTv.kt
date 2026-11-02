@@ -277,7 +277,7 @@ private fun TextLine(text: String, style: TextStyle, color: Color, modifier: Mod
 }
 
 /** `S1:E2`, from the translated letters. An episode with neither number takes its place in the list. */
-private fun DetailEpisode.code(copy: DetailTvCopy, index: Int): String {
+internal fun DetailEpisode.code(copy: DetailTvCopy, index: Int): String {
     val number = episode ?: (index + 1).takeIf { season == null }
     return listOfNotNull(
         season?.let { "${copy.seasonShort}$it" },

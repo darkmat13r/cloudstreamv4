@@ -93,7 +93,8 @@ Two rules from the plan that are not negotiable:
 **Before implementing any screen, its design must exist and must have been measured.**
 
 - **Mobile: nothing exists.** Every mobile screen must be designed first.
-- **Desktop: nothing exists.** Same.
+- **Desktop: no artboards exist.** The owner chose Apple's principles over the design system's tokens
+  instead of drawing them first: see `docs/plans/desktop-design.md` (2026-11-02).
 - **TV: 28 artboards exist**, but not every surface. The inventory found 67 surfaces worth
   designing; 28 are drawn. If the screen you are about to build has no artboard, **draw it
   first** — do not improvise it in Compose.
