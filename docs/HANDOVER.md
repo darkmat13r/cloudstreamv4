@@ -44,7 +44,22 @@ step 2. No `:app` wiring either way, and nothing repointed:
 | `KMP-11` (plan row 17) | `:feature:extensions` | `ExtensionRepositoryIndex`, `ExtensionStatus`, `ExtensionListing`, `InstalledExtension`, `ExtensionState`, `ExtensionVerification`, the `ExtensionRuntime` seam. commonMain only, 4 tests | Adapting `:app`'s `PluginManager` (~900 lines, holds `Context`, notification channels, OAT cleanup, `___DO_NOT_CALL_FROM_A_PLUGIN_` entry points) to the seam. **Needs the owner's explicit go-ahead** — see below |
 | `KMP-12` (plan row 18) | `:feature:search` | **Steps 1 and 2.** The contracts, the provider and history seams, the MVI state machine, and the **TV screen** — artboards 4a–4c of `TV Search` plus 8c of `TV Search Suggestions`. 16 tests, 8 previews | Steps 3–5: the `:app`-side `SearchSource` / `SearchHistoryStore` over `APIRepository` and `DataStoreHelper`, the glue fragment plus one nav node, and deleting the old fragment a release later. **Touch and desktop screens are blocked on design** — none exists for either form factor |
 
-`:app`'s `SearchFragment` and `SearchViewModel` are untouched and still the live search path.
+**Update, 2026-11-02: Android TV opens the new search screen** (`KMP-12` steps 3 and 4). The rest of
+this paragraph's table is history. `SearchTvFragment` is the glue, gated by one line in `MainActivity`;
+deleting that line is the rollback. Phone and emulator layouts still use `SearchFragment`. **It has
+been compile-checked and never run.** To try it on a TV or a TV emulator:
+
+    ./gradlew :app:assemblePrereleaseDebug
+    adb install -r app/build/outputs/apk/prerelease/debug/*.apk
+
+Set Settings → UI → App layout to TV if the device did not auto-detect it, then check: D-pad from
+the rail into the field and back; OK opens the keyboard; Enter searches and shows rails; a card opens
+its result and Back returns with focus somewhere sensible; a non-system app language shows translated
+words and card labels; `Clear all searches` asks first; a `cloudstreamsearch://` intent searches.
+
+Waiting on the owner, from that switch: **voice search and the provider filter sheet are lost on TV**
+until there is an icon pack (`DEC-11`) and artboard 4d; and whether the old type chips should narrow
+a search (they are ignored for now). The full behaviour table is in `docs/tasks/kmp.md`.
 
 **Desktop runs extensions in a sandbox** (`KMP-14`, `docs/tasks/kmp.md`): one Seatbelt-confined child
 process per extension, scanned first, `.cs3` converted with dex2jar in a no-network sandbox. Plugin code
@@ -346,7 +361,8 @@ Compose-Multiplatform template's source-set blurb and was deleted; #46 quotes it
 The live queue is `docs/plans/kmp-migration.md` §7, "Next PRs, in order". As of #74 everything in
 rows 1–16 and 19–23 is done, and what is left is Phase 7 plus Track L.
 
-**Row 18, `:feature:search`, in order** (Phase 7's five-step recipe, §7):
+**Row 18, `:feature:search`, in order** (Phase 7's five-step recipe, §7). Steps 3 and 4 are done for
+the TV layout, see the update near the top; the list below is what it was before that:
 
 1. ~~`State`/`Action`/`Effect` + ViewModel in commonMain~~ — done, `KMP-12`.
 2. **Screens per form factor in commonMain** (I4, §4.4 — TV, touch, desktop; no `android.*`,

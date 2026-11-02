@@ -46,7 +46,7 @@ class SearchViewModelTest {
 
     private class FakeSource(
         var outcome: SearchOutcome = SearchOutcome.Complete(emptyList()),
-        private val sources: SearchSources = SearchSources(selected = 9, total = 48),
+        var sources: SearchSources = SearchSources(selected = 9, total = 48),
     ) : SearchSource {
         val searched = mutableListOf<String>()
         val quickSearched = mutableListOf<String>()
@@ -291,4 +291,106 @@ class SearchViewModelTest {
             Dispatchers.resetMain()
         }
     }
+
+    /*
+     * The rest of this file's cases came out of switching Android TV to this screen (KMP-12 step 4).
+     * `MainAPI.hasQuickSearch` defaults to false, so a real provider set usually cannot answer a
+     * quick search at all, and the first keystroke used to land on a failure band.
+     */
+
+    @Test
+    fun `with no quick-search source, typing leaves the screen alone until submit`() =
+        runTest(dispatcher) {
+            Dispatchers.setMain(dispatcher)
+            try {
+                val source = FakeSource(
+                    SearchOutcome.Complete(listOf(item("Dune"))),
+                    SearchSources(selected = 9, total = 48, quickSearchable = false),
+                )
+                val vm = viewModel(source, FakeHistory("blade runner"))
+                val before = vm.state.value.status
+                vm.onAction(SearchAction.QueryChanged("dune"))
+                settle()
+
+                assertEquals("dune", vm.state.value.query, "the field still echoes")
+                assertEquals(before, vm.state.value.status, "no skeleton, and above all no failure")
+                assertTrue(source.quickSearched.isEmpty())
+
+                vm.onAction(SearchAction.Submit)
+                settle()
+                assertEquals(listOf("dune"), source.searched)
+                assertIs<SearchStatus.Showing>(vm.state.value.status)
+            } finally {
+                Dispatchers.resetMain()
+            }
+        }
+
+    @Test
+    fun `a debounce still pending at submit cannot replace the full search with a quick one`() =
+        runTest(dispatcher) {
+            Dispatchers.setMain(dispatcher)
+            try {
+                val source = FakeSource(SearchOutcome.Complete(listOf(item("Dune"))))
+                val vm = viewModel(source)
+                vm.onAction(SearchAction.QueryChanged("dune"))
+                vm.onAction(SearchAction.Submit)
+                settle()
+
+                assertEquals(listOf("dune"), source.searched)
+                assertTrue(source.quickSearched.isEmpty(), "quick ran after the submit: ${source.quickSearched}")
+            } finally {
+                Dispatchers.resetMain()
+            }
+        }
+
+    @Test
+    fun `retyping the same query after clearing searches again instead of stalling on the skeleton`() =
+        runTest(dispatcher) {
+            Dispatchers.setMain(dispatcher)
+            try {
+                val source = FakeSource(SearchOutcome.Complete(listOf(item("Dune"))))
+                val vm = viewModel(source)
+                vm.onAction(SearchAction.QueryChanged("dune"))
+                settle()
+                vm.onAction(SearchAction.Cleared)
+                settle()
+                vm.onAction(SearchAction.QueryChanged("dune"))
+                settle()
+
+                assertEquals(listOf("dune", "dune"), source.quickSearched)
+                assertIs<SearchStatus.Showing>(vm.state.value.status)
+            } finally {
+                Dispatchers.resetMain()
+            }
+        }
+
+    @Test
+    fun `a clear inside the debounce window does not search the text that was cleared`() =
+        runTest(dispatcher) {
+            Dispatchers.setMain(dispatcher)
+            try {
+                val source = FakeSource(SearchOutcome.Complete(listOf(item("Dune"))))
+                val vm = viewModel(source)
+                vm.onAction(SearchAction.QueryChanged("dune"))
+                vm.onAction(SearchAction.Cleared)
+                settle()
+
+                assertTrue(source.quickSearched.isEmpty(), "ran: ${source.quickSearched}")
+                assertEquals(SearchStatus.Idle, vm.state.value.status)
+            } finally {
+                Dispatchers.resetMain()
+            }
+        }
+
+    @Test
+    fun `sources changing re-reads the count, because plugins load after the screen can open`() =
+        runTest(dispatcher) {
+            withMain {
+                val source = FakeSource()
+                val vm = viewModel(source)
+                source.sources = SearchSources(selected = 12, total = 50)
+                vm.onAction(SearchAction.SourcesChanged)
+                assertEquals(SearchSources(selected = 12, total = 50), vm.state.value.sources)
+            }
+        }
 }
