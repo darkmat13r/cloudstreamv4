@@ -1778,6 +1778,95 @@ not render here and cannot see KMP modules (`DEC-10`).
 
 ---
 
+## KMP-21 — `:media:subtitle`, the commonMain half · **measured 2026-11-02**
+
+**Status:** in pr · plan §4.3 and Phase 6's second step. New first-party code, nothing consumes it yet.
+
+`cloudstream.kmp.library`, android + jvm, iOS canary on. Pure SRT and WebVTT parsers, plain-text cue
+cleaning, the delay arithmetic and a lookup over cues. **`:app` is untouched:** `CustomSubripParser`,
+`CustomSubtitleDecoderFactory` and `PlayerSubtitleHelper` are still the live path, so `classes.jar` and
+`KMP-09` are not in play. `:media:subtitle` is not merged into the jar.
+
+| File | Holds |
+|---|---|
+| `SubtitleParser.kt` | `parse(ByteArray)`, `parse(String)`, `detect`; line walking and hand-parsed timecodes |
+| `CueText.kt` | one raw line to plain lines: tags and `{\…}` removed, references decoded once, controls dropped |
+| `SubtitleParseResult.kt` | `SubtitleFormat`, `SubtitleLimits`, `SubtitleTruncation`, `SubtitleParseResult` |
+| `SubtitleTimeline.kt` | `SubtitleDelay`, `SubtitleTimeline` (`activeAt`, `latestStartedIndex`) |
+
+### The decisions
+
+- **`SubtitleCue` and `CaptionStyle` stay in `:media:model`,** taken through `api`. `KMP-07` put them there;
+  the plan's table lists them under both modules. A third cue type would be worse. **This is an edge between
+  two modules plan §4.1 draws at layer 2, and rule 2 says "lower layers only".** It is acyclic and it does not
+  cost the canary, but the plan's diagram needs `:media:model` one layer down, or an owner's word otherwise.
+- **Input is untrusted, so a parse has no failure case.** No `Regex` in the module. `SubtitleLimits` caps
+  input size, cue count, line length and lines per cue; `truncations` says which cap was hit.
+- **Output is plain text, not markup.** `&lt;b&gt;` comes out as `<b>`, because that is what the author asked to
+  display. References decode once and tags are removed in one pass, so `<<b>script>` also leaves `<script>` as
+  text. Anything handing a cue to an HTML parser must escape it (`dependency-security.md`).
+- **`{\anN}` is removed and placement is lost.** Nowhere on `SubtitleCue` to put it, and this PR strips rather
+  than interprets. `:app`'s `fixSubtitleAlignment` honours it, so a future player needs a home for it.
+- **`delayMs` is positive-means-later,** the sign the dialog shows. `CustomDecoder.subtitleOffset` is its negative.
+- **A position can be `C.TIME_UNSET`,** so delay arithmetic saturates; a plain subtraction wraps to the far future.
+
+### Where it deliberately differs from `CustomSubripParser`
+
+Read, not run: `android.text.Html` needs a device or Robolectric, so **no differential test against the legacy
+parser exists.** The tolerance tests were written from its source.
+
+| Input | `CustomSubripParser` | Here |
+|---|---|---|
+| No index line, `1 ` or an index over `Int` | cue skipped | cue kept |
+| No blank line between cues | merged, next index shown as text | two cues |
+| Whitespace-only line | added as an empty line, cue continues | ends the cue |
+| `X1:40 X2:600 …` after the end time | cue skipped | cue kept |
+| 20-digit hours | `NumberFormatException` out of `parse` | counted in `malformedCues` |
+| End before start | unguarded, `endTimeUs - startTimeUs` goes straight to `CuesWithTiming` | counted in `malformedCues` (`SubtitleCue` would throw) |
+| `<b>` with no `>` on the line | whatever TagSoup does | shown as text |
+| Styling, `<font>`, `<b>`, `<i>` | spans | removed |
+
+### Not done
+
+- **Charset detection.** No BOM means UTF-8; `:app` uses `UniversalDetector`, a JVM library. A caller holding
+  windows-1256 bytes decodes them and calls the `String` overload.
+- **The text filters** `KMP-07` assigned to this module: `removeBloat`, `removeCaptions`, `upperCase`. Not in the
+  plan's column. Worth doing by hand: `bloatRegex` has a `.*\s+` run over the whole file.
+- **`X-TIMESTAMP-MAP`.** Segmented HLS WebVTT needs it; this reads whole files.
+- **Moving or adapting `:app`'s classes,** the later step that does touch `classes.jar`.
+- **ABI baseline.** `kmp.library` has no `abiValidation`: `checkKotlinAbi` does not exist for this module or for
+  `:media:model`, so there was nothing to record.
+
+### Verification
+
+Local, Temurin 17.0.20.1, `TZ=UTC`, `-Xmx6G`, scoped to the module; each command redirected with `$?` captured.
+
+- [x] `:media:subtitle:jvmTest` → exit 0, **104 tests, 0 failures, 0 skipped**, counted from the JUnit XML.
+- [x] `:media:subtitle:iosCanary -Pcloudstream.iosCanary=true` → exit 0, both klibs compiled.
+- [x] `:media:subtitle:iosSimulatorTest -Pcloudstream.iosTest=true` → exit 0, **104 tests, 0 failures**, counted
+      from the XML. Slowest about 1 s against a 15 s budget.
+- [x] `:media:subtitle:check :media:subtitle:assemble` → exit 0.
+- [ ] `checkKotlinAbi`, the full lint/`check` gate and `:app:checkExtensionApi` were not run here. `settings.gradle.kts`
+      is the only existing file touched besides this one.
+
+**Mutation checks,** each applied alone, each turning `jvmTest` red:
+
+| Mutation | Failed by |
+|---|---|
+| No last-closer guard on `<` | `repeated unclosed tag openers stay linear`: 48 s and 58 s in two runs, against under 0.4 s unmutated; plus two out-of-bounds |
+| No timecode digit cap | `a timecode too long for a long…`, `a huge digit run…` |
+| No end-before-start guard | `an end before its start…`, `random bytes never throw…` (`IllegalArgumentException`) |
+| No cue cap | `the cue count is capped and reported` |
+| No size limit on string input | `string input past the size limit…` |
+| Entity output unsanitised | `a reference cannot smuggle…`, `tabs and unusual spaces…` |
+| Wrapping delay arithmetic | `an unset position saturates…`, `a maximal position saturates` |
+| No line cut | `one enormous line…`, `a line limit cut inside a surrogate pair…` |
+
+The first pass sized that pathological input at 500k openers and a mutated run took only 8.6 s against a 5 s budget,
+too thin a margin to mean anything. It is 1M now, and the budget 15 s so the Kotlin/Native debug binary has room.
+
+---
+
 ## KMP-08 — Track L: `:library` iOS surgery
 
 **Status:** blocked by `DEC-04`
