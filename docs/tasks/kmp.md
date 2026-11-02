@@ -1643,6 +1643,71 @@ Why: the fix moves core/strings/oracle-baseline, so it is the owner's call. Desk
 
 ---
 
+## KMP-15 — desktop detail page, source list and embedded playback · **measured 2026-11-02**
+
+**Status:** built 2026-11-02 on `claude/kmp-15-desktop-playback`, stacked on `KMP-14` (#82). Owner approved
+`uk.co.caprica:vlcj` 4.12.1 (GPL-3.0, fits this GPL-3 project; brings JNA; needs VLC installed) the same day,
+choosing embedded playback over handing off to VLC. A 5.x exists only as milestones, so 4.x is pinned.
+
+Search results now open `:feature:detail`'s TV page (artboards 7a/7b), play goes to a source list (reduced 7c),
+and a source plays in a Compose screen (reduced 7d) through libVLC.
+
+### Measured
+
+An offscreen `ImageComposeScene` drove the real ViewModels, sandboxed YouTube plugin and libVLC: real 1080p frames
+drawn on screen, with position advancing. A headless vlcj run first gave 741 frames in 30 s with varying pixel data.
+Skia's `installPixels` copies its array once, so the first version drew solid white while VLC reported playing; a
+status check alone would have passed it.
+
+**Live window input is still unverified**, as in `KMP-14`, and so is audible sound: audio tracks are attached with
+`:input-slave`, and no one has listened to them.
+
+### Review, 2026-11-02
+
+Three reviewers and five adversarial verifiers over this diff. Fixed, each with a test where the behaviour can
+run without a window:
+
+- **`#` in an audio URL** passed the URL check as a fragment, then libVLC split `:input-slave` on it and opened the
+  rest, including local files (measured on 3.0.23). Refused in `SandboxPolicy.isPublicAudioUrl` and in `VlcPlayer`.
+- **Padding past the check length hid the host.** `http://public:000…80@127.0.0.1/` read as `public` after truncation
+  to 2048, while VLC connected to loopback (measured). The exact string is now checked, and userinfo is refused.
+- **Keyboard died when the HUD hid** with focus on one of its buttons. From Compose sources; not reproduced live.
+- Frame size capped at 3840x2160, one plugin can no longer claim another's provider name, a stale links result cannot
+  reopen a dismissed list, and back cannot empty the stack.
+
+Of 26 findings, the top 5 were adversarially verified. All 5 held, 4 of them at lower severity than first reported.
+The other 21 were triaged by hand and not independently verified; those fixed were checked against the code then.
+
+### Limits a reader should not have to discover
+
+- **libVLC parses third-party media in the app process, outside the sandbox.** This is the largest remaining gap in
+  the sandbox story. A memory bug in a demuxer is code execution with the user's account.
+- **The URL check covers only the URL it is given.** libVLC can still follow a redirect, see a name change address,
+  and **fetch whatever a public HLS playlist lists, including LAN addresses** (measured: blind GETs). Fixing this needs
+  a local filtering proxy for stream traffic.
+- **Only referer and user agent reach libVLC.** VLC 3 has no general header option, so a link needing other headers fails.
+- Link filtering does blocking DNS per link and stops only between links.
+- The frame cap's downscaling path has never run against a stream that large.
+
+### Not built
+
+- Departures from the artboards are listed in `DetailScreenTv`'s KDoc: text buttons (icon pack undecided), no nav rail,
+  bookmark, cast rail or More like this, episodes in the cast slot, no live per-extractor rows in 7c.
+- Source, subtitle and audio selectors (7e), resume, watch progress, focus restored to the activated item on back.
+- **Screenshot cases.** `DetailScreenTvPreviews` holds 7 pinned states. `:core:screenshot` cannot render on this
+  toolchain (`DEC-10`), so nothing guards them yet. No preview exists for the player, which needs libVLC.
+- Function-size rule: `PlayerScreen` and `TitlePage` exceed the 40-line limit. Reported, not split.
+
+### Found and not fixed
+
+```
+Found: search_state and detail share `source_error` copy, so a failed title reads "Source error / Error Loading Links"
+Suggest: author title-specific strings
+Why: a new key moves core/strings/oracle-baseline, which is the owner's call
+```
+
+---
+
 ## KMP-08 — Track L: `:library` iOS surgery
 
 **Status:** blocked by `DEC-04`
