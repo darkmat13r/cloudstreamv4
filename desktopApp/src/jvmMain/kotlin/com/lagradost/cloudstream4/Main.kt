@@ -6,24 +6,41 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.key.Key
+import androidx.compose.ui.input.key.KeyEventType
+import androidx.compose.ui.input.key.key
+import androidx.compose.ui.input.key.type
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
+import com.lagradost.cloudstream4.detail.DesktopDetailViewModels
+import com.lagradost.cloudstream4.detail.rememberDesktopDetailCopy
 import com.lagradost.cloudstream4.extensions.SandboxedExtensions
 import com.lagradost.cloudstream4.extensions.runExtensionCheck
 import com.lagradost.cloudstream4.extensions.runExtensionScan
 import com.lagradost.cloudstream4.feature.extensions.sandbox.PluginHost
+import com.lagradost.cloudstream4.feature.detail.DetailAction
+import com.lagradost.cloudstream4.feature.detail.DetailEffect
+import com.lagradost.cloudstream4.feature.detail.StreamLink
+import com.lagradost.cloudstream4.feature.detail.tv.DetailScreenTv
 import com.lagradost.cloudstream4.feature.search.SearchAction
 import com.lagradost.cloudstream4.feature.search.SearchEffect
 import com.lagradost.cloudstream4.feature.search.SearchViewModel
 import com.lagradost.cloudstream4.feature.search.tv.SearchScreenTv
+import com.lagradost.cloudstream4.player.PlayerScreen
+import com.lagradost.cloudstream4.player.PlayerUnavailable
+import com.lagradost.cloudstream4.player.VlcPlayer
 import com.lagradost.cloudstream4.search.DesktopSearchHistory
 import com.lagradost.cloudstream4.search.DesktopSearchSource
 import com.lagradost.cloudstream4.search.PosterImage
@@ -91,73 +108,119 @@ fun main(args: Array<String>) {
     Runtime.getRuntime().addShutdownHook(Thread { extensions.close() })
 
     application {
+        val escape = remember { EscapeHandler() }
         Window(
             onCloseRequest = ::exitApplication,
             title = WINDOW_TITLE,
             state = rememberWindowState(size = DpSize(ARTBOARD_WIDTH, ARTBOARD_HEIGHT)),
+            // At the window, because it has to work wherever focus is, including nowhere at all.
+            onPreviewKeyEvent = { event ->
+                event.key == Key.Escape && event.type == KeyEventType.KeyDown && escape.handle()
+            },
         ) {
             CloudStreamTheme {
                 Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) {
-                    SearchHost()
+                    DesktopApp(escape)
                 }
             }
         }
     }
 }
 
+/** Where the window is. There are few enough screens that a value and a `when` is the whole router. */
+private sealed interface Screen {
+    data object Search : Screen
+    data class Detail(val id: String) : Screen
+    data class Player(val title: String, val link: StreamLink) : Screen
+}
+
 /**
- * Wires the one screen desktop has.
+ * Search, a title, and playback.
  *
- * The ViewModel is constructed here rather than fetched from a store because there is one window
- * and one screen; when desktop grows navigation this becomes a real owner. `.claude/rules/mvi-viewmodel.md`
- * asks the UI to read `uiState.collectAsState()`, which is what happens below — the screen itself
- * stays stateless so it can be previewed in all six states.
+ * Each screen is the drawn TV one, for the reason in [main]'s KDoc. A title's page stays in the back
+ * stack under the player, so leaving the player lands on the source list it came from.
+ *
+ * `viewModelScope` is Dispatchers.Main.immediate, and desktop JVM has no Main dispatcher unless
+ * kotlinx-coroutines-swing is on the classpath. The host owns a scope instead and cancels it with the
+ * composition, which is what each ViewModel's `scope` parameter is for.
  */
 @Composable
-private fun SearchHost() {
-    val (copy, prompts) = rememberDesktopSearchCopy()
-    val history = remember { DesktopSearchHistory() }
-
-    // `viewModelScope` is Dispatchers.Main.immediate, and desktop JVM has no Main dispatcher
-    // unless kotlinx-coroutines-swing is on the classpath — it is not, and adding it is a
-    // dependency decision. The host owns a scope instead and cancels it with the composition,
-    // which is what SearchViewModel's `scope` parameter is for.
+private fun DesktopApp(escape: EscapeHandler) {
     val scope = remember { CoroutineScope(SupervisorJob() + Dispatchers.Default) }
     DisposableEffect(scope) { onDispose { scope.cancel() } }
+    val stack = remember { mutableStateListOf<Screen>(Screen.Search) }
+    // Pops only when the caller is still on top, so two queued back events cannot empty the stack.
+    val back: (Screen) -> Unit = { from ->
+        if (stack.size > 1 && stack.last() == from) {
+            stack.removeLast()
+            if (from is Screen.Detail) DesktopDetailViewModels.forget(from.id)
+        }
+    }
+    // Keeps the scroll position of what is under the top screen, so back returns to the same place.
+    val saved = rememberSaveableStateHolder()
+    val screen = stack.last()
+    saved.SaveableStateProvider(screen.toString()) {
+        when (screen) {
+            Screen.Search -> {
+                SideEffect { escape.onEscape = null }
+                SearchHost(scope, onOpen = { id -> stack += Screen.Detail(id) })
+            }
+            is Screen.Detail -> key(screen.id) {
+                DetailHost(
+                    id = screen.id,
+                    scope = scope,
+                    escape = escape,
+                    onBack = { back(screen) },
+                    onPlay = { title, link -> stack += Screen.Player(title, link) },
+                )
+            }
+            is Screen.Player -> key(screen.link) {
+                SideEffect { escape.onEscape = { back(screen) } }
+                val player = remember { VlcPlayer.createOrNull() }
+                if (player == null) {
+                    PlayerUnavailable(onBack = { back(screen) })
+                } else {
+                    PlayerScreen(player, screen.title, screen.link, onBack = { back(screen) })
+                }
+            }
+        }
+    }
+}
 
-    val viewModel = remember(prompts, history, scope) {
-        SearchViewModel(
-            source = DesktopSearchSource(),
-            history = history,
-            prompts = prompts,
-            scope = scope,
-        )
+/** What Escape does on the current screen; null where there is nothing to go back to. */
+private class EscapeHandler {
+    var onEscape: (() -> Unit)? = null
+
+    fun handle(): Boolean = onEscape?.let { it(); true } ?: false
+}
+
+/** The ViewModel outlives this composable's branch, so going back returns to the results. */
+private object DesktopSearchViewModels {
+    var live: SearchViewModel? = null
+}
+
+@Composable
+private fun SearchHost(scope: CoroutineScope, onOpen: (String) -> Unit) {
+    val (copy, prompts) = rememberDesktopSearchCopy()
+    val history = remember { DesktopSearchHistory() }
+    val viewModel = remember {
+        DesktopSearchViewModels.live
+            ?: SearchViewModel(source = DesktopSearchSource(), history = history, prompts = prompts, scope = scope)
+                .also { DesktopSearchViewModels.live = it }
     }
     val state by viewModel.state.collectAsState()
-
-    // NOT `:core:ui`'s ObserveEffect, and that is a finding rather than a preference.
-    // `ObserveEffect` wraps `repeatOnLifecycle` (core/ui/.../compose/Viewmodel.kt:95), which does
-    // `withContext(Dispatchers.Main.immediate)` inside — so on desktop JVM it throws
-    // "Module with the Main dispatcher is missing" the first time an effect flow is observed, and
-    // takes the window down with it. `.claude/rules/mvi-viewmodel.md` tells every screen to use it,
-    // so every Phase 7 vertical will hit this on desktop. Reported, not changed: it is existing
-    // `:core:ui` code on the settings screens' path.
     LaunchedEffect(viewModel) {
         viewModel.effect.collect { effect ->
             when (effect) {
-                // Opening a result needs a detail screen, which desktop does not have yet.
-                // Reported rather than silently dropped: a no-op looks like a broken card.
-                is SearchEffect.OpenResult ->
-                    println("OpenResult(${effect.id.value}) — no detail screen on desktop yet")
+                is SearchEffect.OpenResult -> onOpen(effect.id.value)
             }
         }
     }
     SearchScreenTv(
         state = state,
         copy = copy,
-        // Recording a submitted search is the host's job, the same split :app uses — its
-        // SearchViewModel writes history inside search(). The state machine stays unaware of
-        // storage, which is why SearchHistoryStore is a separate seam from SearchSource.
+        // Recording a submitted search is the host's job, the same split :app uses. The state machine
+        // stays unaware of storage, which is why it is a separate seam.
         onAction = { action ->
             if (action is SearchAction.Submit) {
                 val query = state.query
@@ -166,10 +229,42 @@ private fun SearchHost() {
             viewModel.onAction(action)
         },
         artwork = { item ->
-            // Only http(s) URLs to public hosts get this far: `SandboxedProvider`'s client drops the
-            // rest, because this request is made by the app and not from inside the sandbox.
+            // Only public http(s) addresses get this far. See `posterHttpClient`.
             PosterImage(url = item.posterUrl, modifier = Modifier.fillMaxSize())
         },
+    )
+}
+
+@Composable
+private fun DetailHost(
+    id: String,
+    scope: CoroutineScope,
+    escape: EscapeHandler,
+    onBack: () -> Unit,
+    onPlay: (String, StreamLink) -> Unit,
+) {
+    val (copy, prompts) = rememberDesktopDetailCopy()
+    val viewModel = remember(id) { DesktopDetailViewModels.get(id, prompts, scope) }
+    val state by viewModel.state.collectAsState()
+    SideEffect {
+        // The same two steps as the visible Back button: the source list first, then the page.
+        escape.onEscape = {
+            if (viewModel.state.value.links != null) viewModel.onAction(DetailAction.LinksDismissed) else onBack()
+        }
+    }
+    LaunchedEffect(viewModel) {
+        viewModel.effect.collect { effect ->
+            when (effect) {
+                is DetailEffect.Play -> onPlay(effect.title, effect.link)
+            }
+        }
+    }
+    DetailScreenTv(
+        state = state,
+        copy = copy,
+        onAction = viewModel::onAction,
+        onBack = onBack,
+        artwork = { url -> PosterImage(url = url, modifier = Modifier.fillMaxSize()) },
     )
 }
 

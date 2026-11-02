@@ -26,6 +26,7 @@ kotlin {
             // :core:strings is where the copy comes from, resolved with Compose resources rather
             // than a Context — see DesktopSearchCopy's KDoc for why that distinction matters.
             implementation(project(":feature:search"))
+            implementation(project(":feature:detail"))
             // KMP-13: `JvmExtensionRuntime` and `ExtensionHash`, from this module's `jvmMain`. It is
             // the only extension runtime that works off Android — a `.cs3` is dex-only, so the
             // cross-platform `.jar` is what desktop loads. No catalogue entry is added for it; the
@@ -35,6 +36,8 @@ kotlin {
             implementation(project(":feature:extensions:sandbox"))
             // coil-compose comes with the compose bundle; this adds its network fetcher, for posters.
             implementation(libs.bundles.coil)
+            // Plays what a plugin resolves. Loads the user's installed libVLC; bundles no VLC.
+            implementation(libs.vlcj)
             implementation(project(":core:designsystem"))
             implementation(project(":core:strings"))
             implementation(project(":core:data"))
