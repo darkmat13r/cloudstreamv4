@@ -1708,6 +1708,56 @@ Why: a new key moves core/strings/oracle-baseline, which is the owner's call
 
 ---
 
+## KMP-16 — libVLC moves out of the app process, into its own sandbox · **measured 2026-11-02**
+
+**Status:** in pr · stacked on `BUG-11` · closes the largest limit `KMP-15` listed
+
+libVLC decodes media a third-party plugin chose, so a decoder bug is code execution. It now runs in a
+`--media-host` child of the launcher, one per stream, under `SeatbeltProfile` plus `mediaHostRules`.
+There is no unsandboxed fallback: no `sandbox-exec` or no `/Applications/VLC.app` means
+`PlayerUnavailable`.
+
+### What was measured, on the packaged app
+
+| Check | Result |
+|---|---|
+| `vmmap` of the app process / the host, grep `libvlc` | **0 / 8** mappings |
+| Public HLS stream | frames at 1902x1080, position advancing, `failed=false` |
+| YouTube plugin's first link, 2160p VP9 with separate audio | 251 frames over 8.1 s of position, 1905x1080 |
+| libVLC's log, `-vv`, temporary | `analog output successfully opened`, 0 audio errors |
+| Host CPU, HLS H.264 | about 10% |
+| Mutating `mediaHostRules` to `(allow file-read*)` | the policy test fails, exit 1 |
+
+**Sound has not been heard by a person.** The log says the output opened.
+
+Frame counts alone would have passed with silent audio. Three denials were found from libVLC's log,
+none of them in the unified log: `trustd` (`-9808` on every https stream), `coreaudiod` ("No audio
+output devices found") and `AudioComponentRegistrar` ("cannot find any AudioComponent").
+
+### Decisions
+
+- **Frames cross a pipe, not shared memory.** A host sharing a mapped file could truncate it under the
+  app and fault the reader. Through a pipe it can only send bytes, and `MediaStreamReader` decides how
+  many it takes and where they go. The cost is the copy, which is why frames are capped at **1080p**.
+  Video above that is scaled down in the host, including on a larger display.
+- **Hardware decoding stays off.** VideoToolbox is denied, so libVLC falls back to `avcodec`. Allowing
+  it would open kernel drivers to a process parsing hostile media. The CPU cost of 4K VP9 on battery has
+  not been measured.
+- **`deleteHostDirectory`, not `File.deleteRecursively`.** Measured: `deleteRecursively` emptied the
+  target of a planted symlink, so a host could have had the app delete anything the user can.
+
+### Limits
+
+- The host can reach the LAN and the internet. Loopback is denied. Only the first URL is checked, so a
+  redirect or an HLS segment can still reach the LAN. Fixing that needs a filtering proxy.
+- It can reach `coreaudiod`, `audiohald`, `trustd` and the security services, each an attack surface
+  beyond a plugin host's. Microphone access was not tested; it should fall to macOS's privacy prompt.
+- `sandbox-exec` is deprecated, as in `KMP-14`. No CPU or memory quota on the native side.
+- Native code writing to fd 1 would corrupt the stream, which ends that playback as failed.
+- `--check-playback` is the headless check: a URL, or `plugin:<provider>:<query>`.
+
+---
+
 ## KMP-08 — Track L: `:library` iOS surgery
 
 **Status:** blocked by `DEC-04`
