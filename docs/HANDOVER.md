@@ -41,7 +41,7 @@ step 2. No `:app` wiring either way, and nothing repointed:
 
 | | Module | Done | Not done |
 |---|---|---|---|
-| `KMP-11` (plan row 17) | `:feature:extensions` | `ExtensionRepositoryIndex`, `ExtensionStatus`, `ExtensionListing`, `InstalledExtension`, `ExtensionState`, `ExtensionVerification`, the `ExtensionRuntime` seam. commonMain only, 4 tests | Adapting `:app`'s `PluginManager` (~900 lines, holds `Context`, notification channels, OAT cleanup, `___DO_NOT_CALL_FROM_A_PLUGIN_` entry points) to the seam. **Needs the owner's explicit go-ahead** — see below |
+| `KMP-11` (plan row 17) | `:feature:extensions` | `ExtensionRepositoryIndex`, `ExtensionStatus`, `ExtensionListing`, `InstalledExtension`, `ExtensionState`, `ExtensionVerification`, the `ExtensionRuntime` seam. commonMain only, 4 tests | **Adapter partly done, no caller yet, never run on a device.** `AndroidExtensionRuntime` has `loaded`/`load`/`unload`/`uninstall`; `install` refuses. See below |
 | `KMP-12` (plan row 18) | `:feature:search` | **Steps 1 and 2.** The contracts, the provider and history seams, the MVI state machine, and the **TV screen** — artboards 4a–4c of `TV Search` plus 8c of `TV Search Suggestions`. 16 tests, 8 previews | Steps 3–5: the `:app`-side `SearchSource` / `SearchHistoryStore` over `APIRepository` and `DataStoreHelper`, the glue fragment plus one nav node, and deleting the old fragment a release later. **Touch and desktop screens are blocked on design** — none exists for either form factor |
 
 `:app`'s `SearchFragment` and `SearchViewModel` are untouched and still the live search path.
@@ -268,10 +268,12 @@ Nothing below can be settled by reading the code.
 
 ### New, and each one is a yes/no that unblocks work
 
-- **Row 17's second half.** Adapting `:app`'s `PluginManager` to `ExtensionRuntime`. It is ~900 lines
-  holding `Context`, an `Activity`, notification channels, OAT cleanup and published
-  extension-facing entry points, and the mapping of `Repository`/`SitePlugin`/`PluginData` happens
-  at the edge. The contracts are merged and cost nothing; this is the part that touches live code.
+- **Row 17's second half: two calls left** (`KMP-11` `F1`, `F2`). `AndroidExtensionRuntime` exists over
+  `PluginManager` with `PluginManager.kt` untouched. `install` refuses, because the seam takes bytes
+  and a listing lacks the repository index URL the install path needs: keep calling `downloadPlugin`
+  on Android, or change the contract? `load` refuses the loser of a shared name, because the private
+  `loadPlugin` cannot be reached without changing the published `PluginManager` block (measured,
+  `1 changed`): accept the refusal, or accept that dump change?
 - **Chip-row spacing: the design file contradicts itself.** Its CSS is `.chiprow { gap: 24px }`,
   which is 12dp at the design system's own `artboard px / 2 = dp`; its own prose says *"In Compose
   that is `wrapContentWidth` in a `Row` with **24dp** spacing"*. `CloudStreamDimens.ChipRowSpacing`
@@ -360,15 +362,15 @@ rows 1–16 and 19–23 is done, and what is left is Phase 7 plus Track L.
 Steps 3 and 4 are the first ones that touch live `:app` code, so they want the owner's eye rather
 than an assumption.
 
-**Row 17, `:feature:extensions`:** the `PluginManager` adaptation, which needs the go-ahead above.
+**Row 17, `:feature:extensions`:** the adapter's first caller, plus `F1` and `F2` above.
 
 **Also open:** `KMP-08` / Track L is blocked on `DEC-04`. `DS-07` is **closed as a measured won't
 fix** — the census found 36 `.dp` literals in the vendored Mihon tree, and changing them is a
 permanent divergence from upstream Apache-2.0 code for values nobody is looking at.
 
-A finding from `KMP-11` that is **recorded and not acted on**: `:app` carries `fileHash` through the
-extension index and **never compares it**. `ExtensionVerification.Skipped` makes that absence
-expressible in the new contracts; the check itself was not added.
+A correction to `KMP-11`: this file used to say `:app` never compares `fileHash`. It does, and has
+since `7926e60f` (2026-04-19), at `RepositoryManager.kt:214-220`. Three KDocs in `:feature:extensions`
+still repeat the old claim, and the check is stricter than `ExtensionHash` (`KMP-11` `F6`).
 
 There is also a kanban snapshot of every task. It is the owner's, private, and republished by hand:
 https://claude.ai/artifact/WPYftYL5U9yTvprLfcfjdQ
