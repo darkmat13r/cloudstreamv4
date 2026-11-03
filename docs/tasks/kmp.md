@@ -1962,11 +1962,8 @@ before; Escape also closes the picker. `:app`'s home fragments are untouched.
 
 - **The seam.** `HomeSource` in commonMain, implemented by `DesktopHomeSource` over `APIRepository`. No `:library`
   edge, so the module is in the iOS canary.
-- **Words (`I18N-08`).** `HomeStatus` has none; `toUiState` resolves `:core:strings`. **No string was added**, so
-  `core/strings/oracle-baseline` does not move. Three compromises to review, each an existing key standing in for one
-  that does not exist: the row's button says `next` ("Next") where "Load more" is meant; a partial page's headline
-  is `source_error` because the existing plural counts *sources* and these are a source's sections; and the
-  search-only prompt reuses `result_search_tooltip`.
+- **Words (`I18N-08`).** `HomeStatus` has none; `toUiState` resolves `:core:strings`. `I18N-09` added the row's
+  button, a partial page's headline and the search-only prompt's body.
 - **Sections fail alone.** Each is asked separately, which is what makes "partial" reachable for one source. A
   retry asks only what failed and keeps what is on screen and the pages already loaded. A source that sets
   `sequentialMainPage` is asked one section at a time at its own delay, capped at 10 s.

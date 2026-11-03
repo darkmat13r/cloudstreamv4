@@ -2,11 +2,14 @@ package com.lagradost.cloudstream4.search
 
 import androidx.compose.ui.ImageComposeScene
 import androidx.compose.ui.unit.Density
+import com.lagradost.cloudstream4.core.strings.generated.resources.Res
+import com.lagradost.cloudstream4.core.strings.generated.resources.search_state_idle_body_desktop
 import com.lagradost.cloudstream4.core.designsystem.state.StatePrompt
 import com.lagradost.cloudstream4.core.designsystem.state.UiState
 import com.lagradost.cloudstream4.feature.search.SearchContent
 import com.lagradost.cloudstream4.feature.search.SearchStatus
 import com.lagradost.cloudstream4.feature.search.toUiState
+import java.util.Locale
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -24,10 +27,29 @@ class SearchStatusWordsTest {
     private fun render(status: SearchStatus): UiState<SearchContent> {
         var state: UiState<SearchContent>? = null
         val scene = ImageComposeScene(width = 100, height = 100, density = Density(1f)) {
-            state = status.toUiState {}
+            state = status.toUiState({})
         }
         scene.close()
         return checkNotNull(state)
+    }
+
+    private fun idleBody(language: String, desktop: Boolean): String {
+        val previous = Locale.getDefault()
+        Locale.setDefault(Locale.forLanguageTag(language))
+        try {
+            var state: UiState<SearchContent>? = null
+            val scene = ImageComposeScene(width = 100, height = 100, density = Density(1f)) {
+                state = if (desktop) {
+                    SearchStatus.Idle.toUiState({}, Res.string.search_state_idle_body_desktop)
+                } else {
+                    SearchStatus.Idle.toUiState({})
+                }
+            }
+            scene.close()
+            return (checkNotNull(state) as UiState.Empty).prompt.body
+        } finally {
+            Locale.setDefault(previous)
+        }
     }
 
     private fun assertHasWords(prompt: StatePrompt) {
@@ -59,5 +81,13 @@ class SearchStatusWordsTest {
         val headline = (partial as UiState.Partial).notice.headline
         assertTrue("3" in headline, headline)
         assertFalse("%" in headline, headline)
+    }
+
+    /** TV draws a rail per source and desktop a grid, and the default is what TV has always said. */
+    @Test
+    fun theIdleBodyDescribesTheLayoutItIsShownAbove() {
+        assertEquals("Type a title. Results arrive one rail per source.", idleBody("en", desktop = false))
+        assertEquals("Type a title. Results appear under each source as it answers.", idleBody("en", desktop = true))
+        assertEquals("Titel eingeben. Ergebnisse erscheinen unter jeder Quelle, sobald sie antwortet.", idleBody("de", desktop = true))
     }
 }

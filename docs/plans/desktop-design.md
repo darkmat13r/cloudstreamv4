@@ -67,10 +67,6 @@ art scales, because scaling words makes them shimmer.
   are a near-opaque surface.
 - **Nav sidebar:** two tabs do the job for now. It arrives with Library.
 - **Fullscreen** from the player, and **Cmd+F**.
-- **The player's seek buttons are mislabelled for a screen reader.** They say `previous` and `next`, the nearest
-  strings there are. A string saying what they do moves `core/strings/oracle-baseline` (`DEC-11`).
 - **Back and the seek glyphs do not mirror** in a right-to-left layout.
 - **16:9 thumbnails are cropped into 2:3 cards in search**, which can cut off burned-in text. Search results do
   not report an image's shape. A main page does (`isHorizontalImages`), so home's rows draw 16:9 where asked.
-- The idle body says "one rail per source", and desktop draws a grid. It is the shared string, and changing
-  it moves `core/strings/oracle-baseline`.

@@ -7,6 +7,7 @@ import com.lagradost.cloudstream4.core.designsystem.state.UiState
 import com.lagradost.cloudstream4.feature.home.HomeRow
 import com.lagradost.cloudstream4.feature.home.HomeStatus
 import com.lagradost.cloudstream4.feature.home.toUiState
+import java.util.Locale
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -23,6 +24,16 @@ class HomeStatusWordsTest {
         }
         scene.close()
         return checkNotNull(state)
+    }
+
+    private fun <T> inLanguage(language: String, block: () -> T): T {
+        val previous = Locale.getDefault()
+        Locale.setDefault(Locale.forLanguageTag(language))
+        try {
+            return block()
+        } finally {
+            Locale.setDefault(previous)
+        }
     }
 
     private fun assertHasWords(prompt: StatePrompt) {
@@ -55,6 +66,30 @@ class HomeStatusWordsTest {
         val searchOnly = (render(HomeStatus.NoSources(2)) as UiState.Empty).prompt
         assertNotEquals(none.headline, searchOnly.headline)
         assertNotEquals(none.action.label, searchOnly.action.label)
+    }
+
+    /** Search reaches the extensions already installed, so `result_search_tooltip`'s "other" was wrong here. */
+    @Test
+    fun theSearchOnlyStateSaysItsOwnExtensionsCanBeSearched() = inLanguage("en") {
+        assertEquals(
+            "None of your extensions has a home page, but you can still search them.",
+            (render(HomeStatus.NoSources(2)) as UiState.Empty).prompt.body,
+        )
+    }
+
+    /** These are one source's sections. The plural that counts sources would say something untrue. */
+    @Test
+    fun aPartialHeadlineCountsSectionsWithTheLocalesOwnPlural() {
+        fun headline(failed: Int) = (render(HomeStatus.Partial(emptyList(), List(failed) { it }, 6, "x")) as UiState.Partial).notice.headline
+        inLanguage("en") {
+            assertEquals("1 section failed to load", headline(1))
+            assertEquals("2 sections failed to load", headline(2))
+        }
+        inLanguage("ru") {
+            assertEquals("Не удалось загрузить 1 раздел", headline(1))
+            assertEquals("Не удалось загрузить 2 раздела", headline(2))
+            assertEquals("Не удалось загрузить 5 разделов", headline(5))
+        }
     }
 
     @Test

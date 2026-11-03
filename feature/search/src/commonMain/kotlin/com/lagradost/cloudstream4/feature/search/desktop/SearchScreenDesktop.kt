@@ -63,6 +63,7 @@ import com.lagradost.cloudstream4.core.designsystem.state.UiState
 import com.lagradost.cloudstream4.core.designsystem.state.UiStateHost
 import com.lagradost.cloudstream4.core.designsystem.state.failureNotice
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
+import com.lagradost.cloudstream4.core.strings.generated.resources.search_state_idle_body_desktop
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_clear_all
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_field_placeholder
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_recent_headline
@@ -97,7 +98,7 @@ fun SearchScreenDesktop(
     modifier: Modifier = Modifier,
     artwork: @Composable (SearchResultItem) -> Unit = {},
 ) {
-    val status = state.status.toUiState(onAction)
+    val status = state.status.toUiState(onAction, Res.string.search_state_idle_body_desktop)
     Column(modifier.fillMaxSize()) {
         Toolbar(state, onAction)
         status.failureNotice?.let { notice ->

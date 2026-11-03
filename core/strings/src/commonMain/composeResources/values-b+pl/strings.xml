@@ -3,6 +3,7 @@
 <resources>
 <plurals name="downloads_active"><item quantity="one">%d aktywne pobieranie</item><item quantity="few">%d aktywne pobierania</item><item quantity="many">%d aktywnych pobierań</item><item quantity="other">%d aktywnych pobierań</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d pobieranie w kolejce</item><item quantity="few">%d pobierania w kolejce</item><item quantity="many">%d pobierań w kolejce</item><item quantity="other">%d pobierań w kolejce</item></plurals>
+<plurals name="home_sections_failed"><item quantity="one">Nie udało się załadować %d sekcji</item><item quantity="few">Nie udało się załadować %d sekcji</item><item quantity="many">Nie udało się załadować %d sekcji</item><item quantity="other">Nie udało się załadować %d sekcji</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d ukryty odnośnik</item><item quantity="few">%d ukryte odnośniki</item><item quantity="many">%d ukrytych odnośników</item><item quantity="other">%d ukrytych odnośników</item></plurals>
 <string name="account">konto</string>
 <string name="action_add_to_bookmarks">Ustaw status oglądania</string>
@@ -292,6 +293,7 @@
 <string name="home_next_random_img_des">Następny losowy</string>
 <string name="home_play">Odtwórz</string>
 <string name="home_random">Losowy</string>
+<string name="home_search_only_body">Żadne z twoich rozszerzeń nie ma strony głównej, ale nadal możesz w nich szukać.</string>
 <string name="home_source">Źródło</string>
 <string name="install_prerelease">Zainstaluj wersję przedpremierową</string>
 <string name="is_adult">18+</string>
@@ -307,6 +309,7 @@
 <string name="links_reloaded_toast">Linki załadowane ponownie</string>
 <string name="live_singular">Transmisja na żywo</string>
 <string name="livestreams">Transmisje na żywo</string>
+<string name="load_more">Załaduj więcej</string>
 <string name="loading">Ładowanie…</string>
 <string name="lock_profile">Zablokuj profil</string>
 <string name="logged_account">Zalogowano jako %s</string>
@@ -526,11 +529,14 @@
 <string name="search_poster_img_des">Poster</string>
 <string name="search_provider_text_providers">Szukaj według źródeł</string>
 <string name="search_provider_text_types">Szukaj według typów</string>
+<string name="search_state_idle_body_desktop">Wpisz tytuł. Wyniki pojawiają się pod każdym źródłem, gdy odpowie.</string>
 <string name="search_suggestions">Sugestie wyszukiwania</string>
 <string name="search_suggestions_des">Pokaż sugestie wyszukiwania podczas pisania</string>
 <string name="season">Sezon</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">S</string>
+<string name="seek_back_10_seconds">Przewiń do tyłu o 10 sekund</string>
+<string name="seek_forward_10_seconds">Przewiń do przodu o 10 sekund</string>
 <string name="select_all">Zaznacz wszystkie</string>
 <string name="select_an_account">Wybierz konto</string>
 <string name="select_library">Wybierz bibliotekę</string>
