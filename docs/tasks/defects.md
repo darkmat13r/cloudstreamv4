@@ -768,3 +768,34 @@ After the fix, same app, same home:
 **Not fixed, and cannot be from here: a build without this fix still deletes everything,** so side by side with one it still breaks a starting host (measured: unfixed second run, fixed first, exit 4). **And a fixed build treats an old-style name as a leftover,** so it can still do the same to an unfixed build (measured, exit 4). Keeping those names would leak them for good. Both end once every running build has the fix.
 
 **Not verified.** A live window, which a locked session cannot drive. The removal of a directory from a failed start has no test: nothing makes `startMediaHost` fail without a seam. The live case: Twitch's search failed, and two public live HLS test streams gave no frame in the control run, directory intact, not looked into. So pausing a live stream, which might make libVLC write a temporary file, was not measured against a deleted directory. With the fix that directory is no longer deleted. A home shared over a network, where another machine's pid reads as dead.
+
+---
+
+## BUG-17 — the iOS test gate cannot compile `:feature:home`'s tests · **measured 2026-11-03**
+
+**Status:** open · found while adding `:feature:library`'s own iOS tests (`KMP-26`) · `:feature:home`
+
+`iosSimulatorTest` — the fifth, opt-in gate that `INF-04` added so a `commonTest` assertion is checked on
+Kotlin/Native and not only on the JVM — **has been red since `KMP-20` merged (#92).** It does not fail an
+assertion; it fails to compile:
+
+    ./gradlew :feature:home:compileTestKotlinIosSimulatorArm64 -Pcloudstream.iosTest=true   # exit 1
+
+    e: .../feature/home/src/commonTest/.../HomePagingTest.kt:15:9 Name contains illegal characters: ",".
+    (and :35, :41, :58, :64 — five in all)
+
+**Kotlin/Native refuses a comma inside a backticked name.** The JVM does not, so all five tests run and
+pass under `jvmTest`, and the four gates this project actually runs never look at them. Measured on
+`6456d54f`, which is master plus a docs-only change, so it is not caused by anything in flight.
+
+**The fix is renaming five test functions** — the same rename `KMP-26` made to its own nine before they
+would compile. Nothing else in the repository trips it: `:feature:library` is clean, and every other
+`commonTest` either has no comma or does not reach Kotlin/Native.
+
+**Why it matters more than five names:** the gate exists because a `Char` category, a `toString()` of a
+`Double`, a date formatter or an atomic's memory model can differ between the JVM and Kotlin/Native, and
+nothing else in this project would catch it. While it cannot compile, **none of the 219 `commonTest`
+assertions in the canary's modules are being checked there** — `:core:designsystem` 1, `:core:storage` 48,
+`:feature:extensions` 4, `:feature:home` 10, `:feature:library` 14, `:feature:search` 3,
+`:media:subtitle` 139, counted on this tree. `:feature:library`'s 14 were verified by running that one
+module's target directly, which is the workaround until this is fixed.

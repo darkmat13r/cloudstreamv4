@@ -38,6 +38,7 @@ import com.lagradost.cloudstream4.feature.home.HomeState
 import com.lagradost.cloudstream4.feature.home.HomeStatus
 import com.lagradost.cloudstream4.feature.home.desktop.HomeScreenDesktop
 import com.lagradost.cloudstream4.feature.home.desktop.HomeScreenDesktopDefaults
+import com.lagradost.cloudstream4.library.InMemoryLibraryStore
 import java.io.File
 import java.util.Locale
 import kotlin.test.Test
@@ -291,7 +292,7 @@ class HomeScreenTest {
     fun `home and search are the top level, and a title returns to where it was opened from`() {
         val escape = EscapeHandler()
         var at = ""
-        val scene = scene { DesktopApp(escape, FakeHome(), onScreen = { at = it }) }
+        val scene = scene { DesktopApp(escape, FakeHome(), library = InMemoryLibraryStore(), onScreen = { at = it }) }
         fun waitForCards() {
             repeat(WAIT_ROUNDS) {
                 scene.settle()

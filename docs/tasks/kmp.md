@@ -2770,45 +2770,139 @@ Why: measured once, with curl on a dummy URL as well as through the check, and g
 
 ---
 
-## KMP-26 — `:feature:library`: bookmarks, watch progress and resume, on desktop
+## KMP-26 — `:feature:library`: bookmarks, watch progress and resume, on desktop · **built 2026-11-03**
 
-**Status:** open · Phase 7 vertical 3 (plan §7, 970 lines on Android) · desktop first, as `KMP-20` was
+**Status:** done · Phase 7 vertical 3 (plan §7, 970 lines on Android) · desktop first, as `KMP-20` was
 
-This is the gap `KMP-15` named. Its "Not built" list is *"source and audio selectors (7e), resume, watch
-progress"* and the departures from the artboards include *"bookmark"*; `docs/plans/desktop-design.md` says the
-nav sidebar *"arrives with Library"*, because two tabs are enough for home and search and a third needs it.
+This is the gap `KMP-15` named — its "Not built" list reads *"resume, watch progress"* and its departures
+from the artboards include *"bookmark"* — and it is what `docs/plans/desktop-design.md` meant by the nav
+sidebar *"arrives with Library"*. The desktop app no longer forgets everything between launches.
 
-Without it the desktop app forgets everything between launches: no list of what you are watching, no position
-to resume from, and — separately measured under `KMP-20` — not even which source you last chose.
+### What it does
 
-### Shape, following `KMP-20`'s recipe
+**Continue Watching works end to end.** Play anything for more than half a minute and it is on the list,
+newest first, with a progress rule across the foot of its card. Press the card and the title's page opens
+with that episode's sources already being fetched, and the player starts where it was left. Past 95% the
+title leaves the list.
 
-1. **`:feature:library` commonMain** — the contracts (a bucket, an entry, a position), a `LibraryStore` seam,
-   the MVI state machine, words through `UiString` against `:core:strings` (`I18N-08`). No `:library` edge, so
-   the module joins the iOS canary.
-2. **A desktop implementation of the seam**, file-backed beside `DesktopSearchHistory` under
-   `~/.cloudstream4/`. **Not `:core:storage`** — `DEC-12` and `BUG-05` park that module until something
-   consumes it, and `DesktopSearchHistory`'s KDoc explains why a twenty-line file store is the right size of
-   commitment until then.
-3. **The screen**, and the nav sidebar the design doc is waiting for.
-4. **Writes from the two places that know**: the detail page (bookmark) and the player (position).
+**Six lists** — Watching, Completed, On-Hold, Dropped, Plan to Watch, Favorites — chosen from a panel on
+each card. **The library is where a title is organised, and the detail page is where it is watched:** the
+picker is here and not on the detail page because the detail page has no overlay slot, and giving it one
+means changing `:feature:detail` to carry a control it does not own. A bookmark button there is a
+convenience that can follow.
 
-### What it must not do
+### The parts, and where each lives
 
-- **Not share storage with Android.** `:app` keys bookmarks and positions through `SharedPreferences` under an
-  account prefix. None of that exists on desktop and syncing the two is a different question — the same call
-  `DesktopSearchHistory` already made and documented.
-- **Not touch `:app`.** Android's `LibraryViewModel` and its fragments stay exactly as they are, as home's and
-  search's did.
-- **Not trust a title's text or its poster.** Everything in an entry came from a plugin. `UntrustedText` and
-  the http(s)-only poster filter apply, and `KMP-20` found that search and detail still do not drop format
-  characters — a library row must not reintroduce that.
+| | |
+|---|---|
+| `:feature:library` commonMain | `LibraryContracts` (the identity, the buckets, `LibraryTitle`, `WatchPosition`, the `LibraryStore` seam), `LibraryMvi`, `LibraryShelf` (the pure fold), `LibraryViewModel`, `LibraryCopy`, `desktop/LibraryScreenDesktop` |
+| `:desktopApp` | `DesktopLibraryStore` (two files), `WatchRecorder`, `LibraryHost`, a third `TopLevelDestination`, and `Screen.Library` |
+| Changed, because the task needs it | `PlayerScreen` gained `startAtMillis` and `onProgress`; `TopLevelScreen` stopped being a `Boolean`; `DetailHost` learnt what a resume is and what the library needs to record a position |
 
-### Open before it starts
+No `:library` edge, so the module is in the iOS canary — **18 modules now, up from 17.**
 
-- **Identity.** A bookmark and a position have to name a title across launches, and the only handle a plugin
-  gives is a URL plus its provider's name. Android uses a hash; a hash collides, and the code says so. What
-  desktop stores decides whether an entry survives a provider changing its URLs.
-- **Buckets.** Android has a fixed set (watching, completed, on hold, dropped, plan to watch, favourites).
-  Whether desktop offers all of them, or one list plus "continue watching", is a product call — it is small
-  enough to take in the PR and record here rather than wait.
+### Identity: the one decision worth arguing about
+
+A library row names a title by **the same opaque string the detail flow already takes** —
+`DesktopSearchSource.encodeId(apiName, url)`. Nothing parses it and nothing hashes it, so a row reopens a
+title by handing the id straight back to the screen a search hit would open, and no new plumbing was needed.
+
+`:app` does it differently and measurably worse. `getLoadResponseIdFromUrl` is a 32-bit `String.hashCode()`
+of the provider-*relative* path with its slashes stripped, and the provider's name is used only to find the
+prefix to strip — **it is not part of what is hashed.** Two providers that both serve `/movie/dune` collide
+to one id and share a bucket, a record and a position. The id also changes depending on whether the
+extension is loaded, because an unloaded one means the whole URL is hashed instead. Episode ids are worse
+still: `mainId + episode + idIndex * 1_000_000 + season * 10_000` for anime and
+`mainId + season * 100_000 + index + 1` for series, both `Int` addition on a hash, both wrapping, and only
+collisions *within* one title are guarded. Desktop keys an episode by the provider's own opaque `data`
+instead, which is the string that goes back to `DetailSource.links` unread.
+
+**The two stores are not shared** — a bookmark on the phone does not appear on the desktop, the call
+`DesktopSearchHistory` already made. The cost of the desktop choice is honest: an id dies when a provider
+changes its URLs, the row stays, the card draws, and opening it fails like any dead link. A hash would not
+have survived that either; it would have hidden which row broke.
+
+### Storage: two files, and why not `:core:storage`
+
+`~/.cloudstream4/library.tsv` and `~/.cloudstream4/watch-positions.tsv`, beside `search-history.tsv`.
+Atomic replace through a staging file in the same directory, a header line, a 4 MiB cap, 2,000 rows each,
+and five characters escaped — a title's id carries a NUL on purpose and a plugin's title can carry anything.
+
+**No checksum, unlike `ExtensionDecisions`,** and that is a decision: that file decides whether third-party
+code runs, so a half-written one must read as "nothing was approved". This one decides what is on a list, so
+a truncated line costs that line and not the library.
+
+**Everything is sanitised again on the way out**, because the file was written from what a plugin returned:
+titles and provider names lose control and FORMAT characters and are truncated at 200, and a poster that is
+not plain `http(s)` is dropped before it can reach the image loader. The id is only escaped, never
+sanitised.
+
+`:core:storage`'s `FileKeyValueJsonStore` is very nearly this class's shape and is still unused. `BUG-05`
+and `DEC-12` park it until something consumes it; **this is the strongest candidate yet and it is the
+owner's call, not this task's.** Swapping it later touches one class.
+
+### What `:app` does that this deliberately does not
+
+- **Advance the resume pointer to the next episode at 90%.** That needs an episode order, and
+  `DetailEpisode.data` is opaque. Here 95% simply means watched and the next episode is one you pick.
+- **Keep the display fields somewhere else.** `:app`'s resume row carries no name or poster of its own; it
+  reads `DOWNLOAD_HEADER_CACHE`, which is not account-scoped while every bookmark is, and which the
+  downloader prunes — hence its own comment about restoring data for affected users. A row here carries its
+  own fields.
+- **Subscriptions.** `:app`'s seventh list is about notifications for new episodes, which desktop has no
+  machinery for at all.
+
+### No new strings, and the one place that shows
+
+Every word already existed in `:core:strings` and is already translated into 62 locales — the list names are
+the same `type_*` keys `:app`'s `WatchType` points at, so the two screens cannot drift apart in one language
+and not another. A new key would have been 62 translations, a regenerated set of `strings.xml` files, and a
+re-recorded `classes-jar.api`, because an `R` field is published ABI.
+
+The cost: there is no "could not read your library" string, so the failure body is `plugin_load_fail`
+("Could not load %s") filled with the word "Library". **In a language that inflects the object of that verb
+the result will be grammatically off.** Written down rather than hidden; the fix is a key of its own.
+
+### Verified
+
+- **The four gates, local, on this tree:** `checkKotlinAbi` 0 · `assemblePrereleaseDebug lint check
+  -Pcloudstream.strings.guards=fail` 0 · `:app:checkExtensionApi` 0 · `iosCanary` 0 (18 modules).
+  **1,447 tests, 0 failures.**
+- **14 of the new tests run on a real iOS simulator** (`:feature:library:iosSimulatorArm64Test`, 14/0) —
+  the fold, the resume rule and the caps are pure Kotlin on purpose.
+- **77 new tests in all**: 14 fold, 16 ViewModel, 18 store (over real files in a temp directory — nothing
+  touches `~/.cloudstream4`), 10 recorder, 11 screen, 8 words.
+- **Rendered offscreen at 1280×800 and 800×520** through `ImageComposeScene` with real pointer events, and
+  looked at: the lists, a card with progress, the picker, loading, empty, failed, and Greek at the minimum
+  window. The whole window too — a click on the Library tab, the store's title on screen, its picker open,
+  and Escape closing it.
+
+**Two defects the renders caught**, neither visible to a gate:
+
+- A one-line title beside a two-line one put their buttons 24 dp apart. The title is pinned to two lines.
+- `WatchRecorder` wrote nothing on its first call under an injected clock: "never written" was stored as
+  `0L` and compared against the interval. It is null now. With the real wall clock it happened to work,
+  which is the kind of bug only a test with its own clock finds.
+
+### Not done
+
+- **A bookmark button on the detail page.** See above: it needs a slot in `:feature:detail`.
+- **Watch progress on search and home cards.** `SearchResultItem.watchProgress` already exists and is still
+  always null on desktop; filling it means those sources reading the library store.
+- **Resume does not start playing by itself.** It opens the title's page with that episode's sources being
+  fetched; a link still has to be chosen, and that is the screen that chooses one.
+- **Android.** `:app`'s `LibraryViewModel` and its fragments are untouched, as home's and search's were.
+- **Sorting.** `:app` has nine sort orders (six that `LocalList` advertises). This has one per list, newest
+  first, and no filter.
+- **The live window** — never verified, as with every desktop screen so far. Everything above was driven
+  offscreen.
+
+### Found and not fixed
+
+```
+Found: the iOS test gate has been red since :feature:home landed (#92) — `iosSimulatorTest` cannot compile
+       `HomePagingTest`, whose five backticked names contain a comma, which Kotlin/Native refuses
+Suggest: rename those five, which is what this task did to its own
+Why: it is existing code in another vertical, and a broken gate deserves its own revertible change.
+     Filed as `BUG-17` in defects.md
+```

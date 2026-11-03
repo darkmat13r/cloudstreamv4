@@ -29,6 +29,7 @@ import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -94,6 +95,12 @@ import org.jetbrains.compose.resources.stringResource
  * @param player started and released by this screen, so leaving it stops the audio.
  * @param onBack leaves the screen, which is also what the end of the stream does.
  * @param setEscape told what Escape should do now, as `HomeHost` is.
+ * @param startAtMillis where to start, from the library (`KMP-26`). Zero plays from the beginning.
+ *   The seek waits for a reported length, because [VlcPlayer.seekTo] takes a fraction and there is
+ *   nothing to take a fraction of until then, and it happens **once** — a second one would fight the
+ *   person's own seeking.
+ * @param onProgress told the position as the player reports it. Storage is the host's: this screen
+ *   writes nothing, and the host decides which of these reports is worth keeping.
  * @param clock,session passed in so a check can read what this screen is showing.
  */
 @Composable
@@ -104,6 +111,8 @@ internal fun PlayerScreen(
     onBack: () -> Unit,
     modifier: Modifier = Modifier,
     setEscape: (() -> Unit) -> Unit = {},
+    startAtMillis: Long = 0L,
+    onProgress: (positionMillis: Long, durationMillis: Long) -> Unit = { _, _ -> },
     clock: PlaybackClock = remember { PlaybackClock() },
     session: SubtitleSession? = null,
 ) {
@@ -118,6 +127,17 @@ internal fun PlayerScreen(
     }
     LaunchedEffect(status.finished) { if (status.finished) onBack() }
     LaunchedEffect(player, clock) { player.status.collect(clock::onStatus) }
+    val progress by rememberUpdatedState(onProgress)
+    LaunchedEffect(player, link) {
+        var sought = startAtMillis <= 0L
+        player.status.collect { reported ->
+            if (!sought && reported.lengthMillis > 0L) {
+                sought = true
+                player.seekTo(startAtMillis.toFloat() / reported.lengthMillis)
+            }
+            progress(reported.positionMillis, reported.lengthMillis)
+        }
+    }
     val scope = rememberCoroutineScope()
     val subtitles = session ?: remember(link) { SubtitleSession(link.subtitles, HttpSubtitleLoader(), scope) }
     PlayerContent(
