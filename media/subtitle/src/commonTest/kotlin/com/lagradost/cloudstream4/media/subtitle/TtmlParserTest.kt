@@ -57,7 +57,7 @@ class TtmlParserTest {
     }
 
     @Test
-    fun `the youtube shape gives timed text at the region's foot, overlaps kept`() {
+    fun `the youtube shape gives timed text at the region's foot overlaps kept`() {
         val result = SubtitleParser.parse(youtube)
         assertEquals(SubtitleFormat.TTML, result.format)
         assertEquals(listOf(2705L, 4407L), result.cues.map { it.startTimeMs })
@@ -74,7 +74,7 @@ class TtmlParserTest {
     }
 
     @Test
-    fun `the ebu programme start comes off, br breaks lines, entities decode and whitespace collapses`() {
+    fun `the ebu programme start comes off br breaks lines entities decode and whitespace collapses`() {
         val result = SubtitleParser.parse(ard)
         // 2120 is what ARD's VTT twin of this file says for its first cue. Measured on the real pair.
         assertEquals(listOf(2120L, 3680L), result.cues.map { it.startTimeMs })
@@ -143,7 +143,7 @@ class TtmlParserTest {
     }
 
     @Test
-    fun `placement from a style nested in the region, and from attributes on the paragraph`() {
+    fun `placement from a style nested in the region and from attributes on the paragraph`() {
         val nested = SubtitleParser.parse(
             """<tt><head><layout><region xml:id="r"><style tts:origin="0% 0%"/><style tts:extent="100% 20%" tts:displayAlign="before"/></region></layout></head>""" +
                 """<body><p region="r" begin="1s" end="2s">x</p></body></tt>""",
@@ -157,7 +157,7 @@ class TtmlParserTest {
     }
 
     @Test
-    fun `no placement information stays at the bottom centre, and pixels are not honoured`() {
+    fun `no placement information stays at the bottom centre and pixels are not honoured`() {
         assertEquals(CuePlacement.Default, ttml("""<p begin="1s" end="2s">x</p>""").cues.single().placement)
         val pixels = SubtitleParser.parse(
             """<tt><head><layout><region xml:id="r" tts:origin="640px 360px"/></layout></head><body><p region="r" begin="1s" end="2s">x</p></body></tt>""",
@@ -166,7 +166,7 @@ class TtmlParserTest {
     }
 
     @Test
-    fun `text is plain, whatever it tries`() {
+    fun `text is plain whatever it tries`() {
         val cue = ttml(
             """<p begin="1s" end="2s">&lt;a href="x"&gt;link&lt;/a&gt; <span>&#x202E;kept</span> {\an8}<metadata>never shown</metadata></p>""",
         ).cues.single()

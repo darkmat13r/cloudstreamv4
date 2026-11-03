@@ -58,7 +58,7 @@ class CuePlacementTest {
     }
 
     @Test
-    fun `no an, or one out of range, or never closed, stays at the bottom centre`() {
+    fun `no an or one out of range or never closed stays at the bottom centre`() {
         assertEquals(CuePlacement.Default, srtPlacement("plain"))
         assertEquals(CuePlacement.Default, srtPlacement("{\\an0}x"))
         assertEquals(CuePlacement.Default, srtPlacement("{\\an10}x"))
@@ -81,7 +81,7 @@ class CuePlacementTest {
     }
 
     @Test
-    fun `vtt line as a percentage, with each alignment`() {
+    fun `vtt line as a percentage with each alignment`() {
         val top = vttPlacement("line:10%")
         assertEquals(10f, top.verticalPercent)
         assertEquals(CueAnchor.START, top.verticalAnchor)
@@ -90,7 +90,7 @@ class CuePlacementTest {
     }
 
     @Test
-    fun `vtt line as a row counts from the top, and from the bottom when negative`() {
+    fun `vtt line as a row counts from the top and from the bottom when negative`() {
         val first = vttPlacement("line:0")
         assertEquals(0f, first.verticalPercent)
         assertEquals(CueAnchor.START, first.verticalAnchor)
@@ -102,7 +102,7 @@ class CuePlacementTest {
     }
 
     @Test
-    fun `vtt position and align, as the Internet Archive's YouTube captions use them`() {
+    fun `vtt position and align as the Internet Archive's YouTube captions use them`() {
         val placement = vttPlacement("align:start position:0%")
         assertEquals(0f, placement.horizontalPercent)
         assertEquals(CueAnchor.START, placement.horizontalAnchor)
@@ -153,7 +153,7 @@ class CuePlacementTest {
     }
 
     @Test
-    fun `an srt never reads vtt settings, and an in text an beats them in a vtt`() {
+    fun `an srt never reads vtt settings and an in text an beats them in a vtt`() {
         val srt = SubtitleParser.parse("00:00:01,000 --> 00:00:02,000 line:0\nx\n", SubtitleFormat.SRT).cues.single()
         assertEquals(CuePlacement.Default, srt.placement)
         val vtt = SubtitleParser.parse("WEBVTT\n\n00:00:01.000 --> 00:00:02.000 line:0\n{\\an3}x\n", SubtitleFormat.VTT).cues.single()
