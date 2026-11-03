@@ -450,6 +450,7 @@ values-b+af	string	player_load_one_subtitle_online	-	Load first available
 values-b+af	string	player_load_subtitles	-	Load from file
 values-b+af	string	player_load_subtitles_online	-	Load from Internet
 values-b+af	string	player_loaded_subtitles	-	Loaded %s
+values-b+af	string	player_mute	-	Demp
 values-b+af	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+af	string	player_notification_channel_name	-	Player notifications
 values-b+af	string	player_pref	-	Preferred video player
@@ -462,6 +463,7 @@ values-b+af	string	player_speed	-	Spelerspoed
 values-b+af	string	player_speed_text_format	-	Spoed (%.2fx)
 values-b+af	string	player_subtitles_settings	-	Subtitles
 values-b+af	string	player_subtitles_settings_des	-	Player subtitles settings
+values-b+af	string	player_unmute	-	Ontdemp
 values-b+af	string	plugin	-	plugins
 values-b+af	string	plugin_deleted	-	Plugin Deleted
 values-b+af	string	plugin_downloaded	-	Plugin Downloaded
@@ -1280,6 +1282,7 @@ values-b+am	string	player_load_one_subtitle_online	-	Load first available
 values-b+am	string	player_load_subtitles	-	Load from file
 values-b+am	string	player_load_subtitles_online	-	Load from Internet
 values-b+am	string	player_loaded_subtitles	-	Loaded %s
+values-b+am	string	player_mute	-	ድምፅ አጥፋ
 values-b+am	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+am	string	player_notification_channel_name	-	Player notifications
 values-b+am	string	player_pref	-	Preferred video player
@@ -1292,6 +1295,7 @@ values-b+am	string	player_speed	-	የአጫዋች ፍጥነት
 values-b+am	string	player_speed_text_format	-	ፍጥነት(%.2fx)
 values-b+am	string	player_subtitles_settings	-	Subtitles
 values-b+am	string	player_subtitles_settings_des	-	Player subtitles settings
+values-b+am	string	player_unmute	-	ድምፅ አብራ
 values-b+am	string	plugin	-	plugins
 values-b+am	string	plugin_deleted	-	Plugin Deleted
 values-b+am	string	plugin_downloaded	-	Plugin Downloaded
@@ -2110,6 +2114,7 @@ values-b+apc	string	player_load_one_subtitle_online	-	أفّي اللودينگ 
 values-b+apc	string	player_load_subtitles	-	فتاح من ملف
 values-b+apc	string	player_load_subtitles_online	-	فتاح من الإنترنت
 values-b+apc	string	player_loaded_subtitles	-	نفَتح %s
+values-b+apc	string	player_mute	-	كتّم الصوت
 values-b+apc	string	player_notification_channel_description	-	نوتيفيكايشن بت خليك تتحكم بال ڤيديو لما م يكون الآپ مفتوح
 values-b+apc	string	player_notification_channel_name	-	شغل الڤيديو عبر النوتيفيكايشنز
 values-b+apc	string	player_pref	-	مشغل الڤيديو المفضل
@@ -2122,6 +2127,7 @@ values-b+apc	string	player_speed	-	سرعة الڤيديو
 values-b+apc	string	player_speed_text_format	-	السرعة (%.2fx)
 values-b+apc	string	player_subtitles_settings	-	الترجمة
 values-b+apc	string	player_subtitles_settings_des	-	سَتِنگز ترجمة الڤيديو
+values-b+apc	string	player_unmute	-	شغّل الصوت
 values-b+apc	string	plugin	-	إضافات
 values-b+apc	string	plugin_deleted	-	نمحت الإضافة
 values-b+apc	string	plugin_downloaded	-	تنزلت الإضافة
@@ -2952,6 +2958,7 @@ values-b+ar	string	player_load_one_subtitle_online	-	تحميل أول ترجم�
 values-b+ar	string	player_load_subtitles	-	إختيار ملف
 values-b+ar	string	player_load_subtitles_online	-	تحميل من الانترنت
 values-b+ar	string	player_loaded_subtitles	-	تم تحميل %s
+values-b+ar	string	player_mute	-	كتم الصوت
 values-b+ar	string	player_notification_channel_description	-	تنبيه المشغل المسؤول عن تشغيل الميديا في الخلفية
 values-b+ar	string	player_notification_channel_name	-	تنبيهات المشغل
 values-b+ar	string	player_pref	-	مُشغل الفيديو المفضل
@@ -2964,6 +2971,7 @@ values-b+ar	string	player_speed	-	سرعة المُشغل
 values-b+ar	string	player_speed_text_format	-	سرعة (%.2fx)
 values-b+ar	string	player_subtitles_settings	-	الترجمة
 values-b+ar	string	player_subtitles_settings_des	-	إعدادات ترجمة المُشغل
+values-b+ar	string	player_unmute	-	إلغاء كتم الصوت
 values-b+ar	string	plugin	-	إضافات
 values-b+ar	string	plugin_deleted	-	تم إزالة الإضافة
 values-b+ar	string	plugin_downloaded	-	تم تنزيل الإضافة
@@ -3786,6 +3794,7 @@ values-b+ars	string	player_load_one_subtitle_online	-	Load first available
 values-b+ars	string	player_load_subtitles	-	Load from file
 values-b+ars	string	player_load_subtitles_online	-	Load from Internet
 values-b+ars	string	player_loaded_subtitles	-	Loaded %s
+values-b+ars	string	player_mute	-	كتم الصوت
 values-b+ars	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+ars	string	player_notification_channel_name	-	Player notifications
 values-b+ars	string	player_pref	-	Preferred video player
@@ -3798,6 +3807,7 @@ values-b+ars	string	player_speed	-	سرعة اللاعب
 values-b+ars	string	player_speed_text_format	-	سرعة(%.2fx)
 values-b+ars	string	player_subtitles_settings	-	ترجمات
 values-b+ars	string	player_subtitles_settings_des	-	إعدادات ترجمات المشغل
+values-b+ars	string	player_unmute	-	إلغاء كتم الصوت
 values-b+ars	string	plugin	-	plugins
 values-b+ars	string	plugin_deleted	-	Plugin Deleted
 values-b+ars	string	plugin_downloaded	-	Plugin Downloaded
@@ -4616,6 +4626,7 @@ values-b+as	string	player_load_one_subtitle_online	-	প্ৰথম উপল�
 values-b+as	string	player_load_subtitles	-	ফাইলৰ পৰা ল'ড কৰক
 values-b+as	string	player_load_subtitles_online	-	ইণ্টাৰনেটৰ পৰা ল'ড কৰক
 values-b+as	string	player_loaded_subtitles	-	%s ল'ড হৈছে
+values-b+as	string	player_mute	-	মৌন কৰক
 values-b+as	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+as	string	player_notification_channel_name	-	Player notifications
 values-b+as	string	player_pref	-	পছন্দৰ ভিডিঅ' প্লেয়াৰ
@@ -4628,6 +4639,7 @@ values-b+as	string	player_speed	-	প্লেয়াৰ গতি
 values-b+as	string	player_speed_text_format	-	গতি (%.2fx)
 values-b+as	string	player_subtitles_settings	-	সাবটাইটেল
 values-b+as	string	player_subtitles_settings_des	-	প্লেয়াৰৰ সাবটাইটেল চেটিংছ
+values-b+as	string	player_unmute	-	মৌন আঁতৰাওক
 values-b+as	string	plugin	-	প্লাগইনসমূহ
 values-b+as	string	plugin_deleted	-	প্লাগইন ডিলিট কৰা হ'ল
 values-b+as	string	plugin_downloaded	-	প্লাগইন ডাউনলোড কৰা হ'ল
@@ -5446,6 +5458,7 @@ values-b+az	string	player_load_one_subtitle_online	-	Load first available
 values-b+az	string	player_load_subtitles	-	Load from file
 values-b+az	string	player_load_subtitles_online	-	Load from Internet
 values-b+az	string	player_loaded_subtitles	-	Loaded %s
+values-b+az	string	player_mute	-	Səssizə al
 values-b+az	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+az	string	player_notification_channel_name	-	Player notifications
 values-b+az	string	player_pref	-	Preferred video player
@@ -5458,6 +5471,7 @@ values-b+az	string	player_speed	-	Player Speed
 values-b+az	string	player_speed_text_format	-	Sürət (%.2fx)
 values-b+az	string	player_subtitles_settings	-	Subtitrlər
 values-b+az	string	player_subtitles_settings_des	-	Pleyerin subtitr parametrləri
+values-b+az	string	player_unmute	-	Səsi aç
 values-b+az	string	plugin	-	plugins
 values-b+az	string	plugin_deleted	-	Plugin Deleted
 values-b+az	string	plugin_downloaded	-	Plugin Downloaded
@@ -6282,6 +6296,7 @@ values-b+be	string	player_load_one_subtitle_online	-	Спампаваць пер
 values-b+be	string	player_load_subtitles	-	Загрузіць з файла
 values-b+be	string	player_load_subtitles_online	-	Спампаваць з інтэрнэту
 values-b+be	string	player_loaded_subtitles	-	Загружана %s
+values-b+be	string	player_mute	-	Выключыць гук
 values-b+be	string	player_notification_channel_description	-	Апавяшчэнне прайгравальніка для кіравання прайграваннем у фонавым рэжыме
 values-b+be	string	player_notification_channel_name	-	Апавяшчэнні прайгравальніка
 values-b+be	string	player_pref	-	Прыярытэтны прайгравальнік
@@ -6294,6 +6309,7 @@ values-b+be	string	player_speed	-	Хуткасць прайгравальнік�
 values-b+be	string	player_speed_text_format	-	Хуткасць (%.2fx)
 values-b+be	string	player_subtitles_settings	-	Субцітры
 values-b+be	string	player_subtitles_settings_des	-	Налады субцітраў прайгравальніка
+values-b+be	string	player_unmute	-	Уключыць гук
 values-b+be	string	plugin	-	убудовы
 values-b+be	string	plugin_deleted	-	Убудова выдалена
 values-b+be	string	plugin_downloaded	-	Убудова спампавана
@@ -7112,6 +7128,7 @@ values-b+bg	string	player_load_one_subtitle_online	-	Зареди първия �
 values-b+bg	string	player_load_subtitles	-	Зареди от файл
 values-b+bg	string	player_load_subtitles_online	-	Зареди от Интернет
 values-b+bg	string	player_loaded_subtitles	-	Заредено %s
+values-b+bg	string	player_mute	-	Без звук
 values-b+bg	string	player_notification_channel_description	-	Известие на плейъра за контролиране на възпроизвеждането от фона
 values-b+bg	string	player_notification_channel_name	-	Известия на плейъра
 values-b+bg	string	player_pref	-	Предпочитан видео плеър
@@ -7124,6 +7141,7 @@ values-b+bg	string	player_speed	-	Скорост на възпроизвежда
 values-b+bg	string	player_speed_text_format	-	Скорост (%.2fx)
 values-b+bg	string	player_subtitles_settings	-	Субтитри
 values-b+bg	string	player_subtitles_settings_des	-	Настройки на субтитрите на плейъра
+values-b+bg	string	player_unmute	-	Включване на звука
 values-b+bg	string	plugin	-	Плъгини
 values-b+bg	string	plugin_deleted	-	Приставката е изтрита
 values-b+bg	string	plugin_downloaded	-	Приставката е изтеглена
@@ -7942,6 +7960,7 @@ values-b+bn	string	player_load_one_subtitle_online	-	Load first available
 values-b+bn	string	player_load_subtitles	-	Load from file
 values-b+bn	string	player_load_subtitles_online	-	Load from Internet
 values-b+bn	string	player_loaded_subtitles	-	Loaded %s
+values-b+bn	string	player_mute	-	মিউট করুন
 values-b+bn	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+bn	string	player_notification_channel_name	-	Player notifications
 values-b+bn	string	player_pref	-	Preferred video player
@@ -7954,6 +7973,7 @@ values-b+bn	string	player_speed	-	ভিডিও এর গতি
 values-b+bn	string	player_speed_text_format	-	গতি (%.2f গুণ)
 values-b+bn	string	player_subtitles_settings	-	সাবটাইটেল
 values-b+bn	string	player_subtitles_settings_des	-	প্লেয়ার এর সাবটাইটেলসমূহের সেটিংস
+values-b+bn	string	player_unmute	-	আনমিউট করুন
 values-b+bn	string	plugin	-	plugins
 values-b+bn	string	plugin_deleted	-	Plugin Deleted
 values-b+bn	string	plugin_downloaded	-	Plugin Downloaded
@@ -8773,6 +8793,7 @@ values-b+ca	string	player_load_one_subtitle_online	-	Carrega el primer disponibl
 values-b+ca	string	player_load_subtitles	-	Carrega des del fitxer
 values-b+ca	string	player_load_subtitles_online	-	Carrega des d'internet
 values-b+ca	string	player_loaded_subtitles	-	%s carregat
+values-b+ca	string	player_mute	-	Silencia
 values-b+ca	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+ca	string	player_notification_channel_name	-	Player notifications
 values-b+ca	string	player_pref	-	Preferred video player
@@ -8785,6 +8806,7 @@ values-b+ca	string	player_speed	-	Velocitat de reproducció
 values-b+ca	string	player_speed_text_format	-	Velocitat (%.2fx)
 values-b+ca	string	player_subtitles_settings	-	Subtitles
 values-b+ca	string	player_subtitles_settings_des	-	Player subtitles settings
+values-b+ca	string	player_unmute	-	Deixa de silenciar
 values-b+ca	string	plugin	-	plugins
 values-b+ca	string	plugin_deleted	-	Plugin Deleted
 values-b+ca	string	plugin_downloaded	-	Plugin Downloaded
@@ -9603,6 +9625,7 @@ values-b+ckb	string	player_load_one_subtitle_online	-	Load first available
 values-b+ckb	string	player_load_subtitles	-	Load from file
 values-b+ckb	string	player_load_subtitles_online	-	Load from Internet
 values-b+ckb	string	player_loaded_subtitles	-	Loaded %s
+values-b+ckb	string	player_mute	-	بێدەنگکردن
 values-b+ckb	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+ckb	string	player_notification_channel_name	-	Player notifications
 values-b+ckb	string	player_pref	-	Preferred video player
@@ -9615,6 +9638,7 @@ values-b+ckb	string	player_speed	-	Player Speed
 values-b+ckb	string	player_speed_text_format	-	خێرای(x%.2f)
 values-b+ckb	string	player_subtitles_settings	-	Subtitles
 values-b+ckb	string	player_subtitles_settings_des	-	Player subtitles settings
+values-b+ckb	string	player_unmute	-	لابردنی بێدەنگی
 values-b+ckb	string	plugin	-	plugins
 values-b+ckb	string	plugin_deleted	-	Plugin Deleted
 values-b+ckb	string	plugin_downloaded	-	Plugin Downloaded
@@ -10441,6 +10465,7 @@ values-b+cs	string	player_load_one_subtitle_online	-	Načíst první dostupné
 values-b+cs	string	player_load_subtitles	-	Načíst ze souboru
 values-b+cs	string	player_load_subtitles_online	-	Načíst z internetu
 values-b+cs	string	player_loaded_subtitles	-	Načteno %s
+values-b+cs	string	player_mute	-	Vypnout zvuk
 values-b+cs	string	player_notification_channel_description	-	Oznámení přehrávače pro ovládání přehrávání na pozadí
 values-b+cs	string	player_notification_channel_name	-	Oznámení přehrávače
 values-b+cs	string	player_pref	-	Preferovaný přehrávač videí
@@ -10453,6 +10478,7 @@ values-b+cs	string	player_speed	-	Rychlost přehrávání
 values-b+cs	string	player_speed_text_format	-	Rychlost (%.2fx)
 values-b+cs	string	player_subtitles_settings	-	Titulky
 values-b+cs	string	player_subtitles_settings_des	-	Nastavení titulků přehrávače
+values-b+cs	string	player_unmute	-	Zapnout zvuk
 values-b+cs	string	plugin	-	doplňků
 values-b+cs	string	plugin_deleted	-	Doplněk odstraněn
 values-b+cs	string	plugin_downloaded	-	Doplněk stažen
@@ -11271,6 +11297,7 @@ values-b+de	string	player_load_one_subtitle_online	-	Erste verfügbare laden
 values-b+de	string	player_load_subtitles	-	Aus Datei laden
 values-b+de	string	player_load_subtitles_online	-	Aus Internet laden
 values-b+de	string	player_loaded_subtitles	-	%s geladen
+values-b+de	string	player_mute	-	Stummschalten
 values-b+de	string	player_notification_channel_description	-	Player-Benachrichtigung zur Steuerung der Hintergrundwiedergabe
 values-b+de	string	player_notification_channel_name	-	Player-Benachrichtigung
 values-b+de	string	player_pref	-	Bevorzugter Videoplayer
@@ -11283,6 +11310,7 @@ values-b+de	string	player_speed	-	Player-Geschwindigkeit
 values-b+de	string	player_speed_text_format	-	Geschwindigkeit (%.2fx)
 values-b+de	string	player_subtitles_settings	-	Untertitel
 values-b+de	string	player_subtitles_settings_des	-	Player-Untertiteleinstellungen
+values-b+de	string	player_unmute	-	Stummschaltung aufheben
 values-b+de	string	plugin	-	Plugins
 values-b+de	string	plugin_deleted	-	Plugin gelöscht
 values-b+de	string	plugin_downloaded	-	Das Plugin wurde heruntergeladen
@@ -12101,6 +12129,7 @@ values-b+el	string	player_load_one_subtitle_online	-	Φορτώστε το πρ�
 values-b+el	string	player_load_subtitles	-	Φόρτωση από αρχείο
 values-b+el	string	player_load_subtitles_online	-	Φόρτωση από το Ίντερνετ
 values-b+el	string	player_loaded_subtitles	-	Φόρτωση %s
+values-b+el	string	player_mute	-	Σίγαση
 values-b+el	string	player_notification_channel_description	-	Η ειδοποίηση παίκτη για τον έλεγχο του playback από το φόντο
 values-b+el	string	player_notification_channel_name	-	Ειδοποίησεις αναπαραγωγής
 values-b+el	string	player_pref	-	Προτεινόμενο πρόγραμμα αναπαραγωγής
@@ -12113,6 +12142,7 @@ values-b+el	string	player_speed	-	Ταχύτητα αναπαραγωγής
 values-b+el	string	player_speed_text_format	-	Ταχύτητα (%.2fx)
 values-b+el	string	player_subtitles_settings	-	Υπότιτλοι
 values-b+el	string	player_subtitles_settings_des	-	Ρυθμίσεις υποτίτλων του προγράμματος αναπαραγωγής
+values-b+el	string	player_unmute	-	Κατάργηση σίγασης
 values-b+el	string	plugin	-	Πρόσθετα
 values-b+el	string	plugin_deleted	-	Το πρόσθετο διαγράφηκε
 values-b+el	string	plugin_downloaded	-	Το πρόσθετο κατέβει
@@ -12931,6 +12961,7 @@ values-b+eo	string	player_load_one_subtitle_online	-	Load first available
 values-b+eo	string	player_load_subtitles	-	Load from file
 values-b+eo	string	player_load_subtitles_online	-	Load from Internet
 values-b+eo	string	player_loaded_subtitles	-	Loaded %s
+values-b+eo	string	player_mute	-	Silentigi
 values-b+eo	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+eo	string	player_notification_channel_name	-	Player notifications
 values-b+eo	string	player_pref	-	Preferred video player
@@ -12943,6 +12974,7 @@ values-b+eo	string	player_speed	-	Player Speed
 values-b+eo	string	player_speed_text_format	-	Rapido (%.2fx)
 values-b+eo	string	player_subtitles_settings	-	Subtekstoj
 values-b+eo	string	player_subtitles_settings_des	-	Player subtitles settings
+values-b+eo	string	player_unmute	-	Malsilentigi
 values-b+eo	string	plugin	-	plugins
 values-b+eo	string	plugin_deleted	-	Plugin Deleted
 values-b+eo	string	plugin_downloaded	-	Plugin Downloaded
@@ -13765,6 +13797,7 @@ values-b+es	string	player_load_one_subtitle_online	-	Cargar primero disponible
 values-b+es	string	player_load_subtitles	-	Cargar desde archivo
 values-b+es	string	player_load_subtitles_online	-	Cargar desde Internet
 values-b+es	string	player_loaded_subtitles	-	%s Cargado
+values-b+es	string	player_mute	-	Silenciar
 values-b+es	string	player_notification_channel_description	-	La notificación del reproductor para controlar la reproducción en segundo plano
 values-b+es	string	player_notification_channel_name	-	Notificaciones del reproductor
 values-b+es	string	player_pref	-	Reproductor de video preferido
@@ -13777,6 +13810,7 @@ values-b+es	string	player_speed	-	Velocidad del reproductor
 values-b+es	string	player_speed_text_format	-	Velocidad (%.2f×)
 values-b+es	string	player_subtitles_settings	-	Subtítulos
 values-b+es	string	player_subtitles_settings_des	-	Configuración de subtítulos del reproductor
+values-b+es	string	player_unmute	-	Activar sonido
 values-b+es	string	plugin	-	plugins
 values-b+es	string	plugin_deleted	-	Plugin Borrado
 values-b+es	string	plugin_downloaded	-	Plugin descargado
@@ -14595,6 +14629,7 @@ values-b+fa	string	player_load_one_subtitle_online	-	Load first available
 values-b+fa	string	player_load_subtitles	-	Load from file
 values-b+fa	string	player_load_subtitles_online	-	Load from Internet
 values-b+fa	string	player_loaded_subtitles	-	Loaded %s
+values-b+fa	string	player_mute	-	بی‌صدا
 values-b+fa	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+fa	string	player_notification_channel_name	-	Player notifications
 values-b+fa	string	player_pref	-	پخش‌کننده ویدئو برگزیده
@@ -14607,6 +14642,7 @@ values-b+fa	string	player_speed	-	سرعت پخش‌کننده
 values-b+fa	string	player_speed_text_format	-	سرعت (%.2f برابر)
 values-b+fa	string	player_subtitles_settings	-	زیرنویس‌ها
 values-b+fa	string	player_subtitles_settings_des	-	تنظیمات زیرنویس‌های پخش‌کننده
+values-b+fa	string	player_unmute	-	صدادار
 values-b+fa	string	plugin	-	plugins
 values-b+fa	string	plugin_deleted	-	افزونه حذف شد
 values-b+fa	string	plugin_downloaded	-	Plugin Downloaded
@@ -15425,6 +15461,7 @@ values-b+fil	string	player_load_one_subtitle_online	-	Load first available
 values-b+fil	string	player_load_subtitles	-	Load from file
 values-b+fil	string	player_load_subtitles_online	-	Load from Internet
 values-b+fil	string	player_loaded_subtitles	-	Loaded %s
+values-b+fil	string	player_mute	-	I-mute
 values-b+fil	string	player_notification_channel_description	-	Ang abiso ng player para sa pagkontrol sa pag-playback mula sa background
 values-b+fil	string	player_notification_channel_name	-	Player notifications
 values-b+fil	string	player_pref	-	Preferred video player
@@ -15437,6 +15474,7 @@ values-b+fil	string	player_speed	-	Bilis ng Manlalaro
 values-b+fil	string	player_speed_text_format	-	Bilis (%.2fx)
 values-b+fil	string	player_subtitles_settings	-	Subtitles
 values-b+fil	string	player_subtitles_settings_des	-	Player subtitles settings
+values-b+fil	string	player_unmute	-	I-unmute
 values-b+fil	string	plugin	-	plugins
 values-b+fil	string	plugin_deleted	-	Plugin Deleted
 values-b+fil	string	plugin_downloaded	-	Plugin Downloaded
@@ -16259,6 +16297,7 @@ values-b+fr	string	player_load_one_subtitle_online	-	Charger le premier disponib
 values-b+fr	string	player_load_subtitles	-	Charger depuis le fichier
 values-b+fr	string	player_load_subtitles_online	-	Charger depuis internet
 values-b+fr	string	player_loaded_subtitles	-	%s chargé
+values-b+fr	string	player_mute	-	Couper le son
 values-b+fr	string	player_notification_channel_description	-	La notification du lecteur pour contrôler la lecture en arrière-plan
 values-b+fr	string	player_notification_channel_name	-	Notifications du lecteur
 values-b+fr	string	player_pref	-	Lecteur vidéo préféré
@@ -16271,6 +16310,7 @@ values-b+fr	string	player_speed	-	Vitesse de lecture
 values-b+fr	string	player_speed_text_format	-	Vitesse (%.2fx)
 values-b+fr	string	player_subtitles_settings	-	Sous-titres
 values-b+fr	string	player_subtitles_settings_des	-	Paramètres des sous-titres du lecteur
+values-b+fr	string	player_unmute	-	Réactiver le son
 values-b+fr	string	plugin	-	plugins
 values-b+fr	string	plugin_deleted	-	Plugin Supprimé
 values-b+fr	string	plugin_downloaded	-	Plugin Téléchargé
@@ -17089,6 +17129,7 @@ values-b+gl	string	player_load_one_subtitle_online	-	Load first available
 values-b+gl	string	player_load_subtitles	-	Load from file
 values-b+gl	string	player_load_subtitles_online	-	Load from Internet
 values-b+gl	string	player_loaded_subtitles	-	Loaded %s
+values-b+gl	string	player_mute	-	Silenciar
 values-b+gl	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+gl	string	player_notification_channel_name	-	Player notifications
 values-b+gl	string	player_pref	-	Preferred video player
@@ -17101,6 +17142,7 @@ values-b+gl	string	player_speed	-	Velocidade do reproductor
 values-b+gl	string	player_speed_text_format	-	Velocidade (%.2fx)
 values-b+gl	string	player_subtitles_settings	-	Subtítulos
 values-b+gl	string	player_subtitles_settings_des	-	Configuración de subtítulos do reprodutor
+values-b+gl	string	player_unmute	-	Activar o son
 values-b+gl	string	plugin	-	plugins
 values-b+gl	string	plugin_deleted	-	Plugin Deleted
 values-b+gl	string	plugin_downloaded	-	Plugin Downloaded
@@ -17919,6 +17961,7 @@ values-b+hi	string	player_load_one_subtitle_online	-	Load first available
 values-b+hi	string	player_load_subtitles	-	Load from file
 values-b+hi	string	player_load_subtitles_online	-	Load from Internet
 values-b+hi	string	player_loaded_subtitles	-	Loaded %s
+values-b+hi	string	player_mute	-	म्यूट करें
 values-b+hi	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+hi	string	player_notification_channel_name	-	Player notifications
 values-b+hi	string	player_pref	-	Preferred video player
@@ -17931,6 +17974,7 @@ values-b+hi	string	player_speed	-	प्लेयर स्पीड
 values-b+hi	string	player_speed_text_format	-	स्पीड (%.2fx)
 values-b+hi	string	player_subtitles_settings	-	उपशीर्षक
 values-b+hi	string	player_subtitles_settings_des	-	प्लेयर उपशीर्षक सेटिंग्स
+values-b+hi	string	player_unmute	-	अनम्यूट करें
 values-b+hi	string	plugin	-	plugins
 values-b+hi	string	plugin_deleted	-	Plugin Deleted
 values-b+hi	string	plugin_downloaded	-	Plugin Downloaded
@@ -18752,6 +18796,7 @@ values-b+hr	string	player_load_one_subtitle_online	-	Učitaj prvi dostupni
 values-b+hr	string	player_load_subtitles	-	Učitaj iz datoteke
 values-b+hr	string	player_load_subtitles_online	-	Učitaj s interneta
 values-b+hr	string	player_loaded_subtitles	-	Učitano %s
+values-b+hr	string	player_mute	-	Isključi zvuk
 values-b+hr	string	player_notification_channel_description	-	Obavijest reproduktora za upravljanje reprodukcijom iz pozadine
 values-b+hr	string	player_notification_channel_name	-	Obavijesti reproduktora
 values-b+hr	string	player_pref	-	Preferirani video player
@@ -18764,6 +18809,7 @@ values-b+hr	string	player_speed	-	Brzina playera
 values-b+hr	string	player_speed_text_format	-	Brzina (%.2f×)
 values-b+hr	string	player_subtitles_settings	-	Titlovi
 values-b+hr	string	player_subtitles_settings_des	-	Postavke titlova playera
+values-b+hr	string	player_unmute	-	Uključi zvuk
 values-b+hr	string	plugin	-	dodaci
 values-b+hr	string	plugin_deleted	-	Dodatak izbrisan
 values-b+hr	string	plugin_downloaded	-	Dodatak preuzet
@@ -19582,6 +19628,7 @@ values-b+hu	string	player_load_one_subtitle_online	-	Töltse be az első létez�
 values-b+hu	string	player_load_subtitles	-	Betöltés fájlból
 values-b+hu	string	player_load_subtitles_online	-	Betöltés az internetről
 values-b+hu	string	player_loaded_subtitles	-	%s betöltve
+values-b+hu	string	player_mute	-	Némítás
 values-b+hu	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+hu	string	player_notification_channel_name	-	Player notifications
 values-b+hu	string	player_pref	-	Előnyben részesített videolejátszó
@@ -19594,6 +19641,7 @@ values-b+hu	string	player_speed	-	Lejátszás sebessége
 values-b+hu	string	player_speed_text_format	-	Sebesség (%.2fx)
 values-b+hu	string	player_subtitles_settings	-	Feliratok
 values-b+hu	string	player_subtitles_settings_des	-	Lejátszó feliratok beállításai
+values-b+hu	string	player_unmute	-	Némítás feloldása
 values-b+hu	string	plugin	-	bővítmények
 values-b+hu	string	plugin_deleted	-	Bővítmény törölve
 values-b+hu	string	plugin_downloaded	-	Bővítmény letöltve
@@ -20408,6 +20456,7 @@ values-b+in	string	player_load_one_subtitle_online	-	Muat yang pertama tersedia
 values-b+in	string	player_load_subtitles	-	Muat dari file
 values-b+in	string	player_load_subtitles_online	-	Ambil dari internet
 values-b+in	string	player_loaded_subtitles	-	Memuat %s
+values-b+in	string	player_mute	-	Bisukan
 values-b+in	string	player_notification_channel_description	-	Pemberitahuan pemutar untuk mengontrol pemutaran dari latar belakang
 values-b+in	string	player_notification_channel_name	-	Notifikasi pemain
 values-b+in	string	player_pref	-	Pemutar video utama
@@ -20420,6 +20469,7 @@ values-b+in	string	player_speed	-	Kecepatan Pemutar
 values-b+in	string	player_speed_text_format	-	Kecepatan (%.2fx)
 values-b+in	string	player_subtitles_settings	-	Subtitel
 values-b+in	string	player_subtitles_settings_des	-	Pengaturan subtitel pemutar
+values-b+in	string	player_unmute	-	Bunyikan
 values-b+in	string	plugin	-	plugin
 values-b+in	string	plugin_deleted	-	Plugin terhapus
 values-b+in	string	plugin_downloaded	-	Plugin terunduh
@@ -21242,6 +21292,7 @@ values-b+it	string	player_load_one_subtitle_online	-	Carica il primo disponibile
 values-b+it	string	player_load_subtitles	-	Carica da file
 values-b+it	string	player_load_subtitles_online	-	Carica da Internet
 values-b+it	string	player_loaded_subtitles	-	Caricato %s
+values-b+it	string	player_mute	-	Disattiva audio
 values-b+it	string	player_notification_channel_description	-	La notifica del lettore per controllare la riproduzione in background
 values-b+it	string	player_notification_channel_name	-	Notifiche lettore
 values-b+it	string	player_pref	-	Video lettore preferito
@@ -21254,6 +21305,7 @@ values-b+it	string	player_speed	-	Velocità lettore
 values-b+it	string	player_speed_text_format	-	Velocità (%.2fx)
 values-b+it	string	player_subtitles_settings	-	Sottotitoli
 values-b+it	string	player_subtitles_settings_des	-	Impostazioni sottotitoli lettore
+values-b+it	string	player_unmute	-	Riattiva audio
 values-b+it	string	plugin	-	plugin
 values-b+it	string	plugin_deleted	-	Plugin eliminato
 values-b+it	string	plugin_downloaded	-	Plugin scaricato
@@ -22073,6 +22125,7 @@ values-b+iw	string	player_load_one_subtitle_online	-	Load first available
 values-b+iw	string	player_load_subtitles	-	טען מקובץ
 values-b+iw	string	player_load_subtitles_online	-	טען מהאינטרנט
 values-b+iw	string	player_loaded_subtitles	-	נטען %s
+values-b+iw	string	player_mute	-	השתקה
 values-b+iw	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+iw	string	player_notification_channel_name	-	Player notifications
 values-b+iw	string	player_pref	-	נגן וידאו מועדף
@@ -22085,6 +22138,7 @@ values-b+iw	string	player_speed	-	מהירות הנגן
 values-b+iw	string	player_speed_text_format	-	מהירות (%.2fx)
 values-b+iw	string	player_subtitles_settings	-	כתוביות
 values-b+iw	string	player_subtitles_settings_des	-	הגדרות כתוביות הנגן
+values-b+iw	string	player_unmute	-	ביטול השתקה
 values-b+iw	string	plugin	-	תוספים
 values-b+iw	string	plugin_deleted	-	התוסף נמחק
 values-b+iw	string	plugin_downloaded	-	תוסף הורד
@@ -22899,6 +22953,7 @@ values-b+ja	string	player_load_one_subtitle_online	-	最初に利用可能なも
 values-b+ja	string	player_load_subtitles	-	ファイルから読み込む
 values-b+ja	string	player_load_subtitles_online	-	インターネットから読み込む
 values-b+ja	string	player_loaded_subtitles	-	%s を読み込みました
+values-b+ja	string	player_mute	-	ミュート
 values-b+ja	string	player_notification_channel_description	-	バックグラウンドから再生を制御するためのプレーヤー通知
 values-b+ja	string	player_notification_channel_name	-	プレーヤー通知
 values-b+ja	string	player_pref	-	優先ビデオプレーヤー
@@ -22911,6 +22966,7 @@ values-b+ja	string	player_speed	-	プレーヤーの速度
 values-b+ja	string	player_speed_text_format	-	再生速度 (%.2fx)
 values-b+ja	string	player_subtitles_settings	-	字幕
 values-b+ja	string	player_subtitles_settings_des	-	プレーヤーの字幕設定
+values-b+ja	string	player_unmute	-	ミュート解除
 values-b+ja	string	plugin	-	プラグイン
 values-b+ja	string	plugin_deleted	-	プラグインが消されました
 values-b+ja	string	plugin_downloaded	-	プラグインがダウンロードされました
@@ -23729,6 +23785,7 @@ values-b+kn	string	player_load_one_subtitle_online	-	Load first available
 values-b+kn	string	player_load_subtitles	-	Load from file
 values-b+kn	string	player_load_subtitles_online	-	Load from Internet
 values-b+kn	string	player_loaded_subtitles	-	Loaded %s
+values-b+kn	string	player_mute	-	ಮ್ಯೂಟ್ ಮಾಡಿ
 values-b+kn	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+kn	string	player_notification_channel_name	-	Player notifications
 values-b+kn	string	player_pref	-	Preferred video player
@@ -23741,6 +23798,7 @@ values-b+kn	string	player_speed	-	ಪ್ಲೇಯರ್ ಸ್ಪೀಡ್
 values-b+kn	string	player_speed_text_format	-	ಸ್ಪೀಡ್(%.2fx)
 values-b+kn	string	player_subtitles_settings	-	ಸಬ್ ಟೈಟಲ್ಸ್
 values-b+kn	string	player_subtitles_settings_des	-	ಪ್ಲೇಯರ್ ಸಬ್ ಟೈಟಲ್ಸ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳು
+values-b+kn	string	player_unmute	-	ಅನ್‌ಮ್ಯೂಟ್ ಮಾಡಿ
 values-b+kn	string	plugin	-	plugins
 values-b+kn	string	plugin_deleted	-	Plugin Deleted
 values-b+kn	string	plugin_downloaded	-	Plugin Downloaded
@@ -24556,6 +24614,7 @@ values-b+ko	string	player_load_one_subtitle_online	-	사용 가능한 자막 불
 values-b+ko	string	player_load_subtitles	-	파일에서 불러오기
 values-b+ko	string	player_load_subtitles_online	-	인터넷에서 불러오기
 values-b+ko	string	player_loaded_subtitles	-	로드됨 %s
+values-b+ko	string	player_mute	-	음소거
 values-b+ko	string	player_notification_channel_description	-	백그라운드에서 재생을 제어하기 위한 플레이어 알림
 values-b+ko	string	player_notification_channel_name	-	플레이어 알림
 values-b+ko	string	player_pref	-	선호하는 동영상 플레이어
@@ -24568,6 +24627,7 @@ values-b+ko	string	player_speed	-	재생 속도
 values-b+ko	string	player_speed_text_format	-	속도 (%.2fx)
 values-b+ko	string	player_subtitles_settings	-	자막
 values-b+ko	string	player_subtitles_settings_des	-	플레이어 자막 설정
+values-b+ko	string	player_unmute	-	음소거 해제
 values-b+ko	string	plugin	-	플러그인
 values-b+ko	string	plugin_deleted	-	플러그인 삭제됨
 values-b+ko	string	plugin_downloaded	-	플러그인 다운로드
@@ -25388,6 +25448,7 @@ values-b+lt	string	player_load_one_subtitle_online	-	Load first available
 values-b+lt	string	player_load_subtitles	-	Load from file
 values-b+lt	string	player_load_subtitles_online	-	Load from Internet
 values-b+lt	string	player_loaded_subtitles	-	Loaded %s
+values-b+lt	string	player_mute	-	Nutildyti
 values-b+lt	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+lt	string	player_notification_channel_name	-	Player notifications
 values-b+lt	string	player_pref	-	Preferred video player
@@ -25400,6 +25461,7 @@ values-b+lt	string	player_speed	-	Grotuvo greitis
 values-b+lt	string	player_speed_text_format	-	Greitis (%.2fx)
 values-b+lt	string	player_subtitles_settings	-	Subtitrai
 values-b+lt	string	player_subtitles_settings_des	-	Grotuvo subtitrų nustatymai
+values-b+lt	string	player_unmute	-	Įjungti garsą
 values-b+lt	string	plugin	-	plugins
 values-b+lt	string	plugin_deleted	-	Plugin Deleted
 values-b+lt	string	plugin_downloaded	-	Plugin Downloaded
@@ -26220,6 +26282,7 @@ values-b+lv	string	player_load_one_subtitle_online	-	Lejupielādēt pirmo pieeja
 values-b+lv	string	player_load_subtitles	-	Ielādēt no datnes
 values-b+lv	string	player_load_subtitles_online	-	Lejupielādēt no interneta
 values-b+lv	string	player_loaded_subtitles	-	Ielādēti %s
+values-b+lv	string	player_mute	-	Izslēgt skaņu
 values-b+lv	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+lv	string	player_notification_channel_name	-	Player notifications
 values-b+lv	string	player_pref	-	Vēlamais video atskaņotājs
@@ -26232,6 +26295,7 @@ values-b+lv	string	player_speed	-	Atskaņošanas ātrums
 values-b+lv	string	player_speed_text_format	-	Ātrums (%.2fx)
 values-b+lv	string	player_subtitles_settings	-	Subtitri
 values-b+lv	string	player_subtitles_settings_des	-	Atskaņotāja subtitru iestatījumi
+values-b+lv	string	player_unmute	-	Ieslēgt skaņu
 values-b+lv	string	plugin	-	papildinājumi
 values-b+lv	string	plugin_deleted	-	Papildinājums dzēsts
 values-b+lv	string	plugin_downloaded	-	Papildinājums lejupielādēts
@@ -27050,6 +27114,7 @@ values-b+mk	string	player_load_one_subtitle_online	-	Вчитај прво до�
 values-b+mk	string	player_load_subtitles	-	Вчитај од датотека
 values-b+mk	string	player_load_subtitles_online	-	Вчитај од Интернет
 values-b+mk	string	player_loaded_subtitles	-	Вчитан %s
+values-b+mk	string	player_mute	-	Исклучи звук
 values-b+mk	string	player_notification_channel_description	-	Известување од плеерот за контрола на репродукцијата од позадина
 values-b+mk	string	player_notification_channel_name	-	Известувања од плеерот
 values-b+mk	string	player_pref	-	Префериран видео плеер
@@ -27062,6 +27127,7 @@ values-b+mk	string	player_speed	-	Брзина на плеер
 values-b+mk	string	player_speed_text_format	-	Брзина (%.2fx)
 values-b+mk	string	player_subtitles_settings	-	Преводи
 values-b+mk	string	player_subtitles_settings_des	-	Поставки на плеерот за преводи
+values-b+mk	string	player_unmute	-	Вклучи звук
 values-b+mk	string	plugin	-	приклучоци
 values-b+mk	string	plugin_deleted	-	Приклучокот е избришан
 values-b+mk	string	plugin_downloaded	-	Приклучокот е преземен
@@ -27880,6 +27946,7 @@ values-b+ml	string	player_load_one_subtitle_online	-	Load first available
 values-b+ml	string	player_load_subtitles	-	Load from file
 values-b+ml	string	player_load_subtitles_online	-	Load from Internet
 values-b+ml	string	player_loaded_subtitles	-	Loaded %s
+values-b+ml	string	player_mute	-	നിശബ്‌ദമാക്കുക
 values-b+ml	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+ml	string	player_notification_channel_name	-	Player notifications
 values-b+ml	string	player_pref	-	Preferred video player
@@ -27892,6 +27959,7 @@ values-b+ml	string	player_speed	-	പ്ലേയർ വേഗത
 values-b+ml	string	player_speed_text_format	-	വേഗം (%.2fx)
 values-b+ml	string	player_subtitles_settings	-	സബ്ടൈട്ടിൽസ്
 values-b+ml	string	player_subtitles_settings_des	-	പ്ലേയർ സബ്‌ടൈറ്റിലുകളുടെ സെറ്റിങ്‌സ്
+values-b+ml	string	player_unmute	-	നിശബ്‌ദത മാറ്റുക
 values-b+ml	string	plugin	-	plugins
 values-b+ml	string	plugin_deleted	-	Plugin Deleted
 values-b+ml	string	plugin_downloaded	-	Plugin Downloaded
@@ -28709,6 +28777,7 @@ values-b+ms	string	player_load_one_subtitle_online	-	Load first available
 values-b+ms	string	player_load_subtitles	-	Load from file
 values-b+ms	string	player_load_subtitles_online	-	Load from Internet
 values-b+ms	string	player_loaded_subtitles	-	Loaded %s
+values-b+ms	string	player_mute	-	Redam
 values-b+ms	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+ms	string	player_notification_channel_name	-	Player notifications
 values-b+ms	string	player_pref	-	Preferred video player
@@ -28721,6 +28790,7 @@ values-b+ms	string	player_speed	-	Kelajuan Pemain
 values-b+ms	string	player_speed_text_format	-	Kelajuan (%.2fx)
 values-b+ms	string	player_subtitles_settings	-	Sari kata
 values-b+ms	string	player_subtitles_settings_des	-	Tetapan sari kata pemain
+values-b+ms	string	player_unmute	-	Nyahredam
 values-b+ms	string	plugin	-	plugins
 values-b+ms	string	plugin_deleted	-	Plugin Deleted
 values-b+ms	string	plugin_downloaded	-	Plugin Downloaded
@@ -29542,6 +29612,7 @@ values-b+mt	string	player_load_one_subtitle_online	-	Load first available
 values-b+mt	string	player_load_subtitles	-	Load from file
 values-b+mt	string	player_load_subtitles_online	-	Load from Internet
 values-b+mt	string	player_loaded_subtitles	-	Loaded %s
+values-b+mt	string	player_mute	-	Itfi l-ħoss
 values-b+mt	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+mt	string	player_notification_channel_name	-	Player notifications
 values-b+mt	string	player_pref	-	Preferred video player
@@ -29554,6 +29625,7 @@ values-b+mt	string	player_speed	-	Veloċità tal-Plejer
 values-b+mt	string	player_speed_text_format	-	veloċità (%.2fx)
 values-b+mt	string	player_subtitles_settings	-	Subtitles
 values-b+mt	string	player_subtitles_settings_des	-	Player subtitles settings
+values-b+mt	string	player_unmute	-	Ixgħel il-ħoss
 values-b+mt	string	plugin	-	plugins
 values-b+mt	string	plugin_deleted	-	Plugin Deleted
 values-b+mt	string	plugin_downloaded	-	Plugin Downloaded
@@ -30371,6 +30443,7 @@ values-b+my	string	player_load_one_subtitle_online	-	Load first available
 values-b+my	string	player_load_subtitles	-	ဖိုင်မှတင်သွင်းပြီး
 values-b+my	string	player_load_subtitles_online	-	အင်တာနက်မှ တင်သွင်းမည်
 values-b+my	string	player_loaded_subtitles	-	တင်ပြီး %s
+values-b+my	string	player_mute	-	အသံပိတ်ရန်
 values-b+my	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+my	string	player_notification_channel_name	-	Player notifications
 values-b+my	string	player_pref	-	ဦးစားပေး ဗီဒီယိုဖွင့်စက်
@@ -30383,6 +30456,7 @@ values-b+my	string	player_speed	-	ကြည့်ရှုမှုအရှိ�
 values-b+my	string	player_speed_text_format	-	အရှိန် (%.2fx)
 values-b+my	string	player_subtitles_settings	-	စာတန်းထိုးများ
 values-b+my	string	player_subtitles_settings_des	-	ကြည့်ရှုမှုစာတန်းထိုးပြုပြင်စရာများ
+values-b+my	string	player_unmute	-	အသံဖွင့်ရန်
 values-b+my	string	plugin	-	ဖြည့်စွက်များ
 values-b+my	string	plugin_deleted	-	ဖြည့်စွက်များဖျက်ပြီး
 values-b+my	string	plugin_downloaded	-	ဖြည့်စွက်များ ဒေါင်းလုဒ်လုပ်ပြီး
@@ -31201,6 +31275,7 @@ values-b+ne	string	player_load_one_subtitle_online	-	Load first available
 values-b+ne	string	player_load_subtitles	-	Load from file
 values-b+ne	string	player_load_subtitles_online	-	Load from Internet
 values-b+ne	string	player_loaded_subtitles	-	Loaded %s
+values-b+ne	string	player_mute	-	म्यूट गर्नुहोस्
 values-b+ne	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+ne	string	player_notification_channel_name	-	Player notifications
 values-b+ne	string	player_pref	-	Preferred video player
@@ -31213,6 +31288,7 @@ values-b+ne	string	player_speed	-	प्लेयर स्पीड
 values-b+ne	string	player_speed_text_format	-	गति (%.2fx)
 values-b+ne	string	player_subtitles_settings	-	उपशीर्षक
 values-b+ne	string	player_subtitles_settings_des	-	प्लेयरको उपशीर्षकको सेटिङ
+values-b+ne	string	player_unmute	-	अनम्यूट गर्नुहोस्
 values-b+ne	string	plugin	-	plugins
 values-b+ne	string	plugin_deleted	-	Plugin Deleted
 values-b+ne	string	plugin_downloaded	-	Plugin Downloaded
@@ -32031,6 +32107,7 @@ values-b+nl	string	player_load_one_subtitle_online	-	Laad eerst beschikbare
 values-b+nl	string	player_load_subtitles	-	Laden uit bestand
 values-b+nl	string	player_load_subtitles_online	-	Laden vanaf internet
 values-b+nl	string	player_loaded_subtitles	-	Geladen %s
+values-b+nl	string	player_mute	-	Dempen
 values-b+nl	string	player_notification_channel_description	-	De speler melding om de kijkervaring van de achtergrond de besturen
 values-b+nl	string	player_notification_channel_name	-	Speler meldingen
 values-b+nl	string	player_pref	-	Gewenste videospeler
@@ -32043,6 +32120,7 @@ values-b+nl	string	player_speed	-	Afspelen Snelheid
 values-b+nl	string	player_speed_text_format	-	Snelheid (%.2fx)
 values-b+nl	string	player_subtitles_settings	-	Ondertitels
 values-b+nl	string	player_subtitles_settings_des	-	Speler Ondertiteling instellingen
+values-b+nl	string	player_unmute	-	Dempen opheffen
 values-b+nl	string	plugin	-	plugins
 values-b+nl	string	plugin_deleted	-	Plugin Verwijderd
 values-b+nl	string	plugin_downloaded	-	Plugin Gedownload
@@ -32861,6 +32939,7 @@ values-b+nn	string	player_load_one_subtitle_online	-	Load first available
 values-b+nn	string	player_load_subtitles	-	Load from file
 values-b+nn	string	player_load_subtitles_online	-	Load from Internet
 values-b+nn	string	player_loaded_subtitles	-	Loaded %s
+values-b+nn	string	player_mute	-	Slå av lyd
 values-b+nn	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+nn	string	player_notification_channel_name	-	Player notifications
 values-b+nn	string	player_pref	-	Preferred video player
@@ -32873,6 +32952,7 @@ values-b+nn	string	player_speed	-	Avspelinghastigheit
 values-b+nn	string	player_speed_text_format	-	Avspelinghastigheit (%.2fx)
 values-b+nn	string	player_subtitles_settings	-	Undertekstar
 values-b+nn	string	player_subtitles_settings_des	-	Innstillinger for avspilling av undertekster
+values-b+nn	string	player_unmute	-	Slå på lyd
 values-b+nn	string	plugin	-	plugins
 values-b+nn	string	plugin_deleted	-	Plugin Deleted
 values-b+nn	string	plugin_downloaded	-	Plugin Downloaded
@@ -33691,6 +33771,7 @@ values-b+no	string	player_load_one_subtitle_online	-	Load first available
 values-b+no	string	player_load_subtitles	-	Last inn fra fil
 values-b+no	string	player_load_subtitles_online	-	Last inn fra Internett
 values-b+no	string	player_loaded_subtitles	-	Lastet inn %s
+values-b+no	string	player_mute	-	Slå av lyden
 values-b+no	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+no	string	player_notification_channel_name	-	Player notifications
 values-b+no	string	player_pref	-	Foretrukket videospiller
@@ -33703,6 +33784,7 @@ values-b+no	string	player_speed	-	Spillerhastighet
 values-b+no	string	player_speed_text_format	-	Avspillingshastighet (%.2fx)
 values-b+no	string	player_subtitles_settings	-	Undertekster
 values-b+no	string	player_subtitles_settings_des	-	Innstillinger for spillerens teksting
+values-b+no	string	player_unmute	-	Slå på lyden
 values-b+no	string	plugin	-	programtillegg
 values-b+no	string	plugin_deleted	-	Programtillegg slettet
 values-b+no	string	plugin_downloaded	-	Programtillegg nedlastet
@@ -34521,6 +34603,7 @@ values-b+or	string	player_load_one_subtitle_online	-	Load first available
 values-b+or	string	player_load_subtitles	-	Load from file
 values-b+or	string	player_load_subtitles_online	-	Load from Internet
 values-b+or	string	player_loaded_subtitles	-	Loaded %s
+values-b+or	string	player_mute	-	ମ୍ୟୁଟ କରନ୍ତୁ
 values-b+or	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+or	string	player_notification_channel_name	-	Player notifications
 values-b+or	string	player_pref	-	Preferred video player
@@ -34533,6 +34616,7 @@ values-b+or	string	player_speed	-	Player Speed
 values-b+or	string	player_speed_text_format	-	ଵେଗ (%.2fଗୁଣ)
 values-b+or	string	player_subtitles_settings	-	ଉପଶୀର୍ଷକ
 values-b+or	string	player_subtitles_settings_des	-	Player subtitles settings
+values-b+or	string	player_unmute	-	ଅନମ୍ୟୁଟ କରନ୍ତୁ
 values-b+or	string	plugin	-	plugins
 values-b+or	string	plugin_deleted	-	Plugin Deleted
 values-b+or	string	plugin_downloaded	-	Plugin Downloaded
@@ -35359,6 +35443,7 @@ values-b+pl	string	player_load_one_subtitle_online	-	Wczytaj pierwsze dostępne
 values-b+pl	string	player_load_subtitles	-	Wczytaj z pliku
 values-b+pl	string	player_load_subtitles_online	-	Wczytaj z Internetu
 values-b+pl	string	player_loaded_subtitles	-	Załadowano %s
+values-b+pl	string	player_mute	-	Wycisz
 values-b+pl	string	player_notification_channel_description	-	Powiadomienie odtwarzacza umożliwiające sterowanie odtwarzaniem w tle
 values-b+pl	string	player_notification_channel_name	-	Powiadomienia odtwarzacza
 values-b+pl	string	player_pref	-	Preferowany odtwarzacz wideo
@@ -35371,6 +35456,7 @@ values-b+pl	string	player_speed	-	Prędkość odtwarzania
 values-b+pl	string	player_speed_text_format	-	Prędkość (%.2fx)
 values-b+pl	string	player_subtitles_settings	-	Napisy
 values-b+pl	string	player_subtitles_settings_des	-	Ustawienia napisów
+values-b+pl	string	player_unmute	-	Wyłącz wyciszenie
 values-b+pl	string	plugin	-	rozszerzenia
 values-b+pl	string	plugin_deleted	-	Usunięto rozszerzenie
 values-b+pl	string	plugin_downloaded	-	Pobrano rozszerzenie
@@ -36193,6 +36279,7 @@ values-b+pt	string	player_load_one_subtitle_online	-	Carregar o primeiro dispon�
 values-b+pt	string	player_load_subtitles	-	Carregar de arquivo
 values-b+pt	string	player_load_subtitles_online	-	Carregar da Internet
 values-b+pt	string	player_loaded_subtitles	-	%s carregada
+values-b+pt	string	player_mute	-	Desativar som
 values-b+pt	string	player_notification_channel_description	-	Notificação do player para controlar a reprodução em segundo plano
 values-b+pt	string	player_notification_channel_name	-	Notificações de reprodução
 values-b+pt	string	player_pref	-	Player de vídeo preferido
@@ -36205,6 +36292,7 @@ values-b+pt	string	player_speed	-	Velocidade de Reprodução
 values-b+pt	string	player_speed_text_format	-	Velocidade (%.2fx)
 values-b+pt	string	player_subtitles_settings	-	Legendas
 values-b+pt	string	player_subtitles_settings_des	-	Configurações de legendas do player
+values-b+pt	string	player_unmute	-	Ativar som
 values-b+pt	string	plugin	-	plugins
 values-b+pt	string	plugin_deleted	-	Plugin Apagado
 values-b+pt	string	plugin_downloaded	-	Plugins baixados
@@ -37027,6 +37115,7 @@ values-b+pt+BR	string	player_load_one_subtitle_online	-	Carregar primeiro dispon
 values-b+pt+BR	string	player_load_subtitles	-	Carregar de arquivo
 values-b+pt+BR	string	player_load_subtitles_online	-	Carregar da Internet
 values-b+pt+BR	string	player_loaded_subtitles	-	%s carregada
+values-b+pt+BR	string	player_mute	-	Desativar som
 values-b+pt+BR	string	player_notification_channel_description	-	Notificação do player para controlar a reprodução em segundo plano
 values-b+pt+BR	string	player_notification_channel_name	-	Notificações de reprodução
 values-b+pt+BR	string	player_pref	-	Player de vídeo preferido
@@ -37039,6 +37128,7 @@ values-b+pt+BR	string	player_speed	-	Velocidade de reprodução
 values-b+pt+BR	string	player_speed_text_format	-	Velocidade (%.2fx)
 values-b+pt+BR	string	player_subtitles_settings	-	Modificar legendas
 values-b+pt+BR	string	player_subtitles_settings_des	-	Alterar legendas exibidas no player de vídeo
+values-b+pt+BR	string	player_unmute	-	Ativar som
 values-b+pt+BR	string	plugin	-	Plugins
 values-b+pt+BR	string	plugin_deleted	-	Plugin Apagado
 values-b+pt+BR	string	plugin_downloaded	-	Plugin baixado
@@ -37856,6 +37946,7 @@ values-b+qt	string	player_load_one_subtitle_online	-	Load first available
 values-b+qt	string	player_load_subtitles	-	aagg aahh uuuk
 values-b+qt	string	player_load_subtitles_online	-	eeek aahh oooohhhh
 values-b+qt	string	player_loaded_subtitles	-	oooohh %s
+values-b+qt	string	player_mute	-	ooh oh
 values-b+qt	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+qt	string	player_notification_channel_name	-	Player notifications
 values-b+qt	string	player_pref	-	aaaagggah uuugg uuuugg
@@ -37868,6 +37959,7 @@ values-b+qt	string	player_speed	-	oouuh aauuh oha
 values-b+qt	string	player_speed_text_format	-	aaaaaaaaaaaaahh (%.2foouo)
 values-b+qt	string	player_subtitles_settings	-	ahhhaauugghh
 values-b+qt	string	player_subtitles_settings_des	-	oha ooh ouuhhh oooohhahhh ouuhhh
+values-b+qt	string	player_unmute	-	oouuh oh
 values-b+qt	string	plugin	-	uuuuhhh
 values-b+qt	string	plugin_deleted	-	uuuugg uuuuhhh
 values-b+qt	string	plugin_downloaded	-	oooohh oooogggaah
@@ -38687,6 +38779,7 @@ values-b+ro	string	player_load_one_subtitle_online	-	Încărcați prima disponib
 values-b+ro	string	player_load_subtitles	-	Încărcați din fișier
 values-b+ro	string	player_load_subtitles_online	-	Încărcare de pe Internet
 values-b+ro	string	player_loaded_subtitles	-	A fost încărcat %s
+values-b+ro	string	player_mute	-	Dezactivează sunetul
 values-b+ro	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+ro	string	player_notification_channel_name	-	Player notifications
 values-b+ro	string	player_pref	-	Player video preferat
@@ -38699,6 +38792,7 @@ values-b+ro	string	player_speed	-	Viteză video
 values-b+ro	string	player_speed_text_format	-	Viteză (%.2fx)
 values-b+ro	string	player_subtitles_settings	-	Subtitrare
 values-b+ro	string	player_subtitles_settings_des	-	Setări de subtitrare
+values-b+ro	string	player_unmute	-	Activează sunetul
 values-b+ro	string	plugin	-	plugin-uri
 values-b+ro	string	plugin_deleted	-	Plugin Șters
 values-b+ro	string	plugin_downloaded	-	Plugin Descărcat
@@ -39525,6 +39619,7 @@ values-b+ru	string	player_load_one_subtitle_online	-	Скачать первые
 values-b+ru	string	player_load_subtitles	-	Загрузить из файла
 values-b+ru	string	player_load_subtitles_online	-	Скачивать из интернета
 values-b+ru	string	player_loaded_subtitles	-	Загружено %s
+values-b+ru	string	player_mute	-	Выключить звук
 values-b+ru	string	player_notification_channel_description	-	Уведомление проигрывателя для управления воспроизведением в фоновом режиме
 values-b+ru	string	player_notification_channel_name	-	Уведомления плеера
 values-b+ru	string	player_pref	-	Предпочитаемый видеоплеер
@@ -39537,6 +39632,7 @@ values-b+ru	string	player_speed	-	Скорость проигрывателя
 values-b+ru	string	player_speed_text_format	-	Скорость (%.2fx)
 values-b+ru	string	player_subtitles_settings	-	Субтитры
 values-b+ru	string	player_subtitles_settings_des	-	Настройки субтитров проигрывателя
+values-b+ru	string	player_unmute	-	Включить звук
 values-b+ru	string	plugin	-	дополнения
 values-b+ru	string	plugin_deleted	-	Дополнение удалено
 values-b+ru	string	plugin_downloaded	-	Дополнение скачано
@@ -40357,6 +40453,7 @@ values-b+sk	string	player_load_one_subtitle_online	-	Načítať prvé k dispozí
 values-b+sk	string	player_load_subtitles	-	Načítať z súboru
 values-b+sk	string	player_load_subtitles_online	-	Načítať z internetu
 values-b+sk	string	player_loaded_subtitles	-	Načítané %s
+values-b+sk	string	player_mute	-	Vypnúť zvuk
 values-b+sk	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+sk	string	player_notification_channel_name	-	Player notifications
 values-b+sk	string	player_pref	-	Preferred video player
@@ -40369,6 +40466,7 @@ values-b+sk	string	player_speed	-	Rýchlosť prehrávania
 values-b+sk	string	player_speed_text_format	-	Rýchlosť (%.2fx)
 values-b+sk	string	player_subtitles_settings	-	Titulky
 values-b+sk	string	player_subtitles_settings_des	-	Nastavenia titulkov prehrávača
+values-b+sk	string	player_unmute	-	Zapnúť zvuk
 values-b+sk	string	plugin	-	plugins
 values-b+sk	string	plugin_deleted	-	Plugin Deleted
 values-b+sk	string	plugin_downloaded	-	Plugin Downloaded
@@ -41187,6 +41285,7 @@ values-b+so	string	player_load_one_subtitle_online	-	Load first available
 values-b+so	string	player_load_subtitles	-	Faylashaada ka keen
 values-b+so	string	player_load_subtitles_online	-	Internetka ka keen
 values-b+so	string	player_loaded_subtitles	-	Waxa laso kiciyey %s
+values-b+so	string	player_mute	-	Aamusi
 values-b+so	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+so	string	player_notification_channel_name	-	Player notifications
 values-b+so	string	player_pref	-	Muqaal daaraha aad doorbiddo
@@ -41199,6 +41298,7 @@ values-b+so	string	player_speed	-	Xawaaraha daaraha
 values-b+so	string	player_speed_text_format	-	Xawaaraha (%.2fx)
 values-b+so	string	player_subtitles_settings	-	Qoraal-hoosaadka
 values-b+so	string	player_subtitles_settings_des	-	Habaynta Qrl-hoosaadka daaraha
+values-b+so	string	player_unmute	-	Ka qaad aamusnaanta
 values-b+so	string	plugin	-	Sidkanayaasha
 values-b+so	string	plugin_deleted	-	Waa la tiray sidkanahan
 values-b+so	string	plugin_downloaded	-	Waa ka dejiyey sidkanaha
@@ -42017,6 +42117,7 @@ values-b+sq	string	player_load_one_subtitle_online	-	Ngarko të parën e disponu
 values-b+sq	string	player_load_subtitles	-	Ngarko nga skedari
 values-b+sq	string	player_load_subtitles_online	-	Ngarko nga interneti
 values-b+sq	string	player_loaded_subtitles	-	U ngarkua %s
+values-b+sq	string	player_mute	-	Hiq zërin
 values-b+sq	string	player_notification_channel_description	-	Njoftimi për kontrollin e luajtjes nga sfondi
 values-b+sq	string	player_notification_channel_name	-	Njoftimet e luajtësit
 values-b+sq	string	player_pref	-	Luajtësi i preferuar i videove
@@ -42029,6 +42130,7 @@ values-b+sq	string	player_speed	-	Shpejtësia e luajtësit
 values-b+sq	string	player_speed_text_format	-	Shpejtësia (%.2fx)
 values-b+sq	string	player_subtitles_settings	-	Titrat
 values-b+sq	string	player_subtitles_settings_des	-	Cilësimet e titrave të luajtësit
+values-b+sq	string	player_unmute	-	Aktivizo zërin
 values-b+sq	string	plugin	-	shtesa
 values-b+sq	string	plugin_deleted	-	Shtesa u fshi
 values-b+sq	string	plugin_downloaded	-	Shtesa u shkarkua
@@ -42847,6 +42949,7 @@ values-b+sv	string	player_load_one_subtitle_online	-	Ladda in första möjliga
 values-b+sv	string	player_load_subtitles	-	Importera från fil
 values-b+sv	string	player_load_subtitles_online	-	Importera från Internet
 values-b+sv	string	player_loaded_subtitles	-	Laddat %s
+values-b+sv	string	player_mute	-	Stäng av ljudet
 values-b+sv	string	player_notification_channel_description	-	Spelarnotisen för att styra uppspelningen i bakgrunden
 values-b+sv	string	player_notification_channel_name	-	Spelarnotiser
 values-b+sv	string	player_pref	-	Önskad videospelare
@@ -42859,6 +42962,7 @@ values-b+sv	string	player_speed	-	Spelarhastighet
 values-b+sv	string	player_speed_text_format	-	Hastighet (%.2fx)
 values-b+sv	string	player_subtitles_settings	-	Undertexter
 values-b+sv	string	player_subtitles_settings_des	-	Inställningar för undertexter
+values-b+sv	string	player_unmute	-	Slå på ljudet
 values-b+sv	string	plugin	-	Tillägg
 values-b+sv	string	plugin_deleted	-	Tillägg borttagen
 values-b+sv	string	plugin_downloaded	-	Tillägg nedladdad
@@ -43677,6 +43781,7 @@ values-b+ta	string	player_load_one_subtitle_online	-	முதலில் க�
 values-b+ta	string	player_load_subtitles	-	கோப்பிலிருந்து ஏற்றவும்
 values-b+ta	string	player_load_subtitles_online	-	இணையத்திலிருந்து ஏற்றவும்
 values-b+ta	string	player_loaded_subtitles	-	ஏற்றப்பட்ட %s
+values-b+ta	string	player_mute	-	ஒலியடக்கு
 values-b+ta	string	player_notification_channel_description	-	பின்னணியில் இருந்து பின்னணியைக் கட்டுப்படுத்துவதற்கான பிளேயர் அறிவிப்பு
 values-b+ta	string	player_notification_channel_name	-	பிளேயர் அறிவிப்புகள்
 values-b+ta	string	player_pref	-	விருப்பமான வீடியோ பிளேயர்
@@ -43689,6 +43794,7 @@ values-b+ta	string	player_speed	-	பிளேயர் விரைவு
 values-b+ta	string	player_speed_text_format	-	விரைவு (%.2fx)
 values-b+ta	string	player_subtitles_settings	-	வசன வரிகள்
 values-b+ta	string	player_subtitles_settings_des	-	பிளேயர் வசன வரிகள் அமைப்புகள்
+values-b+ta	string	player_unmute	-	ஒலியை இயக்கு
 values-b+ta	string	plugin	-	செருகுநிரல்கள்
 values-b+ta	string	plugin_deleted	-	சொருகி நீக்கப்பட்டது
 values-b+ta	string	plugin_downloaded	-	சொருகி பதிவிறக்கம் செய்யப்பட்டது
@@ -44507,6 +44613,7 @@ values-b+ti	string	player_load_one_subtitle_online	-	Load first available
 values-b+ti	string	player_load_subtitles	-	Load from file
 values-b+ti	string	player_load_subtitles_online	-	Load from Internet
 values-b+ti	string	player_loaded_subtitles	-	Loaded %s
+values-b+ti	string	player_mute	-	ድምጺ ኣጥፍእ
 values-b+ti	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+ti	string	player_notification_channel_name	-	Player notifications
 values-b+ti	string	player_pref	-	Preferred video player
@@ -44519,6 +44626,7 @@ values-b+ti	string	player_speed	-	Player Speed
 values-b+ti	string	player_speed_text_format	-	Speed (%.2fx)
 values-b+ti	string	player_subtitles_settings	-	Subtitles
 values-b+ti	string	player_subtitles_settings_des	-	Player subtitles settings
+values-b+ti	string	player_unmute	-	ድምጺ ወልዕ
 values-b+ti	string	plugin	-	plugins
 values-b+ti	string	plugin_deleted	-	Plugin Deleted
 values-b+ti	string	plugin_downloaded	-	Plugin Downloaded
@@ -45337,6 +45445,7 @@ values-b+tl	string	player_load_one_subtitle_online	-	Load first available
 values-b+tl	string	player_load_subtitles	-	Load from file
 values-b+tl	string	player_load_subtitles_online	-	Load from Internet
 values-b+tl	string	player_loaded_subtitles	-	Loaded %s
+values-b+tl	string	player_mute	-	I-mute
 values-b+tl	string	player_notification_channel_description	-	Ang abiso ng player para sa pagkontrol sa pag-playback mula sa background
 values-b+tl	string	player_notification_channel_name	-	Player notifications
 values-b+tl	string	player_pref	-	Preferred video player
@@ -45349,6 +45458,7 @@ values-b+tl	string	player_speed	-	Bilis ng Playback
 values-b+tl	string	player_speed_text_format	-	Bilis (%.2fx)
 values-b+tl	string	player_subtitles_settings	-	Subtitles
 values-b+tl	string	player_subtitles_settings_des	-	Player subtitles settings
+values-b+tl	string	player_unmute	-	I-unmute
 values-b+tl	string	plugin	-	plugins
 values-b+tl	string	plugin_deleted	-	Plugin Deleted
 values-b+tl	string	plugin_downloaded	-	Plugin Downloaded
@@ -46167,6 +46277,7 @@ values-b+tr	string	player_load_one_subtitle_online	-	İlk kullanılabiliri yükl
 values-b+tr	string	player_load_subtitles	-	Dosyadan yükle
 values-b+tr	string	player_load_subtitles_online	-	İnternetten yükle
 values-b+tr	string	player_loaded_subtitles	-	%s eklendi
+values-b+tr	string	player_mute	-	Sesi kapat
 values-b+tr	string	player_notification_channel_description	-	Oynatıcı bildirimi arka planda oynatmasını kontrol etmek içindir
 values-b+tr	string	player_notification_channel_name	-	Oynatıcı bildirimleri
 values-b+tr	string	player_pref	-	Tercih edilen video oynatıcısı
@@ -46179,6 +46290,7 @@ values-b+tr	string	player_speed	-	Oynatıcı Hızı
 values-b+tr	string	player_speed_text_format	-	Hız (%.2fx)
 values-b+tr	string	player_subtitles_settings	-	Altyazılar
 values-b+tr	string	player_subtitles_settings_des	-	Oynatıcı altyazı ayarları
+values-b+tr	string	player_unmute	-	Sesi aç
 values-b+tr	string	plugin	-	eklentiler
 values-b+tr	string	plugin_deleted	-	Eklenti Silindi
 values-b+tr	string	plugin_downloaded	-	Eklenti İndirildi
@@ -47005,6 +47117,7 @@ values-b+uk	string	player_load_one_subtitle_online	-	Завантажити пе
 values-b+uk	string	player_load_subtitles	-	Завантажити з файлу
 values-b+uk	string	player_load_subtitles_online	-	Завантажити з інтернету
 values-b+uk	string	player_loaded_subtitles	-	Завантажено %s
+values-b+uk	string	player_mute	-	Вимкнути звук
 values-b+uk	string	player_notification_channel_description	-	Сповіщення програвача для керування відтворенням у фоновому режимі
 values-b+uk	string	player_notification_channel_name	-	Сповіщення програвача
 values-b+uk	string	player_pref	-	Бажаний відеопрогравач
@@ -47017,6 +47130,7 @@ values-b+uk	string	player_speed	-	Швидкість програвача
 values-b+uk	string	player_speed_text_format	-	Швидкість (%.2fx)
 values-b+uk	string	player_subtitles_settings	-	Субтитри
 values-b+uk	string	player_subtitles_settings_des	-	Налаштування субтитрів програвача
+values-b+uk	string	player_unmute	-	Увімкнути звук
 values-b+uk	string	plugin	-	розширення
 values-b+uk	string	plugin_deleted	-	Розширення видалено
 values-b+uk	string	plugin_downloaded	-	Розширення завантажено
@@ -47835,6 +47949,7 @@ values-b+ur	string	player_load_one_subtitle_online	-	Load first available
 values-b+ur	string	player_load_subtitles	-	فائل سے لوڈ کریں
 values-b+ur	string	player_load_subtitles_online	-	انٹرنیٹ سے لوڈ کریں
 values-b+ur	string	player_loaded_subtitles	-	لوڈ %s
+values-b+ur	string	player_mute	-	خاموش کریں
 values-b+ur	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+ur	string	player_notification_channel_name	-	Player notifications
 values-b+ur	string	player_pref	-	ترجیحی ویڈیو پلیئر
@@ -47847,6 +47962,7 @@ values-b+ur	string	player_speed	-	چلانے کی رفتار
 values-b+ur	string	player_speed_text_format	-	رفتار (%.2fx)
 values-b+ur	string	player_subtitles_settings	-	سنٹیٹلز
 values-b+ur	string	player_subtitles_settings_des	-	پلیئر کے ترجمہ کی ترتیبات
+values-b+ur	string	player_unmute	-	آواز کھولیں
 values-b+ur	string	plugin	-	پلگ ان
 values-b+ur	string	plugin_deleted	-	پلگ ان کو حذف کر دیا گیا
 values-b+ur	string	plugin_downloaded	-	پلگ ان ڈاؤن لوڈ ہو گیا
@@ -48661,6 +48777,7 @@ values-b+vi	string	player_load_one_subtitle_online	-	Tải phụ đề đầu ti
 values-b+vi	string	player_load_subtitles	-	Chọn từ tệp
 values-b+vi	string	player_load_subtitles_online	-	Chọn từ Internet
 values-b+vi	string	player_loaded_subtitles	-	Đã tải %s
+values-b+vi	string	player_mute	-	Tắt tiếng
 values-b+vi	string	player_notification_channel_description	-	Điều khiển phát lại trong nền bằng thông báo của trình phát
 values-b+vi	string	player_notification_channel_name	-	Thông báo trình phát
 values-b+vi	string	player_pref	-	Trình phát ưu tiên
@@ -48673,6 +48790,7 @@ values-b+vi	string	player_speed	-	Tốc độ phát
 values-b+vi	string	player_speed_text_format	-	Tốc độ (%.2fx)
 values-b+vi	string	player_subtitles_settings	-	Phụ đề
 values-b+vi	string	player_subtitles_settings_des	-	Cài đặt phụ đề
+values-b+vi	string	player_unmute	-	Bật tiếng
 values-b+vi	string	plugin	-	tiện ích mở rộng
 values-b+vi	string	plugin_deleted	-	Tiện ích mở rộng đã xoá
 values-b+vi	string	plugin_downloaded	-	Tiện ích mở rộng đã tải xuống
@@ -49487,6 +49605,7 @@ values-b+zh	string	player_load_one_subtitle_online	-	加载第一个可用的字
 values-b+zh	string	player_load_subtitles	-	从文件加载
 values-b+zh	string	player_load_subtitles_online	-	从互联网加载
 values-b+zh	string	player_loaded_subtitles	-	已加载 %s
+values-b+zh	string	player_mute	-	静音
 values-b+zh	string	player_notification_channel_description	-	控制后台播放的播放器通知
 values-b+zh	string	player_notification_channel_name	-	播放器通知
 values-b+zh	string	player_pref	-	首选视频播放器
@@ -49499,6 +49618,7 @@ values-b+zh	string	player_speed	-	播放速度
 values-b+zh	string	player_speed_text_format	-	速度（%.2fx）
 values-b+zh	string	player_subtitles_settings	-	字幕
 values-b+zh	string	player_subtitles_settings_des	-	播放器字幕设置
+values-b+zh	string	player_unmute	-	取消静音
 values-b+zh	string	plugin	-	插件
 values-b+zh	string	plugin_deleted	-	插件已删除
 values-b+zh	string	plugin_downloaded	-	插件已下载
@@ -50314,6 +50434,7 @@ values-b+zh+TW	string	player_load_one_subtitle_online	-	載入第一個可用的
 values-b+zh+TW	string	player_load_subtitles	-	從檔案載入
 values-b+zh+TW	string	player_load_subtitles_online	-	從網路載入
 values-b+zh+TW	string	player_loaded_subtitles	-	已載入 %s
+values-b+zh+TW	string	player_mute	-	靜音
 values-b+zh+TW	string	player_notification_channel_description	-	控制背景播放的通知
 values-b+zh+TW	string	player_notification_channel_name	-	播放器通知
 values-b+zh+TW	string	player_pref	-	偏好影片播放器
@@ -50326,6 +50447,7 @@ values-b+zh+TW	string	player_speed	-	播放速度
 values-b+zh+TW	string	player_speed_text_format	-	速度（%.2fx）
 values-b+zh+TW	string	player_subtitles_settings	-	字幕
 values-b+zh+TW	string	player_subtitles_settings_des	-	播放器字幕設定
+values-b+zh+TW	string	player_unmute	-	取消靜音
 values-b+zh+TW	string	plugin	-	外掛
 values-b+zh+TW	string	plugin_deleted	-	外掛已刪除
 values-b+zh+TW	string	plugin_downloaded	-	外掛程式已下載
@@ -51144,6 +51266,7 @@ en	string	player_load_one_subtitle_online	-	Load first available
 en	string	player_load_subtitles	-	Load from file
 en	string	player_load_subtitles_online	-	Load from Internet
 en	string	player_loaded_subtitles	-	Loaded %s
+en	string	player_mute	-	Mute
 en	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 en	string	player_notification_channel_name	-	Player notifications
 en	string	player_pref	-	Preferred video player
@@ -51156,6 +51279,7 @@ en	string	player_speed	-	Player Speed
 en	string	player_speed_text_format	-	Speed (%.2fx)
 en	string	player_subtitles_settings	-	Subtitles
 en	string	player_subtitles_settings_des	-	Player subtitles settings
+en	string	player_unmute	-	Unmute
 en	string	plugin	-	plugins
 en	string	plugin_deleted	-	Plugin Deleted
 en	string	plugin_downloaded	-	Plugin Downloaded
@@ -51974,6 +52098,7 @@ en-US	string	player_load_one_subtitle_online	-	Load first available
 en-US	string	player_load_subtitles	-	Load from file
 en-US	string	player_load_subtitles_online	-	Load from Internet
 en-US	string	player_loaded_subtitles	-	Loaded %s
+en-US	string	player_mute	-	Mute
 en-US	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 en-US	string	player_notification_channel_name	-	Player notifications
 en-US	string	player_pref	-	Preferred video player
@@ -51986,6 +52111,7 @@ en-US	string	player_speed	-	Player Speed
 en-US	string	player_speed_text_format	-	Speed (%.2fx)
 en-US	string	player_subtitles_settings	-	Subtitles
 en-US	string	player_subtitles_settings_des	-	Player subtitles settings
+en-US	string	player_unmute	-	Unmute
 en-US	string	plugin	-	plugins
 en-US	string	plugin_deleted	-	Plugin Deleted
 en-US	string	plugin_downloaded	-	Plugin Downloaded
@@ -52804,6 +52930,7 @@ en-GB	string	player_load_one_subtitle_online	-	Load first available
 en-GB	string	player_load_subtitles	-	Load from file
 en-GB	string	player_load_subtitles_online	-	Load from Internet
 en-GB	string	player_loaded_subtitles	-	Loaded %s
+en-GB	string	player_mute	-	Mute
 en-GB	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 en-GB	string	player_notification_channel_name	-	Player notifications
 en-GB	string	player_pref	-	Preferred video player
@@ -52816,6 +52943,7 @@ en-GB	string	player_speed	-	Player Speed
 en-GB	string	player_speed_text_format	-	Speed (%.2fx)
 en-GB	string	player_subtitles_settings	-	Subtitles
 en-GB	string	player_subtitles_settings_des	-	Player subtitles settings
+en-GB	string	player_unmute	-	Unmute
 en-GB	string	plugin	-	plugins
 en-GB	string	plugin_deleted	-	Plugin Deleted
 en-GB	string	plugin_downloaded	-	Plugin Downloaded
@@ -53638,6 +53766,7 @@ pt	string	player_load_one_subtitle_online	-	Carregar o primeiro disponível
 pt	string	player_load_subtitles	-	Carregar de arquivo
 pt	string	player_load_subtitles_online	-	Carregar da Internet
 pt	string	player_loaded_subtitles	-	%s carregada
+pt	string	player_mute	-	Desativar som
 pt	string	player_notification_channel_description	-	Notificação do player para controlar a reprodução em segundo plano
 pt	string	player_notification_channel_name	-	Notificações de reprodução
 pt	string	player_pref	-	Player de vídeo preferido
@@ -53650,6 +53779,7 @@ pt	string	player_speed	-	Velocidade de Reprodução
 pt	string	player_speed_text_format	-	Velocidade (%.2fx)
 pt	string	player_subtitles_settings	-	Legendas
 pt	string	player_subtitles_settings_des	-	Configurações de legendas do player
+pt	string	player_unmute	-	Ativar som
 pt	string	plugin	-	plugins
 pt	string	plugin_deleted	-	Plugin Apagado
 pt	string	plugin_downloaded	-	Plugins baixados
@@ -54472,6 +54602,7 @@ pt-PT	string	player_load_one_subtitle_online	-	Carregar o primeiro disponível
 pt-PT	string	player_load_subtitles	-	Carregar de arquivo
 pt-PT	string	player_load_subtitles_online	-	Carregar da Internet
 pt-PT	string	player_loaded_subtitles	-	%s carregada
+pt-PT	string	player_mute	-	Desativar som
 pt-PT	string	player_notification_channel_description	-	Notificação do player para controlar a reprodução em segundo plano
 pt-PT	string	player_notification_channel_name	-	Notificações de reprodução
 pt-PT	string	player_pref	-	Player de vídeo preferido
@@ -54484,6 +54615,7 @@ pt-PT	string	player_speed	-	Velocidade de Reprodução
 pt-PT	string	player_speed_text_format	-	Velocidade (%.2fx)
 pt-PT	string	player_subtitles_settings	-	Legendas
 pt-PT	string	player_subtitles_settings_des	-	Configurações de legendas do player
+pt-PT	string	player_unmute	-	Ativar som
 pt-PT	string	plugin	-	plugins
 pt-PT	string	plugin_deleted	-	Plugin Apagado
 pt-PT	string	plugin_downloaded	-	Plugins baixados
@@ -55306,6 +55438,7 @@ pt-BR	string	player_load_one_subtitle_online	-	Carregar primeiro disponível
 pt-BR	string	player_load_subtitles	-	Carregar de arquivo
 pt-BR	string	player_load_subtitles_online	-	Carregar da Internet
 pt-BR	string	player_loaded_subtitles	-	%s carregada
+pt-BR	string	player_mute	-	Desativar som
 pt-BR	string	player_notification_channel_description	-	Notificação do player para controlar a reprodução em segundo plano
 pt-BR	string	player_notification_channel_name	-	Notificações de reprodução
 pt-BR	string	player_pref	-	Player de vídeo preferido
@@ -55318,6 +55451,7 @@ pt-BR	string	player_speed	-	Velocidade de reprodução
 pt-BR	string	player_speed_text_format	-	Velocidade (%.2fx)
 pt-BR	string	player_subtitles_settings	-	Modificar legendas
 pt-BR	string	player_subtitles_settings_des	-	Alterar legendas exibidas no player de vídeo
+pt-BR	string	player_unmute	-	Ativar som
 pt-BR	string	plugin	-	Plugins
 pt-BR	string	plugin_deleted	-	Plugin Apagado
 pt-BR	string	plugin_downloaded	-	Plugin baixado
@@ -56136,6 +56270,7 @@ fil	string	player_load_one_subtitle_online	-	Load first available
 fil	string	player_load_subtitles	-	Load from file
 fil	string	player_load_subtitles_online	-	Load from Internet
 fil	string	player_loaded_subtitles	-	Loaded %s
+fil	string	player_mute	-	I-mute
 fil	string	player_notification_channel_description	-	Ang abiso ng player para sa pagkontrol sa pag-playback mula sa background
 fil	string	player_notification_channel_name	-	Player notifications
 fil	string	player_pref	-	Preferred video player
@@ -56148,6 +56283,7 @@ fil	string	player_speed	-	Bilis ng Manlalaro
 fil	string	player_speed_text_format	-	Bilis (%.2fx)
 fil	string	player_subtitles_settings	-	Subtitles
 fil	string	player_subtitles_settings_des	-	Player subtitles settings
+fil	string	player_unmute	-	I-unmute
 fil	string	plugin	-	plugins
 fil	string	plugin_deleted	-	Plugin Deleted
 fil	string	plugin_downloaded	-	Plugin Downloaded
@@ -56966,6 +57102,7 @@ tl	string	player_load_one_subtitle_online	-	Load first available
 tl	string	player_load_subtitles	-	Load from file
 tl	string	player_load_subtitles_online	-	Load from Internet
 tl	string	player_loaded_subtitles	-	Loaded %s
+tl	string	player_mute	-	I-mute
 tl	string	player_notification_channel_description	-	Ang abiso ng player para sa pagkontrol sa pag-playback mula sa background
 tl	string	player_notification_channel_name	-	Player notifications
 tl	string	player_pref	-	Preferred video player
@@ -56978,6 +57115,7 @@ tl	string	player_speed	-	Bilis ng Playback
 tl	string	player_speed_text_format	-	Bilis (%.2fx)
 tl	string	player_subtitles_settings	-	Subtitles
 tl	string	player_subtitles_settings_des	-	Player subtitles settings
+tl	string	player_unmute	-	I-unmute
 tl	string	plugin	-	plugins
 tl	string	plugin_deleted	-	Plugin Deleted
 tl	string	plugin_downloaded	-	Plugin Downloaded
@@ -57796,6 +57934,7 @@ fil-PH	string	player_load_one_subtitle_online	-	Load first available
 fil-PH	string	player_load_subtitles	-	Load from file
 fil-PH	string	player_load_subtitles_online	-	Load from Internet
 fil-PH	string	player_loaded_subtitles	-	Loaded %s
+fil-PH	string	player_mute	-	I-mute
 fil-PH	string	player_notification_channel_description	-	Ang abiso ng player para sa pagkontrol sa pag-playback mula sa background
 fil-PH	string	player_notification_channel_name	-	Player notifications
 fil-PH	string	player_pref	-	Preferred video player
@@ -57808,6 +57947,7 @@ fil-PH	string	player_speed	-	Bilis ng Manlalaro
 fil-PH	string	player_speed_text_format	-	Bilis (%.2fx)
 fil-PH	string	player_subtitles_settings	-	Subtitles
 fil-PH	string	player_subtitles_settings_des	-	Player subtitles settings
+fil-PH	string	player_unmute	-	I-unmute
 fil-PH	string	plugin	-	plugins
 fil-PH	string	plugin_deleted	-	Plugin Deleted
 fil-PH	string	plugin_downloaded	-	Plugin Downloaded
@@ -58622,6 +58762,7 @@ zh	string	player_load_one_subtitle_online	-	加载第一个可用的字幕
 zh	string	player_load_subtitles	-	从文件加载
 zh	string	player_load_subtitles_online	-	从互联网加载
 zh	string	player_loaded_subtitles	-	已加载 %s
+zh	string	player_mute	-	静音
 zh	string	player_notification_channel_description	-	控制后台播放的播放器通知
 zh	string	player_notification_channel_name	-	播放器通知
 zh	string	player_pref	-	首选视频播放器
@@ -58634,6 +58775,7 @@ zh	string	player_speed	-	播放速度
 zh	string	player_speed_text_format	-	速度（%.2fx）
 zh	string	player_subtitles_settings	-	字幕
 zh	string	player_subtitles_settings_des	-	播放器字幕设置
+zh	string	player_unmute	-	取消静音
 zh	string	plugin	-	插件
 zh	string	plugin_deleted	-	插件已删除
 zh	string	plugin_downloaded	-	插件已下载
@@ -59448,6 +59590,7 @@ zh-CN	string	player_load_one_subtitle_online	-	加载第一个可用的字幕
 zh-CN	string	player_load_subtitles	-	从文件加载
 zh-CN	string	player_load_subtitles_online	-	从互联网加载
 zh-CN	string	player_loaded_subtitles	-	已加载 %s
+zh-CN	string	player_mute	-	静音
 zh-CN	string	player_notification_channel_description	-	控制后台播放的播放器通知
 zh-CN	string	player_notification_channel_name	-	播放器通知
 zh-CN	string	player_pref	-	首选视频播放器
@@ -59460,6 +59603,7 @@ zh-CN	string	player_speed	-	播放速度
 zh-CN	string	player_speed_text_format	-	速度（%.2fx）
 zh-CN	string	player_subtitles_settings	-	字幕
 zh-CN	string	player_subtitles_settings_des	-	播放器字幕设置
+zh-CN	string	player_unmute	-	取消静音
 zh-CN	string	plugin	-	插件
 zh-CN	string	plugin_deleted	-	插件已删除
 zh-CN	string	plugin_downloaded	-	插件已下载
@@ -60274,6 +60418,7 @@ zh-Hans-CN	string	player_load_one_subtitle_online	-	加载第一个可用的字�
 zh-Hans-CN	string	player_load_subtitles	-	从文件加载
 zh-Hans-CN	string	player_load_subtitles_online	-	从互联网加载
 zh-Hans-CN	string	player_loaded_subtitles	-	已加载 %s
+zh-Hans-CN	string	player_mute	-	静音
 zh-Hans-CN	string	player_notification_channel_description	-	控制后台播放的播放器通知
 zh-Hans-CN	string	player_notification_channel_name	-	播放器通知
 zh-Hans-CN	string	player_pref	-	首选视频播放器
@@ -60286,6 +60431,7 @@ zh-Hans-CN	string	player_speed	-	播放速度
 zh-Hans-CN	string	player_speed_text_format	-	速度（%.2fx）
 zh-Hans-CN	string	player_subtitles_settings	-	字幕
 zh-Hans-CN	string	player_subtitles_settings_des	-	播放器字幕设置
+zh-Hans-CN	string	player_unmute	-	取消静音
 zh-Hans-CN	string	plugin	-	插件
 zh-Hans-CN	string	plugin_deleted	-	插件已删除
 zh-Hans-CN	string	plugin_downloaded	-	插件已下载
@@ -61101,6 +61247,7 @@ zh-TW	string	player_load_one_subtitle_online	-	載入第一個可用的
 zh-TW	string	player_load_subtitles	-	從檔案載入
 zh-TW	string	player_load_subtitles_online	-	從網路載入
 zh-TW	string	player_loaded_subtitles	-	已載入 %s
+zh-TW	string	player_mute	-	靜音
 zh-TW	string	player_notification_channel_description	-	控制背景播放的通知
 zh-TW	string	player_notification_channel_name	-	播放器通知
 zh-TW	string	player_pref	-	偏好影片播放器
@@ -61113,6 +61260,7 @@ zh-TW	string	player_speed	-	播放速度
 zh-TW	string	player_speed_text_format	-	速度（%.2fx）
 zh-TW	string	player_subtitles_settings	-	字幕
 zh-TW	string	player_subtitles_settings_des	-	播放器字幕設定
+zh-TW	string	player_unmute	-	取消靜音
 zh-TW	string	plugin	-	外掛
 zh-TW	string	plugin_deleted	-	外掛已刪除
 zh-TW	string	plugin_downloaded	-	外掛程式已下載
@@ -61928,6 +62076,7 @@ zh-Hant-TW	string	player_load_one_subtitle_online	-	載入第一個可用的
 zh-Hant-TW	string	player_load_subtitles	-	從檔案載入
 zh-Hant-TW	string	player_load_subtitles_online	-	從網路載入
 zh-Hant-TW	string	player_loaded_subtitles	-	已載入 %s
+zh-Hant-TW	string	player_mute	-	靜音
 zh-Hant-TW	string	player_notification_channel_description	-	控制背景播放的通知
 zh-Hant-TW	string	player_notification_channel_name	-	播放器通知
 zh-Hant-TW	string	player_pref	-	偏好影片播放器
@@ -61940,6 +62089,7 @@ zh-Hant-TW	string	player_speed	-	播放速度
 zh-Hant-TW	string	player_speed_text_format	-	速度（%.2fx）
 zh-Hant-TW	string	player_subtitles_settings	-	字幕
 zh-Hant-TW	string	player_subtitles_settings_des	-	播放器字幕設定
+zh-Hant-TW	string	player_unmute	-	取消靜音
 zh-Hant-TW	string	plugin	-	外掛
 zh-Hant-TW	string	plugin_deleted	-	外掛已刪除
 zh-Hant-TW	string	plugin_downloaded	-	外掛程式已下載
@@ -62755,6 +62905,7 @@ zh-HK	string	player_load_one_subtitle_online	-	載入第一個可用的
 zh-HK	string	player_load_subtitles	-	從檔案載入
 zh-HK	string	player_load_subtitles_online	-	從網路載入
 zh-HK	string	player_loaded_subtitles	-	已載入 %s
+zh-HK	string	player_mute	-	靜音
 zh-HK	string	player_notification_channel_description	-	控制背景播放的通知
 zh-HK	string	player_notification_channel_name	-	播放器通知
 zh-HK	string	player_pref	-	偏好影片播放器
@@ -62767,6 +62918,7 @@ zh-HK	string	player_speed	-	播放速度
 zh-HK	string	player_speed_text_format	-	速度（%.2fx）
 zh-HK	string	player_subtitles_settings	-	字幕
 zh-HK	string	player_subtitles_settings_des	-	播放器字幕設定
+zh-HK	string	player_unmute	-	取消靜音
 zh-HK	string	plugin	-	外掛
 zh-HK	string	plugin_deleted	-	外掛已刪除
 zh-HK	string	plugin_downloaded	-	外掛程式已下載
@@ -63582,6 +63734,7 @@ zh-Hant-HK	string	player_load_one_subtitle_online	-	載入第一個可用的
 zh-Hant-HK	string	player_load_subtitles	-	從檔案載入
 zh-Hant-HK	string	player_load_subtitles_online	-	從網路載入
 zh-Hant-HK	string	player_loaded_subtitles	-	已載入 %s
+zh-Hant-HK	string	player_mute	-	靜音
 zh-Hant-HK	string	player_notification_channel_description	-	控制背景播放的通知
 zh-Hant-HK	string	player_notification_channel_name	-	播放器通知
 zh-Hant-HK	string	player_pref	-	偏好影片播放器
@@ -63594,6 +63747,7 @@ zh-Hant-HK	string	player_speed	-	播放速度
 zh-Hant-HK	string	player_speed_text_format	-	速度（%.2fx）
 zh-Hant-HK	string	player_subtitles_settings	-	字幕
 zh-Hant-HK	string	player_subtitles_settings_des	-	播放器字幕設定
+zh-Hant-HK	string	player_unmute	-	取消靜音
 zh-Hant-HK	string	plugin	-	外掛
 zh-Hant-HK	string	plugin_deleted	-	外掛已刪除
 zh-Hant-HK	string	plugin_downloaded	-	外掛程式已下載
@@ -64412,6 +64566,7 @@ no	string	player_load_one_subtitle_online	-	Load first available
 no	string	player_load_subtitles	-	Last inn fra fil
 no	string	player_load_subtitles_online	-	Last inn fra Internett
 no	string	player_loaded_subtitles	-	Lastet inn %s
+no	string	player_mute	-	Slå av lyden
 no	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 no	string	player_notification_channel_name	-	Player notifications
 no	string	player_pref	-	Foretrukket videospiller
@@ -64424,6 +64579,7 @@ no	string	player_speed	-	Spillerhastighet
 no	string	player_speed_text_format	-	Avspillingshastighet (%.2fx)
 no	string	player_subtitles_settings	-	Undertekster
 no	string	player_subtitles_settings_des	-	Innstillinger for spillerens teksting
+no	string	player_unmute	-	Slå på lyden
 no	string	plugin	-	programtillegg
 no	string	plugin_deleted	-	Programtillegg slettet
 no	string	plugin_downloaded	-	Programtillegg nedlastet
@@ -65242,6 +65398,7 @@ nb	string	player_load_one_subtitle_online	-	Load first available
 nb	string	player_load_subtitles	-	Load from file
 nb	string	player_load_subtitles_online	-	Load from Internet
 nb	string	player_loaded_subtitles	-	Loaded %s
+nb	string	player_mute	-	Mute
 nb	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 nb	string	player_notification_channel_name	-	Player notifications
 nb	string	player_pref	-	Preferred video player
@@ -65254,6 +65411,7 @@ nb	string	player_speed	-	Player Speed
 nb	string	player_speed_text_format	-	Speed (%.2fx)
 nb	string	player_subtitles_settings	-	Subtitles
 nb	string	player_subtitles_settings_des	-	Player subtitles settings
+nb	string	player_unmute	-	Unmute
 nb	string	plugin	-	plugins
 nb	string	plugin_deleted	-	Plugin Deleted
 nb	string	plugin_downloaded	-	Plugin Downloaded
@@ -66072,6 +66230,7 @@ nb-NO	string	player_load_one_subtitle_online	-	Load first available
 nb-NO	string	player_load_subtitles	-	Load from file
 nb-NO	string	player_load_subtitles_online	-	Load from Internet
 nb-NO	string	player_loaded_subtitles	-	Loaded %s
+nb-NO	string	player_mute	-	Mute
 nb-NO	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 nb-NO	string	player_notification_channel_name	-	Player notifications
 nb-NO	string	player_pref	-	Preferred video player
@@ -66084,6 +66243,7 @@ nb-NO	string	player_speed	-	Player Speed
 nb-NO	string	player_speed_text_format	-	Speed (%.2fx)
 nb-NO	string	player_subtitles_settings	-	Subtitles
 nb-NO	string	player_subtitles_settings_des	-	Player subtitles settings
+nb-NO	string	player_unmute	-	Unmute
 nb-NO	string	plugin	-	plugins
 nb-NO	string	plugin_deleted	-	Plugin Deleted
 nb-NO	string	plugin_downloaded	-	Plugin Downloaded
@@ -66903,6 +67063,7 @@ iw	string	player_load_one_subtitle_online	-	Load first available
 iw	string	player_load_subtitles	-	טען מקובץ
 iw	string	player_load_subtitles_online	-	טען מהאינטרנט
 iw	string	player_loaded_subtitles	-	נטען %s
+iw	string	player_mute	-	השתקה
 iw	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 iw	string	player_notification_channel_name	-	Player notifications
 iw	string	player_pref	-	נגן וידאו מועדף
@@ -66915,6 +67076,7 @@ iw	string	player_speed	-	מהירות הנגן
 iw	string	player_speed_text_format	-	מהירות (%.2fx)
 iw	string	player_subtitles_settings	-	כתוביות
 iw	string	player_subtitles_settings_des	-	הגדרות כתוביות הנגן
+iw	string	player_unmute	-	ביטול השתקה
 iw	string	plugin	-	תוספים
 iw	string	plugin_deleted	-	התוסף נמחק
 iw	string	plugin_downloaded	-	תוסף הורד
@@ -67734,6 +67896,7 @@ he	string	player_load_one_subtitle_online	-	Load first available
 he	string	player_load_subtitles	-	טען מקובץ
 he	string	player_load_subtitles_online	-	טען מהאינטרנט
 he	string	player_loaded_subtitles	-	נטען %s
+he	string	player_mute	-	השתקה
 he	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 he	string	player_notification_channel_name	-	Player notifications
 he	string	player_pref	-	נגן וידאו מועדף
@@ -67746,6 +67909,7 @@ he	string	player_speed	-	מהירות הנגן
 he	string	player_speed_text_format	-	מהירות (%.2fx)
 he	string	player_subtitles_settings	-	כתוביות
 he	string	player_subtitles_settings_des	-	הגדרות כתוביות הנגן
+he	string	player_unmute	-	ביטול השתקה
 he	string	plugin	-	תוספים
 he	string	plugin_deleted	-	התוסף נמחק
 he	string	plugin_downloaded	-	תוסף הורד
@@ -68565,6 +68729,7 @@ he-IL	string	player_load_one_subtitle_online	-	Load first available
 he-IL	string	player_load_subtitles	-	טען מקובץ
 he-IL	string	player_load_subtitles_online	-	טען מהאינטרנט
 he-IL	string	player_loaded_subtitles	-	נטען %s
+he-IL	string	player_mute	-	השתקה
 he-IL	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 he-IL	string	player_notification_channel_name	-	Player notifications
 he-IL	string	player_pref	-	נגן וידאו מועדף
@@ -68577,6 +68742,7 @@ he-IL	string	player_speed	-	מהירות הנגן
 he-IL	string	player_speed_text_format	-	מהירות (%.2fx)
 he-IL	string	player_subtitles_settings	-	כתוביות
 he-IL	string	player_subtitles_settings_des	-	הגדרות כתוביות הנגן
+he-IL	string	player_unmute	-	ביטול השתקה
 he-IL	string	plugin	-	תוספים
 he-IL	string	plugin_deleted	-	התוסף נמחק
 he-IL	string	plugin_downloaded	-	תוסף הורד
@@ -69391,6 +69557,7 @@ in	string	player_load_one_subtitle_online	-	Muat yang pertama tersedia
 in	string	player_load_subtitles	-	Muat dari file
 in	string	player_load_subtitles_online	-	Ambil dari internet
 in	string	player_loaded_subtitles	-	Memuat %s
+in	string	player_mute	-	Bisukan
 in	string	player_notification_channel_description	-	Pemberitahuan pemutar untuk mengontrol pemutaran dari latar belakang
 in	string	player_notification_channel_name	-	Notifikasi pemain
 in	string	player_pref	-	Pemutar video utama
@@ -69403,6 +69570,7 @@ in	string	player_speed	-	Kecepatan Pemutar
 in	string	player_speed_text_format	-	Kecepatan (%.2fx)
 in	string	player_subtitles_settings	-	Subtitel
 in	string	player_subtitles_settings_des	-	Pengaturan subtitel pemutar
+in	string	player_unmute	-	Bunyikan
 in	string	plugin	-	plugin
 in	string	plugin_deleted	-	Plugin terhapus
 in	string	plugin_downloaded	-	Plugin terunduh
@@ -70217,6 +70385,7 @@ id	string	player_load_one_subtitle_online	-	Muat yang pertama tersedia
 id	string	player_load_subtitles	-	Muat dari file
 id	string	player_load_subtitles_online	-	Ambil dari internet
 id	string	player_loaded_subtitles	-	Memuat %s
+id	string	player_mute	-	Bisukan
 id	string	player_notification_channel_description	-	Pemberitahuan pemutar untuk mengontrol pemutaran dari latar belakang
 id	string	player_notification_channel_name	-	Notifikasi pemain
 id	string	player_pref	-	Pemutar video utama
@@ -70229,6 +70398,7 @@ id	string	player_speed	-	Kecepatan Pemutar
 id	string	player_speed_text_format	-	Kecepatan (%.2fx)
 id	string	player_subtitles_settings	-	Subtitel
 id	string	player_subtitles_settings_des	-	Pengaturan subtitel pemutar
+id	string	player_unmute	-	Bunyikan
 id	string	plugin	-	plugin
 id	string	plugin_deleted	-	Plugin terhapus
 id	string	plugin_downloaded	-	Plugin terunduh
@@ -71043,6 +71213,7 @@ id-ID	string	player_load_one_subtitle_online	-	Muat yang pertama tersedia
 id-ID	string	player_load_subtitles	-	Muat dari file
 id-ID	string	player_load_subtitles_online	-	Ambil dari internet
 id-ID	string	player_loaded_subtitles	-	Memuat %s
+id-ID	string	player_mute	-	Bisukan
 id-ID	string	player_notification_channel_description	-	Pemberitahuan pemutar untuk mengontrol pemutaran dari latar belakang
 id-ID	string	player_notification_channel_name	-	Notifikasi pemain
 id-ID	string	player_pref	-	Pemutar video utama
@@ -71055,6 +71226,7 @@ id-ID	string	player_speed	-	Kecepatan Pemutar
 id-ID	string	player_speed_text_format	-	Kecepatan (%.2fx)
 id-ID	string	player_subtitles_settings	-	Subtitel
 id-ID	string	player_subtitles_settings_des	-	Pengaturan subtitel pemutar
+id-ID	string	player_unmute	-	Bunyikan
 id-ID	string	plugin	-	plugin
 id-ID	string	plugin_deleted	-	Plugin terhapus
 id-ID	string	plugin_downloaded	-	Plugin terunduh
@@ -71873,6 +72045,7 @@ arz	string	player_load_one_subtitle_online	-	Load first available
 arz	string	player_load_subtitles	-	Load from file
 arz	string	player_load_subtitles_online	-	Load from Internet
 arz	string	player_loaded_subtitles	-	Loaded %s
+arz	string	player_mute	-	Mute
 arz	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 arz	string	player_notification_channel_name	-	Player notifications
 arz	string	player_pref	-	Preferred video player
@@ -71885,6 +72058,7 @@ arz	string	player_speed	-	Player Speed
 arz	string	player_speed_text_format	-	Speed (%.2fx)
 arz	string	player_subtitles_settings	-	Subtitles
 arz	string	player_subtitles_settings_des	-	Player subtitles settings
+arz	string	player_unmute	-	Unmute
 arz	string	plugin	-	plugins
 arz	string	plugin_deleted	-	Plugin Deleted
 arz	string	plugin_downloaded	-	Plugin Downloaded
