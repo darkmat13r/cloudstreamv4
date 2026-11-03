@@ -197,8 +197,8 @@ Where one area needs both (e.g. moved `SubtitleData` next to a new cue model), i
 ```
 layer 4   :app
 layer 3   :feature:*          :media:video/audio/cast/torrent/download (android-only)
-layer 2   :core:ui   :core:data   :core:notification   :media:model   :media:subtitle
-layer 1   :core:designsystem   :core:model   :core:network   :core:strings   :core:http   :core:storage
+layer 2   :core:ui   :core:data   :core:notification   :media:subtitle
+layer 1   :core:designsystem   :core:model   :core:network   :core:strings   :core:http   :core:storage   :media:model
 layer 0   :core:theme   :core:common   :library
 ```
 
