@@ -416,6 +416,8 @@
 <string name="play_torrent_button">"Phát Torrent"</string>
 <string name="play_trailer_button">"Phát Trailer"</string>
 <string name="play_with_app_name">"Phát bằng CloudStream"</string>
+<string name="player_enter_fullscreen">"Chuyển sang chế độ toàn màn hình"</string>
+<string name="player_exit_fullscreen">"Thoát khỏi chế độ toàn màn hình"</string>
 <string name="player_is_live">"Trực tiếp"</string>
 <string name="player_load_one_subtitle_online">"Tải phụ đề đầu tiên có sẵn"</string>
 <string name="player_load_subtitles">"Chọn từ tệp"</string>

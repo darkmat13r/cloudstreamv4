@@ -415,6 +415,8 @@
 <string name="play_torrent_button">تشغيل تورنت</string>
 <string name="play_trailer_button">تشغيل المقطع الدعائي</string>
 <string name="play_with_app_name">تشغيل بواسطة CloudStream</string>
+<string name="player_enter_fullscreen">دخول إلى وضع ملء الشاشة</string>
+<string name="player_exit_fullscreen">خروج من وضع ملء الشاشة</string>
 <string name="player_is_live">البث قائم</string>
 <string name="player_load_one_subtitle_online">تحميل أول ترجمة متاحة</string>
 <string name="player_load_subtitles">إختيار ملف</string>

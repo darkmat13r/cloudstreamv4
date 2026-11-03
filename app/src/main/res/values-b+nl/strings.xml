@@ -383,6 +383,8 @@
 <string name="play_torrent_button">"Stream Torrent"</string>
 <string name="play_trailer_button">"Speel Trailer"</string>
 <string name="play_with_app_name">"Afspelen met CloudStream"</string>
+<string name="player_enter_fullscreen">"Volledig scherm openen"</string>
+<string name="player_exit_fullscreen">"Volledig scherm sluiten"</string>
 <string name="player_load_one_subtitle_online">"Laad eerst beschikbare"</string>
 <string name="player_load_subtitles">"Laden uit bestand"</string>
 <string name="player_load_subtitles_online">"Laden vanaf internet"</string>

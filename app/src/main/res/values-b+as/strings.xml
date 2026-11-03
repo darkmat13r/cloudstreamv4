@@ -369,6 +369,8 @@
 <string name="play_torrent_button">"ট'ৰেণ্ট ষ্ট্ৰীম কৰক"</string>
 <string name="play_trailer_button">"ট্ৰেইলাৰ প্লে কৰক"</string>
 <string name="play_with_app_name">"CloudStreamৰে প্লে কৰক"</string>
+<string name="player_enter_fullscreen">"সম্পূৰ্ণ স্ক্ৰীনলৈ যাওক"</string>
+<string name="player_exit_fullscreen">"সম্পূৰ্ণ স্ক্ৰীনৰ পৰা ওলাওক"</string>
 <string name="player_load_one_subtitle_online">"প্ৰথম উপলব্ধটো লোড কৰক"</string>
 <string name="player_load_subtitles">"ফাইলৰ পৰা ল'ড কৰক"</string>
 <string name="player_load_subtitles_online">"ইণ্টাৰনেটৰ পৰা ল'ড কৰক"</string>

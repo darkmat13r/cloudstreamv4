@@ -415,6 +415,8 @@
 <string name="play_torrent_button">"Стримај торент"</string>
 <string name="play_trailer_button">"Пушти трејлер"</string>
 <string name="play_with_app_name">"Играј со CloudStream"</string>
+<string name="player_enter_fullscreen">"Приказ на цел екран"</string>
+<string name="player_exit_fullscreen">"Излезете од цел екран"</string>
 <string name="player_is_live">"Во живо"</string>
 <string name="player_load_one_subtitle_online">"Вчитај прво достапно"</string>
 <string name="player_load_subtitles">"Вчитај од датотека"</string>

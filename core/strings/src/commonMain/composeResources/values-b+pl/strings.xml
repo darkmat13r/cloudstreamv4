@@ -416,6 +416,8 @@
 <string name="play_torrent_button">Otwórz torrent</string>
 <string name="play_trailer_button">Odtwórz zwiastun</string>
 <string name="play_with_app_name">Odtwórz w CloudStream</string>
+<string name="player_enter_fullscreen">Otwórz pełny ekran</string>
+<string name="player_exit_fullscreen">Zamknij pełny ekran</string>
 <string name="player_is_live">Na żywo</string>
 <string name="player_load_one_subtitle_online">Wczytaj pierwsze dostępne</string>
 <string name="player_load_subtitles">Wczytaj z pliku</string>

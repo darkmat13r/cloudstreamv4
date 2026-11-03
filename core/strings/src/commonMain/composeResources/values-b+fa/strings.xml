@@ -221,6 +221,8 @@
 <string name="play_torrent_button">استریم تورنت</string>
 <string name="play_trailer_button">پخش تریلر</string>
 <string name="play_with_app_name">پخش با CloudStream</string>
+<string name="player_enter_fullscreen">ورود به حالت تمام‌صفحه</string>
+<string name="player_exit_fullscreen">خروج از حالت تمام‌صفحه</string>
 <string name="player_pref">پخش‌کننده ویدئو برگزیده</string>
 <string name="player_size_settings">دکمه تغییر‌اندازه پخش‌کننده</string>
 <string name="player_size_settings_des">حذف حاشیه سیاه</string>

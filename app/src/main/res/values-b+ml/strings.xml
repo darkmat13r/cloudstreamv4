@@ -185,6 +185,8 @@
 <string name="play_torrent_button">"ടോറൻറ് സ്ട്രീം ചെയ്യുക"</string>
 <string name="play_trailer_button">"ട്രെയിലർ പ്ലേ ചെയ്യുക"</string>
 <string name="play_with_app_name">"ക്ലൗഡ് സ്ട്രീം ഉപയോഗിച്ച് പ്രവർത്തിപ്പിക്കുക"</string>
+<string name="player_enter_fullscreen">"പൂർണ്ണ സ്‌ക്രീൻ ആക്കുക"</string>
+<string name="player_exit_fullscreen">"പൂർണ്ണ സ്‌ക്രീനിൽ നിന്ന് പുറത്തുകടക്കുക"</string>
 <string name="player_is_live">"തൽസമയം"</string>
 <string name="player_size_settings">"പ്ലേയറിന്റെ വലുപ്പം മാറ്റുന്ന ബട്ടൻ"</string>
 <string name="player_size_settings_des">"കറുത്ത അതിർത്തി നീക്കംചെയ്യുക"</string>

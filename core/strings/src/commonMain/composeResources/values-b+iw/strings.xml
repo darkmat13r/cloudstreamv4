@@ -304,6 +304,8 @@
 <string name="play_torrent_button">שדר טורנט</string>
 <string name="play_trailer_button">הפעל טריילר</string>
 <string name="play_with_app_name">נגן עם קלאודסטרים</string>
+<string name="player_enter_fullscreen">כניסה למסך מלא</string>
+<string name="player_exit_fullscreen">יציאה ממסך מלא</string>
 <string name="player_load_subtitles">טען מקובץ</string>
 <string name="player_load_subtitles_online">טען מהאינטרנט</string>
 <string name="player_loaded_subtitles">נטען %s</string>

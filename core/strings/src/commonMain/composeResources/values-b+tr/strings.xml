@@ -416,6 +416,8 @@
 <string name="play_torrent_button">Torrent Oynat</string>
 <string name="play_trailer_button">Fragmanı Oynat</string>
 <string name="play_with_app_name">CloudStream ile oynat</string>
+<string name="player_enter_fullscreen">Tam ekrana geç</string>
+<string name="player_exit_fullscreen">Tam ekrandan çık</string>
 <string name="player_is_live">Canlı</string>
 <string name="player_load_one_subtitle_online">İlk kullanılabiliri yükle</string>
 <string name="player_load_subtitles">Dosyadan yükle</string>

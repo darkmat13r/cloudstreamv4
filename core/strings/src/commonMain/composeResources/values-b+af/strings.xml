@@ -96,6 +96,8 @@
 <string name="play_torrent_button">Stroom Torrent</string>
 <string name="play_trailer_button">Speel Lokprent</string>
 <string name="play_with_app_name">Speel met CloudStream</string>
+<string name="player_enter_fullscreen">Gaan na volskerm</string>
+<string name="player_exit_fullscreen">Verlaat volskerm</string>
 <string name="player_speed">Spelerspoed</string>
 <string name="player_speed_text_format">Spoed (%.2fx)</string>
 <string name="popup_delete_file">Vee lêer uit</string>

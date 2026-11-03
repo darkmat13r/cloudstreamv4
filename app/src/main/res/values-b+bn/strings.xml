@@ -254,6 +254,8 @@
 <string name="play_torrent_button">"টরেন্ট স্ট্রিম করুন"</string>
 <string name="play_trailer_button">"ট্রেইলার চালু করুন"</string>
 <string name="play_with_app_name">"ক্লাউডস্ট্রিম দিয়ে চালান"</string>
+<string name="player_enter_fullscreen">"ফুল-স্ক্রিন মোডে দেখুন"</string>
+<string name="player_exit_fullscreen">"ফুল-স্ক্রিন মোড ছেড়ে বেরোন"</string>
 <string name="player_size_settings">"প্লেয়ারের সাইজ পরিবর্তন বাটন"</string>
 <string name="player_size_settings_des">"কালো প্রান্ত অপসারণ করুন"</string>
 <string name="player_speed">"ভিডিও এর গতি"</string>

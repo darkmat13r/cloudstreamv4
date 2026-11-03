@@ -92,6 +92,8 @@
 <string name="play_torrent_button">"Stream Torrent"</string>
 <string name="play_trailer_button">"Ibda t-trejler"</string>
 <string name="play_with_app_name">"Ara bil-CloudStream"</string>
+<string name="player_enter_fullscreen">"Idħol fi skrin sħiħ"</string>
+<string name="player_exit_fullscreen">"Oħroġ minn skrin sħiħ"</string>
 <string name="player_speed">"Veloċità tal-Plejer"</string>
 <string name="player_speed_text_format" formatted="true">"veloċità (%.2fx)"</string>
 <string name="popup_delete_file">"Hassar il-fajl"</string>

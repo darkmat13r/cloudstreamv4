@@ -87,6 +87,8 @@
 <string name="play_torrent_button">"Torrent አጫውት"</string>
 <string name="play_trailer_button">"የፊልም ማስታወቂያ አጫውት"</string>
 <string name="play_with_app_name">"በCloudStream አጫውት"</string>
+<string name="player_enter_fullscreen">"ወደ ሙሉ ማያ ገፅ ግባ"</string>
+<string name="player_exit_fullscreen">"ከሙሉ ማያገጽ ውጣ"</string>
 <string name="player_speed">"የአጫዋች ፍጥነት"</string>
 <string name="player_speed_text_format" formatted="true">"ፍጥነት(%.2fx)"</string>
 <string name="popup_delete_file">"ፋይል አጥፋ"</string>

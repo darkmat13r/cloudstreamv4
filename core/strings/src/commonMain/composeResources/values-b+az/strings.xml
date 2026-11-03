@@ -125,6 +125,8 @@
 <string name="play_movie_button">Filmi oynat</string>
 <string name="play_trailer_button">Fraqmanı Oynat</string>
 <string name="play_with_app_name">CloudStream ilə oynat</string>
+<string name="player_enter_fullscreen">Tam ekrana daxil olun</string>
+<string name="player_exit_fullscreen">Tam ekrandan çıxın</string>
 <string name="player_size_settings">Pleyeri yenidən ölçüləndirmə düyməsini</string>
 <string name="player_size_settings_des">Qara sərhədləri, kənarları sil</string>
 <string name="player_speed_text_format">Sürət (%.2fx)</string>

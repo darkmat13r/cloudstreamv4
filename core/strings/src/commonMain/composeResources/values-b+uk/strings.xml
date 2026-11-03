@@ -416,6 +416,8 @@
 <string name="play_torrent_button">Транслювати торрент</string>
 <string name="play_trailer_button">Відтворити трейлер</string>
 <string name="play_with_app_name">Відтворити в CloudStream</string>
+<string name="player_enter_fullscreen">Перейти в повноекранний режим</string>
+<string name="player_exit_fullscreen">Вийти з повноекранного режиму</string>
 <string name="player_is_live">Наживо</string>
 <string name="player_load_one_subtitle_online">Завантажити перший доступний</string>
 <string name="player_load_subtitles">Завантажити з файлу</string>
