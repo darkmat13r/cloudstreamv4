@@ -1,4 +1,4 @@
-# Handover — 2026-10-15
+# Handover — 2026-11-03
 
 This file orients a new session. It records what is done, what is open, what waits on the owner, and
 the local facts that cost an hour each when someone rediscovers them.
@@ -22,37 +22,58 @@ when twenty-three more had merged since. **Trust `git log` over this heading.**
 
 ## Where things stand
 
-Master is at `539a8867` (#76). **There are no open pull requests.** Everything from #45 to #76 has
-merged; `:shared` is gone (`KMP-06`, done), the five B-series module carves are done (`KMP-01`,
-`KMP-03`, `KMP-04`, `KMP-05`; `KMP-02` was reviewed and deliberately **not** moved), and **Phase 7,
-the feature verticals, has started.**
+Master is at `26acd8f8` (#104). **One pull request is open: #91**, a **draft** — `KMP-12` steps 3 and 4,
+Android TV opening the new search screen. Its own body says *do not merge it until someone has tried it on
+a real TV*; there is no device here, so it has been compiled and never run. Everything from #45 to #104 has
+merged.
+
+**The desktop app is the working app.** That was the owner's direction — desktop first, then the other
+platforms — and as of #104 it browses and plays:
+
+| | What works | Where |
+|---|---|---|
+| Extensions | Official jars and `.cs3` files, each scanned, each converted without network, each run in its own Seatbelt child process; an extension with scan warnings stays off until that exact file is allowed | `KMP-14` #82, `KMP-18` #94, `KMP-22` #95, `KMP-24` #102 |
+| Home | `MainAPI.getMainPage` per provider — rows for a chosen source, a source picker, more of a row on request | `KMP-20` #92 |
+| Search | The MVI state machine with per-source partial results, history, and the real plugins answering | `KMP-12`, `BUG-11` #84, `BUG-12` #86 |
+| Detail | The TV detail page, a source list, and a title opening into playback | `KMP-15` #83 |
+| Playback | An embedded Compose player over the user's installed VLC through vlcj, with **libVLC in its own sandboxed child process** — one per stream | `KMP-15` #83, `KMP-16` #85 |
+| Subtitles | End to end: tracks offered, chosen, parsed and drawn | `KMP-21` #90, `KMP-25` #101 |
+| Look | The Tabler icon pack, and desktop's own screens following Apple's principles | `DEC-11` #93, `KMP-17` #87 |
+
+**What the desktop app still does not have:** downloads, settings, or an account. The library arrived in
+`KMP-26` — Continue Watching, six lists, watch progress and resume — which closed the gap `KMP-15` named.
+
+**Never verified, on any of the above:** the live window's keyboard and pointer input. Every screen was
+driven offscreen through `ImageComposeScene` and real ViewModels. Audible sound has never been listened to.
 
 **CI is switched off, by the owner's decision.** See the next section before you look for a tick.
 
-**The iOS canary is 14 of 14 modules**, up from 12 on 2026-10-14. It grew twice in one day, both
-times because a new module depends on nothing that is not already multiplatform:
-`:feature:extensions` (`KMP-11`) took it to 13 and `:feature:search` (`KMP-12`) to 14. It takes
-about 4 seconds warm:
+**The iOS canary is 18 modules**, measured on 2026-11-03 — `:core:common`, `:core:data`,
+`:core:designsystem`, `:core:http`, `:core:mihon`, `:core:network`, `:core:storage`, `:core:strings`,
+`:core:strings:fixtures`, `:core:theme`, `:core:ui`, `:feature:detail`, `:feature:extensions`,
+`:feature:home`, `:feature:library`, `:feature:search`, `:media:model`, `:media:subtitle`. 29 s cold, about
+4 s warm:
 
     ./gradlew iosCanary -Pcloudstream.iosCanary=true --continue
 
-**Phase 7 is two verticals in** — `:feature:extensions` at step 1 of 5 and `:feature:search` at
-step 2. No `:app` wiring either way, and nothing repointed:
+The fifth, opt-in gate runs them for real, and since `BUG-20` it is green: **219 `commonTest` assertions on
+an iOS simulator, 0 failures.** It is worth running whenever a `commonTest` is added.
+
+    ./gradlew iosSimulatorTest -Pcloudstream.iosTest=true
+
+**Phase 7 stands at four verticals.** None of them has repointed anything in `:app` except search, and
+search's repoint is the draft PR above:
 
 | | Module | Done | Not done |
 |---|---|---|---|
-| `KMP-11` (plan row 17) | `:feature:extensions` | `ExtensionRepositoryIndex`, `ExtensionStatus`, `ExtensionListing`, `InstalledExtension`, `ExtensionState`, `ExtensionVerification`, the `ExtensionRuntime` seam. commonMain only, 4 tests | **Adapter partly done, no caller yet, never run on a device.** `AndroidExtensionRuntime` has `loaded`/`load`/`unload`/`uninstall`; `install` refuses. See below |
-| `KMP-12` (plan row 18) | `:feature:search` | **Steps 1 and 2.** The contracts, the provider and history seams, the MVI state machine, and the **TV screen** — artboards 4a–4c of `TV Search` plus 8c of `TV Search Suggestions`. 16 tests, 8 previews | Steps 3–5: the `:app`-side `SearchSource` / `SearchHistoryStore` over `APIRepository` and `DataStoreHelper`, the glue fragment plus one nav node, and deleting the old fragment a release later. **Touch and desktop screens are blocked on design** — none exists for either form factor |
+| `KMP-11` (row 17) | `:feature:extensions` | The contracts, the `ExtensionRuntime` seam, and `AndroidExtensionRuntime` over an unedited `PluginManager` (#89). The owner's `F1`/`F2` answers are recorded (#100) | **Nothing in `:app` calls it, and it has never run on a device.** `install` refuses |
+| `KMP-12` (row 18) | `:feature:search` | Steps 1–3: the contracts, the MVI machine, the TV screen, and the `SearchSource`/`SearchHistoryStore` implementations for **both** hosts | Step 4 is the open draft #91; step 5 (deleting the old fragment) is a release away. The touch screen does not exist |
+| `KMP-20` | `:feature:home` | The `HomeSource` seam and the desktop screen | **The TV screen**, though `design/TV Home.dc.html` draws it. The chosen source is not remembered across launches |
+| `KMP-15`/`16`/`25` | `:feature:detail`, `:media:subtitle` | The desktop detail page, source list, player and subtitles | Source and audio selectors (artboard 7e). No Android host |
+| `KMP-26` | `:feature:library` | Continue Watching, six lists, watch progress, resume, and a file store beside the search history | A bookmark button on the detail page, progress on search and home cards, sorting, Android |
 
-`:app`'s `SearchFragment` and `SearchViewModel` are untouched and still the live search path.
-
-**Desktop runs extensions in a sandbox** (`KMP-14`, `docs/tasks/kmp.md`): one Seatbelt-confined child
-process per extension, scanned first, `.cs3` converted with dex2jar in a no-network sandbox. Plugin code
-no longer runs in the app's JVM, and where there is no sandbox nothing loads. Try it headless:
-`CloudStream --check-extensions "query" --verbose`.
-
-**Desktop plays video** (`KMP-15`): search, the TV detail page, a source list and an embedded player over the user's
-installed VLC, through vlcj. libVLC runs in the app process, outside the sandbox; that is its largest remaining gap.
+`:app`'s `SearchFragment`, `SearchViewModel` and home fragments are untouched and still the live Android
+path. The Android app is unchanged by all of the desktop work.
 
 ---
 
@@ -257,6 +278,8 @@ Nothing below can be settled by reading the code.
 | `DEC-06` | **Apple TV** | Blocking nothing today. |
 | `DEC-08` | **`APIRepository`'s one-line ABI delta** | Merged in `KMP-05` ahead of the sign-off the entry asks for. The delta is **one** synthetic out (`access$afterPluginsLoaded`, which existed only so the class's own `init` could reach a private method), one public method in. `DEC-08`'s own prediction — that `access$getAfterPluginsLoadedEvent$cp` would go — is **wrong**; it survives, because nine `:app` files still read the event. |
 | `DEC-09` | **`BaseComposeFragment` leaving `classes.jar`** | Blocks part of `KMP-06`. |
+| `DEC-14` | **Extensions that need a WebView** | Desktop's shims make `WebView` throw, and `WebViewResolver` still fails. Leave it failing, label those extensions before they are enabled, or adopt JCEF — a browser engine per platform, with its own sandbox story. Filed 2026-11-03 from `KMP-18`'s retained evidence. |
+| `DEC-15` | **Plugin settings on desktop** | `openSettings` builds Android Views and cannot run here; it costs nothing only because the JVM never links a method body that is never called. Feature absent, a declarative seam extensions opt into, or a raw key editor. Filed 2026-11-03. |
 | `DEC-10` | **Screenshot testing** | Wait for a working plugin, or switch to Roborazzi. Blocks `DS-04`. |
 | `INF-06` | **Test toolchain** | Pin it, or re-measure the `ar` table — the two cannot both be satisfied. Now also an Android/JVM divergence question, not only a JDK-version one (`I18N-06`). |
 | `INF-04` | **iOS test target** | Open; no iOS test target and no screenshot coverage. |
@@ -284,6 +307,12 @@ Nothing below can be settled by reading the code.
   aborts. `BUG-10` deleted the process-wide trust-all that used it, but the class itself is
   ABI-frozen at `classes-jar.api:28106` and stays. Promoting the severity needs an `<ignore path>`
   for that class and changes the build gate, so it is yours.
+- **16 KB page size, and it is not measured in this tree.** Android requires 16 KB-aligned native
+  libraries. An earlier session reported `libgojni.so` and `libconscrypt_jni.so` misaligned in all four
+  ABIs, and that the fix is two dependency bumps — but **no `.so` is in this repository** (they arrive
+  from AARs) and that measurement was not retained, so nothing here reproduces it. Someone must build
+  the APK and check the alignment before this becomes a decision. It is a Play requirement, not a
+  warning the local gates raise.
 - **`androidx.test:runner` has no catalog alias.** `I18N-06`'s device test leans on
   `libs.espresso.core`, which brings `runner` 1.6.1 in at compile scope (POM-verified). A proper
   alias is a `gradle/libs.versions.toml` addition and needs approval
@@ -338,29 +367,29 @@ Compose-Multiplatform template's source-set blurb and was deleted; #46 quotes it
 
 ## What is next
 
-The live queue is `docs/plans/kmp-migration.md` §7, "Next PRs, in order". As of #74 everything in
-rows 1–16 and 19–23 is done, and what is left is Phase 7 plus Track L.
+The live queue is `docs/plans/kmp-migration.md` §7, "Next PRs, in order". Rows 1–17 and 19–23 are done.
+What is left is the rest of Phase 7, Phase N, and Track L.
 
-**Row 18, `:feature:search`, in order** (Phase 7's five-step recipe, §7):
+**Phase 7 vertical 4, downloads**, or the two things `KMP-26` left: a bookmark button on the detail
+page (it needs a slot in `:feature:detail`) and watch progress on search and home cards
+(`SearchResultItem.watchProgress` already exists and is still always null).
 
-1. ~~`State`/`Action`/`Effect` + ViewModel in commonMain~~ — done, `KMP-12`.
-2. **Screens per form factor in commonMain** (I4, §4.4 — TV, touch, desktop; no `android.*`,
-   `Context`, `Fragment`, `Bundle` or `R`), reusable parts to `:core:designsystem`.
-3. The `SearchSource` implementation in `:app` over `APIRepository`, mapping `SearchResponse` →
-   `SearchResultItem`, plus `SearchPrompts` built from `stringResource`.
-4. The glue `Fragment` in androidMain and **one** node repointed in `res/navigation/mobile_navigation.xml`.
-   The old fragment stays in `:app` as the rollback lever.
+**Row 18, `:feature:search`,** has two steps left:
+
+4. **Open as draft #91** — the glue `Fragment` and one node repointed in `res/navigation/mobile_navigation.xml`.
+   The old fragment stays in `:app` as the rollback lever. **Needs a real TV before it merges.**
 5. Delete the old fragment and layouts a release later. That removes `com.lagradost.cloudstream3`
    classes from `classes.jar`: list them with the javap tripwire output for owner sign-off.
 
-Steps 3 and 4 are the first ones that touch live `:app` code, so they want the owner's eye rather
-than an assumption.
+**Row 17, `:feature:extensions`:** the adapter's first caller. `F1` and `F2` are settled (`KMP-11`, owner
+2026-11-03), so what is left is a caller in `:app` and a device to run it on.
 
-**Row 17, `:feature:extensions`:** the adapter's first caller. `F1` and `F2` are settled (`KMP-11`, owner 2026-11-03).
+**Also open:** `KMP-08` / Track L is blocked on `DEC-04`. `I18N-01` (`UiString` adoption) is many small PRs
+and nobody is on it. `INF-04` and `INF-06` are open. `DS-04` is blocked on `DEC-10` and `DS-05` on `DS-01`.
 
-**Also open:** `KMP-08` / Track L is blocked on `DEC-04`. `DS-07` is **closed as a measured won't
-fix** — the census found 36 `.dp` literals in the vendored Mihon tree, and changing them is a
-permanent divergence from upstream Apache-2.0 code for values nobody is looking at.
+**Three decisions the desktop work raised, all the owner's:** the 74 extensions that use `android.webkit`
+(disable them on desktop or adopt JCEF), plugin settings on desktop (the dialogs are Android Views and
+cannot survive conversion), and 16 KB page-size compliance, which needs two dependency bumps.
 
 A correction to `KMP-11`: this file used to say `:app` never compares `fileHash`. It does, and has
 since `7926e60f` (2026-04-19), at `RepositoryManager.kt:214-220`. Three KDocs in `:feature:extensions`
