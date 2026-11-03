@@ -56,6 +56,11 @@ driven offscreen through `ImageComposeScene` and real ViewModels. Audible sound 
 
     ./gradlew iosCanary -Pcloudstream.iosCanary=true --continue
 
+The fifth, opt-in gate runs them for real, and since `BUG-17` it is green: **219 `commonTest` assertions on
+an iOS simulator, 0 failures.** It is worth running whenever a `commonTest` is added.
+
+    ./gradlew iosSimulatorTest -Pcloudstream.iosTest=true
+
 **Phase 7 stands at four verticals.** None of them has repointed anything in `:app` except search, and
 search's repoint is the draft PR above:
 
@@ -365,12 +370,7 @@ Compose-Multiplatform template's source-set blurb and was deleted; #46 quotes it
 The live queue is `docs/plans/kmp-migration.md` §7, "Next PRs, in order". Rows 1–17 and 19–23 are done.
 What is left is the rest of Phase 7, Phase N, and Track L.
 
-**`BUG-17` first, and it is five lines.** The fifth gate, `iosSimulatorTest`, has been red since #92:
-Kotlin/Native refuses a comma inside a backticked test name and `:feature:home`'s `HomePagingTest` has five
-of them. Nothing else in the repository trips it. While it cannot compile, none of the 219 `commonTest`
-assertions in the canary's modules are checked on Native.
-
-**Then Phase 7 vertical 4, downloads**, or the two things `KMP-26` left: a bookmark button on the detail
+**Phase 7 vertical 4, downloads**, or the two things `KMP-26` left: a bookmark button on the detail
 page (it needs a slot in `:feature:detail`) and watch progress on search and home cards
 (`SearchResultItem.watchProgress` already exists and is still always null).
 
