@@ -10,4 +10,7 @@
 <string name="search_state_idle_body_desktop">"ኣርእስቲ ጽሓፍ። ውጽኢታት ነፍሲ ወከፍ ምንጪ ምስ መለሰ ኣብ ትሕቲኡ ይርአዩ።"</string>
 <string name="seek_back_10_seconds">"10 ካልኢት ንድሕሪት"</string>
 <string name="seek_forward_10_seconds">"10 ካልኢት ንቕድሚት"</string>
+<string name="subtitles_file_empty">"እዚ ፋይል ንኡስ ጽሑፍ ባዶ እዩ"</string>
+<string name="subtitles_format_unsupported">"እዚ ቅርጺ ንኡስ ጽሑፍ ኣይድገፍን እዩ"</string>
+<string name="subtitles_load_failed">"ነዚ ንኡስ ጽሑፋት ክጽዓን ኣይተኻእለን"</string>
 </resources>

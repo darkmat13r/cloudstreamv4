@@ -253,6 +253,9 @@
 <string name="subs_text_color">"Cor de Texto"</string>
 <string name="subs_window_color">"Cor de Ventá"</string>
 <string name="subscribe_tooltip">"Notificación de novo capítulo"</string>
+<string name="subtitles_file_empty">"Este ficheiro de subtítulos está baleiro"</string>
+<string name="subtitles_format_unsupported">"Este formato de subtítulos non é compatible"</string>
+<string name="subtitles_load_failed">"Non se puideron cargar estes subtítulos"</string>
 <string name="subtitles_settings">"Configurar Subtítulos"</string>
 <string name="swipe_to_change_settings">"Deslice para cambiar a configuración"</string>
 <string name="swipe_to_change_settings_des">"Deslice cara arriba ou cara abaixo no lado esquerdo ou dereito para cambiar o brillo ou o volumen"</string>

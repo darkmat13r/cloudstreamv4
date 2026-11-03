@@ -216,6 +216,9 @@
 <string name="subs_subtitle_languages">"Wika ng Subtitle"</string>
 <string name="subs_text_color">"Kulay ng Teksto"</string>
 <string name="subs_window_color">"Window Color"</string>
+<string name="subtitles_file_empty">"Walang laman ang subtitle file na ito"</string>
+<string name="subtitles_format_unsupported">"Hindi sinusuportahan ang format ng subtitle na ito"</string>
+<string name="subtitles_load_failed">"Hindi ma-load ang mga subtitle na ito"</string>
 <string name="subtitles_settings">"Subtitle Setting"</string>
 <string name="swipe_to_change_settings">"Swipe to change settings"</string>
 <string name="swipe_to_change_settings_des">"Swipe pataas/pababa sa kanan o kaliwang bahagi ng player upang dagdagan/bawasan ang brightness/volume"</string>

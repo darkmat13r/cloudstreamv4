@@ -304,7 +304,10 @@
 <string name="subs_window_color">"رنگ پنجره"</string>
 <string name="subscribe_tooltip">"اعلان قسمت جدید"</string>
 <string name="subtitles_encoding">"رمزگذاری زیرنویس"</string>
+<string name="subtitles_file_empty">"این فایل زیرنویس خالی است"</string>
 <string name="subtitles_filter_lang">"فیلتر توسط زبان محتوا برگزیده"</string>
+<string name="subtitles_format_unsupported">"این قالب زیرنویس پشتیبانی نمی‌شود"</string>
+<string name="subtitles_load_failed">"بارگذاری این زیرنویس‌ها ممکن نشد"</string>
 <string name="subtitles_settings">"تنظیمات زیرنویس"</string>
 <string name="swipe_to_change_settings">"برای تغییر تنظیمات بکشید"</string>
 <string name="swipe_to_change_settings_des">"برای تغییر میزان روشنایی یا صدا در گوشه چپ و راست به بالا یا پایین بکشید"</string>

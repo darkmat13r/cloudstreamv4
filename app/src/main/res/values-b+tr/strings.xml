@@ -645,9 +645,12 @@
 <string name="subtitles_depressed">"Çökmüş"</string>
 <string name="subtitles_encoding">"Altyazı kodlaması"</string>
 <string name="subtitles_example_text">"Pijamalı hasta yağız şoföre çabucak güvendi"</string>
+<string name="subtitles_file_empty">"Bu altyazı dosyası boş"</string>
 <string name="subtitles_filter_lang">"Tercih edilen medya diline göre filtrele"</string>
+<string name="subtitles_format_unsupported">"Bu altyazı biçimi desteklenmiyor"</string>
 <string name="subtitles_from_embedded">"Yerleştir"</string>
 <string name="subtitles_from_online">"Çevrimiçi"</string>
+<string name="subtitles_load_failed">"Bu altyazılar yüklenemedi"</string>
 <string name="subtitles_outline">"Dış hat"</string>
 <string name="subtitles_raised">"Yükseltilmiş"</string>
 <string name="subtitles_remove_bloat">"Altyazılardaki şişkinliği kaldır"</string>

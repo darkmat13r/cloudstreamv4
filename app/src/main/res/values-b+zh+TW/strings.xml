@@ -641,9 +641,12 @@
 <string name="subtitles_depressed">"凹陷"</string>
 <string name="subtitles_encoding">"字幕編碼"</string>
 <string name="subtitles_example_text">"The quick brown fox jumps over the lazy dog"</string>
+<string name="subtitles_file_empty">"此字幕檔案為空白"</string>
 <string name="subtitles_filter_lang">"按偏好的片源語言篩選"</string>
+<string name="subtitles_format_unsupported">"不支援此字幕格式"</string>
 <string name="subtitles_from_embedded">"內嵌"</string>
 <string name="subtitles_from_online">"線上"</string>
+<string name="subtitles_load_failed">"無法載入這些字幕"</string>
 <string name="subtitles_outline">"輪廓"</string>
 <string name="subtitles_raised">"凸出"</string>
 <string name="subtitles_remove_bloat">"移除字幕廣告"</string>
