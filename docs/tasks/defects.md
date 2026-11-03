@@ -773,7 +773,7 @@ After the fix, same app, same home:
 
 ## BUG-19 — a slow source lost every link, including the ones that had already been found · **high**
 
-**Status:** in pr · found 2026-11-03 running CineStream 487, owner approved the fix the same day · `PluginHost.kt`, `PluginHostClient.kt`, `DetailViewModel.kt`, `DetailScreenDesktop.kt`
+**Status:** done · #111 · found 2026-11-03 running CineStream 487, owner approved the fix the same day · `PluginHost.kt`, `PluginHostClient.kt`, `DetailViewModel.kt`, `DetailScreenDesktop.kt`
 
 The host collected a plugin's links from its callbacks and replied only when `loadLinks` returned, and the app waited 60 s. CineStream asks dozens of sources at once and takes over a minute, so all five films failed with `links FAILED: CineStream did not answer within 60000ms`, holding links it had found in the first half second.
 
@@ -1035,7 +1035,7 @@ JVM, and the error (`Name contains illegal characters: ","`) names neither Kotli
 
 ## BUG-21 — a title that failed to open said "Error Loading Links" and printed an exception class · **low**
 
-**Status:** in pr · found 2026-11-03 by the owner, opening a title with Invidious (its server refuses the request, so `load()` returns null) · `DetailCopy.kt`, `DesktopDetailSource.kt`
+**Status:** done · #112 · found 2026-11-03 by the owner, opening a title with Invidious (its server refuses the request, so `load()` returns null) · `DetailCopy.kt`, `DesktopDetailSource.kt`
 
 The page showed `Source error` / `Error Loading Links` / `IllegalStateException: provider returned nothing` / `Try again`. Two faults.
 
@@ -1075,3 +1075,41 @@ Rendered at 1280x800 through `DetailScreenDesktop` (`-Pcloudstream.home.renders=
 - **`search_state_retry` ("Try again") is authored only in the base file.** The Arabic render shows `Try again` in English under an Arabic headline. It is every locale, and every screen that uses it.
 - **The Arabic render is not mirrored**: the back button stays top left. `ImageComposeScene` took the locale for the strings and not the layout direction here; whether the window does was not checked.
 - **A plugin that answers null from `load()` is still logged by the host as a failure** (`IllegalStateException`), not as a null.
+
+## BUG-22 — a link picked early never got its subtitles · **medium**
+
+**Status:** in pr · found 2026-11-03 while building `BUG-19` · `DetailViewModel.kt`, `SubtitleSession.kt`, `SubtitlePreference.kt`, `PlayerScreen.kt`, `DesktopDetailViewModels.kt`
+
+`BUG-19` made a link pickable as soon as it arrives, and picking one stopped the search. Subtitles arrive later than links, so the earlier the pick, the fewer the tracks. Measured with CineStream on "inception", through `--check-extensions --verbose`: the first link at 485 ms with **0** subtitles, the first subtitle at 2,693 ms, and 175 by 64 s. Someone clicking the first row got a player with an empty list.
+
+**The owner's call: match the existing app.** So this does what `GeneratorPlayer` and `PlayerGeneratorViewModel` do:
+
+| | Android | Desktop now |
+|---|---|---|
+| Playing a link before the search ends (`overlayLoadingSkipButton`) | the job goes on | `LinkActivated` no longer stops it |
+| A subtitle found after that | joins the player's list | `SubtitleSession.offer` |
+| The preferred language | `SUBTITLE_AUTO_SELECT_KEY`, else `en` | `~/.cloudstream4/subtitle-language`, else `en` |
+| When it turns on | when a matching track arrives, the first by name | the same, at most once per stream |
+| A later arrival | leaves what is on alone | the same |
+| Choosing a track | saves its language | the same; a track with no language saves nothing |
+| Choosing Off | saves "none", so nothing turns on again | the same |
+
+This changes what `KMP-25` settled, *"Starts off"*: a fresh install now opens with English on, as Android does.
+
+**Where it differs, on purpose.** Android's search ends when the player does, because its source list is inside the player. Desktop's list is the page under the player, so backing out lands on a list that is still growing, and the search stops when that list is dismissed or the page is left. `BUG-19`'s 90 s ceiling still bounds it. The list also holds its rows while it is open and refills next time: it grows upward from its foot, so a track arriving would slide the row under the pointer as it is clicked. An empty list has nothing to slide, so the first tracks do appear in it.
+
+**Measured.** `--check-subtitle-render <out> 1280x720 plugin:CineTmdb:<query> --first-link --keep-searching`, silent, in a fresh home: nothing chosen by hand, so only an arriving track can put a cue up.
+
+| Query | Tracks at the pick | Tracks at the end of the run | Turned on | |
+|---|---|---|---|---|
+| inception | 0 | 174 | English | real frames, cue drawn (PNG read) |
+| the godfather | 0 | 200 | English | real frames, cue drawn (PNG read) |
+
+The first attempt at this check said `cue-on-screen=true` over a grey frame with **no cue in the PNG**: it was asking the timeline, and shooting before the screen's own tick had drawn anything. It now waits, and the PNGs were read rather than the flag. Reverting `listed`, the `settled` guard and the `stopLinks` removal together fails the new tests (see the PR).
+
+**Not done.**
+
+- **A language setting.** Android has one in its subtitle settings. Here the language changes only by choosing a track.
+- **The next track when the preferred one fails.** Android does not try one either: this shows the failure and leaves the list to the person.
+- **Whether the track fits the stream.** The first English track by name is not necessarily cut for this link's release, and the Godfather run's first cue is that file's own credit line. Android chooses the same way. Whether it stays in time over a whole film was not measured.
+- **The window itself, and sound.** All of this ran offscreen and silent, so no one has clicked it live.

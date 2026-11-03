@@ -20,28 +20,75 @@ internal sealed interface SubtitleSelection {
 }
 
 /**
- * The tracks of one stream, and which is chosen. Starts off, and is forgotten with the player: nothing
- * remembers a choice between streams yet (`KMP-25`).
+ * The tracks of one stream, and which is chosen.
+ *
+ * As `GeneratorPlayer` does on Android: tracks keep joining while the search goes on, the first track in the
+ * [preference]'s language turns on when it arrives, and that happens once, so a later arrival never replaces what
+ * is on. Choosing is what sets the preference, and choosing Off stops this happening at all.
  *
  * Nothing here can disturb playback. Every way a track can go wrong ends in [SubtitleSelection.Failed], and
  * choosing another track cancels the fetch in progress, so a slow file cannot replace a later choice.
  */
 internal class SubtitleSession(
-    val tracks: List<SubtitleTrack>,
+    tracks: List<SubtitleTrack>,
     private val loader: SubtitleLoader,
     private val scope: CoroutineScope,
+    private val preference: SubtitlePreference = SubtitlePreference.Never,
 ) {
+    private val _tracks = MutableStateFlow(tracks.distinctBy { it.id })
     private val _selection = MutableStateFlow<SubtitleSelection>(SubtitleSelection.Off)
     private val _failures = MutableStateFlow<Map<String, SubtitleFailure>>(emptyMap())
     private var job: Job? = null
+
+    /** Whether something has been turned on, by this or by a person. */
+    private var settled = false
+
+    /** Only ever grows at its end, so a row on the screen stays where it is. */
+    val tracks: StateFlow<List<SubtitleTrack>> = _tracks.asStateFlow()
 
     val selection: StateFlow<SubtitleSelection> = _selection.asStateFlow()
 
     /** Why each track that was tried and failed did, so its row can say so after the notice has gone. */
     val failures: StateFlow<Map<String, SubtitleFailure>> = _failures.asStateFlow()
 
-    /** @param track null turns subtitles off. Choosing the track already on does nothing. */
+    init {
+        turnOnPreferred()
+    }
+
+    /** @param all what the search has found so far. A track already here is not added twice. */
+    fun offer(all: List<SubtitleTrack>) {
+        _tracks.update { known ->
+            val ids = known.mapTo(HashSet()) { it.id }
+            known + all.filter { ids.add(it.id) }
+        }
+        turnOnPreferred()
+    }
+
+    /** A person's choice. @param track null turns subtitles off. Choosing the track already on does nothing. */
     fun select(track: SubtitleTrack?) {
+        if (track == null) {
+            // Off when it was already off says nothing about what they want, and Android does not save it either.
+            if (_selection.value != SubtitleSelection.Off) {
+                settled = true
+                preference.remember(SubtitlePreference.NONE)
+            }
+        } else {
+            settled = true
+            track.languageTag?.let(preference::remember)
+        }
+        show(track)
+    }
+
+    private fun turnOnPreferred() {
+        if (settled) return
+        val language = preference.language()
+        if (language == SubtitlePreference.NONE) return
+        val preferred = _tracks.value.filter { it.languageTag == language }.minByOrNull { it.label } ?: return
+        settled = true
+        show(preferred)
+    }
+
+    private fun show(track: SubtitleTrack?) {
         val current = _selection.value
         if (track == null) {
             job?.cancel()

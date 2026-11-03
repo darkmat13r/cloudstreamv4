@@ -326,6 +326,55 @@ class PlayerScreenTest {
         screen.scene.close()
     }
 
+    @Test
+    fun `a track that arrives in an empty list can be chosen, with the mouse or the keys`() {
+        val mouse = Screen(tracks = emptyList())
+        mouse.settle()
+        mouse.click(mouse.button)
+        mouse.session.offer(listOf(english))
+        mouse.settle()
+        mouse.click(Offset(mouse.button.x - 100, mouse.height - 84f - 8f - 4f - 24f))
+        assertEquals(english, assertIs<SubtitleSelection.Showing>(mouse.session.selection.value).track)
+        mouse.scene.close()
+
+        val keys = Screen(tracks = emptyList())
+        keys.settle()
+        keys.press(Key.C)
+        keys.session.offer(listOf(german))
+        keys.settle()
+        keys.press(Key.DirectionDown)
+        keys.press(Key.Enter)
+        assertEquals(german, assertIs<SubtitleSelection.Showing>(keys.session.selection.value).track)
+        keys.scene.close()
+    }
+
+    @Test
+    fun `a track that arrives while rows are open does not slide them, and is there next time`() {
+        val screen = Screen(tracks = listOf(english))
+        screen.settle()
+        screen.click(screen.button)
+        screen.session.offer(listOf(english, german))
+        screen.settle()
+        val lastRow = Offset(screen.button.x - 100, screen.height - 84f - 8f - 4f - 24f)
+        screen.click(lastRow)
+        assertEquals(english, assertIs<SubtitleSelection.Showing>(screen.session.selection.value).track)
+        screen.click(screen.button)
+        screen.click(lastRow)
+        assertEquals(german, assertIs<SubtitleSelection.Showing>(screen.session.selection.value).track)
+        screen.scene.close()
+    }
+
+    @Test
+    fun `a subtitle that arrives while playing joins without touching playback`() {
+        val screen = Screen(tracks = emptyList())
+        screen.settle()
+        screen.session.offer(listOf(english))
+        screen.settle()
+        assertEquals(listOf(english), screen.session.tracks.value)
+        assertEquals(emptyList(), screen.calls.log)
+        screen.scene.close()
+    }
+
     private fun assertFailureShows(reason: SubtitleFailure, width: Int = 1280, height: Int = 800) {
         val calls: Screen
         val screen = Screen(load = { SubtitleLoad.Failed(reason) }, width = width, height = height)

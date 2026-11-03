@@ -312,6 +312,7 @@ internal fun DesktopApp(
             is Screen.Player -> key(screen.link) {
                 SideEffect { escape.onEscape = { back(screen) } }
                 val player = remember { VlcPlayer.createOrNull() }
+                val arrivingSubtitles = remember(screen) { DesktopDetailViewModels.subtitles(screen.kept.id.value) }
                 val recorder = remember(screen) {
                     WatchRecorder(library, screen.kept, screen.episodeData, scope)
                 }
@@ -326,6 +327,7 @@ internal fun DesktopApp(
                         setEscape = { escape.onEscape = it },
                         startAtMillis = screen.startAtMillis,
                         onProgress = recorder::onProgress,
+                        arrivingSubtitles = arrivingSubtitles,
                     )
                 }
                 DisposableEffect(screen) {

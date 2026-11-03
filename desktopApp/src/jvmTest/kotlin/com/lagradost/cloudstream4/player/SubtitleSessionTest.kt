@@ -25,7 +25,104 @@ class SubtitleSessionTest {
         SupervisorJob() + Dispatchers.Unconfined + CoroutineExceptionHandler { _, _ -> crashes++ },
     )
 
+    private val spanish = SubtitleTrack(SubtitleSource.Remote("https://a/es"), "Spanish", "es")
+    private val english = SubtitleTrack(SubtitleSource.Remote("https://a/en"), "English", "en")
+    private val englishToo = SubtitleTrack(SubtitleSource.Remote("https://a/en2"), "English 2", "en")
+
+    private class Saved(var value: String = SubtitlePreference.DEFAULT) : SubtitlePreference {
+        val writes = ArrayList<String>()
+
+        override fun language() = value
+
+        override fun remember(language: String) {
+            value = language
+            writes += language
+        }
+    }
+
     private fun session(loader: SubtitleLoader) = SubtitleSession(listOf(first, second), loader, scope)
+
+    private fun arriving(saved: SubtitlePreference, tracks: List<SubtitleTrack> = emptyList()) =
+        SubtitleSession(tracks, { ready }, scope, saved)
+
+    private fun SubtitleSession.showing() = (selection.value as? SubtitleSelection.Showing)?.track
+
+    @Test
+    fun `a track found after the pick joins the list, at its end, once`() {
+        val session = arriving(SubtitlePreference.Never, listOf(spanish))
+        session.offer(listOf(spanish, english))
+        session.offer(listOf(spanish, english, english))
+        assertEquals(listOf(spanish, english), session.tracks.value)
+        assertEquals(SubtitleSelection.Off, session.selection.value)
+    }
+
+    @Test
+    fun `the preferred language turns on when it arrives, in Android's order`() {
+        val session = arriving(Saved(), listOf(spanish))
+        assertEquals(SubtitleSelection.Off, session.selection.value)
+        session.offer(listOf(spanish, englishToo, english))
+        assertEquals(english, session.showing())
+    }
+
+    @Test
+    fun `the preferred language turns on straight away if it is already here`() {
+        assertEquals(english, arriving(Saved(), listOf(spanish, english)).showing())
+    }
+
+    @Test
+    fun `a later arrival never replaces what is on`() {
+        val session = arriving(Saved(), listOf(englishToo))
+        session.offer(listOf(englishToo, english))
+        assertEquals(englishToo, session.showing())
+    }
+
+    @Test
+    fun `a person's choice is not undone by what arrives after it`() {
+        val saved = Saved()
+        val session = arriving(saved, listOf(spanish))
+        session.select(spanish)
+        session.offer(listOf(spanish, english))
+        assertEquals(spanish, session.showing())
+        assertEquals(listOf("es"), saved.writes)
+    }
+
+    @Test
+    fun `choosing Off is remembered, and nothing turns on after it`() {
+        val saved = Saved()
+        val session = arriving(saved, listOf(english))
+        session.select(null)
+        assertEquals(listOf(SubtitlePreference.NONE), saved.writes)
+        session.offer(listOf(english, englishToo))
+        assertEquals(SubtitleSelection.Off, session.selection.value)
+        assertEquals(SubtitleSelection.Off, arriving(saved, listOf(english)).selection.value, "nor in the next stream")
+    }
+
+    @Test
+    fun `Off when already off says nothing, so the preferred language can still arrive`() {
+        val saved = Saved()
+        val session = arriving(saved)
+        session.select(null)
+        assertEquals(emptyList(), saved.writes)
+        session.offer(listOf(english))
+        assertEquals(english, session.showing())
+    }
+
+    @Test
+    fun `a track with no language keeps the language already preferred`() {
+        val saved = Saved()
+        arriving(saved, listOf(first)).select(first)
+        assertEquals(emptyList(), saved.writes)
+        assertEquals(SubtitlePreference.DEFAULT, saved.value)
+    }
+
+    @Test
+    fun `a preferred track that fails does not make the next arrival turn on`() {
+        val saved = Saved()
+        val session = SubtitleSession(listOf(english), { SubtitleLoad.Failed(SubtitleFailure.Fetch) }, scope, saved)
+        assertIs<SubtitleSelection.Failed>(session.selection.value)
+        session.offer(listOf(english, englishToo))
+        assertEquals(english, assertIs<SubtitleSelection.Failed>(session.selection.value).track)
+    }
 
     @Test
     fun `it starts off`() {
