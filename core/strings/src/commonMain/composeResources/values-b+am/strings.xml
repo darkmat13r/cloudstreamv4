@@ -99,6 +99,9 @@
 <string name="subs_subtitle_languages">የትርጉም ጽሑፍ ቋንቋ</string>
 <string name="subs_text_color">የጽሑፍ ቀለም</string>
 <string name="subs_window_color">የዊንዶው ቀለም</string>
+<string name="subtitles_file_empty">ይህ የንዑስ ርዕስ ፋይል ባዶ ነው</string>
+<string name="subtitles_format_unsupported">ይህ የንዑስ ርዕስ ቅርጸት አይደገፍም</string>
+<string name="subtitles_load_failed">እነዚህን ንዑስ ርዕሶች መጫን አልተቻለም</string>
 <string name="subtitles_settings">የትርጉም ጽሑፍ ቅንብሮች</string>
 <string name="title_downloads">የወረዱ</string>
 <string name="title_home">መነሻ</string>

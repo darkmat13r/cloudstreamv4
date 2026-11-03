@@ -645,9 +645,12 @@
 <string name="subtitles_depressed">Bassorilievo</string>
 <string name="subtitles_encoding">Encoding Sottotitoli</string>
 <string name="subtitles_example_text">Ma che bel gufo spenzola da quei travi</string>
+<string name="subtitles_file_empty">Questo file di sottotitoli è vuoto</string>
 <string name="subtitles_filter_lang">Filtra in base alla lingua preferita</string>
+<string name="subtitles_format_unsupported">Questo formato di sottotitoli non è supportato</string>
 <string name="subtitles_from_embedded">Incorporato</string>
 <string name="subtitles_from_online">In linea</string>
+<string name="subtitles_load_failed">Impossibile caricare questi sottotitoli</string>
 <string name="subtitles_outline">Contorno</string>
 <string name="subtitles_raised">Rilievo</string>
 <string name="subtitles_remove_bloat">Rimuovi il bloat dai sottotitoli</string>

@@ -578,9 +578,12 @@
 <string name="subtitles_depressed">Σε κατάθλιψη</string>
 <string name="subtitles_encoding">Κωδικοποίηση υποτίτλων</string>
 <string name="subtitles_example_text">Η γρήγορη, καφέ αλεπού πηδάει πάνω από τον τεμπέλη σκύλο / The quick brown fox jumps over the lazy dog</string>
+<string name="subtitles_file_empty">Αυτό το αρχείο υποτίτλων είναι κενό</string>
 <string name="subtitles_filter_lang">Φιλτράρισμα ανά την προτεινόμενη γλώσσα του μέσου</string>
+<string name="subtitles_format_unsupported">Αυτή η μορφή υποτίτλων δεν υποστηρίζεται</string>
 <string name="subtitles_from_embedded">Ενσωματωμένο</string>
 <string name="subtitles_from_online">Συνδεμένοι</string>
+<string name="subtitles_load_failed">Δεν ήταν δυνατή η φόρτωση αυτών των υποτίτλων</string>
 <string name="subtitles_outline">Περίγραμμα</string>
 <string name="subtitles_raised">Ανεβασμένοι</string>
 <string name="subtitles_remove_bloat">Αφαίρεση bloat από τους υπότιτλους</string>

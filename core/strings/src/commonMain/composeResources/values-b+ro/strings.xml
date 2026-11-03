@@ -547,7 +547,10 @@
 <string name="subtitles_depressed">Deprimat</string>
 <string name="subtitles_encoding">Codificarea subtitrărilor</string>
 <string name="subtitles_example_text">Vulpea maro iute sare peste câinele leneș</string>
+<string name="subtitles_file_empty">Acest fișier de subtitrare este gol</string>
 <string name="subtitles_filter_lang">Filtrați în funcție de limba media preferată</string>
+<string name="subtitles_format_unsupported">Acest format de subtitrare nu este acceptat</string>
+<string name="subtitles_load_failed">Aceste subtitrări nu au putut fi încărcate</string>
 <string name="subtitles_outline">Contur</string>
 <string name="subtitles_raised">Relief</string>
 <string name="subtitles_remove_bloat">Eliminați bloat din subtitrări</string>

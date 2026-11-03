@@ -287,7 +287,10 @@
 <string name="subtitles_depressed">Enfonsat</string>
 <string name="subtitles_encoding">Codificació dels subtítols</string>
 <string name="subtitles_example_text">Jove xef, porti whisky amb quinze glaçons d'hidrogen, coi</string>
+<string name="subtitles_file_empty">Aquest fitxer de subtítols és buit</string>
 <string name="subtitles_filter_lang">Filtra per l'idioma preferit</string>
+<string name="subtitles_format_unsupported">Aquest format de subtítols no és compatible</string>
+<string name="subtitles_load_failed">No s'han pogut carregar aquests subtítols</string>
 <string name="subtitles_outline">Vora</string>
 <string name="subtitles_raised">Elevat</string>
 <string name="subtitles_remove_bloat">Eliminar contingut irrellevant dels subtítols</string>

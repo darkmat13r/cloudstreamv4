@@ -687,9 +687,12 @@
 <string name="subtitles_depressed">Depressed</string>
 <string name="subtitles_encoding">Subtitle encoding</string>
 <string name="subtitles_example_text">The quick brown fox jumps over the lazy dog</string>
+<string name="subtitles_file_empty">This subtitle file is empty</string>
 <string name="subtitles_filter_lang">Filter by preferred media language</string>
+<string name="subtitles_format_unsupported">This subtitle format isn't supported</string>
 <string name="subtitles_from_embedded">Embedded</string>
 <string name="subtitles_from_online">Online</string>
+<string name="subtitles_load_failed">Couldn't load these subtitles</string>
 <string name="subtitles_none">None</string>
 <string name="subtitles_outline">Outline</string>
 <string name="subtitles_raised">Raised</string>

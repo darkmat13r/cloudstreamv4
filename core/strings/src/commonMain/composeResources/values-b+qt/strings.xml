@@ -548,7 +548,10 @@
 <string name="subtitles_depressed">aaaahhhug</string>
 <string name="subtitles_encoding">uuuuhhhh oooohhhk</string>
 <string name="subtitles_example_text">uug ooohh aaahh uuh aaagg uuuk ooh aagg aag</string>
+<string name="subtitles_file_empty">ahhhaauugghh uuhh</string>
 <string name="subtitles_filter_lang">oooogg uh aaaahhhog uuugg aaaagggh</string>
+<string name="subtitles_format_unsupported">oooohhaaaghh ahhhaauugghh oouuh</string>
+<string name="subtitles_load_failed">ahooo oouuhoooohh ahhhaauugghh</string>
 <string name="subtitles_outline">aaaaaak</string>
 <string name="subtitles_raised">aaaagg</string>
 <string name="subtitles_remove_bloat">uuuuhh aaagg aahh oooohhhah</string>
