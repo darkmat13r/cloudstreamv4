@@ -1063,10 +1063,17 @@ Why: CloudStreamApp.kt:57 writes it into the crash log, blaming a plugin that is
 
 ## KMP-12 — `:feature:search`: the first feature vertical's state machine
 
-**Status:** **steps 1 to 4 of 5 done, on the TV layout only** 2026-11-02 (plan row 18, Phase 7
-vertical 1) · the seams landed in #79, the copy types went in `I18N-08` · **the TV screen has been
-compile-checked and has never been run on a device** · phone and emulator layouts still use
-`SearchFragment` · step 5 (deleting it) waits a release and the owner
+**Status:** **steps 1 to 4 of 5 written, on the TV layout only; steps 3 and 4 are draft #91 and are
+not merged** (plan row 18, Phase 7 vertical 1) · the seams landed in #79, the copy types went in
+`I18N-08` · **the TV screen has been compile-checked and has never been run on a device** · phone and
+emulator layouts still use `SearchFragment` · step 5 (deleting it) waits a release and the owner
+
+> **The state machine's defects were split out and landed on their own, 2026-11-03.** Building the
+> Android host (step 4) found four defects in `SearchViewModel`, and all four were in the **desktop**
+> app as shipped, not just the unbuilt Android path. Three are `BUG-24`; the fourth was found
+> independently from a screenshot of the owner's and landed first as `BUG-23` (#114). #91 keeps only
+> what needs a device: `SearchTvFragment`, the one-line `MainActivity` repoint,
+> `ApiRepositorySearchSource`, `DataStoreSearchHistory` and the `classes.jar` lines those add.
 
 ### Android TV opens the new screen: steps 3 and 4
 
@@ -1114,16 +1121,17 @@ available to check.
 keystroke. Against a real provider set that was a failure band with `NO_QUICK_SEARCH` on the first
 letter. Five new `SearchViewModelTest` cases failed against the previous ViewModel:
 
-| Case | Fix |
+| Case | Where it was fixed |
 |---|---|
-| No quick-search source: typing showed a failure | `SearchSources.quickSearchable`; typing then changes nothing until Enter, as the old screen did |
-| A debounce pending at Enter replaced the full search with the quick subset | `submitted` guard |
-| Text cleared inside the debounce window was still searched | settled text must equal the field |
-| Same query typed after a clear stalled on the skeleton (`distinctUntilChanged`) | a blank goes through the debounce on clear |
-| Source count went stale after plugins loaded or settings changed | `SearchAction.SourcesChanged`, sent from `onResume` and `afterPluginsLoadedEvent` |
+| No quick-search source: typing showed a failure | `SearchSources.quickSearchable` — `BUG-24`, merged |
+| A debounce pending at Enter replaced the full search with the quick subset | the `submitted` guard — `BUG-24`, merged |
+| Text cleared inside the debounce window was still searched | the settled text must equal the field — `BUG-24`, merged |
+| Same query typed after a clear stalled on the skeleton | `distinctUntilChanged` deleted from `DebounceQuery` — `BUG-23` (#114), merged |
+| Source count went stale after plugins loaded or settings changed | `SearchAction.SourcesChanged` — `BUG-24`, merged. **This PR still sends it from `onResume` and `afterPluginsLoadedEvent`**, which is the Android caller |
 
-Still open, not fixed: `dune` → `dunes` → `dune` inside one 200 ms window is swallowed by the same
-`distinctUntilChanged` and stays on the skeleton until Enter. The operator is in `:core:ui`.
+**None of these five is in this PR any more.** They were all in the shipped desktop app too, so they
+landed on their own rather than waiting for a television. `dune` → `dunes` → `dune` inside one 200 ms
+window, listed here as still open, went with `BUG-23`.
 
 #### Every behaviour of `SearchFragment`, on the TV path
 

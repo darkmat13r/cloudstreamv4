@@ -148,8 +148,9 @@ class SearchViewModel(
 
     /** Clears any in-flight work: an empty field must not be overwritten by an earlier reply. */
     private fun showIdle() {
-        // A blank through the debounce: its distinctUntilChanged would otherwise swallow the same
-        // query typed again, and the skeleton `onQueryChanged` put up would never be replaced.
+        // A blank through the debounce, which restarts its window and so drops the query queued
+        // behind this clear. Without it, text cleared inside 200 ms is still searched and the
+        // results land under an empty field (`BUG-24`). The consumer ignores the blank itself.
         work.launch { debounce.emit("") }
         work.launch { inFlight.launch { } }
         updateState { copy(status = SearchStatus.Idle) }
