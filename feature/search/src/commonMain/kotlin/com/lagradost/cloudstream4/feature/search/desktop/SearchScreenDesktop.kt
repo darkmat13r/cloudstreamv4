@@ -33,6 +33,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusProperties
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.input.key.Key
@@ -46,10 +47,15 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButton
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButtonTone
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopIconButton
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopRow
 import com.lagradost.cloudstream4.core.designsystem.desktop.desktopFeedback
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
+import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
+import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIconSize
+import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.designsystem.state.FailureBanner
 import com.lagradost.cloudstream4.core.designsystem.state.StatePrompt
 import com.lagradost.cloudstream4.core.designsystem.state.StateView
@@ -61,6 +67,7 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_cle
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_field_placeholder
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_recent_headline
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_sources_label
+import com.lagradost.cloudstream4.core.strings.generated.resources.sort_clear
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.search.SearchAction
@@ -159,35 +166,55 @@ private fun QueryField(
     // A brighter hairline, not the white ring: the field holds focus most of the time and its caret
     // already says so. The ring stays for what Tab lands on, where nothing else would show it.
     LaunchedEffect(focus) { runCatching { focus.requestFocus() } }
-    Box(
-        contentAlignment = Alignment.CenterStart,
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap),
         modifier = modifier
             .height(DesktopDimens.ToolbarFieldHeight)
             .background(colors.surface, shape)
             .border(CloudStreamDimens.Hairline, if (focused) colors.muted else colors.line, shape)
-            .padding(horizontal = DesktopDimens.RowPadding),
+            .padding(start = DesktopDimens.RowPadding, end = DesktopDimens.RelatedGap),
     ) {
-        BasicTextField(
-            value = query,
-            onValueChange = { onAction(SearchAction.QueryChanged(it)) },
-            textStyle = typography.body.copy(color = colors.ink),
-            singleLine = true,
-            cursorBrush = SolidColor(colors.ink),
-            interactionSource = source,
-            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
-            keyboardActions = KeyboardActions(onSearch = { onAction(SearchAction.Submit) }),
-            modifier = Modifier
-                .fillMaxWidth()
-                .focusRequester(focus)
-                .onPreviewKeyEvent { event ->
-                    // Escape empties a field with something in it, as it does in every Mac search field.
-                    val clears = event.key == Key.Escape && event.type == KeyEventType.KeyDown && query.isNotEmpty()
-                    if (clears) onAction(SearchAction.Cleared)
-                    clears
+        CloudStreamIcon(CloudStreamIcons.Search, null, size = CloudStreamIconSize.Small, tint = colors.muted)
+        Box(contentAlignment = Alignment.CenterStart, modifier = Modifier.weight(1f)) {
+            BasicTextField(
+                value = query,
+                onValueChange = { onAction(SearchAction.QueryChanged(it)) },
+                textStyle = typography.body.copy(color = colors.ink),
+                singleLine = true,
+                cursorBrush = SolidColor(colors.ink),
+                interactionSource = source,
+                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
+                keyboardActions = KeyboardActions(onSearch = { onAction(SearchAction.Submit) }),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .focusRequester(focus)
+                    .onPreviewKeyEvent { event ->
+                        // Escape empties a field with something in it, as it does in every Mac search field.
+                        val clears = event.key == Key.Escape && event.type == KeyEventType.KeyDown && query.isNotEmpty()
+                        if (clears) onAction(SearchAction.Cleared)
+                        clears
+                    },
+            )
+            if (query.isEmpty()) {
+                BasicText(text = placeholder, style = typography.body.copy(color = colors.muted), maxLines = 1)
+            }
+        }
+        if (query.isNotEmpty()) {
+            // Never takes focus: this button leaves the composition as soon as it is pressed, and focus
+            // inside it would go with it and swallow the next keystrokes. Escape is the keyboard's way.
+            DesktopIconButton(
+                icon = CloudStreamIcons.Clear,
+                contentDescription = stringResource(Res.string.sort_clear),
+                onClick = {
+                    onAction(SearchAction.Cleared)
+                    runCatching { focus.requestFocus() }
                 },
-        )
-        if (query.isEmpty()) {
-            BasicText(text = placeholder, style = typography.body.copy(color = colors.muted), maxLines = 1)
+                tone = DesktopButtonTone.Quiet,
+                size = DesktopDimens.FieldActionSize,
+                iconSize = CloudStreamIconSize.Small,
+                modifier = Modifier.focusProperties { canFocus = false },
+            )
         }
     }
 }

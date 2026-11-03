@@ -3,12 +3,17 @@ package com.lagradost.cloudstream4.core.screenshot
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButton
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButtonTone
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopIconButton
+import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.designsystem.primitive.Badge
 import com.lagradost.cloudstream4.core.designsystem.primitive.BadgeTone
 import com.lagradost.cloudstream4.core.designsystem.rows.ListRow
@@ -183,6 +188,26 @@ fun StateViewError() {
                 detail = "HTTP 503 · anilist.co · 2h ago",
                 requestInitialFocus = false,
             )
+        }
+    }
+}
+
+/**
+ * A glyph has to stay centred in its button, and a primary button's glyph has to flip to the dark role with its
+ * fill: a white glyph on the white fill would simply vanish.
+ */
+@Preview(name = "desktop icon buttons", widthDp = 320, heightDp = 80)
+@Composable
+fun DesktopIconButtons() {
+    CloudStreamTheme {
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            modifier = Modifier.background(CloudStreamTheme.colors.bg).padding(16.dp),
+        ) {
+            DesktopIconButton(CloudStreamIcons.Back, "Go back", onClick = {})
+            DesktopIconButton(CloudStreamIcons.Play, "Play", onClick = {}, tone = DesktopButtonTone.Primary)
+            DesktopIconButton(CloudStreamIcons.Close, "Close", onClick = {}, tone = DesktopButtonTone.Quiet)
+            DesktopButton("Play", onClick = {}, primary = true, icon = CloudStreamIcons.Play)
         }
     }
 }

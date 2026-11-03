@@ -40,9 +40,12 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButton
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButtonTone
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopIconButton
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopMotion
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopRow
+import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.designsystem.state.UiState
 import com.lagradost.cloudstream4.core.designsystem.state.UiStateHost
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
@@ -52,6 +55,7 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.no_episodes_f
 import com.lagradost.cloudstream4.core.strings.generated.resources.pick_source
 import com.lagradost.cloudstream4.core.strings.generated.resources.play_episode
 import com.lagradost.cloudstream4.core.strings.generated.resources.play_movie_button
+import com.lagradost.cloudstream4.core.strings.generated.resources.sort_close
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.detail.DetailAction
@@ -85,7 +89,7 @@ fun DetailScreenDesktop(
     Box(modifier.fillMaxSize()) {
         Column(Modifier.fillMaxSize()) {
             Box(Modifier.padding(DesktopDimens.WindowMargin)) {
-                DesktopButton(label = stringResource(Res.string.go_back), onClick = onBack)
+                DesktopIconButton(CloudStreamIcons.Back, stringResource(Res.string.go_back), onBack)
             }
             UiStateHost(state = state.content.toPageUiState(onAction), modifier = Modifier.fillMaxSize()) { detail ->
                 TitlePage(detail, onAction, artwork)
@@ -196,6 +200,7 @@ private fun PlayAction(detail: TitleDetail, onAction: (DetailAction) -> Unit) {
         label = if (detail.playData != null) stringResource(Res.string.play_movie_button) else stringResource(Res.string.play_episode),
         onClick = { onAction(DetailAction.PlayRequested(primary)) },
         primary = true,
+        icon = CloudStreamIcons.Play,
     )
 }
 
@@ -281,7 +286,12 @@ private fun SourcesPanel(
                         style = CloudStreamTheme.typography.railTitle.copy(color = colors.ink),
                         modifier = Modifier.weight(1f),
                     )
-                    DesktopButton(label = stringResource(Res.string.go_back), onClick = dismiss)
+                    DesktopIconButton(
+                        icon = CloudStreamIcons.Close,
+                        contentDescription = stringResource(Res.string.sort_close),
+                        onClick = dismiss,
+                        tone = DesktopButtonTone.Quiet,
+                    )
                 }
                 shown?.let { current ->
                     UiStateHost(state = current, modifier = Modifier.fillMaxSize()) { list ->

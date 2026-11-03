@@ -43,6 +43,11 @@ object PluginHost {
     /** Passed first on the command line. It is how a packaged launcher knows to become a host. */
     const val ARGUMENT = "--plugin-host"
 
+    /** True only inside a serving host, and read by [HostMainDispatcherFactory]. */
+    @Volatile
+    internal var running: Boolean = false
+        private set
+
     fun main(args: Array<String>) {
         // Before anything else: nothing in the host may decide to put an icon in the Dock.
         System.setProperty("java.awt.headless", "true")
@@ -73,6 +78,7 @@ object PluginHost {
         System.setProperty("user.home", data.path)
         System.setProperty("java.io.tmpdir", data.path)
         HostContext.current = HostContext(data)
+        running = true
         val input = FileInputStream(FileDescriptor.`in`)
         System.setIn(ByteArrayInputStream(ByteArray(0)))
 
