@@ -3,6 +3,7 @@
 <resources>
 <plurals name="downloads_active"><item quantity="one">"%d aktivní stahování"</item><item quantity="few">"%d aktivní stahování"</item><item quantity="many">"%d aktivních stahování"</item><item quantity="other">"%d aktivních stahování"</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">"%d stahování uloženo do fronty"</item><item quantity="few">"%d stahování uložena do fronty"</item><item quantity="many">"%d stahování uloženo do fronty"</item><item quantity="other">"%d stahování uloženo do fronty"</item></plurals>
+<plurals name="home_sections_failed"><item quantity="one">"Nepodařilo se načíst %d sekci"</item><item quantity="few">"Nepodařilo se načíst %d sekce"</item><item quantity="many">"Nepodařilo se načíst %d sekcí"</item><item quantity="other">"Nepodařilo se načíst %d sekcí"</item></plurals>
 <plurals name="links_hidden"><item quantity="one">"%d skrytý odkaz"</item><item quantity="few">"%d skryté odkazy"</item><item quantity="many">"%d skrytých odkazů"</item><item quantity="other">"%d skrytých odkazů"</item></plurals>
 <string name="account">"účet"</string>
 <string name="action_add_to_bookmarks">"Nastavit stav sledování"</string>
@@ -292,6 +293,7 @@
 <string name="home_next_random_img_des">"Další náhodný"</string>
 <string name="home_play">"Přehrát"</string>
 <string name="home_random">"Náhodný"</string>
+<string name="home_search_only_body">"Žádné z vašich rozšíření nemá domovskou stránku, ale stále v nich můžete hledat."</string>
 <string name="home_source">"Zdroj"</string>
 <string name="install_prerelease">"Nainstalovat předběžnou verzi"</string>
 <string name="is_adult">"18+"</string>
@@ -307,6 +309,7 @@
 <string name="links_reloaded_toast">"Odkazy znovu načteny"</string>
 <string name="live_singular">"Živý přenos"</string>
 <string name="livestreams">"Živé přenosy"</string>
+<string name="load_more">"Načíst další"</string>
 <string name="loading">"Načítání…"</string>
 <string name="lock_profile">"Zamknout profil"</string>
 <string name="logged_account" formatted="true">"Přihlášeni jako %s"</string>
@@ -526,11 +529,14 @@
 <string name="search_poster_img_des">"Plakát"</string>
 <string name="search_provider_text_providers">"Hledat pomocí poskytovatelů"</string>
 <string name="search_provider_text_types">"Hledat pomocí typů"</string>
+<string name="search_state_idle_body_desktop">"Zadejte název. Výsledky se zobrazí pod každým zdrojem, jakmile odpoví."</string>
 <string name="search_suggestions">"Návrhy vyhledávání"</string>
 <string name="search_suggestions_des">"Zobrazit návrhy vyhledávání během psaní"</string>
 <string name="season">"Sezóna"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"S"</string>
+<string name="seek_back_10_seconds">"Posunout o 10 sekund zpět"</string>
+<string name="seek_forward_10_seconds">"Posunout o 10 sekund vpřed"</string>
 <string name="select_all">"Vybrat vše"</string>
 <string name="select_an_account">"Vyberte účet"</string>
 <string name="select_library">"Vybrat knihovnu"</string>

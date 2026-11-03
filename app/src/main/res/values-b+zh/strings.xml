@@ -3,6 +3,7 @@
 <resources>
 <plurals name="downloads_active"><item quantity="other">"%d 个活跃下载"</item></plurals>
 <plurals name="downloads_queued"><item quantity="other">"队列中有 %d 个下载"</item></plurals>
+<plurals name="home_sections_failed"><item quantity="other">"%d 个分区加载失败"</item></plurals>
 <plurals name="links_hidden"><item quantity="other">"%d 条隐藏链接"</item></plurals>
 <string name="account">"账户"</string>
 <string name="action_add_to_bookmarks">"设置观看状态"</string>
@@ -292,6 +293,7 @@
 <string name="home_next_random_img_des">"随机下一个"</string>
 <string name="home_play">"播放"</string>
 <string name="home_random">"随机"</string>
+<string name="home_search_only_body">"你的扩展都没有主页，但仍可在其中搜索。"</string>
 <string name="home_source">"来源"</string>
 <string name="install_prerelease">"安装预发行版"</string>
 <string name="is_adult">"18+"</string>
@@ -307,6 +309,7 @@
 <string name="links_reloaded_toast">"链接已重新加载"</string>
 <string name="live_singular">"直播"</string>
 <string name="livestreams">"直播"</string>
+<string name="load_more">"加载更多"</string>
 <string name="loading">"加载中…"</string>
 <string name="lock_profile">"锁定个人资料"</string>
 <string name="logged_account" formatted="true">"以%s的身份登录"</string>
@@ -526,11 +529,14 @@
 <string name="search_poster_img_des">"封面"</string>
 <string name="search_provider_text_providers">"按片源搜索"</string>
 <string name="search_provider_text_types">"按类型搜索"</string>
+<string name="search_state_idle_body_desktop">"输入标题。每个来源响应后，结果会显示在其下方。"</string>
 <string name="search_suggestions">"搜索建议"</string>
 <string name="search_suggestions_des">"输入时显示搜索建议"</string>
 <string name="season">"季"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"S"</string>
+<string name="seek_back_10_seconds">"快退 10 秒"</string>
+<string name="seek_forward_10_seconds">"快进 10 秒"</string>
 <string name="select_all">"全选"</string>
 <string name="select_an_account">"选择一个账户"</string>
 <string name="select_library">"选择库"</string>

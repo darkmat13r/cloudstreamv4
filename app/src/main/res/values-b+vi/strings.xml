@@ -3,6 +3,7 @@
 <resources>
 <plurals name="downloads_active"><item quantity="other">"%d đang tải xuống"</item></plurals>
 <plurals name="downloads_queued"><item quantity="other">"%d tải xuống đang chờ"</item></plurals>
+<plurals name="home_sections_failed"><item quantity="other">"Không tải được %d mục"</item></plurals>
 <plurals name="links_hidden"><item quantity="other">"%d liên kết bị ẩn"</item></plurals>
 <string name="account">"tài khoản"</string>
 <string name="action_add_to_bookmarks">"Đặt trạng thái xem"</string>
@@ -292,6 +293,7 @@
 <string name="home_next_random_img_des">"Tập tiếp theo ngẫu nhiên"</string>
 <string name="home_play">"Phát"</string>
 <string name="home_random">"Ngẫu nhiên"</string>
+<string name="home_search_only_body">"Không có tiện ích mở rộng nào của bạn có trang chủ, nhưng bạn vẫn có thể tìm kiếm trong đó."</string>
 <string name="home_source">"Nguồn"</string>
 <string name="install_prerelease">"Cài đặt phiên bản phát hành trước"</string>
 <string name="is_adult">"18+"</string>
@@ -307,6 +309,7 @@
 <string name="links_reloaded_toast">"Tải lại liên kết"</string>
 <string name="live_singular">"Trực tiếp"</string>
 <string name="livestreams">"Trực tiếp"</string>
+<string name="load_more">"Tải thêm"</string>
 <string name="loading">"Đang tải…"</string>
 <string name="lock_profile">"Khóa hồ sơ"</string>
 <string name="logged_account" formatted="true">"Đã đăng nhập với tư cách %s"</string>
@@ -526,11 +529,14 @@
 <string name="search_poster_img_des">"Poster"</string>
 <string name="search_provider_text_providers">"Tìm kiếm theo nguồn phim"</string>
 <string name="search_provider_text_types">"Tìm kiếm theo thể loại"</string>
+<string name="search_state_idle_body_desktop">"Nhập tiêu đề. Kết quả sẽ hiện dưới mỗi nguồn khi nguồn đó phản hồi."</string>
 <string name="search_suggestions">"Gợi ý tìm kiếm"</string>
 <string name="search_suggestions_des">"Hiển thị gợi ý tìm kiếm khi đang nhập"</string>
 <string name="season">"Mùa"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"Mùa"</string>
+<string name="seek_back_10_seconds">"Tua lùi 10 giây"</string>
+<string name="seek_forward_10_seconds">"Tua tới 10 giây"</string>
 <string name="select_all">"Chọn tất cả"</string>
 <string name="select_an_account">"Chọn hồ sơ của bạn"</string>
 <string name="select_library">"Chọn Thư viện"</string>

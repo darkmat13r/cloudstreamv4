@@ -3,6 +3,7 @@
 <resources>
 <plurals name="downloads_active"><item quantity="other">%d 활성 다운로드</item></plurals>
 <plurals name="downloads_queued"><item quantity="other">%d 다운로드</item></plurals>
+<plurals name="home_sections_failed"><item quantity="other">섹션 %d개를 불러오지 못했습니다</item></plurals>
 <string name="account">계정</string>
 <string name="action_add_to_bookmarks">시청 상태 설정</string>
 <string name="action_add_to_favorites">즐겨찾기에 추가</string>
@@ -291,6 +292,7 @@
 <string name="home_next_random_img_des">다음 추천</string>
 <string name="home_play">재생</string>
 <string name="home_random">랜덤</string>
+<string name="home_search_only_body">홈 페이지가 있는 확장 기능은 없지만 검색은 계속 사용할 수 있습니다.</string>
 <string name="home_source">소스</string>
 <string name="install_prerelease">출시 전 버전 설치</string>
 <string name="is_adult">18+</string>
@@ -306,6 +308,7 @@
 <string name="links_reloaded_toast">링크 초기화 완료</string>
 <string name="live_singular">라이브 방송</string>
 <string name="livestreams">라이브 방송</string>
+<string name="load_more">더 불러오기</string>
 <string name="loading">로딩중…</string>
 <string name="lock_profile">프로필 잠금</string>
 <string name="logged_account">%s으로 로그인 됨</string>
@@ -522,11 +525,14 @@
 <string name="search_poster_img_des">포스터</string>
 <string name="search_provider_text_providers">소스로 검색</string>
 <string name="search_provider_text_types">유형을 사용하여 검색</string>
+<string name="search_state_idle_body_desktop">제목을 입력하세요. 각 소스가 응답하면 그 아래에 결과가 표시됩니다.</string>
 <string name="search_suggestions">검색어 제안</string>
 <string name="search_suggestions_des">입력하는 동안 검색어 제안 표시</string>
 <string name="season">시즌</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">시즌</string>
+<string name="seek_back_10_seconds">10초 뒤로</string>
+<string name="seek_forward_10_seconds">10초 앞으로</string>
 <string name="select_all">모두 선택</string>
 <string name="select_an_account">계정 선택</string>
 <string name="select_library">라이브러리 선택</string>

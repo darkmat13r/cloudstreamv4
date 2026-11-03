@@ -3,6 +3,7 @@
 <resources>
 <plurals name="downloads_active"><item quantity="other">%d unduhan aktif</item></plurals>
 <plurals name="downloads_queued"><item quantity="other">%d unduhan dalam antrean</item></plurals>
+<plurals name="home_sections_failed"><item quantity="other">%d bagian gagal dimuat</item></plurals>
 <plurals name="links_hidden"><item quantity="other">%d link tersembunyi</item></plurals>
 <string name="account">akun</string>
 <string name="action_add_to_bookmarks">Atur status tontonan</string>
@@ -292,6 +293,7 @@
 <string name="home_next_random_img_des">Acak selanjutnya</string>
 <string name="home_play">Putar</string>
 <string name="home_random">Acak</string>
+<string name="home_search_only_body">Tidak ada ekstensi Anda yang memiliki beranda, tetapi Anda tetap dapat mencari di dalamnya.</string>
 <string name="home_source">Sumber</string>
 <string name="install_prerelease">Pasang versi pra-rilis</string>
 <string name="is_adult">18+</string>
@@ -307,6 +309,7 @@
 <string name="links_reloaded_toast">Tautan Dimuat Ulang</string>
 <string name="live_singular">Siaran langsung</string>
 <string name="livestreams">Siaran langsung</string>
+<string name="load_more">Muat lainnya</string>
 <string name="loading">Memuat…</string>
 <string name="lock_profile">Kunci Profil</string>
 <string name="logged_account">Masuk sebagai %s</string>
@@ -526,11 +529,14 @@
 <string name="search_poster_img_des">Poster</string>
 <string name="search_provider_text_providers">Cari menggunakan penyedia</string>
 <string name="search_provider_text_types">Cari menggunakan jenis</string>
+<string name="search_state_idle_body_desktop">Ketik judul. Hasil muncul di bawah setiap sumber saat sumber itu menjawab.</string>
 <string name="search_suggestions">Saran pencarian</string>
 <string name="search_suggestions_des">Tampilkan saran pencarian saat mengetik</string>
 <string name="season">Season</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">S</string>
+<string name="seek_back_10_seconds">Mundur 10 detik</string>
+<string name="seek_forward_10_seconds">Maju 10 detik</string>
 <string name="select_all">Pilih Semua</string>
 <string name="select_an_account">Pilih Akun</string>
 <string name="select_library">Pilih pustaka</string>

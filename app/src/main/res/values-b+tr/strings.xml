@@ -3,6 +3,7 @@
 <resources>
 <plurals name="downloads_active"><item quantity="one">"%d aktif indirme"</item><item quantity="other">"%d aktif indirmeler"</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">"%d indirme kuyrukta"</item><item quantity="other">"%d indirilecekler kuyruğa alındı"</item></plurals>
+<plurals name="home_sections_failed"><item quantity="one">"%d kısım yüklenemedi"</item><item quantity="other">"%d kısım yüklenemedi"</item></plurals>
 <plurals name="links_hidden"><item quantity="one">"%d gizli bağlantı"</item><item quantity="other">"%d gizli bağlantı"</item></plurals>
 <string name="account">"hesap"</string>
 <string name="action_add_to_bookmarks">"İzleme durumunu ayarla"</string>
@@ -292,6 +293,7 @@
 <string name="home_next_random_img_des">"Sonraki Rastgele"</string>
 <string name="home_play">"Oynat"</string>
 <string name="home_random">"Rastgele"</string>
+<string name="home_search_only_body">"Eklentilerinizin hiçbirinde ana sayfa yok, ancak yine de onlarda arama yapabilirsiniz."</string>
 <string name="home_source">"Kaynak"</string>
 <string name="install_prerelease">"Ön sürümünü yükleyin"</string>
 <string name="is_adult">"+18"</string>
@@ -307,6 +309,7 @@
 <string name="links_reloaded_toast">"Bağlantılar Yeniden Yüklendi"</string>
 <string name="live_singular">"Canlı yayın"</string>
 <string name="livestreams">"Canlı yayınlar"</string>
+<string name="load_more">"Daha fazla yükle"</string>
 <string name="loading">"Yükleniyor…"</string>
 <string name="lock_profile">"Profili Kilitle"</string>
 <string name="logged_account" formatted="true">"%s olarak giriş yapıldı"</string>
@@ -526,11 +529,14 @@
 <string name="search_poster_img_des">"Afiş"</string>
 <string name="search_provider_text_providers">"Sağlayıcıları kullanarak ara"</string>
 <string name="search_provider_text_types">"Türleri kullanarak ara"</string>
+<string name="search_state_idle_body_desktop">"Bir başlık yazın. Sonuçlar, her kaynak yanıt verdikçe onun altında görünür."</string>
 <string name="search_suggestions">"Arama Önerileri"</string>
 <string name="search_suggestions_des">"Yazarken arama önerilerini göster"</string>
 <string name="season">"Sezon"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"S"</string>
+<string name="seek_back_10_seconds">"10 saniye geri atla"</string>
+<string name="seek_forward_10_seconds">"10 saniye ileri atla"</string>
 <string name="select_all">"Tümünü Seç"</string>
 <string name="select_an_account">"Hesap Seç"</string>
 <string name="select_library">"Kütüphane Seçin"</string>

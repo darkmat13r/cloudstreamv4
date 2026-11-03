@@ -3,6 +3,7 @@
 <resources>
 <plurals name="downloads_active"><item quantity="other">%d 個正在下載</item></plurals>
 <plurals name="downloads_queued"><item quantity="other">佇列中有 %d 個下載</item></plurals>
+<plurals name="home_sections_failed"><item quantity="other">%d 個分區載入失敗</item></plurals>
 <string name="account">帳號</string>
 <string name="action_add_to_bookmarks">設定觀看狀態</string>
 <string name="action_add_to_favorites">加入我的最愛</string>
@@ -291,6 +292,7 @@
 <string name="home_next_random_img_des">隨機下一個</string>
 <string name="home_play">播放</string>
 <string name="home_random">隨機</string>
+<string name="home_search_only_body">你的擴充功能都沒有主畫面，但仍可在其中搜尋。</string>
 <string name="home_source">來源</string>
 <string name="install_prerelease">安裝提前發行版</string>
 <string name="is_adult">18+</string>
@@ -306,6 +308,7 @@
 <string name="links_reloaded_toast">連結已重新載入</string>
 <string name="live_singular">直播</string>
 <string name="livestreams">直播</string>
+<string name="load_more">載入更多</string>
 <string name="loading">載入中…</string>
 <string name="lock_profile">鎖定設定檔</string>
 <string name="logged_account">以 %s 的身分登入</string>
@@ -522,11 +525,14 @@
 <string name="search_poster_img_des">封面</string>
 <string name="search_provider_text_providers">按片源搜尋</string>
 <string name="search_provider_text_types">按類型搜尋</string>
+<string name="search_state_idle_body_desktop">輸入標題。每個來源回應後，結果會顯示在其下方。</string>
 <string name="search_suggestions">搜尋建議</string>
 <string name="search_suggestions_des">輸入時顯示搜尋建議</string>
 <string name="season">季</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">S</string>
+<string name="seek_back_10_seconds">倒轉 10 秒</string>
+<string name="seek_forward_10_seconds">快轉 10 秒</string>
 <string name="select_all">全選</string>
 <string name="select_an_account">選擇帳號</string>
 <string name="select_library">選擇媒體庫</string>
