@@ -55,7 +55,7 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.go_back
 import com.lagradost.cloudstream4.core.strings.generated.resources.home_source
 import com.lagradost.cloudstream4.core.strings.generated.resources.loading
-import com.lagradost.cloudstream4.core.strings.generated.resources.next
+import com.lagradost.cloudstream4.core.strings.generated.resources.load_more
 import com.lagradost.cloudstream4.core.strings.generated.resources.pick_source
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_state_retry
 import com.lagradost.cloudstream4.core.strings.generated.resources.source_error
@@ -229,7 +229,7 @@ private fun RowHeader(
             }
 
             HomeMore.Idle -> if (hasHidden || row.hasMore) {
-                DesktopButton(label = stringResource(Res.string.next), onClick = onMore)
+                DesktopButton(label = stringResource(Res.string.load_more), onClick = onMore)
             }
         }
     }

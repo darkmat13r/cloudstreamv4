@@ -67,6 +67,20 @@ object SandboxPolicy {
     }
 
     /**
+     * Whether [url] could be fetched at all, without resolving anything: http(s), a host, no userinfo, no
+     * control characters, not too long.
+     *
+     * For a list of things nobody has chosen yet. It is not an address check, so whatever then connects
+     * still needs [isPublicAddress].
+     */
+    fun isHttpUrlShape(url: String): Boolean {
+        if (url.length > MAX_URL_CHARS || url.any { it.isISOControl() }) return false
+        val parsed = runCatching { URI(url) }.getOrNull() ?: return false
+        if (parsed.rawUserInfo != null || parsed.scheme?.lowercase() !in HTTP_SCHEMES) return false
+        return parsed.host != null
+    }
+
+    /**
      * [isPublicHttpUrl], and no `#`. libVLC splits `:input-slave` on `#` and opens every part, so
      * `https://public/a#file:///x` passes as a URL with a fragment and then opens a local file
      * (measured on VLC 3.0.23).

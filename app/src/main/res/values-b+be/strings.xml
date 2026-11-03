@@ -3,6 +3,7 @@
 <resources>
 <plurals name="downloads_active"><item quantity="one">"%d актыўнае спампоўванне"</item><item quantity="few">"%d актыўных спампоўвання"</item><item quantity="many">"%d актыўных спампоўванняў"</item><item quantity="other">"%d актыўных спампоўванняў"</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">"%d спампоўванне ў чарзе"</item><item quantity="few">"%d спампоўвання ў чарзе"</item><item quantity="many">"%d спампоўванняў у чарзе"</item><item quantity="other">"%d спампоўванняў у чарзе"</item></plurals>
+<plurals name="home_sections_failed"><item quantity="one">"Не ўдалося загрузіць %d раздзел"</item><item quantity="few">"Не ўдалося загрузіць %d раздзелы"</item><item quantity="many">"Не ўдалося загрузіць %d раздзелаў"</item><item quantity="other">"Не ўдалося загрузіць %d раздзелаў"</item></plurals>
 <string name="account">"уліковы запіс"</string>
 <string name="action_add_to_bookmarks">"Задаць статус прагляду"</string>
 <string name="action_add_to_favorites">"Дадаць у абранае"</string>
@@ -154,6 +155,8 @@
 <string name="delete_repository">"Выдаліць рэпазіторый"</string>
 <string name="delete_repository_plugins">"Гэта таксама прывядзе да выдалення ўсіх убудоў рэпазіторыя"</string>
 <string name="deselect_all">"Зняць выбар"</string>
+<string name="detail_load_failed_body">"Крыніца можа быць недаступная."</string>
+<string name="detail_load_failed_headline">"Не ўдалося адкрыць гэты загаловак"</string>
 <string name="device_pin_counter_text" formatted="true">"Код мінуе праз %1$dхв %2$dс"</string>
 <string name="device_pin_error_message">"Не ўдалося атрымаць PIN-код прылады, паспрабуйце лакальную праверку сапраўднасці"</string>
 <string name="device_pin_expired_message">"PIN-код састарэў!"</string>
@@ -252,16 +255,43 @@
 <string name="example_site_name">"НоваяНазваСайта"</string>
 <string name="example_site_url">"https://pryklad.by"</string>
 <string name="example_username">"Імя карыстальніка"</string>
+<string name="extension_allow">"Дазволіць"</string>
 <string name="extension_authors">"Аўтары"</string>
+<string name="extension_decision_not_saved">"Не ўдалося захаваць ваш выбар, таму гэта пашырэнне застаецца выключаным. Вас спытаюць зноў."</string>
+<string name="extension_decisions_unreadable">"Не ўдалося прачытаць вашы захаваныя рашэнні, таму яны былі праігнараваны. Пашырэнні з папярэджаннямі застаюцца выключанымі, пакуль вы не вырашыце зноў."</string>
 <string name="extension_description">"Апісанне"</string>
 <string name="extension_install_first">"Спачатку ўсталюйце пашырэнне"</string>
+<string name="extension_keep_off">"Не ўключаць"</string>
 <string name="extension_language">"Мова"</string>
 <string name="extension_rating" formatted="true">"Рэйтынг: %s"</string>
+<string name="extension_review_clean_note">"Пашырэнні без папярэджанняў тут не паказаны. Гэта значыць, што сканаванне не знайшло нічога відавочнага, а не тое, што яны бяспечныя. Кожнае пашырэнне працуе ў сваёй пясочніцы."</string>
+<string name="extension_review_empty">"Няма пашырэнняў з папярэджаннямі."</string>
+<string name="extension_review_file_note">"Выбар дзейнічае толькі для гэтага файла. Калі файл зменіцца, вас спытаюць зноў."</string>
+<string name="extension_review_intro">"Кожнае застаецца выключаным, пакуль вы не вырашыце. Папярэджанне — гэта толькі тое, што заўважыла сканаванне. Яно не кажа, што пашырэнне бяспечнае або шкоднае."</string>
+<string name="extension_review_title">"Пашырэнні з папярэджаннямі"</string>
 <string name="extension_size">"Памер"</string>
 <string name="extension_status">"Стан"</string>
+<string name="extension_status_allowed">"Дазволена і працуе ў сваёй пясочніцы"</string>
+<string name="extension_status_blocked">"Заблакавана сканаваннем. Гэта нельга дазволіць."</string>
+<string name="extension_status_hash_mismatch">"Гэты файл не адпавядае свайму апублікаванаму хэшу. Гэта нельга дазволіць."</string>
+<string name="extension_status_held">"Выключана, пакуль вы не вырашыце"</string>
+<string name="extension_status_kept_off">"Пакінута выключаным"</string>
+<string name="extension_status_start_failed">"Дазволена, але не запусцілася"</string>
 <string name="extension_types">"Падтрымлівае"</string>
 <string name="extension_version">"Версія"</string>
+<string name="extension_warning_classloader_access">"Яно звяртаецца да загрузчыка класаў, які можа дадаць код, які гэта сканаванне ніколі не бачыла."</string>
+<string name="extension_warning_dynamic_script">"Яно можа запускаць скрыпты, таму тое, што яно робіць, можа змяніцца пасля гэтага сканавання."</string>
+<string name="extension_warning_environment">"Яно чытае налады гэтага камп'ютара, напрыклад зменныя асяроддзя."</string>
+<string name="extension_warning_exit">"Яно можа выключыць само сябе. Гэта завяршае толькі яго пясочніцу, а не праграму."</string>
+<string name="extension_warning_filesystem">"Яно чытае або запісвае файлы. Пясочніца абмяжоўвае яго ўласнай папкай."</string>
+<string name="extension_warning_other">"Сканаванне пазначыла нешта, для чаго не мае апісання. Падрабязнасці ніжэй."</string>
+<string name="extension_warning_raw_socket">"Яно адкрывае сеткавыя злучэнні напрамую, а не праз праграму."</string>
+<string name="extension_warning_reflection">"Яно выкарыстоўвае рэфлексію, якая хавае ад гэтага сканавання тое, што яно робіць."</string>
+<string name="extension_warning_suspicious_string">"Яно згадвае адчувальнае месца або інструмент на гэтым камп'ютары, напрыклад абалонку або захаваныя даныя для ўваходу."</string>
+<string name="extension_warning_telemetry">"Яно згадвае ідэнтыфікатар прылады, які часта выкарыстоўваюць для адсочвання ўсталёўкі."</string>
+<string name="extension_warning_webview">"Яно выкарыстоўвае вэб-прагляд — убудаваны браўзер, які можа загрузіць любую старонку."</string>
 <string name="extensions">"Пашырэнні"</string>
+<string name="extensions_waiting_count" formatted="true">"Пашырэнні чакаюць вашага рашэння: %d"</string>
 <string name="extra_brightness_key">"extra_brightness_enabled"</string>
 <string name="extra_brightness_settings">"Дадатковая яркасць"</string>
 <string name="extra_brightness_settings_des" formatted="true">"Уключыць фільтр яркасці калі яркасць дысплэя больш за 100%"</string>
@@ -291,6 +321,7 @@
 <string name="home_next_random_img_des">"Наступны выпадковы"</string>
 <string name="home_play">"Прайграць"</string>
 <string name="home_random">"Выпадковае"</string>
+<string name="home_search_only_body">"Ніводнае з вашых пашырэнняў не мае дамашняй старонкі, але ў іх усё яшчэ можна шукаць."</string>
 <string name="home_source">"Крыніца"</string>
 <string name="install_prerelease">"Усталяваць перадфінальную версію"</string>
 <string name="is_adult">"18+"</string>
@@ -306,6 +337,7 @@
 <string name="links_reloaded_toast">"Спасылкі перазагружаны"</string>
 <string name="live_singular">"Прамая трансляцыя"</string>
 <string name="livestreams">"Прамыя трансляцыі"</string>
+<string name="load_more">"Загрузіць яшчэ"</string>
 <string name="loading">"Загрузка…"</string>
 <string name="lock_profile">"Заблакіраваць профіль"</string>
 <string name="logged_account" formatted="true">"Вы ўвайшлі як %s"</string>
@@ -522,11 +554,14 @@
 <string name="search_poster_img_des">"Плакат"</string>
 <string name="search_provider_text_providers">"Пошук праз пастаўшчыкоў"</string>
 <string name="search_provider_text_types">"Пошук праз тыпы"</string>
+<string name="search_state_idle_body_desktop">"Увядзіце назву. Вынікі з'яўляюцца пад кожнай крыніцай, калі яна адказвае."</string>
 <string name="search_suggestions">"Прапановы пошуку"</string>
 <string name="search_suggestions_des">"Паказваць прапановы пошуку падчас уводу тэксту"</string>
 <string name="season">"Сезон"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"Сез"</string>
+<string name="seek_back_10_seconds">"Перамотаць назад на 10 секунд"</string>
+<string name="seek_forward_10_seconds">"Перамотаць наперад на 10 секунд"</string>
 <string name="select_all">"Выбраць ўсё"</string>
 <string name="select_an_account">"Выберыце ўліковы запіс"</string>
 <string name="select_library">"Выбраць бібліятэку"</string>
@@ -635,9 +670,12 @@
 <string name="subtitles_depressed">"Заніжаныя"</string>
 <string name="subtitles_encoding">"Кадзіраванне субцітраў"</string>
 <string name="subtitles_example_text">"У цэху з’яўляецца чорт, кроўю і пугай фарбуе свежы шампіньён"</string>
+<string name="subtitles_file_empty">"Гэты файл субцітраў пусты"</string>
 <string name="subtitles_filter_lang">"Фільтраваць па прыярытэтнай мове медыя"</string>
+<string name="subtitles_format_unsupported">"Гэты фармат субцітраў не падтрымліваецца"</string>
 <string name="subtitles_from_embedded">"Убудаваны"</string>
 <string name="subtitles_from_online">"Сеткавы"</string>
+<string name="subtitles_load_failed">"Не ўдалося загрузіць гэтыя субцітры"</string>
 <string name="subtitles_outline">"Контур"</string>
 <string name="subtitles_raised">"Паднятыя"</string>
 <string name="subtitles_remove_bloat">"Прыбраць раздуванне з субцітраў"</string>

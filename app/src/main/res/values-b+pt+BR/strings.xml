@@ -3,6 +3,7 @@
 <resources>
 <plurals name="downloads_active"><item quantity="one">"%ddownload ativo"</item><item quantity="many">"%ddownloads ativos"</item><item quantity="other">"%ddownloads ativos"</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">"%d download na sequência"</item><item quantity="many">"%d downloads na sequência"</item><item quantity="other">"%d downloads na sequência"</item></plurals>
+<plurals name="home_sections_failed"><item quantity="one">"Falha ao carregar %d seção"</item><item quantity="many">"Falha ao carregar %d seções"</item><item quantity="other">"Falha ao carregar %d seções"</item></plurals>
 <plurals name="links_hidden"><item quantity="one">"%d link oculto"</item><item quantity="many">"%d link ocultos"</item><item quantity="other">"%d link ocultos"</item></plurals>
 <string name="account">"Conta"</string>
 <string name="action_add_to_bookmarks">"Adicionar a lista"</string>
@@ -155,6 +156,8 @@
 <string name="delete_repository">"Apagar repositório"</string>
 <string name="delete_repository_plugins">"Isto irá apagar todos os repositórios de plugins"</string>
 <string name="deselect_all">"Desmarcar todos"</string>
+<string name="detail_load_failed_body">"A fonte pode estar indisponível."</string>
+<string name="detail_load_failed_headline">"Não foi possível abrir este título"</string>
 <string name="device_pin_counter_text" formatted="true">"O código expira em %1$dm %2$ds"</string>
 <string name="device_pin_error_message">"Não é possível obter o código PIN do dispositivo, tente a autenticação local"</string>
 <string name="device_pin_expired_message">"O código PIN expirou!"</string>
@@ -253,16 +256,43 @@
 <string name="example_site_name">"NovoNomedoSite"</string>
 <string name="example_site_url">"https://example.com"</string>
 <string name="example_username">"Nome de usuário"</string>
+<string name="extension_allow">"Permitir"</string>
 <string name="extension_authors">"Autores"</string>
+<string name="extension_decision_not_saved">"Não foi possível salvar sua escolha, então esta extensão fica desligada. Você será perguntado de novo."</string>
+<string name="extension_decisions_unreadable">"Não foi possível ler suas escolhas salvas, então elas foram ignoradas. Extensões com avisos ficam desligadas até você escolher de novo."</string>
 <string name="extension_description">"Descrição"</string>
 <string name="extension_install_first">"Instale a extensão primeiro"</string>
+<string name="extension_keep_off">"Manter desligada"</string>
 <string name="extension_language">"Linguagem"</string>
 <string name="extension_rating" formatted="true">"Avaliação: %s"</string>
+<string name="extension_review_clean_note">"Extensões sem avisos não aparecem aqui. Isso significa que a verificação não encontrou nada óbvio, não que elas sejam seguras. Cada extensão roda no seu próprio ambiente isolado."</string>
+<string name="extension_review_empty">"Nenhuma extensão tem avisos."</string>
+<string name="extension_review_file_note">"A escolha vale para exatamente este arquivo. Se o arquivo mudar, você será perguntado de novo."</string>
+<string name="extension_review_intro">"Cada uma fica desligada até você escolher. Um aviso é apenas o que uma verificação notou. Ele não diz que uma extensão é segura nem que é prejudicial."</string>
+<string name="extension_review_title">"Extensões com avisos"</string>
 <string name="extension_size">"Tamanho"</string>
 <string name="extension_status">"Status"</string>
+<string name="extension_status_allowed">"Permitida e em execução no seu ambiente isolado"</string>
+<string name="extension_status_blocked">"Bloqueada pela verificação. Isso não pode ser permitido."</string>
+<string name="extension_status_hash_mismatch">"Este arquivo não corresponde ao hash publicado. Isso não pode ser permitido."</string>
+<string name="extension_status_held">"Desligada até você escolher"</string>
+<string name="extension_status_kept_off">"Mantida desligada"</string>
+<string name="extension_status_start_failed">"Permitida, mas não iniciou"</string>
 <string name="extension_types">"Suportado"</string>
 <string name="extension_version">"Versão"</string>
+<string name="extension_warning_classloader_access">"Acessa o carregador de classes, que pode trazer código que esta verificação nunca viu."</string>
+<string name="extension_warning_dynamic_script">"Pode executar scripts, então o que ela faz pode mudar depois desta verificação."</string>
+<string name="extension_warning_environment">"Lê configurações deste computador, como variáveis de ambiente."</string>
+<string name="extension_warning_exit">"Pode se encerrar sozinha. Isso termina apenas o próprio ambiente isolado dela, não o aplicativo."</string>
+<string name="extension_warning_filesystem">"Lê ou grava arquivos. O ambiente isolado a limita à sua própria pasta."</string>
+<string name="extension_warning_other">"A verificação sinalizou algo para o qual não tem descrição. O detalhe está abaixo."</string>
+<string name="extension_warning_raw_socket">"Abre conexões de rede diretamente, não através do aplicativo."</string>
+<string name="extension_warning_reflection">"Usa reflexão, o que esconde desta verificação o que ela faz."</string>
+<string name="extension_warning_suspicious_string">"Menciona um local ou uma ferramenta sensível neste computador, como um shell ou logins salvos."</string>
+<string name="extension_warning_telemetry">"Cita um identificador de dispositivo, muitas vezes usado para rastrear uma instalação."</string>
+<string name="extension_warning_webview">"Usa uma visualização web, um navegador embutido que pode carregar qualquer página."</string>
 <string name="extensions">"Extensões"</string>
+<string name="extensions_waiting_count" formatted="true">"Extensões esperando por você: %d"</string>
 <string name="extra_brightness_key">"brilho_extra_ativado"</string>
 <string name="extra_brightness_settings">"Brilho extra"</string>
 <string name="extra_brightness_settings_des" formatted="true">"Ativar filtro de claridade ao exceder 100% do brilho do display"</string>
@@ -292,6 +322,7 @@
 <string name="home_next_random_img_des">"Próximo Aleatório"</string>
 <string name="home_play">"Reproduzir"</string>
 <string name="home_random">"Aleatório"</string>
+<string name="home_search_only_body">"Nenhuma das suas extensões tem página inicial, mas você ainda pode pesquisar nelas."</string>
 <string name="home_source">"Fonte"</string>
 <string name="install_prerelease">"Instalar versão antecipada"</string>
 <string name="is_adult">"18+"</string>
@@ -307,6 +338,7 @@
 <string name="links_reloaded_toast">"Links recarregados"</string>
 <string name="live_singular">"Transmissão ao vivo"</string>
 <string name="livestreams">"Transmissões ao vivo"</string>
+<string name="load_more">"Carregar mais"</string>
 <string name="loading">"Carregando…"</string>
 <string name="lock_profile">"Bloquear perfil"</string>
 <string name="logged_account" formatted="true">"Conectado como %s"</string>
@@ -526,11 +558,14 @@
 <string name="search_poster_img_des">"Pôster"</string>
 <string name="search_provider_text_providers">"Pesquisar usando fornecedor"</string>
 <string name="search_provider_text_types">"Pesquisar usando tipos"</string>
+<string name="search_state_idle_body_desktop">"Digite um título. Os resultados aparecem abaixo de cada fonte assim que ela responde."</string>
 <string name="search_suggestions">"Sugestões de Busca"</string>
 <string name="search_suggestions_des">"Exibir sugestões de pesquisa durante a digitação"</string>
 <string name="season">"Temporada"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"T"</string>
+<string name="seek_back_10_seconds">"Voltar 10 segundos"</string>
+<string name="seek_forward_10_seconds">"Avançar 10 segundos"</string>
 <string name="select_all">"Selecionar todos"</string>
 <string name="select_an_account">"Selecione uma conta"</string>
 <string name="select_library">"Selecionar Biblioteca"</string>
@@ -639,9 +674,12 @@
 <string name="subtitles_depressed">"Afundado"</string>
 <string name="subtitles_encoding">"Codificação das legendas"</string>
 <string name="subtitles_example_text">"A rápida raposa marrom salta sobre o cachorro preguiçoso"</string>
+<string name="subtitles_file_empty">"Este arquivo de legenda está vazio"</string>
 <string name="subtitles_filter_lang">"Filtrar por linguagem preferida"</string>
+<string name="subtitles_format_unsupported">"Este formato de legenda não é compatível"</string>
 <string name="subtitles_from_embedded">"Incorporada"</string>
 <string name="subtitles_from_online">"Online"</string>
+<string name="subtitles_load_failed">"Não foi possível carregar estas legendas"</string>
 <string name="subtitles_outline">"Contornado"</string>
 <string name="subtitles_raised">"Em Relevo"</string>
 <string name="subtitles_remove_bloat">"Remover bloat das legendas"</string>

@@ -12,6 +12,7 @@ import com.lagradost.cloudstream3.newHomePageResponse
 import com.lagradost.cloudstream3.newMovieSearchResponse
 import com.lagradost.cloudstream3.newSearchResponseList
 import java.io.IOException
+import kotlinx.coroutines.flow.Flow
 
 /**
  * A provider in the app's `APIHolder` whose code is in another process.
@@ -66,6 +67,9 @@ class SandboxedProvider(
     suspend fun details(url: String): RemoteDetails = host.load(remote.name, url)
 
     suspend fun links(data: String): RemoteLinks = host.loadLinks(remote.name, data)
+
+    /** [links], each time it has more. See [PluginHostClient.linksAsTheyArrive]. */
+    fun linksAsTheyArrive(data: String): Flow<RemoteLinks> = host.linksAsTheyArrive(remote.name, data)
 
     /** The start of what the plugin wrote to stderr, for a failure report. */
     val hostOutput: String get() = host.hostOutput

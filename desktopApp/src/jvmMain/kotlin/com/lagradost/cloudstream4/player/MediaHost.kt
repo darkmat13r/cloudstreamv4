@@ -1,5 +1,6 @@
 package com.lagradost.cloudstream4.player
 
+import com.lagradost.cloudstream4.feature.extensions.sandbox.HostLauncher
 import com.lagradost.cloudstream4.player.MediaProtocol.readText
 import java.io.DataInputStream
 import java.io.DataOutputStream
@@ -7,9 +8,12 @@ import java.io.FileDescriptor
 import java.io.FileOutputStream
 import java.io.PrintStream
 import java.nio.ByteBuffer
+import java.util.concurrent.Executors
+import java.util.concurrent.TimeUnit
 import kotlin.system.exitProcess
 import uk.co.caprica.vlcj.factory.MediaPlayerFactory
 import uk.co.caprica.vlcj.factory.discovery.NativeDiscovery
+import uk.co.caprica.vlcj.media.VideoOrientation
 import uk.co.caprica.vlcj.player.base.MediaPlayer
 import uk.co.caprica.vlcj.player.base.MediaPlayerEventAdapter
 import uk.co.caprica.vlcj.player.embedded.videosurface.CallbackVideoSurface
@@ -27,7 +31,8 @@ import uk.co.caprica.vlcj.player.embedded.videosurface.callback.format.RV32Buffe
  * and a directory of its own that is deleted with it. It lives for one stream and exits when the app's
  * end of stdin closes, so a crashed app cannot leave it playing.
  *
- * Per vlcj's threading rules, nothing here calls libVLC back from one of its own callbacks.
+ * Per vlcj's threading rules, nothing here calls libVLC back from one of its own callbacks. [FrameShapes] has its own
+ * thread for that.
  */
 internal object MediaHost {
     const val ARGUMENT = "--media-host"
@@ -50,10 +55,11 @@ internal object MediaHost {
         val input = DataInputStream(System.`in`.buffered())
         if (!NativeDiscovery().discover()) exitProcess(EXIT_NO_VLC)
 
-        val factory = MediaPlayerFactory(*OPTIONS)
+        val silent = System.getProperty(HostLauncher.SILENT_PROPERTY) == "true"
+        val factory = MediaPlayerFactory(*OPTIONS, *(if (silent) arrayOf(NO_AUDIO) else emptyArray()))
         val player = factory.mediaPlayers().newEmbeddedMediaPlayer()
         val output = FrameWriter(stdout)
-        player.videoSurface().set(surface(output))
+        player.videoSurface().set(surface(FrameShapes(player, output), output))
         player.events().addMediaPlayerEventListener(StatusListener(output))
 
         // End of stdin is the app going away. Halt rather than release: stopping libVLC can block for
@@ -82,20 +88,14 @@ internal object MediaHost {
         }
     }
 
-    private fun surface(output: FrameWriter) = CallbackVideoSurface(
+    private fun surface(shapes: FrameShapes, output: FrameWriter) = CallbackVideoSurface(
         object : BufferFormatCallback {
             override fun getBufferFormat(width: Int, height: Int): BufferFormat {
-                val scale = minOf(
-                    1.0,
-                    MediaProtocol.MAX_FRAME_WIDTH.toDouble() / width,
-                    MediaProtocol.MAX_FRAME_HEIGHT.toDouble() / height,
-                )
-                val cappedWidth = (width * scale).toInt().coerceAtLeast(1)
-                val cappedHeight = (height * scale).toInt().coerceAtLeast(1)
-                output.format(cappedWidth, cappedHeight)
-                return RV32BufferFormat(cappedWidth, cappedHeight)
+                val size = shapes.onFormat(FrameSize(width, height))
+                return RV32BufferFormat(size.width, size.height)
             }
 
+            // vlcj passes back the size just returned above, twice. It says nothing about the picture.
             override fun newFormatSize(a: Int, b: Int, c: Int, d: Int) = Unit
             override fun allocatedBuffers(buffers: Array<out ByteBuffer>) = Unit
         },
@@ -115,6 +115,76 @@ internal object MediaHost {
     )
 
     private const val EXIT_NO_VLC = 3
+    private const val NO_AUDIO = "--no-audio"
+}
+
+/**
+ * Tells the app each frame size, and what shape to draw it in once libVLC can say.
+ *
+ * libVLC is only asked from [worker]. A format callback waits for it, briefly: if it does not answer the frames are
+ * still right in everything but their shape, and a later look at the tracks sends that.
+ */
+private class FrameShapes(private val player: MediaPlayer, private val output: FrameWriter) {
+    private val worker = Executors.newSingleThreadScheduledExecutor { task ->
+        Thread(task, "media-host-tracks").apply { isDaemon = true }
+    }
+    private val lock = Any()
+    private var reported: FrameSize? = null
+    private var sent: FrameSize? = null
+
+    /** Called from libVLC's callback, on its thread. */
+    fun onFormat(size: FrameSize): FrameSize {
+        val tracks = runCatching {
+            worker.submit<List<VideoTrackShape>>(::tracks).get(TRACKS_WAIT_MILLIS, TimeUnit.MILLISECONDS)
+        }.getOrDefault(emptyList())
+        val buffer = FrameGeometry.bufferSize(size, tracks)
+        synchronized(lock) {
+            if (reported == null) {
+                worker.scheduleWithFixedDelay(::lookAgain, LOOK_MILLIS, LOOK_MILLIS, TimeUnit.MILLISECONDS)
+            }
+            reported = size
+            sent = null
+            output.format(buffer.width, buffer.height)
+            sendShape(tracks)
+        }
+        return buffer
+    }
+
+    private fun lookAgain() {
+        val tracks = tracks()
+        synchronized(lock) { sendShape(tracks) }
+    }
+
+    private fun sendShape(tracks: List<VideoTrackShape>) {
+        val picture = FrameGeometry.pictureSize(reported ?: return, tracks) ?: return
+        if (picture == sent) return
+        sent = picture
+        output.picture(picture.width, picture.height)
+    }
+
+    /** Never throws, because a repeating task that throws is not run again. */
+    private fun tracks(): List<VideoTrackShape> = runCatching {
+        player.media().info()?.videoTracks().orEmpty().map { track ->
+            VideoTrackShape(
+                track.width(),
+                track.height(),
+                track.sampleAspectRatio(),
+                track.sampleAspectRatioBase(),
+                sideways = track.orientation() in SIDEWAYS,
+            )
+        }
+    }.getOrDefault(emptyList())
+
+    private companion object {
+        const val TRACKS_WAIT_MILLIS = 200L
+        const val LOOK_MILLIS = 100L
+        val SIDEWAYS = setOf(
+            VideoOrientation.LEFT_TOP,
+            VideoOrientation.LEFT_BOTTOM,
+            VideoOrientation.RIGHT_TOP,
+            VideoOrientation.RIGHT_BOTTOM,
+        )
+    }
 }
 
 /** The one writer of stdout. A full pipe blocks libVLC's video thread, which is the backpressure. */
@@ -131,6 +201,13 @@ private class FrameWriter(stdout: FileOutputStream) {
 
     fun format(width: Int, height: Int) = send {
         data.writeByte(MediaProtocol.MESSAGE_FORMAT.toInt())
+        data.writeInt(width)
+        data.writeInt(height)
+        data.flush()
+    }
+
+    fun picture(width: Int, height: Int) = send {
+        data.writeByte(MediaProtocol.MESSAGE_PICTURE.toInt())
         data.writeInt(width)
         data.writeInt(height)
         data.flush()

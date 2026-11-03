@@ -45,12 +45,15 @@ import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopIconButton
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopMotion
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopRow
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopRowsSkeleton
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.designsystem.state.UiState
 import com.lagradost.cloudstream4.core.designsystem.state.UiStateHost
+import com.lagradost.cloudstream4.core.designsystem.state.valueOrNull
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.episodes
 import com.lagradost.cloudstream4.core.strings.generated.resources.go_back
+import com.lagradost.cloudstream4.core.strings.generated.resources.loading
 import com.lagradost.cloudstream4.core.strings.generated.resources.no_episodes_found
 import com.lagradost.cloudstream4.core.strings.generated.resources.pick_source
 import com.lagradost.cloudstream4.core.strings.generated.resources.play_episode
@@ -95,7 +98,7 @@ fun DetailScreenDesktop(
                 TitlePage(detail, onAction, artwork)
             }
         }
-        SourcesPanel(state.links?.toLinksUiState(onAction), onAction)
+        SourcesPanel(state.links?.toLinksUiState(onAction), state.linksArriving, onAction)
     }
 }
 
@@ -237,10 +240,19 @@ private fun EpisodeRow(
     )
 }
 
-/** Kept composed while it leaves, showing what it last showed, so it does not go blank on the way out. */
+/**
+ * Kept composed while it leaves, showing what it last showed, so it does not go blank on the way out.
+ *
+ * The list can grow while someone is reading it, so a new link only ever joins the end, the words saying more
+ * are on the way take no height, and nothing asks for focus. The row under the pointer stays the row under the
+ * pointer, and the header keeps saying so however far down the list has been scrolled.
+ *
+ * @param arriving more links may still join [links].
+ */
 @Composable
 private fun SourcesPanel(
     links: UiState<List<StreamLink>>?,
+    arriving: Boolean,
     onAction: (DetailAction) -> Unit,
 ) {
     var shown by remember { mutableStateOf(links) }
@@ -281,11 +293,34 @@ private fun SourcesPanel(
                         .fillMaxWidth()
                         .padding(start = DesktopDimens.RowPadding, bottom = DesktopDimens.GroupGap),
                 ) {
-                    BasicText(
-                        text = stringResource(Res.string.pick_source),
-                        style = CloudStreamTheme.typography.railTitle.copy(color = colors.ink),
-                        modifier = Modifier.weight(1f),
-                    )
+                    Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.weight(1f)) {
+                        BasicText(
+                            text = stringResource(Res.string.pick_source),
+                            style = CloudStreamTheme.typography.railTitle.copy(color = colors.ink),
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                            modifier = Modifier.weight(1f, fill = false),
+                        )
+                        shown?.valueOrNull?.let { list ->
+                            Spacer(Modifier.width(DesktopDimens.RelatedGap))
+                            BasicText(
+                                text = list.size.toString(),
+                                style = CloudStreamTheme.typography.captionMono.copy(color = colors.muted),
+                                maxLines = 1,
+                            )
+                        }
+                    }
+                    if (arriving) {
+                        BasicText(
+                            text = stringResource(Res.string.loading),
+                            style = CloudStreamTheme.typography.caption.copy(color = colors.muted),
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                            modifier = Modifier
+                                .padding(horizontal = DesktopDimens.RelatedGap)
+                                .widthIn(max = DetailScreenDesktopDefaults.ArrivingLabelMaxWidth),
+                        )
+                    }
                     DesktopIconButton(
                         icon = CloudStreamIcons.Close,
                         contentDescription = stringResource(Res.string.sort_close),
@@ -294,7 +329,11 @@ private fun SourcesPanel(
                     )
                 }
                 shown?.let { current ->
-                    UiStateHost(state = current, modifier = Modifier.fillMaxSize()) { list ->
+                    UiStateHost(
+                        state = current,
+                        modifier = Modifier.fillMaxSize(),
+                        skeleton = { DesktopRowsSkeleton(it) },
+                    ) { list ->
                         LazyColumn(Modifier.fillMaxSize()) {
                             items(list.size, key = { "$it:${list[it].url}" }) { index ->
                                 val link = list[index]
@@ -321,4 +360,6 @@ object DetailScreenDesktopDefaults {
     const val TitleLines = 3
     const val PlotLines = 6
     const val ScrimAlpha = 0.6f
+    /** Past this a translation gives way, so the panel's title and Close keep their places. */
+    val ArrivingLabelMaxWidth: Dp = 120.dp
 }

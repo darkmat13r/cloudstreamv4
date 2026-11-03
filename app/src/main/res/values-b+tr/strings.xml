@@ -3,6 +3,7 @@
 <resources>
 <plurals name="downloads_active"><item quantity="one">"%d aktif indirme"</item><item quantity="other">"%d aktif indirmeler"</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">"%d indirme kuyrukta"</item><item quantity="other">"%d indirilecekler kuyruğa alındı"</item></plurals>
+<plurals name="home_sections_failed"><item quantity="one">"%d kısım yüklenemedi"</item><item quantity="other">"%d kısım yüklenemedi"</item></plurals>
 <plurals name="links_hidden"><item quantity="one">"%d gizli bağlantı"</item><item quantity="other">"%d gizli bağlantı"</item></plurals>
 <string name="account">"hesap"</string>
 <string name="action_add_to_bookmarks">"İzleme durumunu ayarla"</string>
@@ -155,6 +156,8 @@
 <string name="delete_repository">"Depoyu sil"</string>
 <string name="delete_repository_plugins">"Bu aynı zamanda tüm depo eklentilerini de siler"</string>
 <string name="deselect_all">"Tüm Seçimi Kaldır"</string>
+<string name="detail_load_failed_body">"Kaynak kullanılamıyor olabilir."</string>
+<string name="detail_load_failed_headline">"Bu başlık açılamadı"</string>
 <string name="device_pin_counter_text" formatted="true">"Kodun süresi %1$dm %2$ds içinde doluyor"</string>
 <string name="device_pin_error_message">"Cihaz PIN kodu alınamıyor, yerel kimlik doğrulamayı deneyin"</string>
 <string name="device_pin_expired_message">"PIN kodunun süresi doldu!"</string>
@@ -253,16 +256,43 @@
 <string name="example_site_name">"YeniSiteAdı"</string>
 <string name="example_site_url">"https://ornek.com"</string>
 <string name="example_username">"Kullanıcı Adı"</string>
+<string name="extension_allow">"İzin ver"</string>
 <string name="extension_authors">"Geliştiriciler"</string>
+<string name="extension_decision_not_saved">"Seçiminiz kaydedilemedi, bu yüzden bu eklenti kapalı kalıyor. Size yeniden sorulacak."</string>
+<string name="extension_decisions_unreadable">"Kayıtlı seçimleriniz okunamadı, bu yüzden yok sayıldı. Uyarı içeren eklentiler siz yeniden seçene kadar kapalı kalır."</string>
 <string name="extension_description">"Açıklama"</string>
 <string name="extension_install_first">"Önce eklentiyi yükleyin"</string>
+<string name="extension_keep_off">"Kapalı tut"</string>
 <string name="extension_language">"Dil"</string>
 <string name="extension_rating" formatted="true">"Puan: %s"</string>
+<string name="extension_review_clean_note">"Uyarısı olmayan eklentiler burada listelenmez. Bu, taramanın bariz bir şey bulmadığı anlamına gelir, güvenli oldukları anlamına gelmez. Her eklenti kendi korumalı alanında çalışır."</string>
+<string name="extension_review_empty">"Hiçbir eklentide uyarı yok."</string>
+<string name="extension_review_file_note">"Seçim yalnızca tam olarak bu dosya için geçerlidir. Dosya değişirse size yeniden sorulur."</string>
+<string name="extension_review_intro">"Siz seçene kadar her biri kapalı kalır. Uyarı, yalnızca bir taramanın fark ettiği şeydir. Bir eklentinin güvenli ya da zararlı olduğunu söylemez."</string>
+<string name="extension_review_title">"Uyarı içeren eklentiler"</string>
 <string name="extension_size">"Boyut"</string>
 <string name="extension_status">"Durum"</string>
+<string name="extension_status_allowed">"İzin verildi ve korumalı alanında çalışıyor"</string>
+<string name="extension_status_blocked">"Tarama tarafından engellendi. Buna izin verilemez."</string>
+<string name="extension_status_hash_mismatch">"Bu dosya yayımlanan karma değeriyle eşleşmiyor. Buna izin verilemez."</string>
+<string name="extension_status_held">"Siz seçene kadar kapalı"</string>
+<string name="extension_status_kept_off">"Kapalı tutuluyor"</string>
+<string name="extension_status_start_failed">"İzin verildi, ancak başlamadı"</string>
 <string name="extension_types">"Desteklenen"</string>
 <string name="extension_version">"Sürüm"</string>
+<string name="extension_warning_classloader_access">"Sınıf yükleyiciye erişiyor; bu, taramanın hiç görmediği kodları getirebilir."</string>
+<string name="extension_warning_dynamic_script">"Komut dosyaları çalıştırabilir, bu yüzden yaptıkları bu taramadan sonra değişebilir."</string>
+<string name="extension_warning_environment">"Ortam değişkenleri gibi bu bilgisayarın ayarlarını okuyor."</string>
+<string name="extension_warning_exit">"Kendini kapatabilir. Bu yalnızca kendi korumalı alanını sonlandırır, uygulamayı değil."</string>
+<string name="extension_warning_filesystem">"Dosya okuyor veya yazıyor. Korumalı alan onu kendi klasörüyle sınırlar."</string>
+<string name="extension_warning_other">"Tarama, açıklaması olmayan bir şeyi işaretledi. Ayrıntı aşağıda."</string>
+<string name="extension_warning_raw_socket">"Ağ bağlantılarını uygulama üzerinden değil, doğrudan açıyor."</string>
+<string name="extension_warning_reflection">"Yansıtma kullanıyor; bu, ne yaptığını bu taramadan gizler."</string>
+<string name="extension_warning_suspicious_string">"Bu bilgisayardaki hassas bir yerden veya araçtan söz ediyor; örneğin bir komut kabuğu veya kayıtlı oturum bilgileri."</string>
+<string name="extension_warning_telemetry">"Genellikle bir kurulumu izlemek için kullanılan bir cihaz tanımlayıcısından söz ediyor."</string>
+<string name="extension_warning_webview">"Herhangi bir sayfayı yükleyebilen yerleşik bir tarayıcı olan web görünümünü kullanıyor."</string>
 <string name="extensions">"Eklentiler"</string>
+<string name="extensions_waiting_count" formatted="true">"Sizi bekleyen eklentiler: %d"</string>
 <string name="extra_brightness_key">"Ekstra parlaklık aktifleştirildi"</string>
 <string name="extra_brightness_settings">"Ekstra parlaklık"</string>
 <string name="extra_brightness_settings_des" formatted="true">"Görüntü parlaklığı %100'ü geçerse parlaklık filtresini aktifleştir"</string>
@@ -292,6 +322,7 @@
 <string name="home_next_random_img_des">"Sonraki Rastgele"</string>
 <string name="home_play">"Oynat"</string>
 <string name="home_random">"Rastgele"</string>
+<string name="home_search_only_body">"Eklentilerinizin hiçbirinde ana sayfa yok, ancak yine de onlarda arama yapabilirsiniz."</string>
 <string name="home_source">"Kaynak"</string>
 <string name="install_prerelease">"Ön sürümünü yükleyin"</string>
 <string name="is_adult">"+18"</string>
@@ -307,6 +338,7 @@
 <string name="links_reloaded_toast">"Bağlantılar Yeniden Yüklendi"</string>
 <string name="live_singular">"Canlı yayın"</string>
 <string name="livestreams">"Canlı yayınlar"</string>
+<string name="load_more">"Daha fazla yükle"</string>
 <string name="loading">"Yükleniyor…"</string>
 <string name="lock_profile">"Profili Kilitle"</string>
 <string name="logged_account" formatted="true">"%s olarak giriş yapıldı"</string>
@@ -526,11 +558,14 @@
 <string name="search_poster_img_des">"Afiş"</string>
 <string name="search_provider_text_providers">"Sağlayıcıları kullanarak ara"</string>
 <string name="search_provider_text_types">"Türleri kullanarak ara"</string>
+<string name="search_state_idle_body_desktop">"Bir başlık yazın. Sonuçlar, her kaynak yanıt verdikçe onun altında görünür."</string>
 <string name="search_suggestions">"Arama Önerileri"</string>
 <string name="search_suggestions_des">"Yazarken arama önerilerini göster"</string>
 <string name="season">"Sezon"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"S"</string>
+<string name="seek_back_10_seconds">"10 saniye geri atla"</string>
+<string name="seek_forward_10_seconds">"10 saniye ileri atla"</string>
 <string name="select_all">"Tümünü Seç"</string>
 <string name="select_an_account">"Hesap Seç"</string>
 <string name="select_library">"Kütüphane Seçin"</string>
@@ -639,9 +674,12 @@
 <string name="subtitles_depressed">"Çökmüş"</string>
 <string name="subtitles_encoding">"Altyazı kodlaması"</string>
 <string name="subtitles_example_text">"Pijamalı hasta yağız şoföre çabucak güvendi"</string>
+<string name="subtitles_file_empty">"Bu altyazı dosyası boş"</string>
 <string name="subtitles_filter_lang">"Tercih edilen medya diline göre filtrele"</string>
+<string name="subtitles_format_unsupported">"Bu altyazı biçimi desteklenmiyor"</string>
 <string name="subtitles_from_embedded">"Yerleştir"</string>
 <string name="subtitles_from_online">"Çevrimiçi"</string>
+<string name="subtitles_load_failed">"Bu altyazılar yüklenemedi"</string>
 <string name="subtitles_outline">"Dış hat"</string>
 <string name="subtitles_raised">"Yükseltilmiş"</string>
 <string name="subtitles_remove_bloat">"Altyazılardaki şişkinliği kaldır"</string>

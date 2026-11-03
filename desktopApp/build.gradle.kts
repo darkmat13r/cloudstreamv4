@@ -28,6 +28,8 @@ kotlin {
             implementation(project(":feature:search"))
             implementation(project(":feature:detail"))
             implementation(project(":feature:home"))
+            // KMP-26: bookmarks, watch progress and resume. The store is this module's, under ~/.cloudstream4.
+            implementation(project(":feature:library"))
             // KMP-13: `JvmExtensionRuntime` and `ExtensionHash`, from this module's `jvmMain`. It is
             // the only extension runtime that works off Android — a `.cs3` is dex-only, so the
             // cross-platform `.jar` is what desktop loads. No catalogue entry is added for it; the
@@ -39,6 +41,8 @@ kotlin {
             implementation(libs.bundles.coil)
             // Plays what a plugin resolves. Loads the user's installed libVLC; bundles no VLC.
             implementation(libs.vlcj)
+            // KMP-25: subtitles. The parser and the types it returns; the fetch and the drawing are here.
+            implementation(project(":media:subtitle"))
             implementation(project(":core:designsystem"))
             implementation(project(":core:strings"))
             implementation(project(":core:data"))
@@ -69,7 +73,9 @@ compose.desktop {
             // jdk.zipfs: dex2jar writes its jar through it ("cant find zipfs support" without it).
             // jdk.crypto.ec: TLS to anything offering only EC ciphers. java.naming: JNDI DNS, which
             // the JDK's own resolver paths and okhttp's logging probe. jdk.unsupported: atomicfu.
-            modules("jdk.zipfs", "jdk.crypto.ec", "java.naming", "jdk.unsupported", "java.net.http", "java.sql")
+            // jdk.charsets: the legacy encodings of subtitle files, windows-1256 and Shift_JIS among them.
+            // java.base alone would silently read those as windows-1252 (`HttpSubtitleLoader`).
+            modules("jdk.zipfs", "jdk.crypto.ec", "java.naming", "jdk.unsupported", "java.net.http", "java.sql", "jdk.charsets")
             packageName = "CloudStream"
             packageVersion = "1.0.0"
 

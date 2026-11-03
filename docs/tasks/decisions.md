@@ -327,9 +327,7 @@ would drop the unused icons, and that is not this task.
 
 - `DS-06`: `CloudStreamIcons` exists, and no TV or Android screen uses it yet.
 - The 80 `ic_baseline_*` drawables in `:app`, and `MediaCardDefaults`' drawn chevron. Neither was touched.
-- **Strings that do not exist:** "skip back 10 seconds" and "skip forward 10 seconds". The player's seek buttons
-  say `previous` and `next` to a screen reader until they do, because `go_back_30` says -30 and they skip 10.
-  `sort_clear` and `sort_close` read correctly but belong to the sort dialog.
+- `sort_clear` and `sort_close` read correctly but belong to the sort dialog.
 - Directional glyphs do not mirror in a right-to-left layout.
 
 ## DEC-12 — Consolidating the two `PreferenceStore` declarations
@@ -521,3 +519,69 @@ screenshot guard. That applies to the other two. **This decision renders nothing
 its whole content is code that does not get written — so there is nothing for a screenshot suite to
 have caught.
 
+
+---
+
+## DEC-14 — Extensions that need a WebView, on desktop
+
+**Status:** open · **Blocks:** nothing today; decides how much of the catalogue desktop can ever serve ·
+raised by `KMP-18`
+
+Desktop's shim layer makes `android.webkit.WebView` **throw from its constructor**, `CookieManager` store
+nothing, and `CloudflareKiller` pass through so a challenge stays visible to the plugin. `WebViewResolver`
+was not touched and still fails. All three are recorded under `KMP-18` in [kmp.md](kmp.md), and they are
+deliberate: a WebView is a browser engine, and there is none in this process.
+
+So any extension whose only route to a stream is a WebView — a Cloudflare interstitial, a JavaScript
+redirect chain, a player page that assembles its own URL — cannot work on desktop as built. Of the 15
+plugins `KMP-18` reviewed by hand, MovieLinkBD has such a path and it fails here.
+
+**What is not known:** how much of the catalogue that is. An earlier session counted `android.webkit`
+references across the whole plugin index and reported 74 of 475, but **that census's data was not retained
+and the number is not reproducible from this tree** — treat it as an order of magnitude, not a measurement,
+and re-run it before it decides anything. The project's own rule applies: measure, don't argue.
+
+**Options:**
+
+1. **Leave it failing.** Those extensions load, search may work, and playback fails at the link step with
+   the error the shim gives. Cheapest; the user discovers the limit per title.
+2. **Mark them, and say so up front.** A scan already reads every jar's constant pool, so an extension that
+   names `android/webkit` can be labelled before it is enabled — the same shape as `KMP-24`'s warning gate.
+   This is a day's work and it does not make anything play.
+3. **Adopt JCEF** (Chromium through the JVM). It makes the whole class of extension work and is by far the
+   largest dependency in the project: a browser engine per platform, roughly 100 MB a target, its own update
+   and CVE surface, and third-party JavaScript executing in it. It would need its own sandbox story, because
+   the point of `KMP-14` and `KMP-16` is that plugin-chosen content does not run in the app's process.
+
+**Recommendation if nothing else changes:** 2 now, 3 only as its own project with its own security review.
+
+---
+
+## DEC-15 — Plugin settings on desktop
+
+**Status:** open · **Blocks:** nothing; it is a feature-parity question · raised by `KMP-14` and `KMP-18`
+
+`BasePlugin.openSettings` is how an extension shows its own configuration, and on Android it builds that
+dialog out of `android.view` and `androidx.fragment` — real Views, inflated against a real `Activity`.
+Desktop's shims give those classes their hierarchy and nothing else: `CommonActivity.activity` is null, no
+View is ever constructed, and a plugin that calls into one gets `NoSuchMethodError`.
+
+**That is survivable only because of how the JVM links.** A method body that never runs needs none of the
+classes it mentions — measured: a class loads and instantiates with a type absent from its own method
+bodies, and fails only when that method is called. `openSettings` is never called on desktop, so the
+dialog costs nothing until someone asks for it. Superclass positions and reflective member lookup are the
+two exceptions, which is why a desktop-side `com.lagradost.cloudstream3.plugins.Plugin` exists and why
+nothing reflects over a plugin's members.
+
+So the question is not "how do we run the Android dialog" — it cannot run. It is what replaces it:
+
+1. **Nothing.** Extensions that need configuration (a login, a region, a quality preference) are
+   unconfigurable on desktop. Some of those are then useless rather than merely limited.
+2. **A Compose screen of our own,** driven by a declarative description the plugin provides. That means a
+   new seam in the extension API — an extension would have to opt in — so it reaches only extensions that
+   are updated for it, which is the same gate `isCrossPlatform = true` already runs into.
+3. **Read the Android `SharedPreferences` keys directly** and offer a generic key/value editor. It works
+   without any extension change and it is a bad user experience: raw keys, no validation, no labels.
+
+**Not an option:** inflating the plugin's own dialog. There is no View toolkit in the process and adding one
+is `DEC-14`-sized.

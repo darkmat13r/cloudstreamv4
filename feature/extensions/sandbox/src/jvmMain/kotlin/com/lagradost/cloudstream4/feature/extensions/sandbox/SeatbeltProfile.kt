@@ -77,18 +77,23 @@ internal object SeatbeltProfile {
      * Each entry was added because a denial stopped playback, read from the system log. Reads VLC's own
      * bundle, and maps its libraries as code. Mapping from [writable] is for the one library JNA unpacks
      * there; a host that can already run code gains nothing from it.
+     *
+     * @param audio false for a check that must make no sound: the kernel then refuses every route to an
+     *   audio device, whatever libVLC is told.
      */
-    fun mediaHostRules(vlcApp: File, writable: File): List<String> = buildList {
+    fun mediaHostRules(vlcApp: File, writable: File, audio: Boolean = true): List<String> = buildList {
         add("(allow file-read* (subpath ${vlcApp.quoted()}))")
         add("(allow file-map-executable (subpath ${vlcApp.quoted()}) (subpath ${writable.quoted()}))")
         // Certificate checks are done by trustd, out of process: without it every https stream fails
         // with -9808. Audio devices are CoreAudio's: without it, "No audio output devices found".
         add("(allow mach-lookup")
         MEDIA_MACH_SERVICES.forEach { add("  (global-name \"$it\")") }
+        if (audio) MEDIA_AUDIO_MACH_SERVICES.forEach { add("  (global-name \"$it\")") }
         add(")")
-        add("(allow ipc-posix-shm-read* ipc-posix-shm-write-data (ipc-posix-name-prefix \"AudioIO\"))")
+        if (audio) add("(allow ipc-posix-shm-read* ipc-posix-shm-write-data (ipc-posix-name-prefix \"AudioIO\"))")
         add("(allow file-read*")
         MEDIA_READS.forEach { add("  (subpath \"$it\")") }
+        if (audio) add("  (subpath \"$MEDIA_AUDIO_READ\")")
         add(")")
     }
 
@@ -98,6 +103,9 @@ internal object SeatbeltProfile {
         "com.apple.SecurityServer",
         "com.apple.securityd.xpc",
         "com.apple.ocspd",
+    )
+
+    private val MEDIA_AUDIO_MACH_SERVICES = listOf(
         "com.apple.audio.coreaudiod",
         "com.apple.audio.audiohald",
         "com.apple.audio.AudioComponentRegistrar",
@@ -108,8 +116,9 @@ internal object SeatbeltProfile {
         "/Library/Keychains",
         "/Library/Security",
         "/private/var/db/mds",
-        "/Library/Audio/Plug-Ins",
     )
+
+    private const val MEDIA_AUDIO_READ = "/Library/Audio/Plug-Ins"
 
     /**
      * [File] as an SBPL string literal, after resolving symlinks.

@@ -33,9 +33,12 @@ line boxes.
 | Title revealed on focus | Title always visible | A pointer has no focus to reveal it with |
 | White ring on the search field | A brighter hairline; the ring stays for what Tab lands on | Restraint: the caret already says it |
 | Source list replaces the page | A panel from the right over a dimmed page, leaving the same way | Spatial consistency; a click outside dismisses it |
+| Source list appears when complete | It grows as links arrive: a new link joins the end, the header counts them and says `Loading…` until the search ends, and nothing takes focus (`BUG-19`) | Direct manipulation: what is under the pointer stays there, and the words take no height, so finishing moves nothing |
 | Episodes behind a selector | On the page | A window has the room |
 | Full-width player scrim | Floating controls, at most 720 wide | The picture stays clear, and play stays near its timeline |
 | Tap to seek | The track follows the pointer 1:1, and seeks once on release | Direct manipulation; a seek is a network request |
+| Subtitle track menu | A short list floating above the control that opened it, in the controls' column; C opens it, a click outside closes it | It stays beside the timeline, and the picture keeps playing around it |
+| Fixed subtitle band | Cues go where the file asks, and lift clear of the controls while they show | A cue never hides behind a control, and nothing moves when the controls are gone |
 
 ## Spacing
 
@@ -53,6 +56,14 @@ something that already has a fill is `Quiet`, with no fill until the pointer arr
 The search field's clear button never takes focus, so Tab goes past it and pressing it leaves the caret in the field.
 Escape is the keyboard's way to do the same.
 
+## Extensions with warnings
+
+A notice at the trailing end of the tab bar rather than a third tab: it exists only when there is something to say, and a
+screen that interrupted the launch would ask before anyone had seen the app. It is the one place in the bar with a glyph, because
+it is the one thing that is not a destination. Neither Allow nor Keep off is the filled button: the default is already off, and
+this screen does not nudge. Text the plugin controls is smaller, muted and left to right, so it cannot pass for the app's own voice.
+See `KMP-24`.
+
 ## Motion
 
 `DesktopMotion`: a critically damped spring with a 0.3 s response, so no overshoot. A spring starts from the
@@ -65,12 +76,9 @@ art scales, because scaling words makes them shimmer.
   from the panel.
 - **Translucent materials.** Compose has no backdrop blur without a new dependency, so the player's controls
   are a near-opaque surface.
-- **Nav sidebar:** two tabs do the job for now. It arrives with Library.
+- **Nav sidebar:** three tabs do the job for now — Library arrived (`KMP-26`) and the bar grew rather than
+  becoming a sidebar. A sidebar is worth it at the fourth.
 - **Fullscreen** from the player, and **Cmd+F**.
-- **The player's seek buttons are mislabelled for a screen reader.** They say `previous` and `next`, the nearest
-  strings there are. A string saying what they do moves `core/strings/oracle-baseline` (`DEC-11`).
 - **Back and the seek glyphs do not mirror** in a right-to-left layout.
 - **16:9 thumbnails are cropped into 2:3 cards in search**, which can cut off burned-in text. Search results do
   not report an image's shape. A main page does (`isHorizontalImages`), so home's rows draw 16:9 where asked.
-- The idle body says "one rail per source", and desktop draws a grid. It is the shared string, and changing
-  it moves `core/strings/oracle-baseline`.

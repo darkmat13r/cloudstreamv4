@@ -3,6 +3,7 @@
 <resources>
 <plurals name="downloads_active"><item quantity="one">"%d aktivní stahování"</item><item quantity="few">"%d aktivní stahování"</item><item quantity="many">"%d aktivních stahování"</item><item quantity="other">"%d aktivních stahování"</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">"%d stahování uloženo do fronty"</item><item quantity="few">"%d stahování uložena do fronty"</item><item quantity="many">"%d stahování uloženo do fronty"</item><item quantity="other">"%d stahování uloženo do fronty"</item></plurals>
+<plurals name="home_sections_failed"><item quantity="one">"Nepodařilo se načíst %d sekci"</item><item quantity="few">"Nepodařilo se načíst %d sekce"</item><item quantity="many">"Nepodařilo se načíst %d sekcí"</item><item quantity="other">"Nepodařilo se načíst %d sekcí"</item></plurals>
 <plurals name="links_hidden"><item quantity="one">"%d skrytý odkaz"</item><item quantity="few">"%d skryté odkazy"</item><item quantity="many">"%d skrytých odkazů"</item><item quantity="other">"%d skrytých odkazů"</item></plurals>
 <string name="account">"účet"</string>
 <string name="action_add_to_bookmarks">"Nastavit stav sledování"</string>
@@ -155,6 +156,8 @@
 <string name="delete_repository">"Odstranit repozitář"</string>
 <string name="delete_repository_plugins">"Tímto také odstraníte všechny doplňky repozitářů"</string>
 <string name="deselect_all">"Zrušit výběr všeho"</string>
+<string name="detail_load_failed_body">"Zdroj možná není dostupný."</string>
+<string name="detail_load_failed_headline">"Tento titul se nepodařilo otevřít"</string>
 <string name="device_pin_counter_text" formatted="true">"Kód vyprší za %1$dm %2$ds"</string>
 <string name="device_pin_error_message">"Nepodařilo se získat PIN kód, zkuste místní ověření"</string>
 <string name="device_pin_expired_message">"PIN kód vypršel!"</string>
@@ -253,16 +256,43 @@
 <string name="example_site_name">"NovýNázevWebu"</string>
 <string name="example_site_url">"https://example.com"</string>
 <string name="example_username">"Uživatelské jméno"</string>
+<string name="extension_allow">"Povolit"</string>
 <string name="extension_authors">"Autoři"</string>
+<string name="extension_decision_not_saved">"Vaši volbu se nepodařilo uložit, proto toto rozšíření zůstává vypnuté. Budete dotázáni znovu."</string>
+<string name="extension_decisions_unreadable">"Vaše uložené volby se nepodařilo načíst, proto byly ignorovány. Rozšíření s upozorněními zůstanou vypnutá, dokud se znovu nerozhodnete."</string>
 <string name="extension_description">"Popis"</string>
 <string name="extension_install_first">"Nejprve nainstalujte rozšíření"</string>
+<string name="extension_keep_off">"Nechat vypnuté"</string>
 <string name="extension_language">"Jazyk"</string>
 <string name="extension_rating" formatted="true">"Hodnocení: %s"</string>
+<string name="extension_review_clean_note">"Rozšíření bez upozornění zde nejsou uvedena. Znamená to, že kontrola nenašla nic zjevného, ne že jsou bezpečná. Každé rozšíření běží ve vlastním izolovaném prostředí."</string>
+<string name="extension_review_empty">"Žádná rozšíření nemají upozornění."</string>
+<string name="extension_review_file_note">"Volba platí přesně pro tento soubor. Pokud se soubor změní, budete dotázáni znovu."</string>
+<string name="extension_review_intro">"Každé zůstane vypnuté, dokud se nerozhodnete. Upozornění je jen to, čeho si kontrola všimla. Neříká, že je rozšíření bezpečné nebo škodlivé."</string>
+<string name="extension_review_title">"Rozšíření s upozorněními"</string>
 <string name="extension_size">"Velikost"</string>
 <string name="extension_status">"Stav"</string>
+<string name="extension_status_allowed">"Povoleno a běží ve svém izolovaném prostředí"</string>
+<string name="extension_status_blocked">"Zablokováno kontrolou. Nelze povolit."</string>
+<string name="extension_status_hash_mismatch">"Tento soubor neodpovídá svému zveřejněnému hashi. Nelze povolit."</string>
+<string name="extension_status_held">"Vypnuto, dokud se nerozhodnete"</string>
+<string name="extension_status_kept_off">"Ponecháno vypnuté"</string>
+<string name="extension_status_start_failed">"Povoleno, ale nespustilo se"</string>
 <string name="extension_types">"Podporováno"</string>
 <string name="extension_version">"Verze"</string>
+<string name="extension_warning_classloader_access">"Přistupuje k zavaděči tříd, který může načíst kód, jejž tato kontrola nikdy neviděla."</string>
+<string name="extension_warning_dynamic_script">"Může spouštět skripty, takže to, co dělá, se může po této kontrole změnit."</string>
+<string name="extension_warning_environment">"Čte nastavení tohoto počítače, například proměnné prostředí."</string>
+<string name="extension_warning_exit">"Může se samo vypnout. Ukončí to pouze jeho vlastní izolované prostředí, ne aplikaci."</string>
+<string name="extension_warning_filesystem">"Čte nebo zapisuje soubory. Izolované prostředí ho omezuje na jeho vlastní složku."</string>
+<string name="extension_warning_other">"Kontrola označila něco, pro co nemá popis. Podrobnosti jsou níže."</string>
+<string name="extension_warning_raw_socket">"Otevírá síťová připojení přímo, ne přes aplikaci."</string>
+<string name="extension_warning_reflection">"Používá reflexi, která před touto kontrolou skrývá, co dělá."</string>
+<string name="extension_warning_suspicious_string">"Zmiňuje citlivé místo nebo nástroj v tomto počítači, například shell nebo uložená přihlášení."</string>
+<string name="extension_warning_telemetry">"Uvádí identifikátor zařízení, který se často používá ke sledování instalace."</string>
+<string name="extension_warning_webview">"Používá webové zobrazení, vestavěný prohlížeč, který může načíst jakoukoli stránku."</string>
 <string name="extensions">"Rozšíření"</string>
+<string name="extensions_waiting_count" formatted="true">"Rozšíření čekající na vás: %d"</string>
 <string name="extra_brightness_key">"extra_brightness_enabled"</string>
 <string name="extra_brightness_settings">"Extra jas"</string>
 <string name="extra_brightness_settings_des" formatted="true">"Povolit filtr jasu při překročení 100 % jasu obrazovky"</string>
@@ -292,6 +322,7 @@
 <string name="home_next_random_img_des">"Další náhodný"</string>
 <string name="home_play">"Přehrát"</string>
 <string name="home_random">"Náhodný"</string>
+<string name="home_search_only_body">"Žádné z vašich rozšíření nemá domovskou stránku, ale stále v nich můžete hledat."</string>
 <string name="home_source">"Zdroj"</string>
 <string name="install_prerelease">"Nainstalovat předběžnou verzi"</string>
 <string name="is_adult">"18+"</string>
@@ -307,6 +338,7 @@
 <string name="links_reloaded_toast">"Odkazy znovu načteny"</string>
 <string name="live_singular">"Živý přenos"</string>
 <string name="livestreams">"Živé přenosy"</string>
+<string name="load_more">"Načíst další"</string>
 <string name="loading">"Načítání…"</string>
 <string name="lock_profile">"Zamknout profil"</string>
 <string name="logged_account" formatted="true">"Přihlášeni jako %s"</string>
@@ -526,11 +558,14 @@
 <string name="search_poster_img_des">"Plakát"</string>
 <string name="search_provider_text_providers">"Hledat pomocí poskytovatelů"</string>
 <string name="search_provider_text_types">"Hledat pomocí typů"</string>
+<string name="search_state_idle_body_desktop">"Zadejte název. Výsledky se zobrazí pod každým zdrojem, jakmile odpoví."</string>
 <string name="search_suggestions">"Návrhy vyhledávání"</string>
 <string name="search_suggestions_des">"Zobrazit návrhy vyhledávání během psaní"</string>
 <string name="season">"Sezóna"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"S"</string>
+<string name="seek_back_10_seconds">"Posunout o 10 sekund zpět"</string>
+<string name="seek_forward_10_seconds">"Posunout o 10 sekund vpřed"</string>
 <string name="select_all">"Vybrat vše"</string>
 <string name="select_an_account">"Vyberte účet"</string>
 <string name="select_library">"Vybrat knihovnu"</string>
@@ -639,9 +674,12 @@
 <string name="subtitles_depressed">"Potlačené"</string>
 <string name="subtitles_encoding">"Kódování titulků"</string>
 <string name="subtitles_example_text">"Příliš žluťoučký kůň úpěl ďábelské ódy"</string>
+<string name="subtitles_file_empty">"Tento soubor titulků je prázdný"</string>
 <string name="subtitles_filter_lang">"Filtrování podle preferovaného jazyka médií"</string>
+<string name="subtitles_format_unsupported">"Tento formát titulků není podporován"</string>
 <string name="subtitles_from_embedded">"Vložené"</string>
 <string name="subtitles_from_online">"Online"</string>
+<string name="subtitles_load_failed">"Tyto titulky se nepodařilo načíst"</string>
 <string name="subtitles_outline">"Ohraničení"</string>
 <string name="subtitles_raised">"Vyvýšené"</string>
 <string name="subtitles_remove_bloat">"Odstranit nadbytečné titulky"</string>

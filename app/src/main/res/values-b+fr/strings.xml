@@ -3,6 +3,7 @@
 <resources>
 <plurals name="downloads_active"><item quantity="one">"%d téléchargement actif"</item><item quantity="many">"%d téléchargements actifs"</item><item quantity="other">"%d téléchargements actifs"</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">"%d téléchargement en attente"</item><item quantity="many">"%d téléchargements en attente"</item><item quantity="other">"%d téléchargements en attente"</item></plurals>
+<plurals name="home_sections_failed"><item quantity="one">"%d section n'a pas pu être chargée"</item><item quantity="many">"%d sections n'ont pas pu être chargées"</item><item quantity="other">"%d sections n'ont pas pu être chargées"</item></plurals>
 <plurals name="links_hidden"><item quantity="one">"%d lien caché"</item><item quantity="many">"%d liens cachés"</item><item quantity="other">"%d liens cachés"</item></plurals>
 <string name="account">"compte"</string>
 <string name="action_add_to_bookmarks">"Définir le statut de visionage"</string>
@@ -155,6 +156,8 @@
 <string name="delete_repository">"Supprimer le repository"</string>
 <string name="delete_repository_plugins">"Cela supprimera également tous les plugins du repository"</string>
 <string name="deselect_all">"Tout désélectionner"</string>
+<string name="detail_load_failed_body">"La source est peut-être indisponible."</string>
+<string name="detail_load_failed_headline">"Impossible d'ouvrir ce titre"</string>
 <string name="device_pin_counter_text" formatted="true">"Code expire dans %1$dm %2$ds"</string>
 <string name="device_pin_error_message">"Impossible d’obtenir le code PIN de l’appareil, essayez l’authentification locale"</string>
 <string name="device_pin_expired_message">"Le code PIN est maintenant expiré !"</string>
@@ -253,16 +256,43 @@
 <string name="example_site_name">"Nouveau Nom du site"</string>
 <string name="example_site_url">"https://exemple.com"</string>
 <string name="example_username">"Nom d'utilisateur"</string>
+<string name="extension_allow">"Autoriser"</string>
 <string name="extension_authors">"Auteurs"</string>
+<string name="extension_decision_not_saved">"Votre choix n'a pas pu être enregistré, cette extension reste donc désactivée. La question vous sera à nouveau posée."</string>
+<string name="extension_decisions_unreadable">"Vos choix enregistrés n'ont pas pu être lus, ils ont donc été ignorés. Les extensions avec avertissements restent désactivées jusqu'à ce que vous choisissiez à nouveau."</string>
 <string name="extension_description">"Description"</string>
 <string name="extension_install_first">"Installer l'extension d'abord"</string>
+<string name="extension_keep_off">"Ne pas activer"</string>
 <string name="extension_language">"Langage"</string>
 <string name="extension_rating" formatted="true">"Note : %s"</string>
+<string name="extension_review_clean_note">"Les extensions sans avertissement ne sont pas listées ici. Cela signifie que l'analyse n'a rien trouvé d'évident, et non qu'elles sont sûres. Chaque extension s'exécute dans son propre bac à sable."</string>
+<string name="extension_review_empty">"Aucune extension n'a d'avertissement."</string>
+<string name="extension_review_file_note">"Un choix s'applique exactement à ce fichier. Si le fichier change, la question vous sera à nouveau posée."</string>
+<string name="extension_review_intro">"Chacune reste désactivée jusqu'à votre choix. Un avertissement est seulement ce qu'une analyse a remarqué. Il ne dit pas qu'une extension est sûre ou nuisible."</string>
+<string name="extension_review_title">"Extensions avec avertissements"</string>
 <string name="extension_size">"Taille"</string>
 <string name="extension_status">"Status"</string>
+<string name="extension_status_allowed">"Autorisée et en cours d'exécution dans son bac à sable"</string>
+<string name="extension_status_blocked">"Bloquée par l'analyse. Elle ne peut pas être autorisée."</string>
+<string name="extension_status_hash_mismatch">"Ce fichier ne correspond pas à son empreinte (hash) publiée. Il ne peut pas être autorisé."</string>
+<string name="extension_status_held">"Désactivée jusqu'à votre choix"</string>
+<string name="extension_status_kept_off">"Laissée désactivée"</string>
+<string name="extension_status_start_failed">"Autorisée, mais elle n'a pas démarré"</string>
 <string name="extension_types">"Supporté"</string>
 <string name="extension_version">"Version"</string>
+<string name="extension_warning_classloader_access">"Elle accède au chargeur de classes, qui peut introduire du code que cette analyse n'a jamais vu."</string>
+<string name="extension_warning_dynamic_script">"Elle peut exécuter des scripts, donc ce qu'elle fait peut changer après cette analyse."</string>
+<string name="extension_warning_environment">"Elle lit des paramètres de cet ordinateur, comme les variables d'environnement."</string>
+<string name="extension_warning_exit">"Elle peut s'arrêter elle-même. Cela met fin uniquement à son propre bac à sable, pas à l'application."</string>
+<string name="extension_warning_filesystem">"Elle lit ou écrit des fichiers. Le bac à sable la limite à son propre dossier."</string>
+<string name="extension_warning_other">"L'analyse a signalé quelque chose qu'elle ne sait pas décrire. Le détail figure ci-dessous."</string>
+<string name="extension_warning_raw_socket">"Elle ouvre des connexions réseau directement, et non par l'application."</string>
+<string name="extension_warning_reflection">"Elle utilise la réflexion, ce qui cache à cette analyse ce qu'elle fait."</string>
+<string name="extension_warning_suspicious_string">"Elle mentionne un emplacement ou un outil sensible de cet ordinateur, comme un shell ou des identifiants enregistrés."</string>
+<string name="extension_warning_telemetry">"Elle cite un identifiant d'appareil, souvent utilisé pour suivre une installation."</string>
+<string name="extension_warning_webview">"Elle utilise une vue web, un navigateur intégré qui peut charger n'importe quelle page."</string>
 <string name="extensions">"Extensions"</string>
+<string name="extensions_waiting_count" formatted="true">"Extensions en attente de votre choix : %d"</string>
 <string name="extra_brightness_key">"extra_brightness_enabled"</string>
 <string name="extra_brightness_settings">"Luminosité supplémentaire"</string>
 <string name="extra_brightness_settings_des" formatted="true">"Activer le filtre de luminosité lorsque la luminosité dépasse 100 %"</string>
@@ -292,6 +322,7 @@
 <string name="home_next_random_img_des">"Aléatoire suivant"</string>
 <string name="home_play">"Lecture"</string>
 <string name="home_random">"Aléatoire"</string>
+<string name="home_search_only_body">"Aucune de vos extensions n'a de page d'accueil, mais vous pouvez quand même y effectuer une recherche."</string>
 <string name="home_source">"Source"</string>
 <string name="install_prerelease">"Installer la version préliminaire"</string>
 <string name="is_adult">"18+"</string>
@@ -307,6 +338,7 @@
 <string name="links_reloaded_toast">"Les liens ont été rechargés"</string>
 <string name="live_singular">"En direct"</string>
 <string name="livestreams">"En direct"</string>
+<string name="load_more">"Charger plus"</string>
 <string name="loading">"Chargement…"</string>
 <string name="lock_profile">"Verrouiller le profil"</string>
 <string name="logged_account" formatted="true">"Connecté en tant que %s"</string>
@@ -526,11 +558,14 @@
 <string name="search_poster_img_des">"Affiche"</string>
 <string name="search_provider_text_providers">"Recherche par fournisseur"</string>
 <string name="search_provider_text_types">"Recherche par types"</string>
+<string name="search_state_idle_body_desktop">"Saisissez un titre. Les résultats apparaissent sous chaque source dès qu'elle répond."</string>
 <string name="search_suggestions">"Suggestions de recherche"</string>
 <string name="search_suggestions_des">"Afficher des suggestions de recherche pendant la saisie"</string>
 <string name="season">"Saison"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"S"</string>
+<string name="seek_back_10_seconds">"Reculer de 10 secondes"</string>
+<string name="seek_forward_10_seconds">"Avancer de 10 secondes"</string>
 <string name="select_all">"Tout sélectionner"</string>
 <string name="select_an_account">"Sélectionnez un compte"</string>
 <string name="select_library">"Sélectionnez la bibliothèque"</string>
@@ -639,9 +674,12 @@
 <string name="subtitles_depressed">"Déprimé"</string>
 <string name="subtitles_encoding">"Encodage des sous titres"</string>
 <string name="subtitles_example_text">"Portez ce vieux whisky au juge blond qui fume"</string>
+<string name="subtitles_file_empty">"Ce fichier de sous-titres est vide"</string>
 <string name="subtitles_filter_lang">"Filtrez par langue préférée"</string>
+<string name="subtitles_format_unsupported">"Ce format de sous-titres n'est pas pris en charge"</string>
 <string name="subtitles_from_embedded">"Intégré"</string>
 <string name="subtitles_from_online">"En ligne"</string>
+<string name="subtitles_load_failed">"Impossible de charger ces sous-titres"</string>
 <string name="subtitles_outline">"Contour"</string>
 <string name="subtitles_raised">"Élévation"</string>
 <string name="subtitles_remove_bloat">"Supprimer les éléments superflus des sous-titres"</string>

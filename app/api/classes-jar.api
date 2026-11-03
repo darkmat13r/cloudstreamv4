@@ -3192,6 +3192,7 @@ public final static class com/lagradost/cloudstream3/R$plurals : java/lang/Objec
 	public static field downloads_active I
 	public static field downloads_queued I
 	public static field episodes I
+	public static field home_sections_failed I
 	public static field links_hidden I
 	public static field search_state_no_results_body I
 	public static field search_state_partial_headline I
@@ -3377,6 +3378,8 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field delete_repository I
 	public static field delete_repository_plugins I
 	public static field deselect_all I
+	public static field detail_load_failed_body I
+	public static field detail_load_failed_headline I
 	public static field device_pin_counter_text I
 	public static field device_pin_error_message I
 	public static field device_pin_expired_message I
@@ -3493,16 +3496,43 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field example_site_name I
 	public static field example_site_url I
 	public static field example_username I
+	public static field extension_allow I
 	public static field extension_authors I
+	public static field extension_decision_not_saved I
+	public static field extension_decisions_unreadable I
 	public static field extension_description I
 	public static field extension_install_first I
+	public static field extension_keep_off I
 	public static field extension_language I
 	public static field extension_rating I
+	public static field extension_review_clean_note I
+	public static field extension_review_empty I
+	public static field extension_review_file_note I
+	public static field extension_review_intro I
+	public static field extension_review_title I
 	public static field extension_size I
 	public static field extension_status I
+	public static field extension_status_allowed I
+	public static field extension_status_blocked I
+	public static field extension_status_hash_mismatch I
+	public static field extension_status_held I
+	public static field extension_status_kept_off I
+	public static field extension_status_start_failed I
 	public static field extension_types I
 	public static field extension_version I
+	public static field extension_warning_classloader_access I
+	public static field extension_warning_dynamic_script I
+	public static field extension_warning_environment I
+	public static field extension_warning_exit I
+	public static field extension_warning_filesystem I
+	public static field extension_warning_other I
+	public static field extension_warning_raw_socket I
+	public static field extension_warning_reflection I
+	public static field extension_warning_suspicious_string I
+	public static field extension_warning_telemetry I
+	public static field extension_warning_webview I
 	public static field extensions I
+	public static field extensions_waiting_count I
 	public static field extra_brightness_key I
 	public static field extra_brightness_settings I
 	public static field extra_brightness_settings_des I
@@ -3538,6 +3568,7 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field home_next_random_img_des I
 	public static field home_play I
 	public static field home_random I
+	public static field home_search_only_body I
 	public static field home_source I
 	public static field install_prerelease I
 	public static field install_prerelease_key I
@@ -3558,6 +3589,7 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field links_reloaded_toast I
 	public static field live_singular I
 	public static field livestreams I
+	public static field load_more I
 	public static field loading I
 	public static field locale_key I
 	public static field lock_profile I
@@ -3819,6 +3851,7 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field search_state_failed_headline I
 	public static field search_state_idle_action I
 	public static field search_state_idle_body I
+	public static field search_state_idle_body_desktop I
 	public static field search_state_idle_headline I
 	public static field search_state_no_results_action I
 	public static field search_state_no_results_body_unknown I
@@ -3838,6 +3871,8 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field season I
 	public static field season_format I
 	public static field season_short I
+	public static field seek_back_10_seconds I
+	public static field seek_forward_10_seconds I
 	public static field select_all I
 	public static field select_an_account I
 	public static field select_library I
@@ -3972,9 +4007,12 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field subtitles_encoding I
 	public static field subtitles_encoding_key I
 	public static field subtitles_example_text I
+	public static field subtitles_file_empty I
 	public static field subtitles_filter_lang I
+	public static field subtitles_format_unsupported I
 	public static field subtitles_from_embedded I
 	public static field subtitles_from_online I
+	public static field subtitles_load_failed I
 	public static field subtitles_none I
 	public static field subtitles_outline I
 	public static field subtitles_raised I

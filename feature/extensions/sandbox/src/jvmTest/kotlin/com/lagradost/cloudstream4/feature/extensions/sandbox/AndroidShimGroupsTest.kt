@@ -286,6 +286,11 @@ class AndroidShimGroupsTest {
             "com.google.android.material.bottomsheet.BottomSheetDialogFragment", "com.google.android.material.bottomsheet.BottomSheetDialog", "com.google.android.material.bottomsheet.BottomSheetBehavior",
             "com.lagradost.cloudstream3.network.CloudflareKiller", "com.lagradost.cloudstream3.utils.Event", "com.lagradost.cloudstream3.ui.settings.Globals",
             "com.lagradost.cloudstream3.CloudStreamApp", "com.lagradost.cloudstream3.AcraApplication", "com.lagradost.cloudstream3.CommonActivity", "com.lagradost.cloudstream3.MainActivity",
+            "com.lagradost.cloudstream3.syncproviders.AccountManager", "com.lagradost.cloudstream3.syncproviders.AccountManager\$Companion",
+            "com.lagradost.cloudstream3.syncproviders.SyncAPI", "com.lagradost.cloudstream3.syncproviders.SyncAPI\$LibraryList",
+            "com.lagradost.cloudstream3.syncproviders.SyncAPI\$LibraryMetadata", "com.lagradost.cloudstream3.syncproviders.AuthUser",
+            "com.lagradost.cloudstream3.syncproviders.SyncRepo", "com.lagradost.cloudstream3.syncproviders.providers.SimklApi",
+            "com.lagradost.cloudstream3.utils.UiText",
         )
     }
 }

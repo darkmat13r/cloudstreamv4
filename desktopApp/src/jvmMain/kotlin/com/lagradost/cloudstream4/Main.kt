@@ -13,6 +13,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.key.Key
@@ -28,11 +30,24 @@ import com.lagradost.cloudstream4.core.designsystem.desktop.forDesktop
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
 import com.lagradost.cloudstream4.detail.DesktopDetailViewModels
+import com.lagradost.cloudstream4.extensions.ExtensionApprovals
+import com.lagradost.cloudstream4.extensions.ExtensionReviewScreen
+import com.lagradost.cloudstream4.extensions.ExtensionsNotice
 import com.lagradost.cloudstream4.extensions.SandboxedExtensions
 import com.lagradost.cloudstream4.extensions.runExtensionCheck
 import com.lagradost.cloudstream4.extensions.runExtensionScan
 import com.lagradost.cloudstream4.feature.extensions.sandbox.PluginHost
 import com.lagradost.cloudstream4.feature.detail.DetailAction
+import com.lagradost.cloudstream4.feature.detail.DetailLoad
+import com.lagradost.cloudstream4.feature.library.LibraryResume
+import com.lagradost.cloudstream4.feature.library.LibraryStore
+import com.lagradost.cloudstream4.feature.library.LibraryTitle
+import com.lagradost.cloudstream4.feature.library.LibraryTitleId
+import com.lagradost.cloudstream4.feature.library.LibraryViewModel
+import com.lagradost.cloudstream4.home.TopLevelDestination
+import com.lagradost.cloudstream4.library.DesktopLibraryStore
+import com.lagradost.cloudstream4.library.LibraryHost
+import com.lagradost.cloudstream4.library.WatchRecorder
 import com.lagradost.cloudstream4.feature.detail.DetailEffect
 import com.lagradost.cloudstream4.feature.detail.StreamLink
 import com.lagradost.cloudstream4.feature.detail.desktop.DetailScreenDesktop
@@ -45,11 +60,13 @@ import com.lagradost.cloudstream4.feature.search.desktop.SearchScreenDesktop
 import com.lagradost.cloudstream4.home.DesktopHomeSource
 import com.lagradost.cloudstream4.home.HomeHost
 import com.lagradost.cloudstream4.home.TopLevelScreen
+import com.lagradost.cloudstream4.home.TopLevelTab
 import com.lagradost.cloudstream4.player.MediaHost
 import com.lagradost.cloudstream4.player.PlayerScreen
 import com.lagradost.cloudstream4.player.PlayerUnavailable
 import com.lagradost.cloudstream4.player.VlcPlayer
 import com.lagradost.cloudstream4.player.runPlaybackCheck
+import com.lagradost.cloudstream4.player.runSubtitleRenderCheck
 import com.lagradost.cloudstream4.search.DesktopSearchHistory
 import com.lagradost.cloudstream4.search.DesktopSearchSource
 import com.lagradost.cloudstream4.search.PosterImage
@@ -94,6 +111,11 @@ import kotlin.system.exitProcess
  * (`SearchViewModel.kt:72-75`), so an extension that loads after the ViewModel exists would leave
  * the chrome row reading `0 / 0` until something else refreshed it. Loading first costs a directory
  * scan on an empty directory in the normal case; the trade is named in the bootstrap's KDoc.
+ *
+ * ## An extension with warnings waits to be asked (`KMP-24`)
+ *
+ * [SandboxedExtensions] holds it back until its exact file has been allowed, and [ExtensionApprovals] carries the
+ * answer. A choice takes effect at once, and the two ViewModels that read the provider list once are rebuilt then.
  */
 fun main(args: Array<String>) {
     // First, before any window or toolkit class: a packaged app starts its plugin hosts by running
@@ -110,6 +132,9 @@ fun main(args: Array<String>) {
         val url = requireNotNull(args.getOrNull(1)) { "$PLAYBACK_CHECK_ARGUMENT needs a url" }
         exitProcess(runPlaybackCheck(url, args.getOrNull(2)?.toIntOrNull() ?: DEFAULT_PLAYBACK_CHECK_SECONDS))
     }
+    if (args.firstOrNull() == SUBTITLE_RENDER_CHECK_ARGUMENT) {
+        exitProcess(runSubtitleRenderCheck(args.drop(1)))
+    }
     if (args.firstOrNull() == CHECK_ARGUMENT) {
         exitProcess(runExtensionCheck(args.getOrNull(1) ?: DEFAULT_CHECK_QUERY, verbose = VERBOSE_ARGUMENT in args))
     }
@@ -118,8 +143,10 @@ fun main(args: Array<String>) {
 
     // The report is printed, not logged: desktop has no logging, so the host is where the words go.
     val extensions = SandboxedExtensions()
-    runBlocking { extensions.loadInstalled() }.lines().forEach(::println)
+    val report = runBlocking { extensions.loadInstalled() }
+    report.lines().forEach(::println)
     Runtime.getRuntime().addShutdownHook(Thread { extensions.close() })
+    val approvals = ExtensionApprovals(extensions, report, CoroutineScope(SupervisorJob() + Dispatchers.Default))
 
     application {
         val escape = remember { EscapeHandler() }
@@ -138,7 +165,7 @@ fun main(args: Array<String>) {
             CloudStreamTheme {
                 CompositionLocalProvider(LocalCloudStreamTypography provides CloudStreamTheme.typography.forDesktop()) {
                     Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) {
-                        DesktopApp(escape)
+                        DesktopApp(escape, approvals = approvals)
                     }
                 }
             }
@@ -150,8 +177,24 @@ fun main(args: Array<String>) {
 private sealed interface Screen {
     data object Home : Screen
     data object Search : Screen
-    data class Detail(val id: String) : Screen
-    data class Player(val title: String, val link: StreamLink) : Screen
+    data object Library : Screen
+    data object Extensions : Screen
+
+    /** @param resume non-null when the library asked to come back to where this title was left. */
+    data class Detail(val id: String, val resume: LibraryResume? = null) : Screen
+
+    /**
+     * @param kept the id plus what a card needs, so the position written while this plays can be drawn
+     *   later without asking a provider again.
+     * @param episodeData which episode is playing, opaque, or null for a title that plays itself.
+     */
+    data class Player(
+        val kept: LibraryTitle,
+        val episodeData: String?,
+        val title: String,
+        val link: StreamLink,
+        val startAtMillis: Long = 0L,
+    ) : Screen
 }
 
 /**
@@ -164,22 +207,46 @@ private sealed interface Screen {
  * kotlinx-coroutines-swing is on the classpath. The host owns a scope instead and cancels it with the
  * composition, which is what each ViewModel's `scope` parameter is for.
  *
+ * @param approvals what the scan held back and what was chosen about it. Null where nothing was loaded.
  * @param onScreen told where the window is, for a test to read.
  */
 @Composable
 internal fun DesktopApp(
     escape: EscapeHandler,
     home: HomeSource = remember { DesktopHomeSource() },
+    approvals: ExtensionApprovals? = null,
+    // After `approvals` so that every existing positional call still means what it did.
+    library: LibraryStore = remember { DesktopLibraryStore() },
     onScreen: (String) -> Unit = {},
 ) {
     val scope = remember { CoroutineScope(SupervisorJob() + Dispatchers.Default) }
     DisposableEffect(scope) { onDispose { scope.cancel() } }
     val stack = remember { mutableStateListOf<Screen>(Screen.Home) }
-    val homeViewModel = remember { HomeViewModel(home, scope) }
-    // A swap and not a push: neither top-level screen is under the other, so Back never goes between them.
+    val review = approvals?.state?.collectAsState()?.value
+    // Allowing or stopping an extension changes what is installed, and both ViewModels read that once when made.
+    val providerChanges = review?.providerChanges ?: 0
+    val homeViewModel = remember(providerChanges) {
+        if (providerChanges > 0) DesktopSearchViewModels.live = null
+        HomeViewModel(home, scope)
+    }
+    // Outlives the tab so that changing list is instant; `LibraryHost` refreshes it on arrival. It
+    // reads no providers, so it does not need resetting when what is installed changes.
+    val libraryViewModel = remember { LibraryViewModel(library, scope) }
+    val notice: @Composable () -> Unit = {
+        if (review != null) {
+            ExtensionsNotice(review, onOpen = { stack += Screen.Extensions }) { label, onClick ->
+                TopLevelTab(label, selected = false, onClick)
+            }
+        }
+    }
+    // A swap and not a push: no top-level screen is under another, so Back never goes between them.
     val top: (Screen) -> Unit = { next -> if (stack.size == 1) stack[0] = next }
     // A double click reaches here twice, and must not take two presses of Back to undo.
     val open: (String) -> Unit = { id -> if (stack.last() !is Screen.Detail) stack += Screen.Detail(id) }
+    // Resume is the same page, told which episode to ask for and where that episode was left.
+    val resume: (LibraryTitleId, LibraryResume) -> Unit = { id, where ->
+        if (stack.last() !is Screen.Detail) stack += Screen.Detail(id.value, where)
+    }
     // Pops only when the caller is still on top, so two queued back events cannot empty the stack.
     val back: (Screen) -> Unit = { from ->
         if (stack.size > 1 && stack.last() == from) {
@@ -192,8 +259,18 @@ internal fun DesktopApp(
     val screen = stack.last()
     SideEffect { onScreen(screen.toString()) }
     saved.SaveableStateProvider(screen.toString()) {
+        // One place decides what a tab press does, so a new tab cannot be wired up two ways.
+        val toTab: (TopLevelDestination) -> Unit = { destination ->
+            top(
+                when (destination) {
+                    TopLevelDestination.Home -> Screen.Home
+                    TopLevelDestination.Search -> Screen.Search
+                    TopLevelDestination.Library -> Screen.Library
+                },
+            )
+        }
         when (screen) {
-            Screen.Home -> TopLevelScreen(true, onHome = {}, onSearch = { top(Screen.Search) }) {
+            Screen.Home -> TopLevelScreen(TopLevelDestination.Home, toTab, trailing = notice) {
                 HomeHost(
                     homeViewModel,
                     setEscape = { escape.onEscape = it },
@@ -201,26 +278,60 @@ internal fun DesktopApp(
                     onSearch = { top(Screen.Search) },
                 )
             }
-            Screen.Search -> TopLevelScreen(false, onHome = { top(Screen.Home) }, onSearch = {}) {
+            Screen.Search -> TopLevelScreen(TopLevelDestination.Search, toTab, trailing = notice) {
                 SideEffect { escape.onEscape = null }
                 SearchHost(scope, onOpen = open, onBrowseHome = { top(Screen.Home) })
+            }
+            Screen.Library -> TopLevelScreen(TopLevelDestination.Library, toTab, trailing = notice) {
+                LibraryHost(
+                    libraryViewModel,
+                    setEscape = { escape.onEscape = it },
+                    onOpen = { id -> open(id.value) },
+                    onResume = resume,
+                    onSearch = { top(Screen.Search) },
+                )
+            }
+            Screen.Extensions -> {
+                SideEffect { escape.onEscape = { back(screen) } }
+                if (approvals != null && review != null) {
+                    ExtensionReviewScreen(review, approvals::onAction, onBack = { back(screen) })
+                }
             }
             is Screen.Detail -> key(screen.id) {
                 DetailHost(
                     id = screen.id,
                     scope = scope,
                     escape = escape,
+                    resume = screen.resume,
                     onBack = { back(screen) },
-                    onPlay = { title, link -> stack += Screen.Player(title, link) },
+                    onPlay = { kept, episodeData, title, link ->
+                        stack += Screen.Player(kept, episodeData, title, link, screen.resume?.positionMillis ?: 0L)
+                    },
                 )
             }
             is Screen.Player -> key(screen.link) {
                 SideEffect { escape.onEscape = { back(screen) } }
                 val player = remember { VlcPlayer.createOrNull() }
+                val arrivingSubtitles = remember(screen) { DesktopDetailViewModels.subtitles(screen.kept.id.value) }
+                val recorder = remember(screen) {
+                    WatchRecorder(library, screen.kept, screen.episodeData, scope)
+                }
                 if (player == null) {
                     PlayerUnavailable(onBack = { back(screen) })
                 } else {
-                    PlayerScreen(player, screen.title, screen.link, onBack = { back(screen) })
+                    PlayerScreen(
+                        player,
+                        screen.title,
+                        screen.link,
+                        onBack = { back(screen) },
+                        setEscape = { escape.onEscape = it },
+                        startAtMillis = screen.startAtMillis,
+                        onProgress = recorder::onProgress,
+                        arrivingSubtitles = arrivingSubtitles,
+                    )
+                }
+                DisposableEffect(screen) {
+                    onDispose { recorder.flush() }
                 }
             }
         }
@@ -274,32 +385,65 @@ private fun SearchHost(scope: CoroutineScope, onOpen: (String) -> Unit, onBrowse
     )
 }
 
+/**
+ * A title's page.
+ *
+ * @param resume where the library left this title, or null. Non-null asks for that episode's sources as
+ *   soon as the page has loaded — which is what Resume means here: the right episode, one press from
+ *   playing, starting where it was left. It does not play by itself, because a link still has to be
+ *   chosen and this is the screen that chooses one.
+ * @param onPlay given what the library needs to record a position, as well as what the player needs.
+ *   The episode is the `data` of the last [DetailAction.PlayRequested] to pass through this host, which
+ *   is the only place that knows it: `DetailState` does not carry it.
+ */
 @Composable
 private fun DetailHost(
     id: String,
     scope: CoroutineScope,
     escape: EscapeHandler,
+    resume: LibraryResume?,
     onBack: () -> Unit,
-    onPlay: (String, StreamLink) -> Unit,
+    onPlay: (LibraryTitle, String?, String, StreamLink) -> Unit,
 ) {
     val viewModel = remember(id) { DesktopDetailViewModels.get(id, scope) }
     val state by viewModel.state.collectAsState()
+    var playing by remember(id) { mutableStateOf<String?>(null) }
+    val act: (DetailAction) -> Unit = { action ->
+        if (action is DetailAction.PlayRequested) playing = action.data
+        viewModel.onAction(action)
+    }
     SideEffect {
         // The same two steps as the visible Back button: the source list first, then the page.
         escape.onEscape = {
             if (viewModel.state.value.links != null) viewModel.onAction(DetailAction.LinksDismissed) else onBack()
         }
     }
+    val loaded = (state.content as? DetailLoad.Loaded)?.value
+    LaunchedEffect(viewModel, resume, loaded) {
+        // Only while nothing has been asked for yet, so going back to the source list does not re-ask.
+        if (resume != null && loaded != null && playing == null && state.links == null) {
+            (resume.episodeData ?: loaded.primaryData)?.let { act(DetailAction.PlayRequested(it)) }
+        }
+    }
     LaunchedEffect(viewModel) {
         viewModel.effect.collect { effect ->
+            val detail = (viewModel.state.value.content as? DetailLoad.Loaded)?.value
+            val kept = LibraryTitle(
+                id = LibraryTitleId(id),
+                title = detail?.title ?: effect.let { if (it is DetailEffect.Play) it.title else "" },
+                bucket = null,
+                keptAt = 0L,
+                posterUrl = detail?.posterUrl,
+                providerName = detail?.providerName,
+            )
             when (effect) {
-                is DetailEffect.Play -> onPlay(effect.title, effect.link)
+                is DetailEffect.Play -> onPlay(kept, playing, effect.title, effect.link)
             }
         }
     }
     DetailScreenDesktop(
         state = state,
-        onAction = viewModel::onAction,
+        onAction = act,
         onBack = onBack,
         artwork = { url -> PosterImage(url = url, modifier = Modifier.fillMaxSize()) },
     )
@@ -312,6 +456,7 @@ private const val DEFAULT_CHECK_QUERY = "nasa"
 private const val VERBOSE_ARGUMENT = "--verbose"
 private const val PLAYBACK_CHECK_ARGUMENT = "--check-playback"
 private const val DEFAULT_PLAYBACK_CHECK_SECONDS = 15
+private const val SUBTITLE_RENDER_CHECK_ARGUMENT = "--check-subtitle-render"
 
 private val WINDOW_WIDTH = 1280.dp
 private val WINDOW_HEIGHT = 800.dp

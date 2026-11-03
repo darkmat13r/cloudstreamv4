@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
@@ -28,6 +29,7 @@ import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
 import com.lagradost.cloudstream4.core.designsystem.desktop.desktopFeedback
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
+import com.lagradost.cloudstream4.core.strings.generated.resources.library
 import com.lagradost.cloudstream4.core.strings.generated.resources.title_home
 import com.lagradost.cloudstream4.core.strings.generated.resources.title_search
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
@@ -69,12 +71,25 @@ internal fun HomeHost(
     )
 }
 
-/** The two screens that have nothing under them, and the control that moves between them. */
+/**
+ * A screen with nothing under it. The tab bar is these in this order, and `Main.kt`'s router maps each
+ * to the screen it shows.
+ *
+ * It was a `Boolean` while there were two of them (`KMP-20`). `KMP-26` added the third, and a third
+ * thing a boolean has to express is where that stops working.
+ */
+internal enum class TopLevelDestination {
+    Home,
+    Search,
+    Library,
+}
+
+/** The screens that have nothing under them, and the control that moves between them. */
 @Composable
 internal fun TopLevelScreen(
-    homeSelected: Boolean,
-    onHome: () -> Unit,
-    onSearch: () -> Unit,
+    selected: TopLevelDestination,
+    onSelect: (TopLevelDestination) -> Unit,
+    trailing: @Composable () -> Unit = {},
     content: @Composable () -> Unit,
 ) {
     Column(Modifier.fillMaxSize()) {
@@ -84,16 +99,26 @@ internal fun TopLevelScreen(
                 .fillMaxWidth()
                 .padding(start = DesktopDimens.WindowMargin, end = DesktopDimens.WindowMargin, top = DesktopDimens.GroupGap),
         ) {
-            TopLevelTab(stringResource(Res.string.title_home), homeSelected, onHome)
-            TopLevelTab(stringResource(Res.string.title_search), !homeSelected, onSearch)
+            TopLevelDestination.entries.forEach { destination ->
+                TopLevelTab(destination.label(), destination == selected) { onSelect(destination) }
+            }
+            Spacer(Modifier.weight(1f))
+            trailing()
         }
         Box(Modifier.weight(1f)) { content() }
     }
 }
 
+@Composable
+private fun TopLevelDestination.label(): String = when (this) {
+    TopLevelDestination.Home -> stringResource(Res.string.title_home)
+    TopLevelDestination.Search -> stringResource(Res.string.title_search)
+    TopLevelDestination.Library -> stringResource(Res.string.library)
+}
+
 /** Text only: the selected one is filled and in full ink, and there is no icon pack yet (`DEC-11`). */
 @Composable
-private fun TopLevelTab(label: String, selected: Boolean, onClick: () -> Unit) {
+internal fun TopLevelTab(label: String, selected: Boolean, onClick: () -> Unit) {
     val colors = CloudStreamTheme.colors
     val source = remember { MutableInteractionSource() }
     val hovered by source.collectIsHoveredAsState()

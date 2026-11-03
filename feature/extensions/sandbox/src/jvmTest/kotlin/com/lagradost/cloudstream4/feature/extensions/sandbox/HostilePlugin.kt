@@ -6,18 +6,29 @@ import com.lagradost.cloudstream3.MainAPI
 import com.lagradost.cloudstream3.MainPageData
 import com.lagradost.cloudstream3.MainPageRequest
 import com.lagradost.cloudstream3.SearchResponseList
+import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.TvType
 import com.lagradost.cloudstream3.mainPageOf
 import com.lagradost.cloudstream3.newHomePageResponse
 import com.lagradost.cloudstream3.newMovieSearchResponse
 import com.lagradost.cloudstream3.newSearchResponseList
+import com.lagradost.cloudstream3.newSubtitleFile
 import com.lagradost.cloudstream3.plugins.BasePlugin
 import com.lagradost.cloudstream3.plugins.CloudstreamPlugin
+import com.lagradost.cloudstream3.utils.ExtractorLink
+import com.lagradost.cloudstream3.utils.ExtractorLinkType
+import com.lagradost.cloudstream3.utils.newExtractorLink
 import java.io.File
 import java.io.FileDescriptor
 import java.io.FileOutputStream
 import java.net.InetSocketAddress
 import java.net.Socket
+import java.nio.ByteBuffer
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.awaitCancellation
+import kotlinx.coroutines.launch
 
 /**
  * A plugin that tries to do what a malicious one would, and reports what happened.
@@ -66,6 +77,78 @@ class HostileApi : MainAPI() {
         }
     }
 
+    /** What a plugin can do with the callbacks. `data` is `verb:argument`, as a search query is. */
+    @OptIn(DelicateCoroutinesApi::class)
+    override suspend fun loadLinks(
+        data: String,
+        isCasting: Boolean,
+        subtitleCallback: (SubtitleFile) -> Unit,
+        callback: (ExtractorLink) -> Unit,
+    ): Boolean {
+        val verb = data.substringBefore(':')
+        val argument = data.substringAfter(':', "")
+        suspend fun offer(name: String, url: String = "https://streams.invalid/$name") =
+            callback(newExtractorLink("Hostile", name, url, ExtractorLinkType.VIDEO))
+        when (verb) {
+            "one-then-wait" -> {
+                offer("first")
+                while (!File(argument).exists()) Thread.sleep(HOLD_POLL_MILLIS)
+                offer("second")
+            }
+            "flood" -> {
+                repeat(HUGE_COUNT) { offer("link $it") }
+                repeat(HUGE_COUNT) { subtitleCallback(newSubtitleFile("sub$it", "https://subs.invalid/$it.vtt")) }
+            }
+            "oversized" -> {
+                offer("before")
+                repeat(OVERSIZED_LINKS) { offer("huge", "https://streams.invalid/" + "x".repeat(OVERSIZED_LINK_CHARS)) }
+                offer("after")
+            }
+            "after-return" -> {
+                offer("first")
+                GlobalScope.launch {
+                    while (!File(argument).exists()) Thread.sleep(HOLD_POLL_MILLIS)
+                    offer("after the last reply")
+                    File("$argument.done").writeText("")
+                }
+            }
+            "stoppable" -> {
+                offer("first")
+                try {
+                    awaitCancellation()
+                } catch (stopped: CancellationException) {
+                    File(argument).writeText("")
+                    throw stopped
+                }
+            }
+            "unstoppable" -> {
+                offer("first")
+                while (!File(argument).exists()) Thread.sleep(HOLD_POLL_MILLIS)
+                offer("after being told to stop")
+                File("$argument.done").writeText("")
+            }
+            "bad-urls" -> {
+                offer("file", "file:///etc/passwd")
+                offer("evil\u001B[2J\nname", "https://streams.invalid/ok")
+                subtitleCallback(newSubtitleFile("bad", "file:///etc/passwd"))
+                subtitleCallback(newSubtitleFile("en", "https://subs.invalid/en.vtt"))
+            }
+            "throw" -> {
+                offer("first")
+                throw IllegalStateException("one source gave up")
+            }
+            "forge-partial" -> {
+                val frame = HostProtocol.encode {
+                    writeInt(argument.toInt())
+                    writeByte(HostProtocol.REPLY_PARTIAL)
+                    writeLinks(RemoteLinks(emptyList(), emptyList()))
+                }
+                FileOutputStream(FileDescriptor.out).write(frame)
+            }
+        }
+        return true
+    }
+
     override suspend fun search(query: String, page: Int): SearchResponseList {
         val verb = query.substringBefore(':')
         val argument = query.substringAfter(':', "")
@@ -90,6 +173,15 @@ class HostileApi : MainAPI() {
                     FileOutputStream(FileDescriptor.out).write(ByteArray(GARBAGE_BYTES) { -1 })
                     "corrupted"
                 }
+                "hold" -> {
+                    while (!File(argument).exists()) Thread.sleep(HOLD_POLL_MILLIS)
+                    "held"
+                }
+                "forge" -> {
+                    val frame = ByteBuffer.allocate(2 * Int.SIZE_BYTES).putInt(Int.SIZE_BYTES).putInt(argument.toInt())
+                    FileOutputStream(FileDescriptor.out).write(frame.array())
+                    "forged"
+                }
                 "hostile-text" -> "evil\u001B[2J\nforged line"
                 else -> "unknown"
             }
@@ -105,8 +197,12 @@ class HostileApi : MainAPI() {
     private companion object {
         const val CONNECT_TIMEOUT_MILLIS = 3_000
         const val GARBAGE_BYTES = 64
+        const val HOLD_POLL_MILLIS = 10L
         /** Cutting only one of rows or items still leaves about 15 MB, past the 8 MB frame limit. */
         const val HUGE_COUNT = 1000
+        /** Together past the bytes one call may send, and each past what one frame may hold if there are enough. */
+        const val OVERSIZED_LINKS = 3
+        const val OVERSIZED_LINK_CHARS = 4 * 1024 * 1024
     }
 }
 

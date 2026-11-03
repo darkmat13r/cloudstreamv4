@@ -13,11 +13,12 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.blank_repo_message
 import com.lagradost.cloudstream4.core.strings.generated.resources.empty_library_logged_in_message
 import com.lagradost.cloudstream4.core.strings.generated.resources.extension_install_first
+import com.lagradost.cloudstream4.core.strings.generated.resources.home_search_only_body
+import com.lagradost.cloudstream4.core.strings.generated.resources.home_sections_failed
 import com.lagradost.cloudstream4.core.strings.generated.resources.loading
 import com.lagradost.cloudstream4.core.strings.generated.resources.no_data
 import com.lagradost.cloudstream4.core.strings.generated.resources.no_internet_connection
 import com.lagradost.cloudstream4.core.strings.generated.resources.plugin_load_fail
-import com.lagradost.cloudstream4.core.strings.generated.resources.result_search_tooltip
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_state_offline_headline
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_state_retry
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_state_retry_failed
@@ -28,8 +29,7 @@ import com.lagradost.cloudstream4.core.strings.resolve
 import org.jetbrains.compose.resources.stringResource
 
 /**
- * [HomeStatus] as the design system draws it, in the composition's locale. Existing strings only, so
- * `core/strings/oracle-baseline` does not move (`docs/tasks/kmp.md`, `KMP-20`).
+ * [HomeStatus] as the design system draws it, in the composition's locale.
  *
  * @param sourceName the selected source, which the failure sentence names.
  */
@@ -45,7 +45,7 @@ fun HomeStatus.toUiState(sourceName: String?, onAction: (HomeAction) -> Unit): U
         is HomeStatus.Partial -> UiState.Partial(
             value = rows,
             notice = FailureNotice(
-                headline = stringResource(Res.string.source_error),
+                headline = UiString.Plural(Res.plurals.home_sections_failed, failedSections.size).resolve(),
                 detail = "${
                     UiString.Plural(Res.plurals.search_tv_sources_count, total, listOf(failedSections.size, total)).resolve()
                 } · $detail",
@@ -61,7 +61,7 @@ fun HomeStatus.toUiState(sourceName: String?, onAction: (HomeAction) -> Unit): U
             UiState.Empty(
                 StatePrompt(
                     headline = stringResource(Res.string.no_data),
-                    body = stringResource(Res.string.result_search_tooltip),
+                    body = stringResource(Res.string.home_search_only_body),
                     action = StateAction(stringResource(Res.string.title_search), search),
                 ),
             )

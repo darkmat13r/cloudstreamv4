@@ -2,6 +2,7 @@ package com.lagradost.cloudstream4.player
 
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asComposeImageBitmap
+import androidx.compose.ui.unit.IntSize
 import com.lagradost.cloudstream4.feature.extensions.sandbox.HostLauncher
 import com.lagradost.cloudstream4.player.MediaProtocol.writeText
 import java.io.DataOutputStream
@@ -24,6 +25,13 @@ import org.jetbrains.skia.ColorAlphaType
 import org.jetbrains.skia.ColorType
 import org.jetbrains.skia.ImageInfo
 import org.jetbrains.skia.impl.BufferUtil
+
+/** What the player's controls do. A seam, so the screen can be driven without a media host. */
+interface PlayerControls {
+    fun togglePause()
+    fun seekBy(deltaMillis: Long)
+    fun seekTo(fraction: Float)
+}
 
 /** What the HUD draws. [failed] means libVLC gave up on this stream, or its host died. */
 data class PlayerStatus(
@@ -50,13 +58,17 @@ data class PlayerStatus(
 class VlcPlayer private constructor(
     private val process: Process,
     private val directory: File,
-) {
+) : PlayerControls {
     private val commands = DataOutputStream(process.outputStream.buffered())
     private val _frame = MutableStateFlow<ImageBitmap?>(null)
+    private val _pictureSize = MutableStateFlow<IntSize?>(null)
     private val _status = MutableStateFlow(PlayerStatus())
     @Volatile private var released = false
 
     val frame: StateFlow<ImageBitmap?> = _frame.asStateFlow()
+
+    /** The shape to draw [frame] in, which is not always the frame's own. Null until the host can say. */
+    val pictureSize: StateFlow<IntSize?> = _pictureSize.asStateFlow()
     val status: StateFlow<PlayerStatus> = _status.asStateFlow()
 
     init {
@@ -91,6 +103,7 @@ class VlcPlayer private constructor(
             BufferUtil.getByteBufferFromPointer(pixmap.addr, size)
         }
         val images = Array(FRAME_BUFFERS) { index -> bitmaps[index].asComposeImageBitmap() }
+        _pictureSize.value = null
         return object : FrameTarget {
             private var back = 0
 
@@ -100,6 +113,10 @@ class VlcPlayer private constructor(
                 bitmaps[back].notifyPixelsChanged()
                 _frame.value = images[back]
                 back = (back + 1) % FRAME_BUFFERS
+            }
+
+            override fun showAs(width: Int, height: Int) {
+                _pictureSize.value = IntSize(width, height)
             }
         }
     }
@@ -129,23 +146,30 @@ class VlcPlayer private constructor(
         }
     }
 
-    fun togglePause() {
+    override fun togglePause() {
         send { writeByte(MediaProtocol.OP_TOGGLE_PAUSE.toInt()) }
     }
 
-    fun seekBy(deltaMillis: Long) {
+    override fun seekBy(deltaMillis: Long) {
         send {
             writeByte(MediaProtocol.OP_SEEK_BY.toInt())
             writeLong(deltaMillis)
         }
     }
 
-    fun seekTo(fraction: Float) {
+    override fun seekTo(fraction: Float) {
         send {
             writeByte(MediaProtocol.OP_SEEK_TO.toInt())
             writeFloat(fraction.coerceIn(0f, 1f))
         }
     }
+
+    /**
+     * Copies [file] where the host may read it, and returns the URL to play it by. For a check: the host
+     * can read nothing outside its own directory, and it cannot reach this machine over HTTP either.
+     */
+    internal fun stage(file: File): String =
+        file.copyTo(File(directory, file.name), overwrite = true).toPath().toUri().toString()
 
     /** Ends the host, so the audio stops now. Waits for it, so call it off the UI thread. */
     fun release() {
@@ -162,20 +186,58 @@ class VlcPlayer private constructor(
         /** Where vlcj looks on macOS. Also the only place the sandbox policy lets the host read it. */
         private val VLC_APP = File("/Applications/VLC.app")
 
-        /** Null when VLC is not installed, or this OS has no sandbox. There is no unsandboxed fallback. */
-        fun createOrNull(): VlcPlayer? {
+        /**
+         * Null when VLC is not installed, or this OS has no sandbox. There is no unsandboxed fallback.
+         *
+         * @param silent for a check run where nobody is listening. See [HostLauncher.startMediaHost].
+         */
+        fun createOrNull(silent: Boolean = false): VlcPlayer? {
             val launcher = HostLauncher.forMediaHost(MediaHost.ARGUMENT, MEDIA_HOST_MAIN) ?: return null
             if (!File(VLC_APP, "Contents/MacOS/lib/libvlc.dylib").isFile) return null
             val base = File(System.getProperty("user.home"), ".cloudstream4/.media-host").apply { mkdirs() }
-            // One stream at a time, so anything here was left by a crash, or is a host on its way out.
-            base.listFiles()?.forEach { deleteHostDirectory(it.toPath()) }
-            val directory = Files.createTempDirectory(base.toPath(), "host").toFile().canonicalFile
-            return runCatching { VlcPlayer(launcher.startMediaHost(VLC_APP, directory), directory) }.getOrNull()
+            val directory = newHostDirectory(base)
+            return runCatching { VlcPlayer(launcher.startMediaHost(VLC_APP, directory, silent), directory) }
+                .onFailure { deleteHostDirectory(directory.toPath()) }
+                .getOrNull()
         }
 
         private const val MEDIA_HOST_MAIN = "com.lagradost.cloudstream4.player.MediaHostMainKt"
     }
 }
+
+/**
+ * Clears what crashes left in [base], then makes a new directory there for one host, which it alone may use.
+ *
+ * Every running copy of the app shares [base], so what is in it may be another copy's live host. A host
+ * still starting needs its directory (measured: deleting it in the first 0.2 s or so loses the stream). So
+ * each name says which app made it, and only directories whose app has gone are cleared. A directory is
+ * never reused, so a host that outlives its app has no rights over a later one.
+ */
+internal fun newHostDirectory(base: File): File {
+    base.listFiles()?.filterNot { hostDirectoryInUse(it.name) }?.forEach { deleteHostDirectory(it.toPath()) }
+    val self = ProcessHandle.current()
+    val prefix = "$HOST_DIRECTORY_PREFIX${self.pid()}-${self.startMillis() ?: 0}-"
+    return Files.createTempDirectory(base.toPath(), prefix).toFile().canonicalFile
+}
+
+/**
+ * Whether the app that made this directory is still running. The start time is there because a pid is
+ * reused. A name not in this form is a leftover, or from a build before this one.
+ */
+internal fun hostDirectoryInUse(name: String): Boolean {
+    if (!name.startsWith(HOST_DIRECTORY_PREFIX)) return false
+    val fields = name.removePrefix(HOST_DIRECTORY_PREFIX).split('-')
+    val pid = fields.getOrNull(0)?.toLongOrNull() ?: return false
+    val started = fields.getOrNull(1)?.toLongOrNull() ?: return false
+    val owner = ProcessHandle.of(pid).orElse(null) ?: return false
+    // Cannot tell, so keep it: a leftover costs a few bytes, and deleting a live one can cost a stream.
+    val actual = owner.startMillis() ?: return true
+    return actual == started
+}
+
+internal fun ProcessHandle.startMillis(): Long? = info().startInstant().map { it.toEpochMilli() }.orElse(null)
+
+internal const val HOST_DIRECTORY_PREFIX = "host-"
 
 /**
  * Deletes a directory a host could write to, without ever following a link in it.

@@ -298,6 +298,10 @@ object ExtensionScanner {
         "java/lang/Runtime.exit" to "exit",
         "java/lang/Runtime.halt" to "exit",
     )
+
+    /** Every rule that can raise a [ScanSeverity.Warn], so a screen with a sentence per rule can be checked against it. */
+    val warnRules: Set<String> =
+        (WARN_CLASS_PREFIXES.values + WARN_METHODS.values + listOf("suspicious-string", "telemetry")).toSet()
 }
 
 /**

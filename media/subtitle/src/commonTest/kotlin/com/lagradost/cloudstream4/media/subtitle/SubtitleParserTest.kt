@@ -1,5 +1,6 @@
 package com.lagradost.cloudstream4.media.subtitle
 
+import com.lagradost.cloudstream4.media.model.CuePlacement
 import com.lagradost.cloudstream4.media.model.SubtitleCue
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -232,7 +233,11 @@ class SubtitleParserTest {
             """.trimIndent(),
         )
         assertEquals(SubtitleFormat.VTT, result.format)
-        assertEquals(listOf(cue(1000, 1000, "Hi there"), cue(3000, 1000, "Karaoke text")), result.cues)
+        // Times and text: placement has its own suite, CuePlacementTest, and this first cue does ask for one.
+        assertEquals(
+            listOf(cue(1000, 1000, "Hi there"), cue(3000, 1000, "Karaoke text")),
+            result.cues.map { it.copy(placement = CuePlacement.Default) },
+        )
         assertEquals(0, result.malformedCues)
     }
 
@@ -246,7 +251,7 @@ class SubtitleParserTest {
     @Test
     fun `vtt with a comma and a srt tag still parses`() {
         val vtt = "WEBVTT\n\n00:00:01,000 --> 00:00:02,000\n{\\an8}Top"
-        assertEquals(listOf(cue(1000, 1000, "Top")), SubtitleParser.parse(vtt).cues)
+        assertEquals(listOf(cue(1000, 1000, "Top").copy(placement = CuePlacement.fromSsaAlignment(8)!!)), SubtitleParser.parse(vtt).cues)
     }
 
     @Test
@@ -266,7 +271,7 @@ class SubtitleParserTest {
     fun `detect declines formats this module does not parse`() {
         assertNull(SubtitleParser.detect("[Script Info]\nTitle: x"))
         assertNull(SubtitleParser.detect("Title: x\n00:00:01,000 --> 00:00:02,000"))
-        assertNull(SubtitleParser.detect("<?xml version=\"1.0\"?><tt><!-- x --></tt>"))
+        assertNull(SubtitleParser.detect("<?xml version=\"1.0\"?><smil><!-- x --></smil>"))
         assertNull(SubtitleParser.detect("<html>not found</html>"))
         assertNull(SubtitleParser.detect(""))
     }

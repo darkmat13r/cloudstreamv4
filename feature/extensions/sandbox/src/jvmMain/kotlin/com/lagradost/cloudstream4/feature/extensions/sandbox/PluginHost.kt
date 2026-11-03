@@ -9,6 +9,7 @@ import com.lagradost.cloudstream3.LoadResponse
 import com.lagradost.cloudstream3.MainAPI
 import com.lagradost.cloudstream3.MainPageRequest
 import com.lagradost.cloudstream3.MovieLoadResponse
+import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.TvSeriesLoadResponse
 import com.lagradost.cloudstream3.newSearchResponseList
 import com.lagradost.cloudstream4.feature.extensions.InstalledExtension
@@ -20,10 +21,12 @@ import java.io.FileDescriptor
 import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.io.OutputStream
-import java.util.concurrent.atomic.AtomicInteger
+import java.util.concurrent.ConcurrentHashMap
+import kotlin.coroutines.cancellation.CancellationException
 import kotlin.system.exitProcess
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -125,15 +128,33 @@ object PluginHost {
         }
 
         val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
+        val linkCalls = ConcurrentHashMap<Int, LinkCall>()
         while (true) {
             // End of stream means the app went away, however it died. Returning halts this process.
             val frame = HostProtocol.readFrame(input) ?: return
-            scope.launch { answer(frame, apis, writer) }
+            val (id, op, rest) = HostProtocol.decode(frame) { Triple(readInt(), readInt(), readBytes()) }
+            if (op == HostProtocol.OP_CANCEL) {
+                // Nothing to find if it has just finished: its reply and this crossed on the way.
+                linkCalls[id]?.cancel()
+                continue
+            }
+            val linkCall = if (op == HostProtocol.OP_LOAD_LINKS) LinkCall(id, writer).also { linkCalls[id] = it } else null
+            val job = scope.launch { answer(id, op, rest, apis, writer, linkCall) }
+            if (linkCall != null) {
+                linkCall.job = job
+                job.invokeOnCompletion { linkCalls.remove(id) }
+            }
         }
     }
 
-    private suspend fun answer(frame: ByteArray, apis: Map<String, MainAPI>, writer: Writer) {
-        val (id, op, rest) = HostProtocol.decode(frame) { Triple(readInt(), readInt(), readBytes()) }
+    private suspend fun answer(
+        id: Int,
+        op: Int,
+        rest: ByteArray,
+        apis: Map<String, MainAPI>,
+        writer: Writer,
+        linkCall: LinkCall?,
+    ) {
         try {
             DataInputStream(ByteArrayInputStream(rest)).use { args ->
                 val api = checkNotNull(apis[args.readText()]) { "unknown provider" }
@@ -153,15 +174,14 @@ object PluginHost {
                         writer.send(id) { writeDetails(details.toRemote()) }
                     }
                     HostProtocol.OP_LOAD_LINKS -> {
-                        val links = mutableListOf<RemoteLink>()
-                        val subtitles = AtomicInteger()
+                        val call = checkNotNull(linkCall)
                         api.loadLinks(
                             data = args.readText(),
                             isCasting = false,
-                            subtitleCallback = { subtitles.incrementAndGet() },
+                            subtitleCallback = { file -> call.offer(file.toRemote()) },
                             callback = { link ->
-                                synchronized(links) {
-                                    links += RemoteLink(
+                                call.offer(
+                                    RemoteLink(
                                         source = link.source,
                                         name = link.name,
                                         url = link.url,
@@ -172,11 +192,10 @@ object PluginHost {
                                             .firstOrNull { it.key.equals("User-Agent", ignoreCase = true) }?.value,
                                         audioUrl = link.audioTracks.firstOrNull()?.url,
                                     )
-                                }
+                                )
                             },
                         )
-                        val snapshot = synchronized(links) { links.toList() }
-                        writer.send(id) { writeLinks(RemoteLinks(snapshot, subtitles.get())) }
+                        call.finish()
                     }
                     HostProtocol.OP_MAIN_PAGE -> {
                         val section = checkNotNull(api.mainPage.getOrNull(args.readInt())) { "unknown section" }
@@ -190,9 +209,77 @@ object PluginHost {
         } catch (failure: Throwable) {
             // Throwable: plugins throw NotImplementedError and NoClassDefFoundError routinely, and
             // WebViewResolver's JVM actual is a `TODO()`. One failed call must not end the host.
-            writer.fail(id, failure)
+            if (linkCall != null) linkCall.fail(failure) else writer.fail(id, failure)
         }
     }
+
+    /**
+     * One `loadLinks` on its way to the app: each link and subtitle as the plugin offers it, then one last reply.
+     *
+     * A plugin holds its callbacks for as long as it likes, and can call them from its own coroutine after
+     * `loadLinks` has returned, so anything past the last reply is dropped here. It would otherwise end this host,
+     * because the app treats a partial after the final as a violation. The same goes for the bounds: the app ends
+     * a host that passes them, so an honest plugin offering too much is cut here instead.
+     */
+    private class LinkCall(private val id: Int, private val writer: Writer) {
+        var job: Job? = null
+        private var links = 0
+        private var subtitles = 0
+        private var bytes = 0L
+        private var finished = false
+
+        @Synchronized
+        fun offer(link: RemoteLink) {
+            if (links < HostProtocol.MAX_LINKS && send(RemoteLinks(listOf(link), emptyList()))) links++
+        }
+
+        @Synchronized
+        fun offer(subtitle: RemoteSubtitle) {
+            if (subtitles < HostProtocol.MAX_SUBTITLES && send(RemoteLinks(emptyList(), listOf(subtitle)))) subtitles++
+        }
+
+        private fun send(part: RemoteLinks): Boolean {
+            if (finished) return false
+            val frame = writer.partial(id, part)
+            if (bytes + frame.size > HostProtocol.MAX_LINK_BYTES) return false
+            bytes += frame.size
+            writer.write(frame)
+            return true
+        }
+
+        /** The answer has already gone, a piece at a time. */
+        @Synchronized
+        fun finish() {
+            if (finished) return
+            finished = true
+            writer.send(id) { writeLinks(RemoteLinks(emptyList(), emptyList())) }
+        }
+
+        @Synchronized
+        fun fail(failure: Throwable) {
+            if (finished) return
+            finished = true
+            writer.fail(id, failure)
+        }
+
+        /** Answers now, whatever the plugin does. Stopping it takes its cooperation; the app does not wait for that. */
+        fun cancel() {
+            fail(CancellationException("cancelled"))
+            job?.cancel()
+        }
+    }
+
+    private fun SubtitleFile.toRemote() = RemoteSubtitle(
+        language = lang,
+        // `langTag` is `:library`'s table, reached with a string the plugin chose.
+        languageTag = runCatching { langTag }.getOrNull(),
+        url = url,
+        referer = headers.named("Referer"),
+        userAgent = headers.named("User-Agent"),
+    )
+
+    private fun Map<String, String>?.named(header: String): String? =
+        this?.entries?.firstOrNull { it.key.equals(header, ignoreCase = true) }?.value
 
     private fun com.lagradost.cloudstream3.SearchResponseList.toRemote() = RemoteSearchPage(
         items = items.map { RemoteSearchItem(it.name, it.url, it.type?.name, it.posterUrl) },
@@ -236,28 +323,31 @@ object PluginHost {
     }
 
     private class Writer(private val out: OutputStream) {
-        fun send(id: Int, body: java.io.DataOutputStream.() -> Unit) {
-            val frame = HostProtocol.encode {
+        fun send(id: Int, body: java.io.DataOutputStream.() -> Unit) = write(
+            HostProtocol.encode {
                 writeInt(id)
-                writeBoolean(true)
+                writeByte(HostProtocol.REPLY_DONE)
                 body()
             }
-            synchronized(this) {
-                out.write(frame)
-                out.flush()
-            }
-        }
+        )
 
-        fun fail(id: Int, failure: Throwable) {
-            val frame = HostProtocol.encode {
+        fun fail(id: Int, failure: Throwable) = write(
+            HostProtocol.encode {
                 writeInt(id)
-                writeBoolean(false)
+                writeByte(HostProtocol.REPLY_FAILED)
                 writeText("${failure::class.java.simpleName}: ${failure.message.orEmpty()}".take(MAX_ERROR_CHARS))
             }
-            synchronized(this) {
-                out.write(frame)
-                out.flush()
-            }
+        )
+
+        fun partial(id: Int, part: RemoteLinks): ByteArray = HostProtocol.encode {
+            writeInt(id)
+            writeByte(HostProtocol.REPLY_PARTIAL)
+            writeLinks(part)
+        }
+
+        fun write(frame: ByteArray) = synchronized(this) {
+            out.write(frame)
+            out.flush()
         }
     }
 

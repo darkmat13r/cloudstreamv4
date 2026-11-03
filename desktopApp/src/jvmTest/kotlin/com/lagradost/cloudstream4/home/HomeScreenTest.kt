@@ -38,7 +38,9 @@ import com.lagradost.cloudstream4.feature.home.HomeState
 import com.lagradost.cloudstream4.feature.home.HomeStatus
 import com.lagradost.cloudstream4.feature.home.desktop.HomeScreenDesktop
 import com.lagradost.cloudstream4.feature.home.desktop.HomeScreenDesktopDefaults
+import com.lagradost.cloudstream4.library.InMemoryLibraryStore
 import java.io.File
+import java.util.Locale
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -148,6 +150,48 @@ class HomeScreenTest {
         assertEquals(firstCardTop(HomeMore.Idle), firstCardTop(HomeMore.Loading))
     }
 
+    /** Greek is the longest `load_more` of any locale, and 800 x 520 is the smallest window. */
+    @Test
+    fun `a long Load more squeezes the row title, not the cards, at the minimum window`() {
+        val width = 800
+        fun measure(language: String): Triple<Int, Int, List<HomeAction>> {
+            val previous = Locale.getDefault()
+            Locale.setDefault(Locale.forLanguageTag(language))
+            try {
+                val actions = mutableListOf<HomeAction>()
+                val long = row("A row whose title is far too long to sit beside its button in the smallest window there is, so it ellipsises")
+                val scene = scene(width, 520) {
+                    HomeScreenDesktop(
+                        state(HomeStatus.Showing(listOf(long))),
+                        { actions += it },
+                        artwork = { Box(Modifier.fillMaxSize().background(Color.DarkGray)) },
+                    )
+                }
+                scene.settle()
+                scene.save("14-minimum-window-$language")
+                val bitmap = Bitmap.makeFromImage(scene.render(SETTLE_FRAMES * FRAME_NANOS))
+                val grey = Color.DarkGray.toArgb()
+                val cardTop = (0 until 520).first { bitmap.getColor(CARD_X.toInt() + PAST_ROW_TITLE, it) == grey }
+                // Above the label's line box and inside the button, whose fill runs unbroken to its left edge.
+                val fill = bitmap.getColor(width - BUTTON_INSET, BUTTON_FILL_Y)
+                val buttonLeft = (width - BUTTON_INSET downTo 0).first { bitmap.getColor(it, BUTTON_FILL_Y) != fill } + 1
+                scene.click(Offset(buttonLeft + 8f, ROW_HEADER_Y))
+                scene.close()
+                return Triple(cardTop, buttonLeft, actions)
+            } finally {
+                Locale.setDefault(previous)
+            }
+        }
+        val (englishTop, englishLeft, englishActions) = measure("en")
+        val (greekTop, greekLeft, greekActions) = measure("el")
+        assertEquals(englishTop, greekTop)
+        assertTrue(greekLeft < englishLeft, "the Greek label did not resolve: $greekLeft, $englishLeft")
+        // The title still has room to be read, and the button's whole width is inside the window and pressable.
+        assertTrue(greekLeft > width / 2, "$greekLeft")
+        assertEquals(1, englishActions.size, "$englishActions")
+        assertEquals(1, greekActions.size, "$greekActions")
+    }
+
     @Test
     fun `only as many cards as lines allow are drawn, and more lines draw more`() {
         val columns = HomeScreenDesktopDefaults.columns((WIDTH - 48).dp, landscape = false)
@@ -248,7 +292,7 @@ class HomeScreenTest {
     fun `home and search are the top level, and a title returns to where it was opened from`() {
         val escape = EscapeHandler()
         var at = ""
-        val scene = scene { DesktopApp(escape, FakeHome(), onScreen = { at = it }) }
+        val scene = scene { DesktopApp(escape, FakeHome(), library = InMemoryLibraryStore(), onScreen = { at = it }) }
         fun waitForCards() {
             repeat(WAIT_ROUNDS) {
                 scene.settle()
@@ -305,6 +349,9 @@ class HomeScreenTest {
         const val TOOLBAR_Y = 34f
         const val PICKER_X = 100f
         const val ROW_HEADER_Y = 86f
+        /** Inside a row button's horizontal padding, and above its label's line box. */
+        const val BUTTON_INSET = 28
+        const val BUTTON_FILL_Y = 72
         const val CARD_X = 60f
         /** Far enough along the first card to clear the row title above it. */
         const val PAST_ROW_TITLE = 80

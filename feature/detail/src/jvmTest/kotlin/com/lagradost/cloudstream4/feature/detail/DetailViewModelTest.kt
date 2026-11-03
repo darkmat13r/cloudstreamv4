@@ -1,12 +1,18 @@
 package com.lagradost.cloudstream4.feature.detail
 
 import kotlin.test.Test
+import kotlin.coroutines.cancellation.CancellationException
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertIs
 import kotlin.test.assertNull
+import kotlin.test.assertTrue
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.launch
@@ -21,9 +27,27 @@ class DetailViewModelTest {
     private class FakeSource(
         var detail: suspend () -> TitleDetail,
         var links: suspend () -> List<StreamLink> = { emptyList() },
+        var stream: (() -> Flow<List<StreamLink>>)? = null,
     ) : DetailSource {
         override suspend fun details(id: String) = detail()
-        override suspend fun links(id: String, data: String) = links()
+        override fun links(id: String, data: String): Flow<List<StreamLink>> =
+            stream?.invoke() ?: flow { links().takeIf { it.isNotEmpty() }?.let { emit(it) } }
+    }
+
+    /** Streams one value per [send], for as long as it stays open. */
+    private class Arriving {
+        val updates = Channel<List<StreamLink>>(Channel.UNLIMITED)
+        var cancelled = false
+        val flow: Flow<List<StreamLink>> = flow {
+            try {
+                for (list in updates) emit(list)
+            } catch (gone: CancellationException) {
+                cancelled = true
+                throw gone
+            }
+        }
+
+        fun send(vararg links: StreamLink) = updates.trySend(links.toList())
     }
 
     private fun TestScope.model(source: DetailSource) =
@@ -100,6 +124,103 @@ class DetailViewModelTest {
         vm.onAction(DetailAction.PlayRequested("episode 2"))
         slow.complete(listOf(link))
         assertEquals(DetailLoad.Loaded(listOf(newer)), vm.state.value.links)
+    }
+
+    private val second = link.copy(label = "second", url = "https://a/c")
+
+    @Test
+    fun `the first link shows at once, and the list grows until the source has finished`() = runTest {
+        val arriving = Arriving()
+        val vm = model(FakeSource({ movie }, stream = { arriving.flow }))
+        vm.onAction(DetailAction.PlayRequested("data"))
+        assertEquals(DetailLoad.Loading, vm.state.value.links)
+        assertTrue(vm.state.value.linksArriving)
+
+        arriving.send(link)
+        assertEquals(DetailLoad.Loaded(listOf(link)), vm.state.value.links)
+        assertTrue(vm.state.value.linksArriving, "the first link is not the last")
+
+        arriving.send(link, second)
+        assertEquals(DetailLoad.Loaded(listOf(link, second)), vm.state.value.links)
+        assertTrue(vm.state.value.linksArriving)
+
+        arriving.updates.close()
+        assertEquals(DetailLoad.Loaded(listOf(link, second)), vm.state.value.links)
+        assertFalse(vm.state.value.linksArriving)
+    }
+
+    @Test
+    fun `a source failing keeps the links it already gave`() = runTest {
+        val arriving = Arriving()
+        val vm = model(FakeSource({ movie }, stream = { arriving.flow }))
+        vm.onAction(DetailAction.PlayRequested("data"))
+        arriving.send(link)
+        arriving.updates.close(java.io.IOException("the plugin host exited"))
+        assertEquals(DetailLoad.Loaded(listOf(link)), vm.state.value.links)
+        assertFalse(vm.state.value.linksArriving)
+    }
+
+    @Test
+    fun `a source failing with nothing is still the failure`() = runTest {
+        val arriving = Arriving()
+        val vm = model(FakeSource({ movie }, stream = { arriving.flow }))
+        vm.onAction(DetailAction.PlayRequested("data"))
+        arriving.updates.close(java.io.IOException("CineStream did not answer within 90000ms"))
+        assertEquals("CineStream did not answer within 90000ms", assertIs<DetailLoad.Failed>(vm.state.value.links).detail)
+        assertFalse(vm.state.value.linksArriving)
+    }
+
+    @Test
+    fun `finishing with nothing is empty, and only then`() = runTest {
+        val arriving = Arriving()
+        val vm = model(FakeSource({ movie }, stream = { arriving.flow }))
+        vm.onAction(DetailAction.PlayRequested("data"))
+        assertEquals(DetailLoad.Loading, vm.state.value.links)
+        arriving.updates.close()
+        assertEquals(DetailLoad.Empty, vm.state.value.links)
+        assertFalse(vm.state.value.linksArriving)
+    }
+
+    @Test
+    fun `picking a link leaves the search running, so what it finds is there to come back to`() = runTest {
+        val arriving = Arriving()
+        val vm = model(FakeSource({ movie }, stream = { arriving.flow }))
+        vm.onAction(DetailAction.PlayRequested("data"))
+        arriving.send(link)
+
+        vm.onAction(DetailAction.LinkActivated(link))
+        assertFalse(arriving.cancelled, "the source was left alone")
+        assertTrue(vm.state.value.linksArriving)
+
+        arriving.send(link, second)
+        assertEquals(DetailLoad.Loaded(listOf(link, second)), vm.state.value.links)
+    }
+
+    @Test
+    fun `dismissing stops the search`() = runTest {
+        val arriving = Arriving()
+        val vm = model(FakeSource({ movie }, stream = { arriving.flow }))
+        vm.onAction(DetailAction.PlayRequested("data"))
+        arriving.send(link)
+
+        vm.onAction(DetailAction.LinksDismissed)
+        assertTrue(arriving.cancelled, "the source was told")
+        assertNull(vm.state.value.links)
+        assertFalse(vm.state.value.linksArriving)
+    }
+
+    @Test
+    fun `asking again starts from nothing and stops the last search`() = runTest {
+        val first = Arriving()
+        val again = Arriving()
+        val answers = ArrayDeque(listOf(first, again))
+        val vm = model(FakeSource({ movie }, stream = { answers.removeFirst().flow }))
+        vm.onAction(DetailAction.PlayRequested("episode 1"))
+        first.send(link)
+        vm.onAction(DetailAction.PlayRequested("episode 2"))
+        assertTrue(first.cancelled)
+        assertEquals(DetailLoad.Loading, vm.state.value.links)
+        assertTrue(vm.state.value.linksArriving)
     }
 
     @Test
