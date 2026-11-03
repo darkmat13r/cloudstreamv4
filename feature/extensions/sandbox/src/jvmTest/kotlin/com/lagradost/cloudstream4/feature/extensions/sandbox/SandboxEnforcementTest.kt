@@ -13,7 +13,11 @@ import kotlin.test.assertFailsWith
 import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.withContext
 
 /**
  * What the sandbox stops, measured against a real child process under a real Seatbelt policy.
@@ -124,6 +128,41 @@ class SandboxEnforcementTest {
     @Test
     fun `garbage on the real stdout ends that host and only that host`() = running { host ->
         assertFailsWith<Exception> { host.attempt("corrupt:") }
+        assertFailsWith<Exception> { host.attempt("print:") }
+    }
+
+    /**
+     * Here the call's 60 s runs on virtual time, and everything that has to wait for the child, its
+     * startup included, runs on real time. PluginHostClientTest holds the rest of this behaviour.
+     */
+    private fun runningOnVirtualTime(block: suspend (PluginHostClient) -> Unit) = runTest {
+        val launcher = HostLauncher.forThisProcess() ?: return@runTest
+        val (client, providers) = withContext(Dispatchers.IO) { PluginHostClient.start(launcher, jar, data, "hostile") }
+        host = client
+        providers.getOrElse { throw AssertionError("host: ${client.hostOutput}", it) }
+        block(client)
+    }
+
+    private suspend fun realTimePause() = withContext(Dispatchers.Default) { delay(REPLY_SETTLE_MILLIS) }
+
+    private suspend fun PluginHostClient.realTimeAttempt(action: String): String =
+        withContext(Dispatchers.Default) { attempt(action) }
+
+    @Test
+    fun `a real plugin answering after the timeout keeps its host`() = runningOnVirtualTime { host ->
+        val release = File(data, "release")
+        val slow = assertFailsWith<java.io.IOException> { host.attempt("hold:${release.path}") }
+        assertTrue("did not answer" in slow.message.orEmpty(), slow.message)
+
+        release.writeText("")
+        realTimePause()
+
+        assertEquals("printed", host.realTimeAttempt("print:"))
+    }
+
+    @Test
+    fun `a real plugin forging a reply to an id never issued ends its host`() = running { host ->
+        assertFailsWith<Exception> { host.attempt("forge:$NEVER_ISSUED_ID") }
         assertFailsWith<Exception> { host.attempt("print:") }
     }
 
@@ -307,6 +346,8 @@ class SandboxEnforcementTest {
 
     private companion object {
         const val HOSTILE_SECTION = 0
+        const val NEVER_ISSUED_ID = 1_000_000
+        const val REPLY_SETTLE_MILLIS = 1_000L
     }
 
     private fun writeJar(target: File, vararg classes: Class<*>) {

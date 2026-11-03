@@ -18,6 +18,7 @@ import java.io.FileDescriptor
 import java.io.FileOutputStream
 import java.net.InetSocketAddress
 import java.net.Socket
+import java.nio.ByteBuffer
 
 /**
  * A plugin that tries to do what a malicious one would, and reports what happened.
@@ -90,6 +91,15 @@ class HostileApi : MainAPI() {
                     FileOutputStream(FileDescriptor.out).write(ByteArray(GARBAGE_BYTES) { -1 })
                     "corrupted"
                 }
+                "hold" -> {
+                    while (!File(argument).exists()) Thread.sleep(HOLD_POLL_MILLIS)
+                    "held"
+                }
+                "forge" -> {
+                    val frame = ByteBuffer.allocate(2 * Int.SIZE_BYTES).putInt(Int.SIZE_BYTES).putInt(argument.toInt())
+                    FileOutputStream(FileDescriptor.out).write(frame.array())
+                    "forged"
+                }
                 "hostile-text" -> "evil\u001B[2J\nforged line"
                 else -> "unknown"
             }
@@ -105,6 +115,7 @@ class HostileApi : MainAPI() {
     private companion object {
         const val CONNECT_TIMEOUT_MILLIS = 3_000
         const val GARBAGE_BYTES = 64
+        const val HOLD_POLL_MILLIS = 10L
         /** Cutting only one of rows or items still leaves about 15 MB, past the 8 MB frame limit. */
         const val HUGE_COUNT = 1000
     }
