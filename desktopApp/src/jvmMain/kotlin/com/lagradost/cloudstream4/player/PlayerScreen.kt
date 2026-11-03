@@ -190,7 +190,6 @@ internal fun PlayerContent(
                     return@onPreviewKeyEvent when (event.key) {
                         Key.DirectionUp -> focusManager.moveFocus(FocusDirection.Up)
                         Key.DirectionDown -> focusManager.moveFocus(FocusDirection.Down)
-                        Key.DirectionLeft, Key.DirectionRight -> true
                         Key.C -> {
                             pickerOpen = false
                             true

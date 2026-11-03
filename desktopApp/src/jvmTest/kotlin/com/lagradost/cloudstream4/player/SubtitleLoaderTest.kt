@@ -304,11 +304,12 @@ class SubtitleLoaderTest {
 
     @Test
     fun `not utf8 falls to what the server declared, then to the track's language`() {
-        val latin = (timing + "é").toByteArray(Charsets.ISO_8859_1)
-        assertEquals("é", cueText(latin, Charsets.ISO_8859_1, "ar"))
-        assertEquals("é", cueText(latin, null, null))
         val cyrillic = (timing + "привет").toByteArray(Charset.forName("windows-1251"))
+        // A language that would read these bytes as something else, so only the declaration can get it right.
+        assertEquals("привет", cueText(cyrillic, Charset.forName("windows-1251"), "en"))
         assertEquals("привет", cueText(cyrillic, null, "ru"))
+        val latin = (timing + "é").toByteArray(Charsets.ISO_8859_1)
+        assertEquals("é", cueText(latin, null, null))
     }
 
     @Test
