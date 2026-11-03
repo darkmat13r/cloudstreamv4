@@ -17,8 +17,15 @@ What is actually outstanding, with the evidence behind each item. One file per t
 not renumbered. PR descriptions and commit messages reference these IDs, so reusing a number
 silently rewrites history that is already published.
 
-**Status** is one of (and a `done` entry should name its PR number, not say "in pr" — four entries
-had gone stale that way by 2026-10-15):
+**Status** is one of (and a `done` entry should name its PR number, not say "in pr"):
+
+> **This drifts every time, and it is structural rather than careless.** Four entries had gone stale
+> this way by 2026-10-15, fifteen by 2026-11-03 (#105), and five more within hours of that (#116:
+> `BUG-17`, `BUG-18`, `BUG-22`, `BUG-23`, `BUG-24`). The cause is that the PR implementing a task
+> writes `in pr` **in that same PR**, and merging it cannot change its own text — so every entry is
+> born stale and only a later PR can correct it. Either write `done · #N` once the PR number exists
+> and before merging, or accept that someone has to sweep. Nothing mechanical checks it.
+
 
 | Status | Meaning |
 |---|---|

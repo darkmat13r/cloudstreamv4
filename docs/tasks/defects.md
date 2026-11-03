@@ -712,7 +712,7 @@ gets there first: the old order fails 6 of 6 runs, this one 0 of 10.
 
 ## BUG-17 — opening the player could cost another running copy its stream, while that stream was starting · **low**
 
-**Status:** in pr · found 2026-11-03 by reading, then run · `VlcPlayer.kt`
+**Status:** done · #106 · found 2026-11-03 by reading, then run · `VlcPlayer.kt`
 
 `createOrNull` deleted everything in `~/.cloudstream4/.media-host`, on the assumption of one stream at a time. Copies of the app
 sharing a home break that assumption: a second window from `open -n`, another build, or a `--check-*` run.
@@ -891,7 +891,7 @@ Renders looked at, 1280x800: waiting, first link, growing, overflowing, finished
 
 ## BUG-18 — CineStream did not load, and neither did anything else whose stack maps named `java/util/Object` · **high**
 
-**Status:** in pr · found 2026-11-03 by running the owner's plugin · `DexConverter.kt`, `StackMapFrames.kt`, shims in `syncproviders/`
+**Status:** done · #110 · found 2026-11-03 by running the owner's plugin · `DexConverter.kt`, `StackMapFrames.kt`, shims in `syncproviders/`
 
 CineStream 487 (`sha256 30dc6436…`), Allowed in a fresh home and nothing else seeded, printed `not loaded: NoClassDefFoundError: java/util/Object`, `0 of 1 running, 0 providers`. The owner mostly uses its CineTmdb source. There were two causes, and the second was behind the first.
 
@@ -1078,7 +1078,7 @@ Rendered at 1280x800 through `DetailScreenDesktop` (`-Pcloudstream.home.renders=
 
 ## BUG-22 — a link picked early never got its subtitles · **medium**
 
-**Status:** in pr · found 2026-11-03 while building `BUG-19` · `DetailViewModel.kt`, `SubtitleSession.kt`, `SubtitlePreference.kt`, `PlayerScreen.kt`, `DesktopDetailViewModels.kt`
+**Status:** done · #113 · found 2026-11-03 while building `BUG-19` · `DetailViewModel.kt`, `SubtitleSession.kt`, `SubtitlePreference.kt`, `PlayerScreen.kt`, `DesktopDetailViewModels.kt`
 
 `BUG-19` made a link pickable as soon as it arrives, and picking one stopped the search. Subtitles arrive later than links, so the earlier the pick, the fewer the tracks. Measured with CineStream on "inception", through `--check-extensions --verbose`: the first link at 485 ms with **0** subtitles, the first subtitle at 2,693 ms, and 175 by 64 s. Someone clicking the first row got a player with an empty list.
 
@@ -1116,7 +1116,7 @@ The first attempt at this check said `cue-on-screen=true` over a grey frame with
 
 ## BUG-23 — search stuck on its loading cards for good · **high**
 
-**Status:** in pr · found 2026-11-03 by the owner, whose screenshot shows `other mo` over loading cards with `Sources 5 / 5` · `Viewmodel.kt` (`DebounceQuery`)
+**Status:** done · #114 · found 2026-11-03 by the owner, whose screenshot shows `other mo` over loading cards with `Sources 5 / 5` · `Viewmodel.kt` (`DebounceQuery`)
 
 `onQueryChanged` sets `SearchStatus.Loading` and hands the text to `DebounceQuery`, which ended in `distinctUntilChanged`. A settled query equal to the previous one was dropped, so no search ran and nothing ever replaced `Loading`. Return was the only way out.
 
@@ -1136,7 +1136,7 @@ The plugins were not at fault: each answered `other mo` in under 900 ms. `Search
 
 ## BUG-24 — three more defects in the shared search state machine, split out of #91 · **medium**
 
-**Status:** in pr · found 2026-11-02 while switching Android TV to `SearchScreenTv` (`KMP-12` step 4) ·
+**Status:** done · #115 · found 2026-11-02 while switching Android TV to `SearchScreenTv` (`KMP-12` step 4) ·
 `SearchViewModel.kt`, `SearchHistory.kt`, `SearchMvi.kt`, `Main.kt`
 
 `SearchViewModel` is shared: the desktop search screen runs it now, and `KMP-12` points Android TV at
