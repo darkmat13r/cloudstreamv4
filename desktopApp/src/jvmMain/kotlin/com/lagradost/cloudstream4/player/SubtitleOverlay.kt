@@ -55,7 +55,7 @@ import kotlin.math.roundToInt
  *
  * Laid out left to right whatever the app's language: a cue's numbers describe the picture, not the UI.
  *
- * @param pictureSize the frame's size, or null before one has arrived.
+ * @param pictureSize the shape the frame is drawn in, or null before one has arrived.
  * @param topInset,bottomInset what the HUD covers now. Cues keep clear of it, so they lift as it appears.
  */
 @Composable
