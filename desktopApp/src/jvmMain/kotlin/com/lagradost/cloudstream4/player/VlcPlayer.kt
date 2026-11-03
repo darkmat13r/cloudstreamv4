@@ -25,6 +25,13 @@ import org.jetbrains.skia.ColorType
 import org.jetbrains.skia.ImageInfo
 import org.jetbrains.skia.impl.BufferUtil
 
+/** What the player's controls do. A seam, so the screen can be driven without a media host. */
+interface PlayerControls {
+    fun togglePause()
+    fun seekBy(deltaMillis: Long)
+    fun seekTo(fraction: Float)
+}
+
 /** What the HUD draws. [failed] means libVLC gave up on this stream, or its host died. */
 data class PlayerStatus(
     val playing: Boolean = false,
@@ -50,7 +57,7 @@ data class PlayerStatus(
 class VlcPlayer private constructor(
     private val process: Process,
     private val directory: File,
-) {
+) : PlayerControls {
     private val commands = DataOutputStream(process.outputStream.buffered())
     private val _frame = MutableStateFlow<ImageBitmap?>(null)
     private val _status = MutableStateFlow(PlayerStatus())
@@ -129,23 +136,30 @@ class VlcPlayer private constructor(
         }
     }
 
-    fun togglePause() {
+    override fun togglePause() {
         send { writeByte(MediaProtocol.OP_TOGGLE_PAUSE.toInt()) }
     }
 
-    fun seekBy(deltaMillis: Long) {
+    override fun seekBy(deltaMillis: Long) {
         send {
             writeByte(MediaProtocol.OP_SEEK_BY.toInt())
             writeLong(deltaMillis)
         }
     }
 
-    fun seekTo(fraction: Float) {
+    override fun seekTo(fraction: Float) {
         send {
             writeByte(MediaProtocol.OP_SEEK_TO.toInt())
             writeFloat(fraction.coerceIn(0f, 1f))
         }
     }
+
+    /**
+     * Copies [file] where the host may read it, and returns the URL to play it by. For a check: the host
+     * can read nothing outside its own directory, and it cannot reach this machine over HTTP either.
+     */
+    internal fun stage(file: File): String =
+        file.copyTo(File(directory, file.name), overwrite = true).toPath().toUri().toString()
 
     /** Ends the host, so the audio stops now. Waits for it, so call it off the UI thread. */
     fun release() {
@@ -162,15 +176,19 @@ class VlcPlayer private constructor(
         /** Where vlcj looks on macOS. Also the only place the sandbox policy lets the host read it. */
         private val VLC_APP = File("/Applications/VLC.app")
 
-        /** Null when VLC is not installed, or this OS has no sandbox. There is no unsandboxed fallback. */
-        fun createOrNull(): VlcPlayer? {
+        /**
+         * Null when VLC is not installed, or this OS has no sandbox. There is no unsandboxed fallback.
+         *
+         * @param silent for a check run where nobody is listening. See [HostLauncher.startMediaHost].
+         */
+        fun createOrNull(silent: Boolean = false): VlcPlayer? {
             val launcher = HostLauncher.forMediaHost(MediaHost.ARGUMENT, MEDIA_HOST_MAIN) ?: return null
             if (!File(VLC_APP, "Contents/MacOS/lib/libvlc.dylib").isFile) return null
             val base = File(System.getProperty("user.home"), ".cloudstream4/.media-host").apply { mkdirs() }
             // One stream at a time, so anything here was left by a crash, or is a host on its way out.
             base.listFiles()?.forEach { deleteHostDirectory(it.toPath()) }
             val directory = Files.createTempDirectory(base.toPath(), "host").toFile().canonicalFile
-            return runCatching { VlcPlayer(launcher.startMediaHost(VLC_APP, directory), directory) }.getOrNull()
+            return runCatching { VlcPlayer(launcher.startMediaHost(VLC_APP, directory, silent), directory) }.getOrNull()
         }
 
         private const val MEDIA_HOST_MAIN = "com.lagradost.cloudstream4.player.MediaHostMainKt"

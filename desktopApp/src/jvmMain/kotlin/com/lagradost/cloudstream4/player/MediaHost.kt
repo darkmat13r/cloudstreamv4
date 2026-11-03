@@ -1,5 +1,6 @@
 package com.lagradost.cloudstream4.player
 
+import com.lagradost.cloudstream4.feature.extensions.sandbox.HostLauncher
 import com.lagradost.cloudstream4.player.MediaProtocol.readText
 import java.io.DataInputStream
 import java.io.DataOutputStream
@@ -50,7 +51,8 @@ internal object MediaHost {
         val input = DataInputStream(System.`in`.buffered())
         if (!NativeDiscovery().discover()) exitProcess(EXIT_NO_VLC)
 
-        val factory = MediaPlayerFactory(*OPTIONS)
+        val silent = System.getProperty(HostLauncher.SILENT_PROPERTY) == "true"
+        val factory = MediaPlayerFactory(*OPTIONS, *(if (silent) arrayOf(NO_AUDIO) else emptyArray()))
         val player = factory.mediaPlayers().newEmbeddedMediaPlayer()
         val output = FrameWriter(stdout)
         player.videoSurface().set(surface(output))
@@ -115,6 +117,7 @@ internal object MediaHost {
     )
 
     private const val EXIT_NO_VLC = 3
+    private const val NO_AUDIO = "--no-audio"
 }
 
 /** The one writer of stdout. A full pipe blocks libVLC's video thread, which is the backpressure. */
