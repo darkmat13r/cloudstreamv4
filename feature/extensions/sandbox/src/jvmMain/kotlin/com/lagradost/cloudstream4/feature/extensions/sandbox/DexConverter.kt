@@ -39,10 +39,11 @@ internal object DexConverter {
             // `runCatching` throws `NoSuchMethodError` the first time it runs. 30 of 53 sampled jars.
             .dontSanitizeNames(true)
             // A dex of format 037 or later becomes class version 52, which the JVM refuses to verify
-            // without stack maps. Computed from the dex's own hierarchy, so no class is ever loaded.
-            .computeFrames(true)
+            // without stack maps. Not dex2jar's: `StackMapFrames` says why, and writes them next.
+            .computeFrames(false)
             .to(output.toPath())
         check(output.isFile && output.length() > 0) { "dex2jar produced no output" }
+        StackMapFrames.rewrite(output)
     }
 
     /** Reads at most [limit] bytes, because a zip entry's declared size is attacker-supplied. */

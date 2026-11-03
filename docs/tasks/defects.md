@@ -889,6 +889,100 @@ Renders looked at, 1280x800: waiting, first link, growing, overflowing, finished
 - **Search, load and home:** a caller cancelled while waiting still stays in `pending` with no bound (`BUG-14`). Links calls no longer do.
 - **Plugin `search` still gets 60 s,** so one slow search is still lost whole. The same idea does not apply as directly, because a search has one answer.
 
+## BUG-18 — CineStream did not load, and neither did anything else whose stack maps named `java/util/Object` · **high**
+
+**Status:** in pr · found 2026-11-03 by running the owner's plugin · `DexConverter.kt`, `StackMapFrames.kt`, shims in `syncproviders/`
+
+CineStream 487 (`sha256 30dc6436…`), Allowed in a fresh home and nothing else seeded, printed `not loaded: NoClassDefFoundError: java/util/Object`, `0 of 1 running, 0 providers`. The owner mostly uses its CineTmdb source. There were two causes, and the second was behind the first.
+
+**1. dex2jar writes a class that does not exist into stack maps.** Read from the 2.4.38 bytecode (`Dex2jar$1$1.getCommonSuperClass`): it walks both types up through the dex's own classes, then hands whatever it reached to ASM, which uses `Class.forName`. It catches any `Throwable` from that and returns the literal `java/util/Object`. So the literal appears when a chain ends at a class in neither the dex nor this classpath, such as `:app`'s `PluginData`. The comment in `DexConverter` saying no class is ever loaded was wrong: host classes were being loaded, uninitialised.
+
+It is the type of a slot nobody reads any more, which is why it looks harmless and is not. dex2jar casts a value still in use to the type it is used as, so a join of two types only survives in a dead slot. The verifier still has to check the frame, loads `java/util/Object`, and fails the class.
+
+The same walk never compares the second type itself. `ConversionFixtureChild` joined with its parent came out `java/lang/Object` in one order and the parent in the other, measured on the old converter's output.
+
+**The fix.** dex2jar no longer computes frames (`computeFrames(false)`). `StackMapFrames` rewrites the jar afterwards with ASM's `COMPUTE_FRAMES` and a `getCommonSuperClass` of our own: the plugin's classes from the jar, everything else from `.class` files read as data, host first because a host loads parent-first. A class it cannot find ends its chain, and the answer falls back to `java/lang/Object`. Nothing is loaded, so the comment is now true. No verification was turned off, no flag was changed, and `SeatbeltProfile` has no diff. ASM was already on this classpath through `dex-translator`'s API, so there is no dependency change.
+
+**2. The plugin's own `load()` needed classes only `:app` has.** With the frames fixed, the failure moved to `NoClassDefFoundError: com/lagradost/cloudstream3/syncproviders/SyncRepo`. `CineStream.load` does `registerMainAPI(CineStreamProvider())`, then `registerMainAPI(CineSimklProvider())`, then CineTmdb and the extractors, and `CineSimklProvider` has a field `SyncRepo(AccountManager.simklApi)`. It throws in the plugin's own constructor call, before `registerMainAPI`, so isolating `registerMainAPI` could not have saved CineTmdb. `JvmExtensionRuntime` treating a failed load as total is unchanged.
+
+The shims are `AccountManager`, `SyncAPI` and its two nested classes, `SyncRepo`, `AuthUser`, `SimklApi` and `UiText`. Nobody is signed in: `authUser()` is null and `library()` is an empty success. They hold no token, reach no network or file, and are in the `SHIMS` list that test checks. On that answer CineSimkl's "Personal" rows say `Login required for personal content.`, from the plugin's code as read in its decompiled source, and no such row was exercised here.
+
+**Stale conversions.** A converted jar is named `<sha>-<revision>.jar`, so `CONVERTER_REVISION` went from `-c2` to `-c3`. A home holding the bad `-c2` jar was run on the fixed app: it converted again, wrote `-c3`, and loaded 3 providers. The decision is bound to the `.cs3`'s hash, so the owner's Allow carries over.
+
+### Measured, packaged app, fresh home, sandboxed, no settings seeded
+
+`--check-extensions` on CineStream, `3 of 3 providers returned results`, exit 0, for both queries. Before the fix: 0 providers.
+
+| Query | Provider | Search | Opened | Links | Subtitles | Home |
+|---|---|---|---|---|---|---|
+| `nasa` | CineTmdb | 12 | "Our Little Clinic" (series, 112 episodes) | 1 | 22 | 1 row, 20 titles |
+| `nasa` | CineStream | 41 | "Incendies" (movie) | 27 | 88 | 1 row, 50 titles |
+| `nasa` | CineSimkl | 21 | "NASA & SpaceX: Journey to the Future" (movie) | 14 | 2 | 1 row, 200 titles |
+| `breaking bad` | CineTmdb | 15 | "Breaking Bad" (series, 62 episodes) | 47 | 94 | 1 row, 20 titles |
+| `breaking bad` | CineStream | 16 | "El Camino" (movie) | 22 | 31 | 1 row, 50 titles |
+| `breaking bad` | CineSimkl | 14 | "Untold Raygun: Breaking Badly" (movie) | 9 | 35 | 1 row, 200 titles |
+
+**The real verifier, not a report.** Every class in a jar was linked with `getDeclaredMethods`, which verifies and does not initialise, so no plugin code ran, under `sandbox-exec` with no network and no writes, and the result read from HotSpot's own `-Xlog:class+init` lines.
+
+| | Classes | Passed | Failed verification | Superclass missing | Failures naming `java/util/Object` | `VerifyError` |
+|---|---|---|---|---|---|---|
+| CineStream, before | 877 | 872 | 3 | 2 | 2 | 0 |
+| CineStream, after | 877 | 874 | 1 | 2 | 0 | 0 |
+| The sample's 53 jars, before | 3347 | 3316 | 17 | 14 | 24 log lines | 0 |
+| The sample's 53 jars, after | 3347 | 3339 | 1 | 7 | 0 | 0 |
+
+CineStream's "before" row was taken before the shims too. What does not link in CineStream now is 8 classes, all under `com.megix.settings`, for missing `android` classes such as `ClipboardManager`, `Bitmap`, and `View$OnApplyWindowInsetsListener`. Desktop never opens that screen. They were not shimmed, because loading does not need them.
+
+**The 9 sample jars holding the string,** before and after:
+
+| Plugin | Before | After |
+|---|---|---|
+| NextGenTV | `java/util/Object` | **Runs**, 1 provider, home 42 rows; 0 results for `nasa` |
+| MegaProvider | `java/util/Object` | **Loads, registers 0 providers**, no error |
+| ViStream | `java/util/Object` | Still not loaded: `androidx/preference/PreferenceManager` |
+| BingeCloud | `java/util/Object` | Still not loaded: `NoSuchFieldError: MANUFACTURER` |
+| Otakutsu | Runs, 1 provider | Same. The bad class is one it never reached |
+| Eclipsia, EclipsiaAnime, Aniyomi, Fshare | Blocked by the scan | Same, as they should be |
+
+So 4 of 9 failed on this defect and none does now; 2 of those 4 load, and **ViStream does not**: it reaches its next missing class on the first line of its `load`. Running or loaded went from 1 of 9 to 3 of 9.
+
+**Nothing else moved.** The other 45 `.cs3` files of the `KMP-18` reviewed set (54 files, of which one never converts, so 53 jars) and the official 5, each as `.jar` and as `.cs3`, were each run in their own home on both builds. Same running count, providers, outcome and results or links for every file: 43 of 45 running, 50 providers, and all 10 official runs with the same counts (8 with results, 6 with links). Those counts are on a network, once each, so they say nothing moved and not that each plugin works.
+
+### Tests
+
+`DexConversionTest` runs a real dex through the real converter and sandbox into a real host. The fixture's `ConversionFixtureMissing` joins a class on no classpath with a host class. On the old converter it fails in a real host with `NoClassDefFoundError: java/util/Object`, the same words as the plugin. `ClassHierarchyTest` holds the cases no fixture reaches. The first attempt at this fixture passed on the old code, because a live join is cast away and the literal needs a class on no classpath: running it reverted is what found that.
+
+Each mutation alone, 348 tests across `:feature:extensions:sandbox` and `:desktopApp`:
+
+| Mutation | Failed |
+|---|---|
+| The old converter: dex2jar's frames, no rewrite | 3 |
+| No rewrite, and no frames at all | 6 |
+| The host's classes not consulted | 1 |
+| The second type not compared, as dex2jar's walk | 3 |
+| Fallback named `java/util/Object` | 4 |
+| Plugin classes asked before the host's | 1 |
+| Always `java/lang/Object` | 7 |
+| Sync shims removed | 2 |
+| Revision left at `-c2` | 1 (`a jar from the last converter is not used…`) |
+
+The cycle guard in `ClassHierarchy.chain` was not mutated, because without it the test hangs rather than fails.
+
+### Not verified
+
+- **That any link plays.** Links were counted, not played: `--check-playback` was not run. A live window was not driven, so the Allow screen and the 37 warnings are as reported by the scan, not seen.
+- **That exact superclasses are needed.** Always answering `java/lang/Object` also verified the same on CineStream, 874 of 877 with the same 8 not linking. The lookup is the correct answer in general and no real jar here was measured to depend on it.
+- **CineSimkl's signed-in rows.** There is no account in a host, so they cannot appear. What happens beyond the login message was read, not run.
+- **Windows and Linux.** Nothing loads there, with no sandbox.
+
+### Found and left
+
+- ViStream needs `androidx/preference/PreferenceManager` and BingeCloud `android.os.Build.MANUFACTURER`. Each is its own shim decision.
+- MegaProvider loads and registers nothing. Why was not looked at.
+- `AnimeONProvider` fails conversion with `OutOfMemoryError: Java heap space` (the process has `-Xmx512m`) and `DieGonRepo_Huhu` fails to load with a `ClassCastException`, the same on both builds.
+- A superseded `<sha>-c2.jar` stays in `.store`: nothing deletes a jar from an older revision, here 1.7 MB.
+- `JvmExtensionRuntime` still treats a throw from a plugin's `load()` as total, so the next plugin with one missing class in one provider's constructor loses all its providers, as CineStream did.
+
 ## BUG-20 — the iOS test gate cannot compile `:feature:home`'s tests · **measured 2026-11-03**
 
 **Status:** done · #108 · found while adding `:feature:library`'s own iOS tests (`KMP-26`) · `:feature:home`
