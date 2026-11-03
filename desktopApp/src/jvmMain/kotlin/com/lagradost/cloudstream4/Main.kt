@@ -28,6 +28,9 @@ import com.lagradost.cloudstream4.core.designsystem.desktop.forDesktop
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
 import com.lagradost.cloudstream4.detail.DesktopDetailViewModels
+import com.lagradost.cloudstream4.extensions.ExtensionApprovals
+import com.lagradost.cloudstream4.extensions.ExtensionReviewScreen
+import com.lagradost.cloudstream4.extensions.ExtensionsNotice
 import com.lagradost.cloudstream4.extensions.SandboxedExtensions
 import com.lagradost.cloudstream4.extensions.runExtensionCheck
 import com.lagradost.cloudstream4.extensions.runExtensionScan
@@ -45,6 +48,7 @@ import com.lagradost.cloudstream4.feature.search.desktop.SearchScreenDesktop
 import com.lagradost.cloudstream4.home.DesktopHomeSource
 import com.lagradost.cloudstream4.home.HomeHost
 import com.lagradost.cloudstream4.home.TopLevelScreen
+import com.lagradost.cloudstream4.home.TopLevelTab
 import com.lagradost.cloudstream4.player.MediaHost
 import com.lagradost.cloudstream4.player.PlayerScreen
 import com.lagradost.cloudstream4.player.PlayerUnavailable
@@ -94,6 +98,11 @@ import kotlin.system.exitProcess
  * (`SearchViewModel.kt:72-75`), so an extension that loads after the ViewModel exists would leave
  * the chrome row reading `0 / 0` until something else refreshed it. Loading first costs a directory
  * scan on an empty directory in the normal case; the trade is named in the bootstrap's KDoc.
+ *
+ * ## An extension with warnings waits to be asked (`KMP-24`)
+ *
+ * [SandboxedExtensions] holds it back until its exact file has been allowed, and [ExtensionApprovals] carries the
+ * answer. A choice takes effect at once, and the two ViewModels that read the provider list once are rebuilt then.
  */
 fun main(args: Array<String>) {
     // First, before any window or toolkit class: a packaged app starts its plugin hosts by running
@@ -118,8 +127,10 @@ fun main(args: Array<String>) {
 
     // The report is printed, not logged: desktop has no logging, so the host is where the words go.
     val extensions = SandboxedExtensions()
-    runBlocking { extensions.loadInstalled() }.lines().forEach(::println)
+    val report = runBlocking { extensions.loadInstalled() }
+    report.lines().forEach(::println)
     Runtime.getRuntime().addShutdownHook(Thread { extensions.close() })
+    val approvals = ExtensionApprovals(extensions, report, CoroutineScope(SupervisorJob() + Dispatchers.Default))
 
     application {
         val escape = remember { EscapeHandler() }
@@ -138,7 +149,7 @@ fun main(args: Array<String>) {
             CloudStreamTheme {
                 CompositionLocalProvider(LocalCloudStreamTypography provides CloudStreamTheme.typography.forDesktop()) {
                     Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) {
-                        DesktopApp(escape)
+                        DesktopApp(escape, approvals = approvals)
                     }
                 }
             }
@@ -150,6 +161,7 @@ fun main(args: Array<String>) {
 private sealed interface Screen {
     data object Home : Screen
     data object Search : Screen
+    data object Extensions : Screen
     data class Detail(val id: String) : Screen
     data class Player(val title: String, val link: StreamLink) : Screen
 }
@@ -164,18 +176,33 @@ private sealed interface Screen {
  * kotlinx-coroutines-swing is on the classpath. The host owns a scope instead and cancels it with the
  * composition, which is what each ViewModel's `scope` parameter is for.
  *
+ * @param approvals what the scan held back and what was chosen about it. Null where nothing was loaded.
  * @param onScreen told where the window is, for a test to read.
  */
 @Composable
 internal fun DesktopApp(
     escape: EscapeHandler,
     home: HomeSource = remember { DesktopHomeSource() },
+    approvals: ExtensionApprovals? = null,
     onScreen: (String) -> Unit = {},
 ) {
     val scope = remember { CoroutineScope(SupervisorJob() + Dispatchers.Default) }
     DisposableEffect(scope) { onDispose { scope.cancel() } }
     val stack = remember { mutableStateListOf<Screen>(Screen.Home) }
-    val homeViewModel = remember { HomeViewModel(home, scope) }
+    val review = approvals?.state?.collectAsState()?.value
+    // Allowing or stopping an extension changes what is installed, and both ViewModels read that once when made.
+    val providerChanges = review?.providerChanges ?: 0
+    val homeViewModel = remember(providerChanges) {
+        if (providerChanges > 0) DesktopSearchViewModels.live = null
+        HomeViewModel(home, scope)
+    }
+    val notice: @Composable () -> Unit = {
+        if (review != null) {
+            ExtensionsNotice(review, onOpen = { stack += Screen.Extensions }) { label, onClick ->
+                TopLevelTab(label, selected = false, onClick)
+            }
+        }
+    }
     // A swap and not a push: neither top-level screen is under the other, so Back never goes between them.
     val top: (Screen) -> Unit = { next -> if (stack.size == 1) stack[0] = next }
     // A double click reaches here twice, and must not take two presses of Back to undo.
@@ -193,7 +220,7 @@ internal fun DesktopApp(
     SideEffect { onScreen(screen.toString()) }
     saved.SaveableStateProvider(screen.toString()) {
         when (screen) {
-            Screen.Home -> TopLevelScreen(true, onHome = {}, onSearch = { top(Screen.Search) }) {
+            Screen.Home -> TopLevelScreen(true, onHome = {}, onSearch = { top(Screen.Search) }, trailing = notice) {
                 HomeHost(
                     homeViewModel,
                     setEscape = { escape.onEscape = it },
@@ -201,9 +228,15 @@ internal fun DesktopApp(
                     onSearch = { top(Screen.Search) },
                 )
             }
-            Screen.Search -> TopLevelScreen(false, onHome = { top(Screen.Home) }, onSearch = {}) {
+            Screen.Search -> TopLevelScreen(false, onHome = { top(Screen.Home) }, onSearch = {}, trailing = notice) {
                 SideEffect { escape.onEscape = null }
                 SearchHost(scope, onOpen = open, onBrowseHome = { top(Screen.Home) })
+            }
+            Screen.Extensions -> {
+                SideEffect { escape.onEscape = { back(screen) } }
+                if (approvals != null && review != null) {
+                    ExtensionReviewScreen(review, approvals::onAction, onBack = { back(screen) })
+                }
             }
             is Screen.Detail -> key(screen.id) {
                 DetailHost(

@@ -13,6 +13,9 @@ import kotlinx.coroutines.runBlocking
  * its links. It is how to answer "does this plugin actually work" for a specific plugin, because
  * registering is not working: a provider can load and then fail on its first request.
  *
+ * An extension with scan warnings and no Allow for its exact file is printed as held and does not run. There is
+ * no flag that changes that, on purpose: a check that bypassed the hold would be the easy way round it.
+ *
  * @return the process exit code: 0 when at least one provider returned results.
  */
 fun runExtensionCheck(query: String, verbose: Boolean = false): Int = runBlocking {
