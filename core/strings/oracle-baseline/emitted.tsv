@@ -5,6 +5,8 @@ values	plurals	downloads_queued	one	%d download queued
 values	plurals	downloads_queued	other	%d downloads queued
 values	plurals	episodes	one	Episode
 values	plurals	episodes	other	Episodes
+values	plurals	home_sections_failed	one	%d section failed to load
+values	plurals	home_sections_failed	other	%d sections failed to load
 values	plurals	links_hidden	one	%d hidden link
 values	plurals	links_hidden	other	%d hidden links
 values	plurals	search_state_no_results_body	one	%d selected source answered and it does not carry it.
@@ -316,6 +318,7 @@ values	string	home_more_info	-	More info
 values	string	home_next_random_img_des	-	Next Random
 values	string	home_play	-	Play
 values	string	home_random	-	Random
+values	string	home_search_only_body	-	None of your extensions has a home page, but you can still search them.
 values	string	home_source	-	Source
 values	string	install_prerelease	-	Install pre-release version
 values	string	is_adult	-	18+
@@ -332,6 +335,7 @@ values	string	limit_title_rez	-	Show player information
 values	string	links_reloaded_toast	-	Links Reloaded
 values	string	live_singular	-	Livestream
 values	string	livestreams	-	Livestreams
+values	string	load_more	-	Load more
 values	string	loading	-	Loading…
 values	string	lock_profile	-	Lock Profile
 values	string	log_cat	-	Logcat 🐈
@@ -560,6 +564,7 @@ values	string	search_state_failed_body	-	None of your sources answered.
 values	string	search_state_failed_headline	-	Search failed
 values	string	search_state_idle_action	-	Browse home
 values	string	search_state_idle_body	-	Type a title. Results arrive one rail per source.
+values	string	search_state_idle_body_desktop	-	Type a title. Results appear under each source as it answers.
 values	string	search_state_idle_headline	-	Search every source you have
 values	string	search_state_no_results_action	-	Search everything
 values	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
@@ -578,6 +583,8 @@ values	string	search_tv_sources_label	-	Sources
 values	string	season	-	Season
 values	string	season_format	-	%1$s %2$d%3$s
 values	string	season_short	-	S
+values	string	seek_back_10_seconds	-	Skip back 10 seconds
+values	string	seek_forward_10_seconds	-	Skip forward 10 seconds
 values	string	select_all	-	Select All
 values	string	select_an_account	-	Select an Account
 values	string	select_library	-	Select Library
@@ -788,6 +795,8 @@ values	string	wifi	-	Wi-Fi
 values	string	year	-	Year
 values	string	year_format	-	%d
 values	string	yes	-	Yes
+values-b+af	plurals	home_sections_failed	one	%d afdeling kon nie laai nie
+values-b+af	plurals	home_sections_failed	other	%d afdelings kon nie laai nie
 values-b+af	string	action_add_to_bookmarks	-	Stel kykstatus
 values-b+af	string	action_open_play	-	Speel
 values-b+af	string	action_remove_from_bookmarks	-	Verwyder
@@ -837,6 +846,8 @@ values-b+af	string	home_main_poster_img_des	-	Hoofplakkaat
 values-b+af	string	home_more_info	-	Meer inligting
 values-b+af	string	home_next_random_img_des	-	Volgende lukraak
 values-b+af	string	home_play	-	Speel
+values-b+af	string	home_search_only_body	-	Geen van jou uitbreidings het 'n tuisblad nie, maar jy kan steeds daarin soek.
+values-b+af	string	load_more	-	Laai meer
 values-b+af	string	loading	-	Laai tans…
 values-b+af	string	new_update_format	-	Nuwe opdatering gevind! \n%1$s -> %2$s
 values-b+af	string	next_episode	-	Volgende episode
@@ -874,7 +885,10 @@ values-b+af	string	search_hint_site	-	Soek %s…
 values-b+af	string	search_poster_img_des	-	Plakkaat
 values-b+af	string	search_provider_text_providers	-	Soek deur verskaffers te gebruik
 values-b+af	string	search_provider_text_types	-	Soek met behulp van tipes
+values-b+af	string	search_state_idle_body_desktop	-	Tik 'n titel. Resultate verskyn onder elke bron soos dit antwoord.
 values-b+af	string	season	-	Seisoen
+values-b+af	string	seek_back_10_seconds	-	Spring 10 sekondes terug
+values-b+af	string	seek_forward_10_seconds	-	Spring 10 sekondes vorentoe
 values-b+af	string	select_all	-	Kies Alles
 values-b+af	string	settings_info	-	Inligting
 values-b+af	string	skip_loading	-	Slaan Laai Oor
@@ -912,6 +926,8 @@ values-b+af	string	type_re_watching	-	Herkyk tans
 values-b+af	string	type_watching	-	Kyk tans
 values-b+af	string	update_started	-	Opdatering het begin
 values-b+af	string	use	-	Gebruik
+values-b+am	plurals	home_sections_failed	one	%d ክፍል መጫን አልተቻለም
+values-b+am	plurals	home_sections_failed	other	%d ክፍል መጫን አልተቻለም
 values-b+am	string	action_add_to_bookmarks	-	የምልከታ ሁኔታን ያቀናብሩ
 values-b+am	string	action_open_play	-	አጫውት
 values-b+am	string	action_open_watching	-	ተጨማሪ መረጃ
@@ -953,6 +969,8 @@ values-b+am	string	home_main_poster_img_des	-	ዋና ፖስተር
 values-b+am	string	home_more_info	-	ተጨማሪ መረጃ
 values-b+am	string	home_next_random_img_des	-	ቀጣይ በዘፈቀደ
 values-b+am	string	home_play	-	አጫውት
+values-b+am	string	home_search_only_body	-	ከቅጥያዎችህ አንዳቸውም መነሻ ገጽ የላቸውም፣ ነገር ግን አሁንም በእነሱ መፈለግ ትችላለህ።
+values-b+am	string	load_more	-	ተጨማሪ ጫን
 values-b+am	string	loading	-	በመጫን ላይ…
 values-b+am	string	new_update_format	-	አዲስ ማሻሻያ ተገኝቷል! \n%1$s -> %2$s
 values-b+am	string	next_episode	-	ቀጣይ ክፍል
@@ -988,6 +1006,9 @@ values-b+am	string	search_hint_site	-	%sን ፈልግ…
 values-b+am	string	search_poster_img_des	-	ፖስተር
 values-b+am	string	search_provider_text_providers	-	አቅራቢዎችን በመጠቀም ይፈልጉ
 values-b+am	string	search_provider_text_types	-	ዓይነቶችን በመጠቀም ይፈልጉ
+values-b+am	string	search_state_idle_body_desktop	-	ርዕስ ይተይቡ። ውጤቶች እያንዳንዱ ምንጭ ሲመልስ ከሱ ስር ይታያሉ።
+values-b+am	string	seek_back_10_seconds	-	10 ሰከንድ ወደ ኋላ
+values-b+am	string	seek_forward_10_seconds	-	10 ሰከንድ ወደ ፊት
 values-b+am	string	skip_loading	-	መጫንን ዝለል
 values-b+am	string	sort_apply	-	አጽድቅ
 values-b+am	string	sort_clear	-	አጽዳ
@@ -1028,6 +1049,8 @@ values-b+apc	plurals	downloads_queued	one	مافي شي بعد بده يبلش �
 values-b+apc	plurals	downloads_queued	other	فيه شي واحد بعد بده يبلش يتنزل
 values-b+apc	plurals	episodes	one	حلقة
 values-b+apc	plurals	episodes	other	حلقات
+values-b+apc	plurals	home_sections_failed	one	م قدرنا نفتح %d قسم
+values-b+apc	plurals	home_sections_failed	other	م قدرنا نفتح %d أقسام
 values-b+apc	string	account	-	أكونت
 values-b+apc	string	action_add_to_bookmarks	-	عدل حالة الحَضِر
 values-b+apc	string	action_add_to_favorites	-	زيدو ع المفضل
@@ -1321,6 +1344,7 @@ values-b+apc	string	home_more_info	-	بَعد معلومات
 values-b+apc	string	home_next_random_img_des	-	العشوائي يللي بعده
 values-b+apc	string	home_play	-	مشي
 values-b+apc	string	home_random	-	عشوائي
+values-b+apc	string	home_search_only_body	-	ما في ولا إضافة عندها صفحة رئيسية، بس فيك تنبش فيهن.
 values-b+apc	string	home_source	-	مصدر
 values-b+apc	string	install_prerelease	-	نزل النسخة التجريبية من الآپ
 values-b+apc	string	is_adult	-	18+
@@ -1336,6 +1360,7 @@ values-b+apc	string	limit_title_rez	-	فرجي معلومات مشغل الڤي�
 values-b+apc	string	links_reloaded_toast	-	رجع نعمل لاود لاللينك
 values-b+apc	string	live_singular	-	بث مباشر
 values-b+apc	string	livestreams	-	بث مباشر
+values-b+apc	string	load_more	-	حمّل أكتر
 values-b+apc	string	loading	-	لودينگ…
 values-b+apc	string	lock_profile	-	حط قفل على الأكونت
 values-b+apc	string	logged_account	-	فتّو على الأكونت "%s"
@@ -1553,11 +1578,14 @@ values-b+apc	string	search_hint_site	-	نبّش %s…
 values-b+apc	string	search_poster_img_des	-	پوستر
 values-b+apc	string	search_provider_text_providers	-	عوزو المصادر لَ تنبّشو
 values-b+apc	string	search_provider_text_types	-	عوزو الأنواع ل تنبّشو
+values-b+apc	string	search_state_idle_body_desktop	-	اكتب عنوان. النتايج بتطلع تحت كل مصدر لما يرد.
 values-b+apc	string	search_suggestions	-	اقتراحات التنبيش
 values-b+apc	string	search_suggestions_des	-	بت فرجي اقتراحات إنتا و عم بت نَبّش
 values-b+apc	string	season	-	جزء
 values-b+apc	string	season_format	-	%1$s%2$d%3$s
 values-b+apc	string	season_short	-	ج
+values-b+apc	string	seek_back_10_seconds	-	رجّع 10 ثواني
+values-b+apc	string	seek_forward_10_seconds	-	قدّم 10 ثواني
 values-b+apc	string	select_all	-	نقي كل شي
 values-b+apc	string	select_an_account	-	نقي أكونت
 values-b+apc	string	select_library	-	نقي الرفّ
@@ -1778,6 +1806,12 @@ values-b+ar	plurals	downloads_queued	two	%d تنزيلان قيد الانتظا
 values-b+ar	plurals	downloads_queued	zero	%d لا يوجد تنزيلات في قائمة الانتظار
 values-b+ar	plurals	episodes	one	حلقة
 values-b+ar	plurals	episodes	other	حلقات
+values-b+ar	plurals	home_sections_failed	few	تعذر تحميل %d أقسام
+values-b+ar	plurals	home_sections_failed	many	تعذر تحميل %d قسمًا
+values-b+ar	plurals	home_sections_failed	one	تعذر تحميل %d قسم
+values-b+ar	plurals	home_sections_failed	other	تعذر تحميل %d قسم
+values-b+ar	plurals	home_sections_failed	two	تعذر تحميل %d قسمين
+values-b+ar	plurals	home_sections_failed	zero	تعذر تحميل %d قسم
 values-b+ar	string	account	-	حساب
 values-b+ar	string	action_add_to_bookmarks	-	إعداد حالة المشاهدة
 values-b+ar	string	action_add_to_favorites	-	اضافة الى المفضلة
@@ -2071,6 +2105,7 @@ values-b+ar	string	home_more_info	-	مزيد من المعلومات
 values-b+ar	string	home_next_random_img_des	-	التالي عشوائي
 values-b+ar	string	home_play	-	تشغيل
 values-b+ar	string	home_random	-	عشوائي
+values-b+ar	string	home_search_only_body	-	لا تحتوي أي من إضافاتك على صفحة رئيسية، لكن يمكنك البحث فيها.
 values-b+ar	string	home_source	-	مصدر
 values-b+ar	string	install_prerelease	-	تثبيت الإصدار التجريبي
 values-b+ar	string	is_adult	-	18+
@@ -2086,6 +2121,7 @@ values-b+ar	string	limit_title_rez	-	عرض معلومات المشغل
 values-b+ar	string	links_reloaded_toast	-	تم إعادة تحميل الروابط
 values-b+ar	string	live_singular	-	بث حي
 values-b+ar	string	livestreams	-	بث حي
+values-b+ar	string	load_more	-	تحميل المزيد
 values-b+ar	string	loading	-	تحميل…
 values-b+ar	string	lock_profile	-	قفل الحساب
 values-b+ar	string	logged_account	-	تم تسجيل الدخول كـ %s
@@ -2306,11 +2342,14 @@ values-b+ar	string	search_hint_site	-	بحث %s…
 values-b+ar	string	search_poster_img_des	-	الصورة الدعائية
 values-b+ar	string	search_provider_text_providers	-	البحث باستخدام المصادر
 values-b+ar	string	search_provider_text_types	-	البحث باستخدام الأنواع
+values-b+ar	string	search_state_idle_body_desktop	-	اكتب عنوانًا. تظهر النتائج تحت كل مصدر عند استجابته.
 values-b+ar	string	search_suggestions	-	اقتراحات البحث
 values-b+ar	string	search_suggestions_des	-	عرض اقتراحات البحث أثناء الكتابة
 values-b+ar	string	season	-	موسم
 values-b+ar	string	season_format	-	%1$s %2$d%3$s
 values-b+ar	string	season_short	-	م
+values-b+ar	string	seek_back_10_seconds	-	ترجيع ١٠ ثوانٍ
+values-b+ar	string	seek_forward_10_seconds	-	تقديم ١٠ ثوانٍ
 values-b+ar	string	select_all	-	تحديد الكل
 values-b+ar	string	select_an_account	-	اختار حساب
 values-b+ar	string	select_library	-	اختر المكتبة
@@ -2521,6 +2560,12 @@ values-b+ar	string	year	-	سنة
 values-b+ar	string	yes	-	نعم
 values-b+ars	plurals	episodes	one	حلقة
 values-b+ars	plurals	episodes	other	الحلقات
+values-b+ars	plurals	home_sections_failed	few	تعذر تحميل %d أقسام
+values-b+ars	plurals	home_sections_failed	many	تعذر تحميل %d قسمًا
+values-b+ars	plurals	home_sections_failed	one	تعذر تحميل %d قسم
+values-b+ars	plurals	home_sections_failed	other	تعذر تحميل %d قسم
+values-b+ars	plurals	home_sections_failed	two	تعذر تحميل %d قسمين
+values-b+ars	plurals	home_sections_failed	zero	تعذر تحميل %d قسم
 values-b+ars	string	action_add_to_bookmarks	-	ضبط حالة المشاهدة
 values-b+ars	string	action_default	-	عادي
 values-b+ars	string	action_mark_as_watched	-	وضع علامة كما شاهدت
@@ -2657,6 +2702,7 @@ values-b+ars	string	home_main_poster_img_des	-	اللافتة الاساسية
 values-b+ars	string	home_more_info	-	مزيد من المعلومات
 values-b+ars	string	home_next_random_img_des	-	عشوائي قادم
 values-b+ars	string	home_play	-	العب
+values-b+ars	string	home_search_only_body	-	لا تحتوي أي من إضافاتك على صفحة رئيسية، لكن يمكنك البحث فيها.
 values-b+ars	string	jsdelivr_enabled	-	...jsDelivr لا يمكن الوصول إلى جيتهاب. جارٍ تشغيل وكيل
 values-b+ars	string	jsdelivr_proxy_summary	-	.قد يتسبب في تأخير التحديثات لبضعة أيام .jsDelivr باستخدام GitHubيتجاوز حظر
 values-b+ars	string	kitsu_settings	-	عرض الملصقات من كيتسو
@@ -2667,6 +2713,7 @@ values-b+ars	string	limit_title	-	عنوان مشغل الفيديو بحد أق
 values-b+ars	string	limit_title_rez	-	دقة مشغل الفيديو
 values-b+ars	string	live_singular	-	بث مباشر
 values-b+ars	string	livestreams	-	بثات مباشرة
+values-b+ars	string	load_more	-	تحميل المزيد
 values-b+ars	string	loading	-	تحميل…
 values-b+ars	string	mobile_data	-	بيانات الجوال
 values-b+ars	string	movies	-	افلام
@@ -2752,9 +2799,12 @@ values-b+ars	string	search_hint_site	-	...%sابحث
 values-b+ars	string	search_poster_img_des	-	لافتة
 values-b+ars	string	search_provider_text_providers	-	البحث باستخدام مقدمي الخدمات
 values-b+ars	string	search_provider_text_types	-	البحث باستخدام الأنواع
+values-b+ars	string	search_state_idle_body_desktop	-	اكتب عنوانًا. تظهر النتائج تحت كل مصدر عند استجابته.
 values-b+ars	string	season	-	موسم
 values-b+ars	string	season_format	-	%1$s%2$d%3$s
 values-b+ars	string	season_short	-	س
+values-b+ars	string	seek_back_10_seconds	-	ترجيع 10 ثوانٍ
+values-b+ars	string	seek_forward_10_seconds	-	تقديم 10 ثوانٍ
 values-b+ars	string	select_library	-	حدد المكتبة
 values-b+ars	string	set_default	-	الوضع العادي
 values-b+ars	string	settings_info	-	معلومات
@@ -2865,6 +2915,8 @@ values-b+ars	string	year	-	سنة
 values-b+ars	string	yes	-	نعم
 values-b+as	plurals	episodes	one	এপিচ’ড
 values-b+as	plurals	episodes	other	এপিচ’ডসমূহ
+values-b+as	plurals	home_sections_failed	one	%d টা অংশ লোড কৰিব পৰা নগ'ল
+values-b+as	plurals	home_sections_failed	other	%d টা অংশ লোড কৰিব পৰা নগ'ল
 values-b+as	string	account	-	একাউন্ট
 values-b+as	string	action_add_to_bookmarks	-	দেখাৰ অৱস্থা নিৰ্ধাৰণ কৰক
 values-b+as	string	action_add_to_favorites	-	প্ৰিয় তালিকালৈ যোগ কৰক
@@ -3126,6 +3178,7 @@ values-b+as	string	home_more_info	-	অধিক তথ্য
 values-b+as	string	home_next_random_img_des	-	পৰৱৰ্তী ৰেণ্ডম
 values-b+as	string	home_play	-	প্লে কৰক
 values-b+as	string	home_random	-	যিকোনো এটা
+values-b+as	string	home_search_only_body	-	আপোনাৰ কোনো এক্সটেনশ্যনৰ গৃহপৃষ্ঠা নাই, কিন্তু আপুনি সেইবোৰত সন্ধান কৰিব পাৰে।
 values-b+as	string	home_source	-	উৎস
 values-b+as	string	is_adult	-	১৮+
 values-b+as	string	jsdelivr_enabled	-	GitHub পাবলৈ সক্ষম নহ'ল। jsDelivr প্ৰক্সি সক্ৰিয় কৰি দিছে…
@@ -3140,6 +3193,7 @@ values-b+as	string	limit_title_rez	-	ভিডিঅ' প্লেয়াৰ�
 values-b+as	string	links_reloaded_toast	-	লিংক পুনৰ লোড কৰা হ’ল
 values-b+as	string	live_singular	-	লাইভষ্ট্ৰীম
 values-b+as	string	livestreams	-	লাইভষ্ট্ৰীম
+values-b+as	string	load_more	-	অধিক লোড কৰক
 values-b+as	string	loading	-	লোড হৈ আছে…
 values-b+as	string	lock_profile	-	প্ৰফাইল লক কৰক
 values-b+as	string	logged_account	-	%s হিচাপে লগ ইন কৰা হৈছে
@@ -3334,9 +3388,12 @@ values-b+as	string	search_hint_site	-	%sত সন্ধান কৰক…
 values-b+as	string	search_poster_img_des	-	পোস্টাৰ
 values-b+as	string	search_provider_text_providers	-	প্ৰদানকাৰীৰে সন্ধান কৰক
 values-b+as	string	search_provider_text_types	-	প্ৰকাৰৰ দ্বাৰা সন্ধান কৰক
+values-b+as	string	search_state_idle_body_desktop	-	এটা শিৰোনাম টাইপ কৰক। প্ৰতিটো উৎসই উত্তৰ দিয়াৰ লগে লগে ফলাফল তাৰ তলত দেখা যাব।
 values-b+as	string	season	-	চিজন
 values-b+as	string	season_format	-	%1$s %2$d%3$s
 values-b+as	string	season_short	-	চি
+values-b+as	string	seek_back_10_seconds	-	১০ ছেকেণ্ড পাছুৱাওক
+values-b+as	string	seek_forward_10_seconds	-	১০ ছেকেণ্ড আগুৱাওক
 values-b+as	string	select_all	-	সকলো বাছক
 values-b+as	string	select_an_account	-	এটা একাউণ্ট বাচনি কৰক
 values-b+as	string	select_library	-	পুথিভঁৰালী বাছক
@@ -3510,6 +3567,8 @@ values-b+as	string	watch_quality_pref_data	-	পচন্দৰ ভিডিঅ'
 values-b+as	string	wifi	-	Wi-Fi
 values-b+as	string	year	-	বৰ্ষ
 values-b+as	string	yes	-	হয়
+values-b+az	plurals	home_sections_failed	one	%d bölmə yüklənmədi
+values-b+az	plurals	home_sections_failed	other	%d bölmə yüklənmədi
 values-b+az	string	advanced_search	-	Təkmilləşdirilmiş Axtarış
 values-b+az	string	anime	-	Anime-lər
 values-b+az	string	anime_singular	-	Anime
@@ -3573,10 +3632,12 @@ values-b+az	string	go_forward_30	-	+30
 values-b+az	string	home_change_provider_img_des	-	Provayderi dəyişdir
 values-b+az	string	home_main_poster_img_des	-	Əsas Afişa
 values-b+az	string	home_next_random_img_des	-	Sonrakı Təsadüfi
+values-b+az	string	home_search_only_body	-	Uzantılarınızın heç birində ana səhifə yoxdur, amma yenə də onlarda axtarış edə bilərsiniz.
 values-b+az	string	kitsu_settings	-	Kitsu afişalarını, posterlərini göstər
 values-b+az	string	library	-	Kitabxana
 values-b+az	string	live_singular	-	Canlı yayım
 values-b+az	string	livestreams	-	Canlı yayımlar
+values-b+az	string	load_more	-	Daha çox yüklə
 values-b+az	string	loading	-	Yüklənir…
 values-b+az	string	movies_singular	-	Film
 values-b+az	string	music_singular	-	Musiqi
@@ -3627,8 +3688,11 @@ values-b+az	string	resume	-	Davam et
 values-b+az	string	search	-	Axtar
 values-b+az	string	search_hint	-	Axtar…
 values-b+az	string	search_poster_img_des	-	Afişa
+values-b+az	string	search_state_idle_body_desktop	-	Başlıq yazın. Hər mənbə cavab verdikcə nəticələr onun altında görünür.
 values-b+az	string	season	-	Sezon
 values-b+az	string	season_short	-	S
+values-b+az	string	seek_back_10_seconds	-	10 saniyə geri keç
+values-b+az	string	seek_forward_10_seconds	-	10 saniyə irəli keç
 values-b+az	string	settings_info	-	Məlumat
 values-b+az	string	show_trailers_settings	-	Treylerləri göstər
 values-b+az	string	skip_loading	-	Yükləməni keç
@@ -3668,6 +3732,10 @@ values-b+be	plurals	downloads_queued	one	%d спампоўванне ў чарз
 values-b+be	plurals	downloads_queued	other	%d спампоўванняў у чарзе
 values-b+be	plurals	episodes	one	Серыя
 values-b+be	plurals	episodes	other	Серый
+values-b+be	plurals	home_sections_failed	few	Не ўдалося загрузіць %d раздзелы
+values-b+be	plurals	home_sections_failed	many	Не ўдалося загрузіць %d раздзелаў
+values-b+be	plurals	home_sections_failed	one	Не ўдалося загрузіць %d раздзел
+values-b+be	plurals	home_sections_failed	other	Не ўдалося загрузіць %d раздзелаў
 values-b+be	string	account	-	уліковы запіс
 values-b+be	string	action_add_to_bookmarks	-	Задаць статус прагляду
 values-b+be	string	action_add_to_favorites	-	Дадаць у абранае
@@ -3961,6 +4029,7 @@ values-b+be	string	home_more_info	-	Дадатковыя звесткі
 values-b+be	string	home_next_random_img_des	-	Наступны выпадковы
 values-b+be	string	home_play	-	Прайграць
 values-b+be	string	home_random	-	Выпадковае
+values-b+be	string	home_search_only_body	-	Ніводнае з вашых пашырэнняў не мае дамашняй старонкі, але ў іх усё яшчэ можна шукаць.
 values-b+be	string	home_source	-	Крыніца
 values-b+be	string	install_prerelease	-	Усталяваць перадфінальную версію
 values-b+be	string	is_adult	-	18+
@@ -3976,6 +4045,7 @@ values-b+be	string	limit_title_rez	-	Паказваць інфармацыю ў 
 values-b+be	string	links_reloaded_toast	-	Спасылкі перазагружаны
 values-b+be	string	live_singular	-	Прамая трансляцыя
 values-b+be	string	livestreams	-	Прамыя трансляцыі
+values-b+be	string	load_more	-	Загрузіць яшчэ
 values-b+be	string	loading	-	Загрузка…
 values-b+be	string	lock_profile	-	Заблакіраваць профіль
 values-b+be	string	logged_account	-	Вы ўвайшлі як %s
@@ -4193,11 +4263,14 @@ values-b+be	string	search_hint_site	-	Шукаць па %s…
 values-b+be	string	search_poster_img_des	-	Плакат
 values-b+be	string	search_provider_text_providers	-	Пошук праз пастаўшчыкоў
 values-b+be	string	search_provider_text_types	-	Пошук праз тыпы
+values-b+be	string	search_state_idle_body_desktop	-	Увядзіце назву. Вынікі з'яўляюцца пад кожнай крыніцай, калі яна адказвае.
 values-b+be	string	search_suggestions	-	Прапановы пошуку
 values-b+be	string	search_suggestions_des	-	Паказваць прапановы пошуку падчас уводу тэксту
 values-b+be	string	season	-	Сезон
 values-b+be	string	season_format	-	%1$s %2$d%3$s
 values-b+be	string	season_short	-	Сез
+values-b+be	string	seek_back_10_seconds	-	Перамотаць назад на 10 секунд
+values-b+be	string	seek_forward_10_seconds	-	Перамотаць наперад на 10 секунд
 values-b+be	string	select_all	-	Выбраць ўсё
 values-b+be	string	select_an_account	-	Выберыце ўліковы запіс
 values-b+be	string	select_library	-	Выбраць бібліятэку
@@ -4410,6 +4483,8 @@ values-b+bg	plurals	downloads_queued	one	%d изтегляне в опашкат
 values-b+bg	plurals	downloads_queued	other	%d изтегляния в опашката
 values-b+bg	plurals	episodes	one	Епизод
 values-b+bg	plurals	episodes	other	Епизоди
+values-b+bg	plurals	home_sections_failed	one	%d секция не се зареди
+values-b+bg	plurals	home_sections_failed	other	%d секции не се заредиха
 values-b+bg	string	account	-	Акаунт
 values-b+bg	string	action_add_to_bookmarks	-	Задайте статус на гледане
 values-b+bg	string	action_add_to_favorites	-	Добави в любими
@@ -4698,6 +4773,7 @@ values-b+bg	string	home_more_info	-	Повече информация
 values-b+bg	string	home_next_random_img_des	-	Следващ произволен
 values-b+bg	string	home_play	-	Пусни
 values-b+bg	string	home_random	-	Случаен
+values-b+bg	string	home_search_only_body	-	Нито едно от разширенията ви няма начална страница, но все пак можете да търсите в тях.
 values-b+bg	string	home_source	-	Източник
 values-b+bg	string	install_prerelease	-	Инсталирай предварителна версия
 values-b+bg	string	is_adult	-	18+
@@ -4713,6 +4789,7 @@ values-b+bg	string	limit_title_rez	-	Покажи информация за пл
 values-b+bg	string	links_reloaded_toast	-	Презаредени Линкове
 values-b+bg	string	live_singular	-	Поток на живо
 values-b+bg	string	livestreams	-	На живо
+values-b+bg	string	load_more	-	Зареди още
 values-b+bg	string	loading	-	Зареждане…
 values-b+bg	string	lock_profile	-	Заключи Профил
 values-b+bg	string	logged_account	-	Вписан като %s
@@ -4929,11 +5006,14 @@ values-b+bg	string	search_hint_site	-	Търси %s…
 values-b+bg	string	search_poster_img_des	-	Постер
 values-b+bg	string	search_provider_text_providers	-	Търсене чрез доставчици
 values-b+bg	string	search_provider_text_types	-	Търсене с помощта на типове
+values-b+bg	string	search_state_idle_body_desktop	-	Въведете заглавие. Резултатите се появяват под всеки източник, когато той отговори.
 values-b+bg	string	search_suggestions	-	Предложения за търсене
 values-b+bg	string	search_suggestions_des	-	Показвай предложения за търсене по време на писане
 values-b+bg	string	season	-	Сезон
 values-b+bg	string	season_format	-	%1$s %2$d%3$s
 values-b+bg	string	season_short	-	С
+values-b+bg	string	seek_back_10_seconds	-	Превърти назад с 10 секунди
+values-b+bg	string	seek_forward_10_seconds	-	Превърти напред с 10 секунди
 values-b+bg	string	select_all	-	Изберете всички
 values-b+bg	string	select_an_account	-	Избери профил
 values-b+bg	string	select_library	-	Избиране на библиотека
@@ -5139,6 +5219,8 @@ values-b+bg	string	year	-	Година
 values-b+bg	string	yes	-	Да
 values-b+bn	plurals	episodes	one	পর্ব
 values-b+bn	plurals	episodes	other	পর্ব
+values-b+bn	plurals	home_sections_failed	one	%dটি বিভাগ লোড করা যায়নি
+values-b+bn	plurals	home_sections_failed	other	%dটি বিভাগ লোড করা যায়নি
 values-b+bn	string	account	-	অ্যাকাউন্ট
 values-b+bn	string	action_add_to_bookmarks	-	বুকমার্ক করুন
 values-b+bn	string	action_default	-	ডিফল্ট
@@ -5306,6 +5388,7 @@ values-b+bn	string	home_main_poster_img_des	-	মূল পোস্টার
 values-b+bn	string	home_more_info	-	আরো তথ্য
 values-b+bn	string	home_next_random_img_des	-	পরবর্তী র‍্যান্ডম
 values-b+bn	string	home_play	-	চালান
+values-b+bn	string	home_search_only_body	-	আপনার কোনো এক্সটেনশনের হোম পেজ নেই, তবে আপনি সেগুলোতে খুঁজতে পারেন।
 values-b+bn	string	install_prerelease	-	প্রাক-মুক্তি সংস্করণ ইনস্টলেশন
 values-b+bn	string	jsdelivr_enabled	-	GitHub-এর সাথে সংযোগ করা যায়নি। jsDelivr proxy চালু করা হচ্ছে।
 values-b+bn	string	jsdelivr_proxy	-	গিডহাব প্রক্সি
@@ -5319,6 +5402,7 @@ values-b+bn	string	limit_title_rez	-	ভিডিও প্লেয়ারে
 values-b+bn	string	links_reloaded_toast	-	লিঙ্ক পুনরায় লোড হয়েছে
 values-b+bn	string	live_singular	-	লাইভ স্ট্রিম
 values-b+bn	string	livestreams	-	লাইভস্ট্রিম
+values-b+bn	string	load_more	-	আরো লোড করুন
 values-b+bn	string	loading	-	লোডিং…
 values-b+bn	string	login	-	প্রবেশ করুন
 values-b+bn	string	login_format	-	%1$s %2$s
@@ -5436,11 +5520,14 @@ values-b+bn	string	search_hint_site	-	খুঁজুন %s…
 values-b+bn	string	search_poster_img_des	-	পোস্টার
 values-b+bn	string	search_provider_text_providers	-	প্রভাইডার অনুযায়ি খুঁজুন
 values-b+bn	string	search_provider_text_types	-	ধরণ অনুযায়ি খুঁজুন
+values-b+bn	string	search_state_idle_body_desktop	-	একটি শিরোনাম লিখুন। প্রতিটি সোর্স উত্তর দিলে ফলাফল তার নিচে দেখা যাবে।
 values-b+bn	string	search_suggestions	-	সার্চ সাজেশন
 values-b+bn	string	search_suggestions_des	-	টাইপ করার সময় সার্চ সাজেশন দেখান
 values-b+bn	string	season	-	সিজন
 values-b+bn	string	season_format	-	%1$s %2$d%3$s
 values-b+bn	string	season_short	-	S
+values-b+bn	string	seek_back_10_seconds	-	১০ সেকেন্ড পিছিয়ে যান
+values-b+bn	string	seek_forward_10_seconds	-	১০ সেকেন্ড এগিয়ে যান
 values-b+bn	string	select_all	-	সব সিলেক্ট করুন
 values-b+bn	string	settings_info	-	তথ্য
 values-b+bn	string	show_cast_in_details	-	কাস্ট প্যানেল প্রদর্শন
@@ -5547,6 +5634,9 @@ values-b+bn	string	vpn_torrent	-	এটা একটি টরেন্ট প�
 values-b+bn	string	watch_quality_pref	-	ওয়াইফাই তে যে কোয়ালিটিতে দেখতে চান
 values-b+bn	string	watch_quality_pref_data	-	মোবাইল ডাটায় যে কোয়ালিটিতে দেখতে চান
 values-b+bn	string	year	-	বছর
+values-b+ca	plurals	home_sections_failed	many	No s'han pogut carregar %d seccions
+values-b+ca	plurals	home_sections_failed	one	No s'ha pogut carregar %d secció
+values-b+ca	plurals	home_sections_failed	other	No s'han pogut carregar %d seccions
 values-b+ca	string	account	-	compte
 values-b+ca	string	action_add_to_bookmarks	-	Defineix l'estat de visualització
 values-b+ca	string	action_add_to_favorites	-	Afegir als favorits
@@ -5671,10 +5761,12 @@ values-b+ca	string	home_more_info	-	Més informació
 values-b+ca	string	home_next_random_img_des	-	Proper aleatori
 values-b+ca	string	home_play	-	Reprodueix
 values-b+ca	string	home_random	-	Aleatori
+values-b+ca	string	home_search_only_body	-	Cap de les teves extensions té pàgina d'inici, però encara pots cercar-hi.
 values-b+ca	string	home_source	-	Font
 values-b+ca	string	limit_title	-	Caràcters màxims al títol del reproductor
 values-b+ca	string	limit_title_rez	-	Resolució del reproductor de vídeo
 values-b+ca	string	links_reloaded_toast	-	S'han tornat a carregar els enllaços
+values-b+ca	string	load_more	-	Carrega'n més
 values-b+ca	string	loading	-	Carregant…
 values-b+ca	string	lock_profile	-	Bloqueja el perfil
 values-b+ca	string	logged_account	-	Connectat com %s
@@ -5784,6 +5876,9 @@ values-b+ca	string	search_hint_site	-	Cercar a %s…
 values-b+ca	string	search_poster_img_des	-	Cartell
 values-b+ca	string	search_provider_text_providers	-	Cerca amb proveïdors
 values-b+ca	string	search_provider_text_types	-	Cerca per tipus
+values-b+ca	string	search_state_idle_body_desktop	-	Escriu un títol. Els resultats apareixen sota cada font quan respon.
+values-b+ca	string	seek_back_10_seconds	-	Retrocedeix 10 segons
+values-b+ca	string	seek_forward_10_seconds	-	Avança 10 segons
 values-b+ca	string	select_all	-	Seleccionar tot
 values-b+ca	string	select_an_account	-	Seleccioneu un compte
 values-b+ca	string	set_default	-	Estableix opció per defecte
@@ -5879,6 +5974,8 @@ values-b+ca	string	vpn_might_be_needed	-	Potser necessiteu una VPN per que aques
 values-b+ca	string	vpn_torrent	-	Aquest proveïdor és un Torrent, es recomana fer servir una VPN
 values-b+ca	string	watch_quality_pref	-	Qualitat de vídeo preferida (WiFi)
 values-b+ca	string	watch_quality_pref_data	-	Qualitat de vídeo preferida (dades mòbils)
+values-b+ckb	plurals	home_sections_failed	one	%d بەش بار نەکرا
+values-b+ckb	plurals	home_sections_failed	other	%d بەش بار نەکرا
 values-b+ckb	string	action_add_to_bookmarks	-	دۆخی تەماشاکردن دابنێ
 values-b+ckb	string	action_remove_from_bookmarks	-	لابردن
 values-b+ckb	string	app_dub_sub_episode_text_format	-	%1$sئەڵقەى%2$d
@@ -5918,6 +6015,8 @@ values-b+ckb	string	home_info	-	زانیاری
 values-b+ckb	string	home_main_poster_img_des	-	پۆستەری سەرەکی
 values-b+ckb	string	home_more_info	-	زانیاری زیاتر
 values-b+ckb	string	home_next_random_img_des	-	داهاتوو بە هەڕەمەکی
+values-b+ckb	string	home_search_only_body	-	هیچ کام لە زیادکراوەکانت پەڕەی سەرەکییان نییە، بەڵام هێشتا دەتوانیت تێیاندا بگەڕێیت.
+values-b+ckb	string	load_more	-	زیاتر باربکە
 values-b+ckb	string	new_update_format	-	نوێکاری نوێ دۆزرایەوە!\n%1$s->%2$s
 values-b+ckb	string	next_episode	-	ئەڵقەی داهاتوو
 values-b+ckb	string	next_episode_format	-	ئەڵقەی %d لە
@@ -5946,6 +6045,9 @@ values-b+ckb	string	result_tags	-	ژانرەکان
 values-b+ckb	string	search_hint	-	گەڕان…
 values-b+ckb	string	search_hint_site	-	بگەڕێ بۆ%s…
 values-b+ckb	string	search_poster_img_des	-	پۆستەر
+values-b+ckb	string	search_state_idle_body_desktop	-	ناونیشانێک بنووسە. ئەنجامەکان لە ژێر هەر سەرچاوەیەک دەردەکەون کاتێک وەڵام دەداتەوە.
+values-b+ckb	string	seek_back_10_seconds	-	10 چرکە بگەڕێوە دواوە
+values-b+ckb	string	seek_forward_10_seconds	-	10 چرکە بڕۆ پێشەوە
 values-b+ckb	string	select_all	-	هەموو هەڵبژێرە
 values-b+ckb	string	sort_apply	-	جێبەجێکردن
 values-b+ckb	string	sort_close	-	داخستن
@@ -5973,6 +6075,10 @@ values-b+cs	plurals	downloads_queued	one	%d stahování uloženo do fronty
 values-b+cs	plurals	downloads_queued	other	%d stahování uloženo do fronty
 values-b+cs	plurals	episodes	one	Epizoda
 values-b+cs	plurals	episodes	other	Epizody
+values-b+cs	plurals	home_sections_failed	few	Nepodařilo se načíst %d sekce
+values-b+cs	plurals	home_sections_failed	many	Nepodařilo se načíst %d sekcí
+values-b+cs	plurals	home_sections_failed	one	Nepodařilo se načíst %d sekci
+values-b+cs	plurals	home_sections_failed	other	Nepodařilo se načíst %d sekcí
 values-b+cs	plurals	links_hidden	few	%d skryté odkazy
 values-b+cs	plurals	links_hidden	many	%d skrytých odkazů
 values-b+cs	plurals	links_hidden	one	%d skrytý odkaz
@@ -6270,6 +6376,7 @@ values-b+cs	string	home_more_info	-	Více informací
 values-b+cs	string	home_next_random_img_des	-	Další náhodný
 values-b+cs	string	home_play	-	Přehrát
 values-b+cs	string	home_random	-	Náhodný
+values-b+cs	string	home_search_only_body	-	Žádné z vašich rozšíření nemá domovskou stránku, ale stále v nich můžete hledat.
 values-b+cs	string	home_source	-	Zdroj
 values-b+cs	string	install_prerelease	-	Nainstalovat předběžnou verzi
 values-b+cs	string	is_adult	-	18+
@@ -6285,6 +6392,7 @@ values-b+cs	string	limit_title_rez	-	Zobrazit informace o přehrávači
 values-b+cs	string	links_reloaded_toast	-	Odkazy znovu načteny
 values-b+cs	string	live_singular	-	Živý přenos
 values-b+cs	string	livestreams	-	Živé přenosy
+values-b+cs	string	load_more	-	Načíst další
 values-b+cs	string	loading	-	Načítání…
 values-b+cs	string	lock_profile	-	Zamknout profil
 values-b+cs	string	logged_account	-	Přihlášeni jako %s
@@ -6505,11 +6613,14 @@ values-b+cs	string	search_hint_site	-	Hledat %s…
 values-b+cs	string	search_poster_img_des	-	Plakát
 values-b+cs	string	search_provider_text_providers	-	Hledat pomocí poskytovatelů
 values-b+cs	string	search_provider_text_types	-	Hledat pomocí typů
+values-b+cs	string	search_state_idle_body_desktop	-	Zadejte název. Výsledky se zobrazí pod každým zdrojem, jakmile odpoví.
 values-b+cs	string	search_suggestions	-	Návrhy vyhledávání
 values-b+cs	string	search_suggestions_des	-	Zobrazit návrhy vyhledávání během psaní
 values-b+cs	string	season	-	Sezóna
 values-b+cs	string	season_format	-	%1$s %2$d%3$s
 values-b+cs	string	season_short	-	S
+values-b+cs	string	seek_back_10_seconds	-	Posunout o 10 sekund zpět
+values-b+cs	string	seek_forward_10_seconds	-	Posunout o 10 sekund vpřed
 values-b+cs	string	select_all	-	Vybrat vše
 values-b+cs	string	select_an_account	-	Vyberte účet
 values-b+cs	string	select_library	-	Vybrat knihovnu
@@ -6724,6 +6835,8 @@ values-b+de	plurals	downloads_queued	one	%d Download in Warteschlange
 values-b+de	plurals	downloads_queued	other	%d Downloads in Warteschlange
 values-b+de	plurals	episodes	one	Episode
 values-b+de	plurals	episodes	other	Episoden
+values-b+de	plurals	home_sections_failed	one	%d Bereich konnte nicht geladen werden
+values-b+de	plurals	home_sections_failed	other	%d Bereiche konnten nicht geladen werden
 values-b+de	plurals	links_hidden	one	%d ausgeblendeter Link
 values-b+de	plurals	links_hidden	other	%d ausgeblendete Links
 values-b+de	string	account	-	Account
@@ -7019,6 +7132,7 @@ values-b+de	string	home_more_info	-	Mehr Infos
 values-b+de	string	home_next_random_img_des	-	Nächstes zufällig
 values-b+de	string	home_play	-	Abspielen
 values-b+de	string	home_random	-	Zufällig
+values-b+de	string	home_search_only_body	-	Keine Ihrer Erweiterungen hat eine Startseite, aber Sie können trotzdem darin suchen.
 values-b+de	string	home_source	-	Quelle
 values-b+de	string	install_prerelease	-	Vorabversion installieren
 values-b+de	string	is_adult	-	18+
@@ -7034,6 +7148,7 @@ values-b+de	string	limit_title_rez	-	Zeige Playerinformationen
 values-b+de	string	links_reloaded_toast	-	Links wurden neu geladen
 values-b+de	string	live_singular	-	Livestream
 values-b+de	string	livestreams	-	Livestreams
+values-b+de	string	load_more	-	Mehr laden
 values-b+de	string	loading	-	Lädt…
 values-b+de	string	lock_profile	-	Profil sperren
 values-b+de	string	logged_account	-	Angemeldet als %s
@@ -7254,11 +7369,14 @@ values-b+de	string	search_hint_site	-	Suche %s…
 values-b+de	string	search_poster_img_des	-	Vorschaubild
 values-b+de	string	search_provider_text_providers	-	Suche anhand Anbietern
 values-b+de	string	search_provider_text_types	-	Suche anhand Typen
+values-b+de	string	search_state_idle_body_desktop	-	Titel eingeben. Ergebnisse erscheinen unter jeder Quelle, sobald sie antwortet.
 values-b+de	string	search_suggestions	-	Empfehlungen suchen
 values-b+de	string	search_suggestions_des	-	Beim Tippen Suchempfehlungen anzeigen
 values-b+de	string	season	-	Staffel
 values-b+de	string	season_format	-	%1$s %2$d%3$s
 values-b+de	string	season_short	-	S
+values-b+de	string	seek_back_10_seconds	-	10 Sekunden zurückspulen
+values-b+de	string	seek_forward_10_seconds	-	10 Sekunden vorspulen
 values-b+de	string	select_all	-	Alle auswählen
 values-b+de	string	select_an_account	-	Ein Konto auswählen
 values-b+de	string	select_library	-	Bibliothek auswählen
@@ -7469,6 +7587,8 @@ values-b+de	string	year	-	Jahr
 values-b+de	string	yes	-	Ja
 values-b+el	plurals	episodes	one	Επεισόδιο
 values-b+el	plurals	episodes	other	Επεισόδια
+values-b+el	plurals	home_sections_failed	one	Αποτυχία φόρτωσης %d ενότητας
+values-b+el	plurals	home_sections_failed	other	Αποτυχία φόρτωσης %d ενοτήτων
 values-b+el	string	account	-	Λογαριασμός
 values-b+el	string	action_add_to_bookmarks	-	Ορισμός κατάστασης θέασης
 values-b+el	string	action_add_to_favorites	-	Προσθήκη στα Αγαπημένα
@@ -7734,6 +7854,7 @@ values-b+el	string	home_more_info	-	Περαιτέρω πληροφορίες
 values-b+el	string	home_next_random_img_des	-	Next Random
 values-b+el	string	home_play	-	Αναπαραγωγή
 values-b+el	string	home_random	-	Τυχαίο
+values-b+el	string	home_search_only_body	-	Καμία από τις επεκτάσεις σας δεν έχει αρχική σελίδα, αλλά μπορείτε να αναζητήσετε σε αυτές.
 values-b+el	string	home_source	-	Πηγή
 values-b+el	string	is_adult	-	18+
 values-b+el	string	jsdelivr_enabled	-	Το GitHub δεν είναι προσβάσιμο. Ενεργοποίηση διακομιστή μεσολάβησης jsDelivr…
@@ -7748,6 +7869,7 @@ values-b+el	string	limit_title_rez	-	Ανάλυση προγράμματος α�
 values-b+el	string	links_reloaded_toast	-	Οι σύνδεσμοι επαναφορτώθηκαν
 values-b+el	string	live_singular	-	Ζωντανή Μετάδοση
 values-b+el	string	livestreams	-	Ζωντανές Μεταδόσεις
+values-b+el	string	load_more	-	Φόρτωση περισσότερων
 values-b+el	string	loading	-	Φόρτωση…
 values-b+el	string	lock_profile	-	Κλείδωμα Προφίλ
 values-b+el	string	logged_account	-	Σύνδεση ως %s
@@ -7946,9 +8068,12 @@ values-b+el	string	search_hint_site	-	Αναζήτηση %s…
 values-b+el	string	search_poster_img_des	-	Αφίσα
 values-b+el	string	search_provider_text_providers	-	Αναζήτηση βάσει παρόχων
 values-b+el	string	search_provider_text_types	-	Αναζήτηση βάσει τύπων
+values-b+el	string	search_state_idle_body_desktop	-	Πληκτρολογήστε έναν τίτλο. Τα αποτελέσματα εμφανίζονται κάτω από κάθε πηγή μόλις απαντήσει.
 values-b+el	string	season	-	Κύκλος
 values-b+el	string	season_format	-	%1$s %2$d%3$s
 values-b+el	string	season_short	-	Σ
+values-b+el	string	seek_back_10_seconds	-	Μετάβαση 10 δευτερόλεπτα πίσω
+values-b+el	string	seek_forward_10_seconds	-	Μετάβαση 10 δευτερόλεπτα μπροστά
 values-b+el	string	select_all	-	Επιλογή όλων
 values-b+el	string	select_an_account	-	Επιλογή λογαριασμού
 values-b+el	string	select_library	-	Διάλεξε βιβλιοθήκη
@@ -8141,6 +8266,8 @@ values-b+el	string	year	-	Έτος
 values-b+el	string	yes	-	Ναι
 values-b+eo	plurals	episodes	one	Epizodo
 values-b+eo	plurals	episodes	other	Epizodoj
+values-b+eo	plurals	home_sections_failed	one	%d sekcio ne ŝargiĝis
+values-b+eo	plurals	home_sections_failed	other	%d sekcioj ne ŝargiĝis
 values-b+eo	string	account	-	konto
 values-b+eo	string	action_open_play	-	Spekti
 values-b+eo	string	action_open_watching	-	Pli da informoj
@@ -8217,6 +8344,8 @@ values-b+eo	string	home_main_poster_img_des	-	Ĉefa Afiŝo
 values-b+eo	string	home_more_info	-	Pli da informoj
 values-b+eo	string	home_next_random_img_des	-	Sekva Hazarda
 values-b+eo	string	home_play	-	Spekti
+values-b+eo	string	home_search_only_body	-	Neniu el viaj kromprogramoj havas hejmpaĝon, sed vi ankoraŭ povas serĉi en ili.
+values-b+eo	string	load_more	-	Ŝargi pli
 values-b+eo	string	loading	-	Ŝarĝante…
 values-b+eo	string	login	-	Saluti
 values-b+eo	string	logout	-	Adiaŭi
@@ -8273,10 +8402,13 @@ values-b+eo	string	search_hint_site	-	Serĉi %s…
 values-b+eo	string	search_poster_img_des	-	Afiŝo
 values-b+eo	string	search_provider_text_providers	-	Serĉi uzante provizantojn
 values-b+eo	string	search_provider_text_types	-	Serĉi uzante tipojn
+values-b+eo	string	search_state_idle_body_desktop	-	Tajpu titolon. Rezultoj aperas sub ĉiu fonto kiam ĝi respondas.
 values-b+eo	string	search_suggestions	-	Serĉaj Sugestoj
 values-b+eo	string	season	-	Sezono
 values-b+eo	string	season_format	-	%1$s %2$d%3$s
 values-b+eo	string	season_short	-	S
+values-b+eo	string	seek_back_10_seconds	-	Salti 10 sekundojn malantaŭen
+values-b+eo	string	seek_forward_10_seconds	-	Salti 10 sekundojn antaŭen
 values-b+eo	string	select_all	-	Selekti Ĉion
 values-b+eo	string	settings_info	-	Informoj
 values-b+eo	string	show_title	-	Titolo
@@ -8337,6 +8469,9 @@ values-b+es	plurals	downloads_queued	one	%d descarga encolada
 values-b+es	plurals	downloads_queued	other	%d descargas encoladas
 values-b+es	plurals	episodes	one	Episodio
 values-b+es	plurals	episodes	other	Episodios
+values-b+es	plurals	home_sections_failed	many	No se pudieron cargar %d secciones
+values-b+es	plurals	home_sections_failed	one	No se pudo cargar %d sección
+values-b+es	plurals	home_sections_failed	other	No se pudieron cargar %d secciones
 values-b+es	plurals	links_hidden	many	%d enlaces ocultos
 values-b+es	plurals	links_hidden	one	%d enlace oculto
 values-b+es	plurals	links_hidden	other	%d enlaces ocultos
@@ -8633,6 +8768,7 @@ values-b+es	string	home_more_info	-	Más información
 values-b+es	string	home_next_random_img_des	-	Siguiente al azar
 values-b+es	string	home_play	-	Reproducir
 values-b+es	string	home_random	-	Aleatorio
+values-b+es	string	home_search_only_body	-	Ninguna de sus extensiones tiene página de inicio, pero aún puede buscar en ellas.
 values-b+es	string	home_source	-	Fuente
 values-b+es	string	install_prerelease	-	Instalar version pre-lanzamiento
 values-b+es	string	is_adult	-	18+
@@ -8648,6 +8784,7 @@ values-b+es	string	limit_title_rez	-	Mostrar la información del reproductor de 
 values-b+es	string	links_reloaded_toast	-	Enlaces recargados
 values-b+es	string	live_singular	-	Transmisión en vivo
 values-b+es	string	livestreams	-	Transmisiones en vivo
+values-b+es	string	load_more	-	Cargar más
 values-b+es	string	loading	-	Cargando…
 values-b+es	string	lock_profile	-	Bloquear perfil
 values-b+es	string	logged_account	-	Conectado como %s
@@ -8868,11 +9005,14 @@ values-b+es	string	search_hint_site	-	Buscar en %s…
 values-b+es	string	search_poster_img_des	-	Póster
 values-b+es	string	search_provider_text_providers	-	Buscar usando proveedores
 values-b+es	string	search_provider_text_types	-	Buscar por tipos
+values-b+es	string	search_state_idle_body_desktop	-	Escriba un título. Los resultados aparecen bajo cada fuente cuando responde.
 values-b+es	string	search_suggestions	-	Sugerencias de Búsqueda
 values-b+es	string	search_suggestions_des	-	Mostrar sugerencias de búsqueda mientras escribe
 values-b+es	string	season	-	Temporada
 values-b+es	string	season_format	-	%1$s %2$d%3$s
 values-b+es	string	season_short	-	T
+values-b+es	string	seek_back_10_seconds	-	Retroceder 10 segundos
+values-b+es	string	seek_forward_10_seconds	-	Avanzar 10 segundos
 values-b+es	string	select_all	-	Seleccionar todo
 values-b+es	string	select_an_account	-	Seleccione una cuenta
 values-b+es	string	select_library	-	Seleccionar biblioteca
@@ -9083,6 +9223,8 @@ values-b+es	string	year	-	Año
 values-b+es	string	yes	-	Si
 values-b+fa	plurals	episodes	one	قسمت
 values-b+fa	plurals	episodes	other	قسمت‌ها
+values-b+fa	plurals	home_sections_failed	one	%d بخش بارگیری نشد
+values-b+fa	plurals	home_sections_failed	other	%d بخش بارگیری نشد
 values-b+fa	string	action_add_to_bookmarks	-	تنظیم وضعیت تماشا
 values-b+fa	string	action_default	-	پیش‌فرض
 values-b+fa	string	action_open_play	-	نمایش
@@ -9218,6 +9360,7 @@ values-b+fa	string	home_main_poster_img_des	-	پوستر اصلی
 values-b+fa	string	home_more_info	-	اطلاعات بیشتر
 values-b+fa	string	home_next_random_img_des	-	تصادفی بعدی
 values-b+fa	string	home_play	-	نمایش
+values-b+fa	string	home_search_only_body	-	هیچ‌یک از افزونه‌های شما صفحهٔ اصلی ندارد، اما همچنان می‌توانید در آن‌ها جست‌وجو کنید.
 values-b+fa	string	jsdelivr_proxy_summary	-	دورزدن نشانی‌های خام github توسط jsDelivr. ممکن است باعث تاخیر چند روزه به‌روزرسانی شود.
 values-b+fa	string	kitsu_settings	-	نمیش پوستر از kitsu
 values-b+fa	string	legal_notice	-	هشدار
@@ -9227,6 +9370,7 @@ values-b+fa	string	limit_title_rez	-	کیفیت پخش‌کننده ویدئو
 values-b+fa	string	links_reloaded_toast	-	پیوندها دوباره بارگیری شدند
 values-b+fa	string	live_singular	-	پخش زنده
 values-b+fa	string	livestreams	-	استریم های زنده
+values-b+fa	string	load_more	-	بارگیری بیشتر
 values-b+fa	string	loading	-	درحال بارگیری…
 values-b+fa	string	login	-	ورود
 values-b+fa	string	logout	-	خروج
@@ -9345,8 +9489,11 @@ values-b+fa	string	search_hint_site	-	جست‌و‌جوی %s…
 values-b+fa	string	search_poster_img_des	-	پوستر
 values-b+fa	string	search_provider_text_providers	-	جستجو از طریق ارائه‌دهنده‌ها
 values-b+fa	string	search_provider_text_types	-	جستجو از طریق انواع
+values-b+fa	string	search_state_idle_body_desktop	-	عنوانی را بنویسید. نتایج هر منبع پس از پاسخ آن، زیر نامش نمایش داده می‌شود.
 values-b+fa	string	season	-	فصل
 values-b+fa	string	season_short	-	ف
+values-b+fa	string	seek_back_10_seconds	-	۱۰ ثانیه به عقب
+values-b+fa	string	seek_forward_10_seconds	-	۱۰ ثانیه به جلو
 values-b+fa	string	select_all	-	انتخاب همه
 values-b+fa	string	settings_info	-	درباره
 values-b+fa	string	show_fillers_settings	-	نمایش فیلتر قسمت برای انیمه
@@ -9438,6 +9585,8 @@ values-b+fa	string	watch_quality_pref	-	کیفیت تماشای برگزیده (
 values-b+fa	string	watch_quality_pref_data	-	کیفیت تماشای برگزیده (برای دیتای گوشی)
 values-b+fa	string	wifi	-	وای‌فای
 values-b+fa	string	year	-	سال
+values-b+fil	plurals	home_sections_failed	one	Hindi na-load ang %d seksyon
+values-b+fil	plurals	home_sections_failed	other	Hindi na-load ang %d seksyon
 values-b+fil	string	action_add_to_bookmarks	-	Itakda ang kapalaran ng panonood
 values-b+fil	string	action_add_to_favorites	-	Idagdag sa mga paborito <3
 values-b+fil	string	action_mark_as_watched	-	I-tanda bilang napanood na
@@ -9555,9 +9704,11 @@ values-b+fil	string	home_info	-	Impormasyon
 values-b+fil	string	home_more_info	-	Higit pang impormasyon
 values-b+fil	string	home_next_random_img_des	-	Susunod na Kahit Ano
 values-b+fil	string	home_play	-	Ipatugtog
+values-b+fil	string	home_search_only_body	-	Wala sa iyong mga extension ang may home page, pero maaari ka pa ring maghanap sa mga ito.
 values-b+fil	string	kitsu_settings	-	Ipakita ang posters mula sa Kitsu
 values-b+fil	string	lightnovel	-	Light novel app ng parehong devs
 values-b+fil	string	links_reloaded_toast	-	Ini-load muli ang mga link
+values-b+fil	string	load_more	-	Mag-load pa
 values-b+fil	string	loading	-	Naglo-load…
 values-b+fil	string	logout	-	Mag log out
 values-b+fil	string	movies	-	Pelikula
@@ -9637,6 +9788,9 @@ values-b+fil	string	search_hint	-	Maghanap…
 values-b+fil	string	search_hint_site	-	Maghanap %s…
 values-b+fil	string	search_provider_text_providers	-	Maghanap gamit ang mga tagatustos
 values-b+fil	string	search_provider_text_types	-	Maghanap gamit ang mga uri
+values-b+fil	string	search_state_idle_body_desktop	-	Mag-type ng pamagat. Lalabas ang mga resulta sa ilalim ng bawat source kapag sumagot ito.
+values-b+fil	string	seek_back_10_seconds	-	Bumalik ng 10 segundo
+values-b+fil	string	seek_forward_10_seconds	-	Umabante ng 10 segundo
 values-b+fil	string	select_all	-	Piliin Lahat
 values-b+fil	string	settings_info	-	Impormasyon
 values-b+fil	string	show_fillers_settings	-	Ipakita ang filler episode sa anime
@@ -9719,6 +9873,9 @@ values-b+fr	plurals	downloads_queued	one	%d téléchargement en attente
 values-b+fr	plurals	downloads_queued	other	%d téléchargements en attente
 values-b+fr	plurals	episodes	one	Épisode
 values-b+fr	plurals	episodes	other	Épisodes
+values-b+fr	plurals	home_sections_failed	many	%d sections n'ont pas pu être chargées
+values-b+fr	plurals	home_sections_failed	one	%d section n'a pas pu être chargée
+values-b+fr	plurals	home_sections_failed	other	%d sections n'ont pas pu être chargées
 values-b+fr	plurals	links_hidden	many	%d liens cachés
 values-b+fr	plurals	links_hidden	one	%d lien caché
 values-b+fr	plurals	links_hidden	other	%d liens cachés
@@ -10015,6 +10172,7 @@ values-b+fr	string	home_more_info	-	Plus d'information
 values-b+fr	string	home_next_random_img_des	-	Aléatoire suivant
 values-b+fr	string	home_play	-	Lecture
 values-b+fr	string	home_random	-	Aléatoire
+values-b+fr	string	home_search_only_body	-	Aucune de vos extensions n'a de page d'accueil, mais vous pouvez quand même y effectuer une recherche.
 values-b+fr	string	home_source	-	Source
 values-b+fr	string	install_prerelease	-	Installer la version préliminaire
 values-b+fr	string	is_adult	-	18+
@@ -10030,6 +10188,7 @@ values-b+fr	string	limit_title_rez	-	Afficher les informations du lecteur
 values-b+fr	string	links_reloaded_toast	-	Les liens ont été rechargés
 values-b+fr	string	live_singular	-	En direct
 values-b+fr	string	livestreams	-	En direct
+values-b+fr	string	load_more	-	Charger plus
 values-b+fr	string	loading	-	Chargement…
 values-b+fr	string	lock_profile	-	Verrouiller le profil
 values-b+fr	string	logged_account	-	Connecté en tant que %s
@@ -10249,11 +10408,14 @@ values-b+fr	string	search_hint_site	-	Rechercher sur %s…
 values-b+fr	string	search_poster_img_des	-	Affiche
 values-b+fr	string	search_provider_text_providers	-	Recherche par fournisseur
 values-b+fr	string	search_provider_text_types	-	Recherche par types
+values-b+fr	string	search_state_idle_body_desktop	-	Saisissez un titre. Les résultats apparaissent sous chaque source dès qu'elle répond.
 values-b+fr	string	search_suggestions	-	Suggestions de recherche
 values-b+fr	string	search_suggestions_des	-	Afficher des suggestions de recherche pendant la saisie
 values-b+fr	string	season	-	Saison
 values-b+fr	string	season_format	-	%1$s %2$d%3$s
 values-b+fr	string	season_short	-	S
+values-b+fr	string	seek_back_10_seconds	-	Reculer de 10 secondes
+values-b+fr	string	seek_forward_10_seconds	-	Avancer de 10 secondes
 values-b+fr	string	select_all	-	Tout sélectionner
 values-b+fr	string	select_an_account	-	Sélectionnez un compte
 values-b+fr	string	select_library	-	Sélectionnez la bibliothèque
@@ -10464,6 +10626,8 @@ values-b+fr	string	year	-	Année
 values-b+fr	string	yes	-	Oui
 values-b+gl	plurals	episodes	one	Capítulo
 values-b+gl	plurals	episodes	other	Episodes
+values-b+gl	plurals	home_sections_failed	one	Non se puido cargar %d sección
+values-b+gl	plurals	home_sections_failed	other	Non se puideron cargar %d seccións
 values-b+gl	string	action_add_to_bookmarks	-	Seleccionar estado de visualización
 values-b+gl	string	action_default	-	Por defecto
 values-b+gl	string	action_open_play	-	Reproducir
@@ -10587,12 +10751,14 @@ values-b+gl	string	home_main_poster_img_des	-	Póster Principal
 values-b+gl	string	home_more_info	-	Máis información
 values-b+gl	string	home_next_random_img_des	-	Seguinte ó azar
 values-b+gl	string	home_play	-	Reproducir
+values-b+gl	string	home_search_only_body	-	Ningunha das súas extensións ten páxina de inicio, pero aínda pode buscar nelas.
 values-b+gl	string	kitsu_settings	-	Mostrar pósters de Kitsu
 values-b+gl	string	library	-	Biblioteca
 values-b+gl	string	lightnovel	-	Aplicativo de novela lixeira dos mesmos desenvolvedores
 values-b+gl	string	links_reloaded_toast	-	Ligazóns recargadas
 values-b+gl	string	live_singular	-	Transmisión en vivo
 values-b+gl	string	livestreams	-	Transmisións en vivo
+values-b+gl	string	load_more	-	Cargar máis
 values-b+gl	string	loading	-	Cargando…
 values-b+gl	string	movies	-	Películas
 values-b+gl	string	movies_singular	-	Película
@@ -10674,9 +10840,12 @@ values-b+gl	string	search_hint_site	-	Procurar en %s…
 values-b+gl	string	search_poster_img_des	-	Cartel
 values-b+gl	string	search_provider_text_providers	-	Procurar usando proveedores
 values-b+gl	string	search_provider_text_types	-	Procurar por tipos
+values-b+gl	string	search_state_idle_body_desktop	-	Escriba un título. Os resultados aparecen baixo cada fonte cando responde.
 values-b+gl	string	season	-	Temporada
 values-b+gl	string	season_format	-	%1$s %2$d%3$s
 values-b+gl	string	season_short	-	T
+values-b+gl	string	seek_back_10_seconds	-	Retroceder 10 segundos
+values-b+gl	string	seek_forward_10_seconds	-	Avanzar 10 segundos
 values-b+gl	string	select_all	-	Seleccionar todo
 values-b+gl	string	settings_info	-	Info
 values-b+gl	string	show_dub	-	Etiqueta de doblaxe
@@ -10760,6 +10929,9 @@ values-b+gl	string	vpn_torrent	-	Este proveedor é un torrent, recomendase o uso
 values-b+gl	string	year	-	Ano
 values-b+he	plurals	episodes	one	פרק
 values-b+he	plurals	episodes	other	פרקים
+values-b+he	plurals	home_sections_failed	one	טעינת %d קטע נכשלה
+values-b+he	plurals	home_sections_failed	other	טעינת %d קטעים נכשלה
+values-b+he	plurals	home_sections_failed	two	טעינת %d קטעים נכשלה
 values-b+he	string	account	-	חשבון
 values-b+he	string	action_add_to_bookmarks	-	הגדר מצב צפייה
 values-b+he	string	action_default	-	ברירת מחדל
@@ -10967,6 +11139,7 @@ values-b+he	string	home_more_info	-	יותר מידע
 values-b+he	string	home_next_random_img_des	-	ארקאי הבא
 values-b+he	string	home_play	-	נגן
 values-b+he	string	home_random	-	אקראי
+values-b+he	string	home_search_only_body	-	לאף אחת מההרחבות שלך אין דף בית, אבל עדיין אפשר לחפש בהן.
 values-b+he	string	home_source	-	מקור
 values-b+he	string	is_adult	-	18+
 values-b+he	string	jsdelivr_enabled	-	ההתחברות אל GitHub נכשלה. מדליק פרוקסי אל jsDelivr…
@@ -10981,6 +11154,7 @@ values-b+he	string	limit_title_rez	-	רזולוציית נגן וידאו
 values-b+he	string	links_reloaded_toast	-	קישורים נטענו
 values-b+he	string	live_singular	-	שידור חי
 values-b+he	string	livestreams	-	שידורי חי
+values-b+he	string	load_more	-	טען עוד
 values-b+he	string	loading	-	טוען…
 values-b+he	string	login	-	התחברות
 values-b+he	string	login_format	-	%1$s %2$s
@@ -11152,9 +11326,12 @@ values-b+he	string	search_hint_site	-	חיפוש %s…
 values-b+he	string	search_poster_img_des	-	פוסטר
 values-b+he	string	search_provider_text_providers	-	חפש באמצעות הספקים
 values-b+he	string	search_provider_text_types	-	חפש באמצעות סוגים
+values-b+he	string	search_state_idle_body_desktop	-	הקלד כותרת. התוצאות יופיעו מתחת לכל מקור כשיענה.
 values-b+he	string	season	-	עונה
 values-b+he	string	season_format	-	%1$s %2$d%3$s
 values-b+he	string	season_short	-	עו
+values-b+he	string	seek_back_10_seconds	-	דלג 10 שניות אחורה
+values-b+he	string	seek_forward_10_seconds	-	דלג 10 שניות קדימה
 values-b+he	string	select_all	-	בחר הכל
 values-b+he	string	select_library	-	בחר ספרייה
 values-b+he	string	set_default	-	קביעה כברירת מחדל
@@ -11315,6 +11492,8 @@ values-b+he	string	year	-	שנה
 values-b+he	string	yes	-	כן
 values-b+hi	plurals	episodes	one	प्रकरण
 values-b+hi	plurals	episodes	other	Episodes
+values-b+hi	plurals	home_sections_failed	one	%d अनुभाग लोड नहीं हो सका
+values-b+hi	plurals	home_sections_failed	other	%d अनुभाग लोड नहीं हो सके
 values-b+hi	string	account	-	खाता
 values-b+hi	string	action_add_to_bookmarks	-	दर्शन स्थिति सेट करें
 values-b+hi	string	action_default	-	डिफॉल्ट
@@ -11494,6 +11673,7 @@ values-b+hi	string	home_main_poster_img_des	-	मुख्य पोस्टर
 values-b+hi	string	home_more_info	-	और जानकारी
 values-b+hi	string	home_next_random_img_des	-	अगला रैंडम
 values-b+hi	string	home_play	-	चलाएं
+values-b+hi	string	home_search_only_body	-	आपके किसी भी एक्सटेंशन में होम पेज नहीं है, फिर भी आप उनमें खोज सकते हैं।
 values-b+hi	string	install_prerelease	-	प्री-रिलीज़ संस्करण स्थापित करें
 values-b+hi	string	jsdelivr_enabled	-	गिटहब तक नहीं पहुंचा जा सका। जेएस डीलीवर प्रॉक्सी चालू किया जा रहा है…
 values-b+hi	string	jsdelivr_proxy	-	गिटहब प्रॉक्सी
@@ -11507,6 +11687,7 @@ values-b+hi	string	limit_title_rez	-	वीडियो प्लेयर र�
 values-b+hi	string	links_reloaded_toast	-	लिंक पुन्ह खुली
 values-b+hi	string	live_singular	-	लाइव स्ट्रीम
 values-b+hi	string	livestreams	-	लाइव स्ट्रीम
+values-b+hi	string	load_more	-	और लोड करें
 values-b+hi	string	loading	-	लोडिंग…
 values-b+hi	string	lock_profile	-	प्रोफ़ाइल लॉक करें
 values-b+hi	string	login	-	लॉग इन
@@ -11628,9 +11809,12 @@ values-b+hi	string	search_hint_site	-	%s पर खोजें…
 values-b+hi	string	search_poster_img_des	-	पोस्टर
 values-b+hi	string	search_provider_text_providers	-	प्रोवाइडरों का उपयोग कर खोजें
 values-b+hi	string	search_provider_text_types	-	प्रकार का उपयोग करके खोजें
+values-b+hi	string	search_state_idle_body_desktop	-	कोई शीर्षक लिखें। हर स्रोत के जवाब देने पर नतीजे उसके नीचे दिखेंगे।
 values-b+hi	string	season	-	सत्र
 values-b+hi	string	season_format	-	%1$s %2$d%3$s
 values-b+hi	string	season_short	-	S
+values-b+hi	string	seek_back_10_seconds	-	१० सेकंड पीछे जाएं
+values-b+hi	string	seek_forward_10_seconds	-	१० सेकंड आगे जाएं
 values-b+hi	string	select_all	-	सभी चुनें
 values-b+hi	string	select_an_account	-	अकाउंट चुनिये
 values-b+hi	string	settings_info	-	जानकारी
@@ -11742,6 +11926,9 @@ values-b+hr	plurals	downloads_queued	one	%d preuzimanje u redu čekanja
 values-b+hr	plurals	downloads_queued	other	%d preuzimanja u redu čekanja
 values-b+hr	plurals	episodes	one	Epizoda
 values-b+hr	plurals	episodes	other	Epizoda
+values-b+hr	plurals	home_sections_failed	few	Nisu učitana %d odjeljka
+values-b+hr	plurals	home_sections_failed	one	Nije učitan %d odjeljak
+values-b+hr	plurals	home_sections_failed	other	Nije učitano %d odjeljaka
 values-b+hr	string	account	-	račun
 values-b+hr	string	action_add_to_bookmarks	-	Postavi status gledanja
 values-b+hr	string	action_add_to_favorites	-	Dodaj u favorite
@@ -12035,6 +12222,7 @@ values-b+hr	string	home_more_info	-	Više informacija
 values-b+hr	string	home_next_random_img_des	-	Sljedeće slučajno odabrano
 values-b+hr	string	home_play	-	Pokreni
 values-b+hr	string	home_random	-	Slučajno
+values-b+hr	string	home_search_only_body	-	Nijedno vaše proširenje nema početnu stranicu, ali i dalje možete pretraživati u njima.
 values-b+hr	string	home_source	-	Izvor
 values-b+hr	string	install_prerelease	-	Instaliraj predizdanje
 values-b+hr	string	is_adult	-	18+
@@ -12050,6 +12238,7 @@ values-b+hr	string	limit_title_rez	-	Prikaži podatke playera
 values-b+hr	string	links_reloaded_toast	-	Poveznice su ponovo učitane
 values-b+hr	string	live_singular	-	Livestream
 values-b+hr	string	livestreams	-	Livestreamovi
+values-b+hr	string	load_more	-	Učitaj još
 values-b+hr	string	loading	-	Učitavanje …
 values-b+hr	string	lock_profile	-	Zaključaj profil
 values-b+hr	string	logged_account	-	Prijavljeni ste kao %s
@@ -12267,11 +12456,14 @@ values-b+hr	string	search_hint_site	-	Traži %s …
 values-b+hr	string	search_poster_img_des	-	Poster
 values-b+hr	string	search_provider_text_providers	-	Traži koristeći pružatelje usluga
 values-b+hr	string	search_provider_text_types	-	Traži koristeći vrste
+values-b+hr	string	search_state_idle_body_desktop	-	Upišite naslov. Rezultati se pojavljuju ispod svakog izvora kad odgovori.
 values-b+hr	string	search_suggestions	-	Prijedlozi za pretraživanje
 values-b+hr	string	search_suggestions_des	-	Prikaži prijedloge za pretraživanje tijekom tipkanja
 values-b+hr	string	season	-	Sezona
 values-b+hr	string	season_format	-	%1$s %2$d%3$s
 values-b+hr	string	season_short	-	S
+values-b+hr	string	seek_back_10_seconds	-	Pomakni natrag 10 sekundi
+values-b+hr	string	seek_forward_10_seconds	-	Pomakni naprijed 10 sekundi
 values-b+hr	string	select_all	-	Označi sve
 values-b+hr	string	select_an_account	-	Odaberite račun
 values-b+hr	string	select_library	-	Odaberite biblioteku
@@ -12480,6 +12672,8 @@ values-b+hr	string	year	-	Godina
 values-b+hr	string	yes	-	Da
 values-b+hu	plurals	episodes	one	Epizód
 values-b+hu	plurals	episodes	other	Epizódok
+values-b+hu	plurals	home_sections_failed	one	%d szakasz betöltése sikertelen
+values-b+hu	plurals	home_sections_failed	other	%d szakasz betöltése sikertelen
 values-b+hu	string	account	-	Fiók
 values-b+hu	string	action_add_to_bookmarks	-	Megtekintés állapotának beállítása
 values-b+hu	string	action_add_to_favorites	-	Hozzáadás a kedvencekhez
@@ -12737,6 +12931,7 @@ values-b+hu	string	home_more_info	-	Több információ
 values-b+hu	string	home_next_random_img_des	-	Következő véletlenszerű
 values-b+hu	string	home_play	-	Lejátszás
 values-b+hu	string	home_random	-	Lepj meg
+values-b+hu	string	home_search_only_body	-	Egyik bővítményének sincs kezdőlapja, de továbbra is kereshet bennük.
 values-b+hu	string	home_source	-	Forrás
 values-b+hu	string	install_prerelease	-	Telepít kiadás előtti verziót
 values-b+hu	string	is_adult	-	18+
@@ -12752,6 +12947,7 @@ values-b+hu	string	limit_title_rez	-	Videolejátszó felbontása
 values-b+hu	string	links_reloaded_toast	-	Linkek Újratöltve
 values-b+hu	string	live_singular	-	Élőadás
 values-b+hu	string	livestreams	-	Élőadások
+values-b+hu	string	load_more	-	Több betöltése
 values-b+hu	string	loading	-	Betöltés…
 values-b+hu	string	lock_profile	-	Profil Zárolása
 values-b+hu	string	logged_account	-	Belépve mint %s
@@ -12947,11 +13143,14 @@ values-b+hu	string	search_hint_site	-	Keresés %s…
 values-b+hu	string	search_poster_img_des	-	Poszter
 values-b+hu	string	search_provider_text_providers	-	Keresés szolgáltatók szerint
 values-b+hu	string	search_provider_text_types	-	Keresés típusok szerint
+values-b+hu	string	search_state_idle_body_desktop	-	Írjon be egy címet. Az eredmények az egyes források alatt jelennek meg, amint válaszolnak.
 values-b+hu	string	search_suggestions	-	Keresési javaslatok
 values-b+hu	string	search_suggestions_des	-	Mutasson keresési javaslatok gépelés közben
 values-b+hu	string	season	-	Évad
 values-b+hu	string	season_format	-	%1$s %2$d%3$s
 values-b+hu	string	season_short	-	Év
+values-b+hu	string	seek_back_10_seconds	-	Ugrás 10 másodpercet hátra
+values-b+hu	string	seek_forward_10_seconds	-	Ugrás 10 másodpercet előre
 values-b+hu	string	select_all	-	Mindet Kiválaszt
 values-b+hu	string	select_an_account	-	Válasszon egy fiókot
 values-b+hu	string	select_library	-	Könyvtár kiválasztása
@@ -13127,6 +13326,7 @@ values-b+id	plurals	downloads_active	other	%d unduhan aktif
 values-b+id	plurals	downloads_queued	other	%d unduhan dalam antrean
 values-b+id	plurals	episodes	one	Episode
 values-b+id	plurals	episodes	other	Episode
+values-b+id	plurals	home_sections_failed	other	%d bagian gagal dimuat
 values-b+id	plurals	links_hidden	other	%d link tersembunyi
 values-b+id	string	account	-	akun
 values-b+id	string	action_add_to_bookmarks	-	Atur status tontonan
@@ -13419,6 +13619,7 @@ values-b+id	string	home_more_info	-	Lebih banyak info
 values-b+id	string	home_next_random_img_des	-	Acak selanjutnya
 values-b+id	string	home_play	-	Putar
 values-b+id	string	home_random	-	Acak
+values-b+id	string	home_search_only_body	-	Tidak ada ekstensi Anda yang memiliki beranda, tetapi Anda tetap dapat mencari di dalamnya.
 values-b+id	string	home_source	-	Sumber
 values-b+id	string	install_prerelease	-	Pasang versi pra-rilis
 values-b+id	string	is_adult	-	18+
@@ -13434,6 +13635,7 @@ values-b+id	string	limit_title_rez	-	Tampilkan informasi pemutar
 values-b+id	string	links_reloaded_toast	-	Tautan Dimuat Ulang
 values-b+id	string	live_singular	-	Siaran langsung
 values-b+id	string	livestreams	-	Siaran langsung
+values-b+id	string	load_more	-	Muat lainnya
 values-b+id	string	loading	-	Memuat…
 values-b+id	string	lock_profile	-	Kunci Profil
 values-b+id	string	logged_account	-	Masuk sebagai %s
@@ -13654,11 +13856,14 @@ values-b+id	string	search_hint_site	-	Cari %s…
 values-b+id	string	search_poster_img_des	-	Poster
 values-b+id	string	search_provider_text_providers	-	Cari menggunakan penyedia
 values-b+id	string	search_provider_text_types	-	Cari menggunakan jenis
+values-b+id	string	search_state_idle_body_desktop	-	Ketik judul. Hasil muncul di bawah setiap sumber saat sumber itu menjawab.
 values-b+id	string	search_suggestions	-	Saran pencarian
 values-b+id	string	search_suggestions_des	-	Tampilkan saran pencarian saat mengetik
 values-b+id	string	season	-	Season
 values-b+id	string	season_format	-	%1$s %2$d%3$s
 values-b+id	string	season_short	-	S
+values-b+id	string	seek_back_10_seconds	-	Mundur 10 detik
+values-b+id	string	seek_forward_10_seconds	-	Maju 10 detik
 values-b+id	string	select_all	-	Pilih Semua
 values-b+id	string	select_an_account	-	Pilih Akun
 values-b+id	string	select_library	-	Pilih pustaka
@@ -13871,6 +14076,7 @@ values-b+in	plurals	downloads_active	other	%d unduhan aktif
 values-b+in	plurals	downloads_queued	other	%d unduhan dalam antrean
 values-b+in	plurals	episodes	one	Episode
 values-b+in	plurals	episodes	other	Episode
+values-b+in	plurals	home_sections_failed	other	%d bagian gagal dimuat
 values-b+in	plurals	links_hidden	other	%d link tersembunyi
 values-b+in	string	account	-	akun
 values-b+in	string	action_add_to_bookmarks	-	Atur status tontonan
@@ -14163,6 +14369,7 @@ values-b+in	string	home_more_info	-	Lebih banyak info
 values-b+in	string	home_next_random_img_des	-	Acak selanjutnya
 values-b+in	string	home_play	-	Putar
 values-b+in	string	home_random	-	Acak
+values-b+in	string	home_search_only_body	-	Tidak ada ekstensi Anda yang memiliki beranda, tetapi Anda tetap dapat mencari di dalamnya.
 values-b+in	string	home_source	-	Sumber
 values-b+in	string	install_prerelease	-	Pasang versi pra-rilis
 values-b+in	string	is_adult	-	18+
@@ -14178,6 +14385,7 @@ values-b+in	string	limit_title_rez	-	Tampilkan informasi pemutar
 values-b+in	string	links_reloaded_toast	-	Tautan Dimuat Ulang
 values-b+in	string	live_singular	-	Siaran langsung
 values-b+in	string	livestreams	-	Siaran langsung
+values-b+in	string	load_more	-	Muat lainnya
 values-b+in	string	loading	-	Memuat…
 values-b+in	string	lock_profile	-	Kunci Profil
 values-b+in	string	logged_account	-	Masuk sebagai %s
@@ -14398,11 +14606,14 @@ values-b+in	string	search_hint_site	-	Cari %s…
 values-b+in	string	search_poster_img_des	-	Poster
 values-b+in	string	search_provider_text_providers	-	Cari menggunakan penyedia
 values-b+in	string	search_provider_text_types	-	Cari menggunakan jenis
+values-b+in	string	search_state_idle_body_desktop	-	Ketik judul. Hasil muncul di bawah setiap sumber saat sumber itu menjawab.
 values-b+in	string	search_suggestions	-	Saran pencarian
 values-b+in	string	search_suggestions_des	-	Tampilkan saran pencarian saat mengetik
 values-b+in	string	season	-	Season
 values-b+in	string	season_format	-	%1$s %2$d%3$s
 values-b+in	string	season_short	-	S
+values-b+in	string	seek_back_10_seconds	-	Mundur 10 detik
+values-b+in	string	seek_forward_10_seconds	-	Maju 10 detik
 values-b+in	string	select_all	-	Pilih Semua
 values-b+in	string	select_an_account	-	Pilih Akun
 values-b+in	string	select_library	-	Pilih pustaka
@@ -14619,6 +14830,9 @@ values-b+it	plurals	downloads_queued	one	%d download in coda
 values-b+it	plurals	downloads_queued	other	%d download in coda
 values-b+it	plurals	episodes	one	Episodio
 values-b+it	plurals	episodes	other	Episodi
+values-b+it	plurals	home_sections_failed	many	Impossibile caricare %d sezioni
+values-b+it	plurals	home_sections_failed	one	Impossibile caricare %d sezione
+values-b+it	plurals	home_sections_failed	other	Impossibile caricare %d sezioni
 values-b+it	plurals	links_hidden	many	%d collegamenti nascosti
 values-b+it	plurals	links_hidden	one	%d collegamento nascosto
 values-b+it	plurals	links_hidden	other	%d collegamenti nascosti
@@ -14913,6 +15127,7 @@ values-b+it	string	home_more_info	-	Più info
 values-b+it	string	home_next_random_img_des	-	Prossimo casuale
 values-b+it	string	home_play	-	Riproduci
 values-b+it	string	home_random	-	Casuale
+values-b+it	string	home_search_only_body	-	Nessuna delle tue estensioni ha una pagina iniziale, ma puoi comunque cercare al loro interno.
 values-b+it	string	home_source	-	Fonte
 values-b+it	string	install_prerelease	-	Installa la versione pre-release
 values-b+it	string	is_adult	-	18+
@@ -14928,6 +15143,7 @@ values-b+it	string	limit_title_rez	-	Mostra informazioni sul lettore
 values-b+it	string	links_reloaded_toast	-	Collegamenti ricaricati
 values-b+it	string	live_singular	-	Livestream
 values-b+it	string	livestreams	-	Livestreams
+values-b+it	string	load_more	-	Carica altro
 values-b+it	string	loading	-	Caricamento…
 values-b+it	string	lock_profile	-	Blocca profilo
 values-b+it	string	logged_account	-	Connesso come %s
@@ -15148,11 +15364,14 @@ values-b+it	string	search_hint_site	-	Cerca in %s…
 values-b+it	string	search_poster_img_des	-	Poster
 values-b+it	string	search_provider_text_providers	-	Cerca per provider
 values-b+it	string	search_provider_text_types	-	Cerca per tipo
+values-b+it	string	search_state_idle_body_desktop	-	Digita un titolo. I risultati compaiono sotto ogni fonte quando risponde.
 values-b+it	string	search_suggestions	-	Suggerimenti per la ricerca
 values-b+it	string	search_suggestions_des	-	Mostra suggerimenti di ricerca durante la digitazione
 values-b+it	string	season	-	Stagione
 values-b+it	string	season_format	-	%1$s %2$d%3$s
 values-b+it	string	season_short	-	S
+values-b+it	string	seek_back_10_seconds	-	Indietro di 10 secondi
+values-b+it	string	seek_forward_10_seconds	-	Avanti di 10 secondi
 values-b+it	string	select_all	-	Seleziona tutto
 values-b+it	string	select_an_account	-	Seleziona un account
 values-b+it	string	select_library	-	Seleziona libreria
@@ -15363,6 +15582,9 @@ values-b+it	string	year	-	Anno
 values-b+it	string	yes	-	Sì
 values-b+iw	plurals	episodes	one	פרק
 values-b+iw	plurals	episodes	other	פרקים
+values-b+iw	plurals	home_sections_failed	one	טעינת %d קטע נכשלה
+values-b+iw	plurals	home_sections_failed	other	טעינת %d קטעים נכשלה
+values-b+iw	plurals	home_sections_failed	two	טעינת %d קטעים נכשלה
 values-b+iw	string	account	-	חשבון
 values-b+iw	string	action_add_to_bookmarks	-	הגדר מצב צפייה
 values-b+iw	string	action_default	-	ברירת מחדל
@@ -15570,6 +15792,7 @@ values-b+iw	string	home_more_info	-	יותר מידע
 values-b+iw	string	home_next_random_img_des	-	ארקאי הבא
 values-b+iw	string	home_play	-	נגן
 values-b+iw	string	home_random	-	אקראי
+values-b+iw	string	home_search_only_body	-	לאף אחת מההרחבות שלך אין דף בית, אבל עדיין אפשר לחפש בהן.
 values-b+iw	string	home_source	-	מקור
 values-b+iw	string	is_adult	-	18+
 values-b+iw	string	jsdelivr_enabled	-	ההתחברות אל GitHub נכשלה. מדליק פרוקסי אל jsDelivr…
@@ -15584,6 +15807,7 @@ values-b+iw	string	limit_title_rez	-	רזולוציית נגן וידאו
 values-b+iw	string	links_reloaded_toast	-	קישורים נטענו
 values-b+iw	string	live_singular	-	שידור חי
 values-b+iw	string	livestreams	-	שידורי חי
+values-b+iw	string	load_more	-	טען עוד
 values-b+iw	string	loading	-	טוען…
 values-b+iw	string	login	-	התחברות
 values-b+iw	string	login_format	-	%1$s %2$s
@@ -15755,9 +15979,12 @@ values-b+iw	string	search_hint_site	-	חיפוש %s…
 values-b+iw	string	search_poster_img_des	-	פוסטר
 values-b+iw	string	search_provider_text_providers	-	חפש באמצעות הספקים
 values-b+iw	string	search_provider_text_types	-	חפש באמצעות סוגים
+values-b+iw	string	search_state_idle_body_desktop	-	הקלד כותרת. התוצאות יופיעו מתחת לכל מקור כשיענה.
 values-b+iw	string	season	-	עונה
 values-b+iw	string	season_format	-	%1$s %2$d%3$s
 values-b+iw	string	season_short	-	עו
+values-b+iw	string	seek_back_10_seconds	-	דלג 10 שניות אחורה
+values-b+iw	string	seek_forward_10_seconds	-	דלג 10 שניות קדימה
 values-b+iw	string	select_all	-	בחר הכל
 values-b+iw	string	select_library	-	בחר ספרייה
 values-b+iw	string	set_default	-	קביעה כברירת מחדל
@@ -15920,6 +16147,7 @@ values-b+ja	plurals	downloads_active	other	%d 件をダウンロード中
 values-b+ja	plurals	downloads_queued	other	%d 件が待機中
 values-b+ja	plurals	episodes	one	エピソード
 values-b+ja	plurals	episodes	other	エピソード
+values-b+ja	plurals	home_sections_failed	other	%d 件のセクションを読み込めませんでした
 values-b+ja	plurals	links_hidden	other	%d件の非表示リンク
 values-b+ja	string	account	-	アカウント
 values-b+ja	string	action_add_to_bookmarks	-	視聴状態を設定
@@ -16214,6 +16442,7 @@ values-b+ja	string	home_more_info	-	詳細情報
 values-b+ja	string	home_next_random_img_des	-	次のランダム
 values-b+ja	string	home_play	-	再生
 values-b+ja	string	home_random	-	任意
+values-b+ja	string	home_search_only_body	-	ホームページを持つ拡張機能はありませんが、検索は引き続き利用できます。
 values-b+ja	string	home_source	-	ソース
 values-b+ja	string	install_prerelease	-	プレリリース版をインストール
 values-b+ja	string	is_adult	-	18+
@@ -16229,6 +16458,7 @@ values-b+ja	string	limit_title_rez	-	プレイヤー情報を表示
 values-b+ja	string	links_reloaded_toast	-	リンクがリロードされました
 values-b+ja	string	live_singular	-	ライブ配信
 values-b+ja	string	livestreams	-	ライブ配信
+values-b+ja	string	load_more	-	さらに読み込む
 values-b+ja	string	loading	-	ローディング…
 values-b+ja	string	lock_profile	-	プロフィールをロック
 values-b+ja	string	logged_account	-	%sとしてログインしました
@@ -16449,11 +16679,14 @@ values-b+ja	string	search_hint_site	-	%sを検索…
 values-b+ja	string	search_poster_img_des	-	ポスター
 values-b+ja	string	search_provider_text_providers	-	プロバイダーから探す
 values-b+ja	string	search_provider_text_types	-	使用タイプの検索
+values-b+ja	string	search_state_idle_body_desktop	-	タイトルを入力してください。各ソースが応答すると、その下に結果が表示されます。
 values-b+ja	string	search_suggestions	-	検索候補
 values-b+ja	string	search_suggestions_des	-	入力中に検索候補を表示する
 values-b+ja	string	season	-	シーズン
 values-b+ja	string	season_format	-	%1$s %2$d%3$s
 values-b+ja	string	season_short	-	シーズン
+values-b+ja	string	seek_back_10_seconds	-	10 秒戻る
+values-b+ja	string	seek_forward_10_seconds	-	10 秒進む
 values-b+ja	string	select_all	-	全選択
 values-b+ja	string	select_an_account	-	アカウントを選択
 values-b+ja	string	select_library	-	ライブラリを選択
@@ -16662,6 +16895,8 @@ values-b+ja	string	watch_quality_pref_data	-	優先視聴品質 (モバイルデ
 values-b+ja	string	wifi	-	Wi-Fi
 values-b+ja	string	year	-	年
 values-b+ja	string	yes	-	はい
+values-b+kn	plurals	home_sections_failed	one	%d ವಿಭಾಗವನ್ನು ಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ
+values-b+kn	plurals	home_sections_failed	other	%d ವಿಭಾಗಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ
 values-b+kn	string	action_add_to_bookmarks	-	ಸೆಟ್ ವಾಚ್ ಸ್ಟೇಟಸ್
 values-b+kn	string	action_open_play	-	@ಸ್ಟ್ರಿಂಗ್/ಹೋಮ್_ಪ್ಲೇ
 values-b+kn	string	action_open_watching	-	ಹೆಚ್ಚಿನ ಮಾಹಿತಿ
@@ -16708,6 +16943,8 @@ values-b+kn	string	home_main_poster_img_des	-	ಮೇನ್ ಪೋಸ್ಟರ್
 values-b+kn	string	home_more_info	-	ಹೆಚ್ಚಿನ ಮಾಹಿತಿ
 values-b+kn	string	home_next_random_img_des	-	ಮುಂದಿನ ರಾಂಡಮ್
 values-b+kn	string	home_play	-	ಪ್ಲೇ
+values-b+kn	string	home_search_only_body	-	ನಿಮ್ಮ ಯಾವುದೇ ವಿಸ್ತರಣೆಗೆ ಹೋಂ ಪುಟವಿಲ್ಲ, ಆದರೆ ನೀವು ಅವುಗಳಲ್ಲಿ ಹುಡುಕಬಹುದು.
+values-b+kn	string	load_more	-	ಇನ್ನಷ್ಟು ಲೋಡ್ ಮಾಡಿ
 values-b+kn	string	loading	-	ಲೋಡಿಂಗ್…
 values-b+kn	string	new_update_format	-	ಹೊಸ ಅಪ್ಡೇಟ್ ಬಂದಿದೆ \n%1$s-%2$s
 values-b+kn	string	next_episode	-	ಮುಂದಿನ ಸಂಚಿಕೆ
@@ -16750,6 +16987,9 @@ values-b+kn	string	search_hint_site	-	ಹುಡುಕು %s…
 values-b+kn	string	search_poster_img_des	-	ಪೋಸ್ಟರ್
 values-b+kn	string	search_provider_text_providers	-	ಪೂರೈಕೆದಾರರನ್ನು ಬಳಸಿಕೊಂಡು ಹುಡುಕಿ
 values-b+kn	string	search_provider_text_types	-	ಪ್ರಕಾರಗಳನ್ನು ಬಳಸಿಕೊಂಡು ಹುಡುಕಿ
+values-b+kn	string	search_state_idle_body_desktop	-	ಶೀರ್ಷಿಕೆಯನ್ನು ಟೈಪ್ ಮಾಡಿ. ಪ್ರತಿಯೊಂದು ಮೂಲ ಉತ್ತರಿಸಿದಂತೆ ಫಲಿತಾಂಶಗಳು ಅದರ ಕೆಳಗೆ ಕಾಣಿಸುತ್ತವೆ.
+values-b+kn	string	seek_back_10_seconds	-	10 ಸೆಕೆಂಡುಗಳು ಹಿಂದೆ ಹೋಗು
+values-b+kn	string	seek_forward_10_seconds	-	10 ಸೆಕೆಂಡುಗಳು ಮುಂದೆ ಹೋಗು
 values-b+kn	string	show_log_cat	-	ಲಾಗ್‌ಕ್ಯಾಟ್ 🐈 ತೋರಿಸಿ
 values-b+kn	string	skip_loading	-	ಸ್ಕಿಪ್ ಲೋಡಿಂಗ್
 values-b+kn	string	sort_apply	-	ಅನ್ವಯಿಸು
@@ -16796,6 +17036,7 @@ values-b+ko	plurals	downloads_active	other	%d 활성 다운로드
 values-b+ko	plurals	downloads_queued	other	%d 다운로드
 values-b+ko	plurals	episodes	one	에피소드
 values-b+ko	plurals	episodes	other	에피소드
+values-b+ko	plurals	home_sections_failed	other	섹션 %d개를 불러오지 못했습니다
 values-b+ko	string	account	-	계정
 values-b+ko	string	action_add_to_bookmarks	-	시청 상태 설정
 values-b+ko	string	action_add_to_favorites	-	즐겨찾기에 추가
@@ -17089,6 +17330,7 @@ values-b+ko	string	home_more_info	-	상세 정보
 values-b+ko	string	home_next_random_img_des	-	다음 추천
 values-b+ko	string	home_play	-	재생
 values-b+ko	string	home_random	-	랜덤
+values-b+ko	string	home_search_only_body	-	홈 페이지가 있는 확장 기능은 없지만 검색은 계속 사용할 수 있습니다.
 values-b+ko	string	home_source	-	소스
 values-b+ko	string	install_prerelease	-	출시 전 버전 설치
 values-b+ko	string	is_adult	-	18+
@@ -17104,6 +17346,7 @@ values-b+ko	string	limit_title_rez	-	플레이어 내 표시 정보
 values-b+ko	string	links_reloaded_toast	-	링크 초기화 완료
 values-b+ko	string	live_singular	-	라이브 방송
 values-b+ko	string	livestreams	-	라이브 방송
+values-b+ko	string	load_more	-	더 불러오기
 values-b+ko	string	loading	-	로딩중…
 values-b+ko	string	lock_profile	-	프로필 잠금
 values-b+ko	string	logged_account	-	%s으로 로그인 됨
@@ -17321,11 +17564,14 @@ values-b+ko	string	search_hint_site	-	검색 %s…
 values-b+ko	string	search_poster_img_des	-	포스터
 values-b+ko	string	search_provider_text_providers	-	소스로 검색
 values-b+ko	string	search_provider_text_types	-	유형을 사용하여 검색
+values-b+ko	string	search_state_idle_body_desktop	-	제목을 입력하세요. 각 소스가 응답하면 그 아래에 결과가 표시됩니다.
 values-b+ko	string	search_suggestions	-	검색어 제안
 values-b+ko	string	search_suggestions_des	-	입력하는 동안 검색어 제안 표시
 values-b+ko	string	season	-	시즌
 values-b+ko	string	season_format	-	%1$s %2$d%3$s
 values-b+ko	string	season_short	-	시즌
+values-b+ko	string	seek_back_10_seconds	-	10초 뒤로
+values-b+ko	string	seek_forward_10_seconds	-	10초 앞으로
 values-b+ko	string	select_all	-	모두 선택
 values-b+ko	string	select_an_account	-	계정 선택
 values-b+ko	string	select_library	-	라이브러리 선택
@@ -17534,6 +17780,10 @@ values-b+ko	string	year	-	년
 values-b+ko	string	yes	-	네
 values-b+lt	plurals	episodes	one	Serija
 values-b+lt	plurals	episodes	other	Serijos
+values-b+lt	plurals	home_sections_failed	few	Nepavyko įkelti %d skilčių
+values-b+lt	plurals	home_sections_failed	many	Nepavyko įkelti %d skilties
+values-b+lt	plurals	home_sections_failed	one	Nepavyko įkelti %d skilties
+values-b+lt	plurals	home_sections_failed	other	Nepavyko įkelti %d skilčių
 values-b+lt	string	action_add_to_bookmarks	-	Nustatyti žiūrėjimo statusą
 values-b+lt	string	action_mark_as_watched	-	Pažymėti kaip žiūrima
 values-b+lt	string	action_open_play	-	Paleisti
@@ -17650,11 +17900,13 @@ values-b+lt	string	home_main_poster_img_des	-	Pagrindinis Plakatas
 values-b+lt	string	home_more_info	-	Daugiau informacijos
 values-b+lt	string	home_next_random_img_des	-	Sekantis atsitiktinai
 values-b+lt	string	home_play	-	Paleisti
+values-b+lt	string	home_search_only_body	-	Nė vienas jūsų plėtinys neturi pagrindinio puslapio, bet juose vis tiek galite ieškoti.
 values-b+lt	string	is_adult	-	18+
 values-b+lt	string	library	-	Biblioteka
 values-b+lt	string	links_reloaded_toast	-	Nuorodos perkrautos
 values-b+lt	string	live_singular	-	Gyva transliacija
 values-b+lt	string	livestreams	-	Gyvos transliacijos
+values-b+lt	string	load_more	-	Įkelti daugiau
 values-b+lt	string	loading	-	Kraunama…
 values-b+lt	string	login	-	Prisijungti
 values-b+lt	string	logout	-	Atsijungti
@@ -17741,7 +17993,10 @@ values-b+lt	string	search_hint_site	-	Ieškoti %s…
 values-b+lt	string	search_poster_img_des	-	Plakatas
 values-b+lt	string	search_provider_text_providers	-	Ieškoti naudojant tiekėjus
 values-b+lt	string	search_provider_text_types	-	Ieškoti naudojant tipus
+values-b+lt	string	search_state_idle_body_desktop	-	Įveskite pavadinimą. Rezultatai rodomi po kiekvienu šaltiniu, kai šis atsako.
 values-b+lt	string	season	-	Sezonas
+values-b+lt	string	seek_back_10_seconds	-	Atsukti 10 sekundžių atgal
+values-b+lt	string	seek_forward_10_seconds	-	Persukti 10 sekundžių į priekį
 values-b+lt	string	select_all	-	Pasirinkti viską
 values-b+lt	string	select_library	-	Pasirinkti biblioteką
 values-b+lt	string	settings_info	-	Informacija
@@ -17839,6 +18094,9 @@ values-b+lv	plurals	downloads_active	other	%d aktīvas lejupielādes
 values-b+lv	plurals	downloads_active	zero	%d aktīvas lejupielādes
 values-b+lv	plurals	episodes	one	Epizode
 values-b+lv	plurals	episodes	other	Epizodes
+values-b+lv	plurals	home_sections_failed	one	Neizdevās ielādēt %d sadaļu
+values-b+lv	plurals	home_sections_failed	other	Neizdevās ielādēt %d sadaļas
+values-b+lv	plurals	home_sections_failed	zero	Neizdevās ielādēt %d sadaļu
 values-b+lv	string	account	-	Konts
 values-b+lv	string	action_add_to_bookmarks	-	Ieliec skatīšanās statusu
 values-b+lv	string	action_default	-	Parastais
@@ -18076,6 +18334,7 @@ values-b+lv	string	home_more_info	-	Vairāk informācijas
 values-b+lv	string	home_next_random_img_des	-	Nākamais nejaušais
 values-b+lv	string	home_play	-	Atskaņot
 values-b+lv	string	home_random	-	Randoms
+values-b+lv	string	home_search_only_body	-	Nevienam no jūsu papildinājumiem nav sākumlapas, taču tajos joprojām var meklēt.
 values-b+lv	string	home_source	-	Devējs
 values-b+lv	string	is_adult	-	18+
 values-b+lv	string	jsdelivr_enabled	-	Neizdevās sasniegt GitHub. Pieslēdzas starpniekserverim caur jsDelivr…
@@ -18089,6 +18348,7 @@ values-b+lv	string	limit_title	-	Video players nosaukuma maksimālie burti
 values-b+lv	string	limit_title_rez	-	Video atskaņotāja kvalitāte
 values-b+lv	string	live_singular	-	Livestreami
 values-b+lv	string	livestreams	-	Livestreami
+values-b+lv	string	load_more	-	Ielādēt vairāk
 values-b+lv	string	loading	-	Lādējas…
 values-b+lv	string	lock_profile	-	Aizslēgt profilu
 values-b+lv	string	login	-	Ieiet
@@ -18283,10 +18543,13 @@ values-b+lv	string	search_hint_site	-	Meklēt %s…
 values-b+lv	string	search_poster_img_des	-	Plakāts
 values-b+lv	string	search_provider_text_providers	-	Meklēt izmantojot devējus
 values-b+lv	string	search_provider_text_types	-	Meklēt izmantojot tipus
+values-b+lv	string	search_state_idle_body_desktop	-	Ievadiet nosaukumu. Rezultāti parādās zem katra devēja, tiklīdz tas atbild.
 values-b+lv	string	search_suggestions	-	Meklēšanas ieteikumi
 values-b+lv	string	season	-	Sezona
 values-b+lv	string	season_format	-	%1$s %2$d%3$s
 values-b+lv	string	season_short	-	S
+values-b+lv	string	seek_back_10_seconds	-	Pārtīt atpakaļ 10 sekundes
+values-b+lv	string	seek_forward_10_seconds	-	Pārtīt uz priekšu 10 sekundes
 values-b+lv	string	select_an_account	-	Atlasiet kontu
 values-b+lv	string	select_library	-	Atlasiet Bibliotēka
 values-b+lv	string	settings_info	-	Informācija
@@ -18463,6 +18726,8 @@ values-b+mk	plurals	downloads_queued	one	%d преземање во редица
 values-b+mk	plurals	downloads_queued	other	%d преземања во редицата
 values-b+mk	plurals	episodes	one	Епизода
 values-b+mk	plurals	episodes	other	Епизоди
+values-b+mk	plurals	home_sections_failed	one	%d дел не се вчита
+values-b+mk	plurals	home_sections_failed	other	%d делови не се вчитаа
 values-b+mk	string	account	-	Корисничко име
 values-b+mk	string	action_add_to_bookmarks	-	Постави статус на пратење
 values-b+mk	string	action_add_to_favorites	-	Додади во омилени
@@ -18756,6 +19021,7 @@ values-b+mk	string	home_more_info	-	Повеќе информации
 values-b+mk	string	home_next_random_img_des	-	Следен рандом
 values-b+mk	string	home_play	-	Пушти
 values-b+mk	string	home_random	-	Случајно
+values-b+mk	string	home_search_only_body	-	Ниту една од твоите екстензии нема почетна страница, но сепак можеш да пребаруваш во нив.
 values-b+mk	string	home_source	-	Извор на видео и превод
 values-b+mk	string	install_prerelease	-	Инсталирај предиздавачка верзија
 values-b+mk	string	is_adult	-	18+
@@ -18771,6 +19037,7 @@ values-b+mk	string	limit_title_rez	-	Прикажи информации за п
 values-b+mk	string	links_reloaded_toast	-	Повторно се вчитани линковите
 values-b+mk	string	live_singular	-	Пренос во живо
 values-b+mk	string	livestreams	-	Преноси во живо
+values-b+mk	string	load_more	-	Вчитај повеќе
 values-b+mk	string	loading	-	Вчитување…
 values-b+mk	string	lock_profile	-	Заклучи профил
 values-b+mk	string	logged_account	-	Најавен како %s
@@ -18988,11 +19255,14 @@ values-b+mk	string	search_hint_site	-	Пребарај %s…
 values-b+mk	string	search_poster_img_des	-	Постер
 values-b+mk	string	search_provider_text_providers	-	Пребарувај користејќи провајдери
 values-b+mk	string	search_provider_text_types	-	Пребарувај користејќи типови
+values-b+mk	string	search_state_idle_body_desktop	-	Внеси наслов. Резултатите се појавуваат под секој извор кога ќе одговори.
 values-b+mk	string	search_suggestions	-	Предлози за пребарување
 values-b+mk	string	search_suggestions_des	-	Прикажувај предлози за пребарување додека пишуваш
 values-b+mk	string	season	-	Сезона
 values-b+mk	string	season_format	-	%1$s %2$d%3$s
 values-b+mk	string	season_short	-	С
+values-b+mk	string	seek_back_10_seconds	-	Премотај назад 10 секунди
+values-b+mk	string	seek_forward_10_seconds	-	Премотај напред 10 секунди
 values-b+mk	string	select_all	-	Одбери ги сите
 values-b+mk	string	select_an_account	-	Одбери корисник
 values-b+mk	string	select_library	-	Избери библиотека
@@ -19201,6 +19471,8 @@ values-b+mk	string	year	-	Година
 values-b+mk	string	yes	-	Да
 values-b+ml	plurals	episodes	one	എപ്പിസോഡ്
 values-b+ml	plurals	episodes	other	എപ്പിസോഡുകൾ
+values-b+ml	plurals	home_sections_failed	one	%d വിഭാഗം ലോഡ് ചെയ്യാനായില്ല
+values-b+ml	plurals	home_sections_failed	other	%d വിഭാഗങ്ങൾ ലോഡ് ചെയ്യാനായില്ല
 values-b+ml	string	action_add_to_bookmarks	-	വാച്ച് സ്റ്റാറ്റസ് സജ്ജീകരിക്കുക
 values-b+ml	string	action_mark_as_watched	-	കണ്ടതാണെന്ന് അടയാളപ്പെടുത്തുക
 values-b+ml	string	action_open_play	-	പ്ലേയ്
@@ -19312,9 +19584,11 @@ values-b+ml	string	home_more_info	-	കൂടുതൽ വിവരം
 values-b+ml	string	home_next_random_img_des	-	അടുത്ത ക്രമരഹിതമായ
 values-b+ml	string	home_play	-	പ്ലേയ്
 values-b+ml	string	home_random	-	ക്രമരഹിതം
+values-b+ml	string	home_search_only_body	-	നിങ്ങളുടെ വിപുലീകരണങ്ങളിൽ ഒന്നിനും ഹോം പേജ് ഇല്ല, എങ്കിലും അവയിൽ തിരയാം.
 values-b+ml	string	home_source	-	ഉറവിടം
 values-b+ml	string	lightnovel	-	നമ്മുടെ ലൈറ്റ് നോവൽ ആപ്പ്
 values-b+ml	string	links_reloaded_toast	-	ലിങ്കുകൾ വീണ്ടും ലോഡുചെയ്‌തു
+values-b+ml	string	load_more	-	കൂടുതൽ ലോഡ് ചെയ്യുക
 values-b+ml	string	loading	-	ലോഡിംഗ്…
 values-b+ml	string	lock_profile	-	പ്രൊഫൈൽ ലോക്ക് ചെയ്യുക
 values-b+ml	string	logged_account	-	%s ആയി ലോഗിൻ ചെയ്തു
@@ -19398,7 +19672,10 @@ values-b+ml	string	search_hint_site	-	തിരയുക %s…
 values-b+ml	string	search_poster_img_des	-	പോസ്റ്റർ
 values-b+ml	string	search_provider_text_providers	-	സ്രോതസ് അടിസ്ഥാനത്തിൽ തിരയുക
 values-b+ml	string	search_provider_text_types	-	തരം അടിസ്ഥാനത്തിൽ തിരയുക
+values-b+ml	string	search_state_idle_body_desktop	-	ഒരു ശീർഷകം ടൈപ്പ് ചെയ്യുക. ഓരോ ഉറവിടവും മറുപടി നൽകുമ്പോൾ ഫലങ്ങൾ അതിനു താഴെ കാണിക്കും.
 values-b+ml	string	season	-	സീസൺ
+values-b+ml	string	seek_back_10_seconds	-	10 സെക്കൻഡ് പിന്നോട്ട് പോകുക
+values-b+ml	string	seek_forward_10_seconds	-	10 സെക്കൻഡ് മുന്നോട്ട് പോകുക
 values-b+ml	string	select_all	-	എല്ലാം തിരഞ്ഞെടുക്കുക
 values-b+ml	string	select_an_account	-	ഒരു അക്കൗണ്ട് തിരഞ്ഞെടുക്കുക
 values-b+ml	string	select_library	-	ലൈബ്രറി തിരഞ്ഞെടുക്കുക
@@ -19493,6 +19770,7 @@ values-b+ml	string	watch_quality_pref	-	ഔചിത്യ വീഡിയോ �
 values-b+ml	string	year	-	വർഷം
 values-b+ms	plurals	episodes	one	Episod
 values-b+ms	plurals	episodes	other	Episodes
+values-b+ms	plurals	home_sections_failed	other	%d bahagian gagal dimuatkan
 values-b+ms	string	account	-	akaun
 values-b+ms	string	action_add_to_bookmarks	-	Tetapkan status tontonan
 values-b+ms	string	action_add_to_favorites	-	Tambah ke kegemaran
@@ -19721,6 +19999,7 @@ values-b+ms	string	home_more_info	-	Lebih maklumat
 values-b+ms	string	home_next_random_img_des	-	Seterusnya Rawak
 values-b+ms	string	home_play	-	Pasang
 values-b+ms	string	home_random	-	Rawak
+values-b+ms	string	home_search_only_body	-	Tiada tambahan anda yang mempunyai halaman utama, tetapi anda masih boleh mencari di dalamnya.
 values-b+ms	string	home_source	-	Sumber
 values-b+ms	string	is_adult	-	18+
 values-b+ms	string	jsdelivr_enabled	-	Github tidak dapat dicapai. Menghidupkan proksi jsDelivr…
@@ -19734,6 +20013,7 @@ values-b+ms	string	limit_title_rez	-	Resolusi pemain video
 values-b+ms	string	links_reloaded_toast	-	Pautan dimuat semula
 values-b+ms	string	live_singular	-	Siaran Langsung
 values-b+ms	string	livestreams	-	Siaran Langsung
+values-b+ms	string	load_more	-	Muatkan lagi
 values-b+ms	string	loading	-	Memuatkan…
 values-b+ms	string	lock_profile	-	Kunci Profil
 values-b+ms	string	logged_account	-	Log masuk sebagai %s
@@ -19896,9 +20176,12 @@ values-b+ms	string	search_hint_site	-	Cari %s…
 values-b+ms	string	search_poster_img_des	-	Poster
 values-b+ms	string	search_provider_text_providers	-	Carian mengikut sumber
 values-b+ms	string	search_provider_text_types	-	Carian mengikut jenis
+values-b+ms	string	search_state_idle_body_desktop	-	Taip tajuk. Hasil muncul di bawah setiap sumber apabila ia menjawab.
 values-b+ms	string	season	-	Musim
 values-b+ms	string	season_format	-	%1$s %2$d%3$s
 values-b+ms	string	season_short	-	S
+values-b+ms	string	seek_back_10_seconds	-	Undur 10 saat
+values-b+ms	string	seek_forward_10_seconds	-	Maju 10 saat
 values-b+ms	string	select_all	-	Pilih semua
 values-b+ms	string	select_an_account	-	Sila pilih Akaun
 values-b+ms	string	select_library	-	Pilih Perpustakaan
@@ -20033,6 +20316,11 @@ values-b+ms	string	vpn_torrent	-	Sumber ini adalah torrent, penggunaan VPN digal
 values-b+ms	string	wifi	-	Wi-Fi
 values-b+ms	string	year	-	Tahun
 values-b+ms	string	yes	-	Ya
+values-b+mt	plurals	home_sections_failed	few	Ma setgħux jiġu mgħobbija %d taqsimat
+values-b+mt	plurals	home_sections_failed	many	Ma setgħux jiġu mgħobbija %d taqsima
+values-b+mt	plurals	home_sections_failed	one	Ma setgħetx tiġi mgħobbija %d taqsima
+values-b+mt	plurals	home_sections_failed	other	Ma setgħux jiġu mgħobbija %d taqsima
+values-b+mt	plurals	home_sections_failed	two	Ma setgħux jiġu mgħobbija %d taqsimat
 values-b+mt	string	action_add_to_bookmarks	-	Issettja l-istatus ta-rajtux
 values-b+mt	string	action_open_play	-	Ibda
 values-b+mt	string	action_open_watching	-	Iktar informazzjoni
@@ -20074,7 +20362,9 @@ values-b+mt	string	home_main_poster_img_des	-	Kartellun Principali
 values-b+mt	string	home_more_info	-	Iktar Informazzjoni
 values-b+mt	string	home_next_random_img_des	-	Li jmiss bl'addoċċ
 values-b+mt	string	home_play	-	Ibda
+values-b+mt	string	home_search_only_body	-	L-ebda waħda mill-estensjonijiet tiegħek m'għandha paġna ewlenija, imma xorta tista' tfittex fihom.
 values-b+mt	string	links_reloaded_toast	-	Links regaw gew mogħbija
+values-b+mt	string	load_more	-	Għabbi iktar
 values-b+mt	string	loading	-	Tagħbija…
 values-b+mt	string	new_update_format	-	Aġġornament ġdid misjub! \n%1$s -> %2$s
 values-b+mt	string	next_episode	-	L-episodju li'jmiss
@@ -20116,6 +20406,9 @@ values-b+mt	string	search_hint_site	-	Fittex%s…
 values-b+mt	string	search_poster_img_des	-	Kartellun
 values-b+mt	string	search_provider_text_providers	-	Fittex bl-użu ta' fornituri
 values-b+mt	string	search_provider_text_types	-	Fittex bl-użu ta 'tipi
+values-b+mt	string	search_state_idle_body_desktop	-	Ikteb titlu. Ir-riżultati jidhru taħt kull sors meta jwieġeb.
+values-b+mt	string	seek_back_10_seconds	-	Mur lura 10 sekondi
+values-b+mt	string	seek_forward_10_seconds	-	Mur 'il quddiem 10 sekondi
 values-b+mt	string	show_log_cat	-	Uri Logcat 🐈
 values-b+mt	string	skip_loading	-	Aqbez it-tagħbija
 values-b+mt	string	sort_apply	-	Applika
@@ -20158,6 +20451,7 @@ values-b+mt	string	vpn_might_be_needed	-	Jista' jkun hemm bżonn ta' VPN biex da
 values-b+mt	string	vpn_torrent	-	Dan il-fornitur huwa torrent, VPN huwa rakkomandat
 values-b+my	plurals	episodes	one	အပိုင်း
 values-b+my	plurals	episodes	other	အပိုင်းများ
+values-b+my	plurals	home_sections_failed	other	အပိုင်း %d ခု တင်သွင်း၍မရပါ
 values-b+my	string	account	-	အကောင့်
 values-b+my	string	action_add_to_bookmarks	-	ကြည့်ရှုမှုအခြေအနေသတ်မှတ်ခြင်း
 values-b+my	string	action_default	-	ပုံသေ
@@ -20357,6 +20651,7 @@ values-b+my	string	home_more_info	-	ပိုမို၍
 values-b+my	string	home_next_random_img_des	-	နောက် ကျပန်း
 values-b+my	string	home_play	-	ကြည့်မည်
 values-b+my	string	home_random	-	ကျပန်း
+values-b+my	string	home_search_only_body	-	သင့်အဆက်များတွင် ပင်မစာမျက်နှာ မရှိပါ၊ သို့သော် ၎င်းတို့တွင် ရှာဖွေနိုင်ပါသေးသည်။
 values-b+my	string	home_source	-	ရင်းမြစ်
 values-b+my	string	is_adult	-	အသက်ပြည့်ပြီးသူများသာ
 values-b+my	string	jsdelivr_enabled	-	GitHub သို့ မရောက်ရှိနိုင်ပါ။ jsDelivr ပရောက်စီကို ဖွင့်နေသည်…
@@ -20370,6 +20665,7 @@ values-b+my	string	limit_title	-	ခေါင်းစဥ်အတွက်စ�
 values-b+my	string	limit_title_rez	-	ကြည့်ရှုမှု အရည်အသွေး
 values-b+my	string	live_singular	-	တိုက်ရိုက်ထုတ်လွှင့်မှု
 values-b+my	string	livestreams	-	တိုက်ရိုက်ထုတ်လွှင်မှုများ
+values-b+my	string	load_more	-	ထပ်မံတင်သွင်းရန်
 values-b+my	string	loading	-	ခဏစောင့်ပါ…
 values-b+my	string	login	-	အကောင့်ဝင်မည်
 values-b+my	string	login_format	-	%1$s %2$s
@@ -20534,9 +20830,12 @@ values-b+my	string	search_hint_site	-	ရှာရန် %s…
 values-b+my	string	search_poster_img_des	-	ပိုစတာ
 values-b+my	string	search_provider_text_providers	-	ပ့ံပိုးပေးသောဝန်ဆောင်မှုများအသုံးပြု၍ရှာရန်
 values-b+my	string	search_provider_text_types	-	အမျိုးအစားများအသုံးပြု၍ရှာရန်
+values-b+my	string	search_state_idle_body_desktop	-	ခေါင်းစဉ်တစ်ခု ရိုက်ထည့်ပါ။ ရင်းမြစ်တစ်ခုစီ တုံ့ပြန်သည်နှင့် ရလဒ်များကို ၎င်းအောက်တွင် ပြသပါမည်။
 values-b+my	string	season	-	အတွဲ
 values-b+my	string	season_format	-	%1$s %2$d%3$s
 values-b+my	string	season_short	-	အတွဲ
+values-b+my	string	seek_back_10_seconds	-	10 စက္ကန့် နောက်သို့ရစ်ရန်
+values-b+my	string	seek_forward_10_seconds	-	10 စက္ကန့် ရှေ့သို့ကျော်ရန်
 values-b+my	string	select_library	-	လိုက်ဘရီရွေးချယ်ရန်
 values-b+my	string	set_default	-	ပုံသေထားရန်
 values-b+my	string	settings_info	-	အချက်အလက်
@@ -20689,6 +20988,8 @@ values-b+my	string	watch_quality_pref_data	-	မိုဘိုင်းဒေ�
 values-b+my	string	wifi	-	ဝိုင်ဖိုင်
 values-b+my	string	year	-	ခုနစ်
 values-b+my	string	yes	-	သေချာသည်
+values-b+ne	plurals	home_sections_failed	one	%d खण्ड लोड हुन सकेन
+values-b+ne	plurals	home_sections_failed	other	%d खण्डहरू लोड हुन सकेनन्
 values-b+ne	string	action_add_to_bookmarks	-	हेरेको स्थिति निर्धारण गर्नुहोस्
 values-b+ne	string	action_open_play	-	प्ले
 values-b+ne	string	action_open_watching	-	अधिक जानकारी
@@ -20731,7 +21032,9 @@ values-b+ne	string	home_main_poster_img_des	-	मुख्य पोस्टर
 values-b+ne	string	home_more_info	-	थप जानकारी
 values-b+ne	string	home_next_random_img_des	-	अर्को अनियमित
 values-b+ne	string	home_play	-	प्ले
+values-b+ne	string	home_search_only_body	-	तपाईंका कुनै पनि एक्सटेन्सनमा होम पेज छैन, तर तपाईं तिनमा अझै खोज्न सक्नुहुन्छ।
 values-b+ne	string	links_reloaded_toast	-	लिङ्कहरू रिलोड गरियो
+values-b+ne	string	load_more	-	थप लोड गर्नुहोस्
 values-b+ne	string	loading	-	लोड हुँदै…
 values-b+ne	string	new_update_format	-	नयाँ अपडेट भेटियो! \n%1$s -> %2$s
 values-b+ne	string	next_episode	-	अर्को एपिसोड
@@ -20778,6 +21081,9 @@ values-b+ne	string	search_hint_site	-	%s खोज्नुहोस्…
 values-b+ne	string	search_poster_img_des	-	पोस्टर
 values-b+ne	string	search_provider_text_providers	-	प्रोभाईडर उपयोग गरी खोज्नुहोस्
 values-b+ne	string	search_provider_text_types	-	प्रकारको उपयोग गरी खोज्नुहोस्
+values-b+ne	string	search_state_idle_body_desktop	-	शीर्षक टाइप गर्नुहोस्। प्रत्येक स्रोतले जवाफ दिएपछि नतिजा त्यसको तल देखिन्छ।
+values-b+ne	string	seek_back_10_seconds	-	10 सेकेन्ड पछाडि जानुहोस्
+values-b+ne	string	seek_forward_10_seconds	-	10 सेकेन्ड अगाडि जानुहोस्
 values-b+ne	string	show_log_cat	-	Logcat देखाउनुहोस
 values-b+ne	string	skip_loading	-	लोड गर्न छोड्नुहोस्
 values-b+ne	string	sort_apply	-	लागू गर्नुहोस्
@@ -20820,6 +21126,8 @@ values-b+ne	string	vpn_might_be_needed	-	यो प्रोभाईडर स�
 values-b+ne	string	vpn_torrent	-	यो प्रोभाईडर torrent हो त्यसैले VPN प्रयाेग गर्नुहुन सिफारिश गरिन्छ
 values-b+nl	plurals	episodes	one	Aflevering
 values-b+nl	plurals	episodes	other	afleveringen
+values-b+nl	plurals	home_sections_failed	one	%d sectie kon niet worden geladen
+values-b+nl	plurals	home_sections_failed	other	%d secties konden niet worden geladen
 values-b+nl	string	account	-	account
 values-b+nl	string	action_add_to_bookmarks	-	Zet kijkstatus
 values-b+nl	string	action_add_to_favorites	-	Voeg toe aan favorieten
@@ -21090,6 +21398,7 @@ values-b+nl	string	home_more_info	-	Meer info
 values-b+nl	string	home_next_random_img_des	-	Volgende willekeurig
 values-b+nl	string	home_play	-	Speel
 values-b+nl	string	home_random	-	Willekeurig
+values-b+nl	string	home_search_only_body	-	Geen van je uitbreidingen heeft een startpagina, maar je kunt er nog steeds in zoeken.
 values-b+nl	string	home_source	-	Bron
 values-b+nl	string	install_prerelease	-	Pre-releaseversie installeren
 values-b+nl	string	is_adult	-	18+
@@ -21105,6 +21414,7 @@ values-b+nl	string	limit_title_rez	-	Toon spelerinformatie
 values-b+nl	string	links_reloaded_toast	-	Link opnieuw geladen
 values-b+nl	string	live_singular	-	Livestream
 values-b+nl	string	livestreams	-	Livestreams
+values-b+nl	string	load_more	-	Meer laden
 values-b+nl	string	loading	-	Laden…
 values-b+nl	string	lock_profile	-	Profiel vergrendelen
 values-b+nl	string	logged_account	-	Aangemeld als %s
@@ -21309,11 +21619,14 @@ values-b+nl	string	search_hint_site	-	Zoeken %s…
 values-b+nl	string	search_poster_img_des	-	Poster
 values-b+nl	string	search_provider_text_providers	-	Zoeken met providers
 values-b+nl	string	search_provider_text_types	-	Zoeken met types
+values-b+nl	string	search_state_idle_body_desktop	-	Typ een titel. Resultaten verschijnen onder elke bron zodra die antwoordt.
 values-b+nl	string	search_suggestions	-	Zoeksuggesties
 values-b+nl	string	search_suggestions_des	-	Zoeksuggesties laten zien tijdens het typen
 values-b+nl	string	season	-	Seizoen
 values-b+nl	string	season_format	-	%1$s %2$d%3$s
 values-b+nl	string	season_short	-	S
+values-b+nl	string	seek_back_10_seconds	-	10 seconden terugspoelen
+values-b+nl	string	seek_forward_10_seconds	-	10 seconden vooruitspoelen
 values-b+nl	string	select_all	-	Selecteer alles
 values-b+nl	string	select_an_account	-	Selecteer een Account
 values-b+nl	string	select_library	-	Kies Bibliotheek
@@ -21512,6 +21825,8 @@ values-b+nl	string	year	-	Jaar
 values-b+nl	string	yes	-	Ja
 values-b+nn	plurals	episodes	one	Episode
 values-b+nn	plurals	episodes	other	Episodar
+values-b+nn	plurals	home_sections_failed	one	%d del kunne ikkje lastast
+values-b+nn	plurals	home_sections_failed	other	%d delar kunne ikkje lastast
 values-b+nn	string	action_add_to_bookmarks	-	Sett visingstatus
 values-b+nn	string	action_default	-	Standard
 values-b+nn	string	action_open_play	-	Spel(e) av
@@ -21590,10 +21905,12 @@ values-b+nn	string	home_main_poster_img_des	-	Hovudminiatyrbilete
 values-b+nn	string	home_more_info	-	Meir informasjon
 values-b+nn	string	home_next_random_img_des	-	Neste tilfeldig
 values-b+nn	string	home_play	-	Spel(e) av
+values-b+nn	string	home_search_only_body	-	Ingen av utvidingane dine har ei heimeside, men du kan framleis søkje i dei.
 values-b+nn	string	kitsu_settings	-	Vis miniatyrbilete frå Kitsu
 values-b+nn	string	lightnovel	-	Lysnovelleprogram av dei same utviklarane
 values-b+nn	string	live_singular	-	Direktesending
 values-b+nn	string	livestreams	-	Direktesendingar
+values-b+nn	string	load_more	-	Last inn fleire
 values-b+nn	string	loading	-	Laster inn…
 values-b+nn	string	movies	-	Filmar
 values-b+nn	string	movies_singular	-	Film
@@ -21656,9 +21973,12 @@ values-b+nn	string	search_hint_site	-	Søk i %s…
 values-b+nn	string	search_poster_img_des	-	Plakat
 values-b+nn	string	search_provider_text_providers	-	Søk basert på leverandør
 values-b+nn	string	search_provider_text_types	-	Søk ved bruk av typer
+values-b+nn	string	search_state_idle_body_desktop	-	Skriv ein tittel. Resultata kjem under kvar kjelde når ho svarar.
 values-b+nn	string	season	-	Sesong
 values-b+nn	string	season_format	-	%1$s %2$d%3$s
 values-b+nn	string	season_short	-	S
+values-b+nn	string	seek_back_10_seconds	-	Hopp 10 sekund bakover
+values-b+nn	string	seek_forward_10_seconds	-	Hopp 10 sekund framover
 values-b+nn	string	settings_info	-	Informasjon
 values-b+nn	string	show_trailers_settings	-	Vis trailerar
 values-b+nn	string	site	-	Nettstad
@@ -21720,6 +22040,8 @@ values-b+nn	string	watch_quality_pref	-	Føretrekt oppløysing
 values-b+nn	string	year	-	År
 values-b+no	plurals	episodes	one	Episode
 values-b+no	plurals	episodes	other	Episoder
+values-b+no	plurals	home_sections_failed	one	%d del kunne ikke lastes inn
+values-b+no	plurals	home_sections_failed	other	%d deler kunne ikke lastes inn
 values-b+no	string	account	-	konto
 values-b+no	string	action_add_to_bookmarks	-	Sett visningsstatus
 values-b+no	string	action_default	-	Misligholde
@@ -21917,6 +22239,7 @@ values-b+no	string	home_more_info	-	Mer informasjon
 values-b+no	string	home_next_random_img_des	-	Neste tilfeldig
 values-b+no	string	home_play	-	Spille
 values-b+no	string	home_random	-	Tilfeldig
+values-b+no	string	home_search_only_body	-	Ingen av utvidelsene dine har en hjemmeside, men du kan fortsatt søke i dem.
 values-b+no	string	home_source	-	Kilde
 values-b+no	string	is_adult	-	18+
 values-b+no	string	jsdelivr_enabled	-	Kunne ikke nå GitHub. Skrur på jsDelivr-mellomtjener …
@@ -21929,6 +22252,7 @@ values-b+no	string	limit_title	-	Maks. antall tegn for navn i videospiller
 values-b+no	string	limit_title_rez	-	Videooppløsning
 values-b+no	string	live_singular	-	Direktestrøm
 values-b+no	string	livestreams	-	Direktestrømmer
+values-b+no	string	load_more	-	Last inn flere
 values-b+no	string	loading	-	Laster inn…
 values-b+no	string	lock_profile	-	Lås profil
 values-b+no	string	login	-	Logg inn
@@ -22088,9 +22412,12 @@ values-b+no	string	search_hint_site	-	Søk i %s …
 values-b+no	string	search_poster_img_des	-	Plakat
 values-b+no	string	search_provider_text_providers	-	Søk med leverandører
 values-b+no	string	search_provider_text_types	-	Søk med typer
+values-b+no	string	search_state_idle_body_desktop	-	Skriv inn en tittel. Resultatene vises under hver kilde når den svarer.
 values-b+no	string	season	-	Sesong
 values-b+no	string	season_format	-	%1$s %2$d%3$s
 values-b+no	string	season_short	-	S
+values-b+no	string	seek_back_10_seconds	-	Hopp 10 sekunder bakover
+values-b+no	string	seek_forward_10_seconds	-	Hopp 10 sekunder fremover
 values-b+no	string	select_library	-	Velg bibliotek
 values-b+no	string	settings_info	-	Informasjon
 values-b+no	string	setup_done	-	Ferdig
@@ -22242,6 +22569,8 @@ values-b+no	string	year	-	År
 values-b+no	string	yes	-	Ja
 values-b+or	plurals	episodes	one	ଅଧ୍ୟାୟ
 values-b+or	plurals	episodes	other	ଟି ଅଧ୍ୟାୟ
+values-b+or	plurals	home_sections_failed	one	%d ଵିଭାଗ ଲୋଡ୍ ହୋଇପାରିଲା ନାହିଁ
+values-b+or	plurals	home_sections_failed	other	%d ଵିଭାଗ ଲୋଡ୍ ହୋଇପାରିଲା ନାହିଁ
 values-b+or	string	action_default	-	ଡିଫଲ୍ଟ
 values-b+or	string	action_open_play	-	ଚଲାଅ
 values-b+or	string	added_sync_format	-	%s ଯୋଡ଼ାଗଲା
@@ -22309,9 +22638,11 @@ values-b+or	string	home_info	-	ସୂଚନା
 values-b+or	string	home_main_poster_img_des	-	ମୁଖ୍ୟ ପୋଷ୍ଟର୍
 values-b+or	string	home_more_info	-	ଅଧିକ ସୂଚନା
 values-b+or	string	home_play	-	ଚଲାଅ
+values-b+or	string	home_search_only_body	-	ଆପଣଙ୍କର କୌଣସି ଏକ୍ସଟେନସନରେ ହୋମ୍ ପୃଷ୍ଠା ନାହିଁ, କିନ୍ତୁ ଆପଣ ସେଗୁଡ଼ିକରେ ସନ୍ଧାନ କରିପାରିବେ।
 values-b+or	string	library	-	ଲାଇବ୍ରେରୀ
 values-b+or	string	live_singular	-	ସିଧାପ୍ରସାରଣ
 values-b+or	string	livestreams	-	ସିଧାପ୍ରସାରଣ
+values-b+or	string	load_more	-	ଅଧିକ ଲୋଡ୍ କର
 values-b+or	string	movies	-	ଚଳଚ୍ଚିତ୍ର
 values-b+or	string	movies_singular	-	ଚଳଚ୍ଚିତ୍ର
 values-b+or	string	new_update_format	-	ନୂଆ ଅଦ୍ୟତନ ମିଳିଲା! \n%1$s -> %2$s
@@ -22353,8 +22684,11 @@ values-b+or	string	search_hint	-	ସନ୍ଧାନ କରିବା…
 values-b+or	string	search_hint_site	-	%s ସନ୍ଧାନ କରିବା…
 values-b+or	string	search_poster_img_des	-	ପୋଷ୍ଟର୍
 values-b+or	string	search_provider_text_providers	-	ପ୍ରଦାତା ଵ୍ୟଵହାର କରି ଖୋଜିବା
+values-b+or	string	search_state_idle_body_desktop	-	ଏକ ଶୀର୍ଷକ ଟାଇପ୍ କରନ୍ତୁ। ପ୍ରତ୍ୟେକ ଉତ୍ସ ଉତ୍ତର ଦେଲେ ଫଳାଫଳ ତା ତଳେ ଦେଖାଯିବ।
 values-b+or	string	season	-	ଋତୁ
 values-b+or	string	season_short	-	ଋ
+values-b+or	string	seek_back_10_seconds	-	୧୦ ସେକେଣ୍ଡ ପଛକୁ ଯାଅ
+values-b+or	string	seek_forward_10_seconds	-	୧୦ ସେକେଣ୍ଡ ଆଗକୁ ଯାଅ
 values-b+or	string	setup_done	-	ହେଲା
 values-b+or	string	show_hd	-	ଗୁଣଵତ୍ତା ଲେବଲ୍
 values-b+or	string	show_title	-	ଆଖ୍ୟା
@@ -22414,6 +22748,10 @@ values-b+pl	plurals	downloads_queued	one	%d pobieranie w kolejce
 values-b+pl	plurals	downloads_queued	other	%d pobierań w kolejce
 values-b+pl	plurals	episodes	one	Odcinek
 values-b+pl	plurals	episodes	other	Odcinki
+values-b+pl	plurals	home_sections_failed	few	Nie udało się załadować %d sekcji
+values-b+pl	plurals	home_sections_failed	many	Nie udało się załadować %d sekcji
+values-b+pl	plurals	home_sections_failed	one	Nie udało się załadować %d sekcji
+values-b+pl	plurals	home_sections_failed	other	Nie udało się załadować %d sekcji
 values-b+pl	plurals	links_hidden	few	%d ukryte odnośniki
 values-b+pl	plurals	links_hidden	many	%d ukrytych odnośników
 values-b+pl	plurals	links_hidden	one	%d ukryty odnośnik
@@ -22711,6 +23049,7 @@ values-b+pl	string	home_more_info	-	Więcej informacji
 values-b+pl	string	home_next_random_img_des	-	Następny losowy
 values-b+pl	string	home_play	-	Odtwórz
 values-b+pl	string	home_random	-	Losowy
+values-b+pl	string	home_search_only_body	-	Żadne z twoich rozszerzeń nie ma strony głównej, ale nadal możesz w nich szukać.
 values-b+pl	string	home_source	-	Źródło
 values-b+pl	string	install_prerelease	-	Zainstaluj wersję przedpremierową
 values-b+pl	string	is_adult	-	18+
@@ -22726,6 +23065,7 @@ values-b+pl	string	limit_title_rez	-	Pokaż informacje o odtwarzaczu
 values-b+pl	string	links_reloaded_toast	-	Linki załadowane ponownie
 values-b+pl	string	live_singular	-	Transmisja na żywo
 values-b+pl	string	livestreams	-	Transmisje na żywo
+values-b+pl	string	load_more	-	Załaduj więcej
 values-b+pl	string	loading	-	Ładowanie…
 values-b+pl	string	lock_profile	-	Zablokuj profil
 values-b+pl	string	logged_account	-	Zalogowano jako %s
@@ -22946,11 +23286,14 @@ values-b+pl	string	search_hint_site	-	Szukaj %s…
 values-b+pl	string	search_poster_img_des	-	Poster
 values-b+pl	string	search_provider_text_providers	-	Szukaj według źródeł
 values-b+pl	string	search_provider_text_types	-	Szukaj według typów
+values-b+pl	string	search_state_idle_body_desktop	-	Wpisz tytuł. Wyniki pojawiają się pod każdym źródłem, gdy odpowie.
 values-b+pl	string	search_suggestions	-	Sugestie wyszukiwania
 values-b+pl	string	search_suggestions_des	-	Pokaż sugestie wyszukiwania podczas pisania
 values-b+pl	string	season	-	Sezon
 values-b+pl	string	season_format	-	%1$s %2$d%3$s
 values-b+pl	string	season_short	-	S
+values-b+pl	string	seek_back_10_seconds	-	Przewiń do tyłu o 10 sekund
+values-b+pl	string	seek_forward_10_seconds	-	Przewiń do przodu o 10 sekund
 values-b+pl	string	select_all	-	Zaznacz wszystkie
 values-b+pl	string	select_an_account	-	Wybierz konto
 values-b+pl	string	select_library	-	Wybierz bibliotekę
@@ -23167,6 +23510,9 @@ values-b+pt	plurals	downloads_queued	one	%d download na fila
 values-b+pt	plurals	downloads_queued	other	%d downloads na fila
 values-b+pt	plurals	episodes	one	Episódio
 values-b+pt	plurals	episodes	other	Episódios
+values-b+pt	plurals	home_sections_failed	many	Falha ao carregar %d secções
+values-b+pt	plurals	home_sections_failed	one	Falha ao carregar %d secção
+values-b+pt	plurals	home_sections_failed	other	Falha ao carregar %d secções
 values-b+pt	plurals	links_hidden	many	%d link ocultos
 values-b+pt	plurals	links_hidden	one	%d link oculto
 values-b+pt	plurals	links_hidden	other	%d link ocultos
@@ -23463,6 +23809,7 @@ values-b+pt	string	home_more_info	-	Mais info
 values-b+pt	string	home_next_random_img_des	-	Próximo Aleatório
 values-b+pt	string	home_play	-	Reproduzir
 values-b+pt	string	home_random	-	Aleatório
+values-b+pt	string	home_search_only_body	-	Nenhuma das suas extensões tem página inicial, mas ainda pode pesquisar nelas.
 values-b+pt	string	home_source	-	Fonte
 values-b+pt	string	install_prerelease	-	Instalar versão de pré-lançamento
 values-b+pt	string	is_adult	-	18+
@@ -23478,6 +23825,7 @@ values-b+pt	string	limit_title_rez	-	Mostrar informações do player de vídeo
 values-b+pt	string	links_reloaded_toast	-	A recarregar links
 values-b+pt	string	live_singular	-	Transmissão em Direto
 values-b+pt	string	livestreams	-	Transmissões em Direto
+values-b+pt	string	load_more	-	Carregar mais
 values-b+pt	string	loading	-	Carregando…
 values-b+pt	string	lock_profile	-	Bloquear Perfil
 values-b+pt	string	logged_account	-	Conectado como %s
@@ -23698,11 +24046,14 @@ values-b+pt	string	search_hint_site	-	Pesquisar %s…
 values-b+pt	string	search_poster_img_des	-	Poster
 values-b+pt	string	search_provider_text_providers	-	Procurar usando fornecedores
 values-b+pt	string	search_provider_text_types	-	Procurar usando tipos
+values-b+pt	string	search_state_idle_body_desktop	-	Escreva um título. Os resultados aparecem sob cada fonte assim que ela responde.
 values-b+pt	string	search_suggestions	-	Sugestões de pesquisa
 values-b+pt	string	search_suggestions_des	-	Mostrar sugestões de pesquisa enquanto digita
 values-b+pt	string	season	-	Temporada
 values-b+pt	string	season_format	-	%1$s %2$d%3$s
 values-b+pt	string	season_short	-	T
+values-b+pt	string	seek_back_10_seconds	-	Recuar 10 segundos
+values-b+pt	string	seek_forward_10_seconds	-	Avançar 10 segundos
 values-b+pt	string	select_all	-	Selecionar Todos
 values-b+pt	string	select_an_account	-	Selecione uma conta
 values-b+pt	string	select_library	-	Selecionar Biblioteca
@@ -23917,6 +24268,9 @@ values-b+pt+BR	plurals	downloads_active	other	%ddownloads ativos
 values-b+pt+BR	plurals	downloads_queued	many	%d downloads na sequência
 values-b+pt+BR	plurals	downloads_queued	one	%d download na sequência
 values-b+pt+BR	plurals	downloads_queued	other	%d downloads na sequência
+values-b+pt+BR	plurals	home_sections_failed	many	Falha ao carregar %d seções
+values-b+pt+BR	plurals	home_sections_failed	one	Falha ao carregar %d seção
+values-b+pt+BR	plurals	home_sections_failed	other	Falha ao carregar %d seções
 values-b+pt+BR	plurals	links_hidden	many	%d link ocultos
 values-b+pt+BR	plurals	links_hidden	one	%d link oculto
 values-b+pt+BR	plurals	links_hidden	other	%d link ocultos
@@ -24209,6 +24563,7 @@ values-b+pt+BR	string	home_more_info	-	Mais informações
 values-b+pt+BR	string	home_next_random_img_des	-	Próximo Aleatório
 values-b+pt+BR	string	home_play	-	Reproduzir
 values-b+pt+BR	string	home_random	-	Aleatório
+values-b+pt+BR	string	home_search_only_body	-	Nenhuma das suas extensões tem página inicial, mas você ainda pode pesquisar nelas.
 values-b+pt+BR	string	home_source	-	Fonte
 values-b+pt+BR	string	install_prerelease	-	Instalar versão antecipada
 values-b+pt+BR	string	is_adult	-	18+
@@ -24224,6 +24579,7 @@ values-b+pt+BR	string	limit_title_rez	-	Exibir informação do reprodutor
 values-b+pt+BR	string	links_reloaded_toast	-	Links recarregados
 values-b+pt+BR	string	live_singular	-	Transmissão ao vivo
 values-b+pt+BR	string	livestreams	-	Transmissões ao vivo
+values-b+pt+BR	string	load_more	-	Carregar mais
 values-b+pt+BR	string	loading	-	Carregando…
 values-b+pt+BR	string	lock_profile	-	Bloquear perfil
 values-b+pt+BR	string	logged_account	-	Conectado como %s
@@ -24443,11 +24799,14 @@ values-b+pt+BR	string	search_hint_site	-	Pesquisar %s…
 values-b+pt+BR	string	search_poster_img_des	-	Pôster
 values-b+pt+BR	string	search_provider_text_providers	-	Pesquisar usando fornecedor
 values-b+pt+BR	string	search_provider_text_types	-	Pesquisar usando tipos
+values-b+pt+BR	string	search_state_idle_body_desktop	-	Digite um título. Os resultados aparecem abaixo de cada fonte assim que ela responde.
 values-b+pt+BR	string	search_suggestions	-	Sugestões de Busca
 values-b+pt+BR	string	search_suggestions_des	-	Exibir sugestões de pesquisa durante a digitação
 values-b+pt+BR	string	season	-	Temporada
 values-b+pt+BR	string	season_format	-	%1$s %2$d%3$s
 values-b+pt+BR	string	season_short	-	T
+values-b+pt+BR	string	seek_back_10_seconds	-	Voltar 10 segundos
+values-b+pt+BR	string	seek_forward_10_seconds	-	Avançar 10 segundos
 values-b+pt+BR	string	select_all	-	Selecionar todos
 values-b+pt+BR	string	select_an_account	-	Selecione uma conta
 values-b+pt+BR	string	select_library	-	Selecionar Biblioteca
@@ -24657,6 +25016,7 @@ values-b+pt+BR	string	year	-	Ano
 values-b+pt+BR	string	yes	-	Sim
 values-b+qt	plurals	episodes	one	ahhhaaahhu
 values-b+qt	plurals	episodes	other	ahhh ooooo
+values-b+qt	plurals	home_sections_failed	other	%d oooogg ooh aaahhu
 values-b+qt	string	account	-	aaaaggg
 values-b+qt	string	action_add_to_bookmarks	-	auugggguuuuuuhhh uuuu hhhhhhhhuhggghggg
 values-b+qt	string	action_add_to_favorites	-	uuh ah aaaahhhag
@@ -24913,6 +25273,7 @@ values-b+qt	string	home_more_info	-	ahooo a aaaghhouuhhh
 values-b+qt	string	home_next_random_img_des	-	aoooohh
 values-b+qt	string	home_play	-	ooo-ahahouuhhh
 values-b+qt	string	home_random	-	aaaagg
+values-b+qt	string	home_search_only_body	-	aaaagg og ooogg oouuh
 values-b+qt	string	home_source	-	aaaahh
 values-b+qt	string	is_adult	-	18+
 values-b+qt	string	jsdelivr_enabled	-	aaahh uug uuuhh aaaahh uuuuggg og uuuuhhhk proxy…
@@ -24927,6 +25288,7 @@ values-b+qt	string	limit_title_rez	-	ooohh uuuuhh aaaahhhooh
 values-b+qt	string	links_reloaded_toast	-	uuuhh uuuuuukh
 values-b+qt	string	live_singular	-	eeeeeekuug
 values-b+qt	string	livestreams	-	aaaaaaaaaaahhhgh-aooohoooo
+values-b+qt	string	load_more	-	ooh aaahhu aagg
 values-b+qt	string	loading	-	ooh aaahhu
 values-b+qt	string	lock_profile	-	aaak uuuuhhh
 values-b+qt	string	logged_account	-	aaaagg ug ag %s
@@ -25119,9 +25481,12 @@ values-b+qt	string	search_hint_site	-	aaoohhu %s aoouu
 values-b+qt	string	search_poster_img_des	-	aaaaaah
 values-b+qt	string	search_provider_text_providers	-	aauuhaauugghhahhh ohaauugghhouuhhh
 values-b+qt	string	search_provider_text_types	-	ahhhahoooohhaa ahhhoohahh
+values-b+qt	string	search_state_idle_body_desktop	-	oouuh aaaaggg uuuk ooh
 values-b+qt	string	season	-	ooo-ahah
 values-b+qt	string	season_format	-	%1$s %2$d%3$s
 values-b+qt	string	season_short	-	H
+values-b+qt	string	seek_back_10_seconds	-	oooogggh 10 oooohh
+values-b+qt	string	seek_forward_10_seconds	-	aagg 10 oooohh
 values-b+qt	string	select_all	-	uuuugg uuh
 values-b+qt	string	select_an_account	-	uuuugg oh oooohhh
 values-b+qt	string	select_library	-	uuuugg uuuuggg
@@ -25290,6 +25655,9 @@ values-b+qt	string	year	-	oohahahh oha
 values-b+qt	string	yes	-	ooh
 values-b+ro	plurals	episodes	one	Episodul
 values-b+ro	plurals	episodes	other	Episoade
+values-b+ro	plurals	home_sections_failed	few	Nu s-au putut încărca %d secțiuni
+values-b+ro	plurals	home_sections_failed	one	Nu s-a putut încărca %d secțiune
+values-b+ro	plurals	home_sections_failed	other	Nu s-au putut încărca %d de secțiuni
 values-b+ro	string	account	-	Cont
 values-b+ro	string	action_add_to_bookmarks	-	Adaugă
 values-b+ro	string	action_add_to_favorites	-	Adaugă la favoriți/te
@@ -25545,6 +25913,7 @@ values-b+ro	string	home_more_info	-	Mai multe informații
 values-b+ro	string	home_next_random_img_des	-	Următorul la Întâmplare
 values-b+ro	string	home_play	-	Începe
 values-b+ro	string	home_random	-	Aleatoriu
+values-b+ro	string	home_search_only_body	-	Niciuna dintre extensiile dvs. nu are o pagină principală, dar puteți căuta în continuare în ele.
 values-b+ro	string	home_source	-	Sursa
 values-b+ro	string	install_prerelease	-	Instalează versiunea preliminară
 values-b+ro	string	is_adult	-	18+
@@ -25560,6 +25929,7 @@ values-b+ro	string	limit_title_rez	-	Rezoluția playerului video
 values-b+ro	string	links_reloaded_toast	-	Linkuri reîncărcate
 values-b+ro	string	live_singular	-	Livestream
 values-b+ro	string	livestreams	-	Livestream-uri
+values-b+ro	string	load_more	-	Încarcă mai multe
 values-b+ro	string	loading	-	Se încarcă…
 values-b+ro	string	lock_profile	-	Blochează Profilul
 values-b+ro	string	logged_account	-	Conectat ca %s
@@ -25752,9 +26122,12 @@ values-b+ro	string	search_hint_site	-	Căutați %s…
 values-b+ro	string	search_poster_img_des	-	Poster
 values-b+ro	string	search_provider_text_providers	-	Căutare în funcție de furnizor
 values-b+ro	string	search_provider_text_types	-	Căutare în funcție de tip
+values-b+ro	string	search_state_idle_body_desktop	-	Tastați un titlu. Rezultatele apar sub fiecare sursă când răspunde.
 values-b+ro	string	season	-	Sezonul
 values-b+ro	string	season_format	-	%1$s %2$d%3$s
 values-b+ro	string	season_short	-	S
+values-b+ro	string	seek_back_10_seconds	-	Derulează înapoi 10 secunde
+values-b+ro	string	seek_forward_10_seconds	-	Derulează înainte 10 secunde
 values-b+ro	string	select_all	-	Selectionati totul
 values-b+ro	string	select_an_account	-	Selectați un cont
 values-b+ro	string	select_library	-	Selectați Biblioteca
@@ -25932,6 +26305,10 @@ values-b+ru	plurals	downloads_queued	one	Запланировано %d загр�
 values-b+ru	plurals	downloads_queued	other	Запланировано %d загрузок
 values-b+ru	plurals	episodes	one	Серия
 values-b+ru	plurals	episodes	other	Серии
+values-b+ru	plurals	home_sections_failed	few	Не удалось загрузить %d раздела
+values-b+ru	plurals	home_sections_failed	many	Не удалось загрузить %d разделов
+values-b+ru	plurals	home_sections_failed	one	Не удалось загрузить %d раздел
+values-b+ru	plurals	home_sections_failed	other	Не удалось загрузить %d разделов
 values-b+ru	plurals	links_hidden	few	%d скрытые ссылки
 values-b+ru	plurals	links_hidden	many	%d скрытых ссылок
 values-b+ru	plurals	links_hidden	one	%d скрытая ссылка
@@ -26229,6 +26606,7 @@ values-b+ru	string	home_more_info	-	Подробнее
 values-b+ru	string	home_next_random_img_des	-	Следующий случайный
 values-b+ru	string	home_play	-	Смотреть
 values-b+ru	string	home_random	-	Случайный
+values-b+ru	string	home_search_only_body	-	Ни у одного из ваших дополнений нет главной страницы, но в них всё равно можно искать.
 values-b+ru	string	home_source	-	Источник
 values-b+ru	string	install_prerelease	-	Установить предварительный выпуск
 values-b+ru	string	is_adult	-	18+
@@ -26244,6 +26622,7 @@ values-b+ru	string	limit_title_rez	-	Показывать информацию �
 values-b+ru	string	links_reloaded_toast	-	Ссылки перезагружены
 values-b+ru	string	live_singular	-	Прямая трансляция
 values-b+ru	string	livestreams	-	Прямые трансляции
+values-b+ru	string	load_more	-	Загрузить ещё
 values-b+ru	string	loading	-	Загрузка…
 values-b+ru	string	lock_profile	-	Заблокировать профиль
 values-b+ru	string	logged_account	-	Вы вошли как %s
@@ -26464,11 +26843,14 @@ values-b+ru	string	search_hint_site	-	Поиск %s…
 values-b+ru	string	search_poster_img_des	-	Плакат
 values-b+ru	string	search_provider_text_providers	-	Поиск с использованием поставщиков
 values-b+ru	string	search_provider_text_types	-	Поиск с использованием типов
+values-b+ru	string	search_state_idle_body_desktop	-	Введите название. Результаты появятся под каждым источником, когда он ответит.
 values-b+ru	string	search_suggestions	-	Поиск предложений
 values-b+ru	string	search_suggestions_des	-	Показывать подсказки поиска при вводе текста
 values-b+ru	string	season	-	Сезон
 values-b+ru	string	season_format	-	%1$s %2$d%3$s
 values-b+ru	string	season_short	-	С
+values-b+ru	string	seek_back_10_seconds	-	Перемотать назад на 10 секунд
+values-b+ru	string	seek_forward_10_seconds	-	Перемотать вперёд на 10 секунд
 values-b+ru	string	select_all	-	Выбрать всё
 values-b+ru	string	select_an_account	-	Выберите учётную запись
 values-b+ru	string	select_library	-	Выбрать библиотеку
@@ -26679,6 +27061,10 @@ values-b+ru	string	year	-	Год
 values-b+ru	string	yes	-	Да
 values-b+sk	plurals	episodes	one	Epizóda
 values-b+sk	plurals	episodes	other	Epizódy
+values-b+sk	plurals	home_sections_failed	few	Nepodarilo sa načítať %d sekcie
+values-b+sk	plurals	home_sections_failed	many	Nepodarilo sa načítať %d sekcií
+values-b+sk	plurals	home_sections_failed	one	Nepodarilo sa načítať %d sekciu
+values-b+sk	plurals	home_sections_failed	other	Nepodarilo sa načítať %d sekcií
 values-b+sk	string	account	-	účet
 values-b+sk	string	action_add_to_bookmarks	-	Nastaviť stav sledovania
 values-b+sk	string	action_default	-	Predvolené
@@ -26867,6 +27253,7 @@ values-b+sk	string	home_more_info	-	Viac informácií
 values-b+sk	string	home_next_random_img_des	-	Ďalší náhodný
 values-b+sk	string	home_play	-	Prehrať
 values-b+sk	string	home_random	-	Náhodné
+values-b+sk	string	home_search_only_body	-	Žiadne z vašich rozšírení nemá domovskú stránku, no stále v nich môžete hľadať.
 values-b+sk	string	home_source	-	Zdroj
 values-b+sk	string	install_prerelease	-	Nainštalujte pre-release verziu
 values-b+sk	string	jsdelivr_enabled	-	Nepodarilo sa pripojiť na GitHub. Zapína sa proxy jsDelivr…
@@ -26881,6 +27268,7 @@ values-b+sk	string	limit_title_rez	-	Informácie o prehrávači
 values-b+sk	string	links_reloaded_toast	-	Odkazy sa znovu načítali
 values-b+sk	string	live_singular	-	Živý prenos
 values-b+sk	string	livestreams	-	Živé prenosy
+values-b+sk	string	load_more	-	Načítať ďalšie
 values-b+sk	string	loading	-	Načítavanie…
 values-b+sk	string	login	-	Prihlásiť sa
 values-b+sk	string	login_format	-	%1$s %2$s
@@ -27030,11 +27418,14 @@ values-b+sk	string	search_hint_site	-	Hľadať %s…
 values-b+sk	string	search_poster_img_des	-	Plagát
 values-b+sk	string	search_provider_text_providers	-	Hľadať pomocou poskytovateľov
 values-b+sk	string	search_provider_text_types	-	Hľadať pomocou typov
+values-b+sk	string	search_state_idle_body_desktop	-	Zadajte názov. Výsledky sa zobrazia pod každým zdrojom, keď odpovie.
 values-b+sk	string	search_suggestions	-	Návrhy vyhľadávania
 values-b+sk	string	search_suggestions_des	-	Zobraziť návrhy vyhľadávania pri písaní
 values-b+sk	string	season	-	Sezóna
 values-b+sk	string	season_format	-	%1$s %2$d%3$s
 values-b+sk	string	season_short	-	S
+values-b+sk	string	seek_back_10_seconds	-	Pretočiť o 10 sekúnd späť
+values-b+sk	string	seek_forward_10_seconds	-	Pretočiť o 10 sekúnd vpred
 values-b+sk	string	select_all	-	Vybrať Všetko
 values-b+sk	string	settings_info	-	Informácie
 values-b+sk	string	setup_done	-	Hotovo
@@ -27162,6 +27553,8 @@ values-b+sk	string	watch_quality_pref_data	-	Preferovaná kvalita sledovania (mo
 values-b+sk	string	year	-	Rok
 values-b+so	plurals	episodes	one	Xalqad
 values-b+so	plurals	episodes	other	Xalqado
+values-b+so	plurals	home_sections_failed	one	Waa ka keeni kari waayey %d qayb
+values-b+so	plurals	home_sections_failed	other	Waa ka keeni kari waayey %d qaybood
 values-b+so	string	account	-	Akoonka
 values-b+so	string	action_add_to_bookmarks	-	Xagee marinaysaa
 values-b+so	string	action_default	-	Sidiisaa
@@ -27362,6 +27755,7 @@ values-b+so	string	home_more_info	-	Warbixin dheeraad ah
 values-b+so	string	home_next_random_img_des	-	X.la'aanta xigta
 values-b+so	string	home_play	-	Daar
 values-b+so	string	home_random	-	Xulasho la'aan
+values-b+so	string	home_search_only_body	-	Mid ka mid ah kordhiyeyaashaada ma laha bog hore, laakiin weli waad ka raadin kartaa.
 values-b+so	string	home_source	-	Xigashada
 values-b+so	string	install_prerelease	-	Soo deji nooca hordhaca ah
 values-b+so	string	is_adult	-	18+
@@ -27374,6 +27768,7 @@ values-b+so	string	limit_title_rez	-	Daaraha korkiisa
 values-b+so	string	links_reloaded_toast	-	Linkska dib ayaa loo cusboonaysiiyay
 values-b+so	string	live_singular	-	Toos
 values-b+so	string	livestreams	-	Tooska
+values-b+so	string	load_more	-	Soo kaxee kuwo kale
 values-b+so	string	loading	-	Soo kacaya…
 values-b+so	string	login	-	Soo gal
 values-b+so	string	login_format	-	%1$s %2$s
@@ -27533,11 +27928,14 @@ values-b+so	string	search_hint_site	-	Raadi %s…
 values-b+so	string	search_poster_img_des	-	Sawirka
 values-b+so	string	search_provider_text_providers	-	Ku raadi qaybiyeyaasha
 values-b+so	string	search_provider_text_types	-	Ku raadi noocyada
+values-b+so	string	search_state_idle_body_desktop	-	Qor cinwaan. Natiijooyinku waxay ka muuqdaan xigasho kasta hoosteeda marka ay jawaabto.
 values-b+so	string	search_suggestions	-	Talooyinka Raadinta
 values-b+so	string	search_suggestions_des	-	Soo bandhig talooyinka inta aad wax qorayso
 values-b+so	string	season	-	Kalka
 values-b+so	string	season_format	-	%1$s %2$d%3$s
 values-b+so	string	season_short	-	K
+values-b+so	string	seek_back_10_seconds	-	Dib u noqo 10 ilbiriqsi
+values-b+so	string	seek_forward_10_seconds	-	Hore u gudub 10 ilbiriqsi
 values-b+so	string	select_all	-	Dooro dhammaan
 values-b+so	string	settings_info	-	Xog
 values-b+so	string	setup_done	-	Dhan
@@ -27681,6 +28079,8 @@ values-b+sq	plurals	downloads_queued	one	%d shkarkim në radhë
 values-b+sq	plurals	downloads_queued	other	%d shkarkime në radhë
 values-b+sq	plurals	episodes	one	Episodi
 values-b+sq	plurals	episodes	other	Episode
+values-b+sq	plurals	home_sections_failed	one	Nuk mund të ngarkohej %d seksion
+values-b+sq	plurals	home_sections_failed	other	Nuk mund të ngarkoheshin %d seksione
 values-b+sq	plurals	links_hidden	one	%d link i fshehur
 values-b+sq	plurals	links_hidden	other	%d linqe të fshehura
 values-b+sq	string	account	-	llogaria
@@ -27976,6 +28376,7 @@ values-b+sq	string	home_more_info	-	Më shumë info
 values-b+sq	string	home_next_random_img_des	-	Tjetër rastësore
 values-b+sq	string	home_play	-	Luaj
 values-b+sq	string	home_random	-	Rastësor
+values-b+sq	string	home_search_only_body	-	Asnjë nga shtesat tuaja nuk ka faqe kryesore, por mund të kërkoni ende në to.
 values-b+sq	string	home_source	-	Burimi
 values-b+sq	string	install_prerelease	-	Instalo versione beta
 values-b+sq	string	is_adult	-	18+
@@ -27991,6 +28392,7 @@ values-b+sq	string	limit_title_rez	-	Shfaq informacionin e luajtësit
 values-b+sq	string	links_reloaded_toast	-	Lidhjet u ringarkuan
 values-b+sq	string	live_singular	-	Transmetim live
 values-b+sq	string	livestreams	-	Transmetime live
+values-b+sq	string	load_more	-	Ngarko më shumë
 values-b+sq	string	loading	-	Duke u ngarkuar…
 values-b+sq	string	lock_profile	-	Kyç profilin
 values-b+sq	string	logged_account	-	I identifikuar si %s
@@ -28211,11 +28613,14 @@ values-b+sq	string	search_hint_site	-	Kërko %s…
 values-b+sq	string	search_poster_img_des	-	Posteri
 values-b+sq	string	search_provider_text_providers	-	Kërko duke përdorur ofruesit
 values-b+sq	string	search_provider_text_types	-	Kërko duke përdorur tipet
+values-b+sq	string	search_state_idle_body_desktop	-	Shkruani një titull. Rezultatet shfaqen nën çdo burim sapo ai përgjigjet.
 values-b+sq	string	search_suggestions	-	Kërkime të sugjeruara
 values-b+sq	string	search_suggestions_des	-	Trego sugjerimet ndërkohë që shkruani
 values-b+sq	string	season	-	Sezoni
 values-b+sq	string	season_format	-	%1$s %2$d%3$s
 values-b+sq	string	season_short	-	S
+values-b+sq	string	seek_back_10_seconds	-	Kalo 10 sekonda mbrapa
+values-b+sq	string	seek_forward_10_seconds	-	Kalo 10 sekonda para
 values-b+sq	string	select_all	-	Zgjidh të gjitha
 values-b+sq	string	select_an_account	-	Zgjidh një Llogari
 values-b+sq	string	select_library	-	Zgjidh Bibliotekën
@@ -28430,6 +28835,8 @@ values-b+sv	plurals	downloads_queued	one	%d nedladdning i kö
 values-b+sv	plurals	downloads_queued	other	%d nedladdningar i kö
 values-b+sv	plurals	episodes	one	Avsnitt
 values-b+sv	plurals	episodes	other	Avsnitt
+values-b+sv	plurals	home_sections_failed	one	%d sektion kunde inte laddas
+values-b+sv	plurals	home_sections_failed	other	%d sektioner kunde inte laddas
 values-b+sv	plurals	links_hidden	one	%d dold länk
 values-b+sv	plurals	links_hidden	other	%d dolda länkar
 values-b+sv	string	account	-	konto
@@ -28725,6 +29132,7 @@ values-b+sv	string	home_more_info	-	Mer information
 values-b+sv	string	home_next_random_img_des	-	Nästa slumpvis
 values-b+sv	string	home_play	-	Spela upp
 values-b+sv	string	home_random	-	Slumpmässig
+values-b+sv	string	home_search_only_body	-	Inget av dina tillägg har en startsida, men du kan fortfarande söka i dem.
 values-b+sv	string	home_source	-	Källa
 values-b+sv	string	install_prerelease	-	Installera förhandsversionen
 values-b+sv	string	is_adult	-	18+
@@ -28740,6 +29148,7 @@ values-b+sv	string	limit_title_rez	-	Visa videospelarens information
 values-b+sv	string	links_reloaded_toast	-	Länkar omladdade
 values-b+sv	string	live_singular	-	Direktsändning
 values-b+sv	string	livestreams	-	Direktsändningar
+values-b+sv	string	load_more	-	Ladda fler
 values-b+sv	string	loading	-	Laddar…
 values-b+sv	string	lock_profile	-	Lås profil
 values-b+sv	string	logged_account	-	Loggat in som %s
@@ -28960,11 +29369,14 @@ values-b+sv	string	search_hint_site	-	Sök %s…
 values-b+sv	string	search_poster_img_des	-	Affisch
 values-b+sv	string	search_provider_text_providers	-	Sök med hjälp av leverantörer
 values-b+sv	string	search_provider_text_types	-	Sök med hjälp av typer
+values-b+sv	string	search_state_idle_body_desktop	-	Skriv en titel. Resultaten visas under varje källa när den svarar.
 values-b+sv	string	search_suggestions	-	Sökförslag
 values-b+sv	string	search_suggestions_des	-	Visa sökförslag medan du skriver
 values-b+sv	string	season	-	Säsong
 values-b+sv	string	season_format	-	%1$s %2$d%3$s
 values-b+sv	string	season_short	-	S
+values-b+sv	string	seek_back_10_seconds	-	Hoppa bakåt 10 sekunder
+values-b+sv	string	seek_forward_10_seconds	-	Hoppa framåt 10 sekunder
 values-b+sv	string	select_all	-	Välj alla
 values-b+sv	string	select_an_account	-	Välj ett konto
 values-b+sv	string	select_library	-	Välj bibliotek
@@ -29179,6 +29591,8 @@ values-b+ta	plurals	downloads_queued	one	%d பதிவிறக்கம் �
 values-b+ta	plurals	downloads_queued	other	%d பதிவிறக்கங்கள் வரிசையில் உள்ளன
 values-b+ta	plurals	episodes	one	அத்தியாயம்
 values-b+ta	plurals	episodes	other	அத்தியாயங்கள்
+values-b+ta	plurals	home_sections_failed	one	%d பிரிவை ஏற்ற முடியவில்லை
+values-b+ta	plurals	home_sections_failed	other	%d பிரிவுகளை ஏற்ற முடியவில்லை
 values-b+ta	plurals	links_hidden	one	%d மறைக்கப்பட்ட இணைப்பு
 values-b+ta	plurals	links_hidden	other	%d மறைக்கப்பட்ட இணைப்புகள்
 values-b+ta	string	account	-	கணக்கு
@@ -29474,6 +29888,7 @@ values-b+ta	string	home_more_info	-	மேலும் செய்தி
 values-b+ta	string	home_next_random_img_des	-	அடுத்து ஏதாவது
 values-b+ta	string	home_play	-	விளையாடுங்கள்
 values-b+ta	string	home_random	-	சீரற்ற
+values-b+ta	string	home_search_only_body	-	உங்கள் நீட்டிப்புகள் எதிலும் முகப்புப் பக்கம் இல்லை, ஆனால் அவற்றில் இன்னும் தேடலாம்.
 values-b+ta	string	home_source	-	மூலம்
 values-b+ta	string	install_prerelease	-	வெளியீட்டிற்கு முந்தைய பதிப்பை நிறுவவும்
 values-b+ta	string	is_adult	-	18+
@@ -29489,6 +29904,7 @@ values-b+ta	string	limit_title_rez	-	பிளேயர் தகவலைக்
 values-b+ta	string	links_reloaded_toast	-	இணைப்புகள் மீண்டும் ஏற்றப்பட்டன
 values-b+ta	string	live_singular	-	லைவ்ச்ட்ரீம்
 values-b+ta	string	livestreams	-	லைவ்ச்ட்ரீம்கள்
+values-b+ta	string	load_more	-	மேலும் ஏற்றவும்
 values-b+ta	string	loading	-	ஏற்றுகிறது…
 values-b+ta	string	lock_profile	-	பூட்டு சுயவிவரம்
 values-b+ta	string	logged_account	-	%s ஆக உள்நுழைந்துள்ளது
@@ -29709,11 +30125,14 @@ values-b+ta	string	search_hint_site	-	%s இல் தேடவும்…
 values-b+ta	string	search_poster_img_des	-	போச்டர்
 values-b+ta	string	search_provider_text_providers	-	வழங்குபவர்கள் பயன்படுத்தி தேடுங்கள்
 values-b+ta	string	search_provider_text_types	-	வகைகளைப் பயன்படுத்தி தேடுங்கள்
+values-b+ta	string	search_state_idle_body_desktop	-	ஒரு தலைப்பைத் தட்டச்சு செய்யவும். ஒவ்வொரு மூலமும் பதிலளிக்கும்போது முடிவுகள் அதன் கீழ் தோன்றும்.
 values-b+ta	string	search_suggestions	-	தேடல் பரிந்துரைகள்
 values-b+ta	string	search_suggestions_des	-	தட்டச்சு செய்யும் போது தேடல் பரிந்துரைகளைக் காட்டு
 values-b+ta	string	season	-	பருவம்
 values-b+ta	string	season_format	-	%1$s %2$d %3$s
 values-b+ta	string	season_short	-	கள்
+values-b+ta	string	seek_back_10_seconds	-	10 விநாடிகள் பின்னோக்கிச் செல்லவும்
+values-b+ta	string	seek_forward_10_seconds	-	10 விநாடிகள் முன்னோக்கிச் செல்லவும்
 values-b+ta	string	select_all	-	அனைத்தையும் தேர்ந்தெடுக்கவும்
 values-b+ta	string	select_an_account	-	ஒரு கணக்கைத் தேர்ந்தெடுக்கவும்
 values-b+ta	string	select_library	-	நூலகத்தைத் தேர்ந்தெடுக்கவும்
@@ -29922,9 +30341,18 @@ values-b+ta	string	watch_quality_pref_data	-	விருப்பமான க�
 values-b+ta	string	wifi	-	வைஃபை
 values-b+ta	string	year	-	ஆண்டு
 values-b+ta	string	yes	-	ஆம்
+values-b+ti	plurals	home_sections_failed	one	%d ክፍሊ ክጽዓን ኣይከኣለን
+values-b+ti	plurals	home_sections_failed	other	%d ክፍሊ ክጽዓን ኣይከኣለን
 values-b+ti	string	app_dub_sub_episode_text_format	-	%1$s ክፋል %2$d
 values-b+ti	string	cast_format	-	ተዋሳእቲ፡ %s
+values-b+ti	string	home_search_only_body	-	ካብ መስፋሕፋሕትኻ ሓደ እኳ መበገሲ ገጽ የብሉን፡ ግን ሕጂ'ውን ኣብኡ ክትደሊ ትኽእል ኢኻ።
+values-b+ti	string	load_more	-	ተወሳኺ ጽዓን
 values-b+ti	string	next_episode_format	-	ክፋል %d በ ላይ ይወጣል
+values-b+ti	string	search_state_idle_body_desktop	-	ኣርእስቲ ጽሓፍ። ውጽኢታት ነፍሲ ወከፍ ምንጪ ምስ መለሰ ኣብ ትሕቲኡ ይርአዩ።
+values-b+ti	string	seek_back_10_seconds	-	10 ካልኢት ንድሕሪት
+values-b+ti	string	seek_forward_10_seconds	-	10 ካልኢት ንቕድሚት
+values-b+tl	plurals	home_sections_failed	one	Hindi na-load ang %d seksyon
+values-b+tl	plurals	home_sections_failed	other	Hindi na-load ang %d seksyon
 values-b+tl	string	action_add_to_bookmarks	-	I-set ang Status
 values-b+tl	string	action_add_to_favorites	-	Idagdag sa mga paborito <3
 values-b+tl	string	action_default	-	Default
@@ -30057,9 +30485,11 @@ values-b+tl	string	home_main_poster_img_des	-	Main Poster
 values-b+tl	string	home_more_info	-	More Info
 values-b+tl	string	home_next_random_img_des	-	Next Random
 values-b+tl	string	home_play	-	I-play
+values-b+tl	string	home_search_only_body	-	Wala sa mga extension mo ang may home page, pero puwede ka pa ring maghanap sa mga ito.
 values-b+tl	string	kitsu_settings	-	Ipakita ang posters mula sa Kitsu
 values-b+tl	string	lightnovel	-	Light novel app ng parehong devs
 values-b+tl	string	links_reloaded_toast	-	Ini-load muli ang mga link
+values-b+tl	string	load_more	-	Mag-load pa
 values-b+tl	string	loading	-	Loading…
 values-b+tl	string	logout	-	Mag log out
 values-b+tl	string	movies	-	Pelikula
@@ -30149,8 +30579,11 @@ values-b+tl	string	search_hint_site	-	Hanapin ang %s…
 values-b+tl	string	search_poster_img_des	-	Poster
 values-b+tl	string	search_provider_text_providers	-	Search using providers
 values-b+tl	string	search_provider_text_types	-	Search using types
+values-b+tl	string	search_state_idle_body_desktop	-	Mag-type ng pamagat. Lalabas ang mga resulta sa ilalim ng bawat source kapag sumagot ito.
 values-b+tl	string	season	-	Season
 values-b+tl	string	season_short	-	S
+values-b+tl	string	seek_back_10_seconds	-	Bumalik ng 10 segundo
+values-b+tl	string	seek_forward_10_seconds	-	Umabante ng 10 segundo
 values-b+tl	string	select_all	-	Piliin Lahat
 values-b+tl	string	settings_info	-	Impormasyon
 values-b+tl	string	show_fillers_settings	-	Ipakita ang filler episode sa anime
@@ -30241,6 +30674,8 @@ values-b+tr	plurals	downloads_queued	one	%d indirme kuyrukta
 values-b+tr	plurals	downloads_queued	other	%d indirilecekler kuyruğa alındı
 values-b+tr	plurals	episodes	one	Bölüm
 values-b+tr	plurals	episodes	other	Bölüm
+values-b+tr	plurals	home_sections_failed	one	%d kısım yüklenemedi
+values-b+tr	plurals	home_sections_failed	other	%d kısım yüklenemedi
 values-b+tr	plurals	links_hidden	one	%d gizli bağlantı
 values-b+tr	plurals	links_hidden	other	%d gizli bağlantı
 values-b+tr	string	account	-	hesap
@@ -30536,6 +30971,7 @@ values-b+tr	string	home_more_info	-	Daha fazla bilgi
 values-b+tr	string	home_next_random_img_des	-	Sonraki Rastgele
 values-b+tr	string	home_play	-	Oynat
 values-b+tr	string	home_random	-	Rastgele
+values-b+tr	string	home_search_only_body	-	Eklentilerinizin hiçbirinde ana sayfa yok, ancak yine de onlarda arama yapabilirsiniz.
 values-b+tr	string	home_source	-	Kaynak
 values-b+tr	string	install_prerelease	-	Ön sürümünü yükleyin
 values-b+tr	string	is_adult	-	+18
@@ -30551,6 +30987,7 @@ values-b+tr	string	limit_title_rez	-	Oynatıcı bilgisini göster
 values-b+tr	string	links_reloaded_toast	-	Bağlantılar Yeniden Yüklendi
 values-b+tr	string	live_singular	-	Canlı yayın
 values-b+tr	string	livestreams	-	Canlı yayınlar
+values-b+tr	string	load_more	-	Daha fazla yükle
 values-b+tr	string	loading	-	Yükleniyor…
 values-b+tr	string	lock_profile	-	Profili Kilitle
 values-b+tr	string	logged_account	-	%s olarak giriş yapıldı
@@ -30771,11 +31208,14 @@ values-b+tr	string	search_hint_site	-	%s sağlayıcısında ara…
 values-b+tr	string	search_poster_img_des	-	Afiş
 values-b+tr	string	search_provider_text_providers	-	Sağlayıcıları kullanarak ara
 values-b+tr	string	search_provider_text_types	-	Türleri kullanarak ara
+values-b+tr	string	search_state_idle_body_desktop	-	Bir başlık yazın. Sonuçlar, her kaynak yanıt verdikçe onun altında görünür.
 values-b+tr	string	search_suggestions	-	Arama Önerileri
 values-b+tr	string	search_suggestions_des	-	Yazarken arama önerilerini göster
 values-b+tr	string	season	-	Sezon
 values-b+tr	string	season_format	-	%1$s %2$d%3$s
 values-b+tr	string	season_short	-	S
+values-b+tr	string	seek_back_10_seconds	-	10 saniye geri atla
+values-b+tr	string	seek_forward_10_seconds	-	10 saniye ileri atla
 values-b+tr	string	select_all	-	Tümünü Seç
 values-b+tr	string	select_an_account	-	Hesap Seç
 values-b+tr	string	select_library	-	Kütüphane Seçin
@@ -30994,6 +31434,10 @@ values-b+uk	plurals	downloads_queued	one	%d завантаження в черз
 values-b+uk	plurals	downloads_queued	other	%d завантажень у черзі
 values-b+uk	plurals	episodes	one	Епізод
 values-b+uk	plurals	episodes	other	Епізоди
+values-b+uk	plurals	home_sections_failed	few	Не вдалося завантажити %d розділи
+values-b+uk	plurals	home_sections_failed	many	Не вдалося завантажити %d розділів
+values-b+uk	plurals	home_sections_failed	one	Не вдалося завантажити %d розділ
+values-b+uk	plurals	home_sections_failed	other	Не вдалося завантажити %d розділів
 values-b+uk	plurals	links_hidden	few	%d приховані посилання
 values-b+uk	plurals	links_hidden	many	%d прихованих посилань
 values-b+uk	plurals	links_hidden	one	%d приховане посилання
@@ -31291,6 +31735,7 @@ values-b+uk	string	home_more_info	-	Докладніше
 values-b+uk	string	home_next_random_img_des	-	Наступне випадкове
 values-b+uk	string	home_play	-	Переглянути
 values-b+uk	string	home_random	-	Випадковий
+values-b+uk	string	home_search_only_body	-	Жодне з ваших розширень не має головної сторінки, але в них усе ще можна шукати.
 values-b+uk	string	home_source	-	Джерело
 values-b+uk	string	install_prerelease	-	Встановити передрелізну версію
 values-b+uk	string	is_adult	-	18+
@@ -31306,6 +31751,7 @@ values-b+uk	string	limit_title_rez	-	Показувати інформацію �
 values-b+uk	string	links_reloaded_toast	-	Посилання перезавантажені
 values-b+uk	string	live_singular	-	Пряма трансляція
 values-b+uk	string	livestreams	-	Прямі трансляції
+values-b+uk	string	load_more	-	Завантажити ще
 values-b+uk	string	loading	-	Завантаження…
 values-b+uk	string	lock_profile	-	Заблокувати профіль
 values-b+uk	string	logged_account	-	Увійшли як %s
@@ -31526,11 +31972,14 @@ values-b+uk	string	search_hint_site	-	Пошук на %s…
 values-b+uk	string	search_poster_img_des	-	Плакат
 values-b+uk	string	search_provider_text_providers	-	Пошук за постачальниками
 values-b+uk	string	search_provider_text_types	-	Пошук за типами
+values-b+uk	string	search_state_idle_body_desktop	-	Введіть назву. Результати з'являться під кожним джерелом, коли воно відповість.
 values-b+uk	string	search_suggestions	-	Пропозиції пошуку
 values-b+uk	string	search_suggestions_des	-	Показувати підказки пошуку під час введення тексту
 values-b+uk	string	season	-	Сезон
 values-b+uk	string	season_format	-	%1$s %2$d%3$s
 values-b+uk	string	season_short	-	С
+values-b+uk	string	seek_back_10_seconds	-	Перемотати назад на 10 секунд
+values-b+uk	string	seek_forward_10_seconds	-	Перемотати вперед на 10 секунд
 values-b+uk	string	select_all	-	Обрати все
 values-b+uk	string	select_an_account	-	Оберіть обліковий запис
 values-b+uk	string	select_library	-	Оберіть бібліотеку
@@ -31741,6 +32190,8 @@ values-b+uk	string	year	-	Рік
 values-b+uk	string	yes	-	Так
 values-b+ur	plurals	episodes	one	قسط
 values-b+ur	plurals	episodes	other	اقساط
+values-b+ur	plurals	home_sections_failed	one	%d سیکشن لوڈ نہیں ہو سکا
+values-b+ur	plurals	home_sections_failed	other	%d سیکشنز لوڈ نہیں ہو سکے
 values-b+ur	string	account	-	اكاؤنٹ
 values-b+ur	string	action_add_to_bookmarks	-	واچ اسٹیٹس کو سیٹ کریں
 values-b+ur	string	action_add_to_favorites	-	پسندیدہ میں شامل کریں
@@ -31983,6 +32434,7 @@ values-b+ur	string	home_more_info	-	مزید معلومات
 values-b+ur	string	home_next_random_img_des	-	اگلا بے ترتیب
 values-b+ur	string	home_play	-	چلائیں
 values-b+ur	string	home_random	-	بے ترتیب
+values-b+ur	string	home_search_only_body	-	آپ کی کسی بھی ایکسٹینشن میں ہوم پیج نہیں ہے، لیکن آپ پھر بھی ان میں تلاش کر سکتے ہیں۔
 values-b+ur	string	home_source	-	ذریعہ
 values-b+ur	string	is_adult	-	18+
 values-b+ur	string	jsdelivr_enabled	-	Could not reach GitHub. Turning on jsDelivr proxy…
@@ -31997,6 +32449,7 @@ values-b+ur	string	limit_title_rez	-	ویڈیو پلیئر resolution
 values-b+ur	string	links_reloaded_toast	-	لنکس دوبارہ لوڈ ہو گئے
 values-b+ur	string	live_singular	-	لائیو اسٹریمز
 values-b+ur	string	livestreams	-	لائیو اسٹریمز
+values-b+ur	string	load_more	-	مزید لوڈ کریں
 values-b+ur	string	loading	-	لوڈ ہو رہا ہے…
 values-b+ur	string	lock_profile	-	پروفائل لاک کریں
 values-b+ur	string	logged_account	-	%s کے بطور لاگ ان ہوا
@@ -32181,9 +32634,12 @@ values-b+ur	string	search_hint_site	-	فراہم کنندہ میں تلاش کر
 values-b+ur	string	search_poster_img_des	-	پروموشنل تصویر
 values-b+ur	string	search_provider_text_providers	-	ذرائع کا استعمال کرتے ہوئے تلاش کریں
 values-b+ur	string	search_provider_text_types	-	انواع کا استعمال کرتے ہوئے تلاش کریں
+values-b+ur	string	search_state_idle_body_desktop	-	عنوان لکھیں۔ ہر ذریعہ کے جواب دینے پر نتائج اس کے نیچے ظاہر ہوں گے۔
 values-b+ur	string	season	-	سیزن
 values-b+ur	string	season_format	-	%1$s %2$d%3$s
 values-b+ur	string	season_short	-	S
+values-b+ur	string	seek_back_10_seconds	-	10 سیکنڈ پیچھے جائیں
+values-b+ur	string	seek_forward_10_seconds	-	10 سیکنڈ آگے جائیں
 values-b+ur	string	select_all	-	سب چُنیں
 values-b+ur	string	select_an_account	-	ایک اکاؤنٹ منتخب کریں
 values-b+ur	string	select_library	-	لائبریری کو منتخب کریں
@@ -32354,6 +32810,7 @@ values-b+vi	plurals	downloads_active	other	%d đang tải xuống
 values-b+vi	plurals	downloads_queued	other	%d tải xuống đang chờ
 values-b+vi	plurals	episodes	one	Tập
 values-b+vi	plurals	episodes	other	Tập
+values-b+vi	plurals	home_sections_failed	other	Không tải được %d mục
 values-b+vi	plurals	links_hidden	other	%d liên kết bị ẩn
 values-b+vi	string	account	-	tài khoản
 values-b+vi	string	action_add_to_bookmarks	-	Đặt trạng thái xem
@@ -32648,6 +33105,7 @@ values-b+vi	string	home_more_info	-	Thông tin thêm
 values-b+vi	string	home_next_random_img_des	-	Tập tiếp theo ngẫu nhiên
 values-b+vi	string	home_play	-	Phát
 values-b+vi	string	home_random	-	Ngẫu nhiên
+values-b+vi	string	home_search_only_body	-	Không có tiện ích mở rộng nào của bạn có trang chủ, nhưng bạn vẫn có thể tìm kiếm trong đó.
 values-b+vi	string	home_source	-	Nguồn
 values-b+vi	string	install_prerelease	-	Cài đặt phiên bản phát hành trước
 values-b+vi	string	is_adult	-	18+
@@ -32663,6 +33121,7 @@ values-b+vi	string	limit_title_rez	-	Hiển thị thông tin trình phát
 values-b+vi	string	links_reloaded_toast	-	Tải lại liên kết
 values-b+vi	string	live_singular	-	Trực tiếp
 values-b+vi	string	livestreams	-	Trực tiếp
+values-b+vi	string	load_more	-	Tải thêm
 values-b+vi	string	loading	-	Đang tải…
 values-b+vi	string	lock_profile	-	Khóa hồ sơ
 values-b+vi	string	logged_account	-	Đã đăng nhập với tư cách %s
@@ -32883,11 +33342,14 @@ values-b+vi	string	search_hint_site	-	Tìm kiếm %s…
 values-b+vi	string	search_poster_img_des	-	Poster
 values-b+vi	string	search_provider_text_providers	-	Tìm kiếm theo nguồn phim
 values-b+vi	string	search_provider_text_types	-	Tìm kiếm theo thể loại
+values-b+vi	string	search_state_idle_body_desktop	-	Nhập tiêu đề. Kết quả sẽ hiện dưới mỗi nguồn khi nguồn đó phản hồi.
 values-b+vi	string	search_suggestions	-	Gợi ý tìm kiếm
 values-b+vi	string	search_suggestions_des	-	Hiển thị gợi ý tìm kiếm khi đang nhập
 values-b+vi	string	season	-	Mùa
 values-b+vi	string	season_format	-	%1$s %2$d%3$s
 values-b+vi	string	season_short	-	Mùa
+values-b+vi	string	seek_back_10_seconds	-	Tua lùi 10 giây
+values-b+vi	string	seek_forward_10_seconds	-	Tua tới 10 giây
 values-b+vi	string	select_all	-	Chọn tất cả
 values-b+vi	string	select_an_account	-	Chọn hồ sơ của bạn
 values-b+vi	string	select_library	-	Chọn Thư viện
@@ -33100,6 +33562,7 @@ values-b+zh	plurals	downloads_active	other	%d 个活跃下载
 values-b+zh	plurals	downloads_queued	other	队列中有 %d 个下载
 values-b+zh	plurals	episodes	one	集
 values-b+zh	plurals	episodes	other	集
+values-b+zh	plurals	home_sections_failed	other	%d 个分区加载失败
 values-b+zh	plurals	links_hidden	other	%d 条隐藏链接
 values-b+zh	string	account	-	账户
 values-b+zh	string	action_add_to_bookmarks	-	设置观看状态
@@ -33394,6 +33857,7 @@ values-b+zh	string	home_more_info	-	更多信息
 values-b+zh	string	home_next_random_img_des	-	随机下一个
 values-b+zh	string	home_play	-	播放
 values-b+zh	string	home_random	-	随机
+values-b+zh	string	home_search_only_body	-	你的扩展都没有主页，但仍可在其中搜索。
 values-b+zh	string	home_source	-	来源
 values-b+zh	string	install_prerelease	-	安装预发行版
 values-b+zh	string	is_adult	-	18+
@@ -33409,6 +33873,7 @@ values-b+zh	string	limit_title_rez	-	显示播放器信息
 values-b+zh	string	links_reloaded_toast	-	链接已重新加载
 values-b+zh	string	live_singular	-	直播
 values-b+zh	string	livestreams	-	直播
+values-b+zh	string	load_more	-	加载更多
 values-b+zh	string	loading	-	加载中…
 values-b+zh	string	lock_profile	-	锁定个人资料
 values-b+zh	string	logged_account	-	以%s的身份登录
@@ -33629,11 +34094,14 @@ values-b+zh	string	search_hint_site	-	搜索 %s…
 values-b+zh	string	search_poster_img_des	-	封面
 values-b+zh	string	search_provider_text_providers	-	按片源搜索
 values-b+zh	string	search_provider_text_types	-	按类型搜索
+values-b+zh	string	search_state_idle_body_desktop	-	输入标题。每个来源响应后，结果会显示在其下方。
 values-b+zh	string	search_suggestions	-	搜索建议
 values-b+zh	string	search_suggestions_des	-	输入时显示搜索建议
 values-b+zh	string	season	-	季
 values-b+zh	string	season_format	-	%1$s %2$d%3$s
 values-b+zh	string	season_short	-	S
+values-b+zh	string	seek_back_10_seconds	-	快退 10 秒
+values-b+zh	string	seek_forward_10_seconds	-	快进 10 秒
 values-b+zh	string	select_all	-	全选
 values-b+zh	string	select_an_account	-	选择一个账户
 values-b+zh	string	select_library	-	选择库
@@ -33844,6 +34312,7 @@ values-b+zh	string	year	-	年份
 values-b+zh	string	yes	-	是
 values-b+zh+TW	plurals	downloads_active	other	%d 個正在下載
 values-b+zh+TW	plurals	downloads_queued	other	佇列中有 %d 個下載
+values-b+zh+TW	plurals	home_sections_failed	other	%d 個分區載入失敗
 values-b+zh+TW	plurals	links_hidden	one	%d hidden link
 values-b+zh+TW	plurals	links_hidden	other	%d hidden links
 values-b+zh+TW	string	account	-	帳號
@@ -34137,6 +34606,7 @@ values-b+zh+TW	string	home_more_info	-	更多資訊
 values-b+zh+TW	string	home_next_random_img_des	-	隨機下一個
 values-b+zh+TW	string	home_play	-	播放
 values-b+zh+TW	string	home_random	-	隨機
+values-b+zh+TW	string	home_search_only_body	-	你的擴充功能都沒有主畫面，但仍可在其中搜尋。
 values-b+zh+TW	string	home_source	-	來源
 values-b+zh+TW	string	install_prerelease	-	安裝提前發行版
 values-b+zh+TW	string	is_adult	-	18+
@@ -34152,6 +34622,7 @@ values-b+zh+TW	string	limit_title_rez	-	顯示播放器資訊
 values-b+zh+TW	string	links_reloaded_toast	-	連結已重新載入
 values-b+zh+TW	string	live_singular	-	直播
 values-b+zh+TW	string	livestreams	-	直播
+values-b+zh+TW	string	load_more	-	載入更多
 values-b+zh+TW	string	loading	-	載入中…
 values-b+zh+TW	string	lock_profile	-	鎖定設定檔
 values-b+zh+TW	string	logged_account	-	以 %s 的身分登入
@@ -34372,11 +34843,14 @@ values-b+zh+TW	string	search_hint_site	-	搜尋 %s…
 values-b+zh+TW	string	search_poster_img_des	-	封面
 values-b+zh+TW	string	search_provider_text_providers	-	按片源搜尋
 values-b+zh+TW	string	search_provider_text_types	-	按類型搜尋
+values-b+zh+TW	string	search_state_idle_body_desktop	-	輸入標題。每個來源回應後，結果會顯示在其下方。
 values-b+zh+TW	string	search_suggestions	-	搜尋建議
 values-b+zh+TW	string	search_suggestions_des	-	輸入時顯示搜尋建議
 values-b+zh+TW	string	season	-	季
 values-b+zh+TW	string	season_format	-	%1$s %2$d%3$s
 values-b+zh+TW	string	season_short	-	S
+values-b+zh+TW	string	seek_back_10_seconds	-	倒轉 10 秒
+values-b+zh+TW	string	seek_forward_10_seconds	-	快轉 10 秒
 values-b+zh+TW	string	select_all	-	全選
 values-b+zh+TW	string	select_an_account	-	選擇帳號
 values-b+zh+TW	string	select_library	-	選擇媒體庫
