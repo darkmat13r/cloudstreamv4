@@ -129,11 +129,11 @@ Per screen, not in one PR. Each PR:
 
 ## DS-06 — Icon pack
 
-**Status:** blocked by `DEC-11`
+**Status:** unblocked 2026-11-02 · the pack is chosen (`DEC-11`) and the desktop screens use it
 
-Until a pack is chosen: reuse an existing drawable, or state in the PR that the icon is blocked.
-Do **not** add a new `ic_*.xml` and do not draw a glyph in Compose — *"temporary glyphs are
-permanent; that is how the 80 accumulated."*
+`CloudStreamIcons` and `CloudStreamIcon` are in `:core:designsystem`. Left: the TV and Android screens, the 80
+`ic_baseline_*` drawables, and `MediaCardDefaults`' drawn chevron. Do **not** add a new `ic_*.xml` and do not
+draw a glyph in Compose — *"temporary glyphs are permanent; that is how the 80 accumulated."*
 
 ---
 

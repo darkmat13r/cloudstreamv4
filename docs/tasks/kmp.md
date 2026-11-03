@@ -1293,7 +1293,7 @@ wrong; this feature uses `MediaCardState.progress` and so inherits whichever the
   screen, its design must exist and must have been measured … If the screen you are about to build
   has no artboard, draw it first — do not improvise it in Compose."* So recipe step 2 is **complete
   for TV and blocked on design for the other two form factors** — not skipped, and not improvised.
-- **The per-row remove on 4c.** It needs either a glyph (forbidden while `DEC-11` is unanswered) or a
+- **The per-row remove on 4c.** It needs either a glyph (forbidden while `DEC-11` was unanswered; answered 2026-11-02) or a
   second focus stop nested inside a row that is itself a focus stop, which the artboard does not draw
   in enough detail. `SearchAction.RecentRemoved` exists and is tested; nothing emits it yet.
 - **`See all` on a rail.** 4a and 4b draw one. It implies a per-provider destination that does not
@@ -1304,7 +1304,8 @@ wrong; this feature uses `MediaCardState.progress` and so inherits whichever the
   state that models them. The chip row is mounted regardless, because it is a band of the chassis:
   a row that appears and disappears moves the content region under the user's focus.
 - **A magnifier in the field.** `.claude/rules/icons.md`, `DEC-11`. The placeholder carries the
-  meaning instead, which is what artboard 4c's own *"Search all sources"* does.
+  meaning instead, which is what artboard 4c's own *"Search all sources"* does. `DEC-11` has since been
+  answered and the desktop field has one; this TV screen has not been revisited.
 
 ### No screenshot tests, and it is not a choice
 
@@ -1775,6 +1776,66 @@ would have taken keystrokes mid-typing.
 
 **Not verified:** the live window, which this session cannot drive. No screenshot cases, because the plugin does
 not render here and cannot see KMP modules (`DEC-10`).
+
+---
+
+## KMP-20 — `:feature:home`: Phase 7's next vertical, on desktop · **measured 2026-11-02**
+
+**Status:** in pr · desktop only. **TV screen not built**, though `design/TV Home.dc.html` covers it (below).
+
+`MainAPI.getMainPage` per provider: rows of titles for a chosen source, a source picker, more of a row on
+request, and a title opens through the existing `:feature:detail` flow. Home and search are now the window's two
+top-level screens and the window opens on home. `SearchEffect.BrowseHome` goes there. Escape and Back behave as
+before; Escape also closes the picker. `:app`'s home fragments are untouched.
+
+- **The seam.** `HomeSource` in commonMain, implemented by `DesktopHomeSource` over `APIRepository`. No `:library`
+  edge, so the module is in the iOS canary.
+- **Words (`I18N-08`).** `HomeStatus` has none; `toUiState` resolves `:core:strings`. **No string was added**, so
+  `core/strings/oracle-baseline` does not move. Three compromises to review, each an existing key standing in for one
+  that does not exist: the row's button says `next` ("Next") where "Load more" is meant; a partial page's headline
+  is `source_error` because the existing plural counts *sources* and these are a source's sections; and the
+  search-only prompt reuses `result_search_tooltip`.
+- **Sections fail alone.** Each is asked separately, which is what makes "partial" reachable for one source. A
+  retry asks only what failed and keeps what is on screen and the pages already loaded. A source that sets
+  `sequentialMainPage` is asked one section at a time at its own delay, capped at 10 s.
+- **Paging is a section's,** because that is what a provider pages, so a press on one row can grow its siblings. A
+  page adding nothing ends the section whatever `hasNext` claims, and a row stops at 500 titles and a page at 64 rows.
+- **The sandbox gained `OP_MAIN_PAGE`.** It carries a section index, not the provider's `data`, which never leaves
+  the host. Replies pass the same count checks, `cleaned()` and poster filter as search, and rows, items and sections
+  are capped on both sides. A plugin whose `mainPage` getter throws loses its home page and keeps its search.
+- **On top of the sandbox,** `DesktopHomeSource` drops format characters (U+202E and friends) from titles, drops
+  titles with nothing left, and passes on only http(s) posters. Search and detail do not drop format characters:
+  `isISOControl` does not cover them, so a title there can still reorder the text around it. Reported, not changed.
+
+**A real defect the tests caught:** `stringResource(id, name)` left `%s` unfilled ("Could not load %s"), because
+Compose Resources fills only positional arguments. Through `UiString.Resource` it is filled, and
+`HomeStatusWordsTest` pins it.
+
+**A behaviour change outside home:** a double click on a card pushed the title twice, so Back took two presses.
+`Main.kt` now ignores opening a title while one is on top. Search shares that lambda.
+
+**Verified:** rendered offscreen at 1280×800 and 800×520 in all twelve states plus the whole window, and looked at.
+`HomeScreenTest` drives real pointer and key events, including `DesktopApp` itself over a fake source for where the
+window opens, a double click, Escape and the tabs. `SandboxEnforcementTest` runs hostile main pages against a real
+child under real Seatbelt.
+
+**Not verified:** the live window, which this session cannot drive, and **any real plugin's `getMainPage`**:
+everything above ran against fakes and the hostile fixture.
+
+**Not done:**
+
+- **The TV screen,** and any Android host. `design/TV Home.dc.html` draws a hero and rails that need a different
+  screen and data this seam does not carry.
+- **The chosen source is not remembered** across launches. Android stores it; desktop opens on the first source.
+- **`sequentialMainPageScrollDelay`** is not carried, because a next page here takes a press.
+- **`TitleCard` restates search's `ResultCard`,** which is private to `:feature:search`. If a third screen wants one
+  it belongs in `core/designsystem/desktop`.
+
+**Found, not changed:** `PluginHostClient.readLoop` treats a reply to an unknown request id as a protocol violation
+and ends the host. A call that passes its 60 s timeout removes its id, so a plugin that answers at 61 s loses its
+whole host, for search as much as for home.
+
+**Run against real plugins, in the sandbox, on 2026-11-03.** `--check-extensions` now reports each provider's first main-page section through `DesktopHomeSource`: Invidious 2 rows and 40 titles, Dailymotion 1 and 26, Twitch 1 and 20, Internet Archive and YouTube 0 rows. Later sections of those two were not checked by this command, and no window was driven. A row header now holds the button's height, because cards jumped 8 dp when `Next` became `Loading`; a test pins it and fails without the fix.
 
 ---
 

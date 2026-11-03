@@ -258,7 +258,6 @@ Nothing below can be settled by reading the code.
 | `DEC-08` | **`APIRepository`'s one-line ABI delta** | Merged in `KMP-05` ahead of the sign-off the entry asks for. The delta is **one** synthetic out (`access$afterPluginsLoaded`, which existed only so the class's own `init` could reach a private method), one public method in. `DEC-08`'s own prediction — that `access$getAfterPluginsLoadedEvent$cp` would go — is **wrong**; it survives, because nine `:app` files still read the event. |
 | `DEC-09` | **`BaseComposeFragment` leaving `classes.jar`** | Blocks part of `KMP-06`. |
 | `DEC-10` | **Screenshot testing** | Wait for a working plugin, or switch to Roborazzi. Blocks `DS-04`. |
-| `DEC-11` | **Icon pack** | Not blocking, but accruing cost: 80 hand-exported `ic_baseline_*.xml` already. Blocks `DS-06`. See `.claude/rules/icons.md`. |
 | `INF-06` | **Test toolchain** | Pin it, or re-measure the `ar` table — the two cannot both be satisfied. Now also an Android/JVM divergence question, not only a JDK-version one (`I18N-06`). |
 | `INF-04` | **iOS test target** | Open; no iOS test target and no screenshot coverage. |
 | `DS-01` | **Light scheme** | A design decision, not code. Blocks `DS-05`. `DS-03` is **decided** — see `DEC-13`: `:core:theme` gets no accent role, and the user-selectable primary colour plus Material You do not survive the redesign. That is a product call with real user impact, recorded rather than implemented: `:core:ui`'s theme is untouched and the loss is realised per screen in `DS-05`. |

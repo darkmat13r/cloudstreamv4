@@ -36,10 +36,15 @@ import com.lagradost.cloudstream4.feature.detail.DetailAction
 import com.lagradost.cloudstream4.feature.detail.DetailEffect
 import com.lagradost.cloudstream4.feature.detail.StreamLink
 import com.lagradost.cloudstream4.feature.detail.desktop.DetailScreenDesktop
+import com.lagradost.cloudstream4.feature.home.HomeSource
+import com.lagradost.cloudstream4.feature.home.HomeViewModel
 import com.lagradost.cloudstream4.feature.search.SearchAction
 import com.lagradost.cloudstream4.feature.search.SearchEffect
 import com.lagradost.cloudstream4.feature.search.SearchViewModel
 import com.lagradost.cloudstream4.feature.search.desktop.SearchScreenDesktop
+import com.lagradost.cloudstream4.home.DesktopHomeSource
+import com.lagradost.cloudstream4.home.HomeHost
+import com.lagradost.cloudstream4.home.TopLevelScreen
 import com.lagradost.cloudstream4.player.MediaHost
 import com.lagradost.cloudstream4.player.PlayerScreen
 import com.lagradost.cloudstream4.player.PlayerUnavailable
@@ -143,13 +148,14 @@ fun main(args: Array<String>) {
 
 /** Where the window is. There are few enough screens that a value and a `when` is the whole router. */
 private sealed interface Screen {
+    data object Home : Screen
     data object Search : Screen
     data class Detail(val id: String) : Screen
     data class Player(val title: String, val link: StreamLink) : Screen
 }
 
 /**
- * Search, a title, and playback.
+ * Home and search at the top level, then a title, then playback.
  *
  * A title's page stays in the back stack under the player, so leaving the player lands on the source
  * list it came from.
@@ -157,12 +163,23 @@ private sealed interface Screen {
  * `viewModelScope` is Dispatchers.Main.immediate, and desktop JVM has no Main dispatcher unless
  * kotlinx-coroutines-swing is on the classpath. The host owns a scope instead and cancels it with the
  * composition, which is what each ViewModel's `scope` parameter is for.
+ *
+ * @param onScreen told where the window is, for a test to read.
  */
 @Composable
-private fun DesktopApp(escape: EscapeHandler) {
+internal fun DesktopApp(
+    escape: EscapeHandler,
+    home: HomeSource = remember { DesktopHomeSource() },
+    onScreen: (String) -> Unit = {},
+) {
     val scope = remember { CoroutineScope(SupervisorJob() + Dispatchers.Default) }
     DisposableEffect(scope) { onDispose { scope.cancel() } }
-    val stack = remember { mutableStateListOf<Screen>(Screen.Search) }
+    val stack = remember { mutableStateListOf<Screen>(Screen.Home) }
+    val homeViewModel = remember { HomeViewModel(home, scope) }
+    // A swap and not a push: neither top-level screen is under the other, so Back never goes between them.
+    val top: (Screen) -> Unit = { next -> if (stack.size == 1) stack[0] = next }
+    // A double click reaches here twice, and must not take two presses of Back to undo.
+    val open: (String) -> Unit = { id -> if (stack.last() !is Screen.Detail) stack += Screen.Detail(id) }
     // Pops only when the caller is still on top, so two queued back events cannot empty the stack.
     val back: (Screen) -> Unit = { from ->
         if (stack.size > 1 && stack.last() == from) {
@@ -173,11 +190,20 @@ private fun DesktopApp(escape: EscapeHandler) {
     // Keeps the scroll position of what is under the top screen, so back returns to the same place.
     val saved = rememberSaveableStateHolder()
     val screen = stack.last()
+    SideEffect { onScreen(screen.toString()) }
     saved.SaveableStateProvider(screen.toString()) {
         when (screen) {
-            Screen.Search -> {
+            Screen.Home -> TopLevelScreen(true, onHome = {}, onSearch = { top(Screen.Search) }) {
+                HomeHost(
+                    homeViewModel,
+                    setEscape = { escape.onEscape = it },
+                    onOpen = open,
+                    onSearch = { top(Screen.Search) },
+                )
+            }
+            Screen.Search -> TopLevelScreen(false, onHome = { top(Screen.Home) }, onSearch = {}) {
                 SideEffect { escape.onEscape = null }
-                SearchHost(scope, onOpen = { id -> stack += Screen.Detail(id) })
+                SearchHost(scope, onOpen = open, onBrowseHome = { top(Screen.Home) })
             }
             is Screen.Detail -> key(screen.id) {
                 DetailHost(
@@ -202,7 +228,7 @@ private fun DesktopApp(escape: EscapeHandler) {
 }
 
 /** What Escape does on the current screen; null where there is nothing to go back to. */
-private class EscapeHandler {
+internal class EscapeHandler {
     var onEscape: (() -> Unit)? = null
 
     fun handle(): Boolean = onEscape?.let { it(); true } ?: false
@@ -214,7 +240,7 @@ private object DesktopSearchViewModels {
 }
 
 @Composable
-private fun SearchHost(scope: CoroutineScope, onOpen: (String) -> Unit) {
+private fun SearchHost(scope: CoroutineScope, onOpen: (String) -> Unit, onBrowseHome: () -> Unit) {
     val history = remember { DesktopSearchHistory() }
     val viewModel = remember {
         DesktopSearchViewModels.live
@@ -226,8 +252,7 @@ private fun SearchHost(scope: CoroutineScope, onOpen: (String) -> Unit) {
         viewModel.effect.collect { effect ->
             when (effect) {
                 is SearchEffect.OpenResult -> onOpen(effect.id.value)
-                // Search is the only screen here, and its idle state draws no button that asks for this.
-                SearchEffect.BrowseHome -> Unit
+                SearchEffect.BrowseHome -> onBrowseHome()
             }
         }
     }

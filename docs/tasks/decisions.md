@@ -297,23 +297,40 @@ coverage and rely on review.
 
 ---
 
-## DEC-11 — Icon pack
+## DEC-11 — Icon pack · **answered: compose-icons, Tabler**
 
-**Status:** open · not blocking, but accruing cost
+**Status:** **decided 2026-11-02 by the owner, and in the tree.** `br.com.devsrsouza.compose.icons:tabler-icons:1.1.1`,
+MIT, from [compose-icons](https://github.com/DevSrSouza/compose-icons). The owner chose the project and left
+the pack to the app's genre.
 
-There is no icon pack in `gradle/libs.versions.toml`. Meanwhile `app/src/main/res/drawable/`
-holds **80 hand-exported `ic_baseline_*.xml` drawables**, and `:core:designsystem` draws its own
-chevron (`MediaCardDefaults.SeeAllGlyphSize`) because a "see all" arrow was drawn rather than
-referenced.
+**Coverage,** against 64 glyphs a streaming app needs: **Tabler 62**, feather 61, font-awesome 57, eva 51, the
+others far lower (the coordinator's count, not repeated in this change). The two gaps are subtitles and an HD or
+quality mark. `CloudStreamIcons.Subtitles` is a speech bubble, like Apple's captions glyph, and
+`CloudStreamIcons.Quality` is `AdjustmentsHorizontal`. Both are documented there, and neither is drawn.
 
-Every feature that needs a glyph either reuses an existing drawable or is blocked. The deciding
-question is which pack covers playback, download state, source status and repository management
-**without gaps** — one that covers 90% and leaves you drawing the rest has not solved the problem.
+**Its age is a known exception.** The last release is 2024-09, older than `dependency-security.md`'s 6 months.
+The owner chose it anyway. A vector pack has little to go stale, and what it can break on is the Compose ABI,
+which is why this was measured:
 
-**Candidates:** `androidx.compose.material:material-icons-extended` (complete, familiar, large, no
-longer actively expanded) · a Compose port of Lucide or Phosphor.
+| Target | Result | How |
+|---|---|---|
+| Desktop, Compose 1.12.0 | **All 1262 icons draw**, covering 0.7% to 47% of the canvas, so none blank and none a filled square | `CloudStreamIconsTest`, offscreen. `AllIcons` is checked against the jar's class count |
+| iOS simulator, Kotlin 2.4.0 | **All 1262 build** when linked and run. They are not drawn there | `IconPackBuildTest`, `iosSimulatorTest -Pcloudstream.iosTest=true`. The klib has ABI 1.8.0 from Kotlin 1.9.20. `iosCanary` passes too, but links nothing |
+| Android, Compose 1.12.0 | Compiles, and **all 26 `androidx` members the AAR calls exist** in `ui`, `ui-graphics` and `ui-unit` 1.12.0. **Never run on a device** | `compileAndroidMain`, and `javap` over both sides |
 
----
+**Size.** `:app` has no R8 (`isMinifyEnabled = false` on every build type), so the whole pack ships, unused icons
+included. The AAR's 1264 classes through `d8 --release --min-api 23` come to a 2.39 MB dex, 0.35 MB deflated. The
+desktop jar is 4.05 MB. **Measured APK delta: +841,541 bytes** (0.84 MB), `app-prerelease-debug.apk` at `67ea7394` against its base `258d689d`, which includes this change's other code. Turning on R8 is what
+would drop the unused icons, and that is not this task.
+
+### What is left
+
+- `DS-06`: `CloudStreamIcons` exists, and no TV or Android screen uses it yet.
+- The 80 `ic_baseline_*` drawables in `:app`, and `MediaCardDefaults`' drawn chevron. Neither was touched.
+- **Strings that do not exist:** "skip back 10 seconds" and "skip forward 10 seconds". The player's seek buttons
+  say `previous` and `next` to a screen reader until they do, because `go_back_30` says -30 and they skip 10.
+  `sort_clear` and `sort_close` read correctly but belong to the sort dialog.
+- Directional glyphs do not mirror in a right-to-left layout.
 
 ## DEC-12 — Consolidating the two `PreferenceStore` declarations
 
