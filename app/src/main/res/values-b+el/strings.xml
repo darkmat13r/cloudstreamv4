@@ -227,16 +227,43 @@
 <string name="example_site_name">"ΝεοΟνομαΙστοτοπου"</string>
 <string name="example_site_url">"https://παράδειγμα.com"</string>
 <string name="example_username">"ΤοΚουλΟνομαΜου"</string>
+<string name="extension_allow">"Να επιτραπεί"</string>
 <string name="extension_authors">"Συγγραφείς"</string>
+<string name="extension_decision_not_saved">"Η επιλογή σας δεν ήταν δυνατό να αποθηκευτεί, οπότε αυτή η επέκταση μένει ανενεργή. Θα ερωτηθείτε ξανά."</string>
+<string name="extension_decisions_unreadable">"Οι αποθηκευμένες επιλογές σας δεν ήταν δυνατό να διαβαστούν, οπότε αγνοήθηκαν. Οι επεκτάσεις με προειδοποιήσεις μένουν ανενεργές μέχρι να επιλέξετε ξανά."</string>
 <string name="extension_description">"Περιγραφή"</string>
 <string name="extension_install_first">"Εγκατάσταση προσθέτου πρώτα"</string>
+<string name="extension_keep_off">"Να μείνει ανενεργή"</string>
 <string name="extension_language">"Γλώσσα"</string>
 <string name="extension_rating" formatted="true">"Βαθμολογία: %s"</string>
+<string name="extension_review_clean_note">"Οι επεκτάσεις χωρίς προειδοποιήσεις δεν εμφανίζονται εδώ. Αυτό σημαίνει ότι η σάρωση δεν βρήκε κάτι προφανές, όχι ότι είναι ασφαλείς. Κάθε επέκταση εκτελείται στο δικό της απομονωμένο περιβάλλον."</string>
+<string name="extension_review_empty">"Καμία επέκταση δεν έχει προειδοποιήσεις."</string>
+<string name="extension_review_file_note">"Η επιλογή ισχύει για αυτό ακριβώς το αρχείο. Αν το αρχείο αλλάξει, θα ερωτηθείτε ξανά."</string>
+<string name="extension_review_intro">"Η καθεμία μένει ανενεργή μέχρι να επιλέξετε. Μια προειδοποίηση είναι μόνο κάτι που παρατήρησε μια σάρωση. Δεν λέει ότι μια επέκταση είναι ασφαλής ή επιβλαβής."</string>
+<string name="extension_review_title">"Επεκτάσεις με προειδοποιήσεις"</string>
 <string name="extension_size">"Μέγεθος"</string>
 <string name="extension_status">"Κατάσταση"</string>
+<string name="extension_status_allowed">"Επιτράπηκε και εκτελείται στο απομονωμένο περιβάλλον της"</string>
+<string name="extension_status_blocked">"Αποκλείστηκε από τη σάρωση. Δεν μπορεί να επιτραπεί."</string>
+<string name="extension_status_hash_mismatch">"Αυτό το αρχείο δεν ταιριάζει με το δημοσιευμένο hash του. Δεν μπορεί να επιτραπεί."</string>
+<string name="extension_status_held">"Ανενεργή μέχρι να επιλέξετε"</string>
+<string name="extension_status_kept_off">"Παρέμεινε ανενεργή"</string>
+<string name="extension_status_start_failed">"Επιτράπηκε, αλλά δεν ξεκίνησε"</string>
 <string name="extension_types">"Υποστηρίζονται"</string>
 <string name="extension_version">"Έκδοση"</string>
+<string name="extension_warning_classloader_access">"Φτάνει στον φορτωτή κλάσεων, που μπορεί να φέρει κώδικα που αυτή η σάρωση δεν είδε ποτέ."</string>
+<string name="extension_warning_dynamic_script">"Μπορεί να εκτελεί σενάρια εντολών, οπότε αυτό που κάνει μπορεί να αλλάξει μετά από αυτή τη σάρωση."</string>
+<string name="extension_warning_environment">"Διαβάζει ρυθμίσεις αυτού του υπολογιστή, όπως μεταβλητές περιβάλλοντος."</string>
+<string name="extension_warning_exit">"Μπορεί να τερματίσει τον εαυτό της. Αυτό τερματίζει μόνο το δικό της απομονωμένο περιβάλλον, όχι την εφαρμογή."</string>
+<string name="extension_warning_filesystem">"Διαβάζει ή γράφει αρχεία. Το απομονωμένο περιβάλλον την περιορίζει στον δικό της φάκελο."</string>
+<string name="extension_warning_other">"Η σάρωση επισήμανε κάτι για το οποίο δεν έχει περιγραφή. Η λεπτομέρεια βρίσκεται παρακάτω."</string>
+<string name="extension_warning_raw_socket">"Ανοίγει συνδέσεις δικτύου απευθείας, όχι μέσω της εφαρμογής."</string>
+<string name="extension_warning_reflection">"Χρησιμοποιεί αντανάκλαση (reflection), που κρύβει από αυτή τη σάρωση τι κάνει."</string>
+<string name="extension_warning_suspicious_string">"Αναφέρει μια ευαίσθητη τοποθεσία ή ένα εργαλείο αυτού του υπολογιστή, όπως ένα κέλυφος ή αποθηκευμένες συνδέσεις."</string>
+<string name="extension_warning_telemetry">"Αναφέρει ένα αναγνωριστικό συσκευής, που συχνά χρησιμοποιείται για την παρακολούθηση μιας εγκατάστασης."</string>
+<string name="extension_warning_webview">"Χρησιμοποιεί προβολή ιστού, ένα ενσωματωμένο πρόγραμμα περιήγησης που μπορεί να φορτώσει οποιαδήποτε σελίδα."</string>
 <string name="extensions">"Extensions"</string>
+<string name="extensions_waiting_count" formatted="true">"Επεκτάσεις που σας περιμένουν: %d"</string>
 <string name="extras">"Έξτρα"</string>
 <string name="favorite">"Αγαπημένο"</string>
 <string name="favorite_added" formatted="true">"%s προστέθηκε στα αγαπημένα"</string>

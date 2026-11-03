@@ -268,16 +268,43 @@
 <string name="example_site_name">"NewSiteName"</string>
 <string name="example_site_url">"https://example.com"</string>
 <string name="example_username">"Username"</string>
+<string name="extension_allow">"Allow"</string>
 <string name="extension_authors">"Authors"</string>
+<string name="extension_decision_not_saved">"Your choice could not be saved, so this extension stays off. You will be asked again."</string>
+<string name="extension_decisions_unreadable">"Your saved choices could not be read, so they were ignored. Extensions with warnings stay off until you choose again."</string>
 <string name="extension_description">"Description"</string>
 <string name="extension_install_first">"Install the extension first"</string>
+<string name="extension_keep_off">"Keep off"</string>
 <string name="extension_language">"Language"</string>
 <string name="extension_rating" formatted="true">"Rating: %s"</string>
+<string name="extension_review_clean_note">"Extensions with no warnings are not listed here. That means the scan found nothing obvious, not that they are safe. Every extension runs in its own sandbox."</string>
+<string name="extension_review_empty">"No extensions have warnings."</string>
+<string name="extension_review_file_note">"A choice applies to this exact file. If the file changes, you will be asked again."</string>
+<string name="extension_review_intro">"Each one stays off until you choose. A warning is only what a scan noticed. It does not say an extension is safe or harmful."</string>
+<string name="extension_review_title">"Extensions with warnings"</string>
 <string name="extension_size">"Size"</string>
 <string name="extension_status">"Status"</string>
+<string name="extension_status_allowed">"Allowed, and running in its sandbox"</string>
+<string name="extension_status_blocked">"Blocked by the scan. This cannot be allowed."</string>
+<string name="extension_status_hash_mismatch">"This file does not match its published hash. This cannot be allowed."</string>
+<string name="extension_status_held">"Off until you choose"</string>
+<string name="extension_status_kept_off">"Kept off"</string>
+<string name="extension_status_start_failed">"Allowed, but it did not start"</string>
 <string name="extension_types">"Supported"</string>
 <string name="extension_version">"Version"</string>
+<string name="extension_warning_classloader_access">"It reaches the class loader, which can bring in code this scan never saw."</string>
+<string name="extension_warning_dynamic_script">"It can run scripts, so what it does can change after this scan."</string>
+<string name="extension_warning_environment">"It reads settings of this computer, such as environment variables."</string>
+<string name="extension_warning_exit">"It can shut itself down. That ends only its own sandbox, not the app."</string>
+<string name="extension_warning_filesystem">"It reads or writes files. The sandbox keeps it to its own folder."</string>
+<string name="extension_warning_other">"The scan flagged something it has no description for. The detail is below."</string>
+<string name="extension_warning_raw_socket">"It opens network connections directly, not through the app."</string>
+<string name="extension_warning_reflection">"It uses reflection, which hides what it does from this scan."</string>
+<string name="extension_warning_suspicious_string">"It mentions a sensitive place or tool on this computer, such as a shell or saved logins."</string>
+<string name="extension_warning_telemetry">"It names a device identifier, which is often used to track an install."</string>
+<string name="extension_warning_webview">"It uses a web view, a built-in browser that can load any page."</string>
 <string name="extensions">"Extensions"</string>
+<string name="extensions_waiting_count" formatted="true">"Extensions waiting for you: %d"</string>
 <string name="extra_brightness_key">"extra_brightness_enabled"</string>
 <string name="extra_brightness_settings">"Extra brightness"</string>
 <string name="extra_brightness_settings_des" formatted="true">"Enable brightness filter when 100% display brightness is exceeded"</string>

@@ -254,16 +254,43 @@
 <string name="example_site_name">"செய்தித் பெயர்"</string>
 <string name="example_site_url">"https://example.com"</string>
 <string name="example_username">"பயனர்பெயர்"</string>
+<string name="extension_allow">"அனுமதி"</string>
 <string name="extension_authors">"ஆசிரியர்கள்"</string>
+<string name="extension_decision_not_saved">"உங்கள் தேர்வைச் சேமிக்க முடியவில்லை, எனவே இந்த நீட்டிப்பு முடக்கத்தில் இருக்கும். உங்களிடம் மீண்டும் கேட்கப்படும்."</string>
+<string name="extension_decisions_unreadable">"நீங்கள் சேமித்த தேர்வுகளைப் படிக்க முடியவில்லை, எனவே அவை புறக்கணிக்கப்பட்டன. நீங்கள் மீண்டும் தேர்வு செய்யும் வரை எச்சரிக்கைகள் உள்ள நீட்டிப்புகள் முடக்கத்தில் இருக்கும்."</string>
 <string name="extension_description">"விவரம்"</string>
 <string name="extension_install_first">"முதலில் நீட்டிப்பை நிறுவவும்"</string>
+<string name="extension_keep_off">"முடக்கி வை"</string>
 <string name="extension_language">"மொழி"</string>
 <string name="extension_rating" formatted="true">"மதிப்பீடு: %s"</string>
+<string name="extension_review_clean_note">"எச்சரிக்கைகள் இல்லாத நீட்டிப்புகள் இங்கே பட்டியலிடப்படவில்லை. அதன் பொருள் ஸ்கேன் வெளிப்படையாக எதையும் கண்டறியவில்லை என்பதே, அவை பாதுகாப்பானவை என்பதல்ல. ஒவ்வொரு நீட்டிப்பும் அதன் சொந்த தனிமைச் சூழலில் இயங்குகிறது."</string>
+<string name="extension_review_empty">"எந்த நீட்டிப்புக்கும் எச்சரிக்கைகள் இல்லை."</string>
+<string name="extension_review_file_note">"ஒரு தேர்வு இந்தக் கோப்புக்கு மட்டுமே பொருந்தும். கோப்பு மாறினால், உங்களிடம் மீண்டும் கேட்கப்படும்."</string>
+<string name="extension_review_intro">"நீங்கள் தேர்வு செய்யும் வரை ஒவ்வொன்றும் முடக்கத்தில் இருக்கும். எச்சரிக்கை என்பது ஸ்கேன் கவனித்தது மட்டுமே. ஒரு நீட்டிப்பு பாதுகாப்பானது அல்லது தீங்கானது என்று அது சொல்லவில்லை."</string>
+<string name="extension_review_title">"எச்சரிக்கைகள் உள்ள நீட்டிப்புகள்"</string>
 <string name="extension_size">"அளவு"</string>
 <string name="extension_status">"நிலை"</string>
+<string name="extension_status_allowed">"அனுமதிக்கப்பட்டது, அதன் தனிமைச் சூழலில் இயங்குகிறது"</string>
+<string name="extension_status_blocked">"ஸ்கேன் மூலம் தடுக்கப்பட்டது. இதை அனுமதிக்க முடியாது."</string>
+<string name="extension_status_hash_mismatch">"இந்தக் கோப்பு அதன் வெளியிடப்பட்ட ஹாஷுடன் பொருந்தவில்லை. இதை அனுமதிக்க முடியாது."</string>
+<string name="extension_status_held">"நீங்கள் தேர்வு செய்யும் வரை முடக்கம்"</string>
+<string name="extension_status_kept_off">"முடக்கி வைக்கப்பட்டது"</string>
+<string name="extension_status_start_failed">"அனுமதிக்கப்பட்டது, ஆனால் தொடங்கவில்லை"</string>
 <string name="extension_types">"ஆதரிக்கப்பட்டது"</string>
 <string name="extension_version">"பதிப்பு"</string>
+<string name="extension_warning_classloader_access">"இது கிளாஸ் லோடரை அணுகுகிறது, அது இந்த ஸ்கேன் ஒருபோதும் பார்க்காத குறியீட்டைக் கொண்டுவர முடியும்."</string>
+<string name="extension_warning_dynamic_script">"இது ஸ்கிரிப்ட்களை இயக்க முடியும், எனவே இந்த ஸ்கேனுக்குப் பிறகு இது செய்வது மாறக்கூடும்."</string>
+<string name="extension_warning_environment">"இது சூழல் மாறிகள் போன்ற இந்தக் கணினியின் அமைப்புகளைப் படிக்கிறது."</string>
+<string name="extension_warning_exit">"இது தன்னைத்தானே நிறுத்திக்கொள்ள முடியும். அது அதன் சொந்த தனிமைச் சூழலை மட்டுமே முடிக்கும், செயலியை அல்ல."</string>
+<string name="extension_warning_filesystem">"இது கோப்புகளைப் படிக்கிறது அல்லது எழுதுகிறது. தனிமைச் சூழல் இதை அதன் சொந்தக் கோப்புறைக்குள் வைத்திருக்கிறது."</string>
+<string name="extension_warning_other">"ஸ்கேன் விளக்கம் இல்லாத ஒன்றைக் குறித்துள்ளது. விவரம் கீழே உள்ளது."</string>
+<string name="extension_warning_raw_socket">"இது செயலி வழியாக அல்லாமல் நேரடியாக பிணைய இணைப்புகளைத் திறக்கிறது."</string>
+<string name="extension_warning_reflection">"இது ரிஃப்ளெக்ஷனைப் பயன்படுத்துகிறது, அது இது என்ன செய்கிறது என்பதை இந்த ஸ்கேனிலிருந்து மறைக்கிறது."</string>
+<string name="extension_warning_suspicious_string">"இது இந்தக் கணினியில் உள்ள ஷெல் அல்லது சேமிக்கப்பட்ட உள்நுழைவுகள் போன்ற உணர்திறன் மிக்க இடம் அல்லது கருவியைக் குறிப்பிடுகிறது."</string>
+<string name="extension_warning_telemetry">"இது ஒரு சாதன அடையாளங்காட்டியைக் குறிப்பிடுகிறது, அது பெரும்பாலும் ஒரு நிறுவலைக் கண்காணிக்கப் பயன்படுகிறது."</string>
+<string name="extension_warning_webview">"இது வலைக் காட்சியைப் பயன்படுத்துகிறது, அது எந்தப் பக்கத்தையும் ஏற்றக்கூடிய உள்ளமைந்த உலாவி."</string>
 <string name="extensions">"நீட்டிப்புகள்"</string>
+<string name="extensions_waiting_count" formatted="true">"உங்களுக்காகக் காத்திருக்கும் நீட்டிப்புகள்: %d"</string>
 <string name="extra_brightness_key">"கூடுதல்_பிரகாசம்_செயல்படுத்தப்பட்டது"</string>
 <string name="extra_brightness_settings">"கூடுதல் ஒளி"</string>
 <string name="extra_brightness_settings_des" formatted="true">"100% காட்சி பிரகாசத்தை மீறும் போது பிரகாச வடிப்பானை இயக்கவும்"</string>

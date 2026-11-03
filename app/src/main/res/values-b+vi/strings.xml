@@ -254,16 +254,43 @@
 <string name="example_site_name">"Tên trang mới"</string>
 <string name="example_site_url">"https://example.com"</string>
 <string name="example_username">"Tên người dùng"</string>
+<string name="extension_allow">"Cho phép"</string>
 <string name="extension_authors">"Tác giả"</string>
+<string name="extension_decision_not_saved">"Không thể lưu lựa chọn của bạn nên tiện ích mở rộng này vẫn tắt. Bạn sẽ được hỏi lại."</string>
+<string name="extension_decisions_unreadable">"Không thể đọc các lựa chọn đã lưu của bạn nên chúng đã bị bỏ qua. Các tiện ích mở rộng có cảnh báo vẫn tắt cho đến khi bạn chọn lại."</string>
 <string name="extension_description">"Mô tả"</string>
 <string name="extension_install_first">"Cài đặt tiện ích mở rộng trước"</string>
+<string name="extension_keep_off">"Giữ tắt"</string>
 <string name="extension_language">"Ngôn ngữ"</string>
 <string name="extension_rating" formatted="true">"Đánh giá: %s"</string>
+<string name="extension_review_clean_note">"Các tiện ích mở rộng không có cảnh báo sẽ không được liệt kê ở đây. Điều đó có nghĩa là bản quét không thấy gì rõ ràng, chứ không có nghĩa là chúng an toàn. Mỗi tiện ích mở rộng chạy trong môi trường cách ly riêng."</string>
+<string name="extension_review_empty">"Không có tiện ích mở rộng nào có cảnh báo."</string>
+<string name="extension_review_file_note">"Lựa chọn chỉ áp dụng cho đúng tệp này. Nếu tệp thay đổi, bạn sẽ được hỏi lại."</string>
+<string name="extension_review_intro">"Mỗi tiện ích vẫn tắt cho đến khi bạn chọn. Cảnh báo chỉ là điều mà bản quét nhận thấy. Nó không nói rằng một tiện ích mở rộng an toàn hay có hại."</string>
+<string name="extension_review_title">"Tiện ích mở rộng có cảnh báo"</string>
 <string name="extension_size">"Kích thước"</string>
 <string name="extension_status">"Trạng thái"</string>
+<string name="extension_status_allowed">"Đã cho phép và đang chạy trong môi trường cách ly của nó"</string>
+<string name="extension_status_blocked">"Bị bản quét chặn. Không thể cho phép mục này."</string>
+<string name="extension_status_hash_mismatch">"Tệp này không khớp với mã băm đã công bố. Không thể cho phép mục này."</string>
+<string name="extension_status_held">"Tắt cho đến khi bạn chọn"</string>
+<string name="extension_status_kept_off">"Vẫn giữ tắt"</string>
+<string name="extension_status_start_failed">"Đã cho phép, nhưng không khởi động được"</string>
 <string name="extension_types">"Hỗ trợ"</string>
 <string name="extension_version">"Phiên bản"</string>
+<string name="extension_warning_classloader_access">"Nó truy cập trình tải lớp, thứ có thể đưa vào mã mà bản quét này chưa từng thấy."</string>
+<string name="extension_warning_dynamic_script">"Nó có thể chạy tập lệnh, nên những gì nó làm có thể thay đổi sau bản quét này."</string>
+<string name="extension_warning_environment">"Nó đọc các cài đặt của máy tính này, chẳng hạn như biến môi trường."</string>
+<string name="extension_warning_exit">"Nó có thể tự tắt. Việc đó chỉ kết thúc môi trường cách ly của chính nó, không ảnh hưởng đến ứng dụng."</string>
+<string name="extension_warning_filesystem">"Nó đọc hoặc ghi tệp. Môi trường cách ly giới hạn nó trong thư mục riêng."</string>
+<string name="extension_warning_other">"Bản quét đã gắn cờ một điều mà nó không có mô tả. Chi tiết ở bên dưới."</string>
+<string name="extension_warning_raw_socket">"Nó mở kết nối mạng trực tiếp, không thông qua ứng dụng."</string>
+<string name="extension_warning_reflection">"Nó dùng phản chiếu (reflection), khiến bản quét này không thấy được nó làm gì."</string>
+<string name="extension_warning_suspicious_string">"Nó nhắc đến một vị trí hoặc công cụ nhạy cảm trên máy tính này, chẳng hạn như shell hoặc thông tin đăng nhập đã lưu."</string>
+<string name="extension_warning_telemetry">"Nó nêu tên một mã định danh thiết bị, thường được dùng để theo dõi một lượt cài đặt."</string>
+<string name="extension_warning_webview">"Nó dùng chế độ xem web, một trình duyệt tích hợp có thể tải bất kỳ trang nào."</string>
 <string name="extensions">"Tiện ích mở rộng"</string>
+<string name="extensions_waiting_count" formatted="true">"Tiện ích mở rộng đang chờ bạn: %d"</string>
 <string name="extra_brightness_key">"Đã bật độ sáng bổ sung"</string>
 <string name="extra_brightness_settings">"Độ sáng bổ sung"</string>
 <string name="extra_brightness_settings_des" formatted="true">"Bật bộ lọc độ sáng khi độ sáng màn hình vượt quá 100%"</string>

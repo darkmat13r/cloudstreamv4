@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
@@ -75,6 +76,7 @@ internal fun TopLevelScreen(
     homeSelected: Boolean,
     onHome: () -> Unit,
     onSearch: () -> Unit,
+    trailing: @Composable () -> Unit = {},
     content: @Composable () -> Unit,
 ) {
     Column(Modifier.fillMaxSize()) {
@@ -86,6 +88,8 @@ internal fun TopLevelScreen(
         ) {
             TopLevelTab(stringResource(Res.string.title_home), homeSelected, onHome)
             TopLevelTab(stringResource(Res.string.title_search), !homeSelected, onSearch)
+            Spacer(Modifier.weight(1f))
+            trailing()
         }
         Box(Modifier.weight(1f)) { content() }
     }
@@ -93,7 +97,7 @@ internal fun TopLevelScreen(
 
 /** Text only: the selected one is filled and in full ink, and there is no icon pack yet (`DEC-11`). */
 @Composable
-private fun TopLevelTab(label: String, selected: Boolean, onClick: () -> Unit) {
+internal fun TopLevelTab(label: String, selected: Boolean, onClick: () -> Unit) {
     val colors = CloudStreamTheme.colors
     val source = remember { MutableInteractionSource() }
     val hovered by source.collectIsHoveredAsState()

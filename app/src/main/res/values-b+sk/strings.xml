@@ -165,7 +165,34 @@
 <string name="example_site_name">"NovyNazovWebu"</string>
 <string name="example_site_url">"https://example.com"</string>
 <string name="example_username">"Meno"</string>
+<string name="extension_allow">"Povoliť"</string>
+<string name="extension_decision_not_saved">"Vašu voľbu sa nepodarilo uložiť, takže toto rozšírenie zostáva vypnuté. Budeme sa vás pýtať znova."</string>
+<string name="extension_decisions_unreadable">"Vaše uložené voľby sa nepodarilo prečítať, takže boli ignorované. Rozšírenia s upozorneniami zostanú vypnuté, kým sa znova nerozhodnete."</string>
+<string name="extension_keep_off">"Nechať vypnuté"</string>
+<string name="extension_review_clean_note">"Rozšírenia bez upozornení tu nie sú uvedené. Znamená to, že kontrola nenašla nič zjavné, nie že sú bezpečné. Každé rozšírenie beží vo vlastnom izolovanom prostredí."</string>
+<string name="extension_review_empty">"Žiadne rozšírenie nemá upozornenia."</string>
+<string name="extension_review_file_note">"Voľba platí pre presne tento súbor. Ak sa súbor zmení, budeme sa vás pýtať znova."</string>
+<string name="extension_review_intro">"Každé zostane vypnuté, kým sa nerozhodnete. Upozornenie je len to, čo si všimla kontrola. Nehovorí, že rozšírenie je bezpečné alebo škodlivé."</string>
+<string name="extension_review_title">"Rozšírenia s upozorneniami"</string>
+<string name="extension_status_allowed">"Povolené a beží vo svojom izolovanom prostredí"</string>
+<string name="extension_status_blocked">"Zablokované kontrolou. Nedá sa povoliť."</string>
+<string name="extension_status_hash_mismatch">"Tento súbor sa nezhoduje so zverejneným hashom. Nedá sa povoliť."</string>
+<string name="extension_status_held">"Vypnuté, kým sa nerozhodnete"</string>
+<string name="extension_status_kept_off">"Ponechané vypnuté"</string>
+<string name="extension_status_start_failed">"Povolené, ale nespustilo sa"</string>
+<string name="extension_warning_classloader_access">"Pristupuje k zavádzaču tried, ktorý môže načítať kód, aký táto kontrola nikdy nevidela."</string>
+<string name="extension_warning_dynamic_script">"Môže spúšťať skripty, takže to, čo robí, sa môže po tejto kontrole zmeniť."</string>
+<string name="extension_warning_environment">"Číta nastavenia tohto počítača, napríklad premenné prostredia."</string>
+<string name="extension_warning_exit">"Môže sa samo vypnúť. Ukončí to len jeho vlastné izolované prostredie, nie aplikáciu."</string>
+<string name="extension_warning_filesystem">"Číta alebo zapisuje súbory. Izolované prostredie ho obmedzuje na jeho vlastný priečinok."</string>
+<string name="extension_warning_other">"Kontrola označila niečo, pre čo nemá popis. Podrobnosti sú nižšie."</string>
+<string name="extension_warning_raw_socket">"Otvára sieťové pripojenia priamo, nie cez aplikáciu."</string>
+<string name="extension_warning_reflection">"Používa reflexiu, ktorá pred touto kontrolou skrýva, čo robí."</string>
+<string name="extension_warning_suspicious_string">"Spomína citlivé miesto alebo nástroj v tomto počítači, napríklad príkazový shell alebo uložené prihlasovacie údaje."</string>
+<string name="extension_warning_telemetry">"Uvádza identifikátor zariadenia, ktorý sa často používa na sledovanie inštalácie."</string>
+<string name="extension_warning_webview">"Používa webové zobrazenie, vstavaný prehliadač, ktorý môže načítať akúkoľvek stránku."</string>
 <string name="extensions">"Rozšírenia"</string>
+<string name="extensions_waiting_count" formatted="true">"Rozšírenia čakajúce na vás: %d"</string>
 <string name="extra_brightness_key">"extra_jas_zapnuty"</string>
 <string name="extra_brightness_settings">"Extra Jas"</string>
 <string name="extra_brightness_settings_des" formatted="true">"Spustiť filter jasu, keď je prekročený 100% jas displeja"</string>

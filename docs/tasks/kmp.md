@@ -2141,6 +2141,9 @@ added, where they fire only on what is listed:
 **BingeCloud-style telemetry still only warns.** A key name is a hint, and a POST is ordinary. Static scanning cannot
 tell an analytics ping from a search.
 
+_Since `KMP-24`, a warning no longer means it runs unseen._ When this was written, a scanner Warn reached only a log line, so
+a BingeCloud-style plugin would have run silently if installed. It is now held, off, until its exact file is allowed in the window.
+
 ### Mutation checks
 
 Each edited alone, scoped tests run, each restored. All went red.
@@ -2430,6 +2433,130 @@ path, an app window on the real home was open throughout, and a control run left
 `LinkedTreeMap` would behave differently here. None of the 3 refers to a `gson.internal` class. The wider catalogue was not checked.
 
 ---
+
+---
+
+## KMP-24 — An extension with warnings stays off until you allow that exact file · **measured 2026-11-03**
+
+**Status:** in pr · **Owner's rule:** "show that warning clearly at install and let you decide per plugin". Found by `KMP-18`.
+
+Desktop has no install screen: files are dropped in `~/.cloudstream4/extensions` and the startup pass runs them. A scanner Warn
+reached a log line, so undeclared telemetry, which can only ever be a Warn, ran unseen.
+
+### What it does
+
+- **Warn and no decision: it does not start.** That is one branch in `SandboxedExtensions.loadOne`, after Block and hash mismatch, and every
+  route to a host passes it. `--check-extensions` and `--scan-extensions` print `HELD`, with no flag to bypass. Conversion still runs
+  first because the scan needs a jar. **It is not plugin code:** dex2jar reads the dex and loads no class from it, with no network, in its own
+  sandbox, and that sandbox gets a private copy checked against the hash.
+- **Block and hash mismatch are unaffected.** They return before the decisions are read, the row has no buttons, and
+  `ExtensionApprovals` ignores an action on one.
+- **Where:** a notice in the tab bar on Home and Search, `Extensions waiting for you: N`, opens a list. When nothing is waiting and
+  something has been decided, a quiet label stays there, so a mind can be changed in the same list.
+- **Words:** a sentence per Warn rule from `:core:strings`, then the raw finding, smaller. `ExtensionScanner.warnRules` is new so that
+  `ExtensionReviewWordsTest` fails when a rule is added without a sentence. No words in `ExtensionApprovals` (`I18N-08`). The list says
+  "extension", matching `home_search_only_body`.
+- **Honesty:** no status says safe. The one sentence with the word denies it: "nothing obvious was found, not that they are safe". Neither
+  choice is the primary button.
+- **No restart.** `loadOne` was already self-contained, so Allow takes the file through the whole pipeline and registers its providers, and
+  Keep off closes the host and unregisters them. `SearchViewModel` and `HomeViewModel` read the provider list once, so `DesktopApp` rebuilds
+  both when `providerChanges` moves. Their state is lost at that moment. The list sits above the top level only, so no title or player is under it.
+  A new file in the directory still needs a restart, as before.
+
+### The decisions file
+
+`~/.cloudstream4/extensions.decisions`: a sibling of the extensions directory, so also of `.store`, `.sandbox` and `.converting`. One line per
+file name: choice, SHA-256, name. Then a SHA-256 of everything before it.
+
+- **Bound to name and hash.** An update asks again, the same bytes under another name ask again, and a new decision for a name forgets
+  the old hash. Allow records the hash the row showed, then re-reads the file: if it was swapped while the window was open, the new file is held.
+- **A file swapped mid-load** cannot enter the store under the old hash: `copyExpecting` checks the private copy before it is used.
+- **Corrupt means undecided, all of it, and it says so.** Strict parser: truncation, a flipped word, a bad checksum, an unknown version, a
+  duplicate name, a link or a directory all read as nothing recorded. The window and the log say the choices were ignored.
+- **The checksum is not a signature.** Any unsandboxed process running as this user can recompute it, and could do worse anyway.
+  **The boundary against a plugin is Seatbelt.**
+- **Atomic.** A `0600` temp file in the same directory, `force`, `ATOMIC_MOVE`.
+
+### What a sandboxed plugin can reach, measured
+
+`ExtensionSandboxReachTest`: a real plugin, a real host, the real policy, the app's real layout, with a positive control for each verb.
+
+| Target | read | write / append / delete / rename / replace | hard link | list |
+|---|---|---|---|---|
+| decisions file | denied | denied | denied | parent denied |
+| symlink to it from its own directory | denied | | | |
+| its own `.store` jar | **allowed** | denied | | |
+| another `.store` jar | denied | denied | denied | `.store` denied |
+| `.sandbox/<other>` | denied | denied | | denied |
+| `.converting/...` | denied | denied | | |
+| the extensions directory, a new jar, a `.sha256` sidecar | denied | denied | | denied |
+| its own `.sandbox/<name>` (control) | allowed | allowed | allowed | allowed |
+
+**One thing it can learn:** `file-read-metadata` is open on every path, so it can see that the file exists and its size. Pinned by a test. Also run
+in the packaged `.app`, with a query asking the probe to write the file: its hash did not change, and the same write to its own directory landed.
+
+### Tests and mutations
+
+`ExtensionDecisionsTest` 14, `ExtensionHoldTest` 16, `ExtensionSandboxReachTest` 5, `ExtensionReviewScreenTest` 13 (real pointer and key events),
+`ExtensionReviewWordsTest` 5, `UntrustedTextTest` 4. Each mutation below was applied alone, tests run, and restored. All went red.
+
+| Mutation | Fails, for example |
+|---|---|
+| Hold removed | 9, incl. `with warnings and no decision`-class tests |
+| Hash binding removed | 4, `changing the file loses the approval` |
+| Name binding removed | 3, `the same bytes under another name` |
+| Keep off treated as Allow | 2 |
+| Approval overrides Block | 9, `never reaches past a blocking finding` |
+| Approval overrides hash mismatch | 1 |
+| File moved into the host's directory | 15, incl. the reach test |
+| File moved into the extensions directory | 3, incl. the reach test |
+| Checksum unchecked | 1 |
+| Damage not reported | 5 |
+| Write in place, not atomic | 2, `a reader never sees half a write` |
+| Link followed | 1 |
+| Copy not checked against the hash | 1 |
+| Text not cleaned | 2 |
+| Holder acts on a blocked row | 1 |
+| Keep off does not stop the host | 11 |
+| Blocked row offered Allow | 1 |
+
+**Looking at the renders caught a real bug:** the notice showed a literal `%d`, because Compose's `stringResource(res, n)` only fills `%1$d`.
+It uses `UiString.Resource`, and a test now pins it. They also showed a class name's punctuation moving in a right-to-left paragraph, so plugin text
+is forced left to right.
+
+`:core:screenshot` does not render here and nothing was added to it. The PNGs were looked at and guard nothing.
+
+### Strings
+
+27 keys, none plural, authored in all 62 directories. Fifth move of `core/strings/oracle-baseline`, on top of `KMP-25`, with the proof in its README: 0 lines lost or
+changed. `expectedOwn` 33,005 -> 34,679, `classes-jar.api` +27 `R$string` fields, 0 removed. "Extensions waiting for you: %d" is a label and a number
+so that no locale needs plural forms.
+
+**Not reviewed by a native speaker: all of it is machine translation.** Least certain: `ti`, `so`, `or`, `ta`, `ckb`, `as`, `am`, `az`, `mt`, `my`, `kn`, `ml`, `ne`.
+`ar`, `apc`, `ars`, `fa` and `so` keep "reflection" and "class loader" in English. `ars` equals `ar`, as its file is Modern Standard Arabic. `qt` is
+made of words from its own file, chosen by script.
+
+### Limits a reader should not have to discover
+
+- **The live window was not driven.** The screen ran offscreen with real events, and the pipeline in the packaged app with a hand-written decisions
+  file. A real click in a real window, and a real Allow in the `.app`, were not done.
+- **A right-to-left window was not seen.** The offscreen render sets the direction by hand.
+- **An approval is for the file, not for what the scanner says about it.** A later scanner rule finding something new in an allowed file does not ask again.
+- **Two app instances** can lose each other's write, last wins. Neither can invent an approval.
+- **Reporting a warning is all this does.** The sandbox's network rules are unchanged: an allowed plugin can POST to anyone public, as before.
+
+### Found and not fixed
+
+```
+Found: Home's empty state says "Install the extension first" when the only installed extension is held, in HomeCopy's NoSources(0)
+Suggest: a state for "installed, waiting for you", leading to the list
+Why: the notice beside it is accurate and this is not. Home and its state are outside this task
+```
+```
+Found: DesktopHomeSource.safeText keeps U+2028 and U+2029, and its take() can cut a surrogate pair
+Suggest: the same cleaning as untrustedText, moved somewhere both can reach
+Why: provider titles are untrusted too. Maxlines bounds the damage, so this is narrow
+```
 
 ## KMP-25 — Subtitles end to end, in the desktop player · **measured 2026-11-03**
 
