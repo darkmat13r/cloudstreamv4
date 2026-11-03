@@ -364,6 +364,8 @@
 <string name="play_torrent_button">"aaaghhaaahhu aaaaa"</string>
 <string name="play_trailer_button">"ggaaaahhhhhhh gaauuuuuuuaaaau"</string>
 <string name="play_with_app_name">"oooooh aaah aauuuggghauuh"</string>
+<string name="player_enter_fullscreen">"oouuh haa aaaaa"</string>
+<string name="player_exit_fullscreen">"aauugghhaaaghh aaaaa"</string>
 <string name="player_load_subtitles">"aagg aahh uuuk"</string>
 <string name="player_load_subtitles_online">"eeek aahh oooohhhh"</string>
 <string name="player_loaded_subtitles" formatted="true">"oooohh %s"</string>

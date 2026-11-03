@@ -2913,3 +2913,30 @@ Suggest: rename those five, which is what this task did to its own
 Why: it is existing code in another vertical, and a broken gate deserves its own revertible change.
      Filed as `BUG-20` in defects.md (filed as `BUG-17`, renumbered — #106 took that id first)
 ```
+
+## KMP-27 — Full screen in the desktop player · **measured 2026-11-03**
+
+**Status:** done · #117. **Owner's request 2026-11-03:** "add enter full screen on video player".
+
+A control at the right end of the transport row, F and Cmd+F (`docs/plans/desktop-design.md` listed Cmd+F as not done).
+Escape closes the subtitle list, then full screen, and only then leaves the player. Closing the player, by Back or by
+the stream ending, returns the window to where it was when playback began; a window already full screen stays so.
+
+It goes through `WindowState.placement`, so it is the window's real full screen, and not a second idea of it.
+
+| Measured | Result |
+|---|---|
+| Real macOS window, throwaway probe, not committed | `Fullscreen` 3440x1440 on a 3440x1440 screen, back to `Floating` 960x540 |
+| The same, `window.placement` set on the window rather than through `WindowState` | `PlayerFullscreen.on` true, and `leave()` returned it to 960x540 |
+| `PlayerScreenTest` | keys, the control, Escape's order, restore from floating and maximized, at 800 x 450 |
+
+**Not measured:** a person pressing the window's green button, which the second row stands in for; the transition with
+video playing in a real player; a second screen.
+
+**Not built:** a double click on the picture, and hiding the pointer once the controls have gone.
+
+**Strings:** `player_enter_fullscreen`, `player_exit_fullscreen`, in all 62 directories. 48 are Google's own wording from
+`media3-ui` 1.9.3 (`exo_controls_fullscreen_*_description`, Apache-2.0), which this app already ships. Machine
+translated, not reviewed by a native speaker: `apc`, `ars`, `as`, `ckb`, `eo`, `mt`, `nn`, `or`, `pt-BR`, `so`, `ta`,
+`ti`; `qt` uses only words from its own file. `ta` was replaced because media3's text there describes a button.
+Seventh move of the oracle baseline.

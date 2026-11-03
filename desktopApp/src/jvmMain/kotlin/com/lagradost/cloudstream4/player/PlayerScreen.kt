@@ -73,6 +73,8 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.error_loading
 import com.lagradost.cloudstream4.core.strings.generated.resources.go_back
 import com.lagradost.cloudstream4.core.strings.generated.resources.loading
 import com.lagradost.cloudstream4.core.strings.generated.resources.pause
+import com.lagradost.cloudstream4.core.strings.generated.resources.player_enter_fullscreen
+import com.lagradost.cloudstream4.core.strings.generated.resources.player_exit_fullscreen
 import com.lagradost.cloudstream4.core.strings.generated.resources.player_subtitles_settings
 import com.lagradost.cloudstream4.core.strings.generated.resources.resume
 import com.lagradost.cloudstream4.core.strings.generated.resources.seek_back_10_seconds
@@ -90,7 +92,8 @@ import org.jetbrains.compose.resources.stringResource
 
 /**
  * The desktop player (`docs/plans/desktop-design.md`): full-bleed video, one seek track, transport, and
- * subtitles. Space pauses, left and right skip, C opens the subtitle list; Escape is the window's.
+ * subtitles. Space pauses, left and right skip, C opens the subtitle list, F or Cmd+F toggles full screen;
+ * Escape is the window's.
  *
  * The source and audio selectors are not built. Lives in `:desktopApp` rather than a shared module because
  * it is bound to [VlcPlayer].
@@ -106,6 +109,8 @@ import org.jetbrains.compose.resources.stringResource
  *   writes nothing, and the host decides which of these reports is worth keeping.
  * @param clock,session passed in so a check can read what this screen is showing.
  * @param arrivingSubtitles the tracks the search behind [link] has found so far, each time it finds more.
+ * @param fullscreen the window's full screen, left when this screen closes. Null with no window to fill, as
+ *   in a check, and then there is no control for it.
  */
 @Composable
 internal fun PlayerScreen(
@@ -120,6 +125,7 @@ internal fun PlayerScreen(
     clock: PlaybackClock = remember { PlaybackClock() },
     session: SubtitleSession? = null,
     arrivingSubtitles: Flow<List<SubtitleTrack>> = emptyFlow(),
+    fullscreen: PlayerFullscreen? = null,
 ) {
     val frame by player.frame.collectAsState()
     val pictureSize by player.pictureSize.collectAsState()
@@ -130,6 +136,7 @@ internal fun PlayerScreen(
         // Off the UI thread: stopping libVLC blocks, and can take seconds on a stalled stream.
         onDispose { thread(isDaemon = true, name = "vlc-release") { player.release() } }
     }
+    DisposableEffect(fullscreen) { onDispose { fullscreen?.leave() } }
     LaunchedEffect(status.finished) { if (status.finished) onBack() }
     LaunchedEffect(player, clock) { player.status.collect(clock::onStatus) }
     val progress by rememberUpdatedState(onProgress)
@@ -159,6 +166,7 @@ internal fun PlayerScreen(
         onBack = onBack,
         setEscape = setEscape,
         modifier = modifier,
+        fullscreen = fullscreen,
     )
 }
 
@@ -176,6 +184,7 @@ internal fun PlayerContent(
     setEscape: (() -> Unit) -> Unit,
     modifier: Modifier = Modifier,
     pictureSize: IntSize? = null,
+    fullscreen: PlayerFullscreen? = null,
 ) {
     val tracks by subtitles.tracks.collectAsState()
     val selection by subtitles.selection.collectAsState()
@@ -186,7 +195,16 @@ internal fun PlayerContent(
     var hudVisible by remember { mutableStateOf(true) }
     var pickerOpen by remember { mutableStateOf(false) }
     val failed = status.failed
-    SideEffect { setEscape(if (pickerOpen) ({ pickerOpen = false }) else onBack) }
+    val fullscreenOn = fullscreen?.on == true
+    SideEffect {
+        setEscape {
+            when {
+                pickerOpen -> pickerOpen = false
+                fullscreenOn -> fullscreen?.toggle()
+                else -> onBack()
+            }
+        }
+    }
     // Focus goes back to the root before a focused button leaves the composition, including the pause
     // button a failure removes. Otherwise it is cleared rather than moved, and the root's key handler
     // stops seeing any key, so Space and the arrows go dead. The list takes focus while it is open.
@@ -239,6 +257,8 @@ internal fun PlayerContent(
                     Key.DirectionLeft -> seekBy(-PlayerScreenDefaults.SkipMillis)
                     Key.DirectionRight -> seekBy(PlayerScreenDefaults.SkipMillis)
                     Key.C -> if (!failed) pickerOpen = true
+                    // F alone or with Cmd: the modifier is not read, so both come here.
+                    Key.F -> fullscreen?.toggle() ?: return@onPreviewKeyEvent false
                     else -> return@onPreviewKeyEvent false
                 }
                 true
@@ -297,6 +317,18 @@ internal fun PlayerContent(
                             DesktopButtonTone.Quiet
                         },
                     )
+                },
+                fullscreenControl = {
+                    if (fullscreen != null) {
+                        DesktopIconButton(
+                            icon = if (fullscreenOn) CloudStreamIcons.ExitFullscreen else CloudStreamIcons.EnterFullscreen,
+                            contentDescription = stringResource(
+                                if (fullscreenOn) Res.string.player_exit_fullscreen else Res.string.player_enter_fullscreen,
+                            ),
+                            onClick = fullscreen::toggle,
+                            tone = DesktopButtonTone.Quiet,
+                        )
+                    }
                 },
             )
         }
@@ -361,6 +393,7 @@ internal fun Hud(
     onSeekBy: (Long) -> Unit,
     onBack: () -> Unit,
     subtitleControl: @Composable () -> Unit = {},
+    fullscreenControl: @Composable () -> Unit = {},
 ) {
     val colors = CloudStreamTheme.colors
     Box(Modifier.fillMaxSize()) {
@@ -424,6 +457,7 @@ internal fun Hud(
                     )
                     SeekTrack(status, onSeekTo, Modifier.weight(1f))
                     subtitleControl()
+                    fullscreenControl()
                 }
             }
         }

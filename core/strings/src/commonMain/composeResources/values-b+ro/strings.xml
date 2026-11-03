@@ -363,6 +363,8 @@
 <string name="play_torrent_button">Stream Torrent</string>
 <string name="play_trailer_button">Vizionează trailerul</string>
 <string name="play_with_app_name">Joacă cu CloudStream</string>
+<string name="player_enter_fullscreen">Accesează în ecran complet</string>
+<string name="player_exit_fullscreen">Ieși din ecranul complet</string>
 <string name="player_load_one_subtitle_online">Încărcați prima disponibilă</string>
 <string name="player_load_subtitles">Încărcați din fișier</string>
 <string name="player_load_subtitles_online">Încărcare de pe Internet</string>

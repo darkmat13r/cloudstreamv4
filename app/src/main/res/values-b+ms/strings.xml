@@ -334,6 +334,8 @@
 <string name="play_torrent_button">"Strim Torrent"</string>
 <string name="play_trailer_button">"Main Pra-tonton"</string>
 <string name="play_with_app_name">"Pasang dengan CloudStream"</string>
+<string name="player_enter_fullscreen">"Masuk ke skrin penuh"</string>
+<string name="player_exit_fullscreen">"Keluar dari skrin penuh"</string>
 <string name="player_settings_play_in_app">"Pemain dalaman"</string>
 <string name="player_size_settings">"Saiz butang pemain"</string>
 <string name="player_size_settings_des">"Buang sempadan hitam"</string>

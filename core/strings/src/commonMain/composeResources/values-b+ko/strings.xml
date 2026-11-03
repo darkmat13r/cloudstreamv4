@@ -415,6 +415,8 @@
 <string name="play_torrent_button">토렌트 재생</string>
 <string name="play_trailer_button">예고편 재생</string>
 <string name="play_with_app_name">CloudStream으로 재생</string>
+<string name="player_enter_fullscreen">전체 화면으로 전환</string>
+<string name="player_exit_fullscreen">전체 화면 종료</string>
 <string name="player_is_live">라이브</string>
 <string name="player_load_one_subtitle_online">사용 가능한 자막 불러오기</string>
 <string name="player_load_subtitles">파일에서 불러오기</string>

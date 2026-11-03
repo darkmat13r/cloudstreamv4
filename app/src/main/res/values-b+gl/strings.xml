@@ -197,6 +197,8 @@
 <string name="play_torrent_button">"Transmitir Torrent"</string>
 <string name="play_trailer_button">"Reproducir Trailer"</string>
 <string name="play_with_app_name">"Reproducir con CloudStream"</string>
+<string name="player_enter_fullscreen">"Acceder a pantalla completa"</string>
+<string name="player_exit_fullscreen">"Saír de pantalla completa"</string>
 <string name="player_size_settings">"Botón de cambio de tamaño do reprodutor"</string>
 <string name="player_size_settings_des">"Eliminar bordes negros"</string>
 <string name="player_speed">"Velocidade do reproductor"</string>

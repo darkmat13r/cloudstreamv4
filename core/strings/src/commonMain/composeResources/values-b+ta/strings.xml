@@ -416,6 +416,8 @@
 <string name="play_torrent_button">ச்ட்ரீம் டொரண்ட்</string>
 <string name="play_trailer_button">டிரெய்லரை இயக்கு</string>
 <string name="play_with_app_name">CloudStream-உடன் இயக்கு</string>
+<string name="player_enter_fullscreen">முழுத்திரைக்குச் செல்</string>
+<string name="player_exit_fullscreen">முழுத்திரையிலிருந்து வெளியேறு</string>
 <string name="player_is_live">வாழ்க</string>
 <string name="player_load_one_subtitle_online">முதலில் கிடைக்கிறது</string>
 <string name="player_load_subtitles">கோப்பிலிருந்து ஏற்றவும்</string>

@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
+import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.rememberWindowState
 import com.lagradost.cloudstream4.core.designsystem.desktop.forDesktop
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
@@ -62,6 +63,7 @@ import com.lagradost.cloudstream4.home.HomeHost
 import com.lagradost.cloudstream4.home.TopLevelScreen
 import com.lagradost.cloudstream4.home.TopLevelTab
 import com.lagradost.cloudstream4.player.MediaHost
+import com.lagradost.cloudstream4.player.PlayerFullscreen
 import com.lagradost.cloudstream4.player.PlayerScreen
 import com.lagradost.cloudstream4.player.PlayerUnavailable
 import com.lagradost.cloudstream4.player.VlcPlayer
@@ -153,10 +155,11 @@ fun main(args: Array<String>) {
 
     application {
         val escape = remember { EscapeHandler() }
+        val windowState = rememberWindowState(size = DpSize(WINDOW_WIDTH, WINDOW_HEIGHT))
         Window(
             onCloseRequest = ::exitApplication,
             title = WINDOW_TITLE,
-            state = rememberWindowState(size = DpSize(WINDOW_WIDTH, WINDOW_HEIGHT)),
+            state = windowState,
             // At the window, because it has to work wherever focus is, including nowhere at all.
             onPreviewKeyEvent = { event ->
                 event.key == Key.Escape && event.type == KeyEventType.KeyDown && escape.handle()
@@ -168,7 +171,7 @@ fun main(args: Array<String>) {
             CloudStreamTheme {
                 CompositionLocalProvider(LocalCloudStreamTypography provides CloudStreamTheme.typography.forDesktop()) {
                     Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) {
-                        DesktopApp(escape, approvals = approvals)
+                        DesktopApp(escape, approvals = approvals, window = windowState)
                     }
                 }
             }
@@ -212,6 +215,7 @@ private sealed interface Screen {
  *
  * @param approvals what the scan held back and what was chosen about it. Null where nothing was loaded.
  * @param onScreen told where the window is, for a test to read.
+ * @param window what the player puts in full screen. Null where there is no window, as in a test.
  */
 @Composable
 internal fun DesktopApp(
@@ -221,6 +225,7 @@ internal fun DesktopApp(
     // After `approvals` so that every existing positional call still means what it did.
     library: LibraryStore = remember { DesktopLibraryStore() },
     onScreen: (String) -> Unit = {},
+    window: WindowState? = null,
 ) {
     val scope = remember { CoroutineScope(SupervisorJob() + Dispatchers.Default) }
     DisposableEffect(scope) { onDispose { scope.cancel() } }
@@ -330,6 +335,7 @@ internal fun DesktopApp(
                         startAtMillis = screen.startAtMillis,
                         onProgress = recorder::onProgress,
                         arrivingSubtitles = arrivingSubtitles,
+                        fullscreen = remember(screen, window) { window?.let(::PlayerFullscreen) },
                     )
                 }
                 DisposableEffect(screen) {

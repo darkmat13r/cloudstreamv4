@@ -416,6 +416,8 @@
 <string name="play_torrent_button">"Stream Torrent"</string>
 <string name="play_trailer_button">"Riproduci trailer"</string>
 <string name="play_with_app_name">"Riproduci con CloudStream"</string>
+<string name="player_enter_fullscreen">"Attiva schermo intero"</string>
+<string name="player_exit_fullscreen">"Esci da schermo intero"</string>
 <string name="player_is_live">"Live"</string>
 <string name="player_load_one_subtitle_online">"Carica il primo disponibile"</string>
 <string name="player_load_subtitles">"Carica da file"</string>

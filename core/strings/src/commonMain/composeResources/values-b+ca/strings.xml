@@ -200,6 +200,8 @@
 <string name="play_torrent_button">Transmet Torrent</string>
 <string name="play_trailer_button">Reprodueix tràiler</string>
 <string name="play_with_app_name">Reprodueix amb CloudStream</string>
+<string name="player_enter_fullscreen">Entra a la pantalla completa</string>
+<string name="player_exit_fullscreen">Surt de la pantalla completa</string>
 <string name="player_load_one_subtitle_online">Carrega el primer disponible</string>
 <string name="player_load_subtitles">Carrega des del fitxer</string>
 <string name="player_load_subtitles_online">Carrega des d'internet</string>

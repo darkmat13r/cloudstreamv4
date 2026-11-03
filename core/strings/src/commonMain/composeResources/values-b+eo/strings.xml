@@ -137,6 +137,8 @@
 <string name="play_torrent_button">Elsendflui Torenton</string>
 <string name="play_trailer_button">Ludi Antaŭfilmon</string>
 <string name="play_with_app_name">Ludi per CloudStream</string>
+<string name="player_enter_fullscreen">Eniri plenekranan reĝimon</string>
+<string name="player_exit_fullscreen">Eliri el plenekrana reĝimo</string>
 <string name="player_size_settings_des">Forigi nigrajn borderaĵojn</string>
 <string name="player_speed_text_format">Rapido (%.2fx)</string>
 <string name="player_subtitles_settings">Subtekstoj</string>

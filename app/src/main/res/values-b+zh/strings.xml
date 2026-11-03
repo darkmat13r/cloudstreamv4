@@ -416,6 +416,8 @@
 <string name="play_torrent_button">"播放种子"</string>
 <string name="play_trailer_button">"播放预告片"</string>
 <string name="play_with_app_name">"使用 CloudStream 播放"</string>
+<string name="player_enter_fullscreen">"进入全屏模式"</string>
+<string name="player_exit_fullscreen">"退出全屏模式"</string>
 <string name="player_is_live">"播放中"</string>
 <string name="player_load_one_subtitle_online">"加载第一个可用的字幕"</string>
 <string name="player_load_subtitles">"从文件加载"</string>

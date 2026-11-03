@@ -18,6 +18,8 @@ import androidx.compose.ui.graphics.toPixelMap
 import androidx.compose.ui.input.key.Key
 import androidx.compose.ui.input.key.KeyEvent
 import androidx.compose.ui.input.key.KeyEventType
+import androidx.compose.ui.window.WindowPlacement
+import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.IntSize
@@ -75,6 +77,7 @@ class PlayerScreenTest {
         status: PlayerStatus = PlayerStatus(playing = false, buffering = false, positionMillis = 1_000, lengthMillis = 60_000),
         frame: ImageBitmap? = null,
         pictureSize: IntSize? = null,
+        fullscreen: PlayerFullscreen? = null,
     ) {
         val calls = Calls()
         val clock = PlaybackClock().also { it.onStatus(status) }
@@ -96,6 +99,7 @@ class PlayerScreenTest {
                             clock = clock,
                             onBack = { backs++ },
                             setEscape = { escape = it },
+                            fullscreen = fullscreen,
                         )
                     }
                 }
@@ -294,6 +298,134 @@ class PlayerScreenTest {
         screen.escape()
         assertEquals(1, screen.backs)
         screen.scene.close()
+    }
+
+    @Test
+    fun `F and Cmd+F go into full screen and back, and leave playback alone`() {
+        val window = WindowState()
+        val screen = Screen(fullscreen = PlayerFullscreen(window))
+        screen.settle()
+        screen.press(Key.F)
+        assertEquals(WindowPlacement.Fullscreen, window.placement)
+        screen.scene.sendKeyEvent(KeyEvent(Key.F, KeyEventType.KeyDown, isMetaPressed = true))
+        screen.settle()
+        assertEquals(WindowPlacement.Floating, window.placement)
+        assertEquals(emptyList(), screen.calls.log)
+        screen.scene.close()
+    }
+
+    @Test
+    fun `the control at the end of the row goes into full screen and back`() {
+        val window = WindowState()
+        val screen = Screen(fullscreen = PlayerFullscreen(window))
+        screen.settle()
+        screen.click(screen.button)
+        assertEquals(WindowPlacement.Fullscreen, window.placement)
+        screen.click(screen.button)
+        assertEquals(WindowPlacement.Floating, window.placement)
+        screen.scene.close()
+    }
+
+    @Test
+    fun `the control fits the smallest window, beside the subtitle control`() {
+        val window = WindowState()
+        val screen = Screen(width = 800, height = 450, fullscreen = PlayerFullscreen(window))
+        screen.settle()
+        screen.save("fullscreen-control")
+        screen.click(screen.button)
+        assertEquals(WindowPlacement.Fullscreen, window.placement)
+        screen.click(Offset(screen.button.x - 52f, screen.button.y))
+        screen.press(Key.DirectionRight)
+        assertEquals(emptyList(), screen.calls.log, "the control beside it opened the subtitle list")
+        screen.scene.close()
+    }
+
+    @Test
+    fun `escape closes the list, then full screen, and only then leaves the player`() {
+        val window = WindowState()
+        val screen = Screen(fullscreen = PlayerFullscreen(window))
+        screen.settle()
+        screen.press(Key.F)
+        screen.press(Key.C)
+        screen.escape()
+        screen.settle()
+        assertEquals(WindowPlacement.Fullscreen, window.placement)
+        assertEquals(0, screen.backs)
+        screen.escape()
+        screen.settle()
+        assertEquals(WindowPlacement.Floating, window.placement)
+        assertEquals(0, screen.backs)
+        screen.escape()
+        assertEquals(1, screen.backs)
+        screen.scene.close()
+    }
+
+    @Test
+    fun `F does nothing while the list is open`() {
+        val window = WindowState()
+        val screen = Screen(fullscreen = PlayerFullscreen(window))
+        screen.settle()
+        screen.press(Key.C)
+        screen.press(Key.F)
+        assertEquals(WindowPlacement.Floating, window.placement)
+        screen.scene.close()
+    }
+
+    @Test
+    fun `full screen made with the window's own button reads as full screen, and escape leaves it`() {
+        val window = WindowState()
+        val screen = Screen(fullscreen = PlayerFullscreen(window))
+        screen.settle()
+        window.placement = WindowPlacement.Fullscreen
+        screen.settle()
+        screen.escape()
+        assertEquals(WindowPlacement.Floating, window.placement)
+        assertEquals(0, screen.backs)
+        screen.scene.close()
+    }
+
+    @Test
+    fun `with no window there is no control, and F is not taken`() {
+        val screen = Screen()
+        screen.settle()
+        screen.press(Key.F)
+        assertEquals(emptyList(), screen.calls.log)
+        screen.escape()
+        assertEquals(1, screen.backs)
+        screen.scene.close()
+    }
+
+    @Test
+    fun `closing the player goes back to where the window was`() {
+        val floating = WindowState()
+        PlayerFullscreen(floating).run {
+            toggle()
+            leave()
+        }
+        assertEquals(WindowPlacement.Floating, floating.placement)
+
+        val maximized = WindowState(placement = WindowPlacement.Maximized)
+        PlayerFullscreen(maximized).run {
+            toggle()
+            assertEquals(WindowPlacement.Fullscreen, maximized.placement)
+            toggle()
+            assertEquals(WindowPlacement.Maximized, maximized.placement)
+            toggle()
+            leave()
+        }
+        assertEquals(WindowPlacement.Maximized, maximized.placement)
+    }
+
+    @Test
+    fun `a window already full screen stays so when the player closes, unless someone left it`() {
+        val window = WindowState(placement = WindowPlacement.Fullscreen)
+        val fullscreen = PlayerFullscreen(window)
+        fullscreen.leave()
+        assertEquals(WindowPlacement.Fullscreen, window.placement)
+        fullscreen.toggle()
+        assertEquals(WindowPlacement.Floating, window.placement)
+        fullscreen.leave()
+        assertEquals(WindowPlacement.Floating, window.placement)
     }
 
     @Test

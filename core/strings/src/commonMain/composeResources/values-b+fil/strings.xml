@@ -121,6 +121,8 @@
 <string name="play_torrent_button">I-stream ang Torrent</string>
 <string name="play_trailer_button">Ipatugtog ang Trailer</string>
 <string name="play_with_app_name">Ipatugtog sa CloudStream</string>
+<string name="player_enter_fullscreen">Mag-fullscreen</string>
+<string name="player_exit_fullscreen">Lumabas sa fullscreen</string>
 <string name="player_notification_channel_description">Ang abiso ng player para sa pagkontrol sa pag-playback mula sa background</string>
 <string name="player_speed">Bilis ng Manlalaro</string>
 <string name="player_speed_text_format">Bilis (%.2fx)</string>

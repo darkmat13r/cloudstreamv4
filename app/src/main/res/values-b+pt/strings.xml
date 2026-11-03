@@ -415,6 +415,8 @@
 <string name="play_torrent_button">"Transmitir Torrent"</string>
 <string name="play_trailer_button">"Assistir Trailer"</string>
 <string name="play_with_app_name">"Assistir com o CloudStream"</string>
+<string name="player_enter_fullscreen">"Mudar para ecrã inteiro"</string>
+<string name="player_exit_fullscreen">"Sair do ecrã inteiro"</string>
 <string name="player_is_live">"Ao Vivo"</string>
 <string name="player_load_one_subtitle_online">"Carregar o primeiro disponível"</string>
 <string name="player_load_subtitles">"Carregar de arquivo"</string>

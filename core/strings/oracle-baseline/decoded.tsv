@@ -95,6 +95,8 @@ values-b+af/strings.xml	string	play_movie_button	-	STR	Speel Fliek
 values-b+af/strings.xml	string	play_torrent_button	-	STR	Stroom Torrent	
 values-b+af/strings.xml	string	play_trailer_button	-	STR	Speel Lokprent	
 values-b+af/strings.xml	string	play_with_app_name	-	STR	Speel met CloudStream	
+values-b+af/strings.xml	string	player_enter_fullscreen	-	STR	Gaan na volskerm	
+values-b+af/strings.xml	string	player_exit_fullscreen	-	STR	Verlaat volskerm	
 values-b+af/strings.xml	string	player_speed	-	STR	Spelerspoed	
 values-b+af/strings.xml	string	player_speed_text_format	-	STR	Spoed (%.2fx)	
 values-b+af/strings.xml	string	popup_delete_file	-	STR	Vee lêer uit	
@@ -244,6 +246,8 @@ values-b+am/strings.xml	string	play_movie_button	-	STR	ሙቪ አጫውት
 values-b+am/strings.xml	string	play_torrent_button	-	STR	Torrent አጫውት	
 values-b+am/strings.xml	string	play_trailer_button	-	STR	የፊልም ማስታወቂያ አጫውት	
 values-b+am/strings.xml	string	play_with_app_name	-	STR	በCloudStream አጫውት	
+values-b+am/strings.xml	string	player_enter_fullscreen	-	STR	ወደ ሙሉ ማያ ገፅ ግባ	
+values-b+am/strings.xml	string	player_exit_fullscreen	-	STR	ከሙሉ ማያገጽ ውጣ	
 values-b+am/strings.xml	string	player_speed	-	STR	የአጫዋች ፍጥነት	
 values-b+am/strings.xml	string	player_speed_text_format	-	STR	ፍጥነት(%.2fx)	
 values-b+am/strings.xml	string	popup_delete_file	-	STR	ፋይል አጥፋ	
@@ -720,6 +724,8 @@ values-b+apc/strings.xml	string	play_movie_button	-	STR	مشّي الفيلم
 values-b+apc/strings.xml	string	play_torrent_button	-	STR	عمول ستريم للتورنت	
 values-b+apc/strings.xml	string	play_trailer_button	-	STR	مشّي المقطع الدعائي	
 values-b+apc/strings.xml	string	play_with_app_name	-	STR	مَشّي بـ"كلود ستريم"	
+values-b+apc/strings.xml	string	player_enter_fullscreen	-	STR	فوت عالشاشة الكاملة	
+values-b+apc/strings.xml	string	player_exit_fullscreen	-	STR	اطلع من الشاشة الكاملة	
 values-b+apc/strings.xml	string	player_is_live	-	STR	لايڤ	
 values-b+apc/strings.xml	string	player_load_one_subtitle_online	-	STR	أفّي اللودينگ تلقائيًا	
 values-b+apc/strings.xml	string	player_load_subtitles	-	STR	فتاح من ملف	
@@ -1502,6 +1508,8 @@ values-b+ar/strings.xml	string	play_movie_button	-	STR	مشاهدة الفيلم
 values-b+ar/strings.xml	string	play_torrent_button	-	STR	تشغيل تورنت	
 values-b+ar/strings.xml	string	play_trailer_button	-	STR	تشغيل المقطع الدعائي	
 values-b+ar/strings.xml	string	play_with_app_name	-	STR	تشغيل بواسطة CloudStream	
+values-b+ar/strings.xml	string	player_enter_fullscreen	-	STR	دخول إلى وضع ملء الشاشة	
+values-b+ar/strings.xml	string	player_exit_fullscreen	-	STR	خروج من وضع ملء الشاشة	
 values-b+ar/strings.xml	string	player_is_live	-	STR	البث قائم	
 values-b+ar/strings.xml	string	player_load_one_subtitle_online	-	STR	تحميل أول ترجمة متاحة	
 values-b+ar/strings.xml	string	player_load_subtitles	-	STR	إختيار ملف	
@@ -2075,6 +2083,8 @@ values-b+ars/strings.xml	string	play_movie_button	-	STR	شاهد الفلم
 values-b+ars/strings.xml	string	play_torrent_button	-	STR	دفق التورنت	
 values-b+ars/strings.xml	string	play_trailer_button	-	STR	تشغيل المقطع الدعائي	
 values-b+ars/strings.xml	string	play_with_app_name	-	STR	فتح مع كلاودستريم	
+values-b+ars/strings.xml	string	player_enter_fullscreen	-	STR	الدخول إلى وضع ملء الشاشة	
+values-b+ars/strings.xml	string	player_exit_fullscreen	-	STR	الخروج من وضع ملء الشاشة	
 values-b+ars/strings.xml	string	player_size_settings	-	STR	زر تغيير حجم المشغل	
 values-b+ars/strings.xml	string	player_size_settings_des	-	STR	إزالة الحدود السوداء	
 values-b+ars/strings.xml	string	player_speed	-	STR	سرعة اللاعب	
@@ -2606,6 +2616,8 @@ values-b+as/strings.xml	string	play_movie_button	-	STR	চলচ্চিত্�
 values-b+as/strings.xml	string	play_torrent_button	-	STR	ট'ৰেণ্ট ষ্ট্ৰীম কৰক	
 values-b+as/strings.xml	string	play_trailer_button	-	STR	ট্ৰেইলাৰ প্লে কৰক	
 values-b+as/strings.xml	string	play_with_app_name	-	STR	CloudStreamৰে প্লে কৰক	
+values-b+as/strings.xml	string	player_enter_fullscreen	-	STR	সম্পূৰ্ণ স্ক্ৰীনলৈ যাওক	
+values-b+as/strings.xml	string	player_exit_fullscreen	-	STR	সম্পূৰ্ণ স্ক্ৰীনৰ পৰা ওলাওক	
 values-b+as/strings.xml	string	player_load_one_subtitle_online	-	STR	প্ৰথম উপলব্ধটো লোড কৰক	
 values-b+as/strings.xml	string	player_load_subtitles	-	STR	ফাইলৰ পৰা ল'ড কৰক	
 values-b+as/strings.xml	string	player_load_subtitles_online	-	STR	ইণ্টাৰনেটৰ পৰা ল'ড কৰক	
@@ -3037,6 +3049,8 @@ values-b+az/strings.xml	string	play_livestream_button	-	STR	Canlı Yayını oyna
 values-b+az/strings.xml	string	play_movie_button	-	STR	Filmi oynat	
 values-b+az/strings.xml	string	play_trailer_button	-	STR	Fraqmanı Oynat	
 values-b+az/strings.xml	string	play_with_app_name	-	STR	CloudStream ilə oynat	
+values-b+az/strings.xml	string	player_enter_fullscreen	-	STR	Tam ekrana daxil olun	
+values-b+az/strings.xml	string	player_exit_fullscreen	-	STR	Tam ekrandan çıxın	
 values-b+az/strings.xml	string	player_size_settings	-	STR	Pleyeri yenidən ölçüləndirmə düyməsini	
 values-b+az/strings.xml	string	player_size_settings_des	-	STR	Qara sərhədləri, kənarları sil	
 values-b+az/strings.xml	string	player_speed_text_format	-	STR	Sürət (%.2fx)	
@@ -3518,6 +3532,8 @@ values-b+be/strings.xml	string	play_movie_button	-	STR	Прайграць філ
 values-b+be/strings.xml	string	play_torrent_button	-	STR	Трансліраваць Torrent	
 values-b+be/strings.xml	string	play_trailer_button	-	STR	Прайграць трэйлер	
 values-b+be/strings.xml	string	play_with_app_name	-	STR	Прайграць праз CloudStream	
+values-b+be/strings.xml	string	player_enter_fullscreen	-	STR	Уключыць поўнаэкранны рэжым	
+values-b+be/strings.xml	string	player_exit_fullscreen	-	STR	Выключыць поўнаэкранны рэжым	
 values-b+be/strings.xml	string	player_is_live	-	STR	Ужывую	
 values-b+be/strings.xml	string	player_load_one_subtitle_online	-	STR	Спампаваць першыя даступныя	
 values-b+be/strings.xml	string	player_load_subtitles	-	STR	Загрузіць з файла	
@@ -4283,6 +4299,8 @@ values-b+bg/strings.xml	string	play_movie_button	-	STR	Пускане на фи�
 values-b+bg/strings.xml	string	play_torrent_button	-	STR	Поточно предаване на торент	
 values-b+bg/strings.xml	string	play_trailer_button	-	STR	Пусни трейлър	
 values-b+bg/strings.xml	string	play_with_app_name	-	STR	Пусни с CloudStream	
+values-b+bg/strings.xml	string	player_enter_fullscreen	-	STR	Вход в цял екран	
+values-b+bg/strings.xml	string	player_exit_fullscreen	-	STR	Изход от цял екран	
 values-b+bg/strings.xml	string	player_load_one_subtitle_online	-	STR	Зареди първия наличен	
 values-b+bg/strings.xml	string	player_load_subtitles	-	STR	Зареди от файл	
 values-b+bg/strings.xml	string	player_load_subtitles_online	-	STR	Зареди от Интернет	
@@ -4886,6 +4904,8 @@ values-b+bn/strings.xml	string	play_movie_button	-	STR	মুভি চালা
 values-b+bn/strings.xml	string	play_torrent_button	-	STR	টরেন্ট স্ট্রিম করুন	
 values-b+bn/strings.xml	string	play_trailer_button	-	STR	ট্রেইলার চালু করুন	
 values-b+bn/strings.xml	string	play_with_app_name	-	STR	ক্লাউডস্ট্রিম দিয়ে চালান	
+values-b+bn/strings.xml	string	player_enter_fullscreen	-	STR	ফুল-স্ক্রিন মোডে দেখুন	
+values-b+bn/strings.xml	string	player_exit_fullscreen	-	STR	ফুল-স্ক্রিন মোড ছেড়ে বেরোন	
 values-b+bn/strings.xml	string	player_size_settings	-	STR	প্লেয়ারের সাইজ পরিবর্তন বাটন	
 values-b+bn/strings.xml	string	player_size_settings_des	-	STR	কালো প্রান্ত অপসারণ করুন	
 values-b+bn/strings.xml	string	player_speed	-	STR	ভিডিও এর গতি	
@@ -5273,6 +5293,8 @@ values-b+ca/strings.xml	string	play_movie_button	-	STR	Reprodueix pel·licula
 values-b+ca/strings.xml	string	play_torrent_button	-	STR	Transmet Torrent	
 values-b+ca/strings.xml	string	play_trailer_button	-	STR	Reprodueix tràiler	
 values-b+ca/strings.xml	string	play_with_app_name	-	STR	Reprodueix amb CloudStream	
+values-b+ca/strings.xml	string	player_enter_fullscreen	-	STR	Entra a la pantalla completa	
+values-b+ca/strings.xml	string	player_exit_fullscreen	-	STR	Surt de la pantalla completa	
 values-b+ca/strings.xml	string	player_load_one_subtitle_online	-	STR	Carrega el primer disponible	
 values-b+ca/strings.xml	string	player_load_subtitles	-	STR	Carrega des del fitxer	
 values-b+ca/strings.xml	string	player_load_subtitles_online	-	STR	Carrega des d'internet	
@@ -5525,6 +5547,8 @@ values-b+ckb/strings.xml	string	pick_source	-	STR	سەرچاوەکان
 values-b+ckb/strings.xml	string	pick_subtitle	-	STR	ژێرنووسەکان	
 values-b+ckb/strings.xml	string	play_from_beginning_img_des	-	STR	لە سەرەتاوە دەست پێ بکە	
 values-b+ckb/strings.xml	string	play_torrent_button	-	STR	تۆرێنت ستریم بکە	
+values-b+ckb/strings.xml	string	player_enter_fullscreen	-	STR	چوونە ناو پڕ بە شاشە	
+values-b+ckb/strings.xml	string	player_exit_fullscreen	-	STR	دەرچوون لە پڕ بە شاشە	
 values-b+ckb/strings.xml	string	player_speed_text_format	-	STR	خێرای(x%.2f)	
 values-b+ckb/strings.xml	string	popup_delete_file	-	STR	سڕینەوەی فایل	
 values-b+ckb/strings.xml	string	popup_pause_download	-	STR	وەستاندنی دابەزاندن	
@@ -5989,6 +6013,8 @@ values-b+cs/strings.xml	string	play_movie_button	-	STR	Přehrát film
 values-b+cs/strings.xml	string	play_torrent_button	-	STR	Streamovat torrent	
 values-b+cs/strings.xml	string	play_trailer_button	-	STR	Přehrát trailer	
 values-b+cs/strings.xml	string	play_with_app_name	-	STR	Přehrát s CloudStream	
+values-b+cs/strings.xml	string	player_enter_fullscreen	-	STR	Přejít do režimu celé obrazovky	
+values-b+cs/strings.xml	string	player_exit_fullscreen	-	STR	Ukončit režim celé obrazovky	
 values-b+cs/strings.xml	string	player_is_live	-	STR	Živě	
 values-b+cs/strings.xml	string	player_load_one_subtitle_online	-	STR	Načíst první dostupné	
 values-b+cs/strings.xml	string	player_load_subtitles	-	STR	Načíst ze souboru	
@@ -6766,6 +6792,8 @@ values-b+de/strings.xml	string	play_movie_button	-	STR	Film abspielen
 values-b+de/strings.xml	string	play_torrent_button	-	STR	Torrent streamen	
 values-b+de/strings.xml	string	play_trailer_button	-	STR	Trailer abspielen	
 values-b+de/strings.xml	string	play_with_app_name	-	STR	Mit CloudStream abspielen	
+values-b+de/strings.xml	string	player_enter_fullscreen	-	STR	Vollbild aktivieren	
+values-b+de/strings.xml	string	player_exit_fullscreen	-	STR	Vollbild beenden	
 values-b+de/strings.xml	string	player_is_live	-	STR	Live	
 values-b+de/strings.xml	string	player_load_one_subtitle_online	-	STR	Erste verfügbare laden	
 values-b+de/strings.xml	string	player_load_subtitles	-	STR	Aus Datei laden	
@@ -7498,6 +7526,8 @@ values-b+el/strings.xml	string	play_movie_button	-	STR	Αναπαραγωγή τ
 values-b+el/strings.xml	string	play_torrent_button	-	STR	Μετάδοση Torrent	
 values-b+el/strings.xml	string	play_trailer_button	-	STR	Αναπαραγωγή τρέιλερ	
 values-b+el/strings.xml	string	play_with_app_name	-	STR	Άνοιγμα με CloudStream	
+values-b+el/strings.xml	string	player_enter_fullscreen	-	STR	Πλήρης οθόνη	
+values-b+el/strings.xml	string	player_exit_fullscreen	-	STR	Έξοδος από πλήρη οθόνη	
 values-b+el/strings.xml	string	player_load_one_subtitle_online	-	STR	Φορτώστε το πρώτο διαθέσιμο	
 values-b+el/strings.xml	string	player_load_subtitles	-	STR	Φόρτωση από αρχείο	
 values-b+el/strings.xml	string	player_load_subtitles_online	-	STR	Φόρτωση από το Ίντερνετ	
@@ -7961,6 +7991,8 @@ values-b+eo/strings.xml	string	play_movie_button	-	STR	Spekti filmon
 values-b+eo/strings.xml	string	play_torrent_button	-	STR	Elsendflui Torenton	
 values-b+eo/strings.xml	string	play_trailer_button	-	STR	Ludi Antaŭfilmon	
 values-b+eo/strings.xml	string	play_with_app_name	-	STR	Ludi per CloudStream	
+values-b+eo/strings.xml	string	player_enter_fullscreen	-	STR	Eniri plenekranan reĝimon	
+values-b+eo/strings.xml	string	player_exit_fullscreen	-	STR	Eliri el plenekrana reĝimo	
 values-b+eo/strings.xml	string	player_size_settings_des	-	STR	Forigi nigrajn borderaĵojn	
 values-b+eo/strings.xml	string	player_speed_text_format	-	STR	Rapido (%.2fx)	
 values-b+eo/strings.xml	string	player_subtitles_settings	-	STR	Subtekstoj	
@@ -8467,6 +8499,8 @@ values-b+es/strings.xml	string	play_movie_button	-	STR	Reproducir película
 values-b+es/strings.xml	string	play_torrent_button	-	STR	Transmitir Torrent	
 values-b+es/strings.xml	string	play_trailer_button	-	STR	Reproducir tráiler	
 values-b+es/strings.xml	string	play_with_app_name	-	STR	Reproducir con Cloudstream	
+values-b+es/strings.xml	string	player_enter_fullscreen	-	STR	Activar pantalla completa	
+values-b+es/strings.xml	string	player_exit_fullscreen	-	STR	Salir de pantalla completa	
 values-b+es/strings.xml	string	player_is_live	-	STR	En Vivo	
 values-b+es/strings.xml	string	player_load_one_subtitle_online	-	STR	Cargar primero disponible	
 values-b+es/strings.xml	string	player_load_subtitles	-	STR	Cargar desde archivo	
@@ -9046,6 +9080,8 @@ values-b+fa/strings.xml	string	play_movie_button	-	STR	پخش فیلم
 values-b+fa/strings.xml	string	play_torrent_button	-	STR	استریم تورنت	
 values-b+fa/strings.xml	string	play_trailer_button	-	STR	پخش تریلر	
 values-b+fa/strings.xml	string	play_with_app_name	-	STR	پخش با CloudStream	
+values-b+fa/strings.xml	string	player_enter_fullscreen	-	STR	ورود به حالت تمام‌صفحه	
+values-b+fa/strings.xml	string	player_exit_fullscreen	-	STR	خروج از حالت تمام‌صفحه	
 values-b+fa/strings.xml	string	player_pref	-	STR	پخش‌کننده ویدئو برگزیده	
 values-b+fa/strings.xml	string	player_size_settings	-	STR	دکمه تغییر‌اندازه پخش‌کننده	
 values-b+fa/strings.xml	string	player_size_settings_des	-	STR	حذف حاشیه سیاه	
@@ -9332,6 +9368,8 @@ values-b+fil/strings.xml	string	play_movie_button	-	STR	Ipatugtog ang Pelikula
 values-b+fil/strings.xml	string	play_torrent_button	-	STR	I-stream ang Torrent	
 values-b+fil/strings.xml	string	play_trailer_button	-	STR	Ipatugtog ang Trailer	
 values-b+fil/strings.xml	string	play_with_app_name	-	STR	Ipatugtog sa CloudStream	
+values-b+fil/strings.xml	string	player_enter_fullscreen	-	STR	Mag-fullscreen	
+values-b+fil/strings.xml	string	player_exit_fullscreen	-	STR	Lumabas sa fullscreen	
 values-b+fil/strings.xml	string	player_notification_channel_description	-	STR	Ang abiso ng player para sa pagkontrol sa pag-playback mula sa background	
 values-b+fil/strings.xml	string	player_speed	-	STR	Bilis ng Manlalaro	
 values-b+fil/strings.xml	string	player_speed_text_format	-	STR	Bilis (%.2fx)	
@@ -9829,6 +9867,8 @@ values-b+fr/strings.xml	string	play_movie_button	-	STR	Lire
 values-b+fr/strings.xml	string	play_torrent_button	-	STR	Streamer le Torrent	
 values-b+fr/strings.xml	string	play_trailer_button	-	STR	Lire la bande-annonce	
 values-b+fr/strings.xml	string	play_with_app_name	-	STR	Lire avec CloudStream	
+values-b+fr/strings.xml	string	player_enter_fullscreen	-	STR	Activer le mode plein écran	
+values-b+fr/strings.xml	string	player_exit_fullscreen	-	STR	Quitter le mode plein écran	
 values-b+fr/strings.xml	string	player_is_live	-	STR	Live	
 values-b+fr/strings.xml	string	player_load_one_subtitle_online	-	STR	Charger le premier disponible	
 values-b+fr/strings.xml	string	player_load_subtitles	-	STR	Charger depuis le fichier	
@@ -10384,6 +10424,8 @@ values-b+gl/strings.xml	string	play_movie_button	-	STR	Reproducir o filme
 values-b+gl/strings.xml	string	play_torrent_button	-	STR	Transmitir Torrent	
 values-b+gl/strings.xml	string	play_trailer_button	-	STR	Reproducir Trailer	
 values-b+gl/strings.xml	string	play_with_app_name	-	STR	Reproducir con CloudStream	
+values-b+gl/strings.xml	string	player_enter_fullscreen	-	STR	Acceder a pantalla completa	
+values-b+gl/strings.xml	string	player_exit_fullscreen	-	STR	Saír de pantalla completa	
 values-b+gl/strings.xml	string	player_size_settings	-	STR	Botón de cambio de tamaño do reprodutor	
 values-b+gl/strings.xml	string	player_size_settings_des	-	STR	Eliminar bordes negros	
 values-b+gl/strings.xml	string	player_speed	-	STR	Velocidade do reproductor	
@@ -10783,6 +10825,8 @@ values-b+hi/strings.xml	string	play_movie_button	-	STR	मूवी चलाए
 values-b+hi/strings.xml	string	play_torrent_button	-	STR	टोरेंट चलाएं	
 values-b+hi/strings.xml	string	play_trailer_button	-	STR	ट्रेलर देखे	
 values-b+hi/strings.xml	string	play_with_app_name	-	STR	क्लाउडस्ट्रीम के साथ चलाएं	
+values-b+hi/strings.xml	string	player_enter_fullscreen	-	STR	फ़ुलस्क्रीन मोड पर देखें	
+values-b+hi/strings.xml	string	player_exit_fullscreen	-	STR	फ़ुलस्क्रीन मोड से बाहर निकलें	
 values-b+hi/strings.xml	string	player_size_settings	-	STR	प्लेयर आकार परिवर्तन बटन	
 values-b+hi/strings.xml	string	player_size_settings_des	-	STR	काले बॉर्डर हटाएँ	
 values-b+hi/strings.xml	string	player_speed	-	STR	प्लेयर स्पीड	
@@ -11384,6 +11428,8 @@ values-b+hr/strings.xml	string	play_movie_button	-	STR	Pokreni film
 values-b+hr/strings.xml	string	play_torrent_button	-	STR	Pokreni Torrent	
 values-b+hr/strings.xml	string	play_trailer_button	-	STR	Pokreni trailer	
 values-b+hr/strings.xml	string	play_with_app_name	-	STR	Pokreni s CloudStreamom	
+values-b+hr/strings.xml	string	player_enter_fullscreen	-	STR	Otvaranje prikaza na cijelom zaslonu	
+values-b+hr/strings.xml	string	player_exit_fullscreen	-	STR	Zatvaranje prikaza na cijelom zaslonu	
 values-b+hr/strings.xml	string	player_is_live	-	STR	Uživo	
 values-b+hr/strings.xml	string	player_load_one_subtitle_online	-	STR	Učitaj prvi dostupni	
 values-b+hr/strings.xml	string	player_load_subtitles	-	STR	Učitaj iz datoteke	
@@ -12102,6 +12148,8 @@ values-b+hu/strings.xml	string	play_movie_button	-	STR	Film lejátszása
 values-b+hu/strings.xml	string	play_torrent_button	-	STR	Torrent streamelése	
 values-b+hu/strings.xml	string	play_trailer_button	-	STR	Előzetes lejátszása	
 values-b+hu/strings.xml	string	play_with_app_name	-	STR	Lejátszás CloudStreamel	
+values-b+hu/strings.xml	string	player_enter_fullscreen	-	STR	Teljes képernyő	
+values-b+hu/strings.xml	string	player_exit_fullscreen	-	STR	Kilépés a teljes képernyős módból	
 values-b+hu/strings.xml	string	player_load_one_subtitle_online	-	STR	Töltse be az első létezőt	
 values-b+hu/strings.xml	string	player_load_subtitles	-	STR	Betöltés fájlból	
 values-b+hu/strings.xml	string	player_load_subtitles_online	-	STR	Betöltés az internetről	
@@ -12825,6 +12873,8 @@ values-b+in/strings.xml	string	play_movie_button	-	STR	Putar Film
 values-b+in/strings.xml	string	play_torrent_button	-	STR	Stream Torrent	
 values-b+in/strings.xml	string	play_trailer_button	-	STR	Putar Cuplikan	
 values-b+in/strings.xml	string	play_with_app_name	-	STR	Putar di CloudStream	
+values-b+in/strings.xml	string	player_enter_fullscreen	-	STR	Masuk layar penuh	
+values-b+in/strings.xml	string	player_exit_fullscreen	-	STR	Keluar dari layar penuh	
 values-b+in/strings.xml	string	player_is_live	-	STR	Live	
 values-b+in/strings.xml	string	player_load_one_subtitle_online	-	STR	Muat yang pertama tersedia	
 values-b+in/strings.xml	string	player_load_subtitles	-	STR	Muat dari file	
@@ -13606,6 +13656,8 @@ values-b+it/strings.xml	string	play_movie_button	-	STR	Riproduci film
 values-b+it/strings.xml	string	play_torrent_button	-	STR	Stream Torrent	
 values-b+it/strings.xml	string	play_trailer_button	-	STR	Riproduci trailer	
 values-b+it/strings.xml	string	play_with_app_name	-	STR	Riproduci con CloudStream	
+values-b+it/strings.xml	string	player_enter_fullscreen	-	STR	Attiva schermo intero	
+values-b+it/strings.xml	string	player_exit_fullscreen	-	STR	Esci da schermo intero	
 values-b+it/strings.xml	string	player_is_live	-	STR	Live	
 values-b+it/strings.xml	string	player_load_one_subtitle_online	-	STR	Carica il primo disponibile	
 values-b+it/strings.xml	string	player_load_subtitles	-	STR	Carica da file	
@@ -14269,6 +14321,8 @@ values-b+iw/strings.xml	string	play_movie_button	-	STR	הפעל סרט
 values-b+iw/strings.xml	string	play_torrent_button	-	STR	שדר טורנט	
 values-b+iw/strings.xml	string	play_trailer_button	-	STR	הפעל טריילר	
 values-b+iw/strings.xml	string	play_with_app_name	-	STR	נגן עם קלאודסטרים	
+values-b+iw/strings.xml	string	player_enter_fullscreen	-	STR	כניסה למסך מלא	
+values-b+iw/strings.xml	string	player_exit_fullscreen	-	STR	יציאה ממסך מלא	
 values-b+iw/strings.xml	string	player_load_subtitles	-	STR	טען מקובץ	
 values-b+iw/strings.xml	string	player_load_subtitles_online	-	STR	טען מהאינטרנט	
 values-b+iw/strings.xml	string	player_loaded_subtitles	-	STR	נטען %s	
@@ -14963,6 +15017,8 @@ values-b+ja/strings.xml	string	play_movie_button	-	STR	映画を再生
 values-b+ja/strings.xml	string	play_torrent_button	-	STR	ストリームトレント	
 values-b+ja/strings.xml	string	play_trailer_button	-	STR	予告編を再生	
 values-b+ja/strings.xml	string	play_with_app_name	-	STR	CloudStreamで再生	
+values-b+ja/strings.xml	string	player_enter_fullscreen	-	STR	全画面表示に変更	
+values-b+ja/strings.xml	string	player_exit_fullscreen	-	STR	全画面表示を終了	
 values-b+ja/strings.xml	string	player_is_live	-	STR	ライブ	
 values-b+ja/strings.xml	string	player_load_one_subtitle_online	-	STR	最初に利用可能なものを読み込む	
 values-b+ja/strings.xml	string	player_load_subtitles	-	STR	ファイルから読み込む	
@@ -15417,6 +15473,8 @@ values-b+kn/strings.xml	string	play_movie_button	-	STR	ಚಲನಚಿತ್ರ�
 values-b+kn/strings.xml	string	play_torrent_button	-	STR	ಸ್ಟ್ರೀಮ್ ಟೊರೆಂಟ್	
 values-b+kn/strings.xml	string	play_trailer_button	-	STR	ಟ್ರೈಲರ್ ಪ್ಲೇ ಮಾಡಿ	
 values-b+kn/strings.xml	string	play_with_app_name	-	STR	ಕ್ಲೌಡ್ ಸ್ಟ್ರೀಮ್ ಇದರೊಂದಿಗೆ ಪ್ಲೇ ಮಾಡಿ	
+values-b+kn/strings.xml	string	player_enter_fullscreen	-	STR	ಫುಲ್‌ಸ್ಕ್ರೀನ್‌ಗೆ ಪ್ರವೇಶಿಸಿ	
+values-b+kn/strings.xml	string	player_exit_fullscreen	-	STR	ಫುಲ್‌ಸ್ಕ್ರೀನ್‌ನಿಂದ ನಿರ್ಗಮಿಸಿ	
 values-b+kn/strings.xml	string	player_size_settings	-	STR	ಪ್ಲೇಯರ್ ಮರುಗಾತ್ರಗೊಳಿಸಿ ಬಟನ್	
 values-b+kn/strings.xml	string	player_size_settings_des	-	STR	ಕಪ್ಪು ಗಡಿಗಳನ್ನು ತೆಗೆದುಹಾಕಿ	
 values-b+kn/strings.xml	string	player_speed	-	STR	ಪ್ಲೇಯರ್ ಸ್ಪೀಡ್	
@@ -15902,6 +15960,8 @@ values-b+ko/strings.xml	string	play_movie_button	-	STR	영화 재생
 values-b+ko/strings.xml	string	play_torrent_button	-	STR	토렌트 재생	
 values-b+ko/strings.xml	string	play_trailer_button	-	STR	예고편 재생	
 values-b+ko/strings.xml	string	play_with_app_name	-	STR	CloudStream으로 재생	
+values-b+ko/strings.xml	string	player_enter_fullscreen	-	STR	전체 화면으로 전환	
+values-b+ko/strings.xml	string	player_exit_fullscreen	-	STR	전체 화면 종료	
 values-b+ko/strings.xml	string	player_is_live	-	STR	라이브	
 values-b+ko/strings.xml	string	player_load_one_subtitle_online	-	STR	사용 가능한 자막 불러오기	
 values-b+ko/strings.xml	string	player_load_subtitles	-	STR	파일에서 불러오기	
@@ -16441,6 +16501,8 @@ values-b+lt/strings.xml	string	play_movie_button	-	STR	Paleisti filmą
 values-b+lt/strings.xml	string	play_torrent_button	-	STR	Transliuoti Torrentą	
 values-b+lt/strings.xml	string	play_trailer_button	-	STR	Paleisti anonsą	
 values-b+lt/strings.xml	string	play_with_app_name	-	STR	Paleisti su CloudStream	
+values-b+lt/strings.xml	string	player_enter_fullscreen	-	STR	Įjungti viso ekrano režimą	
+values-b+lt/strings.xml	string	player_exit_fullscreen	-	STR	Išjungti viso ekrano režimą	
 values-b+lt/strings.xml	string	player_settings_play_in_app	-	STR	Integruotas grotuvas	
 values-b+lt/strings.xml	string	player_size_settings	-	STR	Grotuvo dydžio pakeitimo mygtukas	
 values-b+lt/strings.xml	string	player_size_settings_des	-	STR	Pašalinti juodas paraštes	
@@ -16942,6 +17004,8 @@ values-b+lv/strings.xml	string	play_movie_button	-	STR	Palaist Filmu
 values-b+lv/strings.xml	string	play_torrent_button	-	STR	Skatities Torrentu	
 values-b+lv/strings.xml	string	play_trailer_button	-	STR	Palaist Trelleri	
 values-b+lv/strings.xml	string	play_with_app_name	-	STR	Atskaņo ar cloudstream	
+values-b+lv/strings.xml	string	player_enter_fullscreen	-	STR	Atvērt pilnekrāna režīmu	
+values-b+lv/strings.xml	string	player_exit_fullscreen	-	STR	Aizvērt pilnekrāna režīmu	
 values-b+lv/strings.xml	string	player_load_one_subtitle_online	-	STR	Lejupielādēt pirmo pieejamo	
 values-b+lv/strings.xml	string	player_load_subtitles	-	STR	Ielādēt no datnes	
 values-b+lv/strings.xml	string	player_load_subtitles_online	-	STR	Lejupielādēt no interneta	
@@ -17660,6 +17724,8 @@ values-b+mk/strings.xml	string	play_movie_button	-	STR	Пушти филм
 values-b+mk/strings.xml	string	play_torrent_button	-	STR	Стримај торент	
 values-b+mk/strings.xml	string	play_trailer_button	-	STR	Пушти трејлер	
 values-b+mk/strings.xml	string	play_with_app_name	-	STR	Играј со CloudStream	
+values-b+mk/strings.xml	string	player_enter_fullscreen	-	STR	Приказ на цел екран	
+values-b+mk/strings.xml	string	player_exit_fullscreen	-	STR	Излезете од цел екран	
 values-b+mk/strings.xml	string	player_is_live	-	STR	Во живо	
 values-b+mk/strings.xml	string	player_load_one_subtitle_online	-	STR	Вчитај прво достапно	
 values-b+mk/strings.xml	string	player_load_subtitles	-	STR	Вчитај од датотека	
@@ -18198,6 +18264,8 @@ values-b+ml/strings.xml	string	play_movie_button	-	STR	സിനിമ പ്ല
 values-b+ml/strings.xml	string	play_torrent_button	-	STR	ടോറൻറ് സ്ട്രീം ചെയ്യുക	
 values-b+ml/strings.xml	string	play_trailer_button	-	STR	ട്രെയിലർ പ്ലേ ചെയ്യുക	
 values-b+ml/strings.xml	string	play_with_app_name	-	STR	ക്ലൗഡ് സ്ട്രീം ഉപയോഗിച്ച് പ്രവർത്തിപ്പിക്കുക	
+values-b+ml/strings.xml	string	player_enter_fullscreen	-	STR	പൂർണ്ണ സ്‌ക്രീൻ ആക്കുക	
+values-b+ml/strings.xml	string	player_exit_fullscreen	-	STR	പൂർണ്ണ സ്‌ക്രീനിൽ നിന്ന് പുറത്തുകടക്കുക	
 values-b+ml/strings.xml	string	player_is_live	-	STR	തൽസമയം	
 values-b+ml/strings.xml	string	player_size_settings	-	STR	പ്ലേയറിന്റെ വലുപ്പം മാറ്റുന്ന ബട്ടൻ	
 values-b+ml/strings.xml	string	player_size_settings_des	-	STR	കറുത്ത അതിർത്തി നീക്കംചെയ്യുക	
@@ -18670,6 +18738,8 @@ values-b+ms/strings.xml	string	play_movie_button	-	STR	Pasang Wayang
 values-b+ms/strings.xml	string	play_torrent_button	-	STR	Strim Torrent	
 values-b+ms/strings.xml	string	play_trailer_button	-	STR	Main Pra-tonton	
 values-b+ms/strings.xml	string	play_with_app_name	-	STR	Pasang dengan CloudStream	
+values-b+ms/strings.xml	string	player_enter_fullscreen	-	STR	Masuk ke skrin penuh	
+values-b+ms/strings.xml	string	player_exit_fullscreen	-	STR	Keluar dari skrin penuh	
 values-b+ms/strings.xml	string	player_settings_play_in_app	-	STR	Pemain dalaman	
 values-b+ms/strings.xml	string	player_size_settings	-	STR	Saiz butang pemain	
 values-b+ms/strings.xml	string	player_size_settings_des	-	STR	Buang sempadan hitam	
@@ -19003,6 +19073,8 @@ values-b+mt/strings.xml	string	play_movie_button	-	STR	Ibda l-film
 values-b+mt/strings.xml	string	play_torrent_button	-	STR	Stream Torrent	
 values-b+mt/strings.xml	string	play_trailer_button	-	STR	Ibda t-trejler	
 values-b+mt/strings.xml	string	play_with_app_name	-	STR	Ara bil-CloudStream	
+values-b+mt/strings.xml	string	player_enter_fullscreen	-	STR	Idħol fi skrin sħiħ	
+values-b+mt/strings.xml	string	player_exit_fullscreen	-	STR	Oħroġ minn skrin sħiħ	
 values-b+mt/strings.xml	string	player_speed	-	STR	Veloċità tal-Plejer	
 values-b+mt/strings.xml	string	player_speed_text_format	-	STR	veloċità (%.2fx)	
 values-b+mt/strings.xml	string	popup_delete_file	-	STR	Hassar il-fajl	
@@ -19361,6 +19433,8 @@ values-b+my/strings.xml	string	play_movie_button	-	STR	ရုပ်ရှင်�
 values-b+my/strings.xml	string	play_torrent_button	-	STR	တောရပ် ကြည့်မည်	
 values-b+my/strings.xml	string	play_trailer_button	-	STR	ထွေလာ ကြည့်မည်	
 values-b+my/strings.xml	string	play_with_app_name	-	STR	CloudStream ဖြင့်ကြည့်ရန်	
+values-b+my/strings.xml	string	player_enter_fullscreen	-	STR	ဖန်သားပြင်အပြည့်သို့ ဝင်ရောက်ပါ	
+values-b+my/strings.xml	string	player_exit_fullscreen	-	STR	ဖန်သားပြင်အပြည့်မှ ထွက်ရန်	
 values-b+my/strings.xml	string	player_load_subtitles	-	STR	ဖိုင်မှတင်သွင်းပြီး	
 values-b+my/strings.xml	string	player_load_subtitles_online	-	STR	အင်တာနက်မှ တင်သွင်းမည်	
 values-b+my/strings.xml	string	player_loaded_subtitles	-	STR	တင်ပြီး %s	
@@ -19724,6 +19798,8 @@ values-b+ne/strings.xml	string	play_movie_button	-	STR	चलचित्र प
 values-b+ne/strings.xml	string	play_torrent_button	-	STR	स्ट्रिम टोरेन्ट	
 values-b+ne/strings.xml	string	play_trailer_button	-	STR	ट्रेलर प्ले गर्नुहोस्	
 values-b+ne/strings.xml	string	play_with_app_name	-	STR	क्लाउडस्ट्रीममा प्ले गर्नुहोस्	
+values-b+ne/strings.xml	string	player_enter_fullscreen	-	STR	पूर्ण स्क्रिन मोडमा खोल्नुहोस्	
+values-b+ne/strings.xml	string	player_exit_fullscreen	-	STR	पूर्ण स्क्रिन मोडबाट बाहिरिनुहोस्	
 values-b+ne/strings.xml	string	player_size_settings	-	STR	प्लेयर resize गर्ने वटन	
 values-b+ne/strings.xml	string	player_size_settings_des	-	STR	कालो सीमा हटाउनुहोस	
 values-b+ne/strings.xml	string	player_speed	-	STR	प्लेयर स्पीड	
@@ -20179,6 +20255,8 @@ values-b+nl/strings.xml	string	play_movie_button	-	STR	Film afspelen
 values-b+nl/strings.xml	string	play_torrent_button	-	STR	Stream Torrent	
 values-b+nl/strings.xml	string	play_trailer_button	-	STR	Speel Trailer	
 values-b+nl/strings.xml	string	play_with_app_name	-	STR	Afspelen met CloudStream	
+values-b+nl/strings.xml	string	player_enter_fullscreen	-	STR	Volledig scherm openen	
+values-b+nl/strings.xml	string	player_exit_fullscreen	-	STR	Volledig scherm sluiten	
 values-b+nl/strings.xml	string	player_load_one_subtitle_online	-	STR	Laad eerst beschikbare	
 values-b+nl/strings.xml	string	player_load_subtitles	-	STR	Laden uit bestand	
 values-b+nl/strings.xml	string	player_load_subtitles_online	-	STR	Laden vanaf internet	
@@ -20657,6 +20735,8 @@ values-b+nn/strings.xml	string	play_movie_button	-	STR	Spel av film
 values-b+nn/strings.xml	string	play_torrent_button	-	STR	Strøm Torrent	
 values-b+nn/strings.xml	string	play_trailer_button	-	STR	Spel av trailer	
 values-b+nn/strings.xml	string	play_with_app_name	-	STR	Spel av med CloudStream	
+values-b+nn/strings.xml	string	player_enter_fullscreen	-	STR	Vis i fullskjerm	
+values-b+nn/strings.xml	string	player_exit_fullscreen	-	STR	Avslutt fullskjerm	
 values-b+nn/strings.xml	string	player_size_settings_des	-	STR	Fjern dei svarte kantane	
 values-b+nn/strings.xml	string	player_speed	-	STR	Avspelinghastigheit	
 values-b+nn/strings.xml	string	player_speed_text_format	-	STR	Avspelinghastigheit (%.2fx)	
@@ -21039,6 +21119,8 @@ values-b+no/strings.xml	string	play_movie_button	-	STR	Spill filmer
 values-b+no/strings.xml	string	play_torrent_button	-	STR	Strøm Torrent	
 values-b+no/strings.xml	string	play_trailer_button	-	STR	Spill forfilm	
 values-b+no/strings.xml	string	play_with_app_name	-	STR	Spill med CloudStream	
+values-b+no/strings.xml	string	player_enter_fullscreen	-	STR	Se i fullskjerm	
+values-b+no/strings.xml	string	player_exit_fullscreen	-	STR	Avslutt fullskjerm	
 values-b+no/strings.xml	string	player_load_subtitles	-	STR	Last inn fra fil	
 values-b+no/strings.xml	string	player_load_subtitles_online	-	STR	Last inn fra Internett	
 values-b+no/strings.xml	string	player_loaded_subtitles	-	STR	Lastet inn %s	
@@ -21420,6 +21502,8 @@ values-b+or/strings.xml	string	others	-	STR	ଅନ୍ୟାନ୍ୟ
 values-b+or/strings.xml	string	play_episode	-	STR	ଅଧ୍ୟାୟ ଚଲାଅ	
 values-b+or/strings.xml	string	play_episode_toast	-	STR	ଅଧ୍ୟାୟ ଚଲାଅ	
 values-b+or/strings.xml	string	play_movie_button	-	STR	ଚଳଚ୍ଚିତ୍ର ଚଲାଅ	
+values-b+or/strings.xml	string	player_enter_fullscreen	-	STR	ପୂର୍ଣ୍ଣ ସ୍କ୍ରିନକୁ ଯାଆନ୍ତୁ	
+values-b+or/strings.xml	string	player_exit_fullscreen	-	STR	ପୂର୍ଣ୍ଣ ସ୍କ୍ରିନରୁ ବାହାରନ୍ତୁ	
 values-b+or/strings.xml	string	player_settings_play_in_app	-	STR	ଅନ୍ତଃ-ଚାଳକ	
 values-b+or/strings.xml	string	player_speed_text_format	-	STR	ଵେଗ (%.2fଗୁଣ)	
 values-b+or/strings.xml	string	player_subtitles_settings	-	STR	ଉପଶୀର୍ଷକ	
@@ -21926,6 +22010,8 @@ values-b+pl/strings.xml	string	play_movie_button	-	STR	Odtwórz film
 values-b+pl/strings.xml	string	play_torrent_button	-	STR	Otwórz torrent	
 values-b+pl/strings.xml	string	play_trailer_button	-	STR	Odtwórz zwiastun	
 values-b+pl/strings.xml	string	play_with_app_name	-	STR	Odtwórz w CloudStream	
+values-b+pl/strings.xml	string	player_enter_fullscreen	-	STR	Otwórz pełny ekran	
+values-b+pl/strings.xml	string	player_exit_fullscreen	-	STR	Zamknij pełny ekran	
 values-b+pl/strings.xml	string	player_is_live	-	STR	Na żywo	
 values-b+pl/strings.xml	string	player_load_one_subtitle_online	-	STR	Wczytaj pierwsze dostępne	
 values-b+pl/strings.xml	string	player_load_subtitles	-	STR	Wczytaj z pliku	
@@ -22707,6 +22793,8 @@ values-b+pt+BR/strings.xml	string	play_movie_button	-	STR	Reproduzir filme
 values-b+pt+BR/strings.xml	string	play_torrent_button	-	STR	Transmitir Torrent	
 values-b+pt+BR/strings.xml	string	play_trailer_button	-	STR	Reproduzir trailer	
 values-b+pt+BR/strings.xml	string	play_with_app_name	-	STR	Assistir com o CloudStream	
+values-b+pt+BR/strings.xml	string	player_enter_fullscreen	-	STR	Entrar em tela cheia	
+values-b+pt+BR/strings.xml	string	player_exit_fullscreen	-	STR	Sair da tela cheia	
 values-b+pt+BR/strings.xml	string	player_is_live	-	STR	Ao vivo	
 values-b+pt+BR/strings.xml	string	player_load_one_subtitle_online	-	STR	Carregar primeiro disponível	
 values-b+pt+BR/strings.xml	string	player_load_subtitles	-	STR	Carregar de arquivo	
@@ -23485,6 +23573,8 @@ values-b+pt/strings.xml	string	play_movie_button	-	STR	Reproduzir filme
 values-b+pt/strings.xml	string	play_torrent_button	-	STR	Transmitir Torrent	
 values-b+pt/strings.xml	string	play_trailer_button	-	STR	Assistir Trailer	
 values-b+pt/strings.xml	string	play_with_app_name	-	STR	Assistir com o CloudStream	
+values-b+pt/strings.xml	string	player_enter_fullscreen	-	STR	Mudar para ecrã inteiro	
+values-b+pt/strings.xml	string	player_exit_fullscreen	-	STR	Sair do ecrã inteiro	
 values-b+pt/strings.xml	string	player_is_live	-	STR	Ao Vivo	
 values-b+pt/strings.xml	string	player_load_one_subtitle_online	-	STR	Carregar o primeiro disponível	
 values-b+pt/strings.xml	string	player_load_subtitles	-	STR	Carregar de arquivo	
@@ -24201,6 +24291,8 @@ values-b+qt/strings.xml	string	play_movie_button	-	STR	aaaaa aaaghh
 values-b+qt/strings.xml	string	play_torrent_button	-	STR	aaaghhaaahhu aaaaa	
 values-b+qt/strings.xml	string	play_trailer_button	-	STR	ggaaaahhhhhhh gaauuuuuuuaaaau	
 values-b+qt/strings.xml	string	play_with_app_name	-	STR	oooooh aaah aauuuggghauuh	
+values-b+qt/strings.xml	string	player_enter_fullscreen	-	STR	oouuh haa aaaaa	
+values-b+qt/strings.xml	string	player_exit_fullscreen	-	STR	aauugghhaaaghh aaaaa	
 values-b+qt/strings.xml	string	player_load_subtitles	-	STR	aagg aahh uuuk	
 values-b+qt/strings.xml	string	player_load_subtitles_online	-	STR	eeek aahh oooohhhh	
 values-b+qt/strings.xml	string	player_loaded_subtitles	-	STR	oooohh %s	
@@ -24862,6 +24954,8 @@ values-b+ro/strings.xml	string	play_movie_button	-	STR	Urmărește
 values-b+ro/strings.xml	string	play_torrent_button	-	STR	Stream Torrent	
 values-b+ro/strings.xml	string	play_trailer_button	-	STR	Vizionează trailerul	
 values-b+ro/strings.xml	string	play_with_app_name	-	STR	Joacă cu CloudStream	
+values-b+ro/strings.xml	string	player_enter_fullscreen	-	STR	Accesează în ecran complet	
+values-b+ro/strings.xml	string	player_exit_fullscreen	-	STR	Ieși din ecranul complet	
 values-b+ro/strings.xml	string	player_load_one_subtitle_online	-	STR	Încărcați prima disponibilă	
 values-b+ro/strings.xml	string	player_load_subtitles	-	STR	Încărcați din fișier	
 values-b+ro/strings.xml	string	player_load_subtitles_online	-	STR	Încărcare de pe Internet	
@@ -25588,6 +25682,8 @@ values-b+ru/strings.xml	string	play_movie_button	-	STR	Смотреть филь
 values-b+ru/strings.xml	string	play_torrent_button	-	STR	Поток торрент	
 values-b+ru/strings.xml	string	play_trailer_button	-	STR	Смотреть трейлер	
 values-b+ru/strings.xml	string	play_with_app_name	-	STR	Смотреть с CloudStream	
+values-b+ru/strings.xml	string	player_enter_fullscreen	-	STR	Полноэкранный режим	
+values-b+ru/strings.xml	string	player_exit_fullscreen	-	STR	Выйти из полноэкранного режима	
 values-b+ru/strings.xml	string	player_is_live	-	STR	Прямой эфир	
 values-b+ru/strings.xml	string	player_load_one_subtitle_online	-	STR	Скачать первые доступные	
 values-b+ru/strings.xml	string	player_load_subtitles	-	STR	Загрузить из файла	
@@ -26231,6 +26327,8 @@ values-b+sk/strings.xml	string	play_movie_button	-	STR	Prehrať film
 values-b+sk/strings.xml	string	play_torrent_button	-	STR	Streamovať torrent	
 values-b+sk/strings.xml	string	play_trailer_button	-	STR	Prehrať upútavku	
 values-b+sk/strings.xml	string	play_with_app_name	-	STR	Prehrať s CloudStream	
+values-b+sk/strings.xml	string	player_enter_fullscreen	-	STR	Prejsť do režimu celej obrazovky	
+values-b+sk/strings.xml	string	player_exit_fullscreen	-	STR	Ukončiť režim celej obrazovky	
 values-b+sk/strings.xml	string	player_load_one_subtitle_online	-	STR	Načítať prvé k dispozícii	
 values-b+sk/strings.xml	string	player_load_subtitles	-	STR	Načítať z súboru	
 values-b+sk/strings.xml	string	player_load_subtitles_online	-	STR	Načítať z internetu	
@@ -26750,6 +26848,8 @@ values-b+so/strings.xml	string	play_movie_button	-	STR	Daaro filinka
 values-b+so/strings.xml	string	play_torrent_button	-	STR	Daalaco toorentiga	
 values-b+so/strings.xml	string	play_trailer_button	-	STR	Daar goos-gooska	
 values-b+so/strings.xml	string	play_with_app_name	-	STR	Ku daawo CloudStream	
+values-b+so/strings.xml	string	player_enter_fullscreen	-	STR	Gal shaashadda buuxda	
+values-b+so/strings.xml	string	player_exit_fullscreen	-	STR	Ka bax shaashadda buuxda	
 values-b+so/strings.xml	string	player_load_subtitles	-	STR	Faylashaada ka keen	
 values-b+so/strings.xml	string	player_load_subtitles_online	-	STR	Internetka ka keen	
 values-b+so/strings.xml	string	player_loaded_subtitles	-	STR	Waxa laso kiciyey %s	
@@ -27421,6 +27521,8 @@ values-b+sq/strings.xml	string	play_movie_button	-	STR	Luaj Filmin
 values-b+sq/strings.xml	string	play_torrent_button	-	STR	Transmeto Torrent	
 values-b+sq/strings.xml	string	play_trailer_button	-	STR	Luaj Trailerin	
 values-b+sq/strings.xml	string	play_with_app_name	-	STR	Luaj me CloudStream	
+values-b+sq/strings.xml	string	player_enter_fullscreen	-	STR	Hyr në luajtjen me ekran të plotë	
+values-b+sq/strings.xml	string	player_exit_fullscreen	-	STR	Dil nga ekrani i plotë	
 values-b+sq/strings.xml	string	player_is_live	-	STR	Live	
 values-b+sq/strings.xml	string	player_load_one_subtitle_online	-	STR	Ngarko të parën e disponueshme	
 values-b+sq/strings.xml	string	player_load_subtitles	-	STR	Ngarko nga skedari	
@@ -28198,6 +28300,8 @@ values-b+sv/strings.xml	string	play_movie_button	-	STR	Spela Upp
 values-b+sv/strings.xml	string	play_torrent_button	-	STR	Strömma Torrent	
 values-b+sv/strings.xml	string	play_trailer_button	-	STR	Spela Trailer	
 values-b+sv/strings.xml	string	play_with_app_name	-	STR	Spela med CloudStream	
+values-b+sv/strings.xml	string	player_enter_fullscreen	-	STR	Aktivera helskärm	
+values-b+sv/strings.xml	string	player_exit_fullscreen	-	STR	Lämna helskärm	
 values-b+sv/strings.xml	string	player_is_live	-	STR	Live	
 values-b+sv/strings.xml	string	player_load_one_subtitle_online	-	STR	Ladda in första möjliga	
 values-b+sv/strings.xml	string	player_load_subtitles	-	STR	Importera från fil	
@@ -28975,6 +29079,8 @@ values-b+ta/strings.xml	string	play_movie_button	-	STR	திரைப்பட�
 values-b+ta/strings.xml	string	play_torrent_button	-	STR	ச்ட்ரீம் டொரண்ட்	
 values-b+ta/strings.xml	string	play_trailer_button	-	STR	டிரெய்லரை இயக்கு	
 values-b+ta/strings.xml	string	play_with_app_name	-	STR	CloudStream-உடன் இயக்கு	
+values-b+ta/strings.xml	string	player_enter_fullscreen	-	STR	முழுத்திரைக்குச் செல்	
+values-b+ta/strings.xml	string	player_exit_fullscreen	-	STR	முழுத்திரையிலிருந்து வெளியேறு	
 values-b+ta/strings.xml	string	player_is_live	-	STR	வாழ்க	
 values-b+ta/strings.xml	string	player_load_one_subtitle_online	-	STR	முதலில் கிடைக்கிறது	
 values-b+ta/strings.xml	string	player_load_subtitles	-	STR	கோப்பிலிருந்து ஏற்றவும்	
@@ -29369,6 +29475,8 @@ values-b+ti/strings.xml	string	extensions_waiting_count	-	STR	ንዓኻ ዝጽ�
 values-b+ti/strings.xml	string	home_search_only_body	-	STR	ካብ መስፋሕፋሕትኻ ሓደ እኳ መበገሲ ገጽ የብሉን፡ ግን ሕጂ'ውን ኣብኡ ክትደሊ ትኽእል ኢኻ።	
 values-b+ti/strings.xml	string	load_more	-	STR	ተወሳኺ ጽዓን	
 values-b+ti/strings.xml	string	next_episode_format	-	STR	ክፋል %d በ ላይ ይወጣል	
+values-b+ti/strings.xml	string	player_enter_fullscreen	-	STR	ናብ ምሉእ ስክሪን እቶ	
+values-b+ti/strings.xml	string	player_exit_fullscreen	-	STR	ካብ ምሉእ ስክሪን ውጻእ	
 values-b+ti/strings.xml	string	search_state_idle_body_desktop	-	STR	ኣርእስቲ ጽሓፍ። ውጽኢታት ነፍሲ ወከፍ ምንጪ ምስ መለሰ ኣብ ትሕቲኡ ይርአዩ።	
 values-b+ti/strings.xml	string	seek_back_10_seconds	-	STR	10 ካልኢት ንድሕሪት	
 values-b+ti/strings.xml	string	seek_forward_10_seconds	-	STR	10 ካልኢት ንቕድሚት	
@@ -29545,6 +29653,8 @@ values-b+tl/strings.xml	string	play_movie_button	-	STR	I-play ang Movie
 values-b+tl/strings.xml	string	play_torrent_button	-	STR	Stream Torrent	
 values-b+tl/strings.xml	string	play_trailer_button	-	STR	Maglaro ng Trailer	
 values-b+tl/strings.xml	string	play_with_app_name	-	STR	I-play gamit ang CloudStream	
+values-b+tl/strings.xml	string	player_enter_fullscreen	-	STR	Mag-fullscreen	
+values-b+tl/strings.xml	string	player_exit_fullscreen	-	STR	Lumabas sa fullscreen	
 values-b+tl/strings.xml	string	player_size_settings	-	STR	Pindutan upang baguhin ang laki	
 values-b+tl/strings.xml	string	player_size_settings_des	-	STR	Alisin ang black borders	
 values-b+tl/strings.xml	string	player_speed	-	STR	Bilis ng Playback	
@@ -30083,6 +30193,8 @@ values-b+tr/strings.xml	string	play_movie_button	-	STR	Filmi Oynat
 values-b+tr/strings.xml	string	play_torrent_button	-	STR	Torrent Oynat	
 values-b+tr/strings.xml	string	play_trailer_button	-	STR	Fragmanı Oynat	
 values-b+tr/strings.xml	string	play_with_app_name	-	STR	CloudStream ile oynat	
+values-b+tr/strings.xml	string	player_enter_fullscreen	-	STR	Tam ekrana geç	
+values-b+tr/strings.xml	string	player_exit_fullscreen	-	STR	Tam ekrandan çık	
 values-b+tr/strings.xml	string	player_is_live	-	STR	Canlı	
 values-b+tr/strings.xml	string	player_load_one_subtitle_online	-	STR	İlk kullanılabiliri yükle	
 values-b+tr/strings.xml	string	player_load_subtitles	-	STR	Dosyadan yükle	
@@ -30868,6 +30980,8 @@ values-b+uk/strings.xml	string	play_movie_button	-	STR	Відтворити фі
 values-b+uk/strings.xml	string	play_torrent_button	-	STR	Транслювати торрент	
 values-b+uk/strings.xml	string	play_trailer_button	-	STR	Відтворити трейлер	
 values-b+uk/strings.xml	string	play_with_app_name	-	STR	Відтворити в CloudStream	
+values-b+uk/strings.xml	string	player_enter_fullscreen	-	STR	Перейти в повноекранний режим	
+values-b+uk/strings.xml	string	player_exit_fullscreen	-	STR	Вийти з повноекранного режиму	
 values-b+uk/strings.xml	string	player_is_live	-	STR	Наживо	
 values-b+uk/strings.xml	string	player_load_one_subtitle_online	-	STR	Завантажити перший доступний	
 values-b+uk/strings.xml	string	player_load_subtitles	-	STR	Завантажити з файлу	
@@ -31574,6 +31688,8 @@ values-b+ur/strings.xml	string	play_movie_button	-	STR	مووی لگائے
 values-b+ur/strings.xml	string	play_torrent_button	-	STR	سٹریم ٹورینٹ	
 values-b+ur/strings.xml	string	play_trailer_button	-	STR	ٹریلر چلائیں	
 values-b+ur/strings.xml	string	play_with_app_name	-	STR	CloudStream کے ساتھ چلائیں	
+values-b+ur/strings.xml	string	player_enter_fullscreen	-	STR	پوری اسکرین میں داخل ہوں	
+values-b+ur/strings.xml	string	player_exit_fullscreen	-	STR	پوری اسکرین سے باہر نکلیں	
 values-b+ur/strings.xml	string	player_load_subtitles	-	STR	فائل سے لوڈ کریں	
 values-b+ur/strings.xml	string	player_load_subtitles_online	-	STR	انٹرنیٹ سے لوڈ کریں	
 values-b+ur/strings.xml	string	player_loaded_subtitles	-	STR	لوڈ %s	
@@ -32280,6 +32396,8 @@ values-b+vi/strings.xml	string	play_movie_button	-	STR	Phát
 values-b+vi/strings.xml	string	play_torrent_button	-	STR	Phát Torrent	
 values-b+vi/strings.xml	string	play_trailer_button	-	STR	Phát Trailer	
 values-b+vi/strings.xml	string	play_with_app_name	-	STR	Phát bằng CloudStream	
+values-b+vi/strings.xml	string	player_enter_fullscreen	-	STR	Chuyển sang chế độ toàn màn hình	
+values-b+vi/strings.xml	string	player_exit_fullscreen	-	STR	Thoát khỏi chế độ toàn màn hình	
 values-b+vi/strings.xml	string	player_is_live	-	STR	Trực tiếp	
 values-b+vi/strings.xml	string	player_load_one_subtitle_online	-	STR	Tải phụ đề đầu tiên có sẵn	
 values-b+vi/strings.xml	string	player_load_subtitles	-	STR	Chọn từ tệp	
@@ -33052,6 +33170,8 @@ values-b+zh+TW/strings.xml	string	play_movie_button	-	STR	播放電影
 values-b+zh+TW/strings.xml	string	play_torrent_button	-	STR	播放種子	
 values-b+zh+TW/strings.xml	string	play_trailer_button	-	STR	播放預告片	
 values-b+zh+TW/strings.xml	string	play_with_app_name	-	STR	使用 CloudStream 播放	
+values-b+zh+TW/strings.xml	string	player_enter_fullscreen	-	STR	進入全螢幕模式	
+values-b+zh+TW/strings.xml	string	player_exit_fullscreen	-	STR	結束全螢幕模式	
 values-b+zh+TW/strings.xml	string	player_is_live	-	STR	播放中	
 values-b+zh+TW/strings.xml	string	player_load_one_subtitle_online	-	STR	載入第一個可用的	
 values-b+zh+TW/strings.xml	string	player_load_subtitles	-	STR	從檔案載入	
@@ -33820,6 +33940,8 @@ values-b+zh/strings.xml	string	play_movie_button	-	STR	播放电影
 values-b+zh/strings.xml	string	play_torrent_button	-	STR	播放种子	
 values-b+zh/strings.xml	string	play_trailer_button	-	STR	播放预告片	
 values-b+zh/strings.xml	string	play_with_app_name	-	STR	使用 CloudStream 播放	
+values-b+zh/strings.xml	string	player_enter_fullscreen	-	STR	进入全屏模式	
+values-b+zh/strings.xml	string	player_exit_fullscreen	-	STR	退出全屏模式	
 values-b+zh/strings.xml	string	player_is_live	-	STR	播放中	
 values-b+zh/strings.xml	string	player_load_one_subtitle_online	-	STR	加载第一个可用的字幕	
 values-b+zh/strings.xml	string	player_load_subtitles	-	STR	从文件加载	
@@ -34732,6 +34854,8 @@ values/strings.xml	string	play_movie_button	-	STR	Play Movie
 values/strings.xml	string	play_torrent_button	-	STR	Stream Torrent	
 values/strings.xml	string	play_trailer_button	-	STR	Play Trailer	
 values/strings.xml	string	play_with_app_name	-	STR	Play with CloudStream	
+values/strings.xml	string	player_enter_fullscreen	-	STR	Enter full screen	
+values/strings.xml	string	player_exit_fullscreen	-	STR	Exit full screen	
 values/strings.xml	string	player_is_live	-	STR	Live	
 values/strings.xml	string	player_load_one_subtitle_online	-	STR	Load first available	
 values/strings.xml	string	player_load_subtitles	-	STR	Load from file	

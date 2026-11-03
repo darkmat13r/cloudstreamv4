@@ -291,6 +291,8 @@
 <string name="play_torrent_button">"တောရပ် ကြည့်မည်"</string>
 <string name="play_trailer_button">"ထွေလာ ကြည့်မည်"</string>
 <string name="play_with_app_name">"CloudStream ဖြင့်ကြည့်ရန်"</string>
+<string name="player_enter_fullscreen">"ဖန်သားပြင်အပြည့်သို့ ဝင်ရောက်ပါ"</string>
+<string name="player_exit_fullscreen">"ဖန်သားပြင်အပြည့်မှ ထွက်ရန်"</string>
 <string name="player_load_subtitles">"ဖိုင်မှတင်သွင်းပြီး"</string>
 <string name="player_load_subtitles_online">"အင်တာနက်မှ တင်သွင်းမည်"</string>
 <string name="player_loaded_subtitles" formatted="true">"တင်ပြီး %s"</string>

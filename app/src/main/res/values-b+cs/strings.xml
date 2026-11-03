@@ -416,6 +416,8 @@
 <string name="play_torrent_button">"Streamovat torrent"</string>
 <string name="play_trailer_button">"Přehrát trailer"</string>
 <string name="play_with_app_name">"Přehrát s CloudStream"</string>
+<string name="player_enter_fullscreen">"Přejít do režimu celé obrazovky"</string>
+<string name="player_exit_fullscreen">"Ukončit režim celé obrazovky"</string>
 <string name="player_is_live">"Živě"</string>
 <string name="player_load_one_subtitle_online">"Načíst první dostupné"</string>
 <string name="player_load_subtitles">"Načíst ze souboru"</string>

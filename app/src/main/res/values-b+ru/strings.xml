@@ -416,6 +416,8 @@
 <string name="play_torrent_button">"Поток торрент"</string>
 <string name="play_trailer_button">"Смотреть трейлер"</string>
 <string name="play_with_app_name">"Смотреть с CloudStream"</string>
+<string name="player_enter_fullscreen">"Полноэкранный режим"</string>
+<string name="player_exit_fullscreen">"Выйти из полноэкранного режима"</string>
 <string name="player_is_live">"Прямой эфир"</string>
 <string name="player_load_one_subtitle_online">"Скачать первые доступные"</string>
 <string name="player_load_subtitles">"Загрузить из файла"</string>

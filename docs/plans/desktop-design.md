@@ -78,7 +78,6 @@ art scales, because scaling words makes them shimmer.
   are a near-opaque surface.
 - **Nav sidebar:** three tabs do the job for now — Library arrived (`KMP-26`) and the bar grew rather than
   becoming a sidebar. A sidebar is worth it at the fourth.
-- **Fullscreen** from the player, and **Cmd+F**.
 - **Back and the seek glyphs do not mirror** in a right-to-left layout.
 - **16:9 thumbnails are cropped into 2:3 cards in search**, which can cut off burned-in text. Search results do
   not report an image's shape. A main page does (`isHorizontalImages`), so home's rows draw 16:9 where asked.

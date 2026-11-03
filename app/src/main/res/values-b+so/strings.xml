@@ -291,6 +291,8 @@
 <string name="play_torrent_button">"Daalaco toorentiga"</string>
 <string name="play_trailer_button">"Daar goos-gooska"</string>
 <string name="play_with_app_name">"Ku daawo CloudStream"</string>
+<string name="player_enter_fullscreen">"Gal shaashadda buuxda"</string>
+<string name="player_exit_fullscreen">"Ka bax shaashadda buuxda"</string>
 <string name="player_load_subtitles">"Faylashaada ka keen"</string>
 <string name="player_load_subtitles_online">"Internetka ka keen"</string>
 <string name="player_loaded_subtitles" formatted="true">"Waxa laso kiciyey %s"</string>

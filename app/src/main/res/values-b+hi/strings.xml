@@ -270,6 +270,8 @@
 <string name="play_torrent_button">"टोरेंट चलाएं"</string>
 <string name="play_trailer_button">"ट्रेलर देखे"</string>
 <string name="play_with_app_name">"क्लाउडस्ट्रीम के साथ चलाएं"</string>
+<string name="player_enter_fullscreen">"फ़ुलस्क्रीन मोड पर देखें"</string>
+<string name="player_exit_fullscreen">"फ़ुलस्क्रीन मोड से बाहर निकलें"</string>
 <string name="player_size_settings">"प्लेयर आकार परिवर्तन बटन"</string>
 <string name="player_size_settings_des">"काले बॉर्डर हटाएँ"</string>
 <string name="player_speed">"प्लेयर स्पीड"</string>

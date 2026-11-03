@@ -141,6 +141,8 @@
 <string name="play_torrent_button">"Strøm Torrent"</string>
 <string name="play_trailer_button">"Spel av trailer"</string>
 <string name="play_with_app_name">"Spel av med CloudStream"</string>
+<string name="player_enter_fullscreen">"Vis i fullskjerm"</string>
+<string name="player_exit_fullscreen">"Avslutt fullskjerm"</string>
 <string name="player_size_settings_des">"Fjern dei svarte kantane"</string>
 <string name="player_speed">"Avspelinghastigheit"</string>
 <string name="player_speed_text_format" formatted="true">"Avspelinghastigheit (%.2fx)"</string>

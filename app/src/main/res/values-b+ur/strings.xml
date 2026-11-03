@@ -348,6 +348,8 @@
 <string name="play_torrent_button">"سٹریم ٹورینٹ"</string>
 <string name="play_trailer_button">"ٹریلر چلائیں"</string>
 <string name="play_with_app_name">"CloudStream کے ساتھ چلائیں"</string>
+<string name="player_enter_fullscreen">"پوری اسکرین میں داخل ہوں"</string>
+<string name="player_exit_fullscreen">"پوری اسکرین سے باہر نکلیں"</string>
 <string name="player_load_subtitles">"فائل سے لوڈ کریں"</string>
 <string name="player_load_subtitles_online">"انٹرنیٹ سے لوڈ کریں"</string>
 <string name="player_loaded_subtitles" formatted="true">"لوڈ %s"</string>
