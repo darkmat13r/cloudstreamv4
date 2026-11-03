@@ -34,6 +34,13 @@ internal object DexConverter {
             .printIR(false)
             .noCode(false)
             .skipExceptions(false)
+            // Both measured on real plugins (`KMP-18`). dex2jar otherwise rewrites `-` to `_` in names,
+            // so `kotlin.Result.constructor-impl` becomes a method that does not exist, and every
+            // `runCatching` throws `NoSuchMethodError` the first time it runs. 30 of 53 sampled jars.
+            .dontSanitizeNames(true)
+            // A dex of format 037 or later becomes class version 52, which the JVM refuses to verify
+            // without stack maps. Computed from the dex's own hierarchy, so no class is ever loaded.
+            .computeFrames(true)
             .to(output.toPath())
         check(output.isFile && output.length() > 0) { "dex2jar produced no output" }
     }

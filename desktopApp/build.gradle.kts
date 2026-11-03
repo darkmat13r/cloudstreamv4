@@ -27,6 +27,7 @@ kotlin {
             // than a Context — see DesktopSearchCopy's KDoc for why that distinction matters.
             implementation(project(":feature:search"))
             implementation(project(":feature:detail"))
+            implementation(project(":feature:home"))
             // KMP-13: `JvmExtensionRuntime` and `ExtensionHash`, from this module's `jvmMain`. It is
             // the only extension runtime that works off Android — a `.cs3` is dex-only, so the
             // cross-platform `.jar` is what desktop loads. No catalogue entry is added for it; the
@@ -47,6 +48,11 @@ kotlin {
             implementation(libs.kotlin.test)
         }
     }
+}
+
+// Where HomeScreenTest writes its PNGs, when asked with -Pcloudstream.home.renders=<directory>.
+tasks.withType<Test> {
+    providers.gradleProperty("cloudstream.home.renders").orNull?.let { systemProperty("cloudstream.home.renders", it) }
 }
 
 // java.lang.System::load has been called by org.jetbrains.skiko.LibraryLoader in an unnamed module
