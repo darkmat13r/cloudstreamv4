@@ -197,8 +197,8 @@ Where one area needs both (e.g. moved `SubtitleData` next to a new cue model), i
 ```
 layer 4   :app
 layer 3   :feature:*          :media:video/audio/cast/torrent/download (android-only)
-layer 2   :core:ui   :core:data   :core:notification   :media:model   :media:subtitle
-layer 1   :core:designsystem   :core:model   :core:network   :core:strings   :core:http   :core:storage
+layer 2   :core:ui   :core:data   :core:notification   :media:subtitle
+layer 1   :core:designsystem   :core:model   :core:network   :core:strings   :core:http   :core:storage   :media:model
 layer 0   :core:theme   :core:common   :library
 ```
 
@@ -444,7 +444,7 @@ Everything still open is listed here.
 | 21 | B6 `TestingUtils` into `:core:model` | — | **done** (`KMP-03`) — it is in `core/model/src/commonMain` |
 | 22 | B7 `fcast/Packets.kt` into `:core:common` | — | **done** (`KMP-04`), **split**: 8 classes to `commonMain`, `PlayMessage` stays in `:app` (`write$Self$app`). `DEC-07` dissolved — `:core:common` gains no dependencies |
 | 23 | B8 `APIRepository` into `:core:data` | — | **done** (`KMP-05`), awaiting the `DEC-08` sign-off. Delta measured: **one** line out (`access$afterPluginsLoaded`, a synthetic for a private method), one in. `DEC-08`'s predicted entry (`access$getAfterPluginsLoadedEvent$cp`) is **not** removed. Placed in `jvmCommonMain` so `:core:data` stays out of `IOS_CANARY_EXEMPT` and the canary stays 12/12 |
-| 17 | `:feature:extensions` prep: `ExtensionRuntime` seam, repository model in commonMain | 14 | **contracts half done** (`KMP-11`): the module exists, commonMain only, no `:app` change, no jar merge, and the canary **grew 12 → 13** because the module depends on nothing. The half that **adapts `:app`'s `PluginManager` to the seam still needs the owner's explicit go-ahead** |
+| 17 | `:feature:extensions` prep: `ExtensionRuntime` seam, repository model in commonMain | 14 | **contracts half done** (`KMP-11`): the module exists, commonMain only, no `:app` change, no jar merge, and the canary **grew 12 → 13** because the module depends on nothing. **Adapter partly done** 2026-11-02: `AndroidExtensionRuntime` over an unedited `PluginManager`, no caller yet, `install` refuses (`KMP-11` `F1`, `F2`) |
 | 18 | First vertical (search + quicksearch) | 14 | **steps 1 and 2 of 5 done** (`KMP-12`): contracts, provider seam, MVI state machine and the **TV screen**, 16 tests. **The Track L note does not apply** — `SearchResultItem` restates what the UI reads and `SearchSource` is the seam, so commonMain never touches `:library`, needs no `IOS_CANARY_EXEMPT` entry and joins the canary, taking it from 13 modules to **14**. Step 2 is **TV only**: artboards 4a–4c and 8c are built; **touch and desktop have no design at all** (`screen-implementation-handover.md` §7), and Phase B of that document forbids improvising one. Reading the design changed the state model — a blank query is recent-search *content*, not an empty prompt (4c), and results are grouped per provider (4a). Glue fragment and the nav repoint are next; `:app`'s search path is untouched |
 | L | Track L: `:library` iOS surgery | — | design workflow first (§2.4); blocked on O2 |
 
