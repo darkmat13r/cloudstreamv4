@@ -2943,7 +2943,7 @@ Seventh move of the oracle baseline.
 
 ## KMP-28 — Volume and mute in the desktop player · **measured 2026-11-03**
 
-**Status:** in pr. The player had no volume control at all. Asked for under "continue development", and chosen by me as
+**Status:** done · #118. The player had no volume control at all. Asked for under "continue development", and chosen by me as
 the largest gap in playback.
 
 A speaker control and an 80 wide rule in the transport row, up and down in steps of 5, M to mute. The level is shared by
