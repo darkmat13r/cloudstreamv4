@@ -2636,5 +2636,5 @@ Why: pictures are 2.5 to 7% too tall. Older than this task, and not about subtit
 ```
 Found: YouTube's timedtext answered 429 after this task's repeated fetches, which the player shows as "Couldn't load these subtitles"
 Suggest: leave it. The failure is legible and the track can be chosen again. A cache or backoff would be its own task
-Why: measured once, with curl on a dummy URL as well as through the check; a person choosing one track is far from that rate
+Why: measured once, with curl on a dummy URL as well as through the check, and gone on the next run; a person choosing one track is far from that rate
 ```
