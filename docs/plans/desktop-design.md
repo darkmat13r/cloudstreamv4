@@ -36,6 +36,8 @@ line boxes.
 | Episodes behind a selector | On the page | A window has the room |
 | Full-width player scrim | Floating controls, at most 720 wide | The picture stays clear, and play stays near its timeline |
 | Tap to seek | The track follows the pointer 1:1, and seeks once on release | Direct manipulation; a seek is a network request |
+| Subtitle track menu | A short list floating above the control that opened it, in the controls' column; C opens it, a click outside closes it | It stays beside the timeline, and the picture keeps playing around it |
+| Fixed subtitle band | Cues go where the file asks, and lift clear of the controls while they show | A cue never hides behind a control, and nothing moves when the controls are gone |
 
 ## Spacing
 
