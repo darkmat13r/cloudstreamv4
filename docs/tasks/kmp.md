@@ -2916,7 +2916,7 @@ Why: it is existing code in another vertical, and a broken gate deserves its own
 
 ## KMP-27 — Full screen in the desktop player · **measured 2026-11-03**
 
-**Status:** in pr. **Owner's request 2026-11-03:** "add enter full screen on video player".
+**Status:** done · #117. **Owner's request 2026-11-03:** "add enter full screen on video player".
 
 A control at the right end of the transport row, F and Cmd+F (`docs/plans/desktop-design.md` listed Cmd+F as not done).
 Escape closes the subtitle list, then full screen, and only then leaves the player. Closing the player, by Back or by
