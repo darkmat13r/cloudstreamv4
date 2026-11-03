@@ -253,16 +253,43 @@
 <string name="example_site_name">"新網站名稱"</string>
 <string name="example_site_url">"https://example.com"</string>
 <string name="example_username">"使用者名稱"</string>
+<string name="extension_allow">"允許"</string>
 <string name="extension_authors">"作者"</string>
+<string name="extension_decision_not_saved">"無法儲存你的選擇，因此此擴充功能會保持關閉。系統會再次詢問你。"</string>
+<string name="extension_decisions_unreadable">"無法讀取你儲存的選擇，因此已將其忽略。有警告的擴充功能會保持關閉，直到你重新選擇。"</string>
 <string name="extension_description">"簡介"</string>
 <string name="extension_install_first">"請先安裝外掛"</string>
+<string name="extension_keep_off">"保持關閉"</string>
 <string name="extension_language">"語言"</string>
 <string name="extension_rating" formatted="true">"評分：%s"</string>
+<string name="extension_review_clean_note">"沒有警告的擴充功能不會列在這裡。這表示掃描沒有發現明顯問題，並不表示它們是安全的。每個擴充功能都在各自的沙箱中執行。"</string>
+<string name="extension_review_empty">"沒有擴充功能有警告。"</string>
+<string name="extension_review_file_note">"選擇僅適用於這個檔案。如果檔案有所變更，系統會再次詢問你。"</string>
+<string name="extension_review_intro">"在你選擇之前，每個擴充功能都會保持關閉。警告只是掃描注意到的情況。它並不表示某個擴充功能是安全的或有害的。"</string>
+<string name="extension_review_title">"有警告的擴充功能"</string>
 <string name="extension_size">"大小"</string>
 <string name="extension_status">"狀態"</string>
+<string name="extension_status_allowed">"已允許，正在其沙箱中執行"</string>
+<string name="extension_status_blocked">"已遭掃描封鎖。無法允許。"</string>
+<string name="extension_status_hash_mismatch">"此檔案與其發布的雜湊值不符。無法允許。"</string>
+<string name="extension_status_held">"在你選擇之前保持關閉"</string>
+<string name="extension_status_kept_off">"已保持關閉"</string>
+<string name="extension_status_start_failed">"已允許，但未能啟動"</string>
 <string name="extension_types">"類型"</string>
 <string name="extension_version">"版本"</string>
+<string name="extension_warning_classloader_access">"它存取了類別載入器，這可能引入此次掃描從未見過的程式碼。"</string>
+<string name="extension_warning_dynamic_script">"它可以執行指令碼，因此其行為可能在此次掃描後改變。"</string>
+<string name="extension_warning_environment">"它會讀取這台電腦的設定，例如環境變數。"</string>
+<string name="extension_warning_exit">"它可以自行關閉。這只會結束它自己的沙箱，不會結束應用程式。"</string>
+<string name="extension_warning_filesystem">"它會讀取或寫入檔案。沙箱將其限制在自己的資料夾內。"</string>
+<string name="extension_warning_other">"掃描標記了它無法描述的內容。詳情請見下方。"</string>
+<string name="extension_warning_raw_socket">"它直接開啟網路連線，而不是透過應用程式。"</string>
+<string name="extension_warning_reflection">"它使用了反射，這會讓此次掃描看不到它實際的行為。"</string>
+<string name="extension_warning_suspicious_string">"它提到了這台電腦上的敏感位置或工具，例如命令列 shell 或已儲存的登入資訊。"</string>
+<string name="extension_warning_telemetry">"它提到了裝置識別碼，這常被用來追蹤某次安裝。"</string>
+<string name="extension_warning_webview">"它使用了網頁檢視，也就是可以載入任何網頁的內建瀏覽器。"</string>
 <string name="extensions">"擴充功能"</string>
+<string name="extensions_waiting_count" formatted="true">"等待你處理的擴充功能：%d"</string>
 <string name="extra_brightness_key">"已開啟額外亮度"</string>
 <string name="extra_brightness_settings">"額外亮度"</string>
 <string name="extra_brightness_settings_des" formatted="true">"超過100%亮度時開啟亮度調整"</string>

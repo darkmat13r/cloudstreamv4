@@ -165,16 +165,43 @@
 <string name="example_site_name">"Websaydkayga.com"</string>
 <string name="example_site_url">"Tusaale.com"</string>
 <string name="example_username">"MagacKaYaabAh"</string>
+<string name="extension_allow">"Oggolow"</string>
 <string name="extension_authors">"Lahaanshaha"</string>
+<string name="extension_decision_not_saved">"Doorashadaada lama keydin karin, sidaas darteed kordhiyahan wuu dansanaanayaa. Mar kale ayaa lagu weydiin doonaa."</string>
+<string name="extension_decisions_unreadable">"Doorashooyinkaagii la keydiyey lama akhrin karin, sidaas darteed waa la iska indhatiray. Kordhiyeyaasha digniinta leh way dansanaanayaan ilaa aad mar kale doorato."</string>
 <string name="extension_description">"Sharraxaad"</string>
 <string name="extension_install_first">"Rakib kordhiyahan ugu horreyn"</string>
+<string name="extension_keep_off">"Ha daarin"</string>
 <string name="extension_language">"Luuqadda"</string>
 <string name="extension_rating" formatted="true">"Qiimeynta: %s"</string>
+<string name="extension_review_clean_note">"Kordhiyeyaasha aan digniin lahayn halkan laguma taxin. Taasi waxay ka dhigan tahay in baaritaanku aanu helin wax muuqda, ee ma aha in ay ammaan yihiin. Kordhiye kastaa wuxuu ku shaqeeyaa goob u gaar ah oo go'doonsan."</string>
+<string name="extension_review_empty">"Ma jiraan kordhiyeyaal digniino leh."</string>
+<string name="extension_review_file_note">"Doorashadu waxay khusaysaa faylkan gaarka ah oo keliya. Haddii faylku isbeddelo, mar kale ayaa lagu weydiin doonaa."</string>
+<string name="extension_review_intro">"Mid kastaa wuu dansanaanayaa ilaa aad doorato. Digniintu waa uun wixii baaritaan dareemay. Ma sheegayso in kordhiye ammaan yahay ama waxyeello leeyahay."</string>
+<string name="extension_review_title">"Kordhiyeyaasha leh digniino"</string>
 <string name="extension_size">"Xajmiga"</string>
 <string name="extension_status">"Xaaladda"</string>
+<string name="extension_status_allowed">"Waa la oggolaaday, wuxuuna ku shaqaynayaa goobtiisa go'doonsan"</string>
+<string name="extension_status_blocked">"Baaritaanka ayaa xannibay. Tan lama oggolaan karo."</string>
+<string name="extension_status_hash_mismatch">"Faylkani la mid ma aha hash-kiisa la daabacay. Tan lama oggolaan karo."</string>
+<string name="extension_status_held">"Dansan ilaa aad doorato"</string>
+<string name="extension_status_kept_off">"Dansan ayaa la hayaa"</string>
+<string name="extension_status_start_failed">"Waa la oggolaaday, laakiin ma bilaaban"</string>
 <string name="extension_types">"Ku shaqeeya"</string>
 <string name="extension_version">"Qaybtii"</string>
+<string name="extension_warning_classloader_access">"Wuxuu gaaraa class loader-ka, kaas oo keeni kara kood uusan baaritaankani waligiis arag."</string>
+<string name="extension_warning_dynamic_script">"Wuxuu socodsiin karaa qoraallo (scripts), sidaas darteed waxa uu sameeyo way isbeddeli karaan baaritaankan ka dib."</string>
+<string name="extension_warning_environment">"Wuxuu akhriyaa dejinta kombiyuutarkan, sida doorsoomayaasha deegaanka."</string>
+<string name="extension_warning_exit">"Wuu is-demin karaa. Taasi waxay dhammaynaysaa oo keliya goobtiisa go'doonsan, ee ma aha barnaamijka."</string>
+<string name="extension_warning_filesystem">"Wuxuu akhriyaa ama qoraa faylal. Goobta go'doonsan waxay ku koobtaa galkiisa gaarka ah."</string>
+<string name="extension_warning_other">"Baaritaanku wuxuu calaamadeeyey wax uusan sharaxaad u hayn. Faahfaahintu hoos ayay ku qoran tahay."</string>
+<string name="extension_warning_raw_socket">"Wuxuu si toos ah u furaa xiriirrada shabakadda, isagoo aan sii marin barnaamijka."</string>
+<string name="extension_warning_reflection">"Wuxuu isticmaalaa reflection, taas oo baaritaankan ka qarisa waxa uu sameeyo."</string>
+<string name="extension_warning_suspicious_string">"Wuxuu sheegayaa meel ama qalab xasaasi ah oo ku yaal kombiyuutarkan, sida shell ama gelitaanno la keydiyey."</string>
+<string name="extension_warning_telemetry">"Wuxuu magacaabayaa aqoonsiga qalabka, kaas oo inta badan loo isticmaalo raadraaca rakibaad."</string>
+<string name="extension_warning_webview">"Wuxuu isticmaalaa daawade shabakad, oo ah biraawsar ku dhex dhisan oo soo geli kara bog kasta."</string>
 <string name="extensions">"Kordhiyeyaasha"</string>
+<string name="extensions_waiting_count" formatted="true">"Kordhiyeyaasha ku sugaya: %d"</string>
 <string name="extra_brightness_key">"Iftiinka dheeraadka ah waa shidan yahay"</string>
 <string name="extra_brightness_settings">"Iftiin dheeraad ah"</string>
 <string name="extra_brightness_settings_des" formatted="true">"Daar filter-ka iftiinka marka uu iftiinku 100% ka bato"</string>

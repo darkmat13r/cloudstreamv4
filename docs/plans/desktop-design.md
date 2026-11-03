@@ -55,6 +55,14 @@ something that already has a fill is `Quiet`, with no fill until the pointer arr
 The search field's clear button never takes focus, so Tab goes past it and pressing it leaves the caret in the field.
 Escape is the keyboard's way to do the same.
 
+## Extensions with warnings
+
+A notice at the trailing end of the tab bar rather than a third tab: it exists only when there is something to say, and a
+screen that interrupted the launch would ask before anyone had seen the app. It is the one place in the bar with a glyph, because
+it is the one thing that is not a destination. Neither Allow nor Keep off is the filled button: the default is already off, and
+this screen does not nudge. Text the plugin controls is smaller, muted and left to right, so it cannot pass for the app's own voice.
+See `KMP-24`.
+
 ## Motion
 
 `DesktopMotion`: a critically damped spring with a 0.3 s response, so no overshoot. A spring starts from the

@@ -253,16 +253,43 @@
 <string name="example_site_name">"새사이트이름"</string>
 <string name="example_site_url">"https://example.com"</string>
 <string name="example_username">"사용자 이름"</string>
+<string name="extension_allow">"허용"</string>
 <string name="extension_authors">"제작자"</string>
+<string name="extension_decision_not_saved">"선택을 저장할 수 없어 이 확장 기능은 꺼진 상태로 유지됩니다. 다시 묻습니다."</string>
+<string name="extension_decisions_unreadable">"저장된 선택을 읽을 수 없어 무시했습니다. 경고가 있는 확장 기능은 다시 선택할 때까지 꺼진 상태로 유지됩니다."</string>
 <string name="extension_description">"소개"</string>
 <string name="extension_install_first">"먼저 확장 프로그램을 설치하세요"</string>
+<string name="extension_keep_off">"끈 상태로 유지"</string>
 <string name="extension_language">"언어"</string>
 <string name="extension_rating" formatted="true">"평점: %s"</string>
+<string name="extension_review_clean_note">"경고가 없는 확장 기능은 여기에 표시되지 않습니다. 이는 검사에서 뚜렷한 문제를 찾지 못했다는 뜻이며, 안전하다는 뜻은 아닙니다. 모든 확장 기능은 각자의 샌드박스에서 실행됩니다."</string>
+<string name="extension_review_empty">"경고가 있는 확장 기능이 없습니다."</string>
+<string name="extension_review_file_note">"선택은 바로 이 파일에 적용됩니다. 파일이 변경되면 다시 묻습니다."</string>
+<string name="extension_review_intro">"각 확장 기능은 선택할 때까지 꺼진 상태로 유지됩니다. 경고는 검사에서 발견한 내용일 뿐입니다. 확장 기능이 안전하거나 해롭다는 뜻은 아닙니다."</string>
+<string name="extension_review_title">"경고가 있는 확장 기능"</string>
 <string name="extension_size">"사이즈"</string>
 <string name="extension_status">"상태"</string>
+<string name="extension_status_allowed">"허용됨, 자체 샌드박스에서 실행 중"</string>
+<string name="extension_status_blocked">"검사에서 차단되었습니다. 허용할 수 없습니다."</string>
+<string name="extension_status_hash_mismatch">"이 파일은 게시된 해시와 일치하지 않습니다. 허용할 수 없습니다."</string>
+<string name="extension_status_held">"선택할 때까지 꺼짐"</string>
+<string name="extension_status_kept_off">"꺼진 상태로 유지됨"</string>
+<string name="extension_status_start_failed">"허용되었지만 시작되지 않음"</string>
 <string name="extension_types">"유형"</string>
 <string name="extension_version">"버전"</string>
+<string name="extension_warning_classloader_access">"클래스 로더에 접근하므로 이 검사에서 확인하지 못한 코드를 불러올 수 있습니다."</string>
+<string name="extension_warning_dynamic_script">"스크립트를 실행할 수 있어 이 검사 후에 동작이 바뀔 수 있습니다."</string>
+<string name="extension_warning_environment">"환경 변수와 같은 이 컴퓨터의 설정을 읽습니다."</string>
+<string name="extension_warning_exit">"스스로 종료할 수 있습니다. 이 경우 자체 샌드박스만 종료되며 앱은 종료되지 않습니다."</string>
+<string name="extension_warning_filesystem">"파일을 읽거나 씁니다. 샌드박스는 자체 폴더로만 접근을 제한합니다."</string>
+<string name="extension_warning_other">"검사에서 설명이 없는 항목이 발견되었습니다. 자세한 내용은 아래에 있습니다."</string>
+<string name="extension_warning_raw_socket">"앱을 거치지 않고 직접 네트워크 연결을 엽니다."</string>
+<string name="extension_warning_reflection">"리플렉션을 사용하므로 이 검사에서는 동작을 알 수 없습니다."</string>
+<string name="extension_warning_suspicious_string">"셸이나 저장된 로그인 정보와 같이 이 컴퓨터의 민감한 위치나 도구를 언급합니다."</string>
+<string name="extension_warning_telemetry">"기기 식별자를 언급합니다. 이는 설치를 추적하는 데 자주 사용됩니다."</string>
+<string name="extension_warning_webview">"모든 페이지를 불러올 수 있는 내장 브라우저인 웹뷰를 사용합니다."</string>
 <string name="extensions">"확장 기능"</string>
+<string name="extensions_waiting_count" formatted="true">"선택을 기다리는 확장 기능: %d"</string>
 <string name="extra_brightness_key">"최대 밝기 확장 활성화"</string>
 <string name="extra_brightness_settings">"최대 밝기 확장"</string>
 <string name="extra_brightness_settings_des" formatted="true">"디스플레이 밝기가 100%를 초과하면 밝기 필터를 활성화합니다"</string>
