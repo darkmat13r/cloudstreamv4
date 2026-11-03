@@ -773,7 +773,7 @@ After the fix, same app, same home:
 
 ## BUG-17 — the iOS test gate cannot compile `:feature:home`'s tests · **measured 2026-11-03**
 
-**Status:** open · found while adding `:feature:library`'s own iOS tests (`KMP-26`) · `:feature:home`
+**Status:** done · found while adding `:feature:library`'s own iOS tests (`KMP-26`) · `:feature:home`
 
 `iosSimulatorTest` — the fifth, opt-in gate that `INF-04` added so a `commonTest` assertion is checked on
 Kotlin/Native and not only on the JVM — **has been red since `KMP-20` merged (#92).** It does not fail an
@@ -794,8 +794,20 @@ would compile. Nothing else in the repository trips it: `:feature:library` is cl
 
 **Why it matters more than five names:** the gate exists because a `Char` category, a `toString()` of a
 `Double`, a date formatter or an atomic's memory model can differ between the JVM and Kotlin/Native, and
-nothing else in this project would catch it. While it cannot compile, **none of the 219 `commonTest`
-assertions in the canary's modules are being checked there** — `:core:designsystem` 1, `:core:storage` 48,
+nothing else in this project would catch it. While it could not compile, **none of the 219 `commonTest`
+assertions in the canary's modules were being checked there.**
+
+### Fixed, and what the gate now reports
+
+The five names lost their commas. Nothing else changed, and no assertion moved.
+
+    ./gradlew iosSimulatorTest -Pcloudstream.iosTest=true     # exit 0, 1 m 35 s
+
+**219 tests on an iOS simulator, 0 failures** — `:core:designsystem` 1, `:core:storage` 48,
 `:feature:extensions` 4, `:feature:home` 10, `:feature:library` 14, `:feature:search` 3,
-`:media:subtitle` 139, counted on this tree. `:feature:library`'s 14 were verified by running that one
-module's target directly, which is the workaround until this is fixed.
+`:media:subtitle` 139. That is the first time every one of them has run there.
+
+**What stops it happening again:** running the fifth gate. It is opt-in and not one of the four, so a
+`commonTest` added without it stays unchecked until someone looks — which is exactly how this one lasted
+from #92 to #108. Worth remembering when the next vertical adds a `commonTest`: the trap is silent on the
+JVM, and the error (`Name contains illegal characters: ","`) names neither Kotlin/Native nor the reason.
