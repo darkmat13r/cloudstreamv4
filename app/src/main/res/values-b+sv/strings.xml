@@ -645,9 +645,12 @@
 <string name="subtitles_depressed">"Nedsänkt"</string>
 <string name="subtitles_encoding">"Undertextkodning"</string>
 <string name="subtitles_example_text">"Flygande bäckasiner söka hwila på mjuka tuvor"</string>
+<string name="subtitles_file_empty">"Den här undertextfilen är tom"</string>
 <string name="subtitles_filter_lang">"Filtrera efter föredraget språk"</string>
+<string name="subtitles_format_unsupported">"Det här undertextformatet stöds inte"</string>
 <string name="subtitles_from_embedded">"Inbäddad"</string>
 <string name="subtitles_from_online">"Ansluten"</string>
+<string name="subtitles_load_failed">"Det gick inte att ladda de här undertexterna"</string>
 <string name="subtitles_outline">"Kontur"</string>
 <string name="subtitles_raised">"Upphöjd"</string>
 <string name="subtitles_remove_bloat">"Ta bort reklam från undertexter"</string>

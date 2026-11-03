@@ -24,6 +24,31 @@ internal object CueText {
     private const val MAX_ENTITY_LENGTH = 10
     private const val MAX_CODE_POINT = 0x10FFFF
     private const val MIN_SUPPLEMENTARY = 0x10000
+    private const val OVERRIDE_OPEN = "{\\"
+    private const val ALIGNMENT_TAG = "\\an"
+
+    /**
+     * The first `{\anN}` in [raw] with N from 1 to 9, or null. What [toPlainLines] removes, read first.
+     *
+     * Only a block [toPlainLines] would remove counts, so `{\an8` with no closer stays text and places
+     * nothing. A code out of range is ignored rather than taken for the default, as SSA renderers do.
+     */
+    fun alignmentOverride(raw: String): Int? {
+        var open = raw.indexOf(OVERRIDE_OPEN)
+        while (open >= 0) {
+            val close = raw.indexOf('}', open)
+            if (close < 0) return null
+            var at = raw.indexOf(ALIGNMENT_TAG, open)
+            while (at in 0 until close) {
+                val digit = raw.getOrNull(at + ALIGNMENT_TAG.length)
+                val next = raw.getOrNull(at + ALIGNMENT_TAG.length + 1)
+                if (digit != null && digit in '1'..'9' && (next == null || next !in '0'..'9')) return digit - '0'
+                at = raw.indexOf(ALIGNMENT_TAG, at + ALIGNMENT_TAG.length)
+            }
+            open = raw.indexOf(OVERRIDE_OPEN, close)
+        }
+        return null
+    }
 
     fun toPlainLines(raw: String): List<String> {
         val out = StringBuilder(raw.length)

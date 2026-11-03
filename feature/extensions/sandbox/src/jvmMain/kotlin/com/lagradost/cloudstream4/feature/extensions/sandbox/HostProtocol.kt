@@ -32,6 +32,9 @@ internal object HostProtocol {
     const val MAX_HOME_ROW_ITEMS = 200
     const val MAX_SEQUENTIAL_DELAY_MILLIS = 10_000L
 
+    /** Far above YouTube's measured count (`KMP-25`). Cut in the host too, so an honest long list still fits a frame. */
+    const val MAX_SUBTITLES = 200
+
     /** One length-prefixed frame, or `null` at a clean end of stream. */
     fun readFrame(input: InputStream): ByteArray? {
         val first = input.read()
@@ -145,7 +148,24 @@ data class RemoteLink(
     val audioUrl: String?,
 )
 
-data class RemoteLinks(val links: List<RemoteLink>, val subtitles: Int)
+/**
+ * A subtitle track a plugin offered, as the app receives it.
+ *
+ * Only the two headers a [RemoteLink] may carry cross this boundary. A plugin's other headers stay in the
+ * host, which is why a track that needs `Authorization` or a cookie will fail to fetch.
+ *
+ * @param language what the plugin called it: a name or a code. It is what the user is shown.
+ * @param languageTag the BCP-47 tag `:library` resolved from [language], where it could.
+ */
+data class RemoteSubtitle(
+    val language: String,
+    val languageTag: String?,
+    val url: String,
+    val referer: String?,
+    val userAgent: String?,
+)
+
+data class RemoteLinks(val links: List<RemoteLink>, val subtitles: List<RemoteSubtitle>)
 
 internal fun DataOutputStream.writeProviders(providers: List<RemoteProvider>) {
     writeInt(providers.size)
@@ -261,7 +281,14 @@ internal fun DataInputStream.readDetails(): RemoteDetails = RemoteDetails(
 )
 
 internal fun DataOutputStream.writeLinks(links: RemoteLinks) {
-    writeInt(links.subtitles)
+    writeInt(links.subtitles.size)
+    links.subtitles.forEach { subtitle ->
+        writeText(subtitle.language)
+        writeOptional(subtitle.languageTag)
+        writeText(subtitle.url)
+        writeOptional(subtitle.referer)
+        writeOptional(subtitle.userAgent)
+    }
     writeInt(links.links.size)
     links.links.forEach { link ->
         writeText(link.source)
@@ -276,7 +303,9 @@ internal fun DataOutputStream.writeLinks(links: RemoteLinks) {
 }
 
 internal fun DataInputStream.readLinks(): RemoteLinks {
-    val subtitles = readInt()
+    val subtitles = List(readCount()) {
+        RemoteSubtitle(readText(), readOptional(), readText(), readOptional(), readOptional())
+    }
     return RemoteLinks(
         links = List(readCount()) {
             RemoteLink(readText(), readText(), readText(), readInt(), readText(), readOptional(), readOptional(), readOptional())

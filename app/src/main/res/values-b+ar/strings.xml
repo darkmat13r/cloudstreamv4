@@ -644,9 +644,12 @@
 <string name="subtitles_depressed">"النمط المنخفض"</string>
 <string name="subtitles_encoding">"فك تشفير الترجمة"</string>
 <string name="subtitles_example_text">"نصٌّ حكيمٌ لهُ سِرٌّ قاطِعٌ وَذُو شَأنٍ عَظيمٍ مكتوبٌ على ثوبٍ أخضرَ ومُغلفٌ بجلدٍ أزرق"</string>
+<string name="subtitles_file_empty">"ملف الترجمة هذا فارغ"</string>
 <string name="subtitles_filter_lang">"تصفية حسب لغة الوسائط المفضلة"</string>
+<string name="subtitles_format_unsupported">"تنسيق الترجمة هذا غير مدعوم"</string>
 <string name="subtitles_from_embedded">"داخلياً"</string>
 <string name="subtitles_from_online">"اونلاين"</string>
+<string name="subtitles_load_failed">"تعذّر تحميل هذه الترجمة"</string>
 <string name="subtitles_outline">"الخطوط المحيطة"</string>
 <string name="subtitles_raised">"رفع"</string>
 <string name="subtitles_remove_bloat">"ازالة البرمجيات الخبيثة من الترجمة"</string>

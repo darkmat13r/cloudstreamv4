@@ -645,9 +645,12 @@
 <string name="subtitles_depressed">"凹んだ"</string>
 <string name="subtitles_encoding">"字幕エンコーディング"</string>
 <string name="subtitles_example_text">"The quick brown fox jumps over the lazy dog"</string>
+<string name="subtitles_file_empty">"この字幕ファイルは空です"</string>
 <string name="subtitles_filter_lang">"優先メディア言語でフィルタ"</string>
+<string name="subtitles_format_unsupported">"この字幕形式には対応していません"</string>
 <string name="subtitles_from_embedded">"埋め込み"</string>
 <string name="subtitles_from_online">"オンライン"</string>
+<string name="subtitles_load_failed">"この字幕を読み込めませんでした"</string>
 <string name="subtitles_outline">"概要"</string>
 <string name="subtitles_raised">"浮き上がった"</string>
 <string name="subtitles_remove_bloat">"字幕から不要なものを削除"</string>

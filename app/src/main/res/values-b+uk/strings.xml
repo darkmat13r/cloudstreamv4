@@ -645,9 +645,12 @@
 <string name="subtitles_depressed">"Опущені"</string>
 <string name="subtitles_encoding">"Кодування субтитрів"</string>
 <string name="subtitles_example_text">"Щастям б’єш жук їх глицю в фон й ґедзь пріч"</string>
+<string name="subtitles_file_empty">"Цей файл субтитрів порожній"</string>
 <string name="subtitles_filter_lang">"Фільтрувати за бажаною мовою медіа"</string>
+<string name="subtitles_format_unsupported">"Цей формат субтитрів не підтримується"</string>
 <string name="subtitles_from_embedded">"Вбудовані"</string>
 <string name="subtitles_from_online">"Мережеві"</string>
+<string name="subtitles_load_failed">"Не вдалося завантажити ці субтитри"</string>
 <string name="subtitles_outline">"Обведення"</string>
 <string name="subtitles_raised">"Підняті"</string>
 <string name="subtitles_remove_bloat">"Вилучати роздуття субтитрів"</string>

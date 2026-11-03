@@ -695,9 +695,12 @@ values-b+af	string	subtitle_offset_title	-	Subtitle delay
 values-b+af	string	subtitles_depressed	-	Depressed
 values-b+af	string	subtitles_encoding	-	Subtitle encoding
 values-b+af	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+values-b+af	string	subtitles_file_empty	-	Hierdie onderskriflêer is leeg
 values-b+af	string	subtitles_filter_lang	-	Filter by preferred media language
+values-b+af	string	subtitles_format_unsupported	-	Hierdie onderskrifformaat word nie ondersteun nie
 values-b+af	string	subtitles_from_embedded	-	Embedded
 values-b+af	string	subtitles_from_online	-	Online
+values-b+af	string	subtitles_load_failed	-	Kon nie hierdie onderskrifte laai nie
 values-b+af	string	subtitles_none	-	None
 values-b+af	string	subtitles_outline	-	Outline
 values-b+af	string	subtitles_raised	-	Raised
@@ -1491,9 +1494,12 @@ values-b+am	string	subtitle_offset_title	-	Subtitle delay
 values-b+am	string	subtitles_depressed	-	Depressed
 values-b+am	string	subtitles_encoding	-	Subtitle encoding
 values-b+am	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+values-b+am	string	subtitles_file_empty	-	ይህ የንዑስ ርዕስ ፋይል ባዶ ነው
 values-b+am	string	subtitles_filter_lang	-	Filter by preferred media language
+values-b+am	string	subtitles_format_unsupported	-	ይህ የንዑስ ርዕስ ቅርጸት አይደገፍም
 values-b+am	string	subtitles_from_embedded	-	Embedded
 values-b+am	string	subtitles_from_online	-	Online
+values-b+am	string	subtitles_load_failed	-	እነዚህን ንዑስ ርዕሶች መጫን አልተቻለም
 values-b+am	string	subtitles_none	-	None
 values-b+am	string	subtitles_outline	-	Outline
 values-b+am	string	subtitles_raised	-	Raised
@@ -2287,9 +2293,12 @@ values-b+apc	string	subtitle_offset_title	-	تأخير الترجمة
 values-b+apc	string	subtitles_depressed	-	مدپرس
 values-b+apc	string	subtitles_encoding	-	نوع الكتيبة بال ترجمة
 values-b+apc	string	subtitles_example_text	-	أبجد هوز حطي كلمن سعفص قرشت ثخذ ضظغ
+values-b+apc	string	subtitles_file_empty	-	ملف الترجمة هاد فاضي
 values-b+apc	string	subtitles_filter_lang	-	فَلتِر حسب اللغة المفضلة
+values-b+apc	string	subtitles_format_unsupported	-	صيغة الترجمة هاي مش مدعومة
 values-b+apc	string	subtitles_from_embedded	-	داخلياً
 values-b+apc	string	subtitles_from_online	-	اونلاين
+values-b+apc	string	subtitles_load_failed	-	ما قدرنا نفتح هالترجمة
 values-b+apc	string	subtitles_none	-	ولا شي
 values-b+apc	string	subtitles_outline	-	حدود خطية
 values-b+apc	string	subtitles_raised	-	معلى
@@ -3095,9 +3104,12 @@ values-b+ar	string	subtitle_offset_title	-	تأخير الترجمة
 values-b+ar	string	subtitles_depressed	-	النمط المنخفض
 values-b+ar	string	subtitles_encoding	-	فك تشفير الترجمة
 values-b+ar	string	subtitles_example_text	-	نصٌّ حكيمٌ لهُ سِرٌّ قاطِعٌ وَذُو شَأنٍ عَظيمٍ مكتوبٌ على ثوبٍ أخضرَ ومُغلفٌ بجلدٍ أزرق
+values-b+ar	string	subtitles_file_empty	-	ملف الترجمة هذا فارغ
 values-b+ar	string	subtitles_filter_lang	-	تصفية حسب لغة الوسائط المفضلة
+values-b+ar	string	subtitles_format_unsupported	-	تنسيق الترجمة هذا غير مدعوم
 values-b+ar	string	subtitles_from_embedded	-	داخلياً
 values-b+ar	string	subtitles_from_online	-	اونلاين
+values-b+ar	string	subtitles_load_failed	-	تعذّر تحميل هذه الترجمة
 values-b+ar	string	subtitles_none	-	لا شيء
 values-b+ar	string	subtitles_outline	-	الخطوط المحيطة
 values-b+ar	string	subtitles_raised	-	رفع
@@ -3895,9 +3907,12 @@ values-b+ars	string	subtitle_offset_title	-	Subtitle delay
 values-b+ars	string	subtitles_depressed	-	Depressed
 values-b+ars	string	subtitles_encoding	-	Subtitle encoding
 values-b+ars	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+values-b+ars	string	subtitles_file_empty	-	ملف الترجمة هذا فارغ
 values-b+ars	string	subtitles_filter_lang	-	Filter by preferred media language
+values-b+ars	string	subtitles_format_unsupported	-	صيغة الترجمة هذه غير مدعومة
 values-b+ars	string	subtitles_from_embedded	-	Embedded
 values-b+ars	string	subtitles_from_online	-	Online
+values-b+ars	string	subtitles_load_failed	-	تعذّر تحميل هذه الترجمات
 values-b+ars	string	subtitles_none	-	None
 values-b+ars	string	subtitles_outline	-	Outline
 values-b+ars	string	subtitles_raised	-	Raised
@@ -4691,9 +4706,12 @@ values-b+as	string	subtitle_offset_title	-	সাবচিট্ৰৰ সময
 values-b+as	string	subtitles_depressed	-	ডিপ্ৰেছড
 values-b+as	string	subtitles_encoding	-	সাবটাইটেল ক'ডিং
 values-b+as	string	subtitles_example_text	-	এজন চালাক পোহা কুকুৰাই অলপ তেজী মেজাজৰ কুকুৰাৰ ওপৰেদি জাপ দিলে
+values-b+as	string	subtitles_file_empty	-	এই সাবটাইটেল ফাইলটো খালী
 values-b+as	string	subtitles_filter_lang	-	পছন্দৰ মিডিয়া ভাষাৰ দ্বাৰা ফিল্টাৰ কৰক
+values-b+as	string	subtitles_format_unsupported	-	এই সাবটাইটেল ফৰ্মেট সমৰ্থিত নহয়
 values-b+as	string	subtitles_from_embedded	-	Embedded
 values-b+as	string	subtitles_from_online	-	Online
+values-b+as	string	subtitles_load_failed	-	এই সাবটাইটেলসমূহ লোড কৰিব পৰা নগ'ল
 values-b+as	string	subtitles_none	-	একো নহয়
 values-b+as	string	subtitles_outline	-	আউটলাইন
 values-b+as	string	subtitles_raised	-	উঠা
@@ -5487,9 +5505,12 @@ values-b+az	string	subtitle_offset_title	-	Subtitle delay
 values-b+az	string	subtitles_depressed	-	Depressed
 values-b+az	string	subtitles_encoding	-	Subtitle encoding
 values-b+az	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+values-b+az	string	subtitles_file_empty	-	Bu subtitr faylı boşdur
 values-b+az	string	subtitles_filter_lang	-	Filter by preferred media language
+values-b+az	string	subtitles_format_unsupported	-	Bu subtitr formatı dəstəklənmir
 values-b+az	string	subtitles_from_embedded	-	Embedded
 values-b+az	string	subtitles_from_online	-	Online
+values-b+az	string	subtitles_load_failed	-	Bu subtitrlər yüklənə bilmədi
 values-b+az	string	subtitles_none	-	None
 values-b+az	string	subtitles_outline	-	Outline
 values-b+az	string	subtitles_raised	-	Raised
@@ -6289,9 +6310,12 @@ values-b+be	string	subtitle_offset_title	-	Затрымка субцітраў
 values-b+be	string	subtitles_depressed	-	Заніжаныя
 values-b+be	string	subtitles_encoding	-	Кадзіраванне субцітраў
 values-b+be	string	subtitles_example_text	-	У цэху з’яўляецца чорт, кроўю і пугай фарбуе свежы шампіньён
+values-b+be	string	subtitles_file_empty	-	Гэты файл субцітраў пусты
 values-b+be	string	subtitles_filter_lang	-	Фільтраваць па прыярытэтнай мове медыя
+values-b+be	string	subtitles_format_unsupported	-	Гэты фармат субцітраў не падтрымліваецца
 values-b+be	string	subtitles_from_embedded	-	Убудаваны
 values-b+be	string	subtitles_from_online	-	Сеткавы
+values-b+be	string	subtitles_load_failed	-	Не ўдалося загрузіць гэтыя субцітры
 values-b+be	string	subtitles_none	-	Нічога
 values-b+be	string	subtitles_outline	-	Контур
 values-b+be	string	subtitles_raised	-	Паднятыя
@@ -7085,9 +7109,12 @@ values-b+bg	string	subtitle_offset_title	-	Забавяне на субтитр�
 values-b+bg	string	subtitles_depressed	-	Удвоени
 values-b+bg	string	subtitles_encoding	-	Кодиране на субтитрите
 values-b+bg	string	subtitles_example_text	-	Бързата кафява лисица прескача мързеливото куче
+values-b+bg	string	subtitles_file_empty	-	Този файл със субтитри е празен
 values-b+bg	string	subtitles_filter_lang	-	Филтриране по предпочитан медиен език
+values-b+bg	string	subtitles_format_unsupported	-	Този формат на субтитри не се поддържа
 values-b+bg	string	subtitles_from_embedded	-	Вграден
 values-b+bg	string	subtitles_from_online	-	Онлайн
+values-b+bg	string	subtitles_load_failed	-	Тези субтитри не можаха да се заредят
 values-b+bg	string	subtitles_none	-	Нито един
 values-b+bg	string	subtitles_outline	-	Контур
 values-b+bg	string	subtitles_raised	-	Повдигнати
@@ -7881,9 +7908,12 @@ values-b+bn	string	subtitle_offset_title	-	Subtitle delay
 values-b+bn	string	subtitles_depressed	-	Depressed
 values-b+bn	string	subtitles_encoding	-	সাবটাইটেল এনকোডিং
 values-b+bn	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+values-b+bn	string	subtitles_file_empty	-	এই সাবটাইটেল ফাইলটি খালি
 values-b+bn	string	subtitles_filter_lang	-	Filter by preferred media language
+values-b+bn	string	subtitles_format_unsupported	-	এই সাবটাইটেল ফরম্যাট সমর্থিত নয়
 values-b+bn	string	subtitles_from_embedded	-	Embedded
 values-b+bn	string	subtitles_from_online	-	Online
+values-b+bn	string	subtitles_load_failed	-	এই সাবটাইটেলগুলো লোড করা যায়নি
 values-b+bn	string	subtitles_none	-	None
 values-b+bn	string	subtitles_outline	-	Outline
 values-b+bn	string	subtitles_raised	-	Raised
@@ -8678,9 +8708,12 @@ values-b+ca	string	subtitle_offset_title	-	Retard dels subtítols
 values-b+ca	string	subtitles_depressed	-	Enfonsat
 values-b+ca	string	subtitles_encoding	-	Codificació dels subtítols
 values-b+ca	string	subtitles_example_text	-	Jove xef, porti whisky amb quinze glaçons d'hidrogen, coi
+values-b+ca	string	subtitles_file_empty	-	Aquest fitxer de subtítols és buit
 values-b+ca	string	subtitles_filter_lang	-	Filtra per l'idioma preferit
+values-b+ca	string	subtitles_format_unsupported	-	Aquest format de subtítols no és compatible
 values-b+ca	string	subtitles_from_embedded	-	Embedded
 values-b+ca	string	subtitles_from_online	-	Online
+values-b+ca	string	subtitles_load_failed	-	No s'han pogut carregar aquests subtítols
 values-b+ca	string	subtitles_none	-	Cap
 values-b+ca	string	subtitles_outline	-	Vora
 values-b+ca	string	subtitles_raised	-	Elevat
@@ -9474,9 +9507,12 @@ values-b+ckb	string	subtitle_offset_title	-	Subtitle delay
 values-b+ckb	string	subtitles_depressed	-	Depressed
 values-b+ckb	string	subtitles_encoding	-	Subtitle encoding
 values-b+ckb	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+values-b+ckb	string	subtitles_file_empty	-	ئەم فایلی ژێرنووسە بەتاڵە
 values-b+ckb	string	subtitles_filter_lang	-	Filter by preferred media language
+values-b+ckb	string	subtitles_format_unsupported	-	ئەم شێوازی ژێرنووسە پشتگیری ناکرێت
 values-b+ckb	string	subtitles_from_embedded	-	Embedded
 values-b+ckb	string	subtitles_from_online	-	Online
+values-b+ckb	string	subtitles_load_failed	-	نەتوانرا ئەم ژێرنووسانە باربکرێن
 values-b+ckb	string	subtitles_none	-	None
 values-b+ckb	string	subtitles_outline	-	Outline
 values-b+ckb	string	subtitles_raised	-	Raised
@@ -10278,9 +10314,12 @@ values-b+cs	string	subtitle_offset_title	-	Zpoždění titulků
 values-b+cs	string	subtitles_depressed	-	Potlačené
 values-b+cs	string	subtitles_encoding	-	Kódování titulků
 values-b+cs	string	subtitles_example_text	-	Příliš žluťoučký kůň úpěl ďábelské ódy
+values-b+cs	string	subtitles_file_empty	-	Tento soubor titulků je prázdný
 values-b+cs	string	subtitles_filter_lang	-	Filtrování podle preferovaného jazyka médií
+values-b+cs	string	subtitles_format_unsupported	-	Tento formát titulků není podporován
 values-b+cs	string	subtitles_from_embedded	-	Vložené
 values-b+cs	string	subtitles_from_online	-	Online
+values-b+cs	string	subtitles_load_failed	-	Tyto titulky se nepodařilo načíst
 values-b+cs	string	subtitles_none	-	Žádné
 values-b+cs	string	subtitles_outline	-	Ohraničení
 values-b+cs	string	subtitles_raised	-	Vyvýšené
@@ -11074,9 +11113,12 @@ values-b+de	string	subtitle_offset_title	-	Untertitelverzögerung
 values-b+de	string	subtitles_depressed	-	Gesenkt
 values-b+de	string	subtitles_encoding	-	Untertitel-Kodierung
 values-b+de	string	subtitles_example_text	-	Vogel Quax zwickt Johnys Pferd Bim
+values-b+de	string	subtitles_file_empty	-	Diese Untertiteldatei ist leer
 values-b+de	string	subtitles_filter_lang	-	Nach bevorzugter Mediensprache filtern
+values-b+de	string	subtitles_format_unsupported	-	Dieses Untertitelformat wird nicht unterstützt
 values-b+de	string	subtitles_from_embedded	-	Eingebettet
 values-b+de	string	subtitles_from_online	-	Online
+values-b+de	string	subtitles_load_failed	-	Diese Untertitel konnten nicht geladen werden
 values-b+de	string	subtitles_none	-	Keine
 values-b+de	string	subtitles_outline	-	Umrandung
 values-b+de	string	subtitles_raised	-	Erhöht
@@ -11870,9 +11912,12 @@ values-b+el	string	subtitle_offset_title	-	Καθυστέρηση υποτίτλ
 values-b+el	string	subtitles_depressed	-	Σε κατάθλιψη
 values-b+el	string	subtitles_encoding	-	Κωδικοποίηση υποτίτλων
 values-b+el	string	subtitles_example_text	-	Η γρήγορη, καφέ αλεπού πηδάει πάνω από τον τεμπέλη σκύλο / The quick brown fox jumps over the lazy dog
+values-b+el	string	subtitles_file_empty	-	Αυτό το αρχείο υποτίτλων είναι κενό
 values-b+el	string	subtitles_filter_lang	-	Φιλτράρισμα ανά την προτεινόμενη γλώσσα του μέσου
+values-b+el	string	subtitles_format_unsupported	-	Αυτή η μορφή υποτίτλων δεν υποστηρίζεται
 values-b+el	string	subtitles_from_embedded	-	Ενσωματωμένο
 values-b+el	string	subtitles_from_online	-	Συνδεμένοι
+values-b+el	string	subtitles_load_failed	-	Δεν ήταν δυνατή η φόρτωση αυτών των υποτίτλων
 values-b+el	string	subtitles_none	-	Τίποτα
 values-b+el	string	subtitles_outline	-	Περίγραμμα
 values-b+el	string	subtitles_raised	-	Ανεβασμένοι
@@ -12666,9 +12711,12 @@ values-b+eo	string	subtitle_offset_title	-	Subtitle delay
 values-b+eo	string	subtitles_depressed	-	Depressed
 values-b+eo	string	subtitles_encoding	-	Subtitle encoding
 values-b+eo	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+values-b+eo	string	subtitles_file_empty	-	Ĉi tiu subteksta dosiero estas malplena
 values-b+eo	string	subtitles_filter_lang	-	Filter by preferred media language
+values-b+eo	string	subtitles_format_unsupported	-	Ĉi tiu subteksta formato ne estas subtenata
 values-b+eo	string	subtitles_from_embedded	-	Embedded
 values-b+eo	string	subtitles_from_online	-	Online
+values-b+eo	string	subtitles_load_failed	-	Ne eblis ŝargi ĉi tiujn subtekstojn
 values-b+eo	string	subtitles_none	-	Nenio
 values-b+eo	string	subtitles_outline	-	Outline
 values-b+eo	string	subtitles_raised	-	Raised
@@ -13466,9 +13514,12 @@ values-b+es	string	subtitle_offset_title	-	Retraso de subtítulos
 values-b+es	string	subtitles_depressed	-	Deprimido
 values-b+es	string	subtitles_encoding	-	Codificación de subtítulos
 values-b+es	string	subtitles_example_text	-	El pingüino Wenceslao hizo kilómetros bajo exhaustiva lluvia y frío; añoraba a su querido cachorro
+values-b+es	string	subtitles_file_empty	-	Este archivo de subtítulos está vacío
 values-b+es	string	subtitles_filter_lang	-	Filtrar por idioma preferido
+values-b+es	string	subtitles_format_unsupported	-	Este formato de subtítulos no es compatible
 values-b+es	string	subtitles_from_embedded	-	Integrado
 values-b+es	string	subtitles_from_online	-	En línea
+values-b+es	string	subtitles_load_failed	-	No se han podido cargar estos subtítulos
 values-b+es	string	subtitles_none	-	Ninguno
 values-b+es	string	subtitles_outline	-	Contorno
 values-b+es	string	subtitles_raised	-	Elevado
@@ -14262,9 +14313,12 @@ values-b+fa	string	subtitle_offset_title	-	Subtitle delay
 values-b+fa	string	subtitles_depressed	-	Depressed
 values-b+fa	string	subtitles_encoding	-	رمزگذاری زیرنویس
 values-b+fa	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+values-b+fa	string	subtitles_file_empty	-	این فایل زیرنویس خالی است
 values-b+fa	string	subtitles_filter_lang	-	فیلتر توسط زبان محتوا برگزیده
+values-b+fa	string	subtitles_format_unsupported	-	این قالب زیرنویس پشتیبانی نمی‌شود
 values-b+fa	string	subtitles_from_embedded	-	Embedded
 values-b+fa	string	subtitles_from_online	-	Online
+values-b+fa	string	subtitles_load_failed	-	بارگذاری این زیرنویس‌ها ممکن نشد
 values-b+fa	string	subtitles_none	-	هیچ‌کدام
 values-b+fa	string	subtitles_outline	-	Outline
 values-b+fa	string	subtitles_raised	-	Raised
@@ -15058,9 +15112,12 @@ values-b+fil	string	subtitle_offset_title	-	Subtitle delay
 values-b+fil	string	subtitles_depressed	-	Depressed
 values-b+fil	string	subtitles_encoding	-	Subtitle encoding
 values-b+fil	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+values-b+fil	string	subtitles_file_empty	-	Walang laman ang subtitle file na ito
 values-b+fil	string	subtitles_filter_lang	-	Filter by preferred media language
+values-b+fil	string	subtitles_format_unsupported	-	Hindi sinusuportahan ang format ng subtitle na ito
 values-b+fil	string	subtitles_from_embedded	-	Embedded
 values-b+fil	string	subtitles_from_online	-	Online
+values-b+fil	string	subtitles_load_failed	-	Hindi ma-load ang mga subtitle na ito
 values-b+fil	string	subtitles_none	-	None
 values-b+fil	string	subtitles_outline	-	Outline
 values-b+fil	string	subtitles_raised	-	Raised
@@ -15858,9 +15915,12 @@ values-b+fr	string	subtitle_offset_title	-	Délai des sous-titres
 values-b+fr	string	subtitles_depressed	-	Déprimé
 values-b+fr	string	subtitles_encoding	-	Encodage des sous titres
 values-b+fr	string	subtitles_example_text	-	Portez ce vieux whisky au juge blond qui fume
+values-b+fr	string	subtitles_file_empty	-	Ce fichier de sous-titres est vide
 values-b+fr	string	subtitles_filter_lang	-	Filtrez par langue préférée
+values-b+fr	string	subtitles_format_unsupported	-	Ce format de sous-titres n'est pas pris en charge
 values-b+fr	string	subtitles_from_embedded	-	Intégré
 values-b+fr	string	subtitles_from_online	-	En ligne
+values-b+fr	string	subtitles_load_failed	-	Impossible de charger ces sous-titres
 values-b+fr	string	subtitles_none	-	Aucun
 values-b+fr	string	subtitles_outline	-	Contour
 values-b+fr	string	subtitles_raised	-	Élévation
@@ -16654,9 +16714,12 @@ values-b+gl	string	subtitle_offset_title	-	Subtitle delay
 values-b+gl	string	subtitles_depressed	-	Depressed
 values-b+gl	string	subtitles_encoding	-	Subtitle encoding
 values-b+gl	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+values-b+gl	string	subtitles_file_empty	-	Este ficheiro de subtítulos está baleiro
 values-b+gl	string	subtitles_filter_lang	-	Filter by preferred media language
+values-b+gl	string	subtitles_format_unsupported	-	Este formato de subtítulos non é compatible
 values-b+gl	string	subtitles_from_embedded	-	Embedded
 values-b+gl	string	subtitles_from_online	-	Online
+values-b+gl	string	subtitles_load_failed	-	Non se puideron cargar estes subtítulos
 values-b+gl	string	subtitles_none	-	None
 values-b+gl	string	subtitles_outline	-	Outline
 values-b+gl	string	subtitles_raised	-	Raised
@@ -17450,9 +17513,12 @@ values-b+hi	string	subtitle_offset_title	-	Subtitle delay
 values-b+hi	string	subtitles_depressed	-	Depressed
 values-b+hi	string	subtitles_encoding	-	उपशीर्षक एन्कोडिंग
 values-b+hi	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+values-b+hi	string	subtitles_file_empty	-	यह उपशीर्षक फ़ाइल खाली है
 values-b+hi	string	subtitles_filter_lang	-	Filter by preferred media language
+values-b+hi	string	subtitles_format_unsupported	-	यह उपशीर्षक प्रारूप समर्थित नहीं है
 values-b+hi	string	subtitles_from_embedded	-	Embedded
 values-b+hi	string	subtitles_from_online	-	Online
+values-b+hi	string	subtitles_load_failed	-	ये उपशीर्षक लोड नहीं हो सके
 values-b+hi	string	subtitles_none	-	None
 values-b+hi	string	subtitles_outline	-	Outline
 values-b+hi	string	subtitles_raised	-	Raised
@@ -18249,9 +18315,12 @@ values-b+hr	string	subtitle_offset_title	-	Kašnjenje titlova
 values-b+hr	string	subtitles_depressed	-	Udubljeno
 values-b+hr	string	subtitles_encoding	-	Kodiranje titlova
 values-b+hr	string	subtitles_example_text	-	Gojazni đačić s biciklom drži hmelj i finu vatu u džepu nošnje
+values-b+hr	string	subtitles_file_empty	-	Ova datoteka titlova je prazna
 values-b+hr	string	subtitles_filter_lang	-	Filtriraj po preferiranom jeziku medija
+values-b+hr	string	subtitles_format_unsupported	-	Ovaj format titlova nije podržan
 values-b+hr	string	subtitles_from_embedded	-	Ugrađen
 values-b+hr	string	subtitles_from_online	-	Online
+values-b+hr	string	subtitles_load_failed	-	Ovi se titlovi nisu mogli učitati
 values-b+hr	string	subtitles_none	-	Nijedan
 values-b+hr	string	subtitles_outline	-	Kontura
 values-b+hr	string	subtitles_raised	-	Izdignuto
@@ -19045,9 +19114,12 @@ values-b+hu	string	subtitle_offset_title	-	Felirat késleltetése
 values-b+hu	string	subtitles_depressed	-	Nyomott
 values-b+hu	string	subtitles_encoding	-	Felirat kódolása
 values-b+hu	string	subtitles_example_text	-	Árvíztűrő tükörfúrógép
+values-b+hu	string	subtitles_file_empty	-	Ez a feliratfájl üres
 values-b+hu	string	subtitles_filter_lang	-	Szűrés előnyben részesített médianyelv szerint
+values-b+hu	string	subtitles_format_unsupported	-	Ez a feliratformátum nem támogatott
 values-b+hu	string	subtitles_from_embedded	-	Embedded
 values-b+hu	string	subtitles_from_online	-	Online
+values-b+hu	string	subtitles_load_failed	-	Nem sikerült betölteni ezeket a feliratokat
 values-b+hu	string	subtitles_none	-	Semmi
 values-b+hu	string	subtitles_outline	-	Körvonal
 values-b+hu	string	subtitles_raised	-	Emelt
@@ -19837,9 +19909,12 @@ values-b+in	string	subtitle_offset_title	-	Penundaan subtitel
 values-b+in	string	subtitles_depressed	-	Ditekan
 values-b+in	string	subtitles_encoding	-	Enkode subtitel
 values-b+in	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+values-b+in	string	subtitles_file_empty	-	File subtitel ini kosong
 values-b+in	string	subtitles_filter_lang	-	Filter berdasarkan bahasa media pilihan
+values-b+in	string	subtitles_format_unsupported	-	Format subtitel ini tidak didukung
 values-b+in	string	subtitles_from_embedded	-	Tertanam
 values-b+in	string	subtitles_from_online	-	Daring
+values-b+in	string	subtitles_load_failed	-	Tidak dapat memuat subtitel ini
 values-b+in	string	subtitles_none	-	Tidak Ada
 values-b+in	string	subtitles_outline	-	Garis luar
 values-b+in	string	subtitles_raised	-	Menonjol
@@ -20637,9 +20712,12 @@ values-b+it	string	subtitle_offset_title	-	Ritardo sottotitoli
 values-b+it	string	subtitles_depressed	-	Bassorilievo
 values-b+it	string	subtitles_encoding	-	Encoding Sottotitoli
 values-b+it	string	subtitles_example_text	-	Ma che bel gufo spenzola da quei travi
+values-b+it	string	subtitles_file_empty	-	Questo file di sottotitoli è vuoto
 values-b+it	string	subtitles_filter_lang	-	Filtra in base alla lingua preferita
+values-b+it	string	subtitles_format_unsupported	-	Questo formato di sottotitoli non è supportato
 values-b+it	string	subtitles_from_embedded	-	Incorporato
 values-b+it	string	subtitles_from_online	-	In linea
+values-b+it	string	subtitles_load_failed	-	Impossibile caricare questi sottotitoli
 values-b+it	string	subtitles_none	-	Nessuno
 values-b+it	string	subtitles_outline	-	Contorno
 values-b+it	string	subtitles_raised	-	Rilievo
@@ -21434,9 +21512,12 @@ values-b+iw	string	subtitle_offset_title	-	עיכוב כתוביות
 values-b+iw	string	subtitles_depressed	-	מדוכא
 values-b+iw	string	subtitles_encoding	-	קידוד כתוביות
 values-b+iw	string	subtitles_example_text	-	השועל החום המהיר קופץ מעל הכלב העצלן
+values-b+iw	string	subtitles_file_empty	-	קובץ הכתוביות הזה ריק
 values-b+iw	string	subtitles_filter_lang	-	סנן לפי שפת מדיה מועדפת
+values-b+iw	string	subtitles_format_unsupported	-	פורמט הכתוביות הזה אינו נתמך
 values-b+iw	string	subtitles_from_embedded	-	Embedded
 values-b+iw	string	subtitles_from_online	-	Online
+values-b+iw	string	subtitles_load_failed	-	לא ניתן לטעון את הכתוביות האלה
 values-b+iw	string	subtitles_none	-	אין
 values-b+iw	string	subtitles_outline	-	מתאר
 values-b+iw	string	subtitles_raised	-	הורם
@@ -22226,9 +22307,12 @@ values-b+ja	string	subtitle_offset_title	-	字幕ディレイ
 values-b+ja	string	subtitles_depressed	-	凹んだ
 values-b+ja	string	subtitles_encoding	-	字幕エンコーディング
 values-b+ja	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+values-b+ja	string	subtitles_file_empty	-	この字幕ファイルは空です
 values-b+ja	string	subtitles_filter_lang	-	優先メディア言語でフィルタ
+values-b+ja	string	subtitles_format_unsupported	-	この字幕形式には対応していません
 values-b+ja	string	subtitles_from_embedded	-	埋め込み
 values-b+ja	string	subtitles_from_online	-	オンライン
+values-b+ja	string	subtitles_load_failed	-	この字幕を読み込めませんでした
 values-b+ja	string	subtitles_none	-	なし
 values-b+ja	string	subtitles_outline	-	概要
 values-b+ja	string	subtitles_raised	-	浮き上がった
@@ -23022,9 +23106,12 @@ values-b+kn	string	subtitle_offset_title	-	Subtitle delay
 values-b+kn	string	subtitles_depressed	-	Depressed
 values-b+kn	string	subtitles_encoding	-	Subtitle encoding
 values-b+kn	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+values-b+kn	string	subtitles_file_empty	-	ಈ ಸಬ್ ಟೈಟಲ್ ಫೈಲ್ ಖಾಲಿಯಾಗಿದೆ
 values-b+kn	string	subtitles_filter_lang	-	Filter by preferred media language
+values-b+kn	string	subtitles_format_unsupported	-	ಈ ಸಬ್ ಟೈಟಲ್ ಸ್ವರೂಪಕ್ಕೆ ಬೆಂಬಲವಿಲ್ಲ
 values-b+kn	string	subtitles_from_embedded	-	Embedded
 values-b+kn	string	subtitles_from_online	-	Online
+values-b+kn	string	subtitles_load_failed	-	ಈ ಸಬ್ ಟೈಟಲ್ಸ್ ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ
 values-b+kn	string	subtitles_none	-	None
 values-b+kn	string	subtitles_outline	-	Outline
 values-b+kn	string	subtitles_raised	-	Raised
@@ -23815,9 +23902,12 @@ values-b+ko	string	subtitle_offset_title	-	자막 딜레이
 values-b+ko	string	subtitles_depressed	-	음각
 values-b+ko	string	subtitles_encoding	-	자막 인코딩
 values-b+ko	string	subtitles_example_text	-	다람쥐 헌 쳇바퀴에 타고파
+values-b+ko	string	subtitles_file_empty	-	이 자막 파일은 비어 있습니다
 values-b+ko	string	subtitles_filter_lang	-	선호하는 미디어 언어로 필터링
+values-b+ko	string	subtitles_format_unsupported	-	지원되지 않는 자막 형식입니다
 values-b+ko	string	subtitles_from_embedded	-	내장 자막
 values-b+ko	string	subtitles_from_online	-	온라인
+values-b+ko	string	subtitles_load_failed	-	이 자막을 불러올 수 없습니다
 values-b+ko	string	subtitles_none	-	없음
 values-b+ko	string	subtitles_outline	-	윤곽선 효과
 values-b+ko	string	subtitles_raised	-	양각
@@ -24613,9 +24703,12 @@ values-b+lt	string	subtitle_offset_title	-	Subtitle delay
 values-b+lt	string	subtitles_depressed	-	Depressed
 values-b+lt	string	subtitles_encoding	-	Subtitle encoding
 values-b+lt	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+values-b+lt	string	subtitles_file_empty	-	Šis subtitrų failas tuščias
 values-b+lt	string	subtitles_filter_lang	-	Filter by preferred media language
+values-b+lt	string	subtitles_format_unsupported	-	Šis subtitrų formatas nepalaikomas
 values-b+lt	string	subtitles_from_embedded	-	Embedded
 values-b+lt	string	subtitles_from_online	-	Online
+values-b+lt	string	subtitles_load_failed	-	Nepavyko įkelti šių subtitrų
 values-b+lt	string	subtitles_none	-	None
 values-b+lt	string	subtitles_outline	-	Outline
 values-b+lt	string	subtitles_raised	-	Raised
@@ -25411,9 +25504,12 @@ values-b+lv	string	subtitle_offset_title	-	Subtitru nobīde
 values-b+lv	string	subtitles_depressed	-	Iespiests
 values-b+lv	string	subtitles_encoding	-	Subtitru kodējums
 values-b+lv	string	subtitles_example_text	-	Fogts čuhņā mīļi lenc - ģērbj, žvadz, pūkšķ
+values-b+lv	string	subtitles_file_empty	-	Šis subtitru fails ir tukšs
 values-b+lv	string	subtitles_filter_lang	-	Atlasīt pēc vēlamās multimediju valodas
+values-b+lv	string	subtitles_format_unsupported	-	Šis subtitru formāts netiek atbalstīts
 values-b+lv	string	subtitles_from_embedded	-	Iegultie
 values-b+lv	string	subtitles_from_online	-	No interneta
+values-b+lv	string	subtitles_load_failed	-	Neizdevās ielādēt šos subtitrus
 values-b+lv	string	subtitles_none	-	Nekas
 values-b+lv	string	subtitles_outline	-	Kontūrs
 values-b+lv	string	subtitles_raised	-	Izvirzīts
@@ -26207,9 +26303,12 @@ values-b+mk	string	subtitle_offset_title	-	Задоцнување на прев�
 values-b+mk	string	subtitles_depressed	-	Депресиран
 values-b+mk	string	subtitles_encoding	-	Енкодирање на превод
 values-b+mk	string	subtitles_example_text	-	Брзата кафеава лисица го прескокнува мрзливото куче
+values-b+mk	string	subtitles_file_empty	-	Оваа датотека со преводи е празна
 values-b+mk	string	subtitles_filter_lang	-	Филтрирај по претпочитан медиумски јазик
+values-b+mk	string	subtitles_format_unsupported	-	Овој формат на преводи не е поддржан
 values-b+mk	string	subtitles_from_embedded	-	Вграден
 values-b+mk	string	subtitles_from_online	-	Онлајн
+values-b+mk	string	subtitles_load_failed	-	Овие преводи не можеа да се вчитаат
 values-b+mk	string	subtitles_none	-	Ништо
 values-b+mk	string	subtitles_outline	-	Надворешна контура
 values-b+mk	string	subtitles_raised	-	Подигнат
@@ -27003,9 +27102,12 @@ values-b+ml	string	subtitle_offset_title	-	Subtitle delay
 values-b+ml	string	subtitles_depressed	-	Depressed
 values-b+ml	string	subtitles_encoding	-	Subtitle encoding
 values-b+ml	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+values-b+ml	string	subtitles_file_empty	-	ഈ സബ്ടൈട്ടിൽ ഫയൽ ശൂന്യമാണ്
 values-b+ml	string	subtitles_filter_lang	-	Filter by preferred media language
+values-b+ml	string	subtitles_format_unsupported	-	ഈ സബ്ടൈട്ടിൽ ഫോർമാറ്റ് പിന്തുണയ്ക്കുന്നില്ല
 values-b+ml	string	subtitles_from_embedded	-	Embedded
 values-b+ml	string	subtitles_from_online	-	Online
+values-b+ml	string	subtitles_load_failed	-	ഈ സബ്ടൈട്ടിലുകൾ ലോഡ് ചെയ്യാനായില്ല
 values-b+ml	string	subtitles_none	-	None
 values-b+ml	string	subtitles_outline	-	Outline
 values-b+ml	string	subtitles_raised	-	Raised
@@ -27798,9 +27900,12 @@ values-b+ms	string	subtitle_offset_title	-	Kelewatan sari kata
 values-b+ms	string	subtitles_depressed	-	Depressed
 values-b+ms	string	subtitles_encoding	-	Subtitle encoding
 values-b+ms	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+values-b+ms	string	subtitles_file_empty	-	Fail sari kata ini kosong
 values-b+ms	string	subtitles_filter_lang	-	Tapis bahasa media mengikut pilihan
+values-b+ms	string	subtitles_format_unsupported	-	Format sari kata ini tidak disokong
 values-b+ms	string	subtitles_from_embedded	-	Embedded
 values-b+ms	string	subtitles_from_online	-	Online
+values-b+ms	string	subtitles_load_failed	-	Sari kata ini tidak dapat dimuatkan
 values-b+ms	string	subtitles_none	-	Tiada
 values-b+ms	string	subtitles_outline	-	Rangka
 values-b+ms	string	subtitles_raised	-	Dinaikkan
@@ -28597,9 +28702,12 @@ values-b+mt	string	subtitle_offset_title	-	Subtitle delay
 values-b+mt	string	subtitles_depressed	-	Depressed
 values-b+mt	string	subtitles_encoding	-	Subtitle encoding
 values-b+mt	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+values-b+mt	string	subtitles_file_empty	-	Dan il-fajl tas-sottotitli huwa vojt
 values-b+mt	string	subtitles_filter_lang	-	Filter by preferred media language
+values-b+mt	string	subtitles_format_unsupported	-	Dan il-format tas-sottotitli mhuwiex appoġġat
 values-b+mt	string	subtitles_from_embedded	-	Embedded
 values-b+mt	string	subtitles_from_online	-	Online
+values-b+mt	string	subtitles_load_failed	-	Dawn is-sottotitli ma setgħux jitgħabbew
 values-b+mt	string	subtitles_none	-	None
 values-b+mt	string	subtitles_outline	-	Outline
 values-b+mt	string	subtitles_raised	-	Raised
@@ -29392,9 +29500,12 @@ values-b+my	string	subtitle_offset_title	-	စာတန်းထိုး ကြ
 values-b+my	string	subtitles_depressed	-	ချုံ့ပြီး
 values-b+my	string	subtitles_encoding	-	စာတန်းထိုး ကုဒ်လုပ်ခြင်း
 values-b+my	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+values-b+my	string	subtitles_file_empty	-	ဤစာတန်းထိုးဖိုင်တွင် ဘာမျှမရှိပါ
 values-b+my	string	subtitles_filter_lang	-	နှစ်သက်ရာ မီဒီယာဘာသာစကားဖြင့် စစ်ထုတ်ပါ
+values-b+my	string	subtitles_format_unsupported	-	ဤစာတန်းထိုးပုံစံကို မပံ့ပိုးပါ
 values-b+my	string	subtitles_from_embedded	-	Embedded
 values-b+my	string	subtitles_from_online	-	Online
+values-b+my	string	subtitles_load_failed	-	ဤစာတန်းထိုးများကို တင်၍မရပါ
 values-b+my	string	subtitles_none	-	ဘာမျှ
 values-b+my	string	subtitles_outline	-	အနားကွပ်
 values-b+my	string	subtitles_raised	-	ထမြောက်မှု
@@ -30188,9 +30299,12 @@ values-b+ne	string	subtitle_offset_title	-	Subtitle delay
 values-b+ne	string	subtitles_depressed	-	Depressed
 values-b+ne	string	subtitles_encoding	-	Subtitle encoding
 values-b+ne	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+values-b+ne	string	subtitles_file_empty	-	यो उपशीर्षक फाइल खाली छ
 values-b+ne	string	subtitles_filter_lang	-	Filter by preferred media language
+values-b+ne	string	subtitles_format_unsupported	-	यो उपशीर्षक ढाँचा समर्थित छैन
 values-b+ne	string	subtitles_from_embedded	-	Embedded
 values-b+ne	string	subtitles_from_online	-	Online
+values-b+ne	string	subtitles_load_failed	-	यी उपशीर्षकहरू लोड गर्न सकिएन
 values-b+ne	string	subtitles_none	-	None
 values-b+ne	string	subtitles_outline	-	Outline
 values-b+ne	string	subtitles_raised	-	Raised
@@ -30984,9 +31098,12 @@ values-b+nl	string	subtitle_offset_title	-	Subtitle vertraging
 values-b+nl	string	subtitles_depressed	-	Depressed
 values-b+nl	string	subtitles_encoding	-	Subtitle encoding
 values-b+nl	string	subtitles_example_text	-	De snelle bruine vos springt over de luie hond
+values-b+nl	string	subtitles_file_empty	-	Dit ondertitelbestand is leeg
 values-b+nl	string	subtitles_filter_lang	-	Filter op gewenste mediataal
+values-b+nl	string	subtitles_format_unsupported	-	Deze ondertitelindeling wordt niet ondersteund
 values-b+nl	string	subtitles_from_embedded	-	Embedded
 values-b+nl	string	subtitles_from_online	-	Online
+values-b+nl	string	subtitles_load_failed	-	Deze ondertitels konden niet worden geladen
 values-b+nl	string	subtitles_none	-	Geen
 values-b+nl	string	subtitles_outline	-	Overzicht
 values-b+nl	string	subtitles_raised	-	Verhoogd
@@ -31780,9 +31897,12 @@ values-b+nn	string	subtitle_offset_title	-	Subtitle delay
 values-b+nn	string	subtitles_depressed	-	Depressed
 values-b+nn	string	subtitles_encoding	-	Subtitle encoding
 values-b+nn	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+values-b+nn	string	subtitles_file_empty	-	Denne undertekstfila er tom
 values-b+nn	string	subtitles_filter_lang	-	Filter by preferred media language
+values-b+nn	string	subtitles_format_unsupported	-	Dette undertekstformatet er ikkje støtta
 values-b+nn	string	subtitles_from_embedded	-	Embedded
 values-b+nn	string	subtitles_from_online	-	Online
+values-b+nn	string	subtitles_load_failed	-	Kunne ikkje laste desse undertekstane
 values-b+nn	string	subtitles_none	-	None
 values-b+nn	string	subtitles_outline	-	Outline
 values-b+nn	string	subtitles_raised	-	Raised
@@ -32576,9 +32696,12 @@ values-b+no	string	subtitle_offset_title	-	Undertekstforsinkelse
 values-b+no	string	subtitles_depressed	-	Nedsenket
 values-b+no	string	subtitles_encoding	-	Undertekst-koding
 values-b+no	string	subtitles_example_text	-	Sær golfer med kølle vant sexquiz på WC i hjemby
+values-b+no	string	subtitles_file_empty	-	Denne undertekstfilen er tom
 values-b+no	string	subtitles_filter_lang	-	Filtrer etter foretrukket mediaspråk
+values-b+no	string	subtitles_format_unsupported	-	Dette undertekstformatet støttes ikke
 values-b+no	string	subtitles_from_embedded	-	Embedded
 values-b+no	string	subtitles_from_online	-	Online
+values-b+no	string	subtitles_load_failed	-	Kunne ikke laste disse undertekstene
 values-b+no	string	subtitles_none	-	Ingen
 values-b+no	string	subtitles_outline	-	Omriss
 values-b+no	string	subtitles_raised	-	Opphøyd
@@ -33372,9 +33495,12 @@ values-b+or	string	subtitle_offset_title	-	Subtitle delay
 values-b+or	string	subtitles_depressed	-	Depressed
 values-b+or	string	subtitles_encoding	-	Subtitle encoding
 values-b+or	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+values-b+or	string	subtitles_file_empty	-	ଏହି ଉପଶୀର୍ଷକ ଫାଇଲ୍ ଖାଲି ଅଛି
 values-b+or	string	subtitles_filter_lang	-	Filter by preferred media language
+values-b+or	string	subtitles_format_unsupported	-	ଏହି ଉପଶୀର୍ଷକ ଫର୍ମାଟ୍ ସମର୍ଥିତ ନୁହେଁ
 values-b+or	string	subtitles_from_embedded	-	Embedded
 values-b+or	string	subtitles_from_online	-	Online
+values-b+or	string	subtitles_load_failed	-	ଏହି ଉପଶୀର୍ଷକଗୁଡ଼ିକ ଲୋଡ୍ ହୋଇପାରିଲା ନାହିଁ
 values-b+or	string	subtitles_none	-	None
 values-b+or	string	subtitles_outline	-	Outline
 values-b+or	string	subtitles_raised	-	Raised
@@ -34176,9 +34302,12 @@ values-b+pl	string	subtitle_offset_title	-	Opóźnienie napisów
 values-b+pl	string	subtitles_depressed	-	Obniżone
 values-b+pl	string	subtitles_encoding	-	Kodowanie napisów
 values-b+pl	string	subtitles_example_text	-	Pchnąć w tę łódź jeża lub ośm skrzyń fig
+values-b+pl	string	subtitles_file_empty	-	Ten plik napisów jest pusty
 values-b+pl	string	subtitles_filter_lang	-	Filtrowanie wg preferowanego języka
+values-b+pl	string	subtitles_format_unsupported	-	Ten format napisów nie jest obsługiwany
 values-b+pl	string	subtitles_from_embedded	-	Osadzone
 values-b+pl	string	subtitles_from_online	-	Online
+values-b+pl	string	subtitles_load_failed	-	Nie udało się załadować tych napisów
 values-b+pl	string	subtitles_none	-	Brak
 values-b+pl	string	subtitles_outline	-	Kontur
 values-b+pl	string	subtitles_raised	-	Wzniesione
@@ -34976,9 +35105,12 @@ values-b+pt	string	subtitle_offset_title	-	Atraso de legenda
 values-b+pt	string	subtitles_depressed	-	Deprimido
 values-b+pt	string	subtitles_encoding	-	Codificação das legendas
 values-b+pt	string	subtitles_example_text	-	Luís argüia à Júlia que «brações, fé, chá, óxido, pôr, zângão» eram palavras do português
+values-b+pt	string	subtitles_file_empty	-	Este ficheiro de legendas está vazio
 values-b+pt	string	subtitles_filter_lang	-	Filtrar por linguagem preferida
+values-b+pt	string	subtitles_format_unsupported	-	Este formato de legendas não é suportado
 values-b+pt	string	subtitles_from_embedded	-	Incorporada
 values-b+pt	string	subtitles_from_online	-	Online
+values-b+pt	string	subtitles_load_failed	-	Não foi possível carregar estas legendas
 values-b+pt	string	subtitles_none	-	Nenhuma
 values-b+pt	string	subtitles_outline	-	Contornado
 values-b+pt	string	subtitles_raised	-	Em Relevo
@@ -35776,9 +35908,12 @@ values-b+pt+BR	string	subtitle_offset_title	-	Atraso de legenda
 values-b+pt+BR	string	subtitles_depressed	-	Afundado
 values-b+pt+BR	string	subtitles_encoding	-	Codificação das legendas
 values-b+pt+BR	string	subtitles_example_text	-	A rápida raposa marrom salta sobre o cachorro preguiçoso
+values-b+pt+BR	string	subtitles_file_empty	-	Este arquivo de legenda está vazio
 values-b+pt+BR	string	subtitles_filter_lang	-	Filtrar por linguagem preferida
+values-b+pt+BR	string	subtitles_format_unsupported	-	Este formato de legenda não é compatível
 values-b+pt+BR	string	subtitles_from_embedded	-	Incorporada
 values-b+pt+BR	string	subtitles_from_online	-	Online
+values-b+pt+BR	string	subtitles_load_failed	-	Não foi possível carregar estas legendas
 values-b+pt+BR	string	subtitles_none	-	Nenhum
 values-b+pt+BR	string	subtitles_outline	-	Contornado
 values-b+pt+BR	string	subtitles_raised	-	Em Relevo
@@ -36571,9 +36706,12 @@ values-b+qt	string	subtitle_offset_title	-	uuuuhhhh uuuhh
 values-b+qt	string	subtitles_depressed	-	aaaahhhug
 values-b+qt	string	subtitles_encoding	-	uuuuhhhh oooohhhk
 values-b+qt	string	subtitles_example_text	-	uug ooohh aaahh uuh aaagg uuuk ooh aagg aag
+values-b+qt	string	subtitles_file_empty	-	ahhhaauugghh uuhh
 values-b+qt	string	subtitles_filter_lang	-	oooogg uh aaaahhhog uuugg aaaagggh
+values-b+qt	string	subtitles_format_unsupported	-	oooohhaaaghh ahhhaauugghh oouuh
 values-b+qt	string	subtitles_from_embedded	-	Embedded
 values-b+qt	string	subtitles_from_online	-	Online
+values-b+qt	string	subtitles_load_failed	-	ahooo oouuhoooohh ahhhaauugghh
 values-b+qt	string	subtitles_none	-	uuhh
 values-b+qt	string	subtitles_outline	-	aaaaaak
 values-b+qt	string	subtitles_raised	-	aaaagg
@@ -37368,9 +37506,12 @@ values-b+ro	string	subtitle_offset_title	-	Delay subtitrare
 values-b+ro	string	subtitles_depressed	-	Deprimat
 values-b+ro	string	subtitles_encoding	-	Codificarea subtitrărilor
 values-b+ro	string	subtitles_example_text	-	Vulpea maro iute sare peste câinele leneș
+values-b+ro	string	subtitles_file_empty	-	Acest fișier de subtitrare este gol
 values-b+ro	string	subtitles_filter_lang	-	Filtrați în funcție de limba media preferată
+values-b+ro	string	subtitles_format_unsupported	-	Acest format de subtitrare nu este acceptat
 values-b+ro	string	subtitles_from_embedded	-	Embedded
 values-b+ro	string	subtitles_from_online	-	Online
+values-b+ro	string	subtitles_load_failed	-	Aceste subtitrări nu au putut fi încărcate
 values-b+ro	string	subtitles_none	-	Nu există
 values-b+ro	string	subtitles_outline	-	Contur
 values-b+ro	string	subtitles_raised	-	Relief
@@ -38172,9 +38313,12 @@ values-b+ru	string	subtitle_offset_title	-	Задержка субтитров
 values-b+ru	string	subtitles_depressed	-	Опущенные
 values-b+ru	string	subtitles_encoding	-	Кодировка субтитров
 values-b+ru	string	subtitles_example_text	-	Съешь ещё этих мягких французских булок, да выпей же чаю
+values-b+ru	string	subtitles_file_empty	-	Этот файл субтитров пуст
 values-b+ru	string	subtitles_filter_lang	-	Фильтровать по предпочитаемому языку медиа
+values-b+ru	string	subtitles_format_unsupported	-	Этот формат субтитров не поддерживается
 values-b+ru	string	subtitles_from_embedded	-	Встроенный
 values-b+ru	string	subtitles_from_online	-	Из сети
+values-b+ru	string	subtitles_load_failed	-	Не удалось загрузить эти субтитры
 values-b+ru	string	subtitles_none	-	Нет
 values-b+ru	string	subtitles_outline	-	Контурный
 values-b+ru	string	subtitles_raised	-	Поднятые
@@ -38970,9 +39114,12 @@ values-b+sk	string	subtitle_offset_title	-	Oneskorenie tituliek
 values-b+sk	string	subtitles_depressed	-	Depressed
 values-b+sk	string	subtitles_encoding	-	Kódovanie titulkov
 values-b+sk	string	subtitles_example_text	-	V kŕdli čajok švihol ďateľ v ústí milej obžerky
+values-b+sk	string	subtitles_file_empty	-	Tento súbor titulkov je prázdny
 values-b+sk	string	subtitles_filter_lang	-	Filter by preferred media language
+values-b+sk	string	subtitles_format_unsupported	-	Tento formát titulkov nie je podporovaný
 values-b+sk	string	subtitles_from_embedded	-	Embedded
 values-b+sk	string	subtitles_from_online	-	Online
+values-b+sk	string	subtitles_load_failed	-	Tieto titulky sa nepodarilo načítať
 values-b+sk	string	subtitles_none	-	Žiadne
 values-b+sk	string	subtitles_outline	-	Obrys
 values-b+sk	string	subtitles_raised	-	Raised
@@ -39766,9 +39913,12 @@ values-b+so	string	subtitle_offset_title	-	Dib-u-dhaca Qrl-hoosaadka
 values-b+so	string	subtitles_depressed	-	Hoos u degsan
 values-b+so	string	subtitles_encoding	-	Horidda Qoraal-hoosaadka
 values-b+so	string	subtitles_example_text	-	Sheekheenna wiilkiisa curad, gabadhiisu foox la'aan ma heesi karto
+values-b+so	string	subtitles_file_empty	-	Faylkan qoraal-hoosaadka waa madhan yahay
 values-b+so	string	subtitles_filter_lang	-	U kala hor sida luuqadaha aad doorbidday
+values-b+so	string	subtitles_format_unsupported	-	Qaabkan qoraal-hoosaadka lama taageero
 values-b+so	string	subtitles_from_embedded	-	Embedded
 values-b+so	string	subtitles_from_online	-	Online
+values-b+so	string	subtitles_load_failed	-	Qoraal-hoosaadkan lama soo rari karin
 values-b+so	string	subtitles_none	-	Midna
 values-b+so	string	subtitles_outline	-	Lakabka sare
 values-b+so	string	subtitles_raised	-	Kor-u-qaadan
@@ -40562,9 +40712,12 @@ values-b+sq	string	subtitle_offset_title	-	Vonesa e titrave
 values-b+sq	string	subtitles_depressed	-	Të zhytura
 values-b+sq	string	subtitles_encoding	-	Enkodimi i titrave
 values-b+sq	string	subtitles_example_text	-	Dhelpra e shpejtë ngjyra kafe kërcen mbi qenin dembel
+values-b+sq	string	subtitles_file_empty	-	Ky skedar titrash është bosh
 values-b+sq	string	subtitles_filter_lang	-	Filtro sipas gjuhës së preferuar të medias
+values-b+sq	string	subtitles_format_unsupported	-	Ky format titrash nuk mbështetet
 values-b+sq	string	subtitles_from_embedded	-	I integruar
 values-b+sq	string	subtitles_from_online	-	Online
+values-b+sq	string	subtitles_load_failed	-	Këto titra nuk mund të ngarkoheshin
 values-b+sq	string	subtitles_none	-	Asnjë
 values-b+sq	string	subtitles_outline	-	Kontur
 values-b+sq	string	subtitles_raised	-	Të ngritura
@@ -41358,9 +41511,12 @@ values-b+sv	string	subtitle_offset_title	-	Fördröjning av undertexter
 values-b+sv	string	subtitles_depressed	-	Nedsänkt
 values-b+sv	string	subtitles_encoding	-	Undertextkodning
 values-b+sv	string	subtitles_example_text	-	Flygande bäckasiner söka hwila på mjuka tuvor
+values-b+sv	string	subtitles_file_empty	-	Den här undertextfilen är tom
 values-b+sv	string	subtitles_filter_lang	-	Filtrera efter föredraget språk
+values-b+sv	string	subtitles_format_unsupported	-	Det här undertextformatet stöds inte
 values-b+sv	string	subtitles_from_embedded	-	Inbäddad
 values-b+sv	string	subtitles_from_online	-	Ansluten
+values-b+sv	string	subtitles_load_failed	-	Det gick inte att ladda de här undertexterna
 values-b+sv	string	subtitles_none	-	Ingen
 values-b+sv	string	subtitles_outline	-	Kontur
 values-b+sv	string	subtitles_raised	-	Upphöjd
@@ -42154,9 +42310,12 @@ values-b+ta	string	subtitle_offset_title	-	வசன நேரந்தவறு
 values-b+ta	string	subtitles_depressed	-	மனச்சோர்வு
 values-b+ta	string	subtitles_encoding	-	வசன குறியீட்டு
 values-b+ta	string	subtitles_example_text	-	விரைவான பழுப்பு நரி சோம்பேறி நாய் மீது குதிக்கிறது
+values-b+ta	string	subtitles_file_empty	-	இந்த வசன வரி கோப்பு காலியாக உள்ளது
 values-b+ta	string	subtitles_filter_lang	-	விருப்பமான ஊடக மொழியால் வடிகட்டவும்
+values-b+ta	string	subtitles_format_unsupported	-	இந்த வசன வரி வடிவம் ஆதரிக்கப்படவில்லை
 values-b+ta	string	subtitles_from_embedded	-	உட்பொதிக்கப்பட்டது
 values-b+ta	string	subtitles_from_online	-	ஆன்லைனில்
+values-b+ta	string	subtitles_load_failed	-	இந்த வசன வரிகளை ஏற்ற முடியவில்லை
 values-b+ta	string	subtitles_none	-	எதுவுமில்லை
 values-b+ta	string	subtitles_outline	-	அவுட்லைன்
 values-b+ta	string	subtitles_raised	-	எழுப்பப்பட்ட
@@ -42950,9 +43109,12 @@ values-b+ti	string	subtitle_offset_title	-	Subtitle delay
 values-b+ti	string	subtitles_depressed	-	Depressed
 values-b+ti	string	subtitles_encoding	-	Subtitle encoding
 values-b+ti	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+values-b+ti	string	subtitles_file_empty	-	እዚ ፋይል ንኡስ ጽሑፍ ባዶ እዩ
 values-b+ti	string	subtitles_filter_lang	-	Filter by preferred media language
+values-b+ti	string	subtitles_format_unsupported	-	እዚ ቅርጺ ንኡስ ጽሑፍ ኣይድገፍን እዩ
 values-b+ti	string	subtitles_from_embedded	-	Embedded
 values-b+ti	string	subtitles_from_online	-	Online
+values-b+ti	string	subtitles_load_failed	-	ነዚ ንኡስ ጽሑፋት ክጽዓን ኣይተኻእለን
 values-b+ti	string	subtitles_none	-	None
 values-b+ti	string	subtitles_outline	-	Outline
 values-b+ti	string	subtitles_raised	-	Raised
@@ -43746,9 +43908,12 @@ values-b+tl	string	subtitle_offset_title	-	Subtitle delay
 values-b+tl	string	subtitles_depressed	-	Depressed
 values-b+tl	string	subtitles_encoding	-	Subtitle encoding
 values-b+tl	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+values-b+tl	string	subtitles_file_empty	-	Walang laman ang subtitle file na ito
 values-b+tl	string	subtitles_filter_lang	-	Filter by preferred media language
+values-b+tl	string	subtitles_format_unsupported	-	Hindi sinusuportahan ang format ng subtitle na ito
 values-b+tl	string	subtitles_from_embedded	-	Embedded
 values-b+tl	string	subtitles_from_online	-	Online
+values-b+tl	string	subtitles_load_failed	-	Hindi ma-load ang mga subtitle na ito
 values-b+tl	string	subtitles_none	-	None
 values-b+tl	string	subtitles_outline	-	Outline
 values-b+tl	string	subtitles_raised	-	Raised
@@ -44542,9 +44707,12 @@ values-b+tr	string	subtitle_offset_title	-	Altyazı gecikmesi
 values-b+tr	string	subtitles_depressed	-	Çökmüş
 values-b+tr	string	subtitles_encoding	-	Altyazı kodlaması
 values-b+tr	string	subtitles_example_text	-	Pijamalı hasta yağız şoföre çabucak güvendi
+values-b+tr	string	subtitles_file_empty	-	Bu altyazı dosyası boş
 values-b+tr	string	subtitles_filter_lang	-	Tercih edilen medya diline göre filtrele
+values-b+tr	string	subtitles_format_unsupported	-	Bu altyazı biçimi desteklenmiyor
 values-b+tr	string	subtitles_from_embedded	-	Yerleştir
 values-b+tr	string	subtitles_from_online	-	Çevrimiçi
+values-b+tr	string	subtitles_load_failed	-	Bu altyazılar yüklenemedi
 values-b+tr	string	subtitles_none	-	Yok
 values-b+tr	string	subtitles_outline	-	Dış hat
 values-b+tr	string	subtitles_raised	-	Yükseltilmiş
@@ -45346,9 +45514,12 @@ values-b+uk	string	subtitle_offset_title	-	Затримка субтитрів
 values-b+uk	string	subtitles_depressed	-	Опущені
 values-b+uk	string	subtitles_encoding	-	Кодування субтитрів
 values-b+uk	string	subtitles_example_text	-	Щастям б’єш жук їх глицю в фон й ґедзь пріч
+values-b+uk	string	subtitles_file_empty	-	Цей файл субтитрів порожній
 values-b+uk	string	subtitles_filter_lang	-	Фільтрувати за бажаною мовою медіа
+values-b+uk	string	subtitles_format_unsupported	-	Цей формат субтитрів не підтримується
 values-b+uk	string	subtitles_from_embedded	-	Вбудовані
 values-b+uk	string	subtitles_from_online	-	Мережеві
+values-b+uk	string	subtitles_load_failed	-	Не вдалося завантажити ці субтитри
 values-b+uk	string	subtitles_none	-	Нічого
 values-b+uk	string	subtitles_outline	-	Обведення
 values-b+uk	string	subtitles_raised	-	Підняті
@@ -46142,9 +46313,12 @@ values-b+ur	string	subtitle_offset_title	-	زیرنویس میں دیری
 values-b+ur	string	subtitles_depressed	-	دپرسڈ
 values-b+ur	string	subtitles_encoding	-	سب ٹائٹل انکوڈنگ
 values-b+ur	string	subtitles_example_text	-	تیز بھوری لومڑی سست کتے پر چھلانگ لگاتی ہے
+values-b+ur	string	subtitles_file_empty	-	یہ سب ٹائٹل فائل خالی ہے
 values-b+ur	string	subtitles_filter_lang	-	ترجیحی میڈیا زبان کے لحاظ سے فلٹر کریں
+values-b+ur	string	subtitles_format_unsupported	-	یہ سب ٹائٹل فارمیٹ معاون نہیں ہے
 values-b+ur	string	subtitles_from_embedded	-	Embedded
 values-b+ur	string	subtitles_from_online	-	Online
+values-b+ur	string	subtitles_load_failed	-	یہ سب ٹائٹلز لوڈ نہیں ہو سکے
 values-b+ur	string	subtitles_none	-	کچھ نہیں
 values-b+ur	string	subtitles_outline	-	خاکہ
 values-b+ur	string	subtitles_raised	-	اٹھایا
@@ -46934,9 +47108,12 @@ values-b+vi	string	subtitle_offset_title	-	Độ trễ phụ đề
 values-b+vi	string	subtitles_depressed	-	Chìm
 values-b+vi	string	subtitles_encoding	-	Mã hoá phụ đề
 values-b+vi	string	subtitles_example_text	-	Phụ đề của bạn sẽ trông tương tự như thế này
+values-b+vi	string	subtitles_file_empty	-	Tệp phụ đề này trống
 values-b+vi	string	subtitles_filter_lang	-	Lọc theo ngôn ngữ ưu tiên
+values-b+vi	string	subtitles_format_unsupported	-	Định dạng phụ đề này không được hỗ trợ
 values-b+vi	string	subtitles_from_embedded	-	Được nhúng
 values-b+vi	string	subtitles_from_online	-	Trực tuyến
+values-b+vi	string	subtitles_load_failed	-	Không thể tải phụ đề này
 values-b+vi	string	subtitles_none	-	Không có
 values-b+vi	string	subtitles_outline	-	Viền
 values-b+vi	string	subtitles_raised	-	Nâng
@@ -47726,9 +47903,12 @@ values-b+zh	string	subtitle_offset_title	-	字幕延迟
 values-b+zh	string	subtitles_depressed	-	凹陷
 values-b+zh	string	subtitles_encoding	-	字幕编码
 values-b+zh	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+values-b+zh	string	subtitles_file_empty	-	此字幕文件为空
 values-b+zh	string	subtitles_filter_lang	-	按首选片源语言过滤
+values-b+zh	string	subtitles_format_unsupported	-	不支持此字幕格式
 values-b+zh	string	subtitles_from_embedded	-	内嵌
 values-b+zh	string	subtitles_from_online	-	在线
+values-b+zh	string	subtitles_load_failed	-	无法加载这些字幕
 values-b+zh	string	subtitles_none	-	无
 values-b+zh	string	subtitles_outline	-	轮廓
 values-b+zh	string	subtitles_raised	-	凸出
@@ -48519,9 +48699,12 @@ values-b+zh+TW	string	subtitle_offset_title	-	字幕延遲
 values-b+zh+TW	string	subtitles_depressed	-	凹陷
 values-b+zh+TW	string	subtitles_encoding	-	字幕編碼
 values-b+zh+TW	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+values-b+zh+TW	string	subtitles_file_empty	-	此字幕檔案為空白
 values-b+zh+TW	string	subtitles_filter_lang	-	按偏好的片源語言篩選
+values-b+zh+TW	string	subtitles_format_unsupported	-	不支援此字幕格式
 values-b+zh+TW	string	subtitles_from_embedded	-	內嵌
 values-b+zh+TW	string	subtitles_from_online	-	線上
+values-b+zh+TW	string	subtitles_load_failed	-	無法載入這些字幕
 values-b+zh+TW	string	subtitles_none	-	無
 values-b+zh+TW	string	subtitles_outline	-	輪廓
 values-b+zh+TW	string	subtitles_raised	-	凸出
@@ -49315,9 +49498,12 @@ en	string	subtitle_offset_title	-	Subtitle delay
 en	string	subtitles_depressed	-	Depressed
 en	string	subtitles_encoding	-	Subtitle encoding
 en	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+en	string	subtitles_file_empty	-	This subtitle file is empty
 en	string	subtitles_filter_lang	-	Filter by preferred media language
+en	string	subtitles_format_unsupported	-	This subtitle format isn't supported
 en	string	subtitles_from_embedded	-	Embedded
 en	string	subtitles_from_online	-	Online
+en	string	subtitles_load_failed	-	Couldn't load these subtitles
 en	string	subtitles_none	-	None
 en	string	subtitles_outline	-	Outline
 en	string	subtitles_raised	-	Raised
@@ -50111,9 +50297,12 @@ en-US	string	subtitle_offset_title	-	Subtitle delay
 en-US	string	subtitles_depressed	-	Depressed
 en-US	string	subtitles_encoding	-	Subtitle encoding
 en-US	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+en-US	string	subtitles_file_empty	-	This subtitle file is empty
 en-US	string	subtitles_filter_lang	-	Filter by preferred media language
+en-US	string	subtitles_format_unsupported	-	This subtitle format isn't supported
 en-US	string	subtitles_from_embedded	-	Embedded
 en-US	string	subtitles_from_online	-	Online
+en-US	string	subtitles_load_failed	-	Couldn't load these subtitles
 en-US	string	subtitles_none	-	None
 en-US	string	subtitles_outline	-	Outline
 en-US	string	subtitles_raised	-	Raised
@@ -50907,9 +51096,12 @@ en-GB	string	subtitle_offset_title	-	Subtitle delay
 en-GB	string	subtitles_depressed	-	Depressed
 en-GB	string	subtitles_encoding	-	Subtitle encoding
 en-GB	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+en-GB	string	subtitles_file_empty	-	This subtitle file is empty
 en-GB	string	subtitles_filter_lang	-	Filter by preferred media language
+en-GB	string	subtitles_format_unsupported	-	This subtitle format isn't supported
 en-GB	string	subtitles_from_embedded	-	Embedded
 en-GB	string	subtitles_from_online	-	Online
+en-GB	string	subtitles_load_failed	-	Couldn't load these subtitles
 en-GB	string	subtitles_none	-	None
 en-GB	string	subtitles_outline	-	Outline
 en-GB	string	subtitles_raised	-	Raised
@@ -51707,9 +51899,12 @@ pt	string	subtitle_offset_title	-	Atraso de legenda
 pt	string	subtitles_depressed	-	Deprimido
 pt	string	subtitles_encoding	-	Codificação das legendas
 pt	string	subtitles_example_text	-	Luís argüia à Júlia que «brações, fé, chá, óxido, pôr, zângão» eram palavras do português
+pt	string	subtitles_file_empty	-	Este ficheiro de legendas está vazio
 pt	string	subtitles_filter_lang	-	Filtrar por linguagem preferida
+pt	string	subtitles_format_unsupported	-	Este formato de legendas não é suportado
 pt	string	subtitles_from_embedded	-	Incorporada
 pt	string	subtitles_from_online	-	Online
+pt	string	subtitles_load_failed	-	Não foi possível carregar estas legendas
 pt	string	subtitles_none	-	Nenhuma
 pt	string	subtitles_outline	-	Contornado
 pt	string	subtitles_raised	-	Em Relevo
@@ -52507,9 +52702,12 @@ pt-PT	string	subtitle_offset_title	-	Atraso de legenda
 pt-PT	string	subtitles_depressed	-	Deprimido
 pt-PT	string	subtitles_encoding	-	Codificação das legendas
 pt-PT	string	subtitles_example_text	-	Luís argüia à Júlia que «brações, fé, chá, óxido, pôr, zângão» eram palavras do português
+pt-PT	string	subtitles_file_empty	-	Este ficheiro de legendas está vazio
 pt-PT	string	subtitles_filter_lang	-	Filtrar por linguagem preferida
+pt-PT	string	subtitles_format_unsupported	-	Este formato de legendas não é suportado
 pt-PT	string	subtitles_from_embedded	-	Incorporada
 pt-PT	string	subtitles_from_online	-	Online
+pt-PT	string	subtitles_load_failed	-	Não foi possível carregar estas legendas
 pt-PT	string	subtitles_none	-	Nenhuma
 pt-PT	string	subtitles_outline	-	Contornado
 pt-PT	string	subtitles_raised	-	Em Relevo
@@ -53307,9 +53505,12 @@ pt-BR	string	subtitle_offset_title	-	Atraso de legenda
 pt-BR	string	subtitles_depressed	-	Afundado
 pt-BR	string	subtitles_encoding	-	Codificação das legendas
 pt-BR	string	subtitles_example_text	-	A rápida raposa marrom salta sobre o cachorro preguiçoso
+pt-BR	string	subtitles_file_empty	-	Este arquivo de legenda está vazio
 pt-BR	string	subtitles_filter_lang	-	Filtrar por linguagem preferida
+pt-BR	string	subtitles_format_unsupported	-	Este formato de legenda não é compatível
 pt-BR	string	subtitles_from_embedded	-	Incorporada
 pt-BR	string	subtitles_from_online	-	Online
+pt-BR	string	subtitles_load_failed	-	Não foi possível carregar estas legendas
 pt-BR	string	subtitles_none	-	Nenhum
 pt-BR	string	subtitles_outline	-	Contornado
 pt-BR	string	subtitles_raised	-	Em Relevo
@@ -54103,9 +54304,12 @@ fil	string	subtitle_offset_title	-	Subtitle delay
 fil	string	subtitles_depressed	-	Depressed
 fil	string	subtitles_encoding	-	Subtitle encoding
 fil	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+fil	string	subtitles_file_empty	-	Walang laman ang subtitle file na ito
 fil	string	subtitles_filter_lang	-	Filter by preferred media language
+fil	string	subtitles_format_unsupported	-	Hindi sinusuportahan ang format ng subtitle na ito
 fil	string	subtitles_from_embedded	-	Embedded
 fil	string	subtitles_from_online	-	Online
+fil	string	subtitles_load_failed	-	Hindi ma-load ang mga subtitle na ito
 fil	string	subtitles_none	-	None
 fil	string	subtitles_outline	-	Outline
 fil	string	subtitles_raised	-	Raised
@@ -54899,9 +55103,12 @@ tl	string	subtitle_offset_title	-	Subtitle delay
 tl	string	subtitles_depressed	-	Depressed
 tl	string	subtitles_encoding	-	Subtitle encoding
 tl	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+tl	string	subtitles_file_empty	-	Walang laman ang subtitle file na ito
 tl	string	subtitles_filter_lang	-	Filter by preferred media language
+tl	string	subtitles_format_unsupported	-	Hindi sinusuportahan ang format ng subtitle na ito
 tl	string	subtitles_from_embedded	-	Embedded
 tl	string	subtitles_from_online	-	Online
+tl	string	subtitles_load_failed	-	Hindi ma-load ang mga subtitle na ito
 tl	string	subtitles_none	-	None
 tl	string	subtitles_outline	-	Outline
 tl	string	subtitles_raised	-	Raised
@@ -55695,9 +55902,12 @@ fil-PH	string	subtitle_offset_title	-	Subtitle delay
 fil-PH	string	subtitles_depressed	-	Depressed
 fil-PH	string	subtitles_encoding	-	Subtitle encoding
 fil-PH	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+fil-PH	string	subtitles_file_empty	-	Walang laman ang subtitle file na ito
 fil-PH	string	subtitles_filter_lang	-	Filter by preferred media language
+fil-PH	string	subtitles_format_unsupported	-	Hindi sinusuportahan ang format ng subtitle na ito
 fil-PH	string	subtitles_from_embedded	-	Embedded
 fil-PH	string	subtitles_from_online	-	Online
+fil-PH	string	subtitles_load_failed	-	Hindi ma-load ang mga subtitle na ito
 fil-PH	string	subtitles_none	-	None
 fil-PH	string	subtitles_outline	-	Outline
 fil-PH	string	subtitles_raised	-	Raised
@@ -56487,9 +56697,12 @@ zh	string	subtitle_offset_title	-	字幕延迟
 zh	string	subtitles_depressed	-	凹陷
 zh	string	subtitles_encoding	-	字幕编码
 zh	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+zh	string	subtitles_file_empty	-	此字幕文件为空
 zh	string	subtitles_filter_lang	-	按首选片源语言过滤
+zh	string	subtitles_format_unsupported	-	不支持此字幕格式
 zh	string	subtitles_from_embedded	-	内嵌
 zh	string	subtitles_from_online	-	在线
+zh	string	subtitles_load_failed	-	无法加载这些字幕
 zh	string	subtitles_none	-	无
 zh	string	subtitles_outline	-	轮廓
 zh	string	subtitles_raised	-	凸出
@@ -57279,9 +57492,12 @@ zh-CN	string	subtitle_offset_title	-	字幕延迟
 zh-CN	string	subtitles_depressed	-	凹陷
 zh-CN	string	subtitles_encoding	-	字幕编码
 zh-CN	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+zh-CN	string	subtitles_file_empty	-	此字幕文件为空
 zh-CN	string	subtitles_filter_lang	-	按首选片源语言过滤
+zh-CN	string	subtitles_format_unsupported	-	不支持此字幕格式
 zh-CN	string	subtitles_from_embedded	-	内嵌
 zh-CN	string	subtitles_from_online	-	在线
+zh-CN	string	subtitles_load_failed	-	无法加载这些字幕
 zh-CN	string	subtitles_none	-	无
 zh-CN	string	subtitles_outline	-	轮廓
 zh-CN	string	subtitles_raised	-	凸出
@@ -58071,9 +58287,12 @@ zh-Hans-CN	string	subtitle_offset_title	-	字幕延迟
 zh-Hans-CN	string	subtitles_depressed	-	凹陷
 zh-Hans-CN	string	subtitles_encoding	-	字幕编码
 zh-Hans-CN	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+zh-Hans-CN	string	subtitles_file_empty	-	此字幕文件为空
 zh-Hans-CN	string	subtitles_filter_lang	-	按首选片源语言过滤
+zh-Hans-CN	string	subtitles_format_unsupported	-	不支持此字幕格式
 zh-Hans-CN	string	subtitles_from_embedded	-	内嵌
 zh-Hans-CN	string	subtitles_from_online	-	在线
+zh-Hans-CN	string	subtitles_load_failed	-	无法加载这些字幕
 zh-Hans-CN	string	subtitles_none	-	无
 zh-Hans-CN	string	subtitles_outline	-	轮廓
 zh-Hans-CN	string	subtitles_raised	-	凸出
@@ -58864,9 +59083,12 @@ zh-TW	string	subtitle_offset_title	-	字幕延遲
 zh-TW	string	subtitles_depressed	-	凹陷
 zh-TW	string	subtitles_encoding	-	字幕編碼
 zh-TW	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+zh-TW	string	subtitles_file_empty	-	此字幕檔案為空白
 zh-TW	string	subtitles_filter_lang	-	按偏好的片源語言篩選
+zh-TW	string	subtitles_format_unsupported	-	不支援此字幕格式
 zh-TW	string	subtitles_from_embedded	-	內嵌
 zh-TW	string	subtitles_from_online	-	線上
+zh-TW	string	subtitles_load_failed	-	無法載入這些字幕
 zh-TW	string	subtitles_none	-	無
 zh-TW	string	subtitles_outline	-	輪廓
 zh-TW	string	subtitles_raised	-	凸出
@@ -59657,9 +59879,12 @@ zh-Hant-TW	string	subtitle_offset_title	-	字幕延遲
 zh-Hant-TW	string	subtitles_depressed	-	凹陷
 zh-Hant-TW	string	subtitles_encoding	-	字幕編碼
 zh-Hant-TW	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+zh-Hant-TW	string	subtitles_file_empty	-	此字幕檔案為空白
 zh-Hant-TW	string	subtitles_filter_lang	-	按偏好的片源語言篩選
+zh-Hant-TW	string	subtitles_format_unsupported	-	不支援此字幕格式
 zh-Hant-TW	string	subtitles_from_embedded	-	內嵌
 zh-Hant-TW	string	subtitles_from_online	-	線上
+zh-Hant-TW	string	subtitles_load_failed	-	無法載入這些字幕
 zh-Hant-TW	string	subtitles_none	-	無
 zh-Hant-TW	string	subtitles_outline	-	輪廓
 zh-Hant-TW	string	subtitles_raised	-	凸出
@@ -60450,9 +60675,12 @@ zh-HK	string	subtitle_offset_title	-	字幕延遲
 zh-HK	string	subtitles_depressed	-	凹陷
 zh-HK	string	subtitles_encoding	-	字幕編碼
 zh-HK	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+zh-HK	string	subtitles_file_empty	-	此字幕檔案為空白
 zh-HK	string	subtitles_filter_lang	-	按偏好的片源語言篩選
+zh-HK	string	subtitles_format_unsupported	-	不支援此字幕格式
 zh-HK	string	subtitles_from_embedded	-	內嵌
 zh-HK	string	subtitles_from_online	-	線上
+zh-HK	string	subtitles_load_failed	-	無法載入這些字幕
 zh-HK	string	subtitles_none	-	無
 zh-HK	string	subtitles_outline	-	輪廓
 zh-HK	string	subtitles_raised	-	凸出
@@ -61243,9 +61471,12 @@ zh-Hant-HK	string	subtitle_offset_title	-	字幕延遲
 zh-Hant-HK	string	subtitles_depressed	-	凹陷
 zh-Hant-HK	string	subtitles_encoding	-	字幕編碼
 zh-Hant-HK	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+zh-Hant-HK	string	subtitles_file_empty	-	此字幕檔案為空白
 zh-Hant-HK	string	subtitles_filter_lang	-	按偏好的片源語言篩選
+zh-Hant-HK	string	subtitles_format_unsupported	-	不支援此字幕格式
 zh-Hant-HK	string	subtitles_from_embedded	-	內嵌
 zh-Hant-HK	string	subtitles_from_online	-	線上
+zh-Hant-HK	string	subtitles_load_failed	-	無法載入這些字幕
 zh-Hant-HK	string	subtitles_none	-	無
 zh-Hant-HK	string	subtitles_outline	-	輪廓
 zh-Hant-HK	string	subtitles_raised	-	凸出
@@ -62039,9 +62270,12 @@ no	string	subtitle_offset_title	-	Undertekstforsinkelse
 no	string	subtitles_depressed	-	Nedsenket
 no	string	subtitles_encoding	-	Undertekst-koding
 no	string	subtitles_example_text	-	Sær golfer med kølle vant sexquiz på WC i hjemby
+no	string	subtitles_file_empty	-	Denne undertekstfilen er tom
 no	string	subtitles_filter_lang	-	Filtrer etter foretrukket mediaspråk
+no	string	subtitles_format_unsupported	-	Dette undertekstformatet støttes ikke
 no	string	subtitles_from_embedded	-	Embedded
 no	string	subtitles_from_online	-	Online
+no	string	subtitles_load_failed	-	Kunne ikke laste disse undertekstene
 no	string	subtitles_none	-	Ingen
 no	string	subtitles_outline	-	Omriss
 no	string	subtitles_raised	-	Opphøyd
@@ -62835,9 +63069,12 @@ nb	string	subtitle_offset_title	-	Subtitle delay
 nb	string	subtitles_depressed	-	Depressed
 nb	string	subtitles_encoding	-	Subtitle encoding
 nb	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+nb	string	subtitles_file_empty	-	This subtitle file is empty
 nb	string	subtitles_filter_lang	-	Filter by preferred media language
+nb	string	subtitles_format_unsupported	-	This subtitle format isn't supported
 nb	string	subtitles_from_embedded	-	Embedded
 nb	string	subtitles_from_online	-	Online
+nb	string	subtitles_load_failed	-	Couldn't load these subtitles
 nb	string	subtitles_none	-	None
 nb	string	subtitles_outline	-	Outline
 nb	string	subtitles_raised	-	Raised
@@ -63631,9 +63868,12 @@ nb-NO	string	subtitle_offset_title	-	Subtitle delay
 nb-NO	string	subtitles_depressed	-	Depressed
 nb-NO	string	subtitles_encoding	-	Subtitle encoding
 nb-NO	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+nb-NO	string	subtitles_file_empty	-	This subtitle file is empty
 nb-NO	string	subtitles_filter_lang	-	Filter by preferred media language
+nb-NO	string	subtitles_format_unsupported	-	This subtitle format isn't supported
 nb-NO	string	subtitles_from_embedded	-	Embedded
 nb-NO	string	subtitles_from_online	-	Online
+nb-NO	string	subtitles_load_failed	-	Couldn't load these subtitles
 nb-NO	string	subtitles_none	-	None
 nb-NO	string	subtitles_outline	-	Outline
 nb-NO	string	subtitles_raised	-	Raised
@@ -64428,9 +64668,12 @@ iw	string	subtitle_offset_title	-	עיכוב כתוביות
 iw	string	subtitles_depressed	-	מדוכא
 iw	string	subtitles_encoding	-	קידוד כתוביות
 iw	string	subtitles_example_text	-	השועל החום המהיר קופץ מעל הכלב העצלן
+iw	string	subtitles_file_empty	-	קובץ הכתוביות הזה ריק
 iw	string	subtitles_filter_lang	-	סנן לפי שפת מדיה מועדפת
+iw	string	subtitles_format_unsupported	-	פורמט הכתוביות הזה אינו נתמך
 iw	string	subtitles_from_embedded	-	Embedded
 iw	string	subtitles_from_online	-	Online
+iw	string	subtitles_load_failed	-	לא ניתן לטעון את הכתוביות האלה
 iw	string	subtitles_none	-	אין
 iw	string	subtitles_outline	-	מתאר
 iw	string	subtitles_raised	-	הורם
@@ -65225,9 +65468,12 @@ he	string	subtitle_offset_title	-	עיכוב כתוביות
 he	string	subtitles_depressed	-	מדוכא
 he	string	subtitles_encoding	-	קידוד כתוביות
 he	string	subtitles_example_text	-	השועל החום המהיר קופץ מעל הכלב העצלן
+he	string	subtitles_file_empty	-	קובץ הכתוביות הזה ריק
 he	string	subtitles_filter_lang	-	סנן לפי שפת מדיה מועדפת
+he	string	subtitles_format_unsupported	-	פורמט הכתוביות הזה אינו נתמך
 he	string	subtitles_from_embedded	-	Embedded
 he	string	subtitles_from_online	-	Online
+he	string	subtitles_load_failed	-	לא ניתן לטעון את הכתוביות האלה
 he	string	subtitles_none	-	אין
 he	string	subtitles_outline	-	מתאר
 he	string	subtitles_raised	-	הורם
@@ -66022,9 +66268,12 @@ he-IL	string	subtitle_offset_title	-	עיכוב כתוביות
 he-IL	string	subtitles_depressed	-	מדוכא
 he-IL	string	subtitles_encoding	-	קידוד כתוביות
 he-IL	string	subtitles_example_text	-	השועל החום המהיר קופץ מעל הכלב העצלן
+he-IL	string	subtitles_file_empty	-	קובץ הכתוביות הזה ריק
 he-IL	string	subtitles_filter_lang	-	סנן לפי שפת מדיה מועדפת
+he-IL	string	subtitles_format_unsupported	-	פורמט הכתוביות הזה אינו נתמך
 he-IL	string	subtitles_from_embedded	-	Embedded
 he-IL	string	subtitles_from_online	-	Online
+he-IL	string	subtitles_load_failed	-	לא ניתן לטעון את הכתוביות האלה
 he-IL	string	subtitles_none	-	אין
 he-IL	string	subtitles_outline	-	מתאר
 he-IL	string	subtitles_raised	-	הורם
@@ -66814,9 +67063,12 @@ in	string	subtitle_offset_title	-	Penundaan subtitel
 in	string	subtitles_depressed	-	Ditekan
 in	string	subtitles_encoding	-	Enkode subtitel
 in	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+in	string	subtitles_file_empty	-	File subtitel ini kosong
 in	string	subtitles_filter_lang	-	Filter berdasarkan bahasa media pilihan
+in	string	subtitles_format_unsupported	-	Format subtitel ini tidak didukung
 in	string	subtitles_from_embedded	-	Tertanam
 in	string	subtitles_from_online	-	Daring
+in	string	subtitles_load_failed	-	Tidak dapat memuat subtitel ini
 in	string	subtitles_none	-	Tidak Ada
 in	string	subtitles_outline	-	Garis luar
 in	string	subtitles_raised	-	Menonjol
@@ -67606,9 +67858,12 @@ id	string	subtitle_offset_title	-	Penundaan subtitel
 id	string	subtitles_depressed	-	Ditekan
 id	string	subtitles_encoding	-	Enkode subtitel
 id	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+id	string	subtitles_file_empty	-	File subtitel ini kosong
 id	string	subtitles_filter_lang	-	Filter berdasarkan bahasa media pilihan
+id	string	subtitles_format_unsupported	-	Format subtitel ini tidak didukung
 id	string	subtitles_from_embedded	-	Tertanam
 id	string	subtitles_from_online	-	Daring
+id	string	subtitles_load_failed	-	Tidak dapat memuat subtitel ini
 id	string	subtitles_none	-	Tidak Ada
 id	string	subtitles_outline	-	Garis luar
 id	string	subtitles_raised	-	Menonjol
@@ -68398,9 +68653,12 @@ id-ID	string	subtitle_offset_title	-	Penundaan subtitel
 id-ID	string	subtitles_depressed	-	Ditekan
 id-ID	string	subtitles_encoding	-	Enkode subtitel
 id-ID	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+id-ID	string	subtitles_file_empty	-	File subtitel ini kosong
 id-ID	string	subtitles_filter_lang	-	Filter berdasarkan bahasa media pilihan
+id-ID	string	subtitles_format_unsupported	-	Format subtitel ini tidak didukung
 id-ID	string	subtitles_from_embedded	-	Tertanam
 id-ID	string	subtitles_from_online	-	Daring
+id-ID	string	subtitles_load_failed	-	Tidak dapat memuat subtitel ini
 id-ID	string	subtitles_none	-	Tidak Ada
 id-ID	string	subtitles_outline	-	Garis luar
 id-ID	string	subtitles_raised	-	Menonjol
@@ -69194,9 +69452,12 @@ arz	string	subtitle_offset_title	-	Subtitle delay
 arz	string	subtitles_depressed	-	Depressed
 arz	string	subtitles_encoding	-	Subtitle encoding
 arz	string	subtitles_example_text	-	The quick brown fox jumps over the lazy dog
+arz	string	subtitles_file_empty	-	This subtitle file is empty
 arz	string	subtitles_filter_lang	-	Filter by preferred media language
+arz	string	subtitles_format_unsupported	-	This subtitle format isn't supported
 arz	string	subtitles_from_embedded	-	Embedded
 arz	string	subtitles_from_online	-	Online
+arz	string	subtitles_load_failed	-	Couldn't load these subtitles
 arz	string	subtitles_none	-	None
 arz	string	subtitles_outline	-	Outline
 arz	string	subtitles_raised	-	Raised

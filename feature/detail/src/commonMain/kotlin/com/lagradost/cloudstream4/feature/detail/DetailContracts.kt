@@ -1,6 +1,7 @@
 package com.lagradost.cloudstream4.feature.detail
 
 import androidx.compose.runtime.Immutable
+import com.lagradost.cloudstream4.media.model.SubtitleTrack
 
 /** One episode of a series. [data] is opaque, and goes back to [DetailSource.links] unread. */
 @Immutable
@@ -33,7 +34,12 @@ data class TitleDetail(
     val primaryData: String? get() = playData ?: episodes.firstOrNull()?.data
 }
 
-/** One playable stream. The host has already refused any URL it will not play. */
+/**
+ * One playable stream. The host has already refused any URL it will not play.
+ *
+ * @param subtitles what the provider offered in the same call. A provider's subtitle list belongs to the
+ *   title rather than to one stream, so every link of one answer carries the same list.
+ */
 @Immutable
 data class StreamLink(
     val label: String,
@@ -42,6 +48,7 @@ data class StreamLink(
     val referer: String?,
     val userAgent: String?,
     val audioUrl: String?,
+    val subtitles: List<SubtitleTrack> = emptyList(),
 )
 
 /**

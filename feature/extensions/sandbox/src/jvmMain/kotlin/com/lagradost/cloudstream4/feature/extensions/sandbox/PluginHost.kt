@@ -9,6 +9,7 @@ import com.lagradost.cloudstream3.LoadResponse
 import com.lagradost.cloudstream3.MainAPI
 import com.lagradost.cloudstream3.MainPageRequest
 import com.lagradost.cloudstream3.MovieLoadResponse
+import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.TvSeriesLoadResponse
 import com.lagradost.cloudstream3.newSearchResponseList
 import com.lagradost.cloudstream4.feature.extensions.InstalledExtension
@@ -20,7 +21,6 @@ import java.io.FileDescriptor
 import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.io.OutputStream
-import java.util.concurrent.atomic.AtomicInteger
 import kotlin.system.exitProcess
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -154,11 +154,15 @@ object PluginHost {
                     }
                     HostProtocol.OP_LOAD_LINKS -> {
                         val links = mutableListOf<RemoteLink>()
-                        val subtitles = AtomicInteger()
+                        val subtitles = mutableListOf<RemoteSubtitle>()
                         api.loadLinks(
                             data = args.readText(),
                             isCasting = false,
-                            subtitleCallback = { subtitles.incrementAndGet() },
+                            subtitleCallback = { file ->
+                                synchronized(subtitles) {
+                                    if (subtitles.size < HostProtocol.MAX_SUBTITLES) subtitles += file.toRemote()
+                                }
+                            },
                             callback = { link ->
                                 synchronized(links) {
                                     links += RemoteLink(
@@ -176,7 +180,8 @@ object PluginHost {
                             },
                         )
                         val snapshot = synchronized(links) { links.toList() }
-                        writer.send(id) { writeLinks(RemoteLinks(snapshot, subtitles.get())) }
+                        val offered = synchronized(subtitles) { subtitles.toList() }
+                        writer.send(id) { writeLinks(RemoteLinks(snapshot, offered)) }
                     }
                     HostProtocol.OP_MAIN_PAGE -> {
                         val section = checkNotNull(api.mainPage.getOrNull(args.readInt())) { "unknown section" }
@@ -193,6 +198,18 @@ object PluginHost {
             writer.fail(id, failure)
         }
     }
+
+    private fun SubtitleFile.toRemote() = RemoteSubtitle(
+        language = lang,
+        // `langTag` is `:library`'s table, reached with a string the plugin chose.
+        languageTag = runCatching { langTag }.getOrNull(),
+        url = url,
+        referer = headers.named("Referer"),
+        userAgent = headers.named("User-Agent"),
+    )
+
+    private fun Map<String, String>?.named(header: String): String? =
+        this?.entries?.firstOrNull { it.key.equals(header, ignoreCase = true) }?.value
 
     private fun com.lagradost.cloudstream3.SearchResponseList.toRemote() = RemoteSearchPage(
         items = items.map { RemoteSearchItem(it.name, it.url, it.type?.name, it.posterUrl) },

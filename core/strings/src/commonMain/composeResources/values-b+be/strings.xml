@@ -641,9 +641,12 @@
 <string name="subtitles_depressed">Заніжаныя</string>
 <string name="subtitles_encoding">Кадзіраванне субцітраў</string>
 <string name="subtitles_example_text">У цэху з’яўляецца чорт, кроўю і пугай фарбуе свежы шампіньён</string>
+<string name="subtitles_file_empty">Гэты файл субцітраў пусты</string>
 <string name="subtitles_filter_lang">Фільтраваць па прыярытэтнай мове медыя</string>
+<string name="subtitles_format_unsupported">Гэты фармат субцітраў не падтрымліваецца</string>
 <string name="subtitles_from_embedded">Убудаваны</string>
 <string name="subtitles_from_online">Сеткавы</string>
+<string name="subtitles_load_failed">Не ўдалося загрузіць гэтыя субцітры</string>
 <string name="subtitles_outline">Контур</string>
 <string name="subtitles_raised">Паднятыя</string>
 <string name="subtitles_remove_bloat">Прыбраць раздуванне з субцітраў</string>

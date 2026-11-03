@@ -254,6 +254,9 @@
 <string name="subs_window_color">Lango spalva</string>
 <string name="subscribe_tooltip">Naujos serijos pranešimas</string>
 <string name="subscription_episode_released">Serija %d išleista!</string>
+<string name="subtitles_file_empty">Šis subtitrų failas tuščias</string>
+<string name="subtitles_format_unsupported">Šis subtitrų formatas nepalaikomas</string>
+<string name="subtitles_load_failed">Nepavyko įkelti šių subtitrų</string>
 <string name="subtitles_settings">Subtitrų nustatymai</string>
 <string name="swipe_to_change_settings">Braukite, kad pakeistumėte nustatymus</string>
 <string name="swipe_to_change_settings_des">Braukite aukštyn arba žemyn ekrano kairėje arba dešinėje, jei norite pakeisti ryškumą arba garsą</string>

@@ -143,6 +143,9 @@
 <string name="subs_text_color">"Kulay ng Teksto"</string>
 <string name="subs_window_color">"Kulay ng Bintana"</string>
 <string name="subscribe_tooltip">"Bagong notipikasyon ng kabanata"</string>
+<string name="subtitles_file_empty">"Walang laman ang subtitle file na ito"</string>
+<string name="subtitles_format_unsupported">"Hindi sinusuportahan ang format ng subtitle na ito"</string>
+<string name="subtitles_load_failed">"Hindi ma-load ang mga subtitle na ito"</string>
 <string name="subtitles_settings">"Pagpipilian sa Saling-teksto"</string>
 <string name="swipe_to_change_settings_des">"Mag-slide pataas o pababa sa kaliwa o kanang bahagi upang baguhin ang liwanag o volume"</string>
 <string name="swipe_to_seek_settings_des">"Mag-swipe mula sa gilid patungo sa kabilang gilid upang kontrolin ang iyong posisyon sa isang video"</string>

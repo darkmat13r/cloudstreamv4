@@ -645,9 +645,12 @@
 <string name="subtitles_depressed">Të zhytura</string>
 <string name="subtitles_encoding">Enkodimi i titrave</string>
 <string name="subtitles_example_text">Dhelpra e shpejtë ngjyra kafe kërcen mbi qenin dembel</string>
+<string name="subtitles_file_empty">Ky skedar titrash është bosh</string>
 <string name="subtitles_filter_lang">Filtro sipas gjuhës së preferuar të medias</string>
+<string name="subtitles_format_unsupported">Ky format titrash nuk mbështetet</string>
 <string name="subtitles_from_embedded">I integruar</string>
 <string name="subtitles_from_online">Online</string>
+<string name="subtitles_load_failed">Këto titra nuk mund të ngarkoheshin</string>
 <string name="subtitles_outline">Kontur</string>
 <string name="subtitles_raised">Të ngritura</string>
 <string name="subtitles_remove_bloat">Hiq të tepërtat nga titrat</string>

@@ -56,21 +56,24 @@ class HostLauncher internal constructor(
      *
      * @param vlcApp the VLC bundle. It is read, never written.
      * @param writable the host's own directory, empty and not shared with anything.
+     * @param silent no audio output: libVLC is told so, and the sandbox refuses it the audio devices anyway.
      */
-    fun startMediaHost(vlcApp: File, writable: File): Process {
+    fun startMediaHost(vlcApp: File, writable: File, silent: Boolean = false): Process {
         val app = vlcApp.canonicalFile
         return start(
             arguments = emptyList(),
             readOnlyInputs = emptyList(),
             writable = writable,
             network = true,
-            extraRules = SeatbeltProfile.mediaHostRules(app, writable),
+            extraRules = SeatbeltProfile.mediaHostRules(app, writable, audio = !silent),
             jvmOptions = "$JVM_OPTIONS -Djava.awt.headless=true -Djava.io.tmpdir=${writable.path} " +
-                "-Djna.tmpdir=${writable.path}",
+                "-Djna.tmpdir=${writable.path}" + if (silent) " -D$SILENT_PROPERTY=true" else "",
         )
     }
 
     companion object {
+        /** How [startMediaHost] tells the host, whose command line is the same either way. */
+        const val SILENT_PROPERTY = "cloudstream.mediahost.silent"
         private const val JVM_OPTIONS =
             "-Xmx512m -XX:+UseSerialGC -XX:-UsePerfData -XX:ActiveProcessorCount=4 -Xshare:auto"
         private const val DEV_MAIN = "com.lagradost.cloudstream4.feature.extensions.sandbox.PluginHostKt"
@@ -444,6 +447,11 @@ private fun RemoteDetails.cleaned() = copy(
 )
 
 private fun RemoteLinks.cleaned() = copy(
+    subtitles = subtitles.asSequence()
+        .mapNotNull { it.cleaned() }
+        .distinctBy { it.url to it.language }
+        .take(HostProtocol.MAX_SUBTITLES)
+        .toList(),
     links = links.take(MAX_ITEMS).map { link ->
         link.copy(
             source = link.source.sanitized(MAX_PROVIDER_FIELD_CHARS),
@@ -456,3 +464,35 @@ private fun RemoteLinks.cleaned() = copy(
         )
     },
 )
+
+/**
+ * A track the app may offer, or null.
+ *
+ * A label is the one plugin string on the player's screen, so it loses format characters as well as
+ * controls: U+202E would otherwise reverse the row it sits on, and the rows around nothing else tell the
+ * user what they are picking.
+ *
+ * The URL gets a check of its shape only. The address is checked when someone chooses the track
+ * (`DesktopSubtitleLoader`), so offering a list costs no lookup of names nobody asked for.
+ */
+internal fun RemoteSubtitle.cleaned(): RemoteSubtitle? {
+    val tag = languageTag?.takeIf { it.length <= MAX_LANGUAGE_TAG_CHARS && it.all(::isLanguageTagChar) }
+    val label = language.take(MAX_SUBTITLE_LABEL_CHARS).filterNot(::isInvisibleInLabel).trim().ifEmpty { tag }
+        ?: return null
+    if (!SandboxPolicy.isHttpUrlShape(url)) return null
+    return copy(
+        language = label,
+        languageTag = tag,
+        referer = referer?.sanitized(),
+        userAgent = userAgent?.sanitized(MAX_PROVIDER_FIELD_CHARS),
+    )
+}
+
+private fun isLanguageTagChar(c: Char) = c in 'a'..'z' || c in 'A'..'Z' || c in '0'..'9' || c == '-'
+
+private fun isInvisibleInLabel(c: Char) =
+    c.isISOControl() || c.category == CharCategory.FORMAT ||
+        c.category == CharCategory.LINE_SEPARATOR || c.category == CharCategory.PARAGRAPH_SEPARATOR
+
+private const val MAX_SUBTITLE_LABEL_CHARS = 128
+private const val MAX_LANGUAGE_TAG_CHARS = 35
