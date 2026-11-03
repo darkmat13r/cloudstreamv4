@@ -8,6 +8,7 @@ import java.nio.ByteBuffer
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.LinkedBlockingQueue
 import java.util.concurrent.TimeUnit
+import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -196,6 +197,7 @@ class PluginHostClientTest {
         private val replies = LinkedBlockingQueue<ByteArray>()
         private val requests = LinkedBlockingQueue<Int>()
         private val ended = CountDownLatch(1)
+        private val killed = AtomicBoolean(false)
 
         private val toClient = object : InputStream() {
             private var chunk = ByteArray(0)
@@ -250,12 +252,20 @@ class PluginHostClientTest {
             replies.add(ByteArray(0))
         }
 
-        override fun destroyForcibly(): Process = apply { destroy() }
+        /**
+         * A real process's streams close before this call returns, so the reader gets to run first. Only
+         * the first call waits: the reader's own abort comes here too, and must not be held back.
+         */
+        override fun destroyForcibly(): Process = apply {
+            destroy()
+            if (killed.compareAndSet(false, true)) Thread.sleep(READER_HEAD_START_MILLIS)
+        }
     }
 
     private companion object {
         const val NEVER_ISSUED = 1_000_000
         const val WAIT_SECONDS = 10L
+        const val READER_HEAD_START_MILLIS = 50L
         const val BYTE_MASK = 0xff
     }
 }
