@@ -29,6 +29,7 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.feature.search.SearchAction
 import com.lagradost.cloudstream4.feature.search.SearchResultGroup
 import com.lagradost.cloudstream4.feature.search.SearchResultItem
+import com.lagradost.cloudstream4.feature.search.resultCountText
 
 /**
  * One rail per provider: artboards **4a** and **4b**.
@@ -59,7 +60,6 @@ import com.lagradost.cloudstream4.feature.search.SearchResultItem
 @Composable
 internal fun SearchResultRails(
     groups: List<SearchResultGroup>,
-    copy: SearchTvCopy,
     onAction: (SearchAction) -> Unit,
     artwork: @Composable (SearchResultItem) -> Unit,
     modifier: Modifier = Modifier,
@@ -69,7 +69,7 @@ internal fun SearchResultRails(
         verticalArrangement = Arrangement.spacedBy(CloudStreamDimens.MinFocusGap),
     ) {
         items(items = groups, key = { it.providerName }) { group ->
-            ProviderRail(group = group, copy = copy, onAction = onAction, artwork = artwork)
+            ProviderRail(group = group, onAction = onAction, artwork = artwork)
         }
     }
 }
@@ -77,7 +77,6 @@ internal fun SearchResultRails(
 @Composable
 private fun ProviderRail(
     group: SearchResultGroup,
-    copy: SearchTvCopy,
     onAction: (SearchAction) -> Unit,
     artwork: @Composable (SearchResultItem) -> Unit,
     modifier: Modifier = Modifier,
@@ -85,7 +84,7 @@ private fun ProviderRail(
     Column(modifier) {
         RailHeader(
             title = group.providerName,
-            count = copy.resultCount(group.items.size),
+            count = resultCountText(group.items.size),
             modifier = Modifier.padding(start = SearchScreenTvDefaults.ContentInsetStart),
         )
         Spacer(Modifier.height(CloudStreamDimens.LiftedRowClearance))

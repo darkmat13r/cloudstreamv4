@@ -45,6 +45,13 @@ import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopMotion
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopRow
 import com.lagradost.cloudstream4.core.designsystem.state.UiState
 import com.lagradost.cloudstream4.core.designsystem.state.UiStateHost
+import com.lagradost.cloudstream4.core.strings.generated.resources.Res
+import com.lagradost.cloudstream4.core.strings.generated.resources.episodes
+import com.lagradost.cloudstream4.core.strings.generated.resources.go_back
+import com.lagradost.cloudstream4.core.strings.generated.resources.no_episodes_found
+import com.lagradost.cloudstream4.core.strings.generated.resources.pick_source
+import com.lagradost.cloudstream4.core.strings.generated.resources.play_episode
+import com.lagradost.cloudstream4.core.strings.generated.resources.play_movie_button
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.detail.DetailAction
@@ -52,8 +59,11 @@ import com.lagradost.cloudstream4.feature.detail.DetailEpisode
 import com.lagradost.cloudstream4.feature.detail.DetailState
 import com.lagradost.cloudstream4.feature.detail.StreamLink
 import com.lagradost.cloudstream4.feature.detail.TitleDetail
-import com.lagradost.cloudstream4.feature.detail.tv.DetailTvCopy
-import com.lagradost.cloudstream4.feature.detail.tv.code
+import com.lagradost.cloudstream4.feature.detail.code
+import com.lagradost.cloudstream4.feature.detail.toLinksUiState
+import com.lagradost.cloudstream4.feature.detail.toPageUiState
+import com.lagradost.cloudstream4.feature.detail.typeLabel
+import org.jetbrains.compose.resources.stringResource
 
 /**
  * A title, for a resizable window. `docs/plans/desktop-design.md`.
@@ -67,7 +77,6 @@ import com.lagradost.cloudstream4.feature.detail.tv.code
 @Composable
 fun DetailScreenDesktop(
     state: DetailState,
-    copy: DetailTvCopy,
     onAction: (DetailAction) -> Unit,
     onBack: () -> Unit,
     artwork: @Composable (String?) -> Unit,
@@ -76,20 +85,19 @@ fun DetailScreenDesktop(
     Box(modifier.fillMaxSize()) {
         Column(Modifier.fillMaxSize()) {
             Box(Modifier.padding(DesktopDimens.WindowMargin)) {
-                DesktopButton(label = copy.back, onClick = onBack)
+                DesktopButton(label = stringResource(Res.string.go_back), onClick = onBack)
             }
-            UiStateHost(state = state.content, modifier = Modifier.fillMaxSize()) { detail ->
-                TitlePage(detail, copy, onAction, artwork)
+            UiStateHost(state = state.content.toPageUiState(onAction), modifier = Modifier.fillMaxSize()) { detail ->
+                TitlePage(detail, onAction, artwork)
             }
         }
-        SourcesPanel(state.links, copy, onAction)
+        SourcesPanel(state.links?.toLinksUiState(onAction), onAction)
     }
 }
 
 @Composable
 private fun TitlePage(
     detail: TitleDetail,
-    copy: DetailTvCopy,
     onAction: (DetailAction) -> Unit,
     artwork: @Composable (String?) -> Unit,
 ) {
@@ -109,13 +117,13 @@ private fun TitlePage(
         ) {
             item {
                 Box(Modifier.padding(horizontal = DesktopDimens.RowPadding)) {
-                    Header(detail, copy, onAction, artwork, posterWidth)
+                    Header(detail, onAction, artwork, posterWidth)
                 }
             }
             if (detail.episodes.isNotEmpty()) {
-                item { EpisodesHeader(copy, detail.episodes.size) }
+                item { EpisodesHeader(detail.episodes.size) }
                 items(detail.episodes.size, key = { "$it:${detail.episodes[it].data}" }) { index ->
-                    EpisodeRow(detail.episodes, index, copy, onAction)
+                    EpisodeRow(detail.episodes, index, onAction)
                 }
             }
         }
@@ -125,7 +133,6 @@ private fun TitlePage(
 @Composable
 private fun Header(
     detail: TitleDetail,
-    copy: DetailTvCopy,
     onAction: (DetailAction) -> Unit,
     artwork: @Composable (String?) -> Unit,
     posterWidth: Dp,
@@ -153,14 +160,14 @@ private fun Header(
             BasicText(
                 text = listOfNotNull(
                     detail.providerName,
-                    detail.typeName?.let(copy.typeLabel),
+                    detail.typeName?.let { typeLabel(it) },
                     detail.year?.toString(),
                 ).joinToString(" · "),
                 style = typography.caption.copy(color = colors.muted),
                 maxLines = 1,
             )
             Spacer(Modifier.height(DesktopDimens.GroupGap))
-            PlayAction(detail, copy, onAction)
+            PlayAction(detail, onAction)
             detail.plot?.takeIf { it.isNotBlank() }?.let { plot ->
                 Spacer(Modifier.height(DesktopDimens.WindowMargin))
                 BasicText(
@@ -176,24 +183,24 @@ private fun Header(
 }
 
 @Composable
-private fun PlayAction(detail: TitleDetail, copy: DetailTvCopy, onAction: (DetailAction) -> Unit) {
+private fun PlayAction(detail: TitleDetail, onAction: (DetailAction) -> Unit) {
     val primary = detail.primaryData
     if (primary == null) {
         BasicText(
-            text = copy.noEpisodes,
+            text = stringResource(Res.string.no_episodes_found),
             style = CloudStreamTheme.typography.label.copy(color = CloudStreamTheme.colors.muted),
         )
         return
     }
     DesktopButton(
-        label = if (detail.playData != null) copy.playMovie else copy.playEpisode,
+        label = if (detail.playData != null) stringResource(Res.string.play_movie_button) else stringResource(Res.string.play_episode),
         onClick = { onAction(DetailAction.PlayRequested(primary)) },
         primary = true,
     )
 }
 
 @Composable
-private fun EpisodesHeader(copy: DetailTvCopy, count: Int) {
+private fun EpisodesHeader(count: Int) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
     Row(
@@ -205,7 +212,7 @@ private fun EpisodesHeader(copy: DetailTvCopy, count: Int) {
             bottom = DesktopDimens.RelatedGap,
         ),
     ) {
-        BasicText(text = copy.episodes, style = typography.railTitle.copy(color = colors.ink))
+        BasicText(text = stringResource(Res.string.episodes), style = typography.railTitle.copy(color = colors.ink))
         BasicText(text = count.toString(), style = typography.captionMono.copy(color = colors.muted))
     }
 }
@@ -214,11 +221,10 @@ private fun EpisodesHeader(copy: DetailTvCopy, count: Int) {
 private fun EpisodeRow(
     episodes: List<DetailEpisode>,
     index: Int,
-    copy: DetailTvCopy,
     onAction: (DetailAction) -> Unit,
 ) {
     val episode = episodes[index]
-    val code = episode.code(copy, index)
+    val code = episode.code(index)
     DesktopRow(
         title = episode.name ?: code,
         subtitle = code.takeIf { episode.name != null },
@@ -230,7 +236,6 @@ private fun EpisodeRow(
 @Composable
 private fun SourcesPanel(
     links: UiState<List<StreamLink>>?,
-    copy: DetailTvCopy,
     onAction: (DetailAction) -> Unit,
 ) {
     var shown by remember { mutableStateOf(links) }
@@ -272,11 +277,11 @@ private fun SourcesPanel(
                         .padding(start = DesktopDimens.RowPadding, bottom = DesktopDimens.GroupGap),
                 ) {
                     BasicText(
-                        text = copy.sources,
+                        text = stringResource(Res.string.pick_source),
                         style = CloudStreamTheme.typography.railTitle.copy(color = colors.ink),
                         modifier = Modifier.weight(1f),
                     )
-                    DesktopButton(label = copy.back, onClick = dismiss)
+                    DesktopButton(label = stringResource(Res.string.go_back), onClick = dismiss)
                 }
                 shown?.let { current ->
                     UiStateHost(state = current, modifier = Modifier.fillMaxSize()) { list ->

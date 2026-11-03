@@ -273,14 +273,6 @@ Nothing below can be settled by reading the code.
   holding `Context`, an `Activity`, notification channels, OAT cleanup and published
   extension-facing entry points, and the mapping of `Repository`/`SitePlugin`/`PluginData` happens
   at the edge. The contracts are merged and cost nothing; this is the part that touches live code.
-- **The injected-copy pattern** (`KMP-12`), now in two places: `SearchPrompts` for the state copy
-  and `SearchTvCopy` for the screen's words. The design system's `StatePrompt`/`FailureNotice` hold
-  **already-resolved** strings and require a `StateAction` lambda, and `:core:designsystem` "never
-  holds display strings"; the plan says a ViewModel exposes `UiString`, never a resource id. Both
-  cannot hold, so both are injected. The alternative is for `:feature:*` to depend on `:core:strings`
-  and call `stringResource` in `commonMain`, which is what `I18N-01` implies and would delete both
-  types. **This is a decision about all seven Phase 7 verticals**, so it is worth taking before six
-  more copy it.
 - **Chip-row spacing: the design file contradicts itself.** Its CSS is `.chiprow { gap: 24px }`,
   which is 12dp at the design system's own `artboard px / 2 = dp`; its own prose says *"In Compose
   that is `wrapContentWidth` in a `Row` with **24dp** spacing"*. `CloudStreamDimens.ChipRowSpacing`

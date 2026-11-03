@@ -16,10 +16,9 @@ import androidx.compose.ui.input.key.KeyEvent
 import androidx.compose.ui.input.key.KeyEventType
 import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.unit.Density
-import com.lagradost.cloudstream4.core.designsystem.state.UiState
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
-import com.lagradost.cloudstream4.detail.rememberDesktopDetailCopy
 import com.lagradost.cloudstream4.feature.detail.DetailAction
+import com.lagradost.cloudstream4.feature.detail.DetailLoad
 import com.lagradost.cloudstream4.feature.detail.DetailState
 import com.lagradost.cloudstream4.feature.detail.StreamLink
 import com.lagradost.cloudstream4.feature.detail.TitleDetail
@@ -30,10 +29,10 @@ import com.lagradost.cloudstream4.feature.search.SearchResultGroup
 import com.lagradost.cloudstream4.feature.search.SearchResultId
 import com.lagradost.cloudstream4.feature.search.SearchResultItem
 import com.lagradost.cloudstream4.feature.search.SearchState
+import com.lagradost.cloudstream4.feature.search.SearchStatus
 import com.lagradost.cloudstream4.feature.search.desktop.SearchScreenDesktop
 import com.lagradost.cloudstream4.player.PlayerStatus
 import com.lagradost.cloudstream4.player.SeekTrack
-import com.lagradost.cloudstream4.search.rememberDesktopSearchCopy
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -63,8 +62,7 @@ class DesktopInteractionTest {
     fun `an empty field has nothing to press`() {
         val actions = mutableListOf<SearchAction>()
         val scene = scene {
-            val (copy, prompts) = rememberDesktopSearchCopy()
-            SearchScreenDesktop(SearchState(content = prompts.idle()), copy, { actions += it })
+            SearchScreenDesktop(SearchState(status = SearchStatus.Idle), { actions += it })
         }
         scene.settle()
         scene.click(Offset(WIDTH / 2f, HEIGHT / 2f))
@@ -81,9 +79,7 @@ class DesktopInteractionTest {
         val actions = mutableListOf<SearchAction>()
         var query by mutableStateOf("nasa")
         val scene = scene {
-            val (copy, prompts) = rememberDesktopSearchCopy()
-            val nothing = prompts.noResults("nasa", 1) {}
-            SearchScreenDesktop(SearchState(query = query, content = nothing), copy, { actions += it })
+            SearchScreenDesktop(SearchState(query = query, status = SearchStatus.NoResults(1)), { actions += it })
         }
         scene.settle()
         assertTrue(scene.sendKeyEvent(escape()), "handled while there is text")
@@ -103,11 +99,10 @@ class DesktopInteractionTest {
         val item = SearchResultItem(SearchResultId("one"), "Title", providerName = "YouTube")
         val state = SearchState(
             query = "q",
-            content = UiState.Content(SearchContent.Results(listOf(SearchResultGroup("YouTube", listOf(item))))),
+            status = SearchStatus.Showing(SearchContent.Results(listOf(SearchResultGroup("YouTube", listOf(item))))),
         )
         val scene = scene {
-            val (copy, _) = rememberDesktopSearchCopy()
-            SearchScreenDesktop(state, copy, { actions += it })
+            SearchScreenDesktop(state, { actions += it })
         }
         scene.settle()
         scene.click(Offset(CARD_X, CARD_Y))
@@ -121,10 +116,8 @@ class DesktopInteractionTest {
         val link = StreamLink("Source", "1080p", "u", null, null, null)
         val detail = TitleDetail("T", "P", null, null, null, null, "d", emptyList())
         val scene = scene {
-            val (copy, _) = rememberDesktopDetailCopy()
             DetailScreenDesktop(
-                DetailState(UiState.Content(detail), UiState.Content(listOf(link))),
-                copy,
+                DetailState(DetailLoad.Loaded(detail), DetailLoad.Loaded(listOf(link))),
                 { actions += it },
                 {},
                 {},

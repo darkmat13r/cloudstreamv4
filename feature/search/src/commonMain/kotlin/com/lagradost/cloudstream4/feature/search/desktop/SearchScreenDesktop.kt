@@ -56,6 +56,11 @@ import com.lagradost.cloudstream4.core.designsystem.state.StateView
 import com.lagradost.cloudstream4.core.designsystem.state.UiState
 import com.lagradost.cloudstream4.core.designsystem.state.UiStateHost
 import com.lagradost.cloudstream4.core.designsystem.state.failureNotice
+import com.lagradost.cloudstream4.core.strings.generated.resources.Res
+import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_clear_all
+import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_field_placeholder
+import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_recent_headline
+import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_sources_label
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.search.SearchAction
@@ -64,7 +69,10 @@ import com.lagradost.cloudstream4.feature.search.SearchHistoryEntry
 import com.lagradost.cloudstream4.feature.search.SearchResultGroup
 import com.lagradost.cloudstream4.feature.search.SearchResultItem
 import com.lagradost.cloudstream4.feature.search.SearchState
-import com.lagradost.cloudstream4.feature.search.tv.SearchTvCopy
+import com.lagradost.cloudstream4.feature.search.resultCountText
+import com.lagradost.cloudstream4.feature.search.sourcesCountText
+import com.lagradost.cloudstream4.feature.search.toUiState
+import org.jetbrains.compose.resources.stringResource
 
 /**
  * Search for a resizable window driven by a pointer and a keyboard. `docs/plans/desktop-design.md`.
@@ -73,24 +81,23 @@ import com.lagradost.cloudstream4.feature.search.tv.SearchTvCopy
  * and an empty field has nothing to press. Results are a grid and not rails, because a mouse wheel
  * scrolls one way. Titles stay visible, because there is no D-pad focus to reveal them.
  *
- * @param copy the TV screen's words, which mean the same here.
  * @param artwork draws a result's poster. Image loading is the host's.
  */
 @Composable
 fun SearchScreenDesktop(
     state: SearchState,
-    copy: SearchTvCopy,
     onAction: (SearchAction) -> Unit,
     modifier: Modifier = Modifier,
     artwork: @Composable (SearchResultItem) -> Unit = {},
 ) {
+    val status = state.status.toUiState(onAction)
     Column(modifier.fillMaxSize()) {
-        Toolbar(state, copy, onAction)
-        state.content.failureNotice?.let { notice ->
+        Toolbar(state, onAction)
+        status.failureNotice?.let { notice ->
             Box(Modifier.padding(horizontal = DesktopDimens.WindowMargin)) { FailureBanner(notice = notice) }
         }
         val prompts = Modifier.fillMaxSize()
-        when (val content = state.content) {
+        when (val content = status) {
             is UiState.Empty -> {
                 if (state.query.isBlank()) {
                     IdleHint(content.prompt)
@@ -108,8 +115,8 @@ fun SearchScreenDesktop(
                 skeleton = { SkeletonGrid() },
             ) { loaded ->
                 when (loaded) {
-                    is SearchContent.Recent -> Recent(loaded.entries, copy, onAction)
-                    is SearchContent.Results -> Results(loaded.groups, copy, onAction, artwork)
+                    is SearchContent.Recent -> Recent(loaded.entries, onAction)
+                    is SearchContent.Results -> Results(loaded.groups, onAction, artwork)
                 }
             }
         }
@@ -117,7 +124,7 @@ fun SearchScreenDesktop(
 }
 
 @Composable
-private fun Toolbar(state: SearchState, copy: SearchTvCopy, onAction: (SearchAction) -> Unit) {
+private fun Toolbar(state: SearchState, onAction: (SearchAction) -> Unit) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
     Row(
@@ -125,11 +132,11 @@ private fun Toolbar(state: SearchState, copy: SearchTvCopy, onAction: (SearchAct
         horizontalArrangement = Arrangement.spacedBy(DesktopDimens.GroupGap),
         modifier = Modifier.fillMaxWidth().padding(DesktopDimens.WindowMargin),
     ) {
-        QueryField(state.query, copy.fieldPlaceholder, onAction, Modifier.weight(1f))
+        QueryField(state.query, stringResource(Res.string.search_tv_field_placeholder), onAction, Modifier.weight(1f))
         // A readout and deliberately not a chip: the source picker is not built, and something shaped
         // like a control has to behave like one.
         BasicText(
-            text = "${copy.sourcesLabel} ${copy.sourcesCount(state.sources.selected, state.sources.total)}",
+            text = "${stringResource(Res.string.search_tv_sources_label)} ${sourcesCountText(state.sources)}",
             style = typography.caption.copy(color = colors.muted),
             maxLines = 1,
         )
@@ -213,7 +220,7 @@ private fun IdleHint(prompt: StatePrompt) {
 }
 
 @Composable
-private fun Recent(entries: List<SearchHistoryEntry>, copy: SearchTvCopy, onAction: (SearchAction) -> Unit) {
+private fun Recent(entries: List<SearchHistoryEntry>, onAction: (SearchAction) -> Unit) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
     LazyColumn(
@@ -228,11 +235,11 @@ private fun Recent(entries: List<SearchHistoryEntry>, copy: SearchTvCopy, onActi
                     .padding(start = DesktopDimens.RowPadding, bottom = DesktopDimens.RelatedGap),
             ) {
                 BasicText(
-                    text = copy.recentHeadline,
+                    text = stringResource(Res.string.search_tv_recent_headline),
                     style = typography.railTitle.copy(color = colors.ink),
                     modifier = Modifier.weight(1f),
                 )
-                DesktopButton(label = copy.clearAll, onClick = { onAction(SearchAction.RecentCleared) })
+                DesktopButton(label = stringResource(Res.string.search_tv_clear_all), onClick = { onAction(SearchAction.RecentCleared) })
             }
         }
         items(entries.size, key = { entries[it].query }) { index ->
@@ -249,7 +256,6 @@ private fun Recent(entries: List<SearchHistoryEntry>, copy: SearchTvCopy, onActi
 @Composable
 private fun Results(
     groups: List<SearchResultGroup>,
-    copy: SearchTvCopy,
     onAction: (SearchAction) -> Unit,
     artwork: @Composable (SearchResultItem) -> Unit,
 ) {
@@ -266,7 +272,7 @@ private fun Results(
     ) {
         groups.forEachIndexed { index, group ->
             item(key = "header:${group.providerName}", span = { GridItemSpan(maxLineSpan) }) {
-                SectionHeader(group, copy, topGap = if (index == 0) 0.dp else DesktopDimens.SectionGap)
+                SectionHeader(group, topGap = if (index == 0) 0.dp else DesktopDimens.SectionGap)
             }
             items(group.items.size, key = { group.items[it].id.value }) { position ->
                 val item = group.items[position]
@@ -277,7 +283,7 @@ private fun Results(
 }
 
 @Composable
-private fun SectionHeader(group: SearchResultGroup, copy: SearchTvCopy, topGap: Dp) {
+private fun SectionHeader(group: SearchResultGroup, topGap: Dp) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
     Row(
@@ -287,7 +293,7 @@ private fun SectionHeader(group: SearchResultGroup, copy: SearchTvCopy, topGap: 
     ) {
         BasicText(text = group.providerName, style = typography.railTitle.copy(color = colors.ink), maxLines = 1)
         BasicText(
-            text = copy.resultCount(group.items.size),
+            text = resultCountText(group.items.size),
             style = typography.caption.copy(color = colors.muted),
             maxLines = 1,
             modifier = Modifier.padding(bottom = SearchScreenDesktopDefaults.CountBaselineNudge),

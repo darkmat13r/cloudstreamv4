@@ -9,7 +9,6 @@ import com.lagradost.cloudstream4.compose.DefaultStateContainer
 import com.lagradost.cloudstream4.compose.EffectContainer
 import com.lagradost.cloudstream4.compose.SingleActiveQuery
 import com.lagradost.cloudstream4.compose.StateContainer
-import com.lagradost.cloudstream4.core.designsystem.state.UiState
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -50,7 +49,6 @@ import kotlinx.coroutines.launch
 class SearchViewModel(
     private val source: SearchSource,
     private val history: SearchHistoryStore,
-    private val prompts: SearchPrompts,
     dispatcher: CoroutineDispatcher = Dispatchers.Default,
     private val scope: CoroutineScope? = null,
 ) : ViewModel(),
@@ -67,7 +65,7 @@ class SearchViewModel(
     init {
         // Start on the idle prompt rather than Loading: the history read is fast and local, and a
         // skeleton that flashes for one frame reads as a glitch.
-        updateState { copy(content = prompts.idle()) }
+        updateState { copy(status = SearchStatus.Idle) }
         work.launch { refreshIdle() }
         work.launch {
             val sources = source.sources()
@@ -90,11 +88,13 @@ class SearchViewModel(
                 showIdle()
             }
 
+            SearchAction.BrowseRequested -> work.launch { postEffect { SearchEffect.BrowseHome } }
+
             is SearchAction.ResultActivated ->
                 work.launch { postEffect { SearchEffect.OpenResult(action.id) } }
 
             is SearchAction.RecentActivated -> {
-                updateState { copy(query = action.query, content = UiState.Loading) }
+                updateState { copy(query = action.query, status = SearchStatus.Loading) }
                 work.launch { runSearch(action.query, quick = false) }
             }
 
@@ -115,7 +115,7 @@ class SearchViewModel(
         if (query.isBlank()) {
             showIdle()
         } else {
-            updateState { copy(content = UiState.Loading) }
+            updateState { copy(status = SearchStatus.Loading) }
             work.launch { debounce.emit(query) }
         }
     }
@@ -126,14 +126,14 @@ class SearchViewModel(
             showIdle()
             return
         }
-        updateState { copy(content = UiState.Loading) }
+        updateState { copy(status = SearchStatus.Loading) }
         work.launch { runSearch(query, quick = false) }
     }
 
     /** Clears any in-flight work: an empty field must not be overwritten by an earlier reply. */
     private fun showIdle() {
         work.launch { inFlight.launch { } }
-        updateState { copy(content = prompts.idle()) }
+        updateState { copy(status = SearchStatus.Idle) }
         work.launch { refreshIdle() }
     }
 
@@ -149,9 +149,9 @@ class SearchViewModel(
             if (query.isNotBlank()) {
                 this
             } else if (entries.isEmpty()) {
-                copy(content = prompts.idle())
+                copy(status = SearchStatus.Idle)
             } else {
-                copy(content = UiState.Content(SearchContent.Recent(entries)))
+                copy(status = SearchStatus.Showing(SearchContent.Recent(entries)))
             }
         }
     }
@@ -159,32 +159,26 @@ class SearchViewModel(
     private suspend fun runSearch(query: String, quick: Boolean) {
         inFlight.launch {
             val outcome = if (quick) source.quickSearch(query) else source.search(query)
-            updateState { copy(content = outcome.toUiState(query, sources.selected)) }
+            updateState { copy(status = outcome.toStatus(sources.selected)) }
         }
     }
 
-    private fun SearchOutcome.toUiState(query: String, queried: Int): UiState<SearchContent> =
-        when (this) {
-            is SearchOutcome.Complete ->
-                if (items.isEmpty()) {
-                    prompts.noResults(query, queried) { onAction(SearchAction.Retry) }
-                } else {
-                    UiState.Content(SearchContent.Results(items.groupByProvider()))
-                }
+    private fun SearchOutcome.toStatus(queried: Int): SearchStatus = when (this) {
+        is SearchOutcome.Complete ->
+            if (items.isEmpty()) {
+                SearchStatus.NoResults(queried)
+            } else {
+                SearchStatus.Showing(SearchContent.Results(items.groupByProvider()))
+            }
 
-            is SearchOutcome.Partial ->
-                // Content that arrived is shown; the shortfall rides the chip row as a notice.
-                // Deliberately not Error: the results are usable, and replacing them with a failure
-                // band is what `UiState`'s KDoc says Partial exists to prevent.
-                UiState.Partial(
-                    value = SearchContent.Results(items.groupByProvider()),
-                    notice = prompts.partial(answered, total, detail) {
-                        onAction(SearchAction.Retry)
-                    },
-                )
+        // Content that arrived is shown; the shortfall rides the chip row as a notice. Deliberately
+        // not Failed: the results are usable, and replacing them with a failure band is what
+        // `UiState`'s KDoc says Partial exists to prevent.
+        is SearchOutcome.Partial ->
+            SearchStatus.Partial(SearchContent.Results(items.groupByProvider()), answered, total, detail)
 
-            is SearchOutcome.Failed -> prompts.failed(detail) { onAction(SearchAction.Retry) }
+        is SearchOutcome.Failed -> SearchStatus.Failed(detail)
 
-            SearchOutcome.Offline -> prompts.offline { onAction(SearchAction.Retry) }
-        }
+        SearchOutcome.Offline -> SearchStatus.Offline
+    }
 }

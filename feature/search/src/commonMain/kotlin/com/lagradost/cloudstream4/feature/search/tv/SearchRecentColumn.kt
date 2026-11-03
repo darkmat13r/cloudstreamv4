@@ -13,9 +13,14 @@ import androidx.compose.ui.Modifier
 import com.lagradost.cloudstream4.core.designsystem.rows.ListRow
 import com.lagradost.cloudstream4.core.designsystem.rows.ListRowState
 import com.lagradost.cloudstream4.core.designsystem.rows.RailHeader
+import com.lagradost.cloudstream4.core.strings.generated.resources.Res
+import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_clear_all
+import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_recent_headline
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.feature.search.SearchAction
 import com.lagradost.cloudstream4.feature.search.SearchHistoryEntry
+import com.lagradost.cloudstream4.feature.search.recentCountText
+import org.jetbrains.compose.resources.stringResource
 
 /**
  * Recent searches: artboard **4c**, *"Search — history (empty query)"*.
@@ -50,14 +55,13 @@ import com.lagradost.cloudstream4.feature.search.SearchHistoryEntry
 @Composable
 internal fun SearchRecentColumn(
     entries: List<SearchHistoryEntry>,
-    copy: SearchTvCopy,
     onAction: (SearchAction) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(modifier.fillMaxSize()) {
         RailHeader(
-            title = copy.recentHeadline,
-            count = copy.recentCount(entries.size),
+            title = stringResource(Res.string.search_tv_recent_headline),
+            count = recentCountText(entries.size),
         )
         Spacer(Modifier.height(CloudStreamDimens.MinFocusGap))
 
@@ -76,7 +80,7 @@ internal fun SearchRecentColumn(
 
         Spacer(Modifier.height(CloudStreamDimens.MinFocusGap))
         ListRow(
-            state = ListRowState(title = copy.clearAll),
+            state = ListRowState(title = stringResource(Res.string.search_tv_clear_all)),
             onClick = { onAction(SearchAction.RecentCleared) },
             modifier = Modifier.fillMaxWidth(),
         )
