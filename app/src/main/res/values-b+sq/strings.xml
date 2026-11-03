@@ -423,6 +423,7 @@
 <string name="player_load_subtitles">"Ngarko nga skedari"</string>
 <string name="player_load_subtitles_online">"Ngarko nga interneti"</string>
 <string name="player_loaded_subtitles" formatted="true">"U ngarkua %s"</string>
+<string name="player_mute">"Hiq zërin"</string>
 <string name="player_notification_channel_description">"Njoftimi për kontrollin e luajtjes nga sfondi"</string>
 <string name="player_notification_channel_name">"Njoftimet e luajtësit"</string>
 <string name="player_pref">"Luajtësi i preferuar i videove"</string>
@@ -435,6 +436,7 @@
 <string name="player_speed_text_format" formatted="true">"Shpejtësia (%.2fx)"</string>
 <string name="player_subtitles_settings">"Titrat"</string>
 <string name="player_subtitles_settings_des">"Cilësimet e titrave të luajtësit"</string>
+<string name="player_unmute">"Aktivizo zërin"</string>
 <string name="plugin">"shtesa"</string>
 <string name="plugin_deleted">"Shtesa u fshi"</string>
 <string name="plugin_downloaded">"Shtesa u shkarkua"</string>

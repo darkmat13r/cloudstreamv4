@@ -143,11 +143,13 @@
 <string name="play_with_app_name">"Spel av med CloudStream"</string>
 <string name="player_enter_fullscreen">"Vis i fullskjerm"</string>
 <string name="player_exit_fullscreen">"Avslutt fullskjerm"</string>
+<string name="player_mute">"Slå av lyd"</string>
 <string name="player_size_settings_des">"Fjern dei svarte kantane"</string>
 <string name="player_speed">"Avspelinghastigheit"</string>
 <string name="player_speed_text_format" formatted="true">"Avspelinghastigheit (%.2fx)"</string>
 <string name="player_subtitles_settings">"Undertekstar"</string>
 <string name="player_subtitles_settings_des">"Innstillinger for avspilling av undertekster"</string>
+<string name="player_unmute">"Slå på lyd"</string>
 <string name="popup_delete_file">"Slett fil"</string>
 <string name="popup_pause_download">"Sett nedlasting på vent"</string>
 <string name="popup_play_file">"Spel av fil"</string>

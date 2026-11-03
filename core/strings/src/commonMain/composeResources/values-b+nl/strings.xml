@@ -389,6 +389,7 @@
 <string name="player_load_subtitles">Laden uit bestand</string>
 <string name="player_load_subtitles_online">Laden vanaf internet</string>
 <string name="player_loaded_subtitles">Geladen %s</string>
+<string name="player_mute">Dempen</string>
 <string name="player_notification_channel_description">De speler melding om de kijkervaring van de achtergrond de besturen</string>
 <string name="player_notification_channel_name">Speler meldingen</string>
 <string name="player_pref">Gewenste videospeler</string>
@@ -401,6 +402,7 @@
 <string name="player_speed_text_format">Snelheid (%.2fx)</string>
 <string name="player_subtitles_settings">Ondertitels</string>
 <string name="player_subtitles_settings_des">Speler Ondertiteling instellingen</string>
+<string name="player_unmute">Dempen opheffen</string>
 <string name="plugin">plugins</string>
 <string name="plugin_deleted">Plugin Verwijderd</string>
 <string name="plugin_downloaded">Plugin Gedownload</string>

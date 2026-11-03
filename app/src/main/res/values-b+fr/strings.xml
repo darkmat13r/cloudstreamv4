@@ -423,6 +423,7 @@
 <string name="player_load_subtitles">"Charger depuis le fichier"</string>
 <string name="player_load_subtitles_online">"Charger depuis internet"</string>
 <string name="player_loaded_subtitles" formatted="true">"%s chargé"</string>
+<string name="player_mute">"Couper le son"</string>
 <string name="player_notification_channel_description">"La notification du lecteur pour contrôler la lecture en arrière-plan"</string>
 <string name="player_notification_channel_name">"Notifications du lecteur"</string>
 <string name="player_pref">"Lecteur vidéo préféré"</string>
@@ -435,6 +436,7 @@
 <string name="player_speed_text_format" formatted="true">"Vitesse (%.2fx)"</string>
 <string name="player_subtitles_settings">"Sous-titres"</string>
 <string name="player_subtitles_settings_des">"Paramètres des sous-titres du lecteur"</string>
+<string name="player_unmute">"Réactiver le son"</string>
 <string name="plugin">"plugins"</string>
 <string name="plugin_deleted">"Plugin Supprimé"</string>
 <string name="plugin_downloaded">"Plugin Téléchargé"</string>

@@ -98,12 +98,14 @@
 <string name="play_with_app_name">ಕ್ಲೌಡ್ ಸ್ಟ್ರೀಮ್ ಇದರೊಂದಿಗೆ ಪ್ಲೇ ಮಾಡಿ</string>
 <string name="player_enter_fullscreen">ಫುಲ್‌ಸ್ಕ್ರೀನ್‌ಗೆ ಪ್ರವೇಶಿಸಿ</string>
 <string name="player_exit_fullscreen">ಫುಲ್‌ಸ್ಕ್ರೀನ್‌ನಿಂದ ನಿರ್ಗಮಿಸಿ</string>
+<string name="player_mute">ಮ್ಯೂಟ್ ಮಾಡಿ</string>
 <string name="player_size_settings">ಪ್ಲೇಯರ್ ಮರುಗಾತ್ರಗೊಳಿಸಿ ಬಟನ್</string>
 <string name="player_size_settings_des">ಕಪ್ಪು ಗಡಿಗಳನ್ನು ತೆಗೆದುಹಾಕಿ</string>
 <string name="player_speed">ಪ್ಲೇಯರ್ ಸ್ಪೀಡ್</string>
 <string name="player_speed_text_format">ಸ್ಪೀಡ್(%.2fx)</string>
 <string name="player_subtitles_settings">ಸಬ್ ಟೈಟಲ್ಸ್</string>
 <string name="player_subtitles_settings_des">ಪ್ಲೇಯರ್ ಸಬ್ ಟೈಟಲ್ಸ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳು</string>
+<string name="player_unmute">ಅನ್‌ಮ್ಯೂಟ್ ಮಾಡಿ</string>
 <string name="popup_delete_file">ಫೈಲ್ ಅಳಿಸಿ</string>
 <string name="popup_pause_download">ಡೌನ್‌ಲೋಡ್ ವಿರಾಮಗೊಳಿಸಿ</string>
 <string name="popup_play_file">ಫೈಲ್ ಪ್ಲೇ</string>

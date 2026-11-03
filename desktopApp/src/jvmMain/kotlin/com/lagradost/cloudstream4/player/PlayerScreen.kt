@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
@@ -75,7 +76,9 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.loading
 import com.lagradost.cloudstream4.core.strings.generated.resources.pause
 import com.lagradost.cloudstream4.core.strings.generated.resources.player_enter_fullscreen
 import com.lagradost.cloudstream4.core.strings.generated.resources.player_exit_fullscreen
+import com.lagradost.cloudstream4.core.strings.generated.resources.player_mute
 import com.lagradost.cloudstream4.core.strings.generated.resources.player_subtitles_settings
+import com.lagradost.cloudstream4.core.strings.generated.resources.player_unmute
 import com.lagradost.cloudstream4.core.strings.generated.resources.resume
 import com.lagradost.cloudstream4.core.strings.generated.resources.seek_back_10_seconds
 import com.lagradost.cloudstream4.core.strings.generated.resources.seek_forward_10_seconds
@@ -85,6 +88,7 @@ import com.lagradost.cloudstream4.feature.detail.StreamLink
 import com.lagradost.cloudstream4.media.model.SubtitleCue
 import com.lagradost.cloudstream4.media.model.SubtitleTrack
 import kotlin.concurrent.thread
+import kotlin.math.roundToInt
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
@@ -92,8 +96,8 @@ import org.jetbrains.compose.resources.stringResource
 
 /**
  * The desktop player (`docs/plans/desktop-design.md`): full-bleed video, one seek track, transport, and
- * subtitles. Space pauses, left and right skip, C opens the subtitle list, F or Cmd+F toggles full screen;
- * Escape is the window's.
+ * volume and subtitles. Space pauses, left and right skip, up and down change the volume, M mutes, C opens
+ * the subtitle list, F or Cmd+F toggles full screen; Escape is the window's.
  *
  * The source and audio selectors are not built. Lives in `:desktopApp` rather than a shared module because
  * it is bound to [VlcPlayer].
@@ -167,6 +171,7 @@ internal fun PlayerScreen(
         setEscape = setEscape,
         modifier = modifier,
         fullscreen = fullscreen,
+        volume = desktopPlayerVolume,
     )
 }
 
@@ -185,7 +190,9 @@ internal fun PlayerContent(
     modifier: Modifier = Modifier,
     pictureSize: IntSize? = null,
     fullscreen: PlayerFullscreen? = null,
+    volume: PlayerVolume = remember { PlayerVolume() },
 ) {
+    LaunchedEffect(controls, volume.audible) { controls.setVolume(volume.audible) }
     val tracks by subtitles.tracks.collectAsState()
     val selection by subtitles.selection.collectAsState()
     val failures by subtitles.failures.collectAsState()
@@ -256,6 +263,9 @@ internal fun PlayerContent(
                     Key.Spacebar -> controls.togglePause()
                     Key.DirectionLeft -> seekBy(-PlayerScreenDefaults.SkipMillis)
                     Key.DirectionRight -> seekBy(PlayerScreenDefaults.SkipMillis)
+                    Key.DirectionUp -> volume.step(PlayerVolume.STEP)
+                    Key.DirectionDown -> volume.step(-PlayerVolume.STEP)
+                    Key.M -> volume.toggleMute()
                     Key.C -> if (!failed) pickerOpen = true
                     // F alone or with Cmd: the modifier is not read, so both come here.
                     Key.F -> fullscreen?.toggle() ?: return@onPreviewKeyEvent false
@@ -306,6 +316,7 @@ internal fun PlayerContent(
                 onSeekTo = seekTo,
                 onSeekBy = seekBy,
                 onBack = onBack,
+                volumeControl = { VolumeControl(volume) },
                 subtitleControl = {
                     DesktopIconButton(
                         icon = CloudStreamIcons.Subtitles,
@@ -392,6 +403,7 @@ internal fun Hud(
     onSeekTo: (Float) -> Unit,
     onSeekBy: (Long) -> Unit,
     onBack: () -> Unit,
+    volumeControl: @Composable () -> Unit = {},
     subtitleControl: @Composable () -> Unit = {},
     fullscreenControl: @Composable () -> Unit = {},
 ) {
@@ -456,10 +468,53 @@ internal fun Hud(
                         tone = DesktopButtonTone.Quiet,
                     )
                     SeekTrack(status, onSeekTo, Modifier.weight(1f))
+                    volumeControl()
                     subtitleControl()
                     fullscreenControl()
                 }
             }
+        }
+    }
+}
+
+/** The speaker mutes and the rule beside it sets the level, following the pointer 1:1 because nothing here waits on a network. */
+@Composable
+private fun VolumeControl(volume: PlayerVolume) {
+    var width by remember { mutableStateOf(0) }
+    val silent = volume.audible == 0
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap),
+    ) {
+        DesktopIconButton(
+            icon = if (silent) CloudStreamIcons.Muted else CloudStreamIcons.Volume,
+            contentDescription = stringResource(if (volume.muted) Res.string.player_unmute else Res.string.player_mute),
+            onClick = volume::toggleMute,
+            tone = DesktopButtonTone.Quiet,
+        )
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier
+                .width(PlayerScreenDefaults.VolumeTrackWidth)
+                .height(PlayerScreenDefaults.SeekTargetHeight)
+                .onSizeChanged { width = it.width }
+                .pointerInput(Unit) {
+                    fun levelAt(x: Float) = (x / width * PlayerVolume.MAX).roundToInt()
+                    awaitEachGesture {
+                        val down = awaitFirstDown()
+                        if (width <= 0) return@awaitEachGesture
+                        volume.set(levelAt(down.position.x))
+                        down.consume()
+                        while (true) {
+                            val change = awaitPointerEvent().changes.first()
+                            if (!change.pressed) break
+                            volume.set(levelAt(change.position.x))
+                            change.consume()
+                        }
+                    }
+                },
+        ) {
+            ProgressRule(progress = volume.audible.toFloat() / PlayerVolume.MAX, modifier = Modifier.fillMaxWidth())
         }
     }
 }
@@ -543,6 +598,7 @@ internal object PlayerScreenDefaults {
     const val ControlsAlpha = 0.88f
     /** Far taller than the rule it holds, so a pointer does not have to aim at 4dp. */
     val SeekTargetHeight: Dp = 32.dp
+    val VolumeTrackWidth: Dp = 80.dp
     /** `seek_back_10_seconds` and `seek_forward_10_seconds` say this number: change them together. */
     const val SkipMillis = 10_000L
     const val HudTimeoutMillis = 3_000L

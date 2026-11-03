@@ -123,9 +123,11 @@
 <string name="play_with_app_name">"Ipatugtog sa CloudStream"</string>
 <string name="player_enter_fullscreen">"Mag-fullscreen"</string>
 <string name="player_exit_fullscreen">"Lumabas sa fullscreen"</string>
+<string name="player_mute">"I-mute"</string>
 <string name="player_notification_channel_description">"Ang abiso ng player para sa pagkontrol sa pag-playback mula sa background"</string>
 <string name="player_speed">"Bilis ng Manlalaro"</string>
 <string name="player_speed_text_format" formatted="true">"Bilis (%.2fx)"</string>
+<string name="player_unmute">"I-unmute"</string>
 <string name="plugins_updated_manually" formatted="true">"Matagumpay na na-update ang %d plugin!"</string>
 <string name="popup_delete_file">"Burahin ang File"</string>
 <string name="popup_pause_download">"Ihinto ang pag-download"</string>

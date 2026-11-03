@@ -375,6 +375,7 @@
 <string name="player_load_subtitles">"ফাইলৰ পৰা ল'ড কৰক"</string>
 <string name="player_load_subtitles_online">"ইণ্টাৰনেটৰ পৰা ল'ড কৰক"</string>
 <string name="player_loaded_subtitles" formatted="true">"%s ল'ড হৈছে"</string>
+<string name="player_mute">"মৌন কৰক"</string>
 <string name="player_pref">"পছন্দৰ ভিডিঅ' প্লেয়াৰ"</string>
 <string name="player_settings_play_in_app">"আভ্যন্তৰীণ প্লেয়াৰ"</string>
 <string name="player_settings_select_cast_device">"কাষ্ট ডিভাইচ চয়ন কৰক"</string>
@@ -384,6 +385,7 @@
 <string name="player_speed_text_format" formatted="true">"গতি (%.2fx)"</string>
 <string name="player_subtitles_settings">"সাবটাইটেল"</string>
 <string name="player_subtitles_settings_des">"প্লেয়াৰৰ সাবটাইটেল চেটিংছ"</string>
+<string name="player_unmute">"মৌন আঁতৰাওক"</string>
 <string name="plugin">"প্লাগইনসমূহ"</string>
 <string name="plugin_deleted">"প্লাগইন ডিলিট কৰা হ'ল"</string>
 <string name="plugin_downloaded">"প্লাগইন ডাউনলোড কৰা হ'ল"</string>

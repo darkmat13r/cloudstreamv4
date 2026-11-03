@@ -3686,6 +3686,7 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field player_load_subtitles I
 	public static field player_load_subtitles_online I
 	public static field player_loaded_subtitles I
+	public static field player_mute I
 	public static field player_notification_channel_description I
 	public static field player_notification_channel_name I
 	public static field player_pref I
@@ -3700,6 +3701,7 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field player_speed_text_format I
 	public static field player_subtitles_settings I
 	public static field player_subtitles_settings_des I
+	public static field player_unmute I
 	public static field plugin I
 	public static field plugin_deleted I
 	public static field plugin_downloaded I

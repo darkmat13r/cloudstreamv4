@@ -423,6 +423,7 @@
 <string name="player_load_subtitles">Načíst ze souboru</string>
 <string name="player_load_subtitles_online">Načíst z internetu</string>
 <string name="player_loaded_subtitles">Načteno %s</string>
+<string name="player_mute">Vypnout zvuk</string>
 <string name="player_notification_channel_description">Oznámení přehrávače pro ovládání přehrávání na pozadí</string>
 <string name="player_notification_channel_name">Oznámení přehrávače</string>
 <string name="player_pref">Preferovaný přehrávač videí</string>
@@ -435,6 +436,7 @@
 <string name="player_speed_text_format">Rychlost (%.2fx)</string>
 <string name="player_subtitles_settings">Titulky</string>
 <string name="player_subtitles_settings_des">Nastavení titulků přehrávače</string>
+<string name="player_unmute">Zapnout zvuk</string>
 <string name="plugin">doplňků</string>
 <string name="plugin_deleted">Doplněk odstraněn</string>
 <string name="plugin_downloaded">Doplněk stažen</string>

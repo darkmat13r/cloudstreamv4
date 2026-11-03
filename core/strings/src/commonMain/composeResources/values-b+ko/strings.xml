@@ -422,6 +422,7 @@
 <string name="player_load_subtitles">파일에서 불러오기</string>
 <string name="player_load_subtitles_online">인터넷에서 불러오기</string>
 <string name="player_loaded_subtitles">로드됨 %s</string>
+<string name="player_mute">음소거</string>
 <string name="player_notification_channel_description">백그라운드에서 재생을 제어하기 위한 플레이어 알림</string>
 <string name="player_notification_channel_name">플레이어 알림</string>
 <string name="player_pref">선호하는 동영상 플레이어</string>
@@ -434,6 +435,7 @@
 <string name="player_speed_text_format">속도 (%.2fx)</string>
 <string name="player_subtitles_settings">자막</string>
 <string name="player_subtitles_settings_des">플레이어 자막 설정</string>
+<string name="player_unmute">음소거 해제</string>
 <string name="plugin">플러그인</string>
 <string name="plugin_deleted">플러그인 삭제됨</string>
 <string name="plugin_downloaded">플러그인 다운로드</string>

@@ -139,9 +139,11 @@
 <string name="play_with_app_name">Ludi per CloudStream</string>
 <string name="player_enter_fullscreen">Eniri plenekranan reĝimon</string>
 <string name="player_exit_fullscreen">Eliri el plenekrana reĝimo</string>
+<string name="player_mute">Silentigi</string>
 <string name="player_size_settings_des">Forigi nigrajn borderaĵojn</string>
 <string name="player_speed_text_format">Rapido (%.2fx)</string>
 <string name="player_subtitles_settings">Subtekstoj</string>
+<string name="player_unmute">Malsilentigi</string>
 <string name="popup_delete_file">Forigi Dosieron</string>
 <string name="popup_pause_download">Paŭzigi Elŝuton</string>
 <string name="popup_resume_download">Daŭrigi Elŝuton</string>

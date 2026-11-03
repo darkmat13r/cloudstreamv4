@@ -67,6 +67,12 @@ class PlayerScreenTest {
         override fun seekTo(fraction: Float) {
             log += "to"
         }
+
+        val volumes = mutableListOf<Int>()
+
+        override fun setVolume(percent: Int) {
+            volumes += percent
+        }
     }
 
     private inner class Screen(
@@ -78,6 +84,7 @@ class PlayerScreenTest {
         frame: ImageBitmap? = null,
         pictureSize: IntSize? = null,
         fullscreen: PlayerFullscreen? = null,
+        val volume: PlayerVolume = PlayerVolume(),
     ) {
         val calls = Calls()
         val clock = PlaybackClock().also { it.onStatus(status) }
@@ -100,6 +107,7 @@ class PlayerScreenTest {
                             onBack = { backs++ },
                             setEscape = { escape = it },
                             fullscreen = fullscreen,
+                            volume = volume,
                         )
                     }
                 }
@@ -426,6 +434,79 @@ class PlayerScreenTest {
         assertEquals(WindowPlacement.Floating, window.placement)
         fullscreen.leave()
         assertEquals(WindowPlacement.Floating, window.placement)
+    }
+
+    @Test
+    fun `the player starts at the shared level, and up and down change it without touching playback`() {
+        val screen = Screen(volume = PlayerVolume(50))
+        screen.settle()
+        assertEquals(listOf(50), screen.calls.volumes)
+        screen.press(Key.DirectionUp)
+        screen.press(Key.DirectionDown)
+        screen.press(Key.DirectionDown)
+        assertEquals(listOf(50, 55, 50, 45), screen.calls.volumes)
+        assertEquals(emptyList(), screen.calls.log)
+        screen.scene.close()
+    }
+
+    @Test
+    fun `M silences the host and comes back to the same level`() {
+        val screen = Screen(volume = PlayerVolume(60))
+        screen.settle()
+        screen.press(Key.M)
+        screen.press(Key.M)
+        assertEquals(listOf(60, 0, 60), screen.calls.volumes)
+        screen.scene.close()
+    }
+
+    @Test
+    fun `choosing a level while muted unmutes`() {
+        val volume = PlayerVolume(60)
+        val screen = Screen(volume = volume)
+        screen.settle()
+        screen.press(Key.M)
+        screen.press(Key.DirectionUp)
+        assertEquals(false, volume.muted)
+        assertEquals(65, volume.audible)
+        screen.scene.close()
+    }
+
+    @Test
+    fun `the volume stops at its ends`() {
+        val volume = PlayerVolume(98)
+        volume.step(PlayerVolume.STEP)
+        assertEquals(100, volume.level)
+        volume.set(2)
+        volume.step(-PlayerVolume.STEP)
+        assertEquals(0, volume.level)
+        assertEquals(100, PlayerVolume(900).level)
+    }
+
+    @Test
+    fun `the arrows move the subtitle list, not the volume, while it is open`() {
+        val screen = Screen(volume = PlayerVolume(50))
+        screen.settle()
+        screen.press(Key.C)
+        screen.press(Key.DirectionDown)
+        screen.press(Key.M)
+        assertEquals(listOf(50), screen.calls.volumes)
+        screen.scene.close()
+    }
+
+    @Test
+    fun `the rule sets the level where it is pressed, and the speaker mutes, at the smallest window`() {
+        val screen = Screen(width = 800, height = 450, fullscreen = PlayerFullscreen(WindowState()), volume = PlayerVolume(100))
+        screen.settle()
+        screen.save("volume-control")
+        // Right to left: fullscreen 36, subtitles 36, then the 80 wide rule and the 36 speaker, with 16 and 8 gaps.
+        val ruleRight = screen.button.x - 18f - 16f - 36f - 16f
+        screen.click(Offset(ruleRight - 40f, screen.button.y))
+        assertEquals(50, screen.volume.level)
+        screen.click(Offset(ruleRight - 80f - 8f - 18f, screen.button.y))
+        assertEquals(true, screen.volume.muted)
+        assertEquals(50, screen.volume.level)
+        assertEquals(emptyList(), screen.calls.log)
+        screen.scene.close()
     }
 
     @Test

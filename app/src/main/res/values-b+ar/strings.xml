@@ -422,6 +422,7 @@
 <string name="player_load_subtitles">"إختيار ملف"</string>
 <string name="player_load_subtitles_online">"تحميل من الانترنت"</string>
 <string name="player_loaded_subtitles" formatted="true">"تم تحميل %s"</string>
+<string name="player_mute">"كتم الصوت"</string>
 <string name="player_notification_channel_description">"تنبيه المشغل المسؤول عن تشغيل الميديا في الخلفية"</string>
 <string name="player_notification_channel_name">"تنبيهات المشغل"</string>
 <string name="player_pref">"مُشغل الفيديو المفضل"</string>
@@ -434,6 +435,7 @@
 <string name="player_speed_text_format" formatted="true">"سرعة (%.2fx)"</string>
 <string name="player_subtitles_settings">"الترجمة"</string>
 <string name="player_subtitles_settings_des">"إعدادات ترجمة المُشغل"</string>
+<string name="player_unmute">"إلغاء كتم الصوت"</string>
 <string name="plugin">"إضافات"</string>
 <string name="plugin_deleted">"تم إزالة الإضافة"</string>
 <string name="plugin_downloaded">"تم تنزيل الإضافة"</string>

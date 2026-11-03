@@ -423,6 +423,7 @@
 <string name="player_load_subtitles">"Muat dari file"</string>
 <string name="player_load_subtitles_online">"Ambil dari internet"</string>
 <string name="player_loaded_subtitles" formatted="true">"Memuat %s"</string>
+<string name="player_mute">"Bisukan"</string>
 <string name="player_notification_channel_description">"Pemberitahuan pemutar untuk mengontrol pemutaran dari latar belakang"</string>
 <string name="player_notification_channel_name">"Notifikasi pemain"</string>
 <string name="player_pref">"Pemutar video utama"</string>
@@ -435,6 +436,7 @@
 <string name="player_speed_text_format" formatted="true">"Kecepatan (%.2fx)"</string>
 <string name="player_subtitles_settings">"Subtitel"</string>
 <string name="player_subtitles_settings_des">"Pengaturan subtitel pemutar"</string>
+<string name="player_unmute">"Bunyikan"</string>
 <string name="plugin">"plugin"</string>
 <string name="plugin_deleted">"Plugin terhapus"</string>
 <string name="plugin_downloaded">"Plugin terunduh"</string>

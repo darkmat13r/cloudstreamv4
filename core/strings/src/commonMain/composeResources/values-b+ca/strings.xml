@@ -206,9 +206,11 @@
 <string name="player_load_subtitles">Carrega des del fitxer</string>
 <string name="player_load_subtitles_online">Carrega des d'internet</string>
 <string name="player_loaded_subtitles">%s carregat</string>
+<string name="player_mute">Silencia</string>
 <string name="player_size_settings">Botó de canvi de mida del reproductor</string>
 <string name="player_speed">Velocitat de reproducció</string>
 <string name="player_speed_text_format">Velocitat (%.2fx)</string>
+<string name="player_unmute">Deixa de silenciar</string>
 <string name="podcast_singular">Pòdcast</string>
 <string name="popup_delete_file">Esborra el fitxer</string>
 <string name="popup_pause_download">Posa la descàrrega en espera</string>

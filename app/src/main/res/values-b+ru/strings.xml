@@ -423,6 +423,7 @@
 <string name="player_load_subtitles">"Загрузить из файла"</string>
 <string name="player_load_subtitles_online">"Скачивать из интернета"</string>
 <string name="player_loaded_subtitles" formatted="true">"Загружено %s"</string>
+<string name="player_mute">"Выключить звук"</string>
 <string name="player_notification_channel_description">"Уведомление проигрывателя для управления воспроизведением в фоновом режиме"</string>
 <string name="player_notification_channel_name">"Уведомления плеера"</string>
 <string name="player_pref">"Предпочитаемый видеоплеер"</string>
@@ -435,6 +436,7 @@
 <string name="player_speed_text_format" formatted="true">"Скорость (%.2fx)"</string>
 <string name="player_subtitles_settings">"Субтитры"</string>
 <string name="player_subtitles_settings_des">"Настройки субтитров проигрывателя"</string>
+<string name="player_unmute">"Включить звук"</string>
 <string name="plugin">"дополнения"</string>
 <string name="plugin_deleted">"Дополнение удалено"</string>
 <string name="plugin_downloaded">"Дополнение скачано"</string>

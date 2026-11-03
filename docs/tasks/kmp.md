@@ -2940,3 +2940,29 @@ video playing in a real player; a second screen.
 translated, not reviewed by a native speaker: `apc`, `ars`, `as`, `ckb`, `eo`, `mt`, `nn`, `or`, `pt-BR`, `so`, `ta`,
 `ti`; `qt` uses only words from its own file. `ta` was replaced because media3's text there describes a button.
 Seventh move of the oracle baseline.
+
+## KMP-28 — Volume and mute in the desktop player · **measured 2026-11-03**
+
+**Status:** done · #118. The player had no volume control at all. Asked for under "continue development", and chosen by me as
+the largest gap in playback.
+
+A speaker control and an 80 wide rule in the transport row, up and down in steps of 5, M to mute. The level is shared by
+every stream in a run, and a level chosen while muted unmutes. **It is not kept between runs.**
+
+**libVLC refuses a level while its audio output starts, and it was measured.** Through the real sandboxed host, playing a
+silent 30 s WAV: a level sent just after play returned `ok=false, read=-1`, and so did one sent at the `playing` event,
+so neither place can be relied on. A muted stream would have started at full volume. `MediaHost.keepVolume` therefore
+checks every 20 ms and sets it again until it reads back.
+
+| Measured, 3 runs, level 0 sent just after play | Result |
+|---|---|
+| libVLC reads 100 until the level takes | about 30 to 50 ms after the app is told `playing` |
+| Afterwards | stays at the level, no further corrections logged |
+
+**Not measured:** whether anything of those 30 to 50 ms can be heard at the start of a stream when muted. Nobody has
+listened. The measurement was of what libVLC reports, on a silent file, and the probe was not committed.
+
+**Not built:** remembering the level between runs, scroll wheel on the rule, a percentage readout.
+
+**Strings:** `player_mute`, `player_unmute`, in all 62 directories, all machine translated and not reviewed by a native
+speaker; `qt` uses only words from its own file. Eighth move of the oracle baseline.

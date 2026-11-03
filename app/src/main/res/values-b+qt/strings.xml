@@ -369,6 +369,7 @@
 <string name="player_load_subtitles">"aagg aahh uuuk"</string>
 <string name="player_load_subtitles_online">"eeek aahh oooohhhh"</string>
 <string name="player_loaded_subtitles" formatted="true">"oooohh %s"</string>
+<string name="player_mute">"ooh oh"</string>
 <string name="player_pref">"aaaagggah uuugg uuuugg"</string>
 <string name="player_settings_play_in_app">"aaaagggh uuuugg"</string>
 <string name="player_settings_select_cast_device">"aaaagg aahh oooohh"</string>
@@ -378,6 +379,7 @@
 <string name="player_speed_text_format" formatted="true">"aaaaaaaaaaaaahh (%.2foouo)"</string>
 <string name="player_subtitles_settings">"ahhhaauugghh"</string>
 <string name="player_subtitles_settings_des">"oha ooh ouuhhh oooohhahhh ouuhhh"</string>
+<string name="player_unmute">"oouuh oh"</string>
 <string name="plugin">"uuuuhhh"</string>
 <string name="plugin_deleted">"uuuugg uuuuhhh"</string>
 <string name="plugin_downloaded">"oooohh oooogggaah"</string>

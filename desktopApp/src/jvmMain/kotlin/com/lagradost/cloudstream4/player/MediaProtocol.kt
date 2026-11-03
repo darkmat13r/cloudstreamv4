@@ -22,6 +22,7 @@ internal object MediaProtocol {
     const val OP_TOGGLE_PAUSE: Byte = 2
     const val OP_SEEK_BY: Byte = 3
     const val OP_SEEK_TO: Byte = 4
+    const val OP_SET_VOLUME: Byte = 5
 
     const val MESSAGE_STATUS: Byte = 1
     const val MESSAGE_FORMAT: Byte = 2

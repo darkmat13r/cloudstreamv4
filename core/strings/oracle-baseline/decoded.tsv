@@ -97,8 +97,10 @@ values-b+af/strings.xml	string	play_trailer_button	-	STR	Speel Lokprent
 values-b+af/strings.xml	string	play_with_app_name	-	STR	Speel met CloudStream	
 values-b+af/strings.xml	string	player_enter_fullscreen	-	STR	Gaan na volskerm	
 values-b+af/strings.xml	string	player_exit_fullscreen	-	STR	Verlaat volskerm	
+values-b+af/strings.xml	string	player_mute	-	STR	Demp	
 values-b+af/strings.xml	string	player_speed	-	STR	Spelerspoed	
 values-b+af/strings.xml	string	player_speed_text_format	-	STR	Spoed (%.2fx)	
+values-b+af/strings.xml	string	player_unmute	-	STR	Ontdemp	
 values-b+af/strings.xml	string	popup_delete_file	-	STR	Vee lêer uit	
 values-b+af/strings.xml	string	popup_pause_download	-	STR	Laat aflaai rus	
 values-b+af/strings.xml	string	popup_play_file	-	STR	Speel lêer	
@@ -248,8 +250,10 @@ values-b+am/strings.xml	string	play_trailer_button	-	STR	የፊልም ማስታ�
 values-b+am/strings.xml	string	play_with_app_name	-	STR	በCloudStream አጫውት	
 values-b+am/strings.xml	string	player_enter_fullscreen	-	STR	ወደ ሙሉ ማያ ገፅ ግባ	
 values-b+am/strings.xml	string	player_exit_fullscreen	-	STR	ከሙሉ ማያገጽ ውጣ	
+values-b+am/strings.xml	string	player_mute	-	STR	ድምፅ አጥፋ	
 values-b+am/strings.xml	string	player_speed	-	STR	የአጫዋች ፍጥነት	
 values-b+am/strings.xml	string	player_speed_text_format	-	STR	ፍጥነት(%.2fx)	
+values-b+am/strings.xml	string	player_unmute	-	STR	ድምፅ አብራ	
 values-b+am/strings.xml	string	popup_delete_file	-	STR	ፋይል አጥፋ	
 values-b+am/strings.xml	string	popup_pause_download	-	STR	ማውረድ ለአፍታ አቁም	
 values-b+am/strings.xml	string	popup_play_file	-	STR	ፋይል አጫውት	
@@ -731,6 +735,7 @@ values-b+apc/strings.xml	string	player_load_one_subtitle_online	-	STR	أفّي �
 values-b+apc/strings.xml	string	player_load_subtitles	-	STR	فتاح من ملف	
 values-b+apc/strings.xml	string	player_load_subtitles_online	-	STR	فتاح من الإنترنت	
 values-b+apc/strings.xml	string	player_loaded_subtitles	-	STR	نفَتح %s	
+values-b+apc/strings.xml	string	player_mute	-	STR	كتّم الصوت	
 values-b+apc/strings.xml	string	player_notification_channel_description	-	STR	نوتيفيكايشن بت خليك تتحكم بال ڤيديو لما م يكون الآپ مفتوح	
 values-b+apc/strings.xml	string	player_notification_channel_name	-	STR	شغل الڤيديو عبر النوتيفيكايشنز	
 values-b+apc/strings.xml	string	player_pref	-	STR	مشغل الڤيديو المفضل	
@@ -743,6 +748,7 @@ values-b+apc/strings.xml	string	player_speed	-	STR	سرعة الڤيديو
 values-b+apc/strings.xml	string	player_speed_text_format	-	STR	السرعة (%.2fx)	
 values-b+apc/strings.xml	string	player_subtitles_settings	-	STR	الترجمة	
 values-b+apc/strings.xml	string	player_subtitles_settings_des	-	STR	سَتِنگز ترجمة الڤيديو	
+values-b+apc/strings.xml	string	player_unmute	-	STR	شغّل الصوت	
 values-b+apc/strings.xml	string	plugin	-	STR	إضافات	
 values-b+apc/strings.xml	string	plugin_deleted	-	STR	نمحت الإضافة	
 values-b+apc/strings.xml	string	plugin_downloaded	-	STR	تنزلت الإضافة	
@@ -1515,6 +1521,7 @@ values-b+ar/strings.xml	string	player_load_one_subtitle_online	-	STR	تحميل 
 values-b+ar/strings.xml	string	player_load_subtitles	-	STR	إختيار ملف	
 values-b+ar/strings.xml	string	player_load_subtitles_online	-	STR	تحميل من الانترنت	
 values-b+ar/strings.xml	string	player_loaded_subtitles	-	STR	تم تحميل %s	
+values-b+ar/strings.xml	string	player_mute	-	STR	كتم الصوت	
 values-b+ar/strings.xml	string	player_notification_channel_description	-	STR	تنبيه المشغل المسؤول عن تشغيل الميديا في الخلفية	
 values-b+ar/strings.xml	string	player_notification_channel_name	-	STR	تنبيهات المشغل	
 values-b+ar/strings.xml	string	player_pref	-	STR	مُشغل الفيديو المفضل	
@@ -1527,6 +1534,7 @@ values-b+ar/strings.xml	string	player_speed	-	STR	سرعة المُشغل
 values-b+ar/strings.xml	string	player_speed_text_format	-	STR	سرعة (%.2fx)	
 values-b+ar/strings.xml	string	player_subtitles_settings	-	STR	الترجمة	
 values-b+ar/strings.xml	string	player_subtitles_settings_des	-	STR	إعدادات ترجمة المُشغل	
+values-b+ar/strings.xml	string	player_unmute	-	STR	إلغاء كتم الصوت	
 values-b+ar/strings.xml	string	plugin	-	STR	إضافات	
 values-b+ar/strings.xml	string	plugin_deleted	-	STR	تم إزالة الإضافة	
 values-b+ar/strings.xml	string	plugin_downloaded	-	STR	تم تنزيل الإضافة	
@@ -2085,12 +2093,14 @@ values-b+ars/strings.xml	string	play_trailer_button	-	STR	تشغيل المقط�
 values-b+ars/strings.xml	string	play_with_app_name	-	STR	فتح مع كلاودستريم	
 values-b+ars/strings.xml	string	player_enter_fullscreen	-	STR	الدخول إلى وضع ملء الشاشة	
 values-b+ars/strings.xml	string	player_exit_fullscreen	-	STR	الخروج من وضع ملء الشاشة	
+values-b+ars/strings.xml	string	player_mute	-	STR	كتم الصوت	
 values-b+ars/strings.xml	string	player_size_settings	-	STR	زر تغيير حجم المشغل	
 values-b+ars/strings.xml	string	player_size_settings_des	-	STR	إزالة الحدود السوداء	
 values-b+ars/strings.xml	string	player_speed	-	STR	سرعة اللاعب	
 values-b+ars/strings.xml	string	player_speed_text_format	-	STR	سرعة(%.2fx)	
 values-b+ars/strings.xml	string	player_subtitles_settings	-	STR	ترجمات	
 values-b+ars/strings.xml	string	player_subtitles_settings_des	-	STR	إعدادات ترجمات المشغل	
+values-b+ars/strings.xml	string	player_unmute	-	STR	إلغاء كتم الصوت	
 values-b+ars/strings.xml	string	popup_delete_file	-	STR	حذف ملف	
 values-b+ars/strings.xml	string	popup_pause_download	-	STR	وقفة التحميل	
 values-b+ars/strings.xml	string	popup_play_file	-	STR	ملف اللعب	
@@ -2622,6 +2632,7 @@ values-b+as/strings.xml	string	player_load_one_subtitle_online	-	STR	প্ৰ�
 values-b+as/strings.xml	string	player_load_subtitles	-	STR	ফাইলৰ পৰা ল'ড কৰক	
 values-b+as/strings.xml	string	player_load_subtitles_online	-	STR	ইণ্টাৰনেটৰ পৰা ল'ড কৰক	
 values-b+as/strings.xml	string	player_loaded_subtitles	-	STR	%s ল'ড হৈছে	
+values-b+as/strings.xml	string	player_mute	-	STR	মৌন কৰক	
 values-b+as/strings.xml	string	player_pref	-	STR	পছন্দৰ ভিডিঅ' প্লেয়াৰ	
 values-b+as/strings.xml	string	player_settings_play_in_app	-	STR	আভ্যন্তৰীণ প্লেয়াৰ	
 values-b+as/strings.xml	string	player_settings_select_cast_device	-	STR	কাষ্ট ডিভাইচ চয়ন কৰক	
@@ -2631,6 +2642,7 @@ values-b+as/strings.xml	string	player_speed	-	STR	প্লেয়াৰ গ�
 values-b+as/strings.xml	string	player_speed_text_format	-	STR	গতি (%.2fx)	
 values-b+as/strings.xml	string	player_subtitles_settings	-	STR	সাবটাইটেল	
 values-b+as/strings.xml	string	player_subtitles_settings_des	-	STR	প্লেয়াৰৰ সাবটাইটেল চেটিংছ	
+values-b+as/strings.xml	string	player_unmute	-	STR	মৌন আঁতৰাওক	
 values-b+as/strings.xml	string	plugin	-	STR	প্লাগইনসমূহ	
 values-b+as/strings.xml	string	plugin_deleted	-	STR	প্লাগইন ডিলিট কৰা হ'ল	
 values-b+as/strings.xml	string	plugin_downloaded	-	STR	প্লাগইন ডাউনলোড কৰা হ'ল	
@@ -3051,11 +3063,13 @@ values-b+az/strings.xml	string	play_trailer_button	-	STR	Fraqmanı Oynat
 values-b+az/strings.xml	string	play_with_app_name	-	STR	CloudStream ilə oynat	
 values-b+az/strings.xml	string	player_enter_fullscreen	-	STR	Tam ekrana daxil olun	
 values-b+az/strings.xml	string	player_exit_fullscreen	-	STR	Tam ekrandan çıxın	
+values-b+az/strings.xml	string	player_mute	-	STR	Səssizə al	
 values-b+az/strings.xml	string	player_size_settings	-	STR	Pleyeri yenidən ölçüləndirmə düyməsini	
 values-b+az/strings.xml	string	player_size_settings_des	-	STR	Qara sərhədləri, kənarları sil	
 values-b+az/strings.xml	string	player_speed_text_format	-	STR	Sürət (%.2fx)	
 values-b+az/strings.xml	string	player_subtitles_settings	-	STR	Subtitrlər	
 values-b+az/strings.xml	string	player_subtitles_settings_des	-	STR	Pleyerin subtitr parametrləri	
+values-b+az/strings.xml	string	player_unmute	-	STR	Səsi aç	
 values-b+az/strings.xml	string	podcast_singular	-	STR	Podkast	
 values-b+az/strings.xml	string	pref_filter_search_quality	-	STR	Seçilmiş video keyfiyyətini axtarış nəticələrində gizlət	
 values-b+az/strings.xml	string	preview_background_img_des	-	STR	Arxaplana ilkin baxış keçir	
@@ -3539,6 +3553,7 @@ values-b+be/strings.xml	string	player_load_one_subtitle_online	-	STR	Спамп�
 values-b+be/strings.xml	string	player_load_subtitles	-	STR	Загрузіць з файла	
 values-b+be/strings.xml	string	player_load_subtitles_online	-	STR	Спампаваць з інтэрнэту	
 values-b+be/strings.xml	string	player_loaded_subtitles	-	STR	Загружана %s	
+values-b+be/strings.xml	string	player_mute	-	STR	Выключыць гук	
 values-b+be/strings.xml	string	player_notification_channel_description	-	STR	Апавяшчэнне прайгравальніка для кіравання прайграваннем у фонавым рэжыме	
 values-b+be/strings.xml	string	player_notification_channel_name	-	STR	Апавяшчэнні прайгравальніка	
 values-b+be/strings.xml	string	player_pref	-	STR	Прыярытэтны прайгравальнік	
@@ -3551,6 +3566,7 @@ values-b+be/strings.xml	string	player_speed	-	STR	Хуткасць прайгр�
 values-b+be/strings.xml	string	player_speed_text_format	-	STR	Хуткасць (%.2fx)	
 values-b+be/strings.xml	string	player_subtitles_settings	-	STR	Субцітры	
 values-b+be/strings.xml	string	player_subtitles_settings_des	-	STR	Налады субцітраў прайгравальніка	
+values-b+be/strings.xml	string	player_unmute	-	STR	Уключыць гук	
 values-b+be/strings.xml	string	plugin	-	STR	убудовы	
 values-b+be/strings.xml	string	plugin_deleted	-	STR	Убудова выдалена	
 values-b+be/strings.xml	string	plugin_downloaded	-	STR	Убудова спампавана	
@@ -4305,6 +4321,7 @@ values-b+bg/strings.xml	string	player_load_one_subtitle_online	-	STR	Заред�
 values-b+bg/strings.xml	string	player_load_subtitles	-	STR	Зареди от файл	
 values-b+bg/strings.xml	string	player_load_subtitles_online	-	STR	Зареди от Интернет	
 values-b+bg/strings.xml	string	player_loaded_subtitles	-	STR	Заредено %s	
+values-b+bg/strings.xml	string	player_mute	-	STR	Без звук	
 values-b+bg/strings.xml	string	player_notification_channel_description	-	STR	Известие на плейъра за контролиране на възпроизвеждането от фона	
 values-b+bg/strings.xml	string	player_notification_channel_name	-	STR	Известия на плейъра	
 values-b+bg/strings.xml	string	player_pref	-	STR	Предпочитан видео плеър	
@@ -4317,6 +4334,7 @@ values-b+bg/strings.xml	string	player_speed	-	STR	Скорост на възпр
 values-b+bg/strings.xml	string	player_speed_text_format	-	STR	Скорост (%.2fx)	
 values-b+bg/strings.xml	string	player_subtitles_settings	-	STR	Субтитри	
 values-b+bg/strings.xml	string	player_subtitles_settings_des	-	STR	Настройки на субтитрите на плейъра	
+values-b+bg/strings.xml	string	player_unmute	-	STR	Включване на звука	
 values-b+bg/strings.xml	string	plugin	-	STR	Плъгини	
 values-b+bg/strings.xml	string	plugin_deleted	-	STR	Приставката е изтрита	
 values-b+bg/strings.xml	string	plugin_downloaded	-	STR	Приставката е изтеглена	
@@ -4906,12 +4924,14 @@ values-b+bn/strings.xml	string	play_trailer_button	-	STR	ট্রেইলা�
 values-b+bn/strings.xml	string	play_with_app_name	-	STR	ক্লাউডস্ট্রিম দিয়ে চালান	
 values-b+bn/strings.xml	string	player_enter_fullscreen	-	STR	ফুল-স্ক্রিন মোডে দেখুন	
 values-b+bn/strings.xml	string	player_exit_fullscreen	-	STR	ফুল-স্ক্রিন মোড ছেড়ে বেরোন	
+values-b+bn/strings.xml	string	player_mute	-	STR	মিউট করুন	
 values-b+bn/strings.xml	string	player_size_settings	-	STR	প্লেয়ারের সাইজ পরিবর্তন বাটন	
 values-b+bn/strings.xml	string	player_size_settings_des	-	STR	কালো প্রান্ত অপসারণ করুন	
 values-b+bn/strings.xml	string	player_speed	-	STR	ভিডিও এর গতি	
 values-b+bn/strings.xml	string	player_speed_text_format	-	STR	গতি (%.2f গুণ)	
 values-b+bn/strings.xml	string	player_subtitles_settings	-	STR	সাবটাইটেল	
 values-b+bn/strings.xml	string	player_subtitles_settings_des	-	STR	প্লেয়ার এর সাবটাইটেলসমূহের সেটিংস	
+values-b+bn/strings.xml	string	player_unmute	-	STR	আনমিউট করুন	
 values-b+bn/strings.xml	string	podcast_singular	-	STR	পডকাস্ট	
 values-b+bn/strings.xml	string	popup_delete_file	-	STR	ফাইল মুছুন	
 values-b+bn/strings.xml	string	popup_pause_download	-	STR	ডাউনলোড থামান	
@@ -5299,9 +5319,11 @@ values-b+ca/strings.xml	string	player_load_one_subtitle_online	-	STR	Carrega el 
 values-b+ca/strings.xml	string	player_load_subtitles	-	STR	Carrega des del fitxer	
 values-b+ca/strings.xml	string	player_load_subtitles_online	-	STR	Carrega des d'internet	
 values-b+ca/strings.xml	string	player_loaded_subtitles	-	STR	%s carregat	
+values-b+ca/strings.xml	string	player_mute	-	STR	Silencia	
 values-b+ca/strings.xml	string	player_size_settings	-	STR	Botó de canvi de mida del reproductor	
 values-b+ca/strings.xml	string	player_speed	-	STR	Velocitat de reproducció	
 values-b+ca/strings.xml	string	player_speed_text_format	-	STR	Velocitat (%.2fx)	
+values-b+ca/strings.xml	string	player_unmute	-	STR	Deixa de silenciar	
 values-b+ca/strings.xml	string	podcast_singular	-	STR	Pòdcast	
 values-b+ca/strings.xml	string	popup_delete_file	-	STR	Esborra el fitxer	
 values-b+ca/strings.xml	string	popup_pause_download	-	STR	Posa la descàrrega en espera	
@@ -5549,7 +5571,9 @@ values-b+ckb/strings.xml	string	play_from_beginning_img_des	-	STR	لە سەرە�
 values-b+ckb/strings.xml	string	play_torrent_button	-	STR	تۆرێنت ستریم بکە	
 values-b+ckb/strings.xml	string	player_enter_fullscreen	-	STR	چوونە ناو پڕ بە شاشە	
 values-b+ckb/strings.xml	string	player_exit_fullscreen	-	STR	دەرچوون لە پڕ بە شاشە	
+values-b+ckb/strings.xml	string	player_mute	-	STR	بێدەنگکردن	
 values-b+ckb/strings.xml	string	player_speed_text_format	-	STR	خێرای(x%.2f)	
+values-b+ckb/strings.xml	string	player_unmute	-	STR	لابردنی بێدەنگی	
 values-b+ckb/strings.xml	string	popup_delete_file	-	STR	سڕینەوەی فایل	
 values-b+ckb/strings.xml	string	popup_pause_download	-	STR	وەستاندنی دابەزاندن	
 values-b+ckb/strings.xml	string	popup_resume_download	-	STR	دووبارە دەستپێکردنەوەی دابەزاندن	
@@ -6020,6 +6044,7 @@ values-b+cs/strings.xml	string	player_load_one_subtitle_online	-	STR	Načíst pr
 values-b+cs/strings.xml	string	player_load_subtitles	-	STR	Načíst ze souboru	
 values-b+cs/strings.xml	string	player_load_subtitles_online	-	STR	Načíst z internetu	
 values-b+cs/strings.xml	string	player_loaded_subtitles	-	STR	Načteno %s	
+values-b+cs/strings.xml	string	player_mute	-	STR	Vypnout zvuk	
 values-b+cs/strings.xml	string	player_notification_channel_description	-	STR	Oznámení přehrávače pro ovládání přehrávání na pozadí	
 values-b+cs/strings.xml	string	player_notification_channel_name	-	STR	Oznámení přehrávače	
 values-b+cs/strings.xml	string	player_pref	-	STR	Preferovaný přehrávač videí	
@@ -6032,6 +6057,7 @@ values-b+cs/strings.xml	string	player_speed	-	STR	Rychlost přehrávání
 values-b+cs/strings.xml	string	player_speed_text_format	-	STR	Rychlost (%.2fx)	
 values-b+cs/strings.xml	string	player_subtitles_settings	-	STR	Titulky	
 values-b+cs/strings.xml	string	player_subtitles_settings_des	-	STR	Nastavení titulků přehrávače	
+values-b+cs/strings.xml	string	player_unmute	-	STR	Zapnout zvuk	
 values-b+cs/strings.xml	string	plugin	-	STR	doplňků	
 values-b+cs/strings.xml	string	plugin_deleted	-	STR	Doplněk odstraněn	
 values-b+cs/strings.xml	string	plugin_downloaded	-	STR	Doplněk stažen	
@@ -6799,6 +6825,7 @@ values-b+de/strings.xml	string	player_load_one_subtitle_online	-	STR	Erste verf�
 values-b+de/strings.xml	string	player_load_subtitles	-	STR	Aus Datei laden	
 values-b+de/strings.xml	string	player_load_subtitles_online	-	STR	Aus Internet laden	
 values-b+de/strings.xml	string	player_loaded_subtitles	-	STR	%s geladen	
+values-b+de/strings.xml	string	player_mute	-	STR	Stummschalten	
 values-b+de/strings.xml	string	player_notification_channel_description	-	STR	Player-Benachrichtigung zur Steuerung der Hintergrundwiedergabe	
 values-b+de/strings.xml	string	player_notification_channel_name	-	STR	Player-Benachrichtigung	
 values-b+de/strings.xml	string	player_pref	-	STR	Bevorzugter Videoplayer	
@@ -6811,6 +6838,7 @@ values-b+de/strings.xml	string	player_speed	-	STR	Player-Geschwindigkeit
 values-b+de/strings.xml	string	player_speed_text_format	-	STR	Geschwindigkeit (%.2fx)	
 values-b+de/strings.xml	string	player_subtitles_settings	-	STR	Untertitel	
 values-b+de/strings.xml	string	player_subtitles_settings_des	-	STR	Player-Untertiteleinstellungen	
+values-b+de/strings.xml	string	player_unmute	-	STR	Stummschaltung aufheben	
 values-b+de/strings.xml	string	plugin	-	STR	Plugins	
 values-b+de/strings.xml	string	plugin_deleted	-	STR	Plugin gelöscht	
 values-b+de/strings.xml	string	plugin_downloaded	-	STR	Das Plugin wurde heruntergeladen	
@@ -7532,6 +7560,7 @@ values-b+el/strings.xml	string	player_load_one_subtitle_online	-	STR	Φορτώ�
 values-b+el/strings.xml	string	player_load_subtitles	-	STR	Φόρτωση από αρχείο	
 values-b+el/strings.xml	string	player_load_subtitles_online	-	STR	Φόρτωση από το Ίντερνετ	
 values-b+el/strings.xml	string	player_loaded_subtitles	-	STR	Φόρτωση %s	
+values-b+el/strings.xml	string	player_mute	-	STR	Σίγαση	
 values-b+el/strings.xml	string	player_notification_channel_description	-	STR	Η ειδοποίηση παίκτη για τον έλεγχο του playback από το φόντο	
 values-b+el/strings.xml	string	player_notification_channel_name	-	STR	Ειδοποίησεις αναπαραγωγής	
 values-b+el/strings.xml	string	player_pref	-	STR	Προτεινόμενο πρόγραμμα αναπαραγωγής	
@@ -7543,6 +7572,7 @@ values-b+el/strings.xml	string	player_speed	-	STR	Ταχύτητα αναπαρ�
 values-b+el/strings.xml	string	player_speed_text_format	-	STR	Ταχύτητα (%.2fx)	
 values-b+el/strings.xml	string	player_subtitles_settings	-	STR	Υπότιτλοι	
 values-b+el/strings.xml	string	player_subtitles_settings_des	-	STR	Ρυθμίσεις υποτίτλων του προγράμματος αναπαραγωγής	
+values-b+el/strings.xml	string	player_unmute	-	STR	Κατάργηση σίγασης	
 values-b+el/strings.xml	string	plugin	-	STR	Πρόσθετα	
 values-b+el/strings.xml	string	plugin_deleted	-	STR	Το πρόσθετο διαγράφηκε	
 values-b+el/strings.xml	string	plugin_downloaded	-	STR	Το πρόσθετο κατέβει	
@@ -7993,9 +8023,11 @@ values-b+eo/strings.xml	string	play_trailer_button	-	STR	Ludi Antaŭfilmon
 values-b+eo/strings.xml	string	play_with_app_name	-	STR	Ludi per CloudStream	
 values-b+eo/strings.xml	string	player_enter_fullscreen	-	STR	Eniri plenekranan reĝimon	
 values-b+eo/strings.xml	string	player_exit_fullscreen	-	STR	Eliri el plenekrana reĝimo	
+values-b+eo/strings.xml	string	player_mute	-	STR	Silentigi	
 values-b+eo/strings.xml	string	player_size_settings_des	-	STR	Forigi nigrajn borderaĵojn	
 values-b+eo/strings.xml	string	player_speed_text_format	-	STR	Rapido (%.2fx)	
 values-b+eo/strings.xml	string	player_subtitles_settings	-	STR	Subtekstoj	
+values-b+eo/strings.xml	string	player_unmute	-	STR	Malsilentigi	
 values-b+eo/strings.xml	string	popup_delete_file	-	STR	Forigi Dosieron	
 values-b+eo/strings.xml	string	popup_pause_download	-	STR	Paŭzigi Elŝuton	
 values-b+eo/strings.xml	string	popup_resume_download	-	STR	Daŭrigi Elŝuton	
@@ -8506,6 +8538,7 @@ values-b+es/strings.xml	string	player_load_one_subtitle_online	-	STR	Cargar prim
 values-b+es/strings.xml	string	player_load_subtitles	-	STR	Cargar desde archivo	
 values-b+es/strings.xml	string	player_load_subtitles_online	-	STR	Cargar desde Internet	
 values-b+es/strings.xml	string	player_loaded_subtitles	-	STR	%s Cargado	
+values-b+es/strings.xml	string	player_mute	-	STR	Silenciar	
 values-b+es/strings.xml	string	player_notification_channel_description	-	STR	La notificación del reproductor para controlar la reproducción en segundo plano	
 values-b+es/strings.xml	string	player_notification_channel_name	-	STR	Notificaciones del reproductor	
 values-b+es/strings.xml	string	player_pref	-	STR	Reproductor de video preferido	
@@ -8518,6 +8551,7 @@ values-b+es/strings.xml	string	player_speed	-	STR	Velocidad del reproductor
 values-b+es/strings.xml	string	player_speed_text_format	-	STR	Velocidad (%.2f×)	
 values-b+es/strings.xml	string	player_subtitles_settings	-	STR	Subtítulos	
 values-b+es/strings.xml	string	player_subtitles_settings_des	-	STR	Configuración de subtítulos del reproductor	
+values-b+es/strings.xml	string	player_unmute	-	STR	Activar sonido	
 values-b+es/strings.xml	string	plugin	-	STR	plugins	
 values-b+es/strings.xml	string	plugin_deleted	-	STR	Plugin Borrado	
 values-b+es/strings.xml	string	plugin_downloaded	-	STR	Plugin descargado	
@@ -9082,6 +9116,7 @@ values-b+fa/strings.xml	string	play_trailer_button	-	STR	پخش تریلر
 values-b+fa/strings.xml	string	play_with_app_name	-	STR	پخش با CloudStream	
 values-b+fa/strings.xml	string	player_enter_fullscreen	-	STR	ورود به حالت تمام‌صفحه	
 values-b+fa/strings.xml	string	player_exit_fullscreen	-	STR	خروج از حالت تمام‌صفحه	
+values-b+fa/strings.xml	string	player_mute	-	STR	بی‌صدا	
 values-b+fa/strings.xml	string	player_pref	-	STR	پخش‌کننده ویدئو برگزیده	
 values-b+fa/strings.xml	string	player_size_settings	-	STR	دکمه تغییر‌اندازه پخش‌کننده	
 values-b+fa/strings.xml	string	player_size_settings_des	-	STR	حذف حاشیه سیاه	
@@ -9089,6 +9124,7 @@ values-b+fa/strings.xml	string	player_speed	-	STR	سرعت پخش‌کننده
 values-b+fa/strings.xml	string	player_speed_text_format	-	STR	سرعت (%.2f برابر)	
 values-b+fa/strings.xml	string	player_subtitles_settings	-	STR	زیرنویس‌ها	
 values-b+fa/strings.xml	string	player_subtitles_settings_des	-	STR	تنظیمات زیرنویس‌های پخش‌کننده	
+values-b+fa/strings.xml	string	player_unmute	-	STR	صدادار	
 values-b+fa/strings.xml	string	plugin_deleted	-	STR	افزونه حذف شد	
 values-b+fa/strings.xml	string	podcast_singular	-	STR	پادکست	
 values-b+fa/strings.xml	string	popup_delete_file	-	STR	حذف فایل	
@@ -9370,9 +9406,11 @@ values-b+fil/strings.xml	string	play_trailer_button	-	STR	Ipatugtog ang Trailer
 values-b+fil/strings.xml	string	play_with_app_name	-	STR	Ipatugtog sa CloudStream	
 values-b+fil/strings.xml	string	player_enter_fullscreen	-	STR	Mag-fullscreen	
 values-b+fil/strings.xml	string	player_exit_fullscreen	-	STR	Lumabas sa fullscreen	
+values-b+fil/strings.xml	string	player_mute	-	STR	I-mute	
 values-b+fil/strings.xml	string	player_notification_channel_description	-	STR	Ang abiso ng player para sa pagkontrol sa pag-playback mula sa background	
 values-b+fil/strings.xml	string	player_speed	-	STR	Bilis ng Manlalaro	
 values-b+fil/strings.xml	string	player_speed_text_format	-	STR	Bilis (%.2fx)	
+values-b+fil/strings.xml	string	player_unmute	-	STR	I-unmute	
 values-b+fil/strings.xml	string	plugins_updated_manually	-	STR	Matagumpay na na-update ang %d plugin!	
 values-b+fil/strings.xml	string	popup_delete_file	-	STR	Burahin ang File	
 values-b+fil/strings.xml	string	popup_pause_download	-	STR	Ihinto ang pag-download	
@@ -9874,6 +9912,7 @@ values-b+fr/strings.xml	string	player_load_one_subtitle_online	-	STR	Charger le 
 values-b+fr/strings.xml	string	player_load_subtitles	-	STR	Charger depuis le fichier	
 values-b+fr/strings.xml	string	player_load_subtitles_online	-	STR	Charger depuis internet	
 values-b+fr/strings.xml	string	player_loaded_subtitles	-	STR	%s chargé	
+values-b+fr/strings.xml	string	player_mute	-	STR	Couper le son	
 values-b+fr/strings.xml	string	player_notification_channel_description	-	STR	La notification du lecteur pour contrôler la lecture en arrière-plan	
 values-b+fr/strings.xml	string	player_notification_channel_name	-	STR	Notifications du lecteur	
 values-b+fr/strings.xml	string	player_pref	-	STR	Lecteur vidéo préféré	
@@ -9886,6 +9925,7 @@ values-b+fr/strings.xml	string	player_speed	-	STR	Vitesse de lecture
 values-b+fr/strings.xml	string	player_speed_text_format	-	STR	Vitesse (%.2fx)	
 values-b+fr/strings.xml	string	player_subtitles_settings	-	STR	Sous-titres	
 values-b+fr/strings.xml	string	player_subtitles_settings_des	-	STR	Paramètres des sous-titres du lecteur	
+values-b+fr/strings.xml	string	player_unmute	-	STR	Réactiver le son	
 values-b+fr/strings.xml	string	plugin	-	STR	plugins	
 values-b+fr/strings.xml	string	plugin_deleted	-	STR	Plugin Supprimé	
 values-b+fr/strings.xml	string	plugin_downloaded	-	STR	Plugin Téléchargé	
@@ -10426,12 +10466,14 @@ values-b+gl/strings.xml	string	play_trailer_button	-	STR	Reproducir Trailer
 values-b+gl/strings.xml	string	play_with_app_name	-	STR	Reproducir con CloudStream	
 values-b+gl/strings.xml	string	player_enter_fullscreen	-	STR	Acceder a pantalla completa	
 values-b+gl/strings.xml	string	player_exit_fullscreen	-	STR	Saír de pantalla completa	
+values-b+gl/strings.xml	string	player_mute	-	STR	Silenciar	
 values-b+gl/strings.xml	string	player_size_settings	-	STR	Botón de cambio de tamaño do reprodutor	
 values-b+gl/strings.xml	string	player_size_settings_des	-	STR	Eliminar bordes negros	
 values-b+gl/strings.xml	string	player_speed	-	STR	Velocidade do reproductor	
 values-b+gl/strings.xml	string	player_speed_text_format	-	STR	Velocidade (%.2fx)	
 values-b+gl/strings.xml	string	player_subtitles_settings	-	STR	Subtítulos	
 values-b+gl/strings.xml	string	player_subtitles_settings_des	-	STR	Configuración de subtítulos do reprodutor	
+values-b+gl/strings.xml	string	player_unmute	-	STR	Activar o son	
 values-b+gl/strings.xml	string	popup_delete_file	-	STR	Borrar Arquivo	
 values-b+gl/strings.xml	string	popup_pause_download	-	STR	Pausar Descarga	
 values-b+gl/strings.xml	string	popup_play_file	-	STR	Reproducir Arquivo	
@@ -10827,12 +10869,14 @@ values-b+hi/strings.xml	string	play_trailer_button	-	STR	ट्रेलर द�
 values-b+hi/strings.xml	string	play_with_app_name	-	STR	क्लाउडस्ट्रीम के साथ चलाएं	
 values-b+hi/strings.xml	string	player_enter_fullscreen	-	STR	फ़ुलस्क्रीन मोड पर देखें	
 values-b+hi/strings.xml	string	player_exit_fullscreen	-	STR	फ़ुलस्क्रीन मोड से बाहर निकलें	
+values-b+hi/strings.xml	string	player_mute	-	STR	म्यूट करें	
 values-b+hi/strings.xml	string	player_size_settings	-	STR	प्लेयर आकार परिवर्तन बटन	
 values-b+hi/strings.xml	string	player_size_settings_des	-	STR	काले बॉर्डर हटाएँ	
 values-b+hi/strings.xml	string	player_speed	-	STR	प्लेयर स्पीड	
 values-b+hi/strings.xml	string	player_speed_text_format	-	STR	स्पीड (%.2fx)	
 values-b+hi/strings.xml	string	player_subtitles_settings	-	STR	उपशीर्षक	
 values-b+hi/strings.xml	string	player_subtitles_settings_des	-	STR	प्लेयर उपशीर्षक सेटिंग्स	
+values-b+hi/strings.xml	string	player_unmute	-	STR	अनम्यूट करें	
 values-b+hi/strings.xml	string	podcast_singular	-	STR	पॉडकास्ट	
 values-b+hi/strings.xml	string	popup_delete_file	-	STR	फ़ाइल मिटाएँ	
 values-b+hi/strings.xml	string	popup_pause_download	-	STR	डाउनलोड रोकें	
@@ -11435,6 +11479,7 @@ values-b+hr/strings.xml	string	player_load_one_subtitle_online	-	STR	Učitaj prv
 values-b+hr/strings.xml	string	player_load_subtitles	-	STR	Učitaj iz datoteke	
 values-b+hr/strings.xml	string	player_load_subtitles_online	-	STR	Učitaj s interneta	
 values-b+hr/strings.xml	string	player_loaded_subtitles	-	STR	Učitano %s	
+values-b+hr/strings.xml	string	player_mute	-	STR	Isključi zvuk	
 values-b+hr/strings.xml	string	player_notification_channel_description	-	STR	Obavijest reproduktora za upravljanje reprodukcijom iz pozadine	
 values-b+hr/strings.xml	string	player_notification_channel_name	-	STR	Obavijesti reproduktora	
 values-b+hr/strings.xml	string	player_pref	-	STR	Preferirani video player	
@@ -11447,6 +11492,7 @@ values-b+hr/strings.xml	string	player_speed	-	STR	Brzina playera
 values-b+hr/strings.xml	string	player_speed_text_format	-	STR	Brzina (%.2f×)	
 values-b+hr/strings.xml	string	player_subtitles_settings	-	STR	Titlovi	
 values-b+hr/strings.xml	string	player_subtitles_settings_des	-	STR	Postavke titlova playera	
+values-b+hr/strings.xml	string	player_unmute	-	STR	Uključi zvuk	
 values-b+hr/strings.xml	string	plugin	-	STR	dodaci	
 values-b+hr/strings.xml	string	plugin_deleted	-	STR	Dodatak izbrisan	
 values-b+hr/strings.xml	string	plugin_downloaded	-	STR	Dodatak preuzet	
@@ -12154,6 +12200,7 @@ values-b+hu/strings.xml	string	player_load_one_subtitle_online	-	STR	Töltse be 
 values-b+hu/strings.xml	string	player_load_subtitles	-	STR	Betöltés fájlból	
 values-b+hu/strings.xml	string	player_load_subtitles_online	-	STR	Betöltés az internetről	
 values-b+hu/strings.xml	string	player_loaded_subtitles	-	STR	%s betöltve	
+values-b+hu/strings.xml	string	player_mute	-	STR	Némítás	
 values-b+hu/strings.xml	string	player_pref	-	STR	Előnyben részesített videolejátszó	
 values-b+hu/strings.xml	string	player_settings_always_ask	-	STR	Mindig kérdezzen	
 values-b+hu/strings.xml	string	player_settings_play_in_app	-	STR	Belső lejátszó	
@@ -12164,6 +12211,7 @@ values-b+hu/strings.xml	string	player_speed	-	STR	Lejátszás sebessége
 values-b+hu/strings.xml	string	player_speed_text_format	-	STR	Sebesség (%.2fx)	
 values-b+hu/strings.xml	string	player_subtitles_settings	-	STR	Feliratok	
 values-b+hu/strings.xml	string	player_subtitles_settings_des	-	STR	Lejátszó feliratok beállításai	
+values-b+hu/strings.xml	string	player_unmute	-	STR	Némítás feloldása	
 values-b+hu/strings.xml	string	plugin	-	STR	bővítmények	
 values-b+hu/strings.xml	string	plugin_deleted	-	STR	Bővítmény törölve	
 values-b+hu/strings.xml	string	plugin_downloaded	-	STR	Bővítmény letöltve	
@@ -12880,6 +12928,7 @@ values-b+in/strings.xml	string	player_load_one_subtitle_online	-	STR	Muat yang p
 values-b+in/strings.xml	string	player_load_subtitles	-	STR	Muat dari file	
 values-b+in/strings.xml	string	player_load_subtitles_online	-	STR	Ambil dari internet	
 values-b+in/strings.xml	string	player_loaded_subtitles	-	STR	Memuat %s	
+values-b+in/strings.xml	string	player_mute	-	STR	Bisukan	
 values-b+in/strings.xml	string	player_notification_channel_description	-	STR	Pemberitahuan pemutar untuk mengontrol pemutaran dari latar belakang	
 values-b+in/strings.xml	string	player_notification_channel_name	-	STR	Notifikasi pemain	
 values-b+in/strings.xml	string	player_pref	-	STR	Pemutar video utama	
@@ -12892,6 +12941,7 @@ values-b+in/strings.xml	string	player_speed	-	STR	Kecepatan Pemutar
 values-b+in/strings.xml	string	player_speed_text_format	-	STR	Kecepatan (%.2fx)	
 values-b+in/strings.xml	string	player_subtitles_settings	-	STR	Subtitel	
 values-b+in/strings.xml	string	player_subtitles_settings_des	-	STR	Pengaturan subtitel pemutar	
+values-b+in/strings.xml	string	player_unmute	-	STR	Bunyikan	
 values-b+in/strings.xml	string	plugin	-	STR	plugin	
 values-b+in/strings.xml	string	plugin_deleted	-	STR	Plugin terhapus	
 values-b+in/strings.xml	string	plugin_downloaded	-	STR	Plugin terunduh	
@@ -13663,6 +13713,7 @@ values-b+it/strings.xml	string	player_load_one_subtitle_online	-	STR	Carica il p
 values-b+it/strings.xml	string	player_load_subtitles	-	STR	Carica da file	
 values-b+it/strings.xml	string	player_load_subtitles_online	-	STR	Carica da Internet	
 values-b+it/strings.xml	string	player_loaded_subtitles	-	STR	Caricato %s	
+values-b+it/strings.xml	string	player_mute	-	STR	Disattiva audio	
 values-b+it/strings.xml	string	player_notification_channel_description	-	STR	La notifica del lettore per controllare la riproduzione in background	
 values-b+it/strings.xml	string	player_notification_channel_name	-	STR	Notifiche lettore	
 values-b+it/strings.xml	string	player_pref	-	STR	Video lettore preferito	
@@ -13675,6 +13726,7 @@ values-b+it/strings.xml	string	player_speed	-	STR	Velocità lettore
 values-b+it/strings.xml	string	player_speed_text_format	-	STR	Velocità (%.2fx)	
 values-b+it/strings.xml	string	player_subtitles_settings	-	STR	Sottotitoli	
 values-b+it/strings.xml	string	player_subtitles_settings_des	-	STR	Impostazioni sottotitoli lettore	
+values-b+it/strings.xml	string	player_unmute	-	STR	Riattiva audio	
 values-b+it/strings.xml	string	plugin	-	STR	plugin	
 values-b+it/strings.xml	string	plugin_deleted	-	STR	Plugin eliminato	
 values-b+it/strings.xml	string	plugin_downloaded	-	STR	Plugin scaricato	
@@ -14326,6 +14378,7 @@ values-b+iw/strings.xml	string	player_exit_fullscreen	-	STR	יציאה ממסך 
 values-b+iw/strings.xml	string	player_load_subtitles	-	STR	טען מקובץ	
 values-b+iw/strings.xml	string	player_load_subtitles_online	-	STR	טען מהאינטרנט	
 values-b+iw/strings.xml	string	player_loaded_subtitles	-	STR	נטען %s	
+values-b+iw/strings.xml	string	player_mute	-	STR	השתקה	
 values-b+iw/strings.xml	string	player_pref	-	STR	נגן וידאו מועדף	
 values-b+iw/strings.xml	string	player_settings_play_in_app	-	STR	נגן פנימי	
 values-b+iw/strings.xml	string	player_size_settings	-	STR	כפתור שינוי גודל הנגן	
@@ -14334,6 +14387,7 @@ values-b+iw/strings.xml	string	player_speed	-	STR	מהירות הנגן
 values-b+iw/strings.xml	string	player_speed_text_format	-	STR	מהירות (%.2fx)	
 values-b+iw/strings.xml	string	player_subtitles_settings	-	STR	כתוביות	
 values-b+iw/strings.xml	string	player_subtitles_settings_des	-	STR	הגדרות כתוביות הנגן	
+values-b+iw/strings.xml	string	player_unmute	-	STR	ביטול השתקה	
 values-b+iw/strings.xml	string	plugin	-	STR	תוספים	
 values-b+iw/strings.xml	string	plugin_deleted	-	STR	התוסף נמחק	
 values-b+iw/strings.xml	string	plugin_downloaded	-	STR	תוסף הורד	
@@ -15024,6 +15078,7 @@ values-b+ja/strings.xml	string	player_load_one_subtitle_online	-	STR	最初に�
 values-b+ja/strings.xml	string	player_load_subtitles	-	STR	ファイルから読み込む	
 values-b+ja/strings.xml	string	player_load_subtitles_online	-	STR	インターネットから読み込む	
 values-b+ja/strings.xml	string	player_loaded_subtitles	-	STR	%s を読み込みました	
+values-b+ja/strings.xml	string	player_mute	-	STR	ミュート	
 values-b+ja/strings.xml	string	player_notification_channel_description	-	STR	バックグラウンドから再生を制御するためのプレーヤー通知	
 values-b+ja/strings.xml	string	player_notification_channel_name	-	STR	プレーヤー通知	
 values-b+ja/strings.xml	string	player_pref	-	STR	優先ビデオプレーヤー	
@@ -15036,6 +15091,7 @@ values-b+ja/strings.xml	string	player_speed	-	STR	プレーヤーの速度
 values-b+ja/strings.xml	string	player_speed_text_format	-	STR	再生速度 (%.2fx)	
 values-b+ja/strings.xml	string	player_subtitles_settings	-	STR	字幕	
 values-b+ja/strings.xml	string	player_subtitles_settings_des	-	STR	プレーヤーの字幕設定	
+values-b+ja/strings.xml	string	player_unmute	-	STR	ミュート解除	
 values-b+ja/strings.xml	string	plugin	-	STR	プラグイン	
 values-b+ja/strings.xml	string	plugin_deleted	-	STR	プラグインが消されました	
 values-b+ja/strings.xml	string	plugin_downloaded	-	STR	プラグインがダウンロードされました	
@@ -15475,12 +15531,14 @@ values-b+kn/strings.xml	string	play_trailer_button	-	STR	ಟ್ರೈಲರ್ �
 values-b+kn/strings.xml	string	play_with_app_name	-	STR	ಕ್ಲೌಡ್ ಸ್ಟ್ರೀಮ್ ಇದರೊಂದಿಗೆ ಪ್ಲೇ ಮಾಡಿ	
 values-b+kn/strings.xml	string	player_enter_fullscreen	-	STR	ಫುಲ್‌ಸ್ಕ್ರೀನ್‌ಗೆ ಪ್ರವೇಶಿಸಿ	
 values-b+kn/strings.xml	string	player_exit_fullscreen	-	STR	ಫುಲ್‌ಸ್ಕ್ರೀನ್‌ನಿಂದ ನಿರ್ಗಮಿಸಿ	
+values-b+kn/strings.xml	string	player_mute	-	STR	ಮ್ಯೂಟ್ ಮಾಡಿ	
 values-b+kn/strings.xml	string	player_size_settings	-	STR	ಪ್ಲೇಯರ್ ಮರುಗಾತ್ರಗೊಳಿಸಿ ಬಟನ್	
 values-b+kn/strings.xml	string	player_size_settings_des	-	STR	ಕಪ್ಪು ಗಡಿಗಳನ್ನು ತೆಗೆದುಹಾಕಿ	
 values-b+kn/strings.xml	string	player_speed	-	STR	ಪ್ಲೇಯರ್ ಸ್ಪೀಡ್	
 values-b+kn/strings.xml	string	player_speed_text_format	-	STR	ಸ್ಪೀಡ್(%.2fx)	
 values-b+kn/strings.xml	string	player_subtitles_settings	-	STR	ಸಬ್ ಟೈಟಲ್ಸ್	
 values-b+kn/strings.xml	string	player_subtitles_settings_des	-	STR	ಪ್ಲೇಯರ್ ಸಬ್ ಟೈಟಲ್ಸ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳು	
+values-b+kn/strings.xml	string	player_unmute	-	STR	ಅನ್‌ಮ್ಯೂಟ್ ಮಾಡಿ	
 values-b+kn/strings.xml	string	popup_delete_file	-	STR	ಫೈಲ್ ಅಳಿಸಿ	
 values-b+kn/strings.xml	string	popup_pause_download	-	STR	ಡೌನ್‌ಲೋಡ್ ವಿರಾಮಗೊಳಿಸಿ	
 values-b+kn/strings.xml	string	popup_play_file	-	STR	ಫೈಲ್ ಪ್ಲೇ	
@@ -15967,6 +16025,7 @@ values-b+ko/strings.xml	string	player_load_one_subtitle_online	-	STR	사용 가�
 values-b+ko/strings.xml	string	player_load_subtitles	-	STR	파일에서 불러오기	
 values-b+ko/strings.xml	string	player_load_subtitles_online	-	STR	인터넷에서 불러오기	
 values-b+ko/strings.xml	string	player_loaded_subtitles	-	STR	로드됨 %s	
+values-b+ko/strings.xml	string	player_mute	-	STR	음소거	
 values-b+ko/strings.xml	string	player_notification_channel_description	-	STR	백그라운드에서 재생을 제어하기 위한 플레이어 알림	
 values-b+ko/strings.xml	string	player_notification_channel_name	-	STR	플레이어 알림	
 values-b+ko/strings.xml	string	player_pref	-	STR	선호하는 동영상 플레이어	
@@ -15979,6 +16038,7 @@ values-b+ko/strings.xml	string	player_speed	-	STR	재생 속도
 values-b+ko/strings.xml	string	player_speed_text_format	-	STR	속도 (%.2fx)	
 values-b+ko/strings.xml	string	player_subtitles_settings	-	STR	자막	
 values-b+ko/strings.xml	string	player_subtitles_settings_des	-	STR	플레이어 자막 설정	
+values-b+ko/strings.xml	string	player_unmute	-	STR	음소거 해제	
 values-b+ko/strings.xml	string	plugin	-	STR	플러그인	
 values-b+ko/strings.xml	string	plugin_deleted	-	STR	플러그인 삭제됨	
 values-b+ko/strings.xml	string	plugin_downloaded	-	STR	플러그인 다운로드	
@@ -16503,6 +16563,7 @@ values-b+lt/strings.xml	string	play_trailer_button	-	STR	Paleisti anonsą
 values-b+lt/strings.xml	string	play_with_app_name	-	STR	Paleisti su CloudStream	
 values-b+lt/strings.xml	string	player_enter_fullscreen	-	STR	Įjungti viso ekrano režimą	
 values-b+lt/strings.xml	string	player_exit_fullscreen	-	STR	Išjungti viso ekrano režimą	
+values-b+lt/strings.xml	string	player_mute	-	STR	Nutildyti	
 values-b+lt/strings.xml	string	player_settings_play_in_app	-	STR	Integruotas grotuvas	
 values-b+lt/strings.xml	string	player_size_settings	-	STR	Grotuvo dydžio pakeitimo mygtukas	
 values-b+lt/strings.xml	string	player_size_settings_des	-	STR	Pašalinti juodas paraštes	
@@ -16510,6 +16571,7 @@ values-b+lt/strings.xml	string	player_speed	-	STR	Grotuvo greitis
 values-b+lt/strings.xml	string	player_speed_text_format	-	STR	Greitis (%.2fx)	
 values-b+lt/strings.xml	string	player_subtitles_settings	-	STR	Subtitrai	
 values-b+lt/strings.xml	string	player_subtitles_settings_des	-	STR	Grotuvo subtitrų nustatymai	
+values-b+lt/strings.xml	string	player_unmute	-	STR	Įjungti garsą	
 values-b+lt/strings.xml	string	plugin_load_fail	-	STR	Nepavyko įkelti %s	
 values-b+lt/strings.xml	string	plugins_disabled	-	STR	Išjungta: %d	
 values-b+lt/strings.xml	string	plugins_downloaded	-	STR	Atsiųsta: %d	
@@ -17010,6 +17072,7 @@ values-b+lv/strings.xml	string	player_load_one_subtitle_online	-	STR	Lejupielād
 values-b+lv/strings.xml	string	player_load_subtitles	-	STR	Ielādēt no datnes	
 values-b+lv/strings.xml	string	player_load_subtitles_online	-	STR	Lejupielādēt no interneta	
 values-b+lv/strings.xml	string	player_loaded_subtitles	-	STR	Ielādēti %s	
+values-b+lv/strings.xml	string	player_mute	-	STR	Izslēgt skaņu	
 values-b+lv/strings.xml	string	player_pref	-	STR	Vēlamais video atskaņotājs	
 values-b+lv/strings.xml	string	player_settings_play_in_app	-	STR	Iekšējais atskaņotājs	
 values-b+lv/strings.xml	string	player_size_settings	-	STR	Players izmēra poga	
@@ -17018,6 +17081,7 @@ values-b+lv/strings.xml	string	player_speed	-	STR	Atskaņošanas ātrums
 values-b+lv/strings.xml	string	player_speed_text_format	-	STR	Ātrums (%.2fx)	
 values-b+lv/strings.xml	string	player_subtitles_settings	-	STR	Subtitri	
 values-b+lv/strings.xml	string	player_subtitles_settings_des	-	STR	Atskaņotāja subtitru iestatījumi	
+values-b+lv/strings.xml	string	player_unmute	-	STR	Ieslēgt skaņu	
 values-b+lv/strings.xml	string	plugin	-	STR	papildinājumi	
 values-b+lv/strings.xml	string	plugin_deleted	-	STR	Papildinājums dzēsts	
 values-b+lv/strings.xml	string	plugin_downloaded	-	STR	Papildinājums lejupielādēts	
@@ -17731,6 +17795,7 @@ values-b+mk/strings.xml	string	player_load_one_subtitle_online	-	STR	Вчита�
 values-b+mk/strings.xml	string	player_load_subtitles	-	STR	Вчитај од датотека	
 values-b+mk/strings.xml	string	player_load_subtitles_online	-	STR	Вчитај од Интернет	
 values-b+mk/strings.xml	string	player_loaded_subtitles	-	STR	Вчитан %s	
+values-b+mk/strings.xml	string	player_mute	-	STR	Исклучи звук	
 values-b+mk/strings.xml	string	player_notification_channel_description	-	STR	Известување од плеерот за контрола на репродукцијата од позадина	
 values-b+mk/strings.xml	string	player_notification_channel_name	-	STR	Известувања од плеерот	
 values-b+mk/strings.xml	string	player_pref	-	STR	Префериран видео плеер	
@@ -17743,6 +17808,7 @@ values-b+mk/strings.xml	string	player_speed	-	STR	Брзина на плеер
 values-b+mk/strings.xml	string	player_speed_text_format	-	STR	Брзина (%.2fx)	
 values-b+mk/strings.xml	string	player_subtitles_settings	-	STR	Преводи	
 values-b+mk/strings.xml	string	player_subtitles_settings_des	-	STR	Поставки на плеерот за преводи	
+values-b+mk/strings.xml	string	player_unmute	-	STR	Вклучи звук	
 values-b+mk/strings.xml	string	plugin	-	STR	приклучоци	
 values-b+mk/strings.xml	string	plugin_deleted	-	STR	Приклучокот е избришан	
 values-b+mk/strings.xml	string	plugin_downloaded	-	STR	Приклучокот е преземен	
@@ -18267,12 +18333,14 @@ values-b+ml/strings.xml	string	play_with_app_name	-	STR	ക്ലൗഡ് സ�
 values-b+ml/strings.xml	string	player_enter_fullscreen	-	STR	പൂർണ്ണ സ്‌ക്രീൻ ആക്കുക	
 values-b+ml/strings.xml	string	player_exit_fullscreen	-	STR	പൂർണ്ണ സ്‌ക്രീനിൽ നിന്ന് പുറത്തുകടക്കുക	
 values-b+ml/strings.xml	string	player_is_live	-	STR	തൽസമയം	
+values-b+ml/strings.xml	string	player_mute	-	STR	നിശബ്‌ദമാക്കുക	
 values-b+ml/strings.xml	string	player_size_settings	-	STR	പ്ലേയറിന്റെ വലുപ്പം മാറ്റുന്ന ബട്ടൻ	
 values-b+ml/strings.xml	string	player_size_settings_des	-	STR	കറുത്ത അതിർത്തി നീക്കംചെയ്യുക	
 values-b+ml/strings.xml	string	player_speed	-	STR	പ്ലേയർ വേഗത	
 values-b+ml/strings.xml	string	player_speed_text_format	-	STR	വേഗം (%.2fx)	
 values-b+ml/strings.xml	string	player_subtitles_settings	-	STR	സബ്ടൈട്ടിൽസ്	
 values-b+ml/strings.xml	string	player_subtitles_settings_des	-	STR	പ്ലേയർ സബ്‌ടൈറ്റിലുകളുടെ സെറ്റിങ്‌സ്	
+values-b+ml/strings.xml	string	player_unmute	-	STR	നിശബ്‌ദത മാറ്റുക	
 values-b+ml/strings.xml	string	popup_delete_file	-	STR	ഫയൽ ഡിലീറ്റ് ചെയ്യുക	
 values-b+ml/strings.xml	string	popup_pause_download	-	STR	ഡൌൺലോഡ് നിർത്തുക	
 values-b+ml/strings.xml	string	popup_play_file	-	STR	ഫയൽ പ്ലേയ് ചെയ്യുക	
@@ -18740,6 +18808,7 @@ values-b+ms/strings.xml	string	play_trailer_button	-	STR	Main Pra-tonton
 values-b+ms/strings.xml	string	play_with_app_name	-	STR	Pasang dengan CloudStream	
 values-b+ms/strings.xml	string	player_enter_fullscreen	-	STR	Masuk ke skrin penuh	
 values-b+ms/strings.xml	string	player_exit_fullscreen	-	STR	Keluar dari skrin penuh	
+values-b+ms/strings.xml	string	player_mute	-	STR	Redam	
 values-b+ms/strings.xml	string	player_settings_play_in_app	-	STR	Pemain dalaman	
 values-b+ms/strings.xml	string	player_size_settings	-	STR	Saiz butang pemain	
 values-b+ms/strings.xml	string	player_size_settings_des	-	STR	Buang sempadan hitam	
@@ -18747,6 +18816,7 @@ values-b+ms/strings.xml	string	player_speed	-	STR	Kelajuan Pemain
 values-b+ms/strings.xml	string	player_speed_text_format	-	STR	Kelajuan (%.2fx)	
 values-b+ms/strings.xml	string	player_subtitles_settings	-	STR	Sari kata	
 values-b+ms/strings.xml	string	player_subtitles_settings_des	-	STR	Tetapan sari kata pemain	
+values-b+ms/strings.xml	string	player_unmute	-	STR	Nyahredam	
 values-b+ms/strings.xml	string	plugin_load_fail	-	STR	Tidak dapat papar %s	
 values-b+ms/strings.xml	string	plugins_disabled	-	STR	Dilumpuhkan: %d	
 values-b+ms/strings.xml	string	plugins_downloaded	-	STR	Dimuat turun: %d	
@@ -19075,8 +19145,10 @@ values-b+mt/strings.xml	string	play_trailer_button	-	STR	Ibda t-trejler
 values-b+mt/strings.xml	string	play_with_app_name	-	STR	Ara bil-CloudStream	
 values-b+mt/strings.xml	string	player_enter_fullscreen	-	STR	Idħol fi skrin sħiħ	
 values-b+mt/strings.xml	string	player_exit_fullscreen	-	STR	Oħroġ minn skrin sħiħ	
+values-b+mt/strings.xml	string	player_mute	-	STR	Itfi l-ħoss	
 values-b+mt/strings.xml	string	player_speed	-	STR	Veloċità tal-Plejer	
 values-b+mt/strings.xml	string	player_speed_text_format	-	STR	veloċità (%.2fx)	
+values-b+mt/strings.xml	string	player_unmute	-	STR	Ixgħel il-ħoss	
 values-b+mt/strings.xml	string	popup_delete_file	-	STR	Hassar il-fajl	
 values-b+mt/strings.xml	string	popup_pause_download	-	STR	Ieqaf Nizzel	
 values-b+mt/strings.xml	string	popup_play_file	-	STR	Ibda l-fajl	
@@ -19438,6 +19510,7 @@ values-b+my/strings.xml	string	player_exit_fullscreen	-	STR	ဖန်သား�
 values-b+my/strings.xml	string	player_load_subtitles	-	STR	ဖိုင်မှတင်သွင်းပြီး	
 values-b+my/strings.xml	string	player_load_subtitles_online	-	STR	အင်တာနက်မှ တင်သွင်းမည်	
 values-b+my/strings.xml	string	player_loaded_subtitles	-	STR	တင်ပြီး %s	
+values-b+my/strings.xml	string	player_mute	-	STR	အသံပိတ်ရန်	
 values-b+my/strings.xml	string	player_pref	-	STR	ဦးစားပေး ဗီဒီယိုဖွင့်စက်	
 values-b+my/strings.xml	string	player_settings_play_in_app	-	STR	ဖုန်းတွင်းကြည့်ရှုမှု	
 values-b+my/strings.xml	string	player_size_settings	-	STR	ကြည့်ရှုမှု စခရင်အရွယ်အစားချိန်ညိှမှု	
@@ -19446,6 +19519,7 @@ values-b+my/strings.xml	string	player_speed	-	STR	ကြည့်ရှုမှ
 values-b+my/strings.xml	string	player_speed_text_format	-	STR	အရှိန် (%.2fx)	
 values-b+my/strings.xml	string	player_subtitles_settings	-	STR	စာတန်းထိုးများ	
 values-b+my/strings.xml	string	player_subtitles_settings_des	-	STR	ကြည့်ရှုမှုစာတန်းထိုးပြုပြင်စရာများ	
+values-b+my/strings.xml	string	player_unmute	-	STR	အသံဖွင့်ရန်	
 values-b+my/strings.xml	string	plugin	-	STR	ဖြည့်စွက်များ	
 values-b+my/strings.xml	string	plugin_deleted	-	STR	ဖြည့်စွက်များဖျက်ပြီး	
 values-b+my/strings.xml	string	plugin_downloaded	-	STR	ဖြည့်စွက်များ ဒေါင်းလုဒ်လုပ်ပြီး	
@@ -19800,12 +19874,14 @@ values-b+ne/strings.xml	string	play_trailer_button	-	STR	ट्रेलर प�
 values-b+ne/strings.xml	string	play_with_app_name	-	STR	क्लाउडस्ट्रीममा प्ले गर्नुहोस्	
 values-b+ne/strings.xml	string	player_enter_fullscreen	-	STR	पूर्ण स्क्रिन मोडमा खोल्नुहोस्	
 values-b+ne/strings.xml	string	player_exit_fullscreen	-	STR	पूर्ण स्क्रिन मोडबाट बाहिरिनुहोस्	
+values-b+ne/strings.xml	string	player_mute	-	STR	म्यूट गर्नुहोस्	
 values-b+ne/strings.xml	string	player_size_settings	-	STR	प्लेयर resize गर्ने वटन	
 values-b+ne/strings.xml	string	player_size_settings_des	-	STR	कालो सीमा हटाउनुहोस	
 values-b+ne/strings.xml	string	player_speed	-	STR	प्लेयर स्पीड	
 values-b+ne/strings.xml	string	player_speed_text_format	-	STR	गति (%.2fx)	
 values-b+ne/strings.xml	string	player_subtitles_settings	-	STR	उपशीर्षक	
 values-b+ne/strings.xml	string	player_subtitles_settings_des	-	STR	प्लेयरको उपशीर्षकको सेटिङ	
+values-b+ne/strings.xml	string	player_unmute	-	STR	अनम्यूट गर्नुहोस्	
 values-b+ne/strings.xml	string	popup_delete_file	-	STR	फाइल मेट्नुहोस्	
 values-b+ne/strings.xml	string	popup_pause_download	-	STR	डाउनलोड रोक्नुहोस्	
 values-b+ne/strings.xml	string	popup_play_file	-	STR	फाइल प्ले गर्नुहोस्	
@@ -20261,6 +20337,7 @@ values-b+nl/strings.xml	string	player_load_one_subtitle_online	-	STR	Laad eerst 
 values-b+nl/strings.xml	string	player_load_subtitles	-	STR	Laden uit bestand	
 values-b+nl/strings.xml	string	player_load_subtitles_online	-	STR	Laden vanaf internet	
 values-b+nl/strings.xml	string	player_loaded_subtitles	-	STR	Geladen %s	
+values-b+nl/strings.xml	string	player_mute	-	STR	Dempen	
 values-b+nl/strings.xml	string	player_notification_channel_description	-	STR	De speler melding om de kijkervaring van de achtergrond de besturen	
 values-b+nl/strings.xml	string	player_notification_channel_name	-	STR	Speler meldingen	
 values-b+nl/strings.xml	string	player_pref	-	STR	Gewenste videospeler	
@@ -20273,6 +20350,7 @@ values-b+nl/strings.xml	string	player_speed	-	STR	Afspelen Snelheid
 values-b+nl/strings.xml	string	player_speed_text_format	-	STR	Snelheid (%.2fx)	
 values-b+nl/strings.xml	string	player_subtitles_settings	-	STR	Ondertitels	
 values-b+nl/strings.xml	string	player_subtitles_settings_des	-	STR	Speler Ondertiteling instellingen	
+values-b+nl/strings.xml	string	player_unmute	-	STR	Dempen opheffen	
 values-b+nl/strings.xml	string	plugin	-	STR	plugins	
 values-b+nl/strings.xml	string	plugin_deleted	-	STR	Plugin Verwijderd	
 values-b+nl/strings.xml	string	plugin_downloaded	-	STR	Plugin Gedownload	
@@ -20737,11 +20815,13 @@ values-b+nn/strings.xml	string	play_trailer_button	-	STR	Spel av trailer
 values-b+nn/strings.xml	string	play_with_app_name	-	STR	Spel av med CloudStream	
 values-b+nn/strings.xml	string	player_enter_fullscreen	-	STR	Vis i fullskjerm	
 values-b+nn/strings.xml	string	player_exit_fullscreen	-	STR	Avslutt fullskjerm	
+values-b+nn/strings.xml	string	player_mute	-	STR	Slå av lyd	
 values-b+nn/strings.xml	string	player_size_settings_des	-	STR	Fjern dei svarte kantane	
 values-b+nn/strings.xml	string	player_speed	-	STR	Avspelinghastigheit	
 values-b+nn/strings.xml	string	player_speed_text_format	-	STR	Avspelinghastigheit (%.2fx)	
 values-b+nn/strings.xml	string	player_subtitles_settings	-	STR	Undertekstar	
 values-b+nn/strings.xml	string	player_subtitles_settings_des	-	STR	Innstillinger for avspilling av undertekster	
+values-b+nn/strings.xml	string	player_unmute	-	STR	Slå på lyd	
 values-b+nn/strings.xml	string	popup_delete_file	-	STR	Slett fil	
 values-b+nn/strings.xml	string	popup_pause_download	-	STR	Sett nedlasting på vent	
 values-b+nn/strings.xml	string	popup_play_file	-	STR	Spel av fil	
@@ -21124,6 +21204,7 @@ values-b+no/strings.xml	string	player_exit_fullscreen	-	STR	Avslutt fullskjerm
 values-b+no/strings.xml	string	player_load_subtitles	-	STR	Last inn fra fil	
 values-b+no/strings.xml	string	player_load_subtitles_online	-	STR	Last inn fra Internett	
 values-b+no/strings.xml	string	player_loaded_subtitles	-	STR	Lastet inn %s	
+values-b+no/strings.xml	string	player_mute	-	STR	Slå av lyden	
 values-b+no/strings.xml	string	player_pref	-	STR	Foretrukket videospiller	
 values-b+no/strings.xml	string	player_settings_play_in_app	-	STR	Intern spiller	
 values-b+no/strings.xml	string	player_size_settings	-	STR	Knapp for størrelse på spiller	
@@ -21132,6 +21213,7 @@ values-b+no/strings.xml	string	player_speed	-	STR	Spillerhastighet
 values-b+no/strings.xml	string	player_speed_text_format	-	STR	Avspillingshastighet (%.2fx)	
 values-b+no/strings.xml	string	player_subtitles_settings	-	STR	Undertekster	
 values-b+no/strings.xml	string	player_subtitles_settings_des	-	STR	Innstillinger for spillerens teksting	
+values-b+no/strings.xml	string	player_unmute	-	STR	Slå på lyden	
 values-b+no/strings.xml	string	plugin	-	STR	programtillegg	
 values-b+no/strings.xml	string	plugin_deleted	-	STR	Programtillegg slettet	
 values-b+no/strings.xml	string	plugin_downloaded	-	STR	Programtillegg nedlastet	
@@ -21504,9 +21586,11 @@ values-b+or/strings.xml	string	play_episode_toast	-	STR	ଅଧ୍ୟାୟ ଚ�
 values-b+or/strings.xml	string	play_movie_button	-	STR	ଚଳଚ୍ଚିତ୍ର ଚଲାଅ	
 values-b+or/strings.xml	string	player_enter_fullscreen	-	STR	ପୂର୍ଣ୍ଣ ସ୍କ୍ରିନକୁ ଯାଆନ୍ତୁ	
 values-b+or/strings.xml	string	player_exit_fullscreen	-	STR	ପୂର୍ଣ୍ଣ ସ୍କ୍ରିନରୁ ବାହାରନ୍ତୁ	
+values-b+or/strings.xml	string	player_mute	-	STR	ମ୍ୟୁଟ କରନ୍ତୁ	
 values-b+or/strings.xml	string	player_settings_play_in_app	-	STR	ଅନ୍ତଃ-ଚାଳକ	
 values-b+or/strings.xml	string	player_speed_text_format	-	STR	ଵେଗ (%.2fଗୁଣ)	
 values-b+or/strings.xml	string	player_subtitles_settings	-	STR	ଉପଶୀର୍ଷକ	
+values-b+or/strings.xml	string	player_unmute	-	STR	ଅନମ୍ୟୁଟ କରନ୍ତୁ	
 values-b+or/strings.xml	string	pref_category_actions	-	STR	କୃତ୍ୟ	
 values-b+or/strings.xml	string	pref_category_android_tv	-	STR	ଆଣ୍ଡ୍ରଏଡ୍ ଟିଵି	
 values-b+or/strings.xml	string	pref_category_backup	-	STR	ବ୍ୟାକଅପ୍	
@@ -22017,6 +22101,7 @@ values-b+pl/strings.xml	string	player_load_one_subtitle_online	-	STR	Wczytaj pie
 values-b+pl/strings.xml	string	player_load_subtitles	-	STR	Wczytaj z pliku	
 values-b+pl/strings.xml	string	player_load_subtitles_online	-	STR	Wczytaj z Internetu	
 values-b+pl/strings.xml	string	player_loaded_subtitles	-	STR	Załadowano %s	
+values-b+pl/strings.xml	string	player_mute	-	STR	Wycisz	
 values-b+pl/strings.xml	string	player_notification_channel_description	-	STR	Powiadomienie odtwarzacza umożliwiające sterowanie odtwarzaniem w tle	
 values-b+pl/strings.xml	string	player_notification_channel_name	-	STR	Powiadomienia odtwarzacza	
 values-b+pl/strings.xml	string	player_pref	-	STR	Preferowany odtwarzacz wideo	
@@ -22029,6 +22114,7 @@ values-b+pl/strings.xml	string	player_speed	-	STR	Prędkość odtwarzania
 values-b+pl/strings.xml	string	player_speed_text_format	-	STR	Prędkość (%.2fx)	
 values-b+pl/strings.xml	string	player_subtitles_settings	-	STR	Napisy	
 values-b+pl/strings.xml	string	player_subtitles_settings_des	-	STR	Ustawienia napisów	
+values-b+pl/strings.xml	string	player_unmute	-	STR	Wyłącz wyciszenie	
 values-b+pl/strings.xml	string	plugin	-	STR	rozszerzenia	
 values-b+pl/strings.xml	string	plugin_deleted	-	STR	Usunięto rozszerzenie	
 values-b+pl/strings.xml	string	plugin_downloaded	-	STR	Pobrano rozszerzenie	
@@ -22800,6 +22886,7 @@ values-b+pt+BR/strings.xml	string	player_load_one_subtitle_online	-	STR	Carregar
 values-b+pt+BR/strings.xml	string	player_load_subtitles	-	STR	Carregar de arquivo	
 values-b+pt+BR/strings.xml	string	player_load_subtitles_online	-	STR	Carregar da Internet	
 values-b+pt+BR/strings.xml	string	player_loaded_subtitles	-	STR	%s carregada	
+values-b+pt+BR/strings.xml	string	player_mute	-	STR	Desativar som	
 values-b+pt+BR/strings.xml	string	player_notification_channel_description	-	STR	Notificação do player para controlar a reprodução em segundo plano	
 values-b+pt+BR/strings.xml	string	player_notification_channel_name	-	STR	Notificações de reprodução	
 values-b+pt+BR/strings.xml	string	player_pref	-	STR	Player de vídeo preferido	
@@ -22812,6 +22899,7 @@ values-b+pt+BR/strings.xml	string	player_speed	-	STR	Velocidade de reprodução
 values-b+pt+BR/strings.xml	string	player_speed_text_format	-	STR	Velocidade (%.2fx)	
 values-b+pt+BR/strings.xml	string	player_subtitles_settings	-	STR	Modificar legendas	
 values-b+pt+BR/strings.xml	string	player_subtitles_settings_des	-	STR	Alterar legendas exibidas no player de vídeo	
+values-b+pt+BR/strings.xml	string	player_unmute	-	STR	Ativar som	
 values-b+pt+BR/strings.xml	string	plugin	-	STR	Plugins	
 values-b+pt+BR/strings.xml	string	plugin_deleted	-	STR	Plugin Apagado	
 values-b+pt+BR/strings.xml	string	plugin_downloaded	-	STR	Plugin baixado	
@@ -23580,6 +23668,7 @@ values-b+pt/strings.xml	string	player_load_one_subtitle_online	-	STR	Carregar o 
 values-b+pt/strings.xml	string	player_load_subtitles	-	STR	Carregar de arquivo	
 values-b+pt/strings.xml	string	player_load_subtitles_online	-	STR	Carregar da Internet	
 values-b+pt/strings.xml	string	player_loaded_subtitles	-	STR	%s carregada	
+values-b+pt/strings.xml	string	player_mute	-	STR	Desativar som	
 values-b+pt/strings.xml	string	player_notification_channel_description	-	STR	Notificação do player para controlar a reprodução em segundo plano	
 values-b+pt/strings.xml	string	player_notification_channel_name	-	STR	Notificações de reprodução	
 values-b+pt/strings.xml	string	player_pref	-	STR	Player de vídeo preferido	
@@ -23592,6 +23681,7 @@ values-b+pt/strings.xml	string	player_speed	-	STR	Velocidade de Reprodução
 values-b+pt/strings.xml	string	player_speed_text_format	-	STR	Velocidade (%.2fx)	
 values-b+pt/strings.xml	string	player_subtitles_settings	-	STR	Legendas	
 values-b+pt/strings.xml	string	player_subtitles_settings_des	-	STR	Configurações de legendas do player	
+values-b+pt/strings.xml	string	player_unmute	-	STR	Ativar som	
 values-b+pt/strings.xml	string	plugin	-	STR	plugins	
 values-b+pt/strings.xml	string	plugin_deleted	-	STR	Plugin Apagado	
 values-b+pt/strings.xml	string	plugin_downloaded	-	STR	Plugins baixados	
@@ -24296,6 +24386,7 @@ values-b+qt/strings.xml	string	player_exit_fullscreen	-	STR	aauugghhaaaghh aaaaa
 values-b+qt/strings.xml	string	player_load_subtitles	-	STR	aagg aahh uuuk	
 values-b+qt/strings.xml	string	player_load_subtitles_online	-	STR	eeek aahh oooohhhh	
 values-b+qt/strings.xml	string	player_loaded_subtitles	-	STR	oooohh %s	
+values-b+qt/strings.xml	string	player_mute	-	STR	ooh oh	
 values-b+qt/strings.xml	string	player_pref	-	STR	aaaagggah uuugg uuuugg	
 values-b+qt/strings.xml	string	player_settings_play_in_app	-	STR	aaaagggh uuuugg	
 values-b+qt/strings.xml	string	player_settings_select_cast_device	-	STR	aaaagg aahh oooohh	
@@ -24305,6 +24396,7 @@ values-b+qt/strings.xml	string	player_speed	-	STR	oouuh aauuh oha
 values-b+qt/strings.xml	string	player_speed_text_format	-	STR	aaaaaaaaaaaaahh (%.2foouo)	
 values-b+qt/strings.xml	string	player_subtitles_settings	-	STR	ahhhaauugghh	
 values-b+qt/strings.xml	string	player_subtitles_settings_des	-	STR	oha ooh ouuhhh oooohhahhh ouuhhh	
+values-b+qt/strings.xml	string	player_unmute	-	STR	oouuh oh	
 values-b+qt/strings.xml	string	plugin	-	STR	uuuuhhh	
 values-b+qt/strings.xml	string	plugin_deleted	-	STR	uuuugg uuuuhhh	
 values-b+qt/strings.xml	string	plugin_downloaded	-	STR	oooohh oooogggaah	
@@ -24960,6 +25052,7 @@ values-b+ro/strings.xml	string	player_load_one_subtitle_online	-	STR	Încărcaț
 values-b+ro/strings.xml	string	player_load_subtitles	-	STR	Încărcați din fișier	
 values-b+ro/strings.xml	string	player_load_subtitles_online	-	STR	Încărcare de pe Internet	
 values-b+ro/strings.xml	string	player_loaded_subtitles	-	STR	A fost încărcat %s	
+values-b+ro/strings.xml	string	player_mute	-	STR	Dezactivează sunetul	
 values-b+ro/strings.xml	string	player_pref	-	STR	Player video preferat	
 values-b+ro/strings.xml	string	player_settings_play_in_app	-	STR	Player intern	
 values-b+ro/strings.xml	string	player_settings_select_cast_device	-	STR	Selectați divece-ul pe care doriți să faceți cast	
@@ -24969,6 +25062,7 @@ values-b+ro/strings.xml	string	player_speed	-	STR	Viteză video
 values-b+ro/strings.xml	string	player_speed_text_format	-	STR	Viteză (%.2fx)	
 values-b+ro/strings.xml	string	player_subtitles_settings	-	STR	Subtitrare	
 values-b+ro/strings.xml	string	player_subtitles_settings_des	-	STR	Setări de subtitrare	
+values-b+ro/strings.xml	string	player_unmute	-	STR	Activează sunetul	
 values-b+ro/strings.xml	string	plugin	-	STR	plugin-uri	
 values-b+ro/strings.xml	string	plugin_deleted	-	STR	Plugin Șters	
 values-b+ro/strings.xml	string	plugin_downloaded	-	STR	Plugin Descărcat	
@@ -25689,6 +25783,7 @@ values-b+ru/strings.xml	string	player_load_one_subtitle_online	-	STR	Скача�
 values-b+ru/strings.xml	string	player_load_subtitles	-	STR	Загрузить из файла	
 values-b+ru/strings.xml	string	player_load_subtitles_online	-	STR	Скачивать из интернета	
 values-b+ru/strings.xml	string	player_loaded_subtitles	-	STR	Загружено %s	
+values-b+ru/strings.xml	string	player_mute	-	STR	Выключить звук	
 values-b+ru/strings.xml	string	player_notification_channel_description	-	STR	Уведомление проигрывателя для управления воспроизведением в фоновом режиме	
 values-b+ru/strings.xml	string	player_notification_channel_name	-	STR	Уведомления плеера	
 values-b+ru/strings.xml	string	player_pref	-	STR	Предпочитаемый видеоплеер	
@@ -25701,6 +25796,7 @@ values-b+ru/strings.xml	string	player_speed	-	STR	Скорость проигр�
 values-b+ru/strings.xml	string	player_speed_text_format	-	STR	Скорость (%.2fx)	
 values-b+ru/strings.xml	string	player_subtitles_settings	-	STR	Субтитры	
 values-b+ru/strings.xml	string	player_subtitles_settings_des	-	STR	Настройки субтитров проигрывателя	
+values-b+ru/strings.xml	string	player_unmute	-	STR	Включить звук	
 values-b+ru/strings.xml	string	plugin	-	STR	дополнения	
 values-b+ru/strings.xml	string	plugin_deleted	-	STR	Дополнение удалено	
 values-b+ru/strings.xml	string	plugin_downloaded	-	STR	Дополнение скачано	
@@ -26333,12 +26429,14 @@ values-b+sk/strings.xml	string	player_load_one_subtitle_online	-	STR	Načítať 
 values-b+sk/strings.xml	string	player_load_subtitles	-	STR	Načítať z súboru	
 values-b+sk/strings.xml	string	player_load_subtitles_online	-	STR	Načítať z internetu	
 values-b+sk/strings.xml	string	player_loaded_subtitles	-	STR	Načítané %s	
+values-b+sk/strings.xml	string	player_mute	-	STR	Vypnúť zvuk	
 values-b+sk/strings.xml	string	player_size_settings	-	STR	Tlačidlo na zmenu veľkosti prehrávača	
 values-b+sk/strings.xml	string	player_size_settings_des	-	STR	Odstrániť čierne okraje	
 values-b+sk/strings.xml	string	player_speed	-	STR	Rýchlosť prehrávania	
 values-b+sk/strings.xml	string	player_speed_text_format	-	STR	Rýchlosť (%.2fx)	
 values-b+sk/strings.xml	string	player_subtitles_settings	-	STR	Titulky	
 values-b+sk/strings.xml	string	player_subtitles_settings_des	-	STR	Nastavenia titulkov prehrávača	
+values-b+sk/strings.xml	string	player_unmute	-	STR	Zapnúť zvuk	
 values-b+sk/strings.xml	string	podcast_singular	-	STR	Podcast	
 values-b+sk/strings.xml	string	popup_delete_file	-	STR	Zmazať súbor	
 values-b+sk/strings.xml	string	popup_pause_download	-	STR	Pozastaviť sťahovanie	
@@ -26853,6 +26951,7 @@ values-b+so/strings.xml	string	player_exit_fullscreen	-	STR	Ka bax shaashadda bu
 values-b+so/strings.xml	string	player_load_subtitles	-	STR	Faylashaada ka keen	
 values-b+so/strings.xml	string	player_load_subtitles_online	-	STR	Internetka ka keen	
 values-b+so/strings.xml	string	player_loaded_subtitles	-	STR	Waxa laso kiciyey %s	
+values-b+so/strings.xml	string	player_mute	-	STR	Aamusi	
 values-b+so/strings.xml	string	player_pref	-	STR	Muqaal daaraha aad doorbiddo	
 values-b+so/strings.xml	string	player_settings_play_in_app	-	STR	Muqaal daaraha appka	
 values-b+so/strings.xml	string	player_size_settings	-	STR	Badhinka xajmiga daaraha	
@@ -26861,6 +26960,7 @@ values-b+so/strings.xml	string	player_speed	-	STR	Xawaaraha daaraha
 values-b+so/strings.xml	string	player_speed_text_format	-	STR	Xawaaraha (%.2fx)	
 values-b+so/strings.xml	string	player_subtitles_settings	-	STR	Qoraal-hoosaadka	
 values-b+so/strings.xml	string	player_subtitles_settings_des	-	STR	Habaynta Qrl-hoosaadka daaraha	
+values-b+so/strings.xml	string	player_unmute	-	STR	Ka qaad aamusnaanta	
 values-b+so/strings.xml	string	plugin	-	STR	Sidkanayaasha	
 values-b+so/strings.xml	string	plugin_deleted	-	STR	Waa la tiray sidkanahan	
 values-b+so/strings.xml	string	plugin_downloaded	-	STR	Waa ka dejiyey sidkanaha	
@@ -27528,6 +27628,7 @@ values-b+sq/strings.xml	string	player_load_one_subtitle_online	-	STR	Ngarko të 
 values-b+sq/strings.xml	string	player_load_subtitles	-	STR	Ngarko nga skedari	
 values-b+sq/strings.xml	string	player_load_subtitles_online	-	STR	Ngarko nga interneti	
 values-b+sq/strings.xml	string	player_loaded_subtitles	-	STR	U ngarkua %s	
+values-b+sq/strings.xml	string	player_mute	-	STR	Hiq zërin	
 values-b+sq/strings.xml	string	player_notification_channel_description	-	STR	Njoftimi për kontrollin e luajtjes nga sfondi	
 values-b+sq/strings.xml	string	player_notification_channel_name	-	STR	Njoftimet e luajtësit	
 values-b+sq/strings.xml	string	player_pref	-	STR	Luajtësi i preferuar i videove	
@@ -27540,6 +27641,7 @@ values-b+sq/strings.xml	string	player_speed	-	STR	Shpejtësia e luajtësit
 values-b+sq/strings.xml	string	player_speed_text_format	-	STR	Shpejtësia (%.2fx)	
 values-b+sq/strings.xml	string	player_subtitles_settings	-	STR	Titrat	
 values-b+sq/strings.xml	string	player_subtitles_settings_des	-	STR	Cilësimet e titrave të luajtësit	
+values-b+sq/strings.xml	string	player_unmute	-	STR	Aktivizo zërin	
 values-b+sq/strings.xml	string	plugin	-	STR	shtesa	
 values-b+sq/strings.xml	string	plugin_deleted	-	STR	Shtesa u fshi	
 values-b+sq/strings.xml	string	plugin_downloaded	-	STR	Shtesa u shkarkua	
@@ -28307,6 +28409,7 @@ values-b+sv/strings.xml	string	player_load_one_subtitle_online	-	STR	Ladda in f�
 values-b+sv/strings.xml	string	player_load_subtitles	-	STR	Importera från fil	
 values-b+sv/strings.xml	string	player_load_subtitles_online	-	STR	Importera från Internet	
 values-b+sv/strings.xml	string	player_loaded_subtitles	-	STR	Laddat %s	
+values-b+sv/strings.xml	string	player_mute	-	STR	Stäng av ljudet	
 values-b+sv/strings.xml	string	player_notification_channel_description	-	STR	Spelarnotisen för att styra uppspelningen i bakgrunden	
 values-b+sv/strings.xml	string	player_notification_channel_name	-	STR	Spelarnotiser	
 values-b+sv/strings.xml	string	player_pref	-	STR	Önskad videospelare	
@@ -28319,6 +28422,7 @@ values-b+sv/strings.xml	string	player_speed	-	STR	Spelarhastighet
 values-b+sv/strings.xml	string	player_speed_text_format	-	STR	Hastighet (%.2fx)	
 values-b+sv/strings.xml	string	player_subtitles_settings	-	STR	Undertexter	
 values-b+sv/strings.xml	string	player_subtitles_settings_des	-	STR	Inställningar för undertexter	
+values-b+sv/strings.xml	string	player_unmute	-	STR	Slå på ljudet	
 values-b+sv/strings.xml	string	plugin	-	STR	Tillägg	
 values-b+sv/strings.xml	string	plugin_deleted	-	STR	Tillägg borttagen	
 values-b+sv/strings.xml	string	plugin_downloaded	-	STR	Tillägg nedladdad	
@@ -29086,6 +29190,7 @@ values-b+ta/strings.xml	string	player_load_one_subtitle_online	-	STR	முத�
 values-b+ta/strings.xml	string	player_load_subtitles	-	STR	கோப்பிலிருந்து ஏற்றவும்	
 values-b+ta/strings.xml	string	player_load_subtitles_online	-	STR	இணையத்திலிருந்து ஏற்றவும்	
 values-b+ta/strings.xml	string	player_loaded_subtitles	-	STR	ஏற்றப்பட்ட %s	
+values-b+ta/strings.xml	string	player_mute	-	STR	ஒலியடக்கு	
 values-b+ta/strings.xml	string	player_notification_channel_description	-	STR	பின்னணியில் இருந்து பின்னணியைக் கட்டுப்படுத்துவதற்கான பிளேயர் அறிவிப்பு	
 values-b+ta/strings.xml	string	player_notification_channel_name	-	STR	பிளேயர் அறிவிப்புகள்	
 values-b+ta/strings.xml	string	player_pref	-	STR	விருப்பமான வீடியோ பிளேயர்	
@@ -29098,6 +29203,7 @@ values-b+ta/strings.xml	string	player_speed	-	STR	பிளேயர் வி�
 values-b+ta/strings.xml	string	player_speed_text_format	-	STR	விரைவு (%.2fx)	
 values-b+ta/strings.xml	string	player_subtitles_settings	-	STR	வசன வரிகள்	
 values-b+ta/strings.xml	string	player_subtitles_settings_des	-	STR	பிளேயர் வசன வரிகள் அமைப்புகள்	
+values-b+ta/strings.xml	string	player_unmute	-	STR	ஒலியை இயக்கு	
 values-b+ta/strings.xml	string	plugin	-	STR	செருகுநிரல்கள்	
 values-b+ta/strings.xml	string	plugin_deleted	-	STR	சொருகி நீக்கப்பட்டது	
 values-b+ta/strings.xml	string	plugin_downloaded	-	STR	சொருகி பதிவிறக்கம் செய்யப்பட்டது	
@@ -29477,6 +29583,8 @@ values-b+ti/strings.xml	string	load_more	-	STR	ተወሳኺ ጽዓን
 values-b+ti/strings.xml	string	next_episode_format	-	STR	ክፋል %d በ ላይ ይወጣል	
 values-b+ti/strings.xml	string	player_enter_fullscreen	-	STR	ናብ ምሉእ ስክሪን እቶ	
 values-b+ti/strings.xml	string	player_exit_fullscreen	-	STR	ካብ ምሉእ ስክሪን ውጻእ	
+values-b+ti/strings.xml	string	player_mute	-	STR	ድምጺ ኣጥፍእ	
+values-b+ti/strings.xml	string	player_unmute	-	STR	ድምጺ ወልዕ	
 values-b+ti/strings.xml	string	search_state_idle_body_desktop	-	STR	ኣርእስቲ ጽሓፍ። ውጽኢታት ነፍሲ ወከፍ ምንጪ ምስ መለሰ ኣብ ትሕቲኡ ይርአዩ።	
 values-b+ti/strings.xml	string	seek_back_10_seconds	-	STR	10 ካልኢት ንድሕሪት	
 values-b+ti/strings.xml	string	seek_forward_10_seconds	-	STR	10 ካልኢት ንቕድሚት	
@@ -29655,12 +29763,14 @@ values-b+tl/strings.xml	string	play_trailer_button	-	STR	Maglaro ng Trailer
 values-b+tl/strings.xml	string	play_with_app_name	-	STR	I-play gamit ang CloudStream	
 values-b+tl/strings.xml	string	player_enter_fullscreen	-	STR	Mag-fullscreen	
 values-b+tl/strings.xml	string	player_exit_fullscreen	-	STR	Lumabas sa fullscreen	
+values-b+tl/strings.xml	string	player_mute	-	STR	I-mute	
 values-b+tl/strings.xml	string	player_size_settings	-	STR	Pindutan upang baguhin ang laki	
 values-b+tl/strings.xml	string	player_size_settings_des	-	STR	Alisin ang black borders	
 values-b+tl/strings.xml	string	player_speed	-	STR	Bilis ng Playback	
 values-b+tl/strings.xml	string	player_speed_text_format	-	STR	Bilis (%.2fx)	
 values-b+tl/strings.xml	string	player_subtitles_settings	-	STR	Subtitles	
 values-b+tl/strings.xml	string	player_subtitles_settings_des	-	STR	Player subtitles settings	
+values-b+tl/strings.xml	string	player_unmute	-	STR	I-unmute	
 values-b+tl/strings.xml	string	popup_delete_file	-	STR	I-delete ang file	
 values-b+tl/strings.xml	string	popup_pause_download	-	STR	I-pause ang download	
 values-b+tl/strings.xml	string	popup_play_file	-	STR	I-play ang file	
@@ -30200,6 +30310,7 @@ values-b+tr/strings.xml	string	player_load_one_subtitle_online	-	STR	İlk kullan
 values-b+tr/strings.xml	string	player_load_subtitles	-	STR	Dosyadan yükle	
 values-b+tr/strings.xml	string	player_load_subtitles_online	-	STR	İnternetten yükle	
 values-b+tr/strings.xml	string	player_loaded_subtitles	-	STR	%s eklendi	
+values-b+tr/strings.xml	string	player_mute	-	STR	Sesi kapat	
 values-b+tr/strings.xml	string	player_notification_channel_description	-	STR	Oynatıcı bildirimi arka planda oynatmasını kontrol etmek içindir	
 values-b+tr/strings.xml	string	player_notification_channel_name	-	STR	Oynatıcı bildirimleri	
 values-b+tr/strings.xml	string	player_pref	-	STR	Tercih edilen video oynatıcısı	
@@ -30212,6 +30323,7 @@ values-b+tr/strings.xml	string	player_speed	-	STR	Oynatıcı Hızı
 values-b+tr/strings.xml	string	player_speed_text_format	-	STR	Hız (%.2fx)	
 values-b+tr/strings.xml	string	player_subtitles_settings	-	STR	Altyazılar	
 values-b+tr/strings.xml	string	player_subtitles_settings_des	-	STR	Oynatıcı altyazı ayarları	
+values-b+tr/strings.xml	string	player_unmute	-	STR	Sesi aç	
 values-b+tr/strings.xml	string	plugin	-	STR	eklentiler	
 values-b+tr/strings.xml	string	plugin_deleted	-	STR	Eklenti Silindi	
 values-b+tr/strings.xml	string	plugin_downloaded	-	STR	Eklenti İndirildi	
@@ -30987,6 +31099,7 @@ values-b+uk/strings.xml	string	player_load_one_subtitle_online	-	STR	Заван�
 values-b+uk/strings.xml	string	player_load_subtitles	-	STR	Завантажити з файлу	
 values-b+uk/strings.xml	string	player_load_subtitles_online	-	STR	Завантажити з інтернету	
 values-b+uk/strings.xml	string	player_loaded_subtitles	-	STR	Завантажено %s	
+values-b+uk/strings.xml	string	player_mute	-	STR	Вимкнути звук	
 values-b+uk/strings.xml	string	player_notification_channel_description	-	STR	Сповіщення програвача для керування відтворенням у фоновому режимі	
 values-b+uk/strings.xml	string	player_notification_channel_name	-	STR	Сповіщення програвача	
 values-b+uk/strings.xml	string	player_pref	-	STR	Бажаний відеопрогравач	
@@ -30999,6 +31112,7 @@ values-b+uk/strings.xml	string	player_speed	-	STR	Швидкість прогр�
 values-b+uk/strings.xml	string	player_speed_text_format	-	STR	Швидкість (%.2fx)	
 values-b+uk/strings.xml	string	player_subtitles_settings	-	STR	Субтитри	
 values-b+uk/strings.xml	string	player_subtitles_settings_des	-	STR	Налаштування субтитрів програвача	
+values-b+uk/strings.xml	string	player_unmute	-	STR	Увімкнути звук	
 values-b+uk/strings.xml	string	plugin	-	STR	розширення	
 values-b+uk/strings.xml	string	plugin_deleted	-	STR	Розширення видалено	
 values-b+uk/strings.xml	string	plugin_downloaded	-	STR	Розширення завантажено	
@@ -31693,6 +31807,7 @@ values-b+ur/strings.xml	string	player_exit_fullscreen	-	STR	پوری اسکری�
 values-b+ur/strings.xml	string	player_load_subtitles	-	STR	فائل سے لوڈ کریں	
 values-b+ur/strings.xml	string	player_load_subtitles_online	-	STR	انٹرنیٹ سے لوڈ کریں	
 values-b+ur/strings.xml	string	player_loaded_subtitles	-	STR	لوڈ %s	
+values-b+ur/strings.xml	string	player_mute	-	STR	خاموش کریں	
 values-b+ur/strings.xml	string	player_pref	-	STR	ترجیحی ویڈیو پلیئر	
 values-b+ur/strings.xml	string	player_settings_play_in_app	-	STR	اندرونی پلیئر	
 values-b+ur/strings.xml	string	player_size_settings	-	STR	پلیئر کا سائز تبدیل کرنے کا بٹن	
@@ -31701,6 +31816,7 @@ values-b+ur/strings.xml	string	player_speed	-	STR	چلانے کی رفتار
 values-b+ur/strings.xml	string	player_speed_text_format	-	STR	رفتار (%.2fx)	
 values-b+ur/strings.xml	string	player_subtitles_settings	-	STR	سنٹیٹلز	
 values-b+ur/strings.xml	string	player_subtitles_settings_des	-	STR	پلیئر کے ترجمہ کی ترتیبات	
+values-b+ur/strings.xml	string	player_unmute	-	STR	آواز کھولیں	
 values-b+ur/strings.xml	string	plugin	-	STR	پلگ ان	
 values-b+ur/strings.xml	string	plugin_deleted	-	STR	پلگ ان کو حذف کر دیا گیا	
 values-b+ur/strings.xml	string	plugin_downloaded	-	STR	پلگ ان ڈاؤن لوڈ ہو گیا	
@@ -32403,6 +32519,7 @@ values-b+vi/strings.xml	string	player_load_one_subtitle_online	-	STR	Tải phụ
 values-b+vi/strings.xml	string	player_load_subtitles	-	STR	Chọn từ tệp	
 values-b+vi/strings.xml	string	player_load_subtitles_online	-	STR	Chọn từ Internet	
 values-b+vi/strings.xml	string	player_loaded_subtitles	-	STR	Đã tải %s	
+values-b+vi/strings.xml	string	player_mute	-	STR	Tắt tiếng	
 values-b+vi/strings.xml	string	player_notification_channel_description	-	STR	Điều khiển phát lại trong nền bằng thông báo của trình phát	
 values-b+vi/strings.xml	string	player_notification_channel_name	-	STR	Thông báo trình phát	
 values-b+vi/strings.xml	string	player_pref	-	STR	Trình phát ưu tiên	
@@ -32415,6 +32532,7 @@ values-b+vi/strings.xml	string	player_speed	-	STR	Tốc độ phát
 values-b+vi/strings.xml	string	player_speed_text_format	-	STR	Tốc độ (%.2fx)	
 values-b+vi/strings.xml	string	player_subtitles_settings	-	STR	Phụ đề	
 values-b+vi/strings.xml	string	player_subtitles_settings_des	-	STR	Cài đặt phụ đề	
+values-b+vi/strings.xml	string	player_unmute	-	STR	Bật tiếng	
 values-b+vi/strings.xml	string	plugin	-	STR	tiện ích mở rộng	
 values-b+vi/strings.xml	string	plugin_deleted	-	STR	Tiện ích mở rộng đã xoá	
 values-b+vi/strings.xml	string	plugin_downloaded	-	STR	Tiện ích mở rộng đã tải xuống	
@@ -33177,6 +33295,7 @@ values-b+zh+TW/strings.xml	string	player_load_one_subtitle_online	-	STR	載入�
 values-b+zh+TW/strings.xml	string	player_load_subtitles	-	STR	從檔案載入	
 values-b+zh+TW/strings.xml	string	player_load_subtitles_online	-	STR	從網路載入	
 values-b+zh+TW/strings.xml	string	player_loaded_subtitles	-	STR	已載入 %s	
+values-b+zh+TW/strings.xml	string	player_mute	-	STR	靜音	
 values-b+zh+TW/strings.xml	string	player_notification_channel_description	-	STR	控制背景播放的通知	
 values-b+zh+TW/strings.xml	string	player_notification_channel_name	-	STR	播放器通知	
 values-b+zh+TW/strings.xml	string	player_pref	-	STR	偏好影片播放器	
@@ -33189,6 +33308,7 @@ values-b+zh+TW/strings.xml	string	player_speed	-	STR	播放速度
 values-b+zh+TW/strings.xml	string	player_speed_text_format	-	STR	速度（%.2fx）	
 values-b+zh+TW/strings.xml	string	player_subtitles_settings	-	STR	字幕	
 values-b+zh+TW/strings.xml	string	player_subtitles_settings_des	-	STR	播放器字幕設定	
+values-b+zh+TW/strings.xml	string	player_unmute	-	STR	取消靜音	
 values-b+zh+TW/strings.xml	string	plugin	-	STR	外掛	
 values-b+zh+TW/strings.xml	string	plugin_deleted	-	STR	外掛已刪除	
 values-b+zh+TW/strings.xml	string	plugin_downloaded	-	STR	外掛程式已下載	
@@ -33947,6 +34067,7 @@ values-b+zh/strings.xml	string	player_load_one_subtitle_online	-	STR	加载第�
 values-b+zh/strings.xml	string	player_load_subtitles	-	STR	从文件加载	
 values-b+zh/strings.xml	string	player_load_subtitles_online	-	STR	从互联网加载	
 values-b+zh/strings.xml	string	player_loaded_subtitles	-	STR	已加载 %s	
+values-b+zh/strings.xml	string	player_mute	-	STR	静音	
 values-b+zh/strings.xml	string	player_notification_channel_description	-	STR	控制后台播放的播放器通知	
 values-b+zh/strings.xml	string	player_notification_channel_name	-	STR	播放器通知	
 values-b+zh/strings.xml	string	player_pref	-	STR	首选视频播放器	
@@ -33959,6 +34080,7 @@ values-b+zh/strings.xml	string	player_speed	-	STR	播放速度
 values-b+zh/strings.xml	string	player_speed_text_format	-	STR	速度（%.2fx）	
 values-b+zh/strings.xml	string	player_subtitles_settings	-	STR	字幕	
 values-b+zh/strings.xml	string	player_subtitles_settings_des	-	STR	播放器字幕设置	
+values-b+zh/strings.xml	string	player_unmute	-	STR	取消静音	
 values-b+zh/strings.xml	string	plugin	-	STR	插件	
 values-b+zh/strings.xml	string	plugin_deleted	-	STR	插件已删除	
 values-b+zh/strings.xml	string	plugin_downloaded	-	STR	插件已下载	
@@ -34861,6 +34983,7 @@ values/strings.xml	string	player_load_one_subtitle_online	-	STR	Load first avail
 values/strings.xml	string	player_load_subtitles	-	STR	Load from file	
 values/strings.xml	string	player_load_subtitles_online	-	STR	Load from Internet	
 values/strings.xml	string	player_loaded_subtitles	-	STR	Loaded %s	
+values/strings.xml	string	player_mute	-	STR	Mute	
 values/strings.xml	string	player_notification_channel_description	-	STR	The player notification for controlling the playback from the background	
 values/strings.xml	string	player_notification_channel_name	-	STR	Player notifications	
 values/strings.xml	string	player_pref	-	STR	Preferred video player	
@@ -34873,6 +34996,7 @@ values/strings.xml	string	player_speed	-	STR	Player Speed
 values/strings.xml	string	player_speed_text_format	-	STR	Speed (%.2fx)	
 values/strings.xml	string	player_subtitles_settings	-	STR	Subtitles	
 values/strings.xml	string	player_subtitles_settings_des	-	STR	Player subtitles settings	
+values/strings.xml	string	player_unmute	-	STR	Unmute	
 values/strings.xml	string	plugin	-	STR	plugins	
 values/strings.xml	string	plugin_deleted	-	STR	Plugin Deleted	
 values/strings.xml	string	plugin_downloaded	-	STR	Plugin Downloaded	

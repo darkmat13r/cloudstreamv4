@@ -423,6 +423,7 @@
 <string name="player_load_subtitles">"Dosyadan yükle"</string>
 <string name="player_load_subtitles_online">"İnternetten yükle"</string>
 <string name="player_loaded_subtitles" formatted="true">"%s eklendi"</string>
+<string name="player_mute">"Sesi kapat"</string>
 <string name="player_notification_channel_description">"Oynatıcı bildirimi arka planda oynatmasını kontrol etmek içindir"</string>
 <string name="player_notification_channel_name">"Oynatıcı bildirimleri"</string>
 <string name="player_pref">"Tercih edilen video oynatıcısı"</string>
@@ -435,6 +436,7 @@
 <string name="player_speed_text_format" formatted="true">"Hız (%.2fx)"</string>
 <string name="player_subtitles_settings">"Altyazılar"</string>
 <string name="player_subtitles_settings_des">"Oynatıcı altyazı ayarları"</string>
+<string name="player_unmute">"Sesi aç"</string>
 <string name="plugin">"eklentiler"</string>
 <string name="plugin_deleted">"Eklenti Silindi"</string>
 <string name="plugin_downloaded">"Eklenti İndirildi"</string>
