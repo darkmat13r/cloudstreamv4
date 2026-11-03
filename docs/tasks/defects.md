@@ -1113,3 +1113,57 @@ The first attempt at this check said `cue-on-screen=true` over a grey frame with
 - **The next track when the preferred one fails.** Android does not try one either: this shows the failure and leaves the list to the person.
 - **Whether the track fits the stream.** The first English track by name is not necessarily cut for this link's release, and the Godfather run's first cue is that file's own credit line. Android chooses the same way. Whether it stays in time over a whole film was not measured.
 - **The window itself, and sound.** All of this ran offscreen and silent, so no one has clicked it live.
+
+---
+
+## BUG-23 — four defects in the shared search state machine, one of them on screen today · **medium**
+
+**Status:** in pr · found 2026-11-02 while switching Android TV to `SearchScreenTv` (`KMP-12` step 4) ·
+`SearchViewModel.kt`, `SearchHistory.kt`, `SearchMvi.kt`, `Main.kt`
+
+`SearchViewModel` is shared: the desktop search screen runs it now, and `KMP-12` points Android TV at
+it next. The four defects below were found by building the Android host, and **all four are in the
+desktop app as shipped** — they were never Android-only. They sat unfixed in #91 behind a change that
+cannot be verified without a television, which is why they are their own entry.
+
+### What was wrong
+
+| | What happened | Why |
+|---|---|---|
+| 1 | Typing one letter where no source can quick-search put the screen into a state it could not leave by typing | `onQueryChanged` always raised the skeleton and emitted to the debounce, whatever the sources could answer |
+| 2 | A debounce still pending when Enter arrives replaced the full search's results with the quick subset | an IME can commit text and press its action in one gesture; `SingleActiveQuery` then cancels the full search for the later quick one |
+| 3 | Text cleared inside the 200 ms window was searched anyway | `Cleared` stopped the in-flight request but not the queued debounce |
+| 4 | The same query retyped after a clear stalled on the skeleton forever | `DebounceQuery`'s `distinctUntilChanged` swallowed it, so nothing ever replaced the skeleton `onQueryChanged` had raised |
+
+A fifth was not a defect in the ViewModel but a limit of it: `source.sources()` was read once in
+`init`, so the `n / m` count in the chrome went stale when extensions were allowed or stopped after
+the screen existed. `Main.kt` worked around it by **throwing the whole ViewModel away**
+(`DesktopSearchViewModels.live = null`), which also discarded the results and the typed query.
+
+### Measured
+
+Against `origin/master` at `9786c98e4`, with the new contracts in place and only `SearchViewModel.kt`
+reverted, `:feature:search:jvmTest` reports **17 tests completed, 4 failed** — one per row above. With
+the fix, `SearchViewModelTest` is **18 tests, 0 failures** and the module is 21, 0 failures. The
+baseline is 17 rather than 18 because `SourcesChanged` does not exist on master, so that one case
+cannot be compiled against the old code at all.
+
+### Fixed
+
+- `SearchSources.quickSearchable` (defaults `true`, so no caller changes meaning). Typing with no
+  quick-searchable source echoes the field and runs nothing; submit still runs a full search.
+- A `submitted` query, cleared by the next keystroke, which a pending quick search is checked against.
+- `showIdle` emits a blank through the debounce, which both drops the queued query and lets the same
+  one through next time.
+- The debounce consumer re-checks that the settled query is still what the field holds.
+- `SearchAction.SourcesChanged` re-reads the count and runs no search. `SearchHost` dispatches it when
+  an approval changes what is installed, so **the user keeps their results** instead of losing them.
+
+### Not fixed
+
+- `dune` → `dunes` → `dune` inside a single 200 ms window still stays on the skeleton until Enter.
+  Read from the code; no test. The blank emitted by `showIdle` only covers a clear, not a round trip
+  back to the same text without one.
+- `:app`'s own `ApiRepositorySearchSource` is where `quickSearchable` is produced as `false`, and that
+  file stays in #91 with the TV screen it serves. On desktop the value is `true`, which is what
+  `BUG-12` made correct there.

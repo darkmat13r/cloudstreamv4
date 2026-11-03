@@ -61,6 +61,7 @@ sealed interface SearchAction {
      * A keystroke. Debounced, and it runs the *quick* search.
      *
      * The echo of the query into state is immediate; only the request is delayed.
+     * With no source that can quick-search ([SearchSources.quickSearchable]) only the echo happens.
      */
     data class QueryChanged(val query: String) : SearchAction
 
@@ -86,6 +87,12 @@ sealed interface SearchAction {
      * and the press — a remove on another row shifts every index after it.
      */
     data class RecentActivated(val query: String) : SearchAction
+
+    /**
+     * The set of sources may have changed: plugins finished loading, or the user came back from
+     * settings. Re-reads [SearchState.sources], and runs no search.
+     */
+    data object SourcesChanged : SearchAction
 
     /** One row's remove affordance. */
     data class RecentRemoved(val query: String) : SearchAction

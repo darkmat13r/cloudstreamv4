@@ -106,11 +106,14 @@ import kotlin.system.exitProcess
  * sandboxed child processes before the window opens, and registers a proxy for each provider, so
  * `Sources` counts what actually registered and a search queries it. No plugin code runs in this JVM.
  *
- * **Before the window, not inside the composition, and that is forced rather than chosen.**
- * `SearchViewModel` reads `source.sources()` once in its `init` block
- * (`SearchViewModel.kt:72-75`), so an extension that loads after the ViewModel exists would leave
- * the chrome row reading `0 / 0` until something else refreshed it. Loading first costs a directory
- * scan on an empty directory in the normal case; the trade is named in the bootstrap's KDoc.
+ * **Before the window, not inside the composition.** `SearchViewModel` reads `source.sources()` in
+ * its `init` block, so an extension that loads after the ViewModel exists would leave the chrome row
+ * reading `0 / 0` until something refreshed it. Loading first costs a directory scan on an empty
+ * directory in the normal case; the trade is named in the bootstrap's KDoc.
+ *
+ * Since `BUG-23` the count is no longer read only once: [SearchHost] re-asks on `SourcesChanged`
+ * whenever an approval changes what is installed. The pre-window load is what makes the **first**
+ * paint right, and that is still the reason for the ordering.
  *
  * ## An extension with warnings waits to be asked (`KMP-24`)
  *
@@ -223,12 +226,11 @@ internal fun DesktopApp(
     DisposableEffect(scope) { onDispose { scope.cancel() } }
     val stack = remember { mutableStateListOf<Screen>(Screen.Home) }
     val review = approvals?.state?.collectAsState()?.value
-    // Allowing or stopping an extension changes what is installed, and both ViewModels read that once when made.
+    // Allowing or stopping an extension changes what is installed. `HomeViewModel` reads that once
+    // when made, so it is rebuilt; `SearchViewModel` is told with `SourcesChanged` instead (BUG-23),
+    // which keeps the results and the typed query the user is looking at.
     val providerChanges = review?.providerChanges ?: 0
-    val homeViewModel = remember(providerChanges) {
-        if (providerChanges > 0) DesktopSearchViewModels.live = null
-        HomeViewModel(home, scope)
-    }
+    val homeViewModel = remember(providerChanges) { HomeViewModel(home, scope) }
     // Outlives the tab so that changing list is instant; `LibraryHost` refreshes it on arrival. It
     // reads no providers, so it does not need resetting when what is installed changes.
     val libraryViewModel = remember { LibraryViewModel(library, scope) }
@@ -280,7 +282,7 @@ internal fun DesktopApp(
             }
             Screen.Search -> TopLevelScreen(TopLevelDestination.Search, toTab, trailing = notice) {
                 SideEffect { escape.onEscape = null }
-                SearchHost(scope, onOpen = open, onBrowseHome = { top(Screen.Home) })
+                SearchHost(scope, providerChanges, onOpen = open, onBrowseHome = { top(Screen.Home) })
             }
             Screen.Library -> TopLevelScreen(TopLevelDestination.Library, toTab, trailing = notice) {
                 LibraryHost(
@@ -351,7 +353,12 @@ private object DesktopSearchViewModels {
 }
 
 @Composable
-private fun SearchHost(scope: CoroutineScope, onOpen: (String) -> Unit, onBrowseHome: () -> Unit) {
+private fun SearchHost(
+    scope: CoroutineScope,
+    providerChanges: Int,
+    onOpen: (String) -> Unit,
+    onBrowseHome: () -> Unit,
+) {
     val history = remember { DesktopSearchHistory() }
     val viewModel = remember {
         DesktopSearchViewModels.live
@@ -359,6 +366,9 @@ private fun SearchHost(scope: CoroutineScope, onOpen: (String) -> Unit, onBrowse
                 .also { DesktopSearchViewModels.live = it }
     }
     val state by viewModel.state.collectAsState()
+    // The count in the chrome is read when the ViewModel is made, and extensions can be allowed or
+    // stopped after that. This is the re-read; it starts no search.
+    LaunchedEffect(viewModel, providerChanges) { viewModel.onAction(SearchAction.SourcesChanged) }
     LaunchedEffect(viewModel) {
         viewModel.effect.collect { effect ->
             when (effect) {

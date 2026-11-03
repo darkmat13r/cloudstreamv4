@@ -66,4 +66,13 @@ interface SearchHistoryStore {
 data class SearchSources(
     val selected: Int = 0,
     val total: Int = 0,
+    /**
+     * Whether any selected source can answer a quick search, which is what typing runs.
+     *
+     * `MainAPI.hasQuickSearch` defaults to false, so on Android this is commonly `false`. Typing then
+     * runs nothing and the search waits for submit, the way the old screen always did. `true` by
+     * default so that a source with no such distinction, and the instant before [SearchSource.sources]
+     * answers, keep the debounced behaviour.
+     */
+    val quickSearchable: Boolean = true,
 )
