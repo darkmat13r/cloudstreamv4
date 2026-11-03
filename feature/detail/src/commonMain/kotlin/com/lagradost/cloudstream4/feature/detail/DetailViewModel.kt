@@ -44,8 +44,8 @@ class DetailViewModel(
             is DetailAction.PlayRequested -> requestLinks(action.data)
             DetailAction.RetryLinks -> lastData?.let(::requestLinks)
             is DetailAction.LinkActivated -> {
-                // A stream was chosen, so the search for more stops. The list stays for coming back to.
-                stopLinks()
+                // The search goes on, as it does on Android: its later subtitles are for this stream too, and
+                // its later links are on the list when someone comes back to it.
                 scope.launch {
                     val title = (state.value.content as? DetailLoad.Loaded)?.value?.title.orEmpty()
                     postEffect { DetailEffect.Play(title, action.link) }

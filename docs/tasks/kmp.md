@@ -2683,7 +2683,7 @@ the 3 `R` fields; **`SubtitleCue` did not reach it**, because `:media:model` is 
 
 ### Not done
 
-- **Remembering a choice.** Off every time, for every stream.
+- **Remembering a choice.** Off every time, for every stream. *Since `BUG-22`: remembered as a language, as on Android.*
 - **Offset.** `SubtitleDelay` exists and `activeAt` takes it. There is no control, because one needs strings and a design.
 - **Caption settings.** `CaptionStyle` defaults only. `font` is not read, and `RAISED` and `DEPRESSED` draw as a shadow.
 - **Styling, per the table above.**

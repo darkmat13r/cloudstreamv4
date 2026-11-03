@@ -182,18 +182,18 @@ class DetailViewModelTest {
     }
 
     @Test
-    fun `picking a link stops the search and keeps the list to come back to`() = runTest {
+    fun `picking a link leaves the search running, so what it finds is there to come back to`() = runTest {
         val arriving = Arriving()
         val vm = model(FakeSource({ movie }, stream = { arriving.flow }))
         vm.onAction(DetailAction.PlayRequested("data"))
         arriving.send(link)
 
         vm.onAction(DetailAction.LinkActivated(link))
-        assertTrue(arriving.cancelled, "the source was told")
-        assertFalse(vm.state.value.linksArriving)
+        assertFalse(arriving.cancelled, "the source was left alone")
+        assertTrue(vm.state.value.linksArriving)
 
         arriving.send(link, second)
-        assertEquals(DetailLoad.Loaded(listOf(link)), vm.state.value.links)
+        assertEquals(DetailLoad.Loaded(listOf(link, second)), vm.state.value.links)
     }
 
     @Test

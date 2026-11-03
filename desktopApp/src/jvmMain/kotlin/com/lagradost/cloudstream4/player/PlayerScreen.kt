@@ -81,8 +81,11 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.source_error
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.detail.StreamLink
 import com.lagradost.cloudstream4.media.model.SubtitleCue
+import com.lagradost.cloudstream4.media.model.SubtitleTrack
 import kotlin.concurrent.thread
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.emptyFlow
 import org.jetbrains.compose.resources.stringResource
 
 /**
@@ -102,6 +105,7 @@ import org.jetbrains.compose.resources.stringResource
  * @param onProgress told the position as the player reports it. Storage is the host's: this screen
  *   writes nothing, and the host decides which of these reports is worth keeping.
  * @param clock,session passed in so a check can read what this screen is showing.
+ * @param arrivingSubtitles the tracks the search behind [link] has found so far, each time it finds more.
  */
 @Composable
 internal fun PlayerScreen(
@@ -115,6 +119,7 @@ internal fun PlayerScreen(
     onProgress: (positionMillis: Long, durationMillis: Long) -> Unit = { _, _ -> },
     clock: PlaybackClock = remember { PlaybackClock() },
     session: SubtitleSession? = null,
+    arrivingSubtitles: Flow<List<SubtitleTrack>> = emptyFlow(),
 ) {
     val frame by player.frame.collectAsState()
     val pictureSize by player.pictureSize.collectAsState()
@@ -139,7 +144,10 @@ internal fun PlayerScreen(
         }
     }
     val scope = rememberCoroutineScope()
-    val subtitles = session ?: remember(link) { SubtitleSession(link.subtitles, HttpSubtitleLoader(), scope) }
+    val subtitles = session ?: remember(link) {
+        SubtitleSession(link.subtitles, HttpSubtitleLoader(), scope, desktopSubtitlePreference)
+    }
+    LaunchedEffect(subtitles, arrivingSubtitles) { arrivingSubtitles.collect(subtitles::offer) }
     PlayerContent(
         frame = frame,
         pictureSize = pictureSize,
@@ -169,6 +177,7 @@ internal fun PlayerContent(
     modifier: Modifier = Modifier,
     pictureSize: IntSize? = null,
 ) {
+    val tracks by subtitles.tracks.collectAsState()
     val selection by subtitles.selection.collectAsState()
     val failures by subtitles.failures.collectAsState()
     val focus = remember { FocusRequester() }
@@ -191,6 +200,9 @@ internal fun PlayerContent(
         }
     }
     val hudShown = hudVisible || failed || pickerOpen
+    // Held while the list is open. It grows upward from its foot, so a track arriving would slide the row under the
+    // pointer just as it is clicked. An empty list has no rows to slide, so the first tracks do appear in it.
+    val listed = remember(pickerOpen, tracks.isEmpty()) { tracks }
     val seekBy: (Long) -> Unit = { delta ->
         clock.onSeekBy(delta)
         controls.seekBy(delta)
@@ -290,7 +302,7 @@ internal fun PlayerContent(
         }
         if (pickerOpen) {
             SubtitlePicker(
-                tracks = subtitles.tracks,
+                tracks = listed,
                 selection = selection,
                 failures = failures,
                 onSelect = { track ->
