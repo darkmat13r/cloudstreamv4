@@ -59,6 +59,15 @@ class SearchViewModel(
     private val debounce = DebounceQuery()
     private val inFlight = SingleActiveQuery(dispatcher)
 
+    /**
+     * The query a full search has already started for, until the next keystroke.
+     *
+     * A debounced quick search can still be pending when Enter arrives (an IME can commit text and
+     * press its action in one gesture), and [SingleActiveQuery] would let it cancel the full search
+     * and replace it with the quick subset. Read and written on [work]'s dispatcher.
+     */
+    private var submitted: String? = null
+
     /** [scope] when the host supplied one, `viewModelScope` otherwise. */
     private val work: CoroutineScope get() = scope ?: viewModelScope
 
@@ -67,12 +76,14 @@ class SearchViewModel(
         // skeleton that flashes for one frame reads as a glitch.
         updateState { copy(status = SearchStatus.Idle) }
         work.launch { refreshIdle() }
+        work.launch { refreshSources() }
         work.launch {
-            val sources = source.sources()
-            updateState { copy(sources = sources) }
-        }
-        work.launch {
-            debounce.launch { settled -> runSearch(settled, quick = true) }
+            debounce.launch { settled ->
+                val current = state.value.query
+                if (settled.isNotBlank() && settled == current && settled != submitted) {
+                    runSearch(settled, quick = true)
+                }
+            }
         }
     }
 
@@ -93,7 +104,10 @@ class SearchViewModel(
             is SearchAction.ResultActivated ->
                 work.launch { postEffect { SearchEffect.OpenResult(action.id) } }
 
+            SearchAction.SourcesChanged -> work.launch { refreshSources() }
+
             is SearchAction.RecentActivated -> {
+                submitted = action.query
                 updateState { copy(query = action.query, status = SearchStatus.Loading) }
                 work.launch { runSearch(action.query, quick = false) }
             }
@@ -111,10 +125,11 @@ class SearchViewModel(
     }
 
     private fun onQueryChanged(query: String) {
+        submitted = null
         updateState { copy(query = query) }
         if (query.isBlank()) {
             showIdle()
-        } else {
+        } else if (state.value.sources.quickSearchable) {
             updateState { copy(status = SearchStatus.Loading) }
             work.launch { debounce.emit(query) }
         }
@@ -126,12 +141,17 @@ class SearchViewModel(
             showIdle()
             return
         }
+        submitted = query
         updateState { copy(status = SearchStatus.Loading) }
         work.launch { runSearch(query, quick = false) }
     }
 
     /** Clears any in-flight work: an empty field must not be overwritten by an earlier reply. */
     private fun showIdle() {
+        // A blank through the debounce, which restarts its window and so drops the query queued
+        // behind this clear. Without it, text cleared inside 200 ms is still searched and the
+        // results land under an empty field (`BUG-24`). The consumer ignores the blank itself.
+        work.launch { debounce.emit("") }
         work.launch { inFlight.launch { } }
         updateState { copy(status = SearchStatus.Idle) }
         work.launch { refreshIdle() }
@@ -154,6 +174,11 @@ class SearchViewModel(
                 copy(status = SearchStatus.Showing(SearchContent.Recent(entries)))
             }
         }
+    }
+
+    private suspend fun refreshSources() {
+        val sources = source.sources()
+        updateState { copy(sources = sources) }
     }
 
     private suspend fun runSearch(query: String, quick: Boolean) {

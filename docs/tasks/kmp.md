@@ -1064,8 +1064,15 @@ Why: CloudStreamApp.kt:57 writes it into the crash log, blaming a plugin that is
 ## KMP-12 — `:feature:search`: the first feature vertical's state machine
 
 **Status:** **steps 1 and 2 of 5 done** 2026-10-15 (plan row 18, Phase 7 vertical 1) · step 2 is
-**TV only — touch and desktop have no design to build from** · glue fragment and the nav repoint are
-**not** started · `:app`'s search path is untouched
+**TV only — touch and desktop have no design to build from** · steps 3 and 4 are written and sit in
+**draft #91**, held for a television · `:app`'s search path is untouched
+
+> **The state machine's defects were split out and landed on their own, 2026-11-03.** Building the
+> Android host (step 4) found four defects in `SearchViewModel`, and all four were in the **desktop**
+> app as shipped, not just the unbuilt Android path. Three are `BUG-24`; the fourth was found
+> independently from a screenshot of the owner's and landed first as `BUG-23` (#114). #91 keeps only
+> what needs a device: `SearchTvFragment`, the one-line `MainActivity` repoint,
+> `ApiRepositorySearchSource`, `DataStoreSearchHistory` and the `classes.jar` lines those add.
 
 `:feature:search` holds the contracts, the provider seam, the MVI state machine and the TV screen.
 Phase 7's recipe is five steps — state machine, screens, glue `Fragment`, repoint one nav node,
