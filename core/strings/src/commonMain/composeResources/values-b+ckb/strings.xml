@@ -106,6 +106,9 @@
 <string name="sort_copy">کۆپی</string>
 <string name="sort_save">سەیڤ</string>
 <string name="speech_recognition_unavailable">ناسینەوەی قسەکردن بەردەست نییە</string>
+<string name="subtitles_file_empty">ئەم فایلی ژێرنووسە بەتاڵە</string>
+<string name="subtitles_format_unsupported">ئەم شێوازی ژێرنووسە پشتگیری ناکرێت</string>
+<string name="subtitles_load_failed">نەتوانرا ئەم ژێرنووسانە باربکرێن</string>
 <string name="title_downloads">داونڵۆد</string>
 <string name="title_home">سەرەکی</string>
 <string name="title_search">گەڕان</string>

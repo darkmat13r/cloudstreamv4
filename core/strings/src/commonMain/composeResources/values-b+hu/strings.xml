@@ -585,7 +585,10 @@
 <string name="subtitles_depressed">Nyomott</string>
 <string name="subtitles_encoding">Felirat kódolása</string>
 <string name="subtitles_example_text">Árvíztűrő tükörfúrógép</string>
+<string name="subtitles_file_empty">Ez a feliratfájl üres</string>
 <string name="subtitles_filter_lang">Szűrés előnyben részesített médianyelv szerint</string>
+<string name="subtitles_format_unsupported">Ez a feliratformátum nem támogatott</string>
+<string name="subtitles_load_failed">Nem sikerült betölteni ezeket a feliratokat</string>
 <string name="subtitles_outline">Körvonal</string>
 <string name="subtitles_raised">Emelt</string>
 <string name="subtitles_remove_bloat">Szükségtelen elemek eltávolítása a feliratokról</string>

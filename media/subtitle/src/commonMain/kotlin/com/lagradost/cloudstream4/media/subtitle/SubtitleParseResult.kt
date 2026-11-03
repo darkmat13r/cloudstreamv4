@@ -2,10 +2,13 @@ package com.lagradost.cloudstream4.media.subtitle
 
 import com.lagradost.cloudstream4.media.model.SubtitleCue
 
-/** The text formats this module parses. Everything else (SSA, TTML, bitmap) stays with the engine. */
+/** The text formats this module parses. Everything else (SSA, bitmap) stays with the engine. */
 enum class SubtitleFormat {
     SRT,
     VTT,
+
+    /** TTML, and EBU-TT-D, which is a profile of it. Every track YouTube's plugin offers (`KMP-25`). */
+    TTML,
 }
 
 /**

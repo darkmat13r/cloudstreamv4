@@ -557,9 +557,12 @@
 <string name="subtitles_depressed">Iespiests</string>
 <string name="subtitles_encoding">Subtitru kodējums</string>
 <string name="subtitles_example_text">Fogts čuhņā mīļi lenc - ģērbj, žvadz, pūkšķ</string>
+<string name="subtitles_file_empty">Šis subtitru fails ir tukšs</string>
 <string name="subtitles_filter_lang">Atlasīt pēc vēlamās multimediju valodas</string>
+<string name="subtitles_format_unsupported">Šis subtitru formāts netiek atbalstīts</string>
 <string name="subtitles_from_embedded">Iegultie</string>
 <string name="subtitles_from_online">No interneta</string>
+<string name="subtitles_load_failed">Neizdevās ielādēt šos subtitrus</string>
 <string name="subtitles_outline">Kontūrs</string>
 <string name="subtitles_raised">Izvirzīts</string>
 <string name="subtitles_remove_bloat">Noņemt lieko no subtitriem (piemēram, reklāmu)</string>

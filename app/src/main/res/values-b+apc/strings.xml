@@ -668,9 +668,12 @@
 <string name="subtitles_depressed">"مدپرس"</string>
 <string name="subtitles_encoding">"نوع الكتيبة بال ترجمة"</string>
 <string name="subtitles_example_text">"أبجد هوز حطي كلمن سعفص قرشت ثخذ ضظغ"</string>
+<string name="subtitles_file_empty">"ملف الترجمة هاد فاضي"</string>
 <string name="subtitles_filter_lang">"فَلتِر حسب اللغة المفضلة"</string>
+<string name="subtitles_format_unsupported">"صيغة الترجمة هاي مش مدعومة"</string>
 <string name="subtitles_from_embedded">"داخلياً"</string>
 <string name="subtitles_from_online">"اونلاين"</string>
+<string name="subtitles_load_failed">"ما قدرنا نفتح هالترجمة"</string>
 <string name="subtitles_outline">"حدود خطية"</string>
 <string name="subtitles_raised">"معلى"</string>
 <string name="subtitles_remove_bloat">"شيل الإعلانات من الترجمة"</string>

@@ -672,9 +672,12 @@
 <string name="subtitles_depressed">Afundado</string>
 <string name="subtitles_encoding">Codificação das legendas</string>
 <string name="subtitles_example_text">A rápida raposa marrom salta sobre o cachorro preguiçoso</string>
+<string name="subtitles_file_empty">Este arquivo de legenda está vazio</string>
 <string name="subtitles_filter_lang">Filtrar por linguagem preferida</string>
+<string name="subtitles_format_unsupported">Este formato de legenda não é compatível</string>
 <string name="subtitles_from_embedded">Incorporada</string>
 <string name="subtitles_from_online">Online</string>
+<string name="subtitles_load_failed">Não foi possível carregar estas legendas</string>
 <string name="subtitles_outline">Contornado</string>
 <string name="subtitles_raised">Em Relevo</string>
 <string name="subtitles_remove_bloat">Remover bloat das legendas</string>

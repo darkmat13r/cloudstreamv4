@@ -501,7 +501,10 @@
 <string name="subtitles_depressed">מדוכא</string>
 <string name="subtitles_encoding">קידוד כתוביות</string>
 <string name="subtitles_example_text">השועל החום המהיר קופץ מעל הכלב העצלן</string>
+<string name="subtitles_file_empty">קובץ הכתוביות הזה ריק</string>
 <string name="subtitles_filter_lang">סנן לפי שפת מדיה מועדפת</string>
+<string name="subtitles_format_unsupported">פורמט הכתוביות הזה אינו נתמך</string>
+<string name="subtitles_load_failed">לא ניתן לטעון את הכתוביות האלה</string>
 <string name="subtitles_outline">מתאר</string>
 <string name="subtitles_raised">הורם</string>
 <string name="subtitles_remove_bloat">הסר נפיחות מכתוביות</string>

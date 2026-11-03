@@ -660,9 +660,12 @@
 <string name="subtitles_depressed">"Удвоени"</string>
 <string name="subtitles_encoding">"Кодиране на субтитрите"</string>
 <string name="subtitles_example_text">"Бързата кафява лисица прескача мързеливото куче"</string>
+<string name="subtitles_file_empty">"Този файл със субтитри е празен"</string>
 <string name="subtitles_filter_lang">"Филтриране по предпочитан медиен език"</string>
+<string name="subtitles_format_unsupported">"Този формат на субтитри не се поддържа"</string>
 <string name="subtitles_from_embedded">"Вграден"</string>
 <string name="subtitles_from_online">"Онлайн"</string>
+<string name="subtitles_load_failed">"Тези субтитри не можаха да се заредят"</string>
 <string name="subtitles_outline">"Контур"</string>
 <string name="subtitles_raised">"Повдигнати"</string>
 <string name="subtitles_remove_bloat">"Премахнете рекламирането в субтитрите"</string>

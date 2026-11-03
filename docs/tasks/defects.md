@@ -494,3 +494,68 @@ through `APIRepository.kt`. After the fix, typing `nasa` with no Return shows re
 Fixed: typing asks every source, using quick search where it works and a full search otherwise, and the error
 line keeps only its first line. `DesktopSearchSourceTest` covers it, and fails when a failed quick search does
 not fall back. **`:app`'s `SearchSource` was not checked for the same fault.**
+
+---
+
+## BUG-14 — a plugin answering after the 60 s timeout lost its whole host · **medium**
+
+**Status:** in pr · found 2026-11-03 while doing `KMP-20` · `PluginHostClient.kt`
+
+A call that passed its timeout removed its id from `pending`, and `readLoop` treats a reply to an id it cannot
+find as a protocol violation. So one slow answer at 61 s ended the sandboxed host, and search and home for that
+plugin went with it. Measured with the real child under real Seatbelt: with the lookup reverted,
+`a real plugin answering after the timeout keeps its host` fails with `the plugin host is not running`.
+
+Fixed: a timed-out call moves to `timedOut`, and a reply is looked up in both maps, under one lock.
+
+| Property | How it holds | Test (`PluginHostClientTest`) |
+|---|---|---|
+| An id never issued ends the host | It is in neither map | `an id never issued…`, `the next id, not yet issued…`, and the real child |
+| One reply per id | The lookup removes the id | `a second reply to a timed-out id…` |
+| A late payload reaches nobody | It completes a `Pending` that nothing awaits any more | `a late reply is not delivered to the call waiting…` |
+| A late payload is checked like any other | It goes through `readFrame` and the call's own decoder | `a late reply that does not parse…`, `…past the limit…` |
+| The stream stays in sync | Frames are length-prefixed, and the frame is read whole first | `a late reply of the largest legal size…` |
+| Bounded memory | `MAX_TIMED_OUT_CALLS`, 256 | `at the bound…`, `an answered late reply gives its place back` |
+| Ids are not reused | `nextId` only counts up, and a timeout returns nothing to it. It would wrap after 2^32 calls | `at the bound…` checks 256 are distinct |
+
+**At the bound the host ends.** The 257th call still unanswered past its timeout ends the host, and any call then
+waiting fails. Forgetting the oldest id instead would hand the plugin the choice of when its late reply kills the
+host. A late reply gives its place back, so only calls never answered count.
+
+The tests run the 60 s on virtual time, so nothing in the client was made injectable for them. Each was checked by
+breaking the fix: without the `timedOut` lookup 6 client tests and the real-child test fail, without consuming the
+id 2 fail, and without the bound 2 fail.
+
+**Found by reading, not measured, and not changed:** a caller cancelled while waiting is not a timeout, so its id
+stays in `pending` until the plugin answers, with no bound. And the request write has no timeout, so a plugin that
+stops reading stdin can hold a call past 60 s.
+
+---
+
+## BUG-13 — the subscription worker loaded extensions in safe mode · **medium**
+
+**Status:** in pr · found by reading the code; not reproduced on a device
+
+Safe mode exists so a crashing extension stops being loaded. `MainActivity` skips loading when
+`checkSafeModeFile()` is true or `lastError` is set, and `DownloadQueueManager` will not start its queue when
+`isSafeMode()` is true. `SubscriptionWorkManager.doWork` checked neither and loaded every online and local
+plugin, so the extension safe mode was keeping out still ran in the background, every 6 hours.
+
+`isSafeMode()` alone is not enough here. `lastError` is only filled by `setLastError`, and the only callers
+were `MainActivity.onCreate` and `DownloadQueueService`. A worker in a process where neither ran would see
+`lastError == null` with a crash on record. The worker must not call `setLastError` either: it deletes `last_error`
+as it reads it and keeps the text only in memory, so if the worker were the first to read it and its process then
+died, the next launch would show no crash dialog and would load extensions. So the worker looks for the file and
+leaves it there. `DownloadQueueService` still has that property; reported, not changed.
+
+Fixed: the check comes first in `doWork`, before the notification channel and the foreground notification, and in
+safe mode the worker returns `Result.success()`. Not `retry`, which the catch block at the end of `doWork` already
+avoids for battery reasons, and not `cancelWorkById`, which would end the periodic work for good. The next run
+checks again.
+
+**No regression test, and why.** Measured with a throwaway JVM test under `:app`'s
+`unitTests.isReturnDefaultValues`, since deleted: `PluginManager.isSafeMode()` fails with
+`ExceptionInInitializerError`, because `PluginManager.kt:187` calls `.absolutePath` on a null
+`Environment.getExternalStorageDirectory()`; and the worker's `colorFromAttribute` field initialiser throws
+`NullPointerException`. `:app` has no Robolectric or mocking library, and adding one needs the owner's approval.
+A test of an extracted boolean would not exercise this path. **Not run on a device.**

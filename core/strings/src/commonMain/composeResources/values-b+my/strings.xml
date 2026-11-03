@@ -481,7 +481,10 @@
 <string name="subtitles_depressed">ချုံ့ပြီး</string>
 <string name="subtitles_encoding">စာတန်းထိုး ကုဒ်လုပ်ခြင်း</string>
 <string name="subtitles_example_text">The quick brown fox jumps over the lazy dog</string>
+<string name="subtitles_file_empty">ဤစာတန်းထိုးဖိုင်တွင် ဘာမျှမရှိပါ</string>
 <string name="subtitles_filter_lang">နှစ်သက်ရာ မီဒီယာဘာသာစကားဖြင့် စစ်ထုတ်ပါ</string>
+<string name="subtitles_format_unsupported">ဤစာတန်းထိုးပုံစံကို မပံ့ပိုးပါ</string>
+<string name="subtitles_load_failed">ဤစာတန်းထိုးများကို တင်၍မရပါ</string>
 <string name="subtitles_outline">အနားကွပ်</string>
 <string name="subtitles_raised">ထမြောက်မှု</string>
 <string name="subtitles_remove_bloat">စာတန်းထိုးများမှ bloat ကိုဖယ်ရှားပါ</string>

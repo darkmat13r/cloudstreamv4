@@ -672,9 +672,12 @@
 <string name="subtitles_depressed">Gesenkt</string>
 <string name="subtitles_encoding">Untertitel-Kodierung</string>
 <string name="subtitles_example_text">Vogel Quax zwickt Johnys Pferd Bim</string>
+<string name="subtitles_file_empty">Diese Untertiteldatei ist leer</string>
 <string name="subtitles_filter_lang">Nach bevorzugter Mediensprache filtern</string>
+<string name="subtitles_format_unsupported">Dieses Untertitelformat wird nicht unterstützt</string>
 <string name="subtitles_from_embedded">Eingebettet</string>
 <string name="subtitles_from_online">Online</string>
+<string name="subtitles_load_failed">Diese Untertitel konnten nicht geladen werden</string>
 <string name="subtitles_outline">Umrandung</string>
 <string name="subtitles_raised">Erhöht</string>
 <string name="subtitles_remove_bloat">Entfernt Schrott aus Untertiteln (z.B. Werbung)</string>

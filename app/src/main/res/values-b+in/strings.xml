@@ -672,9 +672,12 @@
 <string name="subtitles_depressed">"Ditekan"</string>
 <string name="subtitles_encoding">"Enkode subtitel"</string>
 <string name="subtitles_example_text">"The quick brown fox jumps over the lazy dog"</string>
+<string name="subtitles_file_empty">"File subtitel ini kosong"</string>
 <string name="subtitles_filter_lang">"Filter berdasarkan bahasa media pilihan"</string>
+<string name="subtitles_format_unsupported">"Format subtitel ini tidak didukung"</string>
 <string name="subtitles_from_embedded">"Tertanam"</string>
 <string name="subtitles_from_online">"Daring"</string>
+<string name="subtitles_load_failed">"Tidak dapat memuat subtitel ini"</string>
 <string name="subtitles_outline">"Garis luar"</string>
 <string name="subtitles_raised">"Menonjol"</string>
 <string name="subtitles_remove_bloat">"Hapus teks tidak perlu pada subtitel"</string>

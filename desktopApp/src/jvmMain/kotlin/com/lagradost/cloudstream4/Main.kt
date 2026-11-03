@@ -54,6 +54,7 @@ import com.lagradost.cloudstream4.player.PlayerScreen
 import com.lagradost.cloudstream4.player.PlayerUnavailable
 import com.lagradost.cloudstream4.player.VlcPlayer
 import com.lagradost.cloudstream4.player.runPlaybackCheck
+import com.lagradost.cloudstream4.player.runSubtitleRenderCheck
 import com.lagradost.cloudstream4.search.DesktopSearchHistory
 import com.lagradost.cloudstream4.search.DesktopSearchSource
 import com.lagradost.cloudstream4.search.PosterImage
@@ -118,6 +119,9 @@ fun main(args: Array<String>) {
     if (args.firstOrNull() == PLAYBACK_CHECK_ARGUMENT) {
         val url = requireNotNull(args.getOrNull(1)) { "$PLAYBACK_CHECK_ARGUMENT needs a url" }
         exitProcess(runPlaybackCheck(url, args.getOrNull(2)?.toIntOrNull() ?: DEFAULT_PLAYBACK_CHECK_SECONDS))
+    }
+    if (args.firstOrNull() == SUBTITLE_RENDER_CHECK_ARGUMENT) {
+        exitProcess(runSubtitleRenderCheck(args.drop(1)))
     }
     if (args.firstOrNull() == CHECK_ARGUMENT) {
         exitProcess(runExtensionCheck(args.getOrNull(1) ?: DEFAULT_CHECK_QUERY, verbose = VERBOSE_ARGUMENT in args))
@@ -253,7 +257,13 @@ internal fun DesktopApp(
                 if (player == null) {
                     PlayerUnavailable(onBack = { back(screen) })
                 } else {
-                    PlayerScreen(player, screen.title, screen.link, onBack = { back(screen) })
+                    PlayerScreen(
+                        player,
+                        screen.title,
+                        screen.link,
+                        onBack = { back(screen) },
+                        setEscape = { escape.onEscape = it },
+                    )
                 }
             }
         }
@@ -345,6 +355,7 @@ private const val DEFAULT_CHECK_QUERY = "nasa"
 private const val VERBOSE_ARGUMENT = "--verbose"
 private const val PLAYBACK_CHECK_ARGUMENT = "--check-playback"
 private const val DEFAULT_PLAYBACK_CHECK_SECONDS = 15
+private const val SUBTITLE_RENDER_CHECK_ARGUMENT = "--check-subtitle-render"
 
 private val WINDOW_WIDTH = 1280.dp
 private val WINDOW_HEIGHT = 800.dp

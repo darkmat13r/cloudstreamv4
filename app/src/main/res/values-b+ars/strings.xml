@@ -313,6 +313,9 @@
 <string name="subscription_in_progress_notification">"تحديث العروض المشتركة"</string>
 <string name="subscription_list_name">"مشترك"</string>
 <string name="subscription_new" formatted="true">"%sتم الاشتراك في"</string>
+<string name="subtitles_file_empty">"ملف الترجمة هذا فارغ"</string>
+<string name="subtitles_format_unsupported">"صيغة الترجمة هذه غير مدعومة"</string>
+<string name="subtitles_load_failed">"تعذّر تحميل هذه الترجمات"</string>
 <string name="subtitles_settings">"إعدادات الترجمة"</string>
 <string name="swipe_to_change_settings">"اسحب لتغيير الإعدادات"</string>
 <string name="swipe_to_change_settings_des">"قم بالتمرير لأعلى أو لأسفل على الجانب الأيسر أو الأيمن لتغيير السطوع أو مستوى الصوت"</string>

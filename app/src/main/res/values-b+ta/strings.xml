@@ -672,9 +672,12 @@
 <string name="subtitles_depressed">"மனச்சோர்வு"</string>
 <string name="subtitles_encoding">"வசன குறியீட்டு"</string>
 <string name="subtitles_example_text">"விரைவான பழுப்பு நரி சோம்பேறி நாய் மீது குதிக்கிறது"</string>
+<string name="subtitles_file_empty">"இந்த வசன வரி கோப்பு காலியாக உள்ளது"</string>
 <string name="subtitles_filter_lang">"விருப்பமான ஊடக மொழியால் வடிகட்டவும்"</string>
+<string name="subtitles_format_unsupported">"இந்த வசன வரி வடிவம் ஆதரிக்கப்படவில்லை"</string>
 <string name="subtitles_from_embedded">"உட்பொதிக்கப்பட்டது"</string>
 <string name="subtitles_from_online">"ஆன்லைனில்"</string>
+<string name="subtitles_load_failed">"இந்த வசன வரிகளை ஏற்ற முடியவில்லை"</string>
 <string name="subtitles_outline">"அவுட்லைன்"</string>
 <string name="subtitles_raised">"எழுப்பப்பட்ட"</string>
 <string name="subtitles_remove_bloat">"வசனங்களிலிருந்து வீக்கத்தை அகற்று"</string>

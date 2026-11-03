@@ -467,7 +467,10 @@
 <string name="subtitles_depressed">Hoos u degsan</string>
 <string name="subtitles_encoding">Horidda Qoraal-hoosaadka</string>
 <string name="subtitles_example_text">Sheekheenna wiilkiisa curad, gabadhiisu foox la'aan ma heesi karto</string>
+<string name="subtitles_file_empty">Faylkan qoraal-hoosaadka waa madhan yahay</string>
 <string name="subtitles_filter_lang">U kala hor sida luuqadaha aad doorbidday</string>
+<string name="subtitles_format_unsupported">Qaabkan qoraal-hoosaadka lama taageero</string>
+<string name="subtitles_load_failed">Qoraal-hoosaadkan lama soo rari karin</string>
 <string name="subtitles_outline">Lakabka sare</string>
 <string name="subtitles_raised">Kor-u-qaadan</string>
 <string name="subtitles_remove_bloat">Ka saar bararsanaanta Qrl-hoosaadka</string>

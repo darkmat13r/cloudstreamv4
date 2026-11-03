@@ -139,6 +139,9 @@ values-b+af/strings.xml	string	subs_subtitle_languages	-	STR	Onderskriftaal
 values-b+af/strings.xml	string	subs_text_color	-	STR	Teks kleur	
 values-b+af/strings.xml	string	subs_window_color	-	STR	Venster kleur	
 values-b+af/strings.xml	string	subscribe_tooltip	-	STR	Nuwe episode notifikasie	
+values-b+af/strings.xml	string	subtitles_file_empty	-	STR	Hierdie onderskriflêer is leeg	
+values-b+af/strings.xml	string	subtitles_format_unsupported	-	STR	Hierdie onderskrifformaat word nie ondersteun nie	
+values-b+af/strings.xml	string	subtitles_load_failed	-	STR	Kon nie hierdie onderskrifte laai nie	
 values-b+af/strings.xml	string	subtitles_settings	-	STR	Onderskrifinstellings	
 values-b+af/strings.xml	string	title_downloads	-	STR	Aflaaie	
 values-b+af/strings.xml	string	title_home	-	STR	Tuis	
@@ -278,6 +281,9 @@ values-b+am/strings.xml	string	subs_outline_color	-	STR	የዳርቻ ቀለም
 values-b+am/strings.xml	string	subs_subtitle_languages	-	STR	የትርጉም ጽሑፍ ቋንቋ	
 values-b+am/strings.xml	string	subs_text_color	-	STR	የጽሑፍ ቀለም	
 values-b+am/strings.xml	string	subs_window_color	-	STR	የዊንዶው ቀለም	
+values-b+am/strings.xml	string	subtitles_file_empty	-	STR	ይህ የንዑስ ርዕስ ፋይል ባዶ ነው	
+values-b+am/strings.xml	string	subtitles_format_unsupported	-	STR	ይህ የንዑስ ርዕስ ቅርጸት አይደገፍም	
+values-b+am/strings.xml	string	subtitles_load_failed	-	STR	እነዚህን ንዑስ ርዕሶች መጫን አልተቻለም	
 values-b+am/strings.xml	string	subtitles_settings	-	STR	የትርጉም ጽሑፍ ቅንብሮች	
 values-b+am/strings.xml	string	title_downloads	-	STR	የወረዱ	
 values-b+am/strings.xml	string	title_home	-	STR	መነሻ	
@@ -963,9 +969,12 @@ values-b+apc/strings.xml	string	subtitle_offset_title	-	STR	تأخير التر�
 values-b+apc/strings.xml	string	subtitles_depressed	-	STR	مدپرس	
 values-b+apc/strings.xml	string	subtitles_encoding	-	STR	نوع الكتيبة بال ترجمة	
 values-b+apc/strings.xml	string	subtitles_example_text	-	STR	أبجد هوز حطي كلمن سعفص قرشت ثخذ ضظغ	
+values-b+apc/strings.xml	string	subtitles_file_empty	-	STR	ملف الترجمة هاد فاضي	
 values-b+apc/strings.xml	string	subtitles_filter_lang	-	STR	فَلتِر حسب اللغة المفضلة	
+values-b+apc/strings.xml	string	subtitles_format_unsupported	-	STR	صيغة الترجمة هاي مش مدعومة	
 values-b+apc/strings.xml	string	subtitles_from_embedded	-	STR	داخلياً	
 values-b+apc/strings.xml	string	subtitles_from_online	-	STR	اونلاين	
+values-b+apc/strings.xml	string	subtitles_load_failed	-	STR	ما قدرنا نفتح هالترجمة	
 values-b+apc/strings.xml	string	subtitles_outline	-	STR	حدود خطية	
 values-b+apc/strings.xml	string	subtitles_raised	-	STR	معلى	
 values-b+apc/strings.xml	string	subtitles_remove_bloat	-	STR	شيل الإعلانات من الترجمة	
@@ -1743,9 +1752,12 @@ values-b+ar/strings.xml	string	subtitle_offset_title	-	STR	تأخير الترج
 values-b+ar/strings.xml	string	subtitles_depressed	-	STR	النمط المنخفض	
 values-b+ar/strings.xml	string	subtitles_encoding	-	STR	فك تشفير الترجمة	
 values-b+ar/strings.xml	string	subtitles_example_text	-	STR	نصٌّ حكيمٌ لهُ سِرٌّ قاطِعٌ وَذُو شَأنٍ عَظيمٍ مكتوبٌ على ثوبٍ أخضرَ ومُغلفٌ بجلدٍ أزرق	
+values-b+ar/strings.xml	string	subtitles_file_empty	-	STR	ملف الترجمة هذا فارغ	
 values-b+ar/strings.xml	string	subtitles_filter_lang	-	STR	تصفية حسب لغة الوسائط المفضلة	
+values-b+ar/strings.xml	string	subtitles_format_unsupported	-	STR	تنسيق الترجمة هذا غير مدعوم	
 values-b+ar/strings.xml	string	subtitles_from_embedded	-	STR	داخلياً	
 values-b+ar/strings.xml	string	subtitles_from_online	-	STR	اونلاين	
+values-b+ar/strings.xml	string	subtitles_load_failed	-	STR	تعذّر تحميل هذه الترجمة	
 values-b+ar/strings.xml	string	subtitles_outline	-	STR	الخطوط المحيطة	
 values-b+ar/strings.xml	string	subtitles_raised	-	STR	رفع	
 values-b+ar/strings.xml	string	subtitles_remove_bloat	-	STR	ازالة البرمجيات الخبيثة من الترجمة	
@@ -2157,6 +2169,9 @@ values-b+ars/strings.xml	string	subscription_episode_released	-	STR	!%dتم إص
 values-b+ars/strings.xml	string	subscription_in_progress_notification	-	STR	تحديث العروض المشتركة	
 values-b+ars/strings.xml	string	subscription_list_name	-	STR	مشترك	
 values-b+ars/strings.xml	string	subscription_new	-	STR	%sتم الاشتراك في	
+values-b+ars/strings.xml	string	subtitles_file_empty	-	STR	ملف الترجمة هذا فارغ	
+values-b+ars/strings.xml	string	subtitles_format_unsupported	-	STR	صيغة الترجمة هذه غير مدعومة	
+values-b+ars/strings.xml	string	subtitles_load_failed	-	STR	تعذّر تحميل هذه الترجمات	
 values-b+ars/strings.xml	string	subtitles_settings	-	STR	إعدادات الترجمة	
 values-b+ars/strings.xml	string	swipe_to_change_settings	-	STR	اسحب لتغيير الإعدادات	
 values-b+ars/strings.xml	string	swipe_to_change_settings_des	-	STR	قم بالتمرير لأعلى أو لأسفل على الجانب الأيسر أو الأيمن لتغيير السطوع أو مستوى الصوت	
@@ -2797,7 +2812,10 @@ values-b+as/strings.xml	string	subtitle_offset_title	-	STR	সাবচিট্
 values-b+as/strings.xml	string	subtitles_depressed	-	STR	ডিপ্ৰেছড	
 values-b+as/strings.xml	string	subtitles_encoding	-	STR	সাবটাইটেল ক'ডিং	
 values-b+as/strings.xml	string	subtitles_example_text	-	STR	এজন চালাক পোহা কুকুৰাই অলপ তেজী মেজাজৰ কুকুৰাৰ ওপৰেদি জাপ দিলে	
+values-b+as/strings.xml	string	subtitles_file_empty	-	STR	এই সাবটাইটেল ফাইলটো খালী	
 values-b+as/strings.xml	string	subtitles_filter_lang	-	STR	পছন্দৰ মিডিয়া ভাষাৰ দ্বাৰা ফিল্টাৰ কৰক	
+values-b+as/strings.xml	string	subtitles_format_unsupported	-	STR	এই সাবটাইটেল ফৰ্মেট সমৰ্থিত নহয়	
+values-b+as/strings.xml	string	subtitles_load_failed	-	STR	এই সাবটাইটেলসমূহ লোড কৰিব পৰা নগ'ল	
 values-b+as/strings.xml	string	subtitles_outline	-	STR	আউটলাইন	
 values-b+as/strings.xml	string	subtitles_raised	-	STR	উঠা	
 values-b+as/strings.xml	string	subtitles_remove_bloat	-	STR	অপ্রয়োজনীয়তাবোৰ সাবটাইটেলৰ পৰা আঁতৰাওক	
@@ -3039,6 +3057,9 @@ values-b+az/strings.xml	string	source_error	-	STR	Mənbə xətası
 values-b+az/strings.xml	string	start	-	STR	Başlat	
 values-b+az/strings.xml	string	storage_error	-	STR	Yükləmə xətası, yaddaş icazələrini yoxlayın	
 values-b+az/strings.xml	string	subs_default_reset_toast	-	STR	Standart dəyərlərə sıfırla	
+values-b+az/strings.xml	string	subtitles_file_empty	-	STR	Bu subtitr faylı boşdur	
+values-b+az/strings.xml	string	subtitles_format_unsupported	-	STR	Bu subtitr formatı dəstəklənmir	
+values-b+az/strings.xml	string	subtitles_load_failed	-	STR	Bu subtitrlər yüklənə bilmədi	
 values-b+az/strings.xml	string	test_failed	-	STR	Uğursuz oldu	
 values-b+az/strings.xml	string	test_passed	-	STR	Uğurlu oldu	
 values-b+az/strings.xml	string	test_warning	-	STR	Xəbərdarlıq	
@@ -3736,9 +3757,12 @@ values-b+be/strings.xml	string	subtitle_offset_title	-	STR	Затрымка су
 values-b+be/strings.xml	string	subtitles_depressed	-	STR	Заніжаныя	
 values-b+be/strings.xml	string	subtitles_encoding	-	STR	Кадзіраванне субцітраў	
 values-b+be/strings.xml	string	subtitles_example_text	-	STR	У цэху з’яўляецца чорт, кроўю і пугай фарбуе свежы шампіньён	
+values-b+be/strings.xml	string	subtitles_file_empty	-	STR	Гэты файл субцітраў пусты	
 values-b+be/strings.xml	string	subtitles_filter_lang	-	STR	Фільтраваць па прыярытэтнай мове медыя	
+values-b+be/strings.xml	string	subtitles_format_unsupported	-	STR	Гэты фармат субцітраў не падтрымліваецца	
 values-b+be/strings.xml	string	subtitles_from_embedded	-	STR	Убудаваны	
 values-b+be/strings.xml	string	subtitles_from_online	-	STR	Сеткавы	
+values-b+be/strings.xml	string	subtitles_load_failed	-	STR	Не ўдалося загрузіць гэтыя субцітры	
 values-b+be/strings.xml	string	subtitles_outline	-	STR	Контур	
 values-b+be/strings.xml	string	subtitles_raised	-	STR	Паднятыя	
 values-b+be/strings.xml	string	subtitles_remove_bloat	-	STR	Прыбраць раздуванне з субцітраў	
@@ -4493,9 +4517,12 @@ values-b+bg/strings.xml	string	subtitle_offset_title	-	STR	Забавяне на
 values-b+bg/strings.xml	string	subtitles_depressed	-	STR	Удвоени	
 values-b+bg/strings.xml	string	subtitles_encoding	-	STR	Кодиране на субтитрите	
 values-b+bg/strings.xml	string	subtitles_example_text	-	STR	Бързата кафява лисица прескача мързеливото куче	
+values-b+bg/strings.xml	string	subtitles_file_empty	-	STR	Този файл със субтитри е празен	
 values-b+bg/strings.xml	string	subtitles_filter_lang	-	STR	Филтриране по предпочитан медиен език	
+values-b+bg/strings.xml	string	subtitles_format_unsupported	-	STR	Този формат на субтитри не се поддържа	
 values-b+bg/strings.xml	string	subtitles_from_embedded	-	STR	Вграден	
 values-b+bg/strings.xml	string	subtitles_from_online	-	STR	Онлайн	
+values-b+bg/strings.xml	string	subtitles_load_failed	-	STR	Тези субтитри не можаха да се заредят	
 values-b+bg/strings.xml	string	subtitles_outline	-	STR	Контур	
 values-b+bg/strings.xml	string	subtitles_raised	-	STR	Повдигнати	
 values-b+bg/strings.xml	string	subtitles_remove_bloat	-	STR	Премахнете рекламирането в субтитрите	
@@ -4963,6 +4990,9 @@ values-b+bn/strings.xml	string	subs_text_color	-	STR	লেখার রং
 values-b+bn/strings.xml	string	subs_window_color	-	STR	উইন্ডো কালার	
 values-b+bn/strings.xml	string	subscribe_tooltip	-	STR	নতুন এপিসোডের নোটিফিকেশন	
 values-b+bn/strings.xml	string	subtitles_encoding	-	STR	সাবটাইটেল এনকোডিং	
+values-b+bn/strings.xml	string	subtitles_file_empty	-	STR	এই সাবটাইটেল ফাইলটি খালি	
+values-b+bn/strings.xml	string	subtitles_format_unsupported	-	STR	এই সাবটাইটেল ফরম্যাট সমর্থিত নয়	
+values-b+bn/strings.xml	string	subtitles_load_failed	-	STR	এই সাবটাইটেলগুলো লোড করা যায়নি	
 values-b+bn/strings.xml	string	subtitles_settings	-	STR	সাবটাইটেল সেটিংস	
 values-b+bn/strings.xml	string	swipe_to_change_settings	-	STR	সেটিংস পরিবর্তন করতে সোয়াইপ করুন	
 values-b+bn/strings.xml	string	swipe_to_change_settings_des	-	STR	উজ্জ্বলতা বা ভলিউম পরিবর্তন করতে বাম বা ডান দিকে উপরে বা নিচে স্লাইড করুন	
@@ -5337,7 +5367,10 @@ values-b+ca/strings.xml	string	subtitle_offset_title	-	STR	Retard dels subtítol
 values-b+ca/strings.xml	string	subtitles_depressed	-	STR	Enfonsat	
 values-b+ca/strings.xml	string	subtitles_encoding	-	STR	Codificació dels subtítols	
 values-b+ca/strings.xml	string	subtitles_example_text	-	STR	Jove xef, porti whisky amb quinze glaçons d'hidrogen, coi	
+values-b+ca/strings.xml	string	subtitles_file_empty	-	STR	Aquest fitxer de subtítols és buit	
 values-b+ca/strings.xml	string	subtitles_filter_lang	-	STR	Filtra per l'idioma preferit	
+values-b+ca/strings.xml	string	subtitles_format_unsupported	-	STR	Aquest format de subtítols no és compatible	
+values-b+ca/strings.xml	string	subtitles_load_failed	-	STR	No s'han pogut carregar aquests subtítols	
 values-b+ca/strings.xml	string	subtitles_outline	-	STR	Vora	
 values-b+ca/strings.xml	string	subtitles_raised	-	STR	Elevat	
 values-b+ca/strings.xml	string	subtitles_remove_bloat	-	STR	Eliminar contingut irrellevant dels subtítols	
@@ -5491,6 +5524,9 @@ values-b+ckb/strings.xml	string	sort_close	-	STR	داخستن
 values-b+ckb/strings.xml	string	sort_copy	-	STR	کۆپی	
 values-b+ckb/strings.xml	string	sort_save	-	STR	سەیڤ	
 values-b+ckb/strings.xml	string	speech_recognition_unavailable	-	STR	ناسینەوەی قسەکردن بەردەست نییە	
+values-b+ckb/strings.xml	string	subtitles_file_empty	-	STR	ئەم فایلی ژێرنووسە بەتاڵە	
+values-b+ckb/strings.xml	string	subtitles_format_unsupported	-	STR	ئەم شێوازی ژێرنووسە پشتگیری ناکرێت	
+values-b+ckb/strings.xml	string	subtitles_load_failed	-	STR	نەتوانرا ئەم ژێرنووسانە باربکرێن	
 values-b+ckb/strings.xml	string	title_downloads	-	STR	داونڵۆد	
 values-b+ckb/strings.xml	string	title_home	-	STR	سەرەکی	
 values-b+ckb/strings.xml	string	title_search	-	STR	گەڕان	
@@ -6185,9 +6221,12 @@ values-b+cs/strings.xml	string	subtitle_offset_title	-	STR	Zpoždění titulků
 values-b+cs/strings.xml	string	subtitles_depressed	-	STR	Potlačené	
 values-b+cs/strings.xml	string	subtitles_encoding	-	STR	Kódování titulků	
 values-b+cs/strings.xml	string	subtitles_example_text	-	STR	Příliš žluťoučký kůň úpěl ďábelské ódy	
+values-b+cs/strings.xml	string	subtitles_file_empty	-	STR	Tento soubor titulků je prázdný	
 values-b+cs/strings.xml	string	subtitles_filter_lang	-	STR	Filtrování podle preferovaného jazyka médií	
+values-b+cs/strings.xml	string	subtitles_format_unsupported	-	STR	Tento formát titulků není podporován	
 values-b+cs/strings.xml	string	subtitles_from_embedded	-	STR	Vložené	
 values-b+cs/strings.xml	string	subtitles_from_online	-	STR	Online	
+values-b+cs/strings.xml	string	subtitles_load_failed	-	STR	Tyto titulky se nepodařilo načíst	
 values-b+cs/strings.xml	string	subtitles_outline	-	STR	Ohraničení	
 values-b+cs/strings.xml	string	subtitles_raised	-	STR	Vyvýšené	
 values-b+cs/strings.xml	string	subtitles_remove_bloat	-	STR	Odstranit nadbytečné titulky	
@@ -6957,9 +6996,12 @@ values-b+de/strings.xml	string	subtitle_offset_title	-	STR	Untertitelverzögerun
 values-b+de/strings.xml	string	subtitles_depressed	-	STR	Gesenkt	
 values-b+de/strings.xml	string	subtitles_encoding	-	STR	Untertitel-Kodierung	
 values-b+de/strings.xml	string	subtitles_example_text	-	STR	Vogel Quax zwickt Johnys Pferd Bim	
+values-b+de/strings.xml	string	subtitles_file_empty	-	STR	Diese Untertiteldatei ist leer	
 values-b+de/strings.xml	string	subtitles_filter_lang	-	STR	Nach bevorzugter Mediensprache filtern	
+values-b+de/strings.xml	string	subtitles_format_unsupported	-	STR	Dieses Untertitelformat wird nicht unterstützt	
 values-b+de/strings.xml	string	subtitles_from_embedded	-	STR	Eingebettet	
 values-b+de/strings.xml	string	subtitles_from_online	-	STR	Online	
+values-b+de/strings.xml	string	subtitles_load_failed	-	STR	Diese Untertitel konnten nicht geladen werden	
 values-b+de/strings.xml	string	subtitles_outline	-	STR	Umrandung	
 values-b+de/strings.xml	string	subtitles_raised	-	STR	Erhöht	
 values-b+de/strings.xml	string	subtitles_remove_bloat	-	STR	Entfernt Schrott aus Untertiteln (z.B. Werbung)	
@@ -7659,9 +7701,12 @@ values-b+el/strings.xml	string	subtitle_offset_title	-	STR	Καθυστέρησ�
 values-b+el/strings.xml	string	subtitles_depressed	-	STR	Σε κατάθλιψη	
 values-b+el/strings.xml	string	subtitles_encoding	-	STR	Κωδικοποίηση υποτίτλων	
 values-b+el/strings.xml	string	subtitles_example_text	-	STR	Η γρήγορη, καφέ αλεπού πηδάει πάνω από τον τεμπέλη σκύλο / The quick brown fox jumps over the lazy dog	
+values-b+el/strings.xml	string	subtitles_file_empty	-	STR	Αυτό το αρχείο υποτίτλων είναι κενό	
 values-b+el/strings.xml	string	subtitles_filter_lang	-	STR	Φιλτράρισμα ανά την προτεινόμενη γλώσσα του μέσου	
+values-b+el/strings.xml	string	subtitles_format_unsupported	-	STR	Αυτή η μορφή υποτίτλων δεν υποστηρίζεται	
 values-b+el/strings.xml	string	subtitles_from_embedded	-	STR	Ενσωματωμένο	
 values-b+el/strings.xml	string	subtitles_from_online	-	STR	Συνδεμένοι	
+values-b+el/strings.xml	string	subtitles_load_failed	-	STR	Δεν ήταν δυνατή η φόρτωση αυτών των υποτίτλων	
 values-b+el/strings.xml	string	subtitles_outline	-	STR	Περίγραμμα	
 values-b+el/strings.xml	string	subtitles_raised	-	STR	Ανεβασμένοι	
 values-b+el/strings.xml	string	subtitles_remove_bloat	-	STR	Αφαίρεση bloat από τους υπότιτλους	
@@ -7939,6 +7984,9 @@ values-b+eo/strings.xml	string	subs_subtitle_languages	-	STR	Subteksta Lingvo
 values-b+eo/strings.xml	string	subs_text_color	-	STR	Teksta koloro	
 values-b+eo/strings.xml	string	subs_window_color	-	STR	Fenestra koloro	
 values-b+eo/strings.xml	string	subscribe_tooltip	-	STR	Sciigo de novo epizodo	
+values-b+eo/strings.xml	string	subtitles_file_empty	-	STR	Ĉi tiu subteksta dosiero estas malplena	
+values-b+eo/strings.xml	string	subtitles_format_unsupported	-	STR	Ĉi tiu subteksta formato ne estas subtenata	
+values-b+eo/strings.xml	string	subtitles_load_failed	-	STR	Ne eblis ŝargi ĉi tiujn subtekstojn	
 values-b+eo/strings.xml	string	subtitles_settings	-	STR	Subtekstaj Agordoj	
 values-b+eo/strings.xml	string	sync_score_format	-	STR	%d / 10	
 values-b+eo/strings.xml	string	sync_total_episodes_none	-	STR	/??	
@@ -8643,9 +8691,12 @@ values-b+es/strings.xml	string	subtitle_offset_title	-	STR	Retraso de subtítulo
 values-b+es/strings.xml	string	subtitles_depressed	-	STR	Deprimido	
 values-b+es/strings.xml	string	subtitles_encoding	-	STR	Codificación de subtítulos	
 values-b+es/strings.xml	string	subtitles_example_text	-	STR	El pingüino Wenceslao hizo kilómetros bajo exhaustiva lluvia y frío; añoraba a su querido cachorro	
+values-b+es/strings.xml	string	subtitles_file_empty	-	STR	Este archivo de subtítulos está vacío	
 values-b+es/strings.xml	string	subtitles_filter_lang	-	STR	Filtrar por idioma preferido	
+values-b+es/strings.xml	string	subtitles_format_unsupported	-	STR	Este formato de subtítulos no es compatible	
 values-b+es/strings.xml	string	subtitles_from_embedded	-	STR	Integrado	
 values-b+es/strings.xml	string	subtitles_from_online	-	STR	En línea	
+values-b+es/strings.xml	string	subtitles_load_failed	-	STR	No se han podido cargar estos subtítulos	
 values-b+es/strings.xml	string	subtitles_outline	-	STR	Contorno	
 values-b+es/strings.xml	string	subtitles_raised	-	STR	Elevado	
 values-b+es/strings.xml	string	subtitles_remove_bloat	-	STR	Eliminar excedente (bloat) de los subtítulos	
@@ -9071,7 +9122,10 @@ values-b+fa/strings.xml	string	subs_text_color	-	STR	رنگ متن
 values-b+fa/strings.xml	string	subs_window_color	-	STR	رنگ پنجره	
 values-b+fa/strings.xml	string	subscribe_tooltip	-	STR	اعلان قسمت جدید	
 values-b+fa/strings.xml	string	subtitles_encoding	-	STR	رمزگذاری زیرنویس	
+values-b+fa/strings.xml	string	subtitles_file_empty	-	STR	این فایل زیرنویس خالی است	
 values-b+fa/strings.xml	string	subtitles_filter_lang	-	STR	فیلتر توسط زبان محتوا برگزیده	
+values-b+fa/strings.xml	string	subtitles_format_unsupported	-	STR	این قالب زیرنویس پشتیبانی نمی‌شود	
+values-b+fa/strings.xml	string	subtitles_load_failed	-	STR	بارگذاری این زیرنویس‌ها ممکن نشد	
 values-b+fa/strings.xml	string	subtitles_settings	-	STR	تنظیمات زیرنویس	
 values-b+fa/strings.xml	string	swipe_to_change_settings	-	STR	برای تغییر تنظیمات بکشید	
 values-b+fa/strings.xml	string	swipe_to_change_settings_des	-	STR	برای تغییر میزان روشنایی یا صدا در گوشه چپ و راست به بالا یا پایین بکشید	
@@ -9291,6 +9345,9 @@ values-b+fil/strings.xml	string	subs_subtitle_elevation	-	STR	Kataasan ng Saling
 values-b+fil/strings.xml	string	subs_text_color	-	STR	Kulay ng Teksto	
 values-b+fil/strings.xml	string	subs_window_color	-	STR	Kulay ng Bintana	
 values-b+fil/strings.xml	string	subscribe_tooltip	-	STR	Bagong notipikasyon ng kabanata	
+values-b+fil/strings.xml	string	subtitles_file_empty	-	STR	Walang laman ang subtitle file na ito	
+values-b+fil/strings.xml	string	subtitles_format_unsupported	-	STR	Hindi sinusuportahan ang format ng subtitle na ito	
+values-b+fil/strings.xml	string	subtitles_load_failed	-	STR	Hindi ma-load ang mga subtitle na ito	
 values-b+fil/strings.xml	string	subtitles_settings	-	STR	Pagpipilian sa Saling-teksto	
 values-b+fil/strings.xml	string	swipe_to_change_settings_des	-	STR	Mag-slide pataas o pababa sa kaliwa o kanang bahagi upang baguhin ang liwanag o volume	
 values-b+fil/strings.xml	string	swipe_to_seek_settings_des	-	STR	Mag-swipe mula sa gilid patungo sa kabilang gilid upang kontrolin ang iyong posisyon sa isang video	
@@ -9990,9 +10047,12 @@ values-b+fr/strings.xml	string	subtitle_offset_title	-	STR	Délai des sous-titre
 values-b+fr/strings.xml	string	subtitles_depressed	-	STR	Déprimé	
 values-b+fr/strings.xml	string	subtitles_encoding	-	STR	Encodage des sous titres	
 values-b+fr/strings.xml	string	subtitles_example_text	-	STR	Portez ce vieux whisky au juge blond qui fume	
+values-b+fr/strings.xml	string	subtitles_file_empty	-	STR	Ce fichier de sous-titres est vide	
 values-b+fr/strings.xml	string	subtitles_filter_lang	-	STR	Filtrez par langue préférée	
+values-b+fr/strings.xml	string	subtitles_format_unsupported	-	STR	Ce format de sous-titres n'est pas pris en charge	
 values-b+fr/strings.xml	string	subtitles_from_embedded	-	STR	Intégré	
 values-b+fr/strings.xml	string	subtitles_from_online	-	STR	En ligne	
+values-b+fr/strings.xml	string	subtitles_load_failed	-	STR	Impossible de charger ces sous-titres	
 values-b+fr/strings.xml	string	subtitles_outline	-	STR	Contour	
 values-b+fr/strings.xml	string	subtitles_raised	-	STR	Élévation	
 values-b+fr/strings.xml	string	subtitles_remove_bloat	-	STR	Supprimer les éléments superflus des sous-titres	
@@ -10367,6 +10427,9 @@ values-b+gl/strings.xml	string	subs_subtitle_languages	-	STR	Idioma do Subtítul
 values-b+gl/strings.xml	string	subs_text_color	-	STR	Cor de Texto	
 values-b+gl/strings.xml	string	subs_window_color	-	STR	Cor de Ventá	
 values-b+gl/strings.xml	string	subscribe_tooltip	-	STR	Notificación de novo capítulo	
+values-b+gl/strings.xml	string	subtitles_file_empty	-	STR	Este ficheiro de subtítulos está baleiro	
+values-b+gl/strings.xml	string	subtitles_format_unsupported	-	STR	Este formato de subtítulos non é compatible	
+values-b+gl/strings.xml	string	subtitles_load_failed	-	STR	Non se puideron cargar estes subtítulos	
 values-b+gl/strings.xml	string	subtitles_settings	-	STR	Configurar Subtítulos	
 values-b+gl/strings.xml	string	swipe_to_change_settings	-	STR	Deslice para cambiar a configuración	
 values-b+gl/strings.xml	string	swipe_to_change_settings_des	-	STR	Deslice cara arriba ou cara abaixo no lado esquerdo ou dereito para cambiar o brillo ou o volumen	
@@ -10796,6 +10859,9 @@ values-b+hi/strings.xml	string	subs_text_color	-	STR	अक्षर का र�
 values-b+hi/strings.xml	string	subs_window_color	-	STR	बॉक्स का रंग	
 values-b+hi/strings.xml	string	subscribe_tooltip	-	STR	नये एपिसोड की अधिसूचना	
 values-b+hi/strings.xml	string	subtitles_encoding	-	STR	उपशीर्षक एन्कोडिंग	
+values-b+hi/strings.xml	string	subtitles_file_empty	-	STR	यह उपशीर्षक फ़ाइल खाली है	
+values-b+hi/strings.xml	string	subtitles_format_unsupported	-	STR	यह उपशीर्षक प्रारूप समर्थित नहीं है	
+values-b+hi/strings.xml	string	subtitles_load_failed	-	STR	ये उपशीर्षक लोड नहीं हो सके	
 values-b+hi/strings.xml	string	subtitles_settings	-	STR	उपशीर्षक सेटिंग्स	
 values-b+hi/strings.xml	string	swipe_to_change_settings	-	STR	सेटिंग्स परिवर्तित करने के लिए स्वाइप करें	
 values-b+hi/strings.xml	string	swipe_to_change_settings_des	-	STR	चमक या वॉल्यूम बदलने के लिए बाईं या दाईं ओर ऊपर या नीचे स्लाइड करें	
@@ -11527,9 +11593,12 @@ values-b+hr/strings.xml	string	subtitle_offset_title	-	STR	Kašnjenje titlova
 values-b+hr/strings.xml	string	subtitles_depressed	-	STR	Udubljeno	
 values-b+hr/strings.xml	string	subtitles_encoding	-	STR	Kodiranje titlova	
 values-b+hr/strings.xml	string	subtitles_example_text	-	STR	Gojazni đačić s biciklom drži hmelj i finu vatu u džepu nošnje	
+values-b+hr/strings.xml	string	subtitles_file_empty	-	STR	Ova datoteka titlova je prazna	
 values-b+hr/strings.xml	string	subtitles_filter_lang	-	STR	Filtriraj po preferiranom jeziku medija	
+values-b+hr/strings.xml	string	subtitles_format_unsupported	-	STR	Ovaj format titlova nije podržan	
 values-b+hr/strings.xml	string	subtitles_from_embedded	-	STR	Ugrađen	
 values-b+hr/strings.xml	string	subtitles_from_online	-	STR	Online	
+values-b+hr/strings.xml	string	subtitles_load_failed	-	STR	Ovi se titlovi nisu mogli učitati	
 values-b+hr/strings.xml	string	subtitles_outline	-	STR	Kontura	
 values-b+hr/strings.xml	string	subtitles_raised	-	STR	Izdignuto	
 values-b+hr/strings.xml	string	subtitles_remove_bloat	-	STR	Ukloni nepotrebne elemente iz titlova (npr. oglase)	
@@ -12207,7 +12276,10 @@ values-b+hu/strings.xml	string	subtitle_offset_title	-	STR	Felirat késleltetés
 values-b+hu/strings.xml	string	subtitles_depressed	-	STR	Nyomott	
 values-b+hu/strings.xml	string	subtitles_encoding	-	STR	Felirat kódolása	
 values-b+hu/strings.xml	string	subtitles_example_text	-	STR	Árvíztűrő tükörfúrógép	
+values-b+hu/strings.xml	string	subtitles_file_empty	-	STR	Ez a feliratfájl üres	
 values-b+hu/strings.xml	string	subtitles_filter_lang	-	STR	Szűrés előnyben részesített médianyelv szerint	
+values-b+hu/strings.xml	string	subtitles_format_unsupported	-	STR	Ez a feliratformátum nem támogatott	
+values-b+hu/strings.xml	string	subtitles_load_failed	-	STR	Nem sikerült betölteni ezeket a feliratokat	
 values-b+hu/strings.xml	string	subtitles_outline	-	STR	Körvonal	
 values-b+hu/strings.xml	string	subtitles_raised	-	STR	Emelt	
 values-b+hu/strings.xml	string	subtitles_remove_bloat	-	STR	Szükségtelen elemek eltávolítása a feliratokról	
@@ -12961,9 +13033,12 @@ values-b+in/strings.xml	string	subtitle_offset_title	-	STR	Penundaan subtitel
 values-b+in/strings.xml	string	subtitles_depressed	-	STR	Ditekan	
 values-b+in/strings.xml	string	subtitles_encoding	-	STR	Enkode subtitel	
 values-b+in/strings.xml	string	subtitles_example_text	-	STR	The quick brown fox jumps over the lazy dog	
+values-b+in/strings.xml	string	subtitles_file_empty	-	STR	File subtitel ini kosong	
 values-b+in/strings.xml	string	subtitles_filter_lang	-	STR	Filter berdasarkan bahasa media pilihan	
+values-b+in/strings.xml	string	subtitles_format_unsupported	-	STR	Format subtitel ini tidak didukung	
 values-b+in/strings.xml	string	subtitles_from_embedded	-	STR	Tertanam	
 values-b+in/strings.xml	string	subtitles_from_online	-	STR	Daring	
+values-b+in/strings.xml	string	subtitles_load_failed	-	STR	Tidak dapat memuat subtitel ini	
 values-b+in/strings.xml	string	subtitles_outline	-	STR	Garis luar	
 values-b+in/strings.xml	string	subtitles_raised	-	STR	Menonjol	
 values-b+in/strings.xml	string	subtitles_remove_bloat	-	STR	Hapus teks tidak perlu pada subtitel	
@@ -13737,9 +13812,12 @@ values-b+it/strings.xml	string	subtitle_offset_title	-	STR	Ritardo sottotitoli
 values-b+it/strings.xml	string	subtitles_depressed	-	STR	Bassorilievo	
 values-b+it/strings.xml	string	subtitles_encoding	-	STR	Encoding Sottotitoli	
 values-b+it/strings.xml	string	subtitles_example_text	-	STR	Ma che bel gufo spenzola da quei travi	
+values-b+it/strings.xml	string	subtitles_file_empty	-	STR	Questo file di sottotitoli è vuoto	
 values-b+it/strings.xml	string	subtitles_filter_lang	-	STR	Filtra in base alla lingua preferita	
+values-b+it/strings.xml	string	subtitles_format_unsupported	-	STR	Questo formato di sottotitoli non è supportato	
 values-b+it/strings.xml	string	subtitles_from_embedded	-	STR	Incorporato	
 values-b+it/strings.xml	string	subtitles_from_online	-	STR	In linea	
+values-b+it/strings.xml	string	subtitles_load_failed	-	STR	Impossibile caricare questi sottotitoli	
 values-b+it/strings.xml	string	subtitles_outline	-	STR	Contorno	
 values-b+it/strings.xml	string	subtitles_raised	-	STR	Rilievo	
 values-b+it/strings.xml	string	subtitles_remove_bloat	-	STR	Rimuovi il bloat dai sottotitoli	
@@ -14336,7 +14414,10 @@ values-b+iw/strings.xml	string	subtitle_offset_title	-	STR	עיכוב כתובי
 values-b+iw/strings.xml	string	subtitles_depressed	-	STR	מדוכא	
 values-b+iw/strings.xml	string	subtitles_encoding	-	STR	קידוד כתוביות	
 values-b+iw/strings.xml	string	subtitles_example_text	-	STR	השועל החום המהיר קופץ מעל הכלב העצלן	
+values-b+iw/strings.xml	string	subtitles_file_empty	-	STR	קובץ הכתוביות הזה ריק	
 values-b+iw/strings.xml	string	subtitles_filter_lang	-	STR	סנן לפי שפת מדיה מועדפת	
+values-b+iw/strings.xml	string	subtitles_format_unsupported	-	STR	פורמט הכתוביות הזה אינו נתמך	
+values-b+iw/strings.xml	string	subtitles_load_failed	-	STR	לא ניתן לטעון את הכתוביות האלה	
 values-b+iw/strings.xml	string	subtitles_outline	-	STR	מתאר	
 values-b+iw/strings.xml	string	subtitles_raised	-	STR	הורם	
 values-b+iw/strings.xml	string	subtitles_remove_bloat	-	STR	הסר נפיחות מכתוביות	
@@ -15084,9 +15165,12 @@ values-b+ja/strings.xml	string	subtitle_offset_title	-	STR	字幕ディレイ
 values-b+ja/strings.xml	string	subtitles_depressed	-	STR	凹んだ	
 values-b+ja/strings.xml	string	subtitles_encoding	-	STR	字幕エンコーディング	
 values-b+ja/strings.xml	string	subtitles_example_text	-	STR	The quick brown fox jumps over the lazy dog	
+values-b+ja/strings.xml	string	subtitles_file_empty	-	STR	この字幕ファイルは空です	
 values-b+ja/strings.xml	string	subtitles_filter_lang	-	STR	優先メディア言語でフィルタ	
+values-b+ja/strings.xml	string	subtitles_format_unsupported	-	STR	この字幕形式には対応していません	
 values-b+ja/strings.xml	string	subtitles_from_embedded	-	STR	埋め込み	
 values-b+ja/strings.xml	string	subtitles_from_online	-	STR	オンライン	
+values-b+ja/strings.xml	string	subtitles_load_failed	-	STR	この字幕を読み込めませんでした	
 values-b+ja/strings.xml	string	subtitles_outline	-	STR	概要	
 values-b+ja/strings.xml	string	subtitles_raised	-	STR	浮き上がった	
 values-b+ja/strings.xml	string	subtitles_remove_bloat	-	STR	字幕から不要なものを削除	
@@ -15322,6 +15406,9 @@ values-b+kn/strings.xml	string	subs_subtitle_elevation	-	STR	ಸಬ್ ಟೈಟ
 values-b+kn/strings.xml	string	subs_subtitle_languages	-	STR	ಸಬ್ ಟೈಟಲ್ಸ್ ಭಾಷೆ	
 values-b+kn/strings.xml	string	subs_text_color	-	STR	ಟೆಕ್ಸ್ಟ್ ಕಲರ್	
 values-b+kn/strings.xml	string	subs_window_color	-	STR	ವಿಂಡೋ ಕಲರ್	
+values-b+kn/strings.xml	string	subtitles_file_empty	-	STR	ಈ ಸಬ್ ಟೈಟಲ್ ಫೈಲ್ ಖಾಲಿಯಾಗಿದೆ	
+values-b+kn/strings.xml	string	subtitles_format_unsupported	-	STR	ಈ ಸಬ್ ಟೈಟಲ್ ಸ್ವರೂಪಕ್ಕೆ ಬೆಂಬಲವಿಲ್ಲ	
+values-b+kn/strings.xml	string	subtitles_load_failed	-	STR	ಈ ಸಬ್ ಟೈಟಲ್ಸ್ ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ	
 values-b+kn/strings.xml	string	subtitles_settings	-	STR	ಸಬ್ ಟೈಟಲ್ಸ್ ಸೆಟ್ಟಿಂಗ್ಸ್	
 values-b+kn/strings.xml	string	swipe_to_change_settings	-	STR	ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಬದಲಾಯಿಸಲು ಸ್ವೈಪ್ ಮಾಡಿ	
 values-b+kn/strings.xml	string	swipe_to_change_settings_des	-	STR	Brightness ಅಥವಾ volume ಬದಲಾಯಿಸಲು ಎಡ ಅಥವಾ ಬಲಭಾಗದಲ್ಲಿ ಮೇಲಕ್ಕೆ ಅಥವಾ ಕೆಳಕ್ಕೆ ಸ್ಲೈಡ್ ಮಾಡಿ	
@@ -16010,9 +16097,12 @@ values-b+ko/strings.xml	string	subtitle_offset_title	-	STR	자막 딜레이
 values-b+ko/strings.xml	string	subtitles_depressed	-	STR	음각	
 values-b+ko/strings.xml	string	subtitles_encoding	-	STR	자막 인코딩	
 values-b+ko/strings.xml	string	subtitles_example_text	-	STR	다람쥐 헌 쳇바퀴에 타고파	
+values-b+ko/strings.xml	string	subtitles_file_empty	-	STR	이 자막 파일은 비어 있습니다	
 values-b+ko/strings.xml	string	subtitles_filter_lang	-	STR	선호하는 미디어 언어로 필터링	
+values-b+ko/strings.xml	string	subtitles_format_unsupported	-	STR	지원되지 않는 자막 형식입니다	
 values-b+ko/strings.xml	string	subtitles_from_embedded	-	STR	내장 자막	
 values-b+ko/strings.xml	string	subtitles_from_online	-	STR	온라인	
+values-b+ko/strings.xml	string	subtitles_load_failed	-	STR	이 자막을 불러올 수 없습니다	
 values-b+ko/strings.xml	string	subtitles_outline	-	STR	윤곽선 효과	
 values-b+ko/strings.xml	string	subtitles_raised	-	STR	양각	
 values-b+ko/strings.xml	string	subtitles_remove_bloat	-	STR	불필요한 요소/코드 제거	
@@ -16388,6 +16478,9 @@ values-b+lt/strings.xml	string	subs_text_color	-	STR	Teksto spalva
 values-b+lt/strings.xml	string	subs_window_color	-	STR	Lango spalva	
 values-b+lt/strings.xml	string	subscribe_tooltip	-	STR	Naujos serijos pranešimas	
 values-b+lt/strings.xml	string	subscription_episode_released	-	STR	Serija %d išleista!	
+values-b+lt/strings.xml	string	subtitles_file_empty	-	STR	Šis subtitrų failas tuščias	
+values-b+lt/strings.xml	string	subtitles_format_unsupported	-	STR	Šis subtitrų formatas nepalaikomas	
+values-b+lt/strings.xml	string	subtitles_load_failed	-	STR	Nepavyko įkelti šių subtitrų	
 values-b+lt/strings.xml	string	subtitles_settings	-	STR	Subtitrų nustatymai	
 values-b+lt/strings.xml	string	swipe_to_change_settings	-	STR	Braukite, kad pakeistumėte nustatymus	
 values-b+lt/strings.xml	string	swipe_to_change_settings_des	-	STR	Braukite aukštyn arba žemyn ekrano kairėje arba dešinėje, jei norite pakeisti ryškumą arba garsą	
@@ -16996,9 +17089,12 @@ values-b+lv/strings.xml	string	subtitle_offset_title	-	STR	Subtitru nobīde
 values-b+lv/strings.xml	string	subtitles_depressed	-	STR	Iespiests	
 values-b+lv/strings.xml	string	subtitles_encoding	-	STR	Subtitru kodējums	
 values-b+lv/strings.xml	string	subtitles_example_text	-	STR	Fogts čuhņā mīļi lenc - ģērbj, žvadz, pūkšķ	
+values-b+lv/strings.xml	string	subtitles_file_empty	-	STR	Šis subtitru fails ir tukšs	
 values-b+lv/strings.xml	string	subtitles_filter_lang	-	STR	Atlasīt pēc vēlamās multimediju valodas	
+values-b+lv/strings.xml	string	subtitles_format_unsupported	-	STR	Šis subtitru formāts netiek atbalstīts	
 values-b+lv/strings.xml	string	subtitles_from_embedded	-	STR	Iegultie	
 values-b+lv/strings.xml	string	subtitles_from_online	-	STR	No interneta	
+values-b+lv/strings.xml	string	subtitles_load_failed	-	STR	Neizdevās ielādēt šos subtitrus	
 values-b+lv/strings.xml	string	subtitles_outline	-	STR	Kontūrs	
 values-b+lv/strings.xml	string	subtitles_raised	-	STR	Izvirzīts	
 values-b+lv/strings.xml	string	subtitles_remove_bloat	-	STR	Noņemt lieko no subtitriem (piemēram, reklāmu)	
@@ -17753,9 +17849,12 @@ values-b+mk/strings.xml	string	subtitle_offset_title	-	STR	Задоцнувањ�
 values-b+mk/strings.xml	string	subtitles_depressed	-	STR	Депресиран	
 values-b+mk/strings.xml	string	subtitles_encoding	-	STR	Енкодирање на превод	
 values-b+mk/strings.xml	string	subtitles_example_text	-	STR	Брзата кафеава лисица го прескокнува мрзливото куче	
+values-b+mk/strings.xml	string	subtitles_file_empty	-	STR	Оваа датотека со преводи е празна	
 values-b+mk/strings.xml	string	subtitles_filter_lang	-	STR	Филтрирај по претпочитан медиумски јазик	
+values-b+mk/strings.xml	string	subtitles_format_unsupported	-	STR	Овој формат на преводи не е поддржан	
 values-b+mk/strings.xml	string	subtitles_from_embedded	-	STR	Вграден	
 values-b+mk/strings.xml	string	subtitles_from_online	-	STR	Онлајн	
+values-b+mk/strings.xml	string	subtitles_load_failed	-	STR	Овие преводи не можеа да се вчитаат	
 values-b+mk/strings.xml	string	subtitles_outline	-	STR	Надворешна контура	
 values-b+mk/strings.xml	string	subtitles_raised	-	STR	Подигнат	
 values-b+mk/strings.xml	string	subtitles_remove_bloat	-	STR	Отстрани непотребен текст од преводите	
@@ -18122,6 +18221,9 @@ values-b+ml/strings.xml	string	subs_subtitle_languages	-	STR	സബ്ടൈറ�
 values-b+ml/strings.xml	string	subs_text_color	-	STR	വാചക നിറം	
 values-b+ml/strings.xml	string	subs_window_color	-	STR	വിൻഡോ നിറം	
 values-b+ml/strings.xml	string	subscribe_tooltip	-	STR	പുതിയ എപ്പിസോഡ് അറിയിപ്പ്	
+values-b+ml/strings.xml	string	subtitles_file_empty	-	STR	ഈ സബ്ടൈട്ടിൽ ഫയൽ ശൂന്യമാണ്	
+values-b+ml/strings.xml	string	subtitles_format_unsupported	-	STR	ഈ സബ്ടൈട്ടിൽ ഫോർമാറ്റ് പിന്തുണയ്ക്കുന്നില്ല	
+values-b+ml/strings.xml	string	subtitles_load_failed	-	STR	ഈ സബ്ടൈട്ടിലുകൾ ലോഡ് ചെയ്യാനായില്ല	
 values-b+ml/strings.xml	string	subtitles_settings	-	STR	ഉപശീർഷകം ക്രമീകരണങ്ങൾ	
 values-b+ml/strings.xml	string	swipe_to_change_settings	-	STR	ക്രമീകരണങ്ങൾ മാറ്റുവാൻ സ്വൈപ്പ് ചെയ്യുക	
 values-b+ml/strings.xml	string	swipe_to_change_settings_des	-	STR	തെളിച്ചം അല്ലെങ്കിൽ വോളിയം മാറ്റാൻ ഇടത്തോട്ടോ വലത്തോട്ടോ നീക്കുക	
@@ -18669,7 +18771,10 @@ values-b+ms/strings.xml	string	subtitle_offset_extra_hint_later_format	-	STR	Gun
 values-b+ms/strings.xml	string	subtitle_offset_extra_hint_none_format	-	STR	Tiada kelewatan sari kata	
 values-b+ms/strings.xml	string	subtitle_offset_hint	-	STR	1000 ms	
 values-b+ms/strings.xml	string	subtitle_offset_title	-	STR	Kelewatan sari kata	
+values-b+ms/strings.xml	string	subtitles_file_empty	-	STR	Fail sari kata ini kosong	
 values-b+ms/strings.xml	string	subtitles_filter_lang	-	STR	Tapis bahasa media mengikut pilihan	
+values-b+ms/strings.xml	string	subtitles_format_unsupported	-	STR	Format sari kata ini tidak disokong	
+values-b+ms/strings.xml	string	subtitles_load_failed	-	STR	Sari kata ini tidak dapat dimuatkan	
 values-b+ms/strings.xml	string	subtitles_outline	-	STR	Rangka	
 values-b+ms/strings.xml	string	subtitles_raised	-	STR	Dinaikkan	
 values-b+ms/strings.xml	string	subtitles_settings	-	STR	Tetapan Sari Kata	
@@ -18873,6 +18978,9 @@ values-b+mt/strings.xml	string	subs_subtitle_languages	-	STR	Lingwa tas-sottotit
 values-b+mt/strings.xml	string	subs_text_color	-	STR	Kulur tal-kitba	
 values-b+mt/strings.xml	string	subs_window_color	-	STR	Kulur tat-Tieqa	
 values-b+mt/strings.xml	string	subscribe_tooltip	-	STR	Notifika ta' episodju ġdid	
+values-b+mt/strings.xml	string	subtitles_file_empty	-	STR	Dan il-fajl tas-sottotitli huwa vojt	
+values-b+mt/strings.xml	string	subtitles_format_unsupported	-	STR	Dan il-format tas-sottotitli mhuwiex appoġġat	
+values-b+mt/strings.xml	string	subtitles_load_failed	-	STR	Dawn is-sottotitli ma setgħux jitgħabbew	
 values-b+mt/strings.xml	string	subtitles_settings	-	STR	Preferenzi tas-sottotitli	
 values-b+mt/strings.xml	string	test_log	-	STR	ġurnal	
 values-b+mt/strings.xml	string	title_downloads	-	STR	Imnizzel	
@@ -19371,7 +19479,10 @@ values-b+my/strings.xml	string	subtitle_offset_title	-	STR	စာတန်းထ
 values-b+my/strings.xml	string	subtitles_depressed	-	STR	ချုံ့ပြီး	
 values-b+my/strings.xml	string	subtitles_encoding	-	STR	စာတန်းထိုး ကုဒ်လုပ်ခြင်း	
 values-b+my/strings.xml	string	subtitles_example_text	-	STR	The quick brown fox jumps over the lazy dog	
+values-b+my/strings.xml	string	subtitles_file_empty	-	STR	ဤစာတန်းထိုးဖိုင်တွင် ဘာမျှမရှိပါ	
 values-b+my/strings.xml	string	subtitles_filter_lang	-	STR	နှစ်သက်ရာ မီဒီယာဘာသာစကားဖြင့် စစ်ထုတ်ပါ	
+values-b+my/strings.xml	string	subtitles_format_unsupported	-	STR	ဤစာတန်းထိုးပုံစံကို မပံ့ပိုးပါ	
+values-b+my/strings.xml	string	subtitles_load_failed	-	STR	ဤစာတန်းထိုးများကို တင်၍မရပါ	
 values-b+my/strings.xml	string	subtitles_outline	-	STR	အနားကွပ်	
 values-b+my/strings.xml	string	subtitles_raised	-	STR	ထမြောက်မှု	
 values-b+my/strings.xml	string	subtitles_remove_bloat	-	STR	စာတန်းထိုးများမှ bloat ကိုဖယ်ရှားပါ	
@@ -19588,6 +19699,9 @@ values-b+ne/strings.xml	string	subs_subtitle_languages	-	STR	उपशीर्�
 values-b+ne/strings.xml	string	subs_text_color	-	STR	अक्षरको रंग	
 values-b+ne/strings.xml	string	subs_window_color	-	STR	विन्डोको रंग	
 values-b+ne/strings.xml	string	subscribe_tooltip	-	STR	नयाँ प्रसङ्ग को सूचना	
+values-b+ne/strings.xml	string	subtitles_file_empty	-	STR	यो उपशीर्षक फाइल खाली छ	
+values-b+ne/strings.xml	string	subtitles_format_unsupported	-	STR	यो उपशीर्षक ढाँचा समर्थित छैन	
+values-b+ne/strings.xml	string	subtitles_load_failed	-	STR	यी उपशीर्षकहरू लोड गर्न सकिएन	
 values-b+ne/strings.xml	string	subtitles_settings	-	STR	उपशीर्षकको सेटिङ	
 values-b+ne/strings.xml	string	test_log	-	STR	Log	
 values-b+ne/strings.xml	string	title_downloads	-	STR	डाउनलोडस	
@@ -20230,8 +20344,11 @@ values-b+nl/strings.xml	string	subtitle_offset_title	-	STR	Subtitle vertraging
 values-b+nl/strings.xml	string	subtitles_depressed	-	STR	Depressed	
 values-b+nl/strings.xml	string	subtitles_encoding	-	STR	Subtitle encoding	
 values-b+nl/strings.xml	string	subtitles_example_text	-	STR	De snelle bruine vos springt over de luie hond	
+values-b+nl/strings.xml	string	subtitles_file_empty	-	STR	Dit ondertitelbestand is leeg	
 values-b+nl/strings.xml	string	subtitles_filter_lang	-	STR	Filter op gewenste mediataal	
+values-b+nl/strings.xml	string	subtitles_format_unsupported	-	STR	Deze ondertitelindeling wordt niet ondersteund	
 values-b+nl/strings.xml	string	subtitles_from_online	-	STR	Online	
+values-b+nl/strings.xml	string	subtitles_load_failed	-	STR	Deze ondertitels konden niet worden geladen	
 values-b+nl/strings.xml	string	subtitles_outline	-	STR	Overzicht	
 values-b+nl/strings.xml	string	subtitles_raised	-	STR	Verhoogd	
 values-b+nl/strings.xml	string	subtitles_remove_bloat	-	STR	Opgeblazen ondertitels verwijderen	
@@ -20523,6 +20640,9 @@ values-b+nn/strings.xml	string	subs_subtitle_elevation	-	STR	Underteksthøgde
 values-b+nn/strings.xml	string	subs_subtitle_languages	-	STR	Undertekstspråk	
 values-b+nn/strings.xml	string	subs_text_color	-	STR	Tekstfarge	
 values-b+nn/strings.xml	string	subs_window_color	-	STR	Vindaugefarge	
+values-b+nn/strings.xml	string	subtitles_file_empty	-	STR	Denne undertekstfila er tom	
+values-b+nn/strings.xml	string	subtitles_format_unsupported	-	STR	Dette undertekstformatet er ikkje støtta	
+values-b+nn/strings.xml	string	subtitles_load_failed	-	STR	Kunne ikkje laste desse undertekstane	
 values-b+nn/strings.xml	string	subtitles_settings	-	STR	Innstillingar for undertekstar	
 values-b+nn/strings.xml	string	synopsis	-	STR	Om	
 values-b+nn/strings.xml	string	title_downloads	-	STR	Nedlastingar	
@@ -21025,7 +21145,10 @@ values-b+no/strings.xml	string	subtitle_offset_title	-	STR	Undertekstforsinkelse
 values-b+no/strings.xml	string	subtitles_depressed	-	STR	Nedsenket	
 values-b+no/strings.xml	string	subtitles_encoding	-	STR	Undertekst-koding	
 values-b+no/strings.xml	string	subtitles_example_text	-	STR	Sær golfer med kølle vant sexquiz på WC i hjemby	
+values-b+no/strings.xml	string	subtitles_file_empty	-	STR	Denne undertekstfilen er tom	
 values-b+no/strings.xml	string	subtitles_filter_lang	-	STR	Filtrer etter foretrukket mediaspråk	
+values-b+no/strings.xml	string	subtitles_format_unsupported	-	STR	Dette undertekstformatet støttes ikke	
+values-b+no/strings.xml	string	subtitles_load_failed	-	STR	Kunne ikke laste disse undertekstene	
 values-b+no/strings.xml	string	subtitles_outline	-	STR	Omriss	
 values-b+no/strings.xml	string	subtitles_raised	-	STR	Opphøyd	
 values-b+no/strings.xml	string	subtitles_remove_bloat	-	STR	Fjern unødvendig informasjon fra undertekster	
@@ -21259,6 +21382,9 @@ values-b+or/strings.xml	string	status_ongoing	-	STR	ଚଳିତ
 values-b+or/strings.xml	string	subs_auto_select_language	-	STR	ଭାଷା ସ୍ୱତଃ-ଚୟନ	
 values-b+or/strings.xml	string	subs_subtitle_languages	-	STR	ଉପଶୀର୍ଷକ ଭାଷା	
 values-b+or/strings.xml	string	subscription_episode_released	-	STR	ଅଧ୍ୟାୟ %d ମୁକ୍ତିଲାଭ କଲା!	
+values-b+or/strings.xml	string	subtitles_file_empty	-	STR	ଏହି ଉପଶୀର୍ଷକ ଫାଇଲ୍ ଖାଲି ଅଛି	
+values-b+or/strings.xml	string	subtitles_format_unsupported	-	STR	ଏହି ଉପଶୀର୍ଷକ ଫର୍ମାଟ୍ ସମର୍ଥିତ ନୁହେଁ	
+values-b+or/strings.xml	string	subtitles_load_failed	-	STR	ଏହି ଉପଶୀର୍ଷକଗୁଡ଼ିକ ଲୋଡ୍ ହୋଇପାରିଲା ନାହିଁ	
 values-b+or/strings.xml	string	sync_total_episodes_none	-	STR	/??	
 values-b+or/strings.xml	string	sync_total_episodes_some	-	STR	/%d	
 values-b+or/strings.xml	string	test_failed	-	STR	ଵିଫଳ ହେଲା	
@@ -21972,9 +22098,12 @@ values-b+pl/strings.xml	string	subtitle_offset_title	-	STR	Opóźnienie napisów
 values-b+pl/strings.xml	string	subtitles_depressed	-	STR	Obniżone	
 values-b+pl/strings.xml	string	subtitles_encoding	-	STR	Kodowanie napisów	
 values-b+pl/strings.xml	string	subtitles_example_text	-	STR	Pchnąć w tę łódź jeża lub ośm skrzyń fig	
+values-b+pl/strings.xml	string	subtitles_file_empty	-	STR	Ten plik napisów jest pusty	
 values-b+pl/strings.xml	string	subtitles_filter_lang	-	STR	Filtrowanie wg preferowanego języka	
+values-b+pl/strings.xml	string	subtitles_format_unsupported	-	STR	Ten format napisów nie jest obsługiwany	
 values-b+pl/strings.xml	string	subtitles_from_embedded	-	STR	Osadzone	
 values-b+pl/strings.xml	string	subtitles_from_online	-	STR	Online	
+values-b+pl/strings.xml	string	subtitles_load_failed	-	STR	Nie udało się załadować tych napisów	
 values-b+pl/strings.xml	string	subtitles_outline	-	STR	Kontur	
 values-b+pl/strings.xml	string	subtitles_raised	-	STR	Wzniesione	
 values-b+pl/strings.xml	string	subtitles_remove_bloat	-	STR	Usuń nadmiarowe informacje z napisów	
@@ -22748,9 +22877,12 @@ values-b+pt+BR/strings.xml	string	subtitle_offset_title	-	STR	Atraso de legenda
 values-b+pt+BR/strings.xml	string	subtitles_depressed	-	STR	Afundado	
 values-b+pt+BR/strings.xml	string	subtitles_encoding	-	STR	Codificação das legendas	
 values-b+pt+BR/strings.xml	string	subtitles_example_text	-	STR	A rápida raposa marrom salta sobre o cachorro preguiçoso	
+values-b+pt+BR/strings.xml	string	subtitles_file_empty	-	STR	Este arquivo de legenda está vazio	
 values-b+pt+BR/strings.xml	string	subtitles_filter_lang	-	STR	Filtrar por linguagem preferida	
+values-b+pt+BR/strings.xml	string	subtitles_format_unsupported	-	STR	Este formato de legenda não é compatível	
 values-b+pt+BR/strings.xml	string	subtitles_from_embedded	-	STR	Incorporada	
 values-b+pt+BR/strings.xml	string	subtitles_from_online	-	STR	Online	
+values-b+pt+BR/strings.xml	string	subtitles_load_failed	-	STR	Não foi possível carregar estas legendas	
 values-b+pt+BR/strings.xml	string	subtitles_outline	-	STR	Contornado	
 values-b+pt+BR/strings.xml	string	subtitles_raised	-	STR	Em Relevo	
 values-b+pt+BR/strings.xml	string	subtitles_remove_bloat	-	STR	Remover bloat das legendas	
@@ -23518,9 +23650,12 @@ values-b+pt/strings.xml	string	subtitle_offset_title	-	STR	Atraso de legenda
 values-b+pt/strings.xml	string	subtitles_depressed	-	STR	Deprimido	
 values-b+pt/strings.xml	string	subtitles_encoding	-	STR	Codificação das legendas	
 values-b+pt/strings.xml	string	subtitles_example_text	-	STR	Luís argüia à Júlia que «brações, fé, chá, óxido, pôr, zângão» eram palavras do português	
+values-b+pt/strings.xml	string	subtitles_file_empty	-	STR	Este ficheiro de legendas está vazio	
 values-b+pt/strings.xml	string	subtitles_filter_lang	-	STR	Filtrar por linguagem preferida	
+values-b+pt/strings.xml	string	subtitles_format_unsupported	-	STR	Este formato de legendas não é suportado	
 values-b+pt/strings.xml	string	subtitles_from_embedded	-	STR	Incorporada	
 values-b+pt/strings.xml	string	subtitles_from_online	-	STR	Online	
+values-b+pt/strings.xml	string	subtitles_load_failed	-	STR	Não foi possível carregar estas legendas	
 values-b+pt/strings.xml	string	subtitles_outline	-	STR	Contornado	
 values-b+pt/strings.xml	string	subtitles_raised	-	STR	Em Relevo	
 values-b+pt/strings.xml	string	subtitles_remove_bloat	-	STR	Remover bloat das legendas	
@@ -24187,7 +24322,10 @@ values-b+qt/strings.xml	string	subtitle_offset_title	-	STR	uuuuhhhh uuuhh
 values-b+qt/strings.xml	string	subtitles_depressed	-	STR	aaaahhhug	
 values-b+qt/strings.xml	string	subtitles_encoding	-	STR	uuuuhhhh oooohhhk	
 values-b+qt/strings.xml	string	subtitles_example_text	-	STR	uug ooohh aaahh uuh aaagg uuuk ooh aagg aag	
+values-b+qt/strings.xml	string	subtitles_file_empty	-	STR	ahhhaauugghh uuhh	
 values-b+qt/strings.xml	string	subtitles_filter_lang	-	STR	oooogg uh aaaahhhog uuugg aaaagggh	
+values-b+qt/strings.xml	string	subtitles_format_unsupported	-	STR	oooohhaaaghh ahhhaauugghh oouuh	
+values-b+qt/strings.xml	string	subtitles_load_failed	-	STR	ahooo oouuhoooohh ahhhaauugghh	
 values-b+qt/strings.xml	string	subtitles_outline	-	STR	aaaaaak	
 values-b+qt/strings.xml	string	subtitles_raised	-	STR	aaaagg	
 values-b+qt/strings.xml	string	subtitles_remove_bloat	-	STR	uuuuhh aaagg aahh oooohhhah	
@@ -24843,7 +24981,10 @@ values-b+ro/strings.xml	string	subtitle_offset_title	-	STR	Delay subtitrare
 values-b+ro/strings.xml	string	subtitles_depressed	-	STR	Deprimat	
 values-b+ro/strings.xml	string	subtitles_encoding	-	STR	Codificarea subtitrărilor	
 values-b+ro/strings.xml	string	subtitles_example_text	-	STR	Vulpea maro iute sare peste câinele leneș	
+values-b+ro/strings.xml	string	subtitles_file_empty	-	STR	Acest fișier de subtitrare este gol	
 values-b+ro/strings.xml	string	subtitles_filter_lang	-	STR	Filtrați în funcție de limba media preferată	
+values-b+ro/strings.xml	string	subtitles_format_unsupported	-	STR	Acest format de subtitrare nu este acceptat	
+values-b+ro/strings.xml	string	subtitles_load_failed	-	STR	Aceste subtitrări nu au putut fi încărcate	
 values-b+ro/strings.xml	string	subtitles_outline	-	STR	Contur	
 values-b+ro/strings.xml	string	subtitles_raised	-	STR	Relief	
 values-b+ro/strings.xml	string	subtitles_remove_bloat	-	STR	Eliminați bloat din subtitrări	
@@ -25609,9 +25750,12 @@ values-b+ru/strings.xml	string	subtitle_offset_title	-	STR	Задержка су
 values-b+ru/strings.xml	string	subtitles_depressed	-	STR	Опущенные	
 values-b+ru/strings.xml	string	subtitles_encoding	-	STR	Кодировка субтитров	
 values-b+ru/strings.xml	string	subtitles_example_text	-	STR	Съешь ещё этих мягких французских булок, да выпей же чаю	
+values-b+ru/strings.xml	string	subtitles_file_empty	-	STR	Этот файл субтитров пуст	
 values-b+ru/strings.xml	string	subtitles_filter_lang	-	STR	Фильтровать по предпочитаемому языку медиа	
+values-b+ru/strings.xml	string	subtitles_format_unsupported	-	STR	Этот формат субтитров не поддерживается	
 values-b+ru/strings.xml	string	subtitles_from_embedded	-	STR	Встроенный	
 values-b+ru/strings.xml	string	subtitles_from_online	-	STR	Из сети	
+values-b+ru/strings.xml	string	subtitles_load_failed	-	STR	Не удалось загрузить эти субтитры	
 values-b+ru/strings.xml	string	subtitles_outline	-	STR	Контурный	
 values-b+ru/strings.xml	string	subtitles_raised	-	STR	Поднятые	
 values-b+ru/strings.xml	string	subtitles_remove_bloat	-	STR	Удалять лишнее из субтитров	
@@ -26144,6 +26288,9 @@ values-b+sk/strings.xml	string	subtitle_offset_hint	-	STR	1000 ms
 values-b+sk/strings.xml	string	subtitle_offset_title	-	STR	Oneskorenie tituliek	
 values-b+sk/strings.xml	string	subtitles_encoding	-	STR	Kódovanie titulkov	
 values-b+sk/strings.xml	string	subtitles_example_text	-	STR	V kŕdli čajok švihol ďateľ v ústí milej obžerky	
+values-b+sk/strings.xml	string	subtitles_file_empty	-	STR	Tento súbor titulkov je prázdny	
+values-b+sk/strings.xml	string	subtitles_format_unsupported	-	STR	Tento formát titulkov nie je podporovaný	
+values-b+sk/strings.xml	string	subtitles_load_failed	-	STR	Tieto titulky sa nepodarilo načítať	
 values-b+sk/strings.xml	string	subtitles_outline	-	STR	Obrys	
 values-b+sk/strings.xml	string	subtitles_remove_captions	-	STR	Odstráňte uzavreté titulky od titulkov	
 values-b+sk/strings.xml	string	subtitles_settings	-	STR	Nastavenia titulkov	
@@ -26681,7 +26828,10 @@ values-b+so/strings.xml	string	subtitle_offset_title	-	STR	Dib-u-dhaca Qrl-hoosa
 values-b+so/strings.xml	string	subtitles_depressed	-	STR	Hoos u degsan	
 values-b+so/strings.xml	string	subtitles_encoding	-	STR	Horidda Qoraal-hoosaadka	
 values-b+so/strings.xml	string	subtitles_example_text	-	STR	Sheekheenna wiilkiisa curad, gabadhiisu foox la'aan ma heesi karto	
+values-b+so/strings.xml	string	subtitles_file_empty	-	STR	Faylkan qoraal-hoosaadka waa madhan yahay	
 values-b+so/strings.xml	string	subtitles_filter_lang	-	STR	U kala hor sida luuqadaha aad doorbidday	
+values-b+so/strings.xml	string	subtitles_format_unsupported	-	STR	Qaabkan qoraal-hoosaadka lama taageero	
+values-b+so/strings.xml	string	subtitles_load_failed	-	STR	Qoraal-hoosaadkan lama soo rari karin	
 values-b+so/strings.xml	string	subtitles_outline	-	STR	Lakabka sare	
 values-b+so/strings.xml	string	subtitles_raised	-	STR	Kor-u-qaadan	
 values-b+so/strings.xml	string	subtitles_remove_bloat	-	STR	Ka saar bararsanaanta Qrl-hoosaadka	
@@ -27427,9 +27577,12 @@ values-b+sq/strings.xml	string	subtitle_offset_title	-	STR	Vonesa e titrave
 values-b+sq/strings.xml	string	subtitles_depressed	-	STR	Të zhytura	
 values-b+sq/strings.xml	string	subtitles_encoding	-	STR	Enkodimi i titrave	
 values-b+sq/strings.xml	string	subtitles_example_text	-	STR	Dhelpra e shpejtë ngjyra kafe kërcen mbi qenin dembel	
+values-b+sq/strings.xml	string	subtitles_file_empty	-	STR	Ky skedar titrash është bosh	
 values-b+sq/strings.xml	string	subtitles_filter_lang	-	STR	Filtro sipas gjuhës së preferuar të medias	
+values-b+sq/strings.xml	string	subtitles_format_unsupported	-	STR	Ky format titrash nuk mbështetet	
 values-b+sq/strings.xml	string	subtitles_from_embedded	-	STR	I integruar	
 values-b+sq/strings.xml	string	subtitles_from_online	-	STR	Online	
+values-b+sq/strings.xml	string	subtitles_load_failed	-	STR	Këto titra nuk mund të ngarkoheshin	
 values-b+sq/strings.xml	string	subtitles_outline	-	STR	Kontur	
 values-b+sq/strings.xml	string	subtitles_raised	-	STR	Të ngritura	
 values-b+sq/strings.xml	string	subtitles_remove_bloat	-	STR	Hiq të tepërtat nga titrat	
@@ -28199,9 +28352,12 @@ values-b+sv/strings.xml	string	subtitle_offset_title	-	STR	Fördröjning av unde
 values-b+sv/strings.xml	string	subtitles_depressed	-	STR	Nedsänkt	
 values-b+sv/strings.xml	string	subtitles_encoding	-	STR	Undertextkodning	
 values-b+sv/strings.xml	string	subtitles_example_text	-	STR	Flygande bäckasiner söka hwila på mjuka tuvor	
+values-b+sv/strings.xml	string	subtitles_file_empty	-	STR	Den här undertextfilen är tom	
 values-b+sv/strings.xml	string	subtitles_filter_lang	-	STR	Filtrera efter föredraget språk	
+values-b+sv/strings.xml	string	subtitles_format_unsupported	-	STR	Det här undertextformatet stöds inte	
 values-b+sv/strings.xml	string	subtitles_from_embedded	-	STR	Inbäddad	
 values-b+sv/strings.xml	string	subtitles_from_online	-	STR	Ansluten	
+values-b+sv/strings.xml	string	subtitles_load_failed	-	STR	Det gick inte att ladda de här undertexterna	
 values-b+sv/strings.xml	string	subtitles_outline	-	STR	Kontur	
 values-b+sv/strings.xml	string	subtitles_raised	-	STR	Upphöjd	
 values-b+sv/strings.xml	string	subtitles_remove_bloat	-	STR	Ta bort reklam från undertexter	
@@ -28971,9 +29127,12 @@ values-b+ta/strings.xml	string	subtitle_offset_title	-	STR	வசன நேர�
 values-b+ta/strings.xml	string	subtitles_depressed	-	STR	மனச்சோர்வு	
 values-b+ta/strings.xml	string	subtitles_encoding	-	STR	வசன குறியீட்டு	
 values-b+ta/strings.xml	string	subtitles_example_text	-	STR	விரைவான பழுப்பு நரி சோம்பேறி நாய் மீது குதிக்கிறது	
+values-b+ta/strings.xml	string	subtitles_file_empty	-	STR	இந்த வசன வரி கோப்பு காலியாக உள்ளது	
 values-b+ta/strings.xml	string	subtitles_filter_lang	-	STR	விருப்பமான ஊடக மொழியால் வடிகட்டவும்	
+values-b+ta/strings.xml	string	subtitles_format_unsupported	-	STR	இந்த வசன வரி வடிவம் ஆதரிக்கப்படவில்லை	
 values-b+ta/strings.xml	string	subtitles_from_embedded	-	STR	உட்பொதிக்கப்பட்டது	
 values-b+ta/strings.xml	string	subtitles_from_online	-	STR	ஆன்லைனில்	
+values-b+ta/strings.xml	string	subtitles_load_failed	-	STR	இந்த வசன வரிகளை ஏற்ற முடியவில்லை	
 values-b+ta/strings.xml	string	subtitles_outline	-	STR	அவுட்லைன்	
 values-b+ta/strings.xml	string	subtitles_raised	-	STR	எழுப்பப்பட்ட	
 values-b+ta/strings.xml	string	subtitles_remove_bloat	-	STR	வசனங்களிலிருந்து வீக்கத்தை அகற்று	
@@ -29105,6 +29264,9 @@ values-b+ti/strings.xml	string	next_episode_format	-	STR	ክፋል %d በ ላይ
 values-b+ti/strings.xml	string	search_state_idle_body_desktop	-	STR	ኣርእስቲ ጽሓፍ። ውጽኢታት ነፍሲ ወከፍ ምንጪ ምስ መለሰ ኣብ ትሕቲኡ ይርአዩ።	
 values-b+ti/strings.xml	string	seek_back_10_seconds	-	STR	10 ካልኢት ንድሕሪት	
 values-b+ti/strings.xml	string	seek_forward_10_seconds	-	STR	10 ካልኢት ንቕድሚት	
+values-b+ti/strings.xml	string	subtitles_file_empty	-	STR	እዚ ፋይል ንኡስ ጽሑፍ ባዶ እዩ	
+values-b+ti/strings.xml	string	subtitles_format_unsupported	-	STR	እዚ ቅርጺ ንኡስ ጽሑፍ ኣይድገፍን እዩ	
+values-b+ti/strings.xml	string	subtitles_load_failed	-	STR	ነዚ ንኡስ ጽሑፋት ክጽዓን ኣይተኻእለን	
 values-b+tl/strings.xml	plurals	home_sections_failed	one	STR	Hindi na-load ang %d seksyon	
 values-b+tl/strings.xml	plurals	home_sections_failed	other	STR	Hindi na-load ang %d seksyon	
 values-b+tl/strings.xml	string	action_add_to_bookmarks	-	STR	I-set ang Status	
@@ -29348,6 +29510,9 @@ values-b+tl/strings.xml	string	subs_subtitle_elevation	-	STR	Subtitle Elevation
 values-b+tl/strings.xml	string	subs_subtitle_languages	-	STR	Wika ng Subtitle	
 values-b+tl/strings.xml	string	subs_text_color	-	STR	Kulay ng Teksto	
 values-b+tl/strings.xml	string	subs_window_color	-	STR	Window Color	
+values-b+tl/strings.xml	string	subtitles_file_empty	-	STR	Walang laman ang subtitle file na ito	
+values-b+tl/strings.xml	string	subtitles_format_unsupported	-	STR	Hindi sinusuportahan ang format ng subtitle na ito	
+values-b+tl/strings.xml	string	subtitles_load_failed	-	STR	Hindi ma-load ang mga subtitle na ito	
 values-b+tl/strings.xml	string	subtitles_settings	-	STR	Subtitle Setting	
 values-b+tl/strings.xml	string	swipe_to_change_settings	-	STR	Swipe to change settings	
 values-b+tl/strings.xml	string	swipe_to_change_settings_des	-	STR	Swipe pataas/pababa sa kanan o kaliwang bahagi ng player upang dagdagan/bawasan ang brightness/volume	
@@ -30064,9 +30229,12 @@ values-b+tr/strings.xml	string	subtitle_offset_title	-	STR	Altyazı gecikmesi
 values-b+tr/strings.xml	string	subtitles_depressed	-	STR	Çökmüş	
 values-b+tr/strings.xml	string	subtitles_encoding	-	STR	Altyazı kodlaması	
 values-b+tr/strings.xml	string	subtitles_example_text	-	STR	Pijamalı hasta yağız şoföre çabucak güvendi	
+values-b+tr/strings.xml	string	subtitles_file_empty	-	STR	Bu altyazı dosyası boş	
 values-b+tr/strings.xml	string	subtitles_filter_lang	-	STR	Tercih edilen medya diline göre filtrele	
+values-b+tr/strings.xml	string	subtitles_format_unsupported	-	STR	Bu altyazı biçimi desteklenmiyor	
 values-b+tr/strings.xml	string	subtitles_from_embedded	-	STR	Yerleştir	
 values-b+tr/strings.xml	string	subtitles_from_online	-	STR	Çevrimiçi	
+values-b+tr/strings.xml	string	subtitles_load_failed	-	STR	Bu altyazılar yüklenemedi	
 values-b+tr/strings.xml	string	subtitles_outline	-	STR	Dış hat	
 values-b+tr/strings.xml	string	subtitles_raised	-	STR	Yükseltilmiş	
 values-b+tr/strings.xml	string	subtitles_remove_bloat	-	STR	Altyazılardaki şişkinliği kaldır	
@@ -30844,9 +31012,12 @@ values-b+uk/strings.xml	string	subtitle_offset_title	-	STR	Затримка су
 values-b+uk/strings.xml	string	subtitles_depressed	-	STR	Опущені	
 values-b+uk/strings.xml	string	subtitles_encoding	-	STR	Кодування субтитрів	
 values-b+uk/strings.xml	string	subtitles_example_text	-	STR	Щастям б’єш жук їх глицю в фон й ґедзь пріч	
+values-b+uk/strings.xml	string	subtitles_file_empty	-	STR	Цей файл субтитрів порожній	
 values-b+uk/strings.xml	string	subtitles_filter_lang	-	STR	Фільтрувати за бажаною мовою медіа	
+values-b+uk/strings.xml	string	subtitles_format_unsupported	-	STR	Цей формат субтитрів не підтримується	
 values-b+uk/strings.xml	string	subtitles_from_embedded	-	STR	Вбудовані	
 values-b+uk/strings.xml	string	subtitles_from_online	-	STR	Мережеві	
+values-b+uk/strings.xml	string	subtitles_load_failed	-	STR	Не вдалося завантажити ці субтитри	
 values-b+uk/strings.xml	string	subtitles_outline	-	STR	Обведення	
 values-b+uk/strings.xml	string	subtitles_raised	-	STR	Підняті	
 values-b+uk/strings.xml	string	subtitles_remove_bloat	-	STR	Вилучати роздуття субтитрів	
@@ -31493,7 +31664,10 @@ values-b+ur/strings.xml	string	subtitle_offset_title	-	STR	زیرنویس میں
 values-b+ur/strings.xml	string	subtitles_depressed	-	STR	دپرسڈ	
 values-b+ur/strings.xml	string	subtitles_encoding	-	STR	سب ٹائٹل انکوڈنگ	
 values-b+ur/strings.xml	string	subtitles_example_text	-	STR	تیز بھوری لومڑی سست کتے پر چھلانگ لگاتی ہے	
+values-b+ur/strings.xml	string	subtitles_file_empty	-	STR	یہ سب ٹائٹل فائل خالی ہے	
 values-b+ur/strings.xml	string	subtitles_filter_lang	-	STR	ترجیحی میڈیا زبان کے لحاظ سے فلٹر کریں	
+values-b+ur/strings.xml	string	subtitles_format_unsupported	-	STR	یہ سب ٹائٹل فارمیٹ معاون نہیں ہے	
+values-b+ur/strings.xml	string	subtitles_load_failed	-	STR	یہ سب ٹائٹلز لوڈ نہیں ہو سکے	
 values-b+ur/strings.xml	string	subtitles_outline	-	STR	خاکہ	
 values-b+ur/strings.xml	string	subtitles_raised	-	STR	اٹھایا	
 values-b+ur/strings.xml	string	subtitles_remove_bloat	-	STR	سب ٹائٹلز سے بلوٹ کو ہٹا دیں	
@@ -32246,9 +32420,12 @@ values-b+vi/strings.xml	string	subtitle_offset_title	-	STR	Độ trễ phụ đ�
 values-b+vi/strings.xml	string	subtitles_depressed	-	STR	Chìm	
 values-b+vi/strings.xml	string	subtitles_encoding	-	STR	Mã hoá phụ đề	
 values-b+vi/strings.xml	string	subtitles_example_text	-	STR	Phụ đề của bạn sẽ trông tương tự như thế này	
+values-b+vi/strings.xml	string	subtitles_file_empty	-	STR	Tệp phụ đề này trống	
 values-b+vi/strings.xml	string	subtitles_filter_lang	-	STR	Lọc theo ngôn ngữ ưu tiên	
+values-b+vi/strings.xml	string	subtitles_format_unsupported	-	STR	Định dạng phụ đề này không được hỗ trợ	
 values-b+vi/strings.xml	string	subtitles_from_embedded	-	STR	Được nhúng	
 values-b+vi/strings.xml	string	subtitles_from_online	-	STR	Trực tuyến	
+values-b+vi/strings.xml	string	subtitles_load_failed	-	STR	Không thể tải phụ đề này	
 values-b+vi/strings.xml	string	subtitles_outline	-	STR	Viền	
 values-b+vi/strings.xml	string	subtitles_raised	-	STR	Nâng	
 values-b+vi/strings.xml	string	subtitles_remove_bloat	-	STR	Xóa bỏ nội dung thừa trong phụ đề	
@@ -33010,9 +33187,12 @@ values-b+zh+TW/strings.xml	string	subtitle_offset_title	-	STR	字幕延遲
 values-b+zh+TW/strings.xml	string	subtitles_depressed	-	STR	凹陷	
 values-b+zh+TW/strings.xml	string	subtitles_encoding	-	STR	字幕編碼	
 values-b+zh+TW/strings.xml	string	subtitles_example_text	-	STR	The quick brown fox jumps over the lazy dog	
+values-b+zh+TW/strings.xml	string	subtitles_file_empty	-	STR	此字幕檔案為空白	
 values-b+zh+TW/strings.xml	string	subtitles_filter_lang	-	STR	按偏好的片源語言篩選	
+values-b+zh+TW/strings.xml	string	subtitles_format_unsupported	-	STR	不支援此字幕格式	
 values-b+zh+TW/strings.xml	string	subtitles_from_embedded	-	STR	內嵌	
 values-b+zh+TW/strings.xml	string	subtitles_from_online	-	STR	線上	
+values-b+zh+TW/strings.xml	string	subtitles_load_failed	-	STR	無法載入這些字幕	
 values-b+zh+TW/strings.xml	string	subtitles_outline	-	STR	輪廓	
 values-b+zh+TW/strings.xml	string	subtitles_raised	-	STR	凸出	
 values-b+zh+TW/strings.xml	string	subtitles_remove_bloat	-	STR	移除字幕廣告	
@@ -33776,9 +33956,12 @@ values-b+zh/strings.xml	string	subtitle_offset_title	-	STR	字幕延迟
 values-b+zh/strings.xml	string	subtitles_depressed	-	STR	凹陷	
 values-b+zh/strings.xml	string	subtitles_encoding	-	STR	字幕编码	
 values-b+zh/strings.xml	string	subtitles_example_text	-	STR	The quick brown fox jumps over the lazy dog	
+values-b+zh/strings.xml	string	subtitles_file_empty	-	STR	此字幕文件为空	
 values-b+zh/strings.xml	string	subtitles_filter_lang	-	STR	按首选片源语言过滤	
+values-b+zh/strings.xml	string	subtitles_format_unsupported	-	STR	不支持此字幕格式	
 values-b+zh/strings.xml	string	subtitles_from_embedded	-	STR	内嵌	
 values-b+zh/strings.xml	string	subtitles_from_online	-	STR	在线	
+values-b+zh/strings.xml	string	subtitles_load_failed	-	STR	无法加载这些字幕	
 values-b+zh/strings.xml	string	subtitles_outline	-	STR	轮廓	
 values-b+zh/strings.xml	string	subtitles_raised	-	STR	凸出	
 values-b+zh/strings.xml	string	subtitles_remove_bloat	-	STR	移除字幕广告	
@@ -34706,9 +34889,12 @@ values/strings.xml	string	subtitle_offset_title	-	STR	Subtitle delay
 values/strings.xml	string	subtitles_depressed	-	STR	Depressed	
 values/strings.xml	string	subtitles_encoding	-	STR	Subtitle encoding	
 values/strings.xml	string	subtitles_example_text	-	STR	The quick brown fox jumps over the lazy dog	
+values/strings.xml	string	subtitles_file_empty	-	STR	This subtitle file is empty	
 values/strings.xml	string	subtitles_filter_lang	-	STR	Filter by preferred media language	
+values/strings.xml	string	subtitles_format_unsupported	-	STR	This subtitle format isn't supported	
 values/strings.xml	string	subtitles_from_embedded	-	STR	Embedded	
 values/strings.xml	string	subtitles_from_online	-	STR	Online	
+values/strings.xml	string	subtitles_load_failed	-	STR	Couldn't load these subtitles	
 values/strings.xml	string	subtitles_none	-	REF	string/none	
 values/strings.xml	string	subtitles_outline	-	STR	Outline	
 values/strings.xml	string	subtitles_raised	-	STR	Raised	

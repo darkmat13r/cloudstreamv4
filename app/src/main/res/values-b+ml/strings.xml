@@ -274,6 +274,9 @@
 <string name="subs_text_color">"വാചക നിറം"</string>
 <string name="subs_window_color">"വിൻഡോ നിറം"</string>
 <string name="subscribe_tooltip">"പുതിയ എപ്പിസോഡ് അറിയിപ്പ്"</string>
+<string name="subtitles_file_empty">"ഈ സബ്ടൈട്ടിൽ ഫയൽ ശൂന്യമാണ്"</string>
+<string name="subtitles_format_unsupported">"ഈ സബ്ടൈട്ടിൽ ഫോർമാറ്റ് പിന്തുണയ്ക്കുന്നില്ല"</string>
+<string name="subtitles_load_failed">"ഈ സബ്ടൈട്ടിലുകൾ ലോഡ് ചെയ്യാനായില്ല"</string>
 <string name="subtitles_settings">"ഉപശീർഷകം ക്രമീകരണങ്ങൾ"</string>
 <string name="swipe_to_change_settings">"ക്രമീകരണങ്ങൾ മാറ്റുവാൻ സ്വൈപ്പ് ചെയ്യുക"</string>
 <string name="swipe_to_change_settings_des">"തെളിച്ചം അല്ലെങ്കിൽ വോളിയം മാറ്റാൻ ഇടത്തോട്ടോ വലത്തോട്ടോ നീക്കുക"</string>

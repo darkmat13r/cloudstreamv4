@@ -183,4 +183,98 @@ class HostProtocolTest {
         val whole = HostProtocol.encode { writeText("hello") }
         assertFailsWith<IOException> { HostProtocol.readFrame(ByteArrayInputStream(whole.copyOf(whole.size - 2))) }
     }
+
+    @Test
+    fun `links carry their subtitles across the boundary`() {
+        val links = RemoteLinks(
+            links = listOf(RemoteLink("s", "n", "https://a/v", 720, "VIDEO", null, null, null)),
+            subtitles = listOf(
+                RemoteSubtitle("English", "en", "https://a/en.vtt", "https://r/", "ua"),
+                RemoteSubtitle("asr", null, "https://a/x.srt", null, null),
+            ),
+        )
+        assertEquals(links, HostProtocol.decode(body(HostProtocol.encode { writeLinks(links) })) { readLinks() })
+    }
+
+    @Test
+    fun `a lying subtitle count ends the frame rather than allocating`() {
+        val frame = HostProtocol.encode {
+            writeInt(Int.MAX_VALUE)
+        }
+        assertFailsWith<IOException> { HostProtocol.decode(body(frame)) { readLinks() } }
+    }
+
+    private fun subtitle(language: String = "English", tag: String? = "en", url: String = "https://a/en.vtt") =
+        RemoteSubtitle(language, tag, url, null, null)
+
+    @Test
+    fun `a plain track passes unchanged`() {
+        assertEquals(subtitle(), subtitle().cleaned())
+    }
+
+    @Test
+    fun `a label loses controls, format characters and line separators`() {
+        val hostile = "\u202EEng\u200Blish\u0007\n\u2028\u2066"
+        assertEquals("English", subtitle(language = hostile).cleaned()?.language)
+    }
+
+    @Test
+    fun `a label is cut, and an empty one falls back on the tag or the track is dropped`() {
+        assertEquals(128, subtitle(language = "x".repeat(5000)).cleaned()?.language?.length)
+        assertEquals("en", subtitle(language = "\u202E  ").cleaned()?.language)
+        assertNull(subtitle(language = "\u202E  ", tag = null).cleaned())
+    }
+
+    @Test
+    fun `only http and https survive, and no userinfo`() {
+        assertEquals("http://a/x", subtitle(url = "http://a/x").cleaned()?.url)
+        for (url in listOf(
+            "file:///etc/passwd",
+            "ftp://a/x",
+            "content://x",
+            "javascript:alert(1)",
+            "data:text/plain,x",
+            "",
+            "not a url",
+            "https://",
+            "https://user:pass@a/x",
+            "https://a/x\ny",
+            "https://a/" + "x".repeat(SandboxPolicy.MAX_URL_CHARS),
+        )) {
+            assertNull(subtitle(url = url).cleaned(), url)
+        }
+    }
+
+    @Test
+    fun `a tag that is not one is dropped and the track stays`() {
+        assertEquals(null, subtitle(tag = "en\u202E").cleaned()?.languageTag)
+        assertEquals(null, subtitle(tag = "x".repeat(99)).cleaned()?.languageTag)
+        assertEquals("pt-BR", subtitle(tag = "pt-BR").cleaned()?.languageTag)
+    }
+
+    @Test
+    fun `a url's address is not looked up while listing tracks`() {
+        // Nobody chose this track yet, so a name a plugin picked must not be resolved. A literal stays too:
+        // the fetch refuses it, and the person who picks it reads why.
+        assertEquals("http://127.0.0.1/x", subtitle(url = "http://127.0.0.1/x").cleaned()?.url)
+        assertEquals("https://no-such-name.invalid/x", subtitle(url = "https://no-such-name.invalid/x").cleaned()?.url)
+    }
+
+    @Test
+    fun `referer and user agent are cut and lose controls`() {
+        val cleaned = RemoteSubtitle("x", null, "https://a/", "https://r/\r\nX: 1", "u".repeat(5000)).cleaned()
+        assertEquals("https://r/X: 1", cleaned?.referer)
+        assertEquals(256, cleaned?.userAgent?.length)
+    }
+
+    @Test
+    fun `a silent media host is refused every audio service`() {
+        val app = java.io.File("/Applications/VLC.app")
+        val dir = java.io.File("/tmp/x")
+        val loud = SeatbeltProfile.mediaHostRules(app, dir).joinToString("\n")
+        val silent = SeatbeltProfile.mediaHostRules(app, dir, audio = false).joinToString("\n")
+        assertEquals(true, "audio" in loud.lowercase())
+        assertEquals(false, "audio" in silent.lowercase(), silent)
+        assertEquals(true, "com.apple.trustd" in silent, "https still works")
+    }
 }

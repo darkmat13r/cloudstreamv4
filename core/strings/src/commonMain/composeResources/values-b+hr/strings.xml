@@ -668,9 +668,12 @@
 <string name="subtitles_depressed">Udubljeno</string>
 <string name="subtitles_encoding">Kodiranje titlova</string>
 <string name="subtitles_example_text">Gojazni đačić s biciklom drži hmelj i finu vatu u džepu nošnje</string>
+<string name="subtitles_file_empty">Ova datoteka titlova je prazna</string>
 <string name="subtitles_filter_lang">Filtriraj po preferiranom jeziku medija</string>
+<string name="subtitles_format_unsupported">Ovaj format titlova nije podržan</string>
 <string name="subtitles_from_embedded">Ugrađen</string>
 <string name="subtitles_from_online">Online</string>
+<string name="subtitles_load_failed">Ovi se titlovi nisu mogli učitati</string>
 <string name="subtitles_outline">Kontura</string>
 <string name="subtitles_raised">Izdignuto</string>
 <string name="subtitles_remove_bloat">Ukloni nepotrebne elemente iz titlova (npr. oglase)</string>

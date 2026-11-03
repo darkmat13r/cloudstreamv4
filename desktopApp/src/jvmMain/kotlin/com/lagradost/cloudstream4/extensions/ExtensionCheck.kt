@@ -1,9 +1,15 @@
 package com.lagradost.cloudstream4.extensions
 
+import com.lagradost.cloudstream4.feature.extensions.sandbox.RemoteSubtitle
 import com.lagradost.cloudstream4.feature.extensions.sandbox.SandboxedProvider
 import com.lagradost.cloudstream4.feature.home.HomePageReply
 import com.lagradost.cloudstream4.feature.home.HomeSourceId
 import com.lagradost.cloudstream4.home.DesktopHomeSource
+import com.lagradost.cloudstream4.media.model.CuePlacement
+import com.lagradost.cloudstream4.media.model.SubtitleSource
+import com.lagradost.cloudstream4.media.model.SubtitleTrack
+import com.lagradost.cloudstream4.player.HttpSubtitleLoader
+import com.lagradost.cloudstream4.player.SubtitleLoad
 import kotlinx.coroutines.runBlocking
 
 /**
@@ -24,7 +30,7 @@ fun runExtensionCheck(query: String, verbose: Boolean = false): Int = runBlockin
         extensions.loadInstalled().lines().forEach(::println)
         var working = 0
         for (provider in extensions.providers) {
-            val outcome = check(provider, query)
+            val outcome = check(provider, query, verbose)
             if (outcome.foundResults) working++
             println("check: ${provider.name} — ${outcome.summary}")
             println("check: ${provider.name} — ${checkHome(provider)}")
@@ -69,7 +75,7 @@ private suspend fun checkHome(provider: SandboxedProvider): String {
 private class CheckOutcome(val foundResults: Boolean, val summary: String)
 
 /** Each stage reports alone, because "search works and opening fails" is a different plugin problem. */
-private suspend fun check(provider: SandboxedProvider, query: String): CheckOutcome {
+private suspend fun check(provider: SandboxedProvider, query: String, verbose: Boolean): CheckOutcome {
     val page = try {
         provider.search(query, 1)
     } catch (failure: Exception) {
@@ -88,9 +94,43 @@ private suspend fun check(provider: SandboxedProvider, query: String): CheckOutc
     return try {
         val links = provider.links(data)
         val hosts = links.links.map { it.url.substringAfter("://").substringBefore('/') }.distinct()
-        CheckOutcome(true, "$opened · ${links.links.size} links ${hosts.take(3)}, ${links.subtitles} subtitles")
+        val subtitles = checkSubtitles(links.subtitles, verbose)
+        CheckOutcome(true, "$opened · ${links.links.size} links ${hosts.take(3)}, ${links.subtitles.size} subtitles$subtitles")
     } catch (failure: Exception) {
         CheckOutcome(true, "$opened · links FAILED: ${failure.message}")
+    }
+}
+
+/**
+ * What opening a subtitle track would show: one track (English where there is one), or with [verbose] all of
+ * them. Through the real fetch and parser, so it answers "would this appear". Prints sizes and counts, never
+ * a URL or a cue's words: a URL can carry a token, and the words are not this report's business.
+ */
+private suspend fun checkSubtitles(subtitles: List<RemoteSubtitle>, verbose: Boolean): String {
+    if (subtitles.isEmpty()) return ""
+    val preferred = subtitles.firstOrNull { it.languageTag?.startsWith("en") == true } ?: subtitles.first()
+    val chosen = if (verbose) subtitles else listOf(preferred)
+    val loader = HttpSubtitleLoader()
+    return buildString {
+        for (subtitle in chosen) {
+            val track = SubtitleTrack(
+                source = SubtitleSource.Remote(subtitle.url),
+                label = subtitle.language,
+                languageTag = subtitle.languageTag,
+            )
+            append("\ncheck:   subtitle ${subtitle.language} (${subtitle.languageTag}) · ${describe(loader.load(track))}")
+        }
+    }
+}
+
+private fun describe(load: SubtitleLoad): String = when (load) {
+    is SubtitleLoad.Failed -> "FAILED: ${load.reason}"
+    is SubtitleLoad.Ready -> {
+        val cues = load.timeline.cues
+        val placed = cues.count { it.placement != CuePlacement.Default }
+        "${load.bytes} bytes · ${load.report.format} · ${cues.size} cues, ${load.report.malformedCues} malformed, " +
+            "${placed} placed · first at ${cues.first().startTimeMs} ms, ${cues.first().text.sumOf { it.length }} chars" +
+            load.report.truncations.takeIf { it.isNotEmpty() }?.let { " · cut: $it" }.orEmpty()
     }
 }
 

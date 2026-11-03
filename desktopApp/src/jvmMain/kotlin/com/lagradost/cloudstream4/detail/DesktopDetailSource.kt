@@ -6,11 +6,15 @@ import com.lagradost.cloudstream4.feature.detail.DetailSource
 import com.lagradost.cloudstream4.feature.detail.StreamLink
 import com.lagradost.cloudstream4.feature.detail.TitleDetail
 import com.lagradost.cloudstream4.feature.extensions.sandbox.RemoteLink
+import com.lagradost.cloudstream4.feature.extensions.sandbox.RemoteSubtitle
 import com.lagradost.cloudstream4.feature.extensions.sandbox.SandboxPolicy
 import com.lagradost.cloudstream4.feature.extensions.sandbox.SandboxedProvider
 import com.lagradost.cloudstream4.feature.search.SearchResultId
+import com.lagradost.cloudstream4.media.model.SubtitleSource
+import com.lagradost.cloudstream4.media.model.SubtitleTrack
 import com.lagradost.cloudstream4.search.DesktopSearchSource
 import java.io.IOException
+import java.util.Locale
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.withContext
@@ -51,14 +55,15 @@ class DesktopDetailSource : DetailSource {
 
     override suspend fun links(id: String, data: String): List<StreamLink> {
         val (provider, _) = providerOf(id)
-        val links = provider.links(data).links
+        val answer = provider.links(data)
+        val subtitles = answer.subtitles.toTracks()
         return withContext(Dispatchers.IO) {
-            links.filter { link ->
+            answer.links.filter { link ->
                 // Resolving a name cannot be interrupted, so a dismissed list stops between links.
                 ensureActive()
                 SandboxPolicy.isPublicHttpUrl(link.url) &&
                     link.audioUrl?.let(SandboxPolicy::isPublicAudioUrl) != false
-            }.map { it.toStreamLink() }
+            }.map { it.toStreamLink(subtitles) }
         }
     }
 
@@ -69,13 +74,14 @@ class DesktopDetailSource : DetailSource {
     private fun String.withoutMarkup(): String =
         replace(BREAK_TAG, " ").replace(ANY_TAG, "").replace(RUN_OF_SPACES, " ").trim()
 
-    private fun RemoteLink.toStreamLink() = StreamLink(
+    private fun RemoteLink.toStreamLink(subtitles: List<SubtitleTrack>) = StreamLink(
         label = name,
         qualityLabel = quality.takeIf { it > 0 }?.let { "${it}p" },
         url = url,
         referer = referer,
         userAgent = userAgent,
         audioUrl = audioUrl,
+        subtitles = subtitles,
     )
 
     private companion object {
@@ -86,3 +92,42 @@ class DesktopDetailSource : DetailSource {
         val RUN_OF_SPACES = Regex("\\s+")
     }
 }
+
+/**
+ * What the plugin offered, as tracks the player can show.
+ *
+ * A URL's address is not looked at here: `HttpSubtitleLoader` does that for the track someone chooses.
+ */
+internal fun List<RemoteSubtitle>.toTracks(): List<SubtitleTrack> {
+    val seen = HashMap<String, Int>()
+    return map { subtitle ->
+        val name = displayName(subtitle)
+        val count = (seen[name] ?: 0) + 1
+        seen[name] = count
+        SubtitleTrack(
+            source = SubtitleSource.Remote(
+                url = subtitle.url,
+                headers = buildMap {
+                    subtitle.referer?.let { put(REFERER, it) }
+                    subtitle.userAgent?.let { put(USER_AGENT, it) }
+                },
+            ),
+            // Two rows must not read the same, and a plugin often has no more to tell them apart with:
+            // ARD offers the same words twice as `deu`, YouTube has an English and an automatic English.
+            label = if (count == 1) name else "$name $count",
+            languageTag = subtitle.languageTag,
+        )
+    }
+}
+
+/** A plugin's `deu` means nothing to anyone, so a bare code becomes its language's name where it has one. */
+private fun displayName(subtitle: RemoteSubtitle): String {
+    val language = subtitle.language
+    val tag = subtitle.languageTag ?: return language
+    if (language.length > MAX_CODE_CHARS || language.any { it !in 'a'..'z' }) return language
+    return Locale.forLanguageTag(tag).getDisplayName(Locale.getDefault()).ifEmpty { language }
+}
+
+private const val REFERER = "Referer"
+private const val USER_AGENT = "User-Agent"
+private const val MAX_CODE_CHARS = 3

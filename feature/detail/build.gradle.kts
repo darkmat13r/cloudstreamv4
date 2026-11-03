@@ -16,6 +16,8 @@ kotlin {
             implementation(project(":core:designsystem"))
             // Every word on these screens comes from here (I18N-08), resolved where it is drawn.
             implementation(project(":core:strings"))
+            // `api`: SubtitleTrack is on StreamLink. Plain data with no dependencies of its own.
+            api(project(":media:model"))
         }
         jvmTest.dependencies {
             implementation(libs.kotlin.test)

@@ -1,9 +1,10 @@
 package com.lagradost.cloudstream4.media.subtitle
 
+import com.lagradost.cloudstream4.media.model.CuePlacement
 import com.lagradost.cloudstream4.media.model.SubtitleCue
 
 /**
- * Pure SRT and WebVTT parsing over untrusted input. Stateless, so safe from any thread.
+ * Pure SRT, WebVTT and TTML parsing over untrusted input. Stateless, so safe from any thread.
  *
  * **Never throws on input, and runs in time linear in the input.** Everything is scanned by hand;
  * there is no `Regex` here to backtrack.
@@ -18,19 +19,23 @@ import com.lagradost.cloudstream4.media.model.SubtitleCue
  * - the index line is optional and need not be an `Int` (`currentLine.toInt()` skips the cue);
  * - a missing blank line between cues does not merge them, and the next cue's index is not shown;
  * - whitespace-only lines end a cue, not just empty ones;
- * - anything after the end time, separated by whitespace, is ignored (SRT `X1:` coordinates, VTT
- *   cue settings).
+ * - a line of spaces right after the timing does not end the cue. That is how every YouTube-derived VTT
+ *   on the Internet Archive starts a cue (measured, `KMP-25`), and ending there lost the cue's words.
+ * - SRT `X1:` coordinates after the end time are ignored.
  *
  * Deliberately stricter: a timestamp field over [MAX_FIELD_DIGITS] digits or a time past
  * [MAX_TIMESTAMP_MS] is malformed, where `hours.toLong()` throws `NumberFormatException` out of
  * `parse`.
  *
+ * ## Placement
+ *
+ * `{\anN}` in any line of a cue, then VTT cue settings. See [CueSettings] for which of those are honoured,
+ * and [TtmlParser] for TTML, which has its own.
+ *
  * ## Not done
  *
  * - **Charset detection.** A file with no BOM is read as UTF-8. `:app` uses `UniversalDetector`, a
  *   JVM library, so a caller holding windows-1256 bytes decodes them and calls the [String] overload.
- * - **Placement.** `{\anN}` and VTT cue settings are stripped, not interpreted. `SubtitleCue` has
- *   nowhere to put them.
  * - **`X-TIMESTAMP-MAP`.** Segmented HLS WebVTT needs it; this parser reads whole files.
  */
 object SubtitleParser {
@@ -65,7 +70,11 @@ object SubtitleParser {
         limits: SubtitleLimits = SubtitleLimits(),
     ): SubtitleParseResult {
         val resolved = format ?: detect(text) ?: return SubtitleParseResult(emptyList(), null)
-        return Run(text, resolved, limits).execute()
+        return if (resolved == SubtitleFormat.TTML) {
+            TtmlParser(text, limits).execute()
+        } else {
+            Run(text, resolved, limits).execute()
+        }
     }
 
     /**
@@ -85,7 +94,7 @@ object SubtitleParser {
             window.take(VTT_MAGIC_WINDOW).contains("WEBVTT", ignoreCase = true) -> SubtitleFormat.VTT
             window.startsWith("[Script Info]", ignoreCase = true) -> null
             window.startsWith("Title:", ignoreCase = true) -> null
-            window.startsWith("<?xml", ignoreCase = true) -> null
+            window.startsWith("<") -> SubtitleFormat.TTML.takeIf { TtmlParser.isRootOf(window) }
             ARROW in window -> SubtitleFormat.SRT
             else -> null
         }
@@ -179,7 +188,11 @@ object SubtitleParser {
             val lines = ArrayList<String>()
             var lastReadWasKept = false
             while (nextLine()) {
-                if (line.isBlank()) break
+                if (line.isBlank()) {
+                    // Spaces before any text are not the end of a cue. A truly empty line is.
+                    if (lines.isEmpty() && line.isNotEmpty()) continue
+                    break
+                }
                 if (currentTiming() != null) {
                     position = lineStart
                     // No blank line before this timing, so the digits above it are its index.
@@ -215,8 +228,14 @@ object SubtitleParser {
                 }
             }
             if (lines.isNotEmpty()) {
-                cues += SubtitleCue(timing.startMs, timing.endMs - timing.startMs, lines)
+                cues += SubtitleCue(timing.startMs, timing.endMs - timing.startMs, lines, placementOf(timing, rawLines))
             }
+        }
+
+        private fun placementOf(timing: Timing, rawLines: List<String>): CuePlacement {
+            val override = rawLines.firstNotNullOfOrNull(CueText::alignmentOverride)
+                ?.let(CuePlacement::fromSsaAlignment)
+            return override ?: if (format == SubtitleFormat.VTT) CueSettings.parse(timing.settings) else CuePlacement.Default
         }
 
         /** STYLE holds CSS and NOTE holds comments. Neither is ever shown, whatever they contain. */
@@ -250,7 +269,7 @@ object SubtitleParser {
         }
     }
 
-    internal class Timing(val startMs: Long, val endMs: Long)
+    internal class Timing(val startMs: Long, val endMs: Long, val settings: String)
 
     /** `null` unless [line] is exactly `timecode --> timecode`, optionally followed by settings. */
     internal fun parseTiming(line: String): Timing? {
@@ -265,7 +284,7 @@ object SubtitleParser {
         val endMs = finish.timecode() ?: return null
         if (finish.index < line.length && !line[finish.index].isWhitespace()) return null
 
-        return Timing(startMs, endMs)
+        return Timing(startMs, endMs, line.substring(finish.index))
     }
 
     private fun skipWhitespace(line: String, from: Int): Int {

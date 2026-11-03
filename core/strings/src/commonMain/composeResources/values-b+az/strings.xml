@@ -157,6 +157,9 @@
 <string name="start">Başlat</string>
 <string name="storage_error">Yükləmə xətası, yaddaş icazələrini yoxlayın</string>
 <string name="subs_default_reset_toast">Standart dəyərlərə sıfırla</string>
+<string name="subtitles_file_empty">Bu subtitr faylı boşdur</string>
+<string name="subtitles_format_unsupported">Bu subtitr formatı dəstəklənmir</string>
+<string name="subtitles_load_failed">Bu subtitrlər yüklənə bilmədi</string>
 <string name="test_failed">Uğursuz oldu</string>
 <string name="test_passed">Uğurlu oldu</string>
 <string name="test_warning">Xəbərdarlıq</string>

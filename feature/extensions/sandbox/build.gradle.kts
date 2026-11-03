@@ -28,6 +28,9 @@ kotlin {
             // `CloudflareKiller` and `DataStore` shims link against them.
             implementation(libs.nicehttp)
             implementation(libs.jackson.module.kotlin)
+            // KMP-23. For plugins, which find it through the host's class loader. Nothing here calls it,
+            // and a host is the only place it is ever given untrusted JSON.
+            runtimeOnly(libs.gson)
         }
         jvmTest.dependencies {
             implementation(libs.kotlin.test)

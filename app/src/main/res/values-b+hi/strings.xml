@@ -388,6 +388,9 @@
 <string name="subs_window_color">"बॉक्स का रंग"</string>
 <string name="subscribe_tooltip">"नये एपिसोड की अधिसूचना"</string>
 <string name="subtitles_encoding">"उपशीर्षक एन्कोडिंग"</string>
+<string name="subtitles_file_empty">"यह उपशीर्षक फ़ाइल खाली है"</string>
+<string name="subtitles_format_unsupported">"यह उपशीर्षक प्रारूप समर्थित नहीं है"</string>
+<string name="subtitles_load_failed">"ये उपशीर्षक लोड नहीं हो सके"</string>
 <string name="subtitles_settings">"उपशीर्षक सेटिंग्स"</string>
 <string name="swipe_to_change_settings">"सेटिंग्स परिवर्तित करने के लिए स्वाइप करें"</string>
 <string name="swipe_to_change_settings_des">"चमक या वॉल्यूम बदलने के लिए बाईं या दाईं ओर ऊपर या नीचे स्लाइड करें"</string>

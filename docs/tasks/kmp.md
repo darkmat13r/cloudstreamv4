@@ -999,7 +999,7 @@ cannot initialise `PluginManager`, because it needs `Environment`. One test pins
 
 ### Where the seam and `PluginManager` disagree
 
-Each is reported, not forced. **`F1` and `F2` want the owner's decision.**
+Each is reported, not forced. **`F1` and `F2` were decided by the owner on 2026-11-03:** Android keeps calling `downloadPlugin` until an Android screen needs this route, so `install` keeps refusing; and the loser of a shared `internalName` stays refused, so `PluginManager`'s published block does not change.
 
 - **`F1` — `install` refuses.** Three separate gaps: `getPluginPath` hashes the repository *index*
   URL, and a listing does not carry it (`ExtensionListing.repositoryUrl` is the extension's own page);
@@ -1056,7 +1056,7 @@ Why: CloudStreamApp.kt:57 writes it into the crash log, blaming a plugin that is
 
 - [x] Owner go-ahead to adapt `PluginManager` to the seam
 - [x] The adapter, for `loaded` / `load` / `unload` / `uninstall`, with the dump diff recorded
-- [ ] Owner: decide `F1` and `F2`
+- [x] Owner: decide `F1` and `F2` (2026-11-03: both as recommended)
 - [ ] Wire a first caller, choosing the `Context` (`F7`), and exercise it on a device
 
 ---
@@ -1777,7 +1777,7 @@ The other 21 were triaged by hand and not independently verified; those fixed we
 
 - Departures from the artboards are listed in `DetailScreenTv`'s KDoc: text buttons (icon pack undecided), no nav rail,
   bookmark, cast rail or More like this, episodes in the cast slot, no live per-extractor rows in 7c.
-- Source, subtitle and audio selectors (7e), resume, watch progress, focus restored to the activated item on back.
+- Source and audio selectors (7e), resume, watch progress, focus restored to the activated item on back. Subtitles came in `KMP-25`.
 - **Screenshot cases.** `DetailScreenTvPreviews` holds 7 pinned states. `:core:screenshot` cannot render on this
   toolchain (`DEC-10`), so nothing guards them yet. No preview exists for the player, which needs libVLC.
 - Function-size rule: `PlayerScreen` and `TitlePage` exceed the 40-line limit. Reported, not split.
@@ -1889,8 +1889,8 @@ cleaning, the delay arithmetic and a lookup over cues. **`:app` is untouched:** 
 - **Output is plain text, not markup.** `&lt;b&gt;` comes out as `<b>`, because that is what the author asked to
   display. References decode once and tags are removed in one pass, so `<<b>script>` also leaves `<script>` as
   text. Anything handing a cue to an HTML parser must escape it (`dependency-security.md`).
-- **`{\anN}` is removed and placement is lost.** Nowhere on `SubtitleCue` to put it, and this PR strips rather
-  than interprets. `:app`'s `fixSubtitleAlignment` honours it, so a future player needs a home for it.
+- **`{\anN}` is read, and `SubtitleCue` has a `placement`** since `KMP-25`. This PR stripped it, because the cue had
+  nowhere to put it.
 - **`delayMs` is positive-means-later,** the sign the dialog shows. `CustomDecoder.subtitleOffset` is its negative.
 - **A position can be `C.TIME_UNSET`,** so delay arithmetic saturates; a plain subtraction wraps to the far future.
 
@@ -2000,9 +2000,9 @@ everything above ran against fakes and the hostile fixture.
 - **`TitleCard` restates search's `ResultCard`,** which is private to `:feature:search`. If a third screen wants one
   it belongs in `core/designsystem/desktop`.
 
-**Found, not changed:** `PluginHostClient.readLoop` treats a reply to an unknown request id as a protocol violation
-and ends the host. A call that passes its 60 s timeout removes its id, so a plugin that answers at 61 s loses its
-whole host, for search as much as for home.
+**Found, not changed here:** `PluginHostClient.readLoop` treated a reply to a timed-out call as a protocol violation
+and ended the host, so a plugin answering at 61 s lost its whole host, for search as much as for home. See `BUG-14`
+in [defects.md](defects.md).
 
 **Run against real plugins, in the sandbox, on 2026-11-03.** `--check-extensions` now reports each provider's first main-page section through `DesktopHomeSource`: Invidious 2 rows and 40 titles, Dailymotion 1 and 26, Twitch 1 and 20, Internet Archive and YouTube 0 rows. Later sections of those two were not checked by this command, and no window was driven. A row header now holds the button's height, because cards jumped 8 dp when `Next` became `Loading`; a test pins it and fails without the fix.
 
@@ -2090,7 +2090,7 @@ Measured with `ScanReport.externalClasses`-equivalent lists over 53 jars against
 `AndroidShimGroupsTest` reads the shims' own constant pools and fails if any names a file, a socket, a process, a loader
 or reflection.
 
-**Not shimmed: `com.google.gson.Gson`**, 3 of 53. It is a real library and adding it is a dependency decision.
+**Not shimmed: `com.google.gson.Gson`**, 3 of 53. It is a real library and adding it is a dependency decision. _Taken: `KMP-23` adds the real library to the desktop host._
 
 ### Results, in the packaged `.app`, each alone in a fresh extensions directory
 
@@ -2363,6 +2363,77 @@ responds to input; it does not prove GPU-dependent rendering or anything about t
 
 **Not addressed:** a taken-over conversion can still fill the disk in its directory until the 120 s timeout, and a process it left running is not killed along with it. A jar already in an existing store is not re-checked.
 
+
+---
+
+## KMP-23 — Gson for plugins, on the desktop host only
+
+**Status:** in pr · owner approved the dependency 2026-11-03, on condition of the usual security check
+
+`com.google.code.gson:gson:2.15.0` is `runtimeOnly` in `:feature:extensions:sandbox`. Nothing first-party calls it.
+A plugin's `URLClassLoader` has the app class loader as its parent, with no allowlist, so a plugin sees whatever is on
+the host's classpath. The host re-executes the same bundle, so the app's JVM has the jar on its classpath too, and never
+loads it. `:app` keeps its own literal `gson:2.11.0`, the sandbox module is not in its graph, and neither Android nor iOS
+gets anything: `app/api/classes-jar.api` is untouched.
+
+### Security check, 2026-11-03
+
+| | |
+|---|---|
+| Coordinates | `com.google.code.gson:gson`, `google/gson` on GitHub, not archived. Jar's own manifest and POM agree |
+| Version | 2.15.0, published 2026-10-24: 10 days old when pinned. Maven Central `release` and the GitHub release agree |
+| Known CVEs | One: `CVE-2022-25647` / `GHSA-4jrv-ppp4-jm57`, fixed in 2.8.9. OSV has nothing for 2.15.0 |
+| Licence | Apache-2.0, as is the transitive dependency |
+| Transitive | `error_prone_annotations:2.50.0`, 30 annotation classes, no runtime dependencies of its own. Left in: Gson's POM says so on purpose |
+| Integrity | Published SHA-256 matches, both jars. **The PGP signature was not checked:** no `gpg` here, and installing one needs asking |
+
+Bundle: +337,460 B of 163,481,404 (+0.21%), two jars. Packaging rewraps them: the bundled hashes differ from Central's, and every entry's CRC matches.
+
+### What it adds to the sandbox
+
+**No capability.** The Seatbelt policy is unchanged and plugin code already runs in that process.
+**It does add a route the scanner cannot see.** `fromJson` and `toJson` allocate a class without running its constructor
+(`sun.misc.Unsafe`, through the bundle's `jdk.unsupported`) and read and write private fields of any class outside the JDK,
+host classes included. All of it with no reference to `java/lang/reflect`, so it scans clean: `GsonInHostTest` pins zero
+findings. The same allocation without Gson works and gets a `reflection` warning, also measured.
+
+**The scanner is not changed.** Blocking `com/google/gson/internal/` would remove nothing, since the public API does the
+same, and warning on `com/google/gson/Gson` would flag ordinary use. A plugin bundling its own Gson is already blocked
+(`sun.misc.Unsafe` in its strings), measured against the real jar, and no sampled plugin does.
+
+For hostile JSON, measured in a real host: the type comes from the calling code, so `@class` and `class` keys are ignored;
+`java.base` classes are refused, because the host has no `--add-opens`; 100,000 open brackets end at the nesting limit, not
+in a `StackOverflowError`. **Not measured:** memory exhaustion from a huge document. `-Xmx512m` is the cap on that.
+
+### Plugins
+
+The `KMP-18` sample was rebuilt by its own rule: 33 of 34 repositories, 56 candidates, 54 fetched. A byte search of each
+dex finds Gson in the same count, 3, and none defines it. Each was reviewed from its dex and by the scanner before anything ran.
+
+| Plugin | Review | Before | After |
+|---|---|---|---|
+| BambooUA v13 | one host, no file, socket, process, loader or reflection use. **Run** | search 1, open `NoClassDefFoundError: com/google/gson/Gson` | search 1, opened, 8 episodes, **1 link** |
+| ViStream v35 | no file, socket, process, loader or reflection use. About 80 hosts, some taken from remote text files and one a third-party decryption API, so its targets cannot be fully reviewed. **Run, noted** | not loaded: `NoClassDefFoundError: java/util/Object` | **the same. Still fails, and Gson is not why** |
+| Fshare v35 | scanner Block, `getInstalledPackages`. **Refused**, as in `KMP-18`, and not run | | |
+
+**ViStream is a separate conversion defect, not fixed here.** `computeFrames` wrote a stack map frame naming `java/util/Object`
+in `ViStreamPlugin`; that name appears nowhere in the dex. Its Gson use is therefore unproven. Whether other plugins hit
+this was not measured.
+
+The five official plugins, `nasa`, before and after, with the same outcome per provider: all load, all hashes verified.
+Dailymotion, YouTube and Internet Archive open. Twitch searches and fails to open (`Could not load page`) and Invidious finds
+0, **both also before this change**.
+
+Each run was in the packaged `.app` with a fresh `user.home`. Polled from outside, `sandbox_check` returned 1 for every
+host and no peer was non-public. No `--check-playback`. Every file in `~/.cloudstream4` is unchanged, hash and mtime. One
+thing moved: the mtime of the empty `.media-host` directory, at a time none of these runs was going. Only the player opens that
+path, an app window on the real home was open throughout, and a control run left it alone. Its cause was not established further.
+
+**Android plugins get 2.11.0 and desktop 2.15.0.** 2.15 makes `LinkedHashMap` the default `Map`, so a plugin casting to
+`LinkedTreeMap` would behave differently here. None of the 3 refers to a `gson.internal` class. The wider catalogue was not checked.
+
+---
+
 ---
 
 ## KMP-24 — An extension with warnings stays off until you allow that exact file · **measured 2026-11-03**
@@ -2457,8 +2528,8 @@ is forced left to right.
 
 ### Strings
 
-27 keys, none plural, authored in all 62 directories. Fourth move of `core/strings/oracle-baseline`, with the proof in its README: 0 lines lost or
-changed. `expectedOwn` 32,819 -> 34,493, `classes-jar.api` +27 `R$string` fields, 0 removed. "Extensions waiting for you: %d" is a label and a number
+27 keys, none plural, authored in all 62 directories. Fifth move of `core/strings/oracle-baseline`, on top of `KMP-25`, with the proof in its README: 0 lines lost or
+changed. `expectedOwn` 33,005 -> 34,679, `classes-jar.api` +27 `R$string` fields, 0 removed. "Extensions waiting for you: %d" is a label and a number
 so that no locale needs plural forms.
 
 **Not reviewed by a native speaker: all of it is machine translation.** Least certain: `ti`, `so`, `or`, `ta`, `ckb`, `as`, `am`, `az`, `mt`, `my`, `kn`, `ml`, `ne`.
@@ -2487,3 +2558,210 @@ Suggest: the same cleaning as untrustedText, moved somewhere both can reach
 Why: provider titles are untrusted too. Maxlines bounds the damage, so this is narrow
 ```
 
+## KMP-25 — Subtitles end to end, in the desktop player · **measured 2026-11-03**
+
+**Status:** in pr · the owner's words, asked whether `:media:subtitle` should keep cue placement: "subtitle should be
+end to end working".
+
+**Scope: desktop.** Android's player already renders subtitles through Media3 and swapping it is not this task. `:app`
+has no code change: only its generated `strings.xml` files and three new `R` fields in its API dump.
+
+### The chain, and what was missing
+
+| Link | Before | Now |
+|---|---|---|
+| Plugin to host | `subtitleCallback` only counted | Each `SubtitleFile` kept, at most 200 |
+| Host to app | An `Int` in `RemoteLinks` | `RemoteSubtitle` records, cleaned on the app's side |
+| App to player | `StreamLink` had no field | `StreamLink.subtitles: List<SubtitleTrack>`, so `:feature:detail` takes `:media:model` |
+| Fetch | Nothing | `HttpSubtitleLoader`, in the app process |
+| Parse | SRT and VTT, placement stripped | Those with placement, and TTML |
+| Time | Status arrives about four times a second | `PlaybackClock` runs between reports |
+| Draw | Nothing | `SubtitleOverlay` over the frame |
+| Choose | Nothing | `SubtitlePicker`, the button at the end of the transport, or C |
+
+### Formats, measured on real plugins
+
+| Plugin | Offers | Result |
+|---|---|---|
+| YouTube | 21 tracks, **every one `fmt=ttml`** | All 21 parse: 160 to 874 cues |
+| ARD | 2 tracks, EBU-TT-D and VTT | Both parse: 744 cues each, first cue at 2120 ms in both |
+| Internet Archive | 4 tracks, 2 SRT and 2 VTT, rolling captions from YouTube | All 4 parse: 1,285 to 1,291 cues, on a title found by searching for it |
+| Dailymotion, Twitch, Invidious | No subtitles on the title reached | Nothing to measure |
+
+So a parser with only SRT and VTT would have shown nothing for the plugin most people have.
+
+**Two findings a sample of the spec would not have given:**
+
+- **ARD's EBU-TT-D cues begin at `10:00:02.120`** for a video whose VTT twin says `00:00:02.120`, because broadcast
+  timecode starts a programme at 10:00:00. In a file with an `urn:ebu:tt` namespace whose first cue is an hour in or later,
+  the whole hours before it come off. The real pair now agrees cue for cue at the start.
+- **The Internet Archive's VTT starts each cue with a line holding one space.** `KMP-21` had a whitespace-only line end the
+  cue, which lost the cue's words. Spaces before any text no longer end a cue; a truly empty line still does.
+
+**Not supported, and the track says so:** SSA/ASS, MicroDVD, SMI, bitmap formats, and anything else `detect` does not
+know, including an HTML error page served with status 200. None was measured on these plugins.
+
+### Encoding
+
+A BOM decides (UTF-8, UTF-16 LE and BE). Otherwise strict UTF-8 if the bytes are valid, then the charset the server
+declared, then a guess from the track's language tag (`windows-1256` for `ar`, `Shift_JIS` for `ja`, and so on), then
+`windows-1252`. **A guess can show wrong letters and never fails.** `:app` uses `UniversalDetector`; that would be a new
+dependency here. `jdk.charsets` joined the packaged runtime, because `java.base` alone has neither `windows-1256` nor `Shift_JIS`.
+
+### Placement: what is honoured
+
+`CuePlacement` on `SubtitleCue`: a point as a percentage of the picture, which part of the box sits on it, text alignment,
+and a width. The renderer keeps the whole box inside the safe area, so an edge means the margin.
+
+| Source | Honoured | Not honoured |
+|---|---|---|
+| SSA tag, in SRT or VTT | `{\an1}` to `{\an9}`, first valid one wins, and it beats VTT settings | `\a`, `\pos`, `\move`, and every other override |
+| VTT | `line:N%[,align]`, `position:N%[,align]`, `align:` all six values, `size:N%` | `vertical:`, `region:`. Drawn horizontal, in the default region |
+| VTT `line:N` | Approximately: rows of 5.33% from the top, or from the bottom when negative | Real row height, which depends on the font |
+| TTML | `tts:origin`, `tts:extent` in percent, `tts:displayAlign`, `tts:textAlign`, through `region` and `style` | Pixel values, `tts:writingMode`, nested regions |
+| SRT | | `X1:` coordinates |
+
+Overlapping cues at the same placement stack in time order. **Cues at different placements are not kept from overlapping
+each other.**
+
+**Styling: none is kept.** `<i>`, `<b>`, `<font>`, `{\b1}`, `<c.yellow>` and TTML colours are removed, and the text is
+drawn in the viewer's `CaptionStyle` defaults: white, black outline, the app's font. Text is plain, in `BasicText`, with no
+markup and no links. **U+202E in a cue stays,** as `KMP-21` decided, because Thai and right-to-left subtitles use those
+characters. It reverses its own line and no other, because each line is its own paragraph (`SubtitleOverlayTest`). In a
+*label* it is removed.
+
+### Security
+
+**The fetch is in the app process, not the media host.** The host's Seatbelt policy lets it connect anywhere but
+localhost, so a plugin's URL could reach the LAN from there, with nothing able to check the address. In the app, the poster
+client checks the address of every connection, including each redirect hop. What the app then does with the bytes is
+bounded and pure: no `Regex`, linear time, input treated as hostile.
+
+| What | How | Test |
+|---|---|---|
+| Scheme, shape | http(s) with a host, no userinfo or controls, at most 16 KiB, when the list arrives. No lookup: nobody chose it yet | `HostProtocolTest` |
+| Count, label | At most 200, in host and app. Label at most 128 chars, no controls, format characters or line separators; blank falls back on the tag or drops the track | `HostProtocolTest` |
+| Address | `isPublicHttpUrl` before anything opens, then the DNS filter and connection check on every hop | `SubtitleLoaderTest`: 127.0.0.1 gets no TCP connection; with the URL check off it gets no request; a redirect to it gets no request |
+| Size | 8 MiB after decompression, whichever way gzip arrives | `SubtitleLoaderTest`: a 64 MiB bomb, both ways |
+| Time | 20 s for the whole call, body included | `SubtitleLoaderTest`: a server that stops sending |
+| Sent | Only the track's `Referer` and `User-Agent`, as for a link. No cookie jar, no cache | `SubtitleLoaderTest` |
+
+**A track that needs another header, such as `Authorization`, will fail to fetch.** As with posters, the host a plugin
+names sees this machine's address when someone picks that track.
+
+### Timing
+
+libVLC's reports are about 250 ms apart, so the position is run forward at wall-clock speed from the last one, by at most
+1 s. A pause holds the estimate. A seek moves it at once and ignores reports still about the old position. A cue is looked up
+every 40 ms.
+
+Measured with `--check-subtitle-render` on a 90 s video with no audio stream, whose frames carry their own number in a strip
+along the top, through the real sandboxed libVLC. Each new picture's own time against the clock the cues read from, in ms:
+
+| Phase | n | p50 | p95 | max |
+|---|---|---:|---:|---:|
+| Playing | 326 | 9 | 16 | 30 |
+| After resume | 89 | 10 | 17 | 19 |
+| After a seek has landed | 90 | 9 | 16 | 18 |
+
+The 800 x 520 run agrees within 2 ms at p95. Add up to 40 ms for the lookup and one frame to draw, so a cue is on screen about
+72 ms from the picture at p95, inside the 100 ms asked for. A pause moved the clock 1 ms as it took effect, then 0 ms in 1.5 s. A
++10 s seek moved the clock on the same frame, and the picture followed 29 to 67 ms later. The largest figure in the seek phase, about
+9.8 s, is that one frame. **This measures the clock and the picture, not the pixels of the cue;** the PNGs show those agreeing, with
+the burned-in second and the cue's second the same in each.
+
+### Words
+
+Three new keys, in all 62 directories: `subtitles_load_failed`, `subtitles_format_unsupported`, `subtitles_file_empty`. Reused:
+`player_subtitles_settings`, `no_subtitles` (the Off row, and what an empty list says), `loading`.
+
+**Not reviewed by a native speaker.** All of it is machine translation. Least certain, as in `I18N-09`: `ti`, `ckb`, `so`,
+`mt`, `am`, `my`, `or`, `as`, `kn`, `apc`. `qt` uses only words its own file already has.
+
+Baseline: fourth move, additive, proof in its README. 0 lines lost or changed in any file. `app/api/classes-jar.api` gains exactly
+the 3 `R` fields; **`SubtitleCue` did not reach it**, because `:media:model` is not in the jar.
+
+### Not done
+
+- **Remembering a choice.** Off every time, for every stream.
+- **Offset.** `SubtitleDelay` exists and `activeAt` takes it. There is no control, because one needs strings and a design.
+- **Caption settings.** `CaptionStyle` defaults only. `font` is not read, and `RAISED` and `DEPRESSED` draw as a shadow.
+- **Styling, per the table above.**
+- **`X-TIMESTAMP-MAP`,** and subtitles embedded in the video.
+- **A `SubtitleCue` for `:app`.** Android still uses `CustomSubripParser`.
+- **The screenshot suite.** It cannot see `:desktopApp` (`DEC-10`), so these are offscreen renders that someone looks at.
+
+### Verification
+
+Local, Temurin 17.0.20.1, `TZ=UTC`. CI is off, so all of it.
+
+**The real plugins, `--check-extensions --verbose`,** in the packaged `.app` with a fresh `user.home`, reporting per track: bytes, format,
+cue count, first cue time and its length, never a URL or a word. Numbers are in the table above.
+
+**The real screen, `--check-subtitle-render`,** which drives `PlayerScreen` offscreen over the real media host with real key events:
+
+- Coded video, 1280 x 800 and 800 x 520: exit 0.
+- YouTube, `nasa`, 1280 x 800: 21 tracks, English chosen through the list, a cue on a real frame, pause and seek. Exit 0.
+- ARD, `nasa`, 800 x 520: 2 tracks, the EBU-TT-D one chosen. Exit 0.
+
+**Silent, three ways:** `--no-audio`, the sandbox refuses the host every audio service (`mediaHostRules(audio = false)`, tested), and a
+plugin's separate audio URL is not passed on. Nobody listened. `--check-playback`, which plays sound, was not run.
+
+The video and cues, for anyone repeating this: a white 1280 x 720 at 30 fps, 16 `drawbox` filters writing bit *k* of `n` as a 40 x 16
+block along the top, 14 more drawing the second in seven segments, and an SRT with one cue a second.
+
+**Tests:** `media:subtitle` 139 in `commonTest`, also run on the iOS simulator. `desktopApp` player package 90, under real pointer and key events
+where it is a screen, and PNGs at 1280 x 800 and 800 x 520 that were looked at, because `DEC-10` means a build cannot.
+
+**Mutation checks,** each alone, each red:
+
+| Mutation | Failed by |
+|---|---|
+| `\an` ignored, or VTT settings ignored | 6 and 7 tests in `CuePlacementTest` |
+| Percent not clamped | `out of range values are clamped to the picture` |
+| Spaces end a cue again | `a line of spaces after the timing does not lose the cue` |
+| EBU hours kept | `only an ebu file loses its hours`, and the ARD shape |
+| TTML: `br`, line cut, cue cap, region | `the bounds hold`, and the two real shapes |
+| Clock: no extrapolation, or no cap on it | 8 tests; `a stream that stops reporting cannot run away` |
+| Pause falls back to the last report | `a pause holds what was on screen` and 2 more |
+| A stale report undoes a seek | `a report from before the seek, still in the pipe` |
+| No URL check | `the real loader opens nothing for an address on this machine` |
+| A plain client, no address check | `the url check alone is not what stops it`, `a redirect to a refused address` |
+| No read bound | `a huge body with no length`, `a gzip bomb` |
+| No unpacking of a `.gz` | `gzip is unpacked`, `a gzip bomb` |
+| No status check | `an error status is a failed fetch` |
+| A fetch not cancelled | `a slow file cannot replace a later choice` |
+| No key guard under the list | 9 tests in `PlayerScreenTest` |
+| Escape ignores the list | `escape closes the list before it leaves the player` |
+| A seek does not move the clock | `a cue appears when it starts…` |
+| No failure notice | 4 tests |
+| No lift, no picture rect, no clamp, no outline | `SubtitleOverlayTest`, 1 to 3 tests each |
+| A label keeps U+202E, any scheme passes | `HostProtocolTest` |
+| The protocol reads no subtitles | `links carry their subtitles across the boundary` |
+
+Three did not go red at first. **Ignoring the declared charset survived,** because the test's byte reads as `é` in `windows-1256` as well; the
+test now uses bytes only the declaration can read, and it goes red. **A line consuming Left and Right under the list survived twice,** with a
+stronger test the second time, so that line was dead and is deleted. **The host's own `subtitleCallback`** has no unit test, because it needs a
+loaded plugin: what proves it is the real check finding 21 tracks.
+
+### Not verified
+
+- **The live window.** It cannot be driven from here, so a person must try the steps in the PR. The check drives the same composable offscreen.
+- **Cues against speech.** Silent, on purpose. A real title's cue was seen on a plausible frame, and the measured sync is on the coded video.
+- **A real file in a legacy encoding.** Every real track measured was UTF-8. The fallback has tests with made-up bytes.
+- **The EBU rule beyond ARD.** It rests on two ARD titles.
+- **The plugins beyond these six.** `SubtitleFile` from the wider catalogue was not surveyed, so a format not named here may turn up. It would say so.
+
+### Found and left
+
+```
+Found: libVLC's format callback reports more lines than the picture has, and the frame is stretched to it: 1280x720 arrives as 1280x738, 480x270 as 480x290, in MediaHost.kt getBufferFormat
+Suggest: size the buffer from the visible height (`newFormatSize` is there and ignored), and measure it on a few codecs
+Why: pictures are 2.5 to 7% too tall. Older than this task, and not about subtitles: cues are placed on the frame as it is drawn
+```
+
+```
+Found: YouTube's timedtext answered 429 after this task's repeated fetches, which the player shows as "Couldn't load these subtitles"
+Suggest: leave it. The failure is legible and the track can be chosen again. A cache or backoff would be its own task
+Why: measured once, with curl on a dummy URL as well as through the check, and gone on the next run; a person choosing one track is far from that rate
+```

@@ -56,21 +56,24 @@ class HostLauncher internal constructor(
      *
      * @param vlcApp the VLC bundle. It is read, never written.
      * @param writable the host's own directory, empty and not shared with anything.
+     * @param silent no audio output: libVLC is told so, and the sandbox refuses it the audio devices anyway.
      */
-    fun startMediaHost(vlcApp: File, writable: File): Process {
+    fun startMediaHost(vlcApp: File, writable: File, silent: Boolean = false): Process {
         val app = vlcApp.canonicalFile
         return start(
             arguments = emptyList(),
             readOnlyInputs = emptyList(),
             writable = writable,
             network = true,
-            extraRules = SeatbeltProfile.mediaHostRules(app, writable),
+            extraRules = SeatbeltProfile.mediaHostRules(app, writable, audio = !silent),
             jvmOptions = "$JVM_OPTIONS -Djava.awt.headless=true -Djava.io.tmpdir=${writable.path} " +
-                "-Djna.tmpdir=${writable.path}",
+                "-Djna.tmpdir=${writable.path}" + if (silent) " -D$SILENT_PROPERTY=true" else "",
         )
     }
 
     companion object {
+        /** How [startMediaHost] tells the host, whose command line is the same either way. */
+        const val SILENT_PROPERTY = "cloudstream.mediahost.silent"
         private const val JVM_OPTIONS =
             "-Xmx512m -XX:+UseSerialGC -XX:-UsePerfData -XX:ActiveProcessorCount=4 -Xshare:auto"
         private const val DEV_MAIN = "com.lagradost.cloudstream4.feature.extensions.sandbox.PluginHostKt"
@@ -109,7 +112,7 @@ class HostLauncher internal constructor(
  * skipped: a peer that has stopped speaking the protocol cannot be resynchronised, and has either
  * crashed or is no longer the code we started.
  */
-class PluginHostClient private constructor(
+class PluginHostClient internal constructor(
     private val process: Process,
     private val label: String,
 ) : Closeable {
@@ -119,6 +122,13 @@ class PluginHostClient private constructor(
     }
 
     private val pending = ConcurrentHashMap<Int, Pending>()
+
+    /**
+     * Calls that gave up waiting and may still be answered, once each. Their [Pending] is kept so a late
+     * reply is decoded by the same checks as a timely one; nothing awaits it, so the result goes nowhere.
+     * This lock also guards a move out of [pending], so a live id is never in neither map.
+     */
+    private val timedOut = HashMap<Int, Pending>()
     private val nextId = AtomicInteger(HostProtocol.READY_ID)
     private val out: OutputStream = process.outputStream
     private val dead = AtomicBoolean(false)
@@ -141,7 +151,7 @@ class PluginHostClient private constructor(
                 val frame = HostProtocol.readFrame(input) ?: break
                 HostProtocol.decode(frame) {
                     val id = readInt()
-                    val waiter = pending.remove(id) ?: throw IOException("reply to unknown request $id")
+                    val waiter = claim(id) ?: throw IOException("reply to unknown request $id")
                     if (readBoolean()) {
                         waiter.reply.complete(Result.success(waiter.decode(this)))
                     } else {
@@ -155,6 +165,21 @@ class PluginHostClient private constructor(
             "protocol violation: ${violation.message.orEmpty().sanitized(MAX_ERROR_CHARS)}"
         }
         abort(reason)
+    }
+
+    private fun claim(id: Int): Pending? = synchronized(timedOut) { pending.remove(id) ?: timedOut.remove(id) }
+
+    /**
+     * A plugin can leave every call unanswered, so what is remembered for them is bounded, and past
+     * [MAX_TIMED_OUT_CALLS] the host ends. Forgetting an old id instead would let the plugin choose when
+     * its late reply kills the host, and a host this far behind is not answering anyway.
+     */
+    private fun expire(id: Int) {
+        val full = synchronized(timedOut) {
+            val waiter = pending.remove(id) ?: return
+            (timedOut.size >= MAX_TIMED_OUT_CALLS).also { full -> if (!full) timedOut[id] = waiter }
+        }
+        if (full) abort("left more than $MAX_TIMED_OUT_CALLS calls unanswered past their timeout")
     }
 
     /** Keeps only the start of it. A plugin writing forever must not be able to fill this process. */
@@ -179,6 +204,7 @@ class PluginHostClient private constructor(
         val failure = IOException("$label: $reason")
         pending.values.forEach { it.reply.complete(Result.failure(failure)) }
         pending.clear()
+        synchronized(timedOut) { timedOut.clear() }
     }
 
     private suspend fun providers(timeoutMillis: Long): Result<List<RemoteProvider>> = try {
@@ -246,7 +272,7 @@ class PluginHostClient private constructor(
             }
             withTimeout(CALL_TIMEOUT_MILLIS) { waiter.reply.await() }.getOrThrow() as T
         } catch (slow: TimeoutCancellationException) {
-            pending.remove(id)
+            expire(id)
             throw IOException("$label did not answer within ${CALL_TIMEOUT_MILLIS}ms")
         }
     }
@@ -260,6 +286,7 @@ class PluginHostClient private constructor(
     }
 
     companion object {
+        internal const val MAX_TIMED_OUT_CALLS = 256
         private const val CALL_TIMEOUT_MILLIS = 60_000L
         private const val START_TIMEOUT_MILLIS = 60_000L
         private const val STOP_GRACE_MILLIS = 500L
@@ -420,6 +447,11 @@ private fun RemoteDetails.cleaned() = copy(
 )
 
 private fun RemoteLinks.cleaned() = copy(
+    subtitles = subtitles.asSequence()
+        .mapNotNull { it.cleaned() }
+        .distinctBy { it.url to it.language }
+        .take(HostProtocol.MAX_SUBTITLES)
+        .toList(),
     links = links.take(MAX_ITEMS).map { link ->
         link.copy(
             source = link.source.sanitized(MAX_PROVIDER_FIELD_CHARS),
@@ -432,3 +464,35 @@ private fun RemoteLinks.cleaned() = copy(
         )
     },
 )
+
+/**
+ * A track the app may offer, or null.
+ *
+ * A label is the one plugin string on the player's screen, so it loses format characters as well as
+ * controls: U+202E would otherwise reverse the row it sits on, and the rows around nothing else tell the
+ * user what they are picking.
+ *
+ * The URL gets a check of its shape only. The address is checked when someone chooses the track
+ * (`DesktopSubtitleLoader`), so offering a list costs no lookup of names nobody asked for.
+ */
+internal fun RemoteSubtitle.cleaned(): RemoteSubtitle? {
+    val tag = languageTag?.takeIf { it.length <= MAX_LANGUAGE_TAG_CHARS && it.all(::isLanguageTagChar) }
+    val label = language.take(MAX_SUBTITLE_LABEL_CHARS).filterNot(::isInvisibleInLabel).trim().ifEmpty { tag }
+        ?: return null
+    if (!SandboxPolicy.isHttpUrlShape(url)) return null
+    return copy(
+        language = label,
+        languageTag = tag,
+        referer = referer?.sanitized(),
+        userAgent = userAgent?.sanitized(MAX_PROVIDER_FIELD_CHARS),
+    )
+}
+
+private fun isLanguageTagChar(c: Char) = c in 'a'..'z' || c in 'A'..'Z' || c in '0'..'9' || c == '-'
+
+private fun isInvisibleInLabel(c: Char) =
+    c.isISOControl() || c.category == CharCategory.FORMAT ||
+        c.category == CharCategory.LINE_SEPARATOR || c.category == CharCategory.PARAGRAPH_SEPARATOR
+
+private const val MAX_SUBTITLE_LABEL_CHARS = 128
+private const val MAX_LANGUAGE_TAG_CHARS = 35
