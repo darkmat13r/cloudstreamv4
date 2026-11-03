@@ -144,6 +144,34 @@ class SearchViewModelTest {
     }
 
     @Test
+    fun `adding a letter and deleting it again does not stick on loading`() = runTest(dispatcher) {
+        val source = FakeSource(SearchOutcome.Complete(listOf(item("Film"))))
+        val vm = viewModel(source)
+        vm.onAction(SearchAction.QueryChanged("film"))
+        settle()
+        assertIs<SearchStatus.Showing>(vm.state.value.status)
+
+        vm.onAction(SearchAction.QueryChanged("films"))
+        vm.onAction(SearchAction.QueryChanged("film"))
+        settle()
+        assertIs<SearchStatus.Showing>(vm.state.value.status)
+    }
+
+    @Test
+    fun `clearing the field and typing the same words again searches again`() = runTest(dispatcher) {
+        val source = FakeSource(SearchOutcome.Complete(listOf(item("Film"))))
+        val vm = viewModel(source)
+        vm.onAction(SearchAction.QueryChanged("film"))
+        settle()
+        vm.onAction(SearchAction.Cleared)
+        settle()
+        vm.onAction(SearchAction.QueryChanged("film"))
+        settle()
+        assertIs<SearchStatus.Showing>(vm.state.value.status)
+        assertEquals(listOf("film", "film"), source.quickSearched)
+    }
+
+    @Test
     fun `submit runs the full search without waiting for the debounce`() = runTest(dispatcher) {
         withMain {
             val source = FakeSource(SearchOutcome.Complete(listOf(item("Dune"))))
