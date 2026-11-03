@@ -144,6 +144,34 @@ class SearchViewModelTest {
     }
 
     @Test
+    fun `adding a letter and deleting it again does not stick on loading`() = runTest(dispatcher) {
+        val source = FakeSource(SearchOutcome.Complete(listOf(item("Film"))))
+        val vm = viewModel(source)
+        vm.onAction(SearchAction.QueryChanged("film"))
+        settle()
+        assertIs<SearchStatus.Showing>(vm.state.value.status)
+
+        vm.onAction(SearchAction.QueryChanged("films"))
+        vm.onAction(SearchAction.QueryChanged("film"))
+        settle()
+        assertIs<SearchStatus.Showing>(vm.state.value.status)
+    }
+
+    @Test
+    fun `clearing the field and typing the same words again searches again`() = runTest(dispatcher) {
+        val source = FakeSource(SearchOutcome.Complete(listOf(item("Film"))))
+        val vm = viewModel(source)
+        vm.onAction(SearchAction.QueryChanged("film"))
+        settle()
+        vm.onAction(SearchAction.Cleared)
+        settle()
+        vm.onAction(SearchAction.QueryChanged("film"))
+        settle()
+        assertIs<SearchStatus.Showing>(vm.state.value.status)
+        assertEquals(listOf("film", "film"), source.quickSearched)
+    }
+
+    @Test
     fun `submit runs the full search without waiting for the debounce`() = runTest(dispatcher) {
         withMain {
             val source = FakeSource(SearchOutcome.Complete(listOf(item("Dune"))))
@@ -293,9 +321,14 @@ class SearchViewModelTest {
     }
 
     /*
-     * The rest of this file's cases came out of switching Android TV to this screen (KMP-12 step 4).
+     * The rest of this file's cases came out of switching Android TV to this screen (KMP-12 step 4),
+     * and all of them failed against the desktop app as shipped (`BUG-24`).
      * `MainAPI.hasQuickSearch` defaults to false, so a real provider set usually cannot answer a
      * quick search at all, and the first keystroke used to land on a failure band.
+     *
+     * A fourth case found here — the same query retyped after a clear — is not below: `BUG-23`
+     * landed first and `clearing the field and typing the same words again searches again` above
+     * already guards it.
      */
 
     @Test
@@ -338,27 +371,6 @@ class SearchViewModelTest {
 
                 assertEquals(listOf("dune"), source.searched)
                 assertTrue(source.quickSearched.isEmpty(), "quick ran after the submit: ${source.quickSearched}")
-            } finally {
-                Dispatchers.resetMain()
-            }
-        }
-
-    @Test
-    fun `retyping the same query after clearing searches again instead of stalling on the skeleton`() =
-        runTest(dispatcher) {
-            Dispatchers.setMain(dispatcher)
-            try {
-                val source = FakeSource(SearchOutcome.Complete(listOf(item("Dune"))))
-                val vm = viewModel(source)
-                vm.onAction(SearchAction.QueryChanged("dune"))
-                settle()
-                vm.onAction(SearchAction.Cleared)
-                settle()
-                vm.onAction(SearchAction.QueryChanged("dune"))
-                settle()
-
-                assertEquals(listOf("dune", "dune"), source.quickSearched)
-                assertIs<SearchStatus.Showing>(vm.state.value.status)
             } finally {
                 Dispatchers.resetMain()
             }

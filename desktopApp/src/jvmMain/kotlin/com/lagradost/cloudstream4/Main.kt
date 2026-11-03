@@ -111,7 +111,7 @@ import kotlin.system.exitProcess
  * reading `0 / 0` until something refreshed it. Loading first costs a directory scan on an empty
  * directory in the normal case; the trade is named in the bootstrap's KDoc.
  *
- * Since `BUG-23` the count is no longer read only once: [SearchHost] re-asks on `SourcesChanged`
+ * Since `BUG-24` the count is no longer read only once: [SearchHost] re-asks on `SourcesChanged`
  * whenever an approval changes what is installed. The pre-window load is what makes the **first**
  * paint right, and that is still the reason for the ordering.
  *
@@ -227,7 +227,7 @@ internal fun DesktopApp(
     val stack = remember { mutableStateListOf<Screen>(Screen.Home) }
     val review = approvals?.state?.collectAsState()?.value
     // Allowing or stopping an extension changes what is installed. `HomeViewModel` reads that once
-    // when made, so it is rebuilt; `SearchViewModel` is told with `SourcesChanged` instead (BUG-23),
+    // when made, so it is rebuilt; `SearchViewModel` is told with `SourcesChanged` instead (BUG-24),
     // which keeps the results and the typed query the user is looking at.
     val providerChanges = review?.providerChanges ?: 0
     val homeViewModel = remember(providerChanges) { HomeViewModel(home, scope) }

@@ -1069,7 +1069,8 @@ Why: CloudStreamApp.kt:57 writes it into the crash log, blaming a plugin that is
 
 > **The state machine's defects were split out and landed on their own, 2026-11-03.** Building the
 > Android host (step 4) found four defects in `SearchViewModel`, and all four were in the **desktop**
-> app as shipped, not just the unbuilt Android path. They are `BUG-23` and are merged. #91 keeps only
+> app as shipped, not just the unbuilt Android path. Three are `BUG-24`; the fourth was found
+> independently from a screenshot of the owner's and landed first as `BUG-23` (#114). #91 keeps only
 > what needs a device: `SearchTvFragment`, the one-line `MainActivity` repoint,
 > `ApiRepositorySearchSource`, `DataStoreSearchHistory` and the `classes.jar` lines those add.
 

@@ -19,7 +19,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.debounce
-import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
@@ -125,7 +124,12 @@ data class SingleActiveQuery(
     }
 }
 
-/** Debounce Query to handle e.g. user search without spamming the endpoint */
+/**
+ * Debounce Query to handle e.g. user search without spamming the endpoint.
+ *
+ * Every settled value is delivered, including one equal to the last. Dropping those left a screen that had gone back
+ * to loading waiting for an answer nobody had asked for (`BUG-23`).
+ */
 data class DebounceQuery(
     private val pipe: MutableSharedFlow<String> = MutableSharedFlow(
         extraBufferCapacity = 64,
@@ -134,7 +138,7 @@ data class DebounceQuery(
 ) {
     @OptIn(FlowPreview::class)
     suspend fun launch(collector: FlowCollector<String>) {
-        pipe.debounce(200L.milliseconds).distinctUntilChanged()
+        pipe.debounce(200L.milliseconds)
             .flowOn(Dispatchers.Default)
             .collect(collector)
     }
