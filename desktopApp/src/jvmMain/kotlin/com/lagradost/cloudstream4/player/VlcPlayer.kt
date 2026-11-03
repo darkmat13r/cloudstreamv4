@@ -195,15 +195,49 @@ class VlcPlayer private constructor(
             val launcher = HostLauncher.forMediaHost(MediaHost.ARGUMENT, MEDIA_HOST_MAIN) ?: return null
             if (!File(VLC_APP, "Contents/MacOS/lib/libvlc.dylib").isFile) return null
             val base = File(System.getProperty("user.home"), ".cloudstream4/.media-host").apply { mkdirs() }
-            // One stream at a time, so anything here was left by a crash, or is a host on its way out.
-            base.listFiles()?.forEach { deleteHostDirectory(it.toPath()) }
-            val directory = Files.createTempDirectory(base.toPath(), "host").toFile().canonicalFile
-            return runCatching { VlcPlayer(launcher.startMediaHost(VLC_APP, directory, silent), directory) }.getOrNull()
+            val directory = newHostDirectory(base)
+            return runCatching { VlcPlayer(launcher.startMediaHost(VLC_APP, directory, silent), directory) }
+                .onFailure { deleteHostDirectory(directory.toPath()) }
+                .getOrNull()
         }
 
         private const val MEDIA_HOST_MAIN = "com.lagradost.cloudstream4.player.MediaHostMainKt"
     }
 }
+
+/**
+ * Clears what crashes left in [base], then makes a new directory there for one host, which it alone may use.
+ *
+ * Every running copy of the app shares [base], so what is in it may be another copy's live host. A host
+ * still starting needs its directory (measured: deleting it in the first 0.2 s or so loses the stream). So
+ * each name says which app made it, and only directories whose app has gone are cleared. A directory is
+ * never reused, so a host that outlives its app has no rights over a later one.
+ */
+internal fun newHostDirectory(base: File): File {
+    base.listFiles()?.filterNot { hostDirectoryInUse(it.name) }?.forEach { deleteHostDirectory(it.toPath()) }
+    val self = ProcessHandle.current()
+    val prefix = "$HOST_DIRECTORY_PREFIX${self.pid()}-${self.startMillis() ?: 0}-"
+    return Files.createTempDirectory(base.toPath(), prefix).toFile().canonicalFile
+}
+
+/**
+ * Whether the app that made this directory is still running. The start time is there because a pid is
+ * reused. A name not in this form is a leftover, or from a build before this one.
+ */
+internal fun hostDirectoryInUse(name: String): Boolean {
+    if (!name.startsWith(HOST_DIRECTORY_PREFIX)) return false
+    val fields = name.removePrefix(HOST_DIRECTORY_PREFIX).split('-')
+    val pid = fields.getOrNull(0)?.toLongOrNull() ?: return false
+    val started = fields.getOrNull(1)?.toLongOrNull() ?: return false
+    val owner = ProcessHandle.of(pid).orElse(null) ?: return false
+    // Cannot tell, so keep it: a leftover costs a few bytes, and deleting a live one can cost a stream.
+    val actual = owner.startMillis() ?: return true
+    return actual == started
+}
+
+internal fun ProcessHandle.startMillis(): Long? = info().startInstant().map { it.toEpochMilli() }.orElse(null)
+
+internal const val HOST_DIRECTORY_PREFIX = "host-"
 
 /**
  * Deletes a directory a host could write to, without ever following a link in it.
