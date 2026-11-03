@@ -481,7 +481,7 @@ field holds focus. TV is unchanged.
 
 ## BUG-12 — typing a desktop search said "Search failed" · **high**
 
-**Status:** in pr · found 2026-11-02 by rendering the real plugins while typing, with no Return
+**Status:** done · #86 · found 2026-11-02 by rendering the real plugins while typing, with no Return
 
 `DesktopSearchSource.quickSearch` asked only providers declaring `hasQuickSearch`. Declaring it proves
 nothing: `MainAPI.quickSearch` throws `NotImplementedError` by default. So a user who typed and waited got
@@ -499,7 +499,7 @@ not fall back. **`:app`'s `SearchSource` was not checked for the same fault.**
 
 ## BUG-14 — a plugin answering after the 60 s timeout lost its whole host · **medium**
 
-**Status:** in pr · found 2026-11-03 while doing `KMP-20` · `PluginHostClient.kt`
+**Status:** done · #97 · found 2026-11-03 while doing `KMP-20` · `PluginHostClient.kt`
 
 A call that passed its timeout removed its id from `pending`, and `readLoop` treats a reply to an id it cannot
 find as a protocol violation. So one slow answer at 61 s ended the sandboxed host, and search and home for that
@@ -534,7 +534,7 @@ stops reading stdin can hold a call past 60 s.
 
 ## BUG-13 — the subscription worker loaded extensions in safe mode · **medium**
 
-**Status:** in pr · found by reading the code; not reproduced on a device
+**Status:** done · #96 · found by reading the code; not reproduced on a device
 
 Safe mode exists so a crashing extension stops being loaded. `MainActivity` skips loading when
 `checkSafeModeFile()` is true or `lastError` is set, and `DownloadQueueManager` will not start its queue when
@@ -564,7 +564,7 @@ A test of an extracted boolean would not exercise this path. **Not run on a devi
 
 ## BUG-15 — desktop video was drawn in the shape of the decoder's buffer · **medium**
 
-**Status:** in pr · noted in `KMP-25` as 1280x720 arriving as 1280x738 · `MediaHost.kt`, `FrameGeometry.kt`, `PlayerScreen.kt`
+**Status:** done · #104 · noted in `KMP-25` as 1280x720 arriving as 1280x738 · `MediaHost.kt`, `FrameGeometry.kt`, `PlayerScreen.kt`
 
 **It was a real stretch, not padding.** libVLC's format callback reports the decoder's buffer, not the picture: libavcodec's
 aligned size, 1280 x 738 for 1280 x 720. Whatever size is returned, libVLC scales the visible picture to fill it. On a test card
@@ -696,7 +696,7 @@ Why: older than this. It is why these runs all used a fresh user.home
 
 ## BUG-16 — a host ended for a reason could tell its waiting call the wrong one · **low**
 
-**Status:** in pr · found 2026-11-03 when a gate on `KMP-24` went red · `PluginHostClient.kt`
+**Status:** done · #103 · found 2026-11-03 when a gate on `KMP-24` went red · `PluginHostClient.kt`
 
 `abort` killed the process, then failed the waiting calls with its reason. The kill ends the reader, whose own `abort` says
 "the plugin host exited", and whichever got there first won. The call failed either way; only the message was wrong. It also made
@@ -864,3 +864,53 @@ The cycle guard in `ClassHierarchy.chain` was not mutated, because without it th
 - `AnimeONProvider` fails conversion with `OutOfMemoryError: Java heap space` (the process has `-Xmx512m`) and `DieGonRepo_Huhu` fails to load with a `ClassCastException`, the same on both builds.
 - A superseded `<sha>-c2.jar` stays in `.store`: nothing deletes a jar from an older revision, here 1.7 MB.
 - `JvmExtensionRuntime` still treats a throw from a plugin's `load()` as total, so the next plugin with one missing class in one provider's constructor loses all its providers, as CineStream did.
+
+## BUG-20 — the iOS test gate cannot compile `:feature:home`'s tests · **measured 2026-11-03**
+
+**Status:** done · #108 · found while adding `:feature:library`'s own iOS tests (`KMP-26`) · `:feature:home`
+
+> **Filed as `BUG-17` and renumbered.** #106 took that id for a different defect minutes earlier, in a
+> session running in parallel, and #108 reused it. `docs/tasks/README.md` says ids are stable and reusing
+> one *"silently rewrites history that is already published"* — so this entry moved and #106's stayed, it
+> being the one that landed first. `BUG-18` and `BUG-19` are spoken for by work in flight
+> (`claude/bug-cinestream-load` and `claude/bug-links-as-they-arrive`), which is why this is 20 and not 18.
+> **The lesson is not "pick a higher number": it is that `git fetch` immediately before choosing an id is
+> not enough when another session is filing at the same time.** Check the file again at the moment of
+> writing the heading.
+
+`iosSimulatorTest` — the fifth, opt-in gate that `INF-04` added so a `commonTest` assertion is checked on
+Kotlin/Native and not only on the JVM — **has been red since `KMP-20` merged (#92).** It does not fail an
+assertion; it fails to compile:
+
+    ./gradlew :feature:home:compileTestKotlinIosSimulatorArm64 -Pcloudstream.iosTest=true   # exit 1
+
+    e: .../feature/home/src/commonTest/.../HomePagingTest.kt:15:9 Name contains illegal characters: ",".
+    (and :35, :41, :58, :64 — five in all)
+
+**Kotlin/Native refuses a comma inside a backticked name.** The JVM does not, so all five tests run and
+pass under `jvmTest`, and the four gates this project actually runs never look at them. Measured on
+`6456d54f`, which is master plus a docs-only change, so it is not caused by anything in flight.
+
+**The fix is renaming five test functions** — the same rename `KMP-26` made to its own nine before they
+would compile. Nothing else in the repository trips it: `:feature:library` is clean, and every other
+`commonTest` either has no comma or does not reach Kotlin/Native.
+
+**Why it matters more than five names:** the gate exists because a `Char` category, a `toString()` of a
+`Double`, a date formatter or an atomic's memory model can differ between the JVM and Kotlin/Native, and
+nothing else in this project would catch it. While it could not compile, **none of the 219 `commonTest`
+assertions in the canary's modules were being checked there.**
+
+### Fixed, and what the gate now reports
+
+The five names lost their commas. Nothing else changed, and no assertion moved.
+
+    ./gradlew iosSimulatorTest -Pcloudstream.iosTest=true     # exit 0, 1 m 35 s
+
+**219 tests on an iOS simulator, 0 failures** — `:core:designsystem` 1, `:core:storage` 48,
+`:feature:extensions` 4, `:feature:home` 10, `:feature:library` 14, `:feature:search` 3,
+`:media:subtitle` 139. That is the first time every one of them has run there.
+
+**What stops it happening again:** running the fifth gate. It is opt-in and not one of the four, so a
+`commonTest` added without it stays unchecked until someone looks — which is exactly how this one lasted
+from #92 to #108. Worth remembering when the next vertical adds a `commonTest`: the trap is silent on the
+JVM, and the error (`Name contains illegal characters: ","`) names neither Kotlin/Native nor the reason.

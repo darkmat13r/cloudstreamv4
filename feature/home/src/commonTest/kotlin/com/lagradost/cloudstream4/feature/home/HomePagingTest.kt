@@ -12,7 +12,7 @@ class HomePagingTest {
     private fun loaded(vararg rows: HomeRowPage, hasNext: Boolean = false) = HomePageReply.Loaded(rows.toList(), hasNext)
 
     @Test
-    fun `sections that all answer are shown, in section order whichever answered first`() {
+    fun `sections that all answer are shown in section order whichever answered first`() {
         val status = HomePaging.fold(emptyList(), listOf(1 to loaded(page("B", "b")), 0 to loaded(page("A", "a"))), 2)
         assertEquals(listOf("A", "B"), assertIs<HomeStatus.Showing>(status).rows.map { it.title })
     }
@@ -32,13 +32,13 @@ class HomePagingTest {
     }
 
     @Test
-    fun `nothing failed and nothing to show is empty, which is not a failure`() {
+    fun `nothing failed and nothing to show is empty — which is not a failure`() {
         assertEquals(HomeStatus.Empty, HomePaging.fold(emptyList(), listOf(0 to loaded(page("A"))), 1))
         assertEquals(HomeStatus.Empty, HomePaging.fold(emptyList(), emptyList(), 0))
     }
 
     @Test
-    fun `every section failing is a failure, and offline only when all of them were`() {
+    fun `every section failing is a failure — and offline only when all of them were`() {
         assertEquals(
             HomeStatus.Offline,
             HomePaging.fold(emptyList(), listOf(0 to HomePageReply.Offline, 1 to HomePageReply.Offline), 2),
@@ -55,13 +55,13 @@ class HomePagingTest {
     }
 
     @Test
-    fun `reasons are distinct and limited, because the line is one line`() {
+    fun `reasons are distinct and limited because the line is one line`() {
         val replies = listOf("A", "A", "B", "C", "D").mapIndexed { i, why -> i to HomePageReply.Failed(why) }
         assertEquals(HomeStatus.Failed("A · B · C"), HomePaging.fold(emptyList(), replies, 5))
     }
 
     @Test
-    fun `a next page joins its row, drops repeats, and a section's rows page together`() {
+    fun `a next page joins its row — drops repeats — and a section's rows page together`() {
         val first = HomePaging.merge(emptyList(), 0, 1, loaded(page("A", "1", "2"), page("B", "x"), hasNext = true))
         val next = HomePaging.merge(first, 0, 2, loaded(page("A", "2", "3"), page("C", "y"), hasNext = true))
         assertEquals(listOf("A", "B", "C"), next.map { it.title })
