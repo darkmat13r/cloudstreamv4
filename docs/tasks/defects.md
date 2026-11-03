@@ -771,9 +771,18 @@ After the fix, same app, same home:
 
 ---
 
-## BUG-17 — the iOS test gate cannot compile `:feature:home`'s tests · **measured 2026-11-03**
+## BUG-20 — the iOS test gate cannot compile `:feature:home`'s tests · **measured 2026-11-03**
 
-**Status:** done · found while adding `:feature:library`'s own iOS tests (`KMP-26`) · `:feature:home`
+**Status:** done · #108 · found while adding `:feature:library`'s own iOS tests (`KMP-26`) · `:feature:home`
+
+> **Filed as `BUG-17` and renumbered.** #106 took that id for a different defect minutes earlier, in a
+> session running in parallel, and #108 reused it. `docs/tasks/README.md` says ids are stable and reusing
+> one *"silently rewrites history that is already published"* — so this entry moved and #106's stayed, it
+> being the one that landed first. `BUG-18` and `BUG-19` are spoken for by work in flight
+> (`claude/bug-cinestream-load` and `claude/bug-links-as-they-arrive`), which is why this is 20 and not 18.
+> **The lesson is not "pick a higher number": it is that `git fetch` immediately before choosing an id is
+> not enough when another session is filing at the same time.** Check the file again at the moment of
+> writing the heading.
 
 `iosSimulatorTest` — the fifth, opt-in gate that `INF-04` added so a `commonTest` assertion is checked on
 Kotlin/Native and not only on the JVM — **has been red since `KMP-20` merged (#92).** It does not fail an
