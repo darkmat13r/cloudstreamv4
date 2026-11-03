@@ -529,3 +529,33 @@ id 2 fail, and without the bound 2 fail.
 **Found by reading, not measured, and not changed:** a caller cancelled while waiting is not a timeout, so its id
 stays in `pending` until the plugin answers, with no bound. And the request write has no timeout, so a plugin that
 stops reading stdin can hold a call past 60 s.
+
+---
+
+## BUG-13 — the subscription worker loaded extensions in safe mode · **medium**
+
+**Status:** in pr · found by reading the code; not reproduced on a device
+
+Safe mode exists so a crashing extension stops being loaded. `MainActivity` skips loading when
+`checkSafeModeFile()` is true or `lastError` is set, and `DownloadQueueManager` will not start its queue when
+`isSafeMode()` is true. `SubscriptionWorkManager.doWork` checked neither and loaded every online and local
+plugin, so the extension safe mode was keeping out still ran in the background, every 6 hours.
+
+`isSafeMode()` alone is not enough here. `lastError` is only filled by `setLastError`, and the only callers
+were `MainActivity.onCreate` and `DownloadQueueService`. A worker in a process where neither ran would see
+`lastError == null` with a crash on record. The worker must not call `setLastError` either: it deletes `last_error`
+as it reads it and keeps the text only in memory, so if the worker were the first to read it and its process then
+died, the next launch would show no crash dialog and would load extensions. So the worker looks for the file and
+leaves it there. `DownloadQueueService` still has that property; reported, not changed.
+
+Fixed: the check comes first in `doWork`, before the notification channel and the foreground notification, and in
+safe mode the worker returns `Result.success()`. Not `retry`, which the catch block at the end of `doWork` already
+avoids for battery reasons, and not `cancelWorkById`, which would end the periodic work for good. The next run
+checks again.
+
+**No regression test, and why.** Measured with a throwaway JVM test under `:app`'s
+`unitTests.isReturnDefaultValues`, since deleted: `PluginManager.isSafeMode()` fails with
+`ExceptionInInitializerError`, because `PluginManager.kt:187` calls `.absolutePath` on a null
+`Environment.getExternalStorageDirectory()`; and the worker's `colorFromAttribute` field initialiser throws
+`NullPointerException`. `:app` has no Robolectric or mocking library, and adding one needs the owner's approval.
+A test of an extracted boolean would not exercise this path. **Not run on a device.**
