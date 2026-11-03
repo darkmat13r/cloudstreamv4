@@ -771,6 +771,124 @@ After the fix, same app, same home:
 
 ---
 
+## BUG-19 — a slow source lost every link, including the ones that had already been found · **high**
+
+**Status:** in pr · found 2026-11-03 running CineStream 487, owner approved the fix the same day · `PluginHost.kt`, `PluginHostClient.kt`, `DetailViewModel.kt`, `DetailScreenDesktop.kt`
+
+The host collected a plugin's links from its callbacks and replied only when `loadLinks` returned, and the app waited 60 s. CineStream asks dozens of sources at once and takes over a minute, so all five films failed with `links FAILED: CineStream did not answer within 60000ms`, holding links it had found in the first half second.
+
+Now each link and subtitle goes to the app as the plugin offers it, and the source panel grows. Nothing here changed `:app`, `:library` or `classes.jar`.
+
+### Measured: the five films
+
+CineStream 487, sha256 `30dc6436…`, reviewed and sandboxed, a fresh home per film, packaged app, `--check-extensions <film>`, all five at once. `ProviderSimkl` and `ProviderCineStream` are off through the plugin's own keys, because CineStream does not load on master without that (another agent's defect). No URLs were recorded.
+
+| Film | Before, 458d01b4 | After: first link | Links, of which the player may open | Subtitles | How the call ended |
+|---|---|---:|---:|---:|---|
+| Inception | failed at 60 s, 0 links | 261 ms | 91, 73 | 175 | finished |
+| The Dark Knight | failed at 60 s, 0 links | 1359 ms | 51, 43 | 200 | finished |
+| Interstellar | failed at 60 s, 0 links | 301 ms | 92, 74 | 142 | **at the ceiling**, 90 s, success with what it had |
+| Oppenheimer | failed at 60 s, 0 links | 1289 ms | 90, 79 | 54 | finished |
+| The Godfather | failed at 60 s, 0 links | 1215 ms | 56, 51 | 200 | finished |
+
+Two earlier full timelines (`--verbose`), the first with a temporary 250 s ceiling to see the natural end, which is what the ceiling was chosen from. Counts move between runs because the sources do.
+
+| Film | First link | Links at 30 s | At 60 s | Call ended, with |
+|---|---:|---:|---:|---:|
+| Inception | 484, 465 ms | 93, 104 | 93, 104 | 65.1 s 93, 67.2 s 104 |
+| The Dark Knight | 1666, 3199 ms | 49, 55 | 49, 55 | 80.5 s 49, 83.6 s 55 |
+| Interstellar | 453, 451 ms | 90, 96 | 90, 96 | 83.8 s 96, 87.5 s 102 |
+| Oppenheimer | 1162, 1595 ms | 94, 91 | 94, 91 | 71.5 s 94, 75.9 s 91 |
+| The Godfather | 1348, 1553 ms | 51, 68 | 51, 68 | 68.9 s 51, 77.0 s 68 |
+
+**A link from a partial reply played, silently,** through `--check-subtitle-render … --first-link`, which takes the first value the screen would get, then stops the call, as a click would. Real frames through the sandboxed libVLC, looked at: Inception 640x290, position 114 s, 0 subtitle tracks (it was picked before any arrived, so that run exits 1, on the subtitle part of the check only); The Godfather 640x386, 200 tracks, a cue on screen, exit 0.
+
+**Stopping worked on the real plugin.** In those two runs, sampling the serve host every 2 s: CPU 67% and 76%, then 59% and 51% with 14 connections, then 0.0% from the first sample after the call was stopped, for the remaining 116 s and 32 s, with 5 and 6 connections left open and not changing. `%cpu` from `ps`, connections from `lsof`. CineStream 487 is the only plugin measured for this.
+
+**Official plugins, `nasa`, before and after, in fresh homes at the same moment:** all 5 load with their hashes verified, 4 of 5 return results in both. Dailymotion and Internet Archive 0 links, Invidious 0 results and Twitch's `open FAILED: RuntimeException` are the same in both. YouTube's first search hit differed between the two runs (`NASA Goddard`, `NASA`), so its 12 links and 2 subtitles against 14 and 21 are not a like-for-like comparison; both opened, gave links and loaded an English track.
+
+### The design
+
+**Wire.** After its id a reply now has a kind: failed 0, done 1, partial 2, which are the bytes the two existing kinds already were. Anything else ends the host, where any non-zero byte used to read as success. A partial carries links and subtitles in the existing `writeLinks` form. The host sends one per callback. The final reply on a links call carries nothing more.
+
+**What holds against a hostile host:**
+
+| Limit | Value | Why that value | Past it |
+|---|---|---|---|
+| Frame size | 8 MB, unchanged | | the host ends |
+| Links per call, across every frame | 500 | the most the app ever kept | the host ends |
+| Subtitles per call | 200 | the same | the host ends |
+| Bytes per call, across every frame | 8 MB | all one call could ever send when its answer was one frame, so sending in parts costs nothing new | the host ends |
+| Partial frames per call | no count of its own: at most 700 | an empty partial ends the host, so every frame costs at least one of the 700 entries | the host ends |
+| Rate | not a number | snapshots are conflated at every step, so the reader sets the pace and a fast host only ever replaces the latest value. The read loop does no blocking work | |
+
+Host-side, the same three bounds cut an honest plugin instead: past them it drops, so an honest 1000-link plugin keeps its host. A client that ends a host passing a bound is sound only because of that.
+
+**Every existing check still applies.** A partial goes through `readFrame`, one id per frame, and the same parser. A partial to an id never issued, a partial after that id's final reply, a partial to a call that may not have one (search, load, home, the ready id) and an empty partial all end the host. Each partial goes through the same `cleaned()`, and each link through the same `isPublicHttpUrl`/`isPublicAudioUrl` before the screen, once, when it first appears.
+
+**`BUG-14` is not loosened.** A partial to a timed-out id is parsed and counted exactly as a live one, and goes nowhere. It stays bound by the same limits, so a call past its ceiling is no cheaper a way to flood. One final reply per id, and the id then ends the host, as before. Links calls count toward `MAX_TIMED_OUT_CALLS`.
+
+**The ceiling is 90 s, counted from the start, and no partial changes it.** All five films ended at 65 to 87 s in the runs above, so 60 would have called every one of them cut short, and would have cut 6 links from Interstellar. It is a close fit: Interstellar passed 90 s in the last run, and that run is the success-at-the-ceiling case in the table. Nothing holds a person up for it, since they can pick a link as soon as one exists. **The cost:** a source that never offers anything now takes 90 s to fail, not 60. Other calls keep their 60 s.
+
+**What ends the wait:**
+
+| Ending | With links | With none |
+|---|---|---|
+| The plugin finishes | success | `Empty`, *No Links Found* |
+| The plugin throws | success with what it has | the plugin's message, as before |
+| The ceiling | success with what it has; the check says `stopped early` | the existing failure, `did not answer within 90000ms` |
+| The person leaves | the call stops | the call stops |
+| The host ends | the call fails, and any links already on screen stay: they passed the same checks as all others | the failure |
+
+**What happens to the plugin's work.** At the ceiling, when the panel is dismissed, on Back, and when a link is picked, the app sends `OP_CANCEL` with that call's id, in no more than one frame per call, and keeps the id in `timedOut`. The host answers at once, with that call's failed reply, and drops anything the plugin offers later; the answer does not wait for the plugin, so the id's place comes back. It then cancels the coroutine. **A plugin that cooperates stops** (measured above). **One blocking a thread or running its own scope keeps going until it finishes, because nothing can stop it short of ending the host,** and that would cost every other call on it. It holds one thread of the host's `Dispatchers.IO` meanwhile. Closing the window ends the host, as it always did.
+
+**The app.** `DetailSource.links` is a `Flow` of the list so far, and only ever adds to the end. `DetailState.linksArriving` says more may come. The panel's header shows a count and the existing `Loading…` string, in space that does not change the height of anything, so **no new string, no baseline move**. `DesktopRowsSkeleton` replaces a rail-shaped skeleton in the panel and sits where the rows will. Rows keep their key, nothing asks for focus. `I18N-08`: no words in the state.
+
+Also: an unreadable final reply now fails its call at once. It was already claimed, so `abort` could not reach it, and it waited for its timeout. And the check prints how many links the player may open, because its count was always before the filter, and for Inception that is 91 against 73.
+
+### Tests, each checked by breaking the guard, alone
+
+33 mutations, one at a time, each with its target tests rerun. All 33 were caught. Class counts after the change, all passing: `:feature:detail` 16, `:feature:extensions:sandbox` 151, `:desktopApp` 233.
+
+| Removed | Failing tests |
+|---|---:|
+| Client: link bound / subtitle bound / byte budget / refusing an empty partial | 3 / 1 / 1 / 1 |
+| Client: refusing an unknown reply kind / partial to an unknown id / partial to a call that may not have one | 1 / 2 / 2 |
+| Client: recognising a timed-out id / counting after the call gave up | 4 / 1 |
+| Client: a hard ceiling (a partial re-arms it) | 1 |
+| Client: telling the host / retiring the id on leaving / the timed-out bound | 3 / 4 / 3 |
+| Client: failing a call on an unreadable final / a host ending fails the call / a plugin failing keeps its links | 1 / 3 / 1 |
+| Protocol: frame limit | 2 |
+| Real child: link cap / subtitle cap / byte cap / dropping after the last reply / cancel stops the plugin / cancel answers at once | 1 / 1 / 1 / 3 / 1 / 1 |
+| Source: URL filter / audio URL filter / checking a link once | 3 / 1 / 3 |
+| ViewModel: picking stops / dismissing stops / a failure keeps links / the loading flag ending | 1 / 2 / 1 / 4 |
+| Panel: appending at the end / the words taking no height / the words being there | 3 / 1 / 1 |
+
+The hostile-host cases asked for are in `PluginHostClientTest`, with a fake that sends exact bytes: flood (links, subtitles, bytes), oversized frame, partial after final, partial for a timed-out id. Partial with a bad URL is `ArrivingLinksTest`, through the real filter, on IP literals so nothing resolves. The real child under real Seatbelt is in `SandboxEnforcementTest`, including one test reading raw frames, since the client could not tell a host that stopped sending from one that did not.
+
+Renders looked at, 1280x800: waiting, first link, growing, overflowing, finished, nothing found, failed, and Filipino, Albanian and Arabic for the longest words. Pointer and keyboard through a real scene: pixels of the rows are identical while the list grows (hovered and scrolled) and when it finishes, and focus stays on its row.
+
+### Not verified
+
+- **A live window.** A locked session cannot drive one. The panel was run in an offscreen scene, the real path with `--first-link` and `--check-extensions`. A person clicking a row while links arrive has not happened.
+- **Whether 90 s is right for anything but these five films,** on this machine and network, with five running at once. Interstellar crossed it in one run of three.
+- **What other plugins do when told to stop.** Only CineStream 487 and test fixtures were measured.
+- **Series and anime with this plugin.** Only the five films.
+- **The gates:** module tests and `:desktopApp:createDistributable` only. `:app:checkExtensionApi` was not run here. No file under `app/` or `library/` changed.
+
+### For the owner
+
+**Picking a link early can lose its subtitles.** A link carries the subtitles offered so far, and picking stops the call. The first subtitle arrived 1 to 3 s in, most by 5 s, and the first link often before that: Inception's first link had 0 tracks. Later rows are fine, and Play again from the page asks afresh. Letting subtitles join a player already running, or not stopping on a pick, are both possible and neither is done. Coming back from the player shows the list as it was when the link was picked, and does not resume.
+
+### Found and left
+
+- **Links are in arrival order, not by quality:** the first row Inception offers can be 266p. Sorting would move rows, so it needs a decision, such as keeping arrival order until the search ends.
+- **A row with a subtitle is 49 tall in the panel,** off the 4 dp step (`DesktopRow`, measured from the renders, 81 to 130).
+- **`DetailScreenTv` shows no loading words.** Its list would grow, but no host wires it up yet.
+- **`--check-playback`** still waits for the whole answer. It was not run, because it plays aloud.
+- **Search, load and home:** a caller cancelled while waiting still stays in `pending` with no bound (`BUG-14`). Links calls no longer do.
+- **Plugin `search` still gets 60 s,** so one slow search is still lost whole. The same idea does not apply as directly, because a search has one answer.
+
 ## BUG-18 — CineStream did not load, and neither did anything else whose stack maps named `java/util/Object` · **high**
 
 **Status:** in pr · found 2026-11-03 by running the owner's plugin · `DexConverter.kt`, `StackMapFrames.kt`, shims in `syncproviders/`

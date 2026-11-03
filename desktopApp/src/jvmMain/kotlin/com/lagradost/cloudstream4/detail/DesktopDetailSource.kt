@@ -6,6 +6,7 @@ import com.lagradost.cloudstream4.feature.detail.DetailSource
 import com.lagradost.cloudstream4.feature.detail.StreamLink
 import com.lagradost.cloudstream4.feature.detail.TitleDetail
 import com.lagradost.cloudstream4.feature.extensions.sandbox.RemoteLink
+import com.lagradost.cloudstream4.feature.extensions.sandbox.RemoteLinks
 import com.lagradost.cloudstream4.feature.extensions.sandbox.RemoteSubtitle
 import com.lagradost.cloudstream4.feature.extensions.sandbox.SandboxPolicy
 import com.lagradost.cloudstream4.feature.extensions.sandbox.SandboxedProvider
@@ -16,8 +17,13 @@ import com.lagradost.cloudstream4.search.DesktopSearchSource
 import java.io.IOException
 import java.util.Locale
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.ensureActive
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.conflate
+import kotlinx.coroutines.flow.emitAll
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 
 /**
  * Titles and streams, from the sandboxed provider that produced the search result.
@@ -53,19 +59,11 @@ class DesktopDetailSource : DetailSource {
         )
     }
 
-    override suspend fun links(id: String, data: String): List<StreamLink> {
+    // Conflated: each value is the whole list so far, so a screen that cannot keep up misses nothing.
+    override fun links(id: String, data: String): Flow<List<StreamLink>> = flow {
         val (provider, _) = providerOf(id)
-        val answer = provider.links(data)
-        val subtitles = answer.subtitles.toTracks()
-        return withContext(Dispatchers.IO) {
-            answer.links.filter { link ->
-                // Resolving a name cannot be interrupted, so a dismissed list stops between links.
-                ensureActive()
-                SandboxPolicy.isPublicHttpUrl(link.url) &&
-                    link.audioUrl?.let(SandboxPolicy::isPublicAudioUrl) != false
-            }.map { it.toStreamLink(subtitles) }
-        }
-    }
+        emitAll(provider.linksAsTheyArrive(data).toStreamLinks())
+    }.conflate().flowOn(Dispatchers.IO)
 
     /**
      * The plot as plain text. Providers send HTML (`<br>` in a YouTube description) and nothing here
@@ -73,16 +71,6 @@ class DesktopDetailSource : DetailSource {
      */
     private fun String.withoutMarkup(): String =
         replace(BREAK_TAG, " ").replace(ANY_TAG, "").replace(RUN_OF_SPACES, " ").trim()
-
-    private fun RemoteLink.toStreamLink(subtitles: List<SubtitleTrack>) = StreamLink(
-        label = name,
-        qualityLabel = quality.takeIf { it > 0 }?.let { "${it}p" },
-        url = url,
-        referer = referer,
-        userAgent = userAgent,
-        audioUrl = audioUrl,
-        subtitles = subtitles,
-    )
 
     private companion object {
         const val DETAIL_BAD_ID = "BAD_ID"
@@ -92,6 +80,45 @@ class DesktopDetailSource : DetailSource {
         val RUN_OF_SPACES = Regex("\\s+")
     }
 }
+
+/**
+ * What a plugin has offered so far, as streams, emitting whenever there is one more or a new subtitle for those.
+ *
+ * Each link is checked once, when it first appears, and the answer only ever adds to its end. Nothing is
+ * emitted until a link has passed, so a plugin offering only what the player will refuse reads as finding nothing.
+ */
+internal fun Flow<RemoteLinks>.toStreamLinks(
+    isPlayable: (RemoteLink) -> Boolean = RemoteLink::isPublic,
+): Flow<List<StreamLink>> = flow {
+    val playable = ArrayList<RemoteLink>()
+    var checked = 0
+    collect { answer ->
+        answer.links.drop(checked).filterTo(playable) { link ->
+            // Resolving a name cannot be interrupted, so a dismissed list stops between links.
+            currentCoroutineContext().ensureActive()
+            isPlayable(link)
+        }
+        checked = answer.links.size
+        if (playable.isNotEmpty()) {
+            val subtitles = answer.subtitles.toTracks()
+            emit(playable.map { it.toStreamLink(subtitles) })
+        }
+    }
+}
+
+/** Whether the player may be aimed at it. */
+internal fun RemoteLink.isPublic(): Boolean =
+    SandboxPolicy.isPublicHttpUrl(url) && audioUrl?.let(SandboxPolicy::isPublicAudioUrl) != false
+
+private fun RemoteLink.toStreamLink(subtitles: List<SubtitleTrack>) = StreamLink(
+    label = name,
+    qualityLabel = quality.takeIf { it > 0 }?.let { "${it}p" },
+    url = url,
+    referer = referer,
+    userAgent = userAgent,
+    audioUrl = audioUrl,
+    subtitles = subtitles,
+)
 
 /**
  * What the plugin offered, as tracks the player can show.
