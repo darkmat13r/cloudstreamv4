@@ -25,6 +25,12 @@ internal object HostProtocol {
     const val OP_QUICK_SEARCH = 2
     const val OP_LOAD = 3
     const val OP_LOAD_LINKS = 4
+    const val OP_MAIN_PAGE = 5
+
+    const val MAX_MAIN_PAGE_SECTIONS = 64
+    const val MAX_HOME_ROWS = 64
+    const val MAX_HOME_ROW_ITEMS = 200
+    const val MAX_SEQUENTIAL_DELAY_MILLIS = 10_000L
 
     /** One length-prefixed frame, or `null` at a clean end of stream. */
     fun readFrame(input: InputStream): ByteArray? {
@@ -85,7 +91,24 @@ data class RemoteProvider(
     val lang: String,
     val hasQuickSearch: Boolean,
     val supportedTypes: List<String>,
+    val hasMainPage: Boolean = false,
+    val mainPage: List<RemoteMainPageSection> = emptyList(),
+    /** The provider asks for its sections one at a time, this far apart. Null when it does not mind. */
+    val sequentialDelayMillis: Long? = null,
 )
+
+/**
+ * One entry of a provider's `MainAPI.mainPage`, addressed by its index.
+ *
+ * The provider's `data` string stays in the host: the app has no use for it, and a value that never
+ * crosses this boundary does not have to be validated on the way back.
+ */
+data class RemoteMainPageSection(val name: String, val horizontalImages: Boolean)
+
+/** One row of a provider's main page. A section may answer with several. */
+data class RemoteHomeRow(val name: String, val horizontalImages: Boolean, val items: List<RemoteSearchItem>)
+
+data class RemoteHomePage(val rows: List<RemoteHomeRow>, val hasNext: Boolean)
 
 data class RemoteSearchItem(
     val name: String,
@@ -133,6 +156,13 @@ internal fun DataOutputStream.writeProviders(providers: List<RemoteProvider>) {
         writeBoolean(p.hasQuickSearch)
         writeInt(p.supportedTypes.size)
         p.supportedTypes.forEach { writeText(it) }
+        writeBoolean(p.hasMainPage)
+        writeInt(p.mainPage.size)
+        p.mainPage.forEach { section ->
+            writeText(section.name)
+            writeBoolean(section.horizontalImages)
+        }
+        writeLong(p.sequentialDelayMillis ?: NO_DELAY)
     }
 }
 
@@ -143,6 +173,9 @@ internal fun DataInputStream.readProviders(): List<RemoteProvider> = List(readCo
         lang = readText(),
         hasQuickSearch = readBoolean(),
         supportedTypes = List(readCount()) { readText() },
+        hasMainPage = readBoolean(),
+        mainPage = List(readCount()) { RemoteMainPageSection(readText(), readBoolean()) },
+        sequentialDelayMillis = readLong().takeIf { it != NO_DELAY },
     )
 }
 
@@ -162,6 +195,36 @@ internal fun DataInputStream.readSearchPage(): RemoteSearchPage {
     return RemoteSearchPage(
         items = List(readCount()) {
             RemoteSearchItem(readText(), readText(), readOptional(), readOptional())
+        },
+        hasNext = hasNext,
+    )
+}
+
+internal fun DataOutputStream.writeHomePage(page: RemoteHomePage) {
+    writeBoolean(page.hasNext)
+    writeInt(page.rows.size)
+    page.rows.forEach { row ->
+        writeText(row.name)
+        writeBoolean(row.horizontalImages)
+        writeInt(row.items.size)
+        row.items.forEach { item ->
+            writeText(item.name)
+            writeText(item.url)
+            writeOptional(item.type)
+            writeOptional(item.posterUrl)
+        }
+    }
+}
+
+internal fun DataInputStream.readHomePage(): RemoteHomePage {
+    val hasNext = readBoolean()
+    return RemoteHomePage(
+        rows = List(readCount()) {
+            RemoteHomeRow(
+                name = readText(),
+                horizontalImages = readBoolean(),
+                items = List(readCount()) { RemoteSearchItem(readText(), readText(), readOptional(), readOptional()) },
+            )
         },
         hasNext = hasNext,
     )
@@ -225,3 +288,4 @@ internal fun DataInputStream.readLinks(): RemoteLinks {
 private fun DataInputStream.readNumber(): Int? = readInt().takeIf { it != NO_NUMBER }
 
 private const val NO_NUMBER = Int.MIN_VALUE
+private const val NO_DELAY = Long.MIN_VALUE

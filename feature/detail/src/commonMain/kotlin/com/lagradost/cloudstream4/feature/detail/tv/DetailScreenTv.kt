@@ -33,10 +33,16 @@ import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.core.designsystem.rows.ListRow
 import com.lagradost.cloudstream4.core.designsystem.rows.ListRowState
 import com.lagradost.cloudstream4.core.designsystem.rows.RailHeader
-import com.lagradost.cloudstream4.core.designsystem.state.UiState
 import com.lagradost.cloudstream4.core.designsystem.state.UiStateHost
 import com.lagradost.cloudstream4.core.designsystem.target.GhostTextButton
 import com.lagradost.cloudstream4.core.designsystem.target.PrimaryTextButton
+import com.lagradost.cloudstream4.core.strings.generated.resources.Res
+import com.lagradost.cloudstream4.core.strings.generated.resources.episodes
+import com.lagradost.cloudstream4.core.strings.generated.resources.go_back
+import com.lagradost.cloudstream4.core.strings.generated.resources.no_episodes_found
+import com.lagradost.cloudstream4.core.strings.generated.resources.pick_source
+import com.lagradost.cloudstream4.core.strings.generated.resources.play_episode
+import com.lagradost.cloudstream4.core.strings.generated.resources.play_movie_button
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.detail.DetailAction
@@ -44,6 +50,12 @@ import com.lagradost.cloudstream4.feature.detail.DetailEpisode
 import com.lagradost.cloudstream4.feature.detail.DetailState
 import com.lagradost.cloudstream4.feature.detail.StreamLink
 import com.lagradost.cloudstream4.feature.detail.TitleDetail
+import com.lagradost.cloudstream4.feature.detail.DetailLoad
+import com.lagradost.cloudstream4.feature.detail.code
+import com.lagradost.cloudstream4.feature.detail.toLinksUiState
+import com.lagradost.cloudstream4.feature.detail.toPageUiState
+import com.lagradost.cloudstream4.feature.detail.typeLabel
+import org.jetbrains.compose.resources.stringResource
 
 /**
  * Artboards 7a and 7b of `design/TV Detail Player.dc.html`, at px/2, and a reduced 7c.
@@ -65,26 +77,25 @@ import com.lagradost.cloudstream4.feature.detail.TitleDetail
 @Composable
 fun DetailScreenTv(
     state: DetailState,
-    copy: DetailTvCopy,
     onAction: (DetailAction) -> Unit,
     onBack: () -> Unit,
     artwork: @Composable (String?) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val links = state.links
+    val links = state.links?.toLinksUiState(onAction)
     Box(modifier.fillMaxSize()) {
         if (links == null) {
-            UiStateHost(state = state.content, modifier = Modifier.fillMaxSize()) { detail ->
-                TitlePage(detail, copy, onAction, onBack, artwork)
+            UiStateHost(state = state.content.toPageUiState(onAction), modifier = Modifier.fillMaxSize()) { detail ->
+                TitlePage(detail, onAction, onBack, artwork)
             }
-            if (state.content !is UiState.Content) {
-                BackCell(copy.back, onBack)
+            if (state.content !is DetailLoad.Loaded) {
+                BackCell(stringResource(Res.string.go_back), onBack)
             }
         } else {
             Column(Modifier.fillMaxSize()) {
-                BackCell(copy.back, onClick = { onAction(DetailAction.LinksDismissed) })
+                BackCell(stringResource(Res.string.go_back), onClick = { onAction(DetailAction.LinksDismissed) })
                 UiStateHost(state = links, modifier = Modifier.fillMaxSize()) { list ->
-                    LinkList(list, copy, onAction)
+                    LinkList(list, onAction)
                 }
             }
         }
@@ -106,7 +117,6 @@ private fun BackCell(label: String, onClick: () -> Unit, modifier: Modifier = Mo
 @Composable
 private fun TitlePage(
     detail: TitleDetail,
-    copy: DetailTvCopy,
     onAction: (DetailAction) -> Unit,
     onBack: () -> Unit,
     artwork: @Composable (String?) -> Unit,
@@ -115,10 +125,10 @@ private fun TitlePage(
         Hero(detail.posterUrl, artwork)
         Column(Modifier.fillMaxSize()) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                BackCell(copy.back, onBack)
+                BackCell(stringResource(Res.string.go_back), onBack)
                 Spacer(Modifier.padding(start = DetailScreenTvDefaults.ChromeGap))
                 TextLine(
-                    text = listOfNotNull(detail.providerName, detail.typeName?.let(copy.typeLabel)).joinToString(SEPARATOR),
+                    text = listOfNotNull(detail.providerName, detail.typeName?.let { typeLabel(it) }).joinToString(SEPARATOR),
                     style = CloudStreamTheme.typography.label,
                     color = CloudStreamTheme.colors.muted,
                     modifier = Modifier.padding(top = DetailScreenTvDefaults.ChromeTop),
@@ -150,11 +160,11 @@ private fun TitlePage(
                         .widthIn(max = DetailScreenTvDefaults.PlotMaxWidth),
                 )
                 Spacer(Modifier.height(DetailScreenTvDefaults.PlotToActions))
-                ActionRow(detail, copy, onAction)
+                ActionRow(detail, onAction)
                 Spacer(Modifier.height(DetailScreenTvDefaults.ActionsToList))
             }
             if (detail.episodes.isNotEmpty()) {
-                EpisodeList(detail.episodes, copy, onAction, Modifier.weight(1f))
+                EpisodeList(detail.episodes, onAction, Modifier.weight(1f))
             }
         }
     }
@@ -184,17 +194,17 @@ private fun Hero(posterUrl: String?, artwork: @Composable (String?) -> Unit) {
 }
 
 @Composable
-private fun ActionRow(detail: TitleDetail, copy: DetailTvCopy, onAction: (DetailAction) -> Unit) {
+private fun ActionRow(detail: TitleDetail, onAction: (DetailAction) -> Unit) {
     val primary = detail.primaryData
     if (primary == null) {
-        TextLine(copy.noEpisodes, CloudStreamTheme.typography.label, CloudStreamTheme.colors.muted)
+        TextLine(stringResource(Res.string.no_episodes_found), CloudStreamTheme.typography.label, CloudStreamTheme.colors.muted)
         return
     }
     // 7a and 7b: "Entry focus: Resume". The button that plays is where focus starts.
     val focus = remember { FocusRequester() }
     LaunchedEffect(focus) { runCatching { focus.requestFocus() } }
     PrimaryTextButton(
-        label = if (detail.playData != null) copy.playMovie else copy.playEpisode,
+        label = if (detail.playData != null) stringResource(Res.string.play_movie_button) else stringResource(Res.string.play_episode),
         onClick = { onAction(DetailAction.PlayRequested(primary)) },
         modifier = Modifier.focusRequester(focus),
     )
@@ -203,13 +213,12 @@ private fun ActionRow(detail: TitleDetail, copy: DetailTvCopy, onAction: (Detail
 @Composable
 private fun EpisodeList(
     episodes: List<DetailEpisode>,
-    copy: DetailTvCopy,
     onAction: (DetailAction) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val insets = Modifier.padding(start = DetailScreenTvDefaults.ContentStart, end = DetailScreenTvDefaults.ContentEnd)
     Column(modifier.then(insets)) {
-        RailHeader(title = copy.episodes, count = episodes.size.toString())
+        RailHeader(title = stringResource(Res.string.episodes), count = episodes.size.toString())
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(CloudStreamDimens.MinFocusGap),
@@ -218,7 +227,7 @@ private fun EpisodeList(
             // The index is in the key because provider data can repeat, and a duplicate key crashes.
             items(episodes.size, key = { index -> "$index:${episodes[index].data}" }) { index ->
                 val episode = episodes[index]
-                val code = episode.code(copy, index)
+                val code = episode.code(index)
                 ListRow(
                     state = ListRowState(
                         title = episode.name ?: code,
@@ -233,7 +242,7 @@ private fun EpisodeList(
 }
 
 @Composable
-private fun LinkList(links: List<StreamLink>, copy: DetailTvCopy, onAction: (DetailAction) -> Unit) {
+private fun LinkList(links: List<StreamLink>, onAction: (DetailAction) -> Unit) {
     val first = remember { FocusRequester() }
     // Above the list, because a lazy row is disposed when it scrolls away: an effect inside row 0 would
     // run again on scrolling back and pull focus away from wherever the user had moved it.
@@ -241,7 +250,7 @@ private fun LinkList(links: List<StreamLink>, copy: DetailTvCopy, onAction: (Det
     val insets = Modifier.padding(start = DetailScreenTvDefaults.ContentStart, end = DetailScreenTvDefaults.ContentEnd)
     Column(Modifier.fillMaxSize().then(insets)) {
         Spacer(Modifier.height(DetailScreenTvDefaults.ChromeToTitle))
-        RailHeader(title = copy.sources, count = links.size.toString())
+        RailHeader(title = stringResource(Res.string.pick_source), count = links.size.toString())
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(CloudStreamDimens.MinFocusGap),
@@ -274,15 +283,6 @@ private fun TextLine(text: String, style: TextStyle, color: Color, modifier: Mod
         overflow = TextOverflow.Ellipsis,
         modifier = modifier,
     )
-}
-
-/** `S1:E2`, from the translated letters. An episode with neither number takes its place in the list. */
-internal fun DetailEpisode.code(copy: DetailTvCopy, index: Int): String {
-    val number = episode ?: (index + 1).takeIf { season == null }
-    return listOfNotNull(
-        season?.let { "${copy.seasonShort}$it" },
-        number?.let { "${copy.episodeShort}$it" },
-    ).joinToString(":")
 }
 
 private const val SEPARATOR = " · "

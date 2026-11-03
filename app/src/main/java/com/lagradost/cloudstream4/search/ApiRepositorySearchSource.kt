@@ -111,14 +111,14 @@ internal class ApiRepositorySearchSource(
     /**
      * Nothing to ask. Not [SearchOutcome.Offline] — the radio is irrelevant — and not an empty
      * [SearchOutcome.Complete], because the ViewModel renders that through
-     * `SearchPrompts.noResults(query, queried)`, whose drawn copy reads *"All nine selected sources
+     * `SearchStatus.NoResults(queried)`, whose drawn copy reads *"All nine selected sources
      * answered and none of them carry it"*. With nothing queried that sentence blames the catalogue
      * for a configuration problem.
      *
      * [SearchOutcome.Failed] is honest and it is also useful: the failure state's `StateAction` is
      * `SearchAction.Retry`, which the ViewModel routes to `submitCurrentQuery()` — a **full** search.
      * So the no-quick-search case escapes itself on one press, rather than being the dead end
-     * `SearchPrompts`' KDoc exists to prevent.
+     * a failure state must never be.
      */
     private fun noTargets(quick: Boolean, enabled: Set<String>): SearchOutcome {
         val selected = apis.withLock { apis.count { it.name in enabled } }

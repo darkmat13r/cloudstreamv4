@@ -1,7 +1,6 @@
 package com.lagradost.cloudstream4.feature.detail
 
 import androidx.compose.runtime.Immutable
-import com.lagradost.cloudstream4.core.designsystem.state.UiState
 
 /**
  * @param links null while nobody has asked to play anything. Otherwise the source list replaces the
@@ -9,24 +8,32 @@ import com.lagradost.cloudstream4.core.designsystem.state.UiState
  */
 @Immutable
 data class DetailState(
-    val content: UiState<TitleDetail> = UiState.Loading,
-    val links: UiState<List<StreamLink>>? = null,
+    val content: DetailLoad<TitleDetail> = DetailLoad.Loading,
+    val links: DetailLoad<List<StreamLink>>? = null,
 )
+
+/** How far a request got, with no words in it. The screens add them: see `toPageUiState`, `toLinksUiState`. */
+sealed interface DetailLoad<out T> {
+    data object Loading : DetailLoad<Nothing>
+    data class Loaded<T>(val value: T) : DetailLoad<T>
+
+    /** The source answered, with nothing playable. */
+    data object Empty : DetailLoad<Nothing>
+
+    /** [detail] is the machine-readable line under the words. */
+    data class Failed(val detail: String) : DetailLoad<Nothing>
+}
 
 sealed interface DetailAction {
     data object Retry : DetailAction
     data class PlayRequested(val data: String) : DetailAction
+
+    /** Asks for the sources the last [PlayRequested] asked for. */
+    data object RetryLinks : DetailAction
     data class LinkActivated(val link: StreamLink) : DetailAction
     data object LinksDismissed : DetailAction
 }
 
 sealed interface DetailEffect {
     data class Play(val title: String, val link: StreamLink) : DetailEffect
-}
-
-/** The words for each state that carries a prompt, resolved by the host. */
-interface DetailPrompts {
-    fun failed(detail: String, onRetry: () -> Unit): UiState.Error
-    fun linksFailed(detail: String, onRetry: () -> Unit): UiState.Error
-    fun noLinks(onRetry: () -> Unit): UiState.Empty
 }

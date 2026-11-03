@@ -19,6 +19,7 @@ import com.lagradost.cloudstream4.feature.search.SearchAction
 import com.lagradost.cloudstream4.feature.search.SearchContent
 import com.lagradost.cloudstream4.feature.search.SearchResultItem
 import com.lagradost.cloudstream4.feature.search.SearchState
+import com.lagradost.cloudstream4.feature.search.toUiState
 
 /**
  * The TV search screen: `design/TV Search.dc.html` artboards **4a**, **4b** and **4c**, plus
@@ -60,7 +61,6 @@ import com.lagradost.cloudstream4.feature.search.SearchState
  * refuses to place it for you.
  *
  * @param state the screen's state.
- * @param copy every word on screen, resolved. See [SearchTvCopy], and the open question in it.
  * @param onAction where the user's intent goes.
  * @param artwork draws a result's poster. Image loading is the host's, so this module stays free of
  *   an image library. The default draws nothing, which leaves the card's own placeholder.
@@ -68,18 +68,17 @@ import com.lagradost.cloudstream4.feature.search.SearchState
 @Composable
 fun SearchScreenTv(
     state: SearchState,
-    copy: SearchTvCopy,
     onAction: (SearchAction) -> Unit,
     modifier: Modifier = Modifier,
     artwork: @Composable (SearchResultItem) -> Unit = {},
 ) {
+    val content = state.status.toUiState(onAction)
     Column(modifier.fillMaxSize()) {
         Spacer(Modifier.height(CloudStreamDimens.ChromeRowTop))
 
         SearchChromeRow(
             query = state.query,
             sources = state.sources,
-            copy = copy,
             onAction = onAction,
             modifier = Modifier.contentInset().fillMaxWidth(),
         )
@@ -87,30 +86,28 @@ fun SearchScreenTv(
         Spacer(Modifier.height(SearchScreenTvDefaults.ChromeToChipGap))
 
         SearchChipRow(
-            notice = state.content.failureNotice,
+            notice = content.failureNotice,
             modifier = Modifier.contentInset(),
         )
 
         Spacer(Modifier.height(SearchScreenTvDefaults.ChipToContentGap))
 
         UiStateHost(
-            state = state.content,
+            state = content,
             modifier = Modifier.contentRegionInset().fillMaxSize(),
             skeleton = { skeletonModifier ->
                 SearchSkeleton(modifier = skeletonModifier)
             },
-        ) { content ->
-            when (content) {
+        ) { loaded ->
+            when (loaded) {
                 is SearchContent.Recent -> SearchRecentColumn(
-                    entries = content.entries,
-                    copy = copy,
+                    entries = loaded.entries,
                     onAction = onAction,
                     modifier = Modifier.contentRegionInset().fillMaxSize(),
                 )
 
                 is SearchContent.Results -> SearchResultRails(
-                    groups = content.groups,
-                    copy = copy,
+                    groups = loaded.groups,
                     onAction = onAction,
                     artwork = artwork,
                     modifier = Modifier

@@ -1,5 +1,6 @@
 package com.lagradost.cloudstream4.feature.extensions.sandbox
 
+import com.lagradost.cloudstream3.MainPageRequest
 import java.io.File
 import java.net.ServerSocket
 import java.util.jar.JarEntry
@@ -133,6 +134,100 @@ class SandboxEnforcementTest {
         assertNull(item.posterUrl, "a file: poster must not reach the image loader")
     }
 
+    private suspend fun started(): Pair<PluginHostClient, RemoteProvider>? {
+        val launcher = HostLauncher.forThisProcess() ?: return null
+        val (client, providers) = PluginHostClient.start(launcher, jar, data, "hostile")
+        host = client
+        return client to providers.getOrThrow().single()
+    }
+
+    @Test
+    fun `what a provider declares about its main page reaches the app cleaned and bounded`() = runBlocking {
+        val (_, provider) = started() ?: return@runBlocking
+        assertTrue(provider.hasMainPage)
+        assertEquals("evil[2Jsection", provider.mainPage.first().name)
+        assertEquals(5, provider.mainPage.size)
+        assertEquals(HostProtocol.MAX_SEQUENTIAL_DELAY_MILLIS, provider.sequentialDelayMillis)
+    }
+
+    @Test
+    fun `a main page comes back cleaned, and a file poster does not`() = running { host ->
+        val page = host.mainPage("Hostile", HOSTILE_SECTION, 1)
+        val row = page.rows.single()
+        assertEquals("row[2Jname", row.name)
+        assertEquals("evil[2Jforged", row.items.single().name)
+        assertNull(row.items.single().posterUrl)
+        assertTrue(page.hasNext)
+    }
+
+    @Test
+    fun `an oversized main page is cut and does not end the host`() = running { host ->
+        val page = host.mainPage("Hostile", 1, 1)
+        assertEquals(HostProtocol.MAX_HOME_ROWS, page.rows.size)
+        assertEquals(HostProtocol.MAX_HOME_ROW_ITEMS, page.rows.first().items.size)
+        assertEquals("allowed", host.attempt("write:${File(data, "still-alive.txt").path}"))
+    }
+
+    @Test
+    fun `a provider returning nothing has an empty page`() = running { host ->
+        assertEquals(RemoteHomePage(emptyList(), false), host.mainPage("Hostile", 2, 1))
+    }
+
+    @Test
+    fun `one main page failing ends neither the call's neighbours nor the host`() = running { host ->
+        val failure = assertFailsWith<Exception> { host.mainPage("Hostile", 3, 7) }
+        assertTrue("page 7" in failure.message.orEmpty(), failure.message)
+        assertEquals("printed", host.attempt("print:"))
+    }
+
+    @Test
+    fun `a section index the provider never declared fails that call and only that call`() = running { host ->
+        listOf(-1, 5, Int.MAX_VALUE, Int.MIN_VALUE).forEach { section ->
+            val failure = assertFailsWith<Exception>("section $section") { host.mainPage("Hostile", section, 1) }
+            assertTrue("unknown section" in failure.message.orEmpty(), failure.message)
+        }
+        assertEquals("printed", host.attempt("print:"))
+    }
+
+    @Test
+    fun `garbage in place of a main page ends that host`() = running { host ->
+        assertFailsWith<Exception> { host.mainPage("Hostile", 4, 1) }
+        assertFailsWith<Exception> { host.attempt("print:") }
+    }
+
+    @Test
+    fun `the proxy reaches a main page through the host and refuses a section it never offered`() = runBlocking {
+        val (client, remote) = started() ?: return@runBlocking
+        val proxy = SandboxedProvider(remote, client)
+        assertTrue(proxy.hasMainPage)
+        assertTrue(proxy.sequentialMainPage)
+        val first = proxy.mainPage.first()
+        val page = checkNotNull(
+            proxy.getMainPage(1, MainPageRequest(first.name, first.data, first.horizontalImages)),
+        )
+        assertEquals("evil[2Jforged", page.items.single().list.single().name)
+        assertNull(page.items.single().list.single().posterUrl)
+
+        listOf("hostile", "99", "-1", "").forEach { data ->
+            val refused = assertFailsWith<java.io.IOException>(data) { proxy.getMainPage(1, MainPageRequest("x", data, false)) }
+            assertEquals("unknown main page section", refused.message, "refused here, before asking the host")
+        }
+    }
+
+    /** It must lose its home page and keep its search, and nothing about it may stop the host starting. */
+    @Test
+    fun `a provider whose main page throws still loads`() = runBlocking {
+        val launcher = HostLauncher.forThisProcess() ?: return@runBlocking
+        val broken = File(root, "store/broken.jar")
+        writeJar(broken, BrokenMainPagePlugin::class.java, BrokenMainPageApi::class.java)
+        val (client, providers) = PluginHostClient.start(launcher, broken, data, "broken")
+        host = client
+        val provider = providers.getOrElse { throw AssertionError("host: ${client.hostOutput}", it) }.single()
+        assertFalse(provider.hasMainPage)
+        assertTrue(provider.mainPage.isEmpty())
+        assertEquals("still searches", client.search("Broken", "q", 1).items.single().name)
+    }
+
     /**
      * The attack is a folder whose name closes the string and opens `(allow default)`. Given to the
      * real `sandbox-exec`, because a substring check on the text proves nothing about how SBPL parses
@@ -208,6 +303,10 @@ class SandboxEnforcementTest {
         assertFailsWith<IllegalArgumentException> {
             SeatbeltProfile.render(File("/bin/sh"), emptyList(), emptyList(), File("/tmp/a\nb"), false)
         }
+    }
+
+    private companion object {
+        const val HOSTILE_SECTION = 0
     }
 
     private fun writeJar(target: File, vararg classes: Class<*>) {

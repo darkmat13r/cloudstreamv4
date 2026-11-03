@@ -33,6 +33,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusProperties
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.input.key.Key
@@ -46,16 +47,27 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButton
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButtonTone
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopIconButton
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopRow
 import com.lagradost.cloudstream4.core.designsystem.desktop.desktopFeedback
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
+import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
+import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIconSize
+import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.designsystem.state.FailureBanner
 import com.lagradost.cloudstream4.core.designsystem.state.StatePrompt
 import com.lagradost.cloudstream4.core.designsystem.state.StateView
 import com.lagradost.cloudstream4.core.designsystem.state.UiState
 import com.lagradost.cloudstream4.core.designsystem.state.UiStateHost
 import com.lagradost.cloudstream4.core.designsystem.state.failureNotice
+import com.lagradost.cloudstream4.core.strings.generated.resources.Res
+import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_clear_all
+import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_field_placeholder
+import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_recent_headline
+import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_sources_label
+import com.lagradost.cloudstream4.core.strings.generated.resources.sort_clear
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.search.SearchAction
@@ -64,7 +76,10 @@ import com.lagradost.cloudstream4.feature.search.SearchHistoryEntry
 import com.lagradost.cloudstream4.feature.search.SearchResultGroup
 import com.lagradost.cloudstream4.feature.search.SearchResultItem
 import com.lagradost.cloudstream4.feature.search.SearchState
-import com.lagradost.cloudstream4.feature.search.tv.SearchTvCopy
+import com.lagradost.cloudstream4.feature.search.resultCountText
+import com.lagradost.cloudstream4.feature.search.sourcesCountText
+import com.lagradost.cloudstream4.feature.search.toUiState
+import org.jetbrains.compose.resources.stringResource
 
 /**
  * Search for a resizable window driven by a pointer and a keyboard. `docs/plans/desktop-design.md`.
@@ -73,24 +88,23 @@ import com.lagradost.cloudstream4.feature.search.tv.SearchTvCopy
  * and an empty field has nothing to press. Results are a grid and not rails, because a mouse wheel
  * scrolls one way. Titles stay visible, because there is no D-pad focus to reveal them.
  *
- * @param copy the TV screen's words, which mean the same here.
  * @param artwork draws a result's poster. Image loading is the host's.
  */
 @Composable
 fun SearchScreenDesktop(
     state: SearchState,
-    copy: SearchTvCopy,
     onAction: (SearchAction) -> Unit,
     modifier: Modifier = Modifier,
     artwork: @Composable (SearchResultItem) -> Unit = {},
 ) {
+    val status = state.status.toUiState(onAction)
     Column(modifier.fillMaxSize()) {
-        Toolbar(state, copy, onAction)
-        state.content.failureNotice?.let { notice ->
+        Toolbar(state, onAction)
+        status.failureNotice?.let { notice ->
             Box(Modifier.padding(horizontal = DesktopDimens.WindowMargin)) { FailureBanner(notice = notice) }
         }
         val prompts = Modifier.fillMaxSize()
-        when (val content = state.content) {
+        when (val content = status) {
             is UiState.Empty -> {
                 if (state.query.isBlank()) {
                     IdleHint(content.prompt)
@@ -108,8 +122,8 @@ fun SearchScreenDesktop(
                 skeleton = { SkeletonGrid() },
             ) { loaded ->
                 when (loaded) {
-                    is SearchContent.Recent -> Recent(loaded.entries, copy, onAction)
-                    is SearchContent.Results -> Results(loaded.groups, copy, onAction, artwork)
+                    is SearchContent.Recent -> Recent(loaded.entries, onAction)
+                    is SearchContent.Results -> Results(loaded.groups, onAction, artwork)
                 }
             }
         }
@@ -117,7 +131,7 @@ fun SearchScreenDesktop(
 }
 
 @Composable
-private fun Toolbar(state: SearchState, copy: SearchTvCopy, onAction: (SearchAction) -> Unit) {
+private fun Toolbar(state: SearchState, onAction: (SearchAction) -> Unit) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
     Row(
@@ -125,11 +139,11 @@ private fun Toolbar(state: SearchState, copy: SearchTvCopy, onAction: (SearchAct
         horizontalArrangement = Arrangement.spacedBy(DesktopDimens.GroupGap),
         modifier = Modifier.fillMaxWidth().padding(DesktopDimens.WindowMargin),
     ) {
-        QueryField(state.query, copy.fieldPlaceholder, onAction, Modifier.weight(1f))
+        QueryField(state.query, stringResource(Res.string.search_tv_field_placeholder), onAction, Modifier.weight(1f))
         // A readout and deliberately not a chip: the source picker is not built, and something shaped
         // like a control has to behave like one.
         BasicText(
-            text = "${copy.sourcesLabel} ${copy.sourcesCount(state.sources.selected, state.sources.total)}",
+            text = "${stringResource(Res.string.search_tv_sources_label)} ${sourcesCountText(state.sources)}",
             style = typography.caption.copy(color = colors.muted),
             maxLines = 1,
         )
@@ -152,42 +166,62 @@ private fun QueryField(
     // A brighter hairline, not the white ring: the field holds focus most of the time and its caret
     // already says so. The ring stays for what Tab lands on, where nothing else would show it.
     LaunchedEffect(focus) { runCatching { focus.requestFocus() } }
-    Box(
-        contentAlignment = Alignment.CenterStart,
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap),
         modifier = modifier
             .height(DesktopDimens.ToolbarFieldHeight)
             .background(colors.surface, shape)
             .border(CloudStreamDimens.Hairline, if (focused) colors.muted else colors.line, shape)
-            .padding(horizontal = DesktopDimens.RowPadding),
+            .padding(start = DesktopDimens.RowPadding, end = DesktopDimens.RelatedGap),
     ) {
-        BasicTextField(
-            value = query,
-            onValueChange = { onAction(SearchAction.QueryChanged(it)) },
-            textStyle = typography.body.copy(color = colors.ink),
-            singleLine = true,
-            cursorBrush = SolidColor(colors.ink),
-            interactionSource = source,
-            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
-            keyboardActions = KeyboardActions(onSearch = { onAction(SearchAction.Submit) }),
-            modifier = Modifier
-                .fillMaxWidth()
-                .focusRequester(focus)
-                .onPreviewKeyEvent { event ->
-                    // Escape empties a field with something in it, as it does in every Mac search field.
-                    val clears = event.key == Key.Escape && event.type == KeyEventType.KeyDown && query.isNotEmpty()
-                    if (clears) onAction(SearchAction.Cleared)
-                    clears
+        CloudStreamIcon(CloudStreamIcons.Search, null, size = CloudStreamIconSize.Small, tint = colors.muted)
+        Box(contentAlignment = Alignment.CenterStart, modifier = Modifier.weight(1f)) {
+            BasicTextField(
+                value = query,
+                onValueChange = { onAction(SearchAction.QueryChanged(it)) },
+                textStyle = typography.body.copy(color = colors.ink),
+                singleLine = true,
+                cursorBrush = SolidColor(colors.ink),
+                interactionSource = source,
+                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
+                keyboardActions = KeyboardActions(onSearch = { onAction(SearchAction.Submit) }),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .focusRequester(focus)
+                    .onPreviewKeyEvent { event ->
+                        // Escape empties a field with something in it, as it does in every Mac search field.
+                        val clears = event.key == Key.Escape && event.type == KeyEventType.KeyDown && query.isNotEmpty()
+                        if (clears) onAction(SearchAction.Cleared)
+                        clears
+                    },
+            )
+            if (query.isEmpty()) {
+                BasicText(text = placeholder, style = typography.body.copy(color = colors.muted), maxLines = 1)
+            }
+        }
+        if (query.isNotEmpty()) {
+            // Never takes focus: this button leaves the composition as soon as it is pressed, and focus
+            // inside it would go with it and swallow the next keystrokes. Escape is the keyboard's way.
+            DesktopIconButton(
+                icon = CloudStreamIcons.Clear,
+                contentDescription = stringResource(Res.string.sort_clear),
+                onClick = {
+                    onAction(SearchAction.Cleared)
+                    runCatching { focus.requestFocus() }
                 },
-        )
-        if (query.isEmpty()) {
-            BasicText(text = placeholder, style = typography.body.copy(color = colors.muted), maxLines = 1)
+                tone = DesktopButtonTone.Quiet,
+                size = DesktopDimens.FieldActionSize,
+                iconSize = CloudStreamIconSize.Small,
+                modifier = Modifier.focusProperties { canFocus = false },
+            )
         }
     }
 }
 
 /**
  * What an empty field says. Words only: the action is typing, and the field already has the caret. The
- * prompt's own button is `Browse home`, and desktop has no home to go to.
+ * prompt's own button is `Browse home`, and on desktop home is one press away in the window's own bar.
  */
 @Composable
 private fun IdleHint(prompt: StatePrompt) {
@@ -213,7 +247,7 @@ private fun IdleHint(prompt: StatePrompt) {
 }
 
 @Composable
-private fun Recent(entries: List<SearchHistoryEntry>, copy: SearchTvCopy, onAction: (SearchAction) -> Unit) {
+private fun Recent(entries: List<SearchHistoryEntry>, onAction: (SearchAction) -> Unit) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
     LazyColumn(
@@ -228,11 +262,11 @@ private fun Recent(entries: List<SearchHistoryEntry>, copy: SearchTvCopy, onActi
                     .padding(start = DesktopDimens.RowPadding, bottom = DesktopDimens.RelatedGap),
             ) {
                 BasicText(
-                    text = copy.recentHeadline,
+                    text = stringResource(Res.string.search_tv_recent_headline),
                     style = typography.railTitle.copy(color = colors.ink),
                     modifier = Modifier.weight(1f),
                 )
-                DesktopButton(label = copy.clearAll, onClick = { onAction(SearchAction.RecentCleared) })
+                DesktopButton(label = stringResource(Res.string.search_tv_clear_all), onClick = { onAction(SearchAction.RecentCleared) })
             }
         }
         items(entries.size, key = { entries[it].query }) { index ->
@@ -249,7 +283,6 @@ private fun Recent(entries: List<SearchHistoryEntry>, copy: SearchTvCopy, onActi
 @Composable
 private fun Results(
     groups: List<SearchResultGroup>,
-    copy: SearchTvCopy,
     onAction: (SearchAction) -> Unit,
     artwork: @Composable (SearchResultItem) -> Unit,
 ) {
@@ -266,7 +299,7 @@ private fun Results(
     ) {
         groups.forEachIndexed { index, group ->
             item(key = "header:${group.providerName}", span = { GridItemSpan(maxLineSpan) }) {
-                SectionHeader(group, copy, topGap = if (index == 0) 0.dp else DesktopDimens.SectionGap)
+                SectionHeader(group, topGap = if (index == 0) 0.dp else DesktopDimens.SectionGap)
             }
             items(group.items.size, key = { group.items[it].id.value }) { position ->
                 val item = group.items[position]
@@ -277,7 +310,7 @@ private fun Results(
 }
 
 @Composable
-private fun SectionHeader(group: SearchResultGroup, copy: SearchTvCopy, topGap: Dp) {
+private fun SectionHeader(group: SearchResultGroup, topGap: Dp) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
     Row(
@@ -287,7 +320,7 @@ private fun SectionHeader(group: SearchResultGroup, copy: SearchTvCopy, topGap: 
     ) {
         BasicText(text = group.providerName, style = typography.railTitle.copy(color = colors.ink), maxLines = 1)
         BasicText(
-            text = copy.resultCount(group.items.size),
+            text = resultCountText(group.items.size),
             style = typography.caption.copy(color = colors.muted),
             maxLines = 1,
             modifier = Modifier.padding(bottom = SearchScreenDesktopDefaults.CountBaselineNudge),

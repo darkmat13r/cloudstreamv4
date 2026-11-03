@@ -6,7 +6,6 @@ import com.lagradost.cloudstream4.compose.DefaultEffectContainer
 import com.lagradost.cloudstream4.compose.DefaultStateContainer
 import com.lagradost.cloudstream4.compose.EffectContainer
 import com.lagradost.cloudstream4.compose.StateContainer
-import com.lagradost.cloudstream4.core.designsystem.state.UiState
 import kotlin.coroutines.cancellation.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
@@ -23,7 +22,6 @@ import kotlinx.coroutines.launch
 class DetailViewModel(
     private val id: String,
     private val source: DetailSource,
-    private val prompts: DetailPrompts,
     private val scope: CoroutineScope,
 ) : ViewModel(),
     StateContainer<DetailState> by DefaultStateContainer(DetailState()),
@@ -44,8 +42,9 @@ class DetailViewModel(
         when (action) {
             DetailAction.Retry -> load()
             is DetailAction.PlayRequested -> requestLinks(action.data)
+            DetailAction.RetryLinks -> lastData?.let(::requestLinks)
             is DetailAction.LinkActivated -> scope.launch {
-                val title = (state.value.content as? UiState.Content)?.value?.title.orEmpty()
+                val title = (state.value.content as? DetailLoad.Loaded)?.value?.title.orEmpty()
                 postEffect { DetailEffect.Play(title, action.link) }
             }
             // Cancelled, so a slow extractor that answers later cannot reopen the list.
@@ -58,12 +57,9 @@ class DetailViewModel(
     }
 
     private fun load() {
-        updateState { copy(content = UiState.Loading) }
+        updateState { copy(content = DetailLoad.Loading) }
         scope.launch {
-            val next = attempt(
-                work = { UiState.Content(source.details(id)) },
-                failed = { message -> prompts.failed(message) { onAction(DetailAction.Retry) } },
-            )
+            val next = attempt<TitleDetail> { DetailLoad.Loaded(source.details(id)) }
             updateState { copy(content = next) }
         }
     }
@@ -72,25 +68,21 @@ class DetailViewModel(
         lastData = data
         val request = ++linksRequest
         linksJob?.cancel()
-        updateState { copy(links = UiState.Loading) }
+        updateState { copy(links = DetailLoad.Loading) }
         linksJob = scope.launch {
-            val retry = { lastData?.let(::requestLinks); Unit }
-            val next = attempt<UiState<List<StreamLink>>>(
-                work = {
-                    val links = source.links(id, data)
-                    if (links.isEmpty()) prompts.noLinks(retry) else UiState.Content(links)
-                },
-                failed = { message -> prompts.linksFailed(message, retry) },
-            )
+            val next = attempt<List<StreamLink>> {
+                val links = source.links(id, data)
+                if (links.isEmpty()) DetailLoad.Empty else DetailLoad.Loaded(links)
+            }
             updateState { if (request == linksRequest) copy(links = next) else this }
         }
     }
 
-    private inline fun <T> attempt(work: () -> T, failed: (String) -> T): T = try {
+    private inline fun <T> attempt(work: () -> DetailLoad<T>): DetailLoad<T> = try {
         work()
     } catch (cancelled: CancellationException) {
         throw cancelled
     } catch (failure: Exception) {
-        failed(failure.message.orEmpty().ifEmpty { failure::class.simpleName.orEmpty() })
+        DetailLoad.Failed(failure.message.orEmpty().ifEmpty { failure::class.simpleName.orEmpty() })
     }
 }

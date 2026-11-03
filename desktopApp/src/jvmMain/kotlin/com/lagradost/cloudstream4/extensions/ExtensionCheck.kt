@@ -1,6 +1,9 @@
 package com.lagradost.cloudstream4.extensions
 
 import com.lagradost.cloudstream4.feature.extensions.sandbox.SandboxedProvider
+import com.lagradost.cloudstream4.feature.home.HomePageReply
+import com.lagradost.cloudstream4.feature.home.HomeSourceId
+import com.lagradost.cloudstream4.home.DesktopHomeSource
 import kotlinx.coroutines.runBlocking
 
 /**
@@ -21,6 +24,7 @@ fun runExtensionCheck(query: String, verbose: Boolean = false): Int = runBlockin
             val outcome = check(provider, query)
             if (outcome.foundResults) working++
             println("check: ${provider.name} — ${outcome.summary}")
+            println("check: ${provider.name} — ${checkHome(provider)}")
             if (verbose) {
                 provider.hostOutput.lineSequence()
                     .filter { it.isNotBlank() && !it.startsWith("Picked up") }
@@ -44,6 +48,19 @@ fun runExtensionScan(): Int = runBlocking {
     val report = SandboxedExtensions().scanInstalled()
     report.lines().forEach(::println)
     if (report.loads.any { it.scan?.blocked == true || it.scan == null }) 1 else 0
+}
+
+/** The first section of the main page, through the path the Home screen uses. Not counted as "working". */
+private suspend fun checkHome(provider: SandboxedProvider): String {
+    if (!provider.hasMainPage) return "home: no main page"
+    val source = DesktopHomeSource(providers = { listOf(provider) })
+    return when (val reply = source.page(HomeSourceId(provider.name), section = 0, page = 1)) {
+        is HomePageReply.Loaded -> {
+            val titles = reply.rows.sumOf { it.items.size }
+            "home ok · ${reply.rows.size} rows, $titles titles, next page ${reply.hasNext}"
+        }
+        else -> "home FAILED: $reply"
+    }
 }
 
 private class CheckOutcome(val foundResults: Boolean, val summary: String)

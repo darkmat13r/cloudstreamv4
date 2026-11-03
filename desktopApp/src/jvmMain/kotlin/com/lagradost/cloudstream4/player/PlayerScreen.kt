@@ -51,13 +51,17 @@ import com.lagradost.cloudstream4.core.designsystem.primitive.ProgressRule
 import com.lagradost.cloudstream4.core.designsystem.state.StateAction
 import com.lagradost.cloudstream4.core.designsystem.state.StatePrompt
 import com.lagradost.cloudstream4.core.designsystem.state.StateView
-import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButton
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButtonTone
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopIconButton
+import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.error_loading_links_toast
 import com.lagradost.cloudstream4.core.strings.generated.resources.go_back
 import com.lagradost.cloudstream4.core.strings.generated.resources.loading
+import com.lagradost.cloudstream4.core.strings.generated.resources.next
 import com.lagradost.cloudstream4.core.strings.generated.resources.pause
+import com.lagradost.cloudstream4.core.strings.generated.resources.previous
 import com.lagradost.cloudstream4.core.strings.generated.resources.resume
 import com.lagradost.cloudstream4.core.strings.generated.resources.source_error
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
@@ -70,9 +74,8 @@ import org.jetbrains.compose.resources.stringResource
  * The desktop player (`docs/plans/desktop-design.md`): full-bleed video, one seek track, and transport.
  * Space pauses, left and right skip; Escape is the window's.
  *
- * Text buttons stand in for transport icons, which are blocked on the icon pack (`DEC-11`), and the
- * source, subtitle and audio selectors are not built. Lives in `:desktopApp` rather than a shared module
- * because it is bound to [VlcPlayer].
+ * The source, subtitle and audio selectors are not built. Lives in `:desktopApp` rather than a shared
+ * module because it is bound to [VlcPlayer].
  *
  * @param player started and released by this screen, so leaving it stops the audio.
  * @param onBack leaves the screen, which is also what the end of the stream does.
@@ -152,6 +155,7 @@ internal fun PlayerScreen(
                 status = status.copy(failed = failed),
                 onTogglePause = player::togglePause,
                 onSeekTo = player::seekTo,
+                onSeekBy = player::seekBy,
                 onBack = onBack,
             )
         }
@@ -166,11 +170,12 @@ internal fun PlayerScreen(
  * play button near the timeline it belongs to.
  */
 @Composable
-private fun Hud(
+internal fun Hud(
     caption: String,
     status: PlayerStatus,
     onTogglePause: () -> Unit,
     onSeekTo: (Float) -> Unit,
+    onSeekBy: (Long) -> Unit,
     onBack: () -> Unit,
 ) {
     val colors = CloudStreamTheme.colors
@@ -183,7 +188,7 @@ private fun Hud(
                 .background(Brush.verticalGradient(0f to colors.bg, 1f to Color.Transparent))
                 .padding(DesktopDimens.WindowMargin),
         ) {
-            DesktopButton(label = stringResource(Res.string.go_back), onClick = onBack)
+            DesktopIconButton(CloudStreamIcons.Back, stringResource(Res.string.go_back), onBack)
             BasicText(
                 text = caption,
                 style = CloudStreamTheme.typography.label.copy(color = colors.ink),
@@ -215,10 +220,24 @@ private fun Hud(
                     style = CloudStreamTheme.typography.body.copy(color = colors.ink2),
                 )
                 else -> {
-                    DesktopButton(
-                        label = stringResource(if (status.playing) Res.string.pause else Res.string.resume),
+                    // `previous` and `next` are the nearest strings there are: nothing says "skip 10 seconds".
+                    DesktopIconButton(
+                        icon = CloudStreamIcons.SeekBackward,
+                        contentDescription = stringResource(Res.string.previous),
+                        onClick = { onSeekBy(-PlayerScreenDefaults.SkipMillis) },
+                        tone = DesktopButtonTone.Quiet,
+                    )
+                    DesktopIconButton(
+                        icon = if (status.playing) CloudStreamIcons.Pause else CloudStreamIcons.Play,
+                        contentDescription = stringResource(if (status.playing) Res.string.pause else Res.string.resume),
                         onClick = onTogglePause,
-                        primary = true,
+                        tone = DesktopButtonTone.Primary,
+                    )
+                    DesktopIconButton(
+                        icon = CloudStreamIcons.SeekForward,
+                        contentDescription = stringResource(Res.string.next),
+                        onClick = { onSeekBy(PlayerScreenDefaults.SkipMillis) },
+                        tone = DesktopButtonTone.Quiet,
                     )
                     SeekTrack(status, onSeekTo, Modifier.weight(1f))
                 }
