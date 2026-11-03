@@ -253,16 +253,43 @@
 <string name="example_site_name">"NovoImeStranice"</string>
 <string name="example_site_url">"https://primjer.com"</string>
 <string name="example_username">"Korisničko ime"</string>
+<string name="extension_allow">"Dopusti"</string>
 <string name="extension_authors">"Autori"</string>
+<string name="extension_decision_not_saved">"Vaš odabir nije se mogao spremiti pa ovo proširenje ostaje isključeno. Ponovno ćemo vas pitati."</string>
+<string name="extension_decisions_unreadable">"Vaši spremljeni odabiri nisu se mogli pročitati pa su zanemareni. Proširenja s upozorenjima ostaju isključena dok ponovno ne odaberete."</string>
 <string name="extension_description">"Opis"</string>
 <string name="extension_install_first">"Najprije instaliraj proširenje"</string>
+<string name="extension_keep_off">"Drži isključeno"</string>
 <string name="extension_language">"Jezik"</string>
 <string name="extension_rating" formatted="true">"Ocjena: %s"</string>
+<string name="extension_review_clean_note">"Proširenja bez upozorenja ovdje nisu navedena. To znači da skeniranje nije pronašlo ništa očito, a ne da su sigurna. Svako proširenje radi u svojem izoliranom okruženju."</string>
+<string name="extension_review_empty">"Nijedno proširenje nema upozorenja."</string>
+<string name="extension_review_file_note">"Odabir vrijedi za upravo ovu datoteku. Ako se datoteka promijeni, ponovno ćemo vas pitati."</string>
+<string name="extension_review_intro">"Svako ostaje isključeno dok ne odaberete. Upozorenje je samo ono što je skeniranje primijetilo. Ono ne govori da je proširenje sigurno ili štetno."</string>
+<string name="extension_review_title">"Proširenja s upozorenjima"</string>
 <string name="extension_size">"Veličina"</string>
 <string name="extension_status">"Status"</string>
+<string name="extension_status_allowed">"Dopušteno i radi u svojem izoliranom okruženju"</string>
+<string name="extension_status_blocked">"Blokirano skeniranjem. Ovo se ne može dopustiti."</string>
+<string name="extension_status_hash_mismatch">"Ova datoteka ne odgovara svojem objavljenom hashu. Ovo se ne može dopustiti."</string>
+<string name="extension_status_held">"Isključeno dok ne odaberete"</string>
+<string name="extension_status_kept_off">"Ostaje isključeno"</string>
+<string name="extension_status_start_failed">"Dopušteno, ali se nije pokrenulo"</string>
 <string name="extension_types">"Podržano"</string>
 <string name="extension_version">"Verzija"</string>
+<string name="extension_warning_classloader_access">"Pristupa učitavaču klasa, koji može unijeti kod koji ovo skeniranje nikad nije vidjelo."</string>
+<string name="extension_warning_dynamic_script">"Može pokretati skripte, pa se ono što radi može promijeniti nakon ovog skeniranja."</string>
+<string name="extension_warning_environment">"Čita postavke ovog računala, poput varijabli okruženja."</string>
+<string name="extension_warning_exit">"Može se samo ugasiti. Time završava samo njegovo izolirano okruženje, a ne aplikacija."</string>
+<string name="extension_warning_filesystem">"Čita ili zapisuje datoteke. Izolirano okruženje ograničava ga na vlastitu mapu."</string>
+<string name="extension_warning_other">"Skeniranje je označilo nešto za što nema opis. Pojedinosti su u nastavku."</string>
+<string name="extension_warning_raw_socket">"Otvara mrežne veze izravno, a ne preko aplikacije."</string>
+<string name="extension_warning_reflection">"Koristi refleksiju, koja od ovog skeniranja skriva što radi."</string>
+<string name="extension_warning_suspicious_string">"Spominje osjetljivo mjesto ili alat na ovom računalu, poput ljuske ili spremljenih prijava."</string>
+<string name="extension_warning_telemetry">"Navodi identifikator uređaja, koji se često koristi za praćenje instalacije."</string>
+<string name="extension_warning_webview">"Koristi web-prikaz, ugrađeni preglednik koji može učitati bilo koju stranicu."</string>
 <string name="extensions">"Proširenja"</string>
+<string name="extensions_waiting_count" formatted="true">"Proširenja koja čekaju vas: %d"</string>
 <string name="extra_brightness_key">"dodatna_svjetlina_uključena"</string>
 <string name="extra_brightness_settings">"Dodatna svjetlina"</string>
 <string name="extra_brightness_settings_des" formatted="true">"Uključi filtar svjetline kada se prekorači 100 % svjetline ekrana"</string>

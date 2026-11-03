@@ -254,16 +254,43 @@
 <string name="example_site_name">"NovýNázevWebu"</string>
 <string name="example_site_url">"https://example.com"</string>
 <string name="example_username">"Uživatelské jméno"</string>
+<string name="extension_allow">"Povolit"</string>
 <string name="extension_authors">"Autoři"</string>
+<string name="extension_decision_not_saved">"Vaši volbu se nepodařilo uložit, proto toto rozšíření zůstává vypnuté. Budete dotázáni znovu."</string>
+<string name="extension_decisions_unreadable">"Vaše uložené volby se nepodařilo načíst, proto byly ignorovány. Rozšíření s upozorněními zůstanou vypnutá, dokud se znovu nerozhodnete."</string>
 <string name="extension_description">"Popis"</string>
 <string name="extension_install_first">"Nejprve nainstalujte rozšíření"</string>
+<string name="extension_keep_off">"Nechat vypnuté"</string>
 <string name="extension_language">"Jazyk"</string>
 <string name="extension_rating" formatted="true">"Hodnocení: %s"</string>
+<string name="extension_review_clean_note">"Rozšíření bez upozornění zde nejsou uvedena. Znamená to, že kontrola nenašla nic zjevného, ne že jsou bezpečná. Každé rozšíření běží ve vlastním izolovaném prostředí."</string>
+<string name="extension_review_empty">"Žádná rozšíření nemají upozornění."</string>
+<string name="extension_review_file_note">"Volba platí přesně pro tento soubor. Pokud se soubor změní, budete dotázáni znovu."</string>
+<string name="extension_review_intro">"Každé zůstane vypnuté, dokud se nerozhodnete. Upozornění je jen to, čeho si kontrola všimla. Neříká, že je rozšíření bezpečné nebo škodlivé."</string>
+<string name="extension_review_title">"Rozšíření s upozorněními"</string>
 <string name="extension_size">"Velikost"</string>
 <string name="extension_status">"Stav"</string>
+<string name="extension_status_allowed">"Povoleno a běží ve svém izolovaném prostředí"</string>
+<string name="extension_status_blocked">"Zablokováno kontrolou. Nelze povolit."</string>
+<string name="extension_status_hash_mismatch">"Tento soubor neodpovídá svému zveřejněnému hashi. Nelze povolit."</string>
+<string name="extension_status_held">"Vypnuto, dokud se nerozhodnete"</string>
+<string name="extension_status_kept_off">"Ponecháno vypnuté"</string>
+<string name="extension_status_start_failed">"Povoleno, ale nespustilo se"</string>
 <string name="extension_types">"Podporováno"</string>
 <string name="extension_version">"Verze"</string>
+<string name="extension_warning_classloader_access">"Přistupuje k zavaděči tříd, který může načíst kód, jejž tato kontrola nikdy neviděla."</string>
+<string name="extension_warning_dynamic_script">"Může spouštět skripty, takže to, co dělá, se může po této kontrole změnit."</string>
+<string name="extension_warning_environment">"Čte nastavení tohoto počítače, například proměnné prostředí."</string>
+<string name="extension_warning_exit">"Může se samo vypnout. Ukončí to pouze jeho vlastní izolované prostředí, ne aplikaci."</string>
+<string name="extension_warning_filesystem">"Čte nebo zapisuje soubory. Izolované prostředí ho omezuje na jeho vlastní složku."</string>
+<string name="extension_warning_other">"Kontrola označila něco, pro co nemá popis. Podrobnosti jsou níže."</string>
+<string name="extension_warning_raw_socket">"Otevírá síťová připojení přímo, ne přes aplikaci."</string>
+<string name="extension_warning_reflection">"Používá reflexi, která před touto kontrolou skrývá, co dělá."</string>
+<string name="extension_warning_suspicious_string">"Zmiňuje citlivé místo nebo nástroj v tomto počítači, například shell nebo uložená přihlášení."</string>
+<string name="extension_warning_telemetry">"Uvádí identifikátor zařízení, který se často používá ke sledování instalace."</string>
+<string name="extension_warning_webview">"Používá webové zobrazení, vestavěný prohlížeč, který může načíst jakoukoli stránku."</string>
 <string name="extensions">"Rozšíření"</string>
+<string name="extensions_waiting_count" formatted="true">"Rozšíření čekající na vás: %d"</string>
 <string name="extra_brightness_key">"extra_brightness_enabled"</string>
 <string name="extra_brightness_settings">"Extra jas"</string>
 <string name="extra_brightness_settings_des" formatted="true">"Povolit filtr jasu při překročení 100 % jasu obrazovky"</string>

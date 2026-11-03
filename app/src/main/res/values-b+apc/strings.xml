@@ -253,16 +253,43 @@
 <string name="example_site_name">"إسم الوب سيت الجديدة"</string>
 <string name="example_site_url">"https://example.com"</string>
 <string name="example_username">"إسم الأكونت"</string>
+<string name="extension_allow">"اسمح"</string>
 <string name="extension_authors">"المؤلفين"</string>
+<string name="extension_decision_not_saved">"ما قدرنا نحفظ اختيارك، فهالإضافة بتضل مطفية. رح نسألك مرة تانية."</string>
+<string name="extension_decisions_unreadable">"ما قدرنا نقرا اختياراتك المحفوظة، فتجاهلناها. الإضافات يلي عليها تحذيرات بتضل مطفية لحتى تختار مرة تانية."</string>
 <string name="extension_description">"الوصف"</string>
 <string name="extension_install_first">"نزل الإضافة قبل"</string>
+<string name="extension_keep_off">"خلّيها مطفية"</string>
 <string name="extension_language">"اللغة"</string>
 <string name="extension_rating" formatted="true">"رايتينگ: %s"</string>
+<string name="extension_review_clean_note">"الإضافات يلي ما عليها تحذيرات مش معروضة هون. هيدا معناه إنو الفحص ما لقى شي واضح، مش إنها آمنة. كل إضافة بتشتغل ببيئتها المعزولة."</string>
+<string name="extension_review_empty">"ما في إضافات عليها تحذيرات."</string>
+<string name="extension_review_file_note">"اختيارك بينطبق على هالملف بالزبط. إذا تغيّر الملف، رح نسألك مرة تانية."</string>
+<string name="extension_review_intro">"كل وحدة بتضل مطفية لحتى تختار. التحذير هو بس شي لاحظو الفحص. ما بيقول إنو الإضافة آمنة أو مؤذية."</string>
+<string name="extension_review_title">"إضافات عليها تحذيرات"</string>
 <string name="extension_size">"الحجم"</string>
 <string name="extension_status">"الحالة"</string>
+<string name="extension_status_allowed">"مسموحة وشغّالة ببيئتها المعزولة"</string>
+<string name="extension_status_blocked">"الفحص حظرها. ما فيك تسمح فيها."</string>
+<string name="extension_status_hash_mismatch">"هالملف ما بيطابق قيمة التجزئة (hash) المنشورة تبعو. ما فيك تسمح فيه."</string>
+<string name="extension_status_held">"مطفية لحتى تختار"</string>
+<string name="extension_status_kept_off">"ضلّت مطفية"</string>
+<string name="extension_status_start_failed">"مسموحة، بس ما اشتغلت"</string>
 <string name="extension_types">"مدعوم"</string>
 <string name="extension_version">"إصدار"</string>
+<string name="extension_warning_classloader_access">"بتوصل لمحمّل الأصناف (class loader)، وهيدا ممكن يجيب كود هالفحص ما شافو أبدًا."</string>
+<string name="extension_warning_dynamic_script">"فيها تشغّل سكربتات، فشو بتعمل ممكن يتغيّر بعد هالفحص."</string>
+<string name="extension_warning_environment">"بتقرا إعدادات هالكمبيوتر، متل متغيرات البيئة."</string>
+<string name="extension_warning_exit">"فيها تطفي حالها. هيدا بينهي بس بيئتها المعزولة، مش التطبيق."</string>
+<string name="extension_warning_filesystem">"بتقرا أو بتكتب ملفات. البيئة المعزولة بتحصرها بمجلدها."</string>
+<string name="extension_warning_other">"الفحص أشّر على شي ما عندو وصف إلو. التفاصيل تحت."</string>
+<string name="extension_warning_raw_socket">"بتفتح اتصالات شبكة مباشرة، مش عن طريق التطبيق."</string>
+<string name="extension_warning_reflection">"بتستعمل الانعكاس (reflection)، وهيدا بيخبّي عن هالفحص شو عم تعمل."</string>
+<string name="extension_warning_suspicious_string">"بتذكر مكان أو أداة حساسة على هالكمبيوتر، متل سطر الأوامر أو بيانات الدخول المحفوظة."</string>
+<string name="extension_warning_telemetry">"بتذكر معرّف جهاز، وهيدا غالبًا بينستعمل لتتبّع التثبيت."</string>
+<string name="extension_warning_webview">"بتستعمل عارض ويب، يعني متصفح مدمج فيه يحمّل أي صفحة."</string>
 <string name="extensions">"الإضافات"</string>
+<string name="extensions_waiting_count" formatted="true">"إضافات ناطرتك: %d"</string>
 <string name="extra_brightness_key">"extra_brightness_enabled"</string>
 <string name="extra_brightness_settings">"قوة ضو إضافية"</string>
 <string name="extra_brightness_settings_des" formatted="true">"بت حط فلتر للبرايتنس لمّا تعلي قوة الضو ل أكتر من 100%"</string>

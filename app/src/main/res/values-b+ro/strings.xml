@@ -218,16 +218,43 @@
 <string name="example_site_name">"NouNumeSite"</string>
 <string name="example_site_url">"https://exemplu.com"</string>
 <string name="example_username">"Numele utilizatorului/utilizatoarei"</string>
+<string name="extension_allow">"Permiteți"</string>
 <string name="extension_authors">"Autori"</string>
+<string name="extension_decision_not_saved">"Alegerea dvs. nu a putut fi salvată, așa că această extensie rămâne oprită. Veți fi întrebat din nou."</string>
+<string name="extension_decisions_unreadable">"Alegerile dvs. salvate nu au putut fi citite, așa că au fost ignorate. Extensiile cu avertismente rămân oprite până alegeți din nou."</string>
 <string name="extension_description">"Descriere"</string>
 <string name="extension_install_first">"Instalați mai întâi extensia"</string>
+<string name="extension_keep_off">"Lăsați oprită"</string>
 <string name="extension_language">"Limbă"</string>
 <string name="extension_rating" formatted="true">"Evaluare: %s"</string>
+<string name="extension_review_clean_note">"Extensiile fără avertismente nu sunt listate aici. Asta înseamnă că scanarea nu a găsit nimic evident, nu că sunt sigure. Fiecare extensie rulează în propriul mediu izolat."</string>
+<string name="extension_review_empty">"Nicio extensie nu are avertismente."</string>
+<string name="extension_review_file_note">"O alegere se aplică exact acestui fișier. Dacă fișierul se schimbă, veți fi întrebat din nou."</string>
+<string name="extension_review_intro">"Fiecare rămâne oprită până alegeți. Un avertisment este doar ceea ce a observat o scanare. Nu spune că o extensie este sigură sau dăunătoare."</string>
+<string name="extension_review_title">"Extensii cu avertismente"</string>
 <string name="extension_size">"Dimensiune"</string>
 <string name="extension_status">"Stare"</string>
+<string name="extension_status_allowed">"Permisă și rulează în mediul ei izolat"</string>
+<string name="extension_status_blocked">"Blocată de scanare. Nu poate fi permisă."</string>
+<string name="extension_status_hash_mismatch">"Acest fișier nu corespunde hash-ului publicat. Nu poate fi permis."</string>
+<string name="extension_status_held">"Oprită până alegeți"</string>
+<string name="extension_status_kept_off">"Menținută oprită"</string>
+<string name="extension_status_start_failed">"Permisă, dar nu a pornit"</string>
 <string name="extension_types">"Suportat"</string>
 <string name="extension_version">"Versiune"</string>
+<string name="extension_warning_classloader_access">"Accesează încărcătorul de clase, care poate aduce cod pe care această scanare nu l-a văzut niciodată."</string>
+<string name="extension_warning_dynamic_script">"Poate rula scripturi, așa că ceea ce face se poate schimba după această scanare."</string>
+<string name="extension_warning_environment">"Citește setări ale acestui computer, cum ar fi variabilele de mediu."</string>
+<string name="extension_warning_exit">"Se poate închide singură. Asta oprește doar propriul ei mediu izolat, nu aplicația."</string>
+<string name="extension_warning_filesystem">"Citește sau scrie fișiere. Mediul izolat o limitează la propriul ei dosar."</string>
+<string name="extension_warning_other">"Scanarea a semnalat ceva pentru care nu are o descriere. Detaliul este mai jos."</string>
+<string name="extension_warning_raw_socket">"Deschide conexiuni de rețea direct, nu prin aplicație."</string>
+<string name="extension_warning_reflection">"Folosește reflecția, care ascunde de această scanare ceea ce face."</string>
+<string name="extension_warning_suspicious_string">"Menționează un loc sau un instrument sensibil de pe acest computer, cum ar fi un shell sau date de autentificare salvate."</string>
+<string name="extension_warning_telemetry">"Numește un identificator de dispozitiv, folosit adesea pentru a urmări o instalare."</string>
+<string name="extension_warning_webview">"Folosește o vizualizare web, un browser integrat care poate încărca orice pagină."</string>
 <string name="extensions">"Extensii"</string>
+<string name="extensions_waiting_count" formatted="true">"Extensii care vă așteaptă: %d"</string>
 <string name="extras">"Suplimente"</string>
 <string name="favorite">"Favorite"</string>
 <string name="favorite_added" formatted="true">"%s a fost adăugat la favoriți/te"</string>

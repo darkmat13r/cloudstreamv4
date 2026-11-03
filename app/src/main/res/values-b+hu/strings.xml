@@ -217,16 +217,43 @@
 <string name="example_site_name">"ÚjOldalNév"</string>
 <string name="example_site_url">"https://példa.hu"</string>
 <string name="example_username">"Felhasználónév"</string>
+<string name="extension_allow">"Engedélyezés"</string>
 <string name="extension_authors">"Szerzők"</string>
+<string name="extension_decision_not_saved">"A döntését nem sikerült menteni, ezért ez a bővítmény kikapcsolva marad. Újra megkérdezzük."</string>
+<string name="extension_decisions_unreadable">"A mentett döntéseit nem sikerült beolvasni, ezért figyelmen kívül hagytuk őket. A figyelmeztetéssel rendelkező bővítmények kikapcsolva maradnak, amíg újra nem dönt."</string>
 <string name="extension_description">"Leírás"</string>
 <string name="extension_install_first">"Először telepítse a bővítményt"</string>
+<string name="extension_keep_off">"Maradjon ki"</string>
 <string name="extension_language">"Nyelv"</string>
 <string name="extension_rating" formatted="true">"Értékelés: %s"</string>
+<string name="extension_review_clean_note">"A figyelmeztetés nélküli bővítmények nem szerepelnek itt. Ez azt jelenti, hogy a vizsgálat nem talált semmi nyilvánvalót, nem azt, hogy biztonságosak. Minden bővítmény a saját elszigetelt környezetében fut."</string>
+<string name="extension_review_empty">"Egyik bővítményhez sincs figyelmeztetés."</string>
+<string name="extension_review_file_note">"A döntés pontosan erre a fájlra vonatkozik. Ha a fájl megváltozik, újra megkérdezzük."</string>
+<string name="extension_review_intro">"Mindegyik kikapcsolva marad, amíg nem dönt. A figyelmeztetés csak azt jelzi, amit a vizsgálat észrevett. Nem állítja, hogy egy bővítmény biztonságos vagy káros."</string>
+<string name="extension_review_title">"Figyelmeztetéssel rendelkező bővítmények"</string>
 <string name="extension_size">"Méret"</string>
 <string name="extension_status">"Állapot"</string>
+<string name="extension_status_allowed">"Engedélyezve, és a saját elszigetelt környezetében fut"</string>
+<string name="extension_status_blocked">"A vizsgálat letiltotta. Ez nem engedélyezhető."</string>
+<string name="extension_status_hash_mismatch">"Ez a fájl nem egyezik a közzétett hash-értékével. Ez nem engedélyezhető."</string>
+<string name="extension_status_held">"Kikapcsolva, amíg nem dönt"</string>
+<string name="extension_status_kept_off">"Kikapcsolva marad"</string>
+<string name="extension_status_start_failed">"Engedélyezve, de nem indult el"</string>
 <string name="extension_types">"Támogatott"</string>
 <string name="extension_version">"Verzió"</string>
+<string name="extension_warning_classloader_access">"Eléri az osztálybetöltőt, amely olyan kódot is behozhat, amelyet ez a vizsgálat sosem látott."</string>
+<string name="extension_warning_dynamic_script">"Szkripteket futtathat, így a működése e vizsgálat után megváltozhat."</string>
+<string name="extension_warning_environment">"Beolvassa a számítógép beállításait, például a környezeti változókat."</string>
+<string name="extension_warning_exit">"Le tudja állítani önmagát. Ez csak a saját elszigetelt környezetét zárja be, az alkalmazást nem."</string>
+<string name="extension_warning_filesystem">"Fájlokat olvas vagy ír. Az elszigetelt környezet a saját mappájára korlátozza."</string>
+<string name="extension_warning_other">"A vizsgálat olyasmit jelölt meg, amelyhez nincs leírása. A részletek alább olvashatók."</string>
+<string name="extension_warning_raw_socket">"Közvetlenül nyit hálózati kapcsolatokat, nem az alkalmazáson keresztül."</string>
+<string name="extension_warning_reflection">"Reflexiót használ, amely elrejti e vizsgálat elől, hogy mit csinál."</string>
+<string name="extension_warning_suspicious_string">"Említ egy érzékeny helyet vagy eszközt ezen a számítógépen, például egy parancsértelmezőt vagy mentett bejelentkezési adatokat."</string>
+<string name="extension_warning_telemetry">"Megnevez egy eszközazonosítót, amelyet gyakran egy telepítés követésére használnak."</string>
+<string name="extension_warning_webview">"Webnézetet használ, egy beépített böngészőt, amely bármilyen oldalt betölthet."</string>
 <string name="extensions">"Bővítmények"</string>
+<string name="extensions_waiting_count" formatted="true">"Az Ön döntésére váró bővítmények: %d"</string>
 <string name="extra_brightness_key">"extra_brightness_enabled"</string>
 <string name="extra_brightness_settings">"Extra fényerő"</string>
 <string name="extra_brightness_settings_des" formatted="true">"A fényerő szűrő engedélyezése, ha a kijelző fényereje meghaladja a 100% -ot"</string>

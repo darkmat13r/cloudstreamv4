@@ -254,16 +254,43 @@
 <string name="example_site_name">"NovoNomedoSite"</string>
 <string name="example_site_url">"https://example.com"</string>
 <string name="example_username">"Nome de usuário"</string>
+<string name="extension_allow">"Permitir"</string>
 <string name="extension_authors">"Autores"</string>
+<string name="extension_decision_not_saved">"Não foi possível salvar sua escolha, então esta extensão fica desligada. Você será perguntado de novo."</string>
+<string name="extension_decisions_unreadable">"Não foi possível ler suas escolhas salvas, então elas foram ignoradas. Extensões com avisos ficam desligadas até você escolher de novo."</string>
 <string name="extension_description">"Descrição"</string>
 <string name="extension_install_first">"Instale a extensão primeiro"</string>
+<string name="extension_keep_off">"Manter desligada"</string>
 <string name="extension_language">"Linguagem"</string>
 <string name="extension_rating" formatted="true">"Avaliação: %s"</string>
+<string name="extension_review_clean_note">"Extensões sem avisos não aparecem aqui. Isso significa que a verificação não encontrou nada óbvio, não que elas sejam seguras. Cada extensão roda no seu próprio ambiente isolado."</string>
+<string name="extension_review_empty">"Nenhuma extensão tem avisos."</string>
+<string name="extension_review_file_note">"A escolha vale para exatamente este arquivo. Se o arquivo mudar, você será perguntado de novo."</string>
+<string name="extension_review_intro">"Cada uma fica desligada até você escolher. Um aviso é apenas o que uma verificação notou. Ele não diz que uma extensão é segura nem que é prejudicial."</string>
+<string name="extension_review_title">"Extensões com avisos"</string>
 <string name="extension_size">"Tamanho"</string>
 <string name="extension_status">"Status"</string>
+<string name="extension_status_allowed">"Permitida e em execução no seu ambiente isolado"</string>
+<string name="extension_status_blocked">"Bloqueada pela verificação. Isso não pode ser permitido."</string>
+<string name="extension_status_hash_mismatch">"Este arquivo não corresponde ao hash publicado. Isso não pode ser permitido."</string>
+<string name="extension_status_held">"Desligada até você escolher"</string>
+<string name="extension_status_kept_off">"Mantida desligada"</string>
+<string name="extension_status_start_failed">"Permitida, mas não iniciou"</string>
 <string name="extension_types">"Suportado"</string>
 <string name="extension_version">"Versão"</string>
+<string name="extension_warning_classloader_access">"Acessa o carregador de classes, que pode trazer código que esta verificação nunca viu."</string>
+<string name="extension_warning_dynamic_script">"Pode executar scripts, então o que ela faz pode mudar depois desta verificação."</string>
+<string name="extension_warning_environment">"Lê configurações deste computador, como variáveis de ambiente."</string>
+<string name="extension_warning_exit">"Pode se encerrar sozinha. Isso termina apenas o próprio ambiente isolado dela, não o aplicativo."</string>
+<string name="extension_warning_filesystem">"Lê ou grava arquivos. O ambiente isolado a limita à sua própria pasta."</string>
+<string name="extension_warning_other">"A verificação sinalizou algo para o qual não tem descrição. O detalhe está abaixo."</string>
+<string name="extension_warning_raw_socket">"Abre conexões de rede diretamente, não através do aplicativo."</string>
+<string name="extension_warning_reflection">"Usa reflexão, o que esconde desta verificação o que ela faz."</string>
+<string name="extension_warning_suspicious_string">"Menciona um local ou uma ferramenta sensível neste computador, como um shell ou logins salvos."</string>
+<string name="extension_warning_telemetry">"Cita um identificador de dispositivo, muitas vezes usado para rastrear uma instalação."</string>
+<string name="extension_warning_webview">"Usa uma visualização web, um navegador embutido que pode carregar qualquer página."</string>
 <string name="extensions">"Extensões"</string>
+<string name="extensions_waiting_count" formatted="true">"Extensões esperando por você: %d"</string>
 <string name="extra_brightness_key">"brilho_extra_ativado"</string>
 <string name="extra_brightness_settings">"Brilho extra"</string>
 <string name="extra_brightness_settings_des" formatted="true">"Ativar filtro de claridade ao exceder 100% do brilho do display"</string>

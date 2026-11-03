@@ -254,16 +254,43 @@
 <string name="example_site_name">"NeuerSeitenNamen"</string>
 <string name="example_site_url">"https://example.com"</string>
 <string name="example_username">"Benutzername"</string>
+<string name="extension_allow">"Erlauben"</string>
 <string name="extension_authors">"Autoren"</string>
+<string name="extension_decision_not_saved">"Ihre Entscheidung konnte nicht gespeichert werden, daher bleibt diese Erweiterung aus. Sie werden erneut gefragt."</string>
+<string name="extension_decisions_unreadable">"Ihre gespeicherten Entscheidungen konnten nicht gelesen werden und wurden daher ignoriert. Erweiterungen mit Warnungen bleiben aus, bis Sie erneut entscheiden."</string>
 <string name="extension_description">"Beschreibung"</string>
 <string name="extension_install_first">"Zuerst muss die Erweiterung installiert werden"</string>
+<string name="extension_keep_off">"Aus lassen"</string>
 <string name="extension_language">"Sprache"</string>
 <string name="extension_rating" formatted="true">"Bewertung: %s"</string>
+<string name="extension_review_clean_note">"Erweiterungen ohne Warnungen werden hier nicht aufgeführt. Das bedeutet, dass die Prüfung nichts Offensichtliches gefunden hat, nicht dass sie sicher sind. Jede Erweiterung läuft in ihrer eigenen Sandbox."</string>
+<string name="extension_review_empty">"Keine Erweiterungen haben Warnungen."</string>
+<string name="extension_review_file_note">"Eine Entscheidung gilt für genau diese Datei. Wenn sich die Datei ändert, werden Sie erneut gefragt."</string>
+<string name="extension_review_intro">"Jede bleibt aus, bis Sie entscheiden. Eine Warnung ist nur das, was einer Prüfung aufgefallen ist. Sie sagt nicht, dass eine Erweiterung sicher oder schädlich ist."</string>
+<string name="extension_review_title">"Erweiterungen mit Warnungen"</string>
 <string name="extension_size">"Größe"</string>
 <string name="extension_status">"Status"</string>
+<string name="extension_status_allowed">"Erlaubt und läuft in ihrer Sandbox"</string>
+<string name="extension_status_blocked">"Von der Prüfung blockiert. Dies kann nicht erlaubt werden."</string>
+<string name="extension_status_hash_mismatch">"Diese Datei stimmt nicht mit ihrem veröffentlichten Hash überein. Dies kann nicht erlaubt werden."</string>
+<string name="extension_status_held">"Aus, bis Sie entscheiden"</string>
+<string name="extension_status_kept_off">"Bleibt aus"</string>
+<string name="extension_status_start_failed">"Erlaubt, aber nicht gestartet"</string>
 <string name="extension_types">"Unterstützt"</string>
 <string name="extension_version">"Version"</string>
+<string name="extension_warning_classloader_access">"Sie greift auf den Class Loader zu, der Code einbringen kann, den diese Prüfung nie gesehen hat."</string>
+<string name="extension_warning_dynamic_script">"Sie kann Skripte ausführen, daher kann sich nach dieser Prüfung ändern, was sie tut."</string>
+<string name="extension_warning_environment">"Sie liest Einstellungen dieses Computers, etwa Umgebungsvariablen."</string>
+<string name="extension_warning_exit">"Sie kann sich selbst beenden. Das beendet nur ihre eigene Sandbox, nicht die App."</string>
+<string name="extension_warning_filesystem">"Sie liest oder schreibt Dateien. Die Sandbox beschränkt sie auf ihren eigenen Ordner."</string>
+<string name="extension_warning_other">"Die Prüfung hat etwas markiert, wofür sie keine Beschreibung hat. Die Details stehen unten."</string>
+<string name="extension_warning_raw_socket">"Sie öffnet Netzwerkverbindungen direkt, nicht über die App."</string>
+<string name="extension_warning_reflection">"Sie nutzt Reflection, wodurch vor dieser Prüfung verborgen bleibt, was sie tut."</string>
+<string name="extension_warning_suspicious_string">"Sie erwähnt einen sensiblen Ort oder ein sensibles Werkzeug auf diesem Computer, etwa eine Shell oder gespeicherte Anmeldedaten."</string>
+<string name="extension_warning_telemetry">"Sie nennt eine Gerätekennung, die oft zum Verfolgen einer Installation verwendet wird."</string>
+<string name="extension_warning_webview">"Sie nutzt eine Webansicht, einen integrierten Browser, der jede Seite laden kann."</string>
 <string name="extensions">"Erweiterungen"</string>
+<string name="extensions_waiting_count" formatted="true">"Erweiterungen, die auf Sie warten: %d"</string>
 <string name="extra_brightness_key">"Erhöhte Helligkeit aktiviert"</string>
 <string name="extra_brightness_settings">"Zusätzliche Helligkeit"</string>
 <string name="extra_brightness_settings_des" formatted="true">"Aktiviere Helligkeitsfilter, wenn 100% Bildschirmhelligkeit überschritten ist"</string>

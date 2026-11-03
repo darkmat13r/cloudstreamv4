@@ -105,6 +105,33 @@
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error_bookmarks_text">"Marcadores"</string>
 <string name="error_loading_links_toast">"Error Cargando Ligazón"</string>
+<string name="extension_allow">"Permitir"</string>
+<string name="extension_decision_not_saved">"Non se puido gardar a súa escolla, polo que esta extensión segue apagada. Preguntaráselle de novo."</string>
+<string name="extension_decisions_unreadable">"Non se puideron ler as súas escollas gardadas, polo que se ignoraron. As extensións con avisos seguen apagadas ata que volva escoller."</string>
+<string name="extension_keep_off">"Manter apagada"</string>
+<string name="extension_review_clean_note">"As extensións sen avisos non aparecen aquí. Iso significa que a análise non atopou nada evidente, non que sexan seguras. Cada extensión execútase no seu propio espazo illado."</string>
+<string name="extension_review_empty">"Ningunha extensión ten avisos."</string>
+<string name="extension_review_file_note">"A escolla aplícase a este ficheiro exacto. Se o ficheiro cambia, preguntaráselle de novo."</string>
+<string name="extension_review_intro">"Cada unha permanece apagada ata que escolla. Un aviso é só o que detectou unha análise. Non di que unha extensión sexa segura nin daniña."</string>
+<string name="extension_review_title">"Extensións con avisos"</string>
+<string name="extension_status_allowed">"Permitida e en execución no seu espazo illado"</string>
+<string name="extension_status_blocked">"Bloqueada pola análise. Non se pode permitir."</string>
+<string name="extension_status_hash_mismatch">"Este ficheiro non coincide co seu hash publicado. Non se pode permitir."</string>
+<string name="extension_status_held">"Apagada ata que escolla"</string>
+<string name="extension_status_kept_off">"Mantida apagada"</string>
+<string name="extension_status_start_failed">"Permitida, pero non se iniciou"</string>
+<string name="extension_warning_classloader_access">"Accede ao cargador de clases, que pode introducir código que esta análise nunca viu."</string>
+<string name="extension_warning_dynamic_script">"Pode executar scripts, polo que o que fai pode cambiar despois desta análise."</string>
+<string name="extension_warning_environment">"Le axustes deste ordenador, como as variables de contorno."</string>
+<string name="extension_warning_exit">"Pode pecharse por si mesma. Iso só remata o seu propio espazo illado, non a aplicación."</string>
+<string name="extension_warning_filesystem">"Le ou escribe ficheiros. O espazo illado limítaa ao seu propio cartafol."</string>
+<string name="extension_warning_other">"A análise marcou algo para o que non ten descrición. O detalle está abaixo."</string>
+<string name="extension_warning_raw_socket">"Abre conexións de rede directamente, sen pasar pola aplicación."</string>
+<string name="extension_warning_reflection">"Usa reflexión, que oculta a esta análise o que fai."</string>
+<string name="extension_warning_suspicious_string">"Menciona un lugar ou ferramenta delicados deste ordenador, como unha shell ou os inicios de sesión gardados."</string>
+<string name="extension_warning_telemetry">"Nomea un identificador do dispositivo, que adoita usarse para seguir unha instalación."</string>
+<string name="extension_warning_webview">"Usa unha vista web, un navegador integrado que pode cargar calquera páxina."</string>
+<string name="extensions_waiting_count" formatted="true">"Extensións agardando por vostede: %d"</string>
 <string name="filler">"Recheo"</string>
 <string name="filter_bookmarks">"Filtrar Marcadores"</string>
 <string name="free_storage">"Libre"</string>

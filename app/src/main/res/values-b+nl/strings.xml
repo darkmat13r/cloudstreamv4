@@ -229,16 +229,43 @@
 <string name="example_site_name">"NieuweSiteNaam"</string>
 <string name="example_site_url">"https://voorbeeld.com"</string>
 <string name="example_username">"Gebruikersnaam"</string>
+<string name="extension_allow">"Toestaan"</string>
 <string name="extension_authors">"Auteurs"</string>
+<string name="extension_decision_not_saved">"Je keuze kon niet worden opgeslagen, dus deze uitbreiding blijft uit. Het wordt je opnieuw gevraagd."</string>
+<string name="extension_decisions_unreadable">"Je opgeslagen keuzes konden niet worden gelezen en zijn daarom genegeerd. Uitbreidingen met waarschuwingen blijven uit tot je opnieuw kiest."</string>
 <string name="extension_description">"Beschrijving"</string>
 <string name="extension_install_first">"Installeer eerst de uitbreiding"</string>
+<string name="extension_keep_off">"Uit laten"</string>
 <string name="extension_language">"Taal"</string>
 <string name="extension_rating" formatted="true">"Beoordeling: %s"</string>
+<string name="extension_review_clean_note">"Uitbreidingen zonder waarschuwingen staan hier niet. Dat betekent dat de scan niets duidelijks heeft gevonden, niet dat ze veilig zijn. Elke uitbreiding draait in een eigen afgeschermde omgeving."</string>
+<string name="extension_review_empty">"Geen enkele uitbreiding heeft waarschuwingen."</string>
+<string name="extension_review_file_note">"Een keuze geldt voor precies dit bestand. Als het bestand verandert, wordt het je opnieuw gevraagd."</string>
+<string name="extension_review_intro">"Elke uitbreiding blijft uit tot je kiest. Een waarschuwing is alleen wat een scan heeft opgemerkt. Die zegt niet dat een uitbreiding veilig of schadelijk is."</string>
+<string name="extension_review_title">"Uitbreidingen met waarschuwingen"</string>
 <string name="extension_size">"Grootte"</string>
 <string name="extension_status">"Status"</string>
+<string name="extension_status_allowed">"Toegestaan en actief in de eigen afgeschermde omgeving"</string>
+<string name="extension_status_blocked">"Geblokkeerd door de scan. Dit kan niet worden toegestaan."</string>
+<string name="extension_status_hash_mismatch">"Dit bestand komt niet overeen met de gepubliceerde hash. Dit kan niet worden toegestaan."</string>
+<string name="extension_status_held">"Uit tot je kiest"</string>
+<string name="extension_status_kept_off">"Blijft uit"</string>
+<string name="extension_status_start_failed">"Toegestaan, maar niet gestart"</string>
 <string name="extension_types">"Ondersteund"</string>
 <string name="extension_version">"Versie"</string>
+<string name="extension_warning_classloader_access">"Heeft toegang tot de klassenlader, die code kan binnenhalen die deze scan nooit heeft gezien."</string>
+<string name="extension_warning_dynamic_script">"Kan scripts uitvoeren, dus wat de uitbreiding doet kan na deze scan veranderen."</string>
+<string name="extension_warning_environment">"Leest instellingen van deze computer, zoals omgevingsvariabelen."</string>
+<string name="extension_warning_exit">"Kan zichzelf afsluiten. Dat beëindigt alleen de eigen afgeschermde omgeving, niet de app."</string>
+<string name="extension_warning_filesystem">"Leest of schrijft bestanden. De afgeschermde omgeving beperkt dit tot de eigen map."</string>
+<string name="extension_warning_other">"De scan heeft iets gemarkeerd waarvoor geen beschrijving bestaat. De details staan hieronder."</string>
+<string name="extension_warning_raw_socket">"Opent netwerkverbindingen rechtstreeks, niet via de app."</string>
+<string name="extension_warning_reflection">"Gebruikt reflectie, waardoor voor deze scan verborgen blijft wat de uitbreiding doet."</string>
+<string name="extension_warning_suspicious_string">"Noemt een gevoelige plek of tool op deze computer, zoals een shell of opgeslagen aanmeldgegevens."</string>
+<string name="extension_warning_telemetry">"Noemt een apparaat-ID, die vaak wordt gebruikt om een installatie te volgen."</string>
+<string name="extension_warning_webview">"Gebruikt een webweergave, een ingebouwde browser die elke pagina kan laden."</string>
 <string name="extensions">"Uitbreidingen"</string>
+<string name="extensions_waiting_count" formatted="true">"Uitbreidingen die op je wachten: %d"</string>
 <string name="extra_brightness_key">"extra_helderheid_ingeschakeld"</string>
 <string name="extra_brightness_settings">"Extra helderheid"</string>
 <string name="extra_brightness_settings_des" formatted="true">"Schakel het helderheidsfilter in zodra de schermhelderheid boven 100% komt"</string>
