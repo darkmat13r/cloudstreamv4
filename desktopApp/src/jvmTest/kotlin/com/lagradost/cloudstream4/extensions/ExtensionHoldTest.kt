@@ -5,6 +5,8 @@ import com.lagradost.cloudstream4.feature.extensions.sandbox.ExtensionScanner
 import com.lagradost.cloudstream4.feature.extensions.sandbox.HostLauncher
 import java.io.File
 import java.nio.file.Files
+import java.util.zip.ZipEntry
+import java.util.zip.ZipOutputStream
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
@@ -290,5 +292,26 @@ class ExtensionHoldTest {
         const val SETTLE_MILLIS = 300L
         const val POLL_MILLIS = 50L
         const val TIMEOUT_MILLIS = 60_000L
+    }
+
+    /**
+     * `BUG-18`. Nothing this input can become is usable, so the only way to a passing scan is the old jar.
+     * Names the last revision, not the current one: update it when `CONVERTER_REVISION` next moves.
+     */
+    @Test
+    fun `a jar from the last converter is not used, so an owner gets the fixed conversion`() {
+        if (!hasSandbox) return
+        val cs3 = File(directory, "Old.cs3")
+        ZipOutputStream(cs3.outputStream()).use { out ->
+            out.putNextEntry(ZipEntry("manifest.json"))
+            out.closeEntry()
+        }
+        val stale = File(directory, ".store/${sha256Of(cs3)}-c2.jar").apply { parentFile.mkdirs() }
+        writeProbeJar(stale)
+
+        val load = runBlocking { extensions.scanInstalled() }.loads.single()
+
+        assertEquals(LoadState.Failed, load.state, load.outcome)
+        assertTrue("no classes.dex" in load.outcome || "conversion failed" in load.outcome, load.outcome)
     }
 }

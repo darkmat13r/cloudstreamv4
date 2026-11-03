@@ -273,8 +273,11 @@ class SandboxedExtensions(
         private const val JAR_SUFFIX = ".jar"
         private const val CS3_SUFFIX = ".cs3"
 
-        /** Bump when `DexConverter`'s output changes. `-c2`: real names and stack maps (`KMP-18`). */
-        private const val CONVERTER_REVISION = "-c2"
+        /**
+         * Bump when `DexConverter`'s output changes. `-c2`: real names and stack maps (`KMP-18`). `-c3`: stack maps
+         * that name real classes (`BUG-18`).
+         */
+        private const val CONVERTER_REVISION = "-c3"
         private const val SIDECAR_SUFFIX = ".sha256"
         private const val STAGING_SUFFIX = ".part"
         private const val MAX_SIDECAR_BYTES = 1024L
