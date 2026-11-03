@@ -481,7 +481,7 @@ field holds focus. TV is unchanged.
 
 ## BUG-12 — typing a desktop search said "Search failed" · **high**
 
-**Status:** in pr · found 2026-11-02 by rendering the real plugins while typing, with no Return
+**Status:** done · #86 · found 2026-11-02 by rendering the real plugins while typing, with no Return
 
 `DesktopSearchSource.quickSearch` asked only providers declaring `hasQuickSearch`. Declaring it proves
 nothing: `MainAPI.quickSearch` throws `NotImplementedError` by default. So a user who typed and waited got
@@ -499,7 +499,7 @@ not fall back. **`:app`'s `SearchSource` was not checked for the same fault.**
 
 ## BUG-14 — a plugin answering after the 60 s timeout lost its whole host · **medium**
 
-**Status:** in pr · found 2026-11-03 while doing `KMP-20` · `PluginHostClient.kt`
+**Status:** done · #97 · found 2026-11-03 while doing `KMP-20` · `PluginHostClient.kt`
 
 A call that passed its timeout removed its id from `pending`, and `readLoop` treats a reply to an id it cannot
 find as a protocol violation. So one slow answer at 61 s ended the sandboxed host, and search and home for that
@@ -534,7 +534,7 @@ stops reading stdin can hold a call past 60 s.
 
 ## BUG-13 — the subscription worker loaded extensions in safe mode · **medium**
 
-**Status:** in pr · found by reading the code; not reproduced on a device
+**Status:** done · #96 · found by reading the code; not reproduced on a device
 
 Safe mode exists so a crashing extension stops being loaded. `MainActivity` skips loading when
 `checkSafeModeFile()` is true or `lastError` is set, and `DownloadQueueManager` will not start its queue when
@@ -564,7 +564,7 @@ A test of an extracted boolean would not exercise this path. **Not run on a devi
 
 ## BUG-15 — desktop video was drawn in the shape of the decoder's buffer · **medium**
 
-**Status:** in pr · noted in `KMP-25` as 1280x720 arriving as 1280x738 · `MediaHost.kt`, `FrameGeometry.kt`, `PlayerScreen.kt`
+**Status:** done · #104 · noted in `KMP-25` as 1280x720 arriving as 1280x738 · `MediaHost.kt`, `FrameGeometry.kt`, `PlayerScreen.kt`
 
 **It was a real stretch, not padding.** libVLC's format callback reports the decoder's buffer, not the picture: libavcodec's
 aligned size, 1280 x 738 for 1280 x 720. Whatever size is returned, libVLC scales the visible picture to fill it. On a test card
@@ -696,7 +696,7 @@ Why: older than this. It is why these runs all used a fresh user.home
 
 ## BUG-16 — a host ended for a reason could tell its waiting call the wrong one · **low**
 
-**Status:** in pr · found 2026-11-03 when a gate on `KMP-24` went red · `PluginHostClient.kt`
+**Status:** done · #103 · found 2026-11-03 when a gate on `KMP-24` went red · `PluginHostClient.kt`
 
 `abort` killed the process, then failed the waiting calls with its reason. The kill ends the reader, whose own `abort` says
 "the plugin host exited", and whichever got there first won. The call failed either way; only the message was wrong. It also made
