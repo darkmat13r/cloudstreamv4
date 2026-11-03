@@ -27,6 +27,16 @@ internal object HostProtocol {
     const val OP_LOAD_LINKS = 4
     const val OP_MAIN_PAGE = 5
 
+    /** To the host, with the id of a call to stop in place of a new one. It is answered by that call's own reply. */
+    const val OP_CANCEL = 6
+
+    /** What follows a reply's id. Anything else is a violation. */
+    const val REPLY_FAILED = 0
+    const val REPLY_DONE = 1
+
+    /** Part of an answer, ahead of its [REPLY_DONE] or [REPLY_FAILED]. Only a links call may send one. */
+    const val REPLY_PARTIAL = 2
+
     const val MAX_MAIN_PAGE_SECTIONS = 64
     const val MAX_HOME_ROWS = 64
     const val MAX_HOME_ROW_ITEMS = 200
@@ -34,6 +44,15 @@ internal object HostProtocol {
 
     /** Far above YouTube's measured count (`KMP-25`). Cut in the host too, so an honest long list still fits a frame. */
     const val MAX_SUBTITLES = 200
+
+    /** Most links one call may send. Past it the host stops sending them, and a host that does not stop is ended. */
+    const val MAX_LINKS = 500
+
+    /**
+     * Most bytes of links and subtitles one call may send, across all its frames. The most it could ever send
+     * when its answer was one frame, so sending it in parts costs the app nothing it did not already accept.
+     */
+    const val MAX_LINK_BYTES = MAX_FRAME_BYTES
 
     /** One length-prefixed frame, or `null` at a clean end of stream. */
     fun readFrame(input: InputStream): ByteArray? {
@@ -165,7 +184,15 @@ data class RemoteSubtitle(
     val userAgent: String?,
 )
 
-data class RemoteLinks(val links: List<RemoteLink>, val subtitles: List<RemoteSubtitle>)
+/**
+ * @param stoppedEarly why this is not everything the plugin would have offered, for a report. Null for a whole
+ *   answer. It does not cross the boundary: the app works it out.
+ */
+data class RemoteLinks(
+    val links: List<RemoteLink>,
+    val subtitles: List<RemoteSubtitle>,
+    val stoppedEarly: String? = null,
+)
 
 internal fun DataOutputStream.writeProviders(providers: List<RemoteProvider>) {
     writeInt(providers.size)

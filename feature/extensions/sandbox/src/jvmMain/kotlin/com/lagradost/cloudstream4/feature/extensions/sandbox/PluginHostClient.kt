@@ -14,8 +14,17 @@ import kotlin.concurrent.thread
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.TimeoutCancellationException
+import kotlinx.coroutines.cancelAndJoin
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.buffer
+import kotlinx.coroutines.flow.channelFlow
+import kotlinx.coroutines.flow.last
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeout
+import kotlinx.coroutines.withTimeoutOrNull
 
 /**
  * How to start a sandboxed child of this JVM, in the app bundle and out of it.
@@ -117,9 +126,13 @@ class PluginHostClient internal constructor(
     private val label: String,
 ) : Closeable {
 
-    private class Pending(val decode: (DataInputStream) -> Any) {
+    /** @param arrivals where partial replies go. Null for a call that may not send any. */
+    private class Pending(val arrivals: LinkArrivals? = null, val decode: (DataInputStream) -> Any) {
         val reply = CompletableDeferred<Result<Any>>()
     }
+
+    /** The host is gone, which is not the same as a plugin reporting that one call failed. */
+    private class HostEnded(message: String) : IOException(message)
 
     private val pending = ConcurrentHashMap<Int, Pending>()
 
@@ -151,11 +164,32 @@ class PluginHostClient internal constructor(
                 val frame = HostProtocol.readFrame(input) ?: break
                 HostProtocol.decode(frame) {
                     val id = readInt()
-                    val waiter = claim(id) ?: throw IOException("reply to unknown request $id")
-                    if (readBoolean()) {
-                        waiter.reply.complete(Result.success(waiter.decode(this)))
-                    } else {
-                        waiter.reply.complete(Result.failure(IOException(readText().sanitized(MAX_ERROR_CHARS))))
+                    when (val kind = readByte().toInt()) {
+                        HostProtocol.REPLY_PARTIAL -> {
+                            val waiter = find(id) ?: throw IOException("partial reply to unknown request $id")
+                            val arrivals = waiter.arrivals ?: throw IOException("partial reply to request $id")
+                            arrivals.receive(frame.size) {
+                                readLinks().also { part ->
+                                    if (part.links.isEmpty() && part.subtitles.isEmpty()) throw IOException("an empty partial reply")
+                                }
+                            }
+                        }
+                        HostProtocol.REPLY_DONE -> {
+                            val waiter = claim(id) ?: throw IOException("reply to unknown request $id")
+                            // Its id is gone by now, so abort cannot reach it, and nothing else would until its timeout.
+                            val answer = try {
+                                waiter.decode(this)
+                            } catch (violation: Exception) {
+                                waiter.reply.complete(Result.failure(HostEnded("$label: a reply that could not be read")))
+                                throw violation
+                            }
+                            waiter.reply.complete(Result.success(answer))
+                        }
+                        HostProtocol.REPLY_FAILED -> {
+                            val waiter = claim(id) ?: throw IOException("reply to unknown request $id")
+                            waiter.reply.complete(Result.failure(IOException(readText().sanitized(MAX_ERROR_CHARS))))
+                        }
+                        else -> throw IOException("reply of unknown kind $kind")
                     }
                 }
             }
@@ -169,17 +203,23 @@ class PluginHostClient internal constructor(
 
     private fun claim(id: Int): Pending? = synchronized(timedOut) { pending.remove(id) ?: timedOut.remove(id) }
 
+    /** As [claim], for a reply that is not the last: the id stays, so a second final reply is still caught. */
+    private fun find(id: Int): Pending? = synchronized(timedOut) { pending[id] ?: timedOut[id] }
+
     /**
      * A plugin can leave every call unanswered, so what is remembered for them is bounded, and past
      * [MAX_TIMED_OUT_CALLS] the host ends. Forgetting an old id instead would let the plugin choose when
      * its late reply kills the host, and a host this far behind is not answering anyway.
+     *
+     * @return false when the call had already been answered, so there is nothing to give up on.
      */
-    private fun expire(id: Int) {
+    private fun expire(id: Int): Boolean {
         val full = synchronized(timedOut) {
-            val waiter = pending.remove(id) ?: return
+            val waiter = pending.remove(id) ?: return false
             (timedOut.size >= MAX_TIMED_OUT_CALLS).also { full -> if (!full) timedOut[id] = waiter }
         }
         if (full) abort("left more than $MAX_TIMED_OUT_CALLS calls unanswered past their timeout")
+        return true
     }
 
     /** Keeps only the start of it. A plugin writing forever must not be able to fill this process. */
@@ -200,7 +240,7 @@ class PluginHostClient internal constructor(
 
     private fun abort(reason: String) {
         dead.set(true)
-        val failure = IOException("$label: $reason")
+        val failure = HostEnded("$label: $reason")
         pending.values.forEach { it.reply.complete(Result.failure(failure)) }
         pending.clear()
         synchronized(timedOut) { timedOut.clear() }
@@ -235,11 +275,84 @@ class PluginHostClient internal constructor(
             writeText(url)
         }
 
-    suspend fun loadLinks(api: String, data: String): RemoteLinks =
-        call(HostProtocol.OP_LOAD_LINKS, { it.readLinks().cleaned() }) {
+    /** Everything [linksAsTheyArrive] got, once it is over. */
+    suspend fun loadLinks(api: String, data: String): RemoteLinks = linksAsTheyArrive(api, data).last()
+
+    /**
+     * What a plugin has offered so far, each time it offers more. Each value is the whole answer so far, so a
+     * slow reader gets the latest and loses nothing, and however fast a host sends, the reader sets the pace.
+     *
+     * Ends in one of three ways, and a partial reply changes none of them:
+     * - The plugin finishes. If it failed having offered links, those are the answer.
+     * - [LINKS_CEILING_MILLIS] passes, counted from the start and never extended. With links, those are the
+     *   answer, with [RemoteLinks.stoppedEarly] set. With none, it fails as any other unanswered call does.
+     * - The collector goes away.
+     *
+     * The last two tell the host to stop the plugin, and leave the id in [timedOut] for its reply. A plugin
+     * only stops if it cooperates, but the host answers at once and sends nothing more for this call either way.
+     *
+     * A host that ends takes the call with it, however many links had arrived. Those already delivered stay
+     * with whoever has them: they passed the same checks as every other link.
+     */
+    fun linksAsTheyArrive(api: String, data: String): Flow<RemoteLinks> = channelFlow {
+        if (dead.get()) throw IOException("$label: the plugin host is not running")
+        val id = nextId.incrementAndGet()
+        val arrivals = LinkArrivals()
+        val waiter = Pending(arrivals) { input -> arrivals.receive(input.available()) { input.readLinks() } }
+        pending[id] = waiter
+        val frame = HostProtocol.encode {
+            writeInt(id)
+            writeInt(HostProtocol.OP_LOAD_LINKS)
             writeText(api)
             writeText(data)
         }
+        try {
+            withContext(Dispatchers.IO) {
+                synchronized(out) {
+                    out.write(frame)
+                    out.flush()
+                }
+            }
+            val forwarding = launch { arrivals.latest.collect { if (it.links.isNotEmpty()) send(it) } }
+            val reply = withTimeoutOrNull(LINKS_CEILING_MILLIS) { waiter.reply.await() }
+            forwarding.cancelAndJoin()
+            val failure = reply?.exceptionOrNull()
+            val answer = arrivals.close()
+            when {
+                reply == null -> {
+                    val reason = "$label did not answer within ${LINKS_CEILING_MILLIS}ms"
+                    if (answer.links.isEmpty()) throw IOException(reason)
+                    send(answer.copy(stoppedEarly = "$label did not finish within ${LINKS_CEILING_MILLIS}ms"))
+                }
+                failure == null -> send(answer)
+                failure is HostEnded || answer.links.isEmpty() -> throw failure
+                else -> send(answer.copy(stoppedEarly = failure.message.orEmpty()))
+            }
+        } finally {
+            arrivals.close()
+            if (expire(id)) stop(id)
+        }
+    }.buffer(Channel.CONFLATED)
+
+    /**
+     * On its own thread, because this runs on the way out of a cancelled call, and a plugin that has stopped
+     * reading stdin must not hold that up. Each one holds a place in [timedOut], so there is a bound on these.
+     */
+    private fun stop(id: Int) {
+        if (dead.get()) return
+        val frame = HostProtocol.encode {
+            writeInt(id)
+            writeInt(HostProtocol.OP_CANCEL)
+        }
+        thread(isDaemon = true, name = "plugin-host-$label-stop") {
+            runCatching {
+                synchronized(out) {
+                    out.write(frame)
+                    out.flush()
+                }
+            }
+        }
+    }
 
     /** @param section an index into [RemoteProvider.mainPage], which the host looks up on its own side. */
     suspend fun mainPage(api: String, section: Int, page: Int): RemoteHomePage =
@@ -257,7 +370,7 @@ class PluginHostClient internal constructor(
     ): T {
         if (dead.get()) throw IOException("$label: the plugin host is not running")
         val id = nextId.incrementAndGet()
-        val waiter = Pending(decode)
+        val waiter = Pending(decode = decode)
         pending[id] = waiter
         val frame = HostProtocol.encode {
             writeInt(id)
@@ -289,6 +402,13 @@ class PluginHostClient internal constructor(
     companion object {
         internal const val MAX_TIMED_OUT_CALLS = 256
         private const val CALL_TIMEOUT_MILLIS = 60_000L
+
+        /**
+         * As long as a links call may run, whatever it sends. All five films measured in `BUG-19` finished between
+         * 65 and 87 s and had nearly every link by 30 s, so 60 would have called every one of them cut short.
+         * Nobody is held up by this: they can pick a link as soon as there is one, which stops the call.
+         */
+        internal const val LINKS_CEILING_MILLIS = 90_000L
         private const val START_TIMEOUT_MILLIS = 60_000L
         private const val STOP_GRACE_MILLIS = 500L
         private const val MAX_ERROR_CHARS = 400
@@ -447,13 +567,58 @@ private fun RemoteDetails.cleaned() = copy(
     episodes = episodes.take(MAX_ITEMS).map { it.copy(name = it.name?.sanitized(), data = it.data.sanitized()) },
 )
 
+/**
+ * What one links call has received, and what keeps it from being a flood.
+ *
+ * Every frame costs its bytes, and a partial with nothing in it is refused, so one call can send at most
+ * [HostProtocol.MAX_LINKS] + [HostProtocol.MAX_SUBTITLES] partial frames and [HostProtocol.MAX_LINK_BYTES] in
+ * all. The honest host stops short of each bound, so passing one means the peer is not the code we started,
+ * and the throw ends it. That stays true after the call has given up: the counting goes on, only the keeping
+ * stops, so a call past its ceiling is no cheaper a way to flood.
+ */
+internal class LinkArrivals {
+    private val links = ArrayList<RemoteLink>()
+    private val subtitles = LinkedHashMap<Pair<String, String>, RemoteSubtitle>()
+    private var linksSeen = 0
+    private var subtitlesSeen = 0
+    private var bytes = 0L
+    private var closed = false
+
+    /** The answer so far. A state and not a queue, so a host sending fast cannot make anything here wait or pile up. */
+    val latest = MutableStateFlow(RemoteLinks(emptyList(), emptyList()))
+
+    /** @param read parses the frame. It runs only if the frame's size is within the bound. */
+    @Synchronized
+    fun receive(frameBytes: Int, read: () -> RemoteLinks) {
+        bytes += frameBytes
+        if (bytes > HostProtocol.MAX_LINK_BYTES) throw IOException("sent more than ${HostProtocol.MAX_LINK_BYTES} bytes of links")
+        val part = read()
+        linksSeen += part.links.size
+        subtitlesSeen += part.subtitles.size
+        if (linksSeen > HostProtocol.MAX_LINKS) throw IOException("sent more than ${HostProtocol.MAX_LINKS} links")
+        if (subtitlesSeen > HostProtocol.MAX_SUBTITLES) throw IOException("sent more than ${HostProtocol.MAX_SUBTITLES} subtitles")
+        if (closed) return
+        val cleaned = part.cleaned()
+        links += cleaned.links
+        cleaned.subtitles.forEach { subtitles.putIfAbsent(it.url to it.language, it) }
+        latest.value = RemoteLinks(links.toList(), subtitles.values.toList())
+    }
+
+    /** Stops keeping what arrives. @return the answer as it stands. */
+    @Synchronized
+    fun close(): RemoteLinks {
+        closed = true
+        return latest.value
+    }
+}
+
 private fun RemoteLinks.cleaned() = copy(
     subtitles = subtitles.asSequence()
         .mapNotNull { it.cleaned() }
         .distinctBy { it.url to it.language }
         .take(HostProtocol.MAX_SUBTITLES)
         .toList(),
-    links = links.take(MAX_ITEMS).map { link ->
+    links = links.take(HostProtocol.MAX_LINKS).map { link ->
         link.copy(
             source = link.source.sanitized(MAX_PROVIDER_FIELD_CHARS),
             name = link.name.sanitized(MAX_PROVIDER_FIELD_CHARS),

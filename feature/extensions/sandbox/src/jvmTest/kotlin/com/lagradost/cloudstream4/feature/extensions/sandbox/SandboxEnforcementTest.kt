@@ -5,19 +5,26 @@ import java.io.File
 import java.net.ServerSocket
 import java.util.jar.JarEntry
 import java.util.jar.JarOutputStream
+import kotlin.concurrent.thread
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertFalse
+import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.withContext
+import kotlinx.coroutines.withTimeout
 
 /**
  * What the sandbox stops, measured against a real child process under a real Seatbelt policy.
@@ -163,6 +170,150 @@ class SandboxEnforcementTest {
     @Test
     fun `a real plugin forging a reply to an id never issued ends its host`() = running { host ->
         assertFailsWith<Exception> { host.attempt("forge:$NEVER_ISSUED_ID") }
+        assertFailsWith<Exception> { host.attempt("print:") }
+    }
+
+    private suspend fun PluginHostClient.firstOf(data: String): List<String> =
+        linksAsTheyArrive("Hostile", data).first().links.map { it.name }
+
+    /** Long enough for a real file to appear, and short of the 60 s a call would wait. */
+    private suspend fun awaitFile(file: File) = withTimeout(FILE_WAIT_MILLIS) {
+        while (!file.exists()) delay(REPLY_SETTLE_MILLIS)
+    }
+
+    @Test
+    fun `a real link arrives while the real plugin is still working`() = running { host ->
+        val release = File(data, "release")
+        val seen = Channel<List<String>>(Channel.UNLIMITED)
+        coroutineScope {
+            val call = launch(Dispatchers.Default) {
+                host.linksAsTheyArrive("Hostile", "one-then-wait:${release.path}").collect { seen.send(it.links.map { l -> l.name }) }
+            }
+            assertEquals(listOf("first"), withTimeout(FILE_WAIT_MILLIS) { seen.receive() })
+            assertFalse(call.isCompleted, "the plugin is waiting for a file nobody has written")
+            release.writeText("")
+        }
+        var last = emptyList<String>()
+        seen.close()
+        for (names in seen) last = names
+        assertEquals(listOf("first", "second"), last)
+        assertEquals("printed", host.attempt("print:"))
+    }
+
+    @Test
+    fun `an honest plugin offering too much is cut, and keeps its host`() = running { host ->
+        val answer = host.loadLinks("Hostile", "flood:")
+        assertEquals(HostProtocol.MAX_LINKS, answer.links.size)
+        assertEquals(HostProtocol.MAX_SUBTITLES, answer.subtitles.size)
+        assertEquals("printed", host.attempt("print:"))
+    }
+
+    @Test
+    fun `links too large for what a call may send are dropped, and keep the host`() = running { host ->
+        val answer = host.loadLinks("Hostile", "oversized:")
+        assertEquals("before", answer.links.first().name)
+        assertEquals("after", answer.links.last().name)
+        assertEquals("printed", host.attempt("print:"))
+    }
+
+    @Test
+    fun `a plugin holding its callback past its last reply keeps its host`() = running { host ->
+        val release = File(data, "release")
+        assertEquals(listOf("first"), host.loadLinks("Hostile", "after-return:${release.path}").links.map { it.name })
+        release.writeText("")
+        awaitFile(File("${release.path}.done"))
+        delay(REPLY_SETTLE_MILLIS)
+        assertEquals("printed", host.attempt("print:"))
+    }
+
+    @Test
+    fun `leaving stops a plugin that cooperates`() = running { host ->
+        val stopped = File(data, "stopped")
+        assertEquals(listOf("first"), host.firstOf("stoppable:${stopped.path}"))
+        awaitFile(stopped)
+        assertEquals("printed", host.attempt("print:"))
+    }
+
+    @Test
+    fun `a plugin that will not stop has nothing more delivered, and keeps its host`() = running { host ->
+        val release = File(data, "release")
+        assertEquals(listOf("first"), host.firstOf("unstoppable:${release.path}"))
+        delay(REPLY_SETTLE_MILLIS)
+        release.writeText("")
+        awaitFile(File("${release.path}.done"))
+        delay(REPLY_SETTLE_MILLIS)
+        assertEquals("printed", host.attempt("print:"))
+    }
+
+    /**
+     * The bytes themselves, because the client drops what arrives for a call it gave up on and could not tell
+     * a host that stopped sending from one that did not.
+     */
+    @Test
+    fun `told to stop, a real host answers at once and sends nothing more for that call`() {
+        val launcher = HostLauncher.forThisProcess() ?: return
+        val release = File(data, "release")
+        val process = launcher.start(
+            arguments = listOf(PluginHost.MODE_SERVE, jar.parentFile.canonicalPath, jar.name, data.canonicalPath),
+            readOnlyInputs = listOf(jar),
+            writable = data,
+            network = true,
+        )
+        val watchdog = thread(isDaemon = true) {
+            runCatching { Thread.sleep(FILE_WAIT_MILLIS) }
+            process.destroyForcibly()
+        }
+        try {
+            val replies = process.inputStream.buffered()
+            fun send(id: Int, op: Int, body: java.io.DataOutputStream.() -> Unit = {}) {
+                process.outputStream.write(HostProtocol.encode { writeInt(id); writeInt(op); body() })
+                process.outputStream.flush()
+            }
+            fun nextReply(): Pair<Int, Int> =
+                HostProtocol.decode(assertNotNull(HostProtocol.readFrame(replies), "the host ended")) { readInt() to readByte().toInt() }
+
+            assertEquals(HostProtocol.READY_ID to HostProtocol.REPLY_DONE, nextReply())
+            send(1, HostProtocol.OP_LOAD_LINKS) {
+                writeText("Hostile")
+                writeText("unstoppable:${release.path}")
+            }
+            assertEquals(1 to HostProtocol.REPLY_PARTIAL, nextReply())
+
+            send(1, HostProtocol.OP_CANCEL)
+            assertEquals(1 to HostProtocol.REPLY_FAILED, nextReply(), "the plugin is still blocked, and the host answered")
+
+            release.writeText("")
+            runBlocking { awaitFile(File("${release.path}.done")) }
+            send(2, HostProtocol.OP_SEARCH) {
+                writeText("Hostile")
+                writeText("print:")
+                writeInt(1)
+            }
+            assertEquals(2 to HostProtocol.REPLY_DONE, nextReply(), "the plugin's later link must not have come first")
+        } finally {
+            watchdog.interrupt()
+            process.destroyForcibly()
+        }
+    }
+
+    @Test
+    fun `a real partial is cleaned before the app sees it`() = running { host ->
+        val answer = host.loadLinks("Hostile", "bad-urls:")
+        assertEquals(listOf("file", "evil[2Jname"), answer.links.map { it.name }, "the URL filter is the source's, DesktopDetailSource")
+        assertEquals(listOf("en"), answer.subtitles.map { it.language })
+    }
+
+    @Test
+    fun `a real plugin failing after a link has answered with that link`() = running { host ->
+        val answer = host.loadLinks("Hostile", "throw:")
+        assertEquals(listOf("first"), answer.links.map { it.name })
+        assertTrue("one source gave up" in answer.stoppedEarly.orEmpty(), answer.stoppedEarly)
+        assertEquals("printed", host.attempt("print:"))
+    }
+
+    @Test
+    fun `a real plugin forging a partial for an id never issued ends its host`() = running { host ->
+        assertFailsWith<Exception> { host.loadLinks("Hostile", "forge-partial:$NEVER_ISSUED_ID") }
         assertFailsWith<Exception> { host.attempt("print:") }
     }
 
@@ -348,6 +499,7 @@ class SandboxEnforcementTest {
         const val HOSTILE_SECTION = 0
         const val NEVER_ISSUED_ID = 1_000_000
         const val REPLY_SETTLE_MILLIS = 1_000L
+        const val FILE_WAIT_MILLIS = 20_000L
     }
 
     private fun writeJar(target: File, vararg classes: Class<*>) {

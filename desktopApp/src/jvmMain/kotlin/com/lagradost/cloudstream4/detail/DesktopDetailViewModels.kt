@@ -1,5 +1,6 @@
 package com.lagradost.cloudstream4.detail
 
+import com.lagradost.cloudstream4.feature.detail.DetailAction
 import com.lagradost.cloudstream4.feature.detail.DetailSource
 import com.lagradost.cloudstream4.feature.detail.DetailViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -15,7 +16,8 @@ internal object DesktopDetailViewModels {
     fun get(id: String, scope: CoroutineScope): DetailViewModel =
         live.getOrPut(id) { DetailViewModel(id, source, scope) }
 
+    /** Whatever it was still asking a plugin for stops here, because the scope it runs in outlives it. */
     fun forget(id: String) {
-        live.remove(id)
+        live.remove(id)?.onAction(DetailAction.LinksDismissed)
     }
 }

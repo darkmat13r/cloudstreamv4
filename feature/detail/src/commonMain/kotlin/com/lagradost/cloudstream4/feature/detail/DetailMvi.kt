@@ -5,11 +5,13 @@ import androidx.compose.runtime.Immutable
 /**
  * @param links null while nobody has asked to play anything. Otherwise the source list replaces the
  *   page, and going back returns to the page without reloading it.
+ * @param linksArriving more streams may still join [links], which can already be [DetailLoad.Loaded].
  */
 @Immutable
 data class DetailState(
     val content: DetailLoad<TitleDetail> = DetailLoad.Loading,
     val links: DetailLoad<List<StreamLink>>? = null,
+    val linksArriving: Boolean = false,
 )
 
 /** How far a request got, with no words in it. The screens add them: see `toPageUiState`, `toLinksUiState`. */
