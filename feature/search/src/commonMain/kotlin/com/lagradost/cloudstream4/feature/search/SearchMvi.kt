@@ -1,13 +1,11 @@
 package com.lagradost.cloudstream4.feature.search
 
 import androidx.compose.runtime.Immutable
-import com.lagradost.cloudstream4.core.designsystem.state.FailureNotice
-import com.lagradost.cloudstream4.core.designsystem.state.UiState
 
 /**
  * What the search screen shows.
  *
- * [content] is a [UiState] rather than a set of booleans, per `.claude/rules/mvi-viewmodel.md`:
+ * [status] is a sealed type rather than a set of booleans, per `.claude/rules/mvi-viewmodel.md`:
  * six flags encode sixty-four states of which about five are reachable, and `when` over a sealed
  * type is what tells you about the branch you forgot.
  *
@@ -21,8 +19,41 @@ data class SearchState(
     val query: String = "",
     /** The chrome row's `Sources 12 / 48`, and the number 8c's no-results copy quotes. */
     val sources: SearchSources = SearchSources(),
-    val content: UiState<SearchContent> = UiState.Loading,
+    val status: SearchStatus = SearchStatus.Loading,
 )
+
+/**
+ * What the search reached, with no words in it. The screen turns this into a `UiState` where it can
+ * read the locale ([toUiState]), so a ViewModel never holds a display string and a language change
+ * reaches a state that is already on screen.
+ */
+sealed interface SearchStatus {
+    /** Nothing typed yet **and no history to show**. With history, it is [Showing] `Recent`. */
+    data object Idle : SearchStatus
+
+    data object Loading : SearchStatus
+
+    data class Showing(val content: SearchContent) : SearchStatus
+
+    /** Some sources failed. What arrived is still shown; the shortfall rides the chip row. */
+    data class Partial(
+        val content: SearchContent,
+        val answered: Int,
+        val total: Int,
+        val detail: String,
+    ) : SearchStatus
+
+    /**
+     * Every source answered and none carries it: artboard 8c of `design/TV Search Suggestions.dc.html`.
+     * [queried] is the number both its sentence and its status line quote.
+     */
+    data class NoResults(val queried: Int) : SearchStatus
+
+    /** Every source failed. [detail] is the machine-readable line. */
+    data class Failed(val detail: String) : SearchStatus
+
+    data object Offline : SearchStatus
+}
 
 /** Everything the user can do. */
 sealed interface SearchAction {
@@ -38,6 +69,9 @@ sealed interface SearchAction {
 
     /** From a failure state's action, which `StateAction` guarantees exists and is focusable. */
     data object Retry : SearchAction
+
+    /** The first-run prompt's button. Becomes [SearchEffect.BrowseHome]; the ViewModel does not navigate. */
+    data object BrowseRequested : SearchAction
 
     /** A result was activated. Becomes [SearchEffect.OpenResult]; the ViewModel does not navigate. */
     data class ResultActivated(val id: SearchResultId) : SearchAction
@@ -68,59 +102,5 @@ sealed interface SearchAction {
  */
 sealed interface SearchEffect {
     data class OpenResult(val id: SearchResultId) : SearchEffect
-}
-
-/**
- * The resolved copy for every non-content state, supplied from outside.
- *
- * This is the awkward seam between two rules, and it is worth saying why it exists rather than
- * leaving the next reader to wonder.
- *
- * `:core:designsystem`'s `StatePrompt` and `FailureNotice` hold **already-resolved display strings**
- * and a `StateAction` lambda — that module "never holds display strings" and takes them from the
- * caller. But `docs/plans/kmp-migration.md` Phase 7 says a ViewModel must expose `UiString`, **never**
- * a resource id, and a ViewModel that resolved strings itself would need a platform string loader in
- * `commonMain`.
- *
- * Injecting them satisfies both: the ViewModel holds `UiState` as the MVI rule requires, and the
- * strings are resolved by whoever constructs the ViewModel — the Android screen from
- * `stringResource(...)`, a test from literals. Nothing in this module is user-facing text.
- *
- * Every method takes the retry lambda the ViewModel will supply, because `StateAction` is a
- * **required** field of both types: the audit behind it found 18 of 20 screens whose failure state
- * had no action or an unfocusable one, which on a TV is a dead end with no way out but Back.
- */
-interface SearchPrompts {
-
-    /**
-     * Nothing typed yet **and no history to show**. The action is usually "browse", not "retry".
-     *
-     * With history, the blank query is content — `SearchContent.Recent`, artboard 4c — so this is
-     * the first-run case rather than the normal one.
-     */
-    fun idle(): UiState.Empty
-
-    /**
-     * The search succeeded and matched nothing: artboard **8c** of
-     * `design/TV Search Suggestions.dc.html`. (Two clusters are numbered 8 — the onboarding file
-     * has its own `8a`–`8d` — so an 8-series id without its file name is ambiguous.)
-     *
-     * [queried] is how many sources were asked, which 8c's copy states in words ("All nine
-     * selected sources answered and none of them carry it") *and* in the mono status line
-     * (`9 QUERIED · 9 ANSWERED · 0 FAILED · 0 RESULTS`). Both come from this one call so they
-     * cannot disagree — the defect the suggestions cluster was re-solved to fix.
-     *
-     * Returns the state rather than a bare prompt so the status line travels with the copy that
-     * quotes the same number. `UiState.Empty.detail` exists for this.
-     */
-    fun noResults(query: String, queried: Int, onRetry: () -> Unit): UiState.Empty
-
-    /** Every provider failed. The `detail` on the returned state is the machine-readable line. */
-    fun failed(detail: String, onRetry: () -> Unit): UiState.Error
-
-    /** No network. */
-    fun offline(onRetry: () -> Unit): UiState.Offline
-
-    /** Some providers failed; content is still usable. Rides a chip row, so it has no body copy. */
-    fun partial(answered: Int, total: Int, detail: String, onRetry: () -> Unit): FailureNotice
+    data object BrowseHome : SearchEffect
 }

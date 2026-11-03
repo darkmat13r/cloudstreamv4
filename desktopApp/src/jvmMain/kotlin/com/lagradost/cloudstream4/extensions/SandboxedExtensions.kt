@@ -29,8 +29,9 @@ import kotlinx.coroutines.withContext
  *
  * 1. **Hash.** Against a `<file>.sha256` sidecar or a published pin. A mismatch refuses the file.
  * 2. **Store.** Copied, or for a `.cs3` converted in a no-network sandbox, to
- *    `.store/<sha256>.jar`. The name is the input's hash, so a conversion happens once. A host can
- *    read this file and cannot write it, so what was scanned is what runs.
+ *    `.store/<sha256>.jar`. The name is the input's hash, so a conversion happens once. No host can
+ *    write this directory, converting ones included, so what was scanned is what runs. See
+ *    [convertIntoStore].
  * 3. **Scan.** [ExtensionScanner] in this process, so a plugin cannot forge its own verdict. A
  *    blocking finding refuses the extension.
  * 4. **Run.** A host per extension under Seatbelt, with its own data directory. One extension cannot
@@ -134,18 +135,20 @@ class SandboxedExtensions(
     private suspend fun toStore(source: File, launcher: HostLauncher): File = withContext(Dispatchers.IO) {
         // This order: extensions load in parallel, and mkdirs() is false for whoever comes second.
         check(store.mkdirs() || store.isDirectory) { "cannot create the extension store" }
-        val target = File(store, "${sha256(source)}$JAR_SUFFIX")
+        // A converted jar is named for its input *and* the converter, or a better converter would never
+        // reach a file converted by a previous one: the store is kept across launches.
+        val converter = if (source.name.endsWith(CS3_SUFFIX)) CONVERTER_REVISION else ""
+        val target = File(store, "${sha256(source)}$converter$JAR_SUFFIX")
         if (target.isFile) return@withContext target
-        val staging = File(store, "${target.name}$STAGING_SUFFIX").apply { delete() }
         if (source.name.endsWith(CS3_SUFFIX)) {
-            conversions.withPermit { PluginHostClient.convert(launcher, source, staging, store) }?.let { failure ->
-                staging.delete()
-                error("conversion failed: ${failure.lastLines()}")
+            convertIntoStore(target, File(root, CONVERTING_DIRECTORY)) { output, directory ->
+                conversions.withPermit { PluginHostClient.convert(launcher, source, output, directory) }?.lastLines()
             }
         } else {
+            val staging = File(store, "${target.name}$STAGING_SUFFIX").apply { delete() }
             source.copyTo(staging, overwrite = true)
+            Files.move(staging.toPath(), target.toPath(), StandardCopyOption.ATOMIC_MOVE)
         }
-        Files.move(staging.toPath(), target.toPath(), StandardCopyOption.ATOMIC_MOVE)
         target
     }
 
@@ -192,9 +195,13 @@ class SandboxedExtensions(
     companion object {
         private const val MAX_PARALLEL_CONVERSIONS = 4
         private const val STORE_DIRECTORY = ".store"
+        private const val CONVERTING_DIRECTORY = ".converting"
         private const val SANDBOX_DIRECTORY = ".sandbox"
         private const val JAR_SUFFIX = ".jar"
         private const val CS3_SUFFIX = ".cs3"
+
+        /** Bump when `DexConverter`'s output changes. `-c2`: real names and stack maps (`KMP-18`). */
+        private const val CONVERTER_REVISION = "-c2"
         private const val SIDECAR_SUFFIX = ".sha256"
         private const val STAGING_SUFFIX = ".part"
         private const val MAX_SIDECAR_BYTES = 1024L

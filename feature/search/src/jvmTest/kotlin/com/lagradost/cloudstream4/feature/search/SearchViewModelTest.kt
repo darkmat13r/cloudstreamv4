@@ -1,13 +1,8 @@
 package com.lagradost.cloudstream4.feature.search
 
-import com.lagradost.cloudstream4.core.designsystem.state.FailureNotice
-import com.lagradost.cloudstream4.core.designsystem.state.StateAction
-import com.lagradost.cloudstream4.core.designsystem.state.StatePrompt
-import com.lagradost.cloudstream4.core.designsystem.state.UiState
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertIs
-import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -20,7 +15,7 @@ import kotlinx.coroutines.test.setMain
 import kotlinx.coroutines.withContext
 
 /**
- * The behaviours that make this ViewModel worth having: every outcome maps to a distinct `UiState`,
+ * The behaviours that make this ViewModel worth having: every outcome maps to a distinct `SearchStatus`,
  * typing is debounced rather than sending one request per keystroke, and a blank query is content
  * rather than a void.
  *
@@ -45,26 +40,6 @@ class SearchViewModelTest {
 
     /** Sleeps past `DebounceQuery`'s real 200 ms. See the class KDoc. */
     private suspend fun settle() = withContext(Dispatchers.Default) { delay(600) }
-
-    private fun prompt(headline: String) =
-        StatePrompt(headline = headline, body = "body", action = StateAction("label") {})
-
-    private val prompts = object : SearchPrompts {
-        override fun idle() = UiState.Empty(prompt("idle"))
-
-        override fun noResults(query: String, queried: Int, onRetry: () -> Unit) = UiState.Empty(
-            prompt = prompt("no results for $query"),
-            detail = "$queried QUERIED · $queried ANSWERED · 0 FAILED · 0 RESULTS",
-        )
-
-        override fun failed(detail: String, onRetry: () -> Unit) =
-            UiState.Error(prompt("failed"), detail)
-
-        override fun offline(onRetry: () -> Unit) = UiState.Offline(prompt("offline"))
-
-        override fun partial(answered: Int, total: Int, detail: String, onRetry: () -> Unit) =
-            FailureNotice("$answered of $total answered", detail, StateAction("retry") {})
-    }
 
     private fun item(title: String, provider: String = "p") =
         SearchResultItem(id = SearchResultId("$provider/$title"), title = title, providerName = provider)
@@ -100,7 +75,7 @@ class SearchViewModelTest {
     }
 
     private fun viewModel(source: SearchSource, history: SearchHistoryStore = FakeHistory()) =
-        SearchViewModel(source, history, prompts, dispatcher)
+        SearchViewModel(source, history, dispatcher)
 
     private fun <T> withMain(block: () -> T): T {
         Dispatchers.setMain(dispatcher)
@@ -116,9 +91,8 @@ class SearchViewModelTest {
         runTest(dispatcher) {
             withMain {
                 val vm = viewModel(FakeSource())
-                val content = vm.state.value.content
-                assertIs<UiState.Empty>(content)
-                assertEquals("idle", content.prompt.headline)
+                val content = vm.state.value.status
+                assertEquals(SearchStatus.Idle, content)
                 assertEquals("", vm.state.value.query)
             }
         }
@@ -128,9 +102,9 @@ class SearchViewModelTest {
         runTest(dispatcher) {
             withMain {
                 val vm = viewModel(FakeSource(), FakeHistory("dune", "blade runner"))
-                val content = vm.state.value.content
-                assertIs<UiState.Content<SearchContent>>(content)
-                val recent = assertIs<SearchContent.Recent>(content.value)
+                val content = vm.state.value.status
+                assertIs<SearchStatus.Showing>(content)
+                val recent = assertIs<SearchContent.Recent>(content.content)
                 assertEquals(listOf("dune", "blade runner"), recent.entries.map { it.query })
             }
         }
@@ -178,7 +152,7 @@ class SearchViewModelTest {
             vm.onAction(SearchAction.Submit)
 
             assertEquals(listOf("dune"), source.searched)
-            assertIs<UiState.Content<SearchContent>>(vm.state.value.content)
+            assertIs<SearchStatus.Showing>(vm.state.value.status)
         }
     }
 
@@ -195,15 +169,15 @@ class SearchViewModelTest {
             vm.onAction(SearchAction.QueryChanged("dune"))
             vm.onAction(SearchAction.Submit)
 
-            val content = assertIs<UiState.Content<SearchContent>>(vm.state.value.content)
-            val results = assertIs<SearchContent.Results>(content.value)
+            val content = assertIs<SearchStatus.Showing>(vm.state.value.status)
+            val results = assertIs<SearchContent.Results>(content.content)
             assertEquals(listOf("Filmxy", "Vidplay"), results.groups.map { it.providerName })
             assertEquals(listOf(2, 1), results.groups.map { it.items.size })
         }
     }
 
     @Test
-    fun `each outcome becomes its own UiState`() = runTest(dispatcher) {
+    fun `each outcome becomes its own status`() = runTest(dispatcher) {
         withMain {
             val source = FakeSource()
             val vm = viewModel(source)
@@ -211,33 +185,31 @@ class SearchViewModelTest {
 
             source.outcome = SearchOutcome.Complete(listOf(item("Dune")))
             vm.onAction(SearchAction.Submit)
-            assertIs<UiState.Content<SearchContent>>(vm.state.value.content)
+            assertIs<SearchStatus.Showing>(vm.state.value.status)
 
             // A successful search that matched nothing is Empty, not Error — and it carries the
             // mono status line artboard 8c draws under the copy.
             source.outcome = SearchOutcome.Complete(emptyList())
             vm.onAction(SearchAction.Submit)
-            val empty = assertIs<UiState.Empty>(vm.state.value.content)
-            assertEquals("no results for dune", empty.prompt.headline)
-            assertEquals("9 QUERIED · 9 ANSWERED · 0 FAILED · 0 RESULTS", empty.detail)
+            assertEquals(SearchStatus.NoResults(queried = 9), vm.state.value.status)
 
             // Partial keeps the content and reports the shortfall; it must not become Error.
             source.outcome = SearchOutcome.Partial(listOf(item("Dune")), 9, 12, "host down")
             vm.onAction(SearchAction.Submit)
-            val partial = assertIs<UiState.Partial<SearchContent>>(vm.state.value.content)
-            val partialResults = assertIs<SearchContent.Results>(partial.value)
+            val partial = assertIs<SearchStatus.Partial>(vm.state.value.status)
+            val partialResults = assertIs<SearchContent.Results>(partial.content)
             assertEquals(1, partialResults.groups.size, "partial content must still be shown")
-            assertEquals("9 of 12 answered", partial.notice.headline)
-            assertEquals("host down", partial.notice.detail)
+            assertEquals(9, partial.answered)
+            assertEquals(12, partial.total)
+            assertEquals("host down", partial.detail)
 
             source.outcome = SearchOutcome.Failed("503")
             vm.onAction(SearchAction.Submit)
-            val error = assertIs<UiState.Error>(vm.state.value.content)
-            assertEquals("503", error.detail)
+            assertEquals(SearchStatus.Failed("503"), vm.state.value.status)
 
             source.outcome = SearchOutcome.Offline
             vm.onAction(SearchAction.Submit)
-            assertIs<UiState.Offline>(vm.state.value.content)
+            assertEquals(SearchStatus.Offline, vm.state.value.status)
         }
     }
 
@@ -253,8 +225,8 @@ class SearchViewModelTest {
             settle()
 
             assertEquals("", vm.state.value.query)
-            val content = assertIs<UiState.Content<SearchContent>>(vm.state.value.content)
-            assertIs<SearchContent.Recent>(content.value)
+            val content = assertIs<SearchStatus.Showing>(vm.state.value.status)
+            assertIs<SearchContent.Recent>(content.content)
             assertTrue(source.searched.isEmpty(), "clearing must not run a search")
         } finally {
             Dispatchers.resetMain()
@@ -280,8 +252,8 @@ class SearchViewModelTest {
             val vm = viewModel(FakeSource(), history)
             vm.onAction(SearchAction.RecentRemoved("dune"))
 
-            val content = assertIs<UiState.Content<SearchContent>>(vm.state.value.content)
-            val recent = assertIs<SearchContent.Recent>(content.value)
+            val content = assertIs<SearchStatus.Showing>(vm.state.value.status)
+            val recent = assertIs<SearchContent.Recent>(content.content)
             assertEquals(listOf("blade runner"), recent.entries.map { it.query })
         }
     }
@@ -294,9 +266,7 @@ class SearchViewModelTest {
             vm.onAction(SearchAction.RecentCleared)
 
             assertTrue(history.cleared)
-            val content = assertIs<UiState.Empty>(vm.state.value.content)
-            assertEquals("idle", content.prompt.headline)
-            assertNull(content.detail, "the idle prompt has no status line to report")
+            assertEquals(SearchStatus.Idle, vm.state.value.status)
         }
     }
 

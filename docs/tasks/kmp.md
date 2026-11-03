@@ -1376,7 +1376,7 @@ wrong; this feature uses `MediaCardState.progress` and so inherits whichever the
   screen, its design must exist and must have been measured … If the screen you are about to build
   has no artboard, draw it first — do not improvise it in Compose."* So recipe step 2 is **complete
   for TV and blocked on design for the other two form factors** — not skipped, and not improvised.
-- **The per-row remove on 4c.** It needs either a glyph (forbidden while `DEC-11` is unanswered) or a
+- **The per-row remove on 4c.** It needs either a glyph (forbidden while `DEC-11` was unanswered; answered 2026-11-02) or a
   second focus stop nested inside a row that is itself a focus stop, which the artboard does not draw
   in enough detail. `SearchAction.RecentRemoved` exists and is tested; nothing emits it yet.
 - **`See all` on a rail.** 4a and 4b draw one. It implies a per-provider destination that does not
@@ -1387,7 +1387,8 @@ wrong; this feature uses `MediaCardState.progress` and so inherits whichever the
   state that models them. The chip row is mounted regardless, because it is a band of the chassis:
   a row that appears and disappears moves the content region under the user's focus.
 - **A magnifier in the field.** `.claude/rules/icons.md`, `DEC-11`. The placeholder carries the
-  meaning instead, which is what artboard 4c's own *"Search all sources"* does.
+  meaning instead, which is what artboard 4c's own *"Search all sources"* does. `DEC-11` has since been
+  answered and the desktop field has one; this TV screen has not been revisited.
 
 ### No screenshot tests, and it is not a choice
 
@@ -1646,7 +1647,7 @@ user's variables. **Checked a second way by mutation:** with `(deny default)` ch
 5 of the 11 tests fail, exactly the file and process ones. The localhost rule is an explicit deny and
 holds regardless, as intended.
 
-**Conversion is behaviour-preserving, on the only evidence available.** The five official extensions
+**Conversion is behaviour-preserving, on the only evidence available.** _Wrong for the wider catalogue: `KMP-18` found two dex2jar defects that broke 30 of 53 and 3 of 53 sampled plugins._ The five official extensions
 publish both artefacts. Run through the packaged app, `.cs3` and author's `.jar` gave identical
 per-provider outcomes in `--check-extensions`.
 
@@ -1861,6 +1862,330 @@ not render here and cannot see KMP modules (`DEC-10`).
 
 ---
 
+## KMP-21 — `:media:subtitle`, the commonMain half · **measured 2026-11-02**
+
+**Status:** in pr · plan §4.3 and Phase 6's second step. New first-party code, nothing consumes it yet.
+
+`cloudstream.kmp.library`, android + jvm, iOS canary on. Pure SRT and WebVTT parsers, plain-text cue
+cleaning, the delay arithmetic and a lookup over cues. **`:app` is untouched:** `CustomSubripParser`,
+`CustomSubtitleDecoderFactory` and `PlayerSubtitleHelper` are still the live path, so `classes.jar` and
+`KMP-09` are not in play. `:media:subtitle` is not merged into the jar.
+
+| File | Holds |
+|---|---|
+| `SubtitleParser.kt` | `parse(ByteArray)`, `parse(String)`, `detect`; line walking and hand-parsed timecodes |
+| `CueText.kt` | one raw line to plain lines: tags and `{\…}` removed, references decoded once, controls dropped |
+| `SubtitleParseResult.kt` | `SubtitleFormat`, `SubtitleLimits`, `SubtitleTruncation`, `SubtitleParseResult` |
+| `SubtitleTimeline.kt` | `SubtitleDelay`, `SubtitleTimeline` (`activeAt`, `latestStartedIndex`) |
+
+### The decisions
+
+- **`SubtitleCue` and `CaptionStyle` stay in `:media:model`,** taken through `api`. `KMP-07` put them there;
+  the plan's table lists them under both modules. A third cue type would be worse. **This is an edge between
+  two modules plan §4.1 draws at layer 2, and rule 2 says "lower layers only".** It is acyclic and it does not
+  cost the canary, but the plan's diagram needs `:media:model` one layer down, or an owner's word otherwise.
+- **Input is untrusted, so a parse has no failure case.** No `Regex` in the module. `SubtitleLimits` caps
+  input size, cue count, line length and lines per cue; `truncations` says which cap was hit.
+- **Output is plain text, not markup.** `&lt;b&gt;` comes out as `<b>`, because that is what the author asked to
+  display. References decode once and tags are removed in one pass, so `<<b>script>` also leaves `<script>` as
+  text. Anything handing a cue to an HTML parser must escape it (`dependency-security.md`).
+- **`{\anN}` is removed and placement is lost.** Nowhere on `SubtitleCue` to put it, and this PR strips rather
+  than interprets. `:app`'s `fixSubtitleAlignment` honours it, so a future player needs a home for it.
+- **`delayMs` is positive-means-later,** the sign the dialog shows. `CustomDecoder.subtitleOffset` is its negative.
+- **A position can be `C.TIME_UNSET`,** so delay arithmetic saturates; a plain subtraction wraps to the far future.
+
+### Where it deliberately differs from `CustomSubripParser`
+
+Read, not run: `android.text.Html` needs a device or Robolectric, so **no differential test against the legacy
+parser exists.** The tolerance tests were written from its source.
+
+| Input | `CustomSubripParser` | Here |
+|---|---|---|
+| No index line, `1 ` or an index over `Int` | cue skipped | cue kept |
+| No blank line between cues | merged, next index shown as text | two cues |
+| Whitespace-only line | added as an empty line, cue continues | ends the cue |
+| `X1:40 X2:600 …` after the end time | cue skipped | cue kept |
+| 20-digit hours | `NumberFormatException` out of `parse` | counted in `malformedCues` |
+| End before start | unguarded, `endTimeUs - startTimeUs` goes straight to `CuesWithTiming` | counted in `malformedCues` (`SubtitleCue` would throw) |
+| `<b>` with no `>` on the line | whatever TagSoup does | shown as text |
+| Styling, `<font>`, `<b>`, `<i>` | spans | removed |
+
+### Not done
+
+- **Charset detection.** No BOM means UTF-8; `:app` uses `UniversalDetector`, a JVM library. A caller holding
+  windows-1256 bytes decodes them and calls the `String` overload.
+- **The text filters** `KMP-07` assigned to this module: `removeBloat`, `removeCaptions`, `upperCase`. Not in the
+  plan's column. Worth doing by hand: `bloatRegex` has a `.*\s+` run over the whole file.
+- **`X-TIMESTAMP-MAP`.** Segmented HLS WebVTT needs it; this reads whole files.
+- **Moving or adapting `:app`'s classes,** the later step that does touch `classes.jar`.
+- **ABI baseline.** `kmp.library` has no `abiValidation`: `checkKotlinAbi` does not exist for this module or for
+  `:media:model`, so there was nothing to record.
+
+### Verification
+
+Local, Temurin 17.0.20.1, `TZ=UTC`, `-Xmx6G`, scoped to the module; each command redirected with `$?` captured.
+
+- [x] `:media:subtitle:jvmTest` → exit 0, **104 tests, 0 failures, 0 skipped**, counted from the JUnit XML.
+- [x] `:media:subtitle:iosCanary -Pcloudstream.iosCanary=true` → exit 0, both klibs compiled.
+- [x] `:media:subtitle:iosSimulatorTest -Pcloudstream.iosTest=true` → exit 0, **104 tests, 0 failures**, counted
+      from the XML. Slowest about 1 s against a 15 s budget.
+- [x] `:media:subtitle:check :media:subtitle:assemble` → exit 0.
+- [ ] `checkKotlinAbi`, the full lint/`check` gate and `:app:checkExtensionApi` were not run here. `settings.gradle.kts`
+      is the only existing file touched besides this one.
+
+**Mutation checks,** each applied alone, each turning `jvmTest` red:
+
+| Mutation | Failed by |
+|---|---|
+| No last-closer guard on `<` | `repeated unclosed tag openers stay linear`: 48 s and 58 s in two runs, against under 0.4 s unmutated; plus two out-of-bounds |
+| No timecode digit cap | `a timecode too long for a long…`, `a huge digit run…` |
+| No end-before-start guard | `an end before its start…`, `random bytes never throw…` (`IllegalArgumentException`) |
+| No cue cap | `the cue count is capped and reported` |
+| No size limit on string input | `string input past the size limit…` |
+| Entity output unsanitised | `a reference cannot smuggle…`, `tabs and unusual spaces…` |
+| Wrapping delay arithmetic | `an unset position saturates…`, `a maximal position saturates` |
+| No line cut | `one enormous line…`, `a line limit cut inside a surrogate pair…` |
+
+The first pass sized that pathological input at 500k openers and a mutated run took only 8.6 s against a 5 s budget,
+too thin a margin to mean anything. It is 1M now, and the budget 15 s so the Kotlin/Native debug binary has room.
+
+---
+
+## KMP-20 — `:feature:home`: Phase 7's next vertical, on desktop · **measured 2026-11-02**
+
+**Status:** in pr · desktop only. **TV screen not built**, though `design/TV Home.dc.html` covers it (below).
+
+`MainAPI.getMainPage` per provider: rows of titles for a chosen source, a source picker, more of a row on
+request, and a title opens through the existing `:feature:detail` flow. Home and search are now the window's two
+top-level screens and the window opens on home. `SearchEffect.BrowseHome` goes there. Escape and Back behave as
+before; Escape also closes the picker. `:app`'s home fragments are untouched.
+
+- **The seam.** `HomeSource` in commonMain, implemented by `DesktopHomeSource` over `APIRepository`. No `:library`
+  edge, so the module is in the iOS canary.
+- **Words (`I18N-08`).** `HomeStatus` has none; `toUiState` resolves `:core:strings`. **No string was added**, so
+  `core/strings/oracle-baseline` does not move. Three compromises to review, each an existing key standing in for one
+  that does not exist: the row's button says `next` ("Next") where "Load more" is meant; a partial page's headline
+  is `source_error` because the existing plural counts *sources* and these are a source's sections; and the
+  search-only prompt reuses `result_search_tooltip`.
+- **Sections fail alone.** Each is asked separately, which is what makes "partial" reachable for one source. A
+  retry asks only what failed and keeps what is on screen and the pages already loaded. A source that sets
+  `sequentialMainPage` is asked one section at a time at its own delay, capped at 10 s.
+- **Paging is a section's,** because that is what a provider pages, so a press on one row can grow its siblings. A
+  page adding nothing ends the section whatever `hasNext` claims, and a row stops at 500 titles and a page at 64 rows.
+- **The sandbox gained `OP_MAIN_PAGE`.** It carries a section index, not the provider's `data`, which never leaves
+  the host. Replies pass the same count checks, `cleaned()` and poster filter as search, and rows, items and sections
+  are capped on both sides. A plugin whose `mainPage` getter throws loses its home page and keeps its search.
+- **On top of the sandbox,** `DesktopHomeSource` drops format characters (U+202E and friends) from titles, drops
+  titles with nothing left, and passes on only http(s) posters. Search and detail do not drop format characters:
+  `isISOControl` does not cover them, so a title there can still reorder the text around it. Reported, not changed.
+
+**A real defect the tests caught:** `stringResource(id, name)` left `%s` unfilled ("Could not load %s"), because
+Compose Resources fills only positional arguments. Through `UiString.Resource` it is filled, and
+`HomeStatusWordsTest` pins it.
+
+**A behaviour change outside home:** a double click on a card pushed the title twice, so Back took two presses.
+`Main.kt` now ignores opening a title while one is on top. Search shares that lambda.
+
+**Verified:** rendered offscreen at 1280×800 and 800×520 in all twelve states plus the whole window, and looked at.
+`HomeScreenTest` drives real pointer and key events, including `DesktopApp` itself over a fake source for where the
+window opens, a double click, Escape and the tabs. `SandboxEnforcementTest` runs hostile main pages against a real
+child under real Seatbelt.
+
+**Not verified:** the live window, which this session cannot drive, and **any real plugin's `getMainPage`**:
+everything above ran against fakes and the hostile fixture.
+
+**Not done:**
+
+- **The TV screen,** and any Android host. `design/TV Home.dc.html` draws a hero and rails that need a different
+  screen and data this seam does not carry.
+- **The chosen source is not remembered** across launches. Android stores it; desktop opens on the first source.
+- **`sequentialMainPageScrollDelay`** is not carried, because a next page here takes a press.
+- **`TitleCard` restates search's `ResultCard`,** which is private to `:feature:search`. If a third screen wants one
+  it belongs in `core/designsystem/desktop`.
+
+**Found, not changed:** `PluginHostClient.readLoop` treats a reply to an unknown request id as a protocol violation
+and ends the host. A call that passes its 60 s timeout removes its id, so a plugin that answers at 61 s loses its
+whole host, for search as much as for home.
+
+**Run against real plugins, in the sandbox, on 2026-11-03.** `--check-extensions` now reports each provider's first main-page section through `DesktopHomeSource`: Invidious 2 rows and 40 titles, Dailymotion 1 and 26, Twitch 1 and 20, Internet Archive and YouTube 0 rows. Later sections of those two were not checked by this command, and no window was driven. A row header now holds the button's height, because cards jumped 8 dp when `Next` became `Loading`; a test pins it and fails without the fix.
+
+---
+
+## KMP-18 — non-official plugins, reviewed and then run in the sandbox · **measured 2026-11-03**
+
+**Status:** branch `claude/kmp-18-third-party-plugins`, not merged. Owner's authorisation, 2026-11-02: "review
+for security issues before running anything", "convert to our app (as some plugin will contain android
+related things)". Everything was reviewed first, and everything that ran ran under Seatbelt.
+
+### What the sample was
+
+`recloudstream/cs-repos` `repos-db.json`: 34 repositories, 33 reachable, 582 plugins. Dropped by rule, before
+any download: the 5 in the verified official repo, 10 with `NSFW` in `tvTypes`, 42 not `status: 1`. From each
+remaining repo, the first 2 by `sha256("kmp18:" + internalName)`: 56 candidates. Ayu CloudStream Games (2) were
+then dropped unfetched: their 3 to 8 MB files probably bundle game content, and the limit is no media downloads.
+54 fetched, each in a fresh directory, and all converted and scanned statically: 53 jars, 1 conversion failure.
+
+From those, **15 chosen by hand for variety, one from each of 15 repositories**: clean ones, Android-heavy ones,
+`requiresResources`, remote-config, reflection, opaque payloads. So this is a sample picked to stress the
+review, **not** a measure of how many plugins in the catalogue work.
+
+### Verdicts
+
+Review is a second, independent constant-pool parser (no JVM, no class loading) over the jar `.store` holds,
+plus reading the classes it flagged. Secret-shaped strings were reported by class and kind, never by value.
+
+| Plugin (repo) | Verdict | Evidence |
+|---|---|---|
+| InternetArchive (Luna712) | run | one host; no reflection, files, loaders |
+| ARD (German) | run | public broadcasters' APIs only |
+| GuardaSerie (Italian) | run | one host |
+| BambooUA (CakesTwix) | run | one host |
+| 5movierulz (Phisher) | run, noted | `DonationManager`: GET of a goal file and a worker, plus what looks like an ad-network link. All dialog code, needs an activity, and a host has none |
+| BollyFlix (Megix) | run, noted | its base URLs come from a remote `urls.json`, so its targets cannot be fully reviewed in advance |
+| MovieLinkBD (CNC) | run, noted | Android-heavy; a WebView path that fails here; a donation dialog |
+| Nepu (raghav) | run, noted | a proof-of-work solver for the site's own Anubis challenge, sized by `availableProcessors`: CPU, not mining (host capped at 4) |
+| AnimeUnity (doGior) | run, noted | `requiresResources`; `Runtime.exit` in a settings restart, which would end only its host |
+| EgyBest (AllForU) | run, noted | an announcer dialog with a payment link; needs an activity |
+| **Aniyomi Compat** | **refused** | scanner Block: `dalvik/system`, downloads and loads APKs. No sandbox could make that a media provider |
+| **Mega repository** | **refused** | no provider at all; its one job is adding every catalogue repo to the user's repositories. Harmless here (`RepositoryManager` is absent and stays so) and pointless |
+| **Fshare (Vietnamese)** | **refused** | enumerates installed packages and hashes signing certificates, beside long opaque constants, behind deliberately meaningless identifiers (`f0001`, `c0001`). Purpose not established; that is the point |
+| **BingeCloud (FLUMMOX)** | **refused** | undeclared telemetry: a persistent random install ID, extension name and version, POSTed to a personal Cloudflare worker with a hard-coded token. A `Prewarm` class also sends HEAD requests to 9 hosts. It is not exfiltration of anything sensitive; it is not disclosed either |
+| **Eclipsia** | **refused** | More than 50 base64 strings, up to 16 KB each, that decode to JavaScript providers (decoded as data, by the review). Most call `fetch`. Nothing in the jar's constant pools describes what they do, which defeats this review and any scan. They name dozens of further hosts, one a raw IP behind `nip.io`. Also opens a local `ServerSocket`, which the policy does not allow |
+
+Outside the 15, in the static pool only: **AnimeON (CakesTwix) cannot be converted**, `OutOfMemoryError` at the
+conversion host's 512 MB from a 347 KB dex. It fails safely. The cap was not raised and the cause was not chased.
+
+### Two conversion defects, both real, both `KMP-14`'s
+
+The first baseline run found these. KMP-14's "behaviour-preserving" rested on 5 extensions, none of which hit them.
+
+- **dex2jar rewrites `-` to `_` in names.** `kotlin.Result.constructor-impl` became `constructor_impl`, a method
+  that does not exist: `NoSuchMethodError` from any inlined `runCatching`. Measured in the bytes: the dex has the
+  hyphen, the jar the underscore. **30 of 53 jars** refer to such a name on a `kotlin/` class.
+- **Dex 037 or later becomes class version 52, with no stack maps**, and the JVM refuses it: `VerifyError: Expecting
+  a stackmap frame`. Measured: 035 gives version 50, which needs none. **3 of 53.**
+
+`DexConverter` now sets `dontSanitizeNames(true)` and `computeFrames(true)`. Frames are computed from the dex's own
+hierarchy (`Dex2jar$1$1.getCommonSuperClass` reads a map, read in its bytecode), so no plugin class is loaded by it.
+The verifier was never turned off, and that was never an option. The store's name for a converted jar now carries a
+revision (`-c2`): the store persists, so a better converter would otherwise never reach an existing file.
+
+### Conversion: what was added
+
+Measured with `ScanReport.externalClasses`-equivalent lists over 53 jars against the bundle's own classes:
+
+| | before | after |
+|---|---|---|
+| jars that resolve completely | 26 | **41** |
+| distinct `android.*` / `androidx.*` classes missing | 164 | 54 |
+| distinct `com.lagradost.cloudstream3.*` classes missing | 22 | 11 |
+
+- **Real behaviour, because the run path needs it:** `Handler`, `Looper` and `Dispatchers.Main` (one stand-in main
+  thread; 15 of 53 refer to Main), `Bundle`, `Build.VERSION`, `SystemClock`, `Color`, `DataStore` and `CloudStreamApp`
+  keys on the host's own preferences, `Event`.
+- **Types and nothing else** for `android.view`, `android.widget`, `android.app`, fragments, bottom sheets: their real
+  hierarchy, for the verifier. `CommonActivity.activity` is null and `openSettings` is never called, so none is
+  constructed for real. A plugin that does call into one gets `NoSuchMethodError`, the rule `Context` already set.
+- **Failing on purpose.** `WebView` throws from its constructor. `CookieManager` stores nothing. `CloudflareKiller`
+  passes through, so a challenge stays visible to the plugin. `Context` still has no `getPackageManager`. `RepositoryManager`
+  and `PluginManager` stay absent. `WebViewResolver` was not touched and still fails.
+
+`AndroidShimGroupsTest` reads the shims' own constant pools and fails if any names a file, a socket, a process, a loader
+or reflection.
+
+**Not shimmed: `com.google.gson.Gson`**, 3 of 53. It is a real library and adding it is a dependency decision.
+
+### Results, in the packaged `.app`, each alone in a fresh extensions directory
+
+    env -i HOME=<fresh> CLOUDSTREAM4_EXTENSIONS_DIR=<fresh> PATH=/usr/bin:/bin CloudStream --check-extensions <q> --verbose
+
+No `--check-playback`, nothing played or downloaded. Link counts are listing only. Baseline is the same bundle before
+this task's code.
+
+| Plugin | Baseline | Now: load | Search | Open | Links |
+|---|---|---|---|---|---|
+| InternetArchive `nasa` | worked | yes | 26 | yes (audio) | 0 |
+| ARD `nasa` | `NoSuchMethodError: Result.constructor_impl` on open | yes | 31 | yes | **10**, 2 subtitles |
+| AnimeUnity `nasa` | `VerifyError`, no load | yes | 17 | yes, 42 episodes | **1** |
+| BollyFlix `nasa` | `NoClassDefFoundError: CloudflareKiller` | yes | 20 | yes | **5** |
+| MovieLinkBD `earth` (`nasa` gives 0) | `NoClassDefFoundError: AppCompatActivity`, no load | yes | 30 | yes | **1** |
+| EgyBest `earth` (`nasa` gives 0) | `VerifyError`, no load | yes | 4 | yes | **1** |
+| BambooUA `nasa` | `NoClassDefFoundError: Gson` on open | yes | 1 | **`NoClassDefFoundError: com/google/gson/Gson`** | |
+| 5movierulz `nasa`, `earth` | 0 results | yes | 0 | | cause not established; `curl` gets a 301, this plugin's site answers from Cloudflare |
+| Nepu `nasa`, `earth` | `NoClassDefFoundError: DataStore`, no load | yes | 0 | | `curl` gets `403`, `cf-mitigated: challenge`. Its solver needs a WebView, so 0 is expected |
+| GuardaSerie `nasa` | `NoClassDefFoundError: CloudflareKiller`, no load | yes | `UnknownHostException` | | the site's domain no longer resolves. Not ours |
+
+### The sandbox really was in force, and the network was public
+
+- **`sandbox_check(pid, NULL, 0)`, from outside, on every child seen:** 1 for every host, in every run; 0 for its parent
+  app, the control. Parent PID and `--plugin-host` in argv confirmed. A child was occasionally caught as `(CloudStream)` with no arguments, mid-exec; it returned 1 too.
+- **Peers, by `lsof` every 0.5 s:** no private, loopback or link-local address, and no listening socket, for any plugin.
+  Attributed by resolving each plugin's own hosts afterwards: in the final runs, 14 addresses match a host the plugin names. **9
+  public addresses are not attributed**, 8 in Cloudflare's ranges and 1 not. Redirects and extractor hosts would explain them, and
+  that was not established. Short connections can be missed between polls. IPs are all this can see.
+- **The owner's data:** `~/.cloudstream4` was listed before and after, and is unchanged.
+- **Denials could not be observed.** A control denial under `sandbox-exec` left nothing in `log show` here, with or
+  without `--info --debug`, so an empty log means nothing and none is claimed. What can be said is narrower: the host stderr captured
+  (`--verbose` keeps the first 12 lines per provider) never mentions `Operation not permitted` or `Permission denied`. `SandboxEnforcementTest` remains the proof of denial.
+
+### Scanner gaps, closed
+
+Fshare, Eclipsia and BingeCloud all had no Block from the scanner before this task. New rules, measured against all 53 jars before being
+added, where they fire only on what is listed:
+
+| Rule | Fires on | Severity |
+|---|---|---|
+| A long base64 constant decoding to a script, class, dex or zip | both Eclipsia plugins; not the 1 other long base64 string | Block |
+| `PackageManager.getInstalledPackages` / `getInstalledApplications` | Aniyomi, Fshare | Block |
+| Extending `ClassLoader`: inside a subclass, `defineClass` names the subclass, so the method rule never matched | none | Block |
+| Text naming `URLClassLoader`, `ProcessHandle`, `javax.script.`, `jdk.internal.`, `defineClass` and similar: the class rule blocked these only when not reached by reflection | none | Block |
+| `Runtime.exit` (only `halt` and `System.exit` warned), and a string that is exactly a device-ID key | AnimeUnity, NetNaija; BingeCloud, Otakutsu, FootReplays | Warn |
+
+**BingeCloud-style telemetry still only warns.** A key name is a hint, and a POST is ordinary. Static scanning cannot
+tell an analytics ping from a search.
+
+### Mutation checks
+
+Each edited alone, scoped tests run, each restored. All went red.
+
+| Mutation | Fails |
+|---|---|
+| No `dontSanitizeNames` | names test, real-host test |
+| No `computeFrames` | stack-map test, real-host test |
+| Each of 4 scanner rules removed | its test |
+| `WebView` stops throwing | webkit test, sandbox end-to-end |
+| A shim names `java.io.File` | the capability test |
+| Dispatcher guard removed | dispatcher test |
+| Dispatcher service entry removed | sandbox end-to-end |
+
+**The first round caught this task's own false test.** With both converter flags removed, the real-host test still passed:
+the fixture's source was on the test classpath, and a host loads parent-first, so it ran the original rather than the converted
+class. The source now lives outside any source root, and the test asserts it is not on the classpath.
+
+### Limits a reader should not have to discover
+
+- Nothing here is a claim that these 10 are **safe**. They contain nothing this review recognised as hostile, and that review
+  is static, of jars whose remote config and redirects it cannot see. The sandbox stays the boundary.
+- **LAN reachability and unchecked redirects from `KMP-14` are unchanged.** Not exercised against a hostile plugin here.
+- "Loads" is a floor. Only search, open and listing links ran, on the first result. Settings, home pages and most extractors did not.
+- The shims' `android.*` types cover what these 53 reach, and 54 classes remain missing: `Canvas`, `Path`, `Bitmap`, `ClipboardManager`, `MediaStore`.
+  Those were left alone on purpose where they are capabilities, and because nothing that ran needed them.
+
+### Found and not fixed
+
+```
+Found: the conversion host's writable directory is the whole `.store`, in SandboxedExtensions.toStore (`PluginHostClient.convert(launcher, source, staging, store)`)
+Suggest: give each conversion its own empty subdirectory and move the result out
+Why: dex2jar parses hostile bytes. A dex that exploited it could overwrite another extension's scanned jar, between that jar's scan and its host starting. Narrow, and no such exploit is known, and nothing here can test it without one
+```
+
+### Gates, local, scoped (the coordinator runs the full ones)
+
+`:feature:extensions:sandbox:jvmTest` 67 tests, 0 failures. `:desktopApp:jvmTest` 22, 0. `:desktopApp:createDistributable` 0.
+`checkExtensionApi` and `check` were not run here: this module is not on `:app`'s classpath.
+
+---
+
 ## KMP-08 — Track L: `:library` iOS surgery
 
 **Status:** blocked by `DEC-04`
@@ -2023,3 +2348,18 @@ the `ListPreference` path #50 also touched.
 
 Headless swiftshader, not hardware. It proves the composition builds, resolves its resources and
 responds to input; it does not prove GPU-dependent rendering or anything about the TV layouts.
+
+---
+
+## KMP-22 — A conversion can no longer write the extension store
+
+**Status:** in pr · found by `KMP-18`
+
+`.cs3` conversion ran dex2jar with write access to all of `.store`. A dex that exploited dex2jar could have replaced another extension's jar between that jar's scan and its start, which is the guarantee the store exists to give.
+
+`convertIntoStore` now gives each conversion its own empty directory under `.converting`, outside the store. The result is refused unless it is a regular file, and it is copied into the store rather than moved, so a hard link or a process left holding the file open cannot reach what was scanned.
+
+`ConvertIntoStoreTest` plays the taken-over host: a symlink, a directory, a kept hard link, and a failure. No real dex2jar exploit was used, because none is available. The policy side is `writable`, which `SandboxEnforcementTest` already proves.
+
+**Not addressed:** a taken-over conversion can still fill the disk in its directory until the 120 s timeout, and a process it left running is not killed along with it. A jar already in an existing store is not re-checked.
+

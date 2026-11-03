@@ -1,8 +1,14 @@
 package com.lagradost.cloudstream4.feature.extensions.sandbox
 
+import com.lagradost.cloudstream3.HomePageList
+import com.lagradost.cloudstream3.HomePageResponse
 import com.lagradost.cloudstream3.MainAPI
+import com.lagradost.cloudstream3.MainPageData
+import com.lagradost.cloudstream3.MainPageRequest
 import com.lagradost.cloudstream3.SearchResponseList
 import com.lagradost.cloudstream3.TvType
+import com.lagradost.cloudstream3.mainPageOf
+import com.lagradost.cloudstream3.newHomePageResponse
 import com.lagradost.cloudstream3.newMovieSearchResponse
 import com.lagradost.cloudstream3.newSearchResponseList
 import com.lagradost.cloudstream3.plugins.BasePlugin
@@ -30,6 +36,35 @@ class HostileApi : MainAPI() {
     override var name = "Hostile"
     override var mainUrl = "https://hostile.invalid"
     override val supportedTypes = setOf(TvType.Others)
+    override val hasMainPage = true
+    override var sequentialMainPage = true
+    override var sequentialMainPageDelay = Long.MAX_VALUE
+    override val mainPage = mainPageOf(
+        "hostile" to "evil\u001B[2J\nsection",
+        "huge" to "huge",
+        "null" to "null",
+        "throw" to "throw",
+        "corrupt" to "corrupt",
+    )
+
+    override suspend fun getMainPage(page: Int, request: MainPageRequest): HomePageResponse? {
+        val item = newMovieSearchResponse("evil\u001B[2J\nforged", "javascript:alert(1)", TvType.Others, fix = false) {
+            posterUrl = "file:///etc/passwd"
+        }
+        return when (request.data) {
+            "hostile" -> newHomePageResponse(HomePageList("row\u001B[2J\nname", listOf(item)), hasNext = true)
+            "huge" -> newHomePageResponse(
+                List(HUGE_COUNT) { row -> HomePageList("row $row", List(HUGE_COUNT) { item }) },
+                hasNext = true,
+            )
+            "null" -> null
+            "corrupt" -> {
+                FileOutputStream(FileDescriptor.out).write(ByteArray(GARBAGE_BYTES) { -1 })
+                null
+            }
+            else -> throw IllegalStateException("main page refused on page $page")
+        }
+    }
 
     override suspend fun search(query: String, page: Int): SearchResponseList {
         val verb = query.substringBefore(':')
@@ -70,7 +105,28 @@ class HostileApi : MainAPI() {
     private companion object {
         const val CONNECT_TIMEOUT_MILLIS = 3_000
         const val GARBAGE_BYTES = 64
+        /** Cutting only one of rows or items still leaves about 15 MB, past the 8 MB frame limit. */
+        const val HUGE_COUNT = 1000
     }
+}
+
+@CloudstreamPlugin
+class BrokenMainPagePlugin : BasePlugin() {
+    override fun load() {
+        registerMainAPI(BrokenMainPageApi())
+    }
+}
+
+/** What a plugin compiled against something this runtime lacks looks like. */
+class BrokenMainPageApi : MainAPI() {
+    override var name = "Broken"
+    override var mainUrl = "https://broken.invalid"
+    override val supportedTypes = setOf(TvType.Others)
+    override val hasMainPage = true
+    override val mainPage get(): List<MainPageData> = throw NoClassDefFoundError("android/view/View")
+
+    override suspend fun search(query: String, page: Int): SearchResponseList =
+        newSearchResponseList(listOf(newMovieSearchResponse("still searches", "u", TvType.Others, fix = false)), false)
 }
 
 /** Compiled with a `native` method, for the scanner. Never instantiated. */

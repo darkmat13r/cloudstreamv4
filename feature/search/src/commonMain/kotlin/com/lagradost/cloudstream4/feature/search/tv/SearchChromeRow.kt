@@ -27,10 +27,15 @@ import com.lagradost.cloudstream4.core.designsystem.state.FailureBanner
 import com.lagradost.cloudstream4.core.designsystem.state.FailureNotice
 import com.lagradost.cloudstream4.core.designsystem.target.Chip
 import com.lagradost.cloudstream4.core.designsystem.target.ChipRow
+import com.lagradost.cloudstream4.core.strings.generated.resources.Res
+import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_field_placeholder
+import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_sources_label
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.search.SearchAction
 import com.lagradost.cloudstream4.feature.search.SearchSources
+import com.lagradost.cloudstream4.feature.search.sourcesCountText
+import org.jetbrains.compose.resources.stringResource
 
 /**
  * The chrome row: the query field, and the source chip that says how many sources answer to it.
@@ -54,7 +59,6 @@ import com.lagradost.cloudstream4.feature.search.SearchSources
 internal fun SearchChromeRow(
     query: String,
     sources: SearchSources,
-    copy: SearchTvCopy,
     onAction: (SearchAction) -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -65,18 +69,18 @@ internal fun SearchChromeRow(
     ) {
         QueryField(
             query = query,
-            placeholder = copy.fieldPlaceholder,
+            placeholder = stringResource(Res.string.search_tv_field_placeholder),
             onAction = onAction,
             modifier = Modifier.weight(FIELD_WEIGHT),
         )
         Chip(
-            label = copy.sourcesLabel,
+            label = stringResource(Res.string.search_tv_sources_label),
             selected = false,
             // Artboard 4d's side panel is what this opens, and it is not built. Until it is, the
             // chip is the readout the no-results copy quotes, not a control: an affordance that
             // looks focusable and does nothing is the defect `StateAction` exists to prevent.
             onClick = {},
-            count = copy.sourcesCount(sources.selected, sources.total),
+            count = sourcesCountText(sources),
         )
     }
 }
