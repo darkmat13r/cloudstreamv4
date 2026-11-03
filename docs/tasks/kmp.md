@@ -2904,5 +2904,5 @@ Found: the iOS test gate has been red since :feature:home landed (#92) — `iosS
        `HomePagingTest`, whose five backticked names contain a comma, which Kotlin/Native refuses
 Suggest: rename those five, which is what this task did to its own
 Why: it is existing code in another vertical, and a broken gate deserves its own revertible change.
-     Filed as `BUG-17` in defects.md
+     Filed as `BUG-20` in defects.md (filed as `BUG-17`, renumbered — #106 took that id first)
 ```

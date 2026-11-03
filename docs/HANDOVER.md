@@ -56,7 +56,7 @@ driven offscreen through `ImageComposeScene` and real ViewModels. Audible sound 
 
     ./gradlew iosCanary -Pcloudstream.iosCanary=true --continue
 
-The fifth, opt-in gate runs them for real, and since `BUG-17` it is green: **219 `commonTest` assertions on
+The fifth, opt-in gate runs them for real, and since `BUG-20` it is green: **219 `commonTest` assertions on
 an iOS simulator, 0 failures.** It is worth running whenever a `commonTest` is added.
 
     ./gradlew iosSimulatorTest -Pcloudstream.iosTest=true
