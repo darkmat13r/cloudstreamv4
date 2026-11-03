@@ -1831,9 +1831,9 @@ everything above ran against fakes and the hostile fixture.
 - **`TitleCard` restates search's `ResultCard`,** which is private to `:feature:search`. If a third screen wants one
   it belongs in `core/designsystem/desktop`.
 
-**Found, not changed:** `PluginHostClient.readLoop` treats a reply to an unknown request id as a protocol violation
-and ends the host. A call that passes its 60 s timeout removes its id, so a plugin that answers at 61 s loses its
-whole host, for search as much as for home.
+**Found, not changed here:** `PluginHostClient.readLoop` treated a reply to a timed-out call as a protocol violation
+and ended the host, so a plugin answering at 61 s lost its whole host, for search as much as for home. See `BUG-14`
+in [defects.md](defects.md).
 
 **Run against real plugins, in the sandbox, on 2026-11-03.** `--check-extensions` now reports each provider's first main-page section through `DesktopHomeSource`: Invidious 2 rows and 40 titles, Dailymotion 1 and 26, Twitch 1 and 20, Internet Archive and YouTube 0 rows. Later sections of those two were not checked by this command, and no window was driven. A row header now holds the button's height, because cards jumped 8 dp when `Next` became `Loading`; a test pins it and fails without the fix.
 
