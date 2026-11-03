@@ -508,18 +508,15 @@ plugin, so the extension safe mode was keeping out still ran in the background, 
 
 `isSafeMode()` alone is not enough here. `lastError` is only filled by `setLastError`, and the only callers
 were `MainActivity.onCreate` and `DownloadQueueService`. A worker in a process where neither ran would see
-`lastError == null` with a crash on record. So the worker does what `DownloadQueueService` does: `setLastError`
-first, then the check.
+`lastError == null` with a crash on record. The worker must not call `setLastError` either: it deletes `last_error`
+as it reads it and keeps the text only in memory, so if the worker were the first to read it and its process then
+died, the next launch would show no crash dialog and would load extensions. So the worker looks for the file and
+leaves it there. `DownloadQueueService` still has that property; reported, not changed.
 
-Fixed: both come first in `doWork`, before the notification channel and the foreground notification, and in
+Fixed: the check comes first in `doWork`, before the notification channel and the foreground notification, and in
 safe mode the worker returns `Result.success()`. Not `retry`, which the catch block at the end of `doWork` already
 avoids for battery reasons, and not `cancelWorkById`, which would end the periodic work for good. The next run
 checks again.
-
-**A limit this inherits:** `setLastError` deletes `last_error` as it reads it, and keeps the text only in memory.
-If the worker is the first to read it and its process then dies before the app is opened, the crash dialog is
-never shown and that launch loads extensions. `DownloadQueueService` has the same property. Reading the file
-without deleting it would avoid this, but no existing caller does that, so it was left as a decision.
 
 **No regression test, and why.** Measured with a throwaway JVM test under `:app`'s
 `unitTests.isReturnDefaultValues`, since deleted: `PluginManager.isSafeMode()` fails with

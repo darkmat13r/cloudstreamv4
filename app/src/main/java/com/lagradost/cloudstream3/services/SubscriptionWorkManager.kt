@@ -102,10 +102,13 @@ class SubscriptionWorkManager(val context: Context, workerParams: WorkerParamete
         try {
 //        println("Update subscriptions!")
             // Never load extensions in safe mode. This worker can start in a process where
-            // MainActivity never ran, so lastError is null until the crash file has been read.
+            // MainActivity never ran, so lastError is null while a crash is on record. It looks at
+            // the crash file and leaves it: setLastError deletes it, and if this process then died,
+            // the next launch would show no crash dialog and load extensions.
             // Success rather than retry or cancel: the periodic work stays scheduled.
-            MainActivity.setLastError(context)
-            if (PluginManager.isSafeMode()) return Result.success()
+            if (context.filesDir.resolve("last_error").isFile || PluginManager.isSafeMode()) {
+                return Result.success()
+            }
 
             context.createNotificationChannel(
                 SUBSCRIPTION_CHANNEL_ID,
