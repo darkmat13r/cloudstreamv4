@@ -2000,9 +2000,9 @@ everything above ran against fakes and the hostile fixture.
 - **`TitleCard` restates search's `ResultCard`,** which is private to `:feature:search`. If a third screen wants one
   it belongs in `core/designsystem/desktop`.
 
-**Found, not changed:** `PluginHostClient.readLoop` treats a reply to an unknown request id as a protocol violation
-and ends the host. A call that passes its 60 s timeout removes its id, so a plugin that answers at 61 s loses its
-whole host, for search as much as for home.
+**Found, not changed here:** `PluginHostClient.readLoop` treated a reply to a timed-out call as a protocol violation
+and ended the host, so a plugin answering at 61 s lost its whole host, for search as much as for home. See `BUG-14`
+in [defects.md](defects.md).
 
 **Run against real plugins, in the sandbox, on 2026-11-03.** `--check-extensions` now reports each provider's first main-page section through `DesktopHomeSource`: Invidious 2 rows and 40 titles, Dailymotion 1 and 26, Twitch 1 and 20, Internet Archive and YouTube 0 rows. Later sections of those two were not checked by this command, and no window was driven. A row header now holds the button's height, because cards jumped 8 dp when `Next` became `Loading`; a test pins it and fails without the fix.
 
@@ -2090,7 +2090,7 @@ Measured with `ScanReport.externalClasses`-equivalent lists over 53 jars against
 `AndroidShimGroupsTest` reads the shims' own constant pools and fails if any names a file, a socket, a process, a loader
 or reflection.
 
-**Not shimmed: `com.google.gson.Gson`**, 3 of 53. It is a real library and adding it is a dependency decision.
+**Not shimmed: `com.google.gson.Gson`**, 3 of 53. It is a real library and adding it is a dependency decision. _Taken: `KMP-23` adds the real library to the desktop host._
 
 ### Results, in the packaged `.app`, each alone in a fresh extensions directory
 
@@ -2360,3 +2360,71 @@ responds to input; it does not prove GPU-dependent rendering or anything about t
 
 **Not addressed:** a taken-over conversion can still fill the disk in its directory until the 120 s timeout, and a process it left running is not killed along with it. A jar already in an existing store is not re-checked.
 
+
+---
+
+## KMP-23 — Gson for plugins, on the desktop host only
+
+**Status:** in pr · owner approved the dependency 2026-11-03, on condition of the usual security check
+
+`com.google.code.gson:gson:2.15.0` is `runtimeOnly` in `:feature:extensions:sandbox`. Nothing first-party calls it.
+A plugin's `URLClassLoader` has the app class loader as its parent, with no allowlist, so a plugin sees whatever is on
+the host's classpath. The host re-executes the same bundle, so the app's JVM has the jar on its classpath too, and never
+loads it. `:app` keeps its own literal `gson:2.11.0`, the sandbox module is not in its graph, and neither Android nor iOS
+gets anything: `app/api/classes-jar.api` is untouched.
+
+### Security check, 2026-11-03
+
+| | |
+|---|---|
+| Coordinates | `com.google.code.gson:gson`, `google/gson` on GitHub, not archived. Jar's own manifest and POM agree |
+| Version | 2.15.0, published 2026-10-24: 10 days old when pinned. Maven Central `release` and the GitHub release agree |
+| Known CVEs | One: `CVE-2022-25647` / `GHSA-4jrv-ppp4-jm57`, fixed in 2.8.9. OSV has nothing for 2.15.0 |
+| Licence | Apache-2.0, as is the transitive dependency |
+| Transitive | `error_prone_annotations:2.50.0`, 30 annotation classes, no runtime dependencies of its own. Left in: Gson's POM says so on purpose |
+| Integrity | Published SHA-256 matches, both jars. **The PGP signature was not checked:** no `gpg` here, and installing one needs asking |
+
+Bundle: +337,460 B of 163,481,404 (+0.21%), two jars. Packaging rewraps them: the bundled hashes differ from Central's, and every entry's CRC matches.
+
+### What it adds to the sandbox
+
+**No capability.** The Seatbelt policy is unchanged and plugin code already runs in that process.
+**It does add a route the scanner cannot see.** `fromJson` and `toJson` allocate a class without running its constructor
+(`sun.misc.Unsafe`, through the bundle's `jdk.unsupported`) and read and write private fields of any class outside the JDK,
+host classes included. All of it with no reference to `java/lang/reflect`, so it scans clean: `GsonInHostTest` pins zero
+findings. The same allocation without Gson works and gets a `reflection` warning, also measured.
+
+**The scanner is not changed.** Blocking `com/google/gson/internal/` would remove nothing, since the public API does the
+same, and warning on `com/google/gson/Gson` would flag ordinary use. A plugin bundling its own Gson is already blocked
+(`sun.misc.Unsafe` in its strings), measured against the real jar, and no sampled plugin does.
+
+For hostile JSON, measured in a real host: the type comes from the calling code, so `@class` and `class` keys are ignored;
+`java.base` classes are refused, because the host has no `--add-opens`; 100,000 open brackets end at the nesting limit, not
+in a `StackOverflowError`. **Not measured:** memory exhaustion from a huge document. `-Xmx512m` is the cap on that.
+
+### Plugins
+
+The `KMP-18` sample was rebuilt by its own rule: 33 of 34 repositories, 56 candidates, 54 fetched. A byte search of each
+dex finds Gson in the same count, 3, and none defines it. Each was reviewed from its dex and by the scanner before anything ran.
+
+| Plugin | Review | Before | After |
+|---|---|---|---|
+| BambooUA v13 | one host, no file, socket, process, loader or reflection use. **Run** | search 1, open `NoClassDefFoundError: com/google/gson/Gson` | search 1, opened, 8 episodes, **1 link** |
+| ViStream v35 | no file, socket, process, loader or reflection use. About 80 hosts, some taken from remote text files and one a third-party decryption API, so its targets cannot be fully reviewed. **Run, noted** | not loaded: `NoClassDefFoundError: java/util/Object` | **the same. Still fails, and Gson is not why** |
+| Fshare v35 | scanner Block, `getInstalledPackages`. **Refused**, as in `KMP-18`, and not run | | |
+
+**ViStream is a separate conversion defect, not fixed here.** `computeFrames` wrote a stack map frame naming `java/util/Object`
+in `ViStreamPlugin`; that name appears nowhere in the dex. Its Gson use is therefore unproven. Whether other plugins hit
+this was not measured.
+
+The five official plugins, `nasa`, before and after, with the same outcome per provider: all load, all hashes verified.
+Dailymotion, YouTube and Internet Archive open. Twitch searches and fails to open (`Could not load page`) and Invidious finds
+0, **both also before this change**.
+
+Each run was in the packaged `.app` with a fresh `user.home`. Polled from outside, `sandbox_check` returned 1 for every
+host and no peer was non-public. No `--check-playback`. Every file in `~/.cloudstream4` is unchanged, hash and mtime. One
+thing moved: the mtime of the empty `.media-host` directory, at a time none of these runs was going. Only the player opens that
+path, an app window on the real home was open throughout, and a control run left it alone. Its cause was not established further.
+
+**Android plugins get 2.11.0 and desktop 2.15.0.** 2.15 makes `LinkedHashMap` the default `Map`, so a plugin casting to
+`LinkedTreeMap` would behave differently here. None of the 3 refers to a `gson.internal` class. The wider catalogue was not checked.

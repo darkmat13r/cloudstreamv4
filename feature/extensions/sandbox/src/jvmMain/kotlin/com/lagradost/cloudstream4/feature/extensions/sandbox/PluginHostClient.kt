@@ -112,7 +112,7 @@ class HostLauncher internal constructor(
  * skipped: a peer that has stopped speaking the protocol cannot be resynchronised, and has either
  * crashed or is no longer the code we started.
  */
-class PluginHostClient private constructor(
+class PluginHostClient internal constructor(
     private val process: Process,
     private val label: String,
 ) : Closeable {
@@ -122,6 +122,13 @@ class PluginHostClient private constructor(
     }
 
     private val pending = ConcurrentHashMap<Int, Pending>()
+
+    /**
+     * Calls that gave up waiting and may still be answered, once each. Their [Pending] is kept so a late
+     * reply is decoded by the same checks as a timely one; nothing awaits it, so the result goes nowhere.
+     * This lock also guards a move out of [pending], so a live id is never in neither map.
+     */
+    private val timedOut = HashMap<Int, Pending>()
     private val nextId = AtomicInteger(HostProtocol.READY_ID)
     private val out: OutputStream = process.outputStream
     private val dead = AtomicBoolean(false)
@@ -144,7 +151,7 @@ class PluginHostClient private constructor(
                 val frame = HostProtocol.readFrame(input) ?: break
                 HostProtocol.decode(frame) {
                     val id = readInt()
-                    val waiter = pending.remove(id) ?: throw IOException("reply to unknown request $id")
+                    val waiter = claim(id) ?: throw IOException("reply to unknown request $id")
                     if (readBoolean()) {
                         waiter.reply.complete(Result.success(waiter.decode(this)))
                     } else {
@@ -158,6 +165,21 @@ class PluginHostClient private constructor(
             "protocol violation: ${violation.message.orEmpty().sanitized(MAX_ERROR_CHARS)}"
         }
         abort(reason)
+    }
+
+    private fun claim(id: Int): Pending? = synchronized(timedOut) { pending.remove(id) ?: timedOut.remove(id) }
+
+    /**
+     * A plugin can leave every call unanswered, so what is remembered for them is bounded, and past
+     * [MAX_TIMED_OUT_CALLS] the host ends. Forgetting an old id instead would let the plugin choose when
+     * its late reply kills the host, and a host this far behind is not answering anyway.
+     */
+    private fun expire(id: Int) {
+        val full = synchronized(timedOut) {
+            val waiter = pending.remove(id) ?: return
+            (timedOut.size >= MAX_TIMED_OUT_CALLS).also { full -> if (!full) timedOut[id] = waiter }
+        }
+        if (full) abort("left more than $MAX_TIMED_OUT_CALLS calls unanswered past their timeout")
     }
 
     /** Keeps only the start of it. A plugin writing forever must not be able to fill this process. */
@@ -182,6 +204,7 @@ class PluginHostClient private constructor(
         val failure = IOException("$label: $reason")
         pending.values.forEach { it.reply.complete(Result.failure(failure)) }
         pending.clear()
+        synchronized(timedOut) { timedOut.clear() }
     }
 
     private suspend fun providers(timeoutMillis: Long): Result<List<RemoteProvider>> = try {
@@ -249,7 +272,7 @@ class PluginHostClient private constructor(
             }
             withTimeout(CALL_TIMEOUT_MILLIS) { waiter.reply.await() }.getOrThrow() as T
         } catch (slow: TimeoutCancellationException) {
-            pending.remove(id)
+            expire(id)
             throw IOException("$label did not answer within ${CALL_TIMEOUT_MILLIS}ms")
         }
     }
@@ -263,6 +286,7 @@ class PluginHostClient private constructor(
     }
 
     companion object {
+        internal const val MAX_TIMED_OUT_CALLS = 256
         private const val CALL_TIMEOUT_MILLIS = 60_000L
         private const val START_TIMEOUT_MILLIS = 60_000L
         private const val STOP_GRACE_MILLIS = 500L
