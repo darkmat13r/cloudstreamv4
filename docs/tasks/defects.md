@@ -573,3 +573,64 @@ before the kill, failed 0 of 3.
 
 The fix fails the waiting calls first and kills last. The test's fake process now pauses in its first `destroyForcibly`, so the reader always
 gets there first: the old order fails 6 of 6 runs, this one 0 of 10.
+
+---
+
+## BUG-17 — opening the player could cost another running copy its stream, while that stream was starting · **low**
+
+**Status:** in pr · found 2026-11-03 by reading, then run · `VlcPlayer.kt`
+
+`createOrNull` deleted everything in `~/.cloudstream4/.media-host`, on the assumption of one stream at a time. Copies of the app
+sharing a home break that assumption: a second window from `open -n`, another build, or a `--check-*` run.
+
+**The suspected failure, a playing stream dying when its directory goes, does not happen.** The host keeps everything it needs open
+and unlinked files stay readable. What fails is a host still starting.
+
+Measured on the packaged app with a fresh `user.home`, two runs sharing it, `--check-subtitle-render`, before the fix:
+
+| When the directory goes | What the first run saw |
+|---|---|
+| 10 s in, playing a local file | Nothing. Exit 0, `failed=false`, through pause, resume and seek |
+| After the first frame, playing YouTube over https | Nothing. Exit 0 through pause, resume and a +10 s seek, which reconnects. Same as the control |
+| 0, 0.1, 0.2 s after the directory appears, YouTube, deleted with `rm` | `no frame arrived`, exit 4 |
+| 0.4 to 2.5 s after it appears, YouTube, deleted with `rm` | First frame as normal |
+| Second real run started 0.2 to 0.9 s after the first, local file | `no frame arrived`, exit 4, in 6 of 6. At 0.1 s, and in 6 of 6 starting together, exit 0. The check's file was copied in and not yet opened, a wider window than a stream has, and only a check has it |
+| The instant the directory appears, real player on a public https stream | `createOrNull` returned null, so `ProcessBuilder` could not start in it. In a window that is `PlayerUnavailable` |
+
+A JVM started in a deleted directory stops at once: `Could not determine current working directory`, exit 1. So the person sees a failed
+stream, or the screen for VLC being missing, only if the second copy opens a player within a few tenths of a second of the first. After
+the host is up, no file appeared in its directory during a public HLS video with a pause and a seek, polled once a second.
+
+**The fix.** A directory is now named `host-<pid>-<start millis>-<random>`, for the app that made it, and only one whose app has gone is cleared.
+The name is the only state, so there is no lock and no window between creating a directory and marking it. A pid in use by a process with
+another start time does not count, which covers reuse. If the start time cannot be read the directory stays: a leftover costs little. A host that
+fails to start now removes its own directory, because the next sweep in the same app no longer would. Directories are still never reused, so a
+host that outlives its app has no rights over a later one.
+
+After the fix, same app, same home:
+
+| Run | Result |
+|---|---|
+| Second run started 0.1 to 0.9 s after the first, 7 pairs | 14 of 14 reached frames with `failed=false` |
+| App killed with `-9` | Its host exited within 2 s, its directory stayed, and the next run cleared it |
+| Planted: a dead pid, pid 1 with a wrong start, an old-style name, a live process with its true start | The first three cleared, the last kept |
+
+**Exit code is not the measure in the paired runs.** 4 of those 14 exited 1, with `failed=false` and a cue on screen, because `resumed`, `play` or `after-seek` passed the check's 100 ms sync bound. Machine load average was about 35 from other work, and two offscreen renders were competing. Before the fix the first run of a pair exited 4; none does now.
+
+**The sandbox is unchanged.** `SeatbeltProfile` has no diff. Its real rendering for `host-100-…-111`, under `sandbox-exec`: read and write inside that directory; `Operation not permitted` to read `host-200-…`, to read `host-100-…-1112` (a name extending this one), to read a file in the parent, and to write in the parent.
+
+`HostDirectoryTest`, with real processes, including another JVM making its directory through the same call and a `destroyForcibly` of it. Each mutation alone, 7 tests:
+
+| Mutation | Failed |
+|---|---|
+| The old code: delete everything, name `host` | 4 |
+| Delete everything, new names | 3 |
+| Ignore the start time | 1 (`a pid now used by a process that started at another time…`) |
+| Keep what cannot be shown to be live | 2 |
+| Keep a dead app's directory | 1 |
+| Keep old-style names | 1 |
+| Do not record the start time | 3 |
+
+**Not fixed, and cannot be from here: a build without this fix still deletes everything,** so side by side with one it still breaks a starting host (measured: unfixed second run, fixed first, exit 4). **And a fixed build treats an old-style name as a leftover,** so it can still do the same to an unfixed build (measured, exit 4). Keeping those names would leak them for good. Both end once every running build has the fix.
+
+**Not verified.** A live window, which a locked session cannot drive. The removal of a directory from a failed start has no test: nothing makes `startMediaHost` fail without a seam. The live case: Twitch's search failed, and two public live HLS test streams gave no frame in the control run, directory intact, not looked into. So pausing a live stream, which might make libVLC write a temporary file, was not measured against a deleted directory. With the fix that directory is no longer deleted. A home shared over a network, where another machine's pid reads as dead.
