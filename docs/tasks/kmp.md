@@ -2633,6 +2633,8 @@ Suggest: size the buffer from the visible height (`newFormatSize` is there and i
 Why: pictures are 2.5 to 7% too tall. Older than this task, and not about subtitles: cues are placed on the frame as it is drawn
 ```
 
+Since fixed as `BUG-15`, and `newFormatSize` was not the way: it only repeats the size the app returned.
+
 ```
 Found: YouTube's timedtext answered 429 after this task's repeated fetches, which the player shows as "Couldn't load these subtitles"
 Suggest: leave it. The failure is legible and the track can be chosen again. A cache or backoff would be its own task

@@ -559,3 +559,137 @@ checks again.
 `Environment.getExternalStorageDirectory()`; and the worker's `colorFromAttribute` field initialiser throws
 `NullPointerException`. `:app` has no Robolectric or mocking library, and adding one needs the owner's approval.
 A test of an extracted boolean would not exercise this path. **Not run on a device.**
+
+---
+
+## BUG-15 — desktop video was drawn in the shape of the decoder's buffer · **medium**
+
+**Status:** in pr · noted in `KMP-25` as 1280x720 arriving as 1280x738 · `MediaHost.kt`, `FrameGeometry.kt`, `PlayerScreen.kt`
+
+**It was a real stretch, not padding.** libVLC's format callback reports the decoder's buffer, not the picture: libavcodec's
+aligned size, 1280 x 738 for 1280 x 720. Whatever size is returned, libVLC scales the visible picture to fill it. On a test card
+with bars at known rows, the 1280 x 720 card's bars at source rows 179.5 and 539.5 reached the app at 184.0 and 553.0, which is
+those rows times 738/720, and a 360 x 360 circle came back 360 x 370. No band of padding appeared. Sample aspect ratio was
+never applied at all, and a padded size then met the cap, so 1920 x 1090 became 1902 x 1080: narrower as well as wrong.
+
+**`newFormatSize` was not the answer.** The note in `KMP-25` suggested it. In the vlcj 4.12.1 bytecode (`CallbackVideoSurface$SetupCallback.format`)
+it is called once, straight after `getBufferFormat`, with the size just returned twice over. Measured: `newFormatSize(1280,738,1280,738)`.
+
+### Why there are two parts to the fix
+
+The picture's size is in the track list (`media().info().videoTracks()`), when the track list has it yet. Blocking inside the
+callback for 2 s, and reading the tracks from another thread meanwhile:
+
+| Container | Tracks when the callback starts | During a 2 s block | After the callback returns |
+|---|---|---|---|
+| MP4 | 1280x720, about 75 ms earlier | | |
+| WebM | Size arrives about 15 ms into the callback; SAR 0/0 | Size known, SAR still 0/0 | SAR within about 20 ms |
+| MPEG-TS | `0x0` | **Still `0x0`** | 1280x720, within about 35 ms |
+
+So for MPEG-TS, waiting cannot work: the track is filled in only after the callback has returned. Hence:
+
+- **The buffer** is the visible size when a track has it, under the cap. Exact frames, no resampling.
+- **A new message, `MESSAGE_PICTURE`,** says what shape to draw the frame in, sent when the tracks first say so. `FitAs` draws to it and
+  cues are placed on it. Non-square pixels only ever change this shape, never the buffer. For MPEG-TS the frame stays the padded size, so it is
+  still resampled once by libVLC and then drawn in the right shape: geometry correct, slightly softer (bars of 4 rows become 5 in the frame).
+
+`MediaHost` still does not call libVLC from its callback: its own thread reads the tracks, and the callback waits for that for at most 200 ms.
+That thread looks again every 100 ms, which is what catches MPEG-TS and a later change of size. Between a format and its shape, a frame draws in its
+own shape, so a TS stream's first 100 ms or so are as before. Track list entries are matched against the report: on each axis a track must be no larger
+than the buffer and no more than 66 smaller, so the report from before a size change is not believed. The app holds
+`MESSAGE_PICTURE` to the same bounds as a frame, and allocates nothing for it. `MAX_FRAME_WIDTH/HEIGHT` still bind both sizes (`FrameGeometryTest`, on hostile values).
+
+### Measurements
+
+Real sandboxed host, libVLC 3.0.23, `--check-subtitle-render` in a 1920 x 1200 scene with temporary logging and a dump of the raw
+frame, neither committed. Cards are ffmpeg x264/x265/VP9 with 15-frame keyframe intervals. "Frame" is what reached the app. "On screen" is the
+picture and the circle in the HUD-free PNG.
+
+| Video | Frame, before | Frame, after | Picture on screen, before → after | Circle on screen, before → after |
+|---|---|---|---|---|
+| 1280x720 H.264, MP4 | 1280x738 | 1280x720 | 1920x1107 → 1920x1080 | 540x553 → 540x540 |
+| 1920x1080 H.264 | 1902x1080 | 1920x1080 | 1920x1090 → 1920x1080 | 540x544 → 540x540 |
+| 854x480 H.264 | 864x482 | 854x480 | 1920x1071 → 1920x1079 | 540x535 → 540x539 |
+| 640x360 H.264 | 640x386 | 640x360 | 1920x1158 → 1920x1080 | 540x579 → 540x540 |
+| 1920x800 H.264 | 1920x802 | 1920x800 | 1920x802 → 1920x800 | 400x402 → 400x400 |
+| 720x1280 H.264, portrait | 606x1080 | 608x1080 | 673x1200 → 676x1200 | 337x338 → 338x338 |
+| 3840x2160 H.264, over the cap | 1904x1080 | 1920x1080 | 1920x1089 → 1920x1080 | 540x545 → 540x540 |
+| 720x576, SAR 16:15 | 720x578 | 720x576, shape 768x576 | 1495x1200 → 1600x1200 | 561x600 → 600x600 |
+| 1440x1080, SAR 4:3 | 1426x1080 | 1440x1080, shape 1920x1080 | 1584x1200 → 1920x1080 | 446x600 → 542x540 |
+| 854x480, SAR 32:27 | 864x482 | 854x480, shape 1012x480 | 1920x1071 → 1920x911 | 458x535 → 458x455 |
+| 720x480, SAR 8:9 | 720x482 | 720x480, shape 720x540 | 1793x1200 → 1600x1200 | 673x600 → 600x600 |
+| 1280x720 HEVC, MP4 | 1280x736 | 1280x720 | 1920x1104 → 1920x1080 | 540x552 → 540x540 |
+| 1280x720 VP9, WebM | 1280x736 | 1280x720 | 1920x1104 → 1920x1080 | 540x552 → 540x540 |
+| 1280x720, rotated 90° in the MP4 | 622x1080 | 608x1080 | 691x1200 → 676x1200 | 345x338 → 338x338 |
+| **1280x720 H.264, MPEG-TS** | 1280x738 | **1280x738**, shape 1280x720 | 1920x1107 → 1920x1080 | 540x553 → 540x540 |
+| Local HLS, TS segments | 1280x738 | **1280x738**, shape 1280x720 | 1920x1107 → 1920x1080 | 540x553 → 540x540 |
+| Local HLS, fMP4 segments | 1280x738 | 1280x720 | 1920x1107 → 1920x1080 | 540x553 → 540x540 |
+| Local HLS, two variants, after its switch to 720p | 1280x738 | 1280x720 | 1920x1107 → 1920x1080 | 540x553 → 540x540 |
+| One TS, 1280x720 then 854x480, after the change | 864x482 | 864x482, shape 854x480 | 1920x1071 → 1920x1079 | 540x535 → 540x539 |
+
+The exact shape of 854x480 at this width is 1920 x 1079.1, and of portrait is 675 x 1200: the cap rounds 607.5 to 608, so portrait is 0.1% wide. In 1440x1080 the card's
+ellipse is 406 columns in the frame where 405 is exact, which at 4/3 gives the 542. The two-variant HLS started on its 854x480 variant in both runs, as 864x482 before and 854x480 after, then switched.
+
+Marks in the frame, against the source rows and columns:
+
+| Video | Marks at | Before | After |
+|---|---|---|---|
+| 1280x720 H.264 | rows 179.5, 539.5, 717.5 | 184.0, 553.0, 735.5 | 179.5, 539.5, 717.5 |
+| 1920x1080 H.264 | columns 479.5, 1439.5, 1917.5 | 475.0, 1426.0, 1899.5 | 479.5, 1439.5, 1917.5 |
+| 854x480 H.264 | rows 119.5, 359.5; columns 212.5, 639.5 | 120.0, 361.0; 215.0, 647.0 | 119.5, 359.5; 212.5, 639.5 |
+| 640x360 H.264 | rows 89.5, 269.5 | 96.0, 289.0 | 89.5, 269.5 |
+| 1280x720 MPEG-TS | rows 179.5, 539.5 | 184.0, 553.0 | 184.0, 553.0 in the frame; on screen 329.5, 869.5, where 60 + 1.5 x source is 329.25, 869.25 |
+
+**One real stream:** YouTube through the official plugin, `nasa`, 2160p, isolated `user.home`, official plugins only. Reported 3840 x 2176. The frame went from 1905 x 1080 to 1920 x 1080, with a 16:9 picture letterboxed in the PNG, which was looked at.
+Dailymotion and Twitch gave no link on the queries tried (`nasa`, `news`; `music`, `a`). `--check-playback` was skipped: it plays sound and was not needed.
+
+### Tests
+
+`FrameGeometryTest`, on the reported sizes measured above, `MediaStreamReaderTest` (3 new) and `PlayerScreenTest` (4 new, reading rendered pixels). `:desktopApp:jvmTest`: 157 tests, 0 failures, Temurin 17, `TZ=UTC`, local. Full gates not run from this branch.
+
+Each of these alone goes red:
+
+| Mutation | Failed by |
+|---|---|
+| The buffer is the reported size, which is the original bug | 5 in `FrameGeometryTest` |
+| SAR ignored | 4 |
+| Narrow pixels shrink the width instead of growing the height | `narrow pixels…`, `sideways…` |
+| No lower or no upper padding bound, on either axis (4 mutations) | `a track is believed only within the padding…`. **The first two versions of these survived**, because one axis was covering for the other, so that test was written for them |
+| Sideways ignored, or the pixels not turned | `a track shown sideways…` |
+| Absurd SAR accepted | `an absurd or missing sample aspect ratio…` |
+| Cap removed | 4 |
+| Frame drawn with plain `Fit` | `a frame stretched…`, `non-square pixels are drawn wide` |
+| Cues placed on the buffer | `a cue sits on the picture's shape…` |
+| Reader takes any picture size, or one before a format | The two `MediaStreamReaderTest` cases |
+
+**`FrameShapes` in `MediaHost` has no unit test,** because it needs libVLC. What proves it is the table above. With the host not sending the picture size, the same live TS run went back to 1920 x 1107 and 540 x 553, with `pictureSize=null`.
+
+The committed code, with no logging, ran the whole `--check-subtitle-render` over TS, SAR 16:15 and MP4 at 1280 x 800: exit 0 on each, a cue on screen, pause and seek still working. Its sync figures mean nothing on these still cards, which carry no frame number.
+
+### Not verified
+
+- **A live window, and sound.** All of this is offscreen; `--check-playback` was not run.
+- **Hardware decoding.** Every format report here is libavcodec's sizes. Whether the host can use a hardware decoder under its sandbox was not looked at.
+- **A real stream whose segments are MPEG-TS.** Local HLS through libVLC's adaptive module stands in for it. No plugin reached here gave one.
+- **Interlaced video, 10-bit, AV1, and the other four rotations** were not measured. A track that fits no rule falls back on the old behaviour.
+- **The 66.** The largest padding measured is 26. 66 comes from reading libavcodec's alignment from memory, not from a file that needed it.
+
+### Found and left
+
+```
+Found: --check-subtitle-render crashes on a frame narrower than 640: decode() reads CODE_BITS * CODE_BLOCK pixels of row CODE_ROW, in SubtitleRenderCheck.kt:246. A portrait video does it
+Suggest: return early from sample() when the frame is narrower than the strip
+Why: a check tool only, not the player. Worked around in the temporary measurement build, not changed here
+```
+
+```
+Found: a still-image H.264 encode with an 8.3 s keyframe interval (x264 -tune stillimage) showed flat grey (luma 130) until its second keyframe. The same interval on moving testsrc2 did not, at 0.5 s or 3 s
+Suggest: leave it unless a real file shows it
+Why: seen on one synthetic file, with the cause not found. It may be the encode
+```
+
+```
+Found, by reading: VlcPlayer.createOrNull deletes everything under ~/.cloudstream4/.media-host, so a check run with the normal home directory would remove the working directory of an app that is open
+Suggest: one directory per process, or say so in KMP-25's instructions
+Why: older than this. It is why these runs all used a fresh user.home
+```
