@@ -2935,7 +2935,7 @@ video playing in a real player; a second screen.
 
 **Not built:** a double click on the picture, and hiding the pointer once the controls have gone.
 
-**Strings:** `player_enter_fullscreen`, `player_exit_fullscreen`, in all 62 directories. 49 are Google's own wording from
+**Strings:** `player_enter_fullscreen`, `player_exit_fullscreen`, in all 62 directories. 48 are Google's own wording from
 `media3-ui` 1.9.3 (`exo_controls_fullscreen_*_description`, Apache-2.0), which this app already ships. Machine
 translated, not reviewed by a native speaker: `apc`, `ars`, `as`, `ckb`, `eo`, `mt`, `nn`, `or`, `pt-BR`, `so`, `ta`,
 `ti`; `qt` uses only words from its own file. `ta` was replaced because media3's text there describes a button.
