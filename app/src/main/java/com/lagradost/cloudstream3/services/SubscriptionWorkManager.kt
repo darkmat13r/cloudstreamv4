@@ -101,6 +101,12 @@ class SubscriptionWorkManager(val context: Context, workerParams: WorkerParamete
     override suspend fun doWork(): Result {
         try {
 //        println("Update subscriptions!")
+            // Never load extensions in safe mode. This worker can start in a process where
+            // MainActivity never ran, so lastError is null until the crash file has been read.
+            // Success rather than retry or cancel: the periodic work stays scheduled.
+            MainActivity.setLastError(context)
+            if (PluginManager.isSafeMode()) return Result.success()
+
             context.createNotificationChannel(
                 SUBSCRIPTION_CHANNEL_ID,
                 SUBSCRIPTION_CHANNEL_NAME,
