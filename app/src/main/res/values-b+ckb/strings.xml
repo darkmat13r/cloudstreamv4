@@ -12,6 +12,8 @@
 <string name="browser">"براوزەر"</string>
 <string name="cast_format" formatted="true">"تیم:%s"</string>
 <string name="deselect_all">"هەمووی لابدە"</string>
+<string name="detail_load_failed_body">"ڕەنگە سەرچاوەکە بەردەست نەبێت."</string>
+<string name="detail_load_failed_headline">"نەتوانرا ئەم ناونیشانە بکرێتەوە"</string>
 <string name="download">"داونلۆد"</string>
 <string name="download_canceled">"داونلۆد هەڵوەشایەوە"</string>
 <string name="download_done">"داونلۆد تەواو بووە"</string>

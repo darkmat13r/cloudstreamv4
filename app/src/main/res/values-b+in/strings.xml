@@ -156,6 +156,8 @@
 <string name="delete_repository">"Hapus repositori"</string>
 <string name="delete_repository_plugins">"Pilih ini untuk menghapus semua repositori plugin"</string>
 <string name="deselect_all">"Batal Pilih Semua"</string>
+<string name="detail_load_failed_body">"Sumbernya mungkin tidak tersedia."</string>
+<string name="detail_load_failed_headline">"Tidak dapat membuka judul ini"</string>
 <string name="device_pin_counter_text" formatted="true">"Kode kedaluwarsa dalam %1$dm %2$dd"</string>
 <string name="device_pin_error_message">"Tidak bisa mendapatkan kode PIN perangkat, coba autentikasi lokal"</string>
 <string name="device_pin_expired_message">"Kode PIN sudah kedaluwarsa!"</string>

@@ -156,6 +156,8 @@
 <string name="delete_repository">"Usuń repozytorium"</string>
 <string name="delete_repository_plugins">"Ta akcja usunie także wszystkie rozszerzenia z repozytorium"</string>
 <string name="deselect_all">"Odznacz wszystkie"</string>
+<string name="detail_load_failed_body">"Źródło może być niedostępne."</string>
+<string name="detail_load_failed_headline">"Nie udało się otworzyć tego tytułu"</string>
 <string name="device_pin_counter_text" formatted="true">"Kod wygasa za %1$dm %2$ds"</string>
 <string name="device_pin_error_message">"Nie można uzyskać kodu PIN urządzenia. Spróbuj uwierzytelnienia lokalnego"</string>
 <string name="device_pin_expired_message">"Kod PIN stracił ważność!"</string>

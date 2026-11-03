@@ -155,6 +155,8 @@
 <string name="delete_repository">"محي الريپو"</string>
 <string name="delete_repository_plugins">"محي الريپو كمان بمحي الإضافات يللي فيه"</string>
 <string name="deselect_all">"شيل التنقاية"</string>
+<string name="detail_load_failed_body">"يمكن المصدر مو متوفر."</string>
+<string name="detail_load_failed_headline">"ما قدرنا نفتح هالعنوان"</string>
 <string name="device_pin_counter_text" formatted="true">"بتخلص مدة الپِن ب %1$d دقايق و%2$d ثانية"</string>
 <string name="device_pin_error_message">"فشلنا ب فتح پِن الجهاز، جرب تفوت ع أكونت محليًا"</string>
 <string name="device_pin_expired_message">"خلصت مدة الپِن!"</string>

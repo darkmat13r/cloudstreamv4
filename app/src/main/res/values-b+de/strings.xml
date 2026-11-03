@@ -156,6 +156,8 @@
 <string name="delete_repository">"Repository löschen"</string>
 <string name="delete_repository_plugins">"Dadurch werden auch alle Repository-Plugins gelöscht"</string>
 <string name="deselect_all">"Alle abwählen"</string>
+<string name="detail_load_failed_body">"Die Quelle ist möglicherweise nicht verfügbar."</string>
+<string name="detail_load_failed_headline">"Titel konnte nicht geöffnet werden"</string>
 <string name="device_pin_counter_text" formatted="true">"Code läuft ab in %1$dm %2$ds"</string>
 <string name="device_pin_error_message">"PIN-Code vom Gerät nicht abrufbar, versuche lokale Authentifizierung"</string>
 <string name="device_pin_expired_message">"PIN-Code ist jetzt abgelaufen!"</string>

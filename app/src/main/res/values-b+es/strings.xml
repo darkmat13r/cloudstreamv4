@@ -156,6 +156,8 @@
 <string name="delete_repository">"Borrar repositorio"</string>
 <string name="delete_repository_plugins">"Esto también eliminará todos los plugins del repositorio"</string>
 <string name="deselect_all">"Deseleccionar todo"</string>
+<string name="detail_load_failed_body">"Puede que la fuente no esté disponible."</string>
+<string name="detail_load_failed_headline">"No se pudo abrir este título"</string>
 <string name="device_pin_counter_text" formatted="true">"El código caduca en %1$d mín y %2$d s"</string>
 <string name="device_pin_error_message">"No puedo obtener el código PIN del dispositivo; intente con la autenticación local"</string>
 <string name="device_pin_expired_message">"¡El código PIN ya ha caducado!"</string>

@@ -87,6 +87,8 @@
 <string name="delete_message_series_only" formatted="true">"क्या आप वाकई निम्नलिखित श्रृंखला के सभी प्रकरण को स्थायी रूप से हटाना चाहते हैं?\n\n%s"</string>
 <string name="delete_message_series_section" formatted="true">"आप निम्नलिखित श्रृंखला के सभी प्रकरण भी स्थायी रूप से हटा देंगे:\n\n%s"</string>
 <string name="deselect_all">"सभी अचयनित करें"</string>
+<string name="detail_load_failed_body">"हो सकता है स्रोत उपलब्ध न हो।"</string>
+<string name="detail_load_failed_headline">"यह शीर्षक नहीं खुल सका"</string>
 <string name="discord">"Discord से जुड़िये"</string>
 <string name="display_subbed_dubbed_settings">"डब किए /सबब् किए एनीमे दिखाएं"</string>
 <string name="dns_pref">"एचटीटीपीएस पर डीएनएस"</string>

@@ -102,6 +102,8 @@
 <string name="delete_message" formatted="true">"ဒါကအပြီးဖျက်ခြင်းဖြစ်ပါသည် %s \nသင်သေချာပါသလား။"</string>
 <string name="delete_repository">"ရီပိုစစ်ထရီ ကိုဖျက်ရန်"</string>
 <string name="delete_repository_plugins">"ရီပိုစစ်ထရီ ဖြည့်စွက်များအားလုံးကိုဖျက်မည်ဖြစ်သည်"</string>
+<string name="detail_load_failed_body">"ရင်းမြစ်ကို မရနိုင်ဘဲ ဖြစ်နေနိုင်သည်။"</string>
+<string name="detail_load_failed_headline">"ဤခေါင်းစဉ်ကို ဖွင့်၍မရပါ"</string>
 <string name="disable">"ပိတ်ပါ"</string>
 <string name="discord">"Discord ကိုဝင်ရန်"</string>
 <string name="display_subbed_dubbed_settings">"Dubbed/Subbed Anime ကိုပြသပါ"</string>

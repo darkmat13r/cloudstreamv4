@@ -156,6 +156,8 @@
 <string name="delete_repository">"Fshi repository-n"</string>
 <string name="delete_repository_plugins">"Kjo do të heqë të gjitha shtesat"</string>
 <string name="deselect_all">"Çzgjidh të gjitha"</string>
+<string name="detail_load_failed_body">"Burimi mund të mos jetë i disponueshëm."</string>
+<string name="detail_load_failed_headline">"Titulli nuk mund të hapej"</string>
 <string name="device_pin_counter_text" formatted="true">"Kodi skadon pas %1$dm %2$ds"</string>
 <string name="device_pin_error_message">"Nuk u mor kodi PIN i pajisjes, provo verifikim lokal"</string>
 <string name="device_pin_expired_message">"PIN-i ka skaduar!"</string>

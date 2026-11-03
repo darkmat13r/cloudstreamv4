@@ -155,6 +155,8 @@
 <string name="delete_repository">"Выдаліць рэпазіторый"</string>
 <string name="delete_repository_plugins">"Гэта таксама прывядзе да выдалення ўсіх убудоў рэпазіторыя"</string>
 <string name="deselect_all">"Зняць выбар"</string>
+<string name="detail_load_failed_body">"Крыніца можа быць недаступная."</string>
+<string name="detail_load_failed_headline">"Не ўдалося адкрыць гэты загаловак"</string>
 <string name="device_pin_counter_text" formatted="true">"Код мінуе праз %1$dхв %2$dс"</string>
 <string name="device_pin_error_message">"Не ўдалося атрымаць PIN-код прылады, паспрабуйце лакальную праверку сапраўднасці"</string>
 <string name="device_pin_expired_message">"PIN-код састарэў!"</string>
