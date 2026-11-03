@@ -3378,6 +3378,8 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field delete_repository I
 	public static field delete_repository_plugins I
 	public static field deselect_all I
+	public static field detail_load_failed_body I
+	public static field detail_load_failed_headline I
 	public static field device_pin_counter_text I
 	public static field device_pin_error_message I
 	public static field device_pin_expired_message I
