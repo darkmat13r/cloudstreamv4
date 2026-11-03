@@ -693,3 +693,17 @@ Found, by reading: VlcPlayer.createOrNull deletes everything under ~/.cloudstrea
 Suggest: one directory per process, or say so in KMP-25's instructions
 Why: older than this. It is why these runs all used a fresh user.home
 ```
+
+## BUG-16 — a host ended for a reason could tell its waiting call the wrong one · **low**
+
+**Status:** in pr · found 2026-11-03 when a gate on `KMP-24` went red · `PluginHostClient.kt`
+
+`abort` killed the process, then failed the waiting calls with its reason. The kill ends the reader, whose own `abort` says
+"the plugin host exited", and whichever got there first won. The call failed either way; only the message was wrong. It also made
+`PluginHostClientTest` fail at random: 2 of 12 runs of the test class on master.
+
+Measured with temporary edits: a 50 ms pause after the kill failed 3 of 3 runs; waiting calls failed first, with the same pause
+before the kill, failed 0 of 3.
+
+The fix fails the waiting calls first and kills last. The test's fake process now pauses in its first `destroyForcibly`, so the reader always
+gets there first: the old order fails 6 of 6 runs, this one 0 of 10.

@@ -200,11 +200,12 @@ class PluginHostClient internal constructor(
 
     private fun abort(reason: String) {
         dead.set(true)
-        process.destroyForcibly()
         val failure = IOException("$label: $reason")
         pending.values.forEach { it.reply.complete(Result.failure(failure)) }
         pending.clear()
         synchronized(timedOut) { timedOut.clear() }
+        // Last: its death ends readLoop, whose own reason must not reach a waiter ahead of this one.
+        process.destroyForcibly()
     }
 
     private suspend fun providers(timeoutMillis: Long): Result<List<RemoteProvider>> = try {
