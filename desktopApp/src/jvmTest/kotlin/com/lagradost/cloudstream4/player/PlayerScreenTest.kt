@@ -10,6 +10,9 @@ import androidx.compose.ui.InternalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.PixelMap
+import androidx.compose.ui.graphics.asComposeImageBitmap
 import androidx.compose.ui.graphics.toComposeImageBitmap
 import androidx.compose.ui.graphics.toPixelMap
 import androidx.compose.ui.input.key.Key
@@ -17,6 +20,7 @@ import androidx.compose.ui.input.key.KeyEvent
 import androidx.compose.ui.input.key.KeyEventType
 import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.IntSize
 import com.lagradost.cloudstream4.core.designsystem.desktop.forDesktop
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
@@ -34,8 +38,12 @@ import kotlin.test.assertTrue
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import org.jetbrains.skia.Bitmap
+import org.jetbrains.skia.ColorAlphaType
+import org.jetbrains.skia.ColorType
 import org.jetbrains.skia.EncodedImageFormat
 import org.jetbrains.skia.Image
+import org.jetbrains.skia.ImageInfo
 
 /** The real screen under real pointer and key events, with fakes behind it. The real host is `--check-subtitle-render`. */
 @OptIn(ExperimentalComposeUiApi::class, InternalComposeUiApi::class)
@@ -65,6 +73,8 @@ class PlayerScreenTest {
         val width: Int = 1280,
         val height: Int = 800,
         status: PlayerStatus = PlayerStatus(playing = false, buffering = false, positionMillis = 1_000, lengthMillis = 60_000),
+        frame: ImageBitmap? = null,
+        pictureSize: IntSize? = null,
     ) {
         val calls = Calls()
         val clock = PlaybackClock().also { it.onStatus(status) }
@@ -77,7 +87,8 @@ class PlayerScreenTest {
                 CompositionLocalProvider(LocalCloudStreamTypography provides CloudStreamTheme.typography.forDesktop()) {
                     Box(Modifier.fillMaxSize().background(Color.Black)) {
                         PlayerContent(
-                            frame = null,
+                            frame = frame,
+                            pictureSize = pictureSize,
                             status = status,
                             caption = "Title",
                             controls = calls,
@@ -128,6 +139,69 @@ class PlayerScreenTest {
             val data = checkNotNull(settle().encodeToData(EncodedImageFormat.PNG))
             File(dir, "$name-${width}x$height.png").writeBytes(data.bytes)
         }
+    }
+
+    private fun whiteFrame(width: Int, height: Int): ImageBitmap {
+        val bitmap = Bitmap()
+        bitmap.allocPixels(ImageInfo(width, height, ColorType.BGRA_8888, ColorAlphaType.OPAQUE))
+        bitmap.erase(WHITE)
+        return bitmap.asComposeImageBitmap()
+    }
+
+    private fun blackFrame(width: Int, height: Int): ImageBitmap {
+        val bitmap = Bitmap()
+        bitmap.allocPixels(ImageInfo(width, height, ColorType.BGRA_8888, ColorAlphaType.OPAQUE))
+        bitmap.erase(BLACK)
+        return bitmap.asComposeImageBitmap()
+    }
+
+    /** First and last lit rows along one column, and columns along one row: the picture's edges, past the HUD. */
+    private fun pictureOnScreen(frame: ImageBitmap, pictureSize: IntSize?, width: Int = 1280, height: Int = 800): IntSize {
+        val pixels = Screen(width = width, height = height, frame = frame, pictureSize = pictureSize)
+            .settle().toComposeImageBitmap().toPixelMap()
+        val lit = { x: Int, y: Int -> pixels[x, y].red > LIT }
+        val across = (0 until width).filter { lit(it, height / 2) }
+        val column = across.last() - across.size / 8
+        val down = (0 until height).filter { lit(column, it) }
+        return IntSize(across.size, down.last() - down.first() + 1)
+    }
+
+    @Test
+    fun `a frame stretched into a decoder's buffer is drawn in the picture's shape`() {
+        val shown = pictureOnScreen(whiteFrame(1280, 738), IntSize(1280, 720))
+        assertEquals(1280, shown.width)
+        assertEquals(720, shown.height, "1280 x 738 would fill 738 rows")
+    }
+
+    @Test
+    fun `non-square pixels are drawn wide`() {
+        // 720 x 576 at 16:15 is 4:3, so 1280 x 960 in this window. As stored it would be 1250 x 1000.
+        val shown = pictureOnScreen(whiteFrame(720, 576), IntSize(768, 576), height = 1000)
+        assertEquals(1280, shown.width)
+        assertEquals(960, shown.height)
+    }
+
+    @Test
+    fun `until the host can say, a frame is drawn in its own shape`() {
+        val shown = pictureOnScreen(whiteFrame(1280, 738), pictureSize = null)
+        assertEquals(1280, shown.width)
+        assertEquals(738, shown.height)
+    }
+
+    @Test
+    fun `a cue sits on the picture's shape, not on the buffer it arrived in`() {
+        fun withCue(frame: ImageBitmap, pictureSize: IntSize?): PixelMap {
+            val screen = Screen(height = 1000, frame = frame, pictureSize = pictureSize)
+            screen.settle()
+            screen.press(Key.C)
+            screen.press(Key.DirectionDown)
+            screen.press(Key.Enter)
+            return screen.settle().toComposeImageBitmap().toPixelMap()
+        }
+        val stretched = withCue(blackFrame(720, 738), IntSize(1280, 720))
+        val honest = withCue(blackFrame(1280, 720), null)
+        val differing = (0 until 1000).sumOf { y -> (0 until 1280).count { x -> stretched[x, y] != honest[x, y] } }
+        assertEquals(0, differing)
     }
 
     private fun ready(cue: String = "words") = SubtitleLoad.Ready(
@@ -335,6 +409,9 @@ class PlayerScreenTest {
     }
 
     private companion object {
+        const val WHITE = -1
+        const val BLACK = -16777216
+        const val LIT = 0.1f
         const val SETTLE_FRAMES = 16
         const val SETTLE_SLEEP = 8L
         const val FRAME_NANOS = 50_000_000L

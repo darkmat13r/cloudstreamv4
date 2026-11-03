@@ -2,6 +2,7 @@ package com.lagradost.cloudstream4.player
 
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asComposeImageBitmap
+import androidx.compose.ui.unit.IntSize
 import com.lagradost.cloudstream4.feature.extensions.sandbox.HostLauncher
 import com.lagradost.cloudstream4.player.MediaProtocol.writeText
 import java.io.DataOutputStream
@@ -60,10 +61,14 @@ class VlcPlayer private constructor(
 ) : PlayerControls {
     private val commands = DataOutputStream(process.outputStream.buffered())
     private val _frame = MutableStateFlow<ImageBitmap?>(null)
+    private val _pictureSize = MutableStateFlow<IntSize?>(null)
     private val _status = MutableStateFlow(PlayerStatus())
     @Volatile private var released = false
 
     val frame: StateFlow<ImageBitmap?> = _frame.asStateFlow()
+
+    /** The shape to draw [frame] in, which is not always the frame's own. Null until the host can say. */
+    val pictureSize: StateFlow<IntSize?> = _pictureSize.asStateFlow()
     val status: StateFlow<PlayerStatus> = _status.asStateFlow()
 
     init {
@@ -98,6 +103,7 @@ class VlcPlayer private constructor(
             BufferUtil.getByteBufferFromPointer(pixmap.addr, size)
         }
         val images = Array(FRAME_BUFFERS) { index -> bitmaps[index].asComposeImageBitmap() }
+        _pictureSize.value = null
         return object : FrameTarget {
             private var back = 0
 
@@ -107,6 +113,10 @@ class VlcPlayer private constructor(
                 bitmaps[back].notifyPixelsChanged()
                 _frame.value = images[back]
                 back = (back + 1) % FRAME_BUFFERS
+            }
+
+            override fun showAs(width: Int, height: Int) {
+                _pictureSize.value = IntSize(width, height)
             }
         }
     }

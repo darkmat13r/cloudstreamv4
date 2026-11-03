@@ -33,6 +33,62 @@ class MediaStreamReaderTest {
         }
     }
 
+    private class Shapes : FrameSink {
+        val shown = mutableListOf<Pair<Int, Int>>()
+
+        override fun allocate(width: Int, height: Int): FrameTarget = object : FrameTarget {
+            override fun next() = ByteBuffer.allocate(width * height * 4)
+            override fun publish() = Unit
+            override fun showAs(width: Int, height: Int) {
+                shown += width to height
+            }
+        }
+    }
+
+    private fun DataOutputStream.picture(width: Int, height: Int) {
+        writeByte(MediaProtocol.MESSAGE_PICTURE.toInt())
+        writeInt(width)
+        writeInt(height)
+    }
+
+    @Test
+    fun `a picture size reaches the target of the frames before it`() {
+        val sink = Shapes()
+        read(sink) {
+            format(1280, 738)
+            picture(1280, 720)
+        }
+        assertEquals(listOf(1280 to 720), sink.shown)
+    }
+
+    @Test
+    fun `a picture size before any format ends the host`() {
+        assertFailsWith<IOException> { read(Shapes()) { picture(1280, 720) } }
+    }
+
+    @Test
+    fun `a picture size outside the frame bounds ends the host`() {
+        val refused = listOf(
+            0 to 720,
+            1280 to 0,
+            -1 to 720,
+            1280 to -1,
+            MediaProtocol.MAX_FRAME_WIDTH + 1 to 720,
+            1280 to MediaProtocol.MAX_FRAME_HEIGHT + 1,
+            Int.MAX_VALUE to Int.MAX_VALUE,
+        )
+        refused.forEach { (width, height) ->
+            val sink = Shapes()
+            assertFailsWith<IOException>("$width x $height") {
+                read(sink) {
+                    format(2, 1)
+                    picture(width, height)
+                }
+            }
+            assertTrue(sink.shown.isEmpty())
+        }
+    }
+
     private fun stream(block: DataOutputStream.() -> Unit) =
         ByteArrayInputStream(ByteArrayOutputStream().also { DataOutputStream(it).block() }.toByteArray())
 

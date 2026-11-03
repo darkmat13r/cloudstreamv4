@@ -26,6 +26,7 @@ internal object MediaProtocol {
     const val MESSAGE_STATUS: Byte = 1
     const val MESSAGE_FORMAT: Byte = 2
     const val MESSAGE_FRAME: Byte = 3
+    const val MESSAGE_PICTURE: Byte = 4
 
     const val BYTES_PER_PIXEL = 4
 
@@ -69,10 +70,11 @@ internal fun interface FrameSink {
     fun allocate(width: Int, height: Int): FrameTarget?
 }
 
-/** Where one size's frames go: fill [next], then [publish] it. */
+/** Where one size's frames go: fill [next], then [publish] it. [showAs] is the shape to draw them in, when it is known. */
 internal interface FrameTarget {
     fun next(): ByteBuffer
     fun publish()
+    fun showAs(width: Int, height: Int) = Unit
 }
 
 /**
@@ -102,6 +104,7 @@ internal class MediaStreamReader(
                 MediaProtocol.MESSAGE_STATUS -> onStatus(readStatus())
                 MediaProtocol.MESSAGE_FORMAT -> readFormat()
                 MediaProtocol.MESSAGE_FRAME -> readFrame()
+                MediaProtocol.MESSAGE_PICTURE -> readPicture()
                 else -> throw IOException("unknown message $type")
             }
         }
@@ -131,6 +134,17 @@ internal class MediaStreamReader(
         if (++formatChanges > MediaProtocol.MAX_FORMAT_CHANGES) throw IOException("too many frame sizes")
         target = sink.allocate(width, height) ?: throw IOException("no memory for $width x $height")
         frameBytes = width * height * MediaProtocol.BYTES_PER_PIXEL
+    }
+
+    /** Only a shape to draw in: nothing is allocated for it, and it is held to the same bounds as a frame. */
+    private fun readPicture() {
+        val width = data.readInt()
+        val height = data.readInt()
+        if (width !in 1..MediaProtocol.MAX_FRAME_WIDTH || height !in 1..MediaProtocol.MAX_FRAME_HEIGHT) {
+            throw IOException("picture of $width x $height")
+        }
+        val current = target ?: throw IOException("picture before format")
+        current.showAs(width, height)
     }
 
     private fun readFrame() {

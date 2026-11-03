@@ -37,6 +37,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.FilterQuality
@@ -50,6 +51,7 @@ import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.input.pointer.onPointerEvent
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.ScaleFactor
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.style.TextOverflow
@@ -106,6 +108,7 @@ internal fun PlayerScreen(
     session: SubtitleSession? = null,
 ) {
     val frame by player.frame.collectAsState()
+    val pictureSize by player.pictureSize.collectAsState()
     val status by player.status.collectAsState()
     var started by remember { mutableStateOf(true) }
     DisposableEffect(player, link) {
@@ -119,6 +122,7 @@ internal fun PlayerScreen(
     val subtitles = session ?: remember(link) { SubtitleSession(link.subtitles, HttpSubtitleLoader(), scope) }
     PlayerContent(
         frame = frame,
+        pictureSize = pictureSize,
         status = status.copy(failed = !started || status.failed),
         caption = listOfNotNull(title, link.qualityLabel, link.label).joinToString(SEPARATOR),
         controls = player,
@@ -143,6 +147,7 @@ internal fun PlayerContent(
     onBack: () -> Unit,
     setEscape: (() -> Unit) -> Unit,
     modifier: Modifier = Modifier,
+    pictureSize: IntSize? = null,
 ) {
     val selection by subtitles.selection.collectAsState()
     val failures by subtitles.failures.collectAsState()
@@ -211,7 +216,7 @@ internal fun PlayerContent(
             Image(
                 bitmap = image,
                 contentDescription = null,
-                contentScale = ContentScale.Fit,
+                contentScale = FitAs(pictureSize),
                 filterQuality = FilterQuality.Low,
                 modifier = Modifier.fillMaxSize(),
             )
@@ -230,7 +235,7 @@ internal fun PlayerContent(
         val bottomInset by animateDpAsState(if (hudShown) PlayerScreenDefaults.HudBottomInset else 0.dp, DesktopMotion.spec())
         SubtitleOverlay(
             cues = cues,
-            pictureSize = frame?.let { IntSize(it.width, it.height) },
+            pictureSize = pictureSize ?: frame?.let { IntSize(it.width, it.height) },
             topInset = topInset,
             bottomInset = bottomInset,
         )
@@ -441,6 +446,18 @@ internal fun SeekTrack(status: PlayerStatus, onSeekTo: (Float) -> Unit, modifier
 }
 
 /** `1:02:03`, or `2:03` under an hour. Digits and colons are not translated copy here. */
+/**
+ * [ContentScale.Fit] for a frame whose size is not its picture's shape: fits [picture], so the two axes scale differently.
+ * That is a frame libVLC stretched into a decoder's buffer, or one with non-square pixels. See `BUG-15`.
+ */
+private class FitAs(private val picture: IntSize?) : ContentScale {
+    override fun computeScaleFactor(srcSize: Size, dstSize: Size): ScaleFactor {
+        if (picture == null) return ContentScale.Fit.computeScaleFactor(srcSize, dstSize)
+        val scale = minOf(dstSize.width / picture.width, dstSize.height / picture.height)
+        return ScaleFactor(scale * picture.width / srcSize.width, scale * picture.height / srcSize.height)
+    }
+}
+
 private fun clock(millis: Long): String {
     val total = (millis / MILLIS_PER_SECOND).coerceAtLeast(0)
     val hours = total / SECONDS_PER_HOUR
