@@ -268,12 +268,6 @@ Nothing below can be settled by reading the code.
 
 ### New, and each one is a yes/no that unblocks work
 
-- **Row 17's second half: two calls left** (`KMP-11` `F1`, `F2`). `AndroidExtensionRuntime` exists over
-  `PluginManager` with `PluginManager.kt` untouched. `install` refuses, because the seam takes bytes
-  and a listing lacks the repository index URL the install path needs: keep calling `downloadPlugin`
-  on Android, or change the contract? `load` refuses the loser of a shared name, because the private
-  `loadPlugin` cannot be reached without changing the published `PluginManager` block (measured,
-  `1 changed`): accept the refusal, or accept that dump change?
 - **Chip-row spacing: the design file contradicts itself.** Its CSS is `.chiprow { gap: 24px }`,
   which is 12dp at the design system's own `artboard px / 2 = dp`; its own prose says *"In Compose
   that is `wrapContentWidth` in a `Row` with **24dp** spacing"*. `CloudStreamDimens.ChipRowSpacing`
@@ -362,7 +356,7 @@ rows 1–16 and 19–23 is done, and what is left is Phase 7 plus Track L.
 Steps 3 and 4 are the first ones that touch live `:app` code, so they want the owner's eye rather
 than an assumption.
 
-**Row 17, `:feature:extensions`:** the adapter's first caller, plus `F1` and `F2` above.
+**Row 17, `:feature:extensions`:** the adapter's first caller. `F1` and `F2` are settled (`KMP-11`, owner 2026-11-03).
 
 **Also open:** `KMP-08` / Track L is blocked on `DEC-04`. `DS-07` is **closed as a measured won't
 fix** — the census found 36 `.dp` literals in the vendored Mihon tree, and changing them is a

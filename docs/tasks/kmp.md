@@ -999,7 +999,7 @@ cannot initialise `PluginManager`, because it needs `Environment`. One test pins
 
 ### Where the seam and `PluginManager` disagree
 
-Each is reported, not forced. **`F1` and `F2` want the owner's decision.**
+Each is reported, not forced. **`F1` and `F2` were decided by the owner on 2026-11-03:** Android keeps calling `downloadPlugin` until an Android screen needs this route, so `install` keeps refusing; and the loser of a shared `internalName` stays refused, so `PluginManager`'s published block does not change.
 
 - **`F1` — `install` refuses.** Three separate gaps: `getPluginPath` hashes the repository *index*
   URL, and a listing does not carry it (`ExtensionListing.repositoryUrl` is the extension's own page);
@@ -1056,7 +1056,7 @@ Why: CloudStreamApp.kt:57 writes it into the crash log, blaming a plugin that is
 
 - [x] Owner go-ahead to adapt `PluginManager` to the seam
 - [x] The adapter, for `loaded` / `load` / `unload` / `uninstall`, with the dump diff recorded
-- [ ] Owner: decide `F1` and `F2`
+- [x] Owner: decide `F1` and `F2` (2026-11-03: both as recommended)
 - [ ] Wire a first caller, choosing the `Context` (`F7`), and exercise it on a device
 
 ---
