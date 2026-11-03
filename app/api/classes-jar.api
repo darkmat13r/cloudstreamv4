@@ -36904,6 +36904,43 @@ public final class com/lagradost/cloudstream4/R : java/lang/Object {
 public final class com/lagradost/cloudstream4/core/strings/R : java/lang/Object {
 }
 
+public final class com/lagradost/cloudstream4/extensions/AndroidExtensionRuntime : java/lang/Object, com/lagradost/cloudstream4/feature/extensions/ExtensionRuntime {
+	public static final field $stable I
+	public fun <init> (Lcom/lagradost/cloudstream4/extensions/PluginManagerPort;Lkotlinx/coroutines/CoroutineDispatcher;)V
+	public synthetic fun <init> (Lcom/lagradost/cloudstream4/extensions/PluginManagerPort;Lkotlinx/coroutines/CoroutineDispatcher;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Lkotlin/jvm/functions/Function0;)V
+	public static final synthetic fun access$getPort$p (Lcom/lagradost/cloudstream4/extensions/AndroidExtensionRuntime;)Lcom/lagradost/cloudstream4/extensions/PluginManagerPort;
+	public fun install-BWLJW6A (Lcom/lagradost/cloudstream4/feature/extensions/ExtensionListing;[BLcom/lagradost/cloudstream4/feature/extensions/ExtensionVerification;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun load-gIAlu-s (Lcom/lagradost/cloudstream4/feature/extensions/InstalledExtension;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun loaded (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun uninstall-gIAlu-s (Lcom/lagradost/cloudstream4/feature/extensions/InstalledExtension;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun unload-gIAlu-s (Lcom/lagradost/cloudstream4/feature/extensions/InstalledExtension;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class com/lagradost/cloudstream4/extensions/PluginEdgeMappingKt : java/lang/Object {
+	public static final fun apiNameForLoad (Ljava/lang/String;Ljava/util/List;Ljava/util/List;)Ljava/lang/String;
+	public static final fun apiNameOf (Ljava/lang/String;)Ljava/lang/String;
+	public static final fun extensionStatusOf (I)Lcom/lagradost/cloudstream4/feature/extensions/ExtensionStatus;
+	public static final fun isManagedLocation (Ljava/lang/String;Ljava/util/List;)Z
+	public static final fun loadedExtensions (Ljava/util/List;Ljava/util/List;Ljava/util/List;)Ljava/util/List;
+	public static final fun safeForLog (Ljava/lang/String;)Ljava/lang/String;
+	public static final fun toExtensionListing (Lcom/lagradost/cloudstream3/plugins/SitePlugin;)Lcom/lagradost/cloudstream4/feature/extensions/ExtensionListing;
+	public static final fun toExtensionRepositoryIndex (Lcom/lagradost/cloudstream3/plugins/Repository;)Lcom/lagradost/cloudstream4/feature/extensions/ExtensionRepositoryIndex;
+	public static final fun toInstalledExtension (Lcom/lagradost/cloudstream3/plugins/PluginData;)Lcom/lagradost/cloudstream4/feature/extensions/InstalledExtension;
+	public static final fun toWireCode (Lcom/lagradost/cloudstream4/feature/extensions/ExtensionStatus;)I
+}
+
+public interface com/lagradost/cloudstream4/extensions/PluginManagerPort : java/lang/Object {
+	public abstract fun delete (Ljava/io/File;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun isSafeMode ()Z
+	public abstract fun loadByApiName (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun loadedPaths ()Ljava/util/List;
+	public abstract fun managedRoots ()Ljava/util/List;
+	public abstract fun savedLocal ()Ljava/util/List;
+	public abstract fun savedOnline ()Ljava/util/List;
+	public abstract fun unload (Ljava/lang/String;)V
+}
+
 public final class com/lagradost/cloudstream4/search/ApiRepositorySearchSource : java/lang/Object, com/lagradost/cloudstream4/feature/search/SearchSource {
 	public static final field $stable I
 	public static final field FIRST_PAGE I

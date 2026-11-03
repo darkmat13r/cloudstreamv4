@@ -903,8 +903,10 @@ Local, 2026-10-14, Temurin 17.0.20.1, `TZ=UTC`, `-Xmx14G`, each command redirect
 
 ## KMP-11 — `:feature:extensions`: the `ExtensionRuntime` seam and the catalogue model
 
-**Status:** the **contracts half is done** 2026-10-15 (plan row 17, Phase 7 vertical 6) · the half that
-touches `:app`'s plugin code is **not started and needs the owner's go-ahead**
+**Status:** the **contracts half is done** 2026-10-15 (plan row 17, Phase 7 vertical 6) · the
+**adapter is partly done** 2026-11-02, on the owner's go-ahead: `loaded`, `load`, `unload` and
+`uninstall` work over `PluginManager`, `install` refuses, nothing calls it yet, and it has never run
+on a device. See "The adapter" below.
 
 `:feature:extensions` exists, commonMain only, **contracts and no implementation** — the same shape
 `KMP-07` gave `:media:model`. **Nothing in `:app` changed.**
@@ -966,15 +968,96 @@ Four gates: `abi=0 check=0 extapi=0 canary=0`, and the **canary is 13 of 13** wi
 `:feature:extensions` among them. `app/api/classes-jar.api` is **unchanged** — as it must be, since
 nothing merged into the jar.
 
-### Not done — needs the owner's go-ahead
+### The adapter — 2026-11-02
 
-Row 17's other half: making `:app`'s `PluginManager` implement `ExtensionRuntime`, and mapping
-`Repository`/`SitePlugin`/`PluginData` onto these types at the edge. That edits **published,
-extension-facing** code in a ~900-line object holding `Context`, `Activity`, notification channels and
-the `___DO_NOT_CALL_FROM_A_PLUGIN_` entry points, so it is not something to start unasked.
+`app/src/main/java/com/lagradost/cloudstream4/extensions/`: `AndroidExtensionRuntime`, and
+`PluginEdgeMapping.kt` for `Repository`, `SitePlugin` and `PluginData` onto the contracts. `:app`
+gains `implementation(project(":feature:extensions"))`.
 
-- [ ] Owner go-ahead to adapt `PluginManager` to the seam
-- [ ] Then: the adapter, with the `$stable`/javap scan and dump diff in the PR
+**`PluginManager.kt` has no diff and the runtime has no caller**, so everything `PluginManager` does
+today does not change:
+
+| Behaviour | How it was checked |
+|---|---|
+| Load order, notifications, OAT cleanup, error handling | `git diff origin/master -- app/src/main/java/com/lagradost/cloudstream3` is empty; `grep -rl AndroidExtensionRuntime app/src/main` finds only the two new files |
+| Safe mode at startup | The same. The runtime's own `load` also refuses in safe mode (below) |
+| Published entry points | `:app:checkExtensionApi`: **0 removed, 0 changed, 3 added** |
+
+**Why no edit to `PluginManager`, measured.** Adding one `internal` forwarding member made the check
+report `0 removed, 1 changed`, with `loadForRuntime$app` as a public method on the published class.
+That is why `load` goes through `loadSinglePlugin` even with the limit listed below.
+
+**The dump gains 37 lines and loses none**, all in three new `com/lagradost/cloudstream4/extensions/`
+classes: `AndroidExtensionRuntime`, `PluginEdgeMappingKt`, `PluginManagerPort`. The dump covers
+`com/lagradost/`, so a new `:app` class cannot avoid it. `KMP-07` and `KMP-12` accepted their adapters
+the same way. Nothing moved between modules, so no `$stable` field can have been lost.
+
+**Tested without a device, and only that.** 32 tests against a fake of the `PluginManager` members
+used. `LivePluginManagerPort`, the one-line delegates to the real object, is not exercised: JVM tests
+cannot initialise `PluginManager`, because it needs `Environment`. One test pins the source text of
+`loadSinglePlugin`'s selection, which `apiNameForLoad` restates. 19 mutations, 19 caught.
+
+### Where the seam and `PluginManager` disagree
+
+Each is reported, not forced. **`F1` and `F2` want the owner's decision.**
+
+- **`F1` — `install` refuses.** Three separate gaps: `getPluginPath` hashes the repository *index*
+  URL, and a listing does not carry it (`ExtensionListing.repositoryUrl` is the extension's own page);
+  `downloadPluginToFile` owns the fetch and the hash check and takes a URL, not bytes; `setPluginData`
+  is private, so nothing outside can save the record that startup loads from. Options:
+  - (a) Android screens keep calling `PluginManager.downloadPlugin` and only desktop installs through
+    the seam. No change needed. **Recommended until an Android screen needs it.**
+  - (b) Add the index URL to `ExtensionListing`, and accept one `internal` member on `PluginManager`
+    as a reviewed dump change.
+  - (c) The adapter writes `PLUGINS_KEY` itself under the public `lock`. A second writer of a
+    persisted format; not recommended.
+- **`F2` — `load` can refuse a loadable plugin.** `loadPlugin` is private, and `loadSinglePlugin`
+  selects by name, online first. When two repositories share an `internalName`, or `Foo` sits beside
+  `FooProvider`, the one that loses is refused rather than the wrong code being loaded. Options: accept
+  it, or accept one `internal` member (the measured `1 changed`).
+- **`F3` — a failed `load` has no cause.** `loadPlugin` returns `Boolean`; it has already logged and
+  shown a toast. `Result.failure` says only to look in the log.
+- **`F4` — a failed `load` can leave the plugin live.** `loadPlugin` adds to `plugins` before calling
+  the plugin's `load`, and keeps it if that throws, with whatever it registered. So `loaded()` lists it
+  after `load` failed, where `JvmExtensionRuntime` purges. Unloading here would make the seam tidy but
+  remove providers that work today on the normal path, so it reports what is true.
+- **`F5` — `uninstall` of a missing file fails and keeps the record.** `deletePlugin` removes the record
+  only after a successful delete, and `deletePluginData` is private. `JvmExtensionRuntime` succeeds
+  here. Also, `uninstall` unloads first, as the seam says, where `deletePlugin` deletes first.
+- **`F6` — verification differs, and three KDocs are wrong.** `:app` **has** compared `fileHash` since
+  `7926e60f` (2026-04-19): `RepositoryManager.kt:214-220`. `ExtensionInstall.kt:72`,
+  `ExtensionIndex.kt:136`, `ExtensionHash.kt:30`, and the "never compares it" above, say otherwise.
+  The comparison is also stricter than `ExtensionHash`: exact string match, so uppercase hex, a
+  `sha512-` value and a blank value are all refused, where `ExtensionHash` gives `Verified`, `Skipped`
+  and `Skipped`. No code path reaches this while `install` refuses. It decides `F1`(b).
+- **`F7` — what `Context` a plugin receives is the caller's choice.** `MainActivity` passes an Activity;
+  `SubscriptionWorkManager` does not. Upstream's `ExamplePlugin.kt` does
+  `context as? AppCompatActivity` and needs it for its settings sheet, so an application `Context`
+  loads such a plugin with settings that silently do nothing. The runtime takes a provider and holds
+  no `Activity`; its first caller has to choose.
+- **`F8` — an unknown status.** The contract says to treat `Unrecognised` as `Down`;
+  `OnlinePluginData.isDisabled` tests only for `0`, so `PluginManager` treats it as enabled. The mapping
+  keeps the code and applies no policy.
+
+**Safe mode:** `PluginManager` does not enforce it, its callers do, so the runtime's `load` refuses by
+itself. `unload` and `uninstall` stay allowed.
+
+### Found in existing code, not changed
+
+```
+Found: no safe-mode check before loading every extension, in SubscriptionWorkManager.kt:131-132
+Suggest: skip the work, or the load, when PluginManager.isSafeMode()
+Why: checkSafeModeFile's KDoc says it overrides any extension loading to fix crashes
+
+Found: currentlyLoading is left set on the two early returns, in PluginManager.kt:616 and :641
+Suggest: clear it on those paths
+Why: CloudStreamApp.kt:57 writes it into the crash log, blaming a plugin that is no longer loading
+```
+
+- [x] Owner go-ahead to adapt `PluginManager` to the seam
+- [x] The adapter, for `loaded` / `load` / `unload` / `uninstall`, with the dump diff recorded
+- [ ] Owner: decide `F1` and `F2`
+- [ ] Wire a first caller, choosing the `Context` (`F7`), and exercise it on a device
 
 ---
 
