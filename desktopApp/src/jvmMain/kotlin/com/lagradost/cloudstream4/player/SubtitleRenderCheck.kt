@@ -26,11 +26,14 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.flow.lastOrNull
 import kotlinx.coroutines.runBlocking
 import org.jetbrains.skia.EncodedImageFormat
 
 /**
- * `--check-subtitle-render <out> <width>x<height> <video> <cues>`, or `... plugin:<provider>:<query>`.
+ * `--check-subtitle-render <out> <width>x<height> <video> <cues>`, or `... plugin:<provider>:<query>`, which
+ * waits for the plugin to finish, or with `--first-link` takes the first link it offers, as someone clicking it would.
  *
  * The real screen over the real sandboxed libVLC, in an offscreen scene: frames from the media host, a track
  * chosen with real key events through the real list, PNGs of what came out. It exists because the window
@@ -67,8 +70,9 @@ internal fun runSubtitleRenderCheck(args: List<String>): Int {
             val id = DesktopSearchSource.encodeId(source.name, first.url)
             val details = source.details(first.url)
             val data = details.dataUrl ?: details.episodes.firstOrNull()?.data ?: return@runBlocking NO_LINK
-            val answer = DesktopDetailSource().links(id, data)
-            val link = answer.firstOrNull() ?: return@runBlocking NO_LINK
+            val answers = DesktopDetailSource().links(id, data)
+            val answer = if (FIRST_LINK_ARGUMENT in args) answers.firstOrNull() else answers.lastOrNull()
+            val link = answer?.firstOrNull() ?: return@runBlocking NO_LINK
             val row = link.subtitles.indexOfFirst { it.languageTag?.startsWith("en") == true }.coerceAtLeast(0) + 1
             println("render: ${link.subtitles.size} tracks, choosing row $row, link ${link.qualityLabel}")
             val player = VlcPlayer.createOrNull(silent = true) ?: return@runBlocking NO_PLAYER
@@ -280,6 +284,7 @@ private class Run(
 }
 
 private const val PLUGIN_PREFIX = "plugin:"
+private const val FIRST_LINK_ARGUMENT = "--first-link"
 private const val SYNC_BOUND_MILLIS = 100L
 private const val NO_PLAYER = 2
 private const val NO_LINK = 3

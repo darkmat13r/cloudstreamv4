@@ -34,6 +34,10 @@ import androidx.compose.ui.unit.sp
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIconSize
+import com.lagradost.cloudstream4.core.designsystem.state.SkeletonBlock
+import com.lagradost.cloudstream4.core.designsystem.state.SkeletonDefaults
+import com.lagradost.cloudstream4.core.designsystem.state.rememberSkeletonAlpha
+import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.CloudStreamTypography
 
@@ -263,3 +267,36 @@ fun DesktopRow(
         }
     }
 }
+
+/**
+ * A column of placeholders for [DesktopRow]s with a subtitle, sharing one pulse. Each sits where its row will,
+ * so the words start in the same place once the first row lands.
+ */
+@Composable
+fun DesktopRowsSkeleton(modifier: Modifier = Modifier, rowCount: Int = DESKTOP_SKELETON_ROWS) {
+    val alpha = rememberSkeletonAlpha()
+    val shape = CloudStreamTheme.shapes.small
+    Column(modifier) {
+        repeat(rowCount) {
+            Column(
+                verticalArrangement = Arrangement.spacedBy(CloudStreamDimens.StackGap, Alignment.CenterVertically),
+                modifier = Modifier
+                    .heightIn(min = DesktopDimens.RowMinHeight)
+                    .padding(horizontal = DesktopDimens.RowPadding, vertical = DesktopDimens.RelatedGap),
+            ) {
+                SkeletonBlock(
+                    alpha = alpha,
+                    shape = shape,
+                    modifier = Modifier.size(SkeletonDefaults.PrimaryBarWidth, CloudStreamDimens.StackTitleLineBox),
+                )
+                SkeletonBlock(
+                    alpha = alpha,
+                    shape = shape,
+                    modifier = Modifier.size(SkeletonDefaults.SecondaryBarWidth, CloudStreamDimens.StackSubtitleLineBox),
+                )
+            }
+        }
+    }
+}
+
+private const val DESKTOP_SKELETON_ROWS = 8

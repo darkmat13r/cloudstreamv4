@@ -1,5 +1,6 @@
 package com.lagradost.cloudstream4.extensions
 
+import com.lagradost.cloudstream4.detail.isPublic
 import com.lagradost.cloudstream4.feature.extensions.sandbox.RemoteSubtitle
 import com.lagradost.cloudstream4.feature.extensions.sandbox.SandboxedProvider
 import com.lagradost.cloudstream4.feature.home.HomePageReply
@@ -10,7 +11,13 @@ import com.lagradost.cloudstream4.media.model.SubtitleSource
 import com.lagradost.cloudstream4.media.model.SubtitleTrack
 import com.lagradost.cloudstream4.player.HttpSubtitleLoader
 import com.lagradost.cloudstream4.player.SubtitleLoad
+import kotlin.time.Duration
+import kotlin.time.TimeSource
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.last
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 
 /**
  * `CloudStream --check-extensions [query]`: the whole path, with no window.
@@ -92,10 +99,22 @@ private suspend fun check(provider: SandboxedProvider, query: String, verbose: B
     val data = details.dataUrl ?: details.episodes.firstOrNull()?.data
         ?: return CheckOutcome(true, "$opened · no playable data")
     return try {
-        val links = provider.links(data)
+        val asked = TimeSource.Monotonic.markNow()
+        var firstLink: Duration? = null
+        val links = provider.linksAsTheyArrive(data).onEach { answer ->
+            if (firstLink == null && answer.links.isNotEmpty()) firstLink = asked.elapsedNow()
+            if (verbose) println("check:   links ${answer.links.size}, subtitles ${answer.subtitles.size} at ${asked.elapsedNow().inWholeMilliseconds} ms")
+        }.last()
         val hosts = links.links.map { it.url.substringAfter("://").substringBefore('/') }.distinct()
         val subtitles = checkSubtitles(links.subtitles, verbose)
-        CheckOutcome(true, "$opened · ${links.links.size} links ${hosts.take(3)}, ${links.subtitles.size} subtitles$subtitles")
+        val first = firstLink?.let { " · first link at ${it.inWholeMilliseconds} ms" }.orEmpty()
+        val ended = links.stoppedEarly?.let { " · stopped early: $it" }.orEmpty()
+        val playable = withContext(Dispatchers.IO) { links.links.count { it.isPublic() } }
+        CheckOutcome(
+            true,
+            "$opened · ${links.links.size} links, $playable the player may open ${hosts.take(3)}, " +
+                "${links.subtitles.size} subtitles$first$ended$subtitles",
+        )
     } catch (failure: Exception) {
         CheckOutcome(true, "$opened · links FAILED: ${failure.message}")
     }

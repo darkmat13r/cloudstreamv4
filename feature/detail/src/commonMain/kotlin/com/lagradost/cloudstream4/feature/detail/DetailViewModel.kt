@@ -43,14 +43,17 @@ class DetailViewModel(
             DetailAction.Retry -> load()
             is DetailAction.PlayRequested -> requestLinks(action.data)
             DetailAction.RetryLinks -> lastData?.let(::requestLinks)
-            is DetailAction.LinkActivated -> scope.launch {
-                val title = (state.value.content as? DetailLoad.Loaded)?.value?.title.orEmpty()
-                postEffect { DetailEffect.Play(title, action.link) }
+            is DetailAction.LinkActivated -> {
+                // A stream was chosen, so the search for more stops. The list stays for coming back to.
+                stopLinks()
+                scope.launch {
+                    val title = (state.value.content as? DetailLoad.Loaded)?.value?.title.orEmpty()
+                    postEffect { DetailEffect.Play(title, action.link) }
+                }
             }
             // Cancelled, so a slow extractor that answers later cannot reopen the list.
             DetailAction.LinksDismissed -> {
-                linksRequest++
-                linksJob?.cancel()
+                stopLinks()
                 updateState { copy(links = null) }
             }
         }
@@ -64,17 +67,29 @@ class DetailViewModel(
         }
     }
 
+    private fun stopLinks() {
+        linksRequest++
+        linksJob?.cancel()
+        updateState { copy(linksArriving = false) }
+    }
+
     private fun requestLinks(data: String) {
         lastData = data
         val request = ++linksRequest
         linksJob?.cancel()
-        updateState { copy(links = DetailLoad.Loading) }
+        updateState { copy(links = DetailLoad.Loading, linksArriving = true) }
         linksJob = scope.launch {
-            val next = attempt<List<StreamLink>> {
-                val links = source.links(id, data)
-                if (links.isEmpty()) DetailLoad.Empty else DetailLoad.Loaded(links)
+            var latest = emptyList<StreamLink>()
+            val ending = attempt<List<StreamLink>> {
+                source.links(id, data).collect { links ->
+                    latest = links
+                    updateState { if (request == linksRequest) copy(links = DetailLoad.Loaded(links)) else this }
+                }
+                if (latest.isEmpty()) DetailLoad.Empty else DetailLoad.Loaded(latest)
             }
-            updateState { if (request == linksRequest) copy(links = next) else this }
+            // Streams on the screen are worth more than the reason the rest never came.
+            val next = if (ending is DetailLoad.Failed && latest.isNotEmpty()) DetailLoad.Loaded(latest) else ending
+            updateState { if (request == linksRequest) copy(links = next, linksArriving = false) else this }
         }
     }
 

@@ -33,6 +33,7 @@ line boxes.
 | Title revealed on focus | Title always visible | A pointer has no focus to reveal it with |
 | White ring on the search field | A brighter hairline; the ring stays for what Tab lands on | Restraint: the caret already says it |
 | Source list replaces the page | A panel from the right over a dimmed page, leaving the same way | Spatial consistency; a click outside dismisses it |
+| Source list appears when complete | It grows as links arrive: a new link joins the end, the header counts them and says `Loading…` until the search ends, and nothing takes focus (`BUG-19`) | Direct manipulation: what is under the pointer stays there, and the words take no height, so finishing moves nothing |
 | Episodes behind a selector | On the page | A window has the room |
 | Full-width player scrim | Floating controls, at most 720 wide | The picture stays clear, and play stays near its timeline |
 | Tap to seek | The track follows the pointer 1:1, and seeks once on release | Direct manipulation; a seek is a network request |
