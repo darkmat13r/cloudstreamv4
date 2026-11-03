@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -24,11 +25,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
+import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
+import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIconSize
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.CloudStreamTypography
 
@@ -45,6 +50,8 @@ object DesktopDimens {
     val ToolbarFieldHeight: Dp = 40.dp
     val ButtonHeight: Dp = 36.dp
     val ButtonPadding: Dp = 16.dp
+    /** A control inside a [ToolbarFieldHeight] field, leaving the same 8 above, below and after it. */
+    val FieldActionSize: Dp = 24.dp
     val RowMinHeight: Dp = 48.dp
     /**
      * A row's inset. A list sits this much further out than the column it belongs to, so a row's text
@@ -110,24 +117,95 @@ fun Modifier.desktopFeedback(source: MutableInteractionSource, lift: Boolean = t
     }
 }
 
-/** A text button. Replaces the TV one here because that has no hover state, and a pointer needs one. */
+/** How much a desktop button stands out. */
+enum class DesktopButtonTone {
+    /** The one thing a surface is for. */
+    Primary,
+    Secondary,
+    /** No fill until the pointer arrives, for a control inside something that already has one. */
+    Quiet,
+}
+
+/**
+ * A text button, with an optional glyph ahead of the words. Replaces the TV one here because that has no
+ * hover state, and a pointer needs one.
+ */
 @Composable
 fun DesktopButton(
     label: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     primary: Boolean = false,
+    icon: ImageVector? = null,
+) {
+    DesktopButtonSurface(
+        tone = if (primary) DesktopButtonTone.Primary else DesktopButtonTone.Secondary,
+        onClick = onClick,
+        layout = Modifier
+            .heightIn(min = DesktopDimens.ButtonHeight)
+            .padding(horizontal = DesktopDimens.ButtonPadding),
+        modifier = modifier,
+    ) { content ->
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap),
+        ) {
+            // Decoration: the label beside it already says what it does.
+            if (icon != null) CloudStreamIcon(icon, null, size = CloudStreamIconSize.Small, tint = content)
+            BasicText(
+                text = label,
+                style = CloudStreamTheme.typography.label.copy(color = content),
+                maxLines = 1,
+            )
+        }
+    }
+}
+
+/**
+ * A button that is only a glyph, which replaces `IconCell` here for the same reason [DesktopButton]
+ * replaces the TV text button.
+ *
+ * @param contentDescription required, from `:core:strings`: the glyph is all this control has.
+ * @param size the whole target, [DesktopDimens.ButtonHeight] so it lines up with [DesktopButton].
+ */
+@Composable
+fun DesktopIconButton(
+    icon: ImageVector,
+    contentDescription: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    tone: DesktopButtonTone = DesktopButtonTone.Secondary,
+    size: Dp = DesktopDimens.ButtonHeight,
+    iconSize: CloudStreamIconSize = CloudStreamIconSize.Medium,
+) {
+    DesktopButtonSurface(
+        tone = tone,
+        onClick = onClick,
+        layout = Modifier.size(size),
+        modifier = modifier,
+    ) { content ->
+        CloudStreamIcon(icon, contentDescription, size = iconSize, tint = content)
+    }
+}
+
+/** What every desktop button shares: the fill, press and hover feedback, the ring and the target. */
+@Composable
+private fun DesktopButtonSurface(
+    tone: DesktopButtonTone,
+    onClick: () -> Unit,
+    layout: Modifier,
+    modifier: Modifier = Modifier,
+    content: @Composable (contentColor: Color) -> Unit,
 ) {
     val colors = CloudStreamTheme.colors
     val source = remember { MutableInteractionSource() }
     val hovered by source.collectIsHoveredAsState()
     val focused by source.collectIsFocusedAsState()
     val shape = CloudStreamTheme.shapes.medium
-    val fill = when {
-        primary && hovered -> colors.ink2
-        primary -> colors.ink
-        hovered -> colors.line
-        else -> colors.raised
+    val fill = when (tone) {
+        DesktopButtonTone.Primary -> if (hovered) colors.ink2 else colors.ink
+        DesktopButtonTone.Secondary -> if (hovered) colors.line else colors.raised
+        DesktopButtonTone.Quiet -> if (hovered) colors.line else Color.Transparent
     }
     Box(
         contentAlignment = Alignment.Center,
@@ -135,15 +213,10 @@ fun DesktopButton(
             .desktopFeedback(source)
             .tvFocusRing(focused = focused, shape = shape)
             .background(fill, shape)
-            .clickable(interactionSource = source, indication = null, onClick = onClick)
-            .heightIn(min = DesktopDimens.ButtonHeight)
-            .padding(horizontal = DesktopDimens.ButtonPadding),
+            .clickable(interactionSource = source, indication = null, role = Role.Button, onClick = onClick)
+            .then(layout),
     ) {
-        BasicText(
-            text = label,
-            style = CloudStreamTheme.typography.label.copy(color = if (primary) colors.bg else colors.ink),
-            maxLines = 1,
-        )
+        content(if (tone == DesktopButtonTone.Primary) colors.bg else colors.ink)
     }
 }
 

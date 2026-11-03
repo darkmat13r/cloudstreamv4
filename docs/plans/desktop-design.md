@@ -14,7 +14,7 @@ rendered instead, which Apple's process prefers, so **a designer may still want 
 | The nine colour roles, and no accent (`DEC-13`) | `design/Design System v2.dc.html` |
 | Type sizes: 40, 32, 24, 16, 16, 12, 12, 12 | the desktop column of the same file's §03 |
 | Every `dp` on the 4dp step | `.claude/rules/dimension-scale.md` |
-| No hand-drawn icons, so text buttons for now | `.claude/rules/icons.md`, `DEC-11` |
+| Icons from one pack, through `CloudStreamIcons`, never drawn | `.claude/rules/icons.md`, `DEC-11` |
 | Layout, hierarchy, spacing, motion, interaction | Apple's principles, the `apple-design` skill |
 
 The font stays the theme's. Apple's advice to prefer the system font loses to the design system's measured
@@ -41,6 +41,16 @@ line boxes.
 640, however wide the window. A list sits 12 further out than its column, so a row's **text** lines up with
 its header and only the hover fill passes it.
 
+## Icons
+
+`DesktopIconButton` is the glyph-only button: the same fill, hover and press as `DesktopButton`, 36 square so the
+two line up. A glyph beside words is 16 and says nothing to a screen reader, because the words do. A glyph alone is
+20, and its description comes from `:core:strings`. The primary button stays the one filled white; a control inside
+something that already has a fill is `Quiet`, with no fill until the pointer arrives.
+
+The search field's clear button never takes focus, so Tab goes past it and pressing it leaves the caret in the field.
+Escape is the keyboard's way to do the same.
+
 ## Motion
 
 `DesktopMotion`: a critically damped spring with a 0.3 s response, so no overshoot. A spring starts from the
@@ -55,6 +65,9 @@ art scales, because scaling words makes them shimmer.
   are a near-opaque surface.
 - **Nav sidebar:** nothing to navigate to yet. It arrives with Home and Library.
 - **Fullscreen** from the player, and **Cmd+F**.
+- **The player's seek buttons are mislabelled for a screen reader.** They say `previous` and `next`, the nearest
+  strings there are. A string saying what they do moves `core/strings/oracle-baseline` (`DEC-11`).
+- **Back and the seek glyphs do not mirror** in a right-to-left layout.
 - **16:9 thumbnails are cropped into 2:3 cards**, which can cut off burned-in text. Providers do not report
   an image's shape.
 - The idle body says "one rail per source", and desktop draws a grid. It is the shared string, and changing

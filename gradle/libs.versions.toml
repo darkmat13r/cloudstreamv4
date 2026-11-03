@@ -43,6 +43,7 @@ newpipeextractor = "v0.26.3"
 nextlibMedia3 = "1.9.3-0.12.0"
 nicehttp = "0.4.18"
 vlcj = "4.12.1" # Owner approved embedded playback 2026-11-02. GPL-3.0, needs VLC installed
+tablerIcons = "1.1.1" # Owner approved compose-icons 2026-11-02 (DEC-11); Tabler is the pack that covers the most. MIT. Last release 2024-09
 dex2jar = "2.4.38" # Owner approved 2026-11-02. .cs3 -> JVM conversion; only ever runs inside the no-network sandbox
 overlappingpanels = "0.1.5"
 paletteKtx = "1.0.0"
@@ -138,6 +139,7 @@ nextlib-media3ext = { module = "io.github.anilbeesetti:nextlib-media3ext", versi
 nextlib-mediainfo = { module = "io.github.anilbeesetti:nextlib-mediainfo", version.ref = "nextlibMedia3" }
 nicehttp = { module = "com.github.Blatzar:NiceHttp", version.ref = "nicehttp" }
 vlcj = { module = "uk.co.caprica:vlcj", version.ref = "vlcj" }
+tabler-icons = { module = "br.com.devsrsouza.compose.icons:tabler-icons", version.ref = "tablerIcons" }
 dex2jar-translator = { module = "de.femtopedia.dex2jar:dex-translator", version.ref = "dex2jar" }
 overlappingpanels = { module = "com.github.discord:OverlappingPanels", version.ref = "overlappingpanels" }
 palette-ktx = { module = "androidx.palette:palette-ktx", version.ref = "paletteKtx" }

@@ -1293,7 +1293,7 @@ wrong; this feature uses `MediaCardState.progress` and so inherits whichever the
   screen, its design must exist and must have been measured … If the screen you are about to build
   has no artboard, draw it first — do not improvise it in Compose."* So recipe step 2 is **complete
   for TV and blocked on design for the other two form factors** — not skipped, and not improvised.
-- **The per-row remove on 4c.** It needs either a glyph (forbidden while `DEC-11` is unanswered) or a
+- **The per-row remove on 4c.** It needs either a glyph (forbidden while `DEC-11` was unanswered; answered 2026-11-02) or a
   second focus stop nested inside a row that is itself a focus stop, which the artboard does not draw
   in enough detail. `SearchAction.RecentRemoved` exists and is tested; nothing emits it yet.
 - **`See all` on a rail.** 4a and 4b draw one. It implies a per-provider destination that does not
@@ -1304,7 +1304,8 @@ wrong; this feature uses `MediaCardState.progress` and so inherits whichever the
   state that models them. The chip row is mounted regardless, because it is a band of the chassis:
   a row that appears and disappears moves the content region under the user's focus.
 - **A magnifier in the field.** `.claude/rules/icons.md`, `DEC-11`. The placeholder carries the
-  meaning instead, which is what artboard 4c's own *"Search all sources"* does.
+  meaning instead, which is what artboard 4c's own *"Search all sources"* does. `DEC-11` has since been
+  answered and the desktop field has one; this TV screen has not been revisited.
 
 ### No screenshot tests, and it is not a choice
 
