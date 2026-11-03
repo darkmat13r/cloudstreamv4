@@ -119,6 +119,8 @@
 <string name="delete_plugin">"Dzēst papildinājumu"</string>
 <string name="delete_repository">"Dzēst repozitoriju"</string>
 <string name="delete_repository_plugins">"Tiks izdzēsti arī visi repozitorija papildinājumi"</string>
+<string name="detail_load_failed_body">"Avots, iespējams, nav pieejams."</string>
+<string name="detail_load_failed_headline">"Šo nosaukumu neizdevās atvērt"</string>
 <string name="disable">"Atspējot"</string>
 <string name="discord">"Ienāc discordā"</string>
 <string name="display_subbed_dubbed_settings">"Radīt Dubbed/Subbed Anime"</string>

@@ -46,7 +46,14 @@ class DesktopDetailSource : DetailSource {
 
     override suspend fun details(id: String): TitleDetail {
         val (provider, url) = providerOf(id)
-        val details = provider.details(url)
+        val details = try {
+            provider.details(url)
+        } catch (failure: IOException) {
+            // The page shows none of this (BUG-21): it is a class name and a plugin's words. It goes
+            // where a person debugging a plugin can find it, without a URL, which can carry a token.
+            System.err.println("detail: ${provider.name} could not open a title: ${failure.message.orEmpty().withoutUrls()}")
+            throw failure
+        }
         return TitleDetail(
             title = details.name,
             providerName = provider.name,
@@ -80,6 +87,11 @@ class DesktopDetailSource : DetailSource {
         val RUN_OF_SPACES = Regex("\\s+")
     }
 }
+
+/** Text for a log line with every URL taken out: a plugin's message may repeat a request it made. */
+internal fun String.withoutUrls(): String = replace(URL_IN_TEXT, "<url>")
+
+private val URL_IN_TEXT = Regex("(?i)\\b[a-z][a-z0-9+.-]*://\\S+")
 
 /**
  * What a plugin has offered so far, as streams, emitting whenever there is one more or a new subtitle for those.

@@ -16,6 +16,8 @@
 <string name="browser">"Brawser"</string>
 <string name="cast_format" formatted="true">"Atturi: %s"</string>
 <string name="continue_watching">"Kompli Ara"</string>
+<string name="detail_load_failed_body">"Is-sors jista' jkun mhux disponibbli."</string>
+<string name="detail_load_failed_headline">"It-titlu ma setax jinfetaħ"</string>
 <string name="download">"Niżżel"</string>
 <string name="download_canceled">"Tniżżil ikkanċellat"</string>
 <string name="download_done">"Lest it-tniżżil"</string>

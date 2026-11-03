@@ -15,6 +15,8 @@
 <string name="browser">"አሳሽ"</string>
 <string name="cast_format" formatted="true">"ተዋናዮች: %s"</string>
 <string name="continue_watching">"መመልከትዎን ይቀጥሉ"</string>
+<string name="detail_load_failed_body">"ምንጩ ላይገኝ ይችላል።"</string>
+<string name="detail_load_failed_headline">"ይህን ርዕስ መክፈት አልተቻለም"</string>
 <string name="download">"ማውረጃ"</string>
 <string name="download_canceled">"ማውረድ ተቋርጧል"</string>
 <string name="download_done">"ማውረድ ተከናውኗል"</string>

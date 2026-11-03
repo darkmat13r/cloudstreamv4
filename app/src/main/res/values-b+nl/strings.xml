@@ -138,6 +138,8 @@
 <string name="delete_repository">"Wis repository"</string>
 <string name="delete_repository_plugins">"Dit zal ook alle repository plugins verwijderen"</string>
 <string name="deselect_all">"Deselecteer alles"</string>
+<string name="detail_load_failed_body">"De bron is mogelijk niet beschikbaar."</string>
+<string name="detail_load_failed_headline">"Deze titel kon niet worden geopend"</string>
 <string name="device_pin_counter_text" formatted="true">"Code verloopt in %1$dm %2$ds"</string>
 <string name="device_pin_error_message">"Kon de apparaat PIN niet vinden, probeer locale authenticatie"</string>
 <string name="device_pin_expired_message">"PIN-code is nu verlopen!"</string>

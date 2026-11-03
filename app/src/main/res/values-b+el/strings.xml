@@ -142,6 +142,8 @@
 <string name="delete_repository">"Διαγραφή αποθετηρίου"</string>
 <string name="delete_repository_plugins">"Αυτό θα διαγράψει όλα τα πρόσθετα του αποθετηρίου"</string>
 <string name="deselect_all">"Αποεπιλογή Όλων"</string>
+<string name="detail_load_failed_body">"Η πηγή ίσως δεν είναι διαθέσιμη."</string>
+<string name="detail_load_failed_headline">"Δεν ήταν δυνατό το άνοιγμα αυτού του τίτλου"</string>
 <string name="device_pin_counter_text" formatted="true">"Ο Κωδικός λήγει σε %1$dm %2$ds"</string>
 <string name="device_pin_error_message">"Δεν μπορείτε να λάβετε τον κωδικό PIN της συσκευής, δοκιμάστε τοπική αυθεντικοποίηση"</string>
 <string name="device_pin_expired_message">"Ο κωδικός PIN έχει λήξει !"</string>

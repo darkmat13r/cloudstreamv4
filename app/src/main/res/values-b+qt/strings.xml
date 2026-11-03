@@ -135,6 +135,8 @@
 <string name="delete_repository">"oooohh oooogggoog"</string>
 <string name="delete_repository_plugins">"eeek oohh uuhh oooohh oog oooogggooh aaaahhh"</string>
 <string name="deselect_all">"eeeeeekh uug"</string>
+<string name="detail_load_failed_body">"uhaauauau ahuuouaha oooohhaaaghh."</string>
+<string name="detail_load_failed_headline">"ahooo uuhh ahhhaauugghh oouuh"</string>
 <string name="device_pin_counter_text" formatted="true">"aagg uuuuggg og %1$dm %2$ds"</string>
 <string name="device_pin_error_message">"Can\t aah uuh aaaagg oog code, uuh ooogg uuuuggguuuuggg"</string>
 <string name="device_pin_expired_message">"ooh uuuk oh aah oooohhh !"</string>
