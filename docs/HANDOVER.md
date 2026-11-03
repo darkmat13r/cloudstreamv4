@@ -40,20 +40,19 @@ platforms — and as of #104 it browses and plays:
 | Subtitles | End to end: tracks offered, chosen, parsed and drawn | `KMP-21` #90, `KMP-25` #101 |
 | Look | The Tabler icon pack, and desktop's own screens following Apple's principles | `DEC-11` #93, `KMP-17` #87 |
 
-**What the desktop app still does not have:** a library (bookmarks), resume, watch progress, downloads,
-settings, or an account. `KMP-15` lists bookmark/resume/watch-progress as its largest functional gap and
-`docs/plans/desktop-design.md` says the nav sidebar "arrives with Library" — that is Phase 7's third
-vertical and the next piece of work.
+**What the desktop app still does not have:** downloads, settings, or an account. The library arrived in
+`KMP-26` — Continue Watching, six lists, watch progress and resume — which closed the gap `KMP-15` named.
 
 **Never verified, on any of the above:** the live window's keyboard and pointer input. Every screen was
 driven offscreen through `ImageComposeScene` and real ViewModels. Audible sound has never been listened to.
 
 **CI is switched off, by the owner's decision.** See the next section before you look for a tick.
 
-**The iOS canary is 17 modules**, measured on `26acd8f8` on 2026-11-03 — `:core:common`, `:core:data`,
+**The iOS canary is 18 modules**, measured on 2026-11-03 — `:core:common`, `:core:data`,
 `:core:designsystem`, `:core:http`, `:core:mihon`, `:core:network`, `:core:storage`, `:core:strings`,
 `:core:strings:fixtures`, `:core:theme`, `:core:ui`, `:feature:detail`, `:feature:extensions`,
-`:feature:home`, `:feature:search`, `:media:model`, `:media:subtitle`. 29 s cold, about 4 s warm:
+`:feature:home`, `:feature:library`, `:feature:search`, `:media:model`, `:media:subtitle`. 29 s cold, about
+4 s warm:
 
     ./gradlew iosCanary -Pcloudstream.iosCanary=true --continue
 
@@ -65,7 +64,8 @@ search's repoint is the draft PR above:
 | `KMP-11` (row 17) | `:feature:extensions` | The contracts, the `ExtensionRuntime` seam, and `AndroidExtensionRuntime` over an unedited `PluginManager` (#89). The owner's `F1`/`F2` answers are recorded (#100) | **Nothing in `:app` calls it, and it has never run on a device.** `install` refuses |
 | `KMP-12` (row 18) | `:feature:search` | Steps 1–3: the contracts, the MVI machine, the TV screen, and the `SearchSource`/`SearchHistoryStore` implementations for **both** hosts | Step 4 is the open draft #91; step 5 (deleting the old fragment) is a release away. The touch screen does not exist |
 | `KMP-20` | `:feature:home` | The `HomeSource` seam and the desktop screen | **The TV screen**, though `design/TV Home.dc.html` draws it. The chosen source is not remembered across launches |
-| `KMP-15`/`16`/`25` | `:feature:detail`, `:media:subtitle` | The desktop detail page, source list, player and subtitles | Bookmark, resume, watch progress, source and audio selectors (artboard 7e). No Android host |
+| `KMP-15`/`16`/`25` | `:feature:detail`, `:media:subtitle` | The desktop detail page, source list, player and subtitles | Source and audio selectors (artboard 7e). No Android host |
+| `KMP-26` | `:feature:library` | Continue Watching, six lists, watch progress, resume, and a file store beside the search history | A bookmark button on the detail page, progress on search and home cards, sorting, Android |
 
 `:app`'s `SearchFragment`, `SearchViewModel` and home fragments are untouched and still the live Android
 path. The Android app is unchanged by all of the desktop work.
@@ -365,10 +365,14 @@ Compose-Multiplatform template's source-set blurb and was deleted; #46 quotes it
 The live queue is `docs/plans/kmp-migration.md` §7, "Next PRs, in order". Rows 1–17 and 19–23 are done.
 What is left is the rest of Phase 7, Phase N, and Track L.
 
-**Next: Phase 7 vertical 3, library** (`KMP-26`). It closes the gap `KMP-15` named — bookmark, resume and
-watch progress — and it is what `docs/plans/desktop-design.md` is waiting for before the nav sidebar exists.
-Desktop first, as with home: a `LibraryStore` seam in commonMain, a file-backed desktop implementation
-beside `DesktopSearchHistory`, and the screen. Android's own library is untouched by it.
+**`BUG-17` first, and it is five lines.** The fifth gate, `iosSimulatorTest`, has been red since #92:
+Kotlin/Native refuses a comma inside a backticked test name and `:feature:home`'s `HomePagingTest` has five
+of them. Nothing else in the repository trips it. While it cannot compile, none of the 219 `commonTest`
+assertions in the canary's modules are checked on Native.
+
+**Then Phase 7 vertical 4, downloads**, or the two things `KMP-26` left: a bookmark button on the detail
+page (it needs a slot in `:feature:detail`) and watch progress on search and home cards
+(`SearchResultItem.watchProgress` already exists and is still always null).
 
 **Row 18, `:feature:search`,** has two steps left:
 

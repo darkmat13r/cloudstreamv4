@@ -31,6 +31,7 @@ import com.lagradost.cloudstream4.feature.home.HomePageReply
 import com.lagradost.cloudstream4.feature.home.HomeSource
 import com.lagradost.cloudstream4.feature.home.HomeSourceId
 import com.lagradost.cloudstream4.feature.home.HomeSources
+import com.lagradost.cloudstream4.library.InMemoryLibraryStore
 import java.io.File
 import java.io.IOException
 import java.util.Locale
@@ -212,7 +213,7 @@ class ExtensionReviewScreenTest {
             ),
         )
         val approvals = ExtensionApprovals(RecordingControl(), report, CoroutineScope(SupervisorJob() + Dispatchers.Default))
-        val scene = scene { DesktopApp(escape, EmptyHome, approvals, onScreen = { at = it }) }
+        val scene = scene { DesktopApp(escape, EmptyHome, approvals, InMemoryLibraryStore(), onScreen = { at = it }) }
         scene.settle()
         assertEquals("Home", at)
         scene.save("review-08-notice-on-home")
@@ -238,7 +239,7 @@ class ExtensionReviewScreenTest {
         var at = ""
         val report = SandboxReport(File("/nowhere"), emptyList())
         val approvals = ExtensionApprovals(RecordingControl(), report, CoroutineScope(SupervisorJob() + Dispatchers.Default))
-        val scene = scene { DesktopApp(escape, EmptyHome, approvals, onScreen = { at = it }) }
+        val scene = scene { DesktopApp(escape, EmptyHome, approvals, InMemoryLibraryStore(), onScreen = { at = it }) }
         scene.settle()
         scene.click(Offset(NOTICE_X, TAB_Y))
         assertEquals("Home", at)
@@ -251,7 +252,7 @@ class ExtensionReviewScreenTest {
         var at = ""
         val report = SandboxReport(File("/nowhere"), listOf(load("Kept.jar", LoadState.KeptOff, finding("filesystem", "x"))))
         val approvals = ExtensionApprovals(RecordingControl(), report, CoroutineScope(SupervisorJob() + Dispatchers.Default))
-        val scene = scene { DesktopApp(escape, EmptyHome, approvals, onScreen = { at = it }) }
+        val scene = scene { DesktopApp(escape, EmptyHome, approvals, InMemoryLibraryStore(), onScreen = { at = it }) }
         scene.settle()
         scene.save("review-10-quiet-entry")
         scene.click(Offset(NOTICE_X, TAB_Y))
@@ -367,7 +368,7 @@ class ExtensionReviewScreenTest {
         inLanguage("ml") {
             val report = SandboxReport(File("/nowhere"), listOf(load("One.jar", LoadState.Held, finding("filesystem", "x"))))
             val approvals = ExtensionApprovals(RecordingControl(), report, CoroutineScope(SupervisorJob() + Dispatchers.Default))
-            val scene = scene(800, 520) { DesktopApp(EscapeHandler(), EmptyHome, approvals) }
+            val scene = scene(800, 520) { DesktopApp(EscapeHandler(), EmptyHome, approvals, InMemoryLibraryStore()) }
             scene.save("review-12-longest-notice-800x520")
             scene.close()
         }

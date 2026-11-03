@@ -28,6 +28,8 @@ kotlin {
             implementation(project(":feature:search"))
             implementation(project(":feature:detail"))
             implementation(project(":feature:home"))
+            // KMP-26: bookmarks, watch progress and resume. The store is this module's, under ~/.cloudstream4.
+            implementation(project(":feature:library"))
             // KMP-13: `JvmExtensionRuntime` and `ExtensionHash`, from this module's `jvmMain`. It is
             // the only extension runtime that works off Android — a `.cs3` is dex-only, so the
             // cross-platform `.jar` is what desktop loads. No catalogue entry is added for it; the
