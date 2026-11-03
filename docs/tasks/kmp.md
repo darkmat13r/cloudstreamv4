@@ -904,9 +904,9 @@ Local, 2026-10-14, Temurin 17.0.20.1, `TZ=UTC`, `-Xmx14G`, each command redirect
 ## KMP-11 — `:feature:extensions`: the `ExtensionRuntime` seam and the catalogue model
 
 **Status:** the **contracts half is done** 2026-10-15 (plan row 17, Phase 7 vertical 6) · the
-**adapter is partly done** 2026-11-02, on the owner's go-ahead: `loaded`, `load`, `unload` and
-`uninstall` work over `PluginManager`, `install` refuses, nothing calls it yet, and it has never run
-on a device. See "The adapter" below.
+**adapter is done** · #89 · and the owner's `F1`/`F2` answers are recorded · #100. `loaded`, `load`,
+`unload` and `uninstall` work over an unedited `PluginManager`, `install` refuses, **nothing in `:app`
+calls it yet, and it has never run on a device.** See "The adapter" below.
 
 `:feature:extensions` exists, commonMain only, **contracts and no implementation** — the same shape
 `KMP-07` gave `:media:model`. **Nothing in `:app` changed.**
@@ -1844,7 +1844,7 @@ output devices found") and `AudioComponentRegistrar` ("cannot find any AudioComp
 
 ## KMP-17 — desktop's own screens, following Apple's principles · **measured 2026-11-02**
 
-**Status:** in pr · the owner's direction, recorded with every decision in `docs/plans/desktop-design.md`
+**Status:** done · #87 · the owner's direction, recorded with every decision in `docs/plans/desktop-design.md`
 
 `SearchScreenDesktop`, `DetailScreenDesktop`, a floating player HUD, and `core/designsystem/desktop`
 (`DesktopDimens`, `DesktopMotion`, `DesktopButton`, `DesktopRow`, `forDesktop()`). The TV screens are
@@ -1864,7 +1864,7 @@ not render here and cannot see KMP modules (`DEC-10`).
 
 ## KMP-21 — `:media:subtitle`, the commonMain half · **measured 2026-11-02**
 
-**Status:** in pr · plan §4.3 and Phase 6's second step. New first-party code, nothing consumes it yet.
+**Status:** done · #90 · plan §4.3 and Phase 6's second step. New first-party code, nothing consumes it yet.
 
 `cloudstream.kmp.library`, android + jvm, iOS canary on. Pure SRT and WebVTT parsers, plain-text cue
 cleaning, the delay arithmetic and a lookup over cues. **`:app` is untouched:** `CustomSubripParser`,
@@ -1953,7 +1953,7 @@ too thin a margin to mean anything. It is 1M now, and the budget 15 s so the Kot
 
 ## KMP-20 — `:feature:home`: Phase 7's next vertical, on desktop · **measured 2026-11-02**
 
-**Status:** in pr · desktop only. **TV screen not built**, though `design/TV Home.dc.html` covers it (below).
+**Status:** done · #92 · desktop only. **TV screen not built**, though `design/TV Home.dc.html` covers it (below).
 
 `MainAPI.getMainPage` per provider: rows of titles for a chosen source, a source picker, more of a row on
 request, and a title opens through the existing `:feature:detail` flow. Home and search are now the window's two
@@ -2010,7 +2010,7 @@ in [defects.md](defects.md).
 
 ## KMP-18 — non-official plugins, reviewed and then run in the sandbox · **measured 2026-11-03**
 
-**Status:** branch `claude/kmp-18-third-party-plugins`, not merged. Owner's authorisation, 2026-11-02: "review
+**Status:** done · #94 · Owner's authorisation, 2026-11-02: "review
 for security issues before running anything", "convert to our app (as some plugin will contain android
 related things)". Everything was reviewed first, and everything that ran ran under Seatbelt.
 
@@ -2353,7 +2353,7 @@ responds to input; it does not prove GPU-dependent rendering or anything about t
 
 ## KMP-22 — A conversion can no longer write the extension store
 
-**Status:** in pr · found by `KMP-18`
+**Status:** done · #95 · found by `KMP-18`
 
 `.cs3` conversion ran dex2jar with write access to all of `.store`. A dex that exploited dex2jar could have replaced another extension's jar between that jar's scan and its start, which is the guarantee the store exists to give.
 
@@ -2368,7 +2368,7 @@ responds to input; it does not prove GPU-dependent rendering or anything about t
 
 ## KMP-23 — Gson for plugins, on the desktop host only
 
-**Status:** in pr · owner approved the dependency 2026-11-03, on condition of the usual security check
+**Status:** done · #98 · owner approved the dependency 2026-11-03, on condition of the usual security check
 
 `com.google.code.gson:gson:2.15.0` is `runtimeOnly` in `:feature:extensions:sandbox`. Nothing first-party calls it.
 A plugin's `URLClassLoader` has the app class loader as its parent, with no allowlist, so a plugin sees whatever is on
@@ -2438,7 +2438,7 @@ path, an app window on the real home was open throughout, and a control run left
 
 ## KMP-24 — An extension with warnings stays off until you allow that exact file · **measured 2026-11-03**
 
-**Status:** in pr · **Owner's rule:** "show that warning clearly at install and let you decide per plugin". Found by `KMP-18`.
+**Status:** done · #102 · **Owner's rule:** "show that warning clearly at install and let you decide per plugin". Found by `KMP-18`.
 
 Desktop has no install screen: files are dropped in `~/.cloudstream4/extensions` and the startup pass runs them. A scanner Warn
 reached a log line, so undeclared telemetry, which can only ever be a Warn, ran unseen.
@@ -2560,7 +2560,7 @@ Why: provider titles are untrusted too. Maxlines bounds the damage, so this is n
 
 ## KMP-25 — Subtitles end to end, in the desktop player · **measured 2026-11-03**
 
-**Status:** in pr · the owner's words, asked whether `:media:subtitle` should keep cue placement: "subtitle should be
+**Status:** done · #101 · the owner's words, asked whether `:media:subtitle` should keep cue placement: "subtitle should be
 end to end working".
 
 **Scope: desktop.** Android's player already renders subtitles through Media3 and swapping it is not this task. `:app`
@@ -2767,3 +2767,48 @@ Found: YouTube's timedtext answered 429 after this task's repeated fetches, whic
 Suggest: leave it. The failure is legible and the track can be chosen again. A cache or backoff would be its own task
 Why: measured once, with curl on a dummy URL as well as through the check, and gone on the next run; a person choosing one track is far from that rate
 ```
+
+---
+
+## KMP-26 — `:feature:library`: bookmarks, watch progress and resume, on desktop
+
+**Status:** open · Phase 7 vertical 3 (plan §7, 970 lines on Android) · desktop first, as `KMP-20` was
+
+This is the gap `KMP-15` named. Its "Not built" list is *"source and audio selectors (7e), resume, watch
+progress"* and the departures from the artboards include *"bookmark"*; `docs/plans/desktop-design.md` says the
+nav sidebar *"arrives with Library"*, because two tabs are enough for home and search and a third needs it.
+
+Without it the desktop app forgets everything between launches: no list of what you are watching, no position
+to resume from, and — separately measured under `KMP-20` — not even which source you last chose.
+
+### Shape, following `KMP-20`'s recipe
+
+1. **`:feature:library` commonMain** — the contracts (a bucket, an entry, a position), a `LibraryStore` seam,
+   the MVI state machine, words through `UiString` against `:core:strings` (`I18N-08`). No `:library` edge, so
+   the module joins the iOS canary.
+2. **A desktop implementation of the seam**, file-backed beside `DesktopSearchHistory` under
+   `~/.cloudstream4/`. **Not `:core:storage`** — `DEC-12` and `BUG-05` park that module until something
+   consumes it, and `DesktopSearchHistory`'s KDoc explains why a twenty-line file store is the right size of
+   commitment until then.
+3. **The screen**, and the nav sidebar the design doc is waiting for.
+4. **Writes from the two places that know**: the detail page (bookmark) and the player (position).
+
+### What it must not do
+
+- **Not share storage with Android.** `:app` keys bookmarks and positions through `SharedPreferences` under an
+  account prefix. None of that exists on desktop and syncing the two is a different question — the same call
+  `DesktopSearchHistory` already made and documented.
+- **Not touch `:app`.** Android's `LibraryViewModel` and its fragments stay exactly as they are, as home's and
+  search's did.
+- **Not trust a title's text or its poster.** Everything in an entry came from a plugin. `UntrustedText` and
+  the http(s)-only poster filter apply, and `KMP-20` found that search and detail still do not drop format
+  characters — a library row must not reintroduce that.
+
+### Open before it starts
+
+- **Identity.** A bookmark and a position have to name a title across launches, and the only handle a plugin
+  gives is a URL plus its provider's name. Android uses a hash; a hash collides, and the code says so. What
+  desktop stores decides whether an entry survives a provider changing its URLs.
+- **Buckets.** Android has a fixed set (watching, completed, on hold, dropped, plan to watch, favourites).
+  Whether desktop offers all of them, or one list plus "continue watching", is a product call — it is small
+  enough to take in the PR and record here rather than wait.
