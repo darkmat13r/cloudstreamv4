@@ -422,6 +422,7 @@
 <string name="player_load_subtitles">Učitaj iz datoteke</string>
 <string name="player_load_subtitles_online">Učitaj s interneta</string>
 <string name="player_loaded_subtitles">Učitano %s</string>
+<string name="player_mute">Isključi zvuk</string>
 <string name="player_notification_channel_description">Obavijest reproduktora za upravljanje reprodukcijom iz pozadine</string>
 <string name="player_notification_channel_name">Obavijesti reproduktora</string>
 <string name="player_pref">Preferirani video player</string>
@@ -434,6 +435,7 @@
 <string name="player_speed_text_format">Brzina (%.2f×)</string>
 <string name="player_subtitles_settings">Titlovi</string>
 <string name="player_subtitles_settings_des">Postavke titlova playera</string>
+<string name="player_unmute">Uključi zvuk</string>
 <string name="plugin">dodaci</string>
 <string name="plugin_deleted">Dodatak izbrisan</string>
 <string name="plugin_downloaded">Dodatak preuzet</string>

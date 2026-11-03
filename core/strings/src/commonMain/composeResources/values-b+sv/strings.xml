@@ -423,6 +423,7 @@
 <string name="player_load_subtitles">Importera från fil</string>
 <string name="player_load_subtitles_online">Importera från Internet</string>
 <string name="player_loaded_subtitles">Laddat %s</string>
+<string name="player_mute">Stäng av ljudet</string>
 <string name="player_notification_channel_description">Spelarnotisen för att styra uppspelningen i bakgrunden</string>
 <string name="player_notification_channel_name">Spelarnotiser</string>
 <string name="player_pref">Önskad videospelare</string>
@@ -435,6 +436,7 @@
 <string name="player_speed_text_format">Hastighet (%.2fx)</string>
 <string name="player_subtitles_settings">Undertexter</string>
 <string name="player_subtitles_settings_des">Inställningar för undertexter</string>
+<string name="player_unmute">Slå på ljudet</string>
 <string name="plugin">Tillägg</string>
 <string name="plugin_deleted">Tillägg borttagen</string>
 <string name="plugin_downloaded">Tillägg nedladdad</string>

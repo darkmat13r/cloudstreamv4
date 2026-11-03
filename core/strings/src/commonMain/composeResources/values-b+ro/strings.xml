@@ -369,6 +369,7 @@
 <string name="player_load_subtitles">Încărcați din fișier</string>
 <string name="player_load_subtitles_online">Încărcare de pe Internet</string>
 <string name="player_loaded_subtitles">A fost încărcat %s</string>
+<string name="player_mute">Dezactivează sunetul</string>
 <string name="player_pref">Player video preferat</string>
 <string name="player_settings_play_in_app">Player intern</string>
 <string name="player_settings_select_cast_device">Selectați divece-ul pe care doriți să faceți cast</string>
@@ -378,6 +379,7 @@
 <string name="player_speed_text_format">Viteză (%.2fx)</string>
 <string name="player_subtitles_settings">Subtitrare</string>
 <string name="player_subtitles_settings_des">Setări de subtitrare</string>
+<string name="player_unmute">Activează sunetul</string>
 <string name="plugin">plugin-uri</string>
 <string name="plugin_deleted">Plugin Șters</string>
 <string name="plugin_downloaded">Plugin Descărcat</string>

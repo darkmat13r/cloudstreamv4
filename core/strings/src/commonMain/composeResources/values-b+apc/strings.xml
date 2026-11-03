@@ -422,6 +422,7 @@
 <string name="player_load_subtitles">فتاح من ملف</string>
 <string name="player_load_subtitles_online">فتاح من الإنترنت</string>
 <string name="player_loaded_subtitles">نفَتح %s</string>
+<string name="player_mute">كتّم الصوت</string>
 <string name="player_notification_channel_description">نوتيفيكايشن بت خليك تتحكم بال ڤيديو لما م يكون الآپ مفتوح</string>
 <string name="player_notification_channel_name">شغل الڤيديو عبر النوتيفيكايشنز</string>
 <string name="player_pref">مشغل الڤيديو المفضل</string>
@@ -434,6 +435,7 @@
 <string name="player_speed_text_format">السرعة (%.2fx)</string>
 <string name="player_subtitles_settings">الترجمة</string>
 <string name="player_subtitles_settings_des">سَتِنگز ترجمة الڤيديو</string>
+<string name="player_unmute">شغّل الصوت</string>
 <string name="plugin">إضافات</string>
 <string name="plugin_deleted">نمحت الإضافة</string>
 <string name="plugin_downloaded">تنزلت الإضافة</string>

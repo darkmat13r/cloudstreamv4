@@ -10,6 +10,8 @@ import java.io.PrintStream
 import java.nio.ByteBuffer
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
+import java.util.concurrent.atomic.AtomicInteger
+import kotlin.concurrent.thread
 import kotlin.system.exitProcess
 import uk.co.caprica.vlcj.factory.MediaPlayerFactory
 import uk.co.caprica.vlcj.factory.discovery.NativeDiscovery
@@ -60,15 +62,17 @@ internal object MediaHost {
         val player = factory.mediaPlayers().newEmbeddedMediaPlayer()
         val output = FrameWriter(stdout)
         player.videoSurface().set(surface(FrameShapes(player, output), output))
+        val volume = AtomicInteger(PlayerVolume.MAX)
         player.events().addMediaPlayerEventListener(StatusListener(output))
+        keepVolume(player, volume)
 
         // End of stdin is the app going away. Halt rather than release: stopping libVLC can block for
         // seconds on a stalled stream, and there is nothing here to clean up.
-        runCatching { commands(input, player) }
+        runCatching { commands(input, player, volume) }
         Runtime.getRuntime().halt(0)
     }
 
-    private fun commands(input: DataInputStream, player: MediaPlayer) {
+    private fun commands(input: DataInputStream, player: MediaPlayer, volume: AtomicInteger) {
         while (true) {
             when (input.readByte()) {
                 MediaProtocol.OP_PLAY -> {
@@ -83,7 +87,26 @@ internal object MediaHost {
                 MediaProtocol.OP_TOGGLE_PAUSE -> player.controls().pause()
                 MediaProtocol.OP_SEEK_BY -> player.controls().skipTime(input.readLong())
                 MediaProtocol.OP_SEEK_TO -> player.controls().setPosition(input.readFloat().coerceIn(0f, 1f))
+                MediaProtocol.OP_SET_VOLUME -> {
+                    volume.set(input.readInt().coerceIn(0, PlayerVolume.MAX))
+                    player.audio().setVolume(volume.get())
+                }
                 else -> return
+            }
+        }
+    }
+
+    /**
+     * libVLC refuses a level, and reads as -1, for as long as its audio output is starting. That includes the moment it
+     * reports playing, so nothing can be sent once: measured, a level sent just after play was lost, and a stream muted
+     * by the person would have started at full volume. This puts it right as soon as the output can take it.
+     */
+    private fun keepVolume(player: MediaPlayer, volume: AtomicInteger) {
+        thread(isDaemon = true, name = "media-host-volume") {
+            while (true) {
+                val wanted = volume.get()
+                if (player.audio().volume() != wanted) player.audio().setVolume(wanted)
+                Thread.sleep(VOLUME_CHECK_MILLIS)
             }
         }
     }
@@ -115,6 +138,7 @@ internal object MediaHost {
     )
 
     private const val EXIT_NO_VLC = 3
+    private const val VOLUME_CHECK_MILLIS = 20L
     private const val NO_AUDIO = "--no-audio"
 }
 

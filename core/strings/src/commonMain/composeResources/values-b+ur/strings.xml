@@ -353,6 +353,7 @@
 <string name="player_load_subtitles">فائل سے لوڈ کریں</string>
 <string name="player_load_subtitles_online">انٹرنیٹ سے لوڈ کریں</string>
 <string name="player_loaded_subtitles">لوڈ %s</string>
+<string name="player_mute">خاموش کریں</string>
 <string name="player_pref">ترجیحی ویڈیو پلیئر</string>
 <string name="player_settings_play_in_app">اندرونی پلیئر</string>
 <string name="player_size_settings">پلیئر کا سائز تبدیل کرنے کا بٹن</string>
@@ -361,6 +362,7 @@
 <string name="player_speed_text_format">رفتار (%.2fx)</string>
 <string name="player_subtitles_settings">سنٹیٹلز</string>
 <string name="player_subtitles_settings_des">پلیئر کے ترجمہ کی ترتیبات</string>
+<string name="player_unmute">آواز کھولیں</string>
 <string name="plugin">پلگ ان</string>
 <string name="plugin_deleted">پلگ ان کو حذف کر دیا گیا</string>
 <string name="plugin_downloaded">پلگ ان ڈاؤن لوڈ ہو گیا</string>

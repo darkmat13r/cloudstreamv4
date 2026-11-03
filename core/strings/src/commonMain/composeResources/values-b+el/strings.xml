@@ -380,6 +380,7 @@
 <string name="player_load_subtitles">Φόρτωση από αρχείο</string>
 <string name="player_load_subtitles_online">Φόρτωση από το Ίντερνετ</string>
 <string name="player_loaded_subtitles">Φόρτωση %s</string>
+<string name="player_mute">Σίγαση</string>
 <string name="player_notification_channel_description">Η ειδοποίηση παίκτη για τον έλεγχο του playback από το φόντο</string>
 <string name="player_notification_channel_name">Ειδοποίησεις αναπαραγωγής</string>
 <string name="player_pref">Προτεινόμενο πρόγραμμα αναπαραγωγής</string>
@@ -391,6 +392,7 @@
 <string name="player_speed_text_format">Ταχύτητα (%.2fx)</string>
 <string name="player_subtitles_settings">Υπότιτλοι</string>
 <string name="player_subtitles_settings_des">Ρυθμίσεις υποτίτλων του προγράμματος αναπαραγωγής</string>
+<string name="player_unmute">Κατάργηση σίγασης</string>
 <string name="plugin">Πρόσθετα</string>
 <string name="plugin_deleted">Το πρόσθετο διαγράφηκε</string>
 <string name="plugin_downloaded">Το πρόσθετο κατέβει</string>

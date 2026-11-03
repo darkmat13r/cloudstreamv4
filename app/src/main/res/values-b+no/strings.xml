@@ -291,6 +291,7 @@
 <string name="player_load_subtitles">"Last inn fra fil"</string>
 <string name="player_load_subtitles_online">"Last inn fra Internett"</string>
 <string name="player_loaded_subtitles" formatted="true">"Lastet inn %s"</string>
+<string name="player_mute">"Slå av lyden"</string>
 <string name="player_pref">"Foretrukket videospiller"</string>
 <string name="player_settings_play_in_app">"Intern spiller"</string>
 <string name="player_size_settings">"Knapp for størrelse på spiller"</string>
@@ -299,6 +300,7 @@
 <string name="player_speed_text_format" formatted="true">"Avspillingshastighet (%.2fx)"</string>
 <string name="player_subtitles_settings">"Undertekster"</string>
 <string name="player_subtitles_settings_des">"Innstillinger for spillerens teksting"</string>
+<string name="player_unmute">"Slå på lyden"</string>
 <string name="plugin">"programtillegg"</string>
 <string name="plugin_deleted">"Programtillegg slettet"</string>
 <string name="plugin_downloaded">"Programtillegg nedlastet"</string>

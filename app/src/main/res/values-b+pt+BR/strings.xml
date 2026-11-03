@@ -423,6 +423,7 @@
 <string name="player_load_subtitles">"Carregar de arquivo"</string>
 <string name="player_load_subtitles_online">"Carregar da Internet"</string>
 <string name="player_loaded_subtitles" formatted="true">"%s carregada"</string>
+<string name="player_mute">"Desativar som"</string>
 <string name="player_notification_channel_description">"Notificação do player para controlar a reprodução em segundo plano"</string>
 <string name="player_notification_channel_name">"Notificações de reprodução"</string>
 <string name="player_pref">"Player de vídeo preferido"</string>
@@ -435,6 +436,7 @@
 <string name="player_speed_text_format" formatted="true">"Velocidade (%.2fx)"</string>
 <string name="player_subtitles_settings">"Modificar legendas"</string>
 <string name="player_subtitles_settings_des">"Alterar legendas exibidas no player de vídeo"</string>
+<string name="player_unmute">"Ativar som"</string>
 <string name="plugin">"Plugins"</string>
 <string name="plugin_deleted">"Plugin Apagado"</string>
 <string name="plugin_downloaded">"Plugin baixado"</string>

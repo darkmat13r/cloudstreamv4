@@ -336,6 +336,7 @@
 <string name="play_with_app_name">Pasang dengan CloudStream</string>
 <string name="player_enter_fullscreen">Masuk ke skrin penuh</string>
 <string name="player_exit_fullscreen">Keluar dari skrin penuh</string>
+<string name="player_mute">Redam</string>
 <string name="player_settings_play_in_app">Pemain dalaman</string>
 <string name="player_size_settings">Saiz butang pemain</string>
 <string name="player_size_settings_des">Buang sempadan hitam</string>
@@ -343,6 +344,7 @@
 <string name="player_speed_text_format">Kelajuan (%.2fx)</string>
 <string name="player_subtitles_settings">Sari kata</string>
 <string name="player_subtitles_settings_des">Tetapan sari kata pemain</string>
+<string name="player_unmute">Nyahredam</string>
 <string name="plugin_load_fail">Tidak dapat papar %s</string>
 <string name="plugins_disabled">Dilumpuhkan: %d</string>
 <string name="plugins_downloaded">Dimuat turun: %d</string>

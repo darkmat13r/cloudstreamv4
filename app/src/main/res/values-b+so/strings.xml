@@ -296,6 +296,7 @@
 <string name="player_load_subtitles">"Faylashaada ka keen"</string>
 <string name="player_load_subtitles_online">"Internetka ka keen"</string>
 <string name="player_loaded_subtitles" formatted="true">"Waxa laso kiciyey %s"</string>
+<string name="player_mute">"Aamusi"</string>
 <string name="player_pref">"Muqaal daaraha aad doorbiddo"</string>
 <string name="player_settings_play_in_app">"Muqaal daaraha appka"</string>
 <string name="player_size_settings">"Badhinka xajmiga daaraha"</string>
@@ -304,6 +305,7 @@
 <string name="player_speed_text_format" formatted="true">"Xawaaraha (%.2fx)"</string>
 <string name="player_subtitles_settings">"Qoraal-hoosaadka"</string>
 <string name="player_subtitles_settings_des">"Habaynta Qrl-hoosaadka daaraha"</string>
+<string name="player_unmute">"Ka qaad aamusnaanta"</string>
 <string name="plugin">"Sidkanayaasha"</string>
 <string name="plugin_deleted">"Waa la tiray sidkanahan"</string>
 <string name="plugin_downloaded">"Waa ka dejiyey sidkanaha"</string>

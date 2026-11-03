@@ -423,6 +423,7 @@
 <string name="player_load_subtitles">Aus Datei laden</string>
 <string name="player_load_subtitles_online">Aus Internet laden</string>
 <string name="player_loaded_subtitles">%s geladen</string>
+<string name="player_mute">Stummschalten</string>
 <string name="player_notification_channel_description">Player-Benachrichtigung zur Steuerung der Hintergrundwiedergabe</string>
 <string name="player_notification_channel_name">Player-Benachrichtigung</string>
 <string name="player_pref">Bevorzugter Videoplayer</string>
@@ -435,6 +436,7 @@
 <string name="player_speed_text_format">Geschwindigkeit (%.2fx)</string>
 <string name="player_subtitles_settings">Untertitel</string>
 <string name="player_subtitles_settings_des">Player-Untertiteleinstellungen</string>
+<string name="player_unmute">Stummschaltung aufheben</string>
 <string name="plugin">Plugins</string>
 <string name="plugin_deleted">Plugin gelöscht</string>
 <string name="plugin_downloaded">Das Plugin wurde heruntergeladen</string>

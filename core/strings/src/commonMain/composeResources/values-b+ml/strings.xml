@@ -188,12 +188,14 @@
 <string name="player_enter_fullscreen">പൂർണ്ണ സ്‌ക്രീൻ ആക്കുക</string>
 <string name="player_exit_fullscreen">പൂർണ്ണ സ്‌ക്രീനിൽ നിന്ന് പുറത്തുകടക്കുക</string>
 <string name="player_is_live">തൽസമയം</string>
+<string name="player_mute">നിശബ്‌ദമാക്കുക</string>
 <string name="player_size_settings">പ്ലേയറിന്റെ വലുപ്പം മാറ്റുന്ന ബട്ടൻ</string>
 <string name="player_size_settings_des">കറുത്ത അതിർത്തി നീക്കംചെയ്യുക</string>
 <string name="player_speed">പ്ലേയർ വേഗത</string>
 <string name="player_speed_text_format">വേഗം (%.2fx)</string>
 <string name="player_subtitles_settings">സബ്ടൈട്ടിൽസ്</string>
 <string name="player_subtitles_settings_des">പ്ലേയർ സബ്‌ടൈറ്റിലുകളുടെ സെറ്റിങ്‌സ്</string>
+<string name="player_unmute">നിശബ്‌ദത മാറ്റുക</string>
 <string name="popup_delete_file">ഫയൽ ഡിലീറ്റ് ചെയ്യുക</string>
 <string name="popup_pause_download">ഡൌൺലോഡ് നിർത്തുക</string>
 <string name="popup_play_file">ഫയൽ പ്ലേയ് ചെയ്യുക</string>

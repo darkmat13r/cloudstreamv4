@@ -87,7 +87,9 @@
 <string name="play_torrent_button">تۆرێنت ستریم بکە</string>
 <string name="player_enter_fullscreen">چوونە ناو پڕ بە شاشە</string>
 <string name="player_exit_fullscreen">دەرچوون لە پڕ بە شاشە</string>
+<string name="player_mute">بێدەنگکردن</string>
 <string name="player_speed_text_format">خێرای(x%.2f)</string>
+<string name="player_unmute">لابردنی بێدەنگی</string>
 <string name="popup_delete_file">سڕینەوەی فایل</string>
 <string name="popup_pause_download">وەستاندنی دابەزاندن</string>
 <string name="popup_resume_download">دووبارە دەستپێکردنەوەی دابەزاندن</string>

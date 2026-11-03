@@ -423,6 +423,7 @@
 <string name="player_load_subtitles">Завантажити з файлу</string>
 <string name="player_load_subtitles_online">Завантажити з інтернету</string>
 <string name="player_loaded_subtitles">Завантажено %s</string>
+<string name="player_mute">Вимкнути звук</string>
 <string name="player_notification_channel_description">Сповіщення програвача для керування відтворенням у фоновому режимі</string>
 <string name="player_notification_channel_name">Сповіщення програвача</string>
 <string name="player_pref">Бажаний відеопрогравач</string>
@@ -435,6 +436,7 @@
 <string name="player_speed_text_format">Швидкість (%.2fx)</string>
 <string name="player_subtitles_settings">Субтитри</string>
 <string name="player_subtitles_settings_des">Налаштування субтитрів програвача</string>
+<string name="player_unmute">Увімкнути звук</string>
 <string name="plugin">розширення</string>
 <string name="plugin_deleted">Розширення видалено</string>
 <string name="plugin_downloaded">Розширення завантажено</string>

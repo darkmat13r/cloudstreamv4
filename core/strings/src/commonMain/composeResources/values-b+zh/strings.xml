@@ -423,6 +423,7 @@
 <string name="player_load_subtitles">从文件加载</string>
 <string name="player_load_subtitles_online">从互联网加载</string>
 <string name="player_loaded_subtitles">已加载 %s</string>
+<string name="player_mute">静音</string>
 <string name="player_notification_channel_description">控制后台播放的播放器通知</string>
 <string name="player_notification_channel_name">播放器通知</string>
 <string name="player_pref">首选视频播放器</string>
@@ -435,6 +436,7 @@
 <string name="player_speed_text_format">速度（%.2fx）</string>
 <string name="player_subtitles_settings">字幕</string>
 <string name="player_subtitles_settings_des">播放器字幕设置</string>
+<string name="player_unmute">取消静音</string>
 <string name="plugin">插件</string>
 <string name="plugin_deleted">插件已删除</string>
 <string name="plugin_downloaded">插件已下载</string>

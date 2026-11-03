@@ -423,6 +423,7 @@
 <string name="player_load_subtitles">"Chọn từ tệp"</string>
 <string name="player_load_subtitles_online">"Chọn từ Internet"</string>
 <string name="player_loaded_subtitles" formatted="true">"Đã tải %s"</string>
+<string name="player_mute">"Tắt tiếng"</string>
 <string name="player_notification_channel_description">"Điều khiển phát lại trong nền bằng thông báo của trình phát"</string>
 <string name="player_notification_channel_name">"Thông báo trình phát"</string>
 <string name="player_pref">"Trình phát ưu tiên"</string>
@@ -435,6 +436,7 @@
 <string name="player_speed_text_format" formatted="true">"Tốc độ (%.2fx)"</string>
 <string name="player_subtitles_settings">"Phụ đề"</string>
 <string name="player_subtitles_settings_des">"Cài đặt phụ đề"</string>
+<string name="player_unmute">"Bật tiếng"</string>
 <string name="plugin">"tiện ích mở rộng"</string>
 <string name="plugin_deleted">"Tiện ích mở rộng đã xoá"</string>
 <string name="plugin_downloaded">"Tiện ích mở rộng đã tải xuống"</string>

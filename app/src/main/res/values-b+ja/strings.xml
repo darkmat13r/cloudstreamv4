@@ -423,6 +423,7 @@
 <string name="player_load_subtitles">"ファイルから読み込む"</string>
 <string name="player_load_subtitles_online">"インターネットから読み込む"</string>
 <string name="player_loaded_subtitles" formatted="true">"%s を読み込みました"</string>
+<string name="player_mute">"ミュート"</string>
 <string name="player_notification_channel_description">"バックグラウンドから再生を制御するためのプレーヤー通知"</string>
 <string name="player_notification_channel_name">"プレーヤー通知"</string>
 <string name="player_pref">"優先ビデオプレーヤー"</string>
@@ -435,6 +436,7 @@
 <string name="player_speed_text_format" formatted="true">"再生速度 (%.2fx)"</string>
 <string name="player_subtitles_settings">"字幕"</string>
 <string name="player_subtitles_settings_des">"プレーヤーの字幕設定"</string>
+<string name="player_unmute">"ミュート解除"</string>
 <string name="plugin">"プラグイン"</string>
 <string name="plugin_deleted">"プラグインが消されました"</string>
 <string name="plugin_downloaded">"プラグインがダウンロードされました"</string>

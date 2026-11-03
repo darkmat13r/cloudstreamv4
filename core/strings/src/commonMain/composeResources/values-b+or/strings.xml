@@ -119,9 +119,11 @@
 <string name="play_movie_button">ଚଳଚ୍ଚିତ୍ର ଚଲାଅ</string>
 <string name="player_enter_fullscreen">ପୂର୍ଣ୍ଣ ସ୍କ୍ରିନକୁ ଯାଆନ୍ତୁ</string>
 <string name="player_exit_fullscreen">ପୂର୍ଣ୍ଣ ସ୍କ୍ରିନରୁ ବାହାରନ୍ତୁ</string>
+<string name="player_mute">ମ୍ୟୁଟ କରନ୍ତୁ</string>
 <string name="player_settings_play_in_app">ଅନ୍ତଃ-ଚାଳକ</string>
 <string name="player_speed_text_format">ଵେଗ (%.2fଗୁଣ)</string>
 <string name="player_subtitles_settings">ଉପଶୀର୍ଷକ</string>
+<string name="player_unmute">ଅନମ୍ୟୁଟ କରନ୍ତୁ</string>
 <string name="pref_category_actions">କୃତ୍ୟ</string>
 <string name="pref_category_android_tv">ଆଣ୍ଡ୍ରଏଡ୍ ଟିଵି</string>
 <string name="pref_category_backup">ବ୍ୟାକଅପ୍</string>

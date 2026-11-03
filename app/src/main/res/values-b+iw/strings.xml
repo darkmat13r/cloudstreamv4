@@ -309,6 +309,7 @@
 <string name="player_load_subtitles">"טען מקובץ"</string>
 <string name="player_load_subtitles_online">"טען מהאינטרנט"</string>
 <string name="player_loaded_subtitles" formatted="true">"נטען %s"</string>
+<string name="player_mute">"השתקה"</string>
 <string name="player_pref">"נגן וידאו מועדף"</string>
 <string name="player_settings_play_in_app">"נגן פנימי"</string>
 <string name="player_size_settings">"כפתור שינוי גודל הנגן"</string>
@@ -317,6 +318,7 @@
 <string name="player_speed_text_format" formatted="true">"מהירות (%.2fx)"</string>
 <string name="player_subtitles_settings">"כתוביות"</string>
 <string name="player_subtitles_settings_des">"הגדרות כתוביות הנגן"</string>
+<string name="player_unmute">"ביטול השתקה"</string>
 <string name="plugin">"תוספים"</string>
 <string name="plugin_deleted">"התוסף נמחק"</string>
 <string name="plugin_downloaded">"תוסף הורד"</string>

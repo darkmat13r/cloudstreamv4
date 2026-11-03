@@ -416,6 +416,7 @@
 <string name="player_load_subtitles">"Зареди от файл"</string>
 <string name="player_load_subtitles_online">"Зареди от Интернет"</string>
 <string name="player_loaded_subtitles" formatted="true">"Заредено %s"</string>
+<string name="player_mute">"Без звук"</string>
 <string name="player_notification_channel_description">"Известие на плейъра за контролиране на възпроизвеждането от фона"</string>
 <string name="player_notification_channel_name">"Известия на плейъра"</string>
 <string name="player_pref">"Предпочитан видео плеър"</string>
@@ -428,6 +429,7 @@
 <string name="player_speed_text_format" formatted="true">"Скорост (%.2fx)"</string>
 <string name="player_subtitles_settings">"Субтитри"</string>
 <string name="player_subtitles_settings_des">"Настройки на субтитрите на плейъра"</string>
+<string name="player_unmute">"Включване на звука"</string>
 <string name="plugin">"Плъгини"</string>
 <string name="plugin_deleted">"Приставката е изтрита"</string>
 <string name="plugin_downloaded">"Приставката е изтеглена"</string>

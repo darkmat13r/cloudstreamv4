@@ -31,6 +31,9 @@ interface PlayerControls {
     fun togglePause()
     fun seekBy(deltaMillis: Long)
     fun seekTo(fraction: Float)
+
+    /** @param percent 0 to 100. */
+    fun setVolume(percent: Int)
 }
 
 /** What the HUD draws. [failed] means libVLC gave up on this stream, or its host died. */
@@ -161,6 +164,13 @@ class VlcPlayer private constructor(
         send {
             writeByte(MediaProtocol.OP_SEEK_TO.toInt())
             writeFloat(fraction.coerceIn(0f, 1f))
+        }
+    }
+
+    override fun setVolume(percent: Int) {
+        send {
+            writeByte(MediaProtocol.OP_SET_VOLUME.toInt())
+            writeInt(percent.coerceIn(0, PlayerVolume.MAX))
         }
     }
 

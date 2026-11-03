@@ -371,6 +371,7 @@
 <string name="player_load_subtitles">"Betöltés fájlból"</string>
 <string name="player_load_subtitles_online">"Betöltés az internetről"</string>
 <string name="player_loaded_subtitles" formatted="true">"%s betöltve"</string>
+<string name="player_mute">"Némítás"</string>
 <string name="player_pref">"Előnyben részesített videolejátszó"</string>
 <string name="player_settings_always_ask">"Mindig kérdezzen"</string>
 <string name="player_settings_play_in_app">"Belső lejátszó"</string>
@@ -381,6 +382,7 @@
 <string name="player_speed_text_format" formatted="true">"Sebesség (%.2fx)"</string>
 <string name="player_subtitles_settings">"Feliratok"</string>
 <string name="player_subtitles_settings_des">"Lejátszó feliratok beállításai"</string>
+<string name="player_unmute">"Némítás feloldása"</string>
 <string name="plugin">"bővítmények"</string>
 <string name="plugin_deleted">"Bővítmény törölve"</string>
 <string name="plugin_downloaded">"Bővítmény letöltve"</string>

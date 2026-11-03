@@ -98,8 +98,10 @@
 <string name="play_with_app_name">"Speel met CloudStream"</string>
 <string name="player_enter_fullscreen">"Gaan na volskerm"</string>
 <string name="player_exit_fullscreen">"Verlaat volskerm"</string>
+<string name="player_mute">"Demp"</string>
 <string name="player_speed">"Spelerspoed"</string>
 <string name="player_speed_text_format" formatted="true">"Spoed (%.2fx)"</string>
+<string name="player_unmute">"Ontdemp"</string>
 <string name="popup_delete_file">"Vee lêer uit"</string>
 <string name="popup_pause_download">"Laat aflaai rus"</string>
 <string name="popup_play_file">"Speel lêer"</string>

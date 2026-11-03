@@ -423,6 +423,7 @@
 <string name="player_load_subtitles">Wczytaj z pliku</string>
 <string name="player_load_subtitles_online">Wczytaj z Internetu</string>
 <string name="player_loaded_subtitles">Załadowano %s</string>
+<string name="player_mute">Wycisz</string>
 <string name="player_notification_channel_description">Powiadomienie odtwarzacza umożliwiające sterowanie odtwarzaniem w tle</string>
 <string name="player_notification_channel_name">Powiadomienia odtwarzacza</string>
 <string name="player_pref">Preferowany odtwarzacz wideo</string>
@@ -435,6 +436,7 @@
 <string name="player_speed_text_format">Prędkość (%.2fx)</string>
 <string name="player_subtitles_settings">Napisy</string>
 <string name="player_subtitles_settings_des">Ustawienia napisów</string>
+<string name="player_unmute">Wyłącz wyciszenie</string>
 <string name="plugin">rozszerzenia</string>
 <string name="plugin_deleted">Usunięto rozszerzenie</string>
 <string name="plugin_downloaded">Pobrano rozszerzenie</string>

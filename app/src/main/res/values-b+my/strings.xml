@@ -296,6 +296,7 @@
 <string name="player_load_subtitles">"ဖိုင်မှတင်သွင်းပြီး"</string>
 <string name="player_load_subtitles_online">"အင်တာနက်မှ တင်သွင်းမည်"</string>
 <string name="player_loaded_subtitles" formatted="true">"တင်ပြီး %s"</string>
+<string name="player_mute">"အသံပိတ်ရန်"</string>
 <string name="player_pref">"ဦးစားပေး ဗီဒီယိုဖွင့်စက်"</string>
 <string name="player_settings_play_in_app">"ဖုန်းတွင်းကြည့်ရှုမှု"</string>
 <string name="player_size_settings">"ကြည့်ရှုမှု စခရင်အရွယ်အစားချိန်ညိှမှု"</string>
@@ -304,6 +305,7 @@
 <string name="player_speed_text_format" formatted="true">"အရှိန် (%.2fx)"</string>
 <string name="player_subtitles_settings">"စာတန်းထိုးများ"</string>
 <string name="player_subtitles_settings_des">"ကြည့်ရှုမှုစာတန်းထိုးပြုပြင်စရာများ"</string>
+<string name="player_unmute">"အသံဖွင့်ရန်"</string>
 <string name="plugin">"ဖြည့်စွက်များ"</string>
 <string name="plugin_deleted">"ဖြည့်စွက်များဖျက်ပြီး"</string>
 <string name="plugin_downloaded">"ဖြည့်စွက်များ ဒေါင်းလုဒ်လုပ်ပြီး"</string>

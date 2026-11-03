@@ -172,12 +172,14 @@
 <string name="play_with_app_name">"I-play gamit ang CloudStream"</string>
 <string name="player_enter_fullscreen">"Mag-fullscreen"</string>
 <string name="player_exit_fullscreen">"Lumabas sa fullscreen"</string>
+<string name="player_mute">"I-mute"</string>
 <string name="player_size_settings">"Pindutan upang baguhin ang laki"</string>
 <string name="player_size_settings_des">"Alisin ang black borders"</string>
 <string name="player_speed">"Bilis ng Playback"</string>
 <string name="player_speed_text_format" formatted="true">"Bilis (%.2fx)"</string>
 <string name="player_subtitles_settings">"Subtitles"</string>
 <string name="player_subtitles_settings_des">"Player subtitles settings"</string>
+<string name="player_unmute">"I-unmute"</string>
 <string name="popup_delete_file">"I-delete ang file"</string>
 <string name="popup_pause_download">"I-pause ang download"</string>
 <string name="popup_play_file">"I-play ang file"</string>

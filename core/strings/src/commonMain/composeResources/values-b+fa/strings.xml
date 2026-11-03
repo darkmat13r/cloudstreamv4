@@ -223,6 +223,7 @@
 <string name="play_with_app_name">پخش با CloudStream</string>
 <string name="player_enter_fullscreen">ورود به حالت تمام‌صفحه</string>
 <string name="player_exit_fullscreen">خروج از حالت تمام‌صفحه</string>
+<string name="player_mute">بی‌صدا</string>
 <string name="player_pref">پخش‌کننده ویدئو برگزیده</string>
 <string name="player_size_settings">دکمه تغییر‌اندازه پخش‌کننده</string>
 <string name="player_size_settings_des">حذف حاشیه سیاه</string>
@@ -230,6 +231,7 @@
 <string name="player_speed_text_format">سرعت (%.2f برابر)</string>
 <string name="player_subtitles_settings">زیرنویس‌ها</string>
 <string name="player_subtitles_settings_des">تنظیمات زیرنویس‌های پخش‌کننده</string>
+<string name="player_unmute">صدادار</string>
 <string name="plugin_deleted">افزونه حذف شد</string>
 <string name="podcast_singular">پادکست</string>
 <string name="popup_delete_file">حذف فایل</string>

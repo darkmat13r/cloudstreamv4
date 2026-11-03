@@ -442,6 +442,7 @@
 <string name="player_load_subtitles">Load from file</string>
 <string name="player_load_subtitles_online">Load from Internet</string>
 <string name="player_loaded_subtitles">Loaded %s</string>
+<string name="player_mute">Mute</string>
 <string name="player_notification_channel_description">The player notification for controlling the playback from the background</string>
 <string name="player_notification_channel_name">Player notifications</string>
 <string name="player_pref">Preferred video player</string>
@@ -454,6 +455,7 @@
 <string name="player_speed_text_format">Speed (%.2fx)</string>
 <string name="player_subtitles_settings">Subtitles</string>
 <string name="player_subtitles_settings_des">Player subtitles settings</string>
+<string name="player_unmute">Unmute</string>
 <string name="plugin">plugins</string>
 <string name="plugin_deleted">Plugin Deleted</string>
 <string name="plugin_downloaded">Plugin Downloaded</string>
