@@ -214,6 +214,14 @@ class PluginHostClient private constructor(
             writeText(data)
         }
 
+    /** @param section an index into [RemoteProvider.mainPage], which the host looks up on its own side. */
+    suspend fun mainPage(api: String, section: Int, page: Int): RemoteHomePage =
+        call(HostProtocol.OP_MAIN_PAGE, { it.readHomePage().cleaned() }) {
+            writeText(api)
+            writeInt(section)
+            writeInt(page)
+        }
+
     @Suppress("UNCHECKED_CAST")
     private suspend fun <T : Any> call(
         op: Int,
@@ -364,11 +372,30 @@ private val PRIVATE_ADDRESS = Regex(
     "(127\\.|10\\.|192\\.168\\.|169\\.254\\.|0\\.|172\\.(1[6-9]|2[0-9]|3[01])\\.).*|::1?|f[cd].*:.*|fe80:.*"
 )
 
-private fun RemoteProvider.cleaned() = copy(
+internal fun RemoteProvider.cleaned() = copy(
     name = name.sanitized(MAX_PROVIDER_FIELD_CHARS),
     mainUrl = mainUrl.sanitized(MAX_PROVIDER_FIELD_CHARS),
     lang = lang.sanitized(MAX_PROVIDER_FIELD_CHARS),
     supportedTypes = supportedTypes.take(MAX_ITEMS).map { it.sanitized(MAX_PROVIDER_FIELD_CHARS) },
+    mainPage = mainPage.take(HostProtocol.MAX_MAIN_PAGE_SECTIONS)
+        .map { it.copy(name = it.name.sanitized(MAX_PROVIDER_FIELD_CHARS)) },
+    sequentialDelayMillis = sequentialDelayMillis?.coerceIn(0, HostProtocol.MAX_SEQUENTIAL_DELAY_MILLIS),
+)
+
+internal fun RemoteHomePage.cleaned() = copy(
+    rows = rows.take(HostProtocol.MAX_HOME_ROWS).map { row ->
+        row.copy(
+            name = row.name.sanitized(MAX_PROVIDER_FIELD_CHARS),
+            items = row.items.take(HostProtocol.MAX_HOME_ROW_ITEMS).map { item ->
+                item.copy(
+                    name = item.name.sanitized(),
+                    url = item.url.sanitized(),
+                    type = item.type?.sanitized(MAX_PROVIDER_FIELD_CHARS),
+                    posterUrl = item.posterUrl.httpUrlOrNull(),
+                )
+            },
+        )
+    },
 )
 
 private fun RemoteSearchPage.cleaned() = copy(

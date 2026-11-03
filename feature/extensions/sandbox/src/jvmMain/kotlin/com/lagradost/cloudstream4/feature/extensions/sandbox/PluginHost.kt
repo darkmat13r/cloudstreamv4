@@ -4,8 +4,10 @@ import com.lagradost.cloudstream3.APIHolder
 import com.lagradost.cloudstream3.AnimeLoadResponse
 import com.lagradost.cloudstream3.Episode
 import com.lagradost.cloudstream3.LiveStreamLoadResponse
+import com.lagradost.cloudstream3.HomePageResponse
 import com.lagradost.cloudstream3.LoadResponse
 import com.lagradost.cloudstream3.MainAPI
+import com.lagradost.cloudstream3.MainPageRequest
 import com.lagradost.cloudstream3.MovieLoadResponse
 import com.lagradost.cloudstream3.TvSeriesLoadResponse
 import com.lagradost.cloudstream3.newSearchResponseList
@@ -101,12 +103,22 @@ object PluginHost {
         writer.send(HostProtocol.READY_ID) {
             writeProviders(
                 apis.values.map { api ->
+                    // A plugin's getter can throw, and that must cost it its home page and not its search.
+                    val sections = runCatching {
+                        api.mainPage.take(HostProtocol.MAX_MAIN_PAGE_SECTIONS)
+                            .map { RemoteMainPageSection(it.name, it.horizontalImages) }
+                    }.getOrNull()
                     RemoteProvider(
                         name = api.name,
                         mainUrl = api.mainUrl,
                         lang = api.lang,
                         hasQuickSearch = api.hasQuickSearch,
                         supportedTypes = api.supportedTypes.map { it.name },
+                        hasMainPage = sections != null && runCatching { api.hasMainPage }.getOrDefault(false),
+                        mainPage = sections.orEmpty(),
+                        sequentialDelayMillis = runCatching {
+                            api.sequentialMainPageDelay.takeIf { api.sequentialMainPage }
+                        }.getOrNull(),
                     )
                 }
             )
@@ -166,6 +178,12 @@ object PluginHost {
                         val snapshot = synchronized(links) { links.toList() }
                         writer.send(id) { writeLinks(RemoteLinks(snapshot, subtitles.get())) }
                     }
+                    HostProtocol.OP_MAIN_PAGE -> {
+                        val section = checkNotNull(api.mainPage.getOrNull(args.readInt())) { "unknown section" }
+                        val request = MainPageRequest(section.name, section.data, section.horizontalImages)
+                        val found = api.getMainPage(args.readInt(), request)
+                        writer.send(id) { writeHomePage(found.toRemote()) }
+                    }
                     else -> error("unknown operation $op")
                 }
             }
@@ -179,6 +197,19 @@ object PluginHost {
     private fun com.lagradost.cloudstream3.SearchResponseList.toRemote() = RemoteSearchPage(
         items = items.map { RemoteSearchItem(it.name, it.url, it.type?.name, it.posterUrl) },
         hasNext = hasNext,
+    )
+
+    /** Cut here too, so a large honest page is shortened rather than ending the host at the frame limit. */
+    private fun HomePageResponse?.toRemote() = RemoteHomePage(
+        rows = this?.items.orEmpty().take(HostProtocol.MAX_HOME_ROWS).map { row ->
+            RemoteHomeRow(
+                name = row.name,
+                horizontalImages = row.isHorizontalImages,
+                items = row.list.take(HostProtocol.MAX_HOME_ROW_ITEMS)
+                    .map { RemoteSearchItem(it.name, it.url, it.type?.name, it.posterUrl) },
+            )
+        },
+        hasNext = this?.hasNext == true,
     )
 
     private fun LoadResponse.toRemote(): RemoteDetails {

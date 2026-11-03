@@ -33,6 +33,106 @@ class HostProtocolTest {
     }
 
     @Test
+    fun `a provider's main page sections survive the round trip`() {
+        val providers = listOf(
+            RemoteProvider("n", "u", "en", true, listOf("Movie"), true, listOf(RemoteMainPageSection("Top", true)), 500),
+            RemoteProvider("m", "v", "fr", false, emptyList()),
+        )
+        assertEquals(providers, HostProtocol.decode(body(HostProtocol.encode { writeProviders(providers) })) { readProviders() })
+    }
+
+    @Test
+    fun `a main page survives the round trip`() {
+        val page = RemoteHomePage(
+            listOf(
+                RemoteHomeRow("Top", true, listOf(RemoteSearchItem("a", "u", "Movie", "p"))),
+                RemoteHomeRow("", false, emptyList()),
+            ),
+            hasNext = true,
+        )
+        assertEquals(page, HostProtocol.decode(body(HostProtocol.encode { writeHomePage(page) })) { readHomePage() })
+    }
+
+    @Test
+    fun `a row count larger than its frame is refused`() {
+        val frame = body(HostProtocol.encode { writeBoolean(true); writeInt(Int.MAX_VALUE) })
+        assertFailsWith<IOException> { HostProtocol.decode(frame) { readHomePage() } }
+    }
+
+    @Test
+    fun `an item count larger than its frame is refused`() {
+        val frame = body(
+            HostProtocol.encode {
+                writeBoolean(true)
+                writeInt(1)
+                writeText("row")
+                writeBoolean(false)
+                writeInt(Int.MAX_VALUE)
+            },
+        )
+        assertFailsWith<IOException> { HostProtocol.decode(frame) { readHomePage() } }
+    }
+
+    @Test
+    fun `a negative row count is refused`() {
+        val frame = body(HostProtocol.encode { writeBoolean(true); writeInt(-1) })
+        assertFailsWith<IOException> { HostProtocol.decode(frame) { readHomePage() } }
+    }
+
+    @Test
+    fun `a main page cut off inside a row is refused`() {
+        val frame = body(HostProtocol.encode { writeBoolean(true); writeInt(1); writeText("row") })
+        assertFailsWith<IOException> { HostProtocol.decode(frame) { readHomePage() } }
+    }
+
+    @Test
+    fun `a section count larger than its frame is refused`() {
+        val frame = body(
+            HostProtocol.encode {
+                writeInt(1)
+                writeText("n"); writeText("u"); writeText("en")
+                writeBoolean(false)
+                writeInt(0)
+                writeBoolean(true)
+                writeInt(Int.MAX_VALUE)
+            },
+        )
+        assertFailsWith<IOException> { HostProtocol.decode(frame) { readProviders() } }
+    }
+
+    @Test
+    fun `a main page is cleaned and cut to the limits`() {
+        val item = RemoteSearchItem("evil\u001B[2J\n", "javascript\u0000:x", "T\nype", "file:///etc/passwd")
+        val page = RemoteHomePage(
+            List(HostProtocol.MAX_HOME_ROWS + 5) {
+                RemoteHomeRow("row\u0007" + "x".repeat(5000), false, List(HostProtocol.MAX_HOME_ROW_ITEMS + 5) { item })
+            },
+            hasNext = true,
+        ).cleaned()
+
+        assertEquals(HostProtocol.MAX_HOME_ROWS, page.rows.size)
+        val row = page.rows.first()
+        assertEquals(HostProtocol.MAX_HOME_ROW_ITEMS, row.items.size)
+        assertEquals(256, row.name.length + 1, "cut, then the control character dropped")
+        assertEquals(RemoteSearchItem("evil[2J", "javascript:x", "Type", null), row.items.first())
+    }
+
+    @Test
+    fun `a provider's sections and delay are cleaned and cut to the limits`() {
+        val provider = RemoteProvider(
+            "n", "u", "en", false, emptyList(),
+            hasMainPage = true,
+            mainPage = List(HostProtocol.MAX_MAIN_PAGE_SECTIONS + 5) { RemoteMainPageSection("a\u001Bb", false) },
+            sequentialDelayMillis = Long.MAX_VALUE,
+        ).cleaned()
+        assertEquals(HostProtocol.MAX_MAIN_PAGE_SECTIONS, provider.mainPage.size)
+        assertEquals("ab", provider.mainPage.first().name)
+        assertEquals(HostProtocol.MAX_SEQUENTIAL_DELAY_MILLIS, provider.sequentialDelayMillis)
+        val negative = provider.copy(sequentialDelayMillis = -5).cleaned()
+        assertEquals(0L, negative.sequentialDelayMillis)
+    }
+
+    @Test
     fun `a poster URL can only point at a public http host`() {
         listOf(
             "https://archive.org/services/img/x",
