@@ -29,6 +29,7 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_rec
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_result_count
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_sources_count
 import com.lagradost.cloudstream4.core.strings.resolve
+import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 
 /**
@@ -36,9 +37,15 @@ import org.jetbrains.compose.resources.stringResource
  *
  * The buttons are stable across recompositions, because `UiState` compares by value and a new lambda
  * on every pass would read as a new state.
+ *
+ * @param idleBody what the idle screen says about where results go, which is the one thing here that
+ *   depends on the host's layout. The default describes the TV screen's rails.
  */
 @Composable
-fun SearchStatus.toUiState(onAction: (SearchAction) -> Unit): UiState<SearchContent> {
+fun SearchStatus.toUiState(
+    onAction: (SearchAction) -> Unit,
+    idleBody: StringResource = Res.string.search_state_idle_body,
+): UiState<SearchContent> {
     val latest by rememberUpdatedState(onAction)
     val retry = remember { { latest(SearchAction.Retry) } }
     val browse = remember { { latest(SearchAction.BrowseRequested) } }
@@ -57,7 +64,7 @@ fun SearchStatus.toUiState(onAction: (SearchAction) -> Unit): UiState<SearchCont
         SearchStatus.Idle -> UiState.Empty(
             StatePrompt(
                 headline = stringResource(Res.string.search_state_idle_headline),
-                body = stringResource(Res.string.search_state_idle_body),
+                body = stringResource(idleBody),
                 action = StateAction(stringResource(Res.string.search_state_idle_action), browse),
             ),
         )

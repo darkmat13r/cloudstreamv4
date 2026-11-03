@@ -4,8 +4,11 @@ import com.lagradost.cloudstream4.core.strings.StringsOracle.Key
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.app_dub_sub_episode_text_format
 import com.lagradost.cloudstream4.core.strings.generated.resources.cast_format
+import com.lagradost.cloudstream4.core.strings.generated.resources.home_sections_failed
 import com.lagradost.cloudstream4.core.strings.generated.resources.links_hidden
+import com.lagradost.cloudstream4.core.strings.generated.resources.load_more
 import com.lagradost.cloudstream4.core.strings.generated.resources.player_speed_text_format
+import com.lagradost.cloudstream4.core.strings.generated.resources.seek_back_10_seconds
 import com.lagradost.cloudstream4.core.strings.generated.resources.volume_exceeded_100
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -89,6 +92,19 @@ class UiStringTest {
                 assertNotEquals(singularOne, singular, "$language used the `one` item")
             }
         }
+    }
+
+    /** `I18N-09`: authored in every locale, so these come back translated rather than falling through to English. */
+    @Test
+    fun theDesktopStringsResolveInARepresentativeLocale() {
+        fun load(language: String, text: UiString) = SystemEnvironment.of(language) { runBlocking { text.load() } }
+        assertEquals("Mehr laden", load("de", UiString.Resource(Res.string.load_more)))
+        assertEquals("10 Sekunden zurückspulen", load("de", UiString.Resource(Res.string.seek_back_10_seconds)))
+        assertEquals("ترجيع ١٠ ثوانٍ", load("ar", UiString.Resource(Res.string.seek_back_10_seconds)))
+        val sections = Res.plurals.home_sections_failed
+        assertEquals("Nie udało się załadować 3 sekcji", load("pl", UiString.Plural(sections, 3)))
+        assertEquals("Nisu učitana 3 odjeljka", load("hr", UiString.Plural(sections, 3)))
+        assertEquals("3 oooogg ooh aaahhu", load("qt", UiString.Plural(sections, 3)))
     }
 
     /**

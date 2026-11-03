@@ -59,10 +59,10 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.error_loading_links_toast
 import com.lagradost.cloudstream4.core.strings.generated.resources.go_back
 import com.lagradost.cloudstream4.core.strings.generated.resources.loading
-import com.lagradost.cloudstream4.core.strings.generated.resources.next
 import com.lagradost.cloudstream4.core.strings.generated.resources.pause
-import com.lagradost.cloudstream4.core.strings.generated.resources.previous
 import com.lagradost.cloudstream4.core.strings.generated.resources.resume
+import com.lagradost.cloudstream4.core.strings.generated.resources.seek_back_10_seconds
+import com.lagradost.cloudstream4.core.strings.generated.resources.seek_forward_10_seconds
 import com.lagradost.cloudstream4.core.strings.generated.resources.source_error
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.detail.StreamLink
@@ -220,10 +220,9 @@ internal fun Hud(
                     style = CloudStreamTheme.typography.body.copy(color = colors.ink2),
                 )
                 else -> {
-                    // `previous` and `next` are the nearest strings there are: nothing says "skip 10 seconds".
                     DesktopIconButton(
                         icon = CloudStreamIcons.SeekBackward,
-                        contentDescription = stringResource(Res.string.previous),
+                        contentDescription = stringResource(Res.string.seek_back_10_seconds),
                         onClick = { onSeekBy(-PlayerScreenDefaults.SkipMillis) },
                         tone = DesktopButtonTone.Quiet,
                     )
@@ -235,7 +234,7 @@ internal fun Hud(
                     )
                     DesktopIconButton(
                         icon = CloudStreamIcons.SeekForward,
-                        contentDescription = stringResource(Res.string.next),
+                        contentDescription = stringResource(Res.string.seek_forward_10_seconds),
                         onClick = { onSeekBy(PlayerScreenDefaults.SkipMillis) },
                         tone = DesktopButtonTone.Quiet,
                     )
@@ -313,6 +312,7 @@ internal object PlayerScreenDefaults {
     const val ControlsAlpha = 0.88f
     /** Far taller than the rule it holds, so a pointer does not have to aim at 4dp. */
     val SeekTargetHeight: Dp = 32.dp
+    /** `seek_back_10_seconds` and `seek_forward_10_seconds` say this number: change them together. */
     const val SkipMillis = 10_000L
     const val HudTimeoutMillis = 3_000L
 }

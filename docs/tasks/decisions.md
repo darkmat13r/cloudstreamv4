@@ -327,9 +327,7 @@ would drop the unused icons, and that is not this task.
 
 - `DS-06`: `CloudStreamIcons` exists, and no TV or Android screen uses it yet.
 - The 80 `ic_baseline_*` drawables in `:app`, and `MediaCardDefaults`' drawn chevron. Neither was touched.
-- **Strings that do not exist:** "skip back 10 seconds" and "skip forward 10 seconds". The player's seek buttons
-  say `previous` and `next` to a screen reader until they do, because `go_back_30` says -30 and they skip 10.
-  `sort_clear` and `sort_close` read correctly but belong to the sort dialog.
+- `sort_clear` and `sort_close` read correctly but belong to the sort dialog.
 - Directional glyphs do not mirror in a right-to-left layout.
 
 ## DEC-12 — Consolidating the two `PreferenceStore` declarations
