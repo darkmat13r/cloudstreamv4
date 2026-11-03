@@ -24,6 +24,10 @@ kotlin {
             // Needed at runtime only inside the conversion process. It parses hostile input, so
             // nothing outside DexConverter may call it.
             implementation(libs.dex2jar.translator)
+            // Both already on this classpath at runtime through `:library`, as `implementation`. The
+            // `CloudflareKiller` and `DataStore` shims link against them.
+            implementation(libs.nicehttp)
+            implementation(libs.jackson.module.kotlin)
         }
         jvmTest.dependencies {
             implementation(libs.kotlin.test)

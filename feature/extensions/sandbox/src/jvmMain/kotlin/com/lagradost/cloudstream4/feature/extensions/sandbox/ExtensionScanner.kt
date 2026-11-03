@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream
 import java.io.DataInputStream
 import java.io.File
 import java.io.IOException
+import java.util.Base64
 import java.util.zip.ZipException
 import java.util.zip.ZipFile
 
@@ -132,6 +133,11 @@ object ExtensionScanner {
         val where = parsed.thisClass
 
         if (parsed.declaresNative) findings += block("native-method", "$where declares a native method")
+        // `defineClass` is protected, so inside a subclass the call's owner is the subclass and no
+        // method rule can match it. Being one is the only reason to subclass, so that is what is refused.
+        if (parsed.superClass in LOADER_CLASSES) {
+            findings += block("class-loader", "$where extends ${parsed.superClass}")
+        }
 
         for (cls in parsed.classes) {
             BLOCKED_CLASS_PREFIXES.firstOrNull { cls.startsWith(it) }?.let { prefix ->
@@ -153,6 +159,31 @@ object ExtensionScanner {
             WARN_STRINGS.firstOrNull { text.contains(it) }?.let { needle ->
                 findings += ScanFinding(ScanSeverity.Warn, "suspicious-string", "$where mentions \"$needle\"")
             }
+            if (text in TELEMETRY_KEYS) {
+                findings += ScanFinding(ScanSeverity.Warn, "telemetry", "$where names a device identifier: \"$text\"")
+            }
+            encodedCode(text)?.let { what -> findings += block("encoded-code", "$where holds $what, base64-encoded") }
+        }
+    }
+
+    /**
+     * What a long base64 constant decodes to, when that is code: the rest of this scan cannot read code
+     * that is only text until it runs. Measured on 53 sampled plugins (`KMP-18`): this fires on exactly
+     * the two that ship dozens of encoded scripts, and not on the one other long base64 string.
+     *
+     * The decoded bytes are only ever matched. A constant is at most 64 KB, by the class-file format.
+     */
+    private fun encodedCode(text: String): String? {
+        if (text.length < MIN_ENCODED_CHARS || !text.all { it in BASE64_ALPHABET }) return null
+        val standard = text.filterNot { it.isWhitespace() }.replace('-', '+').replace('_', '/')
+        val bytes = runCatching { Base64.getDecoder().decode(standard) }.getOrNull() ?: return null
+        val magic = ENCODED_BINARY_MAGIC.firstOrNull { (head, _) ->
+            bytes.size >= head.size && head.indices.all { bytes[it] == head[it] }
+        }
+        return when {
+            magic != null -> magic.second
+            ENCODED_SCRIPT.containsMatchIn(String(bytes, Charsets.ISO_8859_1)) -> "a script"
+            else -> null
         }
     }
 
@@ -169,6 +200,16 @@ object ExtensionScanner {
     private const val MAX_ENTRY_BYTES = 16 * 1024 * 1024
     private const val MAX_TOTAL_BYTES = 128L * 1024 * 1024
     private val HIDDEN_CODE = Regex("(?i)\\.(so|dylib|jnilib|dll|exe|dex|jar|apk|cs3|sh)$")
+    private const val MIN_ENCODED_CHARS = 256
+    private val BASE64_ALPHABET = (('A'..'Z') + ('a'..'z') + ('0'..'9') + listOf('+', '/', '-', '_', '=', '\r', '\n')).toSet()
+    private val ENCODED_SCRIPT = Regex("function\\s*\\(|function\\s+\\w|=>|\\bconst\\s+\\w|\\bvar\\s+\\w|\\bfetch\\(|\\beval\\(|\\brequire\\(|^#!/")
+    private val ENCODED_BINARY_MAGIC = listOf(
+        byteArrayOf(0xCA.toByte(), 0xFE.toByte(), 0xBA.toByte(), 0xBE.toByte()) to "a class file",
+        "dex\n".toByteArray() to "a dex file",
+        "PK".toByteArray() to "a zip",
+    )
+    private val LOADER_CLASSES = setOf("java/lang/ClassLoader", "java/security/SecureClassLoader", "java/net/URLClassLoader")
+    private val TELEMETRY_KEYS = setOf("installId", "install_id", "deviceId", "device_id", "androidId", "android_id")
 
     /** Starting processes, loading code the scan never saw, or reaching past the JVM's own checks. */
     private val BLOCKED_CLASS_PREFIXES = listOf(
@@ -198,12 +239,24 @@ object ExtensionScanner {
         "java/lang/ClassLoader.defineClass",
         "java/lang/invoke/MethodHandles\$Lookup.defineClass",
         "java/lang/invoke/MethodHandles\$Lookup.defineHiddenClass",
+        // What else is on the device is nobody's business, and no site needs to know.
+        "android/content/pm/PackageManager.getInstalledPackages",
+        "android/content/pm/PackageManager.getInstalledApplications",
     )
 
     /** Text that names a blocked API is how reflection reaches it, and miners have no other excuse. */
     private val BLOCKED_STRINGS = listOf(
         "java.lang.ProcessBuilder",
         "java.lang.Runtime",
+        // The class references below block these directly, and only text reaches them by reflection.
+        "java.lang.ProcessHandle",
+        "java.net.URLClassLoader",
+        "java.security.SecureClassLoader",
+        "java.lang.foreign.",
+        "java.lang.instrument.",
+        "javax.script.",
+        "jdk.internal.",
+        "defineClass",
         "sun.misc.Unsafe",
         "dalvik.system.",
         "stratum+tcp",
@@ -242,6 +295,7 @@ object ExtensionScanner {
         "java/lang/System.getProperty" to "environment",
         "java/lang/System.getProperties" to "environment",
         "java/lang/System.exit" to "exit",
+        "java/lang/Runtime.exit" to "exit",
         "java/lang/Runtime.halt" to "exit",
     )
 }
@@ -253,6 +307,8 @@ object ExtensionScanner {
  */
 internal class ClassFacts private constructor(
     val thisClass: String,
+    /** Null only for `java/lang/Object`, which no extension defines. */
+    val superClass: String?,
     val classes: Set<String>,
     val methods: Set<Pair<String, String>>,
     val strings: Set<String>,
@@ -336,7 +392,7 @@ internal class ClassFacts private constructor(
 
             input.readUnsignedShort() // access
             val thisClass = className(input.readUnsignedShort())
-            input.readUnsignedShort() // super
+            val superClass = input.readUnsignedShort().takeIf { it != 0 }?.let(::className)
             repeat(input.readUnsignedShort()) { input.readUnsignedShort() } // interfaces
             repeat(input.readUnsignedShort()) { skipMember(input) } // fields
 
@@ -359,6 +415,7 @@ internal class ClassFacts private constructor(
             }
             return ClassFacts(
                 thisClass = thisClass,
+                superClass = superClass,
                 classes = classes,
                 methods = methods,
                 strings = stringIndex.mapTo(mutableSetOf()) { text(it) },
