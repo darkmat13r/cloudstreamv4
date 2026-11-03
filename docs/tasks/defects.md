@@ -914,3 +914,46 @@ The five names lost their commas. Nothing else changed, and no assertion moved.
 `commonTest` added without it stays unchecked until someone looks — which is exactly how this one lasted
 from #92 to #108. Worth remembering when the next vertical adds a `commonTest`: the trap is silent on the
 JVM, and the error (`Name contains illegal characters: ","`) names neither Kotlin/Native nor the reason.
+
+## BUG-21 — a title that failed to open said "Error Loading Links" and printed an exception class · **low**
+
+**Status:** in pr · found 2026-11-03 by the owner, opening a title with Invidious (its server refuses the request, so `load()` returns null) · `DetailCopy.kt`, `DesktopDetailSource.kt`
+
+The page showed `Source error` / `Error Loading Links` / `IllegalStateException: provider returned nothing` / `Try again`. Two faults.
+
+**1. Wrong sentence.** `toPageUiState` drew both `DetailLoad.Empty` and `DetailLoad.Failed` with `source_error` and `error_loading_links_toast`, the words for the links list. The title page fails before any link is asked for.
+
+**2. A class name to a person.** The plugin host sends a failure as `"<simple class name>: <message>"` (`PluginHost.Writer.fail`), the client sanitises it into an `IOException` (`PluginHostClient`), `DetailViewModel.attempt` keeps its message as `DetailLoad.Failed.detail`, and `UiStateHost` draws `UiState.Error.detail` in the mono ramp. So anything a plugin threw was shown: `NoClassDefFoundError: …` the same way. Null from `load()` is `checkNotNull(...) { "provider returned nothing" }` at `PluginHost.kt` (`OP_LOAD`).
+
+**The change.** The title page says `Couldn't open this title` / `Its source may be unavailable.` / `Try again`, for `Empty` and `Failed` alike, and draws no detail line. The links list keeps `Error Loading Links` and its own detail (`toLinksUiState` is untouched, because `BUG-19` rewrites it). Two new strings, `detail_load_failed_headline` and `detail_load_failed_body`, authored in all 62 directories; no existing string says this (`plugin_load_fail` needs a name the page does not have, and `source_error` is the wrong claim). The baseline moved as its sixth, additive move (`oracle-baseline/README.md`); `app/api/classes-jar.api` gains exactly 2 `R$string` fields, and `:app:dumpExtensionApi` writes the same bytes as the hand edit that preceded it.
+
+**The diagnostic is dropped from the screen and logged.** A person cannot act on `IllegalStateException`, and the text is a plugin's, which the screen has been drawing in a font that cannot pass for the app's own voice. It is useful to someone debugging a plugin, so `DesktopDetailSource.details` writes `detail: <provider> could not open a title: <message>` to stderr, where the host already logs (`plugin host: …`, `android.util.Log`), with every `scheme://…` replaced by `<url>`: a plugin's message can repeat the request it made, and a request can carry a token. Failures that are not an `IOException` from the host are not logged there, and nothing is logged on the TV path, which has no desktop source.
+
+**Null is not made a distinct state.** `Empty` and `Failed` now read identically, so nobody sees the difference. Making the host answer null as "nothing" would change the wire protocol, which `BUG-19` is rewriting, so it was left; the state holder still sees a failure.
+
+### Tests
+
+`desktopApp/.../detail/DetailPageFailureTest`, 7 tests, each mutation run alone against the committed fix:
+
+| Mutation | Result |
+|---|---|
+| `DetailCopy.kt` reverted to master | 3 fail: wording, the other-language words, class name off the page |
+| `UiState.Error(titlePrompt(retry), detail)` | 2 fail: wording, class name off the page |
+| `withoutUrls` returns its input | 1 fails: URL not logged |
+
+`:core:strings:check -Pcloudstream.strings.guards=fail`, `:feature:detail:jvmTest`, `:desktopApp:jvmTest` and `:desktopApp:createDistributable` pass locally. The full gates were not run here.
+
+Rendered at 1280x800 through `DetailScreenDesktop` (`-Pcloudstream.home.renders=<dir>`): English and Arabic, both looked at.
+
+### Not verified
+
+- **The reported case end to end.** Invidious in a fresh home, packaged app, `--check-extensions nasa`: search returned 0 results, so there was no title to open and `load()` was never called with a null answer. The screen is rendered from a `DetailLoad.Failed` state, not reached through the plugin. The log line was tested only as a pure function (`withoutUrls`), not seen being written.
+- **The 60 non-English translations.** All machine, unreviewed. Least sure: `so` (Somali) and `ti` (Tigrinya), also `my`, `ckb`, `or`, `as`. `apc` and `ars` are colloquial Arabic. `qt` is the Minion file, invented in its style. `pt` and `pt+BR` are identical.
+- **The TV detail screen.** It uses the same `toPageUiState`; only the desktop one was rendered.
+
+### Found and left
+
+- **Other screens print the same raw text.** `HomeCopy` (`HomeStatus.Failed` -> `UiState.Error(…, detail)`), `SearchCopy` (`SearchStatus.Failed`) and `LibraryCopy` pass a failure's message to the same mono line, and the home and search view models build the detail from the failure (`HomeViewModel` via `failure.reason()`, search via `SearchOutcome.Failed`; neither read for what it puts in the string). Whether a search or home failure shows a class name was not run. This is the same state in kind but not the page that was reported.
+- **`search_state_retry` ("Try again") is authored only in the base file.** The Arabic render shows `Try again` in English under an Arabic headline. It is every locale, and every screen that uses it.
+- **The Arabic render is not mirrored**: the back button stays top left. `ImageComposeScene` took the locale for the strings and not the layout direction here; whether the window does was not checked.
+- **A plugin that answers null from `load()` is still logged by the host as a failure** (`IllegalStateException`), not as a null.

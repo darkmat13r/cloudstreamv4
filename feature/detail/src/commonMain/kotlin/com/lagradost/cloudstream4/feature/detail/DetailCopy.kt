@@ -14,6 +14,8 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.audio_book_si
 import com.lagradost.cloudstream4.core.strings.generated.resources.audio_singular
 import com.lagradost.cloudstream4.core.strings.generated.resources.cartoons_singular
 import com.lagradost.cloudstream4.core.strings.generated.resources.custom_media_singular
+import com.lagradost.cloudstream4.core.strings.generated.resources.detail_load_failed_body
+import com.lagradost.cloudstream4.core.strings.generated.resources.detail_load_failed_headline
 import com.lagradost.cloudstream4.core.strings.generated.resources.documentaries_singular
 import com.lagradost.cloudstream4.core.strings.generated.resources.episode_short
 import com.lagradost.cloudstream4.core.strings.generated.resources.error_loading_links_toast
@@ -42,12 +44,11 @@ fun DetailLoad<TitleDetail>.toPageUiState(onAction: (DetailAction) -> Unit): UiS
     return when (this) {
         DetailLoad.Loading -> UiState.Loading
         is DetailLoad.Loaded -> UiState.Content(value)
-        // The page has no state of its own for "nothing here": a source returns a title or fails.
-        DetailLoad.Empty -> UiState.Empty(prompt(Res.string.source_error, Res.string.error_loading_links_toast, retry))
-        is DetailLoad.Failed -> UiState.Error(
-            prompt(Res.string.source_error, Res.string.error_loading_links_toast, retry),
-            detail,
-        )
+        // The page has no state of its own for "nothing here": a source returns a title or fails. Both
+        // read the same, and neither shows the failure's text: it is a class name and a plugin's words
+        // (BUG-21). The host logs it where the failure is caught.
+        DetailLoad.Empty -> UiState.Empty(titlePrompt(retry))
+        is DetailLoad.Failed -> UiState.Error(titlePrompt(retry))
     }
 }
 
@@ -66,6 +67,11 @@ fun DetailLoad<List<StreamLink>>.toLinksUiState(onAction: (DetailAction) -> Unit
         )
     }
 }
+
+/** The title could not be opened. This says nothing of links: none have been asked for yet. */
+@Composable
+private fun titlePrompt(retry: () -> Unit) =
+    prompt(Res.string.detail_load_failed_headline, Res.string.detail_load_failed_body, retry)
 
 @Composable
 private fun prompt(headline: StringResource, body: StringResource, retry: () -> Unit) = StatePrompt(
