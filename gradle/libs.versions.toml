@@ -45,6 +45,7 @@ nicehttp = "0.4.18"
 vlcj = "4.12.1" # Owner approved embedded playback 2026-11-02. GPL-3.0, needs VLC installed
 tablerIcons = "1.1.1" # Owner approved compose-icons 2026-11-02 (DEC-11); Tabler is the pack that covers the most. MIT. Last release 2024-09
 dex2jar = "2.4.38" # Owner approved 2026-11-02. .cs3 -> JVM conversion; only ever runs inside the no-network sandbox
+gson = "2.15.0" # Owner approved 2026-11-03 (KMP-23). For plugins that call it: desktop host only, never :app
 overlappingpanels = "0.1.5"
 paletteKtx = "1.0.0"
 preferenceKtx = "1.2.1"
@@ -141,6 +142,7 @@ nicehttp = { module = "com.github.Blatzar:NiceHttp", version.ref = "nicehttp" }
 vlcj = { module = "uk.co.caprica:vlcj", version.ref = "vlcj" }
 tabler-icons = { module = "br.com.devsrsouza.compose.icons:tabler-icons", version.ref = "tablerIcons" }
 dex2jar-translator = { module = "de.femtopedia.dex2jar:dex-translator", version.ref = "dex2jar" }
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 overlappingpanels = { module = "com.github.discord:OverlappingPanels", version.ref = "overlappingpanels" }
 palette-ktx = { module = "androidx.palette:palette-ktx", version.ref = "paletteKtx" }
 preference-ktx = { module = "androidx.preference:preference-ktx", version.ref = "preferenceKtx" }
