@@ -1113,3 +1113,23 @@ The first attempt at this check said `cue-on-screen=true` over a grey frame with
 - **The next track when the preferred one fails.** Android does not try one either: this shows the failure and leaves the list to the person.
 - **Whether the track fits the stream.** The first English track by name is not necessarily cut for this link's release, and the Godfather run's first cue is that file's own credit line. Android chooses the same way. Whether it stays in time over a whole film was not measured.
 - **The window itself, and sound.** All of this ran offscreen and silent, so no one has clicked it live.
+
+## BUG-23 — search stuck on its loading cards for good · **high**
+
+**Status:** in pr · found 2026-11-03 by the owner, whose screenshot shows `other mo` over loading cards with `Sources 5 / 5` · `Viewmodel.kt` (`DebounceQuery`)
+
+`onQueryChanged` sets `SearchStatus.Loading` and hands the text to `DebounceQuery`, which ended in `distinctUntilChanged`. A settled query equal to the previous one was dropped, so no search ran and nothing ever replaced `Loading`. Return was the only way out.
+
+Measured on the real source and view model, with the owner's five plugins in a fresh home:
+
+| What was typed | Before | After |
+|---|---|---|
+| `other mo` | results in 2.7 s | results in 0.9 s |
+| one more letter, deleted inside 200 ms | **still loading at 15 s** | results in 1.1 s |
+| cleared, then `other mo` again | **still loading at 15 s** | results in 1.0 s |
+| a different query | results in 1.1 s | results in 1.1 s |
+
+The plugins were not at fault: each answered `other mo` in under 900 ms. `SearchViewModel` is the only user of `DebounceQuery`, so the filter is gone rather than worked around. The cost is one repeat search when the same words settle twice. Putting the filter back fails both new tests.
+
+**Found alongside it, not changed.** Clearing the field within 200 ms of typing still lets that query run, so results appear under an empty field (`query=''`, `status=Showing`, run once in a test).
+

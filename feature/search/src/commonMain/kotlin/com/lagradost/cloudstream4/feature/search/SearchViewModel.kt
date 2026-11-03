@@ -24,7 +24,7 @@ import kotlinx.coroutines.launch
  * Three behaviours it exists to get right, none of which the old `SearchViewModel` did:
  *
  * - **Typing does not spam providers.** `QueryChanged` echoes into state immediately and feeds
- *   [DebounceQuery], which is `:core:ui`'s 200 ms debounce with `distinctUntilChanged`. Only the
+ *   [DebounceQuery], which is `:core:ui`'s 200 ms debounce. Only the
  *   settled query reaches [SearchSource.quickSearch].
  * - **A late reply cannot overwrite a newer one.** Every request goes through [SingleActiveQuery],
  *   which cancels and joins the previous job before starting the next, so results arrive in query
