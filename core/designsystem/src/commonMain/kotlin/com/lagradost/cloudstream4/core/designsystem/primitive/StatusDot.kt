@@ -31,10 +31,8 @@ enum class StatusDotState {
     /**
      * Unreachable, errored, failed.
      *
-     * Drawn in `live`. **This is the one non-playback use of `live` the colour contract allows**
-     * — "progress, LIVE badges, a failure marker" — and it is a marker, never a button and never
-     * a general-purpose error accent. A red label, a red border or a red button elsewhere in the
-     * app is a contract violation; this square is not.
+     * Drawn hollow, in `muted`: **a failure is a hollow neutral marker, never `live`** (`DEC-17`).
+     * `live` stays for playback, and a failure reads from its shape and the words beside it.
      */
     Failed,
 
@@ -71,12 +69,15 @@ fun StatusDot(
     size: Dp = StatusDotDefaults.Size,
 ) {
     val colors = CloudStreamTheme.colors
-    val fill = when (state) {
-        StatusDotState.Ok -> colors.ink
-        StatusDotState.Failed -> colors.live
-        StatusDotState.Neutral -> colors.muted
-    }
-    Box(modifier = modifier.size(size).background(fill, CloudStreamTheme.shapes.none))
+    val shape = CloudStreamTheme.shapes.none
+    val sized = modifier.size(size)
+    Box(
+        modifier = when (state) {
+            StatusDotState.Ok -> sized.background(colors.ink, shape)
+            StatusDotState.Failed -> sized.insetOutline(colors.muted, shape)
+            StatusDotState.Neutral -> sized.background(colors.muted, shape)
+        },
+    )
 }
 
 /**

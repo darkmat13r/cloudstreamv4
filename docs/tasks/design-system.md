@@ -251,3 +251,59 @@ no focus ring, row pitch or line box depends on any of them.
   which is what makes a later divergence auditable at all.
 
 `NOTICE` needs no change: no file was edited, so the modification surface is unchanged.
+
+---
+
+## DS-08 — TV component batch B
+
+**Status:** built, PR open · owner rulings it follows: `DEC-17`
+
+New in `:core:designsystem`, from `design/Components.dc.html` and the boards that use each piece. No screen uses
+them yet.
+
+| Component | Where it comes from | File |
+|---|---|---|
+| `StatusPill` | `Components` §01 | `primitive/StatusPill.kt` |
+| `SegmentedControl` | `Components` §01 | `target/SegmentedControl.kt` |
+| `EpisodeCard`, `ContinueCard` | `Components` §02, `TV Home` 3c | `card/BelowArtCard.kt` |
+| `Avatar` | `TV Detail Player` 7a | `primitive/Avatar.kt` |
+| `StorageMeter` | `TV Episodes Downloads` 6c, 6e | `primitive/StorageMeter.kt` |
+| `DownloadProgressRow` | `TV Episodes Downloads` 6c, 6d | `rows/DownloadProgressRow.kt` |
+| 8 `CloudStreamIcons` entries | Tabler only | `icon/CloudStreamIcons.kt` |
+
+**One existing component changed:** `StatusDot.Failed` went from a filled `live` square to a hollow `muted` one
+(`DEC-17`). It had no caller outside its own file, measured by grep across `core`, `feature`, `desktopApp` and
+`app/src`.
+
+### Where the code departs from a board
+
+- **A failed download row has no `live` rule.** 6a to 6d draw one on the leading edge, and `DEC-17` is newer. It has
+  a hollow `StatusDot` beside the value and a `muted` bar. Those boards still need redrawing.
+- **`PLAYING` is the pack's play glyph at 16dp**, not the board's 8dp CSS triangle (`icons.md`; 16dp is the smallest
+  `CloudStreamIconSize`).
+- **The pill label is `labelMono`, not the board's 20px.** A 12dp line box centres in the 24dp pill at +6dp, off the
+  step. `labelMono`'s 16dp box lands at +4dp.
+- **`SegmentedControl` is a 24dp visual in a 48dp cell, as chips are.** `Components` draws 28dp, which centres at +10dp,
+  off the step. 24dp lands at +12dp. No board uses the control yet, so nothing has to be redrawn.
+- **Corners follow the tokens:** square art as on `MediaCard`, and `shapes.medium` on the segmented control.
+- **Below-art cards do not lift.** The boards draw no lift on them, unlike `BackdropCard`.
+
+`LiveTv`, `Movies` and `Tv` icons are not added: `DEC-17` took them off the rail, so nothing uses them. They can
+return with their filters.
+
+### Open, and not settled here
+
+- **`ProgressRule` 2dp or 4dp** (handover §8.4). The cards use `MediaCardDefaults.ProgressRuleHeight`, 4dp, as
+  asked. 3c agrees, and `Components` draws 4px, which is 2dp. The download row uses `ProgressRule`'s own 2dp, as 6c
+  and 6d draw it.
+- **`Components` draws the selection marker `muted` and "never a white bar"**, and `SelectionMarker` defaults to
+  `ink`. It is white on a selected `DownloadProgressRow`, through `ListRow`. Not changed here.
+
+`:core:designsystem` has no `abiValidation`, so it has no `checkKotlinAbi` or dump to update. Measured from
+`:core:designsystem:tasks --all`; the plugin is only in `cloudstream.kmp.extension-api`.
+
+`SegmentedControlDeviceTest` runs on `Television_720p`: real D-pad keys through the input dispatcher, the ring read from
+the screen, and centre choosing. The other components have JVM tests only, until a screen uses them.
+
+Screenshot cases are in `core/screenshot/.../TvComponentScreenshots.kt`. They compile, and render nothing until
+`DS-04` is unblocked. `TvComponentsTest` holds the bounds and states, drawn offscreen.

@@ -182,6 +182,9 @@ Conventions:
 - `UiState`, `UiStateHost`, `StateView`, `FailureBanner`, `StateActionButton`, the skeletons.
 - `CloudStreamIcons`.
 
+> Built since this audit, by `DS-08`: the status pill, segmented control, below-art episode and continue cards, avatar,
+> storage meter, download progress row and the missing icons. `DEC-17` settled the failure colour: hollow neutral.
+
 **Missing from `Components.dc.html`:**
 
 | Component | Evidence | Needed by |
