@@ -66,7 +66,7 @@ body { margin:0; background:#0a0a0a; font-family:Manrope,system-ui,sans-serif; }
   white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 .cbm { font:500 20px/24px "JetBrains Mono",monospace; color:var(--mut);
   white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-.cbm.bad { color:var(--acc); }
+.cbm.bad { color:var(--ink2); }
 .ibx { width:96px; height:96px; display:flex; align-items:center; justify-content:center;
   border-radius:12px; box-sizing:border-box; }
 .ibx.foc { outline:4px solid var(--ink); outline-offset:4px; }
@@ -115,7 +115,7 @@ body { margin:0; background:#0a0a0a; font-family:Manrope,system-ui,sans-serif; }
 .cardbar i { display:block; height:100%; background:var(--acc); }
 .sg { width:16px; height:16px; border-radius:4px; background:var(--mut); flex:none; }
 .sg.ok { background:var(--ink); }
-.sg.fail { background:transparent; box-shadow: inset 0 0 0 2px var(--acc); }
+.sg.fail { background:transparent; box-shadow: inset 0 0 0 2px var(--mut); }
 .failgrp { display:flex; align-items:center; gap:24px; height:96px; }
 .failpill { display:inline-flex; align-items:center; gap:16px; height:48px; padding:0 24px;
   box-sizing:border-box; border-radius:24px; background:var(--raised);
@@ -143,9 +143,6 @@ body { margin:0; background:#0a0a0a; font-family:Manrope,system-ui,sans-serif; }
   background:var(--line); overflow:hidden; }
 .pbar i { display:block; height:100%; background:var(--ink); }
 .pbar.stall i { background:var(--mut); }
-/* the one failure marker: a 4px rule on the row's leading edge */
-.failrule { position:absolute; left:0; top:0; width:4px; height:96px;
-  border-radius:2px 0 0 2px; background:var(--acc); }
 .lbl { font:500 20px/24px "JetBrains Mono",monospace; color:var(--mut); white-space:nowrap; }
 .mval { font:500 24px/32px "JetBrains Mono",monospace; color:var(--ink); white-space:nowrap; }
 .mval2 { font:500 20px/24px "JetBrains Mono",monospace; color:var(--ink2); white-space:nowrap; }
@@ -260,14 +257,13 @@ body { margin:0; background:#0a0a0a; font-family:Manrope,system-ui,sans-serif; }
 
         <sc-for list="{{ epRows }}" as="r" hint-placeholder-count="5">
           <div class="{{ r.cls }}" style="{{ r.pos }}">
-            <sc-if value="{{ r.fail }}" hint-placeholder-val="{{ true }}"><i class="failrule"></i></sc-if>
             <div class="lmark"></div>
             <div class="ldisc num">{{ r.no }}</div>
             <div class="lbody">
               <div class="lt" style="{{ r.ts }}">{{ r.title }}</div>
               <div class="ls" style="{{ r.ss }}">{{ r.sub }}</div>
             </div>
-            <div class="ltrail"><div class="{{ r.gc }}" style="{{ r.gs }}"><i><b></b></i></div></div>
+            <div class="ltrail"><sc-if value="{{ r.fail }}" hint-placeholder-val="{{ true }}"><i class="sg fail"></i></sc-if><div class="{{ r.gc }}" style="{{ r.gs }}"><i><b></b></i></div></div>
             <sc-if value="{{ r.bar }}" hint-placeholder-val="{{ true }}">
               <div class="pbar"><i style="{{ r.barw }}"></i></div>
             </sc-if>
@@ -303,14 +299,13 @@ body { margin:0; background:#0a0a0a; font-family:Manrope,system-ui,sans-serif; }
         <sc-for list="{{ boardRows }}" as="r" hint-placeholder-count="8">
           <div class="lbl abs" style="{{ r.lpos }}">{{ r.label }}</div>
           <div class="{{ r.cls }}" style="{{ r.pos }}">
-            <sc-if value="{{ r.fail }}" hint-placeholder-val="{{ true }}"><i class="failrule"></i></sc-if>
             <div class="lmark"></div>
             <div class="ldisc num">{{ r.no }}</div>
             <div class="lbody">
               <div class="lt" style="{{ r.ts }}">{{ r.title }}</div>
               <div class="ls" style="{{ r.ss }}">{{ r.sub }}</div>
             </div>
-            <div class="ltrail"><div class="{{ r.gc }}" style="{{ r.gs }}"><i><b></b></i></div></div>
+            <div class="ltrail"><sc-if value="{{ r.fail }}" hint-placeholder-val="{{ true }}"><i class="sg fail"></i></sc-if><div class="{{ r.gc }}" style="{{ r.gs }}"><i><b></b></i></div></div>
             <sc-if value="{{ r.bar }}" hint-placeholder-val="{{ true }}">
               <div class="{{ r.barcls }}"><i style="{{ r.barw }}"></i></div>
             </sc-if>
@@ -337,7 +332,7 @@ body { margin:0; background:#0a0a0a; font-family:Manrope,system-ui,sans-serif; }
           <div class="pbar"><i style="width:408px"></i></div>
         </div>
 
-        <div class="m2024 abs" style="left:200px;top:888px;width:1664px;height:24px">download failed - typed reason and bytes written each get a column; the row is the retry. Live rule drawn once, on the 472 tile.</div>
+        <div class="m2024 abs" style="left:200px;top:888px;width:1664px;height:24px">download failed - typed reason and bytes written each get a column; the row is the retry.</div>
         <div class="lrow abs bgr" style="left:200px;top:928px;width:1664px">
           <div class="lmark"></div>
           <div class="ldisc num" style="color:var(--mut)">16</div>
@@ -346,7 +341,7 @@ body { margin:0; background:#0a0a0a; font-family:Manrope,system-ui,sans-serif; }
             <div class="ls">S2 · E16 · 24 min · 21 Mar 2024</div>
           </div>
           <div class="ltrail" style="gap:32px">
-            <div class="tcol" style="width:280px"><div class="mval" style="color:var(--ink2)">stopped at 62%</div></div>
+            <div class="tcol" style="width:280px;flex-direction:row;align-items:center;gap:8px"><i class="sg fail"></i><div class="mval" style="color:var(--ink2)">stopped at 62%</div></div>
             <div class="tcol" style="width:384px"><div class="mval2">storage full</div><div class="mval2" style="color:var(--mut)">1.2 GB short</div></div>
             <div class="tg g-alert" style="color:var(--ink2)"><i><b></b></i></div>
           </div>
@@ -383,16 +378,15 @@ body { margin:0; background:#0a0a0a; font-family:Manrope,system-ui,sans-serif; }
 
         <sc-for list="{{ dlTitles }}" as="r" hint-placeholder-count="7">
           <div class="{{ r.cls }}" style="{{ r.pos }}">
-            <sc-if value="{{ r.fail }}" hint-placeholder-val="{{ true }}"><i class="failrule"></i></sc-if>
             <div class="lmark"></div>
             <div class="ldisc c"><div class="{{ r.dg }}" style="color:var(--mut)"><i><b></b></i></div></div>
             <div class="lbody">
               <div class="lt" style="{{ r.ts }}">{{ r.title }}</div>
               <div class="ls">{{ r.sub }}</div>
             </div>
-            <div class="ltrail"><div class="mval" style="{{ r.vs }};width:352px;text-align:right">{{ r.val }}</div></div>
+            <div class="ltrail"><sc-if value="{{ r.fail }}" hint-placeholder-val="{{ true }}"><i class="sg fail"></i></sc-if><div class="mval" style="{{ r.vs }};{{ r.vw }};text-align:right">{{ r.val }}</div></div>
             <sc-if value="{{ r.bar }}" hint-placeholder-val="{{ true }}">
-              <div class="pbar"><i style="{{ r.barw }}"></i></div>
+              <div class="{{ r.barcls }}"><i style="{{ r.barw }}"></i></div>
             </sc-if>
           </div>
         </sc-for>
@@ -432,14 +426,13 @@ body { margin:0; background:#0a0a0a; font-family:Manrope,system-ui,sans-serif; }
 
         <sc-for list="{{ dlEps }}" as="r" hint-placeholder-count="4">
           <div class="{{ r.cls }}" style="{{ r.pos }}">
-            <sc-if value="{{ r.fail }}" hint-placeholder-val="{{ true }}"><i class="failrule"></i></sc-if>
             <div class="lmark"></div>
             <div class="ldisc c"><div class="{{ r.dg }}" style="{{ r.dgs }}"><i><b></b></i></div></div>
             <div class="lbody">
               <div class="lt" style="{{ r.ts }}">{{ r.title }}</div>
               <div class="ls" style="{{ r.ss }}">{{ r.sub }}</div>
             </div>
-            <div class="ltrail"><div class="mval" style="{{ r.vs }};width:352px;text-align:right">{{ r.val }}</div></div>
+            <div class="ltrail"><sc-if value="{{ r.fail }}" hint-placeholder-val="{{ true }}"><i class="sg fail"></i></sc-if><div class="mval" style="{{ r.vs }};{{ r.vw }};text-align:right">{{ r.val }}</div></div>
             <sc-if value="{{ r.bar }}" hint-placeholder-val="{{ true }}">
               <div class="{{ r.barcls }}"><i style="{{ r.barw }}"></i></div>
             </sc-if>
@@ -473,9 +466,10 @@ body { margin:0; background:#0a0a0a; font-family:Manrope,system-ui,sans-serif; }
         <div class="abs" style="left:1488px;top:72px"><span class="bbtn ghost" style="min-width:376px">Queue (0/3)</span></div>
 
         <div class="bnr abs" style="left:200px;top:176px;width:1664px;height:96px"></div>
-        <div class="abs" style="left:200px;top:176px;width:4px;height:96px;border-radius:2px 0 0 2px;background:#CD3D4B"></div>
-        <div class="ttl28 abs" style="left:224px;top:192px;width:704px;height:40px">Not enough storage</div>
-        <div class="m2024 abs" style="left:224px;top:232px;width:1000px;height:24px;color:#CCCCCC">NEEDS 1.2 GB MORE · 3 QUEUED ITEMS TOTAL 2.4 GB</div>
+        <div class="abs" style="left:200px;top:176px;width:4px;height:96px;border-radius:2px 0 0 2px;background:var(--mut)"></div>
+        <i class="sg fail abs" style="left:224px;top:216px"></i>
+        <div class="ttl28 abs" style="left:256px;top:192px;width:672px;height:40px">Not enough storage</div>
+        <div class="m2024 abs" style="left:256px;top:232px;width:968px;height:24px;color:#CCCCCC">NEEDS 1.2 GB MORE · 3 QUEUED ITEMS TOTAL 2.4 GB</div>
         <div class="abs" style="left:1520px;top:192px"><span class="bbtn ghost" style="min-width:320px">Free up space</span></div>
 
         <div class="svg1 abs" style="left:984px;top:440px"></div>
@@ -488,21 +482,19 @@ body { margin:0; background:#0a0a0a; font-family:Manrope,system-ui,sans-serif; }
     </div>
 
     <div class="note">
-      <p><b>live is spent once per board, and in this cluster it means failure.</b> The contract sanctions
-      <code>#CD3D4B</code> for progress, LIVE badges and one failure marker, and forbids spending it twice on one
-      screen. Every board here contains both a progress bar and a failure, so the tie had to be broken once:
-      progress of every kind — watch position on 6a and 6b, transfer on 6b, 6c and 6d — draws as a 4px
-      <code>ink</code> fill on a <code>line</code> track, and <code>live</code> is reserved for the 4px leading
-      rule on a failed row and the marker on the storage-full banner. Two chassis leaks had to be closed for that
-      to be true: the rail logo mark now draws in <code>ink</code>, not <code>--acc</code>, so the chassis no
-      longer spends the board's one live before any content does; and 6b, the one board that would have carried
-      two, keeps the leading rule on the 472 state tile only - its 1664 specimen states the same failure with the
-      <code>ink2</code> alert mark, the stalled <code>mut</code> bar and the typed reason. The reason is in the engine, not in taste:
+      <p><b>A failure here is a hollow neutral marker, never live (DEC-17).</b> <code>live</code> is playback state
+      only, so failure reads from shape and words. Progress of every kind — watch position on 6a and 6b, transfer on
+      6b, 6c and 6d — draws as a 4px <code>ink</code> fill on a <code>line</code> track. A failed row carries the
+      hollow 16px <code>mut</code> marker, plus the stalled <code>mut</code> bar when a transfer stopped at a known
+      point; the storage-full banner carries the same marker and a 4px <code>mut</code> leading rule. The rail logo
+      mark draws in <code>ink</code>, not <code>--acc</code>, and both widths on 6b state the failure the same way:
+      the marker, the <code>ink2</code> alert mark, the stalled <code>mut</code> bar and the words. A failure still
+      needs its own mark, and the reason is in the engine, not in taste:
       a failed download has no re-entry edge at all — <code>EpisodeDownloadInstance.isFailed</code> is documented
       <i>"Do not automatically retry in case of failure"</i> (DownloadManager.kt:1742-1744) and there is no
       <code>IsFailed → IsPending</code> transition anywhere — so an unnoticed failure is permanent, while an
       unnoticed progress bar corrects itself a second later. That also settles the trailing glyph: on a failed
-      row the error mark and the reason string are <code>ink2</code>, never a second red.</p>
+      row the error mark and the reason string are <code>ink2</code>, never red.</p>
 
       <p><b>A 96-tall row has one 64-tall text stack, and that is the whole answer to "what drops at 472".</b>
       Rule 5 forces the stack to total a multiple of 16 to centre in a 96 row, so the row runs Manrope 24/32 plus
@@ -638,7 +630,7 @@ body { margin:0; background:#0a0a0a; font-family:Manrope,system-ui,sans-serif; }
         { col: 0, i: 2, label: "watched",         no: "13", title: "A Quiet Place",      sub: "watched · 47 min",     ts: INK2, ss: MUT,  gc: "tg g-check", gs: MUT },
         { col: 0, i: 3, label: "downloaded",      no: "14", title: "Homecoming",         sub: "downloaded · 412 MB",  ts: INK,  ss: MUT,  gc: "tg g-tray",  gs: INK2 },
         { col: 1, i: 0, label: "downloading",     no: "15", title: "The Long Night",     sub: "128 MB of 512 MB",     ts: INK,  ss: INK2, gc: "tg g-pause", gs: INK,  bar: true, barw: "width:112px" },
-        { col: 1, i: 1, label: "download failed", no: "16", title: "Bloodline",          sub: "download failed",      ts: INK,  ss: INK2, gc: "tg g-alert", gs: INK2, fail: true },
+        { col: 1, i: 1, label: "download failed", no: "16", title: "Bloodline",          sub: "download failed",      ts: INK,  ss: INK2, gc: "tg g-alert", gs: INK2, fail: true, bar: true, barw: "width:272px", barcls: "pbar stall" },
         { col: 1, i: 2, label: "unavailable",     no: "17", title: "Ashes",              sub: "not on this provider", ts: MUT,  ss: MUT,  gc: "tg g-x",     gs: MUT },
         { col: 1, i: 3, label: "focused",         no: "18", title: "What Is Dead",       sub: "24 min · 21 Mar 2024", ts: INK,  ss: MUT,  gc: "tg g-play",  gs: INK,  foc: true }
       ];
@@ -651,7 +643,7 @@ body { margin:0; background:#0a0a0a; font-family:Manrope,system-ui,sans-serif; }
         boardRows.push({
           label: b.label, no: b.no, title: b.title, sub: b.sub, ts: b.ts, ss: b.ss,
           gc: b.gc, gs: b.gs, fail: b.fail === true,
-          bar: b.bar === true, barw: b.barw || "width:0px", barcls: "pbar",
+          bar: b.bar === true, barw: b.barw || "width:0px", barcls: b.barcls || "pbar",
           cls: b.foc ? "lrow abs bgr sel foc" : "lrow abs bgr",
           pos: pos(rowX, y, 472),
           lpos: pos(lblX, y + 32, 208)
@@ -663,7 +655,7 @@ body { margin:0; background:#0a0a0a; font-family:Manrope,system-ui,sans-serif; }
         { title: "Dune: Part Two",                    sub: "film · 4.2 GB",                   dg: "tg g-film",   val: "" },
         { title: "Everything Everywhere All at Once", sub: "film · 6.8 GB",                   dg: "tg g-film",   val: "" },
         { title: "Arcane",                            sub: "18 episodes · 11.2 GB",           dg: "tg g-series", val: "" },
-        { title: "Blue Eye Samurai",                  sub: "7 episodes · 5.4 GB",             dg: "tg g-series", val: "failed", vs: INK2, fail: true },
+        { title: "Blue Eye Samurai",                  sub: "7 episodes · 5.4 GB of 6.4 GB",   dg: "tg g-series", val: "failed", vs: INK2, fail: true, bar: true, barw: "width:1376px", barcls: "pbar stall" },
         { title: "Severance",                         sub: "9 episodes · 7.6 GB",             dg: "tg g-series", val: "" },
         { title: "The Expanse",                       sub: "4 episodes · 1.9 GB of 3.1 GB",   dg: "tg g-series", val: "61%", vs: INK, foc: true, bar: true, barw: "width:1000px" },
         { title: "Yellowjackets",                     sub: "10 episodes · 8.1 GB",            dg: "tg g-series", val: "" }
@@ -673,8 +665,9 @@ body { margin:0; background:#0a0a0a; font-family:Manrope,system-ui,sans-serif; }
         var t = tSrc[k];
         dlTitles.push({
           title: t.title, sub: t.sub, dg: t.dg, val: t.val, vs: t.vs || INK2,
+          vw: t.fail === true ? "width:88px" : "width:352px",
           ts: INK, fail: t.fail === true,
-          bar: t.bar === true, barw: t.barw || "width:0px",
+          bar: t.bar === true, barw: t.barw || "width:0px", barcls: t.barcls || "pbar",
           cls: t.foc ? "lrow abs bgr sel foc" : "lrow abs bgr",
           pos: pos(200, 296 + k * 120, 1664)
         });
@@ -697,7 +690,7 @@ body { margin:0; background:#0a0a0a; font-family:Manrope,system-ui,sans-serif; }
         var ey = 560 + m * 120;
         dlEps.push({
           title: e.title, sub: e.sub, ts: e.ts, ss: e.ss, dg: e.dg, dgs: e.dgs,
-          val: e.val, vs: e.vs, fail: e.fail === true,
+          val: e.val, vs: e.vs, vw: e.fail === true ? "width:48px" : "width:352px", fail: e.fail === true,
           bar: e.bar === true, barw: e.barw || "width:0px", barcls: e.barcls || "pbar",
           cls: e.foc ? "lrow abs bgr sel" : "lrow abs bgr",
           pos: pos(200, ey, 1272),
@@ -711,7 +704,7 @@ body { margin:0; background:#0a0a0a; font-family:Manrope,system-ui,sans-serif; }
       }
 
       return {
-        railA: rail(1), railB: rail(2), railC: rail(3), railD: rail(3), railE: rail(3),
+        railA: rail(0), railB: rail(0), railC: rail(3), railD: rail(3), railE: rail(3),
         epRows: epRows, boardRows: boardRows, dlTitles: dlTitles, dlEps: dlEps
       };
     }
