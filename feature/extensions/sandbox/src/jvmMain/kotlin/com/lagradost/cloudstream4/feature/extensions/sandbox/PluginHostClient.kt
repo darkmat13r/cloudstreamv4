@@ -46,12 +46,13 @@ class HostLauncher internal constructor(
         extraRules: List<String> = emptyList(),
         jvmOptions: String = JVM_OPTIONS,
         gate: OutboundGate? = null,
+        lowered: Boolean = false,
     ): Process {
         val profile = SeatbeltProfile.render(executable, readable, readOnlyInputs, writable, network, extraRules, gate?.port)
-        val builder = ProcessBuilder(
-            listOf(SeatbeltProfile.SANDBOX_EXEC, "-p", profile, executable.path) +
-                prefixArguments + arguments
-        )
+        val sandboxed = listOf(SeatbeltProfile.SANDBOX_EXEC, "-p", profile, executable.path) + prefixArguments + arguments
+        // The same process all the way down, through `exec`, so what this returns is the JVM. A shell because a
+        // limit needs one, and outside the sandbox, because the sandbox would not let it run.
+        val builder = ProcessBuilder(if (lowered) LOWERED + sandboxed else sandboxed)
         // A plugin inherits nothing from the user's shell: no tokens, no paths, no API keys.
         builder.environment().clear()
         builder.environment()["HOME"] = writable.path
@@ -89,6 +90,17 @@ class HostLauncher internal constructor(
         private const val HOST_USER = "cloudstream"
         private const val JVM_OPTIONS =
             "-Xmx512m -XX:+UseSerialGC -XX:-UsePerfData -XX:ActiveProcessorCount=4 -Xshare:auto -Duser.name=$HOST_USER"
+
+        /** On top of [JVM_OPTIONS] for code from a plugin: what the heap's cap does not cover. */
+        internal const val PLUGIN_JVM_OPTIONS = "$JVM_OPTIONS -XX:MaxDirectMemorySize=128m -XX:MaxMetaspaceSize=384m"
+
+        /**
+         * Below the app and the player for CPU, no core files, and no single file past 256 MB, counted in kilobytes on
+         * this `/bin/sh` (measured). Not for the media host, which has frames to deliver on time.
+         */
+        private val LOWERED = listOf(
+            "/bin/sh", "-c", "ulimit -c 0; ulimit -f 262144; exec /usr/bin/env -u PWD -u OLDPWD -u SHLVL -u _ /usr/bin/nice -n 10 \"\$@\"", "plugin-host",
+        )
         private const val LOOPBACK = "127.0.0.1"
         private const val DEV_MAIN = "com.lagradost.cloudstream4.feature.extensions.sandbox.PluginHostKt"
 
@@ -159,6 +171,13 @@ class PluginHostClient internal constructor(
 
     /** Up to [MAX_DIAGNOSTIC_CHARS] of what the host wrote to stderr, for a failure report. */
     val hostOutput: String get() = diagnostics.toString()
+
+    /** Why this side stopped the host, when it did. */
+    @Volatile
+    var endedBecause: String? = null
+        private set
+
+    internal val pid: Long get() = process.pid()
 
     init {
         pending[HostProtocol.READY_ID] = ready
@@ -248,6 +267,7 @@ class PluginHostClient internal constructor(
     }
 
     private fun abort(reason: String) {
+        if (endedBecause == null) endedBecause = reason
         dead.set(true)
         val failure = HostEnded("$label: $reason")
         pending.values.forEach { it.reply.complete(Result.failure(failure)) }
@@ -435,6 +455,7 @@ class PluginHostClient internal constructor(
             jar: File,
             data: File,
             label: String,
+            limits: HostLimits = HostLimits(),
         ): Pair<PluginHostClient, Result<List<RemoteProvider>>> {
             check(data.mkdirs() || data.isDirectory) { "cannot create the sandbox directory" }
             val gate = OutboundGate()
@@ -450,9 +471,12 @@ class PluginHostClient internal constructor(
                     writable = data,
                     network = true,
                     gate = gate,
+                    lowered = true,
+                    jvmOptions = HostLauncher.PLUGIN_JVM_OPTIONS,
                 )
             }
             val client = PluginHostClient(process, label, gate)
+            watchHost(process, data, limits, { client.pending.isNotEmpty() }, client::abort)
             val providers = client.providers(START_TIMEOUT_MILLIS).map { list -> list.map { it.cleaned() } }
             return client to providers
         }

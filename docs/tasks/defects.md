@@ -1296,3 +1296,30 @@ so a hostile stream can make libVLC fetch from the LAN.
 **DNS** still goes to the system resolver, for the proxy and for a plugin: a name can carry data out. **A plugin still
 has the internet**, so it can send what it sees to its own servers. This does not change that.
 
+---
+
+## BUG-29 — Nothing limited how much of this Mac a plugin could use · **medium** · measured 2026-11-04
+
+**Status:** in pr. Seatbelt says what a host may touch and nothing about how much. Each row is `HostLimitsTest`, a hostile plugin in a real host.
+
+| Attempt | Result |
+|---|---|
+| 8 threads spinning with no call waiting | stopped by `HostWatch`, 4.9 s against a 4 s test window; the default is 60 s |
+| Filling the heap | `OutOfMemoryError` in the plugin, at the existing 512 MB; the host still answers |
+| Filling direct memory | `OutOfMemoryError`, at the new 128 MB cap |
+| Memory past the limit, test limit 300 MB | stopped by the watch; the default is 1.5 GB |
+| One big file | stops at 256 MB, by `ulimit -f` |
+| Many files, test limit 50 MB | stopped by the watch; the default is 2 GB |
+| 20,000 threads | the host's JVM failed and its output broke the protocol, so the app ended that host, and only that one |
+| Priority | `nice` 10, so it comes after the app and the player |
+
+A stopped host fails its calls, as a crashed one already did, and the app carries on. **Nothing restarts it**: its sources stay gone until the next launch, and no screen says why, though `endedBecause` holds the reason.
+
+**A plugin working on a call may use what it needs**: the CPU rule applies only with no call waiting, so a plugin called constantly is not stopped by it. Network use is not limited.
+
+The media host has no `nice`, no `ulimit` and no watch, because it has frames to deliver on time and its memory depends on the video.
+
+`ProcessHandle.info().totalCpuDuration` did not work for this: a host spinning 8 threads never passed the limit with it. Why was not established. It reads `ps`.
+
+**Checked:** isolated copy of the owner's six plugins with the limits on: 6 of 6, 8 providers, CineStream 34 results and 73 playable, CineTmdb 13 and 74, and no host stopped.
+
