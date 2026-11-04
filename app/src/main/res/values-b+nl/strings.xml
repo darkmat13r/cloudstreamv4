@@ -385,6 +385,10 @@
 <string name="play_with_app_name">"Afspelen met CloudStream"</string>
 <string name="player_enter_fullscreen">"Volledig scherm openen"</string>
 <string name="player_exit_fullscreen">"Volledig scherm sluiten"</string>
+<string name="player_fit_original">"Originele beeldverhouding"</string>
+<string name="player_fit_screen">"Scherm vullen"</string>
+<string name="player_fit_title">"Beeldformaat"</string>
+<string name="player_fit_width">"Breedte vullen"</string>
 <string name="player_load_one_subtitle_online">"Laad eerst beschikbare"</string>
 <string name="player_load_subtitles">"Laden uit bestand"</string>
 <string name="player_load_subtitles_online">"Laden vanaf internet"</string>
@@ -398,6 +402,10 @@
 <string name="player_settings_select_cast_device">"Cast apparaat selecteren"</string>
 <string name="player_size_settings">"Afspeel knop wijzig"</string>
 <string name="player_size_settings_des">"Verwijder de zwarte randen"</string>
+<string name="player_source_playing">"Speelt af"</string>
+<string name="player_source_resumes_at" formatted="true">"Wisselen behoudt je positie: gaat verder op %1$s"</string>
+<string name="player_source_retry">"Opnieuw"</string>
+<string name="player_source_switch">"Wisselen"</string>
 <string name="player_speed">"Afspelen Snelheid"</string>
 <string name="player_speed_text_format" formatted="true">"Snelheid (%.2fx)"</string>
 <string name="player_subtitles_settings">"Ondertitels"</string>

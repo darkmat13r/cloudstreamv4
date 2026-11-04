@@ -139,8 +139,16 @@
 <string name="play_with_app_name">"Ludi per CloudStream"</string>
 <string name="player_enter_fullscreen">"Eniri plenekranan reĝimon"</string>
 <string name="player_exit_fullscreen">"Eliri el plenekrana reĝimo"</string>
+<string name="player_fit_original">"Originala proporcio"</string>
+<string name="player_fit_screen">"Plenigi ekranon"</string>
+<string name="player_fit_title">"Bildgrando"</string>
+<string name="player_fit_width">"Plenigi larĝon"</string>
 <string name="player_mute">"Silentigi"</string>
 <string name="player_size_settings_des">"Forigi nigrajn borderaĵojn"</string>
+<string name="player_source_playing">"Ludanta"</string>
+<string name="player_source_resumes_at" formatted="true">"Ŝanĝo konservas vian lokon: daŭrigas ĉe %1$s"</string>
+<string name="player_source_retry">"Reprovi"</string>
+<string name="player_source_switch">"Ŝanĝi"</string>
 <string name="player_speed_text_format" formatted="true">"Rapido (%.2fx)"</string>
 <string name="player_subtitles_settings">"Subtekstoj"</string>
 <string name="player_unmute">"Malsilentigi"</string>

@@ -418,6 +418,10 @@
 <string name="play_with_app_name">Lire avec CloudStream</string>
 <string name="player_enter_fullscreen">Activer le mode plein écran</string>
 <string name="player_exit_fullscreen">Quitter le mode plein écran</string>
+<string name="player_fit_original">Proportions originales</string>
+<string name="player_fit_screen">Remplir l’écran</string>
+<string name="player_fit_title">Taille de la vidéo</string>
+<string name="player_fit_width">Remplir la largeur</string>
 <string name="player_is_live">Live</string>
 <string name="player_load_one_subtitle_online">Charger le premier disponible</string>
 <string name="player_load_subtitles">Charger depuis le fichier</string>
@@ -432,6 +436,10 @@
 <string name="player_settings_select_cast_device">Sélectionnez un appareil de diffusion</string>
 <string name="player_size_settings">Bouton de redimensionnement du lecteur</string>
 <string name="player_size_settings_des">Supprimer les bordures noires</string>
+<string name="player_source_playing">En lecture</string>
+<string name="player_source_resumes_at">Changer conserve votre position : reprise à %1$s</string>
+<string name="player_source_retry">Réessayer</string>
+<string name="player_source_switch">Changer</string>
 <string name="player_speed">Vitesse de lecture</string>
 <string name="player_speed_text_format">Vitesse (%.2fx)</string>
 <string name="player_subtitles_settings">Sous-titres</string>

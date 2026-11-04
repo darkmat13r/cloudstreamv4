@@ -213,9 +213,17 @@
 <string name="play_with_app_name">"فتح مع كلاودستريم"</string>
 <string name="player_enter_fullscreen">"الدخول إلى وضع ملء الشاشة"</string>
 <string name="player_exit_fullscreen">"الخروج من وضع ملء الشاشة"</string>
+<string name="player_fit_original">"نسبة العرض إلى الارتفاع الأصلية"</string>
+<string name="player_fit_screen">"ملء الشاشة"</string>
+<string name="player_fit_title">"حجم الصورة"</string>
+<string name="player_fit_width">"ملء العرض"</string>
 <string name="player_mute">"كتم الصوت"</string>
 <string name="player_size_settings">"زر تغيير حجم المشغل"</string>
 <string name="player_size_settings_des">"إزالة الحدود السوداء"</string>
+<string name="player_source_playing">"قيد التشغيل"</string>
+<string name="player_source_resumes_at" formatted="true">"التبديل يحافظ على موضعك: يُستأنف عند %1$s"</string>
+<string name="player_source_retry">"إعادة المحاولة"</string>
+<string name="player_source_switch">"تبديل"</string>
 <string name="player_speed">"سرعة اللاعب"</string>
 <string name="player_speed_text_format" formatted="true">"سرعة(%.2fx)"</string>
 <string name="player_subtitles_settings">"ترجمات"</string>

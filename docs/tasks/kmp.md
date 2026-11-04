@@ -1784,7 +1784,7 @@ The other 21 were triaged by hand and not independently verified; those fixed we
 
 - Departures from the artboards are listed in `DetailScreenTv`'s KDoc: text buttons (icon pack undecided), no nav rail,
   bookmark, cast rail or More like this, episodes in the cast slot, no live per-extractor rows in 7c.
-- Source and audio selectors (7e), resume, watch progress, focus restored to the activated item on back. Subtitles came in `KMP-25`.
+- The audio selector (7e; the source selector came in `KMP-29`), resume, watch progress, focus restored to the activated item on back. Subtitles came in `KMP-25`.
 - **Screenshot cases.** `DetailScreenTvPreviews` holds 7 pinned states. `:core:screenshot` cannot render on this
   toolchain (`DEC-10`), so nothing guards them yet. No preview exists for the player, which needs libVLC.
 - Function-size rule: `PlayerScreen` and `TitlePage` exceed the 40-line limit. Reported, not split.
@@ -2966,3 +2966,110 @@ listened. The measurement was of what libVLC reports, on a silent file, and the 
 
 **Strings:** `player_mute`, `player_unmute`, in all 62 directories, all machine translated and not reviewed by a native
 speaker; `qt` uses only words from its own file. Eighth move of the oracle baseline.
+
+## KMP-31 — Picture size, and the player's controls brought back to artboard 7d · **measured 2026-11-04**
+
+**Status:** done · #119. **Owner's request 2026-11-04:** "option to set the stretch mode, fill screen, fill width with
+maintaining aspect ratio, original aspect ratio", and then "are you following design??".
+
+**Picture size:** Original aspect ratio (all of the picture, with bars), Fill width (own shape, top and bottom cut off
+if the picture is taller), Fill screen (stretched to every edge, so its shape can change). R, or the selector. Shared by
+every stream and kept in `~/.cloudstream4/picture-fit`. A cue is placed on the part of the picture that can be seen.
+
+**The answer to the owner's question was no, and these are what it found.** `KMP-27` and `KMP-28` were built from the
+tokens and `docs/plans/desktop-design.md`, without opening `design/TV Detail Player.dc.html` or the semantics table in
+`Design System v2`:
+
+| Design says | What had shipped | Now |
+|---|---|---|
+| `live` red is playback state only | The volume rule was red (#118) | Ink |
+| Selectors read out what is playing; "a generic icon is exactly what makes today's HUD unanswerable" (7d) | Subtitles were a speech bubble, in the transport row | `PlayerSelector`, value over label, in its own row |
+| Selectors stay mounted through failure (7d) | Nothing but the failure text and Back | The row stays; Subtitles leaves only because a failed stream has none to show |
+| Selected = raised fill + ink label + muted marker; white is focus only | A white tick and no fill | As the design says |
+
+**Not brought in line:** 7d's Speed selector, buffered band, BUFFERING badge and skip intro; 7e's right-hand panel with a
+Done row, because `docs/plans/desktop-design.md` already chose a short list above the controls; Source and Audio
+selectors, which `KMP-29` and `KMP-30` add to this row.
+
+**Measured:** `:desktopApp:jvmTest` 328 tests, 0 failures. Each fit against a wide and a tall frame, by pixels and read as
+PNGs at 800 x 600 and 800 x 450. `Picture size` is 4 new keys in all 62 directories, machine translated and not reviewed
+by a native speaker; `qt` uses only words from its own file. Ninth move of the oracle baseline.
+
+**Not measured:** a real film in each fit in a live window. Fill width on a tall picture cuts it, by the owner's wording.
+
+## KMP-30 — Audio tracks in the desktop player, and the volume kept between launches · **measured 2026-11-04**
+
+**Status:** done · #120.
+
+**Volume.** One line in `~/.cloudstream4/player-volume`, `70` or `70 muted`. Anything else reads as never having chosen, and
+reading writes nothing. A write waits 500 ms and writes the latest, so a drag is one write and not one per pixel, and
+quitting inside that wait loses that one change. **Mute is kept on purpose:** silence is visible (the crossed speaker is on
+screen while a stream starts) and one key fixes it, whereas an unasked-for full level cannot be taken back.
+
+**Audio tracks.** A selector in the player's selector row, shown only with more than one track, reads out what is playing as
+artboard 7d asks: `English · 5.1 · EAC3` over its caption. It and A open the list; pressing a row commits (7e).
+
+Measured through the real sandboxed host, on silent `mkv` files generated with the `ffmpeg` already on this machine and not
+committed: one with three AAC tracks (one titled with a U+202E override), one with one track, and one with a separate audio
+file as `:input-slave`. The probes were not committed.
+
+| Measured | Result |
+|---|---|
+| When libVLC lists tracks | Not at play: the list arrives 1.1 to 4.7 s after play, so the host polls every 250 ms and the selector appears then |
+| The two libVLC lists share ids | Yes: channels and codec from `media().info()` matched the descriptions by id on all tracks, `2/mp4a` and `1/mp4a` |
+| Readout on the three-track file | `English · 2.0 · AAC` + title `Original`; `German · 2.0 · AAC`; `Hindi · 1.0 · AAC` + title `Commentary gnp.exe` |
+| A U+202E override in a title | Reached the host raw and was stripped by the app's reader |
+| `setTrack` as soon as listed | Accepted (returned the id), and the host reported it within about 250 ms |
+| Position across a switch, 3 runs | 1,504, 1,487 and 1,202 ms of position in about 1,500 ms of wall time, 0 buffering flips, frames kept coming |
+| A wrong id, sent before play and after | Ignored, selection unchanged |
+| The chosen track after a 5 s seek | Unchanged |
+| A separate audio file (`audioUrl`) | Plays, and lists as 2 tracks with the separate one selected by libVLC itself |
+| One track | No selector; the list had 1 entry |
+
+**Not measured.** Whether the tracks actually sound different, because the files are silent and nobody has listened. 5.1,
+EAC3, DTS and TrueHD: the codec table is written from libVLC's codes but only AAC went through it. HLS and DASH streams,
+whose audio renditions may list differently or later. The `:input-slave` run's final position (2,727 ms) was lower than the
+others' after the same 5 s seek; that was not looked into and may be a seek on a slaved file rather than anything here.
+
+**Not built:** language preference across streams, as `subtitle-language` has; a remembered track per title. Departures from
+7e are listed in `docs/plans/desktop-design.md`.
+
+Reused `audio_tracks`, so no new string and no baseline move. It exists in 41 of the 62 directories and falls back to English
+in the rest.
+
+## KMP-29 — Choosing another source inside the desktop player · **measured 2026-11-04**
+
+**Status:** done · #121. Someone whose link fails or stutters had to leave playback to try another.
+
+The Source selector, first in the selectors row of `KMP-31`, reads out what is playing (`VidSrc Pro · 1080p` over
+`Source`, artboard 7d) and stays through loading and failure, as 7d's error state requires. It and S open the list of what
+the title's search has found so far. Pressing a row commits it, with no Apply (7e). New links join the list when it is next
+opened, because rows must not slide under a pointer. Every link on it has been through the same URL policy as before,
+because the list is `DetailState.links`, which `DesktopDetailSource` filters.
+
+A switch starts a new host for the new link, releases the old one, and keeps the screen, so by construction the subtitle
+track, full screen, the volume and the picture size stay as they were. No test drives that, because `PlayerScreen` needs a
+real `VlcPlayer` and the tests drive `PlayerContent`. `ResumeSeek` starts the new stream at the old one's position, and
+reports nothing to `WatchRecorder` until it is about there, so a slow start cannot overwrite the person's place. That
+also applies to a resume from the library, which until now reported from zero. It does not report at all if a stream
+cannot seek, and then the saved position stays where it was.
+
+| Measured, through two real sandboxed hosts, silent 120 s WAVs, a probe that was not committed, 2 runs | Result |
+|---|---|
+| Switch from about 32,200 ms | the new host reached about 32,400 ms in 2.6 to 3.0 s, its first reported position |
+| Status reports kept out of the record on the way there | 4 of 11 or 12 |
+| A further switch to a link that fails, position 0 | the next one would still start at about 34,000 ms |
+
+`PlayerScreenTest` covers the selector through failure and loading, the commit, the current row, Escape's order, a click
+outside, and `ResumeSeek`. The rendering of the list, of a failed row and of the failed state were read as PNGs. The render
+also caught `%s` printed literally, because Compose resources fill only `%1$s`.
+
+**Not measured:** a real switch in a live window, with video, or a person watching it; how long a switch takes between
+two remote streams; subtitle timing during the switch, which reads the new host's position and so goes blank until the seek lands.
+
+**Departures from 7e** are in `docs/plans/desktop-design.md`.
+
+**Strings:** `player_source_playing`, `player_source_switch`, `player_source_retry`, `player_source_resumes_at`, in all 62
+directories, all machine translated and not reviewed by a native speaker; `qt` uses only words from its own file. Tenth
+move of the oracle baseline. The selector's label reuses `video_source`, which 9 directories do not have, so they fall back.
+

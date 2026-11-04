@@ -367,6 +367,10 @@
 <string name="play_with_app_name">Lejátszás CloudStreamel</string>
 <string name="player_enter_fullscreen">Teljes képernyő</string>
 <string name="player_exit_fullscreen">Kilépés a teljes képernyős módból</string>
+<string name="player_fit_original">Eredeti képarány</string>
+<string name="player_fit_screen">Képernyő kitöltése</string>
+<string name="player_fit_title">Képméret</string>
+<string name="player_fit_width">Szélesség kitöltése</string>
 <string name="player_load_one_subtitle_online">Töltse be az első létezőt</string>
 <string name="player_load_subtitles">Betöltés fájlból</string>
 <string name="player_load_subtitles_online">Betöltés az internetről</string>
@@ -378,6 +382,10 @@
 <string name="player_settings_select_cast_device">Válassza ki a lejátszó eszközt</string>
 <string name="player_size_settings">Lejátszó átméretezése gomb</string>
 <string name="player_size_settings_des">Fekete szegélyek eltávolítása</string>
+<string name="player_source_playing">Lejátszás</string>
+<string name="player_source_resumes_at">A váltás megőrzi a pozíciót: folytatás innen: %1$s</string>
+<string name="player_source_retry">Újra</string>
+<string name="player_source_switch">Váltás</string>
 <string name="player_speed">Lejátszás sebessége</string>
 <string name="player_speed_text_format">Sebesség (%.2fx)</string>
 <string name="player_subtitles_settings">Feliratok</string>

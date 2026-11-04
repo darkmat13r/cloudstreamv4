@@ -418,6 +418,10 @@
 <string name="play_with_app_name">"CloudStream ile oynat"</string>
 <string name="player_enter_fullscreen">"Tam ekrana geç"</string>
 <string name="player_exit_fullscreen">"Tam ekrandan çık"</string>
+<string name="player_fit_original">"Orijinal en boy oranı"</string>
+<string name="player_fit_screen">"Ekranı doldur"</string>
+<string name="player_fit_title">"Görüntü boyutu"</string>
+<string name="player_fit_width">"Genişliği doldur"</string>
 <string name="player_is_live">"Canlı"</string>
 <string name="player_load_one_subtitle_online">"İlk kullanılabiliri yükle"</string>
 <string name="player_load_subtitles">"Dosyadan yükle"</string>
@@ -432,6 +436,10 @@
 <string name="player_settings_select_cast_device">"Yansıtılacak cihaz seç"</string>
 <string name="player_size_settings">"Oynatıcı yeniden boyutlandırma butonu"</string>
 <string name="player_size_settings_des">"Siyah kenarlıkları kaldır"</string>
+<string name="player_source_playing">"Oynatılıyor"</string>
+<string name="player_source_resumes_at" formatted="true">"Değiştirmek konumunuzu korur: %1$s konumundan devam eder"</string>
+<string name="player_source_retry">"Yeniden dene"</string>
+<string name="player_source_switch">"Değiştir"</string>
 <string name="player_speed">"Oynatıcı Hızı"</string>
 <string name="player_speed_text_format" formatted="true">"Hız (%.2fx)"</string>
 <string name="player_subtitles_settings">"Altyazılar"</string>

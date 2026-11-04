@@ -36,6 +36,8 @@ line boxes.
 | Source list appears when complete | It grows as links arrive: a new link joins the end, the header counts them and says `Loading…` until the search ends, and nothing takes focus (`BUG-19`) | Direct manipulation: what is under the pointer stays there, and the words take no height, so finishing moves nothing |
 | Episodes behind a selector | On the page | A window has the room |
 | Full-width player scrim | Floating controls, at most 720 wide | The picture stays clear, and play stays near its timeline |
+| 7d's four-row stack of 96-tall cells | Two rows in that surface: transport with the seek track, then selectors | The same order and the same readouts, at a pointer's size. Selectors say what is playing, value over label, and stay through loading and failure |
+| Volume, full screen, picture size (not in 7d, which is a TV with its own remote) | Volume in the transport row, the other two at the end of the selector row | The level is drawn in ink, because `live` is playback state only |
 | Tap to seek | The track follows the pointer 1:1, and seeks once on release | Direct manipulation; a seek is a network request |
 | Subtitle track menu | A short list floating above the control that opened it, in the controls' column; C opens it, a click outside closes it | It stays beside the timeline, and the picture keeps playing around it |
 | Fixed subtitle band | Cues go where the file asks, and lift clear of the controls while they show | A cue never hides behind a control, and nothing moves when the controls are gone |
@@ -64,11 +66,43 @@ it is the one thing that is not a destination. Neither Allow nor Keep off is the
 this screen does not nudge. Text the plugin controls is smaller, muted and left to right, so it cannot pass for the app's own voice.
 See `KMP-24`.
 
+## Source selector
+
+Artboards 7d and 7e, with these departures, each because a desktop player is not a 10-foot one:
+
+| 7e | Here | Why |
+|---|---|---|
+| A 560 panel the full height of the screen, over the video | The list floating above the controls, as the other two are | The picture stays visible, and one kind of list is easier to learn than two |
+| A pinned Done row | None | Pressing a row commits, so Done has nothing to confirm. Escape, S and a click elsewhere close it |
+| A `Quality profile` row | None | There is no quality profile on desktop |
+| `1920×1080 decoded` under the row playing | Nothing | The player does not read that out yet |
+| `keeps 42:13` under each row, and `4 sources · all shown` | One line at the head: "Switching keeps your position: resumes at 42:13" | The same words on every row say nothing more. The count is not a decision anyone makes here |
+| `failed · code 2004`, and `live` on that reason line | `Source error`, muted | There is no code to show, and `live` is kept to playback progress here, which is tighter than the design file's own note: that note allows it on this line |
+
+Selected is the raised fill, the ink label and the muted marker, and each row says what pressing it does (`Playing`, `Switch`,
+`Retry`). 7d's error is a banner over the HUD; here it is the words in the transport row, above the selector.
+
 ## Motion
 
 `DesktopMotion`: a critically damped spring with a 0.3 s response, so no overshoot. A spring starts from the
 value on screen, so an interrupted hover never jumps. Feedback arrives on press, not release. Only a card's
 art scales, because scaling words makes them shimmer.
+
+## Audio tracks, against artboards 7d and 7e
+
+The selector reads out what is playing (`English · 2.0 · AAC`), and pressing a row commits without touching position or
+buffer, as drawn. The selected row is a raised fill, an ink label and a muted marker; white stays focus only. See `KMP-30`.
+Departures from 7e, each deliberate:
+
+- **The list floats above the controls**, as the subtitle list does, rather than a side panel 560 from the edge. It is a
+  window, not a 10-foot screen, and the video stays in view.
+- **No trailing verb** (`On`, `Use`) and **no `Playing` tag.** Those are new strings for words the row's own state already
+  says, so the state is the fill, the label and the marker. 7e marks the active row three ways because of a filtered source
+  list returning -1; nothing filters audio tracks.
+- **No pinned Done.** A press commits and closes, and Escape or a click elsewhere closes with nothing pending.
+- **The marker is the pack's check glyph**, not an 8 px mark, as the subtitle list already draws it.
+- **No Video row.** Choosing among video tracks is not built.
+- **A line under a row** is only a file's own title, in place of 7e's explanatory `b` line.
 
 ## Not done
 

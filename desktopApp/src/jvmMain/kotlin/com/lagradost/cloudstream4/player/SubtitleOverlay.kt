@@ -57,6 +57,7 @@ import kotlin.math.roundToInt
  *
  * @param pictureSize the shape the frame is drawn in, or null before one has arrived.
  * @param topInset,bottomInset what the HUD covers now. Cues keep clear of it, so they lift as it appears.
+ * @param fit how the frame is drawn, so a cue is placed on the part of the picture that can be seen.
  */
 @Composable
 internal fun SubtitleOverlay(
@@ -66,12 +67,13 @@ internal fun SubtitleOverlay(
     bottomInset: Dp,
     modifier: Modifier = Modifier,
     style: CaptionStyle = CaptionStyle(),
+    fit: PictureFit = PictureFit.ORIGINAL,
 ) {
     if (cues.isEmpty()) return
     BoxWithConstraints(modifier.fillMaxSize()) {
         val density = LocalDensity.current
         val box = IntSize(constraints.maxWidth, constraints.maxHeight)
-        val picture = pictureRect(box, pictureSize)
+        val picture = pictureRect(box, pictureSize, fit)
         val margin = with(density) { DesktopDimens.WindowMargin.roundToPx() }
         val region = IntRect(
             left = picture.left + margin,
@@ -103,15 +105,20 @@ internal fun SubtitleOverlay(
     }
 }
 
-/** Where a frame sits in [box] under `ContentScale.Fit`: the whole box until one has arrived. */
-internal fun pictureRect(box: IntSize, picture: IntSize?): IntRect {
-    if (picture == null || picture.width <= 0 || picture.height <= 0) return IntRect(0, 0, box.width, box.height)
-    val scale = minOf(box.width.toFloat() / picture.width, box.height.toFloat() / picture.height)
+/**
+ * What can be seen of a frame in [box] under [fit]: the whole box until one has arrived. A picture cut off by the window
+ * stops at its edge, because a cue placed on the part that was cut off could not be read.
+ */
+internal fun pictureRect(box: IntSize, picture: IntSize?, fit: PictureFit = PictureFit.ORIGINAL): IntRect {
+    if (fit == PictureFit.FILL_SCREEN || picture == null || picture.width <= 0 || picture.height <= 0) {
+        return IntRect(0, 0, box.width, box.height)
+    }
+    val scale = fit.scaleFor(box, picture)
     val width = (picture.width * scale).roundToInt()
     val height = (picture.height * scale).roundToInt()
     val left = (box.width - width) / 2
     val top = (box.height - height) / 2
-    return IntRect(left, top, left + width, top + height)
+    return IntRect(left, top, left + width, top + height).intersect(IntRect(0, 0, box.width, box.height))
 }
 
 private fun constraintsFor(placement: CuePlacement, region: IntRect, picture: IntRect): Constraints {

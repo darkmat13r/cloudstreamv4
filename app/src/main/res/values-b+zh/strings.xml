@@ -418,6 +418,10 @@
 <string name="play_with_app_name">"使用 CloudStream 播放"</string>
 <string name="player_enter_fullscreen">"进入全屏模式"</string>
 <string name="player_exit_fullscreen">"退出全屏模式"</string>
+<string name="player_fit_original">"原始宽高比"</string>
+<string name="player_fit_screen">"填满屏幕"</string>
+<string name="player_fit_title">"画面大小"</string>
+<string name="player_fit_width">"填满宽度"</string>
 <string name="player_is_live">"播放中"</string>
 <string name="player_load_one_subtitle_online">"加载第一个可用的字幕"</string>
 <string name="player_load_subtitles">"从文件加载"</string>
@@ -432,6 +436,10 @@
 <string name="player_settings_select_cast_device">"选择投射设备"</string>
 <string name="player_size_settings">"播放器画面调整按钮"</string>
 <string name="player_size_settings_des">"移除黑色边框"</string>
+<string name="player_source_playing">"正在播放"</string>
+<string name="player_source_resumes_at" formatted="true">"切换会保留播放位置：从 %1$s 继续"</string>
+<string name="player_source_retry">"重试"</string>
+<string name="player_source_switch">"切换"</string>
 <string name="player_speed">"播放速度"</string>
 <string name="player_speed_text_format" formatted="true">"速度（%.2fx）"</string>
 <string name="player_subtitles_settings">"字幕"</string>
