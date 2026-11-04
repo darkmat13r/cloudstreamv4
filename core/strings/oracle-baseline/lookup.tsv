@@ -445,6 +445,10 @@ values-b+af	string	play_trailer_button	-	Speel Lokprent
 values-b+af	string	play_with_app_name	-	Speel met CloudStream
 values-b+af	string	player_enter_fullscreen	-	Gaan na volskerm
 values-b+af	string	player_exit_fullscreen	-	Verlaat volskerm
+values-b+af	string	player_fit_original	-	Oorspronklike beeldverhouding
+values-b+af	string	player_fit_screen	-	Vul skerm
+values-b+af	string	player_fit_title	-	Beeldgrootte
+values-b+af	string	player_fit_width	-	Vul breedte
 values-b+af	string	player_is_live	-	Live
 values-b+af	string	player_load_one_subtitle_online	-	Load first available
 values-b+af	string	player_load_subtitles	-	Load from file
@@ -1277,6 +1281,10 @@ values-b+am	string	play_trailer_button	-	የፊልም ማስታወቂያ አጫ�
 values-b+am	string	play_with_app_name	-	በCloudStream አጫውት
 values-b+am	string	player_enter_fullscreen	-	ወደ ሙሉ ማያ ገፅ ግባ
 values-b+am	string	player_exit_fullscreen	-	ከሙሉ ማያገጽ ውጣ
+values-b+am	string	player_fit_original	-	የመጀመሪያ ምጥጥነ ገጽታ
+values-b+am	string	player_fit_screen	-	ማያውን ሙላ
+values-b+am	string	player_fit_title	-	የምስል መጠን
+values-b+am	string	player_fit_width	-	ስፋቱን ሙላ
 values-b+am	string	player_is_live	-	Live
 values-b+am	string	player_load_one_subtitle_online	-	Load first available
 values-b+am	string	player_load_subtitles	-	Load from file
@@ -2109,6 +2117,10 @@ values-b+apc	string	play_trailer_button	-	مشّي المقطع الدعائي
 values-b+apc	string	play_with_app_name	-	مَشّي بـ"كلود ستريم"
 values-b+apc	string	player_enter_fullscreen	-	فوت عالشاشة الكاملة
 values-b+apc	string	player_exit_fullscreen	-	اطلع من الشاشة الكاملة
+values-b+apc	string	player_fit_original	-	نسبة العرض الأصلية
+values-b+apc	string	player_fit_screen	-	عبّي الشاشة
+values-b+apc	string	player_fit_title	-	حجم الصورة
+values-b+apc	string	player_fit_width	-	عبّي العرض
 values-b+apc	string	player_is_live	-	لايڤ
 values-b+apc	string	player_load_one_subtitle_online	-	أفّي اللودينگ تلقائيًا
 values-b+apc	string	player_load_subtitles	-	فتاح من ملف
@@ -2953,6 +2965,10 @@ values-b+ar	string	play_trailer_button	-	تشغيل المقطع الدعائي
 values-b+ar	string	play_with_app_name	-	تشغيل بواسطة CloudStream
 values-b+ar	string	player_enter_fullscreen	-	دخول إلى وضع ملء الشاشة
 values-b+ar	string	player_exit_fullscreen	-	خروج من وضع ملء الشاشة
+values-b+ar	string	player_fit_original	-	نسبة العرض إلى الارتفاع الأصلية
+values-b+ar	string	player_fit_screen	-	ملء الشاشة
+values-b+ar	string	player_fit_title	-	حجم الصورة
+values-b+ar	string	player_fit_width	-	ملء العرض
 values-b+ar	string	player_is_live	-	البث قائم
 values-b+ar	string	player_load_one_subtitle_online	-	تحميل أول ترجمة متاحة
 values-b+ar	string	player_load_subtitles	-	إختيار ملف
@@ -3789,6 +3805,10 @@ values-b+ars	string	play_trailer_button	-	تشغيل المقطع الدعائي
 values-b+ars	string	play_with_app_name	-	فتح مع كلاودستريم
 values-b+ars	string	player_enter_fullscreen	-	الدخول إلى وضع ملء الشاشة
 values-b+ars	string	player_exit_fullscreen	-	الخروج من وضع ملء الشاشة
+values-b+ars	string	player_fit_original	-	نسبة العرض إلى الارتفاع الأصلية
+values-b+ars	string	player_fit_screen	-	ملء الشاشة
+values-b+ars	string	player_fit_title	-	حجم الصورة
+values-b+ars	string	player_fit_width	-	ملء العرض
 values-b+ars	string	player_is_live	-	Live
 values-b+ars	string	player_load_one_subtitle_online	-	Load first available
 values-b+ars	string	player_load_subtitles	-	Load from file
@@ -4621,6 +4641,10 @@ values-b+as	string	play_trailer_button	-	ট্ৰেইলাৰ প্লে �
 values-b+as	string	play_with_app_name	-	CloudStreamৰে প্লে কৰক
 values-b+as	string	player_enter_fullscreen	-	সম্পূৰ্ণ স্ক্ৰীনলৈ যাওক
 values-b+as	string	player_exit_fullscreen	-	সম্পূৰ্ণ স্ক্ৰীনৰ পৰা ওলাওক
+values-b+as	string	player_fit_original	-	মূল আকাৰ অনুপাত
+values-b+as	string	player_fit_screen	-	স্ক্ৰীন পূৰণ কৰক
+values-b+as	string	player_fit_title	-	ছবিৰ আকাৰ
+values-b+as	string	player_fit_width	-	প্ৰস্থ পূৰণ কৰক
 values-b+as	string	player_is_live	-	Live
 values-b+as	string	player_load_one_subtitle_online	-	প্ৰথম উপলব্ধটো লোড কৰক
 values-b+as	string	player_load_subtitles	-	ফাইলৰ পৰা ল'ড কৰক
@@ -5453,6 +5477,10 @@ values-b+az	string	play_trailer_button	-	Fraqmanı Oynat
 values-b+az	string	play_with_app_name	-	CloudStream ilə oynat
 values-b+az	string	player_enter_fullscreen	-	Tam ekrana daxil olun
 values-b+az	string	player_exit_fullscreen	-	Tam ekrandan çıxın
+values-b+az	string	player_fit_original	-	Orijinal nisbət
+values-b+az	string	player_fit_screen	-	Ekranı doldur
+values-b+az	string	player_fit_title	-	Şəkil ölçüsü
+values-b+az	string	player_fit_width	-	Eni doldur
 values-b+az	string	player_is_live	-	Live
 values-b+az	string	player_load_one_subtitle_online	-	Load first available
 values-b+az	string	player_load_subtitles	-	Load from file
@@ -6291,6 +6319,10 @@ values-b+be	string	play_trailer_button	-	Прайграць трэйлер
 values-b+be	string	play_with_app_name	-	Прайграць праз CloudStream
 values-b+be	string	player_enter_fullscreen	-	Уключыць поўнаэкранны рэжым
 values-b+be	string	player_exit_fullscreen	-	Выключыць поўнаэкранны рэжым
+values-b+be	string	player_fit_original	-	Зыходныя прапорцыі
+values-b+be	string	player_fit_screen	-	Запоўніць экран
+values-b+be	string	player_fit_title	-	Памер выявы
+values-b+be	string	player_fit_width	-	Запоўніць шырыню
 values-b+be	string	player_is_live	-	Ужывую
 values-b+be	string	player_load_one_subtitle_online	-	Спампаваць першыя даступныя
 values-b+be	string	player_load_subtitles	-	Загрузіць з файла
@@ -7123,6 +7155,10 @@ values-b+bg	string	play_trailer_button	-	Пусни трейлър
 values-b+bg	string	play_with_app_name	-	Пусни с CloudStream
 values-b+bg	string	player_enter_fullscreen	-	Вход в цял екран
 values-b+bg	string	player_exit_fullscreen	-	Изход от цял екран
+values-b+bg	string	player_fit_original	-	Оригинално съотношение
+values-b+bg	string	player_fit_screen	-	Запълване на екрана
+values-b+bg	string	player_fit_title	-	Размер на картината
+values-b+bg	string	player_fit_width	-	Запълване по ширина
 values-b+bg	string	player_is_live	-	Live
 values-b+bg	string	player_load_one_subtitle_online	-	Зареди първия наличен
 values-b+bg	string	player_load_subtitles	-	Зареди от файл
@@ -7955,6 +7991,10 @@ values-b+bn	string	play_trailer_button	-	ট্রেইলার চালু �
 values-b+bn	string	play_with_app_name	-	ক্লাউডস্ট্রিম দিয়ে চালান
 values-b+bn	string	player_enter_fullscreen	-	ফুল-স্ক্রিন মোডে দেখুন
 values-b+bn	string	player_exit_fullscreen	-	ফুল-স্ক্রিন মোড ছেড়ে বেরোন
+values-b+bn	string	player_fit_original	-	আসল অনুপাত
+values-b+bn	string	player_fit_screen	-	স্ক্রিন পূরণ করুন
+values-b+bn	string	player_fit_title	-	ছবির আকার
+values-b+bn	string	player_fit_width	-	প্রস্থ পূরণ করুন
 values-b+bn	string	player_is_live	-	Live
 values-b+bn	string	player_load_one_subtitle_online	-	Load first available
 values-b+bn	string	player_load_subtitles	-	Load from file
@@ -8788,6 +8828,10 @@ values-b+ca	string	play_trailer_button	-	Reprodueix tràiler
 values-b+ca	string	play_with_app_name	-	Reprodueix amb CloudStream
 values-b+ca	string	player_enter_fullscreen	-	Entra a la pantalla completa
 values-b+ca	string	player_exit_fullscreen	-	Surt de la pantalla completa
+values-b+ca	string	player_fit_original	-	Proporció original
+values-b+ca	string	player_fit_screen	-	Omple la pantalla
+values-b+ca	string	player_fit_title	-	Mida de la imatge
+values-b+ca	string	player_fit_width	-	Omple l’amplada
 values-b+ca	string	player_is_live	-	Live
 values-b+ca	string	player_load_one_subtitle_online	-	Carrega el primer disponible
 values-b+ca	string	player_load_subtitles	-	Carrega des del fitxer
@@ -9620,6 +9664,10 @@ values-b+ckb	string	play_trailer_button	-	Play Trailer
 values-b+ckb	string	play_with_app_name	-	Play with CloudStream
 values-b+ckb	string	player_enter_fullscreen	-	چوونە ناو پڕ بە شاشە
 values-b+ckb	string	player_exit_fullscreen	-	دەرچوون لە پڕ بە شاشە
+values-b+ckb	string	player_fit_original	-	ڕێژەی ڕەسەن
+values-b+ckb	string	player_fit_screen	-	پڕکردنی شاشە
+values-b+ckb	string	player_fit_title	-	قەبارەی وێنە
+values-b+ckb	string	player_fit_width	-	پڕکردنی پانی
 values-b+ckb	string	player_is_live	-	Live
 values-b+ckb	string	player_load_one_subtitle_online	-	Load first available
 values-b+ckb	string	player_load_subtitles	-	Load from file
@@ -10460,6 +10508,10 @@ values-b+cs	string	play_trailer_button	-	Přehrát trailer
 values-b+cs	string	play_with_app_name	-	Přehrát s CloudStream
 values-b+cs	string	player_enter_fullscreen	-	Přejít do režimu celé obrazovky
 values-b+cs	string	player_exit_fullscreen	-	Ukončit režim celé obrazovky
+values-b+cs	string	player_fit_original	-	Původní poměr stran
+values-b+cs	string	player_fit_screen	-	Vyplnit obrazovku
+values-b+cs	string	player_fit_title	-	Velikost obrazu
+values-b+cs	string	player_fit_width	-	Vyplnit šířku
 values-b+cs	string	player_is_live	-	Živě
 values-b+cs	string	player_load_one_subtitle_online	-	Načíst první dostupné
 values-b+cs	string	player_load_subtitles	-	Načíst ze souboru
@@ -11292,6 +11344,10 @@ values-b+de	string	play_trailer_button	-	Trailer abspielen
 values-b+de	string	play_with_app_name	-	Mit CloudStream abspielen
 values-b+de	string	player_enter_fullscreen	-	Vollbild aktivieren
 values-b+de	string	player_exit_fullscreen	-	Vollbild beenden
+values-b+de	string	player_fit_original	-	Originales Seitenverhältnis
+values-b+de	string	player_fit_screen	-	Bildschirm ausfüllen
+values-b+de	string	player_fit_title	-	Bildgröße
+values-b+de	string	player_fit_width	-	Breite ausfüllen
 values-b+de	string	player_is_live	-	Live
 values-b+de	string	player_load_one_subtitle_online	-	Erste verfügbare laden
 values-b+de	string	player_load_subtitles	-	Aus Datei laden
@@ -12124,6 +12180,10 @@ values-b+el	string	play_trailer_button	-	Αναπαραγωγή τρέιλερ
 values-b+el	string	play_with_app_name	-	Άνοιγμα με CloudStream
 values-b+el	string	player_enter_fullscreen	-	Πλήρης οθόνη
 values-b+el	string	player_exit_fullscreen	-	Έξοδος από πλήρη οθόνη
+values-b+el	string	player_fit_original	-	Αρχική αναλογία
+values-b+el	string	player_fit_screen	-	Γέμισμα οθόνης
+values-b+el	string	player_fit_title	-	Μέγεθος εικόνας
+values-b+el	string	player_fit_width	-	Γέμισμα πλάτους
 values-b+el	string	player_is_live	-	Live
 values-b+el	string	player_load_one_subtitle_online	-	Φορτώστε το πρώτο διαθέσιμο
 values-b+el	string	player_load_subtitles	-	Φόρτωση από αρχείο
@@ -12956,6 +13016,10 @@ values-b+eo	string	play_trailer_button	-	Ludi Antaŭfilmon
 values-b+eo	string	play_with_app_name	-	Ludi per CloudStream
 values-b+eo	string	player_enter_fullscreen	-	Eniri plenekranan reĝimon
 values-b+eo	string	player_exit_fullscreen	-	Eliri el plenekrana reĝimo
+values-b+eo	string	player_fit_original	-	Originala proporcio
+values-b+eo	string	player_fit_screen	-	Plenigi ekranon
+values-b+eo	string	player_fit_title	-	Bildgrando
+values-b+eo	string	player_fit_width	-	Plenigi larĝon
 values-b+eo	string	player_is_live	-	Live
 values-b+eo	string	player_load_one_subtitle_online	-	Load first available
 values-b+eo	string	player_load_subtitles	-	Load from file
@@ -13792,6 +13856,10 @@ values-b+es	string	play_trailer_button	-	Reproducir tráiler
 values-b+es	string	play_with_app_name	-	Reproducir con Cloudstream
 values-b+es	string	player_enter_fullscreen	-	Activar pantalla completa
 values-b+es	string	player_exit_fullscreen	-	Salir de pantalla completa
+values-b+es	string	player_fit_original	-	Relación de aspecto original
+values-b+es	string	player_fit_screen	-	Llenar pantalla
+values-b+es	string	player_fit_title	-	Tamaño de imagen
+values-b+es	string	player_fit_width	-	Ajustar al ancho
 values-b+es	string	player_is_live	-	En Vivo
 values-b+es	string	player_load_one_subtitle_online	-	Cargar primero disponible
 values-b+es	string	player_load_subtitles	-	Cargar desde archivo
@@ -14624,6 +14692,10 @@ values-b+fa	string	play_trailer_button	-	پخش تریلر
 values-b+fa	string	play_with_app_name	-	پخش با CloudStream
 values-b+fa	string	player_enter_fullscreen	-	ورود به حالت تمام‌صفحه
 values-b+fa	string	player_exit_fullscreen	-	خروج از حالت تمام‌صفحه
+values-b+fa	string	player_fit_original	-	نسبت تصویر اصلی
+values-b+fa	string	player_fit_screen	-	پر کردن صفحه
+values-b+fa	string	player_fit_title	-	اندازه تصویر
+values-b+fa	string	player_fit_width	-	پر کردن عرض
 values-b+fa	string	player_is_live	-	Live
 values-b+fa	string	player_load_one_subtitle_online	-	Load first available
 values-b+fa	string	player_load_subtitles	-	Load from file
@@ -15456,6 +15528,10 @@ values-b+fil	string	play_trailer_button	-	Ipatugtog ang Trailer
 values-b+fil	string	play_with_app_name	-	Ipatugtog sa CloudStream
 values-b+fil	string	player_enter_fullscreen	-	Mag-fullscreen
 values-b+fil	string	player_exit_fullscreen	-	Lumabas sa fullscreen
+values-b+fil	string	player_fit_original	-	Orihinal na aspect ratio
+values-b+fil	string	player_fit_screen	-	Punuin ang screen
+values-b+fil	string	player_fit_title	-	Laki ng larawan
+values-b+fil	string	player_fit_width	-	Punuin ang lapad
 values-b+fil	string	player_is_live	-	Live
 values-b+fil	string	player_load_one_subtitle_online	-	Load first available
 values-b+fil	string	player_load_subtitles	-	Load from file
@@ -16292,6 +16368,10 @@ values-b+fr	string	play_trailer_button	-	Lire la bande-annonce
 values-b+fr	string	play_with_app_name	-	Lire avec CloudStream
 values-b+fr	string	player_enter_fullscreen	-	Activer le mode plein écran
 values-b+fr	string	player_exit_fullscreen	-	Quitter le mode plein écran
+values-b+fr	string	player_fit_original	-	Proportions originales
+values-b+fr	string	player_fit_screen	-	Remplir l’écran
+values-b+fr	string	player_fit_title	-	Taille de la vidéo
+values-b+fr	string	player_fit_width	-	Remplir la largeur
 values-b+fr	string	player_is_live	-	Live
 values-b+fr	string	player_load_one_subtitle_online	-	Charger le premier disponible
 values-b+fr	string	player_load_subtitles	-	Charger depuis le fichier
@@ -17124,6 +17204,10 @@ values-b+gl	string	play_trailer_button	-	Reproducir Trailer
 values-b+gl	string	play_with_app_name	-	Reproducir con CloudStream
 values-b+gl	string	player_enter_fullscreen	-	Acceder a pantalla completa
 values-b+gl	string	player_exit_fullscreen	-	Saír de pantalla completa
+values-b+gl	string	player_fit_original	-	Proporción orixinal
+values-b+gl	string	player_fit_screen	-	Encher a pantalla
+values-b+gl	string	player_fit_title	-	Tamaño da imaxe
+values-b+gl	string	player_fit_width	-	Encher o ancho
 values-b+gl	string	player_is_live	-	Live
 values-b+gl	string	player_load_one_subtitle_online	-	Load first available
 values-b+gl	string	player_load_subtitles	-	Load from file
@@ -17956,6 +18040,10 @@ values-b+hi	string	play_trailer_button	-	ट्रेलर देखे
 values-b+hi	string	play_with_app_name	-	क्लाउडस्ट्रीम के साथ चलाएं
 values-b+hi	string	player_enter_fullscreen	-	फ़ुलस्क्रीन मोड पर देखें
 values-b+hi	string	player_exit_fullscreen	-	फ़ुलस्क्रीन मोड से बाहर निकलें
+values-b+hi	string	player_fit_original	-	मूल आस्पेक्ट अनुपात
+values-b+hi	string	player_fit_screen	-	स्क्रीन भरें
+values-b+hi	string	player_fit_title	-	चित्र का आकार
+values-b+hi	string	player_fit_width	-	चौड़ाई भरें
 values-b+hi	string	player_is_live	-	Live
 values-b+hi	string	player_load_one_subtitle_online	-	Load first available
 values-b+hi	string	player_load_subtitles	-	Load from file
@@ -18791,6 +18879,10 @@ values-b+hr	string	play_trailer_button	-	Pokreni trailer
 values-b+hr	string	play_with_app_name	-	Pokreni s CloudStreamom
 values-b+hr	string	player_enter_fullscreen	-	Otvaranje prikaza na cijelom zaslonu
 values-b+hr	string	player_exit_fullscreen	-	Zatvaranje prikaza na cijelom zaslonu
+values-b+hr	string	player_fit_original	-	Izvorni omjer
+values-b+hr	string	player_fit_screen	-	Ispuni zaslon
+values-b+hr	string	player_fit_title	-	Veličina slike
+values-b+hr	string	player_fit_width	-	Ispuni širinu
 values-b+hr	string	player_is_live	-	Uživo
 values-b+hr	string	player_load_one_subtitle_online	-	Učitaj prvi dostupni
 values-b+hr	string	player_load_subtitles	-	Učitaj iz datoteke
@@ -19623,6 +19715,10 @@ values-b+hu	string	play_trailer_button	-	Előzetes lejátszása
 values-b+hu	string	play_with_app_name	-	Lejátszás CloudStreamel
 values-b+hu	string	player_enter_fullscreen	-	Teljes képernyő
 values-b+hu	string	player_exit_fullscreen	-	Kilépés a teljes képernyős módból
+values-b+hu	string	player_fit_original	-	Eredeti képarány
+values-b+hu	string	player_fit_screen	-	Képernyő kitöltése
+values-b+hu	string	player_fit_title	-	Képméret
+values-b+hu	string	player_fit_width	-	Szélesség kitöltése
 values-b+hu	string	player_is_live	-	Live
 values-b+hu	string	player_load_one_subtitle_online	-	Töltse be az első létezőt
 values-b+hu	string	player_load_subtitles	-	Betöltés fájlból
@@ -20451,6 +20547,10 @@ values-b+in	string	play_trailer_button	-	Putar Cuplikan
 values-b+in	string	play_with_app_name	-	Putar di CloudStream
 values-b+in	string	player_enter_fullscreen	-	Masuk layar penuh
 values-b+in	string	player_exit_fullscreen	-	Keluar dari layar penuh
+values-b+in	string	player_fit_original	-	Rasio aspek asli
+values-b+in	string	player_fit_screen	-	Isi layar
+values-b+in	string	player_fit_title	-	Ukuran gambar
+values-b+in	string	player_fit_width	-	Isi lebar
 values-b+in	string	player_is_live	-	Live
 values-b+in	string	player_load_one_subtitle_online	-	Muat yang pertama tersedia
 values-b+in	string	player_load_subtitles	-	Muat dari file
@@ -21287,6 +21387,10 @@ values-b+it	string	play_trailer_button	-	Riproduci trailer
 values-b+it	string	play_with_app_name	-	Riproduci con CloudStream
 values-b+it	string	player_enter_fullscreen	-	Attiva schermo intero
 values-b+it	string	player_exit_fullscreen	-	Esci da schermo intero
+values-b+it	string	player_fit_original	-	Proporzioni originali
+values-b+it	string	player_fit_screen	-	Riempi schermo
+values-b+it	string	player_fit_title	-	Dimensione immagine
+values-b+it	string	player_fit_width	-	Riempi larghezza
 values-b+it	string	player_is_live	-	Live
 values-b+it	string	player_load_one_subtitle_online	-	Carica il primo disponibile
 values-b+it	string	player_load_subtitles	-	Carica da file
@@ -22120,6 +22224,10 @@ values-b+iw	string	play_trailer_button	-	הפעל טריילר
 values-b+iw	string	play_with_app_name	-	נגן עם קלאודסטרים
 values-b+iw	string	player_enter_fullscreen	-	כניסה למסך מלא
 values-b+iw	string	player_exit_fullscreen	-	יציאה ממסך מלא
+values-b+iw	string	player_fit_original	-	יחס גובה־רוחב מקורי
+values-b+iw	string	player_fit_screen	-	מילוי מסך
+values-b+iw	string	player_fit_title	-	גודל תמונה
+values-b+iw	string	player_fit_width	-	מילוי רוחב
 values-b+iw	string	player_is_live	-	Live
 values-b+iw	string	player_load_one_subtitle_online	-	Load first available
 values-b+iw	string	player_load_subtitles	-	טען מקובץ
@@ -22948,6 +23056,10 @@ values-b+ja	string	play_trailer_button	-	予告編を再生
 values-b+ja	string	play_with_app_name	-	CloudStreamで再生
 values-b+ja	string	player_enter_fullscreen	-	全画面表示に変更
 values-b+ja	string	player_exit_fullscreen	-	全画面表示を終了
+values-b+ja	string	player_fit_original	-	元のアスペクト比
+values-b+ja	string	player_fit_screen	-	画面全体に表示
+values-b+ja	string	player_fit_title	-	画像サイズ
+values-b+ja	string	player_fit_width	-	幅に合わせる
 values-b+ja	string	player_is_live	-	ライブ
 values-b+ja	string	player_load_one_subtitle_online	-	最初に利用可能なものを読み込む
 values-b+ja	string	player_load_subtitles	-	ファイルから読み込む
@@ -23780,6 +23892,10 @@ values-b+kn	string	play_trailer_button	-	ಟ್ರೈಲರ್ ಪ್ಲೇ ಮ�
 values-b+kn	string	play_with_app_name	-	ಕ್ಲೌಡ್ ಸ್ಟ್ರೀಮ್ ಇದರೊಂದಿಗೆ ಪ್ಲೇ ಮಾಡಿ
 values-b+kn	string	player_enter_fullscreen	-	ಫುಲ್‌ಸ್ಕ್ರೀನ್‌ಗೆ ಪ್ರವೇಶಿಸಿ
 values-b+kn	string	player_exit_fullscreen	-	ಫುಲ್‌ಸ್ಕ್ರೀನ್‌ನಿಂದ ನಿರ್ಗಮಿಸಿ
+values-b+kn	string	player_fit_original	-	ಮೂಲ ಅನುಪಾತ
+values-b+kn	string	player_fit_screen	-	ಸ್ಕ್ರೀನ್ ತುಂಬಿಸಿ
+values-b+kn	string	player_fit_title	-	ಚಿತ್ರದ ಗಾತ್ರ
+values-b+kn	string	player_fit_width	-	ಅಗಲ ತುಂಬಿಸಿ
 values-b+kn	string	player_is_live	-	Live
 values-b+kn	string	player_load_one_subtitle_online	-	Load first available
 values-b+kn	string	player_load_subtitles	-	Load from file
@@ -24609,6 +24725,10 @@ values-b+ko	string	play_trailer_button	-	예고편 재생
 values-b+ko	string	play_with_app_name	-	CloudStream으로 재생
 values-b+ko	string	player_enter_fullscreen	-	전체 화면으로 전환
 values-b+ko	string	player_exit_fullscreen	-	전체 화면 종료
+values-b+ko	string	player_fit_original	-	원본 화면 비율
+values-b+ko	string	player_fit_screen	-	화면 채우기
+values-b+ko	string	player_fit_title	-	화면 크기
+values-b+ko	string	player_fit_width	-	너비 맞춤
 values-b+ko	string	player_is_live	-	라이브
 values-b+ko	string	player_load_one_subtitle_online	-	사용 가능한 자막 불러오기
 values-b+ko	string	player_load_subtitles	-	파일에서 불러오기
@@ -25443,6 +25563,10 @@ values-b+lt	string	play_trailer_button	-	Paleisti anonsą
 values-b+lt	string	play_with_app_name	-	Paleisti su CloudStream
 values-b+lt	string	player_enter_fullscreen	-	Įjungti viso ekrano režimą
 values-b+lt	string	player_exit_fullscreen	-	Išjungti viso ekrano režimą
+values-b+lt	string	player_fit_original	-	Originalus kraštinių santykis
+values-b+lt	string	player_fit_screen	-	Užpildyti ekraną
+values-b+lt	string	player_fit_title	-	Vaizdo dydis
+values-b+lt	string	player_fit_width	-	Užpildyti plotį
 values-b+lt	string	player_is_live	-	Live
 values-b+lt	string	player_load_one_subtitle_online	-	Load first available
 values-b+lt	string	player_load_subtitles	-	Load from file
@@ -26277,6 +26401,10 @@ values-b+lv	string	play_trailer_button	-	Palaist Trelleri
 values-b+lv	string	play_with_app_name	-	Atskaņo ar cloudstream
 values-b+lv	string	player_enter_fullscreen	-	Atvērt pilnekrāna režīmu
 values-b+lv	string	player_exit_fullscreen	-	Aizvērt pilnekrāna režīmu
+values-b+lv	string	player_fit_original	-	Sākotnējā attiecība
+values-b+lv	string	player_fit_screen	-	Aizpildīt ekrānu
+values-b+lv	string	player_fit_title	-	Attēla izmērs
+values-b+lv	string	player_fit_width	-	Aizpildīt platumu
 values-b+lv	string	player_is_live	-	Live
 values-b+lv	string	player_load_one_subtitle_online	-	Lejupielādēt pirmo pieejamo
 values-b+lv	string	player_load_subtitles	-	Ielādēt no datnes
@@ -27109,6 +27237,10 @@ values-b+mk	string	play_trailer_button	-	Пушти трејлер
 values-b+mk	string	play_with_app_name	-	Играј со CloudStream
 values-b+mk	string	player_enter_fullscreen	-	Приказ на цел екран
 values-b+mk	string	player_exit_fullscreen	-	Излезете од цел екран
+values-b+mk	string	player_fit_original	-	Оригинален сооднос
+values-b+mk	string	player_fit_screen	-	Пополни екран
+values-b+mk	string	player_fit_title	-	Големина на сликата
+values-b+mk	string	player_fit_width	-	Пополни ширина
 values-b+mk	string	player_is_live	-	Во живо
 values-b+mk	string	player_load_one_subtitle_online	-	Вчитај прво достапно
 values-b+mk	string	player_load_subtitles	-	Вчитај од датотека
@@ -27941,6 +28073,10 @@ values-b+ml	string	play_trailer_button	-	ട്രെയിലർ പ്ലേ �
 values-b+ml	string	play_with_app_name	-	ക്ലൗഡ് സ്ട്രീം ഉപയോഗിച്ച് പ്രവർത്തിപ്പിക്കുക
 values-b+ml	string	player_enter_fullscreen	-	പൂർണ്ണ സ്‌ക്രീൻ ആക്കുക
 values-b+ml	string	player_exit_fullscreen	-	പൂർണ്ണ സ്‌ക്രീനിൽ നിന്ന് പുറത്തുകടക്കുക
+values-b+ml	string	player_fit_original	-	യഥാർത്ഥ അനുപാതം
+values-b+ml	string	player_fit_screen	-	സ്ക്രീൻ നിറയ്ക്കുക
+values-b+ml	string	player_fit_title	-	ചിത്ര വലുപ്പം
+values-b+ml	string	player_fit_width	-	വീതി നിറയ്ക്കുക
 values-b+ml	string	player_is_live	-	തൽസമയം
 values-b+ml	string	player_load_one_subtitle_online	-	Load first available
 values-b+ml	string	player_load_subtitles	-	Load from file
@@ -28772,6 +28908,10 @@ values-b+ms	string	play_trailer_button	-	Main Pra-tonton
 values-b+ms	string	play_with_app_name	-	Pasang dengan CloudStream
 values-b+ms	string	player_enter_fullscreen	-	Masuk ke skrin penuh
 values-b+ms	string	player_exit_fullscreen	-	Keluar dari skrin penuh
+values-b+ms	string	player_fit_original	-	Nisbah aspek asal
+values-b+ms	string	player_fit_screen	-	Isi skrin
+values-b+ms	string	player_fit_title	-	Saiz gambar
+values-b+ms	string	player_fit_width	-	Isi lebar
 values-b+ms	string	player_is_live	-	Live
 values-b+ms	string	player_load_one_subtitle_online	-	Load first available
 values-b+ms	string	player_load_subtitles	-	Load from file
@@ -29607,6 +29747,10 @@ values-b+mt	string	play_trailer_button	-	Ibda t-trejler
 values-b+mt	string	play_with_app_name	-	Ara bil-CloudStream
 values-b+mt	string	player_enter_fullscreen	-	Idħol fi skrin sħiħ
 values-b+mt	string	player_exit_fullscreen	-	Oħroġ minn skrin sħiħ
+values-b+mt	string	player_fit_original	-	Proporzjon oriġinali
+values-b+mt	string	player_fit_screen	-	Imla l-iskrin
+values-b+mt	string	player_fit_title	-	Daqs tal-istampa
+values-b+mt	string	player_fit_width	-	Imla l-wisa’
 values-b+mt	string	player_is_live	-	Live
 values-b+mt	string	player_load_one_subtitle_online	-	Load first available
 values-b+mt	string	player_load_subtitles	-	Load from file
@@ -30438,6 +30582,10 @@ values-b+my	string	play_trailer_button	-	ထွေလာ ကြည့်မည�
 values-b+my	string	play_with_app_name	-	CloudStream ဖြင့်ကြည့်ရန်
 values-b+my	string	player_enter_fullscreen	-	ဖန်သားပြင်အပြည့်သို့ ဝင်ရောက်ပါ
 values-b+my	string	player_exit_fullscreen	-	ဖန်သားပြင်အပြည့်မှ ထွက်ရန်
+values-b+my	string	player_fit_original	-	မူရင်းအချိုး
+values-b+my	string	player_fit_screen	-	မျက်နှာပြင်ပြည့်
+values-b+my	string	player_fit_title	-	ပုံအရွယ်အစား
+values-b+my	string	player_fit_width	-	အကျယ်ပြည့်
 values-b+my	string	player_is_live	-	Live
 values-b+my	string	player_load_one_subtitle_online	-	Load first available
 values-b+my	string	player_load_subtitles	-	ဖိုင်မှတင်သွင်းပြီး
@@ -31270,6 +31418,10 @@ values-b+ne	string	play_trailer_button	-	ट्रेलर प्ले गर�
 values-b+ne	string	play_with_app_name	-	क्लाउडस्ट्रीममा प्ले गर्नुहोस्
 values-b+ne	string	player_enter_fullscreen	-	पूर्ण स्क्रिन मोडमा खोल्नुहोस्
 values-b+ne	string	player_exit_fullscreen	-	पूर्ण स्क्रिन मोडबाट बाहिरिनुहोस्
+values-b+ne	string	player_fit_original	-	मूल अनुपात
+values-b+ne	string	player_fit_screen	-	स्क्रिन भर्नुहोस्
+values-b+ne	string	player_fit_title	-	चित्रको आकार
+values-b+ne	string	player_fit_width	-	चौडाइ भर्नुहोस्
 values-b+ne	string	player_is_live	-	Live
 values-b+ne	string	player_load_one_subtitle_online	-	Load first available
 values-b+ne	string	player_load_subtitles	-	Load from file
@@ -32102,6 +32254,10 @@ values-b+nl	string	play_trailer_button	-	Speel Trailer
 values-b+nl	string	play_with_app_name	-	Afspelen met CloudStream
 values-b+nl	string	player_enter_fullscreen	-	Volledig scherm openen
 values-b+nl	string	player_exit_fullscreen	-	Volledig scherm sluiten
+values-b+nl	string	player_fit_original	-	Originele beeldverhouding
+values-b+nl	string	player_fit_screen	-	Scherm vullen
+values-b+nl	string	player_fit_title	-	Beeldformaat
+values-b+nl	string	player_fit_width	-	Breedte vullen
 values-b+nl	string	player_is_live	-	Live
 values-b+nl	string	player_load_one_subtitle_online	-	Laad eerst beschikbare
 values-b+nl	string	player_load_subtitles	-	Laden uit bestand
@@ -32934,6 +33090,10 @@ values-b+nn	string	play_trailer_button	-	Spel av trailer
 values-b+nn	string	play_with_app_name	-	Spel av med CloudStream
 values-b+nn	string	player_enter_fullscreen	-	Vis i fullskjerm
 values-b+nn	string	player_exit_fullscreen	-	Avslutt fullskjerm
+values-b+nn	string	player_fit_original	-	Opphavleg sideforhold
+values-b+nn	string	player_fit_screen	-	Fyll skjermen
+values-b+nn	string	player_fit_title	-	Biletstorleik
+values-b+nn	string	player_fit_width	-	Fyll breidda
 values-b+nn	string	player_is_live	-	Live
 values-b+nn	string	player_load_one_subtitle_online	-	Load first available
 values-b+nn	string	player_load_subtitles	-	Load from file
@@ -33766,6 +33926,10 @@ values-b+no	string	play_trailer_button	-	Spill forfilm
 values-b+no	string	play_with_app_name	-	Spill med CloudStream
 values-b+no	string	player_enter_fullscreen	-	Se i fullskjerm
 values-b+no	string	player_exit_fullscreen	-	Avslutt fullskjerm
+values-b+no	string	player_fit_original	-	Opprinnelig sideforhold
+values-b+no	string	player_fit_screen	-	Fyll skjermen
+values-b+no	string	player_fit_title	-	Bildestørrelse
+values-b+no	string	player_fit_width	-	Fyll bredden
 values-b+no	string	player_is_live	-	Live
 values-b+no	string	player_load_one_subtitle_online	-	Load first available
 values-b+no	string	player_load_subtitles	-	Last inn fra fil
@@ -34598,6 +34762,10 @@ values-b+or	string	play_trailer_button	-	Play Trailer
 values-b+or	string	play_with_app_name	-	Play with CloudStream
 values-b+or	string	player_enter_fullscreen	-	ପୂର୍ଣ୍ଣ ସ୍କ୍ରିନକୁ ଯାଆନ୍ତୁ
 values-b+or	string	player_exit_fullscreen	-	ପୂର୍ଣ୍ଣ ସ୍କ୍ରିନରୁ ବାହାରନ୍ତୁ
+values-b+or	string	player_fit_original	-	ମୂଳ ଅନୁପାତ
+values-b+or	string	player_fit_screen	-	ସ୍କ୍ରିନ ପୂରଣ କରନ୍ତୁ
+values-b+or	string	player_fit_title	-	ଚିତ୍ର ଆକାର
+values-b+or	string	player_fit_width	-	ପ୍ରସ୍ଥ ପୂରଣ କରନ୍ତୁ
 values-b+or	string	player_is_live	-	Live
 values-b+or	string	player_load_one_subtitle_online	-	Load first available
 values-b+or	string	player_load_subtitles	-	Load from file
@@ -35438,6 +35606,10 @@ values-b+pl	string	play_trailer_button	-	Odtwórz zwiastun
 values-b+pl	string	play_with_app_name	-	Odtwórz w CloudStream
 values-b+pl	string	player_enter_fullscreen	-	Otwórz pełny ekran
 values-b+pl	string	player_exit_fullscreen	-	Zamknij pełny ekran
+values-b+pl	string	player_fit_original	-	Oryginalne proporcje
+values-b+pl	string	player_fit_screen	-	Wypełnij ekran
+values-b+pl	string	player_fit_title	-	Rozmiar obrazu
+values-b+pl	string	player_fit_width	-	Wypełnij szerokość
 values-b+pl	string	player_is_live	-	Na żywo
 values-b+pl	string	player_load_one_subtitle_online	-	Wczytaj pierwsze dostępne
 values-b+pl	string	player_load_subtitles	-	Wczytaj z pliku
@@ -36274,6 +36446,10 @@ values-b+pt	string	play_trailer_button	-	Assistir Trailer
 values-b+pt	string	play_with_app_name	-	Assistir com o CloudStream
 values-b+pt	string	player_enter_fullscreen	-	Mudar para ecrã inteiro
 values-b+pt	string	player_exit_fullscreen	-	Sair do ecrã inteiro
+values-b+pt	string	player_fit_original	-	Proporção original
+values-b+pt	string	player_fit_screen	-	Preencher ecrã
+values-b+pt	string	player_fit_title	-	Tamanho da imagem
+values-b+pt	string	player_fit_width	-	Preencher largura
 values-b+pt	string	player_is_live	-	Ao Vivo
 values-b+pt	string	player_load_one_subtitle_online	-	Carregar o primeiro disponível
 values-b+pt	string	player_load_subtitles	-	Carregar de arquivo
@@ -37110,6 +37286,10 @@ values-b+pt+BR	string	play_trailer_button	-	Reproduzir trailer
 values-b+pt+BR	string	play_with_app_name	-	Assistir com o CloudStream
 values-b+pt+BR	string	player_enter_fullscreen	-	Entrar em tela cheia
 values-b+pt+BR	string	player_exit_fullscreen	-	Sair da tela cheia
+values-b+pt+BR	string	player_fit_original	-	Proporção original
+values-b+pt+BR	string	player_fit_screen	-	Preencher tela
+values-b+pt+BR	string	player_fit_title	-	Tamanho da imagem
+values-b+pt+BR	string	player_fit_width	-	Preencher largura
 values-b+pt+BR	string	player_is_live	-	Ao vivo
 values-b+pt+BR	string	player_load_one_subtitle_online	-	Carregar primeiro disponível
 values-b+pt+BR	string	player_load_subtitles	-	Carregar de arquivo
@@ -37941,6 +38121,10 @@ values-b+qt	string	play_trailer_button	-	ggaaaahhhhhhh gaauuuuuuuaaaau
 values-b+qt	string	play_with_app_name	-	oooooh aaah aauuuggghauuh
 values-b+qt	string	player_enter_fullscreen	-	oouuh haa aaaaa
 values-b+qt	string	player_exit_fullscreen	-	aauugghhaaaghh aaaaa
+values-b+qt	string	player_fit_original	-	oh aah
+values-b+qt	string	player_fit_screen	-	oouuh aah
+values-b+qt	string	player_fit_title	-	aaaaa oh
+values-b+qt	string	player_fit_width	-	haa oh
 values-b+qt	string	player_is_live	-	Live
 values-b+qt	string	player_load_one_subtitle_online	-	Load first available
 values-b+qt	string	player_load_subtitles	-	aagg aahh uuuk
@@ -38774,6 +38958,10 @@ values-b+ro	string	play_trailer_button	-	Vizionează trailerul
 values-b+ro	string	play_with_app_name	-	Joacă cu CloudStream
 values-b+ro	string	player_enter_fullscreen	-	Accesează în ecran complet
 values-b+ro	string	player_exit_fullscreen	-	Ieși din ecranul complet
+values-b+ro	string	player_fit_original	-	Raport de aspect original
+values-b+ro	string	player_fit_screen	-	Umple ecranul
+values-b+ro	string	player_fit_title	-	Dimensiune imagine
+values-b+ro	string	player_fit_width	-	Umple lățimea
 values-b+ro	string	player_is_live	-	Live
 values-b+ro	string	player_load_one_subtitle_online	-	Încărcați prima disponibilă
 values-b+ro	string	player_load_subtitles	-	Încărcați din fișier
@@ -39614,6 +39802,10 @@ values-b+ru	string	play_trailer_button	-	Смотреть трейлер
 values-b+ru	string	play_with_app_name	-	Смотреть с CloudStream
 values-b+ru	string	player_enter_fullscreen	-	Полноэкранный режим
 values-b+ru	string	player_exit_fullscreen	-	Выйти из полноэкранного режима
+values-b+ru	string	player_fit_original	-	Исходные пропорции
+values-b+ru	string	player_fit_screen	-	На весь экран
+values-b+ru	string	player_fit_title	-	Размер изображения
+values-b+ru	string	player_fit_width	-	По ширине
 values-b+ru	string	player_is_live	-	Прямой эфир
 values-b+ru	string	player_load_one_subtitle_online	-	Скачать первые доступные
 values-b+ru	string	player_load_subtitles	-	Загрузить из файла
@@ -40448,6 +40640,10 @@ values-b+sk	string	play_trailer_button	-	Prehrať upútavku
 values-b+sk	string	play_with_app_name	-	Prehrať s CloudStream
 values-b+sk	string	player_enter_fullscreen	-	Prejsť do režimu celej obrazovky
 values-b+sk	string	player_exit_fullscreen	-	Ukončiť režim celej obrazovky
+values-b+sk	string	player_fit_original	-	Pôvodný pomer strán
+values-b+sk	string	player_fit_screen	-	Vyplniť obrazovku
+values-b+sk	string	player_fit_title	-	Veľkosť obrazu
+values-b+sk	string	player_fit_width	-	Vyplniť šírku
 values-b+sk	string	player_is_live	-	Live
 values-b+sk	string	player_load_one_subtitle_online	-	Načítať prvé k dispozícii
 values-b+sk	string	player_load_subtitles	-	Načítať z súboru
@@ -41280,6 +41476,10 @@ values-b+so	string	play_trailer_button	-	Daar goos-gooska
 values-b+so	string	play_with_app_name	-	Ku daawo CloudStream
 values-b+so	string	player_enter_fullscreen	-	Gal shaashadda buuxda
 values-b+so	string	player_exit_fullscreen	-	Ka bax shaashadda buuxda
+values-b+so	string	player_fit_original	-	Saamiga asalka ah
+values-b+so	string	player_fit_screen	-	Buuxi shaashadda
+values-b+so	string	player_fit_title	-	Cabbirka sawirka
+values-b+so	string	player_fit_width	-	Buuxi ballaca
 values-b+so	string	player_is_live	-	Live
 values-b+so	string	player_load_one_subtitle_online	-	Load first available
 values-b+so	string	player_load_subtitles	-	Faylashaada ka keen
@@ -42112,6 +42312,10 @@ values-b+sq	string	play_trailer_button	-	Luaj Trailerin
 values-b+sq	string	play_with_app_name	-	Luaj me CloudStream
 values-b+sq	string	player_enter_fullscreen	-	Hyr në luajtjen me ekran të plotë
 values-b+sq	string	player_exit_fullscreen	-	Dil nga ekrani i plotë
+values-b+sq	string	player_fit_original	-	Raporti origjinal
+values-b+sq	string	player_fit_screen	-	Mbush ekranin
+values-b+sq	string	player_fit_title	-	Madhësia e figurës
+values-b+sq	string	player_fit_width	-	Mbush gjerësinë
 values-b+sq	string	player_is_live	-	Live
 values-b+sq	string	player_load_one_subtitle_online	-	Ngarko të parën e disponueshme
 values-b+sq	string	player_load_subtitles	-	Ngarko nga skedari
@@ -42944,6 +43148,10 @@ values-b+sv	string	play_trailer_button	-	Spela Trailer
 values-b+sv	string	play_with_app_name	-	Spela med CloudStream
 values-b+sv	string	player_enter_fullscreen	-	Aktivera helskärm
 values-b+sv	string	player_exit_fullscreen	-	Lämna helskärm
+values-b+sv	string	player_fit_original	-	Ursprungligt bildförhållande
+values-b+sv	string	player_fit_screen	-	Fyll skärmen
+values-b+sv	string	player_fit_title	-	Bildstorlek
+values-b+sv	string	player_fit_width	-	Fyll bredden
 values-b+sv	string	player_is_live	-	Live
 values-b+sv	string	player_load_one_subtitle_online	-	Ladda in första möjliga
 values-b+sv	string	player_load_subtitles	-	Importera från fil
@@ -43776,6 +43984,10 @@ values-b+ta	string	play_trailer_button	-	டிரெய்லரை இயக�
 values-b+ta	string	play_with_app_name	-	CloudStream-உடன் இயக்கு
 values-b+ta	string	player_enter_fullscreen	-	முழுத்திரைக்குச் செல்
 values-b+ta	string	player_exit_fullscreen	-	முழுத்திரையிலிருந்து வெளியேறு
+values-b+ta	string	player_fit_original	-	அசல் விகிதம்
+values-b+ta	string	player_fit_screen	-	திரையை நிரப்பு
+values-b+ta	string	player_fit_title	-	பட அளவு
+values-b+ta	string	player_fit_width	-	அகலத்தை நிரப்பு
 values-b+ta	string	player_is_live	-	வாழ்க
 values-b+ta	string	player_load_one_subtitle_online	-	முதலில் கிடைக்கிறது
 values-b+ta	string	player_load_subtitles	-	கோப்பிலிருந்து ஏற்றவும்
@@ -44608,6 +44820,10 @@ values-b+ti	string	play_trailer_button	-	Play Trailer
 values-b+ti	string	play_with_app_name	-	Play with CloudStream
 values-b+ti	string	player_enter_fullscreen	-	ናብ ምሉእ ስክሪን እቶ
 values-b+ti	string	player_exit_fullscreen	-	ካብ ምሉእ ስክሪን ውጻእ
+values-b+ti	string	player_fit_original	-	መበቆል ዝምድና
+values-b+ti	string	player_fit_screen	-	ስክሪን ምላእ
+values-b+ti	string	player_fit_title	-	መጠን ስእሊ
+values-b+ti	string	player_fit_width	-	ስፍሓት ምላእ
 values-b+ti	string	player_is_live	-	Live
 values-b+ti	string	player_load_one_subtitle_online	-	Load first available
 values-b+ti	string	player_load_subtitles	-	Load from file
@@ -45440,6 +45656,10 @@ values-b+tl	string	play_trailer_button	-	Maglaro ng Trailer
 values-b+tl	string	play_with_app_name	-	I-play gamit ang CloudStream
 values-b+tl	string	player_enter_fullscreen	-	Mag-fullscreen
 values-b+tl	string	player_exit_fullscreen	-	Lumabas sa fullscreen
+values-b+tl	string	player_fit_original	-	Orihinal na aspect ratio
+values-b+tl	string	player_fit_screen	-	Punuin ang screen
+values-b+tl	string	player_fit_title	-	Laki ng larawan
+values-b+tl	string	player_fit_width	-	Punuin ang lapad
 values-b+tl	string	player_is_live	-	Live
 values-b+tl	string	player_load_one_subtitle_online	-	Load first available
 values-b+tl	string	player_load_subtitles	-	Load from file
@@ -46272,6 +46492,10 @@ values-b+tr	string	play_trailer_button	-	Fragmanı Oynat
 values-b+tr	string	play_with_app_name	-	CloudStream ile oynat
 values-b+tr	string	player_enter_fullscreen	-	Tam ekrana geç
 values-b+tr	string	player_exit_fullscreen	-	Tam ekrandan çık
+values-b+tr	string	player_fit_original	-	Orijinal en boy oranı
+values-b+tr	string	player_fit_screen	-	Ekranı doldur
+values-b+tr	string	player_fit_title	-	Görüntü boyutu
+values-b+tr	string	player_fit_width	-	Genişliği doldur
 values-b+tr	string	player_is_live	-	Canlı
 values-b+tr	string	player_load_one_subtitle_online	-	İlk kullanılabiliri yükle
 values-b+tr	string	player_load_subtitles	-	Dosyadan yükle
@@ -47112,6 +47336,10 @@ values-b+uk	string	play_trailer_button	-	Відтворити трейлер
 values-b+uk	string	play_with_app_name	-	Відтворити в CloudStream
 values-b+uk	string	player_enter_fullscreen	-	Перейти в повноекранний режим
 values-b+uk	string	player_exit_fullscreen	-	Вийти з повноекранного режиму
+values-b+uk	string	player_fit_original	-	Початкові пропорції
+values-b+uk	string	player_fit_screen	-	Заповнити екран
+values-b+uk	string	player_fit_title	-	Розмір зображення
+values-b+uk	string	player_fit_width	-	Заповнити ширину
 values-b+uk	string	player_is_live	-	Наживо
 values-b+uk	string	player_load_one_subtitle_online	-	Завантажити перший доступний
 values-b+uk	string	player_load_subtitles	-	Завантажити з файлу
@@ -47944,6 +48172,10 @@ values-b+ur	string	play_trailer_button	-	ٹریلر چلائیں
 values-b+ur	string	play_with_app_name	-	CloudStream کے ساتھ چلائیں
 values-b+ur	string	player_enter_fullscreen	-	پوری اسکرین میں داخل ہوں
 values-b+ur	string	player_exit_fullscreen	-	پوری اسکرین سے باہر نکلیں
+values-b+ur	string	player_fit_original	-	اصل تناسب
+values-b+ur	string	player_fit_screen	-	اسکرین بھریں
+values-b+ur	string	player_fit_title	-	تصویر کا سائز
+values-b+ur	string	player_fit_width	-	چوڑائی بھریں
 values-b+ur	string	player_is_live	-	Live
 values-b+ur	string	player_load_one_subtitle_online	-	Load first available
 values-b+ur	string	player_load_subtitles	-	فائل سے لوڈ کریں
@@ -48772,6 +49004,10 @@ values-b+vi	string	play_trailer_button	-	Phát Trailer
 values-b+vi	string	play_with_app_name	-	Phát bằng CloudStream
 values-b+vi	string	player_enter_fullscreen	-	Chuyển sang chế độ toàn màn hình
 values-b+vi	string	player_exit_fullscreen	-	Thoát khỏi chế độ toàn màn hình
+values-b+vi	string	player_fit_original	-	Tỷ lệ gốc
+values-b+vi	string	player_fit_screen	-	Lấp đầy màn hình
+values-b+vi	string	player_fit_title	-	Kích thước hình ảnh
+values-b+vi	string	player_fit_width	-	Lấp đầy chiều rộng
 values-b+vi	string	player_is_live	-	Trực tiếp
 values-b+vi	string	player_load_one_subtitle_online	-	Tải phụ đề đầu tiên có sẵn
 values-b+vi	string	player_load_subtitles	-	Chọn từ tệp
@@ -49600,6 +49836,10 @@ values-b+zh	string	play_trailer_button	-	播放预告片
 values-b+zh	string	play_with_app_name	-	使用 CloudStream 播放
 values-b+zh	string	player_enter_fullscreen	-	进入全屏模式
 values-b+zh	string	player_exit_fullscreen	-	退出全屏模式
+values-b+zh	string	player_fit_original	-	原始宽高比
+values-b+zh	string	player_fit_screen	-	填满屏幕
+values-b+zh	string	player_fit_title	-	画面大小
+values-b+zh	string	player_fit_width	-	填满宽度
 values-b+zh	string	player_is_live	-	播放中
 values-b+zh	string	player_load_one_subtitle_online	-	加载第一个可用的字幕
 values-b+zh	string	player_load_subtitles	-	从文件加载
@@ -50429,6 +50669,10 @@ values-b+zh+TW	string	play_trailer_button	-	播放預告片
 values-b+zh+TW	string	play_with_app_name	-	使用 CloudStream 播放
 values-b+zh+TW	string	player_enter_fullscreen	-	進入全螢幕模式
 values-b+zh+TW	string	player_exit_fullscreen	-	結束全螢幕模式
+values-b+zh+TW	string	player_fit_original	-	原始長寬比
+values-b+zh+TW	string	player_fit_screen	-	填滿螢幕
+values-b+zh+TW	string	player_fit_title	-	畫面大小
+values-b+zh+TW	string	player_fit_width	-	填滿寬度
 values-b+zh+TW	string	player_is_live	-	播放中
 values-b+zh+TW	string	player_load_one_subtitle_online	-	載入第一個可用的
 values-b+zh+TW	string	player_load_subtitles	-	從檔案載入
@@ -51261,6 +51505,10 @@ en	string	play_trailer_button	-	Play Trailer
 en	string	play_with_app_name	-	Play with CloudStream
 en	string	player_enter_fullscreen	-	Enter full screen
 en	string	player_exit_fullscreen	-	Exit full screen
+en	string	player_fit_original	-	Original aspect ratio
+en	string	player_fit_screen	-	Fill screen
+en	string	player_fit_title	-	Picture size
+en	string	player_fit_width	-	Fill width
 en	string	player_is_live	-	Live
 en	string	player_load_one_subtitle_online	-	Load first available
 en	string	player_load_subtitles	-	Load from file
@@ -52093,6 +52341,10 @@ en-US	string	play_trailer_button	-	Play Trailer
 en-US	string	play_with_app_name	-	Play with CloudStream
 en-US	string	player_enter_fullscreen	-	Enter full screen
 en-US	string	player_exit_fullscreen	-	Exit full screen
+en-US	string	player_fit_original	-	Original aspect ratio
+en-US	string	player_fit_screen	-	Fill screen
+en-US	string	player_fit_title	-	Picture size
+en-US	string	player_fit_width	-	Fill width
 en-US	string	player_is_live	-	Live
 en-US	string	player_load_one_subtitle_online	-	Load first available
 en-US	string	player_load_subtitles	-	Load from file
@@ -52925,6 +53177,10 @@ en-GB	string	play_trailer_button	-	Play Trailer
 en-GB	string	play_with_app_name	-	Play with CloudStream
 en-GB	string	player_enter_fullscreen	-	Enter full screen
 en-GB	string	player_exit_fullscreen	-	Exit full screen
+en-GB	string	player_fit_original	-	Original aspect ratio
+en-GB	string	player_fit_screen	-	Fill screen
+en-GB	string	player_fit_title	-	Picture size
+en-GB	string	player_fit_width	-	Fill width
 en-GB	string	player_is_live	-	Live
 en-GB	string	player_load_one_subtitle_online	-	Load first available
 en-GB	string	player_load_subtitles	-	Load from file
@@ -53761,6 +54017,10 @@ pt	string	play_trailer_button	-	Assistir Trailer
 pt	string	play_with_app_name	-	Assistir com o CloudStream
 pt	string	player_enter_fullscreen	-	Mudar para ecrã inteiro
 pt	string	player_exit_fullscreen	-	Sair do ecrã inteiro
+pt	string	player_fit_original	-	Proporção original
+pt	string	player_fit_screen	-	Preencher ecrã
+pt	string	player_fit_title	-	Tamanho da imagem
+pt	string	player_fit_width	-	Preencher largura
 pt	string	player_is_live	-	Ao Vivo
 pt	string	player_load_one_subtitle_online	-	Carregar o primeiro disponível
 pt	string	player_load_subtitles	-	Carregar de arquivo
@@ -54597,6 +54857,10 @@ pt-PT	string	play_trailer_button	-	Assistir Trailer
 pt-PT	string	play_with_app_name	-	Assistir com o CloudStream
 pt-PT	string	player_enter_fullscreen	-	Mudar para ecrã inteiro
 pt-PT	string	player_exit_fullscreen	-	Sair do ecrã inteiro
+pt-PT	string	player_fit_original	-	Proporção original
+pt-PT	string	player_fit_screen	-	Preencher ecrã
+pt-PT	string	player_fit_title	-	Tamanho da imagem
+pt-PT	string	player_fit_width	-	Preencher largura
 pt-PT	string	player_is_live	-	Ao Vivo
 pt-PT	string	player_load_one_subtitle_online	-	Carregar o primeiro disponível
 pt-PT	string	player_load_subtitles	-	Carregar de arquivo
@@ -55433,6 +55697,10 @@ pt-BR	string	play_trailer_button	-	Reproduzir trailer
 pt-BR	string	play_with_app_name	-	Assistir com o CloudStream
 pt-BR	string	player_enter_fullscreen	-	Entrar em tela cheia
 pt-BR	string	player_exit_fullscreen	-	Sair da tela cheia
+pt-BR	string	player_fit_original	-	Proporção original
+pt-BR	string	player_fit_screen	-	Preencher tela
+pt-BR	string	player_fit_title	-	Tamanho da imagem
+pt-BR	string	player_fit_width	-	Preencher largura
 pt-BR	string	player_is_live	-	Ao vivo
 pt-BR	string	player_load_one_subtitle_online	-	Carregar primeiro disponível
 pt-BR	string	player_load_subtitles	-	Carregar de arquivo
@@ -56265,6 +56533,10 @@ fil	string	play_trailer_button	-	Ipatugtog ang Trailer
 fil	string	play_with_app_name	-	Ipatugtog sa CloudStream
 fil	string	player_enter_fullscreen	-	Mag-fullscreen
 fil	string	player_exit_fullscreen	-	Lumabas sa fullscreen
+fil	string	player_fit_original	-	Orihinal na aspect ratio
+fil	string	player_fit_screen	-	Punuin ang screen
+fil	string	player_fit_title	-	Laki ng larawan
+fil	string	player_fit_width	-	Punuin ang lapad
 fil	string	player_is_live	-	Live
 fil	string	player_load_one_subtitle_online	-	Load first available
 fil	string	player_load_subtitles	-	Load from file
@@ -57097,6 +57369,10 @@ tl	string	play_trailer_button	-	Maglaro ng Trailer
 tl	string	play_with_app_name	-	I-play gamit ang CloudStream
 tl	string	player_enter_fullscreen	-	Mag-fullscreen
 tl	string	player_exit_fullscreen	-	Lumabas sa fullscreen
+tl	string	player_fit_original	-	Orihinal na aspect ratio
+tl	string	player_fit_screen	-	Punuin ang screen
+tl	string	player_fit_title	-	Laki ng larawan
+tl	string	player_fit_width	-	Punuin ang lapad
 tl	string	player_is_live	-	Live
 tl	string	player_load_one_subtitle_online	-	Load first available
 tl	string	player_load_subtitles	-	Load from file
@@ -57929,6 +58205,10 @@ fil-PH	string	play_trailer_button	-	Ipatugtog ang Trailer
 fil-PH	string	play_with_app_name	-	Ipatugtog sa CloudStream
 fil-PH	string	player_enter_fullscreen	-	Mag-fullscreen
 fil-PH	string	player_exit_fullscreen	-	Lumabas sa fullscreen
+fil-PH	string	player_fit_original	-	Orihinal na aspect ratio
+fil-PH	string	player_fit_screen	-	Punuin ang screen
+fil-PH	string	player_fit_title	-	Laki ng larawan
+fil-PH	string	player_fit_width	-	Punuin ang lapad
 fil-PH	string	player_is_live	-	Live
 fil-PH	string	player_load_one_subtitle_online	-	Load first available
 fil-PH	string	player_load_subtitles	-	Load from file
@@ -58757,6 +59037,10 @@ zh	string	play_trailer_button	-	播放预告片
 zh	string	play_with_app_name	-	使用 CloudStream 播放
 zh	string	player_enter_fullscreen	-	进入全屏模式
 zh	string	player_exit_fullscreen	-	退出全屏模式
+zh	string	player_fit_original	-	原始宽高比
+zh	string	player_fit_screen	-	填满屏幕
+zh	string	player_fit_title	-	画面大小
+zh	string	player_fit_width	-	填满宽度
 zh	string	player_is_live	-	播放中
 zh	string	player_load_one_subtitle_online	-	加载第一个可用的字幕
 zh	string	player_load_subtitles	-	从文件加载
@@ -59585,6 +59869,10 @@ zh-CN	string	play_trailer_button	-	播放预告片
 zh-CN	string	play_with_app_name	-	使用 CloudStream 播放
 zh-CN	string	player_enter_fullscreen	-	进入全屏模式
 zh-CN	string	player_exit_fullscreen	-	退出全屏模式
+zh-CN	string	player_fit_original	-	原始宽高比
+zh-CN	string	player_fit_screen	-	填满屏幕
+zh-CN	string	player_fit_title	-	画面大小
+zh-CN	string	player_fit_width	-	填满宽度
 zh-CN	string	player_is_live	-	播放中
 zh-CN	string	player_load_one_subtitle_online	-	加载第一个可用的字幕
 zh-CN	string	player_load_subtitles	-	从文件加载
@@ -60413,6 +60701,10 @@ zh-Hans-CN	string	play_trailer_button	-	播放预告片
 zh-Hans-CN	string	play_with_app_name	-	使用 CloudStream 播放
 zh-Hans-CN	string	player_enter_fullscreen	-	进入全屏模式
 zh-Hans-CN	string	player_exit_fullscreen	-	退出全屏模式
+zh-Hans-CN	string	player_fit_original	-	原始宽高比
+zh-Hans-CN	string	player_fit_screen	-	填满屏幕
+zh-Hans-CN	string	player_fit_title	-	画面大小
+zh-Hans-CN	string	player_fit_width	-	填满宽度
 zh-Hans-CN	string	player_is_live	-	播放中
 zh-Hans-CN	string	player_load_one_subtitle_online	-	加载第一个可用的字幕
 zh-Hans-CN	string	player_load_subtitles	-	从文件加载
@@ -61242,6 +61534,10 @@ zh-TW	string	play_trailer_button	-	播放預告片
 zh-TW	string	play_with_app_name	-	使用 CloudStream 播放
 zh-TW	string	player_enter_fullscreen	-	進入全螢幕模式
 zh-TW	string	player_exit_fullscreen	-	結束全螢幕模式
+zh-TW	string	player_fit_original	-	原始長寬比
+zh-TW	string	player_fit_screen	-	填滿螢幕
+zh-TW	string	player_fit_title	-	畫面大小
+zh-TW	string	player_fit_width	-	填滿寬度
 zh-TW	string	player_is_live	-	播放中
 zh-TW	string	player_load_one_subtitle_online	-	載入第一個可用的
 zh-TW	string	player_load_subtitles	-	從檔案載入
@@ -62071,6 +62367,10 @@ zh-Hant-TW	string	play_trailer_button	-	播放預告片
 zh-Hant-TW	string	play_with_app_name	-	使用 CloudStream 播放
 zh-Hant-TW	string	player_enter_fullscreen	-	進入全螢幕模式
 zh-Hant-TW	string	player_exit_fullscreen	-	結束全螢幕模式
+zh-Hant-TW	string	player_fit_original	-	原始長寬比
+zh-Hant-TW	string	player_fit_screen	-	填滿螢幕
+zh-Hant-TW	string	player_fit_title	-	畫面大小
+zh-Hant-TW	string	player_fit_width	-	填滿寬度
 zh-Hant-TW	string	player_is_live	-	播放中
 zh-Hant-TW	string	player_load_one_subtitle_online	-	載入第一個可用的
 zh-Hant-TW	string	player_load_subtitles	-	從檔案載入
@@ -62900,6 +63200,10 @@ zh-HK	string	play_trailer_button	-	播放預告片
 zh-HK	string	play_with_app_name	-	使用 CloudStream 播放
 zh-HK	string	player_enter_fullscreen	-	進入全螢幕模式
 zh-HK	string	player_exit_fullscreen	-	結束全螢幕模式
+zh-HK	string	player_fit_original	-	原始長寬比
+zh-HK	string	player_fit_screen	-	填滿螢幕
+zh-HK	string	player_fit_title	-	畫面大小
+zh-HK	string	player_fit_width	-	填滿寬度
 zh-HK	string	player_is_live	-	播放中
 zh-HK	string	player_load_one_subtitle_online	-	載入第一個可用的
 zh-HK	string	player_load_subtitles	-	從檔案載入
@@ -63729,6 +64033,10 @@ zh-Hant-HK	string	play_trailer_button	-	播放預告片
 zh-Hant-HK	string	play_with_app_name	-	使用 CloudStream 播放
 zh-Hant-HK	string	player_enter_fullscreen	-	進入全螢幕模式
 zh-Hant-HK	string	player_exit_fullscreen	-	結束全螢幕模式
+zh-Hant-HK	string	player_fit_original	-	原始長寬比
+zh-Hant-HK	string	player_fit_screen	-	填滿螢幕
+zh-Hant-HK	string	player_fit_title	-	畫面大小
+zh-Hant-HK	string	player_fit_width	-	填滿寬度
 zh-Hant-HK	string	player_is_live	-	播放中
 zh-Hant-HK	string	player_load_one_subtitle_online	-	載入第一個可用的
 zh-Hant-HK	string	player_load_subtitles	-	從檔案載入
@@ -64561,6 +64869,10 @@ no	string	play_trailer_button	-	Spill forfilm
 no	string	play_with_app_name	-	Spill med CloudStream
 no	string	player_enter_fullscreen	-	Se i fullskjerm
 no	string	player_exit_fullscreen	-	Avslutt fullskjerm
+no	string	player_fit_original	-	Opprinnelig sideforhold
+no	string	player_fit_screen	-	Fyll skjermen
+no	string	player_fit_title	-	Bildestørrelse
+no	string	player_fit_width	-	Fyll bredden
 no	string	player_is_live	-	Live
 no	string	player_load_one_subtitle_online	-	Load first available
 no	string	player_load_subtitles	-	Last inn fra fil
@@ -65393,6 +65705,10 @@ nb	string	play_trailer_button	-	Play Trailer
 nb	string	play_with_app_name	-	Play with CloudStream
 nb	string	player_enter_fullscreen	-	Enter full screen
 nb	string	player_exit_fullscreen	-	Exit full screen
+nb	string	player_fit_original	-	Original aspect ratio
+nb	string	player_fit_screen	-	Fill screen
+nb	string	player_fit_title	-	Picture size
+nb	string	player_fit_width	-	Fill width
 nb	string	player_is_live	-	Live
 nb	string	player_load_one_subtitle_online	-	Load first available
 nb	string	player_load_subtitles	-	Load from file
@@ -66225,6 +66541,10 @@ nb-NO	string	play_trailer_button	-	Play Trailer
 nb-NO	string	play_with_app_name	-	Play with CloudStream
 nb-NO	string	player_enter_fullscreen	-	Enter full screen
 nb-NO	string	player_exit_fullscreen	-	Exit full screen
+nb-NO	string	player_fit_original	-	Original aspect ratio
+nb-NO	string	player_fit_screen	-	Fill screen
+nb-NO	string	player_fit_title	-	Picture size
+nb-NO	string	player_fit_width	-	Fill width
 nb-NO	string	player_is_live	-	Live
 nb-NO	string	player_load_one_subtitle_online	-	Load first available
 nb-NO	string	player_load_subtitles	-	Load from file
@@ -67058,6 +67378,10 @@ iw	string	play_trailer_button	-	הפעל טריילר
 iw	string	play_with_app_name	-	נגן עם קלאודסטרים
 iw	string	player_enter_fullscreen	-	כניסה למסך מלא
 iw	string	player_exit_fullscreen	-	יציאה ממסך מלא
+iw	string	player_fit_original	-	יחס גובה־רוחב מקורי
+iw	string	player_fit_screen	-	מילוי מסך
+iw	string	player_fit_title	-	גודל תמונה
+iw	string	player_fit_width	-	מילוי רוחב
 iw	string	player_is_live	-	Live
 iw	string	player_load_one_subtitle_online	-	Load first available
 iw	string	player_load_subtitles	-	טען מקובץ
@@ -67891,6 +68215,10 @@ he	string	play_trailer_button	-	הפעל טריילר
 he	string	play_with_app_name	-	נגן עם קלאודסטרים
 he	string	player_enter_fullscreen	-	כניסה למסך מלא
 he	string	player_exit_fullscreen	-	יציאה ממסך מלא
+he	string	player_fit_original	-	יחס גובה־רוחב מקורי
+he	string	player_fit_screen	-	מילוי מסך
+he	string	player_fit_title	-	גודל תמונה
+he	string	player_fit_width	-	מילוי רוחב
 he	string	player_is_live	-	Live
 he	string	player_load_one_subtitle_online	-	Load first available
 he	string	player_load_subtitles	-	טען מקובץ
@@ -68724,6 +69052,10 @@ he-IL	string	play_trailer_button	-	הפעל טריילר
 he-IL	string	play_with_app_name	-	נגן עם קלאודסטרים
 he-IL	string	player_enter_fullscreen	-	כניסה למסך מלא
 he-IL	string	player_exit_fullscreen	-	יציאה ממסך מלא
+he-IL	string	player_fit_original	-	יחס גובה־רוחב מקורי
+he-IL	string	player_fit_screen	-	מילוי מסך
+he-IL	string	player_fit_title	-	גודל תמונה
+he-IL	string	player_fit_width	-	מילוי רוחב
 he-IL	string	player_is_live	-	Live
 he-IL	string	player_load_one_subtitle_online	-	Load first available
 he-IL	string	player_load_subtitles	-	טען מקובץ
@@ -69552,6 +69884,10 @@ in	string	play_trailer_button	-	Putar Cuplikan
 in	string	play_with_app_name	-	Putar di CloudStream
 in	string	player_enter_fullscreen	-	Masuk layar penuh
 in	string	player_exit_fullscreen	-	Keluar dari layar penuh
+in	string	player_fit_original	-	Rasio aspek asli
+in	string	player_fit_screen	-	Isi layar
+in	string	player_fit_title	-	Ukuran gambar
+in	string	player_fit_width	-	Isi lebar
 in	string	player_is_live	-	Live
 in	string	player_load_one_subtitle_online	-	Muat yang pertama tersedia
 in	string	player_load_subtitles	-	Muat dari file
@@ -70380,6 +70716,10 @@ id	string	play_trailer_button	-	Putar Cuplikan
 id	string	play_with_app_name	-	Putar di CloudStream
 id	string	player_enter_fullscreen	-	Masuk layar penuh
 id	string	player_exit_fullscreen	-	Keluar dari layar penuh
+id	string	player_fit_original	-	Rasio aspek asli
+id	string	player_fit_screen	-	Isi layar
+id	string	player_fit_title	-	Ukuran gambar
+id	string	player_fit_width	-	Isi lebar
 id	string	player_is_live	-	Live
 id	string	player_load_one_subtitle_online	-	Muat yang pertama tersedia
 id	string	player_load_subtitles	-	Muat dari file
@@ -71208,6 +71548,10 @@ id-ID	string	play_trailer_button	-	Putar Cuplikan
 id-ID	string	play_with_app_name	-	Putar di CloudStream
 id-ID	string	player_enter_fullscreen	-	Masuk layar penuh
 id-ID	string	player_exit_fullscreen	-	Keluar dari layar penuh
+id-ID	string	player_fit_original	-	Rasio aspek asli
+id-ID	string	player_fit_screen	-	Isi layar
+id-ID	string	player_fit_title	-	Ukuran gambar
+id-ID	string	player_fit_width	-	Isi lebar
 id-ID	string	player_is_live	-	Live
 id-ID	string	player_load_one_subtitle_online	-	Muat yang pertama tersedia
 id-ID	string	player_load_subtitles	-	Muat dari file
@@ -72040,6 +72384,10 @@ arz	string	play_trailer_button	-	Play Trailer
 arz	string	play_with_app_name	-	Play with CloudStream
 arz	string	player_enter_fullscreen	-	Enter full screen
 arz	string	player_exit_fullscreen	-	Exit full screen
+arz	string	player_fit_original	-	Original aspect ratio
+arz	string	player_fit_screen	-	Fill screen
+arz	string	player_fit_title	-	Picture size
+arz	string	player_fit_width	-	Fill width
 arz	string	player_is_live	-	Live
 arz	string	player_load_one_subtitle_online	-	Load first available
 arz	string	player_load_subtitles	-	Load from file
