@@ -119,6 +119,7 @@ private fun QueryField(
     val interactionSource = remember { MutableInteractionSource() }
     val focused by interactionSource.collectIsFocusedAsState()
     val shape = CloudStreamTheme.shapes.medium
+    val keyboard = remember { KeyboardOnOk() }
 
     Box(
         modifier = modifier
@@ -132,13 +133,19 @@ private fun QueryField(
         BasicTextField(
             value = query,
             onValueChange = { onAction(SearchAction.QueryChanged(it)) },
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().then(keyboard.modifier),
+            readOnly = keyboard.readOnly,
             textStyle = typography.body.copy(color = colors.ink),
             singleLine = true,
             cursorBrush = SolidColor(colors.ink),
             interactionSource = interactionSource,
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
-            keyboardActions = KeyboardActions(onSearch = { onAction(SearchAction.Submit) }),
+            keyboardActions = KeyboardActions(
+                onSearch = {
+                    keyboard.close()
+                    onAction(SearchAction.Submit)
+                },
+            ),
         )
         if (query.isEmpty()) {
             BasicText(

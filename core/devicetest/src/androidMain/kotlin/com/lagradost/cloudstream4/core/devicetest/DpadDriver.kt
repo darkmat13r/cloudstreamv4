@@ -76,6 +76,11 @@ class DpadDriver(private val readFocus: (() -> String?)? = null) {
         send(KeyEvent.KEYCODE_DPAD_CENTER)
     }
 
+    /** Presses Enter on whatever holds focus: what OK sends on some remotes. */
+    fun enterKey() {
+        send(KeyEvent.KEYCODE_ENTER)
+    }
+
     /**
      * Presses Back if the on-screen keyboard is open, as a person would. While it is open the D-pad
      * moves between its keys, not between stops on the screen.
@@ -99,9 +104,9 @@ class DpadDriver(private val readFocus: (() -> String?)? = null) {
         }
     }
 
-    /** Whether the keyboard comes up within a moment of focus landing. */
-    private fun keyboardOpens(): Boolean {
-        val deadline = System.currentTimeMillis() + KEYBOARD_ARRIVAL_MS
+    /** Whether the keyboard comes up within [withinMs]. */
+    fun keyboardOpens(withinMs: Long = KEYBOARD_ARRIVAL_MS): Boolean {
+        val deadline = System.currentTimeMillis() + withinMs
         while (System.currentTimeMillis() < deadline) {
             if (keyboardShown()) return true
             Thread.sleep(POLL_MS)
@@ -110,7 +115,7 @@ class DpadDriver(private val readFocus: (() -> String?)? = null) {
     }
 
     /** `mImeWindowVis` and not `mInputShown`: the keyboard keeps taking keys until its window is gone. */
-    private fun keyboardShown(): Boolean =
+    fun keyboardShown(): Boolean =
         device.executeShellCommand("dumpsys input_method").let { "mInputShown=true" in it || "mImeWindowVis=0" !in it }
 
     /** Presses until something holds focus: a screen with none yet takes it on the first key. */

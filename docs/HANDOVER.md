@@ -289,6 +289,10 @@ worktree, and add a task to run less than everything. Results are in
 `<module>/build/outputs/androidTest-results/connected/**/TEST-*.xml`. Read the `timestamp`: it can come from
 the build cache.
 
+**A compile error costs no boot.** The script builds the test APKs first and boots only if that succeeds. With
+flags and no task, it now runs every module's device tests; it used to pass the flags alone to Gradle, which ran
+no tests and exited 0. A failed run can leave the previous run's XML in place, so check the `timestamp` is from this run.
+
 **Never leave the emulator idle**, and when another emulator is running, address yours by serial.
 
 **This AVD is not the artboard.** 1280x720 at 213 dpi is about 961.5x540.8 dp, not 960x540. Do not assert
