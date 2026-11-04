@@ -3202,7 +3202,7 @@ reopening the window. Search is not affected; it has no single source to keep.
 
 ## KMP-33 — The Compose rail on Android TV (queue `Q5`) · **measured 2026-11-04**
 
-**Status:** in pr · **Owner's rulings it follows:** `DEC-17`, `DS-09`. Android TV only. Rollback for one release.
+**Status:** in pr #139, waiting on the owner for its `classes-jar.api` delta · **Owner's rulings it follows:** `DEC-17`, `DS-09`. Android TV only. Rollback for one release.
 
 `shell/TvRail.kt` in `:app` hosts `NavRailHost`, new in `:core:designsystem`: `NavRail` with the dim, the shadow and the
 keys `DS-09` left to its host. Home, Search, Library, Downloads and Settings come from `res/menu/bottom_nav_menu.xml`, so
