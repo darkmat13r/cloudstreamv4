@@ -436,6 +436,10 @@
 <string name="player_settings_select_cast_device">Sélectionnez un appareil de diffusion</string>
 <string name="player_size_settings">Bouton de redimensionnement du lecteur</string>
 <string name="player_size_settings_des">Supprimer les bordures noires</string>
+<string name="player_source_playing">En lecture</string>
+<string name="player_source_resumes_at">Changer conserve votre position : reprise à %1$s</string>
+<string name="player_source_retry">Réessayer</string>
+<string name="player_source_switch">Changer</string>
 <string name="player_speed">Vitesse de lecture</string>
 <string name="player_speed_text_format">Vitesse (%.2fx)</string>
 <string name="player_subtitles_settings">Sous-titres</string>

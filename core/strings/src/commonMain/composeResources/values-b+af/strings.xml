@@ -103,6 +103,10 @@
 <string name="player_fit_title">Beeldgrootte</string>
 <string name="player_fit_width">Vul breedte</string>
 <string name="player_mute">Demp</string>
+<string name="player_source_playing">Speel</string>
+<string name="player_source_resumes_at">Wissel behou jou posisie: gaan voort by %1$s</string>
+<string name="player_source_retry">Probeer weer</string>
+<string name="player_source_switch">Wissel</string>
 <string name="player_speed">Spelerspoed</string>
 <string name="player_speed_text_format">Spoed (%.2fx)</string>
 <string name="player_unmute">Ontdemp</string>

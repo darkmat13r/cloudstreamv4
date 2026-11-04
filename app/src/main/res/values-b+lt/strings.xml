@@ -194,6 +194,10 @@
 <string name="player_settings_play_in_app">"Integruotas grotuvas"</string>
 <string name="player_size_settings">"Grotuvo dydžio pakeitimo mygtukas"</string>
 <string name="player_size_settings_des">"Pašalinti juodas paraštes"</string>
+<string name="player_source_playing">"Leidžiama"</string>
+<string name="player_source_resumes_at" formatted="true">"Perjungus padėtis išlieka: tęsiama nuo %1$s"</string>
+<string name="player_source_retry">"Bandyti dar kartą"</string>
+<string name="player_source_switch">"Perjungti"</string>
 <string name="player_speed">"Grotuvo greitis"</string>
 <string name="player_speed_text_format" formatted="true">"Greitis (%.2fx)"</string>
 <string name="player_subtitles_settings">"Subtitrai"</string>

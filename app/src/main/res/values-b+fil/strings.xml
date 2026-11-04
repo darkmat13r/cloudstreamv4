@@ -129,6 +129,10 @@
 <string name="player_fit_width">"Punuin ang lapad"</string>
 <string name="player_mute">"I-mute"</string>
 <string name="player_notification_channel_description">"Ang abiso ng player para sa pagkontrol sa pag-playback mula sa background"</string>
+<string name="player_source_playing">"Nagpe-play"</string>
+<string name="player_source_resumes_at" formatted="true">"Mananatili ang posisyon mo sa paglipat: magpapatuloy sa %1$s"</string>
+<string name="player_source_retry">"Subukang muli"</string>
+<string name="player_source_switch">"Lumipat"</string>
 <string name="player_speed">"Bilis ng Manlalaro"</string>
 <string name="player_speed_text_format" formatted="true">"Bilis (%.2fx)"</string>
 <string name="player_unmute">"I-unmute"</string>

@@ -231,6 +231,10 @@
 <string name="player_pref">"پخش‌کننده ویدئو برگزیده"</string>
 <string name="player_size_settings">"دکمه تغییر‌اندازه پخش‌کننده"</string>
 <string name="player_size_settings_des">"حذف حاشیه سیاه"</string>
+<string name="player_source_playing">"در حال پخش"</string>
+<string name="player_source_resumes_at" formatted="true">"تعویض موقعیت شما را حفظ می‌کند: ادامه از %1$s"</string>
+<string name="player_source_retry">"تلاش دوباره"</string>
+<string name="player_source_switch">"تعویض"</string>
 <string name="player_speed">"سرعت پخش‌کننده"</string>
 <string name="player_speed_text_format" formatted="true">"سرعت (%.2f برابر)"</string>
 <string name="player_subtitles_settings">"زیرنویس‌ها"</string>

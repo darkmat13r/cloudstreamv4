@@ -300,6 +300,10 @@
 <string name="player_settings_play_in_app">Intern spiller</string>
 <string name="player_size_settings">Knapp for størrelse på spiller</string>
 <string name="player_size_settings_des">Fjern de svarte kantene</string>
+<string name="player_source_playing">Spiller</string>
+<string name="player_source_resumes_at">Bytte beholder posisjonen din: fortsetter fra %1$s</string>
+<string name="player_source_retry">Prøv igjen</string>
+<string name="player_source_switch">Bytt</string>
 <string name="player_speed">Spillerhastighet</string>
 <string name="player_speed_text_format">Avspillingshastighet (%.2fx)</string>
 <string name="player_subtitles_settings">Undertekster</string>

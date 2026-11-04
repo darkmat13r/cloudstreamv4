@@ -429,6 +429,10 @@
 <string name="player_settings_select_cast_device">Изберете устройство за излъчване</string>
 <string name="player_size_settings">Бутон за преоразмеряване на плейъра</string>
 <string name="player_size_settings_des">Премахнете черните граници</string>
+<string name="player_source_playing">Възпроизвежда се</string>
+<string name="player_source_resumes_at">Смяната запазва позицията ви: продължава от %1$s</string>
+<string name="player_source_retry">Нов опит</string>
+<string name="player_source_switch">Смяна</string>
 <string name="player_speed">Скорост на възпроизвеждане</string>
 <string name="player_speed_text_format">Скорост (%.2fx)</string>
 <string name="player_subtitles_settings">Субтитри</string>

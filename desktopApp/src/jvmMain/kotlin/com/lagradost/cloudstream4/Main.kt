@@ -336,6 +336,8 @@ internal fun DesktopApp(
                         onProgress = recorder::onProgress,
                         arrivingSubtitles = arrivingSubtitles,
                         fullscreen = remember(screen, window) { window?.let(::PlayerFullscreen) },
+                        links = remember(screen) { DesktopDetailViewModels.links(screen.kept.id.value) },
+                        openPlayer = VlcPlayer::createOrNull,
                     )
                 }
                 DisposableEffect(screen) {

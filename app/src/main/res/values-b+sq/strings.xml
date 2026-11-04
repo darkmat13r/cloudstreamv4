@@ -436,6 +436,10 @@
 <string name="player_settings_select_cast_device">"Zgjidh pajisjen për transmetim"</string>
 <string name="player_size_settings">"Butoni për ndryshimin e madhësisë së luajtësit"</string>
 <string name="player_size_settings_des">"Hiq kufijtë e errët"</string>
+<string name="player_source_playing">"Po luhet"</string>
+<string name="player_source_resumes_at" formatted="true">"Ndërrimi e ruan pozicionin: vazhdon nga %1$s"</string>
+<string name="player_source_retry">"Provo përsëri"</string>
+<string name="player_source_switch">"Ndërro"</string>
 <string name="player_speed">"Shpejtësia e luajtësit"</string>
 <string name="player_speed_text_format" formatted="true">"Shpejtësia (%.2fx)"</string>
 <string name="player_subtitles_settings">"Titrat"</string>

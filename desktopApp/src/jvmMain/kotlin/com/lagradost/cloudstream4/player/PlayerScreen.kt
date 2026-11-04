@@ -29,6 +29,8 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.produceState
@@ -85,6 +87,7 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.resume
 import com.lagradost.cloudstream4.core.strings.generated.resources.seek_back_10_seconds
 import com.lagradost.cloudstream4.core.strings.generated.resources.seek_forward_10_seconds
 import com.lagradost.cloudstream4.core.strings.generated.resources.source_error
+import com.lagradost.cloudstream4.core.strings.generated.resources.video_source
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.detail.StreamLink
 import com.lagradost.cloudstream4.media.model.SubtitleCue
@@ -99,24 +102,26 @@ import org.jetbrains.compose.resources.stringResource
 /**
  * The desktop player (`docs/plans/desktop-design.md`): full-bleed video, one seek track, transport, and
  * volume and subtitles. Space pauses, left and right skip, up and down change the volume, M mutes, C opens
- * the subtitle list, R how the picture fits the window, F or Cmd+F toggles full screen; Escape is the window's.
+ * the subtitle list, S the list of sources, R how the picture fits the window, F or Cmd+F toggles full screen; Escape is the window's.
  *
- * The source and audio selectors are not built. Lives in `:desktopApp` rather than a shared module because
+ * The audio selector is not built. Lives in `:desktopApp` rather than a shared module because
  * it is bound to [VlcPlayer].
  *
- * @param player started and released by this screen, so leaving it stops the audio.
+ * @param player started and released by this screen, so leaving it stops the audio. Choosing another source replaces
+ *   it, because a host plays one stream, and the screen and its subtitles stay.
  * @param onBack leaves the screen, which is also what the end of the stream does.
  * @param setEscape told what Escape should do now, as `HomeHost` is.
  * @param startAtMillis where to start, from the library (`KMP-26`). Zero plays from the beginning.
- *   The seek waits for a reported length, because [VlcPlayer.seekTo] takes a fraction and there is
- *   nothing to take a fraction of until then, and it happens **once** — a second one would fight the
- *   person's own seeking.
+ *   See [ResumeSeek].
  * @param onProgress told the position as the player reports it. Storage is the host's: this screen
  *   writes nothing, and the host decides which of these reports is worth keeping.
  * @param clock,session passed in so a check can read what this screen is showing.
  * @param arrivingSubtitles the tracks the search behind [link] has found so far, each time it finds more.
  * @param fullscreen the window's full screen, left when this screen closes. Null with no window to fill, as
  *   in a check, and then there is no control for it.
+ * @param links the streams the search behind [link] has found so far, each time it finds more.
+ * @param openPlayer a new player for a source someone chose. Null where sources cannot be switched, and then there
+ *   is no selector for it.
  */
 @Composable
 internal fun PlayerScreen(
@@ -132,28 +137,31 @@ internal fun PlayerScreen(
     session: SubtitleSession? = null,
     arrivingSubtitles: Flow<List<SubtitleTrack>> = emptyFlow(),
     fullscreen: PlayerFullscreen? = null,
+    links: Flow<List<StreamLink>> = emptyFlow(),
+    openPlayer: (() -> VlcPlayer?)? = null,
 ) {
-    val frame by player.frame.collectAsState()
-    val pictureSize by player.pictureSize.collectAsState()
-    val status by player.status.collectAsState()
+    var playback by remember(player, link) { mutableStateOf(Playback(player, link, startAtMillis)) }
+    // Keyed so a new player starts from its own values. Otherwise the first frame drawn would be the released player's.
+    val frame = key(playback) { playback.player.frame.collectAsState().value }
+    val pictureSize = key(playback) { playback.player.pictureSize.collectAsState().value }
+    val status = key(playback) { playback.player.status.collectAsState().value }
     var started by remember { mutableStateOf(true) }
-    DisposableEffect(player, link) {
-        started = player.play(link.url, link.referer, link.userAgent, link.audioUrl)
+    DisposableEffect(playback) {
+        val current = playback
+        started = current.player.play(current.link.url, current.link.referer, current.link.userAgent, current.link.audioUrl)
         // Off the UI thread: stopping libVLC blocks, and can take seconds on a stalled stream.
-        onDispose { thread(isDaemon = true, name = "vlc-release") { player.release() } }
+        onDispose { thread(isDaemon = true, name = "vlc-release") { current.player.release() } }
     }
     DisposableEffect(fullscreen) { onDispose { fullscreen?.leave() } }
     LaunchedEffect(status.finished) { if (status.finished) onBack() }
-    LaunchedEffect(player, clock) { player.status.collect(clock::onStatus) }
+    LaunchedEffect(playback, clock) { playback.player.status.collect(clock::onStatus) }
     val progress by rememberUpdatedState(onProgress)
-    LaunchedEffect(player, link) {
-        var sought = startAtMillis <= 0L
-        player.status.collect { reported ->
-            if (!sought && reported.lengthMillis > 0L) {
-                sought = true
-                player.seekTo(startAtMillis.toFloat() / reported.lengthMillis)
+    LaunchedEffect(playback) {
+        val current = playback
+        current.player.status.collect { reported ->
+            if (current.resume.onStatus(reported, current.player::seekTo)) {
+                progress(reported.positionMillis, reported.lengthMillis)
             }
-            progress(reported.positionMillis, reported.lengthMillis)
         }
     }
     val scope = rememberCoroutineScope()
@@ -161,12 +169,28 @@ internal fun PlayerScreen(
         SubtitleSession(link.subtitles, HttpSubtitleLoader(), scope, desktopSubtitlePreference)
     }
     LaunchedEffect(subtitles, arrivingSubtitles) { arrivingSubtitles.collect(subtitles::offer) }
+    LaunchedEffect(subtitles, playback) { subtitles.offer(playback.link.subtitles) }
+    val failed = !started || status.failed
+    val failedLinks = remember(player, link) { mutableStateListOf<StreamLink>() }
+    LaunchedEffect(playback, failed) { if (failed) failedLinks += playback.link }
+    val found by produceState(emptyList<StreamLink>(), links) { links.collect { value = it } }
+    val sources = openPlayer?.let { open ->
+        PlayerSources(found, playback.link, failedLinks, playback.resume.resumePoint(status.positionMillis)) { chosen ->
+            val next = open()
+            if (next == null) {
+                failedLinks += chosen
+            } else {
+                failedLinks.removeAll { it.isSameStream(chosen) }
+                playback = Playback(next, chosen, playback.resume.resumePoint(status.positionMillis))
+            }
+        }
+    }
     PlayerContent(
         frame = frame,
         pictureSize = pictureSize,
-        status = status.copy(failed = !started || status.failed),
-        caption = listOfNotNull(title, link.qualityLabel, link.label).joinToString(SEPARATOR),
-        controls = player,
+        status = status.copy(failed = failed),
+        caption = listOfNotNull(title, playback.link.qualityLabel, playback.link.label).joinToString(SEPARATOR),
+        controls = playback.player,
         subtitles = subtitles,
         clock = clock,
         onBack = onBack,
@@ -175,7 +199,13 @@ internal fun PlayerScreen(
         fullscreen = fullscreen,
         volume = desktopPlayerVolume,
         fit = desktopPictureFit,
+        sources = sources,
     )
+}
+
+/** One stream in one host. */
+private class Playback(val player: VlcPlayer, val link: StreamLink, startAtMillis: Long) {
+    val resume = ResumeSeek(startAtMillis)
 }
 
 /** The screen itself, over whatever supplies frames and status, so a test can press its keys. */
@@ -195,6 +225,7 @@ internal fun PlayerContent(
     fullscreen: PlayerFullscreen? = null,
     volume: PlayerVolume = remember { PlayerVolume() },
     fit: PictureFitChoice = remember { PictureFitChoice() },
+    sources: PlayerSources? = null,
 ) {
     LaunchedEffect(controls, volume.audible) { controls.setVolume(volume.audible) }
     val tracks by subtitles.tracks.collectAsState()
@@ -206,7 +237,8 @@ internal fun PlayerContent(
     var hudVisible by remember { mutableStateOf(true) }
     var pickerOpen by remember { mutableStateOf(false) }
     var fitOpen by remember { mutableStateOf(false) }
-    val listOpen = pickerOpen || fitOpen
+    var sourcesOpen by remember { mutableStateOf(false) }
+    val listOpen = pickerOpen || fitOpen || sourcesOpen
     val failed = status.failed
     val fullscreenOn = fullscreen?.on == true
     SideEffect {
@@ -214,6 +246,7 @@ internal fun PlayerContent(
             when {
                 pickerOpen -> pickerOpen = false
                 fitOpen -> fitOpen = false
+                sourcesOpen -> sourcesOpen = false
                 fullscreenOn -> fullscreen?.toggle()
                 else -> onBack()
             }
@@ -235,6 +268,8 @@ internal fun PlayerContent(
     // Held while the list is open. It grows upward from its foot, so a track arriving would slide the row under the
     // pointer just as it is clicked. An empty list has no rows to slide, so the first tracks do appear in it.
     val listed = remember(pickerOpen, tracks.isEmpty()) { tracks }
+    // Likewise, and it is never empty, because the source playing is on it.
+    val listedSources = remember(sourcesOpen) { sources?.links.orEmpty() }
     val seekBy: (Long) -> Unit = { delta ->
         clock.onSeekBy(delta)
         controls.seekBy(delta)
@@ -267,6 +302,10 @@ internal fun PlayerContent(
                             fitOpen = false
                             true
                         }
+                        Key.S -> {
+                            sourcesOpen = false
+                            true
+                        }
                         else -> false
                     }
                 }
@@ -279,6 +318,7 @@ internal fun PlayerContent(
                     Key.M -> volume.toggleMute()
                     Key.C -> if (!failed) pickerOpen = true
                     Key.R -> fitOpen = true
+                    Key.S -> if (sources != null) sourcesOpen = true else return@onPreviewKeyEvent false
                     // F alone or with Cmd: the modifier is not read, so both come here.
                     Key.F -> fullscreen?.toggle() ?: return@onPreviewKeyEvent false
                     else -> return@onPreviewKeyEvent false
@@ -331,12 +371,26 @@ internal fun PlayerContent(
                 onBack = onBack,
                 volumeControl = { VolumeControl(volume) },
                 selectors = {
+                    // First, and there through loading and failure: it is what artboard 7d's error banner points at.
+                    if (sources != null) {
+                        PlayerSelector(
+                            label = stringResource(Res.string.video_source),
+                            value = sources.current.sourceName(),
+                            onClick = {
+                                pickerOpen = false
+                                fitOpen = false
+                                sourcesOpen = !sourcesOpen
+                            },
+                            modifier = Modifier.weight(1f),
+                        )
+                    }
                     if (!failed) {
                         PlayerSelector(
                             label = stringResource(Res.string.player_subtitles_settings),
                             value = selection.track()?.label ?: stringResource(Res.string.no_subtitles),
                             onClick = {
                                 fitOpen = false
+                                sourcesOpen = false
                                 pickerOpen = !pickerOpen
                             },
                             modifier = Modifier.weight(1f),
@@ -347,6 +401,7 @@ internal fun PlayerContent(
                         value = stringResource(fit.current.words()),
                         onClick = {
                             pickerOpen = false
+                            sourcesOpen = false
                             fitOpen = !fitOpen
                         },
                         modifier = Modifier.weight(1f),
@@ -374,6 +429,17 @@ internal fun PlayerContent(
                     fitOpen = false
                 },
                 onDismiss = { fitOpen = false },
+            )
+        }
+        if (sourcesOpen && sources != null) {
+            SourcePicker(
+                links = listedSources,
+                sources = sources,
+                onSelect = { link ->
+                    sourcesOpen = false
+                    sources.select(link)
+                },
+                onDismiss = { sourcesOpen = false },
             )
         }
         if (pickerOpen) {
@@ -617,7 +683,7 @@ internal fun SeekTrack(status: PlayerStatus, onSeekTo: (Float) -> Unit, modifier
 }
 
 /** `1:02:03`, or `2:03` under an hour. Digits and colons are not translated copy here. */
-private fun clock(millis: Long): String {
+internal fun clock(millis: Long): String {
     val total = (millis / MILLIS_PER_SECOND).coerceAtLeast(0)
     val hours = total / SECONDS_PER_HOUR
     val minutes = (total % SECONDS_PER_HOUR) / SECONDS_PER_MINUTE
@@ -650,6 +716,9 @@ internal object PlayerScreenDefaults {
     val PickerWidth: Dp = 280.dp
     val PickerMaxHeight: Dp = 400.dp
     val PickerMarkSize: Dp = 16.dp
+    /** Artboard 7e's 8 x 48 marker, halved. A marker's width is a stroke on its own axis, as `ProgressRule`'s is. */
+    val SourceMarkerWidth: Dp = 4.dp
+    val SourceMarkerHeight: Dp = 24.dp
     /** `FocusRingStroke`, the ring's width, and what it needs clear around a row. */
     val PickerRingRoom: Dp = 4.dp
     const val PickerAlpha = 0.96f

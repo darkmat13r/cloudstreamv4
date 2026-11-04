@@ -71,6 +71,22 @@ internal fun SubtitlePicker(
     onSelect: (SubtitleTrack?) -> Unit,
     onDismiss: () -> Unit,
 ) {
+    PlayerListPanel(stringResource(Res.string.player_subtitles_settings), onDismiss) {
+        if (tracks.isEmpty()) {
+            BasicText(
+                text = stringResource(Res.string.no_subtitles),
+                style = CloudStreamTheme.typography.body.copy(color = CloudStreamTheme.colors.ink),
+                modifier = Modifier.padding(horizontal = DesktopDimens.RowPadding, vertical = DesktopDimens.RelatedGap),
+            )
+        } else {
+            TrackList(tracks, selection, failures, onSelect)
+        }
+    }
+}
+
+/** A list floating above the controls it opened from, in their column, closed by a click anywhere else. */
+@Composable
+internal fun PlayerListPanel(title: String, onDismiss: () -> Unit, content: @Composable () -> Unit) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
     Box(
@@ -102,19 +118,11 @@ internal fun SubtitlePicker(
                     .padding(DesktopDimens.RelatedGap),
             ) {
                 BasicText(
-                    text = stringResource(Res.string.player_subtitles_settings),
+                    text = title,
                     style = typography.caption.copy(color = colors.muted),
                     modifier = Modifier.padding(horizontal = DesktopDimens.RowPadding, vertical = DesktopDimens.RelatedGap),
                 )
-                if (tracks.isEmpty()) {
-                    BasicText(
-                        text = stringResource(Res.string.no_subtitles),
-                        style = typography.body.copy(color = colors.ink),
-                        modifier = Modifier.padding(horizontal = DesktopDimens.RowPadding, vertical = DesktopDimens.RelatedGap),
-                    )
-                } else {
-                    TrackList(tracks, selection, failures, onSelect)
-                }
+                content()
             }
         }
     }

@@ -344,6 +344,10 @@
 <string name="player_settings_play_in_app">"Pemain dalaman"</string>
 <string name="player_size_settings">"Saiz butang pemain"</string>
 <string name="player_size_settings_des">"Buang sempadan hitam"</string>
+<string name="player_source_playing">"Sedang dimainkan"</string>
+<string name="player_source_resumes_at" formatted="true">"Menukar mengekalkan kedudukan anda: sambung pada %1$s"</string>
+<string name="player_source_retry">"Cuba lagi"</string>
+<string name="player_source_switch">"Tukar"</string>
 <string name="player_speed">"Kelajuan Pemain"</string>
 <string name="player_speed_text_format" formatted="true">"Kelajuan (%.2fx)"</string>
 <string name="player_subtitles_settings">"Sari kata"</string>

@@ -66,6 +66,22 @@ it is the one thing that is not a destination. Neither Allow nor Keep off is the
 this screen does not nudge. Text the plugin controls is smaller, muted and left to right, so it cannot pass for the app's own voice.
 See `KMP-24`.
 
+## Source selector
+
+Artboards 7d and 7e, with these departures, each because a desktop player is not a 10-foot one:
+
+| 7e | Here | Why |
+|---|---|---|
+| A 560 panel the full height of the screen, over the video | The list floating above the controls, as the other two are | The picture stays visible, and one kind of list is easier to learn than two |
+| A pinned Done row | None | Pressing a row commits, so Done has nothing to confirm. Escape, S and a click elsewhere close it |
+| A `Quality profile` row | None | There is no quality profile on desktop |
+| `1920×1080 decoded` under the row playing | Nothing | The player does not read that out yet |
+| `keeps 42:13` under each row, and `4 sources · all shown` | One line at the head: "Switching keeps your position: resumes at 42:13" | The same words on every row say nothing more. The count is not a decision anyone makes here |
+| `failed · code 2004`, and `live` on that reason line | `Source error`, muted | There is no code to show, and `live` is playback progress only (owner's direction 2026-11-04, tighter than the file's own note, which allows it here) |
+
+Selected is the raised fill, the ink label and the muted marker, and each row says what pressing it does (`Playing`, `Switch`,
+`Retry`). 7d's error is a banner over the HUD; here it is the words in the transport row, above the selector.
+
 ## Motion
 
 `DesktopMotion`: a critically damped spring with a 0.3 s response, so no overshoot. A spring starts from the

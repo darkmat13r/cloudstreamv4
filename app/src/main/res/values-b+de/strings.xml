@@ -436,6 +436,10 @@
 <string name="player_settings_select_cast_device">"Cast-Gerät auswählen"</string>
 <string name="player_size_settings">"Player-Skalierung anpassen"</string>
 <string name="player_size_settings_des">"Entfernt schwarze Ränder"</string>
+<string name="player_source_playing">"Läuft"</string>
+<string name="player_source_resumes_at" formatted="true">"Beim Wechsel bleibt die Position erhalten: weiter bei %1$s"</string>
+<string name="player_source_retry">"Wiederholen"</string>
+<string name="player_source_switch">"Wechseln"</string>
 <string name="player_speed">"Player-Geschwindigkeit"</string>
 <string name="player_speed_text_format" formatted="true">"Geschwindigkeit (%.2fx)"</string>
 <string name="player_subtitles_settings">"Untertitel"</string>

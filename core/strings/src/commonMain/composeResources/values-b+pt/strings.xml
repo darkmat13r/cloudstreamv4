@@ -435,6 +435,10 @@
 <string name="player_settings_select_cast_device">Escolha o dispositivo</string>
 <string name="player_size_settings">Botão de redimensionamento do player</string>
 <string name="player_size_settings_des">Remover as bordas negras</string>
+<string name="player_source_playing">A reproduzir</string>
+<string name="player_source_resumes_at">Mudar mantém a sua posição: retoma em %1$s</string>
+<string name="player_source_retry">Repetir</string>
+<string name="player_source_switch">Mudar</string>
 <string name="player_speed">Velocidade de Reprodução</string>
 <string name="player_speed_text_format">Velocidade (%.2fx)</string>
 <string name="player_subtitles_settings">Legendas</string>

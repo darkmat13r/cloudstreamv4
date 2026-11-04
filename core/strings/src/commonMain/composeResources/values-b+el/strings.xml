@@ -392,6 +392,10 @@
 <string name="player_settings_select_cast_device">Επιλογή συσκευής για αναμετάδοση</string>
 <string name="player_size_settings">Αλλαγή μεγέθους παραθύρου</string>
 <string name="player_size_settings_des">Αφαίρεση μαύρων περιγραμμάτων</string>
+<string name="player_source_playing">Αναπαράγεται</string>
+<string name="player_source_resumes_at">Η αλλαγή διατηρεί τη θέση σας: συνέχεια από %1$s</string>
+<string name="player_source_retry">Επανάληψη</string>
+<string name="player_source_switch">Αλλαγή</string>
 <string name="player_speed">Ταχύτητα αναπαραγωγής</string>
 <string name="player_speed_text_format">Ταχύτητα (%.2fx)</string>
 <string name="player_subtitles_settings">Υπότιτλοι</string>
