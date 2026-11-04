@@ -79,12 +79,32 @@ class DpadDriver(private val readFocus: (() -> String?)? = null) {
      * moves between its keys, not between stops on the screen.
      */
     fun closeKeyboard() {
-        val deadline = System.currentTimeMillis() + SETTLE_TIMEOUT_MS
-        if (keyboardShown()) send(KeyEvent.KEYCODE_BACK)
-        while (keyboardShown()) {
-            check(System.currentTimeMillis() < deadline) { "The keyboard did not close" }
+        val deadline = System.currentTimeMillis() + KEYBOARD_CLOSE_MS
+        var nextBack = 0L
+        while (true) {
+            val state = device.executeShellCommand("dumpsys input_method")
+            val requested = "mInputShown=true" in state
+            if (!requested && "mImeWindowVis=0" in state) return
+            val now = System.currentTimeMillis()
+            check(now < deadline) { "The keyboard did not close" }
+            // Again if it is still up: on a cold keyboard the first Back can arrive before it listens.
+            // Only while shown is requested, because a Back with no keyboard would leave the screen.
+            if (requested && now >= nextBack) {
+                send(KeyEvent.KEYCODE_BACK)
+                nextBack = now + KEYBOARD_BACK_RETRY_MS
+            }
             Thread.sleep(POLL_MS)
         }
+    }
+
+    /** Whether the keyboard comes up within a moment of focus landing. */
+    private fun keyboardOpens(): Boolean {
+        val deadline = System.currentTimeMillis() + KEYBOARD_ARRIVAL_MS
+        while (System.currentTimeMillis() < deadline) {
+            if (keyboardShown()) return true
+            Thread.sleep(POLL_MS)
+        }
+        return false
     }
 
     /** `mImeWindowVis` and not `mInputShown`: the keyboard keeps taking keys until its window is gone. */
@@ -102,7 +122,8 @@ class DpadDriver(private val readFocus: (() -> String?)? = null) {
      * Maps the screen from where focus is now: presses all four directions on every stop it can get
      * to, moving between stops with key presses only. It stops when no stop it can reach has a
      * direction left to try, so a trap ends the walk rather than hanging it, and [FocusGraph.traps]
-     * names it.
+     * names it. A stop that opens the keyboard on arrival is noted in [FocusGraph.keyboardOpenedOn] and
+     * the keyboard closed with Back, or the walk would be mapping the keyboard's keys.
      */
     fun walk(maxPresses: Int = DEFAULT_MAX_PRESSES): FocusGraph {
         val graph = FocusGraph(enter())
@@ -114,6 +135,10 @@ class DpadDriver(private val readFocus: (() -> String?)? = null) {
             // and the last thing measured is the better guess.
             val landed = press(direction)
             graph.record(current, direction, landed)
+            if (landed != null && landed != current && keyboardOpens()) {
+                graph.keyboardOpenedOn += landed
+                closeKeyboard()
+            }
             current = landed ?: return graph
         }
         error("Not finished after $maxPresses presses:\n$graph")
@@ -143,6 +168,9 @@ class DpadDriver(private val readFocus: (() -> String?)? = null) {
 
     private companion object {
         const val POLL_MS = 120L
+        const val KEYBOARD_ARRIVAL_MS = 800L
+        const val KEYBOARD_CLOSE_MS = 15_000L
+        const val KEYBOARD_BACK_RETRY_MS = 2_000L
         const val STABLE_READS = 2
         const val SETTLE_TIMEOUT_MS = 3_000L
         const val ENTER_ATTEMPTS = 3
@@ -157,6 +185,9 @@ class DpadDriver(private val readFocus: (() -> String?)? = null) {
  */
 class FocusGraph(val start: String) {
     private val edges = LinkedHashMap<String, MutableMap<Dpad, String?>>()
+
+    /** Stops where landing with the D-pad opened the on-screen keyboard. */
+    val keyboardOpenedOn = linkedSetOf<String>()
 
     internal fun record(from: String, direction: Dpad, to: String?) {
         edges.getOrPut(from) { LinkedHashMap() }[direction] = to

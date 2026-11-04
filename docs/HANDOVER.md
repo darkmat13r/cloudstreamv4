@@ -274,15 +274,23 @@ forbidden in the brief, then run every build serially.
 
 The sixth gate (`INF-10`), after the iOS test gate. It needs a TV emulator and is **not** part of `check`:
 
-    JAVA_HOME="$T17" zsh scripts/device-tests.sh <avd> -x :app:generateGitHash
+    JAVA_HOME="$T17" zsh scripts/device-tests.sh Television_720p \
+        -Dorg.gradle.jvmargs="-Xmx14G -Dfile.encoding=UTF-8" -x :app:generateGitHash
 
-`<avd>` is the name of an existing android-tv AVD (`emulator -list-avds`). The script boots it with
-`-no-window -no-audio -read-only -no-snapshot`, so nothing reaches the speakers and the run leaves the AVD as
-it was, sets `ANDROID_SERIAL` so Gradle touches no other device, waits for boot, runs, always stops the
-emulator and exits with Gradle's code. Drop `-x :app:generateGitHash` outside a worktree; add a Gradle task
-to run less than everything. Results are in
-`<module>/build/outputs/androidTest-results/connected/androidMain/TEST-*.xml`. Read the `timestamp`: it can
-come from the build cache.
+The first argument names an existing android-tv AVD; `Television_720p` is the low-resource one to use. The
+script boots it with `-no-window -no-audio -no-boot-anim -read-only -cores 2 -gpu swiftshader_indirect`, so
+nothing reaches the speakers, the run leaves the AVD as it was, and it stays on two cores. It sets
+`ANDROID_SERIAL` so Gradle touches no other device, waits for boot, runs, always stops the emulator and exits
+with Gradle's code. Everything after the AVD name goes to Gradle: drop `-x :app:generateGitHash` outside a
+worktree, and add a task to run less than everything. Results are in
+`<module>/build/outputs/androidTest-results/connected/**/TEST-*.xml`. Read the `timestamp`: it can come from
+the build cache.
+
+**Never leave the emulator idle**, and when another emulator is running, address yours by serial.
+
+**This AVD is not the artboard.** 1280x720 at 213 dpi is about 961.5x540.8 dp, not 960x540. Do not assert
+full-screen geometry against 960x540 or hard-code a screen size: assert component bounds, spacing and focus, and
+read the real size from the device where a test needs it.
 
 ### Four traps that each cost a wrong claim
 
