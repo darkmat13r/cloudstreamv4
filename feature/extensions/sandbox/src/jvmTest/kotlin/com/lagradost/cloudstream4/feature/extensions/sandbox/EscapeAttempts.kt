@@ -1,9 +1,12 @@
 package com.lagradost.cloudstream4.feature.extensions.sandbox
 
 import java.io.File
+import java.net.DatagramPacket
+import java.net.DatagramSocket
 import java.net.InetAddress
 import java.net.InetSocketAddress
 import java.net.NetworkInterface
+import java.net.Proxy
 import java.net.Socket
 import java.net.StandardProtocolFamily
 import java.net.UnixDomainSocketAddress
@@ -32,6 +35,12 @@ internal object EscapeAttempts {
                 "delete" -> if (File(argument).delete()) "allowed" else "denied"
                 "exec" -> ProcessBuilder(argument).start().waitFor().let { "allowed" }
                 "connect" -> connect(argument)
+                "connect-direct" -> connect(argument, Proxy.NO_PROXY)
+                "udp" -> DatagramSocket().use { socket ->
+                    val address = InetAddress.getByName(argument.substringBefore('/'))
+                    socket.send(DatagramPacket(ByteArray(1), 1, address, argument.substringAfter('/').toInt()))
+                    "allowed"
+                }
                 "unix" -> SocketChannel.open(StandardProtocolFamily.UNIX).use {
                     it.connect(UnixDomainSocketAddress.of(argument))
                     "allowed"
@@ -71,7 +80,7 @@ internal object EscapeAttempts {
         }
     }
 
-    private fun connect(argument: String): String = Socket().use { socket ->
+    private fun connect(argument: String, proxy: Proxy? = null): String = (proxy?.let(::Socket) ?: Socket()).use { socket ->
         socket.connect(
             InetSocketAddress(argument.substringBeforeLast('/'), argument.substringAfterLast('/').toInt()),
             CONNECT_TIMEOUT_MILLIS,
@@ -83,6 +92,7 @@ internal object EscapeAttempts {
         val text = generateSequence(failure) { it.cause }.joinToString(" ") { it.message.orEmpty() }
         return when {
             "not permitted" in text || "denied" in text.lowercase() -> "denied"
+            "ruleset" in text -> "refused-by-gate"
             "refused" in text -> "reached:refused"
             "timed out" in text -> "no-answer"
             "No such file" in text -> "absent"

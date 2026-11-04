@@ -45,8 +45,9 @@ class HostLauncher internal constructor(
         network: Boolean,
         extraRules: List<String> = emptyList(),
         jvmOptions: String = JVM_OPTIONS,
+        gate: OutboundGate? = null,
     ): Process {
-        val profile = SeatbeltProfile.render(executable, readable, readOnlyInputs, writable, network, extraRules)
+        val profile = SeatbeltProfile.render(executable, readable, readOnlyInputs, writable, network, extraRules, gate?.port)
         val builder = ProcessBuilder(
             listOf(SeatbeltProfile.SANDBOX_EXEC, "-p", profile, executable.path) +
                 prefixArguments + arguments
@@ -55,7 +56,8 @@ class HostLauncher internal constructor(
         builder.environment().clear()
         builder.environment()["HOME"] = writable.path
         builder.environment()["TMPDIR"] = writable.path
-        builder.environment()["JAVA_TOOL_OPTIONS"] = "$jvmOptions -Duser.home=${writable.path}"
+        val proxy = gate?.let { " -DsocksProxyHost=$LOOPBACK -DsocksProxyPort=${it.port} -DsocksNonProxyHosts=" }.orEmpty()
+        builder.environment()["JAVA_TOOL_OPTIONS"] = "$jvmOptions -Duser.home=${writable.path}$proxy"
         builder.directory(writable)
         return builder.start()
     }
@@ -87,6 +89,7 @@ class HostLauncher internal constructor(
         private const val HOST_USER = "cloudstream"
         private const val JVM_OPTIONS =
             "-Xmx512m -XX:+UseSerialGC -XX:-UsePerfData -XX:ActiveProcessorCount=4 -Xshare:auto -Duser.name=$HOST_USER"
+        private const val LOOPBACK = "127.0.0.1"
         private const val DEV_MAIN = "com.lagradost.cloudstream4.feature.extensions.sandbox.PluginHostKt"
 
         /** `null` when this OS has no sandbox. There is no unsandboxed fallback, on purpose. */
@@ -126,7 +129,11 @@ class HostLauncher internal constructor(
 class PluginHostClient internal constructor(
     private val process: Process,
     private val label: String,
+    private val gate: OutboundGate? = null,
 ) : Closeable {
+
+    /** The names and addresses this host has asked to connect to. Never a path: nothing here sees one. */
+    val contactedHosts: Set<String> get() = gate?.contacted.orEmpty()
 
     /** @param arrivals where partial replies go. Null for a call that may not send any. */
     private class Pending(val arrivals: LinkArrivals? = null, val decode: (DataInputStream) -> Any) {
@@ -399,6 +406,7 @@ class PluginHostClient internal constructor(
         runCatching { out.close() }
         process.destroy()
         if (!process.waitFor(STOP_GRACE_MILLIS, TimeUnit.MILLISECONDS)) process.destroyForcibly()
+        gate?.close()
     }
 
     companion object {
@@ -429,6 +437,7 @@ class PluginHostClient internal constructor(
             label: String,
         ): Pair<PluginHostClient, Result<List<RemoteProvider>>> {
             check(data.mkdirs() || data.isDirectory) { "cannot create the sandbox directory" }
+            val gate = OutboundGate()
             val process = withContext(Dispatchers.IO) {
                 launcher.start(
                     arguments = listOf(
@@ -440,9 +449,10 @@ class PluginHostClient internal constructor(
                     readOnlyInputs = listOf(jar),
                     writable = data,
                     network = true,
+                    gate = gate,
                 )
             }
-            val client = PluginHostClient(process, label)
+            val client = PluginHostClient(process, label, gate)
             val providers = client.providers(START_TIMEOUT_MILLIS).map { list -> list.map { it.cleaned() } }
             return client to providers
         }
