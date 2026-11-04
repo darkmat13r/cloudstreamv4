@@ -240,6 +240,8 @@ Kotlin/Native break — on 2026-10-15 a `@JvmInline` with no import made `abi`, 
 all pass on a tree that did not compile for iOS at all. That is the best argument the four-gate
 discipline has.
 
+**After gate 2, run `python3 scripts/check-test-results.py`.** A failed `jvmTest` restored from the build cache leaves `check` at 0 (`INF-10`), and its XML is what still records the failure. Print the result with the gates.
+
 **A piped Gradle run reports the pipe's exit code, not Gradle's.** `./gradlew … | tail` exits 0 on a
 failed build. This produced a false "green" once already. Redirect to a file and capture `$?`.
 
@@ -247,8 +249,33 @@ failed build. This produced a false "green" once already. Redirect to a file and
 method for parallel work is to fan the *edits* out to subagents, one git worktree each, with Gradle
 forbidden in the brief, then run every build serially.
 
-### Four traps that each cost a wrong claim
+### The device gate
 
+The sixth gate (`INF-10`), after the iOS test gate. It needs a TV emulator and is **not** part of `check`:
+
+    JAVA_HOME="$T17" zsh scripts/device-tests.sh Television_720p \
+        -Dorg.gradle.jvmargs="-Xmx14G -Dfile.encoding=UTF-8" -x :app:generateGitHash
+
+The first argument names an existing android-tv AVD; `Television_720p` is the low-resource one to use. The
+script boots it with `-no-window -no-audio -no-boot-anim -read-only -cores 2 -gpu swiftshader_indirect`, so
+nothing reaches the speakers, the run leaves the AVD as it was, and it stays on two cores. It sets
+`ANDROID_SERIAL` so Gradle touches no other device, waits for boot, runs, always stops the emulator and exits
+with Gradle's code. Everything after the AVD name goes to Gradle: drop `-x :app:generateGitHash` outside a
+worktree, and add a task to run less than everything. Results are in
+`<module>/build/outputs/androidTest-results/connected/**/TEST-*.xml`. Read the `timestamp`: it can come from
+the build cache.
+
+**Never leave the emulator idle**, and when another emulator is running, address yours by serial.
+
+**This AVD is not the artboard.** 1280x720 at 213 dpi is about 961.5x540.8 dp, not 960x540. Do not assert
+full-screen geometry against 960x540 or hard-code a screen size: assert component bounds, spacing and focus, and
+read the real size from the device where a test needs it.
+
+### Five traps that each cost a wrong claim
+
+- **Do not run Gradle under `nice`.** `HostLimitsTest` asserts the plugin host's absolute nice value is 10, so
+  a Gradle started at nice 10 gives a host at 20 and `check` fails with `expected:<10> but was:<20>`. A daemon
+  keeps the nice value it was started with. To lower priority on a Mac, use `taskpolicy -c utility`.
 - **`kotlin.jvm.*` is a default import only on JVM.** `@JvmInline`, `@JvmStatic` and friends need a
   named import in `commonMain`, or `compileKotlinIosArm64` fails with `Unresolved reference`.
   `media/model/.../CaptionStyle.kt` carries the comment and the import; copy it.

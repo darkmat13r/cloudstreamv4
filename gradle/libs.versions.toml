@@ -65,6 +65,12 @@ composeScreenshotPlugin = "0.0.1-alpha16"
 # The AndroidX Compose that Compose Multiplatform 1.12.0 resolves to on Android.
 # Only the screenshotTest source set needs it directly — the preview renderer is AndroidX.
 androidxComposeUi = "1.11.0"
+# Device tests only (owner approved, test scope; INF-10). 1.12.0 and not `androidxComposeUi`: this is what
+# `:feature:*`'s Android runtime classpath actually resolves `androidx.compose.ui:ui` to on CMP 1.12.0.
+androidxComposeUiTest = "1.12.0"
+androidxTestRunner = "1.7.0" # Latest stable. 1.8.0-alpha03 is newer and not stable.
+androidxTestRules = "1.7.0"
+androidxUiautomator = "2.4.0"
 lifecycleViewmodelCompose = "2.11.0"
 
 # jvmTarget = "11" is needed for compose, otherwise you will get
@@ -164,6 +170,11 @@ compose-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.re
 compose-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "composeMultiplatform" }
 compose-ui-tooling = { module = "org.jetbrains.compose.ui:ui-tooling", version.ref = "composeMultiplatform" }
 androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "androidxComposeUi" }
+compose-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "androidxComposeUiTest" }
+compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "androidxComposeUiTest" }
+androidx-test-runner = { module = "androidx.test:runner", version.ref = "androidxTestRunner" }
+androidx-test-rules = { module = "androidx.test:rules", version.ref = "androidxTestRules" }
+androidx-test-uiautomator = { module = "androidx.test.uiautomator:uiautomator", version.ref = "androidxUiautomator" }
 compose-ui-tooling-preview = { module = "org.jetbrains.compose.ui:ui-tooling-preview", version.ref = "composeMultiplatform" }
 lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelCompose" }
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
