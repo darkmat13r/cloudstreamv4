@@ -137,7 +137,219 @@ draw a glyph in Compose — *"temporary glyphs are permanent; that is how the 80
 
 ---
 
-## DS-08 — Batch A of the TV kit: panel motion, two focusable-when-disabled targets, the trailing focus stop, and the text field
+## DS-07 — Off-grid dimensions in the vendored Mihon tree · **won't fix**
+
+**Status:** closed, won't fix · censused 2026-10-15 · related to `KMP-06b`
+
+The earlier entry listed seven sites "for visibility only" and asserted *"they are upstream's."*
+Censused and checked against upstream: the list is right, the reason is **wrong for two of them**.
+The decision does not change, but it now rests on measurement rather than on that claim.
+
+### Census — every `.dp` literal in `core/mihon/`
+
+| | |
+|---|---|
+| Kotlin files in the module | 29 |
+| …containing at least one `N.dp` literal | 14 |
+| `N.dp` literals | **36**, on 32 lines (four lines carry two: `PreferenceGroupHeader.kt:19`, `Pill.kt:34`, `Slider.kt:33`, `AppBar.kt:125`) |
+| …in live code / inside a commented-out block | 35 / 1 (`ListPreferenceWidget.kt:106`, `24.dp`, inside the `/* … */` that closes the file) |
+| on the 4 dp step (counting the four `0.dp`) | **28 of 36** |
+| **off the step** | **8 literals, at 7 sites, in 5 files** |
+
+Counted two ways — `grep -rhoE '[0-9]+(\.[0-9]+)?\.dp' | sort \| uniq -c`, then a script that
+blanks comments and string literals before matching. Both give 36 / 8; the comment-aware pass is
+the one that found the dead `24.dp`. Distinct values present: 0, 1, 2, 3, 4, 4.0, 6, 8, 10, 12, 14,
+16, 20, 24, 32, 34.0, 48, 56, 128.
+
+### The eight, classified
+
+"Upstream?" was checked by fetching the mapped upstream file from `mihonapp/mihon@main` on
+2026-10-15 and diffing. "Reachable?" means: evaluated when one of the seven shipping Compose
+settings screens renders.
+
+| Site | Value | What it is | Verbatim upstream? | Reachable? |
+|---|---|---|---|---|
+| `PreferenceGroupHeader.kt:19` | `top = 14.dp` | group-header top padding | yes (`A`…`widget/PreferenceGroupHeader.kt:20`) | **yes — every group header, all 7 screens** |
+| `Pill.kt:34` | `6.dp` | pill inner padding, horizontal | yes (`P`…`components/Pill.kt:34`) | **yes — slider value pill, 3 screens** |
+| `Pill.kt:34` | `1.dp` | pill inner padding, vertical | yes, same line | **yes** |
+| `SettingsItems.kt:221` | `spacedBy(2.dp)` | gap inside `BaseSliderItem` | yes (`P`…`components/SettingsItems.kt:222`) | **yes — 3 screens** |
+| `Slider.kt:33` | `34.0.dp` | slider thumb height (width `4.0` is on step) | **no — ours** | **yes — 3 screens** |
+| `Slider.kt:38` | `height(10.dp)` | slider track thickness | **no — ours** | **yes — 3 screens** |
+| `SettingsItems.kt:64` | `Vertical = 10.dp` | `SettingsItemsPaddings.Vertical` | yes (`P`…`SettingsItems.kt:67`) | no — see below |
+| `AppBar.kt:125` | `elevation = 3.dp` | tonal elevation, action-mode branch | yes (`A`…`components/AppBar.kt:158`) | no — see below |
+
+**Two are ours, not upstream's.** `core/mihon/.../material/Slider.kt` has no `.dp` literal upstream
+at all — not on `main`, and not at `v0.17.0`, `v0.18.0` or `v0.19.0` either (fetched and grepped;
+`v0.16.5` 404s). `thumbSize = DpSize(4.0.dp, 34.0.dp)` and `Modifier.height(10.dp)` are a
+CloudStream-side edit to a vendored file, inside a block that already diverges (upstream `main` now
+drives the slider through `rememberSliderState`; we still pass `value`/`valueRange`/`steps`). The
+Apache §4(b) argument therefore does **not** cover these two.
+
+**Two are not reachable.**
+
+- `SettingsItemsPaddings.Vertical` is used only by `SettingsItems.kt`'s own item composables, and
+  **none of them has a caller outside that file** — checked for all thirteen (`HeadingItem`,
+  `IconItem`, `SortItem`, `BaseSortItem`, `CheckboxItem`, `RadioItem`, `SliderItem`, `SelectItem`,
+  `TriStateItem`, `TextItem`, `SettingsChipRow`, `SettingsIconGrid`, `BaseSettingsItem`: zero hits
+  across `core/` and `app/src`). The one entry point the screens do reach is `BaseSliderItem`, and
+  `PreferenceItem.kt:95-98` passes it `PrefsHorizontalPadding`/`PrefsVerticalPadding` (16/16),
+  not `SettingsItemsPaddings`. The `10.dp` never renders today.
+- `AppBar.kt:125` is the `isActionMode` arm, and `actionModeCounter` is never passed by any caller
+  (default `0`; the only other mention is the `isActionMode = false` preview at `:371`), so the
+  expression always yields `0.dp`. It is also a **tonal elevation** fed to
+  `surfaceColorAtElevation` — a colour input on the z axis, not a width, height, padding, gap,
+  radius or icon size. `dimension-scale.md` governs *"everything that occupies space"*; this does
+  not occupy any.
+
+The three `sp` values the old entry listed (`AppBar.kt:283,306` 18sp, `BasePreferenceWidget.kt:127`
+16sp) are all verbatim upstream, and `sp` is outside this rule — the 4 dp step is a layout grid, not
+a type scale. Not in scope; kept here only so nobody re-files them.
+
+### Decision: won't fix, all eight
+
+Three independent reasons, in order of weight:
+
+1. **`CloudStreamDimens` is not on this module's classpath.** `core/mihon/build.gradle.kts` depends
+   on `:core:ui` and `kotlinx.collections.immutable`; `:core:ui`'s build file names no `:core:theme`
+   either, and nothing under `core/mihon/src` or `core/ui/src` imports `CloudStreamDimens`. The
+   order of preference in `dimension-scale.md` opens with *"use the token"*, and step 1 is not
+   available here. Reaching it means a new dependency edge from the Apache-2.0 module onto the
+   first-party theme, which is the inverse of the boundary `core/mihon/build.gradle.kts` and the
+   tree's `readme.md` both exist to hold (*"no first-party code belongs here"*). A fix whose first
+   step is to weaken the licence boundary is not a cheap fix.
+2. **The audit cost is concentrated in the worst possible file.** `Pill.kt` is one of only three
+   files in the tree that `readme.md`'s mapping records as **"package line only"** — 61 lines ours,
+   61 upstream, one line different. Editing `6.dp, 1.dp` converts the cheapest row in that table
+   into a content diff, and there is no SHA baseline to diff against (`readme.md`, "The baseline
+   problem"), so the next person re-measures by hand against a moving `main`. Two dp of pill
+   padding is not worth that.
+3. **These widgets are on the way out, and the rule already has a precedent for exactly that.**
+   `dimension-scale.md` rules the legacy `:app` XML dimensions *"not precedent, and not a cleanup
+   task either — they will leave with the views they belong to as the Compose migration
+   proceeds."* The Mihon settings widgets are in the same position one layer up: `DS-03` → `DS-05`
+   replaces these seven screens with `:core:designsystem` ones per screen, and the widget tree
+   leaves with them. The same clause's warning applies too — *"a dimension change in a legacy
+   layout reflows a screen nobody is looking at"* — except here the screens **are** shipping, so a
+   reflow lands on users, and `DEC-10` means no screenshot test would catch it.
+
+The visible error is also small enough not to force the issue: the whole reachable set is
+`14 → 16` on a group header's top padding, `2 → 4` on one gap inside the slider row, and `6/1` of
+pill padding. Nothing here is a geometry contract of the kind `cloudstream4-type-metrics` describes;
+no focus ring, row pitch or line box depends on any of them.
+
+### What would reopen this
+
+- **The two Slider.kt values are the only ones with a live case**, because they are already ours and
+  reason 1 is the only one that applies to them. They are a real visual change to seven slider
+  preferences on three shipping screens (`SettingsPlayerScreen.kt:225,239,248`,
+  `SettingsGeneralScreen.kt:164,172`, `SettingsUIScreen.kt:160,260`), unguarded while `DEC-10` is
+  open, so they are the owner's call and not a drive-by. If taken: `34.0 → 32` or `36`, and
+  `10 → 8` or `12` — and the thumb/track pair has to be chosen together, since the thumb is
+  deliberately taller than the track.
+- A `:core:mihon` → `:core:theme` edge being added for some other reason would remove reason 1.
+- Any of these files being re-synced from upstream — record the SHA in `readme.md` at that point,
+  which is what makes a later divergence auditable at all.
+
+`NOTICE` needs no change: no file was edited, so the modification surface is unchanged.
+
+---
+
+## DS-08 — TV component batch B
+
+**Status:** built, PR open · owner rulings it follows: `DEC-17`
+
+New in `:core:designsystem`, from `design/Components.dc.html` and the boards that use each piece. No screen uses
+them yet.
+
+| Component | Where it comes from | File |
+|---|---|---|
+| `StatusPill` | `Components` §01 | `primitive/StatusPill.kt` |
+| `SegmentedControl` | `Components` §01 | `target/SegmentedControl.kt` |
+| `EpisodeCard`, `ContinueCard` | `Components` §02, `TV Home` 3c | `card/BelowArtCard.kt` |
+| `Avatar` | `TV Detail Player` 7a | `primitive/Avatar.kt` |
+| `StorageMeter` | `TV Episodes Downloads` 6c, 6e | `primitive/StorageMeter.kt` |
+| `DownloadProgressRow` | `TV Episodes Downloads` 6c, 6d | `rows/DownloadProgressRow.kt` |
+| 8 `CloudStreamIcons` entries | Tabler only | `icon/CloudStreamIcons.kt` |
+
+**One existing component changed:** `StatusDot.Failed` went from a filled `live` square to a hollow `muted` one
+(`DEC-17`). It had no caller outside its own file, measured by grep across `core`, `feature`, `desktopApp` and
+`app/src`.
+
+### Where the code departs from a board
+
+- **A failed download row has no `live` rule.** 6a to 6d draw one on the leading edge, and `DEC-17` is newer. It has
+  a hollow `StatusDot` beside the value and a `muted` bar. Those boards still need redrawing.
+- **`PLAYING` is the pack's play glyph at 16dp**, not the board's 8dp CSS triangle (`icons.md`; 16dp is the smallest
+  `CloudStreamIconSize`).
+- **The pill label is `labelMono`, not the board's 20px.** A 12dp line box centres in the 24dp pill at +6dp, off the
+  step. `labelMono`'s 16dp box lands at +4dp.
+- **`SegmentedControl` is a 24dp visual in a 48dp cell, as chips are.** `Components` draws 28dp, which centres at +10dp,
+  off the step. 24dp lands at +12dp. No board uses the control yet, so nothing has to be redrawn.
+- **Corners follow the tokens:** square art as on `MediaCard`, and `shapes.medium` on the segmented control.
+- **Below-art cards do not lift.** The boards draw no lift on them, unlike `BackdropCard`.
+
+`LiveTv`, `Movies` and `Tv` icons are not added: `DEC-17` took them off the rail, so nothing uses them. They can
+return with their filters.
+
+### Open, and not settled here
+
+- **`ProgressRule` 2dp or 4dp** (handover §8.4). The cards use `MediaCardDefaults.ProgressRuleHeight`, 4dp, as
+  asked. 3c agrees, and `Components` draws 4px, which is 2dp. The download row uses `ProgressRule`'s own 2dp, as 6c
+  and 6d draw it.
+- **`Components` draws the selection marker `muted` and "never a white bar"**, and `SelectionMarker` defaults to
+  `ink`. It is white on a selected `DownloadProgressRow`, through `ListRow`. Not changed here.
+
+`:core:designsystem` has no `abiValidation`, so it has no `checkKotlinAbi` or dump to update. Measured from
+`:core:designsystem:tasks --all`; the plugin is only in `cloudstream.kmp.extension-api`.
+
+`SegmentedControlDeviceTest` runs on `Television_720p`: real D-pad keys through the input dispatcher, the ring read from
+the screen, and centre choosing. The other components have JVM tests only, until a screen uses them.
+
+Screenshot cases are in `core/screenshot/.../TvComponentScreenshots.kt`. They compile, and render nothing until
+`DS-04` is unblocked. `TvComponentsTest` holds the bounds and states, drawn offscreen.
+
+## DS-09 — `NavRail`
+
+**Status:** built, not wired into `:app` · owner ruling it follows: `DEC-17` · stacked on `DS-08`
+
+`rail/NavRail.kt` in `:core:designsystem`, from `TV Home` 3a and 3b. The items are parameters; `DEC-17` rules what they
+are. Replacing the XML rail is a later task.
+
+It always measures `NavRailWidth`, 76dp. It is expanded exactly while focus is inside it, and then paints to 188dp over
+its neighbour. The items' nodes change width and are never swapped, because removing the focused node loses focus.
+`NavRailTest` holds this. The code was broken on purpose in ten ways, and each one turned a test red.
+
+### Where the code departs from a board
+
+- **`Components` §06 is not followed.** It draws 96 and 320 wide, 12px corners and a ring on the focused row. `DEC-17`
+  chose `TV Home`'s style, which is 152 and 376 and an `ink` fill.
+- **An exception to `ui-components.md`, which lists `tvFocusRing` for any TV focusable.** The rail's focus treatment is
+  the `ink` fill instead. Ruled: it is right, since white means focus. The rule file is not edited.
+- **Corners follow the token,** `shapes.medium`, 8dp, the role for rows and buttons. `TV Home` draws 8px, which is 4dp.
+- **No ring on a focused collapsed cell** (`.nic.foc`, `Components` §06, `Design System`). Focus expands the rail, and
+  the first frame after focus arrives is already wide and filled, so that state has no frame to draw on. No code for it.
+- **The logo's space stays when expanded.** 3b draws no logo and its first item at y 56px. Following it would move the
+  focused item 88px, 44dp, up as the rail opened. The first item is at 144px, 72dp, in both states.
+- **The content does not move.** 3b draws it at x 456 while its own caption and 3a say it never reflows.
+- **The focused label is not heavier.** `.nie.foc` is weight 800 over 600. Ruled: the typography tokens win, and
+  `CloudStreamTypography` carries no weights.
+- **Glyphs are the pack's**, not the boards' 32px rounded squares (`icons.md`).
+
+### Rulings
+
+- **Focus entering the rail lands on the current page's item,** so the current page is what someone sees first.
+- **3b's 46% dim and `.raile`'s 68px shadow belong to the screen hosting the rail,** because the dim covers content and
+  the rail cannot own it. **The shell task must build them.** They are not in this component.
+
+`NavRailDeviceTest` runs on `Television_720p`: real D-pad keys through the input dispatcher, with a focusable screen beside
+the rail. Removing focus entry there sends LEFT to `Downloads` instead of `Library`, which is why it is ruled. `NavRailTest`
+holds the geometry on the desktop scene. Nothing in `:app` uses the rail yet, so returning focus on RIGHT is untested. The
+screenshot cases are in `core/screenshot/.../NavRailScreenshots.kt`. They compile, and render nothing until `DS-04` is
+unblocked. Whether the expanded case captures after its focus effect runs cannot be known until then.
+
+---
+
+## DS-10 — Batch A of the TV kit: panel motion, two focusable-when-disabled targets, the trailing focus stop, and the text field
 
 **Status:** done · **Scope:** `:core:designsystem`, plus the one call site in `:feature:search`
 
@@ -271,118 +483,3 @@ each stop by its accessible label, which is what caught 3.
 `TextButtonDefaults`, `ChipDefaults` and `IconCellDefaults` is unchanged.
 
 ---
-
-## DS-07 — Off-grid dimensions in the vendored Mihon tree · **won't fix**
-
-**Status:** closed, won't fix · censused 2026-10-15 · related to `KMP-06b`
-
-The earlier entry listed seven sites "for visibility only" and asserted *"they are upstream's."*
-Censused and checked against upstream: the list is right, the reason is **wrong for two of them**.
-The decision does not change, but it now rests on measurement rather than on that claim.
-
-### Census — every `.dp` literal in `core/mihon/`
-
-| | |
-|---|---|
-| Kotlin files in the module | 29 |
-| …containing at least one `N.dp` literal | 14 |
-| `N.dp` literals | **36**, on 32 lines (four lines carry two: `PreferenceGroupHeader.kt:19`, `Pill.kt:34`, `Slider.kt:33`, `AppBar.kt:125`) |
-| …in live code / inside a commented-out block | 35 / 1 (`ListPreferenceWidget.kt:106`, `24.dp`, inside the `/* … */` that closes the file) |
-| on the 4 dp step (counting the four `0.dp`) | **28 of 36** |
-| **off the step** | **8 literals, at 7 sites, in 5 files** |
-
-Counted two ways — `grep -rhoE '[0-9]+(\.[0-9]+)?\.dp' | sort \| uniq -c`, then a script that
-blanks comments and string literals before matching. Both give 36 / 8; the comment-aware pass is
-the one that found the dead `24.dp`. Distinct values present: 0, 1, 2, 3, 4, 4.0, 6, 8, 10, 12, 14,
-16, 20, 24, 32, 34.0, 48, 56, 128.
-
-### The eight, classified
-
-"Upstream?" was checked by fetching the mapped upstream file from `mihonapp/mihon@main` on
-2026-10-15 and diffing. "Reachable?" means: evaluated when one of the seven shipping Compose
-settings screens renders.
-
-| Site | Value | What it is | Verbatim upstream? | Reachable? |
-|---|---|---|---|---|
-| `PreferenceGroupHeader.kt:19` | `top = 14.dp` | group-header top padding | yes (`A`…`widget/PreferenceGroupHeader.kt:20`) | **yes — every group header, all 7 screens** |
-| `Pill.kt:34` | `6.dp` | pill inner padding, horizontal | yes (`P`…`components/Pill.kt:34`) | **yes — slider value pill, 3 screens** |
-| `Pill.kt:34` | `1.dp` | pill inner padding, vertical | yes, same line | **yes** |
-| `SettingsItems.kt:221` | `spacedBy(2.dp)` | gap inside `BaseSliderItem` | yes (`P`…`components/SettingsItems.kt:222`) | **yes — 3 screens** |
-| `Slider.kt:33` | `34.0.dp` | slider thumb height (width `4.0` is on step) | **no — ours** | **yes — 3 screens** |
-| `Slider.kt:38` | `height(10.dp)` | slider track thickness | **no — ours** | **yes — 3 screens** |
-| `SettingsItems.kt:64` | `Vertical = 10.dp` | `SettingsItemsPaddings.Vertical` | yes (`P`…`SettingsItems.kt:67`) | no — see below |
-| `AppBar.kt:125` | `elevation = 3.dp` | tonal elevation, action-mode branch | yes (`A`…`components/AppBar.kt:158`) | no — see below |
-
-**Two are ours, not upstream's.** `core/mihon/.../material/Slider.kt` has no `.dp` literal upstream
-at all — not on `main`, and not at `v0.17.0`, `v0.18.0` or `v0.19.0` either (fetched and grepped;
-`v0.16.5` 404s). `thumbSize = DpSize(4.0.dp, 34.0.dp)` and `Modifier.height(10.dp)` are a
-CloudStream-side edit to a vendored file, inside a block that already diverges (upstream `main` now
-drives the slider through `rememberSliderState`; we still pass `value`/`valueRange`/`steps`). The
-Apache §4(b) argument therefore does **not** cover these two.
-
-**Two are not reachable.**
-
-- `SettingsItemsPaddings.Vertical` is used only by `SettingsItems.kt`'s own item composables, and
-  **none of them has a caller outside that file** — checked for all thirteen (`HeadingItem`,
-  `IconItem`, `SortItem`, `BaseSortItem`, `CheckboxItem`, `RadioItem`, `SliderItem`, `SelectItem`,
-  `TriStateItem`, `TextItem`, `SettingsChipRow`, `SettingsIconGrid`, `BaseSettingsItem`: zero hits
-  across `core/` and `app/src`). The one entry point the screens do reach is `BaseSliderItem`, and
-  `PreferenceItem.kt:95-98` passes it `PrefsHorizontalPadding`/`PrefsVerticalPadding` (16/16),
-  not `SettingsItemsPaddings`. The `10.dp` never renders today.
-- `AppBar.kt:125` is the `isActionMode` arm, and `actionModeCounter` is never passed by any caller
-  (default `0`; the only other mention is the `isActionMode = false` preview at `:371`), so the
-  expression always yields `0.dp`. It is also a **tonal elevation** fed to
-  `surfaceColorAtElevation` — a colour input on the z axis, not a width, height, padding, gap,
-  radius or icon size. `dimension-scale.md` governs *"everything that occupies space"*; this does
-  not occupy any.
-
-The three `sp` values the old entry listed (`AppBar.kt:283,306` 18sp, `BasePreferenceWidget.kt:127`
-16sp) are all verbatim upstream, and `sp` is outside this rule — the 4 dp step is a layout grid, not
-a type scale. Not in scope; kept here only so nobody re-files them.
-
-### Decision: won't fix, all eight
-
-Three independent reasons, in order of weight:
-
-1. **`CloudStreamDimens` is not on this module's classpath.** `core/mihon/build.gradle.kts` depends
-   on `:core:ui` and `kotlinx.collections.immutable`; `:core:ui`'s build file names no `:core:theme`
-   either, and nothing under `core/mihon/src` or `core/ui/src` imports `CloudStreamDimens`. The
-   order of preference in `dimension-scale.md` opens with *"use the token"*, and step 1 is not
-   available here. Reaching it means a new dependency edge from the Apache-2.0 module onto the
-   first-party theme, which is the inverse of the boundary `core/mihon/build.gradle.kts` and the
-   tree's `readme.md` both exist to hold (*"no first-party code belongs here"*). A fix whose first
-   step is to weaken the licence boundary is not a cheap fix.
-2. **The audit cost is concentrated in the worst possible file.** `Pill.kt` is one of only three
-   files in the tree that `readme.md`'s mapping records as **"package line only"** — 61 lines ours,
-   61 upstream, one line different. Editing `6.dp, 1.dp` converts the cheapest row in that table
-   into a content diff, and there is no SHA baseline to diff against (`readme.md`, "The baseline
-   problem"), so the next person re-measures by hand against a moving `main`. Two dp of pill
-   padding is not worth that.
-3. **These widgets are on the way out, and the rule already has a precedent for exactly that.**
-   `dimension-scale.md` rules the legacy `:app` XML dimensions *"not precedent, and not a cleanup
-   task either — they will leave with the views they belong to as the Compose migration
-   proceeds."* The Mihon settings widgets are in the same position one layer up: `DS-03` → `DS-05`
-   replaces these seven screens with `:core:designsystem` ones per screen, and the widget tree
-   leaves with them. The same clause's warning applies too — *"a dimension change in a legacy
-   layout reflows a screen nobody is looking at"* — except here the screens **are** shipping, so a
-   reflow lands on users, and `DEC-10` means no screenshot test would catch it.
-
-The visible error is also small enough not to force the issue: the whole reachable set is
-`14 → 16` on a group header's top padding, `2 → 4` on one gap inside the slider row, and `6/1` of
-pill padding. Nothing here is a geometry contract of the kind `cloudstream4-type-metrics` describes;
-no focus ring, row pitch or line box depends on any of them.
-
-### What would reopen this
-
-- **The two Slider.kt values are the only ones with a live case**, because they are already ours and
-  reason 1 is the only one that applies to them. They are a real visual change to seven slider
-  preferences on three shipping screens (`SettingsPlayerScreen.kt:225,239,248`,
-  `SettingsGeneralScreen.kt:164,172`, `SettingsUIScreen.kt:160,260`), unguarded while `DEC-10` is
-  open, so they are the owner's call and not a drive-by. If taken: `34.0 → 32` or `36`, and
-  `10 → 8` or `12` — and the thumb/track pair has to be chosen together, since the thumb is
-  deliberately taller than the track.
-- A `:core:mihon` → `:core:theme` edge being added for some other reason would remove reason 1.
-- Any of these files being re-synced from upstream — record the SHA in `readme.md` at that point,
-  which is what makes a later divergence auditable at all.
-
-`NOTICE` needs no change: no file was edited, so the modification surface is unchanged.

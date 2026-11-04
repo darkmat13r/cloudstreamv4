@@ -21,7 +21,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 /**
- * The field `DS-08` moved out of `:feature:search`, measured against the board that specified it
+ * The field `DS-10` moved out of `:feature:search`, measured against the board that specified it
  * and against the private `QueryField` it replaces.
  *
  * `TV Search`'s own CSS is the whole specification — `height: 96px`, `padding: 0 24px` — and on the

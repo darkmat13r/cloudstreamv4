@@ -23,8 +23,9 @@ when twenty-three more had merged since. **Trust `git log` over this heading.**
 ## Where things stand
 
 Master is at `26acd8f8` (#104). **One pull request is open: #91**, a **draft** — `KMP-12` steps 3 and 4,
-Android TV opening the new search screen. Its own body says *do not merge it until someone has tried it on
-a real TV*; there is no device here, so it has been compiled and never run. Everything from #45 to #104 has
+Android TV opening the new search screen. `DEC-17` accepts passing UI tests on the `Television_720p` emulator as proof for
+switching; `TvSearchNavigationTest` is that proof. What holds it is the owner's call on its published-API
+delta. Everything from #45 to #104 has
 merged.
 
 **The desktop app is the working app.** That was the owner's direction — desktop first, then the other
@@ -72,8 +73,31 @@ search's repoint is the draft PR above:
 | `KMP-15`/`16`/`25` | `:feature:detail`, `:media:subtitle` | The desktop detail page, source list, player and subtitles | Source and audio selectors (artboard 7e). No Android host |
 | `KMP-26` | `:feature:library` | Continue Watching, six lists, watch progress, resume, and a file store beside the search history | A bookmark button on the detail page, progress on search and home cards, sorting, Android |
 
-`:app`'s `SearchFragment`, `SearchViewModel` and home fragments are untouched and still the live Android
-path. The Android app is unchanged by all of the desktop work.
+**Update, 2026-11-02: Android TV opens the new search screen** (`KMP-12` steps 3 and 4). The rest of
+this paragraph's table is history. `SearchTvFragment` is the glue, gated by one line in `MainActivity`;
+deleting that line is the rollback. Phone and emulator layouts still use `SearchFragment`. **It has
+been compile-checked and never run.** To try it on a TV or a TV emulator:
+
+    ./gradlew :app:assemblePrereleaseDebug
+    adb install -r app/build/outputs/apk/prerelease/debug/*.apk
+
+Set Settings → UI → App layout to TV if the device did not auto-detect it, then check: D-pad from
+the rail into the field and back; OK opens the keyboard; Enter searches and shows rails; a card opens
+its result and Back returns with focus somewhere sensible; a non-system app language shows translated
+words and card labels; `Clear all searches` asks first; a `cloudstreamsearch://` intent searches.
+
+Waiting on the owner, from that switch: **voice search and the provider filter sheet are lost on TV**
+until there is an icon pack (`DEC-11`) and artboard 4d; and whether the old type chips should narrow
+a search (they are ignored for now). The full behaviour table is in `docs/tasks/kmp.md`.
+
+**Desktop runs extensions in a sandbox** (`KMP-14`, `docs/tasks/kmp.md`): one Seatbelt-confined child
+process per extension, scanned first, `.cs3` converted with dex2jar in a no-network sandbox. Plugin code
+no longer runs in the app's JVM, and where there is no sandbox nothing loads. Try it headless:
+`CloudStream --check-extensions "query" --verbose`.
+
+**Desktop plays video** (`KMP-15`): search, the TV detail page, a source list and an embedded player over the user's
+installed VLC, through vlcj. libVLC runs in the app process, outside the sandbox; that is its largest remaining gap.
+`:app`'s `SearchViewModel` and home fragments are untouched. `SearchFragment` is still the live path on the phone and emulator layouts, and the Android app is otherwise unchanged by all of the desktop work.
 
 ---
 
@@ -404,7 +428,7 @@ page (it needs a slot in `:feature:detail`) and watch progress on search and hom
 **Row 18, `:feature:search`,** has two steps left:
 
 4. **Open as draft #91** — the glue `Fragment` and one node repointed in `res/navigation/mobile_navigation.xml`.
-   The old fragment stays in `:app` as the rollback lever. **Needs a real TV before it merges.**
+   The old fragment stays in `:app` as the rollback lever. Its proof is `TvSearchNavigationTest` on the emulator (`DEC-17`).
 5. Delete the old fragment and layouts a release later. That removes `com.lagradost.cloudstream3`
    classes from `classes.jar`: list them with the javap tripwire output for owner sign-off.
 

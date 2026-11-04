@@ -5,6 +5,7 @@ import com.lagradost.cloudstream3.CloudStreamApp.Companion.getKey
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.getKeys
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.removeKey
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.removeKeys
+import com.lagradost.cloudstream3.CloudStreamApp.Companion.setKey
 import com.lagradost.cloudstream3.ui.search.SEARCH_HISTORY_KEY
 import com.lagradost.cloudstream3.ui.search.SearchHistoryItem
 import com.lagradost.cloudstream3.utils.DataStoreHelper.currentAccount
@@ -67,6 +68,30 @@ internal class DataStoreSearchHistory : SearchHistoryStore {
     override suspend fun recent(): List<SearchHistoryEntry> = withContext(Dispatchers.IO) {
         val now = System.currentTimeMillis()
         storedItems().toRecentEntries { searchedAt -> relativeWhenLabel(searchedAt, now) }
+    }
+
+    /**
+     * Records a submitted search. Not part of the contract: the host calls it, so the state machine
+     * stays unaware of storage.
+     *
+     * The same row `SearchViewModel.kt:212-222` writes, under the same key, so a search repeated from
+     * either path moves its one row to the top rather than adding a second.
+     */
+    suspend fun record(query: String, searchedAt: Long = System.currentTimeMillis()) {
+        if (!isRecordable(query)) return
+        withContext(Dispatchers.IO) {
+            val key = historyKeyOf(query)
+            setKey(
+                historyFolder(),
+                key,
+                SearchHistoryItem(
+                    searchedAt = searchedAt,
+                    searchText = query,
+                    type = emptyList(),
+                    key = key,
+                ),
+            )
+        }
     }
 
     /**
@@ -133,6 +158,9 @@ private fun historyFolder(): String = "$currentAccount/$SEARCH_HISTORY_KEY"
  */
 internal fun historyKeyOf(query: String): String = query.hashCode().toString()
 
+/** The old path's guard (`SearchViewModel.kt:206`): it does not search or store one character. */
+internal fun isRecordable(query: String): Boolean = query.length > 1
+
 /**
  * Stored entries to the screen's rows: the whole of the mapping, and the only part of this file a
  * JVM test can reach.
@@ -181,13 +209,9 @@ internal fun List<SearchHistoryItem>.toRecentEntries(
  * Beyond a week `DateUtils` stops counting and formats an absolute date, which is the right answer
  * for a row that old and is also localized.
  *
- * **Known limitation.** The static overloads read `Resources.getSystem()`, which is the *system*
- * locale, not the per-app override `CommonActivity.setLocale` applies to the activity's resources
- * (`CommonActivity.kt:220-237`). A user whose app language differs from their device language sees
- * this one string in the device language. The `Context` overloads honour the app locale but do not
- * produce *"n ago"* wording at all, so there is no drop-in fix; doing it properly means
- * `android.icu.text.RelativeDateTimeFormatter` with an explicit locale, which is a decision beyond
- * this seam and is noted in the task report rather than taken here.
+ * **Language.** The static overload resolves against `Locale.getDefault()` (read in
+ * `sdk/sources/android-36/android/text/format/DateUtils.java`; no older source was to hand), which
+ * `CommonActivity.setLocale` sets, so this follows the in-app language.
  */
 private fun relativeWhenLabel(searchedAt: Long, now: Long): String =
     DateUtils.getRelativeTimeSpanString(

@@ -39,6 +39,13 @@ data class SearchResultItem(
     val id: SearchResultId,
     val title: String,
     val posterUrl: String? = null,
+    /**
+     * Headers the poster has to be fetched with, as the provider gave them.
+     *
+     * A provider that hotlink-protects its images answers a plain request with a 403, so a card
+     * without these draws its placeholder. `null` when the provider set none.
+     */
+    val posterHeaders: Map<String, String>? = null,
     /** Which provider returned this hit. Display only. */
     val providerName: String,
     /** Resolved label for the media type, e.g. "Movie". `null` when the provider did not say. */

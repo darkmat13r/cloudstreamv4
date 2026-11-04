@@ -32,7 +32,7 @@ import org.junit.runner.RunWith
 import java.util.concurrent.CopyOnWriteArrayList
 
 /**
- * `DS-08`'s two new focus behaviours under a **real remote**, which is the half the JVM suite cannot
+ * `DS-10`'s two new focus behaviours under a **real remote**, which is the half the JVM suite cannot
  * reach.
  *
  * The JVM tests in this module drive focus with `FocusManager.moveFocus`, because arrow keys move no

@@ -261,7 +261,7 @@ private fun Scrim(travel: Animatable<Float, AnimationVector1D>) {
  * restores, `expanded` is already false, the exit is allowed, and the trap has done its job for
  * the whole time the panel was open.
  *
- * This was not visible before `DS-08`. The trap predates it, but so did
+ * This was not visible before `DS-10`. The trap predates it, but so did
  * `focusProperties { canFocus = … }` *before* `focusGroup()` — and `focusGroup()` is itself
  * `focusProperties { canFocus = false }.focusTarget()`, so it overwrote that property and the
  * group was focusable. Focus therefore landed on the **group**, not on a row inside it, and moving

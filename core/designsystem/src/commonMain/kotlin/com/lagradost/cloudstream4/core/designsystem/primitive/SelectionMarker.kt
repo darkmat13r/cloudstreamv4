@@ -65,7 +65,7 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
  * (`Components:148`, `TV Library:149`, `TV Detail Player:108`, `TV Episodes Downloads:97`,
  * `TV Search Suggestions:123`).
  *
- * This default was `ink` until `DS-08`, which is the bug those boards describe. The two states are
+ * This default was `ink` until `DS-10`, which is the bug those boards describe. The two states are
  * meant to be legible together: a focused row has a white *ring* and a selected row has a muted
  * *marker*, and a row that is both says so without either reading as the other.
  *

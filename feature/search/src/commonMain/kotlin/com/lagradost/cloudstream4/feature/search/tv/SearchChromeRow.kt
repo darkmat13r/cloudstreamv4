@@ -36,7 +36,7 @@ import org.jetbrains.compose.resources.stringResource
  * The field itself is the design system's
  * [com.lagradost.cloudstream4.core.designsystem.target.TextField], which is where its geometry and
  * the note on the artboard's missing magnifier now live. It was this file's `private QueryField`
- * until `DS-08` moved it; nothing about how it renders changed.
+ * until `DS-10` moved it; nothing about how it renders changed.
  */
 @Composable
 internal fun SearchChromeRow(
