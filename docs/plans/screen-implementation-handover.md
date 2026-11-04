@@ -222,7 +222,7 @@ Home ×4 · Search ×4 · **Suggestions/Quick Search ×5** · Library ×5 · Epi
 Detail/Player ×6 · Onboarding/Extensions ×5
 
 Two of those are variants rather than new screens — `7a-ii` is `7a` scrolled, and `8a-ii` is `8a`
-with the index unreachable — so 32 distinct screens. The old count of 28 is this list without the
+offline — so 32 distinct screens. The old count of 28 is this list without the
 five Suggestions boards and without `7a-ii`. `TV Screens.dc.html`
 holds five more (`2a`–`2e`) and is **superseded**: §2 lists it, and it still contains the banned
 320×180 rung.

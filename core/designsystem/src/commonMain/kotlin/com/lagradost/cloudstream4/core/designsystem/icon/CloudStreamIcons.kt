@@ -5,15 +5,20 @@ import compose.icons.TablerIcons
 import compose.icons.tablericons.AdjustmentsHorizontal
 import compose.icons.tablericons.AlertTriangle
 import compose.icons.tablericons.ArrowLeft
+import compose.icons.tablericons.Book
 import compose.icons.tablericons.Bookmark
+import compose.icons.tablericons.Cast
 import compose.icons.tablericons.Check
 import compose.icons.tablericons.ChevronRight
 import compose.icons.tablericons.CircleX
 import compose.icons.tablericons.Database
 import compose.icons.tablericons.Dots
 import compose.icons.tablericons.Download
+import compose.icons.tablericons.Gauge
+import compose.icons.tablericons.Headphones
 import compose.icons.tablericons.Heart
 import compose.icons.tablericons.Home
+import compose.icons.tablericons.Lock
 import compose.icons.tablericons.Maximize
 import compose.icons.tablericons.MessageCircle
 import compose.icons.tablericons.Minimize
@@ -30,9 +35,12 @@ import compose.icons.tablericons.Search
 import compose.icons.tablericons.Server
 import compose.icons.tablericons.Settings
 import compose.icons.tablericons.Share
+import compose.icons.tablericons.Star
 import compose.icons.tablericons.Trash
+import compose.icons.tablericons.User
 import compose.icons.tablericons.Volume
 import compose.icons.tablericons.Volume3
+import compose.icons.tablericons.WifiOff
 import compose.icons.tablericons.X
 
 /**
@@ -61,6 +69,9 @@ object CloudStreamIcons {
     val NextEpisode: ImageVector get() = TablerIcons.PlayerSkipForward
     val Subtitles: ImageVector get() = TablerIcons.MessageCircle
     val Quality: ImageVector get() = TablerIcons.AdjustmentsHorizontal
+    val Audio: ImageVector get() = TablerIcons.Headphones
+    val Speed: ImageVector get() = TablerIcons.Gauge
+    val Cast: ImageVector get() = TablerIcons.Cast
     val Volume: ImageVector get() = TablerIcons.Volume
     val Muted: ImageVector get() = TablerIcons.Volume3
     val EnterFullscreen: ImageVector get() = TablerIcons.Maximize
@@ -76,6 +87,8 @@ object CloudStreamIcons {
     val Settings: ImageVector get() = TablerIcons.Settings
     val More: ImageVector get() = TablerIcons.Dots
     val Disclosure: ImageVector get() = TablerIcons.ChevronRight
+    val Library: ImageVector get() = TablerIcons.Book
+    val Profile: ImageVector get() = TablerIcons.User
 
     // Actions and state
     val Download: ImageVector get() = TablerIcons.Download
@@ -87,6 +100,9 @@ object CloudStreamIcons {
     val Share: ImageVector get() = TablerIcons.Share
     val Favorite: ImageVector get() = TablerIcons.Heart
     val Bookmark: ImageVector get() = TablerIcons.Bookmark
+    val Star: ImageVector get() = TablerIcons.Star
+    val Lock: ImageVector get() = TablerIcons.Lock
+    val Offline: ImageVector get() = TablerIcons.WifiOff
 
     // Sources
     val Source: ImageVector get() = TablerIcons.Server

@@ -182,6 +182,10 @@ Conventions:
 - `UiState`, `UiStateHost`, `StateView`, `FailureBanner`, `StateActionButton`, the skeletons.
 - `CloudStreamIcons`.
 
+> Built since this audit, by `DS-08`: the status pill, segmented control, below-art episode and continue cards, avatar,
+> storage meter, download progress row and the missing icons. `DEC-17` settled the failure colour: hollow neutral.
+> Built since this audit, by `DS-09`: `NavRail`, component only. The XML rail is still what `:app` shows.
+
 **Missing from `Components.dc.html`:**
 
 | Component | Evidence | Needed by |
@@ -209,6 +213,9 @@ Conventions:
 - `StatusDot.Failed` is drawn in `live` (`DS/primitive/StatusDot.kt:27`). `Components` says the pill is achromatic and failed is hollow. The Episodes note instead sanctions one failure marker in `live`. The 7c note says whether one marker means one role or one instance is "the only open question on this cluster".
 - `ProgressRule` is 2dp, `MediaCardDefaults.ProgressRuleHeight` is 4dp (`DS/primitive/ProgressRule.kt`, `DS/card/MediaCardDefaults.kt:36`). This is H §8.4, still open.
 - `ChipRowSpacing` 24dp vs CSS 12dp (`K:1332-1344`, `HO:294`).
+
+**Owed on the boards, with no ruling needed:**
+- `.chipn` on `TV Detail Player` is still 20/24. `TV Onboarding Extensions` says it must become 24/32, because a 24 box centred in the 48-tall chip lands at +12, off the 8px step. Its `must be propagated` note stays until this is done.
 
 ## 4. Proposed queue
 
