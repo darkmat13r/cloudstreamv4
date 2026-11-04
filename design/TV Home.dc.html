@@ -215,7 +215,7 @@
 
                 <div class="railc abs" style="left:0;top:0">
                   <div class="lgm"></div>
-                  <sc-for list="{{ nav }}" as="n" hint-placeholder-count="6">
+                  <sc-for list="{{ nav }}" as="n" hint-placeholder-count="5">
                     <div class="nic {{ n.cls }}"><span class="gl"></span></div>
                   </sc-for>
                 </div>
@@ -246,7 +246,7 @@
           <div class="shot" id="3b">
             <div class="shotl">
               <span class="shotn">3b · Shell — rail focused</span>
-              <span>LEFT from the first column expands the rail to 376 <b>over</b> the content. Home stays marked as the current page while focus travels to Live TV; committing is what navigates. RIGHT returns focus to the exact view that yielded it, not to item 0.</span>
+              <span>LEFT from the first column expands the rail to 376 <b>over</b> the content. Home stays marked as the current page while focus travels to Search; committing is what navigates. RIGHT returns focus to the exact view that yielded it, not to item 0.</span>
             </div>
             <div class="shotc">
               <div class="tv" data-screen-label="TV Shell — rail focused">
@@ -279,7 +279,7 @@
                 </div>
 
                 <div class="raile abs" style="left:0;top:0">
-                  <sc-for list="{{ navExp }}" as="n" hint-placeholder-count="6">
+                  <sc-for list="{{ navExp }}" as="n" hint-placeholder-count="5">
                     <div class="nie {{ n.cls }}"><span class="gl"></span>{{ n.l }}</div>
                   </sc-for>
                 </div>
@@ -300,7 +300,7 @@
 
                 <div class="railc abs" style="left:0;top:0">
                   <div class="lgm"></div>
-                  <sc-for list="{{ nav }}" as="n" hint-placeholder-count="6">
+                  <sc-for list="{{ nav }}" as="n" hint-placeholder-count="5">
                     <div class="nic {{ n.cls }}"><span class="gl"></span></div>
                   </sc-for>
                 </div>
@@ -371,7 +371,7 @@
               <div class="tv" data-screen-label="TV Home — scrolled">
                 <div class="railc abs" style="left:0;top:0;background:linear-gradient(90deg,#000 76%,rgba(0,0,0,0))">
                   <div class="lgm"></div>
-                  <sc-for list="{{ nav }}" as="n" hint-placeholder-count="6">
+                  <sc-for list="{{ nav }}" as="n" hint-placeholder-count="5">
                     <div class="nic {{ n.cls }}"><span class="gl"></span></div>
                   </sc-for>
                 </div>
@@ -471,14 +471,13 @@
     <script type="text/x-dc" data-dc-script data-props='{}'>
       class Component extends DCLogic {
         renderVals() {
-          const nav = [{ cls: "" }, { cls: "cur" }, { cls: "" }, { cls: "" }, { cls: "" }, { cls: "" }];
+          const nav = [{ cls: "cur" }, { cls: "" }, { cls: "" }, { cls: "" }, { cls: "" }];
           const navExp = [
-            { l: "Search", cls: "" },
             { l: "Home", cls: "cur" },
-            { l: "Live TV", cls: "foc" },
-            { l: "Movies", cls: "" },
-            { l: "TV Shows", cls: "" },
-            { l: "Library", cls: "" }
+            { l: "Search", cls: "foc" },
+            { l: "Library", cls: "" },
+            { l: "Downloads", cls: "" },
+            { l: "Settings", cls: "" }
           ];
 
           const rawCont = [

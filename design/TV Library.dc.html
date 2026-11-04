@@ -73,7 +73,7 @@
             white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
           .cbm { font: 500 20px/24px "JetBrains Mono", monospace; color: var(--mut);
             white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-          .cbm.bad { color: var(--acc); }
+          .cbm.bad { color: var(--ink2); }
 
           /* a SINGLE line centred in a 96 row needs a 48px line box: (96-48)/2 = 24 */
           .field { height: 96px; box-sizing: border-box; padding: 0 24px; border-radius: 8px;
@@ -130,7 +130,7 @@
 
           .sg { width: 16px; height: 16px; border-radius: 4px; background: var(--mut); flex: none; }
           .sg.ok { background: var(--ink); }
-          .sg.fail { background: transparent; box-shadow: inset 0 0 0 2px var(--acc); }
+          .sg.fail { background: transparent; box-shadow: inset 0 0 0 2px var(--mut); }
 
           /* state view — 64 inks 83.2, so it needs 88; 28 inks 36.4, so it needs 40 */
           .svg1 { width: 96px; height: 96px; border-radius: 24px;
@@ -194,7 +194,7 @@
               <div class="tv" data-screen-label="Library — grid">
                 <div class="railc abs" style="left:0;top:0">
                   <div class="lgm"></div>
-                  <sc-for list="{{ nav }}" as="n" hint-placeholder-count="6">
+                  <sc-for list="{{ nav }}" as="n" hint-placeholder-count="5">
                     <div class="nic {{ n.cls }}"><span class="gl"></span></div>
                   </sc-for>
                 </div>
@@ -248,7 +248,7 @@
               <div class="tv" data-screen-label="Library — provider unreachable">
                 <div class="railc abs" style="left:0;top:0">
                   <div class="lgm"></div>
-                  <sc-for list="{{ nav }}" as="n" hint-placeholder-count="6">
+                  <sc-for list="{{ nav }}" as="n" hint-placeholder-count="5">
                     <div class="nic {{ n.cls }}"><span class="gl"></span></div>
                   </sc-for>
                 </div>
@@ -296,7 +296,7 @@
               <div class="tv" data-screen-label="Library — empty page">
                 <div class="railc abs" style="left:0;top:0">
                   <div class="lgm"></div>
-                  <sc-for list="{{ nav }}" as="n" hint-placeholder-count="6">
+                  <sc-for list="{{ nav }}" as="n" hint-placeholder-count="5">
                     <div class="nic {{ n.cls }}"><span class="gl"></span></div>
                   </sc-for>
                 </div>
@@ -341,7 +341,7 @@
               <div class="tv" data-screen-label="Sort — side panel">
                 <div class="railc abs" style="left:0;top:0">
                   <div class="lgm"></div>
-                  <sc-for list="{{ nav }}" as="n" hint-placeholder-count="6">
+                  <sc-for list="{{ nav }}" as="n" hint-placeholder-count="5">
                     <div class="nic {{ n.cls }}"><span class="gl"></span></div>
                   </sc-for>
                 </div>
@@ -388,7 +388,7 @@
               <div class="tv" data-screen-label="Provider — side panel">
                 <div class="railc abs" style="left:0;top:0">
                   <div class="lgm"></div>
-                  <sc-for list="{{ nav }}" as="n" hint-placeholder-count="6">
+                  <sc-for list="{{ nav }}" as="n" hint-placeholder-count="5">
                     <div class="nic {{ n.cls }}"><span class="gl"></span></div>
                   </sc-for>
                 </div>
@@ -484,7 +484,7 @@
     <script type="text/x-dc" data-dc-script data-props='{}'>
       class Component extends DCLogic {
         renderVals() {
-          const nav = [{ cls: "" }, { cls: "" }, { cls: "cur" }, { cls: "" }, { cls: "" }, { cls: "" }];
+          const nav = [{ cls: "" }, { cls: "" }, { cls: "cur" }, { cls: "" }, { cls: "" }];
 
           function mkTabs(selIdx) {
             const src = [["Watching", "142"], ["Completed", "88"], ["On hold", "4"],

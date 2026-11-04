@@ -208,7 +208,7 @@
               <div class="tv" data-screen-label="Search — results">
                 <div class="railc abs" style="left:0;top:0">
                   <div class="lgm"></div>
-                  <sc-for list="{{ nav }}" as="n" hint-placeholder-count="6">
+                  <sc-for list="{{ nav }}" as="n" hint-placeholder-count="5">
                     <div class="nic {{ n.cls }}"><span class="gl"></span></div>
                   </sc-for>
                 </div>
@@ -264,7 +264,7 @@
               <div class="tv" data-screen-label="Search — partial">
                 <div class="railc abs" style="left:0;top:0">
                   <div class="lgm"></div>
-                  <sc-for list="{{ nav }}" as="n" hint-placeholder-count="6">
+                  <sc-for list="{{ nav }}" as="n" hint-placeholder-count="5">
                     <div class="nic {{ n.cls }}"><span class="gl"></span></div>
                   </sc-for>
                 </div>
@@ -329,7 +329,7 @@
               <div class="tv" data-screen-label="Search — history">
                 <div class="railc abs" style="left:0;top:0">
                   <div class="lgm"></div>
-                  <sc-for list="{{ nav }}" as="n" hint-placeholder-count="6">
+                  <sc-for list="{{ nav }}" as="n" hint-placeholder-count="5">
                     <div class="nic {{ n.cls }}"><span class="gl"></span></div>
                   </sc-for>
                 </div>
@@ -383,7 +383,7 @@
               <div class="tv" data-screen-label="Source picker — side panel">
                 <div class="railc abs" style="left:0;top:0">
                   <div class="lgm"></div>
-                  <sc-for list="{{ nav }}" as="n" hint-placeholder-count="6">
+                  <sc-for list="{{ nav }}" as="n" hint-placeholder-count="5">
                     <div class="nic {{ n.cls }}"><span class="gl"></span></div>
                   </sc-for>
                 </div>
@@ -488,7 +488,7 @@
     <script type="text/x-dc" data-dc-script data-props='{}'>
       class Component extends DCLogic {
         renderVals() {
-          const nav = [{ cls: "cur" }, { cls: "" }, { cls: "" }, { cls: "" }, { cls: "" }, { cls: "" }];
+          const nav = [{ cls: "" }, { cls: "cur" }, { cls: "" }, { cls: "" }, { cls: "" }];
 
           const chips = [
             { l: "Movies", cls: "sel" }, { l: "TV series", cls: "sel" }, { l: "Anime", cls: "" },

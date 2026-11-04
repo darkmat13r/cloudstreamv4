@@ -66,7 +66,7 @@
         white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
       .cbm { font:500 20px/24px "JetBrains Mono",monospace; color:var(--mut);
         white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-      .cbm.bad { color:var(--acc); }
+      .cbm.bad { color:var(--ink2); }
       .ibx { width:96px; height:96px; display:flex; align-items:center; justify-content:center;
         border-radius:12px; box-sizing:border-box; }
       .ibx.foc { outline:4px solid var(--ink); outline-offset:4px; }
@@ -114,7 +114,7 @@
       .cardbar i { display:block; height:100%; background:var(--acc); }
       .sg { width:16px; height:16px; border-radius:4px; background:var(--mut); flex:none; }
       .sg.ok { background:var(--ink); }
-      .sg.fail { background:transparent; box-shadow: inset 0 0 0 2px var(--acc); }
+      .sg.fail { background:transparent; box-shadow: inset 0 0 0 2px var(--mut); }
       .failgrp { display:flex; align-items:center; gap:24px; height:96px; }
       .failpill { display:inline-flex; align-items:center; gap:12px; height:48px; padding:0 24px;
         box-sizing:border-box; border-radius:24px; background:var(--raised);
@@ -149,8 +149,8 @@
       .lcol { flex:1 1 auto; min-width:0; }
       .lt1  { flex:1 1 auto; min-width:0; font:600 24px/48px Manrope,sans-serif; color:var(--ink);
               white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-      .lmark.fail { background:var(--acc); }
-      .ldisc.fail { box-shadow: inset 0 0 0 4px var(--acc); }
+      .lmark.fail { background:transparent; box-shadow: inset 0 0 0 2px var(--mut); }
+      .ldisc.fail { box-shadow: inset 0 0 0 4px var(--mut); }
       .lrow.hdr { background:var(--raised); box-shadow: inset 0 0 0 1px var(--line); }
       .lrow.bnr { background:var(--raised); box-shadow: inset 0 0 0 1px var(--line); }
       .prov { width:320px; flex:none; font:400 24px/32px Manrope,sans-serif; color:var(--mut);
@@ -213,8 +213,8 @@
       <code>fragment_extensions.xml:86-91</code>, <code>add_repo_input.xml:31-39</code>). A new TV user therefore lands
       on a home screen that reports <b>Success(emptyMap())</b> (<code>HomeViewModel.kt:329-333</code>) — no error, no
       message, no call to action — and a search that silently skips <code>submitList</code> on an empty list
-      (<code>SearchFragment.kt:471</code>). These five artboards give the first run a working repository without typing
-      a URL, give extensions a browsable and judgeable list, and give account sign-in a path that does not require a
+      (<code>SearchFragment.kt:471</code>). These five artboards give the first run one job, entering a repository URL,
+      give extensions a browsable and judgeable list, and give account sign-in a path that does not require a
       WebView on a remote. Every number is on the 8px artboard step (4dp in the repo), every focusable box sits inside
       <b>x 56..1864 / y 56..1024</b>, and every fact on screen either binds to app source or is called out as a
       prerequisite in the closing note.</p>
@@ -224,13 +224,12 @@
       <!-- ================= 8a — FIRST RUN, NO SOURCES ================= -->
       <div class="shot">
         <div class="shotl"><span class="shotn">8a · First run — no sources</span><span>No nav rail: a first-run user has
-          nowhere to navigate, so the content band is the full width from x56 and the one job is one working repository
-          without typing a URL. Three recommended rows carry three real states at once — installing in place with a
-          determinate bar, not installed, and a partial failure that OK retries — replacing the setup screen that today
-          offers only Next and Previous. <b>Focus order</b> — initial focus is row 1 (<i>Community Stable</i>, 56..1864 ×
-          488..584); DOWN walks row 2, row 3, then the action row; DOWN from row 3 (x56..1864) reaches <i>Enter a
-          repository URL</i> (x56..440), which overlaps it, and RIGHT reaches <i>Skip for now</i> (x464..752); UP from
-          either returns to row 3. Nothing sits above row 1, which is the top of the band.</span></div>
+          nowhere to navigate, so the content band is the full width from x56 and the one job is entering a repository
+          URL. Nothing is built in or recommended (DEC-17): the app endorses no source, and each plugin then goes through
+          the same scan and sandbox rules. This replaces the setup screen that today offers only Next and Previous.
+          <b>Focus order</b> — initial focus is the URL field (56..1864 × 608..704); DOWN reaches <i>Add repository</i>
+          (x56..344), which overlaps it, and RIGHT reaches <i>Skip for now</i> (x368..656); UP from either returns to the
+          field. Nothing sits above the field.</span></div>
         <div class="shotc"><div class="tv" data-screen-label="First run — no sources">
 
           <!-- chrome row 56..152 -->
@@ -238,58 +237,36 @@
           <div class="abs mn rgt" style="left:1264px;top:88px;width:600px;">FIRST RUN · NO SOURCES ACTIVE</div>
           <div class="abs rule" style="left:56px;top:152px;width:1808px;height:1px;"></div>
 
-          <!-- headline 176..296, body 320..400 -->
-          <div class="abs h1" style="left:56px;top:176px;width:1808px;">Add a source to start watching</div>
-          <div class="abs bd" style="left:56px;top:320px;width:1440px;height:80px;">CloudStream ships with nothing
-            installed. Pick a source below and its extensions become your catalogues, search results and streams.</div>
+          <!-- headline 296..416, body 440..520: the same bands as 8a-ii, centred on 152..1024 -->
+          <div class="abs h1" style="left:56px;top:296px;width:1808px;">Add a source to start watching</div>
+          <div class="abs bd" style="left:56px;top:440px;width:1440px;height:80px;">CloudStream ships with nothing
+            installed. Enter a repository URL and its extensions become your catalogues, search results and streams.</div>
 
-          <!-- section label 432..456 -->
-          <div class="abs lbl" style="left:56px;top:432px;width:1808px;">RECOMMENDED SOURCES</div>
+          <!-- section label 552..576 -->
+          <div class="abs lbl" style="left:56px;top:552px;width:1808px;">REPOSITORY URL</div>
 
-          <!-- row 1 — installing, holds focus 488..584 -->
-          <div class="abs lrow foc" style="left:56px;top:488px;width:1808px;">
-            <div class="lmark"></div><div class="ldisc"></div>
-            <div class="lcol"><div class="lt">Community Stable</div>
-              <div class="ls">Downloading extensions · 4 of 18 · 2.2 MB of 9.6 MB</div></div>
-            <div class="actw320"><div class="spill st">23% · 40 s left</div></div>
-          </div>
-          <div class="abs bar" style="left:56px;top:576px;width:1808px;"><i style="width:416px;"></i></div>
+          <!-- URL field, holds focus 608..704 -->
+          <div class="abs field foc" style="left:56px;top:608px;width:1808px;"><div class="qtext ph">Repository URL or short code</div></div>
+          <div class="abs mn" style="left:56px;top:728px;width:1808px;">Paste from the clipboard, or type a short code — a full URL is not required.</div>
 
-          <!-- row 2 — not installed 608..704 -->
-          <div class="abs lrow" style="left:56px;top:608px;width:1808px;">
-            <div class="lmark"></div><div class="ldisc"></div>
-            <div class="lcol"><div class="lt">Open Providers</div>
-              <div class="ls">9 extensions · multi-language · Movies, TV</div></div>
-            <div class="actw320"><div class="spill quiet">Not installed</div></div>
-          </div>
-
-          <!-- row 3 — partial failure 728..824 -->
-          <div class="abs lrow" style="left:56px;top:728px;width:1808px;">
-            <div class="lmark fail"></div><div class="ldisc"></div>
-            <div class="lcol"><div class="lt">Anime Index</div>
-              <div class="ls">2 of 6 installed · 4 failed the hash check · OK retries those 4</div></div>
-            <div class="actw320"><div class="spill">Partly installed</div></div>
-          </div>
-
-          <!-- action row 856..952 -->
-          <div class="abs btncell" style="left:56px;top:856px;"><div class="bbtn ghost" style="width:384px;">Enter a repository URL</div></div>
-          <div class="abs btncell" style="left:464px;top:856px;"><div class="bbtn ghost" style="width:288px;">Skip for now</div></div>
-          <div class="abs mn" style="left:56px;top:976px;width:1808px;">Paste from the clipboard, or type a short code — a full URL is not required.</div>
+          <!-- action row 784..880 -->
+          <div class="abs btncell" style="left:56px;top:784px;"><div class="bbtn" style="width:288px;">Add repository</div></div>
+          <div class="abs btncell" style="left:368px;top:784px;"><div class="bbtn ghost" style="width:288px;">Skip for now</div></div>
 
         </div></div>
       </div>
 
       <!-- ================= 8a-ii — OFFLINE FIRST RUN ================= -->
       <div class="shot">
-        <div class="shotl"><span class="shotn">8a-ii · First run — index unreachable</span><span>The offline first run,
+        <div class="shotl"><span class="shotn">8a-ii · First run — offline</span><span>The offline first run,
           which today ends in an app that can do nothing and says nothing. The banner states the cause over the content
-          rather than replacing it; the list region says what cannot be recovered; and the action row promotes the only
+          rather than replacing it; the URL field stays drawn but disabled, because a typed URL is rejected offline; and the action row promotes the only
           control that can actually change the state — the TV's network settings — instead of a Retry that is guaranteed
           to fail. <b>Focus order</b> — the three buttons are the only focusables on the board; initial focus is
           <i>Open network settings</i> (x56..408), RIGHT to <i>Try again</i> (x432..720), RIGHT to <i>Skip for now</i>
-          (x744..1032). UP and DOWN are no-ops by design: the banner and the region state carry no control, so no
+          (x744..1032). UP and DOWN are no-ops by design: the banner and the disabled field carry no control, so no
           focusable is stranded and no Retry is mounted that a D-pad cannot reach.</span></div>
-        <div class="shotc"><div class="tv" data-screen-label="First run — index unreachable">
+        <div class="shotc"><div class="tv" data-screen-label="First run — offline">
 
           <div class="abs wm" style="left:56px;top:72px;width:480px;">CloudStream</div>
           <div class="abs mn rgt" style="left:1264px;top:88px;width:600px;">FIRST RUN · OFFLINE</div>
@@ -298,27 +275,25 @@
           <!-- banner over content 176..272, not focusable -->
           <div class="abs lrow bnr" style="left:56px;top:176px;width:1808px;">
             <div class="lmark fail"></div><div class="ldisc"></div>
-            <div class="lcol"><div class="lt">No network — CloudStream cannot reach the recommended list</div>
-              <div class="ls">Reconnect and this list fills in by itself. Nothing here is cached yet.</div></div>
+            <div class="lcol"><div class="lt">No network — CloudStream cannot reach a repository</div>
+              <div class="ls">Reconnect to add one. Nothing is installed yet.</div></div>
           </div>
 
           <div class="abs h1" style="left:56px;top:296px;width:1808px;">Add a source to start watching</div>
           <div class="abs bd" style="left:56px;top:440px;width:1440px;height:80px;">Every source is fetched over the
             network, so this screen needs a connection once — after that the extensions run from disk.</div>
 
-          <div class="abs lbl" style="left:56px;top:552px;width:1808px;">RECOMMENDED SOURCES</div>
-          <div class="abs rule" style="left:56px;top:608px;width:1808px;height:4px;"></div>
+          <div class="abs lbl" style="left:56px;top:552px;width:1808px;">REPOSITORY URL</div>
 
-          <div class="abs h3 ctr" style="left:240px;top:632px;width:1440px;">Nothing to install offline</div>
-          <div class="abs bd ctr" style="left:240px;top:712px;width:1440px;height:80px;">This is a first run, so there is
-            no cached list to fall back to. The moment this TV is back online the list fills in by itself.</div>
-          <div class="abs mn ctr" style="left:240px;top:816px;width:1440px;">no route to host · last attempt 12:04:31</div>
+          <!-- URL field 608..704, disabled and not focusable -->
+          <div class="abs field" style="left:56px;top:608px;width:1808px;opacity:0.44;"><div class="qtext ph">Repository URL or short code</div></div>
+          <div class="abs mn" style="left:56px;top:728px;width:1808px;">no route to host · last attempt 12:04:31</div>
 
-          <!-- action row 872..968 — primary is the only control that can change the state -->
-          <div class="abs btncell foc" style="left:56px;top:872px;"><div class="bbtn" style="width:352px;">Open network settings</div></div>
-          <div class="abs btncell" style="left:432px;top:872px;"><div class="bbtn ghost" style="width:288px;">Try again</div></div>
-          <div class="abs btncell" style="left:744px;top:872px;"><div class="bbtn ghost" style="width:288px;">Skip for now</div></div>
-          <div class="abs mn" style="left:56px;top:992px;width:1808px;">Skipping leaves Home and Search empty until a source is added in Settings › Extensions.</div>
+          <!-- action row 784..880 — primary is the only control that can change the state -->
+          <div class="abs btncell foc" style="left:56px;top:784px;"><div class="bbtn" style="width:352px;">Open network settings</div></div>
+          <div class="abs btncell" style="left:432px;top:784px;"><div class="bbtn ghost" style="width:288px;">Try again</div></div>
+          <div class="abs btncell" style="left:744px;top:784px;"><div class="bbtn ghost" style="width:288px;">Skip for now</div></div>
+          <div class="abs mn" style="left:56px;top:904px;width:1808px;">Skipping leaves Home and Search empty until a source is added in Settings › Extensions.</div>
 
         </div></div>
       </div>
@@ -509,15 +484,13 @@
     </div>
 
     <div class="note">
-      <p><b>The recommended list on 8a does not have a source yet, and that is the single biggest prerequisite in this
-      cluster.</b> <code>PREBUILT_REPOSITORIES</code> is <code>getKey&lt;Array&lt;RepositoryData&gt;&gt;("PREBUILT_REPOSITORIES") ?: emptyArray()</code>
+      <p><b>8a has no list, by ruling: first run is URL entry only, and no repository is built in or recommended
+      (DEC-17).</b> <code>PREBUILT_REPOSITORIES</code> is <code>getKey&lt;Array&lt;RepositoryData&gt;&gt;("PREBUILT_REPOSITORIES") ?: emptyArray()</code>
       at <code>RepositoryManager.kt:100-102</code>, read in eight places and written in none; both guards on it are
       themselves commented out (<code>MainActivity.kt:2026</code>, <code>SetupFragmentLanguage.kt:76</code>), and the only
       index URL that ever existed — <code>PUBLIC_REPOSITORIES_LIST</code> — was deleted in <code>a565319e</code> and now
-      survives only inside a comment at <code>SetupFragmentExtensions.kt:65</code>. So the three rows drawn on 8a are
-      <b>illustrative</b>: their names and counts come from nowhere in this build. Shipping 8a requires a seeded or
-      fetched index plus a fifth fetch outcome, <b>NotConfigured</b>, distinct from unreachable / malformed / empty —
-      it is the one outcome retry cannot fix, which is why 8a-ii promotes "Open network settings" over a Retry that
+      survives only inside a comment at <code>SetupFragmentExtensions.kt:65</code>. Shipping 8a needs no seeded or
+      fetched index. 8a-ii promotes "Open network settings" over a Retry that
       provably cannot succeed (<code>ExtensionsFragment.kt:283-291</code> does an <code>app.get</code> before a repo is
       accepted, so even a typed URL is rejected offline). Two more shape 8a's copy: the add-repo dialog gives first focus
       to the optional <i>name</i> field, not the URL (<code>add_repo_input.xml:66-93</code>,
@@ -534,7 +507,7 @@
       (<code>:86-105</code>), which is why an installed plugin has no language, types, size or icon to draw. Progress and
       cancellation do not exist: <code>handlePluginAction</code> is fire-and-forget into <code>ioSafe</code>
       (<code>PluginsViewModel.kt:157-201</code>) and <code>downloadPluginToFile</code> copies the stream with no callback
-      and no cancellation token (<code>RepositoryManager.kt:206-212</code>), so the bars on 8a row 1 and 8c row 2 need
+      and no cancellation token (<code>RepositoryManager.kt:206-212</code>), so the bar on 8c row 2 needs
       both added — with the partial <code>.cs3</code> deleted on cancel. Failure reasons are discarded: both
       <code>downloadPlugin</code> (<code>PluginManager.kt:801-804</code>) and <code>deletePlugin</code>
       (<code>:818-820</code>) collapse everything to <code>false</code> and the UI shows the bare word "Error"
@@ -594,17 +567,13 @@
       <i>connected</i>. Its <i>disconnected</i> counterpart is an owed screen, not a drawn one: an in-app credential
       panel in the same 560 column, with the IME problem that implies.</p>
 
-      <p><b>Departures from the chassis, declared rather than drifted.</b> (1) The offline region on 8a-ii is a
-      <i>region-level</i> state, not the chassis <code>state view</code>: no 96×96 glyph and a 40/56 title, because the
-      board already carries an 88/120 headline above it and the region is only 232 tall (608..840) — a 96 glyph + 24 +
-      64/88 headline + 24 + 80 of body + 24 + a 20/24 detail needs 360 and would push the action row past 1024. It is
-      centred on <b>x960</b>, the centre of the rail-less content band (56..1864), not the chassis's 1032, which assumes
-      the 152 rail. The offline signal itself is still a banner over content at 176..272, never a region replacement;
-      the region states the <i>empty</i> outcome underneath it. (2) Two chassis rules are <b>changed here and must be
+      <p><b>Departures from the chassis, declared rather than drifted.</b> (1) 8a-ii draws no chassis <code>state view</code>. The
+      offline signal is a banner over content at 176..272, never a region replacement, and the disabled URL field stays
+      underneath it on the same bands as 8a. (2) Two chassis rules are <b>changed here and must be
       propagated to TV Search, TV Library, TV Detail/Player and TV Episodes/Downloads</b>, or those files will diverge:
       <code>.lgm</code>, the rail's brand mark, moves from <code>live #CD3D4B</code> to <code>ink</code>, because live
-      is playback state only and may be spent once per screen — with a red mark in the rail, 8b's unreachable-repo disc
-      and 8c's failed-install marker were each the <i>second</i> live element on their board; and <code>.chipn</code>
+      is playback state only, and a failure is a hollow neutral marker (DEC-17), which is what 8b's unreachable-repo
+      disc and 8c's failed-install marker now draw; and <code>.chipn</code>
       moves from <code>20/24</code> to <code>24/32</code> JetBrains Mono, because a 24px line box centred in the 48-tall
       chip lands at +12 — (48−24)/2 — which is off the 8px step, while a 32px box lands at +8 and matches the chip
       label's own line box. (3) One chassis defect raised here is now <b>fixed system-wide</b> and one is still open.

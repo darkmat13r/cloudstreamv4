@@ -76,7 +76,7 @@
         white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
       .cbm { font:500 20px/24px "JetBrains Mono",monospace; color:var(--mut);
         white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-      .cbm.bad { color:var(--acc); }
+      .cbm.bad { color:var(--ink2); }
       .ibx { width:96px; height:96px; display:flex; align-items:center; justify-content:center;
         border-radius:12px; box-sizing:border-box; }
       .ibx.foc { outline:4px solid var(--ink); outline-offset:4px; }
@@ -126,7 +126,7 @@
       .cardbar i { display:block; height:100%; background:var(--acc); }
       .sg { width:16px; height:16px; border-radius:4px; background:var(--mut); flex:none; }
       .sg.ok { background:var(--ink); }
-      .sg.fail { background:transparent; box-shadow: inset 0 0 0 2px var(--acc); }
+      .sg.fail { background:transparent; box-shadow: inset 0 0 0 2px var(--mut); }
       .failgrp { display:flex; align-items:center; gap:24px; height:96px; }
       .failpill { display:inline-flex; align-items:center; gap:12px; height:48px; padding:0 24px;
         box-sizing:border-box; border-radius:24px; background:var(--raised);
@@ -185,7 +185,7 @@
       .disc { width:48px; height:48px; border-radius:24px; flex:none;
         display:flex; align-items:center; justify-content:center; box-sizing:border-box; }
       .disc.ok { background:var(--ink); }
-      .disc.bad { background:var(--acc); }
+      .disc.bad { box-shadow: inset 0 0 0 4px var(--mut); }
       .disc.run { box-shadow: inset 0 0 0 4px var(--line); position:relative; }
       .disc.run::after { content:""; position:absolute; inset:0; border-radius:24px;
         border:4px solid transparent; border-top-color:var(--ink2); box-sizing:border-box;
@@ -210,7 +210,7 @@
       .grow { flex:1; min-width:0; }
       .trail { width:200px; flex:none; text-align:right; }
       .trail .lt, .trail .ls { text-align:right; }
-      .lt.bad { color:var(--acc); } .ls.bad { color:var(--acc); }
+      .lt.bad { color:var(--ink2); } .ls.bad { color:var(--ink2); }
       .lt.dim { color:var(--mut); } .ls.dim { color:var(--mut); }
       /* status column */
       .eyebrow { font:500 20px/24px "JetBrains Mono",monospace; color:var(--mut); letter-spacing:0.1em; }
@@ -716,13 +716,11 @@
       as a target — nothing is pressed there.</p>
 
       <p><b>Two token notes, three chassis forks and one honest omission.</b> <code>live</code> #CD3D4B is spent at
-      most once per artboard and only as playback or failure state: the played band on 7d, the failed row's reason line on
-      7e. It is spent <i>zero</i> times on 7a and 7b — the resume progress sits inside the white primary button, the
-      contract forbids live on a button, so it reads as a black inversion on the fill instead. On 7c it is confined to a
-      single role, the 48 status disc of a failed source; the row marker and the trailing state word were live as well and
-      are now muted and ink, and the FAILED count stays an ordinary number. Two sources fail in the drawn state, so that
-      one role paints twice — a resolution list cannot name N failures with one marker, and whether "one failure marker"
-      means one role or one instance is the only open question on this cluster. Three things here fork the shared chassis
+      most once per artboard and only as playback state: the played band on 7d. A failure is a hollow neutral marker,
+      never live (DEC-17). It is spent <i>zero</i> times on 7a and 7b — the resume progress sits inside the white primary button, the
+      contract forbids live on a button, so it reads as a black inversion on the fill instead. On 7c a failed source
+      draws a hollow <code>mut</code> 48 status disc, a <code>mut</code> row marker and an <code>ink</code> trailing state
+      word, and the FAILED count stays an ordinary number. Three things here fork the shared chassis
       and are owed back to TV Search and TV Library rather than kept local: <code>.railc</code>'s cell gap was 8 in all
       three files and is 24 here, because nav cells are focusables and the 24 minimum has no exemption for them (the brand
       mark gives up its 32 bottom margin to pay for it, which leaves cell 1 at y128..224, still overlapping the chrome row
@@ -861,8 +859,8 @@
         { n: "Mixdrop",    d: "no answer · cut at the 120 s budget",       s: "Timed out", q: "—",     k: "bad" },
         { n: "UpCloud",    d: "queued · not started",                      s: "Queued",    q: "—",     k: "idle" }
       ];
-      /* live is spent on 7c in exactly one role, the failed source's 48 status disc. The row marker
-         and the trailing state word were also --acc, which put the token on screen in three roles. */
+      /* live is not spent on 7c: a failed source is a hollow --mut 48 status disc, a --mut row
+         marker and an --ink trailing state word (DEC-17). */
       var markOf = { ok: "background:#FFFFFF", run: "background:#CCCCCC", bad: "background:#858585", idle: "background:#242A31" };
       var srcRows = [];
       for (i = 0; i < raw.length; i++) {
@@ -876,7 +874,7 @@
           s1: r.k === "ok" ? "" : "display:none",
           s2: r.k === "bad" ? "" : "display:none",
           s3: r.k === "idle" ? "" : "display:none",
-          sc: (r.k === "ok" || r.k === "bad") ? "" : "dim"   /* "Failed"/"Timed out" read in ink; only the disc is live */
+          sc: (r.k === "ok" || r.k === "bad") ? "" : "dim"   /* "Failed"/"Timed out" read in ink */
         });
       }
 
