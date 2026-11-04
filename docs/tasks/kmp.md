@@ -3316,3 +3316,78 @@ confirms every toggle through `dumpsys ethernet` and fails by saying so. No AVD 
 The API 23 path, `ActiveNetworkCallback`, has never run: only `Television_720p` is available, on Android 16. The Wi-Fi and
 cellular paths have not run either, because this AVD's default network is Ethernet. No phone has run any of it.
 
+
+## KMP-36 — Download facts: rate, ETA, queue position, state and a typed reason (queue `Q13`) · **measured 2026-11-04**
+
+**Status:** in pr · **Waits on the owner:** the three findings below. Nothing here changes what a download does.
+
+`DownloadFacts` (`:app`, `cloudstream4/download/`) holds one `DownloadProgress` per episode id. Downloads screens observe
+`DownloadFacts.progress`, which adds the queue; their Android host will be in `:app`, so everything is `internal`.
+`DownloadProgress` (`:media:model`) already had rate, ETA and state, and gains `bytesWritten`, `queue` and `failure`.
+`:media:model` has no ABI baseline and is not merged into `classes.jar`.
+
+- **Queue position** counts running and waiting together, running first, so "queue 2 of 5" on 6b and "Queue (0/3)" on 6e
+  come from one number.
+- **Reasons do not survive process death.** They are in memory; `DownloadStatus` has nowhere to keep them and must not change.
+- **Not implemented, because it is new behaviour:** the pre-flight free-space check 6e's banner implies. The shortfall is
+  known only once a write has failed, from `StatFs`, and is `null` for a document-tree folder.
+
+### The sidecar disagrees with the older record on purpose
+
+`COMPLETED` means every declared byte was written. Everything the older code files as a success on a truncated file stays
+`FAILED` here, with its reason. The downloader only gained lines that report; `failedStatus()`, the retries and every
+swallowed exception are unchanged.
+
+### What the older code does, measured on `Television_720p`
+
+`DownloadFactsDeviceTest`, through `EpisodeDownloadInstance`, a real MediaStore file and a fake server on loopback. These
+tests pin today's behaviour and go red when someone changes it, which is their job.
+
+| Fault | Written of total | Older record | Fact |
+|---|---|---|---|
+| Lost past 60 MiB, range server | 62,914,560 of 104,857,600 | `isCompleted`, `IsFailed` announced, no queue key, status gone, so the button computes paused | `FAILED`, `NetworkLost` |
+| Same fault, direct `downloadThing` | 62,914,560, and on another run 48,889,856 | `PARTIAL_SUCCESS`, and on that run `DOWNLOAD_FAILED` | |
+| Lost past 15 MiB of 40 | 4,440,064 and 5,234,635 | `isFailed`, status `IsFailed` | `FAILED`, `NetworkLost` |
+| Lost in the last range | 44,040,192 of 47,185,920 | `isCompleted`, **`IsDone` announced** | `FAILED`, `NetworkLost` |
+| Lost in a single-range file | 12,582,912 of 15,728,640 | `isCompleted`, **`IsDone` announced** | `FAILED`, `NetworkLost` |
+| Disk full, 30 MiB free, 200 MiB file | 31,440,896 | **Never ends.** Status `IsDownloading` after 45 s with no progress. Stop ends it in 54 ms | `DOWNLOADING`, `StorageFull(178274304)` |
+
+**1. Past 50 MB, "recorded as complete" is narrower than the audit says.** No record claims the file is finished: the button
+computes paused, and the popup still offers Resume below 98% (`PieFetchButton`). What is lost is the failure: `isCompleted`
+removes the queue key, so nothing retries it and it is not resumed on the next launch. A manual resume finished the same
+file, byte for byte, once the server was healthy.
+
+**The 50 MB line is also a race.** A range in flight is abandoned when another fails, so the same fault at the same offset
+wrote 60 MiB on one run and 46.6 MiB on another, and landed on opposite sides of it.
+Three device runs, a server dropping past 60 MiB each time. A direct `downloadThing`, one attempt: 62,914,560, 48,889,856 and
+62,914,560, so 2 past the line and 1 under it. Through the instance, which retries once: 62,914,560 all three times, all filed
+as completed. Three runs is not a rate; what it shows is that the outcome depends on timing. The test accepts either side and
+pins what each side does.
+
+**2. A lost connection in an open-ended range is worse, and at any size.** `resolveSafe` returns true when `end == null`
+however `resolve` ended, and `resolve` swallows read errors. So the downloader announces `IsDone` on a truncated file. That
+range is the last one of every multi-range file, and the whole of any file under 20 MiB or of unknown length.
+
+**3. A full disk hangs.** The write error is swallowed by `resolve`, the range retries past the gap, later data waits in
+`pendingData`, and at 50 MB ahead `isTooFarAhead` keeps every job waiting. It holds its download slot until the user stops
+it, and no storage-full state can ever fire from the older record.
+
+**Recommended, for the owner to decide:** one behaviour PR. (1) `DOWNLOAD_PARTIAL_SUCCESS` becomes a failure that keeps the
+file, so it gets a Retry. (2) `resolveSafe` returns false when the open-ended range ended by an error. (3) A failed write
+fails the transfer instead of retrying. (2) and (3) are bug fixes with no good reason to keep today's behaviour. (1) changes
+what users see on files that were silently partial, so it is the one that is a real choice. Each makes its pin red, to be
+rewritten in that PR.
+
+### Published API
+
+Additions only: 73 lines in `app/api/classes-jar.api`, none removed or changed. `internal` does not keep a class out of this
+dump, so `DownloadFacts` and its `Flow.map` helper classes appear, as do the mangled `noteFailure$app`, `getStoragePath$app`,
+`setStoragePath$app` and the two failure properties on `LazyStreamDownloadData`. No published constructor changed.
+
+### Not verified
+
+- HLS. `downloadHLS` got the same reports and has no device test; the fake server serves one file.
+- A document-tree download folder, and an unknown-length file.
+- Queue positions with the real service running. `merge` is tested on the JVM; the device test reads `DownloadFacts.progress`
+  with an empty queue only.
+- What the notification shows for a truncated file.

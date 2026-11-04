@@ -42,9 +42,24 @@ data class DownloadProgress(
     val bytesTotal: Long? = null,
     val bytesPerSecond: Long = 0L,
     val segments: SegmentProgress? = null,
+    /**
+     * Bytes actually on disk, or `null` when the producer does not know. [bytesDownloaded] runs ahead
+     * of this, because parallel connections hold out-of-order parts in memory, and a failure is
+     * reported as what was written (board 6d: "96 MB of 512 MB written").
+     */
+    val bytesWritten: Long? = null,
+    /** Where this sits among everything started or waiting. `null` once it has finished. */
+    val queue: QueuePosition? = null,
+    /**
+     * Why it failed or is stalling. Set whenever [state] is [DownloadState.FAILED], and can also be
+     * set on [DownloadState.DOWNLOADING] when a transfer has hit a fault it cannot get past but has
+     * not stopped trying.
+     */
+    val failure: DownloadFailure? = null,
 ) {
     init {
         require(bytesDownloaded >= 0) { "bytesDownloaded must not be negative, was $bytesDownloaded" }
+        require(bytesWritten == null || bytesWritten >= 0) { "bytesWritten must not be negative, was $bytesWritten" }
     }
 
     /**
@@ -76,6 +91,49 @@ data class DownloadProgress(
             if (remaining <= 0L) return 0L
             return remaining / bytesPerSecond
         }
+}
+
+/**
+ * A download's place in line, 1-based: [position] of [total] (board 6b: "queue 2 of 5").
+ *
+ * [total] counts the transfers running as well as those waiting, and running ones come first, so
+ * position 1 is the first transfer running and not the next one to start.
+ */
+data class QueuePosition(val position: Int, val total: Int) {
+    init {
+        require(position >= 1) { "position is 1-based, was $position" }
+        require(total >= position) { "total must cover position, was $position of $total" }
+    }
+}
+
+/** Why a download did not finish. Restates nothing in `:app`, whose `DownloadStatus` has no reason. */
+sealed interface DownloadFailure {
+    /** The connection failed: no route, a reset or a stream that ended early. */
+    data object NetworkLost : DownloadFailure
+
+    /**
+     * The device ran out of room.
+     *
+     * @property bytesShort how much more is needed to finish, or `null` when that cannot be known,
+     * either because the total is unknown or because a document-tree folder hides its free space.
+     */
+    data class StorageFull(val bytesShort: Long?) : DownloadFailure {
+        init {
+            require(bytesShort == null || bytesShort >= 0) { "bytesShort must not be negative, was $bytesShort" }
+        }
+    }
+
+    /** The download folder cannot be used at all, so every source would fail the same way. */
+    data object StorageUnavailable : DownloadFailure
+
+    /** Nothing that could be downloaded: no links, an unsupported format, or a file too short to be real. */
+    data object NoUsableLink : DownloadFailure
+
+    /** The source stopped delivering, and the code that noticed cannot see the cause. */
+    data object SourceFailed : DownloadFailure
+
+    /** It failed, and nothing recorded why. */
+    data object Unknown : DownloadFailure
 }
 
 /** Progress counted in parts rather than bytes, for segmented formats. */
