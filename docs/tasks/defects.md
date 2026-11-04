@@ -1410,3 +1410,13 @@ search all 12 sources anyway", and its note says "the action is the field". With
 and the search is confirmed from there, so it takes two presses. That reading fits the board's intent but not its words, and
 no board mentions the keyboard at all. Suggestions are not built, so nothing behaves wrongly today. Before 8b is
 built, either its copy changes or the owner decides otherwise.
+
+---
+
+## BUG-31 — The Mac's display slept during a video · **high** · owner's report 2026-11-04
+
+**Status:** in pr. The owner: "when video on fullscreen and playing the screen should not sleep". The desktop player held no power assertion, so the
+Mac's idle timer ran through a film. `PlayerKeepAwake.kt` runs `/usr/bin/caffeinate -d -w <pid>` while `status.playing` is true, whether the
+window is full screen or not, because a windowed film sleeps the same way. A pause, the player closing or the app dying lets go.
+
+**Measured on the built app, silently, on an isolated copy of the plugins:** during real CineTmdb playback `pmset -g assertions` showed `PreventUserIdleDisplaySleep 1` from `caffeinate -d -w <the app's pid>`. After the app exited, no such process remained and the count was `0`. `DisplayWakeHoldTest`: 5 of 5. **Not measured:** the display staying on past its real idle timeout, and a pause in the live window, which `DisplayWakeHoldTest` covers with a fake process.
