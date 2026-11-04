@@ -47,8 +47,16 @@ class HomeViewModelTest {
     private fun page(title: String, vararg ids: String, hasNext: Boolean = false) =
         HomePageReply.Loaded(listOf(HomeRowPage(title, false, ids.map { HomeItem(it, it) })), hasNext)
 
-    private fun TestScope.model(source: HomeSource) =
-        HomeViewModel(source, TestScope(UnconfinedTestDispatcher(testScheduler)))
+    private fun TestScope.model(source: HomeSource, memory: HomeSourceMemory = HomeSourceMemory.None) =
+        HomeViewModel(source, TestScope(UnconfinedTestDispatcher(testScheduler)), memory)
+
+    private class Kept(var id: HomeSourceId? = null) : HomeSourceMemory {
+        override fun last() = id
+
+        override fun remember(id: HomeSourceId) {
+            this.id = id
+        }
+    }
 
     @Test
     fun `the first source with a main page loads`() = runTest {
@@ -93,6 +101,37 @@ class HomeViewModelTest {
         assertFalse(vm.state.value.pickerOpen)
         assertEquals(b, vm.state.value.selected)
         assertEquals(listOf("b"), assertIs<HomeStatus.Showing>(vm.state.value.status).rows.map { it.title })
+    }
+
+    @Test
+    fun `the source chosen last opens again, whatever order the sources come in`() = runTest {
+        val memory = Kept()
+        val first = model(Fake(listOf(option(a), option(b))) { id, _, _ -> page(id.value, "1") }, memory)
+        first.onAction(HomeAction.SourceSelected(b))
+        assertEquals(b, memory.id)
+
+        val source = Fake(listOf(option(a), option(b))) { id, _, _ -> page(id.value, "1") }
+        val reopened = model(source, memory)
+        assertEquals(b, reopened.state.value.selected)
+        assertEquals(listOf(b), source.calls.map { it.source }, "and only that one was asked")
+        assertEquals(b, model(Fake(listOf(option(b), option(a))) { id, _, _ -> page(id.value, "1") }, memory).state.value.selected)
+    }
+
+    @Test
+    fun `a source that has gone opens the first, and comes back when it does`() = runTest {
+        val memory = Kept(b)
+        val without = model(Fake(listOf(option(a))) { id, _, _ -> page(id.value, "1") }, memory)
+        assertEquals(a, without.state.value.selected)
+        assertEquals(b, memory.id, "falling back is not a choice")
+        assertEquals(b, model(Fake(listOf(option(a), option(b))) { id, _, _ -> page(id.value, "1") }, memory).state.value.selected)
+    }
+
+    @Test
+    fun `a source the host never offered is not remembered`() = runTest {
+        val memory = Kept(a)
+        val vm = model(Fake(listOf(option(a))) { id, _, _ -> page(id.value, "1") }, memory)
+        vm.onAction(HomeAction.SourceSelected(b))
+        assertEquals(a, memory.id)
     }
 
     @Test

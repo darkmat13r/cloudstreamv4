@@ -29,10 +29,14 @@ import kotlinx.coroutines.launch
  * - **A retry keeps what is on screen,** and the pages already loaded.
  *
  * The scope comes from the host, because desktop has no `Dispatchers.Main` for `viewModelScope`.
+ *
+ * @param memory what the person chose last, so it opens again. Only a choice of theirs is kept: falling back because
+ *   that source is gone does not overwrite it, so it comes back if the source does.
  */
 class HomeViewModel(
     private val source: HomeSource,
     private val scope: CoroutineScope,
+    private val memory: HomeSourceMemory = HomeSourceMemory.None,
 ) : ViewModel(),
     StateContainer<HomeState> by DefaultStateContainer(HomeState()),
     EffectContainer<HomeEffect> by DefaultEffectContainer(),
@@ -81,7 +85,7 @@ class HomeViewModel(
                 updateCurrent(request) { copy(status = HomeStatus.Failed(failure.reason())) }
                 return@launch
             }
-            val keep = state.value.selected?.takeIf { id -> found.options.any { it.id == id } }
+            val keep = (state.value.selected ?: memory.last())?.takeIf { id -> found.options.any { it.id == id } }
             val chosen = found.options.firstOrNull { it.id == keep } ?: found.options.firstOrNull()
             updateCurrent(request) {
                 copy(
@@ -98,7 +102,9 @@ class HomeViewModel(
         val current = state.value
         val option = current.sources.firstOrNull { it.id == id }
         updateState { copy(pickerOpen = false) }
-        if (option == null || id == current.selected) return
+        if (option == null) return
+        memory.remember(id)
+        if (id == current.selected) return
         val request = restart()
         updateState { copy(selected = id, status = HomeStatus.Loading) }
         scope.launch(work) { loadFirstPages(option, request) }
