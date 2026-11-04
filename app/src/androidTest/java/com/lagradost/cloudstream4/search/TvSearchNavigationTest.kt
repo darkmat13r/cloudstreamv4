@@ -86,9 +86,11 @@ class TvSearchNavigationTest {
         ActivityScenario.launch(MainActivity::class.java).use { scenario ->
             openSearchFromTheRail()
 
-            // Right leaves the rail for the content region, whose action can sit below the field.
+            // Right leaves the rail for the chip beside the field or the action below it.
             var field = dpad.press(Dpad.Right)
-            repeat(RAIL_PRESSES) { if (!field.isField()) field = dpad.press(Dpad.Up) }
+            repeat(RAIL_PRESSES) {
+                if (!field.isField()) field = dpad.press(if (field == SOURCES) Dpad.Left else Dpad.Up)
+            }
             assertTrue("Never reached the field, last on $field", field.isField())
             assertFalse("Landing on the field opened the keyboard", dpad.keyboardOpens(NO_KEYBOARD_WAIT_MS))
 
