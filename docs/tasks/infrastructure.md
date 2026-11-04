@@ -627,7 +627,7 @@ Build` is being re-enabled by the parent session.
 
 ## INF-10 — Android UI automation: the device-test harness · **measured 2026-11-04**
 
-**Status:** see the PR that carries this entry · the owner approved these test-scope dependencies:
+**Status:** in pr (the PR that adds this entry) · the owner approved these test-scope dependencies:
 `androidx.compose.ui:ui-test-junit4` and `ui-test-manifest` 1.12.0, `androidx.test.uiautomator:uiautomator`
 2.4.0, `androidx.test:runner` and `rules` 1.7.0 (latest stable).
 
@@ -668,6 +668,12 @@ reachable, no dead ends, no traps".
   `FocusGraph.keyboardOpenedOn` records it and `SearchScreenTvDeviceTest` pins it, so changing it fails a test.
 - **Down from the field lands on the first rail's third card**, the nearest to the field's centre, not its first.
 - **Right from the last card of a rail goes to `Sources`**, above it, instead of staying on the rail.
+
+**A red JVM test can come back green from the build cache, measured on `HostLimitsTest`.** On #91's tree the
+XML read `failures="1"` while `:feature:extensions:sandbox:jvmTest` was `FROM-CACHE` and `allTests` and `check` both
+exited 0. `allTests --rerun` does not help, because it reruns the aggregate only. To be sure of a suite, run
+`<module>:jvmTest --rerun` and read the XML. Not fixed here: it is existing build behaviour, and it needs its own
+decision.
 
 **The gate.** The sixth, device-only, not part of `check`: `docs/HANDOVER.md`. `Television_720p` is
 1280x720 at 213 dpi, about 961.5x540.8 dp rather than the artboard's 960x540, so no test asserts full-screen
