@@ -86,7 +86,10 @@ class TvSearchNavigationTest {
         ActivityScenario.launch(MainActivity::class.java).use { scenario ->
             openSearchFromTheRail()
 
-            val field = generateSequence { dpad.press(Dpad.Right) }.take(RAIL_PRESSES).first { it.isField() }
+            // Right leaves the rail for the content region, whose action can sit below the field.
+            var field = dpad.press(Dpad.Right)
+            repeat(RAIL_PRESSES) { if (!field.isField()) field = dpad.press(Dpad.Up) }
+            assertTrue("Never reached the field, last on $field", field.isField())
             assertFalse("Landing on the field opened the keyboard", dpad.keyboardOpens(NO_KEYBOARD_WAIT_MS))
 
             dpad.center()
