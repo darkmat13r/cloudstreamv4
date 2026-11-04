@@ -4,9 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsFocusedAsState
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -119,49 +117,47 @@ fun TextField(
             .padding(horizontal = TextFieldDefaults.HorizontalPadding),
         contentAlignment = Alignment.CenterStart,
     ) {
-        val input: @Composable () -> Unit = {
-            BasicTextField(
-                value = value,
-                onValueChange = onValueChange,
-                modifier = if (keyboardOnOk) Modifier.fillMaxWidth().then(keyboard.modifier) else Modifier.fillMaxWidth(),
-                readOnly = keyboardOnOk && keyboard.readOnly,
-                textStyle = typography.body.copy(color = colors.ink),
-                singleLine = true,
-                cursorBrush = SolidColor(colors.ink),
-                interactionSource = interactionSource,
-                keyboardOptions = KeyboardOptions(imeAction = imeAction),
-                keyboardActions = KeyboardActions(
-                    onAny = {
-                        keyboard.close()
-                        onSubmit()
-                    },
-                ),
-            )
-            if (value.isEmpty()) {
-                BasicText(
-                    text = placeholder,
-                    style = remember(typography, colors) {
-                        typography.body.copy(color = colors.muted)
-                    },
-                    maxLines = SINGLE_LINE,
-                )
-            }
-        }
-        if (leadingIcon == null) {
-            input()
+        val textInset = if (leadingIcon == null) {
+            Modifier
         } else {
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(TextFieldDefaults.LeadingIconGap),
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                CloudStreamIcon(
-                    icon = leadingIcon,
-                    contentDescription = null,
-                    size = CloudStreamIconSize.Small,
-                    tint = colors.muted,
-                )
-                Box(Modifier.weight(1f), contentAlignment = Alignment.CenterStart) { input() }
-            }
+            Modifier.padding(start = CloudStreamIconSize.Small.dp + TextFieldDefaults.LeadingIconGap)
+        }
+        if (leadingIcon != null) {
+            CloudStreamIcon(
+                icon = leadingIcon,
+                contentDescription = null,
+                size = CloudStreamIconSize.Small,
+                tint = colors.muted,
+            )
+        }
+        BasicTextField(
+            value = value,
+            onValueChange = onValueChange,
+            modifier = textInset.then(
+                if (keyboardOnOk) Modifier.fillMaxWidth().then(keyboard.modifier) else Modifier.fillMaxWidth(),
+            ),
+            readOnly = keyboardOnOk && keyboard.readOnly,
+            textStyle = typography.body.copy(color = colors.ink),
+            singleLine = true,
+            cursorBrush = SolidColor(colors.ink),
+            interactionSource = interactionSource,
+            keyboardOptions = KeyboardOptions(imeAction = imeAction),
+            keyboardActions = KeyboardActions(
+                onAny = {
+                    keyboard.close()
+                    onSubmit()
+                },
+            ),
+        )
+        if (value.isEmpty()) {
+            BasicText(
+                text = placeholder,
+                modifier = textInset,
+                style = remember(typography, colors) {
+                    typography.body.copy(color = colors.muted)
+                },
+                maxLines = SINGLE_LINE,
+            )
         }
     }
 }

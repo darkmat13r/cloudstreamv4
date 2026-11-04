@@ -3349,5 +3349,5 @@ to the emulator layout, which still opens it. Its finding stands: that loss belo
 
 **Found, reported and not changed:**
 
-- `LibraryViewModel.showTab` after a failed read shows `Empty`: `BUG-31`.
+- `LibraryViewModel.showTab` after a failed read shows `Empty`: `BUG-33`.
 - `LibraryPoster` repeats `PosterArtwork` from `SearchTvFragment`, 15 lines. Sharing them means editing search's fragment.

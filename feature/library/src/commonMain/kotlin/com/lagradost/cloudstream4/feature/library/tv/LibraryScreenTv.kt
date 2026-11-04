@@ -81,6 +81,8 @@ val LibraryTvTabs: List<LibraryTab> = LibraryBucket.entries.map { LibraryTab.Buc
  * otherwise throw focus off the tab row every time and stepping across tabs would cost two extra presses.
  * It is the next stop down instead, which is what 5c asks for.
  *
+ * LEFT from the first column goes to the rail, and RIGHT from the rail comes back to the same stop.
+ *
  * Pressing that action removes the button under focus, so focus moves to the selected tab rather than
  * being dropped. A card that was opened gets focus back through [LibraryState.returnTo].
  *

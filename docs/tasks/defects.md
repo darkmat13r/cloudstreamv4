@@ -1411,7 +1411,7 @@ and the search is confirmed from there, so it takes two presses. That reading fi
 no board mentions the keyboard at all. Suggestions are not built, so nothing behaves wrongly today. Before 8b is
 built, either its copy changes or the owner decides otherwise.
 
-## BUG-31 — Choosing a list after a failed read says the list is empty · **low** · read 2026-11-04
+## BUG-33 — Choosing a list after a failed read says the list is empty · **low** · read 2026-11-04
 
 **Status:** open. **Read from the code, not run:** no test or device has shown this happening.
 

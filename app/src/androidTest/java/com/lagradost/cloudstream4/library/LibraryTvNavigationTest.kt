@@ -112,6 +112,10 @@ class LibraryTvNavigationTest {
             assertEquals(LibraryTvFragment::class.java, scenario.currentFragment()?.javaClass)
             device.wait(Until.hasObject(By.text(TITLE)), SCREEN_WAIT_MS)
             assertEquals(TITLE, dpad.focused())
+
+            // To the rail and back, to the same card and not to the first stop on the page.
+            assertEquals(RAIL_LIBRARY, dpad.press(Dpad.Left))
+            assertEquals(TITLE, dpad.press(Dpad.Right))
         }
     }
 
