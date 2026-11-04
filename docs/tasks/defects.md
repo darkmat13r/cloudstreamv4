@@ -1260,7 +1260,7 @@ libVLC's audio output opens and holds a level (37) on a silent file. Nobody has 
 
 ## BUG-27 — A plugin could reach this Mac and its LAN, by address · **high** · measured 2026-11-04
 
-**Status:** in pr. Found by `BUG-26`: a plugin host connected to this Mac's own LAN address, which reaches anything listening
+**Status:** done · #124. Found by `BUG-26`: a plugin host connected to this Mac's own LAN address, which reaches anything listening
 on all interfaces, and to the LAN gateway. Seatbelt cannot refuse them. It can name only `localhost` or `*`
 (measured: anything else is "host must be * or localhost").
 
