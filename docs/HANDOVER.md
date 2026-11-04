@@ -71,7 +71,7 @@ search's repoint is the draft PR above:
 | `KMP-12` (row 18) | `:feature:search` | Steps 1–3: the contracts, the MVI machine, the TV screen, and the `SearchSource`/`SearchHistoryStore` implementations for **both** hosts | Step 4 is the open draft #91; step 5 (deleting the old fragment) is a release away. The touch screen does not exist |
 | `KMP-20` | `:feature:home` | The `HomeSource` seam and the desktop screen | **The TV screen**, though `design/TV Home.dc.html` draws it. The chosen source is not remembered across launches |
 | `KMP-15`/`16`/`25` | `:feature:detail`, `:media:subtitle` | The desktop detail page, source list, player and subtitles | Source and audio selectors (artboard 7e). No Android host |
-| `KMP-26` | `:feature:library` | Continue Watching, six lists, watch progress, resume, and a file store beside the search history | A bookmark button on the detail page, progress on search and home cards, sorting, Android |
+| `KMP-26` | `:feature:library` | Continue Watching, six lists, watch progress, resume, and a file store beside the search history | A bookmark button on the detail page, progress on search and home cards, sorting. Android TV reads the local lists (`KMP-34`); writes and phone are not done |
 
 **Update, 2026-11-02: Android TV opens the new search screen** (`KMP-12` steps 3 and 4). The rest of
 this paragraph's table is history. `SearchTvFragment` is the glue, gated by one line in `MainActivity`;

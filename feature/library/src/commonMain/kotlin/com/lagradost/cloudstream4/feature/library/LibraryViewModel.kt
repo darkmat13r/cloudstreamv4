@@ -19,12 +19,16 @@ import kotlinx.coroutines.launch
  * sorted and pruned there, and guessing the result of a write is how two sources of truth start.
  *
  * The scope comes from the host, because desktop has no `Dispatchers.Main` for `viewModelScope`.
+ *
+ * @param initialTab which list opens first. The TV boards draw no Continue watching, so that screen opens
+ *   on its first list. The default is what the desktop window opens on.
  */
 class LibraryViewModel(
     private val store: LibraryStore,
     private val scope: CoroutineScope,
+    initialTab: LibraryTab = LibraryTab.ContinueWatching,
 ) : ViewModel(),
-    StateContainer<LibraryState> by DefaultStateContainer(LibraryState()),
+    StateContainer<LibraryState> by DefaultStateContainer(LibraryState(tab = initialTab)),
     EffectContainer<LibraryEffect> by DefaultEffectContainer(),
     ActionHandler<LibraryAction> {
 
@@ -42,7 +46,15 @@ class LibraryViewModel(
     override fun onAction(action: LibraryAction) {
         when (action) {
             is LibraryAction.TabSelected -> showTab(action.tab)
-            is LibraryAction.TitleActivated -> scope.launch { postEffect { LibraryEffect.OpenTitle(action.id) } }
+            is LibraryAction.TitleActivated -> {
+                action.firstVisibleIndex?.let { index ->
+                    updateState { copy(returnTo = LibraryReturn(action.id, index)) }
+                }
+                scope.launch { postEffect { LibraryEffect.OpenTitle(action.id) } }
+            }
+
+            LibraryAction.ReturnHandled -> updateState { copy(returnTo = null) }
+            is LibraryAction.FilterChanged -> filter(action.text)
             is LibraryAction.ResumeActivated -> resume(action.id)
             is LibraryAction.PickerOpened -> updateState { copy(picking = action.id) }
             LibraryAction.PickerDismissed -> updateState { copy(picking = null) }
@@ -50,12 +62,19 @@ class LibraryViewModel(
             is LibraryAction.RemoveRequested -> remove(action.id)
             LibraryAction.SearchRequested -> scope.launch { postEffect { LibraryEffect.OpenSearch } }
             LibraryAction.Refresh, LibraryAction.Retry -> read()
+            LibraryAction.Reappeared -> reread()
         }
     }
 
     private fun showTab(tab: LibraryTab) = updateState {
         // Loading would blink a skeleton over a list already read; the cards for the new tab are known.
-        if (status is LibraryStatus.Loading) copy(tab = tab) else copy(tab = tab, status = statusFor(tab))
+        if (status is LibraryStatus.Loading) copy(tab = tab) else copy(tab = tab, status = statusFor(tab, filter))
+    }
+
+    private fun filter(text: String) = updateState {
+        // Over Loading or a failure there is nothing read yet to narrow.
+        if (status is LibraryStatus.Loading || status is LibraryStatus.Failed) copy(filter = text)
+        else copy(filter = text, status = statusFor(tab, text))
     }
 
     private fun resume(id: LibraryTitleId) {
@@ -97,22 +116,34 @@ class LibraryViewModel(
         scope.launch { load(request) }
     }
 
+    private fun reread() {
+        updateState { copy(returnTo = returnTo?.copy(ready = true)) }
+        val request = ++generation
+        scope.launch { load(request) }
+    }
+
     private suspend fun load(request: Int) {
         val read = runCatching { store.titles() to store.positions() }
         val failure = read.exceptionOrNull()
         if (failure is CancellationException) throw failure
         if (request != generation) return
         val (loadedTitles, loadedPositions) = read.getOrElse {
-            updateState { copy(status = LibraryStatus.Failed(it.reason())) }
+            updateState { copy(status = LibraryStatus.Failed(it.reason()), counts = emptyMap(), totalTitles = null) }
             return
         }
         titles = loadedTitles
         positions = loadedPositions
-        updateState { copy(status = statusFor(tab)) }
+        updateState {
+            copy(
+                status = statusFor(tab, filter),
+                counts = LibraryShelf.counts(loadedTitles),
+                totalTitles = LibraryShelf.totalTitles(loadedTitles),
+            )
+        }
     }
 
-    private fun statusFor(tab: LibraryTab): LibraryStatus {
-        val cards = LibraryShelf.cards(tab, titles, positions)
+    private fun statusFor(tab: LibraryTab, filter: String): LibraryStatus {
+        val cards = LibraryShelf.cards(tab, titles, positions, filter)
         return if (cards.isEmpty()) LibraryStatus.Empty else LibraryStatus.Showing(cards)
     }
 

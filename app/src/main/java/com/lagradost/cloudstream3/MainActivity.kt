@@ -180,6 +180,7 @@ import com.lagradost.cloudstream3.utils.setText
 import com.lagradost.cloudstream3.utils.setTextHtml
 import com.lagradost.cloudstream3.utils.txt
 import com.lagradost.safefile.SafeFile
+import com.lagradost.cloudstream4.library.openLibraryOnTvScreen
 import com.lagradost.cloudstream4.search.openSearchOnTvScreen
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
@@ -1670,6 +1671,7 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
         val navController = navHostFragment.navController
         // KMP-12: TV opens the new search screen. Removing this one line is the rollback.
         if (isLayout(TV)) navController.graph.openSearchOnTvScreen()
+        if (isLayout(TV)) navController.graph.openLibraryOnTvScreen()
 
         navController.addOnDestinationChangedListener { _: NavController, navDestination: NavDestination, bundle: Bundle? ->
             // Intercept search and add a query

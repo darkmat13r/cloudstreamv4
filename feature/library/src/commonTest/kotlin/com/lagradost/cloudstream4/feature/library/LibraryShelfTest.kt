@@ -141,4 +141,28 @@ class LibraryShelfTest {
             LibraryTab.all.filterIsInstance<LibraryTab.Bucket>().map { it.bucket },
         )
     }
+
+    @Test
+    fun `a filter ignores case and blank keeps everything`() {
+        val titles = listOf(title(dune, LibraryBucket.Watching), title(arrival, LibraryBucket.Watching))
+        val tab = LibraryTab.Bucket(LibraryBucket.Watching)
+        assertEquals(listOf(dune), LibraryShelf.cards(tab, titles, emptyList(), "/DUNE").map { it.id })
+        assertEquals(2, LibraryShelf.cards(tab, titles, emptyList(), "  ").size)
+    }
+
+    @Test
+    fun `an id in two lists appears on each with its own count`() {
+        val titles = listOf(title(dune, LibraryBucket.Watching), title(dune, LibraryBucket.Favourites))
+        assertEquals(mapOf(LibraryBucket.Watching to 1, LibraryBucket.Favourites to 1), LibraryShelf.counts(titles))
+        assertEquals(1, LibraryShelf.totalTitles(titles))
+        assertEquals(1, LibraryShelf.cards(LibraryTab.Bucket(LibraryBucket.Favourites), titles, emptyList()).size)
+    }
+
+    @Test
+    fun `a card carries the host's type and poster headers`() {
+        val kept = title(dune, LibraryBucket.Watching).copy(typeLabel = "MOVIE", posterHeaders = mapOf("a" to "b"))
+        val card = LibraryShelf.cards(LibraryTab.Bucket(LibraryBucket.Watching), listOf(kept), emptyList()).single()
+        assertEquals("MOVIE", card.typeLabel)
+        assertEquals(mapOf("a" to "b"), card.posterHeaders)
+    }
 }

@@ -3197,3 +3197,87 @@ extension is allowed or stopped. It is matched by name, because the order source
 
 **Tested:** `HomeViewModelTest` and `FileHomeSourceMemoryTest`. **Not tested:** a person choosing a source, quitting and
 reopening the window. Search is not affected; it has no single source to keep.
+
+## KMP-34 — The TV library on Android: grid and empty page (queue `Q11`) · **measured 2026-11-04**
+
+**Status:** in pr. Boards `5a` and `5c` of `design/TV Library.dc.html`. Sort, the provider panel and the unreachable
+state (`5b`, `5d`, `5e`) are `Q12`. Android TV opens this through real navigation, and one line in `MainActivity`
+switches it; deleting that line is the rollback, and `LibraryFragment` stays for one release (`DEC-17`). Phone and the
+emulator layout still use `LibraryFragment`.
+
+**The model.** `:feature:library` had no provider and only a desktop store, and `:app`'s library is `SyncAPI`. Read, not
+assumed: the local list is `LocalList`, over `RESULT_WATCH_STATE` (status), `RESULT_WATCH_STATE_DATA` (`BookmarkedData`)
+and `RESULT_FAVORITES_STATE_DATA` (`FavoritesData`), per account. `AndroidLibraryStore` reads those same keys.
+
+The seam is small, and nothing published changed (`SyncAPI$Page` is untouched):
+
+- Reads are real. **Writes refuse**, as `AndroidExtensionRuntime.install` does: nothing on Android calls one, 5a and 5c
+  draw no control that writes, and a title's list is still changed on its result page. The first screen that needs a write
+  implements it.
+- `LibraryStore.titles()` may now return one id twice with different buckets, because on Android a title can be in
+  Watching and in Favourites at once. Desktop still returns one row per id.
+- Additive, all with defaults: `LibraryViewModel(initialTab)`, `LibraryTitle` and `LibraryCard` gain `typeLabel` and
+  `posterHeaders`, `LibraryState` gains `counts`, `totalTitles`, `filter` and `returnTo`, and there are new actions. The
+  desktop screen sends and reads none of them, so its behaviour is unchanged. `:desktopApp` compiled against this, and
+  `LibraryViewModelTest`'s existing cases still pass.
+
+Tab counts come from the rows read, so a tab cannot disagree with its page, and they are absent before the first read and
+after a failed one. A list holding nothing reads 0, which is a fact.
+
+**Every reduction from the boards, for the owner:**
+
+| Board | Drawn | Here | Why |
+|---|---|---|---|
+| 5a | Provider button, `AniList` / `LAGRADOST · SYNCED 4 MIN` | Plain text: `Library` and the total titles. Not a stop | Local only until `Q12`. No sync time exists. Its slot is kept, so the control moves nothing when it lands |
+| 5a | Sort button, `LAST UPDATED · NEWEST` | Empty slot. Order is newest `latestUpdatedTime` first | `Q12` |
+| 5a | Five tabs | Six: Favourites added | The old TV screen has it, and people's favourites are in it |
+| 5a | Rating badge, top right | None | Local bookmarks hold no rating of the user's own. `BookmarkedData.score` is the public score, which is not what the board means |
+| 5a | `12 / 28 EPISODES` in the reveal | Provider name | Local bookmarks hold no episode counts: `toLibraryItem` passes null for both |
+| 5a | Bar from episodes done over total | Position in the last-played part, from the keys `HomeViewModel` reads. No bar if never played | Same. A different fact, and a real one |
+| 5a | Field placeholder `Filter this list`, magnifier | `Filter Bookmarks`, no magnifier | Existing key. `TextField` has no glyph slot |
+| 5a | Type badge in the board's words `ANIME`, `TV`, `MOVIE` | `TvType`'s own translated word, upper-cased: `TV SERIES`, `MOVIE` | Existing keys, so no new translations |
+| 5c | `Nothing on hold` | The list's name, `On-Hold` | No such key; no new key added |
+| 5c | `Titles you pause land here. Four are in Watching that you haven't opened in a month.` | `This list is empty. Try switching to another one.` | Nothing records when a title was last opened, so that sentence could not be true |
+| 5c | `Go to Watching` | The name of the first list with titles in it, `Watching` | No such key. With the whole library empty it is `Search`, with the old screen's empty-library message |
+| 5c | Glyph tile | Empty reserved box | `CloudStreamIcons` has no library glyph, and `icons.md` forbids drawing one |
+
+**What the old TV screen does that this does not yet:** switching to a sync provider, so **AniList, MyAnimeList and Simkl
+lists are not on TV until `Q12`**; sorting; a saved per-list opener (`LibraryOpener`), so a title always opens its page, or
+a search by name when its provider is gone, which is the old default; Random; the long-press metadata popup. The old
+filter re-ranks by similarity, and this one narrows by containing the text. `DEC-13`: this screen takes `:core:theme`, so
+it has no user-selected primary colour or Material You.
+
+**Strings.** No new key, so no `R` field. Coverage of the keys reused, directories out of 62 (the rest fall back to
+English): `title_search`, `type_watching`, `type_completed`, `type_plan_to_watch` 61; `type_on_hold`, `type_dropped` 60;
+`filter_bookmarks` 59; `sort_clear` 58; `library` 49; `error` 45; `empty_library_logged_in_message`,
+`empty_library_no_accounts_message` 42; `plugin_load_fail` 41; `favorites_list_name` 39; `no_data` 61; and the retry
+label's `search_state_retry` 1, which is English only and already was.
+
+**Measured, each a wrong turn first.** Focus restore passed in the module and failed in the real app, twice, for two
+causes, which is the case for the `:app` test:
+
+- Adding `focusRequester` to only the card being returned to rebuilt its focus node when that condition went false, which
+  dropped the focus it had just taken. The first version of the module test read focus the moment it arrived and missed
+  this. It now reads it after the return point is cleared. Every card now has the same modifier chain.
+- On `Television_720p` the fragment's view composed and took focus about 650 ms before `onResume`, and by `onResume` focus
+  was on the rail (logged with a global focus listener). So focus now waits for `LibraryAction.Reappeared`, which the
+  fragment sends from `onResume`. Retrying inside the first frames, tried first, did not help.
+
+**Tested:** `LibraryScreenTvDeviceTest`, 9 on `Television_720p` with a fake store and the real ViewModel: content, real
+counts, card size, opening a title, an empty page with a reachable action, an empty library, failure and retry, a long
+title ellipsized, a walk over every tab and 16 cards with no dead ends or traps and no keyboard, focus back on a third-row
+card, and the filter. `LibraryTvNavigationTest`, 1 in the real app: the rail opens `LibraryTvFragment`, a bookmark under
+the real keys is on it, a remote opens it, and Back restores focus. JVM: `AndroidLibraryStoreTest` 13,
+`LibraryViewModelTest` and `LibraryShelfTest` (added to).
+
+**Not verified:** a title's real page, because no extension is installed in the test, so opening took the search-by-name
+path; real poster loading; favourites through the real keys (mapping is JVM-tested only); a language long enough to make
+the tab row scroll; a long type word on a badge, which clips at the card edge; a focused card removed by the refresh on
+return, where focus falls to the window's choice; this screen beside the new rail from `KMP-33`.
+
+**Found, reported and not changed:**
+
+- `LibraryViewModel.showTab` after a failed read shows `Empty`, because it rebuilds from the empty lists it holds. Choosing
+  a tab after a failure therefore says the list is empty. It is shared with desktop, whose behaviour this task keeps. Read
+  from the code, not run.
+- `LibraryPoster` repeats `PosterArtwork` from `SearchTvFragment`, 15 lines. Sharing them means editing search's fragment.
