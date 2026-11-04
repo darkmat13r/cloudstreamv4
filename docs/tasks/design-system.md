@@ -307,3 +307,42 @@ the screen, and centre choosing. The other components have JVM tests only, until
 
 Screenshot cases are in `core/screenshot/.../TvComponentScreenshots.kt`. They compile, and render nothing until
 `DS-04` is unblocked. `TvComponentsTest` holds the bounds and states, drawn offscreen.
+
+## DS-09 — `NavRail`
+
+**Status:** built, not wired into `:app` · owner ruling it follows: `DEC-17` · stacked on `DS-08`
+
+`rail/NavRail.kt` in `:core:designsystem`, from `TV Home` 3a and 3b. The items are parameters; `DEC-17` rules what they
+are. Replacing the XML rail is a later task.
+
+It always measures `NavRailWidth`, 76dp. It is expanded exactly while focus is inside it, and then paints to 188dp over
+its neighbour. The items' nodes change width and are never swapped, because removing the focused node loses focus.
+`NavRailTest` holds this. The code was broken on purpose in ten ways, and each one turned a test red.
+
+### Where the code departs from a board
+
+- **`Components` §06 is not followed.** It draws 96 and 320 wide, 12px corners and a ring on the focused row. `DEC-17`
+  chose `TV Home`'s style, which is 152 and 376 and an `ink` fill.
+- **An exception to `ui-components.md`, which lists `tvFocusRing` for any TV focusable.** The rail's focus treatment is
+  the `ink` fill instead. Ruled: it is right, since white means focus. The rule file is not edited.
+- **Corners follow the token,** `shapes.medium`, 8dp, the role for rows and buttons. `TV Home` draws 8px, which is 4dp.
+- **No ring on a focused collapsed cell** (`.nic.foc`, `Components` §06, `Design System`). Focus expands the rail, and
+  the first frame after focus arrives is already wide and filled, so that state has no frame to draw on. No code for it.
+- **The logo's space stays when expanded.** 3b draws no logo and its first item at y 56px. Following it would move the
+  focused item 88px, 44dp, up as the rail opened. The first item is at 144px, 72dp, in both states.
+- **The content does not move.** 3b draws it at x 456 while its own caption and 3a say it never reflows.
+- **The focused label is not heavier.** `.nie.foc` is weight 800 over 600. Ruled: the typography tokens win, and
+  `CloudStreamTypography` carries no weights.
+- **Glyphs are the pack's**, not the boards' 32px rounded squares (`icons.md`).
+
+### Rulings
+
+- **Focus entering the rail lands on the current page's item,** so the current page is what someone sees first.
+- **3b's 46% dim and `.raile`'s 68px shadow belong to the screen hosting the rail,** because the dim covers content and
+  the rail cannot own it. **The shell task must build them.** They are not in this component.
+
+`NavRailDeviceTest` runs on `Television_720p`: real D-pad keys through the input dispatcher, with a focusable screen beside
+the rail. Removing focus entry there sends LEFT to `Downloads` instead of `Library`, which is why it is ruled. `NavRailTest`
+holds the geometry on the desktop scene. Nothing in `:app` uses the rail yet, so returning focus on RIGHT is untested. The
+screenshot cases are in `core/screenshot/.../NavRailScreenshots.kt`. They compile, and render nothing until `DS-04` is
+unblocked. Whether the expanded case captures after its focus effect runs cannot be known until then.
