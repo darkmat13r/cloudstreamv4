@@ -290,8 +290,8 @@ worktree, and add a task to run less than everything. Results are in
 the build cache.
 
 **A compile error costs no boot.** The script builds the test APKs first and boots only if that succeeds. With
-flags and no task, it now runs every module's device tests; it used to pass the flags alone to Gradle, which ran
-no tests and exited 0. A failed run can leave the previous run's XML in place, so check the `timestamp` is from this run.
+flags and no task, it now runs every module's device tests; it used to pass the flags alone to Gradle, with no
+test task. A failed run can leave the previous run's XML in place, so check the `timestamp` is from this run.
 
 **Never leave the emulator idle**, and when another emulator is running, address yours by serial.
 
