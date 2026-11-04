@@ -622,6 +622,7 @@
           <div class="abs lrow {{ p.cls }}" style="{{ p.pos }}">
             <div class="lmark" style="{{ p.mk }}"></div>
             <div class="grow"><div class="lt {{ p.lc }}">{{ p.a }}</div><div class="ls {{ p.sc }}">{{ p.b }}</div></div>
+            <sc-if value="{{ p.bad }}" hint-placeholder-val="{{ true }}"><i class="sg fail"></i></sc-if>
             <div class="tag {{ p.tc }}" style="width:136px">{{ p.v }}</div>
           </div>
         </sc-for>
@@ -892,7 +893,7 @@
         var p = praw[i];
         var top = p.st === "pin" ? 928 : 256 + i * 120;
         panelRows.push({
-          a: p.a, b: p.b, v: p.v,
+          a: p.a, b: p.b, v: p.v, bad: p.st === "bad",
           pos: "left:1392px;top:" + top + "px;width:472px",
           cls: p.st === "sel" ? "sel" : (p.st === "foc" ? "foc" : ""),
           mk: p.st === "sel" ? "background:#FFFFFF" : "background:transparent",

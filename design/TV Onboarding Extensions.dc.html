@@ -492,9 +492,7 @@
       survives only inside a comment at <code>SetupFragmentExtensions.kt:65</code>. Shipping 8a needs no seeded or
       fetched index. 8a-ii promotes "Open network settings" over a Retry that
       provably cannot succeed (<code>ExtensionsFragment.kt:283-291</code> does an <code>app.get</code> before a repo is
-      accepted, so even a typed URL is rejected offline). Two more shape 8a's copy: the add-repo dialog gives first focus
-      to the optional <i>name</i> field, not the URL (<code>add_repo_input.xml:66-93</code>,
-      <code>ExtensionsFragment.kt:255-329</code>), so the dialog must be re-ordered to one URL field with the name derived
+      accepted, so even a typed URL is rejected offline). Two more shape 8a's copy: the URL is entered in one inline field, with the name derived
       from <code>Repository.name</code>; and the clipboard prefill at <code>ExtensionsFragment.kt:264-278</code> plus the
       short-code forms <code>parseRepoUrl</code> already accepts (<code>RepositoryManager.kt:132-159</code>) are the real
       no-typing routes the helper line names — nothing puts a URL on a TV clipboard any more since <code>a565319e</code>.</p>
@@ -534,7 +532,7 @@
       <code>parsePlugins</code> that swallows <code>Throwable</code> into <code>emptyList()</code> (<code>:169-178</code>),
       and <code>fragment_plugins.xml</code> has no empty, error or loading view whatsoever. Nothing in the fetch path is
       time-bounded either — <code>safeAsync</code> converts a throw but never fires on a socket that hangs — so a
-      screen-level deadline is required or 8a's loading state has no exit. Finally the focus plumbing: the
+      screen-level deadline is required or adding a repository on 8a can hang with no exit. Finally the focus plumbing: the
       <code>FOCUS_SELF</code> traps at <code>ExtensionsFragment.kt:196</code> and <code>PluginsFragment.kt:159</code>, the
       null <code>nextFocusUp</code> on <code>tvtypes_chips</code> (<code>PluginsFragment.kt:202-203</code>), the hardcoded
       200dp bottom pad (<code>PluginsFragment.kt:168-171</code>), the cross-file focus id at
@@ -589,7 +587,7 @@
   class Component extends DCLogic {
     renderVals() {
       var nav = [
-        { cls: "nic" }, { cls: "nic" }, { cls: "nic" }, { cls: "nic cur" }, { cls: "nic" }
+        { cls: "nic" }, { cls: "nic" }, { cls: "nic" }, { cls: "nic" }, { cls: "nic cur" }
       ];
 
       var chips8b = [
