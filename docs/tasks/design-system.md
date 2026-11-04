@@ -313,7 +313,7 @@ Screenshot cases are in `core/screenshot/.../TvComponentScreenshots.kt`. They co
 **Status:** built, not wired into `:app` · owner ruling it follows: `DEC-17` · stacked on `DS-08`
 
 `rail/NavRail.kt` in `:core:designsystem`, from `TV Home` 3a and 3b. The items are parameters; `DEC-17` rules what they
-are. Replacing the XML rail is a later task.
+are. `KMP-33` replaced the XML rail with it on Android TV.
 
 It always measures `NavRailWidth`, 76dp. It is expanded exactly while focus is inside it, and then paints to 188dp over
 its neighbour. The items' nodes change width and are never swapped, because removing the focused node loses focus.
@@ -339,11 +339,11 @@ its neighbour. The items' nodes change width and are never swapped, because remo
 
 - **Focus entering the rail lands on the current page's item,** so the current page is what someone sees first.
 - **3b's 46% dim and `.raile`'s 68px shadow belong to the screen hosting the rail,** because the dim covers content and
-  the rail cannot own it. **The shell task must build them.** They are not in this component.
+  the rail cannot own it. `KMP-33` built them, as `NavRailHost`. They are not in this component.
 
 `NavRailDeviceTest` runs on `Television_720p`: real D-pad keys through the input dispatcher, with a focusable screen beside
 the rail. Removing focus entry there sends LEFT to `Downloads` instead of `Library`, which is why it is ruled. `NavRailTest`
-holds the geometry on the desktop scene. Nothing in `:app` uses the rail yet, so returning focus on RIGHT is untested. The
+holds the geometry on the desktop scene. Returning focus on RIGHT is tested on the real app, in `TvRailNavigationTest` (`KMP-33`). The
 screenshot cases are in `core/screenshot/.../NavRailScreenshots.kt`. They compile, and render nothing until `DS-04` is
 unblocked. Whether the expanded case captures after its focus effect runs cannot be known until then.
 

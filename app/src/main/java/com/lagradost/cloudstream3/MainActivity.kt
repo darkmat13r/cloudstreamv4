@@ -182,6 +182,8 @@ import com.lagradost.cloudstream3.utils.txt
 import com.lagradost.safefile.SafeFile
 import com.lagradost.cloudstream4.library.openLibraryOnTvScreen
 import com.lagradost.cloudstream4.search.openSearchOnTvScreen
+import com.lagradost.cloudstream4.shell.TvRail
+import com.lagradost.cloudstream4.shell.TvRailSwitch
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.sync.Mutex
@@ -602,6 +604,7 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
                 }
             }
         }
+        tvRail?.onNavBarUpdated(destination.id, visible = isNavVisible && isLandscape())
     }
 
     //private var mCastSession: CastSession? = null
@@ -669,8 +672,10 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
         }
     }
 
-    override fun dispatchKeyEvent(event: KeyEvent): Boolean =
-        CommonActivity.dispatchKeyEvent(this, event) ?: super.dispatchKeyEvent(event)
+    override fun dispatchKeyEvent(event: KeyEvent): Boolean {
+        tvRail?.beforeKey(event)
+        return CommonActivity.dispatchKeyEvent(this, event) ?: super.dispatchKeyEvent(event)
+    }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean =
         CommonActivity.onKeyDown(this, keyCode, event) ?: super.onKeyDown(keyCode, event)
@@ -907,6 +912,15 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
     }
 
     var binding: ActivityMainBinding? = null
+
+    /** The Compose rail, on the TV layout. `null` means the XML rail is showing: see [TvRailSwitch]. */
+    private var tvRail: TvRail? = null
+
+    /** Moves focus into the rail on screen, for a page whose own focus runs out at its leading edge. */
+    fun focusNavRail() {
+        tvRail?.requestFocus()
+            ?: binding?.navRailView?.findViewById<View?>(R.id.navigation_home)?.requestFocus()
+    }
 
     object TvFocus {
         data class FocusTarget(
@@ -1671,7 +1685,10 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
         val navController = navHostFragment.navController
         // KMP-12: TV opens the new search screen. Removing this one line is the rollback.
         if (isLayout(TV)) navController.graph.openSearchOnTvScreen()
+        // KMP-34: TV opens the new library screen. Removing this one line is the rollback.
         if (isLayout(TV)) navController.graph.openLibraryOnTvScreen()
+        // KMP-33: TV shows the Compose rail. TvRailSwitch is the rollback to the XML rail.
+        if (isLayout(TV) && TvRailSwitch.useComposeRail) tvRail = binding?.let { TvRail(this, it) }
 
         navController.addOnDestinationChangedListener { _: NavController, navDestination: NavDestination, bundle: Bundle? ->
             // Intercept search and add a query

@@ -1,7 +1,10 @@
 package com.lagradost.cloudstream4.feature.library.tv
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -27,6 +30,9 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
+import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIconSize
+import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.designsystem.state.StateView
 import com.lagradost.cloudstream4.core.designsystem.state.UiState
 import com.lagradost.cloudstream4.core.designsystem.state.UiStateHost
@@ -117,7 +123,14 @@ fun LibraryScreenTv(
 
         val region = Modifier.contentInset().fillMaxSize()
         when (content) {
-            is UiState.Empty -> StateView(content.prompt, region, content.detail, requestInitialFocus = false)
+            is UiState.Empty -> StateView(
+                prompt = content.prompt,
+                modifier = region,
+                detail = content.detail,
+                requestInitialFocus = false,
+                glyph = { LibraryEmptyGlyph() },
+            )
+
             is UiState.Error -> StateView(content.prompt, region, content.detail, requestInitialFocus = false)
             else -> UiStateHost(
                 state = content,
@@ -168,6 +181,7 @@ private fun LibraryChromeRow(
             onSubmit = { keyboard?.hide() },
             // `BUG-30`: passing through the row must not open a keyboard that then takes the D-pad.
             keyboardOnOk = true,
+            leadingIcon = CloudStreamIcons.Search,
         )
         Spacer(Modifier.width(LibraryScreenTvDefaults.ChromeSlotWidth))
     }
@@ -232,6 +246,27 @@ private fun LibraryTabRow(
                 count = if (counted && tab is LibraryTab.Bucket) (state.counts[tab.bucket] ?: 0).toString() else null,
             )
         }
+    }
+}
+
+/** 5c's tile: the glyph box `StateView` reserves, filled raised with a hairline, and the library's icon in it. */
+@Composable
+private fun LibraryEmptyGlyph() {
+    val colors = CloudStreamTheme.colors
+    val shape = CloudStreamTheme.shapes.large
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(colors.raised, shape)
+            .border(CloudStreamDimens.Hairline, colors.line, shape),
+        contentAlignment = Alignment.Center,
+    ) {
+        CloudStreamIcon(
+            icon = CloudStreamIcons.Library,
+            contentDescription = null,
+            size = CloudStreamIconSize.Large,
+            tint = colors.muted,
+        )
     }
 }
 

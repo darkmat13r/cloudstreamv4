@@ -22,6 +22,9 @@ when twenty-three more had merged since. **Trust `git log` over this heading.**
 
 ## Where things stand
 
+**Android TV shows the Compose rail since `KMP-33`.** `TvRailSwitch.useComposeRail = false` is the rollback to the XML
+rail, kept for one release. Phone and the emulator layout are unchanged.
+
 Master is at `26acd8f8` (#104). **One pull request is open: #91**, a **draft** — `KMP-12` steps 3 and 4,
 Android TV opening the new search screen. `DEC-17` accepts passing UI tests on the `Television_720p` emulator as proof for
 switching; `TvSearchNavigationTest` is that proof. What holds it is the owner's call on its published-API
@@ -294,6 +297,11 @@ flags and no task, it now runs every module's device tests; it used to pass the 
 test task. A failed run can leave the previous run's XML in place, so check the `timestamp` is from this run.
 
 **Never leave the emulator idle**, and when another emulator is running, address yours by serial.
+
+**Run `adb` diagnostics inside the slot.** Every device run uses port 5580, so `emulator-5580` is whichever run holds
+the slot, and the serial does not tell you it is yours. A `logcat` or `screencap` started beside a queued run attaches to
+the other agent's emulator: on 2026-11-04 `KMP-34`'s diagnostic logcat read another agent's whole run and none of its
+own. Start it from a script run under `with-gradle-lock.sh`, in the same slot as the Gradle run it is watching.
 
 **This AVD is not the artboard.** 1280x720 at 213 dpi is about 961.5x540.8 dp, not 960x540. Do not assert
 full-screen geometry against 960x540 or hard-code a screen size: assert component bounds, spacing and focus, and

@@ -4,7 +4,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsFocusedAsState
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -19,10 +21,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
+import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
+import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIconSize
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 
@@ -66,12 +71,10 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
  * screen would look identical, and correcting it is a 1dp visual change that belongs in its own
  * change with its own diff to look at. Reported, not fixed.
  *
- * ## There is no magnifier
+ * ## The magnifier is the caller's
  *
- * The board draws a glyph in the leading position (`.fgl`). `.claude/rules/icons.md` forbids
- * drawing one, and the field has no slot for one yet: adding it means naming a meaning in
- * `CloudStreamIcons`, which belongs with the icon work rather than here. Until then the
- * placeholder carries the meaning, which is what artboard 4c's own *"Search all sources"* does.
+ * The board draws a glyph in the leading position (`.fgl`), 32px with a 16px gap, which is [leadingIcon].
+ * It is off by default, so a field whose caller does not ask for one renders as it did.
  *
  * @param value the current text. Hoisted; the field holds no state.
  * @param onValueChange invoked on every edit, with the whole new value.
@@ -86,6 +89,8 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
  * @param keyboardOnOk on a D-pad, landing on the field only highlights it, and OK or Enter opens the
  *   keyboard. Off by default, where landing on it opens the keyboard, which then takes the D-pad until
  *   Back closes it. See [KeyboardOnOk].
+ * @param leadingIcon a glyph from `CloudStreamIcons` before the text, as decoration: the placeholder says what
+ *   the field is for.
  */
 @Composable
 fun TextField(
@@ -96,6 +101,7 @@ fun TextField(
     imeAction: ImeAction = ImeAction.Done,
     onSubmit: () -> Unit = {},
     keyboardOnOk: Boolean = false,
+    leadingIcon: ImageVector? = null,
 ) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
@@ -113,31 +119,49 @@ fun TextField(
             .padding(horizontal = TextFieldDefaults.HorizontalPadding),
         contentAlignment = Alignment.CenterStart,
     ) {
-        BasicTextField(
-            value = value,
-            onValueChange = onValueChange,
-            modifier = if (keyboardOnOk) Modifier.fillMaxWidth().then(keyboard.modifier) else Modifier.fillMaxWidth(),
-            readOnly = keyboardOnOk && keyboard.readOnly,
-            textStyle = typography.body.copy(color = colors.ink),
-            singleLine = true,
-            cursorBrush = SolidColor(colors.ink),
-            interactionSource = interactionSource,
-            keyboardOptions = KeyboardOptions(imeAction = imeAction),
-            keyboardActions = KeyboardActions(
-                onAny = {
-                    keyboard.close()
-                    onSubmit()
-                },
-            ),
-        )
-        if (value.isEmpty()) {
-            BasicText(
-                text = placeholder,
-                style = remember(typography, colors) {
-                    typography.body.copy(color = colors.muted)
-                },
-                maxLines = SINGLE_LINE,
+        val input: @Composable () -> Unit = {
+            BasicTextField(
+                value = value,
+                onValueChange = onValueChange,
+                modifier = if (keyboardOnOk) Modifier.fillMaxWidth().then(keyboard.modifier) else Modifier.fillMaxWidth(),
+                readOnly = keyboardOnOk && keyboard.readOnly,
+                textStyle = typography.body.copy(color = colors.ink),
+                singleLine = true,
+                cursorBrush = SolidColor(colors.ink),
+                interactionSource = interactionSource,
+                keyboardOptions = KeyboardOptions(imeAction = imeAction),
+                keyboardActions = KeyboardActions(
+                    onAny = {
+                        keyboard.close()
+                        onSubmit()
+                    },
+                ),
             )
+            if (value.isEmpty()) {
+                BasicText(
+                    text = placeholder,
+                    style = remember(typography, colors) {
+                        typography.body.copy(color = colors.muted)
+                    },
+                    maxLines = SINGLE_LINE,
+                )
+            }
+        }
+        if (leadingIcon == null) {
+            input()
+        } else {
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(TextFieldDefaults.LeadingIconGap),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                CloudStreamIcon(
+                    icon = leadingIcon,
+                    contentDescription = null,
+                    size = CloudStreamIconSize.Small,
+                    tint = colors.muted,
+                )
+                Box(Modifier.weight(1f), contentAlignment = Alignment.CenterStart) { input() }
+            }
         }
     }
 }
@@ -169,6 +193,9 @@ object TextFieldDefaults {
      * **Promote this as `CloudStreamDimens.TextFieldHorizontalPadding`.**
      */
     val HorizontalPadding: Dp = 12.dp
+
+    /** Between [TextField]'s glyph and its text: 16px on the artboard, halved. Mirrors `ChipDefaults.CountGap`. */
+    val LeadingIconGap: Dp = 8.dp
 }
 
 private const val SINGLE_LINE = 1

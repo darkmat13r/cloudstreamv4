@@ -3198,6 +3198,74 @@ extension is allowed or stopped. It is matched by name, because the order source
 **Tested:** `HomeViewModelTest` and `FileHomeSourceMemoryTest`. **Not tested:** a person choosing a source, quitting and
 reopening the window. Search is not affected; it has no single source to keep.
 
+---
+
+## KMP-33 — The Compose rail on Android TV (queue `Q5`) · **measured 2026-11-04**
+
+**Status:** in pr #139, waiting on the owner for its `classes-jar.api` delta · **Owner's rulings it follows:** `DEC-17`, `DS-09`. Android TV only. Rollback for one release.
+
+`shell/TvRail.kt` in `:app` hosts `NavRailHost`, new in `:core:designsystem`: `NavRail` with the dim, the shadow and the
+keys `DS-09` left to its host. Home, Search, Library, Downloads and Settings come from `res/menu/bottom_nav_menu.xml`, so
+order and translated titles have one source and no string was added.
+
+**The switch.** `TvRailSwitch.useComposeRail`. `false` means `MainActivity` builds no `TvRail`, and every line that names
+one does nothing. `theSwitchPutsTheXmlRailBackAt62` runs it.
+
+### The audit's claims, measured
+
+- **The 14dp miss is real.** On the XML rail the page starts at 62dp and the search field's text at 98dp. With this rail
+  they are 76dp and 112dp, where 112 is `ContentOriginX` 100 plus the field's own padding of 12. It was fixed by giving
+  the page the token's width on TV, not by editing `nav_rail_view_width`, which phone also reads.
+- **"A Compose rail needs an activity change" is true, and smaller than it sounded.** Three lines in `MainActivity`, plus
+  `focusNavRail`.
+
+### The smallest change, and why
+
+A `ComposeView` added to `homeRoot` in code. `activity_main_tv.xml` is untouched, because the emulator layout inflates it
+too, and it must keep a `NavigationRailView` for `ActivityMainBinding.bind`.
+
+The XML rail stays, `GONE`, as the navigation seam: committing an item sets `navRailView.selectedItemId`, as the
+`cloudstreamsearch://` handler and `SearchTvFragment` already do, so the debounce and the back stack are unchanged. The
+mark follows the `NavController` through `updateNavBar`.
+
+The view is 76dp wide collapsed and the whole screen expanded. A view cannot paint outside itself, so a 76dp view could
+not show 188dp of rail; a permanently full-screen one would never be found by LEFT, since `FocusFinder` goes by bounds.
+The page's margin does not change, so it does not reflow.
+
+### What the real app showed
+
+- **A `GONE` rail's items still take focus.** XML pages name them in `nextFocusLeft` (`home_change_api`), `FocusFinder`
+  checks only the item's own flags, and focus went somewhere invisible, which was behind most of the first run's 22 failures out of 24. The
+  hidden rail's views are now unfocusable, so the search falls through to geometry.
+- **Exact return on RIGHT needed the rect.** A Compose page forgets its focused node as soon as its view loses focus, and
+  `focusRestorer` does not see that exit. So `TvRail` reads the stop's rect before each D-pad key and asks the page to
+  search from one pixel before it. A View takes `requestFocus` directly. If the stop has gone, RIGHT goes to the nearest
+  stop towards the page.
+
+### Found, not changed
+
+- **Two stops lose focus on the XML rail too,** which two `theXmlRailLosesFocus…` tests measure: DOWN from Home's
+  provider button (`nextFocusDown` names a hidden `home_preview_info_btt`), and RIGHT from the Library's pager. LEFT
+  recovers from both. `noDeadEndsOnHome` and `noDeadEndsOnLibrary` pin them, so fixing either fails a test on purpose.
+- **Settings' search field is not an exact return, and DOWN from it goes nowhere.** It expands when focused and collapses
+  when not, so RIGHT lands on `Default`, the stop above it. LEFT still leaves it. Every other stop tried returns exactly.
+- **`NavRail`'s brushes are not mirrored in a right-to-left layout.** The keys are. Neither has been run in one.
+
+### What the XML rail had that this does not
+
+- **The profile picture in the footer**, which opens account select. No board draws it and `DEC-17` does not list it.
+  Home's own `home_switch_account` still opens the same list, but it did not show on Home with no extension installed.
+- **Long press on an item to scroll to the top.**
+- **The Library item's icon changing to the sync provider's.** `icons.md` makes that a brand mark, and no board draws it.
+- **The cast mini controller starting after the rail.** It is constrained to the hidden rail, so it starts at the screen's
+  edge and the rail covers its first 76dp while casting.
+
+`DEC-13`: nothing is lost. The old TV rail's indicator was `textColor`, not the user's primary colour.
+
+**Tested:** `TvRailNavigationTest` on `Television_720p`, `NavRailHostTest` and `TvRailDestinationsTest` on the JVM.
+**Not tested:** `focusNavRail`'s call site, which needs a provider's hero on Home, and every page with content, since no
+extension is installed. A real TV remote.
+
 ## KMP-34 — The TV library on Android: grid and empty page (queue `Q11`) · **measured 2026-11-04**
 
 **Status:** in pr. Boards `5a` and `5c` of `design/TV Library.dc.html`. Sort, the provider panel and the unreachable
@@ -3234,12 +3302,11 @@ after a failed one. A list holding nothing reads 0, which is a fact.
 | 5a | Rating badge, top right | None | Local bookmarks hold no rating of the user's own. `BookmarkedData.score` is the public score, which is not what the board means |
 | 5a | `12 / 28 EPISODES` in the reveal | Provider name | Local bookmarks hold no episode counts: `toLibraryItem` passes null for both |
 | 5a | Bar from episodes done over total | Position in the last-played part, from the keys `HomeViewModel` reads. No bar if never played | Same. A different fact, and a real one |
-| 5a | Field placeholder `Filter this list`, magnifier | `Filter Bookmarks`, no magnifier | Existing key. `TextField` has no glyph slot |
+| 5a | Field placeholder `Filter this list` | `Filter Bookmarks` | Existing key. The magnifier is drawn, `CloudStreamIcons.Search`, through a new optional `TextField(leadingIcon)`. Search's field does not ask for it, so it renders as it did |
 | 5a | Type badge in the board's words `ANIME`, `TV`, `MOVIE` | `TvType`'s own translated word, upper-cased: `TV SERIES`, `MOVIE` | Existing keys, so no new translations |
 | 5c | `Nothing on hold` | The list's name, `On-Hold` | No such key; no new key added |
 | 5c | `Titles you pause land here. Four are in Watching that you haven't opened in a month.` | `This list is empty. Try switching to another one.` | Nothing records when a title was last opened, so that sentence could not be true |
 | 5c | `Go to Watching` | The name of the first list with titles in it, `Watching` | No such key. With the whole library empty it is `Search`, with the old screen's empty-library message |
-| 5c | Glyph tile | Empty reserved box | `CloudStreamIcons` has no library glyph, and `icons.md` forbids drawing one |
 
 **What the old TV screen does that this does not yet:** switching to a sync provider, so **AniList, MyAnimeList and Simkl
 lists are not on TV until `Q12`**; sorting; a saved per-list opener (`LibraryOpener`), so a title always opens its page, or
@@ -3273,11 +3340,14 @@ the real keys is on it, a remote opens it, and Back restores focus. JVM: `Androi
 **Not verified:** a title's real page, because no extension is installed in the test, so opening took the search-by-name
 path; real poster loading; favourites through the real keys (mapping is JVM-tested only); a language long enough to make
 the tab row scroll; a long type word on a badge, which clips at the card edge; a focused card removed by the refresh on
-return, where focus falls to the window's choice; this screen beside the new rail from `KMP-33`.
+return, where focus falls to the window's choice.
+
+**`TvRailNavigationTest`, changed because this PR changes what it measured.** `KMP-33` wrote two cases against the old
+page. `noDeadEndsOnLibrary` expected focus to be lost at the pager's right edge, and the new page has no pager, so it now
+walks a seeded title and expects no loss. `theXmlRailLosesFocusFromTheLibrarysPagerToo` measures the old page, so it moved
+to the emulator layout, which still opens it. Its finding stands: that loss belongs to the old page.
 
 **Found, reported and not changed:**
 
-- `LibraryViewModel.showTab` after a failed read shows `Empty`, because it rebuilds from the empty lists it holds. Choosing
-  a tab after a failure therefore says the list is empty. It is shared with desktop, whose behaviour this task keeps. Read
-  from the code, not run.
+- `LibraryViewModel.showTab` after a failed read shows `Empty`: `BUG-31`.
 - `LibraryPoster` repeats `PosterArtwork` from `SearchTvFragment`, 15 lines. Sharing them means editing search's fragment.

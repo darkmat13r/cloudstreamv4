@@ -1410,3 +1410,17 @@ search all 12 sources anyway", and its note says "the action is the field". With
 and the search is confirmed from there, so it takes two presses. That reading fits the board's intent but not its words, and
 no board mentions the keyboard at all. Suggestions are not built, so nothing behaves wrongly today. Before 8b is
 built, either its copy changes or the owner decides otherwise.
+
+## BUG-31 — Choosing a list after a failed read says the list is empty · **low** · read 2026-11-04
+
+**Status:** open. **Read from the code, not run:** no test or device has shown this happening.
+
+`LibraryViewModel.load` keeps `titles` and `positions` empty when the read fails, and `showTab` rebuilds the status from
+them unless the status is `Loading`. So from `LibraryStatus.Failed`, choosing another tab replaces the failure with
+`LibraryStatus.Empty`. The user is told a list is empty when the truth is that it could not be read.
+
+It reaches both screens that use this ViewModel, the desktop window and the TV library (`KMP-34`). On the TV page the store
+reads `SharedPreferences`, so a failed read should be rare. `KMP-34` left it alone because the fix changes desktop, whose
+behaviour that task had to keep.
+
+**The likely fix:** remember whether a read has ever succeeded, and keep showing `Failed` until one has.

@@ -184,7 +184,7 @@ Conventions:
 
 > Built since this audit, by `DS-08`: the status pill, segmented control, below-art episode and continue cards, avatar,
 > storage meter, download progress row and the missing icons. `DEC-17` settled the failure colour: hollow neutral.
-> Built since this audit, by `DS-09`: `NavRail`, component only. The XML rail is still what `:app` shows.
+> Built since this audit, by `DS-09`: `NavRail`. Android TV shows it since `KMP-33`, and the XML rail is its rollback.
 
 **Missing from `Components.dc.html`:**
 
@@ -249,7 +249,7 @@ Columns: Strings = yes/no, estimated from a spot check of `values/strings.xml` k
 | **Q2** | `ConnectivityFlow` seam | offline on every board | new interface in a non-merged module; Android impl (`A/utils/AppContextUtils.kt:622` is the one-shot today) | no | adds `API` lines if impl is in `:app` | no | Module choice: `:core:common` is frozen-API (P:188-191) | none |
 | **Q3** | DS batch A: panel slide, disabled-focusable, trailing focus stop, disabled-row reason, public text field | prereq for 4d, 5d, 6d, 7c, 8b, 8c | `:core:designsystem`, `:feature:search` (text field) | no | no | no | Panel commit ruling, focusable-disabled ruling | Q0 |
 | **Q4** | Land search (#91) | 4a, 4b, 4c, 8c | `:app`, `:feature:search` (`posterHeaders`) | Yes, `navigation_search` at runtime | yes (+67) | no per #91 | Needs a device. `DEC-13` loss stated in PR. Merge state against master not checked | Q1 for tests |
-| **Q5** | Rail + shell alignment | 3a, 3b | `activity_main_tv.xml`, new TV dimen override, MA | no (shell) | no new class likely | Yes if new labels | **Owner decision: rail items.** Compose rail not possible before Phase N without an activity change | Q0 |
+| **Q5** ✅ done, `KMP-33` | Rail + shell alignment | 3a, 3b | `activity_main_tv.xml`, new TV dimen override, MA | no (shell) | no new class likely | Yes if new labels | **Owner decision: rail items.** Compose rail not possible before Phase N without an activity change | Q0 |
 | **Q6** | Search 4d + type chips | 4d, full 8c | `:feature:search`, `A4/search/` | no | yes | small | `SearchSource` write seam; Q3 | Q3, Q4 |
 | **Q7** | Search suggestions | 8a, 8b | `:feature:search`, `A4/search/` | no | yes | yes | Wrap `SearchSuggestionApi` rather than move it (P:360). TMDB key already ships in jar | Q4 |
 | **Q8** | Quick Search panel | 8d, 8e | `:feature:search`, `A4/search/` | Yes, `navigation_quick_search` (`NAV:441`) at runtime, or swap callers | yes | small | Q3 | Q4 |
