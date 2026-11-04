@@ -77,7 +77,7 @@ Artboards 7d and 7e, with these departures, each because a desktop player is not
 | A `Quality profile` row | None | There is no quality profile on desktop |
 | `1920×1080 decoded` under the row playing | Nothing | The player does not read that out yet |
 | `keeps 42:13` under each row, and `4 sources · all shown` | One line at the head: "Switching keeps your position: resumes at 42:13" | The same words on every row say nothing more. The count is not a decision anyone makes here |
-| `failed · code 2004`, and `live` on that reason line | `Source error`, muted | There is no code to show, and `live` is playback progress only (owner's direction 2026-11-04, tighter than the file's own note, which allows it here) |
+| `failed · code 2004`, and `live` on that reason line | `Source error`, muted | There is no code to show, and `live` is kept to playback progress here, which is tighter than the design file's own note: that note allows it on this line |
 
 Selected is the raised fill, the ink label and the muted marker, and each row says what pressing it does (`Playing`, `Switch`,
 `Retry`). 7d's error is a banner over the HUD; here it is the words in the transport row, above the selector.

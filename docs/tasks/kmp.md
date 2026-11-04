@@ -3007,8 +3007,9 @@ the title's search has found so far. Pressing a row commits it, with no Apply (7
 opened, because rows must not slide under a pointer. Every link on it has been through the same URL policy as before,
 because the list is `DetailState.links`, which `DesktopDetailSource` filters.
 
-A switch starts a new host for the new link, releases the old one, and keeps the screen: the subtitle track stays on,
-and full screen, the volume and the picture size do too. `ResumeSeek` starts the new stream at the old one's position, and
+A switch starts a new host for the new link, releases the old one, and keeps the screen, so by construction the subtitle
+track, full screen, the volume and the picture size stay as they were. No test drives that, because `PlayerScreen` needs a
+real `VlcPlayer` and the tests drive `PlayerContent`. `ResumeSeek` starts the new stream at the old one's position, and
 reports nothing to `WatchRecorder` until it is about there, so a slow start cannot overwrite the person's place. That
 also applies to a resume from the library, which until now reported from zero. It does not report at all if a stream
 cannot seek, and then the saved position stays where it was.
