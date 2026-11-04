@@ -78,10 +78,13 @@ class SearchViewModel(
         work.launch { refreshIdle() }
         work.launch { refreshSources() }
         work.launch {
-            debounce.launch { settled ->
+            // What the field says now, and not what settled: keystrokes reach the debounce from separate coroutines, so on
+            // a scope with more than one thread the last to arrive can be an older one. Comparing the two left that
+            // search unstarted, and the screen on loading for good (`BUG-25`).
+            debounce.launch {
                 val current = state.value.query
-                if (settled.isNotBlank() && settled == current && settled != submitted) {
-                    runSearch(settled, quick = true)
+                if (current.isNotBlank() && current != submitted) {
+                    runSearch(current, quick = true)
                 }
             }
         }

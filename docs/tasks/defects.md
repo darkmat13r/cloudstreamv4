@@ -1188,9 +1188,30 @@ exist on master, so that one case cannot be compiled against the old code at all
   `BUG-12` made correct there.
 - The live desktop window. Every one of these is a state-machine test.
 
+## BUG-25 — search could still stick on loading, when keystrokes arrived out of order · **high**
+
+**Status:** done · #123. Found by `:feature:search`'s `adding a letter and deleting it again does not stick on loading`, which
+failed once in the `check` gate of `KMP-31`. It was not a flaky test.
+
+`onQueryChanged` sends each keystroke to the debounce from its own coroutine. On a scope with more than one thread, which
+is what desktop passes, the older keystroke can arrive last. The consumer compared what settled with what the field
+said, and skipped the search when they differed, so the screen stayed on `Loading` with nothing running.
+
+| Measured | Result |
+|---|---|
+| Temporary probe, on the failing run | `settled=films current=film` |
+| The test, polling for 20 s instead of 600 ms, 14 runs | 2 still `Loading` after 20 s, with only the first search made |
+| New stress test, 200 searches at once, without the fix, 5 runs | 10, 9, 10, 10 and 2 left on loading |
+| The whole `:feature:search` test task with the fix, 15 runs, load average about 45 | 15 pass |
+
+The fix searches what the field says now. `BUG-23` (#114) fixed a different cause of the same symptom.
+
+**Not measured:** Android's `viewModelScope` is single threaded, so this path should keep its order there. That was
+reasoned and not run. Nobody has reproduced this by hand in the window.
+
 ---
 
-## BUG-25 — An attempt to break out of the sandboxes, and what it found · **high** · measured 2026-11-04
+## BUG-26 — An attempt to break out of the sandboxes, and what it found · **high** · measured 2026-11-04
 
 **Status:** in pr. `SandboxEscapeAttemptTest` runs every attempt through a real plugin host and a real media host under
 the real policies, and a shell under the policy with no JVM in the way. It reports a word and never what was read. It is
@@ -1223,7 +1244,7 @@ covered by `SandboxEnforcementTest` and `PluginHostClientTest`.
 **Still open:**
 
 - **The network.** A host reached this Mac by its LAN address and the LAN gateway: Seatbelt can only name `localhost` or
-  `*`. See `BUG-26`.
+  `*`. See `BUG-27`.
 - **`stat` works on any path**, so a plugin can test whether a file exists. A JVM needs it to canonicalise paths.
 - **The account name is still in paths.** A plugin's directory is under the home directory, so its own working directory
   says who you are. Fixing it means moving plugin data out of the home directory.
