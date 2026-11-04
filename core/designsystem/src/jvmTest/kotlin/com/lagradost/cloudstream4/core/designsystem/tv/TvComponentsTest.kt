@@ -127,15 +127,16 @@ class TvComponentsTest {
     private val twoOptions = listOf("Merged", "By source")
 
     @Test
-    fun `the control measures its 48dp cell, and paints a 28dp visual at the middle of it`() {
+    fun `the control measures its 48dp cell, with a 24dp visual centred on the step`() {
         val control = render { SegmentedControl(twoOptions, 0, {}, it) }
         assertEquals(CELL_HEIGHT, control.size.height)
         CELL_HEIGHT.onStep()
+        VISUAL_TOP.onStep()
         val x = MARGIN + 12 // Past the 8dp corner, and before the label.
         assertEquals(colors.bg.toArgb(), control[x, MARGIN + VISUAL_TOP - 1], "above the visual")
         assertEquals(colors.line.toArgb(), control[x, MARGIN + VISUAL_TOP + 1], "the visual's top")
-        assertEquals(colors.line.toArgb(), control[x, MARGIN + VISUAL_TOP + 26], "the visual's foot")
-        assertEquals(colors.bg.toArgb(), control[x, MARGIN + VISUAL_TOP + 28], "below the visual")
+        assertEquals(colors.line.toArgb(), control[x, MARGIN + VISUAL_TOP + 22], "the visual's foot")
+        assertEquals(colors.bg.toArgb(), control[x, MARGIN + VISUAL_TOP + 24], "below the visual")
     }
 
     @Test
@@ -390,7 +391,7 @@ class TvComponentsTest {
         const val STEP = 4
         const val PILL_HEIGHT = 24
         const val CELL_HEIGHT = 48
-        const val VISUAL_TOP = 10
+        const val VISUAL_TOP = 12
         const val METER_WIDTH = 400
         const val METER_HEIGHT = 24
         const val ROW_WIDTH = 400

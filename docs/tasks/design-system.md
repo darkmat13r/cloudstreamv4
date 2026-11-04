@@ -283,6 +283,8 @@ them yet.
   `CloudStreamIconSize`).
 - **The pill label is `labelMono`, not the board's 20px.** A 12dp line box centres in the 24dp pill at +6dp, off the
   step. `labelMono`'s 16dp box lands at +4dp.
+- **`SegmentedControl` is a 24dp visual in a 48dp cell, as chips are.** `Components` draws 28dp, which centres at +10dp,
+  off the step. 24dp lands at +12dp. No board uses the control yet, so nothing has to be redrawn.
 - **Corners follow the tokens:** square art as on `MediaCard`, and `shapes.medium` on the segmented control.
 - **Below-art cards do not lift.** The boards draw no lift on them, unlike `BackdropCard`.
 
@@ -294,8 +296,6 @@ return with their filters.
 - **`ProgressRule` 2dp or 4dp** (handover §8.4). The cards use `MediaCardDefaults.ProgressRuleHeight`, 4dp, as
   asked. 3c agrees, and `Components` draws 4px, which is 2dp. The download row uses `ProgressRule`'s own 2dp, as 6c
   and 6d draw it.
-- **`SegmentedControl`'s 28dp visual sits at +10dp in its 48dp cell**, off the step. The 48dp target is ruled and 28dp
-  is what `Components` draws; a 24dp or 32dp visual would centre on the step. No board uses the control yet.
 - **`Components` draws the selection marker `muted` and "never a white bar"**, and `SelectionMarker` defaults to
   `ink`. It is white on a selected `DownloadProgressRow`, through `ListRow`. Not changed here.
 
