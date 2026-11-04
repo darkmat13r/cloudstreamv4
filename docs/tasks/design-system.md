@@ -341,6 +341,8 @@ its neighbour. The items' nodes change width and are never swapped, because remo
 - **3b's 46% dim and `.raile`'s 68px shadow belong to the screen hosting the rail,** because the dim covers content and
   the rail cannot own it. **The shell task must build them.** They are not in this component.
 
-`NavRailTest` runs on the desktop scene, not on a TV. The Android UI test comes with the screen that uses the rail. The
+`NavRailDeviceTest` runs on `Television_720p`: real D-pad keys through the input dispatcher, with a focusable screen beside
+the rail. Removing focus entry there sends LEFT to `Downloads` instead of `Library`, which is why it is ruled. `NavRailTest`
+holds the geometry on the desktop scene. Nothing in `:app` uses the rail yet, so returning focus on RIGHT is untested. The
 screenshot cases are in `core/screenshot/.../NavRailScreenshots.kt`. They compile, and render nothing until `DS-04` is
 unblocked. Whether the expanded case captures after its focus effect runs cannot be known until then.
