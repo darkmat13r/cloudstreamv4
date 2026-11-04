@@ -269,8 +269,11 @@ the build cache.
 full-screen geometry against 960x540 or hard-code a screen size: assert component bounds, spacing and focus, and
 read the real size from the device where a test needs it.
 
-### Four traps that each cost a wrong claim
+### Five traps that each cost a wrong claim
 
+- **Do not run Gradle under `nice`.** `HostLimitsTest` asserts the plugin host's absolute nice value is 10, so
+  a Gradle started at nice 10 gives a host at 20 and `check` fails with `expected:<10> but was:<20>`. A daemon
+  keeps the nice value it was started with. To lower priority on a Mac, use `taskpolicy -c utility`.
 - **`kotlin.jvm.*` is a default import only on JVM.** `@JvmInline`, `@JvmStatic` and friends need a
   named import in `commonMain`, or `compileKotlinIosArm64` fails with `Unresolved reference`.
   `media/model/.../CaptionStyle.kt` carries the comment and the import; copy it.
