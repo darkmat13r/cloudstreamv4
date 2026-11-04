@@ -188,6 +188,62 @@ toolchain (`DEC-10`, `.claude/rules/screenshot-testing.md`).
 selected row rather than a correction to one token, so it wants its own change and its own look at
 the diff.
 
+### What the tests found that reading would not have
+
+Five defects, four of them in `SidePanelHost`'s pre-existing focus handling and one in this task's
+own new code. None was visible in a diff; each came off a failing assertion.
+
+1. **The focus restore never worked.** `SidePanelHost`'s KDoc promised that closing a panel returns
+   focus to the control that opened it. It did not: the trap, `onExit = { cancelFocusChange() }`,
+   also cancels the host's own `contentFocus.requestFocus()`, because that has to move focus out of
+   a row *inside* the trapped group. The close cleared focus and never re-placed it, leaving the
+   screen with **nothing focused** — the dead TV screen `focusableWhenDisabled` exists to prevent,
+   one layer up. The cancellation is now gated on the panel being open, read live inside the
+   callback. `SidePanel` has no callers, so this had never run anywhere but in a test.
+2. **Why nobody had seen it.** A `focusProperties { canFocus = … }` sat *before* `focusGroup()`,
+   and `focusGroup()` is itself `focusProperties { canFocus = false }.focusTarget()`, so it
+   overwrote the line and left the group focusable. Focus landed on the **group**, never on a row,
+   so moving it away was never an exit for the trap to block. Removing the dead line put focus on
+   the first row — where the design wants it — and that is what exposed 1.
+3. **A disabled-but-focusable control had no accessible name.** This task's own new code.
+   `clickable` and `selectable` both apply `semantics(mergeDescendants = true)`, which is what
+   lifts a row's title off its child `BasicText` onto the focused node; the new
+   `focusableWhenDisabled` path used a plain `semantics {}`, which merges nothing. The device test
+   read the focused stops as `node#150` and `node#159`. So 5d's row would have been reachable and
+   **anonymous**, and the reason it exists to show would not have been announced — the feature
+   exactly inverted. Both paths now merge.
+4. **A D-pad press during the exit drops focus.** Three frames into the 240ms slide-out, a RIGHT
+   move does not re-enter the leaving panel but does not stay on the opener either: nothing is
+   focused until the panel unmounts. **Not fixed** — the remaining fix is for the host's *content*
+   group to refuse to yield focus while a panel leaves, which is a behaviour change to pre-existing
+   code and wants its own diff. The JVM test asserts today's behaviour on purpose, so closing the
+   gap fails that test and points at the KDoc to update.
+5. **One of the tests was vacuous**, which is how the harness got written down. Arrow keys move no
+   focus in an offscreen `ImageComposeScene` — not even for an ordinary enabled button — so the
+   first "a leaving panel does not take focus back" passed while moving nothing at all. The D-pad
+   is now driven through `FocusManager.moveFocus`, which is what an Android press ends up calling.
+   Separately, an animation's first frame after launch is a *seed*: `animateTo` suspends on
+   `withFrameNanos` to learn its start time, so a single frame rendered 120ms into a 240ms slide
+   finds the panel at zero.
+
+### Tests
+
+| Suite | Count | Where |
+|---|---|---|
+| JVM, `:core:designsystem:jvmTest` | 24 new (31 in the module) | `SidePanelMotionTest` 8, `ListRowStopsTest` 6, `TextButtonFocusTest` 5, `TextFieldTest` 5 |
+| Device, `connectedAndroidDeviceTest` | 5 | `FocusStopsDeviceTest`, on `Television_720p` |
+
+The JVM suite drives focus with `FocusManager.moveFocus` and reads geometry off measured bounds and
+rendered pixels; `core/designsystem/src/jvmTest/.../harness/SceneHarness.kt` holds the scene, the
+D-pad and the pixel probe, with the two traps above documented on the methods that exist because of
+them.
+
+The device suite is for the half the JVM cannot reach: Android's two-dimensional focus search picks
+a candidate by **geometry**, so whether a 48dp cell 12dp to the right of a row is what RIGHT finds
+— board 6d's arithmetic — is not demonstrable on the desktop focus owner at any effort. It is now
+measured: `Ozymandias → Play → Delete` and back by real D-pad, no dead ends, no traps. It also names
+each stop by its accessible label, which is what caught 3.
+
 ### Three things found while checking the audit against the boards and the code
 
 1. **8c does not need a disabled row.** §3 lists "Disabled row with a reason, still a stop" as

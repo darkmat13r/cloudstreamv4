@@ -235,8 +235,12 @@ private fun Modifier.targetBehaviour(
         onClick = onClick,
     )
 
+    // `mergeDescendants = true` is not decoration: it is what `clickable` does, and it is what
+    // lifts the label off the child `BasicText` onto the focused node. Without it a disabled
+    // focusable button is reachable and **anonymous** — a device test read its focused node as
+    // `node#159` and a screen reader would announce nothing. The enabled path gets this for free.
     focusableWhenDisabled -> this
-        .semantics {
+        .semantics(mergeDescendants = true) {
             role = Role.Button
             disabled()
         }

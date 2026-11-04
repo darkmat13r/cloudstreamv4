@@ -218,8 +218,12 @@ private fun Modifier.rowBehaviour(
         onClick = onClick,
     )
 
+    // `mergeDescendants = true` matches what `selectable` does on the enabled path, and it is
+    // what puts the row's title and reason on the focused node. Without it the row is reachable
+    // and **anonymous**: a device test read its focused node as `node#150`, so the reason 5d
+    // exists to show would not be announced at all.
     state.focusableWhenDisabled -> this
-        .semantics { disabled() }
+        .semantics(mergeDescendants = true) { disabled() }
         .focusable(enabled = true, interactionSource = interactionSource)
 
     else -> this
