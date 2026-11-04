@@ -1367,3 +1367,46 @@ replaced it.
 **Limits:** the first file of a name still runs without asking if it scans clean. There is no version number on the screen, only
 that it is not the file decided on: the scanner does not read one. The screen was not looked at in a live window.
 
+## BUG-30 — On TV, landing on the search field opened the keyboard · **medium** · measured 2026-11-04
+
+**Status:** in pr (the PR that adds this entry). **The owner's ruling, 2026-11-04:** moving onto the field with the
+D-pad only highlights it, and OK or Enter opens the keyboard. Before this, landing opened the keyboard, which then
+took the D-pad: with the fix off, the test's next Right typed into the query (`blade` became `bladeq`).
+
+**The fix.** `TextField(keyboardOnOk = true)`, used by the search chrome row. It defaults to off, which keeps the old
+behaviour, and a device test pins that. The field stays `readOnly` until OK or Enter, because the `value` overloads of
+`BasicTextField` document that they do not support `showKeyboardOnFocus`. That comes from the Compose 1.11.2 sources,
+and the option was not tried. Desktop search has its own private `QueryField` and does not call `TextField`, so
+nothing about it changes.
+
+| Case, `Television_720p`, API 36 | Fix on | Fix off (control) |
+|---|---|---|
+| `:feature:search`, `SearchScreenTvDeviceTest` | 10 of 10 pass | 9 of 10 fail. The one that passes is the test of the default |
+| `:app`, `TvSearchNavigationTest` (the real `SearchTvFragment`) | 3 of 3 pass | 2 of 3 fail. `aRemoteCanReachTheScreenAndLeaveIt` names the field in `keyboardOpenedOn` |
+
+Keyboard visibility is asserted from `dumpsys input_method` and from the window's insets. Against a fake source: the
+D-pad crosses the field with no keyboard, OK and Enter open it, Back closes it and focus stays, typing through it
+updates the query, and its action key searches and closes it. A real tap and a screen-reader click also open it.
+
+**Limits:**
+
+- The live path covers landing, OK, Back and the full walk. Enter, typing and a search are covered only with the fake source.
+- A screen-reader click is covered as a semantics action. TalkBack itself was not run, and until the field is
+  activated it reports as not editable.
+- A Bluetooth keyboard's letters should do nothing until OK or Enter, because the field is read-only. That comes from
+  reading the code and was not measured.
+- No real TV or remote was used, and the emulator's keys are injected (`INF-10`).
+
+**Found while here, not fixed. All three want a decision:**
+
+| Behaviour, measured | What the boards say |
+|---|---|
+| Down from the field lands on the first rail's third card, the nearest to the field's centre | Nothing about this move. `TV Search` 4a only says the region's DOWN target is "a fixed id", and it draws a chip row in between that the code does not have yet. `Design System` says returning to a rail restores its last-focused item, not item 0 |
+| Right from a rail's last card jumps up to `Sources`, measured from both rails | Nothing. No board gives a rule for the end of a rail |
+| On the live path, Left from the field stays on the field, so the rail is reached from `Browse home`, not from the field (control run's walk) | `TV Detail Player` says LEFT from a chrome row must keep a real target. `TV Search` says nothing of its own |
+
+**`TV Search Suggestions` 8b does not match the ruling as written.** Its on-screen copy reads "Press OK on the field to
+search all 12 sources anyway", and its note says "the action is the field". With this fix, OK on a closed field opens the keyboard
+and the search is confirmed from there, so it takes two presses. That reading fits the board's intent but not its words, and
+no board mentions the keyboard at all. Suggestions are not built, so nothing behaves wrongly today. Before 8b is
+built, either its copy changes or the owner decides otherwise.
