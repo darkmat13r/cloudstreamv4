@@ -1190,7 +1190,7 @@ exist on master, so that one case cannot be compiled against the old code at all
 
 ## BUG-25 — search could still stick on loading, when keystrokes arrived out of order · **high**
 
-**Status:** in pr. Found by `:feature:search`'s `adding a letter and deleting it again does not stick on loading`, which
+**Status:** done · #123. Found by `:feature:search`'s `adding a letter and deleting it again does not stick on loading`, which
 failed once in the `check` gate of `KMP-31`. It was not a flaky test.
 
 `onQueryChanged` sends each keystroke to the debounce from its own coroutine. On a scope with more than one thread, which
