@@ -271,20 +271,19 @@ class NavRailTest {
     fun `the focused item is ink with a bg glyph, and the current page stays raised while focus travels`() =
         rig(selected = 2) {
             assertTrue(move(FocusDirection.Next))
-            val onFirst = frame()
-            onFirst.expectCell(0, CELL_LEFT + 8, ink, "focused")
-            assertEquals(ground, onFirst.argb(CELL_LEFT + 20, itemTop(0) + 24), "focused glyph")
-            onFirst.expectCell(1, CELL_LEFT + 8, ground, "neither")
-            assertEquals(muted, onFirst.argb(CELL_LEFT + 20, itemTop(1) + 24), "neither glyph")
-            onFirst.expectCell(2, CELL_LEFT + 8, raised, "current")
-            assertEquals(ink2, onFirst.argb(CELL_LEFT + 20, itemTop(2) + 24), "current glyph, expanded")
-
-            assertTrue(move(FocusDirection.Down))
-            assertTrue(move(FocusDirection.Down))
             val onCurrent = frame()
             onCurrent.expectCell(2, CELL_LEFT + 8, ink, "focus beats current")
-            onCurrent.expectCell(0, CELL_LEFT + 8, ground, "left behind")
+            assertEquals(ground, onCurrent.argb(CELL_LEFT + 20, itemTop(2) + 24), "focused glyph")
+            onCurrent.expectCell(1, CELL_LEFT + 8, ground, "neither")
+            assertEquals(muted, onCurrent.argb(CELL_LEFT + 20, itemTop(1) + 24), "neither glyph")
 
+            assertTrue(move(FocusDirection.Up))
+            val above = frame()
+            above.expectCell(1, CELL_LEFT + 8, ink, "focused")
+            above.expectCell(2, CELL_LEFT + 8, raised, "current")
+            assertEquals(ink2, above.argb(CELL_LEFT + 20, itemTop(2) + 24), "current glyph, expanded")
+
+            assertTrue(move(FocusDirection.Down))
             assertTrue(move(FocusDirection.Down))
             val past = frame()
             past.expectCell(3, CELL_LEFT + 8, ink, "focused")
@@ -308,7 +307,7 @@ class NavRailTest {
     // ---- Focus -----------------------------------------------------------------------------
 
     @Test
-    fun `focus survives the expansion and moves item to item`() = rig(selected = ITEM_COUNT - 1) {
+    fun `focus survives the expansion and moves item to item`() = rig {
         frame()
         railFocusLog.clear()
         assertTrue(move(FocusDirection.Next), "into the rail")
@@ -320,7 +319,7 @@ class NavRailTest {
             assertTrue(move(FocusDirection.Down), "to item $index")
             pixels = frame()
             pixels.expectCell(index, EXPANDED_PROBE_X, ink, "focused")
-            pixels.expectCell(index - 1, CELL_LEFT + 8, ground, "the last one let go")
+            pixels.expectCell(index - 1, CELL_LEFT + 8, if (index == 1) raised else ground, "the last one let go")
         }
         assertEquals(listOf(true), railFocusLog, "travelling stayed inside")
         assertFalse(move(FocusDirection.Down), "nothing below the last item; focus stays")
@@ -330,7 +329,7 @@ class NavRailTest {
     @Test
     fun `leaving the rail collapses it, and LEFT from the content opens it again`() = rig(selected = 1) {
         assertTrue(move(FocusDirection.Next))
-        frame().expectCell(0, EXPANDED_PROBE_X, ink, "open")
+        frame().expectCell(1, EXPANDED_PROBE_X, ink, "open")
         assertTrue(move(FocusDirection.Right), "onto the sibling")
         val closed = frame()
         assertEquals(behind, closed.argb(PAST_COLLAPSED_X, BELOW_ITEMS), "no band past 76")
@@ -344,9 +343,33 @@ class NavRailTest {
     }
 
     @Test
-    fun `a requester on the modifier puts focus in the rail, which is how a screen opens it`() = rig {
+    fun `a requester on the modifier lands on the current page, as a screen opens the rail`() = rig(selected = 2) {
         requester.requestFocus()
-        frame().expectCell(0, EXPANDED_PROBE_X, ink, "the first item took it")
+        val open = frame()
+        open.expectCell(2, EXPANDED_PROBE_X, ink, "the current page took it")
+        open.expectCell(0, CELL_LEFT + 8, ground, "not the first item")
+    }
+
+    @Test
+    fun `LEFT from the content lands on the current page, wherever it is`() {
+        (0 until ITEM_COUNT).forEach { current ->
+            rig(selected = current) {
+                frame()
+                assertTrue(move(FocusDirection.Next), "into the rail")
+                assertTrue(move(FocusDirection.Right), "onto the sibling")
+                frame()
+                assertTrue(move(FocusDirection.Left), "back")
+                frame().expectCell(current, EXPANDED_PROBE_X, ink, "current page $current")
+            }
+        }
+    }
+
+    @Test
+    fun `entry follows the current page when it changes`() = rig(selected = 0) {
+        selectedIndex = 3
+        frame()
+        assertTrue(move(FocusDirection.Next))
+        frame().expectCell(3, EXPANDED_PROBE_X, ink, "the new current page")
     }
 
     /**

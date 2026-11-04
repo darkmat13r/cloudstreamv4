@@ -322,24 +322,24 @@ its neighbour. The items' nodes change width and are never swapped, because remo
 ### Where the code departs from a board
 
 - **`Components` §06 is not followed.** It draws 96 and 320 wide, 12px corners and a ring on the focused row. `DEC-17`
-  chose `TV Home`'s style, which is 152 and 376 and an `ink` fill. That fill stands in for the `tvFocusRing` that
-  `ui-components.md` lists for a TV focusable.
+  chose `TV Home`'s style, which is 152 and 376 and an `ink` fill.
+- **An exception to `ui-components.md`, which lists `tvFocusRing` for any TV focusable.** The rail's focus treatment is
+  the `ink` fill instead. Ruled: it is right, since white means focus. The rule file is not edited.
 - **Corners follow the token,** `shapes.medium`, 8dp, the role for rows and buttons. `TV Home` draws 8px, which is 4dp.
 - **No ring on a focused collapsed cell** (`.nic.foc`, `Components` §06, `Design System`). Focus expands the rail, and
   the first frame after focus arrives is already wide and filled, so that state has no frame to draw on. No code for it.
 - **The logo's space stays when expanded.** 3b draws no logo and its first item at y 56px. Following it would move the
   focused item 88px, 44dp, up as the rail opened. The first item is at 144px, 72dp, in both states.
 - **The content does not move.** 3b draws it at x 456 while its own caption and 3a say it never reflows.
-- **No full-screen dim and no shadow.** 3b dims everything behind the rail by 46%, and `.raile` has a 68px shadow. The
-  dim belongs to the screen, and the shadow would paint past 188dp. Neither is built.
-- **The focused label is not heavier.** `.nie.foc` is weight 800 over 600. `CloudStreamTypography` carries no weights.
+- **The focused label is not heavier.** `.nie.foc` is weight 800 over 600. Ruled: the typography tokens win, and
+  `CloudStreamTypography` carries no weights.
 - **Glyphs are the pack's**, not the boards' 32px rounded squares (`icons.md`).
 
-### Open, and not settled here
+### Rulings
 
-- **Which item takes focus on entry.** It is the nearest one geometrically. 3b says only that RIGHT returns to the view
-  that yielded focus, which is the screen's job, with `focusRestorer`.
-- **The dim and the shadow above**, if a screen build finds the band too weak without them.
+- **Focus entering the rail lands on the current page's item,** so the current page is what someone sees first.
+- **3b's 46% dim and `.raile`'s 68px shadow belong to the screen hosting the rail,** because the dim covers content and
+  the rail cannot own it. **The shell task must build them.** They are not in this component.
 
 `NavRailTest` runs on the desktop scene, not on a TV. The Android UI test comes with the screen that uses the rail. The
 screenshot cases are in `core/screenshot/.../NavRailScreenshots.kt`. They compile, and render nothing until `DS-04` is

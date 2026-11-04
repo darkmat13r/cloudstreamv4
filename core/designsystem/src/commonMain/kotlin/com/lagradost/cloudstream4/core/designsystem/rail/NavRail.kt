@@ -25,6 +25,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusProperties
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -64,6 +67,9 @@ data class NavRailItem(val label: String, val icon: ImageVector)
  * 3b draws it. The current page stays marked with a raised fill while focus travels, and only committing calls
  * [onSelect].
  *
+ * Focus entering the rail lands on the current page's item, from any direction and from a `FocusRequester` on
+ * [modifier], so the current page is what someone sees first.
+ *
  * Items are never swapped between a collapsed and an expanded layout: removing the focused node would lose focus
  * at the moment it arrived. The same node changes width.
  *
@@ -85,6 +91,7 @@ fun NavRail(
 ) {
     require(selectedIndex in items.indices) { "selectedIndex $selectedIndex is not in ${items.indices}" }
     var expanded by remember { mutableStateOf(false) }
+    val currentItem = remember { FocusRequester() }
     val ground = CloudStreamTheme.colors.bg
     val brush = remember(ground, expanded) { railBrush(ground, expanded) }
     Box(modifier.width(CloudStreamDimens.NavRailWidth).fillMaxHeight().zIndex(RAIL_LAYER)) {
@@ -96,6 +103,7 @@ fun NavRail(
                 .background(brush)
                 .padding(start = CloudStreamDimens.NavRailIconInset, top = CloudStreamDimens.FocusBandInset)
                 .onFocusChanged { expanded = it.hasFocus }
+                .focusProperties { onEnter = { currentItem.requestFocus() } }
                 .focusGroup()
                 .selectableGroup(),
             verticalArrangement = Arrangement.spacedBy(NavRailDefaults.ItemGap),
@@ -107,6 +115,7 @@ fun NavRail(
                     current = index == selectedIndex,
                     expanded = expanded,
                     onClick = { onSelect(index) },
+                    modifier = if (index == selectedIndex) Modifier.focusRequester(currentItem) else Modifier,
                 )
             }
         }
@@ -132,13 +141,14 @@ private fun RailItem(
     current: Boolean,
     expanded: Boolean,
     onClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val colors = CloudStreamTheme.colors
     val interactionSource = remember { MutableInteractionSource() }
     val focused by interactionSource.collectIsFocusedAsState()
     val content = itemContent(colors, focused, current, expanded)
     Row(
-        modifier = Modifier
+        modifier = modifier
             .width(if (expanded) NavRailDefaults.ExpandedItemWidth else CloudStreamDimens.NavRailIconCell)
             .height(CloudStreamDimens.NavRailIconCell)
             .background(itemFill(colors, focused, current), CloudStreamTheme.shapes.medium)
