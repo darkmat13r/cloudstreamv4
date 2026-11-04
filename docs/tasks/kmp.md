@@ -2999,7 +2999,7 @@ by a native speaker; `qt` uses only words from its own file. Ninth move of the o
 
 ## KMP-29 — Choosing another source inside the desktop player · **measured 2026-11-04**
 
-**Status:** in pr. Someone whose link fails or stutters had to leave playback to try another.
+**Status:** in pr #121. Someone whose link fails or stutters had to leave playback to try another.
 
 The Source selector, first in the selectors row of `KMP-31`, reads out what is playing (`VidSrc Pro · 1080p` over
 `Source`, artboard 7d) and stays through loading and failure, as 7d's error state requires. It and S open the list of what
