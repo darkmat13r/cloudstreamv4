@@ -23,8 +23,9 @@ when twenty-three more had merged since. **Trust `git log` over this heading.**
 ## Where things stand
 
 Master is at `26acd8f8` (#104). **One pull request is open: #91**, a **draft** — `KMP-12` steps 3 and 4,
-Android TV opening the new search screen. Its own body says *do not merge it until someone has tried it on
-a real TV*; there is no device here, so it has been compiled and never run. Everything from #45 to #104 has
+Android TV opening the new search screen. `DEC-17` accepts passing UI tests on the `Television_720p` emulator as proof for
+switching; `TvSearchNavigationTest` is that proof. What holds it is the owner's call on its published-API
+delta. Everything from #45 to #104 has
 merged.
 
 **The desktop app is the working app.** That was the owner's direction — desktop first, then the other
@@ -425,7 +426,7 @@ page (it needs a slot in `:feature:detail`) and watch progress on search and hom
 **Row 18, `:feature:search`,** has two steps left:
 
 4. **Open as draft #91** — the glue `Fragment` and one node repointed in `res/navigation/mobile_navigation.xml`.
-   The old fragment stays in `:app` as the rollback lever. **Needs a real TV before it merges.**
+   The old fragment stays in `:app` as the rollback lever. Its proof is `TvSearchNavigationTest` on the emulator (`DEC-17`).
 5. Delete the old fragment and layouts a release later. That removes `com.lagradost.cloudstream3`
    classes from `classes.jar`: list them with the javap tripwire output for owner sign-off.
 

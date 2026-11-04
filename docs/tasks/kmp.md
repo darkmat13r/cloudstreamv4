@@ -1065,7 +1065,7 @@ Why: CloudStreamApp.kt:57 writes it into the crash log, blaming a plugin that is
 
 **Status:** **steps 1 to 4 of 5 written, on the TV layout only; steps 3 and 4 are draft #91 and are
 not merged** (plan row 18, Phase 7 vertical 1) · the seams landed in #79, the copy types went in
-`I18N-08` · **the TV screen has been compile-checked and has never been run on a device** · phone and
+`I18N-08` · **run on the `Television_720p` emulator, not on a real TV** (`DEC-17` accepts that for switching) · phone and
 emulator layouts still use `SearchFragment` · step 5 (deleting it) waits a release and the owner
 
 > **The state machine's defects were split out and landed on their own, 2026-11-03.** Building the
@@ -1184,10 +1184,10 @@ The APK carries the strings (65 `composeResources` string files, including `valu
 
 #### Not verified
 
-No device was attached: **the TV screen has not been run.** Compose D-pad focus into and out of the
-screen, the IME on a TV, focus restoration on return from a result, and real provider traffic are all
-unobserved. `CommonActivity.dispatchKeyEvent` returns null for a `ComposeView` (its `nextFocus*` ids
-are unset), so keys should reach Compose; that is reading, not a run.
+`TvSearchNavigationTest` runs the real app on `Television_720p`: the rail opens `SearchTvFragment`, and D-pad
+keys through `CommonActivity.dispatchKeyEvent` reach Compose and every stop on the idle screen, with no dead end
+or trap. Still unobserved: a physical remote (keys are injected as `SOURCE_HDMI`, see `INF-10`), focus
+restoration on return from a result, and real provider traffic, because the emulator has no extensions.
 
 `:feature:search` holds the contracts, the provider seam, the MVI state machine and the TV screen.
 Phase 7's recipe is five steps — state machine, screens, glue `Fragment`, repoint one nav node,
@@ -1533,7 +1533,7 @@ not a layout — the state machine and the grouping.
       were removed by `I18N-08`
 - [x] ~~Glue `Fragment` (step 3) and **one** nav node repointed (step 4)~~ — TV layout only; the old
       fragment stays as the rollback lever
-- [ ] Run it on a TV (steps in `docs/HANDOVER.md`)
+- [x] ~~Run it on a TV emulator~~ — `TvSearchNavigationTest`, the device gate in `docs/HANDOVER.md`
 - [ ] Delete the old fragment and layouts a release later (step 5) — that removes
       `com.lagradost.cloudstream3` classes from `classes.jar`, so it needs the javap tripwire output
       and owner sign-off
