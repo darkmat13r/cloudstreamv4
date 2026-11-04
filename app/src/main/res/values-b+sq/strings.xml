@@ -418,6 +418,10 @@
 <string name="play_with_app_name">"Luaj me CloudStream"</string>
 <string name="player_enter_fullscreen">"Hyr në luajtjen me ekran të plotë"</string>
 <string name="player_exit_fullscreen">"Dil nga ekrani i plotë"</string>
+<string name="player_fit_original">"Raporti origjinal"</string>
+<string name="player_fit_screen">"Mbush ekranin"</string>
+<string name="player_fit_title">"Madhësia e figurës"</string>
+<string name="player_fit_width">"Mbush gjerësinë"</string>
 <string name="player_is_live">"Live"</string>
 <string name="player_load_one_subtitle_online">"Ngarko të parën e disponueshme"</string>
 <string name="player_load_subtitles">"Ngarko nga skedari"</string>
@@ -432,6 +436,10 @@
 <string name="player_settings_select_cast_device">"Zgjidh pajisjen për transmetim"</string>
 <string name="player_size_settings">"Butoni për ndryshimin e madhësisë së luajtësit"</string>
 <string name="player_size_settings_des">"Hiq kufijtë e errët"</string>
+<string name="player_source_playing">"Po luhet"</string>
+<string name="player_source_resumes_at" formatted="true">"Ndërrimi e ruan pozicionin: vazhdon nga %1$s"</string>
+<string name="player_source_retry">"Provo përsëri"</string>
+<string name="player_source_switch">"Ndërro"</string>
 <string name="player_speed">"Shpejtësia e luajtësit"</string>
 <string name="player_speed_text_format" formatted="true">"Shpejtësia (%.2fx)"</string>
 <string name="player_subtitles_settings">"Titrat"</string>

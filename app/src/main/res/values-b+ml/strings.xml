@@ -187,10 +187,18 @@
 <string name="play_with_app_name">"ക്ലൗഡ് സ്ട്രീം ഉപയോഗിച്ച് പ്രവർത്തിപ്പിക്കുക"</string>
 <string name="player_enter_fullscreen">"പൂർണ്ണ സ്‌ക്രീൻ ആക്കുക"</string>
 <string name="player_exit_fullscreen">"പൂർണ്ണ സ്‌ക്രീനിൽ നിന്ന് പുറത്തുകടക്കുക"</string>
+<string name="player_fit_original">"യഥാർത്ഥ അനുപാതം"</string>
+<string name="player_fit_screen">"സ്ക്രീൻ നിറയ്ക്കുക"</string>
+<string name="player_fit_title">"ചിത്ര വലുപ്പം"</string>
+<string name="player_fit_width">"വീതി നിറയ്ക്കുക"</string>
 <string name="player_is_live">"തൽസമയം"</string>
 <string name="player_mute">"നിശബ്‌ദമാക്കുക"</string>
 <string name="player_size_settings">"പ്ലേയറിന്റെ വലുപ്പം മാറ്റുന്ന ബട്ടൻ"</string>
 <string name="player_size_settings_des">"കറുത്ത അതിർത്തി നീക്കംചെയ്യുക"</string>
+<string name="player_source_playing">"പ്ലേ ചെയ്യുന്നു"</string>
+<string name="player_source_resumes_at" formatted="true">"മാറ്റിയാലും സ്ഥാനം നിലനിൽക്കും: %1$s മുതൽ തുടരും"</string>
+<string name="player_source_retry">"വീണ്ടും ശ്രമിക്കുക"</string>
+<string name="player_source_switch">"മാറ്റുക"</string>
 <string name="player_speed">"പ്ലേയർ വേഗത"</string>
 <string name="player_speed_text_format" formatted="true">"വേഗം (%.2fx)"</string>
 <string name="player_subtitles_settings">"സബ്ടൈട്ടിൽസ്"</string>

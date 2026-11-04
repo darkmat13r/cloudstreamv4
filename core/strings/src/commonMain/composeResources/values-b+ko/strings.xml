@@ -417,6 +417,10 @@
 <string name="play_with_app_name">CloudStream으로 재생</string>
 <string name="player_enter_fullscreen">전체 화면으로 전환</string>
 <string name="player_exit_fullscreen">전체 화면 종료</string>
+<string name="player_fit_original">원본 화면 비율</string>
+<string name="player_fit_screen">화면 채우기</string>
+<string name="player_fit_title">화면 크기</string>
+<string name="player_fit_width">너비 맞춤</string>
 <string name="player_is_live">라이브</string>
 <string name="player_load_one_subtitle_online">사용 가능한 자막 불러오기</string>
 <string name="player_load_subtitles">파일에서 불러오기</string>
@@ -431,6 +435,10 @@
 <string name="player_settings_select_cast_device">캐스트 장치 선택</string>
 <string name="player_size_settings">플레이어 크기 조정 버튼</string>
 <string name="player_size_settings_des">레터박스 제거</string>
+<string name="player_source_playing">재생 중</string>
+<string name="player_source_resumes_at">전환해도 위치가 유지됩니다: %1$s부터 재개</string>
+<string name="player_source_retry">다시 시도</string>
+<string name="player_source_switch">전환</string>
 <string name="player_speed">재생 속도</string>
 <string name="player_speed_text_format">속도 (%.2fx)</string>
 <string name="player_subtitles_settings">자막</string>

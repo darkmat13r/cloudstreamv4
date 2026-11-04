@@ -445,6 +445,10 @@ values	string	play_trailer_button	-	Play Trailer
 values	string	play_with_app_name	-	Play with CloudStream
 values	string	player_enter_fullscreen	-	Enter full screen
 values	string	player_exit_fullscreen	-	Exit full screen
+values	string	player_fit_original	-	Original aspect ratio
+values	string	player_fit_screen	-	Fill screen
+values	string	player_fit_title	-	Picture size
+values	string	player_fit_width	-	Fill width
 values	string	player_is_live	-	Live
 values	string	player_load_one_subtitle_online	-	Load first available
 values	string	player_load_subtitles	-	Load from file
@@ -459,6 +463,10 @@ values	string	player_settings_play_in_app	-	Internal player
 values	string	player_settings_select_cast_device	-	Select cast device
 values	string	player_size_settings	-	Player resize button
 values	string	player_size_settings_des	-	Remove the black borders
+values	string	player_source_playing	-	Playing
+values	string	player_source_resumes_at	-	Switching keeps your position: resumes at %1$s
+values	string	player_source_retry	-	Retry
+values	string	player_source_switch	-	Switch
 values	string	player_speed	-	Player Speed
 values	string	player_speed_text_format	-	Speed (%.2fx)
 values	string	player_subtitles_settings	-	Subtitles
@@ -933,7 +941,15 @@ values-b+af	string	play_trailer_button	-	Speel Lokprent
 values-b+af	string	play_with_app_name	-	Speel met CloudStream
 values-b+af	string	player_enter_fullscreen	-	Gaan na volskerm
 values-b+af	string	player_exit_fullscreen	-	Verlaat volskerm
+values-b+af	string	player_fit_original	-	Oorspronklike beeldverhouding
+values-b+af	string	player_fit_screen	-	Vul skerm
+values-b+af	string	player_fit_title	-	Beeldgrootte
+values-b+af	string	player_fit_width	-	Vul breedte
 values-b+af	string	player_mute	-	Demp
+values-b+af	string	player_source_playing	-	Speel
+values-b+af	string	player_source_resumes_at	-	Wissel behou jou posisie: gaan voort by %1$s
+values-b+af	string	player_source_retry	-	Probeer weer
+values-b+af	string	player_source_switch	-	Wissel
 values-b+af	string	player_speed	-	Spelerspoed
 values-b+af	string	player_speed_text_format	-	Spoed (%.2fx)
 values-b+af	string	player_unmute	-	Ontdemp
@@ -1090,7 +1106,15 @@ values-b+am	string	play_trailer_button	-	የፊልም ማስታወቂያ አጫ�
 values-b+am	string	play_with_app_name	-	በCloudStream አጫውት
 values-b+am	string	player_enter_fullscreen	-	ወደ ሙሉ ማያ ገፅ ግባ
 values-b+am	string	player_exit_fullscreen	-	ከሙሉ ማያገጽ ውጣ
+values-b+am	string	player_fit_original	-	የመጀመሪያ ምጥጥነ ገጽታ
+values-b+am	string	player_fit_screen	-	ማያውን ሙላ
+values-b+am	string	player_fit_title	-	የምስል መጠን
+values-b+am	string	player_fit_width	-	ስፋቱን ሙላ
 values-b+am	string	player_mute	-	ድምፅ አጥፋ
+values-b+am	string	player_source_playing	-	በመጫወት ላይ
+values-b+am	string	player_source_resumes_at	-	መቀየር ቦታዎን ይጠብቃል፦ ከ%1$s ይቀጥላል
+values-b+am	string	player_source_retry	-	እንደገና ሞክር
+values-b+am	string	player_source_switch	-	ቀይር
 values-b+am	string	player_speed	-	የአጫዋች ፍጥነት
 values-b+am	string	player_speed_text_format	-	ፍጥነት(%.2fx)
 values-b+am	string	player_unmute	-	ድምፅ አብራ
@@ -1577,6 +1601,10 @@ values-b+apc	string	play_trailer_button	-	مشّي المقطع الدعائي
 values-b+apc	string	play_with_app_name	-	مَشّي بـ"كلود ستريم"
 values-b+apc	string	player_enter_fullscreen	-	فوت عالشاشة الكاملة
 values-b+apc	string	player_exit_fullscreen	-	اطلع من الشاشة الكاملة
+values-b+apc	string	player_fit_original	-	نسبة العرض الأصلية
+values-b+apc	string	player_fit_screen	-	عبّي الشاشة
+values-b+apc	string	player_fit_title	-	حجم الصورة
+values-b+apc	string	player_fit_width	-	عبّي العرض
 values-b+apc	string	player_is_live	-	لايڤ
 values-b+apc	string	player_load_one_subtitle_online	-	أفّي اللودينگ تلقائيًا
 values-b+apc	string	player_load_subtitles	-	فتاح من ملف
@@ -1591,6 +1619,10 @@ values-b+apc	string	player_settings_play_in_app	-	المشغل يللي ب "كل
 values-b+apc	string	player_settings_select_cast_device	-	نقي جهاز الكاست
 values-b+apc	string	player_size_settings	-	كبسة تغيير حجم الڤيديو
 values-b+apc	string	player_size_settings_des	-	شيل الأسود من الأطراف
+values-b+apc	string	player_source_playing	-	عم يشتغل
+values-b+apc	string	player_source_resumes_at	-	التبديل بيحافظ على مكانك: بيكمّل من %1$s
+values-b+apc	string	player_source_retry	-	جرّب كمان مرة
+values-b+apc	string	player_source_switch	-	بدّل
 values-b+apc	string	player_speed	-	سرعة الڤيديو
 values-b+apc	string	player_speed_text_format	-	السرعة (%.2fx)
 values-b+apc	string	player_subtitles_settings	-	الترجمة
@@ -2374,6 +2406,10 @@ values-b+ar	string	play_trailer_button	-	تشغيل المقطع الدعائي
 values-b+ar	string	play_with_app_name	-	تشغيل بواسطة CloudStream
 values-b+ar	string	player_enter_fullscreen	-	دخول إلى وضع ملء الشاشة
 values-b+ar	string	player_exit_fullscreen	-	خروج من وضع ملء الشاشة
+values-b+ar	string	player_fit_original	-	نسبة العرض إلى الارتفاع الأصلية
+values-b+ar	string	player_fit_screen	-	ملء الشاشة
+values-b+ar	string	player_fit_title	-	حجم الصورة
+values-b+ar	string	player_fit_width	-	ملء العرض
 values-b+ar	string	player_is_live	-	البث قائم
 values-b+ar	string	player_load_one_subtitle_online	-	تحميل أول ترجمة متاحة
 values-b+ar	string	player_load_subtitles	-	إختيار ملف
@@ -2388,6 +2424,10 @@ values-b+ar	string	player_settings_play_in_app	-	مشغل داخلي
 values-b+ar	string	player_settings_select_cast_device	-	حدد جهاز البث
 values-b+ar	string	player_size_settings	-	زر تغيير حجم المُشغل
 values-b+ar	string	player_size_settings_des	-	إزالة الحدود السوداء
+values-b+ar	string	player_source_playing	-	قيد التشغيل
+values-b+ar	string	player_source_resumes_at	-	التبديل يحافظ على موضعك: يُستأنف عند %1$s
+values-b+ar	string	player_source_retry	-	إعادة المحاولة
+values-b+ar	string	player_source_switch	-	تبديل
 values-b+ar	string	player_speed	-	سرعة المُشغل
 values-b+ar	string	player_speed_text_format	-	سرعة (%.2fx)
 values-b+ar	string	player_subtitles_settings	-	الترجمة
@@ -2963,9 +3003,17 @@ values-b+ars	string	play_trailer_button	-	تشغيل المقطع الدعائي
 values-b+ars	string	play_with_app_name	-	فتح مع كلاودستريم
 values-b+ars	string	player_enter_fullscreen	-	الدخول إلى وضع ملء الشاشة
 values-b+ars	string	player_exit_fullscreen	-	الخروج من وضع ملء الشاشة
+values-b+ars	string	player_fit_original	-	نسبة العرض إلى الارتفاع الأصلية
+values-b+ars	string	player_fit_screen	-	ملء الشاشة
+values-b+ars	string	player_fit_title	-	حجم الصورة
+values-b+ars	string	player_fit_width	-	ملء العرض
 values-b+ars	string	player_mute	-	كتم الصوت
 values-b+ars	string	player_size_settings	-	زر تغيير حجم المشغل
 values-b+ars	string	player_size_settings_des	-	إزالة الحدود السوداء
+values-b+ars	string	player_source_playing	-	قيد التشغيل
+values-b+ars	string	player_source_resumes_at	-	التبديل يحافظ على موضعك: يُستأنف عند %1$s
+values-b+ars	string	player_source_retry	-	إعادة المحاولة
+values-b+ars	string	player_source_switch	-	تبديل
 values-b+ars	string	player_speed	-	سرعة اللاعب
 values-b+ars	string	player_speed_text_format	-	سرعة(%.2fx)
 values-b+ars	string	player_subtitles_settings	-	ترجمات
@@ -3507,6 +3555,10 @@ values-b+as	string	play_trailer_button	-	ট্ৰেইলাৰ প্লে �
 values-b+as	string	play_with_app_name	-	CloudStreamৰে প্লে কৰক
 values-b+as	string	player_enter_fullscreen	-	সম্পূৰ্ণ স্ক্ৰীনলৈ যাওক
 values-b+as	string	player_exit_fullscreen	-	সম্পূৰ্ণ স্ক্ৰীনৰ পৰা ওলাওক
+values-b+as	string	player_fit_original	-	মূল আকাৰ অনুপাত
+values-b+as	string	player_fit_screen	-	স্ক্ৰীন পূৰণ কৰক
+values-b+as	string	player_fit_title	-	ছবিৰ আকাৰ
+values-b+as	string	player_fit_width	-	প্ৰস্থ পূৰণ কৰক
 values-b+as	string	player_load_one_subtitle_online	-	প্ৰথম উপলব্ধটো লোড কৰক
 values-b+as	string	player_load_subtitles	-	ফাইলৰ পৰা ল'ড কৰক
 values-b+as	string	player_load_subtitles_online	-	ইণ্টাৰনেটৰ পৰা ল'ড কৰক
@@ -3517,6 +3569,10 @@ values-b+as	string	player_settings_play_in_app	-	আভ্যন্তৰীণ 
 values-b+as	string	player_settings_select_cast_device	-	কাষ্ট ডিভাইচ চয়ন কৰক
 values-b+as	string	player_size_settings	-	প্লেয়াৰৰ আকাৰ পৰিবৰ্তনৰ বুটাম
 values-b+as	string	player_size_settings_des	-	ক’লা পাৰত আঁতৰাওক
+values-b+as	string	player_source_playing	-	চলি আছে
+values-b+as	string	player_source_resumes_at	-	সলনি কৰিলে আপোনাৰ স্থান ৰয়: %1$sত পুনৰ আৰম্ভ হ'ব
+values-b+as	string	player_source_retry	-	পুনৰ চেষ্টা কৰক
+values-b+as	string	player_source_switch	-	সলনি কৰক
 values-b+as	string	player_speed	-	প্লেয়াৰ গতি
 values-b+as	string	player_speed_text_format	-	গতি (%.2fx)
 values-b+as	string	player_subtitles_settings	-	সাবটাইটেল
@@ -3949,9 +4005,17 @@ values-b+az	string	play_trailer_button	-	Fraqmanı Oynat
 values-b+az	string	play_with_app_name	-	CloudStream ilə oynat
 values-b+az	string	player_enter_fullscreen	-	Tam ekrana daxil olun
 values-b+az	string	player_exit_fullscreen	-	Tam ekrandan çıxın
+values-b+az	string	player_fit_original	-	Orijinal nisbət
+values-b+az	string	player_fit_screen	-	Ekranı doldur
+values-b+az	string	player_fit_title	-	Şəkil ölçüsü
+values-b+az	string	player_fit_width	-	Eni doldur
 values-b+az	string	player_mute	-	Səssizə al
 values-b+az	string	player_size_settings	-	Pleyeri yenidən ölçüləndirmə düyməsini
 values-b+az	string	player_size_settings_des	-	Qara sərhədləri, kənarları sil
+values-b+az	string	player_source_playing	-	Oynayır
+values-b+az	string	player_source_resumes_at	-	Dəyişmək mövqeyinizi saxlayır: %1$s anından davam edir
+values-b+az	string	player_source_retry	-	Yenidən cəhd et
+values-b+az	string	player_source_switch	-	Dəyiş
 values-b+az	string	player_speed_text_format	-	Sürət (%.2fx)
 values-b+az	string	player_subtitles_settings	-	Subtitrlər
 values-b+az	string	player_subtitles_settings_des	-	Pleyerin subtitr parametrləri
@@ -4442,6 +4506,10 @@ values-b+be	string	play_trailer_button	-	Прайграць трэйлер
 values-b+be	string	play_with_app_name	-	Прайграць праз CloudStream
 values-b+be	string	player_enter_fullscreen	-	Уключыць поўнаэкранны рэжым
 values-b+be	string	player_exit_fullscreen	-	Выключыць поўнаэкранны рэжым
+values-b+be	string	player_fit_original	-	Зыходныя прапорцыі
+values-b+be	string	player_fit_screen	-	Запоўніць экран
+values-b+be	string	player_fit_title	-	Памер выявы
+values-b+be	string	player_fit_width	-	Запоўніць шырыню
 values-b+be	string	player_is_live	-	Ужывую
 values-b+be	string	player_load_one_subtitle_online	-	Спампаваць першыя даступныя
 values-b+be	string	player_load_subtitles	-	Загрузіць з файла
@@ -4456,6 +4524,10 @@ values-b+be	string	player_settings_play_in_app	-	Убудаваны прайгр
 values-b+be	string	player_settings_select_cast_device	-	Выбраць прыладу для трансляцыі
 values-b+be	string	player_size_settings	-	Кнопка змены памеру прайгравальніка
 values-b+be	string	player_size_settings_des	-	Прыбраць чорныя межы
+values-b+be	string	player_source_playing	-	Прайграецца
+values-b+be	string	player_source_resumes_at	-	Пераключэнне захоўвае пазіцыю: працяг з %1$s
+values-b+be	string	player_source_retry	-	Паўтарыць
+values-b+be	string	player_source_switch	-	Пераключыць
 values-b+be	string	player_speed	-	Хуткасць прайгравальніка
 values-b+be	string	player_speed_text_format	-	Хуткасць (%.2fx)
 values-b+be	string	player_subtitles_settings	-	Субцітры
@@ -5222,6 +5294,10 @@ values-b+bg	string	play_trailer_button	-	Пусни трейлър
 values-b+bg	string	play_with_app_name	-	Пусни с CloudStream
 values-b+bg	string	player_enter_fullscreen	-	Вход в цял екран
 values-b+bg	string	player_exit_fullscreen	-	Изход от цял екран
+values-b+bg	string	player_fit_original	-	Оригинално съотношение
+values-b+bg	string	player_fit_screen	-	Запълване на екрана
+values-b+bg	string	player_fit_title	-	Размер на картината
+values-b+bg	string	player_fit_width	-	Запълване по ширина
 values-b+bg	string	player_load_one_subtitle_online	-	Зареди първия наличен
 values-b+bg	string	player_load_subtitles	-	Зареди от файл
 values-b+bg	string	player_load_subtitles_online	-	Зареди от Интернет
@@ -5235,6 +5311,10 @@ values-b+bg	string	player_settings_play_in_app	-	Вътрешен плеър
 values-b+bg	string	player_settings_select_cast_device	-	Изберете устройство за излъчване
 values-b+bg	string	player_size_settings	-	Бутон за преоразмеряване на плейъра
 values-b+bg	string	player_size_settings_des	-	Премахнете черните граници
+values-b+bg	string	player_source_playing	-	Възпроизвежда се
+values-b+bg	string	player_source_resumes_at	-	Смяната запазва позицията ви: продължава от %1$s
+values-b+bg	string	player_source_retry	-	Нов опит
+values-b+bg	string	player_source_switch	-	Смяна
 values-b+bg	string	player_speed	-	Скорост на възпроизвеждане
 values-b+bg	string	player_speed_text_format	-	Скорост (%.2fx)
 values-b+bg	string	player_subtitles_settings	-	Субтитри
@@ -5840,9 +5920,17 @@ values-b+bn	string	play_trailer_button	-	ট্রেইলার চালু �
 values-b+bn	string	play_with_app_name	-	ক্লাউডস্ট্রিম দিয়ে চালান
 values-b+bn	string	player_enter_fullscreen	-	ফুল-স্ক্রিন মোডে দেখুন
 values-b+bn	string	player_exit_fullscreen	-	ফুল-স্ক্রিন মোড ছেড়ে বেরোন
+values-b+bn	string	player_fit_original	-	আসল অনুপাত
+values-b+bn	string	player_fit_screen	-	স্ক্রিন পূরণ করুন
+values-b+bn	string	player_fit_title	-	ছবির আকার
+values-b+bn	string	player_fit_width	-	প্রস্থ পূরণ করুন
 values-b+bn	string	player_mute	-	মিউট করুন
 values-b+bn	string	player_size_settings	-	প্লেয়ারের সাইজ পরিবর্তন বাটন
 values-b+bn	string	player_size_settings_des	-	কালো প্রান্ত অপসারণ করুন
+values-b+bn	string	player_source_playing	-	চলছে
+values-b+bn	string	player_source_resumes_at	-	পাল্টালে আপনার অবস্থান থাকবে: %1$s থেকে চলবে
+values-b+bn	string	player_source_retry	-	আবার চেষ্টা করুন
+values-b+bn	string	player_source_switch	-	পাল্টান
 values-b+bn	string	player_speed	-	ভিডিও এর গতি
 values-b+bn	string	player_speed_text_format	-	গতি (%.2f গুণ)
 values-b+bn	string	player_subtitles_settings	-	সাবটাইটেল
@@ -6235,12 +6323,20 @@ values-b+ca	string	play_trailer_button	-	Reprodueix tràiler
 values-b+ca	string	play_with_app_name	-	Reprodueix amb CloudStream
 values-b+ca	string	player_enter_fullscreen	-	Entra a la pantalla completa
 values-b+ca	string	player_exit_fullscreen	-	Surt de la pantalla completa
+values-b+ca	string	player_fit_original	-	Proporció original
+values-b+ca	string	player_fit_screen	-	Omple la pantalla
+values-b+ca	string	player_fit_title	-	Mida de la imatge
+values-b+ca	string	player_fit_width	-	Omple l’amplada
 values-b+ca	string	player_load_one_subtitle_online	-	Carrega el primer disponible
 values-b+ca	string	player_load_subtitles	-	Carrega des del fitxer
 values-b+ca	string	player_load_subtitles_online	-	Carrega des d'internet
 values-b+ca	string	player_loaded_subtitles	-	%s carregat
 values-b+ca	string	player_mute	-	Silencia
 values-b+ca	string	player_size_settings	-	Botó de canvi de mida del reproductor
+values-b+ca	string	player_source_playing	-	S'està reproduint
+values-b+ca	string	player_source_resumes_at	-	Canviar conserva la posició: es reprèn a %1$s
+values-b+ca	string	player_source_retry	-	Torna-ho a provar
+values-b+ca	string	player_source_switch	-	Canvia
 values-b+ca	string	player_speed	-	Velocitat de reproducció
 values-b+ca	string	player_speed_text_format	-	Velocitat (%.2fx)
 values-b+ca	string	player_unmute	-	Deixa de silenciar
@@ -6494,7 +6590,15 @@ values-b+ckb	string	play_from_beginning_img_des	-	لە سەرەتاوە دەست
 values-b+ckb	string	play_torrent_button	-	تۆرێنت ستریم بکە
 values-b+ckb	string	player_enter_fullscreen	-	چوونە ناو پڕ بە شاشە
 values-b+ckb	string	player_exit_fullscreen	-	دەرچوون لە پڕ بە شاشە
+values-b+ckb	string	player_fit_original	-	ڕێژەی ڕەسەن
+values-b+ckb	string	player_fit_screen	-	پڕکردنی شاشە
+values-b+ckb	string	player_fit_title	-	قەبارەی وێنە
+values-b+ckb	string	player_fit_width	-	پڕکردنی پانی
 values-b+ckb	string	player_mute	-	بێدەنگکردن
+values-b+ckb	string	player_source_playing	-	لێدەدرێت
+values-b+ckb	string	player_source_resumes_at	-	گۆڕین شوێنەکەت دەپارێزێت: لە %1$s بەردەوام دەبێت
+values-b+ckb	string	player_source_retry	-	دووبارە هەوڵبدەرەوە
+values-b+ckb	string	player_source_switch	-	گۆڕین
 values-b+ckb	string	player_speed_text_format	-	خێرای(x%.2f)
 values-b+ckb	string	player_unmute	-	لابردنی بێدەنگی
 values-b+ckb	string	popup_delete_file	-	سڕینەوەی فایل
@@ -6969,6 +7073,10 @@ values-b+cs	string	play_trailer_button	-	Přehrát trailer
 values-b+cs	string	play_with_app_name	-	Přehrát s CloudStream
 values-b+cs	string	player_enter_fullscreen	-	Přejít do režimu celé obrazovky
 values-b+cs	string	player_exit_fullscreen	-	Ukončit režim celé obrazovky
+values-b+cs	string	player_fit_original	-	Původní poměr stran
+values-b+cs	string	player_fit_screen	-	Vyplnit obrazovku
+values-b+cs	string	player_fit_title	-	Velikost obrazu
+values-b+cs	string	player_fit_width	-	Vyplnit šířku
 values-b+cs	string	player_is_live	-	Živě
 values-b+cs	string	player_load_one_subtitle_online	-	Načíst první dostupné
 values-b+cs	string	player_load_subtitles	-	Načíst ze souboru
@@ -6983,6 +7091,10 @@ values-b+cs	string	player_settings_play_in_app	-	Interní přehrávač
 values-b+cs	string	player_settings_select_cast_device	-	Vyberte zařízení k vysílání
 values-b+cs	string	player_size_settings	-	Tlačítko pro změnu velikosti přehrávače
 values-b+cs	string	player_size_settings_des	-	Odebrat černá ohraničení
+values-b+cs	string	player_source_playing	-	Přehrává se
+values-b+cs	string	player_source_resumes_at	-	Přepnutí zachová pozici: pokračuje od %1$s
+values-b+cs	string	player_source_retry	-	Zkusit znovu
+values-b+cs	string	player_source_switch	-	Přepnout
 values-b+cs	string	player_speed	-	Rychlost přehrávání
 values-b+cs	string	player_speed_text_format	-	Rychlost (%.2fx)
 values-b+cs	string	player_subtitles_settings	-	Titulky
@@ -7761,6 +7873,10 @@ values-b+de	string	play_trailer_button	-	Trailer abspielen
 values-b+de	string	play_with_app_name	-	Mit CloudStream abspielen
 values-b+de	string	player_enter_fullscreen	-	Vollbild aktivieren
 values-b+de	string	player_exit_fullscreen	-	Vollbild beenden
+values-b+de	string	player_fit_original	-	Originales Seitenverhältnis
+values-b+de	string	player_fit_screen	-	Bildschirm ausfüllen
+values-b+de	string	player_fit_title	-	Bildgröße
+values-b+de	string	player_fit_width	-	Breite ausfüllen
 values-b+de	string	player_is_live	-	Live
 values-b+de	string	player_load_one_subtitle_online	-	Erste verfügbare laden
 values-b+de	string	player_load_subtitles	-	Aus Datei laden
@@ -7775,6 +7891,10 @@ values-b+de	string	player_settings_play_in_app	-	Interner Player
 values-b+de	string	player_settings_select_cast_device	-	Cast-Gerät auswählen
 values-b+de	string	player_size_settings	-	Player-Skalierung anpassen
 values-b+de	string	player_size_settings_des	-	Entfernt schwarze Ränder
+values-b+de	string	player_source_playing	-	Läuft
+values-b+de	string	player_source_resumes_at	-	Beim Wechsel bleibt die Position erhalten: weiter bei %1$s
+values-b+de	string	player_source_retry	-	Wiederholen
+values-b+de	string	player_source_switch	-	Wechseln
 values-b+de	string	player_speed	-	Player-Geschwindigkeit
 values-b+de	string	player_speed_text_format	-	Geschwindigkeit (%.2fx)
 values-b+de	string	player_subtitles_settings	-	Untertitel
@@ -8508,6 +8628,10 @@ values-b+el	string	play_trailer_button	-	Αναπαραγωγή τρέιλερ
 values-b+el	string	play_with_app_name	-	Άνοιγμα με CloudStream
 values-b+el	string	player_enter_fullscreen	-	Πλήρης οθόνη
 values-b+el	string	player_exit_fullscreen	-	Έξοδος από πλήρη οθόνη
+values-b+el	string	player_fit_original	-	Αρχική αναλογία
+values-b+el	string	player_fit_screen	-	Γέμισμα οθόνης
+values-b+el	string	player_fit_title	-	Μέγεθος εικόνας
+values-b+el	string	player_fit_width	-	Γέμισμα πλάτους
 values-b+el	string	player_load_one_subtitle_online	-	Φορτώστε το πρώτο διαθέσιμο
 values-b+el	string	player_load_subtitles	-	Φόρτωση από αρχείο
 values-b+el	string	player_load_subtitles_online	-	Φόρτωση από το Ίντερνετ
@@ -8520,6 +8644,10 @@ values-b+el	string	player_settings_play_in_app	-	Ενσωματωμένο πρό
 values-b+el	string	player_settings_select_cast_device	-	Επιλογή συσκευής για αναμετάδοση
 values-b+el	string	player_size_settings	-	Αλλαγή μεγέθους παραθύρου
 values-b+el	string	player_size_settings_des	-	Αφαίρεση μαύρων περιγραμμάτων
+values-b+el	string	player_source_playing	-	Αναπαράγεται
+values-b+el	string	player_source_resumes_at	-	Η αλλαγή διατηρεί τη θέση σας: συνέχεια από %1$s
+values-b+el	string	player_source_retry	-	Επανάληψη
+values-b+el	string	player_source_switch	-	Αλλαγή
 values-b+el	string	player_speed	-	Ταχύτητα αναπαραγωγής
 values-b+el	string	player_speed_text_format	-	Ταχύτητα (%.2fx)
 values-b+el	string	player_subtitles_settings	-	Υπότιτλοι
@@ -8984,8 +9112,16 @@ values-b+eo	string	play_trailer_button	-	Ludi Antaŭfilmon
 values-b+eo	string	play_with_app_name	-	Ludi per CloudStream
 values-b+eo	string	player_enter_fullscreen	-	Eniri plenekranan reĝimon
 values-b+eo	string	player_exit_fullscreen	-	Eliri el plenekrana reĝimo
+values-b+eo	string	player_fit_original	-	Originala proporcio
+values-b+eo	string	player_fit_screen	-	Plenigi ekranon
+values-b+eo	string	player_fit_title	-	Bildgrando
+values-b+eo	string	player_fit_width	-	Plenigi larĝon
 values-b+eo	string	player_mute	-	Silentigi
 values-b+eo	string	player_size_settings_des	-	Forigi nigrajn borderaĵojn
+values-b+eo	string	player_source_playing	-	Ludanta
+values-b+eo	string	player_source_resumes_at	-	Ŝanĝo konservas vian lokon: daŭrigas ĉe %1$s
+values-b+eo	string	player_source_retry	-	Reprovi
+values-b+eo	string	player_source_switch	-	Ŝanĝi
 values-b+eo	string	player_speed_text_format	-	Rapido (%.2fx)
 values-b+eo	string	player_subtitles_settings	-	Subtekstoj
 values-b+eo	string	player_unmute	-	Malsilentigi
@@ -9505,6 +9641,10 @@ values-b+es	string	play_trailer_button	-	Reproducir tráiler
 values-b+es	string	play_with_app_name	-	Reproducir con Cloudstream
 values-b+es	string	player_enter_fullscreen	-	Activar pantalla completa
 values-b+es	string	player_exit_fullscreen	-	Salir de pantalla completa
+values-b+es	string	player_fit_original	-	Relación de aspecto original
+values-b+es	string	player_fit_screen	-	Llenar pantalla
+values-b+es	string	player_fit_title	-	Tamaño de imagen
+values-b+es	string	player_fit_width	-	Ajustar al ancho
 values-b+es	string	player_is_live	-	En Vivo
 values-b+es	string	player_load_one_subtitle_online	-	Cargar primero disponible
 values-b+es	string	player_load_subtitles	-	Cargar desde archivo
@@ -9519,6 +9659,10 @@ values-b+es	string	player_settings_play_in_app	-	Reproductor interno
 values-b+es	string	player_settings_select_cast_device	-	Seleccionar el dispositivo para transmitir
 values-b+es	string	player_size_settings	-	Botón de cambio de tamaño del reproductor
 values-b+es	string	player_size_settings_des	-	Eliminar bordes negros
+values-b+es	string	player_source_playing	-	Reproduciendo
+values-b+es	string	player_source_resumes_at	-	Cambiar mantiene tu posición: continúa en %1$s
+values-b+es	string	player_source_retry	-	Reintentar
+values-b+es	string	player_source_switch	-	Cambiar
 values-b+es	string	player_speed	-	Velocidad del reproductor
 values-b+es	string	player_speed_text_format	-	Velocidad (%.2f×)
 values-b+es	string	player_subtitles_settings	-	Subtítulos
@@ -10099,10 +10243,18 @@ values-b+fa	string	play_trailer_button	-	پخش تریلر
 values-b+fa	string	play_with_app_name	-	پخش با CloudStream
 values-b+fa	string	player_enter_fullscreen	-	ورود به حالت تمام‌صفحه
 values-b+fa	string	player_exit_fullscreen	-	خروج از حالت تمام‌صفحه
+values-b+fa	string	player_fit_original	-	نسبت تصویر اصلی
+values-b+fa	string	player_fit_screen	-	پر کردن صفحه
+values-b+fa	string	player_fit_title	-	اندازه تصویر
+values-b+fa	string	player_fit_width	-	پر کردن عرض
 values-b+fa	string	player_mute	-	بی‌صدا
 values-b+fa	string	player_pref	-	پخش‌کننده ویدئو برگزیده
 values-b+fa	string	player_size_settings	-	دکمه تغییر‌اندازه پخش‌کننده
 values-b+fa	string	player_size_settings_des	-	حذف حاشیه سیاه
+values-b+fa	string	player_source_playing	-	در حال پخش
+values-b+fa	string	player_source_resumes_at	-	تعویض موقعیت شما را حفظ می‌کند: ادامه از %1$s
+values-b+fa	string	player_source_retry	-	تلاش دوباره
+values-b+fa	string	player_source_switch	-	تعویض
 values-b+fa	string	player_speed	-	سرعت پخش‌کننده
 values-b+fa	string	player_speed_text_format	-	سرعت (%.2f برابر)
 values-b+fa	string	player_subtitles_settings	-	زیرنویس‌ها
@@ -10462,10 +10614,18 @@ values-b+fil	string	play_trailer_button	-	Ipatugtog ang Trailer
 values-b+fil	string	play_with_app_name	-	Ipatugtog sa CloudStream
 values-b+fil	string	player_enter_fullscreen	-	Mag-fullscreen
 values-b+fil	string	player_exit_fullscreen	-	Lumabas sa fullscreen
+values-b+fil	string	player_fit_original	-	Orihinal na aspect ratio
+values-b+fil	string	player_fit_screen	-	Punuin ang screen
+values-b+fil	string	player_fit_title	-	Laki ng larawan
+values-b+fil	string	player_fit_width	-	Punuin ang lapad
 values-b+fil	string	player_mute	-	I-mute
 values-b+fil	string	player_notification_channel_description	-	Ang abiso ng player para sa pagkontrol sa pag-playback mula sa background
 values-b+fil	string	player_size_settings	-	Pindutan upang baguhin ang laki
 values-b+fil	string	player_size_settings_des	-	Alisin ang black borders
+values-b+fil	string	player_source_playing	-	Nagpe-play
+values-b+fil	string	player_source_resumes_at	-	Mananatili ang posisyon mo sa paglipat: magpapatuloy sa %1$s
+values-b+fil	string	player_source_retry	-	Subukang muli
+values-b+fil	string	player_source_switch	-	Lumipat
 values-b+fil	string	player_speed	-	Bilis ng Manlalaro
 values-b+fil	string	player_speed_text_format	-	Bilis (%.2fx)
 values-b+fil	string	player_unmute	-	I-unmute
@@ -11017,6 +11177,10 @@ values-b+fr	string	play_trailer_button	-	Lire la bande-annonce
 values-b+fr	string	play_with_app_name	-	Lire avec CloudStream
 values-b+fr	string	player_enter_fullscreen	-	Activer le mode plein écran
 values-b+fr	string	player_exit_fullscreen	-	Quitter le mode plein écran
+values-b+fr	string	player_fit_original	-	Proportions originales
+values-b+fr	string	player_fit_screen	-	Remplir l’écran
+values-b+fr	string	player_fit_title	-	Taille de la vidéo
+values-b+fr	string	player_fit_width	-	Remplir la largeur
 values-b+fr	string	player_is_live	-	Live
 values-b+fr	string	player_load_one_subtitle_online	-	Charger le premier disponible
 values-b+fr	string	player_load_subtitles	-	Charger depuis le fichier
@@ -11031,6 +11195,10 @@ values-b+fr	string	player_settings_play_in_app	-	Lecteur interne
 values-b+fr	string	player_settings_select_cast_device	-	Sélectionnez un appareil de diffusion
 values-b+fr	string	player_size_settings	-	Bouton de redimensionnement du lecteur
 values-b+fr	string	player_size_settings_des	-	Supprimer les bordures noires
+values-b+fr	string	player_source_playing	-	En lecture
+values-b+fr	string	player_source_resumes_at	-	Changer conserve votre position : reprise à %1$s
+values-b+fr	string	player_source_retry	-	Réessayer
+values-b+fr	string	player_source_switch	-	Changer
 values-b+fr	string	player_speed	-	Vitesse de lecture
 values-b+fr	string	player_speed_text_format	-	Vitesse (%.2fx)
 values-b+fr	string	player_subtitles_settings	-	Sous-titres
@@ -11586,9 +11754,17 @@ values-b+gl	string	play_trailer_button	-	Reproducir Trailer
 values-b+gl	string	play_with_app_name	-	Reproducir con CloudStream
 values-b+gl	string	player_enter_fullscreen	-	Acceder a pantalla completa
 values-b+gl	string	player_exit_fullscreen	-	Saír de pantalla completa
+values-b+gl	string	player_fit_original	-	Proporción orixinal
+values-b+gl	string	player_fit_screen	-	Encher a pantalla
+values-b+gl	string	player_fit_title	-	Tamaño da imaxe
+values-b+gl	string	player_fit_width	-	Encher o ancho
 values-b+gl	string	player_mute	-	Silenciar
 values-b+gl	string	player_size_settings	-	Botón de cambio de tamaño do reprodutor
 values-b+gl	string	player_size_settings_des	-	Eliminar bordes negros
+values-b+gl	string	player_source_playing	-	Reproducindo
+values-b+gl	string	player_source_resumes_at	-	Cambiar mantén a túa posición: continúa en %1$s
+values-b+gl	string	player_source_retry	-	Tentar de novo
+values-b+gl	string	player_source_switch	-	Cambiar
 values-b+gl	string	player_speed	-	Velocidade do reproductor
 values-b+gl	string	player_speed_text_format	-	Velocidade (%.2fx)
 values-b+gl	string	player_subtitles_settings	-	Subtítulos
@@ -12033,6 +12209,10 @@ values-b+he	string	play_trailer_button	-	הפעל טריילר
 values-b+he	string	play_with_app_name	-	נגן עם קלאודסטרים
 values-b+he	string	player_enter_fullscreen	-	כניסה למסך מלא
 values-b+he	string	player_exit_fullscreen	-	יציאה ממסך מלא
+values-b+he	string	player_fit_original	-	יחס גובה־רוחב מקורי
+values-b+he	string	player_fit_screen	-	מילוי מסך
+values-b+he	string	player_fit_title	-	גודל תמונה
+values-b+he	string	player_fit_width	-	מילוי רוחב
 values-b+he	string	player_load_subtitles	-	טען מקובץ
 values-b+he	string	player_load_subtitles_online	-	טען מהאינטרנט
 values-b+he	string	player_loaded_subtitles	-	נטען %s
@@ -12041,6 +12221,10 @@ values-b+he	string	player_pref	-	נגן וידאו מועדף
 values-b+he	string	player_settings_play_in_app	-	נגן פנימי
 values-b+he	string	player_size_settings	-	כפתור שינוי גודל הנגן
 values-b+he	string	player_size_settings_des	-	הסר את הגבולות השחורים
+values-b+he	string	player_source_playing	-	מתנגן
+values-b+he	string	player_source_resumes_at	-	ההחלפה שומרת על המיקום שלך: ממשיך מ-%1$s
+values-b+he	string	player_source_retry	-	ניסיון חוזר
+values-b+he	string	player_source_switch	-	החלפה
 values-b+he	string	player_speed	-	מהירות הנגן
 values-b+he	string	player_speed_text_format	-	מהירות (%.2fx)
 values-b+he	string	player_subtitles_settings	-	כתוביות
@@ -12597,9 +12781,17 @@ values-b+hi	string	play_trailer_button	-	ट्रेलर देखे
 values-b+hi	string	play_with_app_name	-	क्लाउडस्ट्रीम के साथ चलाएं
 values-b+hi	string	player_enter_fullscreen	-	फ़ुलस्क्रीन मोड पर देखें
 values-b+hi	string	player_exit_fullscreen	-	फ़ुलस्क्रीन मोड से बाहर निकलें
+values-b+hi	string	player_fit_original	-	मूल आस्पेक्ट अनुपात
+values-b+hi	string	player_fit_screen	-	स्क्रीन भरें
+values-b+hi	string	player_fit_title	-	चित्र का आकार
+values-b+hi	string	player_fit_width	-	चौड़ाई भरें
 values-b+hi	string	player_mute	-	म्यूट करें
 values-b+hi	string	player_size_settings	-	प्लेयर आकार परिवर्तन बटन
 values-b+hi	string	player_size_settings_des	-	काले बॉर्डर हटाएँ
+values-b+hi	string	player_source_playing	-	चल रहा है
+values-b+hi	string	player_source_resumes_at	-	बदलने पर आपकी जगह बनी रहती है: %1$s से जारी
+values-b+hi	string	player_source_retry	-	फिर कोशिश करें
+values-b+hi	string	player_source_switch	-	बदलें
 values-b+hi	string	player_speed	-	प्लेयर स्पीड
 values-b+hi	string	player_speed_text_format	-	स्पीड (%.2fx)
 values-b+hi	string	player_subtitles_settings	-	उपशीर्षक
@@ -13211,6 +13403,10 @@ values-b+hr	string	play_trailer_button	-	Pokreni trailer
 values-b+hr	string	play_with_app_name	-	Pokreni s CloudStreamom
 values-b+hr	string	player_enter_fullscreen	-	Otvaranje prikaza na cijelom zaslonu
 values-b+hr	string	player_exit_fullscreen	-	Zatvaranje prikaza na cijelom zaslonu
+values-b+hr	string	player_fit_original	-	Izvorni omjer
+values-b+hr	string	player_fit_screen	-	Ispuni zaslon
+values-b+hr	string	player_fit_title	-	Veličina slike
+values-b+hr	string	player_fit_width	-	Ispuni širinu
 values-b+hr	string	player_is_live	-	Uživo
 values-b+hr	string	player_load_one_subtitle_online	-	Učitaj prvi dostupni
 values-b+hr	string	player_load_subtitles	-	Učitaj iz datoteke
@@ -13225,6 +13421,10 @@ values-b+hr	string	player_settings_play_in_app	-	Interni player
 values-b+hr	string	player_settings_select_cast_device	-	Odaberi uređaj za emitiranje
 values-b+hr	string	player_size_settings	-	Gumb za mijenjenje veličine playera
 values-b+hr	string	player_size_settings_des	-	Ukloni crne rubove
+values-b+hr	string	player_source_playing	-	Reproducira se
+values-b+hr	string	player_source_resumes_at	-	Promjena zadržava položaj: nastavlja se od %1$s
+values-b+hr	string	player_source_retry	-	Pokušaj ponovno
+values-b+hr	string	player_source_switch	-	Promijeni
 values-b+hr	string	player_speed	-	Brzina playera
 values-b+hr	string	player_speed_text_format	-	Brzina (%.2f×)
 values-b+hr	string	player_subtitles_settings	-	Titlovi
@@ -13944,6 +14144,10 @@ values-b+hu	string	play_trailer_button	-	Előzetes lejátszása
 values-b+hu	string	play_with_app_name	-	Lejátszás CloudStreamel
 values-b+hu	string	player_enter_fullscreen	-	Teljes képernyő
 values-b+hu	string	player_exit_fullscreen	-	Kilépés a teljes képernyős módból
+values-b+hu	string	player_fit_original	-	Eredeti képarány
+values-b+hu	string	player_fit_screen	-	Képernyő kitöltése
+values-b+hu	string	player_fit_title	-	Képméret
+values-b+hu	string	player_fit_width	-	Szélesség kitöltése
 values-b+hu	string	player_load_one_subtitle_online	-	Töltse be az első létezőt
 values-b+hu	string	player_load_subtitles	-	Betöltés fájlból
 values-b+hu	string	player_load_subtitles_online	-	Betöltés az internetről
@@ -13955,6 +14159,10 @@ values-b+hu	string	player_settings_play_in_app	-	Belső lejátszó
 values-b+hu	string	player_settings_select_cast_device	-	Válassza ki a lejátszó eszközt
 values-b+hu	string	player_size_settings	-	Lejátszó átméretezése gomb
 values-b+hu	string	player_size_settings_des	-	Fekete szegélyek eltávolítása
+values-b+hu	string	player_source_playing	-	Lejátszás
+values-b+hu	string	player_source_resumes_at	-	A váltás megőrzi a pozíciót: folytatás innen: %1$s
+values-b+hu	string	player_source_retry	-	Újra
+values-b+hu	string	player_source_switch	-	Váltás
 values-b+hu	string	player_speed	-	Lejátszás sebessége
 values-b+hu	string	player_speed_text_format	-	Sebesség (%.2fx)
 values-b+hu	string	player_subtitles_settings	-	Feliratok
@@ -14680,6 +14888,10 @@ values-b+id	string	play_trailer_button	-	Putar Cuplikan
 values-b+id	string	play_with_app_name	-	Putar di CloudStream
 values-b+id	string	player_enter_fullscreen	-	Masuk layar penuh
 values-b+id	string	player_exit_fullscreen	-	Keluar dari layar penuh
+values-b+id	string	player_fit_original	-	Rasio aspek asli
+values-b+id	string	player_fit_screen	-	Isi layar
+values-b+id	string	player_fit_title	-	Ukuran gambar
+values-b+id	string	player_fit_width	-	Isi lebar
 values-b+id	string	player_is_live	-	Live
 values-b+id	string	player_load_one_subtitle_online	-	Muat yang pertama tersedia
 values-b+id	string	player_load_subtitles	-	Muat dari file
@@ -14694,6 +14906,10 @@ values-b+id	string	player_settings_play_in_app	-	Pemutar Bawaan
 values-b+id	string	player_settings_select_cast_device	-	Pilih perangkat cast
 values-b+id	string	player_size_settings	-	Tombol ubah ukuran pemutar
 values-b+id	string	player_size_settings_des	-	Hapus garis tepi hitam
+values-b+id	string	player_source_playing	-	Sedang diputar
+values-b+id	string	player_source_resumes_at	-	Mengganti tetap menjaga posisi Anda: lanjut di %1$s
+values-b+id	string	player_source_retry	-	Coba lagi
+values-b+id	string	player_source_switch	-	Ganti
 values-b+id	string	player_speed	-	Kecepatan Pemutar
 values-b+id	string	player_speed_text_format	-	Kecepatan (%.2fx)
 values-b+id	string	player_subtitles_settings	-	Subtitel
@@ -15466,6 +15682,10 @@ values-b+in	string	play_trailer_button	-	Putar Cuplikan
 values-b+in	string	play_with_app_name	-	Putar di CloudStream
 values-b+in	string	player_enter_fullscreen	-	Masuk layar penuh
 values-b+in	string	player_exit_fullscreen	-	Keluar dari layar penuh
+values-b+in	string	player_fit_original	-	Rasio aspek asli
+values-b+in	string	player_fit_screen	-	Isi layar
+values-b+in	string	player_fit_title	-	Ukuran gambar
+values-b+in	string	player_fit_width	-	Isi lebar
 values-b+in	string	player_is_live	-	Live
 values-b+in	string	player_load_one_subtitle_online	-	Muat yang pertama tersedia
 values-b+in	string	player_load_subtitles	-	Muat dari file
@@ -15480,6 +15700,10 @@ values-b+in	string	player_settings_play_in_app	-	Pemutar Bawaan
 values-b+in	string	player_settings_select_cast_device	-	Pilih perangkat cast
 values-b+in	string	player_size_settings	-	Tombol ubah ukuran pemutar
 values-b+in	string	player_size_settings_des	-	Hapus garis tepi hitam
+values-b+in	string	player_source_playing	-	Sedang diputar
+values-b+in	string	player_source_resumes_at	-	Mengganti tetap menjaga posisi Anda: lanjut di %1$s
+values-b+in	string	player_source_retry	-	Coba lagi
+values-b+in	string	player_source_switch	-	Ganti
 values-b+in	string	player_speed	-	Kecepatan Pemutar
 values-b+in	string	player_speed_text_format	-	Kecepatan (%.2fx)
 values-b+in	string	player_subtitles_settings	-	Subtitel
@@ -16260,6 +16484,10 @@ values-b+it	string	play_trailer_button	-	Riproduci trailer
 values-b+it	string	play_with_app_name	-	Riproduci con CloudStream
 values-b+it	string	player_enter_fullscreen	-	Attiva schermo intero
 values-b+it	string	player_exit_fullscreen	-	Esci da schermo intero
+values-b+it	string	player_fit_original	-	Proporzioni originali
+values-b+it	string	player_fit_screen	-	Riempi schermo
+values-b+it	string	player_fit_title	-	Dimensione immagine
+values-b+it	string	player_fit_width	-	Riempi larghezza
 values-b+it	string	player_is_live	-	Live
 values-b+it	string	player_load_one_subtitle_online	-	Carica il primo disponibile
 values-b+it	string	player_load_subtitles	-	Carica da file
@@ -16274,6 +16502,10 @@ values-b+it	string	player_settings_play_in_app	-	Lettore interno
 values-b+it	string	player_settings_select_cast_device	-	Seleziona dispositivo per cast
 values-b+it	string	player_size_settings	-	Pulsante di ridimensionamento del video
 values-b+it	string	player_size_settings_des	-	Rimuovi bordi neri
+values-b+it	string	player_source_playing	-	In riproduzione
+values-b+it	string	player_source_resumes_at	-	Cambiare mantiene la posizione: riprende da %1$s
+values-b+it	string	player_source_retry	-	Riprova
+values-b+it	string	player_source_switch	-	Cambia
 values-b+it	string	player_speed	-	Velocità lettore
 values-b+it	string	player_speed_text_format	-	Velocità (%.2fx)
 values-b+it	string	player_subtitles_settings	-	Sottotitoli
@@ -16938,6 +17170,10 @@ values-b+iw	string	play_trailer_button	-	הפעל טריילר
 values-b+iw	string	play_with_app_name	-	נגן עם קלאודסטרים
 values-b+iw	string	player_enter_fullscreen	-	כניסה למסך מלא
 values-b+iw	string	player_exit_fullscreen	-	יציאה ממסך מלא
+values-b+iw	string	player_fit_original	-	יחס גובה־רוחב מקורי
+values-b+iw	string	player_fit_screen	-	מילוי מסך
+values-b+iw	string	player_fit_title	-	גודל תמונה
+values-b+iw	string	player_fit_width	-	מילוי רוחב
 values-b+iw	string	player_load_subtitles	-	טען מקובץ
 values-b+iw	string	player_load_subtitles_online	-	טען מהאינטרנט
 values-b+iw	string	player_loaded_subtitles	-	נטען %s
@@ -16946,6 +17182,10 @@ values-b+iw	string	player_pref	-	נגן וידאו מועדף
 values-b+iw	string	player_settings_play_in_app	-	נגן פנימי
 values-b+iw	string	player_size_settings	-	כפתור שינוי גודל הנגן
 values-b+iw	string	player_size_settings_des	-	הסר את הגבולות השחורים
+values-b+iw	string	player_source_playing	-	מתנגן
+values-b+iw	string	player_source_resumes_at	-	ההחלפה שומרת על המיקום שלך: ממשיך מ-%1$s
+values-b+iw	string	player_source_retry	-	ניסיון חוזר
+values-b+iw	string	player_source_switch	-	החלפה
 values-b+iw	string	player_speed	-	מהירות הנגן
 values-b+iw	string	player_speed_text_format	-	מהירות (%.2fx)
 values-b+iw	string	player_subtitles_settings	-	כתוביות
@@ -17647,6 +17887,10 @@ values-b+ja	string	play_trailer_button	-	予告編を再生
 values-b+ja	string	play_with_app_name	-	CloudStreamで再生
 values-b+ja	string	player_enter_fullscreen	-	全画面表示に変更
 values-b+ja	string	player_exit_fullscreen	-	全画面表示を終了
+values-b+ja	string	player_fit_original	-	元のアスペクト比
+values-b+ja	string	player_fit_screen	-	画面全体に表示
+values-b+ja	string	player_fit_title	-	画像サイズ
+values-b+ja	string	player_fit_width	-	幅に合わせる
 values-b+ja	string	player_is_live	-	ライブ
 values-b+ja	string	player_load_one_subtitle_online	-	最初に利用可能なものを読み込む
 values-b+ja	string	player_load_subtitles	-	ファイルから読み込む
@@ -17661,6 +17905,10 @@ values-b+ja	string	player_settings_play_in_app	-	内部プレーヤー
 values-b+ja	string	player_settings_select_cast_device	-	キャストデバイスを選択
 values-b+ja	string	player_size_settings	-	プレーヤーのサイズ変更ボタン
 values-b+ja	string	player_size_settings_des	-	黒い境界線を削除します
+values-b+ja	string	player_source_playing	-	再生中
+values-b+ja	string	player_source_resumes_at	-	切り替えても位置は保たれます: %1$s から再開
+values-b+ja	string	player_source_retry	-	再試行
+values-b+ja	string	player_source_switch	-	切り替え
 values-b+ja	string	player_speed	-	プレーヤーの速度
 values-b+ja	string	player_speed_text_format	-	再生速度 (%.2fx)
 values-b+ja	string	player_subtitles_settings	-	字幕
@@ -18111,9 +18359,17 @@ values-b+kn	string	play_trailer_button	-	ಟ್ರೈಲರ್ ಪ್ಲೇ ಮ�
 values-b+kn	string	play_with_app_name	-	ಕ್ಲೌಡ್ ಸ್ಟ್ರೀಮ್ ಇದರೊಂದಿಗೆ ಪ್ಲೇ ಮಾಡಿ
 values-b+kn	string	player_enter_fullscreen	-	ಫುಲ್‌ಸ್ಕ್ರೀನ್‌ಗೆ ಪ್ರವೇಶಿಸಿ
 values-b+kn	string	player_exit_fullscreen	-	ಫುಲ್‌ಸ್ಕ್ರೀನ್‌ನಿಂದ ನಿರ್ಗಮಿಸಿ
+values-b+kn	string	player_fit_original	-	ಮೂಲ ಅನುಪಾತ
+values-b+kn	string	player_fit_screen	-	ಸ್ಕ್ರೀನ್ ತುಂಬಿಸಿ
+values-b+kn	string	player_fit_title	-	ಚಿತ್ರದ ಗಾತ್ರ
+values-b+kn	string	player_fit_width	-	ಅಗಲ ತುಂಬಿಸಿ
 values-b+kn	string	player_mute	-	ಮ್ಯೂಟ್ ಮಾಡಿ
 values-b+kn	string	player_size_settings	-	ಪ್ಲೇಯರ್ ಮರುಗಾತ್ರಗೊಳಿಸಿ ಬಟನ್
 values-b+kn	string	player_size_settings_des	-	ಕಪ್ಪು ಗಡಿಗಳನ್ನು ತೆಗೆದುಹಾಕಿ
+values-b+kn	string	player_source_playing	-	ಪ್ಲೇ ಆಗುತ್ತಿದೆ
+values-b+kn	string	player_source_resumes_at	-	ಬದಲಿಸಿದರೂ ಸ್ಥಾನ ಉಳಿಯುತ್ತದೆ: %1$s ರಿಂದ ಮುಂದುವರಿಯುತ್ತದೆ
+values-b+kn	string	player_source_retry	-	ಮರುಪ್ರಯತ್ನಿಸಿ
+values-b+kn	string	player_source_switch	-	ಬದಲಿಸಿ
 values-b+kn	string	player_speed	-	ಪ್ಲೇಯರ್ ಸ್ಪೀಡ್
 values-b+kn	string	player_speed_text_format	-	ಸ್ಪೀಡ್(%.2fx)
 values-b+kn	string	player_subtitles_settings	-	ಸಬ್ ಟೈಟಲ್ಸ್
@@ -18607,6 +18863,10 @@ values-b+ko	string	play_trailer_button	-	예고편 재생
 values-b+ko	string	play_with_app_name	-	CloudStream으로 재생
 values-b+ko	string	player_enter_fullscreen	-	전체 화면으로 전환
 values-b+ko	string	player_exit_fullscreen	-	전체 화면 종료
+values-b+ko	string	player_fit_original	-	원본 화면 비율
+values-b+ko	string	player_fit_screen	-	화면 채우기
+values-b+ko	string	player_fit_title	-	화면 크기
+values-b+ko	string	player_fit_width	-	너비 맞춤
 values-b+ko	string	player_is_live	-	라이브
 values-b+ko	string	player_load_one_subtitle_online	-	사용 가능한 자막 불러오기
 values-b+ko	string	player_load_subtitles	-	파일에서 불러오기
@@ -18621,6 +18881,10 @@ values-b+ko	string	player_settings_play_in_app	-	내부 플레이어
 values-b+ko	string	player_settings_select_cast_device	-	캐스트 장치 선택
 values-b+ko	string	player_size_settings	-	플레이어 크기 조정 버튼
 values-b+ko	string	player_size_settings_des	-	레터박스 제거
+values-b+ko	string	player_source_playing	-	재생 중
+values-b+ko	string	player_source_resumes_at	-	전환해도 위치가 유지됩니다: %1$s부터 재개
+values-b+ko	string	player_source_retry	-	다시 시도
+values-b+ko	string	player_source_switch	-	전환
 values-b+ko	string	player_speed	-	재생 속도
 values-b+ko	string	player_speed_text_format	-	속도 (%.2fx)
 values-b+ko	string	player_subtitles_settings	-	자막
@@ -19160,10 +19424,18 @@ values-b+lt	string	play_trailer_button	-	Paleisti anonsą
 values-b+lt	string	play_with_app_name	-	Paleisti su CloudStream
 values-b+lt	string	player_enter_fullscreen	-	Įjungti viso ekrano režimą
 values-b+lt	string	player_exit_fullscreen	-	Išjungti viso ekrano režimą
+values-b+lt	string	player_fit_original	-	Originalus kraštinių santykis
+values-b+lt	string	player_fit_screen	-	Užpildyti ekraną
+values-b+lt	string	player_fit_title	-	Vaizdo dydis
+values-b+lt	string	player_fit_width	-	Užpildyti plotį
 values-b+lt	string	player_mute	-	Nutildyti
 values-b+lt	string	player_settings_play_in_app	-	Integruotas grotuvas
 values-b+lt	string	player_size_settings	-	Grotuvo dydžio pakeitimo mygtukas
 values-b+lt	string	player_size_settings_des	-	Pašalinti juodas paraštes
+values-b+lt	string	player_source_playing	-	Leidžiama
+values-b+lt	string	player_source_resumes_at	-	Perjungus padėtis išlieka: tęsiama nuo %1$s
+values-b+lt	string	player_source_retry	-	Bandyti dar kartą
+values-b+lt	string	player_source_switch	-	Perjungti
 values-b+lt	string	player_speed	-	Grotuvo greitis
 values-b+lt	string	player_speed_text_format	-	Greitis (%.2fx)
 values-b+lt	string	player_subtitles_settings	-	Subtitrai
@@ -19673,6 +19945,10 @@ values-b+lv	string	play_trailer_button	-	Palaist Trelleri
 values-b+lv	string	play_with_app_name	-	Atskaņo ar cloudstream
 values-b+lv	string	player_enter_fullscreen	-	Atvērt pilnekrāna režīmu
 values-b+lv	string	player_exit_fullscreen	-	Aizvērt pilnekrāna režīmu
+values-b+lv	string	player_fit_original	-	Sākotnējā attiecība
+values-b+lv	string	player_fit_screen	-	Aizpildīt ekrānu
+values-b+lv	string	player_fit_title	-	Attēla izmērs
+values-b+lv	string	player_fit_width	-	Aizpildīt platumu
 values-b+lv	string	player_load_one_subtitle_online	-	Lejupielādēt pirmo pieejamo
 values-b+lv	string	player_load_subtitles	-	Ielādēt no datnes
 values-b+lv	string	player_load_subtitles_online	-	Lejupielādēt no interneta
@@ -19682,6 +19958,10 @@ values-b+lv	string	player_pref	-	Vēlamais video atskaņotājs
 values-b+lv	string	player_settings_play_in_app	-	Iekšējais atskaņotājs
 values-b+lv	string	player_size_settings	-	Players izmēra poga
 values-b+lv	string	player_size_settings_des	-	Noņemt melnās malas
+values-b+lv	string	player_source_playing	-	Atskaņo
+values-b+lv	string	player_source_resumes_at	-	Pārslēdzot pozīcija saglabājas: turpinās no %1$s
+values-b+lv	string	player_source_retry	-	Mēģināt vēlreiz
+values-b+lv	string	player_source_switch	-	Pārslēgt
 values-b+lv	string	player_speed	-	Atskaņošanas ātrums
 values-b+lv	string	player_speed_text_format	-	Ātrums (%.2fx)
 values-b+lv	string	player_subtitles_settings	-	Subtitri
@@ -20406,6 +20686,10 @@ values-b+mk	string	play_trailer_button	-	Пушти трејлер
 values-b+mk	string	play_with_app_name	-	Играј со CloudStream
 values-b+mk	string	player_enter_fullscreen	-	Приказ на цел екран
 values-b+mk	string	player_exit_fullscreen	-	Излезете од цел екран
+values-b+mk	string	player_fit_original	-	Оригинален сооднос
+values-b+mk	string	player_fit_screen	-	Пополни екран
+values-b+mk	string	player_fit_title	-	Големина на сликата
+values-b+mk	string	player_fit_width	-	Пополни ширина
 values-b+mk	string	player_is_live	-	Во живо
 values-b+mk	string	player_load_one_subtitle_online	-	Вчитај прво достапно
 values-b+mk	string	player_load_subtitles	-	Вчитај од датотека
@@ -20420,6 +20704,10 @@ values-b+mk	string	player_settings_play_in_app	-	Внатрешен плеер
 values-b+mk	string	player_settings_select_cast_device	-	Одбери уред да кастираш
 values-b+mk	string	player_size_settings	-	Копче за промена на големината на плеерот
 values-b+mk	string	player_size_settings_des	-	Острани ги црните граници
+values-b+mk	string	player_source_playing	-	Се репродуцира
+values-b+mk	string	player_source_resumes_at	-	Промената ја задржува позицијата: продолжува од %1$s
+values-b+mk	string	player_source_retry	-	Обиди се повторно
+values-b+mk	string	player_source_switch	-	Промени
 values-b+mk	string	player_speed	-	Брзина на плеер
 values-b+mk	string	player_speed_text_format	-	Брзина (%.2fx)
 values-b+mk	string	player_subtitles_settings	-	Преводи
@@ -20957,10 +21245,18 @@ values-b+ml	string	play_trailer_button	-	ട്രെയിലർ പ്ലേ �
 values-b+ml	string	play_with_app_name	-	ക്ലൗഡ് സ്ട്രീം ഉപയോഗിച്ച് പ്രവർത്തിപ്പിക്കുക
 values-b+ml	string	player_enter_fullscreen	-	പൂർണ്ണ സ്‌ക്രീൻ ആക്കുക
 values-b+ml	string	player_exit_fullscreen	-	പൂർണ്ണ സ്‌ക്രീനിൽ നിന്ന് പുറത്തുകടക്കുക
+values-b+ml	string	player_fit_original	-	യഥാർത്ഥ അനുപാതം
+values-b+ml	string	player_fit_screen	-	സ്ക്രീൻ നിറയ്ക്കുക
+values-b+ml	string	player_fit_title	-	ചിത്ര വലുപ്പം
+values-b+ml	string	player_fit_width	-	വീതി നിറയ്ക്കുക
 values-b+ml	string	player_is_live	-	തൽസമയം
 values-b+ml	string	player_mute	-	നിശബ്‌ദമാക്കുക
 values-b+ml	string	player_size_settings	-	പ്ലേയറിന്റെ വലുപ്പം മാറ്റുന്ന ബട്ടൻ
 values-b+ml	string	player_size_settings_des	-	കറുത്ത അതിർത്തി നീക്കംചെയ്യുക
+values-b+ml	string	player_source_playing	-	പ്ലേ ചെയ്യുന്നു
+values-b+ml	string	player_source_resumes_at	-	മാറ്റിയാലും സ്ഥാനം നിലനിൽക്കും: %1$s മുതൽ തുടരും
+values-b+ml	string	player_source_retry	-	വീണ്ടും ശ്രമിക്കുക
+values-b+ml	string	player_source_switch	-	മാറ്റുക
 values-b+ml	string	player_speed	-	പ്ലേയർ വേഗത
 values-b+ml	string	player_speed_text_format	-	വേഗം (%.2fx)
 values-b+ml	string	player_subtitles_settings	-	സബ്ടൈട്ടിൽസ്
@@ -21440,10 +21736,18 @@ values-b+ms	string	play_trailer_button	-	Main Pra-tonton
 values-b+ms	string	play_with_app_name	-	Pasang dengan CloudStream
 values-b+ms	string	player_enter_fullscreen	-	Masuk ke skrin penuh
 values-b+ms	string	player_exit_fullscreen	-	Keluar dari skrin penuh
+values-b+ms	string	player_fit_original	-	Nisbah aspek asal
+values-b+ms	string	player_fit_screen	-	Isi skrin
+values-b+ms	string	player_fit_title	-	Saiz gambar
+values-b+ms	string	player_fit_width	-	Isi lebar
 values-b+ms	string	player_mute	-	Redam
 values-b+ms	string	player_settings_play_in_app	-	Pemain dalaman
 values-b+ms	string	player_size_settings	-	Saiz butang pemain
 values-b+ms	string	player_size_settings_des	-	Buang sempadan hitam
+values-b+ms	string	player_source_playing	-	Sedang dimainkan
+values-b+ms	string	player_source_resumes_at	-	Menukar mengekalkan kedudukan anda: sambung pada %1$s
+values-b+ms	string	player_source_retry	-	Cuba lagi
+values-b+ms	string	player_source_switch	-	Tukar
 values-b+ms	string	player_speed	-	Kelajuan Pemain
 values-b+ms	string	player_speed_text_format	-	Kelajuan (%.2fx)
 values-b+ms	string	player_subtitles_settings	-	Sari kata
@@ -21783,7 +22087,15 @@ values-b+mt	string	play_trailer_button	-	Ibda t-trejler
 values-b+mt	string	play_with_app_name	-	Ara bil-CloudStream
 values-b+mt	string	player_enter_fullscreen	-	Idħol fi skrin sħiħ
 values-b+mt	string	player_exit_fullscreen	-	Oħroġ minn skrin sħiħ
+values-b+mt	string	player_fit_original	-	Proporzjon oriġinali
+values-b+mt	string	player_fit_screen	-	Imla l-iskrin
+values-b+mt	string	player_fit_title	-	Daqs tal-istampa
+values-b+mt	string	player_fit_width	-	Imla l-wisa’
 values-b+mt	string	player_mute	-	Itfi l-ħoss
+values-b+mt	string	player_source_playing	-	Qed jindaqq
+values-b+mt	string	player_source_resumes_at	-	Il-bidla żżomm il-post tiegħek: ikompli minn %1$s
+values-b+mt	string	player_source_retry	-	Erġa' pprova
+values-b+mt	string	player_source_switch	-	Biddel
 values-b+mt	string	player_speed	-	Veloċità tal-Plejer
 values-b+mt	string	player_speed_text_format	-	veloċità (%.2fx)
 values-b+mt	string	player_unmute	-	Ixgħel il-ħoss
@@ -22152,6 +22464,10 @@ values-b+my	string	play_trailer_button	-	ထွေလာ ကြည့်မည�
 values-b+my	string	play_with_app_name	-	CloudStream ဖြင့်ကြည့်ရန်
 values-b+my	string	player_enter_fullscreen	-	ဖန်သားပြင်အပြည့်သို့ ဝင်ရောက်ပါ
 values-b+my	string	player_exit_fullscreen	-	ဖန်သားပြင်အပြည့်မှ ထွက်ရန်
+values-b+my	string	player_fit_original	-	မူရင်းအချိုး
+values-b+my	string	player_fit_screen	-	မျက်နှာပြင်ပြည့်
+values-b+my	string	player_fit_title	-	ပုံအရွယ်အစား
+values-b+my	string	player_fit_width	-	အကျယ်ပြည့်
 values-b+my	string	player_load_subtitles	-	ဖိုင်မှတင်သွင်းပြီး
 values-b+my	string	player_load_subtitles_online	-	အင်တာနက်မှ တင်သွင်းမည်
 values-b+my	string	player_loaded_subtitles	-	တင်ပြီး %s
@@ -22160,6 +22476,10 @@ values-b+my	string	player_pref	-	ဦးစားပေး ဗီဒီယို�
 values-b+my	string	player_settings_play_in_app	-	ဖုန်းတွင်းကြည့်ရှုမှု
 values-b+my	string	player_size_settings	-	ကြည့်ရှုမှု စခရင်အရွယ်အစားချိန်ညိှမှု
 values-b+my	string	player_size_settings_des	-	အနက်ရောင်ဘောင်များကို ဖယ်ရှားရန်
+values-b+my	string	player_source_playing	-	ဖွင့်နေသည်
+values-b+my	string	player_source_resumes_at	-	ပြောင်းလည်း နေရာမပျောက်ပါ: %1$s မှ ဆက်ဖွင့်မည်
+values-b+my	string	player_source_retry	-	ထပ်ကြိုးစားရန်
+values-b+my	string	player_source_switch	-	ပြောင်းရန်
 values-b+my	string	player_speed	-	ကြည့်ရှုမှုအရှိန်
 values-b+my	string	player_speed_text_format	-	အရှိန် (%.2fx)
 values-b+my	string	player_subtitles_settings	-	စာတန်းထိုးများ
@@ -22526,9 +22846,17 @@ values-b+ne	string	play_trailer_button	-	ट्रेलर प्ले गर�
 values-b+ne	string	play_with_app_name	-	क्लाउडस्ट्रीममा प्ले गर्नुहोस्
 values-b+ne	string	player_enter_fullscreen	-	पूर्ण स्क्रिन मोडमा खोल्नुहोस्
 values-b+ne	string	player_exit_fullscreen	-	पूर्ण स्क्रिन मोडबाट बाहिरिनुहोस्
+values-b+ne	string	player_fit_original	-	मूल अनुपात
+values-b+ne	string	player_fit_screen	-	स्क्रिन भर्नुहोस्
+values-b+ne	string	player_fit_title	-	चित्रको आकार
+values-b+ne	string	player_fit_width	-	चौडाइ भर्नुहोस्
 values-b+ne	string	player_mute	-	म्यूट गर्नुहोस्
 values-b+ne	string	player_size_settings	-	प्लेयर resize गर्ने वटन
 values-b+ne	string	player_size_settings_des	-	कालो सीमा हटाउनुहोस
+values-b+ne	string	player_source_playing	-	चलिरहेको
+values-b+ne	string	player_source_resumes_at	-	बदल्दा तपाईंको स्थान रहन्छ: %1$s बाट जारी
+values-b+ne	string	player_source_retry	-	फेरि प्रयास गर्नुहोस्
+values-b+ne	string	player_source_switch	-	बदल्नुहोस्
 values-b+ne	string	player_speed	-	प्लेयर स्पीड
 values-b+ne	string	player_speed_text_format	-	गति (%.2fx)
 values-b+ne	string	player_subtitles_settings	-	उपशीर्षक
@@ -22992,6 +23320,10 @@ values-b+nl	string	play_trailer_button	-	Speel Trailer
 values-b+nl	string	play_with_app_name	-	Afspelen met CloudStream
 values-b+nl	string	player_enter_fullscreen	-	Volledig scherm openen
 values-b+nl	string	player_exit_fullscreen	-	Volledig scherm sluiten
+values-b+nl	string	player_fit_original	-	Originele beeldverhouding
+values-b+nl	string	player_fit_screen	-	Scherm vullen
+values-b+nl	string	player_fit_title	-	Beeldformaat
+values-b+nl	string	player_fit_width	-	Breedte vullen
 values-b+nl	string	player_load_one_subtitle_online	-	Laad eerst beschikbare
 values-b+nl	string	player_load_subtitles	-	Laden uit bestand
 values-b+nl	string	player_load_subtitles_online	-	Laden vanaf internet
@@ -23005,6 +23337,10 @@ values-b+nl	string	player_settings_play_in_app	-	Interne speler
 values-b+nl	string	player_settings_select_cast_device	-	Cast apparaat selecteren
 values-b+nl	string	player_size_settings	-	Afspeel knop wijzig
 values-b+nl	string	player_size_settings_des	-	Verwijder de zwarte randen
+values-b+nl	string	player_source_playing	-	Speelt af
+values-b+nl	string	player_source_resumes_at	-	Wisselen behoudt je positie: gaat verder op %1$s
+values-b+nl	string	player_source_retry	-	Opnieuw
+values-b+nl	string	player_source_switch	-	Wisselen
 values-b+nl	string	player_speed	-	Afspelen Snelheid
 values-b+nl	string	player_speed_text_format	-	Snelheid (%.2fx)
 values-b+nl	string	player_subtitles_settings	-	Ondertitels
@@ -23486,8 +23822,16 @@ values-b+nn	string	play_trailer_button	-	Spel av trailer
 values-b+nn	string	play_with_app_name	-	Spel av med CloudStream
 values-b+nn	string	player_enter_fullscreen	-	Vis i fullskjerm
 values-b+nn	string	player_exit_fullscreen	-	Avslutt fullskjerm
+values-b+nn	string	player_fit_original	-	Opphavleg sideforhold
+values-b+nn	string	player_fit_screen	-	Fyll skjermen
+values-b+nn	string	player_fit_title	-	Biletstorleik
+values-b+nn	string	player_fit_width	-	Fyll breidda
 values-b+nn	string	player_mute	-	Slå av lyd
 values-b+nn	string	player_size_settings_des	-	Fjern dei svarte kantane
+values-b+nn	string	player_source_playing	-	Spelar
+values-b+nn	string	player_source_resumes_at	-	Bytet held på plassen din: held fram frå %1$s
+values-b+nn	string	player_source_retry	-	Prøv igjen
+values-b+nn	string	player_source_switch	-	Byt
 values-b+nn	string	player_speed	-	Avspelinghastigheit
 values-b+nn	string	player_speed_text_format	-	Avspelinghastigheit (%.2fx)
 values-b+nn	string	player_subtitles_settings	-	Undertekstar
@@ -23881,6 +24225,10 @@ values-b+no	string	play_trailer_button	-	Spill forfilm
 values-b+no	string	play_with_app_name	-	Spill med CloudStream
 values-b+no	string	player_enter_fullscreen	-	Se i fullskjerm
 values-b+no	string	player_exit_fullscreen	-	Avslutt fullskjerm
+values-b+no	string	player_fit_original	-	Opprinnelig sideforhold
+values-b+no	string	player_fit_screen	-	Fyll skjermen
+values-b+no	string	player_fit_title	-	Bildestørrelse
+values-b+no	string	player_fit_width	-	Fyll bredden
 values-b+no	string	player_load_subtitles	-	Last inn fra fil
 values-b+no	string	player_load_subtitles_online	-	Last inn fra Internett
 values-b+no	string	player_loaded_subtitles	-	Lastet inn %s
@@ -23889,6 +24237,10 @@ values-b+no	string	player_pref	-	Foretrukket videospiller
 values-b+no	string	player_settings_play_in_app	-	Intern spiller
 values-b+no	string	player_size_settings	-	Knapp for størrelse på spiller
 values-b+no	string	player_size_settings_des	-	Fjern de svarte kantene
+values-b+no	string	player_source_playing	-	Spiller
+values-b+no	string	player_source_resumes_at	-	Bytte beholder posisjonen din: fortsetter fra %1$s
+values-b+no	string	player_source_retry	-	Prøv igjen
+values-b+no	string	player_source_switch	-	Bytt
 values-b+no	string	player_speed	-	Spillerhastighet
 values-b+no	string	player_speed_text_format	-	Avspillingshastighet (%.2fx)
 values-b+no	string	player_subtitles_settings	-	Undertekster
@@ -24277,8 +24629,16 @@ values-b+or	string	play_episode_toast	-	ଅଧ୍ୟାୟ ଚଲାଅ
 values-b+or	string	play_movie_button	-	ଚଳଚ୍ଚିତ୍ର ଚଲାଅ
 values-b+or	string	player_enter_fullscreen	-	ପୂର୍ଣ୍ଣ ସ୍କ୍ରିନକୁ ଯାଆନ୍ତୁ
 values-b+or	string	player_exit_fullscreen	-	ପୂର୍ଣ୍ଣ ସ୍କ୍ରିନରୁ ବାହାରନ୍ତୁ
+values-b+or	string	player_fit_original	-	ମୂଳ ଅନୁପାତ
+values-b+or	string	player_fit_screen	-	ସ୍କ୍ରିନ ପୂରଣ କରନ୍ତୁ
+values-b+or	string	player_fit_title	-	ଚିତ୍ର ଆକାର
+values-b+or	string	player_fit_width	-	ପ୍ରସ୍ଥ ପୂରଣ କରନ୍ତୁ
 values-b+or	string	player_mute	-	ମ୍ୟୁଟ କରନ୍ତୁ
 values-b+or	string	player_settings_play_in_app	-	ଅନ୍ତଃ-ଚାଳକ
+values-b+or	string	player_source_playing	-	ଚାଲୁଛି
+values-b+or	string	player_source_resumes_at	-	ବଦଳାଇଲେ ଆପଣଙ୍କ ସ୍ଥାନ ରହେ: %1$s ରୁ ଜାରି
+values-b+or	string	player_source_retry	-	ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ
+values-b+or	string	player_source_switch	-	ବଦଳାନ୍ତୁ
 values-b+or	string	player_speed_text_format	-	ଵେଗ (%.2fଗୁଣ)
 values-b+or	string	player_subtitles_settings	-	ଉପଶୀର୍ଷକ
 values-b+or	string	player_unmute	-	ଅନମ୍ୟୁଟ କରନ୍ତୁ
@@ -24794,6 +25154,10 @@ values-b+pl	string	play_trailer_button	-	Odtwórz zwiastun
 values-b+pl	string	play_with_app_name	-	Odtwórz w CloudStream
 values-b+pl	string	player_enter_fullscreen	-	Otwórz pełny ekran
 values-b+pl	string	player_exit_fullscreen	-	Zamknij pełny ekran
+values-b+pl	string	player_fit_original	-	Oryginalne proporcje
+values-b+pl	string	player_fit_screen	-	Wypełnij ekran
+values-b+pl	string	player_fit_title	-	Rozmiar obrazu
+values-b+pl	string	player_fit_width	-	Wypełnij szerokość
 values-b+pl	string	player_is_live	-	Na żywo
 values-b+pl	string	player_load_one_subtitle_online	-	Wczytaj pierwsze dostępne
 values-b+pl	string	player_load_subtitles	-	Wczytaj z pliku
@@ -24808,6 +25172,10 @@ values-b+pl	string	player_settings_play_in_app	-	Odtwarzacz wewnętrzny
 values-b+pl	string	player_settings_select_cast_device	-	Wybierz urządzenie do transmisji
 values-b+pl	string	player_size_settings	-	Zmień rozmiar odtwarzacza
 values-b+pl	string	player_size_settings_des	-	Usuwanie czarnych ramek
+values-b+pl	string	player_source_playing	-	Odtwarzanie
+values-b+pl	string	player_source_resumes_at	-	Przełączenie zachowuje pozycję: wznowienie od %1$s
+values-b+pl	string	player_source_retry	-	Ponów
+values-b+pl	string	player_source_switch	-	Przełącz
 values-b+pl	string	player_speed	-	Prędkość odtwarzania
 values-b+pl	string	player_speed_text_format	-	Prędkość (%.2fx)
 values-b+pl	string	player_subtitles_settings	-	Napisy
@@ -25590,6 +25958,10 @@ values-b+pt	string	play_trailer_button	-	Assistir Trailer
 values-b+pt	string	play_with_app_name	-	Assistir com o CloudStream
 values-b+pt	string	player_enter_fullscreen	-	Mudar para ecrã inteiro
 values-b+pt	string	player_exit_fullscreen	-	Sair do ecrã inteiro
+values-b+pt	string	player_fit_original	-	Proporção original
+values-b+pt	string	player_fit_screen	-	Preencher ecrã
+values-b+pt	string	player_fit_title	-	Tamanho da imagem
+values-b+pt	string	player_fit_width	-	Preencher largura
 values-b+pt	string	player_is_live	-	Ao Vivo
 values-b+pt	string	player_load_one_subtitle_online	-	Carregar o primeiro disponível
 values-b+pt	string	player_load_subtitles	-	Carregar de arquivo
@@ -25604,6 +25976,10 @@ values-b+pt	string	player_settings_play_in_app	-	Player interno
 values-b+pt	string	player_settings_select_cast_device	-	Escolha o dispositivo
 values-b+pt	string	player_size_settings	-	Botão de redimensionamento do player
 values-b+pt	string	player_size_settings_des	-	Remover as bordas negras
+values-b+pt	string	player_source_playing	-	A reproduzir
+values-b+pt	string	player_source_resumes_at	-	Mudar mantém a sua posição: retoma em %1$s
+values-b+pt	string	player_source_retry	-	Repetir
+values-b+pt	string	player_source_switch	-	Mudar
 values-b+pt	string	player_speed	-	Velocidade de Reprodução
 values-b+pt	string	player_speed_text_format	-	Velocidade (%.2fx)
 values-b+pt	string	player_subtitles_settings	-	Legendas
@@ -26380,6 +26756,10 @@ values-b+pt+BR	string	play_trailer_button	-	Reproduzir trailer
 values-b+pt+BR	string	play_with_app_name	-	Assistir com o CloudStream
 values-b+pt+BR	string	player_enter_fullscreen	-	Entrar em tela cheia
 values-b+pt+BR	string	player_exit_fullscreen	-	Sair da tela cheia
+values-b+pt+BR	string	player_fit_original	-	Proporção original
+values-b+pt+BR	string	player_fit_screen	-	Preencher tela
+values-b+pt+BR	string	player_fit_title	-	Tamanho da imagem
+values-b+pt+BR	string	player_fit_width	-	Preencher largura
 values-b+pt+BR	string	player_is_live	-	Ao vivo
 values-b+pt+BR	string	player_load_one_subtitle_online	-	Carregar primeiro disponível
 values-b+pt+BR	string	player_load_subtitles	-	Carregar de arquivo
@@ -26394,6 +26774,10 @@ values-b+pt+BR	string	player_settings_play_in_app	-	Player interno
 values-b+pt+BR	string	player_settings_select_cast_device	-	Selecione o dispositivo de transmissão
 values-b+pt+BR	string	player_size_settings	-	Redimensionar player
 values-b+pt+BR	string	player_size_settings_des	-	Remover bordas pretas
+values-b+pt+BR	string	player_source_playing	-	Reproduzindo
+values-b+pt+BR	string	player_source_resumes_at	-	Trocar mantém sua posição: continua em %1$s
+values-b+pt+BR	string	player_source_retry	-	Tentar novamente
+values-b+pt+BR	string	player_source_switch	-	Trocar
 values-b+pt+BR	string	player_speed	-	Velocidade de reprodução
 values-b+pt+BR	string	player_speed_text_format	-	Velocidade (%.2fx)
 values-b+pt+BR	string	player_subtitles_settings	-	Modificar legendas
@@ -27114,6 +27498,10 @@ values-b+qt	string	play_trailer_button	-	ggaaaahhhhhhh gaauuuuuuuaaaau
 values-b+qt	string	play_with_app_name	-	oooooh aaah aauuuggghauuh
 values-b+qt	string	player_enter_fullscreen	-	oouuh haa aaaaa
 values-b+qt	string	player_exit_fullscreen	-	aauugghhaaaghh aaaaa
+values-b+qt	string	player_fit_original	-	oh aah
+values-b+qt	string	player_fit_screen	-	oouuh aah
+values-b+qt	string	player_fit_title	-	aaaaa oh
+values-b+qt	string	player_fit_width	-	haa oh
 values-b+qt	string	player_load_subtitles	-	aagg aahh uuuk
 values-b+qt	string	player_load_subtitles_online	-	eeek aahh oooohhhh
 values-b+qt	string	player_loaded_subtitles	-	oooohh %s
@@ -27123,6 +27511,10 @@ values-b+qt	string	player_settings_play_in_app	-	aaaagggh uuuugg
 values-b+qt	string	player_settings_select_cast_device	-	aaaagg aahh oooohh
 values-b+qt	string	player_size_settings	-	oouuhaoouuh aaaaa aauuhohahhh oooooaaaghhoh oh aaaaa
 values-b+qt	string	player_size_settings_des	-	aaaghhaaahhuahooo oha aaaghh
+values-b+qt	string	player_source_playing	-	oouuh aaaaa
+values-b+qt	string	player_source_resumes_at	-	ooh haa oh aaaaa: oouuh %1$s
+values-b+qt	string	player_source_retry	-	oouuh ooh
+values-b+qt	string	player_source_switch	-	ooh haa
 values-b+qt	string	player_speed	-	oouuh aauuh oha
 values-b+qt	string	player_speed_text_format	-	aaaaaaaaaaaaahh (%.2foouo)
 values-b+qt	string	player_subtitles_settings	-	ahhhaauugghh
@@ -27790,6 +28182,10 @@ values-b+ro	string	play_trailer_button	-	Vizionează trailerul
 values-b+ro	string	play_with_app_name	-	Joacă cu CloudStream
 values-b+ro	string	player_enter_fullscreen	-	Accesează în ecran complet
 values-b+ro	string	player_exit_fullscreen	-	Ieși din ecranul complet
+values-b+ro	string	player_fit_original	-	Raport de aspect original
+values-b+ro	string	player_fit_screen	-	Umple ecranul
+values-b+ro	string	player_fit_title	-	Dimensiune imagine
+values-b+ro	string	player_fit_width	-	Umple lățimea
 values-b+ro	string	player_load_one_subtitle_online	-	Încărcați prima disponibilă
 values-b+ro	string	player_load_subtitles	-	Încărcați din fișier
 values-b+ro	string	player_load_subtitles_online	-	Încărcare de pe Internet
@@ -27800,6 +28196,10 @@ values-b+ro	string	player_settings_play_in_app	-	Player intern
 values-b+ro	string	player_settings_select_cast_device	-	Selectați divece-ul pe care doriți să faceți cast
 values-b+ro	string	player_size_settings	-	Buton de redimensionare video
 values-b+ro	string	player_size_settings_des	-	Eliminați marginile negre
+values-b+ro	string	player_source_playing	-	Se redă
+values-b+ro	string	player_source_resumes_at	-	Schimbarea păstrează poziția: continuă de la %1$s
+values-b+ro	string	player_source_retry	-	Reîncearcă
+values-b+ro	string	player_source_switch	-	Schimbă
 values-b+ro	string	player_speed	-	Viteză video
 values-b+ro	string	player_speed_text_format	-	Viteză (%.2fx)
 values-b+ro	string	player_subtitles_settings	-	Subtitrare
@@ -28531,6 +28931,10 @@ values-b+ru	string	play_trailer_button	-	Смотреть трейлер
 values-b+ru	string	play_with_app_name	-	Смотреть с CloudStream
 values-b+ru	string	player_enter_fullscreen	-	Полноэкранный режим
 values-b+ru	string	player_exit_fullscreen	-	Выйти из полноэкранного режима
+values-b+ru	string	player_fit_original	-	Исходные пропорции
+values-b+ru	string	player_fit_screen	-	На весь экран
+values-b+ru	string	player_fit_title	-	Размер изображения
+values-b+ru	string	player_fit_width	-	По ширине
 values-b+ru	string	player_is_live	-	Прямой эфир
 values-b+ru	string	player_load_one_subtitle_online	-	Скачать первые доступные
 values-b+ru	string	player_load_subtitles	-	Загрузить из файла
@@ -28545,6 +28949,10 @@ values-b+ru	string	player_settings_play_in_app	-	Внутренний проиг
 values-b+ru	string	player_settings_select_cast_device	-	Выберите устройство для трансляции
 values-b+ru	string	player_size_settings	-	Кнопка изменения размера проигрывателя
 values-b+ru	string	player_size_settings_des	-	Убрать черные границы
+values-b+ru	string	player_source_playing	-	Воспроизводится
+values-b+ru	string	player_source_resumes_at	-	Переключение сохраняет позицию: продолжение с %1$s
+values-b+ru	string	player_source_retry	-	Повторить
+values-b+ru	string	player_source_switch	-	Переключить
 values-b+ru	string	player_speed	-	Скорость проигрывателя
 values-b+ru	string	player_speed_text_format	-	Скорость (%.2fx)
 values-b+ru	string	player_subtitles_settings	-	Субтитры
@@ -29189,6 +29597,10 @@ values-b+sk	string	play_trailer_button	-	Prehrať upútavku
 values-b+sk	string	play_with_app_name	-	Prehrať s CloudStream
 values-b+sk	string	player_enter_fullscreen	-	Prejsť do režimu celej obrazovky
 values-b+sk	string	player_exit_fullscreen	-	Ukončiť režim celej obrazovky
+values-b+sk	string	player_fit_original	-	Pôvodný pomer strán
+values-b+sk	string	player_fit_screen	-	Vyplniť obrazovku
+values-b+sk	string	player_fit_title	-	Veľkosť obrazu
+values-b+sk	string	player_fit_width	-	Vyplniť šírku
 values-b+sk	string	player_load_one_subtitle_online	-	Načítať prvé k dispozícii
 values-b+sk	string	player_load_subtitles	-	Načítať z súboru
 values-b+sk	string	player_load_subtitles_online	-	Načítať z internetu
@@ -29196,6 +29608,10 @@ values-b+sk	string	player_loaded_subtitles	-	Načítané %s
 values-b+sk	string	player_mute	-	Vypnúť zvuk
 values-b+sk	string	player_size_settings	-	Tlačidlo na zmenu veľkosti prehrávača
 values-b+sk	string	player_size_settings_des	-	Odstrániť čierne okraje
+values-b+sk	string	player_source_playing	-	Prehráva sa
+values-b+sk	string	player_source_resumes_at	-	Prepnutie zachová pozíciu: pokračuje od %1$s
+values-b+sk	string	player_source_retry	-	Skúsiť znova
+values-b+sk	string	player_source_switch	-	Prepnúť
 values-b+sk	string	player_speed	-	Rýchlosť prehrávania
 values-b+sk	string	player_speed_text_format	-	Rýchlosť (%.2fx)
 values-b+sk	string	player_subtitles_settings	-	Titulky
@@ -29723,6 +30139,10 @@ values-b+so	string	play_trailer_button	-	Daar goos-gooska
 values-b+so	string	play_with_app_name	-	Ku daawo CloudStream
 values-b+so	string	player_enter_fullscreen	-	Gal shaashadda buuxda
 values-b+so	string	player_exit_fullscreen	-	Ka bax shaashadda buuxda
+values-b+so	string	player_fit_original	-	Saamiga asalka ah
+values-b+so	string	player_fit_screen	-	Buuxi shaashadda
+values-b+so	string	player_fit_title	-	Cabbirka sawirka
+values-b+so	string	player_fit_width	-	Buuxi ballaca
 values-b+so	string	player_load_subtitles	-	Faylashaada ka keen
 values-b+so	string	player_load_subtitles_online	-	Internetka ka keen
 values-b+so	string	player_loaded_subtitles	-	Waxa laso kiciyey %s
@@ -29731,6 +30151,10 @@ values-b+so	string	player_pref	-	Muqaal daaraha aad doorbiddo
 values-b+so	string	player_settings_play_in_app	-	Muqaal daaraha appka
 values-b+so	string	player_size_settings	-	Badhinka xajmiga daaraha
 values-b+so	string	player_size_settings_des	-	Hareeraha madow ka saar markaad daawanayso
+values-b+so	string	player_source_playing	-	Waa socdaa
+values-b+so	string	player_source_resumes_at	-	Beddelku wuxuu ilaalinayaa meeshaada: wuxuu ka sii socdaa %1$s
+values-b+so	string	player_source_retry	-	Isku day mar kale
+values-b+so	string	player_source_switch	-	Beddel
 values-b+so	string	player_speed	-	Xawaaraha daaraha
 values-b+so	string	player_speed_text_format	-	Xawaaraha (%.2fx)
 values-b+so	string	player_subtitles_settings	-	Qoraal-hoosaadka
@@ -30409,6 +30833,10 @@ values-b+sq	string	play_trailer_button	-	Luaj Trailerin
 values-b+sq	string	play_with_app_name	-	Luaj me CloudStream
 values-b+sq	string	player_enter_fullscreen	-	Hyr në luajtjen me ekran të plotë
 values-b+sq	string	player_exit_fullscreen	-	Dil nga ekrani i plotë
+values-b+sq	string	player_fit_original	-	Raporti origjinal
+values-b+sq	string	player_fit_screen	-	Mbush ekranin
+values-b+sq	string	player_fit_title	-	Madhësia e figurës
+values-b+sq	string	player_fit_width	-	Mbush gjerësinë
 values-b+sq	string	player_is_live	-	Live
 values-b+sq	string	player_load_one_subtitle_online	-	Ngarko të parën e disponueshme
 values-b+sq	string	player_load_subtitles	-	Ngarko nga skedari
@@ -30423,6 +30851,10 @@ values-b+sq	string	player_settings_play_in_app	-	Luajtësi i integruar
 values-b+sq	string	player_settings_select_cast_device	-	Zgjidh pajisjen për transmetim
 values-b+sq	string	player_size_settings	-	Butoni për ndryshimin e madhësisë së luajtësit
 values-b+sq	string	player_size_settings_des	-	Hiq kufijtë e errët
+values-b+sq	string	player_source_playing	-	Po luhet
+values-b+sq	string	player_source_resumes_at	-	Ndërrimi e ruan pozicionin: vazhdon nga %1$s
+values-b+sq	string	player_source_retry	-	Provo përsëri
+values-b+sq	string	player_source_switch	-	Ndërro
 values-b+sq	string	player_speed	-	Shpejtësia e luajtësit
 values-b+sq	string	player_speed_text_format	-	Shpejtësia (%.2fx)
 values-b+sq	string	player_subtitles_settings	-	Titrat
@@ -31201,6 +31633,10 @@ values-b+sv	string	play_trailer_button	-	Spela Trailer
 values-b+sv	string	play_with_app_name	-	Spela med CloudStream
 values-b+sv	string	player_enter_fullscreen	-	Aktivera helskärm
 values-b+sv	string	player_exit_fullscreen	-	Lämna helskärm
+values-b+sv	string	player_fit_original	-	Ursprungligt bildförhållande
+values-b+sv	string	player_fit_screen	-	Fyll skärmen
+values-b+sv	string	player_fit_title	-	Bildstorlek
+values-b+sv	string	player_fit_width	-	Fyll bredden
 values-b+sv	string	player_is_live	-	Live
 values-b+sv	string	player_load_one_subtitle_online	-	Ladda in första möjliga
 values-b+sv	string	player_load_subtitles	-	Importera från fil
@@ -31215,6 +31651,10 @@ values-b+sv	string	player_settings_play_in_app	-	Intern spelare
 values-b+sv	string	player_settings_select_cast_device	-	Välj cast-enhet
 values-b+sv	string	player_size_settings	-	Lägger till en knapp för att justera bildförhållandet
 values-b+sv	string	player_size_settings_des	-	Ta bort de svarta kanterna
+values-b+sv	string	player_source_playing	-	Spelas
+values-b+sv	string	player_source_resumes_at	-	Att byta behåller din position: fortsätter vid %1$s
+values-b+sv	string	player_source_retry	-	Försök igen
+values-b+sv	string	player_source_switch	-	Byt
 values-b+sv	string	player_speed	-	Spelarhastighet
 values-b+sv	string	player_speed_text_format	-	Hastighet (%.2fx)
 values-b+sv	string	player_subtitles_settings	-	Undertexter
@@ -31993,6 +32433,10 @@ values-b+ta	string	play_trailer_button	-	டிரெய்லரை இயக�
 values-b+ta	string	play_with_app_name	-	CloudStream-உடன் இயக்கு
 values-b+ta	string	player_enter_fullscreen	-	முழுத்திரைக்குச் செல்
 values-b+ta	string	player_exit_fullscreen	-	முழுத்திரையிலிருந்து வெளியேறு
+values-b+ta	string	player_fit_original	-	அசல் விகிதம்
+values-b+ta	string	player_fit_screen	-	திரையை நிரப்பு
+values-b+ta	string	player_fit_title	-	பட அளவு
+values-b+ta	string	player_fit_width	-	அகலத்தை நிரப்பு
 values-b+ta	string	player_is_live	-	வாழ்க
 values-b+ta	string	player_load_one_subtitle_online	-	முதலில் கிடைக்கிறது
 values-b+ta	string	player_load_subtitles	-	கோப்பிலிருந்து ஏற்றவும்
@@ -32007,6 +32451,10 @@ values-b+ta	string	player_settings_play_in_app	-	உள் வீரர்
 values-b+ta	string	player_settings_select_cast_device	-	காச்ட் சாதனத்தைத் தேர்ந்தெடுக்கவும்
 values-b+ta	string	player_size_settings	-	பிளேயர் மறுஅளவிடுதல் பொத்தானை
 values-b+ta	string	player_size_settings_des	-	கருப்பு எல்லைகளை அகற்றவும்
+values-b+ta	string	player_source_playing	-	இயங்குகிறது
+values-b+ta	string	player_source_resumes_at	-	மாற்றினாலும் இடம் மாறாது: %1$s இலிருந்து தொடரும்
+values-b+ta	string	player_source_retry	-	மீண்டும் முயல்க
+values-b+ta	string	player_source_switch	-	மாற்று
 values-b+ta	string	player_speed	-	பிளேயர் விரைவு
 values-b+ta	string	player_speed_text_format	-	விரைவு (%.2fx)
 values-b+ta	string	player_subtitles_settings	-	வசன வரிகள்
@@ -32395,7 +32843,15 @@ values-b+ti	string	load_more	-	ተወሳኺ ጽዓን
 values-b+ti	string	next_episode_format	-	ክፋል %d በ ላይ ይወጣል
 values-b+ti	string	player_enter_fullscreen	-	ናብ ምሉእ ስክሪን እቶ
 values-b+ti	string	player_exit_fullscreen	-	ካብ ምሉእ ስክሪን ውጻእ
+values-b+ti	string	player_fit_original	-	መበቆል ዝምድና
+values-b+ti	string	player_fit_screen	-	ስክሪን ምላእ
+values-b+ti	string	player_fit_title	-	መጠን ስእሊ
+values-b+ti	string	player_fit_width	-	ስፍሓት ምላእ
 values-b+ti	string	player_mute	-	ድምጺ ኣጥፍእ
+values-b+ti	string	player_source_playing	-	ይጻወት ኣሎ
+values-b+ti	string	player_source_resumes_at	-	ምቕያር ቦታኻ ይሕልው፦ ካብ %1$s ይቕጽል
+values-b+ti	string	player_source_retry	-	እንደገና ፈትን
+values-b+ti	string	player_source_switch	-	ቀይር
 values-b+ti	string	player_unmute	-	ድምጺ ወልዕ
 values-b+ti	string	search_state_idle_body_desktop	-	ኣርእስቲ ጽሓፍ። ውጽኢታት ነፍሲ ወከፍ ምንጪ ምስ መለሰ ኣብ ትሕቲኡ ይርአዩ።
 values-b+ti	string	seek_back_10_seconds	-	10 ካልኢት ንድሕሪት
@@ -32613,10 +33069,18 @@ values-b+tl	string	play_trailer_button	-	Maglaro ng Trailer
 values-b+tl	string	play_with_app_name	-	I-play gamit ang CloudStream
 values-b+tl	string	player_enter_fullscreen	-	Mag-fullscreen
 values-b+tl	string	player_exit_fullscreen	-	Lumabas sa fullscreen
+values-b+tl	string	player_fit_original	-	Orihinal na aspect ratio
+values-b+tl	string	player_fit_screen	-	Punuin ang screen
+values-b+tl	string	player_fit_title	-	Laki ng larawan
+values-b+tl	string	player_fit_width	-	Punuin ang lapad
 values-b+tl	string	player_mute	-	I-mute
 values-b+tl	string	player_notification_channel_description	-	Ang abiso ng player para sa pagkontrol sa pag-playback mula sa background
 values-b+tl	string	player_size_settings	-	Pindutan upang baguhin ang laki
 values-b+tl	string	player_size_settings_des	-	Alisin ang black borders
+values-b+tl	string	player_source_playing	-	Nagpe-play
+values-b+tl	string	player_source_resumes_at	-	Mananatili ang posisyon mo sa paglipat: magpapatuloy sa %1$s
+values-b+tl	string	player_source_retry	-	Subukang muli
+values-b+tl	string	player_source_switch	-	Lumipat
 values-b+tl	string	player_speed	-	Bilis ng Playback
 values-b+tl	string	player_speed_text_format	-	Bilis (%.2fx)
 values-b+tl	string	player_subtitles_settings	-	Subtitles
@@ -33184,6 +33648,10 @@ values-b+tr	string	play_trailer_button	-	Fragmanı Oynat
 values-b+tr	string	play_with_app_name	-	CloudStream ile oynat
 values-b+tr	string	player_enter_fullscreen	-	Tam ekrana geç
 values-b+tr	string	player_exit_fullscreen	-	Tam ekrandan çık
+values-b+tr	string	player_fit_original	-	Orijinal en boy oranı
+values-b+tr	string	player_fit_screen	-	Ekranı doldur
+values-b+tr	string	player_fit_title	-	Görüntü boyutu
+values-b+tr	string	player_fit_width	-	Genişliği doldur
 values-b+tr	string	player_is_live	-	Canlı
 values-b+tr	string	player_load_one_subtitle_online	-	İlk kullanılabiliri yükle
 values-b+tr	string	player_load_subtitles	-	Dosyadan yükle
@@ -33198,6 +33666,10 @@ values-b+tr	string	player_settings_play_in_app	-	Dahili oynatıcı
 values-b+tr	string	player_settings_select_cast_device	-	Yansıtılacak cihaz seç
 values-b+tr	string	player_size_settings	-	Oynatıcı yeniden boyutlandırma butonu
 values-b+tr	string	player_size_settings_des	-	Siyah kenarlıkları kaldır
+values-b+tr	string	player_source_playing	-	Oynatılıyor
+values-b+tr	string	player_source_resumes_at	-	Değiştirmek konumunuzu korur: %1$s konumundan devam eder
+values-b+tr	string	player_source_retry	-	Yeniden dene
+values-b+tr	string	player_source_switch	-	Değiştir
 values-b+tr	string	player_speed	-	Oynatıcı Hızı
 values-b+tr	string	player_speed_text_format	-	Hız (%.2fx)
 values-b+tr	string	player_subtitles_settings	-	Altyazılar
@@ -33984,6 +34456,10 @@ values-b+uk	string	play_trailer_button	-	Відтворити трейлер
 values-b+uk	string	play_with_app_name	-	Відтворити в CloudStream
 values-b+uk	string	player_enter_fullscreen	-	Перейти в повноекранний режим
 values-b+uk	string	player_exit_fullscreen	-	Вийти з повноекранного режиму
+values-b+uk	string	player_fit_original	-	Початкові пропорції
+values-b+uk	string	player_fit_screen	-	Заповнити екран
+values-b+uk	string	player_fit_title	-	Розмір зображення
+values-b+uk	string	player_fit_width	-	Заповнити ширину
 values-b+uk	string	player_is_live	-	Наживо
 values-b+uk	string	player_load_one_subtitle_online	-	Завантажити перший доступний
 values-b+uk	string	player_load_subtitles	-	Завантажити з файлу
@@ -33998,6 +34474,10 @@ values-b+uk	string	player_settings_play_in_app	-	Вбудований прогр
 values-b+uk	string	player_settings_select_cast_device	-	Оберіть пристрій для трансляції
 values-b+uk	string	player_size_settings	-	Кнопка зміни розміру програвача
 values-b+uk	string	player_size_settings_des	-	Прибрати чорні смуги
+values-b+uk	string	player_source_playing	-	Відтворюється
+values-b+uk	string	player_source_resumes_at	-	Перемикання зберігає позицію: продовження з %1$s
+values-b+uk	string	player_source_retry	-	Повторити
+values-b+uk	string	player_source_switch	-	Перемкнути
 values-b+uk	string	player_speed	-	Швидкість програвача
 values-b+uk	string	player_speed_text_format	-	Швидкість (%.2fx)
 values-b+uk	string	player_subtitles_settings	-	Субтитри
@@ -34705,6 +35185,10 @@ values-b+ur	string	play_trailer_button	-	ٹریلر چلائیں
 values-b+ur	string	play_with_app_name	-	CloudStream کے ساتھ چلائیں
 values-b+ur	string	player_enter_fullscreen	-	پوری اسکرین میں داخل ہوں
 values-b+ur	string	player_exit_fullscreen	-	پوری اسکرین سے باہر نکلیں
+values-b+ur	string	player_fit_original	-	اصل تناسب
+values-b+ur	string	player_fit_screen	-	اسکرین بھریں
+values-b+ur	string	player_fit_title	-	تصویر کا سائز
+values-b+ur	string	player_fit_width	-	چوڑائی بھریں
 values-b+ur	string	player_load_subtitles	-	فائل سے لوڈ کریں
 values-b+ur	string	player_load_subtitles_online	-	انٹرنیٹ سے لوڈ کریں
 values-b+ur	string	player_loaded_subtitles	-	لوڈ %s
@@ -34713,6 +35197,10 @@ values-b+ur	string	player_pref	-	ترجیحی ویڈیو پلیئر
 values-b+ur	string	player_settings_play_in_app	-	اندرونی پلیئر
 values-b+ur	string	player_size_settings	-	پلیئر کا سائز تبدیل کرنے کا بٹن
 values-b+ur	string	player_size_settings_des	-	سیاہ سرحد کو ہٹا دیں
+values-b+ur	string	player_source_playing	-	چل رہا ہے
+values-b+ur	string	player_source_resumes_at	-	بدلنے سے آپ کی جگہ برقرار رہتی ہے: %1$s سے جاری
+values-b+ur	string	player_source_retry	-	دوبارہ کوشش کریں
+values-b+ur	string	player_source_switch	-	بدلیں
 values-b+ur	string	player_speed	-	چلانے کی رفتار
 values-b+ur	string	player_speed_text_format	-	رفتار (%.2fx)
 values-b+ur	string	player_subtitles_settings	-	سنٹیٹلز
@@ -35426,6 +35914,10 @@ values-b+vi	string	play_trailer_button	-	Phát Trailer
 values-b+vi	string	play_with_app_name	-	Phát bằng CloudStream
 values-b+vi	string	player_enter_fullscreen	-	Chuyển sang chế độ toàn màn hình
 values-b+vi	string	player_exit_fullscreen	-	Thoát khỏi chế độ toàn màn hình
+values-b+vi	string	player_fit_original	-	Tỷ lệ gốc
+values-b+vi	string	player_fit_screen	-	Lấp đầy màn hình
+values-b+vi	string	player_fit_title	-	Kích thước hình ảnh
+values-b+vi	string	player_fit_width	-	Lấp đầy chiều rộng
 values-b+vi	string	player_is_live	-	Trực tiếp
 values-b+vi	string	player_load_one_subtitle_online	-	Tải phụ đề đầu tiên có sẵn
 values-b+vi	string	player_load_subtitles	-	Chọn từ tệp
@@ -35440,6 +35932,10 @@ values-b+vi	string	player_settings_play_in_app	-	Trình phát tích hợp
 values-b+vi	string	player_settings_select_cast_device	-	Chọn thiết bị truyền
 values-b+vi	string	player_size_settings	-	Nút thay đổi kích thước trình phát
 values-b+vi	string	player_size_settings_des	-	Xóa bỏ các viền đen
+values-b+vi	string	player_source_playing	-	Đang phát
+values-b+vi	string	player_source_resumes_at	-	Chuyển vẫn giữ vị trí của bạn: tiếp tục từ %1$s
+values-b+vi	string	player_source_retry	-	Thử lại
+values-b+vi	string	player_source_switch	-	Chuyển
 values-b+vi	string	player_speed	-	Tốc độ phát
 values-b+vi	string	player_speed_text_format	-	Tốc độ (%.2fx)
 values-b+vi	string	player_subtitles_settings	-	Phụ đề
@@ -36214,6 +36710,10 @@ values-b+zh	string	play_trailer_button	-	播放预告片
 values-b+zh	string	play_with_app_name	-	使用 CloudStream 播放
 values-b+zh	string	player_enter_fullscreen	-	进入全屏模式
 values-b+zh	string	player_exit_fullscreen	-	退出全屏模式
+values-b+zh	string	player_fit_original	-	原始宽高比
+values-b+zh	string	player_fit_screen	-	填满屏幕
+values-b+zh	string	player_fit_title	-	画面大小
+values-b+zh	string	player_fit_width	-	填满宽度
 values-b+zh	string	player_is_live	-	播放中
 values-b+zh	string	player_load_one_subtitle_online	-	加载第一个可用的字幕
 values-b+zh	string	player_load_subtitles	-	从文件加载
@@ -36228,6 +36728,10 @@ values-b+zh	string	player_settings_play_in_app	-	内部播放器
 values-b+zh	string	player_settings_select_cast_device	-	选择投射设备
 values-b+zh	string	player_size_settings	-	播放器画面调整按钮
 values-b+zh	string	player_size_settings_des	-	移除黑色边框
+values-b+zh	string	player_source_playing	-	正在播放
+values-b+zh	string	player_source_resumes_at	-	切换会保留播放位置：从 %1$s 继续
+values-b+zh	string	player_source_retry	-	重试
+values-b+zh	string	player_source_switch	-	切换
 values-b+zh	string	player_speed	-	播放速度
 values-b+zh	string	player_speed_text_format	-	速度（%.2fx）
 values-b+zh	string	player_subtitles_settings	-	字幕
@@ -36999,6 +37503,10 @@ values-b+zh+TW	string	play_trailer_button	-	播放預告片
 values-b+zh+TW	string	play_with_app_name	-	使用 CloudStream 播放
 values-b+zh+TW	string	player_enter_fullscreen	-	進入全螢幕模式
 values-b+zh+TW	string	player_exit_fullscreen	-	結束全螢幕模式
+values-b+zh+TW	string	player_fit_original	-	原始長寬比
+values-b+zh+TW	string	player_fit_screen	-	填滿螢幕
+values-b+zh+TW	string	player_fit_title	-	畫面大小
+values-b+zh+TW	string	player_fit_width	-	填滿寬度
 values-b+zh+TW	string	player_is_live	-	播放中
 values-b+zh+TW	string	player_load_one_subtitle_online	-	載入第一個可用的
 values-b+zh+TW	string	player_load_subtitles	-	從檔案載入
@@ -37013,6 +37521,10 @@ values-b+zh+TW	string	player_settings_play_in_app	-	內部播放器
 values-b+zh+TW	string	player_settings_select_cast_device	-	選擇投放裝置
 values-b+zh+TW	string	player_size_settings	-	播放器調整大小按鈕
 values-b+zh+TW	string	player_size_settings_des	-	移除黑色邊框
+values-b+zh+TW	string	player_source_playing	-	播放中
+values-b+zh+TW	string	player_source_resumes_at	-	切換會保留播放位置：從 %1$s 繼續
+values-b+zh+TW	string	player_source_retry	-	重試
+values-b+zh+TW	string	player_source_switch	-	切換
 values-b+zh+TW	string	player_speed	-	播放速度
 values-b+zh+TW	string	player_speed_text_format	-	速度（%.2fx）
 values-b+zh+TW	string	player_subtitles_settings	-	字幕

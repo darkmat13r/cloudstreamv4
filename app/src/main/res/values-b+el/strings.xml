@@ -376,6 +376,10 @@
 <string name="play_with_app_name">"Άνοιγμα με CloudStream"</string>
 <string name="player_enter_fullscreen">"Πλήρης οθόνη"</string>
 <string name="player_exit_fullscreen">"Έξοδος από πλήρη οθόνη"</string>
+<string name="player_fit_original">"Αρχική αναλογία"</string>
+<string name="player_fit_screen">"Γέμισμα οθόνης"</string>
+<string name="player_fit_title">"Μέγεθος εικόνας"</string>
+<string name="player_fit_width">"Γέμισμα πλάτους"</string>
 <string name="player_load_one_subtitle_online">"Φορτώστε το πρώτο διαθέσιμο"</string>
 <string name="player_load_subtitles">"Φόρτωση από αρχείο"</string>
 <string name="player_load_subtitles_online">"Φόρτωση από το Ίντερνετ"</string>
@@ -388,6 +392,10 @@
 <string name="player_settings_select_cast_device">"Επιλογή συσκευής για αναμετάδοση"</string>
 <string name="player_size_settings">"Αλλαγή μεγέθους παραθύρου"</string>
 <string name="player_size_settings_des">"Αφαίρεση μαύρων περιγραμμάτων"</string>
+<string name="player_source_playing">"Αναπαράγεται"</string>
+<string name="player_source_resumes_at" formatted="true">"Η αλλαγή διατηρεί τη θέση σας: συνέχεια από %1$s"</string>
+<string name="player_source_retry">"Επανάληψη"</string>
+<string name="player_source_switch">"Αλλαγή"</string>
 <string name="player_speed">"Ταχύτητα αναπαραγωγής"</string>
 <string name="player_speed_text_format" formatted="true">"Ταχύτητα (%.2fx)"</string>
 <string name="player_subtitles_settings">"Υπότιτλοι"</string>

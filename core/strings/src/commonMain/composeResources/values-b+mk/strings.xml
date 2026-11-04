@@ -417,6 +417,10 @@
 <string name="play_with_app_name">Играј со CloudStream</string>
 <string name="player_enter_fullscreen">Приказ на цел екран</string>
 <string name="player_exit_fullscreen">Излезете од цел екран</string>
+<string name="player_fit_original">Оригинален сооднос</string>
+<string name="player_fit_screen">Пополни екран</string>
+<string name="player_fit_title">Големина на сликата</string>
+<string name="player_fit_width">Пополни ширина</string>
 <string name="player_is_live">Во живо</string>
 <string name="player_load_one_subtitle_online">Вчитај прво достапно</string>
 <string name="player_load_subtitles">Вчитај од датотека</string>
@@ -431,6 +435,10 @@
 <string name="player_settings_select_cast_device">Одбери уред да кастираш</string>
 <string name="player_size_settings">Копче за промена на големината на плеерот</string>
 <string name="player_size_settings_des">Острани ги црните граници</string>
+<string name="player_source_playing">Се репродуцира</string>
+<string name="player_source_resumes_at">Промената ја задржува позицијата: продолжува од %1$s</string>
+<string name="player_source_retry">Обиди се повторно</string>
+<string name="player_source_switch">Промени</string>
 <string name="player_speed">Брзина на плеер</string>
 <string name="player_speed_text_format">Брзина (%.2fx)</string>
 <string name="player_subtitles_settings">Преводи</string>

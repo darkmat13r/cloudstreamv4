@@ -199,9 +199,17 @@
 <string name="play_with_app_name">"Reproducir con CloudStream"</string>
 <string name="player_enter_fullscreen">"Acceder a pantalla completa"</string>
 <string name="player_exit_fullscreen">"Saír de pantalla completa"</string>
+<string name="player_fit_original">"Proporción orixinal"</string>
+<string name="player_fit_screen">"Encher a pantalla"</string>
+<string name="player_fit_title">"Tamaño da imaxe"</string>
+<string name="player_fit_width">"Encher o ancho"</string>
 <string name="player_mute">"Silenciar"</string>
 <string name="player_size_settings">"Botón de cambio de tamaño do reprodutor"</string>
 <string name="player_size_settings_des">"Eliminar bordes negros"</string>
+<string name="player_source_playing">"Reproducindo"</string>
+<string name="player_source_resumes_at" formatted="true">"Cambiar mantén a túa posición: continúa en %1$s"</string>
+<string name="player_source_retry">"Tentar de novo"</string>
+<string name="player_source_switch">"Cambiar"</string>
 <string name="player_speed">"Velocidade do reproductor"</string>
 <string name="player_speed_text_format" formatted="true">"Velocidade (%.2fx)"</string>
 <string name="player_subtitles_settings">"Subtítulos"</string>

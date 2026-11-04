@@ -417,6 +417,10 @@
 <string name="play_with_app_name">"Прайграць праз CloudStream"</string>
 <string name="player_enter_fullscreen">"Уключыць поўнаэкранны рэжым"</string>
 <string name="player_exit_fullscreen">"Выключыць поўнаэкранны рэжым"</string>
+<string name="player_fit_original">"Зыходныя прапорцыі"</string>
+<string name="player_fit_screen">"Запоўніць экран"</string>
+<string name="player_fit_title">"Памер выявы"</string>
+<string name="player_fit_width">"Запоўніць шырыню"</string>
 <string name="player_is_live">"Ужывую"</string>
 <string name="player_load_one_subtitle_online">"Спампаваць першыя даступныя"</string>
 <string name="player_load_subtitles">"Загрузіць з файла"</string>
@@ -431,6 +435,10 @@
 <string name="player_settings_select_cast_device">"Выбраць прыладу для трансляцыі"</string>
 <string name="player_size_settings">"Кнопка змены памеру прайгравальніка"</string>
 <string name="player_size_settings_des">"Прыбраць чорныя межы"</string>
+<string name="player_source_playing">"Прайграецца"</string>
+<string name="player_source_resumes_at" formatted="true">"Пераключэнне захоўвае пазіцыю: працяг з %1$s"</string>
+<string name="player_source_retry">"Паўтарыць"</string>
+<string name="player_source_switch">"Пераключыць"</string>
 <string name="player_speed">"Хуткасць прайгравальніка"</string>
 <string name="player_speed_text_format" formatted="true">"Хуткасць (%.2fx)"</string>
 <string name="player_subtitles_settings">"Субцітры"</string>

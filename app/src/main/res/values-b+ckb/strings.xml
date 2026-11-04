@@ -87,7 +87,15 @@
 <string name="play_torrent_button">"تۆرێنت ستریم بکە"</string>
 <string name="player_enter_fullscreen">"چوونە ناو پڕ بە شاشە"</string>
 <string name="player_exit_fullscreen">"دەرچوون لە پڕ بە شاشە"</string>
+<string name="player_fit_original">"ڕێژەی ڕەسەن"</string>
+<string name="player_fit_screen">"پڕکردنی شاشە"</string>
+<string name="player_fit_title">"قەبارەی وێنە"</string>
+<string name="player_fit_width">"پڕکردنی پانی"</string>
 <string name="player_mute">"بێدەنگکردن"</string>
+<string name="player_source_playing">"لێدەدرێت"</string>
+<string name="player_source_resumes_at" formatted="true">"گۆڕین شوێنەکەت دەپارێزێت: لە %1$s بەردەوام دەبێت"</string>
+<string name="player_source_retry">"دووبارە هەوڵبدەرەوە"</string>
+<string name="player_source_switch">"گۆڕین"</string>
 <string name="player_speed_text_format" formatted="true">"خێرای(x%.2f)"</string>
 <string name="player_unmute">"لابردنی بێدەنگی"</string>
 <string name="popup_delete_file">"سڕینەوەی فایل"</string>

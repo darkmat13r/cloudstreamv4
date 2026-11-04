@@ -34,6 +34,9 @@ interface PlayerControls {
 
     /** @param percent 0 to 100. */
     fun setVolume(percent: Int)
+
+    /** One of the ids the host listed. */
+    fun selectAudioTrack(id: Int)
 }
 
 /** What the HUD draws. [failed] means libVLC gave up on this stream, or its host died. */
@@ -66,6 +69,7 @@ class VlcPlayer private constructor(
     private val _frame = MutableStateFlow<ImageBitmap?>(null)
     private val _pictureSize = MutableStateFlow<IntSize?>(null)
     private val _status = MutableStateFlow(PlayerStatus())
+    private val _audio = MutableStateFlow(AudioTracks())
     @Volatile private var released = false
 
     val frame: StateFlow<ImageBitmap?> = _frame.asStateFlow()
@@ -73,6 +77,9 @@ class VlcPlayer private constructor(
     /** The shape to draw [frame] in, which is not always the frame's own. Null until the host can say. */
     val pictureSize: StateFlow<IntSize?> = _pictureSize.asStateFlow()
     val status: StateFlow<PlayerStatus> = _status.asStateFlow()
+
+    /** Empty until libVLC has the stream open. */
+    internal val audio: StateFlow<AudioTracks> = _audio.asStateFlow()
 
     init {
         thread(isDaemon = true, name = "media-host-out") { readHost() }
@@ -85,7 +92,7 @@ class VlcPlayer private constructor(
     private fun readHost() {
         val clean = runCatching {
             process.inputStream.use { input ->
-                MediaStreamReader(input, ::allocate) { status -> _status.value = status }.readAll()
+                MediaStreamReader(input, ::allocate, { _audio.value = it }) { status -> _status.value = status }.readAll()
             }
         }.isSuccess
         // A host that exits on its own, or says something invalid, has failed. Only release() is quiet.
@@ -171,6 +178,13 @@ class VlcPlayer private constructor(
         send {
             writeByte(MediaProtocol.OP_SET_VOLUME.toInt())
             writeInt(percent.coerceIn(0, PlayerVolume.MAX))
+        }
+    }
+
+    override fun selectAudioTrack(id: Int) {
+        send {
+            writeByte(MediaProtocol.OP_SET_AUDIO_TRACK.toInt())
+            writeInt(id)
         }
     }
 

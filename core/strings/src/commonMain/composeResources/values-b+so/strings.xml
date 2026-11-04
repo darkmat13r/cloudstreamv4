@@ -293,6 +293,10 @@
 <string name="play_with_app_name">Ku daawo CloudStream</string>
 <string name="player_enter_fullscreen">Gal shaashadda buuxda</string>
 <string name="player_exit_fullscreen">Ka bax shaashadda buuxda</string>
+<string name="player_fit_original">Saamiga asalka ah</string>
+<string name="player_fit_screen">Buuxi shaashadda</string>
+<string name="player_fit_title">Cabbirka sawirka</string>
+<string name="player_fit_width">Buuxi ballaca</string>
 <string name="player_load_subtitles">Faylashaada ka keen</string>
 <string name="player_load_subtitles_online">Internetka ka keen</string>
 <string name="player_loaded_subtitles">Waxa laso kiciyey %s</string>
@@ -301,6 +305,10 @@
 <string name="player_settings_play_in_app">Muqaal daaraha appka</string>
 <string name="player_size_settings">Badhinka xajmiga daaraha</string>
 <string name="player_size_settings_des">Hareeraha madow ka saar markaad daawanayso</string>
+<string name="player_source_playing">Waa socdaa</string>
+<string name="player_source_resumes_at">Beddelku wuxuu ilaalinayaa meeshaada: wuxuu ka sii socdaa %1$s</string>
+<string name="player_source_retry">Isku day mar kale</string>
+<string name="player_source_switch">Beddel</string>
 <string name="player_speed">Xawaaraha daaraha</string>
 <string name="player_speed_text_format">Xawaaraha (%.2fx)</string>
 <string name="player_subtitles_settings">Qoraal-hoosaadka</string>

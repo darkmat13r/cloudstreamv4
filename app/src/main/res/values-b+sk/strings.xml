@@ -285,6 +285,10 @@
 <string name="play_with_app_name">"Prehrať s CloudStream"</string>
 <string name="player_enter_fullscreen">"Prejsť do režimu celej obrazovky"</string>
 <string name="player_exit_fullscreen">"Ukončiť režim celej obrazovky"</string>
+<string name="player_fit_original">"Pôvodný pomer strán"</string>
+<string name="player_fit_screen">"Vyplniť obrazovku"</string>
+<string name="player_fit_title">"Veľkosť obrazu"</string>
+<string name="player_fit_width">"Vyplniť šírku"</string>
 <string name="player_load_one_subtitle_online">"Načítať prvé k dispozícii"</string>
 <string name="player_load_subtitles">"Načítať z súboru"</string>
 <string name="player_load_subtitles_online">"Načítať z internetu"</string>
@@ -292,6 +296,10 @@
 <string name="player_mute">"Vypnúť zvuk"</string>
 <string name="player_size_settings">"Tlačidlo na zmenu veľkosti prehrávača"</string>
 <string name="player_size_settings_des">"Odstrániť čierne okraje"</string>
+<string name="player_source_playing">"Prehráva sa"</string>
+<string name="player_source_resumes_at" formatted="true">"Prepnutie zachová pozíciu: pokračuje od %1$s"</string>
+<string name="player_source_retry">"Skúsiť znova"</string>
+<string name="player_source_switch">"Prepnúť"</string>
 <string name="player_speed">"Rýchlosť prehrávania"</string>
 <string name="player_speed_text_format" formatted="true">"Rýchlosť (%.2fx)"</string>
 <string name="player_subtitles_settings">"Titulky"</string>
