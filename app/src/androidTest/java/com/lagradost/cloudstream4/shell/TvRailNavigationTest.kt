@@ -486,7 +486,15 @@ class TvRailNavigationTest {
             val visited = mutableListOf(dpad.enter())
             repeat(RAIL_PRESSES) {
                 val at = visited.last()
-                if (!at.startsWith(VIEW_PAGER)) visited += dpad.press(if (at in labels) Dpad.Right else Dpad.Down).orEmpty()
+                if (!at.startsWith(VIEW_PAGER)) {
+                    // The XML rail's RIGHT lands inside the pager, and only the tabs above it go down onto the pager.
+                    val direction = when {
+                        at in labels -> Dpad.Right
+                        at.startsWith(RECYCLER_VIEW) -> Dpad.Up
+                        else -> Dpad.Down
+                    }
+                    visited += dpad.press(direction).orEmpty()
+                }
             }
             assertTrue("the Library's pager, by way of $visited", visited.last().startsWith(VIEW_PAGER))
             assertNull("RIGHT from it", dpad.press(Dpad.Right))
@@ -537,6 +545,7 @@ class TvRailNavigationTest {
         const val MAX_DIMMED_RATIO = 0.75f
 
         const val VIEW_PAGER = "androidx.viewpager"
+        const val RECYCLER_VIEW = "androidx.recyclerview"
 
         /** The provider button on Home with no extension installed. */
         const val NO_PROVIDER = "None"
