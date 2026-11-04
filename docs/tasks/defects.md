@@ -1187,3 +1187,51 @@ exist on master, so that one case cannot be compiled against the old code at all
   file stays in #91 with the TV screen it serves. On desktop the value is `true`, which is what
   `BUG-12` made correct there.
 - The live desktop window. Every one of these is a state-machine test.
+
+---
+
+## BUG-25 — An attempt to break out of the sandboxes, and what it found · **high** · measured 2026-11-04
+
+**Status:** in pr. `SandboxEscapeAttemptTest` runs every attempt through a real plugin host and a real media host under
+the real policies, and a shell under the policy with no JVM in the way. It reports a word and never what was read. It is
+this project's own attempt, not an independent audit, and it does not prove the sandbox holds. It cannot try a bug in
+macOS or libVLC.
+
+**Got through, and now fixed:**
+
+| Attempt | Before | After |
+|---|---|---|
+| `System.load` of a library dropped in its own directory, plugin host | loaded | refused |
+| Listing every process | 1053 listed | denied |
+| Reading another process's command | visible | denied |
+| Hostname, by `InetAddress.getLocalHost` | the real one | hidden |
+| MAC addresses | 4 | denied |
+| `user.name` | the real one | a stand-in |
+| `user.home`, media host | the real one | its own directory |
+
+Naming sysctls to deny does not work: reading by number skips the name filter, so a deny of `kern.proc` still returned
+it (measured, with a small C program under the policy). So it is an allow-list. `(target others)` did not stop
+`proc_pidpath` either, so it is a deny of all `process-info*` and an allow of `self`.
+
+**Tried and refused, both hosts:** reads of `~/.ssh`, `.zshrc`, `.gitconfig`, the decisions file, the login keychain,
+Chrome and Safari data; listing the home directory and `/Users`; reading or changing decisions, a hash sidecar, a plugin
+or another plugin's data; writing a LaunchAgent, `/private/tmp`, `/Users/Shared`; a hard link or symlink to a key, then
+reading it; moving a file out; running `sh`, `id`, `open`; listening on a port; 127.0.0.1, ::1, ::ffff:127.0.0.1,
+0.0.0.0, localhost; Docker's sockets; signalling another process. Garbage, forged and oversized frames were already
+covered by `SandboxEnforcementTest` and `PluginHostClientTest`.
+
+**Still open:**
+
+- **The network.** A host reached this Mac by its LAN address and the LAN gateway: Seatbelt can only name `localhost` or
+  `*`. See `BUG-26`.
+- **`stat` works on any path**, so a plugin can test whether a file exists. A JVM needs it to canonicalise paths.
+- **The account name is still in paths.** A plugin's directory is under the home directory, so its own working directory
+  says who you are. Fixing it means moving plugin data out of the home directory.
+- **The media host may load native code from its own directory**, because JNA unpacks there.
+- **DNS** still works, as it must, and a name can carry data out.
+- **`sandbox-exec` is deprecated**, as `man sandbox-exec` says. See `DEC-16`.
+
+**Checked after the change:** isolated copy of the owner's six plugins, installed build then this one: 6 of 6, 8 providers,
+CineStream 34 results and 74 playable both times, 101 then 96 links, which varies between runs. A silent check still draws frames, and
+libVLC's audio output opens and holds a level (37) on a silent file. Nobody has listened.
+

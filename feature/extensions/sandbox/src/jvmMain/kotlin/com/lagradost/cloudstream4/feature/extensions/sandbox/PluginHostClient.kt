@@ -55,7 +55,7 @@ class HostLauncher internal constructor(
         builder.environment().clear()
         builder.environment()["HOME"] = writable.path
         builder.environment()["TMPDIR"] = writable.path
-        builder.environment()["JAVA_TOOL_OPTIONS"] = jvmOptions
+        builder.environment()["JAVA_TOOL_OPTIONS"] = "$jvmOptions -Duser.home=${writable.path}"
         builder.directory(writable)
         return builder.start()
     }
@@ -83,8 +83,10 @@ class HostLauncher internal constructor(
     companion object {
         /** How [startMediaHost] tells the host, whose command line is the same either way. */
         const val SILENT_PROPERTY = "cloudstream.mediahost.silent"
+        /** Stands in for the person's account name, which a host has no use for. */
+        private const val HOST_USER = "cloudstream"
         private const val JVM_OPTIONS =
-            "-Xmx512m -XX:+UseSerialGC -XX:-UsePerfData -XX:ActiveProcessorCount=4 -Xshare:auto"
+            "-Xmx512m -XX:+UseSerialGC -XX:-UsePerfData -XX:ActiveProcessorCount=4 -Xshare:auto -Duser.name=$HOST_USER"
         private const val DEV_MAIN = "com.lagradost.cloudstream4.feature.extensions.sandbox.PluginHostKt"
 
         /** `null` when this OS has no sandbox. There is no unsandboxed fallback, on purpose. */
