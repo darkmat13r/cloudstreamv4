@@ -417,6 +417,10 @@
 <string name="play_with_app_name">مَشّي بـ"كلود ستريم"</string>
 <string name="player_enter_fullscreen">فوت عالشاشة الكاملة</string>
 <string name="player_exit_fullscreen">اطلع من الشاشة الكاملة</string>
+<string name="player_fit_original">نسبة العرض الأصلية</string>
+<string name="player_fit_screen">عبّي الشاشة</string>
+<string name="player_fit_title">حجم الصورة</string>
+<string name="player_fit_width">عبّي العرض</string>
 <string name="player_is_live">لايڤ</string>
 <string name="player_load_one_subtitle_online">أفّي اللودينگ تلقائيًا</string>
 <string name="player_load_subtitles">فتاح من ملف</string>

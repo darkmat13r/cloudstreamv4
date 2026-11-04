@@ -376,6 +376,10 @@
 <string name="play_with_app_name">"Άνοιγμα με CloudStream"</string>
 <string name="player_enter_fullscreen">"Πλήρης οθόνη"</string>
 <string name="player_exit_fullscreen">"Έξοδος από πλήρη οθόνη"</string>
+<string name="player_fit_original">"Αρχική αναλογία"</string>
+<string name="player_fit_screen">"Γέμισμα οθόνης"</string>
+<string name="player_fit_title">"Μέγεθος εικόνας"</string>
+<string name="player_fit_width">"Γέμισμα πλάτους"</string>
 <string name="player_load_one_subtitle_online">"Φορτώστε το πρώτο διαθέσιμο"</string>
 <string name="player_load_subtitles">"Φόρτωση από αρχείο"</string>
 <string name="player_load_subtitles_online">"Φόρτωση από το Ίντερνετ"</string>

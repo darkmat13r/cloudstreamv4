@@ -417,6 +417,10 @@
 <string name="play_with_app_name">"使用 CloudStream 播放"</string>
 <string name="player_enter_fullscreen">"進入全螢幕模式"</string>
 <string name="player_exit_fullscreen">"結束全螢幕模式"</string>
+<string name="player_fit_original">"原始長寬比"</string>
+<string name="player_fit_screen">"填滿螢幕"</string>
+<string name="player_fit_title">"畫面大小"</string>
+<string name="player_fit_width">"填滿寬度"</string>
 <string name="player_is_live">"播放中"</string>
 <string name="player_load_one_subtitle_online">"載入第一個可用的"</string>
 <string name="player_load_subtitles">"從檔案載入"</string>

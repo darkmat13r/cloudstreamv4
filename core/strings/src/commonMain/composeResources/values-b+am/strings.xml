@@ -89,6 +89,10 @@
 <string name="play_with_app_name">በCloudStream አጫውት</string>
 <string name="player_enter_fullscreen">ወደ ሙሉ ማያ ገፅ ግባ</string>
 <string name="player_exit_fullscreen">ከሙሉ ማያገጽ ውጣ</string>
+<string name="player_fit_original">የመጀመሪያ ምጥጥነ ገጽታ</string>
+<string name="player_fit_screen">ማያውን ሙላ</string>
+<string name="player_fit_title">የምስል መጠን</string>
+<string name="player_fit_width">ስፋቱን ሙላ</string>
 <string name="player_mute">ድምፅ አጥፋ</string>
 <string name="player_speed">የአጫዋች ፍጥነት</string>
 <string name="player_speed_text_format">ፍጥነት(%.2fx)</string>

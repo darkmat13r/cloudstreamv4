@@ -418,6 +418,10 @@
 <string name="play_with_app_name">"Putar di CloudStream"</string>
 <string name="player_enter_fullscreen">"Masuk layar penuh"</string>
 <string name="player_exit_fullscreen">"Keluar dari layar penuh"</string>
+<string name="player_fit_original">"Rasio aspek asli"</string>
+<string name="player_fit_screen">"Isi layar"</string>
+<string name="player_fit_title">"Ukuran gambar"</string>
+<string name="player_fit_width">"Isi lebar"</string>
 <string name="player_is_live">"Live"</string>
 <string name="player_load_one_subtitle_online">"Muat yang pertama tersedia"</string>
 <string name="player_load_subtitles">"Muat dari file"</string>

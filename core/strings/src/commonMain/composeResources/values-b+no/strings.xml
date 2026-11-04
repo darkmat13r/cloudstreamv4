@@ -288,6 +288,10 @@
 <string name="play_with_app_name">Spill med CloudStream</string>
 <string name="player_enter_fullscreen">Se i fullskjerm</string>
 <string name="player_exit_fullscreen">Avslutt fullskjerm</string>
+<string name="player_fit_original">Opprinnelig sideforhold</string>
+<string name="player_fit_screen">Fyll skjermen</string>
+<string name="player_fit_title">Bildestørrelse</string>
+<string name="player_fit_width">Fyll bredden</string>
 <string name="player_load_subtitles">Last inn fra fil</string>
 <string name="player_load_subtitles_online">Last inn fra Internett</string>
 <string name="player_loaded_subtitles">Lastet inn %s</string>

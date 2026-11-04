@@ -3681,6 +3681,10 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field player_default_key I
 	public static field player_enter_fullscreen I
 	public static field player_exit_fullscreen I
+	public static field player_fit_original I
+	public static field player_fit_screen I
+	public static field player_fit_title I
+	public static field player_fit_width I
 	public static field player_is_live I
 	public static field player_load_one_subtitle_online I
 	public static field player_load_subtitles I

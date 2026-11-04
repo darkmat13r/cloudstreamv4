@@ -186,6 +186,10 @@
 <string name="play_with_app_name">Paleisti su CloudStream</string>
 <string name="player_enter_fullscreen">Įjungti viso ekrano režimą</string>
 <string name="player_exit_fullscreen">Išjungti viso ekrano režimą</string>
+<string name="player_fit_original">Originalus kraštinių santykis</string>
+<string name="player_fit_screen">Užpildyti ekraną</string>
+<string name="player_fit_title">Vaizdo dydis</string>
+<string name="player_fit_width">Užpildyti plotį</string>
 <string name="player_mute">Nutildyti</string>
 <string name="player_settings_play_in_app">Integruotas grotuvas</string>
 <string name="player_size_settings">Grotuvo dydžio pakeitimo mygtukas</string>

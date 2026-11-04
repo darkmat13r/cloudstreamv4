@@ -36,6 +36,8 @@ line boxes.
 | Source list appears when complete | It grows as links arrive: a new link joins the end, the header counts them and says `Loading…` until the search ends, and nothing takes focus (`BUG-19`) | Direct manipulation: what is under the pointer stays there, and the words take no height, so finishing moves nothing |
 | Episodes behind a selector | On the page | A window has the room |
 | Full-width player scrim | Floating controls, at most 720 wide | The picture stays clear, and play stays near its timeline |
+| 7d's four-row stack of 96-tall cells | Two rows in that surface: transport with the seek track, then selectors | The same order and the same readouts, at a pointer's size. Selectors say what is playing, value over label, and stay through loading and failure |
+| Volume, full screen, picture size (not in 7d, which is a TV with its own remote) | Volume in the transport row, the other two at the end of the selector row | The level is drawn in ink, because `live` is playback state only |
 | Tap to seek | The track follows the pointer 1:1, and seeks once on release | Direct manipulation; a seek is a network request |
 | Subtitle track menu | A short list floating above the control that opened it, in the controls' column; C opens it, a click outside closes it | It stays beside the timeline, and the picture keeps playing around it |
 | Fixed subtitle band | Cues go where the file asks, and lift clear of the controls while they show | A cue never hides behind a control, and nothing moves when the controls are gone |

@@ -417,6 +417,10 @@
 <string name="play_with_app_name">Прайграць праз CloudStream</string>
 <string name="player_enter_fullscreen">Уключыць поўнаэкранны рэжым</string>
 <string name="player_exit_fullscreen">Выключыць поўнаэкранны рэжым</string>
+<string name="player_fit_original">Зыходныя прапорцыі</string>
+<string name="player_fit_screen">Запоўніць экран</string>
+<string name="player_fit_title">Памер выявы</string>
+<string name="player_fit_width">Запоўніць шырыню</string>
 <string name="player_is_live">Ужывую</string>
 <string name="player_load_one_subtitle_online">Спампаваць першыя даступныя</string>
 <string name="player_load_subtitles">Загрузіць з файла</string>

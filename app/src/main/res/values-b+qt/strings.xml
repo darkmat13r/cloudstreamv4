@@ -366,6 +366,10 @@
 <string name="play_with_app_name">"oooooh aaah aauuuggghauuh"</string>
 <string name="player_enter_fullscreen">"oouuh haa aaaaa"</string>
 <string name="player_exit_fullscreen">"aauugghhaaaghh aaaaa"</string>
+<string name="player_fit_original">"oh aah"</string>
+<string name="player_fit_screen">"oouuh aah"</string>
+<string name="player_fit_title">"aaaaa oh"</string>
+<string name="player_fit_width">"haa oh"</string>
 <string name="player_load_subtitles">"aagg aahh uuuk"</string>
 <string name="player_load_subtitles_online">"eeek aahh oooohhhh"</string>
 <string name="player_loaded_subtitles" formatted="true">"oooohh %s"</string>

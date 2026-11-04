@@ -18,6 +18,7 @@ import androidx.compose.ui.graphics.toPixelMap
 import androidx.compose.ui.input.key.Key
 import androidx.compose.ui.input.key.KeyEvent
 import androidx.compose.ui.input.key.KeyEventType
+import androidx.compose.ui.unit.IntRect
 import androidx.compose.ui.window.WindowPlacement
 import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.input.pointer.PointerEventType
@@ -32,6 +33,7 @@ import com.lagradost.cloudstream4.media.model.SubtitleTrack
 import com.lagradost.cloudstream4.media.subtitle.SubtitleParseResult
 import com.lagradost.cloudstream4.media.subtitle.SubtitleTimeline
 import java.io.File
+import java.nio.file.Files
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertIs
@@ -85,6 +87,7 @@ class PlayerScreenTest {
         pictureSize: IntSize? = null,
         fullscreen: PlayerFullscreen? = null,
         val volume: PlayerVolume = PlayerVolume(),
+        val fit: PictureFitChoice = PictureFitChoice(),
     ) {
         val calls = Calls()
         val clock = PlaybackClock().also { it.onStatus(status) }
@@ -108,6 +111,7 @@ class PlayerScreenTest {
                             setEscape = { escape = it },
                             fullscreen = fullscreen,
                             volume = volume,
+                            fit = fit,
                         )
                     }
                 }
@@ -137,13 +141,28 @@ class PlayerScreenTest {
             settle()
         }
 
-        /** The control at the right end of the transport row. */
-        val button: Offset
-            get() {
-                val rowWidth = minOf(width - 48, 720)
-                val rowRight = (width + rowWidth) / 2
-                return Offset(rowRight - 16f - 18f, height - 24f - 26f)
-            }
+        private val rowWidth get() = minOf(width - 48, 720)
+        private val rowLeft get() = (width - rowWidth) / 2f
+        private val rowRight get() = rowLeft + rowWidth
+        private val selectorsY get() = height - 24f - 8f - 20f
+
+        /** The subtitle selector, first in the row under the transport. */
+        val button: Offset get() = Offset(rowLeft + 16f + 40f, selectorsY)
+
+        /** The picture size selector, last in that row where there is no full screen control. */
+        val fitButton: Offset get() = Offset(rowRight - 16f - 40f, selectorsY)
+
+        /** At the right end of that row. */
+        val fullscreenButton: Offset get() = Offset(rowRight - 16f - 18f, height - 24f - 8f - 20f)
+
+        /** Inside a list, which sits at the right of the controls' column. */
+        val panelX: Float get() = rowRight - 100f
+
+        /** Transport row, at its right end: the volume rule ends here. */
+        val ruleRight: Float get() = rowRight - 16f
+        val transportY: Float get() = height - 24f - 8f - 40f - 8f - 18f
+
+        fun pixels(): PixelMap = settle().toComposeImageBitmap().toPixelMap()
 
         fun save(name: String) {
             val dir = System.getProperty("cloudstream.home.renders") ?: return
@@ -152,6 +171,8 @@ class PlayerScreenTest {
             File(dir, "$name-${width}x$height.png").writeBytes(data.bytes)
         }
     }
+
+    private fun PixelMap.isWhite(x: Int, y: Int) = this[x, y] == Color.White
 
     private fun whiteFrame(width: Int, height: Int): ImageBitmap {
         val bitmap = Bitmap()
@@ -274,8 +295,8 @@ class PlayerScreenTest {
         screen.settle()
         screen.click(screen.button)
         // Opened at the panel's foot: Off, then the two tracks, each 48 tall, above the controls.
-        val x = screen.button.x - 100
-        val foot = screen.height - 84f - 8f - 4f
+        val x = screen.panelX
+        val foot = screen.height - 132f - 8f - 4f
         val german = Offset(x, foot - 24f)
         val englishRow = Offset(x, foot - 72f)
         val off = Offset(x, foot - 120f)
@@ -327,9 +348,9 @@ class PlayerScreenTest {
         val window = WindowState()
         val screen = Screen(fullscreen = PlayerFullscreen(window))
         screen.settle()
-        screen.click(screen.button)
+        screen.click(screen.fullscreenButton)
         assertEquals(WindowPlacement.Fullscreen, window.placement)
-        screen.click(screen.button)
+        screen.click(screen.fullscreenButton)
         assertEquals(WindowPlacement.Floating, window.placement)
         screen.scene.close()
     }
@@ -340,9 +361,9 @@ class PlayerScreenTest {
         val screen = Screen(width = 800, height = 450, fullscreen = PlayerFullscreen(window))
         screen.settle()
         screen.save("fullscreen-control")
-        screen.click(screen.button)
+        screen.click(screen.fullscreenButton)
         assertEquals(WindowPlacement.Fullscreen, window.placement)
-        screen.click(Offset(screen.button.x - 52f, screen.button.y))
+        screen.click(screen.button)
         screen.press(Key.DirectionRight)
         assertEquals(emptyList(), screen.calls.log, "the control beside it opened the subtitle list")
         screen.scene.close()
@@ -498,15 +519,111 @@ class PlayerScreenTest {
         val screen = Screen(width = 800, height = 450, fullscreen = PlayerFullscreen(WindowState()), volume = PlayerVolume(100))
         screen.settle()
         screen.save("volume-control")
-        // Right to left: fullscreen 36, subtitles 36, then the 80 wide rule and the 36 speaker, with 16 and 8 gaps.
-        val ruleRight = screen.button.x - 18f - 16f - 36f - 16f
-        screen.click(Offset(ruleRight - 40f, screen.button.y))
+        // The rule ends the transport row; the 36 speaker is before it, with an 8 gap.
+        val ruleRight = screen.ruleRight
+        screen.click(Offset(ruleRight - 40f, screen.transportY))
         assertEquals(50, screen.volume.level)
-        screen.click(Offset(ruleRight - 80f - 8f - 18f, screen.button.y))
+        screen.click(Offset(ruleRight - 80f - 8f - 18f, screen.transportY))
         assertEquals(true, screen.volume.muted)
         assertEquals(50, screen.volume.level)
         assertEquals(emptyList(), screen.calls.log)
         screen.scene.close()
+    }
+
+    @Test
+    fun `R opens the fit list, and the keys and a click choose from it`() {
+        val screen = Screen()
+        screen.settle()
+        assertEquals(PictureFit.ORIGINAL, screen.fit.current)
+        screen.press(Key.R)
+        screen.press(Key.DirectionDown)
+        screen.press(Key.Enter)
+        assertEquals(PictureFit.FILL_WIDTH, screen.fit.current)
+        // Closed by the choice, so the arrows are the volume's again.
+        screen.press(Key.DirectionDown)
+        assertEquals(95, screen.volume.level)
+        screen.scene.close()
+    }
+
+    @Test
+    fun `the control opens the fit list at the smallest window, and it fits`() {
+        val screen = Screen(width = 800, height = 450)
+        screen.settle()
+        screen.click(screen.fitButton)
+        screen.save("picture-fit-list")
+        // Rows of 48 above the 132 the controls take, with the 8 panel padding: the last is Fill screen.
+        screen.click(Offset(screen.panelX, screen.height - 132f - 8f - 24f))
+        assertEquals(PictureFit.FILL_SCREEN, screen.fit.current)
+        screen.scene.close()
+    }
+
+    @Test
+    fun `escape closes the fit list before it leaves the player, and the keys do not reach playback`() {
+        val screen = Screen()
+        screen.settle()
+        screen.press(Key.R)
+        screen.press(Key.DirectionLeft)
+        assertEquals(emptyList(), screen.calls.log)
+        screen.escape()
+        screen.settle()
+        assertEquals(0, screen.backs)
+        screen.press(Key.DirectionLeft)
+        assertEquals(listOf("by -10000"), screen.calls.log)
+        screen.scene.close()
+    }
+
+    @Test
+    fun `each fit draws the frame as it says`() {
+        val cases = listOf(PictureFit.ORIGINAL, PictureFit.FILL_WIDTH, PictureFit.FILL_SCREEN)
+        cases.forEach { fit ->
+            val choice = PictureFitChoice().also { it.choose(fit) }
+            // A wide picture in a 4:3 window, and a tall one that fill width has to cut.
+            val wide = Screen(width = 800, height = 600, frame = whiteFrame(320, 180), pictureSize = IntSize(320, 180), fit = choice)
+            wide.save("fit-${fit.name}-wide")
+            val pixels = wide.pixels()
+            when (fit) {
+                PictureFit.ORIGINAL, PictureFit.FILL_WIDTH -> {
+                    assertEquals(false, pixels.isWhite(400, 40), "$fit: a bar above the picture")
+                    assertEquals(true, pixels.isWhite(400, 200), "$fit: the picture")
+                }
+                PictureFit.FILL_SCREEN -> assertEquals(true, pixels.isWhite(400, 110), "$fit: no bar")
+            }
+            wide.scene.close()
+            val tall = Screen(width = 800, height = 450, frame = whiteFrame(180, 320), pictureSize = IntSize(180, 320), fit = choice)
+            tall.save("fit-${fit.name}-tall")
+            val across = tall.pixels().isWhite(20, 200)
+            assertEquals(fit != PictureFit.ORIGINAL, across, "$fit: the picture at the window's left edge")
+            tall.scene.close()
+        }
+    }
+
+    @Test
+    fun `a cue stays on the part of the picture that can be seen`() {
+        val box = IntSize(800, 450)
+        assertEquals(IntRect(0, 0, 800, 450), pictureRect(box, IntSize(180, 320), PictureFit.FILL_WIDTH))
+        assertEquals(IntRect(0, 0, 800, 450), pictureRect(box, IntSize(320, 180), PictureFit.FILL_SCREEN))
+        assertEquals(IntRect(273, 0, 526, 450), pictureRect(box, IntSize(180, 320), PictureFit.ORIGINAL))
+        assertEquals(IntRect(0, 112, 800, 337), pictureRect(IntSize(800, 450), IntSize(1600, 450), PictureFit.FILL_WIDTH))
+    }
+
+    @Test
+    fun `the fit is there at the next launch, and anything else in the file reads as the default`() {
+        val directory = Files.createTempDirectory("picture-fit").toFile()
+        try {
+            val file = File(directory, "nested/picture-fit")
+            assertEquals(PictureFit.ORIGINAL, PictureFitChoice(file).current)
+            assertEquals(false, file.exists(), "reading writes nothing")
+            PictureFitChoice(file).choose(PictureFit.FILL_SCREEN)
+            repeat(200) { if (!file.exists() || file.readText() != "FILL_SCREEN") Thread.sleep(10) }
+            assertEquals(PictureFit.FILL_SCREEN, PictureFitChoice(file).current)
+            assertEquals(listOf("picture-fit"), file.parentFile.list()?.toList(), "no temporary file left")
+            file.writeText("<script>")
+            assertEquals(PictureFit.ORIGINAL, PictureFitChoice(file).current)
+            file.writeText("F".repeat(65))
+            assertEquals(PictureFit.ORIGINAL, PictureFitChoice(file).current)
+        } finally {
+            directory.deleteRecursively()
+        }
     }
 
     @Test
@@ -529,8 +646,8 @@ class PlayerScreenTest {
         screen.click(screen.button)
         val after = screen.settle().toComposeImageBitmap().toPixelMap()
         screen.save("subtitle-no-tracks")
-        val x = screen.button.x.toInt() - 100
-        val y = screen.height - 84 - 40
+        val x = screen.panelX.toInt()
+        val y = screen.height - 132 - 40
         assertNotEquals(before[x, y], after[x, y], "the panel is there")
         // A click where a row would be is not a choice, and it leaves playback alone.
         screen.click(Offset(x.toFloat(), y.toFloat()))
@@ -546,7 +663,7 @@ class PlayerScreenTest {
         mouse.click(mouse.button)
         mouse.session.offer(listOf(english))
         mouse.settle()
-        mouse.click(Offset(mouse.button.x - 100, mouse.height - 84f - 8f - 4f - 24f))
+        mouse.click(Offset(mouse.panelX, mouse.height - 132f - 8f - 4f - 24f))
         assertEquals(english, assertIs<SubtitleSelection.Showing>(mouse.session.selection.value).track)
         mouse.scene.close()
 
@@ -568,7 +685,7 @@ class PlayerScreenTest {
         screen.click(screen.button)
         screen.session.offer(listOf(english, german))
         screen.settle()
-        val lastRow = Offset(screen.button.x - 100, screen.height - 84f - 8f - 4f - 24f)
+        val lastRow = Offset(screen.panelX, screen.height - 132f - 8f - 4f - 24f)
         screen.click(lastRow)
         assertEquals(english, assertIs<SubtitleSelection.Showing>(screen.session.selection.value).track)
         screen.click(screen.button)
@@ -599,7 +716,7 @@ class PlayerScreenTest {
         assertEquals(reason, assertIs<SubtitleSelection.Failed>(screen.session.selection.value).reason)
         val failed = screen.settle().toComposeImageBitmap().toPixelMap()
         var changed = 0
-        val rowY = height - 84 - 24 - 20
+        val rowY = height - 132 - 24 - 20
         for (x in 0 until width) if (clear[x, rowY] != failed[x, rowY]) changed++
         assertTrue(changed > 0, "a notice above the controls for $reason")
         screen.save("subtitle-failed-$reason")

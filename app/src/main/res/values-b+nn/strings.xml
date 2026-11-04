@@ -143,6 +143,10 @@
 <string name="play_with_app_name">"Spel av med CloudStream"</string>
 <string name="player_enter_fullscreen">"Vis i fullskjerm"</string>
 <string name="player_exit_fullscreen">"Avslutt fullskjerm"</string>
+<string name="player_fit_original">"Opphavleg sideforhold"</string>
+<string name="player_fit_screen">"Fyll skjermen"</string>
+<string name="player_fit_title">"Biletstorleik"</string>
+<string name="player_fit_width">"Fyll breidda"</string>
 <string name="player_mute">"Slå av lyd"</string>
 <string name="player_size_settings_des">"Fjern dei svarte kantane"</string>
 <string name="player_speed">"Avspelinghastigheit"</string>

@@ -123,6 +123,10 @@
 <string name="play_with_app_name">Ipatugtog sa CloudStream</string>
 <string name="player_enter_fullscreen">Mag-fullscreen</string>
 <string name="player_exit_fullscreen">Lumabas sa fullscreen</string>
+<string name="player_fit_original">Orihinal na aspect ratio</string>
+<string name="player_fit_screen">Punuin ang screen</string>
+<string name="player_fit_title">Laki ng larawan</string>
+<string name="player_fit_width">Punuin ang lapad</string>
 <string name="player_mute">I-mute</string>
 <string name="player_notification_channel_description">Ang abiso ng player para sa pagkontrol sa pag-playback mula sa background</string>
 <string name="player_speed">Bilis ng Manlalaro</string>
