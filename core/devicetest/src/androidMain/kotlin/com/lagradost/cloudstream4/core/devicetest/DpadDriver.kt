@@ -79,10 +79,20 @@ class DpadDriver(private val readFocus: (() -> String?)? = null) {
      * moves between its keys, not between stops on the screen.
      */
     fun closeKeyboard() {
-        val deadline = System.currentTimeMillis() + SETTLE_TIMEOUT_MS
-        if (keyboardShown()) send(KeyEvent.KEYCODE_BACK)
-        while (keyboardShown()) {
-            check(System.currentTimeMillis() < deadline) { "The keyboard did not close" }
+        val deadline = System.currentTimeMillis() + KEYBOARD_CLOSE_MS
+        var nextBack = 0L
+        while (true) {
+            val state = device.executeShellCommand("dumpsys input_method")
+            val requested = "mInputShown=true" in state
+            if (!requested && "mImeWindowVis=0" in state) return
+            val now = System.currentTimeMillis()
+            check(now < deadline) { "The keyboard did not close" }
+            // Again if it is still up: on a cold keyboard the first Back can arrive before it listens.
+            // Only while shown is requested, because a Back with no keyboard would leave the screen.
+            if (requested && now >= nextBack) {
+                send(KeyEvent.KEYCODE_BACK)
+                nextBack = now + KEYBOARD_BACK_RETRY_MS
+            }
             Thread.sleep(POLL_MS)
         }
     }
@@ -159,6 +169,8 @@ class DpadDriver(private val readFocus: (() -> String?)? = null) {
     private companion object {
         const val POLL_MS = 120L
         const val KEYBOARD_ARRIVAL_MS = 800L
+        const val KEYBOARD_CLOSE_MS = 15_000L
+        const val KEYBOARD_BACK_RETRY_MS = 2_000L
         const val STABLE_READS = 2
         const val SETTLE_TIMEOUT_MS = 3_000L
         const val ENTER_ATTEMPTS = 3
