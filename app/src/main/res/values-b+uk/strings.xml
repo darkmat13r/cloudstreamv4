@@ -276,6 +276,7 @@
 <string name="extension_status_blocked">"Заблоковано скануванням. Це не можна дозволити."</string>
 <string name="extension_status_hash_mismatch">"Цей файл не збігається з опублікованим хешем. Це не можна дозволити."</string>
 <string name="extension_status_held">"Вимкнено, доки ви не оберете"</string>
+<string name="extension_status_held_new_version">"Нова версія · Вимкнено, доки ви не оберете"</string>
 <string name="extension_status_kept_off">"Залишено вимкненим"</string>
 <string name="extension_status_start_failed">"Дозволено, але не запустилося"</string>
 <string name="extension_types">"Підтримується"</string>

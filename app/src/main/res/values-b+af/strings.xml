@@ -50,6 +50,7 @@
 <string name="extension_status_blocked">"Deur die skandering geblokkeer. Dit kan nie toegelaat word nie."</string>
 <string name="extension_status_hash_mismatch">"Hierdie lêer stem nie ooreen met sy gepubliseerde hash nie. Dit kan nie toegelaat word nie."</string>
 <string name="extension_status_held">"Af totdat jy kies"</string>
+<string name="extension_status_held_new_version">"Nuwe weergawe · Af totdat jy kies"</string>
 <string name="extension_status_kept_off">"Afgehou"</string>
 <string name="extension_status_start_failed">"Toegelaat, maar dit het nie begin nie"</string>
 <string name="extension_warning_classloader_access">"Dit gryp na die klaslaaier, wat kode kan inbring wat hierdie skandering nooit gesien het nie."</string>

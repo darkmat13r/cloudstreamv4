@@ -276,6 +276,7 @@
 <string name="extension_status_blocked">スキャンによりブロックされました。許可できません。</string>
 <string name="extension_status_hash_mismatch">このファイルは公開されているハッシュと一致しません。許可できません。</string>
 <string name="extension_status_held">選択するまでオフ</string>
+<string name="extension_status_held_new_version">新しいバージョン · 選択するまでオフ</string>
 <string name="extension_status_kept_off">オフのまま</string>
 <string name="extension_status_start_failed">許可済みですが、起動しませんでした</string>
 <string name="extension_types">サポート</string>

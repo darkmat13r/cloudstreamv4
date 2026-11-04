@@ -42,6 +42,7 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.extension_sta
 import com.lagradost.cloudstream4.core.strings.generated.resources.extension_status_blocked
 import com.lagradost.cloudstream4.core.strings.generated.resources.extension_status_hash_mismatch
 import com.lagradost.cloudstream4.core.strings.generated.resources.extension_status_held
+import com.lagradost.cloudstream4.core.strings.generated.resources.extension_status_held_new_version
 import com.lagradost.cloudstream4.core.strings.generated.resources.extension_status_kept_off
 import com.lagradost.cloudstream4.core.strings.generated.resources.extension_status_start_failed
 import com.lagradost.cloudstream4.core.strings.generated.resources.extension_warning_classloader_access
@@ -205,7 +206,13 @@ private fun ReviewRow(review: ExtensionReview, onAction: (ReviewAction) -> Unit,
                     overflow = TextOverflow.Ellipsis,
                 )
                 BasicText(
-                    text = stringResource(statusWords(review.status)),
+                    text = stringResource(
+                        if (review.newVersion && review.status == ReviewStatus.Held) {
+                            Res.string.extension_status_held_new_version
+                        } else {
+                            statusWords(review.status)
+                        },
+                    ),
                     style = typography.caption.copy(color = colors.muted),
                 )
             }

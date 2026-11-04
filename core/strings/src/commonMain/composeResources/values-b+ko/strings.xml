@@ -275,6 +275,7 @@
 <string name="extension_status_blocked">검사에서 차단되었습니다. 허용할 수 없습니다.</string>
 <string name="extension_status_hash_mismatch">이 파일은 게시된 해시와 일치하지 않습니다. 허용할 수 없습니다.</string>
 <string name="extension_status_held">선택할 때까지 꺼짐</string>
+<string name="extension_status_held_new_version">새 버전 · 선택할 때까지 꺼짐</string>
 <string name="extension_status_kept_off">꺼진 상태로 유지됨</string>
 <string name="extension_status_start_failed">허용되었지만 시작되지 않음</string>
 <string name="extension_types">유형</string>

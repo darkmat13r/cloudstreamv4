@@ -276,6 +276,7 @@
 <string name="extension_status_blocked">ஸ்கேன் மூலம் தடுக்கப்பட்டது. இதை அனுமதிக்க முடியாது.</string>
 <string name="extension_status_hash_mismatch">இந்தக் கோப்பு அதன் வெளியிடப்பட்ட ஹாஷுடன் பொருந்தவில்லை. இதை அனுமதிக்க முடியாது.</string>
 <string name="extension_status_held">நீங்கள் தேர்வு செய்யும் வரை முடக்கம்</string>
+<string name="extension_status_held_new_version">புதிய பதிப்பு · நீங்கள் தேர்வு செய்யும் வரை முடக்கம்</string>
 <string name="extension_status_kept_off">முடக்கி வைக்கப்பட்டது</string>
 <string name="extension_status_start_failed">அனுமதிக்கப்பட்டது, ஆனால் தொடங்கவில்லை</string>
 <string name="extension_types">ஆதரிக்கப்பட்டது</string>

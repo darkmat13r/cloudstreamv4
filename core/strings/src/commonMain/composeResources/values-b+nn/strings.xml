@@ -74,6 +74,7 @@
 <string name="extension_status_blocked">Blokkert av skanninga. Dette kan ikkje tillatast.</string>
 <string name="extension_status_hash_mismatch">Denne fila stemmer ikkje med den publiserte hashen. Dette kan ikkje tillatast.</string>
 <string name="extension_status_held">Av til du vel</string>
+<string name="extension_status_held_new_version">Ny versjon · Av til du vel</string>
 <string name="extension_status_kept_off">Blir verande av</string>
 <string name="extension_status_start_failed">Tillaten, men starta ikkje</string>
 <string name="extension_warning_classloader_access">Ho når klasselastaren, som kan hente inn kode denne skanninga aldri har sett.</string>

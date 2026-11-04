@@ -245,6 +245,7 @@
 <string name="extension_status_blocked">স্কেনে অৱৰোধ কৰিছে। ইয়াক অনুমতি দিব নোৱাৰি।</string>
 <string name="extension_status_hash_mismatch">এই ফাইলটো ইয়াৰ প্ৰকাশিত হেচৰ সৈতে নিমিলে। ইয়াক অনুমতি দিব নোৱাৰি।</string>
 <string name="extension_status_held">আপুনি বাছনি নকৰালৈকে বন্ধ</string>
+<string name="extension_status_held_new_version">নতুন সংস্কৰণ · আপুনি বাছনি নকৰালৈকে বন্ধ</string>
 <string name="extension_status_kept_off">বন্ধ ৰখা হৈছে</string>
 <string name="extension_status_start_failed">অনুমতি দিয়া হৈছে, কিন্তু ই আৰম্ভ নহ'ল</string>
 <string name="extension_types">সমৰ্থিত</string>

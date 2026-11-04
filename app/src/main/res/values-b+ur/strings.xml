@@ -227,6 +227,7 @@
 <string name="extension_status_blocked">"اسکین نے مسدود کر دیا۔ اس کی اجازت نہیں دی جا سکتی۔"</string>
 <string name="extension_status_hash_mismatch">"یہ فائل اپنے شائع شدہ ہیش سے مطابقت نہیں رکھتی۔ اس کی اجازت نہیں دی جا سکتی۔"</string>
 <string name="extension_status_held">"آپ کے انتخاب تک بند"</string>
+<string name="extension_status_held_new_version">"نیا ورژن · آپ کے انتخاب تک بند"</string>
 <string name="extension_status_kept_off">"بند رکھی گئی"</string>
 <string name="extension_status_start_failed">"اجازت دی گئی، لیکن یہ شروع نہیں ہوئی"</string>
 <string name="extension_types">"حمایت کی"</string>

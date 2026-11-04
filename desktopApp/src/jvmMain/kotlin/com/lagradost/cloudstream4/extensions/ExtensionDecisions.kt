@@ -14,6 +14,12 @@ import java.security.MessageDigest
 enum class ExtensionChoice(internal val word: String) {
     Allow("allow"),
     KeepOff("keep-off"),
+
+    /**
+     * Nobody chose: the scan had nothing to say when this file first ran, so it was never asked about. It is recorded so
+     * that a different file under this name is noticed, and it is never an approval of warnings.
+     */
+    Seen("seen"),
 }
 
 /**
@@ -29,6 +35,16 @@ class DecisionsSnapshot internal constructor(
     /** The choice for this file name and this exact content, or null: another hash is another file. */
     fun choiceFor(fileName: String, sha256: String): ExtensionChoice? =
         entries[fileName]?.takeIf { (recorded, _) -> recorded == sha256 }?.second
+
+    /**
+     * Whether an earlier file of this stem has been recorded, under either of its suffixes, and this one is not it. A
+     * `Foo.jar` beside a `Foo.cs3` takes its place and its directory, so it counts as the same extension.
+     */
+    fun isNewVersion(fileName: String, sha256: String): Boolean {
+        val stem = fileName.substringBeforeLast('.')
+        val earlier = entries.filterKeys { it.substringBeforeLast('.') == stem }
+        return earlier.isNotEmpty() && earlier[fileName]?.first != sha256
+    }
 
     internal val all: Map<String, Pair<String, ExtensionChoice>> get() = entries
 }

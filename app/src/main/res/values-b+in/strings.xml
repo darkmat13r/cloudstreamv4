@@ -276,6 +276,7 @@
 <string name="extension_status_blocked">"Diblokir oleh pemindaian. Ini tidak dapat diizinkan."</string>
 <string name="extension_status_hash_mismatch">"Berkas ini tidak cocok dengan hash yang dipublikasikan. Ini tidak dapat diizinkan."</string>
 <string name="extension_status_held">"Nonaktif sampai Anda memilih"</string>
+<string name="extension_status_held_new_version">"Versi baru · Nonaktif sampai Anda memilih"</string>
 <string name="extension_status_kept_off">"Tetap nonaktif"</string>
 <string name="extension_status_start_failed">"Diizinkan, tetapi tidak berhasil dimulai"</string>
 <string name="extension_types">"Dukungan"</string>

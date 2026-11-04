@@ -185,6 +185,7 @@
 <string name="extension_status_blocked">Blokkert av skanningen. Dette kan ikke tillates.</string>
 <string name="extension_status_hash_mismatch">Denne filen stemmer ikke med den publiserte hash-verdien. Dette kan ikke tillates.</string>
 <string name="extension_status_held">Av til du velger</string>
+<string name="extension_status_held_new_version">Ny versjon · Av til du velger</string>
 <string name="extension_status_kept_off">Holdes av</string>
 <string name="extension_status_start_failed">Tillatt, men den startet ikke</string>
 <string name="extension_types">Støttet</string>

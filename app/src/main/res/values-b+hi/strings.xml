@@ -173,6 +173,7 @@
 <string name="extension_status_blocked">"स्कैन ने इसे ब्लॉक किया है। इसकी अनुमति नहीं दी जा सकती।"</string>
 <string name="extension_status_hash_mismatch">"यह फ़ाइल अपने प्रकाशित हैश से मेल नहीं खाती। इसकी अनुमति नहीं दी जा सकती।"</string>
 <string name="extension_status_held">"आपके चुनने तक बंद"</string>
+<string name="extension_status_held_new_version">"नया संस्करण · आपके चुनने तक बंद"</string>
 <string name="extension_status_kept_off">"बंद रखा गया"</string>
 <string name="extension_status_start_failed">"अनुमति है, लेकिन यह शुरू नहीं हुआ"</string>
 <string name="extension_warning_classloader_access">"यह क्लास लोडर तक पहुँचता है, जो ऐसा कोड ला सकता है जिसे इस स्कैन ने कभी नहीं देखा।"</string>

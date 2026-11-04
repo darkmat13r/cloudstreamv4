@@ -276,6 +276,7 @@
 <string name="extension_status_blocked">"Zablokováno kontrolou. Nelze povolit."</string>
 <string name="extension_status_hash_mismatch">"Tento soubor neodpovídá svému zveřejněnému hashi. Nelze povolit."</string>
 <string name="extension_status_held">"Vypnuto, dokud se nerozhodnete"</string>
+<string name="extension_status_held_new_version">"Nová verze · Vypnuto, dokud se nerozhodnete"</string>
 <string name="extension_status_kept_off">"Ponecháno vypnuté"</string>
 <string name="extension_status_start_failed">"Povoleno, ale nespustilo se"</string>
 <string name="extension_types">"Podporováno"</string>

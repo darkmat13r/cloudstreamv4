@@ -19,6 +19,7 @@
 <string name="extension_status_blocked">"ብምርመራ ተዓጽዩ። እዚ ክፍቀድ ኣይክእልን።"</string>
 <string name="extension_status_hash_mismatch">"እዚ ፋይል ምስቲ ዝተሓትመ ሃሽ ኣይሰማማዕን። እዚ ክፍቀድ ኣይክእልን።"</string>
 <string name="extension_status_held">"ክሳብ እትመርጽ ጠፊኡ ኣሎ"</string>
+<string name="extension_status_held_new_version">"ሓድሽ ስሪት · ክሳብ እትመርጽ ጠፊኡ ኣሎ"</string>
 <string name="extension_status_kept_off">"ጠፊኡ ይጸንሕ ኣሎ"</string>
 <string name="extension_status_start_failed">"ተፈቒዱ፡ ግን ኣይጀመረን"</string>
 <string name="extension_warning_classloader_access">"ናብ ክላስ ሎደር ይበጽሕ፡ እዚ ድማ እዚ ምርመራ ርእይዎ ዘይፈልጥ ኮድ ከእቱ ይኽእል።"</string>

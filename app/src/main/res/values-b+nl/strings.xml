@@ -251,6 +251,7 @@
 <string name="extension_status_blocked">"Geblokkeerd door de scan. Dit kan niet worden toegestaan."</string>
 <string name="extension_status_hash_mismatch">"Dit bestand komt niet overeen met de gepubliceerde hash. Dit kan niet worden toegestaan."</string>
 <string name="extension_status_held">"Uit tot je kiest"</string>
+<string name="extension_status_held_new_version">"Nieuwe versie · Uit tot je kiest"</string>
 <string name="extension_status_kept_off">"Blijft uit"</string>
 <string name="extension_status_start_failed">"Toegestaan, maar niet gestart"</string>
 <string name="extension_types">"Ondersteund"</string>

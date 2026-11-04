@@ -298,6 +298,7 @@ values-b+af	string	extension_status_allowed	-	Toegelaat en loop in sy sandboks
 values-b+af	string	extension_status_blocked	-	Deur die skandering geblokkeer. Dit kan nie toegelaat word nie.
 values-b+af	string	extension_status_hash_mismatch	-	Hierdie lêer stem nie ooreen met sy gepubliseerde hash nie. Dit kan nie toegelaat word nie.
 values-b+af	string	extension_status_held	-	Af totdat jy kies
+values-b+af	string	extension_status_held_new_version	-	Nuwe weergawe · Af totdat jy kies
 values-b+af	string	extension_status_kept_off	-	Afgehou
 values-b+af	string	extension_status_start_failed	-	Toegelaat, maar dit het nie begin nie
 values-b+af	string	extension_types	-	Supported
@@ -1138,6 +1139,7 @@ values-b+am	string	extension_status_allowed	-	ተፈቅዷል፣ በራሱ ሳ�
 values-b+am	string	extension_status_blocked	-	በቅኝቱ ታግዷል። ይህ ሊፈቀድ አይችልም።
 values-b+am	string	extension_status_hash_mismatch	-	ይህ ፋይል ከታተመው ሃሹ ጋር አይዛመድም። ይህ ሊፈቀድ አይችልም።
 values-b+am	string	extension_status_held	-	እስክትመርጥ ድረስ ጠፍቷል
+values-b+am	string	extension_status_held_new_version	-	አዲስ ስሪት · እስክትመርጥ ድረስ ጠፍቷል
 values-b+am	string	extension_status_kept_off	-	ጠፍቶ እንዲቆይ ተደርጓል
 values-b+am	string	extension_status_start_failed	-	ተፈቅዷል፣ ግን አልጀመረም
 values-b+am	string	extension_types	-	Supported
@@ -1978,6 +1980,7 @@ values-b+apc	string	extension_status_allowed	-	مسموحة وشغّالة بب�
 values-b+apc	string	extension_status_blocked	-	الفحص حظرها. ما فيك تسمح فيها.
 values-b+apc	string	extension_status_hash_mismatch	-	هالملف ما بيطابق قيمة التجزئة (hash) المنشورة تبعو. ما فيك تسمح فيه.
 values-b+apc	string	extension_status_held	-	مطفية لحتى تختار
+values-b+apc	string	extension_status_held_new_version	-	نسخة جديدة · مطفية لحتى تختار
 values-b+apc	string	extension_status_kept_off	-	ضلّت مطفية
 values-b+apc	string	extension_status_start_failed	-	مسموحة، بس ما اشتغلت
 values-b+apc	string	extension_types	-	مدعوم
@@ -2830,6 +2833,7 @@ values-b+ar	string	extension_status_allowed	-	مسموح بها وتعمل في 
 values-b+ar	string	extension_status_blocked	-	حظرها الفحص. لا يمكن السماح بها.
 values-b+ar	string	extension_status_hash_mismatch	-	لا يطابق هذا الملف قيمة التجزئة (hash) المنشورة له. لا يمكن السماح به.
 values-b+ar	string	extension_status_held	-	معطّلة حتى تختار
+values-b+ar	string	extension_status_held_new_version	-	إصدار جديد · معطّلة حتى تختار
 values-b+ar	string	extension_status_kept_off	-	أُبقيت معطّلة
 values-b+ar	string	extension_status_start_failed	-	مسموح بها، لكنها لم تبدأ
 values-b+ar	string	extension_types	-	مدعوم
@@ -3674,6 +3678,7 @@ values-b+ars	string	extension_status_allowed	-	مسموح بها وتعمل في
 values-b+ars	string	extension_status_blocked	-	حظرها الفحص. لا يمكن السماح بها.
 values-b+ars	string	extension_status_hash_mismatch	-	لا يطابق هذا الملف قيمة التجزئة (hash) المنشورة له. لا يمكن السماح به.
 values-b+ars	string	extension_status_held	-	معطّلة حتى تختار
+values-b+ars	string	extension_status_held_new_version	-	إصدار جديد · معطّلة حتى تختار
 values-b+ars	string	extension_status_kept_off	-	أُبقيت معطّلة
 values-b+ars	string	extension_status_start_failed	-	مسموح بها، لكنها لم تبدأ
 values-b+ars	string	extension_types	-	Supported
@@ -4514,6 +4519,7 @@ values-b+as	string	extension_status_allowed	-	অনুমতি দিয়া
 values-b+as	string	extension_status_blocked	-	স্কেনে অৱৰোধ কৰিছে। ইয়াক অনুমতি দিব নোৱাৰি।
 values-b+as	string	extension_status_hash_mismatch	-	এই ফাইলটো ইয়াৰ প্ৰকাশিত হেচৰ সৈতে নিমিলে। ইয়াক অনুমতি দিব নোৱাৰি।
 values-b+as	string	extension_status_held	-	আপুনি বাছনি নকৰালৈকে বন্ধ
+values-b+as	string	extension_status_held_new_version	-	নতুন সংস্কৰণ · আপুনি বাছনি নকৰালৈকে বন্ধ
 values-b+as	string	extension_status_kept_off	-	বন্ধ ৰখা হৈছে
 values-b+as	string	extension_status_start_failed	-	অনুমতি দিয়া হৈছে, কিন্তু ই আৰম্ভ নহ'ল
 values-b+as	string	extension_types	-	সমৰ্থিত
@@ -5354,6 +5360,7 @@ values-b+az	string	extension_status_allowed	-	İcazə verilib və öz təcrid ol
 values-b+az	string	extension_status_blocked	-	Yoxlama tərəfindən bloklanıb. Buna icazə vermək olmaz.
 values-b+az	string	extension_status_hash_mismatch	-	Bu fayl dərc olunmuş heşinə uyğun gəlmir. Buna icazə vermək olmaz.
 values-b+az	string	extension_status_held	-	Siz seçənədək söndürülüdür
+values-b+az	string	extension_status_held_new_version	-	Yeni versiya · Siz seçənədək söndürülüdür
 values-b+az	string	extension_status_kept_off	-	Söndürülü saxlanılıb
 values-b+az	string	extension_status_start_failed	-	İcazə verilib, amma işə düşmədi
 values-b+az	string	extension_types	-	Supported
@@ -6200,6 +6207,7 @@ values-b+be	string	extension_status_allowed	-	Дазволена і працуе
 values-b+be	string	extension_status_blocked	-	Заблакавана сканаваннем. Гэта нельга дазволіць.
 values-b+be	string	extension_status_hash_mismatch	-	Гэты файл не адпавядае свайму апублікаванаму хэшу. Гэта нельга дазволіць.
 values-b+be	string	extension_status_held	-	Выключана, пакуль вы не вырашыце
+values-b+be	string	extension_status_held_new_version	-	Новая версія · Выключана, пакуль вы не вырашыце
 values-b+be	string	extension_status_kept_off	-	Пакінута выключаным
 values-b+be	string	extension_status_start_failed	-	Дазволена, але не запусцілася
 values-b+be	string	extension_types	-	Падтрымлівае
@@ -7040,6 +7048,7 @@ values-b+bg	string	extension_status_allowed	-	Разрешено и работи
 values-b+bg	string	extension_status_blocked	-	Блокирано от сканирането. Това не може да бъде разрешено.
 values-b+bg	string	extension_status_hash_mismatch	-	Този файл не съответства на публикувания си хеш. Това не може да бъде разрешено.
 values-b+bg	string	extension_status_held	-	Изключено, докато не решите
+values-b+bg	string	extension_status_held_new_version	-	Нова версия · Изключено, докато не решите
 values-b+bg	string	extension_status_kept_off	-	Оставено изключено
 values-b+bg	string	extension_status_start_failed	-	Разрешено, но не се стартира
 values-b+bg	string	extension_types	-	Поддържани
@@ -7880,6 +7889,7 @@ values-b+bn	string	extension_status_allowed	-	অনুমতি দেওয়
 values-b+bn	string	extension_status_blocked	-	স্ক্যান এটি ব্লক করেছে। এটি অনুমতি দেওয়া যাবে না।
 values-b+bn	string	extension_status_hash_mismatch	-	এই ফাইলটি এর প্রকাশিত হ্যাশের সাথে মেলে না। এটি অনুমতি দেওয়া যাবে না।
 values-b+bn	string	extension_status_held	-	আপনি বেছে না নেওয়া পর্যন্ত বন্ধ
+values-b+bn	string	extension_status_held_new_version	-	নতুন সংস্করণ · আপনি বেছে না নেওয়া পর্যন্ত বন্ধ
 values-b+bn	string	extension_status_kept_off	-	বন্ধ রাখা হয়েছে
 values-b+bn	string	extension_status_start_failed	-	অনুমতি দেওয়া হয়েছে, কিন্তু এটি চালু হয়নি
 values-b+bn	string	extension_types	-	Supported
@@ -8721,6 +8731,7 @@ values-b+ca	string	extension_status_allowed	-	Permesa i en execució al seu ento
 values-b+ca	string	extension_status_blocked	-	Bloquejada per l'anàlisi. No es pot permetre.
 values-b+ca	string	extension_status_hash_mismatch	-	Aquest fitxer no coincideix amb el seu hash publicat. No es pot permetre.
 values-b+ca	string	extension_status_held	-	Desactivada fins que triïs
+values-b+ca	string	extension_status_held_new_version	-	Versió nova · Desactivada fins que triïs
 values-b+ca	string	extension_status_kept_off	-	Mantinguda desactivada
 values-b+ca	string	extension_status_start_failed	-	Permesa, però no s'ha iniciat
 values-b+ca	string	extension_types	-	Supported
@@ -9561,6 +9572,7 @@ values-b+ckb	string	extension_status_allowed	-	ڕێگەی پێدراوە و لە
 values-b+ckb	string	extension_status_blocked	-	پشکنینەکە بلۆکی کرد. ناتوانرێت ڕێگەی پێ بدرێت.
 values-b+ckb	string	extension_status_hash_mismatch	-	ئەم فایلە لەگەڵ هاشی بڵاوکراوەی خۆی ناگونجێت. ناتوانرێت ڕێگەی پێ بدرێت.
 values-b+ckb	string	extension_status_held	-	کوژاوەیە تا هەڵدەبژێریت
+values-b+ckb	string	extension_status_held_new_version	-	وەشانی نوێ · کوژاوەیە تا هەڵدەبژێریت
 values-b+ckb	string	extension_status_kept_off	-	بە کوژاوەیی هێڵدرایەوە
 values-b+ckb	string	extension_status_start_failed	-	ڕێگەی پێدراوە، بەڵام دەستی پێنەکرد
 values-b+ckb	string	extension_types	-	Supported
@@ -10409,6 +10421,7 @@ values-b+cs	string	extension_status_allowed	-	Povoleno a běží ve svém izolov
 values-b+cs	string	extension_status_blocked	-	Zablokováno kontrolou. Nelze povolit.
 values-b+cs	string	extension_status_hash_mismatch	-	Tento soubor neodpovídá svému zveřejněnému hashi. Nelze povolit.
 values-b+cs	string	extension_status_held	-	Vypnuto, dokud se nerozhodnete
+values-b+cs	string	extension_status_held_new_version	-	Nová verze · Vypnuto, dokud se nerozhodnete
 values-b+cs	string	extension_status_kept_off	-	Ponecháno vypnuté
 values-b+cs	string	extension_status_start_failed	-	Povoleno, ale nespustilo se
 values-b+cs	string	extension_types	-	Podporováno
@@ -11249,6 +11262,7 @@ values-b+de	string	extension_status_allowed	-	Erlaubt und läuft in ihrer Sandbo
 values-b+de	string	extension_status_blocked	-	Von der Prüfung blockiert. Dies kann nicht erlaubt werden.
 values-b+de	string	extension_status_hash_mismatch	-	Diese Datei stimmt nicht mit ihrem veröffentlichten Hash überein. Dies kann nicht erlaubt werden.
 values-b+de	string	extension_status_held	-	Aus, bis Sie entscheiden
+values-b+de	string	extension_status_held_new_version	-	Neue Version · Aus, bis Sie entscheiden
 values-b+de	string	extension_status_kept_off	-	Bleibt aus
 values-b+de	string	extension_status_start_failed	-	Erlaubt, aber nicht gestartet
 values-b+de	string	extension_types	-	Unterstützt
@@ -12089,6 +12103,7 @@ values-b+el	string	extension_status_allowed	-	Επιτράπηκε και εκτ
 values-b+el	string	extension_status_blocked	-	Αποκλείστηκε από τη σάρωση. Δεν μπορεί να επιτραπεί.
 values-b+el	string	extension_status_hash_mismatch	-	Αυτό το αρχείο δεν ταιριάζει με το δημοσιευμένο hash του. Δεν μπορεί να επιτραπεί.
 values-b+el	string	extension_status_held	-	Ανενεργή μέχρι να επιλέξετε
+values-b+el	string	extension_status_held_new_version	-	Νέα έκδοση · Ανενεργή μέχρι να επιλέξετε
 values-b+el	string	extension_status_kept_off	-	Παρέμεινε ανενεργή
 values-b+el	string	extension_status_start_failed	-	Επιτράπηκε, αλλά δεν ξεκίνησε
 values-b+el	string	extension_types	-	Υποστηρίζονται
@@ -12929,6 +12944,7 @@ values-b+eo	string	extension_status_allowed	-	Permesita kaj funkcianta en sia iz
 values-b+eo	string	extension_status_blocked	-	Blokita de la skanado. Ĉi tio ne povas esti permesita.
 values-b+eo	string	extension_status_hash_mismatch	-	Ĉi tiu dosiero ne kongruas kun sia publikigita haketaĵo. Ĉi tio ne povas esti permesita.
 values-b+eo	string	extension_status_held	-	Malŝaltita ĝis vi elektos
+values-b+eo	string	extension_status_held_new_version	-	Nova versio · Malŝaltita ĝis vi elektos
 values-b+eo	string	extension_status_kept_off	-	Lasita malŝaltita
 values-b+eo	string	extension_status_start_failed	-	Permesita, sed ĝi ne ekfunkciis
 values-b+eo	string	extension_types	-	Supported
@@ -13773,6 +13789,7 @@ values-b+es	string	extension_status_allowed	-	Permitida y en ejecución en su en
 values-b+es	string	extension_status_blocked	-	Bloqueada por el análisis. No se puede permitir.
 values-b+es	string	extension_status_hash_mismatch	-	Este archivo no coincide con su hash publicado. No se puede permitir.
 values-b+es	string	extension_status_held	-	Desactivada hasta que decida
+values-b+es	string	extension_status_held_new_version	-	Versión nueva · Desactivada hasta que decida
 values-b+es	string	extension_status_kept_off	-	Se mantiene desactivada
 values-b+es	string	extension_status_start_failed	-	Permitida, pero no se inició
 values-b+es	string	extension_types	-	Soportado
@@ -14613,6 +14630,7 @@ values-b+fa	string	extension_status_allowed	-	مجاز است و در محیط �
 values-b+fa	string	extension_status_blocked	-	توسط اسکن مسدود شد. نمی‌توان به آن اجازه داد.
 values-b+fa	string	extension_status_hash_mismatch	-	این فایل با هش منتشرشدهٔ خود مطابقت ندارد. نمی‌توان به آن اجازه داد.
 values-b+fa	string	extension_status_held	-	خاموش تا زمانی که انتخاب کنید
+values-b+fa	string	extension_status_held_new_version	-	نسخه جدید · خاموش تا زمانی که انتخاب کنید
 values-b+fa	string	extension_status_kept_off	-	خاموش نگه داشته شد
 values-b+fa	string	extension_status_start_failed	-	مجاز است، اما اجرا نشد
 values-b+fa	string	extension_types	-	Supported
@@ -15453,6 +15471,7 @@ values-b+fil	string	extension_status_allowed	-	Pinayagan, at tumatakbo sa sandbo
 values-b+fil	string	extension_status_blocked	-	Hinarang ng scan. Hindi ito maaaring payagan.
 values-b+fil	string	extension_status_hash_mismatch	-	Hindi tugma ang file na ito sa nailathalang hash nito. Hindi ito maaaring payagan.
 values-b+fil	string	extension_status_held	-	Naka-off hanggang pumili ka
+values-b+fil	string	extension_status_held_new_version	-	Bagong bersyon · Naka-off hanggang pumili ka
 values-b+fil	string	extension_status_kept_off	-	Nanatiling naka-off
 values-b+fil	string	extension_status_start_failed	-	Pinayagan, pero hindi ito nagsimula
 values-b+fil	string	extension_types	-	Supported
@@ -16297,6 +16316,7 @@ values-b+fr	string	extension_status_allowed	-	Autorisée et en cours d'exécutio
 values-b+fr	string	extension_status_blocked	-	Bloquée par l'analyse. Elle ne peut pas être autorisée.
 values-b+fr	string	extension_status_hash_mismatch	-	Ce fichier ne correspond pas à son empreinte (hash) publiée. Il ne peut pas être autorisé.
 values-b+fr	string	extension_status_held	-	Désactivée jusqu'à votre choix
+values-b+fr	string	extension_status_held_new_version	-	Nouvelle version · Désactivée jusqu'à votre choix
 values-b+fr	string	extension_status_kept_off	-	Laissée désactivée
 values-b+fr	string	extension_status_start_failed	-	Autorisée, mais elle n'a pas démarré
 values-b+fr	string	extension_types	-	Supporté
@@ -17137,6 +17157,7 @@ values-b+gl	string	extension_status_allowed	-	Permitida e en execución no seu e
 values-b+gl	string	extension_status_blocked	-	Bloqueada pola análise. Non se pode permitir.
 values-b+gl	string	extension_status_hash_mismatch	-	Este ficheiro non coincide co seu hash publicado. Non se pode permitir.
 values-b+gl	string	extension_status_held	-	Apagada ata que escolla
+values-b+gl	string	extension_status_held_new_version	-	Versión nova · Apagada ata que escolla
 values-b+gl	string	extension_status_kept_off	-	Mantida apagada
 values-b+gl	string	extension_status_start_failed	-	Permitida, pero non se iniciou
 values-b+gl	string	extension_types	-	Supported
@@ -17977,6 +17998,7 @@ values-b+hi	string	extension_status_allowed	-	अनुमति है, और 
 values-b+hi	string	extension_status_blocked	-	स्कैन ने इसे ब्लॉक किया है। इसकी अनुमति नहीं दी जा सकती।
 values-b+hi	string	extension_status_hash_mismatch	-	यह फ़ाइल अपने प्रकाशित हैश से मेल नहीं खाती। इसकी अनुमति नहीं दी जा सकती।
 values-b+hi	string	extension_status_held	-	आपके चुनने तक बंद
+values-b+hi	string	extension_status_held_new_version	-	नया संस्करण · आपके चुनने तक बंद
 values-b+hi	string	extension_status_kept_off	-	बंद रखा गया
 values-b+hi	string	extension_status_start_failed	-	अनुमति है, लेकिन यह शुरू नहीं हुआ
 values-b+hi	string	extension_types	-	Supported
@@ -18820,6 +18842,7 @@ values-b+hr	string	extension_status_allowed	-	Dopušteno i radi u svojem izolira
 values-b+hr	string	extension_status_blocked	-	Blokirano skeniranjem. Ovo se ne može dopustiti.
 values-b+hr	string	extension_status_hash_mismatch	-	Ova datoteka ne odgovara svojem objavljenom hashu. Ovo se ne može dopustiti.
 values-b+hr	string	extension_status_held	-	Isključeno dok ne odaberete
+values-b+hr	string	extension_status_held_new_version	-	Nova verzija · Isključeno dok ne odaberete
 values-b+hr	string	extension_status_kept_off	-	Ostaje isključeno
 values-b+hr	string	extension_status_start_failed	-	Dopušteno, ali se nije pokrenulo
 values-b+hr	string	extension_types	-	Podržano
@@ -19660,6 +19683,7 @@ values-b+hu	string	extension_status_allowed	-	Engedélyezve, és a saját elszig
 values-b+hu	string	extension_status_blocked	-	A vizsgálat letiltotta. Ez nem engedélyezhető.
 values-b+hu	string	extension_status_hash_mismatch	-	Ez a fájl nem egyezik a közzétett hash-értékével. Ez nem engedélyezhető.
 values-b+hu	string	extension_status_held	-	Kikapcsolva, amíg nem dönt
+values-b+hu	string	extension_status_held_new_version	-	Új verzió · Kikapcsolva, amíg nem dönt
 values-b+hu	string	extension_status_kept_off	-	Kikapcsolva marad
 values-b+hu	string	extension_status_start_failed	-	Engedélyezve, de nem indult el
 values-b+hu	string	extension_types	-	Támogatott
@@ -20496,6 +20520,7 @@ values-b+in	string	extension_status_allowed	-	Diizinkan, dan berjalan di lingkun
 values-b+in	string	extension_status_blocked	-	Diblokir oleh pemindaian. Ini tidak dapat diizinkan.
 values-b+in	string	extension_status_hash_mismatch	-	Berkas ini tidak cocok dengan hash yang dipublikasikan. Ini tidak dapat diizinkan.
 values-b+in	string	extension_status_held	-	Nonaktif sampai Anda memilih
+values-b+in	string	extension_status_held_new_version	-	Versi baru · Nonaktif sampai Anda memilih
 values-b+in	string	extension_status_kept_off	-	Tetap nonaktif
 values-b+in	string	extension_status_start_failed	-	Diizinkan, tetapi tidak berhasil dimulai
 values-b+in	string	extension_types	-	Dukungan
@@ -21340,6 +21365,7 @@ values-b+it	string	extension_status_allowed	-	Consentita e in esecuzione nel suo
 values-b+it	string	extension_status_blocked	-	Bloccata dalla scansione. Non può essere consentita.
 values-b+it	string	extension_status_hash_mismatch	-	Questo file non corrisponde al suo hash pubblicato. Non può essere consentito.
 values-b+it	string	extension_status_held	-	Disattivata finché non scegli
+values-b+it	string	extension_status_held_new_version	-	Nuova versione · Disattivata finché non scegli
 values-b+it	string	extension_status_kept_off	-	Lasciata disattivata
 values-b+it	string	extension_status_start_failed	-	Consentita, ma non si è avviata
 values-b+it	string	extension_types	-	Supportati
@@ -22181,6 +22207,7 @@ values-b+iw	string	extension_status_allowed	-	מותרת ופועלת בסביב
 values-b+iw	string	extension_status_blocked	-	נחסמה על ידי הסריקה. אי אפשר לאשר אותה.
 values-b+iw	string	extension_status_hash_mismatch	-	הקובץ הזה לא תואם לערך הגיבוב שפורסם עבורו. אי אפשר לאשר אותו.
 values-b+iw	string	extension_status_held	-	כבויה עד לבחירה שלך
+values-b+iw	string	extension_status_held_new_version	-	גרסה חדשה · כבויה עד לבחירה שלך
 values-b+iw	string	extension_status_kept_off	-	נשארת כבויה
 values-b+iw	string	extension_status_start_failed	-	מותרת, אבל לא הופעלה
 values-b+iw	string	extension_types	-	תומך
@@ -23017,6 +23044,7 @@ values-b+ja	string	extension_status_allowed	-	許可済み。専用のサンド�
 values-b+ja	string	extension_status_blocked	-	スキャンによりブロックされました。許可できません。
 values-b+ja	string	extension_status_hash_mismatch	-	このファイルは公開されているハッシュと一致しません。許可できません。
 values-b+ja	string	extension_status_held	-	選択するまでオフ
+values-b+ja	string	extension_status_held_new_version	-	新しいバージョン · 選択するまでオフ
 values-b+ja	string	extension_status_kept_off	-	オフのまま
 values-b+ja	string	extension_status_start_failed	-	許可済みですが、起動しませんでした
 values-b+ja	string	extension_types	-	サポート
@@ -23857,6 +23885,7 @@ values-b+kn	string	extension_status_allowed	-	ಅನುಮತಿಸಲಾಗಿ�
 values-b+kn	string	extension_status_blocked	-	ಸ್ಕ್ಯಾನ್ ಇದನ್ನು ನಿರ್ಬಂಧಿಸಿದೆ. ಇದನ್ನು ಅನುಮತಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ.
 values-b+kn	string	extension_status_hash_mismatch	-	ಈ ಫೈಲ್ ಅದರ ಪ್ರಕಟಿತ ಹ್ಯಾಶ್‌ಗೆ ಹೊಂದಿಕೆಯಾಗುವುದಿಲ್ಲ. ಇದನ್ನು ಅನುಮತಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ.
 values-b+kn	string	extension_status_held	-	ನೀವು ಆಯ್ಕೆ ಮಾಡುವವರೆಗೆ ಆಫ್
+values-b+kn	string	extension_status_held_new_version	-	ಹೊಸ ಆವೃತ್ತಿ · ನೀವು ಆಯ್ಕೆ ಮಾಡುವವರೆಗೆ ಆಫ್
 values-b+kn	string	extension_status_kept_off	-	ಆಫ್ ಆಗಿರಿಸಲಾಗಿದೆ
 values-b+kn	string	extension_status_start_failed	-	ಅನುಮತಿಸಲಾಗಿದೆ, ಆದರೆ ಅದು ಪ್ರಾರಂಭವಾಗಲಿಲ್ಲ
 values-b+kn	string	extension_types	-	Supported
@@ -24694,6 +24723,7 @@ values-b+ko	string	extension_status_allowed	-	허용됨, 자체 샌드박스에�
 values-b+ko	string	extension_status_blocked	-	검사에서 차단되었습니다. 허용할 수 없습니다.
 values-b+ko	string	extension_status_hash_mismatch	-	이 파일은 게시된 해시와 일치하지 않습니다. 허용할 수 없습니다.
 values-b+ko	string	extension_status_held	-	선택할 때까지 꺼짐
+values-b+ko	string	extension_status_held_new_version	-	새 버전 · 선택할 때까지 꺼짐
 values-b+ko	string	extension_status_kept_off	-	꺼진 상태로 유지됨
 values-b+ko	string	extension_status_start_failed	-	허용되었지만 시작되지 않음
 values-b+ko	string	extension_types	-	유형
@@ -25536,6 +25566,7 @@ values-b+lt	string	extension_status_allowed	-	Leidžiamas ir veikia savo izoliuo
 values-b+lt	string	extension_status_blocked	-	Užblokuotas patikros. To leisti negalima.
 values-b+lt	string	extension_status_hash_mismatch	-	Šis failas neatitinka paskelbtos maišos reikšmės. To leisti negalima.
 values-b+lt	string	extension_status_held	-	Išjungtas, kol pasirinksite
+values-b+lt	string	extension_status_held_new_version	-	Nauja versija · Išjungtas, kol pasirinksite
 values-b+lt	string	extension_status_kept_off	-	Paliktas išjungtas
 values-b+lt	string	extension_status_start_failed	-	Leidžiamas, bet nepasileido
 values-b+lt	string	extension_types	-	Palaikoma
@@ -26378,6 +26409,7 @@ values-b+lv	string	extension_status_allowed	-	Atļauts un darbojas savā izolēt
 values-b+lv	string	extension_status_blocked	-	To bloķēja pārbaude. To nevar atļaut.
 values-b+lv	string	extension_status_hash_mismatch	-	Šis fails neatbilst publicētajam jaucējkodam. To nevar atļaut.
 values-b+lv	string	extension_status_held	-	Izslēgts, līdz izvēlēsieties
+values-b+lv	string	extension_status_held_new_version	-	Jauna versija · Izslēgts, līdz izvēlēsieties
 values-b+lv	string	extension_status_kept_off	-	Atstāts izslēgts
 values-b+lv	string	extension_status_start_failed	-	Atļauts, bet nesāka darboties
 values-b+lv	string	extension_types	-	Atbalstīts
@@ -27218,6 +27250,7 @@ values-b+mk	string	extension_status_allowed	-	Дозволена и работи
 values-b+mk	string	extension_status_blocked	-	Блокирана од скенирањето. Ова не може да се дозволи.
 values-b+mk	string	extension_status_hash_mismatch	-	Оваа датотека не се совпаѓа со објавениот хаш. Ова не може да се дозволи.
 values-b+mk	string	extension_status_held	-	Исклучена додека не избереш
+values-b+mk	string	extension_status_held_new_version	-	Нова верзија · Исклучена додека не избереш
 values-b+mk	string	extension_status_kept_off	-	Оставена исклучена
 values-b+mk	string	extension_status_start_failed	-	Дозволена, но не се стартуваше
 values-b+mk	string	extension_types	-	Поддржано
@@ -28058,6 +28091,7 @@ values-b+ml	string	extension_status_allowed	-	അനുവദിച്ചു, �
 values-b+ml	string	extension_status_blocked	-	സ്കാൻ ഇത് തടഞ്ഞു. ഇത് അനുവദിക്കാൻ കഴിയില്ല.
 values-b+ml	string	extension_status_hash_mismatch	-	ഈ ഫയൽ അതിന്റെ പ്രസിദ്ധീകരിച്ച ഹാഷുമായി പൊരുത്തപ്പെടുന്നില്ല. ഇത് അനുവദിക്കാൻ കഴിയില്ല.
 values-b+ml	string	extension_status_held	-	നിങ്ങൾ തിരഞ്ഞെടുക്കുന്നതുവരെ ഓഫ്
+values-b+ml	string	extension_status_held_new_version	-	പുതിയ പതിപ്പ് · നിങ്ങൾ തിരഞ്ഞെടുക്കുന്നതുവരെ ഓഫ്
 values-b+ml	string	extension_status_kept_off	-	ഓഫായി വെച്ചിരിക്കുന്നു
 values-b+ml	string	extension_status_start_failed	-	അനുവദിച്ചു, പക്ഷേ അത് ആരംഭിച്ചില്ല
 values-b+ml	string	extension_types	-	Supported
@@ -28897,6 +28931,7 @@ values-b+ms	string	extension_status_allowed	-	Dibenarkan, dan berjalan dalam per
 values-b+ms	string	extension_status_blocked	-	Disekat oleh imbasan. Ini tidak boleh dibenarkan.
 values-b+ms	string	extension_status_hash_mismatch	-	Fail ini tidak sepadan dengan cincangan yang diterbitkan. Ini tidak boleh dibenarkan.
 values-b+ms	string	extension_status_held	-	Dimatikan sehingga anda memilih
+values-b+ms	string	extension_status_held_new_version	-	Versi baharu · Dimatikan sehingga anda memilih
 values-b+ms	string	extension_status_kept_off	-	Kekal dimatikan
 values-b+ms	string	extension_status_start_failed	-	Dibenarkan, tetapi tidak dapat dimulakan
 values-b+ms	string	extension_types	-	Disokong
@@ -29740,6 +29775,7 @@ values-b+mt	string	extension_status_allowed	-	Permessa, u qed taħdem fl-ambjent
 values-b+mt	string	extension_status_blocked	-	Imblukkata mill-iskan. Din ma tistax tiġi permessa.
 values-b+mt	string	extension_status_hash_mismatch	-	Dan il-fajl ma jaqbilx mal-hash ippubblikat tiegħu. Dan ma jistax jiġi permess.
 values-b+mt	string	extension_status_held	-	Mitfija sakemm tagħżel
+values-b+mt	string	extension_status_held_new_version	-	Verżjoni ġdida · Mitfija sakemm tagħżel
 values-b+mt	string	extension_status_kept_off	-	Tibqa' mitfija
 values-b+mt	string	extension_status_start_failed	-	Permessa, imma ma bdietx
 values-b+mt	string	extension_types	-	Supported
@@ -30579,6 +30615,7 @@ values-b+my	string	extension_status_allowed	-	ခွင့်ပြုထား�
 values-b+my	string	extension_status_blocked	-	စစ်ဆေးမှုက ပိတ်ဆို့ထားသည်။ ဤအရာကို ခွင့်ပြု၍မရပါ။
 values-b+my	string	extension_status_hash_mismatch	-	ဤဖိုင်သည် ထုတ်ပြန်ထားသော ဟက်ရှ်နှင့် မကိုက်ညီပါ။ ဤအရာကို ခွင့်ပြု၍မရပါ။
 values-b+my	string	extension_status_held	-	သင်ရွေးချယ်သည်အထိ ပိတ်ထားသည်
+values-b+my	string	extension_status_held_new_version	-	ဗားရှင်းအသစ် · သင်ရွေးချယ်သည်အထိ ပိတ်ထားသည်
 values-b+my	string	extension_status_kept_off	-	ပိတ်ထားသည်
 values-b+my	string	extension_status_start_failed	-	ခွင့်ပြုထားသော်လည်း မစတင်ခဲ့ပါ
 values-b+my	string	extension_types	-	ထောက်ပံ့ထားသော
@@ -31419,6 +31456,7 @@ values-b+ne	string	extension_status_allowed	-	अनुमति दिइएक
 values-b+ne	string	extension_status_blocked	-	स्क्यानले रोकेको छ। यसलाई अनुमति दिन सकिँदैन।
 values-b+ne	string	extension_status_hash_mismatch	-	यो फाइल यसको प्रकाशित ह्याससँग मेल खाँदैन। यसलाई अनुमति दिन सकिँदैन।
 values-b+ne	string	extension_status_held	-	तपाईंले नछानेसम्म बन्द
+values-b+ne	string	extension_status_held_new_version	-	नयाँ संस्करण · तपाईंले नछानेसम्म बन्द
 values-b+ne	string	extension_status_kept_off	-	बन्द राखिएको
 values-b+ne	string	extension_status_start_failed	-	अनुमति दिइएको, तर सुरु भएन
 values-b+ne	string	extension_types	-	Supported
@@ -32259,6 +32297,7 @@ values-b+nl	string	extension_status_allowed	-	Toegestaan en actief in de eigen a
 values-b+nl	string	extension_status_blocked	-	Geblokkeerd door de scan. Dit kan niet worden toegestaan.
 values-b+nl	string	extension_status_hash_mismatch	-	Dit bestand komt niet overeen met de gepubliceerde hash. Dit kan niet worden toegestaan.
 values-b+nl	string	extension_status_held	-	Uit tot je kiest
+values-b+nl	string	extension_status_held_new_version	-	Nieuwe versie · Uit tot je kiest
 values-b+nl	string	extension_status_kept_off	-	Blijft uit
 values-b+nl	string	extension_status_start_failed	-	Toegestaan, maar niet gestart
 values-b+nl	string	extension_types	-	Ondersteund
@@ -33099,6 +33138,7 @@ values-b+nn	string	extension_status_allowed	-	Tillaten, og køyrer i si eiga san
 values-b+nn	string	extension_status_blocked	-	Blokkert av skanninga. Dette kan ikkje tillatast.
 values-b+nn	string	extension_status_hash_mismatch	-	Denne fila stemmer ikkje med den publiserte hashen. Dette kan ikkje tillatast.
 values-b+nn	string	extension_status_held	-	Av til du vel
+values-b+nn	string	extension_status_held_new_version	-	Ny versjon · Av til du vel
 values-b+nn	string	extension_status_kept_off	-	Blir verande av
 values-b+nn	string	extension_status_start_failed	-	Tillaten, men starta ikkje
 values-b+nn	string	extension_types	-	Supported
@@ -33939,6 +33979,7 @@ values-b+no	string	extension_status_allowed	-	Tillatt, og kjører i sandkassen s
 values-b+no	string	extension_status_blocked	-	Blokkert av skanningen. Dette kan ikke tillates.
 values-b+no	string	extension_status_hash_mismatch	-	Denne filen stemmer ikke med den publiserte hash-verdien. Dette kan ikke tillates.
 values-b+no	string	extension_status_held	-	Av til du velger
+values-b+no	string	extension_status_held_new_version	-	Ny versjon · Av til du velger
 values-b+no	string	extension_status_kept_off	-	Holdes av
 values-b+no	string	extension_status_start_failed	-	Tillatt, men den startet ikke
 values-b+no	string	extension_types	-	Støttet
@@ -34779,6 +34820,7 @@ values-b+or	string	extension_status_allowed	-	ଅନୁମତି ମିଳିଛ
 values-b+or	string	extension_status_blocked	-	ସ୍କାନ୍ ଦ୍ୱାରା ଅବରୋଧିତ। ଏହାକୁ ଅନୁମତି ଦିଆଯାଇପାରିବ ନାହିଁ।
 values-b+or	string	extension_status_hash_mismatch	-	ଏହି ଫାଇଲ୍ ଏହାର ପ୍ରକାଶିତ ହାସ୍ ସହିତ ମେଳ ଖାଉନାହିଁ। ଏହାକୁ ଅନୁମତି ଦିଆଯାଇପାରିବ ନାହିଁ।
 values-b+or	string	extension_status_held	-	ଆପଣ ବାଛିବା ପର୍ଯ୍ୟନ୍ତ ବନ୍ଦ
+values-b+or	string	extension_status_held_new_version	-	ନୂତନ ସଂସ୍କରଣ · ଆପଣ ବାଛିବା ପର୍ଯ୍ୟନ୍ତ ବନ୍ଦ
 values-b+or	string	extension_status_kept_off	-	ବନ୍ଦ ରଖାଯାଇଛି
 values-b+or	string	extension_status_start_failed	-	ଅନୁମତି ମିଳିଛି, କିନ୍ତୁ ଏହା ଆରମ୍ଭ ହେଲା ନାହିଁ
 values-b+or	string	extension_types	-	ସମର୍ଥିତ
@@ -35627,6 +35669,7 @@ values-b+pl	string	extension_status_allowed	-	Dozwolone, działa w swojej piasko
 values-b+pl	string	extension_status_blocked	-	Zablokowane przez skanowanie. Nie można na to zezwolić.
 values-b+pl	string	extension_status_hash_mismatch	-	Ten plik nie zgadza się z opublikowanym hashem. Nie można na to zezwolić.
 values-b+pl	string	extension_status_held	-	Wyłączone, dopóki nie wybierzesz
+values-b+pl	string	extension_status_held_new_version	-	Nowa wersja · Wyłączone, dopóki nie wybierzesz
 values-b+pl	string	extension_status_kept_off	-	Pozostaje wyłączone
 values-b+pl	string	extension_status_start_failed	-	Dozwolone, ale się nie uruchomiło
 values-b+pl	string	extension_types	-	Wspierane
@@ -36471,6 +36514,7 @@ values-b+pt	string	extension_status_allowed	-	Permitida e em execução no seu a
 values-b+pt	string	extension_status_blocked	-	Bloqueada pela análise. Não pode ser permitida.
 values-b+pt	string	extension_status_hash_mismatch	-	Este ficheiro não corresponde ao hash publicado. Não pode ser permitido.
 values-b+pt	string	extension_status_held	-	Desativada até escolher
+values-b+pt	string	extension_status_held_new_version	-	Nova versão · Desativada até escolher
 values-b+pt	string	extension_status_kept_off	-	Mantida desativada
 values-b+pt	string	extension_status_start_failed	-	Permitida, mas não arrancou
 values-b+pt	string	extension_types	-	Suportado
@@ -37315,6 +37359,7 @@ values-b+pt+BR	string	extension_status_allowed	-	Permitida e em execução no se
 values-b+pt+BR	string	extension_status_blocked	-	Bloqueada pela verificação. Isso não pode ser permitido.
 values-b+pt+BR	string	extension_status_hash_mismatch	-	Este arquivo não corresponde ao hash publicado. Isso não pode ser permitido.
 values-b+pt+BR	string	extension_status_held	-	Desligada até você escolher
+values-b+pt+BR	string	extension_status_held_new_version	-	Nova versão · Desligada até você escolher
 values-b+pt+BR	string	extension_status_kept_off	-	Mantida desligada
 values-b+pt+BR	string	extension_status_start_failed	-	Permitida, mas não iniciou
 values-b+pt+BR	string	extension_types	-	Suportado
@@ -38154,6 +38199,7 @@ values-b+qt	string	extension_status_allowed	-	aaaaaauo ohaaaaghhah ah
 values-b+qt	string	extension_status_blocked	-	ha au ouuhhhohahh ahuhaaaa
 values-b+qt	string	extension_status_hash_mismatch	-	uuuuhhhoh haaahooo ohauh oo haaoh oooogggoog
 values-b+qt	string	extension_status_held	-	uuu ahhhaaaaa
+values-b+qt	string	extension_status_held_new_version	-	oh uuu · uuu ahhhaaaaa
 values-b+qt	string	extension_status_kept_off	-	uuuuhhh
 values-b+qt	string	extension_status_start_failed	-	ouuhh hhhah
 values-b+qt	string	extension_types	-	oooogggag
@@ -38995,6 +39041,7 @@ values-b+ro	string	extension_status_allowed	-	Permisă și rulează în mediul e
 values-b+ro	string	extension_status_blocked	-	Blocată de scanare. Nu poate fi permisă.
 values-b+ro	string	extension_status_hash_mismatch	-	Acest fișier nu corespunde hash-ului publicat. Nu poate fi permis.
 values-b+ro	string	extension_status_held	-	Oprită până alegeți
+values-b+ro	string	extension_status_held_new_version	-	Versiune nouă · Oprită până alegeți
 values-b+ro	string	extension_status_kept_off	-	Menținută oprită
 values-b+ro	string	extension_status_start_failed	-	Permisă, dar nu a pornit
 values-b+ro	string	extension_types	-	Suportat
@@ -39843,6 +39890,7 @@ values-b+ru	string	extension_status_allowed	-	Разрешено и работа
 values-b+ru	string	extension_status_blocked	-	Заблокировано проверкой. Разрешить нельзя.
 values-b+ru	string	extension_status_hash_mismatch	-	Этот файл не совпадает с опубликованным хешем. Разрешить его нельзя.
 values-b+ru	string	extension_status_held	-	Выключено, пока вы не решите
+values-b+ru	string	extension_status_held_new_version	-	Новая версия · Выключено, пока вы не решите
 values-b+ru	string	extension_status_kept_off	-	Оставлено выключенным
 values-b+ru	string	extension_status_start_failed	-	Разрешено, но не запустилось
 values-b+ru	string	extension_types	-	Поддерживается
@@ -40685,6 +40733,7 @@ values-b+sk	string	extension_status_allowed	-	Povolené a beží vo svojom izolo
 values-b+sk	string	extension_status_blocked	-	Zablokované kontrolou. Nedá sa povoliť.
 values-b+sk	string	extension_status_hash_mismatch	-	Tento súbor sa nezhoduje so zverejneným hashom. Nedá sa povoliť.
 values-b+sk	string	extension_status_held	-	Vypnuté, kým sa nerozhodnete
+values-b+sk	string	extension_status_held_new_version	-	Nová verzia · Vypnuté, kým sa nerozhodnete
 values-b+sk	string	extension_status_kept_off	-	Ponechané vypnuté
 values-b+sk	string	extension_status_start_failed	-	Povolené, ale nespustilo sa
 values-b+sk	string	extension_types	-	Supported
@@ -41525,6 +41574,7 @@ values-b+so	string	extension_status_allowed	-	Waa la oggolaaday, wuxuuna ku shaq
 values-b+so	string	extension_status_blocked	-	Baaritaanka ayaa xannibay. Tan lama oggolaan karo.
 values-b+so	string	extension_status_hash_mismatch	-	Faylkani la mid ma aha hash-kiisa la daabacay. Tan lama oggolaan karo.
 values-b+so	string	extension_status_held	-	Dansan ilaa aad doorato
+values-b+so	string	extension_status_held_new_version	-	Nooc cusub · Dansan ilaa aad doorato
 values-b+so	string	extension_status_kept_off	-	Dansan ayaa la hayaa
 values-b+so	string	extension_status_start_failed	-	Waa la oggolaaday, laakiin ma bilaaban
 values-b+so	string	extension_types	-	Ku shaqeeya
@@ -42365,6 +42415,7 @@ values-b+sq	string	extension_status_allowed	-	E lejuar dhe po funksionon në mje
 values-b+sq	string	extension_status_blocked	-	E bllokuar nga skanimi. Kjo nuk mund të lejohet.
 values-b+sq	string	extension_status_hash_mismatch	-	Ky skedar nuk përputhet me hash-in e tij të publikuar. Kjo nuk mund të lejohet.
 values-b+sq	string	extension_status_held	-	E fikur derisa të zgjidhni
+values-b+sq	string	extension_status_held_new_version	-	Version i ri · E fikur derisa të zgjidhni
 values-b+sq	string	extension_status_kept_off	-	Mbahet e fikur
 values-b+sq	string	extension_status_start_failed	-	E lejuar, por nuk u nis
 values-b+sq	string	extension_types	-	Të suportuara
@@ -43205,6 +43256,7 @@ values-b+sv	string	extension_status_allowed	-	Tillåtet och körs i sin sandlåd
 values-b+sv	string	extension_status_blocked	-	Blockerat av genomsökningen. Detta kan inte tillåtas.
 values-b+sv	string	extension_status_hash_mismatch	-	Den här filen stämmer inte med sin publicerade hash. Detta kan inte tillåtas.
 values-b+sv	string	extension_status_held	-	Av tills du väljer
+values-b+sv	string	extension_status_held_new_version	-	Ny version · Av tills du väljer
 values-b+sv	string	extension_status_kept_off	-	Hålls avstängt
 values-b+sv	string	extension_status_start_failed	-	Tillåtet, men det startade inte
 values-b+sv	string	extension_types	-	Stödd
@@ -44045,6 +44097,7 @@ values-b+ta	string	extension_status_allowed	-	அனுமதிக்கப்�
 values-b+ta	string	extension_status_blocked	-	ஸ்கேன் மூலம் தடுக்கப்பட்டது. இதை அனுமதிக்க முடியாது.
 values-b+ta	string	extension_status_hash_mismatch	-	இந்தக் கோப்பு அதன் வெளியிடப்பட்ட ஹாஷுடன் பொருந்தவில்லை. இதை அனுமதிக்க முடியாது.
 values-b+ta	string	extension_status_held	-	நீங்கள் தேர்வு செய்யும் வரை முடக்கம்
+values-b+ta	string	extension_status_held_new_version	-	புதிய பதிப்பு · நீங்கள் தேர்வு செய்யும் வரை முடக்கம்
 values-b+ta	string	extension_status_kept_off	-	முடக்கி வைக்கப்பட்டது
 values-b+ta	string	extension_status_start_failed	-	அனுமதிக்கப்பட்டது, ஆனால் தொடங்கவில்லை
 values-b+ta	string	extension_types	-	ஆதரிக்கப்பட்டது
@@ -44885,6 +44938,7 @@ values-b+ti	string	extension_status_allowed	-	ተፈቒዱ፡ ኣብ ናቱ ዝ�
 values-b+ti	string	extension_status_blocked	-	ብምርመራ ተዓጽዩ። እዚ ክፍቀድ ኣይክእልን።
 values-b+ti	string	extension_status_hash_mismatch	-	እዚ ፋይል ምስቲ ዝተሓትመ ሃሽ ኣይሰማማዕን። እዚ ክፍቀድ ኣይክእልን።
 values-b+ti	string	extension_status_held	-	ክሳብ እትመርጽ ጠፊኡ ኣሎ
+values-b+ti	string	extension_status_held_new_version	-	ሓድሽ ስሪት · ክሳብ እትመርጽ ጠፊኡ ኣሎ
 values-b+ti	string	extension_status_kept_off	-	ጠፊኡ ይጸንሕ ኣሎ
 values-b+ti	string	extension_status_start_failed	-	ተፈቒዱ፡ ግን ኣይጀመረን
 values-b+ti	string	extension_types	-	Supported
@@ -45725,6 +45779,7 @@ values-b+tl	string	extension_status_allowed	-	Pinayagan, at tumatakbo sa nakahiw
 values-b+tl	string	extension_status_blocked	-	Hinarang ng pag-scan. Hindi ito maaaring payagan.
 values-b+tl	string	extension_status_hash_mismatch	-	Hindi tumutugma ang file na ito sa nailathalang hash nito. Hindi ito maaaring payagan.
 values-b+tl	string	extension_status_held	-	Nakasara hanggang pumili ka
+values-b+tl	string	extension_status_held_new_version	-	Bagong bersyon · Nakasara hanggang pumili ka
 values-b+tl	string	extension_status_kept_off	-	Pinanatiling nakasara
 values-b+tl	string	extension_status_start_failed	-	Pinayagan, pero hindi ito nagsimula
 values-b+tl	string	extension_types	-	Supported
@@ -46565,6 +46620,7 @@ values-b+tr	string	extension_status_allowed	-	İzin verildi ve korumalı alanın
 values-b+tr	string	extension_status_blocked	-	Tarama tarafından engellendi. Buna izin verilemez.
 values-b+tr	string	extension_status_hash_mismatch	-	Bu dosya yayımlanan karma değeriyle eşleşmiyor. Buna izin verilemez.
 values-b+tr	string	extension_status_held	-	Siz seçene kadar kapalı
+values-b+tr	string	extension_status_held_new_version	-	Yeni sürüm · Siz seçene kadar kapalı
 values-b+tr	string	extension_status_kept_off	-	Kapalı tutuluyor
 values-b+tr	string	extension_status_start_failed	-	İzin verildi, ancak başlamadı
 values-b+tr	string	extension_types	-	Desteklenen
@@ -47413,6 +47469,7 @@ values-b+uk	string	extension_status_allowed	-	Дозволено і працює
 values-b+uk	string	extension_status_blocked	-	Заблоковано скануванням. Це не можна дозволити.
 values-b+uk	string	extension_status_hash_mismatch	-	Цей файл не збігається з опублікованим хешем. Це не можна дозволити.
 values-b+uk	string	extension_status_held	-	Вимкнено, доки ви не оберете
+values-b+uk	string	extension_status_held_new_version	-	Нова версія · Вимкнено, доки ви не оберете
 values-b+uk	string	extension_status_kept_off	-	Залишено вимкненим
 values-b+uk	string	extension_status_start_failed	-	Дозволено, але не запустилося
 values-b+uk	string	extension_types	-	Підтримується
@@ -48253,6 +48310,7 @@ values-b+ur	string	extension_status_allowed	-	اجازت دی گئی، اور ا
 values-b+ur	string	extension_status_blocked	-	اسکین نے مسدود کر دیا۔ اس کی اجازت نہیں دی جا سکتی۔
 values-b+ur	string	extension_status_hash_mismatch	-	یہ فائل اپنے شائع شدہ ہیش سے مطابقت نہیں رکھتی۔ اس کی اجازت نہیں دی جا سکتی۔
 values-b+ur	string	extension_status_held	-	آپ کے انتخاب تک بند
+values-b+ur	string	extension_status_held_new_version	-	نیا ورژن · آپ کے انتخاب تک بند
 values-b+ur	string	extension_status_kept_off	-	بند رکھی گئی
 values-b+ur	string	extension_status_start_failed	-	اجازت دی گئی، لیکن یہ شروع نہیں ہوئی
 values-b+ur	string	extension_types	-	حمایت کی
@@ -49089,6 +49147,7 @@ values-b+vi	string	extension_status_allowed	-	Đã cho phép và đang chạy tr
 values-b+vi	string	extension_status_blocked	-	Bị bản quét chặn. Không thể cho phép mục này.
 values-b+vi	string	extension_status_hash_mismatch	-	Tệp này không khớp với mã băm đã công bố. Không thể cho phép mục này.
 values-b+vi	string	extension_status_held	-	Tắt cho đến khi bạn chọn
+values-b+vi	string	extension_status_held_new_version	-	Phiên bản mới · Tắt cho đến khi bạn chọn
 values-b+vi	string	extension_status_kept_off	-	Vẫn giữ tắt
 values-b+vi	string	extension_status_start_failed	-	Đã cho phép, nhưng không khởi động được
 values-b+vi	string	extension_types	-	Hỗ trợ
@@ -49925,6 +49984,7 @@ values-b+zh	string	extension_status_allowed	-	已允许，正在其沙盒中运�
 values-b+zh	string	extension_status_blocked	-	已被扫描拦截。无法允许。
 values-b+zh	string	extension_status_hash_mismatch	-	此文件与其发布的哈希值不符。无法允许。
 values-b+zh	string	extension_status_held	-	在你选择之前保持关闭
+values-b+zh	string	extension_status_held_new_version	-	新版本 · 在你选择之前保持关闭
 values-b+zh	string	extension_status_kept_off	-	已保持关闭
 values-b+zh	string	extension_status_start_failed	-	已允许，但未能启动
 values-b+zh	string	extension_types	-	类型
@@ -50762,6 +50822,7 @@ values-b+zh+TW	string	extension_status_allowed	-	已允許，正在其沙箱中�
 values-b+zh+TW	string	extension_status_blocked	-	已遭掃描封鎖。無法允許。
 values-b+zh+TW	string	extension_status_hash_mismatch	-	此檔案與其發布的雜湊值不符。無法允許。
 values-b+zh+TW	string	extension_status_held	-	在你選擇之前保持關閉
+values-b+zh+TW	string	extension_status_held_new_version	-	新版本 · 在你選擇之前保持關閉
 values-b+zh+TW	string	extension_status_kept_off	-	已保持關閉
 values-b+zh+TW	string	extension_status_start_failed	-	已允許，但未能啟動
 values-b+zh+TW	string	extension_types	-	類型
@@ -51602,6 +51663,7 @@ en	string	extension_status_allowed	-	Allowed, and running in its sandbox
 en	string	extension_status_blocked	-	Blocked by the scan. This cannot be allowed.
 en	string	extension_status_hash_mismatch	-	This file does not match its published hash. This cannot be allowed.
 en	string	extension_status_held	-	Off until you choose
+en	string	extension_status_held_new_version	-	New version · Off until you choose
 en	string	extension_status_kept_off	-	Kept off
 en	string	extension_status_start_failed	-	Allowed, but it did not start
 en	string	extension_types	-	Supported
@@ -52442,6 +52504,7 @@ en-US	string	extension_status_allowed	-	Allowed, and running in its sandbox
 en-US	string	extension_status_blocked	-	Blocked by the scan. This cannot be allowed.
 en-US	string	extension_status_hash_mismatch	-	This file does not match its published hash. This cannot be allowed.
 en-US	string	extension_status_held	-	Off until you choose
+en-US	string	extension_status_held_new_version	-	New version · Off until you choose
 en-US	string	extension_status_kept_off	-	Kept off
 en-US	string	extension_status_start_failed	-	Allowed, but it did not start
 en-US	string	extension_types	-	Supported
@@ -53282,6 +53345,7 @@ en-GB	string	extension_status_allowed	-	Allowed, and running in its sandbox
 en-GB	string	extension_status_blocked	-	Blocked by the scan. This cannot be allowed.
 en-GB	string	extension_status_hash_mismatch	-	This file does not match its published hash. This cannot be allowed.
 en-GB	string	extension_status_held	-	Off until you choose
+en-GB	string	extension_status_held_new_version	-	New version · Off until you choose
 en-GB	string	extension_status_kept_off	-	Kept off
 en-GB	string	extension_status_start_failed	-	Allowed, but it did not start
 en-GB	string	extension_types	-	Supported
@@ -54126,6 +54190,7 @@ pt	string	extension_status_allowed	-	Permitida e em execução no seu ambiente i
 pt	string	extension_status_blocked	-	Bloqueada pela análise. Não pode ser permitida.
 pt	string	extension_status_hash_mismatch	-	Este ficheiro não corresponde ao hash publicado. Não pode ser permitido.
 pt	string	extension_status_held	-	Desativada até escolher
+pt	string	extension_status_held_new_version	-	Nova versão · Desativada até escolher
 pt	string	extension_status_kept_off	-	Mantida desativada
 pt	string	extension_status_start_failed	-	Permitida, mas não arrancou
 pt	string	extension_types	-	Suportado
@@ -54970,6 +55035,7 @@ pt-PT	string	extension_status_allowed	-	Permitida e em execução no seu ambient
 pt-PT	string	extension_status_blocked	-	Bloqueada pela análise. Não pode ser permitida.
 pt-PT	string	extension_status_hash_mismatch	-	Este ficheiro não corresponde ao hash publicado. Não pode ser permitido.
 pt-PT	string	extension_status_held	-	Desativada até escolher
+pt-PT	string	extension_status_held_new_version	-	Nova versão · Desativada até escolher
 pt-PT	string	extension_status_kept_off	-	Mantida desativada
 pt-PT	string	extension_status_start_failed	-	Permitida, mas não arrancou
 pt-PT	string	extension_types	-	Suportado
@@ -55814,6 +55880,7 @@ pt-BR	string	extension_status_allowed	-	Permitida e em execução no seu ambient
 pt-BR	string	extension_status_blocked	-	Bloqueada pela verificação. Isso não pode ser permitido.
 pt-BR	string	extension_status_hash_mismatch	-	Este arquivo não corresponde ao hash publicado. Isso não pode ser permitido.
 pt-BR	string	extension_status_held	-	Desligada até você escolher
+pt-BR	string	extension_status_held_new_version	-	Nova versão · Desligada até você escolher
 pt-BR	string	extension_status_kept_off	-	Mantida desligada
 pt-BR	string	extension_status_start_failed	-	Permitida, mas não iniciou
 pt-BR	string	extension_types	-	Suportado
@@ -56654,6 +56721,7 @@ fil	string	extension_status_allowed	-	Pinayagan, at tumatakbo sa sandbox nito
 fil	string	extension_status_blocked	-	Hinarang ng scan. Hindi ito maaaring payagan.
 fil	string	extension_status_hash_mismatch	-	Hindi tugma ang file na ito sa nailathalang hash nito. Hindi ito maaaring payagan.
 fil	string	extension_status_held	-	Naka-off hanggang pumili ka
+fil	string	extension_status_held_new_version	-	Bagong bersyon · Naka-off hanggang pumili ka
 fil	string	extension_status_kept_off	-	Nanatiling naka-off
 fil	string	extension_status_start_failed	-	Pinayagan, pero hindi ito nagsimula
 fil	string	extension_types	-	Supported
@@ -57494,6 +57562,7 @@ tl	string	extension_status_allowed	-	Pinayagan, at tumatakbo sa nakahiwalay nito
 tl	string	extension_status_blocked	-	Hinarang ng pag-scan. Hindi ito maaaring payagan.
 tl	string	extension_status_hash_mismatch	-	Hindi tumutugma ang file na ito sa nailathalang hash nito. Hindi ito maaaring payagan.
 tl	string	extension_status_held	-	Nakasara hanggang pumili ka
+tl	string	extension_status_held_new_version	-	Bagong bersyon · Nakasara hanggang pumili ka
 tl	string	extension_status_kept_off	-	Pinanatiling nakasara
 tl	string	extension_status_start_failed	-	Pinayagan, pero hindi ito nagsimula
 tl	string	extension_types	-	Supported
@@ -58334,6 +58403,7 @@ fil-PH	string	extension_status_allowed	-	Pinayagan, at tumatakbo sa sandbox nito
 fil-PH	string	extension_status_blocked	-	Hinarang ng scan. Hindi ito maaaring payagan.
 fil-PH	string	extension_status_hash_mismatch	-	Hindi tugma ang file na ito sa nailathalang hash nito. Hindi ito maaaring payagan.
 fil-PH	string	extension_status_held	-	Naka-off hanggang pumili ka
+fil-PH	string	extension_status_held_new_version	-	Bagong bersyon · Naka-off hanggang pumili ka
 fil-PH	string	extension_status_kept_off	-	Nanatiling naka-off
 fil-PH	string	extension_status_start_failed	-	Pinayagan, pero hindi ito nagsimula
 fil-PH	string	extension_types	-	Supported
@@ -59170,6 +59240,7 @@ zh	string	extension_status_allowed	-	已允许，正在其沙盒中运行
 zh	string	extension_status_blocked	-	已被扫描拦截。无法允许。
 zh	string	extension_status_hash_mismatch	-	此文件与其发布的哈希值不符。无法允许。
 zh	string	extension_status_held	-	在你选择之前保持关闭
+zh	string	extension_status_held_new_version	-	新版本 · 在你选择之前保持关闭
 zh	string	extension_status_kept_off	-	已保持关闭
 zh	string	extension_status_start_failed	-	已允许，但未能启动
 zh	string	extension_types	-	类型
@@ -60006,6 +60077,7 @@ zh-CN	string	extension_status_allowed	-	已允许，正在其沙盒中运行
 zh-CN	string	extension_status_blocked	-	已被扫描拦截。无法允许。
 zh-CN	string	extension_status_hash_mismatch	-	此文件与其发布的哈希值不符。无法允许。
 zh-CN	string	extension_status_held	-	在你选择之前保持关闭
+zh-CN	string	extension_status_held_new_version	-	新版本 · 在你选择之前保持关闭
 zh-CN	string	extension_status_kept_off	-	已保持关闭
 zh-CN	string	extension_status_start_failed	-	已允许，但未能启动
 zh-CN	string	extension_types	-	类型
@@ -60842,6 +60914,7 @@ zh-Hans-CN	string	extension_status_allowed	-	已允许，正在其沙盒中运�
 zh-Hans-CN	string	extension_status_blocked	-	已被扫描拦截。无法允许。
 zh-Hans-CN	string	extension_status_hash_mismatch	-	此文件与其发布的哈希值不符。无法允许。
 zh-Hans-CN	string	extension_status_held	-	在你选择之前保持关闭
+zh-Hans-CN	string	extension_status_held_new_version	-	新版本 · 在你选择之前保持关闭
 zh-Hans-CN	string	extension_status_kept_off	-	已保持关闭
 zh-Hans-CN	string	extension_status_start_failed	-	已允许，但未能启动
 zh-Hans-CN	string	extension_types	-	类型
@@ -61679,6 +61752,7 @@ zh-TW	string	extension_status_allowed	-	已允許，正在其沙箱中執行
 zh-TW	string	extension_status_blocked	-	已遭掃描封鎖。無法允許。
 zh-TW	string	extension_status_hash_mismatch	-	此檔案與其發布的雜湊值不符。無法允許。
 zh-TW	string	extension_status_held	-	在你選擇之前保持關閉
+zh-TW	string	extension_status_held_new_version	-	新版本 · 在你選擇之前保持關閉
 zh-TW	string	extension_status_kept_off	-	已保持關閉
 zh-TW	string	extension_status_start_failed	-	已允許，但未能啟動
 zh-TW	string	extension_types	-	類型
@@ -62516,6 +62590,7 @@ zh-Hant-TW	string	extension_status_allowed	-	已允許，正在其沙箱中執�
 zh-Hant-TW	string	extension_status_blocked	-	已遭掃描封鎖。無法允許。
 zh-Hant-TW	string	extension_status_hash_mismatch	-	此檔案與其發布的雜湊值不符。無法允許。
 zh-Hant-TW	string	extension_status_held	-	在你選擇之前保持關閉
+zh-Hant-TW	string	extension_status_held_new_version	-	新版本 · 在你選擇之前保持關閉
 zh-Hant-TW	string	extension_status_kept_off	-	已保持關閉
 zh-Hant-TW	string	extension_status_start_failed	-	已允許，但未能啟動
 zh-Hant-TW	string	extension_types	-	類型
@@ -63353,6 +63428,7 @@ zh-HK	string	extension_status_allowed	-	已允許，正在其沙箱中執行
 zh-HK	string	extension_status_blocked	-	已遭掃描封鎖。無法允許。
 zh-HK	string	extension_status_hash_mismatch	-	此檔案與其發布的雜湊值不符。無法允許。
 zh-HK	string	extension_status_held	-	在你選擇之前保持關閉
+zh-HK	string	extension_status_held_new_version	-	新版本 · 在你選擇之前保持關閉
 zh-HK	string	extension_status_kept_off	-	已保持關閉
 zh-HK	string	extension_status_start_failed	-	已允許，但未能啟動
 zh-HK	string	extension_types	-	類型
@@ -64190,6 +64266,7 @@ zh-Hant-HK	string	extension_status_allowed	-	已允許，正在其沙箱中執�
 zh-Hant-HK	string	extension_status_blocked	-	已遭掃描封鎖。無法允許。
 zh-Hant-HK	string	extension_status_hash_mismatch	-	此檔案與其發布的雜湊值不符。無法允許。
 zh-Hant-HK	string	extension_status_held	-	在你選擇之前保持關閉
+zh-Hant-HK	string	extension_status_held_new_version	-	新版本 · 在你選擇之前保持關閉
 zh-Hant-HK	string	extension_status_kept_off	-	已保持關閉
 zh-Hant-HK	string	extension_status_start_failed	-	已允許，但未能啟動
 zh-Hant-HK	string	extension_types	-	類型
@@ -65030,6 +65107,7 @@ no	string	extension_status_allowed	-	Tillatt, og kjører i sandkassen sin
 no	string	extension_status_blocked	-	Blokkert av skanningen. Dette kan ikke tillates.
 no	string	extension_status_hash_mismatch	-	Denne filen stemmer ikke med den publiserte hash-verdien. Dette kan ikke tillates.
 no	string	extension_status_held	-	Av til du velger
+no	string	extension_status_held_new_version	-	Ny versjon · Av til du velger
 no	string	extension_status_kept_off	-	Holdes av
 no	string	extension_status_start_failed	-	Tillatt, men den startet ikke
 no	string	extension_types	-	Støttet
@@ -65870,6 +65948,7 @@ nb	string	extension_status_allowed	-	Allowed, and running in its sandbox
 nb	string	extension_status_blocked	-	Blocked by the scan. This cannot be allowed.
 nb	string	extension_status_hash_mismatch	-	This file does not match its published hash. This cannot be allowed.
 nb	string	extension_status_held	-	Off until you choose
+nb	string	extension_status_held_new_version	-	New version · Off until you choose
 nb	string	extension_status_kept_off	-	Kept off
 nb	string	extension_status_start_failed	-	Allowed, but it did not start
 nb	string	extension_types	-	Supported
@@ -66710,6 +66789,7 @@ nb-NO	string	extension_status_allowed	-	Allowed, and running in its sandbox
 nb-NO	string	extension_status_blocked	-	Blocked by the scan. This cannot be allowed.
 nb-NO	string	extension_status_hash_mismatch	-	This file does not match its published hash. This cannot be allowed.
 nb-NO	string	extension_status_held	-	Off until you choose
+nb-NO	string	extension_status_held_new_version	-	New version · Off until you choose
 nb-NO	string	extension_status_kept_off	-	Kept off
 nb-NO	string	extension_status_start_failed	-	Allowed, but it did not start
 nb-NO	string	extension_types	-	Supported
@@ -67551,6 +67631,7 @@ iw	string	extension_status_allowed	-	מותרת ופועלת בסביבה המב
 iw	string	extension_status_blocked	-	נחסמה על ידי הסריקה. אי אפשר לאשר אותה.
 iw	string	extension_status_hash_mismatch	-	הקובץ הזה לא תואם לערך הגיבוב שפורסם עבורו. אי אפשר לאשר אותו.
 iw	string	extension_status_held	-	כבויה עד לבחירה שלך
+iw	string	extension_status_held_new_version	-	גרסה חדשה · כבויה עד לבחירה שלך
 iw	string	extension_status_kept_off	-	נשארת כבויה
 iw	string	extension_status_start_failed	-	מותרת, אבל לא הופעלה
 iw	string	extension_types	-	תומך
@@ -68392,6 +68473,7 @@ he	string	extension_status_allowed	-	מותרת ופועלת בסביבה המב
 he	string	extension_status_blocked	-	נחסמה על ידי הסריקה. אי אפשר לאשר אותה.
 he	string	extension_status_hash_mismatch	-	הקובץ הזה לא תואם לערך הגיבוב שפורסם עבורו. אי אפשר לאשר אותו.
 he	string	extension_status_held	-	כבויה עד לבחירה שלך
+he	string	extension_status_held_new_version	-	גרסה חדשה · כבויה עד לבחירה שלך
 he	string	extension_status_kept_off	-	נשארת כבויה
 he	string	extension_status_start_failed	-	מותרת, אבל לא הופעלה
 he	string	extension_types	-	תומך
@@ -69233,6 +69315,7 @@ he-IL	string	extension_status_allowed	-	מותרת ופועלת בסביבה ה�
 he-IL	string	extension_status_blocked	-	נחסמה על ידי הסריקה. אי אפשר לאשר אותה.
 he-IL	string	extension_status_hash_mismatch	-	הקובץ הזה לא תואם לערך הגיבוב שפורסם עבורו. אי אפשר לאשר אותו.
 he-IL	string	extension_status_held	-	כבויה עד לבחירה שלך
+he-IL	string	extension_status_held_new_version	-	גרסה חדשה · כבויה עד לבחירה שלך
 he-IL	string	extension_status_kept_off	-	נשארת כבויה
 he-IL	string	extension_status_start_failed	-	מותרת, אבל לא הופעלה
 he-IL	string	extension_types	-	תומך
@@ -70069,6 +70152,7 @@ in	string	extension_status_allowed	-	Diizinkan, dan berjalan di lingkungan teris
 in	string	extension_status_blocked	-	Diblokir oleh pemindaian. Ini tidak dapat diizinkan.
 in	string	extension_status_hash_mismatch	-	Berkas ini tidak cocok dengan hash yang dipublikasikan. Ini tidak dapat diizinkan.
 in	string	extension_status_held	-	Nonaktif sampai Anda memilih
+in	string	extension_status_held_new_version	-	Versi baru · Nonaktif sampai Anda memilih
 in	string	extension_status_kept_off	-	Tetap nonaktif
 in	string	extension_status_start_failed	-	Diizinkan, tetapi tidak berhasil dimulai
 in	string	extension_types	-	Dukungan
@@ -70905,6 +70989,7 @@ id	string	extension_status_allowed	-	Diizinkan, dan berjalan di lingkungan teris
 id	string	extension_status_blocked	-	Diblokir oleh pemindaian. Ini tidak dapat diizinkan.
 id	string	extension_status_hash_mismatch	-	Berkas ini tidak cocok dengan hash yang dipublikasikan. Ini tidak dapat diizinkan.
 id	string	extension_status_held	-	Nonaktif sampai Anda memilih
+id	string	extension_status_held_new_version	-	Versi baru · Nonaktif sampai Anda memilih
 id	string	extension_status_kept_off	-	Tetap nonaktif
 id	string	extension_status_start_failed	-	Diizinkan, tetapi tidak berhasil dimulai
 id	string	extension_types	-	Dukungan
@@ -71741,6 +71826,7 @@ id-ID	string	extension_status_allowed	-	Diizinkan, dan berjalan di lingkungan te
 id-ID	string	extension_status_blocked	-	Diblokir oleh pemindaian. Ini tidak dapat diizinkan.
 id-ID	string	extension_status_hash_mismatch	-	Berkas ini tidak cocok dengan hash yang dipublikasikan. Ini tidak dapat diizinkan.
 id-ID	string	extension_status_held	-	Nonaktif sampai Anda memilih
+id-ID	string	extension_status_held_new_version	-	Versi baru · Nonaktif sampai Anda memilih
 id-ID	string	extension_status_kept_off	-	Tetap nonaktif
 id-ID	string	extension_status_start_failed	-	Diizinkan, tetapi tidak berhasil dimulai
 id-ID	string	extension_types	-	Dukungan
@@ -72581,6 +72667,7 @@ arz	string	extension_status_allowed	-	Allowed, and running in its sandbox
 arz	string	extension_status_blocked	-	Blocked by the scan. This cannot be allowed.
 arz	string	extension_status_hash_mismatch	-	This file does not match its published hash. This cannot be allowed.
 arz	string	extension_status_held	-	Off until you choose
+arz	string	extension_status_held_new_version	-	New version · Off until you choose
 arz	string	extension_status_kept_off	-	Kept off
 arz	string	extension_status_start_failed	-	Allowed, but it did not start
 arz	string	extension_types	-	Supported

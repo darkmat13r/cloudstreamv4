@@ -275,6 +275,7 @@
 <string name="extension_status_blocked">"الفحص حظرها. ما فيك تسمح فيها."</string>
 <string name="extension_status_hash_mismatch">"هالملف ما بيطابق قيمة التجزئة (hash) المنشورة تبعو. ما فيك تسمح فيه."</string>
 <string name="extension_status_held">"مطفية لحتى تختار"</string>
+<string name="extension_status_held_new_version">"نسخة جديدة · مطفية لحتى تختار"</string>
 <string name="extension_status_kept_off">"ضلّت مطفية"</string>
 <string name="extension_status_start_failed">"مسموحة، بس ما اشتغلت"</string>
 <string name="extension_types">"مدعوم"</string>

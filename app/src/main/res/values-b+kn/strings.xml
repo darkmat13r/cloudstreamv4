@@ -50,6 +50,7 @@
 <string name="extension_status_blocked">"ಸ್ಕ್ಯಾನ್ ಇದನ್ನು ನಿರ್ಬಂಧಿಸಿದೆ. ಇದನ್ನು ಅನುಮತಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ."</string>
 <string name="extension_status_hash_mismatch">"ಈ ಫೈಲ್ ಅದರ ಪ್ರಕಟಿತ ಹ್ಯಾಶ್‌ಗೆ ಹೊಂದಿಕೆಯಾಗುವುದಿಲ್ಲ. ಇದನ್ನು ಅನುಮತಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ."</string>
 <string name="extension_status_held">"ನೀವು ಆಯ್ಕೆ ಮಾಡುವವರೆಗೆ ಆಫ್"</string>
+<string name="extension_status_held_new_version">"ಹೊಸ ಆವೃತ್ತಿ · ನೀವು ಆಯ್ಕೆ ಮಾಡುವವರೆಗೆ ಆಫ್"</string>
 <string name="extension_status_kept_off">"ಆಫ್ ಆಗಿರಿಸಲಾಗಿದೆ"</string>
 <string name="extension_status_start_failed">"ಅನುಮತಿಸಲಾಗಿದೆ, ಆದರೆ ಅದು ಪ್ರಾರಂಭವಾಗಲಿಲ್ಲ"</string>
 <string name="extension_warning_classloader_access">"ಇದು ಕ್ಲಾಸ್ ಲೋಡರ್ ಅನ್ನು ತಲುಪುತ್ತದೆ, ಇದು ಈ ಸ್ಕ್ಯಾನ್ ಎಂದೂ ನೋಡದ ಕೋಡ್ ಅನ್ನು ತರಬಹುದು."</string>

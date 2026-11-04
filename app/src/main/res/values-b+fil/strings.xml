@@ -67,6 +67,7 @@
 <string name="extension_status_blocked">"Hinarang ng scan. Hindi ito maaaring payagan."</string>
 <string name="extension_status_hash_mismatch">"Hindi tugma ang file na ito sa nailathalang hash nito. Hindi ito maaaring payagan."</string>
 <string name="extension_status_held">"Naka-off hanggang pumili ka"</string>
+<string name="extension_status_held_new_version">"Bagong bersyon · Naka-off hanggang pumili ka"</string>
 <string name="extension_status_kept_off">"Nanatiling naka-off"</string>
 <string name="extension_status_start_failed">"Pinayagan, pero hindi ito nagsimula"</string>
 <string name="extension_warning_classloader_access">"Inaabot nito ang class loader, na maaaring magpasok ng code na hindi kailanman nakita ng scan na ito."</string>

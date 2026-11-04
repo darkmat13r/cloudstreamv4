@@ -161,6 +161,7 @@
 <string name="extension_status_blocked">"স্ক্যান এটি ব্লক করেছে। এটি অনুমতি দেওয়া যাবে না।"</string>
 <string name="extension_status_hash_mismatch">"এই ফাইলটি এর প্রকাশিত হ্যাশের সাথে মেলে না। এটি অনুমতি দেওয়া যাবে না।"</string>
 <string name="extension_status_held">"আপনি বেছে না নেওয়া পর্যন্ত বন্ধ"</string>
+<string name="extension_status_held_new_version">"নতুন সংস্করণ · আপনি বেছে না নেওয়া পর্যন্ত বন্ধ"</string>
 <string name="extension_status_kept_off">"বন্ধ রাখা হয়েছে"</string>
 <string name="extension_status_start_failed">"অনুমতি দেওয়া হয়েছে, কিন্তু এটি চালু হয়নি"</string>
 <string name="extension_warning_classloader_access">"এটি ক্লাস লোডার পর্যন্ত পৌঁছায়, যা এমন কোড আনতে পারে যা এই স্ক্যান কখনো দেখেনি।"</string>

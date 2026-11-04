@@ -276,6 +276,7 @@
 <string name="extension_status_blocked">"E bllokuar nga skanimi. Kjo nuk mund të lejohet."</string>
 <string name="extension_status_hash_mismatch">"Ky skedar nuk përputhet me hash-in e tij të publikuar. Kjo nuk mund të lejohet."</string>
 <string name="extension_status_held">"E fikur derisa të zgjidhni"</string>
+<string name="extension_status_held_new_version">"Version i ri · E fikur derisa të zgjidhni"</string>
 <string name="extension_status_kept_off">"Mbahet e fikur"</string>
 <string name="extension_status_start_failed">"E lejuar, por nuk u nis"</string>
 <string name="extension_types">"Të suportuara"</string>

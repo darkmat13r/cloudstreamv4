@@ -49,6 +49,7 @@ values-b+af/strings.xml	string	extension_status_allowed	-	STR	Toegelaat en loop 
 values-b+af/strings.xml	string	extension_status_blocked	-	STR	Deur die skandering geblokkeer. Dit kan nie toegelaat word nie.	
 values-b+af/strings.xml	string	extension_status_hash_mismatch	-	STR	Hierdie lêer stem nie ooreen met sy gepubliseerde hash nie. Dit kan nie toegelaat word nie.	
 values-b+af/strings.xml	string	extension_status_held	-	STR	Af totdat jy kies	
+values-b+af/strings.xml	string	extension_status_held_new_version	-	STR	Nuwe weergawe · Af totdat jy kies	
 values-b+af/strings.xml	string	extension_status_kept_off	-	STR	Afgehou	
 values-b+af/strings.xml	string	extension_status_start_failed	-	STR	Toegelaat, maar dit het nie begin nie	
 values-b+af/strings.xml	string	extension_warning_classloader_access	-	STR	Dit gryp na die klaslaaier, wat kode kan inbring wat hierdie skandering nooit gesien het nie.	
@@ -213,6 +214,7 @@ values-b+am/strings.xml	string	extension_status_allowed	-	STR	ተፈቅዷል፣
 values-b+am/strings.xml	string	extension_status_blocked	-	STR	በቅኝቱ ታግዷል። ይህ ሊፈቀድ አይችልም።	
 values-b+am/strings.xml	string	extension_status_hash_mismatch	-	STR	ይህ ፋይል ከታተመው ሃሹ ጋር አይዛመድም። ይህ ሊፈቀድ አይችልም።	
 values-b+am/strings.xml	string	extension_status_held	-	STR	እስክትመርጥ ድረስ ጠፍቷል	
+values-b+am/strings.xml	string	extension_status_held_new_version	-	STR	አዲስ ስሪት · እስክትመርጥ ድረስ ጠፍቷል	
 values-b+am/strings.xml	string	extension_status_kept_off	-	STR	ጠፍቶ እንዲቆይ ተደርጓል	
 values-b+am/strings.xml	string	extension_status_start_failed	-	STR	ተፈቅዷል፣ ግን አልጀመረም	
 values-b+am/strings.xml	string	extension_warning_classloader_access	-	STR	ወደ ክላስ ሎደር ይደርሳል፤ ይህም ይህ ቅኝት ያላየውን ኮድ ሊያስገባ ይችላል።	
@@ -604,6 +606,7 @@ values-b+apc/strings.xml	string	extension_status_allowed	-	STR	مسموحة وش
 values-b+apc/strings.xml	string	extension_status_blocked	-	STR	الفحص حظرها. ما فيك تسمح فيها.	
 values-b+apc/strings.xml	string	extension_status_hash_mismatch	-	STR	هالملف ما بيطابق قيمة التجزئة (hash) المنشورة تبعو. ما فيك تسمح فيه.	
 values-b+apc/strings.xml	string	extension_status_held	-	STR	مطفية لحتى تختار	
+values-b+apc/strings.xml	string	extension_status_held_new_version	-	STR	نسخة جديدة · مطفية لحتى تختار	
 values-b+apc/strings.xml	string	extension_status_kept_off	-	STR	ضلّت مطفية	
 values-b+apc/strings.xml	string	extension_status_start_failed	-	STR	مسموحة، بس ما اشتغلت	
 values-b+apc/strings.xml	string	extension_types	-	STR	مدعوم	
@@ -1398,6 +1401,7 @@ values-b+ar/strings.xml	string	extension_status_allowed	-	STR	مسموح بها 
 values-b+ar/strings.xml	string	extension_status_blocked	-	STR	حظرها الفحص. لا يمكن السماح بها.	
 values-b+ar/strings.xml	string	extension_status_hash_mismatch	-	STR	لا يطابق هذا الملف قيمة التجزئة (hash) المنشورة له. لا يمكن السماح به.	
 values-b+ar/strings.xml	string	extension_status_held	-	STR	معطّلة حتى تختار	
+values-b+ar/strings.xml	string	extension_status_held_new_version	-	STR	إصدار جديد · معطّلة حتى تختار	
 values-b+ar/strings.xml	string	extension_status_kept_off	-	STR	أُبقيت معطّلة	
 values-b+ar/strings.xml	string	extension_status_start_failed	-	STR	مسموح بها، لكنها لم تبدأ	
 values-b+ar/strings.xml	string	extension_types	-	STR	مدعوم	
@@ -2042,6 +2046,7 @@ values-b+ars/strings.xml	string	extension_status_allowed	-	STR	مسموح بها
 values-b+ars/strings.xml	string	extension_status_blocked	-	STR	حظرها الفحص. لا يمكن السماح بها.	
 values-b+ars/strings.xml	string	extension_status_hash_mismatch	-	STR	لا يطابق هذا الملف قيمة التجزئة (hash) المنشورة له. لا يمكن السماح به.	
 values-b+ars/strings.xml	string	extension_status_held	-	STR	معطّلة حتى تختار	
+values-b+ars/strings.xml	string	extension_status_held_new_version	-	STR	إصدار جديد · معطّلة حتى تختار	
 values-b+ars/strings.xml	string	extension_status_kept_off	-	STR	أُبقيت معطّلة	
 values-b+ars/strings.xml	string	extension_status_start_failed	-	STR	مسموح بها، لكنها لم تبدأ	
 values-b+ars/strings.xml	string	extension_warning_classloader_access	-	STR	تصل إلى محمّل الأصناف (class loader)، وهو ما قد يجلب شيفرة لم يرها هذا الفحص قط.	
@@ -2542,6 +2547,7 @@ values-b+as/strings.xml	string	extension_status_allowed	-	STR	অনুমতি
 values-b+as/strings.xml	string	extension_status_blocked	-	STR	স্কেনে অৱৰোধ কৰিছে। ইয়াক অনুমতি দিব নোৱাৰি।	
 values-b+as/strings.xml	string	extension_status_hash_mismatch	-	STR	এই ফাইলটো ইয়াৰ প্ৰকাশিত হেচৰ সৈতে নিমিলে। ইয়াক অনুমতি দিব নোৱাৰি।	
 values-b+as/strings.xml	string	extension_status_held	-	STR	আপুনি বাছনি নকৰালৈকে বন্ধ	
+values-b+as/strings.xml	string	extension_status_held_new_version	-	STR	নতুন সংস্কৰণ · আপুনি বাছনি নকৰালৈকে বন্ধ	
 values-b+as/strings.xml	string	extension_status_kept_off	-	STR	বন্ধ ৰখা হৈছে	
 values-b+as/strings.xml	string	extension_status_start_failed	-	STR	অনুমতি দিয়া হৈছে, কিন্তু ই আৰম্ভ নহ'ল	
 values-b+as/strings.xml	string	extension_types	-	STR	সমৰ্থিত	
@@ -3054,6 +3060,7 @@ values-b+az/strings.xml	string	extension_status_allowed	-	STR	İcazə verilib v�
 values-b+az/strings.xml	string	extension_status_blocked	-	STR	Yoxlama tərəfindən bloklanıb. Buna icazə vermək olmaz.	
 values-b+az/strings.xml	string	extension_status_hash_mismatch	-	STR	Bu fayl dərc olunmuş heşinə uyğun gəlmir. Buna icazə vermək olmaz.	
 values-b+az/strings.xml	string	extension_status_held	-	STR	Siz seçənədək söndürülüdür	
+values-b+az/strings.xml	string	extension_status_held_new_version	-	STR	Yeni versiya · Siz seçənədək söndürülüdür	
 values-b+az/strings.xml	string	extension_status_kept_off	-	STR	Söndürülü saxlanılıb	
 values-b+az/strings.xml	string	extension_status_start_failed	-	STR	İcazə verilib, amma işə düşmədi	
 values-b+az/strings.xml	string	extension_warning_classloader_access	-	STR	Sinif yükləyicisinə müraciət edir və bu, yoxlamanın heç görmədiyi kodu gətirə bilər.	
@@ -3462,6 +3469,7 @@ values-b+be/strings.xml	string	extension_status_allowed	-	STR	Дазволена
 values-b+be/strings.xml	string	extension_status_blocked	-	STR	Заблакавана сканаваннем. Гэта нельга дазволіць.	
 values-b+be/strings.xml	string	extension_status_hash_mismatch	-	STR	Гэты файл не адпавядае свайму апублікаванаму хэшу. Гэта нельга дазволіць.	
 values-b+be/strings.xml	string	extension_status_held	-	STR	Выключана, пакуль вы не вырашыце	
+values-b+be/strings.xml	string	extension_status_held_new_version	-	STR	Новая версія · Выключана, пакуль вы не вырашыце	
 values-b+be/strings.xml	string	extension_status_kept_off	-	STR	Пакінута выключаным	
 values-b+be/strings.xml	string	extension_status_start_failed	-	STR	Дазволена, але не запусцілася	
 values-b+be/strings.xml	string	extension_types	-	STR	Падтрымлівае	
@@ -4240,6 +4248,7 @@ values-b+bg/strings.xml	string	extension_status_allowed	-	STR	Разрешено
 values-b+bg/strings.xml	string	extension_status_blocked	-	STR	Блокирано от сканирането. Това не може да бъде разрешено.	
 values-b+bg/strings.xml	string	extension_status_hash_mismatch	-	STR	Този файл не съответства на публикувания си хеш. Това не може да бъде разрешено.	
 values-b+bg/strings.xml	string	extension_status_held	-	STR	Изключено, докато не решите	
+values-b+bg/strings.xml	string	extension_status_held_new_version	-	STR	Нова версия · Изключено, докато не решите	
 values-b+bg/strings.xml	string	extension_status_kept_off	-	STR	Оставено изключено	
 values-b+bg/strings.xml	string	extension_status_start_failed	-	STR	Разрешено, но не се стартира	
 values-b+bg/strings.xml	string	extension_types	-	STR	Поддържани	
@@ -4901,6 +4910,7 @@ values-b+bn/strings.xml	string	extension_status_allowed	-	STR	অনুমতি
 values-b+bn/strings.xml	string	extension_status_blocked	-	STR	স্ক্যান এটি ব্লক করেছে। এটি অনুমতি দেওয়া যাবে না।	
 values-b+bn/strings.xml	string	extension_status_hash_mismatch	-	STR	এই ফাইলটি এর প্রকাশিত হ্যাশের সাথে মেলে না। এটি অনুমতি দেওয়া যাবে না।	
 values-b+bn/strings.xml	string	extension_status_held	-	STR	আপনি বেছে না নেওয়া পর্যন্ত বন্ধ	
+values-b+bn/strings.xml	string	extension_status_held_new_version	-	STR	নতুন সংস্করণ · আপনি বেছে না নেওয়া পর্যন্ত বন্ধ	
 values-b+bn/strings.xml	string	extension_status_kept_off	-	STR	বন্ধ রাখা হয়েছে	
 values-b+bn/strings.xml	string	extension_status_start_failed	-	STR	অনুমতি দেওয়া হয়েছে, কিন্তু এটি চালু হয়নি	
 values-b+bn/strings.xml	string	extension_warning_classloader_access	-	STR	এটি ক্লাস লোডার পর্যন্ত পৌঁছায়, যা এমন কোড আনতে পারে যা এই স্ক্যান কখনো দেখেনি।	
@@ -5314,6 +5324,7 @@ values-b+ca/strings.xml	string	extension_status_allowed	-	STR	Permesa i en execu
 values-b+ca/strings.xml	string	extension_status_blocked	-	STR	Bloquejada per l'anàlisi. No es pot permetre.	
 values-b+ca/strings.xml	string	extension_status_hash_mismatch	-	STR	Aquest fitxer no coincideix amb el seu hash publicat. No es pot permetre.	
 values-b+ca/strings.xml	string	extension_status_held	-	STR	Desactivada fins que triïs	
+values-b+ca/strings.xml	string	extension_status_held_new_version	-	STR	Versió nova · Desactivada fins que triïs	
 values-b+ca/strings.xml	string	extension_status_kept_off	-	STR	Mantinguda desactivada	
 values-b+ca/strings.xml	string	extension_status_start_failed	-	STR	Permesa, però no s'ha iniciat	
 values-b+ca/strings.xml	string	extension_warning_classloader_access	-	STR	Accedeix al carregador de classes, que pot portar codi que aquesta anàlisi no ha vist mai.	
@@ -5617,6 +5628,7 @@ values-b+ckb/strings.xml	string	extension_status_allowed	-	STR	ڕێگەی پێد
 values-b+ckb/strings.xml	string	extension_status_blocked	-	STR	پشکنینەکە بلۆکی کرد. ناتوانرێت ڕێگەی پێ بدرێت.	
 values-b+ckb/strings.xml	string	extension_status_hash_mismatch	-	STR	ئەم فایلە لەگەڵ هاشی بڵاوکراوەی خۆی ناگونجێت. ناتوانرێت ڕێگەی پێ بدرێت.	
 values-b+ckb/strings.xml	string	extension_status_held	-	STR	کوژاوەیە تا هەڵدەبژێریت	
+values-b+ckb/strings.xml	string	extension_status_held_new_version	-	STR	وەشانی نوێ · کوژاوەیە تا هەڵدەبژێریت	
 values-b+ckb/strings.xml	string	extension_status_kept_off	-	STR	بە کوژاوەیی هێڵدرایەوە	
 values-b+ckb/strings.xml	string	extension_status_start_failed	-	STR	ڕێگەی پێدراوە، بەڵام دەستی پێنەکرد	
 values-b+ckb/strings.xml	string	extension_warning_classloader_access	-	STR	دەگاتە بارکەری کلاس، کە دەتوانێت کۆدێک بهێنێت ئەم پشکنینە هەرگیز نەیبینیوە.	
@@ -5993,6 +6005,7 @@ values-b+cs/strings.xml	string	extension_status_allowed	-	STR	Povoleno a běží
 values-b+cs/strings.xml	string	extension_status_blocked	-	STR	Zablokováno kontrolou. Nelze povolit.	
 values-b+cs/strings.xml	string	extension_status_hash_mismatch	-	STR	Tento soubor neodpovídá svému zveřejněnému hashi. Nelze povolit.	
 values-b+cs/strings.xml	string	extension_status_held	-	STR	Vypnuto, dokud se nerozhodnete	
+values-b+cs/strings.xml	string	extension_status_held_new_version	-	STR	Nová verze · Vypnuto, dokud se nerozhodnete	
 values-b+cs/strings.xml	string	extension_status_kept_off	-	STR	Ponecháno vypnuté	
 values-b+cs/strings.xml	string	extension_status_start_failed	-	STR	Povoleno, ale nespustilo se	
 values-b+cs/strings.xml	string	extension_types	-	STR	Podporováno	
@@ -6782,6 +6795,7 @@ values-b+de/strings.xml	string	extension_status_allowed	-	STR	Erlaubt und läuft
 values-b+de/strings.xml	string	extension_status_blocked	-	STR	Von der Prüfung blockiert. Dies kann nicht erlaubt werden.	
 values-b+de/strings.xml	string	extension_status_hash_mismatch	-	STR	Diese Datei stimmt nicht mit ihrem veröffentlichten Hash überein. Dies kann nicht erlaubt werden.	
 values-b+de/strings.xml	string	extension_status_held	-	STR	Aus, bis Sie entscheiden	
+values-b+de/strings.xml	string	extension_status_held_new_version	-	STR	Neue Version · Aus, bis Sie entscheiden	
 values-b+de/strings.xml	string	extension_status_kept_off	-	STR	Bleibt aus	
 values-b+de/strings.xml	string	extension_status_start_failed	-	STR	Erlaubt, aber nicht gestartet	
 values-b+de/strings.xml	string	extension_types	-	STR	Unterstützt	
@@ -7541,6 +7555,7 @@ values-b+el/strings.xml	string	extension_status_allowed	-	STR	Επιτράπηκ
 values-b+el/strings.xml	string	extension_status_blocked	-	STR	Αποκλείστηκε από τη σάρωση. Δεν μπορεί να επιτραπεί.	
 values-b+el/strings.xml	string	extension_status_hash_mismatch	-	STR	Αυτό το αρχείο δεν ταιριάζει με το δημοσιευμένο hash του. Δεν μπορεί να επιτραπεί.	
 values-b+el/strings.xml	string	extension_status_held	-	STR	Ανενεργή μέχρι να επιλέξετε	
+values-b+el/strings.xml	string	extension_status_held_new_version	-	STR	Νέα έκδοση · Ανενεργή μέχρι να επιλέξετε	
 values-b+el/strings.xml	string	extension_status_kept_off	-	STR	Παρέμεινε ανενεργή	
 values-b+el/strings.xml	string	extension_status_start_failed	-	STR	Επιτράπηκε, αλλά δεν ξεκίνησε	
 values-b+el/strings.xml	string	extension_types	-	STR	Υποστηρίζονται	
@@ -8078,6 +8093,7 @@ values-b+eo/strings.xml	string	extension_status_allowed	-	STR	Permesita kaj funk
 values-b+eo/strings.xml	string	extension_status_blocked	-	STR	Blokita de la skanado. Ĉi tio ne povas esti permesita.	
 values-b+eo/strings.xml	string	extension_status_hash_mismatch	-	STR	Ĉi tiu dosiero ne kongruas kun sia publikigita haketaĵo. Ĉi tio ne povas esti permesita.	
 values-b+eo/strings.xml	string	extension_status_held	-	STR	Malŝaltita ĝis vi elektos	
+values-b+eo/strings.xml	string	extension_status_held_new_version	-	STR	Nova versio · Malŝaltita ĝis vi elektos	
 values-b+eo/strings.xml	string	extension_status_kept_off	-	STR	Lasita malŝaltita	
 values-b+eo/strings.xml	string	extension_status_start_failed	-	STR	Permesita, sed ĝi ne ekfunkciis	
 values-b+eo/strings.xml	string	extension_version	-	STR	Versio	
@@ -8519,6 +8535,7 @@ values-b+es/strings.xml	string	extension_status_allowed	-	STR	Permitida y en eje
 values-b+es/strings.xml	string	extension_status_blocked	-	STR	Bloqueada por el análisis. No se puede permitir.	
 values-b+es/strings.xml	string	extension_status_hash_mismatch	-	STR	Este archivo no coincide con su hash publicado. No se puede permitir.	
 values-b+es/strings.xml	string	extension_status_held	-	STR	Desactivada hasta que decida	
+values-b+es/strings.xml	string	extension_status_held_new_version	-	STR	Versión nueva · Desactivada hasta que decida	
 values-b+es/strings.xml	string	extension_status_kept_off	-	STR	Se mantiene desactivada	
 values-b+es/strings.xml	string	extension_status_start_failed	-	STR	Permitida, pero no se inició	
 values-b+es/strings.xml	string	extension_types	-	STR	Soportado	
@@ -9160,6 +9177,7 @@ values-b+fa/strings.xml	string	extension_status_allowed	-	STR	مجاز است و
 values-b+fa/strings.xml	string	extension_status_blocked	-	STR	توسط اسکن مسدود شد. نمی‌توان به آن اجازه داد.	
 values-b+fa/strings.xml	string	extension_status_hash_mismatch	-	STR	این فایل با هش منتشرشدهٔ خود مطابقت ندارد. نمی‌توان به آن اجازه داد.	
 values-b+fa/strings.xml	string	extension_status_held	-	STR	خاموش تا زمانی که انتخاب کنید	
+values-b+fa/strings.xml	string	extension_status_held_new_version	-	STR	نسخه جدید · خاموش تا زمانی که انتخاب کنید	
 values-b+fa/strings.xml	string	extension_status_kept_off	-	STR	خاموش نگه داشته شد	
 values-b+fa/strings.xml	string	extension_status_start_failed	-	STR	مجاز است، اما اجرا نشد	
 values-b+fa/strings.xml	string	extension_warning_classloader_access	-	STR	به بارگذار کلاس (class loader) دسترسی پیدا می‌کند که می‌تواند کدی را وارد کند که این اسکن هرگز ندیده است.	
@@ -9494,6 +9512,7 @@ values-b+fil/strings.xml	string	extension_status_allowed	-	STR	Pinayagan, at tum
 values-b+fil/strings.xml	string	extension_status_blocked	-	STR	Hinarang ng scan. Hindi ito maaaring payagan.	
 values-b+fil/strings.xml	string	extension_status_hash_mismatch	-	STR	Hindi tugma ang file na ito sa nailathalang hash nito. Hindi ito maaaring payagan.	
 values-b+fil/strings.xml	string	extension_status_held	-	STR	Naka-off hanggang pumili ka	
+values-b+fil/strings.xml	string	extension_status_held_new_version	-	STR	Bagong bersyon · Naka-off hanggang pumili ka	
 values-b+fil/strings.xml	string	extension_status_kept_off	-	STR	Nanatiling naka-off	
 values-b+fil/strings.xml	string	extension_status_start_failed	-	STR	Pinayagan, pero hindi ito nagsimula	
 values-b+fil/strings.xml	string	extension_warning_classloader_access	-	STR	Inaabot nito ang class loader, na maaaring magpasok ng code na hindi kailanman nakita ng scan na ito.	
@@ -9917,6 +9936,7 @@ values-b+fr/strings.xml	string	extension_status_allowed	-	STR	Autorisée et en c
 values-b+fr/strings.xml	string	extension_status_blocked	-	STR	Bloquée par l'analyse. Elle ne peut pas être autorisée.	
 values-b+fr/strings.xml	string	extension_status_hash_mismatch	-	STR	Ce fichier ne correspond pas à son empreinte (hash) publiée. Il ne peut pas être autorisé.	
 values-b+fr/strings.xml	string	extension_status_held	-	STR	Désactivée jusqu'à votre choix	
+values-b+fr/strings.xml	string	extension_status_held_new_version	-	STR	Nouvelle version · Désactivée jusqu'à votre choix	
 values-b+fr/strings.xml	string	extension_status_kept_off	-	STR	Laissée désactivée	
 values-b+fr/strings.xml	string	extension_status_start_failed	-	STR	Autorisée, mais elle n'a pas démarré	
 values-b+fr/strings.xml	string	extension_types	-	STR	Supporté	
@@ -10547,6 +10567,7 @@ values-b+gl/strings.xml	string	extension_status_allowed	-	STR	Permitida e en exe
 values-b+gl/strings.xml	string	extension_status_blocked	-	STR	Bloqueada pola análise. Non se pode permitir.	
 values-b+gl/strings.xml	string	extension_status_hash_mismatch	-	STR	Este ficheiro non coincide co seu hash publicado. Non se pode permitir.	
 values-b+gl/strings.xml	string	extension_status_held	-	STR	Apagada ata que escolla	
+values-b+gl/strings.xml	string	extension_status_held_new_version	-	STR	Versión nova · Apagada ata que escolla	
 values-b+gl/strings.xml	string	extension_status_kept_off	-	STR	Mantida apagada	
 values-b+gl/strings.xml	string	extension_status_start_failed	-	STR	Permitida, pero non se iniciou	
 values-b+gl/strings.xml	string	extension_warning_classloader_access	-	STR	Accede ao cargador de clases, que pode introducir código que esta análise nunca viu.	
@@ -10938,6 +10959,7 @@ values-b+hi/strings.xml	string	extension_status_allowed	-	STR	अनुमति
 values-b+hi/strings.xml	string	extension_status_blocked	-	STR	स्कैन ने इसे ब्लॉक किया है। इसकी अनुमति नहीं दी जा सकती।	
 values-b+hi/strings.xml	string	extension_status_hash_mismatch	-	STR	यह फ़ाइल अपने प्रकाशित हैश से मेल नहीं खाती। इसकी अनुमति नहीं दी जा सकती।	
 values-b+hi/strings.xml	string	extension_status_held	-	STR	आपके चुनने तक बंद	
+values-b+hi/strings.xml	string	extension_status_held_new_version	-	STR	नया संस्करण · आपके चुनने तक बंद	
 values-b+hi/strings.xml	string	extension_status_kept_off	-	STR	बंद रखा गया	
 values-b+hi/strings.xml	string	extension_status_start_failed	-	STR	अनुमति है, लेकिन यह शुरू नहीं हुआ	
 values-b+hi/strings.xml	string	extension_warning_classloader_access	-	STR	यह क्लास लोडर तक पहुँचता है, जो ऐसा कोड ला सकता है जिसे इस स्कैन ने कभी नहीं देखा।	
@@ -11508,6 +11530,7 @@ values-b+hr/strings.xml	string	extension_status_allowed	-	STR	Dopušteno i radi 
 values-b+hr/strings.xml	string	extension_status_blocked	-	STR	Blokirano skeniranjem. Ovo se ne može dopustiti.	
 values-b+hr/strings.xml	string	extension_status_hash_mismatch	-	STR	Ova datoteka ne odgovara svojem objavljenom hashu. Ovo se ne može dopustiti.	
 values-b+hr/strings.xml	string	extension_status_held	-	STR	Isključeno dok ne odaberete	
+values-b+hr/strings.xml	string	extension_status_held_new_version	-	STR	Nova verzija · Isključeno dok ne odaberete	
 values-b+hr/strings.xml	string	extension_status_kept_off	-	STR	Ostaje isključeno	
 values-b+hr/strings.xml	string	extension_status_start_failed	-	STR	Dopušteno, ali se nije pokrenulo	
 values-b+hr/strings.xml	string	extension_types	-	STR	Podržano	
@@ -12252,6 +12275,7 @@ values-b+hu/strings.xml	string	extension_status_allowed	-	STR	Engedélyezve, és
 values-b+hu/strings.xml	string	extension_status_blocked	-	STR	A vizsgálat letiltotta. Ez nem engedélyezhető.	
 values-b+hu/strings.xml	string	extension_status_hash_mismatch	-	STR	Ez a fájl nem egyezik a közzétett hash-értékével. Ez nem engedélyezhető.	
 values-b+hu/strings.xml	string	extension_status_held	-	STR	Kikapcsolva, amíg nem dönt	
+values-b+hu/strings.xml	string	extension_status_held_new_version	-	STR	Új verzió · Kikapcsolva, amíg nem dönt	
 values-b+hu/strings.xml	string	extension_status_kept_off	-	STR	Kikapcsolva marad	
 values-b+hu/strings.xml	string	extension_status_start_failed	-	STR	Engedélyezve, de nem indult el	
 values-b+hu/strings.xml	string	extension_types	-	STR	Támogatott	
@@ -12973,6 +12997,7 @@ values-b+in/strings.xml	string	extension_status_allowed	-	STR	Diizinkan, dan ber
 values-b+in/strings.xml	string	extension_status_blocked	-	STR	Diblokir oleh pemindaian. Ini tidak dapat diizinkan.	
 values-b+in/strings.xml	string	extension_status_hash_mismatch	-	STR	Berkas ini tidak cocok dengan hash yang dipublikasikan. Ini tidak dapat diizinkan.	
 values-b+in/strings.xml	string	extension_status_held	-	STR	Nonaktif sampai Anda memilih	
+values-b+in/strings.xml	string	extension_status_held_new_version	-	STR	Versi baru · Nonaktif sampai Anda memilih	
 values-b+in/strings.xml	string	extension_status_kept_off	-	STR	Tetap nonaktif	
 values-b+in/strings.xml	string	extension_status_start_failed	-	STR	Diizinkan, tetapi tidak berhasil dimulai	
 values-b+in/strings.xml	string	extension_types	-	STR	Dukungan	
@@ -13766,6 +13791,7 @@ values-b+it/strings.xml	string	extension_status_allowed	-	STR	Consentita e in es
 values-b+it/strings.xml	string	extension_status_blocked	-	STR	Bloccata dalla scansione. Non può essere consentita.	
 values-b+it/strings.xml	string	extension_status_hash_mismatch	-	STR	Questo file non corrisponde al suo hash pubblicato. Non può essere consentito.	
 values-b+it/strings.xml	string	extension_status_held	-	STR	Disattivata finché non scegli	
+values-b+it/strings.xml	string	extension_status_held_new_version	-	STR	Nuova versione · Disattivata finché non scegli	
 values-b+it/strings.xml	string	extension_status_kept_off	-	STR	Lasciata disattivata	
 values-b+it/strings.xml	string	extension_status_start_failed	-	STR	Consentita, ma non si è avviata	
 values-b+it/strings.xml	string	extension_types	-	STR	Supportati	
@@ -14473,6 +14499,7 @@ values-b+iw/strings.xml	string	extension_status_allowed	-	STR	מותרת ופו�
 values-b+iw/strings.xml	string	extension_status_blocked	-	STR	נחסמה על ידי הסריקה. אי אפשר לאשר אותה.	
 values-b+iw/strings.xml	string	extension_status_hash_mismatch	-	STR	הקובץ הזה לא תואם לערך הגיבוב שפורסם עבורו. אי אפשר לאשר אותו.	
 values-b+iw/strings.xml	string	extension_status_held	-	STR	כבויה עד לבחירה שלך	
+values-b+iw/strings.xml	string	extension_status_held_new_version	-	STR	גרסה חדשה · כבויה עד לבחירה שלך	
 values-b+iw/strings.xml	string	extension_status_kept_off	-	STR	נשארת כבויה	
 values-b+iw/strings.xml	string	extension_status_start_failed	-	STR	מותרת, אבל לא הופעלה	
 values-b+iw/strings.xml	string	extension_types	-	STR	תומך	
@@ -15147,6 +15174,7 @@ values-b+ja/strings.xml	string	extension_status_allowed	-	STR	許可済み。専
 values-b+ja/strings.xml	string	extension_status_blocked	-	STR	スキャンによりブロックされました。許可できません。	
 values-b+ja/strings.xml	string	extension_status_hash_mismatch	-	STR	このファイルは公開されているハッシュと一致しません。許可できません。	
 values-b+ja/strings.xml	string	extension_status_held	-	STR	選択するまでオフ	
+values-b+ja/strings.xml	string	extension_status_held_new_version	-	STR	新しいバージョン · 選択するまでオフ	
 values-b+ja/strings.xml	string	extension_status_kept_off	-	STR	オフのまま	
 values-b+ja/strings.xml	string	extension_status_start_failed	-	STR	許可済みですが、起動しませんでした	
 values-b+ja/strings.xml	string	extension_types	-	STR	サポート	
@@ -15707,6 +15735,7 @@ values-b+kn/strings.xml	string	extension_status_allowed	-	STR	ಅನುಮತಿ
 values-b+kn/strings.xml	string	extension_status_blocked	-	STR	ಸ್ಕ್ಯಾನ್ ಇದನ್ನು ನಿರ್ಬಂಧಿಸಿದೆ. ಇದನ್ನು ಅನುಮತಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ.	
 values-b+kn/strings.xml	string	extension_status_hash_mismatch	-	STR	ಈ ಫೈಲ್ ಅದರ ಪ್ರಕಟಿತ ಹ್ಯಾಶ್‌ಗೆ ಹೊಂದಿಕೆಯಾಗುವುದಿಲ್ಲ. ಇದನ್ನು ಅನುಮತಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ.	
 values-b+kn/strings.xml	string	extension_status_held	-	STR	ನೀವು ಆಯ್ಕೆ ಮಾಡುವವರೆಗೆ ಆಫ್	
+values-b+kn/strings.xml	string	extension_status_held_new_version	-	STR	ಹೊಸ ಆವೃತ್ತಿ · ನೀವು ಆಯ್ಕೆ ಮಾಡುವವರೆಗೆ ಆಫ್	
 values-b+kn/strings.xml	string	extension_status_kept_off	-	STR	ಆಫ್ ಆಗಿರಿಸಲಾಗಿದೆ	
 values-b+kn/strings.xml	string	extension_status_start_failed	-	STR	ಅನುಮತಿಸಲಾಗಿದೆ, ಆದರೆ ಅದು ಪ್ರಾರಂಭವಾಗಲಿಲ್ಲ	
 values-b+kn/strings.xml	string	extension_warning_classloader_access	-	STR	ಇದು ಕ್ಲಾಸ್ ಲೋಡರ್ ಅನ್ನು ತಲುಪುತ್ತದೆ, ಇದು ಈ ಸ್ಕ್ಯಾನ್ ಎಂದೂ ನೋಡದ ಕೋಡ್ ಅನ್ನು ತರಬಹುದು.	
@@ -16110,6 +16139,7 @@ values-b+ko/strings.xml	string	extension_status_allowed	-	STR	허용됨, 자체 
 values-b+ko/strings.xml	string	extension_status_blocked	-	STR	검사에서 차단되었습니다. 허용할 수 없습니다.	
 values-b+ko/strings.xml	string	extension_status_hash_mismatch	-	STR	이 파일은 게시된 해시와 일치하지 않습니다. 허용할 수 없습니다.	
 values-b+ko/strings.xml	string	extension_status_held	-	STR	선택할 때까지 꺼짐	
+values-b+ko/strings.xml	string	extension_status_held_new_version	-	STR	새 버전 · 선택할 때까지 꺼짐	
 values-b+ko/strings.xml	string	extension_status_kept_off	-	STR	꺼진 상태로 유지됨	
 values-b+ko/strings.xml	string	extension_status_start_failed	-	STR	허용되었지만 시작되지 않음	
 values-b+ko/strings.xml	string	extension_types	-	STR	유형	
@@ -16728,6 +16758,7 @@ values-b+lt/strings.xml	string	extension_status_allowed	-	STR	Leidžiamas ir vei
 values-b+lt/strings.xml	string	extension_status_blocked	-	STR	Užblokuotas patikros. To leisti negalima.	
 values-b+lt/strings.xml	string	extension_status_hash_mismatch	-	STR	Šis failas neatitinka paskelbtos maišos reikšmės. To leisti negalima.	
 values-b+lt/strings.xml	string	extension_status_held	-	STR	Išjungtas, kol pasirinksite	
+values-b+lt/strings.xml	string	extension_status_held_new_version	-	STR	Nauja versija · Išjungtas, kol pasirinksite	
 values-b+lt/strings.xml	string	extension_status_kept_off	-	STR	Paliktas išjungtas	
 values-b+lt/strings.xml	string	extension_status_start_failed	-	STR	Leidžiamas, bet nepasileido	
 values-b+lt/strings.xml	string	extension_types	-	STR	Palaikoma	
@@ -17189,6 +17220,7 @@ values-b+lv/strings.xml	string	extension_status_allowed	-	STR	Atļauts un darboj
 values-b+lv/strings.xml	string	extension_status_blocked	-	STR	To bloķēja pārbaude. To nevar atļaut.	
 values-b+lv/strings.xml	string	extension_status_hash_mismatch	-	STR	Šis fails neatbilst publicētajam jaucējkodam. To nevar atļaut.	
 values-b+lv/strings.xml	string	extension_status_held	-	STR	Izslēgts, līdz izvēlēsieties	
+values-b+lv/strings.xml	string	extension_status_held_new_version	-	STR	Jauna versija · Izslēgts, līdz izvēlēsieties	
 values-b+lv/strings.xml	string	extension_status_kept_off	-	STR	Atstāts izslēgts	
 values-b+lv/strings.xml	string	extension_status_start_failed	-	STR	Atļauts, bet nesāka darboties	
 values-b+lv/strings.xml	string	extension_types	-	STR	Atbalstīts	
@@ -17904,6 +17936,7 @@ values-b+mk/strings.xml	string	extension_status_allowed	-	STR	Дозволена
 values-b+mk/strings.xml	string	extension_status_blocked	-	STR	Блокирана од скенирањето. Ова не може да се дозволи.	
 values-b+mk/strings.xml	string	extension_status_hash_mismatch	-	STR	Оваа датотека не се совпаѓа со објавениот хаш. Ова не може да се дозволи.	
 values-b+mk/strings.xml	string	extension_status_held	-	STR	Исклучена додека не избереш	
+values-b+mk/strings.xml	string	extension_status_held_new_version	-	STR	Нова верзија · Исклучена додека не избереш	
 values-b+mk/strings.xml	string	extension_status_kept_off	-	STR	Оставена исклучена	
 values-b+mk/strings.xml	string	extension_status_start_failed	-	STR	Дозволена, но не се стартуваше	
 values-b+mk/strings.xml	string	extension_types	-	STR	Поддржано	
@@ -18519,6 +18552,7 @@ values-b+ml/strings.xml	string	extension_status_allowed	-	STR	അനുവദി
 values-b+ml/strings.xml	string	extension_status_blocked	-	STR	സ്കാൻ ഇത് തടഞ്ഞു. ഇത് അനുവദിക്കാൻ കഴിയില്ല.	
 values-b+ml/strings.xml	string	extension_status_hash_mismatch	-	STR	ഈ ഫയൽ അതിന്റെ പ്രസിദ്ധീകരിച്ച ഹാഷുമായി പൊരുത്തപ്പെടുന്നില്ല. ഇത് അനുവദിക്കാൻ കഴിയില്ല.	
 values-b+ml/strings.xml	string	extension_status_held	-	STR	നിങ്ങൾ തിരഞ്ഞെടുക്കുന്നതുവരെ ഓഫ്	
+values-b+ml/strings.xml	string	extension_status_held_new_version	-	STR	പുതിയ പതിപ്പ് · നിങ്ങൾ തിരഞ്ഞെടുക്കുന്നതുവരെ ഓഫ്	
 values-b+ml/strings.xml	string	extension_status_kept_off	-	STR	ഓഫായി വെച്ചിരിക്കുന്നു	
 values-b+ml/strings.xml	string	extension_status_start_failed	-	STR	അനുവദിച്ചു, പക്ഷേ അത് ആരംഭിച്ചില്ല	
 values-b+ml/strings.xml	string	extension_warning_classloader_access	-	STR	ഇത് ക്ലാസ് ലോഡറിൽ എത്തുന്നു, ഈ സ്കാൻ ഒരിക്കലും കാണാത്ത കോഡ് അതിന് കൊണ്ടുവരാൻ കഴിയും.	
@@ -18960,6 +18994,7 @@ values-b+ms/strings.xml	string	extension_status_allowed	-	STR	Dibenarkan, dan be
 values-b+ms/strings.xml	string	extension_status_blocked	-	STR	Disekat oleh imbasan. Ini tidak boleh dibenarkan.	
 values-b+ms/strings.xml	string	extension_status_hash_mismatch	-	STR	Fail ini tidak sepadan dengan cincangan yang diterbitkan. Ini tidak boleh dibenarkan.	
 values-b+ms/strings.xml	string	extension_status_held	-	STR	Dimatikan sehingga anda memilih	
+values-b+ms/strings.xml	string	extension_status_held_new_version	-	STR	Versi baharu · Dimatikan sehingga anda memilih	
 values-b+ms/strings.xml	string	extension_status_kept_off	-	STR	Kekal dimatikan	
 values-b+ms/strings.xml	string	extension_status_start_failed	-	STR	Dibenarkan, tetapi tidak dapat dimulakan	
 values-b+ms/strings.xml	string	extension_types	-	STR	Disokong	
@@ -19376,6 +19411,7 @@ values-b+mt/strings.xml	string	extension_status_allowed	-	STR	Permessa, u qed ta
 values-b+mt/strings.xml	string	extension_status_blocked	-	STR	Imblukkata mill-iskan. Din ma tistax tiġi permessa.	
 values-b+mt/strings.xml	string	extension_status_hash_mismatch	-	STR	Dan il-fajl ma jaqbilx mal-hash ippubblikat tiegħu. Dan ma jistax jiġi permess.	
 values-b+mt/strings.xml	string	extension_status_held	-	STR	Mitfija sakemm tagħżel	
+values-b+mt/strings.xml	string	extension_status_held_new_version	-	STR	Verżjoni ġdida · Mitfija sakemm tagħżel	
 values-b+mt/strings.xml	string	extension_status_kept_off	-	STR	Tibqa' mitfija	
 values-b+mt/strings.xml	string	extension_status_start_failed	-	STR	Permessa, imma ma bdietx	
 values-b+mt/strings.xml	string	extension_warning_classloader_access	-	STR	Tilħaq il-loader tal-klassijiet, li jista' jdaħħal kodiċi li dan l-iskan qatt ma ra.	
@@ -19690,6 +19726,7 @@ values-b+my/strings.xml	string	extension_status_allowed	-	STR	ခွင့်ပ
 values-b+my/strings.xml	string	extension_status_blocked	-	STR	စစ်ဆေးမှုက ပိတ်ဆို့ထားသည်။ ဤအရာကို ခွင့်ပြု၍မရပါ။	
 values-b+my/strings.xml	string	extension_status_hash_mismatch	-	STR	ဤဖိုင်သည် ထုတ်ပြန်ထားသော ဟက်ရှ်နှင့် မကိုက်ညီပါ။ ဤအရာကို ခွင့်ပြု၍မရပါ။	
 values-b+my/strings.xml	string	extension_status_held	-	STR	သင်ရွေးချယ်သည်အထိ ပိတ်ထားသည်	
+values-b+my/strings.xml	string	extension_status_held_new_version	-	STR	ဗားရှင်းအသစ် · သင်ရွေးချယ်သည်အထိ ပိတ်ထားသည်	
 values-b+my/strings.xml	string	extension_status_kept_off	-	STR	ပိတ်ထားသည်	
 values-b+my/strings.xml	string	extension_status_start_failed	-	STR	ခွင့်ပြုထားသော်လည်း မစတင်ခဲ့ပါ	
 values-b+my/strings.xml	string	extension_types	-	STR	ထောက်ပံ့ထားသော	
@@ -20120,6 +20157,7 @@ values-b+ne/strings.xml	string	extension_status_allowed	-	STR	अनुमति
 values-b+ne/strings.xml	string	extension_status_blocked	-	STR	स्क्यानले रोकेको छ। यसलाई अनुमति दिन सकिँदैन।	
 values-b+ne/strings.xml	string	extension_status_hash_mismatch	-	STR	यो फाइल यसको प्रकाशित ह्याससँग मेल खाँदैन। यसलाई अनुमति दिन सकिँदैन।	
 values-b+ne/strings.xml	string	extension_status_held	-	STR	तपाईंले नछानेसम्म बन्द	
+values-b+ne/strings.xml	string	extension_status_held_new_version	-	STR	नयाँ संस्करण · तपाईंले नछानेसम्म बन्द	
 values-b+ne/strings.xml	string	extension_status_kept_off	-	STR	बन्द राखिएको	
 values-b+ne/strings.xml	string	extension_status_start_failed	-	STR	अनुमति दिइएको, तर सुरु भएन	
 values-b+ne/strings.xml	string	extension_warning_classloader_access	-	STR	यो क्लास लोडरसम्म पुग्छ, जसले यो स्क्यानले कहिल्यै नदेखेको कोड ल्याउन सक्छ।	
@@ -20503,6 +20541,7 @@ values-b+nl/strings.xml	string	extension_status_allowed	-	STR	Toegestaan en acti
 values-b+nl/strings.xml	string	extension_status_blocked	-	STR	Geblokkeerd door de scan. Dit kan niet worden toegestaan.	
 values-b+nl/strings.xml	string	extension_status_hash_mismatch	-	STR	Dit bestand komt niet overeen met de gepubliceerde hash. Dit kan niet worden toegestaan.	
 values-b+nl/strings.xml	string	extension_status_held	-	STR	Uit tot je kiest	
+values-b+nl/strings.xml	string	extension_status_held_new_version	-	STR	Nieuwe versie · Uit tot je kiest	
 values-b+nl/strings.xml	string	extension_status_kept_off	-	STR	Blijft uit	
 values-b+nl/strings.xml	string	extension_status_start_failed	-	STR	Toegestaan, maar niet gestart	
 values-b+nl/strings.xml	string	extension_types	-	STR	Ondersteund	
@@ -21058,6 +21097,7 @@ values-b+nn/strings.xml	string	extension_status_allowed	-	STR	Tillaten, og køyr
 values-b+nn/strings.xml	string	extension_status_blocked	-	STR	Blokkert av skanninga. Dette kan ikkje tillatast.	
 values-b+nn/strings.xml	string	extension_status_hash_mismatch	-	STR	Denne fila stemmer ikkje med den publiserte hashen. Dette kan ikkje tillatast.	
 values-b+nn/strings.xml	string	extension_status_held	-	STR	Av til du vel	
+values-b+nn/strings.xml	string	extension_status_held_new_version	-	STR	Ny versjon · Av til du vel	
 values-b+nn/strings.xml	string	extension_status_kept_off	-	STR	Blir verande av	
 values-b+nn/strings.xml	string	extension_status_start_failed	-	STR	Tillaten, men starta ikkje	
 values-b+nn/strings.xml	string	extension_warning_classloader_access	-	STR	Ho når klasselastaren, som kan hente inn kode denne skanninga aldri har sett.	
@@ -21418,6 +21458,7 @@ values-b+no/strings.xml	string	extension_status_allowed	-	STR	Tillatt, og kjøre
 values-b+no/strings.xml	string	extension_status_blocked	-	STR	Blokkert av skanningen. Dette kan ikke tillates.	
 values-b+no/strings.xml	string	extension_status_hash_mismatch	-	STR	Denne filen stemmer ikke med den publiserte hash-verdien. Dette kan ikke tillates.	
 values-b+no/strings.xml	string	extension_status_held	-	STR	Av til du velger	
+values-b+no/strings.xml	string	extension_status_held_new_version	-	STR	Ny versjon · Av til du velger	
 values-b+no/strings.xml	string	extension_status_kept_off	-	STR	Holdes av	
 values-b+no/strings.xml	string	extension_status_start_failed	-	STR	Tillatt, men den startet ikke	
 values-b+no/strings.xml	string	extension_types	-	STR	Støttet	
@@ -21862,6 +21903,7 @@ values-b+or/strings.xml	string	extension_status_allowed	-	STR	ଅନୁମତି
 values-b+or/strings.xml	string	extension_status_blocked	-	STR	ସ୍କାନ୍ ଦ୍ୱାରା ଅବରୋଧିତ। ଏହାକୁ ଅନୁମତି ଦିଆଯାଇପାରିବ ନାହିଁ।	
 values-b+or/strings.xml	string	extension_status_hash_mismatch	-	STR	ଏହି ଫାଇଲ୍ ଏହାର ପ୍ରକାଶିତ ହାସ୍ ସହିତ ମେଳ ଖାଉନାହିଁ। ଏହାକୁ ଅନୁମତି ଦିଆଯାଇପାରିବ ନାହିଁ।	
 values-b+or/strings.xml	string	extension_status_held	-	STR	ଆପଣ ବାଛିବା ପର୍ଯ୍ୟନ୍ତ ବନ୍ଦ	
+values-b+or/strings.xml	string	extension_status_held_new_version	-	STR	ନୂତନ ସଂସ୍କରଣ · ଆପଣ ବାଛିବା ପର୍ଯ୍ୟନ୍ତ ବନ୍ଦ	
 values-b+or/strings.xml	string	extension_status_kept_off	-	STR	ବନ୍ଦ ରଖାଯାଇଛି	
 values-b+or/strings.xml	string	extension_status_start_failed	-	STR	ଅନୁମତି ମିଳିଛି, କିନ୍ତୁ ଏହା ଆରମ୍ଭ ହେଲା ନାହିଁ	
 values-b+or/strings.xml	string	extension_types	-	STR	ସମର୍ଥିତ	
@@ -22290,6 +22332,7 @@ values-b+pl/strings.xml	string	extension_status_allowed	-	STR	Dozwolone, działa
 values-b+pl/strings.xml	string	extension_status_blocked	-	STR	Zablokowane przez skanowanie. Nie można na to zezwolić.	
 values-b+pl/strings.xml	string	extension_status_hash_mismatch	-	STR	Ten plik nie zgadza się z opublikowanym hashem. Nie można na to zezwolić.	
 values-b+pl/strings.xml	string	extension_status_held	-	STR	Wyłączone, dopóki nie wybierzesz	
+values-b+pl/strings.xml	string	extension_status_held_new_version	-	STR	Nowa wersja · Wyłączone, dopóki nie wybierzesz	
 values-b+pl/strings.xml	string	extension_status_kept_off	-	STR	Pozostaje wyłączone	
 values-b+pl/strings.xml	string	extension_status_start_failed	-	STR	Dozwolone, ale się nie uruchomiło	
 values-b+pl/strings.xml	string	extension_types	-	STR	Wspierane	
@@ -23083,6 +23126,7 @@ values-b+pt+BR/strings.xml	string	extension_status_allowed	-	STR	Permitida e em 
 values-b+pt+BR/strings.xml	string	extension_status_blocked	-	STR	Bloqueada pela verificação. Isso não pode ser permitido.	
 values-b+pt+BR/strings.xml	string	extension_status_hash_mismatch	-	STR	Este arquivo não corresponde ao hash publicado. Isso não pode ser permitido.	
 values-b+pt+BR/strings.xml	string	extension_status_held	-	STR	Desligada até você escolher	
+values-b+pt+BR/strings.xml	string	extension_status_held_new_version	-	STR	Nova versão · Desligada até você escolher	
 values-b+pt+BR/strings.xml	string	extension_status_kept_off	-	STR	Mantida desligada	
 values-b+pt+BR/strings.xml	string	extension_status_start_failed	-	STR	Permitida, mas não iniciou	
 values-b+pt+BR/strings.xml	string	extension_types	-	STR	Suportado	
@@ -23873,6 +23917,7 @@ values-b+pt/strings.xml	string	extension_status_allowed	-	STR	Permitida e em exe
 values-b+pt/strings.xml	string	extension_status_blocked	-	STR	Bloqueada pela análise. Não pode ser permitida.	
 values-b+pt/strings.xml	string	extension_status_hash_mismatch	-	STR	Este ficheiro não corresponde ao hash publicado. Não pode ser permitido.	
 values-b+pt/strings.xml	string	extension_status_held	-	STR	Desativada até escolher	
+values-b+pt/strings.xml	string	extension_status_held_new_version	-	STR	Nova versão · Desativada até escolher	
 values-b+pt/strings.xml	string	extension_status_kept_off	-	STR	Mantida desativada	
 values-b+pt/strings.xml	string	extension_status_start_failed	-	STR	Permitida, mas não arrancou	
 values-b+pt/strings.xml	string	extension_types	-	STR	Suportado	
@@ -24617,6 +24662,7 @@ values-b+qt/strings.xml	string	extension_status_allowed	-	STR	aaaaaauo ohaaaaghh
 values-b+qt/strings.xml	string	extension_status_blocked	-	STR	ha au ouuhhhohahh ahuhaaaa	
 values-b+qt/strings.xml	string	extension_status_hash_mismatch	-	STR	uuuuhhhoh haaahooo ohauh oo haaoh oooogggoog	
 values-b+qt/strings.xml	string	extension_status_held	-	STR	uuu ahhhaaaaa	
+values-b+qt/strings.xml	string	extension_status_held_new_version	-	STR	oh uuu · uuu ahhhaaaaa	
 values-b+qt/strings.xml	string	extension_status_kept_off	-	STR	uuuuhhh	
 values-b+qt/strings.xml	string	extension_status_start_failed	-	STR	ouuhh hhhah	
 values-b+qt/strings.xml	string	extension_types	-	STR	oooogggag	
@@ -25291,6 +25337,7 @@ values-b+ro/strings.xml	string	extension_status_allowed	-	STR	Permisă și rulea
 values-b+ro/strings.xml	string	extension_status_blocked	-	STR	Blocată de scanare. Nu poate fi permisă.	
 values-b+ro/strings.xml	string	extension_status_hash_mismatch	-	STR	Acest fișier nu corespunde hash-ului publicat. Nu poate fi permis.	
 values-b+ro/strings.xml	string	extension_status_held	-	STR	Oprită până alegeți	
+values-b+ro/strings.xml	string	extension_status_held_new_version	-	STR	Versiune nouă · Oprită până alegeți	
 values-b+ro/strings.xml	string	extension_status_kept_off	-	STR	Menținută oprită	
 values-b+ro/strings.xml	string	extension_status_start_failed	-	STR	Permisă, dar nu a pornit	
 values-b+ro/strings.xml	string	extension_types	-	STR	Suportat	
@@ -26012,6 +26059,7 @@ values-b+ru/strings.xml	string	extension_status_allowed	-	STR	Разрешено
 values-b+ru/strings.xml	string	extension_status_blocked	-	STR	Заблокировано проверкой. Разрешить нельзя.	
 values-b+ru/strings.xml	string	extension_status_hash_mismatch	-	STR	Этот файл не совпадает с опубликованным хешем. Разрешить его нельзя.	
 values-b+ru/strings.xml	string	extension_status_held	-	STR	Выключено, пока вы не решите	
+values-b+ru/strings.xml	string	extension_status_held_new_version	-	STR	Новая версия · Выключено, пока вы не решите	
 values-b+ru/strings.xml	string	extension_status_kept_off	-	STR	Оставлено выключенным	
 values-b+ru/strings.xml	string	extension_status_start_failed	-	STR	Разрешено, но не запустилось	
 values-b+ru/strings.xml	string	extension_types	-	STR	Поддерживается	
@@ -26704,6 +26752,7 @@ values-b+sk/strings.xml	string	extension_status_allowed	-	STR	Povolené a beží
 values-b+sk/strings.xml	string	extension_status_blocked	-	STR	Zablokované kontrolou. Nedá sa povoliť.	
 values-b+sk/strings.xml	string	extension_status_hash_mismatch	-	STR	Tento súbor sa nezhoduje so zverejneným hashom. Nedá sa povoliť.	
 values-b+sk/strings.xml	string	extension_status_held	-	STR	Vypnuté, kým sa nerozhodnete	
+values-b+sk/strings.xml	string	extension_status_held_new_version	-	STR	Nová verzia · Vypnuté, kým sa nerozhodnete	
 values-b+sk/strings.xml	string	extension_status_kept_off	-	STR	Ponechané vypnuté	
 values-b+sk/strings.xml	string	extension_status_start_failed	-	STR	Povolené, ale nespustilo sa	
 values-b+sk/strings.xml	string	extension_warning_classloader_access	-	STR	Pristupuje k zavádzaču tried, ktorý môže načítať kód, aký táto kontrola nikdy nevidela.	
@@ -27234,6 +27283,7 @@ values-b+so/strings.xml	string	extension_status_allowed	-	STR	Waa la oggolaaday,
 values-b+so/strings.xml	string	extension_status_blocked	-	STR	Baaritaanka ayaa xannibay. Tan lama oggolaan karo.	
 values-b+so/strings.xml	string	extension_status_hash_mismatch	-	STR	Faylkani la mid ma aha hash-kiisa la daabacay. Tan lama oggolaan karo.	
 values-b+so/strings.xml	string	extension_status_held	-	STR	Dansan ilaa aad doorato	
+values-b+so/strings.xml	string	extension_status_held_new_version	-	STR	Nooc cusub · Dansan ilaa aad doorato	
 values-b+so/strings.xml	string	extension_status_kept_off	-	STR	Dansan ayaa la hayaa	
 values-b+so/strings.xml	string	extension_status_start_failed	-	STR	Waa la oggolaaday, laakiin ma bilaaban	
 values-b+so/strings.xml	string	extension_types	-	STR	Ku shaqeeya	
@@ -27881,6 +27931,7 @@ values-b+sq/strings.xml	string	extension_status_allowed	-	STR	E lejuar dhe po fu
 values-b+sq/strings.xml	string	extension_status_blocked	-	STR	E bllokuar nga skanimi. Kjo nuk mund të lejohet.	
 values-b+sq/strings.xml	string	extension_status_hash_mismatch	-	STR	Ky skedar nuk përputhet me hash-in e tij të publikuar. Kjo nuk mund të lejohet.	
 values-b+sq/strings.xml	string	extension_status_held	-	STR	E fikur derisa të zgjidhni	
+values-b+sq/strings.xml	string	extension_status_held_new_version	-	STR	Version i ri · E fikur derisa të zgjidhni	
 values-b+sq/strings.xml	string	extension_status_kept_off	-	STR	Mbahet e fikur	
 values-b+sq/strings.xml	string	extension_status_start_failed	-	STR	E lejuar, por nuk u nis	
 values-b+sq/strings.xml	string	extension_types	-	STR	Të suportuara	
@@ -28670,6 +28721,7 @@ values-b+sv/strings.xml	string	extension_status_allowed	-	STR	Tillåtet och kör
 values-b+sv/strings.xml	string	extension_status_blocked	-	STR	Blockerat av genomsökningen. Detta kan inte tillåtas.	
 values-b+sv/strings.xml	string	extension_status_hash_mismatch	-	STR	Den här filen stämmer inte med sin publicerade hash. Detta kan inte tillåtas.	
 values-b+sv/strings.xml	string	extension_status_held	-	STR	Av tills du väljer	
+values-b+sv/strings.xml	string	extension_status_held_new_version	-	STR	Ny version · Av tills du väljer	
 values-b+sv/strings.xml	string	extension_status_kept_off	-	STR	Hålls avstängt	
 values-b+sv/strings.xml	string	extension_status_start_failed	-	STR	Tillåtet, men det startade inte	
 values-b+sv/strings.xml	string	extension_types	-	STR	Stödd	
@@ -29459,6 +29511,7 @@ values-b+ta/strings.xml	string	extension_status_allowed	-	STR	அனுமதி
 values-b+ta/strings.xml	string	extension_status_blocked	-	STR	ஸ்கேன் மூலம் தடுக்கப்பட்டது. இதை அனுமதிக்க முடியாது.	
 values-b+ta/strings.xml	string	extension_status_hash_mismatch	-	STR	இந்தக் கோப்பு அதன் வெளியிடப்பட்ட ஹாஷுடன் பொருந்தவில்லை. இதை அனுமதிக்க முடியாது.	
 values-b+ta/strings.xml	string	extension_status_held	-	STR	நீங்கள் தேர்வு செய்யும் வரை முடக்கம்	
+values-b+ta/strings.xml	string	extension_status_held_new_version	-	STR	புதிய பதிப்பு · நீங்கள் தேர்வு செய்யும் வரை முடக்கம்	
 values-b+ta/strings.xml	string	extension_status_kept_off	-	STR	முடக்கி வைக்கப்பட்டது	
 values-b+ta/strings.xml	string	extension_status_start_failed	-	STR	அனுமதிக்கப்பட்டது, ஆனால் தொடங்கவில்லை	
 values-b+ta/strings.xml	string	extension_types	-	STR	ஆதரிக்கப்பட்டது	
@@ -29988,6 +30041,7 @@ values-b+ti/strings.xml	string	extension_status_allowed	-	STR	ተፈቒዱ፡ �
 values-b+ti/strings.xml	string	extension_status_blocked	-	STR	ብምርመራ ተዓጽዩ። እዚ ክፍቀድ ኣይክእልን።	
 values-b+ti/strings.xml	string	extension_status_hash_mismatch	-	STR	እዚ ፋይል ምስቲ ዝተሓትመ ሃሽ ኣይሰማማዕን። እዚ ክፍቀድ ኣይክእልን።	
 values-b+ti/strings.xml	string	extension_status_held	-	STR	ክሳብ እትመርጽ ጠፊኡ ኣሎ	
+values-b+ti/strings.xml	string	extension_status_held_new_version	-	STR	ሓድሽ ስሪት · ክሳብ እትመርጽ ጠፊኡ ኣሎ	
 values-b+ti/strings.xml	string	extension_status_kept_off	-	STR	ጠፊኡ ይጸንሕ ኣሎ	
 values-b+ti/strings.xml	string	extension_status_start_failed	-	STR	ተፈቒዱ፡ ግን ኣይጀመረን	
 values-b+ti/strings.xml	string	extension_warning_classloader_access	-	STR	ናብ ክላስ ሎደር ይበጽሕ፡ እዚ ድማ እዚ ምርመራ ርእይዎ ዘይፈልጥ ኮድ ከእቱ ይኽእል።	
@@ -30129,6 +30183,7 @@ values-b+tl/strings.xml	string	extension_status_allowed	-	STR	Pinayagan, at tuma
 values-b+tl/strings.xml	string	extension_status_blocked	-	STR	Hinarang ng pag-scan. Hindi ito maaaring payagan.	
 values-b+tl/strings.xml	string	extension_status_hash_mismatch	-	STR	Hindi tumutugma ang file na ito sa nailathalang hash nito. Hindi ito maaaring payagan.	
 values-b+tl/strings.xml	string	extension_status_held	-	STR	Nakasara hanggang pumili ka	
+values-b+tl/strings.xml	string	extension_status_held_new_version	-	STR	Bagong bersyon · Nakasara hanggang pumili ka	
 values-b+tl/strings.xml	string	extension_status_kept_off	-	STR	Pinanatiling nakasara	
 values-b+tl/strings.xml	string	extension_status_start_failed	-	STR	Pinayagan, pero hindi ito nagsimula	
 values-b+tl/strings.xml	string	extension_warning_classloader_access	-	STR	Inaabot nito ang class loader, na maaaring magpasok ng code na hindi kailanman nakita ng pag-scan na ito.	
@@ -30603,6 +30658,7 @@ values-b+tr/strings.xml	string	extension_status_allowed	-	STR	İzin verildi ve k
 values-b+tr/strings.xml	string	extension_status_blocked	-	STR	Tarama tarafından engellendi. Buna izin verilemez.	
 values-b+tr/strings.xml	string	extension_status_hash_mismatch	-	STR	Bu dosya yayımlanan karma değeriyle eşleşmiyor. Buna izin verilemez.	
 values-b+tr/strings.xml	string	extension_status_held	-	STR	Siz seçene kadar kapalı	
+values-b+tr/strings.xml	string	extension_status_held_new_version	-	STR	Yeni sürüm · Siz seçene kadar kapalı	
 values-b+tr/strings.xml	string	extension_status_kept_off	-	STR	Kapalı tutuluyor	
 values-b+tr/strings.xml	string	extension_status_start_failed	-	STR	İzin verildi, ancak başlamadı	
 values-b+tr/strings.xml	string	extension_types	-	STR	Desteklenen	
@@ -31400,6 +31456,7 @@ values-b+uk/strings.xml	string	extension_status_allowed	-	STR	Дозволено
 values-b+uk/strings.xml	string	extension_status_blocked	-	STR	Заблоковано скануванням. Це не можна дозволити.	
 values-b+uk/strings.xml	string	extension_status_hash_mismatch	-	STR	Цей файл не збігається з опублікованим хешем. Це не можна дозволити.	
 values-b+uk/strings.xml	string	extension_status_held	-	STR	Вимкнено, доки ви не оберете	
+values-b+uk/strings.xml	string	extension_status_held_new_version	-	STR	Нова версія · Вимкнено, доки ви не оберете	
 values-b+uk/strings.xml	string	extension_status_kept_off	-	STR	Залишено вимкненим	
 values-b+uk/strings.xml	string	extension_status_start_failed	-	STR	Дозволено, але не запустилося	
 values-b+uk/strings.xml	string	extension_types	-	STR	Підтримується	
@@ -32137,6 +32194,7 @@ values-b+ur/strings.xml	string	extension_status_allowed	-	STR	اجازت دی گ
 values-b+ur/strings.xml	string	extension_status_blocked	-	STR	اسکین نے مسدود کر دیا۔ اس کی اجازت نہیں دی جا سکتی۔	
 values-b+ur/strings.xml	string	extension_status_hash_mismatch	-	STR	یہ فائل اپنے شائع شدہ ہیش سے مطابقت نہیں رکھتی۔ اس کی اجازت نہیں دی جا سکتی۔	
 values-b+ur/strings.xml	string	extension_status_held	-	STR	آپ کے انتخاب تک بند	
+values-b+ur/strings.xml	string	extension_status_held_new_version	-	STR	نیا ورژن · آپ کے انتخاب تک بند	
 values-b+ur/strings.xml	string	extension_status_kept_off	-	STR	بند رکھی گئی	
 values-b+ur/strings.xml	string	extension_status_start_failed	-	STR	اجازت دی گئی، لیکن یہ شروع نہیں ہوئی	
 values-b+ur/strings.xml	string	extension_types	-	STR	حمایت کی	
@@ -32836,6 +32894,7 @@ values-b+vi/strings.xml	string	extension_status_allowed	-	STR	Đã cho phép và
 values-b+vi/strings.xml	string	extension_status_blocked	-	STR	Bị bản quét chặn. Không thể cho phép mục này.	
 values-b+vi/strings.xml	string	extension_status_hash_mismatch	-	STR	Tệp này không khớp với mã băm đã công bố. Không thể cho phép mục này.	
 values-b+vi/strings.xml	string	extension_status_held	-	STR	Tắt cho đến khi bạn chọn	
+values-b+vi/strings.xml	string	extension_status_held_new_version	-	STR	Phiên bản mới · Tắt cho đến khi bạn chọn	
 values-b+vi/strings.xml	string	extension_status_kept_off	-	STR	Vẫn giữ tắt	
 values-b+vi/strings.xml	string	extension_status_start_failed	-	STR	Đã cho phép, nhưng không khởi động được	
 values-b+vi/strings.xml	string	extension_types	-	STR	Hỗ trợ	
@@ -33620,6 +33679,7 @@ values-b+zh+TW/strings.xml	string	extension_status_allowed	-	STR	已允許，正
 values-b+zh+TW/strings.xml	string	extension_status_blocked	-	STR	已遭掃描封鎖。無法允許。	
 values-b+zh+TW/strings.xml	string	extension_status_hash_mismatch	-	STR	此檔案與其發布的雜湊值不符。無法允許。	
 values-b+zh+TW/strings.xml	string	extension_status_held	-	STR	在你選擇之前保持關閉	
+values-b+zh+TW/strings.xml	string	extension_status_held_new_version	-	STR	新版本 · 在你選擇之前保持關閉	
 values-b+zh+TW/strings.xml	string	extension_status_kept_off	-	STR	已保持關閉	
 values-b+zh+TW/strings.xml	string	extension_status_start_failed	-	STR	已允許，但未能啟動	
 values-b+zh+TW/strings.xml	string	extension_types	-	STR	類型	
@@ -34400,6 +34460,7 @@ values-b+zh/strings.xml	string	extension_status_allowed	-	STR	已允许，正在
 values-b+zh/strings.xml	string	extension_status_blocked	-	STR	已被扫描拦截。无法允许。	
 values-b+zh/strings.xml	string	extension_status_hash_mismatch	-	STR	此文件与其发布的哈希值不符。无法允许。	
 values-b+zh/strings.xml	string	extension_status_held	-	STR	在你选择之前保持关闭	
+values-b+zh/strings.xml	string	extension_status_held_new_version	-	STR	新版本 · 在你选择之前保持关闭	
 values-b+zh/strings.xml	string	extension_status_kept_off	-	STR	已保持关闭	
 values-b+zh/strings.xml	string	extension_status_start_failed	-	STR	已允许，但未能启动	
 values-b+zh/strings.xml	string	extension_types	-	STR	类型	
@@ -35319,6 +35380,7 @@ values/strings.xml	string	extension_status_allowed	-	STR	Allowed, and running in
 values/strings.xml	string	extension_status_blocked	-	STR	Blocked by the scan. This cannot be allowed.	
 values/strings.xml	string	extension_status_hash_mismatch	-	STR	This file does not match its published hash. This cannot be allowed.	
 values/strings.xml	string	extension_status_held	-	STR	Off until you choose	
+values/strings.xml	string	extension_status_held_new_version	-	STR	New version · Off until you choose	
 values/strings.xml	string	extension_status_kept_off	-	STR	Kept off	
 values/strings.xml	string	extension_status_start_failed	-	STR	Allowed, but it did not start	
 values/strings.xml	string	extension_types	-	STR	Supported	

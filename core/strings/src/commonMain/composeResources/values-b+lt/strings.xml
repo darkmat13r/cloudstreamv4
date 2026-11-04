@@ -111,6 +111,7 @@
 <string name="extension_status_blocked">Užblokuotas patikros. To leisti negalima.</string>
 <string name="extension_status_hash_mismatch">Šis failas neatitinka paskelbtos maišos reikšmės. To leisti negalima.</string>
 <string name="extension_status_held">Išjungtas, kol pasirinksite</string>
+<string name="extension_status_held_new_version">Nauja versija · Išjungtas, kol pasirinksite</string>
 <string name="extension_status_kept_off">Paliktas išjungtas</string>
 <string name="extension_status_start_failed">Leidžiamas, bet nepasileido</string>
 <string name="extension_types">Palaikoma</string>

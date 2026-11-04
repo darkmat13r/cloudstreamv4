@@ -240,6 +240,7 @@
 <string name="extension_status_blocked">"Blocată de scanare. Nu poate fi permisă."</string>
 <string name="extension_status_hash_mismatch">"Acest fișier nu corespunde hash-ului publicat. Nu poate fi permis."</string>
 <string name="extension_status_held">"Oprită până alegeți"</string>
+<string name="extension_status_held_new_version">"Versiune nouă · Oprită până alegeți"</string>
 <string name="extension_status_kept_off">"Menținută oprită"</string>
 <string name="extension_status_start_failed">"Permisă, dar nu a pornit"</string>
 <string name="extension_types">"Suportat"</string>

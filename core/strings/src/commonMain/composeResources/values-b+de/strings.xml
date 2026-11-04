@@ -276,6 +276,7 @@
 <string name="extension_status_blocked">Von der Prüfung blockiert. Dies kann nicht erlaubt werden.</string>
 <string name="extension_status_hash_mismatch">Diese Datei stimmt nicht mit ihrem veröffentlichten Hash überein. Dies kann nicht erlaubt werden.</string>
 <string name="extension_status_held">Aus, bis Sie entscheiden</string>
+<string name="extension_status_held_new_version">Neue Version · Aus, bis Sie entscheiden</string>
 <string name="extension_status_kept_off">Bleibt aus</string>
 <string name="extension_status_start_failed">Erlaubt, aber nicht gestartet</string>
 <string name="extension_types">Unterstützt</string>

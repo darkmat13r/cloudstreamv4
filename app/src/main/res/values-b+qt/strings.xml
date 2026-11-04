@@ -240,6 +240,7 @@
 <string name="extension_status_blocked">"ha au ouuhhhohahh ahuhaaaa"</string>
 <string name="extension_status_hash_mismatch">"uuuuhhhoh haaahooo ohauh oo haaoh oooogggoog"</string>
 <string name="extension_status_held">"uuu ahhhaaaaa"</string>
+<string name="extension_status_held_new_version">"oh uuu · uuu ahhhaaaaa"</string>
 <string name="extension_status_kept_off">"uuuuhhh"</string>
 <string name="extension_status_start_failed">"ouuhh hhhah"</string>
 <string name="extension_types">"oooogggag"</string>

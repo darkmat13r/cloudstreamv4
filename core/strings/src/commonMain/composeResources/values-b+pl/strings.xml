@@ -276,6 +276,7 @@
 <string name="extension_status_blocked">Zablokowane przez skanowanie. Nie można na to zezwolić.</string>
 <string name="extension_status_hash_mismatch">Ten plik nie zgadza się z opublikowanym hashem. Nie można na to zezwolić.</string>
 <string name="extension_status_held">Wyłączone, dopóki nie wybierzesz</string>
+<string name="extension_status_held_new_version">Nowa wersja · Wyłączone, dopóki nie wybierzesz</string>
 <string name="extension_status_kept_off">Pozostaje wyłączone</string>
 <string name="extension_status_start_failed">Dozwolone, ale się nie uruchomiło</string>
 <string name="extension_types">Wspierane</string>

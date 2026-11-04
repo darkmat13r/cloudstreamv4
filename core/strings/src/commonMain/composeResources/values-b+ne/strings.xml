@@ -45,6 +45,7 @@
 <string name="extension_status_blocked">स्क्यानले रोकेको छ। यसलाई अनुमति दिन सकिँदैन।</string>
 <string name="extension_status_hash_mismatch">यो फाइल यसको प्रकाशित ह्याससँग मेल खाँदैन। यसलाई अनुमति दिन सकिँदैन।</string>
 <string name="extension_status_held">तपाईंले नछानेसम्म बन्द</string>
+<string name="extension_status_held_new_version">नयाँ संस्करण · तपाईंले नछानेसम्म बन्द</string>
 <string name="extension_status_kept_off">बन्द राखिएको</string>
 <string name="extension_status_start_failed">अनुमति दिइएको, तर सुरु भएन</string>
 <string name="extension_warning_classloader_access">यो क्लास लोडरसम्म पुग्छ, जसले यो स्क्यानले कहिल्यै नदेखेको कोड ल्याउन सक्छ।</string>

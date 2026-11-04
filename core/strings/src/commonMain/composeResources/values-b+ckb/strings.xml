@@ -45,6 +45,7 @@
 <string name="extension_status_blocked">پشکنینەکە بلۆکی کرد. ناتوانرێت ڕێگەی پێ بدرێت.</string>
 <string name="extension_status_hash_mismatch">ئەم فایلە لەگەڵ هاشی بڵاوکراوەی خۆی ناگونجێت. ناتوانرێت ڕێگەی پێ بدرێت.</string>
 <string name="extension_status_held">کوژاوەیە تا هەڵدەبژێریت</string>
+<string name="extension_status_held_new_version">وەشانی نوێ · کوژاوەیە تا هەڵدەبژێریت</string>
 <string name="extension_status_kept_off">بە کوژاوەیی هێڵدرایەوە</string>
 <string name="extension_status_start_failed">ڕێگەی پێدراوە، بەڵام دەستی پێنەکرد</string>
 <string name="extension_warning_classloader_access">دەگاتە بارکەری کلاس، کە دەتوانێت کۆدێک بهێنێت ئەم پشکنینە هەرگیز نەیبینیوە.</string>

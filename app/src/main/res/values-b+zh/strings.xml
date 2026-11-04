@@ -276,6 +276,7 @@
 <string name="extension_status_blocked">"已被扫描拦截。无法允许。"</string>
 <string name="extension_status_hash_mismatch">"此文件与其发布的哈希值不符。无法允许。"</string>
 <string name="extension_status_held">"在你选择之前保持关闭"</string>
+<string name="extension_status_held_new_version">"新版本 · 在你选择之前保持关闭"</string>
 <string name="extension_status_kept_off">"已保持关闭"</string>
 <string name="extension_status_start_failed">"已允许，但未能启动"</string>
 <string name="extension_types">"类型"</string>
