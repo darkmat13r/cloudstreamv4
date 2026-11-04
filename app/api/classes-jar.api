@@ -37003,6 +37003,7 @@ public final class com/lagradost/cloudstream4/search/ApiRepositorySearchSource :
 	public static final synthetic fun access$fold (Lcom/lagradost/cloudstream4/search/ApiRepositorySearchSource;Ljava/util/List;)Lcom/lagradost/cloudstream4/feature/search/SearchOutcome;
 	public static final synthetic fun access$getContext$p (Lcom/lagradost/cloudstream4/search/ApiRepositorySearchSource;)Landroid/content/Context;
 	public static final synthetic fun access$noTargets (Lcom/lagradost/cloudstream4/search/ApiRepositorySearchSource;ZLjava/util/Set;)Lcom/lagradost/cloudstream4/feature/search/SearchOutcome;
+	public static final synthetic fun access$selectedProviders (Lcom/lagradost/cloudstream4/search/ApiRepositorySearchSource;Ljava/util/Set;)Ljava/util/List;
 	public fun quickSearch (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun search (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun sources (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -37011,6 +37012,19 @@ public final class com/lagradost/cloudstream4/search/ApiRepositorySearchSource :
 public final class com/lagradost/cloudstream4/search/ApiRepositorySearchSourceKt : java/lang/Object {
 	public static final fun decodeId-f6qonGo (Ljava/lang/String;)Lcom/lagradost/cloudstream4/search/SearchResultTarget;
 	public static final fun encodeId (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public static final fun pinnedFirst (Ljava/util/List;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/util/List;
+	public static final fun selectSearchProviders (Ljava/util/List;Ljava/util/Set;Ljava/util/Set;Ljava/util/Set;)Ljava/util/List;
+}
+
+public final static class com/lagradost/cloudstream4/search/ApiRepositorySearchSourceKt$pinnedFirst$$inlined$sortedBy$1 : java/lang/Object, java/util/Comparator {
+	public fun <init> ([Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public final fun compare (Ljava/lang/Object;Ljava/lang/Object;)I
+}
+
+public final class com/lagradost/cloudstream4/search/ComposableSingletons$SearchTvFragmentKt : java/lang/Object {
+	public static final field INSTANCE Lcom/lagradost/cloudstream4/search/ComposableSingletons$SearchTvFragmentKt;
+	public fun <init> ()V
+	public final fun getLambda$-928836980$app ()Lkotlin/jvm/functions/Function3;
 }
 
 public final class com/lagradost/cloudstream4/search/DataStoreSearchHistory : java/lang/Object, com/lagradost/cloudstream4/feature/search/SearchHistoryStore {
@@ -37019,6 +37033,8 @@ public final class com/lagradost/cloudstream4/search/DataStoreSearchHistory : ja
 	public static final synthetic fun access$storedItems (Lcom/lagradost/cloudstream4/search/DataStoreSearchHistory;)Ljava/util/List;
 	public fun clear (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun recent (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun record (Ljava/lang/String;JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun record$default (Lcom/lagradost/cloudstream4/search/DataStoreSearchHistory;Ljava/lang/String;JLkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public fun remove (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
@@ -37030,6 +37046,7 @@ public final class com/lagradost/cloudstream4/search/DataStoreSearchHistoryKt : 
 	public static final synthetic fun access$historyFolder ()Ljava/lang/String;
 	public static final synthetic fun access$relativeWhenLabel (JJ)Ljava/lang/String;
 	public static final fun historyKeyOf (Ljava/lang/String;)Ljava/lang/String;
+	public static final fun isRecordable (Ljava/lang/String;)Z
 	public static final fun toRecentEntries (Ljava/util/List;Lkotlin/jvm/functions/Function1;)Ljava/util/List;
 }
 
@@ -37050,6 +37067,56 @@ public final class com/lagradost/cloudstream4/search/SearchResultTarget : java/l
 	public final fun getUrl ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/lagradost/cloudstream4/search/SearchTvFragment : com/lagradost/cloudstream3/utils/BaseComposeFragment {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun Content (Landroidx/compose/runtime/Composer;I)V
+	public static final synthetic fun access$getHistory$p (Lcom/lagradost/cloudstream4/search/SearchTvFragment;)Lcom/lagradost/cloudstream4/search/DataStoreSearchHistory;
+	public static final synthetic fun access$getViewModel (Lcom/lagradost/cloudstream4/search/SearchTvFragment;)Lcom/lagradost/cloudstream4/feature/search/SearchViewModel;
+	public static final synthetic fun access$onAction (Lcom/lagradost/cloudstream4/search/SearchTvFragment;Lcom/lagradost/cloudstream4/feature/search/SearchAction;)V
+	public static final synthetic fun access$onEffect (Lcom/lagradost/cloudstream4/search/SearchTvFragment;Lcom/lagradost/cloudstream4/feature/search/SearchEffect;)V
+	public fun onDestroyView ()V
+	public fun onResume ()V
+	public fun onStop ()V
+	public fun onViewCreated (Landroid/view/View;Landroid/os/Bundle;)V
+}
+
+public final static class com/lagradost/cloudstream4/search/SearchTvFragment$special$$inlined$viewModels$default$1 : kotlin/jvm/internal/Lambda, kotlin/jvm/functions/Function0 {
+	public fun <init> (Landroidx/fragment/app/Fragment;)V
+	public final fun invoke ()Landroidx/fragment/app/Fragment;
+	public synthetic fun invoke ()Ljava/lang/Object;
+}
+
+public final static class com/lagradost/cloudstream4/search/SearchTvFragment$special$$inlined$viewModels$default$2 : kotlin/jvm/internal/Lambda, kotlin/jvm/functions/Function0 {
+	public fun <init> (Lkotlin/jvm/functions/Function0;)V
+	public final fun invoke ()Landroidx/lifecycle/ViewModelStoreOwner;
+	public synthetic fun invoke ()Ljava/lang/Object;
+}
+
+public final static class com/lagradost/cloudstream4/search/SearchTvFragment$special$$inlined$viewModels$default$3 : kotlin/jvm/internal/Lambda, kotlin/jvm/functions/Function0 {
+	public fun <init> (Lkotlin/Lazy;)V
+	public final fun invoke ()Landroidx/lifecycle/ViewModelStore;
+	public synthetic fun invoke ()Ljava/lang/Object;
+}
+
+public final static class com/lagradost/cloudstream4/search/SearchTvFragment$special$$inlined$viewModels$default$4 : kotlin/jvm/internal/Lambda, kotlin/jvm/functions/Function0 {
+	public fun <init> (Lkotlin/jvm/functions/Function0;Lkotlin/Lazy;)V
+	public final fun invoke ()Landroidx/lifecycle/viewmodel/CreationExtras;
+	public synthetic fun invoke ()Ljava/lang/Object;
+}
+
+public final static class com/lagradost/cloudstream4/search/SearchTvFragment$special$$inlined$viewModels$default$5 : kotlin/jvm/internal/Lambda, kotlin/jvm/functions/Function0 {
+	public fun <init> (Landroidx/fragment/app/Fragment;Lkotlin/Lazy;)V
+	public final fun invoke ()Landroidx/lifecycle/ViewModelProvider$Factory;
+	public synthetic fun invoke ()Ljava/lang/Object;
+}
+
+public final class com/lagradost/cloudstream4/search/SearchTvFragmentKt : java/lang/Object {
+	public static final synthetic fun access$PosterArtwork (Lcom/lagradost/cloudstream4/feature/search/SearchResultItem;Landroidx/compose/runtime/Composer;I)V
+	public static final fun openSearchOnTvScreen (Landroidx/navigation/NavGraph;)V
+	public static final fun titleOf-HFYKPa4 (Lcom/lagradost/cloudstream4/feature/search/SearchStatus;Ljava/lang/String;)Ljava/lang/String;
 }
 
 public final class com/lagradost/safefile/R : java/lang/Object {
