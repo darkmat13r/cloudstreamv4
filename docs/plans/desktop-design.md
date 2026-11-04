@@ -72,6 +72,22 @@ See `KMP-24`.
 value on screen, so an interrupted hover never jumps. Feedback arrives on press, not release. Only a card's
 art scales, because scaling words makes them shimmer.
 
+## Audio tracks, against artboards 7d and 7e
+
+The selector reads out what is playing (`English · 2.0 · AAC`), and pressing a row commits without touching position or
+buffer, as drawn. The selected row is a raised fill, an ink label and a muted marker; white stays focus only. See `KMP-30`.
+Departures from 7e, each deliberate:
+
+- **The list floats above the controls**, as the subtitle list does, rather than a side panel 560 from the edge. It is a
+  window, not a 10-foot screen, and the video stays in view.
+- **No trailing verb** (`On`, `Use`) and **no `Playing` tag.** Those are new strings for words the row's own state already
+  says, so the state is the fill, the label and the marker. 7e marks the active row three ways because of a filtered source
+  list returning -1; nothing filters audio tracks.
+- **No pinned Done.** A press commits and closes, and Escape or a click elsewhere closes with nothing pending.
+- **The marker is the pack's check glyph**, not an 8 px mark, as the subtitle list already draws it.
+- **No Video row.** Choosing among video tracks is not built.
+- **A line under a row** is only a file's own title, in place of 7e's explanatory `b` line.
+
 ## Not done
 
 - **Reduced motion** is not read from macOS, so springs always run. They are small and non-vestibular apart

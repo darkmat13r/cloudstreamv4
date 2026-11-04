@@ -2996,3 +2996,43 @@ PNGs at 800 x 600 and 800 x 450. `Picture size` is 4 new keys in all 62 director
 by a native speaker; `qt` uses only words from its own file. Ninth move of the oracle baseline.
 
 **Not measured:** a real film in each fit in a live window. Fill width on a tall picture cuts it, by the owner's wording.
+
+## KMP-30 — Audio tracks in the desktop player, and the volume kept between launches · **measured 2026-11-04**
+
+**Status:** done · #120.
+
+**Volume.** One line in `~/.cloudstream4/player-volume`, `70` or `70 muted`. Anything else reads as never having chosen, and
+reading writes nothing. A write waits 500 ms and writes the latest, so a drag is one write and not one per pixel, and
+quitting inside that wait loses that one change. **Mute is kept on purpose:** silence is visible (the crossed speaker is on
+screen while a stream starts) and one key fixes it, whereas an unasked-for full level cannot be taken back.
+
+**Audio tracks.** A selector in the player's selector row, shown only with more than one track, reads out what is playing as
+artboard 7d asks: `English · 5.1 · EAC3` over its caption. It and A open the list; pressing a row commits (7e).
+
+Measured through the real sandboxed host, on silent `mkv` files generated with the `ffmpeg` already on this machine and not
+committed: one with three AAC tracks (one titled with a U+202E override), one with one track, and one with a separate audio
+file as `:input-slave`. The probes were not committed.
+
+| Measured | Result |
+|---|---|
+| When libVLC lists tracks | Not at play: the list arrives 1.1 to 4.7 s after play, so the host polls every 250 ms and the selector appears then |
+| The two libVLC lists share ids | Yes: channels and codec from `media().info()` matched the descriptions by id on all tracks, `2/mp4a` and `1/mp4a` |
+| Readout on the three-track file | `English · 2.0 · AAC` + title `Original`; `German · 2.0 · AAC`; `Hindi · 1.0 · AAC` + title `Commentary gnp.exe` |
+| A U+202E override in a title | Reached the host raw and was stripped by the app's reader |
+| `setTrack` as soon as listed | Accepted (returned the id), and the host reported it within about 250 ms |
+| Position across a switch, 3 runs | 1,504, 1,487 and 1,202 ms of position in about 1,500 ms of wall time, 0 buffering flips, frames kept coming |
+| A wrong id, sent before play and after | Ignored, selection unchanged |
+| The chosen track after a 5 s seek | Unchanged |
+| A separate audio file (`audioUrl`) | Plays, and lists as 2 tracks with the separate one selected by libVLC itself |
+| One track | No selector; the list had 1 entry |
+
+**Not measured.** Whether the tracks actually sound different, because the files are silent and nobody has listened. 5.1,
+EAC3, DTS and TrueHD: the codec table is written from libVLC's codes but only AAC went through it. HLS and DASH streams,
+whose audio renditions may list differently or later. The `:input-slave` run's final position (2,727 ms) was lower than the
+others' after the same 5 s seek; that was not looked into and may be a seek on a slaved file rather than anything here.
+
+**Not built:** language preference across streams, as `subtitle-language` has; a remembered track per title. Departures from
+7e are listed in `docs/plans/desktop-design.md`.
+
+Reused `audio_tracks`, so no new string and no baseline move. It exists in 41 of the 62 directories and falls back to English
+in the rest.
