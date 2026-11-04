@@ -247,6 +247,20 @@ failed build. This produced a false "green" once already. Redirect to a file and
 method for parallel work is to fan the *edits* out to subagents, one git worktree each, with Gradle
 forbidden in the brief, then run every build serially.
 
+### The device gate
+
+The sixth gate (`INF-10`), after the iOS test gate. It needs a TV emulator and is **not** part of `check`:
+
+    JAVA_HOME="$T17" zsh scripts/device-tests.sh <avd> -x :app:generateGitHash
+
+`<avd>` is the name of an existing android-tv AVD (`emulator -list-avds`). The script boots it with
+`-no-window -no-audio -read-only -no-snapshot`, so nothing reaches the speakers and the run leaves the AVD as
+it was, sets `ANDROID_SERIAL` so Gradle touches no other device, waits for boot, runs, always stops the
+emulator and exits with Gradle's code. Drop `-x :app:generateGitHash` outside a worktree; add a Gradle task
+to run less than everything. Results are in
+`<module>/build/outputs/androidTest-results/connected/androidMain/TEST-*.xml`. Read the `timestamp`: it can
+come from the build cache.
+
 ### Four traps that each cost a wrong claim
 
 - **`kotlin.jvm.*` is a default import only on JVM.** `@JvmInline`, `@JvmStatic` and friends need a
