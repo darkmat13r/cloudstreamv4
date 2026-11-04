@@ -2999,7 +2999,7 @@ by a native speaker; `qt` uses only words from its own file. Ninth move of the o
 
 ## KMP-30 — Audio tracks in the desktop player, and the volume kept between launches · **measured 2026-11-04**
 
-**Status:** in pr.
+**Status:** done · #120.
 
 **Volume.** One line in `~/.cloudstream4/player-volume`, `70` or `70 muted`. Anything else reads as never having chosen, and
 reading writes nothing. A write waits 500 ms and writes the latest, so a drag is one write and not one per pixel, and
