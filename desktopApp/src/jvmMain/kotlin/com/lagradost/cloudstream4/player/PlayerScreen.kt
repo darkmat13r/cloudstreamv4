@@ -155,6 +155,7 @@ internal fun PlayerScreen(
         // Off the UI thread: stopping libVLC blocks, and can take seconds on a stalled stream.
         onDispose { thread(isDaemon = true, name = "vlc-release") { current.player.release() } }
     }
+    KeepDisplayAwake(status.playing)
     DisposableEffect(fullscreen) { onDispose { fullscreen?.leave() } }
     LaunchedEffect(status.finished) { if (status.finished) onBack() }
     LaunchedEffect(playback, clock) { playback.player.status.collect(clock::onStatus) }
