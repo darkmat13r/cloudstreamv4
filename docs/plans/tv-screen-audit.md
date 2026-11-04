@@ -210,6 +210,9 @@ Conventions:
 - `ProgressRule` is 2dp, `MediaCardDefaults.ProgressRuleHeight` is 4dp (`DS/primitive/ProgressRule.kt`, `DS/card/MediaCardDefaults.kt:36`). This is H §8.4, still open.
 - `ChipRowSpacing` 24dp vs CSS 12dp (`K:1332-1344`, `HO:294`).
 
+**Owed on the boards, with no ruling needed:**
+- `.chipn` on `TV Detail Player` is still 20/24. `TV Onboarding Extensions` says it must become 24/32, because a 24 box centred in the 48-tall chip lands at +12, off the 8px step. Its `must be propagated` note stays until this is done.
+
 ## 4. Proposed queue
 
 ### Constraints that shape the queue
