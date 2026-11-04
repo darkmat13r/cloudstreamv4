@@ -590,10 +590,11 @@ is `DEC-14`-sized.
 
 ## DEC-16 — What a plugin host runs in: Seatbelt, Docker, or a virtual machine
 
-**Status:** open · **Blocks:** nothing · raised 2026-11-04 by the owner's "can we use docker process?" after `BUG-26`
+**Status:** **decided 2026-11-04 by the owner — no Docker; keep Seatbelt with `OutboundGate`** · blocks nothing · raised 2026-11-04 by the
+owner's "can we use docker process?" after `BUG-26`
 
-**Recommendation: keep Seatbelt with `OutboundGate`, do not move to Docker, and if a stronger boundary is wanted, try a small
-virtual machine on Apple's Virtualization framework, for plugin hosts only.**
+**What was recommended and accepted: keep Seatbelt with `OutboundGate` and do not move to Docker. If a stronger boundary is wanted later,
+try a small virtual machine on Apple's Virtualization framework, for plugin hosts only. That VM has not been asked for.**
 
 A container or VM gives a real thing Seatbelt does not: a separate kernel, so a bug in macOS's sandbox stops being the whole
 story. It costs the app its "install and run".
