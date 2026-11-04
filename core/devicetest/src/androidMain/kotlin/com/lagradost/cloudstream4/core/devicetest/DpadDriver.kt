@@ -42,8 +42,7 @@ enum class Dpad(val keyCode: Int) {
  *
  * @param readFocus names what holds focus. The default reads the accessibility tree, which works over
  *   Compose and Views in the real app. Under `createComposeRule` pass
- *   `{ rule.focusedLabel() }`: the rule's test clock draws no frame until asked and the tree then lags
- *   behind (measured: the IME saw the field lose focus while four reads over a second still named it).
+ *   `{ rule.focusedLabel() }`: exact under the rule's clock, and no wait for the tree to catch up.
  */
 class DpadDriver(private val readFocus: (() -> String?)? = null) {
     private val instrumentation = InstrumentationRegistry.getInstrumentation()
@@ -51,6 +50,9 @@ class DpadDriver(private val readFocus: (() -> String?)? = null) {
 
     /** What holds focus now, or `null` if nothing does. Waits for it to stop changing. */
     fun focused(): String? {
+        // The accessibility tree trails the screen: on `Television_720p` a press still read the old
+        // stop straight after it and the new one 2 s later, so it gets that long to catch up.
+        if (readFocus == null) Thread.sleep(ACCESSIBILITY_LAG_MS)
         var last = readFocused()
         val deadline = System.currentTimeMillis() + SETTLE_TIMEOUT_MS
         var stable = 0
@@ -168,6 +170,7 @@ class DpadDriver(private val readFocus: (() -> String?)? = null) {
 
     private companion object {
         const val POLL_MS = 120L
+        const val ACCESSIBILITY_LAG_MS = 2_000L
         const val KEYBOARD_ARRIVAL_MS = 800L
         const val KEYBOARD_CLOSE_MS = 15_000L
         const val KEYBOARD_BACK_RETRY_MS = 2_000L

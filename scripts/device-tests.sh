@@ -31,5 +31,9 @@ if [[ $("$adb" -s $ANDROID_SERIAL shell getprop sys.boot_completed 2>/dev/null |
     exit 2
 fi
 
+# sys.boot_completed comes first: straight after it, Gradle's uninstall fails with
+# DELETE_FAILED_INTERNAL_ERROR on two cores.
+sleep 20
+
 if (( $# == 0 )); then set -- :feature:search:connectedAndroidDeviceTest; fi
 TZ=UTC nice -n 10 ./gradlew "$@"

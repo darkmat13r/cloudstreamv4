@@ -655,8 +655,11 @@ reachable, no dead ends, no traps".
   -1 (`input dpad keyevent` too; `sendevent` is denied by SELinux on the android-tv image), and Compose's
   field moves focus for a virtual device only when the source is `SOURCE_HDMI`. `DpadDriver` sends that.
 - The open keyboard takes the D-pad, which is correct on a TV, so a test closes it first.
-- Under `createComposeRule` the accessibility tree lags the test clock, so a screen test reads focus from
-  semantics (`rule.focusedLabel()`). The real app has a real clock and uses the default reader.
+- The accessibility tree trails the screen by up to 2 s here: straight after a press it still names the
+  old stop, which reads as a stuck field. A screen test reads focus from semantics (`rule.focusedLabel()`);
+  the real app has no rule, so the default reader waits.
+- `pm uninstall` straight after `sys.boot_completed` fails with `DELETE_FAILED_INTERNAL_ERROR` on two cores,
+  so `scripts/device-tests.sh` waits 20 s past boot.
 
 **What the first run found on `:feature:search` (`Television_720p`, API 36), reported rather than changed:**
 
