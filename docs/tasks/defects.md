@@ -1296,3 +1296,48 @@ so a hostile stream can make libVLC fetch from the LAN.
 **DNS** still goes to the system resolver, for the proxy and for a plugin: a name can carry data out. **A plugin still
 has the internet**, so it can send what it sees to its own servers. This does not change that.
 
+---
+
+## BUG-29 — Nothing limited how much of this Mac a plugin could use · **medium** · measured 2026-11-04
+
+**Status:** done · #128. Seatbelt says what a host may touch and nothing about how much. Each row is `HostLimitsTest`, a hostile plugin in a real host.
+
+| Attempt | Result |
+|---|---|
+| 8 threads spinning with no call waiting | stopped by `HostWatch`, 4.9 s against a 4 s test window; the default is 60 s |
+| Filling the heap | `OutOfMemoryError` in the plugin, at the existing 512 MB; the host still answers |
+| Filling direct memory | `OutOfMemoryError`, at the new 128 MB cap |
+| Memory past the limit, test limit 300 MB | stopped by the watch; the default is 1.5 GB |
+| One big file | stops at 256 MB, by `ulimit -f` |
+| Many files, test limit 50 MB | stopped by the watch; the default is 2 GB |
+| 20,000 threads | the host's JVM failed and its output broke the protocol, so the app ended that host, and only that one |
+| Priority | `nice` 10, so it comes after the app and the player |
+
+A stopped host fails its calls, as a crashed one already did, and the app carries on. **Nothing restarts it**: its sources stay gone until the next launch, and no screen says why, though `endedBecause` holds the reason.
+
+**A plugin working on a call may use what it needs**: the CPU rule applies only with no call waiting, so a plugin called constantly is not stopped by it. Network use is not limited.
+
+The media host has no `nice`, no `ulimit` and no watch, because it has frames to deliver on time and its memory depends on the video.
+
+`ProcessHandle.info().totalCpuDuration` did not work for this: a host spinning 8 threads never passed the limit with it. Why was not established. It reads `ps`.
+
+**Checked:** isolated copy of the owner's six plugins with the limits on: 6 of 6, 8 providers, CineStream 34 results and 73 playable, CineTmdb 13 and 74, and no host stopped.
+
+### What a plugin can see about the person, as measured
+
+`SandboxEscapeAttemptTest` lists all of this, through real hosts.
+
+| | Visible to a plugin? |
+|---|---|
+| Searches and titles opened, through its own calls | **Yes, and it cannot be otherwise**: it needs them to answer, and it has the internet, so it can send them to its own servers |
+| This Mac's public IP address | **Yes**, to every server it connects to |
+| Which file exists at a path, by `stat` | **Yes**: a JVM needs it |
+| The account name, through the path of its own directory | **Yes in the installed app**: fixing it means moving plugin data out of the home directory |
+| Time zone | **Yes** (`Asia/Kolkata` here). Left alone: providers' bare dates are read as local time (`BUG-08`), so a fake zone would move them, and the IP address gives away about as much |
+| Numeric user id, in `__CF_USER_TEXT_ENCODING` | Yes (501 here), set by macOS inside the process, and the same on most Macs |
+| Language and country | No: `en` and `001`, not the person's settings |
+| Hostname, MAC addresses, other processes, `user.name` | No, since `BUG-26` |
+| Environment variables, files in the home directory | No |
+
+**Which hosts each plugin contacted** is recorded by `OutboundGate` and printed by `--check-extensions`. **It is not on any screen.**
+
