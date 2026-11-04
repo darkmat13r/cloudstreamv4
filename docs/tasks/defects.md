@@ -1256,3 +1256,43 @@ covered by `SandboxEnforcementTest` and `PluginHostClientTest`.
 CineStream 34 results and 74 playable both times, 101 then 96 links, which varies between runs. A silent check still draws frames, and
 libVLC's audio output opens and holds a level (37) on a silent file. Nobody has listened.
 
+---
+
+## BUG-27 — A plugin could reach this Mac and its LAN, by address · **high** · measured 2026-11-04
+
+**Status:** done · #124. Found by `BUG-26`: a plugin host connected to this Mac's own LAN address, which reaches anything listening
+on all interfaces, and to the LAN gateway. Seatbelt cannot refuse them. It can name only `localhost` or `*`
+(measured: anything else is "host must be * or localhost").
+
+A plugin host's policy now allows one outbound address: a port on loopback, where `OutboundGate`, a SOCKS5 proxy in the app, checks the
+address it is about to connect to against `SandboxPolicy.isPublicAddress`. Undoing the JVM's proxy setting gains nothing,
+because then the kernel refuses the connection.
+
+| Attempt, real plugin host | Before | After |
+|---|---|---|
+| This Mac by its LAN address | connected | refused by the gate |
+| LAN gateway | connected | refused by the gate |
+| Cloud metadata address | no route | refused by the gate |
+| 127.0.0.2 | no answer | refused by the gate |
+| Same LAN and loopback addresses, skipping the proxy | connected, for LAN | denied by the kernel |
+| A public address, skipping the proxy | connected | denied by the kernel |
+| UDP, public or LAN | not tried | denied by the kernel |
+| A public address and name, through the gate | connected | connected |
+
+`SandboxPolicy.isPublicAddress` also now refuses `240.0.0.0/4`, `198.18.0.0/15`, `192.0.0.0/24`, and the IPv6
+translation prefixes that carry an IPv4 address inside, `64:ff9b::/96` and `2002::/16`.
+
+`HostNewPipeDownloader` moved from the JDK's `HttpClient`, which ignores a SOCKS proxy, to `HttpURLConnection`. Without
+that YouTube's search failed. Android plugins cannot use `java.net.http`, so no plugin should depend on it, and one
+that does fails closed.
+
+`--check-extensions` now prints which names each plugin asked to connect to. **It is not on any screen.** It showed
+CineStream asking for 127.0.0.1 and ::1 as well as 110 other names, and both were refused, as loopback already was.
+
+**Not fixed: the media host.** libVLC opens its own connections, with no way to send them through a proxy that was found,
+so it keeps open network. A stream URL is still checked before it plays, but a redirect or a playlist inside it is not,
+so a hostile stream can make libVLC fetch from the LAN.
+
+**DNS** still goes to the system resolver, for the proxy and for a plugin: a name can carry data out. **A plugin still
+has the internet**, so it can send what it sees to its own servers. This does not change that.
+

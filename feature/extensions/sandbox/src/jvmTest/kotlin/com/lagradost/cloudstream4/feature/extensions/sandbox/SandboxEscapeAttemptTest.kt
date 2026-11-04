@@ -115,6 +115,14 @@ class SandboxEscapeAttemptTest {
             lanAddress?.let { add("connect this machine by its LAN address", "connect|$it/$port") }
             gateway?.let { add("connect the LAN gateway :80", "connect|$it/80") }
             add("connect cloud metadata 169.254.169.254", "connect|169.254.169.254/80")
+            add("connect a public address through the gate", "connect|1.1.1.1/443")
+            add("connect a public name through the gate", "connect|one.one.one.one/443")
+            add("skip the gate: a public address, directly", "connect-direct|1.1.1.1/443")
+            lanAddress?.let { add("skip the gate: this machine, directly", "connect-direct|$it/$port") }
+            gateway?.let { add("skip the gate: the LAN gateway, directly", "connect-direct|$it/80") }
+            add("skip the gate: 127.0.0.1, directly", "connect-direct|127.0.0.1/$port")
+            add("skip the gate: UDP to a public address", "udp|1.1.1.1/53")
+            gateway?.let { add("skip the gate: UDP to the LAN gateway", "udp|$it/53") }
             add("connect a unix socket outside", "unix|${unix.path}")
             add("connect ~/.docker/run/docker.sock", "unix|${File(realHome, ".docker/run/docker.sock").path}")
             add("connect /var/run/docker.sock", "unix|/var/run/docker.sock")
@@ -180,6 +188,12 @@ class SandboxEscapeAttemptTest {
         }
         printTable("plugin host", results)
         assertContained(results.toMap())
+        val byName = results.toMap()
+        lanAddress?.let { assertEquals("refused-by-gate", byName["connect this machine by its LAN address"]) }
+        gateway?.let { assertEquals("refused-by-gate", byName["connect the LAN gateway :80"]) }
+        assertEquals("refused-by-gate", byName["connect cloud metadata 169.254.169.254"])
+        assertEquals("refused-by-gate", byName["connect 127.0.0.1"])
+        byName.filterKeys { it.startsWith("skip the gate") }.forEach { (what, result) -> assertEquals("denied", result, what) }
     }
 
     @Test

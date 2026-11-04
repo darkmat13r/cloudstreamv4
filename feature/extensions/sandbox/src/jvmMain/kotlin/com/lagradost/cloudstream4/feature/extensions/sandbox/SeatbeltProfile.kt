@@ -25,6 +25,8 @@ internal object SeatbeltProfile {
      * @param writable the only directory the process may change.
      * @param network whether outbound traffic is allowed. Conversion has no use for it.
      * @param extraRules whole SBPL rules for a host that needs more, from [mediaHostRules].
+     * @param gatewayPort with [network], the only port it may connect to, on loopback: an [OutboundGate]. Null leaves
+     *   every address but loopback open, for libVLC, which cannot be sent through a proxy.
      */
     fun render(
         executable: File,
@@ -33,6 +35,7 @@ internal object SeatbeltProfile {
         writable: File,
         network: Boolean,
         extraRules: List<String> = emptyList(),
+        gatewayPort: Int? = null,
     ): String = buildString {
         appendLine("(version 1)")
         appendLine("(deny default)")
@@ -75,10 +78,14 @@ internal object SeatbeltProfile {
         appendLine("(deny file-map-executable (subpath ${writable.quoted()}))")
         if (network) {
             appendLine("(allow system-socket)")
-            appendLine("(allow network-outbound (remote ip \"*:*\"))")
             appendLine("(allow network-outbound (literal \"/private/var/run/mDNSResponder\"))")
-            // Keeps a plugin away from services on this machine, the next-easiest thing to attack.
-            appendLine("(deny network-outbound (remote ip \"localhost:*\"))")
+            if (gatewayPort != null) {
+                appendLine("(allow network-outbound (remote ip \"localhost:$gatewayPort\"))")
+            } else {
+                appendLine("(allow network-outbound (remote ip \"*:*\"))")
+                // Keeps it away from services on this machine, by that name. Their LAN address still reaches them.
+                appendLine("(deny network-outbound (remote ip \"localhost:*\"))")
+            }
         }
         extraRules.forEach(::appendLine)
     }
