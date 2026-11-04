@@ -5,6 +5,7 @@ import android.view.WindowInsets
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -27,6 +28,7 @@ import com.lagradost.cloudstream4.compose.ObserveEffect
 import com.lagradost.cloudstream4.core.devicetest.Dpad
 import com.lagradost.cloudstream4.core.devicetest.DpadDriver
 import com.lagradost.cloudstream4.core.devicetest.focusedLabel
+import com.lagradost.cloudstream4.core.designsystem.target.TextField
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.search.SearchAction
 import com.lagradost.cloudstream4.feature.search.SearchEffect
@@ -299,6 +301,20 @@ class SearchScreenTvDeviceTest {
 
         val bounds = rule.onNode(Field).fetchSemanticsNode().boundsInWindow
         device.click(bounds.center.x.toInt(), bounds.center.y.toInt())
+        assertKeyboardOpens()
+        dpad.closeKeyboard()
+    }
+
+    /** The option is search's. A field that does not ask for it keeps what every field does. */
+    @Test
+    fun aTextFieldWithoutTheOptionOpensTheKeyboardOnLanding() {
+        rule.setContent {
+            view = LocalView.current
+            CloudStreamTheme {
+                TextField(value = "", onValueChange = {}, placeholder = "", modifier = Modifier.fillMaxWidth())
+            }
+        }
+        landOnTheField()
         assertKeyboardOpens()
         dpad.closeKeyboard()
     }

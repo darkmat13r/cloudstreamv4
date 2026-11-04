@@ -1,4 +1,4 @@
-package com.lagradost.cloudstream4.feature.search.tv
+package com.lagradost.cloudstream4.core.designsystem.target
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable

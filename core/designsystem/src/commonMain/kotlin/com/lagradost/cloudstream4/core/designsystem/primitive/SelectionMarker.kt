@@ -55,17 +55,34 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
  * }
  * ```
  *
+ * ## The marker is `muted`, and white would be a different statement
+ *
+ * **`ink` is focus.** A selected row is `raised` fill, an `ink` label and a `muted` marker; white
+ * on a 10-foot screen means *you are here now*, and a white marker on a selected row says that
+ * about a row the user is not on. `Components.dc.html` §03 puts it as a prohibition — *"raised fill
+ * plus a muted 4px marker, **never a white bar**"* — and all five TV boards encode the same thing
+ * in one line of CSS, `.lrow.sel .lmark { background: var(--mut) }`
+ * (`Components:148`, `TV Library:149`, `TV Detail Player:108`, `TV Episodes Downloads:97`,
+ * `TV Search Suggestions:123`).
+ *
+ * This default was `ink` until `DS-10`, which is the bug those boards describe. The two states are
+ * meant to be legible together: a focused row has a white *ring* and a selected row has a muted
+ * *marker*, and a row that is both says so without either reading as the other.
+ *
+ * `live` would be a contract violation here whatever the boards said, since selection is not
+ * playback state.
+ *
  * @param selected whether the rule is painted. The cell is laid out either way.
  * @param modifier applied before the cell's own sizing.
- * @param color the rule colour. `ink` is the design's selected-state ink; `live` would be a
- *   contract violation here, since selection is not playback state.
+ * @param color the rule colour. `muted` is the design's selection ink; see above before changing
+ *   it at a call site.
  * @param ruleWidth the stroke weight of the rule. See [SelectionMarkerDefaults.RuleWidth].
  */
 @Composable
 fun SelectionMarker(
     selected: Boolean,
     modifier: Modifier = Modifier,
-    color: Color = CloudStreamTheme.colors.ink,
+    color: Color = CloudStreamTheme.colors.muted,
     ruleWidth: Dp = SelectionMarkerDefaults.RuleWidth,
 ) {
     Box(

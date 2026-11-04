@@ -1,5 +1,6 @@
 plugins {
     id("cloudstream.kmp.compose")
+    // Real D-pad traversal on a device. `INF-10`; see `androidDeviceTest`.
     id("cloudstream.kmp.device-test")
 }
 
