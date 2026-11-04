@@ -402,6 +402,10 @@
 <string name="player_settings_select_cast_device">Cast apparaat selecteren</string>
 <string name="player_size_settings">Afspeel knop wijzig</string>
 <string name="player_size_settings_des">Verwijder de zwarte randen</string>
+<string name="player_source_playing">Speelt af</string>
+<string name="player_source_resumes_at">Wisselen behoudt je positie: gaat verder op %1$s</string>
+<string name="player_source_retry">Opnieuw</string>
+<string name="player_source_switch">Wisselen</string>
 <string name="player_speed">Afspelen Snelheid</string>
 <string name="player_speed_text_format">Snelheid (%.2fx)</string>
 <string name="player_subtitles_settings">Ondertitels</string>

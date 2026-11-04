@@ -436,6 +436,10 @@
 <string name="player_settings_select_cast_device">Оберіть пристрій для трансляції</string>
 <string name="player_size_settings">Кнопка зміни розміру програвача</string>
 <string name="player_size_settings_des">Прибрати чорні смуги</string>
+<string name="player_source_playing">Відтворюється</string>
+<string name="player_source_resumes_at">Перемикання зберігає позицію: продовження з %1$s</string>
+<string name="player_source_retry">Повторити</string>
+<string name="player_source_switch">Перемкнути</string>
 <string name="player_speed">Швидкість програвача</string>
 <string name="player_speed_text_format">Швидкість (%.2fx)</string>
 <string name="player_subtitles_settings">Субтитри</string>

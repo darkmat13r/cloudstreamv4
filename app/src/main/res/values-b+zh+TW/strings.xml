@@ -435,6 +435,10 @@
 <string name="player_settings_select_cast_device">"選擇投放裝置"</string>
 <string name="player_size_settings">"播放器調整大小按鈕"</string>
 <string name="player_size_settings_des">"移除黑色邊框"</string>
+<string name="player_source_playing">"播放中"</string>
+<string name="player_source_resumes_at" formatted="true">"切換會保留播放位置：從 %1$s 繼續"</string>
+<string name="player_source_retry">"重試"</string>
+<string name="player_source_switch">"切換"</string>
 <string name="player_speed">"播放速度"</string>
 <string name="player_speed_text_format" formatted="true">"速度（%.2fx）"</string>
 <string name="player_subtitles_settings">"字幕"</string>

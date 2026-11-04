@@ -385,6 +385,10 @@
 <string name="player_settings_select_cast_device">কাষ্ট ডিভাইচ চয়ন কৰক</string>
 <string name="player_size_settings">প্লেয়াৰৰ আকাৰ পৰিবৰ্তনৰ বুটাম</string>
 <string name="player_size_settings_des">ক’লা পাৰত আঁতৰাওক</string>
+<string name="player_source_playing">চলি আছে</string>
+<string name="player_source_resumes_at">সলনি কৰিলে আপোনাৰ স্থান ৰয়: %1$sত পুনৰ আৰম্ভ হ'ব</string>
+<string name="player_source_retry">পুনৰ চেষ্টা কৰক</string>
+<string name="player_source_switch">সলনি কৰক</string>
 <string name="player_speed">প্লেয়াৰ গতি</string>
 <string name="player_speed_text_format">গতি (%.2fx)</string>
 <string name="player_subtitles_settings">সাবটাইটেল</string>

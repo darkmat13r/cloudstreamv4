@@ -134,6 +134,10 @@
 <string name="player_mute">Səssizə al</string>
 <string name="player_size_settings">Pleyeri yenidən ölçüləndirmə düyməsini</string>
 <string name="player_size_settings_des">Qara sərhədləri, kənarları sil</string>
+<string name="player_source_playing">Oynayır</string>
+<string name="player_source_resumes_at">Dəyişmək mövqeyinizi saxlayır: %1$s anından davam edir</string>
+<string name="player_source_retry">Yenidən cəhd et</string>
+<string name="player_source_switch">Dəyiş</string>
 <string name="player_speed_text_format">Sürət (%.2fx)</string>
 <string name="player_subtitles_settings">Subtitrlər</string>
 <string name="player_subtitles_settings_des">Pleyerin subtitr parametrləri</string>

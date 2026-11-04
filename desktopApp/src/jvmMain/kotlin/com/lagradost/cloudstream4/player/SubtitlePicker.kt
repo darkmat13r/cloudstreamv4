@@ -72,13 +72,11 @@ internal fun SubtitlePicker(
     onSelect: (SubtitleTrack?) -> Unit,
     onDismiss: () -> Unit,
 ) {
-    val colors = CloudStreamTheme.colors
-    val typography = CloudStreamTheme.typography
     PlayerListPanel(stringResource(Res.string.player_subtitles_settings), onDismiss) {
         if (tracks.isEmpty()) {
             BasicText(
                 text = stringResource(Res.string.no_subtitles),
-                style = typography.body.copy(color = colors.ink),
+                style = CloudStreamTheme.typography.body.copy(color = CloudStreamTheme.colors.ink),
                 modifier = Modifier.padding(horizontal = DesktopDimens.RowPadding, vertical = DesktopDimens.RelatedGap),
             )
         } else {

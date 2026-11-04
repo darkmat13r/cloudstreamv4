@@ -436,6 +436,10 @@
 <string name="player_settings_select_cast_device">"காச்ட் சாதனத்தைத் தேர்ந்தெடுக்கவும்"</string>
 <string name="player_size_settings">"பிளேயர் மறுஅளவிடுதல் பொத்தானை"</string>
 <string name="player_size_settings_des">"கருப்பு எல்லைகளை அகற்றவும்"</string>
+<string name="player_source_playing">"இயங்குகிறது"</string>
+<string name="player_source_resumes_at" formatted="true">"மாற்றினாலும் இடம் மாறாது: %1$s இலிருந்து தொடரும்"</string>
+<string name="player_source_retry">"மீண்டும் முயல்க"</string>
+<string name="player_source_switch">"மாற்று"</string>
 <string name="player_speed">"பிளேயர் விரைவு"</string>
 <string name="player_speed_text_format" formatted="true">"விரைவு (%.2fx)"</string>
 <string name="player_subtitles_settings">"வசன வரிகள்"</string>

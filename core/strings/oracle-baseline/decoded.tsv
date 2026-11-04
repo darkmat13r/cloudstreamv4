@@ -102,6 +102,10 @@ values-b+af/strings.xml	string	player_fit_screen	-	STR	Vul skerm
 values-b+af/strings.xml	string	player_fit_title	-	STR	Beeldgrootte	
 values-b+af/strings.xml	string	player_fit_width	-	STR	Vul breedte	
 values-b+af/strings.xml	string	player_mute	-	STR	Demp	
+values-b+af/strings.xml	string	player_source_playing	-	STR	Speel	
+values-b+af/strings.xml	string	player_source_resumes_at	-	STR	Wissel behou jou posisie: gaan voort by %1$s	
+values-b+af/strings.xml	string	player_source_retry	-	STR	Probeer weer	
+values-b+af/strings.xml	string	player_source_switch	-	STR	Wissel	
 values-b+af/strings.xml	string	player_speed	-	STR	Spelerspoed	
 values-b+af/strings.xml	string	player_speed_text_format	-	STR	Spoed (%.2fx)	
 values-b+af/strings.xml	string	player_unmute	-	STR	Ontdemp	
@@ -259,6 +263,10 @@ values-b+am/strings.xml	string	player_fit_screen	-	STR	ማያውን ሙላ
 values-b+am/strings.xml	string	player_fit_title	-	STR	የምስል መጠን	
 values-b+am/strings.xml	string	player_fit_width	-	STR	ስፋቱን ሙላ	
 values-b+am/strings.xml	string	player_mute	-	STR	ድምፅ አጥፋ	
+values-b+am/strings.xml	string	player_source_playing	-	STR	በመጫወት ላይ	
+values-b+am/strings.xml	string	player_source_resumes_at	-	STR	መቀየር ቦታዎን ይጠብቃል፦ ከ%1$s ይቀጥላል	
+values-b+am/strings.xml	string	player_source_retry	-	STR	እንደገና ሞክር	
+values-b+am/strings.xml	string	player_source_switch	-	STR	ቀይር	
 values-b+am/strings.xml	string	player_speed	-	STR	የአጫዋች ፍጥነት	
 values-b+am/strings.xml	string	player_speed_text_format	-	STR	ፍጥነት(%.2fx)	
 values-b+am/strings.xml	string	player_unmute	-	STR	ድምፅ አብራ	
@@ -756,6 +764,10 @@ values-b+apc/strings.xml	string	player_settings_play_in_app	-	STR	المشغل �
 values-b+apc/strings.xml	string	player_settings_select_cast_device	-	STR	نقي جهاز الكاست	
 values-b+apc/strings.xml	string	player_size_settings	-	STR	كبسة تغيير حجم الڤيديو	
 values-b+apc/strings.xml	string	player_size_settings_des	-	STR	شيل الأسود من الأطراف	
+values-b+apc/strings.xml	string	player_source_playing	-	STR	عم يشتغل	
+values-b+apc/strings.xml	string	player_source_resumes_at	-	STR	التبديل بيحافظ على مكانك: بيكمّل من %1$s	
+values-b+apc/strings.xml	string	player_source_retry	-	STR	جرّب كمان مرة	
+values-b+apc/strings.xml	string	player_source_switch	-	STR	بدّل	
 values-b+apc/strings.xml	string	player_speed	-	STR	سرعة الڤيديو	
 values-b+apc/strings.xml	string	player_speed_text_format	-	STR	السرعة (%.2fx)	
 values-b+apc/strings.xml	string	player_subtitles_settings	-	STR	الترجمة	
@@ -1546,6 +1558,10 @@ values-b+ar/strings.xml	string	player_settings_play_in_app	-	STR	مشغل داخ
 values-b+ar/strings.xml	string	player_settings_select_cast_device	-	STR	حدد جهاز البث	
 values-b+ar/strings.xml	string	player_size_settings	-	STR	زر تغيير حجم المُشغل	
 values-b+ar/strings.xml	string	player_size_settings_des	-	STR	إزالة الحدود السوداء	
+values-b+ar/strings.xml	string	player_source_playing	-	STR	قيد التشغيل	
+values-b+ar/strings.xml	string	player_source_resumes_at	-	STR	التبديل يحافظ على موضعك: يُستأنف عند %1$s	
+values-b+ar/strings.xml	string	player_source_retry	-	STR	إعادة المحاولة	
+values-b+ar/strings.xml	string	player_source_switch	-	STR	تبديل	
 values-b+ar/strings.xml	string	player_speed	-	STR	سرعة المُشغل	
 values-b+ar/strings.xml	string	player_speed_text_format	-	STR	سرعة (%.2fx)	
 values-b+ar/strings.xml	string	player_subtitles_settings	-	STR	الترجمة	
@@ -2116,6 +2132,10 @@ values-b+ars/strings.xml	string	player_fit_width	-	STR	ملء العرض
 values-b+ars/strings.xml	string	player_mute	-	STR	كتم الصوت	
 values-b+ars/strings.xml	string	player_size_settings	-	STR	زر تغيير حجم المشغل	
 values-b+ars/strings.xml	string	player_size_settings_des	-	STR	إزالة الحدود السوداء	
+values-b+ars/strings.xml	string	player_source_playing	-	STR	قيد التشغيل	
+values-b+ars/strings.xml	string	player_source_resumes_at	-	STR	التبديل يحافظ على موضعك: يُستأنف عند %1$s	
+values-b+ars/strings.xml	string	player_source_retry	-	STR	إعادة المحاولة	
+values-b+ars/strings.xml	string	player_source_switch	-	STR	تبديل	
 values-b+ars/strings.xml	string	player_speed	-	STR	سرعة اللاعب	
 values-b+ars/strings.xml	string	player_speed_text_format	-	STR	سرعة(%.2fx)	
 values-b+ars/strings.xml	string	player_subtitles_settings	-	STR	ترجمات	
@@ -2662,6 +2682,10 @@ values-b+as/strings.xml	string	player_settings_play_in_app	-	STR	আভ্যন
 values-b+as/strings.xml	string	player_settings_select_cast_device	-	STR	কাষ্ট ডিভাইচ চয়ন কৰক	
 values-b+as/strings.xml	string	player_size_settings	-	STR	প্লেয়াৰৰ আকাৰ পৰিবৰ্তনৰ বুটাম	
 values-b+as/strings.xml	string	player_size_settings_des	-	STR	ক’লা পাৰত আঁতৰাওক	
+values-b+as/strings.xml	string	player_source_playing	-	STR	চলি আছে	
+values-b+as/strings.xml	string	player_source_resumes_at	-	STR	সলনি কৰিলে আপোনাৰ স্থান ৰয়: %1$sত পুনৰ আৰম্ভ হ'ব	
+values-b+as/strings.xml	string	player_source_retry	-	STR	পুনৰ চেষ্টা কৰক	
+values-b+as/strings.xml	string	player_source_switch	-	STR	সলনি কৰক	
 values-b+as/strings.xml	string	player_speed	-	STR	প্লেয়াৰ গতি	
 values-b+as/strings.xml	string	player_speed_text_format	-	STR	গতি (%.2fx)	
 values-b+as/strings.xml	string	player_subtitles_settings	-	STR	সাবটাইটেল	
@@ -3094,6 +3118,10 @@ values-b+az/strings.xml	string	player_fit_width	-	STR	Eni doldur
 values-b+az/strings.xml	string	player_mute	-	STR	Səssizə al	
 values-b+az/strings.xml	string	player_size_settings	-	STR	Pleyeri yenidən ölçüləndirmə düyməsini	
 values-b+az/strings.xml	string	player_size_settings_des	-	STR	Qara sərhədləri, kənarları sil	
+values-b+az/strings.xml	string	player_source_playing	-	STR	Oynayır	
+values-b+az/strings.xml	string	player_source_resumes_at	-	STR	Dəyişmək mövqeyinizi saxlayır: %1$s anından davam edir	
+values-b+az/strings.xml	string	player_source_retry	-	STR	Yenidən cəhd et	
+values-b+az/strings.xml	string	player_source_switch	-	STR	Dəyiş	
 values-b+az/strings.xml	string	player_speed_text_format	-	STR	Sürət (%.2fx)	
 values-b+az/strings.xml	string	player_subtitles_settings	-	STR	Subtitrlər	
 values-b+az/strings.xml	string	player_subtitles_settings_des	-	STR	Pleyerin subtitr parametrləri	
@@ -3594,6 +3622,10 @@ values-b+be/strings.xml	string	player_settings_play_in_app	-	STR	Убудава�
 values-b+be/strings.xml	string	player_settings_select_cast_device	-	STR	Выбраць прыладу для трансляцыі	
 values-b+be/strings.xml	string	player_size_settings	-	STR	Кнопка змены памеру прайгравальніка	
 values-b+be/strings.xml	string	player_size_settings_des	-	STR	Прыбраць чорныя межы	
+values-b+be/strings.xml	string	player_source_playing	-	STR	Прайграецца	
+values-b+be/strings.xml	string	player_source_resumes_at	-	STR	Пераключэнне захоўвае пазіцыю: працяг з %1$s	
+values-b+be/strings.xml	string	player_source_retry	-	STR	Паўтарыць	
+values-b+be/strings.xml	string	player_source_switch	-	STR	Пераключыць	
 values-b+be/strings.xml	string	player_speed	-	STR	Хуткасць прайгравальніка	
 values-b+be/strings.xml	string	player_speed_text_format	-	STR	Хуткасць (%.2fx)	
 values-b+be/strings.xml	string	player_subtitles_settings	-	STR	Субцітры	
@@ -4366,6 +4398,10 @@ values-b+bg/strings.xml	string	player_settings_play_in_app	-	STR	Вътреше�
 values-b+bg/strings.xml	string	player_settings_select_cast_device	-	STR	Изберете устройство за излъчване	
 values-b+bg/strings.xml	string	player_size_settings	-	STR	Бутон за преоразмеряване на плейъра	
 values-b+bg/strings.xml	string	player_size_settings_des	-	STR	Премахнете черните граници	
+values-b+bg/strings.xml	string	player_source_playing	-	STR	Възпроизвежда се	
+values-b+bg/strings.xml	string	player_source_resumes_at	-	STR	Смяната запазва позицията ви: продължава от %1$s	
+values-b+bg/strings.xml	string	player_source_retry	-	STR	Нов опит	
+values-b+bg/strings.xml	string	player_source_switch	-	STR	Смяна	
 values-b+bg/strings.xml	string	player_speed	-	STR	Скорост на възпроизвеждане	
 values-b+bg/strings.xml	string	player_speed_text_format	-	STR	Скорост (%.2fx)	
 values-b+bg/strings.xml	string	player_subtitles_settings	-	STR	Субтитри	
@@ -4967,6 +5003,10 @@ values-b+bn/strings.xml	string	player_fit_width	-	STR	প্রস্থ পূ�
 values-b+bn/strings.xml	string	player_mute	-	STR	মিউট করুন	
 values-b+bn/strings.xml	string	player_size_settings	-	STR	প্লেয়ারের সাইজ পরিবর্তন বাটন	
 values-b+bn/strings.xml	string	player_size_settings_des	-	STR	কালো প্রান্ত অপসারণ করুন	
+values-b+bn/strings.xml	string	player_source_playing	-	STR	চলছে	
+values-b+bn/strings.xml	string	player_source_resumes_at	-	STR	পাল্টালে আপনার অবস্থান থাকবে: %1$s থেকে চলবে	
+values-b+bn/strings.xml	string	player_source_retry	-	STR	আবার চেষ্টা করুন	
+values-b+bn/strings.xml	string	player_source_switch	-	STR	পাল্টান	
 values-b+bn/strings.xml	string	player_speed	-	STR	ভিডিও এর গতি	
 values-b+bn/strings.xml	string	player_speed_text_format	-	STR	গতি (%.2f গুণ)	
 values-b+bn/strings.xml	string	player_subtitles_settings	-	STR	সাবটাইটেল	
@@ -5365,6 +5405,10 @@ values-b+ca/strings.xml	string	player_load_subtitles_online	-	STR	Carrega des d'
 values-b+ca/strings.xml	string	player_loaded_subtitles	-	STR	%s carregat	
 values-b+ca/strings.xml	string	player_mute	-	STR	Silencia	
 values-b+ca/strings.xml	string	player_size_settings	-	STR	Botó de canvi de mida del reproductor	
+values-b+ca/strings.xml	string	player_source_playing	-	STR	S'està reproduint	
+values-b+ca/strings.xml	string	player_source_resumes_at	-	STR	Canviar conserva la posició: es reprèn a %1$s	
+values-b+ca/strings.xml	string	player_source_retry	-	STR	Torna-ho a provar	
+values-b+ca/strings.xml	string	player_source_switch	-	STR	Canvia	
 values-b+ca/strings.xml	string	player_speed	-	STR	Velocitat de reproducció	
 values-b+ca/strings.xml	string	player_speed_text_format	-	STR	Velocitat (%.2fx)	
 values-b+ca/strings.xml	string	player_unmute	-	STR	Deixa de silenciar	
@@ -5620,6 +5664,10 @@ values-b+ckb/strings.xml	string	player_fit_screen	-	STR	پڕکردنی شاشە
 values-b+ckb/strings.xml	string	player_fit_title	-	STR	قەبارەی وێنە	
 values-b+ckb/strings.xml	string	player_fit_width	-	STR	پڕکردنی پانی	
 values-b+ckb/strings.xml	string	player_mute	-	STR	بێدەنگکردن	
+values-b+ckb/strings.xml	string	player_source_playing	-	STR	لێدەدرێت	
+values-b+ckb/strings.xml	string	player_source_resumes_at	-	STR	گۆڕین شوێنەکەت دەپارێزێت: لە %1$s بەردەوام دەبێت	
+values-b+ckb/strings.xml	string	player_source_retry	-	STR	دووبارە هەوڵبدەرەوە	
+values-b+ckb/strings.xml	string	player_source_switch	-	STR	گۆڕین	
 values-b+ckb/strings.xml	string	player_speed_text_format	-	STR	خێرای(x%.2f)	
 values-b+ckb/strings.xml	string	player_unmute	-	STR	لابردنی بێدەنگی	
 values-b+ckb/strings.xml	string	popup_delete_file	-	STR	سڕینەوەی فایل	
@@ -6105,6 +6153,10 @@ values-b+cs/strings.xml	string	player_settings_play_in_app	-	STR	Interní přehr
 values-b+cs/strings.xml	string	player_settings_select_cast_device	-	STR	Vyberte zařízení k vysílání	
 values-b+cs/strings.xml	string	player_size_settings	-	STR	Tlačítko pro změnu velikosti přehrávače	
 values-b+cs/strings.xml	string	player_size_settings_des	-	STR	Odebrat černá ohraničení	
+values-b+cs/strings.xml	string	player_source_playing	-	STR	Přehrává se	
+values-b+cs/strings.xml	string	player_source_resumes_at	-	STR	Přepnutí zachová pozici: pokračuje od %1$s	
+values-b+cs/strings.xml	string	player_source_retry	-	STR	Zkusit znovu	
+values-b+cs/strings.xml	string	player_source_switch	-	STR	Přepnout	
 values-b+cs/strings.xml	string	player_speed	-	STR	Rychlost přehrávání	
 values-b+cs/strings.xml	string	player_speed_text_format	-	STR	Rychlost (%.2fx)	
 values-b+cs/strings.xml	string	player_subtitles_settings	-	STR	Titulky	
@@ -6890,6 +6942,10 @@ values-b+de/strings.xml	string	player_settings_play_in_app	-	STR	Interner Player
 values-b+de/strings.xml	string	player_settings_select_cast_device	-	STR	Cast-Gerät auswählen	
 values-b+de/strings.xml	string	player_size_settings	-	STR	Player-Skalierung anpassen	
 values-b+de/strings.xml	string	player_size_settings_des	-	STR	Entfernt schwarze Ränder	
+values-b+de/strings.xml	string	player_source_playing	-	STR	Läuft	
+values-b+de/strings.xml	string	player_source_resumes_at	-	STR	Beim Wechsel bleibt die Position erhalten: weiter bei %1$s	
+values-b+de/strings.xml	string	player_source_retry	-	STR	Wiederholen	
+values-b+de/strings.xml	string	player_source_switch	-	STR	Wechseln	
 values-b+de/strings.xml	string	player_speed	-	STR	Player-Geschwindigkeit	
 values-b+de/strings.xml	string	player_speed_text_format	-	STR	Geschwindigkeit (%.2fx)	
 values-b+de/strings.xml	string	player_subtitles_settings	-	STR	Untertitel	
@@ -7628,6 +7684,10 @@ values-b+el/strings.xml	string	player_settings_play_in_app	-	STR	Ενσωματ�
 values-b+el/strings.xml	string	player_settings_select_cast_device	-	STR	Επιλογή συσκευής για αναμετάδοση	
 values-b+el/strings.xml	string	player_size_settings	-	STR	Αλλαγή μεγέθους παραθύρου	
 values-b+el/strings.xml	string	player_size_settings_des	-	STR	Αφαίρεση μαύρων περιγραμμάτων	
+values-b+el/strings.xml	string	player_source_playing	-	STR	Αναπαράγεται	
+values-b+el/strings.xml	string	player_source_resumes_at	-	STR	Η αλλαγή διατηρεί τη θέση σας: συνέχεια από %1$s	
+values-b+el/strings.xml	string	player_source_retry	-	STR	Επανάληψη	
+values-b+el/strings.xml	string	player_source_switch	-	STR	Αλλαγή	
 values-b+el/strings.xml	string	player_speed	-	STR	Ταχύτητα αναπαραγωγής	
 values-b+el/strings.xml	string	player_speed_text_format	-	STR	Ταχύτητα (%.2fx)	
 values-b+el/strings.xml	string	player_subtitles_settings	-	STR	Υπότιτλοι	
@@ -8089,6 +8149,10 @@ values-b+eo/strings.xml	string	player_fit_title	-	STR	Bildgrando
 values-b+eo/strings.xml	string	player_fit_width	-	STR	Plenigi larĝon	
 values-b+eo/strings.xml	string	player_mute	-	STR	Silentigi	
 values-b+eo/strings.xml	string	player_size_settings_des	-	STR	Forigi nigrajn borderaĵojn	
+values-b+eo/strings.xml	string	player_source_playing	-	STR	Ludanta	
+values-b+eo/strings.xml	string	player_source_resumes_at	-	STR	Ŝanĝo konservas vian lokon: daŭrigas ĉe %1$s	
+values-b+eo/strings.xml	string	player_source_retry	-	STR	Reprovi	
+values-b+eo/strings.xml	string	player_source_switch	-	STR	Ŝanĝi	
 values-b+eo/strings.xml	string	player_speed_text_format	-	STR	Rapido (%.2fx)	
 values-b+eo/strings.xml	string	player_subtitles_settings	-	STR	Subtekstoj	
 values-b+eo/strings.xml	string	player_unmute	-	STR	Malsilentigi	
@@ -8615,6 +8679,10 @@ values-b+es/strings.xml	string	player_settings_play_in_app	-	STR	Reproductor int
 values-b+es/strings.xml	string	player_settings_select_cast_device	-	STR	Seleccionar el dispositivo para transmitir	
 values-b+es/strings.xml	string	player_size_settings	-	STR	Botón de cambio de tamaño del reproductor	
 values-b+es/strings.xml	string	player_size_settings_des	-	STR	Eliminar bordes negros	
+values-b+es/strings.xml	string	player_source_playing	-	STR	Reproduciendo	
+values-b+es/strings.xml	string	player_source_resumes_at	-	STR	Cambiar mantiene tu posición: continúa en %1$s	
+values-b+es/strings.xml	string	player_source_retry	-	STR	Reintentar	
+values-b+es/strings.xml	string	player_source_switch	-	STR	Cambiar	
 values-b+es/strings.xml	string	player_speed	-	STR	Velocidad del reproductor	
 values-b+es/strings.xml	string	player_speed_text_format	-	STR	Velocidad (%.2f×)	
 values-b+es/strings.xml	string	player_subtitles_settings	-	STR	Subtítulos	
@@ -9192,6 +9260,10 @@ values-b+fa/strings.xml	string	player_mute	-	STR	بی‌صدا
 values-b+fa/strings.xml	string	player_pref	-	STR	پخش‌کننده ویدئو برگزیده	
 values-b+fa/strings.xml	string	player_size_settings	-	STR	دکمه تغییر‌اندازه پخش‌کننده	
 values-b+fa/strings.xml	string	player_size_settings_des	-	STR	حذف حاشیه سیاه	
+values-b+fa/strings.xml	string	player_source_playing	-	STR	در حال پخش	
+values-b+fa/strings.xml	string	player_source_resumes_at	-	STR	تعویض موقعیت شما را حفظ می‌کند: ادامه از %1$s	
+values-b+fa/strings.xml	string	player_source_retry	-	STR	تلاش دوباره	
+values-b+fa/strings.xml	string	player_source_switch	-	STR	تعویض	
 values-b+fa/strings.xml	string	player_speed	-	STR	سرعت پخش‌کننده	
 values-b+fa/strings.xml	string	player_speed_text_format	-	STR	سرعت (%.2f برابر)	
 values-b+fa/strings.xml	string	player_subtitles_settings	-	STR	زیرنویس‌ها	
@@ -9484,6 +9556,10 @@ values-b+fil/strings.xml	string	player_fit_title	-	STR	Laki ng larawan
 values-b+fil/strings.xml	string	player_fit_width	-	STR	Punuin ang lapad	
 values-b+fil/strings.xml	string	player_mute	-	STR	I-mute	
 values-b+fil/strings.xml	string	player_notification_channel_description	-	STR	Ang abiso ng player para sa pagkontrol sa pag-playback mula sa background	
+values-b+fil/strings.xml	string	player_source_playing	-	STR	Nagpe-play	
+values-b+fil/strings.xml	string	player_source_resumes_at	-	STR	Mananatili ang posisyon mo sa paglipat: magpapatuloy sa %1$s	
+values-b+fil/strings.xml	string	player_source_retry	-	STR	Subukang muli	
+values-b+fil/strings.xml	string	player_source_switch	-	STR	Lumipat	
 values-b+fil/strings.xml	string	player_speed	-	STR	Bilis ng Manlalaro	
 values-b+fil/strings.xml	string	player_speed_text_format	-	STR	Bilis (%.2fx)	
 values-b+fil/strings.xml	string	player_unmute	-	STR	I-unmute	
@@ -10001,6 +10077,10 @@ values-b+fr/strings.xml	string	player_settings_play_in_app	-	STR	Lecteur interne
 values-b+fr/strings.xml	string	player_settings_select_cast_device	-	STR	Sélectionnez un appareil de diffusion	
 values-b+fr/strings.xml	string	player_size_settings	-	STR	Bouton de redimensionnement du lecteur	
 values-b+fr/strings.xml	string	player_size_settings_des	-	STR	Supprimer les bordures noires	
+values-b+fr/strings.xml	string	player_source_playing	-	STR	En lecture	
+values-b+fr/strings.xml	string	player_source_resumes_at	-	STR	Changer conserve votre position : reprise à %1$s	
+values-b+fr/strings.xml	string	player_source_retry	-	STR	Réessayer	
+values-b+fr/strings.xml	string	player_source_switch	-	STR	Changer	
 values-b+fr/strings.xml	string	player_speed	-	STR	Vitesse de lecture	
 values-b+fr/strings.xml	string	player_speed_text_format	-	STR	Vitesse (%.2fx)	
 values-b+fr/strings.xml	string	player_subtitles_settings	-	STR	Sous-titres	
@@ -10553,6 +10633,10 @@ values-b+gl/strings.xml	string	player_fit_width	-	STR	Encher o ancho
 values-b+gl/strings.xml	string	player_mute	-	STR	Silenciar	
 values-b+gl/strings.xml	string	player_size_settings	-	STR	Botón de cambio de tamaño do reprodutor	
 values-b+gl/strings.xml	string	player_size_settings_des	-	STR	Eliminar bordes negros	
+values-b+gl/strings.xml	string	player_source_playing	-	STR	Reproducindo	
+values-b+gl/strings.xml	string	player_source_resumes_at	-	STR	Cambiar mantén a túa posición: continúa en %1$s	
+values-b+gl/strings.xml	string	player_source_retry	-	STR	Tentar de novo	
+values-b+gl/strings.xml	string	player_source_switch	-	STR	Cambiar	
 values-b+gl/strings.xml	string	player_speed	-	STR	Velocidade do reproductor	
 values-b+gl/strings.xml	string	player_speed_text_format	-	STR	Velocidade (%.2fx)	
 values-b+gl/strings.xml	string	player_subtitles_settings	-	STR	Subtítulos	
@@ -10960,6 +11044,10 @@ values-b+hi/strings.xml	string	player_fit_width	-	STR	चौड़ाई भर�
 values-b+hi/strings.xml	string	player_mute	-	STR	म्यूट करें	
 values-b+hi/strings.xml	string	player_size_settings	-	STR	प्लेयर आकार परिवर्तन बटन	
 values-b+hi/strings.xml	string	player_size_settings_des	-	STR	काले बॉर्डर हटाएँ	
+values-b+hi/strings.xml	string	player_source_playing	-	STR	चल रहा है	
+values-b+hi/strings.xml	string	player_source_resumes_at	-	STR	बदलने पर आपकी जगह बनी रहती है: %1$s से जारी	
+values-b+hi/strings.xml	string	player_source_retry	-	STR	फिर कोशिश करें	
+values-b+hi/strings.xml	string	player_source_switch	-	STR	बदलें	
 values-b+hi/strings.xml	string	player_speed	-	STR	प्लेयर स्पीड	
 values-b+hi/strings.xml	string	player_speed_text_format	-	STR	स्पीड (%.2fx)	
 values-b+hi/strings.xml	string	player_subtitles_settings	-	STR	उपशीर्षक	
@@ -11580,6 +11668,10 @@ values-b+hr/strings.xml	string	player_settings_play_in_app	-	STR	Interni player
 values-b+hr/strings.xml	string	player_settings_select_cast_device	-	STR	Odaberi uređaj za emitiranje	
 values-b+hr/strings.xml	string	player_size_settings	-	STR	Gumb za mijenjenje veličine playera	
 values-b+hr/strings.xml	string	player_size_settings_des	-	STR	Ukloni crne rubove	
+values-b+hr/strings.xml	string	player_source_playing	-	STR	Reproducira se	
+values-b+hr/strings.xml	string	player_source_resumes_at	-	STR	Promjena zadržava položaj: nastavlja se od %1$s	
+values-b+hr/strings.xml	string	player_source_retry	-	STR	Pokušaj ponovno	
+values-b+hr/strings.xml	string	player_source_switch	-	STR	Promijeni	
 values-b+hr/strings.xml	string	player_speed	-	STR	Brzina playera	
 values-b+hr/strings.xml	string	player_speed_text_format	-	STR	Brzina (%.2f×)	
 values-b+hr/strings.xml	string	player_subtitles_settings	-	STR	Titlovi	
@@ -12303,6 +12395,10 @@ values-b+hu/strings.xml	string	player_settings_play_in_app	-	STR	Belső lejátsz
 values-b+hu/strings.xml	string	player_settings_select_cast_device	-	STR	Válassza ki a lejátszó eszközt	
 values-b+hu/strings.xml	string	player_size_settings	-	STR	Lejátszó átméretezése gomb	
 values-b+hu/strings.xml	string	player_size_settings_des	-	STR	Fekete szegélyek eltávolítása	
+values-b+hu/strings.xml	string	player_source_playing	-	STR	Lejátszás	
+values-b+hu/strings.xml	string	player_source_resumes_at	-	STR	A váltás megőrzi a pozíciót: folytatás innen: %1$s	
+values-b+hu/strings.xml	string	player_source_retry	-	STR	Újra	
+values-b+hu/strings.xml	string	player_source_switch	-	STR	Váltás	
 values-b+hu/strings.xml	string	player_speed	-	STR	Lejátszás sebessége	
 values-b+hu/strings.xml	string	player_speed_text_format	-	STR	Sebesség (%.2fx)	
 values-b+hu/strings.xml	string	player_subtitles_settings	-	STR	Feliratok	
@@ -13037,6 +13133,10 @@ values-b+in/strings.xml	string	player_settings_play_in_app	-	STR	Pemutar Bawaan
 values-b+in/strings.xml	string	player_settings_select_cast_device	-	STR	Pilih perangkat cast	
 values-b+in/strings.xml	string	player_size_settings	-	STR	Tombol ubah ukuran pemutar	
 values-b+in/strings.xml	string	player_size_settings_des	-	STR	Hapus garis tepi hitam	
+values-b+in/strings.xml	string	player_source_playing	-	STR	Sedang diputar	
+values-b+in/strings.xml	string	player_source_resumes_at	-	STR	Mengganti tetap menjaga posisi Anda: lanjut di %1$s	
+values-b+in/strings.xml	string	player_source_retry	-	STR	Coba lagi	
+values-b+in/strings.xml	string	player_source_switch	-	STR	Ganti	
 values-b+in/strings.xml	string	player_speed	-	STR	Kecepatan Pemutar	
 values-b+in/strings.xml	string	player_speed_text_format	-	STR	Kecepatan (%.2fx)	
 values-b+in/strings.xml	string	player_subtitles_settings	-	STR	Subtitel	
@@ -13826,6 +13926,10 @@ values-b+it/strings.xml	string	player_settings_play_in_app	-	STR	Lettore interno
 values-b+it/strings.xml	string	player_settings_select_cast_device	-	STR	Seleziona dispositivo per cast	
 values-b+it/strings.xml	string	player_size_settings	-	STR	Pulsante di ridimensionamento del video	
 values-b+it/strings.xml	string	player_size_settings_des	-	STR	Rimuovi bordi neri	
+values-b+it/strings.xml	string	player_source_playing	-	STR	In riproduzione	
+values-b+it/strings.xml	string	player_source_resumes_at	-	STR	Cambiare mantiene la posizione: riprende da %1$s	
+values-b+it/strings.xml	string	player_source_retry	-	STR	Riprova	
+values-b+it/strings.xml	string	player_source_switch	-	STR	Cambia	
 values-b+it/strings.xml	string	player_speed	-	STR	Velocità lettore	
 values-b+it/strings.xml	string	player_speed_text_format	-	STR	Velocità (%.2fx)	
 values-b+it/strings.xml	string	player_subtitles_settings	-	STR	Sottotitoli	
@@ -14491,6 +14595,10 @@ values-b+iw/strings.xml	string	player_pref	-	STR	נגן וידאו מועדף
 values-b+iw/strings.xml	string	player_settings_play_in_app	-	STR	נגן פנימי	
 values-b+iw/strings.xml	string	player_size_settings	-	STR	כפתור שינוי גודל הנגן	
 values-b+iw/strings.xml	string	player_size_settings_des	-	STR	הסר את הגבולות השחורים	
+values-b+iw/strings.xml	string	player_source_playing	-	STR	מתנגן	
+values-b+iw/strings.xml	string	player_source_resumes_at	-	STR	ההחלפה שומרת על המיקום שלך: ממשיך מ-%1$s	
+values-b+iw/strings.xml	string	player_source_retry	-	STR	ניסיון חוזר	
+values-b+iw/strings.xml	string	player_source_switch	-	STR	החלפה	
 values-b+iw/strings.xml	string	player_speed	-	STR	מהירות הנגן	
 values-b+iw/strings.xml	string	player_speed_text_format	-	STR	מהירות (%.2fx)	
 values-b+iw/strings.xml	string	player_subtitles_settings	-	STR	כתוביות	
@@ -15199,6 +15307,10 @@ values-b+ja/strings.xml	string	player_settings_play_in_app	-	STR	内部プレー
 values-b+ja/strings.xml	string	player_settings_select_cast_device	-	STR	キャストデバイスを選択	
 values-b+ja/strings.xml	string	player_size_settings	-	STR	プレーヤーのサイズ変更ボタン	
 values-b+ja/strings.xml	string	player_size_settings_des	-	STR	黒い境界線を削除します	
+values-b+ja/strings.xml	string	player_source_playing	-	STR	再生中	
+values-b+ja/strings.xml	string	player_source_resumes_at	-	STR	切り替えても位置は保たれます: %1$s から再開	
+values-b+ja/strings.xml	string	player_source_retry	-	STR	再試行	
+values-b+ja/strings.xml	string	player_source_switch	-	STR	切り替え	
 values-b+ja/strings.xml	string	player_speed	-	STR	プレーヤーの速度	
 values-b+ja/strings.xml	string	player_speed_text_format	-	STR	再生速度 (%.2fx)	
 values-b+ja/strings.xml	string	player_subtitles_settings	-	STR	字幕	
@@ -15650,6 +15762,10 @@ values-b+kn/strings.xml	string	player_fit_width	-	STR	ಅಗಲ ತುಂಬಿ�
 values-b+kn/strings.xml	string	player_mute	-	STR	ಮ್ಯೂಟ್ ಮಾಡಿ	
 values-b+kn/strings.xml	string	player_size_settings	-	STR	ಪ್ಲೇಯರ್ ಮರುಗಾತ್ರಗೊಳಿಸಿ ಬಟನ್	
 values-b+kn/strings.xml	string	player_size_settings_des	-	STR	ಕಪ್ಪು ಗಡಿಗಳನ್ನು ತೆಗೆದುಹಾಕಿ	
+values-b+kn/strings.xml	string	player_source_playing	-	STR	ಪ್ಲೇ ಆಗುತ್ತಿದೆ	
+values-b+kn/strings.xml	string	player_source_resumes_at	-	STR	ಬದಲಿಸಿದರೂ ಸ್ಥಾನ ಉಳಿಯುತ್ತದೆ: %1$s ರಿಂದ ಮುಂದುವರಿಯುತ್ತದೆ	
+values-b+kn/strings.xml	string	player_source_retry	-	STR	ಮರುಪ್ರಯತ್ನಿಸಿ	
+values-b+kn/strings.xml	string	player_source_switch	-	STR	ಬದಲಿಸಿ	
 values-b+kn/strings.xml	string	player_speed	-	STR	ಪ್ಲೇಯರ್ ಸ್ಪೀಡ್	
 values-b+kn/strings.xml	string	player_speed_text_format	-	STR	ಸ್ಪೀಡ್(%.2fx)	
 values-b+kn/strings.xml	string	player_subtitles_settings	-	STR	ಸಬ್ ಟೈಟಲ್ಸ್	
@@ -16154,6 +16270,10 @@ values-b+ko/strings.xml	string	player_settings_play_in_app	-	STR	내부 플레�
 values-b+ko/strings.xml	string	player_settings_select_cast_device	-	STR	캐스트 장치 선택	
 values-b+ko/strings.xml	string	player_size_settings	-	STR	플레이어 크기 조정 버튼	
 values-b+ko/strings.xml	string	player_size_settings_des	-	STR	레터박스 제거	
+values-b+ko/strings.xml	string	player_source_playing	-	STR	재생 중	
+values-b+ko/strings.xml	string	player_source_resumes_at	-	STR	전환해도 위치가 유지됩니다: %1$s부터 재개	
+values-b+ko/strings.xml	string	player_source_retry	-	STR	다시 시도	
+values-b+ko/strings.xml	string	player_source_switch	-	STR	전환	
 values-b+ko/strings.xml	string	player_speed	-	STR	재생 속도	
 values-b+ko/strings.xml	string	player_speed_text_format	-	STR	속도 (%.2fx)	
 values-b+ko/strings.xml	string	player_subtitles_settings	-	STR	자막	
@@ -16691,6 +16811,10 @@ values-b+lt/strings.xml	string	player_mute	-	STR	Nutildyti
 values-b+lt/strings.xml	string	player_settings_play_in_app	-	STR	Integruotas grotuvas	
 values-b+lt/strings.xml	string	player_size_settings	-	STR	Grotuvo dydžio pakeitimo mygtukas	
 values-b+lt/strings.xml	string	player_size_settings_des	-	STR	Pašalinti juodas paraštes	
+values-b+lt/strings.xml	string	player_source_playing	-	STR	Leidžiama	
+values-b+lt/strings.xml	string	player_source_resumes_at	-	STR	Perjungus padėtis išlieka: tęsiama nuo %1$s	
+values-b+lt/strings.xml	string	player_source_retry	-	STR	Bandyti dar kartą	
+values-b+lt/strings.xml	string	player_source_switch	-	STR	Perjungti	
 values-b+lt/strings.xml	string	player_speed	-	STR	Grotuvo greitis	
 values-b+lt/strings.xml	string	player_speed_text_format	-	STR	Greitis (%.2fx)	
 values-b+lt/strings.xml	string	player_subtitles_settings	-	STR	Subtitrai	
@@ -17205,6 +17329,10 @@ values-b+lv/strings.xml	string	player_pref	-	STR	Vēlamais video atskaņotājs
 values-b+lv/strings.xml	string	player_settings_play_in_app	-	STR	Iekšējais atskaņotājs	
 values-b+lv/strings.xml	string	player_size_settings	-	STR	Players izmēra poga	
 values-b+lv/strings.xml	string	player_size_settings_des	-	STR	Noņemt melnās malas	
+values-b+lv/strings.xml	string	player_source_playing	-	STR	Atskaņo	
+values-b+lv/strings.xml	string	player_source_resumes_at	-	STR	Pārslēdzot pozīcija saglabājas: turpinās no %1$s	
+values-b+lv/strings.xml	string	player_source_retry	-	STR	Mēģināt vēlreiz	
+values-b+lv/strings.xml	string	player_source_switch	-	STR	Pārslēgt	
 values-b+lv/strings.xml	string	player_speed	-	STR	Atskaņošanas ātrums	
 values-b+lv/strings.xml	string	player_speed_text_format	-	STR	Ātrums (%.2fx)	
 values-b+lv/strings.xml	string	player_subtitles_settings	-	STR	Subtitri	
@@ -17936,6 +18064,10 @@ values-b+mk/strings.xml	string	player_settings_play_in_app	-	STR	Внатреш�
 values-b+mk/strings.xml	string	player_settings_select_cast_device	-	STR	Одбери уред да кастираш	
 values-b+mk/strings.xml	string	player_size_settings	-	STR	Копче за промена на големината на плеерот	
 values-b+mk/strings.xml	string	player_size_settings_des	-	STR	Острани ги црните граници	
+values-b+mk/strings.xml	string	player_source_playing	-	STR	Се репродуцира	
+values-b+mk/strings.xml	string	player_source_resumes_at	-	STR	Промената ја задржува позицијата: продолжува од %1$s	
+values-b+mk/strings.xml	string	player_source_retry	-	STR	Обиди се повторно	
+values-b+mk/strings.xml	string	player_source_switch	-	STR	Промени	
 values-b+mk/strings.xml	string	player_speed	-	STR	Брзина на плеер	
 values-b+mk/strings.xml	string	player_speed_text_format	-	STR	Брзина (%.2fx)	
 values-b+mk/strings.xml	string	player_subtitles_settings	-	STR	Преводи	
@@ -18472,6 +18604,10 @@ values-b+ml/strings.xml	string	player_is_live	-	STR	തൽസമയം
 values-b+ml/strings.xml	string	player_mute	-	STR	നിശബ്‌ദമാക്കുക	
 values-b+ml/strings.xml	string	player_size_settings	-	STR	പ്ലേയറിന്റെ വലുപ്പം മാറ്റുന്ന ബട്ടൻ	
 values-b+ml/strings.xml	string	player_size_settings_des	-	STR	കറുത്ത അതിർത്തി നീക്കംചെയ്യുക	
+values-b+ml/strings.xml	string	player_source_playing	-	STR	പ്ലേ ചെയ്യുന്നു	
+values-b+ml/strings.xml	string	player_source_resumes_at	-	STR	മാറ്റിയാലും സ്ഥാനം നിലനിൽക്കും: %1$s മുതൽ തുടരും	
+values-b+ml/strings.xml	string	player_source_retry	-	STR	വീണ്ടും ശ്രമിക്കുക	
+values-b+ml/strings.xml	string	player_source_switch	-	STR	മാറ്റുക	
 values-b+ml/strings.xml	string	player_speed	-	STR	പ്ലേയർ വേഗത	
 values-b+ml/strings.xml	string	player_speed_text_format	-	STR	വേഗം (%.2fx)	
 values-b+ml/strings.xml	string	player_subtitles_settings	-	STR	സബ്ടൈട്ടിൽസ്	
@@ -18952,6 +19088,10 @@ values-b+ms/strings.xml	string	player_mute	-	STR	Redam
 values-b+ms/strings.xml	string	player_settings_play_in_app	-	STR	Pemain dalaman	
 values-b+ms/strings.xml	string	player_size_settings	-	STR	Saiz butang pemain	
 values-b+ms/strings.xml	string	player_size_settings_des	-	STR	Buang sempadan hitam	
+values-b+ms/strings.xml	string	player_source_playing	-	STR	Sedang dimainkan	
+values-b+ms/strings.xml	string	player_source_resumes_at	-	STR	Menukar mengekalkan kedudukan anda: sambung pada %1$s	
+values-b+ms/strings.xml	string	player_source_retry	-	STR	Cuba lagi	
+values-b+ms/strings.xml	string	player_source_switch	-	STR	Tukar	
 values-b+ms/strings.xml	string	player_speed	-	STR	Kelajuan Pemain	
 values-b+ms/strings.xml	string	player_speed_text_format	-	STR	Kelajuan (%.2fx)	
 values-b+ms/strings.xml	string	player_subtitles_settings	-	STR	Sari kata	
@@ -19290,6 +19430,10 @@ values-b+mt/strings.xml	string	player_fit_screen	-	STR	Imla l-iskrin
 values-b+mt/strings.xml	string	player_fit_title	-	STR	Daqs tal-istampa	
 values-b+mt/strings.xml	string	player_fit_width	-	STR	Imla l-wisa’	
 values-b+mt/strings.xml	string	player_mute	-	STR	Itfi l-ħoss	
+values-b+mt/strings.xml	string	player_source_playing	-	STR	Qed jindaqq	
+values-b+mt/strings.xml	string	player_source_resumes_at	-	STR	Il-bidla żżomm il-post tiegħek: ikompli minn %1$s	
+values-b+mt/strings.xml	string	player_source_retry	-	STR	Erġa' pprova	
+values-b+mt/strings.xml	string	player_source_switch	-	STR	Biddel	
 values-b+mt/strings.xml	string	player_speed	-	STR	Veloċità tal-Plejer	
 values-b+mt/strings.xml	string	player_speed_text_format	-	STR	veloċità (%.2fx)	
 values-b+mt/strings.xml	string	player_unmute	-	STR	Ixgħel il-ħoss	
@@ -19663,6 +19807,10 @@ values-b+my/strings.xml	string	player_pref	-	STR	ဦးစားပေး ဗီ
 values-b+my/strings.xml	string	player_settings_play_in_app	-	STR	ဖုန်းတွင်းကြည့်ရှုမှု	
 values-b+my/strings.xml	string	player_size_settings	-	STR	ကြည့်ရှုမှု စခရင်အရွယ်အစားချိန်ညိှမှု	
 values-b+my/strings.xml	string	player_size_settings_des	-	STR	အနက်ရောင်ဘောင်များကို ဖယ်ရှားရန်	
+values-b+my/strings.xml	string	player_source_playing	-	STR	ဖွင့်နေသည်	
+values-b+my/strings.xml	string	player_source_resumes_at	-	STR	ပြောင်းလည်း နေရာမပျောက်ပါ: %1$s မှ ဆက်ဖွင့်မည်	
+values-b+my/strings.xml	string	player_source_retry	-	STR	ထပ်ကြိုးစားရန်	
+values-b+my/strings.xml	string	player_source_switch	-	STR	ပြောင်းရန်	
 values-b+my/strings.xml	string	player_speed	-	STR	ကြည့်ရှုမှုအရှိန်	
 values-b+my/strings.xml	string	player_speed_text_format	-	STR	အရှိန် (%.2fx)	
 values-b+my/strings.xml	string	player_subtitles_settings	-	STR	စာတန်းထိုးများ	
@@ -20029,6 +20177,10 @@ values-b+ne/strings.xml	string	player_fit_width	-	STR	चौडाइ भर्�
 values-b+ne/strings.xml	string	player_mute	-	STR	म्यूट गर्नुहोस्	
 values-b+ne/strings.xml	string	player_size_settings	-	STR	प्लेयर resize गर्ने वटन	
 values-b+ne/strings.xml	string	player_size_settings_des	-	STR	कालो सीमा हटाउनुहोस	
+values-b+ne/strings.xml	string	player_source_playing	-	STR	चलिरहेको	
+values-b+ne/strings.xml	string	player_source_resumes_at	-	STR	बदल्दा तपाईंको स्थान रहन्छ: %1$s बाट जारी	
+values-b+ne/strings.xml	string	player_source_retry	-	STR	फेरि प्रयास गर्नुहोस्	
+values-b+ne/strings.xml	string	player_source_switch	-	STR	बदल्नुहोस्	
 values-b+ne/strings.xml	string	player_speed	-	STR	प्लेयर स्पीड	
 values-b+ne/strings.xml	string	player_speed_text_format	-	STR	गति (%.2fx)	
 values-b+ne/strings.xml	string	player_subtitles_settings	-	STR	उपशीर्षक	
@@ -20502,6 +20654,10 @@ values-b+nl/strings.xml	string	player_settings_play_in_app	-	STR	Interne speler
 values-b+nl/strings.xml	string	player_settings_select_cast_device	-	STR	Cast apparaat selecteren	
 values-b+nl/strings.xml	string	player_size_settings	-	STR	Afspeel knop wijzig	
 values-b+nl/strings.xml	string	player_size_settings_des	-	STR	Verwijder de zwarte randen	
+values-b+nl/strings.xml	string	player_source_playing	-	STR	Speelt af	
+values-b+nl/strings.xml	string	player_source_resumes_at	-	STR	Wisselen behoudt je positie: gaat verder op %1$s	
+values-b+nl/strings.xml	string	player_source_retry	-	STR	Opnieuw	
+values-b+nl/strings.xml	string	player_source_switch	-	STR	Wisselen	
 values-b+nl/strings.xml	string	player_speed	-	STR	Afspelen Snelheid	
 values-b+nl/strings.xml	string	player_speed_text_format	-	STR	Snelheid (%.2fx)	
 values-b+nl/strings.xml	string	player_subtitles_settings	-	STR	Ondertitels	
@@ -20977,6 +21133,10 @@ values-b+nn/strings.xml	string	player_fit_title	-	STR	Biletstorleik
 values-b+nn/strings.xml	string	player_fit_width	-	STR	Fyll breidda	
 values-b+nn/strings.xml	string	player_mute	-	STR	Slå av lyd	
 values-b+nn/strings.xml	string	player_size_settings_des	-	STR	Fjern dei svarte kantane	
+values-b+nn/strings.xml	string	player_source_playing	-	STR	Spelar	
+values-b+nn/strings.xml	string	player_source_resumes_at	-	STR	Bytet held på plassen din: held fram frå %1$s	
+values-b+nn/strings.xml	string	player_source_retry	-	STR	Prøv igjen	
+values-b+nn/strings.xml	string	player_source_switch	-	STR	Byt	
 values-b+nn/strings.xml	string	player_speed	-	STR	Avspelinghastigheit	
 values-b+nn/strings.xml	string	player_speed_text_format	-	STR	Avspelinghastigheit (%.2fx)	
 values-b+nn/strings.xml	string	player_subtitles_settings	-	STR	Undertekstar	
@@ -21373,6 +21533,10 @@ values-b+no/strings.xml	string	player_pref	-	STR	Foretrukket videospiller
 values-b+no/strings.xml	string	player_settings_play_in_app	-	STR	Intern spiller	
 values-b+no/strings.xml	string	player_size_settings	-	STR	Knapp for størrelse på spiller	
 values-b+no/strings.xml	string	player_size_settings_des	-	STR	Fjern de svarte kantene	
+values-b+no/strings.xml	string	player_source_playing	-	STR	Spiller	
+values-b+no/strings.xml	string	player_source_resumes_at	-	STR	Bytte beholder posisjonen din: fortsetter fra %1$s	
+values-b+no/strings.xml	string	player_source_retry	-	STR	Prøv igjen	
+values-b+no/strings.xml	string	player_source_switch	-	STR	Bytt	
 values-b+no/strings.xml	string	player_speed	-	STR	Spillerhastighet	
 values-b+no/strings.xml	string	player_speed_text_format	-	STR	Avspillingshastighet (%.2fx)	
 values-b+no/strings.xml	string	player_subtitles_settings	-	STR	Undertekster	
@@ -21756,6 +21920,10 @@ values-b+or/strings.xml	string	player_fit_title	-	STR	ଚିତ୍ର ଆକା�
 values-b+or/strings.xml	string	player_fit_width	-	STR	ପ୍ରସ୍ଥ ପୂରଣ କରନ୍ତୁ	
 values-b+or/strings.xml	string	player_mute	-	STR	ମ୍ୟୁଟ କରନ୍ତୁ	
 values-b+or/strings.xml	string	player_settings_play_in_app	-	STR	ଅନ୍ତଃ-ଚାଳକ	
+values-b+or/strings.xml	string	player_source_playing	-	STR	ଚାଲୁଛି	
+values-b+or/strings.xml	string	player_source_resumes_at	-	STR	ବଦଳାଇଲେ ଆପଣଙ୍କ ସ୍ଥାନ ରହେ: %1$s ରୁ ଜାରି	
+values-b+or/strings.xml	string	player_source_retry	-	STR	ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ	
+values-b+or/strings.xml	string	player_source_switch	-	STR	ବଦଳାନ୍ତୁ	
 values-b+or/strings.xml	string	player_speed_text_format	-	STR	ଵେଗ (%.2fଗୁଣ)	
 values-b+or/strings.xml	string	player_subtitles_settings	-	STR	ଉପଶୀର୍ଷକ	
 values-b+or/strings.xml	string	player_unmute	-	STR	ଅନମ୍ୟୁଟ କରନ୍ତୁ	
@@ -22282,6 +22450,10 @@ values-b+pl/strings.xml	string	player_settings_play_in_app	-	STR	Odtwarzacz wewn
 values-b+pl/strings.xml	string	player_settings_select_cast_device	-	STR	Wybierz urządzenie do transmisji	
 values-b+pl/strings.xml	string	player_size_settings	-	STR	Zmień rozmiar odtwarzacza	
 values-b+pl/strings.xml	string	player_size_settings_des	-	STR	Usuwanie czarnych ramek	
+values-b+pl/strings.xml	string	player_source_playing	-	STR	Odtwarzanie	
+values-b+pl/strings.xml	string	player_source_resumes_at	-	STR	Przełączenie zachowuje pozycję: wznowienie od %1$s	
+values-b+pl/strings.xml	string	player_source_retry	-	STR	Ponów	
+values-b+pl/strings.xml	string	player_source_switch	-	STR	Przełącz	
 values-b+pl/strings.xml	string	player_speed	-	STR	Prędkość odtwarzania	
 values-b+pl/strings.xml	string	player_speed_text_format	-	STR	Prędkość (%.2fx)	
 values-b+pl/strings.xml	string	player_subtitles_settings	-	STR	Napisy	
@@ -23071,6 +23243,10 @@ values-b+pt+BR/strings.xml	string	player_settings_play_in_app	-	STR	Player inter
 values-b+pt+BR/strings.xml	string	player_settings_select_cast_device	-	STR	Selecione o dispositivo de transmissão	
 values-b+pt+BR/strings.xml	string	player_size_settings	-	STR	Redimensionar player	
 values-b+pt+BR/strings.xml	string	player_size_settings_des	-	STR	Remover bordas pretas	
+values-b+pt+BR/strings.xml	string	player_source_playing	-	STR	Reproduzindo	
+values-b+pt+BR/strings.xml	string	player_source_resumes_at	-	STR	Trocar mantém sua posição: continua em %1$s	
+values-b+pt+BR/strings.xml	string	player_source_retry	-	STR	Tentar novamente	
+values-b+pt+BR/strings.xml	string	player_source_switch	-	STR	Trocar	
 values-b+pt+BR/strings.xml	string	player_speed	-	STR	Velocidade de reprodução	
 values-b+pt+BR/strings.xml	string	player_speed_text_format	-	STR	Velocidade (%.2fx)	
 values-b+pt+BR/strings.xml	string	player_subtitles_settings	-	STR	Modificar legendas	
@@ -23857,6 +24033,10 @@ values-b+pt/strings.xml	string	player_settings_play_in_app	-	STR	Player interno
 values-b+pt/strings.xml	string	player_settings_select_cast_device	-	STR	Escolha o dispositivo	
 values-b+pt/strings.xml	string	player_size_settings	-	STR	Botão de redimensionamento do player	
 values-b+pt/strings.xml	string	player_size_settings_des	-	STR	Remover as bordas negras	
+values-b+pt/strings.xml	string	player_source_playing	-	STR	A reproduzir	
+values-b+pt/strings.xml	string	player_source_resumes_at	-	STR	Mudar mantém a sua posição: retoma em %1$s	
+values-b+pt/strings.xml	string	player_source_retry	-	STR	Repetir	
+values-b+pt/strings.xml	string	player_source_switch	-	STR	Mudar	
 values-b+pt/strings.xml	string	player_speed	-	STR	Velocidade de Reprodução	
 values-b+pt/strings.xml	string	player_speed_text_format	-	STR	Velocidade (%.2fx)	
 values-b+pt/strings.xml	string	player_subtitles_settings	-	STR	Legendas	
@@ -24576,6 +24756,10 @@ values-b+qt/strings.xml	string	player_settings_play_in_app	-	STR	aaaagggh uuuugg
 values-b+qt/strings.xml	string	player_settings_select_cast_device	-	STR	aaaagg aahh oooohh	
 values-b+qt/strings.xml	string	player_size_settings	-	STR	oouuhaoouuh aaaaa aauuhohahhh oooooaaaghhoh oh aaaaa	
 values-b+qt/strings.xml	string	player_size_settings_des	-	STR	aaaghhaaahhuahooo oha aaaghh	
+values-b+qt/strings.xml	string	player_source_playing	-	STR	oouuh aaaaa	
+values-b+qt/strings.xml	string	player_source_resumes_at	-	STR	ooh haa oh aaaaa: oouuh %1$s	
+values-b+qt/strings.xml	string	player_source_retry	-	STR	oouuh ooh	
+values-b+qt/strings.xml	string	player_source_switch	-	STR	ooh haa	
 values-b+qt/strings.xml	string	player_speed	-	STR	oouuh aauuh oha	
 values-b+qt/strings.xml	string	player_speed_text_format	-	STR	aaaaaaaaaaaaahh (%.2foouo)	
 values-b+qt/strings.xml	string	player_subtitles_settings	-	STR	ahhhaauugghh	
@@ -25246,6 +25430,10 @@ values-b+ro/strings.xml	string	player_settings_play_in_app	-	STR	Player intern
 values-b+ro/strings.xml	string	player_settings_select_cast_device	-	STR	Selectați divece-ul pe care doriți să faceți cast	
 values-b+ro/strings.xml	string	player_size_settings	-	STR	Buton de redimensionare video	
 values-b+ro/strings.xml	string	player_size_settings_des	-	STR	Eliminați marginile negre	
+values-b+ro/strings.xml	string	player_source_playing	-	STR	Se redă	
+values-b+ro/strings.xml	string	player_source_resumes_at	-	STR	Schimbarea păstrează poziția: continuă de la %1$s	
+values-b+ro/strings.xml	string	player_source_retry	-	STR	Reîncearcă	
+values-b+ro/strings.xml	string	player_source_switch	-	STR	Schimbă	
 values-b+ro/strings.xml	string	player_speed	-	STR	Viteză video	
 values-b+ro/strings.xml	string	player_speed_text_format	-	STR	Viteză (%.2fx)	
 values-b+ro/strings.xml	string	player_subtitles_settings	-	STR	Subtitrare	
@@ -25984,6 +26172,10 @@ values-b+ru/strings.xml	string	player_settings_play_in_app	-	STR	Внутрен�
 values-b+ru/strings.xml	string	player_settings_select_cast_device	-	STR	Выберите устройство для трансляции	
 values-b+ru/strings.xml	string	player_size_settings	-	STR	Кнопка изменения размера проигрывателя	
 values-b+ru/strings.xml	string	player_size_settings_des	-	STR	Убрать черные границы	
+values-b+ru/strings.xml	string	player_source_playing	-	STR	Воспроизводится	
+values-b+ru/strings.xml	string	player_source_resumes_at	-	STR	Переключение сохраняет позицию: продолжение с %1$s	
+values-b+ru/strings.xml	string	player_source_retry	-	STR	Повторить	
+values-b+ru/strings.xml	string	player_source_switch	-	STR	Переключить	
 values-b+ru/strings.xml	string	player_speed	-	STR	Скорость проигрывателя	
 values-b+ru/strings.xml	string	player_speed_text_format	-	STR	Скорость (%.2fx)	
 values-b+ru/strings.xml	string	player_subtitles_settings	-	STR	Субтитры	
@@ -26628,6 +26820,10 @@ values-b+sk/strings.xml	string	player_loaded_subtitles	-	STR	Načítané %s
 values-b+sk/strings.xml	string	player_mute	-	STR	Vypnúť zvuk	
 values-b+sk/strings.xml	string	player_size_settings	-	STR	Tlačidlo na zmenu veľkosti prehrávača	
 values-b+sk/strings.xml	string	player_size_settings_des	-	STR	Odstrániť čierne okraje	
+values-b+sk/strings.xml	string	player_source_playing	-	STR	Prehráva sa	
+values-b+sk/strings.xml	string	player_source_resumes_at	-	STR	Prepnutie zachová pozíciu: pokračuje od %1$s	
+values-b+sk/strings.xml	string	player_source_retry	-	STR	Skúsiť znova	
+values-b+sk/strings.xml	string	player_source_switch	-	STR	Prepnúť	
 values-b+sk/strings.xml	string	player_speed	-	STR	Rýchlosť prehrávania	
 values-b+sk/strings.xml	string	player_speed_text_format	-	STR	Rýchlosť (%.2fx)	
 values-b+sk/strings.xml	string	player_subtitles_settings	-	STR	Titulky	
@@ -27156,6 +27352,10 @@ values-b+so/strings.xml	string	player_pref	-	STR	Muqaal daaraha aad doorbiddo
 values-b+so/strings.xml	string	player_settings_play_in_app	-	STR	Muqaal daaraha appka	
 values-b+so/strings.xml	string	player_size_settings	-	STR	Badhinka xajmiga daaraha	
 values-b+so/strings.xml	string	player_size_settings_des	-	STR	Hareeraha madow ka saar markaad daawanayso	
+values-b+so/strings.xml	string	player_source_playing	-	STR	Waa socdaa	
+values-b+so/strings.xml	string	player_source_resumes_at	-	STR	Beddelku wuxuu ilaalinayaa meeshaada: wuxuu ka sii socdaa %1$s	
+values-b+so/strings.xml	string	player_source_retry	-	STR	Isku day mar kale	
+values-b+so/strings.xml	string	player_source_switch	-	STR	Beddel	
 values-b+so/strings.xml	string	player_speed	-	STR	Xawaaraha daaraha	
 values-b+so/strings.xml	string	player_speed_text_format	-	STR	Xawaaraha (%.2fx)	
 values-b+so/strings.xml	string	player_subtitles_settings	-	STR	Qoraal-hoosaadka	
@@ -27841,6 +28041,10 @@ values-b+sq/strings.xml	string	player_settings_play_in_app	-	STR	Luajtësi i int
 values-b+sq/strings.xml	string	player_settings_select_cast_device	-	STR	Zgjidh pajisjen për transmetim	
 values-b+sq/strings.xml	string	player_size_settings	-	STR	Butoni për ndryshimin e madhësisë së luajtësit	
 values-b+sq/strings.xml	string	player_size_settings_des	-	STR	Hiq kufijtë e errët	
+values-b+sq/strings.xml	string	player_source_playing	-	STR	Po luhet	
+values-b+sq/strings.xml	string	player_source_resumes_at	-	STR	Ndërrimi e ruan pozicionin: vazhdon nga %1$s	
+values-b+sq/strings.xml	string	player_source_retry	-	STR	Provo përsëri	
+values-b+sq/strings.xml	string	player_source_switch	-	STR	Ndërro	
 values-b+sq/strings.xml	string	player_speed	-	STR	Shpejtësia e luajtësit	
 values-b+sq/strings.xml	string	player_speed_text_format	-	STR	Shpejtësia (%.2fx)	
 values-b+sq/strings.xml	string	player_subtitles_settings	-	STR	Titrat	
@@ -28626,6 +28830,10 @@ values-b+sv/strings.xml	string	player_settings_play_in_app	-	STR	Intern spelare
 values-b+sv/strings.xml	string	player_settings_select_cast_device	-	STR	Välj cast-enhet	
 values-b+sv/strings.xml	string	player_size_settings	-	STR	Lägger till en knapp för att justera bildförhållandet	
 values-b+sv/strings.xml	string	player_size_settings_des	-	STR	Ta bort de svarta kanterna	
+values-b+sv/strings.xml	string	player_source_playing	-	STR	Spelas	
+values-b+sv/strings.xml	string	player_source_resumes_at	-	STR	Att byta behåller din position: fortsätter vid %1$s	
+values-b+sv/strings.xml	string	player_source_retry	-	STR	Försök igen	
+values-b+sv/strings.xml	string	player_source_switch	-	STR	Byt	
 values-b+sv/strings.xml	string	player_speed	-	STR	Spelarhastighet	
 values-b+sv/strings.xml	string	player_speed_text_format	-	STR	Hastighet (%.2fx)	
 values-b+sv/strings.xml	string	player_subtitles_settings	-	STR	Undertexter	
@@ -29411,6 +29619,10 @@ values-b+ta/strings.xml	string	player_settings_play_in_app	-	STR	உள் வ�
 values-b+ta/strings.xml	string	player_settings_select_cast_device	-	STR	காச்ட் சாதனத்தைத் தேர்ந்தெடுக்கவும்	
 values-b+ta/strings.xml	string	player_size_settings	-	STR	பிளேயர் மறுஅளவிடுதல் பொத்தானை	
 values-b+ta/strings.xml	string	player_size_settings_des	-	STR	கருப்பு எல்லைகளை அகற்றவும்	
+values-b+ta/strings.xml	string	player_source_playing	-	STR	இயங்குகிறது	
+values-b+ta/strings.xml	string	player_source_resumes_at	-	STR	மாற்றினாலும் இடம் மாறாது: %1$s இலிருந்து தொடரும்	
+values-b+ta/strings.xml	string	player_source_retry	-	STR	மீண்டும் முயல்க	
+values-b+ta/strings.xml	string	player_source_switch	-	STR	மாற்று	
 values-b+ta/strings.xml	string	player_speed	-	STR	பிளேயர் விரைவு	
 values-b+ta/strings.xml	string	player_speed_text_format	-	STR	விரைவு (%.2fx)	
 values-b+ta/strings.xml	string	player_subtitles_settings	-	STR	வசன வரிகள்	
@@ -29800,6 +30012,10 @@ values-b+ti/strings.xml	string	player_fit_screen	-	STR	ስክሪን ምላእ
 values-b+ti/strings.xml	string	player_fit_title	-	STR	መጠን ስእሊ	
 values-b+ti/strings.xml	string	player_fit_width	-	STR	ስፍሓት ምላእ	
 values-b+ti/strings.xml	string	player_mute	-	STR	ድምጺ ኣጥፍእ	
+values-b+ti/strings.xml	string	player_source_playing	-	STR	ይጻወት ኣሎ	
+values-b+ti/strings.xml	string	player_source_resumes_at	-	STR	ምቕያር ቦታኻ ይሕልው፦ ካብ %1$s ይቕጽል	
+values-b+ti/strings.xml	string	player_source_retry	-	STR	እንደገና ፈትን	
+values-b+ti/strings.xml	string	player_source_switch	-	STR	ቀይር	
 values-b+ti/strings.xml	string	player_unmute	-	STR	ድምጺ ወልዕ	
 values-b+ti/strings.xml	string	search_state_idle_body_desktop	-	STR	ኣርእስቲ ጽሓፍ። ውጽኢታት ነፍሲ ወከፍ ምንጪ ምስ መለሰ ኣብ ትሕቲኡ ይርአዩ።	
 values-b+ti/strings.xml	string	seek_back_10_seconds	-	STR	10 ካልኢት ንድሕሪት	
@@ -29986,6 +30202,10 @@ values-b+tl/strings.xml	string	player_fit_width	-	STR	Punuin ang lapad
 values-b+tl/strings.xml	string	player_mute	-	STR	I-mute	
 values-b+tl/strings.xml	string	player_size_settings	-	STR	Pindutan upang baguhin ang laki	
 values-b+tl/strings.xml	string	player_size_settings_des	-	STR	Alisin ang black borders	
+values-b+tl/strings.xml	string	player_source_playing	-	STR	Nagpe-play	
+values-b+tl/strings.xml	string	player_source_resumes_at	-	STR	Mananatili ang posisyon mo sa paglipat: magpapatuloy sa %1$s	
+values-b+tl/strings.xml	string	player_source_retry	-	STR	Subukang muli	
+values-b+tl/strings.xml	string	player_source_switch	-	STR	Lumipat	
 values-b+tl/strings.xml	string	player_speed	-	STR	Bilis ng Playback	
 values-b+tl/strings.xml	string	player_speed_text_format	-	STR	Bilis (%.2fx)	
 values-b+tl/strings.xml	string	player_subtitles_settings	-	STR	Subtitles	
@@ -30543,6 +30763,10 @@ values-b+tr/strings.xml	string	player_settings_play_in_app	-	STR	Dahili oynatıc
 values-b+tr/strings.xml	string	player_settings_select_cast_device	-	STR	Yansıtılacak cihaz seç	
 values-b+tr/strings.xml	string	player_size_settings	-	STR	Oynatıcı yeniden boyutlandırma butonu	
 values-b+tr/strings.xml	string	player_size_settings_des	-	STR	Siyah kenarlıkları kaldır	
+values-b+tr/strings.xml	string	player_source_playing	-	STR	Oynatılıyor	
+values-b+tr/strings.xml	string	player_source_resumes_at	-	STR	Değiştirmek konumunuzu korur: %1$s konumundan devam eder	
+values-b+tr/strings.xml	string	player_source_retry	-	STR	Yeniden dene	
+values-b+tr/strings.xml	string	player_source_switch	-	STR	Değiştir	
 values-b+tr/strings.xml	string	player_speed	-	STR	Oynatıcı Hızı	
 values-b+tr/strings.xml	string	player_speed_text_format	-	STR	Hız (%.2fx)	
 values-b+tr/strings.xml	string	player_subtitles_settings	-	STR	Altyazılar	
@@ -31336,6 +31560,10 @@ values-b+uk/strings.xml	string	player_settings_play_in_app	-	STR	Вбудова�
 values-b+uk/strings.xml	string	player_settings_select_cast_device	-	STR	Оберіть пристрій для трансляції	
 values-b+uk/strings.xml	string	player_size_settings	-	STR	Кнопка зміни розміру програвача	
 values-b+uk/strings.xml	string	player_size_settings_des	-	STR	Прибрати чорні смуги	
+values-b+uk/strings.xml	string	player_source_playing	-	STR	Відтворюється	
+values-b+uk/strings.xml	string	player_source_resumes_at	-	STR	Перемикання зберігає позицію: продовження з %1$s	
+values-b+uk/strings.xml	string	player_source_retry	-	STR	Повторити	
+values-b+uk/strings.xml	string	player_source_switch	-	STR	Перемкнути	
 values-b+uk/strings.xml	string	player_speed	-	STR	Швидкість програвача	
 values-b+uk/strings.xml	string	player_speed_text_format	-	STR	Швидкість (%.2fx)	
 values-b+uk/strings.xml	string	player_subtitles_settings	-	STR	Субтитри	
@@ -32044,6 +32272,10 @@ values-b+ur/strings.xml	string	player_pref	-	STR	ترجیحی ویڈیو پلی�
 values-b+ur/strings.xml	string	player_settings_play_in_app	-	STR	اندرونی پلیئر	
 values-b+ur/strings.xml	string	player_size_settings	-	STR	پلیئر کا سائز تبدیل کرنے کا بٹن	
 values-b+ur/strings.xml	string	player_size_settings_des	-	STR	سیاہ سرحد کو ہٹا دیں	
+values-b+ur/strings.xml	string	player_source_playing	-	STR	چل رہا ہے	
+values-b+ur/strings.xml	string	player_source_resumes_at	-	STR	بدلنے سے آپ کی جگہ برقرار رہتی ہے: %1$s سے جاری	
+values-b+ur/strings.xml	string	player_source_retry	-	STR	دوبارہ کوشش کریں	
+values-b+ur/strings.xml	string	player_source_switch	-	STR	بدلیں	
 values-b+ur/strings.xml	string	player_speed	-	STR	چلانے کی رفتار	
 values-b+ur/strings.xml	string	player_speed_text_format	-	STR	رفتار (%.2fx)	
 values-b+ur/strings.xml	string	player_subtitles_settings	-	STR	سنٹیٹلز	
@@ -32764,6 +32996,10 @@ values-b+vi/strings.xml	string	player_settings_play_in_app	-	STR	Trình phát t�
 values-b+vi/strings.xml	string	player_settings_select_cast_device	-	STR	Chọn thiết bị truyền	
 values-b+vi/strings.xml	string	player_size_settings	-	STR	Nút thay đổi kích thước trình phát	
 values-b+vi/strings.xml	string	player_size_settings_des	-	STR	Xóa bỏ các viền đen	
+values-b+vi/strings.xml	string	player_source_playing	-	STR	Đang phát	
+values-b+vi/strings.xml	string	player_source_resumes_at	-	STR	Chuyển vẫn giữ vị trí của bạn: tiếp tục từ %1$s	
+values-b+vi/strings.xml	string	player_source_retry	-	STR	Thử lại	
+values-b+vi/strings.xml	string	player_source_switch	-	STR	Chuyển	
 values-b+vi/strings.xml	string	player_speed	-	STR	Tốc độ phát	
 values-b+vi/strings.xml	string	player_speed_text_format	-	STR	Tốc độ (%.2fx)	
 values-b+vi/strings.xml	string	player_subtitles_settings	-	STR	Phụ đề	
@@ -33544,6 +33780,10 @@ values-b+zh+TW/strings.xml	string	player_settings_play_in_app	-	STR	內部播放
 values-b+zh+TW/strings.xml	string	player_settings_select_cast_device	-	STR	選擇投放裝置	
 values-b+zh+TW/strings.xml	string	player_size_settings	-	STR	播放器調整大小按鈕	
 values-b+zh+TW/strings.xml	string	player_size_settings_des	-	STR	移除黑色邊框	
+values-b+zh+TW/strings.xml	string	player_source_playing	-	STR	播放中	
+values-b+zh+TW/strings.xml	string	player_source_resumes_at	-	STR	切換會保留播放位置：從 %1$s 繼續	
+values-b+zh+TW/strings.xml	string	player_source_retry	-	STR	重試	
+values-b+zh+TW/strings.xml	string	player_source_switch	-	STR	切換	
 values-b+zh+TW/strings.xml	string	player_speed	-	STR	播放速度	
 values-b+zh+TW/strings.xml	string	player_speed_text_format	-	STR	速度（%.2fx）	
 values-b+zh+TW/strings.xml	string	player_subtitles_settings	-	STR	字幕	
@@ -34320,6 +34560,10 @@ values-b+zh/strings.xml	string	player_settings_play_in_app	-	STR	内部播放器
 values-b+zh/strings.xml	string	player_settings_select_cast_device	-	STR	选择投射设备	
 values-b+zh/strings.xml	string	player_size_settings	-	STR	播放器画面调整按钮	
 values-b+zh/strings.xml	string	player_size_settings_des	-	STR	移除黑色边框	
+values-b+zh/strings.xml	string	player_source_playing	-	STR	正在播放	
+values-b+zh/strings.xml	string	player_source_resumes_at	-	STR	切换会保留播放位置：从 %1$s 继续	
+values-b+zh/strings.xml	string	player_source_retry	-	STR	重试	
+values-b+zh/strings.xml	string	player_source_switch	-	STR	切换	
 values-b+zh/strings.xml	string	player_speed	-	STR	播放速度	
 values-b+zh/strings.xml	string	player_speed_text_format	-	STR	速度（%.2fx）	
 values-b+zh/strings.xml	string	player_subtitles_settings	-	STR	字幕	
@@ -35240,6 +35484,10 @@ values/strings.xml	string	player_settings_play_in_app	-	STR	Internal player
 values/strings.xml	string	player_settings_select_cast_device	-	STR	Select cast device	
 values/strings.xml	string	player_size_settings	-	STR	Player resize button	
 values/strings.xml	string	player_size_settings_des	-	STR	Remove the black borders	
+values/strings.xml	string	player_source_playing	-	STR	Playing	
+values/strings.xml	string	player_source_resumes_at	-	STR	Switching keeps your position: resumes at %1$s	
+values/strings.xml	string	player_source_retry	-	STR	Retry	
+values/strings.xml	string	player_source_switch	-	STR	Switch	
 values/strings.xml	string	player_speed	-	STR	Player Speed	
 values/strings.xml	string	player_speed_text_format	-	STR	Speed (%.2fx)	
 values/strings.xml	string	player_subtitles_settings	-	STR	Subtitles	

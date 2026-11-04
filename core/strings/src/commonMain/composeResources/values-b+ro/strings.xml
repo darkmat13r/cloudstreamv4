@@ -379,6 +379,10 @@
 <string name="player_settings_select_cast_device">Selectați divece-ul pe care doriți să faceți cast</string>
 <string name="player_size_settings">Buton de redimensionare video</string>
 <string name="player_size_settings_des">Eliminați marginile negre</string>
+<string name="player_source_playing">Se redă</string>
+<string name="player_source_resumes_at">Schimbarea păstrează poziția: continuă de la %1$s</string>
+<string name="player_source_retry">Reîncearcă</string>
+<string name="player_source_switch">Schimbă</string>
 <string name="player_speed">Viteză video</string>
 <string name="player_speed_text_format">Viteză (%.2fx)</string>
 <string name="player_subtitles_settings">Subtitrare</string>

@@ -436,6 +436,10 @@
 <string name="player_settings_select_cast_device">"キャストデバイスを選択"</string>
 <string name="player_size_settings">"プレーヤーのサイズ変更ボタン"</string>
 <string name="player_size_settings_des">"黒い境界線を削除します"</string>
+<string name="player_source_playing">"再生中"</string>
+<string name="player_source_resumes_at" formatted="true">"切り替えても位置は保たれます: %1$s から再開"</string>
+<string name="player_source_retry">"再試行"</string>
+<string name="player_source_switch">"切り替え"</string>
 <string name="player_speed">"プレーヤーの速度"</string>
 <string name="player_speed_text_format" formatted="true">"再生速度 (%.2fx)"</string>
 <string name="player_subtitles_settings">"字幕"</string>

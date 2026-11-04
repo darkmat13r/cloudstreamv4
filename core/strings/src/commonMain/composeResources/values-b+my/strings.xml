@@ -305,6 +305,10 @@
 <string name="player_settings_play_in_app">ဖုန်းတွင်းကြည့်ရှုမှု</string>
 <string name="player_size_settings">ကြည့်ရှုမှု စခရင်အရွယ်အစားချိန်ညိှမှု</string>
 <string name="player_size_settings_des">အနက်ရောင်ဘောင်များကို ဖယ်ရှားရန်</string>
+<string name="player_source_playing">ဖွင့်နေသည်</string>
+<string name="player_source_resumes_at">ပြောင်းလည်း နေရာမပျောက်ပါ: %1$s မှ ဆက်ဖွင့်မည်</string>
+<string name="player_source_retry">ထပ်ကြိုးစားရန်</string>
+<string name="player_source_switch">ပြောင်းရန်</string>
 <string name="player_speed">ကြည့်ရှုမှုအရှိန်</string>
 <string name="player_speed_text_format">အရှိန် (%.2fx)</string>
 <string name="player_subtitles_settings">စာတန်းထိုးများ</string>

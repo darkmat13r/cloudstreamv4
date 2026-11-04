@@ -455,6 +455,10 @@
 <string name="player_settings_select_cast_device">Select cast device</string>
 <string name="player_size_settings">Player resize button</string>
 <string name="player_size_settings_des">Remove the black borders</string>
+<string name="player_source_playing">Playing</string>
+<string name="player_source_resumes_at">Switching keeps your position: resumes at %1$s</string>
+<string name="player_source_retry">Retry</string>
+<string name="player_source_switch">Switch</string>
 <string name="player_speed">Player Speed</string>
 <string name="player_speed_text_format">Speed (%.2fx)</string>
 <string name="player_subtitles_settings">Subtitles</string>

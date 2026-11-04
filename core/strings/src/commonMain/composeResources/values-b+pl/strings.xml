@@ -436,6 +436,10 @@
 <string name="player_settings_select_cast_device">Wybierz urządzenie do transmisji</string>
 <string name="player_size_settings">Zmień rozmiar odtwarzacza</string>
 <string name="player_size_settings_des">Usuwanie czarnych ramek</string>
+<string name="player_source_playing">Odtwarzanie</string>
+<string name="player_source_resumes_at">Przełączenie zachowuje pozycję: wznowienie od %1$s</string>
+<string name="player_source_retry">Ponów</string>
+<string name="player_source_switch">Przełącz</string>
 <string name="player_speed">Prędkość odtwarzania</string>
 <string name="player_speed_text_format">Prędkość (%.2fx)</string>
 <string name="player_subtitles_settings">Napisy</string>

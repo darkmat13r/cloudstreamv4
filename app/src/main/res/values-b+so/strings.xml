@@ -305,6 +305,10 @@
 <string name="player_settings_play_in_app">"Muqaal daaraha appka"</string>
 <string name="player_size_settings">"Badhinka xajmiga daaraha"</string>
 <string name="player_size_settings_des">"Hareeraha madow ka saar markaad daawanayso"</string>
+<string name="player_source_playing">"Waa socdaa"</string>
+<string name="player_source_resumes_at" formatted="true">"Beddelku wuxuu ilaalinayaa meeshaada: wuxuu ka sii socdaa %1$s"</string>
+<string name="player_source_retry">"Isku day mar kale"</string>
+<string name="player_source_switch">"Beddel"</string>
 <string name="player_speed">"Xawaaraha daaraha"</string>
 <string name="player_speed_text_format" formatted="true">"Xawaaraha (%.2fx)"</string>
 <string name="player_subtitles_settings">"Qoraal-hoosaadka"</string>

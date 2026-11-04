@@ -102,6 +102,10 @@
 <string name="player_mute">म्यूट गर्नुहोस्</string>
 <string name="player_size_settings">प्लेयर resize गर्ने वटन</string>
 <string name="player_size_settings_des">कालो सीमा हटाउनुहोस</string>
+<string name="player_source_playing">चलिरहेको</string>
+<string name="player_source_resumes_at">बदल्दा तपाईंको स्थान रहन्छ: %1$s बाट जारी</string>
+<string name="player_source_retry">फेरि प्रयास गर्नुहोस्</string>
+<string name="player_source_switch">बदल्नुहोस्</string>
 <string name="player_speed">प्लेयर स्पीड</string>
 <string name="player_speed_text_format">गति (%.2fx)</string>
 <string name="player_subtitles_settings">उपशीर्षक</string>

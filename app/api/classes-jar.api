@@ -3700,7 +3700,11 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field player_settings_select_cast_device I
 	public static field player_size_settings I
 	public static field player_size_settings_des I
+	public static field player_source_playing I
 	public static field player_source_priority_key I
+	public static field player_source_resumes_at I
+	public static field player_source_retry I
+	public static field player_source_switch I
 	public static field player_speed I
 	public static field player_speed_text_format I
 	public static field player_subtitles_settings I

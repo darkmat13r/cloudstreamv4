@@ -436,6 +436,10 @@
 <string name="player_settings_select_cast_device">"Pilih perangkat cast"</string>
 <string name="player_size_settings">"Tombol ubah ukuran pemutar"</string>
 <string name="player_size_settings_des">"Hapus garis tepi hitam"</string>
+<string name="player_source_playing">"Sedang diputar"</string>
+<string name="player_source_resumes_at" formatted="true">"Mengganti tetap menjaga posisi Anda: lanjut di %1$s"</string>
+<string name="player_source_retry">"Coba lagi"</string>
+<string name="player_source_switch">"Ganti"</string>
 <string name="player_speed">"Kecepatan Pemutar"</string>
 <string name="player_speed_text_format" formatted="true">"Kecepatan (%.2fx)"</string>
 <string name="player_subtitles_settings">"Subtitel"</string>
