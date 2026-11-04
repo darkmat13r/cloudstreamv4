@@ -276,6 +276,7 @@
 <string name="extension_status_blocked">Blockerat av genomsökningen. Detta kan inte tillåtas.</string>
 <string name="extension_status_hash_mismatch">Den här filen stämmer inte med sin publicerade hash. Detta kan inte tillåtas.</string>
 <string name="extension_status_held">Av tills du väljer</string>
+<string name="extension_status_held_new_version">Ny version · Av tills du väljer</string>
 <string name="extension_status_kept_off">Hålls avstängt</string>
 <string name="extension_status_start_failed">Tillåtet, men det startade inte</string>
 <string name="extension_types">Stödd</string>

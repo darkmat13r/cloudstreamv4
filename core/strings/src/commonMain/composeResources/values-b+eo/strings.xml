@@ -74,6 +74,7 @@
 <string name="extension_status_blocked">Blokita de la skanado. Ĉi tio ne povas esti permesita.</string>
 <string name="extension_status_hash_mismatch">Ĉi tiu dosiero ne kongruas kun sia publikigita haketaĵo. Ĉi tio ne povas esti permesita.</string>
 <string name="extension_status_held">Malŝaltita ĝis vi elektos</string>
+<string name="extension_status_held_new_version">Nova versio · Malŝaltita ĝis vi elektos</string>
 <string name="extension_status_kept_off">Lasita malŝaltita</string>
 <string name="extension_status_start_failed">Permesita, sed ĝi ne ekfunkciis</string>
 <string name="extension_version">Versio</string>

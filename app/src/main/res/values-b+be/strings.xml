@@ -275,6 +275,7 @@
 <string name="extension_status_blocked">"Заблакавана сканаваннем. Гэта нельга дазволіць."</string>
 <string name="extension_status_hash_mismatch">"Гэты файл не адпавядае свайму апублікаванаму хэшу. Гэта нельга дазволіць."</string>
 <string name="extension_status_held">"Выключана, пакуль вы не вырашыце"</string>
+<string name="extension_status_held_new_version">"Новая версія · Выключана, пакуль вы не вырашыце"</string>
 <string name="extension_status_kept_off">"Пакінута выключаным"</string>
 <string name="extension_status_start_failed">"Дазволена, але не запусцілася"</string>
 <string name="extension_types">"Падтрымлівае"</string>

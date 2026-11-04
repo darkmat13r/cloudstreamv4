@@ -130,6 +130,7 @@
 <string name="extension_status_blocked">حظرها الفحص. لا يمكن السماح بها.</string>
 <string name="extension_status_hash_mismatch">لا يطابق هذا الملف قيمة التجزئة (hash) المنشورة له. لا يمكن السماح به.</string>
 <string name="extension_status_held">معطّلة حتى تختار</string>
+<string name="extension_status_held_new_version">إصدار جديد · معطّلة حتى تختار</string>
 <string name="extension_status_kept_off">أُبقيت معطّلة</string>
 <string name="extension_status_start_failed">مسموح بها، لكنها لم تبدأ</string>
 <string name="extension_warning_classloader_access">تصل إلى محمّل الأصناف (class loader)، وهو ما قد يجلب شيفرة لم يرها هذا الفحص قط.</string>

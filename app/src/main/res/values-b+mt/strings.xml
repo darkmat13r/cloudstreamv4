@@ -45,6 +45,7 @@
 <string name="extension_status_blocked">"Imblukkata mill-iskan. Din ma tistax tiġi permessa."</string>
 <string name="extension_status_hash_mismatch">"Dan il-fajl ma jaqbilx mal-hash ippubblikat tiegħu. Dan ma jistax jiġi permess."</string>
 <string name="extension_status_held">"Mitfija sakemm tagħżel"</string>
+<string name="extension_status_held_new_version">"Verżjoni ġdida · Mitfija sakemm tagħżel"</string>
 <string name="extension_status_kept_off">"Tibqa' mitfija"</string>
 <string name="extension_status_start_failed">"Permessa, imma ma bdietx"</string>
 <string name="extension_warning_classloader_access">"Tilħaq il-loader tal-klassijiet, li jista' jdaħħal kodiċi li dan l-iskan qatt ma ra."</string>

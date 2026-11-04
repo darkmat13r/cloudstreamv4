@@ -58,6 +58,8 @@ data class ExtensionReview(
     val sha256: String?,
     val status: ReviewStatus,
     val findings: List<ReviewFinding>,
+    /** Waiting because the file changed since it was last decided on or run. */
+    val newVersion: Boolean = false,
 )
 
 data class ExtensionReviewState(
@@ -159,7 +161,7 @@ class ExtensionApprovals(
             LoadState.KeptOff -> ReviewStatus.KeptOff
             LoadState.Blocked -> ReviewStatus.Blocked
             LoadState.HashMismatch -> ReviewStatus.HashMismatch
-            LoadState.Running -> if (warned > 0) ReviewStatus.Allowed else return null
+            LoadState.Running -> if (warned > 0 || chosen) ReviewStatus.Allowed else return null
             // Only something allowed can have reached a start with warnings. The rest has no choice to offer.
             LoadState.Failed ->
                 if (warned > 0) ReviewStatus.StartFailed(outcome.untrustedText(MAX_FAILURE_CODE_POINTS)) else return null
@@ -172,6 +174,7 @@ class ExtensionApprovals(
             sha256 = sha256,
             status = status,
             findings = scan?.findings.orEmpty().filter { it.severity == severity }.toReviewFindings(),
+            newVersion = newVersion,
         )
     }
 

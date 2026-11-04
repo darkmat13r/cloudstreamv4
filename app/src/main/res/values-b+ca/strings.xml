@@ -121,6 +121,7 @@
 <string name="extension_status_blocked">"Bloquejada per l'anàlisi. No es pot permetre."</string>
 <string name="extension_status_hash_mismatch">"Aquest fitxer no coincideix amb el seu hash publicat. No es pot permetre."</string>
 <string name="extension_status_held">"Desactivada fins que triïs"</string>
+<string name="extension_status_held_new_version">"Versió nova · Desactivada fins que triïs"</string>
 <string name="extension_status_kept_off">"Mantinguda desactivada"</string>
 <string name="extension_status_start_failed">"Permesa, però no s'ha iniciat"</string>
 <string name="extension_warning_classloader_access">"Accedeix al carregador de classes, que pot portar codi que aquesta anàlisi no ha vist mai."</string>

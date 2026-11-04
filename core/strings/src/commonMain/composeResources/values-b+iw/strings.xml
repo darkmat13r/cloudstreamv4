@@ -196,6 +196,7 @@
 <string name="extension_status_blocked">נחסמה על ידי הסריקה. אי אפשר לאשר אותה.</string>
 <string name="extension_status_hash_mismatch">הקובץ הזה לא תואם לערך הגיבוב שפורסם עבורו. אי אפשר לאשר אותו.</string>
 <string name="extension_status_held">כבויה עד לבחירה שלך</string>
+<string name="extension_status_held_new_version">גרסה חדשה · כבויה עד לבחירה שלך</string>
 <string name="extension_status_kept_off">נשארת כבויה</string>
 <string name="extension_status_start_failed">מותרת, אבל לא הופעלה</string>
 <string name="extension_types">תומך</string>

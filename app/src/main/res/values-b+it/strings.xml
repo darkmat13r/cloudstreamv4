@@ -276,6 +276,7 @@
 <string name="extension_status_blocked">"Bloccata dalla scansione. Non può essere consentita."</string>
 <string name="extension_status_hash_mismatch">"Questo file non corrisponde al suo hash pubblicato. Non può essere consentito."</string>
 <string name="extension_status_held">"Disattivata finché non scegli"</string>
+<string name="extension_status_held_new_version">"Nuova versione · Disattivata finché non scegli"</string>
 <string name="extension_status_kept_off">"Lasciata disattivata"</string>
 <string name="extension_status_start_failed">"Consentita, ma non si è avviata"</string>
 <string name="extension_types">"Supportati"</string>

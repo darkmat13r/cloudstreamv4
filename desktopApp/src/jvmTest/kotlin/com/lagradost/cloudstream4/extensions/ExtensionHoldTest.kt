@@ -1,5 +1,6 @@
 package com.lagradost.cloudstream4.extensions
 
+import com.lagradost.cloudstream3.APIHolder
 import com.lagradost.cloudstream4.feature.extensions.ExtensionVerification
 import com.lagradost.cloudstream4.feature.extensions.sandbox.ExtensionScanner
 import com.lagradost.cloudstream4.feature.extensions.sandbox.HostLauncher
@@ -49,6 +50,7 @@ class ExtensionHoldTest {
     @AfterTest
     fun tearDown() {
         runBlocking { if (probe.isFile) runCatching { extensions.keepOff("Probe.jar", sha256Of(probe)) } }
+        forgetProviders()
         extensions.close()
         scope.cancel()
         home.deleteRecursively()
@@ -133,7 +135,11 @@ class ExtensionHoldTest {
         val load = load().loads.single()
         assertEquals(LoadState.Running, load.state, load.outcome)
         assertEquals(1, load.providers)
-        assertFalse(decisions.exists(), "nothing was written on its behalf")
+        assertEquals(
+            ExtensionChoice.Seen,
+            ExtensionDecisions(decisions).read().choiceFor("Plain.jar", sha256Of(File(directory, "Plain.jar"))),
+            "recorded so that a later file is noticed, and as nobody's choice",
+        )
         runBlocking { extensions.keepOff("Plain.jar", sha256Of(File(directory, "Plain.jar"))) }
         assertTrue(extensions.providers.none { it.name == "Plain" })
     }
@@ -148,6 +154,146 @@ class ExtensionHoldTest {
         assertNotEquals(approved, sha256Of(probe))
         assertEquals(LoadState.Held, load().loads.single().state)
         assertNothingRan()
+    }
+
+    private val plain get() = File(directory, "Plain.jar")
+
+    private fun writePlain(padding: String? = null) {
+        writeFixtureJar(plain, PlainPlugin::class.java, PlainApi::class.java)
+        if (padding != null) {
+            // A real change to the file: a jar reads to its end record, so this is what an update looks like to a hash.
+            java.util.zip.ZipFile(plain).close()
+            val entries = plain.readBytes()
+            plain.outputStream().use { out ->
+                java.util.zip.ZipOutputStream(out).use { zip ->
+                    java.util.zip.ZipInputStream(entries.inputStream()).use { input ->
+                        generateSequence { input.nextEntry }.forEach { entry ->
+                            zip.putNextEntry(java.util.zip.ZipEntry(entry.name))
+                            input.copyTo(zip)
+                            zip.closeEntry()
+                        }
+                    }
+                    zip.putNextEntry(java.util.zip.ZipEntry("padding.txt"))
+                    zip.write(padding.toByteArray())
+                    zip.closeEntry()
+                }
+            }
+        }
+    }
+
+    /** The next launch. Providers live in a process-wide list, which a real launch would start without. */
+    private fun restart() {
+        forgetProviders()
+        extensions.close()
+        extensions = SandboxedExtensions(directory)
+    }
+
+    private fun forgetProviders() = extensions.providers.forEach { provider ->
+        APIHolder.allProviders.remove(provider)
+        APIHolder.removePluginMapping(provider)
+    }
+
+    @Test
+    fun `a clean plugin that changes waits, though the scan has nothing to say`() {
+        if (!hasSandbox) return
+        writePlain()
+        assertEquals(LoadState.Running, load().loads.single().state)
+        restart()
+        writePlain("an update")
+        val load = load().loads.single()
+        assertEquals(LoadState.Held, load.state, load.outcome)
+        assertTrue(load.newVersion)
+        assertEquals(0, load.scan?.warnings)
+        assertTrue(extensions.providers.none { it.name == "Plain" }, "the update ran")
+    }
+
+    @Test
+    fun `a clean plugin allowed once runs without asking again, until it changes`() {
+        if (!hasSandbox) return
+        writePlain()
+        load()
+        restart()
+        assertEquals(LoadState.Running, load().loads.single().state)
+    }
+
+    @Test
+    fun `allowing a new version that scans clean starts it, and it is listed so it can be stopped`() {
+        if (!hasSandbox) return
+        writePlain()
+        load()
+        restart()
+        writePlain("an update")
+        val held = load()
+        val approvals = ExtensionApprovals(extensions, held, scope)
+        assertEquals(ReviewStatus.Held, approvals.state.value.reviews.single().status)
+        assertTrue(approvals.state.value.reviews.single().newVersion)
+        approvals.onAction(ReviewAction.Allow("Plain.jar"))
+        runBlocking {
+            withTimeout(TIMEOUT_MILLIS) {
+                while (approvals.state.value.reviews.single().status != ReviewStatus.Allowed) delay(POLL_MILLIS)
+            }
+        }
+        assertTrue(extensions.providers.any { it.name == "Plain" })
+    }
+
+    @Test
+    fun `kept off stays off for a clean file, and for its next version`() {
+        if (!hasSandbox) return
+        writePlain()
+        ExtensionDecisions(decisions).record("Plain.jar", sha256Of(plain), ExtensionChoice.KeepOff)
+        assertEquals(LoadState.KeptOff, load().loads.single().state)
+        writePlain("an update")
+        assertEquals(LoadState.Held, load().loads.single().state)
+        assertTrue(extensions.providers.none { it.name == "Plain" })
+    }
+
+    @Test
+    fun `replacing a plugin and its sidecar together still loses the approval`() {
+        if (!hasSandbox) return
+        writeProbeJar(probe)
+        allowOnDisk(probe)
+        writeProbeJar(probe, padding = "an update")
+        File(directory, "Probe.jar.sha256").writeText("sha256-${sha256Of(probe)}")
+        val load = load().loads.single()
+        assertTrue(load.verification is ExtensionVerification.Verified, "${load.verification}")
+        assertEquals(LoadState.Held, load.state)
+        assertTrue(load.newVersion)
+        assertNothingRan()
+    }
+
+    @Test
+    fun `changing only the sidecar refuses the file, approved or not`() {
+        if (!hasSandbox) return
+        writeProbeJar(probe)
+        allowOnDisk(probe)
+        File(directory, "Probe.jar.sha256").writeText("sha256-" + "0".repeat(64))
+        assertEquals(LoadState.HashMismatch, load().loads.single().state)
+        assertNothingRan()
+    }
+
+    @Test
+    fun `a jar dropped beside a kept-off cs3 takes its place and is held, however clean`() {
+        if (!hasSandbox) return
+        File(directory, "Plain.cs3").writeText("recorded, and never read")
+        ExtensionDecisions(decisions).record("Plain.cs3", "a".repeat(64), ExtensionChoice.KeepOff)
+        File(directory, "Plain.cs3").delete()
+        writePlain()
+        val load = load().loads.single()
+        assertEquals(LoadState.Held, load.state, load.outcome)
+        assertTrue(load.newVersion)
+    }
+
+    @Test
+    fun `a seen record never allows warnings, and scan-only writes nothing`() {
+        if (!hasSandbox) return
+        writeProbeJar(probe)
+        ExtensionDecisions(decisions).record(probe.name, sha256Of(probe), ExtensionChoice.Seen)
+        assertEquals(LoadState.Held, load().loads.single().state)
+        assertNothingRan()
+        decisions.delete()
+        writePlain()
+        runBlocking { extensions.scanInstalled() }
+        assertFalse(decisions.exists(), "a scan wrote a record")
     }
 
     @Test

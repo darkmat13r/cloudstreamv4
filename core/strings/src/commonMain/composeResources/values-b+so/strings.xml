@@ -187,6 +187,7 @@
 <string name="extension_status_blocked">Baaritaanka ayaa xannibay. Tan lama oggolaan karo.</string>
 <string name="extension_status_hash_mismatch">Faylkani la mid ma aha hash-kiisa la daabacay. Tan lama oggolaan karo.</string>
 <string name="extension_status_held">Dansan ilaa aad doorato</string>
+<string name="extension_status_held_new_version">Nooc cusub · Dansan ilaa aad doorato</string>
 <string name="extension_status_kept_off">Dansan ayaa la hayaa</string>
 <string name="extension_status_start_failed">Waa la oggolaaday, laakiin ma bilaaban</string>
 <string name="extension_types">Ku shaqeeya</string>

@@ -275,6 +275,7 @@
 <string name="extension_status_blocked">"Blokirano skeniranjem. Ovo se ne može dopustiti."</string>
 <string name="extension_status_hash_mismatch">"Ova datoteka ne odgovara svojem objavljenom hashu. Ovo se ne može dopustiti."</string>
 <string name="extension_status_held">"Isključeno dok ne odaberete"</string>
+<string name="extension_status_held_new_version">"Nova verzija · Isključeno dok ne odaberete"</string>
 <string name="extension_status_kept_off">"Ostaje isključeno"</string>
 <string name="extension_status_start_failed">"Dopušteno, ali se nije pokrenulo"</string>
 <string name="extension_types">"Podržano"</string>

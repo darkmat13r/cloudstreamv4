@@ -276,6 +276,7 @@
 <string name="extension_status_blocked">Tarama tarafından engellendi. Buna izin verilemez.</string>
 <string name="extension_status_hash_mismatch">Bu dosya yayımlanan karma değeriyle eşleşmiyor. Buna izin verilemez.</string>
 <string name="extension_status_held">Siz seçene kadar kapalı</string>
+<string name="extension_status_held_new_version">Yeni sürüm · Siz seçene kadar kapalı</string>
 <string name="extension_status_kept_off">Kapalı tutuluyor</string>
 <string name="extension_status_start_failed">İzin verildi, ancak başlamadı</string>
 <string name="extension_types">Desteklenen</string>

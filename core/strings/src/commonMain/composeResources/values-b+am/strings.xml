@@ -44,6 +44,7 @@
 <string name="extension_status_blocked">በቅኝቱ ታግዷል። ይህ ሊፈቀድ አይችልም።</string>
 <string name="extension_status_hash_mismatch">ይህ ፋይል ከታተመው ሃሹ ጋር አይዛመድም። ይህ ሊፈቀድ አይችልም።</string>
 <string name="extension_status_held">እስክትመርጥ ድረስ ጠፍቷል</string>
+<string name="extension_status_held_new_version">አዲስ ስሪት · እስክትመርጥ ድረስ ጠፍቷል</string>
 <string name="extension_status_kept_off">ጠፍቶ እንዲቆይ ተደርጓል</string>
 <string name="extension_status_start_failed">ተፈቅዷል፣ ግን አልጀመረም</string>
 <string name="extension_warning_classloader_access">ወደ ክላስ ሎደር ይደርሳል፤ ይህም ይህ ቅኝት ያላየውን ኮድ ሊያስገባ ይችላል።</string>

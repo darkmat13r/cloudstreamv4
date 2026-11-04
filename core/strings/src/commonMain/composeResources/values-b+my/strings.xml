@@ -188,6 +188,7 @@
 <string name="extension_status_blocked">စစ်ဆေးမှုက ပိတ်ဆို့ထားသည်။ ဤအရာကို ခွင့်ပြု၍မရပါ။</string>
 <string name="extension_status_hash_mismatch">ဤဖိုင်သည် ထုတ်ပြန်ထားသော ဟက်ရှ်နှင့် မကိုက်ညီပါ။ ဤအရာကို ခွင့်ပြု၍မရပါ။</string>
 <string name="extension_status_held">သင်ရွေးချယ်သည်အထိ ပိတ်ထားသည်</string>
+<string name="extension_status_held_new_version">ဗားရှင်းအသစ် · သင်ရွေးချယ်သည်အထိ ပိတ်ထားသည်</string>
 <string name="extension_status_kept_off">ပိတ်ထားသည်</string>
 <string name="extension_status_start_failed">ခွင့်ပြုထားသော်လည်း မစတင်ခဲ့ပါ</string>
 <string name="extension_types">ထောက်ပံ့ထားသော</string>

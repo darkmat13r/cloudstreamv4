@@ -276,6 +276,7 @@
 <string name="extension_status_blocked">"Bị bản quét chặn. Không thể cho phép mục này."</string>
 <string name="extension_status_hash_mismatch">"Tệp này không khớp với mã băm đã công bố. Không thể cho phép mục này."</string>
 <string name="extension_status_held">"Tắt cho đến khi bạn chọn"</string>
+<string name="extension_status_held_new_version">"Phiên bản mới · Tắt cho đến khi bạn chọn"</string>
 <string name="extension_status_kept_off">"Vẫn giữ tắt"</string>
 <string name="extension_status_start_failed">"Đã cho phép, nhưng không khởi động được"</string>
 <string name="extension_types">"Hỗ trợ"</string>

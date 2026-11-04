@@ -239,6 +239,7 @@
 <string name="extension_status_blocked">"A vizsgálat letiltotta. Ez nem engedélyezhető."</string>
 <string name="extension_status_hash_mismatch">"Ez a fájl nem egyezik a közzétett hash-értékével. Ez nem engedélyezhető."</string>
 <string name="extension_status_held">"Kikapcsolva, amíg nem dönt"</string>
+<string name="extension_status_held_new_version">"Új verzió · Kikapcsolva, amíg nem dönt"</string>
 <string name="extension_status_kept_off">"Kikapcsolva marad"</string>
 <string name="extension_status_start_failed">"Engedélyezve, de nem indult el"</string>
 <string name="extension_types">"Támogatott"</string>

@@ -150,14 +150,24 @@ class SandboxedExtensions(
         val scan = withContext(Dispatchers.IO) { ExtensionScanner.scan(jar) }
         if (scan.blocked) return refused("blocked by the security scan", scan, sha256, LoadState.Blocked)
         // Off unless this exact file was allowed. No other flag, argument or setting reaches past this.
-        if (scan.warnings > 0) {
-            when (withContext(Dispatchers.IO) { decisions.read() }.choiceFor(source.name, sha256)) {
-                ExtensionChoice.Allow -> Unit
-                ExtensionChoice.KeepOff ->
-                    return SandboxedLoad(source.name, verification, scan, 0, "kept off, as chosen", sha256, LoadState.KeptOff)
-                null ->
-                    return SandboxedLoad(source.name, verification, scan, 0, "HELD: warnings, waiting for a decision", sha256, LoadState.Held)
-            }
+        // A new version waits too, with warnings or without: a scan that finds nothing is not a review of different code.
+        val recorded = withContext(Dispatchers.IO) { decisions.read() }
+        val newVersion = recorded.isNewVersion(source.name, sha256)
+        val choice = recorded.choiceFor(source.name, sha256)
+        when {
+            choice == ExtensionChoice.Allow -> Unit
+            choice == ExtensionChoice.KeepOff ->
+                return SandboxedLoad(source.name, verification, scan, 0, "kept off, as chosen", sha256, LoadState.KeptOff)
+            newVersion ->
+                return SandboxedLoad(
+                    source.name, verification, scan, 0, "HELD: a new version, waiting for a decision", sha256, LoadState.Held,
+                    newVersion = true,
+                )
+            scan.warnings > 0 ->
+                return SandboxedLoad(source.name, verification, scan, 0, "HELD: warnings, waiting for a decision", sha256, LoadState.Held)
+            // Scan-only writes nothing. A failed write costs noticing the next version, and is not worth refusing this one.
+            choice == null && start ->
+                withContext(Dispatchers.IO) { runCatching { decisions.record(source.name, sha256, ExtensionChoice.Seen) } }
         }
         if (!start) return SandboxedLoad(source.name, verification, scan, 0, "scanned only", sha256, LoadState.Scanned)
 
@@ -198,6 +208,7 @@ class SandboxedExtensions(
             "$how" + "sandboxed$duplicates",
             sha256,
             LoadState.Running,
+            chosen = choice == ExtensionChoice.Allow,
         )
     }
 
@@ -354,6 +365,10 @@ data class SandboxedLoad(
     /** What a decision about this file is bound to. Null when it was refused before being read. */
     val sha256: String? = null,
     val state: LoadState = LoadState.Failed,
+    /** Held because an earlier file of this name was recorded, and this is not it. */
+    val newVersion: Boolean = false,
+    /** Someone allowed this exact file, so it can be changed on the review screen even if the scan found nothing. */
+    val chosen: Boolean = false,
 )
 
 /** What the startup pass did, as data, so the caller decides where the words go. */

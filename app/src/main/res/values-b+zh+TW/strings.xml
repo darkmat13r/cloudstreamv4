@@ -275,6 +275,7 @@
 <string name="extension_status_blocked">"已遭掃描封鎖。無法允許。"</string>
 <string name="extension_status_hash_mismatch">"此檔案與其發布的雜湊值不符。無法允許。"</string>
 <string name="extension_status_held">"在你選擇之前保持關閉"</string>
+<string name="extension_status_held_new_version">"新版本 · 在你選擇之前保持關閉"</string>
 <string name="extension_status_kept_off">"已保持關閉"</string>
 <string name="extension_status_start_failed">"已允許，但未能啟動"</string>
 <string name="extension_types">"類型"</string>

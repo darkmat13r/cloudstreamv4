@@ -290,6 +290,7 @@
 <string name="extension_status_blocked">Blocked by the scan. This cannot be allowed.</string>
 <string name="extension_status_hash_mismatch">This file does not match its published hash. This cannot be allowed.</string>
 <string name="extension_status_held">Off until you choose</string>
+<string name="extension_status_held_new_version">New version · Off until you choose</string>
 <string name="extension_status_kept_off">Kept off</string>
 <string name="extension_status_start_failed">Allowed, but it did not start</string>
 <string name="extension_types">Supported</string>

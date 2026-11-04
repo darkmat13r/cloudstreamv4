@@ -276,6 +276,7 @@
 <string name="extension_status_blocked">Bloqueada por el análisis. No se puede permitir.</string>
 <string name="extension_status_hash_mismatch">Este archivo no coincide con su hash publicado. No se puede permitir.</string>
 <string name="extension_status_held">Desactivada hasta que decida</string>
+<string name="extension_status_held_new_version">Versión nueva · Desactivada hasta que decida</string>
 <string name="extension_status_kept_off">Se mantiene desactivada</string>
 <string name="extension_status_start_failed">Permitida, pero no se inició</string>
 <string name="extension_types">Soportado</string>

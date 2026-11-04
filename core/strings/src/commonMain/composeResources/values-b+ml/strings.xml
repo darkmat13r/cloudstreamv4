@@ -110,6 +110,7 @@
 <string name="extension_status_blocked">സ്കാൻ ഇത് തടഞ്ഞു. ഇത് അനുവദിക്കാൻ കഴിയില്ല.</string>
 <string name="extension_status_hash_mismatch">ഈ ഫയൽ അതിന്റെ പ്രസിദ്ധീകരിച്ച ഹാഷുമായി പൊരുത്തപ്പെടുന്നില്ല. ഇത് അനുവദിക്കാൻ കഴിയില്ല.</string>
 <string name="extension_status_held">നിങ്ങൾ തിരഞ്ഞെടുക്കുന്നതുവരെ ഓഫ്</string>
+<string name="extension_status_held_new_version">പുതിയ പതിപ്പ് · നിങ്ങൾ തിരഞ്ഞെടുക്കുന്നതുവരെ ഓഫ്</string>
 <string name="extension_status_kept_off">ഓഫായി വെച്ചിരിക്കുന്നു</string>
 <string name="extension_status_start_failed">അനുവദിച്ചു, പക്ഷേ അത് ആരംഭിച്ചില്ല</string>
 <string name="extension_warning_classloader_access">ഇത് ക്ലാസ് ലോഡറിൽ എത്തുന്നു, ഈ സ്കാൻ ഒരിക്കലും കാണാത്ത കോഡ് അതിന് കൊണ്ടുവരാൻ കഴിയും.</string>

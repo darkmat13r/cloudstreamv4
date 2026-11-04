@@ -67,6 +67,7 @@
 <string name="extension_status_blocked">ସ୍କାନ୍ ଦ୍ୱାରା ଅବରୋଧିତ। ଏହାକୁ ଅନୁମତି ଦିଆଯାଇପାରିବ ନାହିଁ।</string>
 <string name="extension_status_hash_mismatch">ଏହି ଫାଇଲ୍ ଏହାର ପ୍ରକାଶିତ ହାସ୍ ସହିତ ମେଳ ଖାଉନାହିଁ। ଏହାକୁ ଅନୁମତି ଦିଆଯାଇପାରିବ ନାହିଁ।</string>
 <string name="extension_status_held">ଆପଣ ବାଛିବା ପର୍ଯ୍ୟନ୍ତ ବନ୍ଦ</string>
+<string name="extension_status_held_new_version">ନୂତନ ସଂସ୍କରଣ · ଆପଣ ବାଛିବା ପର୍ଯ୍ୟନ୍ତ ବନ୍ଦ</string>
 <string name="extension_status_kept_off">ବନ୍ଦ ରଖାଯାଇଛି</string>
 <string name="extension_status_start_failed">ଅନୁମତି ମିଳିଛି, କିନ୍ତୁ ଏହା ଆରମ୍ଭ ହେଲା ନାହିଁ</string>
 <string name="extension_types">ସମର୍ଥିତ</string>

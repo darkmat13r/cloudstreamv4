@@ -216,6 +216,7 @@
 <string name="extension_status_blocked">Disekat oleh imbasan. Ini tidak boleh dibenarkan.</string>
 <string name="extension_status_hash_mismatch">Fail ini tidak sepadan dengan cincangan yang diterbitkan. Ini tidak boleh dibenarkan.</string>
 <string name="extension_status_held">Dimatikan sehingga anda memilih</string>
+<string name="extension_status_held_new_version">Versi baharu · Dimatikan sehingga anda memilih</string>
 <string name="extension_status_kept_off">Kekal dimatikan</string>
 <string name="extension_status_start_failed">Dibenarkan, tetapi tidak dapat dimulakan</string>
 <string name="extension_types">Disokong</string>

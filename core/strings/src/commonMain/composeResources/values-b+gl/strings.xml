@@ -120,6 +120,7 @@
 <string name="extension_status_blocked">Bloqueada pola análise. Non se pode permitir.</string>
 <string name="extension_status_hash_mismatch">Este ficheiro non coincide co seu hash publicado. Non se pode permitir.</string>
 <string name="extension_status_held">Apagada ata que escolla</string>
+<string name="extension_status_held_new_version">Versión nova · Apagada ata que escolla</string>
 <string name="extension_status_kept_off">Mantida apagada</string>
 <string name="extension_status_start_failed">Permitida, pero non se iniciou</string>
 <string name="extension_warning_classloader_access">Accede ao cargador de clases, que pode introducir código que esta análise nunca viu.</string>

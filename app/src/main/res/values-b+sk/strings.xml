@@ -180,6 +180,7 @@
 <string name="extension_status_blocked">"Zablokované kontrolou. Nedá sa povoliť."</string>
 <string name="extension_status_hash_mismatch">"Tento súbor sa nezhoduje so zverejneným hashom. Nedá sa povoliť."</string>
 <string name="extension_status_held">"Vypnuté, kým sa nerozhodnete"</string>
+<string name="extension_status_held_new_version">"Nová verzia · Vypnuté, kým sa nerozhodnete"</string>
 <string name="extension_status_kept_off">"Ponechané vypnuté"</string>
 <string name="extension_status_start_failed">"Povolené, ale nespustilo sa"</string>
 <string name="extension_warning_classloader_access">"Pristupuje k zavádzaču tried, ktorý môže načítať kód, aký táto kontrola nikdy nevidela."</string>

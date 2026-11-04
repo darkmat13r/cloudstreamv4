@@ -70,6 +70,7 @@
 <string name="extension_status_blocked">"Yoxlama tərəfindən bloklanıb. Buna icazə vermək olmaz."</string>
 <string name="extension_status_hash_mismatch">"Bu fayl dərc olunmuş heşinə uyğun gəlmir. Buna icazə vermək olmaz."</string>
 <string name="extension_status_held">"Siz seçənədək söndürülüdür"</string>
+<string name="extension_status_held_new_version">"Yeni versiya · Siz seçənədək söndürülüdür"</string>
 <string name="extension_status_kept_off">"Söndürülü saxlanılıb"</string>
 <string name="extension_status_start_failed">"İcazə verilib, amma işə düşmədi"</string>
 <string name="extension_warning_classloader_access">"Sinif yükləyicisinə müraciət edir və bu, yoxlamanın heç görmədiyi kodu gətirə bilər."</string>

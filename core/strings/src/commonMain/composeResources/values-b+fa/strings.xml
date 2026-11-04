@@ -131,6 +131,7 @@
 <string name="extension_status_blocked">توسط اسکن مسدود شد. نمی‌توان به آن اجازه داد.</string>
 <string name="extension_status_hash_mismatch">این فایل با هش منتشرشدهٔ خود مطابقت ندارد. نمی‌توان به آن اجازه داد.</string>
 <string name="extension_status_held">خاموش تا زمانی که انتخاب کنید</string>
+<string name="extension_status_held_new_version">نسخه جدید · خاموش تا زمانی که انتخاب کنید</string>
 <string name="extension_status_kept_off">خاموش نگه داشته شد</string>
 <string name="extension_status_start_failed">مجاز است، اما اجرا نشد</string>
 <string name="extension_warning_classloader_access">به بارگذار کلاس (class loader) دسترسی پیدا می‌کند که می‌تواند کدی را وارد کند که این اسکن هرگز ندیده است.</string>

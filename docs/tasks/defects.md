@@ -1208,3 +1208,33 @@ The fix searches what the field says now. `BUG-23` (#114) fixed a different caus
 
 **Not measured:** Android's `viewModelScope` is single threaded, so this path should keep its order there. That was
 reasoned and not run. Nobody has reproduced this by hand in the window.
+
+---
+
+## BUG-28 — A plugin's update could run without being asked about · **high** · measured 2026-11-04
+
+**Status:** in pr. The hold applied only to a file with scan warnings. So an update that scanned clean ran straight away, even for a
+plugin someone had kept off, and a clean plugin's update was never noticed. A scan finding nothing is not a review of
+different code.
+
+| Case | Before | After |
+|---|---|---|
+| A plugin kept off, updated to one that scans clean | ran | held |
+| A plugin allowed, updated to one that scans clean | ran | held |
+| A plugin kept off, its same file scanning clean | ran | kept off |
+| A clean plugin, updated | ran, unnoticed | held, from the second file on |
+| A jar dropped beside a decided `.cs3` | ran | held |
+| Plugin and sidecar replaced together | held | held, now pinned |
+| Sidecar alone changed | refused | refused, now pinned |
+
+A clean file's first run is recorded as `Seen`, which is nobody's choice and never allows warnings, and a scan-only pass writes
+nothing. The review screen says "New version · Off until you choose", in all 62 directories, with the wording before the dot machine
+translated. Allowing a clean new version lists it, so it can be stopped again. `a clean plugin is not asked about at all` changed: it
+pinned that nothing is written for a clean plugin, and now pins the `Seen` record.
+
+**Cost:** every plugin update now asks once, including the official ones, because a sidecar beside a file proves nothing about who
+replaced it.
+
+**Limits:** the first file of a name still runs without asking if it scans clean. There is no version number on the screen, only
+that it is not the file decided on: the scanner does not read one. The screen was not looked at in a live window.
+

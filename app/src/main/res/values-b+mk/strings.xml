@@ -275,6 +275,7 @@
 <string name="extension_status_blocked">"Блокирана од скенирањето. Ова не може да се дозволи."</string>
 <string name="extension_status_hash_mismatch">"Оваа датотека не се совпаѓа со објавениот хаш. Ова не може да се дозволи."</string>
 <string name="extension_status_held">"Исклучена додека не избереш"</string>
+<string name="extension_status_held_new_version">"Нова верзија · Исклучена додека не избереш"</string>
 <string name="extension_status_kept_off">"Оставена исклучена"</string>
 <string name="extension_status_start_failed">"Дозволена, но не се стартуваше"</string>
 <string name="extension_types">"Поддржано"</string>

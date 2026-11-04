@@ -223,6 +223,7 @@
 <string name="extension_status_blocked">To bloķēja pārbaude. To nevar atļaut.</string>
 <string name="extension_status_hash_mismatch">Šis fails neatbilst publicētajam jaucējkodam. To nevar atļaut.</string>
 <string name="extension_status_held">Izslēgts, līdz izvēlēsieties</string>
+<string name="extension_status_held_new_version">Jauna versija · Izslēgts, līdz izvēlēsieties</string>
 <string name="extension_status_kept_off">Atstāts izslēgts</string>
 <string name="extension_status_start_failed">Atļauts, bet nesāka darboties</string>
 <string name="extension_types">Atbalstīts</string>

@@ -276,6 +276,7 @@
 <string name="extension_status_blocked">"Заблокировано проверкой. Разрешить нельзя."</string>
 <string name="extension_status_hash_mismatch">"Этот файл не совпадает с опубликованным хешем. Разрешить его нельзя."</string>
 <string name="extension_status_held">"Выключено, пока вы не решите"</string>
+<string name="extension_status_held_new_version">"Новая версия · Выключено, пока вы не решите"</string>
 <string name="extension_status_kept_off">"Оставлено выключенным"</string>
 <string name="extension_status_start_failed">"Разрешено, но не запустилось"</string>
 <string name="extension_types">"Поддерживается"</string>

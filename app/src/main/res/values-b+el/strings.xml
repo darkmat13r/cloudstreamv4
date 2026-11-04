@@ -249,6 +249,7 @@
 <string name="extension_status_blocked">"Αποκλείστηκε από τη σάρωση. Δεν μπορεί να επιτραπεί."</string>
 <string name="extension_status_hash_mismatch">"Αυτό το αρχείο δεν ταιριάζει με το δημοσιευμένο hash του. Δεν μπορεί να επιτραπεί."</string>
 <string name="extension_status_held">"Ανενεργή μέχρι να επιλέξετε"</string>
+<string name="extension_status_held_new_version">"Νέα έκδοση · Ανενεργή μέχρι να επιλέξετε"</string>
 <string name="extension_status_kept_off">"Παρέμεινε ανενεργή"</string>
 <string name="extension_status_start_failed">"Επιτράπηκε, αλλά δεν ξεκίνησε"</string>
 <string name="extension_types">"Υποστηρίζονται"</string>

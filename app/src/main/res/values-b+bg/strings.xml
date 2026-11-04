@@ -271,6 +271,7 @@
 <string name="extension_status_blocked">"Блокирано от сканирането. Това не може да бъде разрешено."</string>
 <string name="extension_status_hash_mismatch">"Този файл не съответства на публикувания си хеш. Това не може да бъде разрешено."</string>
 <string name="extension_status_held">"Изключено, докато не решите"</string>
+<string name="extension_status_held_new_version">"Нова версия · Изключено, докато не решите"</string>
 <string name="extension_status_kept_off">"Оставено изключено"</string>
 <string name="extension_status_start_failed">"Разрешено, но не се стартира"</string>
 <string name="extension_types">"Поддържани"</string>
