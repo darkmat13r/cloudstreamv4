@@ -3266,3 +3266,53 @@ The page's margin does not change, so it does not reflow.
 **Not tested:** `focusNavRail`'s call site, which needs a provider's hero on Home, and every page with content, since no
 extension is installed. A real TV remote.
 
+---
+
+## KMP-35 — `ConnectivityFlow`: the offline state every screen can observe (queue `Q2`) · **measured 2026-11-04**
+
+**Status:** in PR, nothing calls it yet. `Q14`, `Q18` and `Q24` are its first callers.
+
+`:core:connectivity` is new and first-party: never merged into `classes.jar`. `:core:common` is frozen, and `:core:http`
+would hand every observer Ktor.
+
+| | |
+|---|---|
+| `Connectivity` | `ONLINE`, `OFFLINE`, `UNKNOWN`. A screen draws offline for `OFFLINE` only |
+| `ConnectivityFlow` | `val status: StateFlow<Connectivity>`. The host makes one and hands it down |
+| `UnknownConnectivityFlow` | Always `UNKNOWN`: the desktop and iOS answer, in place of a guessed `ONLINE` |
+| `AndroidConnectivityFlow(context, scope)` | One `ConnectivityManager` callback, shared, registered while collected and for 5 s after |
+
+**Online means the default network has `NET_CAPABILITY_INTERNET`**, the test `AppContextUtils.isNetworkAvailable` already
+uses. It is deliberately not `VALIDATED`: a blocked check URL, a captive portal or a LAN serving the user's own media
+would read as offline while working. The one-shot is untouched.
+
+### The emulator's network is Ethernet, and that decided the test
+
+Measured on `Television_720p` (Android 16, `user` build), each from inside the test as the shell user:
+
+| Tried | Result |
+|---|---|
+| `svc wifi disable`, `svc data disable`, `cmd connectivity airplane-mode enable` | `activeNetwork` stays `100`, for 20 s after each |
+| `ip link set eth0 down`, `ifconfig eth0 down` | `activeNetwork` stays `100` |
+| `EthernetManager.setEthernetEnabled` by reflection | `NoSuchMethodException`: hidden from a test |
+| **`service call ethernet 13 i32 0`** | `dumpsys ethernet` says `disabled`, `activeNetwork` is `null`. `i32 1` brings it back as network `101` |
+
+**13 is this image's transaction number, found by trying 1 to 13 in order, and it can change with the image.** So the test
+confirms every toggle through `dumpsys ethernet` and fails by saying so. No AVD was changed: `device-tests.sh` boots it
+`-read-only`.
+
+### What was measured
+
+- `:core:connectivity:connectedAndroidDeviceTest`: 2 tests, 0 failures. The real network goes `[ONLINE, OFFLINE, ONLINE]`,
+  each checked against `activeNetwork` read directly (`100 -> null -> 101`).
+- Registration, by counting this uid's live requests in `dumpsys connectivity`: making the flow 0, one collector 1, two
+  collectors 1, none after the timeout 0. **Count only above `mNetworkRequestInfoLogs`:** below it is a history, where a
+  release adds a line too. Counting the whole dump gave 2, 4, 4, which looks like a leak and is not.
+- `:core:connectivity:jvmTest`: 8 tests, 0 failures, on the reducer's rules, including a handover not flickering offline.
+- `app/api/classes-jar.api` unchanged by the `:app` edge, and no `core/connectivity` entry in `classes.jar`.
+
+### Not verified
+
+The API 23 path, `ActiveNetworkCallback`, has never run: only `Television_720p` is available, on Android 16. The Wi-Fi and
+cellular paths have not run either, because this AVD's default network is Ethernet. No phone has run any of it.
+
