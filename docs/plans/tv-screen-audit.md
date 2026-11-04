@@ -184,6 +184,7 @@ Conventions:
 
 > Built since this audit, by `DS-08`: the status pill, segmented control, below-art episode and continue cards, avatar,
 > storage meter, download progress row and the missing icons. `DEC-17` settled the failure colour: hollow neutral.
+> Built since this audit, by `DS-09`: `NavRail`, component only. The XML rail is still what `:app` shows.
 
 **Missing from `Components.dc.html`:**
 
