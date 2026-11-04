@@ -3257,8 +3257,8 @@ The page's margin does not change, so it does not reflow.
   Home's own `home_switch_account` still opens the same list, but it did not show on Home with no extension installed.
 - **Long press on an item to scroll to the top.**
 - **The Library item's icon changing to the sync provider's.** `icons.md` makes that a brand mark, and no board draws it.
-- **The cast mini controller starting after the rail.** It is constrained to the hidden rail, so it starts at the screen's
-  edge and the rail covers its first 76dp while casting.
+- **The cast mini controller starting after the rail.** It is constrained to the hidden rail, so it started at the screen's
+  edge and the rail covered its first 76dp while casting. Fixed by `BUG-32`.
 
 `DEC-13`: nothing is lost. The old TV rail's indicator was `textColor`, not the user's primary colour.
 
