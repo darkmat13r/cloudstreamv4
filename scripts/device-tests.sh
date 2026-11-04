@@ -36,4 +36,4 @@ fi
 sleep 20
 
 if (( $# == 0 )); then set -- :feature:search:connectedAndroidDeviceTest; fi
-TZ=UTC nice -n 10 ./gradlew "$@"
+TZ=UTC taskpolicy -c utility ./gradlew "$@"
