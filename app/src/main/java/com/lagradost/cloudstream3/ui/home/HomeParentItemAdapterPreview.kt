@@ -19,7 +19,6 @@ import androidx.viewbinding.ViewBinding
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
-import com.google.android.material.navigation.NavigationBarItemView
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.getActivity
 import com.lagradost.cloudstream3.CommonActivity.activity
 import com.lagradost.cloudstream3.HomePageList
@@ -625,9 +624,7 @@ class HomeParentItemAdapterPreview(
                     if (!hasFocus) return@setOnFocusChangeListener
                     if (previewViewpager.currentItem <= 0) {
                         //Focus the Home item as the default focus will be the header item
-                        (activity as? MainActivity)?.binding?.navRailView?.findViewById<NavigationBarItemView>(
-                            R.id.navigation_home
-                        )?.requestFocus()
+                        (activity as? MainActivity)?.focusNavRail()
                     } else {
                         previewViewpager.setCurrentItem(previewViewpager.currentItem - 1, true)
                         binding.homePreviewInfoBtt.requestFocus()
