@@ -2969,7 +2969,7 @@ speaker; `qt` uses only words from its own file. Eighth move of the oracle basel
 
 ## KMP-31 — Picture size, and the player's controls brought back to artboard 7d · **measured 2026-11-04**
 
-**Status:** in pr. **Owner's request 2026-11-04:** "option to set the stretch mode, fill screen, fill width with
+**Status:** done · #119. **Owner's request 2026-11-04:** "option to set the stretch mode, fill screen, fill width with
 maintaining aspect ratio, original aspect ratio", and then "are you following design??".
 
 **Picture size:** Original aspect ratio (all of the picture, with bars), Fill width (own shape, top and bottom cut off
