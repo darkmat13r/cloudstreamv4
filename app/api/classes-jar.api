@@ -3516,6 +3516,7 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field extension_status_blocked I
 	public static field extension_status_hash_mismatch I
 	public static field extension_status_held I
+	public static field extension_status_held_new_version I
 	public static field extension_status_kept_off I
 	public static field extension_status_start_failed I
 	public static field extension_types I
