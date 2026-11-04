@@ -240,6 +240,8 @@ Kotlin/Native break — on 2026-10-15 a `@JvmInline` with no import made `abi`, 
 all pass on a tree that did not compile for iOS at all. That is the best argument the four-gate
 discipline has.
 
+**After gate 2, run `python3 scripts/check-test-results.py`.** A failed `jvmTest` restored from the build cache leaves `check` at 0 (`INF-10`), and its XML is what still records the failure. Print the result with the gates.
+
 **A piped Gradle run reports the pipe's exit code, not Gradle's.** `./gradlew … | tail` exits 0 on a
 failed build. This produced a false "green" once already. Redirect to a file and capture `$?`.
 
