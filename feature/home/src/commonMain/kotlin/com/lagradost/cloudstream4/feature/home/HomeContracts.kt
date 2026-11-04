@@ -67,3 +67,18 @@ interface HomeSource {
 
     suspend fun page(source: HomeSourceId, section: Int, page: Int): HomePageReply
 }
+
+/** The source chosen last, kept by the host between launches. */
+interface HomeSourceMemory {
+    /** The source chosen last, which may no longer be installed. */
+    fun last(): HomeSourceId?
+
+    fun remember(id: HomeSourceId)
+
+    /** Keeps nothing, for a host with nowhere to keep it. */
+    object None : HomeSourceMemory {
+        override fun last(): HomeSourceId? = null
+
+        override fun remember(id: HomeSourceId) = Unit
+    }
+}

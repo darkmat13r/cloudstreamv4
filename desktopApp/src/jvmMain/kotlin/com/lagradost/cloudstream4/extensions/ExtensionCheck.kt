@@ -49,6 +49,10 @@ fun runExtensionCheck(query: String, verbose: Boolean = false): Int = runBlockin
             }
         }
         println("check: $working of ${extensions.providers.size} providers returned results for \"$query\"")
+        // Names, which are all a plugin's connections show from outside: traffic stays end to end.
+        extensions.contactedHosts().forEach { (file, hosts) ->
+            println("check: $file connected to ${hosts.size} hosts: ${hosts.sorted().take(MAX_HOSTS_SHOWN).joinToString(" ")}")
+        }
         if (working > 0) 0 else 1
     } finally {
         extensions.close()
@@ -153,5 +157,6 @@ private fun describe(load: SubtitleLoad): String = when (load) {
     }
 }
 
+private const val MAX_HOSTS_SHOWN = 40
 private const val MAX_LOG_LINES = 12
 private const val MAX_LOG_CHARS = 200

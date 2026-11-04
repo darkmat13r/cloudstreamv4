@@ -3073,3 +3073,13 @@ two remote streams; subtitle timing during the switch, which reads the new host'
 directories, all machine translated and not reviewed by a native speaker; `qt` uses only words from its own file. Tenth
 move of the oracle baseline. The selector's label reuses `video_source`, which 9 directories do not have, so they fall back.
 
+## KMP-32 — The home source chosen last opens again · **measured 2026-11-04**
+
+**Status:** in pr. **Owner's request 2026-11-04:** "the last plugin source should stay default when i reopen app".
+
+Kept in `~/.cloudstream4/home-source`. Only a person's choice is kept, so a source that is gone falls back to the first
+without forgetting it, and it comes back with its plugin. This also survives the `HomeViewModel` rebuilt when an
+extension is allowed or stopped. It is matched by name, because the order sources arrive in varies between launches.
+
+**Tested:** `HomeViewModelTest` and `FileHomeSourceMemoryTest`. **Not tested:** a person choosing a source, quitting and
+reopening the window. Search is not affected; it has no single source to keep.

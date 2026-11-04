@@ -55,6 +55,10 @@ class SandboxedExtensions(
     private val sandboxes = File(root, SANDBOX_DIRECTORY)
     private val hosts = mutableListOf<PluginHostClient>()
 
+    /** Who each running extension has asked to connect to, by file name. */
+    fun contactedHosts(): Map<String, Set<String>> =
+        synchronized(hosts) { running.mapValues { (_, host) -> host.contactedHosts } }
+
     /** Who is running, by file name, so a change of mind can stop it. Guarded by [hosts]. */
     private val running = mutableMapOf<String, PluginHostClient>()
 

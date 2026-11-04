@@ -1256,6 +1256,90 @@ covered by `SandboxEnforcementTest` and `PluginHostClientTest`.
 CineStream 34 results and 74 playable both times, 101 then 96 links, which varies between runs. A silent check still draws frames, and
 libVLC's audio output opens and holds a level (37) on a silent file. Nobody has listened.
 
+---
+
+## BUG-27 — A plugin could reach this Mac and its LAN, by address · **high** · measured 2026-11-04
+
+**Status:** done · #124. Found by `BUG-26`: a plugin host connected to this Mac's own LAN address, which reaches anything listening
+on all interfaces, and to the LAN gateway. Seatbelt cannot refuse them. It can name only `localhost` or `*`
+(measured: anything else is "host must be * or localhost").
+
+A plugin host's policy now allows one outbound address: a port on loopback, where `OutboundGate`, a SOCKS5 proxy in the app, checks the
+address it is about to connect to against `SandboxPolicy.isPublicAddress`. Undoing the JVM's proxy setting gains nothing,
+because then the kernel refuses the connection.
+
+| Attempt, real plugin host | Before | After |
+|---|---|---|
+| This Mac by its LAN address | connected | refused by the gate |
+| LAN gateway | connected | refused by the gate |
+| Cloud metadata address | no route | refused by the gate |
+| 127.0.0.2 | no answer | refused by the gate |
+| Same LAN and loopback addresses, skipping the proxy | connected, for LAN | denied by the kernel |
+| A public address, skipping the proxy | connected | denied by the kernel |
+| UDP, public or LAN | not tried | denied by the kernel |
+| A public address and name, through the gate | connected | connected |
+
+`SandboxPolicy.isPublicAddress` also now refuses `240.0.0.0/4`, `198.18.0.0/15`, `192.0.0.0/24`, and the IPv6
+translation prefixes that carry an IPv4 address inside, `64:ff9b::/96` and `2002::/16`.
+
+`HostNewPipeDownloader` moved from the JDK's `HttpClient`, which ignores a SOCKS proxy, to `HttpURLConnection`. Without
+that YouTube's search failed. Android plugins cannot use `java.net.http`, so no plugin should depend on it, and one
+that does fails closed.
+
+`--check-extensions` now prints which names each plugin asked to connect to. **It is not on any screen.** It showed
+CineStream asking for 127.0.0.1 and ::1 as well as 110 other names, and both were refused, as loopback already was.
+
+**Not fixed: the media host.** libVLC opens its own connections, with no way to send them through a proxy that was found,
+so it keeps open network. A stream URL is still checked before it plays, but a redirect or a playlist inside it is not,
+so a hostile stream can make libVLC fetch from the LAN.
+
+**DNS** still goes to the system resolver, for the proxy and for a plugin: a name can carry data out. **A plugin still
+has the internet**, so it can send what it sees to its own servers. This does not change that.
+
+---
+
+## BUG-29 — Nothing limited how much of this Mac a plugin could use · **medium** · measured 2026-11-04
+
+**Status:** done · #128. Seatbelt says what a host may touch and nothing about how much. Each row is `HostLimitsTest`, a hostile plugin in a real host.
+
+| Attempt | Result |
+|---|---|
+| 8 threads spinning with no call waiting | stopped by `HostWatch`, 4.9 s against a 4 s test window; the default is 60 s |
+| Filling the heap | `OutOfMemoryError` in the plugin, at the existing 512 MB; the host still answers |
+| Filling direct memory | `OutOfMemoryError`, at the new 128 MB cap |
+| Memory past the limit, test limit 300 MB | stopped by the watch; the default is 1.5 GB |
+| One big file | stops at 256 MB, by `ulimit -f` |
+| Many files, test limit 50 MB | stopped by the watch; the default is 2 GB |
+| 20,000 threads | the host's JVM failed and its output broke the protocol, so the app ended that host, and only that one |
+| Priority | `nice` 10, so it comes after the app and the player |
+
+A stopped host fails its calls, as a crashed one already did, and the app carries on. **Nothing restarts it**: its sources stay gone until the next launch, and no screen says why, though `endedBecause` holds the reason.
+
+**A plugin working on a call may use what it needs**: the CPU rule applies only with no call waiting, so a plugin called constantly is not stopped by it. Network use is not limited.
+
+The media host has no `nice`, no `ulimit` and no watch, because it has frames to deliver on time and its memory depends on the video.
+
+`ProcessHandle.info().totalCpuDuration` did not work for this: a host spinning 8 threads never passed the limit with it. Why was not established. It reads `ps`.
+
+**Checked:** isolated copy of the owner's six plugins with the limits on: 6 of 6, 8 providers, CineStream 34 results and 73 playable, CineTmdb 13 and 74, and no host stopped.
+
+### What a plugin can see about the person, as measured
+
+`SandboxEscapeAttemptTest` lists all of this, through real hosts.
+
+| | Visible to a plugin? |
+|---|---|
+| Searches and titles opened, through its own calls | **Yes, and it cannot be otherwise**: it needs them to answer, and it has the internet, so it can send them to its own servers |
+| This Mac's public IP address | **Yes**, to every server it connects to |
+| Which file exists at a path, by `stat` | **Yes**: a JVM needs it |
+| The account name, through the path of its own directory | **Yes in the installed app**: fixing it means moving plugin data out of the home directory |
+| Time zone | **Yes** (`Asia/Kolkata` here). Left alone: providers' bare dates are read as local time (`BUG-08`), so a fake zone would move them, and the IP address gives away about as much |
+| Numeric user id, in `__CF_USER_TEXT_ENCODING` | Yes (501 here), set by macOS inside the process, and the same on most Macs |
+| Language and country | No: `en` and `001`, not the person's settings |
+| Hostname, MAC addresses, other processes, `user.name` | No, since `BUG-26` |
+| Environment variables, files in the home directory | No |
+
+**Which hosts each plugin contacted** is recorded by `OutboundGate` and printed by `--check-extensions`. **It is not on any screen.**
 ## BUG-28 — A plugin's update could run without being asked about · **high** · measured 2026-11-04
 
 **Status:** done · #125. The hold applied only to a file with scan warnings. So an update that scanned clean ran straight away, even for a
