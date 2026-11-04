@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -50,9 +51,22 @@ object SidePanelDefaults {
      * the TV focus band. Anchoring to the band rather than to y=464 is what makes the panel
      * correct on a screen that is not 540dp tall, and it is *why* the artboard says 464.
      *
+     * `TV Library` 5d and `TV Detail Player` 7e both put their `Done` row at artboard y928,
+     * which is this same 464dp, so the one region serves every panel that has a bottom row.
+     *
      * Should be promoted as `CloudStreamDimens.SidePanelCommitRegionHeight`.
      */
     val CommitRegionHeight: Dp = CloudStreamDimens.ListRowHeight + CloudStreamDimens.FocusBandInset
+
+    /**
+     * What the region above collapses to for a panel with **no** bottom row: the
+     * [CloudStreamDimens.FocusBandInset] (28dp) band alone.
+     *
+     * The band is not optional. It is where the last row's focus ring bleeds — 4dp of
+     * [CloudStreamDimens.FocusRingBleed] into a 28dp reserve — so a panel that gave its rows the
+     * full height would clip the ring on the bottom one. Only the 48dp row goes away.
+     */
+    val BandOnlyHeight: Dp = CloudStreamDimens.FocusBandInset
 
     /**
      * Gap between the header and the first row. Mirrors [CloudStreamDimens.MinFocusGap] (12dp).
@@ -78,19 +92,37 @@ object SidePanelDefaults {
  * opens this: a [CloudStreamDimens.SidePanelWidth] (280dp) panel anchored to the right edge, over
  * content that **stays mounted** behind it — see [SidePanelHost].
  *
- * ## Commit is explicit
+ * ## When a panel commits — `DEC-17`
  *
- * A panel that changes a setting must show its commit row, and the caller must not treat dismissal
- * as acceptance. This is not a style preference: the current app gets it wrong. In
- * `SingleSelectionHelper.showDialog` the Apply/Cancel row is present in
- * `player_select_source_and_subs.xml` but hidden — `applyHolder.isVisible = realShowApply` — for
- * every single-select picker, so tapping an item commits it and dismisses immediately. There is
- * nothing for Cancel to undo because the change already happened, and the button the user can see
- * in the multi-select case teaches them an expectation the single-select case breaks.
+ * **There is no Apply and no Cancel.** The rule is one line per panel kind:
  *
- * Put Apply and Cancel in [commit], keep the draft in the caller's state, and apply it only when
- * Apply is pressed. [SidePanelHost] raises `onDismissRequest` on BACK; that is a request to
- * *close*, and the caller decides whether closing discards.
+ * | Panel | Choice | When it applies | What BACK does |
+ * |---|---|---|---|
+ * | Subtitle, audio, sort | single | **at once**, on the row press | closes |
+ * | Sources | multi-select | on **Done** | closes, discarding |
+ *
+ * A single-choice panel therefore has nothing for an Apply to apply: pressing the row *is* the
+ * commit, which is what `TV Detail Player` 7e says in so many words — *"Every row carries its own
+ * trailing verb, so pressing the row IS the commit — there is no pending edit for Apply to apply
+ * or for a dismiss to swallow."* A multi-select panel holds its draft in the caller's state and
+ * writes it when Done is pressed.
+ *
+ * That leaves [commit] holding at most **one** control, and every board draws the same one: a
+ * `Done` row, full panel width, in the commit region — `TV Library` 5d and 5e, `TV Detail Player`
+ * 7e, all at artboard y928. On a single-choice panel it only closes; on a multi-select panel it
+ * applies and closes. A panel that needs neither passes nothing and the region collapses to the
+ * bottom band ([SidePanelDefaults.BandOnlyHeight]).
+ *
+ * What this rule replaces, and why it is not a style preference: the current app shows the
+ * Apply/Cancel row in `player_select_source_and_subs.xml` but hides it —
+ * `applyHolder.isVisible = realShowApply` — for every single-select picker, so tapping an item
+ * commits it and dismisses immediately. There was nothing for Cancel to undo because the change
+ * had already happened, and the button the user *could* see in the multi-select case taught them
+ * an expectation the single-select case broke. `DEC-17` keeps the behaviour that worked and drops
+ * the buttons that lied about it.
+ *
+ * [SidePanelHost] raises `onDismissRequest` on BACK. It is a request to *close*; the table above
+ * says what closing means for each kind, and the caller is the one that knows which kind it is.
  *
  * ## Geometry
  *
@@ -100,7 +132,8 @@ object SidePanelDefaults {
  * 128 │  row 0        48dp
  * 188 │  row 1        48dp         <- pitch 60 = 48 + SidePanelDefaults.RowGap
  * 248 │  row 2 ...                    (scrolls; the region takes the slack)
- * 464 │  commit row   48dp         <- 540 - SidePanelDefaults.CommitRegionHeight
+ * 464 │  commit row   48dp         <- 540 - SidePanelDefaults.CommitRegionHeight; `Done`, or
+ *     │                                  absent, in which case the rows reach 512 instead
  * 512 └──  28dp bottom band
  * ```
  *
@@ -113,8 +146,9 @@ object SidePanelDefaults {
  *   that changes either is a design change.
  * @param header the region above the rows, bottom-aligned so it sits
  *   [SidePanelDefaults.HeaderGap] above the first row. A `RailHeader` is the usual occupant.
- * @param commit the commit row — Apply and Cancel. Empty for a panel that only navigates; see the
- *   section above before leaving it empty for a panel that changes anything.
+ * @param commit the panel's bottom row, normally a single `Done` `ListRow`. `null` for a panel
+ *   that needs none, which collapses the region to [SidePanelDefaults.BandOnlyHeight]. **Not**
+ *   Apply and Cancel — see `DEC-17` above.
  * @param rows the panel's rows, normally `ListRow`s. Laid out in a [ColumnScope] at the design's
  *   pitch; add a scroll modifier here if the list can outgrow the region.
  */
@@ -122,7 +156,7 @@ object SidePanelDefaults {
 fun SidePanel(
     modifier: Modifier = Modifier,
     header: @Composable () -> Unit = {},
-    commit: @Composable () -> Unit = {},
+    commit: (@Composable () -> Unit)? = null,
     rows: @Composable ColumnScope.() -> Unit,
 ) {
     val colors = CloudStreamTheme.colors
@@ -147,11 +181,15 @@ fun SidePanel(
             verticalArrangement = Arrangement.spacedBy(SidePanelDefaults.RowGap),
             content = rows,
         )
-        Box(
-            modifier = Modifier.fillMaxWidth().height(SidePanelDefaults.CommitRegionHeight),
-            contentAlignment = Alignment.TopStart,
-            content = { commit() },
-        )
+        if (commit == null) {
+            Spacer(Modifier.height(SidePanelDefaults.BandOnlyHeight))
+        } else {
+            Box(
+                modifier = Modifier.fillMaxWidth().height(SidePanelDefaults.CommitRegionHeight),
+                contentAlignment = Alignment.TopStart,
+                content = { commit() },
+            )
+        }
     }
 }
 

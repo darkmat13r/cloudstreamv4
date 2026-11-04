@@ -346,3 +346,140 @@ the rail. Removing focus entry there sends LEFT to `Downloads` instead of `Libra
 holds the geometry on the desktop scene. Nothing in `:app` uses the rail yet, so returning focus on RIGHT is untested. The
 screenshot cases are in `core/screenshot/.../NavRailScreenshots.kt`. They compile, and render nothing until `DS-04` is
 unblocked. Whether the expanded case captures after its focus effect runs cannot be known until then.
+
+---
+
+## DS-10 — Batch A of the TV kit: panel motion, two focusable-when-disabled targets, the trailing focus stop, and the text field
+
+**Status:** done · **Scope:** `:core:designsystem`, plus the one call site in `:feature:search`
+
+Five gaps from `docs/plans/tv-screen-audit.md` §3's "Missing from `Components.dc.html`" table, which
+is also the queue's `Q3` — the batch every panel board (4d, 5d, 5e, 7e) and every row-with-verbs
+board (6d, 7c, 8b, 8c, 4c) waits on.
+
+| What | Where | Board |
+|---|---|---|
+| Panel slide, 240ms ease-out, interruptible | `panel/SidePanelHost.kt` | `Components` §05 |
+| Disabled-but-focusable text button | `target/TextButton.kt` | `Components` §01 |
+| `ListRow` trailing focus stops | `rows/ListRow.kt` | `Components` §03, `TV Episodes Downloads` 6d |
+| Disabled row that is still a stop | `rows/ListRowState.kt` | `TV Library` 5d |
+| A public text field | `target/TextField.kt` | `TV Search` 4a–4c |
+| Selected marker is `muted`, not `ink` | `primitive/SelectionMarker.kt` | `Components` §03 |
+
+Each new behaviour is **opt-in**: `focusableWhenDisabled` on the two buttons and on `ListRowState`,
+`actions` on `ListRow`. Every caller that predates this task renders and behaves exactly as it did,
+which is why the defaults are the old behaviour and not the board's.
+
+### `DEC-17` is implemented here too
+
+The ruling arrived mid-task: a single-choice panel (subtitle, audio, sort) applies **at once**, a
+multi-select panel (sources) applies on **Done**, BACK closes either, and there is no Apply/Cancel.
+`SidePanel`'s KDoc said the opposite — it required both buttons and told callers to hold a draft —
+so it was rewritten, and `commit` became nullable so a panel that needs no bottom row collapses the
+region to the 28dp focus band instead of reserving 76dp for nothing. The previews were drawing the
+retired Apply/Cancel pair and now draw 5d's `Done` row.
+
+### The selected marker was white, and the boards forbid that
+
+`SelectionMarker`'s `color` defaulted to `ink`, so a selected row drew a white bar. `Components`
+§03 states the prohibition directly — *"raised fill plus a muted 4px marker, **never a white
+bar**"* — and all five TV boards encode it in one line of CSS, `.lrow.sel .lmark { background:
+var(--mut) }` (`Components:148`, `TV Library:149`, `TV Detail Player:108`,
+`TV Episodes Downloads:97`, `TV Search Suggestions:123`). White means focus; a white marker says
+"you are here" about a row the user is not on.
+
+The default is now `muted`. **Nothing else on screen changed**, which was checked before the edit
+rather than after: `SelectionMarker`'s only caller in the repo is `ListRow`, and of `ListRow`'s
+four callers outside this module — `SearchRecentColumn.kt:73,82`, `DetailScreenTv.kt:231,267` and
+`DesignSystemScreenshots.kt` — only the screenshot suite ever passes `selected = true`, and that
+suite has no committed reference images to invalidate because the plugin does not render on this
+toolchain (`DEC-10`, `.claude/rules/screenshot-testing.md`).
+
+**Still open, and deliberately not done here:** the same sentence also gives a selected row a
+**`raised` fill**, and `ListRow` paints no background at all. That is a visible change to every
+selected row rather than a correction to one token, so it wants its own change and its own look at
+the diff.
+
+### What the tests found that reading would not have
+
+Five defects, four of them in `SidePanelHost`'s pre-existing focus handling and one in this task's
+own new code. None was visible in a diff; each came off a failing assertion.
+
+1. **The focus restore never worked.** `SidePanelHost`'s KDoc promised that closing a panel returns
+   focus to the control that opened it. It did not: the trap, `onExit = { cancelFocusChange() }`,
+   also cancels the host's own `contentFocus.requestFocus()`, because that has to move focus out of
+   a row *inside* the trapped group. The close cleared focus and never re-placed it, leaving the
+   screen with **nothing focused** — the dead TV screen `focusableWhenDisabled` exists to prevent,
+   one layer up. The cancellation is now gated on the panel being open, read live inside the
+   callback. `SidePanel` has no callers, so this had never run anywhere but in a test.
+2. **Why nobody had seen it.** A `focusProperties { canFocus = … }` sat *before* `focusGroup()`,
+   and `focusGroup()` is itself `focusProperties { canFocus = false }.focusTarget()`, so it
+   overwrote the line and left the group focusable. Focus landed on the **group**, never on a row,
+   so moving it away was never an exit for the trap to block. Removing the dead line put focus on
+   the first row — where the design wants it — and that is what exposed 1.
+3. **A disabled-but-focusable control had no accessible name.** This task's own new code.
+   `clickable` and `selectable` both apply `semantics(mergeDescendants = true)`, which is what
+   lifts a row's title off its child `BasicText` onto the focused node; the new
+   `focusableWhenDisabled` path used a plain `semantics {}`, which merges nothing. The device test
+   read the focused stops as `node#150` and `node#159`. So 5d's row would have been reachable and
+   **anonymous**, and the reason it exists to show would not have been announced — the feature
+   exactly inverted. Both paths now merge.
+4. **A D-pad press during the exit drops focus.** Three frames into the 240ms slide-out, a RIGHT
+   move does not re-enter the leaving panel but does not stay on the opener either: nothing is
+   focused until the panel unmounts. **Not fixed** — the remaining fix is for the host's *content*
+   group to refuse to yield focus while a panel leaves, which is a behaviour change to pre-existing
+   code and wants its own diff. The JVM test asserts today's behaviour on purpose, so closing the
+   gap fails that test and points at the KDoc to update.
+5. **One of the tests was vacuous**, which is how the harness got written down. Arrow keys move no
+   focus in an offscreen `ImageComposeScene` — not even for an ordinary enabled button — so the
+   first "a leaving panel does not take focus back" passed while moving nothing at all. The D-pad
+   is now driven through `FocusManager.moveFocus`, which is what an Android press ends up calling.
+   Separately, an animation's first frame after launch is a *seed*: `animateTo` suspends on
+   `withFrameNanos` to learn its start time, so a single frame rendered 120ms into a 240ms slide
+   finds the panel at zero.
+
+### Tests
+
+| Suite | Count | Where |
+|---|---|---|
+| JVM, `:core:designsystem:jvmTest` | 24 new (31 in the module) | `SidePanelMotionTest` 8, `ListRowStopsTest` 6, `TextButtonFocusTest` 5, `TextFieldTest` 5 |
+| Device, `connectedAndroidDeviceTest` | 5 | `FocusStopsDeviceTest`, on `Television_720p` |
+
+The JVM suite drives focus with `FocusManager.moveFocus` and reads geometry off measured bounds and
+rendered pixels; `core/designsystem/src/jvmTest/.../harness/SceneHarness.kt` holds the scene, the
+D-pad and the pixel probe, with the two traps above documented on the methods that exist because of
+them.
+
+The device suite is for the half the JVM cannot reach: Android's two-dimensional focus search picks
+a candidate by **geometry**, so whether a 48dp cell 12dp to the right of a row is what RIGHT finds
+— board 6d's arithmetic — is not demonstrable on the desktop focus owner at any effort. It is now
+measured: `Ozymandias → Play → Delete` and back by real D-pad, no dead ends, no traps. It also names
+each stop by its accessible label, which is what caught 3.
+
+### Three things found while checking the audit against the boards and the code
+
+1. **8c does not need a disabled row.** §3 lists "Disabled row with a reason, still a stop" as
+   needed by "5d, 8c row 5". On 8c row 5 is `dune messiah` with an honest `0 SOURCES`, and its
+   markup carries `class="zero"` on the *count* — `.trail .lt.zero { color: var(--mut); }` — not
+   `off` on the row. It is a normal, reachable row with a muted count. **5d is the only board that
+   needs this.**
+2. **`:core:designsystem` has no ABI dump to update.** `abiValidation` is switched on by
+   `cloudstream.kmp.extension-api` only (`build-logic/convention/src/main/kotlin/cloudstream.kmp.extension-api.gradle.kts:58`);
+   this module applies `cloudstream.kmp.compose`, which does not. The six `api/*.api` files in the
+   tree are `:app`, `:library`, `:core:model`, `:core:data`, `:core:common` and `:core:network`.
+   A public API change here is reviewed from the diff, not from a dump.
+3. **The text field's hairline consumes a dp that the board's does not.** `TV Search` draws the
+   field's edge as `box-shadow: inset 0 0 0 1px var(--line)`, which costs no layout, so text starts
+   at exactly the 12dp padding. The code uses `Modifier.border`, which insets the content box, so
+   text starts at 13dp — one dp off the step, for exactly the reason `GhostTextButton`'s KDoc gives
+   and solves with a draw-only `hairlineOutline`. **Carried over unchanged**, because this task
+   promised the search screen would render identically; it wants its own one-line change and its own
+   look at the diff.
+
+### Promotions this leaves for `:core:theme`
+
+`TextFieldDefaults.Height` (48dp) and `TextFieldDefaults.HorizontalPadding` (12dp), and
+`SidePanelDefaults.BandOnlyHeight`. The existing list in `ListRowDefaults`, `SidePanelDefaults`,
+`TextButtonDefaults`, `ChipDefaults` and `IconCellDefaults` is unchanged.
+
+---
