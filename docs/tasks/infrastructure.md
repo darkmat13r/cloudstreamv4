@@ -665,7 +665,7 @@ reachable, no dead ends, no traps".
 
 - **Landing on the query field with the D-pad opens the keyboard**, and the keyboard then takes the D-pad until
   Back closes it. Moving Up from a card and then Right to `Sources` needs a Back in between.
-  `FocusGraph.keyboardOpenedOn` records it and `SearchScreenTvDeviceTest` pins it, so changing it fails a test.
+  `FocusGraph.keyboardOpenedOn` records it. Fixed by `BUG-30`, and the test now asserts the keyboard does not open.
 - **Down from the field lands on the first rail's third card**, the nearest to the field's centre, not its first.
 - **Right from the last card of a rail goes to `Sources`**, above it, instead of staying on the rail.
 

@@ -83,6 +83,9 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
  *   something, in which case name what it submits — the search screen passes [ImeAction.Search].
  * @param onSubmit invoked when the action key is pressed. Defaults to doing nothing, which is
  *   correct for a field whose value is read from elsewhere.
+ * @param keyboardOnOk on a D-pad, landing on the field only highlights it, and OK or Enter opens the
+ *   keyboard. Off by default, where landing on it opens the keyboard, which then takes the D-pad until
+ *   Back closes it. See [KeyboardOnOk].
  */
 @Composable
 fun TextField(
@@ -92,12 +95,14 @@ fun TextField(
     modifier: Modifier = Modifier,
     imeAction: ImeAction = ImeAction.Done,
     onSubmit: () -> Unit = {},
+    keyboardOnOk: Boolean = false,
 ) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
     val interactionSource = remember { MutableInteractionSource() }
     val focused by interactionSource.collectIsFocusedAsState()
     val shape = CloudStreamTheme.shapes.medium
+    val keyboard = remember { KeyboardOnOk() }
 
     Box(
         modifier = modifier
@@ -111,13 +116,19 @@ fun TextField(
         BasicTextField(
             value = value,
             onValueChange = onValueChange,
-            modifier = Modifier.fillMaxWidth(),
+            modifier = if (keyboardOnOk) Modifier.fillMaxWidth().then(keyboard.modifier) else Modifier.fillMaxWidth(),
+            readOnly = keyboardOnOk && keyboard.readOnly,
             textStyle = typography.body.copy(color = colors.ink),
             singleLine = true,
             cursorBrush = SolidColor(colors.ink),
             interactionSource = interactionSource,
             keyboardOptions = KeyboardOptions(imeAction = imeAction),
-            keyboardActions = KeyboardActions(onAny = { onSubmit() }),
+            keyboardActions = KeyboardActions(
+                onAny = {
+                    keyboard.close()
+                    onSubmit()
+                },
+            ),
         )
         if (value.isEmpty()) {
             BasicText(

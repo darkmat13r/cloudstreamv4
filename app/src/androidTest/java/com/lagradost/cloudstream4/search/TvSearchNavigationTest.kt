@@ -15,6 +15,8 @@ import com.lagradost.cloudstream3.ui.setup.HAS_DONE_SETUP_KEY
 import com.lagradost.cloudstream4.core.devicetest.Dpad
 import com.lagradost.cloudstream4.core.devicetest.DpadDriver
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -74,8 +76,36 @@ class TvSearchNavigationTest {
             assertEquals(graph.toString(), emptyList<String>(), graph.unreachable(listOf(SOURCES, RAIL_SEARCH)))
             assertEquals(graph.toString(), emptyList<String>(), graph.deadEnds())
             assertEquals(graph.toString(), emptyList<String>(), graph.traps())
+            assertEquals(graph.toString(), emptySet<String>(), graph.keyboardOpenedOn)
         }
     }
+
+    /** `BUG-30` on the live path: landing on the field only highlights it, and OK opens the keyboard. */
+    @Test
+    fun okOpensTheKeyboardAndBackKeepsTheScreen() {
+        ActivityScenario.launch(MainActivity::class.java).use { scenario ->
+            openSearchFromTheRail()
+
+            // Right leaves the rail for the chip beside the field or the action below it.
+            var field = dpad.press(Dpad.Right)
+            repeat(RAIL_PRESSES) {
+                if (!field.isField()) field = dpad.press(if (field == SOURCES) Dpad.Left else Dpad.Up)
+            }
+            assertTrue("Never reached the field, last on $field", field.isField())
+            assertFalse("Landing on the field opened the keyboard", dpad.keyboardOpens(NO_KEYBOARD_WAIT_MS))
+
+            dpad.center()
+            assertTrue("OK did not open the keyboard", dpad.keyboardOpens(KEYBOARD_WAIT_MS))
+
+            dpad.closeKeyboard()
+            assertFalse("The keyboard came back", dpad.keyboardOpens(NO_KEYBOARD_WAIT_MS))
+            assertEquals(SearchTvFragment::class.java, scenario.currentFragment()?.javaClass)
+            assertEquals(field, dpad.focused())
+        }
+    }
+
+    /** The empty field has no text to be named by, so the driver names it by class and bounds. */
+    private fun String?.isField() = this?.startsWith(EDIT_TEXT_CLASS) == true
 
     private companion object {
         const val RAIL_SEARCH = "Search"
@@ -84,5 +114,8 @@ class TvSearchNavigationTest {
         const val SCREEN_WAIT_MS = 10_000L
         const val SETUP_BACK_PRESSES = 3
         const val RAIL_PRESSES = 6
+        const val NO_KEYBOARD_WAIT_MS = 3_000L
+        const val KEYBOARD_WAIT_MS = 10_000L
+        const val EDIT_TEXT_CLASS = "android.widget.EditText"
     }
 }

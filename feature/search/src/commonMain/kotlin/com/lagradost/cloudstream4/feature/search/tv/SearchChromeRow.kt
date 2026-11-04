@@ -57,6 +57,7 @@ internal fun SearchChromeRow(
             modifier = Modifier.weight(FIELD_WEIGHT),
             imeAction = ImeAction.Search,
             onSubmit = { onAction(SearchAction.Submit) },
+            keyboardOnOk = true,
         )
         Chip(
             label = stringResource(Res.string.search_tv_sources_label),
