@@ -70,6 +70,7 @@ import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopIconButton
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopMotion
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
+import com.lagradost.cloudstream4.core.strings.generated.resources.audio_tracks
 import com.lagradost.cloudstream4.core.strings.generated.resources.error_loading_links_toast
 import com.lagradost.cloudstream4.core.strings.generated.resources.go_back
 import com.lagradost.cloudstream4.core.strings.generated.resources.loading
@@ -99,9 +100,10 @@ import org.jetbrains.compose.resources.stringResource
 /**
  * The desktop player (`docs/plans/desktop-design.md`): full-bleed video, one seek track, transport, and
  * volume and subtitles. Space pauses, left and right skip, up and down change the volume, M mutes, C opens
- * the subtitle list, R how the picture fits the window, F or Cmd+F toggles full screen; Escape is the window's.
+ * the subtitle list, A the audio tracks when there is more than one, R how the picture fits the window, F or Cmd+F
+ * toggles full screen; Escape is the window's.
  *
- * The source and audio selectors are not built. Lives in `:desktopApp` rather than a shared module because
+ * The source selector is not built. Lives in `:desktopApp` rather than a shared module because
  * it is bound to [VlcPlayer].
  *
  * @param player started and released by this screen, so leaving it stops the audio.
@@ -136,6 +138,7 @@ internal fun PlayerScreen(
     val frame by player.frame.collectAsState()
     val pictureSize by player.pictureSize.collectAsState()
     val status by player.status.collectAsState()
+    val audio by player.audio.collectAsState()
     var started by remember { mutableStateOf(true) }
     DisposableEffect(player, link) {
         started = player.play(link.url, link.referer, link.userAgent, link.audioUrl)
@@ -174,6 +177,7 @@ internal fun PlayerScreen(
         modifier = modifier,
         fullscreen = fullscreen,
         volume = desktopPlayerVolume,
+        audio = audio,
         fit = desktopPictureFit,
     )
 }
@@ -194,6 +198,7 @@ internal fun PlayerContent(
     pictureSize: IntSize? = null,
     fullscreen: PlayerFullscreen? = null,
     volume: PlayerVolume = remember { PlayerVolume() },
+    audio: AudioTracks = AudioTracks(),
     fit: PictureFitChoice = remember { PictureFitChoice() },
 ) {
     LaunchedEffect(controls, volume.audible) { controls.setVolume(volume.audible) }
@@ -206,7 +211,9 @@ internal fun PlayerContent(
     var hudVisible by remember { mutableStateOf(true) }
     var pickerOpen by remember { mutableStateOf(false) }
     var fitOpen by remember { mutableStateOf(false) }
-    val listOpen = pickerOpen || fitOpen
+    var audioWanted by remember { mutableStateOf(false) }
+    val audioOpen = audioWanted && audio.choosable && !status.failed
+    val listOpen = pickerOpen || fitOpen || audioOpen
     val failed = status.failed
     val fullscreenOn = fullscreen?.on == true
     SideEffect {
@@ -214,6 +221,7 @@ internal fun PlayerContent(
             when {
                 pickerOpen -> pickerOpen = false
                 fitOpen -> fitOpen = false
+                audioOpen -> audioWanted = false
                 fullscreenOn -> fullscreen?.toggle()
                 else -> onBack()
             }
@@ -235,6 +243,7 @@ internal fun PlayerContent(
     // Held while the list is open. It grows upward from its foot, so a track arriving would slide the row under the
     // pointer just as it is clicked. An empty list has no rows to slide, so the first tracks do appear in it.
     val listed = remember(pickerOpen, tracks.isEmpty()) { tracks }
+    val audioListed = remember(audioOpen) { audio.tracks }
     val seekBy: (Long) -> Unit = { delta ->
         clock.onSeekBy(delta)
         controls.seekBy(delta)
@@ -263,6 +272,10 @@ internal fun PlayerContent(
                             pickerOpen = false
                             true
                         }
+                        Key.A -> {
+                            audioWanted = false
+                            true
+                        }
                         Key.R -> {
                             fitOpen = false
                             true
@@ -278,6 +291,7 @@ internal fun PlayerContent(
                     Key.DirectionDown -> volume.step(-PlayerVolume.STEP)
                     Key.M -> volume.toggleMute()
                     Key.C -> if (!failed) pickerOpen = true
+                    Key.A -> if (audio.choosable && !failed) audioWanted = true
                     Key.R -> fitOpen = true
                     // F alone or with Cmd: the modifier is not read, so both come here.
                     Key.F -> fullscreen?.toggle() ?: return@onPreviewKeyEvent false
@@ -337,7 +351,20 @@ internal fun PlayerContent(
                             value = selection.track()?.label ?: stringResource(Res.string.no_subtitles),
                             onClick = {
                                 fitOpen = false
+                                audioWanted = false
                                 pickerOpen = !pickerOpen
+                            },
+                            modifier = Modifier.weight(1f),
+                        )
+                    }
+                    if (audio.choosable && !failed) {
+                        PlayerSelector(
+                            label = stringResource(Res.string.audio_tracks),
+                            value = audio.playing?.readout ?: stringResource(Res.string.loading),
+                            onClick = {
+                                pickerOpen = false
+                                fitOpen = false
+                                audioWanted = !audioWanted
                             },
                             modifier = Modifier.weight(1f),
                         )
@@ -347,6 +374,7 @@ internal fun PlayerContent(
                         value = stringResource(fit.current.words()),
                         onClick = {
                             pickerOpen = false
+                            audioWanted = false
                             fitOpen = !fitOpen
                         },
                         modifier = Modifier.weight(1f),
@@ -364,6 +392,16 @@ internal fun PlayerContent(
                         )
                     }
                 },
+            )
+        }
+        if (audioOpen) {
+            AudioTrackPicker(
+                audio = audio.copy(tracks = audioListed),
+                onSelect = { track ->
+                    controls.selectAudioTrack(track.id)
+                    audioWanted = false
+                },
+                onDismiss = { audioWanted = false },
             )
         }
         if (fitOpen) {

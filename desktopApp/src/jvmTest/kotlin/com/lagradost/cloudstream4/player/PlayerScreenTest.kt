@@ -70,6 +70,12 @@ class PlayerScreenTest {
             log += "to"
         }
 
+        val audioChoices = mutableListOf<Int>()
+
+        override fun selectAudioTrack(id: Int) {
+            audioChoices += id
+        }
+
         val volumes = mutableListOf<Int>()
 
         override fun setVolume(percent: Int) {
@@ -87,6 +93,7 @@ class PlayerScreenTest {
         pictureSize: IntSize? = null,
         fullscreen: PlayerFullscreen? = null,
         val volume: PlayerVolume = PlayerVolume(),
+        audio: AudioTracks = AudioTracks(),
         val fit: PictureFitChoice = PictureFitChoice(),
     ) {
         val calls = Calls()
@@ -111,6 +118,7 @@ class PlayerScreenTest {
                             setEscape = { escape = it },
                             fullscreen = fullscreen,
                             volume = volume,
+                            audio = audio,
                             fit = fit,
                         )
                     }
@@ -624,6 +632,101 @@ class PlayerScreenTest {
         } finally {
             directory.deleteRecursively()
         }
+    }
+
+    private val threeTracks = AudioTracks(
+        listOf(
+            AudioTrack(1, "Original - [English]", 6, "eac3"),
+            AudioTrack(2, "Track 2 - [German]", 2, "mp4a"),
+            AudioTrack(3, "Commentary gnp.exe - [Hindi]", 1, "mp4a"),
+        ),
+        selected = 1,
+    )
+
+    @Test
+    fun `A and the arrows choose an audio track, and nothing else happens to playback`() {
+        val screen = Screen(audio = threeTracks)
+        screen.settle()
+        screen.press(Key.A)
+        screen.press(Key.DirectionDown)
+        screen.press(Key.Enter)
+        assertEquals(listOf(2), screen.calls.audioChoices)
+        assertEquals(emptyList(), screen.calls.log)
+        // The list has gone: the right arrow seeks again.
+        screen.press(Key.DirectionRight)
+        assertEquals(listOf("by 10000"), screen.calls.log)
+        screen.scene.close()
+    }
+
+    @Test
+    fun `the selector between subtitles and picture size opens the audio tracks, at the smallest window`() {
+        val screen = Screen(width = 800, height = 450, audio = threeTracks)
+        screen.settle()
+        screen.save("audio-selector")
+        // Three selectors of one width, so this one is in the middle.
+        screen.click(Offset(screen.width / 2f, screen.button.y))
+        screen.save("audio-tracks")
+        // The last row, at the foot of the list.
+        screen.click(Offset(screen.panelX, screen.height - 132f - 8f - 4f - 24f))
+        assertEquals(listOf(3), screen.calls.audioChoices)
+        screen.scene.close()
+    }
+
+    @Test
+    fun `one track is nothing to choose, so no selector and A does nothing`() {
+        val one = AudioTracks(listOf(AudioTrack(1, "Only")), selected = 1)
+        val screen = Screen(audio = one)
+        screen.settle()
+        screen.press(Key.A)
+        // No list took the keys, so the arrow seeks.
+        screen.press(Key.DirectionRight)
+        assertEquals(listOf("by 10000"), screen.calls.log)
+        screen.scene.close()
+    }
+
+    @Test
+    fun `escape closes the audio list before full screen and the player, and A closes it too`() {
+        val window = WindowState()
+        val screen = Screen(fullscreen = PlayerFullscreen(window), audio = threeTracks)
+        screen.settle()
+        screen.press(Key.F)
+        screen.press(Key.A)
+        screen.escape()
+        screen.settle()
+        assertEquals(WindowPlacement.Fullscreen, window.placement)
+        assertEquals(0, screen.backs)
+        screen.press(Key.A)
+        screen.press(Key.A)
+        screen.press(Key.DirectionRight)
+        assertEquals(listOf("by 10000"), screen.calls.log)
+        assertEquals(emptyList(), screen.calls.audioChoices)
+        screen.scene.close()
+    }
+
+    @Test
+    fun `a click on the selector with another list open only closes that list, and the next one opens`() {
+        val screen = Screen(audio = threeTracks)
+        screen.settle()
+        screen.press(Key.C)
+        screen.click(Offset(screen.width / 2f, screen.button.y))
+        screen.press(Key.DirectionRight)
+        assertEquals(listOf("by 10000"), screen.calls.log)
+        screen.click(Offset(screen.width / 2f, screen.button.y))
+        screen.settle()
+        screen.press(Key.DirectionDown)
+        screen.press(Key.Enter)
+        assertEquals(listOf(2), screen.calls.audioChoices)
+        screen.scene.close()
+    }
+
+    @Test
+    fun `a stream that failed has no audio list to open`() {
+        val screen = Screen(status = PlayerStatus(failed = true, buffering = false), audio = threeTracks)
+        screen.settle()
+        screen.press(Key.A)
+        screen.press(Key.DirectionRight)
+        assertEquals(listOf("by 10000"), screen.calls.log)
+        screen.scene.close()
     }
 
     @Test
