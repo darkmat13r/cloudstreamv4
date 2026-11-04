@@ -183,6 +183,7 @@ class HostileApi : MainAPI() {
                     "forged"
                 }
                 "hostile-text" -> "evil\u001B[2J\nforged line"
+                "attempt" -> EscapeAttempts.run(argument)
                 else -> "unknown"
             }
         } catch (denied: Exception) {
