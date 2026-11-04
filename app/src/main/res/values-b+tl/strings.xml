@@ -172,9 +172,17 @@
 <string name="play_with_app_name">"I-play gamit ang CloudStream"</string>
 <string name="player_enter_fullscreen">"Mag-fullscreen"</string>
 <string name="player_exit_fullscreen">"Lumabas sa fullscreen"</string>
+<string name="player_fit_original">"Orihinal na aspect ratio"</string>
+<string name="player_fit_screen">"Punuin ang screen"</string>
+<string name="player_fit_title">"Laki ng larawan"</string>
+<string name="player_fit_width">"Punuin ang lapad"</string>
 <string name="player_mute">"I-mute"</string>
 <string name="player_size_settings">"Pindutan upang baguhin ang laki"</string>
 <string name="player_size_settings_des">"Alisin ang black borders"</string>
+<string name="player_source_playing">"Nagpe-play"</string>
+<string name="player_source_resumes_at" formatted="true">"Mananatili ang posisyon mo sa paglipat: magpapatuloy sa %1$s"</string>
+<string name="player_source_retry">"Subukang muli"</string>
+<string name="player_source_switch">"Lumipat"</string>
 <string name="player_speed">"Bilis ng Playback"</string>
 <string name="player_speed_text_format" formatted="true">"Bilis (%.2fx)"</string>
 <string name="player_subtitles_settings">"Subtitles"</string>

@@ -417,6 +417,10 @@
 <string name="play_with_app_name">"مَشّي بـ\"كلود ستريم\""</string>
 <string name="player_enter_fullscreen">"فوت عالشاشة الكاملة"</string>
 <string name="player_exit_fullscreen">"اطلع من الشاشة الكاملة"</string>
+<string name="player_fit_original">"نسبة العرض الأصلية"</string>
+<string name="player_fit_screen">"عبّي الشاشة"</string>
+<string name="player_fit_title">"حجم الصورة"</string>
+<string name="player_fit_width">"عبّي العرض"</string>
 <string name="player_is_live">"لايڤ"</string>
 <string name="player_load_one_subtitle_online">"أفّي اللودينگ تلقائيًا"</string>
 <string name="player_load_subtitles">"فتاح من ملف"</string>
@@ -431,6 +435,10 @@
 <string name="player_settings_select_cast_device">"نقي جهاز الكاست"</string>
 <string name="player_size_settings">"كبسة تغيير حجم الڤيديو"</string>
 <string name="player_size_settings_des">"شيل الأسود من الأطراف"</string>
+<string name="player_source_playing">"عم يشتغل"</string>
+<string name="player_source_resumes_at" formatted="true">"التبديل بيحافظ على مكانك: بيكمّل من %1$s"</string>
+<string name="player_source_retry">"جرّب كمان مرة"</string>
+<string name="player_source_switch">"بدّل"</string>
 <string name="player_speed">"سرعة الڤيديو"</string>
 <string name="player_speed_text_format" formatted="true">"السرعة (%.2fx)"</string>
 <string name="player_subtitles_settings">"الترجمة"</string>

@@ -418,6 +418,10 @@
 <string name="play_with_app_name">Reproducir con Cloudstream</string>
 <string name="player_enter_fullscreen">Activar pantalla completa</string>
 <string name="player_exit_fullscreen">Salir de pantalla completa</string>
+<string name="player_fit_original">Relación de aspecto original</string>
+<string name="player_fit_screen">Llenar pantalla</string>
+<string name="player_fit_title">Tamaño de imagen</string>
+<string name="player_fit_width">Ajustar al ancho</string>
 <string name="player_is_live">En Vivo</string>
 <string name="player_load_one_subtitle_online">Cargar primero disponible</string>
 <string name="player_load_subtitles">Cargar desde archivo</string>
@@ -432,6 +436,10 @@
 <string name="player_settings_select_cast_device">Seleccionar el dispositivo para transmitir</string>
 <string name="player_size_settings">Botón de cambio de tamaño del reproductor</string>
 <string name="player_size_settings_des">Eliminar bordes negros</string>
+<string name="player_source_playing">Reproduciendo</string>
+<string name="player_source_resumes_at">Cambiar mantiene tu posición: continúa en %1$s</string>
+<string name="player_source_retry">Reintentar</string>
+<string name="player_source_switch">Cambiar</string>
 <string name="player_speed">Velocidad del reproductor</string>
 <string name="player_speed_text_format">Velocidad (%.2f×)</string>
 <string name="player_subtitles_settings">Subtítulos</string>

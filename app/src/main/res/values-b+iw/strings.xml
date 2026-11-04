@@ -306,6 +306,10 @@
 <string name="play_with_app_name">"נגן עם קלאודסטרים"</string>
 <string name="player_enter_fullscreen">"כניסה למסך מלא"</string>
 <string name="player_exit_fullscreen">"יציאה ממסך מלא"</string>
+<string name="player_fit_original">"יחס גובה־רוחב מקורי"</string>
+<string name="player_fit_screen">"מילוי מסך"</string>
+<string name="player_fit_title">"גודל תמונה"</string>
+<string name="player_fit_width">"מילוי רוחב"</string>
 <string name="player_load_subtitles">"טען מקובץ"</string>
 <string name="player_load_subtitles_online">"טען מהאינטרנט"</string>
 <string name="player_loaded_subtitles" formatted="true">"נטען %s"</string>
@@ -314,6 +318,10 @@
 <string name="player_settings_play_in_app">"נגן פנימי"</string>
 <string name="player_size_settings">"כפתור שינוי גודל הנגן"</string>
 <string name="player_size_settings_des">"הסר את הגבולות השחורים"</string>
+<string name="player_source_playing">"מתנגן"</string>
+<string name="player_source_resumes_at" formatted="true">"ההחלפה שומרת על המיקום שלך: ממשיך מ-%1$s"</string>
+<string name="player_source_retry">"ניסיון חוזר"</string>
+<string name="player_source_switch">"החלפה"</string>
 <string name="player_speed">"מהירות הנגן"</string>
 <string name="player_speed_text_format" formatted="true">"מהירות (%.2fx)"</string>
 <string name="player_subtitles_settings">"כתוביות"</string>

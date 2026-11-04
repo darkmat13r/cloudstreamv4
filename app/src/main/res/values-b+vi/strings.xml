@@ -418,6 +418,10 @@
 <string name="play_with_app_name">"Phát bằng CloudStream"</string>
 <string name="player_enter_fullscreen">"Chuyển sang chế độ toàn màn hình"</string>
 <string name="player_exit_fullscreen">"Thoát khỏi chế độ toàn màn hình"</string>
+<string name="player_fit_original">"Tỷ lệ gốc"</string>
+<string name="player_fit_screen">"Lấp đầy màn hình"</string>
+<string name="player_fit_title">"Kích thước hình ảnh"</string>
+<string name="player_fit_width">"Lấp đầy chiều rộng"</string>
 <string name="player_is_live">"Trực tiếp"</string>
 <string name="player_load_one_subtitle_online">"Tải phụ đề đầu tiên có sẵn"</string>
 <string name="player_load_subtitles">"Chọn từ tệp"</string>
@@ -432,6 +436,10 @@
 <string name="player_settings_select_cast_device">"Chọn thiết bị truyền"</string>
 <string name="player_size_settings">"Nút thay đổi kích thước trình phát"</string>
 <string name="player_size_settings_des">"Xóa bỏ các viền đen"</string>
+<string name="player_source_playing">"Đang phát"</string>
+<string name="player_source_resumes_at" formatted="true">"Chuyển vẫn giữ vị trí của bạn: tiếp tục từ %1$s"</string>
+<string name="player_source_retry">"Thử lại"</string>
+<string name="player_source_switch">"Chuyển"</string>
 <string name="player_speed">"Tốc độ phát"</string>
 <string name="player_speed_text_format" formatted="true">"Tốc độ (%.2fx)"</string>
 <string name="player_subtitles_settings">"Phụ đề"</string>

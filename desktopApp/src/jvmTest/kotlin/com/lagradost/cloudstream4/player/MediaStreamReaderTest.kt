@@ -104,6 +104,121 @@ class MediaStreamReaderTest {
         return statuses
     }
 
+    private fun DataOutputStream.audioTracks(selected: Int, vararg tracks: Pair<Int, String>) {
+        writeByte(MediaProtocol.MESSAGE_AUDIO_TRACKS.toInt())
+        writeInt(tracks.size)
+        writeInt(selected)
+        tracks.forEach { (id, name) ->
+            writeInt(id)
+            writeInt(2)
+            val bytes = name.encodeToByteArray()
+            writeInt(bytes.size)
+            write(bytes)
+            val codec = "mp4a".encodeToByteArray()
+            writeInt(codec.size)
+            write(codec)
+        }
+    }
+
+    private fun audio(block: DataOutputStream.() -> Unit): List<AudioTracks> {
+        val lists = mutableListOf<AudioTracks>()
+        MediaStreamReader(stream(block), Recording(), { lists += it }) {}.readAll()
+        return lists
+    }
+
+    @Test
+    fun `audio tracks arrive as listed, with the one playing`() {
+        val list = audio { audioTracks(2, 1 to "English", 2 to "Deutsch") }.single()
+        assertEquals(listOf(AudioTrack(1, "English", 2, "mp4a"), AudioTrack(2, "Deutsch", 2, "mp4a")), list.tracks)
+        assertEquals(2, list.selected)
+        assertTrue(list.choosable)
+    }
+
+    @Test
+    fun `a track name cannot reorder itself or hide, and one with nothing left says its position`() {
+        val tracks = audio {
+            audioTracks(AudioTracks.NONE, 1 to "Commentary \u202Egnp.exe", 2 to "a\u0000b\nc\u2028d\u200F", 3 to " \u202E\u0007 ")
+        }.single().tracks
+        assertEquals(listOf("Commentary gnp.exe", "abcd", "3"), tracks.map { it.name })
+    }
+
+    @Test
+    fun `a host cannot list more tracks than the limit`() {
+        val many = Array(MediaProtocol.MAX_AUDIO_TRACKS + 1) { it to "t" }
+        assertFailsWith<IOException> { audio { audioTracks(AudioTracks.NONE, *many) } }
+        assertFailsWith<IOException> {
+            audio {
+                writeByte(MediaProtocol.MESSAGE_AUDIO_TRACKS.toInt())
+                writeInt(-2)
+                writeInt(AudioTracks.NONE)
+            }
+        }
+    }
+
+    @Test
+    fun `a host cannot send a name longer than the limit, or make one look shorter`() {
+        val long = "x".repeat(MediaProtocol.MAX_AUDIO_NAME_BYTES + 1)
+        assertFailsWith<IOException> { audio { audioTracks(AudioTracks.NONE, 1 to long) } }
+        assertFailsWith<IOException> {
+            audio {
+                writeByte(MediaProtocol.MESSAGE_AUDIO_TRACKS.toInt())
+                writeInt(1)
+                writeInt(AudioTracks.NONE)
+                writeInt(1)
+                writeInt(2)
+                writeInt(-1)
+            }
+        }
+    }
+
+    @Test
+    fun `a host cannot claim impossible channels or a long codec, and a codec keeps only what can be a code`() {
+        fun send(channels: Int, codec: String): List<AudioTracks> = audio {
+            writeByte(MediaProtocol.MESSAGE_AUDIO_TRACKS.toInt())
+            writeInt(1)
+            writeInt(AudioTracks.NONE)
+            writeInt(1)
+            writeInt(channels)
+            writeInt(1)
+            write("a".encodeToByteArray())
+            val bytes = codec.encodeToByteArray()
+            writeInt(bytes.size)
+            write(bytes)
+        }
+        assertFailsWith<IOException> { send(MediaProtocol.MAX_AUDIO_CHANNELS + 1, "mp4a") }
+        assertFailsWith<IOException> { send(-1, "mp4a") }
+        assertFailsWith<IOException> { send(2, "x".repeat(MediaProtocol.MAX_AUDIO_CODEC_BYTES + 1)) }
+        assertEquals("a52", send(2, "a52 \u202E").single().tracks.single().codec)
+    }
+
+    @Test
+    fun `a track reads out language, channels and codec, as far as libVLC could say`() {
+        val track = AudioTrack(1, "Track 2 - [English]", 6, "eac3")
+        assertEquals("English · 5.1 · EAC3", track.readout)
+        assertEquals(null, track.detail)
+        assertEquals("Hindi · 1.0 · AAC", AudioTrack(1, "Commentary - [Hindi]", 1, "mp4a").readout)
+        assertEquals("Commentary", AudioTrack(1, "Commentary - [Hindi]", 1, "mp4a").detail)
+        assertEquals("Track 1", AudioTrack(1, "Track 1").readout)
+        assertEquals("Track 1 · 2.0 · XYZ", AudioTrack(1, "Track 1", 2, "xyz").readout)
+        assertEquals("Track 1", AudioTrack(1, "Track 1", 3, "").readout)
+    }
+
+    @Test
+    fun `a list has one of each id, none negative, and the one playing is in it`() {
+        assertFailsWith<IOException> { audio { audioTracks(AudioTracks.NONE, 1 to "a", 1 to "b") } }
+        assertFailsWith<IOException> { audio { audioTracks(AudioTracks.NONE, -1 to "Disable") } }
+        assertFailsWith<IOException> { audio { audioTracks(9, 1 to "a") } }
+    }
+
+    @Test
+    fun `a host cannot keep changing the list`() {
+        val allowed = audio { repeat(MediaProtocol.MAX_AUDIO_TRACK_UPDATES) { audioTracks(1, 1 to "a") } }
+        assertEquals(MediaProtocol.MAX_AUDIO_TRACK_UPDATES, allowed.size)
+        assertFailsWith<IOException> {
+            audio { repeat(MediaProtocol.MAX_AUDIO_TRACK_UPDATES + 1) { audioTracks(1, 1 to "a") } }
+        }
+    }
+
     @Test
     fun `a frame reaches its target whole, and a status arrives as sent`() {
         val sink = Recording()

@@ -366,6 +366,10 @@
 <string name="play_with_app_name">oooooh aaah aauuuggghauuh</string>
 <string name="player_enter_fullscreen">oouuh haa aaaaa</string>
 <string name="player_exit_fullscreen">aauugghhaaaghh aaaaa</string>
+<string name="player_fit_original">oh aah</string>
+<string name="player_fit_screen">oouuh aah</string>
+<string name="player_fit_title">aaaaa oh</string>
+<string name="player_fit_width">haa oh</string>
 <string name="player_load_subtitles">aagg aahh uuuk</string>
 <string name="player_load_subtitles_online">eeek aahh oooohhhh</string>
 <string name="player_loaded_subtitles">oooohh %s</string>
@@ -375,6 +379,10 @@
 <string name="player_settings_select_cast_device">aaaagg aahh oooohh</string>
 <string name="player_size_settings">oouuhaoouuh aaaaa aauuhohahhh oooooaaaghhoh oh aaaaa</string>
 <string name="player_size_settings_des">aaaghhaaahhuahooo oha aaaghh</string>
+<string name="player_source_playing">oouuh aaaaa</string>
+<string name="player_source_resumes_at">ooh haa oh aaaaa: oouuh %1$s</string>
+<string name="player_source_retry">oouuh ooh</string>
+<string name="player_source_switch">ooh haa</string>
 <string name="player_speed">oouuh aauuh oha</string>
 <string name="player_speed_text_format">aaaaaaaaaaaaahh (%.2foouo)</string>
 <string name="player_subtitles_settings">ahhhaauugghh</string>

@@ -350,6 +350,10 @@
 <string name="play_with_app_name">CloudStream کے ساتھ چلائیں</string>
 <string name="player_enter_fullscreen">پوری اسکرین میں داخل ہوں</string>
 <string name="player_exit_fullscreen">پوری اسکرین سے باہر نکلیں</string>
+<string name="player_fit_original">اصل تناسب</string>
+<string name="player_fit_screen">اسکرین بھریں</string>
+<string name="player_fit_title">تصویر کا سائز</string>
+<string name="player_fit_width">چوڑائی بھریں</string>
 <string name="player_load_subtitles">فائل سے لوڈ کریں</string>
 <string name="player_load_subtitles_online">انٹرنیٹ سے لوڈ کریں</string>
 <string name="player_loaded_subtitles">لوڈ %s</string>
@@ -358,6 +362,10 @@
 <string name="player_settings_play_in_app">اندرونی پلیئر</string>
 <string name="player_size_settings">پلیئر کا سائز تبدیل کرنے کا بٹن</string>
 <string name="player_size_settings_des">سیاہ سرحد کو ہٹا دیں</string>
+<string name="player_source_playing">چل رہا ہے</string>
+<string name="player_source_resumes_at">بدلنے سے آپ کی جگہ برقرار رہتی ہے: %1$s سے جاری</string>
+<string name="player_source_retry">دوبارہ کوشش کریں</string>
+<string name="player_source_switch">بدلیں</string>
 <string name="player_speed">چلانے کی رفتار</string>
 <string name="player_speed_text_format">رفتار (%.2fx)</string>
 <string name="player_subtitles_settings">سنٹیٹلز</string>

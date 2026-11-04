@@ -143,8 +143,16 @@
 <string name="play_with_app_name">"Spel av med CloudStream"</string>
 <string name="player_enter_fullscreen">"Vis i fullskjerm"</string>
 <string name="player_exit_fullscreen">"Avslutt fullskjerm"</string>
+<string name="player_fit_original">"Opphavleg sideforhold"</string>
+<string name="player_fit_screen">"Fyll skjermen"</string>
+<string name="player_fit_title">"Biletstorleik"</string>
+<string name="player_fit_width">"Fyll breidda"</string>
 <string name="player_mute">"Slå av lyd"</string>
 <string name="player_size_settings_des">"Fjern dei svarte kantane"</string>
+<string name="player_source_playing">"Spelar"</string>
+<string name="player_source_resumes_at" formatted="true">"Bytet held på plassen din: held fram frå %1$s"</string>
+<string name="player_source_retry">"Prøv igjen"</string>
+<string name="player_source_switch">"Byt"</string>
 <string name="player_speed">"Avspelinghastigheit"</string>
 <string name="player_speed_text_format" formatted="true">"Avspelinghastigheit (%.2fx)"</string>
 <string name="player_subtitles_settings">"Undertekstar"</string>

@@ -418,6 +418,10 @@
 <string name="play_with_app_name">"Mit CloudStream abspielen"</string>
 <string name="player_enter_fullscreen">"Vollbild aktivieren"</string>
 <string name="player_exit_fullscreen">"Vollbild beenden"</string>
+<string name="player_fit_original">"Originales Seitenverhältnis"</string>
+<string name="player_fit_screen">"Bildschirm ausfüllen"</string>
+<string name="player_fit_title">"Bildgröße"</string>
+<string name="player_fit_width">"Breite ausfüllen"</string>
 <string name="player_is_live">"Live"</string>
 <string name="player_load_one_subtitle_online">"Erste verfügbare laden"</string>
 <string name="player_load_subtitles">"Aus Datei laden"</string>
@@ -432,6 +436,10 @@
 <string name="player_settings_select_cast_device">"Cast-Gerät auswählen"</string>
 <string name="player_size_settings">"Player-Skalierung anpassen"</string>
 <string name="player_size_settings_des">"Entfernt schwarze Ränder"</string>
+<string name="player_source_playing">"Läuft"</string>
+<string name="player_source_resumes_at" formatted="true">"Beim Wechsel bleibt die Position erhalten: weiter bei %1$s"</string>
+<string name="player_source_retry">"Wiederholen"</string>
+<string name="player_source_switch">"Wechseln"</string>
 <string name="player_speed">"Player-Geschwindigkeit"</string>
 <string name="player_speed_text_format" formatted="true">"Geschwindigkeit (%.2fx)"</string>
 <string name="player_subtitles_settings">"Untertitel"</string>
