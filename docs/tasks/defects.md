@@ -1300,7 +1300,7 @@ has the internet**, so it can send what it sees to its own servers. This does no
 
 ## BUG-29 — Nothing limited how much of this Mac a plugin could use · **medium** · measured 2026-11-04
 
-**Status:** in pr. Seatbelt says what a host may touch and nothing about how much. Each row is `HostLimitsTest`, a hostile plugin in a real host.
+**Status:** done · #128. Seatbelt says what a host may touch and nothing about how much. Each row is `HostLimitsTest`, a hostile plugin in a real host.
 
 | Attempt | Result |
 |---|---|
