@@ -5,6 +5,7 @@ import com.lagradost.cloudstream4.feature.detail.DetailLoad
 import com.lagradost.cloudstream4.feature.detail.DetailSource
 import com.lagradost.cloudstream4.feature.detail.DetailState
 import com.lagradost.cloudstream4.feature.detail.DetailViewModel
+import com.lagradost.cloudstream4.feature.detail.StreamLink
 import com.lagradost.cloudstream4.media.model.SubtitleTrack
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
@@ -26,6 +27,13 @@ internal object DesktopDetailViewModels {
     /** What a title's search has found so far, for the player that is over its page. */
     fun subtitles(id: String): Flow<List<SubtitleTrack>> =
         live[id]?.state?.map(DetailState::subtitlesSoFar)?.distinctUntilChanged() ?: emptyFlow()
+
+    /** The streams it has found so far, for the player over its page to switch between. */
+    fun links(id: String): Flow<List<StreamLink>> =
+        live[id]?.state
+            ?.map { (it.links as? DetailLoad.Loaded)?.value.orEmpty() }
+            ?.distinctUntilChanged()
+            ?: emptyFlow()
 
     /** Whatever it was still asking a plugin for stops here, because the scope it runs in outlives it. */
     fun forget(id: String) {

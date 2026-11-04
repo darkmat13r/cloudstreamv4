@@ -276,6 +276,7 @@
 <string name="extension_status_blocked">"ஸ்கேன் மூலம் தடுக்கப்பட்டது. இதை அனுமதிக்க முடியாது."</string>
 <string name="extension_status_hash_mismatch">"இந்தக் கோப்பு அதன் வெளியிடப்பட்ட ஹாஷுடன் பொருந்தவில்லை. இதை அனுமதிக்க முடியாது."</string>
 <string name="extension_status_held">"நீங்கள் தேர்வு செய்யும் வரை முடக்கம்"</string>
+<string name="extension_status_held_new_version">"புதிய பதிப்பு · நீங்கள் தேர்வு செய்யும் வரை முடக்கம்"</string>
 <string name="extension_status_kept_off">"முடக்கி வைக்கப்பட்டது"</string>
 <string name="extension_status_start_failed">"அனுமதிக்கப்பட்டது, ஆனால் தொடங்கவில்லை"</string>
 <string name="extension_types">"ஆதரிக்கப்பட்டது"</string>
@@ -416,11 +417,18 @@
 <string name="play_torrent_button">"ச்ட்ரீம் டொரண்ட்"</string>
 <string name="play_trailer_button">"டிரெய்லரை இயக்கு"</string>
 <string name="play_with_app_name">"CloudStream-உடன் இயக்கு"</string>
+<string name="player_enter_fullscreen">"முழுத்திரைக்குச் செல்"</string>
+<string name="player_exit_fullscreen">"முழுத்திரையிலிருந்து வெளியேறு"</string>
+<string name="player_fit_original">"அசல் விகிதம்"</string>
+<string name="player_fit_screen">"திரையை நிரப்பு"</string>
+<string name="player_fit_title">"பட அளவு"</string>
+<string name="player_fit_width">"அகலத்தை நிரப்பு"</string>
 <string name="player_is_live">"வாழ்க"</string>
 <string name="player_load_one_subtitle_online">"முதலில் கிடைக்கிறது"</string>
 <string name="player_load_subtitles">"கோப்பிலிருந்து ஏற்றவும்"</string>
 <string name="player_load_subtitles_online">"இணையத்திலிருந்து ஏற்றவும்"</string>
 <string name="player_loaded_subtitles" formatted="true">"ஏற்றப்பட்ட %s"</string>
+<string name="player_mute">"ஒலியடக்கு"</string>
 <string name="player_notification_channel_description">"பின்னணியில் இருந்து பின்னணியைக் கட்டுப்படுத்துவதற்கான பிளேயர் அறிவிப்பு"</string>
 <string name="player_notification_channel_name">"பிளேயர் அறிவிப்புகள்"</string>
 <string name="player_pref">"விருப்பமான வீடியோ பிளேயர்"</string>
@@ -429,10 +437,15 @@
 <string name="player_settings_select_cast_device">"காச்ட் சாதனத்தைத் தேர்ந்தெடுக்கவும்"</string>
 <string name="player_size_settings">"பிளேயர் மறுஅளவிடுதல் பொத்தானை"</string>
 <string name="player_size_settings_des">"கருப்பு எல்லைகளை அகற்றவும்"</string>
+<string name="player_source_playing">"இயங்குகிறது"</string>
+<string name="player_source_resumes_at" formatted="true">"மாற்றினாலும் இடம் மாறாது: %1$s இலிருந்து தொடரும்"</string>
+<string name="player_source_retry">"மீண்டும் முயல்க"</string>
+<string name="player_source_switch">"மாற்று"</string>
 <string name="player_speed">"பிளேயர் விரைவு"</string>
 <string name="player_speed_text_format" formatted="true">"விரைவு (%.2fx)"</string>
 <string name="player_subtitles_settings">"வசன வரிகள்"</string>
 <string name="player_subtitles_settings_des">"பிளேயர் வசன வரிகள் அமைப்புகள்"</string>
+<string name="player_unmute">"ஒலியை இயக்கு"</string>
 <string name="plugin">"செருகுநிரல்கள்"</string>
 <string name="plugin_deleted">"சொருகி நீக்கப்பட்டது"</string>
 <string name="plugin_downloaded">"சொருகி பதிவிறக்கம் செய்யப்பட்டது"</string>

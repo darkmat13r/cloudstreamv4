@@ -276,6 +276,7 @@
 <string name="extension_status_blocked">"Zablokováno kontrolou. Nelze povolit."</string>
 <string name="extension_status_hash_mismatch">"Tento soubor neodpovídá svému zveřejněnému hashi. Nelze povolit."</string>
 <string name="extension_status_held">"Vypnuto, dokud se nerozhodnete"</string>
+<string name="extension_status_held_new_version">"Nová verze · Vypnuto, dokud se nerozhodnete"</string>
 <string name="extension_status_kept_off">"Ponecháno vypnuté"</string>
 <string name="extension_status_start_failed">"Povoleno, ale nespustilo se"</string>
 <string name="extension_types">"Podporováno"</string>
@@ -416,11 +417,18 @@
 <string name="play_torrent_button">"Streamovat torrent"</string>
 <string name="play_trailer_button">"Přehrát trailer"</string>
 <string name="play_with_app_name">"Přehrát s CloudStream"</string>
+<string name="player_enter_fullscreen">"Přejít do režimu celé obrazovky"</string>
+<string name="player_exit_fullscreen">"Ukončit režim celé obrazovky"</string>
+<string name="player_fit_original">"Původní poměr stran"</string>
+<string name="player_fit_screen">"Vyplnit obrazovku"</string>
+<string name="player_fit_title">"Velikost obrazu"</string>
+<string name="player_fit_width">"Vyplnit šířku"</string>
 <string name="player_is_live">"Živě"</string>
 <string name="player_load_one_subtitle_online">"Načíst první dostupné"</string>
 <string name="player_load_subtitles">"Načíst ze souboru"</string>
 <string name="player_load_subtitles_online">"Načíst z internetu"</string>
 <string name="player_loaded_subtitles" formatted="true">"Načteno %s"</string>
+<string name="player_mute">"Vypnout zvuk"</string>
 <string name="player_notification_channel_description">"Oznámení přehrávače pro ovládání přehrávání na pozadí"</string>
 <string name="player_notification_channel_name">"Oznámení přehrávače"</string>
 <string name="player_pref">"Preferovaný přehrávač videí"</string>
@@ -429,10 +437,15 @@
 <string name="player_settings_select_cast_device">"Vyberte zařízení k vysílání"</string>
 <string name="player_size_settings">"Tlačítko pro změnu velikosti přehrávače"</string>
 <string name="player_size_settings_des">"Odebrat černá ohraničení"</string>
+<string name="player_source_playing">"Přehrává se"</string>
+<string name="player_source_resumes_at" formatted="true">"Přepnutí zachová pozici: pokračuje od %1$s"</string>
+<string name="player_source_retry">"Zkusit znovu"</string>
+<string name="player_source_switch">"Přepnout"</string>
 <string name="player_speed">"Rychlost přehrávání"</string>
 <string name="player_speed_text_format" formatted="true">"Rychlost (%.2fx)"</string>
 <string name="player_subtitles_settings">"Titulky"</string>
 <string name="player_subtitles_settings_des">"Nastavení titulků přehrávače"</string>
+<string name="player_unmute">"Zapnout zvuk"</string>
 <string name="plugin">"doplňků"</string>
 <string name="plugin_deleted">"Doplněk odstraněn"</string>
 <string name="plugin_downloaded">"Doplněk stažen"</string>

@@ -42,8 +42,11 @@ object SandboxPolicy {
         val first = bytes[0].toInt() and BYTE_MASK
         val second = bytes[1].toInt() and BYTE_MASK
         return when (bytes.size) {
-            IPV4_BYTES -> first != 0 && !(first == CGNAT_FIRST && second in CGNAT_SECOND)
-            else -> first and ULA_MASK != ULA_PREFIX
+            IPV4_BYTES -> first != 0 && first < RESERVED_FROM && !(first == CGNAT_FIRST && second in CGNAT_SECOND) &&
+                !(first == BENCHMARK_FIRST && second in BENCHMARK_SECOND) &&
+                !(first == PROTOCOL_FIRST && second == 0 && bytes[2].toInt() == 0)
+            // Translation prefixes carry an IPv4 address inside, which could be a private one.
+            else -> first and ULA_MASK != ULA_PREFIX && !isTranslated(bytes)
         }
     }
 
@@ -90,7 +93,19 @@ object SandboxPolicy {
     /** Signed stream URLs run long: a googlevideo one is well past the 2048 used for other fields. */
     const val MAX_URL_CHARS = 16 * 1024
 
+    private fun isTranslated(bytes: ByteArray): Boolean {
+        val second = bytes[1].toInt() and BYTE_MASK
+        val firstByte = bytes[0].toInt() and BYTE_MASK
+        val sixToFour = firstByte == 0x20 && second == 0x02
+        val nat64 = firstByte == 0x00 && second == 0x64 && (bytes[2].toInt() and BYTE_MASK) == 0xFF && (bytes[3].toInt() and BYTE_MASK) == 0x9B
+        return sixToFour || nat64
+    }
+
     private const val BYTE_MASK = 0xFF
+    private const val RESERVED_FROM = 240
+    private const val BENCHMARK_FIRST = 198
+    private val BENCHMARK_SECOND = 18..19
+    private const val PROTOCOL_FIRST = 192
     private const val IPV4_BYTES = 4
     private const val CGNAT_FIRST = 100
     private val CGNAT_SECOND = 64..127

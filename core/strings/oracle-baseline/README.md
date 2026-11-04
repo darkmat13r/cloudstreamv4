@@ -25,9 +25,9 @@ and decides — in a commit of its own that says so — to move the baseline.
 
 | File | Rows | What it holds |
 |---|---:|---|
-| `decoded.tsv` | 35,117 | aapt2's decoded table, one row per item: source file, type, name, plural category, kind (`STR`/`STYLED`/`REF`/`ATTR`/`UNSUPPORTED`), text, spans. The raw oracle, before resolution. |
-| `emitted.tsv` | 37,107 | What the generator wrote: one row per emitted value, keyed by output directory, type, name, plural category. Includes resolved references, locale-fallback copies and the `values-b+he` / `values-b+id` copies. |
-| `lookup.tsv` | 72,079 | For each of the 87 parity requests, the value Android resolves for every key — the per-locale lookup table the parity test compares Compose against. |
+| `decoded.tsv` | 35,923 | aapt2's decoded table, one row per item: source file, type, name, plural category, kind (`STR`/`STYLED`/`REF`/`ATTR`/`UNSUPPORTED`), text, spans. The raw oracle, before resolution. |
+| `emitted.tsv` | 37,939 | What the generator wrote: one row per emitted value, keyed by output directory, type, name, plural category. Includes resolved references, locale-fallback copies and the `values-b+he` / `values-b+id` copies. |
+| `lookup.tsv` | 73,210 | For each of the 87 parity requests, the value Android resolves for every key — the per-locale lookup table the parity test compares Compose against. |
 | `requests.tsv` | 87 | The parsed `parity-requests.txt`: request id, Android tag, Compose language/script/region, expectation, note. |
 | `findings.tsv` | 0 | Every finding the pipeline raised. **Empty since the flip** — it was 31 `STRAY_TEXT_REMOVED` and 34 `STYLED_AS_PLAIN_TEXT`, and a generated res has neither stray text nor `<b>`. |
 | `report.txt` | 12 | The human-readable run summary. |
@@ -119,6 +119,85 @@ a file before is in it after, in the same order, and every new line names one of
 appears for all 87 requests, 2,349 cells. `report.txt` moved only in its counts: `OWN` 33,005 -> 34,679 (27 x 62), visible
 keys 789 -> 816, and 27 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
 `ANDROID_FALLBACK` at 172.** `expectedOwn` 33,005 -> 34,679.
+
+## Eleventh move, 2026-11-04 — `BUG-28`, 1 new key for a plugin's new version
+
+New keys are approved in general (`I18N-09`, above). Additive, authored in all 62 directories, not a plural. Measured by whole-line set
+difference twice over, a multiset in Python and `sort | comm`: 0 lines lost or changed in any file, and every new line names the key: 62 in
+`decoded.tsv`, 64 in `emitted.tsv`, 87 in `lookup.tsv`. **`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at 172.**
+`expectedOwn` 35,547 -> 35,609.
+
+## Tenth move, 2026-11-04 — `KMP-29`, 4 new keys for choosing another source in the player
+
+New keys are approved in general (`I18N-09`, above). Additive, all four authored in all 62 directories, none a plural.
+
+| file | before | after | changed | lost |
+|---|---|---|---|---|
+| `lookup.tsv` | 72,775 | 73,123 | **0** | **0** |
+| `decoded.tsv` | 35,613 | 35,861 | **0** | **0** |
+| `emitted.tsv` | 37,619 | 37,875 | **0** | **0** |
+| `requests.tsv` | 87 | 87 | 0 | 0 |
+| `findings.tsv` | 0 | 0 | 0 | 0 |
+
+Measured by whole-line set difference twice over, a multiset in Python and `sort | comm`: every line that was in a
+file before is in it after, and every new line names one of the 4 keys. `report.txt` moved only in its counts: `OWN`
+35,299 -> 35,547 (4 x 62), visible keys 826 -> 830, and 4 more values in each of the two locale copies.
+**`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at 172.** `expectedOwn` 35,299 -> 35,547.
+
+## Ninth move, 2026-11-04 — `KMP-31`, 4 new keys for picture size in the player
+
+New keys are approved in general (`I18N-09`, above) and the owner asked for this feature. Additive, all 4 keys authored
+in all 62 directories, none a plural.
+
+| file | before | after | changed | lost |
+|---|---|---|---|---|
+| `lookup.tsv` | 72,427 | 72,775 | **0** | **0** |
+| `decoded.tsv` | 35,365 | 35,613 | **0** | **0** |
+| `emitted.tsv` | 37,363 | 37,619 | **0** | **0** |
+| `requests.tsv` | 87 | 87 | 0 | 0 |
+| `findings.tsv` | 0 | 0 | 0 | 0 |
+
+Measured by whole-line set difference twice over, a multiset in Python and `sort | comm`: every line that was in a
+file before is in it after, and every new line names one of the 4 keys. Each key has 62 lines in `decoded.tsv`, 64 in
+`emitted.tsv` and 87 in `lookup.tsv` (348 cells). `OWN` 35,051 -> 35,299 (4 x 62), visible keys 822 -> 826.
+**`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at 172.** `expectedOwn` 35,051 -> 35,299.
+
+## Eighth move, 2026-11-03 — `KMP-28`, 2 new keys for mute in the player
+
+New keys are approved in general (`I18N-09`, above). Additive, both keys authored in all 62 directories, neither a plural.
+
+| file | before | after | changed | lost |
+|---|---|---|---|---|
+| `lookup.tsv` | 72,253 | 72,427 | **0** | **0** |
+| `decoded.tsv` | 35,241 | 35,365 | **0** | **0** |
+| `emitted.tsv` | 37,235 | 37,363 | **0** | **0** |
+| `requests.tsv` | 87 | 87 | 0 | 0 |
+| `findings.tsv` | 0 | 0 | 0 | 0 |
+
+Measured by whole-line set difference twice over, a multiset in Python and `sort | comm`: every line that was in a
+file before is in it after, and every new line names one of the 2 keys. Each key has 62 lines in `decoded.tsv`, 64 in
+`emitted.tsv` and 87 in `lookup.tsv` (174 cells). `report.txt` moved only in its counts: `OWN` 34,927 -> 35,051
+(2 x 62), visible keys 820 -> 822, and 2 more values in each of the two locale copies.
+**`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at 172.** `expectedOwn` 34,927 -> 35,051.
+
+## Seventh move, 2026-11-03 — `KMP-27`, 2 new keys for full screen in the player
+
+New keys are approved in general (`I18N-09`, above) and the owner asked for this feature. Additive, both keys authored
+in all 62 directories, neither a plural.
+
+| file | before | after | changed | lost |
+|---|---|---|---|---|
+| `lookup.tsv` | 72,079 | 72,253 | **0** | **0** |
+| `decoded.tsv` | 35,117 | 35,241 | **0** | **0** |
+| `emitted.tsv` | 37,107 | 37,235 | **0** | **0** |
+| `requests.tsv` | 87 | 87 | 0 | 0 |
+| `findings.tsv` | 0 | 0 | 0 | 0 |
+
+Measured by whole-line set difference twice over, a multiset in Python and `sort | comm`: every line that was in a
+file before is in it after, and every new line names one of the 2 keys. Each key has 62 lines in `decoded.tsv`, 64 in
+`emitted.tsv` and 87 in `lookup.tsv` (174 cells). `report.txt` moved only in its counts: `OWN` 34,803 -> 34,927
+(2 x 62), visible keys 818 -> 820, and 2 more values in each of the two locale copies.
+**`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at 172.** `expectedOwn` 34,803 -> 34,927.
 
 ## Sixth move, 2026-11-03 — `BUG-21`, 2 new keys for a title that could not be opened
 

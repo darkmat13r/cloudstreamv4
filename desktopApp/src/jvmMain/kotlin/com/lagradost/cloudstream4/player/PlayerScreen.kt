@@ -12,11 +12,15 @@ import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
@@ -25,6 +29,8 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.produceState
@@ -38,7 +44,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.FilterQuality
@@ -51,8 +56,6 @@ import androidx.compose.ui.input.key.type
 import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.input.pointer.onPointerEvent
 import androidx.compose.ui.input.pointer.pointerInput
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.layout.ScaleFactor
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.style.TextOverflow
@@ -69,20 +72,29 @@ import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopIconButton
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopMotion
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
+import com.lagradost.cloudstream4.core.strings.generated.resources.audio_tracks
 import com.lagradost.cloudstream4.core.strings.generated.resources.error_loading_links_toast
 import com.lagradost.cloudstream4.core.strings.generated.resources.go_back
 import com.lagradost.cloudstream4.core.strings.generated.resources.loading
+import com.lagradost.cloudstream4.core.strings.generated.resources.no_subtitles
 import com.lagradost.cloudstream4.core.strings.generated.resources.pause
+import com.lagradost.cloudstream4.core.strings.generated.resources.player_enter_fullscreen
+import com.lagradost.cloudstream4.core.strings.generated.resources.player_exit_fullscreen
+import com.lagradost.cloudstream4.core.strings.generated.resources.player_fit_title
+import com.lagradost.cloudstream4.core.strings.generated.resources.player_mute
 import com.lagradost.cloudstream4.core.strings.generated.resources.player_subtitles_settings
+import com.lagradost.cloudstream4.core.strings.generated.resources.player_unmute
 import com.lagradost.cloudstream4.core.strings.generated.resources.resume
 import com.lagradost.cloudstream4.core.strings.generated.resources.seek_back_10_seconds
 import com.lagradost.cloudstream4.core.strings.generated.resources.seek_forward_10_seconds
 import com.lagradost.cloudstream4.core.strings.generated.resources.source_error
+import com.lagradost.cloudstream4.core.strings.generated.resources.video_source
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.detail.StreamLink
 import com.lagradost.cloudstream4.media.model.SubtitleCue
 import com.lagradost.cloudstream4.media.model.SubtitleTrack
 import kotlin.concurrent.thread
+import kotlin.math.roundToInt
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
@@ -90,22 +102,28 @@ import org.jetbrains.compose.resources.stringResource
 
 /**
  * The desktop player (`docs/plans/desktop-design.md`): full-bleed video, one seek track, transport, and
- * subtitles. Space pauses, left and right skip, C opens the subtitle list; Escape is the window's.
+ * volume and subtitles. Space pauses, left and right skip, up and down change the volume, M mutes, C opens
+ * the subtitle list, A the audio tracks when there is more than one, S the list of sources, R how the picture fits the
+ * window, F or Cmd+F toggles full screen; Escape is the window's.
  *
- * The source and audio selectors are not built. Lives in `:desktopApp` rather than a shared module because
+ * Lives in `:desktopApp` rather than a shared module because
  * it is bound to [VlcPlayer].
  *
- * @param player started and released by this screen, so leaving it stops the audio.
+ * @param player started and released by this screen, so leaving it stops the audio. Choosing another source replaces
+ *   it, because a host plays one stream, and the screen and its subtitles stay.
  * @param onBack leaves the screen, which is also what the end of the stream does.
  * @param setEscape told what Escape should do now, as `HomeHost` is.
  * @param startAtMillis where to start, from the library (`KMP-26`). Zero plays from the beginning.
- *   The seek waits for a reported length, because [VlcPlayer.seekTo] takes a fraction and there is
- *   nothing to take a fraction of until then, and it happens **once** — a second one would fight the
- *   person's own seeking.
+ *   See [ResumeSeek].
  * @param onProgress told the position as the player reports it. Storage is the host's: this screen
  *   writes nothing, and the host decides which of these reports is worth keeping.
  * @param clock,session passed in so a check can read what this screen is showing.
  * @param arrivingSubtitles the tracks the search behind [link] has found so far, each time it finds more.
+ * @param fullscreen the window's full screen, left when this screen closes. Null with no window to fill, as
+ *   in a check, and then there is no control for it.
+ * @param links the streams the search behind [link] has found so far, each time it finds more.
+ * @param openPlayer a new player for a source someone chose. Null where sources cannot be switched, and then there
+ *   is no selector for it.
  */
 @Composable
 internal fun PlayerScreen(
@@ -120,27 +138,33 @@ internal fun PlayerScreen(
     clock: PlaybackClock = remember { PlaybackClock() },
     session: SubtitleSession? = null,
     arrivingSubtitles: Flow<List<SubtitleTrack>> = emptyFlow(),
+    fullscreen: PlayerFullscreen? = null,
+    links: Flow<List<StreamLink>> = emptyFlow(),
+    openPlayer: (() -> VlcPlayer?)? = null,
 ) {
-    val frame by player.frame.collectAsState()
-    val pictureSize by player.pictureSize.collectAsState()
-    val status by player.status.collectAsState()
+    var playback by remember(player, link) { mutableStateOf(Playback(player, link, startAtMillis)) }
+    // Keyed so a new player starts from its own values. Otherwise the first frame drawn would be the released player's.
+    val frame = key(playback) { playback.player.frame.collectAsState().value }
+    val pictureSize = key(playback) { playback.player.pictureSize.collectAsState().value }
+    val status = key(playback) { playback.player.status.collectAsState().value }
+    val audio = key(playback) { playback.player.audio.collectAsState().value }
     var started by remember { mutableStateOf(true) }
-    DisposableEffect(player, link) {
-        started = player.play(link.url, link.referer, link.userAgent, link.audioUrl)
+    DisposableEffect(playback) {
+        val current = playback
+        started = current.player.play(current.link.url, current.link.referer, current.link.userAgent, current.link.audioUrl)
         // Off the UI thread: stopping libVLC blocks, and can take seconds on a stalled stream.
-        onDispose { thread(isDaemon = true, name = "vlc-release") { player.release() } }
+        onDispose { thread(isDaemon = true, name = "vlc-release") { current.player.release() } }
     }
+    DisposableEffect(fullscreen) { onDispose { fullscreen?.leave() } }
     LaunchedEffect(status.finished) { if (status.finished) onBack() }
-    LaunchedEffect(player, clock) { player.status.collect(clock::onStatus) }
+    LaunchedEffect(playback, clock) { playback.player.status.collect(clock::onStatus) }
     val progress by rememberUpdatedState(onProgress)
-    LaunchedEffect(player, link) {
-        var sought = startAtMillis <= 0L
-        player.status.collect { reported ->
-            if (!sought && reported.lengthMillis > 0L) {
-                sought = true
-                player.seekTo(startAtMillis.toFloat() / reported.lengthMillis)
+    LaunchedEffect(playback) {
+        val current = playback
+        current.player.status.collect { reported ->
+            if (current.resume.onStatus(reported, current.player::seekTo)) {
+                progress(reported.positionMillis, reported.lengthMillis)
             }
-            progress(reported.positionMillis, reported.lengthMillis)
         }
     }
     val scope = rememberCoroutineScope()
@@ -148,18 +172,44 @@ internal fun PlayerScreen(
         SubtitleSession(link.subtitles, HttpSubtitleLoader(), scope, desktopSubtitlePreference)
     }
     LaunchedEffect(subtitles, arrivingSubtitles) { arrivingSubtitles.collect(subtitles::offer) }
+    LaunchedEffect(subtitles, playback) { subtitles.offer(playback.link.subtitles) }
+    val failed = !started || status.failed
+    val failedLinks = remember(player, link) { mutableStateListOf<StreamLink>() }
+    LaunchedEffect(playback, failed) { if (failed) failedLinks += playback.link }
+    val found by produceState(emptyList<StreamLink>(), links) { links.collect { value = it } }
+    val sources = openPlayer?.let { open ->
+        PlayerSources(found, playback.link, failedLinks, playback.resume.resumePoint(status.positionMillis)) { chosen ->
+            val next = open()
+            if (next == null) {
+                failedLinks += chosen
+            } else {
+                failedLinks.removeAll { it.isSameStream(chosen) }
+                playback = Playback(next, chosen, playback.resume.resumePoint(status.positionMillis))
+            }
+        }
+    }
     PlayerContent(
         frame = frame,
         pictureSize = pictureSize,
-        status = status.copy(failed = !started || status.failed),
-        caption = listOfNotNull(title, link.qualityLabel, link.label).joinToString(SEPARATOR),
-        controls = player,
+        status = status.copy(failed = failed),
+        caption = listOfNotNull(title, playback.link.qualityLabel, playback.link.label).joinToString(SEPARATOR),
+        controls = playback.player,
         subtitles = subtitles,
         clock = clock,
         onBack = onBack,
         setEscape = setEscape,
         modifier = modifier,
+        fullscreen = fullscreen,
+        volume = desktopPlayerVolume,
+        audio = audio,
+        fit = desktopPictureFit,
+        sources = sources,
     )
+}
+
+/** One stream in one host. */
+private class Playback(val player: VlcPlayer, val link: StreamLink, startAtMillis: Long) {
+    val resume = ResumeSeek(startAtMillis)
 }
 
 /** The screen itself, over whatever supplies frames and status, so a test can press its keys. */
@@ -176,7 +226,13 @@ internal fun PlayerContent(
     setEscape: (() -> Unit) -> Unit,
     modifier: Modifier = Modifier,
     pictureSize: IntSize? = null,
+    fullscreen: PlayerFullscreen? = null,
+    volume: PlayerVolume = remember { PlayerVolume() },
+    audio: AudioTracks = AudioTracks(),
+    fit: PictureFitChoice = remember { PictureFitChoice() },
+    sources: PlayerSources? = null,
 ) {
+    LaunchedEffect(controls, volume.audible) { controls.setVolume(volume.audible) }
     val tracks by subtitles.tracks.collectAsState()
     val selection by subtitles.selection.collectAsState()
     val failures by subtitles.failures.collectAsState()
@@ -185,24 +241,44 @@ internal fun PlayerContent(
     var lastActivity by remember { mutableLongStateOf(System.currentTimeMillis()) }
     var hudVisible by remember { mutableStateOf(true) }
     var pickerOpen by remember { mutableStateOf(false) }
+    var fitOpen by remember { mutableStateOf(false) }
+    var audioWanted by remember { mutableStateOf(false) }
+    val audioOpen = audioWanted && audio.choosable && !status.failed
+    var sourcesOpen by remember { mutableStateOf(false) }
+    val listOpen = pickerOpen || fitOpen || audioOpen || sourcesOpen
     val failed = status.failed
-    SideEffect { setEscape(if (pickerOpen) ({ pickerOpen = false }) else onBack) }
+    val fullscreenOn = fullscreen?.on == true
+    SideEffect {
+        setEscape {
+            when {
+                pickerOpen -> pickerOpen = false
+                fitOpen -> fitOpen = false
+                audioOpen -> audioWanted = false
+                sourcesOpen -> sourcesOpen = false
+                fullscreenOn -> fullscreen?.toggle()
+                else -> onBack()
+            }
+        }
+    }
     // Focus goes back to the root before a focused button leaves the composition, including the pause
     // button a failure removes. Otherwise it is cleared rather than moved, and the root's key handler
     // stops seeing any key, so Space and the arrows go dead. The list takes focus while it is open.
-    LaunchedEffect(focus, failed, pickerOpen) { if (!pickerOpen) runCatching { focus.requestFocus() } }
-    LaunchedEffect(lastActivity, status.playing, pickerOpen) {
+    LaunchedEffect(focus, failed, listOpen) { if (!listOpen) runCatching { focus.requestFocus() } }
+    LaunchedEffect(lastActivity, status.playing, listOpen) {
         hudVisible = true
-        if (status.playing && !pickerOpen) {
+        if (status.playing && !listOpen) {
             delay(PlayerScreenDefaults.HudTimeoutMillis)
             runCatching { focus.requestFocus() }
             hudVisible = false
         }
     }
-    val hudShown = hudVisible || failed || pickerOpen
+    val hudShown = hudVisible || failed || listOpen
     // Held while the list is open. It grows upward from its foot, so a track arriving would slide the row under the
     // pointer just as it is clicked. An empty list has no rows to slide, so the first tracks do appear in it.
     val listed = remember(pickerOpen, tracks.isEmpty()) { tracks }
+    val audioListed = remember(audioOpen) { audio.tracks }
+    // Likewise, and it is never empty, because the source playing is on it.
+    val listedSources = remember(sourcesOpen) { sources?.links.orEmpty() }
     val seekBy: (Long) -> Unit = { delta ->
         clock.onSeekBy(delta)
         controls.seekBy(delta)
@@ -222,13 +298,25 @@ internal fun PlayerContent(
             .onPreviewKeyEvent { event ->
                 if (event.type != KeyEventType.KeyDown) return@onPreviewKeyEvent false
                 lastActivity = System.currentTimeMillis()
-                if (pickerOpen) {
+                if (listOpen) {
                     // The list has the keys now. Space and Enter are its rows', the arrows move between them.
                     return@onPreviewKeyEvent when (event.key) {
                         Key.DirectionUp -> focusManager.moveFocus(FocusDirection.Up)
                         Key.DirectionDown -> focusManager.moveFocus(FocusDirection.Down)
                         Key.C -> {
                             pickerOpen = false
+                            true
+                        }
+                        Key.A -> {
+                            audioWanted = false
+                            true
+                        }
+                        Key.R -> {
+                            fitOpen = false
+                            true
+                        }
+                        Key.S -> {
+                            sourcesOpen = false
                             true
                         }
                         else -> false
@@ -238,7 +326,15 @@ internal fun PlayerContent(
                     Key.Spacebar -> controls.togglePause()
                     Key.DirectionLeft -> seekBy(-PlayerScreenDefaults.SkipMillis)
                     Key.DirectionRight -> seekBy(PlayerScreenDefaults.SkipMillis)
+                    Key.DirectionUp -> volume.step(PlayerVolume.STEP)
+                    Key.DirectionDown -> volume.step(-PlayerVolume.STEP)
+                    Key.M -> volume.toggleMute()
                     Key.C -> if (!failed) pickerOpen = true
+                    Key.A -> if (audio.choosable && !failed) audioWanted = true
+                    Key.R -> fitOpen = true
+                    Key.S -> if (sources != null) sourcesOpen = true else return@onPreviewKeyEvent false
+                    // F alone or with Cmd: the modifier is not read, so both come here.
+                    Key.F -> fullscreen?.toggle() ?: return@onPreviewKeyEvent false
                     else -> return@onPreviewKeyEvent false
                 }
                 true
@@ -248,7 +344,7 @@ internal fun PlayerContent(
             Image(
                 bitmap = image,
                 contentDescription = null,
-                contentScale = FitAs(pictureSize),
+                contentScale = fit.current.contentScale(pictureSize),
                 filterQuality = FilterQuality.Low,
                 modifier = Modifier.fillMaxSize(),
             )
@@ -270,9 +366,10 @@ internal fun PlayerContent(
             pictureSize = pictureSize ?: frame?.let { IntSize(it.width, it.height) },
             topInset = topInset,
             bottomInset = bottomInset,
+            fit = fit.current,
         )
         // Not over the list: the row it came from is saying the same thing.
-        if (!pickerOpen) SubtitleNotice(selection, bottomInset)
+        if (!listOpen) SubtitleNotice(selection, bottomInset)
         AnimatedVisibility(
             visible = hudShown,
             enter = fadeIn(),
@@ -286,18 +383,103 @@ internal fun PlayerContent(
                 onSeekTo = seekTo,
                 onSeekBy = seekBy,
                 onBack = onBack,
-                subtitleControl = {
-                    DesktopIconButton(
-                        icon = CloudStreamIcons.Subtitles,
-                        contentDescription = stringResource(Res.string.player_subtitles_settings),
-                        onClick = { pickerOpen = !pickerOpen },
-                        tone = if (selection is SubtitleSelection.Showing || selection is SubtitleSelection.Loading) {
-                            DesktopButtonTone.Secondary
-                        } else {
-                            DesktopButtonTone.Quiet
+                volumeControl = { VolumeControl(volume) },
+                selectors = {
+                    // First, and there through loading and failure: it is what artboard 7d's error banner points at.
+                    if (sources != null) {
+                        PlayerSelector(
+                            label = stringResource(Res.string.video_source),
+                            value = sources.current.sourceName(),
+                            onClick = {
+                                pickerOpen = false
+                                fitOpen = false
+                                audioWanted = false
+                                sourcesOpen = !sourcesOpen
+                            },
+                            modifier = Modifier.weight(1f),
+                        )
+                    }
+                    if (!failed) {
+                        PlayerSelector(
+                            label = stringResource(Res.string.player_subtitles_settings),
+                            value = selection.track()?.label ?: stringResource(Res.string.no_subtitles),
+                            onClick = {
+                                fitOpen = false
+                                audioWanted = false
+                                sourcesOpen = false
+                                pickerOpen = !pickerOpen
+                            },
+                            modifier = Modifier.weight(1f),
+                        )
+                    }
+                    if (audio.choosable && !failed) {
+                        PlayerSelector(
+                            label = stringResource(Res.string.audio_tracks),
+                            value = audio.playing?.readout ?: stringResource(Res.string.loading),
+                            onClick = {
+                                pickerOpen = false
+                                fitOpen = false
+                                sourcesOpen = false
+                                audioWanted = !audioWanted
+                            },
+                            modifier = Modifier.weight(1f),
+                        )
+                    }
+                    PlayerSelector(
+                        label = stringResource(Res.string.player_fit_title),
+                        value = stringResource(fit.current.words()),
+                        onClick = {
+                            pickerOpen = false
+                            audioWanted = false
+                            sourcesOpen = false
+                            fitOpen = !fitOpen
                         },
+                        modifier = Modifier.weight(1f),
                     )
                 },
+                fullscreenControl = {
+                    if (fullscreen != null) {
+                        DesktopIconButton(
+                            icon = if (fullscreenOn) CloudStreamIcons.ExitFullscreen else CloudStreamIcons.EnterFullscreen,
+                            contentDescription = stringResource(
+                                if (fullscreenOn) Res.string.player_exit_fullscreen else Res.string.player_enter_fullscreen,
+                            ),
+                            onClick = fullscreen::toggle,
+                            tone = DesktopButtonTone.Quiet,
+                        )
+                    }
+                },
+            )
+        }
+        if (audioOpen) {
+            AudioTrackPicker(
+                audio = audio.copy(tracks = audioListed),
+                onSelect = { track ->
+                    controls.selectAudioTrack(track.id)
+                    audioWanted = false
+                },
+                onDismiss = { audioWanted = false },
+            )
+        }
+        if (fitOpen) {
+            PictureFitPicker(
+                current = fit.current,
+                onSelect = { chosen ->
+                    fit.choose(chosen)
+                    fitOpen = false
+                },
+                onDismiss = { fitOpen = false },
+            )
+        }
+        if (sourcesOpen && sources != null) {
+            SourcePicker(
+                links = listedSources,
+                sources = sources,
+                onSelect = { link ->
+                    sourcesOpen = false
+                    sources.select(link)
+                },
+                onDismiss = { sourcesOpen = false },
             )
         }
         if (pickerOpen) {
@@ -346,7 +528,8 @@ private fun BoxScope.SubtitleNotice(selection: SubtitleSelection, bottomInset: D
 }
 
 /**
- * Back and the title at the top, transport floating at the bottom, the picture between them.
+ * Back and the title at the top, transport floating at the bottom, the picture between them. Under the transport,
+ * the selectors say what is playing (artboard 7d). They stay through loading and failure, when they are what is left to do.
  *
  * The controls float on their own surface, so they read over any frame without a heavy scrim across the
  * picture, and they stop growing at [PlayerScreenDefaults.ControlsMaxWidth] so a wide window keeps the
@@ -360,7 +543,9 @@ internal fun Hud(
     onSeekTo: (Float) -> Unit,
     onSeekBy: (Long) -> Unit,
     onBack: () -> Unit,
-    subtitleControl: @Composable () -> Unit = {},
+    volumeControl: @Composable () -> Unit = {},
+    selectors: @Composable RowScope.() -> Unit = {},
+    fullscreenControl: @Composable () -> Unit = {},
 ) {
     val colors = CloudStreamTheme.colors
     Box(Modifier.fillMaxSize()) {
@@ -380,9 +565,8 @@ internal fun Hud(
                 overflow = TextOverflow.Ellipsis,
             )
         }
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(DesktopDimens.GroupGap),
+        Column(
+            verticalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap),
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .padding(DesktopDimens.WindowMargin)
@@ -394,38 +578,99 @@ internal fun Hud(
                 )
                 .padding(horizontal = DesktopDimens.GroupGap, vertical = DesktopDimens.RelatedGap),
         ) {
-            when {
-                status.failed -> BasicText(
-                    text = stringResource(Res.string.source_error),
-                    style = CloudStreamTheme.typography.body.copy(color = colors.ink),
-                )
-                status.buffering && status.lengthMillis == 0L -> BasicText(
-                    text = stringResource(Res.string.loading),
-                    style = CloudStreamTheme.typography.body.copy(color = colors.ink2),
-                )
-                else -> {
-                    DesktopIconButton(
-                        icon = CloudStreamIcons.SeekBackward,
-                        contentDescription = stringResource(Res.string.seek_back_10_seconds),
-                        onClick = { onSeekBy(-PlayerScreenDefaults.SkipMillis) },
-                        tone = DesktopButtonTone.Quiet,
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(DesktopDimens.GroupGap),
+                modifier = Modifier.fillMaxWidth().heightIn(min = PlayerScreenDefaults.TransportHeight),
+            ) {
+                when {
+                    status.failed -> BasicText(
+                        text = stringResource(Res.string.source_error),
+                        style = CloudStreamTheme.typography.body.copy(color = colors.ink),
                     )
-                    DesktopIconButton(
-                        icon = if (status.playing) CloudStreamIcons.Pause else CloudStreamIcons.Play,
-                        contentDescription = stringResource(if (status.playing) Res.string.pause else Res.string.resume),
-                        onClick = onTogglePause,
-                        tone = DesktopButtonTone.Primary,
+                    status.buffering && status.lengthMillis == 0L -> BasicText(
+                        text = stringResource(Res.string.loading),
+                        style = CloudStreamTheme.typography.body.copy(color = colors.ink2),
                     )
-                    DesktopIconButton(
-                        icon = CloudStreamIcons.SeekForward,
-                        contentDescription = stringResource(Res.string.seek_forward_10_seconds),
-                        onClick = { onSeekBy(PlayerScreenDefaults.SkipMillis) },
-                        tone = DesktopButtonTone.Quiet,
-                    )
-                    SeekTrack(status, onSeekTo, Modifier.weight(1f))
-                    subtitleControl()
+                    else -> {
+                        DesktopIconButton(
+                            icon = CloudStreamIcons.SeekBackward,
+                            contentDescription = stringResource(Res.string.seek_back_10_seconds),
+                            onClick = { onSeekBy(-PlayerScreenDefaults.SkipMillis) },
+                            tone = DesktopButtonTone.Quiet,
+                        )
+                        DesktopIconButton(
+                            icon = if (status.playing) CloudStreamIcons.Pause else CloudStreamIcons.Play,
+                            contentDescription = stringResource(if (status.playing) Res.string.pause else Res.string.resume),
+                            onClick = onTogglePause,
+                            tone = DesktopButtonTone.Primary,
+                        )
+                        DesktopIconButton(
+                            icon = CloudStreamIcons.SeekForward,
+                            contentDescription = stringResource(Res.string.seek_forward_10_seconds),
+                            onClick = { onSeekBy(PlayerScreenDefaults.SkipMillis) },
+                            tone = DesktopButtonTone.Quiet,
+                        )
+                        SeekTrack(status, onSeekTo, Modifier.weight(1f))
+                        volumeControl()
+                    }
                 }
             }
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap),
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                selectors()
+                fullscreenControl()
+            }
+        }
+    }
+}
+
+/** The speaker mutes and the rule beside it sets the level, following the pointer 1:1 because nothing here waits on a network. */
+@Composable
+private fun VolumeControl(volume: PlayerVolume) {
+    var width by remember { mutableStateOf(0) }
+    val silent = volume.audible == 0
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap),
+    ) {
+        DesktopIconButton(
+            icon = if (silent) CloudStreamIcons.Muted else CloudStreamIcons.Volume,
+            contentDescription = stringResource(if (volume.muted) Res.string.player_unmute else Res.string.player_mute),
+            onClick = volume::toggleMute,
+            tone = DesktopButtonTone.Quiet,
+        )
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier
+                .width(PlayerScreenDefaults.VolumeTrackWidth)
+                .height(PlayerScreenDefaults.SeekTargetHeight)
+                .onSizeChanged { width = it.width }
+                .pointerInput(Unit) {
+                    fun levelAt(x: Float) = (x / width * PlayerVolume.MAX).roundToInt()
+                    awaitEachGesture {
+                        val down = awaitFirstDown()
+                        if (width <= 0) return@awaitEachGesture
+                        volume.set(levelAt(down.position.x))
+                        down.consume()
+                        while (true) {
+                            val change = awaitPointerEvent().changes.first()
+                            if (!change.pressed) break
+                            volume.set(levelAt(change.position.x))
+                            change.consume()
+                        }
+                    }
+                },
+        ) {
+            // Ink and not the default: `live` is playback state only, and a level is not playback.
+            ProgressRule(
+                progress = volume.audible.toFloat() / PlayerVolume.MAX,
+                color = CloudStreamTheme.colors.ink,
+                modifier = Modifier.fillMaxWidth(),
+            )
         }
     }
 }
@@ -478,19 +723,7 @@ internal fun SeekTrack(status: PlayerStatus, onSeekTo: (Float) -> Unit, modifier
 }
 
 /** `1:02:03`, or `2:03` under an hour. Digits and colons are not translated copy here. */
-/**
- * [ContentScale.Fit] for a frame whose size is not its picture's shape: fits [picture], so the two axes scale differently.
- * That is a frame libVLC stretched into a decoder's buffer, or one with non-square pixels. See `BUG-15`.
- */
-private class FitAs(private val picture: IntSize?) : ContentScale {
-    override fun computeScaleFactor(srcSize: Size, dstSize: Size): ScaleFactor {
-        if (picture == null) return ContentScale.Fit.computeScaleFactor(srcSize, dstSize)
-        val scale = minOf(dstSize.width / picture.width, dstSize.height / picture.height)
-        return ScaleFactor(scale * picture.width / srcSize.width, scale * picture.height / srcSize.height)
-    }
-}
-
-private fun clock(millis: Long): String {
+internal fun clock(millis: Long): String {
     val total = (millis / MILLIS_PER_SECOND).coerceAtLeast(0)
     val hours = total / SECONDS_PER_HOUR
     val minutes = (total % SECONDS_PER_HOUR) / SECONDS_PER_MINUTE
@@ -509,16 +742,23 @@ internal object PlayerScreenDefaults {
     const val ControlsAlpha = 0.88f
     /** Far taller than the rule it holds, so a pointer does not have to aim at 4dp. */
     val SeekTargetHeight: Dp = 32.dp
+    val VolumeTrackWidth: Dp = 80.dp
     /** `seek_back_10_seconds` and `seek_forward_10_seconds` say this number: change them together. */
     const val SkipMillis = 10_000L
     const val HudTimeoutMillis = 3_000L
     /** What the top row covers: its 36 button and a 24 margin on each side. Mirrors `DesktopDimens`. */
     val HudTopInset: Dp = 84.dp
-    /** The controls' 52, their 24 margin, and 8 clear of them. */
-    val HudBottomInset: Dp = 84.dp
+    /** The controls' 8 + 36 + 8 + 40 + 8, their 24 margin, and 8 clear of them. */
+    val HudBottomInset: Dp = 132.dp
+    val TransportHeight: Dp = 36.dp
+    /** Two lines, on the 4dp step. */
+    val SelectorHeight: Dp = 40.dp
     val PickerWidth: Dp = 280.dp
     val PickerMaxHeight: Dp = 400.dp
     val PickerMarkSize: Dp = 16.dp
+    /** Artboard 7e's 8 x 48 marker, halved. A marker's width is a stroke on its own axis, as `ProgressRule`'s is. */
+    val SourceMarkerWidth: Dp = 4.dp
+    val SourceMarkerHeight: Dp = 24.dp
     /** `FocusRingStroke`, the ring's width, and what it needs clear around a row. */
     val PickerRingRoom: Dp = 4.dp
     const val PickerAlpha = 0.96f

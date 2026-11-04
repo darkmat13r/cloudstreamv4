@@ -131,6 +131,7 @@
 <string name="extension_status_blocked">"توسط اسکن مسدود شد. نمی‌توان به آن اجازه داد."</string>
 <string name="extension_status_hash_mismatch">"این فایل با هش منتشرشدهٔ خود مطابقت ندارد. نمی‌توان به آن اجازه داد."</string>
 <string name="extension_status_held">"خاموش تا زمانی که انتخاب کنید"</string>
+<string name="extension_status_held_new_version">"نسخه جدید · خاموش تا زمانی که انتخاب کنید"</string>
 <string name="extension_status_kept_off">"خاموش نگه داشته شد"</string>
 <string name="extension_status_start_failed">"مجاز است، اما اجرا نشد"</string>
 <string name="extension_warning_classloader_access">"به بارگذار کلاس (class loader) دسترسی پیدا می‌کند که می‌تواند کدی را وارد کند که این اسکن هرگز ندیده است."</string>
@@ -221,13 +222,25 @@
 <string name="play_torrent_button">"استریم تورنت"</string>
 <string name="play_trailer_button">"پخش تریلر"</string>
 <string name="play_with_app_name">"پخش با CloudStream"</string>
+<string name="player_enter_fullscreen">"ورود به حالت تمام‌صفحه"</string>
+<string name="player_exit_fullscreen">"خروج از حالت تمام‌صفحه"</string>
+<string name="player_fit_original">"نسبت تصویر اصلی"</string>
+<string name="player_fit_screen">"پر کردن صفحه"</string>
+<string name="player_fit_title">"اندازه تصویر"</string>
+<string name="player_fit_width">"پر کردن عرض"</string>
+<string name="player_mute">"بی‌صدا"</string>
 <string name="player_pref">"پخش‌کننده ویدئو برگزیده"</string>
 <string name="player_size_settings">"دکمه تغییر‌اندازه پخش‌کننده"</string>
 <string name="player_size_settings_des">"حذف حاشیه سیاه"</string>
+<string name="player_source_playing">"در حال پخش"</string>
+<string name="player_source_resumes_at" formatted="true">"تعویض موقعیت شما را حفظ می‌کند: ادامه از %1$s"</string>
+<string name="player_source_retry">"تلاش دوباره"</string>
+<string name="player_source_switch">"تعویض"</string>
 <string name="player_speed">"سرعت پخش‌کننده"</string>
 <string name="player_speed_text_format" formatted="true">"سرعت (%.2f برابر)"</string>
 <string name="player_subtitles_settings">"زیرنویس‌ها"</string>
 <string name="player_subtitles_settings_des">"تنظیمات زیرنویس‌های پخش‌کننده"</string>
+<string name="player_unmute">"صدادار"</string>
 <string name="plugin_deleted">"افزونه حذف شد"</string>
 <string name="podcast_singular">"پادکست"</string>
 <string name="popup_delete_file">"حذف فایل"</string>

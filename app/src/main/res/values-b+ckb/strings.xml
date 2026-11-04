@@ -45,6 +45,7 @@
 <string name="extension_status_blocked">"پشکنینەکە بلۆکی کرد. ناتوانرێت ڕێگەی پێ بدرێت."</string>
 <string name="extension_status_hash_mismatch">"ئەم فایلە لەگەڵ هاشی بڵاوکراوەی خۆی ناگونجێت. ناتوانرێت ڕێگەی پێ بدرێت."</string>
 <string name="extension_status_held">"کوژاوەیە تا هەڵدەبژێریت"</string>
+<string name="extension_status_held_new_version">"وەشانی نوێ · کوژاوەیە تا هەڵدەبژێریت"</string>
 <string name="extension_status_kept_off">"بە کوژاوەیی هێڵدرایەوە"</string>
 <string name="extension_status_start_failed">"ڕێگەی پێدراوە، بەڵام دەستی پێنەکرد"</string>
 <string name="extension_warning_classloader_access">"دەگاتە بارکەری کلاس، کە دەتوانێت کۆدێک بهێنێت ئەم پشکنینە هەرگیز نەیبینیوە."</string>
@@ -85,7 +86,19 @@
 <string name="pick_subtitle">"ژێرنووسەکان"</string>
 <string name="play_from_beginning_img_des">"لە سەرەتاوە دەست پێ بکە"</string>
 <string name="play_torrent_button">"تۆرێنت ستریم بکە"</string>
+<string name="player_enter_fullscreen">"چوونە ناو پڕ بە شاشە"</string>
+<string name="player_exit_fullscreen">"دەرچوون لە پڕ بە شاشە"</string>
+<string name="player_fit_original">"ڕێژەی ڕەسەن"</string>
+<string name="player_fit_screen">"پڕکردنی شاشە"</string>
+<string name="player_fit_title">"قەبارەی وێنە"</string>
+<string name="player_fit_width">"پڕکردنی پانی"</string>
+<string name="player_mute">"بێدەنگکردن"</string>
+<string name="player_source_playing">"لێدەدرێت"</string>
+<string name="player_source_resumes_at" formatted="true">"گۆڕین شوێنەکەت دەپارێزێت: لە %1$s بەردەوام دەبێت"</string>
+<string name="player_source_retry">"دووبارە هەوڵبدەرەوە"</string>
+<string name="player_source_switch">"گۆڕین"</string>
 <string name="player_speed_text_format" formatted="true">"خێرای(x%.2f)"</string>
+<string name="player_unmute">"لابردنی بێدەنگی"</string>
 <string name="popup_delete_file">"سڕینەوەی فایل"</string>
 <string name="popup_pause_download">"وەستاندنی دابەزاندن"</string>
 <string name="popup_resume_download">"دووبارە دەستپێکردنەوەی دابەزاندن"</string>

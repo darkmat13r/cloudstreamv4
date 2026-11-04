@@ -276,6 +276,7 @@
 <string name="extension_status_blocked">"Blockerat av genomsökningen. Detta kan inte tillåtas."</string>
 <string name="extension_status_hash_mismatch">"Den här filen stämmer inte med sin publicerade hash. Detta kan inte tillåtas."</string>
 <string name="extension_status_held">"Av tills du väljer"</string>
+<string name="extension_status_held_new_version">"Ny version · Av tills du väljer"</string>
 <string name="extension_status_kept_off">"Hålls avstängt"</string>
 <string name="extension_status_start_failed">"Tillåtet, men det startade inte"</string>
 <string name="extension_types">"Stödd"</string>
@@ -416,11 +417,18 @@
 <string name="play_torrent_button">"Strömma Torrent"</string>
 <string name="play_trailer_button">"Spela Trailer"</string>
 <string name="play_with_app_name">"Spela med CloudStream"</string>
+<string name="player_enter_fullscreen">"Aktivera helskärm"</string>
+<string name="player_exit_fullscreen">"Lämna helskärm"</string>
+<string name="player_fit_original">"Ursprungligt bildförhållande"</string>
+<string name="player_fit_screen">"Fyll skärmen"</string>
+<string name="player_fit_title">"Bildstorlek"</string>
+<string name="player_fit_width">"Fyll bredden"</string>
 <string name="player_is_live">"Live"</string>
 <string name="player_load_one_subtitle_online">"Ladda in första möjliga"</string>
 <string name="player_load_subtitles">"Importera från fil"</string>
 <string name="player_load_subtitles_online">"Importera från Internet"</string>
 <string name="player_loaded_subtitles" formatted="true">"Laddat %s"</string>
+<string name="player_mute">"Stäng av ljudet"</string>
 <string name="player_notification_channel_description">"Spelarnotisen för att styra uppspelningen i bakgrunden"</string>
 <string name="player_notification_channel_name">"Spelarnotiser"</string>
 <string name="player_pref">"Önskad videospelare"</string>
@@ -429,10 +437,15 @@
 <string name="player_settings_select_cast_device">"Välj cast-enhet"</string>
 <string name="player_size_settings">"Lägger till en knapp för att justera bildförhållandet"</string>
 <string name="player_size_settings_des">"Ta bort de svarta kanterna"</string>
+<string name="player_source_playing">"Spelas"</string>
+<string name="player_source_resumes_at" formatted="true">"Att byta behåller din position: fortsätter vid %1$s"</string>
+<string name="player_source_retry">"Försök igen"</string>
+<string name="player_source_switch">"Byt"</string>
 <string name="player_speed">"Spelarhastighet"</string>
 <string name="player_speed_text_format" formatted="true">"Hastighet (%.2fx)"</string>
 <string name="player_subtitles_settings">"Undertexter"</string>
 <string name="player_subtitles_settings_des">"Inställningar för undertexter"</string>
+<string name="player_unmute">"Slå på ljudet"</string>
 <string name="plugin">"Tillägg"</string>
 <string name="plugin_deleted">"Tillägg borttagen"</string>
 <string name="plugin_downloaded">"Tillägg nedladdad"</string>

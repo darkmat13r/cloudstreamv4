@@ -290,6 +290,7 @@
 <string name="extension_status_blocked">"Blocked by the scan. This cannot be allowed."</string>
 <string name="extension_status_hash_mismatch">"This file does not match its published hash. This cannot be allowed."</string>
 <string name="extension_status_held">"Off until you choose"</string>
+<string name="extension_status_held_new_version">"New version · Off until you choose"</string>
 <string name="extension_status_kept_off">"Kept off"</string>
 <string name="extension_status_start_failed">"Allowed, but it did not start"</string>
 <string name="extension_types">"Supported"</string>
@@ -435,11 +436,18 @@
 <string name="play_torrent_button">"Stream Torrent"</string>
 <string name="play_trailer_button">"Play Trailer"</string>
 <string name="play_with_app_name">"Play with CloudStream"</string>
+<string name="player_enter_fullscreen">"Enter full screen"</string>
+<string name="player_exit_fullscreen">"Exit full screen"</string>
+<string name="player_fit_original">"Original aspect ratio"</string>
+<string name="player_fit_screen">"Fill screen"</string>
+<string name="player_fit_title">"Picture size"</string>
+<string name="player_fit_width">"Fill width"</string>
 <string name="player_is_live">"Live"</string>
 <string name="player_load_one_subtitle_online">"Load first available"</string>
 <string name="player_load_subtitles">"Load from file"</string>
 <string name="player_load_subtitles_online">"Load from Internet"</string>
 <string name="player_loaded_subtitles" formatted="true">"Loaded %s"</string>
+<string name="player_mute">"Mute"</string>
 <string name="player_notification_channel_description">"The player notification for controlling the playback from the background"</string>
 <string name="player_notification_channel_name">"Player notifications"</string>
 <string name="player_pref">"Preferred video player"</string>
@@ -448,10 +456,15 @@
 <string name="player_settings_select_cast_device">"Select cast device"</string>
 <string name="player_size_settings">"Player resize button"</string>
 <string name="player_size_settings_des">"Remove the black borders"</string>
+<string name="player_source_playing">"Playing"</string>
+<string name="player_source_resumes_at" formatted="true">"Switching keeps your position: resumes at %1$s"</string>
+<string name="player_source_retry">"Retry"</string>
+<string name="player_source_switch">"Switch"</string>
 <string name="player_speed">"Player Speed"</string>
 <string name="player_speed_text_format" formatted="true">"Speed (%.2fx)"</string>
 <string name="player_subtitles_settings">"Subtitles"</string>
 <string name="player_subtitles_settings_des">"Player subtitles settings"</string>
+<string name="player_unmute">"Unmute"</string>
 <string name="plugin">"plugins"</string>
 <string name="plugin_deleted">"Plugin Deleted"</string>
 <string name="plugin_downloaded">"Plugin Downloaded"</string>

@@ -10,6 +10,9 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import kotlinx.coroutines.withContext
@@ -155,6 +158,31 @@ class SearchViewModelTest {
         vm.onAction(SearchAction.QueryChanged("film"))
         settle()
         assertIs<SearchStatus.Showing>(vm.state.value.status)
+    }
+
+    /**
+     * On a scope with more than one thread, as on desktop, two keystrokes can reach the debounce in the wrong order. Many
+     * at once, because each pair only sometimes does (`BUG-25`).
+     */
+    @Test
+    fun `keystrokes that reach the debounce out of order still search what is in the field`() = runTest(dispatcher) {
+        val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
+        try {
+            val models = List(STRESS_MODELS) {
+                SearchViewModel(FakeSource(SearchOutcome.Complete(listOf(item("Film")))), FakeHistory(), dispatcher, scope)
+            }
+            settle()
+            models.forEach { vm ->
+                vm.onAction(SearchAction.QueryChanged("films"))
+                vm.onAction(SearchAction.QueryChanged("film"))
+            }
+            settle()
+            settle()
+            val stuck = models.count { it.state.value.status is SearchStatus.Loading }
+            assertEquals(0, stuck, "of $STRESS_MODELS searches, left on loading")
+        } finally {
+            scope.cancel()
+        }
     }
 
     @Test
@@ -406,3 +434,5 @@ class SearchViewModelTest {
             }
         }
 }
+
+private const val STRESS_MODELS = 200

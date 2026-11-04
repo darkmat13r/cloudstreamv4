@@ -188,6 +188,7 @@
 <string name="extension_status_blocked">"စစ်ဆေးမှုက ပိတ်ဆို့ထားသည်။ ဤအရာကို ခွင့်ပြု၍မရပါ။"</string>
 <string name="extension_status_hash_mismatch">"ဤဖိုင်သည် ထုတ်ပြန်ထားသော ဟက်ရှ်နှင့် မကိုက်ညီပါ။ ဤအရာကို ခွင့်ပြု၍မရပါ။"</string>
 <string name="extension_status_held">"သင်ရွေးချယ်သည်အထိ ပိတ်ထားသည်"</string>
+<string name="extension_status_held_new_version">"ဗားရှင်းအသစ် · သင်ရွေးချယ်သည်အထိ ပိတ်ထားသည်"</string>
 <string name="extension_status_kept_off">"ပိတ်ထားသည်"</string>
 <string name="extension_status_start_failed">"ခွင့်ပြုထားသော်လည်း မစတင်ခဲ့ပါ"</string>
 <string name="extension_types">"ထောက်ပံ့ထားသော"</string>
@@ -291,17 +292,29 @@
 <string name="play_torrent_button">"တောရပ် ကြည့်မည်"</string>
 <string name="play_trailer_button">"ထွေလာ ကြည့်မည်"</string>
 <string name="play_with_app_name">"CloudStream ဖြင့်ကြည့်ရန်"</string>
+<string name="player_enter_fullscreen">"ဖန်သားပြင်အပြည့်သို့ ဝင်ရောက်ပါ"</string>
+<string name="player_exit_fullscreen">"ဖန်သားပြင်အပြည့်မှ ထွက်ရန်"</string>
+<string name="player_fit_original">"မူရင်းအချိုး"</string>
+<string name="player_fit_screen">"မျက်နှာပြင်ပြည့်"</string>
+<string name="player_fit_title">"ပုံအရွယ်အစား"</string>
+<string name="player_fit_width">"အကျယ်ပြည့်"</string>
 <string name="player_load_subtitles">"ဖိုင်မှတင်သွင်းပြီး"</string>
 <string name="player_load_subtitles_online">"အင်တာနက်မှ တင်သွင်းမည်"</string>
 <string name="player_loaded_subtitles" formatted="true">"တင်ပြီး %s"</string>
+<string name="player_mute">"အသံပိတ်ရန်"</string>
 <string name="player_pref">"ဦးစားပေး ဗီဒီယိုဖွင့်စက်"</string>
 <string name="player_settings_play_in_app">"ဖုန်းတွင်းကြည့်ရှုမှု"</string>
 <string name="player_size_settings">"ကြည့်ရှုမှု စခရင်အရွယ်အစားချိန်ညိှမှု"</string>
 <string name="player_size_settings_des">"အနက်ရောင်ဘောင်များကို ဖယ်ရှားရန်"</string>
+<string name="player_source_playing">"ဖွင့်နေသည်"</string>
+<string name="player_source_resumes_at" formatted="true">"ပြောင်းလည်း နေရာမပျောက်ပါ: %1$s မှ ဆက်ဖွင့်မည်"</string>
+<string name="player_source_retry">"ထပ်ကြိုးစားရန်"</string>
+<string name="player_source_switch">"ပြောင်းရန်"</string>
 <string name="player_speed">"ကြည့်ရှုမှုအရှိန်"</string>
 <string name="player_speed_text_format" formatted="true">"အရှိန် (%.2fx)"</string>
 <string name="player_subtitles_settings">"စာတန်းထိုးများ"</string>
 <string name="player_subtitles_settings_des">"ကြည့်ရှုမှုစာတန်းထိုးပြုပြင်စရာများ"</string>
+<string name="player_unmute">"အသံဖွင့်ရန်"</string>
 <string name="plugin">"ဖြည့်စွက်များ"</string>
 <string name="plugin_deleted">"ဖြည့်စွက်များဖျက်ပြီး"</string>
 <string name="plugin_downloaded">"ဖြည့်စွက်များ ဒေါင်းလုဒ်လုပ်ပြီး"</string>

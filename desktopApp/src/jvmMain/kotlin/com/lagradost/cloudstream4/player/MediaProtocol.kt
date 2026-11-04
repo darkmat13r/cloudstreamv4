@@ -22,11 +22,14 @@ internal object MediaProtocol {
     const val OP_TOGGLE_PAUSE: Byte = 2
     const val OP_SEEK_BY: Byte = 3
     const val OP_SEEK_TO: Byte = 4
+    const val OP_SET_VOLUME: Byte = 5
+    const val OP_SET_AUDIO_TRACK: Byte = 6
 
     const val MESSAGE_STATUS: Byte = 1
     const val MESSAGE_FORMAT: Byte = 2
     const val MESSAGE_FRAME: Byte = 3
     const val MESSAGE_PICTURE: Byte = 4
+    const val MESSAGE_AUDIO_TRACKS: Byte = 5
 
     const val BYTES_PER_PIXEL = 4
 
@@ -46,6 +49,21 @@ internal object MediaProtocol {
 
     const val MAX_TEXT_BYTES = 16 * 1024
 
+    /** More than any real file has, and few enough that the list stays a list. */
+    const val MAX_AUDIO_TRACKS = 32
+    const val MAX_AUDIO_NAME_CHARS = 80
+
+    /** At most three bytes to a UTF-16 unit, so a name the host cut to [MAX_AUDIO_NAME_CHARS] always fits. */
+    const val MAX_AUDIO_NAME_BYTES = MAX_AUDIO_NAME_CHARS * 3
+
+    const val MAX_AUDIO_CHANNELS = 32
+
+    /** libVLC's codec names are four characters. */
+    const val MAX_AUDIO_CODEC_BYTES = 8
+
+    /** The host sends a list only when it changes, so one that keeps changing it is not describing a stream. */
+    const val MAX_AUDIO_TRACK_UPDATES = 256
+
     fun DataOutputStream.writeText(value: String?) {
         if (value == null) {
             writeInt(-1)
@@ -57,10 +75,10 @@ internal object MediaProtocol {
         write(bytes)
     }
 
-    fun DataInputStream.readText(): String? {
+    fun DataInputStream.readText(maxBytes: Int = MAX_TEXT_BYTES): String? {
         val size = readInt()
         if (size == -1) return null
-        if (size !in 0..MAX_TEXT_BYTES) throw IOException("text of $size bytes")
+        if (size !in 0..maxBytes) throw IOException("text of $size bytes")
         return ByteArray(size).also(::readFully).decodeToString()
     }
 }
@@ -87,6 +105,7 @@ internal interface FrameTarget {
 internal class MediaStreamReader(
     input: InputStream,
     private val sink: FrameSink,
+    private val onAudioTracks: (AudioTracks) -> Unit = {},
     private val onStatus: (PlayerStatus) -> Unit,
 ) {
     private val data = DataInputStream(input)
@@ -94,6 +113,7 @@ internal class MediaStreamReader(
     private var target: FrameTarget? = null
     private var frameBytes = 0
     private var formatChanges = 0
+    private var audioTrackUpdates = 0
 
     /** Until the stream ends, which is how a host exits. */
     fun readAll() {
@@ -105,6 +125,7 @@ internal class MediaStreamReader(
                 MediaProtocol.MESSAGE_FORMAT -> readFormat()
                 MediaProtocol.MESSAGE_FRAME -> readFrame()
                 MediaProtocol.MESSAGE_PICTURE -> readPicture()
+                MediaProtocol.MESSAGE_AUDIO_TRACKS -> onAudioTracks(readAudioTracks())
                 else -> throw IOException("unknown message $type")
             }
         }
@@ -147,6 +168,25 @@ internal class MediaStreamReader(
         current.showAs(width, height)
     }
 
+    private fun readAudioTracks(): AudioTracks {
+        if (++audioTrackUpdates > MediaProtocol.MAX_AUDIO_TRACK_UPDATES) throw IOException("too many audio track lists")
+        val count = data.readInt()
+        if (count !in 0..MediaProtocol.MAX_AUDIO_TRACKS) throw IOException("$count audio tracks")
+        val selected = data.readInt()
+        val tracks = List(count) { index ->
+            val id = data.readInt()
+            if (id < 0) throw IOException("audio track $id")
+            val channels = data.readInt()
+            if (channels !in 0..MediaProtocol.MAX_AUDIO_CHANNELS) throw IOException("$channels audio channels")
+            val name = with(MediaProtocol) { data.readText(MAX_AUDIO_NAME_BYTES) } ?: throw IOException("unnamed audio track")
+            val codec = with(MediaProtocol) { data.readText(MAX_AUDIO_CODEC_BYTES) } ?: throw IOException("audio track with no codec")
+            AudioTrack(id, audioTrackName(name, index + 1), channels, codec.filter { it.isLetterOrDigit() && it.code < ASCII_END })
+        }
+        if (tracks.distinctBy { it.id }.size != count) throw IOException("audio tracks with one id")
+        if (selected != AudioTracks.NONE && tracks.none { it.id == selected }) throw IOException("selected track $selected")
+        return AudioTracks(tracks, selected)
+    }
+
     private fun readFrame() {
         val current = target ?: throw IOException("frame before format")
         val buffer = current.next()
@@ -168,5 +208,6 @@ internal class MediaStreamReader(
         const val FLAG_FAILED = 4
         const val FLAG_FINISHED = 8
         private const val CHUNK_BYTES = 256 * 1024
+        private const val ASCII_END = 128
     }
 }

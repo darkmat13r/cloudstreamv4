@@ -622,3 +622,41 @@ in the Actions tab, including `Artifact Build` (`pull_request.yml`). That one is
 is **not** one of the three broken workflows. Gating the three in-file is what makes re-enabling
 them safe: once they are skipped here, re-enabling them no longer turns master red. `Artifact
 Build` is being re-enabled by the parent session.
+
+---
+
+## INF-10 — Android UI automation: the device-test harness · **measured 2026-11-04**
+
+**Status:** see the PR that carries this entry · the owner approved these test-scope dependencies:
+`androidx.compose.ui:ui-test-junit4` and `ui-test-manifest` 1.12.0, `androidx.test.uiautomator:uiautomator`
+2.4.0, `androidx.test:runner` and `rules` 1.7.0 (latest stable).
+
+**Where a test lives.** `androidDeviceTest` in the feature's own module, through
+`cloudstream.kmp.device-test`. The TV screens are in `:feature:*` `commonMain` and most have no Android
+host, so `:app`'s `androidTest` could only reach them through the whole app, with extension loading and
+providers behind it. In the feature, the test APK holds that module and its dependencies: a fake at the
+module's seam (`SearchSource`), the real ViewModel, no network. `:app`'s `androidTest` is kept for what
+only the real app can show, which is navigation. `SearchScreenTvDeviceTest` is the template.
+
+**What it shares.** `:core:devicetest`: `DpadDriver` presses keys and reads focus, `walk()` maps a
+screen, and `FocusGraph.unreachable` / `deadEnds` / `traps` answer the three clauses of "every focusable
+reachable, no dead ends, no traps".
+
+**Measured, each one a wrong turn first:**
+
+- `androidxComposeUi` says 1.11.0 and is stale. `:feature:search`'s `androidDeviceTestRuntimeClasspath`
+  resolves `androidx.compose.ui:ui`, `runtime` and `foundation` to **1.12.0**, so the test libraries are
+  pinned to 1.12.0 in their own version key. `androidxComposeUi` still serves `:core:screenshot` and was
+  left alone.
+- Compose's resource plugin fails the test APK in a module without `androidResources`
+  (`copyAndroidDeviceTestComposeResourcesToAndroidAssets` has no output directory). The convention
+  gives it one. Strings from `:core:strings` load in the test APK with no further setup.
+- **`UiDevice.pressDPadDown()` makes a text field look like a trap.** All injected keys arrive as device
+  -1 (`input dpad keyevent` too; `sendevent` is denied by SELinux on the android-tv image), and Compose's
+  field moves focus for a virtual device only when the source is `SOURCE_HDMI`. `DpadDriver` sends that.
+- The open keyboard takes the D-pad, which is correct on a TV, so a test closes it first.
+- Under `createComposeRule` the accessibility tree lags the test clock, so a screen test reads focus from
+  semantics (`rule.focusedLabel()`). The real app has a real clock and uses the default reader.
+
+**The gate.** The sixth, device-only, not part of `check`: `docs/HANDOVER.md`.
+

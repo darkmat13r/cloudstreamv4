@@ -275,6 +275,7 @@
 <string name="extension_status_blocked">"Заблакавана сканаваннем. Гэта нельга дазволіць."</string>
 <string name="extension_status_hash_mismatch">"Гэты файл не адпавядае свайму апублікаванаму хэшу. Гэта нельга дазволіць."</string>
 <string name="extension_status_held">"Выключана, пакуль вы не вырашыце"</string>
+<string name="extension_status_held_new_version">"Новая версія · Выключана, пакуль вы не вырашыце"</string>
 <string name="extension_status_kept_off">"Пакінута выключаным"</string>
 <string name="extension_status_start_failed">"Дазволена, але не запусцілася"</string>
 <string name="extension_types">"Падтрымлівае"</string>
@@ -415,11 +416,18 @@
 <string name="play_torrent_button">"Трансліраваць Torrent"</string>
 <string name="play_trailer_button">"Прайграць трэйлер"</string>
 <string name="play_with_app_name">"Прайграць праз CloudStream"</string>
+<string name="player_enter_fullscreen">"Уключыць поўнаэкранны рэжым"</string>
+<string name="player_exit_fullscreen">"Выключыць поўнаэкранны рэжым"</string>
+<string name="player_fit_original">"Зыходныя прапорцыі"</string>
+<string name="player_fit_screen">"Запоўніць экран"</string>
+<string name="player_fit_title">"Памер выявы"</string>
+<string name="player_fit_width">"Запоўніць шырыню"</string>
 <string name="player_is_live">"Ужывую"</string>
 <string name="player_load_one_subtitle_online">"Спампаваць першыя даступныя"</string>
 <string name="player_load_subtitles">"Загрузіць з файла"</string>
 <string name="player_load_subtitles_online">"Спампаваць з інтэрнэту"</string>
 <string name="player_loaded_subtitles" formatted="true">"Загружана %s"</string>
+<string name="player_mute">"Выключыць гук"</string>
 <string name="player_notification_channel_description">"Апавяшчэнне прайгравальніка для кіравання прайграваннем у фонавым рэжыме"</string>
 <string name="player_notification_channel_name">"Апавяшчэнні прайгравальніка"</string>
 <string name="player_pref">"Прыярытэтны прайгравальнік"</string>
@@ -428,10 +436,15 @@
 <string name="player_settings_select_cast_device">"Выбраць прыладу для трансляцыі"</string>
 <string name="player_size_settings">"Кнопка змены памеру прайгравальніка"</string>
 <string name="player_size_settings_des">"Прыбраць чорныя межы"</string>
+<string name="player_source_playing">"Прайграецца"</string>
+<string name="player_source_resumes_at" formatted="true">"Пераключэнне захоўвае пазіцыю: працяг з %1$s"</string>
+<string name="player_source_retry">"Паўтарыць"</string>
+<string name="player_source_switch">"Пераключыць"</string>
 <string name="player_speed">"Хуткасць прайгравальніка"</string>
 <string name="player_speed_text_format" formatted="true">"Хуткасць (%.2fx)"</string>
 <string name="player_subtitles_settings">"Субцітры"</string>
 <string name="player_subtitles_settings_des">"Налады субцітраў прайгравальніка"</string>
+<string name="player_unmute">"Уключыць гук"</string>
 <string name="plugin">"убудовы"</string>
 <string name="plugin_deleted">"Убудова выдалена"</string>
 <string name="plugin_downloaded">"Убудова спампавана"</string>

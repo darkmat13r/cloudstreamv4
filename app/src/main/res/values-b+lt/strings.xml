@@ -111,6 +111,7 @@
 <string name="extension_status_blocked">"Užblokuotas patikros. To leisti negalima."</string>
 <string name="extension_status_hash_mismatch">"Šis failas neatitinka paskelbtos maišos reikšmės. To leisti negalima."</string>
 <string name="extension_status_held">"Išjungtas, kol pasirinksite"</string>
+<string name="extension_status_held_new_version">"Nauja versija · Išjungtas, kol pasirinksite"</string>
 <string name="extension_status_kept_off">"Paliktas išjungtas"</string>
 <string name="extension_status_start_failed">"Leidžiamas, bet nepasileido"</string>
 <string name="extension_types">"Palaikoma"</string>
@@ -184,13 +185,25 @@
 <string name="play_torrent_button">"Transliuoti Torrentą"</string>
 <string name="play_trailer_button">"Paleisti anonsą"</string>
 <string name="play_with_app_name">"Paleisti su CloudStream"</string>
+<string name="player_enter_fullscreen">"Įjungti viso ekrano režimą"</string>
+<string name="player_exit_fullscreen">"Išjungti viso ekrano režimą"</string>
+<string name="player_fit_original">"Originalus kraštinių santykis"</string>
+<string name="player_fit_screen">"Užpildyti ekraną"</string>
+<string name="player_fit_title">"Vaizdo dydis"</string>
+<string name="player_fit_width">"Užpildyti plotį"</string>
+<string name="player_mute">"Nutildyti"</string>
 <string name="player_settings_play_in_app">"Integruotas grotuvas"</string>
 <string name="player_size_settings">"Grotuvo dydžio pakeitimo mygtukas"</string>
 <string name="player_size_settings_des">"Pašalinti juodas paraštes"</string>
+<string name="player_source_playing">"Leidžiama"</string>
+<string name="player_source_resumes_at" formatted="true">"Perjungus padėtis išlieka: tęsiama nuo %1$s"</string>
+<string name="player_source_retry">"Bandyti dar kartą"</string>
+<string name="player_source_switch">"Perjungti"</string>
 <string name="player_speed">"Grotuvo greitis"</string>
 <string name="player_speed_text_format" formatted="true">"Greitis (%.2fx)"</string>
 <string name="player_subtitles_settings">"Subtitrai"</string>
 <string name="player_subtitles_settings_des">"Grotuvo subtitrų nustatymai"</string>
+<string name="player_unmute">"Įjungti garsą"</string>
 <string name="plugin_load_fail" formatted="true">"Nepavyko įkelti %s"</string>
 <string name="plugins_disabled" formatted="true">"Išjungta: %d"</string>
 <string name="plugins_downloaded" formatted="true">"Atsiųsta: %d"</string>

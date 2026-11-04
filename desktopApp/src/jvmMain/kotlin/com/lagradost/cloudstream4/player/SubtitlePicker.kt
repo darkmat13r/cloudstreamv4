@@ -35,6 +35,7 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
 import com.lagradost.cloudstream4.core.designsystem.desktop.desktopFeedback
@@ -71,6 +72,22 @@ internal fun SubtitlePicker(
     onSelect: (SubtitleTrack?) -> Unit,
     onDismiss: () -> Unit,
 ) {
+    PlayerListPanel(stringResource(Res.string.player_subtitles_settings), onDismiss) {
+        if (tracks.isEmpty()) {
+            BasicText(
+                text = stringResource(Res.string.no_subtitles),
+                style = CloudStreamTheme.typography.body.copy(color = CloudStreamTheme.colors.ink),
+                modifier = Modifier.padding(horizontal = DesktopDimens.RowPadding, vertical = DesktopDimens.RelatedGap),
+            )
+        } else {
+            TrackList(tracks, selection, failures, onSelect)
+        }
+    }
+}
+
+/** A titled list floating above the player's controls, in their column. Closes on a click anywhere else. */
+@Composable
+internal fun PlayerListPanel(title: String, onDismiss: () -> Unit, content: @Composable () -> Unit) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
     Box(
@@ -102,19 +119,11 @@ internal fun SubtitlePicker(
                     .padding(DesktopDimens.RelatedGap),
             ) {
                 BasicText(
-                    text = stringResource(Res.string.player_subtitles_settings),
+                    text = title,
                     style = typography.caption.copy(color = colors.muted),
                     modifier = Modifier.padding(horizontal = DesktopDimens.RowPadding, vertical = DesktopDimens.RelatedGap),
                 )
-                if (tracks.isEmpty()) {
-                    BasicText(
-                        text = stringResource(Res.string.no_subtitles),
-                        style = typography.body.copy(color = colors.ink),
-                        modifier = Modifier.padding(horizontal = DesktopDimens.RowPadding, vertical = DesktopDimens.RelatedGap),
-                    )
-                } else {
-                    TrackList(tracks, selection, failures, onSelect)
-                }
+                content()
             }
         }
     }
@@ -166,15 +175,16 @@ private fun TrackList(
 
 /** `DesktopRow`, with room for the mark that says which one is on. */
 @Composable
-private fun TrackRow(
+internal fun TrackRow(
     title: String,
     detail: String?,
     selected: Boolean,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    titleStyle: TextStyle = CloudStreamTheme.typography.label.copy(color = CloudStreamTheme.colors.ink),
+    detailStyle: TextStyle = CloudStreamTheme.typography.caption.copy(color = CloudStreamTheme.colors.muted),
 ) {
     val colors = CloudStreamTheme.colors
-    val typography = CloudStreamTheme.typography
     val source = remember { MutableInteractionSource() }
     val hovered by source.collectIsHoveredAsState()
     val focused by source.collectIsFocusedAsState()
@@ -186,26 +196,27 @@ private fun TrackRow(
             .fillMaxWidth()
             .desktopFeedback(source, lift = false)
             .tvFocusRing(focused = focused, shape = shape)
-            .background(if (hovered) colors.raised else Color.Transparent, shape)
+            // Selected is the raised fill and a muted mark, and white is focus only (Design System v2).
+            .background(if (hovered || selected) colors.raised else Color.Transparent, shape)
             .clickable(interactionSource = source, indication = null, onClick = onClick)
             .heightIn(min = DesktopDimens.RowMinHeight)
             .padding(horizontal = DesktopDimens.RowPadding, vertical = DesktopDimens.RelatedGap),
     ) {
         Box(Modifier.size(PlayerScreenDefaults.PickerMarkSize), contentAlignment = Alignment.Center) {
             // Decoration: a row's state is also in the selection the screen reads back.
-            if (selected) CloudStreamIcon(CloudStreamIcons.Done, null, size = CloudStreamIconSize.Small, tint = colors.ink)
+            if (selected) CloudStreamIcon(CloudStreamIcons.Done, null, size = CloudStreamIconSize.Small, tint = colors.muted)
         }
         Column {
             BasicText(
                 text = title,
-                style = typography.label.copy(color = colors.ink),
+                style = titleStyle,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
             )
             if (detail != null) {
                 BasicText(
                     text = detail,
-                    style = typography.caption.copy(color = colors.muted),
+                    style = detailStyle,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis,
                 )

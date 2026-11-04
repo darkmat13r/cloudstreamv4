@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
+import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.rememberWindowState
 import com.lagradost.cloudstream4.core.designsystem.desktop.forDesktop
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
@@ -44,6 +45,7 @@ import com.lagradost.cloudstream4.feature.library.LibraryStore
 import com.lagradost.cloudstream4.feature.library.LibraryTitle
 import com.lagradost.cloudstream4.feature.library.LibraryTitleId
 import com.lagradost.cloudstream4.feature.library.LibraryViewModel
+import com.lagradost.cloudstream4.home.FileHomeSourceMemory
 import com.lagradost.cloudstream4.home.TopLevelDestination
 import com.lagradost.cloudstream4.library.DesktopLibraryStore
 import com.lagradost.cloudstream4.library.LibraryHost
@@ -52,6 +54,7 @@ import com.lagradost.cloudstream4.feature.detail.DetailEffect
 import com.lagradost.cloudstream4.feature.detail.StreamLink
 import com.lagradost.cloudstream4.feature.detail.desktop.DetailScreenDesktop
 import com.lagradost.cloudstream4.feature.home.HomeSource
+import com.lagradost.cloudstream4.feature.home.HomeSourceMemory
 import com.lagradost.cloudstream4.feature.home.HomeViewModel
 import com.lagradost.cloudstream4.feature.search.SearchAction
 import com.lagradost.cloudstream4.feature.search.SearchEffect
@@ -62,6 +65,7 @@ import com.lagradost.cloudstream4.home.HomeHost
 import com.lagradost.cloudstream4.home.TopLevelScreen
 import com.lagradost.cloudstream4.home.TopLevelTab
 import com.lagradost.cloudstream4.player.MediaHost
+import com.lagradost.cloudstream4.player.PlayerFullscreen
 import com.lagradost.cloudstream4.player.PlayerScreen
 import com.lagradost.cloudstream4.player.PlayerUnavailable
 import com.lagradost.cloudstream4.player.VlcPlayer
@@ -153,10 +157,12 @@ fun main(args: Array<String>) {
 
     application {
         val escape = remember { EscapeHandler() }
+        val windowState = rememberWindowState(size = DpSize(WINDOW_WIDTH, WINDOW_HEIGHT))
+        val homeMemory = remember { FileHomeSourceMemory() }
         Window(
             onCloseRequest = ::exitApplication,
             title = WINDOW_TITLE,
-            state = rememberWindowState(size = DpSize(WINDOW_WIDTH, WINDOW_HEIGHT)),
+            state = windowState,
             // At the window, because it has to work wherever focus is, including nowhere at all.
             onPreviewKeyEvent = { event ->
                 event.key == Key.Escape && event.type == KeyEventType.KeyDown && escape.handle()
@@ -168,7 +174,7 @@ fun main(args: Array<String>) {
             CloudStreamTheme {
                 CompositionLocalProvider(LocalCloudStreamTypography provides CloudStreamTheme.typography.forDesktop()) {
                     Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) {
-                        DesktopApp(escape, approvals = approvals)
+                        DesktopApp(escape, approvals = approvals, window = windowState, homeMemory = homeMemory)
                     }
                 }
             }
@@ -212,6 +218,8 @@ private sealed interface Screen {
  *
  * @param approvals what the scan held back and what was chosen about it. Null where nothing was loaded.
  * @param onScreen told where the window is, for a test to read.
+ * @param window what the player puts in full screen. Null where there is no window, as in a test.
+ * @param homeMemory the home source chosen last. Keeps nothing by default, so a test cannot write to a real home.
  */
 @Composable
 internal fun DesktopApp(
@@ -221,6 +229,8 @@ internal fun DesktopApp(
     // After `approvals` so that every existing positional call still means what it did.
     library: LibraryStore = remember { DesktopLibraryStore() },
     onScreen: (String) -> Unit = {},
+    window: WindowState? = null,
+    homeMemory: HomeSourceMemory = HomeSourceMemory.None,
 ) {
     val scope = remember { CoroutineScope(SupervisorJob() + Dispatchers.Default) }
     DisposableEffect(scope) { onDispose { scope.cancel() } }
@@ -230,7 +240,7 @@ internal fun DesktopApp(
     // when made, so it is rebuilt; `SearchViewModel` is told with `SourcesChanged` instead (BUG-24),
     // which keeps the results and the typed query the user is looking at.
     val providerChanges = review?.providerChanges ?: 0
-    val homeViewModel = remember(providerChanges) { HomeViewModel(home, scope) }
+    val homeViewModel = remember(providerChanges) { HomeViewModel(home, scope, homeMemory) }
     // Outlives the tab so that changing list is instant; `LibraryHost` refreshes it on arrival. It
     // reads no providers, so it does not need resetting when what is installed changes.
     val libraryViewModel = remember { LibraryViewModel(library, scope) }
@@ -330,6 +340,9 @@ internal fun DesktopApp(
                         startAtMillis = screen.startAtMillis,
                         onProgress = recorder::onProgress,
                         arrivingSubtitles = arrivingSubtitles,
+                        fullscreen = remember(screen, window) { window?.let(::PlayerFullscreen) },
+                        links = remember(screen) { DesktopDetailViewModels.links(screen.kept.id.value) },
+                        openPlayer = VlcPlayer::createOrNull,
                     )
                 }
                 DisposableEffect(screen) {

@@ -1,10 +1,8 @@
 package com.lagradost.cloudstream4.feature.extensions.sandbox
 
-import java.net.URI
-import java.net.http.HttpClient
-import java.net.http.HttpRequest
-import java.net.http.HttpResponse
-import java.time.Duration
+import java.net.HttpURLConnection
+import java.net.URL
+import java.nio.charset.Charset
 import org.schabi.newpipe.extractor.downloader.Downloader
 import org.schabi.newpipe.extractor.downloader.Request
 import org.schabi.newpipe.extractor.downloader.Response
@@ -18,42 +16,48 @@ import org.schabi.newpipe.extractor.exceptions.ReCaptchaException
  * (measured: `YoutubeProvider`). That class is `:app`'s, so this restates it over the JDK's client
  * rather than reaching for OkHttp, which `:library` does not expose. The sandbox applies to it just
  * like everything else in the host.
+ *
+ * `HttpURLConnection` and not the JDK's newer `HttpClient`, which ignores a SOCKS proxy and so cannot pass through
+ * [OutboundGate]: it connects directly, and the kernel refuses it (measured: YouTube's search failed).
  */
 internal class HostNewPipeDownloader : Downloader() {
 
-    private val client: HttpClient = HttpClient.newBuilder()
-        .followRedirects(HttpClient.Redirect.NORMAL)
-        .connectTimeout(Duration.ofSeconds(TIMEOUT_SECONDS))
-        .build()
-
     override fun execute(request: Request): Response {
-        val body = request.dataToSend()
-            ?.let { HttpRequest.BodyPublishers.ofByteArray(it) }
-            ?: HttpRequest.BodyPublishers.noBody()
-        val builder = HttpRequest.newBuilder(URI.create(request.url()))
-            .timeout(Duration.ofSeconds(TIMEOUT_SECONDS))
-            .method(request.httpMethod(), body)
-            .header(USER_AGENT_HEADER, USER_AGENT)
+        val connection = URL(request.url()).openConnection() as HttpURLConnection
+        connection.connectTimeout = TIMEOUT_MILLIS
+        connection.readTimeout = TIMEOUT_MILLIS
+        connection.requestMethod = request.httpMethod()
+        connection.setRequestProperty(USER_AGENT_HEADER, USER_AGENT)
         for ((name, values) in request.headers()) {
-            // The JDK client rejects these outright; it sets them itself.
             if (name.lowercase() in RESTRICTED_HEADERS) continue
-            if (values.size == 1) builder.setHeader(name, values[0]) else values.forEach { builder.header(name, it) }
+            values.forEachIndexed { index, value ->
+                if (index == 0) connection.setRequestProperty(name, value) else connection.addRequestProperty(name, value)
+            }
         }
-        val response = client.send(builder.build(), HttpResponse.BodyHandlers.ofString())
-        if (response.statusCode() == TOO_MANY_REQUESTS) {
-            throw ReCaptchaException("reCaptcha Challenge requested", request.url())
+        request.dataToSend()?.let { body ->
+            connection.doOutput = true
+            connection.outputStream.use { it.write(body) }
         }
+        val status = connection.responseCode
+        if (status == TOO_MANY_REQUESTS) throw ReCaptchaException("reCaptcha Challenge requested", request.url())
+        val stream = if (status >= FIRST_ERROR_STATUS) connection.errorStream else connection.inputStream
+        val body = stream?.use { it.readBytes() } ?: ByteArray(0)
         return Response(
-            response.statusCode(),
+            status,
             "",
-            response.headers().map(),
-            response.body(),
-            response.uri().toString(),
+            connection.headerFields.filterKeys { it != null },
+            body.toString(charsetOf(connection.contentType)),
+            connection.url.toString(),
         )
     }
 
+    private fun charsetOf(contentType: String?): Charset =
+        contentType?.substringAfter("charset=", "")?.substringBefore(';')?.trim()?.trim('"')
+            ?.takeIf { it.isNotEmpty() }?.let { runCatching { Charset.forName(it) }.getOrNull() } ?: Charsets.UTF_8
+
     private companion object {
-        const val TIMEOUT_SECONDS = 30L
+        const val TIMEOUT_MILLIS = 30_000
+        const val FIRST_ERROR_STATUS = 400
         const val TOO_MANY_REQUESTS = 429
         const val USER_AGENT_HEADER = "User-Agent"
 

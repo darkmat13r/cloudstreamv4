@@ -712,7 +712,7 @@ gets there first: the old order fails 6 of 6 runs, this one 0 of 10.
 
 ## BUG-17 — opening the player could cost another running copy its stream, while that stream was starting · **low**
 
-**Status:** in pr · found 2026-11-03 by reading, then run · `VlcPlayer.kt`
+**Status:** done · #106 · found 2026-11-03 by reading, then run · `VlcPlayer.kt`
 
 `createOrNull` deleted everything in `~/.cloudstream4/.media-host`, on the assumption of one stream at a time. Copies of the app
 sharing a home break that assumption: a second window from `open -n`, another build, or a `--check-*` run.
@@ -891,7 +891,7 @@ Renders looked at, 1280x800: waiting, first link, growing, overflowing, finished
 
 ## BUG-18 — CineStream did not load, and neither did anything else whose stack maps named `java/util/Object` · **high**
 
-**Status:** in pr · found 2026-11-03 by running the owner's plugin · `DexConverter.kt`, `StackMapFrames.kt`, shims in `syncproviders/`
+**Status:** done · #110 · found 2026-11-03 by running the owner's plugin · `DexConverter.kt`, `StackMapFrames.kt`, shims in `syncproviders/`
 
 CineStream 487 (`sha256 30dc6436…`), Allowed in a fresh home and nothing else seeded, printed `not loaded: NoClassDefFoundError: java/util/Object`, `0 of 1 running, 0 providers`. The owner mostly uses its CineTmdb source. There were two causes, and the second was behind the first.
 
@@ -1078,7 +1078,7 @@ Rendered at 1280x800 through `DetailScreenDesktop` (`-Pcloudstream.home.renders=
 
 ## BUG-22 — a link picked early never got its subtitles · **medium**
 
-**Status:** in pr · found 2026-11-03 while building `BUG-19` · `DetailViewModel.kt`, `SubtitleSession.kt`, `SubtitlePreference.kt`, `PlayerScreen.kt`, `DesktopDetailViewModels.kt`
+**Status:** done · #113 · found 2026-11-03 while building `BUG-19` · `DetailViewModel.kt`, `SubtitleSession.kt`, `SubtitlePreference.kt`, `PlayerScreen.kt`, `DesktopDetailViewModels.kt`
 
 `BUG-19` made a link pickable as soon as it arrives, and picking one stopped the search. Subtitles arrive later than links, so the earlier the pick, the fewer the tracks. Measured with CineStream on "inception", through `--check-extensions --verbose`: the first link at 485 ms with **0** subtitles, the first subtitle at 2,693 ms, and 175 by 64 s. Someone clicking the first row got a player with an empty list.
 
@@ -1116,7 +1116,7 @@ The first attempt at this check said `cue-on-screen=true` over a grey frame with
 
 ## BUG-23 — search stuck on its loading cards for good · **high**
 
-**Status:** in pr · found 2026-11-03 by the owner, whose screenshot shows `other mo` over loading cards with `Sources 5 / 5` · `Viewmodel.kt` (`DebounceQuery`)
+**Status:** done · #114 · found 2026-11-03 by the owner, whose screenshot shows `other mo` over loading cards with `Sources 5 / 5` · `Viewmodel.kt` (`DebounceQuery`)
 
 `onQueryChanged` sets `SearchStatus.Loading` and hands the text to `DebounceQuery`, which ended in `distinctUntilChanged`. A settled query equal to the previous one was dropped, so no search ran and nothing ever replaced `Loading`. Return was the only way out.
 
@@ -1136,7 +1136,7 @@ The plugins were not at fault: each answered `other mo` in under 900 ms. `Search
 
 ## BUG-24 — three more defects in the shared search state machine, split out of #91 · **medium**
 
-**Status:** in pr · found 2026-11-02 while switching Android TV to `SearchScreenTv` (`KMP-12` step 4) ·
+**Status:** done · #115 · found 2026-11-02 while switching Android TV to `SearchScreenTv` (`KMP-12` step 4) ·
 `SearchViewModel.kt`, `SearchHistory.kt`, `SearchMvi.kt`, `Main.kt`
 
 `SearchViewModel` is shared: the desktop search screen runs it now, and `KMP-12` points Android TV at
@@ -1187,3 +1187,183 @@ exist on master, so that one case cannot be compiled against the old code at all
   file stays in #91 with the TV screen it serves. On desktop the value is `true`, which is what
   `BUG-12` made correct there.
 - The live desktop window. Every one of these is a state-machine test.
+
+## BUG-25 — search could still stick on loading, when keystrokes arrived out of order · **high**
+
+**Status:** done · #123. Found by `:feature:search`'s `adding a letter and deleting it again does not stick on loading`, which
+failed once in the `check` gate of `KMP-31`. It was not a flaky test.
+
+`onQueryChanged` sends each keystroke to the debounce from its own coroutine. On a scope with more than one thread, which
+is what desktop passes, the older keystroke can arrive last. The consumer compared what settled with what the field
+said, and skipped the search when they differed, so the screen stayed on `Loading` with nothing running.
+
+| Measured | Result |
+|---|---|
+| Temporary probe, on the failing run | `settled=films current=film` |
+| The test, polling for 20 s instead of 600 ms, 14 runs | 2 still `Loading` after 20 s, with only the first search made |
+| New stress test, 200 searches at once, without the fix, 5 runs | 10, 9, 10, 10 and 2 left on loading |
+| The whole `:feature:search` test task with the fix, 15 runs, load average about 45 | 15 pass |
+
+The fix searches what the field says now. `BUG-23` (#114) fixed a different cause of the same symptom.
+
+**Not measured:** Android's `viewModelScope` is single threaded, so this path should keep its order there. That was
+reasoned and not run. Nobody has reproduced this by hand in the window.
+
+---
+
+## BUG-26 — An attempt to break out of the sandboxes, and what it found · **high** · measured 2026-11-04
+
+**Status:** done · #122. `SandboxEscapeAttemptTest` runs every attempt through a real plugin host and a real media host under
+the real policies, and a shell under the policy with no JVM in the way. It reports a word and never what was read. It is
+this project's own attempt, not an independent audit, and it does not prove the sandbox holds. It cannot try a bug in
+macOS or libVLC.
+
+**Got through, and now fixed:**
+
+| Attempt | Before | After |
+|---|---|---|
+| `System.load` of a library dropped in its own directory, plugin host | loaded | refused |
+| Listing every process | 1053 listed | denied |
+| Reading another process's command | visible | denied |
+| Hostname, by `InetAddress.getLocalHost` | the real one | hidden |
+| MAC addresses | 4 | denied |
+| `user.name` | the real one | a stand-in |
+| `user.home`, media host | the real one | its own directory |
+
+Naming sysctls to deny does not work: reading by number skips the name filter, so a deny of `kern.proc` still returned
+it (measured, with a small C program under the policy). So it is an allow-list. `(target others)` did not stop
+`proc_pidpath` either, so it is a deny of all `process-info*` and an allow of `self`.
+
+**Tried and refused, both hosts:** reads of `~/.ssh`, `.zshrc`, `.gitconfig`, the decisions file, the login keychain,
+Chrome and Safari data; listing the home directory and `/Users`; reading or changing decisions, a hash sidecar, a plugin
+or another plugin's data; writing a LaunchAgent, `/private/tmp`, `/Users/Shared`; a hard link or symlink to a key, then
+reading it; moving a file out; running `sh`, `id`, `open`; listening on a port; 127.0.0.1, ::1, ::ffff:127.0.0.1,
+0.0.0.0, localhost; Docker's sockets; signalling another process. Garbage, forged and oversized frames were already
+covered by `SandboxEnforcementTest` and `PluginHostClientTest`.
+
+**Still open:**
+
+- **The network.** A host reached this Mac by its LAN address and the LAN gateway: Seatbelt can only name `localhost` or
+  `*`. See `BUG-27`.
+- **`stat` works on any path**, so a plugin can test whether a file exists. A JVM needs it to canonicalise paths.
+- **The account name is still in paths.** A plugin's directory is under the home directory, so its own working directory
+  says who you are. Fixing it means moving plugin data out of the home directory.
+- **The media host may load native code from its own directory**, because JNA unpacks there.
+- **DNS** still works, as it must, and a name can carry data out.
+- **`sandbox-exec` is deprecated**, as `man sandbox-exec` says. See `DEC-16`.
+
+**Checked after the change:** isolated copy of the owner's six plugins, installed build then this one: 6 of 6, 8 providers,
+CineStream 34 results and 74 playable both times, 101 then 96 links, which varies between runs. A silent check still draws frames, and
+libVLC's audio output opens and holds a level (37) on a silent file. Nobody has listened.
+
+---
+
+## BUG-27 — A plugin could reach this Mac and its LAN, by address · **high** · measured 2026-11-04
+
+**Status:** done · #124. Found by `BUG-26`: a plugin host connected to this Mac's own LAN address, which reaches anything listening
+on all interfaces, and to the LAN gateway. Seatbelt cannot refuse them. It can name only `localhost` or `*`
+(measured: anything else is "host must be * or localhost").
+
+A plugin host's policy now allows one outbound address: a port on loopback, where `OutboundGate`, a SOCKS5 proxy in the app, checks the
+address it is about to connect to against `SandboxPolicy.isPublicAddress`. Undoing the JVM's proxy setting gains nothing,
+because then the kernel refuses the connection.
+
+| Attempt, real plugin host | Before | After |
+|---|---|---|
+| This Mac by its LAN address | connected | refused by the gate |
+| LAN gateway | connected | refused by the gate |
+| Cloud metadata address | no route | refused by the gate |
+| 127.0.0.2 | no answer | refused by the gate |
+| Same LAN and loopback addresses, skipping the proxy | connected, for LAN | denied by the kernel |
+| A public address, skipping the proxy | connected | denied by the kernel |
+| UDP, public or LAN | not tried | denied by the kernel |
+| A public address and name, through the gate | connected | connected |
+
+`SandboxPolicy.isPublicAddress` also now refuses `240.0.0.0/4`, `198.18.0.0/15`, `192.0.0.0/24`, and the IPv6
+translation prefixes that carry an IPv4 address inside, `64:ff9b::/96` and `2002::/16`.
+
+`HostNewPipeDownloader` moved from the JDK's `HttpClient`, which ignores a SOCKS proxy, to `HttpURLConnection`. Without
+that YouTube's search failed. Android plugins cannot use `java.net.http`, so no plugin should depend on it, and one
+that does fails closed.
+
+`--check-extensions` now prints which names each plugin asked to connect to. **It is not on any screen.** It showed
+CineStream asking for 127.0.0.1 and ::1 as well as 110 other names, and both were refused, as loopback already was.
+
+**Not fixed: the media host.** libVLC opens its own connections, with no way to send them through a proxy that was found,
+so it keeps open network. A stream URL is still checked before it plays, but a redirect or a playlist inside it is not,
+so a hostile stream can make libVLC fetch from the LAN.
+
+**DNS** still goes to the system resolver, for the proxy and for a plugin: a name can carry data out. **A plugin still
+has the internet**, so it can send what it sees to its own servers. This does not change that.
+
+---
+
+## BUG-29 — Nothing limited how much of this Mac a plugin could use · **medium** · measured 2026-11-04
+
+**Status:** done · #128. Seatbelt says what a host may touch and nothing about how much. Each row is `HostLimitsTest`, a hostile plugin in a real host.
+
+| Attempt | Result |
+|---|---|
+| 8 threads spinning with no call waiting | stopped by `HostWatch`, 4.9 s against a 4 s test window; the default is 60 s |
+| Filling the heap | `OutOfMemoryError` in the plugin, at the existing 512 MB; the host still answers |
+| Filling direct memory | `OutOfMemoryError`, at the new 128 MB cap |
+| Memory past the limit, test limit 300 MB | stopped by the watch; the default is 1.5 GB |
+| One big file | stops at 256 MB, by `ulimit -f` |
+| Many files, test limit 50 MB | stopped by the watch; the default is 2 GB |
+| 20,000 threads | the host's JVM failed and its output broke the protocol, so the app ended that host, and only that one |
+| Priority | `nice` 10, so it comes after the app and the player |
+
+A stopped host fails its calls, as a crashed one already did, and the app carries on. **Nothing restarts it**: its sources stay gone until the next launch, and no screen says why, though `endedBecause` holds the reason.
+
+**A plugin working on a call may use what it needs**: the CPU rule applies only with no call waiting, so a plugin called constantly is not stopped by it. Network use is not limited.
+
+The media host has no `nice`, no `ulimit` and no watch, because it has frames to deliver on time and its memory depends on the video.
+
+`ProcessHandle.info().totalCpuDuration` did not work for this: a host spinning 8 threads never passed the limit with it. Why was not established. It reads `ps`.
+
+**Checked:** isolated copy of the owner's six plugins with the limits on: 6 of 6, 8 providers, CineStream 34 results and 73 playable, CineTmdb 13 and 74, and no host stopped.
+
+### What a plugin can see about the person, as measured
+
+`SandboxEscapeAttemptTest` lists all of this, through real hosts.
+
+| | Visible to a plugin? |
+|---|---|
+| Searches and titles opened, through its own calls | **Yes, and it cannot be otherwise**: it needs them to answer, and it has the internet, so it can send them to its own servers |
+| This Mac's public IP address | **Yes**, to every server it connects to |
+| Which file exists at a path, by `stat` | **Yes**: a JVM needs it |
+| The account name, through the path of its own directory | **Yes in the installed app**: fixing it means moving plugin data out of the home directory |
+| Time zone | **Yes** (`Asia/Kolkata` here). Left alone: providers' bare dates are read as local time (`BUG-08`), so a fake zone would move them, and the IP address gives away about as much |
+| Numeric user id, in `__CF_USER_TEXT_ENCODING` | Yes (501 here), set by macOS inside the process, and the same on most Macs |
+| Language and country | No: `en` and `001`, not the person's settings |
+| Hostname, MAC addresses, other processes, `user.name` | No, since `BUG-26` |
+| Environment variables, files in the home directory | No |
+
+**Which hosts each plugin contacted** is recorded by `OutboundGate` and printed by `--check-extensions`. **It is not on any screen.**
+## BUG-28 — A plugin's update could run without being asked about · **high** · measured 2026-11-04
+
+**Status:** done · #125. The hold applied only to a file with scan warnings. So an update that scanned clean ran straight away, even for a
+plugin someone had kept off, and a clean plugin's update was never noticed. A scan finding nothing is not a review of
+different code.
+
+| Case | Before | After |
+|---|---|---|
+| A plugin kept off, updated to one that scans clean | ran | held |
+| A plugin allowed, updated to one that scans clean | ran | held |
+| A plugin kept off, its same file scanning clean | ran | kept off |
+| A clean plugin, updated | ran, unnoticed | held, from the second file on |
+| A jar dropped beside a decided `.cs3` | ran | held |
+| Plugin and sidecar replaced together | held | held, now pinned |
+| Sidecar alone changed | refused | refused, now pinned |
+
+A clean file's first run is recorded as `Seen`, which is nobody's choice and never allows warnings, and a scan-only pass writes
+nothing. The review screen says "New version · Off until you choose", in all 62 directories, with the wording before the dot machine
+translated. Allowing a clean new version lists it, so it can be stopped again. `a clean plugin is not asked about at all` changed: it
+pinned that nothing is written for a clean plugin, and now pins the `Seen` record.
+
+**Cost:** every plugin update now asks once, including the official ones, because a sidecar beside a file proves nothing about who
+replaced it.
+
+**Limits:** the first file of a name still runs without asking if it scans clean. There is no version number on the screen, only
+that it is not the file decided on: the scanner does not read one. The screen was not looked at in a live window.
+

@@ -275,6 +275,7 @@
 <string name="extension_status_blocked">"الفحص حظرها. ما فيك تسمح فيها."</string>
 <string name="extension_status_hash_mismatch">"هالملف ما بيطابق قيمة التجزئة (hash) المنشورة تبعو. ما فيك تسمح فيه."</string>
 <string name="extension_status_held">"مطفية لحتى تختار"</string>
+<string name="extension_status_held_new_version">"نسخة جديدة · مطفية لحتى تختار"</string>
 <string name="extension_status_kept_off">"ضلّت مطفية"</string>
 <string name="extension_status_start_failed">"مسموحة، بس ما اشتغلت"</string>
 <string name="extension_types">"مدعوم"</string>
@@ -415,11 +416,18 @@
 <string name="play_torrent_button">"عمول ستريم للتورنت"</string>
 <string name="play_trailer_button">"مشّي المقطع الدعائي"</string>
 <string name="play_with_app_name">"مَشّي بـ\"كلود ستريم\""</string>
+<string name="player_enter_fullscreen">"فوت عالشاشة الكاملة"</string>
+<string name="player_exit_fullscreen">"اطلع من الشاشة الكاملة"</string>
+<string name="player_fit_original">"نسبة العرض الأصلية"</string>
+<string name="player_fit_screen">"عبّي الشاشة"</string>
+<string name="player_fit_title">"حجم الصورة"</string>
+<string name="player_fit_width">"عبّي العرض"</string>
 <string name="player_is_live">"لايڤ"</string>
 <string name="player_load_one_subtitle_online">"أفّي اللودينگ تلقائيًا"</string>
 <string name="player_load_subtitles">"فتاح من ملف"</string>
 <string name="player_load_subtitles_online">"فتاح من الإنترنت"</string>
 <string name="player_loaded_subtitles" formatted="true">"نفَتح %s"</string>
+<string name="player_mute">"كتّم الصوت"</string>
 <string name="player_notification_channel_description">"نوتيفيكايشن بت خليك تتحكم بال ڤيديو لما م يكون الآپ مفتوح"</string>
 <string name="player_notification_channel_name">"شغل الڤيديو عبر النوتيفيكايشنز"</string>
 <string name="player_pref">"مشغل الڤيديو المفضل"</string>
@@ -428,10 +436,15 @@
 <string name="player_settings_select_cast_device">"نقي جهاز الكاست"</string>
 <string name="player_size_settings">"كبسة تغيير حجم الڤيديو"</string>
 <string name="player_size_settings_des">"شيل الأسود من الأطراف"</string>
+<string name="player_source_playing">"عم يشتغل"</string>
+<string name="player_source_resumes_at" formatted="true">"التبديل بيحافظ على مكانك: بيكمّل من %1$s"</string>
+<string name="player_source_retry">"جرّب كمان مرة"</string>
+<string name="player_source_switch">"بدّل"</string>
 <string name="player_speed">"سرعة الڤيديو"</string>
 <string name="player_speed_text_format" formatted="true">"السرعة (%.2fx)"</string>
 <string name="player_subtitles_settings">"الترجمة"</string>
 <string name="player_subtitles_settings_des">"سَتِنگز ترجمة الڤيديو"</string>
+<string name="player_unmute">"شغّل الصوت"</string>
 <string name="plugin">"إضافات"</string>
 <string name="plugin_deleted">"نمحت الإضافة"</string>
 <string name="plugin_downloaded">"تنزلت الإضافة"</string>

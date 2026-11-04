@@ -25,6 +25,8 @@ internal object SeatbeltProfile {
      * @param writable the only directory the process may change.
      * @param network whether outbound traffic is allowed. Conversion has no use for it.
      * @param extraRules whole SBPL rules for a host that needs more, from [mediaHostRules].
+     * @param gatewayPort with [network], the only port it may connect to, on loopback: an [OutboundGate]. Null leaves
+     *   every address but loopback open, for libVLC, which cannot be sent through a proxy.
      */
     fun render(
         executable: File,
@@ -33,6 +35,7 @@ internal object SeatbeltProfile {
         writable: File,
         network: Boolean,
         extraRules: List<String> = emptyList(),
+        gatewayPort: Int? = null,
     ): String = buildString {
         appendLine("(version 1)")
         appendLine("(deny default)")
@@ -42,8 +45,17 @@ internal object SeatbeltProfile {
         appendLine("(import \"system.sb\")")
         appendLine("(allow process-exec (literal ${executable.quoted()}))")
         appendLine("(allow signal (target self))")
+        // A deny of everything first, because `system.sb` allows some of this and `(target others)` does not stop it.
+        appendLine("(deny process-info*)")
         appendLine("(allow process-info* (target self))")
-        appendLine("(allow sysctl-read)")
+        // Deny, then allow by name. `system.sb` allows every sysctl, and that is the machine's name, its network cards,
+        // and every other process with its command line. Naming those is not enough: reading by number skips a name
+        // filter, so a deny of `kern.proc` left it readable. Measured, see `SandboxEscapeAttemptTest`.
+        appendLine("(deny sysctl-read)")
+        appendLine("(allow sysctl-read")
+        READABLE_SYSCTLS.forEach { appendLine("  (sysctl-name \"$it\")") }
+        READABLE_SYSCTL_PREFIXES.forEach { appendLine("  (sysctl-name-prefix \"$it\")") }
+        appendLine(")")
         // stat() only, on any path. Java canonicalises paths and needs it; contents stay unreadable.
         appendLine("(allow file-read-metadata)")
         appendLine("(allow ipc-posix-shm-read* (ipc-posix-name \"apple.shm.notification_center\"))")
@@ -61,12 +73,19 @@ internal object SeatbeltProfile {
         appendLine(")")
         appendLine("(allow file-read* file-write* (subpath ${writable.quoted()}))")
         appendLine("(allow file-write* (literal \"/dev/null\"))")
+        // Nothing a plugin writes runs as native code: without this, `System.load` of a library it dropped there worked
+        // (measured). The kernel holds native code to this policy too, but it reaches far more of the kernel than Java does.
+        appendLine("(deny file-map-executable (subpath ${writable.quoted()}))")
         if (network) {
             appendLine("(allow system-socket)")
-            appendLine("(allow network-outbound (remote ip \"*:*\"))")
             appendLine("(allow network-outbound (literal \"/private/var/run/mDNSResponder\"))")
-            // Keeps a plugin away from services on this machine, the next-easiest thing to attack.
-            appendLine("(deny network-outbound (remote ip \"localhost:*\"))")
+            if (gatewayPort != null) {
+                appendLine("(allow network-outbound (remote ip \"localhost:$gatewayPort\"))")
+            } else {
+                appendLine("(allow network-outbound (remote ip \"*:*\"))")
+                // Keeps it away from services on this machine, by that name. Their LAN address still reaches them.
+                appendLine("(deny network-outbound (remote ip \"localhost:*\"))")
+            }
         }
         extraRules.forEach(::appendLine)
     }
@@ -145,11 +164,32 @@ internal object SeatbeltProfile {
         "/System/Volumes/Preboot/Cryptexes",
     )
 
+    /** What a JVM and libSystem read about the hardware and the OS, none of which tells this machine from another. */
+    private val READABLE_SYSCTLS = listOf(
+        "kern.osrelease",
+        "kern.ostype",
+        "kern.osversion",
+        "kern.osproductversion",
+        "kern.osproductversioncompat",
+        "kern.version",
+        "kern.argmax",
+        "kern.maxfiles",
+        "kern.maxfilesperproc",
+        "kern.usrstack64",
+        "kern.secure_kernel",
+        "kern.safeboot",
+        "kern.hv_vmm_present",
+        "kern.tcsm_available",
+        "kern.tcsm_enable",
+        "kern.pagesize",
+    )
+
+    private val READABLE_SYSCTL_PREFIXES = listOf("hw.", "machdep.", "vm.", "security.", "sysctl.")
+
     private val DEVICE_READS = listOf("/dev/random", "/dev/urandom", "/dev/null", "/dev/dtracehelper")
 
     private val MACH_SERVICES = listOf(
         "com.apple.system.notification_center",
-        "com.apple.system.opendirectoryd.libinfo",
         "com.apple.logd",
         "com.apple.diagnosticd",
         "com.apple.SystemConfiguration.configd",

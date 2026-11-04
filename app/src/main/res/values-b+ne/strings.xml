@@ -45,6 +45,7 @@
 <string name="extension_status_blocked">"स्क्यानले रोकेको छ। यसलाई अनुमति दिन सकिँदैन।"</string>
 <string name="extension_status_hash_mismatch">"यो फाइल यसको प्रकाशित ह्याससँग मेल खाँदैन। यसलाई अनुमति दिन सकिँदैन।"</string>
 <string name="extension_status_held">"तपाईंले नछानेसम्म बन्द"</string>
+<string name="extension_status_held_new_version">"नयाँ संस्करण · तपाईंले नछानेसम्म बन्द"</string>
 <string name="extension_status_kept_off">"बन्द राखिएको"</string>
 <string name="extension_status_start_failed">"अनुमति दिइएको, तर सुरु भएन"</string>
 <string name="extension_warning_classloader_access">"यो क्लास लोडरसम्म पुग्छ, जसले यो स्क्यानले कहिल्यै नदेखेको कोड ल्याउन सक्छ।"</string>
@@ -93,12 +94,24 @@
 <string name="play_torrent_button">"स्ट्रिम टोरेन्ट"</string>
 <string name="play_trailer_button">"ट्रेलर प्ले गर्नुहोस्"</string>
 <string name="play_with_app_name">"क्लाउडस्ट्रीममा प्ले गर्नुहोस्"</string>
+<string name="player_enter_fullscreen">"पूर्ण स्क्रिन मोडमा खोल्नुहोस्"</string>
+<string name="player_exit_fullscreen">"पूर्ण स्क्रिन मोडबाट बाहिरिनुहोस्"</string>
+<string name="player_fit_original">"मूल अनुपात"</string>
+<string name="player_fit_screen">"स्क्रिन भर्नुहोस्"</string>
+<string name="player_fit_title">"चित्रको आकार"</string>
+<string name="player_fit_width">"चौडाइ भर्नुहोस्"</string>
+<string name="player_mute">"म्यूट गर्नुहोस्"</string>
 <string name="player_size_settings">"प्लेयर resize गर्ने वटन"</string>
 <string name="player_size_settings_des">"कालो सीमा हटाउनुहोस"</string>
+<string name="player_source_playing">"चलिरहेको"</string>
+<string name="player_source_resumes_at" formatted="true">"बदल्दा तपाईंको स्थान रहन्छ: %1$s बाट जारी"</string>
+<string name="player_source_retry">"फेरि प्रयास गर्नुहोस्"</string>
+<string name="player_source_switch">"बदल्नुहोस्"</string>
 <string name="player_speed">"प्लेयर स्पीड"</string>
 <string name="player_speed_text_format" formatted="true">"गति (%.2fx)"</string>
 <string name="player_subtitles_settings">"उपशीर्षक"</string>
 <string name="player_subtitles_settings_des">"प्लेयरको उपशीर्षकको सेटिङ"</string>
+<string name="player_unmute">"अनम्यूट गर्नुहोस्"</string>
 <string name="popup_delete_file">"फाइल मेट्नुहोस्"</string>
 <string name="popup_pause_download">"डाउनलोड रोक्नुहोस्"</string>
 <string name="popup_play_file">"फाइल प्ले गर्नुहोस्"</string>

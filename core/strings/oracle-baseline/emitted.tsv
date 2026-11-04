@@ -298,6 +298,7 @@ values	string	extension_status_allowed	-	Allowed, and running in its sandbox
 values	string	extension_status_blocked	-	Blocked by the scan. This cannot be allowed.
 values	string	extension_status_hash_mismatch	-	This file does not match its published hash. This cannot be allowed.
 values	string	extension_status_held	-	Off until you choose
+values	string	extension_status_held_new_version	-	New version · Off until you choose
 values	string	extension_status_kept_off	-	Kept off
 values	string	extension_status_start_failed	-	Allowed, but it did not start
 values	string	extension_types	-	Supported
@@ -443,11 +444,18 @@ values	string	play_movie_button	-	Play Movie
 values	string	play_torrent_button	-	Stream Torrent
 values	string	play_trailer_button	-	Play Trailer
 values	string	play_with_app_name	-	Play with CloudStream
+values	string	player_enter_fullscreen	-	Enter full screen
+values	string	player_exit_fullscreen	-	Exit full screen
+values	string	player_fit_original	-	Original aspect ratio
+values	string	player_fit_screen	-	Fill screen
+values	string	player_fit_title	-	Picture size
+values	string	player_fit_width	-	Fill width
 values	string	player_is_live	-	Live
 values	string	player_load_one_subtitle_online	-	Load first available
 values	string	player_load_subtitles	-	Load from file
 values	string	player_load_subtitles_online	-	Load from Internet
 values	string	player_loaded_subtitles	-	Loaded %s
+values	string	player_mute	-	Mute
 values	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values	string	player_notification_channel_name	-	Player notifications
 values	string	player_pref	-	Preferred video player
@@ -456,10 +464,15 @@ values	string	player_settings_play_in_app	-	Internal player
 values	string	player_settings_select_cast_device	-	Select cast device
 values	string	player_size_settings	-	Player resize button
 values	string	player_size_settings_des	-	Remove the black borders
+values	string	player_source_playing	-	Playing
+values	string	player_source_resumes_at	-	Switching keeps your position: resumes at %1$s
+values	string	player_source_retry	-	Retry
+values	string	player_source_switch	-	Switch
 values	string	player_speed	-	Player Speed
 values	string	player_speed_text_format	-	Speed (%.2fx)
 values	string	player_subtitles_settings	-	Subtitles
 values	string	player_subtitles_settings_des	-	Player subtitles settings
+values	string	player_unmute	-	Unmute
 values	string	plugin	-	plugins
 values	string	plugin_deleted	-	Plugin Deleted
 values	string	plugin_downloaded	-	Plugin Downloaded
@@ -881,6 +894,7 @@ values-b+af	string	extension_status_allowed	-	Toegelaat en loop in sy sandboks
 values-b+af	string	extension_status_blocked	-	Deur die skandering geblokkeer. Dit kan nie toegelaat word nie.
 values-b+af	string	extension_status_hash_mismatch	-	Hierdie lêer stem nie ooreen met sy gepubliseerde hash nie. Dit kan nie toegelaat word nie.
 values-b+af	string	extension_status_held	-	Af totdat jy kies
+values-b+af	string	extension_status_held_new_version	-	Nuwe weergawe · Af totdat jy kies
 values-b+af	string	extension_status_kept_off	-	Afgehou
 values-b+af	string	extension_status_start_failed	-	Toegelaat, maar dit het nie begin nie
 values-b+af	string	extension_warning_classloader_access	-	Dit gryp na die klaslaaier, wat kode kan inbring wat hierdie skandering nooit gesien het nie.
@@ -927,8 +941,20 @@ values-b+af	string	play_movie_button	-	Speel Fliek
 values-b+af	string	play_torrent_button	-	Stroom Torrent
 values-b+af	string	play_trailer_button	-	Speel Lokprent
 values-b+af	string	play_with_app_name	-	Speel met CloudStream
+values-b+af	string	player_enter_fullscreen	-	Gaan na volskerm
+values-b+af	string	player_exit_fullscreen	-	Verlaat volskerm
+values-b+af	string	player_fit_original	-	Oorspronklike beeldverhouding
+values-b+af	string	player_fit_screen	-	Vul skerm
+values-b+af	string	player_fit_title	-	Beeldgrootte
+values-b+af	string	player_fit_width	-	Vul breedte
+values-b+af	string	player_mute	-	Demp
+values-b+af	string	player_source_playing	-	Speel
+values-b+af	string	player_source_resumes_at	-	Wissel behou jou posisie: gaan voort by %1$s
+values-b+af	string	player_source_retry	-	Probeer weer
+values-b+af	string	player_source_switch	-	Wissel
 values-b+af	string	player_speed	-	Spelerspoed
 values-b+af	string	player_speed_text_format	-	Spoed (%.2fx)
+values-b+af	string	player_unmute	-	Ontdemp
 values-b+af	string	popup_delete_file	-	Vee lêer uit
 values-b+af	string	popup_pause_download	-	Laat aflaai rus
 values-b+af	string	popup_play_file	-	Speel lêer
@@ -1037,6 +1063,7 @@ values-b+am	string	extension_status_allowed	-	ተፈቅዷል፣ በራሱ ሳ�
 values-b+am	string	extension_status_blocked	-	በቅኝቱ ታግዷል። ይህ ሊፈቀድ አይችልም።
 values-b+am	string	extension_status_hash_mismatch	-	ይህ ፋይል ከታተመው ሃሹ ጋር አይዛመድም። ይህ ሊፈቀድ አይችልም።
 values-b+am	string	extension_status_held	-	እስክትመርጥ ድረስ ጠፍቷል
+values-b+am	string	extension_status_held_new_version	-	አዲስ ስሪት · እስክትመርጥ ድረስ ጠፍቷል
 values-b+am	string	extension_status_kept_off	-	ጠፍቶ እንዲቆይ ተደርጓል
 values-b+am	string	extension_status_start_failed	-	ተፈቅዷል፣ ግን አልጀመረም
 values-b+am	string	extension_warning_classloader_access	-	ወደ ክላስ ሎደር ይደርሳል፤ ይህም ይህ ቅኝት ያላየውን ኮድ ሊያስገባ ይችላል።
@@ -1080,8 +1107,20 @@ values-b+am	string	play_movie_button	-	ሙቪ አጫውት
 values-b+am	string	play_torrent_button	-	Torrent አጫውት
 values-b+am	string	play_trailer_button	-	የፊልም ማስታወቂያ አጫውት
 values-b+am	string	play_with_app_name	-	በCloudStream አጫውት
+values-b+am	string	player_enter_fullscreen	-	ወደ ሙሉ ማያ ገፅ ግባ
+values-b+am	string	player_exit_fullscreen	-	ከሙሉ ማያገጽ ውጣ
+values-b+am	string	player_fit_original	-	የመጀመሪያ ምጥጥነ ገጽታ
+values-b+am	string	player_fit_screen	-	ማያውን ሙላ
+values-b+am	string	player_fit_title	-	የምስል መጠን
+values-b+am	string	player_fit_width	-	ስፋቱን ሙላ
+values-b+am	string	player_mute	-	ድምፅ አጥፋ
+values-b+am	string	player_source_playing	-	በመጫወት ላይ
+values-b+am	string	player_source_resumes_at	-	መቀየር ቦታዎን ይጠብቃል፦ ከ%1$s ይቀጥላል
+values-b+am	string	player_source_retry	-	እንደገና ሞክር
+values-b+am	string	player_source_switch	-	ቀይር
 values-b+am	string	player_speed	-	የአጫዋች ፍጥነት
 values-b+am	string	player_speed_text_format	-	ፍጥነት(%.2fx)
+values-b+am	string	player_unmute	-	ድምፅ አብራ
 values-b+am	string	popup_delete_file	-	ፋይል አጥፋ
 values-b+am	string	popup_pause_download	-	ማውረድ ለአፍታ አቁም
 values-b+am	string	popup_play_file	-	ፋይል አጫውት
@@ -1423,6 +1462,7 @@ values-b+apc	string	extension_status_allowed	-	مسموحة وشغّالة بب�
 values-b+apc	string	extension_status_blocked	-	الفحص حظرها. ما فيك تسمح فيها.
 values-b+apc	string	extension_status_hash_mismatch	-	هالملف ما بيطابق قيمة التجزئة (hash) المنشورة تبعو. ما فيك تسمح فيه.
 values-b+apc	string	extension_status_held	-	مطفية لحتى تختار
+values-b+apc	string	extension_status_held_new_version	-	نسخة جديدة · مطفية لحتى تختار
 values-b+apc	string	extension_status_kept_off	-	ضلّت مطفية
 values-b+apc	string	extension_status_start_failed	-	مسموحة، بس ما اشتغلت
 values-b+apc	string	extension_types	-	مدعوم
@@ -1563,11 +1603,18 @@ values-b+apc	string	play_movie_button	-	مشّي الفيلم
 values-b+apc	string	play_torrent_button	-	عمول ستريم للتورنت
 values-b+apc	string	play_trailer_button	-	مشّي المقطع الدعائي
 values-b+apc	string	play_with_app_name	-	مَشّي بـ"كلود ستريم"
+values-b+apc	string	player_enter_fullscreen	-	فوت عالشاشة الكاملة
+values-b+apc	string	player_exit_fullscreen	-	اطلع من الشاشة الكاملة
+values-b+apc	string	player_fit_original	-	نسبة العرض الأصلية
+values-b+apc	string	player_fit_screen	-	عبّي الشاشة
+values-b+apc	string	player_fit_title	-	حجم الصورة
+values-b+apc	string	player_fit_width	-	عبّي العرض
 values-b+apc	string	player_is_live	-	لايڤ
 values-b+apc	string	player_load_one_subtitle_online	-	أفّي اللودينگ تلقائيًا
 values-b+apc	string	player_load_subtitles	-	فتاح من ملف
 values-b+apc	string	player_load_subtitles_online	-	فتاح من الإنترنت
 values-b+apc	string	player_loaded_subtitles	-	نفَتح %s
+values-b+apc	string	player_mute	-	كتّم الصوت
 values-b+apc	string	player_notification_channel_description	-	نوتيفيكايشن بت خليك تتحكم بال ڤيديو لما م يكون الآپ مفتوح
 values-b+apc	string	player_notification_channel_name	-	شغل الڤيديو عبر النوتيفيكايشنز
 values-b+apc	string	player_pref	-	مشغل الڤيديو المفضل
@@ -1576,10 +1623,15 @@ values-b+apc	string	player_settings_play_in_app	-	المشغل يللي ب "كل
 values-b+apc	string	player_settings_select_cast_device	-	نقي جهاز الكاست
 values-b+apc	string	player_size_settings	-	كبسة تغيير حجم الڤيديو
 values-b+apc	string	player_size_settings_des	-	شيل الأسود من الأطراف
+values-b+apc	string	player_source_playing	-	عم يشتغل
+values-b+apc	string	player_source_resumes_at	-	التبديل بيحافظ على مكانك: بيكمّل من %1$s
+values-b+apc	string	player_source_retry	-	جرّب كمان مرة
+values-b+apc	string	player_source_switch	-	بدّل
 values-b+apc	string	player_speed	-	سرعة الڤيديو
 values-b+apc	string	player_speed_text_format	-	السرعة (%.2fx)
 values-b+apc	string	player_subtitles_settings	-	الترجمة
 values-b+apc	string	player_subtitles_settings_des	-	سَتِنگز ترجمة الڤيديو
+values-b+apc	string	player_unmute	-	شغّل الصوت
 values-b+apc	string	plugin	-	إضافات
 values-b+apc	string	plugin_deleted	-	نمحت الإضافة
 values-b+apc	string	plugin_downloaded	-	تنزلت الإضافة
@@ -2216,6 +2268,7 @@ values-b+ar	string	extension_status_allowed	-	مسموح بها وتعمل في 
 values-b+ar	string	extension_status_blocked	-	حظرها الفحص. لا يمكن السماح بها.
 values-b+ar	string	extension_status_hash_mismatch	-	لا يطابق هذا الملف قيمة التجزئة (hash) المنشورة له. لا يمكن السماح به.
 values-b+ar	string	extension_status_held	-	معطّلة حتى تختار
+values-b+ar	string	extension_status_held_new_version	-	إصدار جديد · معطّلة حتى تختار
 values-b+ar	string	extension_status_kept_off	-	أُبقيت معطّلة
 values-b+ar	string	extension_status_start_failed	-	مسموح بها، لكنها لم تبدأ
 values-b+ar	string	extension_types	-	مدعوم
@@ -2356,11 +2409,18 @@ values-b+ar	string	play_movie_button	-	مشاهدة الفيلم
 values-b+ar	string	play_torrent_button	-	تشغيل تورنت
 values-b+ar	string	play_trailer_button	-	تشغيل المقطع الدعائي
 values-b+ar	string	play_with_app_name	-	تشغيل بواسطة CloudStream
+values-b+ar	string	player_enter_fullscreen	-	دخول إلى وضع ملء الشاشة
+values-b+ar	string	player_exit_fullscreen	-	خروج من وضع ملء الشاشة
+values-b+ar	string	player_fit_original	-	نسبة العرض إلى الارتفاع الأصلية
+values-b+ar	string	player_fit_screen	-	ملء الشاشة
+values-b+ar	string	player_fit_title	-	حجم الصورة
+values-b+ar	string	player_fit_width	-	ملء العرض
 values-b+ar	string	player_is_live	-	البث قائم
 values-b+ar	string	player_load_one_subtitle_online	-	تحميل أول ترجمة متاحة
 values-b+ar	string	player_load_subtitles	-	إختيار ملف
 values-b+ar	string	player_load_subtitles_online	-	تحميل من الانترنت
 values-b+ar	string	player_loaded_subtitles	-	تم تحميل %s
+values-b+ar	string	player_mute	-	كتم الصوت
 values-b+ar	string	player_notification_channel_description	-	تنبيه المشغل المسؤول عن تشغيل الميديا في الخلفية
 values-b+ar	string	player_notification_channel_name	-	تنبيهات المشغل
 values-b+ar	string	player_pref	-	مُشغل الفيديو المفضل
@@ -2369,10 +2429,15 @@ values-b+ar	string	player_settings_play_in_app	-	مشغل داخلي
 values-b+ar	string	player_settings_select_cast_device	-	حدد جهاز البث
 values-b+ar	string	player_size_settings	-	زر تغيير حجم المُشغل
 values-b+ar	string	player_size_settings_des	-	إزالة الحدود السوداء
+values-b+ar	string	player_source_playing	-	قيد التشغيل
+values-b+ar	string	player_source_resumes_at	-	التبديل يحافظ على موضعك: يُستأنف عند %1$s
+values-b+ar	string	player_source_retry	-	إعادة المحاولة
+values-b+ar	string	player_source_switch	-	تبديل
 values-b+ar	string	player_speed	-	سرعة المُشغل
 values-b+ar	string	player_speed_text_format	-	سرعة (%.2fx)
 values-b+ar	string	player_subtitles_settings	-	الترجمة
 values-b+ar	string	player_subtitles_settings_des	-	إعدادات ترجمة المُشغل
+values-b+ar	string	player_unmute	-	إلغاء كتم الصوت
 values-b+ar	string	plugin	-	إضافات
 values-b+ar	string	plugin_deleted	-	تم إزالة الإضافة
 values-b+ar	string	plugin_downloaded	-	تم تنزيل الإضافة
@@ -2860,6 +2925,7 @@ values-b+ars	string	extension_status_allowed	-	مسموح بها وتعمل في
 values-b+ars	string	extension_status_blocked	-	حظرها الفحص. لا يمكن السماح بها.
 values-b+ars	string	extension_status_hash_mismatch	-	لا يطابق هذا الملف قيمة التجزئة (hash) المنشورة له. لا يمكن السماح به.
 values-b+ars	string	extension_status_held	-	معطّلة حتى تختار
+values-b+ars	string	extension_status_held_new_version	-	إصدار جديد · معطّلة حتى تختار
 values-b+ars	string	extension_status_kept_off	-	أُبقيت معطّلة
 values-b+ars	string	extension_status_start_failed	-	مسموح بها، لكنها لم تبدأ
 values-b+ars	string	extension_warning_classloader_access	-	تصل إلى محمّل الأصناف (class loader)، وهو ما قد يجلب شيفرة لم يرها هذا الفحص قط.
@@ -2941,12 +3007,24 @@ values-b+ars	string	play_movie_button	-	شاهد الفلم
 values-b+ars	string	play_torrent_button	-	دفق التورنت
 values-b+ars	string	play_trailer_button	-	تشغيل المقطع الدعائي
 values-b+ars	string	play_with_app_name	-	فتح مع كلاودستريم
+values-b+ars	string	player_enter_fullscreen	-	الدخول إلى وضع ملء الشاشة
+values-b+ars	string	player_exit_fullscreen	-	الخروج من وضع ملء الشاشة
+values-b+ars	string	player_fit_original	-	نسبة العرض إلى الارتفاع الأصلية
+values-b+ars	string	player_fit_screen	-	ملء الشاشة
+values-b+ars	string	player_fit_title	-	حجم الصورة
+values-b+ars	string	player_fit_width	-	ملء العرض
+values-b+ars	string	player_mute	-	كتم الصوت
 values-b+ars	string	player_size_settings	-	زر تغيير حجم المشغل
 values-b+ars	string	player_size_settings_des	-	إزالة الحدود السوداء
+values-b+ars	string	player_source_playing	-	قيد التشغيل
+values-b+ars	string	player_source_resumes_at	-	التبديل يحافظ على موضعك: يُستأنف عند %1$s
+values-b+ars	string	player_source_retry	-	إعادة المحاولة
+values-b+ars	string	player_source_switch	-	تبديل
 values-b+ars	string	player_speed	-	سرعة اللاعب
 values-b+ars	string	player_speed_text_format	-	سرعة(%.2fx)
 values-b+ars	string	player_subtitles_settings	-	ترجمات
 values-b+ars	string	player_subtitles_settings_des	-	إعدادات ترجمات المشغل
+values-b+ars	string	player_unmute	-	إلغاء كتم الصوت
 values-b+ars	string	popup_delete_file	-	حذف ملف
 values-b+ars	string	popup_pause_download	-	وقفة التحميل
 values-b+ars	string	popup_play_file	-	ملف اللعب
@@ -3357,6 +3435,7 @@ values-b+as	string	extension_status_allowed	-	অনুমতি দিয়া
 values-b+as	string	extension_status_blocked	-	স্কেনে অৱৰোধ কৰিছে। ইয়াক অনুমতি দিব নোৱাৰি।
 values-b+as	string	extension_status_hash_mismatch	-	এই ফাইলটো ইয়াৰ প্ৰকাশিত হেচৰ সৈতে নিমিলে। ইয়াক অনুমতি দিব নোৱাৰি।
 values-b+as	string	extension_status_held	-	আপুনি বাছনি নকৰালৈকে বন্ধ
+values-b+as	string	extension_status_held_new_version	-	নতুন সংস্কৰণ · আপুনি বাছনি নকৰালৈকে বন্ধ
 values-b+as	string	extension_status_kept_off	-	বন্ধ ৰখা হৈছে
 values-b+as	string	extension_status_start_failed	-	অনুমতি দিয়া হৈছে, কিন্তু ই আৰম্ভ নহ'ল
 values-b+as	string	extension_types	-	সমৰ্থিত
@@ -3481,19 +3560,31 @@ values-b+as	string	play_movie_button	-	চলচ্চিত্ৰ প্লে 
 values-b+as	string	play_torrent_button	-	ট'ৰেণ্ট ষ্ট্ৰীম কৰক
 values-b+as	string	play_trailer_button	-	ট্ৰেইলাৰ প্লে কৰক
 values-b+as	string	play_with_app_name	-	CloudStreamৰে প্লে কৰক
+values-b+as	string	player_enter_fullscreen	-	সম্পূৰ্ণ স্ক্ৰীনলৈ যাওক
+values-b+as	string	player_exit_fullscreen	-	সম্পূৰ্ণ স্ক্ৰীনৰ পৰা ওলাওক
+values-b+as	string	player_fit_original	-	মূল আকাৰ অনুপাত
+values-b+as	string	player_fit_screen	-	স্ক্ৰীন পূৰণ কৰক
+values-b+as	string	player_fit_title	-	ছবিৰ আকাৰ
+values-b+as	string	player_fit_width	-	প্ৰস্থ পূৰণ কৰক
 values-b+as	string	player_load_one_subtitle_online	-	প্ৰথম উপলব্ধটো লোড কৰক
 values-b+as	string	player_load_subtitles	-	ফাইলৰ পৰা ল'ড কৰক
 values-b+as	string	player_load_subtitles_online	-	ইণ্টাৰনেটৰ পৰা ল'ড কৰক
 values-b+as	string	player_loaded_subtitles	-	%s ল'ড হৈছে
+values-b+as	string	player_mute	-	মৌন কৰক
 values-b+as	string	player_pref	-	পছন্দৰ ভিডিঅ' প্লেয়াৰ
 values-b+as	string	player_settings_play_in_app	-	আভ্যন্তৰীণ প্লেয়াৰ
 values-b+as	string	player_settings_select_cast_device	-	কাষ্ট ডিভাইচ চয়ন কৰক
 values-b+as	string	player_size_settings	-	প্লেয়াৰৰ আকাৰ পৰিবৰ্তনৰ বুটাম
 values-b+as	string	player_size_settings_des	-	ক’লা পাৰত আঁতৰাওক
+values-b+as	string	player_source_playing	-	চলি আছে
+values-b+as	string	player_source_resumes_at	-	সলনি কৰিলে আপোনাৰ স্থান ৰয়: %1$sত পুনৰ আৰম্ভ হ'ব
+values-b+as	string	player_source_retry	-	পুনৰ চেষ্টা কৰক
+values-b+as	string	player_source_switch	-	সলনি কৰক
 values-b+as	string	player_speed	-	প্লেয়াৰ গতি
 values-b+as	string	player_speed_text_format	-	গতি (%.2fx)
 values-b+as	string	player_subtitles_settings	-	সাবটাইটেল
 values-b+as	string	player_subtitles_settings_des	-	প্লেয়াৰৰ সাবটাইটেল চেটিংছ
+values-b+as	string	player_unmute	-	মৌন আঁতৰাওক
 values-b+as	string	plugin	-	প্লাগইনসমূহ
 values-b+as	string	plugin_deleted	-	প্লাগইন ডিলিট কৰা হ'ল
 values-b+as	string	plugin_downloaded	-	প্লাগইন ডাউনলোড কৰা হ'ল
@@ -3864,6 +3955,7 @@ values-b+az	string	extension_status_allowed	-	İcazə verilib və öz təcrid ol
 values-b+az	string	extension_status_blocked	-	Yoxlama tərəfindən bloklanıb. Buna icazə vermək olmaz.
 values-b+az	string	extension_status_hash_mismatch	-	Bu fayl dərc olunmuş heşinə uyğun gəlmir. Buna icazə vermək olmaz.
 values-b+az	string	extension_status_held	-	Siz seçənədək söndürülüdür
+values-b+az	string	extension_status_held_new_version	-	Yeni versiya · Siz seçənədək söndürülüdür
 values-b+az	string	extension_status_kept_off	-	Söndürülü saxlanılıb
 values-b+az	string	extension_status_start_failed	-	İcazə verilib, amma işə düşmədi
 values-b+az	string	extension_warning_classloader_access	-	Sinif yükləyicisinə müraciət edir və bu, yoxlamanın heç görmədiyi kodu gətirə bilər.
@@ -3919,11 +4011,23 @@ values-b+az	string	play_livestream_button	-	Canlı Yayını oynat
 values-b+az	string	play_movie_button	-	Filmi oynat
 values-b+az	string	play_trailer_button	-	Fraqmanı Oynat
 values-b+az	string	play_with_app_name	-	CloudStream ilə oynat
+values-b+az	string	player_enter_fullscreen	-	Tam ekrana daxil olun
+values-b+az	string	player_exit_fullscreen	-	Tam ekrandan çıxın
+values-b+az	string	player_fit_original	-	Orijinal nisbət
+values-b+az	string	player_fit_screen	-	Ekranı doldur
+values-b+az	string	player_fit_title	-	Şəkil ölçüsü
+values-b+az	string	player_fit_width	-	Eni doldur
+values-b+az	string	player_mute	-	Səssizə al
 values-b+az	string	player_size_settings	-	Pleyeri yenidən ölçüləndirmə düyməsini
 values-b+az	string	player_size_settings_des	-	Qara sərhədləri, kənarları sil
+values-b+az	string	player_source_playing	-	Oynayır
+values-b+az	string	player_source_resumes_at	-	Dəyişmək mövqeyinizi saxlayır: %1$s anından davam edir
+values-b+az	string	player_source_retry	-	Yenidən cəhd et
+values-b+az	string	player_source_switch	-	Dəyiş
 values-b+az	string	player_speed_text_format	-	Sürət (%.2fx)
 values-b+az	string	player_subtitles_settings	-	Subtitrlər
 values-b+az	string	player_subtitles_settings_des	-	Pleyerin subtitr parametrləri
+values-b+az	string	player_unmute	-	Səsi aç
 values-b+az	string	podcast_singular	-	Podkast
 values-b+az	string	pref_filter_search_quality	-	Seçilmiş video keyfiyyətini axtarış nəticələrində gizlət
 values-b+az	string	preview_background_img_des	-	Arxaplana ilkin baxış keçir
@@ -4268,6 +4372,7 @@ values-b+be	string	extension_status_allowed	-	Дазволена і працуе
 values-b+be	string	extension_status_blocked	-	Заблакавана сканаваннем. Гэта нельга дазволіць.
 values-b+be	string	extension_status_hash_mismatch	-	Гэты файл не адпавядае свайму апублікаванаму хэшу. Гэта нельга дазволіць.
 values-b+be	string	extension_status_held	-	Выключана, пакуль вы не вырашыце
+values-b+be	string	extension_status_held_new_version	-	Новая версія · Выключана, пакуль вы не вырашыце
 values-b+be	string	extension_status_kept_off	-	Пакінута выключаным
 values-b+be	string	extension_status_start_failed	-	Дазволена, але не запусцілася
 values-b+be	string	extension_types	-	Падтрымлівае
@@ -4408,11 +4513,18 @@ values-b+be	string	play_movie_button	-	Прайграць фільм
 values-b+be	string	play_torrent_button	-	Трансліраваць Torrent
 values-b+be	string	play_trailer_button	-	Прайграць трэйлер
 values-b+be	string	play_with_app_name	-	Прайграць праз CloudStream
+values-b+be	string	player_enter_fullscreen	-	Уключыць поўнаэкранны рэжым
+values-b+be	string	player_exit_fullscreen	-	Выключыць поўнаэкранны рэжым
+values-b+be	string	player_fit_original	-	Зыходныя прапорцыі
+values-b+be	string	player_fit_screen	-	Запоўніць экран
+values-b+be	string	player_fit_title	-	Памер выявы
+values-b+be	string	player_fit_width	-	Запоўніць шырыню
 values-b+be	string	player_is_live	-	Ужывую
 values-b+be	string	player_load_one_subtitle_online	-	Спампаваць першыя даступныя
 values-b+be	string	player_load_subtitles	-	Загрузіць з файла
 values-b+be	string	player_load_subtitles_online	-	Спампаваць з інтэрнэту
 values-b+be	string	player_loaded_subtitles	-	Загружана %s
+values-b+be	string	player_mute	-	Выключыць гук
 values-b+be	string	player_notification_channel_description	-	Апавяшчэнне прайгравальніка для кіравання прайграваннем у фонавым рэжыме
 values-b+be	string	player_notification_channel_name	-	Апавяшчэнні прайгравальніка
 values-b+be	string	player_pref	-	Прыярытэтны прайгравальнік
@@ -4421,10 +4533,15 @@ values-b+be	string	player_settings_play_in_app	-	Убудаваны прайгр
 values-b+be	string	player_settings_select_cast_device	-	Выбраць прыладу для трансляцыі
 values-b+be	string	player_size_settings	-	Кнопка змены памеру прайгравальніка
 values-b+be	string	player_size_settings_des	-	Прыбраць чорныя межы
+values-b+be	string	player_source_playing	-	Прайграецца
+values-b+be	string	player_source_resumes_at	-	Пераключэнне захоўвае пазіцыю: працяг з %1$s
+values-b+be	string	player_source_retry	-	Паўтарыць
+values-b+be	string	player_source_switch	-	Пераключыць
 values-b+be	string	player_speed	-	Хуткасць прайгравальніка
 values-b+be	string	player_speed_text_format	-	Хуткасць (%.2fx)
 values-b+be	string	player_subtitles_settings	-	Субцітры
 values-b+be	string	player_subtitles_settings_des	-	Налады субцітраў прайгравальніка
+values-b+be	string	player_unmute	-	Уключыць гук
 values-b+be	string	plugin	-	убудовы
 values-b+be	string	plugin_deleted	-	Убудова выдалена
 values-b+be	string	plugin_downloaded	-	Убудова спампавана
@@ -5045,6 +5162,7 @@ values-b+bg	string	extension_status_allowed	-	Разрешено и работи
 values-b+bg	string	extension_status_blocked	-	Блокирано от сканирането. Това не може да бъде разрешено.
 values-b+bg	string	extension_status_hash_mismatch	-	Този файл не съответства на публикувания си хеш. Това не може да бъде разрешено.
 values-b+bg	string	extension_status_held	-	Изключено, докато не решите
+values-b+bg	string	extension_status_held_new_version	-	Нова версия · Изключено, докато не решите
 values-b+bg	string	extension_status_kept_off	-	Оставено изключено
 values-b+bg	string	extension_status_start_failed	-	Разрешено, но не се стартира
 values-b+bg	string	extension_types	-	Поддържани
@@ -5184,10 +5302,17 @@ values-b+bg	string	play_movie_button	-	Пускане на филм
 values-b+bg	string	play_torrent_button	-	Поточно предаване на торент
 values-b+bg	string	play_trailer_button	-	Пусни трейлър
 values-b+bg	string	play_with_app_name	-	Пусни с CloudStream
+values-b+bg	string	player_enter_fullscreen	-	Вход в цял екран
+values-b+bg	string	player_exit_fullscreen	-	Изход от цял екран
+values-b+bg	string	player_fit_original	-	Оригинално съотношение
+values-b+bg	string	player_fit_screen	-	Запълване на екрана
+values-b+bg	string	player_fit_title	-	Размер на картината
+values-b+bg	string	player_fit_width	-	Запълване по ширина
 values-b+bg	string	player_load_one_subtitle_online	-	Зареди първия наличен
 values-b+bg	string	player_load_subtitles	-	Зареди от файл
 values-b+bg	string	player_load_subtitles_online	-	Зареди от Интернет
 values-b+bg	string	player_loaded_subtitles	-	Заредено %s
+values-b+bg	string	player_mute	-	Без звук
 values-b+bg	string	player_notification_channel_description	-	Известие на плейъра за контролиране на възпроизвеждането от фона
 values-b+bg	string	player_notification_channel_name	-	Известия на плейъра
 values-b+bg	string	player_pref	-	Предпочитан видео плеър
@@ -5196,10 +5321,15 @@ values-b+bg	string	player_settings_play_in_app	-	Вътрешен плеър
 values-b+bg	string	player_settings_select_cast_device	-	Изберете устройство за излъчване
 values-b+bg	string	player_size_settings	-	Бутон за преоразмеряване на плейъра
 values-b+bg	string	player_size_settings_des	-	Премахнете черните граници
+values-b+bg	string	player_source_playing	-	Възпроизвежда се
+values-b+bg	string	player_source_resumes_at	-	Смяната запазва позицията ви: продължава от %1$s
+values-b+bg	string	player_source_retry	-	Нов опит
+values-b+bg	string	player_source_switch	-	Смяна
 values-b+bg	string	player_speed	-	Скорост на възпроизвеждане
 values-b+bg	string	player_speed_text_format	-	Скорост (%.2fx)
 values-b+bg	string	player_subtitles_settings	-	Субтитри
 values-b+bg	string	player_subtitles_settings_des	-	Настройки на субтитрите на плейъра
+values-b+bg	string	player_unmute	-	Включване на звука
 values-b+bg	string	plugin	-	Плъгини
 values-b+bg	string	plugin_deleted	-	Приставката е изтрита
 values-b+bg	string	plugin_downloaded	-	Приставката е изтеглена
@@ -5705,6 +5835,7 @@ values-b+bn	string	extension_status_allowed	-	অনুমতি দেওয়
 values-b+bn	string	extension_status_blocked	-	স্ক্যান এটি ব্লক করেছে। এটি অনুমতি দেওয়া যাবে না।
 values-b+bn	string	extension_status_hash_mismatch	-	এই ফাইলটি এর প্রকাশিত হ্যাশের সাথে মেলে না। এটি অনুমতি দেওয়া যাবে না।
 values-b+bn	string	extension_status_held	-	আপনি বেছে না নেওয়া পর্যন্ত বন্ধ
+values-b+bn	string	extension_status_held_new_version	-	নতুন সংস্করণ · আপনি বেছে না নেওয়া পর্যন্ত বন্ধ
 values-b+bn	string	extension_status_kept_off	-	বন্ধ রাখা হয়েছে
 values-b+bn	string	extension_status_start_failed	-	অনুমতি দেওয়া হয়েছে, কিন্তু এটি চালু হয়নি
 values-b+bn	string	extension_warning_classloader_access	-	এটি ক্লাস লোডার পর্যন্ত পৌঁছায়, যা এমন কোড আনতে পারে যা এই স্ক্যান কখনো দেখেনি।
@@ -5798,12 +5929,24 @@ values-b+bn	string	play_movie_button	-	মুভি চালান
 values-b+bn	string	play_torrent_button	-	টরেন্ট স্ট্রিম করুন
 values-b+bn	string	play_trailer_button	-	ট্রেইলার চালু করুন
 values-b+bn	string	play_with_app_name	-	ক্লাউডস্ট্রিম দিয়ে চালান
+values-b+bn	string	player_enter_fullscreen	-	ফুল-স্ক্রিন মোডে দেখুন
+values-b+bn	string	player_exit_fullscreen	-	ফুল-স্ক্রিন মোড ছেড়ে বেরোন
+values-b+bn	string	player_fit_original	-	আসল অনুপাত
+values-b+bn	string	player_fit_screen	-	স্ক্রিন পূরণ করুন
+values-b+bn	string	player_fit_title	-	ছবির আকার
+values-b+bn	string	player_fit_width	-	প্রস্থ পূরণ করুন
+values-b+bn	string	player_mute	-	মিউট করুন
 values-b+bn	string	player_size_settings	-	প্লেয়ারের সাইজ পরিবর্তন বাটন
 values-b+bn	string	player_size_settings_des	-	কালো প্রান্ত অপসারণ করুন
+values-b+bn	string	player_source_playing	-	চলছে
+values-b+bn	string	player_source_resumes_at	-	পাল্টালে আপনার অবস্থান থাকবে: %1$s থেকে চলবে
+values-b+bn	string	player_source_retry	-	আবার চেষ্টা করুন
+values-b+bn	string	player_source_switch	-	পাল্টান
 values-b+bn	string	player_speed	-	ভিডিও এর গতি
 values-b+bn	string	player_speed_text_format	-	গতি (%.2f গুণ)
 values-b+bn	string	player_subtitles_settings	-	সাবটাইটেল
 values-b+bn	string	player_subtitles_settings_des	-	প্লেয়ার এর সাবটাইটেলসমূহের সেটিংস
+values-b+bn	string	player_unmute	-	আনমিউট করুন
 values-b+bn	string	podcast_singular	-	পডকাস্ট
 values-b+bn	string	popup_delete_file	-	ফাইল মুছুন
 values-b+bn	string	popup_pause_download	-	ডাউনলোড থামান
@@ -6110,6 +6253,7 @@ values-b+ca	string	extension_status_allowed	-	Permesa i en execució al seu ento
 values-b+ca	string	extension_status_blocked	-	Bloquejada per l'anàlisi. No es pot permetre.
 values-b+ca	string	extension_status_hash_mismatch	-	Aquest fitxer no coincideix amb el seu hash publicat. No es pot permetre.
 values-b+ca	string	extension_status_held	-	Desactivada fins que triïs
+values-b+ca	string	extension_status_held_new_version	-	Versió nova · Desactivada fins que triïs
 values-b+ca	string	extension_status_kept_off	-	Mantinguda desactivada
 values-b+ca	string	extension_status_start_failed	-	Permesa, però no s'ha iniciat
 values-b+ca	string	extension_warning_classloader_access	-	Accedeix al carregador de classes, que pot portar codi que aquesta anàlisi no ha vist mai.
@@ -6189,13 +6333,25 @@ values-b+ca	string	play_movie_button	-	Reprodueix pel·licula
 values-b+ca	string	play_torrent_button	-	Transmet Torrent
 values-b+ca	string	play_trailer_button	-	Reprodueix tràiler
 values-b+ca	string	play_with_app_name	-	Reprodueix amb CloudStream
+values-b+ca	string	player_enter_fullscreen	-	Entra a la pantalla completa
+values-b+ca	string	player_exit_fullscreen	-	Surt de la pantalla completa
+values-b+ca	string	player_fit_original	-	Proporció original
+values-b+ca	string	player_fit_screen	-	Omple la pantalla
+values-b+ca	string	player_fit_title	-	Mida de la imatge
+values-b+ca	string	player_fit_width	-	Omple l’amplada
 values-b+ca	string	player_load_one_subtitle_online	-	Carrega el primer disponible
 values-b+ca	string	player_load_subtitles	-	Carrega des del fitxer
 values-b+ca	string	player_load_subtitles_online	-	Carrega des d'internet
 values-b+ca	string	player_loaded_subtitles	-	%s carregat
+values-b+ca	string	player_mute	-	Silencia
 values-b+ca	string	player_size_settings	-	Botó de canvi de mida del reproductor
+values-b+ca	string	player_source_playing	-	S'està reproduint
+values-b+ca	string	player_source_resumes_at	-	Canviar conserva la posició: es reprèn a %1$s
+values-b+ca	string	player_source_retry	-	Torna-ho a provar
+values-b+ca	string	player_source_switch	-	Canvia
 values-b+ca	string	player_speed	-	Velocitat de reproducció
 values-b+ca	string	player_speed_text_format	-	Velocitat (%.2fx)
+values-b+ca	string	player_unmute	-	Deixa de silenciar
 values-b+ca	string	podcast_singular	-	Pòdcast
 values-b+ca	string	popup_delete_file	-	Esborra el fitxer
 values-b+ca	string	popup_pause_download	-	Posa la descàrrega en espera
@@ -6404,6 +6560,7 @@ values-b+ckb	string	extension_status_allowed	-	ڕێگەی پێدراوە و لە
 values-b+ckb	string	extension_status_blocked	-	پشکنینەکە بلۆکی کرد. ناتوانرێت ڕێگەی پێ بدرێت.
 values-b+ckb	string	extension_status_hash_mismatch	-	ئەم فایلە لەگەڵ هاشی بڵاوکراوەی خۆی ناگونجێت. ناتوانرێت ڕێگەی پێ بدرێت.
 values-b+ckb	string	extension_status_held	-	کوژاوەیە تا هەڵدەبژێریت
+values-b+ckb	string	extension_status_held_new_version	-	وەشانی نوێ · کوژاوەیە تا هەڵدەبژێریت
 values-b+ckb	string	extension_status_kept_off	-	بە کوژاوەیی هێڵدرایەوە
 values-b+ckb	string	extension_status_start_failed	-	ڕێگەی پێدراوە، بەڵام دەستی پێنەکرد
 values-b+ckb	string	extension_warning_classloader_access	-	دەگاتە بارکەری کلاس، کە دەتوانێت کۆدێک بهێنێت ئەم پشکنینە هەرگیز نەیبینیوە.
@@ -6444,7 +6601,19 @@ values-b+ckb	string	pick_source	-	سەرچاوەکان
 values-b+ckb	string	pick_subtitle	-	ژێرنووسەکان
 values-b+ckb	string	play_from_beginning_img_des	-	لە سەرەتاوە دەست پێ بکە
 values-b+ckb	string	play_torrent_button	-	تۆرێنت ستریم بکە
+values-b+ckb	string	player_enter_fullscreen	-	چوونە ناو پڕ بە شاشە
+values-b+ckb	string	player_exit_fullscreen	-	دەرچوون لە پڕ بە شاشە
+values-b+ckb	string	player_fit_original	-	ڕێژەی ڕەسەن
+values-b+ckb	string	player_fit_screen	-	پڕکردنی شاشە
+values-b+ckb	string	player_fit_title	-	قەبارەی وێنە
+values-b+ckb	string	player_fit_width	-	پڕکردنی پانی
+values-b+ckb	string	player_mute	-	بێدەنگکردن
+values-b+ckb	string	player_source_playing	-	لێدەدرێت
+values-b+ckb	string	player_source_resumes_at	-	گۆڕین شوێنەکەت دەپارێزێت: لە %1$s بەردەوام دەبێت
+values-b+ckb	string	player_source_retry	-	دووبارە هەوڵبدەرەوە
+values-b+ckb	string	player_source_switch	-	گۆڕین
 values-b+ckb	string	player_speed_text_format	-	خێرای(x%.2f)
+values-b+ckb	string	player_unmute	-	لابردنی بێدەنگی
 values-b+ckb	string	popup_delete_file	-	سڕینەوەی فایل
 values-b+ckb	string	popup_pause_download	-	وەستاندنی دابەزاندن
 values-b+ckb	string	popup_resume_download	-	دووبارە دەستپێکردنەوەی دابەزاندن
@@ -6775,6 +6944,7 @@ values-b+cs	string	extension_status_allowed	-	Povoleno a běží ve svém izolov
 values-b+cs	string	extension_status_blocked	-	Zablokováno kontrolou. Nelze povolit.
 values-b+cs	string	extension_status_hash_mismatch	-	Tento soubor neodpovídá svému zveřejněnému hashi. Nelze povolit.
 values-b+cs	string	extension_status_held	-	Vypnuto, dokud se nerozhodnete
+values-b+cs	string	extension_status_held_new_version	-	Nová verze · Vypnuto, dokud se nerozhodnete
 values-b+cs	string	extension_status_kept_off	-	Ponecháno vypnuté
 values-b+cs	string	extension_status_start_failed	-	Povoleno, ale nespustilo se
 values-b+cs	string	extension_types	-	Podporováno
@@ -6915,11 +7085,18 @@ values-b+cs	string	play_movie_button	-	Přehrát film
 values-b+cs	string	play_torrent_button	-	Streamovat torrent
 values-b+cs	string	play_trailer_button	-	Přehrát trailer
 values-b+cs	string	play_with_app_name	-	Přehrát s CloudStream
+values-b+cs	string	player_enter_fullscreen	-	Přejít do režimu celé obrazovky
+values-b+cs	string	player_exit_fullscreen	-	Ukončit režim celé obrazovky
+values-b+cs	string	player_fit_original	-	Původní poměr stran
+values-b+cs	string	player_fit_screen	-	Vyplnit obrazovku
+values-b+cs	string	player_fit_title	-	Velikost obrazu
+values-b+cs	string	player_fit_width	-	Vyplnit šířku
 values-b+cs	string	player_is_live	-	Živě
 values-b+cs	string	player_load_one_subtitle_online	-	Načíst první dostupné
 values-b+cs	string	player_load_subtitles	-	Načíst ze souboru
 values-b+cs	string	player_load_subtitles_online	-	Načíst z internetu
 values-b+cs	string	player_loaded_subtitles	-	Načteno %s
+values-b+cs	string	player_mute	-	Vypnout zvuk
 values-b+cs	string	player_notification_channel_description	-	Oznámení přehrávače pro ovládání přehrávání na pozadí
 values-b+cs	string	player_notification_channel_name	-	Oznámení přehrávače
 values-b+cs	string	player_pref	-	Preferovaný přehrávač videí
@@ -6928,10 +7105,15 @@ values-b+cs	string	player_settings_play_in_app	-	Interní přehrávač
 values-b+cs	string	player_settings_select_cast_device	-	Vyberte zařízení k vysílání
 values-b+cs	string	player_size_settings	-	Tlačítko pro změnu velikosti přehrávače
 values-b+cs	string	player_size_settings_des	-	Odebrat černá ohraničení
+values-b+cs	string	player_source_playing	-	Přehrává se
+values-b+cs	string	player_source_resumes_at	-	Přepnutí zachová pozici: pokračuje od %1$s
+values-b+cs	string	player_source_retry	-	Zkusit znovu
+values-b+cs	string	player_source_switch	-	Přepnout
 values-b+cs	string	player_speed	-	Rychlost přehrávání
 values-b+cs	string	player_speed_text_format	-	Rychlost (%.2fx)
 values-b+cs	string	player_subtitles_settings	-	Titulky
 values-b+cs	string	player_subtitles_settings_des	-	Nastavení titulků přehrávače
+values-b+cs	string	player_unmute	-	Zapnout zvuk
 values-b+cs	string	plugin	-	doplňků
 values-b+cs	string	plugin_deleted	-	Doplněk odstraněn
 values-b+cs	string	plugin_downloaded	-	Doplněk stažen
@@ -7563,6 +7745,7 @@ values-b+de	string	extension_status_allowed	-	Erlaubt und läuft in ihrer Sandbo
 values-b+de	string	extension_status_blocked	-	Von der Prüfung blockiert. Dies kann nicht erlaubt werden.
 values-b+de	string	extension_status_hash_mismatch	-	Diese Datei stimmt nicht mit ihrem veröffentlichten Hash überein. Dies kann nicht erlaubt werden.
 values-b+de	string	extension_status_held	-	Aus, bis Sie entscheiden
+values-b+de	string	extension_status_held_new_version	-	Neue Version · Aus, bis Sie entscheiden
 values-b+de	string	extension_status_kept_off	-	Bleibt aus
 values-b+de	string	extension_status_start_failed	-	Erlaubt, aber nicht gestartet
 values-b+de	string	extension_types	-	Unterstützt
@@ -7703,11 +7886,18 @@ values-b+de	string	play_movie_button	-	Film abspielen
 values-b+de	string	play_torrent_button	-	Torrent streamen
 values-b+de	string	play_trailer_button	-	Trailer abspielen
 values-b+de	string	play_with_app_name	-	Mit CloudStream abspielen
+values-b+de	string	player_enter_fullscreen	-	Vollbild aktivieren
+values-b+de	string	player_exit_fullscreen	-	Vollbild beenden
+values-b+de	string	player_fit_original	-	Originales Seitenverhältnis
+values-b+de	string	player_fit_screen	-	Bildschirm ausfüllen
+values-b+de	string	player_fit_title	-	Bildgröße
+values-b+de	string	player_fit_width	-	Breite ausfüllen
 values-b+de	string	player_is_live	-	Live
 values-b+de	string	player_load_one_subtitle_online	-	Erste verfügbare laden
 values-b+de	string	player_load_subtitles	-	Aus Datei laden
 values-b+de	string	player_load_subtitles_online	-	Aus Internet laden
 values-b+de	string	player_loaded_subtitles	-	%s geladen
+values-b+de	string	player_mute	-	Stummschalten
 values-b+de	string	player_notification_channel_description	-	Player-Benachrichtigung zur Steuerung der Hintergrundwiedergabe
 values-b+de	string	player_notification_channel_name	-	Player-Benachrichtigung
 values-b+de	string	player_pref	-	Bevorzugter Videoplayer
@@ -7716,10 +7906,15 @@ values-b+de	string	player_settings_play_in_app	-	Interner Player
 values-b+de	string	player_settings_select_cast_device	-	Cast-Gerät auswählen
 values-b+de	string	player_size_settings	-	Player-Skalierung anpassen
 values-b+de	string	player_size_settings_des	-	Entfernt schwarze Ränder
+values-b+de	string	player_source_playing	-	Läuft
+values-b+de	string	player_source_resumes_at	-	Beim Wechsel bleibt die Position erhalten: weiter bei %1$s
+values-b+de	string	player_source_retry	-	Wiederholen
+values-b+de	string	player_source_switch	-	Wechseln
 values-b+de	string	player_speed	-	Player-Geschwindigkeit
 values-b+de	string	player_speed_text_format	-	Geschwindigkeit (%.2fx)
 values-b+de	string	player_subtitles_settings	-	Untertitel
 values-b+de	string	player_subtitles_settings_des	-	Player-Untertiteleinstellungen
+values-b+de	string	player_unmute	-	Stummschaltung aufheben
 values-b+de	string	plugin	-	Plugins
 values-b+de	string	plugin_deleted	-	Plugin gelöscht
 values-b+de	string	plugin_downloaded	-	Das Plugin wurde heruntergeladen
@@ -8321,6 +8516,7 @@ values-b+el	string	extension_status_allowed	-	Επιτράπηκε και εκτ
 values-b+el	string	extension_status_blocked	-	Αποκλείστηκε από τη σάρωση. Δεν μπορεί να επιτραπεί.
 values-b+el	string	extension_status_hash_mismatch	-	Αυτό το αρχείο δεν ταιριάζει με το δημοσιευμένο hash του. Δεν μπορεί να επιτραπεί.
 values-b+el	string	extension_status_held	-	Ανενεργή μέχρι να επιλέξετε
+values-b+el	string	extension_status_held_new_version	-	Νέα έκδοση · Ανενεργή μέχρι να επιλέξετε
 values-b+el	string	extension_status_kept_off	-	Παρέμεινε ανενεργή
 values-b+el	string	extension_status_start_failed	-	Επιτράπηκε, αλλά δεν ξεκίνησε
 values-b+el	string	extension_types	-	Υποστηρίζονται
@@ -8446,10 +8642,17 @@ values-b+el	string	play_movie_button	-	Αναπαραγωγή ταινίας
 values-b+el	string	play_torrent_button	-	Μετάδοση Torrent
 values-b+el	string	play_trailer_button	-	Αναπαραγωγή τρέιλερ
 values-b+el	string	play_with_app_name	-	Άνοιγμα με CloudStream
+values-b+el	string	player_enter_fullscreen	-	Πλήρης οθόνη
+values-b+el	string	player_exit_fullscreen	-	Έξοδος από πλήρη οθόνη
+values-b+el	string	player_fit_original	-	Αρχική αναλογία
+values-b+el	string	player_fit_screen	-	Γέμισμα οθόνης
+values-b+el	string	player_fit_title	-	Μέγεθος εικόνας
+values-b+el	string	player_fit_width	-	Γέμισμα πλάτους
 values-b+el	string	player_load_one_subtitle_online	-	Φορτώστε το πρώτο διαθέσιμο
 values-b+el	string	player_load_subtitles	-	Φόρτωση από αρχείο
 values-b+el	string	player_load_subtitles_online	-	Φόρτωση από το Ίντερνετ
 values-b+el	string	player_loaded_subtitles	-	Φόρτωση %s
+values-b+el	string	player_mute	-	Σίγαση
 values-b+el	string	player_notification_channel_description	-	Η ειδοποίηση παίκτη για τον έλεγχο του playback από το φόντο
 values-b+el	string	player_notification_channel_name	-	Ειδοποίησεις αναπαραγωγής
 values-b+el	string	player_pref	-	Προτεινόμενο πρόγραμμα αναπαραγωγής
@@ -8457,10 +8660,15 @@ values-b+el	string	player_settings_play_in_app	-	Ενσωματωμένο πρό
 values-b+el	string	player_settings_select_cast_device	-	Επιλογή συσκευής για αναμετάδοση
 values-b+el	string	player_size_settings	-	Αλλαγή μεγέθους παραθύρου
 values-b+el	string	player_size_settings_des	-	Αφαίρεση μαύρων περιγραμμάτων
+values-b+el	string	player_source_playing	-	Αναπαράγεται
+values-b+el	string	player_source_resumes_at	-	Η αλλαγή διατηρεί τη θέση σας: συνέχεια από %1$s
+values-b+el	string	player_source_retry	-	Επανάληψη
+values-b+el	string	player_source_switch	-	Αλλαγή
 values-b+el	string	player_speed	-	Ταχύτητα αναπαραγωγής
 values-b+el	string	player_speed_text_format	-	Ταχύτητα (%.2fx)
 values-b+el	string	player_subtitles_settings	-	Υπότιτλοι
 values-b+el	string	player_subtitles_settings_des	-	Ρυθμίσεις υποτίτλων του προγράμματος αναπαραγωγής
+values-b+el	string	player_unmute	-	Κατάργηση σίγασης
 values-b+el	string	plugin	-	Πρόσθετα
 values-b+el	string	plugin_deleted	-	Το πρόσθετο διαγράφηκε
 values-b+el	string	plugin_downloaded	-	Το πρόσθετο κατέβει
@@ -8855,6 +9063,7 @@ values-b+eo	string	extension_status_allowed	-	Permesita kaj funkcianta en sia iz
 values-b+eo	string	extension_status_blocked	-	Blokita de la skanado. Ĉi tio ne povas esti permesita.
 values-b+eo	string	extension_status_hash_mismatch	-	Ĉi tiu dosiero ne kongruas kun sia publikigita haketaĵo. Ĉi tio ne povas esti permesita.
 values-b+eo	string	extension_status_held	-	Malŝaltita ĝis vi elektos
+values-b+eo	string	extension_status_held_new_version	-	Nova versio · Malŝaltita ĝis vi elektos
 values-b+eo	string	extension_status_kept_off	-	Lasita malŝaltita
 values-b+eo	string	extension_status_start_failed	-	Permesita, sed ĝi ne ekfunkciis
 values-b+eo	string	extension_version	-	Versio
@@ -8918,9 +9127,21 @@ values-b+eo	string	play_movie_button	-	Spekti filmon
 values-b+eo	string	play_torrent_button	-	Elsendflui Torenton
 values-b+eo	string	play_trailer_button	-	Ludi Antaŭfilmon
 values-b+eo	string	play_with_app_name	-	Ludi per CloudStream
+values-b+eo	string	player_enter_fullscreen	-	Eniri plenekranan reĝimon
+values-b+eo	string	player_exit_fullscreen	-	Eliri el plenekrana reĝimo
+values-b+eo	string	player_fit_original	-	Originala proporcio
+values-b+eo	string	player_fit_screen	-	Plenigi ekranon
+values-b+eo	string	player_fit_title	-	Bildgrando
+values-b+eo	string	player_fit_width	-	Plenigi larĝon
+values-b+eo	string	player_mute	-	Silentigi
 values-b+eo	string	player_size_settings_des	-	Forigi nigrajn borderaĵojn
+values-b+eo	string	player_source_playing	-	Ludanta
+values-b+eo	string	player_source_resumes_at	-	Ŝanĝo konservas vian lokon: daŭrigas ĉe %1$s
+values-b+eo	string	player_source_retry	-	Reprovi
+values-b+eo	string	player_source_switch	-	Ŝanĝi
 values-b+eo	string	player_speed_text_format	-	Rapido (%.2fx)
 values-b+eo	string	player_subtitles_settings	-	Subtekstoj
+values-b+eo	string	player_unmute	-	Malsilentigi
 values-b+eo	string	popup_delete_file	-	Forigi Dosieron
 values-b+eo	string	popup_pause_download	-	Paŭzigi Elŝuton
 values-b+eo	string	popup_resume_download	-	Daŭrigi Elŝuton
@@ -9295,6 +9516,7 @@ values-b+es	string	extension_status_allowed	-	Permitida y en ejecución en su en
 values-b+es	string	extension_status_blocked	-	Bloqueada por el análisis. No se puede permitir.
 values-b+es	string	extension_status_hash_mismatch	-	Este archivo no coincide con su hash publicado. No se puede permitir.
 values-b+es	string	extension_status_held	-	Desactivada hasta que decida
+values-b+es	string	extension_status_held_new_version	-	Versión nueva · Desactivada hasta que decida
 values-b+es	string	extension_status_kept_off	-	Se mantiene desactivada
 values-b+es	string	extension_status_start_failed	-	Permitida, pero no se inició
 values-b+es	string	extension_types	-	Soportado
@@ -9435,11 +9657,18 @@ values-b+es	string	play_movie_button	-	Reproducir película
 values-b+es	string	play_torrent_button	-	Transmitir Torrent
 values-b+es	string	play_trailer_button	-	Reproducir tráiler
 values-b+es	string	play_with_app_name	-	Reproducir con Cloudstream
+values-b+es	string	player_enter_fullscreen	-	Activar pantalla completa
+values-b+es	string	player_exit_fullscreen	-	Salir de pantalla completa
+values-b+es	string	player_fit_original	-	Relación de aspecto original
+values-b+es	string	player_fit_screen	-	Llenar pantalla
+values-b+es	string	player_fit_title	-	Tamaño de imagen
+values-b+es	string	player_fit_width	-	Ajustar al ancho
 values-b+es	string	player_is_live	-	En Vivo
 values-b+es	string	player_load_one_subtitle_online	-	Cargar primero disponible
 values-b+es	string	player_load_subtitles	-	Cargar desde archivo
 values-b+es	string	player_load_subtitles_online	-	Cargar desde Internet
 values-b+es	string	player_loaded_subtitles	-	%s Cargado
+values-b+es	string	player_mute	-	Silenciar
 values-b+es	string	player_notification_channel_description	-	La notificación del reproductor para controlar la reproducción en segundo plano
 values-b+es	string	player_notification_channel_name	-	Notificaciones del reproductor
 values-b+es	string	player_pref	-	Reproductor de video preferido
@@ -9448,10 +9677,15 @@ values-b+es	string	player_settings_play_in_app	-	Reproductor interno
 values-b+es	string	player_settings_select_cast_device	-	Seleccionar el dispositivo para transmitir
 values-b+es	string	player_size_settings	-	Botón de cambio de tamaño del reproductor
 values-b+es	string	player_size_settings_des	-	Eliminar bordes negros
+values-b+es	string	player_source_playing	-	Reproduciendo
+values-b+es	string	player_source_resumes_at	-	Cambiar mantiene tu posición: continúa en %1$s
+values-b+es	string	player_source_retry	-	Reintentar
+values-b+es	string	player_source_switch	-	Cambiar
 values-b+es	string	player_speed	-	Velocidad del reproductor
 values-b+es	string	player_speed_text_format	-	Velocidad (%.2f×)
 values-b+es	string	player_subtitles_settings	-	Subtítulos
 values-b+es	string	player_subtitles_settings_des	-	Configuración de subtítulos del reproductor
+values-b+es	string	player_unmute	-	Activar sonido
 values-b+es	string	plugin	-	plugins
 values-b+es	string	plugin_deleted	-	Plugin Borrado
 values-b+es	string	plugin_downloaded	-	Plugin descargado
@@ -9935,6 +10169,7 @@ values-b+fa	string	extension_status_allowed	-	مجاز است و در محیط �
 values-b+fa	string	extension_status_blocked	-	توسط اسکن مسدود شد. نمی‌توان به آن اجازه داد.
 values-b+fa	string	extension_status_hash_mismatch	-	این فایل با هش منتشرشدهٔ خود مطابقت ندارد. نمی‌توان به آن اجازه داد.
 values-b+fa	string	extension_status_held	-	خاموش تا زمانی که انتخاب کنید
+values-b+fa	string	extension_status_held_new_version	-	نسخه جدید · خاموش تا زمانی که انتخاب کنید
 values-b+fa	string	extension_status_kept_off	-	خاموش نگه داشته شد
 values-b+fa	string	extension_status_start_failed	-	مجاز است، اما اجرا نشد
 values-b+fa	string	extension_warning_classloader_access	-	به بارگذار کلاس (class loader) دسترسی پیدا می‌کند که می‌تواند کدی را وارد کند که این اسکن هرگز ندیده است.
@@ -10025,13 +10260,25 @@ values-b+fa	string	play_movie_button	-	پخش فیلم
 values-b+fa	string	play_torrent_button	-	استریم تورنت
 values-b+fa	string	play_trailer_button	-	پخش تریلر
 values-b+fa	string	play_with_app_name	-	پخش با CloudStream
+values-b+fa	string	player_enter_fullscreen	-	ورود به حالت تمام‌صفحه
+values-b+fa	string	player_exit_fullscreen	-	خروج از حالت تمام‌صفحه
+values-b+fa	string	player_fit_original	-	نسبت تصویر اصلی
+values-b+fa	string	player_fit_screen	-	پر کردن صفحه
+values-b+fa	string	player_fit_title	-	اندازه تصویر
+values-b+fa	string	player_fit_width	-	پر کردن عرض
+values-b+fa	string	player_mute	-	بی‌صدا
 values-b+fa	string	player_pref	-	پخش‌کننده ویدئو برگزیده
 values-b+fa	string	player_size_settings	-	دکمه تغییر‌اندازه پخش‌کننده
 values-b+fa	string	player_size_settings_des	-	حذف حاشیه سیاه
+values-b+fa	string	player_source_playing	-	در حال پخش
+values-b+fa	string	player_source_resumes_at	-	تعویض موقعیت شما را حفظ می‌کند: ادامه از %1$s
+values-b+fa	string	player_source_retry	-	تلاش دوباره
+values-b+fa	string	player_source_switch	-	تعویض
 values-b+fa	string	player_speed	-	سرعت پخش‌کننده
 values-b+fa	string	player_speed_text_format	-	سرعت (%.2f برابر)
 values-b+fa	string	player_subtitles_settings	-	زیرنویس‌ها
 values-b+fa	string	player_subtitles_settings_des	-	تنظیمات زیرنویس‌های پخش‌کننده
+values-b+fa	string	player_unmute	-	صدادار
 values-b+fa	string	plugin_deleted	-	افزونه حذف شد
 values-b+fa	string	podcast_singular	-	پادکست
 values-b+fa	string	popup_delete_file	-	حذف فایل
@@ -10314,6 +10561,7 @@ values-b+fil	string	extension_status_allowed	-	Pinayagan, at tumatakbo sa sandbo
 values-b+fil	string	extension_status_blocked	-	Hinarang ng scan. Hindi ito maaaring payagan.
 values-b+fil	string	extension_status_hash_mismatch	-	Hindi tugma ang file na ito sa nailathalang hash nito. Hindi ito maaaring payagan.
 values-b+fil	string	extension_status_held	-	Naka-off hanggang pumili ka
+values-b+fil	string	extension_status_held_new_version	-	Bagong bersyon · Naka-off hanggang pumili ka
 values-b+fil	string	extension_status_kept_off	-	Nanatiling naka-off
 values-b+fil	string	extension_status_start_failed	-	Pinayagan, pero hindi ito nagsimula
 values-b+fil	string	extension_warning_classloader_access	-	Inaabot nito ang class loader, na maaaring magpasok ng code na hindi kailanman nakita ng scan na ito.
@@ -10384,11 +10632,23 @@ values-b+fil	string	play_movie_button	-	Ipatugtog ang Pelikula
 values-b+fil	string	play_torrent_button	-	I-stream ang Torrent
 values-b+fil	string	play_trailer_button	-	Ipatugtog ang Trailer
 values-b+fil	string	play_with_app_name	-	Ipatugtog sa CloudStream
+values-b+fil	string	player_enter_fullscreen	-	Mag-fullscreen
+values-b+fil	string	player_exit_fullscreen	-	Lumabas sa fullscreen
+values-b+fil	string	player_fit_original	-	Orihinal na aspect ratio
+values-b+fil	string	player_fit_screen	-	Punuin ang screen
+values-b+fil	string	player_fit_title	-	Laki ng larawan
+values-b+fil	string	player_fit_width	-	Punuin ang lapad
+values-b+fil	string	player_mute	-	I-mute
 values-b+fil	string	player_notification_channel_description	-	Ang abiso ng player para sa pagkontrol sa pag-playback mula sa background
 values-b+fil	string	player_size_settings	-	Pindutan upang baguhin ang laki
 values-b+fil	string	player_size_settings_des	-	Alisin ang black borders
+values-b+fil	string	player_source_playing	-	Nagpe-play
+values-b+fil	string	player_source_resumes_at	-	Mananatili ang posisyon mo sa paglipat: magpapatuloy sa %1$s
+values-b+fil	string	player_source_retry	-	Subukang muli
+values-b+fil	string	player_source_switch	-	Lumipat
 values-b+fil	string	player_speed	-	Bilis ng Manlalaro
 values-b+fil	string	player_speed_text_format	-	Bilis (%.2fx)
+values-b+fil	string	player_unmute	-	I-unmute
 values-b+fil	string	plugins_updated_manually	-	Matagumpay na na-update ang %d plugin!
 values-b+fil	string	popup_delete_file	-	Burahin ang File
 values-b+fil	string	popup_pause_download	-	Ihinto ang pag-download
@@ -10795,6 +11055,7 @@ values-b+fr	string	extension_status_allowed	-	Autorisée et en cours d'exécutio
 values-b+fr	string	extension_status_blocked	-	Bloquée par l'analyse. Elle ne peut pas être autorisée.
 values-b+fr	string	extension_status_hash_mismatch	-	Ce fichier ne correspond pas à son empreinte (hash) publiée. Il ne peut pas être autorisé.
 values-b+fr	string	extension_status_held	-	Désactivée jusqu'à votre choix
+values-b+fr	string	extension_status_held_new_version	-	Nouvelle version · Désactivée jusqu'à votre choix
 values-b+fr	string	extension_status_kept_off	-	Laissée désactivée
 values-b+fr	string	extension_status_start_failed	-	Autorisée, mais elle n'a pas démarré
 values-b+fr	string	extension_types	-	Supporté
@@ -10935,11 +11196,18 @@ values-b+fr	string	play_movie_button	-	Lire
 values-b+fr	string	play_torrent_button	-	Streamer le Torrent
 values-b+fr	string	play_trailer_button	-	Lire la bande-annonce
 values-b+fr	string	play_with_app_name	-	Lire avec CloudStream
+values-b+fr	string	player_enter_fullscreen	-	Activer le mode plein écran
+values-b+fr	string	player_exit_fullscreen	-	Quitter le mode plein écran
+values-b+fr	string	player_fit_original	-	Proportions originales
+values-b+fr	string	player_fit_screen	-	Remplir l’écran
+values-b+fr	string	player_fit_title	-	Taille de la vidéo
+values-b+fr	string	player_fit_width	-	Remplir la largeur
 values-b+fr	string	player_is_live	-	Live
 values-b+fr	string	player_load_one_subtitle_online	-	Charger le premier disponible
 values-b+fr	string	player_load_subtitles	-	Charger depuis le fichier
 values-b+fr	string	player_load_subtitles_online	-	Charger depuis internet
 values-b+fr	string	player_loaded_subtitles	-	%s chargé
+values-b+fr	string	player_mute	-	Couper le son
 values-b+fr	string	player_notification_channel_description	-	La notification du lecteur pour contrôler la lecture en arrière-plan
 values-b+fr	string	player_notification_channel_name	-	Notifications du lecteur
 values-b+fr	string	player_pref	-	Lecteur vidéo préféré
@@ -10948,10 +11216,15 @@ values-b+fr	string	player_settings_play_in_app	-	Lecteur interne
 values-b+fr	string	player_settings_select_cast_device	-	Sélectionnez un appareil de diffusion
 values-b+fr	string	player_size_settings	-	Bouton de redimensionnement du lecteur
 values-b+fr	string	player_size_settings_des	-	Supprimer les bordures noires
+values-b+fr	string	player_source_playing	-	En lecture
+values-b+fr	string	player_source_resumes_at	-	Changer conserve votre position : reprise à %1$s
+values-b+fr	string	player_source_retry	-	Réessayer
+values-b+fr	string	player_source_switch	-	Changer
 values-b+fr	string	player_speed	-	Vitesse de lecture
 values-b+fr	string	player_speed_text_format	-	Vitesse (%.2fx)
 values-b+fr	string	player_subtitles_settings	-	Sous-titres
 values-b+fr	string	player_subtitles_settings_des	-	Paramètres des sous-titres du lecteur
+values-b+fr	string	player_unmute	-	Réactiver le son
 values-b+fr	string	plugin	-	plugins
 values-b+fr	string	plugin_deleted	-	Plugin Supprimé
 values-b+fr	string	plugin_downloaded	-	Plugin Téléchargé
@@ -11423,6 +11696,7 @@ values-b+gl	string	extension_status_allowed	-	Permitida e en execución no seu e
 values-b+gl	string	extension_status_blocked	-	Bloqueada pola análise. Non se pode permitir.
 values-b+gl	string	extension_status_hash_mismatch	-	Este ficheiro non coincide co seu hash publicado. Non se pode permitir.
 values-b+gl	string	extension_status_held	-	Apagada ata que escolla
+values-b+gl	string	extension_status_held_new_version	-	Versión nova · Apagada ata que escolla
 values-b+gl	string	extension_status_kept_off	-	Mantida apagada
 values-b+gl	string	extension_status_start_failed	-	Permitida, pero non se iniciou
 values-b+gl	string	extension_warning_classloader_access	-	Accede ao cargador de clases, que pode introducir código que esta análise nunca viu.
@@ -11500,12 +11774,24 @@ values-b+gl	string	play_movie_button	-	Reproducir o filme
 values-b+gl	string	play_torrent_button	-	Transmitir Torrent
 values-b+gl	string	play_trailer_button	-	Reproducir Trailer
 values-b+gl	string	play_with_app_name	-	Reproducir con CloudStream
+values-b+gl	string	player_enter_fullscreen	-	Acceder a pantalla completa
+values-b+gl	string	player_exit_fullscreen	-	Saír de pantalla completa
+values-b+gl	string	player_fit_original	-	Proporción orixinal
+values-b+gl	string	player_fit_screen	-	Encher a pantalla
+values-b+gl	string	player_fit_title	-	Tamaño da imaxe
+values-b+gl	string	player_fit_width	-	Encher o ancho
+values-b+gl	string	player_mute	-	Silenciar
 values-b+gl	string	player_size_settings	-	Botón de cambio de tamaño do reprodutor
 values-b+gl	string	player_size_settings_des	-	Eliminar bordes negros
+values-b+gl	string	player_source_playing	-	Reproducindo
+values-b+gl	string	player_source_resumes_at	-	Cambiar mantén a túa posición: continúa en %1$s
+values-b+gl	string	player_source_retry	-	Tentar de novo
+values-b+gl	string	player_source_switch	-	Cambiar
 values-b+gl	string	player_speed	-	Velocidade do reproductor
 values-b+gl	string	player_speed_text_format	-	Velocidade (%.2fx)
 values-b+gl	string	player_subtitles_settings	-	Subtítulos
 values-b+gl	string	player_subtitles_settings_des	-	Configuración de subtítulos do reprodutor
+values-b+gl	string	player_unmute	-	Activar o son
 values-b+gl	string	popup_delete_file	-	Borrar Arquivo
 values-b+gl	string	popup_pause_download	-	Pausar Descarga
 values-b+gl	string	popup_play_file	-	Reproducir Arquivo
@@ -11835,6 +12121,7 @@ values-b+he	string	extension_status_allowed	-	מותרת ופועלת בסביב
 values-b+he	string	extension_status_blocked	-	נחסמה על ידי הסריקה. אי אפשר לאשר אותה.
 values-b+he	string	extension_status_hash_mismatch	-	הקובץ הזה לא תואם לערך הגיבוב שפורסם עבורו. אי אפשר לאשר אותו.
 values-b+he	string	extension_status_held	-	כבויה עד לבחירה שלך
+values-b+he	string	extension_status_held_new_version	-	גרסה חדשה · כבויה עד לבחירה שלך
 values-b+he	string	extension_status_kept_off	-	נשארת כבויה
 values-b+he	string	extension_status_start_failed	-	מותרת, אבל לא הופעלה
 values-b+he	string	extension_types	-	תומך
@@ -11943,17 +12230,29 @@ values-b+he	string	play_movie_button	-	הפעל סרט
 values-b+he	string	play_torrent_button	-	שדר טורנט
 values-b+he	string	play_trailer_button	-	הפעל טריילר
 values-b+he	string	play_with_app_name	-	נגן עם קלאודסטרים
+values-b+he	string	player_enter_fullscreen	-	כניסה למסך מלא
+values-b+he	string	player_exit_fullscreen	-	יציאה ממסך מלא
+values-b+he	string	player_fit_original	-	יחס גובה־רוחב מקורי
+values-b+he	string	player_fit_screen	-	מילוי מסך
+values-b+he	string	player_fit_title	-	גודל תמונה
+values-b+he	string	player_fit_width	-	מילוי רוחב
 values-b+he	string	player_load_subtitles	-	טען מקובץ
 values-b+he	string	player_load_subtitles_online	-	טען מהאינטרנט
 values-b+he	string	player_loaded_subtitles	-	נטען %s
+values-b+he	string	player_mute	-	השתקה
 values-b+he	string	player_pref	-	נגן וידאו מועדף
 values-b+he	string	player_settings_play_in_app	-	נגן פנימי
 values-b+he	string	player_size_settings	-	כפתור שינוי גודל הנגן
 values-b+he	string	player_size_settings_des	-	הסר את הגבולות השחורים
+values-b+he	string	player_source_playing	-	מתנגן
+values-b+he	string	player_source_resumes_at	-	ההחלפה שומרת על המיקום שלך: ממשיך מ-%1$s
+values-b+he	string	player_source_retry	-	ניסיון חוזר
+values-b+he	string	player_source_switch	-	החלפה
 values-b+he	string	player_speed	-	מהירות הנגן
 values-b+he	string	player_speed_text_format	-	מהירות (%.2fx)
 values-b+he	string	player_subtitles_settings	-	כתוביות
 values-b+he	string	player_subtitles_settings_des	-	הגדרות כתוביות הנגן
+values-b+he	string	player_unmute	-	ביטול השתקה
 values-b+he	string	plugin	-	תוספים
 values-b+he	string	plugin_deleted	-	התוסף נמחק
 values-b+he	string	plugin_downloaded	-	תוסף הורד
@@ -12406,6 +12705,7 @@ values-b+hi	string	extension_status_allowed	-	अनुमति है, और 
 values-b+hi	string	extension_status_blocked	-	स्कैन ने इसे ब्लॉक किया है। इसकी अनुमति नहीं दी जा सकती।
 values-b+hi	string	extension_status_hash_mismatch	-	यह फ़ाइल अपने प्रकाशित हैश से मेल नहीं खाती। इसकी अनुमति नहीं दी जा सकती।
 values-b+hi	string	extension_status_held	-	आपके चुनने तक बंद
+values-b+hi	string	extension_status_held_new_version	-	नया संस्करण · आपके चुनने तक बंद
 values-b+hi	string	extension_status_kept_off	-	बंद रखा गया
 values-b+hi	string	extension_status_start_failed	-	अनुमति है, लेकिन यह शुरू नहीं हुआ
 values-b+hi	string	extension_warning_classloader_access	-	यह क्लास लोडर तक पहुँचता है, जो ऐसा कोड ला सकता है जिसे इस स्कैन ने कभी नहीं देखा।
@@ -12503,12 +12803,24 @@ values-b+hi	string	play_movie_button	-	मूवी चलाएं
 values-b+hi	string	play_torrent_button	-	टोरेंट चलाएं
 values-b+hi	string	play_trailer_button	-	ट्रेलर देखे
 values-b+hi	string	play_with_app_name	-	क्लाउडस्ट्रीम के साथ चलाएं
+values-b+hi	string	player_enter_fullscreen	-	फ़ुलस्क्रीन मोड पर देखें
+values-b+hi	string	player_exit_fullscreen	-	फ़ुलस्क्रीन मोड से बाहर निकलें
+values-b+hi	string	player_fit_original	-	मूल आस्पेक्ट अनुपात
+values-b+hi	string	player_fit_screen	-	स्क्रीन भरें
+values-b+hi	string	player_fit_title	-	चित्र का आकार
+values-b+hi	string	player_fit_width	-	चौड़ाई भरें
+values-b+hi	string	player_mute	-	म्यूट करें
 values-b+hi	string	player_size_settings	-	प्लेयर आकार परिवर्तन बटन
 values-b+hi	string	player_size_settings_des	-	काले बॉर्डर हटाएँ
+values-b+hi	string	player_source_playing	-	चल रहा है
+values-b+hi	string	player_source_resumes_at	-	बदलने पर आपकी जगह बनी रहती है: %1$s से जारी
+values-b+hi	string	player_source_retry	-	फिर कोशिश करें
+values-b+hi	string	player_source_switch	-	बदलें
 values-b+hi	string	player_speed	-	प्लेयर स्पीड
 values-b+hi	string	player_speed_text_format	-	स्पीड (%.2fx)
 values-b+hi	string	player_subtitles_settings	-	उपशीर्षक
 values-b+hi	string	player_subtitles_settings_des	-	प्लेयर उपशीर्षक सेटिंग्स
+values-b+hi	string	player_unmute	-	अनम्यूट करें
 values-b+hi	string	podcast_singular	-	पॉडकास्ट
 values-b+hi	string	popup_delete_file	-	फ़ाइल मिटाएँ
 values-b+hi	string	popup_pause_download	-	डाउनलोड रोकें
@@ -12973,6 +13285,7 @@ values-b+hr	string	extension_status_allowed	-	Dopušteno i radi u svojem izolira
 values-b+hr	string	extension_status_blocked	-	Blokirano skeniranjem. Ovo se ne može dopustiti.
 values-b+hr	string	extension_status_hash_mismatch	-	Ova datoteka ne odgovara svojem objavljenom hashu. Ovo se ne može dopustiti.
 values-b+hr	string	extension_status_held	-	Isključeno dok ne odaberete
+values-b+hr	string	extension_status_held_new_version	-	Nova verzija · Isključeno dok ne odaberete
 values-b+hr	string	extension_status_kept_off	-	Ostaje isključeno
 values-b+hr	string	extension_status_start_failed	-	Dopušteno, ali se nije pokrenulo
 values-b+hr	string	extension_types	-	Podržano
@@ -13113,11 +13426,18 @@ values-b+hr	string	play_movie_button	-	Pokreni film
 values-b+hr	string	play_torrent_button	-	Pokreni Torrent
 values-b+hr	string	play_trailer_button	-	Pokreni trailer
 values-b+hr	string	play_with_app_name	-	Pokreni s CloudStreamom
+values-b+hr	string	player_enter_fullscreen	-	Otvaranje prikaza na cijelom zaslonu
+values-b+hr	string	player_exit_fullscreen	-	Zatvaranje prikaza na cijelom zaslonu
+values-b+hr	string	player_fit_original	-	Izvorni omjer
+values-b+hr	string	player_fit_screen	-	Ispuni zaslon
+values-b+hr	string	player_fit_title	-	Veličina slike
+values-b+hr	string	player_fit_width	-	Ispuni širinu
 values-b+hr	string	player_is_live	-	Uživo
 values-b+hr	string	player_load_one_subtitle_online	-	Učitaj prvi dostupni
 values-b+hr	string	player_load_subtitles	-	Učitaj iz datoteke
 values-b+hr	string	player_load_subtitles_online	-	Učitaj s interneta
 values-b+hr	string	player_loaded_subtitles	-	Učitano %s
+values-b+hr	string	player_mute	-	Isključi zvuk
 values-b+hr	string	player_notification_channel_description	-	Obavijest reproduktora za upravljanje reprodukcijom iz pozadine
 values-b+hr	string	player_notification_channel_name	-	Obavijesti reproduktora
 values-b+hr	string	player_pref	-	Preferirani video player
@@ -13126,10 +13446,15 @@ values-b+hr	string	player_settings_play_in_app	-	Interni player
 values-b+hr	string	player_settings_select_cast_device	-	Odaberi uređaj za emitiranje
 values-b+hr	string	player_size_settings	-	Gumb za mijenjenje veličine playera
 values-b+hr	string	player_size_settings_des	-	Ukloni crne rubove
+values-b+hr	string	player_source_playing	-	Reproducira se
+values-b+hr	string	player_source_resumes_at	-	Promjena zadržava položaj: nastavlja se od %1$s
+values-b+hr	string	player_source_retry	-	Pokušaj ponovno
+values-b+hr	string	player_source_switch	-	Promijeni
 values-b+hr	string	player_speed	-	Brzina playera
 values-b+hr	string	player_speed_text_format	-	Brzina (%.2f×)
 values-b+hr	string	player_subtitles_settings	-	Titlovi
 values-b+hr	string	player_subtitles_settings_des	-	Postavke titlova playera
+values-b+hr	string	player_unmute	-	Uključi zvuk
 values-b+hr	string	plugin	-	dodaci
 values-b+hr	string	plugin_deleted	-	Dodatak izbrisan
 values-b+hr	string	plugin_downloaded	-	Dodatak preuzet
@@ -13716,6 +14041,7 @@ values-b+hu	string	extension_status_allowed	-	Engedélyezve, és a saját elszig
 values-b+hu	string	extension_status_blocked	-	A vizsgálat letiltotta. Ez nem engedélyezhető.
 values-b+hu	string	extension_status_hash_mismatch	-	Ez a fájl nem egyezik a közzétett hash-értékével. Ez nem engedélyezhető.
 values-b+hu	string	extension_status_held	-	Kikapcsolva, amíg nem dönt
+values-b+hu	string	extension_status_held_new_version	-	Új verzió · Kikapcsolva, amíg nem dönt
 values-b+hu	string	extension_status_kept_off	-	Kikapcsolva marad
 values-b+hu	string	extension_status_start_failed	-	Engedélyezve, de nem indult el
 values-b+hu	string	extension_types	-	Támogatott
@@ -13842,20 +14168,32 @@ values-b+hu	string	play_movie_button	-	Film lejátszása
 values-b+hu	string	play_torrent_button	-	Torrent streamelése
 values-b+hu	string	play_trailer_button	-	Előzetes lejátszása
 values-b+hu	string	play_with_app_name	-	Lejátszás CloudStreamel
+values-b+hu	string	player_enter_fullscreen	-	Teljes képernyő
+values-b+hu	string	player_exit_fullscreen	-	Kilépés a teljes képernyős módból
+values-b+hu	string	player_fit_original	-	Eredeti képarány
+values-b+hu	string	player_fit_screen	-	Képernyő kitöltése
+values-b+hu	string	player_fit_title	-	Képméret
+values-b+hu	string	player_fit_width	-	Szélesség kitöltése
 values-b+hu	string	player_load_one_subtitle_online	-	Töltse be az első létezőt
 values-b+hu	string	player_load_subtitles	-	Betöltés fájlból
 values-b+hu	string	player_load_subtitles_online	-	Betöltés az internetről
 values-b+hu	string	player_loaded_subtitles	-	%s betöltve
+values-b+hu	string	player_mute	-	Némítás
 values-b+hu	string	player_pref	-	Előnyben részesített videolejátszó
 values-b+hu	string	player_settings_always_ask	-	Mindig kérdezzen
 values-b+hu	string	player_settings_play_in_app	-	Belső lejátszó
 values-b+hu	string	player_settings_select_cast_device	-	Válassza ki a lejátszó eszközt
 values-b+hu	string	player_size_settings	-	Lejátszó átméretezése gomb
 values-b+hu	string	player_size_settings_des	-	Fekete szegélyek eltávolítása
+values-b+hu	string	player_source_playing	-	Lejátszás
+values-b+hu	string	player_source_resumes_at	-	A váltás megőrzi a pozíciót: folytatás innen: %1$s
+values-b+hu	string	player_source_retry	-	Újra
+values-b+hu	string	player_source_switch	-	Váltás
 values-b+hu	string	player_speed	-	Lejátszás sebessége
 values-b+hu	string	player_speed_text_format	-	Sebesség (%.2fx)
 values-b+hu	string	player_subtitles_settings	-	Feliratok
 values-b+hu	string	player_subtitles_settings_des	-	Lejátszó feliratok beállításai
+values-b+hu	string	player_unmute	-	Némítás feloldása
 values-b+hu	string	plugin	-	bővítmények
 values-b+hu	string	plugin_deleted	-	Bővítmény törölve
 values-b+hu	string	plugin_downloaded	-	Bővítmény letöltve
@@ -14434,6 +14772,7 @@ values-b+id	string	extension_status_allowed	-	Diizinkan, dan berjalan di lingkun
 values-b+id	string	extension_status_blocked	-	Diblokir oleh pemindaian. Ini tidak dapat diizinkan.
 values-b+id	string	extension_status_hash_mismatch	-	Berkas ini tidak cocok dengan hash yang dipublikasikan. Ini tidak dapat diizinkan.
 values-b+id	string	extension_status_held	-	Nonaktif sampai Anda memilih
+values-b+id	string	extension_status_held_new_version	-	Versi baru · Nonaktif sampai Anda memilih
 values-b+id	string	extension_status_kept_off	-	Tetap nonaktif
 values-b+id	string	extension_status_start_failed	-	Diizinkan, tetapi tidak berhasil dimulai
 values-b+id	string	extension_types	-	Dukungan
@@ -14574,11 +14913,18 @@ values-b+id	string	play_movie_button	-	Putar Film
 values-b+id	string	play_torrent_button	-	Stream Torrent
 values-b+id	string	play_trailer_button	-	Putar Cuplikan
 values-b+id	string	play_with_app_name	-	Putar di CloudStream
+values-b+id	string	player_enter_fullscreen	-	Masuk layar penuh
+values-b+id	string	player_exit_fullscreen	-	Keluar dari layar penuh
+values-b+id	string	player_fit_original	-	Rasio aspek asli
+values-b+id	string	player_fit_screen	-	Isi layar
+values-b+id	string	player_fit_title	-	Ukuran gambar
+values-b+id	string	player_fit_width	-	Isi lebar
 values-b+id	string	player_is_live	-	Live
 values-b+id	string	player_load_one_subtitle_online	-	Muat yang pertama tersedia
 values-b+id	string	player_load_subtitles	-	Muat dari file
 values-b+id	string	player_load_subtitles_online	-	Ambil dari internet
 values-b+id	string	player_loaded_subtitles	-	Memuat %s
+values-b+id	string	player_mute	-	Bisukan
 values-b+id	string	player_notification_channel_description	-	Pemberitahuan pemutar untuk mengontrol pemutaran dari latar belakang
 values-b+id	string	player_notification_channel_name	-	Notifikasi pemain
 values-b+id	string	player_pref	-	Pemutar video utama
@@ -14587,10 +14933,15 @@ values-b+id	string	player_settings_play_in_app	-	Pemutar Bawaan
 values-b+id	string	player_settings_select_cast_device	-	Pilih perangkat cast
 values-b+id	string	player_size_settings	-	Tombol ubah ukuran pemutar
 values-b+id	string	player_size_settings_des	-	Hapus garis tepi hitam
+values-b+id	string	player_source_playing	-	Sedang diputar
+values-b+id	string	player_source_resumes_at	-	Mengganti tetap menjaga posisi Anda: lanjut di %1$s
+values-b+id	string	player_source_retry	-	Coba lagi
+values-b+id	string	player_source_switch	-	Ganti
 values-b+id	string	player_speed	-	Kecepatan Pemutar
 values-b+id	string	player_speed_text_format	-	Kecepatan (%.2fx)
 values-b+id	string	player_subtitles_settings	-	Subtitel
 values-b+id	string	player_subtitles_settings_des	-	Pengaturan subtitel pemutar
+values-b+id	string	player_unmute	-	Bunyikan
 values-b+id	string	plugin	-	plugin
 values-b+id	string	plugin_deleted	-	Plugin terhapus
 values-b+id	string	plugin_downloaded	-	Plugin terunduh
@@ -15216,6 +15567,7 @@ values-b+in	string	extension_status_allowed	-	Diizinkan, dan berjalan di lingkun
 values-b+in	string	extension_status_blocked	-	Diblokir oleh pemindaian. Ini tidak dapat diizinkan.
 values-b+in	string	extension_status_hash_mismatch	-	Berkas ini tidak cocok dengan hash yang dipublikasikan. Ini tidak dapat diizinkan.
 values-b+in	string	extension_status_held	-	Nonaktif sampai Anda memilih
+values-b+in	string	extension_status_held_new_version	-	Versi baru · Nonaktif sampai Anda memilih
 values-b+in	string	extension_status_kept_off	-	Tetap nonaktif
 values-b+in	string	extension_status_start_failed	-	Diizinkan, tetapi tidak berhasil dimulai
 values-b+in	string	extension_types	-	Dukungan
@@ -15356,11 +15708,18 @@ values-b+in	string	play_movie_button	-	Putar Film
 values-b+in	string	play_torrent_button	-	Stream Torrent
 values-b+in	string	play_trailer_button	-	Putar Cuplikan
 values-b+in	string	play_with_app_name	-	Putar di CloudStream
+values-b+in	string	player_enter_fullscreen	-	Masuk layar penuh
+values-b+in	string	player_exit_fullscreen	-	Keluar dari layar penuh
+values-b+in	string	player_fit_original	-	Rasio aspek asli
+values-b+in	string	player_fit_screen	-	Isi layar
+values-b+in	string	player_fit_title	-	Ukuran gambar
+values-b+in	string	player_fit_width	-	Isi lebar
 values-b+in	string	player_is_live	-	Live
 values-b+in	string	player_load_one_subtitle_online	-	Muat yang pertama tersedia
 values-b+in	string	player_load_subtitles	-	Muat dari file
 values-b+in	string	player_load_subtitles_online	-	Ambil dari internet
 values-b+in	string	player_loaded_subtitles	-	Memuat %s
+values-b+in	string	player_mute	-	Bisukan
 values-b+in	string	player_notification_channel_description	-	Pemberitahuan pemutar untuk mengontrol pemutaran dari latar belakang
 values-b+in	string	player_notification_channel_name	-	Notifikasi pemain
 values-b+in	string	player_pref	-	Pemutar video utama
@@ -15369,10 +15728,15 @@ values-b+in	string	player_settings_play_in_app	-	Pemutar Bawaan
 values-b+in	string	player_settings_select_cast_device	-	Pilih perangkat cast
 values-b+in	string	player_size_settings	-	Tombol ubah ukuran pemutar
 values-b+in	string	player_size_settings_des	-	Hapus garis tepi hitam
+values-b+in	string	player_source_playing	-	Sedang diputar
+values-b+in	string	player_source_resumes_at	-	Mengganti tetap menjaga posisi Anda: lanjut di %1$s
+values-b+in	string	player_source_retry	-	Coba lagi
+values-b+in	string	player_source_switch	-	Ganti
 values-b+in	string	player_speed	-	Kecepatan Pemutar
 values-b+in	string	player_speed_text_format	-	Kecepatan (%.2fx)
 values-b+in	string	player_subtitles_settings	-	Subtitel
 values-b+in	string	player_subtitles_settings_des	-	Pengaturan subtitel pemutar
+values-b+in	string	player_unmute	-	Bunyikan
 values-b+in	string	plugin	-	plugin
 values-b+in	string	plugin_deleted	-	Plugin terhapus
 values-b+in	string	plugin_downloaded	-	Plugin terunduh
@@ -16006,6 +16370,7 @@ values-b+it	string	extension_status_allowed	-	Consentita e in esecuzione nel suo
 values-b+it	string	extension_status_blocked	-	Bloccata dalla scansione. Non può essere consentita.
 values-b+it	string	extension_status_hash_mismatch	-	Questo file non corrisponde al suo hash pubblicato. Non può essere consentito.
 values-b+it	string	extension_status_held	-	Disattivata finché non scegli
+values-b+it	string	extension_status_held_new_version	-	Nuova versione · Disattivata finché non scegli
 values-b+it	string	extension_status_kept_off	-	Lasciata disattivata
 values-b+it	string	extension_status_start_failed	-	Consentita, ma non si è avviata
 values-b+it	string	extension_types	-	Supportati
@@ -16146,11 +16511,18 @@ values-b+it	string	play_movie_button	-	Riproduci film
 values-b+it	string	play_torrent_button	-	Stream Torrent
 values-b+it	string	play_trailer_button	-	Riproduci trailer
 values-b+it	string	play_with_app_name	-	Riproduci con CloudStream
+values-b+it	string	player_enter_fullscreen	-	Attiva schermo intero
+values-b+it	string	player_exit_fullscreen	-	Esci da schermo intero
+values-b+it	string	player_fit_original	-	Proporzioni originali
+values-b+it	string	player_fit_screen	-	Riempi schermo
+values-b+it	string	player_fit_title	-	Dimensione immagine
+values-b+it	string	player_fit_width	-	Riempi larghezza
 values-b+it	string	player_is_live	-	Live
 values-b+it	string	player_load_one_subtitle_online	-	Carica il primo disponibile
 values-b+it	string	player_load_subtitles	-	Carica da file
 values-b+it	string	player_load_subtitles_online	-	Carica da Internet
 values-b+it	string	player_loaded_subtitles	-	Caricato %s
+values-b+it	string	player_mute	-	Disattiva audio
 values-b+it	string	player_notification_channel_description	-	La notifica del lettore per controllare la riproduzione in background
 values-b+it	string	player_notification_channel_name	-	Notifiche lettore
 values-b+it	string	player_pref	-	Video lettore preferito
@@ -16159,10 +16531,15 @@ values-b+it	string	player_settings_play_in_app	-	Lettore interno
 values-b+it	string	player_settings_select_cast_device	-	Seleziona dispositivo per cast
 values-b+it	string	player_size_settings	-	Pulsante di ridimensionamento del video
 values-b+it	string	player_size_settings_des	-	Rimuovi bordi neri
+values-b+it	string	player_source_playing	-	In riproduzione
+values-b+it	string	player_source_resumes_at	-	Cambiare mantiene la posizione: riprende da %1$s
+values-b+it	string	player_source_retry	-	Riprova
+values-b+it	string	player_source_switch	-	Cambia
 values-b+it	string	player_speed	-	Velocità lettore
 values-b+it	string	player_speed_text_format	-	Velocità (%.2fx)
 values-b+it	string	player_subtitles_settings	-	Sottotitoli
 values-b+it	string	player_subtitles_settings_des	-	Impostazioni sottotitoli lettore
+values-b+it	string	player_unmute	-	Riattiva audio
 values-b+it	string	plugin	-	plugin
 values-b+it	string	plugin_deleted	-	Plugin eliminato
 values-b+it	string	plugin_downloaded	-	Plugin scaricato
@@ -16712,6 +17089,7 @@ values-b+iw	string	extension_status_allowed	-	מותרת ופועלת בסביב
 values-b+iw	string	extension_status_blocked	-	נחסמה על ידי הסריקה. אי אפשר לאשר אותה.
 values-b+iw	string	extension_status_hash_mismatch	-	הקובץ הזה לא תואם לערך הגיבוב שפורסם עבורו. אי אפשר לאשר אותו.
 values-b+iw	string	extension_status_held	-	כבויה עד לבחירה שלך
+values-b+iw	string	extension_status_held_new_version	-	גרסה חדשה · כבויה עד לבחירה שלך
 values-b+iw	string	extension_status_kept_off	-	נשארת כבויה
 values-b+iw	string	extension_status_start_failed	-	מותרת, אבל לא הופעלה
 values-b+iw	string	extension_types	-	תומך
@@ -16820,17 +17198,29 @@ values-b+iw	string	play_movie_button	-	הפעל סרט
 values-b+iw	string	play_torrent_button	-	שדר טורנט
 values-b+iw	string	play_trailer_button	-	הפעל טריילר
 values-b+iw	string	play_with_app_name	-	נגן עם קלאודסטרים
+values-b+iw	string	player_enter_fullscreen	-	כניסה למסך מלא
+values-b+iw	string	player_exit_fullscreen	-	יציאה ממסך מלא
+values-b+iw	string	player_fit_original	-	יחס גובה־רוחב מקורי
+values-b+iw	string	player_fit_screen	-	מילוי מסך
+values-b+iw	string	player_fit_title	-	גודל תמונה
+values-b+iw	string	player_fit_width	-	מילוי רוחב
 values-b+iw	string	player_load_subtitles	-	טען מקובץ
 values-b+iw	string	player_load_subtitles_online	-	טען מהאינטרנט
 values-b+iw	string	player_loaded_subtitles	-	נטען %s
+values-b+iw	string	player_mute	-	השתקה
 values-b+iw	string	player_pref	-	נגן וידאו מועדף
 values-b+iw	string	player_settings_play_in_app	-	נגן פנימי
 values-b+iw	string	player_size_settings	-	כפתור שינוי גודל הנגן
 values-b+iw	string	player_size_settings_des	-	הסר את הגבולות השחורים
+values-b+iw	string	player_source_playing	-	מתנגן
+values-b+iw	string	player_source_resumes_at	-	ההחלפה שומרת על המיקום שלך: ממשיך מ-%1$s
+values-b+iw	string	player_source_retry	-	ניסיון חוזר
+values-b+iw	string	player_source_switch	-	החלפה
 values-b+iw	string	player_speed	-	מהירות הנגן
 values-b+iw	string	player_speed_text_format	-	מהירות (%.2fx)
 values-b+iw	string	player_subtitles_settings	-	כתוביות
 values-b+iw	string	player_subtitles_settings_des	-	הגדרות כתוביות הנגן
+values-b+iw	string	player_unmute	-	ביטול השתקה
 values-b+iw	string	plugin	-	תוספים
 values-b+iw	string	plugin_deleted	-	התוסף נמחק
 values-b+iw	string	plugin_downloaded	-	תוסף הורד
@@ -17385,6 +17775,7 @@ values-b+ja	string	extension_status_allowed	-	許可済み。専用のサンド�
 values-b+ja	string	extension_status_blocked	-	スキャンによりブロックされました。許可できません。
 values-b+ja	string	extension_status_hash_mismatch	-	このファイルは公開されているハッシュと一致しません。許可できません。
 values-b+ja	string	extension_status_held	-	選択するまでオフ
+values-b+ja	string	extension_status_held_new_version	-	新しいバージョン · 選択するまでオフ
 values-b+ja	string	extension_status_kept_off	-	オフのまま
 values-b+ja	string	extension_status_start_failed	-	許可済みですが、起動しませんでした
 values-b+ja	string	extension_types	-	サポート
@@ -17525,11 +17916,18 @@ values-b+ja	string	play_movie_button	-	映画を再生
 values-b+ja	string	play_torrent_button	-	ストリームトレント
 values-b+ja	string	play_trailer_button	-	予告編を再生
 values-b+ja	string	play_with_app_name	-	CloudStreamで再生
+values-b+ja	string	player_enter_fullscreen	-	全画面表示に変更
+values-b+ja	string	player_exit_fullscreen	-	全画面表示を終了
+values-b+ja	string	player_fit_original	-	元のアスペクト比
+values-b+ja	string	player_fit_screen	-	画面全体に表示
+values-b+ja	string	player_fit_title	-	画像サイズ
+values-b+ja	string	player_fit_width	-	幅に合わせる
 values-b+ja	string	player_is_live	-	ライブ
 values-b+ja	string	player_load_one_subtitle_online	-	最初に利用可能なものを読み込む
 values-b+ja	string	player_load_subtitles	-	ファイルから読み込む
 values-b+ja	string	player_load_subtitles_online	-	インターネットから読み込む
 values-b+ja	string	player_loaded_subtitles	-	%s を読み込みました
+values-b+ja	string	player_mute	-	ミュート
 values-b+ja	string	player_notification_channel_description	-	バックグラウンドから再生を制御するためのプレーヤー通知
 values-b+ja	string	player_notification_channel_name	-	プレーヤー通知
 values-b+ja	string	player_pref	-	優先ビデオプレーヤー
@@ -17538,10 +17936,15 @@ values-b+ja	string	player_settings_play_in_app	-	内部プレーヤー
 values-b+ja	string	player_settings_select_cast_device	-	キャストデバイスを選択
 values-b+ja	string	player_size_settings	-	プレーヤーのサイズ変更ボタン
 values-b+ja	string	player_size_settings_des	-	黒い境界線を削除します
+values-b+ja	string	player_source_playing	-	再生中
+values-b+ja	string	player_source_resumes_at	-	切り替えても位置は保たれます: %1$s から再開
+values-b+ja	string	player_source_retry	-	再試行
+values-b+ja	string	player_source_switch	-	切り替え
 values-b+ja	string	player_speed	-	プレーヤーの速度
 values-b+ja	string	player_speed_text_format	-	再生速度 (%.2fx)
 values-b+ja	string	player_subtitles_settings	-	字幕
 values-b+ja	string	player_subtitles_settings_des	-	プレーヤーの字幕設定
+values-b+ja	string	player_unmute	-	ミュート解除
 values-b+ja	string	plugin	-	プラグイン
 values-b+ja	string	plugin_deleted	-	プラグインが消されました
 values-b+ja	string	plugin_downloaded	-	プラグインがダウンロードされました
@@ -17939,6 +18342,7 @@ values-b+kn	string	extension_status_allowed	-	ಅನುಮತಿಸಲಾಗಿ�
 values-b+kn	string	extension_status_blocked	-	ಸ್ಕ್ಯಾನ್ ಇದನ್ನು ನಿರ್ಬಂಧಿಸಿದೆ. ಇದನ್ನು ಅನುಮತಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ.
 values-b+kn	string	extension_status_hash_mismatch	-	ಈ ಫೈಲ್ ಅದರ ಪ್ರಕಟಿತ ಹ್ಯಾಶ್‌ಗೆ ಹೊಂದಿಕೆಯಾಗುವುದಿಲ್ಲ. ಇದನ್ನು ಅನುಮತಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ.
 values-b+kn	string	extension_status_held	-	ನೀವು ಆಯ್ಕೆ ಮಾಡುವವರೆಗೆ ಆಫ್
+values-b+kn	string	extension_status_held_new_version	-	ಹೊಸ ಆವೃತ್ತಿ · ನೀವು ಆಯ್ಕೆ ಮಾಡುವವರೆಗೆ ಆಫ್
 values-b+kn	string	extension_status_kept_off	-	ಆಫ್ ಆಗಿರಿಸಲಾಗಿದೆ
 values-b+kn	string	extension_status_start_failed	-	ಅನುಮತಿಸಲಾಗಿದೆ, ಆದರೆ ಅದು ಪ್ರಾರಂಭವಾಗಲಿಲ್ಲ
 values-b+kn	string	extension_warning_classloader_access	-	ಇದು ಕ್ಲಾಸ್ ಲೋಡರ್ ಅನ್ನು ತಲುಪುತ್ತದೆ, ಇದು ಈ ಸ್ಕ್ಯಾನ್ ಎಂದೂ ನೋಡದ ಕೋಡ್ ಅನ್ನು ತರಬಹುದು.
@@ -17985,12 +18389,24 @@ values-b+kn	string	play_movie_button	-	ಚಲನಚಿತ್ರವನ್ನು �
 values-b+kn	string	play_torrent_button	-	ಸ್ಟ್ರೀಮ್ ಟೊರೆಂಟ್
 values-b+kn	string	play_trailer_button	-	ಟ್ರೈಲರ್ ಪ್ಲೇ ಮಾಡಿ
 values-b+kn	string	play_with_app_name	-	ಕ್ಲೌಡ್ ಸ್ಟ್ರೀಮ್ ಇದರೊಂದಿಗೆ ಪ್ಲೇ ಮಾಡಿ
+values-b+kn	string	player_enter_fullscreen	-	ಫುಲ್‌ಸ್ಕ್ರೀನ್‌ಗೆ ಪ್ರವೇಶಿಸಿ
+values-b+kn	string	player_exit_fullscreen	-	ಫುಲ್‌ಸ್ಕ್ರೀನ್‌ನಿಂದ ನಿರ್ಗಮಿಸಿ
+values-b+kn	string	player_fit_original	-	ಮೂಲ ಅನುಪಾತ
+values-b+kn	string	player_fit_screen	-	ಸ್ಕ್ರೀನ್ ತುಂಬಿಸಿ
+values-b+kn	string	player_fit_title	-	ಚಿತ್ರದ ಗಾತ್ರ
+values-b+kn	string	player_fit_width	-	ಅಗಲ ತುಂಬಿಸಿ
+values-b+kn	string	player_mute	-	ಮ್ಯೂಟ್ ಮಾಡಿ
 values-b+kn	string	player_size_settings	-	ಪ್ಲೇಯರ್ ಮರುಗಾತ್ರಗೊಳಿಸಿ ಬಟನ್
 values-b+kn	string	player_size_settings_des	-	ಕಪ್ಪು ಗಡಿಗಳನ್ನು ತೆಗೆದುಹಾಕಿ
+values-b+kn	string	player_source_playing	-	ಪ್ಲೇ ಆಗುತ್ತಿದೆ
+values-b+kn	string	player_source_resumes_at	-	ಬದಲಿಸಿದರೂ ಸ್ಥಾನ ಉಳಿಯುತ್ತದೆ: %1$s ರಿಂದ ಮುಂದುವರಿಯುತ್ತದೆ
+values-b+kn	string	player_source_retry	-	ಮರುಪ್ರಯತ್ನಿಸಿ
+values-b+kn	string	player_source_switch	-	ಬದಲಿಸಿ
 values-b+kn	string	player_speed	-	ಪ್ಲೇಯರ್ ಸ್ಪೀಡ್
 values-b+kn	string	player_speed_text_format	-	ಸ್ಪೀಡ್(%.2fx)
 values-b+kn	string	player_subtitles_settings	-	ಸಬ್ ಟೈಟಲ್ಸ್
 values-b+kn	string	player_subtitles_settings_des	-	ಪ್ಲೇಯರ್ ಸಬ್ ಟೈಟಲ್ಸ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳು
+values-b+kn	string	player_unmute	-	ಅನ್‌ಮ್ಯೂಟ್ ಮಾಡಿ
 values-b+kn	string	popup_delete_file	-	ಫೈಲ್ ಅಳಿಸಿ
 values-b+kn	string	popup_pause_download	-	ಡೌನ್‌ಲೋಡ್ ವಿರಾಮಗೊಳಿಸಿ
 values-b+kn	string	popup_play_file	-	ಫೈಲ್ ಪ್ಲೇ
@@ -18337,6 +18753,7 @@ values-b+ko	string	extension_status_allowed	-	허용됨, 자체 샌드박스에�
 values-b+ko	string	extension_status_blocked	-	검사에서 차단되었습니다. 허용할 수 없습니다.
 values-b+ko	string	extension_status_hash_mismatch	-	이 파일은 게시된 해시와 일치하지 않습니다. 허용할 수 없습니다.
 values-b+ko	string	extension_status_held	-	선택할 때까지 꺼짐
+values-b+ko	string	extension_status_held_new_version	-	새 버전 · 선택할 때까지 꺼짐
 values-b+ko	string	extension_status_kept_off	-	꺼진 상태로 유지됨
 values-b+ko	string	extension_status_start_failed	-	허용되었지만 시작되지 않음
 values-b+ko	string	extension_types	-	유형
@@ -18477,11 +18894,18 @@ values-b+ko	string	play_movie_button	-	영화 재생
 values-b+ko	string	play_torrent_button	-	토렌트 재생
 values-b+ko	string	play_trailer_button	-	예고편 재생
 values-b+ko	string	play_with_app_name	-	CloudStream으로 재생
+values-b+ko	string	player_enter_fullscreen	-	전체 화면으로 전환
+values-b+ko	string	player_exit_fullscreen	-	전체 화면 종료
+values-b+ko	string	player_fit_original	-	원본 화면 비율
+values-b+ko	string	player_fit_screen	-	화면 채우기
+values-b+ko	string	player_fit_title	-	화면 크기
+values-b+ko	string	player_fit_width	-	너비 맞춤
 values-b+ko	string	player_is_live	-	라이브
 values-b+ko	string	player_load_one_subtitle_online	-	사용 가능한 자막 불러오기
 values-b+ko	string	player_load_subtitles	-	파일에서 불러오기
 values-b+ko	string	player_load_subtitles_online	-	인터넷에서 불러오기
 values-b+ko	string	player_loaded_subtitles	-	로드됨 %s
+values-b+ko	string	player_mute	-	음소거
 values-b+ko	string	player_notification_channel_description	-	백그라운드에서 재생을 제어하기 위한 플레이어 알림
 values-b+ko	string	player_notification_channel_name	-	플레이어 알림
 values-b+ko	string	player_pref	-	선호하는 동영상 플레이어
@@ -18490,10 +18914,15 @@ values-b+ko	string	player_settings_play_in_app	-	내부 플레이어
 values-b+ko	string	player_settings_select_cast_device	-	캐스트 장치 선택
 values-b+ko	string	player_size_settings	-	플레이어 크기 조정 버튼
 values-b+ko	string	player_size_settings_des	-	레터박스 제거
+values-b+ko	string	player_source_playing	-	재생 중
+values-b+ko	string	player_source_resumes_at	-	전환해도 위치가 유지됩니다: %1$s부터 재개
+values-b+ko	string	player_source_retry	-	다시 시도
+values-b+ko	string	player_source_switch	-	전환
 values-b+ko	string	player_speed	-	재생 속도
 values-b+ko	string	player_speed_text_format	-	속도 (%.2fx)
 values-b+ko	string	player_subtitles_settings	-	자막
 values-b+ko	string	player_subtitles_settings_des	-	플레이어 자막 설정
+values-b+ko	string	player_unmute	-	음소거 해제
 values-b+ko	string	plugin	-	플러그인
 values-b+ko	string	plugin_deleted	-	플러그인 삭제됨
 values-b+ko	string	plugin_downloaded	-	플러그인 다운로드
@@ -18953,6 +19382,7 @@ values-b+lt	string	extension_status_allowed	-	Leidžiamas ir veikia savo izoliuo
 values-b+lt	string	extension_status_blocked	-	Užblokuotas patikros. To leisti negalima.
 values-b+lt	string	extension_status_hash_mismatch	-	Šis failas neatitinka paskelbtos maišos reikšmės. To leisti negalima.
 values-b+lt	string	extension_status_held	-	Išjungtas, kol pasirinksite
+values-b+lt	string	extension_status_held_new_version	-	Nauja versija · Išjungtas, kol pasirinksite
 values-b+lt	string	extension_status_kept_off	-	Paliktas išjungtas
 values-b+lt	string	extension_status_start_failed	-	Leidžiamas, bet nepasileido
 values-b+lt	string	extension_types	-	Palaikoma
@@ -19026,13 +19456,25 @@ values-b+lt	string	play_movie_button	-	Paleisti filmą
 values-b+lt	string	play_torrent_button	-	Transliuoti Torrentą
 values-b+lt	string	play_trailer_button	-	Paleisti anonsą
 values-b+lt	string	play_with_app_name	-	Paleisti su CloudStream
+values-b+lt	string	player_enter_fullscreen	-	Įjungti viso ekrano režimą
+values-b+lt	string	player_exit_fullscreen	-	Išjungti viso ekrano režimą
+values-b+lt	string	player_fit_original	-	Originalus kraštinių santykis
+values-b+lt	string	player_fit_screen	-	Užpildyti ekraną
+values-b+lt	string	player_fit_title	-	Vaizdo dydis
+values-b+lt	string	player_fit_width	-	Užpildyti plotį
+values-b+lt	string	player_mute	-	Nutildyti
 values-b+lt	string	player_settings_play_in_app	-	Integruotas grotuvas
 values-b+lt	string	player_size_settings	-	Grotuvo dydžio pakeitimo mygtukas
 values-b+lt	string	player_size_settings_des	-	Pašalinti juodas paraštes
+values-b+lt	string	player_source_playing	-	Leidžiama
+values-b+lt	string	player_source_resumes_at	-	Perjungus padėtis išlieka: tęsiama nuo %1$s
+values-b+lt	string	player_source_retry	-	Bandyti dar kartą
+values-b+lt	string	player_source_switch	-	Perjungti
 values-b+lt	string	player_speed	-	Grotuvo greitis
 values-b+lt	string	player_speed_text_format	-	Greitis (%.2fx)
 values-b+lt	string	player_subtitles_settings	-	Subtitrai
 values-b+lt	string	player_subtitles_settings_des	-	Grotuvo subtitrų nustatymai
+values-b+lt	string	player_unmute	-	Įjungti garsą
 values-b+lt	string	plugin_load_fail	-	Nepavyko įkelti %s
 values-b+lt	string	plugins_disabled	-	Išjungta: %d
 values-b+lt	string	plugins_downloaded	-	Atsiųsta: %d
@@ -19410,6 +19852,7 @@ values-b+lv	string	extension_status_allowed	-	Atļauts un darbojas savā izolēt
 values-b+lv	string	extension_status_blocked	-	To bloķēja pārbaude. To nevar atļaut.
 values-b+lv	string	extension_status_hash_mismatch	-	Šis fails neatbilst publicētajam jaucējkodam. To nevar atļaut.
 values-b+lv	string	extension_status_held	-	Izslēgts, līdz izvēlēsieties
+values-b+lv	string	extension_status_held_new_version	-	Jauna versija · Izslēgts, līdz izvēlēsieties
 values-b+lv	string	extension_status_kept_off	-	Atstāts izslēgts
 values-b+lv	string	extension_status_start_failed	-	Atļauts, bet nesāka darboties
 values-b+lv	string	extension_types	-	Atbalstīts
@@ -19535,18 +19978,30 @@ values-b+lv	string	play_movie_button	-	Palaist Filmu
 values-b+lv	string	play_torrent_button	-	Skatities Torrentu
 values-b+lv	string	play_trailer_button	-	Palaist Trelleri
 values-b+lv	string	play_with_app_name	-	Atskaņo ar cloudstream
+values-b+lv	string	player_enter_fullscreen	-	Atvērt pilnekrāna režīmu
+values-b+lv	string	player_exit_fullscreen	-	Aizvērt pilnekrāna režīmu
+values-b+lv	string	player_fit_original	-	Sākotnējā attiecība
+values-b+lv	string	player_fit_screen	-	Aizpildīt ekrānu
+values-b+lv	string	player_fit_title	-	Attēla izmērs
+values-b+lv	string	player_fit_width	-	Aizpildīt platumu
 values-b+lv	string	player_load_one_subtitle_online	-	Lejupielādēt pirmo pieejamo
 values-b+lv	string	player_load_subtitles	-	Ielādēt no datnes
 values-b+lv	string	player_load_subtitles_online	-	Lejupielādēt no interneta
 values-b+lv	string	player_loaded_subtitles	-	Ielādēti %s
+values-b+lv	string	player_mute	-	Izslēgt skaņu
 values-b+lv	string	player_pref	-	Vēlamais video atskaņotājs
 values-b+lv	string	player_settings_play_in_app	-	Iekšējais atskaņotājs
 values-b+lv	string	player_size_settings	-	Players izmēra poga
 values-b+lv	string	player_size_settings_des	-	Noņemt melnās malas
+values-b+lv	string	player_source_playing	-	Atskaņo
+values-b+lv	string	player_source_resumes_at	-	Pārslēdzot pozīcija saglabājas: turpinās no %1$s
+values-b+lv	string	player_source_retry	-	Mēģināt vēlreiz
+values-b+lv	string	player_source_switch	-	Pārslēgt
 values-b+lv	string	player_speed	-	Atskaņošanas ātrums
 values-b+lv	string	player_speed_text_format	-	Ātrums (%.2fx)
 values-b+lv	string	player_subtitles_settings	-	Subtitri
 values-b+lv	string	player_subtitles_settings_des	-	Atskaņotāja subtitru iestatījumi
+values-b+lv	string	player_unmute	-	Ieslēgt skaņu
 values-b+lv	string	plugin	-	papildinājumi
 values-b+lv	string	plugin_deleted	-	Papildinājums dzēsts
 values-b+lv	string	plugin_downloaded	-	Papildinājums lejupielādēts
@@ -20124,6 +20579,7 @@ values-b+mk	string	extension_status_allowed	-	Дозволена и работи
 values-b+mk	string	extension_status_blocked	-	Блокирана од скенирањето. Ова не може да се дозволи.
 values-b+mk	string	extension_status_hash_mismatch	-	Оваа датотека не се совпаѓа со објавениот хаш. Ова не може да се дозволи.
 values-b+mk	string	extension_status_held	-	Исклучена додека не избереш
+values-b+mk	string	extension_status_held_new_version	-	Нова верзија · Исклучена додека не избереш
 values-b+mk	string	extension_status_kept_off	-	Оставена исклучена
 values-b+mk	string	extension_status_start_failed	-	Дозволена, но не се стартуваше
 values-b+mk	string	extension_types	-	Поддржано
@@ -20264,11 +20720,18 @@ values-b+mk	string	play_movie_button	-	Пушти филм
 values-b+mk	string	play_torrent_button	-	Стримај торент
 values-b+mk	string	play_trailer_button	-	Пушти трејлер
 values-b+mk	string	play_with_app_name	-	Играј со CloudStream
+values-b+mk	string	player_enter_fullscreen	-	Приказ на цел екран
+values-b+mk	string	player_exit_fullscreen	-	Излезете од цел екран
+values-b+mk	string	player_fit_original	-	Оригинален сооднос
+values-b+mk	string	player_fit_screen	-	Пополни екран
+values-b+mk	string	player_fit_title	-	Големина на сликата
+values-b+mk	string	player_fit_width	-	Пополни ширина
 values-b+mk	string	player_is_live	-	Во живо
 values-b+mk	string	player_load_one_subtitle_online	-	Вчитај прво достапно
 values-b+mk	string	player_load_subtitles	-	Вчитај од датотека
 values-b+mk	string	player_load_subtitles_online	-	Вчитај од Интернет
 values-b+mk	string	player_loaded_subtitles	-	Вчитан %s
+values-b+mk	string	player_mute	-	Исклучи звук
 values-b+mk	string	player_notification_channel_description	-	Известување од плеерот за контрола на репродукцијата од позадина
 values-b+mk	string	player_notification_channel_name	-	Известувања од плеерот
 values-b+mk	string	player_pref	-	Префериран видео плеер
@@ -20277,10 +20740,15 @@ values-b+mk	string	player_settings_play_in_app	-	Внатрешен плеер
 values-b+mk	string	player_settings_select_cast_device	-	Одбери уред да кастираш
 values-b+mk	string	player_size_settings	-	Копче за промена на големината на плеерот
 values-b+mk	string	player_size_settings_des	-	Острани ги црните граници
+values-b+mk	string	player_source_playing	-	Се репродуцира
+values-b+mk	string	player_source_resumes_at	-	Промената ја задржува позицијата: продолжува од %1$s
+values-b+mk	string	player_source_retry	-	Обиди се повторно
+values-b+mk	string	player_source_switch	-	Промени
 values-b+mk	string	player_speed	-	Брзина на плеер
 values-b+mk	string	player_speed_text_format	-	Брзина (%.2fx)
 values-b+mk	string	player_subtitles_settings	-	Преводи
 values-b+mk	string	player_subtitles_settings_des	-	Поставки на плеерот за преводи
+values-b+mk	string	player_unmute	-	Вклучи звук
 values-b+mk	string	plugin	-	приклучоци
 values-b+mk	string	plugin_deleted	-	Приклучокот е избришан
 values-b+mk	string	plugin_downloaded	-	Приклучокот е преземен
@@ -20736,6 +21204,7 @@ values-b+ml	string	extension_status_allowed	-	അനുവദിച്ചു, �
 values-b+ml	string	extension_status_blocked	-	സ്കാൻ ഇത് തടഞ്ഞു. ഇത് അനുവദിക്കാൻ കഴിയില്ല.
 values-b+ml	string	extension_status_hash_mismatch	-	ഈ ഫയൽ അതിന്റെ പ്രസിദ്ധീകരിച്ച ഹാഷുമായി പൊരുത്തപ്പെടുന്നില്ല. ഇത് അനുവദിക്കാൻ കഴിയില്ല.
 values-b+ml	string	extension_status_held	-	നിങ്ങൾ തിരഞ്ഞെടുക്കുന്നതുവരെ ഓഫ്
+values-b+ml	string	extension_status_held_new_version	-	പുതിയ പതിപ്പ് · നിങ്ങൾ തിരഞ്ഞെടുക്കുന്നതുവരെ ഓഫ്
 values-b+ml	string	extension_status_kept_off	-	ഓഫായി വെച്ചിരിക്കുന്നു
 values-b+ml	string	extension_status_start_failed	-	അനുവദിച്ചു, പക്ഷേ അത് ആരംഭിച്ചില്ല
 values-b+ml	string	extension_warning_classloader_access	-	ഇത് ക്ലാസ് ലോഡറിൽ എത്തുന്നു, ഈ സ്കാൻ ഒരിക്കലും കാണാത്ത കോഡ് അതിന് കൊണ്ടുവരാൻ കഴിയും.
@@ -20811,13 +21280,25 @@ values-b+ml	string	play_movie_button	-	സിനിമ പ്ലേ ചെയ്
 values-b+ml	string	play_torrent_button	-	ടോറൻറ് സ്ട്രീം ചെയ്യുക
 values-b+ml	string	play_trailer_button	-	ട്രെയിലർ പ്ലേ ചെയ്യുക
 values-b+ml	string	play_with_app_name	-	ക്ലൗഡ് സ്ട്രീം ഉപയോഗിച്ച് പ്രവർത്തിപ്പിക്കുക
+values-b+ml	string	player_enter_fullscreen	-	പൂർണ്ണ സ്‌ക്രീൻ ആക്കുക
+values-b+ml	string	player_exit_fullscreen	-	പൂർണ്ണ സ്‌ക്രീനിൽ നിന്ന് പുറത്തുകടക്കുക
+values-b+ml	string	player_fit_original	-	യഥാർത്ഥ അനുപാതം
+values-b+ml	string	player_fit_screen	-	സ്ക്രീൻ നിറയ്ക്കുക
+values-b+ml	string	player_fit_title	-	ചിത്ര വലുപ്പം
+values-b+ml	string	player_fit_width	-	വീതി നിറയ്ക്കുക
 values-b+ml	string	player_is_live	-	തൽസമയം
+values-b+ml	string	player_mute	-	നിശബ്‌ദമാക്കുക
 values-b+ml	string	player_size_settings	-	പ്ലേയറിന്റെ വലുപ്പം മാറ്റുന്ന ബട്ടൻ
 values-b+ml	string	player_size_settings_des	-	കറുത്ത അതിർത്തി നീക്കംചെയ്യുക
+values-b+ml	string	player_source_playing	-	പ്ലേ ചെയ്യുന്നു
+values-b+ml	string	player_source_resumes_at	-	മാറ്റിയാലും സ്ഥാനം നിലനിൽക്കും: %1$s മുതൽ തുടരും
+values-b+ml	string	player_source_retry	-	വീണ്ടും ശ്രമിക്കുക
+values-b+ml	string	player_source_switch	-	മാറ്റുക
 values-b+ml	string	player_speed	-	പ്ലേയർ വേഗത
 values-b+ml	string	player_speed_text_format	-	വേഗം (%.2fx)
 values-b+ml	string	player_subtitles_settings	-	സബ്ടൈട്ടിൽസ്
 values-b+ml	string	player_subtitles_settings_des	-	പ്ലേയർ സബ്‌ടൈറ്റിലുകളുടെ സെറ്റിങ്‌സ്
+values-b+ml	string	player_unmute	-	നിശബ്‌ദത മാറ്റുക
 values-b+ml	string	popup_delete_file	-	ഫയൽ ഡിലീറ്റ് ചെയ്യുക
 values-b+ml	string	popup_pause_download	-	ഡൌൺലോഡ് നിർത്തുക
 values-b+ml	string	popup_play_file	-	ഫയൽ പ്ലേയ് ചെയ്യുക
@@ -21172,6 +21653,7 @@ values-b+ms	string	extension_status_allowed	-	Dibenarkan, dan berjalan dalam per
 values-b+ms	string	extension_status_blocked	-	Disekat oleh imbasan. Ini tidak boleh dibenarkan.
 values-b+ms	string	extension_status_hash_mismatch	-	Fail ini tidak sepadan dengan cincangan yang diterbitkan. Ini tidak boleh dibenarkan.
 values-b+ms	string	extension_status_held	-	Dimatikan sehingga anda memilih
+values-b+ms	string	extension_status_held_new_version	-	Versi baharu · Dimatikan sehingga anda memilih
 values-b+ms	string	extension_status_kept_off	-	Kekal dimatikan
 values-b+ms	string	extension_status_start_failed	-	Dibenarkan, tetapi tidak dapat dimulakan
 values-b+ms	string	extension_types	-	Disokong
@@ -21290,13 +21772,25 @@ values-b+ms	string	play_movie_button	-	Pasang Wayang
 values-b+ms	string	play_torrent_button	-	Strim Torrent
 values-b+ms	string	play_trailer_button	-	Main Pra-tonton
 values-b+ms	string	play_with_app_name	-	Pasang dengan CloudStream
+values-b+ms	string	player_enter_fullscreen	-	Masuk ke skrin penuh
+values-b+ms	string	player_exit_fullscreen	-	Keluar dari skrin penuh
+values-b+ms	string	player_fit_original	-	Nisbah aspek asal
+values-b+ms	string	player_fit_screen	-	Isi skrin
+values-b+ms	string	player_fit_title	-	Saiz gambar
+values-b+ms	string	player_fit_width	-	Isi lebar
+values-b+ms	string	player_mute	-	Redam
 values-b+ms	string	player_settings_play_in_app	-	Pemain dalaman
 values-b+ms	string	player_size_settings	-	Saiz butang pemain
 values-b+ms	string	player_size_settings_des	-	Buang sempadan hitam
+values-b+ms	string	player_source_playing	-	Sedang dimainkan
+values-b+ms	string	player_source_resumes_at	-	Menukar mengekalkan kedudukan anda: sambung pada %1$s
+values-b+ms	string	player_source_retry	-	Cuba lagi
+values-b+ms	string	player_source_switch	-	Tukar
 values-b+ms	string	player_speed	-	Kelajuan Pemain
 values-b+ms	string	player_speed_text_format	-	Kelajuan (%.2fx)
 values-b+ms	string	player_subtitles_settings	-	Sari kata
 values-b+ms	string	player_subtitles_settings_des	-	Tetapan sari kata pemain
+values-b+ms	string	player_unmute	-	Nyahredam
 values-b+ms	string	plugin_load_fail	-	Tidak dapat papar %s
 values-b+ms	string	plugins_disabled	-	Dilumpuhkan: %d
 values-b+ms	string	plugins_downloaded	-	Dimuat turun: %d
@@ -21582,6 +22076,7 @@ values-b+mt	string	extension_status_allowed	-	Permessa, u qed taħdem fl-ambjent
 values-b+mt	string	extension_status_blocked	-	Imblukkata mill-iskan. Din ma tistax tiġi permessa.
 values-b+mt	string	extension_status_hash_mismatch	-	Dan il-fajl ma jaqbilx mal-hash ippubblikat tiegħu. Dan ma jistax jiġi permess.
 values-b+mt	string	extension_status_held	-	Mitfija sakemm tagħżel
+values-b+mt	string	extension_status_held_new_version	-	Verżjoni ġdida · Mitfija sakemm tagħżel
 values-b+mt	string	extension_status_kept_off	-	Tibqa' mitfija
 values-b+mt	string	extension_status_start_failed	-	Permessa, imma ma bdietx
 values-b+mt	string	extension_warning_classloader_access	-	Tilħaq il-loader tal-klassijiet, li jista' jdaħħal kodiċi li dan l-iskan qatt ma ra.
@@ -21629,8 +22124,20 @@ values-b+mt	string	play_movie_button	-	Ibda l-film
 values-b+mt	string	play_torrent_button	-	Stream Torrent
 values-b+mt	string	play_trailer_button	-	Ibda t-trejler
 values-b+mt	string	play_with_app_name	-	Ara bil-CloudStream
+values-b+mt	string	player_enter_fullscreen	-	Idħol fi skrin sħiħ
+values-b+mt	string	player_exit_fullscreen	-	Oħroġ minn skrin sħiħ
+values-b+mt	string	player_fit_original	-	Proporzjon oriġinali
+values-b+mt	string	player_fit_screen	-	Imla l-iskrin
+values-b+mt	string	player_fit_title	-	Daqs tal-istampa
+values-b+mt	string	player_fit_width	-	Imla l-wisa’
+values-b+mt	string	player_mute	-	Itfi l-ħoss
+values-b+mt	string	player_source_playing	-	Qed jindaqq
+values-b+mt	string	player_source_resumes_at	-	Il-bidla żżomm il-post tiegħek: ikompli minn %1$s
+values-b+mt	string	player_source_retry	-	Erġa' pprova
+values-b+mt	string	player_source_switch	-	Biddel
 values-b+mt	string	player_speed	-	Veloċità tal-Plejer
 values-b+mt	string	player_speed_text_format	-	veloċità (%.2fx)
+values-b+mt	string	player_unmute	-	Ixgħel il-ħoss
 values-b+mt	string	popup_delete_file	-	Hassar il-fajl
 values-b+mt	string	popup_pause_download	-	Ieqaf Nizzel
 values-b+mt	string	popup_play_file	-	Ibda l-fajl
@@ -21891,6 +22398,7 @@ values-b+my	string	extension_status_allowed	-	ခွင့်ပြုထား�
 values-b+my	string	extension_status_blocked	-	စစ်ဆေးမှုက ပိတ်ဆို့ထားသည်။ ဤအရာကို ခွင့်ပြု၍မရပါ။
 values-b+my	string	extension_status_hash_mismatch	-	ဤဖိုင်သည် ထုတ်ပြန်ထားသော ဟက်ရှ်နှင့် မကိုက်ညီပါ။ ဤအရာကို ခွင့်ပြု၍မရပါ။
 values-b+my	string	extension_status_held	-	သင်ရွေးချယ်သည်အထိ ပိတ်ထားသည်
+values-b+my	string	extension_status_held_new_version	-	ဗားရှင်းအသစ် · သင်ရွေးချယ်သည်အထိ ပိတ်ထားသည်
 values-b+my	string	extension_status_kept_off	-	ပိတ်ထားသည်
 values-b+my	string	extension_status_start_failed	-	ခွင့်ပြုထားသော်လည်း မစတင်ခဲ့ပါ
 values-b+my	string	extension_types	-	ထောက်ပံ့ထားသော
@@ -21994,17 +22502,29 @@ values-b+my	string	play_movie_button	-	ရုပ်ရှင်ကြည့်�
 values-b+my	string	play_torrent_button	-	တောရပ် ကြည့်မည်
 values-b+my	string	play_trailer_button	-	ထွေလာ ကြည့်မည်
 values-b+my	string	play_with_app_name	-	CloudStream ဖြင့်ကြည့်ရန်
+values-b+my	string	player_enter_fullscreen	-	ဖန်သားပြင်အပြည့်သို့ ဝင်ရောက်ပါ
+values-b+my	string	player_exit_fullscreen	-	ဖန်သားပြင်အပြည့်မှ ထွက်ရန်
+values-b+my	string	player_fit_original	-	မူရင်းအချိုး
+values-b+my	string	player_fit_screen	-	မျက်နှာပြင်ပြည့်
+values-b+my	string	player_fit_title	-	ပုံအရွယ်အစား
+values-b+my	string	player_fit_width	-	အကျယ်ပြည့်
 values-b+my	string	player_load_subtitles	-	ဖိုင်မှတင်သွင်းပြီး
 values-b+my	string	player_load_subtitles_online	-	အင်တာနက်မှ တင်သွင်းမည်
 values-b+my	string	player_loaded_subtitles	-	တင်ပြီး %s
+values-b+my	string	player_mute	-	အသံပိတ်ရန်
 values-b+my	string	player_pref	-	ဦးစားပေး ဗီဒီယိုဖွင့်စက်
 values-b+my	string	player_settings_play_in_app	-	ဖုန်းတွင်းကြည့်ရှုမှု
 values-b+my	string	player_size_settings	-	ကြည့်ရှုမှု စခရင်အရွယ်အစားချိန်ညိှမှု
 values-b+my	string	player_size_settings_des	-	အနက်ရောင်ဘောင်များကို ဖယ်ရှားရန်
+values-b+my	string	player_source_playing	-	ဖွင့်နေသည်
+values-b+my	string	player_source_resumes_at	-	ပြောင်းလည်း နေရာမပျောက်ပါ: %1$s မှ ဆက်ဖွင့်မည်
+values-b+my	string	player_source_retry	-	ထပ်ကြိုးစားရန်
+values-b+my	string	player_source_switch	-	ပြောင်းရန်
 values-b+my	string	player_speed	-	ကြည့်ရှုမှုအရှိန်
 values-b+my	string	player_speed_text_format	-	အရှိန် (%.2fx)
 values-b+my	string	player_subtitles_settings	-	စာတန်းထိုးများ
 values-b+my	string	player_subtitles_settings_des	-	ကြည့်ရှုမှုစာတန်းထိုးပြုပြင်စရာများ
+values-b+my	string	player_unmute	-	အသံဖွင့်ရန်
 values-b+my	string	plugin	-	ဖြည့်စွက်များ
 values-b+my	string	plugin_deleted	-	ဖြည့်စွက်များဖျက်ပြီး
 values-b+my	string	plugin_downloaded	-	ဖြည့်စွက်များ ဒေါင်းလုဒ်လုပ်ပြီး
@@ -22316,6 +22836,7 @@ values-b+ne	string	extension_status_allowed	-	अनुमति दिइएक
 values-b+ne	string	extension_status_blocked	-	स्क्यानले रोकेको छ। यसलाई अनुमति दिन सकिँदैन।
 values-b+ne	string	extension_status_hash_mismatch	-	यो फाइल यसको प्रकाशित ह्याससँग मेल खाँदैन। यसलाई अनुमति दिन सकिँदैन।
 values-b+ne	string	extension_status_held	-	तपाईंले नछानेसम्म बन्द
+values-b+ne	string	extension_status_held_new_version	-	नयाँ संस्करण · तपाईंले नछानेसम्म बन्द
 values-b+ne	string	extension_status_kept_off	-	बन्द राखिएको
 values-b+ne	string	extension_status_start_failed	-	अनुमति दिइएको, तर सुरु भएन
 values-b+ne	string	extension_warning_classloader_access	-	यो क्लास लोडरसम्म पुग्छ, जसले यो स्क्यानले कहिल्यै नदेखेको कोड ल्याउन सक्छ।
@@ -22364,12 +22885,24 @@ values-b+ne	string	play_movie_button	-	चलचित्र प्ले गर
 values-b+ne	string	play_torrent_button	-	स्ट्रिम टोरेन्ट
 values-b+ne	string	play_trailer_button	-	ट्रेलर प्ले गर्नुहोस्
 values-b+ne	string	play_with_app_name	-	क्लाउडस्ट्रीममा प्ले गर्नुहोस्
+values-b+ne	string	player_enter_fullscreen	-	पूर्ण स्क्रिन मोडमा खोल्नुहोस्
+values-b+ne	string	player_exit_fullscreen	-	पूर्ण स्क्रिन मोडबाट बाहिरिनुहोस्
+values-b+ne	string	player_fit_original	-	मूल अनुपात
+values-b+ne	string	player_fit_screen	-	स्क्रिन भर्नुहोस्
+values-b+ne	string	player_fit_title	-	चित्रको आकार
+values-b+ne	string	player_fit_width	-	चौडाइ भर्नुहोस्
+values-b+ne	string	player_mute	-	म्यूट गर्नुहोस्
 values-b+ne	string	player_size_settings	-	प्लेयर resize गर्ने वटन
 values-b+ne	string	player_size_settings_des	-	कालो सीमा हटाउनुहोस
+values-b+ne	string	player_source_playing	-	चलिरहेको
+values-b+ne	string	player_source_resumes_at	-	बदल्दा तपाईंको स्थान रहन्छ: %1$s बाट जारी
+values-b+ne	string	player_source_retry	-	फेरि प्रयास गर्नुहोस्
+values-b+ne	string	player_source_switch	-	बदल्नुहोस्
 values-b+ne	string	player_speed	-	प्लेयर स्पीड
 values-b+ne	string	player_speed_text_format	-	गति (%.2fx)
 values-b+ne	string	player_subtitles_settings	-	उपशीर्षक
 values-b+ne	string	player_subtitles_settings_des	-	प्लेयरको उपशीर्षकको सेटिङ
+values-b+ne	string	player_unmute	-	अनम्यूट गर्नुहोस्
 values-b+ne	string	popup_delete_file	-	फाइल मेट्नुहोस्
 values-b+ne	string	popup_pause_download	-	डाउनलोड रोक्नुहोस्
 values-b+ne	string	popup_play_file	-	फाइल प्ले गर्नुहोस्
@@ -22694,6 +23227,7 @@ values-b+nl	string	extension_status_allowed	-	Toegestaan en actief in de eigen a
 values-b+nl	string	extension_status_blocked	-	Geblokkeerd door de scan. Dit kan niet worden toegestaan.
 values-b+nl	string	extension_status_hash_mismatch	-	Dit bestand komt niet overeen met de gepubliceerde hash. Dit kan niet worden toegestaan.
 values-b+nl	string	extension_status_held	-	Uit tot je kiest
+values-b+nl	string	extension_status_held_new_version	-	Nieuwe versie · Uit tot je kiest
 values-b+nl	string	extension_status_kept_off	-	Blijft uit
 values-b+nl	string	extension_status_start_failed	-	Toegestaan, maar niet gestart
 values-b+nl	string	extension_types	-	Ondersteund
@@ -22826,10 +23360,17 @@ values-b+nl	string	play_movie_button	-	Film afspelen
 values-b+nl	string	play_torrent_button	-	Stream Torrent
 values-b+nl	string	play_trailer_button	-	Speel Trailer
 values-b+nl	string	play_with_app_name	-	Afspelen met CloudStream
+values-b+nl	string	player_enter_fullscreen	-	Volledig scherm openen
+values-b+nl	string	player_exit_fullscreen	-	Volledig scherm sluiten
+values-b+nl	string	player_fit_original	-	Originele beeldverhouding
+values-b+nl	string	player_fit_screen	-	Scherm vullen
+values-b+nl	string	player_fit_title	-	Beeldformaat
+values-b+nl	string	player_fit_width	-	Breedte vullen
 values-b+nl	string	player_load_one_subtitle_online	-	Laad eerst beschikbare
 values-b+nl	string	player_load_subtitles	-	Laden uit bestand
 values-b+nl	string	player_load_subtitles_online	-	Laden vanaf internet
 values-b+nl	string	player_loaded_subtitles	-	Geladen %s
+values-b+nl	string	player_mute	-	Dempen
 values-b+nl	string	player_notification_channel_description	-	De speler melding om de kijkervaring van de achtergrond de besturen
 values-b+nl	string	player_notification_channel_name	-	Speler meldingen
 values-b+nl	string	player_pref	-	Gewenste videospeler
@@ -22838,10 +23379,15 @@ values-b+nl	string	player_settings_play_in_app	-	Interne speler
 values-b+nl	string	player_settings_select_cast_device	-	Cast apparaat selecteren
 values-b+nl	string	player_size_settings	-	Afspeel knop wijzig
 values-b+nl	string	player_size_settings_des	-	Verwijder de zwarte randen
+values-b+nl	string	player_source_playing	-	Speelt af
+values-b+nl	string	player_source_resumes_at	-	Wisselen behoudt je positie: gaat verder op %1$s
+values-b+nl	string	player_source_retry	-	Opnieuw
+values-b+nl	string	player_source_switch	-	Wisselen
 values-b+nl	string	player_speed	-	Afspelen Snelheid
 values-b+nl	string	player_speed_text_format	-	Snelheid (%.2fx)
 values-b+nl	string	player_subtitles_settings	-	Ondertitels
 values-b+nl	string	player_subtitles_settings_des	-	Speler Ondertiteling instellingen
+values-b+nl	string	player_unmute	-	Dempen opheffen
 values-b+nl	string	plugin	-	plugins
 values-b+nl	string	plugin_deleted	-	Plugin Verwijderd
 values-b+nl	string	plugin_downloaded	-	Plugin Gedownload
@@ -23249,6 +23795,7 @@ values-b+nn	string	extension_status_allowed	-	Tillaten, og køyrer i si eiga san
 values-b+nn	string	extension_status_blocked	-	Blokkert av skanninga. Dette kan ikkje tillatast.
 values-b+nn	string	extension_status_hash_mismatch	-	Denne fila stemmer ikkje med den publiserte hashen. Dette kan ikkje tillatast.
 values-b+nn	string	extension_status_held	-	Av til du vel
+values-b+nn	string	extension_status_held_new_version	-	Ny versjon · Av til du vel
 values-b+nn	string	extension_status_kept_off	-	Blir verande av
 values-b+nn	string	extension_status_start_failed	-	Tillaten, men starta ikkje
 values-b+nn	string	extension_warning_classloader_access	-	Ho når klasselastaren, som kan hente inn kode denne skanninga aldri har sett.
@@ -23316,11 +23863,23 @@ values-b+nn	string	play_movie_button	-	Spel av film
 values-b+nn	string	play_torrent_button	-	Strøm Torrent
 values-b+nn	string	play_trailer_button	-	Spel av trailer
 values-b+nn	string	play_with_app_name	-	Spel av med CloudStream
+values-b+nn	string	player_enter_fullscreen	-	Vis i fullskjerm
+values-b+nn	string	player_exit_fullscreen	-	Avslutt fullskjerm
+values-b+nn	string	player_fit_original	-	Opphavleg sideforhold
+values-b+nn	string	player_fit_screen	-	Fyll skjermen
+values-b+nn	string	player_fit_title	-	Biletstorleik
+values-b+nn	string	player_fit_width	-	Fyll breidda
+values-b+nn	string	player_mute	-	Slå av lyd
 values-b+nn	string	player_size_settings_des	-	Fjern dei svarte kantane
+values-b+nn	string	player_source_playing	-	Spelar
+values-b+nn	string	player_source_resumes_at	-	Bytet held på plassen din: held fram frå %1$s
+values-b+nn	string	player_source_retry	-	Prøv igjen
+values-b+nn	string	player_source_switch	-	Byt
 values-b+nn	string	player_speed	-	Avspelinghastigheit
 values-b+nn	string	player_speed_text_format	-	Avspelinghastigheit (%.2fx)
 values-b+nn	string	player_subtitles_settings	-	Undertekstar
 values-b+nn	string	player_subtitles_settings_des	-	Innstillinger for avspilling av undertekster
+values-b+nn	string	player_unmute	-	Slå på lyd
 values-b+nn	string	popup_delete_file	-	Slett fil
 values-b+nn	string	popup_pause_download	-	Sett nedlasting på vent
 values-b+nn	string	popup_play_file	-	Spel av fil
@@ -23606,6 +24165,7 @@ values-b+no	string	extension_status_allowed	-	Tillatt, og kjører i sandkassen s
 values-b+no	string	extension_status_blocked	-	Blokkert av skanningen. Dette kan ikke tillates.
 values-b+no	string	extension_status_hash_mismatch	-	Denne filen stemmer ikke med den publiserte hash-verdien. Dette kan ikke tillates.
 values-b+no	string	extension_status_held	-	Av til du velger
+values-b+no	string	extension_status_held_new_version	-	Ny versjon · Av til du velger
 values-b+no	string	extension_status_kept_off	-	Holdes av
 values-b+no	string	extension_status_start_failed	-	Tillatt, men den startet ikke
 values-b+no	string	extension_types	-	Støttet
@@ -23707,17 +24267,29 @@ values-b+no	string	play_movie_button	-	Spill filmer
 values-b+no	string	play_torrent_button	-	Strøm Torrent
 values-b+no	string	play_trailer_button	-	Spill forfilm
 values-b+no	string	play_with_app_name	-	Spill med CloudStream
+values-b+no	string	player_enter_fullscreen	-	Se i fullskjerm
+values-b+no	string	player_exit_fullscreen	-	Avslutt fullskjerm
+values-b+no	string	player_fit_original	-	Opprinnelig sideforhold
+values-b+no	string	player_fit_screen	-	Fyll skjermen
+values-b+no	string	player_fit_title	-	Bildestørrelse
+values-b+no	string	player_fit_width	-	Fyll bredden
 values-b+no	string	player_load_subtitles	-	Last inn fra fil
 values-b+no	string	player_load_subtitles_online	-	Last inn fra Internett
 values-b+no	string	player_loaded_subtitles	-	Lastet inn %s
+values-b+no	string	player_mute	-	Slå av lyden
 values-b+no	string	player_pref	-	Foretrukket videospiller
 values-b+no	string	player_settings_play_in_app	-	Intern spiller
 values-b+no	string	player_size_settings	-	Knapp for størrelse på spiller
 values-b+no	string	player_size_settings_des	-	Fjern de svarte kantene
+values-b+no	string	player_source_playing	-	Spiller
+values-b+no	string	player_source_resumes_at	-	Bytte beholder posisjonen din: fortsetter fra %1$s
+values-b+no	string	player_source_retry	-	Prøv igjen
+values-b+no	string	player_source_switch	-	Bytt
 values-b+no	string	player_speed	-	Spillerhastighet
 values-b+no	string	player_speed_text_format	-	Avspillingshastighet (%.2fx)
 values-b+no	string	player_subtitles_settings	-	Undertekster
 values-b+no	string	player_subtitles_settings_des	-	Innstillinger for spillerens teksting
+values-b+no	string	player_unmute	-	Slå på lyden
 values-b+no	string	plugin	-	programtillegg
 values-b+no	string	plugin_deleted	-	Programtillegg slettet
 values-b+no	string	plugin_downloaded	-	Programtillegg nedlastet
@@ -24049,6 +24621,7 @@ values-b+or	string	extension_status_allowed	-	ଅନୁମତି ମିଳିଛ
 values-b+or	string	extension_status_blocked	-	ସ୍କାନ୍ ଦ୍ୱାରା ଅବରୋଧିତ। ଏହାକୁ ଅନୁମତି ଦିଆଯାଇପାରିବ ନାହିଁ।
 values-b+or	string	extension_status_hash_mismatch	-	ଏହି ଫାଇଲ୍ ଏହାର ପ୍ରକାଶିତ ହାସ୍ ସହିତ ମେଳ ଖାଉନାହିଁ। ଏହାକୁ ଅନୁମତି ଦିଆଯାଇପାରିବ ନାହିଁ।
 values-b+or	string	extension_status_held	-	ଆପଣ ବାଛିବା ପର୍ଯ୍ୟନ୍ତ ବନ୍ଦ
+values-b+or	string	extension_status_held_new_version	-	ନୂତନ ସଂସ୍କରଣ · ଆପଣ ବାଛିବା ପର୍ଯ୍ୟନ୍ତ ବନ୍ଦ
 values-b+or	string	extension_status_kept_off	-	ବନ୍ଦ ରଖାଯାଇଛି
 values-b+or	string	extension_status_start_failed	-	ଅନୁମତି ମିଳିଛି, କିନ୍ତୁ ଏହା ଆରମ୍ଭ ହେଲା ନାହିଁ
 values-b+or	string	extension_types	-	ସମର୍ଥିତ
@@ -24099,9 +24672,21 @@ values-b+or	string	others	-	ଅନ୍ୟାନ୍ୟ
 values-b+or	string	play_episode	-	ଅଧ୍ୟାୟ ଚଲାଅ
 values-b+or	string	play_episode_toast	-	ଅଧ୍ୟାୟ ଚଲାଅ
 values-b+or	string	play_movie_button	-	ଚଳଚ୍ଚିତ୍ର ଚଲାଅ
+values-b+or	string	player_enter_fullscreen	-	ପୂର୍ଣ୍ଣ ସ୍କ୍ରିନକୁ ଯାଆନ୍ତୁ
+values-b+or	string	player_exit_fullscreen	-	ପୂର୍ଣ୍ଣ ସ୍କ୍ରିନରୁ ବାହାରନ୍ତୁ
+values-b+or	string	player_fit_original	-	ମୂଳ ଅନୁପାତ
+values-b+or	string	player_fit_screen	-	ସ୍କ୍ରିନ ପୂରଣ କରନ୍ତୁ
+values-b+or	string	player_fit_title	-	ଚିତ୍ର ଆକାର
+values-b+or	string	player_fit_width	-	ପ୍ରସ୍ଥ ପୂରଣ କରନ୍ତୁ
+values-b+or	string	player_mute	-	ମ୍ୟୁଟ କରନ୍ତୁ
 values-b+or	string	player_settings_play_in_app	-	ଅନ୍ତଃ-ଚାଳକ
+values-b+or	string	player_source_playing	-	ଚାଲୁଛି
+values-b+or	string	player_source_resumes_at	-	ବଦଳାଇଲେ ଆପଣଙ୍କ ସ୍ଥାନ ରହେ: %1$s ରୁ ଜାରି
+values-b+or	string	player_source_retry	-	ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ
+values-b+or	string	player_source_switch	-	ବଦଳାନ୍ତୁ
 values-b+or	string	player_speed_text_format	-	ଵେଗ (%.2fଗୁଣ)
 values-b+or	string	player_subtitles_settings	-	ଉପଶୀର୍ଷକ
+values-b+or	string	player_unmute	-	ଅନମ୍ୟୁଟ କରନ୍ତୁ
 values-b+or	string	pref_category_actions	-	କୃତ୍ୟ
 values-b+or	string	pref_category_android_tv	-	ଆଣ୍ଡ୍ରଏଡ୍ ଟିଵି
 values-b+or	string	pref_category_backup	-	ବ୍ୟାକଅପ୍
@@ -24472,6 +25057,7 @@ values-b+pl	string	extension_status_allowed	-	Dozwolone, działa w swojej piasko
 values-b+pl	string	extension_status_blocked	-	Zablokowane przez skanowanie. Nie można na to zezwolić.
 values-b+pl	string	extension_status_hash_mismatch	-	Ten plik nie zgadza się z opublikowanym hashem. Nie można na to zezwolić.
 values-b+pl	string	extension_status_held	-	Wyłączone, dopóki nie wybierzesz
+values-b+pl	string	extension_status_held_new_version	-	Nowa wersja · Wyłączone, dopóki nie wybierzesz
 values-b+pl	string	extension_status_kept_off	-	Pozostaje wyłączone
 values-b+pl	string	extension_status_start_failed	-	Dozwolone, ale się nie uruchomiło
 values-b+pl	string	extension_types	-	Wspierane
@@ -24612,11 +25198,18 @@ values-b+pl	string	play_movie_button	-	Odtwórz film
 values-b+pl	string	play_torrent_button	-	Otwórz torrent
 values-b+pl	string	play_trailer_button	-	Odtwórz zwiastun
 values-b+pl	string	play_with_app_name	-	Odtwórz w CloudStream
+values-b+pl	string	player_enter_fullscreen	-	Otwórz pełny ekran
+values-b+pl	string	player_exit_fullscreen	-	Zamknij pełny ekran
+values-b+pl	string	player_fit_original	-	Oryginalne proporcje
+values-b+pl	string	player_fit_screen	-	Wypełnij ekran
+values-b+pl	string	player_fit_title	-	Rozmiar obrazu
+values-b+pl	string	player_fit_width	-	Wypełnij szerokość
 values-b+pl	string	player_is_live	-	Na żywo
 values-b+pl	string	player_load_one_subtitle_online	-	Wczytaj pierwsze dostępne
 values-b+pl	string	player_load_subtitles	-	Wczytaj z pliku
 values-b+pl	string	player_load_subtitles_online	-	Wczytaj z Internetu
 values-b+pl	string	player_loaded_subtitles	-	Załadowano %s
+values-b+pl	string	player_mute	-	Wycisz
 values-b+pl	string	player_notification_channel_description	-	Powiadomienie odtwarzacza umożliwiające sterowanie odtwarzaniem w tle
 values-b+pl	string	player_notification_channel_name	-	Powiadomienia odtwarzacza
 values-b+pl	string	player_pref	-	Preferowany odtwarzacz wideo
@@ -24625,10 +25218,15 @@ values-b+pl	string	player_settings_play_in_app	-	Odtwarzacz wewnętrzny
 values-b+pl	string	player_settings_select_cast_device	-	Wybierz urządzenie do transmisji
 values-b+pl	string	player_size_settings	-	Zmień rozmiar odtwarzacza
 values-b+pl	string	player_size_settings_des	-	Usuwanie czarnych ramek
+values-b+pl	string	player_source_playing	-	Odtwarzanie
+values-b+pl	string	player_source_resumes_at	-	Przełączenie zachowuje pozycję: wznowienie od %1$s
+values-b+pl	string	player_source_retry	-	Ponów
+values-b+pl	string	player_source_switch	-	Przełącz
 values-b+pl	string	player_speed	-	Prędkość odtwarzania
 values-b+pl	string	player_speed_text_format	-	Prędkość (%.2fx)
 values-b+pl	string	player_subtitles_settings	-	Napisy
 values-b+pl	string	player_subtitles_settings_des	-	Ustawienia napisów
+values-b+pl	string	player_unmute	-	Wyłącz wyciszenie
 values-b+pl	string	plugin	-	rozszerzenia
 values-b+pl	string	plugin_deleted	-	Usunięto rozszerzenie
 values-b+pl	string	plugin_downloaded	-	Pobrano rozszerzenie
@@ -25264,6 +25862,7 @@ values-b+pt	string	extension_status_allowed	-	Permitida e em execução no seu a
 values-b+pt	string	extension_status_blocked	-	Bloqueada pela análise. Não pode ser permitida.
 values-b+pt	string	extension_status_hash_mismatch	-	Este ficheiro não corresponde ao hash publicado. Não pode ser permitido.
 values-b+pt	string	extension_status_held	-	Desativada até escolher
+values-b+pt	string	extension_status_held_new_version	-	Nova versão · Desativada até escolher
 values-b+pt	string	extension_status_kept_off	-	Mantida desativada
 values-b+pt	string	extension_status_start_failed	-	Permitida, mas não arrancou
 values-b+pt	string	extension_types	-	Suportado
@@ -25404,11 +26003,18 @@ values-b+pt	string	play_movie_button	-	Reproduzir filme
 values-b+pt	string	play_torrent_button	-	Transmitir Torrent
 values-b+pt	string	play_trailer_button	-	Assistir Trailer
 values-b+pt	string	play_with_app_name	-	Assistir com o CloudStream
+values-b+pt	string	player_enter_fullscreen	-	Mudar para ecrã inteiro
+values-b+pt	string	player_exit_fullscreen	-	Sair do ecrã inteiro
+values-b+pt	string	player_fit_original	-	Proporção original
+values-b+pt	string	player_fit_screen	-	Preencher ecrã
+values-b+pt	string	player_fit_title	-	Tamanho da imagem
+values-b+pt	string	player_fit_width	-	Preencher largura
 values-b+pt	string	player_is_live	-	Ao Vivo
 values-b+pt	string	player_load_one_subtitle_online	-	Carregar o primeiro disponível
 values-b+pt	string	player_load_subtitles	-	Carregar de arquivo
 values-b+pt	string	player_load_subtitles_online	-	Carregar da Internet
 values-b+pt	string	player_loaded_subtitles	-	%s carregada
+values-b+pt	string	player_mute	-	Desativar som
 values-b+pt	string	player_notification_channel_description	-	Notificação do player para controlar a reprodução em segundo plano
 values-b+pt	string	player_notification_channel_name	-	Notificações de reprodução
 values-b+pt	string	player_pref	-	Player de vídeo preferido
@@ -25417,10 +26023,15 @@ values-b+pt	string	player_settings_play_in_app	-	Player interno
 values-b+pt	string	player_settings_select_cast_device	-	Escolha o dispositivo
 values-b+pt	string	player_size_settings	-	Botão de redimensionamento do player
 values-b+pt	string	player_size_settings_des	-	Remover as bordas negras
+values-b+pt	string	player_source_playing	-	A reproduzir
+values-b+pt	string	player_source_resumes_at	-	Mudar mantém a sua posição: retoma em %1$s
+values-b+pt	string	player_source_retry	-	Repetir
+values-b+pt	string	player_source_switch	-	Mudar
 values-b+pt	string	player_speed	-	Velocidade de Reprodução
 values-b+pt	string	player_speed_text_format	-	Velocidade (%.2fx)
 values-b+pt	string	player_subtitles_settings	-	Legendas
 values-b+pt	string	player_subtitles_settings_des	-	Configurações de legendas do player
+values-b+pt	string	player_unmute	-	Ativar som
 values-b+pt	string	plugin	-	plugins
 values-b+pt	string	plugin_deleted	-	Plugin Apagado
 values-b+pt	string	plugin_downloaded	-	Plugins baixados
@@ -26050,6 +26661,7 @@ values-b+pt+BR	string	extension_status_allowed	-	Permitida e em execução no se
 values-b+pt+BR	string	extension_status_blocked	-	Bloqueada pela verificação. Isso não pode ser permitido.
 values-b+pt+BR	string	extension_status_hash_mismatch	-	Este arquivo não corresponde ao hash publicado. Isso não pode ser permitido.
 values-b+pt+BR	string	extension_status_held	-	Desligada até você escolher
+values-b+pt+BR	string	extension_status_held_new_version	-	Nova versão · Desligada até você escolher
 values-b+pt+BR	string	extension_status_kept_off	-	Mantida desligada
 values-b+pt+BR	string	extension_status_start_failed	-	Permitida, mas não iniciou
 values-b+pt+BR	string	extension_types	-	Suportado
@@ -26190,11 +26802,18 @@ values-b+pt+BR	string	play_movie_button	-	Reproduzir filme
 values-b+pt+BR	string	play_torrent_button	-	Transmitir Torrent
 values-b+pt+BR	string	play_trailer_button	-	Reproduzir trailer
 values-b+pt+BR	string	play_with_app_name	-	Assistir com o CloudStream
+values-b+pt+BR	string	player_enter_fullscreen	-	Entrar em tela cheia
+values-b+pt+BR	string	player_exit_fullscreen	-	Sair da tela cheia
+values-b+pt+BR	string	player_fit_original	-	Proporção original
+values-b+pt+BR	string	player_fit_screen	-	Preencher tela
+values-b+pt+BR	string	player_fit_title	-	Tamanho da imagem
+values-b+pt+BR	string	player_fit_width	-	Preencher largura
 values-b+pt+BR	string	player_is_live	-	Ao vivo
 values-b+pt+BR	string	player_load_one_subtitle_online	-	Carregar primeiro disponível
 values-b+pt+BR	string	player_load_subtitles	-	Carregar de arquivo
 values-b+pt+BR	string	player_load_subtitles_online	-	Carregar da Internet
 values-b+pt+BR	string	player_loaded_subtitles	-	%s carregada
+values-b+pt+BR	string	player_mute	-	Desativar som
 values-b+pt+BR	string	player_notification_channel_description	-	Notificação do player para controlar a reprodução em segundo plano
 values-b+pt+BR	string	player_notification_channel_name	-	Notificações de reprodução
 values-b+pt+BR	string	player_pref	-	Player de vídeo preferido
@@ -26203,10 +26822,15 @@ values-b+pt+BR	string	player_settings_play_in_app	-	Player interno
 values-b+pt+BR	string	player_settings_select_cast_device	-	Selecione o dispositivo de transmissão
 values-b+pt+BR	string	player_size_settings	-	Redimensionar player
 values-b+pt+BR	string	player_size_settings_des	-	Remover bordas pretas
+values-b+pt+BR	string	player_source_playing	-	Reproduzindo
+values-b+pt+BR	string	player_source_resumes_at	-	Trocar mantém sua posição: continua em %1$s
+values-b+pt+BR	string	player_source_retry	-	Tentar novamente
+values-b+pt+BR	string	player_source_switch	-	Trocar
 values-b+pt+BR	string	player_speed	-	Velocidade de reprodução
 values-b+pt+BR	string	player_speed_text_format	-	Velocidade (%.2fx)
 values-b+pt+BR	string	player_subtitles_settings	-	Modificar legendas
 values-b+pt+BR	string	player_subtitles_settings_des	-	Alterar legendas exibidas no player de vídeo
+values-b+pt+BR	string	player_unmute	-	Ativar som
 values-b+pt+BR	string	plugin	-	Plugins
 values-b+pt+BR	string	plugin_deleted	-	Plugin Apagado
 values-b+pt+BR	string	plugin_downloaded	-	Plugin baixado
@@ -26796,6 +27420,7 @@ values-b+qt	string	extension_status_allowed	-	aaaaaauo ohaaaaghhah ah
 values-b+qt	string	extension_status_blocked	-	ha au ouuhhhohahh ahuhaaaa
 values-b+qt	string	extension_status_hash_mismatch	-	uuuuhhhoh haaahooo ohauh oo haaoh oooogggoog
 values-b+qt	string	extension_status_held	-	uuu ahhhaaaaa
+values-b+qt	string	extension_status_held_new_version	-	oh uuu · uuu ahhhaaaaa
 values-b+qt	string	extension_status_kept_off	-	uuuuhhh
 values-b+qt	string	extension_status_start_failed	-	ouuhh hhhah
 values-b+qt	string	extension_types	-	oooogggag
@@ -26920,18 +27545,30 @@ values-b+qt	string	play_movie_button	-	aaaaa aaaghh
 values-b+qt	string	play_torrent_button	-	aaaghhaaahhu aaaaa
 values-b+qt	string	play_trailer_button	-	ggaaaahhhhhhh gaauuuuuuuaaaau
 values-b+qt	string	play_with_app_name	-	oooooh aaah aauuuggghauuh
+values-b+qt	string	player_enter_fullscreen	-	oouuh haa aaaaa
+values-b+qt	string	player_exit_fullscreen	-	aauugghhaaaghh aaaaa
+values-b+qt	string	player_fit_original	-	oh aah
+values-b+qt	string	player_fit_screen	-	oouuh aah
+values-b+qt	string	player_fit_title	-	aaaaa oh
+values-b+qt	string	player_fit_width	-	haa oh
 values-b+qt	string	player_load_subtitles	-	aagg aahh uuuk
 values-b+qt	string	player_load_subtitles_online	-	eeek aahh oooohhhh
 values-b+qt	string	player_loaded_subtitles	-	oooohh %s
+values-b+qt	string	player_mute	-	ooh oh
 values-b+qt	string	player_pref	-	aaaagggah uuugg uuuugg
 values-b+qt	string	player_settings_play_in_app	-	aaaagggh uuuugg
 values-b+qt	string	player_settings_select_cast_device	-	aaaagg aahh oooohh
 values-b+qt	string	player_size_settings	-	oouuhaoouuh aaaaa aauuhohahhh oooooaaaghhoh oh aaaaa
 values-b+qt	string	player_size_settings_des	-	aaaghhaaahhuahooo oha aaaghh
+values-b+qt	string	player_source_playing	-	oouuh aaaaa
+values-b+qt	string	player_source_resumes_at	-	ooh haa oh aaaaa: oouuh %1$s
+values-b+qt	string	player_source_retry	-	oouuh ooh
+values-b+qt	string	player_source_switch	-	ooh haa
 values-b+qt	string	player_speed	-	oouuh aauuh oha
 values-b+qt	string	player_speed_text_format	-	aaaaaaaaaaaaahh (%.2foouo)
 values-b+qt	string	player_subtitles_settings	-	ahhhaauugghh
 values-b+qt	string	player_subtitles_settings_des	-	oha ooh ouuhhh oooohhahhh ouuhhh
+values-b+qt	string	player_unmute	-	oouuh oh
 values-b+qt	string	plugin	-	uuuuhhh
 values-b+qt	string	plugin_deleted	-	uuuugg uuuuhhh
 values-b+qt	string	plugin_downloaded	-	oooohh oooogggaah
@@ -27469,6 +28106,7 @@ values-b+ro	string	extension_status_allowed	-	Permisă și rulează în mediul e
 values-b+ro	string	extension_status_blocked	-	Blocată de scanare. Nu poate fi permisă.
 values-b+ro	string	extension_status_hash_mismatch	-	Acest fișier nu corespunde hash-ului publicat. Nu poate fi permis.
 values-b+ro	string	extension_status_held	-	Oprită până alegeți
+values-b+ro	string	extension_status_held_new_version	-	Versiune nouă · Oprită până alegeți
 values-b+ro	string	extension_status_kept_off	-	Menținută oprită
 values-b+ro	string	extension_status_start_failed	-	Permisă, dar nu a pornit
 values-b+ro	string	extension_types	-	Suportat
@@ -27592,19 +28230,31 @@ values-b+ro	string	play_movie_button	-	Urmărește
 values-b+ro	string	play_torrent_button	-	Stream Torrent
 values-b+ro	string	play_trailer_button	-	Vizionează trailerul
 values-b+ro	string	play_with_app_name	-	Joacă cu CloudStream
+values-b+ro	string	player_enter_fullscreen	-	Accesează în ecran complet
+values-b+ro	string	player_exit_fullscreen	-	Ieși din ecranul complet
+values-b+ro	string	player_fit_original	-	Raport de aspect original
+values-b+ro	string	player_fit_screen	-	Umple ecranul
+values-b+ro	string	player_fit_title	-	Dimensiune imagine
+values-b+ro	string	player_fit_width	-	Umple lățimea
 values-b+ro	string	player_load_one_subtitle_online	-	Încărcați prima disponibilă
 values-b+ro	string	player_load_subtitles	-	Încărcați din fișier
 values-b+ro	string	player_load_subtitles_online	-	Încărcare de pe Internet
 values-b+ro	string	player_loaded_subtitles	-	A fost încărcat %s
+values-b+ro	string	player_mute	-	Dezactivează sunetul
 values-b+ro	string	player_pref	-	Player video preferat
 values-b+ro	string	player_settings_play_in_app	-	Player intern
 values-b+ro	string	player_settings_select_cast_device	-	Selectați divece-ul pe care doriți să faceți cast
 values-b+ro	string	player_size_settings	-	Buton de redimensionare video
 values-b+ro	string	player_size_settings_des	-	Eliminați marginile negre
+values-b+ro	string	player_source_playing	-	Se redă
+values-b+ro	string	player_source_resumes_at	-	Schimbarea păstrează poziția: continuă de la %1$s
+values-b+ro	string	player_source_retry	-	Reîncearcă
+values-b+ro	string	player_source_switch	-	Schimbă
 values-b+ro	string	player_speed	-	Viteză video
 values-b+ro	string	player_speed_text_format	-	Viteză (%.2fx)
 values-b+ro	string	player_subtitles_settings	-	Subtitrare
 values-b+ro	string	player_subtitles_settings_des	-	Setări de subtitrare
+values-b+ro	string	player_unmute	-	Activează sunetul
 values-b+ro	string	plugin	-	plugin-uri
 values-b+ro	string	plugin_deleted	-	Plugin Șters
 values-b+ro	string	plugin_downloaded	-	Plugin Descărcat
@@ -28189,6 +28839,7 @@ values-b+ru	string	extension_status_allowed	-	Разрешено и работа
 values-b+ru	string	extension_status_blocked	-	Заблокировано проверкой. Разрешить нельзя.
 values-b+ru	string	extension_status_hash_mismatch	-	Этот файл не совпадает с опубликованным хешем. Разрешить его нельзя.
 values-b+ru	string	extension_status_held	-	Выключено, пока вы не решите
+values-b+ru	string	extension_status_held_new_version	-	Новая версия · Выключено, пока вы не решите
 values-b+ru	string	extension_status_kept_off	-	Оставлено выключенным
 values-b+ru	string	extension_status_start_failed	-	Разрешено, но не запустилось
 values-b+ru	string	extension_types	-	Поддерживается
@@ -28329,11 +28980,18 @@ values-b+ru	string	play_movie_button	-	Смотреть фильм
 values-b+ru	string	play_torrent_button	-	Поток торрент
 values-b+ru	string	play_trailer_button	-	Смотреть трейлер
 values-b+ru	string	play_with_app_name	-	Смотреть с CloudStream
+values-b+ru	string	player_enter_fullscreen	-	Полноэкранный режим
+values-b+ru	string	player_exit_fullscreen	-	Выйти из полноэкранного режима
+values-b+ru	string	player_fit_original	-	Исходные пропорции
+values-b+ru	string	player_fit_screen	-	На весь экран
+values-b+ru	string	player_fit_title	-	Размер изображения
+values-b+ru	string	player_fit_width	-	По ширине
 values-b+ru	string	player_is_live	-	Прямой эфир
 values-b+ru	string	player_load_one_subtitle_online	-	Скачать первые доступные
 values-b+ru	string	player_load_subtitles	-	Загрузить из файла
 values-b+ru	string	player_load_subtitles_online	-	Скачивать из интернета
 values-b+ru	string	player_loaded_subtitles	-	Загружено %s
+values-b+ru	string	player_mute	-	Выключить звук
 values-b+ru	string	player_notification_channel_description	-	Уведомление проигрывателя для управления воспроизведением в фоновом режиме
 values-b+ru	string	player_notification_channel_name	-	Уведомления плеера
 values-b+ru	string	player_pref	-	Предпочитаемый видеоплеер
@@ -28342,10 +29000,15 @@ values-b+ru	string	player_settings_play_in_app	-	Внутренний проиг
 values-b+ru	string	player_settings_select_cast_device	-	Выберите устройство для трансляции
 values-b+ru	string	player_size_settings	-	Кнопка изменения размера проигрывателя
 values-b+ru	string	player_size_settings_des	-	Убрать черные границы
+values-b+ru	string	player_source_playing	-	Воспроизводится
+values-b+ru	string	player_source_resumes_at	-	Переключение сохраняет позицию: продолжение с %1$s
+values-b+ru	string	player_source_retry	-	Повторить
+values-b+ru	string	player_source_switch	-	Переключить
 values-b+ru	string	player_speed	-	Скорость проигрывателя
 values-b+ru	string	player_speed_text_format	-	Скорость (%.2fx)
 values-b+ru	string	player_subtitles_settings	-	Субтитры
 values-b+ru	string	player_subtitles_settings_des	-	Настройки субтитров проигрывателя
+values-b+ru	string	player_unmute	-	Включить звук
 values-b+ru	string	plugin	-	дополнения
 values-b+ru	string	plugin_deleted	-	Дополнение удалено
 values-b+ru	string	plugin_downloaded	-	Дополнение скачано
@@ -28880,6 +29543,7 @@ values-b+sk	string	extension_status_allowed	-	Povolené a beží vo svojom izolo
 values-b+sk	string	extension_status_blocked	-	Zablokované kontrolou. Nedá sa povoliť.
 values-b+sk	string	extension_status_hash_mismatch	-	Tento súbor sa nezhoduje so zverejneným hashom. Nedá sa povoliť.
 values-b+sk	string	extension_status_held	-	Vypnuté, kým sa nerozhodnete
+values-b+sk	string	extension_status_held_new_version	-	Nová verzia · Vypnuté, kým sa nerozhodnete
 values-b+sk	string	extension_status_kept_off	-	Ponechané vypnuté
 values-b+sk	string	extension_status_start_failed	-	Povolené, ale nespustilo sa
 values-b+sk	string	extension_warning_classloader_access	-	Pristupuje k zavádzaču tried, ktorý môže načítať kód, aký táto kontrola nikdy nevidela.
@@ -28983,16 +29647,28 @@ values-b+sk	string	play_movie_button	-	Prehrať film
 values-b+sk	string	play_torrent_button	-	Streamovať torrent
 values-b+sk	string	play_trailer_button	-	Prehrať upútavku
 values-b+sk	string	play_with_app_name	-	Prehrať s CloudStream
+values-b+sk	string	player_enter_fullscreen	-	Prejsť do režimu celej obrazovky
+values-b+sk	string	player_exit_fullscreen	-	Ukončiť režim celej obrazovky
+values-b+sk	string	player_fit_original	-	Pôvodný pomer strán
+values-b+sk	string	player_fit_screen	-	Vyplniť obrazovku
+values-b+sk	string	player_fit_title	-	Veľkosť obrazu
+values-b+sk	string	player_fit_width	-	Vyplniť šírku
 values-b+sk	string	player_load_one_subtitle_online	-	Načítať prvé k dispozícii
 values-b+sk	string	player_load_subtitles	-	Načítať z súboru
 values-b+sk	string	player_load_subtitles_online	-	Načítať z internetu
 values-b+sk	string	player_loaded_subtitles	-	Načítané %s
+values-b+sk	string	player_mute	-	Vypnúť zvuk
 values-b+sk	string	player_size_settings	-	Tlačidlo na zmenu veľkosti prehrávača
 values-b+sk	string	player_size_settings_des	-	Odstrániť čierne okraje
+values-b+sk	string	player_source_playing	-	Prehráva sa
+values-b+sk	string	player_source_resumes_at	-	Prepnutie zachová pozíciu: pokračuje od %1$s
+values-b+sk	string	player_source_retry	-	Skúsiť znova
+values-b+sk	string	player_source_switch	-	Prepnúť
 values-b+sk	string	player_speed	-	Rýchlosť prehrávania
 values-b+sk	string	player_speed_text_format	-	Rýchlosť (%.2fx)
 values-b+sk	string	player_subtitles_settings	-	Titulky
 values-b+sk	string	player_subtitles_settings_des	-	Nastavenia titulkov prehrávača
+values-b+sk	string	player_unmute	-	Zapnúť zvuk
 values-b+sk	string	podcast_singular	-	Podcast
 values-b+sk	string	popup_delete_file	-	Zmazať súbor
 values-b+sk	string	popup_pause_download	-	Pozastaviť sťahovanie
@@ -29409,6 +30085,7 @@ values-b+so	string	extension_status_allowed	-	Waa la oggolaaday, wuxuuna ku shaq
 values-b+so	string	extension_status_blocked	-	Baaritaanka ayaa xannibay. Tan lama oggolaan karo.
 values-b+so	string	extension_status_hash_mismatch	-	Faylkani la mid ma aha hash-kiisa la daabacay. Tan lama oggolaan karo.
 values-b+so	string	extension_status_held	-	Dansan ilaa aad doorato
+values-b+so	string	extension_status_held_new_version	-	Nooc cusub · Dansan ilaa aad doorato
 values-b+so	string	extension_status_kept_off	-	Dansan ayaa la hayaa
 values-b+so	string	extension_status_start_failed	-	Waa la oggolaaday, laakiin ma bilaaban
 values-b+so	string	extension_types	-	Ku shaqeeya
@@ -29513,17 +30190,29 @@ values-b+so	string	play_movie_button	-	Daaro filinka
 values-b+so	string	play_torrent_button	-	Daalaco toorentiga
 values-b+so	string	play_trailer_button	-	Daar goos-gooska
 values-b+so	string	play_with_app_name	-	Ku daawo CloudStream
+values-b+so	string	player_enter_fullscreen	-	Gal shaashadda buuxda
+values-b+so	string	player_exit_fullscreen	-	Ka bax shaashadda buuxda
+values-b+so	string	player_fit_original	-	Saamiga asalka ah
+values-b+so	string	player_fit_screen	-	Buuxi shaashadda
+values-b+so	string	player_fit_title	-	Cabbirka sawirka
+values-b+so	string	player_fit_width	-	Buuxi ballaca
 values-b+so	string	player_load_subtitles	-	Faylashaada ka keen
 values-b+so	string	player_load_subtitles_online	-	Internetka ka keen
 values-b+so	string	player_loaded_subtitles	-	Waxa laso kiciyey %s
+values-b+so	string	player_mute	-	Aamusi
 values-b+so	string	player_pref	-	Muqaal daaraha aad doorbiddo
 values-b+so	string	player_settings_play_in_app	-	Muqaal daaraha appka
 values-b+so	string	player_size_settings	-	Badhinka xajmiga daaraha
 values-b+so	string	player_size_settings_des	-	Hareeraha madow ka saar markaad daawanayso
+values-b+so	string	player_source_playing	-	Waa socdaa
+values-b+so	string	player_source_resumes_at	-	Beddelku wuxuu ilaalinayaa meeshaada: wuxuu ka sii socdaa %1$s
+values-b+so	string	player_source_retry	-	Isku day mar kale
+values-b+so	string	player_source_switch	-	Beddel
 values-b+so	string	player_speed	-	Xawaaraha daaraha
 values-b+so	string	player_speed_text_format	-	Xawaaraha (%.2fx)
 values-b+so	string	player_subtitles_settings	-	Qoraal-hoosaadka
 values-b+so	string	player_subtitles_settings_des	-	Habaynta Qrl-hoosaadka daaraha
+values-b+so	string	player_unmute	-	Ka qaad aamusnaanta
 values-b+so	string	plugin	-	Sidkanayaasha
 values-b+so	string	plugin_deleted	-	Waa la tiray sidkanahan
 values-b+so	string	plugin_downloaded	-	Waa ka dejiyey sidkanaha
@@ -30055,6 +30744,7 @@ values-b+sq	string	extension_status_allowed	-	E lejuar dhe po funksionon në mje
 values-b+sq	string	extension_status_blocked	-	E bllokuar nga skanimi. Kjo nuk mund të lejohet.
 values-b+sq	string	extension_status_hash_mismatch	-	Ky skedar nuk përputhet me hash-in e tij të publikuar. Kjo nuk mund të lejohet.
 values-b+sq	string	extension_status_held	-	E fikur derisa të zgjidhni
+values-b+sq	string	extension_status_held_new_version	-	Version i ri · E fikur derisa të zgjidhni
 values-b+sq	string	extension_status_kept_off	-	Mbahet e fikur
 values-b+sq	string	extension_status_start_failed	-	E lejuar, por nuk u nis
 values-b+sq	string	extension_types	-	Të suportuara
@@ -30195,11 +30885,18 @@ values-b+sq	string	play_movie_button	-	Luaj Filmin
 values-b+sq	string	play_torrent_button	-	Transmeto Torrent
 values-b+sq	string	play_trailer_button	-	Luaj Trailerin
 values-b+sq	string	play_with_app_name	-	Luaj me CloudStream
+values-b+sq	string	player_enter_fullscreen	-	Hyr në luajtjen me ekran të plotë
+values-b+sq	string	player_exit_fullscreen	-	Dil nga ekrani i plotë
+values-b+sq	string	player_fit_original	-	Raporti origjinal
+values-b+sq	string	player_fit_screen	-	Mbush ekranin
+values-b+sq	string	player_fit_title	-	Madhësia e figurës
+values-b+sq	string	player_fit_width	-	Mbush gjerësinë
 values-b+sq	string	player_is_live	-	Live
 values-b+sq	string	player_load_one_subtitle_online	-	Ngarko të parën e disponueshme
 values-b+sq	string	player_load_subtitles	-	Ngarko nga skedari
 values-b+sq	string	player_load_subtitles_online	-	Ngarko nga interneti
 values-b+sq	string	player_loaded_subtitles	-	U ngarkua %s
+values-b+sq	string	player_mute	-	Hiq zërin
 values-b+sq	string	player_notification_channel_description	-	Njoftimi për kontrollin e luajtjes nga sfondi
 values-b+sq	string	player_notification_channel_name	-	Njoftimet e luajtësit
 values-b+sq	string	player_pref	-	Luajtësi i preferuar i videove
@@ -30208,10 +30905,15 @@ values-b+sq	string	player_settings_play_in_app	-	Luajtësi i integruar
 values-b+sq	string	player_settings_select_cast_device	-	Zgjidh pajisjen për transmetim
 values-b+sq	string	player_size_settings	-	Butoni për ndryshimin e madhësisë së luajtësit
 values-b+sq	string	player_size_settings_des	-	Hiq kufijtë e errët
+values-b+sq	string	player_source_playing	-	Po luhet
+values-b+sq	string	player_source_resumes_at	-	Ndërrimi e ruan pozicionin: vazhdon nga %1$s
+values-b+sq	string	player_source_retry	-	Provo përsëri
+values-b+sq	string	player_source_switch	-	Ndërro
 values-b+sq	string	player_speed	-	Shpejtësia e luajtësit
 values-b+sq	string	player_speed_text_format	-	Shpejtësia (%.2fx)
 values-b+sq	string	player_subtitles_settings	-	Titrat
 values-b+sq	string	player_subtitles_settings_des	-	Cilësimet e titrave të luajtësit
+values-b+sq	string	player_unmute	-	Aktivizo zërin
 values-b+sq	string	plugin	-	shtesa
 values-b+sq	string	plugin_deleted	-	Shtesa u fshi
 values-b+sq	string	plugin_downloaded	-	Shtesa u shkarkua
@@ -30843,6 +31545,7 @@ values-b+sv	string	extension_status_allowed	-	Tillåtet och körs i sin sandlåd
 values-b+sv	string	extension_status_blocked	-	Blockerat av genomsökningen. Detta kan inte tillåtas.
 values-b+sv	string	extension_status_hash_mismatch	-	Den här filen stämmer inte med sin publicerade hash. Detta kan inte tillåtas.
 values-b+sv	string	extension_status_held	-	Av tills du väljer
+values-b+sv	string	extension_status_held_new_version	-	Ny version · Av tills du väljer
 values-b+sv	string	extension_status_kept_off	-	Hålls avstängt
 values-b+sv	string	extension_status_start_failed	-	Tillåtet, men det startade inte
 values-b+sv	string	extension_types	-	Stödd
@@ -30983,11 +31686,18 @@ values-b+sv	string	play_movie_button	-	Spela Upp
 values-b+sv	string	play_torrent_button	-	Strömma Torrent
 values-b+sv	string	play_trailer_button	-	Spela Trailer
 values-b+sv	string	play_with_app_name	-	Spela med CloudStream
+values-b+sv	string	player_enter_fullscreen	-	Aktivera helskärm
+values-b+sv	string	player_exit_fullscreen	-	Lämna helskärm
+values-b+sv	string	player_fit_original	-	Ursprungligt bildförhållande
+values-b+sv	string	player_fit_screen	-	Fyll skärmen
+values-b+sv	string	player_fit_title	-	Bildstorlek
+values-b+sv	string	player_fit_width	-	Fyll bredden
 values-b+sv	string	player_is_live	-	Live
 values-b+sv	string	player_load_one_subtitle_online	-	Ladda in första möjliga
 values-b+sv	string	player_load_subtitles	-	Importera från fil
 values-b+sv	string	player_load_subtitles_online	-	Importera från Internet
 values-b+sv	string	player_loaded_subtitles	-	Laddat %s
+values-b+sv	string	player_mute	-	Stäng av ljudet
 values-b+sv	string	player_notification_channel_description	-	Spelarnotisen för att styra uppspelningen i bakgrunden
 values-b+sv	string	player_notification_channel_name	-	Spelarnotiser
 values-b+sv	string	player_pref	-	Önskad videospelare
@@ -30996,10 +31706,15 @@ values-b+sv	string	player_settings_play_in_app	-	Intern spelare
 values-b+sv	string	player_settings_select_cast_device	-	Välj cast-enhet
 values-b+sv	string	player_size_settings	-	Lägger till en knapp för att justera bildförhållandet
 values-b+sv	string	player_size_settings_des	-	Ta bort de svarta kanterna
+values-b+sv	string	player_source_playing	-	Spelas
+values-b+sv	string	player_source_resumes_at	-	Att byta behåller din position: fortsätter vid %1$s
+values-b+sv	string	player_source_retry	-	Försök igen
+values-b+sv	string	player_source_switch	-	Byt
 values-b+sv	string	player_speed	-	Spelarhastighet
 values-b+sv	string	player_speed_text_format	-	Hastighet (%.2fx)
 values-b+sv	string	player_subtitles_settings	-	Undertexter
 values-b+sv	string	player_subtitles_settings_des	-	Inställningar för undertexter
+values-b+sv	string	player_unmute	-	Slå på ljudet
 values-b+sv	string	plugin	-	Tillägg
 values-b+sv	string	plugin_deleted	-	Tillägg borttagen
 values-b+sv	string	plugin_downloaded	-	Tillägg nedladdad
@@ -31631,6 +32346,7 @@ values-b+ta	string	extension_status_allowed	-	அனுமதிக்கப்�
 values-b+ta	string	extension_status_blocked	-	ஸ்கேன் மூலம் தடுக்கப்பட்டது. இதை அனுமதிக்க முடியாது.
 values-b+ta	string	extension_status_hash_mismatch	-	இந்தக் கோப்பு அதன் வெளியிடப்பட்ட ஹாஷுடன் பொருந்தவில்லை. இதை அனுமதிக்க முடியாது.
 values-b+ta	string	extension_status_held	-	நீங்கள் தேர்வு செய்யும் வரை முடக்கம்
+values-b+ta	string	extension_status_held_new_version	-	புதிய பதிப்பு · நீங்கள் தேர்வு செய்யும் வரை முடக்கம்
 values-b+ta	string	extension_status_kept_off	-	முடக்கி வைக்கப்பட்டது
 values-b+ta	string	extension_status_start_failed	-	அனுமதிக்கப்பட்டது, ஆனால் தொடங்கவில்லை
 values-b+ta	string	extension_types	-	ஆதரிக்கப்பட்டது
@@ -31771,11 +32487,18 @@ values-b+ta	string	play_movie_button	-	திரைப்படம் இயக�
 values-b+ta	string	play_torrent_button	-	ச்ட்ரீம் டொரண்ட்
 values-b+ta	string	play_trailer_button	-	டிரெய்லரை இயக்கு
 values-b+ta	string	play_with_app_name	-	CloudStream-உடன் இயக்கு
+values-b+ta	string	player_enter_fullscreen	-	முழுத்திரைக்குச் செல்
+values-b+ta	string	player_exit_fullscreen	-	முழுத்திரையிலிருந்து வெளியேறு
+values-b+ta	string	player_fit_original	-	அசல் விகிதம்
+values-b+ta	string	player_fit_screen	-	திரையை நிரப்பு
+values-b+ta	string	player_fit_title	-	பட அளவு
+values-b+ta	string	player_fit_width	-	அகலத்தை நிரப்பு
 values-b+ta	string	player_is_live	-	வாழ்க
 values-b+ta	string	player_load_one_subtitle_online	-	முதலில் கிடைக்கிறது
 values-b+ta	string	player_load_subtitles	-	கோப்பிலிருந்து ஏற்றவும்
 values-b+ta	string	player_load_subtitles_online	-	இணையத்திலிருந்து ஏற்றவும்
 values-b+ta	string	player_loaded_subtitles	-	ஏற்றப்பட்ட %s
+values-b+ta	string	player_mute	-	ஒலியடக்கு
 values-b+ta	string	player_notification_channel_description	-	பின்னணியில் இருந்து பின்னணியைக் கட்டுப்படுத்துவதற்கான பிளேயர் அறிவிப்பு
 values-b+ta	string	player_notification_channel_name	-	பிளேயர் அறிவிப்புகள்
 values-b+ta	string	player_pref	-	விருப்பமான வீடியோ பிளேயர்
@@ -31784,10 +32507,15 @@ values-b+ta	string	player_settings_play_in_app	-	உள் வீரர்
 values-b+ta	string	player_settings_select_cast_device	-	காச்ட் சாதனத்தைத் தேர்ந்தெடுக்கவும்
 values-b+ta	string	player_size_settings	-	பிளேயர் மறுஅளவிடுதல் பொத்தானை
 values-b+ta	string	player_size_settings_des	-	கருப்பு எல்லைகளை அகற்றவும்
+values-b+ta	string	player_source_playing	-	இயங்குகிறது
+values-b+ta	string	player_source_resumes_at	-	மாற்றினாலும் இடம் மாறாது: %1$s இலிருந்து தொடரும்
+values-b+ta	string	player_source_retry	-	மீண்டும் முயல்க
+values-b+ta	string	player_source_switch	-	மாற்று
 values-b+ta	string	player_speed	-	பிளேயர் விரைவு
 values-b+ta	string	player_speed_text_format	-	விரைவு (%.2fx)
 values-b+ta	string	player_subtitles_settings	-	வசன வரிகள்
 values-b+ta	string	player_subtitles_settings_des	-	பிளேயர் வசன வரிகள் அமைப்புகள்
+values-b+ta	string	player_unmute	-	ஒலியை இயக்கு
 values-b+ta	string	plugin	-	செருகுநிரல்கள்
 values-b+ta	string	plugin_deleted	-	சொருகி நீக்கப்பட்டது
 values-b+ta	string	plugin_downloaded	-	சொருகி பதிவிறக்கம் செய்யப்பட்டது
@@ -32152,6 +32880,7 @@ values-b+ti	string	extension_status_allowed	-	ተፈቒዱ፡ ኣብ ናቱ ዝ�
 values-b+ti	string	extension_status_blocked	-	ብምርመራ ተዓጽዩ። እዚ ክፍቀድ ኣይክእልን።
 values-b+ti	string	extension_status_hash_mismatch	-	እዚ ፋይል ምስቲ ዝተሓትመ ሃሽ ኣይሰማማዕን። እዚ ክፍቀድ ኣይክእልን።
 values-b+ti	string	extension_status_held	-	ክሳብ እትመርጽ ጠፊኡ ኣሎ
+values-b+ti	string	extension_status_held_new_version	-	ሓድሽ ስሪት · ክሳብ እትመርጽ ጠፊኡ ኣሎ
 values-b+ti	string	extension_status_kept_off	-	ጠፊኡ ይጸንሕ ኣሎ
 values-b+ti	string	extension_status_start_failed	-	ተፈቒዱ፡ ግን ኣይጀመረን
 values-b+ti	string	extension_warning_classloader_access	-	ናብ ክላስ ሎደር ይበጽሕ፡ እዚ ድማ እዚ ምርመራ ርእይዎ ዘይፈልጥ ኮድ ከእቱ ይኽእል።
@@ -32169,6 +32898,18 @@ values-b+ti	string	extensions_waiting_count	-	ንዓኻ ዝጽበዩ መስፋ�
 values-b+ti	string	home_search_only_body	-	ካብ መስፋሕፋሕትኻ ሓደ እኳ መበገሲ ገጽ የብሉን፡ ግን ሕጂ'ውን ኣብኡ ክትደሊ ትኽእል ኢኻ።
 values-b+ti	string	load_more	-	ተወሳኺ ጽዓን
 values-b+ti	string	next_episode_format	-	ክፋል %d በ ላይ ይወጣል
+values-b+ti	string	player_enter_fullscreen	-	ናብ ምሉእ ስክሪን እቶ
+values-b+ti	string	player_exit_fullscreen	-	ካብ ምሉእ ስክሪን ውጻእ
+values-b+ti	string	player_fit_original	-	መበቆል ዝምድና
+values-b+ti	string	player_fit_screen	-	ስክሪን ምላእ
+values-b+ti	string	player_fit_title	-	መጠን ስእሊ
+values-b+ti	string	player_fit_width	-	ስፍሓት ምላእ
+values-b+ti	string	player_mute	-	ድምጺ ኣጥፍእ
+values-b+ti	string	player_source_playing	-	ይጻወት ኣሎ
+values-b+ti	string	player_source_resumes_at	-	ምቕያር ቦታኻ ይሕልው፦ ካብ %1$s ይቕጽል
+values-b+ti	string	player_source_retry	-	እንደገና ፈትን
+values-b+ti	string	player_source_switch	-	ቀይር
+values-b+ti	string	player_unmute	-	ድምጺ ወልዕ
 values-b+ti	string	search_state_idle_body_desktop	-	ኣርእስቲ ጽሓፍ። ውጽኢታት ነፍሲ ወከፍ ምንጪ ምስ መለሰ ኣብ ትሕቲኡ ይርአዩ።
 values-b+ti	string	seek_back_10_seconds	-	10 ካልኢት ንድሕሪት
 values-b+ti	string	seek_forward_10_seconds	-	10 ካልኢት ንቕድሚት
@@ -32307,6 +33048,7 @@ values-b+tl	string	extension_status_allowed	-	Pinayagan, at tumatakbo sa nakahiw
 values-b+tl	string	extension_status_blocked	-	Hinarang ng pag-scan. Hindi ito maaaring payagan.
 values-b+tl	string	extension_status_hash_mismatch	-	Hindi tumutugma ang file na ito sa nailathalang hash nito. Hindi ito maaaring payagan.
 values-b+tl	string	extension_status_held	-	Nakasara hanggang pumili ka
+values-b+tl	string	extension_status_held_new_version	-	Bagong bersyon · Nakasara hanggang pumili ka
 values-b+tl	string	extension_status_kept_off	-	Pinanatiling nakasara
 values-b+tl	string	extension_status_start_failed	-	Pinayagan, pero hindi ito nagsimula
 values-b+tl	string	extension_warning_classloader_access	-	Inaabot nito ang class loader, na maaaring magpasok ng code na hindi kailanman nakita ng pag-scan na ito.
@@ -32383,13 +33125,25 @@ values-b+tl	string	play_movie_button	-	I-play ang Movie
 values-b+tl	string	play_torrent_button	-	Stream Torrent
 values-b+tl	string	play_trailer_button	-	Maglaro ng Trailer
 values-b+tl	string	play_with_app_name	-	I-play gamit ang CloudStream
+values-b+tl	string	player_enter_fullscreen	-	Mag-fullscreen
+values-b+tl	string	player_exit_fullscreen	-	Lumabas sa fullscreen
+values-b+tl	string	player_fit_original	-	Orihinal na aspect ratio
+values-b+tl	string	player_fit_screen	-	Punuin ang screen
+values-b+tl	string	player_fit_title	-	Laki ng larawan
+values-b+tl	string	player_fit_width	-	Punuin ang lapad
+values-b+tl	string	player_mute	-	I-mute
 values-b+tl	string	player_notification_channel_description	-	Ang abiso ng player para sa pagkontrol sa pag-playback mula sa background
 values-b+tl	string	player_size_settings	-	Pindutan upang baguhin ang laki
 values-b+tl	string	player_size_settings_des	-	Alisin ang black borders
+values-b+tl	string	player_source_playing	-	Nagpe-play
+values-b+tl	string	player_source_resumes_at	-	Mananatili ang posisyon mo sa paglipat: magpapatuloy sa %1$s
+values-b+tl	string	player_source_retry	-	Subukang muli
+values-b+tl	string	player_source_switch	-	Lumipat
 values-b+tl	string	player_speed	-	Bilis ng Playback
 values-b+tl	string	player_speed_text_format	-	Bilis (%.2fx)
 values-b+tl	string	player_subtitles_settings	-	Subtitles
 values-b+tl	string	player_subtitles_settings_des	-	Player subtitles settings
+values-b+tl	string	player_unmute	-	I-unmute
 values-b+tl	string	plugins_updated_manually	-	Matagumpay na na-update ang %d plugin!
 values-b+tl	string	popup_delete_file	-	I-delete ang file
 values-b+tl	string	popup_pause_download	-	I-pause ang download
@@ -32810,6 +33564,7 @@ values-b+tr	string	extension_status_allowed	-	İzin verildi ve korumalı alanın
 values-b+tr	string	extension_status_blocked	-	Tarama tarafından engellendi. Buna izin verilemez.
 values-b+tr	string	extension_status_hash_mismatch	-	Bu dosya yayımlanan karma değeriyle eşleşmiyor. Buna izin verilemez.
 values-b+tr	string	extension_status_held	-	Siz seçene kadar kapalı
+values-b+tr	string	extension_status_held_new_version	-	Yeni sürüm · Siz seçene kadar kapalı
 values-b+tr	string	extension_status_kept_off	-	Kapalı tutuluyor
 values-b+tr	string	extension_status_start_failed	-	İzin verildi, ancak başlamadı
 values-b+tr	string	extension_types	-	Desteklenen
@@ -32950,11 +33705,18 @@ values-b+tr	string	play_movie_button	-	Filmi Oynat
 values-b+tr	string	play_torrent_button	-	Torrent Oynat
 values-b+tr	string	play_trailer_button	-	Fragmanı Oynat
 values-b+tr	string	play_with_app_name	-	CloudStream ile oynat
+values-b+tr	string	player_enter_fullscreen	-	Tam ekrana geç
+values-b+tr	string	player_exit_fullscreen	-	Tam ekrandan çık
+values-b+tr	string	player_fit_original	-	Orijinal en boy oranı
+values-b+tr	string	player_fit_screen	-	Ekranı doldur
+values-b+tr	string	player_fit_title	-	Görüntü boyutu
+values-b+tr	string	player_fit_width	-	Genişliği doldur
 values-b+tr	string	player_is_live	-	Canlı
 values-b+tr	string	player_load_one_subtitle_online	-	İlk kullanılabiliri yükle
 values-b+tr	string	player_load_subtitles	-	Dosyadan yükle
 values-b+tr	string	player_load_subtitles_online	-	İnternetten yükle
 values-b+tr	string	player_loaded_subtitles	-	%s eklendi
+values-b+tr	string	player_mute	-	Sesi kapat
 values-b+tr	string	player_notification_channel_description	-	Oynatıcı bildirimi arka planda oynatmasını kontrol etmek içindir
 values-b+tr	string	player_notification_channel_name	-	Oynatıcı bildirimleri
 values-b+tr	string	player_pref	-	Tercih edilen video oynatıcısı
@@ -32963,10 +33725,15 @@ values-b+tr	string	player_settings_play_in_app	-	Dahili oynatıcı
 values-b+tr	string	player_settings_select_cast_device	-	Yansıtılacak cihaz seç
 values-b+tr	string	player_size_settings	-	Oynatıcı yeniden boyutlandırma butonu
 values-b+tr	string	player_size_settings_des	-	Siyah kenarlıkları kaldır
+values-b+tr	string	player_source_playing	-	Oynatılıyor
+values-b+tr	string	player_source_resumes_at	-	Değiştirmek konumunuzu korur: %1$s konumundan devam eder
+values-b+tr	string	player_source_retry	-	Yeniden dene
+values-b+tr	string	player_source_switch	-	Değiştir
 values-b+tr	string	player_speed	-	Oynatıcı Hızı
 values-b+tr	string	player_speed_text_format	-	Hız (%.2fx)
 values-b+tr	string	player_subtitles_settings	-	Altyazılar
 values-b+tr	string	player_subtitles_settings_des	-	Oynatıcı altyazı ayarları
+values-b+tr	string	player_unmute	-	Sesi aç
 values-b+tr	string	plugin	-	eklentiler
 values-b+tr	string	plugin_deleted	-	Eklenti Silindi
 values-b+tr	string	plugin_downloaded	-	Eklenti İndirildi
@@ -33606,6 +34373,7 @@ values-b+uk	string	extension_status_allowed	-	Дозволено і працює
 values-b+uk	string	extension_status_blocked	-	Заблоковано скануванням. Це не можна дозволити.
 values-b+uk	string	extension_status_hash_mismatch	-	Цей файл не збігається з опублікованим хешем. Це не можна дозволити.
 values-b+uk	string	extension_status_held	-	Вимкнено, доки ви не оберете
+values-b+uk	string	extension_status_held_new_version	-	Нова версія · Вимкнено, доки ви не оберете
 values-b+uk	string	extension_status_kept_off	-	Залишено вимкненим
 values-b+uk	string	extension_status_start_failed	-	Дозволено, але не запустилося
 values-b+uk	string	extension_types	-	Підтримується
@@ -33746,11 +34514,18 @@ values-b+uk	string	play_movie_button	-	Відтворити фільм
 values-b+uk	string	play_torrent_button	-	Транслювати торрент
 values-b+uk	string	play_trailer_button	-	Відтворити трейлер
 values-b+uk	string	play_with_app_name	-	Відтворити в CloudStream
+values-b+uk	string	player_enter_fullscreen	-	Перейти в повноекранний режим
+values-b+uk	string	player_exit_fullscreen	-	Вийти з повноекранного режиму
+values-b+uk	string	player_fit_original	-	Початкові пропорції
+values-b+uk	string	player_fit_screen	-	Заповнити екран
+values-b+uk	string	player_fit_title	-	Розмір зображення
+values-b+uk	string	player_fit_width	-	Заповнити ширину
 values-b+uk	string	player_is_live	-	Наживо
 values-b+uk	string	player_load_one_subtitle_online	-	Завантажити перший доступний
 values-b+uk	string	player_load_subtitles	-	Завантажити з файлу
 values-b+uk	string	player_load_subtitles_online	-	Завантажити з інтернету
 values-b+uk	string	player_loaded_subtitles	-	Завантажено %s
+values-b+uk	string	player_mute	-	Вимкнути звук
 values-b+uk	string	player_notification_channel_description	-	Сповіщення програвача для керування відтворенням у фоновому режимі
 values-b+uk	string	player_notification_channel_name	-	Сповіщення програвача
 values-b+uk	string	player_pref	-	Бажаний відеопрогравач
@@ -33759,10 +34534,15 @@ values-b+uk	string	player_settings_play_in_app	-	Вбудований прогр
 values-b+uk	string	player_settings_select_cast_device	-	Оберіть пристрій для трансляції
 values-b+uk	string	player_size_settings	-	Кнопка зміни розміру програвача
 values-b+uk	string	player_size_settings_des	-	Прибрати чорні смуги
+values-b+uk	string	player_source_playing	-	Відтворюється
+values-b+uk	string	player_source_resumes_at	-	Перемикання зберігає позицію: продовження з %1$s
+values-b+uk	string	player_source_retry	-	Повторити
+values-b+uk	string	player_source_switch	-	Перемкнути
 values-b+uk	string	player_speed	-	Швидкість програвача
 values-b+uk	string	player_speed_text_format	-	Швидкість (%.2fx)
 values-b+uk	string	player_subtitles_settings	-	Субтитри
 values-b+uk	string	player_subtitles_settings_des	-	Налаштування субтитрів програвача
+values-b+uk	string	player_unmute	-	Увімкнути звук
 values-b+uk	string	plugin	-	розширення
 values-b+uk	string	plugin_deleted	-	Розширення видалено
 values-b+uk	string	plugin_downloaded	-	Розширення завантажено
@@ -34342,6 +35122,7 @@ values-b+ur	string	extension_status_allowed	-	اجازت دی گئی، اور ا
 values-b+ur	string	extension_status_blocked	-	اسکین نے مسدود کر دیا۔ اس کی اجازت نہیں دی جا سکتی۔
 values-b+ur	string	extension_status_hash_mismatch	-	یہ فائل اپنے شائع شدہ ہیش سے مطابقت نہیں رکھتی۔ اس کی اجازت نہیں دی جا سکتی۔
 values-b+ur	string	extension_status_held	-	آپ کے انتخاب تک بند
+values-b+ur	string	extension_status_held_new_version	-	نیا ورژن · آپ کے انتخاب تک بند
 values-b+ur	string	extension_status_kept_off	-	بند رکھی گئی
 values-b+ur	string	extension_status_start_failed	-	اجازت دی گئی، لیکن یہ شروع نہیں ہوئی
 values-b+ur	string	extension_types	-	حمایت کی
@@ -34463,17 +35244,29 @@ values-b+ur	string	play_movie_button	-	مووی لگائے
 values-b+ur	string	play_torrent_button	-	سٹریم ٹورینٹ
 values-b+ur	string	play_trailer_button	-	ٹریلر چلائیں
 values-b+ur	string	play_with_app_name	-	CloudStream کے ساتھ چلائیں
+values-b+ur	string	player_enter_fullscreen	-	پوری اسکرین میں داخل ہوں
+values-b+ur	string	player_exit_fullscreen	-	پوری اسکرین سے باہر نکلیں
+values-b+ur	string	player_fit_original	-	اصل تناسب
+values-b+ur	string	player_fit_screen	-	اسکرین بھریں
+values-b+ur	string	player_fit_title	-	تصویر کا سائز
+values-b+ur	string	player_fit_width	-	چوڑائی بھریں
 values-b+ur	string	player_load_subtitles	-	فائل سے لوڈ کریں
 values-b+ur	string	player_load_subtitles_online	-	انٹرنیٹ سے لوڈ کریں
 values-b+ur	string	player_loaded_subtitles	-	لوڈ %s
+values-b+ur	string	player_mute	-	خاموش کریں
 values-b+ur	string	player_pref	-	ترجیحی ویڈیو پلیئر
 values-b+ur	string	player_settings_play_in_app	-	اندرونی پلیئر
 values-b+ur	string	player_size_settings	-	پلیئر کا سائز تبدیل کرنے کا بٹن
 values-b+ur	string	player_size_settings_des	-	سیاہ سرحد کو ہٹا دیں
+values-b+ur	string	player_source_playing	-	چل رہا ہے
+values-b+ur	string	player_source_resumes_at	-	بدلنے سے آپ کی جگہ برقرار رہتی ہے: %1$s سے جاری
+values-b+ur	string	player_source_retry	-	دوبارہ کوشش کریں
+values-b+ur	string	player_source_switch	-	بدلیں
 values-b+ur	string	player_speed	-	چلانے کی رفتار
 values-b+ur	string	player_speed_text_format	-	رفتار (%.2fx)
 values-b+ur	string	player_subtitles_settings	-	سنٹیٹلز
 values-b+ur	string	player_subtitles_settings_des	-	پلیئر کے ترجمہ کی ترتیبات
+values-b+ur	string	player_unmute	-	آواز کھولیں
 values-b+ur	string	plugin	-	پلگ ان
 values-b+ur	string	plugin_deleted	-	پلگ ان کو حذف کر دیا گیا
 values-b+ur	string	plugin_downloaded	-	پلگ ان ڈاؤن لوڈ ہو گیا
@@ -35040,6 +35833,7 @@ values-b+vi	string	extension_status_allowed	-	Đã cho phép và đang chạy tr
 values-b+vi	string	extension_status_blocked	-	Bị bản quét chặn. Không thể cho phép mục này.
 values-b+vi	string	extension_status_hash_mismatch	-	Tệp này không khớp với mã băm đã công bố. Không thể cho phép mục này.
 values-b+vi	string	extension_status_held	-	Tắt cho đến khi bạn chọn
+values-b+vi	string	extension_status_held_new_version	-	Phiên bản mới · Tắt cho đến khi bạn chọn
 values-b+vi	string	extension_status_kept_off	-	Vẫn giữ tắt
 values-b+vi	string	extension_status_start_failed	-	Đã cho phép, nhưng không khởi động được
 values-b+vi	string	extension_types	-	Hỗ trợ
@@ -35180,11 +35974,18 @@ values-b+vi	string	play_movie_button	-	Phát
 values-b+vi	string	play_torrent_button	-	Phát Torrent
 values-b+vi	string	play_trailer_button	-	Phát Trailer
 values-b+vi	string	play_with_app_name	-	Phát bằng CloudStream
+values-b+vi	string	player_enter_fullscreen	-	Chuyển sang chế độ toàn màn hình
+values-b+vi	string	player_exit_fullscreen	-	Thoát khỏi chế độ toàn màn hình
+values-b+vi	string	player_fit_original	-	Tỷ lệ gốc
+values-b+vi	string	player_fit_screen	-	Lấp đầy màn hình
+values-b+vi	string	player_fit_title	-	Kích thước hình ảnh
+values-b+vi	string	player_fit_width	-	Lấp đầy chiều rộng
 values-b+vi	string	player_is_live	-	Trực tiếp
 values-b+vi	string	player_load_one_subtitle_online	-	Tải phụ đề đầu tiên có sẵn
 values-b+vi	string	player_load_subtitles	-	Chọn từ tệp
 values-b+vi	string	player_load_subtitles_online	-	Chọn từ Internet
 values-b+vi	string	player_loaded_subtitles	-	Đã tải %s
+values-b+vi	string	player_mute	-	Tắt tiếng
 values-b+vi	string	player_notification_channel_description	-	Điều khiển phát lại trong nền bằng thông báo của trình phát
 values-b+vi	string	player_notification_channel_name	-	Thông báo trình phát
 values-b+vi	string	player_pref	-	Trình phát ưu tiên
@@ -35193,10 +35994,15 @@ values-b+vi	string	player_settings_play_in_app	-	Trình phát tích hợp
 values-b+vi	string	player_settings_select_cast_device	-	Chọn thiết bị truyền
 values-b+vi	string	player_size_settings	-	Nút thay đổi kích thước trình phát
 values-b+vi	string	player_size_settings_des	-	Xóa bỏ các viền đen
+values-b+vi	string	player_source_playing	-	Đang phát
+values-b+vi	string	player_source_resumes_at	-	Chuyển vẫn giữ vị trí của bạn: tiếp tục từ %1$s
+values-b+vi	string	player_source_retry	-	Thử lại
+values-b+vi	string	player_source_switch	-	Chuyển
 values-b+vi	string	player_speed	-	Tốc độ phát
 values-b+vi	string	player_speed_text_format	-	Tốc độ (%.2fx)
 values-b+vi	string	player_subtitles_settings	-	Phụ đề
 values-b+vi	string	player_subtitles_settings_des	-	Cài đặt phụ đề
+values-b+vi	string	player_unmute	-	Bật tiếng
 values-b+vi	string	plugin	-	tiện ích mở rộng
 values-b+vi	string	plugin_deleted	-	Tiện ích mở rộng đã xoá
 values-b+vi	string	plugin_downloaded	-	Tiện ích mở rộng đã tải xuống
@@ -35824,6 +36630,7 @@ values-b+zh	string	extension_status_allowed	-	已允许，正在其沙盒中运�
 values-b+zh	string	extension_status_blocked	-	已被扫描拦截。无法允许。
 values-b+zh	string	extension_status_hash_mismatch	-	此文件与其发布的哈希值不符。无法允许。
 values-b+zh	string	extension_status_held	-	在你选择之前保持关闭
+values-b+zh	string	extension_status_held_new_version	-	新版本 · 在你选择之前保持关闭
 values-b+zh	string	extension_status_kept_off	-	已保持关闭
 values-b+zh	string	extension_status_start_failed	-	已允许，但未能启动
 values-b+zh	string	extension_types	-	类型
@@ -35964,11 +36771,18 @@ values-b+zh	string	play_movie_button	-	播放电影
 values-b+zh	string	play_torrent_button	-	播放种子
 values-b+zh	string	play_trailer_button	-	播放预告片
 values-b+zh	string	play_with_app_name	-	使用 CloudStream 播放
+values-b+zh	string	player_enter_fullscreen	-	进入全屏模式
+values-b+zh	string	player_exit_fullscreen	-	退出全屏模式
+values-b+zh	string	player_fit_original	-	原始宽高比
+values-b+zh	string	player_fit_screen	-	填满屏幕
+values-b+zh	string	player_fit_title	-	画面大小
+values-b+zh	string	player_fit_width	-	填满宽度
 values-b+zh	string	player_is_live	-	播放中
 values-b+zh	string	player_load_one_subtitle_online	-	加载第一个可用的字幕
 values-b+zh	string	player_load_subtitles	-	从文件加载
 values-b+zh	string	player_load_subtitles_online	-	从互联网加载
 values-b+zh	string	player_loaded_subtitles	-	已加载 %s
+values-b+zh	string	player_mute	-	静音
 values-b+zh	string	player_notification_channel_description	-	控制后台播放的播放器通知
 values-b+zh	string	player_notification_channel_name	-	播放器通知
 values-b+zh	string	player_pref	-	首选视频播放器
@@ -35977,10 +36791,15 @@ values-b+zh	string	player_settings_play_in_app	-	内部播放器
 values-b+zh	string	player_settings_select_cast_device	-	选择投射设备
 values-b+zh	string	player_size_settings	-	播放器画面调整按钮
 values-b+zh	string	player_size_settings_des	-	移除黑色边框
+values-b+zh	string	player_source_playing	-	正在播放
+values-b+zh	string	player_source_resumes_at	-	切换会保留播放位置：从 %1$s 继续
+values-b+zh	string	player_source_retry	-	重试
+values-b+zh	string	player_source_switch	-	切换
 values-b+zh	string	player_speed	-	播放速度
 values-b+zh	string	player_speed_text_format	-	速度（%.2fx）
 values-b+zh	string	player_subtitles_settings	-	字幕
 values-b+zh	string	player_subtitles_settings_des	-	播放器字幕设置
+values-b+zh	string	player_unmute	-	取消静音
 values-b+zh	string	plugin	-	插件
 values-b+zh	string	plugin_deleted	-	插件已删除
 values-b+zh	string	plugin_downloaded	-	插件已下载
@@ -36605,6 +37424,7 @@ values-b+zh+TW	string	extension_status_allowed	-	已允許，正在其沙箱中�
 values-b+zh+TW	string	extension_status_blocked	-	已遭掃描封鎖。無法允許。
 values-b+zh+TW	string	extension_status_hash_mismatch	-	此檔案與其發布的雜湊值不符。無法允許。
 values-b+zh+TW	string	extension_status_held	-	在你選擇之前保持關閉
+values-b+zh+TW	string	extension_status_held_new_version	-	新版本 · 在你選擇之前保持關閉
 values-b+zh+TW	string	extension_status_kept_off	-	已保持關閉
 values-b+zh+TW	string	extension_status_start_failed	-	已允許，但未能啟動
 values-b+zh+TW	string	extension_types	-	類型
@@ -36745,11 +37565,18 @@ values-b+zh+TW	string	play_movie_button	-	播放電影
 values-b+zh+TW	string	play_torrent_button	-	播放種子
 values-b+zh+TW	string	play_trailer_button	-	播放預告片
 values-b+zh+TW	string	play_with_app_name	-	使用 CloudStream 播放
+values-b+zh+TW	string	player_enter_fullscreen	-	進入全螢幕模式
+values-b+zh+TW	string	player_exit_fullscreen	-	結束全螢幕模式
+values-b+zh+TW	string	player_fit_original	-	原始長寬比
+values-b+zh+TW	string	player_fit_screen	-	填滿螢幕
+values-b+zh+TW	string	player_fit_title	-	畫面大小
+values-b+zh+TW	string	player_fit_width	-	填滿寬度
 values-b+zh+TW	string	player_is_live	-	播放中
 values-b+zh+TW	string	player_load_one_subtitle_online	-	載入第一個可用的
 values-b+zh+TW	string	player_load_subtitles	-	從檔案載入
 values-b+zh+TW	string	player_load_subtitles_online	-	從網路載入
 values-b+zh+TW	string	player_loaded_subtitles	-	已載入 %s
+values-b+zh+TW	string	player_mute	-	靜音
 values-b+zh+TW	string	player_notification_channel_description	-	控制背景播放的通知
 values-b+zh+TW	string	player_notification_channel_name	-	播放器通知
 values-b+zh+TW	string	player_pref	-	偏好影片播放器
@@ -36758,10 +37585,15 @@ values-b+zh+TW	string	player_settings_play_in_app	-	內部播放器
 values-b+zh+TW	string	player_settings_select_cast_device	-	選擇投放裝置
 values-b+zh+TW	string	player_size_settings	-	播放器調整大小按鈕
 values-b+zh+TW	string	player_size_settings_des	-	移除黑色邊框
+values-b+zh+TW	string	player_source_playing	-	播放中
+values-b+zh+TW	string	player_source_resumes_at	-	切換會保留播放位置：從 %1$s 繼續
+values-b+zh+TW	string	player_source_retry	-	重試
+values-b+zh+TW	string	player_source_switch	-	切換
 values-b+zh+TW	string	player_speed	-	播放速度
 values-b+zh+TW	string	player_speed_text_format	-	速度（%.2fx）
 values-b+zh+TW	string	player_subtitles_settings	-	字幕
 values-b+zh+TW	string	player_subtitles_settings_des	-	播放器字幕設定
+values-b+zh+TW	string	player_unmute	-	取消靜音
 values-b+zh+TW	string	plugin	-	外掛
 values-b+zh+TW	string	plugin_deleted	-	外掛已刪除
 values-b+zh+TW	string	plugin_downloaded	-	外掛程式已下載

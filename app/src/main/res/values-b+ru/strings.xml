@@ -276,6 +276,7 @@
 <string name="extension_status_blocked">"Заблокировано проверкой. Разрешить нельзя."</string>
 <string name="extension_status_hash_mismatch">"Этот файл не совпадает с опубликованным хешем. Разрешить его нельзя."</string>
 <string name="extension_status_held">"Выключено, пока вы не решите"</string>
+<string name="extension_status_held_new_version">"Новая версия · Выключено, пока вы не решите"</string>
 <string name="extension_status_kept_off">"Оставлено выключенным"</string>
 <string name="extension_status_start_failed">"Разрешено, но не запустилось"</string>
 <string name="extension_types">"Поддерживается"</string>
@@ -416,11 +417,18 @@
 <string name="play_torrent_button">"Поток торрент"</string>
 <string name="play_trailer_button">"Смотреть трейлер"</string>
 <string name="play_with_app_name">"Смотреть с CloudStream"</string>
+<string name="player_enter_fullscreen">"Полноэкранный режим"</string>
+<string name="player_exit_fullscreen">"Выйти из полноэкранного режима"</string>
+<string name="player_fit_original">"Исходные пропорции"</string>
+<string name="player_fit_screen">"На весь экран"</string>
+<string name="player_fit_title">"Размер изображения"</string>
+<string name="player_fit_width">"По ширине"</string>
 <string name="player_is_live">"Прямой эфир"</string>
 <string name="player_load_one_subtitle_online">"Скачать первые доступные"</string>
 <string name="player_load_subtitles">"Загрузить из файла"</string>
 <string name="player_load_subtitles_online">"Скачивать из интернета"</string>
 <string name="player_loaded_subtitles" formatted="true">"Загружено %s"</string>
+<string name="player_mute">"Выключить звук"</string>
 <string name="player_notification_channel_description">"Уведомление проигрывателя для управления воспроизведением в фоновом режиме"</string>
 <string name="player_notification_channel_name">"Уведомления плеера"</string>
 <string name="player_pref">"Предпочитаемый видеоплеер"</string>
@@ -429,10 +437,15 @@
 <string name="player_settings_select_cast_device">"Выберите устройство для трансляции"</string>
 <string name="player_size_settings">"Кнопка изменения размера проигрывателя"</string>
 <string name="player_size_settings_des">"Убрать черные границы"</string>
+<string name="player_source_playing">"Воспроизводится"</string>
+<string name="player_source_resumes_at" formatted="true">"Переключение сохраняет позицию: продолжение с %1$s"</string>
+<string name="player_source_retry">"Повторить"</string>
+<string name="player_source_switch">"Переключить"</string>
 <string name="player_speed">"Скорость проигрывателя"</string>
 <string name="player_speed_text_format" formatted="true">"Скорость (%.2fx)"</string>
 <string name="player_subtitles_settings">"Субтитры"</string>
 <string name="player_subtitles_settings_des">"Настройки субтитров проигрывателя"</string>
+<string name="player_unmute">"Включить звук"</string>
 <string name="plugin">"дополнения"</string>
 <string name="plugin_deleted">"Дополнение удалено"</string>
 <string name="plugin_downloaded">"Дополнение скачано"</string>

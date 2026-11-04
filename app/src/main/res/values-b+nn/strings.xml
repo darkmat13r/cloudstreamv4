@@ -74,6 +74,7 @@
 <string name="extension_status_blocked">"Blokkert av skanninga. Dette kan ikkje tillatast."</string>
 <string name="extension_status_hash_mismatch">"Denne fila stemmer ikkje med den publiserte hashen. Dette kan ikkje tillatast."</string>
 <string name="extension_status_held">"Av til du vel"</string>
+<string name="extension_status_held_new_version">"Ny versjon · Av til du vel"</string>
 <string name="extension_status_kept_off">"Blir verande av"</string>
 <string name="extension_status_start_failed">"Tillaten, men starta ikkje"</string>
 <string name="extension_warning_classloader_access">"Ho når klasselastaren, som kan hente inn kode denne skanninga aldri har sett."</string>
@@ -141,11 +142,23 @@
 <string name="play_torrent_button">"Strøm Torrent"</string>
 <string name="play_trailer_button">"Spel av trailer"</string>
 <string name="play_with_app_name">"Spel av med CloudStream"</string>
+<string name="player_enter_fullscreen">"Vis i fullskjerm"</string>
+<string name="player_exit_fullscreen">"Avslutt fullskjerm"</string>
+<string name="player_fit_original">"Opphavleg sideforhold"</string>
+<string name="player_fit_screen">"Fyll skjermen"</string>
+<string name="player_fit_title">"Biletstorleik"</string>
+<string name="player_fit_width">"Fyll breidda"</string>
+<string name="player_mute">"Slå av lyd"</string>
 <string name="player_size_settings_des">"Fjern dei svarte kantane"</string>
+<string name="player_source_playing">"Spelar"</string>
+<string name="player_source_resumes_at" formatted="true">"Bytet held på plassen din: held fram frå %1$s"</string>
+<string name="player_source_retry">"Prøv igjen"</string>
+<string name="player_source_switch">"Byt"</string>
 <string name="player_speed">"Avspelinghastigheit"</string>
 <string name="player_speed_text_format" formatted="true">"Avspelinghastigheit (%.2fx)"</string>
 <string name="player_subtitles_settings">"Undertekstar"</string>
 <string name="player_subtitles_settings_des">"Innstillinger for avspilling av undertekster"</string>
+<string name="player_unmute">"Slå på lyd"</string>
 <string name="popup_delete_file">"Slett fil"</string>
 <string name="popup_pause_download">"Sett nedlasting på vent"</string>
 <string name="popup_play_file">"Spel av fil"</string>

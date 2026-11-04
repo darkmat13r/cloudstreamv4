@@ -276,6 +276,7 @@
 <string name="extension_status_blocked">"Diblokir oleh pemindaian. Ini tidak dapat diizinkan."</string>
 <string name="extension_status_hash_mismatch">"Berkas ini tidak cocok dengan hash yang dipublikasikan. Ini tidak dapat diizinkan."</string>
 <string name="extension_status_held">"Nonaktif sampai Anda memilih"</string>
+<string name="extension_status_held_new_version">"Versi baru · Nonaktif sampai Anda memilih"</string>
 <string name="extension_status_kept_off">"Tetap nonaktif"</string>
 <string name="extension_status_start_failed">"Diizinkan, tetapi tidak berhasil dimulai"</string>
 <string name="extension_types">"Dukungan"</string>
@@ -416,11 +417,18 @@
 <string name="play_torrent_button">"Stream Torrent"</string>
 <string name="play_trailer_button">"Putar Cuplikan"</string>
 <string name="play_with_app_name">"Putar di CloudStream"</string>
+<string name="player_enter_fullscreen">"Masuk layar penuh"</string>
+<string name="player_exit_fullscreen">"Keluar dari layar penuh"</string>
+<string name="player_fit_original">"Rasio aspek asli"</string>
+<string name="player_fit_screen">"Isi layar"</string>
+<string name="player_fit_title">"Ukuran gambar"</string>
+<string name="player_fit_width">"Isi lebar"</string>
 <string name="player_is_live">"Live"</string>
 <string name="player_load_one_subtitle_online">"Muat yang pertama tersedia"</string>
 <string name="player_load_subtitles">"Muat dari file"</string>
 <string name="player_load_subtitles_online">"Ambil dari internet"</string>
 <string name="player_loaded_subtitles" formatted="true">"Memuat %s"</string>
+<string name="player_mute">"Bisukan"</string>
 <string name="player_notification_channel_description">"Pemberitahuan pemutar untuk mengontrol pemutaran dari latar belakang"</string>
 <string name="player_notification_channel_name">"Notifikasi pemain"</string>
 <string name="player_pref">"Pemutar video utama"</string>
@@ -429,10 +437,15 @@
 <string name="player_settings_select_cast_device">"Pilih perangkat cast"</string>
 <string name="player_size_settings">"Tombol ubah ukuran pemutar"</string>
 <string name="player_size_settings_des">"Hapus garis tepi hitam"</string>
+<string name="player_source_playing">"Sedang diputar"</string>
+<string name="player_source_resumes_at" formatted="true">"Mengganti tetap menjaga posisi Anda: lanjut di %1$s"</string>
+<string name="player_source_retry">"Coba lagi"</string>
+<string name="player_source_switch">"Ganti"</string>
 <string name="player_speed">"Kecepatan Pemutar"</string>
 <string name="player_speed_text_format" formatted="true">"Kecepatan (%.2fx)"</string>
 <string name="player_subtitles_settings">"Subtitel"</string>
 <string name="player_subtitles_settings_des">"Pengaturan subtitel pemutar"</string>
+<string name="player_unmute">"Bunyikan"</string>
 <string name="plugin">"plugin"</string>
 <string name="plugin_deleted">"Plugin terhapus"</string>
 <string name="plugin_downloaded">"Plugin terunduh"</string>

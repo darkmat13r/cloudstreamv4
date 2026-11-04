@@ -19,6 +19,7 @@
 <string name="extension_status_blocked">"ብምርመራ ተዓጽዩ። እዚ ክፍቀድ ኣይክእልን።"</string>
 <string name="extension_status_hash_mismatch">"እዚ ፋይል ምስቲ ዝተሓትመ ሃሽ ኣይሰማማዕን። እዚ ክፍቀድ ኣይክእልን።"</string>
 <string name="extension_status_held">"ክሳብ እትመርጽ ጠፊኡ ኣሎ"</string>
+<string name="extension_status_held_new_version">"ሓድሽ ስሪት · ክሳብ እትመርጽ ጠፊኡ ኣሎ"</string>
 <string name="extension_status_kept_off">"ጠፊኡ ይጸንሕ ኣሎ"</string>
 <string name="extension_status_start_failed">"ተፈቒዱ፡ ግን ኣይጀመረን"</string>
 <string name="extension_warning_classloader_access">"ናብ ክላስ ሎደር ይበጽሕ፡ እዚ ድማ እዚ ምርመራ ርእይዎ ዘይፈልጥ ኮድ ከእቱ ይኽእል።"</string>
@@ -36,6 +37,18 @@
 <string name="home_search_only_body">"ካብ መስፋሕፋሕትኻ ሓደ እኳ መበገሲ ገጽ የብሉን፡ ግን ሕጂ'ውን ኣብኡ ክትደሊ ትኽእል ኢኻ።"</string>
 <string name="load_more">"ተወሳኺ ጽዓን"</string>
 <string name="next_episode_format" formatted="true">"ክፋል %d በ ላይ ይወጣል"</string>
+<string name="player_enter_fullscreen">"ናብ ምሉእ ስክሪን እቶ"</string>
+<string name="player_exit_fullscreen">"ካብ ምሉእ ስክሪን ውጻእ"</string>
+<string name="player_fit_original">"መበቆል ዝምድና"</string>
+<string name="player_fit_screen">"ስክሪን ምላእ"</string>
+<string name="player_fit_title">"መጠን ስእሊ"</string>
+<string name="player_fit_width">"ስፍሓት ምላእ"</string>
+<string name="player_mute">"ድምጺ ኣጥፍእ"</string>
+<string name="player_source_playing">"ይጻወት ኣሎ"</string>
+<string name="player_source_resumes_at" formatted="true">"ምቕያር ቦታኻ ይሕልው፦ ካብ %1$s ይቕጽል"</string>
+<string name="player_source_retry">"እንደገና ፈትን"</string>
+<string name="player_source_switch">"ቀይር"</string>
+<string name="player_unmute">"ድምጺ ወልዕ"</string>
 <string name="search_state_idle_body_desktop">"ኣርእስቲ ጽሓፍ። ውጽኢታት ነፍሲ ወከፍ ምንጪ ምስ መለሰ ኣብ ትሕቲኡ ይርአዩ።"</string>
 <string name="seek_back_10_seconds">"10 ካልኢት ንድሕሪት"</string>
 <string name="seek_forward_10_seconds">"10 ካልኢት ንቕድሚት"</string>

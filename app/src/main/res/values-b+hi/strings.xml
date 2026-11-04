@@ -173,6 +173,7 @@
 <string name="extension_status_blocked">"स्कैन ने इसे ब्लॉक किया है। इसकी अनुमति नहीं दी जा सकती।"</string>
 <string name="extension_status_hash_mismatch">"यह फ़ाइल अपने प्रकाशित हैश से मेल नहीं खाती। इसकी अनुमति नहीं दी जा सकती।"</string>
 <string name="extension_status_held">"आपके चुनने तक बंद"</string>
+<string name="extension_status_held_new_version">"नया संस्करण · आपके चुनने तक बंद"</string>
 <string name="extension_status_kept_off">"बंद रखा गया"</string>
 <string name="extension_status_start_failed">"अनुमति है, लेकिन यह शुरू नहीं हुआ"</string>
 <string name="extension_warning_classloader_access">"यह क्लास लोडर तक पहुँचता है, जो ऐसा कोड ला सकता है जिसे इस स्कैन ने कभी नहीं देखा।"</string>
@@ -270,12 +271,24 @@
 <string name="play_torrent_button">"टोरेंट चलाएं"</string>
 <string name="play_trailer_button">"ट्रेलर देखे"</string>
 <string name="play_with_app_name">"क्लाउडस्ट्रीम के साथ चलाएं"</string>
+<string name="player_enter_fullscreen">"फ़ुलस्क्रीन मोड पर देखें"</string>
+<string name="player_exit_fullscreen">"फ़ुलस्क्रीन मोड से बाहर निकलें"</string>
+<string name="player_fit_original">"मूल आस्पेक्ट अनुपात"</string>
+<string name="player_fit_screen">"स्क्रीन भरें"</string>
+<string name="player_fit_title">"चित्र का आकार"</string>
+<string name="player_fit_width">"चौड़ाई भरें"</string>
+<string name="player_mute">"म्यूट करें"</string>
 <string name="player_size_settings">"प्लेयर आकार परिवर्तन बटन"</string>
 <string name="player_size_settings_des">"काले बॉर्डर हटाएँ"</string>
+<string name="player_source_playing">"चल रहा है"</string>
+<string name="player_source_resumes_at" formatted="true">"बदलने पर आपकी जगह बनी रहती है: %1$s से जारी"</string>
+<string name="player_source_retry">"फिर कोशिश करें"</string>
+<string name="player_source_switch">"बदलें"</string>
 <string name="player_speed">"प्लेयर स्पीड"</string>
 <string name="player_speed_text_format" formatted="true">"स्पीड (%.2fx)"</string>
 <string name="player_subtitles_settings">"उपशीर्षक"</string>
 <string name="player_subtitles_settings_des">"प्लेयर उपशीर्षक सेटिंग्स"</string>
+<string name="player_unmute">"अनम्यूट करें"</string>
 <string name="podcast_singular">"पॉडकास्ट"</string>
 <string name="popup_delete_file">"फ़ाइल मिटाएँ"</string>
 <string name="popup_pause_download">"डाउनलोड रोकें"</string>

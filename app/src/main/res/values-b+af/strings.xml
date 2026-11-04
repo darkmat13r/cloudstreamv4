@@ -50,6 +50,7 @@
 <string name="extension_status_blocked">"Deur die skandering geblokkeer. Dit kan nie toegelaat word nie."</string>
 <string name="extension_status_hash_mismatch">"Hierdie lêer stem nie ooreen met sy gepubliseerde hash nie. Dit kan nie toegelaat word nie."</string>
 <string name="extension_status_held">"Af totdat jy kies"</string>
+<string name="extension_status_held_new_version">"Nuwe weergawe · Af totdat jy kies"</string>
 <string name="extension_status_kept_off">"Afgehou"</string>
 <string name="extension_status_start_failed">"Toegelaat, maar dit het nie begin nie"</string>
 <string name="extension_warning_classloader_access">"Dit gryp na die klaslaaier, wat kode kan inbring wat hierdie skandering nooit gesien het nie."</string>
@@ -96,8 +97,20 @@
 <string name="play_torrent_button">"Stroom Torrent"</string>
 <string name="play_trailer_button">"Speel Lokprent"</string>
 <string name="play_with_app_name">"Speel met CloudStream"</string>
+<string name="player_enter_fullscreen">"Gaan na volskerm"</string>
+<string name="player_exit_fullscreen">"Verlaat volskerm"</string>
+<string name="player_fit_original">"Oorspronklike beeldverhouding"</string>
+<string name="player_fit_screen">"Vul skerm"</string>
+<string name="player_fit_title">"Beeldgrootte"</string>
+<string name="player_fit_width">"Vul breedte"</string>
+<string name="player_mute">"Demp"</string>
+<string name="player_source_playing">"Speel"</string>
+<string name="player_source_resumes_at" formatted="true">"Wissel behou jou posisie: gaan voort by %1$s"</string>
+<string name="player_source_retry">"Probeer weer"</string>
+<string name="player_source_switch">"Wissel"</string>
 <string name="player_speed">"Spelerspoed"</string>
 <string name="player_speed_text_format" formatted="true">"Spoed (%.2fx)"</string>
+<string name="player_unmute">"Ontdemp"</string>
 <string name="popup_delete_file">"Vee lêer uit"</string>
 <string name="popup_pause_download">"Laat aflaai rus"</string>
 <string name="popup_play_file">"Speel lêer"</string>

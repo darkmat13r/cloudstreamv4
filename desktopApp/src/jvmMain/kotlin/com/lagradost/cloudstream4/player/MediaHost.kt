@@ -10,6 +10,8 @@ import java.io.PrintStream
 import java.nio.ByteBuffer
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
+import java.util.concurrent.atomic.AtomicInteger
+import kotlin.concurrent.thread
 import kotlin.system.exitProcess
 import uk.co.caprica.vlcj.factory.MediaPlayerFactory
 import uk.co.caprica.vlcj.factory.discovery.NativeDiscovery
@@ -60,15 +62,19 @@ internal object MediaHost {
         val player = factory.mediaPlayers().newEmbeddedMediaPlayer()
         val output = FrameWriter(stdout)
         player.videoSurface().set(surface(FrameShapes(player, output), output))
+        val volume = AtomicInteger(PlayerVolume.MAX)
         player.events().addMediaPlayerEventListener(StatusListener(output))
+        keepVolume(player, volume)
+        val audioTrack = AtomicInteger(AudioTracks.NONE)
+        watchAudioTracks(player, audioTrack, output)
 
         // End of stdin is the app going away. Halt rather than release: stopping libVLC can block for
         // seconds on a stalled stream, and there is nothing here to clean up.
-        runCatching { commands(input, player) }
+        runCatching { commands(input, player, volume, audioTrack) }
         Runtime.getRuntime().halt(0)
     }
 
-    private fun commands(input: DataInputStream, player: MediaPlayer) {
+    private fun commands(input: DataInputStream, player: MediaPlayer, volume: AtomicInteger, audioTrack: AtomicInteger) {
         while (true) {
             when (input.readByte()) {
                 MediaProtocol.OP_PLAY -> {
@@ -83,9 +89,71 @@ internal object MediaHost {
                 MediaProtocol.OP_TOGGLE_PAUSE -> player.controls().pause()
                 MediaProtocol.OP_SEEK_BY -> player.controls().skipTime(input.readLong())
                 MediaProtocol.OP_SEEK_TO -> player.controls().setPosition(input.readFloat().coerceIn(0f, 1f))
+                MediaProtocol.OP_SET_VOLUME -> {
+                    volume.set(input.readInt().coerceIn(0, PlayerVolume.MAX))
+                    player.audio().setVolume(volume.get())
+                }
+                // Only remembered here. The watcher applies it, and only if the stream has it.
+                MediaProtocol.OP_SET_AUDIO_TRACK -> audioTrack.set(input.readInt())
                 else -> return
             }
         }
+    }
+
+    /**
+     * libVLC refuses a level, and reads as -1, for as long as its audio output is starting. That includes the moment it
+     * reports playing, so nothing can be sent once: measured, a level sent just after play was lost, and a stream muted
+     * by the person would have started at full volume. This puts it right as soon as the output can take it.
+     */
+    private fun keepVolume(player: MediaPlayer, volume: AtomicInteger) {
+        thread(isDaemon = true, name = "media-host-volume") {
+            while (true) {
+                val wanted = volume.get()
+                if (player.audio().volume() != wanted) player.audio().setVolume(wanted)
+                Thread.sleep(VOLUME_CHECK_MILLIS)
+            }
+        }
+    }
+
+    /**
+     * Tells the app the stream's audio tracks when they change, and holds the one chosen.
+     *
+     * Asked rather than told: libVLC has no list until the stream is open, about a second in when measured, and the
+     * channels and codec come from a second list keyed by the same id. A choice is applied only if the stream lists it,
+     * so a wrong id from the app does nothing.
+     */
+    private fun watchAudioTracks(player: MediaPlayer, wanted: AtomicInteger, output: FrameWriter) {
+        thread(isDaemon = true, name = "media-host-audio-tracks") {
+            var told: AudioTracks? = null
+            while (true) {
+                val now = readAudioTracks(player)
+                val choice = wanted.get()
+                if (now.selected != choice && now.tracks.any { it.id == choice }) player.audio().setTrack(choice)
+                if (now != told) {
+                    output.audioTracks(now)
+                    told = now
+                }
+                Thread.sleep(AUDIO_TRACK_CHECK_MILLIS)
+            }
+        }
+    }
+
+    private fun readAudioTracks(player: MediaPlayer): AudioTracks {
+        val info = runCatching { player.media().info().audioTracks() }.getOrNull().orEmpty().associateBy { it.id() }
+        val tracks = runCatching { player.audio().trackDescriptions() }.getOrDefault(emptyList())
+            .filter { it.id() >= 0 }
+            .take(MediaProtocol.MAX_AUDIO_TRACKS)
+            .map { track ->
+                val details = info[track.id()]
+                AudioTrack(
+                    id = track.id(),
+                    name = track.description().orEmpty().take(MediaProtocol.MAX_AUDIO_NAME_CHARS),
+                    channels = details?.channels()?.coerceIn(0, MediaProtocol.MAX_AUDIO_CHANNELS) ?: 0,
+                    codec = details?.codecName().orEmpty().take(MediaProtocol.MAX_AUDIO_CODEC_BYTES),
+                )
+            }
+        val current = player.audio().track().takeIf { id -> tracks.any { it.id == id } } ?: AudioTracks.NONE
+        return AudioTracks(tracks, current)
     }
 
     private fun surface(shapes: FrameShapes, output: FrameWriter) = CallbackVideoSurface(
@@ -115,6 +183,8 @@ internal object MediaHost {
     )
 
     private const val EXIT_NO_VLC = 3
+    private const val VOLUME_CHECK_MILLIS = 20L
+    private const val AUDIO_TRACK_CHECK_MILLIS = 250L
     private const val NO_AUDIO = "--no-audio"
 }
 
@@ -220,6 +290,21 @@ private class FrameWriter(stdout: FileOutputStream) {
         view.clear()
         view.limit(size)
         while (view.hasRemaining()) channel.write(view)
+    }
+
+    fun audioTracks(audio: AudioTracks) = send {
+        data.writeByte(MediaProtocol.MESSAGE_AUDIO_TRACKS.toInt())
+        data.writeInt(audio.tracks.size)
+        data.writeInt(audio.selected)
+        audio.tracks.forEach { track ->
+            data.writeInt(track.id)
+            data.writeInt(track.channels)
+            with(MediaProtocol) {
+                data.writeText(track.name)
+                data.writeText(track.codec)
+            }
+        }
+        data.flush()
     }
 
     fun status(status: PlayerStatus) = send {

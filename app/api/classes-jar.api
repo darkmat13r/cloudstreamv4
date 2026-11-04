@@ -3516,6 +3516,7 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field extension_status_blocked I
 	public static field extension_status_hash_mismatch I
 	public static field extension_status_held I
+	public static field extension_status_held_new_version I
 	public static field extension_status_kept_off I
 	public static field extension_status_start_failed I
 	public static field extension_types I
@@ -3679,11 +3680,18 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field play_with_app_name I
 	public static field playback_speed_enabled_key I
 	public static field player_default_key I
+	public static field player_enter_fullscreen I
+	public static field player_exit_fullscreen I
+	public static field player_fit_original I
+	public static field player_fit_screen I
+	public static field player_fit_title I
+	public static field player_fit_width I
 	public static field player_is_live I
 	public static field player_load_one_subtitle_online I
 	public static field player_load_subtitles I
 	public static field player_load_subtitles_online I
 	public static field player_loaded_subtitles I
+	public static field player_mute I
 	public static field player_notification_channel_description I
 	public static field player_notification_channel_name I
 	public static field player_pref I
@@ -3693,11 +3701,16 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field player_settings_select_cast_device I
 	public static field player_size_settings I
 	public static field player_size_settings_des I
+	public static field player_source_playing I
 	public static field player_source_priority_key I
+	public static field player_source_resumes_at I
+	public static field player_source_retry I
+	public static field player_source_switch I
 	public static field player_speed I
 	public static field player_speed_text_format I
 	public static field player_subtitles_settings I
 	public static field player_subtitles_settings_des I
+	public static field player_unmute I
 	public static field plugin I
 	public static field plugin_deleted I
 	public static field plugin_downloaded I

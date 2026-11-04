@@ -271,6 +271,7 @@
 <string name="extension_status_blocked">"Блокирано от сканирането. Това не може да бъде разрешено."</string>
 <string name="extension_status_hash_mismatch">"Този файл не съответства на публикувания си хеш. Това не може да бъде разрешено."</string>
 <string name="extension_status_held">"Изключено, докато не решите"</string>
+<string name="extension_status_held_new_version">"Нова версия · Изключено, докато не решите"</string>
 <string name="extension_status_kept_off">"Оставено изключено"</string>
 <string name="extension_status_start_failed">"Разрешено, но не се стартира"</string>
 <string name="extension_types">"Поддържани"</string>
@@ -410,10 +411,17 @@
 <string name="play_torrent_button">"Поточно предаване на торент"</string>
 <string name="play_trailer_button">"Пусни трейлър"</string>
 <string name="play_with_app_name">"Пусни с CloudStream"</string>
+<string name="player_enter_fullscreen">"Вход в цял екран"</string>
+<string name="player_exit_fullscreen">"Изход от цял екран"</string>
+<string name="player_fit_original">"Оригинално съотношение"</string>
+<string name="player_fit_screen">"Запълване на екрана"</string>
+<string name="player_fit_title">"Размер на картината"</string>
+<string name="player_fit_width">"Запълване по ширина"</string>
 <string name="player_load_one_subtitle_online">"Зареди първия наличен"</string>
 <string name="player_load_subtitles">"Зареди от файл"</string>
 <string name="player_load_subtitles_online">"Зареди от Интернет"</string>
 <string name="player_loaded_subtitles" formatted="true">"Заредено %s"</string>
+<string name="player_mute">"Без звук"</string>
 <string name="player_notification_channel_description">"Известие на плейъра за контролиране на възпроизвеждането от фона"</string>
 <string name="player_notification_channel_name">"Известия на плейъра"</string>
 <string name="player_pref">"Предпочитан видео плеър"</string>
@@ -422,10 +430,15 @@
 <string name="player_settings_select_cast_device">"Изберете устройство за излъчване"</string>
 <string name="player_size_settings">"Бутон за преоразмеряване на плейъра"</string>
 <string name="player_size_settings_des">"Премахнете черните граници"</string>
+<string name="player_source_playing">"Възпроизвежда се"</string>
+<string name="player_source_resumes_at" formatted="true">"Смяната запазва позицията ви: продължава от %1$s"</string>
+<string name="player_source_retry">"Нов опит"</string>
+<string name="player_source_switch">"Смяна"</string>
 <string name="player_speed">"Скорост на възпроизвеждане"</string>
 <string name="player_speed_text_format" formatted="true">"Скорост (%.2fx)"</string>
 <string name="player_subtitles_settings">"Субтитри"</string>
 <string name="player_subtitles_settings_des">"Настройки на субтитрите на плейъра"</string>
+<string name="player_unmute">"Включване на звука"</string>
 <string name="plugin">"Плъгини"</string>
 <string name="plugin_deleted">"Приставката е изтрита"</string>
 <string name="plugin_downloaded">"Приставката е изтеглена"</string>
