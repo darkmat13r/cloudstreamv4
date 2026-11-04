@@ -105,6 +105,10 @@
 <string name="player_mute">"ಮ್ಯೂಟ್ ಮಾಡಿ"</string>
 <string name="player_size_settings">"ಪ್ಲೇಯರ್ ಮರುಗಾತ್ರಗೊಳಿಸಿ ಬಟನ್"</string>
 <string name="player_size_settings_des">"ಕಪ್ಪು ಗಡಿಗಳನ್ನು ತೆಗೆದುಹಾಕಿ"</string>
+<string name="player_source_playing">"ಪ್ಲೇ ಆಗುತ್ತಿದೆ"</string>
+<string name="player_source_resumes_at" formatted="true">"ಬದಲಿಸಿದರೂ ಸ್ಥಾನ ಉಳಿಯುತ್ತದೆ: %1$s ರಿಂದ ಮುಂದುವರಿಯುತ್ತದೆ"</string>
+<string name="player_source_retry">"ಮರುಪ್ರಯತ್ನಿಸಿ"</string>
+<string name="player_source_switch">"ಬದಲಿಸಿ"</string>
 <string name="player_speed">"ಪ್ಲೇಯರ್ ಸ್ಪೀಡ್"</string>
 <string name="player_speed_text_format" formatted="true">"ಸ್ಪೀಡ್(%.2fx)"</string>
 <string name="player_subtitles_settings">"ಸಬ್ ಟೈಟಲ್ಸ್"</string>

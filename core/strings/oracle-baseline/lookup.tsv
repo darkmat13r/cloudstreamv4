@@ -463,6 +463,10 @@ values-b+af	string	player_settings_play_in_app	-	Internal player
 values-b+af	string	player_settings_select_cast_device	-	Select cast device
 values-b+af	string	player_size_settings	-	Player resize button
 values-b+af	string	player_size_settings_des	-	Remove the black borders
+values-b+af	string	player_source_playing	-	Speel
+values-b+af	string	player_source_resumes_at	-	Wissel behou jou posisie: gaan voort by %1$s
+values-b+af	string	player_source_retry	-	Probeer weer
+values-b+af	string	player_source_switch	-	Wissel
 values-b+af	string	player_speed	-	Spelerspoed
 values-b+af	string	player_speed_text_format	-	Spoed (%.2fx)
 values-b+af	string	player_subtitles_settings	-	Subtitles
@@ -1299,6 +1303,10 @@ values-b+am	string	player_settings_play_in_app	-	Internal player
 values-b+am	string	player_settings_select_cast_device	-	Select cast device
 values-b+am	string	player_size_settings	-	Player resize button
 values-b+am	string	player_size_settings_des	-	Remove the black borders
+values-b+am	string	player_source_playing	-	በመጫወት ላይ
+values-b+am	string	player_source_resumes_at	-	መቀየር ቦታዎን ይጠብቃል፦ ከ%1$s ይቀጥላል
+values-b+am	string	player_source_retry	-	እንደገና ሞክር
+values-b+am	string	player_source_switch	-	ቀይር
 values-b+am	string	player_speed	-	የአጫዋች ፍጥነት
 values-b+am	string	player_speed_text_format	-	ፍጥነት(%.2fx)
 values-b+am	string	player_subtitles_settings	-	Subtitles
@@ -2135,6 +2143,10 @@ values-b+apc	string	player_settings_play_in_app	-	المشغل يللي ب "كل
 values-b+apc	string	player_settings_select_cast_device	-	نقي جهاز الكاست
 values-b+apc	string	player_size_settings	-	كبسة تغيير حجم الڤيديو
 values-b+apc	string	player_size_settings_des	-	شيل الأسود من الأطراف
+values-b+apc	string	player_source_playing	-	عم يشتغل
+values-b+apc	string	player_source_resumes_at	-	التبديل بيحافظ على مكانك: بيكمّل من %1$s
+values-b+apc	string	player_source_retry	-	جرّب كمان مرة
+values-b+apc	string	player_source_switch	-	بدّل
 values-b+apc	string	player_speed	-	سرعة الڤيديو
 values-b+apc	string	player_speed_text_format	-	السرعة (%.2fx)
 values-b+apc	string	player_subtitles_settings	-	الترجمة
@@ -2983,6 +2995,10 @@ values-b+ar	string	player_settings_play_in_app	-	مشغل داخلي
 values-b+ar	string	player_settings_select_cast_device	-	حدد جهاز البث
 values-b+ar	string	player_size_settings	-	زر تغيير حجم المُشغل
 values-b+ar	string	player_size_settings_des	-	إزالة الحدود السوداء
+values-b+ar	string	player_source_playing	-	قيد التشغيل
+values-b+ar	string	player_source_resumes_at	-	التبديل يحافظ على موضعك: يُستأنف عند %1$s
+values-b+ar	string	player_source_retry	-	إعادة المحاولة
+values-b+ar	string	player_source_switch	-	تبديل
 values-b+ar	string	player_speed	-	سرعة المُشغل
 values-b+ar	string	player_speed_text_format	-	سرعة (%.2fx)
 values-b+ar	string	player_subtitles_settings	-	الترجمة
@@ -3823,6 +3839,10 @@ values-b+ars	string	player_settings_play_in_app	-	Internal player
 values-b+ars	string	player_settings_select_cast_device	-	Select cast device
 values-b+ars	string	player_size_settings	-	زر تغيير حجم المشغل
 values-b+ars	string	player_size_settings_des	-	إزالة الحدود السوداء
+values-b+ars	string	player_source_playing	-	قيد التشغيل
+values-b+ars	string	player_source_resumes_at	-	التبديل يحافظ على موضعك: يُستأنف عند %1$s
+values-b+ars	string	player_source_retry	-	إعادة المحاولة
+values-b+ars	string	player_source_switch	-	تبديل
 values-b+ars	string	player_speed	-	سرعة اللاعب
 values-b+ars	string	player_speed_text_format	-	سرعة(%.2fx)
 values-b+ars	string	player_subtitles_settings	-	ترجمات
@@ -4659,6 +4679,10 @@ values-b+as	string	player_settings_play_in_app	-	আভ্যন্তৰীণ 
 values-b+as	string	player_settings_select_cast_device	-	কাষ্ট ডিভাইচ চয়ন কৰক
 values-b+as	string	player_size_settings	-	প্লেয়াৰৰ আকাৰ পৰিবৰ্তনৰ বুটাম
 values-b+as	string	player_size_settings_des	-	ক’লা পাৰত আঁতৰাওক
+values-b+as	string	player_source_playing	-	চলি আছে
+values-b+as	string	player_source_resumes_at	-	সলনি কৰিলে আপোনাৰ স্থান ৰয়: %1$sত পুনৰ আৰম্ভ হ'ব
+values-b+as	string	player_source_retry	-	পুনৰ চেষ্টা কৰক
+values-b+as	string	player_source_switch	-	সলনি কৰক
 values-b+as	string	player_speed	-	প্লেয়াৰ গতি
 values-b+as	string	player_speed_text_format	-	গতি (%.2fx)
 values-b+as	string	player_subtitles_settings	-	সাবটাইটেল
@@ -5495,6 +5519,10 @@ values-b+az	string	player_settings_play_in_app	-	Internal player
 values-b+az	string	player_settings_select_cast_device	-	Select cast device
 values-b+az	string	player_size_settings	-	Pleyeri yenidən ölçüləndirmə düyməsini
 values-b+az	string	player_size_settings_des	-	Qara sərhədləri, kənarları sil
+values-b+az	string	player_source_playing	-	Oynayır
+values-b+az	string	player_source_resumes_at	-	Dəyişmək mövqeyinizi saxlayır: %1$s anından davam edir
+values-b+az	string	player_source_retry	-	Yenidən cəhd et
+values-b+az	string	player_source_switch	-	Dəyiş
 values-b+az	string	player_speed	-	Player Speed
 values-b+az	string	player_speed_text_format	-	Sürət (%.2fx)
 values-b+az	string	player_subtitles_settings	-	Subtitrlər
@@ -6337,6 +6365,10 @@ values-b+be	string	player_settings_play_in_app	-	Убудаваны прайгр
 values-b+be	string	player_settings_select_cast_device	-	Выбраць прыладу для трансляцыі
 values-b+be	string	player_size_settings	-	Кнопка змены памеру прайгравальніка
 values-b+be	string	player_size_settings_des	-	Прыбраць чорныя межы
+values-b+be	string	player_source_playing	-	Прайграецца
+values-b+be	string	player_source_resumes_at	-	Пераключэнне захоўвае пазіцыю: працяг з %1$s
+values-b+be	string	player_source_retry	-	Паўтарыць
+values-b+be	string	player_source_switch	-	Пераключыць
 values-b+be	string	player_speed	-	Хуткасць прайгравальніка
 values-b+be	string	player_speed_text_format	-	Хуткасць (%.2fx)
 values-b+be	string	player_subtitles_settings	-	Субцітры
@@ -7173,6 +7205,10 @@ values-b+bg	string	player_settings_play_in_app	-	Вътрешен плеър
 values-b+bg	string	player_settings_select_cast_device	-	Изберете устройство за излъчване
 values-b+bg	string	player_size_settings	-	Бутон за преоразмеряване на плейъра
 values-b+bg	string	player_size_settings_des	-	Премахнете черните граници
+values-b+bg	string	player_source_playing	-	Възпроизвежда се
+values-b+bg	string	player_source_resumes_at	-	Смяната запазва позицията ви: продължава от %1$s
+values-b+bg	string	player_source_retry	-	Нов опит
+values-b+bg	string	player_source_switch	-	Смяна
 values-b+bg	string	player_speed	-	Скорост на възпроизвеждане
 values-b+bg	string	player_speed_text_format	-	Скорост (%.2fx)
 values-b+bg	string	player_subtitles_settings	-	Субтитри
@@ -8009,6 +8045,10 @@ values-b+bn	string	player_settings_play_in_app	-	Internal player
 values-b+bn	string	player_settings_select_cast_device	-	Select cast device
 values-b+bn	string	player_size_settings	-	প্লেয়ারের সাইজ পরিবর্তন বাটন
 values-b+bn	string	player_size_settings_des	-	কালো প্রান্ত অপসারণ করুন
+values-b+bn	string	player_source_playing	-	চলছে
+values-b+bn	string	player_source_resumes_at	-	পাল্টালে আপনার অবস্থান থাকবে: %1$s থেকে চলবে
+values-b+bn	string	player_source_retry	-	আবার চেষ্টা করুন
+values-b+bn	string	player_source_switch	-	পাল্টান
 values-b+bn	string	player_speed	-	ভিডিও এর গতি
 values-b+bn	string	player_speed_text_format	-	গতি (%.2f গুণ)
 values-b+bn	string	player_subtitles_settings	-	সাবটাইটেল
@@ -8846,6 +8886,10 @@ values-b+ca	string	player_settings_play_in_app	-	Internal player
 values-b+ca	string	player_settings_select_cast_device	-	Select cast device
 values-b+ca	string	player_size_settings	-	Botó de canvi de mida del reproductor
 values-b+ca	string	player_size_settings_des	-	Remove the black borders
+values-b+ca	string	player_source_playing	-	S'està reproduint
+values-b+ca	string	player_source_resumes_at	-	Canviar conserva la posició: es reprèn a %1$s
+values-b+ca	string	player_source_retry	-	Torna-ho a provar
+values-b+ca	string	player_source_switch	-	Canvia
 values-b+ca	string	player_speed	-	Velocitat de reproducció
 values-b+ca	string	player_speed_text_format	-	Velocitat (%.2fx)
 values-b+ca	string	player_subtitles_settings	-	Subtitles
@@ -9682,6 +9726,10 @@ values-b+ckb	string	player_settings_play_in_app	-	Internal player
 values-b+ckb	string	player_settings_select_cast_device	-	Select cast device
 values-b+ckb	string	player_size_settings	-	Player resize button
 values-b+ckb	string	player_size_settings_des	-	Remove the black borders
+values-b+ckb	string	player_source_playing	-	لێدەدرێت
+values-b+ckb	string	player_source_resumes_at	-	گۆڕین شوێنەکەت دەپارێزێت: لە %1$s بەردەوام دەبێت
+values-b+ckb	string	player_source_retry	-	دووبارە هەوڵبدەرەوە
+values-b+ckb	string	player_source_switch	-	گۆڕین
 values-b+ckb	string	player_speed	-	Player Speed
 values-b+ckb	string	player_speed_text_format	-	خێرای(x%.2f)
 values-b+ckb	string	player_subtitles_settings	-	Subtitles
@@ -10526,6 +10574,10 @@ values-b+cs	string	player_settings_play_in_app	-	Interní přehrávač
 values-b+cs	string	player_settings_select_cast_device	-	Vyberte zařízení k vysílání
 values-b+cs	string	player_size_settings	-	Tlačítko pro změnu velikosti přehrávače
 values-b+cs	string	player_size_settings_des	-	Odebrat černá ohraničení
+values-b+cs	string	player_source_playing	-	Přehrává se
+values-b+cs	string	player_source_resumes_at	-	Přepnutí zachová pozici: pokračuje od %1$s
+values-b+cs	string	player_source_retry	-	Zkusit znovu
+values-b+cs	string	player_source_switch	-	Přepnout
 values-b+cs	string	player_speed	-	Rychlost přehrávání
 values-b+cs	string	player_speed_text_format	-	Rychlost (%.2fx)
 values-b+cs	string	player_subtitles_settings	-	Titulky
@@ -11362,6 +11414,10 @@ values-b+de	string	player_settings_play_in_app	-	Interner Player
 values-b+de	string	player_settings_select_cast_device	-	Cast-Gerät auswählen
 values-b+de	string	player_size_settings	-	Player-Skalierung anpassen
 values-b+de	string	player_size_settings_des	-	Entfernt schwarze Ränder
+values-b+de	string	player_source_playing	-	Läuft
+values-b+de	string	player_source_resumes_at	-	Beim Wechsel bleibt die Position erhalten: weiter bei %1$s
+values-b+de	string	player_source_retry	-	Wiederholen
+values-b+de	string	player_source_switch	-	Wechseln
 values-b+de	string	player_speed	-	Player-Geschwindigkeit
 values-b+de	string	player_speed_text_format	-	Geschwindigkeit (%.2fx)
 values-b+de	string	player_subtitles_settings	-	Untertitel
@@ -12198,6 +12254,10 @@ values-b+el	string	player_settings_play_in_app	-	Ενσωματωμένο πρό
 values-b+el	string	player_settings_select_cast_device	-	Επιλογή συσκευής για αναμετάδοση
 values-b+el	string	player_size_settings	-	Αλλαγή μεγέθους παραθύρου
 values-b+el	string	player_size_settings_des	-	Αφαίρεση μαύρων περιγραμμάτων
+values-b+el	string	player_source_playing	-	Αναπαράγεται
+values-b+el	string	player_source_resumes_at	-	Η αλλαγή διατηρεί τη θέση σας: συνέχεια από %1$s
+values-b+el	string	player_source_retry	-	Επανάληψη
+values-b+el	string	player_source_switch	-	Αλλαγή
 values-b+el	string	player_speed	-	Ταχύτητα αναπαραγωγής
 values-b+el	string	player_speed_text_format	-	Ταχύτητα (%.2fx)
 values-b+el	string	player_subtitles_settings	-	Υπότιτλοι
@@ -13034,6 +13094,10 @@ values-b+eo	string	player_settings_play_in_app	-	Internal player
 values-b+eo	string	player_settings_select_cast_device	-	Select cast device
 values-b+eo	string	player_size_settings	-	Player resize button
 values-b+eo	string	player_size_settings_des	-	Forigi nigrajn borderaĵojn
+values-b+eo	string	player_source_playing	-	Ludanta
+values-b+eo	string	player_source_resumes_at	-	Ŝanĝo konservas vian lokon: daŭrigas ĉe %1$s
+values-b+eo	string	player_source_retry	-	Reprovi
+values-b+eo	string	player_source_switch	-	Ŝanĝi
 values-b+eo	string	player_speed	-	Player Speed
 values-b+eo	string	player_speed_text_format	-	Rapido (%.2fx)
 values-b+eo	string	player_subtitles_settings	-	Subtekstoj
@@ -13874,6 +13938,10 @@ values-b+es	string	player_settings_play_in_app	-	Reproductor interno
 values-b+es	string	player_settings_select_cast_device	-	Seleccionar el dispositivo para transmitir
 values-b+es	string	player_size_settings	-	Botón de cambio de tamaño del reproductor
 values-b+es	string	player_size_settings_des	-	Eliminar bordes negros
+values-b+es	string	player_source_playing	-	Reproduciendo
+values-b+es	string	player_source_resumes_at	-	Cambiar mantiene tu posición: continúa en %1$s
+values-b+es	string	player_source_retry	-	Reintentar
+values-b+es	string	player_source_switch	-	Cambiar
 values-b+es	string	player_speed	-	Velocidad del reproductor
 values-b+es	string	player_speed_text_format	-	Velocidad (%.2f×)
 values-b+es	string	player_subtitles_settings	-	Subtítulos
@@ -14710,6 +14778,10 @@ values-b+fa	string	player_settings_play_in_app	-	Internal player
 values-b+fa	string	player_settings_select_cast_device	-	Select cast device
 values-b+fa	string	player_size_settings	-	دکمه تغییر‌اندازه پخش‌کننده
 values-b+fa	string	player_size_settings_des	-	حذف حاشیه سیاه
+values-b+fa	string	player_source_playing	-	در حال پخش
+values-b+fa	string	player_source_resumes_at	-	تعویض موقعیت شما را حفظ می‌کند: ادامه از %1$s
+values-b+fa	string	player_source_retry	-	تلاش دوباره
+values-b+fa	string	player_source_switch	-	تعویض
 values-b+fa	string	player_speed	-	سرعت پخش‌کننده
 values-b+fa	string	player_speed_text_format	-	سرعت (%.2f برابر)
 values-b+fa	string	player_subtitles_settings	-	زیرنویس‌ها
@@ -15546,6 +15618,10 @@ values-b+fil	string	player_settings_play_in_app	-	Internal player
 values-b+fil	string	player_settings_select_cast_device	-	Select cast device
 values-b+fil	string	player_size_settings	-	Pindutan upang baguhin ang laki
 values-b+fil	string	player_size_settings_des	-	Alisin ang black borders
+values-b+fil	string	player_source_playing	-	Nagpe-play
+values-b+fil	string	player_source_resumes_at	-	Mananatili ang posisyon mo sa paglipat: magpapatuloy sa %1$s
+values-b+fil	string	player_source_retry	-	Subukang muli
+values-b+fil	string	player_source_switch	-	Lumipat
 values-b+fil	string	player_speed	-	Bilis ng Manlalaro
 values-b+fil	string	player_speed_text_format	-	Bilis (%.2fx)
 values-b+fil	string	player_subtitles_settings	-	Subtitles
@@ -16386,6 +16462,10 @@ values-b+fr	string	player_settings_play_in_app	-	Lecteur interne
 values-b+fr	string	player_settings_select_cast_device	-	Sélectionnez un appareil de diffusion
 values-b+fr	string	player_size_settings	-	Bouton de redimensionnement du lecteur
 values-b+fr	string	player_size_settings_des	-	Supprimer les bordures noires
+values-b+fr	string	player_source_playing	-	En lecture
+values-b+fr	string	player_source_resumes_at	-	Changer conserve votre position : reprise à %1$s
+values-b+fr	string	player_source_retry	-	Réessayer
+values-b+fr	string	player_source_switch	-	Changer
 values-b+fr	string	player_speed	-	Vitesse de lecture
 values-b+fr	string	player_speed_text_format	-	Vitesse (%.2fx)
 values-b+fr	string	player_subtitles_settings	-	Sous-titres
@@ -17222,6 +17302,10 @@ values-b+gl	string	player_settings_play_in_app	-	Internal player
 values-b+gl	string	player_settings_select_cast_device	-	Select cast device
 values-b+gl	string	player_size_settings	-	Botón de cambio de tamaño do reprodutor
 values-b+gl	string	player_size_settings_des	-	Eliminar bordes negros
+values-b+gl	string	player_source_playing	-	Reproducindo
+values-b+gl	string	player_source_resumes_at	-	Cambiar mantén a túa posición: continúa en %1$s
+values-b+gl	string	player_source_retry	-	Tentar de novo
+values-b+gl	string	player_source_switch	-	Cambiar
 values-b+gl	string	player_speed	-	Velocidade do reproductor
 values-b+gl	string	player_speed_text_format	-	Velocidade (%.2fx)
 values-b+gl	string	player_subtitles_settings	-	Subtítulos
@@ -18058,6 +18142,10 @@ values-b+hi	string	player_settings_play_in_app	-	Internal player
 values-b+hi	string	player_settings_select_cast_device	-	Select cast device
 values-b+hi	string	player_size_settings	-	प्लेयर आकार परिवर्तन बटन
 values-b+hi	string	player_size_settings_des	-	काले बॉर्डर हटाएँ
+values-b+hi	string	player_source_playing	-	चल रहा है
+values-b+hi	string	player_source_resumes_at	-	बदलने पर आपकी जगह बनी रहती है: %1$s से जारी
+values-b+hi	string	player_source_retry	-	फिर कोशिश करें
+values-b+hi	string	player_source_switch	-	बदलें
 values-b+hi	string	player_speed	-	प्लेयर स्पीड
 values-b+hi	string	player_speed_text_format	-	स्पीड (%.2fx)
 values-b+hi	string	player_subtitles_settings	-	उपशीर्षक
@@ -18897,6 +18985,10 @@ values-b+hr	string	player_settings_play_in_app	-	Interni player
 values-b+hr	string	player_settings_select_cast_device	-	Odaberi uređaj za emitiranje
 values-b+hr	string	player_size_settings	-	Gumb za mijenjenje veličine playera
 values-b+hr	string	player_size_settings_des	-	Ukloni crne rubove
+values-b+hr	string	player_source_playing	-	Reproducira se
+values-b+hr	string	player_source_resumes_at	-	Promjena zadržava položaj: nastavlja se od %1$s
+values-b+hr	string	player_source_retry	-	Pokušaj ponovno
+values-b+hr	string	player_source_switch	-	Promijeni
 values-b+hr	string	player_speed	-	Brzina playera
 values-b+hr	string	player_speed_text_format	-	Brzina (%.2f×)
 values-b+hr	string	player_subtitles_settings	-	Titlovi
@@ -19733,6 +19825,10 @@ values-b+hu	string	player_settings_play_in_app	-	Belső lejátszó
 values-b+hu	string	player_settings_select_cast_device	-	Válassza ki a lejátszó eszközt
 values-b+hu	string	player_size_settings	-	Lejátszó átméretezése gomb
 values-b+hu	string	player_size_settings_des	-	Fekete szegélyek eltávolítása
+values-b+hu	string	player_source_playing	-	Lejátszás
+values-b+hu	string	player_source_resumes_at	-	A váltás megőrzi a pozíciót: folytatás innen: %1$s
+values-b+hu	string	player_source_retry	-	Újra
+values-b+hu	string	player_source_switch	-	Váltás
 values-b+hu	string	player_speed	-	Lejátszás sebessége
 values-b+hu	string	player_speed_text_format	-	Sebesség (%.2fx)
 values-b+hu	string	player_subtitles_settings	-	Feliratok
@@ -20565,6 +20661,10 @@ values-b+in	string	player_settings_play_in_app	-	Pemutar Bawaan
 values-b+in	string	player_settings_select_cast_device	-	Pilih perangkat cast
 values-b+in	string	player_size_settings	-	Tombol ubah ukuran pemutar
 values-b+in	string	player_size_settings_des	-	Hapus garis tepi hitam
+values-b+in	string	player_source_playing	-	Sedang diputar
+values-b+in	string	player_source_resumes_at	-	Mengganti tetap menjaga posisi Anda: lanjut di %1$s
+values-b+in	string	player_source_retry	-	Coba lagi
+values-b+in	string	player_source_switch	-	Ganti
 values-b+in	string	player_speed	-	Kecepatan Pemutar
 values-b+in	string	player_speed_text_format	-	Kecepatan (%.2fx)
 values-b+in	string	player_subtitles_settings	-	Subtitel
@@ -21405,6 +21505,10 @@ values-b+it	string	player_settings_play_in_app	-	Lettore interno
 values-b+it	string	player_settings_select_cast_device	-	Seleziona dispositivo per cast
 values-b+it	string	player_size_settings	-	Pulsante di ridimensionamento del video
 values-b+it	string	player_size_settings_des	-	Rimuovi bordi neri
+values-b+it	string	player_source_playing	-	In riproduzione
+values-b+it	string	player_source_resumes_at	-	Cambiare mantiene la posizione: riprende da %1$s
+values-b+it	string	player_source_retry	-	Riprova
+values-b+it	string	player_source_switch	-	Cambia
 values-b+it	string	player_speed	-	Velocità lettore
 values-b+it	string	player_speed_text_format	-	Velocità (%.2fx)
 values-b+it	string	player_subtitles_settings	-	Sottotitoli
@@ -22242,6 +22346,10 @@ values-b+iw	string	player_settings_play_in_app	-	נגן פנימי
 values-b+iw	string	player_settings_select_cast_device	-	Select cast device
 values-b+iw	string	player_size_settings	-	כפתור שינוי גודל הנגן
 values-b+iw	string	player_size_settings_des	-	הסר את הגבולות השחורים
+values-b+iw	string	player_source_playing	-	מתנגן
+values-b+iw	string	player_source_resumes_at	-	ההחלפה שומרת על המיקום שלך: ממשיך מ-%1$s
+values-b+iw	string	player_source_retry	-	ניסיון חוזר
+values-b+iw	string	player_source_switch	-	החלפה
 values-b+iw	string	player_speed	-	מהירות הנגן
 values-b+iw	string	player_speed_text_format	-	מהירות (%.2fx)
 values-b+iw	string	player_subtitles_settings	-	כתוביות
@@ -23074,6 +23182,10 @@ values-b+ja	string	player_settings_play_in_app	-	内部プレーヤー
 values-b+ja	string	player_settings_select_cast_device	-	キャストデバイスを選択
 values-b+ja	string	player_size_settings	-	プレーヤーのサイズ変更ボタン
 values-b+ja	string	player_size_settings_des	-	黒い境界線を削除します
+values-b+ja	string	player_source_playing	-	再生中
+values-b+ja	string	player_source_resumes_at	-	切り替えても位置は保たれます: %1$s から再開
+values-b+ja	string	player_source_retry	-	再試行
+values-b+ja	string	player_source_switch	-	切り替え
 values-b+ja	string	player_speed	-	プレーヤーの速度
 values-b+ja	string	player_speed_text_format	-	再生速度 (%.2fx)
 values-b+ja	string	player_subtitles_settings	-	字幕
@@ -23910,6 +24022,10 @@ values-b+kn	string	player_settings_play_in_app	-	Internal player
 values-b+kn	string	player_settings_select_cast_device	-	Select cast device
 values-b+kn	string	player_size_settings	-	ಪ್ಲೇಯರ್ ಮರುಗಾತ್ರಗೊಳಿಸಿ ಬಟನ್
 values-b+kn	string	player_size_settings_des	-	ಕಪ್ಪು ಗಡಿಗಳನ್ನು ತೆಗೆದುಹಾಕಿ
+values-b+kn	string	player_source_playing	-	ಪ್ಲೇ ಆಗುತ್ತಿದೆ
+values-b+kn	string	player_source_resumes_at	-	ಬದಲಿಸಿದರೂ ಸ್ಥಾನ ಉಳಿಯುತ್ತದೆ: %1$s ರಿಂದ ಮುಂದುವರಿಯುತ್ತದೆ
+values-b+kn	string	player_source_retry	-	ಮರುಪ್ರಯತ್ನಿಸಿ
+values-b+kn	string	player_source_switch	-	ಬದಲಿಸಿ
 values-b+kn	string	player_speed	-	ಪ್ಲೇಯರ್ ಸ್ಪೀಡ್
 values-b+kn	string	player_speed_text_format	-	ಸ್ಪೀಡ್(%.2fx)
 values-b+kn	string	player_subtitles_settings	-	ಸಬ್ ಟೈಟಲ್ಸ್
@@ -24743,6 +24859,10 @@ values-b+ko	string	player_settings_play_in_app	-	내부 플레이어
 values-b+ko	string	player_settings_select_cast_device	-	캐스트 장치 선택
 values-b+ko	string	player_size_settings	-	플레이어 크기 조정 버튼
 values-b+ko	string	player_size_settings_des	-	레터박스 제거
+values-b+ko	string	player_source_playing	-	재생 중
+values-b+ko	string	player_source_resumes_at	-	전환해도 위치가 유지됩니다: %1$s부터 재개
+values-b+ko	string	player_source_retry	-	다시 시도
+values-b+ko	string	player_source_switch	-	전환
 values-b+ko	string	player_speed	-	재생 속도
 values-b+ko	string	player_speed_text_format	-	속도 (%.2fx)
 values-b+ko	string	player_subtitles_settings	-	자막
@@ -25581,6 +25701,10 @@ values-b+lt	string	player_settings_play_in_app	-	Integruotas grotuvas
 values-b+lt	string	player_settings_select_cast_device	-	Select cast device
 values-b+lt	string	player_size_settings	-	Grotuvo dydžio pakeitimo mygtukas
 values-b+lt	string	player_size_settings_des	-	Pašalinti juodas paraštes
+values-b+lt	string	player_source_playing	-	Leidžiama
+values-b+lt	string	player_source_resumes_at	-	Perjungus padėtis išlieka: tęsiama nuo %1$s
+values-b+lt	string	player_source_retry	-	Bandyti dar kartą
+values-b+lt	string	player_source_switch	-	Perjungti
 values-b+lt	string	player_speed	-	Grotuvo greitis
 values-b+lt	string	player_speed_text_format	-	Greitis (%.2fx)
 values-b+lt	string	player_subtitles_settings	-	Subtitrai
@@ -26419,6 +26543,10 @@ values-b+lv	string	player_settings_play_in_app	-	Iekšējais atskaņotājs
 values-b+lv	string	player_settings_select_cast_device	-	Select cast device
 values-b+lv	string	player_size_settings	-	Players izmēra poga
 values-b+lv	string	player_size_settings_des	-	Noņemt melnās malas
+values-b+lv	string	player_source_playing	-	Atskaņo
+values-b+lv	string	player_source_resumes_at	-	Pārslēdzot pozīcija saglabājas: turpinās no %1$s
+values-b+lv	string	player_source_retry	-	Mēģināt vēlreiz
+values-b+lv	string	player_source_switch	-	Pārslēgt
 values-b+lv	string	player_speed	-	Atskaņošanas ātrums
 values-b+lv	string	player_speed_text_format	-	Ātrums (%.2fx)
 values-b+lv	string	player_subtitles_settings	-	Subtitri
@@ -27255,6 +27383,10 @@ values-b+mk	string	player_settings_play_in_app	-	Внатрешен плеер
 values-b+mk	string	player_settings_select_cast_device	-	Одбери уред да кастираш
 values-b+mk	string	player_size_settings	-	Копче за промена на големината на плеерот
 values-b+mk	string	player_size_settings_des	-	Острани ги црните граници
+values-b+mk	string	player_source_playing	-	Се репродуцира
+values-b+mk	string	player_source_resumes_at	-	Промената ја задржува позицијата: продолжува од %1$s
+values-b+mk	string	player_source_retry	-	Обиди се повторно
+values-b+mk	string	player_source_switch	-	Промени
 values-b+mk	string	player_speed	-	Брзина на плеер
 values-b+mk	string	player_speed_text_format	-	Брзина (%.2fx)
 values-b+mk	string	player_subtitles_settings	-	Преводи
@@ -28091,6 +28223,10 @@ values-b+ml	string	player_settings_play_in_app	-	Internal player
 values-b+ml	string	player_settings_select_cast_device	-	Select cast device
 values-b+ml	string	player_size_settings	-	പ്ലേയറിന്റെ വലുപ്പം മാറ്റുന്ന ബട്ടൻ
 values-b+ml	string	player_size_settings_des	-	കറുത്ത അതിർത്തി നീക്കംചെയ്യുക
+values-b+ml	string	player_source_playing	-	പ്ലേ ചെയ്യുന്നു
+values-b+ml	string	player_source_resumes_at	-	മാറ്റിയാലും സ്ഥാനം നിലനിൽക്കും: %1$s മുതൽ തുടരും
+values-b+ml	string	player_source_retry	-	വീണ്ടും ശ്രമിക്കുക
+values-b+ml	string	player_source_switch	-	മാറ്റുക
 values-b+ml	string	player_speed	-	പ്ലേയർ വേഗത
 values-b+ml	string	player_speed_text_format	-	വേഗം (%.2fx)
 values-b+ml	string	player_subtitles_settings	-	സബ്ടൈട്ടിൽസ്
@@ -28926,6 +29062,10 @@ values-b+ms	string	player_settings_play_in_app	-	Pemain dalaman
 values-b+ms	string	player_settings_select_cast_device	-	Select cast device
 values-b+ms	string	player_size_settings	-	Saiz butang pemain
 values-b+ms	string	player_size_settings_des	-	Buang sempadan hitam
+values-b+ms	string	player_source_playing	-	Sedang dimainkan
+values-b+ms	string	player_source_resumes_at	-	Menukar mengekalkan kedudukan anda: sambung pada %1$s
+values-b+ms	string	player_source_retry	-	Cuba lagi
+values-b+ms	string	player_source_switch	-	Tukar
 values-b+ms	string	player_speed	-	Kelajuan Pemain
 values-b+ms	string	player_speed_text_format	-	Kelajuan (%.2fx)
 values-b+ms	string	player_subtitles_settings	-	Sari kata
@@ -29765,6 +29905,10 @@ values-b+mt	string	player_settings_play_in_app	-	Internal player
 values-b+mt	string	player_settings_select_cast_device	-	Select cast device
 values-b+mt	string	player_size_settings	-	Player resize button
 values-b+mt	string	player_size_settings_des	-	Remove the black borders
+values-b+mt	string	player_source_playing	-	Qed jindaqq
+values-b+mt	string	player_source_resumes_at	-	Il-bidla żżomm il-post tiegħek: ikompli minn %1$s
+values-b+mt	string	player_source_retry	-	Erġa' pprova
+values-b+mt	string	player_source_switch	-	Biddel
 values-b+mt	string	player_speed	-	Veloċità tal-Plejer
 values-b+mt	string	player_speed_text_format	-	veloċità (%.2fx)
 values-b+mt	string	player_subtitles_settings	-	Subtitles
@@ -30600,6 +30744,10 @@ values-b+my	string	player_settings_play_in_app	-	ဖုန်းတွင်း�
 values-b+my	string	player_settings_select_cast_device	-	Select cast device
 values-b+my	string	player_size_settings	-	ကြည့်ရှုမှု စခရင်အရွယ်အစားချိန်ညိှမှု
 values-b+my	string	player_size_settings_des	-	အနက်ရောင်ဘောင်များကို ဖယ်ရှားရန်
+values-b+my	string	player_source_playing	-	ဖွင့်နေသည်
+values-b+my	string	player_source_resumes_at	-	ပြောင်းလည်း နေရာမပျောက်ပါ: %1$s မှ ဆက်ဖွင့်မည်
+values-b+my	string	player_source_retry	-	ထပ်ကြိုးစားရန်
+values-b+my	string	player_source_switch	-	ပြောင်းရန်
 values-b+my	string	player_speed	-	ကြည့်ရှုမှုအရှိန်
 values-b+my	string	player_speed_text_format	-	အရှိန် (%.2fx)
 values-b+my	string	player_subtitles_settings	-	စာတန်းထိုးများ
@@ -31436,6 +31584,10 @@ values-b+ne	string	player_settings_play_in_app	-	Internal player
 values-b+ne	string	player_settings_select_cast_device	-	Select cast device
 values-b+ne	string	player_size_settings	-	प्लेयर resize गर्ने वटन
 values-b+ne	string	player_size_settings_des	-	कालो सीमा हटाउनुहोस
+values-b+ne	string	player_source_playing	-	चलिरहेको
+values-b+ne	string	player_source_resumes_at	-	बदल्दा तपाईंको स्थान रहन्छ: %1$s बाट जारी
+values-b+ne	string	player_source_retry	-	फेरि प्रयास गर्नुहोस्
+values-b+ne	string	player_source_switch	-	बदल्नुहोस्
 values-b+ne	string	player_speed	-	प्लेयर स्पीड
 values-b+ne	string	player_speed_text_format	-	गति (%.2fx)
 values-b+ne	string	player_subtitles_settings	-	उपशीर्षक
@@ -32272,6 +32424,10 @@ values-b+nl	string	player_settings_play_in_app	-	Interne speler
 values-b+nl	string	player_settings_select_cast_device	-	Cast apparaat selecteren
 values-b+nl	string	player_size_settings	-	Afspeel knop wijzig
 values-b+nl	string	player_size_settings_des	-	Verwijder de zwarte randen
+values-b+nl	string	player_source_playing	-	Speelt af
+values-b+nl	string	player_source_resumes_at	-	Wisselen behoudt je positie: gaat verder op %1$s
+values-b+nl	string	player_source_retry	-	Opnieuw
+values-b+nl	string	player_source_switch	-	Wisselen
 values-b+nl	string	player_speed	-	Afspelen Snelheid
 values-b+nl	string	player_speed_text_format	-	Snelheid (%.2fx)
 values-b+nl	string	player_subtitles_settings	-	Ondertitels
@@ -33108,6 +33264,10 @@ values-b+nn	string	player_settings_play_in_app	-	Internal player
 values-b+nn	string	player_settings_select_cast_device	-	Select cast device
 values-b+nn	string	player_size_settings	-	Player resize button
 values-b+nn	string	player_size_settings_des	-	Fjern dei svarte kantane
+values-b+nn	string	player_source_playing	-	Spelar
+values-b+nn	string	player_source_resumes_at	-	Bytet held på plassen din: held fram frå %1$s
+values-b+nn	string	player_source_retry	-	Prøv igjen
+values-b+nn	string	player_source_switch	-	Byt
 values-b+nn	string	player_speed	-	Avspelinghastigheit
 values-b+nn	string	player_speed_text_format	-	Avspelinghastigheit (%.2fx)
 values-b+nn	string	player_subtitles_settings	-	Undertekstar
@@ -33944,6 +34104,10 @@ values-b+no	string	player_settings_play_in_app	-	Intern spiller
 values-b+no	string	player_settings_select_cast_device	-	Select cast device
 values-b+no	string	player_size_settings	-	Knapp for størrelse på spiller
 values-b+no	string	player_size_settings_des	-	Fjern de svarte kantene
+values-b+no	string	player_source_playing	-	Spiller
+values-b+no	string	player_source_resumes_at	-	Bytte beholder posisjonen din: fortsetter fra %1$s
+values-b+no	string	player_source_retry	-	Prøv igjen
+values-b+no	string	player_source_switch	-	Bytt
 values-b+no	string	player_speed	-	Spillerhastighet
 values-b+no	string	player_speed_text_format	-	Avspillingshastighet (%.2fx)
 values-b+no	string	player_subtitles_settings	-	Undertekster
@@ -34780,6 +34944,10 @@ values-b+or	string	player_settings_play_in_app	-	ଅନ୍ତଃ-ଚାଳକ
 values-b+or	string	player_settings_select_cast_device	-	Select cast device
 values-b+or	string	player_size_settings	-	Player resize button
 values-b+or	string	player_size_settings_des	-	Remove the black borders
+values-b+or	string	player_source_playing	-	ଚାଲୁଛି
+values-b+or	string	player_source_resumes_at	-	ବଦଳାଇଲେ ଆପଣଙ୍କ ସ୍ଥାନ ରହେ: %1$s ରୁ ଜାରି
+values-b+or	string	player_source_retry	-	ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ
+values-b+or	string	player_source_switch	-	ବଦଳାନ୍ତୁ
 values-b+or	string	player_speed	-	Player Speed
 values-b+or	string	player_speed_text_format	-	ଵେଗ (%.2fଗୁଣ)
 values-b+or	string	player_subtitles_settings	-	ଉପଶୀର୍ଷକ
@@ -35624,6 +35792,10 @@ values-b+pl	string	player_settings_play_in_app	-	Odtwarzacz wewnętrzny
 values-b+pl	string	player_settings_select_cast_device	-	Wybierz urządzenie do transmisji
 values-b+pl	string	player_size_settings	-	Zmień rozmiar odtwarzacza
 values-b+pl	string	player_size_settings_des	-	Usuwanie czarnych ramek
+values-b+pl	string	player_source_playing	-	Odtwarzanie
+values-b+pl	string	player_source_resumes_at	-	Przełączenie zachowuje pozycję: wznowienie od %1$s
+values-b+pl	string	player_source_retry	-	Ponów
+values-b+pl	string	player_source_switch	-	Przełącz
 values-b+pl	string	player_speed	-	Prędkość odtwarzania
 values-b+pl	string	player_speed_text_format	-	Prędkość (%.2fx)
 values-b+pl	string	player_subtitles_settings	-	Napisy
@@ -36464,6 +36636,10 @@ values-b+pt	string	player_settings_play_in_app	-	Player interno
 values-b+pt	string	player_settings_select_cast_device	-	Escolha o dispositivo
 values-b+pt	string	player_size_settings	-	Botão de redimensionamento do player
 values-b+pt	string	player_size_settings_des	-	Remover as bordas negras
+values-b+pt	string	player_source_playing	-	A reproduzir
+values-b+pt	string	player_source_resumes_at	-	Mudar mantém a sua posição: retoma em %1$s
+values-b+pt	string	player_source_retry	-	Repetir
+values-b+pt	string	player_source_switch	-	Mudar
 values-b+pt	string	player_speed	-	Velocidade de Reprodução
 values-b+pt	string	player_speed_text_format	-	Velocidade (%.2fx)
 values-b+pt	string	player_subtitles_settings	-	Legendas
@@ -37304,6 +37480,10 @@ values-b+pt+BR	string	player_settings_play_in_app	-	Player interno
 values-b+pt+BR	string	player_settings_select_cast_device	-	Selecione o dispositivo de transmissão
 values-b+pt+BR	string	player_size_settings	-	Redimensionar player
 values-b+pt+BR	string	player_size_settings_des	-	Remover bordas pretas
+values-b+pt+BR	string	player_source_playing	-	Reproduzindo
+values-b+pt+BR	string	player_source_resumes_at	-	Trocar mantém sua posição: continua em %1$s
+values-b+pt+BR	string	player_source_retry	-	Tentar novamente
+values-b+pt+BR	string	player_source_switch	-	Trocar
 values-b+pt+BR	string	player_speed	-	Velocidade de reprodução
 values-b+pt+BR	string	player_speed_text_format	-	Velocidade (%.2fx)
 values-b+pt+BR	string	player_subtitles_settings	-	Modificar legendas
@@ -38139,6 +38319,10 @@ values-b+qt	string	player_settings_play_in_app	-	aaaagggh uuuugg
 values-b+qt	string	player_settings_select_cast_device	-	aaaagg aahh oooohh
 values-b+qt	string	player_size_settings	-	oouuhaoouuh aaaaa aauuhohahhh oooooaaaghhoh oh aaaaa
 values-b+qt	string	player_size_settings_des	-	aaaghhaaahhuahooo oha aaaghh
+values-b+qt	string	player_source_playing	-	oouuh aaaaa
+values-b+qt	string	player_source_resumes_at	-	ooh haa oh aaaaa: oouuh %1$s
+values-b+qt	string	player_source_retry	-	oouuh ooh
+values-b+qt	string	player_source_switch	-	ooh haa
 values-b+qt	string	player_speed	-	oouuh aauuh oha
 values-b+qt	string	player_speed_text_format	-	aaaaaaaaaaaaahh (%.2foouo)
 values-b+qt	string	player_subtitles_settings	-	ahhhaauugghh
@@ -38976,6 +39160,10 @@ values-b+ro	string	player_settings_play_in_app	-	Player intern
 values-b+ro	string	player_settings_select_cast_device	-	Selectați divece-ul pe care doriți să faceți cast
 values-b+ro	string	player_size_settings	-	Buton de redimensionare video
 values-b+ro	string	player_size_settings_des	-	Eliminați marginile negre
+values-b+ro	string	player_source_playing	-	Se redă
+values-b+ro	string	player_source_resumes_at	-	Schimbarea păstrează poziția: continuă de la %1$s
+values-b+ro	string	player_source_retry	-	Reîncearcă
+values-b+ro	string	player_source_switch	-	Schimbă
 values-b+ro	string	player_speed	-	Viteză video
 values-b+ro	string	player_speed_text_format	-	Viteză (%.2fx)
 values-b+ro	string	player_subtitles_settings	-	Subtitrare
@@ -39820,6 +40008,10 @@ values-b+ru	string	player_settings_play_in_app	-	Внутренний проиг
 values-b+ru	string	player_settings_select_cast_device	-	Выберите устройство для трансляции
 values-b+ru	string	player_size_settings	-	Кнопка изменения размера проигрывателя
 values-b+ru	string	player_size_settings_des	-	Убрать черные границы
+values-b+ru	string	player_source_playing	-	Воспроизводится
+values-b+ru	string	player_source_resumes_at	-	Переключение сохраняет позицию: продолжение с %1$s
+values-b+ru	string	player_source_retry	-	Повторить
+values-b+ru	string	player_source_switch	-	Переключить
 values-b+ru	string	player_speed	-	Скорость проигрывателя
 values-b+ru	string	player_speed_text_format	-	Скорость (%.2fx)
 values-b+ru	string	player_subtitles_settings	-	Субтитры
@@ -40658,6 +40850,10 @@ values-b+sk	string	player_settings_play_in_app	-	Internal player
 values-b+sk	string	player_settings_select_cast_device	-	Select cast device
 values-b+sk	string	player_size_settings	-	Tlačidlo na zmenu veľkosti prehrávača
 values-b+sk	string	player_size_settings_des	-	Odstrániť čierne okraje
+values-b+sk	string	player_source_playing	-	Prehráva sa
+values-b+sk	string	player_source_resumes_at	-	Prepnutie zachová pozíciu: pokračuje od %1$s
+values-b+sk	string	player_source_retry	-	Skúsiť znova
+values-b+sk	string	player_source_switch	-	Prepnúť
 values-b+sk	string	player_speed	-	Rýchlosť prehrávania
 values-b+sk	string	player_speed_text_format	-	Rýchlosť (%.2fx)
 values-b+sk	string	player_subtitles_settings	-	Titulky
@@ -41494,6 +41690,10 @@ values-b+so	string	player_settings_play_in_app	-	Muqaal daaraha appka
 values-b+so	string	player_settings_select_cast_device	-	Select cast device
 values-b+so	string	player_size_settings	-	Badhinka xajmiga daaraha
 values-b+so	string	player_size_settings_des	-	Hareeraha madow ka saar markaad daawanayso
+values-b+so	string	player_source_playing	-	Waa socdaa
+values-b+so	string	player_source_resumes_at	-	Beddelku wuxuu ilaalinayaa meeshaada: wuxuu ka sii socdaa %1$s
+values-b+so	string	player_source_retry	-	Isku day mar kale
+values-b+so	string	player_source_switch	-	Beddel
 values-b+so	string	player_speed	-	Xawaaraha daaraha
 values-b+so	string	player_speed_text_format	-	Xawaaraha (%.2fx)
 values-b+so	string	player_subtitles_settings	-	Qoraal-hoosaadka
@@ -42330,6 +42530,10 @@ values-b+sq	string	player_settings_play_in_app	-	Luajtësi i integruar
 values-b+sq	string	player_settings_select_cast_device	-	Zgjidh pajisjen për transmetim
 values-b+sq	string	player_size_settings	-	Butoni për ndryshimin e madhësisë së luajtësit
 values-b+sq	string	player_size_settings_des	-	Hiq kufijtë e errët
+values-b+sq	string	player_source_playing	-	Po luhet
+values-b+sq	string	player_source_resumes_at	-	Ndërrimi e ruan pozicionin: vazhdon nga %1$s
+values-b+sq	string	player_source_retry	-	Provo përsëri
+values-b+sq	string	player_source_switch	-	Ndërro
 values-b+sq	string	player_speed	-	Shpejtësia e luajtësit
 values-b+sq	string	player_speed_text_format	-	Shpejtësia (%.2fx)
 values-b+sq	string	player_subtitles_settings	-	Titrat
@@ -43166,6 +43370,10 @@ values-b+sv	string	player_settings_play_in_app	-	Intern spelare
 values-b+sv	string	player_settings_select_cast_device	-	Välj cast-enhet
 values-b+sv	string	player_size_settings	-	Lägger till en knapp för att justera bildförhållandet
 values-b+sv	string	player_size_settings_des	-	Ta bort de svarta kanterna
+values-b+sv	string	player_source_playing	-	Spelas
+values-b+sv	string	player_source_resumes_at	-	Att byta behåller din position: fortsätter vid %1$s
+values-b+sv	string	player_source_retry	-	Försök igen
+values-b+sv	string	player_source_switch	-	Byt
 values-b+sv	string	player_speed	-	Spelarhastighet
 values-b+sv	string	player_speed_text_format	-	Hastighet (%.2fx)
 values-b+sv	string	player_subtitles_settings	-	Undertexter
@@ -44002,6 +44210,10 @@ values-b+ta	string	player_settings_play_in_app	-	உள் வீரர்
 values-b+ta	string	player_settings_select_cast_device	-	காச்ட் சாதனத்தைத் தேர்ந்தெடுக்கவும்
 values-b+ta	string	player_size_settings	-	பிளேயர் மறுஅளவிடுதல் பொத்தானை
 values-b+ta	string	player_size_settings_des	-	கருப்பு எல்லைகளை அகற்றவும்
+values-b+ta	string	player_source_playing	-	இயங்குகிறது
+values-b+ta	string	player_source_resumes_at	-	மாற்றினாலும் இடம் மாறாது: %1$s இலிருந்து தொடரும்
+values-b+ta	string	player_source_retry	-	மீண்டும் முயல்க
+values-b+ta	string	player_source_switch	-	மாற்று
 values-b+ta	string	player_speed	-	பிளேயர் விரைவு
 values-b+ta	string	player_speed_text_format	-	விரைவு (%.2fx)
 values-b+ta	string	player_subtitles_settings	-	வசன வரிகள்
@@ -44838,6 +45050,10 @@ values-b+ti	string	player_settings_play_in_app	-	Internal player
 values-b+ti	string	player_settings_select_cast_device	-	Select cast device
 values-b+ti	string	player_size_settings	-	Player resize button
 values-b+ti	string	player_size_settings_des	-	Remove the black borders
+values-b+ti	string	player_source_playing	-	ይጻወት ኣሎ
+values-b+ti	string	player_source_resumes_at	-	ምቕያር ቦታኻ ይሕልው፦ ካብ %1$s ይቕጽል
+values-b+ti	string	player_source_retry	-	እንደገና ፈትን
+values-b+ti	string	player_source_switch	-	ቀይር
 values-b+ti	string	player_speed	-	Player Speed
 values-b+ti	string	player_speed_text_format	-	Speed (%.2fx)
 values-b+ti	string	player_subtitles_settings	-	Subtitles
@@ -45674,6 +45890,10 @@ values-b+tl	string	player_settings_play_in_app	-	Internal player
 values-b+tl	string	player_settings_select_cast_device	-	Select cast device
 values-b+tl	string	player_size_settings	-	Pindutan upang baguhin ang laki
 values-b+tl	string	player_size_settings_des	-	Alisin ang black borders
+values-b+tl	string	player_source_playing	-	Nagpe-play
+values-b+tl	string	player_source_resumes_at	-	Mananatili ang posisyon mo sa paglipat: magpapatuloy sa %1$s
+values-b+tl	string	player_source_retry	-	Subukang muli
+values-b+tl	string	player_source_switch	-	Lumipat
 values-b+tl	string	player_speed	-	Bilis ng Playback
 values-b+tl	string	player_speed_text_format	-	Bilis (%.2fx)
 values-b+tl	string	player_subtitles_settings	-	Subtitles
@@ -46510,6 +46730,10 @@ values-b+tr	string	player_settings_play_in_app	-	Dahili oynatıcı
 values-b+tr	string	player_settings_select_cast_device	-	Yansıtılacak cihaz seç
 values-b+tr	string	player_size_settings	-	Oynatıcı yeniden boyutlandırma butonu
 values-b+tr	string	player_size_settings_des	-	Siyah kenarlıkları kaldır
+values-b+tr	string	player_source_playing	-	Oynatılıyor
+values-b+tr	string	player_source_resumes_at	-	Değiştirmek konumunuzu korur: %1$s konumundan devam eder
+values-b+tr	string	player_source_retry	-	Yeniden dene
+values-b+tr	string	player_source_switch	-	Değiştir
 values-b+tr	string	player_speed	-	Oynatıcı Hızı
 values-b+tr	string	player_speed_text_format	-	Hız (%.2fx)
 values-b+tr	string	player_subtitles_settings	-	Altyazılar
@@ -47354,6 +47578,10 @@ values-b+uk	string	player_settings_play_in_app	-	Вбудований прогр
 values-b+uk	string	player_settings_select_cast_device	-	Оберіть пристрій для трансляції
 values-b+uk	string	player_size_settings	-	Кнопка зміни розміру програвача
 values-b+uk	string	player_size_settings_des	-	Прибрати чорні смуги
+values-b+uk	string	player_source_playing	-	Відтворюється
+values-b+uk	string	player_source_resumes_at	-	Перемикання зберігає позицію: продовження з %1$s
+values-b+uk	string	player_source_retry	-	Повторити
+values-b+uk	string	player_source_switch	-	Перемкнути
 values-b+uk	string	player_speed	-	Швидкість програвача
 values-b+uk	string	player_speed_text_format	-	Швидкість (%.2fx)
 values-b+uk	string	player_subtitles_settings	-	Субтитри
@@ -48190,6 +48418,10 @@ values-b+ur	string	player_settings_play_in_app	-	اندرونی پلیئر
 values-b+ur	string	player_settings_select_cast_device	-	Select cast device
 values-b+ur	string	player_size_settings	-	پلیئر کا سائز تبدیل کرنے کا بٹن
 values-b+ur	string	player_size_settings_des	-	سیاہ سرحد کو ہٹا دیں
+values-b+ur	string	player_source_playing	-	چل رہا ہے
+values-b+ur	string	player_source_resumes_at	-	بدلنے سے آپ کی جگہ برقرار رہتی ہے: %1$s سے جاری
+values-b+ur	string	player_source_retry	-	دوبارہ کوشش کریں
+values-b+ur	string	player_source_switch	-	بدلیں
 values-b+ur	string	player_speed	-	چلانے کی رفتار
 values-b+ur	string	player_speed_text_format	-	رفتار (%.2fx)
 values-b+ur	string	player_subtitles_settings	-	سنٹیٹلز
@@ -49022,6 +49254,10 @@ values-b+vi	string	player_settings_play_in_app	-	Trình phát tích hợp
 values-b+vi	string	player_settings_select_cast_device	-	Chọn thiết bị truyền
 values-b+vi	string	player_size_settings	-	Nút thay đổi kích thước trình phát
 values-b+vi	string	player_size_settings_des	-	Xóa bỏ các viền đen
+values-b+vi	string	player_source_playing	-	Đang phát
+values-b+vi	string	player_source_resumes_at	-	Chuyển vẫn giữ vị trí của bạn: tiếp tục từ %1$s
+values-b+vi	string	player_source_retry	-	Thử lại
+values-b+vi	string	player_source_switch	-	Chuyển
 values-b+vi	string	player_speed	-	Tốc độ phát
 values-b+vi	string	player_speed_text_format	-	Tốc độ (%.2fx)
 values-b+vi	string	player_subtitles_settings	-	Phụ đề
@@ -49854,6 +50090,10 @@ values-b+zh	string	player_settings_play_in_app	-	内部播放器
 values-b+zh	string	player_settings_select_cast_device	-	选择投射设备
 values-b+zh	string	player_size_settings	-	播放器画面调整按钮
 values-b+zh	string	player_size_settings_des	-	移除黑色边框
+values-b+zh	string	player_source_playing	-	正在播放
+values-b+zh	string	player_source_resumes_at	-	切换会保留播放位置：从 %1$s 继续
+values-b+zh	string	player_source_retry	-	重试
+values-b+zh	string	player_source_switch	-	切换
 values-b+zh	string	player_speed	-	播放速度
 values-b+zh	string	player_speed_text_format	-	速度（%.2fx）
 values-b+zh	string	player_subtitles_settings	-	字幕
@@ -50687,6 +50927,10 @@ values-b+zh+TW	string	player_settings_play_in_app	-	內部播放器
 values-b+zh+TW	string	player_settings_select_cast_device	-	選擇投放裝置
 values-b+zh+TW	string	player_size_settings	-	播放器調整大小按鈕
 values-b+zh+TW	string	player_size_settings_des	-	移除黑色邊框
+values-b+zh+TW	string	player_source_playing	-	播放中
+values-b+zh+TW	string	player_source_resumes_at	-	切換會保留播放位置：從 %1$s 繼續
+values-b+zh+TW	string	player_source_retry	-	重試
+values-b+zh+TW	string	player_source_switch	-	切換
 values-b+zh+TW	string	player_speed	-	播放速度
 values-b+zh+TW	string	player_speed_text_format	-	速度（%.2fx）
 values-b+zh+TW	string	player_subtitles_settings	-	字幕
@@ -51523,6 +51767,10 @@ en	string	player_settings_play_in_app	-	Internal player
 en	string	player_settings_select_cast_device	-	Select cast device
 en	string	player_size_settings	-	Player resize button
 en	string	player_size_settings_des	-	Remove the black borders
+en	string	player_source_playing	-	Playing
+en	string	player_source_resumes_at	-	Switching keeps your position: resumes at %1$s
+en	string	player_source_retry	-	Retry
+en	string	player_source_switch	-	Switch
 en	string	player_speed	-	Player Speed
 en	string	player_speed_text_format	-	Speed (%.2fx)
 en	string	player_subtitles_settings	-	Subtitles
@@ -52359,6 +52607,10 @@ en-US	string	player_settings_play_in_app	-	Internal player
 en-US	string	player_settings_select_cast_device	-	Select cast device
 en-US	string	player_size_settings	-	Player resize button
 en-US	string	player_size_settings_des	-	Remove the black borders
+en-US	string	player_source_playing	-	Playing
+en-US	string	player_source_resumes_at	-	Switching keeps your position: resumes at %1$s
+en-US	string	player_source_retry	-	Retry
+en-US	string	player_source_switch	-	Switch
 en-US	string	player_speed	-	Player Speed
 en-US	string	player_speed_text_format	-	Speed (%.2fx)
 en-US	string	player_subtitles_settings	-	Subtitles
@@ -53195,6 +53447,10 @@ en-GB	string	player_settings_play_in_app	-	Internal player
 en-GB	string	player_settings_select_cast_device	-	Select cast device
 en-GB	string	player_size_settings	-	Player resize button
 en-GB	string	player_size_settings_des	-	Remove the black borders
+en-GB	string	player_source_playing	-	Playing
+en-GB	string	player_source_resumes_at	-	Switching keeps your position: resumes at %1$s
+en-GB	string	player_source_retry	-	Retry
+en-GB	string	player_source_switch	-	Switch
 en-GB	string	player_speed	-	Player Speed
 en-GB	string	player_speed_text_format	-	Speed (%.2fx)
 en-GB	string	player_subtitles_settings	-	Subtitles
@@ -54035,6 +54291,10 @@ pt	string	player_settings_play_in_app	-	Player interno
 pt	string	player_settings_select_cast_device	-	Escolha o dispositivo
 pt	string	player_size_settings	-	Botão de redimensionamento do player
 pt	string	player_size_settings_des	-	Remover as bordas negras
+pt	string	player_source_playing	-	A reproduzir
+pt	string	player_source_resumes_at	-	Mudar mantém a sua posição: retoma em %1$s
+pt	string	player_source_retry	-	Repetir
+pt	string	player_source_switch	-	Mudar
 pt	string	player_speed	-	Velocidade de Reprodução
 pt	string	player_speed_text_format	-	Velocidade (%.2fx)
 pt	string	player_subtitles_settings	-	Legendas
@@ -54875,6 +55135,10 @@ pt-PT	string	player_settings_play_in_app	-	Player interno
 pt-PT	string	player_settings_select_cast_device	-	Escolha o dispositivo
 pt-PT	string	player_size_settings	-	Botão de redimensionamento do player
 pt-PT	string	player_size_settings_des	-	Remover as bordas negras
+pt-PT	string	player_source_playing	-	A reproduzir
+pt-PT	string	player_source_resumes_at	-	Mudar mantém a sua posição: retoma em %1$s
+pt-PT	string	player_source_retry	-	Repetir
+pt-PT	string	player_source_switch	-	Mudar
 pt-PT	string	player_speed	-	Velocidade de Reprodução
 pt-PT	string	player_speed_text_format	-	Velocidade (%.2fx)
 pt-PT	string	player_subtitles_settings	-	Legendas
@@ -55715,6 +55979,10 @@ pt-BR	string	player_settings_play_in_app	-	Player interno
 pt-BR	string	player_settings_select_cast_device	-	Selecione o dispositivo de transmissão
 pt-BR	string	player_size_settings	-	Redimensionar player
 pt-BR	string	player_size_settings_des	-	Remover bordas pretas
+pt-BR	string	player_source_playing	-	Reproduzindo
+pt-BR	string	player_source_resumes_at	-	Trocar mantém sua posição: continua em %1$s
+pt-BR	string	player_source_retry	-	Tentar novamente
+pt-BR	string	player_source_switch	-	Trocar
 pt-BR	string	player_speed	-	Velocidade de reprodução
 pt-BR	string	player_speed_text_format	-	Velocidade (%.2fx)
 pt-BR	string	player_subtitles_settings	-	Modificar legendas
@@ -56551,6 +56819,10 @@ fil	string	player_settings_play_in_app	-	Internal player
 fil	string	player_settings_select_cast_device	-	Select cast device
 fil	string	player_size_settings	-	Pindutan upang baguhin ang laki
 fil	string	player_size_settings_des	-	Alisin ang black borders
+fil	string	player_source_playing	-	Nagpe-play
+fil	string	player_source_resumes_at	-	Mananatili ang posisyon mo sa paglipat: magpapatuloy sa %1$s
+fil	string	player_source_retry	-	Subukang muli
+fil	string	player_source_switch	-	Lumipat
 fil	string	player_speed	-	Bilis ng Manlalaro
 fil	string	player_speed_text_format	-	Bilis (%.2fx)
 fil	string	player_subtitles_settings	-	Subtitles
@@ -57387,6 +57659,10 @@ tl	string	player_settings_play_in_app	-	Internal player
 tl	string	player_settings_select_cast_device	-	Select cast device
 tl	string	player_size_settings	-	Pindutan upang baguhin ang laki
 tl	string	player_size_settings_des	-	Alisin ang black borders
+tl	string	player_source_playing	-	Nagpe-play
+tl	string	player_source_resumes_at	-	Mananatili ang posisyon mo sa paglipat: magpapatuloy sa %1$s
+tl	string	player_source_retry	-	Subukang muli
+tl	string	player_source_switch	-	Lumipat
 tl	string	player_speed	-	Bilis ng Playback
 tl	string	player_speed_text_format	-	Bilis (%.2fx)
 tl	string	player_subtitles_settings	-	Subtitles
@@ -58223,6 +58499,10 @@ fil-PH	string	player_settings_play_in_app	-	Internal player
 fil-PH	string	player_settings_select_cast_device	-	Select cast device
 fil-PH	string	player_size_settings	-	Pindutan upang baguhin ang laki
 fil-PH	string	player_size_settings_des	-	Alisin ang black borders
+fil-PH	string	player_source_playing	-	Nagpe-play
+fil-PH	string	player_source_resumes_at	-	Mananatili ang posisyon mo sa paglipat: magpapatuloy sa %1$s
+fil-PH	string	player_source_retry	-	Subukang muli
+fil-PH	string	player_source_switch	-	Lumipat
 fil-PH	string	player_speed	-	Bilis ng Manlalaro
 fil-PH	string	player_speed_text_format	-	Bilis (%.2fx)
 fil-PH	string	player_subtitles_settings	-	Subtitles
@@ -59055,6 +59335,10 @@ zh	string	player_settings_play_in_app	-	内部播放器
 zh	string	player_settings_select_cast_device	-	选择投射设备
 zh	string	player_size_settings	-	播放器画面调整按钮
 zh	string	player_size_settings_des	-	移除黑色边框
+zh	string	player_source_playing	-	正在播放
+zh	string	player_source_resumes_at	-	切换会保留播放位置：从 %1$s 继续
+zh	string	player_source_retry	-	重试
+zh	string	player_source_switch	-	切换
 zh	string	player_speed	-	播放速度
 zh	string	player_speed_text_format	-	速度（%.2fx）
 zh	string	player_subtitles_settings	-	字幕
@@ -59887,6 +60171,10 @@ zh-CN	string	player_settings_play_in_app	-	内部播放器
 zh-CN	string	player_settings_select_cast_device	-	选择投射设备
 zh-CN	string	player_size_settings	-	播放器画面调整按钮
 zh-CN	string	player_size_settings_des	-	移除黑色边框
+zh-CN	string	player_source_playing	-	正在播放
+zh-CN	string	player_source_resumes_at	-	切换会保留播放位置：从 %1$s 继续
+zh-CN	string	player_source_retry	-	重试
+zh-CN	string	player_source_switch	-	切换
 zh-CN	string	player_speed	-	播放速度
 zh-CN	string	player_speed_text_format	-	速度（%.2fx）
 zh-CN	string	player_subtitles_settings	-	字幕
@@ -60719,6 +61007,10 @@ zh-Hans-CN	string	player_settings_play_in_app	-	内部播放器
 zh-Hans-CN	string	player_settings_select_cast_device	-	选择投射设备
 zh-Hans-CN	string	player_size_settings	-	播放器画面调整按钮
 zh-Hans-CN	string	player_size_settings_des	-	移除黑色边框
+zh-Hans-CN	string	player_source_playing	-	正在播放
+zh-Hans-CN	string	player_source_resumes_at	-	切换会保留播放位置：从 %1$s 继续
+zh-Hans-CN	string	player_source_retry	-	重试
+zh-Hans-CN	string	player_source_switch	-	切换
 zh-Hans-CN	string	player_speed	-	播放速度
 zh-Hans-CN	string	player_speed_text_format	-	速度（%.2fx）
 zh-Hans-CN	string	player_subtitles_settings	-	字幕
@@ -61552,6 +61844,10 @@ zh-TW	string	player_settings_play_in_app	-	內部播放器
 zh-TW	string	player_settings_select_cast_device	-	選擇投放裝置
 zh-TW	string	player_size_settings	-	播放器調整大小按鈕
 zh-TW	string	player_size_settings_des	-	移除黑色邊框
+zh-TW	string	player_source_playing	-	播放中
+zh-TW	string	player_source_resumes_at	-	切換會保留播放位置：從 %1$s 繼續
+zh-TW	string	player_source_retry	-	重試
+zh-TW	string	player_source_switch	-	切換
 zh-TW	string	player_speed	-	播放速度
 zh-TW	string	player_speed_text_format	-	速度（%.2fx）
 zh-TW	string	player_subtitles_settings	-	字幕
@@ -62385,6 +62681,10 @@ zh-Hant-TW	string	player_settings_play_in_app	-	內部播放器
 zh-Hant-TW	string	player_settings_select_cast_device	-	選擇投放裝置
 zh-Hant-TW	string	player_size_settings	-	播放器調整大小按鈕
 zh-Hant-TW	string	player_size_settings_des	-	移除黑色邊框
+zh-Hant-TW	string	player_source_playing	-	播放中
+zh-Hant-TW	string	player_source_resumes_at	-	切換會保留播放位置：從 %1$s 繼續
+zh-Hant-TW	string	player_source_retry	-	重試
+zh-Hant-TW	string	player_source_switch	-	切換
 zh-Hant-TW	string	player_speed	-	播放速度
 zh-Hant-TW	string	player_speed_text_format	-	速度（%.2fx）
 zh-Hant-TW	string	player_subtitles_settings	-	字幕
@@ -63218,6 +63518,10 @@ zh-HK	string	player_settings_play_in_app	-	內部播放器
 zh-HK	string	player_settings_select_cast_device	-	選擇投放裝置
 zh-HK	string	player_size_settings	-	播放器調整大小按鈕
 zh-HK	string	player_size_settings_des	-	移除黑色邊框
+zh-HK	string	player_source_playing	-	播放中
+zh-HK	string	player_source_resumes_at	-	切換會保留播放位置：從 %1$s 繼續
+zh-HK	string	player_source_retry	-	重試
+zh-HK	string	player_source_switch	-	切換
 zh-HK	string	player_speed	-	播放速度
 zh-HK	string	player_speed_text_format	-	速度（%.2fx）
 zh-HK	string	player_subtitles_settings	-	字幕
@@ -64051,6 +64355,10 @@ zh-Hant-HK	string	player_settings_play_in_app	-	內部播放器
 zh-Hant-HK	string	player_settings_select_cast_device	-	選擇投放裝置
 zh-Hant-HK	string	player_size_settings	-	播放器調整大小按鈕
 zh-Hant-HK	string	player_size_settings_des	-	移除黑色邊框
+zh-Hant-HK	string	player_source_playing	-	播放中
+zh-Hant-HK	string	player_source_resumes_at	-	切換會保留播放位置：從 %1$s 繼續
+zh-Hant-HK	string	player_source_retry	-	重試
+zh-Hant-HK	string	player_source_switch	-	切換
 zh-Hant-HK	string	player_speed	-	播放速度
 zh-Hant-HK	string	player_speed_text_format	-	速度（%.2fx）
 zh-Hant-HK	string	player_subtitles_settings	-	字幕
@@ -64887,6 +65195,10 @@ no	string	player_settings_play_in_app	-	Intern spiller
 no	string	player_settings_select_cast_device	-	Select cast device
 no	string	player_size_settings	-	Knapp for størrelse på spiller
 no	string	player_size_settings_des	-	Fjern de svarte kantene
+no	string	player_source_playing	-	Spiller
+no	string	player_source_resumes_at	-	Bytte beholder posisjonen din: fortsetter fra %1$s
+no	string	player_source_retry	-	Prøv igjen
+no	string	player_source_switch	-	Bytt
 no	string	player_speed	-	Spillerhastighet
 no	string	player_speed_text_format	-	Avspillingshastighet (%.2fx)
 no	string	player_subtitles_settings	-	Undertekster
@@ -65723,6 +66035,10 @@ nb	string	player_settings_play_in_app	-	Internal player
 nb	string	player_settings_select_cast_device	-	Select cast device
 nb	string	player_size_settings	-	Player resize button
 nb	string	player_size_settings_des	-	Remove the black borders
+nb	string	player_source_playing	-	Playing
+nb	string	player_source_resumes_at	-	Switching keeps your position: resumes at %1$s
+nb	string	player_source_retry	-	Retry
+nb	string	player_source_switch	-	Switch
 nb	string	player_speed	-	Player Speed
 nb	string	player_speed_text_format	-	Speed (%.2fx)
 nb	string	player_subtitles_settings	-	Subtitles
@@ -66559,6 +66875,10 @@ nb-NO	string	player_settings_play_in_app	-	Internal player
 nb-NO	string	player_settings_select_cast_device	-	Select cast device
 nb-NO	string	player_size_settings	-	Player resize button
 nb-NO	string	player_size_settings_des	-	Remove the black borders
+nb-NO	string	player_source_playing	-	Playing
+nb-NO	string	player_source_resumes_at	-	Switching keeps your position: resumes at %1$s
+nb-NO	string	player_source_retry	-	Retry
+nb-NO	string	player_source_switch	-	Switch
 nb-NO	string	player_speed	-	Player Speed
 nb-NO	string	player_speed_text_format	-	Speed (%.2fx)
 nb-NO	string	player_subtitles_settings	-	Subtitles
@@ -67396,6 +67716,10 @@ iw	string	player_settings_play_in_app	-	נגן פנימי
 iw	string	player_settings_select_cast_device	-	Select cast device
 iw	string	player_size_settings	-	כפתור שינוי גודל הנגן
 iw	string	player_size_settings_des	-	הסר את הגבולות השחורים
+iw	string	player_source_playing	-	מתנגן
+iw	string	player_source_resumes_at	-	ההחלפה שומרת על המיקום שלך: ממשיך מ-%1$s
+iw	string	player_source_retry	-	ניסיון חוזר
+iw	string	player_source_switch	-	החלפה
 iw	string	player_speed	-	מהירות הנגן
 iw	string	player_speed_text_format	-	מהירות (%.2fx)
 iw	string	player_subtitles_settings	-	כתוביות
@@ -68233,6 +68557,10 @@ he	string	player_settings_play_in_app	-	נגן פנימי
 he	string	player_settings_select_cast_device	-	Select cast device
 he	string	player_size_settings	-	כפתור שינוי גודל הנגן
 he	string	player_size_settings_des	-	הסר את הגבולות השחורים
+he	string	player_source_playing	-	מתנגן
+he	string	player_source_resumes_at	-	ההחלפה שומרת על המיקום שלך: ממשיך מ-%1$s
+he	string	player_source_retry	-	ניסיון חוזר
+he	string	player_source_switch	-	החלפה
 he	string	player_speed	-	מהירות הנגן
 he	string	player_speed_text_format	-	מהירות (%.2fx)
 he	string	player_subtitles_settings	-	כתוביות
@@ -69070,6 +69398,10 @@ he-IL	string	player_settings_play_in_app	-	נגן פנימי
 he-IL	string	player_settings_select_cast_device	-	Select cast device
 he-IL	string	player_size_settings	-	כפתור שינוי גודל הנגן
 he-IL	string	player_size_settings_des	-	הסר את הגבולות השחורים
+he-IL	string	player_source_playing	-	מתנגן
+he-IL	string	player_source_resumes_at	-	ההחלפה שומרת על המיקום שלך: ממשיך מ-%1$s
+he-IL	string	player_source_retry	-	ניסיון חוזר
+he-IL	string	player_source_switch	-	החלפה
 he-IL	string	player_speed	-	מהירות הנגן
 he-IL	string	player_speed_text_format	-	מהירות (%.2fx)
 he-IL	string	player_subtitles_settings	-	כתוביות
@@ -69902,6 +70234,10 @@ in	string	player_settings_play_in_app	-	Pemutar Bawaan
 in	string	player_settings_select_cast_device	-	Pilih perangkat cast
 in	string	player_size_settings	-	Tombol ubah ukuran pemutar
 in	string	player_size_settings_des	-	Hapus garis tepi hitam
+in	string	player_source_playing	-	Sedang diputar
+in	string	player_source_resumes_at	-	Mengganti tetap menjaga posisi Anda: lanjut di %1$s
+in	string	player_source_retry	-	Coba lagi
+in	string	player_source_switch	-	Ganti
 in	string	player_speed	-	Kecepatan Pemutar
 in	string	player_speed_text_format	-	Kecepatan (%.2fx)
 in	string	player_subtitles_settings	-	Subtitel
@@ -70734,6 +71070,10 @@ id	string	player_settings_play_in_app	-	Pemutar Bawaan
 id	string	player_settings_select_cast_device	-	Pilih perangkat cast
 id	string	player_size_settings	-	Tombol ubah ukuran pemutar
 id	string	player_size_settings_des	-	Hapus garis tepi hitam
+id	string	player_source_playing	-	Sedang diputar
+id	string	player_source_resumes_at	-	Mengganti tetap menjaga posisi Anda: lanjut di %1$s
+id	string	player_source_retry	-	Coba lagi
+id	string	player_source_switch	-	Ganti
 id	string	player_speed	-	Kecepatan Pemutar
 id	string	player_speed_text_format	-	Kecepatan (%.2fx)
 id	string	player_subtitles_settings	-	Subtitel
@@ -71566,6 +71906,10 @@ id-ID	string	player_settings_play_in_app	-	Pemutar Bawaan
 id-ID	string	player_settings_select_cast_device	-	Pilih perangkat cast
 id-ID	string	player_size_settings	-	Tombol ubah ukuran pemutar
 id-ID	string	player_size_settings_des	-	Hapus garis tepi hitam
+id-ID	string	player_source_playing	-	Sedang diputar
+id-ID	string	player_source_resumes_at	-	Mengganti tetap menjaga posisi Anda: lanjut di %1$s
+id-ID	string	player_source_retry	-	Coba lagi
+id-ID	string	player_source_switch	-	Ganti
 id-ID	string	player_speed	-	Kecepatan Pemutar
 id-ID	string	player_speed_text_format	-	Kecepatan (%.2fx)
 id-ID	string	player_subtitles_settings	-	Subtitel
@@ -72402,6 +72746,10 @@ arz	string	player_settings_play_in_app	-	Internal player
 arz	string	player_settings_select_cast_device	-	Select cast device
 arz	string	player_size_settings	-	Player resize button
 arz	string	player_size_settings_des	-	Remove the black borders
+arz	string	player_source_playing	-	Playing
+arz	string	player_source_resumes_at	-	Switching keeps your position: resumes at %1$s
+arz	string	player_source_retry	-	Retry
+arz	string	player_source_switch	-	Switch
 arz	string	player_speed	-	Player Speed
 arz	string	player_speed_text_format	-	Speed (%.2fx)
 arz	string	player_subtitles_settings	-	Subtitles

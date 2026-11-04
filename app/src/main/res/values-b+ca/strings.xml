@@ -212,6 +212,10 @@
 <string name="player_loaded_subtitles" formatted="true">"%s carregat"</string>
 <string name="player_mute">"Silencia"</string>
 <string name="player_size_settings">"Botó de canvi de mida del reproductor"</string>
+<string name="player_source_playing">"S'està reproduint"</string>
+<string name="player_source_resumes_at" formatted="true">"Canviar conserva la posició: es reprèn a %1$s"</string>
+<string name="player_source_retry">"Torna-ho a provar"</string>
+<string name="player_source_switch">"Canvia"</string>
 <string name="player_speed">"Velocitat de reproducció"</string>
 <string name="player_speed_text_format" formatted="true">"Velocitat (%.2fx)"</string>
 <string name="player_unmute">"Deixa de silenciar"</string>

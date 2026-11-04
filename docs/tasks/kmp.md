@@ -1784,7 +1784,7 @@ The other 21 were triaged by hand and not independently verified; those fixed we
 
 - Departures from the artboards are listed in `DetailScreenTv`'s KDoc: text buttons (icon pack undecided), no nav rail,
   bookmark, cast rail or More like this, episodes in the cast slot, no live per-extractor rows in 7c.
-- Source and audio selectors (7e), resume, watch progress, focus restored to the activated item on back. Subtitles came in `KMP-25`.
+- The audio selector (7e; the source selector came in `KMP-29`), resume, watch progress, focus restored to the activated item on back. Subtitles came in `KMP-25`.
 - **Screenshot cases.** `DetailScreenTvPreviews` holds 7 pinned states. `:core:screenshot` cannot render on this
   toolchain (`DEC-10`), so nothing guards them yet. No preview exists for the player, which needs libVLC.
 - Function-size rule: `PlayerScreen` and `TitlePage` exceed the 40-line limit. Reported, not split.
@@ -3036,3 +3036,40 @@ others' after the same 5 s seek; that was not looked into and may be a seek on a
 
 Reused `audio_tracks`, so no new string and no baseline move. It exists in 41 of the 62 directories and falls back to English
 in the rest.
+
+## KMP-29 — Choosing another source inside the desktop player · **measured 2026-11-04**
+
+**Status:** in pr #121. Someone whose link fails or stutters had to leave playback to try another.
+
+The Source selector, first in the selectors row of `KMP-31`, reads out what is playing (`VidSrc Pro · 1080p` over
+`Source`, artboard 7d) and stays through loading and failure, as 7d's error state requires. It and S open the list of what
+the title's search has found so far. Pressing a row commits it, with no Apply (7e). New links join the list when it is next
+opened, because rows must not slide under a pointer. Every link on it has been through the same URL policy as before,
+because the list is `DetailState.links`, which `DesktopDetailSource` filters.
+
+A switch starts a new host for the new link, releases the old one, and keeps the screen, so by construction the subtitle
+track, full screen, the volume and the picture size stay as they were. No test drives that, because `PlayerScreen` needs a
+real `VlcPlayer` and the tests drive `PlayerContent`. `ResumeSeek` starts the new stream at the old one's position, and
+reports nothing to `WatchRecorder` until it is about there, so a slow start cannot overwrite the person's place. That
+also applies to a resume from the library, which until now reported from zero. It does not report at all if a stream
+cannot seek, and then the saved position stays where it was.
+
+| Measured, through two real sandboxed hosts, silent 120 s WAVs, a probe that was not committed, 2 runs | Result |
+|---|---|
+| Switch from about 32,200 ms | the new host reached about 32,400 ms in 2.6 to 3.0 s, its first reported position |
+| Status reports kept out of the record on the way there | 4 of 11 or 12 |
+| A further switch to a link that fails, position 0 | the next one would still start at about 34,000 ms |
+
+`PlayerScreenTest` covers the selector through failure and loading, the commit, the current row, Escape's order, a click
+outside, and `ResumeSeek`. The rendering of the list, of a failed row and of the failed state were read as PNGs. The render
+also caught `%s` printed literally, because Compose resources fill only `%1$s`.
+
+**Not measured:** a real switch in a live window, with video, or a person watching it; how long a switch takes between
+two remote streams; subtitle timing during the switch, which reads the new host's position and so goes blank until the seek lands.
+
+**Departures from 7e** are in `docs/plans/desktop-design.md`.
+
+**Strings:** `player_source_playing`, `player_source_switch`, `player_source_retry`, `player_source_resumes_at`, in all 62
+directories, all machine translated and not reviewed by a native speaker; `qt` uses only words from its own file. Tenth
+move of the oracle baseline. The selector's label reuses `video_source`, which 9 directories do not have, so they fall back.
+

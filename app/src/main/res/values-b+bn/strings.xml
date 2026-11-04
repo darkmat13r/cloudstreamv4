@@ -263,6 +263,10 @@
 <string name="player_mute">"মিউট করুন"</string>
 <string name="player_size_settings">"প্লেয়ারের সাইজ পরিবর্তন বাটন"</string>
 <string name="player_size_settings_des">"কালো প্রান্ত অপসারণ করুন"</string>
+<string name="player_source_playing">"চলছে"</string>
+<string name="player_source_resumes_at" formatted="true">"পাল্টালে আপনার অবস্থান থাকবে: %1$s থেকে চলবে"</string>
+<string name="player_source_retry">"আবার চেষ্টা করুন"</string>
+<string name="player_source_switch">"পাল্টান"</string>
 <string name="player_speed">"ভিডিও এর গতি"</string>
 <string name="player_speed_text_format" formatted="true">"গতি (%.2f গুণ)"</string>
 <string name="player_subtitles_settings">"সাবটাইটেল"</string>

@@ -29,6 +29,7 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
 import com.lagradost.cloudstream4.media.model.SubtitleCue
 import com.lagradost.cloudstream4.media.model.SubtitleSource
+import com.lagradost.cloudstream4.feature.detail.StreamLink
 import com.lagradost.cloudstream4.media.model.SubtitleTrack
 import com.lagradost.cloudstream4.media.subtitle.SubtitleParseResult
 import com.lagradost.cloudstream4.media.subtitle.SubtitleTimeline
@@ -95,6 +96,7 @@ class PlayerScreenTest {
         val volume: PlayerVolume = PlayerVolume(),
         audio: AudioTracks = AudioTracks(),
         val fit: PictureFitChoice = PictureFitChoice(),
+        sources: PlayerSources? = null,
     ) {
         val calls = Calls()
         val clock = PlaybackClock().also { it.onStatus(status) }
@@ -120,6 +122,7 @@ class PlayerScreenTest {
                             volume = volume,
                             audio = audio,
                             fit = fit,
+                            sources = sources,
                         )
                     }
                 }
@@ -536,6 +539,152 @@ class PlayerScreenTest {
         assertEquals(50, screen.volume.level)
         assertEquals(emptyList(), screen.calls.log)
         screen.scene.close()
+    }
+
+    private fun stream(name: String, quality: String? = "1080p") =
+        StreamLink(label = name, qualityLabel = quality, url = "https://a/$name", referer = null, userAgent = null, audioUrl = null, subtitles = emptyList())
+
+    @Test
+    fun `S lists the sources, and pressing a row commits it`() {
+        val chosen = mutableListOf<StreamLink>()
+        val one = stream("VidSrc Pro")
+        val two = stream("Filemoon", "720p")
+        val screen = Screen(sources = PlayerSources(listOf(one, two), one, emptyList(), 2_533_000L) { chosen += it })
+        screen.settle()
+        screen.save("source-selector")
+        screen.press(Key.S)
+        screen.save("source-list")
+        screen.press(Key.Enter)
+        assertEquals(emptyList(), chosen, "the one playing was chosen again")
+        screen.press(Key.S)
+        screen.press(Key.DirectionDown)
+        screen.press(Key.Enter)
+        assertEquals(listOf(two), chosen)
+        assertEquals(emptyList(), screen.calls.log, "the arrows moved the list, and seeked nothing")
+        screen.scene.close()
+    }
+
+    @Test
+    fun `a click outside the source list chooses nothing`() {
+        val chosen = mutableListOf<StreamLink>()
+        val one = stream("one")
+        val screen = Screen(sources = PlayerSources(listOf(one, stream("two")), one, emptyList()) { chosen += it })
+        screen.settle()
+        screen.press(Key.S)
+        screen.click(Offset(100f, 300f))
+        assertEquals(emptyList(), chosen)
+        screen.press(Key.DirectionRight)
+        assertEquals(listOf("by 10000"), screen.calls.log, "the list is shut, so the arrow seeks")
+        screen.scene.close()
+    }
+
+    @Test
+    fun `escape closes the source list before it leaves the player`() {
+        val one = stream("one")
+        val screen = Screen(sources = PlayerSources(listOf(one), one, emptyList()) {})
+        screen.settle()
+        screen.press(Key.S)
+        screen.escape()
+        screen.settle()
+        assertEquals(0, screen.backs)
+        screen.press(Key.DirectionRight)
+        assertEquals(listOf("by 10000"), screen.calls.log)
+        screen.escape()
+        assertEquals(1, screen.backs)
+        screen.scene.close()
+    }
+
+    @Test
+    fun `a failed source can be left for another, and chosen again`() {
+        val chosen = mutableListOf<StreamLink>()
+        val one = stream("one")
+        val two = stream("two")
+        val screen = Screen(
+            status = PlayerStatus(failed = true),
+            sources = PlayerSources(listOf(one, two), one, listOf(one)) { chosen += it },
+        )
+        screen.settle()
+        screen.save("source-failed")
+        // The selector stays through a failure, and is the way out of one (artboard 7d).
+        screen.click(screen.button)
+        screen.save("source-failed-list")
+        screen.press(Key.Enter)
+        assertEquals(listOf(one), chosen, "the failed one can be tried again")
+        screen.press(Key.S)
+        screen.press(Key.DirectionDown)
+        screen.press(Key.Enter)
+        assertEquals(listOf(one, two), chosen)
+        screen.scene.close()
+    }
+
+    @Test
+    fun `a source that never starts can be left while it loads`() {
+        val one = stream("one")
+        val two = stream("two")
+        val chosen = mutableListOf<StreamLink>()
+        val screen = Screen(
+            status = PlayerStatus(buffering = true),
+            sources = PlayerSources(listOf(one, two), one, emptyList()) { chosen += it },
+        )
+        screen.settle()
+        screen.save("source-loading")
+        screen.click(screen.button)
+        screen.press(Key.DirectionDown)
+        screen.press(Key.Enter)
+        assertEquals(listOf(two), chosen)
+        screen.scene.close()
+    }
+
+    @Test
+    fun `with no way to switch, S is not taken`() {
+        val screen = Screen()
+        screen.settle()
+        screen.press(Key.S)
+        screen.press(Key.DirectionRight)
+        assertEquals(listOf("by 10000"), screen.calls.log)
+        screen.scene.close()
+    }
+
+    @Test
+    fun `a playing source the search no longer lists is still on the list`() {
+        val one = stream("one")
+        val two = stream("two")
+        assertEquals(listOf(one, two), PlayerSources(listOf(two), one, emptyList()) {}.links)
+        // A later answer can carry it again with other subtitles, and that is still the same stream.
+        val again = one.copy(subtitles = listOf(english))
+        assertEquals(listOf(again, two), PlayerSources(listOf(again, two), one, emptyList()) {}.links)
+    }
+
+    @Test
+    fun `the selector reads out what is playing`() {
+        assertEquals("VidSrc Pro · 1080p", stream("VidSrc Pro").sourceName())
+        assertEquals("VidSrc Pro", stream("VidSrc Pro", null).sourceName())
+    }
+
+    @Test
+    fun `a resume seeks once a length is known, once, and reports nothing until it gets there`() {
+        val seeks = mutableListOf<Float>()
+        val resume = ResumeSeek(600_000L)
+        fun status(position: Long, length: Long) = PlayerStatus(positionMillis = position, lengthMillis = length)
+        assertEquals(false, resume.onStatus(status(0, 0), seeks::add))
+        assertEquals(emptyList(), seeks)
+        assertEquals(false, resume.onStatus(status(0, 1_200_000), seeks::add))
+        assertEquals(listOf(0.5f), seeks)
+        assertEquals(600_000L, resume.resumePoint(0L), "a stream not there yet must not lose the person's place")
+        // On a keyframe short of it, and from then on what it says goes, wherever they seek.
+        assertEquals(true, resume.onStatus(status(590_000, 1_200_000), seeks::add))
+        assertEquals(true, resume.onStatus(status(100_000, 1_200_000), seeks::add))
+        assertEquals(100_000L, resume.resumePoint(100_000L))
+        assertEquals(listOf(0.5f), seeks)
+    }
+
+    @Test
+    fun `from the beginning nothing is sought and everything is reported`() {
+        val seeks = mutableListOf<Float>()
+        val resume = ResumeSeek(0L)
+        assertEquals(true, resume.onStatus(PlayerStatus(positionMillis = 0, lengthMillis = 60_000), seeks::add))
+        assertEquals(emptyList(), seeks)
+        assertEquals(5L, resume.resumePoint(5L))
     }
 
     @Test

@@ -125,6 +125,10 @@
 <string name="player_fit_width">"ପ୍ରସ୍ଥ ପୂରଣ କରନ୍ତୁ"</string>
 <string name="player_mute">"ମ୍ୟୁଟ କରନ୍ତୁ"</string>
 <string name="player_settings_play_in_app">"ଅନ୍ତଃ-ଚାଳକ"</string>
+<string name="player_source_playing">"ଚାଲୁଛି"</string>
+<string name="player_source_resumes_at" formatted="true">"ବଦଳାଇଲେ ଆପଣଙ୍କ ସ୍ଥାନ ରହେ: %1$s ରୁ ଜାରି"</string>
+<string name="player_source_retry">"ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ"</string>
+<string name="player_source_switch">"ବଦଳାନ୍ତୁ"</string>
 <string name="player_speed_text_format" formatted="true">"ଵେଗ (%.2fଗୁଣ)"</string>
 <string name="player_subtitles_settings">"ଉପଶୀର୍ଷକ"</string>
 <string name="player_unmute">"ଅନମ୍ୟୁଟ କରନ୍ତୁ"</string>

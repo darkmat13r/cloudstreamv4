@@ -436,6 +436,10 @@
 <string name="player_settings_select_cast_device">选择投射设备</string>
 <string name="player_size_settings">播放器画面调整按钮</string>
 <string name="player_size_settings_des">移除黑色边框</string>
+<string name="player_source_playing">正在播放</string>
+<string name="player_source_resumes_at">切换会保留播放位置：从 %1$s 继续</string>
+<string name="player_source_retry">重试</string>
+<string name="player_source_switch">切换</string>
 <string name="player_speed">播放速度</string>
 <string name="player_speed_text_format">速度（%.2fx）</string>
 <string name="player_subtitles_settings">字幕</string>

@@ -363,6 +363,10 @@
 <string name="player_settings_play_in_app">Iekšējais atskaņotājs</string>
 <string name="player_size_settings">Players izmēra poga</string>
 <string name="player_size_settings_des">Noņemt melnās malas</string>
+<string name="player_source_playing">Atskaņo</string>
+<string name="player_source_resumes_at">Pārslēdzot pozīcija saglabājas: turpinās no %1$s</string>
+<string name="player_source_retry">Mēģināt vēlreiz</string>
+<string name="player_source_switch">Pārslēgt</string>
 <string name="player_speed">Atskaņošanas ātrums</string>
 <string name="player_speed_text_format">Ātrums (%.2fx)</string>
 <string name="player_subtitles_settings">Subtitri</string>
