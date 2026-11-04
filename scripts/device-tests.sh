@@ -35,5 +35,5 @@ fi
 # DELETE_FAILED_INTERNAL_ERROR on two cores.
 sleep 20
 
-if (( $# == 0 )); then set -- :feature:search:connectedAndroidDeviceTest; fi
+if (( $# == 0 )); then set -- :feature:search:connectedAndroidDeviceTest :app:connectedPrereleaseDebugAndroidTest; fi
 TZ=UTC taskpolicy -c utility ./gradlew "$@"

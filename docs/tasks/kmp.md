@@ -1063,9 +1063,10 @@ Why: CloudStreamApp.kt:57 writes it into the crash log, blaming a plugin that is
 
 ## KMP-12 — `:feature:search`: the first feature vertical's state machine
 
-**Status:** **steps 1 and 2 of 5 done** 2026-10-15 (plan row 18, Phase 7 vertical 1) · step 2 is
-**TV only — touch and desktop have no design to build from** · steps 3 and 4 are written and sit in
-**draft #91**, held for a television · `:app`'s search path is untouched
+**Status:** **steps 1 to 4 of 5 written, on the TV layout only; steps 3 and 4 are draft #91 and are
+not merged** (plan row 18, Phase 7 vertical 1) · the seams landed in #79, the copy types went in
+`I18N-08` · **run on the `Television_720p` emulator, not on a real TV** (`DEC-17` accepts that for switching) · phone and
+emulator layouts still use `SearchFragment` · step 5 (deleting it) waits a release and the owner
 
 > **The state machine's defects were split out and landed on their own, 2026-11-03.** Building the
 > Android host (step 4) found four defects in `SearchViewModel`, and all four were in the **desktop**
@@ -1074,10 +1075,123 @@ Why: CloudStreamApp.kt:57 writes it into the crash log, blaming a plugin that is
 > what needs a device: `SearchTvFragment`, the one-line `MainActivity` repoint,
 > `ApiRepositorySearchSource`, `DataStoreSearchHistory` and the `classes.jar` lines those add.
 
+### Android TV opens the new screen: steps 3 and 4
+
+`SearchTvFragment` is the glue. `MainActivity` sends `navigation_search` to it on the TV layout:
+
+    if (isLayout(TV)) navController.graph.openSearchOnTvScreen()
+
+**Rollback is deleting that line.** The plan asks for no kill switch, so there is none.
+
+**Why not the one-line XML repoint the recipe describes.** A nav graph has no per-layout form, and
+`isLayout(TV)` is a preference with an auto-detected default, so no resource qualifier can express
+it. A second node would be worse: `navigation_search` is also the menu item, the back-stack key and
+what `MainActivity` compares against. `FragmentNavigator.Destination.setClassName` changes the class
+behind the same node, and the graph is already set at that point (`MainActivity` calls
+`navController.navigate` later in the same `onCreate`). `mobile_navigation.xml` is unchanged.
+
+**Known edge:** Settings' layout switch calls `activity.recreate()`, which keeps saved back stacks. A
+user who visited search and then switches layout can get the other layout's fragment back on the
+next visit, until the next cold start. Each still works in either layout. Not handled.
+
+#### The in-app language
+
+Read, not run: `stringResource` resolves through `rememberResourceEnvironment`, which reads
+`androidx.compose.ui.text.intl.Locale.current` (`javap` on `components-resources-android` 1.12.0).
+That is `android.os.LocaleList.getDefault()` on API 24+ and `java.util.Locale.getDefault()` on 23
+(`javap` on `ui-text-android` 1.12.0), and `LocaleList.getDefault()` puts `Locale.getDefault()` first
+(SDK 36 source). `CommonActivity.setLocale` calls `Locale.setDefault`, and `MainActivity` calls it
+before composition and again from `onConfigurationChanged`, so **`:core:strings` words are correct for
+a non-system language.** `Locale.current` is read when composing, and the settings language change
+recreates the activity. Hebrew and Indonesian are the `LocaleCopies` work already in place.
+
+**`ApiRepositorySearchSource` was wrong**, and is what `AndroidSearchCopy.kt`'s trap still applied to:
+its card labels (type, quality, dub) came from the application context, whose configuration never
+learns the in-app language. It now rebuilds a configuration context from `Locale.getDefault()` per
+round. A label already on screen keeps its old language until the next search, because the ViewModel
+survives the language change.
+
+The `Known limitation` on `relativeWhenLabel` was wrong and is removed: SDK 36's
+`DateUtils.getRelativeTimeSpanString` uses `Locale.getDefault()`. No source older than 36 was
+available to check.
+
+#### Defects the switch exposed, each measured failing first
+
+`MainAPI.hasQuickSearch` defaults to false, and the state machine runs a quick search on every settled
+keystroke. Against a real provider set that was a failure band with `NO_QUICK_SEARCH` on the first
+letter. Five new `SearchViewModelTest` cases failed against the previous ViewModel:
+
+| Case | Where it was fixed |
+|---|---|
+| No quick-search source: typing showed a failure | `SearchSources.quickSearchable` — `BUG-24`, merged |
+| A debounce pending at Enter replaced the full search with the quick subset | the `submitted` guard — `BUG-24`, merged |
+| Text cleared inside the debounce window was still searched | the settled text must equal the field — `BUG-24`, merged |
+| Same query typed after a clear stalled on the skeleton | `distinctUntilChanged` deleted from `DebounceQuery` — `BUG-23` (#114), merged |
+| Source count went stale after plugins loaded or settings changed | `SearchAction.SourcesChanged` — `BUG-24`, merged. **This PR still sends it from `onResume` and `afterPluginsLoadedEvent`**, which is the Android caller |
+
+**None of these five is in this PR any more.** They were all in the shipped desktop app too, so they
+landed on their own rather than waiting for a television. `dune` → `dunes` → `dune` inside one 200 ms
+window, listed here as still open, went with `BUG-23`.
+
+#### Every behaviour of `SearchFragment`, on the TV path
+
+| Behaviour | New path |
+|---|---|
+| Full search on submit, history row written | **Kept**, same key and folder, one row across both paths |
+| Re-running a recent search moves it to the top | **Kept** |
+| No search history for one character | **Kept** for history. A one-character *search* now runs; the old path refused it |
+| Clear-all asks first (same dialog, same strings) | **Kept**, the glue intercepts `RecentCleared` |
+| Intent search: `SEARCH_QUERY` argument and `nextSearchQuery`, cleared after use | **Kept** |
+| Open a result in the layout's results destination, with the title as placeholder | **Kept**, `AppContextUtils.loadResult` |
+| Posters: singleton Coil loader, app user agent, provider headers | **Kept**. `SearchResultItem.posterHeaders` is new; without it hotlink-protected posters would 403 |
+| Language setting and `prefer_media_type_key` (keeps NSFW out by default) | **Kept**. The seam ignored the second until now |
+| Persisted provider picks | **Kept, read-only.** Honoured and counted, but the panel that changes them (4d) is not built |
+| Empty selection means "search everything" | **Changed.** Falls back to language and media type, never to NSFW |
+| Hide-by-quality setting | **Kept** |
+| Pinned providers first | **Kept** |
+| Plugins loading while the screen is open | **Kept** |
+| System-bar padding, keyboard hidden on submit and on leaving | **Kept** |
+| Failed providers | **Better**: named on screen. The old screen showed nothing |
+| Type chips (`searchPreferenceTags`) | **Lost, and not applied.** See below |
+| Provider and type filter sheet | **Lost.** Artboard 4d not built |
+| **Voice search** (mic, `RecognizerIntent`) | **Lost.** No icon pack (`DEC-11`) and not drawn |
+| Search suggestions (`search_suggestions_enabled`) | **Lost.** 8a/8b not built |
+| Remove one history row | **Lost.** `RecentRemoved` has no affordance yet |
+| Paging: rail expand, `Load more`, the "see all" sheet | **Lost.** First page only |
+| Long-press a card for the metadata popup | **Lost.** The card has one action |
+| `advanced_search = false` flat grid | **Lost.** Always rails |
+| Keyboard opening on arrival (`SOFT_INPUT_STATE_VISIBLE`) | **Lost.** It should open on OK in the field; not observed |
+| Nav rail long-press scrolls to the top | **Lost**, and harmless: it finds no recycler |
+| App theme and accent setting | **Not read.** The new design's dark colours, as on desktop |
+| `filterSearchResponse` (dub filter) | Was dead code: defined, never called |
+
+**The type chips are a decision for the owner.** They default to Movie and TV, and the screen cannot
+show or change them, so applying them would silently narrow every search on a fresh install. They
+are ignored, so a search can ask more providers than before.
+
+#### `classes-jar.api`
+
+67 lines added, 0 removed, all under `com/lagradost/cloudstream4/search/`: `SearchTvFragment` (with its
+`$stable` and five `viewModels` lambdas), `SearchTvFragmentKt`, `ComposableSingletons$SearchTvFragmentKt`,
+`ApiRepositorySearchSourceKt$pinnedFirst$$inlined$sortedBy$1`, plus new members on
+`ApiRepositorySearchSource`, `ApiRepositorySearchSourceKt`, `DataStoreSearchHistory` and
+`DataStoreSearchHistoryKt`. The first draft removed two synthetic accessors from
+`ApiRepositorySearchSource`; the source was reshaped so the dump stays strictly additive. Nothing in
+`com/lagradost/cloudstream3` moved, and `MainActivity`'s one line adds no member.
+
+The APK carries the strings (65 `composeResources` string files, including `values-b+he` and
+`values-b+id`).
+
+#### Not verified
+
+`TvSearchNavigationTest` runs the real app on `Television_720p`: the rail opens `SearchTvFragment`, and D-pad
+keys through `CommonActivity.dispatchKeyEvent` reach Compose and every stop on the idle screen, with no dead end
+or trap. Still unobserved: a physical remote (keys are injected as `SOURCE_HDMI`, see `INF-10`), focus
+restoration on return from a result, and real provider traffic, because the emulator has no extensions.
+
 `:feature:search` holds the contracts, the provider seam, the MVI state machine and the TV screen.
 Phase 7's recipe is five steps — state machine, screens, glue `Fragment`, repoint one nav node,
-delete the old fragment a release later. `SearchFragment` and `:app`'s `SearchViewModel` are still
-the live path and are unchanged.
+delete the old fragment a release later.
 
 | File | Holds |
 |---|---|
@@ -1415,11 +1529,11 @@ not a layout — the state machine and the grouping.
 
 - [x] ~~Screens per form factor in commonMain (recipe step 2)~~ — **TV done**; touch and desktop
       blocked on design (Phase B), 4d / 8a / 8b / 8d / 8e blocked on the state they commit
-- [ ] `SearchSource` and `SearchHistoryStore` implementations in `:app` over `APIRepository` and
-      `DataStoreHelper`, mapping `SearchResponse` → `SearchResultItem`, plus `SearchPrompts` and
-      `SearchTvCopy` from `stringResource`
-- [ ] Glue `Fragment` (step 3) and **one** nav node repointed (step 4); the old fragment stays as the
-      rollback lever
+- [x] ~~`SearchSource` and `SearchHistoryStore` implementations in `:app`~~ — #79; the copy types
+      were removed by `I18N-08`
+- [x] ~~Glue `Fragment` (step 3) and **one** nav node repointed (step 4)~~ — TV layout only; the old
+      fragment stays as the rollback lever
+- [x] ~~Run it on a TV emulator~~ — `TvSearchNavigationTest`, the device gate in `docs/HANDOVER.md`
 - [ ] Delete the old fragment and layouts a release later (step 5) — that removes
       `com.lagradost.cloudstream3` classes from `classes.jar`, so it needs the javap tripwire output
       and owner sign-off

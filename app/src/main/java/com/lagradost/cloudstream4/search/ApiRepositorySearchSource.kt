@@ -1,17 +1,22 @@
 package com.lagradost.cloudstream4.search
 
 import android.content.Context
+import android.content.res.Configuration
+import androidx.preference.PreferenceManager
 import com.lagradost.cloudstream3.APIHolder.apis
 import com.lagradost.cloudstream3.AnimeSearchResponse
 import com.lagradost.cloudstream3.DubStatus
+import com.lagradost.cloudstream3.MainAPI
 import com.lagradost.cloudstream3.R
 import com.lagradost.cloudstream3.SearchResponse
 import com.lagradost.cloudstream3.SearchResponseList
+import com.lagradost.cloudstream3.TvType
 import com.lagradost.cloudstream3.amap
 import com.lagradost.cloudstream3.mvvm.Resource
 import com.lagradost.cloudstream3.ui.APIRepository
 import com.lagradost.cloudstream3.ui.settings.SettingsProvidersScreen
 import com.lagradost.cloudstream3.ui.settings.SettingsUIScreen
+import com.lagradost.cloudstream3.utils.AppContextUtils.filterSearchResultByFilmQuality
 import com.lagradost.cloudstream3.utils.AppContextUtils.getApiSettings
 import com.lagradost.cloudstream3.utils.DataStoreHelper
 import com.lagradost.cloudstream3.utils.DataStoreHelper.fixVisual
@@ -23,6 +28,7 @@ import com.lagradost.cloudstream4.feature.search.SearchSources
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.util.Locale
 
 /**
  * [SearchSource] over the app's real providers: step 3 of Phase 7's recipe for the search vertical.
@@ -32,8 +38,8 @@ import kotlinx.coroutines.withContext
  * that is one mapping step, and this is it — the only place in the tree where `SearchResponse`,
  * `TvType`, `SearchQuality` and `R` meet `SearchResultItem`.
  *
- * Nothing here touches the live path: `ui/search/SearchFragment` and `ui/search/SearchViewModel`
- * still own search until step 5 deletes them.
+ * On the TV layout this is the live path (`SearchTvFragment`). `ui/search/SearchFragment` and
+ * `ui/search/SearchViewModel` still own search everywhere else until step 5 deletes them.
  *
  * ## Why `internal`, and why that is still not free
  *
@@ -52,6 +58,7 @@ import kotlinx.coroutines.withContext
  * resolver in — only moves the same `Context` one frame up and loses `R` type-safety on the way.
  * This must be the **application** context: a `SearchSource` outlives the Fragment that made it for
  * as long as the ViewModel does, and holding an Activity there is a leak with a retained ViewModel.
+ * It is also the wrong language on its own, see [labelContext].
  *
  * ## Why the repositories are rebuilt per call
  *
@@ -68,18 +75,17 @@ internal class ApiRepositorySearchSource(
 ) : SearchSource {
 
     /**
-     * `selected` is what a full search will actually query, counted the same way the search counts
-     * it, so the chrome row cannot disagree with the search — the defect `SearchSources`' KDoc cites,
-     * where 8c's no-results copy and the mono status line quote the same number.
-     *
-     * Note the one behaviour deliberately *not* carried over: `SearchViewModel.search` treats an
-     * empty active set as "search everything" (`providersActive.isEmpty() || ...`, `:243`). Keeping
-     * that would make this report `0 / 48` while the search queried 48.
+     * `selected` is what a full search will actually query, counted by the same function the search
+     * uses, so the chrome row cannot disagree with the search — the defect `SearchSources`' KDoc
+     * cites, where 8c's no-results copy and the mono status line quote the same number.
      */
     override suspend fun sources(): SearchSources = withContext(io) {
-        val enabled = context.getApiSettings()
-        val selected = apis.withLock { apis.count { it.name in enabled } }
-        SearchSources(selected = selected, total = apis.size)
+        val selected = selectedProviders(context.getApiSettings())
+        SearchSources(
+            selected = selected.size,
+            total = apis.size,
+            quickSearchable = selected.any { it.hasQuickSearch },
+        )
     }
 
     override suspend fun search(query: String): SearchOutcome = fanOut(query, quick = false)
@@ -87,20 +93,45 @@ internal class ApiRepositorySearchSource(
     override suspend fun quickSearch(query: String): SearchOutcome = fanOut(query, quick = true)
 
     /**
+     * What the user's settings say to query, read per call. See [selectSearchProviders].
+     *
+     * `searchPreferenceProviders` already falls back to "every provider of a preferred type" when
+     * nothing was ever picked, and it is per account, which is why none of this is cached.
+     */
+    private fun selectedProviders(enabled: Set<String>): List<MainAPI> {
+        val installed = apis.withLock { apis.mapNotNull { it } }
+        val defaultTypes = TvType.entries.filter { it != TvType.NSFW }.map { it.ordinal.toString() }.toSet()
+        val preferred = PreferenceManager.getDefaultSharedPreferences(context)
+            .getStringSet(context.getString(R.string.prefer_media_type_key), defaultTypes)
+            ?.ifEmpty { defaultTypes }
+            .orEmpty()
+            .mapNotNull { it.toIntOrNull() }
+            .toSet()
+        return selectSearchProviders(
+            installed = installed,
+            languageEnabled = enabled,
+            preferredTypes = preferred,
+            picked = DataStoreHelper.searchPreferenceProviders.toSet(),
+        )
+    }
+
+    /**
      * One concurrent round over the selected providers, folded into a [SearchOutcome].
      *
      * `amap` rather than a sequential loop for the same reason `SearchViewModel.kt:252` uses it: a
      * dozen providers answer in the time of the slowest, not the sum. Each reply is already
      * individually timed out and wrapped by `APIRepository.safeApiCall`, so nothing here throws.
+     *
+     * Pinned providers go first because `groupByProvider` keeps first-appearance order and `amap`
+     * keeps input order, so this one sort is what decides the order of the rails.
      */
     private suspend fun fanOut(query: String, quick: Boolean): SearchOutcome = withContext(io) {
-        val enabled = context.getApiSettings()
-        // mapNotNull under withLock is AtomicList's prescribed idiom; AtomicList.filter re-enters the lock.
-        val targets = apis.withLock {
-            apis.mapNotNull { if (it.name in enabled) APIRepository(it) else null }
-        }.filter { !quick || it.hasQuickSearch }
+        val selected = selectedProviders(context.getApiSettings())
+        val targets = pinnedFirst(selected, DataStoreHelper.pinnedProviders) { it.name }
+            .filter { !quick || it.hasQuickSearch }
+            .map { APIRepository(it) }
 
-        if (targets.isEmpty()) return@withContext noTargets(quick, enabled)
+        if (targets.isEmpty()) return@withContext noTargets(quick, selected.mapTo(HashSet()) { it.name })
 
         val replies: List<Pair<APIRepository, Resource<SearchResponseList>>> = targets.amap { repo ->
             repo to if (quick) repo.quickSearch(query) else repo.search(query, FIRST_PAGE)
@@ -118,16 +149,16 @@ internal class ApiRepositorySearchSource(
      * [SearchOutcome.Failed] is honest and it is also useful: the failure state's `StateAction` is
      * `SearchAction.Retry`, which the ViewModel routes to `submitCurrentQuery()` — a **full** search.
      * So the no-quick-search case escapes itself on one press, rather than being the dead end
-     * a failure state must never be.
+     * a failure state must never be. It is only reachable in the instant before [sources] answers:
+     * after that `SearchSources.quickSearchable` stops the ViewModel asking.
      */
-    private fun noTargets(quick: Boolean, enabled: Set<String>): SearchOutcome {
-        val selected = apis.withLock { apis.count { it.name in enabled } }
+    private fun noTargets(quick: Boolean, selected: Set<String>): SearchOutcome {
         return SearchOutcome.Failed(
             // A status code, not a sentence. `SearchOutcome.Failed.detail` is drawn in the mono
             // ramp beside "TIMEOUT 10S" (artboard 4b) and is the line a user pastes into a bug
             // report, so it is deliberately not translated — the same reason an HTTP status is
             // not. Prose that needed translating would belong in the prompt above it.
-            if (quick) "NO_QUICK_SEARCH · 0/$selected SELECTED"
+            if (quick) "NO_QUICK_SEARCH · 0/${selected.size} SELECTED"
             else "NO_SOURCES_SELECTED · 0/${apis.size} INSTALLED",
         )
     }
@@ -140,9 +171,12 @@ internal class ApiRepositorySearchSource(
      * state — but folding it into "answered" would silently report an empty provider as a success.
      */
     private fun fold(replies: List<Pair<APIRepository, Resource<SearchResponseList>>>): SearchOutcome {
+        val labels = labelContext()
         val items = replies
             .flatMap { (_, reply) -> if (reply is Resource.Success) reply.value.items else emptyList() }
-            .map { it.toItem() }
+            // The user's "hide these qualities" setting, the same call the old screen makes per rail.
+            .let { context.filterSearchResultByFilmQuality(it) }
+            .map { it.toItem(labels) }
         val failures = replies.filter { (_, reply) -> reply !is Resource.Success }
         val answered = replies.size - failures.size
         val allNetwork = failures.all { (_, reply) -> reply is Resource.Failure && reply.isNetworkError }
@@ -153,6 +187,28 @@ internal class ApiRepositorySearchSource(
             allNetwork -> SearchOutcome.Offline
             else -> SearchOutcome.Failed(detailOf(failures))
         }
+    }
+
+    /**
+     * A context that answers in the in-app language, rebuilt per round.
+     *
+     * `CommonActivity.setLocale` calls `Locale.setDefault` and then updates the resources of the
+     * context it is handed, which is always an Activity. The application context held here never
+     * learns of the choice, so `context.getString` gives a user with a non-system app language the
+     * device's words on otherwise translated cards. `Locale.setDefault` is the process-wide half of
+     * that pair, and it is also what `:core:strings` reads: Compose Resources resolves through
+     * `Locale.current`, which on Android is `LocaleList.getDefault()`, whose first entry follows
+     * `Locale.setDefault`. Building from it keeps these labels in the same language as the rest of
+     * the screen.
+     *
+     * Per round rather than held in a field, because a held one is stale after a language change and
+     * this class outlives that Activity. A search is network work, so the allocation does not show.
+     */
+    private fun labelContext(): Context {
+        val configuration = Configuration(context.resources.configuration)
+        // setLocale rather than setLocales: `LocaleList` is API 24 and minSdk is 23.
+        configuration.setLocale(Locale.getDefault())
+        return context.createConfigurationContext(configuration)
     }
 
     /**
@@ -193,14 +249,15 @@ internal class ApiRepositorySearchSource(
      * as a *settings screen*; the mapping on it is not, hence the narrow suppression.
      */
     @Suppress("DEPRECATION")
-    private fun SearchResponse.toItem(): SearchResultItem = SearchResultItem(
+    private fun SearchResponse.toItem(labels: Context): SearchResultItem = SearchResultItem(
         id = encodeId(apiName = apiName, url = url),
         title = name,
         posterUrl = posterUrl,
+        posterHeaders = posterHeaders,
         providerName = apiName,
-        typeLabel = type?.let { context.getString(with(SettingsProvidersScreen) { it.toStringRes() }) },
-        qualityLabel = quality?.let { context.getString(with(SettingsUIScreen) { it.toStringRes() }) },
-        dubLabel = dubLabel(),
+        typeLabel = type?.let { labels.getString(with(SettingsProvidersScreen) { it.toStringRes() }) },
+        qualityLabel = quality?.let { labels.getString(with(SettingsUIScreen) { it.toStringRes() }) },
+        dubLabel = dubLabel(labels),
         watchProgress = watchProgress(),
     )
 
@@ -213,11 +270,11 @@ internal class ApiRepositorySearchSource(
      * viewer selects on. The episode count is dropped on purpose: it is a second fact, and a badge
      * that sometimes reads "Dub · 12" and sometimes "Dub" changes width per card.
      */
-    private fun SearchResponse.dubLabel(): String? {
+    private fun SearchResponse.dubLabel(labels: Context): String? {
         val status = (this as? AnimeSearchResponse)?.dubStatus ?: return null
         return when {
-            DubStatus.Dubbed in status -> context.getString(R.string.app_dubbed_text)
-            DubStatus.Subbed in status -> context.getString(R.string.app_subbed_text)
+            DubStatus.Dubbed in status -> labels.getString(R.string.app_dubbed_text)
+            DubStatus.Subbed in status -> labels.getString(R.string.app_subbed_text)
             else -> null
         }
     }
@@ -255,6 +312,47 @@ internal class ApiRepositorySearchSource(
 
         /** Per-reason cap. Provider error strings can be a whole stack trace. */
         const val MAX_REASON_CHARS = 60
+    }
+}
+
+/**
+ * Which providers a search asks: the old screen's `SearchFragment.search`, without the type chips.
+ *
+ * Installed, in an enabled language, serving a preferred media type (which is what keeps NSFW
+ * providers out unless the user asked for them), and among the user's picks.
+ *
+ * Two differences from that function, both on purpose:
+ *
+ * - **The type chips do not narrow it.** The old screen drew the chips it was filtering by. This
+ *   screen does not draw them yet (`SearchChipRow`'s KDoc), and a filter the user can neither see
+ *   nor change is how an anime search on a fresh install, whose chips default to Movie and TV, comes
+ *   back empty with the copy *"All nine selected sources answered"*.
+ * - **When no pick survives, it falls back to [languageEnabled] and [preferredTypes], not to every
+ *   installed provider.** The old `SearchViewModel.search` read an empty set as "search everything",
+ *   NSFW included. A fallback is still needed, because the panel that changes the picks (artboard
+ *   4d) is not built, so a user whose picks were all uninstalled would otherwise be stuck.
+ */
+internal fun selectSearchProviders(
+    installed: List<MainAPI>,
+    languageEnabled: Set<String>,
+    preferredTypes: Set<Int>,
+    picked: Set<String>,
+): List<MainAPI> {
+    val eligible = installed.filter { api ->
+        api.name in languageEnabled && api.supportedTypes.any { it.ordinal in preferredTypes }
+    }
+    return eligible.filter { it.name in picked }.ifEmpty { eligible }
+}
+
+/**
+ * The old screen's rail order (`SearchFragment.kt:500`): pinned providers first, in reverse pin order,
+ * and everything else keeping the order it came in, which `sortedBy` guarantees by being stable.
+ */
+internal fun <T> pinnedFirst(items: List<T>, pinned: Array<String>, nameOf: (T) -> String): List<T> {
+    val order = pinned.reversedArray()
+    return items.sortedBy { item ->
+        val index = order.indexOf(nameOf(item))
+        if (index == -1) Int.MAX_VALUE else index
     }
 }
 
