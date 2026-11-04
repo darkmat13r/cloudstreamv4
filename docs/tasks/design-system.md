@@ -302,5 +302,8 @@ return with their filters.
 `:core:designsystem` has no `abiValidation`, so it has no `checkKotlinAbi` or dump to update. Measured from
 `:core:designsystem:tasks --all`; the plugin is only in `cloudstream.kmp.extension-api`.
 
+`SegmentedControlDeviceTest` runs on `Television_720p`: real D-pad keys through the input dispatcher, the ring read from
+the screen, and centre choosing. The other components have JVM tests only, until a screen uses them.
+
 Screenshot cases are in `core/screenshot/.../TvComponentScreenshots.kt`. They compile, and render nothing until
 `DS-04` is unblocked. `TvComponentsTest` holds the bounds and states, drawn offscreen.

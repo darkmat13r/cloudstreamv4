@@ -1,5 +1,6 @@
 plugins {
     id("cloudstream.kmp.compose")
+    id("cloudstream.kmp.device-test")
 }
 
 kotlin {
