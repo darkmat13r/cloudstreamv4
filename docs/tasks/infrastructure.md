@@ -658,5 +658,15 @@ reachable, no dead ends, no traps".
 - Under `createComposeRule` the accessibility tree lags the test clock, so a screen test reads focus from
   semantics (`rule.focusedLabel()`). The real app has a real clock and uses the default reader.
 
-**The gate.** The sixth, device-only, not part of `check`: `docs/HANDOVER.md`.
+**What the first run found on `:feature:search` (`Television_720p`, API 36), reported rather than changed:**
+
+- **Landing on the query field with the D-pad opens the keyboard**, and the keyboard then takes the D-pad until
+  Back closes it. Moving Up from a card and then Right to `Sources` needs a Back in between.
+  `FocusGraph.keyboardOpenedOn` records it and `SearchScreenTvDeviceTest` pins it, so changing it fails a test.
+- **Down from the field lands on the first rail's third card**, the nearest to the field's centre, not its first.
+- **Right from the last card of a rail goes to `Sources`**, above it, instead of staying on the rail.
+
+**The gate.** The sixth, device-only, not part of `check`: `docs/HANDOVER.md`. `Television_720p` is
+1280x720 at 213 dpi, about 961.5x540.8 dp rather than the artboard's 960x540, so no test asserts full-screen
+geometry against the artboard.
 

@@ -656,4 +656,4 @@ would fail closed: no plugins rather than unsandboxed plugins. `SandboxEscapeAtt
 - **Test libraries approved, test scope only:** `androidx.compose.ui:ui-test-junit4` and `ui-test-manifest`, `androidx.test.uiautomator:uiautomator` 2.4.0, `androidx.test:runner` and `rules`.
 - **Merging:** a PR merges once all gates and its Android UI tests pass on the emulator. Security-boundary, published-API and irreversible changes wait for the owner.
 - **Order:** every drawn TV screen first, drawing a missing TV board when one is needed. Then phone artboards from `Design System v2`, reviewed by the owner before they are built.
-- **Switching a screen in `:app`:** passing UI tests on the `Television_4K` emulator is enough, with the old screen kept as rollback for one release.
+- **Switching a screen in `:app`:** passing UI tests on the `Television_720p` emulator is enough, with the old screen kept as rollback for one release.

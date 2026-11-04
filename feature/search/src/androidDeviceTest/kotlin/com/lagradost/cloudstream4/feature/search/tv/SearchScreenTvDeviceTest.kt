@@ -124,6 +124,9 @@ class SearchScreenTvDeviceTest {
         assertEquals(graph.toString(), emptyList<String>(), graph.unreachable(expected))
         assertEquals(graph.toString(), emptyList<String>(), graph.deadEnds())
         assertEquals(graph.toString(), emptyList<String>(), graph.traps())
+        // Pins today's behaviour, reported in `INF-10`: until Back closes it, the keyboard this opens
+        // takes the D-pad. Change this line when that is decided.
+        assertEquals(graph.toString(), setOf("blade"), graph.keyboardOpenedOn)
     }
 
     private companion object {
