@@ -585,3 +585,54 @@ So the question is not "how do we run the Android dialog" — it cannot run. It 
 
 **Not an option:** inflating the plugin's own dialog. There is no View toolkit in the process and adding one
 is `DEC-14`-sized.
+
+---
+
+## DEC-16 — What a plugin host runs in: Seatbelt, Docker, or a virtual machine
+
+**Status:** open · **Blocks:** nothing · raised 2026-11-04 by the owner's "can we use docker process?" after `BUG-26`
+
+**Recommendation: keep Seatbelt with `OutboundGate`, do not move to Docker, and if a stronger boundary is wanted, try a small
+virtual machine on Apple's Virtualization framework, for plugin hosts only.**
+
+A container or VM gives a real thing Seatbelt does not: a separate kernel, so a bug in macOS's sandbox stops being the whole
+story. It costs the app its "install and run".
+
+### Measured on this Mac (M5 Pro, macOS 27.0.1, Docker 29.6.2, nothing installed or pulled)
+
+| | Seatbelt (`sandbox-exec`) | Docker Desktop |
+|---|---|---|
+| A trivial JVM program, 3 runs | 0.07 to 0.11 s | 1.27 to 1.76 s, on the only local JDK image, which is amd64 and so emulated: an arm64 one would be faster |
+| A trivial process | not measured | 0.52 to 0.59 s |
+| Standing memory | none | about 905 MB resident across 6 processes while idle, with an 8 GB VM assigned |
+| To download | none | Docker Desktop, then a JDK image (726 MB here) or one built with the plugin host |
+| The real home directory | refused by policy | not there at all: `/Users` does not exist in the container |
+| Reaching the LAN gateway | refused by `OutboundGate` | **allowed by default**: `wget` to the gateway succeeded |
+
+### What it would mean
+
+- **Docker only helps plugin hosts, not the media host.** libVLC needs this Mac's audio and has to be the Mac build; a container has
+  neither. So the host that parses hostile video stays under Seatbelt whatever is chosen here.
+- **Everyone would need Docker Desktop**, a separate install, running in the background, with its own licence terms for
+  larger companies. No Docker means no plugins, or a weaker fallback, and the app's rule so far is that there is no unsandboxed fallback.
+- **It needs a Linux JVM in the app or an image**, since a jpackage bundle holds a macOS runtime.
+- **Plugins would still have the internet.** Docker does not change what a plugin can see or send, and its network would need the same
+  gate as today, because its default reaches the LAN.
+
+### The alternatives
+
+- **Apple's `container` tool:** one small VM per container, on Virtualization. Not installed here, so nothing about it is measured. Same
+  shape of cost as Docker: a separate install. Not investigated further.
+- **The Virtualization framework directly:** no separate install for the person, because it is part of macOS. The app would ship a Linux kernel, a root
+  file system and a JVM, likely hundreds of MB, and need the `com.apple.security.virtualization` entitlement. Boot time and memory are not
+  measured. This is the option worth a spike, if the boundary is wanted.
+- **App Sandbox with XPC helpers:** what Apple's manual page points at, and needs a signed app. It is the longer-term replacement for
+  `sandbox-exec` once distribution is signed (`DEC-03`). Not measured.
+
+### What deprecation means in practice
+
+`man sandbox-exec` says DEPRECATED and points at App Sandbox. On macOS 27.0.1 it still exists, is signed by Apple, and enforces everything
+in `SandboxEscapeAttemptTest`; the system ships 553 profiles in `/System/Library/Sandbox/Profiles`. So the risk is not that it is
+failing today but that a future macOS could change or remove it with little notice. The app already refuses to run plugins without it, so that
+would fail closed: no plugins rather than unsandboxed plugins. `SandboxEscapeAttemptTest` is what would show a change in behaviour.
+
