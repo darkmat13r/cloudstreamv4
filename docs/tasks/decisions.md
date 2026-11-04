@@ -637,3 +637,23 @@ in `SandboxEscapeAttemptTest`; the system ships 553 profiles in `/System/Library
 failing today but that a future macOS could change or remove it with little notice. The app already refuses to run plugins without it, so that
 would fail closed: no plugins rather than unsandboxed plugins. `SandboxEscapeAttemptTest` is what would show a change in behaviour.
 
+
+---
+
+## DEC-17 — Four rulings for the TV screens, and how this program works
+
+**Status:** **decided 2026-11-04 by the owner.** Raised by the audit in `docs/plans/tv-screen-audit.md`.
+
+| Question | Ruling | Why |
+|---|---|---|
+| **TV rail items**: drawn three ways | **Home, Search, Library, Downloads, Settings**, in `TV Home`'s style | Every item goes somewhere real. Live TV, Movies and TV Shows have no destination today, and can return later as filters |
+| **First run** (`TV Onboarding Extensions` 8a) | **URL entry only. No repository is built in or recommended.** Each plugin then goes through the same scan and sandbox rules | The app endorses no source. A first run takes more effort, which was accepted. Rows on 8a that recommend a repository are not built |
+| **Side panels**: code wants Apply and Cancel, 7e none, 4d Done | **By panel type.** A single choice (subtitle, audio, sort) applies at once with no buttons. A multi-select (sources) applies on Done. Back closes either | Matches the boards, and adds no clicks during playback |
+| **A failure's colour** | **A hollow neutral marker, never `live`** | `live` stays for playback only. The owner already corrected `live` leaking onto the volume rule. Failure reads from shape and words |
+
+**The program's rules, same day:**
+
+- **Test libraries approved, test scope only:** `androidx.compose.ui:ui-test-junit4` and `ui-test-manifest`, `androidx.test.uiautomator:uiautomator` 2.4.0, `androidx.test:runner` and `rules`.
+- **Merging:** a PR merges once all gates and its Android UI tests pass on the emulator. Security-boundary, published-API and irreversible changes wait for the owner.
+- **Order:** every drawn TV screen first, drawing a missing TV board when one is needed. Then phone artboards from `Design System v2`, reviewed by the owner before they are built.
+- **Switching a screen in `:app`:** passing UI tests on the `Television_4K` emulator is enough, with the old screen kept as rollback for one release.
