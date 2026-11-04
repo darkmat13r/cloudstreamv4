@@ -1187,3 +1187,24 @@ exist on master, so that one case cannot be compiled against the old code at all
   file stays in #91 with the TV screen it serves. On desktop the value is `true`, which is what
   `BUG-12` made correct there.
 - The live desktop window. Every one of these is a state-machine test.
+
+## BUG-25 — search could still stick on loading, when keystrokes arrived out of order · **high**
+
+**Status:** in pr. Found by `:feature:search`'s `adding a letter and deleting it again does not stick on loading`, which
+failed once in the `check` gate of `KMP-31`. It was not a flaky test.
+
+`onQueryChanged` sends each keystroke to the debounce from its own coroutine. On a scope with more than one thread, which
+is what desktop passes, the older keystroke can arrive last. The consumer compared what settled with what the field
+said, and skipped the search when they differed, so the screen stayed on `Loading` with nothing running.
+
+| Measured | Result |
+|---|---|
+| Temporary probe, on the failing run | `settled=films current=film` |
+| The test, polling for 20 s instead of 600 ms, 14 runs | 2 still `Loading` after 20 s, with only the first search made |
+| New stress test, 200 searches at once, without the fix, 5 runs | 10, 9, 10, 10 and 2 left on loading |
+| The whole `:feature:search` test task with the fix, 15 runs, load average about 45 | 15 pass |
+
+The fix searches what the field says now. `BUG-23` (#114) fixed a different cause of the same symptom.
+
+**Not measured:** Android's `viewModelScope` is single threaded, so this path should keep its order there. That was
+reasoned and not run. Nobody has reproduced this by hand in the window.
