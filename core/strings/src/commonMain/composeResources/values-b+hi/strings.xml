@@ -272,6 +272,10 @@
 <string name="play_with_app_name">क्लाउडस्ट्रीम के साथ चलाएं</string>
 <string name="player_enter_fullscreen">फ़ुलस्क्रीन मोड पर देखें</string>
 <string name="player_exit_fullscreen">फ़ुलस्क्रीन मोड से बाहर निकलें</string>
+<string name="player_fit_original">मूल आस्पेक्ट अनुपात</string>
+<string name="player_fit_screen">स्क्रीन भरें</string>
+<string name="player_fit_title">चित्र का आकार</string>
+<string name="player_fit_width">चौड़ाई भरें</string>
 <string name="player_mute">म्यूट करें</string>
 <string name="player_size_settings">प्लेयर आकार परिवर्तन बटन</string>
 <string name="player_size_settings_des">काले बॉर्डर हटाएँ</string>

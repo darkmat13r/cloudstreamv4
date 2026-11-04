@@ -12,10 +12,13 @@ import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
@@ -39,7 +42,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.FilterQuality
@@ -52,8 +54,6 @@ import androidx.compose.ui.input.key.type
 import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.input.pointer.onPointerEvent
 import androidx.compose.ui.input.pointer.pointerInput
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.layout.ScaleFactor
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.style.TextOverflow
@@ -73,9 +73,11 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.error_loading_links_toast
 import com.lagradost.cloudstream4.core.strings.generated.resources.go_back
 import com.lagradost.cloudstream4.core.strings.generated.resources.loading
+import com.lagradost.cloudstream4.core.strings.generated.resources.no_subtitles
 import com.lagradost.cloudstream4.core.strings.generated.resources.pause
 import com.lagradost.cloudstream4.core.strings.generated.resources.player_enter_fullscreen
 import com.lagradost.cloudstream4.core.strings.generated.resources.player_exit_fullscreen
+import com.lagradost.cloudstream4.core.strings.generated.resources.player_fit_title
 import com.lagradost.cloudstream4.core.strings.generated.resources.player_mute
 import com.lagradost.cloudstream4.core.strings.generated.resources.player_subtitles_settings
 import com.lagradost.cloudstream4.core.strings.generated.resources.player_unmute
@@ -97,7 +99,7 @@ import org.jetbrains.compose.resources.stringResource
 /**
  * The desktop player (`docs/plans/desktop-design.md`): full-bleed video, one seek track, transport, and
  * volume and subtitles. Space pauses, left and right skip, up and down change the volume, M mutes, C opens
- * the subtitle list, F or Cmd+F toggles full screen; Escape is the window's.
+ * the subtitle list, R how the picture fits the window, F or Cmd+F toggles full screen; Escape is the window's.
  *
  * The source and audio selectors are not built. Lives in `:desktopApp` rather than a shared module because
  * it is bound to [VlcPlayer].
@@ -172,6 +174,7 @@ internal fun PlayerScreen(
         modifier = modifier,
         fullscreen = fullscreen,
         volume = desktopPlayerVolume,
+        fit = desktopPictureFit,
     )
 }
 
@@ -191,6 +194,7 @@ internal fun PlayerContent(
     pictureSize: IntSize? = null,
     fullscreen: PlayerFullscreen? = null,
     volume: PlayerVolume = remember { PlayerVolume() },
+    fit: PictureFitChoice = remember { PictureFitChoice() },
 ) {
     LaunchedEffect(controls, volume.audible) { controls.setVolume(volume.audible) }
     val tracks by subtitles.tracks.collectAsState()
@@ -201,12 +205,15 @@ internal fun PlayerContent(
     var lastActivity by remember { mutableLongStateOf(System.currentTimeMillis()) }
     var hudVisible by remember { mutableStateOf(true) }
     var pickerOpen by remember { mutableStateOf(false) }
+    var fitOpen by remember { mutableStateOf(false) }
+    val listOpen = pickerOpen || fitOpen
     val failed = status.failed
     val fullscreenOn = fullscreen?.on == true
     SideEffect {
         setEscape {
             when {
                 pickerOpen -> pickerOpen = false
+                fitOpen -> fitOpen = false
                 fullscreenOn -> fullscreen?.toggle()
                 else -> onBack()
             }
@@ -215,16 +222,16 @@ internal fun PlayerContent(
     // Focus goes back to the root before a focused button leaves the composition, including the pause
     // button a failure removes. Otherwise it is cleared rather than moved, and the root's key handler
     // stops seeing any key, so Space and the arrows go dead. The list takes focus while it is open.
-    LaunchedEffect(focus, failed, pickerOpen) { if (!pickerOpen) runCatching { focus.requestFocus() } }
-    LaunchedEffect(lastActivity, status.playing, pickerOpen) {
+    LaunchedEffect(focus, failed, listOpen) { if (!listOpen) runCatching { focus.requestFocus() } }
+    LaunchedEffect(lastActivity, status.playing, listOpen) {
         hudVisible = true
-        if (status.playing && !pickerOpen) {
+        if (status.playing && !listOpen) {
             delay(PlayerScreenDefaults.HudTimeoutMillis)
             runCatching { focus.requestFocus() }
             hudVisible = false
         }
     }
-    val hudShown = hudVisible || failed || pickerOpen
+    val hudShown = hudVisible || failed || listOpen
     // Held while the list is open. It grows upward from its foot, so a track arriving would slide the row under the
     // pointer just as it is clicked. An empty list has no rows to slide, so the first tracks do appear in it.
     val listed = remember(pickerOpen, tracks.isEmpty()) { tracks }
@@ -247,13 +254,17 @@ internal fun PlayerContent(
             .onPreviewKeyEvent { event ->
                 if (event.type != KeyEventType.KeyDown) return@onPreviewKeyEvent false
                 lastActivity = System.currentTimeMillis()
-                if (pickerOpen) {
+                if (listOpen) {
                     // The list has the keys now. Space and Enter are its rows', the arrows move between them.
                     return@onPreviewKeyEvent when (event.key) {
                         Key.DirectionUp -> focusManager.moveFocus(FocusDirection.Up)
                         Key.DirectionDown -> focusManager.moveFocus(FocusDirection.Down)
                         Key.C -> {
                             pickerOpen = false
+                            true
+                        }
+                        Key.R -> {
+                            fitOpen = false
                             true
                         }
                         else -> false
@@ -267,6 +278,7 @@ internal fun PlayerContent(
                     Key.DirectionDown -> volume.step(-PlayerVolume.STEP)
                     Key.M -> volume.toggleMute()
                     Key.C -> if (!failed) pickerOpen = true
+                    Key.R -> fitOpen = true
                     // F alone or with Cmd: the modifier is not read, so both come here.
                     Key.F -> fullscreen?.toggle() ?: return@onPreviewKeyEvent false
                     else -> return@onPreviewKeyEvent false
@@ -278,7 +290,7 @@ internal fun PlayerContent(
             Image(
                 bitmap = image,
                 contentDescription = null,
-                contentScale = FitAs(pictureSize),
+                contentScale = fit.current.contentScale(pictureSize),
                 filterQuality = FilterQuality.Low,
                 modifier = Modifier.fillMaxSize(),
             )
@@ -300,9 +312,10 @@ internal fun PlayerContent(
             pictureSize = pictureSize ?: frame?.let { IntSize(it.width, it.height) },
             topInset = topInset,
             bottomInset = bottomInset,
+            fit = fit.current,
         )
         // Not over the list: the row it came from is saying the same thing.
-        if (!pickerOpen) SubtitleNotice(selection, bottomInset)
+        if (!listOpen) SubtitleNotice(selection, bottomInset)
         AnimatedVisibility(
             visible = hudShown,
             enter = fadeIn(),
@@ -317,16 +330,26 @@ internal fun PlayerContent(
                 onSeekBy = seekBy,
                 onBack = onBack,
                 volumeControl = { VolumeControl(volume) },
-                subtitleControl = {
-                    DesktopIconButton(
-                        icon = CloudStreamIcons.Subtitles,
-                        contentDescription = stringResource(Res.string.player_subtitles_settings),
-                        onClick = { pickerOpen = !pickerOpen },
-                        tone = if (selection is SubtitleSelection.Showing || selection is SubtitleSelection.Loading) {
-                            DesktopButtonTone.Secondary
-                        } else {
-                            DesktopButtonTone.Quiet
+                selectors = {
+                    if (!failed) {
+                        PlayerSelector(
+                            label = stringResource(Res.string.player_subtitles_settings),
+                            value = selection.track()?.label ?: stringResource(Res.string.no_subtitles),
+                            onClick = {
+                                fitOpen = false
+                                pickerOpen = !pickerOpen
+                            },
+                            modifier = Modifier.weight(1f),
+                        )
+                    }
+                    PlayerSelector(
+                        label = stringResource(Res.string.player_fit_title),
+                        value = stringResource(fit.current.words()),
+                        onClick = {
+                            pickerOpen = false
+                            fitOpen = !fitOpen
                         },
+                        modifier = Modifier.weight(1f),
                     )
                 },
                 fullscreenControl = {
@@ -341,6 +364,16 @@ internal fun PlayerContent(
                         )
                     }
                 },
+            )
+        }
+        if (fitOpen) {
+            PictureFitPicker(
+                current = fit.current,
+                onSelect = { chosen ->
+                    fit.choose(chosen)
+                    fitOpen = false
+                },
+                onDismiss = { fitOpen = false },
             )
         }
         if (pickerOpen) {
@@ -389,7 +422,8 @@ private fun BoxScope.SubtitleNotice(selection: SubtitleSelection, bottomInset: D
 }
 
 /**
- * Back and the title at the top, transport floating at the bottom, the picture between them.
+ * Back and the title at the top, transport floating at the bottom, the picture between them. Under the transport,
+ * the selectors say what is playing (artboard 7d). They stay through loading and failure, when they are what is left to do.
  *
  * The controls float on their own surface, so they read over any frame without a heavy scrim across the
  * picture, and they stop growing at [PlayerScreenDefaults.ControlsMaxWidth] so a wide window keeps the
@@ -404,7 +438,7 @@ internal fun Hud(
     onSeekBy: (Long) -> Unit,
     onBack: () -> Unit,
     volumeControl: @Composable () -> Unit = {},
-    subtitleControl: @Composable () -> Unit = {},
+    selectors: @Composable RowScope.() -> Unit = {},
     fullscreenControl: @Composable () -> Unit = {},
 ) {
     val colors = CloudStreamTheme.colors
@@ -425,9 +459,8 @@ internal fun Hud(
                 overflow = TextOverflow.Ellipsis,
             )
         }
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(DesktopDimens.GroupGap),
+        Column(
+            verticalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap),
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .padding(DesktopDimens.WindowMargin)
@@ -439,39 +472,51 @@ internal fun Hud(
                 )
                 .padding(horizontal = DesktopDimens.GroupGap, vertical = DesktopDimens.RelatedGap),
         ) {
-            when {
-                status.failed -> BasicText(
-                    text = stringResource(Res.string.source_error),
-                    style = CloudStreamTheme.typography.body.copy(color = colors.ink),
-                )
-                status.buffering && status.lengthMillis == 0L -> BasicText(
-                    text = stringResource(Res.string.loading),
-                    style = CloudStreamTheme.typography.body.copy(color = colors.ink2),
-                )
-                else -> {
-                    DesktopIconButton(
-                        icon = CloudStreamIcons.SeekBackward,
-                        contentDescription = stringResource(Res.string.seek_back_10_seconds),
-                        onClick = { onSeekBy(-PlayerScreenDefaults.SkipMillis) },
-                        tone = DesktopButtonTone.Quiet,
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(DesktopDimens.GroupGap),
+                modifier = Modifier.fillMaxWidth().heightIn(min = PlayerScreenDefaults.TransportHeight),
+            ) {
+                when {
+                    status.failed -> BasicText(
+                        text = stringResource(Res.string.source_error),
+                        style = CloudStreamTheme.typography.body.copy(color = colors.ink),
                     )
-                    DesktopIconButton(
-                        icon = if (status.playing) CloudStreamIcons.Pause else CloudStreamIcons.Play,
-                        contentDescription = stringResource(if (status.playing) Res.string.pause else Res.string.resume),
-                        onClick = onTogglePause,
-                        tone = DesktopButtonTone.Primary,
+                    status.buffering && status.lengthMillis == 0L -> BasicText(
+                        text = stringResource(Res.string.loading),
+                        style = CloudStreamTheme.typography.body.copy(color = colors.ink2),
                     )
-                    DesktopIconButton(
-                        icon = CloudStreamIcons.SeekForward,
-                        contentDescription = stringResource(Res.string.seek_forward_10_seconds),
-                        onClick = { onSeekBy(PlayerScreenDefaults.SkipMillis) },
-                        tone = DesktopButtonTone.Quiet,
-                    )
-                    SeekTrack(status, onSeekTo, Modifier.weight(1f))
-                    volumeControl()
-                    subtitleControl()
-                    fullscreenControl()
+                    else -> {
+                        DesktopIconButton(
+                            icon = CloudStreamIcons.SeekBackward,
+                            contentDescription = stringResource(Res.string.seek_back_10_seconds),
+                            onClick = { onSeekBy(-PlayerScreenDefaults.SkipMillis) },
+                            tone = DesktopButtonTone.Quiet,
+                        )
+                        DesktopIconButton(
+                            icon = if (status.playing) CloudStreamIcons.Pause else CloudStreamIcons.Play,
+                            contentDescription = stringResource(if (status.playing) Res.string.pause else Res.string.resume),
+                            onClick = onTogglePause,
+                            tone = DesktopButtonTone.Primary,
+                        )
+                        DesktopIconButton(
+                            icon = CloudStreamIcons.SeekForward,
+                            contentDescription = stringResource(Res.string.seek_forward_10_seconds),
+                            onClick = { onSeekBy(PlayerScreenDefaults.SkipMillis) },
+                            tone = DesktopButtonTone.Quiet,
+                        )
+                        SeekTrack(status, onSeekTo, Modifier.weight(1f))
+                        volumeControl()
+                    }
                 }
+            }
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap),
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                selectors()
+                fullscreenControl()
             }
         }
     }
@@ -514,7 +559,12 @@ private fun VolumeControl(volume: PlayerVolume) {
                     }
                 },
         ) {
-            ProgressRule(progress = volume.audible.toFloat() / PlayerVolume.MAX, modifier = Modifier.fillMaxWidth())
+            // Ink and not the default: `live` is playback state only, and a level is not playback.
+            ProgressRule(
+                progress = volume.audible.toFloat() / PlayerVolume.MAX,
+                color = CloudStreamTheme.colors.ink,
+                modifier = Modifier.fillMaxWidth(),
+            )
         }
     }
 }
@@ -567,18 +617,6 @@ internal fun SeekTrack(status: PlayerStatus, onSeekTo: (Float) -> Unit, modifier
 }
 
 /** `1:02:03`, or `2:03` under an hour. Digits and colons are not translated copy here. */
-/**
- * [ContentScale.Fit] for a frame whose size is not its picture's shape: fits [picture], so the two axes scale differently.
- * That is a frame libVLC stretched into a decoder's buffer, or one with non-square pixels. See `BUG-15`.
- */
-private class FitAs(private val picture: IntSize?) : ContentScale {
-    override fun computeScaleFactor(srcSize: Size, dstSize: Size): ScaleFactor {
-        if (picture == null) return ContentScale.Fit.computeScaleFactor(srcSize, dstSize)
-        val scale = minOf(dstSize.width / picture.width, dstSize.height / picture.height)
-        return ScaleFactor(scale * picture.width / srcSize.width, scale * picture.height / srcSize.height)
-    }
-}
-
 private fun clock(millis: Long): String {
     val total = (millis / MILLIS_PER_SECOND).coerceAtLeast(0)
     val hours = total / SECONDS_PER_HOUR
@@ -604,8 +642,11 @@ internal object PlayerScreenDefaults {
     const val HudTimeoutMillis = 3_000L
     /** What the top row covers: its 36 button and a 24 margin on each side. Mirrors `DesktopDimens`. */
     val HudTopInset: Dp = 84.dp
-    /** The controls' 52, their 24 margin, and 8 clear of them. */
-    val HudBottomInset: Dp = 84.dp
+    /** The controls' 8 + 36 + 8 + 40 + 8, their 24 margin, and 8 clear of them. */
+    val HudBottomInset: Dp = 132.dp
+    val TransportHeight: Dp = 36.dp
+    /** Two lines, on the 4dp step. */
+    val SelectorHeight: Dp = 40.dp
     val PickerWidth: Dp = 280.dp
     val PickerMaxHeight: Dp = 400.dp
     val PickerMarkSize: Dp = 16.dp

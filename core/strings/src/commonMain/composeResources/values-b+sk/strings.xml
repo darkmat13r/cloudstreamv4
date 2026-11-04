@@ -285,6 +285,10 @@
 <string name="play_with_app_name">Prehrať s CloudStream</string>
 <string name="player_enter_fullscreen">Prejsť do režimu celej obrazovky</string>
 <string name="player_exit_fullscreen">Ukončiť režim celej obrazovky</string>
+<string name="player_fit_original">Pôvodný pomer strán</string>
+<string name="player_fit_screen">Vyplniť obrazovku</string>
+<string name="player_fit_title">Veľkosť obrazu</string>
+<string name="player_fit_width">Vyplniť šírku</string>
 <string name="player_load_one_subtitle_online">Načítať prvé k dispozícii</string>
 <string name="player_load_subtitles">Načítať z súboru</string>
 <string name="player_load_subtitles_online">Načítať z internetu</string>

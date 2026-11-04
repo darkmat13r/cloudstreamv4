@@ -418,6 +418,10 @@
 <string name="play_with_app_name">Luaj me CloudStream</string>
 <string name="player_enter_fullscreen">Hyr në luajtjen me ekran të plotë</string>
 <string name="player_exit_fullscreen">Dil nga ekrani i plotë</string>
+<string name="player_fit_original">Raporti origjinal</string>
+<string name="player_fit_screen">Mbush ekranin</string>
+<string name="player_fit_title">Madhësia e figurës</string>
+<string name="player_fit_width">Mbush gjerësinë</string>
 <string name="player_is_live">Live</string>
 <string name="player_load_one_subtitle_online">Ngarko të parën e disponueshme</string>
 <string name="player_load_subtitles">Ngarko nga skedari</string>

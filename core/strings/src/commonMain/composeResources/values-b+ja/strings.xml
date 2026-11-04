@@ -418,6 +418,10 @@
 <string name="play_with_app_name">CloudStreamで再生</string>
 <string name="player_enter_fullscreen">全画面表示に変更</string>
 <string name="player_exit_fullscreen">全画面表示を終了</string>
+<string name="player_fit_original">元のアスペクト比</string>
+<string name="player_fit_screen">画面全体に表示</string>
+<string name="player_fit_title">画像サイズ</string>
+<string name="player_fit_width">幅に合わせる</string>
 <string name="player_is_live">ライブ</string>
 <string name="player_load_one_subtitle_online">最初に利用可能なものを読み込む</string>
 <string name="player_load_subtitles">ファイルから読み込む</string>

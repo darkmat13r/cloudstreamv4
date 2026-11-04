@@ -412,6 +412,10 @@
 <string name="play_with_app_name">"Пусни с CloudStream"</string>
 <string name="player_enter_fullscreen">"Вход в цял екран"</string>
 <string name="player_exit_fullscreen">"Изход от цял екран"</string>
+<string name="player_fit_original">"Оригинално съотношение"</string>
+<string name="player_fit_screen">"Запълване на екрана"</string>
+<string name="player_fit_title">"Размер на картината"</string>
+<string name="player_fit_width">"Запълване по ширина"</string>
 <string name="player_load_one_subtitle_online">"Зареди първия наличен"</string>
 <string name="player_load_subtitles">"Зареди от файл"</string>
 <string name="player_load_subtitles_online">"Зареди от Интернет"</string>

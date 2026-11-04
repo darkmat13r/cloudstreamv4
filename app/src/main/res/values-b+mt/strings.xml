@@ -94,6 +94,10 @@
 <string name="play_with_app_name">"Ara bil-CloudStream"</string>
 <string name="player_enter_fullscreen">"Idħol fi skrin sħiħ"</string>
 <string name="player_exit_fullscreen">"Oħroġ minn skrin sħiħ"</string>
+<string name="player_fit_original">"Proporzjon oriġinali"</string>
+<string name="player_fit_screen">"Imla l-iskrin"</string>
+<string name="player_fit_title">"Daqs tal-istampa"</string>
+<string name="player_fit_width">"Imla l-wisa’"</string>
 <string name="player_mute">"Itfi l-ħoss"</string>
 <string name="player_speed">"Veloċità tal-Plejer"</string>
 <string name="player_speed_text_format" formatted="true">"veloċità (%.2fx)"</string>

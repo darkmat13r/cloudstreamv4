@@ -2966,3 +2966,33 @@ listened. The measurement was of what libVLC reports, on a silent file, and the 
 
 **Strings:** `player_mute`, `player_unmute`, in all 62 directories, all machine translated and not reviewed by a native
 speaker; `qt` uses only words from its own file. Eighth move of the oracle baseline.
+
+## KMP-31 — Picture size, and the player's controls brought back to artboard 7d · **measured 2026-11-04**
+
+**Status:** in pr. **Owner's request 2026-11-04:** "option to set the stretch mode, fill screen, fill width with
+maintaining aspect ratio, original aspect ratio", and then "are you following design??".
+
+**Picture size:** Original aspect ratio (all of the picture, with bars), Fill width (own shape, top and bottom cut off
+if the picture is taller), Fill screen (stretched to every edge, so its shape can change). R, or the selector. Shared by
+every stream and kept in `~/.cloudstream4/picture-fit`. A cue is placed on the part of the picture that can be seen.
+
+**The answer to the owner's question was no, and these are what it found.** `KMP-27` and `KMP-28` were built from the
+tokens and `docs/plans/desktop-design.md`, without opening `design/TV Detail Player.dc.html` or the semantics table in
+`Design System v2`:
+
+| Design says | What had shipped | Now |
+|---|---|---|
+| `live` red is playback state only | The volume rule was red (#118) | Ink |
+| Selectors read out what is playing; "a generic icon is exactly what makes today's HUD unanswerable" (7d) | Subtitles were a speech bubble, in the transport row | `PlayerSelector`, value over label, in its own row |
+| Selectors stay mounted through failure (7d) | Nothing but the failure text and Back | The row stays; Subtitles leaves only because a failed stream has none to show |
+| Selected = raised fill + ink label + muted marker; white is focus only | A white tick and no fill | As the design says |
+
+**Not brought in line:** 7d's Speed selector, buffered band, BUFFERING badge and skip intro; 7e's right-hand panel with a
+Done row, because `docs/plans/desktop-design.md` already chose a short list above the controls; Source and Audio
+selectors, which `KMP-29` and `KMP-30` add to this row.
+
+**Measured:** `:desktopApp:jvmTest` 328 tests, 0 failures. Each fit against a wide and a tall frame, by pixels and read as
+PNGs at 800 x 600 and 800 x 450. `Picture size` is 4 new keys in all 62 directories, machine translated and not reviewed
+by a native speaker; `qt` uses only words from its own file. Ninth move of the oracle baseline.
+
+**Not measured:** a real film in each fit in a live window. Fill width on a tall picture cuts it, by the owner's wording.

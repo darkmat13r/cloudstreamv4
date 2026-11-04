@@ -418,6 +418,10 @@
 <string name="play_with_app_name">"Смотреть с CloudStream"</string>
 <string name="player_enter_fullscreen">"Полноэкранный режим"</string>
 <string name="player_exit_fullscreen">"Выйти из полноэкранного режима"</string>
+<string name="player_fit_original">"Исходные пропорции"</string>
+<string name="player_fit_screen">"На весь экран"</string>
+<string name="player_fit_title">"Размер изображения"</string>
+<string name="player_fit_width">"По ширине"</string>
 <string name="player_is_live">"Прямой эфир"</string>
 <string name="player_load_one_subtitle_online">"Скачать первые доступные"</string>
 <string name="player_load_subtitles">"Загрузить из файла"</string>

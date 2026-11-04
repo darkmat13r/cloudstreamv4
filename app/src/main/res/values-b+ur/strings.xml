@@ -350,6 +350,10 @@
 <string name="play_with_app_name">"CloudStream کے ساتھ چلائیں"</string>
 <string name="player_enter_fullscreen">"پوری اسکرین میں داخل ہوں"</string>
 <string name="player_exit_fullscreen">"پوری اسکرین سے باہر نکلیں"</string>
+<string name="player_fit_original">"اصل تناسب"</string>
+<string name="player_fit_screen">"اسکرین بھریں"</string>
+<string name="player_fit_title">"تصویر کا سائز"</string>
+<string name="player_fit_width">"چوڑائی بھریں"</string>
 <string name="player_load_subtitles">"فائل سے لوڈ کریں"</string>
 <string name="player_load_subtitles_online">"انٹرنیٹ سے لوڈ کریں"</string>
 <string name="player_loaded_subtitles" formatted="true">"لوڈ %s"</string>

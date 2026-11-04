@@ -418,6 +418,10 @@
 <string name="play_with_app_name">"Odtwórz w CloudStream"</string>
 <string name="player_enter_fullscreen">"Otwórz pełny ekran"</string>
 <string name="player_exit_fullscreen">"Zamknij pełny ekran"</string>
+<string name="player_fit_original">"Oryginalne proporcje"</string>
+<string name="player_fit_screen">"Wypełnij ekran"</string>
+<string name="player_fit_title">"Rozmiar obrazu"</string>
+<string name="player_fit_width">"Wypełnij szerokość"</string>
 <string name="player_is_live">"Na żywo"</string>
 <string name="player_load_one_subtitle_online">"Wczytaj pierwsze dostępne"</string>
 <string name="player_load_subtitles">"Wczytaj z pliku"</string>

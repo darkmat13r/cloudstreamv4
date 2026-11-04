@@ -199,6 +199,10 @@
 <string name="play_with_app_name">"Reproducir con CloudStream"</string>
 <string name="player_enter_fullscreen">"Acceder a pantalla completa"</string>
 <string name="player_exit_fullscreen">"Saír de pantalla completa"</string>
+<string name="player_fit_original">"Proporción orixinal"</string>
+<string name="player_fit_screen">"Encher a pantalla"</string>
+<string name="player_fit_title">"Tamaño da imaxe"</string>
+<string name="player_fit_width">"Encher o ancho"</string>
 <string name="player_mute">"Silenciar"</string>
 <string name="player_size_settings">"Botón de cambio de tamaño do reprodutor"</string>
 <string name="player_size_settings_des">"Eliminar bordes negros"</string>
