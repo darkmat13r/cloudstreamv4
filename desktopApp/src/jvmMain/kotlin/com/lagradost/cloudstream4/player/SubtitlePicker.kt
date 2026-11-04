@@ -187,7 +187,6 @@ internal fun TrackRow(
     detailStyle: TextStyle = CloudStreamTheme.typography.caption.copy(color = CloudStreamTheme.colors.muted),
 ) {
     val colors = CloudStreamTheme.colors
-    val typography = CloudStreamTheme.typography
     val source = remember { MutableInteractionSource() }
     val hovered by source.collectIsHoveredAsState()
     val focused by source.collectIsFocusedAsState()
