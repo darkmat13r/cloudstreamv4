@@ -132,6 +132,10 @@ class SandboxEscapeAttemptTest {
             add("user.name", "property|user.name")
             add("user.home", "property|user.home")
             add("hostname", "hostname|")
+            add("language", "property|user.language")
+            add("country", "property|user.country")
+            add("time zone", "timezone|")
+            add("user id in the environment", "env|__CF_USER_TEXT_ENCODING")
             add("network interfaces with a MAC", "addresses|")
             add("working directory", "cwd|")
         }

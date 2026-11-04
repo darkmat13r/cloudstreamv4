@@ -1323,3 +1323,21 @@ The media host has no `nice`, no `ulimit` and no watch, because it has frames to
 
 **Checked:** isolated copy of the owner's six plugins with the limits on: 6 of 6, 8 providers, CineStream 34 results and 73 playable, CineTmdb 13 and 74, and no host stopped.
 
+### What a plugin can see about the person, as measured
+
+`SandboxEscapeAttemptTest` lists all of this, through real hosts.
+
+| | Visible to a plugin? |
+|---|---|
+| Searches and titles opened, through its own calls | **Yes, and it cannot be otherwise**: it needs them to answer, and it has the internet, so it can send them to its own servers |
+| This Mac's public IP address | **Yes**, to every server it connects to |
+| Which file exists at a path, by `stat` | **Yes**: a JVM needs it |
+| The account name, through the path of its own directory | **Yes in the installed app**: fixing it means moving plugin data out of the home directory |
+| Time zone | **Yes** (`Asia/Kolkata` here). Left alone: providers' bare dates are read as local time (`BUG-08`), so a fake zone would move them, and the IP address gives away about as much |
+| Numeric user id, in `__CF_USER_TEXT_ENCODING` | Yes (501 here), set by macOS inside the process, and the same on most Macs |
+| Language and country | No: `en` and `001`, not the person's settings |
+| Hostname, MAC addresses, other processes, `user.name` | No, since `BUG-26` |
+| Environment variables, files in the home directory | No |
+
+**Which hosts each plugin contacted** is recorded by `OutboundGate` and printed by `--check-extensions`. **It is not on any screen.**
+

@@ -74,6 +74,8 @@ internal object EscapeAttempts {
                 "addresses" -> NetworkInterface.getNetworkInterfaces().toList()
                     .count { it.hardwareAddress != null }.toString()
                 "cwd" -> File("").absolutePath
+                "timezone" -> java.util.TimeZone.getDefault().id
+                "env" -> System.getenv(argument).orEmpty()
                 "spin" -> repeat(argument.toInt()) { thread(isDaemon = true) { while (true) Math.sqrt(System.nanoTime().toDouble()) } }.let { "spinning" }
                 "heap" -> mutableListOf<ByteArray>().let { list -> while (true) list += ByteArray(MEGABYTE) }.let { "unreachable" }
                 "direct" -> mutableListOf<java.nio.ByteBuffer>().let { list -> while (true) list += java.nio.ByteBuffer.allocateDirect(MEGABYTE) }.let { "unreachable" }
