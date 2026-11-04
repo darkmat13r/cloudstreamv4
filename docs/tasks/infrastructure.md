@@ -622,3 +622,60 @@ in the Actions tab, including `Artifact Build` (`pull_request.yml`). That one is
 is **not** one of the three broken workflows. Gating the three in-file is what makes re-enabling
 them safe: once they are skipped here, re-enabling them no longer turns master red. `Artifact
 Build` is being re-enabled by the parent session.
+
+---
+
+## INF-10 — Android UI automation: the device-test harness · **measured 2026-11-04**
+
+**Status:** in pr (the PR that adds this entry) · the owner approved these test-scope dependencies:
+`androidx.compose.ui:ui-test-junit4` and `ui-test-manifest` 1.12.0, `androidx.test.uiautomator:uiautomator`
+2.4.0, `androidx.test:runner` and `rules` 1.7.0 (latest stable).
+
+**Where a test lives.** `androidDeviceTest` in the feature's own module, through
+`cloudstream.kmp.device-test`. The TV screens are in `:feature:*` `commonMain` and most have no Android
+host, so `:app`'s `androidTest` could only reach them through the whole app, with extension loading and
+providers behind it. In the feature, the test APK holds that module and its dependencies: a fake at the
+module's seam (`SearchSource`), the real ViewModel, no network. `:app`'s `androidTest` is kept for what
+only the real app can show, which is navigation. `SearchScreenTvDeviceTest` is the template.
+
+**What it shares.** `:core:devicetest`: `DpadDriver` presses keys and reads focus, `walk()` maps a
+screen, and `FocusGraph.unreachable` / `deadEnds` / `traps` answer the three clauses of "every focusable
+reachable, no dead ends, no traps".
+
+**Measured, each one a wrong turn first:**
+
+- `androidxComposeUi` says 1.11.0 and is stale. `:feature:search`'s `androidDeviceTestRuntimeClasspath`
+  resolves `androidx.compose.ui:ui`, `runtime` and `foundation` to **1.12.0**, so the test libraries are
+  pinned to 1.12.0 in their own version key. `androidxComposeUi` still serves `:core:screenshot` and was
+  left alone.
+- Compose's resource plugin fails the test APK in a module without `androidResources`
+  (`copyAndroidDeviceTestComposeResourcesToAndroidAssets` has no output directory). The convention
+  gives it one. Strings from `:core:strings` load in the test APK with no further setup.
+- **`UiDevice.pressDPadDown()` makes a text field look like a trap.** All injected keys arrive as device
+  -1 (`input dpad keyevent` too; `sendevent` is denied by SELinux on the android-tv image), and Compose's
+  field moves focus for a virtual device only when the source is `SOURCE_HDMI`. `DpadDriver` sends that.
+- The open keyboard takes the D-pad, which is correct on a TV, so a test closes it first.
+- The accessibility tree trails the screen by up to 2 s here: straight after a press it still names the
+  old stop, which reads as a stuck field. A screen test reads focus from semantics (`rule.focusedLabel()`);
+  the real app has no rule, so the default reader waits.
+- `pm uninstall` straight after `sys.boot_completed` fails with `DELETE_FAILED_INTERNAL_ERROR` on two cores,
+  so `scripts/device-tests.sh` waits 20 s past boot.
+
+**What the first run found on `:feature:search` (`Television_720p`, API 36), reported rather than changed:**
+
+- **Landing on the query field with the D-pad opens the keyboard**, and the keyboard then takes the D-pad until
+  Back closes it. Moving Up from a card and then Right to `Sources` needs a Back in between.
+  `FocusGraph.keyboardOpenedOn` records it and `SearchScreenTvDeviceTest` pins it, so changing it fails a test.
+- **Down from the field lands on the first rail's third card**, the nearest to the field's centre, not its first.
+- **Right from the last card of a rail goes to `Sources`**, above it, instead of staying on the rail.
+
+**A red JVM test can come back green from the build cache, measured on `HostLimitsTest`.** On #91's tree the
+XML read `failures="1"` while `:feature:extensions:sandbox:jvmTest` was `FROM-CACHE` and `allTests` and `check` both
+exited 0. `allTests --rerun` does not help, because it reruns the aggregate only. To be sure of a suite, run
+`<module>:jvmTest --rerun` and read the XML. Not fixed here: it is existing build behaviour, and it needs its own
+decision.
+
+**The gate.** The sixth, device-only, not part of `check`: `docs/HANDOVER.md`. `Television_720p` is
+1280x720 at 213 dpi, about 961.5x540.8 dp rather than the artboard's 960x540, so no test asserts full-screen
+geometry against the artboard.
+
