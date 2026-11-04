@@ -1213,7 +1213,7 @@ reasoned and not run. Nobody has reproduced this by hand in the window.
 
 ## BUG-26 — An attempt to break out of the sandboxes, and what it found · **high** · measured 2026-11-04
 
-**Status:** in pr. `SandboxEscapeAttemptTest` runs every attempt through a real plugin host and a real media host under
+**Status:** done · #122. `SandboxEscapeAttemptTest` runs every attempt through a real plugin host and a real media host under
 the real policies, and a shell under the policy with no JVM in the way. It reports a word and never what was read. It is
 this project's own attempt, not an independent audit, and it does not prove the sandbox holds. It cannot try a bug in
 macOS or libVLC.
