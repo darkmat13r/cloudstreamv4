@@ -136,9 +136,8 @@ Every screen ships tests before its PR merges. Three categories, all required:
   episode, a 40-episode list, text long enough to ellipsize, and **D-pad traversal on TV** —
   every focusable reachable, no dead ends, no traps.
 
-No UI test infrastructure exists yet. You will need to add Compose UI test and probably
-UIAutomator for the TV focus traversal. **That is a dependency decision requiring approval** —
-propose it with what, why, alternatives and size, per `dependency-security.md`.
+The infrastructure is `INF-10`: `cloudstream.kmp.device-test`, `:core:devicetest`, and
+`SearchScreenTvDeviceTest` as the template. The gate is in `docs/HANDOVER.md`.
 
 ---
 
