@@ -19,7 +19,13 @@ import androidx.compose.runtime.key
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawWithCache
+import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.graphics.drawOutline
+import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.drawscope.translate
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
@@ -27,7 +33,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
-import com.lagradost.cloudstream4.core.designsystem.primitive.insetOutline
+import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 
 /**
@@ -35,12 +41,18 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
  *
  * Each option is its own focus stop, so LEFT and RIGHT move between them and centre chooses. Selection is hoisted.
  *
- * **Not clipped, unlike the board's `overflow: hidden`.** A clip would cut the focus ring, so each option rounds
- * its own outer corners instead. The focused option also draws above its neighbours, or the next one's fill would
- * paint over the ring.
+ * ## A 28dp visual in a 48dp cell
  *
- * The label's line box is the control's own height, the same fix `TV Library` records for its chips: the 16dp box
- * of `label` would centre in 28dp at +6dp, off the step.
+ * As on [Chip], the visual is what the board draws and the cell is the minimum target: the option's focus and hit
+ * area are [SegmentedControlDefaults.FocusCell] tall, and the ring goes on the cell. The control measures the cell.
+ *
+ * **The visual sits at +10dp, off the 4dp step.** That is 28 centred in 48, the trap [Chip]'s KDoc describes. A
+ * 24dp or 32dp visual would land on the step, but 28dp is what the board draws. Nothing else is placed against it.
+ *
+ * The track is painted by the row and not clipped, because a clip would cut the ring. The focused option draws above
+ * its neighbours, or the next one's fill would paint over the ring.
+ *
+ * The label's line box is the visual's own height, the same fix `TV Library` records for its chips.
  *
  * @param options already-localised labels. Two to four, or this throws: the wrong component is a programming error.
  * @param selectedIndex the chosen option, an index into [options].
@@ -62,9 +74,8 @@ fun SegmentedControl(
     val shape = CloudStreamTheme.shapes.medium
     Row(
         modifier = modifier
-            .height(SegmentedControlDefaults.Height)
-            .background(colors.raised, shape)
-            .insetOutline(colors.line, shape)
+            .height(SegmentedControlDefaults.FocusCell)
+            .segmentedTrack(fill = colors.raised, line = colors.line, shape = shape)
             .selectableGroup(),
     ) {
         options.forEachIndexed { index, label ->
@@ -72,7 +83,8 @@ fun SegmentedControl(
                 Segment(
                     label = label,
                     selected = index == selectedIndex,
-                    shape = shape.forSegment(first = index == 0, last = index == options.lastIndex),
+                    ringShape = shape,
+                    fillShape = shape.forSegment(first = index == 0, last = index == options.lastIndex),
                     onClick = { onSelect(index) },
                 )
             }
@@ -84,7 +96,8 @@ fun SegmentedControl(
 private fun Segment(
     label: String,
     selected: Boolean,
-    shape: Shape,
+    ringShape: Shape,
+    fillShape: Shape,
     onClick: () -> Unit,
 ) {
     val colors = CloudStreamTheme.colors
@@ -103,12 +116,36 @@ private fun Segment(
                 role = Role.Tab,
                 onClick = onClick,
             )
-            .tvFocusRing(focused = focused, shape = shape)
-            .background(if (selected) colors.line else colors.raised, shape)
-            .padding(horizontal = SegmentedControlDefaults.HorizontalPadding),
+            .tvFocusRing(focused = focused, shape = ringShape),
         contentAlignment = Alignment.Center,
     ) {
-        TargetLabel(text = label, style = style, color = if (selected) colors.ink else colors.muted)
+        Box(
+            modifier = Modifier
+                .height(SegmentedControlDefaults.VisualHeight)
+                .background(if (selected) colors.line else Color.Transparent, fillShape)
+                .padding(horizontal = SegmentedControlDefaults.HorizontalPadding),
+            contentAlignment = Alignment.Center,
+        ) {
+            TargetLabel(text = label, style = style, color = if (selected) colors.ink else colors.muted)
+        }
+    }
+}
+
+/**
+ * Paints the raised track and its hairline across the whole row, in the [SegmentedControlDefaults.VisualHeight] band
+ * at the middle of the cell. Draw-only, and behind the options.
+ */
+private fun Modifier.segmentedTrack(fill: Color, line: Color, shape: Shape): Modifier = drawWithCache {
+    val bandHeight = SegmentedControlDefaults.VisualHeight.toPx()
+    val top = (size.height - bandHeight) / HALF
+    val strokePx = CloudStreamDimens.Hairline.toPx()
+    val inset = strokePx / HALF
+    val track = shape.createOutline(Size(size.width, bandHeight), layoutDirection, this)
+    val edge = shape.createOutline(Size(size.width - strokePx, bandHeight - strokePx), layoutDirection, this)
+    val stroke = Stroke(width = strokePx)
+    onDrawBehind {
+        translate(top = top) { drawOutline(outline = track, color = fill) }
+        translate(left = inset, top = top + inset) { drawOutline(outline = edge, color = line, style = stroke) }
     }
 }
 
@@ -128,13 +165,16 @@ private fun Shape.forSegment(first: Boolean, last: Boolean): Shape = when (this)
 @Immutable
 object SegmentedControlDefaults {
 
-    /** 56px on the artboard. On the step, and between the chip visual and the text button by design. */
-    val Height: Dp = 28.dp
+    /** The visual, 56px on the artboard. On the step itself, though centred in [FocusCell] it is not. */
+    val VisualHeight: Dp = 28.dp
+
+    /** An option's focus and hit area, the minimum target. Mirrors `CloudStreamDimens.ChipFocusCell`. */
+    val FocusCell: Dp = CloudStreamDimens.ChipFocusCell
 
     /** Each side of a label, 24px on the artboard. Equal to `CloudStreamDimens.MinFocusGap` in value only. */
     val HorizontalPadding: Dp = 12.dp
 
-    /** [Height] in `sp`, so the line box fills the control. See [SegmentedControl]. */
+    /** [VisualHeight] in `sp`, so the line box fills the visual. See [SegmentedControl]. */
     val LineHeight: TextUnit = 28.sp
 
     /** The fewest options the board allows. */
@@ -144,5 +184,6 @@ object SegmentedControlDefaults {
     const val OPTIONS_MAX: Int = 4
 }
 
+private const val HALF = 2f
 private const val RESTING_LAYER = 0f
 private const val FOCUSED_LAYER = 1f

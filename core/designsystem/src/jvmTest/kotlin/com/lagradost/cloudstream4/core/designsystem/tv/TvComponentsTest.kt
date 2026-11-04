@@ -127,18 +127,28 @@ class TvComponentsTest {
     private val twoOptions = listOf("Merged", "By source")
 
     @Test
-    fun `the segmented control is 28dp tall and shows only the chosen option raised`() {
+    fun `the control measures its 48dp cell, and paints a 28dp visual at the middle of it`() {
+        val control = render { SegmentedControl(twoOptions, 0, {}, it) }
+        assertEquals(CELL_HEIGHT, control.size.height)
+        CELL_HEIGHT.onStep()
+        val x = MARGIN + 12 // Past the 8dp corner, and before the label.
+        assertEquals(colors.bg.toArgb(), control[x, MARGIN + VISUAL_TOP - 1], "above the visual")
+        assertEquals(colors.line.toArgb(), control[x, MARGIN + VISUAL_TOP + 1], "the visual's top")
+        assertEquals(colors.line.toArgb(), control[x, MARGIN + VISUAL_TOP + 26], "the visual's foot")
+        assertEquals(colors.bg.toArgb(), control[x, MARGIN + VISUAL_TOP + 28], "below the visual")
+    }
+
+    @Test
+    fun `only the chosen option is filled`() {
         val first = render { SegmentedControl(twoOptions, 0, {}, it) }
-        assertEquals(SEGMENT_HEIGHT, first.size.height)
-        SEGMENT_HEIGHT.onStep()
         val inFirst = MARGIN + 4
-        val lastX = MARGIN + first.size.width - 4
-        val y = MARGIN + SEGMENT_HEIGHT / 2
+        val inLast = MARGIN + first.size.width - 4
+        val y = MARGIN + CELL_HEIGHT / 2
         assertEquals(colors.line.toArgb(), first[inFirst, y], "chosen")
-        assertEquals(colors.raised.toArgb(), first[lastX, y], "not chosen")
+        assertEquals(colors.raised.toArgb(), first[inLast, y], "not chosen")
         val second = render { SegmentedControl(twoOptions, 1, {}, it) }
         assertEquals(colors.raised.toArgb(), second[inFirst, y], "not chosen")
-        assertEquals(colors.line.toArgb(), second[lastX, y], "chosen")
+        assertEquals(colors.line.toArgb(), second[inLast, y], "chosen")
     }
 
     @Test
@@ -167,8 +177,8 @@ class TvComponentsTest {
         }
         try {
             scene.render()
-            listOf(width - 4f, 4f).forEach { x ->
-                val at = Offset(x, SEGMENT_HEIGHT / 2f)
+            // Inside the visual, then in the cell above it: the whole 48dp is the target.
+            listOf(Offset(width - 4f, CELL_HEIGHT / 2f), Offset(4f, 1f)).forEach { at ->
                 scene.sendPointerEvent(PointerEventType.Press, at)
                 scene.sendPointerEvent(PointerEventType.Release, at)
                 scene.render()
@@ -187,7 +197,7 @@ class TvComponentsTest {
             CloudStreamTheme {
                 manager = LocalFocusManager.current
                 Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg).padding(MARGIN.dp)) {
-                    SegmentedControl(twoOptions, 0, {}, Modifier.onSizeChanged { width = it.width })
+                    SegmentedControl(twoOptions, 1, {}, Modifier.onSizeChanged { width = it.width })
                 }
             }
         }
@@ -197,10 +207,11 @@ class TvComponentsTest {
             scene.render()
             val focus = colors.focus.toArgb()
             val first = scene.render().toComposeImageBitmap().toPixelMap()
-            // The ring is 2dp offset and 2dp thick, so it covers 3dp above the control.
+            // The ring is on the cell: 2dp offset and 2dp thick, so it covers 3dp above the 48dp, not above the visual.
             assertEquals(focus, first[MARGIN + 8, MARGIN - 3].toArgb())
-            // Its right side falls on the next option, which would paint over it if it did not draw above.
-            val y = MARGIN + 2
+            // Its right side crosses the chosen neighbour's fill, which would cover it if it did not draw above.
+            // This line is inside the visual and above the labels, so only the ring can be this colour.
+            val y = MARGIN + VISUAL_TOP + 2
             assertTrue(
                 (MARGIN + 2 until MARGIN + width - 2).any { first[it, y].toArgb() == focus },
                 "the ring's inner side is visible over the neighbour",
@@ -378,8 +389,8 @@ class TvComponentsTest {
         const val MARGIN = 16
         const val STEP = 4
         const val PILL_HEIGHT = 24
-        const val SEGMENT_HEIGHT = 28
-        const val SEGMENTS_WIDTH = 400
+        const val CELL_HEIGHT = 48
+        const val VISUAL_TOP = 10
         const val METER_WIDTH = 400
         const val METER_HEIGHT = 24
         const val ROW_WIDTH = 400

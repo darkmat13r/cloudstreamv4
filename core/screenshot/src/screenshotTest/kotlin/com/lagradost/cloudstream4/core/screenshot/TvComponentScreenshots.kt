@@ -51,7 +51,7 @@ fun StatusPills() {
     }
 }
 
-@Preview(name = "SegmentedControl - first chosen", widthDp = 320, heightDp = 84)
+@Preview(name = "SegmentedControl - first chosen", widthDp = 320, heightDp = 104)
 @Composable
 fun SegmentedChosen() {
     TvSurface { SegmentedControl(listOf("Merged", "By source"), 0, {}) }

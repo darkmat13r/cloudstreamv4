@@ -269,7 +269,7 @@ them yet.
 | `Avatar` | `TV Detail Player` 7a | `primitive/Avatar.kt` |
 | `StorageMeter` | `TV Episodes Downloads` 6c, 6e | `primitive/StorageMeter.kt` |
 | `DownloadProgressRow` | `TV Episodes Downloads` 6c, 6d | `rows/DownloadProgressRow.kt` |
-| 11 `CloudStreamIcons` entries | Tabler only | `icon/CloudStreamIcons.kt` |
+| 8 `CloudStreamIcons` entries | Tabler only | `icon/CloudStreamIcons.kt` |
 
 **One existing component changed:** `StatusDot.Failed` went from a filled `live` square to a hollow `muted` one
 (`DEC-17`). It had no caller outside its own file, measured by grep across `core`, `feature`, `desktopApp` and
@@ -286,16 +286,18 @@ them yet.
 - **Corners follow the tokens:** square art as on `MediaCard`, and `shapes.medium` on the segmented control.
 - **Below-art cards do not lift.** The boards draw no lift on them, unlike `BackdropCard`.
 
+`LiveTv`, `Movies` and `Tv` icons are not added: `DEC-17` took them off the rail, so nothing uses them. They can
+return with their filters.
+
 ### Open, and not settled here
 
 - **`ProgressRule` 2dp or 4dp** (handover §8.4). The cards use `MediaCardDefaults.ProgressRuleHeight`, 4dp, as
   asked. 3c agrees, and `Components` draws 4px, which is 2dp. The download row uses `ProgressRule`'s own 2dp, as 6c
   and 6d draw it.
-- **`SegmentedControl` is 28dp tall with a ring on each option.** That is what `Components` draws, but its own lede
-  asks for a 48dp minimum target. No board uses the control yet to settle it.
+- **`SegmentedControl`'s 28dp visual sits at +10dp in its 48dp cell**, off the step. The 48dp target is ruled and 28dp
+  is what `Components` draws; a 24dp or 32dp visual would centre on the step. No board uses the control yet.
 - **`Components` draws the selection marker `muted` and "never a white bar"**, and `SelectionMarker` defaults to
   `ink`. It is white on a selected `DownloadProgressRow`, through `ListRow`. Not changed here.
-- **`LiveTv`, `Movies` and `Tv` have no user yet.** `DEC-17` took them off the rail; they were requested for filters.
 
 `:core:designsystem` has no `abiValidation`, so it has no `checkKotlinAbi` or dump to update. Measured from
 `:core:designsystem:tasks --all`; the plugin is only in `cloudstream.kmp.extension-api`.

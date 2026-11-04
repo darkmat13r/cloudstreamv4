@@ -2,7 +2,6 @@ package com.lagradost.cloudstream4.core.designsystem.icon
 
 import androidx.compose.ui.graphics.vector.ImageVector
 import compose.icons.TablerIcons
-import compose.icons.tablericons.AccessPoint
 import compose.icons.tablericons.AdjustmentsHorizontal
 import compose.icons.tablericons.AlertTriangle
 import compose.icons.tablericons.ArrowLeft
@@ -13,7 +12,6 @@ import compose.icons.tablericons.Check
 import compose.icons.tablericons.ChevronRight
 import compose.icons.tablericons.CircleX
 import compose.icons.tablericons.Database
-import compose.icons.tablericons.DeviceTv
 import compose.icons.tablericons.Dots
 import compose.icons.tablericons.Download
 import compose.icons.tablericons.Gauge
@@ -24,7 +22,6 @@ import compose.icons.tablericons.Lock
 import compose.icons.tablericons.Maximize
 import compose.icons.tablericons.MessageCircle
 import compose.icons.tablericons.Minimize
-import compose.icons.tablericons.Movie
 import compose.icons.tablericons.PlayerPause
 import compose.icons.tablericons.PlayerPlay
 import compose.icons.tablericons.PlayerSkipBack
@@ -56,11 +53,10 @@ import compose.icons.tablericons.X
  * Getters, because the pack builds each vector on first read and caches it. A `val` here would build all
  * of them the first time anything touches this object.
  *
- * ## Meanings Tabler has no glyph for
+ * ## Two meanings Tabler has no glyph for
  *
  * - [Subtitles] is a speech bubble, like Apple's captions glyph.
  * - [Quality] is a pair of sliders: Tabler has no HD mark, and what the control does is adjust.
- * - [LiveTv] is an access point: this Tabler has no broadcast or antenna glyph.
  */
 object CloudStreamIcons {
     // Transport
@@ -92,9 +88,6 @@ object CloudStreamIcons {
     val More: ImageVector get() = TablerIcons.Dots
     val Disclosure: ImageVector get() = TablerIcons.ChevronRight
     val Library: ImageVector get() = TablerIcons.Book
-    val LiveTv: ImageVector get() = TablerIcons.AccessPoint
-    val Movies: ImageVector get() = TablerIcons.Movie
-    val Tv: ImageVector get() = TablerIcons.DeviceTv
     val Profile: ImageVector get() = TablerIcons.User
 
     // Actions and state
