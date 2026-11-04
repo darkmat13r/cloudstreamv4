@@ -3244,11 +3244,11 @@ The page's margin does not change, so it does not reflow.
 
 ### Found, not changed
 
-- **Two stops lose focus on the XML rail too,** which `theXmlRailLosesFocusOnTheSameTwoStops` measures: DOWN from Home's
+- **Two stops lose focus on the XML rail too,** which two `theXmlRailLosesFocus…` tests measure: DOWN from Home's
   provider button (`nextFocusDown` names a hidden `home_preview_info_btt`), and RIGHT from the Library's pager. LEFT
   recovers from both. `noDeadEndsOnHome` and `noDeadEndsOnLibrary` pin them, so fixing either fails a test on purpose.
-- **Settings' search field is not an exact return.** It expands when focused and collapses when not, so RIGHT lands on
-  `Default`, the stop above it. Every other stop tried returns exactly.
+- **Settings' search field is not an exact return, and DOWN from it goes nowhere.** It expands when focused and collapses
+  when not, so RIGHT lands on `Default`, the stop above it. LEFT still leaves it. Every other stop tried returns exactly.
 - **`NavRail`'s brushes are not mirrored in a right-to-left layout.** The keys are. Neither has been run in one.
 
 ### What the XML rail had that this does not

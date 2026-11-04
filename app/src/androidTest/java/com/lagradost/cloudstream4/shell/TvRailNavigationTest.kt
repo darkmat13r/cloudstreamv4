@@ -306,7 +306,7 @@ class TvRailNavigationTest {
         dpad.press(Dpad.Down)
     }
 
-    /** `None` is Home's one stop here, and DOWN from it loses focus: see [theXmlRailLosesFocusOnTheSameTwoStops]. */
+    /** `None` is Home's one stop here, and DOWN from it loses focus: see [theXmlRailLosesFocusFromHomesProviderButtonToo]. */
     @Test
     fun rightReturnsToTheExactStopOnHome() = rightReturnsToTheStopThatLeft(HOME, moveToStop = {})
 
@@ -319,13 +319,25 @@ class TvRailNavigationTest {
     @Test
     fun rightReturnsToTheExactStopOnDownloads() = rightReturnsToTheStopThatLeft(DOWNLOADS)
 
+    /**
+     * Settings' own page cannot show this: from its search field DOWN goes nowhere, and the field expands when it takes
+     * focus and collapses when it loses it, so RIGHT from the rail measured `Default`, the stop above it. Below that
+     * page, a Compose list has plain rows.
+     */
     @Test
-    fun rightReturnsToTheExactStopOnSettings() = rightReturnsToTheStopThatLeft(SETTINGS) {
-        // A row, deliberately. Settings' search field expands when it takes focus and collapses when it loses it, so
-        // it is not where it was: RIGHT from the rail measured `Default`, the stop above it.
-        val row = context.getString(R.string.category_player)
-        repeat(SETTINGS_ROW_PRESSES) { if (dpad.focused() != row) dpad.press(Dpad.Down) }
-        assertEquals(row, dpad.focused())
+    fun rightReturnsToTheExactStopOnAComposePage() = launch {
+        commit(SETTINGS)
+        navigate(R.id.navigation_settings_ui)
+        waitForDestination(R.id.navigation_settings_ui)
+        waitForMark(labels[SETTINGS])
+        openRail()
+        dpad.press(Dpad.Right)
+        val first = dpad.focused()
+        val stop = dpad.press(Dpad.Down)
+        assertTrue("DOWN moved along the page from $first", stop != first && !railHasFocus)
+
+        assertEquals("LEFT leaves the row for the rail", labels[SETTINGS], dpad.press(Dpad.Left))
+        assertEquals("RIGHT returns to that row and not the first", stop, dpad.press(Dpad.Right))
     }
 
     @Test
@@ -453,22 +465,30 @@ class TvRailNavigationTest {
         }
     }
 
-    /** Measures that these two losses are the pages', not the Compose rail's. Neither is fixed here. */
+    /** Measures that this loss is the page's, not the Compose rail's. It is not fixed here. */
     @Test
-    fun theXmlRailLosesFocusOnTheSameTwoStops() {
+    fun theXmlRailLosesFocusFromHomesProviderButtonToo() {
         TvRailSwitch.useComposeRail = false
         launch {
             waitForDestination(R.id.navigation_home)
             assertEquals("Home's one stop", NO_PROVIDER, dpad.enter())
             assertNull("DOWN from it", dpad.press(Dpad.Down))
+        }
+    }
 
+    /** Measures that this loss is the page's, not the Compose rail's. It is not fixed here. */
+    @Test
+    fun theXmlRailLosesFocusFromTheLibrarysPagerToo() {
+        TvRailSwitch.useComposeRail = false
+        launch {
             navigate(R.id.navigation_library)
             waitForDestination(R.id.navigation_library)
-            dpad.enter()
+            val visited = mutableListOf(dpad.enter())
             repeat(RAIL_PRESSES) {
-                if (dpad.focused()?.startsWith(VIEW_PAGER) != true) dpad.press(Dpad.Down)
+                val at = visited.last()
+                if (!at.startsWith(VIEW_PAGER)) visited += dpad.press(if (at in labels) Dpad.Right else Dpad.Down).orEmpty()
             }
-            assertTrue("the Library's pager", dpad.focused()?.startsWith(VIEW_PAGER) == true)
+            assertTrue("the Library's pager, by way of $visited", visited.last().startsWith(VIEW_PAGER))
             assertNull("RIGHT from it", dpad.press(Dpad.Right))
         }
     }
@@ -516,7 +536,6 @@ class TvRailNavigationTest {
         /** 46% dim leaves 54%. Margin, because focus moves off a filled row when the rail opens too. */
         const val MAX_DIMMED_RATIO = 0.75f
 
-        const val SETTINGS_ROW_PRESSES = 4
         const val VIEW_PAGER = "androidx.viewpager"
 
         /** The provider button on Home with no extension installed. */
