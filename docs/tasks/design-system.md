@@ -137,6 +137,85 @@ draw a glyph in Compose — *"temporary glyphs are permanent; that is how the 80
 
 ---
 
+## DS-08 — Batch A of the TV kit: panel motion, two focusable-when-disabled targets, the trailing focus stop, and the text field
+
+**Status:** done · **Scope:** `:core:designsystem`, plus the one call site in `:feature:search`
+
+Five gaps from `docs/plans/tv-screen-audit.md` §3's "Missing from `Components.dc.html`" table, which
+is also the queue's `Q3` — the batch every panel board (4d, 5d, 5e, 7e) and every row-with-verbs
+board (6d, 7c, 8b, 8c, 4c) waits on.
+
+| What | Where | Board |
+|---|---|---|
+| Panel slide, 240ms ease-out, interruptible | `panel/SidePanelHost.kt` | `Components` §05 |
+| Disabled-but-focusable text button | `target/TextButton.kt` | `Components` §01 |
+| `ListRow` trailing focus stops | `rows/ListRow.kt` | `Components` §03, `TV Episodes Downloads` 6d |
+| Disabled row that is still a stop | `rows/ListRowState.kt` | `TV Library` 5d |
+| A public text field | `target/TextField.kt` | `TV Search` 4a–4c |
+| Selected marker is `muted`, not `ink` | `primitive/SelectionMarker.kt` | `Components` §03 |
+
+Each new behaviour is **opt-in**: `focusableWhenDisabled` on the two buttons and on `ListRowState`,
+`actions` on `ListRow`. Every caller that predates this task renders and behaves exactly as it did,
+which is why the defaults are the old behaviour and not the board's.
+
+### `DEC-17` is implemented here too
+
+The ruling arrived mid-task: a single-choice panel (subtitle, audio, sort) applies **at once**, a
+multi-select panel (sources) applies on **Done**, BACK closes either, and there is no Apply/Cancel.
+`SidePanel`'s KDoc said the opposite — it required both buttons and told callers to hold a draft —
+so it was rewritten, and `commit` became nullable so a panel that needs no bottom row collapses the
+region to the 28dp focus band instead of reserving 76dp for nothing. The previews were drawing the
+retired Apply/Cancel pair and now draw 5d's `Done` row.
+
+### The selected marker was white, and the boards forbid that
+
+`SelectionMarker`'s `color` defaulted to `ink`, so a selected row drew a white bar. `Components`
+§03 states the prohibition directly — *"raised fill plus a muted 4px marker, **never a white
+bar**"* — and all five TV boards encode it in one line of CSS, `.lrow.sel .lmark { background:
+var(--mut) }` (`Components:148`, `TV Library:149`, `TV Detail Player:108`,
+`TV Episodes Downloads:97`, `TV Search Suggestions:123`). White means focus; a white marker says
+"you are here" about a row the user is not on.
+
+The default is now `muted`. **Nothing else on screen changed**, which was checked before the edit
+rather than after: `SelectionMarker`'s only caller in the repo is `ListRow`, and of `ListRow`'s
+four callers outside this module — `SearchRecentColumn.kt:73,82`, `DetailScreenTv.kt:231,267` and
+`DesignSystemScreenshots.kt` — only the screenshot suite ever passes `selected = true`, and that
+suite has no committed reference images to invalidate because the plugin does not render on this
+toolchain (`DEC-10`, `.claude/rules/screenshot-testing.md`).
+
+**Still open, and deliberately not done here:** the same sentence also gives a selected row a
+**`raised` fill**, and `ListRow` paints no background at all. That is a visible change to every
+selected row rather than a correction to one token, so it wants its own change and its own look at
+the diff.
+
+### Three things found while checking the audit against the boards and the code
+
+1. **8c does not need a disabled row.** §3 lists "Disabled row with a reason, still a stop" as
+   needed by "5d, 8c row 5". On 8c row 5 is `dune messiah` with an honest `0 SOURCES`, and its
+   markup carries `class="zero"` on the *count* — `.trail .lt.zero { color: var(--mut); }` — not
+   `off` on the row. It is a normal, reachable row with a muted count. **5d is the only board that
+   needs this.**
+2. **`:core:designsystem` has no ABI dump to update.** `abiValidation` is switched on by
+   `cloudstream.kmp.extension-api` only (`build-logic/convention/src/main/kotlin/cloudstream.kmp.extension-api.gradle.kts:58`);
+   this module applies `cloudstream.kmp.compose`, which does not. The six `api/*.api` files in the
+   tree are `:app`, `:library`, `:core:model`, `:core:data`, `:core:common` and `:core:network`.
+   A public API change here is reviewed from the diff, not from a dump.
+3. **The text field's hairline consumes a dp that the board's does not.** `TV Search` draws the
+   field's edge as `box-shadow: inset 0 0 0 1px var(--line)`, which costs no layout, so text starts
+   at exactly the 12dp padding. The code uses `Modifier.border`, which insets the content box, so
+   text starts at 13dp — one dp off the step, for exactly the reason `GhostTextButton`'s KDoc gives
+   and solves with a draw-only `hairlineOutline`. **Carried over unchanged**, because this task
+   promised the search screen would render identically; it wants its own one-line change and its own
+   look at the diff.
+
+### Promotions this leaves for `:core:theme`
+
+`TextFieldDefaults.Height` (48dp) and `TextFieldDefaults.HorizontalPadding` (12dp), and
+`SidePanelDefaults.BandOnlyHeight`. The existing list in `ListRowDefaults`, `SidePanelDefaults`,
+`TextButtonDefaults`, `ChipDefaults` and `IconCellDefaults` is unchanged.
+
+---
+
 ## DS-07 — Off-grid dimensions in the vendored Mihon tree · **won't fix**
 
 **Status:** closed, won't fix · censused 2026-10-15 · related to `KMP-06b`

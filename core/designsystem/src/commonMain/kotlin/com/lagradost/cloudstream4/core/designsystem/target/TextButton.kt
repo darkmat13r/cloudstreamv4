@@ -2,6 +2,7 @@ package com.lagradost.cloudstream4.core.designsystem.target
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsFocusedAsState
 import androidx.compose.foundation.layout.Box
@@ -20,6 +21,9 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.drawOutline
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.disabled
+import androidx.compose.ui.semantics.role
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
@@ -52,8 +56,10 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
  * @param onClick invoked on D-pad centre, Enter, or a tap.
  * @param modifier applied to the button, which is the focusable and the ring's target. Pass
  *   `Modifier.onFocusChanged { … }` here if a parent needs to observe focus.
- * @param enabled when false the button is not focusable and renders on
+ * @param enabled when false the button does not click and renders on
  *   `CloudStreamTheme.colors.raised` with a `muted` label.
+ * @param focusableWhenDisabled see [TargetTextButton]. Defaults to false, which is the
+ *   not-focusable disabled button every existing caller already has.
  */
 @Composable
 fun PrimaryTextButton(
@@ -61,6 +67,7 @@ fun PrimaryTextButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
+    focusableWhenDisabled: Boolean = false,
 ) {
     val colors = CloudStreamTheme.colors
     val skin = remember(colors, enabled) {
@@ -76,6 +83,7 @@ fun PrimaryTextButton(
         onClick = onClick,
         modifier = modifier,
         enabled = enabled,
+        focusableWhenDisabled = focusableWhenDisabled,
     )
 }
 
@@ -96,7 +104,9 @@ fun PrimaryTextButton(
  * @param label already-localised button text.
  * @param onClick invoked on D-pad centre, Enter, or a tap.
  * @param modifier applied to the button, which is the focusable and the ring's target.
- * @param enabled when false the button is not focusable and its label drops to `muted`.
+ * @param enabled when false the button does not click and its label drops to `muted`.
+ * @param focusableWhenDisabled see [TargetTextButton]. Defaults to false, which is the
+ *   not-focusable disabled button every existing caller already has.
  */
 @Composable
 fun GhostTextButton(
@@ -104,6 +114,7 @@ fun GhostTextButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
+    focusableWhenDisabled: Boolean = false,
 ) {
     val colors = CloudStreamTheme.colors
     val skin = remember(colors, enabled) {
@@ -119,6 +130,7 @@ fun GhostTextButton(
         onClick = onClick,
         modifier = modifier,
         enabled = enabled,
+        focusableWhenDisabled = focusableWhenDisabled,
     )
 }
 
@@ -130,6 +142,43 @@ private data class TextButtonSkin(
     val hairline: Color?,
 )
 
+/**
+ * The shared chassis. The only thing worth reading here is [focusableWhenDisabled].
+ *
+ * ## A disabled button that is still a focus stop
+ *
+ * `Components.dc.html` §01: *"Disabled is 40% opacity and **stays focusable** so a loading screen
+ * never has zero focus owners."* That second clause is the whole reason this parameter exists, and
+ * it is a TV constraint rather than a preference. A phone screen whose only button is disabled
+ * still has a thumb; a TV screen whose only button is disabled has **nothing focused at all**, and
+ * Compose's focus then sits on the root. From there a D-pad press has no origin to search from, so
+ * the screen is inert until something else takes focus — and the user cannot see why, because
+ * there is no ring anywhere to tell them where they are. Keeping the disabled button focusable
+ * means the ring stays on screen, pressing centre does nothing (which reads as "not yet"), and
+ * focus is already in the right place the moment the button enables.
+ *
+ * `Modifier.clickable(enabled = false)` cannot express this: it drops the focus target along with
+ * the click. So a disabled-but-focusable button takes `Modifier.focusable` instead and gets no
+ * click handler at all — [onClick] is unreachable rather than guarded, which is a stronger
+ * guarantee than passing `enabled` to `clickable` and trusting it.
+ *
+ * It is also marked disabled in the semantics tree, so a screen reader and a test both see a
+ * focusable control that is not actionable, which is exactly what is on screen.
+ *
+ * **Why the default is false.** This is a new option, not a new rule: every caller that exists
+ * today has a disabled button that is not a focus stop, and flipping the default would change what
+ * is on screen for all of them at once. A screen that needs the board's behaviour asks for it.
+ *
+ * ## The one place the board and the tokens disagree
+ *
+ * The board says disabled is *40% opacity*. The implementation uses the `muted` token for the
+ * label and `raised` for a primary fill, which is the system's own way of saying the same thing
+ * and is what every other disabled thing in the kit already does. Per the project rule the token
+ * wins; it is noted here so the next person does not read 40% and reach for `alpha`.
+ *
+ * @param focusableWhenDisabled when [enabled] is false, whether the button keeps its focus target
+ *   and its ring. Has no effect while [enabled] is true, which is already focusable.
+ */
 @Composable
 private fun TargetTextButton(
     label: String,
@@ -137,6 +186,7 @@ private fun TargetTextButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
+    focusableWhenDisabled: Boolean = false,
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val focused by interactionSource.collectIsFocusedAsState()
@@ -145,11 +195,10 @@ private fun TargetTextButton(
         modifier = modifier
             .height(CloudStreamDimens.TextButtonHeight)
             .widthIn(min = CloudStreamDimens.TextButtonMinWidth)
-            .clickable(
-                interactionSource = interactionSource,
-                indication = null,
+            .targetBehaviour(
                 enabled = enabled,
-                role = Role.Button,
+                focusableWhenDisabled = focusableWhenDisabled,
+                interactionSource = interactionSource,
                 onClick = onClick,
             )
             .tvFocusRing(focused = focused, shape = shape)
@@ -164,6 +213,36 @@ private fun TargetTextButton(
             color = skin.label,
         )
     }
+}
+
+/**
+ * Clickable when enabled; focusable-but-not-clickable when disabled and asked to stay a stop;
+ * neither otherwise.
+ *
+ * One modifier rather than three call sites, and it is the only place the three states differ.
+ */
+private fun Modifier.targetBehaviour(
+    enabled: Boolean,
+    focusableWhenDisabled: Boolean,
+    interactionSource: MutableInteractionSource,
+    onClick: () -> Unit,
+): Modifier = when {
+    enabled -> clickable(
+        interactionSource = interactionSource,
+        indication = null,
+        enabled = true,
+        role = Role.Button,
+        onClick = onClick,
+    )
+
+    focusableWhenDisabled -> this
+        .semantics {
+            role = Role.Button
+            disabled()
+        }
+        .focusable(enabled = true, interactionSource = interactionSource)
+
+    else -> this
 }
 
 /**

@@ -1,10 +1,13 @@
 package com.lagradost.cloudstream4.core.designsystem.rows
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.focusable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -20,6 +23,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.semantics.disabled
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
 import com.lagradost.cloudstream4.core.designsystem.preview.PreviewSurface
@@ -66,13 +71,55 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
  *
  * Focus is observed locally rather than hoisted; see [ListRowState] for why.
  *
+ * ## [trailing] and [actions] are two different things
+ *
+ * `Components.dc.html` §03's anatomy table gives the trailing slot as *"64–96"* px — 32dp to 48dp
+ * — and *"A real focus stop with its own ring. This is what made download and overflow buttons
+ * unreachable before."* Both halves of that are true at once only because the chassis has **two**
+ * trailing slots, and the boards draw the difference plainly:
+ *
+ * - **[trailing] is inside the row.** `TV Library` 5d's direction word, 6d's rate-and-ETA readout,
+ *   `TV Search Suggestions` 8c's source count. These are *readouts*: markup puts them in the row's
+ *   own `.ltrail`, they are not focusable, and they are centred in the 32dp content box.
+ * - **[actions] are beside the row.** `TV Episodes Downloads` 6d's play / state-verb / delete cells
+ *   are `.ibx` elements positioned **outside** the `.lrow` div, at x1496, 1616 and 1736, each
+ *   96x96 px, while the row itself ends at x1472. Each is its own focus stop with its own ring.
+ *
+ * So the row and its controls are **siblings, not nested**. That is the point. `KMP-12` declined
+ * the per-row remove on `TV Search` 4c because the alternative was *"a second focus stop nested
+ * inside a row that is itself a focus stop"* — a focusable inside a focusable, where which one a
+ * D-pad press reaches depends on focus-search internals. Putting the controls next to the row's
+ * focus target instead removes the nesting, and the geometry falls out of one token:
+ *
+ * ```
+ * |        row — one focus stop        |12|  action  |12|  action  |
+ *                                       ^     48dp
+ *                                       CloudStreamDimens.MinFocusGap
+ * ```
+ *
+ * 6d measures row-end 1472 to first cell 1496 as 24px, and cell pitch 120px against a 96px cell
+ * as another 24px — the same 12dp both times, which is [CloudStreamDimens.MinFocusGap]. One
+ * `Arrangement.spacedBy(MinFocusGap)` reproduces the whole run. It is also wide enough for two
+ * rings: each bleeds [CloudStreamDimens.FocusRingBleed] (4dp), so 8dp of ring sits in a 12dp gap
+ * and neighbouring rings never touch.
+ *
+ * With [actions] present the row takes the remaining width and the actions take their intrinsic
+ * width, which is what 6d draws; without them the row is laid out exactly as it was before this
+ * slot existed, with no extra layout node.
+ *
  * @param state what to render. See [ListRowState].
- * @param onClick invoked on click or D-pad centre. Not invoked when `state.enabled` is false.
- * @param modifier applied to the row. Do not put a height on it — the 48dp is the design.
+ * @param onClick invoked on click or D-pad centre. Not invoked when `state.enabled` is false,
+ *   whether or not the row is still focusable.
+ * @param modifier applied to the row, or to the row-and-actions run when [actions] is non-null.
+ *   Do not put a height on it — the 48dp is the design.
  * @param leading an optional [CloudStreamDimens.ListRowDiscSize] (24dp) square cell before the
  *   text: the disc, a checkbox, a provider icon. The cell is only laid out when non-null.
- * @param trailing an optional slot after the text, centred in the 32dp content box: a value, a
- *   chevron, a switch. Give it an intrinsic width; the text stack takes the remaining space.
+ * @param trailing an optional **non-focusable** readout after the text, centred in the 32dp
+ *   content box: a value, a count, a direction. Give it an intrinsic width; the text stack takes
+ *   the remaining space. For something a D-pad must reach, use [actions].
+ * @param actions optional focus stops **after** the row, [CloudStreamDimens.MinFocusGap] apart and
+ *   the row's full [CloudStreamDimens.ListRowHeight] tall, so a 48dp `IconCell` fits with room for
+ *   its ring. Each one is a separate stop; the row remains its own.
  */
 @Composable
 fun ListRow(
@@ -81,19 +128,43 @@ fun ListRow(
     modifier: Modifier = Modifier,
     leading: (@Composable () -> Unit)? = null,
     trailing: (@Composable () -> Unit)? = null,
+    actions: (@Composable RowScope.() -> Unit)? = null,
+) {
+    if (actions == null) {
+        RowBody(state, onClick, modifier, leading, trailing)
+        return
+    }
+    Row(
+        modifier = modifier.height(CloudStreamDimens.ListRowHeight),
+        horizontalArrangement = Arrangement.spacedBy(CloudStreamDimens.MinFocusGap),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        RowBody(state, onClick, Modifier.weight(WEIGHT_REMAINING), leading, trailing)
+        actions()
+    }
+}
+
+/**
+ * The row itself: the one focus stop, the ring, and the three in-row slots.
+ *
+ * Split out of [ListRow] so that a row with [ListRow]'s `actions` can hand it a
+ * `Modifier.weight` while a row without them keeps its original single-node layout.
+ */
+@Composable
+private fun RowBody(
+    state: ListRowState,
+    onClick: () -> Unit,
+    modifier: Modifier,
+    leading: (@Composable () -> Unit)?,
+    trailing: (@Composable () -> Unit)?,
 ) {
     var focused by remember { mutableStateOf(false) }
+    val interactionSource = remember { MutableInteractionSource() }
     Row(
         modifier = modifier
             .height(CloudStreamDimens.ListRowHeight)
             .onFocusChanged { focused = it.isFocused }
-            .selectable(
-                selected = state.selected,
-                interactionSource = null,
-                indication = null,
-                enabled = state.enabled,
-                onClick = onClick,
-            )
+            .rowBehaviour(state, interactionSource, onClick)
             .tvFocusRing(focused = focused, shape = CloudStreamTheme.shapes.medium)
             .padding(CloudStreamDimens.ListRowPadding),
         verticalAlignment = Alignment.CenterVertically,
@@ -109,6 +180,49 @@ fun ListRow(
         )
         if (trailing != null) TrailingCell(trailing)
     }
+}
+
+/**
+ * Selectable when enabled; focusable-but-not-selectable when disabled and
+ * [ListRowState.focusableWhenDisabled]; neither otherwise.
+ *
+ * ## A disabled row that is still a focus stop
+ *
+ * `TV Library` 5d draws the case: four sort criteria, and the one the provider cannot do —
+ * *"Your rating"*, subtitle *"NOT STORED BY LOCAL LISTS"*, trailing *"N/A"* — *"stays visible and
+ * disabled with the reason"*. A row removed from a panel takes its explanation with it and the
+ * user is left wondering why their provider has three criteria and not four; a row that is present
+ * but unreachable is worse, because the reason is on screen and they cannot put focus on it to
+ * read it at three metres.
+ *
+ * **The reason is the subtitle.** There is no new field for it: [ListRowState.subtitle] already
+ * holds the secondary line, 5d puts the reason there, and a dedicated `reason` property would be
+ * the same string in a second slot with no second place to draw it.
+ *
+ * `Modifier.selectable(enabled = false)` drops the focus target along with the click, so a row in
+ * this state takes `Modifier.focusable` and no click handler at all — [onClick] is unreachable
+ * rather than guarded. The row keeps the `muted` text it already had from
+ * [ListRowState.enabled], and is marked disabled in the semantics tree, so what a screen reader
+ * and a test see is what is on screen: a focusable row that does not act.
+ */
+private fun Modifier.rowBehaviour(
+    state: ListRowState,
+    interactionSource: MutableInteractionSource,
+    onClick: () -> Unit,
+): Modifier = when {
+    state.enabled -> selectable(
+        selected = state.selected,
+        interactionSource = null,
+        indication = null,
+        enabled = true,
+        onClick = onClick,
+    )
+
+    state.focusableWhenDisabled -> this
+        .semantics { disabled() }
+        .focusable(enabled = true, interactionSource = interactionSource)
+
+    else -> this
 }
 
 /**
@@ -155,6 +269,9 @@ private const val WEIGHT_REMAINING = 1f
 
 private const val PREVIEW_WIDTH = 248
 
+/** Wide enough for a row plus three 48dp cells on 12dp gaps, and their rings. */
+private const val PREVIEW_ACTIONS_WIDTH = 440
+
 @Preview(widthDp = PREVIEW_WIDTH)
 @Composable
 private fun ListRowStatesPreview() {
@@ -200,6 +317,59 @@ private fun ListRowSlotsPreview() {
             )
         }
     }
+}
+
+/**
+ * `TV Episodes Downloads` 6d's anatomy: a readout inside the row, three verb cells beside it.
+ *
+ * Also `TV Library` 5d's disabled-with-a-reason row, which is still a focus stop. The rings are
+ * the thing worth looking at here and a static preview cannot draw them; what it *can* show is
+ * that the four stops line up on one 48dp band and that nothing moves when the row is disabled.
+ */
+@Preview(widthDp = PREVIEW_ACTIONS_WIDTH)
+@Composable
+private fun ListRowActionsPreview() {
+    PreviewSurface {
+        Column(verticalArrangement = Arrangement.spacedBy(CloudStreamDimens.MinFocusGap)) {
+            ListRow(
+                state = ListRowState(title = "Ozymandias", subtitle = "S5 E14 · 1.2 GB"),
+                onClick = {},
+                leading = { PreviewDisc() },
+                trailing = { PreviewCount(text = "4.2 MB/S") },
+                actions = {
+                    PreviewActionCell()
+                    PreviewActionCell()
+                    PreviewActionCell()
+                },
+            )
+            ListRow(
+                state = ListRowState(
+                    title = "Your rating",
+                    subtitle = "NOT STORED BY LOCAL LISTS",
+                    enabled = false,
+                    focusableWhenDisabled = true,
+                ),
+                onClick = {},
+                trailing = { PreviewCount(text = "N/A") },
+            )
+        }
+    }
+}
+
+/**
+ * Stands in for an `IconCell`, which is the real occupant of an action slot — the same
+ * [CloudStreamDimens.IconTargetCell] (48dp) square, so the preview measures what 6d measures.
+ *
+ * It is a plain `Box`, not a glyph: `.claude/rules/icons.md` forbids drawing one, and a preview is
+ * not an exception to that.
+ */
+@Composable
+private fun PreviewActionCell() {
+    Box(
+        Modifier
+            .size(CloudStreamDimens.IconTargetCell)
+            .background(CloudStreamTheme.colors.raised, CloudStreamTheme.shapes.medium),
+    )
 }
 
 /** Stands in for whatever a caller puts in the 24dp leading cell. */

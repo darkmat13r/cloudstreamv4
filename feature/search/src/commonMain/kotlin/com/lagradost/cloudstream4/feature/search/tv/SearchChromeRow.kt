@@ -1,37 +1,20 @@
 package com.lagradost.cloudstream4.feature.search.tv
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.interaction.collectIsFocusedAsState
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.text.BasicText
-import androidx.compose.foundation.text.BasicTextField
-import androidx.compose.foundation.text.KeyboardActions
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.unit.Dp
-import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
 import com.lagradost.cloudstream4.core.designsystem.state.FailureBanner
 import com.lagradost.cloudstream4.core.designsystem.state.FailureNotice
 import com.lagradost.cloudstream4.core.designsystem.target.Chip
 import com.lagradost.cloudstream4.core.designsystem.target.ChipRow
+import com.lagradost.cloudstream4.core.designsystem.target.TextField
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_field_placeholder
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_sources_label
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
-import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.search.SearchAction
 import com.lagradost.cloudstream4.feature.search.SearchSources
 import com.lagradost.cloudstream4.feature.search.sourcesCountText
@@ -49,11 +32,10 @@ import org.jetbrains.compose.resources.stringResource
  * *"the chip row stopped at x1416 while the Sources button spans x1440–1864, so DOWN from Sources
  * had no target at all."*
  *
- * ## The field has no magnifier
- *
- * `.claude/rules/icons.md` forbids drawing one, and the icon pack is `DEC-11`, unanswered. The
- * artboard has a glyph here. Until the pack lands the field is text and its placeholder carries
- * the meaning instead — artboard 4c's own placeholder, *"Search all sources"*, does exactly that.
+ * The field itself is the design system's
+ * [com.lagradost.cloudstream4.core.designsystem.target.TextField], which is where its geometry and
+ * the note on the artboard's missing magnifier now live. It was this file's `private QueryField`
+ * until `DS-08` moved it; nothing about how it renders changed.
  */
 @Composable
 internal fun SearchChromeRow(
@@ -67,11 +49,13 @@ internal fun SearchChromeRow(
         horizontalArrangement = Arrangement.spacedBy(CloudStreamDimens.MinFocusGap),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        QueryField(
-            query = query,
+        TextField(
+            value = query,
+            onValueChange = { onAction(SearchAction.QueryChanged(it)) },
             placeholder = stringResource(Res.string.search_tv_field_placeholder),
-            onAction = onAction,
             modifier = Modifier.weight(FIELD_WEIGHT),
+            imeAction = ImeAction.Search,
+            onSubmit = { onAction(SearchAction.Submit) },
         )
         Chip(
             label = stringResource(Res.string.search_tv_sources_label),
@@ -107,60 +91,4 @@ internal fun SearchChipRow(
     }
 }
 
-@Composable
-private fun QueryField(
-    query: String,
-    placeholder: String,
-    onAction: (SearchAction) -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    val colors = CloudStreamTheme.colors
-    val typography = CloudStreamTheme.typography
-    val interactionSource = remember { MutableInteractionSource() }
-    val focused by interactionSource.collectIsFocusedAsState()
-    val shape = CloudStreamTheme.shapes.medium
-
-    Box(
-        modifier = modifier
-            .height(CloudStreamDimens.ChromeRowHeight)
-            .tvFocusRing(focused = focused, shape = shape)
-            .background(color = colors.surface, shape = shape)
-            .border(width = CloudStreamDimens.Hairline, color = colors.line, shape = shape)
-            .padding(horizontal = FieldDefaults.HorizontalPadding),
-        contentAlignment = Alignment.CenterStart,
-    ) {
-        BasicTextField(
-            value = query,
-            onValueChange = { onAction(SearchAction.QueryChanged(it)) },
-            modifier = Modifier.fillMaxWidth(),
-            textStyle = typography.body.copy(color = colors.ink),
-            singleLine = true,
-            cursorBrush = SolidColor(colors.ink),
-            interactionSource = interactionSource,
-            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
-            keyboardActions = KeyboardActions(onSearch = { onAction(SearchAction.Submit) }),
-        )
-        if (query.isEmpty()) {
-            BasicText(
-                text = placeholder,
-                style = remember(typography, colors) {
-                    typography.body.copy(color = colors.muted)
-                },
-                maxLines = SINGLE_LINE,
-            )
-        }
-    }
-}
-
-/** The field's own geometry. See `.claude/rules/dimension-scale.md` rule 2. */
-private object FieldDefaults {
-    /**
-     * Mirrors `CloudStreamDimens.MinFocusGap` (12dp), which is the artboard's `padding: 0 24px`
-     * halved. Not `ChipDefaults.VisualHorizontalPadding`, which happens to be the same number for
-     * a different reason.
-     */
-    val HorizontalPadding: Dp = CloudStreamDimens.MinFocusGap
-}
-
 private const val FIELD_WEIGHT = 1f
-private const val SINGLE_LINE = 1

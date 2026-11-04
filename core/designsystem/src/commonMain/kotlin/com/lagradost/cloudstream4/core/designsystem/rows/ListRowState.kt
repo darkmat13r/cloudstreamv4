@@ -16,8 +16,15 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
  *   differently — see the text stack in `ListRowTextStack.kt`.
  * @property selected whether the row's selection marker is lit. The marker cell is always
  *   present, so toggling this never moves the text.
- * @property enabled whether the row accepts clicks and focus. A disabled row still occupies its
- *   [CloudStreamDimens.ListRowHeight] and still renders, in the `muted` colour token.
+ * @property enabled whether the row acts when pressed. A disabled row still occupies its
+ *   [CloudStreamDimens.ListRowHeight] and still renders, in the `muted` colour token. By default
+ *   it also stops being a focus stop; see [focusableWhenDisabled].
+ * @property focusableWhenDisabled when [enabled] is false, whether the row keeps its focus target
+ *   and its ring. `TV Library` 5d needs this: the sort criterion a provider cannot do *"stays
+ *   visible and disabled with the reason"*, and the reason — carried in [subtitle] — is only
+ *   readable at three metres if a D-pad can land on the row. Defaults to false, which is the
+ *   unreachable disabled row every caller that predates this property already has. See
+ *   `ListRow.kt`'s `rowBehaviour` for what it does and why `selectable` cannot express it.
  */
 @Immutable
 data class ListRowState(
@@ -25,6 +32,7 @@ data class ListRowState(
     val subtitle: String? = null,
     val selected: Boolean = false,
     val enabled: Boolean = true,
+    val focusableWhenDisabled: Boolean = false,
 )
 
 /**
