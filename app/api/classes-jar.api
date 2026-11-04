@@ -1248,6 +1248,7 @@ public final class com/lagradost/cloudstream3/MainActivity : androidx/appcompat/
 	public static final synthetic fun access$setNextSearchQuery$cp (Ljava/lang/String;)V
 	public final fun checkGithubConnectivity (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun dispatchKeyEvent (Landroid/view/KeyEvent;)Z
+	public final fun focusNavRail ()V
 	public final fun getBinding ()Lcom/lagradost/cloudstream3/databinding/ActivityMainBinding;
 	public final fun getLastPopup ()Lcom/lagradost/cloudstream3/SearchResponse;
 	public final fun getLastPopupJob ()Lkotlinx/coroutines/Job;
@@ -37117,6 +37118,28 @@ public final class com/lagradost/cloudstream4/search/SearchTvFragmentKt : java/l
 	public static final synthetic fun access$PosterArtwork (Lcom/lagradost/cloudstream4/feature/search/SearchResultItem;Landroidx/compose/runtime/Composer;I)V
 	public static final fun openSearchOnTvScreen (Landroidx/navigation/NavGraph;)V
 	public static final fun titleOf-HFYKPa4 (Lcom/lagradost/cloudstream4/feature/search/SearchStatus;Ljava/lang/String;)Ljava/lang/String;
+}
+
+public final class com/lagradost/cloudstream4/shell/TvRail : java/lang/Object {
+	public static final field $stable I
+	public fun <init> (Lcom/lagradost/cloudstream3/MainActivity;Lcom/lagradost/cloudstream3/databinding/ActivityMainBinding;)V
+	public static final synthetic fun access$returnToPage (Lcom/lagradost/cloudstream4/shell/TvRail;)V
+	public final fun beforeKey (Landroid/view/KeyEvent;)V
+	public final fun onNavBarUpdated (IZ)V
+	public final fun requestFocus ()Z
+}
+
+public final class com/lagradost/cloudstream4/shell/TvRailKt : java/lang/Object {
+	public static final synthetic fun access$getDPAD_KEYS$p ()Ljava/util/Set;
+	public static final synthetic fun access$iconOf (I)Landroidx/compose/ui/graphics/vector/ImageVector;
+	public static final synthetic fun access$neverTakeFocus (Landroid/view/View;)V
+	public static final fun railItemOf (I)I
+}
+
+public final class com/lagradost/cloudstream4/shell/TvRailSwitch : java/lang/Object {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/lagradost/cloudstream4/shell/TvRailSwitch;
+	public static field useComposeRail Z
 }
 
 public final class com/lagradost/safefile/R : java/lang/Object {

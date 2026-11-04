@@ -131,8 +131,11 @@ class DpadDriver(private val readFocus: (() -> String?)? = null) {
      * direction left to try, so a trap ends the walk rather than hanging it, and [FocusGraph.traps]
      * names it. A stop that opens the keyboard on arrival is noted in [FocusGraph.keyboardOpenedOn] and
      * the keyboard closed with Back, or the walk would be mapping the keyboard's keys.
+     *
+     * @param recoverWith a key to press, as a person would, when a press loses focus. Without it a loss ends the walk.
+     *   With it the walk goes on, and [FocusGraph.traps] still names every loss.
      */
-    fun walk(maxPresses: Int = DEFAULT_MAX_PRESSES): FocusGraph {
+    fun walk(maxPresses: Int = DEFAULT_MAX_PRESSES, recoverWith: Dpad? = null): FocusGraph {
         val graph = FocusGraph(enter())
         var current = graph.start
         repeat(maxPresses) {
@@ -146,7 +149,7 @@ class DpadDriver(private val readFocus: (() -> String?)? = null) {
                 graph.keyboardOpenedOn += landed
                 closeKeyboard()
             }
-            current = landed ?: return graph
+            current = landed ?: enter(recoverWith ?: return graph)
         }
         error("Not finished after $maxPresses presses:\n$graph")
     }

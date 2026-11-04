@@ -22,6 +22,9 @@ when twenty-three more had merged since. **Trust `git log` over this heading.**
 
 ## Where things stand
 
+**Android TV shows the Compose rail since `KMP-33`.** `TvRailSwitch.useComposeRail = false` is the rollback to the XML
+rail, kept for one release. Phone and the emulator layout are unchanged.
+
 Master is at `26acd8f8` (#104). **One pull request is open: #91**, a **draft** — `KMP-12` steps 3 and 4,
 Android TV opening the new search screen. `DEC-17` accepts passing UI tests on the `Television_720p` emulator as proof for
 switching; `TvSearchNavigationTest` is that proof. What holds it is the owner's call on its published-API
