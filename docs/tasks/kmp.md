@@ -3845,8 +3845,9 @@ Resume records are read the same way: a title with no usable name is dropped, an
   squeezed to an empty ring: 216.8dp is left under the rail at 720p, and the offline state needs 260. The first fix grew the
   state and moved the page by the least that showed the button, 44px, which left the chrome 4px from the top edge, inside a TV's
   overscan (design review of #162). Now offline fits without its body and nothing moves; a state that still does not fit, such as
-  a failure with its detail line (224dp), moves the page until the chrome is wholly off the screen. Without Continue watching
-  nothing changed.
+  a failure whose detail wraps, moves the page until the chrome is wholly off the screen. That first stopped 15px short: a list
+  scrolls only as far as its content reaches, so a state under Continue watching now has `ChromeRowBottom` of room under it. The
+  rail's header then sits 12dp from the top. Without Continue watching nothing changed.
 - **Coming back by the nav rail left focus on the source control.** `TvHomeNavigationTest` read `Source · Fake One`: the window
   gives a rebuilt view's focus to its first stop before the rows can take it. A rebuilt view now lands once, as the first open
   does; anything that takes focus first, a return included, is that landing.
@@ -3858,11 +3859,13 @@ Resume records are read the same way: a title with no usable name is dropped, an
 
 ### Tested
 
-`HomeScreenTvDeviceTest` 47 on `Television_720p` (22 new): the hero present with its facts at the board's y, a hero with no
+`HomeScreenTvDeviceTest` 50 on `Television_720p` (25 new): the hero present with its facts at the board's y, a hero with no
 facts, no hero, Continue watching with one entry and with twelve, a position of 0 and of half by pixel colour, progress on a rail
-card by pixel colour, long titles in the hero and on a card, offline with Continue watching above the state, a walk from the hero
+card by pixel colour, long titles in the hero and on a card, offline with Continue watching above the state and the chrome where it rests, a state too tall for that moving the chrome wholly
+off the screen, the height reserved for Continue watching against the card as it measures, a walk from the hero
 through every rail with no dead ends or traps, and focus back on a Continue card, on the hero, and on the hero when the entry has
-gone. Three screenshot cases: `home-hero-focus-button`, `home-continue-focus-card`, `home-offline-continue-focus-retry`.
+gone. Four screenshot cases: `home-hero-focus-button`, `home-continue-focus-card`, `home-offline-continue-focus-retry`,
+`home-rails-progress-focus-card`.
 `TvHomeNavigationTest` 14 (1 new, through real navigation and the player's real keys: a played title is on Continue watching,
 opens its real `ResultFragmentTv` page, and Back puts focus back on it); its other cases now land on the hero.
 `TvRailNavigationTest` and `LibraryTvNavigationTest` unchanged and passing. JVM: `HomeViewModelTest` 42 (8 new),
@@ -3876,7 +3879,10 @@ was More info · The Long Dark`. Every file was restored and the real run replac
 **Screenshots.** After `#156` merged, eight Home references differed and each diff was looked at against git first: five by 130
 pixels, only the Profile glyph, which is now `muted` at rest and `ink` focused, as the boards draw it (a reviewer's finding); the
 hero, Continue watching and offline cases also by `#156`'s badges, icon tile and secondary text colour. Re-recorded, the eight
-are pixel-identical to the images looked at, and a compare run read 0 pixels different in all nine.
+are pixel-identical to the images looked at. After `#159` and `#160`, a compare run on the merged tree changed only what this PR
+changed: the hero's button gained `Info` (817 pixels, inside the button, in the hero and Continue watching cases), and offline
+moved because it no longer scrolls; `#160`'s ring and scrim changed none of Home's images. Each was looked at, re-recorded, and
+checked pixel-identical to what was looked at. The last compare run read 0 pixels different in all ten.
 
 ### Not verified
 
@@ -3891,6 +3897,12 @@ or changed. A first dump had one changed line, a synthetic accessor of a private
 was put back and the synopsis given its own.
 
 ### Found, not changed
+
+```
+Found: Home's state actions (`Try again`, `Retry failed`, `Extensions`, `Search`) are text-only in HomeCopy.kt
+Suggest: `StateAction(icon = CloudStreamIcons.Retry / Repository / Search)`, as `ui-components.md`'s table lists
+Why: rule 2 and the table since #159; this is `KMP-37`'s copy, and the change moves every Home state's reference
+```
 
 ```
 Found: `focusRestorer`-style default entry, measured again: a rebuilt view's first stop takes focus before the page can place it
