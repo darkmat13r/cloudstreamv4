@@ -3819,6 +3819,8 @@ one included. **Open local file** was already hidden on TV, so nothing is lost. 
 **Strings:** 12 new keys in all 62 directories and 3 formats with no words in the default one, all machine translated and not reviewed by a native speaker; `qt` uses only words from its own file. `ti`, `ckb`, `mt`, `so`, `or`, `my` and `am` are the least sure, `apc` and `ars` are
 dialect approximations, and `so`'s word for library and storage is the same. Fourteen locales read the legend as `X / Y used` to keep the arguments in order. Twelfth move of the oracle baseline. Reused keys keep the directories they had.
 
+**Glyphs** follow `DS-16`: `Link` on the top row's Play from link, `Library` on Browse library, `Retry` on both Retries, `Play` on Resume. Queue and Free up space stay text-only, as its table says, and a `Chip` has no glyph, so the band's chips have none.
+
 **Loading** shows six skeleton rows at the row's geometry with an undivided meter. The board has the meter running on its own, but the source answers with both at once, so the storage figures do not arrive first.
 
 **Published API:** `app/api/classes-jar.api` +127 lines, 0 removed: 15 `R$string` fields and the new `cloudstream4.download` classes.
@@ -3840,6 +3842,8 @@ Temporary changes, all reverted. One run on `:feature:downloads`, 13 of 32 red, 
 Screenshots are 1280x720, recorded on `Television_720p`. With `Television_720p_2`, the cases the changes did not touch compared 0 pixels different.
 
 **Re-recorded once, after `DS-14` merged.** All 7 went red against the merged design system, by 3,950 to 7,898 pixels, and no other test did. Each new image was looked at, and the diffs looked at for two: the changes are `DS-14` items 4 (`ListRow` subtitle and `StateView` body to `muted`) and 5 (`Chip` to `raised` with a hairline and a `muted` label). Layout, focus rings, `Retry`, the failure marker, the meter and the banner did not move. `git status` showed those 7 PNGs and nothing else.
+
+**Re-recorded a second time, after design review and `DS-15`/`DS-16` merged,** with 3 new cases: loading, the failed read, and a scrolled list. Each of the 10 was looked at against the reference in git before it was kept. The changes: the failed word in `ink2`, the separators, `Play from link`, glyphs on Retry, Play from link and Browse library, `DS-15`'s selection marker, and no scroll on rows that fit. **The scrolled case caught a bug in the first try at whole-row scrolling:** Compose asks the scroll spec again on every step of the animation and takes the answer as what is left, so a distance rounded up to a whole row answered 0 as soon as the row fitted, and the list stopped 20 px short with a row's foot against the chips. The spec now names a fixed line, and a JVM test asks it again part way, as Compose does.
 
 ### Not verified
 

@@ -182,6 +182,7 @@ private fun DownloadTitleRow(
         if (verb != null) {
             GhostTextButton(
                 label = verb,
+                icon = if (title.state == DownloadTitleState.Failed) CloudStreamIcons.Retry else CloudStreamIcons.Play,
                 onClick = {
                     // Before the button goes with the state it answers.
                     rowFocus.requestFocusIfAttached()

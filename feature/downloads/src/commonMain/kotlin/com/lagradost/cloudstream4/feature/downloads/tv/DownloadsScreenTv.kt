@@ -275,6 +275,7 @@ private fun DownloadsChromeRow(
             buttonsOnTop -> {
                 GhostTextButton(
                     label = stringResource(Res.string.downloads_play_from_link),
+                    icon = CloudStreamIcons.Link,
                     onClick = { onAction(DownloadsAction.PlayFromUrlRequested) },
                     modifier = Modifier.downloadsStop(focus.playFromUrl, memory),
                 )
@@ -483,6 +484,7 @@ private fun DownloadsBody(
                 body = stringResource(Res.string.downloads_empty_body),
                 action = StateAction(
                     label = stringResource(Res.string.downloads_browse_library),
+                    icon = CloudStreamIcons.Library,
                     onActivate = { onAction(DownloadsAction.LibraryRequested) },
                 ),
             ),
@@ -497,6 +499,7 @@ private fun DownloadsBody(
                 body = stringResource(Res.string.downloads_load_failed_body),
                 action = StateAction(
                     label = stringResource(Res.string.player_source_retry),
+                    icon = CloudStreamIcons.Retry,
                     onActivate = {
                         // Before the button goes with its state. The stop then follows the layout change above.
                         focus.playFromUrl.requestFocusIfAttached()
