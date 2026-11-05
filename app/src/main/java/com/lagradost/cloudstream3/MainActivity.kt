@@ -180,6 +180,7 @@ import com.lagradost.cloudstream3.utils.setText
 import com.lagradost.cloudstream3.utils.setTextHtml
 import com.lagradost.cloudstream3.utils.txt
 import com.lagradost.safefile.SafeFile
+import com.lagradost.cloudstream4.download.openDownloadsOnTvScreen
 import com.lagradost.cloudstream4.search.openSearchOnTvScreen
 import com.lagradost.cloudstream4.shell.TvRail
 import com.lagradost.cloudstream4.shell.TvRailSwitch
@@ -1684,6 +1685,8 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
         val navController = navHostFragment.navController
         // KMP-12: TV opens the new search screen. Removing this one line is the rollback.
         if (isLayout(TV)) navController.graph.openSearchOnTvScreen()
+        // Q14: TV opens the new downloads screen. Removing this one line is the rollback.
+        if (isLayout(TV)) navController.graph.openDownloadsOnTvScreen()
         // KMP-33: TV shows the Compose rail. TvRailSwitch is the rollback to the XML rail.
         if (isLayout(TV) && TvRailSwitch.useComposeRail) tvRail = binding?.let { TvRail(this, it) }
 
