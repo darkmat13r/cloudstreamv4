@@ -90,9 +90,10 @@ internal fun DownloadRows(
     val end = with(density) { DownloadsScreenTvDefaults.ListBottomInset.roundToPx() }
     val gap = with(density) { DownloadsScreenTvDefaults.RowGap.roundToPx() }
     // The same rounding `spacedBy` and the row's own height get, so a pitch here is a pitch on screen.
-    val pitch = with(density) { CloudStreamDimens.ListRowHeight.roundToPx() } + gap
-    val scrollSpec = remember(top, end, pitch) {
-        DownloadsRowScrollSpec(top.toFloat(), end.toFloat(), pitch.toFloat())
+    val row = with(density) { CloudStreamDimens.ListRowHeight.roundToPx() }
+    val pitch = row + gap
+    val scrollSpec = remember(top, end, row, pitch) {
+        DownloadsRowScrollSpec(top.toFloat(), end.toFloat(), row.toFloat(), pitch.toFloat())
     }
     BoxWithConstraints(modifier) {
         val endPadding = DownloadsRowScroll.listEndPadding(constraints.maxHeight, titles.size, top, end, pitch, gap)

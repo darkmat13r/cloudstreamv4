@@ -2,7 +2,9 @@ package com.lagradost.cloudstream4.feature.downloads.tv
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.gestures.BringIntoViewSpec
-import kotlin.math.ceil
+import kotlin.math.abs
+import kotlin.math.floor
+import kotlin.math.roundToInt
 
 /**
  * How the list moves under a remote. 6c draws focus with no scroll and every row whole, so a row that fits stays where it
@@ -14,24 +16,33 @@ import kotlin.math.ceil
 internal object DownloadsRowScroll {
 
     /**
-     * @param offset where the focused thing is now, from the start of the viewport. A row's verb is a little inside its row.
+     * Compose asks again on every step of the scroll and takes the answer as what is left to go, so this names a fixed line
+     * rather than a distance from here. A distance rounded up to a whole row answers 0 as soon as the row first fits, and
+     * the list stops part of the way.
+     *
+     * The focused thing is measured at its centre, because a row's verb is shorter than its row and centred on it.
+     *
+     * @param offset where the focused thing is now, from the start of the viewport.
      * @param size its height.
      * @param container the viewport's height.
      * @param start the inset above the first row.
      * @param end the inset below the last, which holds a ring.
+     * @param row one row's height.
      * @param pitch one row and one gap.
      */
-    fun distance(offset: Float, size: Float, container: Float, start: Float, end: Float, pitch: Float): Float {
-        val above = start - offset
-        val below = offset + size - (container - end)
-        return when {
-            above > TOLERANCE -> -wholeRows(above, pitch) * pitch
-            below > TOLERANCE -> wholeRows(below, pitch) * pitch
-            else -> 0f
+    fun distance(offset: Float, size: Float, container: Float, start: Float, end: Float, row: Float, pitch: Float): Float {
+        val centre = offset + size / 2
+        val first = start + row / 2
+        val last = first + floor((container - end - start - row) / pitch).coerceAtLeast(0f) * pitch
+        val line = when {
+            centre < first -> first
+            centre > last -> last
+            // Only a scroll that was interrupted leaves a row between the lines.
+            else -> first + ((centre - first) / pitch).roundToInt() * pitch
         }
+        val distance = centre - line
+        return if (abs(distance) <= TOLERANCE) 0f else distance
     }
-
-    private fun wholeRows(distance: Float, pitch: Float): Float = ceil((distance - TOLERANCE) / pitch)
 
     /**
      * The padding below the last row that makes the furthest scroll a whole number of pitches too. Otherwise the list stops
@@ -50,8 +61,9 @@ internal object DownloadsRowScroll {
 internal class DownloadsRowScrollSpec(
     private val start: Float,
     private val end: Float,
+    private val row: Float,
     private val pitch: Float,
 ) : BringIntoViewSpec {
     override fun calculateScrollDistance(offset: Float, size: Float, containerSize: Float): Float =
-        DownloadsRowScroll.distance(offset, size, containerSize, start, end, pitch)
+        DownloadsRowScroll.distance(offset, size, containerSize, start, end, row, pitch)
 }
