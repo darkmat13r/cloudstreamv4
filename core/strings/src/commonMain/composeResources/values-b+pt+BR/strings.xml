@@ -116,6 +116,7 @@
 <string name="cancel_queue_message">Você gostaria de cancelar todos os downloads da fila?</string>
 <string name="cartoons">Desenhos animados</string>
 <string name="cartoons_singular">Desenho Animado</string>
+<string name="cast">Elenco</string>
 <string name="cast_format">Elenco: %s</string>
 <string name="category_account">Contas e Segurança</string>
 <string name="category_general">Geral</string>
@@ -206,6 +207,7 @@
 <string name="duplicate_title">Duplicata em potencial encontrada</string>
 <string name="duration">Duração</string>
 <string name="duration_format">%d min</string>
+<string name="duration_hours_minutes_format">%1$dh %2$dm</string>
 <string name="edit">Editar</string>
 <string name="edit_account">Editar conta</string>
 <string name="edit_profile_image_error_empty">Nenhum URL Encontrado</string>
@@ -353,6 +355,7 @@
 <string name="middle_right">Centro direito</string>
 <string name="min">Min</string>
 <string name="mobile_data">Dados móveis</string>
+<string name="more_like_this">Títulos semelhantes</string>
 <string name="movies">Filmes</string>
 <string name="movies_singular">Filme</string>
 <string name="music_singular">Música</string>

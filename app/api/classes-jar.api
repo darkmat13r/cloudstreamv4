@@ -3333,6 +3333,7 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field cancel_queue_message I
 	public static field cartoons I
 	public static field cartoons_singular I
+	public static field cast I
 	public static field cast_format I
 	public static field category_account I
 	public static field category_general I
@@ -3441,6 +3442,7 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field duplicate_title I
 	public static field duration I
 	public static field duration_format I
+	public static field duration_hours_minutes_format I
 	public static field edit I
 	public static field edit_account I
 	public static field edit_profile_image_error_empty I
@@ -3611,6 +3613,7 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field middle_right I
 	public static field min I
 	public static field mobile_data I
+	public static field more_like_this I
 	public static field movies I
 	public static field movies_singular I
 	public static field music_singular I

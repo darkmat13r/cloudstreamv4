@@ -27,9 +27,10 @@ import com.lagradost.cloudstream4.core.designsystem.card.PosterCard
 import com.lagradost.cloudstream4.core.designsystem.card.PosterRung
 import com.lagradost.cloudstream4.core.designsystem.rows.RailHeader
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
-import com.lagradost.cloudstream4.core.strings.generated.resources.recommended
+import com.lagradost.cloudstream4.core.strings.generated.resources.more_like_this
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.feature.detail.DetailAction
+import com.lagradost.cloudstream4.feature.detail.META_SEPARATOR
 import com.lagradost.cloudstream4.feature.detail.DetailRecommendation
 import org.jetbrains.compose.resources.stringResource
 
@@ -53,16 +54,22 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 internal fun DetailRelatedRowTv(
     recommendations: List<DetailRecommendation>,
+    providerName: String?,
     onAction: (DetailAction) -> Unit,
     artwork: @Composable (String?) -> Unit,
     takeFocus: Boolean,
     onFocusTaken: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
-    Column(Modifier.fillMaxWidth()) {
+    Column(modifier.fillMaxWidth()) {
         Spacer(Modifier.height(DetailScreenTvDefaults.SectionGap))
+        // 7a-ii's "More like this", with its count and the provider that supplied them. The board
+        // writes "38 · TMDB", naming the metadata provider; nothing in the tree records that, so this
+        // names the extension the title came from, which is the provider this page actually has.
         RailHeader(
-            title = stringResource(Res.string.recommended),
-            count = recommendations.size.toString(),
+            title = stringResource(Res.string.more_like_this),
+            count = listOfNotNull(recommendations.size.toString(), providerName)
+                .joinToString(META_SEPARATOR),
             modifier = Modifier.contentInset(),
         )
         Spacer(Modifier.height(CloudStreamDimens.LiftedRowClearance))

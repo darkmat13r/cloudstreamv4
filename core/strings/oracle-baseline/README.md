@@ -120,6 +120,45 @@ appears for all 87 requests, 2,349 cells. `report.txt` moved only in its counts:
 keys 789 -> 816, and 27 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
 `ANDROID_FALLBACK` at 172.** `expectedOwn` 33,005 -> 34,679.
 
+## Twelfth move, 2026-11-06 — `KMP-38`, 3 new keys for the TV detail page
+
+New keys are approved in general (`I18N-09`, above). Additive, none a plural. Measured by whole-line set difference twice over,
+a multiset in Python and `sort | comm`: **0 lines lost or changed in any file.** `expectedOwn` 35,609 -> 35,775.
+
+| file | before | after | added | changed | lost |
+|---|---|---|---|---|---|
+| `decoded.tsv` | 35,923 | 36,089 | 166 | 0 | 0 |
+| `emitted.tsv` | 37,939 | 38,112 | 173 | 0 | 0 |
+| `lookup.tsv` | 73,210 | 73,471 | 261 | 0 | 0 |
+| `requests.tsv` | 87 | 87 | 0 | 0 | 0 |
+| `findings.tsv` | 0 | 0 | 0 | 0 | 0 |
+
+Every added line names one of the three keys, and all three appear, checked by set difference rather than by eye. The counts
+are exact and each is accounted for:
+
+- **`decoded.tsv` +166** = `cast` 62 + `more_like_this` 62 + `duration_hours_minutes_format` 42. The first two are authored in
+  all 62 directories; the third is authored only where its source key is, which is the 42 directories that have
+  `download_time_left_hour_min_sec_format`. The other 20 resolve to the `values` form, which is what Android does anyway and
+  what leaves room for a real translation later.
+- **`lookup.tsv` +261** = 87 parity requests x 3 keys. Every request resolves all three.
+- **`emitted.tsv` +173** = 166 own + 6 locale copies (`values-b+he` <- `values-b+iw` and `values-b+id` <- `values-b+in`, three
+  keys each) + **1 Android fallback**.
+
+**`REFERENCE_IN_LOCALE` stayed at 500. `ANDROID_FALLBACK` moved 172 -> 173**, and that one row is the only count in this move
+that is not a plain addition, so it is named: `values-b+tl` resolves `duration_hours_minutes_format` to `%1$do %2$dm` from
+`values-b+fil`. `tl` is the legacy code for Filipino and Android resolves one from the other; `fil` declares the key because
+its own `download_time_left_hour_min_sec_format` does, and `tl` does not. No existing key's locale fallback changed.
+
+**On the values themselves.** `cast` was not translated: it is each directory's own `cast_format` with the format argument and
+its separator removed, so all 62 come from this project's existing human translations of the same word in the same sense. Three
+were corrected rather than copied — `values-b+lt` ("Skleisti" is the verb, to spread), `values-b+ars` ("بث" is broadcast) and
+`values-b+ti` (its separator is the Ethiopic word mark U+1361, which the strip missed). The first two are **pre-existing wrong
+senses in `cast_format` itself**, reported rather than changed here. `duration_hours_minutes_format` is likewise derived, from
+each directory's `download_time_left_hour_min_sec_format` with the seconds component removed, so it keeps each locale's own unit
+letters — Filipino's `%1$do` for *oras*, German's `%1$dstd`, Japanese's `%1$d時間 %2$d分`. Only `more_like_this` is new
+translation, and like `I18N-09`'s it has not been reviewed by a native speaker; every entry was checked to be in the same script
+as that directory's existing strings, which caught one error.
+
 ## Eleventh move, 2026-11-04 — `BUG-28`, 1 new key for a plugin's new version
 
 New keys are approved in general (`I18N-09`, above). Additive, authored in all 62 directories, not a plural. Measured by whole-line set

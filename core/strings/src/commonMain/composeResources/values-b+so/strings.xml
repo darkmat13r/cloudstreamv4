@@ -77,6 +77,7 @@
 <string name="cancel">Jooji</string>
 <string name="cartoons">Kartoon</string>
 <string name="cartoons_singular">Kartoob</string>
+<string name="cast">Metalaya</string>
 <string name="cast_format">Metalaya: %s</string>
 <string name="category_account">Akoonada iyo Amniga</string>
 <string name="category_general">Guud</string>
@@ -133,6 +134,7 @@
 <string name="downloads_delete_select">Dooro waxyaabaha aad tirayso</string>
 <string name="downloads_empty">Ma jiro muuqaal aad soo degsatay.</string>
 <string name="duration">Muddada</string>
+<string name="duration_hours_minutes_format">%1$d saac %2$d daq</string>
 <string name="eigengraumode_settings">Xawaaraha muuqaalka</string>
 <string name="emulator_layout">Qaab emulator</string>
 <string name="enable_nsfw_on_providers">Tusi CEEBta qaybiyayaasha ku shaqeeya</string>
@@ -247,6 +249,7 @@
 <string name="logout">Ka bax</string>
 <string name="max">Ugu weyn</string>
 <string name="min">Ugu yar</string>
+<string name="more_like_this">Kuwo la mid ah</string>
 <string name="movies">Filimaan</string>
 <string name="movies_singular">Filin</string>
 <string name="network_adress_example">Lifaaqa daalacashada</string>

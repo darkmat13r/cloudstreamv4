@@ -113,6 +113,7 @@
 <string name="cancel_queue_message">"Дали сакате да ги откажете сите преземања во редицата?"</string>
 <string name="cartoons">"Цртани"</string>
 <string name="cartoons_singular">"Цртан филм"</string>
+<string name="cast">"Актери"</string>
 <string name="cast_format" formatted="true">"Актери: %s"</string>
 <string name="category_account">"Сметки и безбедност"</string>
 <string name="category_general">"Општи поставки"</string>
@@ -205,6 +206,7 @@
 <string name="duplicate_title">"Пронајден е потенцијален дупликат"</string>
 <string name="duration">"Времетраење"</string>
 <string name="duration_format" formatted="true">"%d мин"</string>
+<string name="duration_hours_minutes_format" formatted="true">"%1$dч %2$dм"</string>
 <string name="edit">"Уреди"</string>
 <string name="edit_account">"Уреди корисници"</string>
 <string name="edit_profile_image_error_empty">"Линкот не е пронајден"</string>
@@ -352,6 +354,7 @@
 <string name="middle_right">"Средина на десно"</string>
 <string name="min">"Минимум"</string>
 <string name="mobile_data">"Мобилен интернет"</string>
+<string name="more_like_this">"Слично"</string>
 <string name="movies">"Филмови"</string>
 <string name="movies_singular">"Филм"</string>
 <string name="music_singular">"Музика"</string>

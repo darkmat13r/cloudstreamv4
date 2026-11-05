@@ -1,7 +1,10 @@
 package com.lagradost.cloudstream4.feature.detail.tv
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.gestures.LocalBringIntoViewSpec
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -17,6 +20,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -26,6 +30,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Brush
@@ -75,10 +81,13 @@ import org.jetbrains.compose.resources.stringResource
  *
  * ## One scrolling surface, not two screens
  *
- * 7a and 7a-ii are the same page at one scroll offset: the spec measures the cast header and the cast
- * row exactly 292dp apart on both boards. So this is a `LazyColumn` whose first item is the hero, the
- * text block and the action row, and the hero and the chrome row scroll away as that item leaves —
- * which is what 7a-ii draws. There is no fixed 292dp jump.
+ * 7a and 7a-ii are the same page at two scroll offsets. So this is a `LazyColumn` whose first item is
+ * the hero, the text block and the action row, and the hero and the chrome row scroll away as that
+ * item leaves — which is what 7a-ii draws.
+ *
+ * **The jump is fixed, and this KDoc used to deny it.** It read "there is no fixed 292dp jump"; the
+ * boards put the cast avatars at 364dp on 7a and 72dp on 7a-ii, which is a 292dp jump exactly. Those
+ * are the stops [DetailFocusScroll] now scrolls to, and arriving at a stop nobody drew was `BUG-38`.
  *
  * Each section after the head block opens with its own [DetailScreenTvDefaults.SectionGap], so a rail
  * with nothing in it costs nothing: with no cast the recommendations header moves up into the board's
@@ -87,10 +96,11 @@ import org.jetbrains.compose.resources.stringResource
  *
  * ## Where this departs from the artboards
  *
- * - **No nav rail.** `MainActivity.updateNavBar` leaves `navigation_results_tv` out of its visible-nav
- *   list, so the shell hides the rail on this destination, exactly as it does for the old TV result
- *   page. The board's five rail cells are unlabelled placeholders; nothing draws them and there is no
- *   LEFT edge into them. BACK leaves the screen.
+ * - **The nav rail is the shell's, and it shows here** (owner, 2026-11-05). `MainActivity.updateNavBar`
+ *   names this destination alongside its visible-nav list, so `TvRail` lays the page out beside the
+ *   76dp rail; [DetailScreenTvDefaults.ContentStart] is what puts the content back on the board's x100.
+ *   LEFT from a leading stop goes into the rail and RIGHT comes back to the stop that yielded focus,
+ *   both of which `TvRail` already owns. BACK still leaves the screen.
  * - **The episode list stays on this page**, below the two rails. The boards put episodes on their own
  *   panel (board 6a), which is a later task; removing the list without it would leave no way to pick
  *   an episode. `Season N` and `Episodes · N` therefore scroll to that list rather than opening the
@@ -132,7 +142,11 @@ fun DetailScreenTv(
             DetailPanelsTv(state, onAction) { openWatchStatus ->
                 UiStateHost(
                     state = state.content.toPageUiState(onAction),
-                    modifier = Modifier.fillMaxSize(),
+                    // The band, so the state view centres on the board's x516 rather than on the
+                    // page area, and so the skeleton starts at x100 instead of the screen's edge.
+                    modifier = Modifier.fillMaxSize().contentInset(),
+                    glyph = { DetailStateGlyph() },
+                    skeleton = { DetailSkeletonTv(it) },
                 ) { detail ->
                     TitlePage(
                         detail = detail,
@@ -149,7 +163,11 @@ fun DetailScreenTv(
                 // back cell live through all three. §2.8 rests focus on it while loading; on a failure
                 // `StateView` has already put focus on Retry, which is where that state wants it.
                 if (state.content !is DetailLoad.Loaded) {
+                    // With the ladder's own top inset: the loaded page reaches this row through
+                    // `HeadBlock`'s `ChromeTop` spacer, and without it here the cell sat at y0 in all
+                    // three states and overlapped whatever the state below it drew.
                     ChromeRow(
+                        modifier = Modifier.padding(top = DetailScreenTvDefaults.ChromeTop),
                         detail = null,
                         onAction = onAction,
                         onBack = onBack,
@@ -164,6 +182,7 @@ fun DetailScreenTv(
         } else {
             Column(Modifier.fillMaxSize()) {
                 ChromeRow(
+                    modifier = Modifier.padding(top = DetailScreenTvDefaults.ChromeTop),
                     detail = null,
                     onAction = onAction,
                     onBack = { onAction(DetailAction.LinksDismissed) },
@@ -186,6 +205,7 @@ fun DetailScreenTv(
  * **this** column rather than of a nested one: a `LazyColumn` inside a `LazyColumn` has no height to
  * measure against.
  */
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun TitlePage(
     detail: TitleDetail,
@@ -208,7 +228,23 @@ private fun TitlePage(
     // takes it instead rather than leaving the screen with nothing focused at all.
     val entryOnPrimary = !entryFocusPlaced && detail.primaryData != null
     val handled = { onAction(DetailAction.ReturnHandled) }
+    val density = LocalDensity.current
+    val castIndex = if (detail.cast.isNotEmpty()) HEAD_ITEMS else null
+    val relatedIndex = if (detail.recommendations.isNotEmpty()) {
+        HEAD_ITEMS + (if (detail.cast.isNotEmpty()) ONE_ITEM else NO_ITEM)
+    } else {
+        null
+    }
+    // BUG-38: the boards' stops, in place of the pivot Compose would pick. Each band asks for its own
+    // when it takes focus, because the list itself refuses to scroll for focus — see DetailFocusScroll.
+    val scrollToStop: (Int) -> Unit = { index ->
+        val stop = DetailFocusScroll.stopFor(index, castIndex, relatedIndex)
+        scope.launch {
+            listState.scrollToItem(stop.index, with(density) { stop.offsetDp.dp.roundToPx() })
+        }
+    }
 
+    CompositionLocalProvider(LocalBringIntoViewSpec provides DetailNoScrollSpec) {
     LazyColumn(
         state = listState,
         modifier = Modifier.fillMaxSize(),
@@ -216,6 +252,7 @@ private fun TitlePage(
     ) {
         item(key = HEAD_KEY) {
             HeadBlock(
+                modifier = Modifier.onFocusChanged { if (it.hasFocus) scrollToStop(HEAD_INDEX) },
                 detail = detail,
                 onAction = onAction,
                 onBack = onBack,
@@ -245,6 +282,7 @@ private fun TitlePage(
         if (detail.cast.isNotEmpty()) {
             item(key = CAST_KEY) {
                 DetailCastRowTv(
+                    modifier = Modifier.onFocusChanged { if (it.hasFocus) scrollToStop(HEAD_ITEMS) },
                     cast = detail.cast,
                     swappedRoles = state.swappedRoles,
                     onAction = onAction,
@@ -255,7 +293,11 @@ private fun TitlePage(
         if (detail.recommendations.isNotEmpty()) {
             item(key = RELATED_KEY) {
                 DetailRelatedRowTv(
+                    modifier = Modifier.onFocusChanged {
+                        if (it.hasFocus) scrollToStop(relatedIndex ?: HEAD_INDEX)
+                    },
                     recommendations = detail.recommendations,
+                    providerName = detail.providerName,
                     onAction = onAction,
                     artwork = artwork,
                     takeFocus = returnTo?.ready == true && returnTo.target == DetailFocus.Recommendations,
@@ -291,6 +333,7 @@ private fun TitlePage(
             }
         }
     }
+    }
 }
 
 /**
@@ -314,10 +357,11 @@ private fun HeadBlock(
     takeBackFocus: Boolean,
     onBackFocusTaken: () -> Unit,
     onScrollToEpisodes: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
-    Box(Modifier.fillMaxWidth()) {
+    Box(modifier.fillMaxWidth()) {
         Hero(detail.backdropUrl ?: detail.posterUrl, artwork)
         Column(Modifier.fillMaxWidth()) {
             Spacer(Modifier.height(DetailScreenTvDefaults.ChromeTop))
@@ -608,6 +652,37 @@ private fun episodesHeaderIndex(detail: TitleDetail): Int =
         (if (detail.cast.isNotEmpty()) ONE_ITEM else NO_ITEM) +
         (if (detail.recommendations.isNotEmpty()) ONE_ITEM else NO_ITEM)
 
+/**
+ * The marker above a failure's headline: 7a's ERROR glyph, 96x96 on the artboard.
+ *
+ * Hollow and neutral, which `DEC-17` asks for and which `LibraryEmptyGlyph` is the precedent for: the
+ * `raised` tile with a `line` hairline, and the meaning in a `muted` glyph rather than in a colour.
+ * `StateView` measures it into its own `GlyphSize` box, so this fills whatever it is given.
+ *
+ * One glyph for both states this page can reach. `Empty` and `Failed` are drawn identically on
+ * purpose — `toPageUiState`'s own note says a source either returns a title or fails, and the page
+ * has nothing truer to say about which.
+ */
+@Composable
+private fun DetailStateGlyph() {
+    val colors = CloudStreamTheme.colors
+    val shape = CloudStreamTheme.shapes.large
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(colors.raised, shape)
+            .border(CloudStreamDimens.Hairline, colors.line, shape),
+        contentAlignment = Alignment.Center,
+    ) {
+        CloudStreamIcon(
+            icon = CloudStreamIcons.Warning,
+            contentDescription = null,
+            size = CloudStreamIconSize.Large,
+            tint = colors.muted,
+        )
+    }
+}
+
 /** The band, x100 to x932. A lazy row takes this as content padding instead; see the rails. */
 internal fun Modifier.contentInset(): Modifier = padding(
     start = DetailScreenTvDefaults.ContentStart,
@@ -629,6 +704,7 @@ private const val HEAD_KEY = "head"
 private const val CAST_KEY = "cast"
 private const val RELATED_KEY = "related"
 private const val EPISODES_KEY = "episodes"
+private const val HEAD_INDEX = 0
 private const val HEAD_ITEMS = 1
 private const val ONE_ITEM = 1
 private const val NO_ITEM = 0
@@ -639,8 +715,14 @@ private const val FIRST_ROW = 0
  * `CloudStreamDimens` token already means is that token rather than its number.
  */
 object DetailScreenTvDefaults {
-    /** x200 on the artboard. Mirrors `CloudStreamDimens.ContentOriginX`. */
-    val ContentStart: Dp = CloudStreamDimens.ContentOriginX
+    /**
+     * x200 on the artboard, which is 24dp into this page.
+     *
+     * `ContentOriginX` (100dp) less `NavRailWidth` (76dp): the rail belongs to the shell, and the page
+     * is laid out beside it. The same derivation as `HomeScreenTvDefaults.ContentInsetStart` and
+     * `SearchScreenTvDefaults.ContentInsetStart`, for the same reason.
+     */
+    val ContentStart: Dp = CloudStreamDimens.ContentOriginX - CloudStreamDimens.NavRailWidth
 
     /**
      * The band ends at x1864 of 1920, which is 28dp in from the right. Mirrors

@@ -1520,8 +1520,8 @@ Not checked: whether the last row is cut off at the bottom when the list is full
 
 ## BUG-38 — On TV, the detail page arrives with its chrome row scrolled off the top · **medium** · measured 2026-11-05
 
-**Status:** found, not fixed · found 2026-11-05 by `KMP-38`'s own screenshot cases (pr #153) ·
-`feature/detail/.../tv/DetailScreenTv.kt:297-331`
+**Status:** fixed · found 2026-11-05 by `KMP-38`'s own screenshot cases (pr #153), cause established by the
+design review the same day, fixed in the same PR · `feature/detail/.../tv/DetailFocusScroll.kt`
 
 **Changes what users see on TV.** On arrival the viewer has **no visible way back**, no favourite and no
 watch-status control: the whole chrome row is above the top edge. The three loaded-page references show it,
@@ -1537,11 +1537,23 @@ survives the column's clip
 The ladder in `HeadBlock` puts that cell at 28..76dp, which is 37..101px here, so the page arrives about
 113px — roughly 85dp — already scrolled. The row is 64px (48dp) tall and every pixel of it is clipped.
 
-**The cause is not established.** The likely place is the bring-into-view that follows entry focus landing on
-the primary action, since the chrome row rides item 0 up with it; the screen's KDoc says the hero and the
-chrome row scrolling away as that item leaves **is** the design, so what is wrong is that it has already
-happened before the viewer has done anything. Whether the fix is in the scroll, the focus or the ladder is a
-design call, which is why this is recorded rather than fixed.
+**The cause: the page had no `BringIntoViewSpec`.** Entry focus landing on the primary asked Compose to bring
+it into view, and with no spec of its own the page got the default TV pivot — which put Resume's top, and a
+focused poster's top, at 0.3 of a 720px viewport, or y216. The chrome row rides item 0 up with it. It was
+never the focus or the ladder: the screen's KDoc is right that the hero and the chrome row scrolling away as
+item 0 leaves **is** the design, and the fault was only that it had already happened before the viewer did
+anything.
+
+**The fix** is `HomeNoScrollSpec`'s, which `TV Home` had already needed for the same reason: the list refuses
+to scroll for focus (`DetailNoScrollSpec`) and each band asks for the stop its board draws instead
+(`DetailFocusScroll.stopFor`, pure and unit-tested). The three stops are 7a's — the head block and the cast
+row at the page's origin, and anything below the cast at 7a-ii, which is the cast row whole at the top of the
+band. The same cause was cutting the cast row off on 7a-ii, with the focused poster's top at 162dp against
+the board's 268.
+
+**One claim it disproves.** `DetailScreenTv`'s KDoc said 7a and 7a-ii are "the same page at one scroll offset
+… There is no fixed 292dp jump." The boards draw the cast avatars at 364dp on 7a and 72dp on 7a-ii, which is
+a fixed 292dp jump exactly. The KDoc is corrected.
 
 **Why nothing caught it.** `DetailScreenTvDeviceTest` asserts the gaps *between* elements and never an
 absolute top, so a page shifted up as a whole passes all of it. The images are what raised it.

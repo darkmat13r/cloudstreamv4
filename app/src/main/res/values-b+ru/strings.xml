@@ -114,6 +114,7 @@
 <string name="cancel_queue_message">"Вы хотите отменить всё запланированные загрузки?"</string>
 <string name="cartoons">"Мультфильмы"</string>
 <string name="cartoons_singular">"Мультфильм"</string>
+<string name="cast">"В ролях"</string>
 <string name="cast_format" formatted="true">"В ролях: %s"</string>
 <string name="category_account">"Учётные записи и Безопасность"</string>
 <string name="category_general">"Общие"</string>
@@ -206,6 +207,7 @@
 <string name="duplicate_title">"Найден потенциальный дубликат"</string>
 <string name="duration">"Продолжительность"</string>
 <string name="duration_format" formatted="true">"%d мин"</string>
+<string name="duration_hours_minutes_format" formatted="true">"%1$dч %2$dм"</string>
 <string name="edit">"Изменить"</string>
 <string name="edit_account">"Изменить учётную запись"</string>
 <string name="edit_profile_image_error_empty">"URL не найден"</string>
@@ -353,6 +355,7 @@
 <string name="middle_right">"Средний правый"</string>
 <string name="min">"Мин"</string>
 <string name="mobile_data">"Мобильный интернет"</string>
+<string name="more_like_this">"Похожее"</string>
 <string name="movies">"Фильмы"</string>
 <string name="movies_singular">"Фильм"</string>
 <string name="music_singular">"Музыка"</string>

@@ -43,6 +43,7 @@
 <string name="cancel">"Cancelar"</string>
 <string name="cartoons">"Debuxos animados"</string>
 <string name="cartoons_singular">"Debuxo animado"</string>
+<string name="cast">"Elenco"</string>
 <string name="cast_format" formatted="true">"Elenco: %s"</string>
 <string name="category_account">"Contas e seguridade"</string>
 <string name="category_updates">"Actualizacións e copias de seguridade"</string>
@@ -159,6 +160,7 @@
 <string name="livestreams">"Transmisións en vivo"</string>
 <string name="load_more">"Cargar máis"</string>
 <string name="loading">"Cargando…"</string>
+<string name="more_like_this">"Máis coma isto"</string>
 <string name="movies">"Películas"</string>
 <string name="movies_singular">"Película"</string>
 <string name="music_singular">"Música"</string>

@@ -40,6 +40,7 @@
 <string name="bottom_title_settings">Ubicació del títol al cartell</string>
 <string name="bottom_title_settings_des">Mostra el títol sota el cartell</string>
 <string name="browser">Navegador</string>
+<string name="cast">Repartiment</string>
 <string name="cast_format">Repartiment:%s</string>
 <string name="category_general">General</string>
 <string name="category_player">Reproductor</string>
@@ -75,6 +76,7 @@
 <string name="duplicate_replace_all">Reemplaça-ho tot</string>
 <string name="duplicate_title">S'ha trobat un possible duplicat</string>
 <string name="duration_format">%d min</string>
+<string name="duration_hours_minutes_format">%1$dh%2$dm</string>
 <string name="edit">Edita</string>
 <string name="edit_account">Edita el compte</string>
 <string name="emulator_layout">Disseny a l'emulador</string>
@@ -169,6 +171,7 @@
 <string name="manage_accounts">Gestiona els comptes</string>
 <string name="max">Màx</string>
 <string name="min">Mín</string>
+<string name="more_like_this">Més com això</string>
 <string name="network_adress_example">https://exemple.cat/exemple.mp4</string>
 <string name="new_update_format">S'ha trobat una nova actualització!\n%1$s-&gt;%2$s</string>
 <string name="next">Següent</string>

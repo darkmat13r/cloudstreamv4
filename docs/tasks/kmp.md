@@ -3615,14 +3615,23 @@ them has expired, and the page is the first screen that should pick it up.
 
 ### Divergences on purpose
 
-- **No nav rail.** `updateNavBar` leaves `navigation_results_tv` out of `isNavVisible`
-  (`MainActivity.kt:505-523`), so the shell hides the rail here exactly as it does for the old page. The
-  board's five cells are unlabelled placeholders (`nav = [{i:0}…{i:4}]`). Five of its 21 focus stops do not
-  exist and "LEFT into the rail" is not an edge. BACK leaves.
-- **7a and 7a-ii are one scrolling surface.** Both the cast header and the cast row sit exactly 584 px / 292 dp
-  apart on the two boards, so they are one page at one offset. A `LazyColumn` whose first item is the
-  hero-and-actions block makes the hero and chrome scroll away as the board draws, and no 292 dp constant is
-  needed. The episode rows are items of that column, not a nested one.
+- **The nav rail shows**, as the boards draw it. *This reverses the reduction this PR shipped first*: the page
+  had no rail because `updateNavBar` leaves `navigation_results_tv` out of `isNavVisible`, and the owner ruled
+  on 2026-11-05 that the detail page shows it. The change is one call site, **not** an entry in `isNavVisible`:
+  that list drives the XML rail too, which the old result page and the emulator layout still use, and
+  `TvRailSwitch.useComposeRail = false` has to keep this page rail-less exactly as it was. `TvRail` already
+  hides the XML rail, shows the Compose one and sets the nav-host margin. The page's own inset becomes
+  `ContentOriginX − NavRailWidth` (24 dp), which is `HomeScreenTvDefaults.ContentInsetStart` and
+  `SearchScreenTvDefaults.ContentInsetStart` verbatim, and the failure state centres on the content band so it
+  lands on the board's x516 rather than the x518 a page-area centre would give. LEFT into the rail and RIGHT
+  back to the stop that yielded focus are `TvRail`'s own.
+- **7a and 7a-ii are one scrolling surface at two fixed stops.** *This corrects what this PR first claimed.*
+  It said the two boards are "one page at one offset" and that "no 292 dp constant is needed"; the boards put
+  the cast avatars at 364 dp on 7a and 72 dp on 7a-ii, which is a fixed 292 dp jump exactly. Arriving at an
+  offset no board draws was `BUG-38`, and the cause was that the page had no `BringIntoViewSpec` at all, so
+  entry focus got Compose's default TV pivot — 0.3 of the viewport, y216. `DetailNoScrollSpec` plus
+  `DetailFocusScroll.stopFor` is `HomeNoScrollSpec`'s pattern, and the stops are unit-tested. The episode rows
+  are items of that column, not a nested one, and take the only stop derivable rather than drawn: their own.
 - **The episode list stays on the page**, below both rails. Board 6a's panel is `Q21`; removing the list first
   would leave no way to pick an episode. `Season N` and `Episodes · N` scroll to it.
 - **`Season N` / `Episodes · N` only for a single-season title**, counted from that season's `episodeCount`

@@ -22,6 +22,7 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.detail_load_f
 import com.lagradost.cloudstream4.core.strings.generated.resources.detail_load_failed_headline
 import com.lagradost.cloudstream4.core.strings.generated.resources.documentaries_singular
 import com.lagradost.cloudstream4.core.strings.generated.resources.duration_format
+import com.lagradost.cloudstream4.core.strings.generated.resources.duration_hours_minutes_format
 import com.lagradost.cloudstream4.core.strings.generated.resources.episode_short
 import com.lagradost.cloudstream4.core.strings.generated.resources.error_loading_links_toast
 import com.lagradost.cloudstream4.core.strings.generated.resources.live_singular
@@ -150,15 +151,33 @@ internal const val META_SEPARATOR = " \u00b7 "
 @Composable
 internal fun metaRun(detail: TitleDetail): String {
     val score = detail.score?.let { UiString.Resource(Res.string.rating_format, listOf(oneDecimal(it))).resolve() }
-    val runtime = detail.durationMinutes?.let { UiString.Resource(Res.string.duration_format, listOf(it)).resolve() }
+    val runtime = detail.durationMinutes?.let { runtimeLabel(it) }
     val status = detail.statusName?.let { statusLabel(it) }
-    return listOfNotNull(
-        score,
-        detail.tags.takeIf { it.isNotEmpty() }?.joinToString(META_SEPARATOR),
-        detail.year?.toString(),
-        detail.contentRating,
-        runtime ?: status,
-    ).joinToString(META_SEPARATOR)
+    val tags = detail.tags.takeIf { it.isNotEmpty() }?.joinToString(META_SEPARATOR)
+    // 7b's own order for a film, 7a's for everything else. A film leads with the year and the
+    // runtime because that is what distinguishes one; a series has no runtime and leads with score.
+    val legs = if (detail.playData != null) {
+        listOfNotNull(detail.year?.toString(), runtime ?: status, score, detail.contentRating, tags)
+    } else {
+        listOfNotNull(score, tags, detail.year?.toString(), detail.contentRating, runtime ?: status)
+    }
+    return legs.joinToString(META_SEPARATOR)
+}
+
+/**
+ * `2h 16m` once there is an hour to name, `136 min` below that.
+ *
+ * 7b writes `2h 16m` where `duration_format` ("%d min") can only write `136 min`, so the hours form
+ * is its own key. Under an hour the hours form would read `0h 42m`, which no board draws.
+ */
+@Composable
+private fun runtimeLabel(minutes: Int): String = if (minutes >= MINUTES_PER_HOUR) {
+    UiString.Resource(
+        Res.string.duration_hours_minutes_format,
+        listOf(minutes / MINUTES_PER_HOUR, minutes % MINUTES_PER_HOUR),
+    ).resolve()
+} else {
+    UiString.Resource(Res.string.duration_format, listOf(minutes)).resolve()
 }
 
 /**
@@ -238,6 +257,7 @@ internal fun initialsOf(name: String): String = name
  */
 internal fun TitleDetail.namedSeason(): DetailSeason? = seasons.singleOrNull()
 
+private const val MINUTES_PER_HOUR = 60
 private const val TENTHS = 10f
 private const val TENTHS_PER_UNIT = 10
 private const val MAX_INITIALS = 2

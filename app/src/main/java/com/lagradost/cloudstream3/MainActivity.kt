@@ -607,7 +607,15 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
                 }
             }
         }
-        tvRail?.onNavBarUpdated(destination.id, visible = isNavVisible && isLandscape())
+        // KMP-38: the new TV detail page shows the rail, as boards 7a and 7b draw it, and it is the one
+        // destination outside `isNavVisible` that does. Deliberately not added to `isNavVisible` itself:
+        // that list drives the XML rail too, which the old result page and the emulator layout still use,
+        // and `TvRailSwitch.useComposeRail = false` has to keep this page rail-less exactly as it was.
+        val railOnDetail = destination.id == R.id.navigation_results_tv
+        tvRail?.onNavBarUpdated(
+            destination.id,
+            visible = (isNavVisible || railOnDetail) && isLandscape(),
+        )
     }
 
     //private var mCastSession: CastSession? = null

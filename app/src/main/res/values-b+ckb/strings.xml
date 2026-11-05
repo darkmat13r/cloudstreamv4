@@ -10,6 +10,7 @@
 <string name="app_subbed_text">"ژێرنووس"</string>
 <string name="begin_speaking">"دەست بکە بە قسەکردن…"</string>
 <string name="browser">"براوزەر"</string>
+<string name="cast">"تیم"</string>
 <string name="cast_format" formatted="true">"تیم:%s"</string>
 <string name="deselect_all">"هەمووی لابدە"</string>
 <string name="detail_load_failed_body">"ڕەنگە سەرچاوەکە بەردەست نەبێت."</string>
@@ -29,6 +30,7 @@
 <string name="downloads_delete_select">"ئەو شتانە هەڵبژێرە کە دەتەوێت بیسڕیتەوە"</string>
 <string name="downloads_empty">"لە ئێستادا هیچ داونلۆدێک نییە."</string>
 <string name="duration_format" formatted="true">"min%d"</string>
+<string name="duration_hours_minutes_format" formatted="true">"%1$dh %2$dm"</string>
 <string name="episode_more_options_des">"هەڵبژاردنی زیاتر"</string>
 <string name="episode_poster_img_des">"پۆستەری ئەڵقە"</string>
 <string name="error_bookmarks_text">"ئاماژەکان"</string>
@@ -72,6 +74,7 @@
 <string name="home_next_random_img_des">"داهاتوو بە هەڕەمەکی"</string>
 <string name="home_search_only_body">"هیچ کام لە زیادکراوەکانت پەڕەی سەرەکییان نییە، بەڵام هێشتا دەتوانیت تێیاندا بگەڕێیت."</string>
 <string name="load_more">"زیاتر باربکە"</string>
+<string name="more_like_this">"زیاتر لەم جۆرە"</string>
 <string name="new_update_format" formatted="true">"نوێکاری نوێ دۆزرایەوە!\n%1$s-&gt;%2$s"</string>
 <string name="next_episode">"ئەڵقەی داهاتوو"</string>
 <string name="next_episode_format" formatted="true">"ئەڵقەی %d لە"</string>

@@ -99,6 +99,7 @@
 <string name="cancel">oooohh</string>
 <string name="cartoons">ahoooouuhhh</string>
 <string name="cartoons_singular">uuuuggg</string>
+<string name="cast">oouaaahh</string>
 <string name="cast_format">oouaaahh %s</string>
 <string name="category_account">oooogggg aah aaaaaakh</string>
 <string name="category_general">a ahu uoo uoahuo uo</string>
@@ -309,6 +310,7 @@
 <string name="max">aah</string>
 <string name="min">oog</string>
 <string name="mobile_data">aaaahh uugg</string>
+<string name="more_like_this">ahooo aaaahhhaahh</string>
 <string name="movies">a oouuh</string>
 <string name="movies_singular">oooouuuh</string>
 <string name="music_singular">aaahh</string>

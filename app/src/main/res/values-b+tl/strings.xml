@@ -42,6 +42,7 @@
 <string name="bottom_title_settings_des">"Ilagay ang title sa ibaba ng poster"</string>
 <string name="cancel">"Kanselahin"</string>
 <string name="cartoons">"Cartoons"</string>
+<string name="cast">"I-Cast"</string>
 <string name="cast_format" formatted="true">"I-Cast: %s"</string>
 <string name="category_general">"Pangkalahatan"</string>
 <string name="check_for_update">"Tingnan kung may bagong update"</string>
@@ -142,6 +143,7 @@
 <string name="load_more">"Mag-load pa"</string>
 <string name="loading">"Loading…"</string>
 <string name="logout">"Mag log out"</string>
+<string name="more_like_this">"Higit pang katulad nito"</string>
 <string name="movies">"Pelikula"</string>
 <string name="new_update_format" formatted="true">"Bagong update! \n%1$s -&gt; %2$s"</string>
 <string name="next_episode">"Susunod na Episode"</string>

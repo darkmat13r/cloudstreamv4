@@ -113,6 +113,7 @@
 <string name="cancel_queue_message">"Скасаваць усе спампоўванні ў чарзе?"</string>
 <string name="cartoons">"Мультфільмы"</string>
 <string name="cartoons_singular">"Мультфільм"</string>
+<string name="cast">"Склад"</string>
 <string name="cast_format" formatted="true">"Склад: %s"</string>
 <string name="category_account">"Уліковыя запісы і бяспека"</string>
 <string name="category_general">"Агульныя"</string>
@@ -205,6 +206,7 @@
 <string name="duplicate_title">"Знойдзены магчымы дублікат"</string>
 <string name="duration">"Працягласць"</string>
 <string name="duration_format" formatted="true">"%d хвіл"</string>
+<string name="duration_hours_minutes_format" formatted="true">"%1$d гадз %2$d хв"</string>
 <string name="edit">"Рэдагаваць"</string>
 <string name="edit_account">"Рэдагаваць уліковы запіс"</string>
 <string name="edit_profile_image_error_empty">"URL-адрас не знойдзены"</string>
@@ -352,6 +354,7 @@
 <string name="middle_right">"У сярэдзіне справа"</string>
 <string name="min">"Мін."</string>
 <string name="mobile_data">"Мабільная перадача дадзеных"</string>
+<string name="more_like_this">"Падобнае"</string>
 <string name="movies">"Фільмы"</string>
 <string name="movies_singular">"Фільм"</string>
 <string name="music_singular">"Музыка"</string>

@@ -24,12 +24,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusLift
 import com.lagradost.cloudstream4.core.designsystem.primitive.Avatar
+import com.lagradost.cloudstream4.core.designsystem.rows.RailHeader
+import com.lagradost.cloudstream4.core.strings.generated.resources.Res
+import com.lagradost.cloudstream4.core.strings.generated.resources.cast
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.detail.DetailAction
 import com.lagradost.cloudstream4.feature.detail.DetailCastMember
 import com.lagradost.cloudstream4.feature.detail.initialsOf
 import com.lagradost.cloudstream4.feature.detail.roleLabel
+import org.jetbrains.compose.resources.stringResource
 
 /**
  * 7a's cast rail: 96x120 blocks on a 108dp pitch, each lifting as one unit.
@@ -56,9 +60,17 @@ internal fun DetailCastRowTv(
     swappedRoles: Set<Int>,
     onAction: (DetailAction) -> Unit,
     artwork: @Composable (String?) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
-    Column(Modifier.fillMaxWidth()) {
+    Column(modifier.fillMaxWidth()) {
         Spacer(Modifier.height(DetailScreenTvDefaults.SectionGap))
+        // The board's "Cast 24". Its own count, and no provenance: the board's "· TMDB" names the
+        // metadata provider, and nothing in the tree records which one supplied the cast.
+        RailHeader(
+            title = stringResource(Res.string.cast),
+            count = cast.size.toString(),
+            modifier = Modifier.contentInset(),
+        )
         Spacer(Modifier.height(CloudStreamDimens.LiftedRowClearance))
         LazyRow(
             modifier = Modifier
