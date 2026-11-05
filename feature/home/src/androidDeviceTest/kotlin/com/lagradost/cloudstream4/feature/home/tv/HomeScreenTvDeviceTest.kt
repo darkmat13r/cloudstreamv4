@@ -28,6 +28,7 @@ import androidx.compose.ui.test.onAllNodesWithContentDescription
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.performSemanticsAction
 import androidx.compose.ui.graphics.asAndroidBitmap
 import androidx.compose.ui.graphics.toArgb
@@ -1051,14 +1052,19 @@ class HomeScreenTvDeviceTest {
         pressUntil(Dpad.Up, WATCHING, presses = 1)
         assertEquals(COMPLETED, dpad.press(Dpad.Right))
         // Walking onto a chip chose nothing.
-        rule.onNodeWithContentDescription("$SAVED 0").assertExists()
+        rule.waitForIdle()
+        assertEquals(HomeWatchStatus.Watching, viewModel.state.value.bookmarks.applied)
 
         dpad.center()
         rule.waitUntil(WAIT_MS) { viewModel.state.value.bookmarks.applied == HomeWatchStatus.Completed }
         rule.waitForIdle()
         assertEquals(COMPLETED, dpad.focused())
-        rule.onNodeWithContentDescription("$DONE 0").assertExists()
+        assertEquals(titles(DONE, 2).map { "done/${it.removePrefix("$DONE ")}" }, viewModel.state.value.bookmarks.shown.map { it.id })
         assertEquals(HomeWatchStatus.Completed, shelf.kept)
+        // The cards under it are the Completed ones.
+        val card = dpad.press(Dpad.Down)
+        assertTrue("Down reaches a Completed card, was $card", card?.startsWith(DONE) == true)
+        assertEquals(COMPLETED, dpad.press(Dpad.Up))
 
         dpad.center()
         awaitText(NO_STATUS)
@@ -1099,7 +1105,11 @@ class HomeScreenTvDeviceTest {
         bookmarking(9)
         showScreen()
         awaitFocus(HERO)
-        pressUntil(Dpad.Down, "$SAVED 0", presses = 2)
+        // Down to the chips, then to whichever card is under the chip, then along to the eighth.
+        assertEquals(WATCHING, dpad.press(Dpad.Down))
+        dpad.press(Dpad.Down)
+        rule.waitUntil(WAIT_MS) { dpad.focused()?.startsWith(SAVED) == true }
+        if (dpad.focused() != "$SAVED 0") pressUntil(Dpad.Left, "$SAVED 0", presses = 3)
         pressUntil(Dpad.Right, "$SAVED 7", presses = 7)
 
         openAndComeBack(HomeEffect.OpenTitle("bm/7"))
@@ -1115,13 +1125,16 @@ class HomeScreenTvDeviceTest {
         showScreen()
 
         awaitFocus(RETRY)
+        rule.waitForIdle()
+        // It fits under the bookmarks, so nothing moved: the chrome is where it rests, with the notice in it.
+        assertEquals(CHROME_CONTROL_TOP, rule.onNodeWithContentDescription(SOURCE_ONE).getUnclippedBoundsInRoot().top.value, GEOMETRY_SLACK)
         rule.onNodeWithText(OFFLINE).assertIsDisplayed()
         rule.onNodeWithText("3 BOOKMARKS").assertIsDisplayed()
         rule.onNodeWithText("${ONE.name} needs a connection").assertIsDisplayed()
         rule.onNodeWithText("Your bookmarks are saved on this device.").assertIsDisplayed()
-        val card = rule.onNodeWithContentDescription("$SAVED 0").getUnclippedBoundsInRoot()
+        val chips = rule.onNodeWithText(WATCHING).getUnclippedBoundsInRoot()
         val retry = rule.onNode(isFocused()).getUnclippedBoundsInRoot()
-        assertTrue("the rail is above the state", card.bottom <= retry.top)
+        assertTrue("the rail is above the state", chips.bottom + BookmarksRailHeight - CloudStreamDimens.ChipFocusCell <= retry.top)
         assertTrue("the button is inside the band", retry.bottom.value <= SCREEN_HEIGHT_DP - 28f + GEOMETRY_SLACK)
 
         // Up reaches a card, then the chips, which work offline; Down comes back.
@@ -1134,6 +1147,17 @@ class HomeScreenTvDeviceTest {
         assertEquals(graph.toString(), emptyList<String>(), graph.traps())
     }
 
+    /** A card's middle, under the rail's title: cards start where the title does, a chip cell and the clearance below. */
+    private fun firstBookmarkPixel(): Int {
+        val title = rule.onNodeWithText(BOOKMARKS).getUnclippedBoundsInRoot()
+        val chip = rule.onNodeWithText(WATCHING).getUnclippedBoundsInRoot()
+        val cardTop = (chip.top + chip.bottom).value / 2 + CloudStreamDimens.ChipFocusCell.value / 2 +
+            CloudStreamDimens.LiftedRowClearance.value
+        val density = InstrumentationRegistry.getInstrumentation().targetContext.resources.displayMetrics.density
+        val image = rule.onRoot().captureToImage().asAndroidBitmap()
+        return image.getPixel(((title.left.value + 40f) * density).toInt(), ((cardTop + 60f) * density).toInt())
+    }
+
     /** A dimmed card is 40% of the same card at rest: read from its pixels against the black ground. */
     @Test
     fun offlineBookmarksAreDrawnAtFortyPercent() {
@@ -1141,12 +1165,16 @@ class HomeScreenTvDeviceTest {
         bookmarking(1)
         showForScreenshot()
         awaitFocus(RETRY)
-        val dim = pixel(rule.onNodeWithContentDescription("$SAVED 0"), across = HALF, fromFoot = 60f)
+        rule.waitForIdle()
+        val dim = firstBookmarkPixel()
         source.answer = { _, _, _ -> loaded("A", listOf("A 0")) }
         rule.runOnIdle { viewModel.onAction(HomeAction.Retry) }
         awaitText("A")
         rule.waitForIdle()
-        val full = pixel(rule.onNodeWithContentDescription("$SAVED 0"), across = HALF, fromFoot = 60f)
+        // Retry was focused, and the page landed elsewhere: put focus on the chip, away from the card being read.
+        rule.onNodeWithText(WATCHING).performSemanticsAction(SemanticsActions.RequestFocus)
+        rule.waitForIdle()
+        val full = firstBookmarkPixel()
         val ratio = android.graphics.Color.green(dim).toFloat() / android.graphics.Color.green(full)
         assertEquals("dimmed over full, ${Integer.toHexString(dim)} over ${Integer.toHexString(full)}", 0.4f, ratio, 0.05f)
     }
@@ -1162,13 +1190,11 @@ class HomeScreenTvDeviceTest {
         rule.waitForIdle()
         rule.onNode(isFocused()).assertIsDisplayed()
         rule.onNodeWithText("HTTP 503").assertIsDisplayed()
-        rule.onNodeWithContentDescription("$SAVED 0").assertIsDisplayed()
-        assertTrue(
-            "the bookmarks are above the state",
-            rule.onNodeWithContentDescription("$SAVED 0").getUnclippedBoundsInRoot().bottom <=
-                rule.onNode(isFocused()).getUnclippedBoundsInRoot().top,
-        )
-        pressUntil(Dpad.Up, "$SAVED 0", presses = 2)
+        val retry = rule.onNode(isFocused()).getUnclippedBoundsInRoot()
+        val card = dpad.press(Dpad.Up)
+        assertTrue("Up from Try again is the bookmarks rail, was $card", card?.startsWith(SAVED) == true || card == WATCHING)
+        rule.onNode(isFocused()).assertIsDisplayed()
+        assertTrue("the bookmarks are above the state", rule.onNode(isFocused()).getUnclippedBoundsInRoot().bottom <= retry.top)
     }
 
     /** What the page reserves for the bookmarks above a state, against the rail as it really measures. */
