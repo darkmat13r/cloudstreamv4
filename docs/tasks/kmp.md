@@ -3762,7 +3762,7 @@ Why: sharing means editing both of the others' fragments.
 Additions only: 102 lines in `app/api/classes-jar.api`, all under `com/lagradost/cloudstream4/home/`, none removed or changed.
 `:feature:home` is not merged into the jar.
 
-## KMP-40 — The TV home's hero, Continue watching, and watch progress on its cards (queue `Q10`) · **measured 2026-11-05**
+## KMP-41 — The TV home's hero, Continue watching, and watch progress on its cards (queue `Q10`) · **measured 2026-11-05**
 
 **Status:** in pr #162. Board `3c` of `design/TV Home.dc.html` and its closing note, on the page `KMP-37` built. Watch progress on
 Home's cards is the owner's request, which the boards already draw. Android TV only; desktop's home is unchanged (its
@@ -3799,13 +3799,15 @@ keyed by `encodeId(apiName, url)`, which is also a card's id. Zero is not drawn 
 | Eyebrow `FEATURED · NEW SEASON` | The name of the row the title was found on | Nothing says "featured" or "new season" |
 | `2 SEASONS · 24 EP` | None | The old hero does not show them, and no key holds either with its number |
 | `8.7 IMDb` | `8.7` | Which site the score is from is not known |
-| `Resume S2 E4` | `More info`, which opens the title's page | It does not resume, so `Resume` would be untrue. It is the old TV hero's only button |
-| `Watch trailer`, `+ Library`, the square cell | None | No trailer player is built; a library write is the next PR's (`TV Home Extras`); the cell's meaning is not drawn |
+| `Resume S2 E4` | `More info` with `CloudStreamIcons.Info`, which opens the title's page | `ui-components.md` rule 1 makes Play or Resume a title's primary. This button does not play, so `Resume` would be untrue; it is the old TV hero's only button, which also opens the page (confirmed in review). `More info` is in that rule's table with its glyph, and becomes Resume when the hero can resume |
+| `Watch trailer` and `Library`, each with its glyph on the board, and the square cell | None | No trailer player is built; a library write is the next PR's (`TV Home Extras`); the cell's meaning is not drawn |
 | Art under the nav rail | Art from the page's edge | The rail is the shell's; the page starts beside it |
 | `6 ITEMS` on Continue watching | None | `KMP-37` shows no counts on rail headers either |
-| Card line `S2 E4 · 28m left · vidplay 1080p` | `S2 E4 · <source>` | Time left has no key without a line break (`resume_time_left`); quality is not stored |
+| Card line `S2 E4 · 28m left · vidplay 1080p` | `S2 E4 · <source>` | Time left has no key without a line break (`resume_time_left`): `I18N-10`, blocked only on that key, since the store has the duration. Quality is not stored |
 | `SAVED` badge | None | Bookmark state on Home is the next PR's |
 | Art 16:9 | The poster, cropped | A resume record keeps a poster and no backdrop |
+
+| Offline's body under Continue watching | The headline and Retry only | `StateView` is 180dp plus its body; the body is four lines, 260dp in all, and 216.8dp is left at 720p. Without it the state fits and nothing moves. Its first sentence repeats the headline |
 
 **Gap, not drawn:** removing an entry from Continue watching. The old home does it with a long press; no board draws it.
 
@@ -3840,9 +3842,11 @@ Resume records are read the same way: a title with no usable name is dropped, an
 ### Measured, each a wrong turn first
 
 - **A state under Continue watching had no room for its button.** Recording `home-offline-continue-focus-retry` showed Retry
-  squeezed to an empty ring: what is left under the rail is about 216dp and the offline state needs more. The state now keeps
-  that as a floor and grows, and the page moves by the least that shows its button when it takes focus. Without Continue
-  watching nothing changed, and the six `KMP-37` references re-recorded byte-identical.
+  squeezed to an empty ring: 216.8dp is left under the rail at 720p, and the offline state needs 260. The first fix grew the
+  state and moved the page by the least that showed the button, 44px, which left the chrome 4px from the top edge, inside a TV's
+  overscan (design review of #162). Now offline fits without its body and nothing moves; a state that still does not fit, such as
+  a failure with its detail line (224dp), moves the page until the chrome is wholly off the screen. Without Continue watching
+  nothing changed.
 - **Coming back by the nav rail left focus on the source control.** `TvHomeNavigationTest` read `Source · Fake One`: the window
   gives a rebuilt view's focus to its first stop before the rows can take it. A rebuilt view now lands once, as the first open
   does; anything that takes focus first, a return included, is that landing.

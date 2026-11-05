@@ -46,6 +46,8 @@ import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.designsystem.panel.sidePanelOutsideDim
 import com.lagradost.cloudstream4.core.designsystem.rail.NavRail
 import com.lagradost.cloudstream4.core.designsystem.rail.NavRailItem
+import com.lagradost.cloudstream4.core.designsystem.rows.RailHeaderDefaults
+import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.cloudStreamDarkColors
 import com.lagradost.cloudstream4.feature.home.HomeAction
@@ -831,10 +833,14 @@ class HomeScreenTvDeviceTest {
         val rail = rule.onNodeWithContentDescription("$RESUME 0").getUnclippedBoundsInRoot()
         val retry = rule.onNode(isFocused()).getUnclippedBoundsInRoot()
         assertTrue("the rail is above the state", rail.bottom <= retry.top)
-        // The state is taller than what is left under the rail, so the page moved: the button and the rail both show.
+        // It fits at 720p without its body, so nothing moved: the chrome is where it is at rest, clear of overscan.
+        rule.waitForIdle()
+        assertEquals(CHROME_CONTROL_TOP, rule.onNodeWithContentDescription(SOURCE_ONE).getUnclippedBoundsInRoot().top.value, GEOMETRY_SLACK)
         rule.onNode(isFocused()).assertIsDisplayed()
         assertTrue("the button is inside the band", retry.bottom.value <= SCREEN_HEIGHT_DP - 28f + GEOMETRY_SLACK)
         rule.onNodeWithContentDescription("$RESUME 0").assertIsDisplayed()
+        rule.onAllNodesWithText(NO_CONNECTION, substring = true).fetchSemanticsNodes()
+            .let { assertTrue("the body is left out under the rail", it.isEmpty()) }
 
         // Up reaches the card above the button's middle, and Down comes back.
         assertEquals("$RESUME 2", dpad.press(Dpad.Up))
@@ -844,6 +850,44 @@ class HomeScreenTvDeviceTest {
         assertEquals(graph.toString(), emptyList<String>(), graph.unreachable(expected))
         assertEquals(graph.toString(), emptyList<String>(), graph.deadEnds())
         assertEquals(graph.toString(), emptyList<String>(), graph.traps())
+    }
+
+    /**
+     * A failure whose detail wraps to three lines is taller than the 216.8dp left under Continue watching at 720p, so the
+     * page moves. It moves until the chrome is wholly off the screen: less would leave it cut by a TV's overscan.
+     */
+    @Test
+    fun aStateTooTallUnderContinueWatchingMovesTheChromeWhollyOffTheScreen() {
+        source.answer = { _, _, _ -> HomePageReply.Failed(LONG_DETAIL) }
+        resuming(3)
+        showScreen()
+
+        awaitFocus(RETRY)
+        rule.waitForIdle()
+        val chrome = rule.onAllNodesWithContentDescription(SOURCE_ONE).fetchSemanticsNodes()
+        val retry = rule.onNode(isFocused()).getUnclippedBoundsInRoot()
+        assertTrue(
+            "the chrome is off the screen, was ${chrome.map { it.boundsInRoot }}, with Retry at $retry",
+            chrome.all { it.boundsInRoot.bottom <= 0f },
+        )
+        assertTrue("the button is inside the band", retry.bottom.value <= SCREEN_HEIGHT_DP - 28f + GEOMETRY_SLACK)
+        rule.onNodeWithContentDescription("$RESUME 0").assertIsDisplayed()
+        rule.onNodeWithText(LONG_DETAIL).assertIsDisplayed()
+    }
+
+    /** What the page reserves for Continue watching above a state, against the card as it really measures. */
+    @Test
+    fun continueWatchingsReservedHeightIsTheRealRails() {
+        rails(1)
+        resuming(1)
+        showScreen()
+        awaitFocus("$RESUME 0")
+        val card = rule.onNodeWithContentDescription("$RESUME 0").getUnclippedBoundsInRoot()
+        val measured = RailHeaderDefaults.Height.value + CloudStreamDimens.LiftedRowClearance.value + (card.bottom - card.top).value
+        assertEquals(measured, ContinueRailHeight.value, ROUNDING_SLACK)
+        // And the rail's header sits where that height says, above the card.
+        val header = rule.onNodeWithText(CONTINUE).getUnclippedBoundsInRoot()
+        assertTrue("the header is in the 28dp above the clearance", header.top.value >= card.top.value - 44f - GEOMETRY_SLACK)
     }
 
     @Test
@@ -1069,6 +1113,17 @@ class HomeScreenTvDeviceTest {
         )
     }
 
+    /** 3d's rails with this device's progress on two posters, the focused one part-watched. */
+    @Test
+    fun screenshotRailsWithProgressFocusOnACard() {
+        shotRails()
+        history.history = HomeHistory(progress = mapOf("id/${ShotTitles[1]}" to 0.62f, "id/${ShotTitles[3]}" to 0.3f))
+        showForScreenshot()
+        awaitFocus(ShotTitles[0])
+        assertEquals(ShotTitles[1], dpad.press(Dpad.Right))
+        rule.assertScreenshot("home-rails-progress-focus-card")
+    }
+
     @Test
     fun screenshotHeroFocusOnItsButton() {
         shot3c()
@@ -1185,6 +1240,11 @@ class HomeScreenTvDeviceTest {
         const val GEOMETRY_SLACK = 1f
         /** Five bands each rounded to a whole pixel at 1.33125 px per dp. */
         const val ROUNDING_SLACK = 1.5f
+        /** The source control at rest: `ChromeRowTop` 28, and its 32dp height centred in the 48dp chrome row. */
+        const val CHROME_CONTROL_TOP = 36f
+        const val NO_CONNECTION = "No internet connection"
+        const val LONG_DETAIL = "HTTP 503 · upstream connect error or disconnect/reset before headers · reset reason: " +
+            "connection termination · retried 3 times against mirror two of three"
         /** `Television_720p` is 540.8dp tall; the band's foot is `FocusBandInset` above that. */
         const val SCREEN_HEIGHT_DP = 540.8f
         const val COLOUR_SLACK = 8

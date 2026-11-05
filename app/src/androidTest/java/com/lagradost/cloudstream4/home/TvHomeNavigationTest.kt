@@ -59,7 +59,7 @@ import kotlin.math.roundToInt
  * A saved plugin that does not exist keeps the extension setup page from opening over Home, so this is a person's normal
  * launch. No extension is loaded, so what a real plugin does is `TvHomeRealPluginProof`'s.
  *
- * Since `KMP-40` a provider whose title page answers gives the page a hero, and focus lands on its button, as 3c draws it
+ * Since `KMP-41` a provider whose title page answers gives the page a hero, and focus lands on its button, as 3c draws it
  * at rest. Every fake here answers, so every launch lands there.
  */
 @RunWith(AndroidJUnit4::class)

@@ -28,6 +28,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.designsystem.primitive.Badge
 import com.lagradost.cloudstream4.core.designsystem.target.PrimaryTextButton
 import com.lagradost.cloudstream4.core.strings.UiString
@@ -91,8 +92,9 @@ private fun Modifier.heroBehindChrome(): Modifier = layout { measurable, constra
  * absolutely, so a fact that is missing leaves its band empty rather than moving the button.
  *
  * **One button, `More info`, which opens the title's page.** That is what the old TV hero's only button does, and what
- * pressing a card does. 3c's `Resume S2 E4`, `Watch trailer`, `+ Library` and the square cell are not built: `KMP-40`
- * lists why for each.
+ * pressing a card does. `ui-components.md` rule 1 makes Play or Resume a title's primary; this one does not play, so it
+ * carries `Info`, as that rule's table lists. 3c's `Resume S2 E4`, `Watch trailer` and `Library`, each with a glyph, and
+ * the square cell are not built: `KMP-41` lists why for each.
  */
 @Composable
 internal fun HomeHeroTv(
@@ -145,6 +147,7 @@ internal fun HomeHeroTv(
         PrimaryTextButton(
             label = label,
             onClick = onOpen,
+            icon = CloudStreamIcons.Info,
             modifier = Modifier
                 .focusRequester(requester)
                 .onFocusChanged { if (it.isFocused) stops.last = requester }

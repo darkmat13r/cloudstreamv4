@@ -57,7 +57,7 @@ import org.jetbrains.compose.resources.stringResource
  * It behaves as a rail of `HomeRailTv` does, with the same wall at its end and the same focus target, so focus comes back
  * to the card that was opened. It has no trailing card: everything is already here.
  *
- * **Removing an entry is not here.** No board draws it; the old home does it with a long press (`KMP-40`).
+ * **Removing an entry is not here.** No board draws it; the old home does it with a long press (`KMP-41`).
  */
 @OptIn(ExperimentalFoundationApi::class)
 @Composable

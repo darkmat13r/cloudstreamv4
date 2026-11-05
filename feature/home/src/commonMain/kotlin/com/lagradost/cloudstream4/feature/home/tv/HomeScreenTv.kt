@@ -195,18 +195,22 @@ fun HomeScreenTv(
                     HomeFocusScroll.railFits(item.offset + above, item.size.toFloat(), info.viewportSize.height.toFloat(), band)
                 if (!fits) scope.launch { list.animateScrollToItem(index) }
             }
-            // Continue watching sits above a state, so the state has what is left, and grows past it when that is less
-            // than its words need: measured on the recorded screenshot, a fixed height squeezed its button to an empty
-            // ring. The page then moves by the least that shows the button, when the state takes focus.
+            // Continue watching sits above a state, so the state has what is left: 216.8dp at 720p. Offline fits in it once
+            // its body goes (below). Any state that still does not fit grows rather than squeezing its button, which a fixed
+            // height did to an empty ring (measured on the recorded screenshot), and when its button takes focus the page
+            // moves until the chrome is wholly off the screen: moved by less, the chrome was left 4px from the top edge,
+            // where a TV's overscan cuts it.
             val continueRoom = if (hasContinue) ContinueRailHeight + CloudStreamDimens.MinFocusGap else 0.dp
             val promptHeight =
                 maxHeight - HomeScreenTvDefaults.PageAboveContent - CloudStreamDimens.FocusBandInset - continueRoom
             val revealState: () -> Unit = {
                 val info = list.layoutInfo
                 val item = info.visibleItemsInfo.firstOrNull { it.index == itemsBeforeRails }
+                val chrome = info.visibleItemsInfo.firstOrNull { it.index == 0 }
                 if (item != null) {
                     val overflow = item.offset + above + item.size - (info.viewportSize.height - band)
-                    if (overflow > 0f) scope.launch { list.animateScrollBy(overflow) }
+                    val chromeOnScreen = chrome?.let { it.offset + above + it.size } ?: 0f
+                    if (overflow > 0f) scope.launch { list.animateScrollBy(maxOf(overflow, chromeOnScreen.toFloat())) }
                 }
             }
             val promptModifier = if (hasContinue) {
@@ -293,12 +297,26 @@ fun HomeScreenTv(
                             HomeStatePrompt(content.prompt, content.detail, promptHeight, hasContinue, state, mayTakeFocus, promptModifier)
                         }
                         is UiState.Offline -> item(key = STATE_KEY) {
-                            HomeStatePrompt(content.prompt, null, promptHeight, hasContinue, state, mayTakeFocus, promptModifier)
+                            // Under Continue watching the headline says it alone: the body is four lines, 80dp more than
+                            // the 720p screen has left, and its first sentence repeats the headline.
+                            val prompt = if (hasContinue) content.prompt.copy(body = "") else content.prompt
+                            HomeStatePrompt(prompt, null, promptHeight, hasContinue, state, mayTakeFocus, promptModifier)
                         }
                         is UiState.Error -> item(key = STATE_KEY) {
                             HomeStatePrompt(content.prompt, content.detail, promptHeight, hasContinue, state, mayTakeFocus, promptModifier)
                         }
                         // A row's key is a string, because a lazy list's key must fit in a Bundle on Android.
+                        is UiState.Partial, is UiState.Content -> Unit
+                    }
+                    // Room under a state below Continue watching for the page to move the chrome wholly off the screen. A
+                    // list scrolls only as far as its content reaches: without this it stopped at the state's own overflow,
+                    // 15px, and left the chrome in the overscan (measured).
+                    val isState = content is UiState.Empty || content is UiState.Offline || content is UiState.Error
+                    if (hasContinue && isState) {
+                        item(key = STATE_ROOM_KEY) { Spacer(Modifier.height(CloudStreamDimens.ChromeRowBottom)) }
+                    }
+                    when (content) {
+                        is UiState.Loading, is UiState.Empty, is UiState.Offline, is UiState.Error -> Unit
                         is UiState.Partial, is UiState.Content -> itemsIndexed(
                             items = rows,
                             key = { _, row -> "row/${row.key.section}/${row.key.name}" },
@@ -562,4 +580,5 @@ private const val ITEMS_BEFORE_CONTINUE = 1
 private const val CHROME_KEY = "chrome"
 private const val CONTINUE_KEY = "continue"
 private const val STATE_KEY = "state"
+private const val STATE_ROOM_KEY = "state/room"
 private const val SKELETON_RAILS = 3
