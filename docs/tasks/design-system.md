@@ -498,3 +498,45 @@ Every element box in the eight boards and `Design System v2` measured identical 
 KDoc, so that gap is the rule rather than this defect. `PrimaryTextButton` and `GhostTextButton` already ring the button.
 
 ---
+
+## DS-12 — The ring goes on the visible control: chips, tabs and segmented options
+
+**Status:** in review · #150 · `DEC-17`, 2026-11-05: *"make chips even like buttons"*
+
+`Chip` and `SegmentedControl` ringed the 48 dp cell, leaving 2 dp at the sides and 14 dp above and below. The ring is now on
+the 24 dp visual: `FocusRingOffset` 2 dp clear and `FocusRingStroke` 2 dp thick on all four sides, with the visual's own
+corners. A chip keeps its stadium. A segmented option is rounded on the control's outer edge and square at a neighbour,
+because a fully rounded ring cuts across a square fill's corner. The cell is still the focus and hit target, and it still
+sets every position and measured size. A focused chip now draws above its neighbours, as a segmented option already did.
+
+**Boards.** `.chipcell.foc .chip` and `.tabcell.foc .tab` carry the ring in `Components`, `TV Search`,
+`TV Search Suggestions`, `TV Library`, `TV Episodes Downloads`, `TV Detail Player` and `TV Onboarding Extensions`.
+`Design System v2`'s rule says the same. The text button's corner is 16 px, which is `shapes.medium`, on `.bbtn` in those
+boards and `.btn` in `Components` and `TV Home`; Compose already drew that. `Components` draws its chips 48 px tall, not 40,
+which also puts them at +24 in the cell where they sat off the step at +28.
+
+**What was measured.** Only `Components` has a live focused chip. On the others the `foc` class was added in the browser to
+every chip and tab cell. Every one went from 28/4/28/4 px (`Components` 32/4/32/4) to 4/4/4/4 px, and pixels agree on the
+three checked. Elements moved: none, apart from the four `Components` chips' own height and one text span's width in
+`Design System v2`. The one board that moved at first was `Design System v2`, where a longer sentence wrapped a table row and
+shifted 635 boxes, so that sentence is deliberately short.
+
+**Tests.** `FocusRingGapTest` (JVM) counts the gap outward from the visual in rendered pixels, on all four sides of each
+chip and option, and fails six ways on the old drawing, at 14 dp above and below. `ChipDeviceTest` presses real D-pad keys
+along a `ChipRow` on `Television_720p`. Two tests pinned the old rule's sample site and now read it above the visual:
+`TvComponentsTest`'s focus-stop case and `SegmentedControlDeviceTest.ringAbove`.
+
+**Left as they were.**
+- `IconCell`, and the boards' `.ibx.foc`: it has no fill in Compose, so the cell is the only box to ring. `Components` does
+  draw a 48 px `.ivis` fill inside its 96 px cell, so there the gap is uneven in the same way. Not ruled on.
+- `.seekcell.foc` in `TV Detail Player`: a 96 px cell around a thin rule. Not ruled on.
+- `TextButton`, `StateActionButton`, `ListRow`, `TextField`, `Avatar`, the cards, and every desktop control, including
+  `TopLevelTab` and `:feature:library`'s tab strip (`DesktopButton`): each rings its own filled box already, so none has a
+  cell taller than its visual. No desktop screen uses `Chip` or `SegmentedControl`.
+- `NavRail`: focus is a fill, with no ring (`DS-09`).
+
+**Board values that disagree with a token, reported and not changed.** Corners, against `shapes.medium` at 16 px: `.field`,
+`.ibx` and `.nic` (8 or 12 px depending on the board), the list row and `.seg` (8 px). `.srcbtn` in `TV Search` is 96 px tall at 8 px where
+Compose draws that control as a `Chip`. `.cbtn` has no Compose control to compare yet. In `Components`: chip
+padding 16 px against `ChipDefaults.VisualHorizontalPadding` 24 px, chip spacing 8 px against `ChipRowSpacing` 48 px, so a
+ring there touches its neighbour, and `.seg` 56 px against the 48 px visual `SegmentedControl` documents.

@@ -39,7 +39,7 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
  * ## This row does not scroll
  *
  * Deliberately. Every scrolling container clips at its viewport edge, and a clipped edge silently
- * cuts the [CloudStreamDimens.FocusRingBleed] (8dp) off the ring of the first and last focused
+ * cuts the [CloudStreamDimens.FocusRingBleed] (4dp) off the ring of the first and last focused
  * chip — the failure the focus-ring contract warns about. The chip row in the chassis spans
  * [CloudStreamDimens.ContentOriginX] to [CloudStreamDimens.ContentEndX] and is dimensioned to hold
  * its chips. A screen that genuinely has more chips than fit has an overflow problem this

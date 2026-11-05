@@ -68,7 +68,7 @@
 
           /* ---------- primitives ---------- */
           .btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px;
-            height: 64px; min-width: 240px; padding: 0 32px; box-sizing: border-box; border-radius: 8px;
+            height: 64px; min-width: 240px; padding: 0 32px; box-sizing: border-box; border-radius: 16px;
             font: 700 24px/1 Manrope, sans-serif; background: #15191E; color: #FFFFFF;
             border: 1px solid rgba(255,255,255,0.2); }
           .btn.pri { background: #FFFFFF; color: #000000; border-color: #FFFFFF; font-weight: 800; }
@@ -98,8 +98,8 @@
 
           /* ---------- chips ---------- */
           .chipcell { height: 96px; display: inline-flex; align-items: center; box-sizing: border-box; }
-          .chipcell.foc { outline: 4px solid #FFFFFF; outline-offset: 4px; border-radius: 12px; }
-          .chip { display: inline-flex; align-items: center; height: 40px; padding: 0 16px;
+          .chipcell.foc .chip { outline: 4px solid #FFFFFF; outline-offset: 4px; }
+          .chip { display: inline-flex; align-items: center; height: 48px; padding: 0 16px;
             box-sizing: border-box; border-radius: 999px; background: #15191E;
             border: 1px solid #242A31; font: 600 24px/1 Manrope, sans-serif; color: #686868; }
           .chip.sel { color: #FFFFFF; border-color: #686868; }
@@ -270,7 +270,7 @@
             </div>
 
             <div class="spec">
-              <div class="specl">CHIP · 40 VISUAL IN A 96 HIT CELL</div>
+              <div class="specl">CHIP · 48 VISUAL IN A 96 HIT CELL</div>
               <div class="fx gap8 ac">
                 <span class="chipcell"><span class="chip">Movies</span></span>
                 <span class="chipcell"><span class="chip sel">Anime</span></span>

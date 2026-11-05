@@ -41,8 +41,9 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
  *
  * ## A 24dp visual in a 48dp cell
  *
- * As on [Chip], the option's focus and hit area are [SegmentedControlDefaults.FocusCell] tall, the ring goes on the
- * cell, and the control measures the cell.
+ * As on [Chip], the option's focus and hit area are [SegmentedControlDefaults.FocusCell] tall and the control measures
+ * the cell. The ring goes on the option's visual, [CloudStreamDimens.FocusRingOffset] clear on all four sides and with
+ * that option's corners: rounded on the control's outer edge, square where it meets a neighbour (`DEC-17`, 2026-11-05).
  *
  * **`Components` draws this 56px, which is 28dp. It is 24dp here on purpose:** 28 centred in 48 lands at +10dp, off
  * the 4dp step, where 24 lands at +12dp. No board uses the control yet, so nothing has to be redrawn.
@@ -79,8 +80,7 @@ fun SegmentedControl(
                 Segment(
                     label = label,
                     selected = index == selectedIndex,
-                    ringShape = shape,
-                    fillShape = shape.forSegment(first = index == 0, last = index == options.lastIndex),
+                    visualShape = shape.forSegment(first = index == 0, last = index == options.lastIndex),
                     onClick = { onSelect(index) },
                 )
             }
@@ -92,8 +92,7 @@ fun SegmentedControl(
 private fun Segment(
     label: String,
     selected: Boolean,
-    ringShape: Shape,
-    fillShape: Shape,
+    visualShape: Shape,
     onClick: () -> Unit,
 ) {
     val colors = CloudStreamTheme.colors
@@ -109,14 +108,14 @@ private fun Segment(
                 indication = null,
                 role = Role.Tab,
                 onClick = onClick,
-            )
-            .tvFocusRing(focused = focused, shape = ringShape),
+            ),
         contentAlignment = Alignment.Center,
     ) {
         Box(
             modifier = Modifier
                 .height(SegmentedControlDefaults.VisualHeight)
-                .background(if (selected) colors.line else Color.Transparent, fillShape)
+                .tvFocusRing(focused = focused, shape = visualShape)
+                .background(if (selected) colors.line else Color.Transparent, visualShape)
                 .padding(horizontal = SegmentedControlDefaults.HorizontalPadding),
             contentAlignment = Alignment.Center,
         ) {
