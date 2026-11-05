@@ -56,12 +56,12 @@ class SegmentedControlDeviceTest {
         }
     }
 
-    /** Whether the ring shows above [label]'s cell: 3dp out is the middle of its stroke, and above the 24dp visual. */
+    /** Whether the ring shows above [label]'s 24dp visual: 3dp out is the middle of its stroke. The node is the cell. */
     private fun ringAbove(label: String): Boolean {
         rule.waitForIdle()
         val bounds = rule.onNodeWithText(label).fetchSemanticsNode().boundsInRoot
-        val out = with(rule.density) { RING_MIDDLE.toPx() }
-        val pixel = rule.onRoot().captureToImage().toPixelMap()[bounds.center.x.toInt(), (bounds.top - out).toInt()]
+        val out = with(rule.density) { (SegmentedControlDefaults.VisualHeight / 2 + RING_MIDDLE).toPx() }
+        val pixel = rule.onRoot().captureToImage().toPixelMap()[bounds.center.x.toInt(), (bounds.center.y - out).toInt()]
         return pixel == cloudStreamDarkColors().focus
     }
 

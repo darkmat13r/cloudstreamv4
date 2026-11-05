@@ -250,6 +250,35 @@ class DownloadProgressTest {
     ) = DownloadProgress(id = 1, state = state, bytesDownloaded = done, bytesTotal = total, bytesPerSecond = rate, segments = segments)
 
     @Test
+    fun `written bytes and queue and failure are absent unless a producer states them`() {
+        val bare = progress()
+        assertNull(bare.bytesWritten)
+        assertNull(bare.queue)
+        assertNull(bare.failure)
+    }
+
+    @Test
+    fun `written bytes cannot be negative`() {
+        assertFailsWith<IllegalArgumentException> {
+            DownloadProgress(id = 1, state = DownloadState.FAILED, bytesDownloaded = 0L, bytesWritten = -1L)
+        }
+    }
+
+    @Test
+    fun `a queue position is one based and inside its total`() {
+        assertEquals(QueuePosition(2, 5), QueuePosition(2, 5))
+        assertFailsWith<IllegalArgumentException> { QueuePosition(0, 5) }
+        assertFailsWith<IllegalArgumentException> { QueuePosition(6, 5) }
+    }
+
+    @Test
+    fun `a storage shortfall may be unknown but never negative`() {
+        assertNull(DownloadFailure.StorageFull(null).bytesShort)
+        assertEquals(1L, DownloadFailure.StorageFull(1L).bytesShort)
+        assertFailsWith<IllegalArgumentException> { DownloadFailure.StorageFull(-1L) }
+    }
+
+    @Test
     fun `fraction is unknown without a total`() {
         assertNull(progress(done = 500L).fraction)
     }

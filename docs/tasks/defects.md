@@ -1449,3 +1449,71 @@ not exercised: the controls inside it with real media, and moving focus between 
 - **Nothing else sits at the root.** Under `homeRoot` are the page's `ConstraintLayout`, the rail and the unused `focus_outline`, and nothing in
   the code adds a view to `homeRoot` or `android.R.id.content` by hand. Pages are inside `nav_host_fragment`, which already has the margin. By
   reading the code, not by running it.
+
+## BUG-35 — A lost connection or a failed write did not end as a failure · **high** · measured 2026-11-05
+
+**Status:** in pr (the PR that adds this entry). The owner approved the three fixes after `KMP-36` measured them. Downloads are in the Android app
+only, so no other platform moves, and `app/api/classes-jar.api` does not change. `DOWNLOAD_PARTIAL_SUCCESS` keeps its name, although it is no longer a
+success, because its accessor is in that dump.
+
+**The fixes**, all in `DownloadManager.kt`, each measured on `Television_720p` against a fake server on loopback and a real file:
+
+| Fault | Before | After |
+|---|---|---|
+| Lost past 50 MB, 62,914,560 of 104,857,600 | `isCompleted`, status gone, button computes paused | `isFailed`, `IsFailed`, file kept, resume finishes it |
+| Lost in the last range, 44,040,192 of 47,185,920 | `isCompleted`, `IsDone` announced | `isFailed`, no `IsDone`, file kept, resume finishes it |
+| Lost in a single-range file, 12,582,912 of 15,728,640 | `isCompleted`, `IsDone` announced | `isFailed`, no `IsDone`, file kept, resume finishes it |
+| Disk full, 30 MiB free, 200 MiB file | Never ends: still `IsDownloading` at 90 s, holding its slot | `isFailed` in 303 ms, `StorageFull(178274304)`, no other mirror asked, file kept, resume finishes it once there is room |
+| Any failure, a subtitle beside the file | Subtitle deleted | Subtitle kept. A retry does not fetch subtitles again, so the first two rows would otherwise have started losing them |
+
+A failed write returns `DOWNLOAD_BAD_CONFIG`, so no retry and no other mirror: both would hit the same disk, and a mirror would delete the file.
+
+**Each pin fails on the old code.** `DownloadFactsDeviceTest` and `DownloadFactsDiskFullDeviceTest`, rewritten first and run on the unfixed downloader: 6 of 7
+failed, and the 1 that passed is the download that finishes, which must not change. The either-side assertion from `KMP-36` is gone: through the instance
+both sides of the 50 MB line now end the same way, and the test asserts that. On the direct `downloadThing`, the side only decides `tryNext`.
+
+### What this does not delete, and the one case that replaces a file
+
+Nothing in these failures deletes the file. Two older paths still replace a partial file, and this change makes truncated files reach them:
+
+- **Under 50 MB with another mirror.** A failure there goes on to the next mirror, which cannot resume another server's bytes, so it starts the file over.
+  Measured: the first mirror wrote 12 MiB and the second dropped at 5 MiB, leaving 5,242,880 bytes. `aTruncatedFileUnderTheLineIsReplacedByTheNextMirrorsAttempt`
+  pins it. Before this fix a truncated open-ended range never got that far. Every other failure under 50 MB already did.
+- **A server with no range support.** A retry cannot resume, so `downloadThing` deletes the file and starts again. From reading the code; not measured.
+
+### Existing users, and what the older UI shows
+
+**A file already recorded as complete is not migrated.** Its records look the same as they did. With no status in memory, `getStatus` computes from size: within
+1,024 bytes of the total shows done, anything else shows paused. Resume then finishes it, which the past-50 test measures after removing the status. So nothing
+changes for them until they act on it.
+
+**On phones and in every older screen**, from reading `PieFetchButton`, `BaseFetchButton` and `createDownloadNotification`:
+
+- The button shows `iconError`. Those three faults showed paused or done before, so this is the visible change.
+- The popup offers Play, Delete and, below 98%, Resume, which queues the same package. The label says Resume, not Retry. Play opens the partial file.
+- **At 98% or more the popup has no Resume**, so a failure that close to the end has no retry from this button. This was already so for a file that showed paused.
+- The notification says `download_failed`. No screen names the reason: a full disk reads the same as a lost connection, and only `DownloadFacts` knows the difference.
+- After a restart the status is gone, so the button computes paused again, and the reason is gone too.
+- A full disk frees its slot, so the queue starts the next item, which will fail the same way.
+
+**Not exercised.** HLS: `failedStatus()` applies to it, so a failure past 50 MB now fails there too, with no device test, and its write failure already failed rather than hung,
+so that path is unchanged. A document-tree folder. A real queue service: the slot is measured as `currentDownloads` letting go of the id and `isFailed`, which is what the
+service filters on. The UI above was read, not driven. An unknown-length source that ends uncleanly after its last byte now fails where it used to finish: that follows from fix 2 and has
+no test. A range still in flight keeps reading up to the end of its range after a failure before its job ends, at most 10 MiB; on loopback that took 303 ms, and a slow source will take longer.
+**Unexplained:** the length read straight after a retry was once still the earlier one, and correct a moment later, so the test now waits up to 10 s for it. The cause was not established.
+
+---
+
+## BUG-37 — On TV search's history, the first row's focus ring is cut off at the top · **low** · measured 2026-11-05
+
+**Status:** open, not fixed · found by `INF-11`'s first screenshot run · `SearchRecentColumn.kt`
+
+When the first history row has focus, its ring has no top edge. In `search-history-focus-row.png` (`Television_720p`, 1280x720), the ring's sides
+start at y 250, and above the row at x 700 there is no ring pixel at all. The bottom edge is drawn, white at y 317 and 318. The row is the first item
+of a `LazyColumn`, and the list's viewport clips everything above its top. That is the clipping `tvFocusRing`'s KDoc warns about: no ancestor may clip
+a focusable. The ring is in the 4 dp above the row, so it is outside the viewport.
+
+**The reference holds the bug.** `feature/search/src/androidDeviceTest/resources/screenshots/search-history-focus-row.png` was recorded with the top edge
+missing, so the comparison passes today. A fix will fail that case: look at the diff, check that the only change is the ring's top edge, and re-record it.
+
+Not checked: whether the last row is cut off at the bottom when the list is full, and whether other TV screens with a `LazyColumn` do the same.

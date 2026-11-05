@@ -2,18 +2,24 @@ package com.lagradost.cloudstream4.feature.search.tv
 
 import android.view.View
 import android.view.WindowInsets
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.asAndroidBitmap
+import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.semantics.SemanticsActions
 import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.test.SemanticsMatcher
 import androidx.compose.ui.test.assertIsFocused
+import androidx.compose.ui.test.captureToImage
 import androidx.compose.ui.test.hasSetTextAction
 import androidx.compose.ui.test.isFocused
 import androidx.compose.ui.test.junit4.createComposeRule
@@ -21,15 +27,24 @@ import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performImeAction
 import androidx.compose.ui.test.performSemanticsAction
+import androidx.compose.ui.test.requestFocus
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.uiautomator.UiDevice
 import com.lagradost.cloudstream4.compose.ObserveEffect
+import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
+import com.lagradost.cloudstream4.core.designsystem.rail.NavRail
+import com.lagradost.cloudstream4.core.designsystem.rail.NavRailItem
 import com.lagradost.cloudstream4.core.devicetest.Dpad
 import com.lagradost.cloudstream4.core.devicetest.DpadDriver
+import com.lagradost.cloudstream4.core.devicetest.assertScreenshot
+import com.lagradost.cloudstream4.core.devicetest.captureScreenshot
 import com.lagradost.cloudstream4.core.devicetest.focusedLabel
+import com.lagradost.cloudstream4.core.devicetest.solidPoster
 import com.lagradost.cloudstream4.core.designsystem.target.TextField
+import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
+import com.lagradost.cloudstream4.core.theme.cloudStreamDarkColors
 import com.lagradost.cloudstream4.feature.search.SearchAction
 import com.lagradost.cloudstream4.feature.search.SearchEffect
 import com.lagradost.cloudstream4.feature.search.SearchHistoryEntry
@@ -39,6 +54,7 @@ import com.lagradost.cloudstream4.feature.search.SearchResultId
 import com.lagradost.cloudstream4.feature.search.SearchResultItem
 import com.lagradost.cloudstream4.feature.search.SearchSource
 import com.lagradost.cloudstream4.feature.search.SearchSources
+import com.lagradost.cloudstream4.feature.search.SearchStatus
 import com.lagradost.cloudstream4.feature.search.SearchViewModel
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
@@ -319,6 +335,106 @@ class SearchScreenTvDeviceTest {
         dpad.closeKeyboard()
     }
 
+    /** As the app shows it: the rail beside the screen, which is what puts it on the board's x, and solid posters. */
+    private fun showForScreenshot(viewModel: SearchViewModel = this.viewModel) {
+        rule.setContent {
+            val state by viewModel.state.collectAsState()
+            CloudStreamTheme {
+                Row(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) {
+                    NavRail(ShotRail, selectedIndex = SEARCH_INDEX, onSelect = {})
+                    SearchScreenTv(
+                        state = state,
+                        onAction = viewModel::onAction,
+                        modifier = Modifier.weight(1f),
+                        artwork = { item ->
+                            Image(
+                                bitmap = solidPoster(ShotPosters[ShotResults.indexOf(item) % ShotPosters.size]),
+                                contentDescription = null,
+                                modifier = Modifier.fillMaxSize(),
+                                contentScale = ContentScale.FillBounds,
+                            )
+                        },
+                    )
+                }
+            }
+        }
+    }
+
+    private fun showShotResults(outcome: SearchOutcome) {
+        source.outcome = outcome
+        showForScreenshot()
+        viewModel.onAction(SearchAction.RecentActivated(QUERY))
+        rule.waitUntil(WAIT_MS) { viewModel.state.value.query == QUERY }
+        rule.waitForIdle()
+    }
+
+    /** Focus goes to the field and then down with a real key, so the ring is where a remote would put it. */
+    private fun focusDownFromTheField(): String? {
+        rule.onNode(Field).requestFocus()
+        return dpad.press(Dpad.Down)
+    }
+
+    @Test
+    fun screenshotResultsFocusOnACard() {
+        showShotResults(SearchOutcome.Complete(ShotResults))
+        awaitText("Filmxy")
+        assertTrue(focusDownFromTheField() in ShotResults.map { it.title })
+        rule.assertScreenshot("search-results-focus-card")
+    }
+
+    @Test
+    fun screenshotPartialFailureFocusOnRetry() {
+        showShotResults(SearchOutcome.Partial(ShotResults, answered = 9, total = 12, detail = "TIMEOUT 10S"))
+        awaitText("Filmxy")
+        assertEquals(RETRY_FAILED, focusDownFromTheField())
+        rule.assertScreenshot("search-partial-failure-focus-retry")
+    }
+
+    @Test
+    fun screenshotNoResultsFocusOnTheField() {
+        showShotResults(SearchOutcome.Complete(emptyList()))
+        rule.waitUntil(WAIT_MS) { viewModel.state.value.status is SearchStatus.NoResults }
+        rule.onNode(Field).requestFocus()
+        rule.onNode(Field).assertIsFocused()
+        rule.assertScreenshot("search-no-results-focus-field")
+    }
+
+    @Test
+    fun screenshotHistoryFocusOnARow() {
+        showForScreenshot(SearchViewModel(source = source, history = ShotHistory))
+        awaitText(ShotHistory.entries.first().query)
+        assertEquals(ShotHistory.entries.first().query, focusDownFromTheField())
+        rule.assertScreenshot("search-history-focus-row")
+    }
+
+    /** What a capture could miss: the ring, entirely outside its card's bounds, and `live`, the progress rule. */
+    @Test
+    fun screenshotCaptureHoldsTheRingOutsideTheCardAndTheLiveColour() {
+        val colors = cloudStreamDarkColors()
+        showShotResults(SearchOutcome.Complete(ShotResults))
+        awaitText("Filmxy")
+        focusDownFromTheField()
+        rule.waitForIdle()
+
+        val card = rule.onNode(isFocused())
+        val bounds = card.fetchSemanticsNode().boundsInRoot
+        val bleed = with(rule.density) { CloudStreamDimens.FocusRingBleed.toPx() }.toInt()
+        val ring = colors.focus.toArgb()
+        val window = rule.captureScreenshot()
+        val middle = bounds.center.y.toInt()
+        assertTrue(
+            "the ring, in the window",
+            (bounds.left.toInt() - bleed until bounds.left.toInt()).any { window.getPixel(it, middle) == ring },
+        )
+        val grown = rule.captureScreenshot(card)
+        assertTrue("the ring, in a node's capture", (0 until bleed).any { grown.getPixel(it, grown.height / 2) == ring })
+        val bare = card.captureToImage().asAndroidBitmap()
+        assertFalse("captureToImage alone keeps no ring", (0 until bleed).any { bare.getPixel(it, bare.height / 2) == ring })
+        val pixels = IntArray(window.width * window.height)
+        window.getPixels(pixels, 0, window.width, 0, 0, window.width, window.height)
+        assertTrue("no pixel is exactly live", pixels.any { it == colors.live.toArgb() })
+    }
+
     private companion object {
         const val WAIT_MS = 10_000L
         const val NO_KEYBOARD_WAIT_MS = 3_000L
@@ -342,6 +458,25 @@ class SearchScreenTvDeviceTest {
             item("Blade II", "Vidplay"),
         )
         val Titles = Results.map { it.title }
+
+        const val SEARCH_INDEX = 1
+        const val RETRY_FAILED = "Retry failed"
+
+        val ShotRail = listOf(
+            NavRailItem("Home", CloudStreamIcons.Home),
+            NavRailItem("Search", CloudStreamIcons.Search),
+            NavRailItem("Library", CloudStreamIcons.Library),
+            NavRailItem("Downloads", CloudStreamIcons.Download),
+            NavRailItem("Settings", CloudStreamIcons.Settings),
+        )
+        val ShotPosters = listOf(0xFF39505C.toInt(), 0xFF5C4A39.toInt(), 0xFF3F5C39.toInt())
+        val ShotResults = listOf(
+            item("Blade Runner", "Filmxy").copy(typeLabel = "Movie", qualityLabel = "4K"),
+            item("Blade Runner 2049", "Filmxy").copy(typeLabel = "Movie", qualityLabel = "1080P", watchProgress = 0.4f),
+            item("Blade Runner: Black Out", "Filmxy").copy(typeLabel = "Movie"),
+            item("Blade", "Vidplay").copy(typeLabel = "Movie", qualityLabel = "720P"),
+            item("Blade II", "Vidplay").copy(typeLabel = "Movie", dubLabel = "DUB"),
+        )
     }
 
     private class FakeSource : SearchSource {
@@ -351,6 +486,14 @@ class SearchScreenTvDeviceTest {
         override suspend fun sources() = SearchSources(selected = 2, total = 2, quickSearchable = false)
         override suspend fun search(query: String): SearchOutcome = outcome.also { searched += query }
         override suspend fun quickSearch(query: String): SearchOutcome = outcome
+    }
+
+    private object ShotHistory : SearchHistoryStore {
+        val entries = listOf(SearchHistoryEntry("blade runner", "2 days ago"), SearchHistoryEntry("dune", "last week"))
+
+        override suspend fun recent() = entries
+        override suspend fun remove(query: String) = Unit
+        override suspend fun clear() = Unit
     }
 
     private object NoHistory : SearchHistoryStore {

@@ -208,8 +208,9 @@ class TvComponentsTest {
             scene.render()
             val focus = colors.focus.toArgb()
             val first = scene.render().toComposeImageBitmap().toPixelMap()
-            // The ring is on the cell: 2dp offset and 2dp thick, so it covers 3dp above the 48dp, not above the visual.
-            assertEquals(focus, first[MARGIN + 8, MARGIN - 3].toArgb())
+            // The ring is on the visual: 2dp offset and 2dp thick, so it covers 3dp above the 24dp, and not above the cell.
+            assertEquals(focus, first[MARGIN + 8, MARGIN + VISUAL_TOP - 3].toArgb())
+            assertFalse(first[MARGIN + 8, MARGIN - 3].toArgb() == focus, "nothing rings the 48dp cell")
             // Its right side crosses the chosen neighbour's fill, which would cover it if it did not draw above.
             // This line is inside the visual and above the labels, so only the ring can be this colour.
             val y = MARGIN + VISUAL_TOP + 2
@@ -220,7 +221,7 @@ class TvComponentsTest {
             assertTrue(manager!!.moveFocus(FocusDirection.Next), "second stop")
             scene.render()
             val second = scene.render().toComposeImageBitmap().toPixelMap()
-            assertFalse(second[MARGIN + 8, MARGIN - 3].toArgb() == focus, "the ring left the first option")
+            assertFalse(second[MARGIN + 8, MARGIN + VISUAL_TOP - 3].toArgb() == focus, "the ring left the first option")
         } finally {
             scene.close()
         }
