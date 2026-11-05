@@ -29,7 +29,7 @@ import com.lagradost.cloudstream3.newMovieSearchResponse
 import com.lagradost.cloudstream3.plugins.PLUGINS_KEY
 import com.lagradost.cloudstream3.plugins.PluginData
 import com.lagradost.cloudstream3.ui.home.HomeFragment
-import com.lagradost.cloudstream3.ui.result.ResultFragmentTv
+import com.lagradost.cloudstream4.detail.DetailTvFragment
 import com.lagradost.cloudstream3.ui.settings.Globals.updateTv
 import com.lagradost.cloudstream3.ui.setup.HAS_DONE_SETUP_KEY
 import com.lagradost.cloudstream3.utils.DataStoreHelper
@@ -305,7 +305,9 @@ class TvHomeNavigationTest {
             pressUntil(Dpad.Right, "$ONE B 2")
             dpad.center()
 
-            waitFor("the title's page, was $fragmentClass") { fragmentClass == ResultFragmentTv::class.java }
+            // KMP-38: TV opens the new detail page at this destination, so the title's page is no
+            // longer `ResultFragmentTv`. The destination id below is unchanged.
+            waitFor("the title's page, was $fragmentClass") { fragmentClass == DetailTvFragment::class.java }
             assertEquals(R.id.navigation_results_tv, destination)
             waitFor("it asked the provider for that title") { one.loaded.isNotEmpty() }
             assertEquals("https://example.invalid/$ONE B 2", one.loaded.single())

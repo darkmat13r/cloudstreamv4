@@ -1518,6 +1518,41 @@ missing, so the comparison passes today. A fix will fail that case: look at the 
 
 Not checked: whether the last row is cut off at the bottom when the list is full, and whether other TV screens with a `LazyColumn` do the same.
 
+## BUG-38 — On TV, the detail page arrives with its chrome row scrolled off the top · **medium** · measured 2026-11-05
+
+**Status:** found, not fixed · found 2026-11-05 by `KMP-38`'s own screenshot cases (pr #153) ·
+`feature/detail/.../tv/DetailScreenTv.kt:297-331`
+
+**Changes what users see on TV.** On arrival the viewer has **no visible way back**, no favourite and no
+watch-status control: the whole chrome row is above the top edge. The three loaded-page references show it,
+and the loading and error states — which draw their chrome row from the other call site — do not.
+
+**Measured**, in the screen's own device-test host on `Television_720p_2`:
+
+```
+the back cell is laid out at -76.0..-12.0 in a root 720 tall, but only 0.0 of it
+survives the column's clip
+```
+
+The ladder in `HeadBlock` puts that cell at 28..76dp, which is 37..101px here, so the page arrives about
+113px — roughly 85dp — already scrolled. The row is 64px (48dp) tall and every pixel of it is clipped.
+
+**The cause is not established.** The likely place is the bring-into-view that follows entry focus landing on
+the primary action, since the chrome row rides item 0 up with it; the screen's KDoc says the hero and the
+chrome row scrolling away as that item leaves **is** the design, so what is wrong is that it has already
+happened before the viewer has done anything. Whether the fix is in the scroll, the focus or the ladder is a
+design call, which is why this is recorded rather than fixed.
+
+**Why nothing caught it.** `DetailScreenTvDeviceTest` asserts the gaps *between* elements and never an
+absolute top, so a page shifted up as a whole passes all of it. The images are what raised it.
+
+**A trap worth keeping, for anyone writing the assertion.** `SemanticsNode.boundsInRoot` is **clipped**: a row
+scrolled out from under a `LazyColumn`'s clip reports an empty rect at y=0, so the obvious
+`top >= 0 && bottom <= root` can never fail. Measure `positionInRoot` + `size` and compare the clipped
+rect's height against it. Two earlier versions of this measurement also passed for reasons unrelated to the
+page — one matched the side panel's "Go Back" *text* instead of the chrome icon's content description, and one
+read bounds before the bring-into-view scroll had settled.
+
 ## BUG-36 — `SidePanelHost` returns focus to the content's first stop, not to the control that opened the panel · **medium**
 
 **Status:** found, not fixed · found 2026-11-05 by `KMP-38`'s device suite (pr #153), the component's first production

@@ -3819,17 +3819,23 @@ recommendations rail, so it never sends the actions that produce them. **Desktop
   already cancels an infinite animation while `autoAdvance` is on, so this may be belt and braces; what is
   shown is that the frame reproduces, since the compare matched the recording.
 
-  **The third is in the page, not the test.** On the loaded page the chrome row — Back, Favourite, Watch status
-  — is above the top edge in all three captures of it, while the loading and error captures do show a back cell.
-  `DetailScreenTvDeviceTest` asserts the gaps *between* elements and never an
-  absolute top, so **a page shifted up as a whole passes all of its assertions** — the same blind spot any
-  relative-geometry suite has. `theChromeRowIsOnScreenWhenThePageOpens` now asserts the back cell's bounds
-  against the root height and prints both numbers. **The measurement was wrong three times before it was right**, which is the part worth keeping: it looked
-  for the one place "Go Back" is *text* (the side panel, not open); then it read bounds before the
-  bring-into-view scroll settled; then it asserted on `boundsInRoot`, which is **clipped**, so a row
-  scrolled out from under the column's clip reports an empty rect at y=0 and satisfies `top >= 0`. Each
-  wrong version passed or failed for a reason that had nothing to do with the page. It now compares
-  `positionInRoot` + `size` against the clipped rect.
+  **The third is in the page, not the test, and it is `BUG-38`.** On the loaded page the chrome row — Back,
+  Favourite, Watch status — is above the top edge in all three captures of it. Measured in the screen's own
+  host: the back cell is **laid out at -76..-12 px in a 720px root, with 0 px surviving the column's clip**.
+  The ladder puts it at 28..76dp (37..101px), so the page arrives about 85dp already scrolled, and the whole
+  48dp row is clipped away before the viewer has done anything. `DetailScreenTvDeviceTest` asserts the gaps
+  *between* elements and never an absolute top, so **a page shifted up as a whole passes all of it**.
+
+  The measurement is recorded as a defect rather than shipped as a test, because the fix is a scroll or focus
+  change to the page and the design review has not ruled; the screen's KDoc says the chrome row scrolling away
+  with item 0 **is** the design, so what is wrong is that it has already happened on arrival.
+
+  **It was wrong three times before it was right**, which is the part worth keeping. It matched the side
+  panel's "Go Back" *text* rather than the chrome icon's content description; then it read bounds before the
+  bring-into-view scroll settled; then it asserted on `boundsInRoot`, which is **clipped**, so a row scrolled
+  out from under the clip reports an empty rect at y=0 and satisfies `top >= 0`. Each wrong version passed or
+  failed for a reason that had nothing to do with the page, and the third is the one that looks obviously
+  right. `positionInRoot` + `size` against the clipped rect is the question that can actually fail.
 
   Three more for the design review, not changed here: the failure's focused **Try again** draws no focus ring
   where the action row's primary does; the loading skeleton is one rail of boxes in the top quarter with the

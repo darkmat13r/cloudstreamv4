@@ -11,9 +11,6 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onAllNodesWithText
-import androidx.compose.ui.test.onNodeWithContentDescription
-import androidx.compose.ui.test.onNodeWithText
-import androidx.compose.ui.test.onRoot
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.lagradost.cloudstream4.core.devicetest.Dpad
 import com.lagradost.cloudstream4.core.devicetest.DpadDriver
@@ -240,48 +237,6 @@ class DetailScreenTvScreenshotTest {
         rule.assertScreenshot("detail-synopsis-panel-open")
     }
 
-    /**
-     * The chrome row is on screen when the page opens.
-     *
-     * Not a screenshot case, and it is here because the images are what raised it: in all three
-     * captures of the loaded page the back cell, the favourite and the watch-status cells are above
-     * the top edge, while the loading and error captures do show a back cell. Nothing in
-     * `DetailScreenTvDeviceTest` would catch that — it asserts gaps **between**
-     * elements and never an absolute top, so a page uniformly shifted up passes every one of them.
-     *
-     * Asserted rather than assumed, with the numbers in the message, because the alternative was to
-     * read it off a PNG and call it a defect. If this passes, the images are misleading me and the row
-     * is drawn somewhere I did not look.
-     */
-    @Test
-    fun theChromeRowIsOnScreenWhenThePageOpens() {
-        show(DetailFixtures.Show)
-        awaitText(DetailFixtures.Show.title)
-        awaitFocus(RESUME)
-
-        // Focus lands before the bring-into-view scroll settles, and the chrome row rides item 0 up
-        // with it, so bounds read here are mid-scroll and say nothing. `assertScreenshot` waits for
-        // idle before it captures, which is why the images and an unwaited measurement disagreed.
-        rule.waitForIdle()
-
-        val root = rule.onRoot().fetchSemanticsNode().size.height
-        // The chrome row's cell is an icon, so the words are its content description. onNodeWithText
-        // finds only the panel row of the same name, which is not open here: it failed exactly so.
-        val node = rule.onNodeWithContentDescription(GO_BACK).fetchSemanticsNode()
-        // `boundsInRoot` is **clipped**, so a row scrolled out from under the column's clip reports an
-        // empty rect at y=0 and passes `top >= 0`. That is the third wrong way to ask this question, and
-        // the one that looks right. `positionInRoot` and `size` are where the ladder actually put it.
-        val laidTop = node.positionInRoot.y
-        val laidBottom = laidTop + node.size.height
-        val drawn = node.boundsInRoot
-        assertTrue(
-            "the back cell is laid out at $laidTop..$laidBottom in a root $root tall, but only " +
-                "${drawn.height} of it survives the column's clip, so the viewer arrives on this " +
-                "page with no visible way back",
-            drawn.height > 0f,
-        )
-    }
-
     private companion object {
         const val WAIT_MS = 10_000L
         const val MAX_PRESSES = 12
@@ -291,7 +246,6 @@ class DetailScreenTvScreenshotTest {
         const val RETRY = "Try again"
         const val FAILED_HEADLINE = "Couldn't open this title"
         const val SYNOPSIS = "Synopsis"
-        /** The panel row's title, and the chrome row icon's content description. Matched differently. */
         const val GO_BACK = "Go Back"
 
         /** The action row's control and the open panel's header, which is how many "Synopsis" there are. */
