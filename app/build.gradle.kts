@@ -300,6 +300,7 @@ dependencies {
     implementation(project(":library"))
     implementation(project(":core:settings"))
     implementation(project(":core:common"))
+    implementation(project(":core:connectivity"))
     implementation(project(":core:network"))
     implementation(project(":core:data"))
     implementation(project(":core:model"))

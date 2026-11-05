@@ -198,7 +198,7 @@ Where one area needs both (e.g. moved `SubtitleData` next to a new cue model), i
 layer 4   :app
 layer 3   :feature:*          :media:video/audio/cast/torrent/download (android-only)
 layer 2   :core:ui   :core:data   :core:notification   :media:subtitle
-layer 1   :core:designsystem   :core:model   :core:network   :core:strings   :core:http   :core:storage   :media:model
+layer 1   :core:designsystem   :core:model   :core:network   :core:strings   :core:http   :core:storage   :core:connectivity   :media:model
 layer 0   :core:theme   :core:common   :library
 ```
 
@@ -230,6 +230,7 @@ layer 0   :core:theme   :core:common   :library
 | `:core:screenshot` | built | `com.android.library` | android | no | never |
 | `:core:strings` | planned | `kmp.strings` (`kmp.library` + CMP Gradle plugin + Compose compiler); commonMain `api` is only `compose-runtime` + `compose-resources` (not `kmp.compose`, §7 Phase 3) | android, jvm | **no** (I2) | yes, by hand on macOS until the G4 job exists (`components-resources` → `foundation` → `ui`) |
 | `:core:http` | planned | `kmp.library` + `jvmCommonMain` declared in its build file (§7 Phase 4) | android, jvm | **no** (I2) | yes |
+| `:core:connectivity` (`KMP-35`) | built | `kmp.library` + `kmp.device-test` | android, jvm | **no** (I2) | yes |
 | `:core:ui` | planned | `kmp.compose` | android, jvm | no | yes, macOS runner |
 | `:core:model`, `:core:data` | planned | `kmp.extension-api` | android, jvm | yes: frozen-API (§5.2) | yes, subject to rule 4 |
 | `:core:storage` (plan-level choice following I2, not an owner decision) | planned | `kmp.library` | android, jvm | **no**: `PreferenceStore`, `KeyValueJsonStore`, `SecretStore` | yes, subject to rule 4 |

@@ -21,7 +21,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import com.lagradost.cloudstream4.core.designsystem.card.MediaCardSlots
 import com.lagradost.cloudstream4.core.designsystem.card.MediaCardState
@@ -49,6 +48,7 @@ import kotlinx.coroutines.withTimeoutOrNull
 internal fun LibraryGridTv(
     cards: List<LibraryCard>,
     returnTo: LibraryReturn?,
+    focusMemory: LibraryFocusMemory,
     onAction: (LibraryAction) -> Unit,
     artwork: @Composable (LibraryCard) -> Unit,
     modifier: Modifier = Modifier,
@@ -82,6 +82,7 @@ internal fun LibraryGridTv(
                 card = card,
                 onOpen = { onAction(LibraryAction.TitleActivated(card.id, gridState.firstVisibleItemIndex)) },
                 artwork = artwork,
+                focusMemory = focusMemory,
                 takeFocus = returnTo?.ready == true && card.id == returnTo.id,
                 onFocusTaken = { onAction(LibraryAction.ReturnHandled) },
             )
@@ -105,6 +106,7 @@ private fun LibraryGridCard(
     card: LibraryCard,
     onOpen: () -> Unit,
     artwork: @Composable (LibraryCard) -> Unit,
+    focusMemory: LibraryFocusMemory,
     takeFocus: Boolean,
     onFocusTaken: () -> Unit,
     modifier: Modifier = Modifier,
@@ -131,7 +133,7 @@ private fun LibraryGridCard(
             progress = card.progress,
         ),
         modifier = modifier
-            .focusRequester(focusRequester)
+            .libraryStop(focusRequester, focusMemory)
             .onFocusChanged { focused = it.isFocused }
             .clickable(interactionSource = null, indication = null, onClick = onOpen),
         slots = slots,

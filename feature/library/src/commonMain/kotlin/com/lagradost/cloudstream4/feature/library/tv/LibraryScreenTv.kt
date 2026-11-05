@@ -1,7 +1,6 @@
 package com.lagradost.cloudstream4.feature.library.tv
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.focusGroup
 import androidx.compose.foundation.border
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
@@ -18,16 +17,18 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.focus.focusRestorer
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
@@ -83,7 +84,8 @@ val LibraryTvTabs: List<LibraryTab> = LibraryBucket.entries.map { LibraryTab.Buc
  * otherwise throw focus off the tab row every time and stepping across tabs would cost two extra presses.
  * It is the next stop down instead, which is what 5c asks for.
  *
- * LEFT from the first column goes to the rail, and RIGHT from the rail comes back to the same stop.
+ * LEFT from the first column goes to the rail, and RIGHT from the rail comes back to the same stop: see
+ * [LibraryFocusMemory].
  *
  * Pressing that action removes the button under focus, so focus moves to the selected tab rather than
  * being dropped. A card that was opened gets focus back through [LibraryState.returnTo].
@@ -97,7 +99,8 @@ fun LibraryScreenTv(
     modifier: Modifier = Modifier,
     artwork: @Composable (LibraryCard) -> Unit = {},
 ) {
-    val selectedTab = remember { FocusRequester() }
+    val tabFocus = remember { LibraryTvTabs.associateWith { FocusRequester() } }
+    val selectedTab = tabFocus.getValue(state.tab)
     var promptPresses by remember { mutableIntStateOf(0) }
     val content = state.toTvUiState { action ->
         onAction(action)
@@ -119,17 +122,27 @@ fun LibraryScreenTv(
         onAction(LibraryAction.ReturnHandled)
     }
 
-    // The rail's RIGHT searches from just before the stop that left. Only a stop standing alone answers that search,
-    // and a stop inside a scrolling row or grid does not, so RIGHT landed on the field from every tab and card
-    // (measured, `TvRailNavigationTest`). Grouped, nothing answers, and the rail's fallback enters the group, which
-    // restores the stop.
-    Column(modifier.fillMaxSize().focusRestorer()) {
-        Spacer(Modifier.height(CloudStreamDimens.ChromeRowTop))
-        LibraryChromeRow(state, onAction, Modifier.contentInset().fillMaxWidth())
-        Spacer(Modifier.height(LibraryScreenTvDefaults.ChromeToTabGap))
-        LibraryTabRow(state, selectedTab, onAction)
+    val focusMemory = remember { LibraryFocusMemory() }
+    LaunchedEffect(focusMemory.pending) {
+        val target = focusMemory.pending ?: return@LaunchedEffect
+        target.requestFocusIfAttached()
+        focusMemory.pending = null
+    }
 
-        val region = Modifier.contentInset().fillMaxSize().focusGroup()
+    // Through state: moving between two stops reports "no focus" for a moment, in the same frame, and acting on that
+    // sent focus back to the stop it had just left (measured, `LibraryTvNavigationTest`).
+    var screenHasFocus by remember { mutableStateOf(false) }
+    LaunchedEffect(screenHasFocus) {
+        if (!screenHasFocus) focusMemory.left()
+    }
+
+    Column(modifier.fillMaxSize().onFocusChanged { screenHasFocus = it.hasFocus }) {
+        Spacer(Modifier.height(CloudStreamDimens.ChromeRowTop))
+        LibraryChromeRow(state, focusMemory, onAction, Modifier.contentInset().fillMaxWidth())
+        Spacer(Modifier.height(LibraryScreenTvDefaults.ChromeToTabGap))
+        LibraryTabRow(state, tabFocus, focusMemory, onAction)
+
+        val region = Modifier.contentInset().fillMaxSize()
         when (content) {
             is UiState.Empty -> StateView(
                 prompt = content.prompt,
@@ -150,6 +163,7 @@ fun LibraryScreenTv(
                     LibraryGridTv(
                         cards = cards,
                         returnTo = returnTo,
+                        focusMemory = focusMemory,
                         onAction = onAction,
                         artwork = artwork,
                         modifier = Modifier.fillMaxSize(),
@@ -170,12 +184,14 @@ fun LibraryScreenTv(
 @Composable
 private fun LibraryChromeRow(
     state: LibraryState,
+    focusMemory: LibraryFocusMemory,
     onAction: (LibraryAction) -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val fieldFocus = remember { FocusRequester() }
     val keyboard = LocalSoftwareKeyboardController.current
     Row(
-        modifier = modifier.height(CloudStreamDimens.ChromeRowHeight).focusGroup(),
+        modifier = modifier.height(CloudStreamDimens.ChromeRowHeight),
         horizontalArrangement = Arrangement.spacedBy(CloudStreamDimens.MinFocusGap),
         verticalAlignment = Alignment.CenterVertically,
     ) {
@@ -184,7 +200,7 @@ private fun LibraryChromeRow(
             value = state.filter,
             onValueChange = { onAction(LibraryAction.FilterChanged(it)) },
             placeholder = stringResource(Res.string.filter_bookmarks),
-            modifier = Modifier.weight(FIELD_WEIGHT),
+            modifier = Modifier.weight(FIELD_WEIGHT).libraryStop(fieldFocus, focusMemory),
             // The list narrows as it is typed, so there is nothing to submit except leaving the keyboard.
             onSubmit = { keyboard?.hide() },
             // `BUG-30`: passing through the row must not open a keyboard that then takes the D-pad.
@@ -234,7 +250,8 @@ private fun LibraryReadout(totalTitles: Int?, modifier: Modifier = Modifier) {
 @Composable
 private fun LibraryTabRow(
     state: LibraryState,
-    selectedTab: FocusRequester,
+    tabFocus: Map<LibraryTab, FocusRequester>,
+    focusMemory: LibraryFocusMemory,
     onAction: (LibraryAction) -> Unit,
 ) {
     val counted = state.totalTitles != null
@@ -250,7 +267,7 @@ private fun LibraryTabRow(
                 label = tab.label(),
                 selected = selected,
                 onClick = { onAction(LibraryAction.TabSelected(tab)) },
-                modifier = if (selected) Modifier.focusRequester(selectedTab) else Modifier,
+                modifier = Modifier.libraryStop(tabFocus.getValue(tab), focusMemory),
                 count = if (counted && tab is LibraryTab.Bucket) (state.counts[tab.bucket] ?: 0).toString() else null,
             )
         }
@@ -277,6 +294,42 @@ private fun LibraryEmptyGlyph() {
         )
     }
 }
+
+/**
+ * Brings focus back to the stop that left the screen, when it comes back from outside: from the rail.
+ *
+ * The rail's RIGHT asks Compose for the nearest stop from just before the one that left. On this screen that
+ * measured the field from a tab and a tab from a card, on `Television_720p`, because the tabs and cards sit in scrolling
+ * containers wider than themselves. `focusRestorer` and `focusGroup` did not change that either. So whichever stop the
+ * search lands on, this sends focus on to the right one.
+ */
+@Stable
+internal class LibraryFocusMemory {
+    private var inside = false
+    private var last: FocusRequester? = null
+
+    /** Where focus still has to go. */
+    var pending by mutableStateOf<FocusRequester?>(null)
+
+    fun landed(stop: FocusRequester) {
+        val back = last
+        if (!inside && back != null && back !== stop) {
+            inside = true
+            pending = back
+            return
+        }
+        inside = true
+        last = stop
+    }
+
+    fun left() {
+        inside = false
+    }
+}
+
+/** A stop on this screen: reachable through [stop], and remembered by [memory]. Same chain on every recomposition. */
+internal fun Modifier.libraryStop(stop: FocusRequester, memory: LibraryFocusMemory): Modifier =
+    focusRequester(stop).onFocusChanged { if (it.hasFocus) memory.landed(stop) }
 
 /** A `FocusRequester` with no node attached throws, and "nothing to focus yet" is not an error here. */
 internal fun FocusRequester.requestFocusIfAttached() {
