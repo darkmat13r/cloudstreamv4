@@ -114,10 +114,7 @@
             height: 64px; min-width: 240px; padding: 0 32px; box-sizing: border-box; border-radius: 16px;
             font: 700 24px/32px Manrope, sans-serif; background: var(--raised); white-space: nowrap;
             color: var(--ink); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.2); }
-          .btn { color: var(--ink2); }
-          /* white means focus only: a primary at rest is raised, ink, 800, with a muted hairline */
-          .btn.pri { color: var(--ink); box-shadow: inset 0 0 0 1px var(--mut); font-weight: 800; }
-          .btn.pri.foc { background: var(--ink); color: #000000; box-shadow: none; }
+          .btn.pri { background: var(--ink); color: #000000; box-shadow: none; font-weight: 800; }
           .btn.foc { outline: 4px solid var(--ink); outline-offset: 4px; }
           .sq { width: 16px; height: 16px; border-radius: 4px; background: currentColor; flex: none; }
           .pager { display: flex; align-items: center; gap: 24px; height: 24px; }
@@ -448,7 +445,7 @@
           <div class="shot" id="3j">
             <div class="shotl">
               <span class="shotn">3j · TV Home Extras — chrome named</span>
-              <span>3c’s unnamed cells become Reload and Random, with Search this source added, in the old TV order. Random is always shown and opens a random title. Search lives here and nowhere else on Home. Resume is a primary at rest, so it is not white: white means focus.</span>
+              <span>3c’s unnamed cells become Reload and Random, with Search this source added, in the old TV order. Random is always shown and opens a random title. Search lives here and nowhere else on Home. Resume is the primary at rest, white as in <code>Components</code> and 3c.</span>
             </div>
             <div class="shotc">
               <div class="tv" data-screen-label="TV Home Extras — chrome named">
@@ -656,7 +653,8 @@
           the top bar only.</b> It is gone from the details panel and from cards. <b>4 · A failed reload shows
           the error page,</b> now 3m, not the kept rows. <b>5 · Subscribe</b> is in 3k, inside the band, and 3l
           matches. <b>6 · The token wins</b> for list rows (16) and rings (4 at 4, on the visible control).
-          <b>7 · White means focus only,</b> so 3j’s Resume is no longer white at rest.</p>
+          <b>7 · The primary button is white at rest,</b> as <code>Components</code> defines it; “white means
+          focus only” governs selection markers, not the primary. 3j’s Resume matches 3c.</p>
 
           <h3>How a remote reaches the details panel (3k)</h3>
           <p><b>Hold OK</b> on a card, as the old TV page did (<code>SearchResultBuilder.kt:231</code>), or
@@ -798,13 +796,7 @@
           measured ink. Every ring was then read again from the pixels: gap and stroke on all four sides.</p>
 
           <h3>Where these boards clash with others, for the owner</h3>
-          <p><b>Primary at rest.</b> <code>Components</code> draws the primary button white at rest
-          (<code>.btn.pri</code>, “Primary is white fill, black label”), and so do 3c and
-          <code>StateActionButton</code>. Under “white means focus only” 3j draws it at rest as a raised fill
-          with an ink label in 800 and a muted hairline, so it still outranks the secondaries, whose labels are
-          ink2. This is an invention, not a <code>Components</code> state, and 3c, <code>Components</code>
-          and the built button all still say white. The focused primary on 3g and 3m is white with the ring,
-          as <code>Components</code> draws it. <b>Error with local rows.</b> 3g keeps the bookmarks rail
+          <p><b>Error with local rows.</b> 3g keeps the bookmarks rail
           offline; 3m, as ruled, shows the error page alone. If Continue watching or bookmarks should stay
           above it as on 3g, that is one more ruling. <b>Random “always shown”.</b> Read as: no setting in front of it. With nothing loaded it has
           nothing to pick from, so 3g, 3i and 3m leave it out. If it should show there too, it needs a rule for
