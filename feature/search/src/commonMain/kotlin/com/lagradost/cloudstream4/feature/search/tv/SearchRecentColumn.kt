@@ -88,6 +88,7 @@ import org.jetbrains.compose.resources.stringResource
 internal fun SearchRecentColumn(
     entries: List<SearchHistoryEntry>,
     onAction: (SearchAction) -> Unit,
+    stops: SearchStops,
     modifier: Modifier = Modifier,
 ) {
     val landed = remember { FocusRequester() }
@@ -121,13 +122,14 @@ internal fun SearchRecentColumn(
                     endsTheLine = index % COLUMNS == COLUMNS - 1,
                     onAction = onAction,
                     onRemoved = { removedAt = index },
+                    stops = stops,
                     modifier = if (index == target) Modifier.focusRequester(landed) else Modifier,
                 )
             }
         }
 
         Spacer(Modifier.height(CloudStreamDimens.MinFocusGap - CloudStreamDimens.FocusRingBleed))
-        ClearAllRow(onClick = { onAction(SearchAction.RecentCleared) })
+        ClearAllRow(stops = stops, onClick = { onAction(SearchAction.RecentCleared) })
     }
 }
 
@@ -137,12 +139,13 @@ private fun RecentRow(
     endsTheLine: Boolean,
     onAction: (SearchAction) -> Unit,
     onRemoved: () -> Unit,
+    stops: SearchStops,
     modifier: Modifier = Modifier,
 ) {
     ListRow(
         state = ListRowState(title = entry.query, subtitle = entry.whenLabel),
         onClick = { onAction(SearchAction.RecentActivated(entry.query)) },
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier.searchStop(stops).fillMaxWidth(),
         leading = { HistoryDisc() },
         actions = {
             IconCell(
@@ -151,7 +154,9 @@ private fun RecentRow(
                     onAction(SearchAction.RecentRemoved(entry.query))
                 },
                 // Right past the second column stays put. Left to geometry it found `Sources`.
-                modifier = if (endsTheLine) Modifier.focusProperties { right = FocusRequester.Cancel } else Modifier,
+                modifier = Modifier
+                    .searchStop(stops)
+                    .then(if (endsTheLine) Modifier.focusProperties { right = FocusRequester.Cancel } else Modifier),
             ) { focused ->
                 CloudStreamIcon(
                     icon = CloudStreamIcons.Close,
@@ -188,7 +193,7 @@ private fun HistoryDisc() {
  * Not `ListRow`, because its lone title is always `body` (28/40px) and that is a choice for every list on TV.
  */
 @Composable
-private fun ClearAllRow(onClick: () -> Unit) {
+private fun ClearAllRow(stops: SearchStops, onClick: () -> Unit) {
     val colors = CloudStreamTheme.colors
     val shape = CloudStreamTheme.shapes.medium
     var focused by remember { mutableStateOf(false) }
@@ -196,6 +201,7 @@ private fun ClearAllRow(onClick: () -> Unit) {
         modifier = Modifier
             .fillMaxWidth()
             .height(CloudStreamDimens.ListRowHeight)
+            .searchStop(stops)
             .focusProperties { right = FocusRequester.Cancel }
             .onFocusChanged { focused = it.isFocused }
             .clickable(interactionSource = null, indication = null, role = Role.Button, onClick = onClick)

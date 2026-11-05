@@ -186,7 +186,8 @@ class SearchFiltersDeviceTest {
     fun backDiscardsTheDraftAndKeepsTheResults() {
         source.types = emptySet() // Nothing lit, so every pick answers.
         show()
-        rule.waitUntil(WAIT_MS) { viewModel.state.value.sources.total > 0 }
+        viewModel.onAction(SearchAction.SourcesChanged) // The ViewModel read the count before this test set it.
+        rule.waitUntil(WAIT_MS) { viewModel.state.value.sources.selected == 2 }
         searchFor()
         awaitText("Vidplay")
         val searches = source.searched.size
@@ -201,6 +202,25 @@ class SearchFiltersDeviceTest {
         assertEquals(searches, source.searched.size)
         rule.onNodeWithText("2 / 3").assertExists()
         assertEquals(SOURCES, dpad.focused())
+    }
+
+    /** A card a user left for the rail is the card they come back to, and not the geometry's pick. */
+    @Test
+    fun rightFromTheRailReturnsToTheCardThatLeft() {
+        showWithRail()
+        rule.waitUntil(WAIT_MS) { viewModel.state.value.sources.total > 0 }
+        searchFor()
+        awaitText("Filmxy")
+        onTheField()
+        dpad.press(Dpad.Down) // The chips.
+        val card = dpad.press(Dpad.Down)
+        val second = dpad.press(Dpad.Right)
+        assertTrue("Right moved along the rail from $card", second != card)
+        assertEquals(card, dpad.press(Dpad.Left))
+
+        val rail = dpad.press(Dpad.Left)
+        assertTrue("Left reached the rail, got $rail", rail != card)
+        assertEquals(card, dpad.press(Dpad.Right))
     }
 
     /** The panel holds focus until it closes: Left stays in it, and Done is reachable. */

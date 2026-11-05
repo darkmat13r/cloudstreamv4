@@ -72,6 +72,7 @@ internal fun SearchResultRails(
     groups: List<SearchResultGroup>,
     onAction: (SearchAction) -> Unit,
     artwork: @Composable (SearchResultItem) -> Unit,
+    stops: SearchStops,
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
@@ -79,7 +80,7 @@ internal fun SearchResultRails(
         verticalArrangement = Arrangement.spacedBy(CloudStreamDimens.MinFocusGap),
     ) {
         items(items = groups, key = { it.providerName }) { group ->
-            ProviderRail(group = group, onAction = onAction, artwork = artwork)
+            ProviderRail(group = group, onAction = onAction, artwork = artwork, stops = stops)
         }
     }
 }
@@ -99,6 +100,7 @@ private fun ProviderRail(
     group: SearchResultGroup,
     onAction: (SearchAction) -> Unit,
     artwork: @Composable (SearchResultItem) -> Unit,
+    stops: SearchStops,
     modifier: Modifier = Modifier,
 ) {
     val listState = rememberLazyListState()
@@ -143,6 +145,7 @@ private fun ProviderRail(
                     onAction = onAction,
                     artwork = artwork,
                     modifier = Modifier
+                        .searchStop(stops)
                         .then(if (index == target) Modifier.focusRequester(landed) else Modifier)
                         .then(if (!group.hasMore && index == group.items.lastIndex) RailEnd else Modifier),
                 )
@@ -150,6 +153,7 @@ private fun ProviderRail(
             if (group.hasMore) {
                 item(key = MORE_KEY) {
                     MoreCard(
+                        stops = stops,
                         onClick = {
                             awaited = group.items.size
                             onAction(SearchAction.RailMoreRequested(group.providerName))
@@ -165,13 +169,15 @@ private val RailEnd = Modifier.focusProperties { right = FocusRequester.Cancel }
 
 /** `SeeAllCard` at the rail's rung, saying what it does: it loads a page, and no board draws what `See all` opens. */
 @Composable
-private fun MoreCard(onClick: () -> Unit) {
+private fun MoreCard(stops: SearchStops, onClick: () -> Unit) {
     var focused by remember { mutableStateOf(false) }
     SeeAllCard(
         size = PosterRung.Medium.size,
         label = stringResource(Res.string.load_more),
         focused = focused,
-        modifier = RailEnd
+        modifier = Modifier
+            .searchStop(stops)
+            .then(RailEnd)
             .onFocusChanged { focused = it.isFocused }
             .clickable(interactionSource = null, indication = null, onClick = onClick),
     )

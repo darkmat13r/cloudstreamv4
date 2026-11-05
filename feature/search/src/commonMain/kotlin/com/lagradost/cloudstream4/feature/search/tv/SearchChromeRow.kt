@@ -59,6 +59,8 @@ internal fun SearchChromeRow(
     fieldDown: FocusRequester,
     sourcesDown: FocusRequester,
     sourcesFocus: FocusRequester,
+    fieldFocus: FocusRequester,
+    stops: SearchStops,
     onLeftEdge: (() -> Unit)?,
     modifier: Modifier = Modifier,
 ) {
@@ -72,6 +74,8 @@ internal fun SearchChromeRow(
             placeholder = stringResource(Res.string.search_tv_field_placeholder),
             modifier = Modifier
                 .weight(FIELD_WEIGHT)
+                .focusRequester(fieldFocus)
+                .searchStop(stops)
                 .focusProperties { down = fieldDown },
             imeAction = ImeAction.Search,
             onSubmit = { onAction(SearchAction.Submit) },
@@ -87,6 +91,7 @@ internal fun SearchChromeRow(
             modifier = Modifier
                 .width(SearchScreenTvDefaults.SourcesButtonWidth)
                 .focusRequester(sourcesFocus)
+                .searchStop(stops)
                 .focusProperties {
                     down = sourcesDown
                     right = FocusRequester.Cancel
@@ -125,6 +130,7 @@ internal fun SearchChipRow(
     trailingFocus: FocusRequester,
     firstChipFocus: FocusRequester,
     contentDown: FocusRequester,
+    stops: SearchStops,
     modifier: Modifier = Modifier,
 ) {
     val hasTrailing = notice != null || action != null
@@ -150,6 +156,7 @@ internal fun SearchChipRow(
                     onAction = onAction,
                     contentDown = contentDown,
                     focus = firstChipFocus.takeIf { type == filters.available.first() },
+                    stops = stops,
                     stopsRight = !hasTrailing && type == filters.available.last(),
                 )
             }
@@ -157,6 +164,7 @@ internal fun SearchChipRow(
         val trailing = Modifier
             .padding(end = SearchScreenTvDefaults.ContentInsetEnd)
             .focusRequester(trailingFocus)
+            .searchStop(stops)
             .focusProperties {
                 down = contentDown
                 right = FocusRequester.Cancel
@@ -177,6 +185,7 @@ private fun TypeChip(
     onAction: (SearchAction) -> Unit,
     contentDown: FocusRequester,
     focus: FocusRequester?,
+    stops: SearchStops,
     stopsRight: Boolean,
 ) {
     val requester = if (focus != null) Modifier.focusRequester(focus) else Modifier
@@ -184,7 +193,7 @@ private fun TypeChip(
         label = typeFilterLabel(type),
         selected = selected,
         onClick = { onAction(SearchAction.TypeFilterToggled(type)) },
-        modifier = requester.focusProperties {
+        modifier = requester.searchStop(stops).focusProperties {
             down = contentDown
             if (stopsRight) right = FocusRequester.Cancel
         },
