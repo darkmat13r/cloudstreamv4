@@ -3560,10 +3560,6 @@ Found: `SkeletonRail` spaces at `ChipRowSpacing` 24, and the rails it stands in 
 Suggest: move the skeleton, which is shared
 Why: a rail jumps when it replaces its skeleton.
 
-Found: `SCRIM_ALPHA` is 0.72 in `SidePanelHost.kt:48`, and 4d's `.scrim` draws 0.6
-Suggest: a designer confirms one, as its KDoc asks
-Why: the code's number was invented before the board existed.
-
 Found: `SearchStops` repeats `HomeStops`' three helpers
 Suggest: one copy in the design system
 Why: not on this task's approved list of shared changes.
