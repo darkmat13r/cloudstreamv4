@@ -100,14 +100,13 @@ they touch.
 
 ## DS-04 — Screenshot coverage
 
-**Status:** blocked by `DEC-10`
+**Status:** unblocked 2026-11-05 by `DEC-10`. The harness is `INF-11`, and it holds `NavRail` and the TV search screen.
 
-The suite in `:core:screenshot` is wired correctly and renders nothing —
-`com.android.compose.screenshot:0.0.1-alpha16` does not work on AGP 9.1.1 / Gradle 9.4.1.
+Left: the rest of the design system and screens, one PR at a time, as each one is touched. The cases in `:core:screenshot` render nothing and
+stay as they are. New ones go in `androidDeviceTest` (`.claude/rules/screenshot-testing.md`).
 
-**Consequence for this track:** `DS-01`, `DS-03` and `DS-05` are all changes to what things look
-like, with **no automated check that catches what moved**. That is the single biggest risk in this
-file. Say so in each of those PRs rather than implying the usual guard applies.
+**Consequence for this track:** `DS-01`, `DS-03` and `DS-05` can now be guarded on TV screens that have cases. The settings screens have none,
+so say so in those PRs.
 
 ---
 

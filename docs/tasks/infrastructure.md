@@ -105,7 +105,7 @@ See also `KMP-09` for the `$stable` trap, which **neither** guard catches on its
 - `:app` has `junit` for unit tests and Espresso/instancio for instrumented tests. The formatting
   fixes (#25, #26) added the first real measurement harnesses against a device; both were written
   throwaway and deleted, except `SecondsToReadableTest`.
-- No screenshot coverage at all — see `DEC-10`.
+- Screenshot coverage is on a device only, not on iOS or desktop: see `INF-11`.
 
 ### The iOS test gate · `-Pcloudstream.iosTest=true` · wired 2026-10-15
 
@@ -679,3 +679,37 @@ decision.
 1280x720 at 213 dpi, about 961.5x540.8 dp rather than the artboard's 960x540, so no test asserts full-screen
 geometry against the artboard.
 
+## INF-11 — Compose screenshot tests on the emulator · **measured 2026-11-05**
+
+**Status:** in pr (the PR that adds this entry) · answers `DEC-10`, unblocks `DS-04` · no new dependency.
+
+`assertScreenshot` in `:core:devicetest` captures the window with `captureToImage` and compares every pixel with a committed PNG. How to use
+it is in `docs/HANDOVER.md`, what it cannot catch is in `.claude/rules/screenshot-testing.md`.
+
+**Measured, each one a wrong turn first:**
+
+- **`src/androidDeviceTest/assets` is not packaged.** A probe file there was missing from the test APK, while one in
+  `src/androidDeviceTest/resources` was present, so references are Java resources, read with the class loader.
+- **What the app writes does not survive the run.** Gradle uninstalls the test APK at the end, so images are copied by a shell command to
+  `/data/local/tmp/cloudstream-shots`, and `scripts/device-tests.sh` pulls them before it stops the emulator.
+- **A node's capture loses the ring.** `node.captureToImage()` holds no ring pixel, so `assertScreenshot(name, node)` crops the window to the node
+  plus `FocusRingBleed`. `screenshotCaptureHoldsTheRingOutsideTheCardAndTheLiveColour` checks both, and that `live` arrives exact.
+- **No tolerance.** See below.
+
+**Stability, `comparisons.tsv` on `Television_720p`:** references recorded on two boots and compared on later boots: 0 pixels
+different and largest delta 0, in all 6 cases, each time.
+
+**The failure run,** with temporary changes, all reverted:
+
+| Change | Case | Result |
+|---|---|---|
+| `Live` `0xCD3D4B` to `0xCD3D4C`, one step of one channel | `search-results-focus-card` | 215 pixels, largest delta 1 |
+| The same | `search-partial-failure-focus-retry` | 316 pixels, largest delta 1 |
+| `ContentInsetBottom` + 4 dp | `search-history-focus-row` | 1674 pixels, largest delta 255; the diff shows `Clear all searches` moved |
+| Reference shrunk to 160x90 | `search-no-results-focus-field` | Fails, naming both sizes |
+| Reference deleted | `nav-rail-collapsed` | Fails, "A missing reference fails" |
+| Nothing | `nav-rail-expanded-focus-current` | Passes |
+
+**What the first run found, reported rather than changed:** on `search-history-focus-row` the top of the ring is cut off, at y 250 in the reference. The
+first row sits against the top of the list's viewport, which is the clipping `tvFocusRing`'s KDoc warns about. The reference holds that state, so
+fixing it means looking at the diff and re-recording.

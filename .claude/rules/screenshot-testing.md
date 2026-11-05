@@ -4,12 +4,9 @@
 when it renders once on your machine; it is done when a change that alters its rendering fails
 the build.
 
-Suite lives in `:core:screenshot`, `src/screenshotTest/kotlin`.
-
-```
-./gradlew :core:screenshot:updateDebugScreenshotTest     # record / re-record
-./gradlew :core:screenshot:validateDebugScreenshotTest   # verify
-```
+The suite lives in each module's `androidDeviceTest`, as test functions named `screenshot...` that call
+`rule.assertScreenshot("the-state")` from `:core:devicetest`. It runs on the `Television_720p` emulator. References are in
+`src/androidDeviceTest/resources/screenshots/`. How to run it is in `docs/HANDOVER.md`, "Screenshot tests".
 
 Reference images are committed. A diff is a review artefact: someone looks at it and either
 approves the change or fixes the regression. Re-recording to make red go away is the one thing
@@ -17,19 +14,23 @@ this rule exists to prevent.
 
 ## Current status — read before you promise this in a PR
 
-`com.android.compose.screenshot:0.0.1-alpha16` **does not render on this toolchain** (AGP 9.1.1,
-Gradle 9.4.1). The wiring is correct and complete — tasks register, previews compile, `@Preview`
-survives into the bytecode, the engine resolves and reports "1 test, 0 failures" — and it writes
-no images. A preview containing only `BasicText("hello")` renders nothing either, so it is the
-plugin, not the components.
+**It renders and it guards (`INF-11`).** `captureToImage` on a device, with no new dependency. The owner asked for
+Compose screenshot tests and `DEC-10` records the choice. `com.android.compose.screenshot:0.0.1-alpha16` is still blocked: it renders
+nothing on AGP 9.1.1 and Gradle 9.4.1 and cannot see KMP modules. `:core:screenshot` holds its unused cases, and `core/screenshot/build.gradle.kts`
+has that evidence. Do not add cases there.
 
-So: **write the cases now, expect the task to be red, do not mask it.** The header of
-`core/screenshot/build.gradle.kts` has the full evidence and the two traps
-(`failOnNoDiscoveredTests` and the KMP incompatibility). When a working plugin version lands the
-suite starts guarding immediately with no further setup.
+**No tolerance, because none was measured.** The same six cases on separate emulator boots differed in 0 pixels, with a largest
+channel delta of 0. A one-step change to one channel of `live` failed the cases that show it.
 
-If a feature genuinely needs working screenshot coverage before then, say so — switching to
-Roborazzi is a real option and a real dependency decision, not something to slip into a feature PR.
+**It is not part of `check`**, and CI has no emulator. It runs in the device gate, so a PR says whether it ran.
+
+**What it cannot catch:**
+
+- Anything outside the window's surface: the keyboard, a `SurfaceView`, video.
+- A `Dialog` or `Popup`, which is a second window, makes `onRoot` throw. It fails loudly and is not yet supported.
+- Motion. It holds the settled frame, and infinite animations are cancelled by the rule's clock.
+- Other devices. References are one AVD image at 1280x720, so a new system image is a re-record with every diff read.
+- The boards' fonts. The theme passes no Manrope, so these show the platform font. Compare layout and colour with a board, not type.
 
 ## What earns a case
 
@@ -47,29 +48,17 @@ suite — it trains people to re-record without looking.
 
 ## Writing a case
 
-Previews live in `:core:screenshot`, not beside the component, because the plugin cannot see KMP
-modules. That is a constraint, but treat it as the feature it turned out to be: this file is the
-curated set, and a `@Preview` written for development convenience in `:core:designsystem` can be
-changed freely without failing anyone's build.
+A test function in the module's `androidDeviceTest`, beside the screen's other device tests:
 
-Three things the plugin requires, each of which fails **silently**:
-
-| Requirement | What happens otherwise |
-|---|---|
-| The function is **`public`** | `internal` is name-mangled by Kotlin; the scanner never matches it |
-| It takes **no parameters** | Not discovered |
-| It is **top-level or in an object**, annotated `@Preview` + `@Composable` | Not discovered |
-
-Name the case for the state, not the component: `ListRows`, not `ListRowTest`. Give every case a
-`@Preview(name = ...)` — the name is what appears in the report and in the image filename, and it
-is what someone reads when the diff turns up in review.
-
-Pin `widthDp`/`heightDp`. An unpinned preview resizes when its content changes, so the diff shows
-a size change rather than the thing that actually moved.
+- Name it `screenshot` plus the state, and name the image for the state: `screenshotHistoryFocusOnARow`, `search-history-focus-row`.
+- Put focus on something with `DpadDriver`. The ring is half of what a TV screen shows.
+- A fake at the module's seam, and no network. Posters are `solidPoster(...)`.
+- Draw the screen the way the app does, with the rail beside it if the shell puts one there, or its x will not match the board.
+- Capture the window unless a case truly is one component. `assertScreenshot(name, node)` keeps the ring; a bare `node.captureToImage()` loses it,
+  because the ring is entirely outside the node's bounds.
 
 ## Review checklist
 
 - Does every new feature have at least its failure and empty states covered?
 - Is each case a state someone would want to be told about, or is it permutation filler?
-- Are the previews `public`, parameterless, and pinned to a size?
 - Did the diff get looked at, or was it re-recorded?

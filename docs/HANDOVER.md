@@ -302,6 +302,25 @@ test task. A failed run can leave the previous run's XML in place, so check the 
 full-screen geometry against 960x540 or hard-code a screen size: assert component bounds, spacing and focus, and
 read the real size from the device where a test needs it.
 
+### Screenshot tests
+
+`INF-11`. They run in the device gate on `Television_720p`, and references are 1280x720, not the board's 1920x1080. To add a case, write a
+`screenshot...` test in the module's `androidDeviceTest` that calls `rule.assertScreenshot("the-state")`; `.claude/rules/screenshot-testing.md` says what earns one.
+A module needs `cloudstream.kmp.device-test`.
+
+Record, which replaces the references in the working tree, then read `git diff` and look at every image before you commit it:
+
+    JAVA_HOME="$T17" zsh scripts/device-tests.sh Television_720p <your usual flags> \
+        -Pandroid.testInstrumentationRunnerArguments.screenshots=record \
+        '-Pandroid.testInstrumentationRunnerArguments.tests_regex=.*screenshot.*' :feature:search:connectedAndroidDeviceTest
+
+Compare with the same command without the `screenshots=record` line, or as part of the whole gate. `tests_regex` runs only the cases.
+A missing reference fails, and never records itself. To record one case, narrow `tests_regex` to its name.
+
+Images go to `<module>/build/screenshots`, and to `/private/tmp/cloudstream-shared/review/shots/<module>/` for the reviewer, with `:` as `-`:
+`recorded/<name>.png`, `failures/<name>.{actual,reference,diff}.png`, and `comparisons.tsv` with each case's result, different pixels and largest delta.
+In a diff, magenta is what changed. Never re-record to make red go away: fix it, or say in the PR that the change is intended.
+
 ### Five traps that each cost a wrong claim
 
 - **Do not run Gradle under `nice`.** `HostLimitsTest` asserts the plugin host's absolute nice value is 10, so
@@ -338,9 +357,8 @@ Nothing below can be settled by reading the code.
 | `DEC-09` | **`BaseComposeFragment` leaving `classes.jar`** | Blocks part of `KMP-06`. |
 | `DEC-14` | **Extensions that need a WebView** | Desktop's shims make `WebView` throw, and `WebViewResolver` still fails. Leave it failing, label those extensions before they are enabled, or adopt JCEF — a browser engine per platform, with its own sandbox story. Filed 2026-11-03 from `KMP-18`'s retained evidence. |
 | `DEC-15` | **Plugin settings on desktop** | `openSettings` builds Android Views and cannot run here; it costs nothing only because the JVM never links a method body that is never called. Feature absent, a declarative seam extensions opt into, or a raw key editor. Filed 2026-11-03. |
-| `DEC-10` | **Screenshot testing** | Wait for a working plugin, or switch to Roborazzi. Blocks `DS-04`. |
 | `INF-06` | **Test toolchain** | Pin it, or re-measure the `ar` table — the two cannot both be satisfied. Now also an Android/JVM divergence question, not only a JDK-version one (`I18N-06`). |
-| `INF-04` | **iOS test target** | Open; no iOS test target and no screenshot coverage. |
+| `INF-04` | **iOS test target** | Open; no iOS test target and no screenshot coverage on iOS. |
 | `DS-01` | **Light scheme** | A design decision, not code. Blocks `DS-05`. `DS-03` is **decided** — see `DEC-13`: `:core:theme` gets no accent role, and the user-selectable primary colour plus Material You do not survive the redesign. That is a product call with real user impact, recorded rather than implemented: `:core:ui`'s theme is untouched and the loss is realised per screen in `DS-05`. |
 | `I18N-01`, `I18N-02` | **`UiString` adoption, hardcoded time units** | `I18N-02` touches a published ABI. |
 | `BUG-04`, `BUG-05`, `BUG-07` | **Characterised, deliberately not changed** | Each entry says why. |
@@ -443,7 +461,7 @@ page (it needs a slot in `:feature:detail`) and watch progress on search and hom
 2026-11-03), so what is left is a caller in `:app` and a device to run it on.
 
 **Also open:** `KMP-08` / Track L is blocked on `DEC-04`. `I18N-01` (`UiString` adoption) is many small PRs
-and nobody is on it. `INF-04` and `INF-06` are open. `DS-04` is blocked on `DEC-10` and `DS-05` on `DS-01`.
+and nobody is on it. `INF-04` and `INF-06` are open. `DS-05` is blocked on `DS-01`.
 
 **Three decisions the desktop work raised, all the owner's:** the 74 extensions that use `android.webkit`
 (disable them on desktop or adopt JCEF), plugin settings on desktop (the dialogs are Android Views and

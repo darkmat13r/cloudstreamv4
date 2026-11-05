@@ -280,20 +280,20 @@ a way the deletion is not.
 
 ---
 
-## DEC-10 — Screenshot testing: wait, or switch to Roborazzi
+## DEC-10 — Screenshot testing · **answered: Compose screenshot tests, with `captureToImage`**
 
-**Status:** open · **Blocks:** `DS-04`
+**Status:** **decided 2026-11-05 by the owner:** "use compose screenshot tests". A reviewer compares real screens with the design boards.
+Done in `INF-11`.
 
-`com.android.compose.screenshot:0.0.1-alpha16` does not render on this toolchain (AGP 9.1.1,
-Gradle 9.4.1). The wiring is correct and complete — tasks register, previews compile, the engine
-reports "1 test, 0 failures" — and it writes no images. A preview containing only
-`BasicText("hello")` renders nothing either, so it is the plugin, not the components.
+**`captureToImage` from `androidx.compose.ui:ui-test-junit4`, on the emulator.** It was already approved in `INF-10`, so this adds no dependency.
 
-This is why `DS-01` and `DS-05` are unguarded: there is no suite to catch what they move.
+**The plugin stays blocked.** `com.android.compose.screenshot:0.0.1-alpha16` is still the latest published version (checked 2026-11-05).
+`:core:screenshot:updateDebugScreenshotTest` still fails with "did not discover any tests" and writes no PNG, and the plugin does not support KMP modules.
 
-**Options:** wait for a working plugin version · switch to Roborazzi (a real dependency decision
-under `dependency-security.md`, not something to slip into a feature PR) · accept no screenshot
-coverage and rely on review.
+**Roborazzi was not chosen and is not in the tree.** It would be a new dependency, and nothing here needed one.
+
+**What was open before:** the plugin renders nothing on AGP 9.1.1 and Gradle 9.4.1, even for a preview of only `BasicText("hello")`.
+The options were to wait, switch to Roborazzi, or rely on review.
 
 ---
 
