@@ -10,6 +10,10 @@
 # boots, so a compile error costs no boot and the emulator does not sit idle through a build. -read-only discards whatever the run
 # changes in the AVD, -no-audio means nothing can reach the speakers, -cores 2 is the owner's limit on
 # what it may use, and ANDROID_SERIAL keeps Gradle off any other emulator or device on this machine. In a git worktree add -x :app:generateGitHash.
+#
+# Screenshots: what assertScreenshot wrote comes off the device before the emulator stops, to <module>/build/screenshots and
+# /private/tmp/cloudstream-shared/review/shots/<module>. With -Pandroid.testInstrumentationRunnerArguments.screenshots=record,
+# the recorded PNGs also replace the module's references, for a person to look at in `git diff` and commit.
 : ${ANDROID_HOME:=$HOME/Library/Android/sdk}
 export ANDROID_HOME
 avd=${1:?usage: device-tests.sh <avd> [gradle task or flag ...]}
@@ -25,7 +29,7 @@ while (( $# )); do
     esac
     shift
 done
-(( ${#tasks} )) || tasks=(:feature:search:connectedAndroidDeviceTest :app:connectedPrereleaseDebugAndroidTest)
+(( ${#tasks} )) || tasks=(:feature:search:connectedAndroidDeviceTest :core:designsystem:connectedAndroidDeviceTest :app:connectedPrereleaseDebugAndroidTest)
 
 # What each connected task installs, which is everything it would compile once the emulator was up.
 builds=()
@@ -74,3 +78,26 @@ fi
 sleep 20
 
 TZ=UTC taskpolicy -c utility ./gradlew $flags $tasks
+gradle_exit=$?
+
+review=/private/tmp/cloudstream-shared/review/shots
+for task in $tasks; do
+    [[ $task == *connectedAndroidDeviceTest ]] || continue
+    module=${${task%:connectedAndroidDeviceTest}#:}
+    module=${module//://}
+    output=$module/build/screenshots
+    rm -rf $output
+    mkdir -p $output
+    "$adb" -s $ANDROID_SERIAL pull /data/local/tmp/cloudstream-shots/$module/. $output >/dev/null 2>&1
+    if [[ ${flags[(r)*screenshots=record]} != "" ]] && [[ -d $output/recorded ]]; then
+        mkdir -p $module/src/androidDeviceTest/resources/screenshots
+        cp $output/recorded/*.png(N) $module/src/androidDeviceTest/resources/screenshots/
+    fi
+    if [[ -d ${review:h} ]]; then
+        shots=$review/${module//\//-}
+        mkdir -p $shots
+        rm -rf $shots/failures
+        cp -R $output/. $shots/
+    fi
+done
+exit $gradle_exit
