@@ -1294,7 +1294,8 @@ class HomeScreenTvDeviceTest {
         dpad.center()
         rule.waitForIdle()
         assertEquals("a second press asks nothing", before + 1, source.calls.size)
-        rule.onNodeWithContentDescription("A 0").assertExists()
+        assertEquals(listOf("A"), viewModel.state.value.status.let { (it as? HomeStatus.Showing)?.rows?.map { row -> row.title } })
+        rule.onNodeWithText("A").assertIsDisplayed()
         assertEquals(RELOAD, dpad.focused())
     }
 
@@ -1346,7 +1347,7 @@ class HomeScreenTvDeviceTest {
             rule.onAllNodesWithContentDescription(cell).fetchSemanticsNodes().let { assertTrue("no $cell on None", it.isEmpty()) }
         }
         rule.onNodeWithContentDescription("$RESUME 0").assertExists()
-        rule.onNodeWithContentDescription("$SAVED 0").assertExists()
+        rule.onNodeWithText(BOOKMARKS).assertIsDisplayed()
         val graph = dpad.walk()
         val expected = listOf(SOURCE_NONE, ACCOUNTS, "$RESUME 0", WATCHING, "$SAVED 0")
         assertEquals(graph.toString(), emptyList<String>(), graph.unreachable(expected))
