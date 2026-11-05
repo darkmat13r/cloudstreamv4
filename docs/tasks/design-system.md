@@ -501,7 +501,7 @@ KDoc, so that gap is the rule rather than this defect. `PrimaryTextButton` and `
 
 ## DS-12 — The ring goes on the visible control: chips, tabs and segmented options
 
-**Status:** in review · PR not merged · `DEC-17`, 2026-11-05: *"make chips even like buttons"*
+**Status:** in review · #150 · `DEC-17`, 2026-11-05: *"make chips even like buttons"*
 
 `Chip` and `SegmentedControl` ringed the 48 dp cell, leaving 2 dp at the sides and 14 dp above and below. The ring is now on
 the 24 dp visual: `FocusRingOffset` 2 dp clear and `FocusRingStroke` 2 dp thick on all four sides, with the visual's own
