@@ -35710,6 +35710,7 @@ public final class com/lagradost/cloudstream3/utils/downloader/VideoDownloadMana
 	public static synthetic fun deleteFilesAndUpdateSettings$default (Lcom/lagradost/cloudstream3/utils/downloader/VideoDownloadManager;Landroid/content/Context;Ljava/util/Set;Lkotlinx/coroutines/CoroutineScope;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public final fun downloadThing (Landroid/content/Context;Lcom/lagradost/cloudstream3/IDownloadableMinimum;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZLjava/lang/Integer;Lkotlin/jvm/functions/Function1;IJLkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun downloadThing$default (Lcom/lagradost/cloudstream3/utils/downloader/VideoDownloadManager;Landroid/content/Context;Lcom/lagradost/cloudstream3/IDownloadableMinimum;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZLjava/lang/Integer;Lkotlin/jvm/functions/Function1;IJLkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public final fun fileLengthOnDisk$app (Landroid/content/Context;Landroid/net/Uri;)Ljava/lang/Long;
 	public final fun getCurrentDownloads ()Lkotlinx/coroutines/flow/StateFlow;
 	public final fun getDownloadDeleteEvent ()Lcom/lagradost/cloudstream3/utils/Event;
 	public final fun getDownloadEpisodeMetadata (Lcom/lagradost/cloudstream3/ui/result/ResultEpisode;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZLcom/lagradost/cloudstream3/TvType;)Lcom/lagradost/cloudstream3/utils/downloader/DownloadObjects$DownloadEpisodeMetadata;

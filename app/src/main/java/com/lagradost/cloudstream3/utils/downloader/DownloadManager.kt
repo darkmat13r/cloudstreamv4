@@ -8,6 +8,7 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.os.Build.VERSION.SDK_INT
 import android.os.Environment
@@ -23,6 +24,7 @@ import androidx.core.net.toUri
 import androidx.preference.PreferenceManager
 import com.lagradost.cloudstream3.APIHolder.getApiFromNameNull
 import com.lagradost.cloudstream3.BuildConfig
+import com.lagradost.cloudstream3.CloudStreamApp
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.getKey
 import com.lagradost.cloudstream3.CommonActivity.showToast
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.removeKey
@@ -505,6 +507,21 @@ object VideoDownloadManager {
     }
 
     /**
+     * The length of the file itself, or null if it cannot be read that way.
+     *
+     * `SafeFile.lengthOrThrow()` on a `MediaFile` is MediaStore's `_size`, which trails the file after a close. A resume
+     * cannot use that: it would ask for bytes the file already has and append them (`BUG-39`).
+     */
+    internal fun fileLengthOnDisk(context: Context?, uri: Uri?): Long? {
+        if (context == null || uri == null) return null
+        return try {
+            context.contentResolver.openFileDescriptor(uri, "r")?.use { it.statSize }?.takeIf { it >= 0L }
+        } catch (_: Exception) {
+            null
+        }
+    }
+
+    /**
      * Sets up the appropriate file and creates a data stream from the file.
      * Used for initializing downloads and backups.
      * */
@@ -526,7 +543,7 @@ object VideoDownloadManager {
             subDir.createFileOrThrow(displayName) to 0L
         } else {
             if (tryResume) {
-                foundFile to foundFile.lengthOrThrow()
+                foundFile to (fileLengthOnDisk(CloudStreamApp.context, foundFile.uri()) ?: foundFile.lengthOrThrow())
             } else {
                 foundFile.deleteOrThrow()
                 subDir.createFileOrThrow(displayName) to 0L
