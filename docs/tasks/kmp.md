@@ -3394,7 +3394,7 @@ dump, so `DownloadFacts` and its `Flow.map` helper classes appear, as do the man
 
 ## KMP-39 — The highest resolution plays first, and the next best when it fails · **measured 2026-11-05**
 
-**Status:** in pr. **Owner's request 2026-11-05:** "random to the highest resolution, if not then next best resolution and
+**Status:** in pr #155. **Owner's request 2026-11-05:** "random to the highest resolution, if not then next best resolution and
 then next", confirmed as: when a film or episode plays, try its highest-resolution link first, then the next best, then the
 next. Desktop first, because the owner uses it daily with CineStream's CineTmdb; the ordering is in common code for TV.
 
