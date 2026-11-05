@@ -41,11 +41,13 @@ import com.lagradost.cloudstream3.utils.UIHelper.navigate
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.home.HomeAction
 import com.lagradost.cloudstream4.feature.home.HomeEffect
+import com.lagradost.cloudstream4.feature.home.HomeHero
 import com.lagradost.cloudstream4.feature.home.HomeItem
 import com.lagradost.cloudstream4.feature.home.HomeStatus
 import com.lagradost.cloudstream4.feature.home.HomeViewModel
 import com.lagradost.cloudstream4.feature.home.tv.HomeScreenTv
 import com.lagradost.cloudstream4.feature.search.SearchResultId
+import com.lagradost.cloudstream4.library.AndroidLibraryStore
 import com.lagradost.cloudstream4.search.decodeId
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -95,6 +97,7 @@ class HomeTvFragment : BaseComposeFragment() {
                     source = androidHomeSource(app, startedAt = System.currentTimeMillis()),
                     scope = scope,
                     memory = DataStoreHomeSourceMemory(),
+                    history = LibraryHomeHistory(AndroidLibraryStore(app)),
                 ).also { it.addCloseable(AutoCloseable { scope.cancel() }) }
             }
         }
@@ -171,11 +174,15 @@ class HomeTvFragment : BaseComposeFragment() {
         }
     }
 
+    /** A card, the hero or a Continue watching entry: all three carry the same id, and open the title's page. */
     private fun open(id: String) {
         val target = decodeId(SearchResultId(id)) ?: return
-        val status = viewModel.state.value.status
+        val state = viewModel.state.value
+        val status = state.status
         val rows = (status as? HomeStatus.Showing)?.rows ?: (status as? HomeStatus.Partial)?.rows
         val name = rows.orEmpty().firstNotNullOfOrNull { row -> row.items.firstOrNull { it.id == id } }?.title
+            ?: (state.hero as? HomeHero.Shown)?.featured?.takeIf { it.id == id }?.title
+            ?: state.history.resume.firstOrNull { it.id == id }?.title
         loadResult(url = target.url, apiName = target.apiName, name = name.orEmpty())
     }
 

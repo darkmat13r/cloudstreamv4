@@ -3761,3 +3761,78 @@ Why: sharing means editing both of the others' fragments.
 
 Additions only: 102 lines in `app/api/classes-jar.api`, all under `com/lagradost/cloudstream4/home/`, none removed or changed.
 `:feature:home` is not merged into the jar.
+
+## KMP-40 — The TV home's hero, Continue watching, and watch progress on its cards (queue `Q10`) · **measured 2026-11-05**
+
+**Status:** in pr. Board `3c` of `design/TV Home.dc.html` and its closing note, on the page `KMP-37` built. Watch progress on
+Home's cards is the owner's request, which the boards already draw. Android TV only; desktop's home is unchanged (its
+`HomeSource` keeps the default, so it has no hero, and nothing reads history there).
+
+**The page now reads, top to bottom:** the chrome, with the hero under it and the hero's art behind both; Continue watching;
+the source's rails. The hero is in the chrome's list item because its art runs behind the chrome. Continue watching is this
+device's and not the source's, so it stays above a failure, being offline, a page still loading and "nothing installed",
+as the owner ruled for `3g` and `3m`.
+
+**Parts.** In `:feature:home`: `HomeSource.featured` (with a default, so no host has to change), `HomeFeatured`,
+`HomeWatchHistory` / `HomeHistory` / `HomeResume`, `HomeHero` in the state, `tv/HomeHeroTv.kt`, `tv/HomeContinueTv.kt`, and
+progress on `HomeRailTv`'s cards. In `:app`: `AndroidHomeSource.featured`, `LibraryHomeHistory`, and
+`AndroidLibraryStore.resuming`.
+
+### One store, read the way the old home reads it
+
+Continue watching reads through `AndroidLibraryStore`, the store the TV library already reads (`KMP-34`), and its records
+seam gained two reads with defaults: the resume record ids and the title each one is about. **No second store, and nothing
+new is written.** Desktop's `KMP-26` rule (`LibraryShelf`: a position past 30 s and short of 95%) is **not** used, because on
+Android the resume record already decides: the player removes it when a title is finished, and at 90% moves it to the next
+episode, which has played for 0 s. That rule would hide exactly the "next episode" entries the old home shows. So the list
+is the old home's (`HomeViewModel.getResumeWatching`): every record with a known title, newest first, its part's position,
+capped at 60 as `LibraryShelf` caps. Resume-only titles do not enter `titles()`, so the library's lists are unchanged.
+
+Card progress comes from the same store: every position it knows, bookmarks and resume records alike, newest per title,
+keyed by `encodeId(apiName, url)`, which is also a card's id. Zero is not drawn on a rail card.
+
+### Every reduction from 3c
+
+| Drawn | Here | Why |
+|---|---|---|
+| Hero carousel, pager `1 / 12` and dots | One title | The first of the source's first three titles whose own page answers, asked one at a time (one request when it answers). A carousel needs a paging control the board does not place on the D-pad |
+| Eyebrow `FEATURED · NEW SEASON` | The name of the row the title was found on | Nothing says "featured" or "new season" |
+| `2 SEASONS · 24 EP` | None | The old hero does not show them, and no key holds either with its number |
+| `8.7 IMDb` | `8.7` | Which site the score is from is not known |
+| `Resume S2 E4` | `More info`, which opens the title's page | It does not resume, so `Resume` would be untrue. It is the old TV hero's only button |
+| `Watch trailer`, `+ Library`, the square cell | None | No trailer player is built; a library write is the next PR's (`TV Home Extras`); the cell's meaning is not drawn |
+| Art under the nav rail | Art from the page's edge | The rail is the shell's; the page starts beside it |
+| `6 ITEMS` on Continue watching | None | `KMP-37` shows no counts on rail headers either |
+| Card line `S2 E4 · 28m left · vidplay 1080p` | `S2 E4 · <source>` | Time left has no key without a line break (`resume_time_left`); quality is not stored |
+| `SAVED` badge | None | Bookmark state on Home is the next PR's |
+| Art 16:9 | The poster, cropped | A resume record keeps a poster and no backdrop |
+
+**Gap, not drawn:** removing an entry from Continue watching. The old home does it with a long press; no board draws it.
+
+**Kept for the next PR, with room as 3c leaves it:** the bookmarks row, Random, the details panel and reload
+(`design/TV Home Extras.dc.html`).
+
+`DEC-17`: `live` is only the progress rule; the one button is `PrimaryTextButton`, white at rest. `DEC-13` as before.
+
+### Focus
+
+- **Landing** waits for the hero to be found or given up (at most 6 s), so focus lands once: on the hero's button, as 3c
+  draws it at rest; else the first Continue watching card; else the first card. It does not take focus from a Continue
+  watching card, or from the nav rail.
+- **Return** works for all three: the hero, a Continue watching card and a rail card. An entry that has gone (finished while
+  its page was open) falls back to the landing.
+- Every card keeps one modifier chain (`KMP-34`'s trap); nothing is taken before `Reappeared` (the 650 ms trap).
+- **Down from a Continue watching card lands on the poster under its middle**, which for the first card is the second poster:
+  the card is 192dp wide over 80dp posters. Compose's own search; measured and kept.
+
+### Strings
+
+No new key, so no `R` field. Reused, with their coverage out of 62 (the rest fall back to English): `home_more_info` 60,
+`duration_format` 59, `continue_watching` 56, `season_short` 51, `episode_short` 50.
+
+### Sanitized
+
+A title's page is plugin output read inside the process: text loses control and format characters and is capped; the synopsis
+is HTML in some plugins, so tags are dropped, five entities decoded, and spaces folded; only http(s) art reaches Coil, a
+backdrop that is not falls back to the poster; header names and values are checked; year, minutes and genres are bounded.
+Resume records are read the same way: a title with no usable name is dropped, and a poster that is not http(s) is dropped.

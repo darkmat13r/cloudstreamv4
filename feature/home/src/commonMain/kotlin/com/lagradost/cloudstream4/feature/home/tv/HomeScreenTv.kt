@@ -9,15 +9,18 @@ import androidx.compose.foundation.interaction.collectIsFocusedAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.gestures.animateScrollBy
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -65,8 +68,12 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.switch_accoun
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.home.HomeAction
+import com.lagradost.cloudstream4.feature.home.HomeHero
 import com.lagradost.cloudstream4.feature.home.HomeItem
+import com.lagradost.cloudstream4.feature.home.HomeResume
 import com.lagradost.cloudstream4.feature.home.HomeReturn
+import com.lagradost.cloudstream4.feature.home.HomeRow
+import com.lagradost.cloudstream4.feature.home.HomeRowKey
 import com.lagradost.cloudstream4.feature.home.HomeState
 import com.lagradost.cloudstream4.feature.home.HomeStatus
 import com.lagradost.cloudstream4.feature.home.rows
@@ -75,23 +82,26 @@ import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
 
 /**
- * The TV home page: `design/TV Home.dc.html` artboard **3d**, and the source control **3c** draws.
+ * The TV home page: `design/TV Home.dc.html` artboards **3c** and **3d**.
  *
  * Stateless, like `SearchScreenTv`: a [HomeState] in, [HomeAction]s out.
  *
- * ## Where 3c's hero and Continue watching land
+ * ## The page, top to bottom
  *
- * Everything on the page is one list with keyed items, so they go in between the chrome and the rails and nothing else
- * moves. 3d is this same page scrolled: its rails are at the top because the hero is above them.
+ * One list with keyed items: the chrome with the hero under it (3c), then Continue watching, then the source's rails (3d,
+ * which is this page scrolled). The hero is part of the chrome's item because its art runs behind the chrome. Continue
+ * watching is this device's and not the source's, so it stays above a failure, being offline, or a page still loading.
  *
  * ## Focus
  *
  * Nothing is taken until the host says it has resumed ([HomeState.appeared]), because focus taken before that does not
  * last on a TV. After that:
  *
- * - **A title that was opened** gets focus back ([HomeReturn]).
- * - **The first rows to land** take it for their first card, from the chrome if it was on the chrome, unless [mayTakeFocus]
- *   says it has gone elsewhere, which on a TV means a person opened the nav rail while the page was loading.
+ * - **A title that was opened** gets focus back ([HomeReturn]), on the hero, Continue watching or a rail.
+ * - **The first rows to land** take it for the first thing on the page, from the chrome if it was on the chrome: the hero's
+ *   button, which is where 3c draws it at rest, else the first Continue watching card, else the first card. They wait for
+ *   the hero to be found or given up, so focus lands once. Not if [mayTakeFocus] says it has gone elsewhere, which on a
+ *   TV means a person opened the nav rail while the page was loading, nor if it is already on Continue watching.
  * - **A state's own button** takes it when that state appears, under the same condition.
  * - **The source control keeps it** while another source loads, so the person can choose again.
  *
@@ -117,33 +127,49 @@ fun HomeScreenTv(
     val list = rememberLazyListState(returnTo?.firstVisibleRow ?: 0, returnTo?.firstVisibleRowOffset ?: 0)
     var focusTarget by remember { mutableStateOf<HomeFocusTarget?>(null) }
     var screenHasFocus by remember { mutableStateOf(false) }
+    var continueHasFocus by remember { mutableStateOf(false) }
     val hasRows = rows.isNotEmpty()
+    // Only beside the rows it came from: a page that failed or went offline has no hero, whatever was found before.
+    val hero = (state.hero as? HomeHero.Shown)?.takeIf { hasRows }
+    val heroSettled = state.hero !is HomeHero.Loading
+    val resume = state.history.resume
+    val hasContinue = resume.isNotEmpty()
+    val itemsBeforeRails = if (hasContinue) ITEMS_BEFORE_CONTINUE + 1 else ITEMS_BEFORE_CONTINUE
     val scope = rememberCoroutineScope()
     val stops = remember { HomeStops() }
 
     // A title that was opened. The rows are on screen by now, because they outlive the view.
-    LaunchedEffect(returnTo?.ready, hasRows) {
+    LaunchedEffect(returnTo?.ready, hasRows, hero != null, hasContinue, state.status is HomeStatus.Loading) {
         if (returnTo == null || !returnTo.ready || state.status is HomeStatus.Loading) return@LaunchedEffect
         val row = rows.firstOrNull { it.key == returnTo.rowKey }
+        val back = when (returnTo.rowKey) {
+            HomeRowKey.Hero -> hero?.takeIf { it.featured.id == returnTo.id }?.let { heroTarget(it.featured) }
+            HomeRowKey.Continue -> resume.firstOrNull { it.id == returnTo.id }?.let { continueTarget(it) }
+            else -> row?.items?.firstOrNull { it.id == returnTo.id }?.let { HomeFocusTarget(row.key, it.id) }
+        }
+        val fallback = back ?: landingTarget(hero, resume, rows)
         when {
-            row != null && row.items.any { it.id == returnTo.id } -> focusTarget = HomeFocusTarget(row.key, returnTo.id)
-            hasRows -> {
+            back != null -> focusTarget = back
+            fallback != null -> {
                 list.scrollToItem(0)
-                focusTarget = HomeFocusTarget(rows.first().key, rows.first().items.first().id)
+                focusTarget = fallback
             }
             else -> onAction(HomeAction.ReturnHandled)
         }
     }
 
     // Rows landing, on a page that opened with none or whose focus went with what they replaced.
-    LaunchedEffect(hasRows, state.appeared, returnTo == null) {
-        if (!hasRows || !state.appeared || returnTo != null) return@LaunchedEffect
+    LaunchedEffect(hasRows, state.appeared, returnTo == null, heroSettled) {
+        if (!hasRows || !state.appeared || returnTo != null || !heroSettled) return@LaunchedEffect
         // After a frame, so that a button these rows replaced has given focus up.
         withFrameNanos { }
-        if ((state.landingOwed || !screenHasFocus) && !state.pickerOpen && mayTakeFocus()) {
-            focusTarget = HomeFocusTarget(rows.first().key, rows.first().items.first().id)
-        }
+        val free = (state.landingOwed || !screenHasFocus) && !continueHasFocus
+        if (free && !state.pickerOpen && mayTakeFocus()) focusTarget = landingTarget(hero, resume, rows)
         if (state.landingOwed) onAction(HomeAction.LandingHandled)
+    }
+    val onFocusTaken: () -> Unit = {
+        focusTarget = null
+        if (returnTo != null) onAction(HomeAction.ReturnHandled)
     }
 
     SidePanelHost(
@@ -163,7 +189,25 @@ fun HomeScreenTv(
                     HomeFocusScroll.railFits(item.offset + above, item.size.toFloat(), info.viewportSize.height.toFloat(), band)
                 if (!fits) scope.launch { list.animateScrollToItem(index) }
             }
-            val promptHeight = maxHeight - HomeScreenTvDefaults.PageAboveContent - CloudStreamDimens.FocusBandInset
+            // Continue watching sits above a state, so the state has what is left, and grows past it when that is less
+            // than its words need: measured on the recorded screenshot, a fixed height squeezed its button to an empty
+            // ring. The page then moves by the least that shows the button, when the state takes focus.
+            val continueRoom = if (hasContinue) ContinueRailHeight + CloudStreamDimens.MinFocusGap else 0.dp
+            val promptHeight =
+                maxHeight - HomeScreenTvDefaults.PageAboveContent - CloudStreamDimens.FocusBandInset - continueRoom
+            val revealState: () -> Unit = {
+                val info = list.layoutInfo
+                val item = info.visibleItemsInfo.firstOrNull { it.index == itemsBeforeRails }
+                if (item != null) {
+                    val overflow = item.offset + above + item.size - (info.viewportSize.height - band)
+                    if (overflow > 0f) scope.launch { list.animateScrollBy(overflow) }
+                }
+            }
+            val promptModifier = if (hasContinue) {
+                Modifier.onFocusChanged { if (it.hasFocus) revealState() }
+            } else {
+                Modifier
+            }
             CompositionLocalProvider(LocalBringIntoViewSpec provides HomeNoScrollSpec) {
                 LazyColumn(
                     state = list,
@@ -175,24 +219,78 @@ fun HomeScreenTv(
                     ),
                 ) {
                     item(key = CHROME_KEY) {
-                        HomeChromeRow(
-                            state,
-                            content.failureNotice,
-                            stops,
-                            onAction,
-                            Modifier.contentInset().onFocusChanged { if (it.hasFocus) scrollTo(0) },
-                        )
+                        Box(Modifier.fillMaxWidth().onFocusChanged { if (it.hasFocus) scrollTo(0) }) {
+                            hero?.let { HomeHeroBackdrop(it.featured, artwork) }
+                            Column {
+                                HomeChromeRow(state, content.failureNotice, stops, onAction, Modifier.contentInset())
+                                hero?.let {
+                                    HomeHeroTv(
+                                        hero = it,
+                                        takeFocus = focusTarget == heroTarget(it.featured),
+                                        onFocusTaken = onFocusTaken,
+                                        onOpen = {
+                                            onAction(
+                                                HomeAction.TitleActivated(
+                                                    id = it.featured.id,
+                                                    from = HomeReturn(
+                                                        id = it.featured.id,
+                                                        rowKey = HomeRowKey.Hero,
+                                                        firstVisibleRow = list.firstVisibleItemIndex,
+                                                        firstVisibleRowOffset = list.firstVisibleItemScrollOffset,
+                                                    ),
+                                                ),
+                                            )
+                                        },
+                                        stops = stops,
+                                        modifier = Modifier.contentInset(),
+                                    )
+                                }
+                            }
+                        }
+                    }
+                    if (hasContinue) {
+                        item(key = CONTINUE_KEY) {
+                            val returning = returnTo?.takeIf { it.rowKey == HomeRowKey.Continue }
+                            HomeContinueTv(
+                                entries = resume,
+                                focusTarget = focusTarget,
+                                initialCard = returning?.firstVisibleCard ?: 0,
+                                initialCardOffset = returning?.firstVisibleCardOffset ?: 0,
+                                onFocusTaken = onFocusTaken,
+                                onOpen = { entry, rail ->
+                                    onAction(
+                                        HomeAction.TitleActivated(
+                                            id = entry.id,
+                                            from = HomeReturn(
+                                                id = entry.id,
+                                                rowKey = HomeRowKey.Continue,
+                                                firstVisibleRow = list.firstVisibleItemIndex,
+                                                firstVisibleRowOffset = list.firstVisibleItemScrollOffset,
+                                                firstVisibleCard = rail.firstVisibleItemIndex,
+                                                firstVisibleCardOffset = rail.firstVisibleItemScrollOffset,
+                                            ),
+                                        ),
+                                    )
+                                },
+                                stops = stops,
+                                artwork = artwork,
+                                modifier = Modifier.onFocusChanged {
+                                    continueHasFocus = it.hasFocus
+                                    if (it.hasFocus) scrollTo(ITEMS_BEFORE_CONTINUE)
+                                },
+                            )
+                        }
                     }
                     when (content) {
                         is UiState.Loading -> items(SKELETON_RAILS, key = { "skeleton/$it" }) { HomeRailSkeleton() }
                         is UiState.Empty -> item(key = STATE_KEY) {
-                            HomeStatePrompt(content.prompt, content.detail, promptHeight, state, mayTakeFocus)
+                            HomeStatePrompt(content.prompt, content.detail, promptHeight, hasContinue, state, mayTakeFocus, promptModifier)
                         }
                         is UiState.Offline -> item(key = STATE_KEY) {
-                            HomeStatePrompt(content.prompt, null, promptHeight, state, mayTakeFocus)
+                            HomeStatePrompt(content.prompt, null, promptHeight, hasContinue, state, mayTakeFocus, promptModifier)
                         }
                         is UiState.Error -> item(key = STATE_KEY) {
-                            HomeStatePrompt(content.prompt, content.detail, promptHeight, state, mayTakeFocus)
+                            HomeStatePrompt(content.prompt, content.detail, promptHeight, hasContinue, state, mayTakeFocus, promptModifier)
                         }
                         // A row's key is a string, because a lazy list's key must fit in a Bundle on Android.
                         is UiState.Partial, is UiState.Content -> itemsIndexed(
@@ -206,10 +304,7 @@ fun HomeScreenTv(
                                 initialCard = returning?.firstVisibleCard ?: 0,
                                 initialCardOffset = returning?.firstVisibleCardOffset ?: 0,
                                 onFocusTarget = { focusTarget = it },
-                                onFocusTaken = {
-                                    focusTarget = null
-                                    if (returnTo != null) onAction(HomeAction.ReturnHandled)
-                                },
+                                onFocusTaken = onFocusTaken,
                                 onOpen = { item, rail ->
                                     onAction(
                                         HomeAction.TitleActivated(
@@ -228,8 +323,9 @@ fun HomeScreenTv(
                                 stops = stops,
                                 onAction = onAction,
                                 artwork = artwork,
+                                progress = state.history.progress,
                                 modifier = Modifier.onFocusChanged {
-                                    if (it.hasFocus) scrollTo(index + ITEMS_BEFORE_RAILS)
+                                    if (it.hasFocus) scrollTo(index + itemsBeforeRails)
                                 },
                             )
                         }
@@ -240,17 +336,35 @@ fun HomeScreenTv(
     }
 }
 
-/** A full-surface state, taking focus when it appears if that is this screen's to take. */
+/** The first thing on the page: the hero's button, else the first Continue watching card, else the first card. */
+private fun landingTarget(hero: HomeHero.Shown?, resume: List<HomeResume>, rows: List<HomeRow>): HomeFocusTarget? {
+    if (hero != null) return heroTarget(hero.featured)
+    resume.firstOrNull()?.let { return continueTarget(it) }
+    val row = rows.firstOrNull() ?: return null
+    return row.items.firstOrNull()?.let { HomeFocusTarget(row.key, it.id) }
+}
+
+private fun continueTarget(entry: HomeResume) = HomeFocusTarget(HomeRowKey.Continue, entry.id)
+
+/**
+ * A full-surface state, taking focus when it appears if that is this screen's to take.
+ *
+ * @param grows whether [height] is a floor rather than the height: under Continue watching what is left can be less than
+ *   the state's words need.
+ */
 @Composable
 private fun HomeStatePrompt(
     prompt: StatePrompt,
     detail: String?,
     height: Dp,
+    grows: Boolean,
     state: HomeState,
     mayTakeFocus: () -> Boolean,
+    modifier: Modifier = Modifier,
 ) {
     val takeFocus = remember(state.appeared) { state.appeared && !state.pickerOpen && mayTakeFocus() }
-    StateView(prompt, Modifier.fillMaxWidth().height(height).contentInset(), detail, requestInitialFocus = takeFocus)
+    val sized = if (grows) Modifier.heightIn(min = height) else Modifier.height(height)
+    StateView(prompt, modifier.fillMaxWidth().then(sized).contentInset(), detail, requestInitialFocus = takeFocus)
 }
 
 /**
@@ -397,10 +511,43 @@ object HomeScreenTvDefaults {
 
     /** Mirrors `FailureBannerDefaults.DetailMaxWidth`. */
     val FailureDetailMaxWidth: Dp = 240.dp
+
+    /** 3c's `.art`, 608px from the top of the screen. */
+    val HeroArtHeight: Dp = 304.dp
+
+    /** 3c's eyebrow at y176, 24px under the chrome's foot at y152 (`ChromeRowBottom`). Mirrors `MinFocusGap`. */
+    val HeroAboveEyebrow: Dp = CloudStreamDimens.MinFocusGap
+
+    /** 3c's 16px between the eyebrow, title, meta, synopsis and buttons. Mirrors `ListRowPadding`. */
+    val HeroBandGap: Dp = CloudStreamDimens.ListRowPadding
+
+    /** 3c's `.h1` line box, 120px, which is the `display` style's line height. */
+    val HeroTitleLineBox: Dp = 60.dp
+
+    /** 3c's `.h1 { width: 1000px }`. */
+    val HeroTitleWidth: Dp = 500.dp
+
+    /** 3c's eyebrow, `width: 800px`. */
+    val HeroEyebrowWidth: Dp = 400.dp
+
+    /** 3c's `.meta { width: 1200px }`. */
+    val HeroMetaWidth: Dp = 600.dp
+
+    /** 3c's `.syn`, 800x80px: two lines of `body`. */
+    val HeroSynopsisWidth: Dp = 400.dp
+    val HeroSynopsisHeight: Dp = 40.dp
+    const val HERO_SYNOPSIS_LINES = 2
+
+    /** From the button's foot at y568 to the art's at y608, 40px. Continue watching's header is `MinFocusGap` below that. */
+    val HeroBelowButton: Dp = 20.dp
+
+    /** Between facts on one mono line, as `KMP-37`'s failure line writes it. */
+    const val META_SEPARATOR = " · "
 }
 
-/** The chrome. The hero and Continue watching (3c) add to this. */
-private const val ITEMS_BEFORE_RAILS = 1
+/** The chrome, which holds the hero when there is one. Continue watching, when there is any, follows it. */
+private const val ITEMS_BEFORE_CONTINUE = 1
 private const val CHROME_KEY = "chrome"
+private const val CONTINUE_KEY = "continue"
 private const val STATE_KEY = "state"
 private const val SKELETON_RAILS = 3

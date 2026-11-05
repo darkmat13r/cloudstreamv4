@@ -15,8 +15,24 @@ data class HomeState(
     val appeared: Boolean = false,
     /** Rows have not yet landed since this page opened, so the first card still has first claim on focus. */
     val landingOwed: Boolean = true,
+    /** The title at the top of the page (`TV Home` 3c). Shown only beside rows of the source it came from. */
+    val hero: HomeHero = HomeHero.None,
+    /** Continue watching and progress, from this device. Kept whatever the source is doing, offline included. */
+    val history: HomeHistory = HomeHistory(),
 ) {
     val selectedOption: HomeSourceOption? get() = sources.firstOrNull { it.id == selected }
+}
+
+/** The hero, which needs one more request than the rows it comes from. */
+sealed interface HomeHero {
+    /** No hero: no rows, a host that cannot ask, or nothing it asked for answered. */
+    data object None : HomeHero
+
+    /** Rows are here and the hero is being asked for. Focus waits for it, so it does not land twice. */
+    data object Loading : HomeHero
+
+    /** @property eyebrow the name of the row the title was first found on, as the source names it. */
+    data class Shown(val featured: HomeFeatured, val eyebrow: String? = null) : HomeHero
 }
 
 /**
@@ -42,7 +58,15 @@ data class HomeReturn(
 
 /** Identifies a row across pages. Sections can answer with several rows, told apart by name. */
 @Immutable
-data class HomeRowKey(val section: Int, val name: String)
+data class HomeRowKey(val section: Int, val name: String) {
+    companion object {
+        /** The hero, for [HomeReturn]. Not a section, so no section index is negative. */
+        val Hero: HomeRowKey = HomeRowKey(section = -1, name = "")
+
+        /** Continue watching, for [HomeReturn]. Not a section either. */
+        val Continue: HomeRowKey = HomeRowKey(section = -2, name = "")
+    }
+}
 
 /**
  * One row on screen.

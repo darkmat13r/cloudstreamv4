@@ -28,6 +28,9 @@ import androidx.compose.ui.test.onAllNodesWithContentDescription
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.graphics.asAndroidBitmap
+import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.test.captureToImage
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.unit.dp
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -43,10 +46,15 @@ import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.designsystem.rail.NavRail
 import com.lagradost.cloudstream4.core.designsystem.rail.NavRailItem
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
+import com.lagradost.cloudstream4.core.theme.cloudStreamDarkColors
 import com.lagradost.cloudstream4.feature.home.HomeAction
 import com.lagradost.cloudstream4.feature.home.HomeEffect
+import com.lagradost.cloudstream4.feature.home.HomeFeatured
+import com.lagradost.cloudstream4.feature.home.HomeHero
+import com.lagradost.cloudstream4.feature.home.HomeHistory
 import com.lagradost.cloudstream4.feature.home.HomeItem
 import com.lagradost.cloudstream4.feature.home.HomePageReply
+import com.lagradost.cloudstream4.feature.home.HomeResume
 import com.lagradost.cloudstream4.feature.home.HomeRowPage
 import com.lagradost.cloudstream4.feature.home.HomeSource
 import com.lagradost.cloudstream4.feature.home.HomeSourceId
@@ -55,6 +63,7 @@ import com.lagradost.cloudstream4.feature.home.HomeSourceOption
 import com.lagradost.cloudstream4.feature.home.HomeSources
 import com.lagradost.cloudstream4.feature.home.HomeStatus
 import com.lagradost.cloudstream4.feature.home.HomeViewModel
+import com.lagradost.cloudstream4.feature.home.HomeWatchHistory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -68,6 +77,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.util.concurrent.CopyOnWriteArrayList
+import kotlin.math.abs
 
 /**
  * The TV home page on a device, with a fake source and the real ViewModel: no `:app`, no network.
@@ -95,12 +105,13 @@ class HomeScreenTvDeviceTest {
     private val device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
     private val source = FakeSource()
     private val memory = Kept()
+    private val history = FakeHistory()
     private val effects = CopyOnWriteArrayList<HomeEffect>()
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
     private var onScreen by mutableStateOf(true)
     private var mayTakeFocus = true
 
-    private val viewModel by lazy { HomeViewModel(source, scope, memory) }
+    private val viewModel by lazy { HomeViewModel(source, scope, memory, history) }
 
     @After
     fun stopTheViewModel() = scope.cancel()
@@ -631,6 +642,299 @@ class HomeScreenTvDeviceTest {
         assertEquals(HomeEffect.OpenAccounts, effects.single())
     }
 
+    // ---- The hero and Continue watching (3c) -------------------------------------------------------------------------
+
+    private fun featuring(vararg titles: HomeFeatured) {
+        source.featured = { item -> titles.firstOrNull { it.id == item.id } }
+    }
+
+    private fun resuming(count: Int, progress: Float = HALF, title: (Int) -> String = { "$RESUME $it" }) {
+        history.history = HomeHistory(
+            resume = List(count) {
+                HomeResume("cw/$it", title(it), progress = progress, season = 1, episode = it + 1, sourceName = ONE.name)
+            },
+        )
+    }
+
+    /** The colour at a fraction across, and a distance up from the foot, of what [node] draws. */
+    private fun pixel(node: androidx.compose.ui.test.SemanticsNodeInteraction, across: Float, fromFoot: Float): Int {
+        val image = node.captureToImage().asAndroidBitmap()
+        val density = InstrumentationRegistry.getInstrumentation().targetContext.resources.displayMetrics.density
+        val y = (image.height - fromFoot * density).toInt().coerceIn(0, image.height - 1)
+        return image.getPixel((image.width * across).toInt(), y)
+    }
+
+    private fun assertColour(what: String, expected: androidx.compose.ui.graphics.Color, actual: Int) {
+        val want = expected.toArgb()
+        val close = listOf(16, 8, 0).all { shift -> abs((want shr shift and 0xFF) - (actual shr shift and 0xFF)) <= COLOUR_SLACK }
+        assertTrue("$what: wanted ${Integer.toHexString(want)}, was ${Integer.toHexString(actual)}", close)
+    }
+
+    @Test
+    fun theHeroTakesFocusAtRestWithItsFactsWhereTheBoardPutsThem() {
+        rails(2)
+        featuring(FEATURED)
+        resuming(2)
+        showScreen()
+
+        awaitFocus(HERO)
+        rule.onNodeWithText(FEATURED.title).assertIsDisplayed()
+        rule.onNodeWithText("2026 · 48 min · Sci-Fi · Thriller").assertIsDisplayed()
+        rule.onNodeWithText("16+").assertIsDisplayed()
+        rule.onNodeWithText("8.7").assertIsDisplayed()
+        rule.onNodeWithText(FEATURED.synopsis!!).assertIsDisplayed()
+        // The eyebrow is the row the title was found on.
+        assertEquals(2, rule.onAllNodesWithText("A").fetchSemanticsNodes().size)
+        // 3c halved: the button at y252 and 32dp tall, Continue watching's cards at y360.
+        val button = rule.onNode(isFocused()).getUnclippedBoundsInRoot()
+        assertEquals(252f, button.top.value, GEOMETRY_SLACK)
+        assertEquals(32f, (button.bottom - button.top).value, GEOMETRY_SLACK)
+        val card = rule.onNodeWithContentDescription("$RESUME 0").getUnclippedBoundsInRoot()
+        assertEquals(360f, card.top.value, GEOMETRY_SLACK)
+        // 192x152, give or take the pixel each band rounds to at this AVD's 1.33125 density: 152dp measures 150.99.
+        assertEquals(192f, (card.right - card.left).value, GEOMETRY_SLACK)
+        assertEquals(152f, (card.bottom - card.top).value, ROUNDING_SLACK)
+
+        dpad.center()
+        rule.waitUntil(WAIT_MS) { effects.isNotEmpty() }
+        assertEquals(HomeEffect.OpenTitle(FEATURED.id), effects.single())
+    }
+
+    @Test
+    fun aHeroWithNoFactsLeavesItsBandsEmptyAndItsButtonWhereItWas() {
+        rails(1)
+        featuring(HomeFeatured("id/A 0", "Bare"))
+        showScreen()
+
+        awaitFocus("$MORE_INFO · Bare")
+        assertEquals(252f, rule.onNode(isFocused()).getUnclippedBoundsInRoot().top.value, GEOMETRY_SLACK)
+        rule.onAllNodesWithText("8.7").fetchSemanticsNodes().let { assertTrue("no score was invented", it.isEmpty()) }
+    }
+
+    @Test
+    fun noTitleAnsweringIsNoHeroAndFocusLandsOnTheFirstCard() {
+        rails(1, cards = 4)
+        featuring()
+        showScreen()
+
+        awaitFocus("A 0")
+        assertEquals(HomeHero.None, viewModel.state.value.hero)
+        rule.onAllNodesWithText(MORE_INFO).fetchSemanticsNodes().let { assertTrue(it.isEmpty()) }
+        rule.onAllNodesWithText(CONTINUE).fetchSemanticsNodes().let { assertTrue("no entries, no rail", it.isEmpty()) }
+    }
+
+    @Test
+    fun oneEntryIsARailOfOneThatTakesFocusWithNoHeroAndOpensItsTitle() {
+        rails(1)
+        resuming(1)
+        showScreen()
+
+        awaitFocus("$RESUME 0")
+        rule.onNodeWithText(CONTINUE).assertIsDisplayed()
+        rule.onNodeWithText("S1 E1 · ${ONE.name}").assertIsDisplayed()
+        // A rail of one has a wall at its end, as every rail does.
+        assertEquals("$RESUME 0", dpad.press(Dpad.Right))
+        // Down lands on the poster under the card's middle, which is the second: the card is 192dp wide over 80dp posters.
+        assertEquals("A 1", dpad.press(Dpad.Down))
+        assertEquals("$RESUME 0", dpad.press(Dpad.Up))
+
+        dpad.center()
+        rule.waitUntil(WAIT_MS) { effects.isNotEmpty() }
+        assertEquals(HomeEffect.OpenTitle("cw/0"), effects.single())
+    }
+
+    @Test
+    fun manyEntriesScrollToTheLastWhichIsAWall() {
+        rails(1)
+        resuming(12)
+        showScreen()
+
+        awaitFocus("$RESUME 0")
+        pressUntil(Dpad.Right, "$RESUME 11", presses = 11)
+        rule.onNode(isFocused()).assertIsDisplayed()
+        assertEquals("$RESUME 11", dpad.press(Dpad.Right))
+    }
+
+    /** The progress rule, in `live` to the fraction watched and `line` past it, and only the track at zero. */
+    @Test
+    fun aContinueCardDrawsItsProgressAndAPositionOfZeroDrawsOnlyTheTrack() {
+        rails(1)
+        history.history = HomeHistory(
+            resume = listOf(HomeResume("cw/half", "Half", progress = HALF), HomeResume("cw/zero", "Zero", progress = 0f)),
+        )
+        showScreen()
+        awaitFocus("Half")
+        val colors = cloudStreamDarkColors()
+        // The rule is 4dp tall and its foot is 40dp above the card's: 4 under it, then the 32dp text stack.
+        val half = rule.onNodeWithContentDescription("Half")
+        assertColour("half, before the middle", colors.live, pixel(half, across = 0.2f, fromFoot = RULE_FROM_FOOT))
+        assertColour("half, past the middle", colors.line, pixel(half, across = 0.8f, fromFoot = RULE_FROM_FOOT))
+        val zero = rule.onNodeWithContentDescription("Zero")
+        assertColour("zero, at the start", colors.line, pixel(zero, across = 0.02f, fromFoot = RULE_FROM_FOOT))
+        assertColour("zero, at the end", colors.line, pixel(zero, across = 0.98f, fromFoot = RULE_FROM_FOOT))
+    }
+
+    @Test
+    fun aRailCardWithAStoredPositionDrawsItsProgressAndOneWithoutDoesNot() {
+        rails(1, cards = 2)
+        history.history = HomeHistory(progress = mapOf("id/A 1" to HALF))
+        showScreen()
+        awaitFocus("A 0")
+        val colors = cloudStreamDarkColors()
+        val without = pixel(rule.onNode(isFocused()), across = 0.2f, fromFoot = LIFTED_RULE_FROM_FOOT)
+        assertFalse("no position, no rule", abs((without shr 16 and 0xFF) - (colors.live.toArgb() shr 16 and 0xFF)) <= COLOUR_SLACK)
+
+        assertEquals("A 1", dpad.press(Dpad.Right))
+        val card = rule.onNode(isFocused())
+        assertColour("watched half", colors.live, pixel(card, across = 0.2f, fromFoot = LIFTED_RULE_FROM_FOOT))
+        assertColour("the rest", colors.line, pixel(card, across = 0.8f, fromFoot = LIFTED_RULE_FROM_FOOT))
+    }
+
+    @Test
+    fun longTitlesStayInsideTheCardAndTheHeroOnOneLine() {
+        rails(1)
+        featuring(HomeFeatured("id/A 0", LONG_TITLE))
+        resuming(2) { if (it == 0) LONG_TITLE else "$RESUME $it" }
+        showScreen()
+        awaitFocus("$MORE_INFO · $LONG_TITLE")
+
+        val texts = rule.onAllNodesWithText(LONG_TITLE, useUnmergedTree = true).fetchSemanticsNodes()
+        assertEquals("the hero's title and the card's", 2, texts.size)
+        texts.forEach { node ->
+            val width = with(rule.density) { node.size.width.toDp() }
+            assertTrue("$width is inside 500dp", width.value <= 500f + GEOMETRY_SLACK)
+            val layout = mutableListOf<TextLayoutResult>()
+            node.config.getOrNull(SemanticsActions.GetTextLayoutResult)?.action?.invoke(layout)
+            assertEquals("one line", 1, layout.single().lineCount)
+            assertTrue("ellipsized", layout.single().isLineEllipsized(0))
+        }
+        rule.onNodeWithContentDescription(LONG_TITLE).assertWidthIsEqualTo(192.dp)
+        // The next card is where it would be beside a short title: 192 + 12.
+        val first = rule.onNodeWithContentDescription(LONG_TITLE).getUnclippedBoundsInRoot()
+        val second = rule.onNodeWithContentDescription("$RESUME 1").getUnclippedBoundsInRoot()
+        assertEquals(204f, (second.left - first.left).value, GEOMETRY_SLACK)
+    }
+
+    /** The owner's ruling for 3g and 3m: what is on this device stays above a failure. */
+    @Test
+    fun offlineKeepsContinueWatchingAboveTheStateAndBothAreReachable() {
+        source.answer = { _, _, _ -> HomePageReply.Offline }
+        featuring(FEATURED)
+        resuming(3)
+        showScreen()
+
+        awaitFocus(RETRY)
+        rule.onNodeWithText(CONTINUE).assertIsDisplayed()
+        rule.onNodeWithText(OFFLINE).assertIsDisplayed()
+        rule.onAllNodesWithText(MORE_INFO).fetchSemanticsNodes().let { assertTrue("no hero offline", it.isEmpty()) }
+        val rail = rule.onNodeWithContentDescription("$RESUME 0").getUnclippedBoundsInRoot()
+        val retry = rule.onNode(isFocused()).getUnclippedBoundsInRoot()
+        assertTrue("the rail is above the state", rail.bottom <= retry.top)
+        // The state is taller than what is left under the rail, so the page moved: the button and the rail both show.
+        rule.onNode(isFocused()).assertIsDisplayed()
+        assertTrue("the button is inside the band", retry.bottom.value <= SCREEN_HEIGHT_DP - 28f + GEOMETRY_SLACK)
+        rule.onNodeWithContentDescription("$RESUME 0").assertIsDisplayed()
+
+        // Up reaches the card above the button's middle, and Down comes back.
+        assertEquals("$RESUME 2", dpad.press(Dpad.Up))
+        assertEquals(RETRY, dpad.press(Dpad.Down))
+        val graph = dpad.walk()
+        val expected = List(3) { "$RESUME $it" } + listOf(RETRY, SOURCE_ONE, ACCOUNTS)
+        assertEquals(graph.toString(), emptyList<String>(), graph.unreachable(expected))
+        assertEquals(graph.toString(), emptyList<String>(), graph.deadEnds())
+        assertEquals(graph.toString(), emptyList<String>(), graph.traps())
+    }
+
+    @Test
+    fun theDpadGoesFromTheHeroIntoTheRailsAndBackWithNoDeadEndsOrTraps() {
+        rails(3, cards = 4)
+        featuring(FEATURED)
+        resuming(3)
+        showScreen()
+        awaitFocus(HERO)
+
+        assertEquals("$RESUME 0", dpad.press(Dpad.Down))
+        // The poster under the card's middle, as on `oneEntryIsARailOfOne…`.
+        assertEquals("A 1", dpad.press(Dpad.Down))
+        assertEquals("B 1", dpad.press(Dpad.Down))
+        assertEquals("A 1", dpad.press(Dpad.Up))
+        assertEquals("$RESUME 0", dpad.press(Dpad.Up))
+        assertEquals(HERO, dpad.press(Dpad.Up))
+        rule.waitForIdle()
+        // Back at rest: the chrome and the hero's title are on screen again.
+        rule.onNodeWithContentDescription(SOURCE_ONE).assertIsDisplayed()
+        rule.onNodeWithText(FEATURED.title).assertIsDisplayed()
+        pressUntil(Dpad.Up, SOURCE_ONE, presses = 1)
+
+        val graph = dpad.walk()
+        val expected = listOf(HERO, SOURCE_ONE, ACCOUNTS) + List(3) { "$RESUME $it" } +
+            titles("A", 4) + titles("B", 4) + titles("C", 4)
+        assertEquals(graph.toString(), emptyList<String>(), graph.unreachable(expected))
+        assertEquals(graph.toString(), emptyList<String>(), graph.deadEnds())
+        assertEquals(graph.toString(), emptyList<String>(), graph.traps())
+        assertEquals(graph.toString(), emptySet<String>(), graph.keyboardOpenedOn)
+    }
+
+    /** Opens, leaves composition as the fragment's view does, and comes back. */
+    private fun openAndComeBack(expected: HomeEffect) {
+        dpad.center()
+        rule.waitUntil(WAIT_MS) { effects.isNotEmpty() }
+        assertEquals(expected, effects.single())
+        rule.runOnIdle { viewModel.onAction(HomeAction.Disappeared) }
+        onScreen = false
+        rule.waitForIdle()
+        onScreen = true
+        rule.waitForIdle()
+        rule.onNode(isFocused()).assertDoesNotExist()
+        rule.runOnIdle { viewModel.onAction(HomeAction.Reappeared) }
+        rule.waitUntil(WAIT_MS) { viewModel.state.value.returnTo == null }
+        rule.waitForIdle()
+    }
+
+    @Test
+    fun focusComesBackToTheContinueCardThatWasOpened() {
+        rails(2)
+        featuring(FEATURED)
+        resuming(8)
+        showScreen()
+        awaitFocus(HERO)
+        pressUntil(Dpad.Down, "$RESUME 0", presses = 1)
+        pressUntil(Dpad.Right, "$RESUME 6", presses = 6)
+
+        openAndComeBack(HomeEffect.OpenTitle("cw/6"))
+        // After the return point is cleared and everything has recomposed: focus has to stay, not just arrive.
+        assertEquals("$RESUME 6", dpad.focused())
+        rule.onNode(isFocused()).assertIsDisplayed()
+    }
+
+    @Test
+    fun focusComesBackToTheHero() {
+        rails(2)
+        featuring(FEATURED)
+        resuming(2)
+        showScreen()
+        awaitFocus(HERO)
+
+        openAndComeBack(HomeEffect.OpenTitle(FEATURED.id))
+        assertEquals(HERO, dpad.focused())
+    }
+
+    @Test
+    fun aContinueEntryThatHasGoneFallsBackToTheHero() {
+        rails(1)
+        featuring(FEATURED)
+        resuming(3)
+        showScreen()
+        awaitFocus(HERO)
+        pressUntil(Dpad.Down, "$RESUME 0", presses = 1)
+        pressUntil(Dpad.Right, "$RESUME 2", presses = 2)
+        // Finished while its page was open, so the player took it off the list.
+        resuming(2)
+
+        openAndComeBack(HomeEffect.OpenTitle("cw/2"))
+        assertEquals(HERO, dpad.focused())
+    }
+
     // ---- Screenshots (`INF-11`), compared with the references in src/androidDeviceTest/resources/screenshots ---------
 
     /** As the app shows it: the rail beside the screen, which puts the page at the board's x, and solid posters. */
@@ -734,6 +1038,57 @@ class HomeScreenTvDeviceTest {
         rule.assertScreenshot("home-loading")
     }
 
+    /** 3c at rest: Continue watching as the board fills it, part-watched, and three rails below. */
+    private fun shot3c() {
+        shotRails()
+        source.featured = { item ->
+            HomeFeatured(
+                id = item.id,
+                title = item.title,
+                backdropUrl = "solid",
+                year = 2026,
+                durationMinutes = 48,
+                genres = listOf("Sci-Fi", "Thriller", "Drama"),
+                score = "8.7",
+                contentRating = "16+",
+                synopsis = "A salvage crew wakes from cryo to find the relay station empty, the logs erased, and " +
+                    "something still breathing on deck four.",
+            ).takeIf { item.title == ShotTitles[0] }
+        }
+        history.history = HomeHistory(
+            resume = ShotContinue.mapIndexed { index, (title, progress) ->
+                HomeResume("cw/$title", title, progress = progress, season = index % 3 + 1, episode = index + 4, sourceName = ONE.name)
+            },
+        )
+    }
+
+    @Test
+    fun screenshotHeroFocusOnItsButton() {
+        shot3c()
+        showForScreenshot()
+        awaitFocus("$MORE_INFO · ${ShotTitles[0]}")
+        rule.assertScreenshot("home-hero-focus-button")
+    }
+
+    @Test
+    fun screenshotContinueWatchingFocusOnACard() {
+        shot3c()
+        showForScreenshot()
+        awaitFocus("$MORE_INFO · ${ShotTitles[0]}")
+        assertEquals(ShotContinue[0].first, dpad.press(Dpad.Down))
+        assertEquals(ShotContinue[1].first, dpad.press(Dpad.Right))
+        rule.assertScreenshot("home-continue-focus-card")
+    }
+
+    @Test
+    fun screenshotOfflineWithContinueWatchingFocusOnRetry() {
+        shot3c()
+        source.answer = { _, _, _ -> HomePageReply.Offline }
+        showForScreenshot()
+        awaitFocus(RETRY)
+        rule.assertScreenshot("home-offline-continue-focus-retry")
+    }
+
     private data class Call(val source: HomeSourceId, val section: Int, val page: Int)
 
     private class Kept(var id: HomeSourceId? = null) : HomeSourceMemory {
@@ -752,7 +1107,11 @@ class HomeScreenTvDeviceTest {
         /** Every page waits forever. */
         @Volatile var hold = false
         @Volatile var answer: (HomeSourceId, Int, Int) -> HomePageReply = { _, _, _ -> loaded("A", listOf("A 0")) }
+        /** The hero's facts by title id. None by default, which is a host that cannot ask: no hero. */
+        @Volatile var featured: (HomeItem) -> HomeFeatured? = { null }
         val calls = CopyOnWriteArrayList<Call>()
+
+        override suspend fun featured(item: HomeItem): HomeFeatured? = featured.invoke(item)
 
         override suspend fun sources() = HomeSources(options.map { it.copy(sections = sections) }, installed, stillLoading)
 
@@ -761,6 +1120,12 @@ class HomeScreenTvDeviceTest {
             if (hold) awaitCancellation()
             return answer(source, section, page)
         }
+    }
+
+    private class FakeHistory : HomeWatchHistory {
+        @Volatile var history = HomeHistory()
+
+        override suspend fun read(): HomeHistory = history
     }
 
     private companion object {
@@ -794,6 +1159,39 @@ class HomeScreenTvDeviceTest {
             "Redwing", "Stillwater",
         )
         val ShotBadges = mapOf("Salt Road" to "4K", "Ashen Field" to "DUB")
+        val ShotContinue = listOf(
+            "The Long Dark" to 0.62f, "Hollow Crown" to 0.81f, "Ashen Field" to 0.44f, "Quiet Harbor" to 0.22f,
+            "Nine Lives" to 0.92f,
+        )
+        const val MORE_INFO = "More info"
+        const val CONTINUE = "Continue Watching"
+        const val OFFLINE = "You are offline"
+        const val RESUME = "Resume"
+        const val HALF = 0.5f
+        /** Up from a continue card's foot to inside its rule: the 32dp text stack, 4dp, then 2dp into the 4dp rule. */
+        const val RULE_FROM_FOOT = 38f
+        /**
+         * Up from a focused poster's foot to inside its rule. The node's bounds are where the card sits at rest, and it is
+         * drawn 4dp higher (`FocusLift`), so its 4dp rule is 4 to 8dp above the foot of what is captured.
+         */
+        const val LIFTED_RULE_FROM_FOOT = 6f
+        const val GEOMETRY_SLACK = 1f
+        /** Five bands each rounded to a whole pixel at 1.33125 px per dp. */
+        const val ROUNDING_SLACK = 1.5f
+        /** `Television_720p` is 540.8dp tall; the band's foot is `FocusBandInset` above that. */
+        const val SCREEN_HEIGHT_DP = 540.8f
+        const val COLOUR_SLACK = 8
+        val FEATURED = HomeFeatured(
+            id = "id/A 0",
+            title = "The Long Dark",
+            year = 2026,
+            durationMinutes = 48,
+            genres = listOf("Sci-Fi", "Thriller"),
+            score = "8.7",
+            contentRating = "16+",
+            synopsis = "A salvage crew wakes from cryo to find the relay station empty.",
+        )
+        val HERO = "$MORE_INFO · ${FEATURED.title}"
 
         fun shotRow(row: String, titles: List<String>, hasNext: Boolean = false) = HomePageReply.Loaded(
             rows = listOf(

@@ -32,7 +32,10 @@ import com.lagradost.cloudstream3.ui.home.HomeFragment
 import com.lagradost.cloudstream3.ui.result.ResultFragmentTv
 import com.lagradost.cloudstream3.ui.settings.Globals.updateTv
 import com.lagradost.cloudstream3.ui.setup.HAS_DONE_SETUP_KEY
+import com.lagradost.cloudstream3.utils.DOWNLOAD_HEADER_CACHE
 import com.lagradost.cloudstream3.utils.DataStoreHelper
+import com.lagradost.cloudstream3.utils.VIDEO_POS_DUR
+import com.lagradost.cloudstream3.utils.downloader.DownloadObjects
 import com.lagradost.cloudstream4.core.devicetest.Dpad
 import com.lagradost.cloudstream4.core.devicetest.DpadDriver
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
@@ -55,6 +58,9 @@ import kotlin.math.roundToInt
  *
  * A saved plugin that does not exist keeps the extension setup page from opening over Home, so this is a person's normal
  * launch. No extension is loaded, so what a real plugin does is `TvHomeRealPluginProof`'s.
+ *
+ * Since `KMP-40` a provider whose title page answers gives the page a hero, and focus lands on its button, as 3c draws it
+ * at rest. Every fake here answers, so every launch lands there.
  */
 @RunWith(AndroidJUnit4::class)
 class TvHomeNavigationTest {
@@ -78,6 +84,7 @@ class TvHomeNavigationTest {
 
     @After
     fun restore() {
+        forgetPlaying()
         TvHomeSwitch.useComposeHome = true
         setLayoutPreference(null)
         listOf(one, two).forEach {
@@ -111,6 +118,33 @@ class TvHomeNavigationTest {
             )
         }
     }
+
+    /** What the player writes when something has been played: the resume record, its title, and the part's position. */
+    private fun play(provider: FakeProvider, title: String, at: Long, of: Long) {
+        instrumentation.runOnMainSync {
+            setKey(
+                DOWNLOAD_HEADER_CACHE,
+                PLAYED_ID.toString(),
+                DownloadObjects.DownloadHeaderCached(
+                    provider.name, "${provider.mainUrl}/$title", TvType.Movie, PLAYED, null, 0L, PLAYED_ID,
+                ),
+            )
+            DataStoreHelper.setLastWatched(PLAYED_ID, PLAYED_PART, null, null)
+            DataStoreHelper.setViewPos(PLAYED_PART, at, of)
+        }
+    }
+
+    private fun forgetPlaying() = instrumentation.runOnMainSync {
+        removeKey(DOWNLOAD_HEADER_CACHE, PLAYED_ID.toString())
+        DataStoreHelper.removeLastWatched(PLAYED_ID)
+        removeKey("${DataStoreHelper.currentAccount}/$VIDEO_POS_DUR", PLAYED_PART.toString())
+    }
+
+    /**
+     * The hero's button. Its name in the tree is its description, which names the title, in some builds and its words in
+     * others, as `pressToTheSourceControl` found for the source control; there is one hero, so either is unambiguous.
+     */
+    private fun isHero(label: String?, provider: String) = label == MORE_INFO || label == "$MORE_INFO · $provider A 0"
 
     private fun launch(block: Page.() -> Unit) {
         ActivityScenario.launch(MainActivity::class.java).use { Page(it).block() }
@@ -160,6 +194,16 @@ class TvHomeNavigationTest {
             assertEquals(label, now)
         }
 
+        fun waitForHero(provider: String) {
+            val deadline = System.currentTimeMillis() + SCREEN_WAIT_MS
+            var now = dpad.focused()
+            while (!isHero(now, provider) && System.currentTimeMillis() < deadline) {
+                Thread.sleep(POLL_MS)
+                now = dpad.focused()
+            }
+            assertTrue("the hero of $provider holds focus, was $now", isHero(now, provider))
+        }
+
         fun pressUntil(direction: Dpad, label: String) {
             val seen = generateSequence { dpad.press(direction) }.take(MAX_PRESSES).firstOrNull { it == label }
             assertEquals("pressing $direction", label, seen)
@@ -184,12 +228,12 @@ class TvHomeNavigationTest {
     // ---- The cold start ------------------------------------------------------------------------------------------
 
     @Test
-    fun aColdStartLandsOnTheNewHomeWithFocusOnTheFirstCardAndTheRailClosed() {
+    fun aColdStartLandsOnTheNewHomeWithFocusOnTheHeroAndTheRailClosed() {
         install(one)
         launch {
             waitForHome()
             assertEquals(R.id.navigation_home, destination)
-            waitForFocus("$ONE A 0")
+            waitForHero(ONE)
             assertFalse("the rail stays closed", railHasFocus)
             assertTrue(
                 "and collapsed, was $railWidth",
@@ -210,10 +254,11 @@ class TvHomeNavigationTest {
         instrumentation.runOnMainSync { DataStoreHelper.currentHomePage = ONE }
         launch {
             waitForHome()
-            waitForFocus("$ONE A 0")
+            waitForHero(ONE)
             // Long enough for the plugin stages after the first to have fired.
             Thread.sleep(PLUGIN_STAGES_MS)
             assertEquals(listOf("0/1", "1/1"), one.asked.sorted())
+            assertEquals("the hero asked for one title's page", listOf("https://example.invalid/$ONE A 0"), one.loaded)
         }
     }
 
@@ -223,7 +268,7 @@ class TvHomeNavigationTest {
         instrumentation.runOnMainSync { DataStoreHelper.currentHomePage = TWO }
         launch {
             waitForHome()
-            waitForFocus("$TWO A 0")
+            waitForHero(TWO)
             assertTrue("the other source was never fetched", one.asked.isEmpty())
 
             pressToTheSourceControl(TWO)
@@ -239,7 +284,7 @@ class TvHomeNavigationTest {
         two.asked.clear()
         launch {
             waitForHome()
-            waitForFocus("$ONE A 0")
+            waitForHero(ONE)
             assertTrue("the other source was not fetched", two.asked.isEmpty())
         }
     }
@@ -258,17 +303,17 @@ class TvHomeNavigationTest {
     // ---- Back ----------------------------------------------------------------------------------------------------
 
     @Test
-    fun backOnHomeAsksToExitAndBackAgainStaysOnTheCard() {
+    fun backOnHomeAsksToExitAndBackAgainStaysOnTheHero() {
         install(one)
         launch {
             waitForHome()
-            waitForFocus("$ONE A 0")
+            waitForHero(ONE)
             device.pressBack()
             val no = context.getString(R.string.no)
             assertTrue("Back asks to exit", device.wait(Until.hasObject(By.text(no)), SCREEN_WAIT_MS))
             device.pressBack()
             assertTrue("and Back closes that", device.wait(Until.gone(By.text(no)), SCREEN_WAIT_MS))
-            waitForFocus("$ONE A 0")
+            waitForHero(ONE)
         }
     }
 
@@ -278,7 +323,7 @@ class TvHomeNavigationTest {
         install(one, two)
         launch {
             waitForHome()
-            waitForFocus("$ONE A 0")
+            waitForHero(ONE)
             pressToTheSourceControl(ONE)
             dpad.center()
             waitFor("the panel opens") { device.hasObject(By.text(sources)) }
@@ -300,7 +345,7 @@ class TvHomeNavigationTest {
         install(one)
         launch {
             waitForHome()
-            waitForFocus("$ONE A 0")
+            waitForHero(ONE)
             pressUntil(Dpad.Down, "$ONE B 0")
             pressUntil(Dpad.Right, "$ONE B 2")
             dpad.center()
@@ -308,7 +353,8 @@ class TvHomeNavigationTest {
             waitFor("the title's page, was $fragmentClass") { fragmentClass == ResultFragmentTv::class.java }
             assertEquals(R.id.navigation_results_tv, destination)
             waitFor("it asked the provider for that title") { one.loaded.isNotEmpty() }
-            assertEquals("https://example.invalid/$ONE B 2", one.loaded.single())
+            // After the hero's own title, which was asked for first.
+            assertEquals("https://example.invalid/$ONE B 2", one.loaded.last())
 
             // Waits for each step: a page still coming up can swallow a Back.
             repeat(BACK_PRESSES) {
@@ -332,7 +378,7 @@ class TvHomeNavigationTest {
         install(one)
         launch {
             waitForHome()
-            waitForFocus("$ONE A 0")
+            waitForHero(ONE)
             pressUntil(Dpad.Down, "$ONE B 0")
 
             assertEquals(RAIL_HOME, dpad.press(Dpad.Left))
@@ -345,11 +391,11 @@ class TvHomeNavigationTest {
     }
 
     @Test
-    fun goingToAnotherPageByTheRailAndBackDoesNotReloadAndFocusIsOnTheFirstCard() {
+    fun goingToAnotherPageByTheRailAndBackDoesNotReloadAndFocusIsOnTheHero() {
         install(one)
         launch {
             waitForHome()
-            waitForFocus("$ONE A 0")
+            waitForHero(ONE)
             pressUntil(Dpad.Left, RAIL_HOME)
             pressUntil(Dpad.Down, RAIL_SEARCH)
             dpad.center()
@@ -363,9 +409,46 @@ class TvHomeNavigationTest {
 
             Thread.sleep(SETTLE_MS)
             // The page's view was rebuilt, and the window had no focus for it to lose. Search does the same on arrival.
-            assertEquals("$ONE A 0", dpad.focused())
+            assertTrue("on the hero", isHero(dpad.focused(), ONE))
             assertFalse(railHasFocus)
             assertEquals("nothing was fetched again", 2, one.asked.size)
+            assertEquals("not even the hero", 1, one.loaded.size)
+        }
+    }
+
+    // ---- Continue watching (3c) -----------------------------------------------------------------------------------
+
+    /**
+     * A title played before, under the keys the player really writes, is on Continue watching between the hero and the
+     * rails. A remote opens its real page and Back puts focus back on it.
+     */
+    @Test
+    fun somethingPlayedIsOnContinueWatchingAndOpensItsRealPageAndFocusComesBack() {
+        install(one)
+        play(one, "$ONE A 1", at = 60_000L, of = 120_000L)
+        launch {
+            waitForHome()
+            waitForHero(ONE)
+            assertNotNull("the rail's name shows", device.findObject(By.text(CONTINUE)))
+            assertEquals(PLAYED, dpad.press(Dpad.Down))
+            assertEquals("$ONE A 0", dpad.press(Dpad.Down))
+            assertEquals(PLAYED, dpad.press(Dpad.Up))
+            dpad.center()
+
+            waitFor("the title's page, was $fragmentClass") { fragmentClass == ResultFragmentTv::class.java }
+            assertEquals(R.id.navigation_results_tv, destination)
+            waitFor("it asked the provider for that title") { "https://example.invalid/$ONE A 1" in one.loaded }
+
+            repeat(BACK_PRESSES) {
+                if (fragmentClass != HomeTvFragment::class.java) {
+                    device.pressBack()
+                    device.waitForIdle()
+                    Thread.sleep(SETTLE_MS)
+                }
+            }
+            waitForHome()
+            waitForFocus(PLAYED)
+            assertFalse("on the card and not on the rail", railHasFocus)
         }
     }
 
@@ -443,6 +526,12 @@ class TvHomeNavigationTest {
         const val ONE = "Fake One"
         const val TWO = "Fake Two"
         const val SOURCE = "Source"
+        const val MORE_INFO = "More info"
+        const val CONTINUE = "Continue Watching"
+        const val PLAYED = "Played Before"
+        /** Ids no real title here has. A title's id is a hash of its address, so a small number is safe. */
+        const val PLAYED_ID = 4242
+        const val PLAYED_PART = 4243
         const val RAIL_HOME = "Home"
         const val RAIL_SEARCH = "Search"
         const val TITLES = 3
