@@ -15,6 +15,12 @@ import com.lagradost.cloudstream4.core.designsystem.desktop.forDesktop
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
 import com.lagradost.cloudstream4.detail.DesktopDetailSource
+import com.lagradost.cloudstream4.detail.DesktopDetailViewModels
+import com.lagradost.cloudstream4.feature.detail.DetailAction
+import com.lagradost.cloudstream4.feature.detail.DetailEffect
+import com.lagradost.cloudstream4.feature.detail.DetailLoad
+import com.lagradost.cloudstream4.feature.detail.DetailViewModel
+import com.lagradost.cloudstream4.feature.detail.bestFirst
 import com.lagradost.cloudstream4.extensions.SandboxedExtensions
 import com.lagradost.cloudstream4.feature.detail.StreamLink
 import com.lagradost.cloudstream4.media.model.SubtitleSource
@@ -26,6 +32,11 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.flow.filterIsInstance
+import kotlinx.coroutines.withTimeoutOrNull
+import kotlin.time.Duration.Companion.seconds
+import kotlin.time.TimeSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.emptyFlow
@@ -43,6 +54,12 @@ import org.jetbrains.skia.EncodedImageFormat
  * waits for the plugin to finish, or with `--first-link` takes the first link it offers, as someone clicking it would.
  * With `--keep-searching` as well the search carries on behind that link and nothing is chosen by hand, so it is the
  * preferred language arriving that has to put a cue on screen.
+ *
+ * With `--best-first` instead, it is the app's own start (`KMP-39`): the real `DetailViewModel` waits as the window
+ * does and plays the best link found, and the screen moves on by itself from any that fail, through more silent hosts,
+ * until one plays. It prints which qualities were found, chosen, failed and played; never a URL. With `--break-first`
+ * too, the link it chose is swapped for a public address that answers 404, so the real host fails and moving on is
+ * what has to make it play.
  *
  * The real screen over the real sandboxed libVLC, in an offscreen scene: frames from the media host, a track
  * chosen with real key events through the real list, PNGs of what came out. It exists because the window
@@ -79,6 +96,9 @@ internal fun runSubtitleRenderCheck(args: List<String>): Int {
             val id = DesktopSearchSource.encodeId(source.name, first.url)
             val details = source.details(first.url)
             val data = details.dataUrl ?: details.episodes.firstOrNull()?.data ?: return@runBlocking NO_LINK
+            if (BEST_FIRST_ARGUMENT in args) {
+                return@runBlocking bestFirst(id, data, out, width, height, broken = BREAK_FIRST_ARGUMENT in args)
+            }
             val answers = DesktopDetailSource().links(id, data)
             if (KEEP_SEARCHING_ARGUMENT in args) {
                 val found = MutableStateFlow(emptyList<StreamLink>())
@@ -104,6 +124,42 @@ internal fun runSubtitleRenderCheck(args: List<String>): Int {
     }
 }
 
+/** Through the window's own path from a press of Play: the wait, the best link, and moving on from failures. */
+private suspend fun bestFirst(
+    id: String,
+    data: String,
+    out: File,
+    width: Int,
+    height: Int,
+    broken: Boolean,
+): Int = coroutineScope {
+    val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
+    // Every link without its separate audio stream, consistently, so the player's test for one stream still holds.
+    fun List<StreamLink>.silent() = map { it.copy(audioUrl = null) }
+    val model = DetailViewModel(id, DesktopDetailSource(), scope, DesktopDetailViewModels.BEST_LINK_WAIT)
+    val asked = TimeSource.Monotonic.markNow()
+    model.onAction(DetailAction.PlayRequested(data))
+    val play = withTimeoutOrNull(BEST_FIRST_LIMIT) { model.effect.filterIsInstance<DetailEffect.Play>().first() }
+    if (play == null) {
+        scope.cancel()
+        return@coroutineScope NO_LINK
+    }
+    val found = model.state.map { (it.links as? DetailLoad.Loaded)?.value.orEmpty().silent() }
+    val atStart = found.first()
+    println(
+        "render: played ${play.link.quality}p after ${asked.elapsedNow().inWholeMilliseconds} ms, best of " +
+            "${atStart.size} found then: ${atStart.bestFirst().take(QUALITIES_SHOWN).map { it.quality }}",
+    )
+    val first = if (broken) play.link.copy(url = BROKEN_URL, audioUrl = null) else play.link.copy(audioUrl = null)
+    val player = VlcPlayer.createOrNull(silent = true) ?: return@coroutineScope NO_PLAYER.also { scope.cancel() }
+    val switcher = SourceSwitcher(first)
+    val run = Run(
+        player, first, HttpSubtitleLoader(), out, width, height, coded = false,
+        links = found, openPlayer = { VlcPlayer.createOrNull(silent = true) }, switcher = switcher,
+    )
+    withContext(Dispatchers.Default) { run.executeBestFirst() }.also { scope.cancel() }
+}
+
 @OptIn(ExperimentalComposeUiApi::class, InternalComposeUiApi::class)
 private class Run(
     private val player: VlcPlayer,
@@ -115,6 +171,9 @@ private class Run(
     private val coded: Boolean,
     preference: SubtitlePreference = SubtitlePreference.Never,
     private val arriving: Flow<List<SubtitleTrack>> = emptyFlow(),
+    links: Flow<List<StreamLink>> = emptyFlow(),
+    openPlayer: (() -> VlcPlayer?)? = null,
+    private val switcher: SourceSwitcher = SourceSwitcher(link),
 ) {
     private val clock = PlaybackClock()
     private val start = System.nanoTime()
@@ -123,13 +182,36 @@ private class Run(
     private val scene = ImageComposeScene(width, height, Density(1f)) {
         CloudStreamTheme {
             CompositionLocalProvider(LocalCloudStreamTypography provides CloudStreamTheme.typography.forDesktop()) {
-                PlayerScreen(player, "Check", link, onBack = {}, clock = clock, session = session, arrivingSubtitles = arriving)
+                PlayerScreen(
+                    player, "Check", link, onBack = {}, clock = clock, session = session, arrivingSubtitles = arriving,
+                    links = links, openPlayer = openPlayer, switcher = switcher,
+                )
             }
         }
     }
     private var lastCoded = -1
     private val samples = HashMap<String, MutableList<Long>>()
     private var phase = "start"
+
+    /**
+     * Waits for a link to play: the clock passing [PLAYED_MILLIS], whichever link it is, with the screen moving on from
+     * any that fail. @return 0 when one did.
+     */
+    fun executeBestFirst(): Int {
+        pump(until = { clock.positionMillis() > PLAYED_MILLIS }, seconds = BEST_FIRST_PLAY_SECONDS)
+        val played = clock.positionMillis() > PLAYED_MILLIS
+        shot(if (played) "best-first-playing" else "best-first-failed")
+        println(
+            "render: started on ${link.quality}p; moved on ${switcher.fellThrough?.serial ?: 0} times; " +
+                "failed ${switcher.failed.map { it.quality }}; now on ${switcher.current.quality}p; " +
+                "position=${clock.positionMillis()} ms; played=$played",
+        )
+        scene.close()
+        scope.cancel()
+        // Closing the scene released whichever host was playing. This is the first, in case the screen never left it.
+        player.release()
+        return if (played) 0 else FAILED
+    }
 
     /** @return 0 when a track that was not there at the pick has turned itself on and put a cue on screen. */
     fun executeArriving(): Int {
@@ -342,6 +424,15 @@ private class Run(
 private const val PLUGIN_PREFIX = "plugin:"
 private const val FIRST_LINK_ARGUMENT = "--first-link"
 private const val KEEP_SEARCHING_ARGUMENT = "--keep-searching"
+private const val BEST_FIRST_ARGUMENT = "--best-first"
+private const val BREAK_FIRST_ARGUMENT = "--break-first"
+
+/** Public, so the URL policy lets the host try it, and reserved for examples, so it serves no video. */
+private const val BROKEN_URL = "https://example.com/kmp-39-no-such-video.mp4"
+private val BEST_FIRST_LIMIT = 120.seconds
+private const val BEST_FIRST_PLAY_SECONDS = 120
+private const val PLAYED_MILLIS = 3_000L
+private const val QUALITIES_SHOWN = 8
 private const val SYNC_BOUND_MILLIS = 100L
 
 /** What a fresh install has, without writing to the real preference from a check. */
