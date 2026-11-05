@@ -111,7 +111,7 @@ fun HomeScreenTv(
     val install = remember(installLabel, onAction) {
         StateAction(installLabel) { onAction(HomeAction.ExtensionsRequested) }
     }
-    val content = state.status.toUiState(state.selectedOption?.name, onAction, install)
+    val content = state.status.toUiState(state.selectedOption?.name, install, onAction)
     val rows = state.status.rows
     val returnTo = state.returnTo
     val list = rememberLazyListState(returnTo?.firstVisibleRow ?: 0, returnTo?.firstVisibleRowOffset ?: 0)

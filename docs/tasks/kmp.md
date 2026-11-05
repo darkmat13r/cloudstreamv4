@@ -3336,8 +3336,8 @@ is unchanged: `SourcesChanged`, `Reappeared`, `Disappeared`, a return point, and
 - **`setClassName` cannot switch a start destination.** `NavHostFragment` navigates to it during inflation, before
   `MainActivity` has a `navController` to edit. Measured: with search's one line, `HomeFragment` stayed on screen and 9 of 13
   `TvHomeNavigationTest` cases failed. So this is a `FragmentFactory` set before `super.onCreate`, which also covers a process
-  restored from saved state, and is one line. `#140`'s line beside it does not conflict: a library line goes under the search
-  one, and this is above `super.onCreate`.
+  restored from saved state, and is one line. Merging with `#140`, its `MainActivity` line does not touch this one, and the
+  import lines and the dependency line in `app/build.gradle.kts` sit side by side, to keep both.
 - **The old home's view model kept running behind the new screen.** `MainActivity` builds it for the XML rail's footer, and it
   fetches on every plugin stage. Measured with the guard off: `[0/1, 0/1, 1/1, 1/1]`, every section twice. The guard skips it
   while `HomeTvFragment` is the home, so with the XML rail as well (`TvRailSwitch` off) that footer has no account picture.
@@ -3406,7 +3406,7 @@ fits nine cards where `3d` draws them.
 
 ### Measured
 
-`HomeScreenTvDeviceTest` 25 and `TvHomeNavigationTest` 13 on `Television_720p`. JVM: `HomeViewModelTest` 34 (12 new),
+`HomeScreenTvDeviceTest` 25 and `TvHomeNavigationTest` 13 on `Television_720p`. JVM: `HomeViewModelTest` 34 (11 new),
 `HomeFocusScrollTest` 6 in `commonTest`, `AndroidHomeSourceTest` 17, `DataStoreHomeSourceMemoryTest` 5. `TvRailNavigationTest`: its cases
 about the old home's provider button now switch that screen back on, because they measure it, and `noDeadEndsOnHome` now
 walks the new one with no lost focus.
@@ -3430,7 +3430,7 @@ This is the first plugin to have run in these Android tests. **It is not** playb
 
 ### Not verified
 
-A real TV remote. A cold start with the plugin already compiled, or on real hardware. Paging, sub and dub badges and the `None` key
+A real TV remote. A cold start with the plugin already compiled, or on real hardware. Paging, sub and dub badges and the source panel
 against a real plugin (the proof pressed none of them). Account switching end to end: the effect is tested, and the dialog and what
 follows are not. A process restored from saved state, which the factory is for. A right-to-left layout. The XML rail with the new
 home, beyond its existing test. Screenshots: `:core:screenshot` has no case for this, as with search and the library,

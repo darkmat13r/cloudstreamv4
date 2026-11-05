@@ -32,14 +32,20 @@ import org.jetbrains.compose.resources.stringResource
  * [HomeStatus] as the design system draws it, in the composition's locale.
  *
  * @param sourceName the selected source, which the failure sentence names.
+ */
+@Composable
+fun HomeStatus.toUiState(sourceName: String?, onAction: (HomeAction) -> Unit): UiState<List<HomeRow>> =
+    toUiState(sourceName, install = null, onAction)
+
+/**
  * @param install what the nothing-installed prompt offers, on a host with somewhere to install from. Without one it
  *   offers to look again.
  */
 @Composable
 fun HomeStatus.toUiState(
     sourceName: String?,
+    install: StateAction?,
     onAction: (HomeAction) -> Unit,
-    install: StateAction? = null,
 ): UiState<List<HomeRow>> {
     val latest by rememberUpdatedState(onAction)
     val retry = remember { { latest(HomeAction.Retry) } }
