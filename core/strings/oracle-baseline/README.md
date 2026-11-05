@@ -120,7 +120,7 @@ appears for all 87 requests, 2,349 cells. `report.txt` moved only in its counts:
 keys 789 -> 816, and 27 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
 `ANDROID_FALLBACK` at 172.** `expectedOwn` 33,005 -> 34,679.
 
-## Twelfth move, 2026-11-05 — `KMP-40`, 4 new keys for TV search's source panel
+## Twelfth move, 2026-11-05 — `KMP-42`, 4 new keys for TV search's source panel
 
 New keys are approved in general (`I18N-09`, above). Additive, all four authored in all 62 directories, none a plural. Measured by whole-line set
 difference twice over, a multiset in Python and `sort | comm`: 0 lines lost or changed in any file, and every new line names one of the 4 keys: 248 in

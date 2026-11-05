@@ -92,7 +92,7 @@ its result and Back returns with focus somewhere sensible; a non-system app lang
 words and card labels; `Clear all searches` asks first; a `cloudstreamsearch://` intent searches.
 
 Waiting on the owner, from that switch: **voice search is lost on TV**. The provider filter panel and
-the type chips came back with `KMP-40`, and a chip narrows a search. The full behaviour table is in
+the type chips came back with `KMP-42`, and a chip narrows a search. The full behaviour table is in
 `docs/tasks/kmp.md`.
 
 **Desktop runs extensions in a sandbox** (`KMP-14`, `docs/tasks/kmp.md`): one Seatbelt-confined child
@@ -378,7 +378,7 @@ Nothing below can be settled by reading the code.
   which is 12dp at the design system's own `artboard px / 2 = dp`; its own prose says *"In Compose
   that is `wrapContentWidth` in a `Row` with **24dp** spacing"*. `CloudStreamDimens.ChipRowSpacing`
   is 24dp and `SkeletonRail` uses it for the gap between rail cards. `:feature:search`'s rails are at
-  12dp since `KMP-40`, so a rail behind a skeleton at 24dp is the jump `UiStateHost` warns about.
+  12dp since `KMP-42`, so a rail behind a skeleton at 24dp is the jump `UiStateHost` warns about.
   If the CSS is right, the token and `SkeletonRail` still have to move.
 - **`DebounceQuery` injectability.** `:core:ui`'s `DebounceQuery` hardcodes
   `.flowOn(Dispatchers.Default)` and `200.milliseconds`, neither injectable, so `advanceTimeBy` on a

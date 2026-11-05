@@ -3492,7 +3492,7 @@ dump, so `DownloadFacts` and its `Flow.map` helper classes appear, as do the man
   with an empty queue only.
 - What the notification shows for a truncated file.
 
-## KMP-40 — TV search: the source panel, type chips and the D-pad's moves (queue `Q6`) · **measured 2026-11-05**
+## KMP-42 — TV search: the source panel, type chips and the D-pad's moves (queue `Q6`) · **measured 2026-11-05**
 
 **Status:** in pr. Boards 4a, 4b, 4c, 4d and 8c on `Television_720p`, API 36. Fixes `BUG-37`, and `BUG-34` for search.
 
