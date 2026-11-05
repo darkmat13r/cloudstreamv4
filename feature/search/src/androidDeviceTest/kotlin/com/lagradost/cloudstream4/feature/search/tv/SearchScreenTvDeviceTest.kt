@@ -386,7 +386,10 @@ class SearchScreenTvDeviceTest {
     fun screenshotPartialFailureFocusOnRetry() {
         showShotResults(SearchOutcome.Partial(ShotResults, answered = 9, total = 12, detail = "TIMEOUT 10S"))
         awaitText("Filmxy")
-        assertEquals(RETRY_FAILED, focusDownFromTheField())
+        // Down from the field now means the first card, so Retry is reached from `Sources`, which is above it.
+        rule.onNode(Field).requestFocus()
+        assertEquals("Sources", dpad.press(Dpad.Right))
+        assertEquals(RETRY_FAILED, dpad.press(Dpad.Down))
         rule.assertScreenshot("search-partial-failure-focus-retry")
     }
 

@@ -12,24 +12,35 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusProperties
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import com.lagradost.cloudstream4.core.designsystem.card.MediaCardSlots
 import com.lagradost.cloudstream4.core.designsystem.card.MediaCardState
 import com.lagradost.cloudstream4.core.designsystem.card.PosterCard
 import com.lagradost.cloudstream4.core.designsystem.card.PosterRung
+import com.lagradost.cloudstream4.core.designsystem.card.SeeAllCard
 import com.lagradost.cloudstream4.core.designsystem.primitive.Badge
 import com.lagradost.cloudstream4.core.designsystem.rows.RailHeader
+import com.lagradost.cloudstream4.core.strings.generated.resources.Res
+import com.lagradost.cloudstream4.core.strings.generated.resources.load_more
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.feature.search.SearchAction
 import com.lagradost.cloudstream4.feature.search.SearchResultGroup
 import com.lagradost.cloudstream4.feature.search.SearchResultItem
 import com.lagradost.cloudstream4.feature.search.resultCountText
+import org.jetbrains.compose.resources.stringResource
 
 /**
  * One rail per provider: artboards **4a** and **4b**.
@@ -50,8 +61,7 @@ import com.lagradost.cloudstream4.feature.search.resultCountText
  * | cards | 384…624 | 192…312 | `PosterRung.Medium` (80×120dp) |
  * | cards → next header | 624…648 | 312…324 | `MinFocusGap` (12dp) |
  *
- * Horizontally the cards are spaced at `ChipRowSpacing`, for the reason in the code below: the
- * design file's CSS and its own prose disagree, and the design system has already chosen.
+ * Horizontally the cards are spaced at `MinFocusGap`, which is the board's `.row { gap: 24px }` halved.
  *
  * `LiftedRowClearance` is 16dp and not 12 because these cards lift on focus: the design's note
  * reads *"The lift is 8, so a lifting row sits 32px below what precedes it — 24 of clearance plus
@@ -74,6 +84,16 @@ internal fun SearchResultRails(
     }
 }
 
+/**
+ * One provider's cards, then the trailing card when it has another page.
+ *
+ * **The end of a rail is a wall** ([RailEnd]): Right there stays put. Left to geometry it found `Sources`,
+ * the only thing further right on the whole screen.
+ *
+ * **The trailing card pages in place,** because no board draws where `See all` would go. When the page lands,
+ * focus moves to its first new card. If it brought nothing and there is no more, the card goes and focus moves
+ * to the last card. If it failed, the card stays and the failure rides the chip row.
+ */
 @Composable
 private fun ProviderRail(
     group: SearchResultGroup,
@@ -81,6 +101,24 @@ private fun ProviderRail(
     artwork: @Composable (SearchResultItem) -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val listState = rememberLazyListState()
+    val landed = remember { FocusRequester() }
+    // The first index a press of the trailing card is waiting for.
+    var awaited by remember { mutableStateOf<Int?>(null) }
+    val target = awaited?.let { first ->
+        when {
+            group.items.size > first -> first
+            !group.hasMore -> first - 1
+            else -> null
+        }
+    }
+    LaunchedEffect(target) {
+        if (target == null) return@LaunchedEffect
+        listState.scrollToItem(target)
+        withFrameNanos { }
+        landed.requestFocus()
+        awaited = null
+    }
     Column(modifier) {
         RailHeader(
             title = group.providerName,
@@ -89,13 +127,8 @@ private fun ProviderRail(
         )
         Spacer(Modifier.height(CloudStreamDimens.LiftedRowClearance))
         LazyRow(
-            // ChipRowSpacing and not MinFocusGap: `SkeletonRail` spaces its cards at
-            // ChipRowSpacing and documents it as the rail card gap, and `UiStateHost`'s KDoc warns
-            // that a skeleton shaped unlike the content makes the screen jump when content lands.
-            // The artboard CSS reads `.row { gap: 24px }`, which is 12dp at px/2, but the design
-            // file's own prose says "a Row with 24dp spacing" — it contradicts itself, so this
-            // follows the design system, which already chose. Reported in `KMP-12`.
-            horizontalArrangement = Arrangement.spacedBy(CloudStreamDimens.ChipRowSpacing),
+            state = listState,
+            horizontalArrangement = Arrangement.spacedBy(CloudStreamDimens.MinFocusGap),
             // The rail is the one child the screen does not inset, because a `LazyRow` must carry
             // its own: content padding scrolls with the content and leaves the focus ring room at
             // the viewport edge, which an outer `padding` would clip (`PosterCard`'s KDoc).
@@ -104,12 +137,47 @@ private fun ProviderRail(
                 end = SearchScreenTvDefaults.ContentInsetEnd,
             ),
         ) {
-            items(items = group.items, key = { it.id.value }) { item ->
-                ResultCard(item = item, onAction = onAction, artwork = artwork)
+            itemsIndexed(items = group.items, key = { _, item -> item.id.value }) { index, item ->
+                ResultCard(
+                    item = item,
+                    onAction = onAction,
+                    artwork = artwork,
+                    modifier = Modifier
+                        .then(if (index == target) Modifier.focusRequester(landed) else Modifier)
+                        .then(if (!group.hasMore && index == group.items.lastIndex) RailEnd else Modifier),
+                )
+            }
+            if (group.hasMore) {
+                item(key = MORE_KEY) {
+                    MoreCard(
+                        onClick = {
+                            awaited = group.items.size
+                            onAction(SearchAction.RailMoreRequested(group.providerName))
+                        },
+                    )
+                }
             }
         }
     }
 }
+
+private val RailEnd = Modifier.focusProperties { right = FocusRequester.Cancel }
+
+/** `SeeAllCard` at the rail's rung, saying what it does: it loads a page, and no board draws what `See all` opens. */
+@Composable
+private fun MoreCard(onClick: () -> Unit) {
+    var focused by remember { mutableStateOf(false) }
+    SeeAllCard(
+        size = PosterRung.Medium.size,
+        label = stringResource(Res.string.load_more),
+        focused = focused,
+        modifier = RailEnd
+            .onFocusChanged { focused = it.isFocused }
+            .clickable(interactionSource = null, indication = null, onClick = onClick),
+    )
+}
+
+private const val MORE_KEY = "search-rail-more"
 
 /**
  * One 2:3 poster, with its title revealed on focus.
