@@ -3836,3 +3836,60 @@ A title's page is plugin output read inside the process: text loses control and 
 is HTML in some plugins, so tags are dropped, five entities decoded, and spaces folded; only http(s) art reaches Coil, a
 backdrop that is not falls back to the poster; header names and values are checked; year, minutes and genres are bounded.
 Resume records are read the same way: a title with no usable name is dropped, and a poster that is not http(s) is dropped.
+
+### Measured, each a wrong turn first
+
+- **A state under Continue watching had no room for its button.** Recording `home-offline-continue-focus-retry` showed Retry
+  squeezed to an empty ring: what is left under the rail is about 216dp and the offline state needs more. The state now keeps
+  that as a floor and grows, and the page moves by the least that shows its button when it takes focus. Without Continue
+  watching nothing changed, and the six `KMP-37` references re-recorded byte-identical.
+- **Coming back by the nav rail left focus on the source control.** `TvHomeNavigationTest` read `Source · Fake One`: the window
+  gives a rebuilt view's focus to its first stop before the rows can take it. A rebuilt view now lands once, as the first open
+  does; anything that takes focus first, a return included, is that landing.
+- **The hero's page may not be asked for at all.** `APIRepository` keeps a title's page for 10 minutes across the process, so
+  the second test to open a source's home asked for nothing. The `:app` cases assert at most one request.
+- **Down from a Continue watching card** lands on the poster under its middle (see Focus). Up from a centred state's button
+  lands on the card above its middle.
+- A Continue card measures 150.99dp tall, not 152, on `Television_720p`: five bands each rounded to a pixel at 1.33125.
+
+### Tested
+
+`HomeScreenTvDeviceTest` 47 on `Television_720p` (22 new): the hero present with its facts at the board's y, a hero with no
+facts, no hero, Continue watching with one entry and with twelve, a position of 0 and of half by pixel colour, progress on a rail
+card by pixel colour, long titles in the hero and on a card, offline with Continue watching above the state, a walk from the hero
+through every rail with no dead ends or traps, and focus back on a Continue card, on the hero, and on the hero when the entry has
+gone. Three screenshot cases: `home-hero-focus-button`, `home-continue-focus-card`, `home-offline-continue-focus-retry`.
+`TvHomeNavigationTest` 14 (1 new, through real navigation and the player's real keys: a played title is on Continue watching,
+opens its real `ResultFragmentTv` page, and Back puts focus back on it); its other cases now land on the hero.
+`TvRailNavigationTest` and `LibraryTvNavigationTest` unchanged and passing. JVM: `HomeViewModelTest` 42 (8 new),
+`AndroidHomeSourceTest` 20 (3 new), `LibraryHomeHistoryTest` 6, `AndroidLibraryStoreTest` 13 unchanged.
+
+**Each critical test was shown failing,** in one control run with six mutations together (14 of 47 red): the hero not landed,
+Continue watching dropped when there are no rows, no progress on rail cards, no wall at the rail's end, and a card drawn full
+whatever its progress. Returning to a Continue card was hidden behind the first, so it was shown alone: `expected Resume 6 but
+was More info · The Long Dark`. Every file was restored and the real run replaced that XML.
+
+**Screenshots.** After `#156` merged, eight Home references differed and each diff was looked at against git first: five by 130
+pixels, only the Profile glyph, which is now `muted` at rest and `ink` focused, as the boards draw it (a reviewer's finding); the
+hero, Continue watching and offline cases also by `#156`'s badges, icon tile and secondary text colour. Re-recorded, the eight
+are pixel-identical to the images looked at, and a compare run read 0 pixels different in all nine.
+
+### Not verified
+
+A real plugin's hero (the `:app` fakes answer with a title only); a real remote; real poster loading on a Continue card; a
+download's resume record (`isFromDownload`, which the old home plays directly; here it opens the page like any other); an account
+switch re-reading the list; right-to-left; the 6 s hero wait against a slow source.
+
+### Published API
+
+Additions only: 60 lines in `app/api/classes-jar.api`, all under `com/lagradost/cloudstream4/home/` and `/library/`, none removed
+or changed. A first dump had one changed line, a synthetic accessor of a private helper given a default parameter; the helper
+was put back and the synopsis given its own.
+
+### Found, not changed
+
+```
+Found: `focusRestorer`-style default entry, measured again: a rebuilt view's first stop takes focus before the page can place it
+Suggest: nothing more here; noted because every page with a chrome row will meet it (search's and the library's do)
+Why: `KMP-34`'s `LibraryFocusMemory` and this page's landing both work around the same window behaviour
+```

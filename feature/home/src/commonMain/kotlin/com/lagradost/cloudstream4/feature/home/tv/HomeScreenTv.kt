@@ -128,6 +128,9 @@ fun HomeScreenTv(
     var focusTarget by remember { mutableStateOf<HomeFocusTarget?>(null) }
     var screenHasFocus by remember { mutableStateOf(false) }
     var continueHasFocus by remember { mutableStateOf(false) }
+    // A view built again, coming back by the nav rail, lands once as the first open does. Measured in `:app`: the window
+    // gives a rebuilt view's focus to its first stop, the source control, before the rows can, and it stayed there.
+    var landingInView by remember { mutableStateOf(true) }
     val hasRows = rows.isNotEmpty()
     // Only beside the rows it came from: a page that failed or went offline has no hero, whatever was found before.
     val hero = (state.hero as? HomeHero.Shown)?.takeIf { hasRows }
@@ -163,11 +166,14 @@ fun HomeScreenTv(
         if (!hasRows || !state.appeared || returnTo != null || !heroSettled) return@LaunchedEffect
         // After a frame, so that a button these rows replaced has given focus up.
         withFrameNanos { }
-        val free = (state.landingOwed || !screenHasFocus) && !continueHasFocus
+        val free = (state.landingOwed || landingInView || !screenHasFocus) && !continueHasFocus
         if (free && !state.pickerOpen && mayTakeFocus()) focusTarget = landingTarget(hero, resume, rows)
+        landingInView = false
         if (state.landingOwed) onAction(HomeAction.LandingHandled)
     }
     val onFocusTaken: () -> Unit = {
+        // Whatever took it, a return included, is this view's landing.
+        landingInView = false
         focusTarget = null
         if (returnTo != null) onAction(HomeAction.ReturnHandled)
     }
