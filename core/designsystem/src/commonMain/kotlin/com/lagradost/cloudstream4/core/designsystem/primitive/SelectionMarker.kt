@@ -23,7 +23,8 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 
 /**
  * The leading marker cell of a list row: a [CloudStreamDimens.ListRowMarkerWidth] (4dp) cell
- * carrying a [SelectionMarkerDefaults.RuleWidth] (2dp) rule when the row is selected.
+ * carrying a [SelectionMarkerDefaults.RuleWidth] (4dp) by [SelectionMarkerDefaults.RuleHeight]
+ * (24dp) rounded mark when the row is selected.
  *
  * ## Why the cell is 4dp, and why it is always there
  *
@@ -38,15 +39,17 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
  * rest of the row 4dp sideways on every focus change. If you find yourself wrapping this in an
  * `if (selected)`, that is the bug.
  *
- * The rule is 2dp wide — a stroke weight, exempt from the step in its own axis, the same
- * exemption [CloudStreamDimens.Hairline] and [ProgressRuleDefaults.Thickness] take. It is centred
- * in the 4dp cell by the layout, so no off-step number is ever written.
+ * ## The mark fills the cell, and is 24dp tall
  *
- * ## Height
+ * Every board draws it the same way: `.lmark { width: 8px; height: 48px; border-radius: 4px }`
+ * (`TV Search` 4d and the other list-row boards), and `Design System v2` says *"The marker cell is 8
+ * wide, not 4"*. Halved, that is a 4dp by 24dp mark with fully rounded ends, centred in the row. Until
+ * `DS-15` this drew a 2dp square-ended rule the full 32dp of the row's content box, which is what the
+ * design review measured off the emulator.
  *
- * The marker fills the height it is given, so it belongs in a row of fixed height — a
- * [CloudStreamDimens.ListRowHeight] row. To draw a shorter tick, inset it with
- * `Modifier.padding(vertical = …)` using an on-step value rather than giving it a fixed height.
+ * Both numbers are on the 4dp step, so the mark needs no stroke exemption. The cell keeps the row's
+ * height and centres the mark in it, so it belongs in a row of fixed height — a
+ * [CloudStreamDimens.ListRowHeight] row.
  *
  * ```kotlin
  * Row(Modifier.height(CloudStreamDimens.ListRowHeight).padding(CloudStreamDimens.ListRowPadding)) {
@@ -76,7 +79,7 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
  * @param modifier applied before the cell's own sizing.
  * @param color the rule colour. `muted` is the design's selection ink; see above before changing
  *   it at a call site.
- * @param ruleWidth the stroke weight of the rule. See [SelectionMarkerDefaults.RuleWidth].
+ * @param ruleWidth the mark's width. See [SelectionMarkerDefaults.RuleWidth].
  */
 @Composable
 fun SelectionMarker(
@@ -90,7 +93,11 @@ fun SelectionMarker(
         contentAlignment = Alignment.Center,
     ) {
         if (selected) {
-            Box(modifier = Modifier.width(ruleWidth).fillMaxHeight().background(color))
+            Box(
+                modifier = Modifier
+                    .size(width = ruleWidth, height = SelectionMarkerDefaults.RuleHeight)
+                    .background(color, CloudStreamTheme.shapes.pill),
+            )
         }
     }
 }
@@ -102,13 +109,16 @@ fun SelectionMarker(
 object SelectionMarkerDefaults {
 
     /**
-     * Width of the rule inside the cell, 4px on the artboard. **Should become
-     * `CloudStreamDimens.SelectionMarkerRuleWidth`, documented beside
-     * [CloudStreamDimens.Hairline] as a stroke weight** — it is off the 4dp step for that reason
-     * and no other. Numerically equal to [ProgressRuleDefaults.Thickness]; the two are separate
-     * because one is a selection affordance and one is playback state.
+     * Width of the mark: the whole cell, `.lmark`'s 8px. Mirrors
+     * [CloudStreamDimens.ListRowMarkerWidth]; it was 2dp, a stroke, until `DS-15`.
      */
-    val RuleWidth: Dp = 2.dp
+    val RuleWidth: Dp = 4.dp
+
+    /**
+     * Height of the mark, `.lmark`'s 48px, centred in the row. Numerically equal to
+     * [CloudStreamDimens.ListRowDiscSize], with a different meaning, so it is not that token.
+     */
+    val RuleHeight: Dp = 24.dp
 }
 
 @Preview
