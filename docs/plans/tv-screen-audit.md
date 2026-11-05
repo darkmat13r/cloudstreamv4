@@ -22,9 +22,9 @@ Static read only. I ran no Gradle, emulator or device, so "exists" means the sou
 | `DK/` | `WT/desktopApp/src/jvmMain/kotlin/com/lagradost/cloudstream4/` |
 | `API` | `WT/app/api/classes-jar.api` |
 | `H` / `P` / `K` / `HO` | `WT/docs/plans/screen-implementation-handover.md`, `WT/docs/plans/kmp-migration.md`, `WT/docs/tasks/kmp.md`, `WT/docs/HANDOVER.md` |
-| Designs | `/Volumes/Projects/CloudStream/app/design/<name>.dc.html` |
+| Designs | `design/ in your own worktree, from master, <name>.dc.html` |
 
-`design/` is present and tracked in the worktree (13 files). The 9 authoritative files are byte-identical to `app/design/`. Only `TV Screens` differs, and it is superseded.
+`design/` is tracked on master, and **master's copy is the one to build from**, because it carries the `DEC-17` corrections (#135, #136). The untracked `design/` in the primary checkout is an older copy from 2026-10-14.
 
 ## Headline facts
 
