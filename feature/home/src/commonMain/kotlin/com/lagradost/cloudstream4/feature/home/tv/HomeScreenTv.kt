@@ -241,7 +241,11 @@ fun HomeScreenTv(
                 if (item != null) {
                     val overflow = item.offset + above + item.size - (info.viewportSize.height - band)
                     val chromeOnScreen = chrome?.let { it.offset + above + it.size } ?: 0f
-                    if (overflow > 0f) scope.launch { list.animateScrollBy(maxOf(overflow, chromeOnScreen.toFloat())) }
+                    // A state sized to exactly what is left can come out a pixel or two over, from the bands above each
+                    // rounding to whole pixels (measured under the bookmarks, which then moved the chrome off for nothing).
+                    if (overflow > ROUNDING_PX) {
+                        scope.launch { list.animateScrollBy(maxOf(overflow, chromeOnScreen.toFloat())) }
+                    }
                 }
             }
             val promptModifier = if (hasLocalRails) {
@@ -793,6 +797,9 @@ private const val BOOKMARKS_KEY = "bookmarks"
 private const val RELOAD_CELL = "reload"
 private const val RANDOM_CELL = "random"
 private const val SEARCH_CELL = "search"
+
+/** What the bands above a state can add up to in pixel rounding: under this a state fits. */
+private const val ROUNDING_PX = 2f
 private const val STATE_KEY = "state"
 private const val STATE_ROOM_KEY = "state/room"
 private const val SKELETON_RAILS = 3
