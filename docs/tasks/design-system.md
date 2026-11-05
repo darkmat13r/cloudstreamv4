@@ -551,8 +551,8 @@ The owner asked on 2026-11-05 for the bookmarks row and its filter, a Random but
 on a card, and a manual reload. No board drew them. `design/TV Home Extras.dc.html` holds nine artboards, numbered on from 3d,
 redrawn the same day to the owner's rulings: hold OK plus the Menu key reach the panel; Random is not a Home source, and
 `None` alone remains, while the Random button stays, always shown; search is in the top bar only; a failed reload shows the
-error page (3m); Subscribe is in the panel; and the token wins for list rows and rings. The primary button stays white at rest, as `Components` defines it. Its
-closing note gives each board's focus order, states and prerequisites by file and line. 429 boxes: 0 off-grid, 0 band
+error page (3m); Subscribe is in the panel; the token wins for list rows and rings; a failed reload keeps Continue watching and Bookmarks above the error (3m); icon rings sit on the visible 48 px tile, and `IconCell` in Compose is to be changed to match. The primary button stays white at rest, as `Components` defines it. Its
+closing note gives each board's focus order, states and prerequisites by file and line. 464 boxes: 0 off-grid, 0 band
 violations, 0 clipped, 0 collisions, 9 rings at 4px gap and 4px stroke on all four sides, from `getBoundingClientRect` and
 again from the pixels.
 

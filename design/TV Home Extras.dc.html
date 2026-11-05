@@ -222,7 +222,7 @@
           and a manual reload. Redrawn the same day to the owner’s rulings, listed first in the note. <b>Nothing here is built, and nothing here has a seam yet.</b> Every board was read
           from the old code first, and the closing note lists what each one needs, by file and line.
           Boards continue from 3d, in this file because <code>TV Home</code> was being edited. Measured in
-          Chromium with fonts loaded, across <b>429 boxes</b> including every text box: <b>0 off-grid, 0 band
+          Chromium with fonts loaded, across <b>464 boxes</b> including every text box: <b>0 off-grid, 0 band
           violations, 0 clipped, 0 collisions, 9 rings all 4px at 4px offset</b>, one focus owner per board, and
           one peek row, on 3e.
         </p>
@@ -619,7 +619,7 @@
           <div class="shot" id="3m">
             <div class="shotl">
               <span class="shotn">3m · TV Home Extras — a reload that failed</span>
-              <span>As ruled, a failed reload shows the error page: the built state, below the chrome. Reload and Random go with the rows they act on, and the state’s own Try again takes focus. Search stays, because the source can still be searched.</span>
+              <span>As ruled, a failed reload shows the error where the source’s rails were, and Continue watching and Bookmarks stay above it, as offline does on 3g. Try again takes focus, so the page scrolls to it: the chrome is above, out of view.</span>
             </div>
             <div class="shotc">
               <div class="tv" data-screen-label="TV Home Extras — reload failed">
@@ -629,16 +629,36 @@
                     <div class="nic {{ n.cls }}"><span class="gl"></span></div>
                   </sc-for>
                 </div>
-                <div class="clock abs" style="left:200px;top:88px;width:200px">{{ clock }}</div>
-                <div class="srcpill abs" style="left:1304px;top:72px"><div class="srcn">{{ sourceName }}</div><span class="gl2"></span></div>
-                <div class="ibx abs" style="left:1648px;top:56px"><span class="ivis"><span class="gl2"></span></span></div>
-                <div class="ibx abs" style="left:1768px;top:56px"><span class="avatar"></span></div>
 
-                <span class="hollow abs" style="left:1024px;top:448px"></span>
-                <div class="svh abs" style="left:200px;top:480px;width:1664px">{{ errorHead }}</div>
-                <div class="svb abs" style="left:200px;top:544px;width:1664px">{{ errorBody }}</div>
-                <div class="nd abs" style="left:200px;top:592px;width:1664px;text-align:center">{{ errorDetail }}</div>
-                <div class="bbtn foc abs" style="left:888px;top:656px;width:288px"><div>{{ tryAgain }}</div></div>
+                <div class="rhd abs" style="left:200px;top:56px;width:1664px"><div class="rt">{{ contTitle }}</div></div>
+                <div class="row abs" style="left:200px;top:144px">
+                  <sc-for list="{{ cont }}" as="c" hint-placeholder-count="4">
+                    <div class="cw">
+                      <div class="art cwa"></div>
+                      <div class="pbar"><i class="pf" style="{{ c.bar }}"></i></div>
+                      <div class="ct">{{ c.t }}</div>
+                      <div class="cs">{{ c.s }}</div>
+                    </div>
+                  </sc-for>
+                </div>
+                <div class="chiprow abs" style="left:200px;top:472px">
+                  <div class="rtb">{{ bookmarksTitle }}</div>
+                  <sc-for list="{{ chipsRest }}" as="c" hint-placeholder-count="5">
+                    <div class="chip {{ c.cls }}"><span class="mk"></span><div>{{ c.l }}</div></div>
+                  </sc-for>
+                </div>
+                <div class="row abs" style="left:200px;top:600px">
+                  <sc-for list="{{ marksRest }}" as="p" hint-placeholder-count="9">
+                    <div class="ps"><div class="art psa"></div></div>
+                  </sc-for>
+                </div>
+
+                <div class="slot notice abs" style="left:200px;top:864px;width:1664px;box-sizing:border-box;padding:0 24px 0 32px">
+                  <span class="hollow"></span>
+                  <div class="nh">{{ errorBody }}</div>
+                  <div class="nd">{{ errorDetail }}</div>
+                  <div class="bbtn foc" style="width:288px;margin-left:auto;flex:none"><div>{{ tryAgain }}</div></div>
+                </div>
               </div>
             </div>
           </div>
@@ -654,7 +674,10 @@
           the error page,</b> now 3m, not the kept rows. <b>5 · Subscribe</b> is in 3k, inside the band, and 3l
           matches. <b>6 · The token wins</b> for list rows (16) and rings (4 at 4, on the visible control).
           <b>7 · The primary button is white at rest,</b> as <code>Components</code> defines it; “white means
-          focus only” governs selection markers, not the primary. 3j’s Resume matches 3c.</p>
+          focus only” governs selection markers, not the primary. 3j’s Resume matches 3c. <b>8 · A failed reload
+          keeps Continue watching and Bookmarks</b> above the error, as offline does (3m, 3g). <b>9 · Icon rings</b>
+          sit evenly on the visible 48 tile, not on the cell, as for chips. <code>IconCell</code> in Compose will
+          be changed to match: today it has no tile and rings its 48 dp cell.</p>
 
           <h3>How a remote reaches the details panel (3k)</h3>
           <p><b>Hold OK</b> on a card, as the old TV page did (<code>SearchResultBuilder.kt:231</code>), or
@@ -778,14 +801,17 @@
           no backdrop. Reason words <code>plugin_load_fail</code> exist; the headline is new.</p>
 
           <h3>3m · Reload failed</h3>
-          <p><b>Focus.</b> Try again takes it, as the state’s own button does in the built page. UP reaches
-          Search and the source control. <b>States.</b> Error here: the page below the chrome is the built
-          <code>StateView</code>, with the source named, the detail line a person can paste into a report,
-          and a hollow neutral marker. Try again shows the loading skeleton, then content or this page again.
-          Reload and Random are absent because nothing is loaded. <b>Prerequisites.</b> This is what
-          <code>HomeStatus.Failed</code> already draws (<code>HomeMvi.kt:105</code>, <code>HomeCopy.kt:98-106</code>),
-          reached from a reload. Words: <code>source_error</code>, <code>plugin_load_fail</code> and
-          <code>search_state_retry</code> exist.</p>
+          <p><b>Focus.</b> Try again takes it when the failure lands, as the state’s own button does in the built
+          page, and the page scrolls so the error is in view; the chrome sits above, out of view. UP reaches the
+          Bookmarks cards, then the chips, then Continue watching, then the chrome, where Search and the source
+          control still work. <b>States.</b> Error here, in the band the source’s rails held: a 96 row with a
+          hollow neutral marker, what failed, the detail line a person can paste into a report, and Try again.
+          Try again shows the source’s skeleton rails beneath the kept rows, then content or this band again.
+          Reload and Random are absent because the source has no rows. With neither local rail present it is the
+          built full-page error. <b>Prerequisites.</b> As 3g: the local rails must live outside
+          <code>HomeStatus.Failed</code>, which today replaces the page (<code>HomeMvi.kt:105</code>,
+          <code>HomeCopy.kt:98-106</code>, <code>HomeScreenTv.kt:194-196</code>). Words:
+          <code>plugin_load_fail</code>, <code>source_error</code> and <code>search_state_retry</code> exist.</p>
 
           <h3>What the measuring caught</h3>
           <p>The scanner’s first run said zero, and it was wrong. Bound text sits in an inline span, so the
@@ -796,13 +822,9 @@
           measured ink. Every ring was then read again from the pixels: gap and stroke on all four sides.</p>
 
           <h3>Where these boards clash with others, for the owner</h3>
-          <p><b>Error with local rows.</b> 3g keeps the bookmarks rail
-          offline; 3m, as ruled, shows the error page alone. If Continue watching or bookmarks should stay
-          above it as on 3g, that is one more ruling. <b>Random “always shown”.</b> Read as: no setting in front of it. With nothing loaded it has
+          <p><b>Random “always shown”.</b> Read as: no setting in front of it. With nothing loaded it has
           nothing to pick from, so 3g, 3i and 3m leave it out. If it should show there too, it needs a rule for
-          what it does. <b>Icon rings.</b> The ring sits on the 48 tile; Compose’s
-          <code>IconCell</code> has no tile and rings its cell, which <code>DS-12</code> left unruled.
-          <b>List rows</b> are 16, which other boards still draw at 8. <b>Continue</b> draws four cards so
+          what it does. <b>List rows</b> are 16, which other boards still draw at 8. <b>Continue</b> draws four cards so
           none crosses the band. Line references to <code>feature/home</code> and <code>cloudstream4/home</code>
           files (<code>HomeContracts</code>, <code>HomeMvi</code>, <code>HomeCopy</code>, <code>HomeScreenTv</code>,
           <code>HomeRailTv</code>, <code>HomeSourcePanelTv</code>, <code>DataStoreHomeSourceMemory</code>) are
@@ -884,7 +906,7 @@
             offlinePrompt: "vidsrc needs a connection", offlineBody: "Your bookmarks are saved on this device.", tryAgain: "Try again",
             sourcesTitle: "Sources", sourcesMeta: "14 SOURCES AND NONE · APPLIES AT ONCE", sourceRows: sourceRows,
             clock: "22:14", contTitle: "Continue watching", popularTitle: "Popular movies", showsTitle: "TV shows", latestTitle: "Latest",
-            errorHead: "Source error", errorBody: "Could not load vidsrc", errorDetail: "HTTP 503 · RELOAD FAILED",
+            errorHead: "Source error", errorBody: "Could not load vidsrc", errorDetail: "SOURCE ERROR · HTTP 503 · RELOAD FAILED",
             heroSource: "VIDSRC", heroTitle: "The Long Dark", heroMeta: "2026 · 2 SEASONS · 24 EP · SCI-FI · THRILLER", heroRate: "8.7",
             heroSyn: "A salvage crew wakes from cryo to find the relay station empty and the logs erased.",
             heroResume: "Resume S2 E4", heroTrailer: "Watch trailer", heroLibrary: "+ Library", heroCount: "1 / 12",
