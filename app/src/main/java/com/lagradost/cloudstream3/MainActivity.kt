@@ -180,6 +180,8 @@ import com.lagradost.cloudstream3.utils.setText
 import com.lagradost.cloudstream3.utils.setTextHtml
 import com.lagradost.cloudstream3.utils.txt
 import com.lagradost.safefile.SafeFile
+import com.lagradost.cloudstream4.home.TvHomeFragmentFactory
+import com.lagradost.cloudstream4.home.TvHomeSwitch
 import com.lagradost.cloudstream4.library.openLibraryOnTvScreen
 import com.lagradost.cloudstream4.search.openSearchOnTvScreen
 import com.lagradost.cloudstream4.shell.TvRail
@@ -1215,6 +1217,10 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
         enableEdgeToEdgeCompat()
         setNavigationBarColorCompat(R.attr.primaryGrayBackground)
         updateLocale()
+        // KMP-37: TV opens the new home screen. TvHomeSwitch is the rollback. Before super.onCreate, which is where a
+        // restored process brings its fragments back, so the layout has to be known here too.
+        updateTv()
+        if (isLayout(TV) && TvHomeSwitch.useComposeHome) supportFragmentManager.fragmentFactory = TvHomeFragmentFactory
         super.onCreate(savedInstanceState)
         try {
             if (isCastApiAvailable()) {
@@ -1777,6 +1783,14 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
 
                 navProfileCard?.setOnClickListener {
                     showAccountSelectLinear()
+                }
+
+                // KMP-37: building this view model subscribes it to plugin loads, and it fetches the whole home page each
+                // time. With `HomeTvFragment` on screen that would be every section twice, for a footer the Compose rail
+                // does not show.
+                if (isLayout(TV) && TvHomeSwitch.useComposeHome) {
+                    navProfileRoot.isGone = true
+                    return@apply
                 }
 
                 val homeViewModel =
