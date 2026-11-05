@@ -34,7 +34,7 @@
 <string name="downloads_load_failed_body">"Il-fajls imniżżla tiegħek ma nbidlux."</string>
 <string name="downloads_load_failed_headline">"Ma setax jinqara t-tniżżil tiegħek"</string>
 <string name="downloads_offline_pill">"Offline · l-ebda konnessjoni"</string>
-<string name="downloads_play_from_url">"Indaqq minn URL"</string>
+<string name="downloads_play_from_link">"Indaqq minn ħolqa"</string>
 <string name="downloads_select">"Agħżel"</string>
 <string name="downloads_storage_full_headline">"M'hemmx biżżejjed ħażna"</string>
 <string name="downloads_storage_legend" formatted="true">"%1$s minn %2$s użati · %3$s fit-tniżżil"</string>

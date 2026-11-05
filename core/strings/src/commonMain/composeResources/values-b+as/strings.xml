@@ -180,7 +180,7 @@
 <string name="downloads_load_failed_body">আপোনাৰ ডাউনলোড কৰা ফাইলসমূহ সলনি কৰা হোৱা নাই।</string>
 <string name="downloads_load_failed_headline">আপোনাৰ ডাউনলোডসমূহ পঢ়িব নোৱাৰিলোঁ</string>
 <string name="downloads_offline_pill">অফলাইন · সংযোগ নাই</string>
-<string name="downloads_play_from_url">URLৰ পৰা প্লে কৰক</string>
+<string name="downloads_play_from_link">লিংকৰ পৰা প্লে কৰক</string>
 <string name="downloads_select">বাছক</string>
 <string name="downloads_storage_full_headline">পৰ্যাপ্ত সংৰক্ষণ নাই</string>
 <string name="downloads_storage_legend">%1$s / %2$s ব্যৱহৃত · ডাউনলোডত %3$s</string>

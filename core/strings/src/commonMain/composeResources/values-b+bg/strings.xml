@@ -201,7 +201,7 @@
 <string name="downloads_load_failed_body">Изтеглените ви файлове не са променени.</string>
 <string name="downloads_load_failed_headline">Изтеглянията ви не можаха да се прочетат</string>
 <string name="downloads_offline_pill">Офлайн · няма връзка</string>
-<string name="downloads_play_from_url">Пускане от URL</string>
+<string name="downloads_play_from_link">Пускане от връзка</string>
 <string name="downloads_select">Избиране</string>
 <string name="downloads_storage_full_headline">Няма достатъчно памет</string>
 <string name="downloads_storage_legend">%1$s от %2$s използвани · %3$s в изтегляния</string>

@@ -185,7 +185,7 @@
 <string name="downloads_load_failed_body">"Je gedownloade bestanden zijn niet gewijzigd."</string>
 <string name="downloads_load_failed_headline">"Kon je downloads niet lezen"</string>
 <string name="downloads_offline_pill">"Offline · geen verbinding"</string>
-<string name="downloads_play_from_url">"Afspelen vanaf URL"</string>
+<string name="downloads_play_from_link">"Afspelen vanaf link"</string>
 <string name="downloads_select">"Selecteren"</string>
 <string name="downloads_storage_full_headline">"Niet genoeg opslag"</string>
 <string name="downloads_storage_legend" formatted="true">"%1$s van %2$s gebruikt · %3$s in downloads"</string>

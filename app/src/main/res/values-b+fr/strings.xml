@@ -205,7 +205,7 @@
 <string name="downloads_load_failed_body">"Vos fichiers téléchargés n'ont pas été modifiés."</string>
 <string name="downloads_load_failed_headline">"Impossible de lire vos téléchargements"</string>
 <string name="downloads_offline_pill">"Hors-ligne · pas de connexion"</string>
-<string name="downloads_play_from_url">"Lire depuis une URL"</string>
+<string name="downloads_play_from_link">"Lire depuis un lien"</string>
 <string name="downloads_select">"Sélectionner"</string>
 <string name="downloads_storage_full_headline">"Stockage insuffisant"</string>
 <string name="downloads_storage_legend" formatted="true">"%1$s sur %2$s utilisés · %3$s en téléchargements"</string>

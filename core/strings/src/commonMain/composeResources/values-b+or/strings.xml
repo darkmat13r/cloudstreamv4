@@ -42,7 +42,7 @@
 <string name="downloads_load_failed_body">ଆପଣଙ୍କ ଡାଉନଲୋଡ୍ ହୋଇଥିବା ଫାଇଲଗୁଡ଼ିକ ବଦଳାଯାଇନାହିଁ।</string>
 <string name="downloads_load_failed_headline">ଆପଣଙ୍କ ଡାଉନଲୋଡ୍ ପଢ଼ିହେଲା ନାହିଁ</string>
 <string name="downloads_offline_pill">ଅଫଲାଇନ୍ · ସଂଯୋଗ ନାହିଁ</string>
-<string name="downloads_play_from_url">URLରୁ ଚଲାଅ</string>
+<string name="downloads_play_from_link">ଲିଙ୍କରୁ ଚଲାଅ</string>
 <string name="downloads_select">ବାଛ</string>
 <string name="downloads_storage_full_headline">ପର୍ଯ୍ୟାପ୍ତ ଷ୍ଟୋରେଜ୍ ନାହିଁ</string>
 <string name="downloads_storage_legend">%1$s / %2$s ଵ୍ୟଵହୃତ · ଡାଉନଲୋଡରେ %3$s</string>

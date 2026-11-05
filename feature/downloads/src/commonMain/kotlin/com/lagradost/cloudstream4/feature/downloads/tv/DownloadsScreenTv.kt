@@ -50,7 +50,8 @@ import com.lagradost.cloudstream4.core.designsystem.target.GhostTextButton
 import com.lagradost.cloudstream4.core.strings.UiString
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.cancel
-import com.lagradost.cloudstream4.core.strings.generated.resources.delete_format
+import com.lagradost.cloudstream4.core.strings.generated.resources.delete
+import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_delete_chosen
 import com.lagradost.cloudstream4.core.strings.generated.resources.deselect_all
 import com.lagradost.cloudstream4.core.strings.generated.resources.download_queue
 import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_browse_library
@@ -61,7 +62,7 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_fre
 import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_load_failed_body
 import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_load_failed_headline
 import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_offline_pill
-import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_play_from_url
+import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_play_from_link
 import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_queued
 import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_select
 import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_storage_full_headline
@@ -273,7 +274,7 @@ private fun DownloadsChromeRow(
         when {
             buttonsOnTop -> {
                 GhostTextButton(
-                    label = stringResource(Res.string.downloads_play_from_url),
+                    label = stringResource(Res.string.downloads_play_from_link),
                     onClick = { onAction(DownloadsAction.PlayFromUrlRequested) },
                     modifier = Modifier.downloadsStop(focus.playFromUrl, memory),
                 )
@@ -338,7 +339,7 @@ private fun DownloadChips(
             count = if (state.queue.total > 0) queueCount(state) else null,
         )
         Chip(
-            label = stringResource(Res.string.downloads_play_from_url),
+            label = stringResource(Res.string.downloads_play_from_link),
             selected = false,
             onClick = { onAction(DownloadsAction.PlayFromUrlRequested) },
             modifier = Modifier.downloadsStop(focus.playFromUrl, memory),
@@ -388,7 +389,10 @@ private fun SelectionChips(
             )
         } else {
             Chip(
-                label = UiString.Resource(Res.string.delete_format, listOf(chosen.size, formatBytes(state.selectedBytes))).resolve(),
+                label = UiString.Resource(
+                    Res.string.downloads_delete_chosen,
+                    listOf(stringResource(Res.string.delete), chosen.size, formatBytes(state.selectedBytes)),
+                ).resolve(),
                 selected = false,
                 onClick = { onAction(DownloadsAction.DeleteSelected) },
                 modifier = Modifier.downloadsStop(focus.delete, memory),

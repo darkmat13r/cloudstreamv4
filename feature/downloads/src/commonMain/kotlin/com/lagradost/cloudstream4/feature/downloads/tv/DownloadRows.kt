@@ -1,21 +1,29 @@
 package com.lagradost.cloudstream4.feature.downloads.tv
 
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.gestures.LocalBringIntoViewSpec
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.graphics.drawscope.clipRect
+import androidx.compose.ui.platform.LocalDensity
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIconSize
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
@@ -28,13 +36,14 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.download_failed
 import com.lagradost.cloudstream4.core.strings.generated.resources.download_paused
 import com.lagradost.cloudstream4.core.strings.generated.resources.download_size_format
+import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_film_subtitle
+import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_series_subtitle
 import com.lagradost.cloudstream4.core.strings.generated.resources.episodes
-import com.lagradost.cloudstream4.core.strings.generated.resources.extra_info_format
 import com.lagradost.cloudstream4.core.strings.generated.resources.movies_singular
 import com.lagradost.cloudstream4.core.strings.generated.resources.player_source_retry
 import com.lagradost.cloudstream4.core.strings.generated.resources.popup_resume_download
-import com.lagradost.cloudstream4.core.strings.generated.resources.storage_size_format
 import com.lagradost.cloudstream4.core.strings.resolve
+import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.downloads.DownloadTitle
 import com.lagradost.cloudstream4.feature.downloads.DownloadTitleKind
@@ -49,8 +58,11 @@ import org.jetbrains.compose.resources.stringResource
  * 6c's rows: 96px tall at a 120px pitch, six on the artboard with the seventh peeking below, and Down from the
  * last one scrolls the next up. A title in flight stays where its name puts it rather than jumping to the top.
  *
- * The list carries its inset as content padding, because an outer `padding` would clip a ring.
+ * The list carries its inset as content padding, because an outer `padding` would clip a ring. A row can only sit a whole
+ * pitch above the first row's line, where its foot would show in the gap under the band, so drawing starts below that foot.
+ * The ring is well inside what is left.
  */
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 internal fun DownloadRows(
     titles: List<DownloadTitle>,
@@ -73,30 +85,46 @@ internal fun DownloadRows(
         if (listState.layoutInfo.visibleItemsInfo.none { it.index == index }) listState.scrollToItem(index)
     }
 
-    LazyColumn(
-        modifier = modifier,
-        state = listState,
-        contentPadding = PaddingValues(
-            start = DownloadsScreenTvDefaults.ContentInsetStart,
-            end = DownloadsScreenTvDefaults.ContentInsetEnd,
-            top = DownloadsScreenTvDefaults.BandToRowGap,
-            bottom = DownloadsScreenTvDefaults.ListBottomInset,
-        ),
-        verticalArrangement = Arrangement.spacedBy(DownloadsScreenTvDefaults.RowGap),
-    ) {
-        items(items = titles, key = { it.id.value }) { title ->
-            DownloadTitleRow(
-                title = title,
-                choosing = state.selection != null,
-                chosen = state.selection.orEmpty().contains(title.id),
-                focus = focus,
-                memory = memory,
-                takeFocus = returnTo?.ready == true && returning == title.id,
-                onFocusTaken = { onAction(DownloadsAction.ReturnHandled) },
-                onOpen = { onAction(DownloadsAction.TitleActivated(title.id, listState.firstVisibleItemIndex)) },
-                onResume = { onAction(DownloadsAction.ResumeTitle(title.id)) },
-                formatBytes = formatBytes,
-            )
+    val density = LocalDensity.current
+    val top = with(density) { DownloadsScreenTvDefaults.BandToRowGap.roundToPx() }
+    val end = with(density) { DownloadsScreenTvDefaults.ListBottomInset.roundToPx() }
+    val gap = with(density) { DownloadsScreenTvDefaults.RowGap.roundToPx() }
+    // The same rounding `spacedBy` and the row's own height get, so a pitch here is a pitch on screen.
+    val pitch = with(density) { CloudStreamDimens.ListRowHeight.roundToPx() } + gap
+    val scrollSpec = remember(top, end, pitch) {
+        DownloadsRowScrollSpec(top.toFloat(), end.toFloat(), pitch.toFloat())
+    }
+    BoxWithConstraints(modifier) {
+        val endPadding = DownloadsRowScroll.listEndPadding(constraints.maxHeight, titles.size, top, end, pitch, gap)
+        CompositionLocalProvider(LocalBringIntoViewSpec provides scrollSpec) {
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .drawWithContent { clipRect(top = (top - gap).toFloat()) { this@drawWithContent.drawContent() } },
+                state = listState,
+                contentPadding = PaddingValues(
+                    start = DownloadsScreenTvDefaults.ContentInsetStart,
+                    end = DownloadsScreenTvDefaults.ContentInsetEnd,
+                    top = DownloadsScreenTvDefaults.BandToRowGap,
+                    bottom = with(density) { endPadding.toDp() },
+                ),
+                verticalArrangement = Arrangement.spacedBy(DownloadsScreenTvDefaults.RowGap),
+            ) {
+                items(items = titles, key = { it.id.value }) { title ->
+                    DownloadTitleRow(
+                        title = title,
+                        choosing = state.selection != null,
+                        chosen = state.selection.orEmpty().contains(title.id),
+                        focus = focus,
+                        memory = memory,
+                        takeFocus = returnTo?.ready == true && returning == title.id,
+                        onFocusTaken = { onAction(DownloadsAction.ReturnHandled) },
+                        onOpen = { onAction(DownloadsAction.TitleActivated(title.id, listState.firstVisibleItemIndex)) },
+                        onResume = { onAction(DownloadsAction.ResumeTitle(title.id)) },
+                        formatBytes = formatBytes,
+                    )
+                }
+            }
         }
     }
 }
@@ -185,9 +213,9 @@ private fun rowState(title: DownloadTitle, chosen: Boolean, formatBytes: (Long) 
     }
     val subtitle = when (title.kind) {
         DownloadTitleKind.Film ->
-            UiString.Resource(Res.string.storage_size_format, listOf(stringResource(Res.string.movies_singular), size)).resolve()
+            UiString.Resource(Res.string.downloads_film_subtitle, listOf(stringResource(Res.string.movies_singular), size)).resolve()
 
-        DownloadTitleKind.Series -> UiString.Resource(Res.string.extra_info_format, listOf(title.episodes,
+        DownloadTitleKind.Series -> UiString.Resource(Res.string.downloads_series_subtitle, listOf(title.episodes,
             pluralStringResource(Res.plurals.episodes, title.episodes),
             size)).resolve()
     }

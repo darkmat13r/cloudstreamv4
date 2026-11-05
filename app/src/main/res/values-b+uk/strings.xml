@@ -205,7 +205,7 @@
 <string name="downloads_load_failed_body">"Ваші завантажені файли не змінено."</string>
 <string name="downloads_load_failed_headline">"Не вдалося прочитати завантаження"</string>
 <string name="downloads_offline_pill">"Поза мережею · немає з'єднання"</string>
-<string name="downloads_play_from_url">"Відтворити з URL"</string>
+<string name="downloads_play_from_link">"Відтворити за посиланням"</string>
 <string name="downloads_select">"Обрати"</string>
 <string name="downloads_storage_full_headline">"Недостатньо пам'яті"</string>
 <string name="downloads_storage_legend" formatted="true">"Зайнято %1$s із %2$s · %3$s у завантаженнях"</string>

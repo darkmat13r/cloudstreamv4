@@ -120,7 +120,7 @@
 <string name="downloads_load_failed_body">"আপনার ডাউনলোড করা ফাইলগুলো পরিবর্তন করা হয়নি।"</string>
 <string name="downloads_load_failed_headline">"আপনার ডাউনলোডগুলো পড়া যায়নি"</string>
 <string name="downloads_offline_pill">"অফলাইন · কোনো সংযোগ নেই"</string>
-<string name="downloads_play_from_url">"URL থেকে চালান"</string>
+<string name="downloads_play_from_link">"লিংক থেকে চালান"</string>
 <string name="downloads_select">"সিলেক্ট করুন"</string>
 <string name="downloads_storage_full_headline">"যথেষ্ট স্টোরেজ নেই"</string>
 <string name="downloads_storage_legend" formatted="true">"%1$s / %2$s ব্যবহৃত · ডাউনলোডে %3$s"</string>

@@ -13,7 +13,7 @@
 <string name="downloads_load_failed_body">"ዝወረዱ ፋይላትካ ኣይተቐየሩን።"</string>
 <string name="downloads_load_failed_headline">"ውርዳትካ ክንበብ ኣይከኣለን"</string>
 <string name="downloads_offline_pill">"ካብ መስመር ወጻኢ · መራኸቢ የለን"</string>
-<string name="downloads_play_from_url">"ካብ URL ተጻወት"</string>
+<string name="downloads_play_from_link">"ካብ መላግቦ ተጻወት"</string>
 <string name="downloads_select">"ምረጽ"</string>
 <string name="downloads_storage_full_headline">"እኹል መኽዘን የለን"</string>
 <string name="downloads_storage_legend" formatted="true">"%1$s ካብ %2$s ተጠቒሙ · %3$s ኣብ ውርዳት"</string>

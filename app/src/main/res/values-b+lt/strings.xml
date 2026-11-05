@@ -74,7 +74,7 @@
 <string name="downloads_load_failed_body">"Jūsų atsisiųsti failai nebuvo pakeisti."</string>
 <string name="downloads_load_failed_headline">"Nepavyko nuskaityti atsisiuntimų"</string>
 <string name="downloads_offline_pill">"Neprisijungus · nėra ryšio"</string>
-<string name="downloads_play_from_url">"Paleisti iš URL"</string>
+<string name="downloads_play_from_link">"Paleisti iš nuorodos"</string>
 <string name="downloads_select">"Pasirinkti"</string>
 <string name="downloads_storage_full_headline">"Nepakanka atminties"</string>
 <string name="downloads_storage_legend" formatted="true">"Naudojama %1$s iš %2$s · %3$s atsisiuntimuose"</string>

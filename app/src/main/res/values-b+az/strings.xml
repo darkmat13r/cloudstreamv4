@@ -56,7 +56,7 @@
 <string name="downloads_load_failed_body">"Yüklənmiş fayllarınız dəyişdirilməyib."</string>
 <string name="downloads_load_failed_headline">"Yükləmələriniz oxuna bilmədi"</string>
 <string name="downloads_offline_pill">"Oflayn · bağlantı yoxdur"</string>
-<string name="downloads_play_from_url">"URL-dən oynat"</string>
+<string name="downloads_play_from_link">"Keçiddən oynat"</string>
 <string name="downloads_select">"Seç"</string>
 <string name="downloads_storage_full_headline">"Yaddaş kifayət deyil"</string>
 <string name="downloads_storage_legend" formatted="true">"%1$s / %2$s istifadə olunub · Yükləmələrdə %3$s"</string>

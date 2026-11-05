@@ -204,7 +204,7 @@
 <string name="downloads_load_failed_body">你已下載的檔案未變更。</string>
 <string name="downloads_load_failed_headline">無法讀取你的下載</string>
 <string name="downloads_offline_pill">離線 · 無連線</string>
-<string name="downloads_play_from_url">從 URL 播放</string>
+<string name="downloads_play_from_link">從連結播放</string>
 <string name="downloads_select">選取</string>
 <string name="downloads_storage_full_headline">儲存空間不足</string>
 <string name="downloads_storage_legend">已使用 %1$s / %2$s · 下載佔用 %3$s</string>

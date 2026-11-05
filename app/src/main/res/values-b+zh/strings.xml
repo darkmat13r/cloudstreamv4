@@ -205,7 +205,7 @@
 <string name="downloads_load_failed_body">"你已下载的文件未被更改。"</string>
 <string name="downloads_load_failed_headline">"无法读取你的下载"</string>
 <string name="downloads_offline_pill">"脱机 · 无连接"</string>
-<string name="downloads_play_from_url">"从 URL 播放"</string>
+<string name="downloads_play_from_link">"从链接播放"</string>
 <string name="downloads_select">"选择"</string>
 <string name="downloads_storage_full_headline">"存储空间不足"</string>
 <string name="downloads_storage_legend" formatted="true">"已使用 %1$s / %2$s · 下载占用 %3$s"</string>

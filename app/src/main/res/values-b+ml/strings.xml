@@ -82,7 +82,7 @@
 <string name="downloads_load_failed_body">"നിങ്ങൾ ഡൗൺലോഡ് ചെയ്ത ഫയലുകൾ മാറ്റിയിട്ടില്ല."</string>
 <string name="downloads_load_failed_headline">"നിങ്ങളുടെ ഡൗൺലോഡുകൾ വായിക്കാനായില്ല"</string>
 <string name="downloads_offline_pill">"ഓഫ്‌ലൈൻ · കണക്ഷനില്ല"</string>
-<string name="downloads_play_from_url">"URL-ൽ നിന്ന് പ്ലേ ചെയ്യുക"</string>
+<string name="downloads_play_from_link">"ലിങ്കിൽ നിന്ന് പ്ലേ ചെയ്യുക"</string>
 <string name="downloads_select">"തിരഞ്ഞെടുക്കുക"</string>
 <string name="downloads_storage_full_headline">"ആവശ്യത്തിന് സ്റ്റോറേജില്ല"</string>
 <string name="downloads_storage_legend" formatted="true">"%1$s / %2$s ഉപയോഗത്തിൽ · ഡൗൺലോഡുകളിൽ %3$s"</string>

@@ -205,7 +205,7 @@
 <string name="downloads_load_failed_body">Ваши скачанные файлы не изменены.</string>
 <string name="downloads_load_failed_headline">Не удалось прочитать скачанное</string>
 <string name="downloads_offline_pill">Без сети · нет соединения</string>
-<string name="downloads_play_from_url">Смотреть по URL</string>
+<string name="downloads_play_from_link">Смотреть по ссылке</string>
 <string name="downloads_select">Выбрать</string>
 <string name="downloads_storage_full_headline">Недостаточно памяти</string>
 <string name="downloads_storage_legend">Использовано %1$s из %2$s · %3$s в скачанном</string>

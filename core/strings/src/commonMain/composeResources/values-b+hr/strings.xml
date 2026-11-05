@@ -204,7 +204,7 @@
 <string name="downloads_load_failed_body">Vaše preuzete datoteke nisu promijenjene.</string>
 <string name="downloads_load_failed_headline">Nije moguće pročitati vaša preuzimanja</string>
 <string name="downloads_offline_pill">Offline · nema veze</string>
-<string name="downloads_play_from_url">Pokreni s URL-a</string>
+<string name="downloads_play_from_link">Pokreni s poveznice</string>
 <string name="downloads_select">Odaberi</string>
 <string name="downloads_storage_full_headline">Nedovoljno pohrane</string>
 <string name="downloads_storage_legend">Iskorišteno %1$s od %2$s · %3$s u preuzimanjima</string>

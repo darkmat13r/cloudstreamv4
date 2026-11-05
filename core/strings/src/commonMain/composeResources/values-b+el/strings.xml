@@ -184,7 +184,7 @@
 <string name="downloads_load_failed_body">Τα ληφθέντα αρχεία σας δεν έχουν αλλάξει.</string>
 <string name="downloads_load_failed_headline">Δεν ήταν δυνατή η ανάγνωση των λήψεών σας</string>
 <string name="downloads_offline_pill">Εκτός σύνδεσης · δεν υπάρχει σύνδεση</string>
-<string name="downloads_play_from_url">Αναπαραγωγή από URL</string>
+<string name="downloads_play_from_link">Αναπαραγωγή από σύνδεσμο</string>
 <string name="downloads_select">Επιλογή</string>
 <string name="downloads_storage_full_headline">Ανεπαρκής χώρος αποθήκευσης</string>
 <string name="downloads_storage_legend">%1$s από %2$s σε χρήση · %3$s σε λήψεις</string>

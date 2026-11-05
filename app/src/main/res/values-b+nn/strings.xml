@@ -54,7 +54,7 @@
 <string name="downloads_load_failed_body">"Dei nedlasta filene dine er ikkje endra."</string>
 <string name="downloads_load_failed_headline">"Kunne ikkje lese nedlastingane dine"</string>
 <string name="downloads_offline_pill">"Fråkopla · inga tilkopling"</string>
-<string name="downloads_play_from_url">"Spel av frå URL"</string>
+<string name="downloads_play_from_link">"Spel av frå lenkje"</string>
 <string name="downloads_select">"Vel"</string>
 <string name="downloads_storage_full_headline">"Ikkje nok lagringsplass"</string>
 <string name="downloads_storage_legend" formatted="true">"%1$s av %2$s brukt · %3$s i nedlastingar"</string>

@@ -204,7 +204,7 @@
 <string name="downloads_load_failed_body">لم تتغيّر ملفاتك التي تم تنزيلها.</string>
 <string name="downloads_load_failed_headline">تعذّرت قراءة تنزيلاتك</string>
 <string name="downloads_offline_pill">غير متصل · لا يوجد اتصال</string>
-<string name="downloads_play_from_url">تشغيل من عنوان URL</string>
+<string name="downloads_play_from_link">تشغيل من رابط</string>
 <string name="downloads_select">تحديد</string>
 <string name="downloads_storage_full_headline">مساحة التخزين غير كافية</string>
 <string name="downloads_storage_legend">%1$s من %2$s مستخدم · %3$s في التنزيلات</string>

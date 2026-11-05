@@ -205,7 +205,7 @@
 <string name="downloads_load_failed_body">"Seus arquivos baixados não foram alterados."</string>
 <string name="downloads_load_failed_headline">"Não foi possível ler seus downloads"</string>
 <string name="downloads_offline_pill">"Offline · sem conexão"</string>
-<string name="downloads_play_from_url">"Reproduzir de URL"</string>
+<string name="downloads_play_from_link">"Reproduzir de link"</string>
 <string name="downloads_select">"Selecionar"</string>
 <string name="downloads_storage_full_headline">"Armazenamento insuficiente"</string>
 <string name="downloads_storage_legend" formatted="true">"%1$s de %2$s usados · %3$s em downloads"</string>

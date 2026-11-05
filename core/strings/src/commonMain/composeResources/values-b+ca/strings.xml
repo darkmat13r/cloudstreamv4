@@ -75,7 +75,7 @@
 <string name="downloads_load_failed_body">Els fitxers descarregats no s'han modificat.</string>
 <string name="downloads_load_failed_headline">No s'han pogut llegir les descàrregues</string>
 <string name="downloads_offline_pill">Fora de línia · sense connexió</string>
-<string name="downloads_play_from_url">Reprodueix des d'un URL</string>
+<string name="downloads_play_from_link">Reprodueix des d'un enllaç</string>
 <string name="downloads_select">Selecciona</string>
 <string name="downloads_storage_full_headline">No hi ha prou emmagatzematge</string>
 <string name="downloads_storage_legend">%1$s de %2$s usats · %3$s en descàrregues</string>

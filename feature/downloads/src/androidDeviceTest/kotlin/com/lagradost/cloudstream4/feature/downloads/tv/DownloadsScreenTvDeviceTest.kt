@@ -14,6 +14,7 @@ import androidx.compose.ui.semantics.SemanticsActions
 import androidx.compose.ui.semantics.getOrNull
 import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.isFocused
+import androidx.compose.ui.test.getBoundsInRoot
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithText
@@ -155,12 +156,12 @@ class DownloadsScreenTvDeviceTest {
         showScreen()
 
         awaitText("Arcane")
-        rule.onNodeWithText("18 Episodes | 11.2 GB").assertExists()
-        rule.onNodeWithText("Movie • 4.2 GB").assertExists()
-        rule.onNodeWithText("4 Episodes | 1.9 GB / 3.1 GB").assertExists()
+        rule.onNodeWithText("18 Episodes · 11.2 GB").assertExists()
+        rule.onNodeWithText("Movie · 4.2 GB").assertExists()
+        rule.onNodeWithText("4 Episodes · 1.9 GB / 3.1 GB").assertExists()
         rule.onNodeWithText("61%").assertExists()
         rule.onNodeWithText("1/4").assertExists()
-        rule.onNodeWithText("384.0 GB of 512.0 GB used · 128.0 GB in downloads").assertExists()
+        rule.onNodeWithText("384 GB of 512 GB used · 128 GB in downloads").assertExists()
     }
 
     @Test
@@ -187,6 +188,18 @@ class DownloadsScreenTvDeviceTest {
         rule.waitUntil(WAIT_MS) { effects.size == 2 }
         assertEquals(listOf(DownloadsEffect.OpenQueue, DownloadsEffect.OpenPlayFromUrl), effects.toList())
         assertEquals(SELECT, dpad.press(Dpad.Right))
+    }
+
+    /** 6c draws focus with no scroll. The default TV pivot moved the list for a row that already fitted. */
+    @Test
+    fun focusOnARowThatFitsDoesNotMoveTheList() {
+        source.contents(Board6c)
+        showScreen()
+        awaitText(DUNE)
+        val before = rule.onNodeWithText(DUNE).getBoundsInRoot().top
+        focus(EXPANSE)
+        rule.waitForIdle()
+        assertEquals(before, rule.onNodeWithText(DUNE).getBoundsInRoot().top)
     }
 
     /** A failed row's way back in, by remote: Right from the row, OK, and focus does not fall off with the button. */
@@ -396,14 +409,14 @@ class DownloadsScreenTvDeviceTest {
         awaitText(SELECT_ALL)
         awaitFocus(DUNE)
         dpad.center()
-        awaitText("Delete (1 | 4.2 GB)")
+        awaitText("Delete (1 · 4.2 GB)")
         rule.onNodeWithText(DUNE).assertIsSelected()
         assertEquals("OK while choosing opens nothing", emptyList<DownloadsEffect>(), effects.toList())
 
         // The nearest chip, whichever it is, and every one is a press away along the row.
         val chip = dpad.press(Dpad.Up)
-        assertTrue("$chip", chip in listOf(SELECT_ALL, CANCEL, "Delete (1 | 4.2 GB)"))
-        assertEquals("Delete (1 | 4.2 GB)", if (chip == "Delete (1 | 4.2 GB)") chip else pressUntil(Dpad.Right, "Delete (1 | 4.2 GB)"))
+        assertTrue("$chip", chip in listOf(SELECT_ALL, CANCEL, "Delete (1 · 4.2 GB)"))
+        assertEquals("Delete (1 · 4.2 GB)", if (chip == "Delete (1 · 4.2 GB)") chip else pressUntil(Dpad.Right, "Delete (1 · 4.2 GB)"))
         dpad.center()
         rule.waitUntil(WAIT_MS) { effects.isNotEmpty() }
         assertEquals(DownloadsEffect.ConfirmDelete(setOf(DownloadTitleId(DUNE_ID))), effects.single())
@@ -587,9 +600,39 @@ class DownloadsScreenTvDeviceTest {
         awaitText(SELECT_ALL)
         awaitFocus(DUNE)
         dpad.center()
-        awaitText("Delete (1 | 4.2 GB)")
+        awaitText("Delete (1 · 4.2 GB)")
         rule.waitForIdle()
         rule.assertScreenshot("downloads-choosing")
+    }
+
+    /** The source has not answered: six rows at the row's geometry, the meter undivided until the disk has been read. */
+    @Test
+    fun screenshotLoading() {
+        showForScreenshot()
+        awaitText(SELECT)
+        rule.waitForIdle()
+        rule.assertScreenshot("downloads-loading")
+    }
+
+    @Test
+    fun screenshotFailedRead() {
+        source.failure = IllegalStateException("list unreadable")
+        showForScreenshot()
+        awaitText("list unreadable")
+        holdFocusOn(RETRY)
+        rule.assertScreenshot("downloads-failed-read")
+    }
+
+    /** Past the seventh row and back: every row whole, nothing of the one above it showing against the chips. */
+    @Test
+    fun screenshotScrolledRowsStayWhole() {
+        source.contents(Board6c.copy(titles = List(40) { title(it + 100, "Title $it") }))
+        showForScreenshot()
+        holdFocusOn("Title 0")
+        repeat(10) { dpad.press(Dpad.Down) }
+        awaitFocus("Title 10")
+        rule.waitForIdle()
+        rule.assertScreenshot("downloads-scrolled")
     }
 
     private class FakeSource : DownloadsSource {
@@ -620,7 +663,7 @@ class DownloadsScreenTvDeviceTest {
         const val DOWNLOADS_INDEX = 3
 
         const val QUEUE = "Download queue"
-        const val PLAY_URL = "Play from URL"
+        const val PLAY_URL = "Play from link"
         const val SELECT = "Select"
         const val SELECT_ALL = "Select All"
         const val CANCEL = "Cancel"
@@ -648,7 +691,7 @@ class DownloadsScreenTvDeviceTest {
 
         fun bytes(value: Long): String {
             val tenths = value * 10 / GB
-            return "${tenths / 10}.${tenths % 10} GB"
+            return if (tenths % 10 == 0L) "${tenths / 10} GB" else "${tenths / 10}.${tenths % 10} GB"
         }
 
         fun title(

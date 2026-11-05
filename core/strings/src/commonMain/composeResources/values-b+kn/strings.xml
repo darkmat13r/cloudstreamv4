@@ -39,7 +39,7 @@
 <string name="downloads_load_failed_body">ನಿಮ್ಮ ಡೌನ್‌ಲೋಡ್ ಮಾಡಿದ ಫೈಲ್‌ಗಳನ್ನು ಬದಲಾಯಿಸಲಾಗಿಲ್ಲ.</string>
 <string name="downloads_load_failed_headline">ನಿಮ್ಮ ಡೌನ್‌ಲೋಡ್‌ಗಳನ್ನು ಓದಲಾಗಲಿಲ್ಲ</string>
 <string name="downloads_offline_pill">ಆಫ್‌ಲೈನ್ · ಸಂಪರ್ಕವಿಲ್ಲ</string>
-<string name="downloads_play_from_url">URL ನಿಂದ ಪ್ಲೇ ಮಾಡಿ</string>
+<string name="downloads_play_from_link">ಲಿಂಕ್‌ನಿಂದ ಪ್ಲೇ ಮಾಡಿ</string>
 <string name="downloads_select">ಆಯ್ಕೆಮಾಡಿ</string>
 <string name="downloads_storage_full_headline">ಸಾಕಷ್ಟು ಸ್ಟೋರೇಜ್ ಇಲ್ಲ</string>
 <string name="downloads_storage_legend">%1$s / %2$s ಬಳಸಲಾಗಿದೆ · ಡೌನ್‌ಲೋಡ್‌ಗಳಲ್ಲಿ %3$s</string>

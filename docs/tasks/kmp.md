@@ -3779,7 +3779,7 @@ untouched and stays the screen on every other layout. `DEC-17` is the authority 
 separate stop, as 6d draws its verbs, and asks for what the title has left through the old `DOWNLOAD_ACTION_RESUME_DOWNLOAD`. A short file with no fact, which is also what a failure is after a restart,
 reads `Download Paused` with `Resume Download`: facts are in memory, so it makes no claim that nobody can back.
 
-**The two chromes.** 6c has the meter on top and chips in the band. On 6e the band belongs to the storage strip or the banner, so `Play from URL` and the queue become buttons on the top row. Offline rides the
+**The two chromes.** 6c has the meter on top and chips in the band. On 6e the band belongs to the storage strip or the banner, so `Play from link` and the queue become buttons on the top row. Offline rides the
 top row's middle on both. Choosing what to delete has no board, and takes the band in the same chips.
 
 ### What the old screen did that this does not, on a TV
@@ -3791,19 +3791,20 @@ top row's middle on both. Choosing what to delete has no board, and takes the ba
 | Poster and watch progress on a row | Not on 6c | undecided |
 | One-row delete from a film's popup | `Select`, then `Delete`, does the same | not needed |
 
-Unchanged routes, no board: **the queue** opens the old XML page, **Play from URL** opens the old dialog, a **series** opens `DownloadChildFragment` until `Q15`, and a **film** plays as the old row did, a partial
+Unchanged routes, no board: **the queue** opens the old XML page, **Play from link** opens the old dialog, which still calls it what it did, a **series** opens `DownloadChildFragment` until `Q15`, and a **film** plays as the old row did, a partial
 one included. **Open local file** was already hidden on TV, so nothing is lost. The delete dialog and its wording are the old screen's.
 
 ### Where this departs from the boards
 
-- **Words reuse keys:** chip count `1/4`, not `1 of 4`. `Download queue (0/3)`, not `Queue (0/3)`. `18 Episodes | 11.2 GB`, `Movie • 4.2 GB` and `5.4 GB / 6.4 GB`, not the board's middots and `of`. `Download Failed`, not `failed`. The legend is sentence case.
-- **One word for one action:** 6c says `Play from URL` and 6e says `Play from link`. Both say `Play from URL`.
+- **Words reuse keys:** chip count `1/4`, not `1 of 4`. `Download queue (0/3)`, not `Queue (0/3)`. `5.4 GB / 6.4 GB`, not the board's `of`. Row and delete figures use the board's `·`, through three format keys. `Download Failed`, not `failed`. The legend is sentence case.
+- **One word for one action:** 6c says `Play from URL` and 6e says `Play from link`. Both say `Play from link`, as `DS-15`'s table does.
 - **`3 QUEUED ITEMS TOTAL 2.4 GB` keeps the count and drops the total:** a waiting download has not read its size. Nothing is invented.
+- **Whole sizes come from the platform.** `formatShortFileSize` on API 36 gives `384 GB` and `10 GB` but `1.0 GB` and `2.0 GB`, so a `.0` shows on a whole size under 10 GB. Removing it would mean editing a locale's formatted number, so it stays. Under 10 GB this differs from the board; `.0` above that came only from the test's fake, which is fixed.
 - **The shortfall is as of the failed write**, and the banner goes when that download is retried or deleted. `KMP-36`'s pre-flight check still does not exist, so the banner never appears first.
 - **Free up space with nothing to delete** opens the system's storage settings. The note on the board only covers the case with titles.
 - **The leading glyph** is `Play` for a film and `Disclosure` for a series, which is what OK does. The pack has no film or series glyph.
-- **The offline pill** carries a hollow marker, because `StatusPill` requires one. The failed trailing word is `muted`, as `DownloadProgressRow` draws it, where the board has `ink2`.
-- **Scrolling:** Compose on a TV keeps a focused row near a pivot, so the list moves before row 6. This is the platform's default and not overridden.
+- **The offline pill** carries a hollow marker, because `StatusPill` requires one. The failed trailing word is `ink2`, as the board's closing note says, and the marker beside it stays `muted`.
+- **Scrolling** follows the board, after design review: a row that fits does not move the list, and one that does not moves it by whole rows, so nothing is cut against the chips. `DownloadsRowScroll`. The default TV pivot moved the list for rows that fitted and left half a row showing.
 
 ### Measured, each one a wrong turn first
 
@@ -3815,10 +3816,12 @@ one included. **Open local file** was already hidden on TV, so nothing is lost. 
 - **Up from a row lands on the nearest chip,** `Select` or `Delete`, not the first. Every chip is along the row.
 - **A touch in one test class took away the next class's focus.** The navigation test first tapped the delete dialog's button with `UiObject2.click()`, which puts the display in touch mode, where it stays until a key is pressed. `HomeTvFragment` lands focus before any key is pressed, so `TvHomeNavigationTest` went 9 red of 13 straight after this class and 13 of 13 green alone. The button is now pressed by D-pad, and with that one change the whole `:app` suite is green. A remote cannot put a display in touch mode; a touch or pointer device on a TV might, and that was not tried.
 
-**Strings:** 12 new keys in all 62 directories, all machine translated and not reviewed by a native speaker; `qt` uses only words from its own file. `ti`, `ckb`, `mt`, `so`, `or`, `my` and `am` are the least sure, `apc` and `ars` are
+**Strings:** 12 new keys in all 62 directories and 3 formats with no words in the default one, all machine translated and not reviewed by a native speaker; `qt` uses only words from its own file. `ti`, `ckb`, `mt`, `so`, `or`, `my` and `am` are the least sure, `apc` and `ars` are
 dialect approximations, and `so`'s word for library and storage is the same. Fourteen locales read the legend as `X / Y used` to keep the arguments in order. Twelfth move of the oracle baseline. Reused keys keep the directories they had.
 
-**Published API:** `app/api/classes-jar.api` +124 lines, 0 removed: 12 `R$string` fields and the new `cloudstream4.download` classes.
+**Loading** shows six skeleton rows at the row's geometry with an undivided meter. The board has the meter running on its own, but the source answers with both at once, so the storage figures do not arrive first.
+
+**Published API:** `app/api/classes-jar.api` +127 lines, 0 removed: 15 `R$string` fields and the new `cloudstream4.download` classes.
 
 ### Each critical test shown to fail
 

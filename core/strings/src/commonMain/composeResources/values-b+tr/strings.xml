@@ -205,7 +205,7 @@
 <string name="downloads_load_failed_body">İndirilen dosyalarınız değiştirilmedi.</string>
 <string name="downloads_load_failed_headline">İndirmeleriniz okunamadı</string>
 <string name="downloads_offline_pill">Çevrimdışı · bağlantı yok</string>
-<string name="downloads_play_from_url">URL'den oynat</string>
+<string name="downloads_play_from_link">Bağlantıdan oynat</string>
 <string name="downloads_select">Seç</string>
 <string name="downloads_storage_full_headline">Yeterli depolama yok</string>
 <string name="downloads_storage_legend">%1$s / %2$s kullanıldı · İndirilenlerde %3$s</string>

@@ -124,7 +124,7 @@
 <string name="downloads_load_failed_body">आपकी डाउनलोड की गई फ़ाइलें नहीं बदली गई हैं।</string>
 <string name="downloads_load_failed_headline">आपके डाउनलोड पढ़े नहीं जा सके</string>
 <string name="downloads_offline_pill">ऑफ़लाइन · कोई कनेक्शन नहीं</string>
-<string name="downloads_play_from_url">URL से चलाएं</string>
+<string name="downloads_play_from_link">लिंक से चलाएं</string>
 <string name="downloads_select">चुनें</string>
 <string name="downloads_storage_full_headline">पर्याप्त स्टोरेज नहीं है</string>
 <string name="downloads_storage_legend">%1$s / %2$s इस्तेमाल में · डाउनलोड में %3$s</string>

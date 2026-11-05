@@ -33,7 +33,7 @@
 <string name="downloads_load_failed_body">"የወረዱ ፋይሎችዎ አልተቀየሩም።"</string>
 <string name="downloads_load_failed_headline">"ውርዶችዎን ማንበብ አልተቻለም"</string>
 <string name="downloads_offline_pill">"ከመስመር ውጭ · ግንኙነት የለም"</string>
-<string name="downloads_play_from_url">"ከURL አጫውት"</string>
+<string name="downloads_play_from_link">"ከሊንክ አጫውት"</string>
 <string name="downloads_select">"ምረጥ"</string>
 <string name="downloads_storage_full_headline">"በቂ ማከማቻ የለም"</string>
 <string name="downloads_storage_legend" formatted="true">"%1$s ከ%2$s ጥቅም ላይ ውሏል · %3$s በውርዶች ውስጥ"</string>

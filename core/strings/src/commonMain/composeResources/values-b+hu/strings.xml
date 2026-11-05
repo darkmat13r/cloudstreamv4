@@ -174,7 +174,7 @@
 <string name="downloads_load_failed_body">A letöltött fájlok nem változtak.</string>
 <string name="downloads_load_failed_headline">Nem sikerült beolvasni a letöltéseket</string>
 <string name="downloads_offline_pill">Offline · nincs kapcsolat</string>
-<string name="downloads_play_from_url">Lejátszás URL-ről</string>
+<string name="downloads_play_from_link">Lejátszás hivatkozásról</string>
 <string name="downloads_select">Kiválasztás</string>
 <string name="downloads_storage_full_headline">Nincs elég tárhely</string>
 <string name="downloads_storage_legend">%1$s / %2$s használatban · %3$s a letöltésekben</string>

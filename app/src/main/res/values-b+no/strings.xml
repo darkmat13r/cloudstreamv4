@@ -133,7 +133,7 @@
 <string name="downloads_load_failed_body">"De nedlastede filene dine er ikke endret."</string>
 <string name="downloads_load_failed_headline">"Kunne ikke lese nedlastingene dine"</string>
 <string name="downloads_offline_pill">"Frakoblet · ingen tilkobling"</string>
-<string name="downloads_play_from_url">"Spill av fra URL"</string>
+<string name="downloads_play_from_link">"Spill av fra lenke"</string>
 <string name="downloads_select">"Velg"</string>
 <string name="downloads_storage_full_headline">"Ikke nok lagringsplass"</string>
 <string name="downloads_storage_legend" formatted="true">"%1$s av %2$s brukt · %3$s i nedlastinger"</string>

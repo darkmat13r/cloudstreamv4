@@ -136,7 +136,7 @@
 <string name="downloads_load_failed_body">ဒေါင်းလုဒ်လုပ်ထားသော ဖိုင်များကို မပြောင်းလဲထားပါ။</string>
 <string name="downloads_load_failed_headline">ဒေါင်းလုဒ်များကို ဖတ်၍မရပါ</string>
 <string name="downloads_offline_pill">အော့ဖ်လိုင်း · ချိတ်ဆက်မှုမရှိပါ</string>
-<string name="downloads_play_from_url">URL မှ ဖွင့်ရန်</string>
+<string name="downloads_play_from_link">လင့်ခ်မှ ဖွင့်ရန်</string>
 <string name="downloads_select">ရွေးချယ်ရန်</string>
 <string name="downloads_storage_full_headline">သိုလှောင်ရုံ မလုံလောက်ပါ</string>
 <string name="downloads_storage_legend">%1$s / %2$s အသုံးပြုပြီး · ဒေါင်းလုဒ်တွင် %3$s</string>

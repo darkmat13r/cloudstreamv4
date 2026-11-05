@@ -205,7 +205,7 @@
 <string name="downloads_load_failed_body">"Các tệp đã tải xuống của bạn không bị thay đổi."</string>
 <string name="downloads_load_failed_headline">"Không thể đọc các tải xuống của bạn"</string>
 <string name="downloads_offline_pill">"Ngoại tuyến · không có kết nối"</string>
-<string name="downloads_play_from_url">"Phát từ URL"</string>
+<string name="downloads_play_from_link">"Phát từ liên kết"</string>
 <string name="downloads_select">"Chọn"</string>
 <string name="downloads_storage_full_headline">"Không đủ bộ nhớ"</string>
 <string name="downloads_storage_legend" formatted="true">"Đã dùng %1$s trên %2$s · %3$s cho tải xuống"</string>

@@ -204,7 +204,7 @@
 <string name="downloads_load_failed_body">다운로드한 파일은 변경되지 않았습니다.</string>
 <string name="downloads_load_failed_headline">다운로드를 읽을 수 없습니다</string>
 <string name="downloads_offline_pill">오프라인 · 연결 없음</string>
-<string name="downloads_play_from_url">URL에서 재생</string>
+<string name="downloads_play_from_link">링크에서 재생</string>
 <string name="downloads_select">선택</string>
 <string name="downloads_storage_full_headline">저장공간 부족</string>
 <string name="downloads_storage_legend">%1$s / %2$s 사용됨 · 다운로드 %3$s</string>

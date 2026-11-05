@@ -144,7 +144,7 @@
 <string name="downloads_load_failed_body">הקבצים שהורדת לא שונו.</string>
 <string name="downloads_load_failed_headline">לא ניתן לקרוא את ההורדות שלך</string>
 <string name="downloads_offline_pill">אופליין · אין חיבור</string>
-<string name="downloads_play_from_url">הפעל מכתובת URL</string>
+<string name="downloads_play_from_link">הפעל מקישור</string>
 <string name="downloads_select">בחר</string>
 <string name="downloads_storage_full_headline">אין מספיק אחסון</string>
 <string name="downloads_storage_legend">%1$s מתוך %2$s בשימוש · %3$s בהורדות</string>

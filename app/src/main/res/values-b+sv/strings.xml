@@ -205,7 +205,7 @@
 <string name="downloads_load_failed_body">"Dina nerladdade filer har inte ändrats."</string>
 <string name="downloads_load_failed_headline">"Kunde inte läsa dina nerladdningar"</string>
 <string name="downloads_offline_pill">"Offline · ingen anslutning"</string>
-<string name="downloads_play_from_url">"Spela upp från URL"</string>
+<string name="downloads_play_from_link">"Spela upp från länk"</string>
 <string name="downloads_select">"Välj"</string>
 <string name="downloads_storage_full_headline">"Inte tillräckligt med lagring"</string>
 <string name="downloads_storage_legend" formatted="true">"%1$s av %2$s använt · %3$s i nerladdningar"</string>

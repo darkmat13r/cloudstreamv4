@@ -205,7 +205,7 @@
 <string name="downloads_load_failed_body">Skedarët e shkarkuar nuk janë ndryshuar.</string>
 <string name="downloads_load_failed_headline">Shkarkimet nuk mund të lexoheshin</string>
 <string name="downloads_offline_pill">Offline · pa lidhje</string>
-<string name="downloads_play_from_url">Luaj nga URL</string>
+<string name="downloads_play_from_link">Luaj nga lidhja</string>
 <string name="downloads_select">Zgjidh</string>
 <string name="downloads_storage_full_headline">Memorie e pamjaftueshme</string>
 <string name="downloads_storage_legend">%1$s nga %2$s të përdorura · %3$s në shkarkime</string>

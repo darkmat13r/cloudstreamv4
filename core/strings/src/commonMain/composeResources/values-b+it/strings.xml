@@ -205,7 +205,7 @@
 <string name="downloads_load_failed_body">I file scaricati non sono stati modificati.</string>
 <string name="downloads_load_failed_headline">Impossibile leggere i download</string>
 <string name="downloads_offline_pill">Offline · nessuna connessione</string>
-<string name="downloads_play_from_url">Riproduci da URL</string>
+<string name="downloads_play_from_link">Riproduci da link</string>
 <string name="downloads_select">Seleziona</string>
 <string name="downloads_storage_full_headline">Spazio di archiviazione insufficiente</string>
 <string name="downloads_storage_legend">%1$s di %2$s usati · %3$s nei download</string>

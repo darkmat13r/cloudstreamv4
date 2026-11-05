@@ -34,7 +34,7 @@
 <string name="downloads_load_failed_body">तपाईंका डाउनलोड गरिएका फाइलहरू परिवर्तन गरिएका छैनन्।</string>
 <string name="downloads_load_failed_headline">तपाईंका डाउनलोडहरू पढ्न सकिएन</string>
 <string name="downloads_offline_pill">अफलाइन · जडान छैन</string>
-<string name="downloads_play_from_url">URL बाट प्ले गर्नुहोस्</string>
+<string name="downloads_play_from_link">लिङ्कबाट प्ले गर्नुहोस्</string>
 <string name="downloads_select">चयन गर्नुहोस्</string>
 <string name="downloads_storage_full_headline">पर्याप्त स्टोरेज छैन</string>
 <string name="downloads_storage_legend">%1$s / %2$s प्रयोग भयो · डाउनलोडमा %3$s</string>

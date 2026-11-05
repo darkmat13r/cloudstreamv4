@@ -164,7 +164,7 @@
 <string name="downloads_load_failed_body">"آپ کی ڈاؤن لوڈ کردہ فائلیں تبدیل نہیں ہوئیں۔"</string>
 <string name="downloads_load_failed_headline">"آپ کے ڈاؤن لوڈ پڑھے نہیں جا سکے"</string>
 <string name="downloads_offline_pill">"آف لائن · کوئی کنکشن نہیں"</string>
-<string name="downloads_play_from_url">"URL سے چلائیں"</string>
+<string name="downloads_play_from_link">"لنک سے چلائیں"</string>
 <string name="downloads_select">"چنیں"</string>
 <string name="downloads_storage_full_headline">"کافی سٹوریج نہیں"</string>
 <string name="downloads_storage_legend" formatted="true">"%1$s از %2$s استعمال شُدہ · ڈاؤن لوڈ میں %3$s"</string>

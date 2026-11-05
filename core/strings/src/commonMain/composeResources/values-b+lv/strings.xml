@@ -159,7 +159,7 @@
 <string name="downloads_load_failed_body">Jūsu lejupielādētie faili nav mainīti.</string>
 <string name="downloads_load_failed_headline">Neizdevās nolasīt lejupielādes</string>
 <string name="downloads_offline_pill">Bezsaistē · nav savienojuma</string>
-<string name="downloads_play_from_url">Atskaņot no URL</string>
+<string name="downloads_play_from_link">Atskaņot no saites</string>
 <string name="downloads_select">Atlasīt</string>
 <string name="downloads_storage_full_headline">Nepietiek atmiņas</string>
 <string name="downloads_storage_legend">Izmantoti %1$s no %2$s · %3$s lejupielādēs</string>

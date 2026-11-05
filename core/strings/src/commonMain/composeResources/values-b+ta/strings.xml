@@ -205,7 +205,7 @@
 <string name="downloads_load_failed_body">நீங்கள் பதிவிறக்கிய கோப்புகள் மாற்றப்படவில்லை.</string>
 <string name="downloads_load_failed_headline">உங்கள் பதிவிறக்கங்களைப் படிக்க முடியவில்லை</string>
 <string name="downloads_offline_pill">ஆஃப்லைன் · இணைப்பு இல்லை</string>
-<string name="downloads_play_from_url">URL இலிருந்து இயக்கு</string>
+<string name="downloads_play_from_link">இணைப்பிலிருந்து இயக்கு</string>
 <string name="downloads_select">தேர்ந்தெடு</string>
 <string name="downloads_storage_full_headline">போதுமான சேமிப்பகம் இல்லை</string>
 <string name="downloads_storage_legend">%1$s / %2$s பயன்படுத்தப்பட்டது · பதிவிறக்கங்களில் %3$s</string>

@@ -45,7 +45,7 @@
 <string name="downloads_load_failed_body">Viaj elŝutitaj dosieroj ne ŝanĝiĝis.</string>
 <string name="downloads_load_failed_headline">Ne eblis legi viajn elŝutojn</string>
 <string name="downloads_offline_pill">Eksterrete · neniu konekto</string>
-<string name="downloads_play_from_url">Ludi el URL</string>
+<string name="downloads_play_from_link">Ludi el ligilo</string>
 <string name="downloads_select">Selekti</string>
 <string name="downloads_storage_full_headline">Ne sufiĉas stokspaco</string>
 <string name="downloads_storage_legend">%1$s el %2$s uzitaj · %3$s en elŝutoj</string>

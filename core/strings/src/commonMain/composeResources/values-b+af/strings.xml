@@ -37,7 +37,7 @@
 <string name="downloads_load_failed_body">Jou afgelaaide lêers is nie verander nie.</string>
 <string name="downloads_load_failed_headline">Kon nie jou aflaaie lees nie</string>
 <string name="downloads_offline_pill">Vanlyn · geen verbinding nie</string>
-<string name="downloads_play_from_url">Speel vanaf URL</string>
+<string name="downloads_play_from_link">Speel vanaf skakel</string>
 <string name="downloads_select">Kies</string>
 <string name="downloads_storage_full_headline">Nie genoeg berging nie</string>
 <string name="downloads_storage_legend">%1$s van %2$s gebruik · %3$s in aflaaie</string>

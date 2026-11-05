@@ -205,7 +205,7 @@
 <string name="downloads_load_failed_body">"ダウンロード済みのファイルは変更されていません。"</string>
 <string name="downloads_load_failed_headline">"ダウンロードを読み込めませんでした"</string>
 <string name="downloads_offline_pill">"オフライン · 接続なし"</string>
-<string name="downloads_play_from_url">"URLから再生"</string>
+<string name="downloads_play_from_link">"リンクから再生"</string>
 <string name="downloads_select">"選択"</string>
 <string name="downloads_storage_full_headline">"ストレージの空き容量が足りません"</string>
 <string name="downloads_storage_legend" formatted="true">"%1$s / %2$s 使用 · ダウンロード %3$s"</string>

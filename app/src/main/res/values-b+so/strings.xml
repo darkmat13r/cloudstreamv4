@@ -139,7 +139,7 @@
 <string name="downloads_load_failed_body">"Faylasha aad soo dejisay lama beddelin."</string>
 <string name="downloads_load_failed_headline">"Lama akhrin karo soo dejintaada"</string>
 <string name="downloads_offline_pill">"Khad la'aan · ma jiro isku xir"</string>
-<string name="downloads_play_from_url">"Ka daar URL"</string>
+<string name="downloads_play_from_link">"Ka daar xiriir"</string>
 <string name="downloads_select">"Dooro"</string>
 <string name="downloads_storage_full_headline">"Kayd ku filan ma jiro"</string>
 <string name="downloads_storage_legend" formatted="true">"%1$s oo ka mid ah %2$s ayaa la isticmaalay · %3$s soo dejinta"</string>

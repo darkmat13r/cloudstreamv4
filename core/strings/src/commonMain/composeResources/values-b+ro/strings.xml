@@ -175,7 +175,7 @@
 <string name="downloads_load_failed_body">Fișierele descărcate nu au fost modificate.</string>
 <string name="downloads_load_failed_headline">Descărcările nu au putut fi citite</string>
 <string name="downloads_offline_pill">Offline · fără conexiune</string>
-<string name="downloads_play_from_url">Redă de la URL</string>
+<string name="downloads_play_from_link">Redă de la link</string>
 <string name="downloads_select">Selectează</string>
 <string name="downloads_storage_full_headline">Stocare insuficientă</string>
 <string name="downloads_storage_legend">%1$s din %2$s folosiți · %3$s în descărcări</string>

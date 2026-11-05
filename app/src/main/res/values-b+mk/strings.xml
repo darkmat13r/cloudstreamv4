@@ -204,7 +204,7 @@
 <string name="downloads_load_failed_body">"Вашите преземени датотеки не се променети."</string>
 <string name="downloads_load_failed_headline">"Не може да се прочитаат вашите преземања"</string>
 <string name="downloads_offline_pill">"Офлајн · нема врска"</string>
-<string name="downloads_play_from_url">"Пушти од URL"</string>
+<string name="downloads_play_from_link">"Пушти од врска"</string>
 <string name="downloads_select">"Одбери"</string>
 <string name="downloads_storage_full_headline">"Нема доволно меморија"</string>
 <string name="downloads_storage_legend" formatted="true">"Искористени %1$s од %2$s · %3$s во преземања"</string>

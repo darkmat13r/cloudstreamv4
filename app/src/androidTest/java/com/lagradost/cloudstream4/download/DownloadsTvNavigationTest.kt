@@ -295,7 +295,7 @@ class DownloadsTvNavigationTest {
         const val RAIL_DOWNLOADS = "Downloads"
         const val SELECT = "Select"
         const val QUEUE = "Download queue"
-        const val PLAY_FROM_URL = "Play from URL"
+        const val PLAY_FROM_URL = "Play from link"
         const val RETRY = "Retry"
         const val NOT_ENOUGH = "Not enough storage"
         const val NO_DOWNLOADS = "No downloads yet"

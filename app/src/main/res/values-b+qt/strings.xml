@@ -177,7 +177,7 @@
 <string name="downloads_load_failed_body">"ouuhhuhooh ooh uuh ahooo."</string>
 <string name="downloads_load_failed_headline">"ahooo uuhh ouuhhuhooh ooh"</string>
 <string name="downloads_offline_pill">"aaaagggoh ooh · uuuhh"</string>
-<string name="downloads_play_from_url">"aaaaa uuuuhhh"</string>
+<string name="downloads_play_from_link">"aaaaa uuuuhhh"</string>
 <string name="downloads_select">"uuuugg"</string>
 <string name="downloads_storage_full_headline">"uuuhh aauugghhahahhah"</string>
 <string name="downloads_storage_legend" formatted="true">"%1$s oh %2$s ahhahhh · %3$s ouuhhuhooh"</string>

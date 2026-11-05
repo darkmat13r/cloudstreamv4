@@ -105,7 +105,7 @@
 <string name="downloads_load_failed_body">"فایل‌های دانلودشده شما تغییر نکرده‌اند."</string>
 <string name="downloads_load_failed_headline">"دانلودهای شما خوانده نشد"</string>
 <string name="downloads_offline_pill">"آفلاین · بدون اتصال"</string>
-<string name="downloads_play_from_url">"پخش از URL"</string>
+<string name="downloads_play_from_link">"پخش از پیوند"</string>
 <string name="downloads_select">"انتخاب"</string>
 <string name="downloads_storage_full_headline">"حافظه کافی نیست"</string>
 <string name="downloads_storage_legend" formatted="true">"%1$s از %2$s استفاده شده · %3$s در دانلودها"</string>

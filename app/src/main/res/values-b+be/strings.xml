@@ -204,7 +204,7 @@
 <string name="downloads_load_failed_body">"Вашы спампаваныя файлы не зменены."</string>
 <string name="downloads_load_failed_headline">"Не ўдалося прачытаць спампоўкі"</string>
 <string name="downloads_offline_pill">"Па-за сеткай · няма злучэння"</string>
-<string name="downloads_play_from_url">"Прайграць па URL"</string>
+<string name="downloads_play_from_link">"Прайграць па спасылцы"</string>
 <string name="downloads_select">"Выбраць"</string>
 <string name="downloads_storage_full_headline">"Недастаткова месца ў сховішчы"</string>
 <string name="downloads_storage_legend" formatted="true">"Ужыта %1$s з %2$s · %3$s у спампоўках"</string>

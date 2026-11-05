@@ -98,7 +98,7 @@
 <string name="downloads_load_failed_body">"ملفاتك المحمّلة ما تغيّرت."</string>
 <string name="downloads_load_failed_headline">"ما قدرنا نقرأ تحميلاتك"</string>
 <string name="downloads_offline_pill">"غير متصل · ما فيه اتصال"</string>
-<string name="downloads_play_from_url">"شغّل من رابط URL"</string>
+<string name="downloads_play_from_link">"شغّل من رابط"</string>
 <string name="downloads_select">"حدد"</string>
 <string name="downloads_storage_full_headline">"مساحة التخزين ما تكفي"</string>
 <string name="downloads_storage_legend" formatted="true">"%1$s من %2$s مستعمل · %3$s في التحميلات"</string>

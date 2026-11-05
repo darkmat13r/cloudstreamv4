@@ -80,7 +80,7 @@
 <string name="downloads_load_failed_body">Hindi nabago ang mga na-download mong file.</string>
 <string name="downloads_load_failed_headline">Hindi mabasa ang iyong mga download</string>
 <string name="downloads_offline_pill">Offline · walang koneksyon</string>
-<string name="downloads_play_from_url">I-play mula sa URL</string>
+<string name="downloads_play_from_link">I-play mula sa link</string>
 <string name="downloads_select">Piliin</string>
 <string name="downloads_storage_full_headline">Kulang ang storage</string>
 <string name="downloads_storage_legend">%1$s ng %2$s ang gamit · %3$s sa mga download</string>

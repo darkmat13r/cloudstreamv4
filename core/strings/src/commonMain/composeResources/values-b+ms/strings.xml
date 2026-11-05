@@ -161,7 +161,7 @@
 <string name="downloads_load_failed_body">Fail muat turun anda tidak diubah.</string>
 <string name="downloads_load_failed_headline">Tidak dapat membaca muat turun anda</string>
 <string name="downloads_offline_pill">Luar talian · tiada sambungan</string>
-<string name="downloads_play_from_url">Pasang dari URL</string>
+<string name="downloads_play_from_link">Pasang dari pautan</string>
 <string name="downloads_select">Pilih</string>
 <string name="downloads_storage_full_headline">Storan tidak mencukupi</string>
 <string name="downloads_storage_legend">%1$s daripada %2$s diguna · %3$s dalam muat turun</string>
