@@ -3,12 +3,12 @@ package com.lagradost.cloudstream4.core.designsystem.card
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 
 /**
  * Values the media cards need that `:core:theme` does not yet name.
  *
- * Every `Dp` here is a multiple of 4 (`.claude/rules/dimension-scale.md`) except
- * [SeeAllGlyphStroke], which is a stroke *weight* and therefore exempt in its own axis. Each one
+ * Every `Dp` here is a multiple of 4 (`.claude/rules/dimension-scale.md`). Each one
  * carries the token it mirrors, or — where it mirrors nothing — what it should become when it is
  * promoted into `CloudStreamDimens`.
  *
@@ -22,10 +22,12 @@ object MediaCardDefaults {
      * Inset between the card's edge and anything drawn over the artwork — badges, the revealed
      * title, the meta line.
      *
-     * Mirrors `CloudStreamDimens.ListRowPadding` (8dp) in value, but not in meaning: that one is a
-     * list row's inner padding. Promote as `CardContentPadding`.
+     * 8px on the boards, halved: `.badges { left: 8px; top: 8px }` and `.revt`'s side and bottom
+     * padding in `TV Search` and `TV Home`, and `.tl`/`.tr` in `TV Library`. Mirrors
+     * `CloudStreamDimens.StackGap` (4dp) in value, but not in meaning. Promote as
+     * `CardContentPadding`.
      */
-    val ContentPadding: Dp = 8.dp
+    val ContentPadding: Dp = 4.dp
 
     /**
      * Thickness of the progress rule along the card's bottom edge.
@@ -36,38 +38,45 @@ object MediaCardDefaults {
     val ProgressRuleHeight: Dp = 4.dp
 
     /**
-     * Side of the chevron glyph on the "see all" card.
+     * How far the reveal scrim reaches above the revealed text: `.revt`'s `padding-top: 32px` in
+     * `TV Search` and `TV Home`, halved. Mirrors no token. Promote as `CardRevealLead`.
      *
-     * Mirrors `CloudStreamDimens.ListRowDiscSize` (24dp), which is the design's other
-     * "glyph that is not a chip glyph" size. Promote as `CardGlyphSize`.
+     * **The scrim is a block behind the text, not a fraction of the card.** The boards size it to
+     * the text it serves: lead + title + inset. Measured in Chromium with the fonts loaded, that is
+     * 104 of 240px (43%) on `TV Search` 4a, whose title takes two lines, and 72 of 240px (30%) on
+     * `TV Home` 3d, whose title takes one: the same rule, one line apart. The old fixed
+     * `SCRIM_START_FRACTION` (0.45) covered 55% of the card whatever the title was.
      */
-    val SeeAllGlyphSize: Dp = 24.dp
+    val RevealScrimLead: Dp = 16.dp
 
     /**
-     * Stroke weight of the chevron glyph. A stroke weight, so exempt from the 4dp step; it is the
-     * design's medium hairline, two device-independent pixels. Promote as `StrokeMedium` beside
-     * `CloudStreamDimens.Hairline`, which is currently the only weight the theme names.
+     * The share of the scrim block, from its bottom, that is solid at [SCRIM_END_ALPHA]; above it
+     * the scrim fades to nothing at the block's top. `.revt`'s
+     * `linear-gradient(0deg, rgba(0,0,0,0.92) 30%, rgba(0,0,0,0))`. A fraction, not a dimension.
      */
-    val SeeAllGlyphStroke: Dp = 2.dp
+    const val SCRIM_SOLID_FRACTION: Float = 0.30f
 
     /**
-     * Where the reveal scrim starts, as a fraction of the card's height.
-     *
-     * Proportional rather than a `Dp` on purpose: the media ladder spans 36dp to 144dp of height,
-     * and a fixed scrim height that reads correctly on a 192x108 backdrop swallows a 64x36 one
-     * whole. A fraction is not a layout dimension, so the 4dp step does not apply to it.
-     *
-     * **The artboards do not state this value.** It is the one number on this page the design did
-     * not give us; it wants a designer's eye before it is promoted.
-     */
-    const val SCRIM_START_FRACTION: Float = 0.45f
-
-    /**
-     * Opacity of `colors.bg` at the very bottom of the reveal scrim. Not fully opaque, so the
-     * artwork still shows through behind the title rather than the card growing a black shelf.
-     * Same caveat as [SCRIM_START_FRACTION]: invented, not measured.
+     * Opacity of `colors.bg` across the solid part of the reveal scrim: the boards' `0.92`. Not
+     * fully opaque, so the artwork still shows through behind the title.
      */
     const val SCRIM_END_ALPHA: Float = 0.92f
+
+    /**
+     * The "see all" card's ground: `colors.surface` at this opacity, `.seeall`'s
+     * `rgba(10,16,22,0.6)`, which is `#060A0D` over `bg` (read from the board's pixels).
+     */
+    const val SEE_ALL_GROUND_ALPHA: Float = 0.6f
+
+    /**
+     * The "see all" card's dashed outline, as multiples of its [CloudStreamDimens.Hairline] stroke:
+     * Chromium draws `.seeall`'s `outline: 1px dashed` as 3px on and 2px off (read from the
+     * pixels). A stroke pattern, so the 4dp step does not apply to it.
+     */
+    const val SEE_ALL_DASH_ON: Float = 3f
+
+    /** The gap between dashes; see [SEE_ALL_DASH_ON]. */
+    const val SEE_ALL_DASH_OFF: Float = 2f
 
     /** The revealed title is clamped to two lines; a third line is a rail-layout problem. */
     const val TITLE_MAX_LINES: Int = 2

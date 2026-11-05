@@ -68,7 +68,8 @@ internal fun ListRowTextStack(
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
     val primary = if (enabled) colors.ink else colors.muted
-    val secondary = if (enabled) colors.ink2 else colors.muted
+    // `.ls` is `muted` on every board with a list row; it used to be `ink2` here.
+    val secondary = colors.muted
 
     Column(modifier, verticalArrangement = Arrangement.Center) {
         if (subtitle == null) {

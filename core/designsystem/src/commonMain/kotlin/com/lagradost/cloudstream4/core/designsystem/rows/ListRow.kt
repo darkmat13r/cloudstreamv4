@@ -166,6 +166,7 @@ private fun RowBody(
             .onFocusChanged { focused = it.isFocused }
             .rowBehaviour(state, interactionSource, onClick)
             .tvFocusRing(focused = focused, shape = CloudStreamTheme.shapes.medium)
+            .selectedFill(state.selected)
             .padding(CloudStreamDimens.ListRowPadding),
         verticalAlignment = Alignment.CenterVertically,
     ) {
@@ -181,6 +182,16 @@ private fun RowBody(
         if (trailing != null) TrailingCell(trailing)
     }
 }
+
+/**
+ * A selected row's `raised` fill, at the row's own corners: `.lrow.sel { background: var(--raised) }`
+ * on every board with a list row, and `Design System v2`'s *"raised fill + ink label + muted
+ * marker"*. With the muted [SelectionMarker] it is how selection reads, so focus alone is white.
+ * On `SidePanel`'s `surface` it is the only thing that tells a selected row from the others' ground.
+ */
+@Composable
+private fun Modifier.selectedFill(selected: Boolean): Modifier =
+    if (selected) background(CloudStreamTheme.colors.raised, CloudStreamTheme.shapes.medium) else this
 
 /**
  * Selectable when enabled; focusable-but-not-selectable when disabled and

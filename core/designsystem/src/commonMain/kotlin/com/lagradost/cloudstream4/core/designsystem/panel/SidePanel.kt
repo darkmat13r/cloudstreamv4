@@ -69,12 +69,14 @@ object SidePanelDefaults {
     val BandOnlyHeight: Dp = CloudStreamDimens.FocusBandInset
 
     /**
-     * Gap between the header and the first row. Mirrors [CloudStreamDimens.MinFocusGap] (12dp).
+     * The least gap between the header and the first row. Mirrors [CloudStreamDimens.MinFocusGap]
+     * (12dp).
      *
-     * The artboard fixes the first row at y=128 but does not say where inside 0..128 the header
-     * sits, so the header is bottom-aligned in that region with this gap beneath it — a title
-     * that floats in the middle of a 128dp void reads as unrelated to the rows it labels. This is
-     * the one value in this file that is a judgement rather than a derivation.
+     * The header is **top**-aligned at [CloudStreamDimens.ChromeRowTop], as `TV Search` 4d draws
+     * its title at artboard y56, level with the screen's search field. It used to be
+     * bottom-aligned against this gap, which put a one-line header about 60dp lower than 4d. This
+     * gap now only bounds the header from below: the header is measured in the 88dp left between
+     * the two, so a two-line `RailHeader` with a meta line (4d's 44dp) fits with room to spare.
      *
      * Should be promoted as `CloudStreamDimens.SidePanelHeaderGap`.
      */
@@ -128,6 +130,7 @@ object SidePanelDefaults {
  *
  * ```
  *   0 ┌───────────────────────── panel, 280dp wide, full height
+ *  28 │  header, top-aligned       <- CloudStreamDimens.ChromeRowTop, as 4d draws it
  *     │  header region, 128dp      <- CloudStreamDimens.SidePanelFirstRowY
  * 128 │  row 0        48dp
  * 188 │  row 1        48dp         <- pitch 60 = 48 + SidePanelDefaults.RowGap
@@ -137,6 +140,9 @@ object SidePanelDefaults {
  * 512 └──  28dp bottom band
  * ```
  *
+ * The panel is the `surface` token, as 4d's `.panel` is `var(--surf)`, so a selected row's
+ * `raised` fill reads against it. It used to be `raised` itself, which made selection invisible.
+ *
  * Content is inset [CloudStreamDimens.SidePanelContentInset] (16dp) horizontally, which is more
  * than the [CloudStreamDimens.FocusRingBleed] (8dp) a focused row bleeds, so rings never touch the
  * panel edge. The panel's leading hairline is **drawn**, not padded — it consumes no layout, so
@@ -144,8 +150,9 @@ object SidePanelDefaults {
  *
  * @param modifier applied to the panel. It already carries its own width and height; a modifier
  *   that changes either is a design change.
- * @param header the region above the rows, bottom-aligned so it sits
- *   [SidePanelDefaults.HeaderGap] above the first row. A `RailHeader` is the usual occupant.
+ * @param header the region above the rows, top-aligned at [CloudStreamDimens.ChromeRowTop] and
+ *   kept at least [SidePanelDefaults.HeaderGap] above the first row. A `RailHeader` is the usual
+ *   occupant.
  * @param commit the panel's bottom row, normally a single `Done` `ListRow`. `null` for a panel
  *   that needs none, which collapses the region to [SidePanelDefaults.BandOnlyHeight]. **Not**
  *   Apply and Cancel — see `DEC-17` above.
@@ -164,7 +171,7 @@ fun SidePanel(
         modifier = modifier
             .width(CloudStreamDimens.SidePanelWidth)
             .fillMaxHeight()
-            .background(colors.raised)
+            .background(colors.surface)
             .hairline(side = HairlineSide.Start)
             .padding(horizontal = CloudStreamDimens.SidePanelContentInset),
     ) {
@@ -172,8 +179,8 @@ fun SidePanel(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(CloudStreamDimens.SidePanelFirstRowY)
-                .padding(bottom = SidePanelDefaults.HeaderGap),
-            contentAlignment = Alignment.BottomStart,
+                .padding(top = CloudStreamDimens.ChromeRowTop, bottom = SidePanelDefaults.HeaderGap),
+            contentAlignment = Alignment.TopStart,
             content = { header() },
         )
         Column(
