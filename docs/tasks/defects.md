@@ -1500,7 +1500,7 @@ changes for them until they act on it.
 so that path is unchanged. A document-tree folder. A real queue service: the slot is measured as `currentDownloads` letting go of the id and `isFailed`, which is what the
 service filters on. The UI above was read, not driven. An unknown-length source that ends uncleanly after its last byte now fails where it used to finish: that follows from fix 2 and has
 no test. A range still in flight keeps reading up to the end of its range after a failure before its job ends, at most 10 MiB; on loopback that took 303 ms, and a slow source will take longer.
-**Unexplained:** the length read straight after a retry was once still the earlier one, and correct a moment later, so the test now waits up to 10 s for it. The cause was not established.
+**Explained by `BUG-39`:** the length read straight after a retry was once still the earlier one, and correct a moment later, so the test waits up to 10 s for it.
 
 ---
 
@@ -1559,3 +1559,52 @@ route was **not established**. The probe above took a different route and did no
 **Not established either:** the cause. The likely place is Compose's D-pad handling in a text field, which may consume the
 key when nothing in the Compose page lies to the left, so the view system never searches for the rail. That is a guess from
 the symptom, and those sources were not read.
+
+---
+
+## BUG-39 — An automatic retry could duplicate bytes in a file, because it resumed from a length that trails the file · **high** · measured 2026-11-05
+
+**Status:** fixed in the PR that adds this entry, on the owner's decision. A second defect found on the way is below, and is not fixed. `Q14`'s screen is not involved.
+
+**The defect.** `setupStream` took a resume's `startAt` from `SafeFile.lengthOrThrow()`, which on `MediaFile` reads MediaStore's `_size` column (from SafeFile 0.0.8's bytecode), and `_size` trails the file. The stream then opens in append mode. `EpisodeDownloadInstance` retries by itself on `retrySame`, 1 to 8 ms after the close. So a short read asked for bytes the file already had and appended them. The download reported the right count over a wrong file, with a stretch repeated from the point the connection dropped, and nothing said so.
+
+**The fix.** `setupStream` and `addToQueue`'s "over 98% is complete" check read the file's own length, `openFileDescriptor().statSize`, through `fileLengthOnDisk`. If that cannot be read, they fall back to the old read. No published signature changes.
+
+### Measured
+
+All of it on TV emulators (`Television_720p`, `Television_720p_2`) against a fake server on loopback. **One kind of emulator over loopback is not a real device.** The scenario: a first mirror drops at 12 MiB of 15, a second at 5 MiB.
+
+| | Rounds | Corrupt | With no file (below) |
+|---|---|---|---|
+| Before the fix, three runs | 900 | **53** (20, 11, 22) | 29 |
+| After the fix | 300 | **0** | 6 |
+
+- After the fix, 294 rounds ended with a file. Every one held exactly what `bytesWritten` reported, read back and checked byte by byte. All 272 that resumed asked for exactly 5,242,880.
+- Before it, the worst case asked for `GET 65536-` and left 10,420,224 bytes against 5,242,880 reported. The first wrong byte was at exactly 5,242,880 every time.
+- The same scenario with one mirror and a larger file, 120 rounds before the fix: every automatic retry was correct. Why the second mirror's case is the one that goes wrong was not established.
+
+**Other measurements of the lag, before the fix:** short in 15 of 150 failures polled for 2 s, all caught up by 33 ms, none wrong at 2 s; `fstat` read 62,300,160 where the app read 60,465,152; a failure of the old assertion read 1,441,792 against 15,728,640 written, timing not measured.
+
+### The tests
+
+- `DownloadFactsDeviceTest` compared `fileInfo.fileLength` with `bytesWritten` straight after the end, so it failed on the lag alone, including in unrelated full `:app` runs. It now asserts what is guaranteed: the bytes read back equal `bytesWritten`, and `_size` catches up within 10 s. `awaitFileLength` returns the value it compared, because a second read can be short again. A planted one-byte mismatch turned all 6 tests red.
+- `aRetryAppendsNothingTheFileAlreadyHolds` runs 40 rounds. Against the unfixed downloader it went red at round 18 of its one control run. **It is probabilistic:** at the measured rate 40 rounds catch the old behaviour about 91% of the time, so one green run proves little alone. A test that forces a short `_size` was tried, by resuming with the stream still open. It passed on the unfixed code, so it was dropped.
+
+### What else reads `_size`, not changed
+
+`getDownloadFileInfo().fileLength` is still `lengthOrThrow()`. It can read short for a moment after a download ends, and these read it:
+
+| Where | Decides |
+|---|---|
+| `BaseFetchButton.kt:85` | The bar, and with no status in memory, whether the button shows done or paused |
+| `DownloadViewModel.kt:309`, `:312` | Hides a file of 1 byte or less, and sums sizes |
+| `DownloadViewModel.kt:382` | The bytes shown on a row |
+| `DownloadButtonSetup.kt:99` | Whether a long press shows the snackbar |
+
+None of them starts, resumes or finishes a transfer. `setupStream`'s other callers (`BackupUtils`, `SettingsUpdates`, `LogcatDialog`) all pass `tryResume = false`, so they never reach the changed line.
+
+**Not exercised:** a document-tree folder, HLS's resume, a real device, a slow disk, and `addToQueue`'s check, which was changed from reading the code, with no test of its own.
+
+### Found on the way, not fixed: a download can report success with its file gone
+
+In the same scenario, **29 of 900 rounds before the fix and 6 of 300 after** ended `isCompleted` with no file, no record and no fact. In all 6 measured after the fix, with logging, `if (!stream.exists) metadata.type = DownloadType.IsStopped` fired just before: `exists` read false, the code took that as the person deleting the file, deleted the stream and returned `DOWNLOAD_STOPPED`, whose `success` is `true`. That the read was wrong rather than the file really gone is inferred from the transfer still writing to it, and was not measured directly. It has nothing to do with `lengthOrThrow`, so it needs its own decision and entry.
