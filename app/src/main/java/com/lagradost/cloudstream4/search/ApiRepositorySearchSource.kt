@@ -450,10 +450,18 @@ internal fun selectSearchProviders(
     languageEnabled: Set<String>,
     preferredTypes: Set<Int>,
     picked: Set<String>,
-    types: List<TvType> = emptyList(),
+    types: List<TvType>,
+): List<MainAPI> = providersUnderTypes(selectSearchProviders(installed, languageEnabled, preferredTypes, picked), types)
+
+/** The same with no chips. A separate function because this signature is in `classes.jar`. */
+internal fun selectSearchProviders(
+    installed: List<MainAPI>,
+    languageEnabled: Set<String>,
+    preferredTypes: Set<Int>,
+    picked: Set<String>,
 ): List<MainAPI> {
     val eligible = eligibleSearchProviders(installed, languageEnabled, preferredTypes)
-    return providersUnderTypes(eligible.filter { it.name in picked }.ifEmpty { eligible }, types)
+    return eligible.filter { it.name in picked }.ifEmpty { eligible }
 }
 
 /** Installed, in an enabled language, serving a preferred media type: what keeps NSFW out unless asked for. */

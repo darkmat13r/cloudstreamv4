@@ -3871,6 +3871,7 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field search_state_no_results_body_unknown I
 	public static field search_state_no_results_detail I
 	public static field search_state_no_results_headline I
+	public static field search_state_no_results_type_filter I
 	public static field search_state_offline_body I
 	public static field search_state_offline_headline I
 	public static field search_state_retry I
@@ -3880,7 +3881,10 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field search_tv_clear_all I
 	public static field search_tv_field_placeholder I
 	public static field search_tv_recent_headline I
+	public static field search_tv_source_failed I
+	public static field search_tv_source_pinned I
 	public static field search_tv_sources_label I
+	public static field search_tv_sources_panel_meta I
 	public static field search_types_list_key I
 	public static field season I
 	public static field season_format I
@@ -37285,25 +37289,51 @@ public interface com/lagradost/cloudstream4/library/LocalLibraryRecords : java/l
 public final class com/lagradost/cloudstream4/search/ApiRepositorySearchSource : java/lang/Object, com/lagradost/cloudstream4/feature/search/SearchSource {
 	public static final field $stable I
 	public static final field FIRST_PAGE I
+	public static final field MAX_DETAIL_TYPES I
 	public static final field MAX_REASONS I
 	public static final field MAX_REASON_CHARS I
 	public fun <init> (Landroid/content/Context;Lkotlinx/coroutines/CoroutineDispatcher;)V
 	public synthetic fun <init> (Landroid/content/Context;Lkotlinx/coroutines/CoroutineDispatcher;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public static final synthetic fun access$choiceDetail (Lcom/lagradost/cloudstream4/search/ApiRepositorySearchSource;Lcom/lagradost/cloudstream3/MainAPI;Landroid/content/Context;ZLjava/lang/Long;)Ljava/lang/String;
+	public static final synthetic fun access$eligibleProviders (Lcom/lagradost/cloudstream4/search/ApiRepositorySearchSource;Ljava/util/Set;)Ljava/util/List;
 	public static final synthetic fun access$fanOut (Lcom/lagradost/cloudstream4/search/ApiRepositorySearchSource;Ljava/lang/String;ZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final synthetic fun access$fold (Lcom/lagradost/cloudstream4/search/ApiRepositorySearchSource;Ljava/util/List;)Lcom/lagradost/cloudstream4/feature/search/SearchOutcome;
+	public static final synthetic fun access$getCompanion$p ()Lcom/lagradost/cloudstream4/search/ApiRepositorySearchSource$Companion;
 	public static final synthetic fun access$getContext$p (Lcom/lagradost/cloudstream4/search/ApiRepositorySearchSource;)Landroid/content/Context;
+	public static final synthetic fun access$getProviderHealth$cp ()Ljava/util/concurrent/ConcurrentHashMap;
+	public static final synthetic fun access$labelContext (Lcom/lagradost/cloudstream4/search/ApiRepositorySearchSource;)Landroid/content/Context;
 	public static final synthetic fun access$noTargets (Lcom/lagradost/cloudstream4/search/ApiRepositorySearchSource;ZLjava/util/Set;)Lcom/lagradost/cloudstream4/feature/search/SearchOutcome;
 	public static final synthetic fun access$selectedProviders (Lcom/lagradost/cloudstream4/search/ApiRepositorySearchSource;Ljava/util/Set;)Ljava/util/List;
+	public fun choices (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun clearFilters (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun quickSearch (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun search (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun searchMore (Ljava/lang/String;Ljava/lang/String;ILkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun selectSources (Ljava/util/Set;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun selectTypes (Ljava/util/Set;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun sources (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun typeFilters (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final static class com/lagradost/cloudstream4/search/ApiRepositorySearchSource$choices$2$invokeSuspend$$inlined$sortedBy$1 : java/lang/Object, java/util/Comparator {
+	public fun <init> ()V
+	public final fun compare (Ljava/lang/Object;Ljava/lang/Object;)I
 }
 
 public final class com/lagradost/cloudstream4/search/ApiRepositorySearchSourceKt : java/lang/Object {
+	public static final fun cleanProviderText (Ljava/lang/String;)Ljava/lang/String;
 	public static final fun decodeId-f6qonGo (Ljava/lang/String;)Lcom/lagradost/cloudstream4/search/SearchResultTarget;
+	public static final fun eligibleSearchProviders (Ljava/util/List;Ljava/util/Set;Ljava/util/Set;)Ljava/util/List;
 	public static final fun encodeId (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 	public static final fun pinnedFirst (Ljava/util/List;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/util/List;
+	public static final fun providersUnderTypes (Ljava/util/List;Ljava/util/List;)Ljava/util/List;
 	public static final fun selectSearchProviders (Ljava/util/List;Ljava/util/Set;Ljava/util/Set;Ljava/util/Set;)Ljava/util/List;
+	public static final fun selectSearchProviders (Ljava/util/List;Ljava/util/Set;Ljava/util/Set;Ljava/util/Set;Ljava/util/List;)Ljava/util/List;
+	public static final fun tvTypes (Lcom/lagradost/cloudstream4/feature/search/SearchTypeFilter;)Ljava/util/List;
+}
+
+public final static synthetic class com/lagradost/cloudstream4/search/ApiRepositorySearchSourceKt$WhenMappings : java/lang/Object {
+	public static final synthetic field $EnumSwitchMapping$0 [I
 }
 
 public final static class com/lagradost/cloudstream4/search/ApiRepositorySearchSourceKt$pinnedFirst$$inlined$sortedBy$1 : java/lang/Object, java/util/Comparator {
@@ -37345,6 +37375,18 @@ public final static class com/lagradost/cloudstream4/search/DataStoreSearchHisto
 	public final fun compare (Ljava/lang/Object;Ljava/lang/Object;)I
 }
 
+public final class com/lagradost/cloudstream4/search/ProviderHealth : java/lang/Object {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/Long;)V
+	public final fun component1 ()Ljava/lang/Long;
+	public final fun copy (Ljava/lang/Long;)Lcom/lagradost/cloudstream4/search/ProviderHealth;
+	public static synthetic fun copy$default (Lcom/lagradost/cloudstream4/search/ProviderHealth;Ljava/lang/Long;ILjava/lang/Object;)Lcom/lagradost/cloudstream4/search/ProviderHealth;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getFailedAt ()Ljava/lang/Long;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
 public final class com/lagradost/cloudstream4/search/SearchResultTarget : java/lang/Object {
 	public static final field $stable I
 	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
@@ -37371,6 +37413,15 @@ public final class com/lagradost/cloudstream4/search/SearchTvFragment : com/lagr
 	public fun onResume ()V
 	public fun onStop ()V
 	public fun onViewCreated (Landroid/view/View;Landroid/os/Bundle;)V
+}
+
+public final static class com/lagradost/cloudstream4/search/SearchTvFragment$Content$2$1$closesPanel$1 : androidx/activity/OnBackPressedCallback {
+	public fun handleOnBackPressed ()V
+}
+
+public final static class com/lagradost/cloudstream4/search/SearchTvFragment$Content$lambda$2$0$$inlined$onDispose$1 : java/lang/Object, androidx/compose/runtime/DisposableEffectResult {
+	public fun <init> (Lcom/lagradost/cloudstream4/search/SearchTvFragment$Content$2$1$closesPanel$1;)V
+	public fun dispose ()V
 }
 
 public final static class com/lagradost/cloudstream4/search/SearchTvFragment$special$$inlined$viewModels$default$1 : kotlin/jvm/internal/Lambda, kotlin/jvm/functions/Function0 {
