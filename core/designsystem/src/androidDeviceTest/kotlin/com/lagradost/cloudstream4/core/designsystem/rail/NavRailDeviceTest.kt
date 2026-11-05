@@ -29,6 +29,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.devicetest.Dpad
 import com.lagradost.cloudstream4.core.devicetest.DpadDriver
+import com.lagradost.cloudstream4.core.devicetest.assertScreenshot
 import com.lagradost.cloudstream4.core.devicetest.focusedLabel
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
@@ -155,6 +156,19 @@ class NavRailDeviceTest {
         val graph = dpad.walk()
         assertEquals(graph.toString(), emptyList<String>(), graph.unreachable(Items.map { it.label } + CONTENT))
         assertEquals(graph.toString(), emptyList<String>(), graph.traps())
+    }
+
+    @Test
+    fun screenshotCollapsedFocusOnTheScreen() {
+        show()
+        rule.assertScreenshot("nav-rail-collapsed")
+    }
+
+    @Test
+    fun screenshotExpandedFocusOnTheCurrentPage() {
+        show()
+        assertEquals(LIBRARY, dpad.press(Dpad.Left))
+        rule.assertScreenshot("nav-rail-expanded-focus-current")
     }
 
     private companion object {

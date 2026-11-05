@@ -188,9 +188,13 @@ object VideoDownloadManager {
     /** the process failed due to some reason, so we retry and also try the next mirror */
     private val DOWNLOAD_FAILED = DownloadStatus(retrySame = true, tryNext = true, success = false)
 
-    /** The download only downloaded partial */
+    /**
+     * The download only downloaded partial. Not a success, despite the name, which stays because its
+     * accessor is in `classes.jar`. There is too much to throw away, so no mirror replaces the file:
+     * it stays on disk, and a resume carries on from it.
+     */
     private val DOWNLOAD_PARTIAL_SUCCESS =
-        DownloadStatus(retrySame = true, tryNext = false, success = true)
+        DownloadStatus(retrySame = true, tryNext = false, success = false)
 
     /** 50MB minimum size */
     const val DOWNLOAD_PARTIAL_MIN_SIZE = 1_048_576L * 50L
@@ -834,8 +838,8 @@ object VideoDownloadManager {
         internal var lastFailure: Throwable? = null
 
         /**
-         * The error that ended the last range. [resolveSafe] calls that range finished however it
-         * ended, so this is the only record that it did not reach the end of the file.
+         * The error that ended the last range. That range has no end to compare with, so this is the
+         * only record that it did not reach the end of the file.
          */
         @Volatile
         internal var openEndedFailure: Throwable? = null
@@ -914,8 +918,9 @@ object VideoDownloadManager {
                 try {
                     // in case
                     start = resolve(start, end, buffer, callback)
-                    // no end defined, so we don't care exactly where it ended
-                    if (end == null) return true
+                    // no end defined, so it reached eof unless resolve swallowed an error on the way.
+                    // Not retried here: the retry that follows a failure resumes from the file instead.
+                    if (end == null) return openEndedFailure == null
                     // we have download more or exactly what we needed
                     if (start >= end) return true
                 } catch (t: IllegalStateException) {
@@ -1136,6 +1141,8 @@ object VideoDownloadManager {
             val current = (0 until items.size).iterator()
 
             val fileMutex = Mutex()
+            // the disk refused a write, guarded by fileMutex until the jobs have joined
+            var writeFailed = false
             // start to data
             val pendingData: HashMap<Long, LazyStreamDownloadResponse> =
                 hashMapOf()
@@ -1187,7 +1194,7 @@ object VideoDownloadManager {
 
                                 if (response.startByte == metadata.bytesWritten) {
                                     // if we are first in the queue then write it directly
-                                    metadata.notingWriteFailure {
+                                    metadata.failingOnWriteError({ writeFailed = true }) {
                                         fileStream.write(
                                             response.bytes,
                                             0,
@@ -1209,7 +1216,7 @@ object VideoDownloadManager {
 
                                     val size = pending.size
 
-                                    metadata.notingWriteFailure {
+                                    metadata.failingOnWriteError({ writeFailed = true }) {
                                         fileStream.write(
                                             pending.bytes,
                                             0,
@@ -1256,7 +1263,8 @@ object VideoDownloadManager {
                         // user cancellation
                         if (!items.resolveSafe(index, buffer = buffer, callback = callback)) {
                             fileMutex.withLock {
-                                if (metadata.type != DownloadType.IsStopped) {
+                                // the first failure is the reason, a range abandoned after it is not
+                                if (metadata.type != DownloadType.IsStopped && metadata.type != DownloadType.IsFailed) {
                                     metadata.noteFailure(
                                         items.lastFailure?.let(DownloadFacts::classify)
                                             ?: DownloadFailure.SourceFailed
@@ -1283,6 +1291,8 @@ object VideoDownloadManager {
             if (!stream.exists) metadata.type = DownloadType.IsStopped
 
             if (metadata.type == DownloadType.IsFailed) {
+                // every mirror writes to the same disk, and starting one would delete this file
+                if (writeFailed) return@withContext DOWNLOAD_BAD_CONFIG
                 return@withContext metadata.failedStatus()
             }
 
@@ -1305,7 +1315,6 @@ object VideoDownloadManager {
                 return@withContext DOWNLOAD_INVALID_INPUT
             }
 
-            items.openEndedFailure?.let { metadata.noteFailure(DownloadFacts.classify(it)) }
             metadata.type = DownloadType.IsDone
             return@withContext DOWNLOAD_SUCCESS
         } catch (e: IOException) {
@@ -1544,13 +1553,20 @@ object VideoDownloadManager {
         }
     }
 
-    /** Runs one file write and notes why it failed. The error carries on exactly as it would have. */
-    private inline fun DownloadMetaData.notingWriteFailure(write: () -> Unit) {
+    /**
+     * Runs one file write, and fails the transfer if the disk refuses it. Those bytes are gone, so
+     * nothing after them could ever be written. The cancellation ends the range at once, where
+     * [LazyStreamDownloadData.resolveSafe] calls it not finished, and `resolve` cannot swallow it.
+     */
+    private inline fun DownloadMetaData.failingOnWriteError(onFailed: () -> Unit, write: () -> Unit) {
         try {
             write()
         } catch (e: IOException) {
+            logError(e)
             noteFailure(DownloadFacts.classify(e))
-            throw e
+            onFailed()
+            type = DownloadType.IsFailed
+            throw CancellationException("The write failed", e)
         }
     }
 
@@ -1797,13 +1813,14 @@ object VideoDownloadManager {
             isCancelled = true
         }
 
-        // Run to cancel ongoing work, delete partial work and refresh queue
+        // Run to cancel ongoing work and refresh queue. Deleting the file is up to the user.
         private fun cleanup(status: DownloadType) {
             removeKey(KEY_RESUME_IN_QUEUE, downloadQueueWrapper.id.toString())
             val id = downloadQueueWrapper.id
 
-            // Delete subtitles on cancel
-            safe {
+            // Delete subtitles on cancel. A failure keeps its file for a retry, and a retry does not
+            // download subtitles again.
+            if (status == DownloadType.IsStopped) safe {
                 val info = context.getKey<DownloadedFileInfo>(KEY_DOWNLOAD_INFO, id.toString())
                 if (info != null) {
                     deleteMatchingSubtitles(context, info)
