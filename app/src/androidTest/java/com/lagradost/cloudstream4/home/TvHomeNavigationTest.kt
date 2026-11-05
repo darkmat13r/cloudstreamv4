@@ -244,6 +244,17 @@ class TvHomeNavigationTest {
         }
     }
 
+    /**
+     * Closed before its view has finished coming up, its timer is not cancelled with it. It used to reach a detached
+     * fragment and end the process, past the end of the test that did this, so this waits it out.
+     */
+    @Test
+    fun aPageClosedAsSoonAsItOpensDoesNotCrashWhenItsTimerEnds() {
+        ActivityScenario.launch(MainActivity::class.java).use { scenario -> scenario.onActivity { } }
+        Thread.sleep(PLUGIN_WAIT_MS + TIMER_MARGIN_MS)
+        launch { waitFor("the app is still alive to open") { fragmentClass != null } }
+    }
+
     // ---- Back ----------------------------------------------------------------------------------------------------
 
     @Test
@@ -441,6 +452,7 @@ class TvHomeNavigationTest {
         const val SCREEN_WAIT_MS = 15_000L
         const val POLL_MS = 200L
         const val SETTLE_MS = 1_500L
+        const val TIMER_MARGIN_MS = 2_000L
         const val PLUGIN_STAGES_MS = 4_000L
         const val MAX_PRESSES = 6
         const val BACK_PRESSES = 4

@@ -100,21 +100,30 @@ class HomeTvFragment : BaseComposeFragment() {
         }
     }
 
-    /** Events arrive on whatever thread loaded the plugin. The ViewModel's bookkeeping is the main thread's. */
-    private val sourcesChanged: (Boolean) -> Unit = {
-        lifecycleScope.launch(Dispatchers.Main.immediate) { viewModel.onAction(HomeAction.SourcesChanged) }
+    /**
+     * Events arrive on whatever thread loaded the plugin, and the ViewModel's bookkeeping is the main thread's.
+     *
+     * The check is not redundant with the scope. A view closed as soon as it opens never reaches `ON_CREATE`, so its
+     * `viewLifecycleOwner` never gets `ON_DESTROY` and what runs in its scope is not cancelled: the timer below outlived its
+     * fragment, reached a `viewModels` that throws once detached, and the crash handler ended the process. Found by
+     * `ExampleInstrumentedTest.layoutTest` running first in the whole suite.
+     */
+    private fun send(action: HomeAction) {
+        lifecycleScope.launch(Dispatchers.Main.immediate) {
+            if (isAdded) viewModel.onAction(action)
+        }
     }
 
-    private val reloadRequested: (Boolean) -> Unit = {
-        lifecycleScope.launch(Dispatchers.Main.immediate) { viewModel.onAction(HomeAction.Retry) }
-    }
+    private val sourcesChanged: (Boolean) -> Unit = { send(HomeAction.SourcesChanged) }
+
+    private val reloadRequested: (Boolean) -> Unit = { send(HomeAction.Retry) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // A remembered source that never arrives has to stop being waited for even if no event says so.
         viewLifecycleOwner.lifecycleScope.launch {
             delay(PLUGIN_WAIT_MS + PLUGIN_WAIT_MARGIN_MS)
-            viewModel.onAction(HomeAction.SourcesChanged)
+            send(HomeAction.SourcesChanged)
         }
     }
 
