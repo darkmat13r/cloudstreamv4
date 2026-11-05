@@ -35681,6 +35681,7 @@ public final class com/lagradost/cloudstream3/utils/downloader/VideoDownloadMana
 	public static final synthetic fun access$deleteFileAndUpdateSettings (Lcom/lagradost/cloudstream3/utils/downloader/VideoDownloadManager;Landroid/content/Context;I)Z
 	public static final synthetic fun access$downloadHLS (Lcom/lagradost/cloudstream3/utils/downloader/VideoDownloadManager;Landroid/content/Context;Lcom/lagradost/cloudstream3/utils/ExtractorLink;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/jvm/functions/Function1;ILkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final synthetic fun access$downloadSingleEpisode (Lcom/lagradost/cloudstream3/utils/downloader/VideoDownloadManager;Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;Lcom/lagradost/cloudstream3/utils/downloader/DownloadObjects$DownloadEpisodeMetadata;Lcom/lagradost/cloudstream3/utils/ExtractorLink;Lkotlin/jvm/functions/Function2;ZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final synthetic fun access$factsStoragePath (Lcom/lagradost/cloudstream3/utils/downloader/VideoDownloadManager;Ljava/lang/String;)Ljava/lang/String;
 	public static final synthetic fun access$getDOWNLOAD_BAD_CONFIG$p ()Lcom/lagradost/cloudstream3/utils/downloader/DownloadObjects$DownloadStatus;
 	public static final synthetic fun access$getDOWNLOAD_FAILED$p ()Lcom/lagradost/cloudstream3/utils/downloader/DownloadObjects$DownloadStatus;
 	public static final synthetic fun access$getDOWNLOAD_INVALID_INPUT$p ()Lcom/lagradost/cloudstream3/utils/downloader/DownloadObjects$DownloadStatus;
@@ -35755,10 +35756,12 @@ public final static class com/lagradost/cloudstream3/utils/downloader/VideoDownl
 	public final fun getHlsProgress ()I
 	public final fun getHlsTotal ()Ljava/lang/Integer;
 	public final fun getHlsWrittenProgress ()I
+	public final fun getStoragePath$app ()Ljava/lang/String;
 	public final fun getTotalBytes ()Ljava/lang/Long;
 	public final fun getType ()Lcom/lagradost/cloudstream3/utils/downloader/VideoDownloadManager$DownloadType;
 	public fun hashCode ()I
 	public final fun isHLS ()Z
+	public final fun noteFailure$app (Lcom/lagradost/cloudstream4/media/model/DownloadFailure;)V
 	public final fun onDelete ()V
 	public final fun removeStopListener ()V
 	public final fun setBytesDownloaded (J)V
@@ -35769,6 +35772,7 @@ public final static class com/lagradost/cloudstream3/utils/downloader/VideoDownl
 	public final fun setHlsWrittenProgress (I)V
 	public final fun setOnStop (Lkotlin/jvm/functions/Function0;)V
 	public final fun setResumeLength (J)V
+	public final fun setStoragePath$app (Ljava/lang/String;)V
 	public final fun setTotalBytes (Ljava/lang/Long;)V
 	public final fun setType (Lcom/lagradost/cloudstream3/utils/downloader/VideoDownloadManager$DownloadType;)V
 	public final fun setWrittenSegment (I)V
@@ -35852,12 +35856,16 @@ public final static class com/lagradost/cloudstream3/utils/downloader/VideoDownl
 	public final fun getBufferSize ()I
 	public final fun getChuckSize ()J
 	public final fun getDownloadLength ()Ljava/lang/Long;
+	public final fun getLastFailure$app ()Ljava/lang/Throwable;
+	public final fun getOpenEndedFailure$app ()Ljava/lang/Throwable;
 	public final fun getSize ()I
 	public final fun getTotalLength ()Ljava/lang/Long;
 	public fun hashCode ()I
 	public final fun isResumed ()Z
 	public final fun resolveSafe (II[BLkotlin/jvm/functions/Function3;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun resolveSafe$default (Lcom/lagradost/cloudstream3/utils/downloader/VideoDownloadManager$LazyStreamDownloadData;II[BLkotlin/jvm/functions/Function3;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public final fun setLastFailure$app (Ljava/lang/Throwable;)V
+	public final fun setOpenEndedFailure$app (Ljava/lang/Throwable;)V
 	public fun toString ()Ljava/lang/String;
 }
 
@@ -36954,6 +36962,71 @@ public final class com/lagradost/cloudstream4/R : java/lang/Object {
 }
 
 public final class com/lagradost/cloudstream4/core/strings/R : java/lang/Object {
+}
+
+public final class com/lagradost/cloudstream4/download/DownloadFacts : java/lang/Object {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/lagradost/cloudstream4/download/DownloadFacts;
+	public final fun availableBytes (Ljava/lang/String;)Ljava/lang/Long;
+	public final fun bytesShort (Ljava/lang/Long;JLjava/lang/Long;)Ljava/lang/Long;
+	public final fun classify (Ljava/lang/Throwable;)Lcom/lagradost/cloudstream4/media/model/DownloadFailure;
+	public final fun clear (I)V
+	public final fun finish (ILcom/lagradost/cloudstream3/utils/downloader/VideoDownloadManager$DownloadType;)V
+	public final fun getFacts ()Lkotlinx/coroutines/flow/StateFlow;
+	public final fun getProgress ()Lkotlinx/coroutines/flow/Flow;
+	public final fun merge (Ljava/util/Map;Ljava/util/List;Ljava/util/List;)Ljava/util/Map;
+	public final fun note (ILcom/lagradost/cloudstream4/media/model/DownloadFailure;Ljava/lang/Long;Ljava/lang/Long;)V
+	public static synthetic fun note$default (Lcom/lagradost/cloudstream4/download/DownloadFacts;ILcom/lagradost/cloudstream4/media/model/DownloadFailure;Ljava/lang/Long;Ljava/lang/Long;ILjava/lang/Object;)V
+	public final fun observe (Lkotlinx/coroutines/flow/Flow;Lkotlinx/coroutines/flow/Flow;Lkotlinx/coroutines/flow/Flow;)Lkotlinx/coroutines/flow/Flow;
+	public final fun queuePositions (Ljava/util/List;Ljava/util/List;)Ljava/util/Map;
+	public final fun report (ILcom/lagradost/cloudstream3/utils/downloader/VideoDownloadManager$DownloadType;JJLjava/lang/Long;ZJLcom/lagradost/cloudstream4/media/model/SegmentProgress;)V
+	public final fun stateOf (Lcom/lagradost/cloudstream3/utils/downloader/VideoDownloadManager$DownloadType;)Lcom/lagradost/cloudstream4/media/model/DownloadState;
+	public final fun storagePathOf (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+}
+
+public final static synthetic class com/lagradost/cloudstream4/download/DownloadFacts$WhenMappings : java/lang/Object {
+	public static final synthetic field $EnumSwitchMapping$0 [I
+	public static final synthetic field $EnumSwitchMapping$1 [I
+}
+
+public final static class com/lagradost/cloudstream4/download/DownloadFacts$special$$inlined$map$1 : java/lang/Object, kotlinx/coroutines/flow/Flow {
+	public fun <init> (Lkotlinx/coroutines/flow/Flow;)V
+	public fun collect (Lkotlinx/coroutines/flow/FlowCollector;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final static class com/lagradost/cloudstream4/download/DownloadFacts$special$$inlined$map$1$1 : kotlin/coroutines/jvm/internal/ContinuationImpl {
+	public fun <init> (Lcom/lagradost/cloudstream4/download/DownloadFacts$special$$inlined$map$1;Lkotlin/coroutines/Continuation;)V
+	public final fun invokeSuspend (Ljava/lang/Object;)Ljava/lang/Object;
+}
+
+public final static class com/lagradost/cloudstream4/download/DownloadFacts$special$$inlined$map$1$2 : java/lang/Object, kotlinx/coroutines/flow/FlowCollector {
+	public fun <init> (Lkotlinx/coroutines/flow/FlowCollector;)V
+	public final fun emit (Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final static class com/lagradost/cloudstream4/download/DownloadFacts$special$$inlined$map$1$2$1 : kotlin/coroutines/jvm/internal/ContinuationImpl {
+	public fun <init> (Lcom/lagradost/cloudstream4/download/DownloadFacts$special$$inlined$map$1$2;Lkotlin/coroutines/Continuation;)V
+	public final fun invokeSuspend (Ljava/lang/Object;)Ljava/lang/Object;
+}
+
+public final static class com/lagradost/cloudstream4/download/DownloadFacts$special$$inlined$map$2 : java/lang/Object, kotlinx/coroutines/flow/Flow {
+	public fun <init> (Lkotlinx/coroutines/flow/Flow;)V
+	public fun collect (Lkotlinx/coroutines/flow/FlowCollector;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final static class com/lagradost/cloudstream4/download/DownloadFacts$special$$inlined$map$2$1 : kotlin/coroutines/jvm/internal/ContinuationImpl {
+	public fun <init> (Lcom/lagradost/cloudstream4/download/DownloadFacts$special$$inlined$map$2;Lkotlin/coroutines/Continuation;)V
+	public final fun invokeSuspend (Ljava/lang/Object;)Ljava/lang/Object;
+}
+
+public final static class com/lagradost/cloudstream4/download/DownloadFacts$special$$inlined$map$2$2 : java/lang/Object, kotlinx/coroutines/flow/FlowCollector {
+	public fun <init> (Lkotlinx/coroutines/flow/FlowCollector;)V
+	public final fun emit (Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final static class com/lagradost/cloudstream4/download/DownloadFacts$special$$inlined$map$2$2$1 : kotlin/coroutines/jvm/internal/ContinuationImpl {
+	public fun <init> (Lcom/lagradost/cloudstream4/download/DownloadFacts$special$$inlined$map$2$2;Lkotlin/coroutines/Continuation;)V
+	public final fun invokeSuspend (Ljava/lang/Object;)Ljava/lang/Object;
 }
 
 public final class com/lagradost/cloudstream4/extensions/AndroidExtensionRuntime : java/lang/Object, com/lagradost/cloudstream4/feature/extensions/ExtensionRuntime {
