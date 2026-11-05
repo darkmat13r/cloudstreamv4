@@ -74,7 +74,7 @@ search's repoint is the draft PR above:
 | `KMP-12` (row 18) | `:feature:search` | Steps 1–3: the contracts, the MVI machine, the TV screen, and the `SearchSource`/`SearchHistoryStore` implementations for **both** hosts | Step 4 is the open draft #91; step 5 (deleting the old fragment) is a release away. The touch screen does not exist |
 | `KMP-20` | `:feature:home` | The `HomeSource` seam and the desktop screen | **The TV screen**, though `design/TV Home.dc.html` draws it. The chosen source is not remembered across launches |
 | `KMP-15`/`16`/`25` | `:feature:detail`, `:media:subtitle` | The desktop detail page, source list, player and subtitles | Source and audio selectors (artboard 7e). No Android host |
-| `KMP-26` | `:feature:library` | Continue Watching, six lists, watch progress, resume, and a file store beside the search history | A bookmark button on the detail page, progress on search and home cards, sorting, Android |
+| `KMP-26` | `:feature:library` | Continue Watching, six lists, watch progress, resume, and a file store beside the search history | A bookmark button on the detail page, progress on search and home cards, sorting. Android TV reads the local lists (`KMP-34`); writes and phone are not done |
 
 **Update, 2026-11-02: Android TV opens the new search screen** (`KMP-12` steps 3 and 4). The rest of
 this paragraph's table is history. `SearchTvFragment` is the glue, gated by one line in `MainActivity`;
@@ -297,6 +297,11 @@ flags and no task, it now runs every module's device tests; it used to pass the 
 test task. A failed run can leave the previous run's XML in place, so check the `timestamp` is from this run.
 
 **Never leave the emulator idle**, and when another emulator is running, address yours by serial.
+
+**Run `adb` diagnostics inside the slot.** Every device run uses port 5580, so `emulator-5580` is whichever run holds
+the slot, and the serial does not tell you it is yours. A `logcat` or `screencap` started beside a queued run attaches to
+the other agent's emulator: on 2026-11-04 `KMP-34`'s diagnostic logcat read another agent's whole run and none of its
+own. Start it from a script run under `with-gradle-lock.sh`, in the same slot as the Gradle run it is watching.
 
 **This AVD is not the artboard.** 1280x720 at 213 dpi is about 961.5x540.8 dp, not 960x540. Do not assert
 full-screen geometry against 960x540 or hard-code a screen size: assert component bounds, spacing and focus, and

@@ -70,6 +70,10 @@ enum class LibraryBucket {
  *   there is no relative-time string set to show it with (`DesktopSearchHistory` documents that gap).
  * @param title and [posterUrl] and [providerName] all came from a plugin and stay untrusted: the store
  *   sanitises them again on the way out, because the file was written from the same untrusted data.
+ * @param typeLabel the kind of title, already in the user's language, or null where the host does not
+ *   hold one. Desktop's store has no such field, so its cards draw no badge.
+ * @param posterHeaders what [posterUrl] must be asked for with, where a provider requires it. Android's
+ *   bookmarks keep these. Desktop's do not, and it passes null.
  */
 @Immutable
 data class LibraryTitle(
@@ -79,6 +83,8 @@ data class LibraryTitle(
     val keptAt: Long,
     val posterUrl: String? = null,
     val providerName: String? = null,
+    val typeLabel: String? = null,
+    val posterHeaders: Map<String, String>? = null,
 )
 
 /**
@@ -143,6 +149,11 @@ data class WatchPosition(
  * screen down with it.
  */
 interface LibraryStore {
+    /**
+     * Every row. **One id can appear twice, with different buckets**, where a host keeps its lists in
+     * separate stores: on Android a title can be in Watching and in Favourites at once, because favourites
+     * are their own record type (`LibraryBucket.Favourites` above). Desktop has one bucket per id.
+     */
     suspend fun titles(): List<LibraryTitle>
 
     /**

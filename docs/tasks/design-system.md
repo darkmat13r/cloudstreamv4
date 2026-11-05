@@ -539,3 +539,19 @@ along a `ChipRow` on `Television_720p`. Two tests pinned the old rule's sample s
 Compose draws that control as a `Chip`. `.cbtn` has no Compose control to compare yet. In `Components`: chip
 padding 16 px against `ChipDefaults.VisualHorizontalPadding` 24 px, chip spacing 8 px against `ChipRowSpacing` 48 px, so a
 ring there touches its neighbour, and `.seg` 56 px against the 48 px visual `SegmentedControl` documents.
+
+---
+
+## DS-13 — Boards: four old Home features, `TV Home Extras` 3e to 3m
+
+**Status:** in review · #149 · boards only, no Kotlin
+
+The owner asked on 2026-11-05 for the bookmarks row and its filter, a Random button and `None` as a source, a details panel
+on a card, and a manual reload. No board drew them. `design/TV Home Extras.dc.html` holds nine artboards, numbered on from 3d,
+redrawn the same day to the owner's rulings: hold OK plus the Menu key reach the panel; Random is not a Home source, and
+`None` alone remains, while the Random button stays, always shown; search is in the top bar only; Subscribe is in the panel; the token wins for list rows and rings; a failed reload keeps Continue watching and Bookmarks above the error (3m); icon rings sit on the visible 48 px tile, and `IconCell` in Compose is to be changed to match. The primary button stays white at rest, as `Components` defines it. Its
+closing note gives each board's focus order, states and prerequisites by file and line. 464 boxes: 0 off-grid, 0 band
+violations, 0 clipped, 0 collisions, 9 rings at 4px gap and 4px stroke on all four sides, from `getBoundingClientRect` and
+again from the pixels.
+
+---
