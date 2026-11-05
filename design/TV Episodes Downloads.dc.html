@@ -107,6 +107,9 @@ body { margin:0; background:#0a0a0a; font-family:Manrope,system-ui,sans-serif; }
 .bbtn { height:64px; min-width:240px; padding:0 32px; box-sizing:border-box;
   display:inline-flex; align-items:center; justify-content:center; border-radius:16px;
   background:var(--ink); color:#000000; font:800 24px/32px Manrope,sans-serif; white-space:nowrap; }
+/* DS-16: a button's glyph, 32 square and 16 from the label, in the label's colour. The grey square stands for
+   the CloudStreamIcons glyph the rule table names. */
+.bbtn .bgl { width:32px; height:32px; border-radius:8px; background:currentColor; flex:none; margin-right:16px; }
 .bbtn.ghost { background:transparent; color:var(--ink); box-shadow: inset 0 0 0 4px var(--line); }
 .bdg { display:inline-flex; align-items:center; height:32px; padding:0 8px; border-radius:4px;
   box-sizing:border-box; background:rgba(0,0,0,0.78);
@@ -240,8 +243,8 @@ body { margin:0; background:#0a0a0a; font-family:Manrope,system-ui,sans-serif; }
         <div class="art abs" style="left:200px;top:176px;width:1160px;height:480px;border-radius:8px"></div>
         <div class="hd64 abs" style="left:200px;top:688px;width:1000px;height:88px">Northwind</div>
         <div class="m2432 abs" style="left:200px;top:792px;width:1000px;height:32px">2016 · ONGOING · 366 EPISODES · 24 MIN</div>
-        <div class="abs" style="left:200px;top:864px"><span class="bbtn">Play E51</span></div>
-        <div class="abs" style="left:488px;top:864px"><span class="bbtn ghost">Episodes</span></div>
+        <div class="abs" style="left:200px;top:864px"><span class="bbtn"><span class="bgl"></span>Play E51</span></div>
+        <div class="abs" style="left:488px;top:864px"><span class="bbtn ghost"><span class="bgl"></span>Episodes</span></div>
 
         <div class="scrim"></div>
 
@@ -416,9 +419,9 @@ body { margin:0; background:#0a0a0a; font-family:Manrope,system-ui,sans-serif; }
         <div class="m2432 abs" style="left:360px;top:280px;width:1024px;height:32px">12 EPISODES · 4.24 GB ON DISK</div>
         <div class="bd28 abs" style="left:360px;top:320px;width:1024px;height:40px;color:#858585">1 downloading · 1 queued · 1 failed</div>
 
-        <div class="abs" style="left:200px;top:392px"><span class="bbtn">Play next</span></div>
-        <div class="abs" style="left:464px;top:392px"><span class="bbtn ghost">Delete all</span></div>
-        <div class="abs" style="left:728px;top:392px"><span class="bbtn ghost" style="min-width:288px">Retry failed (1)</span></div>
+        <div class="abs" style="left:200px;top:392px"><span class="bbtn"><span class="bgl"></span>Play next</span></div>
+        <div class="abs" style="left:464px;top:392px"><span class="bbtn ghost"><span class="bgl"></span>Delete all</span></div>
+        <div class="abs" style="left:728px;top:392px"><span class="bbtn ghost" style="min-width:288px"><span class="bgl"></span>Retry failed (1)</span></div>
 
         <div class="rhd abs" style="left:200px;top:480px;width:1664px">
           <div class="rt">Season 1</div><div class="rm">7 EPISODES · 3 MORE BELOW</div>
@@ -462,7 +465,7 @@ body { margin:0; background:#0a0a0a; font-family:Manrope,system-ui,sans-serif; }
         </div>
         <div class="hd40 abs" style="left:200px;top:72px;width:440px;height:56px">Downloads</div>
         <div class="pill48 abs" style="left:672px;top:80px;width:360px"><span>Offline · no connection</span></div>
-        <div class="abs" style="left:1064px;top:72px"><span class="bbtn ghost" style="min-width:400px">Play from link</span></div>
+        <div class="abs" style="left:1064px;top:72px"><span class="bbtn ghost" style="min-width:400px"><span class="bgl"></span>Play from link</span></div>
         <div class="abs" style="left:1488px;top:72px"><span class="bbtn ghost" style="min-width:376px">Queue (0/3)</span></div>
 
         <div class="bnr abs" style="left:200px;top:176px;width:1664px;height:96px"></div>
@@ -475,7 +478,7 @@ body { margin:0; background:#0a0a0a; font-family:Manrope,system-ui,sans-serif; }
         <div class="svg1 abs" style="left:984px;top:440px"></div>
         <div class="hd64 abs" style="left:632px;top:568px;width:800px;height:88px;text-align:center">No downloads yet</div>
         <div class="bd28 abs" style="left:592px;top:680px;width:880px;height:80px;text-align:center">Downloads you start from a title's episode list appear here and play with no connection.</div>
-        <div class="abs" style="left:872px;top:800px"><span class="bbtn" style="min-width:320px;outline:4px solid #FFFFFF;outline-offset:4px">Browse library</span></div>
+        <div class="abs" style="left:872px;top:800px"><span class="bbtn" style="min-width:320px;outline:4px solid #FFFFFF;outline-offset:4px"><span class="bgl"></span>Browse library</span></div>
 
       </div></div></div>
 
