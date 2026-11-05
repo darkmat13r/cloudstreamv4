@@ -12,6 +12,8 @@ import com.lagradost.cloudstream3.utils.DataStore.getKey
 import com.lagradost.cloudstream3.TvType
 import com.lagradost.cloudstream3.utils.ExtractorLink
 import com.lagradost.cloudstream3.utils.ExtractorLinkType
+import com.lagradost.cloudstream3.utils.downloader.DownloadFileManagement.getBasePath
+import com.lagradost.cloudstream3.utils.downloader.DownloadFileManagement.getFileName
 import com.lagradost.cloudstream3.utils.downloader.DownloadFileManagement.toFile
 import com.lagradost.cloudstream3.utils.downloader.DownloadObjects.DownloadEpisodeMetadata
 import com.lagradost.cloudstream3.utils.downloader.DownloadObjects.DownloadItem
@@ -135,9 +137,9 @@ private class FakeServer(
 }
 
 /** One real download through the real instance, the code path the queue service runs. */
-private class Episode(private val context: Context, val id: Int, url: String) {
-    private val link: ExtractorLink = runBlocking {
-        newExtractorLink("fake", "fake", url, ExtractorLinkType.VIDEO)
+private class Episode(private val context: Context, val id: Int, vararg urls: String) {
+    private val links: List<ExtractorLink> = runBlocking {
+        urls.map { newExtractorLink("fake", "fake", it, ExtractorLinkType.VIDEO) }
     }
     private val item = DownloadItem(
         source = "fake",
@@ -153,7 +155,7 @@ private class Episode(private val context: Context, val id: Int, url: String) {
             episode = null,
             type = TvType.Movie,
         ),
-        links = listOf(link),
+        links = links,
     )
 
     var instance: VideoDownloadManager.EpisodeDownloadInstance? = null
@@ -189,6 +191,33 @@ private class Episode(private val context: Context, val id: Int, url: String) {
 
     val fileInfo get() = VideoDownloadManager.getDownloadFileInfo(context, id)
 
+    /** The length read straight after a download ends can still be the earlier one, measured once. */
+    suspend fun awaitFileLength(expected: Long, timeoutMs: Long = 10_000L): Long? {
+        val deadline = System.currentTimeMillis() + timeoutMs
+        while (System.currentTimeMillis() < deadline && fileInfo?.fileLength != expected) delay(50)
+        return fileInfo?.fileLength
+    }
+
+    private val folder get() = item.folder!!
+
+    /** A subtitle beside the video, named the way `downloadSubtitle` names one. */
+    fun writeSubtitle(): String {
+        val name = "${getFileName(context, item.ep)} English"
+        VideoDownloadManager.setupStream(context, name, folder, "vtt", false).open().use {
+            it.write("WEBVTT".toByteArray())
+        }
+        return "$name.vtt"
+    }
+
+    fun folderHolds(name: String): Boolean =
+        context.getBasePath().first?.gotoDirectory(folder, createMissingDirectories = false)
+            ?.listFiles()?.any { it.name() == name } == true
+
+    fun deleteFileNamed(name: String) {
+        context.getBasePath().first?.gotoDirectory(folder, createMissingDirectories = false)
+            ?.listFiles()?.firstOrNull { it.name() == name }?.delete()
+    }
+
     fun deleteFile() {
         VideoDownloadManager.downloadStatusEvent -= listener
         runCatching {
@@ -220,9 +249,9 @@ private fun buttonStatus(id: Int, downloaded: Long, total: Long): DownloadType =
         ?: if (downloaded > 1024L && downloaded + 1024L >= total) DownloadType.IsDone else DownloadType.IsPaused
 
 /**
- * The downloader against real files and a real socket. What it pins about the older code is what the
- * code does today, recorded so that a decision to change it is a decision, not an accident. Those
- * tests are named for the behaviour and every number they rest on goes to logcat under [TAG].
+ * The downloader against real files and a real socket. A lost connection or a failed write ends as a
+ * failure that keeps the file and can be retried (`BUG-35`). The tests are named for the behaviour and
+ * every number they rest on goes to logcat under [TAG].
  */
 @RunWith(AndroidJUnit4::class)
 class DownloadFactsDeviceTest {
@@ -232,7 +261,7 @@ class DownloadFactsDeviceTest {
     @After
     fun deleteFiles() = episodes.forEach { it.deleteFile() }
 
-    private fun episode(id: Int, url: String) = Episode(context, id, url).also { episodes += it }
+    private fun episode(id: Int, vararg urls: String) = Episode(context, id, *urls).also { episodes += it }
 
     private val Episode.fact: DownloadProgress? get() = DownloadFacts.facts.value[id]
 
@@ -300,27 +329,57 @@ class DownloadFactsDeviceTest {
     }
 
     @Test
-    fun aConnectionLostUnderFiftyMegabytesFailsWithNetworkLost() = runBlocking {
+    fun aConnectionLostUnderFiftyMegabytesFailsKeepsTheFileAndItsSubtitles() = runBlocking {
         FakeServer(40 * MIB, dropPast = 15 * MIB).use { server ->
             val episode = episode(910_002, server.url)
-            episode.start()
-            assertTrue("did not end", episode.awaitEnd())
-            measure("under50", episode, server)
+            val subtitle = episode.writeSubtitle()
+            try {
+                episode.start()
+                assertTrue("did not end", episode.awaitEnd())
+                measure("under50", episode, server)
 
-            assertTrue(episode.instance!!.isFailed)
-            assertFalse(episode.instance!!.isCompleted)
-            assertEquals(DownloadType.IsFailed, VideoDownloadManager.downloadStatus[episode.id])
-            assertEquals(DownloadState.FAILED, episode.fact!!.state)
-            assertEquals(DownloadFailure.NetworkLost, episode.fact!!.failure)
-            // Up to the drop: a range still in flight is abandoned when another one fails.
-            assertTrue(episode.fact!!.bytesWritten!! <= 15 * MIB)
-            assertEquals(40 * MIB, episode.fact!!.bytesTotal)
+                assertFailedAndKept(episode, written = 15 * MIB, total = 40 * MIB)
+                assertTrue("the subtitle was deleted with the failure", episode.folderHolds(subtitle))
+            } finally {
+                episode.deleteFileNamed(subtitle)
+            }
         }
     }
 
-    /** The behaviour the brief reserves for the owner. Nothing here changes it. */
+    /** What every failure in this file ends as, whichever side of the 50 MB line it landed on. */
+    private fun assertFailedAndKept(episode: Episode, written: Long, total: Long) {
+        val instance = episode.instance!!
+        assertTrue(instance.isFailed)
+        assertFalse(instance.isCompleted)
+        assertEquals(DownloadType.IsFailed, VideoDownloadManager.downloadStatus[episode.id])
+        assertTrue(DownloadType.IsFailed in episode.announced)
+        assertFalse(DownloadType.IsDone in episode.announced)
+        // Nothing retries it by itself, and what a Retry needs is still there.
+        assertNull(VideoDownloadManager.getDownloadQueuePackage(context, episode.id))
+        assertNotNull(VideoDownloadManager.getDownloadResumePackage(context, episode.id))
+        val info = episode.fileInfo!!
+        assertTrue("wrote ${info.fileLength}", info.fileLength in 1..written)
+        assertEquals(total, info.totalBytes)
+        assertNull(episode.firstWrongOffset())
+        val fact = episode.fact!!
+        assertEquals(DownloadState.FAILED, fact.state)
+        assertEquals(info.fileLength, fact.bytesWritten)
+    }
+
+    private suspend fun retryFinishes(episode: Episode, server: FakeServer, total: Long, name: String) {
+        server.dropPast = null
+        episode.start(linkIndex = 0)
+        assertTrue("the retry did not end", episode.awaitEnd())
+        val length = episode.awaitFileLength(total)
+        measure(name, episode, server)
+        assertTrue(episode.instance!!.isCompleted)
+        assertEquals(total, length)
+        assertNull(episode.firstWrongOffset())
+        assertEquals(DownloadState.COMPLETED, episode.fact!!.state)
+    }
+
     @Test
-    fun aConnectionLostPastFiftyMegabytesWrittenIsFiledAsCompletedAndTheFactSaysFailed() = runBlocking {
+    fun aConnectionLostPastFiftyMegabytesFailsKeepsTheFileAndRetryFinishesIt() = runBlocking {
         val total = 100 * MIB
         val written = 60 * MIB
         FakeServer(total, dropPast = written).use { server ->
@@ -328,17 +387,12 @@ class DownloadFactsDeviceTest {
             episode.start()
             assertTrue("did not end", episode.awaitEnd())
             measure("past50", episode, server)
-            val requestsFirstRun = server.requests.size
-            val completed = episode.instance!!.isCompleted
-            val failed = episode.instance!!.isFailed
-            val status = VideoDownloadManager.downloadStatus[episode.id]
-            val length = episode.fileInfo!!.fileLength
-            val recordedTotal = episode.fileInfo!!.totalBytes
-            val queuePackage = VideoDownloadManager.getDownloadQueuePackage(context, episode.id)
-            val fact = episode.fact!!
-            val announced = episode.announced.toList()
 
-            // What downloadThing itself returns for that, called directly.
+            assertFailedAndKept(episode, written, total)
+            assertEquals(DownloadFailure.NetworkLost, episode.fact!!.failure)
+
+            // What downloadThing itself returns for that, called directly. Which side of the line one
+            // attempt lands on is a race, measured at 60 MiB and 46.6 MiB. It only decides the mirror.
             val direct = VideoDownloadManager.downloadThing(
                 context,
                 newExtractorLink("fake", "fake", server.url, ExtractorLinkType.VIDEO),
@@ -350,91 +404,81 @@ class DownloadFactsDeviceTest {
                 createNotificationCallback = {},
                 minimumSize = 10 * MIB,
             )
-            val directFile = VideoDownloadManager.getDownloadFileInfo(context, 910_004)?.fileLength
-            Log.i(TAG, "past50: direct status=${direct.describe()} fileLength=$directFile requestsFirstRun=$requestsFirstRun")
+            val directFile = VideoDownloadManager.getDownloadFileInfo(context, 910_004)!!.fileLength
+            Log.i(TAG, "past50: direct status=${direct.describe()} fileLength=$directFile")
             episodes += Episode(context, 910_004, server.url)
+            assertFalse(direct.success)
+            assertTrue(direct.retrySame)
+            assertEquals(directFile <= VideoDownloadManager.DOWNLOAD_PARTIAL_MIN_SIZE, direct.tryNext)
 
-            // A later resume, once the source is healthy again.
-            server.dropPast = null
-            episode.start(linkIndex = 0)
-            assertTrue("resume did not end", episode.awaitEnd())
-            measure("past50-resumed", episode, server)
-
-            // The same fault lands on either side of the 50 MB line. A range still in flight is abandoned
-            // when another one fails, so what is written by then is a race. Measured: 60 MiB and 46.6 MiB.
-            // Which side it landed on decides everything the older record says, so that is what is pinned.
-            val filedAsCompleted = length > VideoDownloadManager.DOWNLOAD_PARTIAL_MIN_SIZE
-            assertEquals(filedAsCompleted, completed)
-            assertEquals(!filedAsCompleted, failed)
-            assertEquals(if (filedAsCompleted) null else DownloadType.IsFailed, status)
-            assertTrue(DownloadType.IsFailed in announced)
-            assertFalse(DownloadType.IsDone in announced)
-            assertTrue("wrote $length", length <= written)
-            assertEquals(total, recordedTotal)
-            assertNull(queuePackage)
-            // Sized right, so the button shows a paused download rather than a finished one.
-            if (filedAsCompleted) assertEquals(DownloadType.IsPaused, buttonStatus(episode.id, length, total))
-            assertEquals(
-                if (directFile!! > VideoDownloadManager.DOWNLOAD_PARTIAL_MIN_SIZE) {
-                    DownloadStatus(retrySame = true, tryNext = false, success = true)
-                } else {
-                    DownloadStatus(retrySame = true, tryNext = true, success = false)
-                },
-                direct,
-            )
-            // The fact.
-            assertEquals(DownloadState.FAILED, fact.state)
-            assertEquals(DownloadFailure.NetworkLost, fact.failure)
-            assertEquals(length, fact.bytesWritten)
-            // The resume finished the same file.
-            assertTrue(episode.instance!!.isCompleted)
-            assertEquals(total, episode.fileInfo!!.fileLength)
-            assertNull(episode.firstWrongOffset())
-            assertEquals(DownloadState.COMPLETED, episode.fact!!.state)
+            // A file the older code filed as completed looks like this after an update: the same keys,
+            // and no status in memory. The button computes paused from its size, and a resume finishes it.
+            VideoDownloadManager.downloadStatus.remove(episode.id)
+            val length = episode.fileInfo!!.fileLength
+            assertEquals(DownloadType.IsPaused, buttonStatus(episode.id, length, total))
+            retryFinishes(episode, server, total, "past50-retried")
         }
     }
 
-    /** `resolveSafe` calls the open-ended range finished however it ended, at any size. */
+    /** `resolveSafe` used to call the open-ended range finished however it ended, at any size. */
     @Test
-    fun aConnectionLostInASingleRangeFileIsFiledAsDoneAndTheFactSaysFailed() = runBlocking {
+    fun aConnectionLostInASingleRangeFileFailsAndRetryFinishesIt() = runBlocking {
+        val total = 15 * MIB
         val written = 12 * MIB
-        FakeServer(15 * MIB, dropPast = written).use { server ->
+        FakeServer(total, dropPast = written).use { server ->
             val episode = episode(910_005, server.url)
             episode.start()
             assertTrue("did not end", episode.awaitEnd())
             measure("single-range", episode, server)
 
-            assertTrue(episode.instance!!.isCompleted)
+            assertFailedAndKept(episode, written, total)
             assertEquals(written, episode.fileInfo!!.fileLength)
-            assertTrue(DownloadType.IsDone in episode.announced)
-            assertFalse(DownloadType.IsFailed in episode.announced)
-            assertEquals(DownloadState.FAILED, episode.fact!!.state)
             assertEquals(DownloadFailure.NetworkLost, episode.fact!!.failure)
+            retryFinishes(episode, server, total, "single-range-retried")
         }
     }
 
     @Test
-    fun aConnectionLostInTheLastRangeIsFiledAsDoneAndTheFactSaysFailed() = runBlocking {
+    fun aConnectionLostInTheLastRangeFailsAndRetryFinishesIt() = runBlocking {
+        val total = 45 * MIB
         val written = 42 * MIB
-        FakeServer(45 * MIB, dropPast = written).use { server ->
+        FakeServer(total, dropPast = written).use { server ->
             val episode = episode(910_006, server.url)
             episode.start()
             assertTrue("did not end", episode.awaitEnd())
             measure("last-range", episode, server)
 
-            assertTrue(episode.instance!!.isCompleted)
-            assertEquals(written, episode.fileInfo!!.fileLength)
-            assertTrue(DownloadType.IsDone in episode.announced)
-            assertFalse(DownloadType.IsFailed in episode.announced)
-            assertEquals(DownloadState.FAILED, episode.fact!!.state)
+            assertFailedAndKept(episode, written, total)
             assertEquals(DownloadFailure.NetworkLost, episode.fact!!.failure)
+            retryFinishes(episode, server, total, "last-range-retried")
+        }
+    }
+
+    /**
+     * Under the line a failure still goes on to the next mirror, and a mirror cannot resume another
+     * one's bytes, so that attempt replaces the file. Recorded because it is the one place a partial
+     * file goes away without the user asking, and `BUG-35` makes a truncated file reach it.
+     */
+    @Test
+    fun aTruncatedFileUnderTheLineIsReplacedByTheNextMirrorsAttempt() = runBlocking {
+        val total = 15 * MIB
+        FakeServer(total, dropPast = 12 * MIB).use { first ->
+            FakeServer(total, dropPast = 5 * MIB).use { second ->
+                val episode = episode(910_008, first.url, second.url)
+                episode.start()
+                assertTrue("did not end", episode.awaitEnd())
+                measure("next-mirror", episode, second)
+
+                assertTrue(second.requests.isNotEmpty())
+                assertFailedAndKept(episode, written = 5 * MIB, total = total)
+                assertEquals(5 * MIB, episode.fileInfo!!.fileLength)
+            }
         }
     }
 }
 
 /**
- * A full disk, separately: it fills the data partition and may leave a download stuck, so it runs on
- * its own class after the others. The filler always goes, and `device-tests.sh` runs the AVD read-only.
+ * A full disk, separately: it fills the data partition, so it runs on its own class after the others. The filler always goes, and `device-tests.sh` runs the AVD read-only.
  */
 @RunWith(AndroidJUnit4::class)
 class DownloadFactsDiskFullDeviceTest {
@@ -454,69 +498,58 @@ class DownloadFactsDiskFullDeviceTest {
     }
 
     @Test
-    fun aFullDiskStallsTheTransferForeverAndTheFactNamesIt() = runBlocking {
+    fun aFullDiskFailsTheTransferFreesItsSlotKeepsTheFileAndRetryFinishesIt() = runBlocking {
         val filler = File(context.cacheDir, "download-facts-filler")
         val free = 30 * MIB
         val total = 200 * MIB
-        val available = StatFs(Environment.getExternalStorageDirectory().path)
-        val before = available.availableBytes
-        val filled = fillLeaving(free, filler)
-        assumeTrue("posix_fallocate could not fill the partition", filled)
+        val before = StatFs(Environment.getExternalStorageDirectory().path).availableBytes
+        assumeTrue("posix_fallocate could not fill the partition", fillLeaving(free, filler))
         FakeServer(total).use { server ->
-            val episode = Episode(context, 910_007, server.url)
-            try {
-                val after = StatFs(Environment.getExternalStorageDirectory().path).availableBytes
-                Log.i(TAG, "disk-full: availableBefore=$before availableAfterFill=$after")
-                val started = System.currentTimeMillis()
-                episode.start()
-                var lastBytes = -1L
-                var lastChange = System.currentTimeMillis()
-                var outcome = "timed out"
-                while (System.currentTimeMillis() - started < 180_000L) {
+            FakeServer(total).use { nextMirror ->
+                val episode = Episode(context, 910_007, server.url, nextMirror.url)
+                try {
+                    val after = StatFs(Environment.getExternalStorageDirectory().path).availableBytes
+                    Log.i(TAG, "disk-full: availableBefore=$before availableAfterFill=$after")
+                    val started = System.currentTimeMillis()
+                    episode.start()
+                    val ended = episode.awaitEnd(timeoutMs = 90_000L)
+                    val tookMs = System.currentTimeMillis() - started
                     val running = episode.instance!!
-                    if (running.isCompleted || running.isFailed) {
-                        outcome = "ended isCompleted=${running.isCompleted} isFailed=${running.isFailed}"
-                        break
-                    }
                     val fact = DownloadFacts.facts.value[episode.id]
-                    val bytes = fact?.bytesDownloaded ?: -1L
-                    if (bytes != lastBytes) {
-                        lastBytes = bytes
-                        lastChange = System.currentTimeMillis()
-                    }
-                    if (System.currentTimeMillis() - lastChange > 45_000L) {
-                        outcome = "stalled at $bytes for 45 s"
-                        break
-                    }
-                    delay(250)
+                    val status = VideoDownloadManager.downloadStatus[episode.id]
+                    val length = episode.fileInfo?.fileLength
+                    Log.i(TAG, "disk-full: ended=$ended in $tookMs ms isCompleted=${running.isCompleted} isFailed=${running.isFailed}")
+                    Log.i(TAG, "disk-full: fact=$fact")
+                    Log.i(TAG, "disk-full: downloadStatus=$status fileLength=$length")
+                    Log.i(TAG, "disk-full: requests=${server.requests.size} nextMirror=${nextMirror.requests.size}")
+
+                    assertTrue("still running after $tookMs ms, status $status", ended)
+                    assertTrue(running.isFailed)
+                    assertFalse(running.isCompleted)
+                    assertEquals(DownloadType.IsFailed, status)
+                    assertFalse(VideoDownloadManager.currentDownloads.value.contains(episode.id))
+                    assertEquals(DownloadState.FAILED, fact!!.state)
+                    assertTrue("the fact does not name a full disk: $fact", fact.failure is DownloadFailure.StorageFull)
+                    // Another mirror writes to the same disk, and starting one would delete this file.
+                    assertTrue(nextMirror.requests.isEmpty())
+                    assertTrue("wrote $length", length!! > 0L)
+                    assertNull(episode.firstWrongOffset())
+
+                    // Room again: the Retry the failure offers carries on from the same file.
+                    filler.delete()
+                    episode.start(linkIndex = 0)
+                    assertTrue("the retry did not end", episode.awaitEnd())
+                    val retried = episode.awaitFileLength(total)
+                    Log.i(TAG, "disk-full-retried: fileLength=$retried fact=${DownloadFacts.facts.value[episode.id]}")
+                    assertTrue(episode.instance!!.isCompleted)
+                    assertEquals(total, retried)
+                    assertNull(episode.firstWrongOffset())
+                } finally {
+                    VideoDownloadManager.downloadEvent.invoke(episode.id to DownloadActionType.Stop)
+                    episode.instance?.cancelDownload()
+                    episode.deleteFile()
+                    filler.delete()
                 }
-                val fact = DownloadFacts.facts.value[episode.id]
-                Log.i(TAG, "disk-full: outcome=$outcome after ${System.currentTimeMillis() - started} ms")
-                Log.i(TAG, "disk-full: fact=$fact")
-                val status = VideoDownloadManager.downloadStatus[episode.id]
-                Log.i(TAG, "disk-full: downloadStatus=$status")
-                Log.i(TAG, "disk-full: fileLength=${episode.fileInfo?.fileLength} requests=${server.requests.size}")
-
-                // The user's way out: does stopping end it?
-                val stopped = System.currentTimeMillis()
-                VideoDownloadManager.downloadEvent.invoke(episode.id to DownloadActionType.Stop)
-                episode.instance?.cancelDownload()
-                val ended = episode.awaitEnd(timeoutMs = 30_000L)
-                Log.i(TAG, "disk-full: afterStop ended=$ended in ${System.currentTimeMillis() - stopped} ms")
-
-                // Neither finished nor failed, and the legacy status still says it is downloading.
-                assertTrue("expected a stall: $outcome", outcome.startsWith("stalled"))
-                assertEquals(DownloadType.IsDownloading, status)
-                assertNotNull("no fact was ever reported", fact)
-                assertEquals(DownloadState.DOWNLOADING, fact!!.state)
-                assertTrue("the fact does not name a full disk: $fact", fact.failure is DownloadFailure.StorageFull)
-                assertTrue("written ${fact.bytesWritten}", fact.bytesWritten!! > 0L)
-                assertTrue(ended)
-            } finally {
-                VideoDownloadManager.downloadEvent.invoke(episode.id to DownloadActionType.Stop)
-                episode.instance?.cancelDownload()
-                episode.deleteFile()
-                filler.delete()
             }
         }
     }
