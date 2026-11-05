@@ -555,3 +555,54 @@ violations, 0 clipped, 0 collisions, 9 rings at 4px gap and 4px stroke on all fo
 again from the pixels.
 
 ---
+
+## DS-14 — Shared components to the boards, from the TV design review
+
+**Status:** in review · `DEC-17` (with the 2026-11-05 rulings) · `:core:designsystem`, one line in the TV shell, boards
+
+The design reviewer measured nine shared-component defects off emulator captures. Each was checked against the code and
+the boards before it changed, and each is held by a JVM test that fails on the old drawing (control run: all ten new
+cases red against the stashed old components, each for its own reason).
+
+| # | Component | Was | Now | Board |
+|---|---|---|---|---|
+| 1 | `Badge`, card badge inset | pill corner, 8dp padding, 0.72 ground, 8dp inset | `shapes.small`, 4dp padding, 0.78 ground, 4dp inset | `.bdg`, `.badges`, `.tl` |
+| 2 | Card reveal | scrim from 45% of the card down, 8dp inset | a scrim **block behind the text**: 16dp lead + text + 4dp inset, solid 0.92 over its bottom 30% | `.revt` in 4a and 3d |
+| 3 | `SeeAllCard` | `raised` fill and a chevron drawn on a `Canvas` | `surface` at 0.6 (`#060A0D` over `bg`), a dashed `line` hairline, no glyph | `.seeall` |
+| 4 | `StateView` body, `ListRow` subtitle | `ink2` | `muted` | `.svb`, `.ls` |
+| 5 | `Chip` (tabs and filter chips) | selected was an `ink` fill with a `bg` label | both states `raised` with a hairline: unselected `muted` label on `line`, selected `ink` label on `muted`; count `muted` | `.chip.sel` in 4a; owner ruling for 5a |
+| 6 | `FailureBanner` | `live` dot, `Secondary` retry | hollow `StatusDot.Failed`, `Primary` retry (`ink` fill) | 4b `.sg.fail`, `.bbtn` |
+| 7 | `SidePanel`, `ListRow` | panel `raised`, header bottom-aligned ~60dp low, no selected fill | panel `surface`, header top-aligned at `ChromeRowTop`, a selected row is `raised` | 4d |
+| 8 | Panel dim over the TV rail | the rail stayed bright | `SidePanelHost` publishes its scrim to `SidePanelOutsideDim`; `TvRail` draws it with `Modifier.sidePanelOutsideDim` | 4d |
+| 9 | `IconCell` | ring on the 48dp cell, no visible tile | a 24dp `raised` tile with a `line` hairline, the ring on the tile, 2dp clear on all four sides | `.ivis`, `TV Home Extras` |
+
+**Item 2, measured.** The boards do not disagree with each other: `.revt` is one rule, `padding: 32px 8px 8px` and
+`linear-gradient(0deg, rgba(0,0,0,0.92) 30%, transparent)`, sized by its text. Measured in Chromium with fonts loaded:
+104 of 240px (43.3%) on 4a, whose title takes two lines; 72 of 240px (30%) on 3d, one line. No single fraction of the
+card reproduces both, so the scrim is the text's own background. `TV Library` 5a is the exception and is **not** followed:
+its grid card uses `padding: 40px 16px 16px` and `0.94` at 34% (120 of 288px, 41.7%). Not ruled; reported.
+
+**Item 5, boards.** 5a's `.tab.sel`, and `.chip.sel` in `TV Detail Player`, `TV Episodes Downloads` and
+`TV Onboarding Extensions`, were white fills; they now match `TV Search`'s `.chip.sel`. `TV Home Extras` draws its selected
+chip with an 8x16 `muted` mark inside the pill rather than a muted edge; Compose follows `TV Search`, since a mark cell
+would widen every chip. **Item 9, boards.** `.ibx.foc` moved to `.ibx.foc .ivis` in `Components`, `TV Search`, `TV Home`,
+`TV Detail Player`, `TV Episodes Downloads` and `TV Onboarding Extensions` (and `.avatar` in `TV Home`'s chrome), and
+`Components`' icon-button note now says so. Every element box measured identical before and after in all seven boards,
+apart from the one bold span in that note; the live focused tile on 6d measures a 4px gap and 4px stroke on all four
+sides from the pixels.
+
+**Token over board, reported.** The tile's corner is `shapes.medium` where the boards draw 8px. The see-all keeps the
+cards' square corner (`shapes.none`) where the boards draw 8px.
+
+**Screens whose look changed.** Android TV: Search (chips, the partial-failure banner, result badges and reveal, history
+subtitles, no-results body) and Library (tabs, grid badges and reveal, empty-page body). Desktop: Search and Home (the
+failure banner's dot and white retry), and the `StateView` body on Search, Home, Library, Detail and the player's error.
+`DetailScreenTv`'s list subtitles change too, but nothing hosts it on master. Android TV Home (`#147`, merged
+while this was open): its own failure row now takes the `Primary` retry too, and every one of its six references changed
+(the account `IconCell`'s tile, badges, reveal, the see-all, the source panel's surface, header and raised selected row,
+the empty-state body). `#153` brings the detail panels.
+
+**Tests.** JVM: `DesignReviewFixesTest` (9) and one `FocusRingGapTest` case. Device: `TvRailNavigationTest.
+aSidePanelOpenOnThePageDimsTheRailToo` opens a panel on the real Search page and measures the rail's brightness. Screenshot
+cases: `cards-rail-end-poster-and-see-all` and `panel-open-over-rail` (new); every search and library reference was
+re-recorded after its diff was read, and `library-grid-focus-tab` already covers a selected tab with another focused.

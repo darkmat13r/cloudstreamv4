@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
+import com.lagradost.cloudstream4.core.designsystem.primitive.insetOutline
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 
@@ -50,9 +51,14 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
  * ## Selection and focus are different things
  *
  * `selected` is application state, hoisted: the chip renders it and never changes it. Focus is
- * transient and owned here. A selected chip is an ink fill with a bg label — the same inversion
- * the primary button uses — and an unselected one is a raised fill with an ink2 label. Neither
- * state uses `CloudStreamTheme.colors.live`: that role is playback state only.
+ * transient and owned here. Both states are a `raised` fill with a [CloudStreamDimens.Hairline]
+ * edge drawn inside the pill, which costs no layout. Unselected, the label is `muted` and the edge
+ * is `line`; selected, the label is `ink` and the edge is `muted`, the chip's marker. The count is
+ * `muted` in both. That is `Design System v2`'s rule for a selected control — *"raised fill + ink
+ * label + muted marker — the white mark is focus and only focus"* — and `.chip.sel` in `TV Search`
+ * 4a to 4c (owner, 2026-11-05: a selected tab follows it, not 5a's white fill). A selected chip
+ * used to be an `ink` fill, so a focused chip beside a selected one put two white marks in a row.
+ * Neither state uses `CloudStreamTheme.colors.live`: that role is playback state only.
  *
  * There is no `enabled` parameter. A chip in this design is a filter, and the design has no
  * disabled filter — a filter that cannot be applied is not shown. If one appears, that is a
@@ -110,7 +116,8 @@ private fun ChipVisual(
         modifier = modifier
             .height(CloudStreamDimens.ChipVisualHeight)
             .tvFocusRing(focused = focused, shape = shape)
-            .background(color = if (selected) colors.ink else colors.raised, shape = shape)
+            .background(color = colors.raised, shape = shape)
+            .insetOutline(color = if (selected) colors.muted else colors.line, shape = shape)
             .padding(horizontal = ChipDefaults.VisualHorizontalPadding),
         horizontalArrangement = arrangement,
         verticalAlignment = Alignment.CenterVertically,
@@ -118,13 +125,13 @@ private fun ChipVisual(
         TargetLabel(
             text = label,
             style = typography.label,
-            color = if (selected) colors.bg else colors.ink2,
+            color = if (selected) colors.ink else colors.muted,
         )
         if (count != null) {
             TargetLabel(
                 text = count,
                 style = typography.labelMono,
-                color = if (selected) colors.bg else colors.muted,
+                color = colors.muted,
             )
         }
     }

@@ -1,12 +1,9 @@
 package com.lagradost.cloudstream4.core.designsystem.state
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.Text
@@ -18,6 +15,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.lagradost.cloudstream4.core.designsystem.primitive.StatusDot
+import com.lagradost.cloudstream4.core.designsystem.primitive.StatusDotState
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 
@@ -66,9 +65,9 @@ object FailureBannerDefaults {
  * }
  * ```
  *
- * The dot is the one legitimate use of `live` here: it is a failure marker, which the colour
- * contract allows. The retry beside it is [StateActionEmphasis.Secondary] — `live` is never a
- * button.
+ * The dot is a hollow `muted` [StatusDot]: **a failure is a hollow neutral marker, never `live`**
+ * (`DEC-17`). The retry beside it is [StateActionEmphasis.Primary], the `ink` fill with a black
+ * label that `TV Search` 4b draws as `.bbtn`: it is the one thing on the row to act on.
  *
  * @param notice what failed, in what detail, and how to retry.
  * @param modifier applied to the banner's row.
@@ -86,7 +85,7 @@ fun FailureBanner(
         Spacer(Modifier.width(CloudStreamDimens.ChipRowSpacing))
         StateActionButton(
             action = notice.retry,
-            emphasis = StateActionEmphasis.Secondary,
+            emphasis = StateActionEmphasis.Primary,
         )
     }
 }
@@ -96,11 +95,7 @@ fun FailureBanner(
 private fun RowScope.NoticeLabels(notice: FailureNotice) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
-    Box(
-        modifier = Modifier
-            .size(FailureBannerDefaults.DotSize)
-            .background(color = colors.live, shape = CloudStreamTheme.shapes.pill),
-    )
+    StatusDot(state = StatusDotState.Failed, size = FailureBannerDefaults.DotSize)
     Spacer(Modifier.width(FailureBannerDefaults.ItemGap))
     Text(
         text = notice.headline,
