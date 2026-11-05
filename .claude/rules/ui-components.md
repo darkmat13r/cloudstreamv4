@@ -105,6 +105,7 @@ meaning, icon buttons are for toggles and overflow, and a screen has one primary
 | Bookmark, Watchlist, Library (add to library): an icon-only toggle, or outlined with its label | `Bookmark` | `Bookmark` |
 | Favourite (icon-only toggle) | `Favorite` | `Heart` |
 | More (icon-only overflow) | `More` | `Dots` |
+| More info (opens a title's page from Home's hero, which does not play: rule 1's Play or Resume when it can, `KMP-41`) | `Info` | `InfoCircle` |
 
 **Text-only, and why:** *Skip for now* and *Go to Watching* (navigation with no object a glyph
 names); *Season N* (a choice, not an action); *Queue*, *Free up space* (no common glyph, and
