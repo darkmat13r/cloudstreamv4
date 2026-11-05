@@ -3319,7 +3319,7 @@ cellular paths have not run either, because this AVD's default network is Ethern
 
 ## KMP-36 — Download facts: rate, ETA, queue position, state and a typed reason (queue `Q13`) · **measured 2026-11-04**
 
-**Status:** in pr · **Waits on the owner:** the three findings below. Nothing here changes what a download does.
+**Status:** in pr #148 · **Waits on the owner:** the three findings below. Nothing here changes what a download does.
 
 `DownloadFacts` (`:app`, `cloudstream4/download/`) holds one `DownloadProgress` per episode id. Downloads screens observe
 `DownloadFacts.progress`, which adds the queue; their Android host will be in `:app`, so everything is `internal`.
