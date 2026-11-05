@@ -22,6 +22,8 @@ when twenty-three more had merged since. **Trust `git log` over this heading.**
 
 ## Where things stand
 
+**Android TV opens the new downloads screen since `KMP-40`**, boards 6c and 6e. Deleting one line in `MainActivity` is the rollback, and `DownloadFragment` stays on every other layout.
+
 **Android TV shows the Compose rail since `KMP-33`.** `TvRailSwitch.useComposeRail = false` is the rollback to the XML
 rail, kept for one release. Phone and the emulator layout are unchanged.
 

@@ -3615,3 +3615,82 @@ fail, each the one aimed at it. The renders of the notice and of the list in bot
   here, which is a separate change of what the rows say.
 - The detail page's own source list stays in arrival order: it grows at the foot so a row never slides under the pointer
   (`BUG-19`). Only the player's list, which holds its rows while open, is best first.
+
+## KMP-40 — The TV downloads screen on Android, boards 6c and 6e (queue `Q14`) · **measured 2026-11-05**
+
+**Status:** in pr · Android TV only: `MainActivity` sends `navigation_downloads` to `DownloadsTvFragment` in one line, and deleting that line is the rollback. `DownloadFragment` is
+untouched and stays the screen on every other layout. `DEC-17` is the authority to switch.
+
+| | |
+|---|---|
+| `:feature:downloads` | New. `DownloadsSource` is the seam, `DownloadShelf` turns disk and `DownloadFacts` figures into a row, `DownloadsViewModel` holds the network and what is being chosen, `DownloadsScreenTv` is 6c and 6e |
+| `AndroidDownloadsSource` | `:app`. The same `DownloadViewModel` the old screen reads, per-episode figures read beside it with the same two calls, and `DownloadFacts.progress` |
+| `DownloadsTvFragment` | `:app`. The glue: effects into navigation, the old screen's delete dialog, Back ends choosing |
+| `PlayFromUrlDialog` | `:app`. A copy of `DownloadFragment.showStreamInputDialog`, which is private to the rollback and leaves with it |
+
+**A failed row has a verb the board does not draw.** 6c draws a failed row with no way back in, and the board's own note says a failure has no other re-entry. `Retry` sits beside the row as a
+separate stop, as 6d draws its verbs, and asks for what the title has left through the old `DOWNLOAD_ACTION_RESUME_DOWNLOAD`. A short file with no fact, which is also what a failure is after a restart,
+reads `Download Paused` with `Resume Download`: facts are in memory, so it makes no claim that nobody can back.
+
+**The two chromes.** 6c has the meter on top and chips in the band. On 6e the band belongs to the storage strip or the banner, so `Play from URL` and the queue become buttons on the top row. Offline rides the
+top row's middle on both. Choosing what to delete has no board, and takes the band in the same chips.
+
+### What the old screen did that this does not, on a TV
+
+| Lost | Why | Back with |
+|---|---|---|
+| Pause, on a film's row | 6c's rows have no verbs, and 6d has no film row | undecided |
+| Opening a title's result page from its poster | 6c draws no poster | `Q15` for a series; a film has no drawn route |
+| Poster and watch progress on a row | Not on 6c | undecided |
+| One-row delete from a film's popup | `Select`, then `Delete`, does the same | not needed |
+
+Unchanged routes, no board: **the queue** opens the old XML page, **Play from URL** opens the old dialog, a **series** opens `DownloadChildFragment` until `Q15`, and a **film** plays as the old row did, a partial
+one included. **Open local file** was already hidden on TV, so nothing is lost. The delete dialog and its wording are the old screen's.
+
+### Where this departs from the boards
+
+- **Words reuse keys:** chip count `1/4`, not `1 of 4`. `Download queue (0/3)`, not `Queue (0/3)`. `18 Episodes | 11.2 GB`, `Movie • 4.2 GB` and `5.4 GB / 6.4 GB`, not the board's middots and `of`. `Download Failed`, not `failed`. The legend is sentence case.
+- **One word for one action:** 6c says `Play from URL` and 6e says `Play from link`. Both say `Play from URL`.
+- **`3 QUEUED ITEMS TOTAL 2.4 GB` keeps the count and drops the total:** a waiting download has not read its size. Nothing is invented.
+- **The shortfall is as of the failed write**, and the banner goes when that download is retried or deleted. `KMP-36`'s pre-flight check still does not exist, so the banner never appears first.
+- **Free up space with nothing to delete** opens the system's storage settings. The note on the board only covers the case with titles.
+- **The leading glyph** is `Play` for a film and `Disclosure` for a series, which is what OK does. The pack has no film or series glyph.
+- **The offline pill** carries a hollow marker, because `StatusPill` requires one. The failed trailing word is `muted`, as `DownloadProgressRow` draws it, where the board has `ink2`.
+- **Scrolling:** Compose on a TV keeps a focused row near a pivot, so the list moves before row 6. This is the platform's default and not overridden.
+
+### Measured, each one a wrong turn first
+
+- **`stringResource(res, args)` leaves `%s` and `%d` on screen.** The first recording showed `Needs %s more · %d downloads queued`. `UiString` is the rule, written down in `UiStringFormat`.
+- **When a focused stop leaves, the view hands focus to another stop by itself, before any effect runs.** So `last` already names the stop it chose: a row removed under focus landed on `Download queue`, and
+  cancelling from its chip landed on the first row. What held focus is therefore read during composition, before the change is applied.
+- **`requestFocus()` on a requester with no node returns `false` rather than throwing** on this Compose, so `requestFocusIfAttached`'s answer is what decides the fallback.
+- **Up from a row lands on the nearest chip,** `Select` or `Delete`, not the first. Every chip is along the row.
+
+**Strings:** 12 new keys in all 62 directories, all machine translated and not reviewed by a native speaker; `qt` uses only words from its own file. `ti`, `ckb`, `mt`, `so`, `or`, `my` and `am` are the least sure, `apc` and `ars` are
+dialect approximations, and `so`'s word for library and storage is the same. Fourteen locales read the legend as `X / Y used` to keep the arguments in order. Twelfth move of the oracle baseline. Reused keys keep the directories they had.
+
+**Published API:** `app/api/classes-jar.api` +124 lines, 0 removed: 12 `R$string` fields and the new `cloudstream4.download` classes.
+
+### Each critical test shown to fail
+
+Temporary changes, all reverted. One run on `:feature:downloads`, 13 of 32 red, and one on `:app`, 4 of 5 red.
+
+| Change | What went red |
+|---|---|
+| A failed row has no verb | `aFailedTransferShowsRetry...`, the list's walk, `whileChoosingNoRowOffersAVerb` |
+| The banner's rule is `live` | `aFailureSpendsNoLive`, `screenshotStorageFullOverTitles` |
+| `UNKNOWN` reads as offline | `offlineRidesTheTopRow...` |
+| A row takes focus before the screen has resumed | `focusReturnsToTheOpenedRow...` |
+| The list stops at 20 rows | `fortyRowsAreAllReachable...` |
+| The Right guard removed, alone in its own run, because the first change had taken away the verb it would land on | `aRowWithNoVerb...` |
+| `MainActivity`'s one line removed | 4 of 5 in `DownloadsTvNavigationTest`. `thePhoneLayoutKeepsTheOldFragment` stays green, as it should |
+| Before the focus fix, not a planted change | `cancellingFromItsChip...`, `aRowThatGoesWhileFocused...`, `theLastRowGoing...`, `aRowDeletedWhileAway...` |
+
+Screenshots are 1280x720, recorded on `Television_720p`. With `Television_720p_2`, the cases the changes did not touch compared 0 pixels different.
+
+### Not verified
+
+- **A real retry finishing.** `Retry` is pressed against a fake source; through the real app it is shown reachable but not pressed. The old resume path itself is `BUG-35`'s measurement. `getDownloadResumePackage` returning null makes a retry do nothing, as on the old button.
+- **A film opening the player**, and `Free up space` reaching the system's storage settings: only the effect is tested.
+- **Real rate and progress on the screen.** Figures come from `DownloadShelf`'s tests and a real `IsFailed` fact; no live transfer ran under this screen.
+- **Any language but English on a device,** and any native speaker reading the 12 translations.
