@@ -483,3 +483,18 @@ each stop by its accessible label, which is what caught 3.
 `TextButtonDefaults`, `ChipDefaults` and `IconCellDefaults` is unchanged.
 
 ---
+
+## DS-11 — Boards: the text button's ring goes on the button
+
+**Status:** done · #146 · boards only, no Kotlin
+
+`.btncell.foc` drew the ring on the 96px focus cell, so it sat 4px from a 64px button's sides and 20px from its top and
+bottom. `.btncell.foc .bbtn` now draws it on the button, in `TV Search`, `TV Search Suggestions`, `TV Library`,
+`TV Episodes Downloads`, `TV Detail Player` and `TV Onboarding Extensions`. Three boards have a live focused cell: 8a-ii,
+Search partial and Search no results, now 4px on all four sides, from `getBoundingClientRect` and again from the pixels.
+Every element box in the eight boards and `Design System v2` measured identical before and after.
+
+**Not changed, on purpose.** `.chipcell.foc` and `.tabcell.foc` still ring the cell. `Chip` does too, and says why in its
+KDoc, so that gap is the rule rather than this defect. `PrimaryTextButton` and `GhostTextButton` already ring the button.
+
+---
