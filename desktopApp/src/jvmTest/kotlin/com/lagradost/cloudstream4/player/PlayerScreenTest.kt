@@ -97,8 +97,10 @@ class PlayerScreenTest {
         audio: AudioTracks = AudioTracks(),
         val fit: PictureFitChoice = PictureFitChoice(),
         sources: PlayerSources? = null,
+        fellThrough: FallThrough? = null,
     ) {
         val calls = Calls()
+        val audioChosen = mutableListOf<AudioTrack>()
         val clock = PlaybackClock().also { it.onStatus(status) }
         val session = SubtitleSession(tracks, { load(it) }, CoroutineScope(SupervisorJob() + Dispatchers.Unconfined))
         var escape: () -> Unit = {}
@@ -123,6 +125,8 @@ class PlayerScreenTest {
                             audio = audio,
                             fit = fit,
                             sources = sources,
+                            fellThrough = fellThrough,
+                            onAudioChosen = { audioChosen += it },
                         )
                     }
                 }
@@ -544,6 +548,47 @@ class PlayerScreenTest {
     private fun stream(name: String, quality: String? = "1080p") =
         StreamLink(label = name, qualityLabel = quality, url = "https://a/$name", referer = null, userAgent = null, audioUrl = null, subtitles = emptyList())
 
+    private fun ranked(name: String, quality: Int?) =
+        stream(name, quality?.let { "${it}p" }).copy(quality = quality)
+
+    @Test
+    fun `the source list is best first, whatever order the links arrived in, with the playing one in its place`() {
+        val sd = ranked("sd", 480)
+        val uhd = ranked("uhd", 2160)
+        val unknown = ranked("unknown", null)
+        val hd = ranked("hd", 720)
+        val sources = PlayerSources(listOf(sd, uhd, unknown), hd, emptyList()) {}
+        assertEquals(listOf(uhd, hd, sd, unknown), sources.links)
+        val screen = Screen(sources = sources)
+        screen.settle()
+        screen.press(Key.S)
+        screen.save("source-list-best-first")
+        screen.scene.close()
+    }
+
+    @Test
+    fun `moving on from a failed source says so, names it, and leaves the controls alone`() {
+        val uhd = ranked("VidSrc", 2160)
+        val fhd = ranked("Filemoon", 1080)
+        val loading = PlayerStatus(buffering = true)
+        val sources = PlayerSources(listOf(uhd, fhd), fhd, listOf(uhd)) {}
+        val before = Screen(status = loading, sources = sources)
+        val clear = before.pixels()
+        before.scene.close()
+        val screen = Screen(status = loading, sources = sources, fellThrough = FallThrough(uhd, 1))
+        val noticed = screen.pixels()
+        val rowY = screen.height - 132 - 24 - 20
+        var changed = 0
+        for (x in 0 until screen.width) if (clear[x, rowY] != noticed[x, rowY]) changed++
+        assertTrue(changed > 0, "a notice above the controls")
+        screen.save("source-fell-through")
+        // Not over the list, whose failed row says the same.
+        screen.press(Key.S)
+        screen.save("source-fell-through-list")
+        assertEquals(emptyList(), screen.calls.log, "playback was not touched")
+        screen.scene.close()
+    }
+
     @Test
     fun `S lists the sources, and pressing a row commits it`() {
         val chosen = mutableListOf<StreamLink>()
@@ -800,6 +845,8 @@ class PlayerScreenTest {
         screen.press(Key.DirectionDown)
         screen.press(Key.Enter)
         assertEquals(listOf(2), screen.calls.audioChoices)
+        // Told to the screen as well, so a change of source can carry it (AudioChoice).
+        assertEquals(listOf(2), screen.audioChosen.map { it.id })
         assertEquals(emptyList(), screen.calls.log)
         // The list has gone: the right arrow seeks again.
         screen.press(Key.DirectionRight)

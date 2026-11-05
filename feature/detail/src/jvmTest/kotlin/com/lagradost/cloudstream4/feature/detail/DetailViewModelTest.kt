@@ -16,7 +16,10 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.test.advanceTimeBy
 import kotlinx.coroutines.test.runTest
+import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.seconds
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class DetailViewModelTest {
@@ -233,11 +236,166 @@ class DetailViewModelTest {
         collector.cancel()
     }
 
+    private fun TestScope.waiting(source: DetailSource) =
+        DetailViewModel("id", source, TestScope(UnconfinedTestDispatcher(testScheduler)), playBestAfter = WAIT)
+
+    /** Every [DetailEffect.Play], as it is posted. */
+    private fun TestScope.plays(vm: DetailViewModel): MutableList<StreamLink> {
+        val played = mutableListOf<StreamLink>()
+        backgroundScope.launch(UnconfinedTestDispatcher(testScheduler)) {
+            vm.effect.collect { if (it is DetailEffect.Play) played += it.link }
+        }
+        return played
+    }
+
+    private val sd = link.copy(label = "sd", url = "https://a/sd", qualityLabel = "480p", quality = 480)
+    private val uhd = link.copy(label = "uhd", url = "https://a/uhd", qualityLabel = "2160p", quality = 2160)
+    private val fhd = link.copy(label = "fhd", url = "https://a/fhd", qualityLabel = "1080p", quality = 1080)
+
+    @Test
+    fun `asking to play plays the best link found by the end of the wait, not the first`() = runTest {
+        val arriving = Arriving()
+        val vm = waiting(FakeSource({ movie }, stream = { arriving.flow }))
+        val played = plays(vm)
+        vm.onAction(DetailAction.PlayRequested("data"))
+        arriving.send(sd)
+        advanceTimeBy(WAIT / 2)
+        arriving.send(sd, fhd)
+        assertEquals(emptyList(), played, "nothing plays inside the wait")
+        advanceTimeBy(WAIT / 2 + 1.milliseconds)
+        assertEquals(listOf(fhd), played)
+        // Better, but after the start: it is on the list and in the player's, and does not interrupt.
+        arriving.send(sd, fhd, uhd)
+        advanceTimeBy(WAIT * 2)
+        arriving.updates.close()
+        assertEquals(listOf(fhd), played, "it played once")
+    }
+
+    @Test
+    fun `a 2160p link plays at once, because nothing can rank above it`() = runTest {
+        val arriving = Arriving()
+        val vm = waiting(FakeSource({ movie }, stream = { arriving.flow }))
+        val played = plays(vm)
+        vm.onAction(DetailAction.PlayRequested("data"))
+        arriving.send(sd, fhd)
+        assertEquals(emptyList(), played)
+        arriving.send(sd, fhd, uhd)
+        assertEquals(listOf(uhd), played, "without waiting out the rest")
+        advanceTimeBy(WAIT * 2)
+        arriving.updates.close()
+        assertEquals(listOf(uhd), played)
+    }
+
+    @Test
+    fun `the wait counts from the first link, not from the request`() = runTest {
+        val arriving = Arriving()
+        val vm = waiting(FakeSource({ movie }, stream = { arriving.flow }))
+        val played = plays(vm)
+        vm.onAction(DetailAction.PlayRequested("data"))
+        advanceTimeBy(WAIT * 3)
+        assertEquals(emptyList(), played)
+        arriving.send(sd)
+        advanceTimeBy(WAIT - 1.milliseconds)
+        assertEquals(emptyList(), played)
+        advanceTimeBy(2.milliseconds)
+        assertEquals(listOf(sd), played)
+    }
+
+    @Test
+    fun `a search that ends inside the wait plays at once`() = runTest {
+        val arriving = Arriving()
+        val vm = waiting(FakeSource({ movie }, stream = { arriving.flow }))
+        val played = plays(vm)
+        vm.onAction(DetailAction.PlayRequested("data"))
+        arriving.send(sd, uhd)
+        arriving.updates.close()
+        assertEquals(listOf(uhd), played)
+        advanceTimeBy(WAIT * 2)
+        assertEquals(listOf(uhd), played, "and the wait does not play it again")
+    }
+
+    @Test
+    fun `a search that fails after some links still plays the best of them`() = runTest {
+        val arriving = Arriving()
+        val vm = waiting(FakeSource({ movie }, stream = { arriving.flow }))
+        val played = plays(vm)
+        vm.onAction(DetailAction.PlayRequested("data"))
+        arriving.send(sd, fhd)
+        arriving.updates.close(java.io.IOException("the plugin host exited"))
+        assertEquals(listOf(fhd), played)
+    }
+
+    @Test
+    fun `choosing a row inside the wait is the choice, and nothing plays over it`() = runTest {
+        val arriving = Arriving()
+        val vm = waiting(FakeSource({ movie }, stream = { arriving.flow }))
+        val played = plays(vm)
+        vm.onAction(DetailAction.PlayRequested("data"))
+        arriving.send(sd, fhd)
+        vm.onAction(DetailAction.LinkActivated(sd))
+        advanceTimeBy(WAIT * 2)
+        arriving.updates.close()
+        assertEquals(listOf(sd), played)
+    }
+
+    @Test
+    fun `dismissing the list inside the wait plays nothing`() = runTest {
+        val arriving = Arriving()
+        val vm = waiting(FakeSource({ movie }, stream = { arriving.flow }))
+        val played = plays(vm)
+        vm.onAction(DetailAction.PlayRequested("data"))
+        arriving.send(fhd)
+        vm.onAction(DetailAction.LinksDismissed)
+        advanceTimeBy(WAIT * 2)
+        assertEquals(emptyList(), played)
+    }
+
+    @Test
+    fun `nothing found plays nothing`() = runTest {
+        val arriving = Arriving()
+        val vm = waiting(FakeSource({ movie }, stream = { arriving.flow }))
+        val played = plays(vm)
+        vm.onAction(DetailAction.PlayRequested("data"))
+        arriving.updates.close()
+        advanceTimeBy(WAIT * 2)
+        assertEquals(emptyList(), played)
+        assertEquals(DetailLoad.Empty, vm.state.value.links)
+    }
+
+    @Test
+    fun `each request plays once, and the next episode plays its own best`() = runTest {
+        val first = Arriving()
+        val again = Arriving()
+        val answers = ArrayDeque(listOf(first, again))
+        val vm = waiting(FakeSource({ movie }, stream = { answers.removeFirst().flow }))
+        val played = plays(vm)
+        vm.onAction(DetailAction.PlayRequested("episode 1"))
+        first.send(sd)
+        advanceTimeBy(WAIT * 2)
+        vm.onAction(DetailAction.PlayRequested("episode 2"))
+        again.send(fhd, sd)
+        advanceTimeBy(WAIT * 2)
+        assertEquals(listOf(sd, fhd), played)
+    }
+
+    @Test
+    fun `without a wait nothing plays by itself, as before`() = runTest {
+        val vm = model(FakeSource({ movie }, { listOf(uhd) }))
+        val played = plays(vm)
+        vm.onAction(DetailAction.PlayRequested("data"))
+        advanceTimeBy(WAIT * 2)
+        assertEquals(emptyList(), played)
+    }
+
     @Test
     fun `the primary button plays the title, else the first episode`() {
         assertEquals("data", movie.primaryData)
         val series = movie.copy(playData = null, episodes = listOf(DetailEpisode("One", "e1", 1, 1)))
         assertEquals("e1", series.primaryData)
         assertNull(movie.copy(playData = null).primaryData)
+    }
+
+    private companion object {
+        val WAIT = 4.seconds
     }
 }

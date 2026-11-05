@@ -41,13 +41,15 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.player_source
 import com.lagradost.cloudstream4.core.strings.generated.resources.source_error
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.detail.StreamLink
+import com.lagradost.cloudstream4.feature.detail.bestFirst
 import org.jetbrains.compose.resources.stringResource
 
 /**
  * What the player can switch to, and what it is on.
  *
  * @param links what the title's search has found, already through the same URL policy as every other link
- *   (`DesktopDetailSource`), with the one playing added if the search no longer lists it.
+ *   (`DesktopDetailSource`), with the one playing added if the search no longer lists it. Listed best first, the
+ *   order the player tries them in ([bestFirst]).
  * @param failed the ones that have failed since the player opened, which can still be chosen again.
  * @param resumeAtMillis where a switch would start the next one.
  * @param onSelect only called for a change: the link already playing, unless it failed, just closes the list.
@@ -59,7 +61,7 @@ internal class PlayerSources(
     val resumeAtMillis: Long = 0L,
     private val onSelect: (StreamLink) -> Unit,
 ) {
-    val links: List<StreamLink> = if (links.any { it.isSameStream(current) }) links else listOf(current) + links
+    val links: List<StreamLink> = (if (links.any { it.isSameStream(current) }) links else listOf(current) + links).bestFirst()
 
     fun isFailed(link: StreamLink) = failed.any { it.isSameStream(link) }
 
