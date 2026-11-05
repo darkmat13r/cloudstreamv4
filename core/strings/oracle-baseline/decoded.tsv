@@ -36,7 +36,7 @@ values-b+af/strings.xml	string	downloads_free_up_space	-	STR	Maak spasie vry
 values-b+af/strings.xml	string	downloads_load_failed_body	-	STR	Jou afgelaaide lêers is nie verander nie.	
 values-b+af/strings.xml	string	downloads_load_failed_headline	-	STR	Kon nie jou aflaaie lees nie	
 values-b+af/strings.xml	string	downloads_offline_pill	-	STR	Vanlyn · geen verbinding nie	
-values-b+af/strings.xml	string	downloads_play_from_url	-	STR	Speel vanaf URL	
+values-b+af/strings.xml	string	downloads_play_from_link	-	STR	Speel vanaf skakel	
 values-b+af/strings.xml	string	downloads_select	-	STR	Kies	
 values-b+af/strings.xml	string	downloads_storage_full_headline	-	STR	Nie genoeg berging nie	
 values-b+af/strings.xml	string	downloads_storage_legend	-	STR	%1$s van %2$s gebruik · %3$s in aflaaie	
@@ -215,7 +215,7 @@ values-b+am/strings.xml	string	downloads_free_up_space	-	STR	ቦታ አስለቅ
 values-b+am/strings.xml	string	downloads_load_failed_body	-	STR	የወረዱ ፋይሎችዎ አልተቀየሩም።	
 values-b+am/strings.xml	string	downloads_load_failed_headline	-	STR	ውርዶችዎን ማንበብ አልተቻለም	
 values-b+am/strings.xml	string	downloads_offline_pill	-	STR	ከመስመር ውጭ · ግንኙነት የለም	
-values-b+am/strings.xml	string	downloads_play_from_url	-	STR	ከURL አጫውት	
+values-b+am/strings.xml	string	downloads_play_from_link	-	STR	ከሊንክ አጫውት	
 values-b+am/strings.xml	string	downloads_select	-	STR	ምረጥ	
 values-b+am/strings.xml	string	downloads_storage_full_headline	-	STR	በቂ ማከማቻ የለም	
 values-b+am/strings.xml	string	downloads_storage_legend	-	STR	%1$s ከ%2$s ጥቅም ላይ ውሏል · %3$s በውርዶች ውስጥ	
@@ -559,7 +559,7 @@ values-b+apc/strings.xml	string	downloads_free_up_space	-	STR	فضّي مساح�
 values-b+apc/strings.xml	string	downloads_load_failed_body	-	STR	ملفاتك المنزّلة ما تغيّرت.	
 values-b+apc/strings.xml	string	downloads_load_failed_headline	-	STR	ما قدرنا نقرا تنزيلاتك	
 values-b+apc/strings.xml	string	downloads_offline_pill	-	STR	بلا إنترنت · مافي اتصال	
-values-b+apc/strings.xml	string	downloads_play_from_url	-	STR	مشّي من رابط URL	
+values-b+apc/strings.xml	string	downloads_play_from_link	-	STR	مشّي من رابط	
 values-b+apc/strings.xml	string	downloads_select	-	STR	نقي	
 values-b+apc/strings.xml	string	downloads_storage_full_headline	-	STR	مافي مساحة تخزين كفاية	
 values-b+apc/strings.xml	string	downloads_storage_legend	-	STR	%1$s من %2$s مستعمل · %3$s بالتنزيلات	
@@ -1366,7 +1366,7 @@ values-b+ar/strings.xml	string	downloads_free_up_space	-	STR	إخلاء مساح
 values-b+ar/strings.xml	string	downloads_load_failed_body	-	STR	لم تتغيّر ملفاتك التي تم تنزيلها.	
 values-b+ar/strings.xml	string	downloads_load_failed_headline	-	STR	تعذّرت قراءة تنزيلاتك	
 values-b+ar/strings.xml	string	downloads_offline_pill	-	STR	غير متصل · لا يوجد اتصال	
-values-b+ar/strings.xml	string	downloads_play_from_url	-	STR	تشغيل من عنوان URL	
+values-b+ar/strings.xml	string	downloads_play_from_link	-	STR	تشغيل من رابط	
 values-b+ar/strings.xml	string	downloads_select	-	STR	تحديد	
 values-b+ar/strings.xml	string	downloads_storage_full_headline	-	STR	مساحة التخزين غير كافية	
 values-b+ar/strings.xml	string	downloads_storage_legend	-	STR	%1$s من %2$s مستخدم · %3$s في التنزيلات	
@@ -2062,7 +2062,7 @@ values-b+ars/strings.xml	string	downloads_free_up_space	-	STR	فضّ مساحة
 values-b+ars/strings.xml	string	downloads_load_failed_body	-	STR	ملفاتك المحمّلة ما تغيّرت.	
 values-b+ars/strings.xml	string	downloads_load_failed_headline	-	STR	ما قدرنا نقرأ تحميلاتك	
 values-b+ars/strings.xml	string	downloads_offline_pill	-	STR	غير متصل · ما فيه اتصال	
-values-b+ars/strings.xml	string	downloads_play_from_url	-	STR	شغّل من رابط URL	
+values-b+ars/strings.xml	string	downloads_play_from_link	-	STR	شغّل من رابط	
 values-b+ars/strings.xml	string	downloads_select	-	STR	حدد	
 values-b+ars/strings.xml	string	downloads_storage_full_headline	-	STR	مساحة التخزين ما تكفي	
 values-b+ars/strings.xml	string	downloads_storage_legend	-	STR	%1$s من %2$s مستعمل · %3$s في التحميلات	
@@ -2542,7 +2542,7 @@ values-b+as/strings.xml	string	downloads_free_up_space	-	STR	ঠাই খাল
 values-b+as/strings.xml	string	downloads_load_failed_body	-	STR	আপোনাৰ ডাউনলোড কৰা ফাইলসমূহ সলনি কৰা হোৱা নাই।	
 values-b+as/strings.xml	string	downloads_load_failed_headline	-	STR	আপোনাৰ ডাউনলোডসমূহ পঢ়িব নোৱাৰিলোঁ	
 values-b+as/strings.xml	string	downloads_offline_pill	-	STR	অফলাইন · সংযোগ নাই	
-values-b+as/strings.xml	string	downloads_play_from_url	-	STR	URLৰ পৰা প্লে কৰক	
+values-b+as/strings.xml	string	downloads_play_from_link	-	STR	লিংকৰ পৰা প্লে কৰক	
 values-b+as/strings.xml	string	downloads_select	-	STR	বাছক	
 values-b+as/strings.xml	string	downloads_storage_full_headline	-	STR	পৰ্যাপ্ত সংৰক্ষণ নাই	
 values-b+as/strings.xml	string	downloads_storage_legend	-	STR	%1$s / %2$s ব্যৱহৃত · ডাউনলোডত %3$s	
@@ -3118,7 +3118,7 @@ values-b+az/strings.xml	string	downloads_free_up_space	-	STR	Yer boşalt
 values-b+az/strings.xml	string	downloads_load_failed_body	-	STR	Yüklənmiş fayllarınız dəyişdirilməyib.	
 values-b+az/strings.xml	string	downloads_load_failed_headline	-	STR	Yükləmələriniz oxuna bilmədi	
 values-b+az/strings.xml	string	downloads_offline_pill	-	STR	Oflayn · bağlantı yoxdur	
-values-b+az/strings.xml	string	downloads_play_from_url	-	STR	URL-dən oynat	
+values-b+az/strings.xml	string	downloads_play_from_link	-	STR	Keçiddən oynat	
 values-b+az/strings.xml	string	downloads_select	-	STR	Seç	
 values-b+az/strings.xml	string	downloads_storage_full_headline	-	STR	Yaddaş kifayət deyil	
 values-b+az/strings.xml	string	downloads_storage_legend	-	STR	%1$s / %2$s istifadə olunub · Yükləmələrdə %3$s	
@@ -3482,7 +3482,7 @@ values-b+be/strings.xml	string	downloads_free_up_space	-	STR	Вызваліць 
 values-b+be/strings.xml	string	downloads_load_failed_body	-	STR	Вашы спампаваныя файлы не зменены.	
 values-b+be/strings.xml	string	downloads_load_failed_headline	-	STR	Не ўдалося прачытаць спампоўкі	
 values-b+be/strings.xml	string	downloads_offline_pill	-	STR	Па-за сеткай · няма злучэння	
-values-b+be/strings.xml	string	downloads_play_from_url	-	STR	Прайграць па URL	
+values-b+be/strings.xml	string	downloads_play_from_link	-	STR	Прайграць па спасылцы	
 values-b+be/strings.xml	string	downloads_select	-	STR	Выбраць	
 values-b+be/strings.xml	string	downloads_storage_full_headline	-	STR	Недастаткова месца ў сховішчы	
 values-b+be/strings.xml	string	downloads_storage_legend	-	STR	Ужыта %1$s з %2$s · %3$s у спампоўках	
@@ -4274,7 +4274,7 @@ values-b+bg/strings.xml	string	downloads_free_up_space	-	STR	Освобожда�
 values-b+bg/strings.xml	string	downloads_load_failed_body	-	STR	Изтеглените ви файлове не са променени.	
 values-b+bg/strings.xml	string	downloads_load_failed_headline	-	STR	Изтеглянията ви не можаха да се прочетат	
 values-b+bg/strings.xml	string	downloads_offline_pill	-	STR	Офлайн · няма връзка	
-values-b+bg/strings.xml	string	downloads_play_from_url	-	STR	Пускане от URL	
+values-b+bg/strings.xml	string	downloads_play_from_link	-	STR	Пускане от връзка	
 values-b+bg/strings.xml	string	downloads_select	-	STR	Избиране	
 values-b+bg/strings.xml	string	downloads_storage_full_headline	-	STR	Няма достатъчно памет	
 values-b+bg/strings.xml	string	downloads_storage_legend	-	STR	%1$s от %2$s използвани · %3$s в изтегляния	
@@ -4977,7 +4977,7 @@ values-b+bn/strings.xml	string	downloads_free_up_space	-	STR	জায়গা 
 values-b+bn/strings.xml	string	downloads_load_failed_body	-	STR	আপনার ডাউনলোড করা ফাইলগুলো পরিবর্তন করা হয়নি।	
 values-b+bn/strings.xml	string	downloads_load_failed_headline	-	STR	আপনার ডাউনলোডগুলো পড়া যায়নি	
 values-b+bn/strings.xml	string	downloads_offline_pill	-	STR	অফলাইন · কোনো সংযোগ নেই	
-values-b+bn/strings.xml	string	downloads_play_from_url	-	STR	URL থেকে চালান	
+values-b+bn/strings.xml	string	downloads_play_from_link	-	STR	লিংক থেকে চালান	
 values-b+bn/strings.xml	string	downloads_select	-	STR	সিলেক্ট করুন	
 values-b+bn/strings.xml	string	downloads_storage_full_headline	-	STR	যথেষ্ট স্টোরেজ নেই	
 values-b+bn/strings.xml	string	downloads_storage_legend	-	STR	%1$s / %2$s ব্যবহৃত · ডাউনলোডে %3$s	
@@ -5398,7 +5398,7 @@ values-b+ca/strings.xml	string	downloads_free_up_space	-	STR	Allibera espai
 values-b+ca/strings.xml	string	downloads_load_failed_body	-	STR	Els fitxers descarregats no s'han modificat.	
 values-b+ca/strings.xml	string	downloads_load_failed_headline	-	STR	No s'han pogut llegir les descàrregues	
 values-b+ca/strings.xml	string	downloads_offline_pill	-	STR	Fora de línia · sense connexió	
-values-b+ca/strings.xml	string	downloads_play_from_url	-	STR	Reprodueix des d'un URL	
+values-b+ca/strings.xml	string	downloads_play_from_link	-	STR	Reprodueix des d'un enllaç	
 values-b+ca/strings.xml	string	downloads_select	-	STR	Selecciona	
 values-b+ca/strings.xml	string	downloads_storage_full_headline	-	STR	No hi ha prou emmagatzematge	
 values-b+ca/strings.xml	string	downloads_storage_legend	-	STR	%1$s de %2$s usats · %3$s en descàrregues	
@@ -5750,7 +5750,7 @@ values-b+ckb/strings.xml	string	downloads_free_up_space	-	STR	بۆشایی چۆ�
 values-b+ckb/strings.xml	string	downloads_load_failed_body	-	STR	فایلە داونلۆدکراوەکانت نەگۆڕدراون.	
 values-b+ckb/strings.xml	string	downloads_load_failed_headline	-	STR	نەتوانرا داونلۆدەکانت بخوێنرێنەوە	
 values-b+ckb/strings.xml	string	downloads_offline_pill	-	STR	ئۆفلاین · پەیوەندی نییە	
-values-b+ckb/strings.xml	string	downloads_play_from_url	-	STR	لێدان لە URL	
+values-b+ckb/strings.xml	string	downloads_play_from_link	-	STR	لێدان لە بەستەر	
 values-b+ckb/strings.xml	string	downloads_select	-	STR	هەڵبژێرە	
 values-b+ckb/strings.xml	string	downloads_storage_full_headline	-	STR	کۆگا بەش ناکات	
 values-b+ckb/strings.xml	string	downloads_storage_legend	-	STR	%1$s لە %2$s بەکارهاتووە · %3$s لە داونلۆدەکان	
@@ -6078,7 +6078,7 @@ values-b+cs/strings.xml	string	downloads_free_up_space	-	STR	Uvolnit místo
 values-b+cs/strings.xml	string	downloads_load_failed_body	-	STR	Vaše stažené soubory nebyly změněny.	
 values-b+cs/strings.xml	string	downloads_load_failed_headline	-	STR	Stahování se nepodařilo načíst	
 values-b+cs/strings.xml	string	downloads_offline_pill	-	STR	Offline · bez připojení	
-values-b+cs/strings.xml	string	downloads_play_from_url	-	STR	Přehrát z URL	
+values-b+cs/strings.xml	string	downloads_play_from_link	-	STR	Přehrát z odkazu	
 values-b+cs/strings.xml	string	downloads_select	-	STR	Vybrat	
 values-b+cs/strings.xml	string	downloads_storage_full_headline	-	STR	Nedostatek úložiště	
 values-b+cs/strings.xml	string	downloads_storage_legend	-	STR	Použito %1$s z %2$s · %3$s ve stahování	
@@ -6880,7 +6880,7 @@ values-b+de/strings.xml	string	downloads_free_up_space	-	STR	Speicher freigeben
 values-b+de/strings.xml	string	downloads_load_failed_body	-	STR	Deine heruntergeladenen Dateien wurden nicht verändert.	
 values-b+de/strings.xml	string	downloads_load_failed_headline	-	STR	Downloads konnten nicht gelesen werden	
 values-b+de/strings.xml	string	downloads_offline_pill	-	STR	Offline · keine Verbindung	
-values-b+de/strings.xml	string	downloads_play_from_url	-	STR	Von URL abspielen	
+values-b+de/strings.xml	string	downloads_play_from_link	-	STR	Von Link abspielen	
 values-b+de/strings.xml	string	downloads_select	-	STR	Auswählen	
 values-b+de/strings.xml	string	downloads_storage_full_headline	-	STR	Nicht genug Speicher	
 values-b+de/strings.xml	string	downloads_storage_legend	-	STR	%1$s von %2$s belegt · %3$s in Downloads	
@@ -7658,7 +7658,7 @@ values-b+el/strings.xml	string	downloads_free_up_space	-	STR	Απελευθέρ�
 values-b+el/strings.xml	string	downloads_load_failed_body	-	STR	Τα ληφθέντα αρχεία σας δεν έχουν αλλάξει.	
 values-b+el/strings.xml	string	downloads_load_failed_headline	-	STR	Δεν ήταν δυνατή η ανάγνωση των λήψεών σας	
 values-b+el/strings.xml	string	downloads_offline_pill	-	STR	Εκτός σύνδεσης · δεν υπάρχει σύνδεση	
-values-b+el/strings.xml	string	downloads_play_from_url	-	STR	Αναπαραγωγή από URL	
+values-b+el/strings.xml	string	downloads_play_from_link	-	STR	Αναπαραγωγή από σύνδεσμο	
 values-b+el/strings.xml	string	downloads_select	-	STR	Επιλογή	
 values-b+el/strings.xml	string	downloads_storage_full_headline	-	STR	Ανεπαρκής χώρος αποθήκευσης	
 values-b+el/strings.xml	string	downloads_storage_legend	-	STR	%1$s από %2$s σε χρήση · %3$s σε λήψεις	
@@ -8244,7 +8244,7 @@ values-b+eo/strings.xml	string	downloads_free_up_space	-	STR	Liberigi spacon
 values-b+eo/strings.xml	string	downloads_load_failed_body	-	STR	Viaj elŝutitaj dosieroj ne ŝanĝiĝis.	
 values-b+eo/strings.xml	string	downloads_load_failed_headline	-	STR	Ne eblis legi viajn elŝutojn	
 values-b+eo/strings.xml	string	downloads_offline_pill	-	STR	Eksterrete · neniu konekto	
-values-b+eo/strings.xml	string	downloads_play_from_url	-	STR	Ludi el URL	
+values-b+eo/strings.xml	string	downloads_play_from_link	-	STR	Ludi el ligilo	
 values-b+eo/strings.xml	string	downloads_select	-	STR	Selekti	
 values-b+eo/strings.xml	string	downloads_storage_full_headline	-	STR	Ne sufiĉas stokspaco	
 values-b+eo/strings.xml	string	downloads_storage_legend	-	STR	%1$s el %2$s uzitaj · %3$s en elŝutoj	
@@ -8656,7 +8656,7 @@ values-b+es/strings.xml	string	downloads_free_up_space	-	STR	Liberar espacio
 values-b+es/strings.xml	string	downloads_load_failed_body	-	STR	Tus archivos descargados no se han modificado.	
 values-b+es/strings.xml	string	downloads_load_failed_headline	-	STR	No se pudieron leer tus descargas	
 values-b+es/strings.xml	string	downloads_offline_pill	-	STR	Sin conexión · sin red	
-values-b+es/strings.xml	string	downloads_play_from_url	-	STR	Reproducir desde URL	
+values-b+es/strings.xml	string	downloads_play_from_link	-	STR	Reproducir desde enlace	
 values-b+es/strings.xml	string	downloads_select	-	STR	Seleccionar	
 values-b+es/strings.xml	string	downloads_storage_full_headline	-	STR	Almacenamiento insuficiente	
 values-b+es/strings.xml	string	downloads_storage_legend	-	STR	%1$s de %2$s usados · %3$s en descargas	
@@ -9355,7 +9355,7 @@ values-b+fa/strings.xml	string	downloads_free_up_space	-	STR	آزاد کردن �
 values-b+fa/strings.xml	string	downloads_load_failed_body	-	STR	فایل‌های دانلودشده شما تغییر نکرده‌اند.	
 values-b+fa/strings.xml	string	downloads_load_failed_headline	-	STR	دانلودهای شما خوانده نشد	
 values-b+fa/strings.xml	string	downloads_offline_pill	-	STR	آفلاین · بدون اتصال	
-values-b+fa/strings.xml	string	downloads_play_from_url	-	STR	پخش از URL	
+values-b+fa/strings.xml	string	downloads_play_from_link	-	STR	پخش از پیوند	
 values-b+fa/strings.xml	string	downloads_select	-	STR	انتخاب	
 values-b+fa/strings.xml	string	downloads_storage_full_headline	-	STR	حافظه کافی نیست	
 values-b+fa/strings.xml	string	downloads_storage_legend	-	STR	%1$s از %2$s استفاده شده · %3$s در دانلودها	
@@ -9713,7 +9713,7 @@ values-b+fil/strings.xml	string	downloads_free_up_space	-	STR	Magbakante ng espa
 values-b+fil/strings.xml	string	downloads_load_failed_body	-	STR	Hindi nabago ang mga na-download mong file.	
 values-b+fil/strings.xml	string	downloads_load_failed_headline	-	STR	Hindi mabasa ang iyong mga download	
 values-b+fil/strings.xml	string	downloads_offline_pill	-	STR	Offline · walang koneksyon	
-values-b+fil/strings.xml	string	downloads_play_from_url	-	STR	I-play mula sa URL	
+values-b+fil/strings.xml	string	downloads_play_from_link	-	STR	I-play mula sa link	
 values-b+fil/strings.xml	string	downloads_select	-	STR	Piliin	
 values-b+fil/strings.xml	string	downloads_storage_full_headline	-	STR	Kulang ang imbakan	
 values-b+fil/strings.xml	string	downloads_storage_legend	-	STR	%1$s ng %2$s ang nagamit · %3$s sa mga download	
@@ -10093,7 +10093,7 @@ values-b+fr/strings.xml	string	downloads_free_up_space	-	STR	Libérer de l'espac
 values-b+fr/strings.xml	string	downloads_load_failed_body	-	STR	Vos fichiers téléchargés n'ont pas été modifiés.	
 values-b+fr/strings.xml	string	downloads_load_failed_headline	-	STR	Impossible de lire vos téléchargements	
 values-b+fr/strings.xml	string	downloads_offline_pill	-	STR	Hors-ligne · pas de connexion	
-values-b+fr/strings.xml	string	downloads_play_from_url	-	STR	Lire depuis une URL	
+values-b+fr/strings.xml	string	downloads_play_from_link	-	STR	Lire depuis un lien	
 values-b+fr/strings.xml	string	downloads_select	-	STR	Sélectionner	
 values-b+fr/strings.xml	string	downloads_storage_full_headline	-	STR	Stockage insuffisant	
 values-b+fr/strings.xml	string	downloads_storage_legend	-	STR	%1$s sur %2$s utilisés · %3$s en téléchargements	
@@ -10778,7 +10778,7 @@ values-b+gl/strings.xml	string	downloads_free_up_space	-	STR	Liberar espazo
 values-b+gl/strings.xml	string	downloads_load_failed_body	-	STR	Os teus ficheiros descargados non se modificaron.	
 values-b+gl/strings.xml	string	downloads_load_failed_headline	-	STR	Non se puideron ler as túas descargas	
 values-b+gl/strings.xml	string	downloads_offline_pill	-	STR	Sen conexión · sen rede	
-values-b+gl/strings.xml	string	downloads_play_from_url	-	STR	Reproducir desde URL	
+values-b+gl/strings.xml	string	downloads_play_from_link	-	STR	Reproducir desde ligazón	
 values-b+gl/strings.xml	string	downloads_select	-	STR	Seleccionar	
 values-b+gl/strings.xml	string	downloads_storage_full_headline	-	STR	Almacenamento insuficiente	
 values-b+gl/strings.xml	string	downloads_storage_legend	-	STR	%1$s de %2$s usados · %3$s en descargas	
@@ -11162,7 +11162,7 @@ values-b+hi/strings.xml	string	downloads_free_up_space	-	STR	जगह ख़ा
 values-b+hi/strings.xml	string	downloads_load_failed_body	-	STR	आपकी डाउनलोड की गई फ़ाइलें नहीं बदली गई हैं।	
 values-b+hi/strings.xml	string	downloads_load_failed_headline	-	STR	आपके डाउनलोड पढ़े नहीं जा सके	
 values-b+hi/strings.xml	string	downloads_offline_pill	-	STR	ऑफ़लाइन · कोई कनेक्शन नहीं	
-values-b+hi/strings.xml	string	downloads_play_from_url	-	STR	URL से चलाएं	
+values-b+hi/strings.xml	string	downloads_play_from_link	-	STR	लिंक से चलाएं	
 values-b+hi/strings.xml	string	downloads_select	-	STR	चुनें	
 values-b+hi/strings.xml	string	downloads_storage_full_headline	-	STR	पर्याप्त स्टोरेज नहीं है	
 values-b+hi/strings.xml	string	downloads_storage_legend	-	STR	%1$s / %2$s इस्तेमाल में · डाउनलोड में %3$s	
@@ -11723,7 +11723,7 @@ values-b+hr/strings.xml	string	downloads_free_up_space	-	STR	Oslobodi prostor
 values-b+hr/strings.xml	string	downloads_load_failed_body	-	STR	Vaše preuzete datoteke nisu promijenjene.	
 values-b+hr/strings.xml	string	downloads_load_failed_headline	-	STR	Nije moguće pročitati vaša preuzimanja	
 values-b+hr/strings.xml	string	downloads_offline_pill	-	STR	Offline · nema veze	
-values-b+hr/strings.xml	string	downloads_play_from_url	-	STR	Pokreni s URL-a	
+values-b+hr/strings.xml	string	downloads_play_from_link	-	STR	Pokreni s poveznice	
 values-b+hr/strings.xml	string	downloads_select	-	STR	Odaberi	
 values-b+hr/strings.xml	string	downloads_storage_full_headline	-	STR	Nedovoljno pohrane	
 values-b+hr/strings.xml	string	downloads_storage_legend	-	STR	Iskorišteno %1$s od %2$s · %3$s u preuzimanjima	
@@ -12486,7 +12486,7 @@ values-b+hu/strings.xml	string	downloads_free_up_space	-	STR	Hely felszabadítá
 values-b+hu/strings.xml	string	downloads_load_failed_body	-	STR	A letöltött fájlok nem változtak.	
 values-b+hu/strings.xml	string	downloads_load_failed_headline	-	STR	Nem sikerült beolvasni a letöltéseket	
 values-b+hu/strings.xml	string	downloads_offline_pill	-	STR	Offline · nincs kapcsolat	
-values-b+hu/strings.xml	string	downloads_play_from_url	-	STR	Lejátszás URL-ről	
+values-b+hu/strings.xml	string	downloads_play_from_link	-	STR	Lejátszás hivatkozásról	
 values-b+hu/strings.xml	string	downloads_select	-	STR	Kiválasztás	
 values-b+hu/strings.xml	string	downloads_storage_full_headline	-	STR	Nincs elég tárhely	
 values-b+hu/strings.xml	string	downloads_storage_legend	-	STR	%1$s / %2$s használatban · %3$s a letöltésekben	
@@ -13214,7 +13214,7 @@ values-b+in/strings.xml	string	downloads_free_up_space	-	STR	Kosongkan ruang
 values-b+in/strings.xml	string	downloads_load_failed_body	-	STR	File unduhan Anda tidak berubah.	
 values-b+in/strings.xml	string	downloads_load_failed_headline	-	STR	Tidak dapat membaca unduhan Anda	
 values-b+in/strings.xml	string	downloads_offline_pill	-	STR	Luring · tidak ada koneksi	
-values-b+in/strings.xml	string	downloads_play_from_url	-	STR	Putar dari URL	
+values-b+in/strings.xml	string	downloads_play_from_link	-	STR	Putar dari tautan	
 values-b+in/strings.xml	string	downloads_select	-	STR	Pilih	
 values-b+in/strings.xml	string	downloads_storage_full_headline	-	STR	Penyimpanan tidak cukup	
 values-b+in/strings.xml	string	downloads_storage_legend	-	STR	%1$s dari %2$s terpakai · %3$s di unduhan	
@@ -14020,7 +14020,7 @@ values-b+it/strings.xml	string	downloads_free_up_space	-	STR	Libera spazio
 values-b+it/strings.xml	string	downloads_load_failed_body	-	STR	I file scaricati non sono stati modificati.	
 values-b+it/strings.xml	string	downloads_load_failed_headline	-	STR	Impossibile leggere i download	
 values-b+it/strings.xml	string	downloads_offline_pill	-	STR	Offline · nessuna connessione	
-values-b+it/strings.xml	string	downloads_play_from_url	-	STR	Riproduci da URL	
+values-b+it/strings.xml	string	downloads_play_from_link	-	STR	Riproduci da link	
 values-b+it/strings.xml	string	downloads_select	-	STR	Seleziona	
 values-b+it/strings.xml	string	downloads_storage_full_headline	-	STR	Spazio di archiviazione insufficiente	
 values-b+it/strings.xml	string	downloads_storage_legend	-	STR	%1$s di %2$s usati · %3$s nei download	
@@ -14759,7 +14759,7 @@ values-b+iw/strings.xml	string	downloads_free_up_space	-	STR	פינוי מקום
 values-b+iw/strings.xml	string	downloads_load_failed_body	-	STR	הקבצים שהורדת לא שונו.	
 values-b+iw/strings.xml	string	downloads_load_failed_headline	-	STR	לא ניתן לקרוא את ההורדות שלך	
 values-b+iw/strings.xml	string	downloads_offline_pill	-	STR	אופליין · אין חיבור	
-values-b+iw/strings.xml	string	downloads_play_from_url	-	STR	הפעל מכתובת URL	
+values-b+iw/strings.xml	string	downloads_play_from_link	-	STR	הפעל מקישור	
 values-b+iw/strings.xml	string	downloads_select	-	STR	בחר	
 values-b+iw/strings.xml	string	downloads_storage_full_headline	-	STR	אין מספיק אחסון	
 values-b+iw/strings.xml	string	downloads_storage_legend	-	STR	%1$s מתוך %2$s בשימוש · %3$s בהורדות	
@@ -15427,7 +15427,7 @@ values-b+ja/strings.xml	string	downloads_free_up_space	-	STR	空き容量を増�
 values-b+ja/strings.xml	string	downloads_load_failed_body	-	STR	ダウンロード済みのファイルは変更されていません。	
 values-b+ja/strings.xml	string	downloads_load_failed_headline	-	STR	ダウンロードを読み込めませんでした	
 values-b+ja/strings.xml	string	downloads_offline_pill	-	STR	オフライン · 接続なし	
-values-b+ja/strings.xml	string	downloads_play_from_url	-	STR	URLから再生	
+values-b+ja/strings.xml	string	downloads_play_from_link	-	STR	リンクから再生	
 values-b+ja/strings.xml	string	downloads_select	-	STR	選択	
 values-b+ja/strings.xml	string	downloads_storage_full_headline	-	STR	ストレージの空き容量が足りません	
 values-b+ja/strings.xml	string	downloads_storage_legend	-	STR	%1$s / %2$s 使用 · ダウンロード %3$s	
@@ -16060,7 +16060,7 @@ values-b+kn/strings.xml	string	downloads_free_up_space	-	STR	ಸ್ಥಳವನ�
 values-b+kn/strings.xml	string	downloads_load_failed_body	-	STR	ನಿಮ್ಮ ಡೌನ್‌ಲೋಡ್ ಮಾಡಿದ ಫೈಲ್‌ಗಳನ್ನು ಬದಲಾಯಿಸಲಾಗಿಲ್ಲ.	
 values-b+kn/strings.xml	string	downloads_load_failed_headline	-	STR	ನಿಮ್ಮ ಡೌನ್‌ಲೋಡ್‌ಗಳನ್ನು ಓದಲಾಗಲಿಲ್ಲ	
 values-b+kn/strings.xml	string	downloads_offline_pill	-	STR	ಆಫ್‌ಲೈನ್ · ಸಂಪರ್ಕವಿಲ್ಲ	
-values-b+kn/strings.xml	string	downloads_play_from_url	-	STR	URL ನಿಂದ ಪ್ಲೇ ಮಾಡಿ	
+values-b+kn/strings.xml	string	downloads_play_from_link	-	STR	ಲಿಂಕ್‌ನಿಂದ ಪ್ಲೇ ಮಾಡಿ	
 values-b+kn/strings.xml	string	downloads_select	-	STR	ಆಯ್ಕೆಮಾಡಿ	
 values-b+kn/strings.xml	string	downloads_storage_full_headline	-	STR	ಸಾಕಷ್ಟು ಸ್ಟೋರೇಜ್ ಇಲ್ಲ	
 values-b+kn/strings.xml	string	downloads_storage_legend	-	STR	%1$s / %2$s ಬಳಸಲಾಗಿದೆ · ಡೌನ್‌ಲೋಡ್‌ಗಳಲ್ಲಿ %3$s	
@@ -16416,7 +16416,7 @@ values-b+ko/strings.xml	string	downloads_free_up_space	-	STR	공간 확보
 values-b+ko/strings.xml	string	downloads_load_failed_body	-	STR	다운로드한 파일은 변경되지 않았습니다.	
 values-b+ko/strings.xml	string	downloads_load_failed_headline	-	STR	다운로드를 읽을 수 없습니다	
 values-b+ko/strings.xml	string	downloads_offline_pill	-	STR	오프라인 · 연결 없음	
-values-b+ko/strings.xml	string	downloads_play_from_url	-	STR	URL에서 재생	
+values-b+ko/strings.xml	string	downloads_play_from_link	-	STR	링크에서 재생	
 values-b+ko/strings.xml	string	downloads_select	-	STR	선택	
 values-b+ko/strings.xml	string	downloads_storage_full_headline	-	STR	저장공간 부족	
 values-b+ko/strings.xml	string	downloads_storage_legend	-	STR	%1$s / %2$s 사용됨 · 다운로드 %3$s	
@@ -17081,7 +17081,7 @@ values-b+lt/strings.xml	string	downloads_free_up_space	-	STR	Atlaisvinti vietos
 values-b+lt/strings.xml	string	downloads_load_failed_body	-	STR	Jūsų atsisiųsti failai nebuvo pakeisti.	
 values-b+lt/strings.xml	string	downloads_load_failed_headline	-	STR	Nepavyko nuskaityti atsisiuntimų	
 values-b+lt/strings.xml	string	downloads_offline_pill	-	STR	Neprisijungus · nėra ryšio	
-values-b+lt/strings.xml	string	downloads_play_from_url	-	STR	Paleisti iš URL	
+values-b+lt/strings.xml	string	downloads_play_from_link	-	STR	Paleisti iš nuorodos	
 values-b+lt/strings.xml	string	downloads_select	-	STR	Pasirinkti	
 values-b+lt/strings.xml	string	downloads_storage_full_headline	-	STR	Nepakanka atminties	
 values-b+lt/strings.xml	string	downloads_storage_legend	-	STR	Naudojama %1$s iš %2$s · %3$s atsisiuntimuose	
@@ -17528,7 +17528,7 @@ values-b+lv/strings.xml	string	downloads_free_up_space	-	STR	Atbrīvot vietu
 values-b+lv/strings.xml	string	downloads_load_failed_body	-	STR	Jūsu lejupielādētie faili nav mainīti.	
 values-b+lv/strings.xml	string	downloads_load_failed_headline	-	STR	Neizdevās nolasīt lejupielādes	
 values-b+lv/strings.xml	string	downloads_offline_pill	-	STR	Bezsaistē · nav savienojuma	
-values-b+lv/strings.xml	string	downloads_play_from_url	-	STR	Atskaņot no URL	
+values-b+lv/strings.xml	string	downloads_play_from_link	-	STR	Atskaņot no saites	
 values-b+lv/strings.xml	string	downloads_select	-	STR	Atlasīt	
 values-b+lv/strings.xml	string	downloads_storage_full_headline	-	STR	Nepietiek atmiņas	
 values-b+lv/strings.xml	string	downloads_storage_legend	-	STR	Izmantoti %1$s no %2$s · %3$s lejupielādēs	
@@ -18249,7 +18249,7 @@ values-b+mk/strings.xml	string	downloads_free_up_space	-	STR	Ослободи п
 values-b+mk/strings.xml	string	downloads_load_failed_body	-	STR	Вашите преземени датотеки не се променети.	
 values-b+mk/strings.xml	string	downloads_load_failed_headline	-	STR	Не може да се прочитаат вашите преземања	
 values-b+mk/strings.xml	string	downloads_offline_pill	-	STR	Офлајн · нема врска	
-values-b+mk/strings.xml	string	downloads_play_from_url	-	STR	Пушти од URL	
+values-b+mk/strings.xml	string	downloads_play_from_link	-	STR	Пушти од врска	
 values-b+mk/strings.xml	string	downloads_select	-	STR	Одбери	
 values-b+mk/strings.xml	string	downloads_storage_full_headline	-	STR	Нема доволно меморија	
 values-b+mk/strings.xml	string	downloads_storage_legend	-	STR	Искористени %1$s од %2$s · %3$s во преземања	
@@ -18920,7 +18920,7 @@ values-b+ml/strings.xml	string	downloads_free_up_space	-	STR	ഇടം ഒഴി
 values-b+ml/strings.xml	string	downloads_load_failed_body	-	STR	നിങ്ങൾ ഡൗൺലോഡ് ചെയ്ത ഫയലുകൾ മാറ്റിയിട്ടില്ല.	
 values-b+ml/strings.xml	string	downloads_load_failed_headline	-	STR	നിങ്ങളുടെ ഡൗൺലോഡുകൾ വായിക്കാനായില്ല	
 values-b+ml/strings.xml	string	downloads_offline_pill	-	STR	ഓഫ്‌ലൈൻ · കണക്ഷനില്ല	
-values-b+ml/strings.xml	string	downloads_play_from_url	-	STR	URL-ൽ നിന്ന് പ്ലേ ചെയ്യുക	
+values-b+ml/strings.xml	string	downloads_play_from_link	-	STR	ലിങ്കിൽ നിന്ന് പ്ലേ ചെയ്യുക	
 values-b+ml/strings.xml	string	downloads_select	-	STR	തിരഞ്ഞെടുക്കുക	
 values-b+ml/strings.xml	string	downloads_storage_full_headline	-	STR	ആവശ്യത്തിന് സ്റ്റോറേജില്ല	
 values-b+ml/strings.xml	string	downloads_storage_legend	-	STR	%1$s / %2$s ഉപയോഗത്തിൽ · ഡൗൺലോഡുകളിൽ %3$s	
@@ -19347,7 +19347,7 @@ values-b+ms/strings.xml	string	downloads_free_up_space	-	STR	Kosongkan ruang
 values-b+ms/strings.xml	string	downloads_load_failed_body	-	STR	Fail muat turun anda tidak diubah.	
 values-b+ms/strings.xml	string	downloads_load_failed_headline	-	STR	Tidak dapat membaca muat turun anda	
 values-b+ms/strings.xml	string	downloads_offline_pill	-	STR	Luar talian · tiada sambungan	
-values-b+ms/strings.xml	string	downloads_play_from_url	-	STR	Pasang dari URL	
+values-b+ms/strings.xml	string	downloads_play_from_link	-	STR	Pasang dari pautan	
 values-b+ms/strings.xml	string	downloads_select	-	STR	Pilih	
 values-b+ms/strings.xml	string	downloads_storage_full_headline	-	STR	Storan tidak mencukupi	
 values-b+ms/strings.xml	string	downloads_storage_legend	-	STR	%1$s daripada %2$s diguna · %3$s dalam muat turun	
@@ -19820,7 +19820,7 @@ values-b+mt/strings.xml	string	downloads_free_up_space	-	STR	Ħeles l-ispazju
 values-b+mt/strings.xml	string	downloads_load_failed_body	-	STR	Il-fajls imniżżla tiegħek ma nbidlux.	
 values-b+mt/strings.xml	string	downloads_load_failed_headline	-	STR	Ma setax jinqara t-tniżżil tiegħek	
 values-b+mt/strings.xml	string	downloads_offline_pill	-	STR	Offline · l-ebda konnessjoni	
-values-b+mt/strings.xml	string	downloads_play_from_url	-	STR	Indaqq minn URL	
+values-b+mt/strings.xml	string	downloads_play_from_link	-	STR	Indaqq minn ħolqa	
 values-b+mt/strings.xml	string	downloads_select	-	STR	Agħżel	
 values-b+mt/strings.xml	string	downloads_storage_full_headline	-	STR	M'hemmx biżżejjed ħażna	
 values-b+mt/strings.xml	string	downloads_storage_legend	-	STR	%1$s minn %2$s użati · %3$s fit-tniżżil	
@@ -20106,7 +20106,7 @@ values-b+my/strings.xml	string	downloads_free_up_space	-	STR	နေရာလွ�
 values-b+my/strings.xml	string	downloads_load_failed_body	-	STR	ဒေါင်းလုဒ်လုပ်ထားသော ဖိုင်များကို မပြောင်းလဲထားပါ။	
 values-b+my/strings.xml	string	downloads_load_failed_headline	-	STR	ဒေါင်းလုဒ်များကို ဖတ်၍မရပါ	
 values-b+my/strings.xml	string	downloads_offline_pill	-	STR	အော့ဖ်လိုင်း · ချိတ်ဆက်မှုမရှိပါ	
-values-b+my/strings.xml	string	downloads_play_from_url	-	STR	URL မှ ဖွင့်ရန်	
+values-b+my/strings.xml	string	downloads_play_from_link	-	STR	လင့်ခ်မှ ဖွင့်ရန်	
 values-b+my/strings.xml	string	downloads_select	-	STR	ရွေးချယ်ရန်	
 values-b+my/strings.xml	string	downloads_storage_full_headline	-	STR	သိုလှောင်ရုံ မလုံလောက်ပါ	
 values-b+my/strings.xml	string	downloads_storage_legend	-	STR	%1$s / %2$s အသုံးပြုပြီး · ဒေါင်းလုဒ်တွင် %3$s	
@@ -20590,7 +20590,7 @@ values-b+ne/strings.xml	string	downloads_free_up_space	-	STR	ठाउँ खा
 values-b+ne/strings.xml	string	downloads_load_failed_body	-	STR	तपाईंका डाउनलोड गरिएका फाइलहरू परिवर्तन गरिएका छैनन्।	
 values-b+ne/strings.xml	string	downloads_load_failed_headline	-	STR	तपाईंका डाउनलोडहरू पढ्न सकिएन	
 values-b+ne/strings.xml	string	downloads_offline_pill	-	STR	अफलाइन · जडान छैन	
-values-b+ne/strings.xml	string	downloads_play_from_url	-	STR	URL बाट प्ले गर्नुहोस्	
+values-b+ne/strings.xml	string	downloads_play_from_link	-	STR	लिङ्कबाट प्ले गर्नुहोस्	
 values-b+ne/strings.xml	string	downloads_select	-	STR	चयन गर्नुहोस्	
 values-b+ne/strings.xml	string	downloads_storage_full_headline	-	STR	पर्याप्त स्टोरेज छैन	
 values-b+ne/strings.xml	string	downloads_storage_legend	-	STR	%1$s / %2$s प्रयोग भयो · डाउनलोडमा %3$s	
@@ -20931,7 +20931,7 @@ values-b+nl/strings.xml	string	downloads_free_up_space	-	STR	Ruimte vrijmaken
 values-b+nl/strings.xml	string	downloads_load_failed_body	-	STR	Je gedownloade bestanden zijn niet gewijzigd.	
 values-b+nl/strings.xml	string	downloads_load_failed_headline	-	STR	Kon je downloads niet lezen	
 values-b+nl/strings.xml	string	downloads_offline_pill	-	STR	Offline · geen verbinding	
-values-b+nl/strings.xml	string	downloads_play_from_url	-	STR	Afspelen vanaf URL	
+values-b+nl/strings.xml	string	downloads_play_from_link	-	STR	Afspelen vanaf link	
 values-b+nl/strings.xml	string	downloads_select	-	STR	Selecteren	
 values-b+nl/strings.xml	string	downloads_storage_full_headline	-	STR	Niet genoeg opslag	
 values-b+nl/strings.xml	string	downloads_storage_legend	-	STR	%1$s van %2$s gebruikt · %3$s in downloads	
@@ -21545,7 +21545,7 @@ values-b+nn/strings.xml	string	downloads_free_up_space	-	STR	Frigjer plass
 values-b+nn/strings.xml	string	downloads_load_failed_body	-	STR	Dei nedlasta filene dine er ikkje endra.	
 values-b+nn/strings.xml	string	downloads_load_failed_headline	-	STR	Kunne ikkje lese nedlastingane dine	
 values-b+nn/strings.xml	string	downloads_offline_pill	-	STR	Fråkopla · inga tilkopling	
-values-b+nn/strings.xml	string	downloads_play_from_url	-	STR	Spel av frå URL	
+values-b+nn/strings.xml	string	downloads_play_from_link	-	STR	Spel av frå lenkje	
 values-b+nn/strings.xml	string	downloads_select	-	STR	Vel	
 values-b+nn/strings.xml	string	downloads_storage_full_headline	-	STR	Ikkje nok lagringsplass	
 values-b+nn/strings.xml	string	downloads_storage_legend	-	STR	%1$s av %2$s brukt · %3$s i nedlastingar	
@@ -21886,7 +21886,7 @@ values-b+no/strings.xml	string	downloads_free_up_space	-	STR	Frigjør plass
 values-b+no/strings.xml	string	downloads_load_failed_body	-	STR	De nedlastede filene dine er ikke endret.	
 values-b+no/strings.xml	string	downloads_load_failed_headline	-	STR	Kunne ikke lese nedlastingene dine	
 values-b+no/strings.xml	string	downloads_offline_pill	-	STR	Frakoblet · ingen tilkobling	
-values-b+no/strings.xml	string	downloads_play_from_url	-	STR	Spill av fra URL	
+values-b+no/strings.xml	string	downloads_play_from_link	-	STR	Spill av fra lenke	
 values-b+no/strings.xml	string	downloads_select	-	STR	Velg	
 values-b+no/strings.xml	string	downloads_storage_full_headline	-	STR	Ikke nok lagringsplass	
 values-b+no/strings.xml	string	downloads_storage_legend	-	STR	%1$s av %2$s brukt · %3$s i nedlastinger	
@@ -22370,7 +22370,7 @@ values-b+or/strings.xml	string	downloads_free_up_space	-	STR	ସ୍ଥାନ ଖ
 values-b+or/strings.xml	string	downloads_load_failed_body	-	STR	ଆପଣଙ୍କ ଡାଉନଲୋଡ୍ ହୋଇଥିବା ଫାଇଲଗୁଡ଼ିକ ବଦଳାଯାଇନାହିଁ।	
 values-b+or/strings.xml	string	downloads_load_failed_headline	-	STR	ଆପଣଙ୍କ ଡାଉନଲୋଡ୍ ପଢ଼ିହେଲା ନାହିଁ	
 values-b+or/strings.xml	string	downloads_offline_pill	-	STR	ଅଫଲାଇନ୍ · ସଂଯୋଗ ନାହିଁ	
-values-b+or/strings.xml	string	downloads_play_from_url	-	STR	URLରୁ ଚଲାଅ	
+values-b+or/strings.xml	string	downloads_play_from_link	-	STR	ଲିଙ୍କରୁ ଚଲାଅ	
 values-b+or/strings.xml	string	downloads_select	-	STR	ବାଛ	
 values-b+or/strings.xml	string	downloads_storage_full_headline	-	STR	ପର୍ଯ୍ୟାପ୍ତ ଷ୍ଟୋରେଜ୍ ନାହିଁ	
 values-b+or/strings.xml	string	downloads_storage_legend	-	STR	%1$s / %2$s ଵ୍ୟଵହୃତ · ଡାଉନଲୋଡରେ %3$s	
@@ -22765,7 +22765,7 @@ values-b+pl/strings.xml	string	downloads_free_up_space	-	STR	Zwolnij miejsce
 values-b+pl/strings.xml	string	downloads_load_failed_body	-	STR	Pobrane pliki nie zostały zmienione.	
 values-b+pl/strings.xml	string	downloads_load_failed_headline	-	STR	Nie udało się odczytać pobranych	
 values-b+pl/strings.xml	string	downloads_offline_pill	-	STR	Offline · brak połączenia	
-values-b+pl/strings.xml	string	downloads_play_from_url	-	STR	Odtwórz z URL	
+values-b+pl/strings.xml	string	downloads_play_from_link	-	STR	Odtwórz z linku	
 values-b+pl/strings.xml	string	downloads_select	-	STR	Zaznacz	
 values-b+pl/strings.xml	string	downloads_storage_full_headline	-	STR	Za mało pamięci	
 values-b+pl/strings.xml	string	downloads_storage_legend	-	STR	Użyto %1$s z %2$s · %3$s w pobranych	
@@ -23571,7 +23571,7 @@ values-b+pt+BR/strings.xml	string	downloads_free_up_space	-	STR	Liberar espaço
 values-b+pt+BR/strings.xml	string	downloads_load_failed_body	-	STR	Seus arquivos baixados não foram alterados.	
 values-b+pt+BR/strings.xml	string	downloads_load_failed_headline	-	STR	Não foi possível ler seus downloads	
 values-b+pt+BR/strings.xml	string	downloads_offline_pill	-	STR	Offline · sem conexão	
-values-b+pt+BR/strings.xml	string	downloads_play_from_url	-	STR	Reproduzir de URL	
+values-b+pt+BR/strings.xml	string	downloads_play_from_link	-	STR	Reproduzir de link	
 values-b+pt+BR/strings.xml	string	downloads_select	-	STR	Selecionar	
 values-b+pt+BR/strings.xml	string	downloads_storage_full_headline	-	STR	Armazenamento insuficiente	
 values-b+pt+BR/strings.xml	string	downloads_storage_legend	-	STR	%1$s de %2$s usados · %3$s em downloads	
@@ -24374,7 +24374,7 @@ values-b+pt/strings.xml	string	downloads_free_up_space	-	STR	Libertar espaço
 values-b+pt/strings.xml	string	downloads_load_failed_body	-	STR	Os seus ficheiros transferidos não foram alterados.	
 values-b+pt/strings.xml	string	downloads_load_failed_headline	-	STR	Não foi possível ler os seus downloads	
 values-b+pt/strings.xml	string	downloads_offline_pill	-	STR	Offline · sem ligação	
-values-b+pt/strings.xml	string	downloads_play_from_url	-	STR	Reproduzir de URL	
+values-b+pt/strings.xml	string	downloads_play_from_link	-	STR	Reproduzir a partir de ligação	
 values-b+pt/strings.xml	string	downloads_select	-	STR	Selecionar	
 values-b+pt/strings.xml	string	downloads_storage_full_headline	-	STR	Armazenamento insuficiente	
 values-b+pt/strings.xml	string	downloads_storage_legend	-	STR	%1$s de %2$s usados · %3$s em downloads	
@@ -25139,7 +25139,7 @@ values-b+qt/strings.xml	string	downloads_free_up_space	-	STR	ooo-ahahaaaaa oh
 values-b+qt/strings.xml	string	downloads_load_failed_body	-	STR	ouuhhuhooh ooh uuh ahooo.	
 values-b+qt/strings.xml	string	downloads_load_failed_headline	-	STR	ahooo uuhh ouuhhuhooh ooh	
 values-b+qt/strings.xml	string	downloads_offline_pill	-	STR	aaaagggoh ooh · uuuhh	
-values-b+qt/strings.xml	string	downloads_play_from_url	-	STR	aaaaa uuuuhhh	
+values-b+qt/strings.xml	string	downloads_play_from_link	-	STR	aaaaa uuuuhhh	
 values-b+qt/strings.xml	string	downloads_select	-	STR	uuuugg	
 values-b+qt/strings.xml	string	downloads_storage_full_headline	-	STR	uuuhh aauugghhahahhah	
 values-b+qt/strings.xml	string	downloads_storage_legend	-	STR	%1$s oh %2$s ahhahhh · %3$s ouuhhuhooh	
@@ -25824,7 +25824,7 @@ values-b+ro/strings.xml	string	downloads_free_up_space	-	STR	Eliberează spațiu
 values-b+ro/strings.xml	string	downloads_load_failed_body	-	STR	Fișierele descărcate nu au fost modificate.	
 values-b+ro/strings.xml	string	downloads_load_failed_headline	-	STR	Descărcările nu au putut fi citite	
 values-b+ro/strings.xml	string	downloads_offline_pill	-	STR	Offline · fără conexiune	
-values-b+ro/strings.xml	string	downloads_play_from_url	-	STR	Redă de la URL	
+values-b+ro/strings.xml	string	downloads_play_from_link	-	STR	Redă de la link	
 values-b+ro/strings.xml	string	downloads_select	-	STR	Selectează	
 values-b+ro/strings.xml	string	downloads_storage_full_headline	-	STR	Stocare insuficientă	
 values-b+ro/strings.xml	string	downloads_storage_legend	-	STR	%1$s din %2$s folosiți · %3$s în descărcări	
@@ -26552,7 +26552,7 @@ values-b+ru/strings.xml	string	downloads_free_up_space	-	STR	Освободит�
 values-b+ru/strings.xml	string	downloads_load_failed_body	-	STR	Ваши скачанные файлы не изменены.	
 values-b+ru/strings.xml	string	downloads_load_failed_headline	-	STR	Не удалось прочитать скачанное	
 values-b+ru/strings.xml	string	downloads_offline_pill	-	STR	Без сети · нет соединения	
-values-b+ru/strings.xml	string	downloads_play_from_url	-	STR	Смотреть по URL	
+values-b+ru/strings.xml	string	downloads_play_from_link	-	STR	Смотреть по ссылке	
 values-b+ru/strings.xml	string	downloads_select	-	STR	Выбрать	
 values-b+ru/strings.xml	string	downloads_storage_full_headline	-	STR	Недостаточно памяти	
 values-b+ru/strings.xml	string	downloads_storage_legend	-	STR	Использовано %1$s из %2$s · %3$s в скачанном	
@@ -27285,7 +27285,7 @@ values-b+sk/strings.xml	string	downloads_free_up_space	-	STR	Uvoľniť miesto
 values-b+sk/strings.xml	string	downloads_load_failed_body	-	STR	Vaše stiahnuté súbory neboli zmenené.	
 values-b+sk/strings.xml	string	downloads_load_failed_headline	-	STR	Stiahnutia sa nepodarilo načítať	
 values-b+sk/strings.xml	string	downloads_offline_pill	-	STR	Offline · bez pripojenia	
-values-b+sk/strings.xml	string	downloads_play_from_url	-	STR	Prehrať z URL	
+values-b+sk/strings.xml	string	downloads_play_from_link	-	STR	Prehrať z odkazu	
 values-b+sk/strings.xml	string	downloads_select	-	STR	Vybrať	
 values-b+sk/strings.xml	string	downloads_storage_full_headline	-	STR	Nedostatok úložiska	
 values-b+sk/strings.xml	string	downloads_storage_legend	-	STR	Využité %1$s z %2$s · %3$s v stiahnutiach	
@@ -27823,7 +27823,7 @@ values-b+so/strings.xml	string	downloads_free_up_space	-	STR	Bannee meel
 values-b+so/strings.xml	string	downloads_load_failed_body	-	STR	Faylasha aad soo dejisay lama beddelin.	
 values-b+so/strings.xml	string	downloads_load_failed_headline	-	STR	Lama akhrin karo soo dejintaada	
 values-b+so/strings.xml	string	downloads_offline_pill	-	STR	Khad la'aan · ma jiro isku xir	
-values-b+so/strings.xml	string	downloads_play_from_url	-	STR	Ka daar URL	
+values-b+so/strings.xml	string	downloads_play_from_link	-	STR	Ka daar xiriir	
 values-b+so/strings.xml	string	downloads_select	-	STR	Dooro	
 values-b+so/strings.xml	string	downloads_storage_full_headline	-	STR	Kayd ku filan ma jiro	
 values-b+so/strings.xml	string	downloads_storage_legend	-	STR	%1$s oo ka mid ah %2$s ayaa la isticmaalay · %3$s soo dejinta	
@@ -28460,7 +28460,7 @@ values-b+sq/strings.xml	string	downloads_free_up_space	-	STR	Liro hapësirë
 values-b+sq/strings.xml	string	downloads_load_failed_body	-	STR	Skedarët e shkarkuar nuk janë ndryshuar.	
 values-b+sq/strings.xml	string	downloads_load_failed_headline	-	STR	Shkarkimet nuk mund të lexoheshin	
 values-b+sq/strings.xml	string	downloads_offline_pill	-	STR	Offline · pa lidhje	
-values-b+sq/strings.xml	string	downloads_play_from_url	-	STR	Luaj nga URL	
+values-b+sq/strings.xml	string	downloads_play_from_link	-	STR	Luaj nga lidhja	
 values-b+sq/strings.xml	string	downloads_select	-	STR	Zgjidh	
 values-b+sq/strings.xml	string	downloads_storage_full_headline	-	STR	Memorie e pamjaftueshme	
 values-b+sq/strings.xml	string	downloads_storage_legend	-	STR	%1$s nga %2$s të përdorura · %3$s në shkarkime	
@@ -29262,7 +29262,7 @@ values-b+sv/strings.xml	string	downloads_free_up_space	-	STR	Frigör utrymme
 values-b+sv/strings.xml	string	downloads_load_failed_body	-	STR	Dina nerladdade filer har inte ändrats.	
 values-b+sv/strings.xml	string	downloads_load_failed_headline	-	STR	Kunde inte läsa dina nerladdningar	
 values-b+sv/strings.xml	string	downloads_offline_pill	-	STR	Offline · ingen anslutning	
-values-b+sv/strings.xml	string	downloads_play_from_url	-	STR	Spela upp från URL	
+values-b+sv/strings.xml	string	downloads_play_from_link	-	STR	Spela upp från länk	
 values-b+sv/strings.xml	string	downloads_select	-	STR	Välj	
 values-b+sv/strings.xml	string	downloads_storage_full_headline	-	STR	Inte tillräckligt med lagring	
 values-b+sv/strings.xml	string	downloads_storage_legend	-	STR	%1$s av %2$s använt · %3$s i nerladdningar	
@@ -30064,7 +30064,7 @@ values-b+ta/strings.xml	string	downloads_free_up_space	-	STR	இடத்தை 
 values-b+ta/strings.xml	string	downloads_load_failed_body	-	STR	நீங்கள் பதிவிறக்கிய கோப்புகள் மாற்றப்படவில்லை.	
 values-b+ta/strings.xml	string	downloads_load_failed_headline	-	STR	உங்கள் பதிவிறக்கங்களைப் படிக்க முடியவில்லை	
 values-b+ta/strings.xml	string	downloads_offline_pill	-	STR	ஆஃப்லைன் · இணைப்பு இல்லை	
-values-b+ta/strings.xml	string	downloads_play_from_url	-	STR	URL இலிருந்து இயக்கு	
+values-b+ta/strings.xml	string	downloads_play_from_link	-	STR	இணைப்பிலிருந்து இயக்கு	
 values-b+ta/strings.xml	string	downloads_select	-	STR	தேர்ந்தெடு	
 values-b+ta/strings.xml	string	downloads_storage_full_headline	-	STR	போதுமான சேமிப்பகம் இல்லை	
 values-b+ta/strings.xml	string	downloads_storage_legend	-	STR	%1$s / %2$s பயன்படுத்தப்பட்டது · பதிவிறக்கங்களில் %3$s	
@@ -30671,7 +30671,7 @@ values-b+ti/strings.xml	string	downloads_free_up_space	-	STR	ቦታ ኣናጽፍ
 values-b+ti/strings.xml	string	downloads_load_failed_body	-	STR	ዝወረዱ ፋይላትካ ኣይተቐየሩን።	
 values-b+ti/strings.xml	string	downloads_load_failed_headline	-	STR	ውርዳትካ ክንበብ ኣይከኣለን	
 values-b+ti/strings.xml	string	downloads_offline_pill	-	STR	ካብ መስመር ወጻኢ · መራኸቢ የለን	
-values-b+ti/strings.xml	string	downloads_play_from_url	-	STR	ካብ URL ተጻወት	
+values-b+ti/strings.xml	string	downloads_play_from_link	-	STR	ካብ መላግቦ ተጻወት	
 values-b+ti/strings.xml	string	downloads_select	-	STR	ምረጽ	
 values-b+ti/strings.xml	string	downloads_storage_full_headline	-	STR	እኹል መኽዘን የለን	
 values-b+ti/strings.xml	string	downloads_storage_legend	-	STR	%1$s ካብ %2$s ተጠቒሙ · %3$s ኣብ ውርዳት	
@@ -30805,7 +30805,7 @@ values-b+tl/strings.xml	string	downloads_free_up_space	-	STR	Magbakante ng espas
 values-b+tl/strings.xml	string	downloads_load_failed_body	-	STR	Hindi nabago ang mga na-download mong file.	
 values-b+tl/strings.xml	string	downloads_load_failed_headline	-	STR	Hindi mabasa ang iyong mga download	
 values-b+tl/strings.xml	string	downloads_offline_pill	-	STR	Offline · walang koneksyon	
-values-b+tl/strings.xml	string	downloads_play_from_url	-	STR	I-play mula sa URL	
+values-b+tl/strings.xml	string	downloads_play_from_link	-	STR	I-play mula sa link	
 values-b+tl/strings.xml	string	downloads_select	-	STR	Piliin	
 values-b+tl/strings.xml	string	downloads_storage_full_headline	-	STR	Kulang ang storage	
 values-b+tl/strings.xml	string	downloads_storage_legend	-	STR	%1$s ng %2$s ang gamit · %3$s sa mga download	
@@ -31247,7 +31247,7 @@ values-b+tr/strings.xml	string	downloads_free_up_space	-	STR	Yer aç
 values-b+tr/strings.xml	string	downloads_load_failed_body	-	STR	İndirilen dosyalarınız değiştirilmedi.	
 values-b+tr/strings.xml	string	downloads_load_failed_headline	-	STR	İndirmeleriniz okunamadı	
 values-b+tr/strings.xml	string	downloads_offline_pill	-	STR	Çevrimdışı · bağlantı yok	
-values-b+tr/strings.xml	string	downloads_play_from_url	-	STR	URL'den oynat	
+values-b+tr/strings.xml	string	downloads_play_from_link	-	STR	Bağlantıdan oynat	
 values-b+tr/strings.xml	string	downloads_select	-	STR	Seç	
 values-b+tr/strings.xml	string	downloads_storage_full_headline	-	STR	Yeterli depolama yok	
 values-b+tr/strings.xml	string	downloads_storage_legend	-	STR	%1$s / %2$s kullanıldı · İndirilenlerde %3$s	
@@ -32057,7 +32057,7 @@ values-b+uk/strings.xml	string	downloads_free_up_space	-	STR	Звільнити 
 values-b+uk/strings.xml	string	downloads_load_failed_body	-	STR	Ваші завантажені файли не змінено.	
 values-b+uk/strings.xml	string	downloads_load_failed_headline	-	STR	Не вдалося прочитати завантаження	
 values-b+uk/strings.xml	string	downloads_offline_pill	-	STR	Поза мережею · немає з'єднання	
-values-b+uk/strings.xml	string	downloads_play_from_url	-	STR	Відтворити з URL	
+values-b+uk/strings.xml	string	downloads_play_from_link	-	STR	Відтворити за посиланням	
 values-b+uk/strings.xml	string	downloads_select	-	STR	Обрати	
 values-b+uk/strings.xml	string	downloads_storage_full_headline	-	STR	Недостатньо пам'яті	
 values-b+uk/strings.xml	string	downloads_storage_legend	-	STR	Зайнято %1$s із %2$s · %3$s у завантаженнях	
@@ -32815,7 +32815,7 @@ values-b+ur/strings.xml	string	downloads_free_up_space	-	STR	جگہ خالی ک�
 values-b+ur/strings.xml	string	downloads_load_failed_body	-	STR	آپ کی ڈاؤن لوڈ کردہ فائلیں تبدیل نہیں ہوئیں۔	
 values-b+ur/strings.xml	string	downloads_load_failed_headline	-	STR	آپ کے ڈاؤن لوڈ پڑھے نہیں جا سکے	
 values-b+ur/strings.xml	string	downloads_offline_pill	-	STR	آف لائن · کوئی کنکشن نہیں	
-values-b+ur/strings.xml	string	downloads_play_from_url	-	STR	URL سے چلائیں	
+values-b+ur/strings.xml	string	downloads_play_from_link	-	STR	لنک سے چلائیں	
 values-b+ur/strings.xml	string	downloads_select	-	STR	چنیں	
 values-b+ur/strings.xml	string	downloads_storage_full_headline	-	STR	کافی سٹوریج نہیں	
 values-b+ur/strings.xml	string	downloads_storage_legend	-	STR	%1$s از %2$s استعمال شُدہ · ڈاؤن لوڈ میں %3$s	
@@ -33519,7 +33519,7 @@ values-b+vi/strings.xml	string	downloads_free_up_space	-	STR	Giải phóng dung 
 values-b+vi/strings.xml	string	downloads_load_failed_body	-	STR	Các tệp đã tải xuống của bạn không bị thay đổi.	
 values-b+vi/strings.xml	string	downloads_load_failed_headline	-	STR	Không thể đọc các tải xuống của bạn	
 values-b+vi/strings.xml	string	downloads_offline_pill	-	STR	Ngoại tuyến · không có kết nối	
-values-b+vi/strings.xml	string	downloads_play_from_url	-	STR	Phát từ URL	
+values-b+vi/strings.xml	string	downloads_play_from_link	-	STR	Phát từ liên kết	
 values-b+vi/strings.xml	string	downloads_select	-	STR	Chọn	
 values-b+vi/strings.xml	string	downloads_storage_full_headline	-	STR	Không đủ bộ nhớ	
 values-b+vi/strings.xml	string	downloads_storage_legend	-	STR	Đã dùng %1$s trên %2$s · %3$s cho tải xuống	
@@ -34316,7 +34316,7 @@ values-b+zh+TW/strings.xml	string	downloads_free_up_space	-	STR	釋放空間
 values-b+zh+TW/strings.xml	string	downloads_load_failed_body	-	STR	你已下載的檔案未變更。	
 values-b+zh+TW/strings.xml	string	downloads_load_failed_headline	-	STR	無法讀取你的下載	
 values-b+zh+TW/strings.xml	string	downloads_offline_pill	-	STR	離線 · 無連線	
-values-b+zh+TW/strings.xml	string	downloads_play_from_url	-	STR	從 URL 播放	
+values-b+zh+TW/strings.xml	string	downloads_play_from_link	-	STR	從連結播放	
 values-b+zh+TW/strings.xml	string	downloads_select	-	STR	選取	
 values-b+zh+TW/strings.xml	string	downloads_storage_full_headline	-	STR	儲存空間不足	
 values-b+zh+TW/strings.xml	string	downloads_storage_legend	-	STR	已使用 %1$s / %2$s · 下載佔用 %3$s	
@@ -35109,7 +35109,7 @@ values-b+zh/strings.xml	string	downloads_free_up_space	-	STR	释放空间
 values-b+zh/strings.xml	string	downloads_load_failed_body	-	STR	你已下载的文件未被更改。	
 values-b+zh/strings.xml	string	downloads_load_failed_headline	-	STR	无法读取你的下载	
 values-b+zh/strings.xml	string	downloads_offline_pill	-	STR	脱机 · 无连接	
-values-b+zh/strings.xml	string	downloads_play_from_url	-	STR	从 URL 播放	
+values-b+zh/strings.xml	string	downloads_play_from_link	-	STR	从链接播放	
 values-b+zh/strings.xml	string	downloads_select	-	STR	选择	
 values-b+zh/strings.xml	string	downloads_storage_full_headline	-	STR	存储空间不足	
 values-b+zh/strings.xml	string	downloads_storage_legend	-	STR	已使用 %1$s / %2$s · 下载占用 %3$s	
@@ -36030,16 +36030,19 @@ values/strings.xml	string	downloaded	-	STR	Downloaded
 values/strings.xml	string	downloaded_file	-	STR	Downloaded file	
 values/strings.xml	string	downloading	-	STR	Downloading	
 values/strings.xml	string	downloads_browse_library	-	STR	Browse library	
+values/strings.xml	string	downloads_delete_chosen	-	STR	%1$s (%2$d · %3$s)	
 values/strings.xml	string	downloads_delete_select	-	STR	Select Items to Delete	
 values/strings.xml	string	downloads_empty	-	STR	There are currently no downloads.	
 values/strings.xml	string	downloads_empty_body	-	STR	Downloads you start from a title's episode list appear here and play with no connection.	
 values/strings.xml	string	downloads_empty_headline	-	STR	No downloads yet	
+values/strings.xml	string	downloads_film_subtitle	-	STR	%1$s · %2$s	
 values/strings.xml	string	downloads_free_up_space	-	STR	Free up space	
 values/strings.xml	string	downloads_load_failed_body	-	STR	Your downloaded files have not been changed.	
 values/strings.xml	string	downloads_load_failed_headline	-	STR	Couldn't read your downloads	
 values/strings.xml	string	downloads_offline_pill	-	STR	Offline · no connection	
-values/strings.xml	string	downloads_play_from_url	-	STR	Play from URL	
+values/strings.xml	string	downloads_play_from_link	-	STR	Play from link	
 values/strings.xml	string	downloads_select	-	STR	Select	
+values/strings.xml	string	downloads_series_subtitle	-	STR	%1$d %2$s · %3$s	
 values/strings.xml	string	downloads_storage_full_headline	-	STR	Not enough storage	
 values/strings.xml	string	downloads_storage_legend	-	STR	%1$s of %2$s used · %3$s in downloads	
 values/strings.xml	string	downloads_storage_needs	-	STR	Needs %s more	

@@ -216,16 +216,19 @@ values	string	downloaded	-	Downloaded
 values	string	downloaded_file	-	Downloaded file
 values	string	downloading	-	Downloading
 values	string	downloads_browse_library	-	Browse library
+values	string	downloads_delete_chosen	-	%1$s (%2$d · %3$s)
 values	string	downloads_delete_select	-	Select Items to Delete
 values	string	downloads_empty	-	There are currently no downloads.
 values	string	downloads_empty_body	-	Downloads you start from a title's episode list appear here and play with no connection.
 values	string	downloads_empty_headline	-	No downloads yet
+values	string	downloads_film_subtitle	-	%1$s · %2$s
 values	string	downloads_free_up_space	-	Free up space
 values	string	downloads_load_failed_body	-	Your downloaded files have not been changed.
 values	string	downloads_load_failed_headline	-	Couldn't read your downloads
 values	string	downloads_offline_pill	-	Offline · no connection
-values	string	downloads_play_from_url	-	Play from URL
+values	string	downloads_play_from_link	-	Play from link
 values	string	downloads_select	-	Select
+values	string	downloads_series_subtitle	-	%1$d %2$s · %3$s
 values	string	downloads_storage_full_headline	-	Not enough storage
 values	string	downloads_storage_legend	-	%1$s of %2$s used · %3$s in downloads
 values	string	downloads_storage_needs	-	Needs %s more
@@ -891,7 +894,7 @@ values-b+af	string	downloads_free_up_space	-	Maak spasie vry
 values-b+af	string	downloads_load_failed_body	-	Jou afgelaaide lêers is nie verander nie.
 values-b+af	string	downloads_load_failed_headline	-	Kon nie jou aflaaie lees nie
 values-b+af	string	downloads_offline_pill	-	Vanlyn · geen verbinding nie
-values-b+af	string	downloads_play_from_url	-	Speel vanaf URL
+values-b+af	string	downloads_play_from_link	-	Speel vanaf skakel
 values-b+af	string	downloads_select	-	Kies
 values-b+af	string	downloads_storage_full_headline	-	Nie genoeg berging nie
 values-b+af	string	downloads_storage_legend	-	%1$s van %2$s gebruik · %3$s in aflaaie
@@ -1075,7 +1078,7 @@ values-b+am	string	downloads_free_up_space	-	ቦታ አስለቅቅ
 values-b+am	string	downloads_load_failed_body	-	የወረዱ ፋይሎችዎ አልተቀየሩም።
 values-b+am	string	downloads_load_failed_headline	-	ውርዶችዎን ማንበብ አልተቻለም
 values-b+am	string	downloads_offline_pill	-	ከመስመር ውጭ · ግንኙነት የለም
-values-b+am	string	downloads_play_from_url	-	ከURL አጫውት
+values-b+am	string	downloads_play_from_link	-	ከሊንክ አጫውት
 values-b+am	string	downloads_select	-	ምረጥ
 values-b+am	string	downloads_storage_full_headline	-	በቂ ማከማቻ የለም
 values-b+am	string	downloads_storage_legend	-	%1$s ከ%2$s ጥቅም ላይ ውሏል · %3$s በውርዶች ውስጥ
@@ -1425,7 +1428,7 @@ values-b+apc	string	downloads_free_up_space	-	فضّي مساحة
 values-b+apc	string	downloads_load_failed_body	-	ملفاتك المنزّلة ما تغيّرت.
 values-b+apc	string	downloads_load_failed_headline	-	ما قدرنا نقرا تنزيلاتك
 values-b+apc	string	downloads_offline_pill	-	بلا إنترنت · مافي اتصال
-values-b+apc	string	downloads_play_from_url	-	مشّي من رابط URL
+values-b+apc	string	downloads_play_from_link	-	مشّي من رابط
 values-b+apc	string	downloads_select	-	نقي
 values-b+apc	string	downloads_storage_full_headline	-	مافي مساحة تخزين كفاية
 values-b+apc	string	downloads_storage_legend	-	%1$s من %2$s مستعمل · %3$s بالتنزيلات
@@ -2243,7 +2246,7 @@ values-b+ar	string	downloads_free_up_space	-	إخلاء مساحة
 values-b+ar	string	downloads_load_failed_body	-	لم تتغيّر ملفاتك التي تم تنزيلها.
 values-b+ar	string	downloads_load_failed_headline	-	تعذّرت قراءة تنزيلاتك
 values-b+ar	string	downloads_offline_pill	-	غير متصل · لا يوجد اتصال
-values-b+ar	string	downloads_play_from_url	-	تشغيل من عنوان URL
+values-b+ar	string	downloads_play_from_link	-	تشغيل من رابط
 values-b+ar	string	downloads_select	-	تحديد
 values-b+ar	string	downloads_storage_full_headline	-	مساحة التخزين غير كافية
 values-b+ar	string	downloads_storage_legend	-	%1$s من %2$s مستخدم · %3$s في التنزيلات
@@ -2951,7 +2954,7 @@ values-b+ars	string	downloads_free_up_space	-	فضّ مساحة
 values-b+ars	string	downloads_load_failed_body	-	ملفاتك المحمّلة ما تغيّرت.
 values-b+ars	string	downloads_load_failed_headline	-	ما قدرنا نقرأ تحميلاتك
 values-b+ars	string	downloads_offline_pill	-	غير متصل · ما فيه اتصال
-values-b+ars	string	downloads_play_from_url	-	شغّل من رابط URL
+values-b+ars	string	downloads_play_from_link	-	شغّل من رابط
 values-b+ars	string	downloads_select	-	حدد
 values-b+ars	string	downloads_storage_full_headline	-	مساحة التخزين ما تكفي
 values-b+ars	string	downloads_storage_legend	-	%1$s من %2$s مستعمل · %3$s في التحميلات
@@ -3440,7 +3443,7 @@ values-b+as	string	downloads_free_up_space	-	ঠাই খালী কৰক
 values-b+as	string	downloads_load_failed_body	-	আপোনাৰ ডাউনলোড কৰা ফাইলসমূহ সলনি কৰা হোৱা নাই।
 values-b+as	string	downloads_load_failed_headline	-	আপোনাৰ ডাউনলোডসমূহ পঢ়িব নোৱাৰিলোঁ
 values-b+as	string	downloads_offline_pill	-	অফলাইন · সংযোগ নাই
-values-b+as	string	downloads_play_from_url	-	URLৰ পৰা প্লে কৰক
+values-b+as	string	downloads_play_from_link	-	লিংকৰ পৰা প্লে কৰক
 values-b+as	string	downloads_select	-	বাছক
 values-b+as	string	downloads_storage_full_headline	-	পৰ্যাপ্ত সংৰক্ষণ নাই
 values-b+as	string	downloads_storage_legend	-	%1$s / %2$s ব্যৱহৃত · ডাউনলোডত %3$s
@@ -4023,7 +4026,7 @@ values-b+az	string	downloads_free_up_space	-	Yer boşalt
 values-b+az	string	downloads_load_failed_body	-	Yüklənmiş fayllarınız dəyişdirilməyib.
 values-b+az	string	downloads_load_failed_headline	-	Yükləmələriniz oxuna bilmədi
 values-b+az	string	downloads_offline_pill	-	Oflayn · bağlantı yoxdur
-values-b+az	string	downloads_play_from_url	-	URL-dən oynat
+values-b+az	string	downloads_play_from_link	-	Keçiddən oynat
 values-b+az	string	downloads_select	-	Seç
 values-b+az	string	downloads_storage_full_headline	-	Yaddaş kifayət deyil
 values-b+az	string	downloads_storage_legend	-	%1$s / %2$s istifadə olunub · Yükləmələrdə %3$s
@@ -4395,7 +4398,7 @@ values-b+be	string	downloads_free_up_space	-	Вызваліць месца
 values-b+be	string	downloads_load_failed_body	-	Вашы спампаваныя файлы не зменены.
 values-b+be	string	downloads_load_failed_headline	-	Не ўдалося прачытаць спампоўкі
 values-b+be	string	downloads_offline_pill	-	Па-за сеткай · няма злучэння
-values-b+be	string	downloads_play_from_url	-	Прайграць па URL
+values-b+be	string	downloads_play_from_link	-	Прайграць па спасылцы
 values-b+be	string	downloads_select	-	Выбраць
 values-b+be	string	downloads_storage_full_headline	-	Недастаткова месца ў сховішчы
 values-b+be	string	downloads_storage_legend	-	Ужыта %1$s з %2$s · %3$s у спампоўках
@@ -5198,7 +5201,7 @@ values-b+bg	string	downloads_free_up_space	-	Освобождаване на м�
 values-b+bg	string	downloads_load_failed_body	-	Изтеглените ви файлове не са променени.
 values-b+bg	string	downloads_load_failed_headline	-	Изтеглянията ви не можаха да се прочетат
 values-b+bg	string	downloads_offline_pill	-	Офлайн · няма връзка
-values-b+bg	string	downloads_play_from_url	-	Пускане от URL
+values-b+bg	string	downloads_play_from_link	-	Пускане от връзка
 values-b+bg	string	downloads_select	-	Избиране
 values-b+bg	string	downloads_storage_full_headline	-	Няма достатъчно памет
 values-b+bg	string	downloads_storage_legend	-	%1$s от %2$s използвани · %3$s в изтегляния
@@ -5912,7 +5915,7 @@ values-b+bn	string	downloads_free_up_space	-	জায়গা খালি ক
 values-b+bn	string	downloads_load_failed_body	-	আপনার ডাউনলোড করা ফাইলগুলো পরিবর্তন করা হয়নি।
 values-b+bn	string	downloads_load_failed_headline	-	আপনার ডাউনলোডগুলো পড়া যায়নি
 values-b+bn	string	downloads_offline_pill	-	অফলাইন · কোনো সংযোগ নেই
-values-b+bn	string	downloads_play_from_url	-	URL থেকে চালান
+values-b+bn	string	downloads_play_from_link	-	লিংক থেকে চালান
 values-b+bn	string	downloads_select	-	সিলেক্ট করুন
 values-b+bn	string	downloads_storage_full_headline	-	যথেষ্ট স্টোরেজ নেই
 values-b+bn	string	downloads_storage_legend	-	%1$s / %2$s ব্যবহৃত · ডাউনলোডে %3$s
@@ -6338,7 +6341,7 @@ values-b+ca	string	downloads_free_up_space	-	Allibera espai
 values-b+ca	string	downloads_load_failed_body	-	Els fitxers descarregats no s'han modificat.
 values-b+ca	string	downloads_load_failed_headline	-	No s'han pogut llegir les descàrregues
 values-b+ca	string	downloads_offline_pill	-	Fora de línia · sense connexió
-values-b+ca	string	downloads_play_from_url	-	Reprodueix des d'un URL
+values-b+ca	string	downloads_play_from_link	-	Reprodueix des d'un enllaç
 values-b+ca	string	downloads_select	-	Selecciona
 values-b+ca	string	downloads_storage_full_headline	-	No hi ha prou emmagatzematge
 values-b+ca	string	downloads_storage_legend	-	%1$s de %2$s usats · %3$s en descàrregues
@@ -6694,7 +6697,7 @@ values-b+ckb	string	downloads_free_up_space	-	بۆشایی چۆڵ بکە
 values-b+ckb	string	downloads_load_failed_body	-	فایلە داونلۆدکراوەکانت نەگۆڕدراون.
 values-b+ckb	string	downloads_load_failed_headline	-	نەتوانرا داونلۆدەکانت بخوێنرێنەوە
 values-b+ckb	string	downloads_offline_pill	-	ئۆفلاین · پەیوەندی نییە
-values-b+ckb	string	downloads_play_from_url	-	لێدان لە URL
+values-b+ckb	string	downloads_play_from_link	-	لێدان لە بەستەر
 values-b+ckb	string	downloads_select	-	هەڵبژێرە
 values-b+ckb	string	downloads_storage_full_headline	-	کۆگا بەش ناکات
 values-b+ckb	string	downloads_storage_legend	-	%1$s لە %2$s بەکارهاتووە · %3$s لە داونلۆدەکان
@@ -7027,7 +7030,7 @@ values-b+cs	string	downloads_free_up_space	-	Uvolnit místo
 values-b+cs	string	downloads_load_failed_body	-	Vaše stažené soubory nebyly změněny.
 values-b+cs	string	downloads_load_failed_headline	-	Stahování se nepodařilo načíst
 values-b+cs	string	downloads_offline_pill	-	Offline · bez připojení
-values-b+cs	string	downloads_play_from_url	-	Přehrát z URL
+values-b+cs	string	downloads_play_from_link	-	Přehrát z odkazu
 values-b+cs	string	downloads_select	-	Vybrat
 values-b+cs	string	downloads_storage_full_headline	-	Nedostatek úložiště
 values-b+cs	string	downloads_storage_legend	-	Použito %1$s z %2$s · %3$s ve stahování
@@ -7840,7 +7843,7 @@ values-b+de	string	downloads_free_up_space	-	Speicher freigeben
 values-b+de	string	downloads_load_failed_body	-	Deine heruntergeladenen Dateien wurden nicht verändert.
 values-b+de	string	downloads_load_failed_headline	-	Downloads konnten nicht gelesen werden
 values-b+de	string	downloads_offline_pill	-	Offline · keine Verbindung
-values-b+de	string	downloads_play_from_url	-	Von URL abspielen
+values-b+de	string	downloads_play_from_link	-	Von Link abspielen
 values-b+de	string	downloads_select	-	Auswählen
 values-b+de	string	downloads_storage_full_headline	-	Nicht genug Speicher
 values-b+de	string	downloads_storage_legend	-	%1$s von %2$s belegt · %3$s in Downloads
@@ -8629,7 +8632,7 @@ values-b+el	string	downloads_free_up_space	-	Απελευθέρωση χώρου
 values-b+el	string	downloads_load_failed_body	-	Τα ληφθέντα αρχεία σας δεν έχουν αλλάξει.
 values-b+el	string	downloads_load_failed_headline	-	Δεν ήταν δυνατή η ανάγνωση των λήψεών σας
 values-b+el	string	downloads_offline_pill	-	Εκτός σύνδεσης · δεν υπάρχει σύνδεση
-values-b+el	string	downloads_play_from_url	-	Αναπαραγωγή από URL
+values-b+el	string	downloads_play_from_link	-	Αναπαραγωγή από σύνδεσμο
 values-b+el	string	downloads_select	-	Επιλογή
 values-b+el	string	downloads_storage_full_headline	-	Ανεπαρκής χώρος αποθήκευσης
 values-b+el	string	downloads_storage_legend	-	%1$s από %2$s σε χρήση · %3$s σε λήψεις
@@ -9224,7 +9227,7 @@ values-b+eo	string	downloads_free_up_space	-	Liberigi spacon
 values-b+eo	string	downloads_load_failed_body	-	Viaj elŝutitaj dosieroj ne ŝanĝiĝis.
 values-b+eo	string	downloads_load_failed_headline	-	Ne eblis legi viajn elŝutojn
 values-b+eo	string	downloads_offline_pill	-	Eksterrete · neniu konekto
-values-b+eo	string	downloads_play_from_url	-	Ludi el URL
+values-b+eo	string	downloads_play_from_link	-	Ludi el ligilo
 values-b+eo	string	downloads_select	-	Selekti
 values-b+eo	string	downloads_storage_full_headline	-	Ne sufiĉas stokspaco
 values-b+eo	string	downloads_storage_legend	-	%1$s el %2$s uzitaj · %3$s en elŝutoj
@@ -9647,7 +9650,7 @@ values-b+es	string	downloads_free_up_space	-	Liberar espacio
 values-b+es	string	downloads_load_failed_body	-	Tus archivos descargados no se han modificado.
 values-b+es	string	downloads_load_failed_headline	-	No se pudieron leer tus descargas
 values-b+es	string	downloads_offline_pill	-	Sin conexión · sin red
-values-b+es	string	downloads_play_from_url	-	Reproducir desde URL
+values-b+es	string	downloads_play_from_link	-	Reproducir desde enlace
 values-b+es	string	downloads_select	-	Seleccionar
 values-b+es	string	downloads_storage_full_headline	-	Almacenamiento insuficiente
 values-b+es	string	downloads_storage_legend	-	%1$s de %2$s usados · %3$s en descargas
@@ -10357,7 +10360,7 @@ values-b+fa	string	downloads_free_up_space	-	آزاد کردن فضا
 values-b+fa	string	downloads_load_failed_body	-	فایل‌های دانلودشده شما تغییر نکرده‌اند.
 values-b+fa	string	downloads_load_failed_headline	-	دانلودهای شما خوانده نشد
 values-b+fa	string	downloads_offline_pill	-	آفلاین · بدون اتصال
-values-b+fa	string	downloads_play_from_url	-	پخش از URL
+values-b+fa	string	downloads_play_from_link	-	پخش از پیوند
 values-b+fa	string	downloads_select	-	انتخاب
 values-b+fa	string	downloads_storage_full_headline	-	حافظه کافی نیست
 values-b+fa	string	downloads_storage_legend	-	%1$s از %2$s استفاده شده · %3$s در دانلودها
@@ -10761,7 +10764,7 @@ values-b+fil	string	downloads_free_up_space	-	Magbakante ng espasyo
 values-b+fil	string	downloads_load_failed_body	-	Hindi nabago ang mga na-download mong file.
 values-b+fil	string	downloads_load_failed_headline	-	Hindi mabasa ang iyong mga download
 values-b+fil	string	downloads_offline_pill	-	Offline · walang koneksyon
-values-b+fil	string	downloads_play_from_url	-	I-play mula sa URL
+values-b+fil	string	downloads_play_from_link	-	I-play mula sa link
 values-b+fil	string	downloads_select	-	Piliin
 values-b+fil	string	downloads_storage_full_headline	-	Kulang ang imbakan
 values-b+fil	string	downloads_storage_legend	-	%1$s ng %2$s ang nagamit · %3$s sa mga download
@@ -11222,7 +11225,7 @@ values-b+fr	string	downloads_free_up_space	-	Libérer de l'espace
 values-b+fr	string	downloads_load_failed_body	-	Vos fichiers téléchargés n'ont pas été modifiés.
 values-b+fr	string	downloads_load_failed_headline	-	Impossible de lire vos téléchargements
 values-b+fr	string	downloads_offline_pill	-	Hors-ligne · pas de connexion
-values-b+fr	string	downloads_play_from_url	-	Lire depuis une URL
+values-b+fr	string	downloads_play_from_link	-	Lire depuis un lien
 values-b+fr	string	downloads_select	-	Sélectionner
 values-b+fr	string	downloads_storage_full_headline	-	Stockage insuffisant
 values-b+fr	string	downloads_storage_legend	-	%1$s sur %2$s utilisés · %3$s en téléchargements
@@ -11917,7 +11920,7 @@ values-b+gl	string	downloads_free_up_space	-	Liberar espazo
 values-b+gl	string	downloads_load_failed_body	-	Os teus ficheiros descargados non se modificaron.
 values-b+gl	string	downloads_load_failed_headline	-	Non se puideron ler as túas descargas
 values-b+gl	string	downloads_offline_pill	-	Sen conexión · sen rede
-values-b+gl	string	downloads_play_from_url	-	Reproducir desde URL
+values-b+gl	string	downloads_play_from_link	-	Reproducir desde ligazón
 values-b+gl	string	downloads_select	-	Seleccionar
 values-b+gl	string	downloads_storage_full_headline	-	Almacenamento insuficiente
 values-b+gl	string	downloads_storage_legend	-	%1$s de %2$s usados · %3$s en descargas
@@ -12331,7 +12334,7 @@ values-b+he	string	downloads_free_up_space	-	פינוי מקום
 values-b+he	string	downloads_load_failed_body	-	הקבצים שהורדת לא שונו.
 values-b+he	string	downloads_load_failed_headline	-	לא ניתן לקרוא את ההורדות שלך
 values-b+he	string	downloads_offline_pill	-	אופליין · אין חיבור
-values-b+he	string	downloads_play_from_url	-	הפעל מכתובת URL
+values-b+he	string	downloads_play_from_link	-	הפעל מקישור
 values-b+he	string	downloads_select	-	בחר
 values-b+he	string	downloads_storage_full_headline	-	אין מספיק אחסון
 values-b+he	string	downloads_storage_legend	-	%1$s מתוך %2$s בשימוש · %3$s בהורדות
@@ -12930,7 +12933,7 @@ values-b+hi	string	downloads_free_up_space	-	जगह ख़ाली करे
 values-b+hi	string	downloads_load_failed_body	-	आपकी डाउनलोड की गई फ़ाइलें नहीं बदली गई हैं।
 values-b+hi	string	downloads_load_failed_headline	-	आपके डाउनलोड पढ़े नहीं जा सके
 values-b+hi	string	downloads_offline_pill	-	ऑफ़लाइन · कोई कनेक्शन नहीं
-values-b+hi	string	downloads_play_from_url	-	URL से चलाएं
+values-b+hi	string	downloads_play_from_link	-	लिंक से चलाएं
 values-b+hi	string	downloads_select	-	चुनें
 values-b+hi	string	downloads_storage_full_headline	-	पर्याप्त स्टोरेज नहीं है
 values-b+hi	string	downloads_storage_legend	-	%1$s / %2$s इस्तेमाल में · डाउनलोड में %3$s
@@ -13500,7 +13503,7 @@ values-b+hr	string	downloads_free_up_space	-	Oslobodi prostor
 values-b+hr	string	downloads_load_failed_body	-	Vaše preuzete datoteke nisu promijenjene.
 values-b+hr	string	downloads_load_failed_headline	-	Nije moguće pročitati vaša preuzimanja
 values-b+hr	string	downloads_offline_pill	-	Offline · nema veze
-values-b+hr	string	downloads_play_from_url	-	Pokreni s URL-a
+values-b+hr	string	downloads_play_from_link	-	Pokreni s poveznice
 values-b+hr	string	downloads_select	-	Odaberi
 values-b+hr	string	downloads_storage_full_headline	-	Nedovoljno pohrane
 values-b+hr	string	downloads_storage_legend	-	Iskorišteno %1$s od %2$s · %3$s u preuzimanjima
@@ -14274,7 +14277,7 @@ values-b+hu	string	downloads_free_up_space	-	Hely felszabadítása
 values-b+hu	string	downloads_load_failed_body	-	A letöltött fájlok nem változtak.
 values-b+hu	string	downloads_load_failed_headline	-	Nem sikerült beolvasni a letöltéseket
 values-b+hu	string	downloads_offline_pill	-	Offline · nincs kapcsolat
-values-b+hu	string	downloads_play_from_url	-	Lejátszás URL-ről
+values-b+hu	string	downloads_play_from_link	-	Lejátszás hivatkozásról
 values-b+hu	string	downloads_select	-	Kiválasztás
 values-b+hu	string	downloads_storage_full_headline	-	Nincs elég tárhely
 values-b+hu	string	downloads_storage_legend	-	%1$s / %2$s használatban · %3$s a letöltésekben
@@ -15011,7 +15014,7 @@ values-b+id	string	downloads_free_up_space	-	Kosongkan ruang
 values-b+id	string	downloads_load_failed_body	-	File unduhan Anda tidak berubah.
 values-b+id	string	downloads_load_failed_headline	-	Tidak dapat membaca unduhan Anda
 values-b+id	string	downloads_offline_pill	-	Luring · tidak ada koneksi
-values-b+id	string	downloads_play_from_url	-	Putar dari URL
+values-b+id	string	downloads_play_from_link	-	Putar dari tautan
 values-b+id	string	downloads_select	-	Pilih
 values-b+id	string	downloads_storage_full_headline	-	Penyimpanan tidak cukup
 values-b+id	string	downloads_storage_legend	-	%1$s dari %2$s terpakai · %3$s di unduhan
@@ -15818,7 +15821,7 @@ values-b+in	string	downloads_free_up_space	-	Kosongkan ruang
 values-b+in	string	downloads_load_failed_body	-	File unduhan Anda tidak berubah.
 values-b+in	string	downloads_load_failed_headline	-	Tidak dapat membaca unduhan Anda
 values-b+in	string	downloads_offline_pill	-	Luring · tidak ada koneksi
-values-b+in	string	downloads_play_from_url	-	Putar dari URL
+values-b+in	string	downloads_play_from_link	-	Putar dari tautan
 values-b+in	string	downloads_select	-	Pilih
 values-b+in	string	downloads_storage_full_headline	-	Penyimpanan tidak cukup
 values-b+in	string	downloads_storage_legend	-	%1$s dari %2$s terpakai · %3$s di unduhan
@@ -16633,7 +16636,7 @@ values-b+it	string	downloads_free_up_space	-	Libera spazio
 values-b+it	string	downloads_load_failed_body	-	I file scaricati non sono stati modificati.
 values-b+it	string	downloads_load_failed_headline	-	Impossibile leggere i download
 values-b+it	string	downloads_offline_pill	-	Offline · nessuna connessione
-values-b+it	string	downloads_play_from_url	-	Riproduci da URL
+values-b+it	string	downloads_play_from_link	-	Riproduci da link
 values-b+it	string	downloads_select	-	Seleziona
 values-b+it	string	downloads_storage_full_headline	-	Spazio di archiviazione insufficiente
 values-b+it	string	downloads_storage_legend	-	%1$s di %2$s usati · %3$s nei download
@@ -17383,7 +17386,7 @@ values-b+iw	string	downloads_free_up_space	-	פינוי מקום
 values-b+iw	string	downloads_load_failed_body	-	הקבצים שהורדת לא שונו.
 values-b+iw	string	downloads_load_failed_headline	-	לא ניתן לקרוא את ההורדות שלך
 values-b+iw	string	downloads_offline_pill	-	אופליין · אין חיבור
-values-b+iw	string	downloads_play_from_url	-	הפעל מכתובת URL
+values-b+iw	string	downloads_play_from_link	-	הפעל מקישור
 values-b+iw	string	downloads_select	-	בחר
 values-b+iw	string	downloads_storage_full_headline	-	אין מספיק אחסון
 values-b+iw	string	downloads_storage_legend	-	%1$s מתוך %2$s בשימוש · %3$s בהורדות
@@ -18062,7 +18065,7 @@ values-b+ja	string	downloads_free_up_space	-	空き容量を増やす
 values-b+ja	string	downloads_load_failed_body	-	ダウンロード済みのファイルは変更されていません。
 values-b+ja	string	downloads_load_failed_headline	-	ダウンロードを読み込めませんでした
 values-b+ja	string	downloads_offline_pill	-	オフライン · 接続なし
-values-b+ja	string	downloads_play_from_url	-	URLから再生
+values-b+ja	string	downloads_play_from_link	-	リンクから再生
 values-b+ja	string	downloads_select	-	選択
 values-b+ja	string	downloads_storage_full_headline	-	ストレージの空き容量が足りません
 values-b+ja	string	downloads_storage_legend	-	%1$s / %2$s 使用 · ダウンロード %3$s
@@ -18702,7 +18705,7 @@ values-b+kn	string	downloads_free_up_space	-	ಸ್ಥಳವನ್ನು ಖಾ�
 values-b+kn	string	downloads_load_failed_body	-	ನಿಮ್ಮ ಡೌನ್‌ಲೋಡ್ ಮಾಡಿದ ಫೈಲ್‌ಗಳನ್ನು ಬದಲಾಯಿಸಲಾಗಿಲ್ಲ.
 values-b+kn	string	downloads_load_failed_headline	-	ನಿಮ್ಮ ಡೌನ್‌ಲೋಡ್‌ಗಳನ್ನು ಓದಲಾಗಲಿಲ್ಲ
 values-b+kn	string	downloads_offline_pill	-	ಆಫ್‌ಲೈನ್ · ಸಂಪರ್ಕವಿಲ್ಲ
-values-b+kn	string	downloads_play_from_url	-	URL ನಿಂದ ಪ್ಲೇ ಮಾಡಿ
+values-b+kn	string	downloads_play_from_link	-	ಲಿಂಕ್‌ನಿಂದ ಪ್ಲೇ ಮಾಡಿ
 values-b+kn	string	downloads_select	-	ಆಯ್ಕೆಮಾಡಿ
 values-b+kn	string	downloads_storage_full_headline	-	ಸಾಕಷ್ಟು ಸ್ಟೋರೇಜ್ ಇಲ್ಲ
 values-b+kn	string	downloads_storage_legend	-	%1$s / %2$s ಬಳಸಲಾಗಿದೆ · ಡೌನ್‌ಲೋಡ್‌ಗಳಲ್ಲಿ %3$s
@@ -19064,7 +19067,7 @@ values-b+ko	string	downloads_free_up_space	-	공간 확보
 values-b+ko	string	downloads_load_failed_body	-	다운로드한 파일은 변경되지 않았습니다.
 values-b+ko	string	downloads_load_failed_headline	-	다운로드를 읽을 수 없습니다
 values-b+ko	string	downloads_offline_pill	-	오프라인 · 연결 없음
-values-b+ko	string	downloads_play_from_url	-	URL에서 재생
+values-b+ko	string	downloads_play_from_link	-	링크에서 재생
 values-b+ko	string	downloads_select	-	선택
 values-b+ko	string	downloads_storage_full_headline	-	저장공간 부족
 values-b+ko	string	downloads_storage_legend	-	%1$s / %2$s 사용됨 · 다운로드 %3$s
@@ -19739,7 +19742,7 @@ values-b+lt	string	downloads_free_up_space	-	Atlaisvinti vietos
 values-b+lt	string	downloads_load_failed_body	-	Jūsų atsisiųsti failai nebuvo pakeisti.
 values-b+lt	string	downloads_load_failed_headline	-	Nepavyko nuskaityti atsisiuntimų
 values-b+lt	string	downloads_offline_pill	-	Neprisijungus · nėra ryšio
-values-b+lt	string	downloads_play_from_url	-	Paleisti iš URL
+values-b+lt	string	downloads_play_from_link	-	Paleisti iš nuorodos
 values-b+lt	string	downloads_select	-	Pasirinkti
 values-b+lt	string	downloads_storage_full_headline	-	Nepakanka atminties
 values-b+lt	string	downloads_storage_legend	-	Naudojama %1$s iš %2$s · %3$s atsisiuntimuose
@@ -20194,7 +20197,7 @@ values-b+lv	string	downloads_free_up_space	-	Atbrīvot vietu
 values-b+lv	string	downloads_load_failed_body	-	Jūsu lejupielādētie faili nav mainīti.
 values-b+lv	string	downloads_load_failed_headline	-	Neizdevās nolasīt lejupielādes
 values-b+lv	string	downloads_offline_pill	-	Bezsaistē · nav savienojuma
-values-b+lv	string	downloads_play_from_url	-	Atskaņot no URL
+values-b+lv	string	downloads_play_from_link	-	Atskaņot no saites
 values-b+lv	string	downloads_select	-	Atlasīt
 values-b+lv	string	downloads_storage_full_headline	-	Nepietiek atmiņas
 values-b+lv	string	downloads_storage_legend	-	Izmantoti %1$s no %2$s · %3$s lejupielādēs
@@ -20926,7 +20929,7 @@ values-b+mk	string	downloads_free_up_space	-	Ослободи простор
 values-b+mk	string	downloads_load_failed_body	-	Вашите преземени датотеки не се променети.
 values-b+mk	string	downloads_load_failed_headline	-	Не може да се прочитаат вашите преземања
 values-b+mk	string	downloads_offline_pill	-	Офлајн · нема врска
-values-b+mk	string	downloads_play_from_url	-	Пушти од URL
+values-b+mk	string	downloads_play_from_link	-	Пушти од врска
 values-b+mk	string	downloads_select	-	Одбери
 values-b+mk	string	downloads_storage_full_headline	-	Нема доволно меморија
 values-b+mk	string	downloads_storage_legend	-	Искористени %1$s од %2$s · %3$s во преземања
@@ -21606,7 +21609,7 @@ values-b+ml	string	downloads_free_up_space	-	ഇടം ഒഴിവാക്ക�
 values-b+ml	string	downloads_load_failed_body	-	നിങ്ങൾ ഡൗൺലോഡ് ചെയ്ത ഫയലുകൾ മാറ്റിയിട്ടില്ല.
 values-b+ml	string	downloads_load_failed_headline	-	നിങ്ങളുടെ ഡൗൺലോഡുകൾ വായിക്കാനായില്ല
 values-b+ml	string	downloads_offline_pill	-	ഓഫ്‌ലൈൻ · കണക്ഷനില്ല
-values-b+ml	string	downloads_play_from_url	-	URL-ൽ നിന്ന് പ്ലേ ചെയ്യുക
+values-b+ml	string	downloads_play_from_link	-	ലിങ്കിൽ നിന്ന് പ്ലേ ചെയ്യുക
 values-b+ml	string	downloads_select	-	തിരഞ്ഞെടുക്കുക
 values-b+ml	string	downloads_storage_full_headline	-	ആവശ്യത്തിന് സ്റ്റോറേജില്ല
 values-b+ml	string	downloads_storage_legend	-	%1$s / %2$s ഉപയോഗത്തിൽ · ഡൗൺലോഡുകളിൽ %3$s
@@ -22040,7 +22043,7 @@ values-b+ms	string	downloads_free_up_space	-	Kosongkan ruang
 values-b+ms	string	downloads_load_failed_body	-	Fail muat turun anda tidak diubah.
 values-b+ms	string	downloads_load_failed_headline	-	Tidak dapat membaca muat turun anda
 values-b+ms	string	downloads_offline_pill	-	Luar talian · tiada sambungan
-values-b+ms	string	downloads_play_from_url	-	Pasang dari URL
+values-b+ms	string	downloads_play_from_link	-	Pasang dari pautan
 values-b+ms	string	downloads_select	-	Pilih
 values-b+ms	string	downloads_storage_full_headline	-	Storan tidak mencukupi
 values-b+ms	string	downloads_storage_legend	-	%1$s daripada %2$s diguna · %3$s dalam muat turun
@@ -22520,7 +22523,7 @@ values-b+mt	string	downloads_free_up_space	-	Ħeles l-ispazju
 values-b+mt	string	downloads_load_failed_body	-	Il-fajls imniżżla tiegħek ma nbidlux.
 values-b+mt	string	downloads_load_failed_headline	-	Ma setax jinqara t-tniżżil tiegħek
 values-b+mt	string	downloads_offline_pill	-	Offline · l-ebda konnessjoni
-values-b+mt	string	downloads_play_from_url	-	Indaqq minn URL
+values-b+mt	string	downloads_play_from_link	-	Indaqq minn ħolqa
 values-b+mt	string	downloads_select	-	Agħżel
 values-b+mt	string	downloads_storage_full_headline	-	M'hemmx biżżejjed ħażna
 values-b+mt	string	downloads_storage_legend	-	%1$s minn %2$s użati · %3$s fit-tniżżil
@@ -22812,7 +22815,7 @@ values-b+my	string	downloads_free_up_space	-	နေရာလွတ်ယူရ�
 values-b+my	string	downloads_load_failed_body	-	ဒေါင်းလုဒ်လုပ်ထားသော ဖိုင်များကို မပြောင်းလဲထားပါ။
 values-b+my	string	downloads_load_failed_headline	-	ဒေါင်းလုဒ်များကို ဖတ်၍မရပါ
 values-b+my	string	downloads_offline_pill	-	အော့ဖ်လိုင်း · ချိတ်ဆက်မှုမရှိပါ
-values-b+my	string	downloads_play_from_url	-	URL မှ ဖွင့်ရန်
+values-b+my	string	downloads_play_from_link	-	လင့်ခ်မှ ဖွင့်ရန်
 values-b+my	string	downloads_select	-	ရွေးချယ်ရန်
 values-b+my	string	downloads_storage_full_headline	-	သိုလှောင်ရုံ မလုံလောက်ပါ
 values-b+my	string	downloads_storage_legend	-	%1$s / %2$s အသုံးပြုပြီး · ဒေါင်းလုဒ်တွင် %3$s
@@ -23304,7 +23307,7 @@ values-b+ne	string	downloads_free_up_space	-	ठाउँ खाली गर्
 values-b+ne	string	downloads_load_failed_body	-	तपाईंका डाउनलोड गरिएका फाइलहरू परिवर्तन गरिएका छैनन्।
 values-b+ne	string	downloads_load_failed_headline	-	तपाईंका डाउनलोडहरू पढ्न सकिएन
 values-b+ne	string	downloads_offline_pill	-	अफलाइन · जडान छैन
-values-b+ne	string	downloads_play_from_url	-	URL बाट प्ले गर्नुहोस्
+values-b+ne	string	downloads_play_from_link	-	लिङ्कबाट प्ले गर्नुहोस्
 values-b+ne	string	downloads_select	-	चयन गर्नुहोस्
 values-b+ne	string	downloads_storage_full_headline	-	पर्याप्त स्टोरेज छैन
 values-b+ne	string	downloads_storage_legend	-	%1$s / %2$s प्रयोग भयो · डाउनलोडमा %3$s
@@ -23651,7 +23654,7 @@ values-b+nl	string	downloads_free_up_space	-	Ruimte vrijmaken
 values-b+nl	string	downloads_load_failed_body	-	Je gedownloade bestanden zijn niet gewijzigd.
 values-b+nl	string	downloads_load_failed_headline	-	Kon je downloads niet lezen
 values-b+nl	string	downloads_offline_pill	-	Offline · geen verbinding
-values-b+nl	string	downloads_play_from_url	-	Afspelen vanaf URL
+values-b+nl	string	downloads_play_from_link	-	Afspelen vanaf link
 values-b+nl	string	downloads_select	-	Selecteren
 values-b+nl	string	downloads_storage_full_headline	-	Niet genoeg opslag
 values-b+nl	string	downloads_storage_legend	-	%1$s van %2$s gebruikt · %3$s in downloads
@@ -24277,7 +24280,7 @@ values-b+nn	string	downloads_free_up_space	-	Frigjer plass
 values-b+nn	string	downloads_load_failed_body	-	Dei nedlasta filene dine er ikkje endra.
 values-b+nn	string	downloads_load_failed_headline	-	Kunne ikkje lese nedlastingane dine
 values-b+nn	string	downloads_offline_pill	-	Fråkopla · inga tilkopling
-values-b+nn	string	downloads_play_from_url	-	Spel av frå URL
+values-b+nn	string	downloads_play_from_link	-	Spel av frå lenkje
 values-b+nn	string	downloads_select	-	Vel
 values-b+nn	string	downloads_storage_full_headline	-	Ikkje nok lagringsplass
 values-b+nn	string	downloads_storage_legend	-	%1$s av %2$s brukt · %3$s i nedlastingar
@@ -24627,7 +24630,7 @@ values-b+no	string	downloads_free_up_space	-	Frigjør plass
 values-b+no	string	downloads_load_failed_body	-	De nedlastede filene dine er ikke endret.
 values-b+no	string	downloads_load_failed_headline	-	Kunne ikke lese nedlastingene dine
 values-b+no	string	downloads_offline_pill	-	Frakoblet · ingen tilkobling
-values-b+no	string	downloads_play_from_url	-	Spill av fra URL
+values-b+no	string	downloads_play_from_link	-	Spill av fra lenke
 values-b+no	string	downloads_select	-	Velg
 values-b+no	string	downloads_storage_full_headline	-	Ikke nok lagringsplass
 values-b+no	string	downloads_storage_legend	-	%1$s av %2$s brukt · %3$s i nedlastinger
@@ -25123,7 +25126,7 @@ values-b+or	string	downloads_free_up_space	-	ସ୍ଥାନ ଖାଲି କର
 values-b+or	string	downloads_load_failed_body	-	ଆପଣଙ୍କ ଡାଉନଲୋଡ୍ ହୋଇଥିବା ଫାଇଲଗୁଡ଼ିକ ବଦଳାଯାଇନାହିଁ।
 values-b+or	string	downloads_load_failed_headline	-	ଆପଣଙ୍କ ଡାଉନଲୋଡ୍ ପଢ଼ିହେଲା ନାହିଁ
 values-b+or	string	downloads_offline_pill	-	ଅଫଲାଇନ୍ · ସଂଯୋଗ ନାହିଁ
-values-b+or	string	downloads_play_from_url	-	URLରୁ ଚଲାଅ
+values-b+or	string	downloads_play_from_link	-	ଲିଙ୍କରୁ ଚଲାଅ
 values-b+or	string	downloads_select	-	ବାଛ
 values-b+or	string	downloads_storage_full_headline	-	ପର୍ଯ୍ୟାପ୍ତ ଷ୍ଟୋରେଜ୍ ନାହିଁ
 values-b+or	string	downloads_storage_legend	-	%1$s / %2$s ଵ୍ୟଵହୃତ · ଡାଉନଲୋଡରେ %3$s
@@ -25524,7 +25527,7 @@ values-b+pl	string	downloads_free_up_space	-	Zwolnij miejsce
 values-b+pl	string	downloads_load_failed_body	-	Pobrane pliki nie zostały zmienione.
 values-b+pl	string	downloads_load_failed_headline	-	Nie udało się odczytać pobranych
 values-b+pl	string	downloads_offline_pill	-	Offline · brak połączenia
-values-b+pl	string	downloads_play_from_url	-	Odtwórz z URL
+values-b+pl	string	downloads_play_from_link	-	Odtwórz z linku
 values-b+pl	string	downloads_select	-	Zaznacz
 values-b+pl	string	downloads_storage_full_headline	-	Za mało pamięci
 values-b+pl	string	downloads_storage_legend	-	Użyto %1$s z %2$s · %3$s w pobranych
@@ -26341,7 +26344,7 @@ values-b+pt	string	downloads_free_up_space	-	Libertar espaço
 values-b+pt	string	downloads_load_failed_body	-	Os seus ficheiros transferidos não foram alterados.
 values-b+pt	string	downloads_load_failed_headline	-	Não foi possível ler os seus downloads
 values-b+pt	string	downloads_offline_pill	-	Offline · sem ligação
-values-b+pt	string	downloads_play_from_url	-	Reproduzir de URL
+values-b+pt	string	downloads_play_from_link	-	Reproduzir a partir de ligação
 values-b+pt	string	downloads_select	-	Selecionar
 values-b+pt	string	downloads_storage_full_headline	-	Armazenamento insuficiente
 values-b+pt	string	downloads_storage_legend	-	%1$s de %2$s usados · %3$s em downloads
@@ -27154,7 +27157,7 @@ values-b+pt+BR	string	downloads_free_up_space	-	Liberar espaço
 values-b+pt+BR	string	downloads_load_failed_body	-	Seus arquivos baixados não foram alterados.
 values-b+pt+BR	string	downloads_load_failed_headline	-	Não foi possível ler seus downloads
 values-b+pt+BR	string	downloads_offline_pill	-	Offline · sem conexão
-values-b+pt+BR	string	downloads_play_from_url	-	Reproduzir de URL
+values-b+pt+BR	string	downloads_play_from_link	-	Reproduzir de link
 values-b+pt+BR	string	downloads_select	-	Selecionar
 values-b+pt+BR	string	downloads_storage_full_headline	-	Armazenamento insuficiente
 values-b+pt+BR	string	downloads_storage_legend	-	%1$s de %2$s usados · %3$s em downloads
@@ -27931,7 +27934,7 @@ values-b+qt	string	downloads_free_up_space	-	ooo-ahahaaaaa oh
 values-b+qt	string	downloads_load_failed_body	-	ouuhhuhooh ooh uuh ahooo.
 values-b+qt	string	downloads_load_failed_headline	-	ahooo uuhh ouuhhuhooh ooh
 values-b+qt	string	downloads_offline_pill	-	aaaagggoh ooh · uuuhh
-values-b+qt	string	downloads_play_from_url	-	aaaaa uuuuhhh
+values-b+qt	string	downloads_play_from_link	-	aaaaa uuuuhhh
 values-b+qt	string	downloads_select	-	uuuugg
 values-b+qt	string	downloads_storage_full_headline	-	uuuhh aauugghhahahhah
 values-b+qt	string	downloads_storage_legend	-	%1$s oh %2$s ahhahhh · %3$s ouuhhuhooh
@@ -28627,7 +28630,7 @@ values-b+ro	string	downloads_free_up_space	-	Eliberează spațiu
 values-b+ro	string	downloads_load_failed_body	-	Fișierele descărcate nu au fost modificate.
 values-b+ro	string	downloads_load_failed_headline	-	Descărcările nu au putut fi citite
 values-b+ro	string	downloads_offline_pill	-	Offline · fără conexiune
-values-b+ro	string	downloads_play_from_url	-	Redă de la URL
+values-b+ro	string	downloads_play_from_link	-	Redă de la link
 values-b+ro	string	downloads_select	-	Selectează
 values-b+ro	string	downloads_storage_full_headline	-	Stocare insuficientă
 values-b+ro	string	downloads_storage_legend	-	%1$s din %2$s folosiți · %3$s în descărcări
@@ -29366,7 +29369,7 @@ values-b+ru	string	downloads_free_up_space	-	Освободить место
 values-b+ru	string	downloads_load_failed_body	-	Ваши скачанные файлы не изменены.
 values-b+ru	string	downloads_load_failed_headline	-	Не удалось прочитать скачанное
 values-b+ru	string	downloads_offline_pill	-	Без сети · нет соединения
-values-b+ru	string	downloads_play_from_url	-	Смотреть по URL
+values-b+ru	string	downloads_play_from_link	-	Смотреть по ссылке
 values-b+ru	string	downloads_select	-	Выбрать
 values-b+ru	string	downloads_storage_full_headline	-	Недостаточно памяти
 values-b+ru	string	downloads_storage_legend	-	Использовано %1$s из %2$s · %3$s в скачанном
@@ -30110,7 +30113,7 @@ values-b+sk	string	downloads_free_up_space	-	Uvoľniť miesto
 values-b+sk	string	downloads_load_failed_body	-	Vaše stiahnuté súbory neboli zmenené.
 values-b+sk	string	downloads_load_failed_headline	-	Stiahnutia sa nepodarilo načítať
 values-b+sk	string	downloads_offline_pill	-	Offline · bez pripojenia
-values-b+sk	string	downloads_play_from_url	-	Prehrať z URL
+values-b+sk	string	downloads_play_from_link	-	Prehrať z odkazu
 values-b+sk	string	downloads_select	-	Vybrať
 values-b+sk	string	downloads_storage_full_headline	-	Nedostatok úložiska
 values-b+sk	string	downloads_storage_legend	-	Využité %1$s z %2$s · %3$s v stiahnutiach
@@ -30659,7 +30662,7 @@ values-b+so	string	downloads_free_up_space	-	Bannee meel
 values-b+so	string	downloads_load_failed_body	-	Faylasha aad soo dejisay lama beddelin.
 values-b+so	string	downloads_load_failed_headline	-	Lama akhrin karo soo dejintaada
 values-b+so	string	downloads_offline_pill	-	Khad la'aan · ma jiro isku xir
-values-b+so	string	downloads_play_from_url	-	Ka daar URL
+values-b+so	string	downloads_play_from_link	-	Ka daar xiriir
 values-b+so	string	downloads_select	-	Dooro
 values-b+so	string	downloads_storage_full_headline	-	Kayd ku filan ma jiro
 values-b+so	string	downloads_storage_legend	-	%1$s oo ka mid ah %2$s ayaa la isticmaalay · %3$s soo dejinta
@@ -31307,7 +31310,7 @@ values-b+sq	string	downloads_free_up_space	-	Liro hapësirë
 values-b+sq	string	downloads_load_failed_body	-	Skedarët e shkarkuar nuk janë ndryshuar.
 values-b+sq	string	downloads_load_failed_headline	-	Shkarkimet nuk mund të lexoheshin
 values-b+sq	string	downloads_offline_pill	-	Offline · pa lidhje
-values-b+sq	string	downloads_play_from_url	-	Luaj nga URL
+values-b+sq	string	downloads_play_from_link	-	Luaj nga lidhja
 values-b+sq	string	downloads_select	-	Zgjidh
 values-b+sq	string	downloads_storage_full_headline	-	Memorie e pamjaftueshme
 values-b+sq	string	downloads_storage_legend	-	%1$s nga %2$s të përdorura · %3$s në shkarkime
@@ -32120,7 +32123,7 @@ values-b+sv	string	downloads_free_up_space	-	Frigör utrymme
 values-b+sv	string	downloads_load_failed_body	-	Dina nerladdade filer har inte ändrats.
 values-b+sv	string	downloads_load_failed_headline	-	Kunde inte läsa dina nerladdningar
 values-b+sv	string	downloads_offline_pill	-	Offline · ingen anslutning
-values-b+sv	string	downloads_play_from_url	-	Spela upp från URL
+values-b+sv	string	downloads_play_from_link	-	Spela upp från länk
 values-b+sv	string	downloads_select	-	Välj
 values-b+sv	string	downloads_storage_full_headline	-	Inte tillräckligt med lagring
 values-b+sv	string	downloads_storage_legend	-	%1$s av %2$s använt · %3$s i nerladdningar
@@ -32933,7 +32936,7 @@ values-b+ta	string	downloads_free_up_space	-	இடத்தை விடுவ�
 values-b+ta	string	downloads_load_failed_body	-	நீங்கள் பதிவிறக்கிய கோப்புகள் மாற்றப்படவில்லை.
 values-b+ta	string	downloads_load_failed_headline	-	உங்கள் பதிவிறக்கங்களைப் படிக்க முடியவில்லை
 values-b+ta	string	downloads_offline_pill	-	ஆஃப்லைன் · இணைப்பு இல்லை
-values-b+ta	string	downloads_play_from_url	-	URL இலிருந்து இயக்கு
+values-b+ta	string	downloads_play_from_link	-	இணைப்பிலிருந்து இயக்கு
 values-b+ta	string	downloads_select	-	தேர்ந்தெடு
 values-b+ta	string	downloads_storage_full_headline	-	போதுமான சேமிப்பகம் இல்லை
 values-b+ta	string	downloads_storage_legend	-	%1$s / %2$s பயன்படுத்தப்பட்டது · பதிவிறக்கங்களில் %3$s
@@ -33546,7 +33549,7 @@ values-b+ti	string	downloads_free_up_space	-	ቦታ ኣናጽፍ
 values-b+ti	string	downloads_load_failed_body	-	ዝወረዱ ፋይላትካ ኣይተቐየሩን።
 values-b+ti	string	downloads_load_failed_headline	-	ውርዳትካ ክንበብ ኣይከኣለን
 values-b+ti	string	downloads_offline_pill	-	ካብ መስመር ወጻኢ · መራኸቢ የለን
-values-b+ti	string	downloads_play_from_url	-	ካብ URL ተጻወት
+values-b+ti	string	downloads_play_from_link	-	ካብ መላግቦ ተጻወት
 values-b+ti	string	downloads_select	-	ምረጽ
 values-b+ti	string	downloads_storage_full_headline	-	እኹል መኽዘን የለን
 values-b+ti	string	downloads_storage_legend	-	%1$s ካብ %2$s ተጠቒሙ · %3$s ኣብ ውርዳት
@@ -33700,7 +33703,7 @@ values-b+tl	string	downloads_free_up_space	-	Magbakante ng espasyo
 values-b+tl	string	downloads_load_failed_body	-	Hindi nabago ang mga na-download mong file.
 values-b+tl	string	downloads_load_failed_headline	-	Hindi mabasa ang iyong mga download
 values-b+tl	string	downloads_offline_pill	-	Offline · walang koneksyon
-values-b+tl	string	downloads_play_from_url	-	I-play mula sa URL
+values-b+tl	string	downloads_play_from_link	-	I-play mula sa link
 values-b+tl	string	downloads_select	-	Piliin
 values-b+tl	string	downloads_storage_full_headline	-	Kulang ang storage
 values-b+tl	string	downloads_storage_legend	-	%1$s ng %2$s ang gamit · %3$s sa mga download
@@ -34187,7 +34190,7 @@ values-b+tr	string	downloads_free_up_space	-	Yer aç
 values-b+tr	string	downloads_load_failed_body	-	İndirilen dosyalarınız değiştirilmedi.
 values-b+tr	string	downloads_load_failed_headline	-	İndirmeleriniz okunamadı
 values-b+tr	string	downloads_offline_pill	-	Çevrimdışı · bağlantı yok
-values-b+tr	string	downloads_play_from_url	-	URL'den oynat
+values-b+tr	string	downloads_play_from_link	-	Bağlantıdan oynat
 values-b+tr	string	downloads_select	-	Seç
 values-b+tr	string	downloads_storage_full_headline	-	Yeterli depolama yok
 values-b+tr	string	downloads_storage_legend	-	%1$s / %2$s kullanıldı · İndirilenlerde %3$s
@@ -35008,7 +35011,7 @@ values-b+uk	string	downloads_free_up_space	-	Звільнити місце
 values-b+uk	string	downloads_load_failed_body	-	Ваші завантажені файли не змінено.
 values-b+uk	string	downloads_load_failed_headline	-	Не вдалося прочитати завантаження
 values-b+uk	string	downloads_offline_pill	-	Поза мережею · немає з'єднання
-values-b+uk	string	downloads_play_from_url	-	Відтворити з URL
+values-b+uk	string	downloads_play_from_link	-	Відтворити за посиланням
 values-b+uk	string	downloads_select	-	Обрати
 values-b+uk	string	downloads_storage_full_headline	-	Недостатньо пам'яті
 values-b+uk	string	downloads_storage_legend	-	Зайнято %1$s із %2$s · %3$s у завантаженнях
@@ -35777,7 +35780,7 @@ values-b+ur	string	downloads_free_up_space	-	جگہ خالی کریں
 values-b+ur	string	downloads_load_failed_body	-	آپ کی ڈاؤن لوڈ کردہ فائلیں تبدیل نہیں ہوئیں۔
 values-b+ur	string	downloads_load_failed_headline	-	آپ کے ڈاؤن لوڈ پڑھے نہیں جا سکے
 values-b+ur	string	downloads_offline_pill	-	آف لائن · کوئی کنکشن نہیں
-values-b+ur	string	downloads_play_from_url	-	URL سے چلائیں
+values-b+ur	string	downloads_play_from_link	-	لنک سے چلائیں
 values-b+ur	string	downloads_select	-	چنیں
 values-b+ur	string	downloads_storage_full_headline	-	کافی سٹوریج نہیں
 values-b+ur	string	downloads_storage_legend	-	%1$s از %2$s استعمال شُدہ · ڈاؤن لوڈ میں %3$s
@@ -36492,7 +36495,7 @@ values-b+vi	string	downloads_free_up_space	-	Giải phóng dung lượng
 values-b+vi	string	downloads_load_failed_body	-	Các tệp đã tải xuống của bạn không bị thay đổi.
 values-b+vi	string	downloads_load_failed_headline	-	Không thể đọc các tải xuống của bạn
 values-b+vi	string	downloads_offline_pill	-	Ngoại tuyến · không có kết nối
-values-b+vi	string	downloads_play_from_url	-	Phát từ URL
+values-b+vi	string	downloads_play_from_link	-	Phát từ liên kết
 values-b+vi	string	downloads_select	-	Chọn
 values-b+vi	string	downloads_storage_full_headline	-	Không đủ bộ nhớ
 values-b+vi	string	downloads_storage_legend	-	Đã dùng %1$s trên %2$s · %3$s cho tải xuống
@@ -37301,7 +37304,7 @@ values-b+zh	string	downloads_free_up_space	-	释放空间
 values-b+zh	string	downloads_load_failed_body	-	你已下载的文件未被更改。
 values-b+zh	string	downloads_load_failed_headline	-	无法读取你的下载
 values-b+zh	string	downloads_offline_pill	-	脱机 · 无连接
-values-b+zh	string	downloads_play_from_url	-	从 URL 播放
+values-b+zh	string	downloads_play_from_link	-	从链接播放
 values-b+zh	string	downloads_select	-	选择
 values-b+zh	string	downloads_storage_full_headline	-	存储空间不足
 values-b+zh	string	downloads_storage_legend	-	已使用 %1$s / %2$s · 下载占用 %3$s
@@ -38108,7 +38111,7 @@ values-b+zh+TW	string	downloads_free_up_space	-	釋放空間
 values-b+zh+TW	string	downloads_load_failed_body	-	你已下載的檔案未變更。
 values-b+zh+TW	string	downloads_load_failed_headline	-	無法讀取你的下載
 values-b+zh+TW	string	downloads_offline_pill	-	離線 · 無連線
-values-b+zh+TW	string	downloads_play_from_url	-	從 URL 播放
+values-b+zh+TW	string	downloads_play_from_link	-	從連結播放
 values-b+zh+TW	string	downloads_select	-	選取
 values-b+zh+TW	string	downloads_storage_full_headline	-	儲存空間不足
 values-b+zh+TW	string	downloads_storage_legend	-	已使用 %1$s / %2$s · 下載佔用 %3$s
