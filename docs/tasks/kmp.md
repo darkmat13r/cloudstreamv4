@@ -3320,7 +3320,7 @@ English): `title_search`, `type_watching`, `type_completed`, `type_plan_to_watch
 `empty_library_no_accounts_message` 42; `plugin_load_fail` 41; `favorites_list_name` 39; `no_data` 61; and the retry
 label's `search_state_retry` 1, which is English only and already was.
 
-**Measured, each a wrong turn first.** Focus restore passed in the module and failed in the real app, twice, for two
+**Measured, each a wrong turn first.** Focus passed in the module and failed in the real app, repeatedly, for four
 causes, which is the case for the `:app` test:
 
 - Adding `focusRequester` to only the card being returned to rebuilt its focus node when that condition went false, which
@@ -3329,16 +3329,23 @@ causes, which is the case for the `:app` test:
 - On `Television_720p` the fragment's view composed and took focus about 650 ms before `onResume`, and by `onResume` focus
   was on the rail (logged with a global focus listener). So focus now waits for `LibraryAction.Reappeared`, which the
   fragment sends from `onResume`. Retrying inside the first frames, tried first, did not help.
+- RIGHT from the rail searches from just before the stop that left, and on this screen that landed on the field from a tab
+  and on a tab from a card. `focusRestorer` and `focusGroup` did not change that, and why the search misses was not
+  established. `LibraryFocusMemory` sends focus on to the stop that left, whichever stop the search lands on.
+- Moving between two stops reports "no focus" for a moment, in the same frame, and acting on that sent focus back to the
+  stop it had just left. The memory now reads it through state, which the moment does not reach.
 
 **Tested:** `LibraryScreenTvDeviceTest`, 9 on `Television_720p` with a fake store and the real ViewModel: content, real
 counts, card size, opening a title, an empty page with a reachable action, an empty library, failure and retry, a long
 title ellipsized, a walk over every tab and 16 cards with no dead ends or traps and no keyboard, focus back on a third-row
-card, and the filter. `LibraryTvNavigationTest`, 1 in the real app: the rail opens `LibraryTvFragment`, a bookmark under
-the real keys is on it, a remote opens it, and Back restores focus. JVM: `AndroidLibraryStoreTest` 13,
+card, and the filter. `LibraryTvNavigationTest`, 1 in the real app beside the Compose rail: the rail opens
+`LibraryTvFragment`, a bookmark under the real keys is on it, a remote opens `ResultFragmentTv` through a stand-in provider
+that answers nothing, Back restores focus, and LEFT then RIGHT returns to the same card. JVM: `AndroidLibraryStoreTest` 13,
 `LibraryViewModelTest` and `LibraryShelfTest` (added to).
 
-**Not verified:** a title's real page, because no extension is installed in the test, so opening took the search-by-name
-path; real poster loading; favourites through the real keys (mapping is JVM-tested only); a language long enough to make
+**Not verified:** a title's loaded page, because the stand-in provider answers nothing, so the page opened showed its
+failure; the search-by-name path when a provider is gone, which ran in earlier runs of this test and no longer does; real
+poster loading; favourites through the real keys (mapping is JVM-tested only); a language long enough to make
 the tab row scroll; a long type word on a badge, which clips at the card edge; a focused card removed by the refresh on
 return, where focus falls to the window's choice.
 
@@ -3350,6 +3357,9 @@ to the emulator layout, which still opens it. Its finding stands: that loss belo
 **Found, reported and not changed:**
 
 - `LibraryViewModel.showTab` after a failed read shows `Empty`: `BUG-33`.
+- LEFT from the library's filter field does not reach the rail: `BUG-34`, which search's field has too.
+- A stop reached by the empty page's action is not remembered, because `StateView` takes no modifier for its button. RIGHT
+  from the rail then returns to the last stop that was: a tab.
 - `LibraryPoster` repeats `PosterArtwork` from `SearchTvFragment`, 15 lines. Sharing them means editing search's fragment.
 
 ---
