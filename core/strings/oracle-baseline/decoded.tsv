@@ -28,7 +28,19 @@ values-b+af/strings.xml	string	download_started	-	STR	Aflaai het begin
 values-b+af/strings.xml	string	download_storage_text	-	STR	Interne Berging	
 values-b+af/strings.xml	string	downloaded	-	STR	Afgelaai	
 values-b+af/strings.xml	string	downloading	-	STR	Laai tans af	
+values-b+af/strings.xml	string	downloads_browse_library	-	STR	Blaai deur biblioteek	
 values-b+af/strings.xml	string	downloads_delete_select	-	STR	Kies items om te verwyder	
+values-b+af/strings.xml	string	downloads_empty_body	-	STR	Aflaaie wat jy vanaf 'n titel se episodelys begin, verskyn hier en speel sonder 'n verbinding.	
+values-b+af/strings.xml	string	downloads_empty_headline	-	STR	Nog geen aflaaie nie	
+values-b+af/strings.xml	string	downloads_free_up_space	-	STR	Maak spasie vry	
+values-b+af/strings.xml	string	downloads_load_failed_body	-	STR	Jou afgelaaide lêers is nie verander nie.	
+values-b+af/strings.xml	string	downloads_load_failed_headline	-	STR	Kon nie jou aflaaie lees nie	
+values-b+af/strings.xml	string	downloads_offline_pill	-	STR	Vanlyn · geen verbinding nie	
+values-b+af/strings.xml	string	downloads_play_from_url	-	STR	Speel vanaf URL	
+values-b+af/strings.xml	string	downloads_select	-	STR	Kies	
+values-b+af/strings.xml	string	downloads_storage_full_headline	-	STR	Nie genoeg berging nie	
+values-b+af/strings.xml	string	downloads_storage_legend	-	STR	%1$s van %2$s gebruik · %3$s in aflaaie	
+values-b+af/strings.xml	string	downloads_storage_needs	-	STR	Benodig nog %s	
 values-b+af/strings.xml	string	duplicate_replace	-	STR	Vervang	
 values-b+af/strings.xml	string	duration_format	-	STR	%d min	
 values-b+af/strings.xml	string	edit	-	STR	Wysig	
@@ -196,6 +208,18 @@ values-b+am/strings.xml	string	download_started	-	STR	ማውረድ ተጀምሯ�
 values-b+am/strings.xml	string	download_storage_text	-	STR	ውስጣዊ ማከማቻ	
 values-b+am/strings.xml	string	downloaded	-	STR	ወርዷል	
 values-b+am/strings.xml	string	downloading	-	STR	በማውረድ ላይ	
+values-b+am/strings.xml	string	downloads_browse_library	-	STR	ቤተ-መጽሐፍት አስስ	
+values-b+am/strings.xml	string	downloads_empty_body	-	STR	ከርዕስ የክፍሎች ዝርዝር የጀመሯቸው ውርዶች እዚህ ይታያሉ፣ ያለ ግንኙነትም ይጫወታሉ።	
+values-b+am/strings.xml	string	downloads_empty_headline	-	STR	እስካሁን ምንም ውርዶች የሉም	
+values-b+am/strings.xml	string	downloads_free_up_space	-	STR	ቦታ አስለቅቅ	
+values-b+am/strings.xml	string	downloads_load_failed_body	-	STR	የወረዱ ፋይሎችዎ አልተቀየሩም።	
+values-b+am/strings.xml	string	downloads_load_failed_headline	-	STR	ውርዶችዎን ማንበብ አልተቻለም	
+values-b+am/strings.xml	string	downloads_offline_pill	-	STR	ከመስመር ውጭ · ግንኙነት የለም	
+values-b+am/strings.xml	string	downloads_play_from_url	-	STR	ከURL አጫውት	
+values-b+am/strings.xml	string	downloads_select	-	STR	ምረጥ	
+values-b+am/strings.xml	string	downloads_storage_full_headline	-	STR	በቂ ማከማቻ የለም	
+values-b+am/strings.xml	string	downloads_storage_legend	-	STR	%1$s ከ%2$s ጥቅም ላይ ውሏል · %3$s በውርዶች ውስጥ	
+values-b+am/strings.xml	string	downloads_storage_needs	-	STR	ተጨማሪ %s ያስፈልጋል	
 values-b+am/strings.xml	string	duration_format	-	STR	%d ደቂቃ	
 values-b+am/strings.xml	string	episode_more_options_des	-	STR	ተጨማሪ አማራጮች	
 values-b+am/strings.xml	string	episode_poster_img_des	-	STR	የክፍሉ ፖስተር	
@@ -526,8 +550,20 @@ values-b+apc/strings.xml	string	download_time_left_sec_format	-	STR	%1$dث
 values-b+apc/strings.xml	string	downloaded	-	STR	منَزَل	
 values-b+apc/strings.xml	string	downloaded_file	-	STR	الملفات المنزلة	
 values-b+apc/strings.xml	string	downloading	-	STR	عم يتنَزَل	
+values-b+apc/strings.xml	string	downloads_browse_library	-	STR	تصفّح الرفّ	
 values-b+apc/strings.xml	string	downloads_delete_select	-	STR	نقي الإشيا اللي بدك تمحيها	
 values-b+apc/strings.xml	string	downloads_empty	-	STR	مافي تنزيلات هلّق.	
+values-b+apc/strings.xml	string	downloads_empty_body	-	STR	التنزيلات اللي بتبلّشها من قائمة حلقات العنوان بتطلع هون وبتمشي بلا إنترنت.	
+values-b+apc/strings.xml	string	downloads_empty_headline	-	STR	لسا مافي تنزيلات	
+values-b+apc/strings.xml	string	downloads_free_up_space	-	STR	فضّي مساحة	
+values-b+apc/strings.xml	string	downloads_load_failed_body	-	STR	ملفاتك المنزّلة ما تغيّرت.	
+values-b+apc/strings.xml	string	downloads_load_failed_headline	-	STR	ما قدرنا نقرا تنزيلاتك	
+values-b+apc/strings.xml	string	downloads_offline_pill	-	STR	بلا إنترنت · مافي اتصال	
+values-b+apc/strings.xml	string	downloads_play_from_url	-	STR	مشّي من رابط URL	
+values-b+apc/strings.xml	string	downloads_select	-	STR	نقي	
+values-b+apc/strings.xml	string	downloads_storage_full_headline	-	STR	مافي مساحة تخزين كفاية	
+values-b+apc/strings.xml	string	downloads_storage_legend	-	STR	%1$s من %2$s مستعمل · %3$s بالتنزيلات	
+values-b+apc/strings.xml	string	downloads_storage_needs	-	STR	بدها %s زيادة	
 values-b+apc/strings.xml	string	duplicate_add	-	STR	زيد	
 values-b+apc/strings.xml	string	duplicate_message_multiple	-	STR	مبين إنو فيه عنصر متل هيدا موجود بال مكتبة عندكن: \n \n%s \n \nبدكن تزيدو هيدا العنصر بأيّ حال، أو تستبدلوه مع العنصر الموجود، أو تلغو الإجراء؟	
 values-b+apc/strings.xml	string	duplicate_message_single	-	STR	مبين إنو في عنصر متل هيدا موجود بالمكتبة عندكن: \n"%s" \n \nبدكن تزيدو هيدا العنصر بأيّ حال، أو تستبدلوّ مع العنصر الموجود، أو تلغو الإجراء؟	
@@ -1321,8 +1357,20 @@ values-b+ar/strings.xml	string	download_time_left_sec_format	-	STR	%1$dث
 values-b+ar/strings.xml	string	downloaded	-	STR	تم التنزيل	
 values-b+ar/strings.xml	string	downloaded_file	-	STR	الملف الذي تم تنزيله	
 values-b+ar/strings.xml	string	downloading	-	STR	جاري التنزيل	
+values-b+ar/strings.xml	string	downloads_browse_library	-	STR	تصفّح المكتبة	
 values-b+ar/strings.xml	string	downloads_delete_select	-	STR	الرجاء تحديد العناصر للحذف	
 values-b+ar/strings.xml	string	downloads_empty	-	STR	لا يوجد حالياً اى تنزيلات.	
+values-b+ar/strings.xml	string	downloads_empty_body	-	STR	تظهر هنا التنزيلات التي تبدأها من قائمة حلقات العنوان، ويمكن تشغيلها دون اتصال.	
+values-b+ar/strings.xml	string	downloads_empty_headline	-	STR	لا توجد تنزيلات بعد	
+values-b+ar/strings.xml	string	downloads_free_up_space	-	STR	إخلاء مساحة	
+values-b+ar/strings.xml	string	downloads_load_failed_body	-	STR	لم تتغيّر ملفاتك التي تم تنزيلها.	
+values-b+ar/strings.xml	string	downloads_load_failed_headline	-	STR	تعذّرت قراءة تنزيلاتك	
+values-b+ar/strings.xml	string	downloads_offline_pill	-	STR	غير متصل · لا يوجد اتصال	
+values-b+ar/strings.xml	string	downloads_play_from_url	-	STR	تشغيل من عنوان URL	
+values-b+ar/strings.xml	string	downloads_select	-	STR	تحديد	
+values-b+ar/strings.xml	string	downloads_storage_full_headline	-	STR	مساحة التخزين غير كافية	
+values-b+ar/strings.xml	string	downloads_storage_legend	-	STR	%1$s من %2$s مستخدم · %3$s في التنزيلات	
+values-b+ar/strings.xml	string	downloads_storage_needs	-	STR	يلزم %s إضافية	
 values-b+ar/strings.xml	string	duplicate_add	-	STR	اضافة	
 values-b+ar/strings.xml	string	duplicate_message_multiple	-	STR	احتمال وجود تكرارات في مكتبتك. \n \n%s \n \nهل تريد الاضافة على اي حال مستبدلاً النسخة الموجودة بالفعل, أم تفضل إلغاء العملية؟	
 values-b+ar/strings.xml	string	duplicate_message_single	-	STR	يبدو أن هناك عنصرًا مكررًا موجود بالفعل في مكتبتك: '%s'. \n \nهل ترغب في إضافة هذا العنصر على أية حال، أو استبدال العنصر الموجود، أو إلغاء الإجراء؟	
@@ -2007,6 +2055,18 @@ values-b+ars/strings.xml	string	download_started	-	STR	بدأ التنزيل
 values-b+ars/strings.xml	string	download_storage_text	-	STR	التخزين الداخلي	
 values-b+ars/strings.xml	string	downloaded	-	STR	تنززل	
 values-b+ars/strings.xml	string	downloading	-	STR	جارى التحميل	
+values-b+ars/strings.xml	string	downloads_browse_library	-	STR	تصفّح المكتبة	
+values-b+ars/strings.xml	string	downloads_empty_body	-	STR	التحميلات اللي تبداها من قائمة حلقات العنوان تطلع هنا وتشتغل بدون اتصال.	
+values-b+ars/strings.xml	string	downloads_empty_headline	-	STR	ما فيه تحميلات للحين	
+values-b+ars/strings.xml	string	downloads_free_up_space	-	STR	فضّ مساحة	
+values-b+ars/strings.xml	string	downloads_load_failed_body	-	STR	ملفاتك المحمّلة ما تغيّرت.	
+values-b+ars/strings.xml	string	downloads_load_failed_headline	-	STR	ما قدرنا نقرأ تحميلاتك	
+values-b+ars/strings.xml	string	downloads_offline_pill	-	STR	غير متصل · ما فيه اتصال	
+values-b+ars/strings.xml	string	downloads_play_from_url	-	STR	شغّل من رابط URL	
+values-b+ars/strings.xml	string	downloads_select	-	STR	حدد	
+values-b+ars/strings.xml	string	downloads_storage_full_headline	-	STR	مساحة التخزين ما تكفي	
+values-b+ars/strings.xml	string	downloads_storage_legend	-	STR	%1$s من %2$s مستعمل · %3$s في التحميلات	
+values-b+ars/strings.xml	string	downloads_storage_needs	-	STR	تحتاج %s زيادة	
 values-b+ars/strings.xml	string	duration	-	STR	مدة	
 values-b+ars/strings.xml	string	duration_format	-	STR	%dاقل	
 values-b+ars/strings.xml	string	edit	-	STR	حرر	
@@ -2473,8 +2533,20 @@ values-b+as/strings.xml	string	download_storage_text	-	STR	অভ্যন্ত
 values-b+as/strings.xml	string	downloaded	-	STR	ডাউনলোড সম্পূৰ্ণ	
 values-b+as/strings.xml	string	downloaded_file	-	STR	ডাউনলোড কৰা ফাইল	
 values-b+as/strings.xml	string	downloading	-	STR	ডাউনলোড হৈ আছে	
+values-b+as/strings.xml	string	downloads_browse_library	-	STR	পুথিভঁৰাল ব্ৰাউজ কৰক	
 values-b+as/strings.xml	string	downloads_delete_select	-	STR	মুছিবলৈ আইটেমসমূহ নিৰ্ব্বাচন কৰক	
 values-b+as/strings.xml	string	downloads_empty	-	STR	বৰ্তমান কোনো ডাউনলোড নাই।	
+values-b+as/strings.xml	string	downloads_empty_body	-	STR	কোনো শিৰোনামৰ পৰ্বৰ তালিকাৰ পৰা আৰম্ভ কৰা ডাউনলোডসমূহ ইয়াত দেখা যায় আৰু সংযোগ অবিহনে প্লে হয়।	
+values-b+as/strings.xml	string	downloads_empty_headline	-	STR	এতিয়ালৈকে কোনো ডাউনলোড নাই	
+values-b+as/strings.xml	string	downloads_free_up_space	-	STR	ঠাই খালী কৰক	
+values-b+as/strings.xml	string	downloads_load_failed_body	-	STR	আপোনাৰ ডাউনলোড কৰা ফাইলসমূহ সলনি কৰা হোৱা নাই।	
+values-b+as/strings.xml	string	downloads_load_failed_headline	-	STR	আপোনাৰ ডাউনলোডসমূহ পঢ়িব নোৱাৰিলোঁ	
+values-b+as/strings.xml	string	downloads_offline_pill	-	STR	অফলাইন · সংযোগ নাই	
+values-b+as/strings.xml	string	downloads_play_from_url	-	STR	URLৰ পৰা প্লে কৰক	
+values-b+as/strings.xml	string	downloads_select	-	STR	বাছক	
+values-b+as/strings.xml	string	downloads_storage_full_headline	-	STR	পৰ্যাপ্ত সংৰক্ষণ নাই	
+values-b+as/strings.xml	string	downloads_storage_legend	-	STR	%1$s / %2$s ব্যৱহৃত · ডাউনলোডত %3$s	
+values-b+as/strings.xml	string	downloads_storage_needs	-	STR	আৰু %s লাগিব	
 values-b+as/strings.xml	string	duplicate_add	-	STR	যোগ কৰক	
 values-b+as/strings.xml	string	duplicate_message_multiple	-	STR	আপোনাৰ পুথিভঁৰালীতে সম্ভাৱ্য নকল বস্তুসমূহ পোৱা গৈছে: \n \n%s \n \nআপুনি এই বস্তু যিকোনো হ'লে যোগ কৰিব বিচাৰেনে, বিদ্যমানবোৰ প্ৰতিস্থাপন কৰিব, বা কাৰ্য বাতিল কৰিব বিচাৰেনে?	
 values-b+as/strings.xml	string	duplicate_message_single	-	STR	আপোনাৰ পুথিভঁৰালীতে সম্ভাৱ্য নকল বস্তু পোৱা গৈছে: '%s.' \n \nআপুনি এই বস্তু যিকোনো হ'লে যোগ কৰিব বিচাৰেনে, বিদ্যমান বস্তু প্ৰতিস্থাপন কৰিব, বা কাৰ্য বাতিল কৰিব বিচাৰেনে?	
@@ -3037,8 +3109,20 @@ values-b+az/strings.xml	string	download_paused	-	STR	Yükləmə dayandırıldı
 values-b+az/strings.xml	string	download_started	-	STR	Yükləmə başladıldı	
 values-b+az/strings.xml	string	downloaded	-	STR	Yükləndi	
 values-b+az/strings.xml	string	downloading	-	STR	Yüklənir	
+values-b+az/strings.xml	string	downloads_browse_library	-	STR	Kitabxanaya bax	
 values-b+az/strings.xml	string	downloads_delete_select	-	STR	Silinəcək faylları seçin	
 values-b+az/strings.xml	string	downloads_empty	-	STR	Hal-hazırda heç bir yükləmə yoxdur.	
+values-b+az/strings.xml	string	downloads_empty_body	-	STR	Başlığın bölüm siyahısından başlatdığınız yükləmələr burada görünür və bağlantı olmadan oynadılır.	
+values-b+az/strings.xml	string	downloads_empty_headline	-	STR	Hələ yükləmə yoxdur	
+values-b+az/strings.xml	string	downloads_free_up_space	-	STR	Yer boşalt	
+values-b+az/strings.xml	string	downloads_load_failed_body	-	STR	Yüklənmiş fayllarınız dəyişdirilməyib.	
+values-b+az/strings.xml	string	downloads_load_failed_headline	-	STR	Yükləmələriniz oxuna bilmədi	
+values-b+az/strings.xml	string	downloads_offline_pill	-	STR	Oflayn · bağlantı yoxdur	
+values-b+az/strings.xml	string	downloads_play_from_url	-	STR	URL-dən oynat	
+values-b+az/strings.xml	string	downloads_select	-	STR	Seç	
+values-b+az/strings.xml	string	downloads_storage_full_headline	-	STR	Yaddaş kifayət deyil	
+values-b+az/strings.xml	string	downloads_storage_legend	-	STR	%1$s / %2$s istifadə olunub · Yükləmələrdə %3$s	
+values-b+az/strings.xml	string	downloads_storage_needs	-	STR	Daha %s lazımdır	
 values-b+az/strings.xml	string	duration_format	-	STR	%d dəqiqə	
 values-b+az/strings.xml	string	eigengraumode_settings	-	STR	Pleyer oynadılma sürəti	
 values-b+az/strings.xml	string	encoding_error	-	STR	Kodlama xətası	
@@ -3389,8 +3473,20 @@ values-b+be/strings.xml	string	download_time_left_sec_format	-	STR	%1$d с
 values-b+be/strings.xml	string	downloaded	-	STR	Спампавана	
 values-b+be/strings.xml	string	downloaded_file	-	STR	Спампаваны файл	
 values-b+be/strings.xml	string	downloading	-	STR	Ідзе спампоўванне	
+values-b+be/strings.xml	string	downloads_browse_library	-	STR	Агляд бібліятэкі	
 values-b+be/strings.xml	string	downloads_delete_select	-	STR	Выберыце элементы для выдалення	
 values-b+be/strings.xml	string	downloads_empty	-	STR	Спамповак пакуль што няма.	
+values-b+be/strings.xml	string	downloads_empty_body	-	STR	Спампоўкі, запушчаныя са спіса серый, з'яўляюцца тут і прайграюцца без злучэння.	
+values-b+be/strings.xml	string	downloads_empty_headline	-	STR	Спамповак пакуль няма	
+values-b+be/strings.xml	string	downloads_free_up_space	-	STR	Вызваліць месца	
+values-b+be/strings.xml	string	downloads_load_failed_body	-	STR	Вашы спампаваныя файлы не зменены.	
+values-b+be/strings.xml	string	downloads_load_failed_headline	-	STR	Не ўдалося прачытаць спампоўкі	
+values-b+be/strings.xml	string	downloads_offline_pill	-	STR	Па-за сеткай · няма злучэння	
+values-b+be/strings.xml	string	downloads_play_from_url	-	STR	Прайграць па URL	
+values-b+be/strings.xml	string	downloads_select	-	STR	Выбраць	
+values-b+be/strings.xml	string	downloads_storage_full_headline	-	STR	Недастаткова месца ў сховішчы	
+values-b+be/strings.xml	string	downloads_storage_legend	-	STR	Ужыта %1$s з %2$s · %3$s у спампоўках	
+values-b+be/strings.xml	string	downloads_storage_needs	-	STR	Патрабуецца яшчэ %s	
 values-b+be/strings.xml	string	duplicate_add	-	STR	Дадаць	
 values-b+be/strings.xml	string	duplicate_message_multiple	-	STR	У вашай бібліятэцы знойдзены магчымыя дублікаты: \n\n%s \n\nЦі хочаце вы ўсё роўна яго дадаць, замяніць ужо існуючыя, або скасаваць дзеянне?	
 values-b+be/strings.xml	string	duplicate_message_single	-	STR	Падобна на тое, што ў вашай бібліятэцы ёсць дублікат гэтага элемента: ‹%s.›\n\nЦі хочаце вы ўсё роўна яго дадаць, замяніць ужо існуючы, або скасаваць дзеянне?	
@@ -4169,8 +4265,20 @@ values-b+bg/strings.xml	string	download_storage_text	-	STR	Вътрешна па
 values-b+bg/strings.xml	string	downloaded	-	STR	Изтеглено	
 values-b+bg/strings.xml	string	downloaded_file	-	STR	Изтеглен файл	
 values-b+bg/strings.xml	string	downloading	-	STR	Изтегля се	
+values-b+bg/strings.xml	string	downloads_browse_library	-	STR	Преглед на библиотеката	
 values-b+bg/strings.xml	string	downloads_delete_select	-	STR	Изберете елементите за изтриване	
 values-b+bg/strings.xml	string	downloads_empty	-	STR	В момента няма изтегляния.	
+values-b+bg/strings.xml	string	downloads_empty_body	-	STR	Изтеглянията, стартирани от списъка с епизоди на заглавие, се показват тук и се възпроизвеждат без връзка.	
+values-b+bg/strings.xml	string	downloads_empty_headline	-	STR	Все още няма изтегляния	
+values-b+bg/strings.xml	string	downloads_free_up_space	-	STR	Освобождаване на място	
+values-b+bg/strings.xml	string	downloads_load_failed_body	-	STR	Изтеглените ви файлове не са променени.	
+values-b+bg/strings.xml	string	downloads_load_failed_headline	-	STR	Изтеглянията ви не можаха да се прочетат	
+values-b+bg/strings.xml	string	downloads_offline_pill	-	STR	Офлайн · няма връзка	
+values-b+bg/strings.xml	string	downloads_play_from_url	-	STR	Пускане от URL	
+values-b+bg/strings.xml	string	downloads_select	-	STR	Избиране	
+values-b+bg/strings.xml	string	downloads_storage_full_headline	-	STR	Няма достатъчно памет	
+values-b+bg/strings.xml	string	downloads_storage_legend	-	STR	%1$s от %2$s използвани · %3$s в изтегляния	
+values-b+bg/strings.xml	string	downloads_storage_needs	-	STR	Нужни са още %s	
 values-b+bg/strings.xml	string	duplicate_add	-	STR	Добави	
 values-b+bg/strings.xml	string	duplicate_message_multiple	-	STR	Във вашата библиотека са намерени потенциални дублиращи се елементи: \n \n%s \n \nИскате ли все пак да добавите този елемент, да замените съществуващите или да отмените действието?	
 values-b+bg/strings.xml	string	duplicate_message_single	-	STR	Изглежда, че потенциално дублиран елемент вече съществува във вашата библиотека: „%s“. \n \nИскате ли все пак да добавите този елемент, да замените съществуващия или да отмените действието?	
@@ -4860,8 +4968,20 @@ values-b+bn/strings.xml	string	download_time_left_min_sec_format	-	STR	%1$dম�
 values-b+bn/strings.xml	string	download_time_left_sec_format	-	STR	%1$dসেকেন্ড	
 values-b+bn/strings.xml	string	downloaded	-	STR	ডাউনলোড হয়েছে	
 values-b+bn/strings.xml	string	downloading	-	STR	ডাউনলোড চলছে	
+values-b+bn/strings.xml	string	downloads_browse_library	-	STR	লাইব্রেরী ব্রাউজ করুন	
 values-b+bn/strings.xml	string	downloads_delete_select	-	STR	ডিলিট করার জন্য আইটেম সিলেক্ট করুন	
 values-b+bn/strings.xml	string	downloads_empty	-	STR	বর্তমানে কোনো ডাউনলোড নেই।	
+values-b+bn/strings.xml	string	downloads_empty_body	-	STR	কোনো শিরোনামের এপিসোড তালিকা থেকে শুরু করা ডাউনলোডগুলো এখানে দেখা যাবে এবং সংযোগ ছাড়াই চলবে।	
+values-b+bn/strings.xml	string	downloads_empty_headline	-	STR	এখনো কোনো ডাউনলোড নেই	
+values-b+bn/strings.xml	string	downloads_free_up_space	-	STR	জায়গা খালি করুন	
+values-b+bn/strings.xml	string	downloads_load_failed_body	-	STR	আপনার ডাউনলোড করা ফাইলগুলো পরিবর্তন করা হয়নি।	
+values-b+bn/strings.xml	string	downloads_load_failed_headline	-	STR	আপনার ডাউনলোডগুলো পড়া যায়নি	
+values-b+bn/strings.xml	string	downloads_offline_pill	-	STR	অফলাইন · কোনো সংযোগ নেই	
+values-b+bn/strings.xml	string	downloads_play_from_url	-	STR	URL থেকে চালান	
+values-b+bn/strings.xml	string	downloads_select	-	STR	সিলেক্ট করুন	
+values-b+bn/strings.xml	string	downloads_storage_full_headline	-	STR	যথেষ্ট স্টোরেজ নেই	
+values-b+bn/strings.xml	string	downloads_storage_legend	-	STR	%1$s / %2$s ব্যবহৃত · ডাউনলোডে %3$s	
+values-b+bn/strings.xml	string	downloads_storage_needs	-	STR	আরও %s প্রয়োজন	
 values-b+bn/strings.xml	string	duration	-	STR	সময়কাল	
 values-b+bn/strings.xml	string	duration_format	-	STR	%d মিনিট	
 values-b+bn/strings.xml	string	eigengraumode_settings	-	STR	প্লেব্যাক এর গতি	
@@ -5269,8 +5389,20 @@ values-b+ca/strings.xml	string	download_time_left_min_sec_format	-	STR	%1$dm%2$d
 values-b+ca/strings.xml	string	download_time_left_sec_format	-	STR	%1$ds	
 values-b+ca/strings.xml	string	downloaded_file	-	STR	Fitxer descarregat	
 values-b+ca/strings.xml	string	downloading	-	STR	Descarregant	
+values-b+ca/strings.xml	string	downloads_browse_library	-	STR	Explora la biblioteca	
 values-b+ca/strings.xml	string	downloads_delete_select	-	STR	Selecciona els elements a eliminar	
 values-b+ca/strings.xml	string	downloads_empty	-	STR	No hi ha descàrregues en curs.	
+values-b+ca/strings.xml	string	downloads_empty_body	-	STR	Les descàrregues que inicieu des de la llista d'episodis d'un títol apareixen aquí i es reprodueixen sense connexió.	
+values-b+ca/strings.xml	string	downloads_empty_headline	-	STR	Encara no hi ha descàrregues	
+values-b+ca/strings.xml	string	downloads_free_up_space	-	STR	Allibera espai	
+values-b+ca/strings.xml	string	downloads_load_failed_body	-	STR	Els fitxers descarregats no s'han modificat.	
+values-b+ca/strings.xml	string	downloads_load_failed_headline	-	STR	No s'han pogut llegir les descàrregues	
+values-b+ca/strings.xml	string	downloads_offline_pill	-	STR	Fora de línia · sense connexió	
+values-b+ca/strings.xml	string	downloads_play_from_url	-	STR	Reprodueix des d'un URL	
+values-b+ca/strings.xml	string	downloads_select	-	STR	Selecciona	
+values-b+ca/strings.xml	string	downloads_storage_full_headline	-	STR	No hi ha prou emmagatzematge	
+values-b+ca/strings.xml	string	downloads_storage_legend	-	STR	%1$s de %2$s usats · %3$s en descàrregues	
+values-b+ca/strings.xml	string	downloads_storage_needs	-	STR	Calen %s més	
 values-b+ca/strings.xml	string	duplicate_add	-	STR	Afegir	
 values-b+ca/strings.xml	string	duplicate_message_multiple	-	STR	Diversos possibles duplicats ja existeixen a la vostra bibliotèca:\n\n%s\n\nVol afegir aquest element de totes maneres, reemplaçar els existents o cancel·lar aquesta acció?	
 values-b+ca/strings.xml	string	duplicate_message_single	-	STR	Un possible duplicat ja existeix a la vostra bibliotèca: '%s'.\n\nVol afegir aquest element de totes maneres, reemplaçar l'existent o cancel·lar aquesta acció?	
@@ -5609,8 +5741,20 @@ values-b+ckb/strings.xml	string	download_time_left_min_sec_format	-	STR	%1$dm %2
 values-b+ckb/strings.xml	string	download_time_left_sec_format	-	STR	%1$ds	
 values-b+ckb/strings.xml	string	downloaded	-	STR	دابەزێنراوە	
 values-b+ckb/strings.xml	string	downloading	-	STR	دادەبەزێندرێت	
+values-b+ckb/strings.xml	string	downloads_browse_library	-	STR	گەڕان لە کتێبخانە	
 values-b+ckb/strings.xml	string	downloads_delete_select	-	STR	ئەو شتانە هەڵبژێرە کە دەتەوێت بیسڕیتەوە	
 values-b+ckb/strings.xml	string	downloads_empty	-	STR	لە ئێستادا هیچ داونلۆدێک نییە.	
+values-b+ckb/strings.xml	string	downloads_empty_body	-	STR	ئەو داونلۆدانەی لە لیستی ئەڵقەکانی ناونیشانێکەوە دەستی پێ دەکەیت لێرە دەردەکەون و بەبێ پەیوەندی لێدەدرێن.	
+values-b+ckb/strings.xml	string	downloads_empty_headline	-	STR	هێشتا هیچ داونلۆدێک نییە	
+values-b+ckb/strings.xml	string	downloads_free_up_space	-	STR	بۆشایی چۆڵ بکە	
+values-b+ckb/strings.xml	string	downloads_load_failed_body	-	STR	فایلە داونلۆدکراوەکانت نەگۆڕدراون.	
+values-b+ckb/strings.xml	string	downloads_load_failed_headline	-	STR	نەتوانرا داونلۆدەکانت بخوێنرێنەوە	
+values-b+ckb/strings.xml	string	downloads_offline_pill	-	STR	ئۆفلاین · پەیوەندی نییە	
+values-b+ckb/strings.xml	string	downloads_play_from_url	-	STR	لێدان لە URL	
+values-b+ckb/strings.xml	string	downloads_select	-	STR	هەڵبژێرە	
+values-b+ckb/strings.xml	string	downloads_storage_full_headline	-	STR	کۆگا بەش ناکات	
+values-b+ckb/strings.xml	string	downloads_storage_legend	-	STR	%1$s لە %2$s بەکارهاتووە · %3$s لە داونلۆدەکان	
+values-b+ckb/strings.xml	string	downloads_storage_needs	-	STR	%s ی زیاتر پێویستە	
 values-b+ckb/strings.xml	string	duration_format	-	STR	min%d	
 values-b+ckb/strings.xml	string	episode_more_options_des	-	STR	هەڵبژاردنی زیاتر	
 values-b+ckb/strings.xml	string	episode_poster_img_des	-	STR	پۆستەری ئەڵقە	
@@ -5925,8 +6069,20 @@ values-b+cs/strings.xml	string	download_time_left_sec_format	-	STR	%1$ds
 values-b+cs/strings.xml	string	downloaded	-	STR	Stáhnuto	
 values-b+cs/strings.xml	string	downloaded_file	-	STR	Stažen soubor	
 values-b+cs/strings.xml	string	downloading	-	STR	Stahování	
+values-b+cs/strings.xml	string	downloads_browse_library	-	STR	Procházet knihovnu	
 values-b+cs/strings.xml	string	downloads_delete_select	-	STR	Zvolte položky k odstranění	
 values-b+cs/strings.xml	string	downloads_empty	-	STR	Aktuálně neprobíhají žádná stahování.	
+values-b+cs/strings.xml	string	downloads_empty_body	-	STR	Stahování spuštěná ze seznamu epizod titulu se zobrazí zde a přehrají se bez připojení.	
+values-b+cs/strings.xml	string	downloads_empty_headline	-	STR	Zatím žádná stahování	
+values-b+cs/strings.xml	string	downloads_free_up_space	-	STR	Uvolnit místo	
+values-b+cs/strings.xml	string	downloads_load_failed_body	-	STR	Vaše stažené soubory nebyly změněny.	
+values-b+cs/strings.xml	string	downloads_load_failed_headline	-	STR	Stahování se nepodařilo načíst	
+values-b+cs/strings.xml	string	downloads_offline_pill	-	STR	Offline · bez připojení	
+values-b+cs/strings.xml	string	downloads_play_from_url	-	STR	Přehrát z URL	
+values-b+cs/strings.xml	string	downloads_select	-	STR	Vybrat	
+values-b+cs/strings.xml	string	downloads_storage_full_headline	-	STR	Nedostatek úložiště	
+values-b+cs/strings.xml	string	downloads_storage_legend	-	STR	Použito %1$s z %2$s · %3$s ve stahování	
+values-b+cs/strings.xml	string	downloads_storage_needs	-	STR	Potřeba dalších %s	
 values-b+cs/strings.xml	string	duplicate_add	-	STR	Přidat	
 values-b+cs/strings.xml	string	duplicate_message_multiple	-	STR	Ve vaší knihovně byl nalezen potenciální duplikát: \n \n%s \n \nChcete přesto přidat tuto položku, nahradit existující nebo zrušit akci?	
 values-b+cs/strings.xml	string	duplicate_message_single	-	STR	Vypadá to, že ve vaší knihovně již existuje potenciální duplikát: „%s“. \n \nChcete přesto přidat tuto položku, nahradit existující nebo zrušit akci?	
@@ -6715,8 +6871,20 @@ values-b+de/strings.xml	string	download_time_left_sec_format	-	STR	%1$ds
 values-b+de/strings.xml	string	downloaded	-	STR	Heruntergeladen	
 values-b+de/strings.xml	string	downloaded_file	-	STR	Heruntergeladene Datei	
 values-b+de/strings.xml	string	downloading	-	STR	Lädt herunter	
+values-b+de/strings.xml	string	downloads_browse_library	-	STR	Bibliothek durchsuchen	
 values-b+de/strings.xml	string	downloads_delete_select	-	STR	Elemente zum Löschen auswählen	
 values-b+de/strings.xml	string	downloads_empty	-	STR	Zur Zeit sind keine Downloads verfügbar.	
+values-b+de/strings.xml	string	downloads_empty_body	-	STR	Downloads, die du in der Episodenliste eines Titels startest, erscheinen hier und lassen sich ohne Verbindung abspielen.	
+values-b+de/strings.xml	string	downloads_empty_headline	-	STR	Noch keine Downloads	
+values-b+de/strings.xml	string	downloads_free_up_space	-	STR	Speicher freigeben	
+values-b+de/strings.xml	string	downloads_load_failed_body	-	STR	Deine heruntergeladenen Dateien wurden nicht verändert.	
+values-b+de/strings.xml	string	downloads_load_failed_headline	-	STR	Downloads konnten nicht gelesen werden	
+values-b+de/strings.xml	string	downloads_offline_pill	-	STR	Offline · keine Verbindung	
+values-b+de/strings.xml	string	downloads_play_from_url	-	STR	Von URL abspielen	
+values-b+de/strings.xml	string	downloads_select	-	STR	Auswählen	
+values-b+de/strings.xml	string	downloads_storage_full_headline	-	STR	Nicht genug Speicher	
+values-b+de/strings.xml	string	downloads_storage_legend	-	STR	%1$s von %2$s belegt · %3$s in Downloads	
+values-b+de/strings.xml	string	downloads_storage_needs	-	STR	%s mehr benötigt	
 values-b+de/strings.xml	string	duplicate_add	-	STR	Hinzufügen	
 values-b+de/strings.xml	string	duplicate_message_multiple	-	STR	Es wurden potentielle Duplikate in deiner Bibliothek gefunden: \n \n%s \n \nMöchtest du dieses Element dennoch hinzufügen, das existierende ersetzen oder diese Aktion abbrechen?	
 values-b+de/strings.xml	string	duplicate_message_single	-	STR	Deine Bibliothek enthält möglicherweise schon ein Duplikat dieses Elements: '%s' \n \nMöchtest du dieses Element dennoch hinzufügen, das existierende ersetzen oder diese Aktion abbrechen?	
@@ -7481,8 +7649,20 @@ values-b+el/strings.xml	string	download_storage_text	-	STR	Εσωτερικός 
 values-b+el/strings.xml	string	downloaded	-	STR	Ληφθέν	
 values-b+el/strings.xml	string	downloaded_file	-	STR	Λήψη αρχείου	
 values-b+el/strings.xml	string	downloading	-	STR	Κατεβαίνει	
+values-b+el/strings.xml	string	downloads_browse_library	-	STR	Περιήγηση στη βιβλιοθήκη	
 values-b+el/strings.xml	string	downloads_delete_select	-	STR	Επιλέξτε στοιχεία για Διαγραφή	
 values-b+el/strings.xml	string	downloads_empty	-	STR	Δεν υπάρχουν προς το παρόν λήψεις.	
+values-b+el/strings.xml	string	downloads_empty_body	-	STR	Οι λήψεις που ξεκινάτε από τη λίστα επεισοδίων ενός τίτλου εμφανίζονται εδώ και αναπαράγονται χωρίς σύνδεση.	
+values-b+el/strings.xml	string	downloads_empty_headline	-	STR	Δεν υπάρχουν ακόμα λήψεις	
+values-b+el/strings.xml	string	downloads_free_up_space	-	STR	Απελευθέρωση χώρου	
+values-b+el/strings.xml	string	downloads_load_failed_body	-	STR	Τα ληφθέντα αρχεία σας δεν έχουν αλλάξει.	
+values-b+el/strings.xml	string	downloads_load_failed_headline	-	STR	Δεν ήταν δυνατή η ανάγνωση των λήψεών σας	
+values-b+el/strings.xml	string	downloads_offline_pill	-	STR	Εκτός σύνδεσης · δεν υπάρχει σύνδεση	
+values-b+el/strings.xml	string	downloads_play_from_url	-	STR	Αναπαραγωγή από URL	
+values-b+el/strings.xml	string	downloads_select	-	STR	Επιλογή	
+values-b+el/strings.xml	string	downloads_storage_full_headline	-	STR	Ανεπαρκής χώρος αποθήκευσης	
+values-b+el/strings.xml	string	downloads_storage_legend	-	STR	%1$s από %2$s σε χρήση · %3$s σε λήψεις	
+values-b+el/strings.xml	string	downloads_storage_needs	-	STR	Απαιτούνται ακόμα %s	
 values-b+el/strings.xml	string	duplicate_add	-	STR	Προσθήκη	
 values-b+el/strings.xml	string	duplicate_message_multiple	-	STR	Πιθανά διπλά αρχεία βρέθηκαν στην βιβλιοθήκη: \n \n%s \n \nΘα επιθυμούσατε να προσθέσετε αυτό το αρχείο ούτως η άλλως, να αντικαταστήσετε τα ήδη υπάρχοντα, ή να ακυρώσετε την ενέργεια?	
 values-b+el/strings.xml	string	duplicate_message_single	-	STR	Φαίνεται πως ένα πιθανό αντίγραφο βρίσκεται στη βιβλιοθήκη σας: '%s.' \n \nΘα επιθυμούσατε να το προσθέσετε, να το αντικαταστήσετε, ή να ακυρώσετε την ενέργεια;	
@@ -8056,7 +8236,19 @@ values-b+eo/strings.xml	string	download_time_left_min_sec_format	-	STR	%1$dm %2$
 values-b+eo/strings.xml	string	download_time_left_sec_format	-	STR	%1$ds	
 values-b+eo/strings.xml	string	downloaded	-	STR	Elŝutite	
 values-b+eo/strings.xml	string	downloading	-	STR	Elŝutante	
+values-b+eo/strings.xml	string	downloads_browse_library	-	STR	Foliumi bibliotekon	
 values-b+eo/strings.xml	string	downloads_empty	-	STR	Ne estas elŝuto ĉimomente.	
+values-b+eo/strings.xml	string	downloads_empty_body	-	STR	Elŝutoj, kiujn vi komencas el la epizodlisto de titolo, aperas ĉi tie kaj ludiĝas sen konekto.	
+values-b+eo/strings.xml	string	downloads_empty_headline	-	STR	Ankoraŭ neniu elŝuto	
+values-b+eo/strings.xml	string	downloads_free_up_space	-	STR	Liberigi spacon	
+values-b+eo/strings.xml	string	downloads_load_failed_body	-	STR	Viaj elŝutitaj dosieroj ne ŝanĝiĝis.	
+values-b+eo/strings.xml	string	downloads_load_failed_headline	-	STR	Ne eblis legi viajn elŝutojn	
+values-b+eo/strings.xml	string	downloads_offline_pill	-	STR	Eksterrete · neniu konekto	
+values-b+eo/strings.xml	string	downloads_play_from_url	-	STR	Ludi el URL	
+values-b+eo/strings.xml	string	downloads_select	-	STR	Selekti	
+values-b+eo/strings.xml	string	downloads_storage_full_headline	-	STR	Ne sufiĉas stokspaco	
+values-b+eo/strings.xml	string	downloads_storage_legend	-	STR	%1$s el %2$s uzitaj · %3$s en elŝutoj	
+values-b+eo/strings.xml	string	downloads_storage_needs	-	STR	Bezonas %s pli	
 values-b+eo/strings.xml	string	duration	-	STR	Daŭro	
 values-b+eo/strings.xml	string	duration_format	-	STR	%d min	
 values-b+eo/strings.xml	string	episode	-	STR	Epizodo	
@@ -8455,8 +8647,20 @@ values-b+es/strings.xml	string	download_time_left_sec_format	-	STR	%1$d s
 values-b+es/strings.xml	string	downloaded	-	STR	Descargado	
 values-b+es/strings.xml	string	downloaded_file	-	STR	Archivo descargado	
 values-b+es/strings.xml	string	downloading	-	STR	Descargando	
+values-b+es/strings.xml	string	downloads_browse_library	-	STR	Explorar biblioteca	
 values-b+es/strings.xml	string	downloads_delete_select	-	STR	Seleccionar elementos para eliminar	
 values-b+es/strings.xml	string	downloads_empty	-	STR	Actualmente no hay descargas disponibles.	
+values-b+es/strings.xml	string	downloads_empty_body	-	STR	Las descargas que inicies desde la lista de episodios de un título aparecen aquí y se reproducen sin conexión.	
+values-b+es/strings.xml	string	downloads_empty_headline	-	STR	Aún no hay descargas	
+values-b+es/strings.xml	string	downloads_free_up_space	-	STR	Liberar espacio	
+values-b+es/strings.xml	string	downloads_load_failed_body	-	STR	Tus archivos descargados no se han modificado.	
+values-b+es/strings.xml	string	downloads_load_failed_headline	-	STR	No se pudieron leer tus descargas	
+values-b+es/strings.xml	string	downloads_offline_pill	-	STR	Sin conexión · sin red	
+values-b+es/strings.xml	string	downloads_play_from_url	-	STR	Reproducir desde URL	
+values-b+es/strings.xml	string	downloads_select	-	STR	Seleccionar	
+values-b+es/strings.xml	string	downloads_storage_full_headline	-	STR	Almacenamiento insuficiente	
+values-b+es/strings.xml	string	downloads_storage_legend	-	STR	%1$s de %2$s usados · %3$s en descargas	
+values-b+es/strings.xml	string	downloads_storage_needs	-	STR	Se necesitan %s más	
 values-b+es/strings.xml	string	duplicate_add	-	STR	Añadir	
 values-b+es/strings.xml	string	duplicate_message_multiple	-	STR	Se han encontrado posibles elementos duplicados en su biblioteca: \n \n%s \n \n¿Desea añadir este elemento de todos modos, sustituir los existentes o cancelar la acción?	
 values-b+es/strings.xml	string	duplicate_message_single	-	STR	Parece que ya existe un elemento potencialmente duplicado en su colección: «%s». \n \n¿Quiere añadir este elemento de todos modos, sustituir el existente o cancelar la acción?	
@@ -9142,8 +9346,20 @@ values-b+fa/strings.xml	string	download_started	-	STR	دانلود آغاز شد
 values-b+fa/strings.xml	string	download_storage_text	-	STR	حافظه درونی(داخلی)	
 values-b+fa/strings.xml	string	downloaded	-	STR	دانلود شده	
 values-b+fa/strings.xml	string	downloading	-	STR	در حال دانلود	
+values-b+fa/strings.xml	string	downloads_browse_library	-	STR	مرور کتابخانه	
 values-b+fa/strings.xml	string	downloads_delete_select	-	STR	انتخاب برای حذف	
 values-b+fa/strings.xml	string	downloads_empty	-	STR	در حال حاضر دانلودی وجود ندارد.	
+values-b+fa/strings.xml	string	downloads_empty_body	-	STR	دانلودهایی که از فهرست قسمت‌های یک عنوان شروع می‌کنید اینجا نمایش داده می‌شوند و بدون اتصال پخش می‌شوند.	
+values-b+fa/strings.xml	string	downloads_empty_headline	-	STR	هنوز دانلودی وجود ندارد	
+values-b+fa/strings.xml	string	downloads_free_up_space	-	STR	آزاد کردن فضا	
+values-b+fa/strings.xml	string	downloads_load_failed_body	-	STR	فایل‌های دانلودشده شما تغییر نکرده‌اند.	
+values-b+fa/strings.xml	string	downloads_load_failed_headline	-	STR	دانلودهای شما خوانده نشد	
+values-b+fa/strings.xml	string	downloads_offline_pill	-	STR	آفلاین · بدون اتصال	
+values-b+fa/strings.xml	string	downloads_play_from_url	-	STR	پخش از URL	
+values-b+fa/strings.xml	string	downloads_select	-	STR	انتخاب	
+values-b+fa/strings.xml	string	downloads_storage_full_headline	-	STR	حافظه کافی نیست	
+values-b+fa/strings.xml	string	downloads_storage_legend	-	STR	%1$s از %2$s استفاده شده · %3$s در دانلودها	
+values-b+fa/strings.xml	string	downloads_storage_needs	-	STR	%s بیشتر لازم است	
 values-b+fa/strings.xml	string	duration	-	STR	طول	
 values-b+fa/strings.xml	string	duration_format	-	STR	%d دقیقه	
 values-b+fa/strings.xml	string	eigengraumode_settings	-	STR	سرعت پخش	
@@ -9488,8 +9704,20 @@ values-b+fil/strings.xml	string	download_time_left_min_sec_format	-	STR	%1$dm %2
 values-b+fil/strings.xml	string	download_time_left_sec_format	-	STR	%1$ds	
 values-b+fil/strings.xml	string	downloaded	-	STR	Na-download	
 values-b+fil/strings.xml	string	downloading	-	STR	Dina-download	
+values-b+fil/strings.xml	string	downloads_browse_library	-	STR	I-browse ang library	
 values-b+fil/strings.xml	string	downloads_delete_select	-	STR	Piliin ang Mga Item na Tatanggalin	
 values-b+fil/strings.xml	string	downloads_empty	-	STR	Kasalukuyang walang mga dina-download.	
+values-b+fil/strings.xml	string	downloads_empty_body	-	STR	Lalabas dito ang mga download na sinimulan mo mula sa listahan ng episode ng isang pamagat at mapapanood nang walang koneksyon.	
+values-b+fil/strings.xml	string	downloads_empty_headline	-	STR	Wala pang mga download	
+values-b+fil/strings.xml	string	downloads_free_up_space	-	STR	Magbakante ng espasyo	
+values-b+fil/strings.xml	string	downloads_load_failed_body	-	STR	Hindi nabago ang mga na-download mong file.	
+values-b+fil/strings.xml	string	downloads_load_failed_headline	-	STR	Hindi mabasa ang iyong mga download	
+values-b+fil/strings.xml	string	downloads_offline_pill	-	STR	Offline · walang koneksyon	
+values-b+fil/strings.xml	string	downloads_play_from_url	-	STR	I-play mula sa URL	
+values-b+fil/strings.xml	string	downloads_select	-	STR	Piliin	
+values-b+fil/strings.xml	string	downloads_storage_full_headline	-	STR	Kulang ang imbakan	
+values-b+fil/strings.xml	string	downloads_storage_legend	-	STR	%1$s ng %2$s ang nagamit · %3$s sa mga download	
+values-b+fil/strings.xml	string	downloads_storage_needs	-	STR	Kailangan ng %s pa	
 values-b+fil/strings.xml	string	duplicate_message_multiple	-	STR	May nakitang potensyal na mga nag-doble na mga items sa iyong library: \n\n%s \n\nGusto mo pa rin bang idagdag ang item na ito, palitan ang mga nauna na, o kanselahin ito?	
 values-b+fil/strings.xml	string	duplicate_message_single	-	STR	Lumalabas na mayroong potensyal na nag-doble na item sa iyong library: '%s.' \n\nGusto mo pa rin bang idagdag ang item na ito, palitan ang nauna, o kanselahin ito?	
 values-b+fil/strings.xml	string	duplicate_title	-	STR	May Natagpuan na Nag-doble	
@@ -9856,8 +10084,20 @@ values-b+fr/strings.xml	string	download_time_left_sec_format	-	STR	%1$ds
 values-b+fr/strings.xml	string	downloaded	-	STR	Téléchargé	
 values-b+fr/strings.xml	string	downloaded_file	-	STR	Fichier téléchargé	
 values-b+fr/strings.xml	string	downloading	-	STR	Téléchargement	
+values-b+fr/strings.xml	string	downloads_browse_library	-	STR	Parcourir la bibliothèque	
 values-b+fr/strings.xml	string	downloads_delete_select	-	STR	Sélectionner les éléments à supprimer	
 values-b+fr/strings.xml	string	downloads_empty	-	STR	Aucun téléchargement.	
+values-b+fr/strings.xml	string	downloads_empty_body	-	STR	Les téléchargements lancés depuis la liste d'épisodes d'un titre apparaissent ici et se lisent sans connexion.	
+values-b+fr/strings.xml	string	downloads_empty_headline	-	STR	Aucun téléchargement pour l'instant	
+values-b+fr/strings.xml	string	downloads_free_up_space	-	STR	Libérer de l'espace	
+values-b+fr/strings.xml	string	downloads_load_failed_body	-	STR	Vos fichiers téléchargés n'ont pas été modifiés.	
+values-b+fr/strings.xml	string	downloads_load_failed_headline	-	STR	Impossible de lire vos téléchargements	
+values-b+fr/strings.xml	string	downloads_offline_pill	-	STR	Hors-ligne · pas de connexion	
+values-b+fr/strings.xml	string	downloads_play_from_url	-	STR	Lire depuis une URL	
+values-b+fr/strings.xml	string	downloads_select	-	STR	Sélectionner	
+values-b+fr/strings.xml	string	downloads_storage_full_headline	-	STR	Stockage insuffisant	
+values-b+fr/strings.xml	string	downloads_storage_legend	-	STR	%1$s sur %2$s utilisés · %3$s en téléchargements	
+values-b+fr/strings.xml	string	downloads_storage_needs	-	STR	%s supplémentaires requis	
 values-b+fr/strings.xml	string	duplicate_add	-	STR	Ajouter	
 values-b+fr/strings.xml	string	duplicate_message_multiple	-	STR	Des doublons potentiels ont été trouvés dans votre bibliothèque : \n \n%s \n \nSouhaitez-vous ajouter cet élément, remplacer les éléments existants ou annuler l'action ?	
 values-b+fr/strings.xml	string	duplicate_message_single	-	STR	Il semble qu'un élément potentiellement dupliqué existe déjà dans votre bibliothèque : '%s. \n \nSouhaitez-vous ajouter cet élément, remplacer l'élément existant ou annuler l'action ?	
@@ -10529,8 +10769,20 @@ values-b+gl/strings.xml	string	download_started	-	STR	Descarga comezada
 values-b+gl/strings.xml	string	download_storage_text	-	STR	Almacenamento Interno	
 values-b+gl/strings.xml	string	downloaded	-	STR	Descargado	
 values-b+gl/strings.xml	string	downloading	-	STR	Descargando	
+values-b+gl/strings.xml	string	downloads_browse_library	-	STR	Explorar biblioteca	
 values-b+gl/strings.xml	string	downloads_delete_select	-	STR	Escolla os elementos para eliminar	
 values-b+gl/strings.xml	string	downloads_empty	-	STR	Non hay descargas dispoñíbeis	
+values-b+gl/strings.xml	string	downloads_empty_body	-	STR	As descargas que inicies desde a lista de episodios dun título aparecen aquí e reprodúcense sen conexión.	
+values-b+gl/strings.xml	string	downloads_empty_headline	-	STR	Aínda non hai descargas	
+values-b+gl/strings.xml	string	downloads_free_up_space	-	STR	Liberar espazo	
+values-b+gl/strings.xml	string	downloads_load_failed_body	-	STR	Os teus ficheiros descargados non se modificaron.	
+values-b+gl/strings.xml	string	downloads_load_failed_headline	-	STR	Non se puideron ler as túas descargas	
+values-b+gl/strings.xml	string	downloads_offline_pill	-	STR	Sen conexión · sen rede	
+values-b+gl/strings.xml	string	downloads_play_from_url	-	STR	Reproducir desde URL	
+values-b+gl/strings.xml	string	downloads_select	-	STR	Seleccionar	
+values-b+gl/strings.xml	string	downloads_storage_full_headline	-	STR	Almacenamento insuficiente	
+values-b+gl/strings.xml	string	downloads_storage_legend	-	STR	%1$s de %2$s usados · %3$s en descargas	
+values-b+gl/strings.xml	string	downloads_storage_needs	-	STR	Precísanse %s máis	
 values-b+gl/strings.xml	string	duration	-	STR	Duración	
 values-b+gl/strings.xml	string	duration_format	-	STR	%d min	
 values-b+gl/strings.xml	string	eigengraumode_settings	-	STR	Velocidade de reproducción	
@@ -10901,8 +11153,20 @@ values-b+hi/strings.xml	string	download_time_left_min_sec_format	-	STR	%1$d म�
 values-b+hi/strings.xml	string	download_time_left_sec_format	-	STR	%1$d सेकंड	
 values-b+hi/strings.xml	string	downloaded	-	STR	डाउनलोड किया गया	
 values-b+hi/strings.xml	string	downloading	-	STR	डाउनलोड हो रहा	
+values-b+hi/strings.xml	string	downloads_browse_library	-	STR	लाइब्रेरी ब्राउज़ करें	
 values-b+hi/strings.xml	string	downloads_delete_select	-	STR	मिटाने के लिए वस्तु चुनें	
 values-b+hi/strings.xml	string	downloads_empty	-	STR	वर्तमान में कोई डाउनलोड नहीं है।	
+values-b+hi/strings.xml	string	downloads_empty_body	-	STR	किसी शीर्षक की एपिसोड सूची से शुरू किए गए डाउनलोड यहाँ दिखते हैं और बिना कनेक्शन के चलते हैं।	
+values-b+hi/strings.xml	string	downloads_empty_headline	-	STR	अभी तक कोई डाउनलोड नहीं	
+values-b+hi/strings.xml	string	downloads_free_up_space	-	STR	जगह ख़ाली करें	
+values-b+hi/strings.xml	string	downloads_load_failed_body	-	STR	आपकी डाउनलोड की गई फ़ाइलें नहीं बदली गई हैं।	
+values-b+hi/strings.xml	string	downloads_load_failed_headline	-	STR	आपके डाउनलोड पढ़े नहीं जा सके	
+values-b+hi/strings.xml	string	downloads_offline_pill	-	STR	ऑफ़लाइन · कोई कनेक्शन नहीं	
+values-b+hi/strings.xml	string	downloads_play_from_url	-	STR	URL से चलाएं	
+values-b+hi/strings.xml	string	downloads_select	-	STR	चुनें	
+values-b+hi/strings.xml	string	downloads_storage_full_headline	-	STR	पर्याप्त स्टोरेज नहीं है	
+values-b+hi/strings.xml	string	downloads_storage_legend	-	STR	%1$s / %2$s इस्तेमाल में · डाउनलोड में %3$s	
+values-b+hi/strings.xml	string	downloads_storage_needs	-	STR	%s और चाहिए	
 values-b+hi/strings.xml	string	duplicate_add	-	STR	जोड़े	
 values-b+hi/strings.xml	string	duplicate_message_multiple	-	STR	आपकी लाइब्रेरी में संभावित डुप्लिकेट आइटम पाए गए हैं: \n \n%s \n \nक्या आप किसी भी तरह इस आइटम को जोड़ना चाहेंगे, मौजूदा आइटम को बदलना चाहेंगे, या कार्रवाई रद्द करना चाहेंगे?	
 values-b+hi/strings.xml	string	duplicate_message_single	-	STR	ऐसा प्रतीत होता है कि संभावित रूप से डुप्लिकेट आइटम आपकी लाइब्रेरी में पहले से मौजूद है: '%s.' \n \nक्या आप किसी भी तरह इस आइटम को जोड़ना चाहेंगे, मौजूदा आइटम को बदलना चाहेंगे, या कार्रवाई रद्द करना चाहेंगे?	
@@ -11450,8 +11714,20 @@ values-b+hr/strings.xml	string	download_time_left_sec_format	-	STR	%1$ds
 values-b+hr/strings.xml	string	downloaded	-	STR	Preuzeto	
 values-b+hr/strings.xml	string	downloaded_file	-	STR	Preuzeta datoteka	
 values-b+hr/strings.xml	string	downloading	-	STR	Preuzimanje u tijeku	
+values-b+hr/strings.xml	string	downloads_browse_library	-	STR	Pregledaj biblioteku	
 values-b+hr/strings.xml	string	downloads_delete_select	-	STR	Odaberi stavke za brisanje	
 values-b+hr/strings.xml	string	downloads_empty	-	STR	Trenutačno nema preuzimanja.	
+values-b+hr/strings.xml	string	downloads_empty_body	-	STR	Preuzimanja pokrenuta s popisa epizoda naslova pojavljuju se ovdje i reproduciraju se bez veze.	
+values-b+hr/strings.xml	string	downloads_empty_headline	-	STR	Još nema preuzimanja	
+values-b+hr/strings.xml	string	downloads_free_up_space	-	STR	Oslobodi prostor	
+values-b+hr/strings.xml	string	downloads_load_failed_body	-	STR	Vaše preuzete datoteke nisu promijenjene.	
+values-b+hr/strings.xml	string	downloads_load_failed_headline	-	STR	Nije moguće pročitati vaša preuzimanja	
+values-b+hr/strings.xml	string	downloads_offline_pill	-	STR	Offline · nema veze	
+values-b+hr/strings.xml	string	downloads_play_from_url	-	STR	Pokreni s URL-a	
+values-b+hr/strings.xml	string	downloads_select	-	STR	Odaberi	
+values-b+hr/strings.xml	string	downloads_storage_full_headline	-	STR	Nedovoljno pohrane	
+values-b+hr/strings.xml	string	downloads_storage_legend	-	STR	Iskorišteno %1$s od %2$s · %3$s u preuzimanjima	
+values-b+hr/strings.xml	string	downloads_storage_needs	-	STR	Potrebno još %s	
 values-b+hr/strings.xml	string	duplicate_add	-	STR	Dodaj	
 values-b+hr/strings.xml	string	duplicate_message_multiple	-	STR	Potencijalni duplikati pronađeni su u vašoj biblioteci: \n \n%s \n \nŽelite li ipak dodati ovu stavku koja zamjenjuje postojeće ili poništiti radnju?	
 values-b+hr/strings.xml	string	duplicate_message_single	-	STR	Čini se da potencijalno duplicirana stavka već postoji u vašoj biblioteci: '%s.' \n \nŽelite li ipak dodati ovu stavku koja zamjenjuje postojeću ili poništiti radnju?	
@@ -12201,8 +12477,20 @@ values-b+hu/strings.xml	string	download_time_left_sec_format	-	STR	%1$ds
 values-b+hu/strings.xml	string	downloaded	-	STR	Letöltve	
 values-b+hu/strings.xml	string	downloaded_file	-	STR	Letöltött fájl	
 values-b+hu/strings.xml	string	downloading	-	STR	Letöltés	
+values-b+hu/strings.xml	string	downloads_browse_library	-	STR	Könyvtár böngészése	
 values-b+hu/strings.xml	string	downloads_delete_select	-	STR	Válassza ki a Törlendő Elemeket	
 values-b+hu/strings.xml	string	downloads_empty	-	STR	Jelenleg nincs letöltés.	
+values-b+hu/strings.xml	string	downloads_empty_body	-	STR	A cím epizódlistájából indított letöltések itt jelennek meg, és kapcsolat nélkül is lejátszhatók.	
+values-b+hu/strings.xml	string	downloads_empty_headline	-	STR	Még nincs letöltés	
+values-b+hu/strings.xml	string	downloads_free_up_space	-	STR	Hely felszabadítása	
+values-b+hu/strings.xml	string	downloads_load_failed_body	-	STR	A letöltött fájlok nem változtak.	
+values-b+hu/strings.xml	string	downloads_load_failed_headline	-	STR	Nem sikerült beolvasni a letöltéseket	
+values-b+hu/strings.xml	string	downloads_offline_pill	-	STR	Offline · nincs kapcsolat	
+values-b+hu/strings.xml	string	downloads_play_from_url	-	STR	Lejátszás URL-ről	
+values-b+hu/strings.xml	string	downloads_select	-	STR	Kiválasztás	
+values-b+hu/strings.xml	string	downloads_storage_full_headline	-	STR	Nincs elég tárhely	
+values-b+hu/strings.xml	string	downloads_storage_legend	-	STR	%1$s / %2$s használatban · %3$s a letöltésekben	
+values-b+hu/strings.xml	string	downloads_storage_needs	-	STR	Még %s szükséges	
 values-b+hu/strings.xml	string	duplicate_add	-	STR	Hozzáadás	
 values-b+hu/strings.xml	string	duplicate_message_multiple	-	STR	Potenciálisan dupla elemek a könyvtárjában: \n \n%s \n \nSzeretné hozzáadni ezt az elemet mindenképpen, ezzel felülírva a jelenlegit, vagy visszavonja a műveletet?	
 values-b+hu/strings.xml	string	duplicate_message_single	-	STR	Úgy tűnik egy potenciálisan dupla elem már létezik a könyvtárjában: '%s.' \n \nMindenképpen hozzá akarja adni ezt az elemet, ezzel felülírva a régit, vagy visszavonja a műveletet?	
@@ -12917,8 +13205,20 @@ values-b+in/strings.xml	string	download_time_left_sec_format	-	STR	%1$dd
 values-b+in/strings.xml	string	downloaded	-	STR	Terunduh	
 values-b+in/strings.xml	string	downloaded_file	-	STR	Berkas terunduh	
 values-b+in/strings.xml	string	downloading	-	STR	Mengunduh	
+values-b+in/strings.xml	string	downloads_browse_library	-	STR	Jelajahi pustaka	
 values-b+in/strings.xml	string	downloads_delete_select	-	STR	Pilih item untuk Dihapus	
 values-b+in/strings.xml	string	downloads_empty	-	STR	Tidak ada unduhan.	
+values-b+in/strings.xml	string	downloads_empty_body	-	STR	Unduhan yang Anda mulai dari daftar episode judul muncul di sini dan dapat diputar tanpa koneksi.	
+values-b+in/strings.xml	string	downloads_empty_headline	-	STR	Belum ada unduhan	
+values-b+in/strings.xml	string	downloads_free_up_space	-	STR	Kosongkan ruang	
+values-b+in/strings.xml	string	downloads_load_failed_body	-	STR	File unduhan Anda tidak berubah.	
+values-b+in/strings.xml	string	downloads_load_failed_headline	-	STR	Tidak dapat membaca unduhan Anda	
+values-b+in/strings.xml	string	downloads_offline_pill	-	STR	Luring · tidak ada koneksi	
+values-b+in/strings.xml	string	downloads_play_from_url	-	STR	Putar dari URL	
+values-b+in/strings.xml	string	downloads_select	-	STR	Pilih	
+values-b+in/strings.xml	string	downloads_storage_full_headline	-	STR	Penyimpanan tidak cukup	
+values-b+in/strings.xml	string	downloads_storage_legend	-	STR	%1$s dari %2$s terpakai · %3$s di unduhan	
+values-b+in/strings.xml	string	downloads_storage_needs	-	STR	Perlu %s lagi	
 values-b+in/strings.xml	string	duplicate_add	-	STR	Tambahkan	
 values-b+in/strings.xml	string	duplicate_message_multiple	-	STR	Item duplikat potensial telah ditemukan di pustaka Anda: \n \n%s \n \nApakah Anda tetap ingin menambahkan item ini, mengganti item yang sudah ada, atau membatalkan tindakan?	
 values-b+in/strings.xml	string	duplicate_message_single	-	STR	Tampaknya item yang berpotensi duplikat sudah ada di pustaka Anda: '%s.' \n \nApakah Anda tetap ingin menambahkan item ini, mengganti item yang sudah ada, atau membatalkan tindakan?	
@@ -13711,8 +14011,20 @@ values-b+it/strings.xml	string	download_time_left_sec_format	-	STR	%1$ds
 values-b+it/strings.xml	string	downloaded	-	STR	Scaricato	
 values-b+it/strings.xml	string	downloaded_file	-	STR	File scaricato	
 values-b+it/strings.xml	string	downloading	-	STR	Download in corso	
+values-b+it/strings.xml	string	downloads_browse_library	-	STR	Sfoglia libreria	
 values-b+it/strings.xml	string	downloads_delete_select	-	STR	Seleziona elementi da eliminare	
 values-b+it/strings.xml	string	downloads_empty	-	STR	Al momento non ci sono download.	
+values-b+it/strings.xml	string	downloads_empty_body	-	STR	I download avviati dall'elenco degli episodi di un titolo appaiono qui e si riproducono senza connessione.	
+values-b+it/strings.xml	string	downloads_empty_headline	-	STR	Ancora nessun download	
+values-b+it/strings.xml	string	downloads_free_up_space	-	STR	Libera spazio	
+values-b+it/strings.xml	string	downloads_load_failed_body	-	STR	I file scaricati non sono stati modificati.	
+values-b+it/strings.xml	string	downloads_load_failed_headline	-	STR	Impossibile leggere i download	
+values-b+it/strings.xml	string	downloads_offline_pill	-	STR	Offline · nessuna connessione	
+values-b+it/strings.xml	string	downloads_play_from_url	-	STR	Riproduci da URL	
+values-b+it/strings.xml	string	downloads_select	-	STR	Seleziona	
+values-b+it/strings.xml	string	downloads_storage_full_headline	-	STR	Spazio di archiviazione insufficiente	
+values-b+it/strings.xml	string	downloads_storage_legend	-	STR	%1$s di %2$s usati · %3$s nei download	
+values-b+it/strings.xml	string	downloads_storage_needs	-	STR	Servono altri %s	
 values-b+it/strings.xml	string	duplicate_add	-	STR	Aggiungi	
 values-b+it/strings.xml	string	duplicate_message_multiple	-	STR	Dei possibili duplicati sono stati trovati nella tua libreria: \n \n%s \n \nVorresti aggiungere l'oggetto alla libreria comunque, rimpiazzare l'esistente, o cancellare l'azione?	
 values-b+it/strings.xml	string	duplicate_message_single	-	STR	Sembra che nella tua libreria esista già un elemento potenzialmente duplicato: '%s.' \n \nDesideri aggiungere comunque questo elemento, sostituire quello esistente o annullare l'azione?	
@@ -14438,8 +14750,20 @@ values-b+iw/strings.xml	string	download_time_left_sec_format	-	STR	%1$d שניו
 values-b+iw/strings.xml	string	downloaded	-	STR	הורד	
 values-b+iw/strings.xml	string	downloaded_file	-	STR	קובץ שהורד	
 values-b+iw/strings.xml	string	downloading	-	STR	מוריד	
+values-b+iw/strings.xml	string	downloads_browse_library	-	STR	עיון בספריה	
 values-b+iw/strings.xml	string	downloads_delete_select	-	STR	בחר פריטים למחוק	
 values-b+iw/strings.xml	string	downloads_empty	-	STR	אין הורדות כרגע.	
+values-b+iw/strings.xml	string	downloads_empty_body	-	STR	הורדות שתתחיל מרשימת הפרקים של כותר יופיעו כאן ויופעלו ללא חיבור.	
+values-b+iw/strings.xml	string	downloads_empty_headline	-	STR	אין עדיין הורדות	
+values-b+iw/strings.xml	string	downloads_free_up_space	-	STR	פינוי מקום	
+values-b+iw/strings.xml	string	downloads_load_failed_body	-	STR	הקבצים שהורדת לא שונו.	
+values-b+iw/strings.xml	string	downloads_load_failed_headline	-	STR	לא ניתן לקרוא את ההורדות שלך	
+values-b+iw/strings.xml	string	downloads_offline_pill	-	STR	אופליין · אין חיבור	
+values-b+iw/strings.xml	string	downloads_play_from_url	-	STR	הפעל מכתובת URL	
+values-b+iw/strings.xml	string	downloads_select	-	STR	בחר	
+values-b+iw/strings.xml	string	downloads_storage_full_headline	-	STR	אין מספיק אחסון	
+values-b+iw/strings.xml	string	downloads_storage_legend	-	STR	%1$s מתוך %2$s בשימוש · %3$s בהורדות	
+values-b+iw/strings.xml	string	downloads_storage_needs	-	STR	נדרשים עוד %s	
 values-b+iw/strings.xml	string	duration	-	STR	משך זמן	
 values-b+iw/strings.xml	string	duration_format	-	STR	%d דקות	
 values-b+iw/strings.xml	string	edit	-	STR	עריכה	
@@ -15094,8 +15418,20 @@ values-b+ja/strings.xml	string	download_time_left_sec_format	-	STR	%1$d秒
 values-b+ja/strings.xml	string	downloaded	-	STR	ダウンロード済	
 values-b+ja/strings.xml	string	downloaded_file	-	STR	ダウンロードしたファイル	
 values-b+ja/strings.xml	string	downloading	-	STR	ダウンロード中	
+values-b+ja/strings.xml	string	downloads_browse_library	-	STR	ライブラリを見る	
 values-b+ja/strings.xml	string	downloads_delete_select	-	STR	削除する項目を選択	
 values-b+ja/strings.xml	string	downloads_empty	-	STR	現在ダウンロードはがありません。	
+values-b+ja/strings.xml	string	downloads_empty_body	-	STR	作品のエピソード一覧から開始したダウンロードはここに表示され、接続なしで再生できます。	
+values-b+ja/strings.xml	string	downloads_empty_headline	-	STR	ダウンロードはまだありません	
+values-b+ja/strings.xml	string	downloads_free_up_space	-	STR	空き容量を増やす	
+values-b+ja/strings.xml	string	downloads_load_failed_body	-	STR	ダウンロード済みのファイルは変更されていません。	
+values-b+ja/strings.xml	string	downloads_load_failed_headline	-	STR	ダウンロードを読み込めませんでした	
+values-b+ja/strings.xml	string	downloads_offline_pill	-	STR	オフライン · 接続なし	
+values-b+ja/strings.xml	string	downloads_play_from_url	-	STR	URLから再生	
+values-b+ja/strings.xml	string	downloads_select	-	STR	選択	
+values-b+ja/strings.xml	string	downloads_storage_full_headline	-	STR	ストレージの空き容量が足りません	
+values-b+ja/strings.xml	string	downloads_storage_legend	-	STR	%1$s / %2$s 使用 · ダウンロード %3$s	
+values-b+ja/strings.xml	string	downloads_storage_needs	-	STR	あと %s 必要	
 values-b+ja/strings.xml	string	duplicate_add	-	STR	追加	
 values-b+ja/strings.xml	string	duplicate_message_multiple	-	STR	ライブラリに潜在的な重複アイテムが見つかりました: \n\n%s \n\nこのアイテムを追加しますか、既存のものを置き換えますか、それともアクションをキャンセルしますか？	
 values-b+ja/strings.xml	string	duplicate_message_single	-	STR	ライブラリに潜在的な重複アイテムがすでに存在します: '%s.' \n\nこのアイテムを追加しますか、既存のものを置き換えますか、それともアクションをキャンセルしますか？	
@@ -15717,6 +16053,18 @@ values-b+kn/strings.xml	string	download_started	-	STR	ಡೌನ್‌ಲೋಡ�
 values-b+kn/strings.xml	string	download_storage_text	-	STR	ಇಂಟರ್ನಲ್ ಸ್ಟೋರೇಜ್	
 values-b+kn/strings.xml	string	downloaded	-	STR	ಡೌನ್‌ಲೋಡ್ ಮಾಡಲಾಗಿದೆ	
 values-b+kn/strings.xml	string	downloading	-	STR	ಡೌನ್‌ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ	
+values-b+kn/strings.xml	string	downloads_browse_library	-	STR	ಲೈಬ್ರರಿ ಬ್ರೌಸ್ ಮಾಡಿ	
+values-b+kn/strings.xml	string	downloads_empty_body	-	STR	ಶೀರ್ಷಿಕೆಯ ಸಂಚಿಕೆ ಪಟ್ಟಿಯಿಂದ ನೀವು ಪ್ರಾರಂಭಿಸುವ ಡೌನ್‌ಲೋಡ್‌ಗಳು ಇಲ್ಲಿ ಕಾಣಿಸುತ್ತವೆ ಮತ್ತು ಸಂಪರ್ಕವಿಲ್ಲದೆ ಪ್ಲೇ ಆಗುತ್ತವೆ.	
+values-b+kn/strings.xml	string	downloads_empty_headline	-	STR	ಇನ್ನೂ ಡೌನ್‌ಲೋಡ್‌ಗಳಿಲ್ಲ	
+values-b+kn/strings.xml	string	downloads_free_up_space	-	STR	ಸ್ಥಳವನ್ನು ಖಾಲಿ ಮಾಡಿ	
+values-b+kn/strings.xml	string	downloads_load_failed_body	-	STR	ನಿಮ್ಮ ಡೌನ್‌ಲೋಡ್ ಮಾಡಿದ ಫೈಲ್‌ಗಳನ್ನು ಬದಲಾಯಿಸಲಾಗಿಲ್ಲ.	
+values-b+kn/strings.xml	string	downloads_load_failed_headline	-	STR	ನಿಮ್ಮ ಡೌನ್‌ಲೋಡ್‌ಗಳನ್ನು ಓದಲಾಗಲಿಲ್ಲ	
+values-b+kn/strings.xml	string	downloads_offline_pill	-	STR	ಆಫ್‌ಲೈನ್ · ಸಂಪರ್ಕವಿಲ್ಲ	
+values-b+kn/strings.xml	string	downloads_play_from_url	-	STR	URL ನಿಂದ ಪ್ಲೇ ಮಾಡಿ	
+values-b+kn/strings.xml	string	downloads_select	-	STR	ಆಯ್ಕೆಮಾಡಿ	
+values-b+kn/strings.xml	string	downloads_storage_full_headline	-	STR	ಸಾಕಷ್ಟು ಸ್ಟೋರೇಜ್ ಇಲ್ಲ	
+values-b+kn/strings.xml	string	downloads_storage_legend	-	STR	%1$s / %2$s ಬಳಸಲಾಗಿದೆ · ಡೌನ್‌ಲೋಡ್‌ಗಳಲ್ಲಿ %3$s	
+values-b+kn/strings.xml	string	downloads_storage_needs	-	STR	ಇನ್ನೂ %s ಬೇಕು	
 values-b+kn/strings.xml	string	duration_format	-	STR	%dಮಿನ	
 values-b+kn/strings.xml	string	episode_more_options_des	-	STR	ಹೆಚ್ಚಿನ ಆಯ್ಕೆ	
 values-b+kn/strings.xml	string	episode_poster_img_des	-	STR	ಸಂಚಿಕೆ ಪೋಸ್ಟರ್	
@@ -16059,8 +16407,20 @@ values-b+ko/strings.xml	string	download_time_left_sec_format	-	STR	%1$d초
 values-b+ko/strings.xml	string	downloaded	-	STR	다운로드됨	
 values-b+ko/strings.xml	string	downloaded_file	-	STR	다운로드한 파일	
 values-b+ko/strings.xml	string	downloading	-	STR	다운로드중	
+values-b+ko/strings.xml	string	downloads_browse_library	-	STR	라이브러리 둘러보기	
 values-b+ko/strings.xml	string	downloads_delete_select	-	STR	삭제할 항목을 선택하십시오	
 values-b+ko/strings.xml	string	downloads_empty	-	STR	현재 다운로드가 없습니다.	
+values-b+ko/strings.xml	string	downloads_empty_body	-	STR	작품의 에피소드 목록에서 시작한 다운로드가 여기에 표시되며 연결 없이 재생됩니다.	
+values-b+ko/strings.xml	string	downloads_empty_headline	-	STR	아직 다운로드가 없습니다	
+values-b+ko/strings.xml	string	downloads_free_up_space	-	STR	공간 확보	
+values-b+ko/strings.xml	string	downloads_load_failed_body	-	STR	다운로드한 파일은 변경되지 않았습니다.	
+values-b+ko/strings.xml	string	downloads_load_failed_headline	-	STR	다운로드를 읽을 수 없습니다	
+values-b+ko/strings.xml	string	downloads_offline_pill	-	STR	오프라인 · 연결 없음	
+values-b+ko/strings.xml	string	downloads_play_from_url	-	STR	URL에서 재생	
+values-b+ko/strings.xml	string	downloads_select	-	STR	선택	
+values-b+ko/strings.xml	string	downloads_storage_full_headline	-	STR	저장공간 부족	
+values-b+ko/strings.xml	string	downloads_storage_legend	-	STR	%1$s / %2$s 사용됨 · 다운로드 %3$s	
+values-b+ko/strings.xml	string	downloads_storage_needs	-	STR	%s 더 필요	
 values-b+ko/strings.xml	string	duplicate_add	-	STR	추가	
 values-b+ko/strings.xml	string	duplicate_message_multiple	-	STR	당신의 라이브러리에 잠재적으로 중복된 항목이 발견되었습니다: \n \n%s \n \n이 항목을 그래도 추가하시겠습니까, 기존 항목을 교체하시겠습니까, 아니면 작업을 취소하시겠습니까?	
 values-b+ko/strings.xml	string	duplicate_message_single	-	STR	당신의 라이브러리에 이미 잠재적으로 중복된 항목이 존재합니다: '%s'. \n \n이 항목을 그래도 추가하시겠습니까, 기존 항목을 교체하시겠습니까, 아니면 작업을 취소하시겠습니까?	
@@ -16712,8 +17072,20 @@ values-b+lt/strings.xml	string	download_started	-	STR	Siuntimas pradėtas
 values-b+lt/strings.xml	string	download_storage_text	-	STR	Vidinė atmintis	
 values-b+lt/strings.xml	string	downloaded	-	STR	Atsisiųsta	
 values-b+lt/strings.xml	string	downloading	-	STR	Siunčiama	
+values-b+lt/strings.xml	string	downloads_browse_library	-	STR	Naršyti biblioteką	
 values-b+lt/strings.xml	string	downloads_delete_select	-	STR	Pasirinkite elementus, kuriuos norite pašalinti	
 values-b+lt/strings.xml	string	downloads_empty	-	STR	Šiuo metu atsisiuntimų nėra.	
+values-b+lt/strings.xml	string	downloads_empty_body	-	STR	Atsisiuntimai, pradėti iš pavadinimo epizodų sąrašo, rodomi čia ir paleidžiami be ryšio.	
+values-b+lt/strings.xml	string	downloads_empty_headline	-	STR	Atsisiuntimų dar nėra	
+values-b+lt/strings.xml	string	downloads_free_up_space	-	STR	Atlaisvinti vietos	
+values-b+lt/strings.xml	string	downloads_load_failed_body	-	STR	Jūsų atsisiųsti failai nebuvo pakeisti.	
+values-b+lt/strings.xml	string	downloads_load_failed_headline	-	STR	Nepavyko nuskaityti atsisiuntimų	
+values-b+lt/strings.xml	string	downloads_offline_pill	-	STR	Neprisijungus · nėra ryšio	
+values-b+lt/strings.xml	string	downloads_play_from_url	-	STR	Paleisti iš URL	
+values-b+lt/strings.xml	string	downloads_select	-	STR	Pasirinkti	
+values-b+lt/strings.xml	string	downloads_storage_full_headline	-	STR	Nepakanka atminties	
+values-b+lt/strings.xml	string	downloads_storage_legend	-	STR	Naudojama %1$s iš %2$s · %3$s atsisiuntimuose	
+values-b+lt/strings.xml	string	downloads_storage_needs	-	STR	Reikia dar %s	
 values-b+lt/strings.xml	string	duration_format	-	STR	%d min	
 values-b+lt/strings.xml	string	edit	-	STR	Redaguoti	
 values-b+lt/strings.xml	string	eigengraumode_settings	-	STR	Atkūrimo sparta	
@@ -17147,8 +17519,20 @@ values-b+lv/strings.xml	string	download_time_left_sec_format	-	STR	%1$dsek.
 values-b+lv/strings.xml	string	downloaded	-	STR	Ieladēts	
 values-b+lv/strings.xml	string	downloaded_file	-	STR	Lejupielādēta datne	
 values-b+lv/strings.xml	string	downloading	-	STR	Lādējas	
+values-b+lv/strings.xml	string	downloads_browse_library	-	STR	Pārlūkot bibliotēku	
 values-b+lv/strings.xml	string	downloads_delete_select	-	STR	Atlasiet vienumus, ko dzēst	
 values-b+lv/strings.xml	string	downloads_empty	-	STR	Pašlaik nav pieejama neviena lejupielāde.	
+values-b+lv/strings.xml	string	downloads_empty_body	-	STR	Lejupielādes, kuras sākat no nosaukuma epizožu saraksta, tiek rādītas šeit un atskaņojamas bez savienojuma.	
+values-b+lv/strings.xml	string	downloads_empty_headline	-	STR	Vēl nav lejupielāžu	
+values-b+lv/strings.xml	string	downloads_free_up_space	-	STR	Atbrīvot vietu	
+values-b+lv/strings.xml	string	downloads_load_failed_body	-	STR	Jūsu lejupielādētie faili nav mainīti.	
+values-b+lv/strings.xml	string	downloads_load_failed_headline	-	STR	Neizdevās nolasīt lejupielādes	
+values-b+lv/strings.xml	string	downloads_offline_pill	-	STR	Bezsaistē · nav savienojuma	
+values-b+lv/strings.xml	string	downloads_play_from_url	-	STR	Atskaņot no URL	
+values-b+lv/strings.xml	string	downloads_select	-	STR	Atlasīt	
+values-b+lv/strings.xml	string	downloads_storage_full_headline	-	STR	Nepietiek atmiņas	
+values-b+lv/strings.xml	string	downloads_storage_legend	-	STR	Izmantoti %1$s no %2$s · %3$s lejupielādēs	
+values-b+lv/strings.xml	string	downloads_storage_needs	-	STR	Nepieciešami vēl %s	
 values-b+lv/strings.xml	string	duplicate_add	-	STR	Pievienot	
 values-b+lv/strings.xml	string	duplicate_replace	-	STR	Aizstāt	
 values-b+lv/strings.xml	string	duplicate_replace_all	-	STR	Aizstāt visus	
@@ -17856,8 +18240,20 @@ values-b+mk/strings.xml	string	download_time_left_sec_format	-	STR	%1$dс
 values-b+mk/strings.xml	string	downloaded	-	STR	Преземено	
 values-b+mk/strings.xml	string	downloaded_file	-	STR	Преземена датотека	
 values-b+mk/strings.xml	string	downloading	-	STR	Преземање	
+values-b+mk/strings.xml	string	downloads_browse_library	-	STR	Прелистај библиотека	
 values-b+mk/strings.xml	string	downloads_delete_select	-	STR	Одбери ставки за бришење	
 values-b+mk/strings.xml	string	downloads_empty	-	STR	Во моментов нема преземања.	
+values-b+mk/strings.xml	string	downloads_empty_body	-	STR	Преземањата што ќе ги започнете од списокот со епизоди на насловот се појавуваат тука и се пуштаат без врска.	
+values-b+mk/strings.xml	string	downloads_empty_headline	-	STR	Сè уште нема преземања	
+values-b+mk/strings.xml	string	downloads_free_up_space	-	STR	Ослободи простор	
+values-b+mk/strings.xml	string	downloads_load_failed_body	-	STR	Вашите преземени датотеки не се променети.	
+values-b+mk/strings.xml	string	downloads_load_failed_headline	-	STR	Не може да се прочитаат вашите преземања	
+values-b+mk/strings.xml	string	downloads_offline_pill	-	STR	Офлајн · нема врска	
+values-b+mk/strings.xml	string	downloads_play_from_url	-	STR	Пушти од URL	
+values-b+mk/strings.xml	string	downloads_select	-	STR	Одбери	
+values-b+mk/strings.xml	string	downloads_storage_full_headline	-	STR	Нема доволно меморија	
+values-b+mk/strings.xml	string	downloads_storage_legend	-	STR	Искористени %1$s од %2$s · %3$s во преземања	
+values-b+mk/strings.xml	string	downloads_storage_needs	-	STR	Потребни се уште %s	
 values-b+mk/strings.xml	string	duplicate_add	-	STR	Додади	
 values-b+mk/strings.xml	string	duplicate_message_multiple	-	STR	Пронајдени се потенцијални дупликатни ставки во твојата библиотека:\n\n%s\n\nДали сакаш да ја додадеш оваа ставка, да ги замениш постојните или да ја откажеш акцијата?	
 values-b+mk/strings.xml	string	duplicate_message_single	-	STR	Се чини дека потенцијален дупликат веќе постои во твојата библиотека: „%s“.\n\nДали сепак сакаш да ја додадеш оваа ставка, да ја замениш постојната или да го откажеш дејството?	
@@ -18515,8 +18911,20 @@ values-b+ml/strings.xml	string	download_time_left_min_sec_format	-	STR	%1$dm %2$
 values-b+ml/strings.xml	string	download_time_left_sec_format	-	STR	%1$ds	
 values-b+ml/strings.xml	string	downloaded	-	STR	ഡൌൺലോഡ് ചെയ്തവ	
 values-b+ml/strings.xml	string	downloading	-	STR	ഡൌൺലോഡ് ചെയ്യുന്നു	
+values-b+ml/strings.xml	string	downloads_browse_library	-	STR	ലൈബ്രറി ബ്രൗസ് ചെയ്യുക	
 values-b+ml/strings.xml	string	downloads_delete_select	-	STR	ഡിലീറ്റ് ചെയ്യേണ്ടവ തിരഞ്ഞെടുക്കുക	
 values-b+ml/strings.xml	string	downloads_empty	-	STR	നിലവിൽ ഡൗൺലോഡുകൾ ഒന്നും തന്നെയില്ല.	
+values-b+ml/strings.xml	string	downloads_empty_body	-	STR	ഒരു ശീർഷകത്തിന്റെ എപ്പിസോഡ് ലിസ്റ്റിൽ നിന്ന് ആരംഭിക്കുന്ന ഡൗൺലോഡുകൾ ഇവിടെ കാണാം, കണക്ഷനില്ലാതെ പ്ലേ ചെയ്യാം.	
+values-b+ml/strings.xml	string	downloads_empty_headline	-	STR	ഇതുവരെ ഡൗൺലോഡുകളൊന്നുമില്ല	
+values-b+ml/strings.xml	string	downloads_free_up_space	-	STR	ഇടം ഒഴിവാക്കുക	
+values-b+ml/strings.xml	string	downloads_load_failed_body	-	STR	നിങ്ങൾ ഡൗൺലോഡ് ചെയ്ത ഫയലുകൾ മാറ്റിയിട്ടില്ല.	
+values-b+ml/strings.xml	string	downloads_load_failed_headline	-	STR	നിങ്ങളുടെ ഡൗൺലോഡുകൾ വായിക്കാനായില്ല	
+values-b+ml/strings.xml	string	downloads_offline_pill	-	STR	ഓഫ്‌ലൈൻ · കണക്ഷനില്ല	
+values-b+ml/strings.xml	string	downloads_play_from_url	-	STR	URL-ൽ നിന്ന് പ്ലേ ചെയ്യുക	
+values-b+ml/strings.xml	string	downloads_select	-	STR	തിരഞ്ഞെടുക്കുക	
+values-b+ml/strings.xml	string	downloads_storage_full_headline	-	STR	ആവശ്യത്തിന് സ്റ്റോറേജില്ല	
+values-b+ml/strings.xml	string	downloads_storage_legend	-	STR	%1$s / %2$s ഉപയോഗത്തിൽ · ഡൗൺലോഡുകളിൽ %3$s	
+values-b+ml/strings.xml	string	downloads_storage_needs	-	STR	%s കൂടി വേണം	
 values-b+ml/strings.xml	string	duration	-	STR	ദൈര്ഘം	
 values-b+ml/strings.xml	string	duration_format	-	STR	%d മിനിറ്റ്	
 values-b+ml/strings.xml	string	edit	-	STR	തിരുത്തുക	
@@ -18930,8 +19338,20 @@ values-b+ms/strings.xml	string	download_time_left_sec_format	-	STR	%1$ds
 values-b+ms/strings.xml	string	downloaded	-	STR	Dimuat turun	
 values-b+ms/strings.xml	string	downloaded_file	-	STR	Fail dimuat turun	
 values-b+ms/strings.xml	string	downloading	-	STR	Memuat turun	
+values-b+ms/strings.xml	string	downloads_browse_library	-	STR	Layari perpustakaan	
 values-b+ms/strings.xml	string	downloads_delete_select	-	STR	Pilih benda untuk dibuang	
 values-b+ms/strings.xml	string	downloads_empty	-	STR	Tiada yang dimuat turun.	
+values-b+ms/strings.xml	string	downloads_empty_body	-	STR	Muat turun yang anda mulakan daripada senarai episod tajuk muncul di sini dan dipasang tanpa sambungan.	
+values-b+ms/strings.xml	string	downloads_empty_headline	-	STR	Belum ada muat turun	
+values-b+ms/strings.xml	string	downloads_free_up_space	-	STR	Kosongkan ruang	
+values-b+ms/strings.xml	string	downloads_load_failed_body	-	STR	Fail muat turun anda tidak diubah.	
+values-b+ms/strings.xml	string	downloads_load_failed_headline	-	STR	Tidak dapat membaca muat turun anda	
+values-b+ms/strings.xml	string	downloads_offline_pill	-	STR	Luar talian · tiada sambungan	
+values-b+ms/strings.xml	string	downloads_play_from_url	-	STR	Pasang dari URL	
+values-b+ms/strings.xml	string	downloads_select	-	STR	Pilih	
+values-b+ms/strings.xml	string	downloads_storage_full_headline	-	STR	Storan tidak mencukupi	
+values-b+ms/strings.xml	string	downloads_storage_legend	-	STR	%1$s daripada %2$s diguna · %3$s dalam muat turun	
+values-b+ms/strings.xml	string	downloads_storage_needs	-	STR	Perlu %s lagi	
 values-b+ms/strings.xml	string	duplicate_add	-	STR	Tambah	
 values-b+ms/strings.xml	string	duplicate_replace	-	STR	Tukar	
 values-b+ms/strings.xml	string	duplicate_replace_all	-	STR	Tukar Semua	
@@ -19393,6 +19813,18 @@ values-b+mt/strings.xml	string	download_started	-	STR	Beda t-tniżżil
 values-b+mt/strings.xml	string	download_storage_text	-	STR	Ħażna Interna	
 values-b+mt/strings.xml	string	downloaded	-	STR	Imniżżel	
 values-b+mt/strings.xml	string	downloading	-	STR	Qed jinżlu	
+values-b+mt/strings.xml	string	downloads_browse_library	-	STR	Esplora l-librerija	
+values-b+mt/strings.xml	string	downloads_empty_body	-	STR	It-tniżżil li tibda mil-lista tal-episodji ta' titlu jidher hawn u jindaqq mingħajr konnessjoni.	
+values-b+mt/strings.xml	string	downloads_empty_headline	-	STR	Għad m'hemmx tniżżil	
+values-b+mt/strings.xml	string	downloads_free_up_space	-	STR	Ħeles l-ispazju	
+values-b+mt/strings.xml	string	downloads_load_failed_body	-	STR	Il-fajls imniżżla tiegħek ma nbidlux.	
+values-b+mt/strings.xml	string	downloads_load_failed_headline	-	STR	Ma setax jinqara t-tniżżil tiegħek	
+values-b+mt/strings.xml	string	downloads_offline_pill	-	STR	Offline · l-ebda konnessjoni	
+values-b+mt/strings.xml	string	downloads_play_from_url	-	STR	Indaqq minn URL	
+values-b+mt/strings.xml	string	downloads_select	-	STR	Agħżel	
+values-b+mt/strings.xml	string	downloads_storage_full_headline	-	STR	M'hemmx biżżejjed ħażna	
+values-b+mt/strings.xml	string	downloads_storage_legend	-	STR	%1$s minn %2$s użati · %3$s fit-tniżżil	
+values-b+mt/strings.xml	string	downloads_storage_needs	-	STR	Hemm bżonn %s oħra	
 values-b+mt/strings.xml	string	duration_format	-	STR	%d min	
 values-b+mt/strings.xml	string	episode_more_options_des	-	STR	Iktar Preferenzi	
 values-b+mt/strings.xml	string	episode_poster_img_des	-	STR	Kartellun tal-episodju	
@@ -19667,6 +20099,18 @@ values-b+my/strings.xml	string	download_storage_text	-	STR	ဖုန်း သ�
 values-b+my/strings.xml	string	downloaded	-	STR	ဒေါင်းလုဒ် လုပ်ပြီး	
 values-b+my/strings.xml	string	downloaded_file	-	STR	ဖိုင်ဒေါင်းလုဒ်လုပ်ပြီး	
 values-b+my/strings.xml	string	downloading	-	STR	ဒေါင်းလုဒ် လုပ်နေသည်	
+values-b+my/strings.xml	string	downloads_browse_library	-	STR	လိုက်ဘရီကို ကြည့်ရှုရန်	
+values-b+my/strings.xml	string	downloads_empty_body	-	STR	ခေါင်းစဉ်တစ်ခု၏ အပိုင်းစာရင်းမှ စတင်သော ဒေါင်းလုဒ်များသည် ဤနေရာတွင် ပေါ်လာပြီး အင်တာနက်မလိုဘဲ ဖွင့်နိုင်သည်။	
+values-b+my/strings.xml	string	downloads_empty_headline	-	STR	ဒေါင်းလုဒ် မရှိသေးပါ	
+values-b+my/strings.xml	string	downloads_free_up_space	-	STR	နေရာလွတ်ယူရန်	
+values-b+my/strings.xml	string	downloads_load_failed_body	-	STR	ဒေါင်းလုဒ်လုပ်ထားသော ဖိုင်များကို မပြောင်းလဲထားပါ။	
+values-b+my/strings.xml	string	downloads_load_failed_headline	-	STR	ဒေါင်းလုဒ်များကို ဖတ်၍မရပါ	
+values-b+my/strings.xml	string	downloads_offline_pill	-	STR	အော့ဖ်လိုင်း · ချိတ်ဆက်မှုမရှိပါ	
+values-b+my/strings.xml	string	downloads_play_from_url	-	STR	URL မှ ဖွင့်ရန်	
+values-b+my/strings.xml	string	downloads_select	-	STR	ရွေးချယ်ရန်	
+values-b+my/strings.xml	string	downloads_storage_full_headline	-	STR	သိုလှောင်ရုံ မလုံလောက်ပါ	
+values-b+my/strings.xml	string	downloads_storage_legend	-	STR	%1$s / %2$s အသုံးပြုပြီး · ဒေါင်းလုဒ်တွင် %3$s	
+values-b+my/strings.xml	string	downloads_storage_needs	-	STR	%s ထပ်လိုအပ်သည်	
 values-b+my/strings.xml	string	duration	-	STR	ကြာချိန်	
 values-b+my/strings.xml	string	duration_format	-	STR	%d မိနစ်	
 values-b+my/strings.xml	string	edit	-	STR	တည်းဖြတ်ရန်	
@@ -20139,6 +20583,18 @@ values-b+ne/strings.xml	string	download_started	-	STR	डाउनलोड स�
 values-b+ne/strings.xml	string	download_storage_text	-	STR	भित्री स्टोरेज	
 values-b+ne/strings.xml	string	downloaded	-	STR	डाउनलोड भयो	
 values-b+ne/strings.xml	string	downloading	-	STR	डाउनलोड हुदैछ	
+values-b+ne/strings.xml	string	downloads_browse_library	-	STR	लाइब्रेरी हेर्नुहोस्	
+values-b+ne/strings.xml	string	downloads_empty_body	-	STR	शीर्षकको एपिसोड सूचीबाट सुरु गरिएका डाउनलोडहरू यहाँ देखिन्छन् र जडान बिना प्ले हुन्छन्।	
+values-b+ne/strings.xml	string	downloads_empty_headline	-	STR	अहिलेसम्म कुनै डाउनलोड छैन	
+values-b+ne/strings.xml	string	downloads_free_up_space	-	STR	ठाउँ खाली गर्नुहोस्	
+values-b+ne/strings.xml	string	downloads_load_failed_body	-	STR	तपाईंका डाउनलोड गरिएका फाइलहरू परिवर्तन गरिएका छैनन्।	
+values-b+ne/strings.xml	string	downloads_load_failed_headline	-	STR	तपाईंका डाउनलोडहरू पढ्न सकिएन	
+values-b+ne/strings.xml	string	downloads_offline_pill	-	STR	अफलाइन · जडान छैन	
+values-b+ne/strings.xml	string	downloads_play_from_url	-	STR	URL बाट प्ले गर्नुहोस्	
+values-b+ne/strings.xml	string	downloads_select	-	STR	चयन गर्नुहोस्	
+values-b+ne/strings.xml	string	downloads_storage_full_headline	-	STR	पर्याप्त स्टोरेज छैन	
+values-b+ne/strings.xml	string	downloads_storage_legend	-	STR	%1$s / %2$s प्रयोग भयो · डाउनलोडमा %3$s	
+values-b+ne/strings.xml	string	downloads_storage_needs	-	STR	थप %s चाहिन्छ	
 values-b+ne/strings.xml	string	duration_format	-	STR	%d मिनेट	
 values-b+ne/strings.xml	string	episode_more_options_des	-	STR	थप विकल्पहरू	
 values-b+ne/strings.xml	string	episode_poster_img_des	-	STR	एपिसोडको पोस्टर	
@@ -20466,8 +20922,20 @@ values-b+nl/strings.xml	string	download_time_left_sec_format	-	STR	%1$d s
 values-b+nl/strings.xml	string	downloaded	-	STR	Gedownload	
 values-b+nl/strings.xml	string	downloaded_file	-	STR	Gedownload bestand	
 values-b+nl/strings.xml	string	downloading	-	STR	Downloaden	
+values-b+nl/strings.xml	string	downloads_browse_library	-	STR	Bibliotheek bekijken	
 values-b+nl/strings.xml	string	downloads_delete_select	-	STR	Selecteer items om te verwijderen	
 values-b+nl/strings.xml	string	downloads_empty	-	STR	Er zijn momenteel geen downloads beschikbaar.	
+values-b+nl/strings.xml	string	downloads_empty_body	-	STR	Downloads die je start vanuit de afleveringenlijst van een titel verschijnen hier en spelen af zonder verbinding.	
+values-b+nl/strings.xml	string	downloads_empty_headline	-	STR	Nog geen downloads	
+values-b+nl/strings.xml	string	downloads_free_up_space	-	STR	Ruimte vrijmaken	
+values-b+nl/strings.xml	string	downloads_load_failed_body	-	STR	Je gedownloade bestanden zijn niet gewijzigd.	
+values-b+nl/strings.xml	string	downloads_load_failed_headline	-	STR	Kon je downloads niet lezen	
+values-b+nl/strings.xml	string	downloads_offline_pill	-	STR	Offline · geen verbinding	
+values-b+nl/strings.xml	string	downloads_play_from_url	-	STR	Afspelen vanaf URL	
+values-b+nl/strings.xml	string	downloads_select	-	STR	Selecteren	
+values-b+nl/strings.xml	string	downloads_storage_full_headline	-	STR	Niet genoeg opslag	
+values-b+nl/strings.xml	string	downloads_storage_legend	-	STR	%1$s van %2$s gebruikt · %3$s in downloads	
+values-b+nl/strings.xml	string	downloads_storage_needs	-	STR	Nog %s nodig	
 values-b+nl/strings.xml	string	duplicate_add	-	STR	Toevoegen	
 values-b+nl/strings.xml	string	duplicate_message_multiple	-	STR	Er zijn mogelijk dubbele items gevonden in uw bibliotheek: \n \n%s \n \nWilt u dit item toch toevoegen, de bestaande vervangen of de actie annuleren?	
 values-b+nl/strings.xml	string	duplicate_message_single	-	STR	Het lijkt erop dat er al een mogelijk duplicaat bestaat in uw bibliotheek: '%s.' \n \nWilt u dit item toch toevoegen, het bestaande item vervangen of de actie annuleren?	
@@ -21070,6 +21538,18 @@ values-b+nn/strings.xml	string	download_started	-	STR	Nedlasting starta
 values-b+nn/strings.xml	string	download_storage_text	-	STR	Internlagring	
 values-b+nn/strings.xml	string	downloaded	-	STR	Lasta ned	
 values-b+nn/strings.xml	string	downloading	-	STR	Nedlasting pågår	
+values-b+nn/strings.xml	string	downloads_browse_library	-	STR	Bla i biblioteket	
+values-b+nn/strings.xml	string	downloads_empty_body	-	STR	Nedlastingar du startar frå episodelista til ein tittel, blir viste her og kan spelast av utan tilkopling.	
+values-b+nn/strings.xml	string	downloads_empty_headline	-	STR	Ingen nedlastingar enno	
+values-b+nn/strings.xml	string	downloads_free_up_space	-	STR	Frigjer plass	
+values-b+nn/strings.xml	string	downloads_load_failed_body	-	STR	Dei nedlasta filene dine er ikkje endra.	
+values-b+nn/strings.xml	string	downloads_load_failed_headline	-	STR	Kunne ikkje lese nedlastingane dine	
+values-b+nn/strings.xml	string	downloads_offline_pill	-	STR	Fråkopla · inga tilkopling	
+values-b+nn/strings.xml	string	downloads_play_from_url	-	STR	Spel av frå URL	
+values-b+nn/strings.xml	string	downloads_select	-	STR	Vel	
+values-b+nn/strings.xml	string	downloads_storage_full_headline	-	STR	Ikkje nok lagringsplass	
+values-b+nn/strings.xml	string	downloads_storage_legend	-	STR	%1$s av %2$s brukt · %3$s i nedlastingar	
+values-b+nn/strings.xml	string	downloads_storage_needs	-	STR	Treng %s til	
 values-b+nn/strings.xml	string	duration	-	STR	Varigheit	
 values-b+nn/strings.xml	string	duration_format	-	STR	%d minutt	
 values-b+nn/strings.xml	string	episode	-	STR	Episode	
@@ -21399,6 +21879,18 @@ values-b+no/strings.xml	string	download_storage_text	-	STR	Intern lagring
 values-b+no/strings.xml	string	downloaded	-	STR	Lastet ned	
 values-b+no/strings.xml	string	downloaded_file	-	STR	Nedlastet fil	
 values-b+no/strings.xml	string	downloading	-	STR	Nedlasting pågår	
+values-b+no/strings.xml	string	downloads_browse_library	-	STR	Bla i biblioteket	
+values-b+no/strings.xml	string	downloads_empty_body	-	STR	Nedlastinger du starter fra episodelisten til en tittel, vises her og kan spilles av uten tilkobling.	
+values-b+no/strings.xml	string	downloads_empty_headline	-	STR	Ingen nedlastinger ennå	
+values-b+no/strings.xml	string	downloads_free_up_space	-	STR	Frigjør plass	
+values-b+no/strings.xml	string	downloads_load_failed_body	-	STR	De nedlastede filene dine er ikke endret.	
+values-b+no/strings.xml	string	downloads_load_failed_headline	-	STR	Kunne ikke lese nedlastingene dine	
+values-b+no/strings.xml	string	downloads_offline_pill	-	STR	Frakoblet · ingen tilkobling	
+values-b+no/strings.xml	string	downloads_play_from_url	-	STR	Spill av fra URL	
+values-b+no/strings.xml	string	downloads_select	-	STR	Velg	
+values-b+no/strings.xml	string	downloads_storage_full_headline	-	STR	Ikke nok lagringsplass	
+values-b+no/strings.xml	string	downloads_storage_legend	-	STR	%1$s av %2$s brukt · %3$s i nedlastinger	
+values-b+no/strings.xml	string	downloads_storage_needs	-	STR	Trenger %s til	
 values-b+no/strings.xml	string	duration	-	STR	Varighet	
 values-b+no/strings.xml	string	duration_format	-	STR	%d min	
 values-b+no/strings.xml	string	edit	-	STR	Rediger	
@@ -21871,6 +22363,18 @@ values-b+or/strings.xml	string	documentaries_singular	-	STR	ଵୃତ୍ତଚ�
 values-b+or/strings.xml	string	dont_show_again	-	STR	ପୁନଃ ଦେଖାଅନି	
 values-b+or/strings.xml	string	download_storage_text	-	STR	ଅନ୍ତଃ-ଷ୍ଟୋରେଜ୍	
 values-b+or/strings.xml	string	download_time_left_hour_min_sec_format	-	STR	%1$dଘଣ୍ଟା %2$dମିନିଟ୍ %3$dସେକେଣ୍ଡ	
+values-b+or/strings.xml	string	downloads_browse_library	-	STR	ଲାଇବ୍ରେରୀ ବ୍ରାଉଜ୍ କର	
+values-b+or/strings.xml	string	downloads_empty_body	-	STR	ଶୀର୍ଷକର ଏପିସୋଡ୍ ତାଲିକାରୁ ଆରମ୍ଭ କରାଯାଇଥିବା ଡାଉନଲୋଡ୍ ଏଠାରେ ଦେଖାଯାଏ ଏବଂ ସଂଯୋଗ ବିନା ଚାଲେ।	
+values-b+or/strings.xml	string	downloads_empty_headline	-	STR	ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ଡାଉନଲୋଡ୍ ନାହିଁ	
+values-b+or/strings.xml	string	downloads_free_up_space	-	STR	ସ୍ଥାନ ଖାଲି କର	
+values-b+or/strings.xml	string	downloads_load_failed_body	-	STR	ଆପଣଙ୍କ ଡାଉନଲୋଡ୍ ହୋଇଥିବା ଫାଇଲଗୁଡ଼ିକ ବଦଳାଯାଇନାହିଁ।	
+values-b+or/strings.xml	string	downloads_load_failed_headline	-	STR	ଆପଣଙ୍କ ଡାଉନଲୋଡ୍ ପଢ଼ିହେଲା ନାହିଁ	
+values-b+or/strings.xml	string	downloads_offline_pill	-	STR	ଅଫଲାଇନ୍ · ସଂଯୋଗ ନାହିଁ	
+values-b+or/strings.xml	string	downloads_play_from_url	-	STR	URLରୁ ଚଲାଅ	
+values-b+or/strings.xml	string	downloads_select	-	STR	ବାଛ	
+values-b+or/strings.xml	string	downloads_storage_full_headline	-	STR	ପର୍ଯ୍ୟାପ୍ତ ଷ୍ଟୋରେଜ୍ ନାହିଁ	
+values-b+or/strings.xml	string	downloads_storage_legend	-	STR	%1$s / %2$s ଵ୍ୟଵହୃତ · ଡାଉନଲୋଡରେ %3$s	
+values-b+or/strings.xml	string	downloads_storage_needs	-	STR	ଆଉ %s ଦରକାର	
 values-b+or/strings.xml	string	duration	-	STR	ଅଵଧି	
 values-b+or/strings.xml	string	duration_format	-	STR	%d ମିନିଟ୍	
 values-b+or/strings.xml	string	episode	-	STR	ଅଧ୍ୟାୟ	
@@ -22252,8 +22756,20 @@ values-b+pl/strings.xml	string	download_time_left_sec_format	-	STR	%1$ds
 values-b+pl/strings.xml	string	downloaded	-	STR	Pobrane	
 values-b+pl/strings.xml	string	downloaded_file	-	STR	Pobrano plik	
 values-b+pl/strings.xml	string	downloading	-	STR	Pobieranie	
+values-b+pl/strings.xml	string	downloads_browse_library	-	STR	Przeglądaj bibliotekę	
 values-b+pl/strings.xml	string	downloads_delete_select	-	STR	Zaznacz elementy do usunięcia	
 values-b+pl/strings.xml	string	downloads_empty	-	STR	Obecnie nie ma żadnych pobrań.	
+values-b+pl/strings.xml	string	downloads_empty_body	-	STR	Pobrania rozpoczęte z listy odcinków tytułu pojawiają się tutaj i można je odtwarzać bez połączenia.	
+values-b+pl/strings.xml	string	downloads_empty_headline	-	STR	Nie ma jeszcze pobranych	
+values-b+pl/strings.xml	string	downloads_free_up_space	-	STR	Zwolnij miejsce	
+values-b+pl/strings.xml	string	downloads_load_failed_body	-	STR	Pobrane pliki nie zostały zmienione.	
+values-b+pl/strings.xml	string	downloads_load_failed_headline	-	STR	Nie udało się odczytać pobranych	
+values-b+pl/strings.xml	string	downloads_offline_pill	-	STR	Offline · brak połączenia	
+values-b+pl/strings.xml	string	downloads_play_from_url	-	STR	Odtwórz z URL	
+values-b+pl/strings.xml	string	downloads_select	-	STR	Zaznacz	
+values-b+pl/strings.xml	string	downloads_storage_full_headline	-	STR	Za mało pamięci	
+values-b+pl/strings.xml	string	downloads_storage_legend	-	STR	Użyto %1$s z %2$s · %3$s w pobranych	
+values-b+pl/strings.xml	string	downloads_storage_needs	-	STR	Potrzeba jeszcze %s	
 values-b+pl/strings.xml	string	duplicate_add	-	STR	Dodaj	
 values-b+pl/strings.xml	string	duplicate_message_multiple	-	STR	W swojej bibliotece znaleziono potencjalne duplikaty: \n \n%s \n \nCzy chcesz dodać ten element, zastąpić istniejące, czy anulować operację?	
 values-b+pl/strings.xml	string	duplicate_message_single	-	STR	Wygląda się, że potencjalny duplikat już znajduje się w bibliotece: '%s'. ' \n \nCzy chciałbyś dodać ten element, zastąpić istniejący, czy anulować akcję?	
@@ -23046,8 +23562,20 @@ values-b+pt+BR/strings.xml	string	download_time_left_sec_format	-	STR	%1$d s
 values-b+pt+BR/strings.xml	string	downloaded	-	STR	Baixado	
 values-b+pt+BR/strings.xml	string	downloaded_file	-	STR	Arquivo baixado	
 values-b+pt+BR/strings.xml	string	downloading	-	STR	Baixando	
+values-b+pt+BR/strings.xml	string	downloads_browse_library	-	STR	Explorar biblioteca	
 values-b+pt+BR/strings.xml	string	downloads_delete_select	-	STR	Selecionar itens para excluir	
 values-b+pt+BR/strings.xml	string	downloads_empty	-	STR	Atualmente não há downloads disponíveis.	
+values-b+pt+BR/strings.xml	string	downloads_empty_body	-	STR	Os downloads iniciados na lista de episódios de um título aparecem aqui e são reproduzidos sem conexão.	
+values-b+pt+BR/strings.xml	string	downloads_empty_headline	-	STR	Ainda não há downloads	
+values-b+pt+BR/strings.xml	string	downloads_free_up_space	-	STR	Liberar espaço	
+values-b+pt+BR/strings.xml	string	downloads_load_failed_body	-	STR	Seus arquivos baixados não foram alterados.	
+values-b+pt+BR/strings.xml	string	downloads_load_failed_headline	-	STR	Não foi possível ler seus downloads	
+values-b+pt+BR/strings.xml	string	downloads_offline_pill	-	STR	Offline · sem conexão	
+values-b+pt+BR/strings.xml	string	downloads_play_from_url	-	STR	Reproduzir de URL	
+values-b+pt+BR/strings.xml	string	downloads_select	-	STR	Selecionar	
+values-b+pt+BR/strings.xml	string	downloads_storage_full_headline	-	STR	Armazenamento insuficiente	
+values-b+pt+BR/strings.xml	string	downloads_storage_legend	-	STR	%1$s de %2$s usados · %3$s em downloads	
+values-b+pt+BR/strings.xml	string	downloads_storage_needs	-	STR	Faltam %s	
 values-b+pt+BR/strings.xml	string	duplicate_add	-	STR	Adicionar	
 values-b+pt+BR/strings.xml	string	duplicate_message_multiple	-	STR	Possíveis itens duplicados foram encontrados em sua biblioteca: \n \n %s \n \nGostaria de adicionar este item mesmo assim, substituir os existentes ou cancelar a ação?	
 values-b+pt+BR/strings.xml	string	duplicate_message_single	-	STR	Parece que já existe um item potencialmente duplicado na sua biblioteca: '%s.' \n \nGostaria de adicionar este item mesmo assim, substituir o existente ou cancelar a ação?	
@@ -23837,8 +24365,20 @@ values-b+pt/strings.xml	string	download_time_left_sec_format	-	STR	%1$ds
 values-b+pt/strings.xml	string	downloaded	-	STR	Baixado	
 values-b+pt/strings.xml	string	downloaded_file	-	STR	Arquivo baixado	
 values-b+pt/strings.xml	string	downloading	-	STR	Baixando	
+values-b+pt/strings.xml	string	downloads_browse_library	-	STR	Explorar biblioteca	
 values-b+pt/strings.xml	string	downloads_delete_select	-	STR	Selecionar Items para Eliminar	
 values-b+pt/strings.xml	string	downloads_empty	-	STR	Não existem downloads disponíveis.	
+values-b+pt/strings.xml	string	downloads_empty_body	-	STR	Os downloads iniciados na lista de episódios de um título aparecem aqui e são reproduzidos sem ligação.	
+values-b+pt/strings.xml	string	downloads_empty_headline	-	STR	Ainda não existem downloads	
+values-b+pt/strings.xml	string	downloads_free_up_space	-	STR	Libertar espaço	
+values-b+pt/strings.xml	string	downloads_load_failed_body	-	STR	Os seus ficheiros transferidos não foram alterados.	
+values-b+pt/strings.xml	string	downloads_load_failed_headline	-	STR	Não foi possível ler os seus downloads	
+values-b+pt/strings.xml	string	downloads_offline_pill	-	STR	Offline · sem ligação	
+values-b+pt/strings.xml	string	downloads_play_from_url	-	STR	Reproduzir de URL	
+values-b+pt/strings.xml	string	downloads_select	-	STR	Selecionar	
+values-b+pt/strings.xml	string	downloads_storage_full_headline	-	STR	Armazenamento insuficiente	
+values-b+pt/strings.xml	string	downloads_storage_legend	-	STR	%1$s de %2$s usados · %3$s em downloads	
+values-b+pt/strings.xml	string	downloads_storage_needs	-	STR	Faltam %s	
 values-b+pt/strings.xml	string	duplicate_add	-	STR	Adicionar	
 values-b+pt/strings.xml	string	duplicate_message_multiple	-	STR	Potenciais itens duplicados foram encontrados na sua biblioteca: \n \n%s \n \nDeseja adicionar esse item mesmo assim, subtituir os existentes, ou cancelar a ação?	
 values-b+pt/strings.xml	string	duplicate_message_single	-	STR	Parece que já existe um item potencialmente duplicado na sua biblioteca: '%s.' \n \nDeseja adicionar esse item mesmo assim, subtituir o existente, ou cancelar a ação?	
@@ -24590,8 +25130,20 @@ values-b+qt/strings.xml	string	download_storage_text	-	STR	aauugghhahahhah
 values-b+qt/strings.xml	string	downloaded	-	STR	ooo-ahahaaaghh	
 values-b+qt/strings.xml	string	downloaded_file	-	STR	aaaagggaah aagg	
 values-b+qt/strings.xml	string	downloading	-	STR	oohahaaoouuh	
+values-b+qt/strings.xml	string	downloads_browse_library	-	STR	ooh uuuuuuuh	
 values-b+qt/strings.xml	string	downloads_delete_select	-	STR	eeeeek uuuhh oh aaaagg	
 values-b+qt/strings.xml	string	downloads_empty	-	STR	uuuhh aah uuuugggog ug aaaagggog	
+values-b+qt/strings.xml	string	downloads_empty_body	-	STR	uuuhh aah uuuugggog ug aaaagggog aaaagggoh ooh uuuugggh uuuuhhh.	
+values-b+qt/strings.xml	string	downloads_empty_headline	-	STR	uuuhh aauuhah	
+values-b+qt/strings.xml	string	downloads_free_up_space	-	STR	ooo-ahahaaaaa oh	
+values-b+qt/strings.xml	string	downloads_load_failed_body	-	STR	ouuhhuhooh ooh uuh ahooo.	
+values-b+qt/strings.xml	string	downloads_load_failed_headline	-	STR	ahooo uuhh ouuhhuhooh ooh	
+values-b+qt/strings.xml	string	downloads_offline_pill	-	STR	aaaagggoh ooh · uuuhh	
+values-b+qt/strings.xml	string	downloads_play_from_url	-	STR	aaaaa uuuuhhh	
+values-b+qt/strings.xml	string	downloads_select	-	STR	uuuugg	
+values-b+qt/strings.xml	string	downloads_storage_full_headline	-	STR	uuuhh aauugghhahahhah	
+values-b+qt/strings.xml	string	downloads_storage_legend	-	STR	%1$s oh %2$s ahhahhh · %3$s ouuhhuhooh	
+values-b+qt/strings.xml	string	downloads_storage_needs	-	STR	aah %s oh	
 values-b+qt/strings.xml	string	duplicate_add	-	STR	oog	
 values-b+qt/strings.xml	string	duplicate_message_multiple	-	STR	uuuuggguk uuuuhhhoh uuugg aahh aaak uuugg ag oohh library: \n \n%s \n \nWould aag aagg og uuk uugg oogg anyway, aaaahhh ooh uuuugggh ones, ek uuuuhh aah action?	
 values-b+qt/strings.xml	string	duplicate_message_single	-	STR	oh ooooggg oogg k uuuuuukaahh uuuugggag uuhh ooooggg oooogg ah oogg library: '%s' \n \n \nWould uug uugg uh aak oogg oohh anyway, oooohhh uuh oooohhhg one, oh aaaagg eek action?	
@@ -25263,8 +25815,20 @@ values-b+ro/strings.xml	string	download_time_left_sec_format	-	STR	%1$ds
 values-b+ro/strings.xml	string	downloaded	-	STR	Descărcat	
 values-b+ro/strings.xml	string	downloaded_file	-	STR	Fișier descărcat	
 values-b+ro/strings.xml	string	downloading	-	STR	Se descarcă	
+values-b+ro/strings.xml	string	downloads_browse_library	-	STR	Răsfoiește biblioteca	
 values-b+ro/strings.xml	string	downloads_delete_select	-	STR	Selectionati elementele de sters	
 values-b+ro/strings.xml	string	downloads_empty	-	STR	Nu există descărcări.	
+values-b+ro/strings.xml	string	downloads_empty_body	-	STR	Descărcările pornite din lista de episoade a unui titlu apar aici și pot fi redate fără conexiune.	
+values-b+ro/strings.xml	string	downloads_empty_headline	-	STR	Încă nu există descărcări	
+values-b+ro/strings.xml	string	downloads_free_up_space	-	STR	Eliberează spațiu	
+values-b+ro/strings.xml	string	downloads_load_failed_body	-	STR	Fișierele descărcate nu au fost modificate.	
+values-b+ro/strings.xml	string	downloads_load_failed_headline	-	STR	Descărcările nu au putut fi citite	
+values-b+ro/strings.xml	string	downloads_offline_pill	-	STR	Offline · fără conexiune	
+values-b+ro/strings.xml	string	downloads_play_from_url	-	STR	Redă de la URL	
+values-b+ro/strings.xml	string	downloads_select	-	STR	Selectează	
+values-b+ro/strings.xml	string	downloads_storage_full_headline	-	STR	Stocare insuficientă	
+values-b+ro/strings.xml	string	downloads_storage_legend	-	STR	%1$s din %2$s folosiți · %3$s în descărcări	
+values-b+ro/strings.xml	string	downloads_storage_needs	-	STR	Mai sunt necesari %s	
 values-b+ro/strings.xml	string	duplicate_add	-	STR	Adaugă	
 values-b+ro/strings.xml	string	duplicate_message_multiple	-	STR	Elemente potențial duplicate au fost găsite în biblioteca ta: \n \n%s \n \nÎn ciuda acestui fapt, ai dori să adaugi acest alement, să le înlocuiești pe cele existente, sau să anulezi acțiunea?	
 values-b+ro/strings.xml	string	duplicate_message_single	-	STR	Se pare că un element potențial duplicat deja există în biblioteca ta: '%s.' \n \nÎn ciuda aceasta, ai dori să adaugi acest element, să îl înlocuiești pe cel existent, sau să anulezi acțiunea?	
@@ -25979,8 +26543,20 @@ values-b+ru/strings.xml	string	download_time_left_sec_format	-	STR	%1$dс
 values-b+ru/strings.xml	string	downloaded	-	STR	Скачано	
 values-b+ru/strings.xml	string	downloaded_file	-	STR	Скачано файл	
 values-b+ru/strings.xml	string	downloading	-	STR	Скачивание	
+values-b+ru/strings.xml	string	downloads_browse_library	-	STR	Открыть библиотеку	
 values-b+ru/strings.xml	string	downloads_delete_select	-	STR	Выберите элементы для удаления	
 values-b+ru/strings.xml	string	downloads_empty	-	STR	В данный момент скачиваний нет.	
+values-b+ru/strings.xml	string	downloads_empty_body	-	STR	Скачивания, начатые из списка серий, появляются здесь и воспроизводятся без сети.	
+values-b+ru/strings.xml	string	downloads_empty_headline	-	STR	Скачанного пока нет	
+values-b+ru/strings.xml	string	downloads_free_up_space	-	STR	Освободить место	
+values-b+ru/strings.xml	string	downloads_load_failed_body	-	STR	Ваши скачанные файлы не изменены.	
+values-b+ru/strings.xml	string	downloads_load_failed_headline	-	STR	Не удалось прочитать скачанное	
+values-b+ru/strings.xml	string	downloads_offline_pill	-	STR	Без сети · нет соединения	
+values-b+ru/strings.xml	string	downloads_play_from_url	-	STR	Смотреть по URL	
+values-b+ru/strings.xml	string	downloads_select	-	STR	Выбрать	
+values-b+ru/strings.xml	string	downloads_storage_full_headline	-	STR	Недостаточно памяти	
+values-b+ru/strings.xml	string	downloads_storage_legend	-	STR	Использовано %1$s из %2$s · %3$s в скачанном	
+values-b+ru/strings.xml	string	downloads_storage_needs	-	STR	Нужно ещё %s	
 values-b+ru/strings.xml	string	duplicate_add	-	STR	Добавить	
 values-b+ru/strings.xml	string	duplicate_message_multiple	-	STR	В вашей библиотеке есть возможно повторяющиеся элементы: \n \n'%s.' \n \nХотите ли вы всё равно добавить этот элемент в библиотеку, заменить уже существующий или отменить действие?	
 values-b+ru/strings.xml	string	duplicate_message_single	-	STR	Кажется, что в вашей библиотеке уже есть такой элемент: '%s.' \n \nВы хотите всё равно добавить его, заменить уже существующий или отменить действие?	
@@ -26700,8 +27276,20 @@ values-b+sk/strings.xml	string	download_time_left_sec_format	-	STR	%1$ds
 values-b+sk/strings.xml	string	downloaded	-	STR	Stiahnuté	
 values-b+sk/strings.xml	string	downloaded_file	-	STR	Stiahnutý súbor	
 values-b+sk/strings.xml	string	downloading	-	STR	Sťahovanie	
+values-b+sk/strings.xml	string	downloads_browse_library	-	STR	Prehľadávať knižnicu	
 values-b+sk/strings.xml	string	downloads_delete_select	-	STR	Vyberte položky na odstránenie	
 values-b+sk/strings.xml	string	downloads_empty	-	STR	Momentálne nie sú žiadne stiahnutia.	
+values-b+sk/strings.xml	string	downloads_empty_body	-	STR	Sťahovania spustené zo zoznamu epizód titulu sa zobrazia tu a prehrajú sa bez pripojenia.	
+values-b+sk/strings.xml	string	downloads_empty_headline	-	STR	Zatiaľ žiadne stiahnutia	
+values-b+sk/strings.xml	string	downloads_free_up_space	-	STR	Uvoľniť miesto	
+values-b+sk/strings.xml	string	downloads_load_failed_body	-	STR	Vaše stiahnuté súbory neboli zmenené.	
+values-b+sk/strings.xml	string	downloads_load_failed_headline	-	STR	Stiahnutia sa nepodarilo načítať	
+values-b+sk/strings.xml	string	downloads_offline_pill	-	STR	Offline · bez pripojenia	
+values-b+sk/strings.xml	string	downloads_play_from_url	-	STR	Prehrať z URL	
+values-b+sk/strings.xml	string	downloads_select	-	STR	Vybrať	
+values-b+sk/strings.xml	string	downloads_storage_full_headline	-	STR	Nedostatok úložiska	
+values-b+sk/strings.xml	string	downloads_storage_legend	-	STR	Využité %1$s z %2$s · %3$s v stiahnutiach	
+values-b+sk/strings.xml	string	downloads_storage_needs	-	STR	Treba ešte %s	
 values-b+sk/strings.xml	string	duration	-	STR	Trvanie	
 values-b+sk/strings.xml	string	duration_format	-	STR	%d min	
 values-b+sk/strings.xml	string	eigengraumode_settings	-	STR	Rýchlosť prehrávania (Eigengravy režim)	
@@ -27226,8 +27814,20 @@ values-b+so/strings.xml	string	download_time_left_sec_format	-	STR	%1$dilb
 values-b+so/strings.xml	string	downloaded	-	STR	La degtay	
 values-b+so/strings.xml	string	downloaded_file	-	STR	Waa ka dejiyey faylka	
 values-b+so/strings.xml	string	downloading	-	STR	Soo degaya	
+values-b+so/strings.xml	string	downloads_browse_library	-	STR	Baadh kaydka	
 values-b+so/strings.xml	string	downloads_delete_select	-	STR	Dooro waxyaabaha aad tirayso	
 values-b+so/strings.xml	string	downloads_empty	-	STR	Ma jiro muuqaal aad soo degsatay.	
+values-b+so/strings.xml	string	downloads_empty_body	-	STR	Soo dejinta aad ka bilowdo liiska qaybaha cinwaanka halkan ayay ka muuqdaan oo waxay shaqeeyaan khad la'aan.	
+values-b+so/strings.xml	string	downloads_empty_headline	-	STR	Weli ma jiraan soo dejin	
+values-b+so/strings.xml	string	downloads_free_up_space	-	STR	Bannee meel	
+values-b+so/strings.xml	string	downloads_load_failed_body	-	STR	Faylasha aad soo dejisay lama beddelin.	
+values-b+so/strings.xml	string	downloads_load_failed_headline	-	STR	Lama akhrin karo soo dejintaada	
+values-b+so/strings.xml	string	downloads_offline_pill	-	STR	Khad la'aan · ma jiro isku xir	
+values-b+so/strings.xml	string	downloads_play_from_url	-	STR	Ka daar URL	
+values-b+so/strings.xml	string	downloads_select	-	STR	Dooro	
+values-b+so/strings.xml	string	downloads_storage_full_headline	-	STR	Kayd ku filan ma jiro	
+values-b+so/strings.xml	string	downloads_storage_legend	-	STR	%1$s oo ka mid ah %2$s ayaa la isticmaalay · %3$s soo dejinta	
+values-b+so/strings.xml	string	downloads_storage_needs	-	STR	Waxaa loo baahan yahay %s dheeraad ah	
 values-b+so/strings.xml	string	duration	-	STR	Muddada	
 values-b+so/strings.xml	string	eigengraumode_settings	-	STR	Xawaaraha muuqaalka	
 values-b+so/strings.xml	string	emulator_layout	-	STR	Qaab emulator	
@@ -27851,8 +28451,20 @@ values-b+sq/strings.xml	string	download_time_left_sec_format	-	STR	%1$ds
 values-b+sq/strings.xml	string	downloaded	-	STR	U shkarkua	
 values-b+sq/strings.xml	string	downloaded_file	-	STR	Skedar i shkarkuar	
 values-b+sq/strings.xml	string	downloading	-	STR	Duke u shkarkuar	
+values-b+sq/strings.xml	string	downloads_browse_library	-	STR	Shfleto bibliotekën	
 values-b+sq/strings.xml	string	downloads_delete_select	-	STR	Zgjidhni artikuj për të fshirë	
 values-b+sq/strings.xml	string	downloads_empty	-	STR	Momentalisht nuk ka shkarkime.	
+values-b+sq/strings.xml	string	downloads_empty_body	-	STR	Shkarkimet që nis nga lista e episodeve të një titulli shfaqen këtu dhe luhen pa lidhje.	
+values-b+sq/strings.xml	string	downloads_empty_headline	-	STR	Ende nuk ka shkarkime	
+values-b+sq/strings.xml	string	downloads_free_up_space	-	STR	Liro hapësirë	
+values-b+sq/strings.xml	string	downloads_load_failed_body	-	STR	Skedarët e shkarkuar nuk janë ndryshuar.	
+values-b+sq/strings.xml	string	downloads_load_failed_headline	-	STR	Shkarkimet nuk mund të lexoheshin	
+values-b+sq/strings.xml	string	downloads_offline_pill	-	STR	Offline · pa lidhje	
+values-b+sq/strings.xml	string	downloads_play_from_url	-	STR	Luaj nga URL	
+values-b+sq/strings.xml	string	downloads_select	-	STR	Zgjidh	
+values-b+sq/strings.xml	string	downloads_storage_full_headline	-	STR	Memorie e pamjaftueshme	
+values-b+sq/strings.xml	string	downloads_storage_legend	-	STR	%1$s nga %2$s të përdorura · %3$s në shkarkime	
+values-b+sq/strings.xml	string	downloads_storage_needs	-	STR	Nevojiten edhe %s	
 values-b+sq/strings.xml	string	duplicate_add	-	STR	Shto	
 values-b+sq/strings.xml	string	duplicate_message_multiple	-	STR	Janë gjetur artikuj të mundshëm të dyfishtë në bibliotekën tuaj:\n\n%s\n\nDëshironi ta shtoni gjithsesi, të zëvendësoni ato ekzistuesit, apo të anuloni veprimin?	
 values-b+sq/strings.xml	string	duplicate_message_single	-	STR	Duket se një artikull i mundshëm i dyfishuar tashmë ekziston në bibliotekën tuaj: ‘%s’.\n\nDëshironi ta shtoni gjithsesi, ta zëvendësoni atë ekzistuesin, apo ta anuloni veprimin?	
@@ -28641,8 +29253,20 @@ values-b+sv/strings.xml	string	download_time_left_sec_format	-	STR	%1$ds
 values-b+sv/strings.xml	string	downloaded	-	STR	Nerladdad	
 values-b+sv/strings.xml	string	downloaded_file	-	STR	Nedladdad fil	
 values-b+sv/strings.xml	string	downloading	-	STR	Laddar ner	
+values-b+sv/strings.xml	string	downloads_browse_library	-	STR	Bläddra i biblioteket	
 values-b+sv/strings.xml	string	downloads_delete_select	-	STR	Välj objekt att ta bort	
 values-b+sv/strings.xml	string	downloads_empty	-	STR	Det finns för närvarande inga nedladdningar.	
+values-b+sv/strings.xml	string	downloads_empty_body	-	STR	Nerladdningar du startar från en titels avsnittslista visas här och spelas upp utan anslutning.	
+values-b+sv/strings.xml	string	downloads_empty_headline	-	STR	Inga nerladdningar ännu	
+values-b+sv/strings.xml	string	downloads_free_up_space	-	STR	Frigör utrymme	
+values-b+sv/strings.xml	string	downloads_load_failed_body	-	STR	Dina nerladdade filer har inte ändrats.	
+values-b+sv/strings.xml	string	downloads_load_failed_headline	-	STR	Kunde inte läsa dina nerladdningar	
+values-b+sv/strings.xml	string	downloads_offline_pill	-	STR	Offline · ingen anslutning	
+values-b+sv/strings.xml	string	downloads_play_from_url	-	STR	Spela upp från URL	
+values-b+sv/strings.xml	string	downloads_select	-	STR	Välj	
+values-b+sv/strings.xml	string	downloads_storage_full_headline	-	STR	Inte tillräckligt med lagring	
+values-b+sv/strings.xml	string	downloads_storage_legend	-	STR	%1$s av %2$s använt · %3$s i nerladdningar	
+values-b+sv/strings.xml	string	downloads_storage_needs	-	STR	Behöver %s till	
 values-b+sv/strings.xml	string	duplicate_add	-	STR	Lägg till	
 values-b+sv/strings.xml	string	duplicate_message_multiple	-	STR	Det verkar som om ett potentiellt duplicerat objekt redan finns i ditt bibliotek: \n \n'%s.' \n \nVill du lägga till det här objektet ändå, ersätta det befintliga eller avbryta åtgärden?	
 values-b+sv/strings.xml	string	duplicate_message_single	-	STR	Det verkar som om ett potentiellt duplicerat objekt redan finns i ditt bibliotek: '%s.' \n \nVill du lägga till det här objektet ändå, ersätta det befintliga eller avbryta åtgärden?	
@@ -29431,8 +30055,20 @@ values-b+ta/strings.xml	string	download_time_left_sec_format	-	STR	%1$d வி�
 values-b+ta/strings.xml	string	downloaded	-	STR	பதிவிறக்கப்பட்டது	
 values-b+ta/strings.xml	string	downloaded_file	-	STR	பதிவிறக்கம் செய்யப்பட்ட கோப்பு	
 values-b+ta/strings.xml	string	downloading	-	STR	பதிவிறக்குகிறது	
+values-b+ta/strings.xml	string	downloads_browse_library	-	STR	நூலகத்தை உலாவு	
 values-b+ta/strings.xml	string	downloads_delete_select	-	STR	அழிப்பதற்கு தேர்ந்தெடுக்கவும்	
 values-b+ta/strings.xml	string	downloads_empty	-	STR	தற்போது பதிவிறக்கங்கள் எதுவும் இல்லை.	
+values-b+ta/strings.xml	string	downloads_empty_body	-	STR	தலைப்பின் எபிசோட் பட்டியலிலிருந்து நீங்கள் தொடங்கும் பதிவிறக்கங்கள் இங்கே தோன்றும், இணைப்பு இல்லாமல் இயங்கும்.	
+values-b+ta/strings.xml	string	downloads_empty_headline	-	STR	இன்னும் பதிவிறக்கங்கள் இல்லை	
+values-b+ta/strings.xml	string	downloads_free_up_space	-	STR	இடத்தை விடுவி	
+values-b+ta/strings.xml	string	downloads_load_failed_body	-	STR	நீங்கள் பதிவிறக்கிய கோப்புகள் மாற்றப்படவில்லை.	
+values-b+ta/strings.xml	string	downloads_load_failed_headline	-	STR	உங்கள் பதிவிறக்கங்களைப் படிக்க முடியவில்லை	
+values-b+ta/strings.xml	string	downloads_offline_pill	-	STR	ஆஃப்லைன் · இணைப்பு இல்லை	
+values-b+ta/strings.xml	string	downloads_play_from_url	-	STR	URL இலிருந்து இயக்கு	
+values-b+ta/strings.xml	string	downloads_select	-	STR	தேர்ந்தெடு	
+values-b+ta/strings.xml	string	downloads_storage_full_headline	-	STR	போதுமான சேமிப்பகம் இல்லை	
+values-b+ta/strings.xml	string	downloads_storage_legend	-	STR	%1$s / %2$s பயன்படுத்தப்பட்டது · பதிவிறக்கங்களில் %3$s	
+values-b+ta/strings.xml	string	downloads_storage_needs	-	STR	மேலும் %s தேவை	
 values-b+ta/strings.xml	string	duplicate_add	-	STR	கூட்டு	
 values-b+ta/strings.xml	string	duplicate_message_multiple	-	STR	உங்கள் நூலகத்தில் சாத்தியமான நகல் உருப்படிகள் கண்டறியப்பட்டுள்ளன:\n\n %s\n\n இந்த உருப்படியை எப்படியும் சேர்க்க விரும்புகிறீர்களா, ஏற்கனவே உள்ளவற்றை மாற்ற விரும்புகிறீர்களா அல்லது செயலை ரத்து செய்ய விரும்புகிறீர்களா?	
 values-b+ta/strings.xml	string	duplicate_message_single	-	STR	உங்கள் நூலகத்தில் ஏற்கனவே ஒரு நகல் உருப்படி இருப்பதாகத் தெரிகிறது: '%s.'\n\n இந்த உருப்படியை எப்படியும் சேர்க்க விரும்புகிறீர்களா, இருக்கும் ஒன்றை மாற்ற விரும்புகிறீர்களா அல்லது செயலை ரத்து செய்ய விரும்புகிறீர்களா?	
@@ -30028,6 +30664,18 @@ values-b+ti/strings.xml	string	app_dub_sub_episode_text_format	-	STR	%1$s ክፋ
 values-b+ti/strings.xml	string	cast_format	-	STR	ተዋሳእቲ፡ %s	
 values-b+ti/strings.xml	string	detail_load_failed_body	-	STR	ምንጪ ኣይርከብ ይኸውን።	
 values-b+ti/strings.xml	string	detail_load_failed_headline	-	STR	እዚ ኣርእስቲ ክኽፈት ኣይከኣለን	
+values-b+ti/strings.xml	string	downloads_browse_library	-	STR	ቤተ-መጻሕፍቲ ድለ	
+values-b+ti/strings.xml	string	downloads_empty_body	-	STR	ካብ ዝርዝር ክፋላት ናይ ሓደ ኣርእስቲ እትጅምሮም ውርዳት ኣብዚ ይርአዩ፣ ብዘይ መራኸቢ ድማ ይጻወቱ።	
+values-b+ti/strings.xml	string	downloads_empty_headline	-	STR	ክሳብ ሕጂ ውርዳት የለዉን	
+values-b+ti/strings.xml	string	downloads_free_up_space	-	STR	ቦታ ኣናጽፍ	
+values-b+ti/strings.xml	string	downloads_load_failed_body	-	STR	ዝወረዱ ፋይላትካ ኣይተቐየሩን።	
+values-b+ti/strings.xml	string	downloads_load_failed_headline	-	STR	ውርዳትካ ክንበብ ኣይከኣለን	
+values-b+ti/strings.xml	string	downloads_offline_pill	-	STR	ካብ መስመር ወጻኢ · መራኸቢ የለን	
+values-b+ti/strings.xml	string	downloads_play_from_url	-	STR	ካብ URL ተጻወት	
+values-b+ti/strings.xml	string	downloads_select	-	STR	ምረጽ	
+values-b+ti/strings.xml	string	downloads_storage_full_headline	-	STR	እኹል መኽዘን የለን	
+values-b+ti/strings.xml	string	downloads_storage_legend	-	STR	%1$s ካብ %2$s ተጠቒሙ · %3$s ኣብ ውርዳት	
+values-b+ti/strings.xml	string	downloads_storage_needs	-	STR	ተወሳኺ %s የድሊ	
 values-b+ti/strings.xml	string	extension_allow	-	STR	ፍቀድ	
 values-b+ti/strings.xml	string	extension_decision_not_saved	-	STR	ምርጫኻ ክዕቀብ ኣይከኣለን፡ ስለዚ እዚ መስፋሕፋሕ ጠፊኡ ይጸንሕ። እንደገና ክትሕተት ኢኻ።	
 values-b+ti/strings.xml	string	extension_decisions_unreadable	-	STR	ዝተዓቀበ ምርጫታትካ ክንበብ ኣይከኣለን፡ ስለዚ ኣይተወሰደን። መጠንቀቕታ ዘለዎም መስፋሕፋሕቲ ክሳብ እንደገና እትመርጽ ጠፊኦም ይጸንሑ።	
@@ -30150,6 +30798,18 @@ values-b+tl/strings.xml	string	download_started	-	STR	Download Started
 values-b+tl/strings.xml	string	download_storage_text	-	STR	Internal Storage	
 values-b+tl/strings.xml	string	downloaded	-	STR	Downloaded	
 values-b+tl/strings.xml	string	downloading	-	STR	Downloading	
+values-b+tl/strings.xml	string	downloads_browse_library	-	STR	I-browse ang library	
+values-b+tl/strings.xml	string	downloads_empty_body	-	STR	Lalabas dito ang mga download na sinimulan mo mula sa listahan ng episode ng isang pamagat at mapapanood nang walang koneksyon.	
+values-b+tl/strings.xml	string	downloads_empty_headline	-	STR	Wala pang mga download	
+values-b+tl/strings.xml	string	downloads_free_up_space	-	STR	Magbakante ng espasyo	
+values-b+tl/strings.xml	string	downloads_load_failed_body	-	STR	Hindi nabago ang mga na-download mong file.	
+values-b+tl/strings.xml	string	downloads_load_failed_headline	-	STR	Hindi mabasa ang iyong mga download	
+values-b+tl/strings.xml	string	downloads_offline_pill	-	STR	Offline · walang koneksyon	
+values-b+tl/strings.xml	string	downloads_play_from_url	-	STR	I-play mula sa URL	
+values-b+tl/strings.xml	string	downloads_select	-	STR	Piliin	
+values-b+tl/strings.xml	string	downloads_storage_full_headline	-	STR	Kulang ang storage	
+values-b+tl/strings.xml	string	downloads_storage_legend	-	STR	%1$s ng %2$s ang gamit · %3$s sa mga download	
+values-b+tl/strings.xml	string	downloads_storage_needs	-	STR	Kailangan ng %s pa	
 values-b+tl/strings.xml	string	duration	-	STR	Tagal	
 values-b+tl/strings.xml	string	duration_format	-	STR	%d min	
 values-b+tl/strings.xml	string	eigengraumode_settings	-	STR	Eigengravy Mode	
@@ -30578,8 +31238,20 @@ values-b+tr/strings.xml	string	download_time_left_sec_format	-	STR	%1$dsn
 values-b+tr/strings.xml	string	downloaded	-	STR	İndirildi	
 values-b+tr/strings.xml	string	downloaded_file	-	STR	İndirilen dosya	
 values-b+tr/strings.xml	string	downloading	-	STR	İndiriliyor	
+values-b+tr/strings.xml	string	downloads_browse_library	-	STR	Kütüphaneye göz at	
 values-b+tr/strings.xml	string	downloads_delete_select	-	STR	Silinecek Öğeleri Seçin	
 values-b+tr/strings.xml	string	downloads_empty	-	STR	Şu an hiç bir indirme bulunmamaktadır.	
+values-b+tr/strings.xml	string	downloads_empty_body	-	STR	Bir başlığın bölüm listesinden başlattığınız indirmeler burada görünür ve bağlantı olmadan oynatılır.	
+values-b+tr/strings.xml	string	downloads_empty_headline	-	STR	Henüz indirme yok	
+values-b+tr/strings.xml	string	downloads_free_up_space	-	STR	Yer aç	
+values-b+tr/strings.xml	string	downloads_load_failed_body	-	STR	İndirilen dosyalarınız değiştirilmedi.	
+values-b+tr/strings.xml	string	downloads_load_failed_headline	-	STR	İndirmeleriniz okunamadı	
+values-b+tr/strings.xml	string	downloads_offline_pill	-	STR	Çevrimdışı · bağlantı yok	
+values-b+tr/strings.xml	string	downloads_play_from_url	-	STR	URL'den oynat	
+values-b+tr/strings.xml	string	downloads_select	-	STR	Seç	
+values-b+tr/strings.xml	string	downloads_storage_full_headline	-	STR	Yeterli depolama yok	
+values-b+tr/strings.xml	string	downloads_storage_legend	-	STR	%1$s / %2$s kullanıldı · İndirilenlerde %3$s	
+values-b+tr/strings.xml	string	downloads_storage_needs	-	STR	%s daha gerekli	
 values-b+tr/strings.xml	string	duplicate_add	-	STR	Ekle	
 values-b+tr/strings.xml	string	duplicate_message_multiple	-	STR	Kütüphanenizde potensiyel kopya ürünler bulundu: \n \n%s \n \nYine de ekleyerek var olanları değiştirmek mi istersiniz, yoksa iptal etmek mi?	
 values-b+tr/strings.xml	string	duplicate_message_single	-	STR	Görünüşe göre potansiyel bir kopya kütüphanenizde zaten bulunuyor: '%s' \n \nYine de ekleyerek var olanı değiştirmek mi istersiniz, yoksa iptal etmek mi?	
@@ -31376,8 +32048,20 @@ values-b+uk/strings.xml	string	download_time_left_sec_format	-	STR	%1$d с
 values-b+uk/strings.xml	string	downloaded	-	STR	Завантажено	
 values-b+uk/strings.xml	string	downloaded_file	-	STR	Завантажений файл	
 values-b+uk/strings.xml	string	downloading	-	STR	Завантаження	
+values-b+uk/strings.xml	string	downloads_browse_library	-	STR	Переглянути бібліотеку	
 values-b+uk/strings.xml	string	downloads_delete_select	-	STR	Оберіть елементи для видалення	
 values-b+uk/strings.xml	string	downloads_empty	-	STR	Наразі завантажень немає.	
+values-b+uk/strings.xml	string	downloads_empty_body	-	STR	Завантаження, розпочаті зі списку серій, з'являються тут і відтворюються без мережі.	
+values-b+uk/strings.xml	string	downloads_empty_headline	-	STR	Завантажень ще немає	
+values-b+uk/strings.xml	string	downloads_free_up_space	-	STR	Звільнити місце	
+values-b+uk/strings.xml	string	downloads_load_failed_body	-	STR	Ваші завантажені файли не змінено.	
+values-b+uk/strings.xml	string	downloads_load_failed_headline	-	STR	Не вдалося прочитати завантаження	
+values-b+uk/strings.xml	string	downloads_offline_pill	-	STR	Поза мережею · немає з'єднання	
+values-b+uk/strings.xml	string	downloads_play_from_url	-	STR	Відтворити з URL	
+values-b+uk/strings.xml	string	downloads_select	-	STR	Обрати	
+values-b+uk/strings.xml	string	downloads_storage_full_headline	-	STR	Недостатньо пам'яті	
+values-b+uk/strings.xml	string	downloads_storage_legend	-	STR	Зайнято %1$s із %2$s · %3$s у завантаженнях	
+values-b+uk/strings.xml	string	downloads_storage_needs	-	STR	Потрібно ще %s	
 values-b+uk/strings.xml	string	duplicate_add	-	STR	Додати	
 values-b+uk/strings.xml	string	duplicate_message_multiple	-	STR	У вашій бібліотеці виявлено можливі дублікати:\n\n%s\n\nУсе одно хочете додати цей елемент, замінити наявні чи скасувати дію?	
 values-b+uk/strings.xml	string	duplicate_message_single	-	STR	Схоже, що у вашій бібліотеці вже є можливий дублікат: '%s.'\n\nУсе одно хочете додати цей елемент, замінити наявний чи скасувати дію?	
@@ -32122,8 +32806,20 @@ values-b+ur/strings.xml	string	download_storage_text	-	STR	انٹرنل سٹور
 values-b+ur/strings.xml	string	downloaded	-	STR	ڈاؤن لوڈ کردہ ویڈیوز	
 values-b+ur/strings.xml	string	downloaded_file	-	STR	ڈاؤن لوڈڈ فائل	
 values-b+ur/strings.xml	string	downloading	-	STR	ڈاؤن لوڈ ہو رہا ہے	
+values-b+ur/strings.xml	string	downloads_browse_library	-	STR	لائبریری براؤز کریں	
 values-b+ur/strings.xml	string	downloads_delete_select	-	STR	ڈیلیٹ کرنے کے لئے چیزیں چنیں	
 values-b+ur/strings.xml	string	downloads_empty	-	STR	فی الحال کوئی ڈاونلوڈ نہیں۔	
+values-b+ur/strings.xml	string	downloads_empty_body	-	STR	کسی عنوان کی اقساط کی فہرست سے شروع کیے گئے ڈاؤن لوڈ یہاں نظر آتے ہیں اور کنکشن کے بغیر چلتے ہیں۔	
+values-b+ur/strings.xml	string	downloads_empty_headline	-	STR	ابھی تک کوئی ڈاؤن لوڈ نہیں	
+values-b+ur/strings.xml	string	downloads_free_up_space	-	STR	جگہ خالی کریں	
+values-b+ur/strings.xml	string	downloads_load_failed_body	-	STR	آپ کی ڈاؤن لوڈ کردہ فائلیں تبدیل نہیں ہوئیں۔	
+values-b+ur/strings.xml	string	downloads_load_failed_headline	-	STR	آپ کے ڈاؤن لوڈ پڑھے نہیں جا سکے	
+values-b+ur/strings.xml	string	downloads_offline_pill	-	STR	آف لائن · کوئی کنکشن نہیں	
+values-b+ur/strings.xml	string	downloads_play_from_url	-	STR	URL سے چلائیں	
+values-b+ur/strings.xml	string	downloads_select	-	STR	چنیں	
+values-b+ur/strings.xml	string	downloads_storage_full_headline	-	STR	کافی سٹوریج نہیں	
+values-b+ur/strings.xml	string	downloads_storage_legend	-	STR	%1$s از %2$s استعمال شُدہ · ڈاؤن لوڈ میں %3$s	
+values-b+ur/strings.xml	string	downloads_storage_needs	-	STR	مزید %s درکار	
 values-b+ur/strings.xml	string	duplicate_add	-	STR	جمع کریں	
 values-b+ur/strings.xml	string	duplicate_message_multiple	-	STR	آپ کی لائبریری میں ممکنہ ڈپلیکیٹ آئٹمز مل گئے ہیں: \n \n%s \n \nکیا آپ بہرحال اس آئٹم کو شامل کرنا چاہیں گے، موجودہ کو تبدیل کرنا چاہیں گے، یا کارروائی کو منسوخ کریں گے؟	
 values-b+ur/strings.xml	string	duplicate_message_single	-	STR	ایسا معلوم ہوتا ہے کہ آپ کی لائبریری میں ممکنہ طور پر ڈپلیکیٹ آئٹم پہلے سے موجود ہے: '%s۔' \n \nکیا آپ بہرحال اس آئٹم کو شامل کرنا چاہیں گے، موجودہ کو تبدیل کرنا چاہیں گے، یا کارروائی کو منسوخ کریں گے؟	
@@ -32814,8 +33510,20 @@ values-b+vi/strings.xml	string	download_time_left_sec_format	-	STR	%1$d giây
 values-b+vi/strings.xml	string	downloaded	-	STR	Đã tải xuống	
 values-b+vi/strings.xml	string	downloaded_file	-	STR	Tệp đã tải xuống	
 values-b+vi/strings.xml	string	downloading	-	STR	Đang tải xuống	
+values-b+vi/strings.xml	string	downloads_browse_library	-	STR	Duyệt thư viện	
 values-b+vi/strings.xml	string	downloads_delete_select	-	STR	Chọn mục để xoá	
 values-b+vi/strings.xml	string	downloads_empty	-	STR	Không có tải xuống nào.	
+values-b+vi/strings.xml	string	downloads_empty_body	-	STR	Các mục tải xuống bạn bắt đầu từ danh sách tập của một tựa sẽ xuất hiện ở đây và phát được khi không có kết nối.	
+values-b+vi/strings.xml	string	downloads_empty_headline	-	STR	Chưa có tải xuống nào	
+values-b+vi/strings.xml	string	downloads_free_up_space	-	STR	Giải phóng dung lượng	
+values-b+vi/strings.xml	string	downloads_load_failed_body	-	STR	Các tệp đã tải xuống của bạn không bị thay đổi.	
+values-b+vi/strings.xml	string	downloads_load_failed_headline	-	STR	Không thể đọc các tải xuống của bạn	
+values-b+vi/strings.xml	string	downloads_offline_pill	-	STR	Ngoại tuyến · không có kết nối	
+values-b+vi/strings.xml	string	downloads_play_from_url	-	STR	Phát từ URL	
+values-b+vi/strings.xml	string	downloads_select	-	STR	Chọn	
+values-b+vi/strings.xml	string	downloads_storage_full_headline	-	STR	Không đủ bộ nhớ	
+values-b+vi/strings.xml	string	downloads_storage_legend	-	STR	Đã dùng %1$s trên %2$s · %3$s cho tải xuống	
+values-b+vi/strings.xml	string	downloads_storage_needs	-	STR	Cần thêm %s	
 values-b+vi/strings.xml	string	duplicate_add	-	STR	Thêm vào	
 values-b+vi/strings.xml	string	duplicate_message_multiple	-	STR	Các mục có thể trùng lặp đã được tìm thấy trong thư viện của bạn: \n \n%s \n \nBạn vẫn muốn thêm mục này, thay thế những mục hiện có hay hủy hành động?	
 values-b+vi/strings.xml	string	duplicate_message_single	-	STR	Có vẻ như một mục có khả năng trùng lặp đã tồn tại trong thư viện của bạn: '%s.' \n \nBạn vẫn muốn thêm mục này, thay thế mục hiện có hay hủy hành động?	
@@ -33599,8 +34307,20 @@ values-b+zh+TW/strings.xml	string	download_time_left_sec_format	-	STR	%1$d秒
 values-b+zh+TW/strings.xml	string	downloaded	-	STR	已下載	
 values-b+zh+TW/strings.xml	string	downloaded_file	-	STR	下載的檔案	
 values-b+zh+TW/strings.xml	string	downloading	-	STR	下載中	
+values-b+zh+TW/strings.xml	string	downloads_browse_library	-	STR	瀏覽媒體庫	
 values-b+zh+TW/strings.xml	string	downloads_delete_select	-	STR	選擇要刪除的項目	
 values-b+zh+TW/strings.xml	string	downloads_empty	-	STR	目前沒有任何下載。	
+values-b+zh+TW/strings.xml	string	downloads_empty_body	-	STR	從內容的集數清單開始的下載會顯示在這裡，無需連線即可播放。	
+values-b+zh+TW/strings.xml	string	downloads_empty_headline	-	STR	尚無下載	
+values-b+zh+TW/strings.xml	string	downloads_free_up_space	-	STR	釋放空間	
+values-b+zh+TW/strings.xml	string	downloads_load_failed_body	-	STR	你已下載的檔案未變更。	
+values-b+zh+TW/strings.xml	string	downloads_load_failed_headline	-	STR	無法讀取你的下載	
+values-b+zh+TW/strings.xml	string	downloads_offline_pill	-	STR	離線 · 無連線	
+values-b+zh+TW/strings.xml	string	downloads_play_from_url	-	STR	從 URL 播放	
+values-b+zh+TW/strings.xml	string	downloads_select	-	STR	選取	
+values-b+zh+TW/strings.xml	string	downloads_storage_full_headline	-	STR	儲存空間不足	
+values-b+zh+TW/strings.xml	string	downloads_storage_legend	-	STR	已使用 %1$s / %2$s · 下載佔用 %3$s	
+values-b+zh+TW/strings.xml	string	downloads_storage_needs	-	STR	還需要 %s	
 values-b+zh+TW/strings.xml	string	duplicate_add	-	STR	加入	
 values-b+zh+TW/strings.xml	string	duplicate_message_multiple	-	STR	您的媒體庫中似乎有多個重覆的項目： \n \n%s \n \n您要強制加入、取代已有項目、還是取消操作？	
 values-b+zh+TW/strings.xml	string	duplicate_message_single	-	STR	您的媒體庫中似乎有重覆的項目：「%s」。 \n \n您要強制加入、取代已有項目、還是取消操作？	
@@ -34380,8 +35100,20 @@ values-b+zh/strings.xml	string	download_time_left_sec_format	-	STR	%1$d秒
 values-b+zh/strings.xml	string	downloaded	-	STR	已下载	
 values-b+zh/strings.xml	string	downloaded_file	-	STR	下载的文件	
 values-b+zh/strings.xml	string	downloading	-	STR	下载中	
+values-b+zh/strings.xml	string	downloads_browse_library	-	STR	浏览库	
 values-b+zh/strings.xml	string	downloads_delete_select	-	STR	选择要删除的项	
 values-b+zh/strings.xml	string	downloads_empty	-	STR	目前尚无下载。	
+values-b+zh/strings.xml	string	downloads_empty_body	-	STR	从内容的剧集列表开始的下载会显示在这里，无需连接即可播放。	
+values-b+zh/strings.xml	string	downloads_empty_headline	-	STR	尚无下载	
+values-b+zh/strings.xml	string	downloads_free_up_space	-	STR	释放空间	
+values-b+zh/strings.xml	string	downloads_load_failed_body	-	STR	你已下载的文件未被更改。	
+values-b+zh/strings.xml	string	downloads_load_failed_headline	-	STR	无法读取你的下载	
+values-b+zh/strings.xml	string	downloads_offline_pill	-	STR	脱机 · 无连接	
+values-b+zh/strings.xml	string	downloads_play_from_url	-	STR	从 URL 播放	
+values-b+zh/strings.xml	string	downloads_select	-	STR	选择	
+values-b+zh/strings.xml	string	downloads_storage_full_headline	-	STR	存储空间不足	
+values-b+zh/strings.xml	string	downloads_storage_legend	-	STR	已使用 %1$s / %2$s · 下载占用 %3$s	
+values-b+zh/strings.xml	string	downloads_storage_needs	-	STR	还需要 %s	
 values-b+zh/strings.xml	string	duplicate_add	-	STR	添加	
 values-b+zh/strings.xml	string	duplicate_message_multiple	-	STR	在您的资料库中发现了潜在的重复项目： \n \n%s \n \n您想添加此项目、替换现有项目还是取消操作？	
 values-b+zh/strings.xml	string	duplicate_message_single	-	STR	您的资料库中似乎已经存在一个可能相同的项目：'%s.' \n \n您想添加该项目、替换现有项目还是取消操作？	
@@ -35297,8 +36029,20 @@ values/strings.xml	string	download_time_left_sec_format	-	STR	%1$ds
 values/strings.xml	string	downloaded	-	STR	Downloaded	
 values/strings.xml	string	downloaded_file	-	STR	Downloaded file	
 values/strings.xml	string	downloading	-	STR	Downloading	
+values/strings.xml	string	downloads_browse_library	-	STR	Browse library	
 values/strings.xml	string	downloads_delete_select	-	STR	Select Items to Delete	
 values/strings.xml	string	downloads_empty	-	STR	There are currently no downloads.	
+values/strings.xml	string	downloads_empty_body	-	STR	Downloads you start from a title's episode list appear here and play with no connection.	
+values/strings.xml	string	downloads_empty_headline	-	STR	No downloads yet	
+values/strings.xml	string	downloads_free_up_space	-	STR	Free up space	
+values/strings.xml	string	downloads_load_failed_body	-	STR	Your downloaded files have not been changed.	
+values/strings.xml	string	downloads_load_failed_headline	-	STR	Couldn't read your downloads	
+values/strings.xml	string	downloads_offline_pill	-	STR	Offline · no connection	
+values/strings.xml	string	downloads_play_from_url	-	STR	Play from URL	
+values/strings.xml	string	downloads_select	-	STR	Select	
+values/strings.xml	string	downloads_storage_full_headline	-	STR	Not enough storage	
+values/strings.xml	string	downloads_storage_legend	-	STR	%1$s of %2$s used · %3$s in downloads	
+values/strings.xml	string	downloads_storage_needs	-	STR	Needs %s more	
 values/strings.xml	string	duplicate_add	-	STR	Add	
 values/strings.xml	string	duplicate_cancel	-	REF	string/cancel	
 values/strings.xml	string	duplicate_message_multiple	-	STR	Potential duplicate items have been found in your library: \n\n%s \n\nWould you like to add this item anyway, replace the existing ones, or cancel the action?	
