@@ -612,6 +612,7 @@ values	string	search_state_no_results_action	-	Search everything
 values	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values	string	search_state_no_results_headline	-	No results
+values	string	search_state_no_results_type_filter	-	%s only. Your type filter is narrowing the search.
 values	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values	string	search_state_offline_headline	-	You are offline
 values	string	search_state_retry	-	Try again
@@ -621,7 +622,10 @@ values	string	search_suggestions_des	-	Show search suggestions while typing
 values	string	search_tv_clear_all	-	Clear all searches
 values	string	search_tv_field_placeholder	-	Search all sources
 values	string	search_tv_recent_headline	-	Recent searches
+values	string	search_tv_source_failed	-	FAILED %s
+values	string	search_tv_source_pinned	-	PINNED
 values	string	search_tv_sources_label	-	Sources
+values	string	search_tv_sources_panel_meta	-	%1$d OF %2$d ENABLED · CHANGES APPLY ON DONE
 values	string	season	-	Season
 values	string	season_format	-	%1$s %2$d%3$s
 values	string	season_short	-	S
@@ -973,6 +977,10 @@ values-b+af	string	search_poster_img_des	-	Plakkaat
 values-b+af	string	search_provider_text_providers	-	Soek deur verskaffers te gebruik
 values-b+af	string	search_provider_text_types	-	Soek met behulp van tipes
 values-b+af	string	search_state_idle_body_desktop	-	Tik 'n titel. Resultate verskyn onder elke bron soos dit antwoord.
+values-b+af	string	search_state_no_results_type_filter	-	Slegs %s. Jou tipe-filter beperk die soektog.
+values-b+af	string	search_tv_source_failed	-	MISLUK %s
+values-b+af	string	search_tv_source_pinned	-	VASGESPELD
+values-b+af	string	search_tv_sources_panel_meta	-	%1$d VAN %2$d GEAKTIVEER · WYSIGINGS GELD BY KLAAR
 values-b+af	string	season	-	Seisoen
 values-b+af	string	seek_back_10_seconds	-	Spring 10 sekondes terug
 values-b+af	string	seek_forward_10_seconds	-	Spring 10 sekondes vorentoe
@@ -1139,6 +1147,10 @@ values-b+am	string	search_poster_img_des	-	ፖስተር
 values-b+am	string	search_provider_text_providers	-	አቅራቢዎችን በመጠቀም ይፈልጉ
 values-b+am	string	search_provider_text_types	-	ዓይነቶችን በመጠቀም ይፈልጉ
 values-b+am	string	search_state_idle_body_desktop	-	ርዕስ ይተይቡ። ውጤቶች እያንዳንዱ ምንጭ ሲመልስ ከሱ ስር ይታያሉ።
+values-b+am	string	search_state_no_results_type_filter	-	%s ብቻ። የአይነት ማጣሪያዎ ፍለጋውን እያጠበበው ነው።
+values-b+am	string	search_tv_source_failed	-	አልተሳካም %s
+values-b+am	string	search_tv_source_pinned	-	ተሰክቷል
+values-b+am	string	search_tv_sources_panel_meta	-	ከ%2$d ውስጥ %1$d ነቅተዋል · ለውጦች በተከናውኗል ላይ ይተገበራሉ
 values-b+am	string	seek_back_10_seconds	-	10 ሰከንድ ወደ ኋላ
 values-b+am	string	seek_forward_10_seconds	-	10 ሰከንድ ወደ ፊት
 values-b+am	string	skip_loading	-	መጫንን ዝለል
@@ -1756,8 +1768,12 @@ values-b+apc	string	search_poster_img_des	-	پوستر
 values-b+apc	string	search_provider_text_providers	-	عوزو المصادر لَ تنبّشو
 values-b+apc	string	search_provider_text_types	-	عوزو الأنواع ل تنبّشو
 values-b+apc	string	search_state_idle_body_desktop	-	اكتب عنوان. النتايج بتطلع تحت كل مصدر لما يرد.
+values-b+apc	string	search_state_no_results_type_filter	-	%s بس. فلتر النوع عم يضيّق البحث.
 values-b+apc	string	search_suggestions	-	اقتراحات التنبيش
 values-b+apc	string	search_suggestions_des	-	بت فرجي اقتراحات إنتا و عم بت نَبّش
+values-b+apc	string	search_tv_source_failed	-	فشل %s
+values-b+apc	string	search_tv_source_pinned	-	مثبّت
+values-b+apc	string	search_tv_sources_panel_meta	-	%1$d من %2$d مفعّل · التغييرات بتنطبق عند خلصت
 values-b+apc	string	season	-	جزء
 values-b+apc	string	season_format	-	%1$s%2$d%3$s
 values-b+apc	string	season_short	-	ج
@@ -2565,8 +2581,12 @@ values-b+ar	string	search_poster_img_des	-	الصورة الدعائية
 values-b+ar	string	search_provider_text_providers	-	البحث باستخدام المصادر
 values-b+ar	string	search_provider_text_types	-	البحث باستخدام الأنواع
 values-b+ar	string	search_state_idle_body_desktop	-	اكتب عنوانًا. تظهر النتائج تحت كل مصدر عند استجابته.
+values-b+ar	string	search_state_no_results_type_filter	-	%s فقط. عامل تصفية النوع يضيّق نطاق البحث.
 values-b+ar	string	search_suggestions	-	اقتراحات البحث
 values-b+ar	string	search_suggestions_des	-	عرض اقتراحات البحث أثناء الكتابة
+values-b+ar	string	search_tv_source_failed	-	فشل %s
+values-b+ar	string	search_tv_source_pinned	-	مثبّت
+values-b+ar	string	search_tv_sources_panel_meta	-	%1$d من %2$d مفعّل · تُطبَّق التغييرات عند «تم»
 values-b+ar	string	season	-	موسم
 values-b+ar	string	season_format	-	%1$s %2$d%3$s
 values-b+ar	string	season_short	-	م
@@ -3067,6 +3087,10 @@ values-b+ars	string	search_poster_img_des	-	لافتة
 values-b+ars	string	search_provider_text_providers	-	البحث باستخدام مقدمي الخدمات
 values-b+ars	string	search_provider_text_types	-	البحث باستخدام الأنواع
 values-b+ars	string	search_state_idle_body_desktop	-	اكتب عنوانًا. تظهر النتائج تحت كل مصدر عند استجابته.
+values-b+ars	string	search_state_no_results_type_filter	-	%s بس. فلتر النوع يضيّق البحث.
+values-b+ars	string	search_tv_source_failed	-	فشل %s
+values-b+ars	string	search_tv_source_pinned	-	مثبّت
+values-b+ars	string	search_tv_sources_panel_meta	-	%1$d من %2$d مفعّل · التغييرات تنطبق عند «تم»
 values-b+ars	string	season	-	موسم
 values-b+ars	string	season_format	-	%1$s%2$d%3$s
 values-b+ars	string	season_short	-	س
@@ -3701,6 +3725,10 @@ values-b+as	string	search_poster_img_des	-	পোস্টাৰ
 values-b+as	string	search_provider_text_providers	-	প্ৰদানকাৰীৰে সন্ধান কৰক
 values-b+as	string	search_provider_text_types	-	প্ৰকাৰৰ দ্বাৰা সন্ধান কৰক
 values-b+as	string	search_state_idle_body_desktop	-	এটা শিৰোনাম টাইপ কৰক। প্ৰতিটো উৎসই উত্তৰ দিয়াৰ লগে লগে ফলাফল তাৰ তলত দেখা যাব।
+values-b+as	string	search_state_no_results_type_filter	-	কেৱল %s। আপোনাৰ ধৰণৰ ফিল্টাৰে সন্ধান সংকীৰ্ণ কৰিছে।
+values-b+as	string	search_tv_source_failed	-	ব্যৰ্থ %s
+values-b+as	string	search_tv_source_pinned	-	পিন কৰা হৈছে
+values-b+as	string	search_tv_sources_panel_meta	-	%2$dৰ ভিতৰত %1$d সক্ষম · পৰিৱৰ্তনসমূহ সম্পূৰ্ণ ত প্ৰয়োগ হয়
 values-b+as	string	season	-	চিজন
 values-b+as	string	season_format	-	%1$s %2$d%3$s
 values-b+as	string	season_short	-	চি
@@ -4046,6 +4074,10 @@ values-b+az	string	search	-	Axtar
 values-b+az	string	search_hint	-	Axtar…
 values-b+az	string	search_poster_img_des	-	Afişa
 values-b+az	string	search_state_idle_body_desktop	-	Başlıq yazın. Hər mənbə cavab verdikcə nəticələr onun altında görünür.
+values-b+az	string	search_state_no_results_type_filter	-	Yalnız %s. Növ filtriniz axtarışı daraldır.
+values-b+az	string	search_tv_source_failed	-	UĞURSUZ %s
+values-b+az	string	search_tv_source_pinned	-	SABİTLƏNİB
+values-b+az	string	search_tv_sources_panel_meta	-	%2$d İÇİNDƏN %1$d AKTİV · DƏYİŞİKLİKLƏR HAZIR İLƏ TƏTBİQ OLUNUR
 values-b+az	string	season	-	Sezon
 values-b+az	string	season_short	-	S
 values-b+az	string	seek_back_10_seconds	-	10 saniyə geri keç
@@ -4666,8 +4698,12 @@ values-b+be	string	search_poster_img_des	-	Плакат
 values-b+be	string	search_provider_text_providers	-	Пошук праз пастаўшчыкоў
 values-b+be	string	search_provider_text_types	-	Пошук праз тыпы
 values-b+be	string	search_state_idle_body_desktop	-	Увядзіце назву. Вынікі з'яўляюцца пад кожнай крыніцай, калі яна адказвае.
+values-b+be	string	search_state_no_results_type_filter	-	Толькі %s. Фільтр па тыпе звужае пошук.
 values-b+be	string	search_suggestions	-	Прапановы пошуку
 values-b+be	string	search_suggestions_des	-	Паказваць прапановы пошуку падчас уводу тэксту
+values-b+be	string	search_tv_source_failed	-	ЗБОЙ %s
+values-b+be	string	search_tv_source_pinned	-	ЗАМАЦАВАНА
+values-b+be	string	search_tv_sources_panel_meta	-	%1$d З %2$d УКЛЮЧАНА · ЗМЕНЫ ПРЫМЯНЯЮЦЦА ПАСЛЯ ГАТОВА
 values-b+be	string	season	-	Сезон
 values-b+be	string	season_format	-	%1$s %2$d%3$s
 values-b+be	string	season_short	-	Сез
@@ -5454,8 +5490,12 @@ values-b+bg	string	search_poster_img_des	-	Постер
 values-b+bg	string	search_provider_text_providers	-	Търсене чрез доставчици
 values-b+bg	string	search_provider_text_types	-	Търсене с помощта на типове
 values-b+bg	string	search_state_idle_body_desktop	-	Въведете заглавие. Резултатите се появяват под всеки източник, когато той отговори.
+values-b+bg	string	search_state_no_results_type_filter	-	Само %s. Филтърът по тип стеснява търсенето.
 values-b+bg	string	search_suggestions	-	Предложения за търсене
 values-b+bg	string	search_suggestions_des	-	Показвай предложения за търсене по време на писане
+values-b+bg	string	search_tv_source_failed	-	НЕУСПЕШНО %s
+values-b+bg	string	search_tv_source_pinned	-	ЗАКАЧЕН
+values-b+bg	string	search_tv_sources_panel_meta	-	%1$d ОТ %2$d ВКЛЮЧЕНИ · ПРОМЕНИТЕ СЕ ПРИЛАГАТ СЛЕД КРАЙ
 values-b+bg	string	season	-	Сезон
 values-b+bg	string	season_format	-	%1$s %2$d%3$s
 values-b+bg	string	season_short	-	С
@@ -6013,8 +6053,12 @@ values-b+bn	string	search_poster_img_des	-	পোস্টার
 values-b+bn	string	search_provider_text_providers	-	প্রভাইডার অনুযায়ি খুঁজুন
 values-b+bn	string	search_provider_text_types	-	ধরণ অনুযায়ি খুঁজুন
 values-b+bn	string	search_state_idle_body_desktop	-	একটি শিরোনাম লিখুন। প্রতিটি সোর্স উত্তর দিলে ফলাফল তার নিচে দেখা যাবে।
+values-b+bn	string	search_state_no_results_type_filter	-	শুধু %s। আপনার ধরনের ফিল্টার অনুসন্ধান সীমিত করছে।
 values-b+bn	string	search_suggestions	-	সার্চ সাজেশন
 values-b+bn	string	search_suggestions_des	-	টাইপ করার সময় সার্চ সাজেশন দেখান
+values-b+bn	string	search_tv_source_failed	-	ব্যর্থ %s
+values-b+bn	string	search_tv_source_pinned	-	পিন করা
+values-b+bn	string	search_tv_sources_panel_meta	-	%2$d-এর মধ্যে %1$d চালু · সম্পন্ন চাপলে পরিবর্তন প্রযোজ্য হবে
 values-b+bn	string	season	-	সিজন
 values-b+bn	string	season_format	-	%1$s %2$d%3$s
 values-b+bn	string	season_short	-	S
@@ -6414,6 +6458,10 @@ values-b+ca	string	search_poster_img_des	-	Cartell
 values-b+ca	string	search_provider_text_providers	-	Cerca amb proveïdors
 values-b+ca	string	search_provider_text_types	-	Cerca per tipus
 values-b+ca	string	search_state_idle_body_desktop	-	Escriu un títol. Els resultats apareixen sota cada font quan respon.
+values-b+ca	string	search_state_no_results_type_filter	-	Només %s. El filtre de tipus està limitant la cerca.
+values-b+ca	string	search_tv_source_failed	-	HA FALLAT %s
+values-b+ca	string	search_tv_source_pinned	-	FIXAT
+values-b+ca	string	search_tv_sources_panel_meta	-	%1$d DE %2$d ACTIVATS · ELS CANVIS ES REGISTREN AMB FET
 values-b+ca	string	seek_back_10_seconds	-	Retrocedeix 10 segons
 values-b+ca	string	seek_forward_10_seconds	-	Avança 10 segons
 values-b+ca	string	select_all	-	Seleccionar tot
@@ -6628,6 +6676,10 @@ values-b+ckb	string	search_hint	-	گەڕان…
 values-b+ckb	string	search_hint_site	-	بگەڕێ بۆ%s…
 values-b+ckb	string	search_poster_img_des	-	پۆستەر
 values-b+ckb	string	search_state_idle_body_desktop	-	ناونیشانێک بنووسە. ئەنجامەکان لە ژێر هەر سەرچاوەیەک دەردەکەون کاتێک وەڵام دەداتەوە.
+values-b+ckb	string	search_state_no_results_type_filter	-	تەنها %s. فلتەری جۆرەکەت گەڕانەکە سنووردار دەکات.
+values-b+ckb	string	search_tv_source_failed	-	شکستی هێنا %s
+values-b+ckb	string	search_tv_source_pinned	-	جێگیرکراو
+values-b+ckb	string	search_tv_sources_panel_meta	-	%1$d لە %2$d چالاککراون · گۆڕانکارییەکان دوای تەواو جێبەجێ دەبن
 values-b+ckb	string	seek_back_10_seconds	-	10 چرکە بگەڕێوە دواوە
 values-b+ckb	string	seek_forward_10_seconds	-	10 چرکە بڕۆ پێشەوە
 values-b+ckb	string	select_all	-	هەموو هەڵبژێرە
@@ -7241,8 +7293,12 @@ values-b+cs	string	search_poster_img_des	-	Plakát
 values-b+cs	string	search_provider_text_providers	-	Hledat pomocí poskytovatelů
 values-b+cs	string	search_provider_text_types	-	Hledat pomocí typů
 values-b+cs	string	search_state_idle_body_desktop	-	Zadejte název. Výsledky se zobrazí pod každým zdrojem, jakmile odpoví.
+values-b+cs	string	search_state_no_results_type_filter	-	Pouze %s. Filtr typů zužuje hledání.
 values-b+cs	string	search_suggestions	-	Návrhy vyhledávání
 values-b+cs	string	search_suggestions_des	-	Zobrazit návrhy vyhledávání během psaní
+values-b+cs	string	search_tv_source_failed	-	SELHALO %s
+values-b+cs	string	search_tv_source_pinned	-	PŘIPNUTO
+values-b+cs	string	search_tv_sources_panel_meta	-	%1$d Z %2$d ZAPNUTO · ZMĚNY SE UPLATNÍ STISKNUTÍM HOTOVO
 values-b+cs	string	season	-	Sezóna
 values-b+cs	string	season_format	-	%1$s %2$d%3$s
 values-b+cs	string	season_short	-	S
@@ -8042,8 +8098,12 @@ values-b+de	string	search_poster_img_des	-	Vorschaubild
 values-b+de	string	search_provider_text_providers	-	Suche anhand Anbietern
 values-b+de	string	search_provider_text_types	-	Suche anhand Typen
 values-b+de	string	search_state_idle_body_desktop	-	Titel eingeben. Ergebnisse erscheinen unter jeder Quelle, sobald sie antwortet.
+values-b+de	string	search_state_no_results_type_filter	-	Nur %s. Der Typfilter schränkt die Suche ein.
 values-b+de	string	search_suggestions	-	Empfehlungen suchen
 values-b+de	string	search_suggestions_des	-	Beim Tippen Suchempfehlungen anzeigen
+values-b+de	string	search_tv_source_failed	-	FEHLGESCHLAGEN %s
+values-b+de	string	search_tv_source_pinned	-	ANGEPINNT
+values-b+de	string	search_tv_sources_panel_meta	-	%1$d VON %2$d AKTIV · ÄNDERUNGEN WERDEN BEI FERTIG ÜBERNOMMEN
 values-b+de	string	season	-	Staffel
 values-b+de	string	season_format	-	%1$s %2$d%3$s
 values-b+de	string	season_short	-	S
@@ -8786,6 +8846,10 @@ values-b+el	string	search_poster_img_des	-	Αφίσα
 values-b+el	string	search_provider_text_providers	-	Αναζήτηση βάσει παρόχων
 values-b+el	string	search_provider_text_types	-	Αναζήτηση βάσει τύπων
 values-b+el	string	search_state_idle_body_desktop	-	Πληκτρολογήστε έναν τίτλο. Τα αποτελέσματα εμφανίζονται κάτω από κάθε πηγή μόλις απαντήσει.
+values-b+el	string	search_state_no_results_type_filter	-	Μόνο %s. Το φίλτρο τύπου περιορίζει την αναζήτηση.
+values-b+el	string	search_tv_source_failed	-	ΑΠΟΤΥΧΙΑ %s
+values-b+el	string	search_tv_source_pinned	-	ΚΑΡΦΙΤΣΩΜΕΝΟ
+values-b+el	string	search_tv_sources_panel_meta	-	%1$d ΑΠΟ %2$d ΕΝΕΡΓΕΣ · ΟΙ ΑΛΛΑΓΕΣ ΕΦΑΡΜΟΖΟΝΤΑΙ ΜΕ ΤΟ ΕΓΙΝΕ
 values-b+el	string	season	-	Κύκλος
 values-b+el	string	season_format	-	%1$s %2$d%3$s
 values-b+el	string	season_short	-	Σ
@@ -9165,7 +9229,11 @@ values-b+eo	string	search_poster_img_des	-	Afiŝo
 values-b+eo	string	search_provider_text_providers	-	Serĉi uzante provizantojn
 values-b+eo	string	search_provider_text_types	-	Serĉi uzante tipojn
 values-b+eo	string	search_state_idle_body_desktop	-	Tajpu titolon. Rezultoj aperas sub ĉiu fonto kiam ĝi respondas.
+values-b+eo	string	search_state_no_results_type_filter	-	Nur %s. Via tipfiltrilo mallarĝigas la serĉon.
 values-b+eo	string	search_suggestions	-	Serĉaj Sugestoj
+values-b+eo	string	search_tv_source_failed	-	MALSUKCESIS %s
+values-b+eo	string	search_tv_source_pinned	-	FIKSITA
+values-b+eo	string	search_tv_sources_panel_meta	-	%1$d EL %2$d ŜALTITAJ · ŜANĜOJ APLIKIĜAS PER FARITE
 values-b+eo	string	season	-	Sezono
 values-b+eo	string	season_format	-	%1$s %2$d%3$s
 values-b+eo	string	season_short	-	S
@@ -9813,8 +9881,12 @@ values-b+es	string	search_poster_img_des	-	Póster
 values-b+es	string	search_provider_text_providers	-	Buscar usando proveedores
 values-b+es	string	search_provider_text_types	-	Buscar por tipos
 values-b+es	string	search_state_idle_body_desktop	-	Escriba un título. Los resultados aparecen bajo cada fuente cuando responde.
+values-b+es	string	search_state_no_results_type_filter	-	Solo %s. Su filtro de tipo está reduciendo la búsqueda.
 values-b+es	string	search_suggestions	-	Sugerencias de Búsqueda
 values-b+es	string	search_suggestions_des	-	Mostrar sugerencias de búsqueda mientras escribe
+values-b+es	string	search_tv_source_failed	-	FALLÓ %s
+values-b+es	string	search_tv_source_pinned	-	FIJADO
+values-b+es	string	search_tv_sources_panel_meta	-	%1$d DE %2$d ACTIVADOS · LOS CAMBIOS SE APLICAN AL PULSAR HECHO
 values-b+es	string	season	-	Temporada
 values-b+es	string	season_format	-	%1$s %2$d%3$s
 values-b+es	string	season_short	-	T
@@ -10342,6 +10414,10 @@ values-b+fa	string	search_poster_img_des	-	پوستر
 values-b+fa	string	search_provider_text_providers	-	جستجو از طریق ارائه‌دهنده‌ها
 values-b+fa	string	search_provider_text_types	-	جستجو از طریق انواع
 values-b+fa	string	search_state_idle_body_desktop	-	عنوانی را بنویسید. نتایج هر منبع پس از پاسخ آن، زیر نامش نمایش داده می‌شود.
+values-b+fa	string	search_state_no_results_type_filter	-	فقط %s. فیلتر نوع شما جستجو را محدود می‌کند.
+values-b+fa	string	search_tv_source_failed	-	ناموفق %s
+values-b+fa	string	search_tv_source_pinned	-	سنجاق‌شده
+values-b+fa	string	search_tv_sources_panel_meta	-	%1$d از %2$d فعال · تغییرات پس از «انجام شد» اعمال می‌شود
 values-b+fa	string	season	-	فصل
 values-b+fa	string	season_short	-	ف
 values-b+fa	string	seek_back_10_seconds	-	۱۰ ثانیه به عقب
@@ -10686,6 +10762,10 @@ values-b+fil	string	search_hint_site	-	Maghanap %s…
 values-b+fil	string	search_provider_text_providers	-	Maghanap gamit ang mga tagatustos
 values-b+fil	string	search_provider_text_types	-	Maghanap gamit ang mga uri
 values-b+fil	string	search_state_idle_body_desktop	-	Mag-type ng pamagat. Lalabas ang mga resulta sa ilalim ng bawat source kapag sumagot ito.
+values-b+fil	string	search_state_no_results_type_filter	-	%s lang. Pinipigilan ng type filter mo ang paghahanap.
+values-b+fil	string	search_tv_source_failed	-	NABIGO %s
+values-b+fil	string	search_tv_source_pinned	-	NAKA-PIN
+values-b+fil	string	search_tv_sources_panel_meta	-	%1$d SA %2$d ANG NAKA-ENABLE · ILALAPAT ANG MGA PAGBABAGO KAPAG PININDOT ANG TAPOS NA
 values-b+fil	string	seek_back_10_seconds	-	Bumalik ng 10 segundo
 values-b+fil	string	seek_forward_10_seconds	-	Umabante ng 10 segundo
 values-b+fil	string	select_all	-	Piliin Lahat
@@ -11351,8 +11431,12 @@ values-b+fr	string	search_poster_img_des	-	Affiche
 values-b+fr	string	search_provider_text_providers	-	Recherche par fournisseur
 values-b+fr	string	search_provider_text_types	-	Recherche par types
 values-b+fr	string	search_state_idle_body_desktop	-	Saisissez un titre. Les résultats apparaissent sous chaque source dès qu'elle répond.
+values-b+fr	string	search_state_no_results_type_filter	-	%s uniquement. Votre filtre de type restreint la recherche.
 values-b+fr	string	search_suggestions	-	Suggestions de recherche
 values-b+fr	string	search_suggestions_des	-	Afficher des suggestions de recherche pendant la saisie
+values-b+fr	string	search_tv_source_failed	-	ÉCHEC %s
+values-b+fr	string	search_tv_source_pinned	-	ÉPINGLÉ
+values-b+fr	string	search_tv_sources_panel_meta	-	%1$d SUR %2$d ACTIVÉS · LES MODIFICATIONS PRENNENT EFFET AVEC FINIR
 values-b+fr	string	season	-	Saison
 values-b+fr	string	season_format	-	%1$s %2$d%3$s
 values-b+fr	string	season_short	-	S
@@ -11828,6 +11912,10 @@ values-b+gl	string	search_poster_img_des	-	Cartel
 values-b+gl	string	search_provider_text_providers	-	Procurar usando proveedores
 values-b+gl	string	search_provider_text_types	-	Procurar por tipos
 values-b+gl	string	search_state_idle_body_desktop	-	Escriba un título. Os resultados aparecen baixo cada fonte cando responde.
+values-b+gl	string	search_state_no_results_type_filter	-	Só %s. O filtro de tipo está limitando a busca.
+values-b+gl	string	search_tv_source_failed	-	FALLOU %s
+values-b+gl	string	search_tv_source_pinned	-	FIXADO
+values-b+gl	string	search_tv_sources_panel_meta	-	%1$d DE %2$d ACTIVADOS · OS CAMBIOS APLÍCANSE CON FEITO
 values-b+gl	string	season	-	Temporada
 values-b+gl	string	season_format	-	%1$s %2$d%3$s
 values-b+gl	string	season_short	-	T
@@ -12359,6 +12447,10 @@ values-b+he	string	search_poster_img_des	-	פוסטר
 values-b+he	string	search_provider_text_providers	-	חפש באמצעות הספקים
 values-b+he	string	search_provider_text_types	-	חפש באמצעות סוגים
 values-b+he	string	search_state_idle_body_desktop	-	הקלד כותרת. התוצאות יופיעו מתחת לכל מקור כשיענה.
+values-b+he	string	search_state_no_results_type_filter	-	%s בלבד. מסנן הסוג מצמצם את החיפוש.
+values-b+he	string	search_tv_source_failed	-	נכשל %s
+values-b+he	string	search_tv_source_pinned	-	מוצמד
+values-b+he	string	search_tv_sources_panel_meta	-	%1$d מתוך %2$d פעילים · השינויים יחולו בלחיצה על סוים
 values-b+he	string	season	-	עונה
 values-b+he	string	season_format	-	%1$s %2$d%3$s
 values-b+he	string	season_short	-	עו
@@ -12887,6 +12979,10 @@ values-b+hi	string	search_poster_img_des	-	पोस्टर
 values-b+hi	string	search_provider_text_providers	-	प्रोवाइडरों का उपयोग कर खोजें
 values-b+hi	string	search_provider_text_types	-	प्रकार का उपयोग करके खोजें
 values-b+hi	string	search_state_idle_body_desktop	-	कोई शीर्षक लिखें। हर स्रोत के जवाब देने पर नतीजे उसके नीचे दिखेंगे।
+values-b+hi	string	search_state_no_results_type_filter	-	सिर्फ़ %s। आपका प्रकार फ़िल्टर खोज को सीमित कर रहा है।
+values-b+hi	string	search_tv_source_failed	-	विफल %s
+values-b+hi	string	search_tv_source_pinned	-	पिन किया गया
+values-b+hi	string	search_tv_sources_panel_meta	-	%2$d में से %1$d चालू · बदलाव हो गया दबाने पर लागू होंगे
 values-b+hi	string	season	-	सत्र
 values-b+hi	string	season_format	-	%1$s %2$d%3$s
 values-b+hi	string	season_short	-	S
@@ -13579,8 +13675,12 @@ values-b+hr	string	search_poster_img_des	-	Poster
 values-b+hr	string	search_provider_text_providers	-	Traži koristeći pružatelje usluga
 values-b+hr	string	search_provider_text_types	-	Traži koristeći vrste
 values-b+hr	string	search_state_idle_body_desktop	-	Upišite naslov. Rezultati se pojavljuju ispod svakog izvora kad odgovori.
+values-b+hr	string	search_state_no_results_type_filter	-	Samo %s. Vaš filtar vrste sužava pretraživanje.
 values-b+hr	string	search_suggestions	-	Prijedlozi za pretraživanje
 values-b+hr	string	search_suggestions_des	-	Prikaži prijedloge za pretraživanje tijekom tipkanja
+values-b+hr	string	search_tv_source_failed	-	NEUSPJELO %s
+values-b+hr	string	search_tv_source_pinned	-	PRIKVAČENO
+values-b+hr	string	search_tv_sources_panel_meta	-	%1$d OD %2$d UKLJUČENO · PROMJENE VRIJEDE NAKON GOTOVO
 values-b+hr	string	season	-	Sezona
 values-b+hr	string	season_format	-	%1$s %2$d%3$s
 values-b+hr	string	season_short	-	S
@@ -14311,8 +14411,12 @@ values-b+hu	string	search_poster_img_des	-	Poszter
 values-b+hu	string	search_provider_text_providers	-	Keresés szolgáltatók szerint
 values-b+hu	string	search_provider_text_types	-	Keresés típusok szerint
 values-b+hu	string	search_state_idle_body_desktop	-	Írjon be egy címet. Az eredmények az egyes források alatt jelennek meg, amint válaszolnak.
+values-b+hu	string	search_state_no_results_type_filter	-	Csak %s. A típusszűrő szűkíti a keresést.
 values-b+hu	string	search_suggestions	-	Keresési javaslatok
 values-b+hu	string	search_suggestions_des	-	Mutasson keresési javaslatok gépelés közben
+values-b+hu	string	search_tv_source_failed	-	SIKERTELEN %s
+values-b+hu	string	search_tv_source_pinned	-	KITŰZVE
+values-b+hu	string	search_tv_sources_panel_meta	-	%2$d KÖZÜL %1$d ENGEDÉLYEZVE · A VÁLTOZÁSOK A KÉSZ GOMBBAL ÉRVÉNYESÜLNEK
 values-b+hu	string	season	-	Évad
 values-b+hu	string	season_format	-	%1$s %2$d%3$s
 values-b+hu	string	season_short	-	Év
@@ -15069,8 +15173,12 @@ values-b+id	string	search_poster_img_des	-	Poster
 values-b+id	string	search_provider_text_providers	-	Cari menggunakan penyedia
 values-b+id	string	search_provider_text_types	-	Cari menggunakan jenis
 values-b+id	string	search_state_idle_body_desktop	-	Ketik judul. Hasil muncul di bawah setiap sumber saat sumber itu menjawab.
+values-b+id	string	search_state_no_results_type_filter	-	Hanya %s. Filter jenis Anda mempersempit pencarian.
 values-b+id	string	search_suggestions	-	Saran pencarian
 values-b+id	string	search_suggestions_des	-	Tampilkan saran pencarian saat mengetik
+values-b+id	string	search_tv_source_failed	-	GAGAL %s
+values-b+id	string	search_tv_source_pinned	-	DISEMATKAN
+values-b+id	string	search_tv_sources_panel_meta	-	%1$d DARI %2$d DIAKTIFKAN · PERUBAHAN BERLAKU SETELAH SELESAI
 values-b+id	string	season	-	Season
 values-b+id	string	season_format	-	%1$s %2$d%3$s
 values-b+id	string	season_short	-	S
@@ -15864,8 +15972,12 @@ values-b+in	string	search_poster_img_des	-	Poster
 values-b+in	string	search_provider_text_providers	-	Cari menggunakan penyedia
 values-b+in	string	search_provider_text_types	-	Cari menggunakan jenis
 values-b+in	string	search_state_idle_body_desktop	-	Ketik judul. Hasil muncul di bawah setiap sumber saat sumber itu menjawab.
+values-b+in	string	search_state_no_results_type_filter	-	Hanya %s. Filter jenis Anda mempersempit pencarian.
 values-b+in	string	search_suggestions	-	Saran pencarian
 values-b+in	string	search_suggestions_des	-	Tampilkan saran pencarian saat mengetik
+values-b+in	string	search_tv_source_failed	-	GAGAL %s
+values-b+in	string	search_tv_source_pinned	-	DISEMATKAN
+values-b+in	string	search_tv_sources_panel_meta	-	%1$d DARI %2$d DIAKTIFKAN · PERUBAHAN BERLAKU SETELAH SELESAI
 values-b+in	string	season	-	Season
 values-b+in	string	season_format	-	%1$s %2$d%3$s
 values-b+in	string	season_short	-	S
@@ -16667,8 +16779,12 @@ values-b+it	string	search_poster_img_des	-	Poster
 values-b+it	string	search_provider_text_providers	-	Cerca per provider
 values-b+it	string	search_provider_text_types	-	Cerca per tipo
 values-b+it	string	search_state_idle_body_desktop	-	Digita un titolo. I risultati compaiono sotto ogni fonte quando risponde.
+values-b+it	string	search_state_no_results_type_filter	-	Solo %s. Il filtro per tipo sta restringendo la ricerca.
 values-b+it	string	search_suggestions	-	Suggerimenti per la ricerca
 values-b+it	string	search_suggestions_des	-	Mostra suggerimenti di ricerca durante la digitazione
+values-b+it	string	search_tv_source_failed	-	FALLITO %s
+values-b+it	string	search_tv_source_pinned	-	FISSATO
+values-b+it	string	search_tv_sources_panel_meta	-	%1$d SU %2$d ATTIVI · LE MODIFICHE SI APPLICANO CON FATTO
 values-b+it	string	season	-	Stagione
 values-b+it	string	season_format	-	%1$s %2$d%3$s
 values-b+it	string	season_short	-	S
@@ -17327,6 +17443,10 @@ values-b+iw	string	search_poster_img_des	-	פוסטר
 values-b+iw	string	search_provider_text_providers	-	חפש באמצעות הספקים
 values-b+iw	string	search_provider_text_types	-	חפש באמצעות סוגים
 values-b+iw	string	search_state_idle_body_desktop	-	הקלד כותרת. התוצאות יופיעו מתחת לכל מקור כשיענה.
+values-b+iw	string	search_state_no_results_type_filter	-	%s בלבד. מסנן הסוג מצמצם את החיפוש.
+values-b+iw	string	search_tv_source_failed	-	נכשל %s
+values-b+iw	string	search_tv_source_pinned	-	מוצמד
+values-b+iw	string	search_tv_sources_panel_meta	-	%1$d מתוך %2$d פעילים · השינויים יחולו בלחיצה על סוים
 values-b+iw	string	season	-	עונה
 values-b+iw	string	season_format	-	%1$s %2$d%3$s
 values-b+iw	string	season_short	-	עו
@@ -18072,8 +18192,12 @@ values-b+ja	string	search_poster_img_des	-	ポスター
 values-b+ja	string	search_provider_text_providers	-	プロバイダーから探す
 values-b+ja	string	search_provider_text_types	-	使用タイプの検索
 values-b+ja	string	search_state_idle_body_desktop	-	タイトルを入力してください。各ソースが応答すると、その下に結果が表示されます。
+values-b+ja	string	search_state_no_results_type_filter	-	%sのみ。種類フィルターで検索が絞り込まれています。
 values-b+ja	string	search_suggestions	-	検索候補
 values-b+ja	string	search_suggestions_des	-	入力中に検索候補を表示する
+values-b+ja	string	search_tv_source_failed	-	失敗 %s
+values-b+ja	string	search_tv_source_pinned	-	固定済み
+values-b+ja	string	search_tv_sources_panel_meta	-	%2$d件中%1$d件が有効 · 変更は「完了」で反映
 values-b+ja	string	season	-	シーズン
 values-b+ja	string	season_format	-	%1$s %2$d%3$s
 values-b+ja	string	season_short	-	シーズン
@@ -18425,6 +18549,10 @@ values-b+kn	string	search_poster_img_des	-	ಪೋಸ್ಟರ್
 values-b+kn	string	search_provider_text_providers	-	ಪೂರೈಕೆದಾರರನ್ನು ಬಳಸಿಕೊಂಡು ಹುಡುಕಿ
 values-b+kn	string	search_provider_text_types	-	ಪ್ರಕಾರಗಳನ್ನು ಬಳಸಿಕೊಂಡು ಹುಡುಕಿ
 values-b+kn	string	search_state_idle_body_desktop	-	ಶೀರ್ಷಿಕೆಯನ್ನು ಟೈಪ್ ಮಾಡಿ. ಪ್ರತಿಯೊಂದು ಮೂಲ ಉತ್ತರಿಸಿದಂತೆ ಫಲಿತಾಂಶಗಳು ಅದರ ಕೆಳಗೆ ಕಾಣಿಸುತ್ತವೆ.
+values-b+kn	string	search_state_no_results_type_filter	-	%s ಮಾತ್ರ. ನಿಮ್ಮ ಪ್ರಕಾರದ ಫಿಲ್ಟರ್ ಹುಡುಕಾಟವನ್ನು ಕಿರಿದುಗೊಳಿಸುತ್ತಿದೆ.
+values-b+kn	string	search_tv_source_failed	-	ವಿಫಲ %s
+values-b+kn	string	search_tv_source_pinned	-	ಪಿನ್ ಮಾಡಲಾಗಿದೆ
+values-b+kn	string	search_tv_sources_panel_meta	-	%2$d ರಲ್ಲಿ %1$d ಸಕ್ರಿಯ · ಬದಲಾವಣೆಗಳು ಮುಗಿದಿದೆ ನಂತರ ಅನ್ವಯವಾಗುತ್ತವೆ
 values-b+kn	string	seek_back_10_seconds	-	10 ಸೆಕೆಂಡುಗಳು ಹಿಂದೆ ಹೋಗು
 values-b+kn	string	seek_forward_10_seconds	-	10 ಸೆಕೆಂಡುಗಳು ಮುಂದೆ ಹೋಗು
 values-b+kn	string	show_log_cat	-	ಲಾಗ್‌ಕ್ಯಾಟ್ 🐈 ತೋರಿಸಿ
@@ -19047,8 +19175,12 @@ values-b+ko	string	search_poster_img_des	-	포스터
 values-b+ko	string	search_provider_text_providers	-	소스로 검색
 values-b+ko	string	search_provider_text_types	-	유형을 사용하여 검색
 values-b+ko	string	search_state_idle_body_desktop	-	제목을 입력하세요. 각 소스가 응답하면 그 아래에 결과가 표시됩니다.
+values-b+ko	string	search_state_no_results_type_filter	-	%s만. 유형 필터가 검색을 좁히고 있습니다.
 values-b+ko	string	search_suggestions	-	검색어 제안
 values-b+ko	string	search_suggestions_des	-	입력하는 동안 검색어 제안 표시
+values-b+ko	string	search_tv_source_failed	-	실패 %s
+values-b+ko	string	search_tv_source_pinned	-	고정됨
+values-b+ko	string	search_tv_sources_panel_meta	-	%2$d개 중 %1$d개 사용 중 · 변경 사항은 완료를 누르면 적용됩니다
 values-b+ko	string	season	-	시즌
 values-b+ko	string	season_format	-	%1$s %2$d%3$s
 values-b+ko	string	season_short	-	시즌
@@ -19521,6 +19653,10 @@ values-b+lt	string	search_poster_img_des	-	Plakatas
 values-b+lt	string	search_provider_text_providers	-	Ieškoti naudojant tiekėjus
 values-b+lt	string	search_provider_text_types	-	Ieškoti naudojant tipus
 values-b+lt	string	search_state_idle_body_desktop	-	Įveskite pavadinimą. Rezultatai rodomi po kiekvienu šaltiniu, kai šis atsako.
+values-b+lt	string	search_state_no_results_type_filter	-	Tik %s. Jūsų tipų filtras siaurina paiešką.
+values-b+lt	string	search_tv_source_failed	-	NEPAVYKO %s
+values-b+lt	string	search_tv_source_pinned	-	PRISEGTA
+values-b+lt	string	search_tv_sources_panel_meta	-	ĮJUNGTA %1$d IŠ %2$d · PAKEITIMAI TAIKOMI PASPAUDUS BAIGTA
 values-b+lt	string	season	-	Sezonas
 values-b+lt	string	seek_back_10_seconds	-	Atsukti 10 sekundžių atgal
 values-b+lt	string	seek_forward_10_seconds	-	Persukti 10 sekundžių į priekį
@@ -20116,7 +20252,11 @@ values-b+lv	string	search_poster_img_des	-	Plakāts
 values-b+lv	string	search_provider_text_providers	-	Meklēt izmantojot devējus
 values-b+lv	string	search_provider_text_types	-	Meklēt izmantojot tipus
 values-b+lv	string	search_state_idle_body_desktop	-	Ievadiet nosaukumu. Rezultāti parādās zem katra devēja, tiklīdz tas atbild.
+values-b+lv	string	search_state_no_results_type_filter	-	Tikai %s. Jūsu veida filtrs sašaurina meklēšanu.
 values-b+lv	string	search_suggestions	-	Meklēšanas ieteikumi
+values-b+lv	string	search_tv_source_failed	-	NEIZDEVĀS %s
+values-b+lv	string	search_tv_source_pinned	-	PIESPRAUSTS
+values-b+lv	string	search_tv_sources_panel_meta	-	IESLĒGTI %1$d NO %2$d · IZMAIŅAS TIEK PIEMĒROTAS, NOSPIEŽOT PABEIGTS
 values-b+lv	string	season	-	Sezona
 values-b+lv	string	season_format	-	%1$s %2$d%3$s
 values-b+lv	string	season_short	-	S
@@ -20873,8 +21013,12 @@ values-b+mk	string	search_poster_img_des	-	Постер
 values-b+mk	string	search_provider_text_providers	-	Пребарувај користејќи провајдери
 values-b+mk	string	search_provider_text_types	-	Пребарувај користејќи типови
 values-b+mk	string	search_state_idle_body_desktop	-	Внеси наслов. Резултатите се појавуваат под секој извор кога ќе одговори.
+values-b+mk	string	search_state_no_results_type_filter	-	Само %s. Вашиот филтер за тип го стеснува пребарувањето.
 values-b+mk	string	search_suggestions	-	Предлози за пребарување
 values-b+mk	string	search_suggestions_des	-	Прикажувај предлози за пребарување додека пишуваш
+values-b+mk	string	search_tv_source_failed	-	НЕУСПЕШНО %s
+values-b+mk	string	search_tv_source_pinned	-	ЗАКАЧЕНО
+values-b+mk	string	search_tv_sources_panel_meta	-	%1$d ОД %2$d ОВОЗМОЖЕНИ · ПРОМЕНИТЕ СЕ ПРИМЕНУВААТ ПО ГОТОВО
 values-b+mk	string	season	-	Сезона
 values-b+mk	string	season_format	-	%1$s %2$d%3$s
 values-b+mk	string	season_short	-	С
@@ -21335,6 +21479,10 @@ values-b+ml	string	search_poster_img_des	-	പോസ്റ്റർ
 values-b+ml	string	search_provider_text_providers	-	സ്രോതസ് അടിസ്ഥാനത്തിൽ തിരയുക
 values-b+ml	string	search_provider_text_types	-	തരം അടിസ്ഥാനത്തിൽ തിരയുക
 values-b+ml	string	search_state_idle_body_desktop	-	ഒരു ശീർഷകം ടൈപ്പ് ചെയ്യുക. ഓരോ ഉറവിടവും മറുപടി നൽകുമ്പോൾ ഫലങ്ങൾ അതിനു താഴെ കാണിക്കും.
+values-b+ml	string	search_state_no_results_type_filter	-	%s മാത്രം. നിങ്ങളുടെ തരം ഫിൽട്ടർ തിരയൽ ചുരുക്കുന്നു.
+values-b+ml	string	search_tv_source_failed	-	പരാജയപ്പെട്ടു %s
+values-b+ml	string	search_tv_source_pinned	-	പിൻ ചെയ്തു
+values-b+ml	string	search_tv_sources_panel_meta	-	%2$d-ൽ %1$d പ്രവർത്തനക്ഷമം · പൂർത്തിയായി അമർത്തുമ്പോൾ മാറ്റങ്ങൾ ബാധകമാകും
 values-b+ml	string	season	-	സീസൺ
 values-b+ml	string	seek_back_10_seconds	-	10 സെക്കൻഡ് പിന്നോട്ട് പോകുക
 values-b+ml	string	seek_forward_10_seconds	-	10 സെക്കൻഡ് മുന്നോട്ട് പോകുക
@@ -21884,6 +22032,10 @@ values-b+ms	string	search_poster_img_des	-	Poster
 values-b+ms	string	search_provider_text_providers	-	Carian mengikut sumber
 values-b+ms	string	search_provider_text_types	-	Carian mengikut jenis
 values-b+ms	string	search_state_idle_body_desktop	-	Taip tajuk. Hasil muncul di bawah setiap sumber apabila ia menjawab.
+values-b+ms	string	search_state_no_results_type_filter	-	Hanya %s. Penapis jenis anda mengecilkan carian.
+values-b+ms	string	search_tv_source_failed	-	GAGAL %s
+values-b+ms	string	search_tv_source_pinned	-	DISEMATKAN
+values-b+ms	string	search_tv_sources_panel_meta	-	%1$d DARIPADA %2$d DIDAYAKAN · PERUBAHAN DIGUNAKAN SELEPAS TAMAT
 values-b+ms	string	season	-	Musim
 values-b+ms	string	season_format	-	%1$s %2$d%3$s
 values-b+ms	string	season_short	-	S
@@ -22159,6 +22311,10 @@ values-b+mt	string	search_poster_img_des	-	Kartellun
 values-b+mt	string	search_provider_text_providers	-	Fittex bl-użu ta' fornituri
 values-b+mt	string	search_provider_text_types	-	Fittex bl-użu ta 'tipi
 values-b+mt	string	search_state_idle_body_desktop	-	Ikteb titlu. Ir-riżultati jidhru taħt kull sors meta jwieġeb.
+values-b+mt	string	search_state_no_results_type_filter	-	%s biss. Il-filtru tat-tip qed jirrestrinġi l-fittxija.
+values-b+mt	string	search_tv_source_failed	-	FALLA %s
+values-b+mt	string	search_tv_source_pinned	-	IPPINJAT
+values-b+mt	string	search_tv_sources_panel_meta	-	%1$d MINN %2$d ATTIVATI · IL-BIDLIET JIDĦLU FIS-SEĦĦ META TAGĦFAS LEST
 values-b+mt	string	seek_back_10_seconds	-	Mur lura 10 sekondi
 values-b+mt	string	seek_forward_10_seconds	-	Mur 'il quddiem 10 sekondi
 values-b+mt	string	show_log_cat	-	Uri Logcat 🐈
@@ -22628,6 +22784,10 @@ values-b+my	string	search_poster_img_des	-	ပိုစတာ
 values-b+my	string	search_provider_text_providers	-	ပ့ံပိုးပေးသောဝန်ဆောင်မှုများအသုံးပြု၍ရှာရန်
 values-b+my	string	search_provider_text_types	-	အမျိုးအစားများအသုံးပြု၍ရှာရန်
 values-b+my	string	search_state_idle_body_desktop	-	ခေါင်းစဉ်တစ်ခု ရိုက်ထည့်ပါ။ ရင်းမြစ်တစ်ခုစီ တုံ့ပြန်သည်နှင့် ရလဒ်များကို ၎င်းအောက်တွင် ပြသပါမည်။
+values-b+my	string	search_state_no_results_type_filter	-	%s သာ။ သင့်အမျိုးအစား စစ်ထုတ်မှုက ရှာဖွေမှုကို ကျဉ်းစေနေသည်။
+values-b+my	string	search_tv_source_failed	-	မအောင်မြင်ပါ %s
+values-b+my	string	search_tv_source_pinned	-	ပင်ထိုးထား
+values-b+my	string	search_tv_sources_panel_meta	-	%2$d ခုအနက် %1$d ခု ဖွင့်ထား · ပြောင်းလဲမှုများကို ပြီးပြီ တွင် အသုံးပြုမည်
 values-b+my	string	season	-	အတွဲ
 values-b+my	string	season_format	-	%1$s %2$d%3$s
 values-b+my	string	season_short	-	အတွဲ
@@ -22924,6 +23084,10 @@ values-b+ne	string	search_poster_img_des	-	पोस्टर
 values-b+ne	string	search_provider_text_providers	-	प्रोभाईडर उपयोग गरी खोज्नुहोस्
 values-b+ne	string	search_provider_text_types	-	प्रकारको उपयोग गरी खोज्नुहोस्
 values-b+ne	string	search_state_idle_body_desktop	-	शीर्षक टाइप गर्नुहोस्। प्रत्येक स्रोतले जवाफ दिएपछि नतिजा त्यसको तल देखिन्छ।
+values-b+ne	string	search_state_no_results_type_filter	-	%s मात्र। तपाईंको प्रकार फिल्टरले खोजी साँघुरो बनाइरहेको छ।
+values-b+ne	string	search_tv_source_failed	-	असफल %s
+values-b+ne	string	search_tv_source_pinned	-	पिन गरिएको
+values-b+ne	string	search_tv_sources_panel_meta	-	%2$d मध्ये %1$d सक्रिय · सकियो थिच्दा परिवर्तन लागू हुन्छ
 values-b+ne	string	seek_back_10_seconds	-	10 सेकेन्ड पछाडि जानुहोस्
 values-b+ne	string	seek_forward_10_seconds	-	10 सेकेन्ड अगाडि जानुहोस्
 values-b+ne	string	show_log_cat	-	Logcat देखाउनुहोस
@@ -23507,8 +23671,12 @@ values-b+nl	string	search_poster_img_des	-	Poster
 values-b+nl	string	search_provider_text_providers	-	Zoeken met providers
 values-b+nl	string	search_provider_text_types	-	Zoeken met types
 values-b+nl	string	search_state_idle_body_desktop	-	Typ een titel. Resultaten verschijnen onder elke bron zodra die antwoordt.
+values-b+nl	string	search_state_no_results_type_filter	-	Alleen %s. Je typefilter beperkt de zoekopdracht.
 values-b+nl	string	search_suggestions	-	Zoeksuggesties
 values-b+nl	string	search_suggestions_des	-	Zoeksuggesties laten zien tijdens het typen
+values-b+nl	string	search_tv_source_failed	-	MISLUKT %s
+values-b+nl	string	search_tv_source_pinned	-	VASTGEPIND
+values-b+nl	string	search_tv_sources_panel_meta	-	%1$d VAN %2$d INGESCHAKELD · WIJZIGINGEN GELDEN NA KLAAR
 values-b+nl	string	season	-	Seizoen
 values-b+nl	string	season_format	-	%1$s %2$d%3$s
 values-b+nl	string	season_short	-	S
@@ -23906,6 +24074,10 @@ values-b+nn	string	search_poster_img_des	-	Plakat
 values-b+nn	string	search_provider_text_providers	-	Søk basert på leverandør
 values-b+nn	string	search_provider_text_types	-	Søk ved bruk av typer
 values-b+nn	string	search_state_idle_body_desktop	-	Skriv ein tittel. Resultata kjem under kvar kjelde når ho svarar.
+values-b+nn	string	search_state_no_results_type_filter	-	Berre %s. Typefilteret ditt avgrensar søket.
+values-b+nn	string	search_tv_source_failed	-	FEILA %s
+values-b+nn	string	search_tv_source_pinned	-	FESTA
+values-b+nn	string	search_tv_sources_panel_meta	-	%1$d AV %2$d AKTIVERTE · ENDRINGAR GJELD ETTER FERDIG
 values-b+nn	string	season	-	Sesong
 values-b+nn	string	season_format	-	%1$s %2$d%3$s
 values-b+nn	string	season_short	-	S
@@ -24390,6 +24562,10 @@ values-b+no	string	search_poster_img_des	-	Plakat
 values-b+no	string	search_provider_text_providers	-	Søk med leverandører
 values-b+no	string	search_provider_text_types	-	Søk med typer
 values-b+no	string	search_state_idle_body_desktop	-	Skriv inn en tittel. Resultatene vises under hver kilde når den svarer.
+values-b+no	string	search_state_no_results_type_filter	-	Bare %s. Typefilteret ditt begrenser søket.
+values-b+no	string	search_tv_source_failed	-	FEILET %s
+values-b+no	string	search_tv_source_pinned	-	FESTET
+values-b+no	string	search_tv_sources_panel_meta	-	%1$d AV %2$d AKTIVERT · ENDRINGER GJELDER ETTER FERDIG
 values-b+no	string	season	-	Sesong
 values-b+no	string	season_format	-	%1$s %2$d%3$s
 values-b+no	string	season_short	-	S
@@ -24707,6 +24883,10 @@ values-b+or	string	search_hint_site	-	%s ସନ୍ଧାନ କରିବା…
 values-b+or	string	search_poster_img_des	-	ପୋଷ୍ଟର୍
 values-b+or	string	search_provider_text_providers	-	ପ୍ରଦାତା ଵ୍ୟଵହାର କରି ଖୋଜିବା
 values-b+or	string	search_state_idle_body_desktop	-	ଏକ ଶୀର୍ଷକ ଟାଇପ୍ କରନ୍ତୁ। ପ୍ରତ୍ୟେକ ଉତ୍ସ ଉତ୍ତର ଦେଲେ ଫଳାଫଳ ତା ତଳେ ଦେଖାଯିବ।
+values-b+or	string	search_state_no_results_type_filter	-	କେବଳ %s। ଆପଣଙ୍କ ପ୍ରକାର ଫିଲ୍ଟର ସନ୍ଧାନକୁ ସଂକୁଚିତ କରୁଛି।
+values-b+or	string	search_tv_source_failed	-	ବିଫଳ %s
+values-b+or	string	search_tv_source_pinned	-	ପିନ୍ କରାଯାଇଛି
+values-b+or	string	search_tv_sources_panel_meta	-	%2$d ମଧ୍ୟରୁ %1$d ସକ୍ରିୟ · ହେଲା ଦବାଇଲେ ପରିବର୍ତ୍ତନ ଲାଗୁ ହେବ
 values-b+or	string	season	-	ଋତୁ
 values-b+or	string	season_short	-	ଋ
 values-b+or	string	seek_back_10_seconds	-	୧୦ ସେକେଣ୍ଡ ପଛକୁ ଯାଅ
@@ -25354,8 +25534,12 @@ values-b+pl	string	search_poster_img_des	-	Poster
 values-b+pl	string	search_provider_text_providers	-	Szukaj według źródeł
 values-b+pl	string	search_provider_text_types	-	Szukaj według typów
 values-b+pl	string	search_state_idle_body_desktop	-	Wpisz tytuł. Wyniki pojawiają się pod każdym źródłem, gdy odpowie.
+values-b+pl	string	search_state_no_results_type_filter	-	Tylko %s. Filtr typu zawęża wyszukiwanie.
 values-b+pl	string	search_suggestions	-	Sugestie wyszukiwania
 values-b+pl	string	search_suggestions_des	-	Pokaż sugestie wyszukiwania podczas pisania
+values-b+pl	string	search_tv_source_failed	-	BŁĄD %s
+values-b+pl	string	search_tv_source_pinned	-	PRZYPIĘTE
+values-b+pl	string	search_tv_sources_panel_meta	-	WŁĄCZONO %1$d Z %2$d · ZMIANY OBOWIĄZUJĄ PO GOTOWE
 values-b+pl	string	season	-	Sezon
 values-b+pl	string	season_format	-	%1$s %2$d%3$s
 values-b+pl	string	season_short	-	S
@@ -26159,8 +26343,12 @@ values-b+pt	string	search_poster_img_des	-	Poster
 values-b+pt	string	search_provider_text_providers	-	Procurar usando fornecedores
 values-b+pt	string	search_provider_text_types	-	Procurar usando tipos
 values-b+pt	string	search_state_idle_body_desktop	-	Escreva um título. Os resultados aparecem sob cada fonte assim que ela responde.
+values-b+pt	string	search_state_no_results_type_filter	-	Apenas %s. O filtro de tipo está a limitar a pesquisa.
 values-b+pt	string	search_suggestions	-	Sugestões de pesquisa
 values-b+pt	string	search_suggestions_des	-	Mostrar sugestões de pesquisa enquanto digita
+values-b+pt	string	search_tv_source_failed	-	FALHOU %s
+values-b+pt	string	search_tv_source_pinned	-	FIXADO
+values-b+pt	string	search_tv_sources_panel_meta	-	%1$d DE %2$d ATIVADOS · AS ALTERAÇÕES APLICAM-SE APÓS FEITO
 values-b+pt	string	season	-	Temporada
 values-b+pt	string	season_format	-	%1$s %2$d%3$s
 values-b+pt	string	season_short	-	T
@@ -26957,8 +27145,12 @@ values-b+pt+BR	string	search_poster_img_des	-	Pôster
 values-b+pt+BR	string	search_provider_text_providers	-	Pesquisar usando fornecedor
 values-b+pt+BR	string	search_provider_text_types	-	Pesquisar usando tipos
 values-b+pt+BR	string	search_state_idle_body_desktop	-	Digite um título. Os resultados aparecem abaixo de cada fonte assim que ela responde.
+values-b+pt+BR	string	search_state_no_results_type_filter	-	Somente %s. O filtro de tipo está restringindo a pesquisa.
 values-b+pt+BR	string	search_suggestions	-	Sugestões de Busca
 values-b+pt+BR	string	search_suggestions_des	-	Exibir sugestões de pesquisa durante a digitação
+values-b+pt+BR	string	search_tv_source_failed	-	FALHOU %s
+values-b+pt+BR	string	search_tv_source_pinned	-	FIXADO
+values-b+pt+BR	string	search_tv_sources_panel_meta	-	%1$d DE %2$d ATIVADOS · AS ALTERAÇÕES SÃO APLICADAS APÓS FEITO
 values-b+pt+BR	string	season	-	Temporada
 values-b+pt+BR	string	season_format	-	%1$s %2$d%3$s
 values-b+pt+BR	string	season_short	-	T
@@ -27684,6 +27876,10 @@ values-b+qt	string	search_poster_img_des	-	aaaaaah
 values-b+qt	string	search_provider_text_providers	-	aauuhaauugghhahhh ohaauugghhouuhhh
 values-b+qt	string	search_provider_text_types	-	ahhhahoooohhaa ahhhoohahh
 values-b+qt	string	search_state_idle_body_desktop	-	oouuh aaaaggg uuuk ooh
+values-b+qt	string	search_state_no_results_type_filter	-	%s uuhaa. oouuh aagggh uuk.
+values-b+qt	string	search_tv_source_failed	-	AAGGH %s
+values-b+qt	string	search_tv_source_pinned	-	OOHHAA
+values-b+qt	string	search_tv_sources_panel_meta	-	%1$d OOHH %2$d AAHH · UUGH AAK EEEK
 values-b+qt	string	season	-	ooo-ahah
 values-b+qt	string	season_format	-	%1$s %2$d%3$s
 values-b+qt	string	season_short	-	H
@@ -28370,6 +28566,10 @@ values-b+ro	string	search_poster_img_des	-	Poster
 values-b+ro	string	search_provider_text_providers	-	Căutare în funcție de furnizor
 values-b+ro	string	search_provider_text_types	-	Căutare în funcție de tip
 values-b+ro	string	search_state_idle_body_desktop	-	Tastați un titlu. Rezultatele apar sub fiecare sursă când răspunde.
+values-b+ro	string	search_state_no_results_type_filter	-	Doar %s. Filtrul de tip restrânge căutarea.
+values-b+ro	string	search_tv_source_failed	-	EȘUAT %s
+values-b+ro	string	search_tv_source_pinned	-	FIXAT
+values-b+ro	string	search_tv_sources_panel_meta	-	%1$d DIN %2$d ACTIVATE · MODIFICĂRILE SE APLICĂ LA TERMINAT
 values-b+ro	string	season	-	Sezonul
 values-b+ro	string	season_format	-	%1$s %2$d%3$s
 values-b+ro	string	season_short	-	S
@@ -29136,8 +29336,12 @@ values-b+ru	string	search_poster_img_des	-	Плакат
 values-b+ru	string	search_provider_text_providers	-	Поиск с использованием поставщиков
 values-b+ru	string	search_provider_text_types	-	Поиск с использованием типов
 values-b+ru	string	search_state_idle_body_desktop	-	Введите название. Результаты появятся под каждым источником, когда он ответит.
+values-b+ru	string	search_state_no_results_type_filter	-	Только %s. Фильтр по типу сужает поиск.
 values-b+ru	string	search_suggestions	-	Поиск предложений
 values-b+ru	string	search_suggestions_des	-	Показывать подсказки поиска при вводе текста
+values-b+ru	string	search_tv_source_failed	-	СБОЙ %s
+values-b+ru	string	search_tv_source_pinned	-	ЗАКРЕПЛЕНО
+values-b+ru	string	search_tv_sources_panel_meta	-	ВКЛЮЧЕНО %1$d ИЗ %2$d · ИЗМЕНЕНИЯ ВСТУПЯТ В СИЛУ ПОСЛЕ НАЖАТИЯ ГОТОВО
 values-b+ru	string	season	-	Сезон
 values-b+ru	string	season_format	-	%1$s %2$d%3$s
 values-b+ru	string	season_short	-	С
@@ -29756,8 +29960,12 @@ values-b+sk	string	search_poster_img_des	-	Plagát
 values-b+sk	string	search_provider_text_providers	-	Hľadať pomocou poskytovateľov
 values-b+sk	string	search_provider_text_types	-	Hľadať pomocou typov
 values-b+sk	string	search_state_idle_body_desktop	-	Zadajte názov. Výsledky sa zobrazia pod každým zdrojom, keď odpovie.
+values-b+sk	string	search_state_no_results_type_filter	-	Iba %s. Filter typov zužuje hľadanie.
 values-b+sk	string	search_suggestions	-	Návrhy vyhľadávania
 values-b+sk	string	search_suggestions_des	-	Zobraziť návrhy vyhľadávania pri písaní
+values-b+sk	string	search_tv_source_failed	-	ZLYHALO %s
+values-b+sk	string	search_tv_source_pinned	-	PRIPNUTÉ
+values-b+sk	string	search_tv_sources_panel_meta	-	%1$d Z %2$d ZAPNUTÝCH · ZMENY SA UPLATNIA PO STLAČENÍ HOTOVO
 values-b+sk	string	season	-	Sezóna
 values-b+sk	string	season_format	-	%1$s %2$d%3$s
 values-b+sk	string	season_short	-	S
@@ -30311,8 +30519,12 @@ values-b+so	string	search_poster_img_des	-	Sawirka
 values-b+so	string	search_provider_text_providers	-	Ku raadi qaybiyeyaasha
 values-b+so	string	search_provider_text_types	-	Ku raadi noocyada
 values-b+so	string	search_state_idle_body_desktop	-	Qor cinwaan. Natiijooyinku waxay ka muuqdaan xigasho kasta hoosteeda marka ay jawaabto.
+values-b+so	string	search_state_no_results_type_filter	-	Kaliya %s. Shaandhada nooca ayaa soo koobaya raadinta.
 values-b+so	string	search_suggestions	-	Talooyinka Raadinta
 values-b+so	string	search_suggestions_des	-	Soo bandhig talooyinka inta aad wax qorayso
+values-b+so	string	search_tv_source_failed	-	FASHILAY %s
+values-b+so	string	search_tv_source_pinned	-	LA DHEJIYAY
+values-b+so	string	search_tv_sources_panel_meta	-	%1$d KA %2$d LA HAWLGELIYAY · ISBEDDELADA WAXAY DHAQAN GALAAN MARKA LA DOOTO DHAN
 values-b+so	string	season	-	Kalka
 values-b+so	string	season_format	-	%1$s %2$d%3$s
 values-b+so	string	season_short	-	K
@@ -31041,8 +31253,12 @@ values-b+sq	string	search_poster_img_des	-	Posteri
 values-b+sq	string	search_provider_text_providers	-	Kërko duke përdorur ofruesit
 values-b+sq	string	search_provider_text_types	-	Kërko duke përdorur tipet
 values-b+sq	string	search_state_idle_body_desktop	-	Shkruani një titull. Rezultatet shfaqen nën çdo burim sapo ai përgjigjet.
+values-b+sq	string	search_state_no_results_type_filter	-	Vetëm %s. Filtri i llojit po e ngushton kërkimin.
 values-b+sq	string	search_suggestions	-	Kërkime të sugjeruara
 values-b+sq	string	search_suggestions_des	-	Trego sugjerimet ndërkohë që shkruani
+values-b+sq	string	search_tv_source_failed	-	DËSHTOI %s
+values-b+sq	string	search_tv_source_pinned	-	I FIKSUAR
+values-b+sq	string	search_tv_sources_panel_meta	-	%1$d NGA %2$d AKTIVIZUAR · NDRYSHIMET ZBATOHEN ME U KRYE
 values-b+sq	string	season	-	Sezoni
 values-b+sq	string	season_format	-	%1$s %2$d%3$s
 values-b+sq	string	season_short	-	S
@@ -31842,8 +32058,12 @@ values-b+sv	string	search_poster_img_des	-	Affisch
 values-b+sv	string	search_provider_text_providers	-	Sök med hjälp av leverantörer
 values-b+sv	string	search_provider_text_types	-	Sök med hjälp av typer
 values-b+sv	string	search_state_idle_body_desktop	-	Skriv en titel. Resultaten visas under varje källa när den svarar.
+values-b+sv	string	search_state_no_results_type_filter	-	Endast %s. Ditt typfilter begränsar sökningen.
 values-b+sv	string	search_suggestions	-	Sökförslag
 values-b+sv	string	search_suggestions_des	-	Visa sökförslag medan du skriver
+values-b+sv	string	search_tv_source_failed	-	MISSLYCKADES %s
+values-b+sv	string	search_tv_source_pinned	-	FASTSATT
+values-b+sv	string	search_tv_sources_panel_meta	-	%1$d AV %2$d AKTIVERADE · ÄNDRINGAR TILLÄMPAS VID KLAR
 values-b+sv	string	season	-	Säsong
 values-b+sv	string	season_format	-	%1$s %2$d%3$s
 values-b+sv	string	season_short	-	S
@@ -32643,8 +32863,12 @@ values-b+ta	string	search_poster_img_des	-	போச்டர்
 values-b+ta	string	search_provider_text_providers	-	வழங்குபவர்கள் பயன்படுத்தி தேடுங்கள்
 values-b+ta	string	search_provider_text_types	-	வகைகளைப் பயன்படுத்தி தேடுங்கள்
 values-b+ta	string	search_state_idle_body_desktop	-	ஒரு தலைப்பைத் தட்டச்சு செய்யவும். ஒவ்வொரு மூலமும் பதிலளிக்கும்போது முடிவுகள் அதன் கீழ் தோன்றும்.
+values-b+ta	string	search_state_no_results_type_filter	-	%s மட்டும். உங்கள் வகை வடிப்பான் தேடலைக் குறுக்குகிறது.
 values-b+ta	string	search_suggestions	-	தேடல் பரிந்துரைகள்
 values-b+ta	string	search_suggestions_des	-	தட்டச்சு செய்யும் போது தேடல் பரிந்துரைகளைக் காட்டு
+values-b+ta	string	search_tv_source_failed	-	தோல்வி %s
+values-b+ta	string	search_tv_source_pinned	-	பின் செய்யப்பட்டது
+values-b+ta	string	search_tv_sources_panel_meta	-	%2$d இல் %1$d இயக்கப்பட்டது · முடிந்தது அழுத்தியதும் மாற்றங்கள் பொருந்தும்
 values-b+ta	string	season	-	பருவம்
 values-b+ta	string	season_format	-	%1$s %2$d %3$s
 values-b+ta	string	season_short	-	கள்
@@ -32911,6 +33135,10 @@ values-b+ti	string	player_source_retry	-	እንደገና ፈትን
 values-b+ti	string	player_source_switch	-	ቀይር
 values-b+ti	string	player_unmute	-	ድምጺ ወልዕ
 values-b+ti	string	search_state_idle_body_desktop	-	ኣርእስቲ ጽሓፍ። ውጽኢታት ነፍሲ ወከፍ ምንጪ ምስ መለሰ ኣብ ትሕቲኡ ይርአዩ።
+values-b+ti	string	search_state_no_results_type_filter	-	%s ጥራይ። ማጣሪያ ዓይነትካ ፍለጋ የጽብብ ኣሎ።
+values-b+ti	string	search_tv_source_failed	-	ኣይተኻኣለን %s
+values-b+ti	string	search_tv_source_pinned	-	ተሰኪሉ
+values-b+ti	string	search_tv_sources_panel_meta	-	%1$d ካብ %2$d ተኸፊቱ · ለውጥታት ብተፈጸመ ይትግበሩ
 values-b+ti	string	seek_back_10_seconds	-	10 ካልኢት ንድሕሪት
 values-b+ti	string	seek_forward_10_seconds	-	10 ካልኢት ንቕድሚት
 values-b+ti	string	subtitles_file_empty	-	እዚ ፋይል ንኡስ ጽሑፍ ባዶ እዩ
@@ -33187,6 +33415,10 @@ values-b+tl	string	search_poster_img_des	-	Poster
 values-b+tl	string	search_provider_text_providers	-	Search using providers
 values-b+tl	string	search_provider_text_types	-	Search using types
 values-b+tl	string	search_state_idle_body_desktop	-	Mag-type ng pamagat. Lalabas ang mga resulta sa ilalim ng bawat source kapag sumagot ito.
+values-b+tl	string	search_state_no_results_type_filter	-	%s lang. Pinipigilan ng type filter mo ang paghahanap.
+values-b+tl	string	search_tv_source_failed	-	NABIGO %s
+values-b+tl	string	search_tv_source_pinned	-	NAKA-PIN
+values-b+tl	string	search_tv_sources_panel_meta	-	%1$d SA %2$d ANG NAKA-ENABLE · ILALAPAT ANG MGA PAGBABAGO KAPAG PININDOT ANG TAPOS NA
 values-b+tl	string	season	-	Season
 values-b+tl	string	season_short	-	S
 values-b+tl	string	seek_back_10_seconds	-	Bumalik ng 10 segundo
@@ -33861,8 +34093,12 @@ values-b+tr	string	search_poster_img_des	-	Afiş
 values-b+tr	string	search_provider_text_providers	-	Sağlayıcıları kullanarak ara
 values-b+tr	string	search_provider_text_types	-	Türleri kullanarak ara
 values-b+tr	string	search_state_idle_body_desktop	-	Bir başlık yazın. Sonuçlar, her kaynak yanıt verdikçe onun altında görünür.
+values-b+tr	string	search_state_no_results_type_filter	-	Yalnızca %s. Tür filtreniz aramayı daraltıyor.
 values-b+tr	string	search_suggestions	-	Arama Önerileri
 values-b+tr	string	search_suggestions_des	-	Yazarken arama önerilerini göster
+values-b+tr	string	search_tv_source_failed	-	BAŞARISIZ %s
+values-b+tr	string	search_tv_source_pinned	-	SABİTLENDİ
+values-b+tr	string	search_tv_sources_panel_meta	-	%2$d İÇİNDEN %1$d ETKİN · DEĞİŞİKLİKLER BİTTİ İLE UYGULANIR
 values-b+tr	string	season	-	Sezon
 values-b+tr	string	season_format	-	%1$s %2$d%3$s
 values-b+tr	string	season_short	-	S
@@ -34670,8 +34906,12 @@ values-b+uk	string	search_poster_img_des	-	Плакат
 values-b+uk	string	search_provider_text_providers	-	Пошук за постачальниками
 values-b+uk	string	search_provider_text_types	-	Пошук за типами
 values-b+uk	string	search_state_idle_body_desktop	-	Введіть назву. Результати з'являться під кожним джерелом, коли воно відповість.
+values-b+uk	string	search_state_no_results_type_filter	-	Лише %s. Фільтр за типом звужує пошук.
 values-b+uk	string	search_suggestions	-	Пропозиції пошуку
 values-b+uk	string	search_suggestions_des	-	Показувати підказки пошуку під час введення тексту
+values-b+uk	string	search_tv_source_failed	-	ЗБІЙ %s
+values-b+uk	string	search_tv_source_pinned	-	ЗАКРІПЛЕНО
+values-b+uk	string	search_tv_sources_panel_meta	-	УВІМКНЕНО %1$d З %2$d · ЗМІНИ ЗАСТОСОВУЮТЬСЯ ПІСЛЯ НАТИСКАННЯ ГОТОВО
 values-b+uk	string	season	-	Сезон
 values-b+uk	string	season_format	-	%1$s %2$d%3$s
 values-b+uk	string	season_short	-	С
@@ -35377,6 +35617,10 @@ values-b+ur	string	search_poster_img_des	-	پروموشنل تصویر
 values-b+ur	string	search_provider_text_providers	-	ذرائع کا استعمال کرتے ہوئے تلاش کریں
 values-b+ur	string	search_provider_text_types	-	انواع کا استعمال کرتے ہوئے تلاش کریں
 values-b+ur	string	search_state_idle_body_desktop	-	عنوان لکھیں۔ ہر ذریعہ کے جواب دینے پر نتائج اس کے نیچے ظاہر ہوں گے۔
+values-b+ur	string	search_state_no_results_type_filter	-	صرف %s۔ آپ کا قسم فلٹر تلاش کو محدود کر رہا ہے۔
+values-b+ur	string	search_tv_source_failed	-	ناکام %s
+values-b+ur	string	search_tv_source_pinned	-	پن کیا گیا
+values-b+ur	string	search_tv_sources_panel_meta	-	%2$d میں سے %1$d فعال · تبدیلیاں ہو گیا پر لاگو ہوں گی
 values-b+ur	string	season	-	سیزن
 values-b+ur	string	season_format	-	%1$s %2$d%3$s
 values-b+ur	string	season_short	-	S
@@ -36130,8 +36374,12 @@ values-b+vi	string	search_poster_img_des	-	Poster
 values-b+vi	string	search_provider_text_providers	-	Tìm kiếm theo nguồn phim
 values-b+vi	string	search_provider_text_types	-	Tìm kiếm theo thể loại
 values-b+vi	string	search_state_idle_body_desktop	-	Nhập tiêu đề. Kết quả sẽ hiện dưới mỗi nguồn khi nguồn đó phản hồi.
+values-b+vi	string	search_state_no_results_type_filter	-	Chỉ %s. Bộ lọc loại của bạn đang thu hẹp kết quả tìm kiếm.
 values-b+vi	string	search_suggestions	-	Gợi ý tìm kiếm
 values-b+vi	string	search_suggestions_des	-	Hiển thị gợi ý tìm kiếm khi đang nhập
+values-b+vi	string	search_tv_source_failed	-	THẤT BẠI %s
+values-b+vi	string	search_tv_source_pinned	-	ĐÃ GHIM
+values-b+vi	string	search_tv_sources_panel_meta	-	%1$d TRÊN %2$d ĐÃ BẬT · THAY ĐỔI ÁP DỤNG KHI NHẤN HOÀN TẤT
 values-b+vi	string	season	-	Mùa
 values-b+vi	string	season_format	-	%1$s %2$d%3$s
 values-b+vi	string	season_short	-	Mùa
@@ -36927,8 +37175,12 @@ values-b+zh	string	search_poster_img_des	-	封面
 values-b+zh	string	search_provider_text_providers	-	按片源搜索
 values-b+zh	string	search_provider_text_types	-	按类型搜索
 values-b+zh	string	search_state_idle_body_desktop	-	输入标题。每个来源响应后，结果会显示在其下方。
+values-b+zh	string	search_state_no_results_type_filter	-	仅限%s。类型筛选正在缩小搜索范围。
 values-b+zh	string	search_suggestions	-	搜索建议
 values-b+zh	string	search_suggestions_des	-	输入时显示搜索建议
+values-b+zh	string	search_tv_source_failed	-	失败 %s
+values-b+zh	string	search_tv_source_pinned	-	已置顶
+values-b+zh	string	search_tv_sources_panel_meta	-	已启用 %1$d / %2$d · 更改将在点击完成后生效
 values-b+zh	string	season	-	季
 values-b+zh	string	season_format	-	%1$s %2$d%3$s
 values-b+zh	string	season_short	-	S
@@ -37721,8 +37973,12 @@ values-b+zh+TW	string	search_poster_img_des	-	封面
 values-b+zh+TW	string	search_provider_text_providers	-	按片源搜尋
 values-b+zh+TW	string	search_provider_text_types	-	按類型搜尋
 values-b+zh+TW	string	search_state_idle_body_desktop	-	輸入標題。每個來源回應後，結果會顯示在其下方。
+values-b+zh+TW	string	search_state_no_results_type_filter	-	僅限%s。類型篩選器正在縮小搜尋範圍。
 values-b+zh+TW	string	search_suggestions	-	搜尋建議
 values-b+zh+TW	string	search_suggestions_des	-	輸入時顯示搜尋建議
+values-b+zh+TW	string	search_tv_source_failed	-	失敗 %s
+values-b+zh+TW	string	search_tv_source_pinned	-	已置頂
+values-b+zh+TW	string	search_tv_sources_panel_meta	-	已啟用 %1$d / %2$d · 變更將在點選完成後生效
 values-b+zh+TW	string	season	-	季
 values-b+zh+TW	string	season_format	-	%1$s %2$d%3$s
 values-b+zh+TW	string	season_short	-	S
