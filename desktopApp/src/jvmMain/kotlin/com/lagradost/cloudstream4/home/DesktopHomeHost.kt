@@ -60,6 +60,8 @@ internal fun HomeHost(
             when (effect) {
                 is HomeEffect.OpenTitle -> onOpen(effect.id)
                 HomeEffect.OpenSearch -> onSearch()
+                // Only `HomeScreenTv` asks for these.
+                HomeEffect.OpenExtensions, HomeEffect.OpenAccounts -> Unit
             }
         }
     }

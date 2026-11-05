@@ -4,6 +4,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertIs
+import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -364,5 +365,172 @@ class HomeViewModelTest {
         vm.onAction(HomeAction.SearchRequested)
         runCurrent()
         second.join()
+    }
+
+    // ---- Sources arriving in stages, on a host that loads plugins behind a page already drawn ------------------------
+
+    private class Staged(
+        var options: List<HomeSourceOption>,
+        var loading: Boolean,
+        val answer: (HomeSourceId) -> HomePageReply,
+    ) : HomeSource {
+        val asked = mutableListOf<HomeSourceId>()
+        var failSources = false
+
+        override suspend fun sources(): HomeSources {
+            if (failSources) error("broken")
+            return HomeSources(options, options.size, stillLoading = loading)
+        }
+
+        override suspend fun page(source: HomeSourceId, section: Int, page: Int): HomePageReply {
+            asked += source
+            return answer(source)
+        }
+    }
+
+    @Test
+    fun `nothing yet while still loading is loading, not nothing installed`() = runTest {
+        val source = Staged(emptyList(), loading = true) { page(it.value, "1") }
+        val vm = model(source)
+        assertEquals(HomeStatus.Loading, vm.state.value.status)
+
+        source.loading = false
+        vm.onAction(HomeAction.SourcesChanged)
+        assertEquals(HomeStatus.NoSources(0), vm.state.value.status)
+    }
+
+    @Test
+    fun `a remembered source still on its way is waited for, and nothing else is fetched`() = runTest {
+        val source = Staged(listOf(option(a)), loading = true) { page(it.value, "1") }
+        val vm = model(source, Kept(b))
+        assertEquals(HomeStatus.Loading, vm.state.value.status)
+        assertTrue(source.asked.isEmpty())
+
+        source.options = listOf(option(a), option(b))
+        vm.onAction(HomeAction.SourcesChanged)
+        assertEquals(b, vm.state.value.selected)
+        assertEquals(listOf(b), source.asked)
+    }
+
+    @Test
+    fun `a remembered source that never comes falls back without being forgotten`() = runTest {
+        val memory = Kept(b)
+        val source = Staged(listOf(option(a)), loading = true) { page(it.value, "1") }
+        val vm = model(source, memory)
+
+        source.loading = false
+        vm.onAction(HomeAction.SourcesChanged)
+        assertEquals(a, vm.state.value.selected)
+        assertEquals(b, memory.id)
+    }
+
+    @Test
+    fun `the remembered source replaces a fallback when it turns up after all`() = runTest {
+        val source = Staged(listOf(option(a)), loading = false) { page(it.value, "1") }
+        val vm = model(source, Kept(b))
+        assertEquals(a, vm.state.value.selected)
+
+        source.options = listOf(option(a), option(b))
+        vm.onAction(HomeAction.SourcesChanged)
+        assertEquals(b, vm.state.value.selected)
+        assertEquals(listOf("b"), assertIs<HomeStatus.Showing>(vm.state.value.status).rows.map { it.title })
+    }
+
+    @Test
+    fun `no source remembered and one on offer loads it even while others are still loading`() = runTest {
+        val source = Staged(listOf(option(a)), loading = true) { page(it.value, "1") }
+        val vm = model(source)
+        assertEquals(a, vm.state.value.selected)
+        assertIs<HomeStatus.Showing>(vm.state.value.status)
+    }
+
+    @Test
+    fun `sources changing leaves rows for the same source alone and asks nothing`() = runTest {
+        val source = Staged(listOf(option(a)), loading = false) { page(it.value, "1") }
+        val vm = model(source)
+        val before = vm.state.value.status
+
+        source.options = listOf(option(a), option(b))
+        vm.onAction(HomeAction.SourcesChanged)
+
+        assertTrue(before === vm.state.value.status, "the same rows, so nothing recomposes away")
+        assertEquals(listOf(a), source.asked)
+        assertEquals(2, vm.state.value.sources.size)
+    }
+
+    @Test
+    fun `sources changing during a first page does not start it again or lose it`() = runTest {
+        val waiting = CompletableDeferred<HomePageReply>()
+        var asked = 0
+        val source = object : HomeSource {
+            override suspend fun sources() = HomeSources(listOf(option(a)), 1)
+            override suspend fun page(source: HomeSourceId, section: Int, page: Int): HomePageReply {
+                asked++
+                return waiting.await()
+            }
+        }
+        val vm = model(source)
+        vm.onAction(HomeAction.SourcesChanged)
+        assertEquals(1, asked)
+
+        waiting.complete(page("a", "1"))
+        assertIs<HomeStatus.Showing>(vm.state.value.status)
+    }
+
+    @Test
+    fun `a failure is asked again when sources change, and sources failing to read leaves the page alone`() = runTest {
+        var fail = true
+        val source = Staged(listOf(option(a)), loading = false) {
+            if (fail) HomePageReply.Failed("503") else page(it.value, "1")
+        }
+        val vm = model(source)
+        assertIs<HomeStatus.Failed>(vm.state.value.status)
+
+        fail = false
+        vm.onAction(HomeAction.SourcesChanged)
+        val showing = assertIs<HomeStatus.Showing>(vm.state.value.status)
+
+        source.failSources = true
+        vm.onAction(HomeAction.SourcesChanged)
+        assertTrue(showing === vm.state.value.status)
+    }
+
+    // ---- What a TV needs to put focus back ---------------------------------------------------------------------------
+
+    @Test
+    fun `a title opened with a place to come back to waits for the screen to resume`() = runTest {
+        val vm = model(Fake(listOf(option(a))) { id, _, _ -> page(id.value, "1") })
+        val from = HomeReturn("1", HomeRowKey(0, "a"), firstVisibleRow = 2, firstVisibleCard = 3)
+
+        vm.onAction(HomeAction.TitleActivated("1", from))
+        assertEquals(from, vm.state.value.returnTo)
+        assertEquals(false, vm.state.value.returnTo?.ready)
+
+        vm.onAction(HomeAction.Reappeared)
+        assertEquals(true, vm.state.value.returnTo?.ready)
+        assertEquals(true, vm.state.value.appeared)
+
+        vm.onAction(HomeAction.ReturnHandled)
+        assertNull(vm.state.value.returnTo)
+    }
+
+    @Test
+    fun `choosing another source drops the place to come back to`() = runTest {
+        val vm = model(Fake(listOf(option(a), option(b))) { id, _, _ -> page(id.value, "1") })
+        vm.onAction(HomeAction.TitleActivated("1", HomeReturn("1", HomeRowKey(0, "a"))))
+        vm.onAction(HomeAction.SourceSelected(b))
+        assertNull(vm.state.value.returnTo)
+    }
+
+    @Test
+    fun `a landing is owed once, and pausing withdraws the right to take focus`() = runTest {
+        val vm = model(Fake(listOf(option(a))) { id, _, _ -> page(id.value, "1") })
+        assertEquals(true, vm.state.value.landingOwed)
+        vm.onAction(HomeAction.LandingHandled)
+        assertEquals(false, vm.state.value.landingOwed)
+
+        vm.onAction(HomeAction.Reappeared)
+        vm.onAction(HomeAction.Disappeared)
+        assertEquals(false, vm.state.value.appeared)
     }
 }
