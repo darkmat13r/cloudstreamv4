@@ -3347,10 +3347,10 @@ tests pin today's behaviour and go red when someone changes it, which is their j
 |---|---|---|---|
 | Lost past 60 MiB, range server | 62,914,560 of 104,857,600 | `isCompleted`, `IsFailed` announced, no queue key, status gone, so the button computes paused | `FAILED`, `NetworkLost` |
 | Same fault, direct `downloadThing` | 62,914,560, and on another run 48,889,856 | `PARTIAL_SUCCESS`, and on that run `DOWNLOAD_FAILED` | |
-| Lost past 15 MiB of 40 | 4,440,064 and 5,234,635 | `isFailed`, status `IsFailed` | `FAILED`, `NetworkLost` |
+| Lost past 15 MiB of 40 | 3,399,680 on the run behind this table; 4,440,064 and 5,234,635 on earlier ones | `isFailed`, status `IsFailed` | `FAILED`, `NetworkLost` |
 | Lost in the last range | 44,040,192 of 47,185,920 | `isCompleted`, **`IsDone` announced** | `FAILED`, `NetworkLost` |
 | Lost in a single-range file | 12,582,912 of 15,728,640 | `isCompleted`, **`IsDone` announced** | `FAILED`, `NetworkLost` |
-| Disk full, 30 MiB free, 200 MiB file | 31,440,896 | **Never ends.** Status `IsDownloading` after 45 s with no progress. Stop ends it in 54 ms | `DOWNLOADING`, `StorageFull(178274304)` |
+| Disk full, 30 MiB free, 200 MiB file | 31,449,035; 31,440,896 on an earlier run | **Never ends.** Status `IsDownloading` after 45 s with no progress. Stop ends it in 55 ms | `DOWNLOADING`, `StorageFull(178266165)` |
 
 **1. Past 50 MB, "recorded as complete" is narrower than the audit says.** No record claims the file is finished: the button
 computes paused, and the popup still offers Resume below 98% (`PieFetchButton`). What is lost is the failure: `isCompleted`
