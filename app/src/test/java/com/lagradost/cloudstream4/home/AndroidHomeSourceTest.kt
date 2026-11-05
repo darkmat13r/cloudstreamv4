@@ -2,18 +2,24 @@ package com.lagradost.cloudstream4.home
 
 import com.lagradost.cloudstream3.HomePageList
 import com.lagradost.cloudstream3.HomePageResponse
+import com.lagradost.cloudstream3.LoadResponse
 import com.lagradost.cloudstream3.MainAPI
 import com.lagradost.cloudstream3.MainPageData
 import com.lagradost.cloudstream3.MainPageRequest
 import com.lagradost.cloudstream3.SearchResponse
 import com.lagradost.cloudstream3.TvType
 import com.lagradost.cloudstream3.newHomePageResponse
+import com.lagradost.cloudstream3.newMovieLoadResponse
 import com.lagradost.cloudstream3.newMovieSearchResponse
+import com.lagradost.cloudstream3.Score
+import com.lagradost.cloudstream4.feature.home.HomeFeatured
+import com.lagradost.cloudstream4.feature.home.HomeItem
 import com.lagradost.cloudstream4.feature.home.HomePageReply
 import com.lagradost.cloudstream4.feature.home.HomeSourceId
 import com.lagradost.cloudstream4.feature.search.SearchResultId
 import com.lagradost.cloudstream4.search.SearchResultTarget
 import com.lagradost.cloudstream4.search.decodeId
+import com.lagradost.cloudstream4.search.encodeId
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
@@ -270,5 +276,83 @@ class AndroidHomeSourceTest {
     fun aLostConnectionIsOffline() = runBlocking {
         val api = Fake { _, _ -> throw UnknownHostException("example.com") }
         assertEquals(HomePageReply.Offline, source(api).page(HomeSourceId("Fake"), 0, 1))
+    }
+
+    // ---- The hero (3c) -------------------------------------------------------------------------------------------
+
+    /** A provider whose title pages answer with [page], or throw it. */
+    private class Paged(name: String, private val page: suspend Paged.(String) -> LoadResponse?) : MainAPI() {
+        override var name = name
+        override var mainUrl = "https://example.com"
+        override var lang = "en"
+        override val hasMainPage = true
+        override val supportedTypes = setOf(TvType.Movie)
+        override val mainPage = listOf(MainPageData("Section", "0"))
+        val loaded = mutableListOf<String>()
+
+        override suspend fun load(url: String): LoadResponse? {
+            loaded += url
+            return page(url)
+        }
+    }
+
+    private fun item(api: String, url: String) = HomeItem(encodeId(apiName = api, url = url).value, "ignored")
+
+    @Test
+    fun theHeroIsTheTitlesOwnPageWithEachFactCleaned() = runBlocking {
+        val api = Paged("Hero One") { url ->
+            newMovieLoadResponse("Dune\u202E", url, TvType.Movie, url) {
+                posterUrl = "https://img.example/poster.jpg"
+                backgroundPosterUrl = "content://evil/backdrop"
+                posterHeaders = mapOf("Referer" to "https://example.com", "Bad\nName" to "x")
+                year = 2021
+                duration = 155
+                tags = listOf("Sci-Fi", "Sci-Fi", "\u0000", "Drama", "War", "Epic")
+                score = Score.from10(8.04)
+                contentRating = "PG-13"
+                plot = "<p>A <b>noble</b> family&nbsp;&amp; a desert\n\nplanet.</p>"
+            }
+        }
+        val url = "https://example.com/dune"
+        val featured = source(api).featured(item("Hero One", url))
+        assertEquals(
+            HomeFeatured(
+                id = item("Hero One", url).id,
+                title = "Dune",
+                // A backdrop that is not http(s) never reaches the image loader; the poster stands in.
+                backdropUrl = "https://img.example/poster.jpg",
+                backdropHeaders = mapOf("Referer" to "https://example.com"),
+                year = 2021,
+                durationMinutes = 155,
+                genres = listOf("Sci-Fi", "Drama", "War"),
+                score = "8.0",
+                contentRating = "PG-13",
+                synopsis = "A noble family & a desert planet.",
+            ),
+            featured,
+        )
+        assertEquals(listOf(url), api.loaded)
+    }
+
+    @Test
+    fun aTitleWhosePageFailsOrIsBlankOrWhoseSourceIsGoneHasNoHero() = runBlocking {
+        val broken = Paged("Broken") { throw IOException("HTTP 503") }
+        assertNull(source(broken).featured(item("Broken", "https://example.com/a")))
+
+        val blank = Paged("Blank") { url -> newMovieLoadResponse("\u200B", url, TvType.Movie, url) }
+        assertNull(source(blank).featured(item("Blank", "https://example.com/b")))
+
+        val elsewhere = Paged("Here") { error("not asked") }
+        assertNull(source(elsewhere).featured(item("Gone", "https://example.com/c")))
+        assertTrue(elsewhere.loaded.isEmpty())
+
+        assertNull(source(elsewhere).featured(HomeItem("not an id at all", "x")))
+    }
+
+    @Test
+    fun factsThatAreNotThereStayNull() = runBlocking {
+        val api = Paged("Sparse") { url -> newMovieLoadResponse("Bare", url, TvType.Movie, url) }
+        val featured = source(api).featured(item("Sparse", "https://example.com/bare"))!!
+        assertEquals(HomeFeatured(featured.id, "Bare"), featured)
     }
 }

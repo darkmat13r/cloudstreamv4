@@ -533,4 +533,133 @@ class HomeViewModelTest {
         vm.onAction(HomeAction.Disappeared)
         assertEquals(false, vm.state.value.appeared)
     }
+
+    // ---- The hero and Continue watching (3c) -----------------------------------------------------------------------
+
+    /** [Fake] that also answers for the hero, by item id, after [heroDelay]. */
+    private class Featuring(
+        options: List<HomeSourceOption>,
+        answer: suspend (HomeSourceId, Int, Int) -> HomePageReply,
+        val featured: (String) -> HomeFeatured?,
+        val heroDelay: Long = 0,
+    ) : HomeSource {
+        private val inner = Fake(options, answer = answer)
+        val asked = mutableListOf<String>()
+
+        override suspend fun sources() = inner.sources()
+
+        override suspend fun page(source: HomeSourceId, section: Int, page: Int) = inner.page(source, section, page)
+
+        override suspend fun featured(item: HomeItem): HomeFeatured? {
+            asked += item.id
+            if (heroDelay > 0) kotlinx.coroutines.delay(heroDelay)
+            return featured(item.id)
+        }
+    }
+
+    private class History(var read: HomeHistory = HomeHistory(), var fail: Boolean = false) : HomeWatchHistory {
+        var reads = 0
+
+        override suspend fun read(): HomeHistory {
+            reads++
+            if (fail) throw IllegalStateException("unreadable")
+            return read
+        }
+    }
+
+    private fun TestScope.model(source: HomeSource, history: HomeWatchHistory) =
+        HomeViewModel(source, TestScope(UnconfinedTestDispatcher(testScheduler)), HomeSourceMemory.None, history)
+
+    @Test
+    fun `the hero is the first title whose own page answers, asked one at a time`() = runTest {
+        val source = Featuring(listOf(option(a)), { _, _, _ -> page("Row", "1", "2", "3", "4") }, featured = { id ->
+            if (id == "2") HomeFeatured(id, "Two") else null
+        })
+        val vm = model(source, HomeWatchHistory.None)
+
+        val hero = assertIs<HomeHero.Shown>(vm.state.value.hero)
+        assertEquals("Two", hero.featured.title)
+        assertEquals("Row", hero.eyebrow)
+        assertEquals(listOf("1", "2"), source.asked)
+    }
+
+    @Test
+    fun `no title answering is no hero, after at most three are asked`() = runTest {
+        val source = Featuring(listOf(option(a)), { _, _, _ -> page("Row", "1", "2", "3", "4") }, featured = { null })
+        val vm = model(source, HomeWatchHistory.None)
+        assertEquals(HomeHero.None, vm.state.value.hero)
+        assertEquals(listOf("1", "2", "3"), source.asked)
+    }
+
+    @Test
+    fun `a host that cannot ask has no hero, and that is settled at once`() = runTest {
+        val vm = model(Fake(listOf(option(a))) { id, _, _ -> page(id.value, "1") })
+        assertEquals(HomeHero.None, vm.state.value.hero)
+    }
+
+    @Test
+    fun `the hero is loading while asked, and a source that never answers is given up`() = runTest {
+        val source = Featuring(
+            listOf(option(a)),
+            { _, _, _ -> page("Row", "1") },
+            featured = { HomeFeatured(it, "Late") },
+            heroDelay = 60_000,
+        )
+        val vm = model(source, HomeWatchHistory.None)
+        assertIs<HomeStatus.Showing>(vm.state.value.status)
+        assertEquals(HomeHero.Loading, vm.state.value.hero)
+
+        advanceTimeBy(6_001)
+        runCurrent()
+        assertEquals(HomeHero.None, vm.state.value.hero)
+    }
+
+    @Test
+    fun `a page that failed has no hero to wait for`() = runTest {
+        val source = Featuring(listOf(option(a)), { _, _, _ -> HomePageReply.Offline }, featured = { HomeFeatured(it, "X") })
+        val vm = model(source, HomeWatchHistory.None)
+        assertEquals(HomeStatus.Offline, vm.state.value.status)
+        assertEquals(HomeHero.None, vm.state.value.hero)
+        assertTrue(source.asked.isEmpty())
+    }
+
+    @Test
+    fun `a hero for the source chosen before cannot land on the one chosen after`() = runTest {
+        val source = Featuring(
+            listOf(option(a), option(b)),
+            { id, _, _ -> page(id.value, "${id.value}1") },
+            featured = { HomeFeatured(it, it) },
+            heroDelay = 1_000,
+        )
+        val vm = model(source, HomeWatchHistory.None)
+        vm.onAction(HomeAction.SourceSelected(b))
+        advanceTimeBy(1_001)
+        runCurrent()
+        assertEquals("b1", assertIs<HomeHero.Shown>(vm.state.value.hero).featured.id)
+    }
+
+    @Test
+    fun `history is read when the page opens, comes back and its sources change, and is kept offline`() = runTest {
+        val entry = HomeResume("t", "Title", progress = 0.5f)
+        val history = History(HomeHistory(listOf(entry), mapOf("t" to 0.5f)))
+        val vm = model(Featuring(listOf(option(a)), { _, _, _ -> HomePageReply.Offline }, featured = { null }), history)
+        assertEquals(listOf(entry), vm.state.value.history.resume)
+        assertEquals(HomeStatus.Offline, vm.state.value.status)
+
+        history.read = HomeHistory()
+        vm.onAction(HomeAction.Reappeared)
+        assertEquals(emptyList(), vm.state.value.history.resume)
+        vm.onAction(HomeAction.SourcesChanged)
+        assertEquals(3, history.reads)
+    }
+
+    @Test
+    fun `history that cannot be read leaves what is on screen`() = runTest {
+        val entry = HomeResume("t", "Title")
+        val history = History(HomeHistory(listOf(entry)))
+        val vm = model(Fake(listOf(option(a))) { id, _, _ -> page(id.value, "1") }, history)
+        history.fail = true
+        vm.onAction(HomeAction.Reappeared)
+        assertEquals(listOf(entry), vm.state.value.history.resume)
+    }
 }

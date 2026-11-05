@@ -17,6 +17,7 @@ import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withTimeoutOrNull
 
 /**
  * One source's main page at a time. No display strings and no navigation.
@@ -32,11 +33,15 @@ import kotlinx.coroutines.launch
  *
  * @param memory what the person chose last, so it opens again. Only a choice of theirs is kept: falling back because
  *   that source is gone does not overwrite it, so it comes back if the source does.
+ * @param history what this device has played. Read when the page opens, comes back, or its sources change, because the
+ *   player and an account switch both change it from elsewhere. It is independent of the source, so a failure or being
+ *   offline leaves it on screen.
  */
 class HomeViewModel(
     private val source: HomeSource,
     private val scope: CoroutineScope,
     private val memory: HomeSourceMemory = HomeSourceMemory.None,
+    private val history: HomeWatchHistory = HomeWatchHistory.None,
 ) : ViewModel(),
     StateContainer<HomeState> by DefaultStateContainer(HomeState()),
     EffectContainer<HomeEffect> by DefaultEffectContainer(),
@@ -48,8 +53,12 @@ class HomeViewModel(
 
     private var work: CompletableJob = newWork()
 
+    /** The latest read of [history]. A newer one replaces it, so an older answer cannot land last. */
+    private var historyRead: Job? = null
+
     init {
         readSources()
+        readHistory()
     }
 
     override fun onAction(action: HomeAction) {
@@ -66,8 +75,14 @@ class HomeViewModel(
             HomeAction.SearchRequested -> scope.launch { postEffect { HomeEffect.OpenSearch } }
             HomeAction.ExtensionsRequested -> scope.launch { postEffect { HomeEffect.OpenExtensions } }
             HomeAction.AccountsRequested -> scope.launch { postEffect { HomeEffect.OpenAccounts } }
-            HomeAction.SourcesChanged -> sourcesChanged()
-            HomeAction.Reappeared -> updateState { copy(appeared = true, returnTo = returnTo?.copy(ready = true)) }
+            HomeAction.SourcesChanged -> {
+                sourcesChanged()
+                readHistory()
+            }
+            HomeAction.Reappeared -> {
+                updateState { copy(appeared = true, returnTo = returnTo?.copy(ready = true)) }
+                readHistory()
+            }
             HomeAction.Disappeared -> updateState { copy(appeared = false) }
             HomeAction.ReturnHandled -> updateState { copy(returnTo = null) }
             HomeAction.LandingHandled -> updateState { copy(landingOwed = false) }
@@ -75,6 +90,21 @@ class HomeViewModel(
     }
 
     private fun newWork() = SupervisorJob(scope.coroutineContext[Job])
+
+    private fun readHistory() {
+        historyRead?.cancel()
+        historyRead = scope.launch {
+            val read = try {
+                history.read()
+            } catch (cancelled: CancellationException) {
+                throw cancelled
+            } catch (_: Exception) {
+                // What is on screen is the best there is, and the next read asks again.
+                return@launch
+            }
+            updateState { copy(history = read) }
+        }
+    }
 
     /** Stops everything for the previous choice, and returns the token that says a reply is current. */
     private fun restart(): Int {
@@ -174,7 +204,38 @@ class HomeViewModel(
     private suspend fun loadFirstPages(option: HomeSourceOption, request: Int) {
         val replies = ask(option, (0 until option.sections).toList())
         val next = HomePaging.fold(emptyList(), replies, option.sections)
-        updateCurrent(request) { copy(status = next) }
+        val rows = next.rows
+        updateCurrent(request) { copy(status = next, hero = if (rows.isEmpty()) HomeHero.None else HomeHero.Loading) }
+        if (rows.isNotEmpty()) loadHero(rows, request)
+    }
+
+    /**
+     * The first of the source's first titles whose own page answers, as the old home's hero takes the titles that loaded
+     * (`HomeViewModel.kt:314` in `:app`). One at a time, so a page that answers costs one request and not three.
+     *
+     * Bounded as a whole, because focus waits for this, and a source that never answers must not hold it.
+     */
+    private suspend fun loadHero(rows: List<HomeRow>, request: Int) {
+        val candidates = rows.asSequence()
+            .flatMap { row -> row.items.asSequence().map { item -> item to row.title } }
+            .distinctBy { (item, _) -> item.id }
+            .take(HERO_CANDIDATES)
+            .toList()
+        val shown = withTimeoutOrNull(HERO_WAIT_MILLIS) {
+            candidates.firstNotNullOfOrNull { (item, rowName) ->
+                featuredOf(item)?.let { HomeHero.Shown(it, eyebrow = rowName) }
+            }
+        }
+        updateCurrent(request) { copy(hero = shown ?: HomeHero.None) }
+    }
+
+    /** Like [pageOf]: a host's bug is no hero rather than no screen. */
+    private suspend fun featuredOf(item: HomeItem): HomeFeatured? = try {
+        source.featured(item)
+    } catch (cancelled: CancellationException) {
+        throw cancelled
+    } catch (_: Exception) {
+        null
     }
 
     private fun retry() {
@@ -277,4 +338,12 @@ class HomeViewModel(
     }
 
     private fun Exception.reason() = message.orEmpty().ifEmpty { this::class.simpleName.orEmpty() }
+
+    private companion object {
+        /** The old home asks for three. */
+        const val HERO_CANDIDATES = 3
+
+        /** Past this the page goes on without a hero, and focus lands on what is there. */
+        const val HERO_WAIT_MILLIS = 6_000L
+    }
 }

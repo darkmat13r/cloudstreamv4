@@ -3851,3 +3851,151 @@ Screenshots are 1280x720, recorded on `Television_720p`. With `Television_720p_2
 - **A film opening the player**, and `Free up space` reaching the system's storage settings: only the effect is tested.
 - **Real rate and progress on the screen.** Figures come from `DownloadShelf`'s tests and a real `IsFailed` fact; no live transfer ran under this screen.
 - **Any language but English on a device,** and any native speaker reading the 12 translations.
+
+## KMP-41 — The TV home's hero, Continue watching, and watch progress on its cards (queue `Q10`) · **measured 2026-11-05**
+
+**Status:** in pr #162. Board `3c` of `design/TV Home.dc.html` and its closing note, on the page `KMP-37` built. Watch progress on
+Home's cards is the owner's request, which the boards already draw. Android TV only; desktop's home is unchanged (its
+`HomeSource` keeps the default, so it has no hero, and nothing reads history there).
+
+**The page now reads, top to bottom:** the chrome, with the hero under it and the hero's art behind both; Continue watching;
+the source's rails. The hero is in the chrome's list item because its art runs behind the chrome. Continue watching is this
+device's and not the source's, so it stays above a failure, being offline, a page still loading and "nothing installed",
+as the owner ruled for `3g` and `3m`.
+
+**Parts.** In `:feature:home`: `HomeSource.featured` (with a default, so no host has to change), `HomeFeatured`,
+`HomeWatchHistory` / `HomeHistory` / `HomeResume`, `HomeHero` in the state, `tv/HomeHeroTv.kt`, `tv/HomeContinueTv.kt`, and
+progress on `HomeRailTv`'s cards. In `:app`: `AndroidHomeSource.featured`, `LibraryHomeHistory`, and
+`AndroidLibraryStore.resuming`.
+
+### One store, read the way the old home reads it
+
+Continue watching reads through `AndroidLibraryStore`, the store the TV library already reads (`KMP-34`), and its records
+seam gained two reads with defaults: the resume record ids and the title each one is about. **No second store, and nothing
+new is written.** Desktop's `KMP-26` rule (`LibraryShelf`: a position past 30 s and short of 95%) is **not** used, because on
+Android the resume record already decides: the player removes it when a title is finished, and at 90% moves it to the next
+episode, which has played for 0 s. That rule would hide exactly the "next episode" entries the old home shows. So the list
+is the old home's (`HomeViewModel.getResumeWatching`): every record with a known title, newest first, its part's position,
+capped at 60 as `LibraryShelf` caps. Resume-only titles do not enter `titles()`, so the library's lists are unchanged.
+
+Card progress comes from the same store: every position it knows, bookmarks and resume records alike, newest per title,
+keyed by `encodeId(apiName, url)`, which is also a card's id. Zero is not drawn on a rail card.
+
+### Every reduction from 3c
+
+| Drawn | Here | Why |
+|---|---|---|
+| Hero carousel, pager `1 / 12` and dots | One title | The first of the source's first three titles whose own page answers, asked one at a time (one request when it answers). A carousel needs a paging control the board does not place on the D-pad |
+| Eyebrow `FEATURED · NEW SEASON` | The name of the row the title was found on | Nothing says "featured" or "new season" |
+| `2 SEASONS · 24 EP` | None | The old hero does not show them, and no key holds either with its number |
+| `8.7 IMDb` | `8.7` | Which site the score is from is not known |
+| `Resume S2 E4` | `More info` with `CloudStreamIcons.Info`, which opens the title's page | `ui-components.md` rule 1 makes Play or Resume a title's primary. This button does not play, so `Resume` would be untrue; it is the old TV hero's only button, which also opens the page (confirmed in review). `More info` is in that rule's table with its glyph, and becomes Resume when the hero can resume |
+| `Watch trailer` and `Library`, each with its glyph on the board, and the square cell | None | No trailer player is built; a library write is the next PR's (`TV Home Extras`); the cell's meaning is not drawn |
+| Art under the nav rail | Art from the page's edge | The rail is the shell's; the page starts beside it |
+| `6 ITEMS` on Continue watching | None | `KMP-37` shows no counts on rail headers either |
+| Card line `S2 E4 · 28m left · vidplay 1080p` | `S2 E4 · <source>` | Time left has no key without a line break (`resume_time_left`): `I18N-10`, blocked only on that key, since the store has the duration. Quality is not stored |
+| `SAVED` badge | None | Bookmark state on Home is the next PR's |
+| Art 16:9 | The poster, cropped | A resume record keeps a poster and no backdrop |
+
+| Offline's body under Continue watching | The headline and Retry only | `StateView` is 180dp plus its body; the body is four lines, 260dp in all, and 216.8dp is left at 720p. Without it the state fits and nothing moves. Its first sentence repeats the headline |
+
+**Gap, not drawn:** removing an entry from Continue watching. The old home does it with a long press; no board draws it.
+
+**Kept for the next PR, with room as 3c leaves it:** the bookmarks row, Random, the details panel and reload
+(`design/TV Home Extras.dc.html`).
+
+`DEC-17`: `live` is only the progress rule; the one button is `PrimaryTextButton`, white at rest. `DEC-13` as before.
+
+### Focus
+
+- **Landing** waits for the hero to be found or given up (at most 6 s), so focus lands once: on the hero's button, as 3c
+  draws it at rest; else the first Continue watching card; else the first card. It does not take focus from a Continue
+  watching card, or from the nav rail.
+- **Return** works for all three: the hero, a Continue watching card and a rail card. An entry that has gone (finished while
+  its page was open) falls back to the landing.
+- Every card keeps one modifier chain (`KMP-34`'s trap); nothing is taken before `Reappeared` (the 650 ms trap).
+- **Down from a Continue watching card lands on the poster under its middle**, which for the first card is the second poster:
+  the card is 192dp wide over 80dp posters. Compose's own search; measured and kept.
+
+### Strings
+
+No new key, so no `R` field. Reused, with their coverage out of 62 (the rest fall back to English): `home_more_info` 60,
+`duration_format` 59, `continue_watching` 56, `season_short` 51, `episode_short` 50.
+
+### Sanitized
+
+A title's page is plugin output read inside the process: text loses control and format characters and is capped; the synopsis
+is HTML in some plugins, so tags are dropped, five entities decoded, and spaces folded; only http(s) art reaches Coil, a
+backdrop that is not falls back to the poster; header names and values are checked; year, minutes and genres are bounded.
+Resume records are read the same way: a title with no usable name is dropped, and a poster that is not http(s) is dropped.
+
+### Measured, each a wrong turn first
+
+- **A state under Continue watching had no room for its button.** Recording `home-offline-continue-focus-retry` showed Retry
+  squeezed to an empty ring: 216.8dp is left under the rail at 720p, and the offline state needs 260. The first fix grew the
+  state and moved the page by the least that showed the button, 44px, which left the chrome 4px from the top edge, inside a TV's
+  overscan (design review of #162). Now offline fits without its body and nothing moves; a state that still does not fit, such as
+  a failure whose detail wraps, moves the page until the chrome is wholly off the screen. That first stopped 15px short: a list
+  scrolls only as far as its content reaches, so a state under Continue watching now has `ChromeRowBottom` of room under it. The
+  rail's header then sits 12dp from the top. Without Continue watching nothing changed.
+- **Coming back by the nav rail left focus on the source control.** `TvHomeNavigationTest` read `Source · Fake One`: the window
+  gives a rebuilt view's focus to its first stop before the rows can take it. A rebuilt view now lands once, as the first open
+  does; anything that takes focus first, a return included, is that landing.
+- **The hero's page may not be asked for at all.** `APIRepository` keeps a title's page for 10 minutes across the process, so
+  the second test to open a source's home asked for nothing. The `:app` cases assert at most one request.
+- **Down from a Continue watching card** lands on the poster under its middle (see Focus). Up from a centred state's button
+  lands on the card above its middle.
+- A Continue card measures 150.99dp tall, not 152, on `Television_720p`: five bands each rounded to a pixel at 1.33125.
+
+### Tested
+
+`HomeScreenTvDeviceTest` 50 on `Television_720p` (25 new): the hero present with its facts at the board's y, a hero with no
+facts, no hero, Continue watching with one entry and with twelve, a position of 0 and of half by pixel colour, progress on a rail
+card by pixel colour, long titles in the hero and on a card, offline with Continue watching above the state and the chrome where it rests, a state too tall for that moving the chrome wholly
+off the screen, the height reserved for Continue watching against the card as it measures, a walk from the hero
+through every rail with no dead ends or traps, and focus back on a Continue card, on the hero, and on the hero when the entry has
+gone. Four screenshot cases: `home-hero-focus-button`, `home-continue-focus-card`, `home-offline-continue-focus-retry`,
+`home-rails-progress-focus-card`.
+`TvHomeNavigationTest` 14 (1 new, through real navigation and the player's real keys: a played title is on Continue watching,
+opens its real `ResultFragmentTv` page, and Back puts focus back on it); its other cases now land on the hero.
+`TvRailNavigationTest` and `LibraryTvNavigationTest` unchanged and passing. JVM: `HomeViewModelTest` 42 (8 new),
+`AndroidHomeSourceTest` 20 (3 new), `LibraryHomeHistoryTest` 6, `AndroidLibraryStoreTest` 13 unchanged.
+
+**Each critical test was shown failing,** in one control run with six mutations together (14 of 47 red): the hero not landed,
+Continue watching dropped when there are no rows, no progress on rail cards, no wall at the rail's end, and a card drawn full
+whatever its progress. Returning to a Continue card was hidden behind the first, so it was shown alone: `expected Resume 6 but
+was More info · The Long Dark`. Every file was restored and the real run replaced that XML.
+
+**Screenshots.** After `#156` merged, eight Home references differed and each diff was looked at against git first: five by 130
+pixels, only the Profile glyph, which is now `muted` at rest and `ink` focused, as the boards draw it (a reviewer's finding); the
+hero, Continue watching and offline cases also by `#156`'s badges, icon tile and secondary text colour. Re-recorded, the eight
+are pixel-identical to the images looked at. After `#159` and `#160`, a compare run on the merged tree changed only what this PR
+changed: the hero's button gained `Info` (817 pixels, inside the button, in the hero and Continue watching cases), and offline
+moved because it no longer scrolls; `#160`'s ring and scrim changed none of Home's images. Each was looked at, re-recorded, and
+checked pixel-identical to what was looked at. The last compare run read 0 pixels different in all ten.
+
+### Not verified
+
+A real plugin's hero (the `:app` fakes answer with a title only); a real remote; real poster loading on a Continue card; a
+download's resume record (`isFromDownload`, which the old home plays directly; here it opens the page like any other); an account
+switch re-reading the list; right-to-left; the 6 s hero wait against a slow source.
+
+### Published API
+
+Additions only: 60 lines in `app/api/classes-jar.api`, all under `com/lagradost/cloudstream4/home/` and `/library/`, none removed
+or changed. A first dump had one changed line, a synthetic accessor of a private helper given a default parameter; the helper
+was put back and the synopsis given its own.
+
+### Found, not changed
+
+```
+Found: Home's state actions (`Try again`, `Retry failed`, `Extensions`, `Search`) are text-only in HomeCopy.kt
+Suggest: `StateAction(icon = CloudStreamIcons.Retry / Repository / Search)`, as `ui-components.md`'s table lists
+Why: rule 2 and the table since #159; this is `KMP-37`'s copy, and the change moves every Home state's reference
+```
+
+```
+Found: `focusRestorer`-style default entry, measured again: a rebuilt view's first stop takes focus before the page can place it
+Suggest: nothing more here; noted because every page with a chrome row will meet it (search's and the library's do)
+Why: `KMP-34`'s `LibraryFocusMemory` and this page's landing both work around the same window behaviour
+```
