@@ -3813,6 +3813,7 @@ one included. **Open local file** was already hidden on TV, so nothing is lost. 
 - **`requestFocus()` on a requester with no node returns `false` rather than throwing** on this Compose, so `requestFocusIfAttached`'s answer is what decides the fallback.
 - **Right from a row with no verb stays put, so it needs no guard.** I had added one on the argument that it would land on the neighbouring row's verb. Removed alone in a control run, `aRowWithNoVerbDoesNotSendRightToAnotherRowsVerb` still passed with the verb directly below, so the guard went. The test stays as a pin, and has not been shown to fail.
 - **Up from a row lands on the nearest chip,** `Select` or `Delete`, not the first. Every chip is along the row.
+- **A touch in one test class took away the next class's focus.** The navigation test first tapped the delete dialog's button with `UiObject2.click()`, which puts the display in touch mode, where it stays until a key is pressed. `HomeTvFragment` lands focus before any key is pressed, so `TvHomeNavigationTest` went 9 red of 13 straight after this class and 13 of 13 green alone. The button is now pressed by D-pad, and with that one change the whole `:app` suite is green. A remote cannot put a display in touch mode; a touch or pointer device on a TV might, and that was not tried.
 
 **Strings:** 12 new keys in all 62 directories, all machine translated and not reviewed by a native speaker; `qt` uses only words from its own file. `ti`, `ckb`, `mt`, `so`, `or`, `my` and `am` are the least sure, `apc` and `ars` are
 dialect approximations, and `so`'s word for library and storage is the same. Fourteen locales read the legend as `X / Y used` to keep the arguments in order. Twelfth move of the oracle baseline. Reused keys keep the directories they had.
@@ -3834,6 +3835,8 @@ Temporary changes, all reverted. One run on `:feature:downloads`, 13 of 32 red, 
 | Before the focus fix, not a planted change | `cancellingFromItsChip...`, `aRowThatGoesWhileFocused...`, `theLastRowGoing...`, `aRowDeletedWhileAway...` |
 
 Screenshots are 1280x720, recorded on `Television_720p`. With `Television_720p_2`, the cases the changes did not touch compared 0 pixels different.
+
+**Re-recorded once, after `DS-14` merged.** All 7 went red against the merged design system, by 3,950 to 7,898 pixels, and no other test did. Each new image was looked at, and the diffs looked at for two: the changes are `DS-14` items 4 (`ListRow` subtitle and `StateView` body to `muted`) and 5 (`Chip` to `raised` with a hairline and a `muted` label). Layout, focus rings, `Retry`, the failure marker, the meter and the banner did not move. `git status` showed those 7 PNGs and nothing else.
 
 ### Not verified
 
