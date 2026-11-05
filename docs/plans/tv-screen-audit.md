@@ -83,6 +83,8 @@ Conventions:
 | TV Onboarding Extensions 8c | Browse a repository | None | none | No. Old: `NAV:230` | Contract types exist unused (`FX/ExtensionInstall.kt`). `AndroidExtensionRuntime.install` refuses (`A4/extensions/AndroidExtensionRuntime.kt:69-79`). Min-app-version missing (`RepositoryManager.kt:59,163,170`) |
 | TV Onboarding Extensions 8d | Account select, Simkl pairing panel | None. No `:feature:account` | none | No. Old: `A/ui/account/AccountSelectActivity.kt`, `NAV:694` | Simkl flow exists (`A/syncproviders/providers/SimklApi.kt:58`, `A/ui/settings/SettingsAccount.kt:156`). OAuth-only providers (`MALApi.kt:42`, `AniListApi.kt:44`). Delete profile bug† (`A/ui/account/AccountViewModel.kt:73`). Skip check (`AccountSelectActivity.kt:76`) |
 
+**Added after this audit:** `TV Home Extras` 3e to 3m (`DS-13`) draws what §2 lists as not drawn for Home: the bookmarks row and filter, the Random button and the `None` source (the owner ruled Random out as a source), a details panel, and manual reload. Nothing is built; the file's closing note lists each board's prerequisites.
+
 ## 2. Feature gap list
 
 "Shared" means a commonMain implementation exists. Items that have a desktop or commonMain counterpart are marked as such.
