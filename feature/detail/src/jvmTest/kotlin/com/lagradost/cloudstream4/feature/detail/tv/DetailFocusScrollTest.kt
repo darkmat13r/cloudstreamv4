@@ -2,6 +2,7 @@ package com.lagradost.cloudstream4.feature.detail.tv
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 /**
  * The three stops boards 7a and 7a-ii draw, which is what `BUG-38` cost when Compose picked its own.
@@ -52,6 +53,45 @@ class DetailFocusScrollTest {
     fun withNeitherRailTheEpisodeListStillTakesItsOwnItem() {
         val stop = DetailFocusScroll.stopFor(2, castIndex = null, relatedIndex = null)
         assertEquals(DetailFocusScroll.Stop(2, 0), stop)
+    }
+
+    /** 540dp tall, the band's 28dp inset, a 48dp episode row. */
+    private fun rowScroll(offset: Float) =
+        DetailFocusScroll.rowScrollDistance(offset, size = 48f, containerSize = 540f, inset = 28f)
+
+    @Test
+    fun aRowAlreadyInsideTheBandDoesNotScroll() {
+        assertEquals(0f, rowScroll(28f))
+        assertEquals(0f, rowScroll(300f))
+        assertEquals(0f, rowScroll(464f))
+    }
+
+    @Test
+    fun aRowPastTheFootOfTheBandScrollsJustInside() {
+        // 465 + 48 = 513, which is 1 past the band's foot at 512.
+        assertEquals(1f, rowScroll(465f))
+        assertEquals(48f, rowScroll(512f))
+    }
+
+    @Test
+    fun aRowAboveTheBandScrollsBackDown() {
+        assertEquals(-28f, rowScroll(0f))
+        assertEquals(-8f, rowScroll(20f))
+    }
+
+    @Test
+    fun aRowFarBelowTheFoldStillScrolls() {
+        // The regression this rule exists for: refusing to scroll at all left DOWN walking to the last
+        // row that happened to be on screen — measured as "Down never reached Chapter 40 in 60
+        // presses, stopped on Chapter 03".
+        assertTrue(rowScroll(900f) > 0f)
+    }
+
+    @Test
+    fun thePrimaryActionIsInsideTheBandSoArrivingNeverScrolls() {
+        // BUG-38's property, as the page's own spec sees it: Resume sits at 250..282dp of a 540dp
+        // viewport, so the rule that replaced Compose's pivot returns zero and the page opens unmoved.
+        assertEquals(0f, DetailFocusScroll.rowScrollDistance(250f, 32f, 540f, 28f))
     }
 
     @Test

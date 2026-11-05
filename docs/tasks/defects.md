@@ -1518,6 +1518,41 @@ missing, so the comparison passes today. A fix will fail that case: look at the 
 
 Not checked: whether the last row is cut off at the bottom when the list is full, and whether other TV screens with a `LazyColumn` do the same.
 
+## BUG-39 — The TV detail page's text ladder runs about 5dp high against its boards · **low** · measured 2026-11-06
+
+**Status:** found, not fixed · found 2026-11-06 while fixing the head block's height for `KMP-38` (pr #153) ·
+`feature/detail/.../tv/DetailScreenTv.kt`, the `HeadColumn` ladder
+
+**Nothing is out of place relative to anything else** — the whole block below the title simply sits about 5dp
+higher than boards 7a and 7b draw it. Measured off the committed references at density 1.3333, calibrated
+against the 220dp `ResumeWidth` rather than assumed:
+
+| element | measured | board | delta |
+|---|---|---|---|
+| chrome row cell | 28..76dp | 28..76 | 0 |
+| action row top | 250.8dp | 256 | −5.2 |
+| cast header ink | 318.8..332.2dp | header box 320..348 | ≈ −5 |
+| cast avatars top | 358.5dp | 364 | −5.5 |
+
+The deltas are the same number all the way down, which is what says it is one cause and not several.
+
+**The cause is the ladder's assumed text boxes.** Every spacer in `HeadColumn` is a gap between *text*, and the
+board's boxes for that text — the title at 44dp and the meta at 16dp — are not what `typography.h1` and
+`typography.label` actually render into on this device. The spacers are right; the things they sit between are
+not the height the board assumed. `CloudStreamTypography`'s measured line boxes are 1.375x rather than 1.3,
+which `docs/memory/cloudstream4-type-metrics.md` already records as the source of most off-grid geometry in
+this project.
+
+**Not fixed here, deliberately.** Correcting it means changing either the type metrics or the board's assumed
+boxes, both of which reach well past this screen; the typography work owns that. `KMP-38` fixed the one error
+that was *not* typography — the head block taking the hero's 300dp so the next section's `SectionGap` counted
+from the hero's foot instead of the action row's bottom, which was a separate 12dp and is gone: the measured
+gap from the action row to the avatars is now 75.7dp against the board's 76.
+
+**Why nothing caught it.** The same reason `BUG-38` went unseen: `DetailScreenTvDeviceTest` asserts the gaps
+between elements, and every gap here is correct. Only an absolute y against the board shows it, and the only
+absolute the suite pins is the chrome row's, which is exact.
+
 ## BUG-38 — On TV, the detail page arrives with its chrome row scrolled off the top · **medium** · measured 2026-11-05
 
 **Status:** fixed · found 2026-11-05 by `KMP-38`'s own screenshot cases (pr #153), cause established by the

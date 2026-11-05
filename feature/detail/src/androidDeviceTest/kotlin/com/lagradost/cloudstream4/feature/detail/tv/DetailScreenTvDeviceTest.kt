@@ -781,7 +781,7 @@ class DetailScreenTvDeviceTest {
         const val SYNOPSIS = "Synopsis"
         const val EPISODES_PLURAL = "Episodes"
         const val EPISODE_SINGULAR = "Episode"
-        const val RECOMMENDED = "Recommended"
+        const val RECOMMENDED = "More like this"
         const val NO_EPISODES = "No Episodes found"
         const val RETRY = "Try again"
         const val FAILED_HEADLINE = "Couldn't open this title"

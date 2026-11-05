@@ -30,6 +30,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.focus.FocusRequester
@@ -56,7 +57,9 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.favorite
 import com.lagradost.cloudstream4.core.strings.generated.resources.go_back
 import com.lagradost.cloudstream4.core.strings.generated.resources.no_episodes_found
 import com.lagradost.cloudstream4.core.strings.generated.resources.pick_source
+import com.lagradost.cloudstream4.core.theme.CloudStreamColors
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
+import com.lagradost.cloudstream4.core.theme.CloudStreamTypography
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.detail.DetailAction
 import com.lagradost.cloudstream4.feature.detail.DetailEpisode
@@ -237,6 +240,8 @@ private fun TitlePage(
     }
     // BUG-38: the boards' stops, in place of the pivot Compose would pick. Each band asks for its own
     // when it takes focus, because the list itself refuses to scroll for focus — see DetailFocusScroll.
+    val bandInset = with(density) { CloudStreamDimens.FocusBandInset.toPx() }
+    val bandSpec = remember(bandInset) { DetailBandScrollSpec(bandInset) }
     val scrollToStop: (Int) -> Unit = { index ->
         val stop = DetailFocusScroll.stopFor(index, castIndex, relatedIndex)
         scope.launch {
@@ -244,7 +249,7 @@ private fun TitlePage(
         }
     }
 
-    CompositionLocalProvider(LocalBringIntoViewSpec provides DetailNoScrollSpec) {
+    CompositionLocalProvider(LocalBringIntoViewSpec provides bandSpec) {
     LazyColumn(
         state = listState,
         modifier = Modifier.fillMaxSize(),
@@ -361,55 +366,106 @@ private fun HeadBlock(
 ) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
-    Box(modifier.fillMaxWidth()) {
-        Hero(detail.backdropUrl ?: detail.posterUrl, artwork)
-        Column(Modifier.fillMaxWidth()) {
-            Spacer(Modifier.height(DetailScreenTvDefaults.ChromeTop))
-            ChromeRow(
+    // The hero draws behind the column and does **not** set this item's height.
+    //
+    // It did, and that was a 12dp error: the hero is 300dp, the column's ladder ends at the action
+    // row's bottom near 283dp, so a `Box` took the hero's 300 and the next section's `SectionGap`
+    // counted from the hero's foot. The board counts it from the action row — 288 + 32 = 320 for the
+    // cast header — and we were putting it at 332. Measured from the recorded references before and
+    // after; see `KMP-38`.
+    //
+    // The hero still paints its full 300dp, which is what 7a draws: it reaches 12dp past the action
+    // row and under the band below, where it has already faded to `bg`. The section after this one is
+    // a later lazy item, so it draws over that tail rather than under it.
+    Layout(
+        modifier = modifier.fillMaxWidth(),
+        content = {
+            Hero(detail.backdropUrl ?: detail.posterUrl, artwork)
+            HeadColumn(
                 detail = detail,
                 onAction = onAction,
                 onBack = onBack,
                 onWatchStatusRequested = onWatchStatusRequested,
-                takeFocus = takeBackFocus,
-                onFocusTaken = onBackFocusTaken,
+                takePrimaryFocus = takePrimaryFocus,
+                onPrimaryFocusTaken = onPrimaryFocusTaken,
+                takeBackFocus = takeBackFocus,
+                onBackFocusTaken = onBackFocusTaken,
+                onScrollToEpisodes = onScrollToEpisodes,
+                colors = colors,
+                typography = typography,
             )
-            Column(Modifier.contentInset()) {
-                Spacer(Modifier.height(DetailScreenTvDefaults.ChromeToTitle))
-                TextLine(
-                    text = detail.title,
-                    style = typography.h1,
-                    color = colors.ink,
-                    modifier = Modifier.widthIn(max = DetailScreenTvDefaults.TitleMaxWidth),
-                )
-                Spacer(Modifier.height(DetailScreenTvDefaults.TitleToMeta))
-                TextLine(
-                    // The provider and the type are in the chrome row, as on the artboard.
-                    text = metaRun(detail),
-                    style = typography.label,
-                    color = colors.ink2,
-                    modifier = Modifier.widthIn(max = DetailScreenTvDefaults.TitleMaxWidth),
-                )
-                Spacer(Modifier.height(DetailScreenTvDefaults.MetaToPlot))
-                BasicText(
-                    text = detail.plot.orEmpty(),
-                    style = remember(typography, colors) { typography.body.copy(color = colors.ink2) },
-                    maxLines = DetailScreenTvDefaults.PlotLines,
-                    overflow = TextOverflow.Ellipsis,
-                    modifier = Modifier
-                        .height(DetailScreenTvDefaults.PlotHeight)
-                        .widthIn(max = DetailScreenTvDefaults.PlotMaxWidth),
-                )
-                Spacer(Modifier.height(DetailScreenTvDefaults.PlotToCaption))
-                CaptionSlot(detail)
-                Spacer(Modifier.height(DetailScreenTvDefaults.CaptionToActions))
-                DetailActionRowTv(
-                    detail = detail,
-                    onAction = onAction,
-                    takeFocus = takePrimaryFocus,
-                    onFocusTaken = onPrimaryFocusTaken,
-                    onScrollToEpisodes = onScrollToEpisodes,
-                )
-            }
+        },
+    ) { measurables, constraints ->
+        val hero = measurables[HERO_CHILD].measure(constraints)
+        val column = measurables[COLUMN_CHILD].measure(constraints)
+        layout(constraints.maxWidth, column.height) {
+            hero.place(0, 0)
+            column.place(0, 0)
+        }
+    }
+}
+
+/** The chrome row, the text block, the caption and the action row: everything [HeadBlock] measures. */
+@Composable
+private fun HeadColumn(
+    detail: TitleDetail,
+    onAction: (DetailAction) -> Unit,
+    onBack: () -> Unit,
+    onWatchStatusRequested: () -> Unit,
+    takePrimaryFocus: Boolean,
+    onPrimaryFocusTaken: () -> Unit,
+    takeBackFocus: Boolean,
+    onBackFocusTaken: () -> Unit,
+    onScrollToEpisodes: () -> Unit,
+    colors: CloudStreamColors,
+    typography: CloudStreamTypography,
+) {
+    Column(Modifier.fillMaxWidth()) {
+        Spacer(Modifier.height(DetailScreenTvDefaults.ChromeTop))
+        ChromeRow(
+            detail = detail,
+            onAction = onAction,
+            onBack = onBack,
+            onWatchStatusRequested = onWatchStatusRequested,
+            takeFocus = takeBackFocus,
+            onFocusTaken = onBackFocusTaken,
+        )
+        Column(Modifier.contentInset()) {
+            Spacer(Modifier.height(DetailScreenTvDefaults.ChromeToTitle))
+            TextLine(
+                text = detail.title,
+                style = typography.h1,
+                color = colors.ink,
+                modifier = Modifier.widthIn(max = DetailScreenTvDefaults.TitleMaxWidth),
+            )
+            Spacer(Modifier.height(DetailScreenTvDefaults.TitleToMeta))
+            TextLine(
+                // The provider and the type are in the chrome row, as on the artboard.
+                text = metaRun(detail),
+                style = typography.label,
+                color = colors.ink2,
+                modifier = Modifier.widthIn(max = DetailScreenTvDefaults.TitleMaxWidth),
+            )
+            Spacer(Modifier.height(DetailScreenTvDefaults.MetaToPlot))
+            BasicText(
+                text = detail.plot.orEmpty(),
+                style = remember(typography, colors) { typography.body.copy(color = colors.ink2) },
+                maxLines = DetailScreenTvDefaults.PlotLines,
+                overflow = TextOverflow.Ellipsis,
+                modifier = Modifier
+                    .height(DetailScreenTvDefaults.PlotHeight)
+                    .widthIn(max = DetailScreenTvDefaults.PlotMaxWidth),
+            )
+            Spacer(Modifier.height(DetailScreenTvDefaults.PlotToCaption))
+            CaptionSlot(detail)
+            Spacer(Modifier.height(DetailScreenTvDefaults.CaptionToActions))
+            DetailActionRowTv(
+                detail = detail,
+                onAction = onAction,
+                takeFocus = takePrimaryFocus,
+                onFocusTaken = onPrimaryFocusTaken,
+                onScrollToEpisodes = onScrollToEpisodes,
+            )
         }
     }
 }
@@ -704,6 +760,8 @@ private const val HEAD_KEY = "head"
 private const val CAST_KEY = "cast"
 private const val RELATED_KEY = "related"
 private const val EPISODES_KEY = "episodes"
+private const val HERO_CHILD = 0
+private const val COLUMN_CHILD = 1
 private const val HEAD_INDEX = 0
 private const val HEAD_ITEMS = 1
 private const val ONE_ITEM = 1

@@ -18,7 +18,6 @@ import com.lagradost.cloudstream4.core.devicetest.Dpad
 import com.lagradost.cloudstream4.core.devicetest.DpadDriver
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
-import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
@@ -141,10 +140,11 @@ class TvDetailNavigationTest {
      * on the live path: it is drawn, its Retry is reachable by remote from the other stop on the
      * screen, pressing it asks again, and BACK leaves without stranding focus.
      *
-     * It also pins "there is no nav rail on this destination": `MainActivity.updateNavBar` leaves
-     * `navigation_results_tv` out of its visible-nav list, so no rail label is in the tree at all and
-     * LEFT from the centred failure reaches the page's own back cell instead — which is up and to its
-     * left, and is what a remote has to find there.
+     * It also pins the rail on this destination (`KMP-38`, the owner on 2026-11-05, reversing what this
+     * test asserted before): the page is laid out beside the rail, LEFT off its leading edge enters the
+     * rail, and RIGHT returns to the stop that left. How many presses that takes is deliberately not
+     * pinned — it depends on where the state view sits — only that LEFT reaches the rail and RIGHT
+     * comes back to the same stop.
      */
     @Test
     fun withNoProviderThePageFailsAndItsRetryIsReachableAndBackLeaves() {
@@ -157,21 +157,24 @@ class TvDetailNavigationTest {
                 device.wait(Until.hasObject(By.text(FAILED_HEADLINE)), SCREEN_WAIT_MS),
             )
 
-            // The rail is gone from the tree, not merely off to the side, so there is nothing for a
-            // LEFT to land on and no label to read.
-            railLabels.forEach { label ->
-                assertNull(
-                    "the nav rail is hidden on this destination, but $label is on screen",
-                    device.findObject(By.desc(label)),
-                )
-            }
+            assertTrue(
+                "the nav rail is on this destination",
+                railLabels.any { device.findObject(By.desc(it)) != null },
+            )
 
             assertEquals("the failure rests focus on its action", RETRY, dpad.enter())
-            // LEFT from the centred failure reaches the page's **own** back cell, up and to its left —
-            // which is the thing it proves: what lies left of the state view is this page, not a rail.
-            assertEquals("LEFT from Retry reaches the page's back cell", BACK, dpad.press(Dpad.Left))
-            assertEquals("LEFT from the back cell finds no nav rail", BACK, dpad.press(Dpad.Left))
-            assertEquals("and DOWN comes back to Retry", RETRY, dpad.press(Dpad.Down))
+            // LEFT walks off the page's leading edge into the rail. The first press may land on the
+            // page's own back cell, which is up and to the left of the centred failure, so the stop
+            // that yields focus to the rail is whichever of the two it was.
+            val firstLeft = dpad.press(Dpad.Left)
+            val leftTheRail = firstLeft !in railLabels
+            val stopThatLeft = if (leftTheRail) firstLeft else RETRY
+            val inRail = if (leftTheRail) dpad.press(Dpad.Left) else firstLeft
+            assertTrue("LEFT never reached the nav rail, stopped on $inRail", inRail in railLabels)
+            assertEquals("RIGHT returns to the stop that left", stopThatLeft, dpad.press(Dpad.Right))
+            if (stopThatLeft != RETRY) {
+                assertEquals("and DOWN comes back to Retry", RETRY, dpad.press(Dpad.Down))
+            }
 
             dpad.center()
             assertTrue(

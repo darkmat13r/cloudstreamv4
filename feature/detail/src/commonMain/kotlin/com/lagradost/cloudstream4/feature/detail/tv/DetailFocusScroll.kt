@@ -14,8 +14,15 @@ import androidx.compose.foundation.gestures.BringIntoViewSpec
  * with none of it surviving the column's clip, so the viewer reached the title with no visible way
  * back. The boards do not work that way — they draw three fixed stops, which is what [stopFor] is.
  *
- * `HomeNoScrollSpec` is the precedent: the page's list refuses to scroll on focus, and each band
- * scrolls to its own stop when it takes focus.
+ * `HomeFocusScroll` is the precedent, with one difference that matters. Home's page refuses to scroll
+ * at all (`HomeNoScrollSpec`) because every band there is a rail that handles itself. This page cannot:
+ * its episode list is part of the same column, is arbitrarily long, and has no board. So the page's
+ * spec is the band rule in [rowScrollDistance] — which is a **no-op for anything already inside the
+ * band**, and therefore leaves the head block and the cast row exactly where their boards put them —
+ * and the three drawn stops are applied on top of it by [stopFor] when a band takes focus.
+ *
+ * Refusing to scroll outright was tried and is what `DOWN never reached Chapter 40 in 60 presses,
+ * stopped on Chapter 03` measured: with no rule at all the episode list never moved.
  */
 internal object DetailFocusScroll {
 
@@ -52,6 +59,30 @@ internal object DetailFocusScroll {
     const val HEAD = 0
 
     /**
+     * Down the episode list: the least scroll that brings a row fully inside the band, and none at all
+     * for a row already inside it.
+     *
+     * The three stops above are fixed because their boards draw them. The episode list has no board, is
+     * arbitrarily long, and is an ordinary vertical list, so "scroll just enough" is right for it — and
+     * it has to come from somewhere, because [DetailNoScrollSpec] turns off the scrolling Compose would
+     * otherwise do. Without this, DOWN walked to the last row that happened to be on screen and stopped:
+     * measured as `Down never reached Chapter 40 in 60 presses, stopped on Chapter 03`.
+     *
+     * This is `HomeFocusScroll.across`'s rule turned through ninety degrees, with one inset because the
+     * band's top and foot are the same.
+     *
+     * @param offset where the row starts, from the top of the viewport.
+     * @param size the row's height.
+     * @param containerSize the viewport's height.
+     * @param inset the focus band's inset, which the row must clear at either edge.
+     */
+    fun rowScrollDistance(offset: Float, size: Float, containerSize: Float, inset: Float): Float = when {
+        offset < inset -> offset - inset
+        offset + size > containerSize - inset -> offset + size - (containerSize - inset)
+        else -> 0f
+    }
+
+    /**
      * How much of the cast item's leading spacers is scrolled past at the 7a-ii stop, in dp.
      *
      * The item opens with `SectionGap` (32) + the rail header (28) + `LiftedRowClearance` (16) = 76
@@ -64,12 +95,19 @@ internal object DetailFocusScroll {
 }
 
 /**
- * The page's list never scrolls because something took focus; each band scrolls to its own stop.
+ * The page's rule: [DetailFocusScroll.rowScrollDistance], the least scroll that keeps a focused thing
+ * inside the band.
  *
- * See [DetailFocusScroll]. Without this the default spec picks a pivot of its own and the page opens
- * part-scrolled, which is `BUG-38`.
+ * It replaces the pivot Compose would pick, which is what opened the page part-scrolled in `BUG-38`.
+ * Because it does nothing for anything already inside the band, the head block and the cast row sit
+ * where their boards draw them and the explicit stops in [DetailFocusScroll.stopFor] do the rest.
+ *
+ * One spec per scrollable: `LocalBringIntoViewSpec` is read where the **scrollable** is composed, not
+ * where the focusable is, so providing a second one around the episode items does nothing — measured,
+ * and it is why this is one rule for the whole column rather than two.
  */
 @OptIn(ExperimentalFoundationApi::class)
-internal object DetailNoScrollSpec : BringIntoViewSpec {
-    override fun calculateScrollDistance(offset: Float, size: Float, containerSize: Float): Float = 0f
+internal class DetailBandScrollSpec(private val inset: Float) : BringIntoViewSpec {
+    override fun calculateScrollDistance(offset: Float, size: Float, containerSize: Float): Float =
+        DetailFocusScroll.rowScrollDistance(offset, size, containerSize, inset)
 }
