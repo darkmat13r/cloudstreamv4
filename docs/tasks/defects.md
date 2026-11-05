@@ -1449,3 +1449,49 @@ not exercised: the controls inside it with real media, and moving focus between 
 - **Nothing else sits at the root.** Under `homeRoot` are the page's `ConstraintLayout`, the rail and the unused `focus_outline`, and nothing in
   the code adds a view to `homeRoot` or `android.R.id.content` by hand. Pages are inside `nav_host_fragment`, which already has the margin. By
   reading the code, not by running it.
+
+---
+
+## BUG-36 — `SidePanelHost` returns focus to the content's first stop, not to the control that opened the panel · **medium**
+
+**Status:** found, not fixed · found 2026-11-05 by `KMP-38`'s device suite, the component's first production
+caller · `core/designsystem/.../panel/SidePanelHost.kt:168-207`
+
+**Changes what users see on TV.** Dismissing a side panel drops focus on the first focusable in the content
+group instead of the cell the viewer opened the panel from, so they lose their place in the row every time.
+On a 10-foot UI focus is the only cursor there is.
+
+Measured on `Television_720p` by `DetailScreenTvDeviceTest.theWatchStatusPickerOpensIsTrappedAndCommitsOnARowPress`,
+on both dismiss paths — platform BACK, and the row press that commits under `DEC-17`:
+
+```
+expected:<[Set watch status]> but was:<[Go Back]>
+```
+
+The KDoc promises *"on close, focus returns to the control that opened the panel"* via
+`Modifier.focusRestorer()` on the content group, and that *"It needs no wiring from the caller"*. The
+component's own jvmTest `closing the panel gives focus back to the control that opened it` **passes**, so
+this is not a regression in the restore — it is a limit of it. The difference is **depth**:
+
+| | opener |
+|---|---|
+| jvmTest (passes) | a direct child of the content group, held by a `FocusRequester` |
+| TV detail page (fails) | an `IconCell` inside a `Row` inside a `LazyColumn`'s keyed item |
+
+`focusRestorer()` restores the child it recorded; that child then enters at its own first stop rather than
+replaying the chain down to the cell. So the promise holds for a flat opener and silently degrades for a
+nested one, which is the ordinary shape of a real screen.
+
+**Why it was not fixed with the finding:** `SidePanelHost` is working shared code and
+`.claude/rules/no-unsolicited-changes.md` says to propose a change to it rather than make one. Four more
+hosts are queued behind it — `TV Search` 4d, `TV Library` 5d and 5e, the player's 7e — so whatever is done
+should be done once, in the component. Two candidates: `focusRestorer()` on the nested groups, or an opener
+`FocusRequester` the caller hands in — the second contradicts the "no wiring from the caller" promise, so it
+is a contract decision and not a patch.
+
+The TV detail page's test asserts the **current** behaviour, the way `SidePanelMotionTest` pins its own
+exit-window focus hole, so fixing this fails that test and the fix gets looked at rather than landing silently.
+
+Not to be confused with the separate, already-recorded defect in the same component: a D-pad move during the
+240 ms exit drops focus entirely (`SidePanelMotionTest`, *"a D-pad move during the exit does not re-enter the
+leaving panel"*).

@@ -3391,3 +3391,290 @@ dump, so `DownloadFacts` and its `Flow.map` helper classes appear, as do the man
 - Queue positions with the real service running. `merge` is tested on the JVM; the device test reads `DownloadFacts.progress`
   with an empty queue only.
 - What the notification shows for a truncated file.
+
+---
+
+## KMP-38 — The TV detail page on Android (queue `Q20`, boards 7a, 7b, 7a-ii) · **measured 2026-11-04**
+
+**Status:** in pr · **Owner's rulings it follows:** `DEC-17` (hollow neutral failure, panel commit rule, the
+program's merge rule). Android TV only. Phone and `EMULATOR` unchanged. The old `ResultFragmentTv` stays as
+the rollback for one release.
+
+`DetailScreenTv` existed as a partial 7a that nothing called. It now draws 7a, 7b and 7a-ii and is the live TV
+result page, over `:app`'s real provider loading.
+
+### The repoint, and the audit's one wrong constraint
+
+The audit said `navigation_results_tv` was "the one node that can be repointed in XML". **It cannot.**
+`getResultsId` branches on `TV or EMULATOR` (`utils/AppContextUtils.kt:703-709`), so an XML repoint moves the
+EMULATOR layout too. `Globals.layoutId` holds one value (`ui/settings/Globals.kt:24-32`), so `isLayout(TV)`
+excludes `EMULATOR` and the runtime `setClassName` form that `KMP-12` used is the only mechanism that moves TV
+alone. `openDetailOnTvScreen()` is called from one line in `MainActivity` at `:1688`; deleting that line is the
+rollback. The audit's bullet is struck through and corrected. **Q21 and Q22 inherit this.**
+
+### Two of the audit's facts were wrong in our favour
+
+- **A season integer and a per-season count do exist.** `ResultData` lacks them, which is what the audit
+  measured, but `EpisodeResponse.seasonNames` carries `SeasonData(season, name, displaySeason)`
+  (`MainAPI.kt:2227-2237`) and `Episode.season` is an `Int?` (`:2558`). `TitleDetail.seasons` is built from the
+  mapped episodes, using the provider's **integer** and never its free-text season name, which would put
+  untranslated prose in a fixed-width button.
+- **`ResultViewModel2` is not reusable headlessly, and is not needed.** Its output is `LiveData`, its `load`
+  takes an `Activity`, and 24 of `ResultData`'s 29 fields are pre-rendered `UiText`. `APIRepository.load(url)`
+  is headless, in `:core:data`, returns `Resource<LoadResponse>` and never throws
+  (`ui/APIRepository.kt:95-131`). `AndroidDetailSource` maps `LoadResponse` straight to `TitleDetail` and never
+  goes through `toResultData` — which is also what fixes the cast: `toResultData` decides image-vs-initials for
+  the whole rail from the **first** actor alone (`ResultViewModel2.kt:277,:339`), so one missing headshot at the
+  top turned 38 names into a single "Cast: a, b, c" line. The mapping decides per person.
+
+### Resume reads through the seam; no id arithmetic was replicated
+
+`ResultViewModel2` derives each `ResultEpisode.id` arithmetically and differently per response type (anime:
+`mainId + episode + idIndex * 1_000_000 + season * 10_000`, `:2226-2229`). Replicating it would write positions
+under keys no other screen reads, which is worse than writing none. Instead: `LoadResponse.getId()`
+(`:410-414`) for the parent, `DataStoreHelper.getLastWatched(parentId)` (`:592-598`) which hands back the stored
+`episodeId`, then `getViewPos(episodeId)` (`:745-748`). A movie's stored id **is** the title's own, confirmed at
+`:2333-2353` (`id = (mainId) // HAS SAME ID`). Raw position and duration, not `fixVisual()`, because
+`ResultViewModel2.resume()` reads raw too (`:2461-2474`); `DetailResume` applies the zero guard that
+`ResultEpisode.getWatchProgress()` is missing.
+
+### The one regression that needs the owner, and it is not small
+
+**Playback started from this screen records no `setLastWatched`, and saves a position only sometimes.**
+`setViewPosAndResume` writes `setViewPos(id, …)` unconditionally but writes `setLastWatched` only when the meta
+is a `ResultEpisode` or an `ExtractorUri` (`DataStoreHelper.kt:693-742`). This host plays through
+`DetailPlaybackGenerator : NoVideoGenerator(id)`, so:
+
+| | position saved | `setLastWatched` |
+|---|---|---|
+| Movie | yes, under `getId()` | **no** |
+| The episode that was already last-watched | yes, under its stored id | **no** |
+| Any other episode | **no** (`id` is null) | **no** |
+
+So for a series — most of the content — watching an episode here adds nothing to Home's Continue Watching and
+never advances which episode the viewer is up to. **Two fixes, both the owner's call:** lift the id derivation
+out of `ResultViewModel2` into something callable (a refactor of live code, which
+`.claude/rules/no-unsolicited-changes.md` says to propose, not perform), or put an episode id on the
+`DetailSource` seam. Until one lands, this screen is honest about positions it can key and silent about the
+rest. It is recorded in `DetailHostFacts`' KDoc as well as here.
+
+### Reduced because no string exists
+
+No key was added: a new one costs 62 translated directories, and `KMP-33` and `KMP-34` added none either.
+"Full synopsis" → `synopsis`. The "Cast" rail header → **no header**, as the old TV page also has none.
+"More like this" → `recommended`. "Start over" → `play_movie_button` / `play_episode`, which beside "Resume"
+reads correctly as resume-versus-from-the-start. "Resume from 1:24:07" → `resume`, since no h:mm:ss formatter
+exists in the tree. "2h 16m" → `duration_format` ("136 min"). "Full cast" and "See all" → **nothing drawn**.
+The synopsis panel's dismiss row uses `go_back`, which is what it does.
+
+### Reduced because no data exists
+
+The `· TMDB` provenance leg on both count lines: nothing records which tracker supplied the cast
+(`applyMeta` fills from whichever answered, `:1722`). A cast item opens nothing — `Actor` is `(name, image)`
+with no id (`MainAPI.kt:1534-1537`) — so it stays a focus stop whose only press swaps the role line to the
+voice actor, and does nothing for a member without one. 7b's title-level Download: download wiring is
+per-episode-row only (`ResultFragmentTv.kt:437-439`). "No playable source" for a movie:
+`noEpisodesFoundText` is series/anime-only (`:396-399`). The OFFLINE and PARTIAL banners every board owes:
+`isNetworkError` is read in exactly one place in the app and never on the result page, so without a
+connectivity source they would degrade to ERROR — that seam is `Q2`. **It landed while this branch was in
+flight:** `:core:connectivity` and `ConnectivityFlow` are on master as `KMP-35`, which this branch is now
+rebased onto. Nothing here consumes it yet — drawing the two banners is a change to this page's state and
+copy, so it is a follow-up and not a quiet addition to this PR — but the reason given above for reducing
+them has expired, and the page is the first screen that should pick it up.
+
+### Divergences on purpose
+
+- **No nav rail.** `updateNavBar` leaves `navigation_results_tv` out of `isNavVisible`
+  (`MainActivity.kt:505-523`), so the shell hides the rail here exactly as it does for the old page. The
+  board's five cells are unlabelled placeholders (`nav = [{i:0}…{i:4}]`). Five of its 21 focus stops do not
+  exist and "LEFT into the rail" is not an edge. BACK leaves.
+- **7a and 7a-ii are one scrolling surface.** Both the cast header and the cast row sit exactly 584 px / 292 dp
+  apart on the two boards, so they are one page at one offset. A `LazyColumn` whose first item is the
+  hero-and-actions block makes the hero and chrome scroll away as the board draws, and no 292 dp constant is
+  needed. The episode rows are items of that column, not a nested one.
+- **The episode list stays on the page**, below both rails. Board 6a's panel is `Q21`; removing the list first
+  would leave no way to pick an episode. `Season N` and `Episodes · N` scroll to it.
+- **`Season N` / `Episodes · N` only for a single-season title**, counted from that season's `episodeCount`
+  (`TitleDetail.namedSeason() = seasons.singleOrNull()`). Beyond one season both are dropped: the board's
+  Season control opens the unbuilt panel, so naming a season would claim a selector that does not exist, and
+  each episode row already carries its `S1:E4`.
+- **Five controls is the action row's ceiling**, not six. `ResumeWidth` 220 + five ghosts at the 120 dp
+  `TextButtonMinWidth` floor + five 12 dp gaps is 880 dp against 833 available on `Television_720p`
+  (961.5 − 100 − 28), and a `Row` sheds overflow from its last children. Neither board draws six: 7a has no
+  Start over, 7b has no Season or Episodes. Start over is therefore drawn only for a playable title, which is
+  also the honest reading — a series' "start over" would be its *first* episode, a different action from
+  resuming S3:E4. The board spec's §5 did not carry this ceiling; it does now.
+- **The chrome glyphs show a selected state** (`ink` when set). The boards draw all three cells as
+  undifferentiated `muted` squares and say nothing about it; flagged in the KDoc for the design.
+
+### Found and not changed — shared components, each would move search, library and home
+
+`GhostTextButton` strokes a 1 dp `Hairline` where the board draws a 2 dp `line` ring. `RailHeader` centres its
+count where the board bottom-aligns it, which puts the 16 dp count at +6 dp, off the step — a real defect, and
+every rail header in the app. `IconCell` has no `--raised` plate behind its glyph. `PrimaryTextButton`'s KDoc
+says `FocusRingBleed` is 8 dp; the token is 4 dp. `ProgressRule` is 2 dp against
+`MediaCardDefaults.ProgressRuleHeight`'s 4 dp (H §8.4, still open) — the resume bar uses 4 dp per the board.
+The generic loading skeleton carries no `contentDescription`, so no test can positively assert a loading state.
+`StateView` calls `actionFocus.requestFocus()` unguarded where this screen uses `requestFocusIfAttached()`.
+`toPageUiState` builds `UiState.Error` with no `detail`, so `DetailLoad.Failed.detail` never reaches the screen
+— deliberate per `BUG-21`, but it means no test can assert *why* a load failed.
+
+**Security, reported not fixed:** the old result page passes provider plots and episode descriptions straight
+into `HtmlCompat.fromHtml` with no allowlist (`ResultFragmentTv.kt:794,:883,:894` →
+`AppContextUtils.kt:133-147`), so a provider controls `<a href>` targets. The same route is taken by
+`ResultFragmentPhone.kt:980` and `MainActivity.kt:1534`. The new screen strips markup and renders Compose text,
+so it is not affected. Separately, `StreamLink`'s old claim that "the host has already refused any URL it will
+not play" is true on desktop, which has `SandboxPolicy.isPublicHttpUrl`, and **false on Android**, which has no
+equivalent — `APIRepository.isInvalidData` rejects only `""`, `"[]"` and `"about:blank"`.
+
+### What the old TV result page had that this does not
+
+The duplicate-bookmark dialog, and with it the de-duplication it performs on confirm — `checkAndWarnDuplicates`
+is `@MainThread` and shows an `AlertDialog` (`ResultViewModel2.kt:1039-1046`), so bookmarking one title from two
+providers now silently makes two library rows. Autostart: `START_ACTION_RESUME_LATEST` and `START_ACTION_LOAD_EP`
+no longer open straight into the player, so Home's continue-watching card lands on the page. The dub/sub
+selector, the episode range selector (`EPISODE_RANGE_SIZE = 50`), the six `EpisodeSortType`s, and the episode
+action menu (reload, mark watched, cast, batch download) — none drawn on any board. Chromecast from the detail
+page. Subscribe, which is emulator-only today (`:633`) and deliberately undrawn; the chrome row has one free
+96×96 slot at x764 dp if it is ever meant to ship. Episode descriptions, which `DetailEpisode` does not carry.
+The four side effects of `ResultViewModel2.load`: `SyncRedirector.redirect` (`:2684`), `applyMeta` (`:2710`), the
+download-header cache write (`:2720-2732`) and eager `loadTrailers` (`:2733`) — so a MAL or AniList URL is not
+redirected to a provider and no tracker backfill happens. Next and previous episode in the player, and
+`RepoLinkGenerator`'s 20-minute link cache, both of which follow from the id gap above. A trailer whose
+extractor fails now shows a button that does nothing, where the old page hid it until mirrors resolved.
+Cast and recommendation artwork gets the **title's** poster headers, because `TitleDetail` carries none of its
+own, so a recommendation from another provider gets only the app user agent.
+
+### Start over writes storage
+
+`GeneratorPlayer.newInstance` has no start-position parameter (`:151-164`) and `getPos()` reads `getViewPos`
+itself (`:247-254`), so "from the beginning" is `setViewPos(episodeId, 0, storedDuration)` before navigating.
+Three consequences, all intended and none hidden: pressing it and backing out without watching **loses the
+stored position**; it is a no-op when nothing is stored or the stored duration is under 30 s, because
+`setViewPos` early-returns there (`DataStoreHelper.kt:683-687`); and it reaches only the ids this host knows.
+The alternative — an explicit start position on `GeneratorPlayer.newInstance` / `VideoGenerator`, both in
+`classes-jar.api` — is a published-API change and **waits for the owner**.
+
+### `classes-jar.api`
+
+**+157 lines, 0 removed, 0 changed** (37219 → 37376), regenerated with `:app:dumpExtensionApi` against
+`origin/master` at `8f35d725f`, never hand-edited. 141 signature lines and 16 blank separators. An
+earlier read of this said +152, measured before `wirePanelBack` existed; its `OnBackPressedCallback`
+and state collector are two more synthetic classes, and the five extra lines are theirs.
+`AndroidDetailSource`, `AndroidDetailSourceKt` and its three synthetic lambda classes,
+`DataStoreDetailRecords`, `DetailHostFacts`, `DetailTvFragment` with the five
+`$special$$inlined$viewModels$default$N` classes `by viewModels` always emits, `DetailTvFragmentKt`, and
+`LocalDetailRecords`. `internal` does not keep a class out of the dump — `extensionApiDumpPackages` is
+`listOf("com/lagradost/")` and the dumper reads raw `ACC_PUBLIC`, the same reason
+`ApiRepositorySearchSource` is in it. All four new classes carry `$stable`, so the `KMP-09` trap did not bite:
+nothing moved between modules and `:app` has the Compose compiler. `DetailPlaybackGenerator` is a private
+top-level class and so is package-private in the bytecode and absent from the dump.
+
+### A contract change broke the desktop consumer, which is why that build is a gate
+
+Adding `OpenPlayer`, `PlayTrailer` and `OpenTitle` to the `DetailEffect` sealed interface made
+`Main.kt:462`'s `when` non-exhaustive, and `:desktopApp:compileKotlinJvm` was red until the three branches were
+added. Every new `TitleDetail` **field** is defaulted, so the data class was safe; a sealed interface has no
+such escape, and a consumer build is the only thing that says so. The three branches are named rather than
+swept into an `else`, so a fourth effect still fails the build. Desktop acts on none of them:
+`DetailScreenDesktop` plays by picking a stream from the source list, and draws no trailer button and no
+recommendations rail, so it never sends the actions that produce them. **Desktop behaviour is unchanged**, and
+`PlayRequested` → `Play` is byte-for-byte as it was.
+
+### What the device suite found, and what each cost
+
+- **`SidePanelHost`'s platform back is the host's job, and it is wired here — `DEC-17` needed it.** Its KDoc
+  says so outright: *"A host on Android should also wire its platform back (the activity's
+  `OnBackPressedDispatcher`) to the same `onDismissRequest`, gated on `expanded`. This module deliberately
+  does not."* Nothing had called `SidePanelHost` before this page, so the gap surfaced on first use: BACK
+  consumed only as a Compose key event never reached the panel, and
+  `theWatchStatusPickerOpensIsTrappedAndCommitsOnARowPress` failed twice with *"No compose hierarchies found"*
+  — the activity being finished — including once through the same `SOURCE_HDMI` injection every other key in
+  that suite uses. So "Back closes either" simply did not hold, and the picker could be left only by picking
+  something. Fixed by `DetailTvFragment.wirePanelBack`: an `OnBackPressedCallback` gated on
+  `DetailState.panelOpen`. That is why **both** panels' open-ness is in state now — a back callback needs
+  something to gate on — which is also why `LibraryState.picking` is state. Every later panel host
+  (`TV Search` 4d, `TV Library` 5d and 5e, the player's 7e) needs the same six lines, which is an argument
+  for `:core:designsystem` owning the wiring rather than each host repeating it.
+- **A dismissed panel slid out as the *other* panel, and that was ours.** `SidePanelHost` composes `panel`
+  *"while open and while sliding"*, and `PanelLayer` stays mounted for the whole 240 ms exit
+  (`expanded || travel.value < CLOSED`). `DetailPanelsTv` chose between the two panels by reading
+  `state.watchStatusPicking` live — which the dismiss has already cleared — so the picker's subtree was
+  disposed one frame into its own exit and a "Synopsis" header with a `go_back` row slid out in its place,
+  on every dismiss of the picker. Fixed by latching the kind for the exit (`PanelLatch`); the panel that is
+  leaving keeps the identity it had. **Any host with two panels behind one `SidePanelHost` has this bug** —
+  4d, 5d/5e and 7e all will — which is a second argument for the design system owning this.
+- **Measured: `SidePanelHost` does not return focus to the control that opened the panel here. It returns it
+  to the chrome row's first cell.** Both dismiss paths — platform BACK and the row press that commits — land
+  on `Go Back`, not on `Set watch status`. Measured on `Television_720p`, named by the assertion:
+  `expected:<[Set watch status]> but was:<[Go Back]>`.
+
+  The component's KDoc promises the opener and says *"It needs no wiring from the caller"*, and its own
+  jvmTest `closing the panel gives focus back to the control that opened it` passes — for a **flat** opener
+  held by a `FocusRequester`, with `expanded` flipped from outside, which is exactly this dismiss path. The
+  difference is **depth**: here the opener is an `IconCell` inside a `Row` inside the `LazyColumn`'s keyed
+  head item. `focusRestorer()` on the content group restores the child it recorded, and that child enters at
+  its own first stop rather than replaying the chain down to the cell.
+
+  Two earlier readings of this were wrong and are retracted. First, *"the dismiss comes from outside, so the
+  restorer has no record to replay"* — disproved by the jvmTest above. Second, an intermediate test asserted
+  only that the two paths **agree**, and it passed: both were wrong in the same way, so agreement proved
+  nothing. Asserting the opener by name is what produced the fact.
+
+  **Not fixed here; filed as `BUG-36`.** It is a shared component with four more hosts queued behind it (4d, 5d/5e, 7e), and
+  `.claude/rules/no-unsolicited-changes.md` says to propose a change to working shared code rather than make
+  it. The test pins the current behaviour the way `SidePanelMotionTest` pins its own exit-window hole, so
+  fixing the component fails this test and the fix gets looked at. The likely fix is a `focusRestorer()` on
+  the nested groups, or an opener `FocusRequester` the host restores explicitly — the second contradicts the
+  "no wiring from the caller" promise, so it is the component's call, not this page's.
+
+  `DEC-17` is still met: the panel closes, BACK commits nothing, a row press commits, and focus is on the
+  page rather than lost. What the viewer loses is their place in the chrome row.
+- **The fragment's own back wiring has no automated cover.** The feature device test mirrors it in its host,
+  because `createComposeRule` has no fragment, so what runs is the production dismiss path (`PanelDismissed`
+  closing either panel) and not `wirePanelBack` itself. The `:app` test cannot reach a panel: with no
+  extension installed the page never loads a title.
+- **`DpadDriver` has no public BACK**, which is an `INF-10` gap rather than a quirk. `closeKeyboard()` sends
+  one but only while the keyboard is up, so `DetailScreenTvDeviceTest` had to reimplement the exact event —
+  both phases, `KeyCharacterMap.VIRTUAL_KEYBOARD`, `InputDevice.SOURCE_HDMI`, through
+  `uiAutomation.injectInputEvent`. Every TV screen test that dismisses a panel, dialog or destination will
+  reinvent it, and the next person to reach for `UiDevice.pressBack()` will lose the same half-hour finding
+  out it goes past the panel to the activity. It belongs on the driver beside `center()` and `enterKey()`,
+  with `closeKeyboard()` using it.
+
+### One bug worth remembering: a focus lift that eats directional focus
+
+`CastItem` put `tvFocusLift()` **above** its focus target in the modifier chain, and DOWN then never left the
+cast rail — every cast item's DOWN went to a same-row sibling, so a remote could not get past the cast row to
+the recommendations rail or the episodes. `boundsInRoot()` walks upward from a node's own coordinator, so a
+`graphicsLayer` above the focus modifier enters the focus rect and one below it does not; a focused block
+therefore reported a rect 4 dp higher than its neighbours, and Compose's two-dimensional search admits a DOWN
+candidate when `focusedRect.top < candidate.top`, which every sibling on the row then satisfied. Their 4 dp of
+major-axis distance beat the 88 dp to the rail below. `MediaCard` appends the lift *after* the caller's
+`clickable` (`MediaCard.kt:68-71`), which is why no `PosterCard` rail ever showed this. The fix is modifier
+order and the mechanism is in `CastItem`'s KDoc, because it is invisible on inspection: the chain reads
+perfectly well and silently breaks directional focus. **The first diagnosis — that the sections below were
+uncomposed `LazyColumn` items — was wrong**, and only the walk's dumped focus graph settled it.
+
+### Suggested follow-up, not done here
+
+`.claude/rules/code-style.md` says to suggest a split rather than make one. It caps by kind, and **four files
+here are over their cap** — measured, not estimated:
+
+| File | Lines | Cap | Over by |
+|---|---|---|---|
+| `AndroidDetailSource.kt` | 610 | 300 (`.kt`) | 310 |
+| `DetailScreenTv.kt` | 720 | 250 (composable screen) | 470 |
+| `DetailTvFragment.kt` | 382 | 300 (`.kt`) | 82 |
+| `DetailScreenTvDeviceTest.kt` | 806 | 500 (test file) | 306 |
+
+`AndroidDetailSource.kt` splits into `DetailRecords.kt` for `LocalDetailRecords`, `DataStoreDetailRecords`,
+`bookmarkOf` and `favouriteOf`; `DetailMapping.kt` for the pure `LoadResponse → TitleDetail` functions; and
+`DetailPlayback.kt` for `DetailPlaybackGenerator` and `resolveTrailers`. `DetailScreenTv.kt` is the one worth
+doing first and the easiest: `HeadBlock` and the chrome row are already private composables with no shared
+state beyond their parameters, so `DetailHeadTv.kt` takes them and the file drops under 300 on its own — the
+four rails already live in their own files for exactly this reason. `DetailTvFragment.kt` is 82 over and only
+because of the host plumbing (`DetailPlaybackGenerator`, trailer resolution) that `DetailPlayback.kt` would
+take anyway. `DetailScreenTvDeviceTest.kt` splits along the suite's own seams — focus-graph walks, panels,
+and content states — but its fixtures and `DpadDriver` helpers are shared, so that one wants `INF-10`'s view
+on where shared device-test helpers belong before it is cut.

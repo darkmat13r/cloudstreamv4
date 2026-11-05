@@ -1,4 +1,4 @@
-# Handover — 2026-11-03
+# Handover — 2026-11-04
 
 This file orients a new session. It records what is done, what is open, what waits on the owner, and
 the local facts that cost an hour each when someone rediscovers them.
@@ -24,6 +24,22 @@ when twenty-three more had merged since. **Trust `git log` over this heading.**
 
 **Android TV shows the Compose rail since `KMP-33`.** `TvRailSwitch.useComposeRail = false` is the rollback to the XML
 rail, kept for one release. Phone and the emulator layout are unchanged.
+
+**Android TV opens the new detail page since `KMP-38`** (queue `Q20`, boards 7a / 7b / 7a-ii). Deleting the one
+`openDetailOnTvScreen()` line at `MainActivity.kt:1688` is the rollback; `ResultFragmentTv` stays for one release.
+Phone and `EMULATOR` are unchanged, and **note the audit was wrong about how**: `getResultsId` branches on
+`TV or EMULATOR`, so `navigation_results_tv` **cannot** be repointed in XML without moving the emulator layout
+too — the runtime `setClassName` form is the only mechanism that moves TV alone, and **no** nav node can be
+repointed in XML. `Q21` and `Q22` inherit that.
+
+**One thing in `KMP-38` waits on the owner, and it is a real regression, not a reduction.** Playback started
+from the new detail page writes no `setLastWatched`, because the player only writes it for a `ResultEpisode` or
+`ExtractorUri` meta (`DataStoreHelper.kt:693-742`) and the new host plays through a `NoVideoGenerator`. A
+position is saved for a movie and for the episode that was already last-watched, and **not** for any other
+episode. So watching a series episode there adds nothing to Home's Continue Watching and never advances which
+episode the viewer is up to. The fix needs either `ResultViewModel2`'s per-response-type episode-id arithmetic
+lifted into something callable, or an episode id on the `DetailSource` seam. Do not start `Q21` assuming this
+is solved.
 
 Master is at `26acd8f8` (#104). **One pull request is open: #91**, a **draft** — `KMP-12` steps 3 and 4,
 Android TV opening the new search screen. `DEC-17` accepts passing UI tests on the `Television_720p` emulator as proof for

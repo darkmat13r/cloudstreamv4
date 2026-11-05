@@ -461,6 +461,12 @@ private fun DetailHost(
             )
             when (effect) {
                 is DetailEffect.Play -> onPlay(kept, playing, effect.title, effect.link)
+                // The three Android effects. `DetailScreenDesktop` sends none of the actions that
+                // produce them — it plays by picking a stream from the source list, which is
+                // `PlayRequested` and then `Play` above, and it draws no trailer button and no
+                // recommendations rail. They are named rather than swept up by an `else` so that a
+                // fourth effect still fails this build instead of being silently dropped here.
+                is DetailEffect.OpenPlayer, DetailEffect.PlayTrailer, is DetailEffect.OpenTitle -> Unit
             }
         }
     }
