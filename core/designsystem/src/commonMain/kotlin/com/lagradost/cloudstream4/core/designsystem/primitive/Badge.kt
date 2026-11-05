@@ -43,9 +43,10 @@ enum class BadgeTone {
  * ## Geometry
  *
  * [BadgeDefaults.Height] is 16dp (32px on the artboard). The label is the ramp's
- * `labelMono` — JetBrains Mono at 12sp in a 16sp box, which is 24/32px on the artboard and
- * leaves 4px of air above and below inside the 32px pill. Horizontal padding is
- * [BadgeDefaults.HorizontalPadding].
+ * `labelMono` — JetBrains Mono at 12sp in a 16sp box, which fills the 16dp badge exactly.
+ * Horizontal padding is [BadgeDefaults.HorizontalPadding], 4dp, and the corner is
+ * `CloudStreamTheme.shapes.small`, the role `CloudStreamShapes` names for badges: `.bdg` in
+ * `TV Search`, `TV Home` and `TV Library` is `padding: 0 8px; border-radius: 8px`.
  *
  * **The width is intrinsic and that is correct.** Rule 6: a badge's width comes from its string.
  * The step governs the height, which is written here; it does not govern text measurement.
@@ -59,14 +60,14 @@ enum class BadgeTone {
  * ## Ground
  *
  * The ground is `bg` at [BadgeDefaults.GroundAlpha] — a translucent black scrim, not a tenth
- * colour — so the badge survives whatever artwork is beneath it. The alpha is not in the design
- * and is flagged as invented on [BadgeDefaults.GroundAlpha].
+ * colour — so the badge survives whatever artwork is beneath it. The alpha is the boards'
+ * `.bdg` value; see [BadgeDefaults.GroundAlpha].
  *
  * The text is **not** upper-cased here. Every badge string the design shows is already upper
  * case, and silently transforming a caller's string is a policy the artboards never stated.
  *
  * @param text the badge string. Kept to one line and never wrapped; a long string is clipped by
- *   the caller's constraints rather than reflowing the pill.
+ *   the caller's constraints rather than reflowing the badge.
  * @param modifier applied before the badge's own sizing and ground.
  * @param tone see [BadgeTone].
  */
@@ -88,7 +89,7 @@ fun Badge(
             .heightIn(min = BadgeDefaults.Height)
             .background(
                 color = colors.bg.copy(alpha = BadgeDefaults.GroundAlpha),
-                shape = CloudStreamTheme.shapes.pill,
+                shape = CloudStreamTheme.shapes.small,
             )
             .padding(horizontal = BadgeDefaults.HorizontalPadding),
         contentAlignment = Alignment.Center,
@@ -114,21 +115,17 @@ object BadgeDefaults {
     val Height: Dp = 16.dp
 
     /**
-     * Padding either side of the label, 16px on the artboard. **Should become
+     * Padding either side of the label: `.bdg`'s `padding: 0 8px`, halved. **Should become
      * `CloudStreamDimens.BadgeHorizontalPadding`.** Numerically equal to
-     * [CloudStreamDimens.ListRowPadding] but a different meaning, so it is not that token.
+     * [CloudStreamDimens.StackGap] but a different meaning, so it is not that token.
      */
-    val HorizontalPadding: Dp = 8.dp
+    val HorizontalPadding: Dp = 4.dp
 
     /**
-     * Opacity of the black ground.
-     *
-     * **Invented — the artboards do not state it.** The requirement they do state is that the
-     * badge survives any artwork beneath it, and this is the lightest scrim at which `ink` on
-     * `bg` still reads over a bright poster at three metres. A designer should confirm or replace
-     * it; unlike the dimensions above it is not a candidate for promotion until then.
+     * Opacity of the black ground: `.bdg`'s `background: rgba(0,0,0,0.78)` in `TV Search`,
+     * `TV Home` and `TV Library`. No `:core:theme` token states an alpha for it.
      */
-    const val GroundAlpha: Float = 0.72f
+    const val GroundAlpha: Float = 0.78f
 }
 
 private const val BADGE_MAX_LINES = 1

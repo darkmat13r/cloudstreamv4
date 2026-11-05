@@ -1,10 +1,7 @@
 package com.lagradost.cloudstream4.core.designsystem.card
 
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -14,19 +11,22 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawWithCache
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusLift
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
 import com.lagradost.cloudstream4.core.theme.CardSize
 import com.lagradost.cloudstream4.core.theme.CloudStreamCardSizes
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
-import androidx.compose.ui.tooling.preview.Preview
 
 /**
  * The trailing card that opens a rail's full contents.
@@ -67,8 +67,16 @@ fun SeeAllCard(
 }
 
 /**
- * The card's face: a chevron over the label, both centred, on a `colors.raised` surface — the
- * design's "this is a control, not artwork" surface.
+ * The card's face: the label, centred, on a darker ground than the cards it follows, inside a
+ * dashed hairline — `.seeall` in `TV Search` 4a to 4c and `TV Home` 3d. It is a place to go, not
+ * a piece of artwork, and the dashed edge is what says so.
+ *
+ * The ground is `colors.surface` at [MediaCardDefaults.SEE_ALL_GROUND_ALPHA], which over `bg` is
+ * the boards' `#060A0D`. The outline is a [CloudStreamDimens.Hairline] `colors.line` stroke drawn
+ * just inside the edge, dashed [MediaCardDefaults.SEE_ALL_DASH_ON] on and
+ * [MediaCardDefaults.SEE_ALL_DASH_OFF] off in units of its own weight. It is draw-only, so it
+ * costs the rung nothing. The card used to be a `raised` fill with a chevron drawn on a `Canvas`;
+ * no board draws a glyph here, and `icons.md` forbids drawing one, so there is none.
  */
 @Composable
 private fun SeeAllContent(
@@ -77,20 +85,17 @@ private fun SeeAllContent(
     shape: Shape,
     modifier: Modifier = Modifier,
 ) {
+    val colors = CloudStreamTheme.colors
     val style = CloudStreamTheme.typography.label
-    Column(
+    Box(
         modifier = modifier
             .fillMaxSize()
             .clip(shape)
-            .background(CloudStreamTheme.colors.raised)
+            .background(colors.surface.copy(alpha = MediaCardDefaults.SEE_ALL_GROUND_ALPHA))
+            .dashedHairline(color = colors.line)
             .padding(MediaCardDefaults.ContentPadding),
-        verticalArrangement = Arrangement.spacedBy(
-            space = CloudStreamDimens.StackGap,
-            alignment = Alignment.CenterVertically,
-        ),
-        horizontalAlignment = Alignment.CenterHorizontally,
+        contentAlignment = Alignment.Center,
     ) {
-        SeeAllChevron(color = ink)
         BasicText(
             text = label,
             style = remember(style, ink) {
@@ -102,37 +107,28 @@ private fun SeeAllContent(
     }
 }
 
-/**
- * A chevron drawn rather than shipped as an asset — `:core:designsystem` carries no drawables, and
- * a two-line glyph does not need one. The proportions are fractions of the glyph box, so the
- * 4dp step does not apply to them; only the box itself and the stroke weight are tokens.
- */
-@Composable
-private fun SeeAllChevron(color: Color, modifier: Modifier = Modifier) {
-    Canvas(modifier.size(MediaCardDefaults.SeeAllGlyphSize)) {
-        val apex = Offset(size.width * CHEVRON_APEX_X, size.height * CHEVRON_MID_Y)
-        drawLine(
+/** A dashed [CloudStreamDimens.Hairline] rectangle just inside this element's edge. Draw-only. */
+private fun Modifier.dashedHairline(color: Color): Modifier = drawWithCache {
+    val stroke = CloudStreamDimens.Hairline.toPx()
+    val half = stroke / HALF
+    val style = Stroke(
+        width = stroke,
+        pathEffect = PathEffect.dashPathEffect(
+            floatArrayOf(stroke * MediaCardDefaults.SEE_ALL_DASH_ON, stroke * MediaCardDefaults.SEE_ALL_DASH_OFF),
+        ),
+    )
+    onDrawWithContent {
+        drawContent()
+        drawRect(
             color = color,
-            start = Offset(size.width * CHEVRON_BASE_X, size.height * CHEVRON_TOP_Y),
-            end = apex,
-            strokeWidth = MediaCardDefaults.SeeAllGlyphStroke.toPx(),
-            cap = StrokeCap.Round,
-        )
-        drawLine(
-            color = color,
-            start = apex,
-            end = Offset(size.width * CHEVRON_BASE_X, size.height * CHEVRON_BOTTOM_Y),
-            strokeWidth = MediaCardDefaults.SeeAllGlyphStroke.toPx(),
-            cap = StrokeCap.Round,
+            topLeft = Offset(half, half),
+            size = Size(size.width - stroke, size.height - stroke),
+            style = style,
         )
     }
 }
 
-private const val CHEVRON_BASE_X = 0.32f
-private const val CHEVRON_APEX_X = 0.68f
-private const val CHEVRON_TOP_Y = 0.18f
-private const val CHEVRON_MID_Y = 0.5f
-private const val CHEVRON_BOTTOM_Y = 0.82f
+private const val HALF = 2f
 
 private const val PREVIEW_LABEL = "See all"
 

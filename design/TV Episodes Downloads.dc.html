@@ -69,7 +69,7 @@ body { margin:0; background:#0a0a0a; font-family:Manrope,system-ui,sans-serif; }
 .cbm.bad { color:var(--ink2); }
 .ibx { width:96px; height:96px; display:flex; align-items:center; justify-content:center;
   border-radius:12px; box-sizing:border-box; }
-.ibx.foc { outline:4px solid var(--ink); outline-offset:4px; }
+.ibx.foc .ivis { outline:4px solid var(--ink); outline-offset:4px; }
 .ivis { width:48px; height:48px; border-radius:8px; background:var(--raised);
   box-shadow: inset 0 0 0 1px var(--line); display:flex; align-items:center; justify-content:center; }
 .gl2 { width:32px; height:32px; border-radius:8px; background:var(--mut); }
@@ -80,9 +80,9 @@ body { margin:0; background:#0a0a0a; font-family:Manrope,system-ui,sans-serif; }
   box-sizing:border-box; border-radius:24px; background:var(--raised);
   box-shadow: inset 0 0 0 1px var(--line); font:600 24px/32px Manrope,sans-serif; color:var(--mut);
   white-space:nowrap; }
-.chip.sel { color:#000000; background:var(--ink); box-shadow:none; }
+.chip.sel { color:var(--ink); box-shadow:inset 0 0 0 1px var(--mut); }
 .chipn { font:500 24px/32px "JetBrains Mono",monospace; color:var(--mut); }
-.chip.sel .chipn { color:rgba(0,0,0,0.6); }
+.chip.sel .chipn { color:var(--mut); }
 .rhd { display:flex; align-items:center; gap:16px; height:56px; }
 .rt { font:700 40px/56px Manrope,sans-serif; letter-spacing:-0.02em; color:var(--ink); }
 .rm { font:500 24px/32px "JetBrains Mono",monospace; color:var(--mut);

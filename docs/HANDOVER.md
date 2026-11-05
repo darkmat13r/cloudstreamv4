@@ -326,7 +326,7 @@ Record, which replaces the references in the working tree, then read `git diff` 
 Compare with the same command without the `screenshots=record` line, or as part of the whole gate. `tests_regex` runs only the cases.
 A missing reference fails, and never records itself. To record one case, narrow `tests_regex` to its name.
 
-Images go to `<module>/build/screenshots`, and to `/private/tmp/cloudstream-shared/review/shots/<module>/` for the reviewer, with `:` as `-`:
+Images go to `<module>/build/screenshots`, and to `/private/tmp/cloudstream-shared/review/shots/<branch>/<module>/` for the reviewer (the branch name with `/` as `-`, because several branches record the same module at once), with `:` as `-`:
 `recorded/<name>.png`, `failures/<name>.{actual,reference,diff}.png`, and `comparisons.tsv` with each case's result, different pixels and largest delta.
 In a diff, magenta is what changed. Never re-record to make red go away: fix it, or say in the PR that the change is intended.
 

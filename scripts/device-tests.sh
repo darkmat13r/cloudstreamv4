@@ -96,7 +96,9 @@ for task in $tasks; do
         cp $output/recorded/*.png(N) $module/src/androidDeviceTest/resources/screenshots/
     fi
     if [[ -d ${review:h} ]]; then
-        shots=$review/${module//\//-}
+        # One folder per branch: several branches record the same module at once, and a shared folder mixed them.
+        branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null); branch=${${branch:-detached}//\//-}
+        shots=$review/$branch/${module//\//-}
         mkdir -p $shots
         rm -rf $shots/failures
         cp -R $output/. $shots/
