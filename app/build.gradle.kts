@@ -310,6 +310,7 @@ dependencies {
     // listed explicitly because :feature:search depends on it with `implementation` scope, so the
     // UiState types in SearchPrompts' signatures are not transitive.
     implementation(project(":feature:search"))
+    implementation(project(":feature:home"))
     implementation(project(":feature:library"))
     implementation(project(":core:designsystem"))
 

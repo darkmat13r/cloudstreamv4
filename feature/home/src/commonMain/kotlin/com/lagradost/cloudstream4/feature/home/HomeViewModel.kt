@@ -59,8 +59,18 @@ class HomeViewModel(
             is HomeAction.SourceSelected -> select(action.id)
             HomeAction.Retry -> retry()
             is HomeAction.RowMoreRequested -> showMore(action.key, action.columns)
-            is HomeAction.TitleActivated -> scope.launch { postEffect { HomeEffect.OpenTitle(action.id) } }
+            is HomeAction.TitleActivated -> {
+                action.from?.let { from -> updateState { copy(returnTo = from) } }
+                scope.launch { postEffect { HomeEffect.OpenTitle(action.id) } }
+            }
             HomeAction.SearchRequested -> scope.launch { postEffect { HomeEffect.OpenSearch } }
+            HomeAction.ExtensionsRequested -> scope.launch { postEffect { HomeEffect.OpenExtensions } }
+            HomeAction.AccountsRequested -> scope.launch { postEffect { HomeEffect.OpenAccounts } }
+            HomeAction.SourcesChanged -> sourcesChanged()
+            HomeAction.Reappeared -> updateState { copy(appeared = true, returnTo = returnTo?.copy(ready = true)) }
+            HomeAction.Disappeared -> updateState { copy(appeared = false) }
+            HomeAction.ReturnHandled -> updateState { copy(returnTo = null) }
+            HomeAction.LandingHandled -> updateState { copy(landingOwed = false) }
         }
     }
 
@@ -85,18 +95,69 @@ class HomeViewModel(
                 updateCurrent(request) { copy(status = HomeStatus.Failed(failure.reason())) }
                 return@launch
             }
-            val keep = (state.value.selected ?: memory.last())?.takeIf { id -> found.options.any { it.id == id } }
-            val chosen = found.options.firstOrNull { it.id == keep } ?: found.options.firstOrNull()
-            updateCurrent(request) {
-                copy(
-                    sources = found.options,
-                    selected = chosen?.id,
-                    status = if (chosen == null) HomeStatus.NoSources(found.installed) else HomeStatus.Loading,
-                )
-            }
-            if (chosen != null) loadFirstPages(chosen, request)
+            applySources(found, request)
         }
     }
+
+    /** Asks again, leaving everything as it is unless the answer changes what should be on screen. */
+    private fun sourcesChanged() {
+        val request = generation
+        scope.launch(work) {
+            val found = try {
+                source.sources()
+            } catch (cancelled: CancellationException) {
+                throw cancelled
+            } catch (_: Exception) {
+                // What is on screen is still the best there is, and the next change asks again.
+                return@launch
+            }
+            if (request == generation) applySources(found, request)
+        }
+    }
+
+    /**
+     * Decides which source shows.
+     *
+     * The remembered source wins over one the page fell back to. Plugins arrive in stages, so a fallback may already be
+     * showing when the source the person chose turns up, and it must not then outlive that choice.
+     *
+     * While the host is still loading, a remembered source that is missing is waited for, rather than fetching some
+     * other source's page only to throw it away, and "nothing here" is not said yet.
+     */
+    private fun applySources(found: HomeSources, request: Int) {
+        val current = state.value
+        val remembered = memory.last()
+        val offered = { id: HomeSourceId? -> found.options.any { it.id == id } }
+        val chosen = when {
+            offered(remembered) -> remembered
+            offered(current.selected) -> current.selected
+            else -> found.options.firstOrNull()?.id
+        }
+        val waiting = found.stillLoading && current.status.rows.isEmpty() &&
+            (chosen == null || (remembered != null && !offered(remembered)))
+        when {
+            waiting -> updateCurrent(request) { copy(sources = found.options, selected = null, status = HomeStatus.Loading) }
+            chosen == null -> updateCurrent(request) {
+                copy(sources = found.options, selected = null, status = HomeStatus.NoSources(found.installed))
+            }
+            chosen == current.selected && !current.status.wantsReload -> updateCurrent(request) {
+                copy(sources = found.options)
+            }
+            else -> {
+                val next = restart()
+                updateState {
+                    copy(sources = found.options, selected = chosen, status = HomeStatus.Loading, returnTo = null)
+                }
+                val option = found.options.first { it.id == chosen }
+                scope.launch(work) { loadFirstPages(option, next) }
+            }
+        }
+    }
+
+    /** Rows, or a first page on its way, stay. Anything else was the source's last word, and is worth asking again. */
+    private val HomeStatus.wantsReload: Boolean
+        get() = this is HomeStatus.NoSources || this is HomeStatus.Failed || this is HomeStatus.Offline ||
+            this is HomeStatus.Empty
 
     private fun select(id: HomeSourceId) {
         val current = state.value
@@ -106,7 +167,7 @@ class HomeViewModel(
         memory.remember(id)
         if (id == current.selected) return
         val request = restart()
-        updateState { copy(selected = id, status = HomeStatus.Loading) }
+        updateState { copy(selected = id, status = HomeStatus.Loading, returnTo = null) }
         scope.launch(work) { loadFirstPages(option, request) }
     }
 
