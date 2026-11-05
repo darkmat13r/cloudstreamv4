@@ -16,7 +16,6 @@ import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.focus.focusProperties
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIconSize
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
@@ -148,11 +147,7 @@ private fun DownloadTitleRow(
         DownloadProgressRow(
             state = rowState(title, chosen, formatBytes),
             onClick = onOpen,
-            // Without a verb of its own, Right would search sideways and land on another row's.
-            modifier = Modifier
-                .weight(FILL)
-                .focusProperties { if (verb == null) right = FocusRequester.Cancel }
-                .downloadsStop(rowFocus, memory),
+            modifier = Modifier.weight(FILL).downloadsStop(rowFocus, memory),
             leading = { DownloadKindGlyph(title.kind) },
         )
         if (verb != null) {

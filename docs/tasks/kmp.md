@@ -3664,6 +3664,7 @@ one included. **Open local file** was already hidden on TV, so nothing is lost. 
 - **When a focused stop leaves, the view hands focus to another stop by itself, before any effect runs.** So `last` already names the stop it chose: a row removed under focus landed on `Download queue`, and
   cancelling from its chip landed on the first row. What held focus is therefore read during composition, before the change is applied.
 - **`requestFocus()` on a requester with no node returns `false` rather than throwing** on this Compose, so `requestFocusIfAttached`'s answer is what decides the fallback.
+- **Right from a row with no verb stays put, so it needs no guard.** I had added one on the argument that it would land on the neighbouring row's verb. Removed alone in a control run, `aRowWithNoVerbDoesNotSendRightToAnotherRowsVerb` still passed with the verb directly below, so the guard went. The test stays as a pin, and has not been shown to fail.
 - **Up from a row lands on the nearest chip,** `Select` or `Delete`, not the first. Every chip is along the row.
 
 **Strings:** 12 new keys in all 62 directories, all machine translated and not reviewed by a native speaker; `qt` uses only words from its own file. `ti`, `ckb`, `mt`, `so`, `or`, `my` and `am` are the least sure, `apc` and `ars` are
@@ -3682,7 +3683,6 @@ Temporary changes, all reverted. One run on `:feature:downloads`, 13 of 32 red, 
 | `UNKNOWN` reads as offline | `offlineRidesTheTopRow...` |
 | A row takes focus before the screen has resumed | `focusReturnsToTheOpenedRow...` |
 | The list stops at 20 rows | `fortyRowsAreAllReachable...` |
-| The Right guard removed, alone in its own run, because the first change had taken away the verb it would land on | `aRowWithNoVerb...` |
 | `MainActivity`'s one line removed | 4 of 5 in `DownloadsTvNavigationTest`. `thePhoneLayoutKeepsTheOldFragment` stays green, as it should |
 | Before the focus fix, not a planted change | `cancellingFromItsChip...`, `aRowThatGoesWhileFocused...`, `theLastRowGoing...`, `aRowDeletedWhileAway...` |
 
