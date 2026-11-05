@@ -113,6 +113,9 @@
           .bbtn { height: 64px; min-width: 240px; padding: 0 32px; box-sizing: border-box;
             display: inline-flex; align-items: center; justify-content: center; border-radius: 16px;
             background: var(--ink); color: #000000; font: 800 24px/32px Manrope, sans-serif; white-space: nowrap; }
+          /* DS-16: a button's glyph, 32 square and 16 from the label, in the label's colour. The grey square stands for
+             the CloudStreamIcons glyph the rule table names. */
+          .bbtn .bgl { width:32px; height:32px; border-radius:8px; background:currentColor; flex:none; margin-right:16px; }
 
           /* list row — the text stack totals 64 (32 + 8 + 24) so it centres in a 96 row at +16 */
           .lrow { display: flex; align-items: center; gap: 16px; height: 96px; box-sizing: border-box;
@@ -215,7 +218,7 @@
                     <span class="stath">3 sources failed</span>
                     <span class="statd">9 OF 12 ANSWERED</span>
                   </span>
-                  <span class="btncell"><span class="bbtn">Retry 3 sources</span></span>
+                  <span class="btncell"><span class="bbtn"><span class="bgl"></span>Retry 3 sources</span></span>
                 </div>
 
                 <sc-for list="{{ suggest }}" as="s" hint-placeholder-count="6">
@@ -266,7 +269,7 @@
                 </div>
 
                 <div class="actgrp abs" style="right:56px;top:176px">
-                  <span class="btncell"><span class="bbtn">Search all 12 sources</span></span>
+                  <span class="btncell"><span class="bbtn"><span class="bgl"></span>Search all 12 sources</span></span>
                 </div>
 
                 <div class="svg1 abs" style="left:912px;top:488px"></div>
@@ -307,7 +310,7 @@
                 </div>
 
                 <div class="actgrp abs" style="right:56px;top:176px">
-                  <span class="btncell foc"><span class="bbtn">Search everything</span></span>
+                  <span class="btncell foc"><span class="bbtn"><span class="bgl"></span>Search everything</span></span>
                 </div>
 
                 <div class="svg1 abs" style="left:912px;top:472px"></div>
