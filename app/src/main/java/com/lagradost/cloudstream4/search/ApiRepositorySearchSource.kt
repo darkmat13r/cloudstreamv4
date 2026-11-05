@@ -2,6 +2,7 @@ package com.lagradost.cloudstream4.search
 
 import android.content.Context
 import android.content.res.Configuration
+import android.text.format.DateUtils
 import androidx.preference.PreferenceManager
 import com.lagradost.cloudstream3.APIHolder.apis
 import com.lagradost.cloudstream3.AnimeSearchResponse
@@ -24,11 +25,16 @@ import com.lagradost.cloudstream4.feature.search.SearchOutcome
 import com.lagradost.cloudstream4.feature.search.SearchResultId
 import com.lagradost.cloudstream4.feature.search.SearchResultItem
 import com.lagradost.cloudstream4.feature.search.SearchSource
+import com.lagradost.cloudstream4.feature.search.SearchSourceChoice
+import com.lagradost.cloudstream4.feature.search.SearchSourceHealth
 import com.lagradost.cloudstream4.feature.search.SearchSources
+import com.lagradost.cloudstream4.feature.search.SearchTypeFilter
+import com.lagradost.cloudstream4.feature.search.SearchTypeFilters
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.util.Locale
+import java.util.concurrent.ConcurrentHashMap
 
 /**
  * [SearchSource] over the app's real providers: step 3 of Phase 7's recipe for the search vertical.
@@ -88,9 +94,94 @@ internal class ApiRepositorySearchSource(
         )
     }
 
+    /**
+     * The panel's rows: what is eligible under the lit type chips, as the old screen's `updateList`, so a
+     * row's light and the chrome row's count are the same fact. Pinned first, as the rails are.
+     */
+    override suspend fun choices(): List<SearchSourceChoice> = withContext(io) {
+        val selected = selectedProviders(context.getApiSettings()).mapTo(HashSet()) { it.name }
+        val rows = providersUnderTypes(eligibleProviders(context.getApiSettings()), DataStoreHelper.searchPreferenceTags)
+            .sortedBy { it.name.lowercase() }
+        val labels = labelContext()
+        val pinned = DataStoreHelper.pinnedProviders
+        pinnedFirst(rows, pinned) { it.name }.map { api ->
+            val health = providerHealth[api.name]
+            SearchSourceChoice(
+                id = api.name,
+                name = cleanProviderText(api.name),
+                detail = api.choiceDetail(labels, isPinned = api.name in pinned, failedAt = health?.failedAt),
+                selected = api.name in selected,
+                health = when {
+                    health == null -> SearchSourceHealth.Unknown
+                    health.failedAt != null -> SearchSourceHealth.Failed
+                    else -> SearchSourceHealth.Ok
+                },
+            )
+        }
+    }
+
+    /**
+     * Keeps what the panel did not offer: a row the type chips hid stays as it was. Stored the old
+     * screen's way, per account. An empty list reads back as "every provider with a home page", which
+     * [selectSearchProviders] then treats as the fallback.
+     */
+    override suspend fun selectSources(ids: Set<String>) = withContext(io) {
+        val offered = choices().mapTo(HashSet()) { it.id }
+        val kept = DataStoreHelper.searchPreferenceProviders.filterNot { it in offered }
+        DataStoreHelper.searchPreferenceProviders = kept + ids
+    }
+
+    override suspend fun typeFilters(): SearchTypeFilters = withContext(io) {
+        val served = eligibleProviders(context.getApiSettings()).flatMapTo(HashSet()) { it.supportedTypes }
+        val lit = DataStoreHelper.searchPreferenceTags
+        SearchTypeFilters(
+            available = SearchTypeFilter.entries.filter { filter -> filter.tvTypes().any { it in served } },
+            selected = SearchTypeFilter.entries.filterTo(HashSet()) { filter -> filter.tvTypes().any { it in lit } },
+        )
+    }
+
+    override suspend fun selectTypes(types: Set<SearchTypeFilter>) = withContext(io) {
+        DataStoreHelper.searchPreferenceTags = types.flatMap { it.tvTypes() }
+    }
+
+    /**
+     * Every eligible name rather than an empty list, because the empty list reads back as those with a
+     * home page only, and a provider that can only search is what a user asking for everything wants too.
+     */
+    override suspend fun clearFilters() = withContext(io) {
+        DataStoreHelper.searchPreferenceProviders = eligibleProviders(context.getApiSettings()).map { it.name }
+        DataStoreHelper.searchPreferenceTags = emptyList()
+    }
+
+    /** `EN · MOVIE, SERIES · PINNED · FAILED 2 MINUTES AGO`. Provider text is third party, so it is cleaned. */
+    @Suppress("DEPRECATION")
+    private fun MainAPI.choiceDetail(labels: Context, isPinned: Boolean, failedAt: Long?): String {
+        val types = supportedTypes.sorted().take(MAX_DETAIL_TYPES).joinToString(", ") { type ->
+            labels.getString(with(SettingsProvidersScreen) { type.toStringRes() })
+        }
+        val parts = listOfNotNull(
+            cleanProviderText(lang).ifBlank { null },
+            types.ifBlank { null },
+            if (isPinned) labels.getString(R.string.search_tv_source_pinned) else null,
+            failedAt?.let { labels.getString(R.string.search_tv_source_failed, relativeTime(it)) },
+        )
+        return parts.joinToString(" · ").uppercase(Locale.getDefault())
+    }
+
     override suspend fun search(query: String): SearchOutcome = fanOut(query, quick = false)
 
     override suspend fun quickSearch(query: String): SearchOutcome = fanOut(query, quick = true)
+
+    /**
+     * One rail's next page. Among what a search would ask right now, so a provider since turned off is not
+     * asked again. Quick search has no pages, so only a full search's results name a provider with more.
+     */
+    override suspend fun searchMore(query: String, providerName: String, page: Int): SearchOutcome = withContext(io) {
+        val api = selectedProviders(context.getApiSettings()).firstOrNull { it.name == providerName }
+            ?: return@withContext SearchOutcome.Complete(emptyList())
+        val repo = APIRepository(api)
+        fold(listOf(repo to repo.search(query, page)))
+    }
 
     /**
      * What the user's settings say to query, read per call. See [selectSearchProviders].
@@ -98,22 +189,33 @@ internal class ApiRepositorySearchSource(
      * `searchPreferenceProviders` already falls back to "every provider of a preferred type" when
      * nothing was ever picked, and it is per account, which is why none of this is cached.
      */
-    private fun selectedProviders(enabled: Set<String>): List<MainAPI> {
-        val installed = apis.withLock { apis.mapNotNull { it } }
+    private fun selectedProviders(enabled: Set<String>): List<MainAPI> = selectSearchProviders(
+        installed = apis.withLock { apis.mapNotNull { it } },
+        languageEnabled = enabled,
+        preferredTypes = preferredTypes(),
+        picked = DataStoreHelper.searchPreferenceProviders.toSet(),
+        types = DataStoreHelper.searchPreferenceTags,
+    )
+
+    private fun eligibleProviders(enabled: Set<String>): List<MainAPI> = eligibleSearchProviders(
+        installed = apis.withLock { apis.mapNotNull { it } },
+        languageEnabled = enabled,
+        preferredTypes = preferredTypes(),
+    )
+
+    private fun preferredTypes(): Set<Int> {
         val defaultTypes = TvType.entries.filter { it != TvType.NSFW }.map { it.ordinal.toString() }.toSet()
-        val preferred = PreferenceManager.getDefaultSharedPreferences(context)
+        return PreferenceManager.getDefaultSharedPreferences(context)
             .getStringSet(context.getString(R.string.prefer_media_type_key), defaultTypes)
             ?.ifEmpty { defaultTypes }
             .orEmpty()
             .mapNotNull { it.toIntOrNull() }
             .toSet()
-        return selectSearchProviders(
-            installed = installed,
-            languageEnabled = enabled,
-            preferredTypes = preferred,
-            picked = DataStoreHelper.searchPreferenceProviders.toSet(),
-        )
     }
+
+    /** "2 minutes ago", the way history rows say it. */
+    private fun relativeTime(at: Long): String =
+        DateUtils.getRelativeTimeSpanString(at, System.currentTimeMillis(), DateUtils.MINUTE_IN_MILLIS).toString()
 
     /**
      * One concurrent round over the selected providers, folded into a [SearchOutcome].
@@ -171,19 +273,26 @@ internal class ApiRepositorySearchSource(
      * state — but folding it into "answered" would silently report an empty provider as a success.
      */
     private fun fold(replies: List<Pair<APIRepository, Resource<SearchResponseList>>>): SearchOutcome {
+        val now = System.currentTimeMillis()
+        replies.forEach { (repo, reply) ->
+            providerHealth[repo.name] = ProviderHealth(failedAt = now.takeIf { reply !is Resource.Success })
+        }
         val labels = labelContext()
         val items = replies
             .flatMap { (_, reply) -> if (reply is Resource.Success) reply.value.items else emptyList() }
             // The user's "hide these qualities" setting, the same call the old screen makes per rail.
             .let { context.filterSearchResultByFilmQuality(it) }
             .map { it.toItem(labels) }
+        val morePages = replies.mapNotNullTo(HashSet()) { (repo, reply) ->
+            repo.name.takeIf { reply is Resource.Success && reply.value.hasNext }
+        }
         val failures = replies.filter { (_, reply) -> reply !is Resource.Success }
         val answered = replies.size - failures.size
         val allNetwork = failures.all { (_, reply) -> reply is Resource.Failure && reply.isNetworkError }
 
         return when {
-            failures.isEmpty() -> SearchOutcome.Complete(items)
-            answered > 0 -> SearchOutcome.Partial(items, answered, replies.size, detailOf(failures))
+            failures.isEmpty() -> SearchOutcome.Complete(items, morePages)
+            answered > 0 -> SearchOutcome.Partial(items, answered, replies.size, detailOf(failures), morePages)
             allNetwork -> SearchOutcome.Offline
             else -> SearchOutcome.Failed(detailOf(failures))
         }
@@ -312,37 +421,79 @@ internal class ApiRepositorySearchSource(
 
         /** Per-reason cap. Provider error strings can be a whole stack trace. */
         const val MAX_REASON_CHARS = 60
+
+        /** Types on a panel row's mono line before the line is too long for the panel. */
+        const val MAX_DETAIL_TYPES = 3
+
+        /**
+         * How each provider last answered, for the panel's marker and its `FAILED 2 MINUTES AGO`. In memory,
+         * so it starts empty each run, and shared, because a search screen's ViewModel does not outlive it.
+         */
+        val providerHealth = ConcurrentHashMap<String, ProviderHealth>()
     }
 }
 
 /**
- * Which providers a search asks: the old screen's `SearchFragment.search`, without the type chips.
+ * Which providers a search asks: the old screen's `SearchFragment.search`.
  *
- * Installed, in an enabled language, serving a preferred media type (which is what keeps NSFW
- * providers out unless the user asked for them), and among the user's picks.
+ * Eligible ([eligibleSearchProviders]), among the user's picks, serving a lit type chip.
  *
- * Two differences from that function, both on purpose:
+ * Each narrowing that would leave nothing is dropped, so a search always has somewhere to go. **When no
+ * pick survives it falls back to the eligible providers, not to every installed one**, which is a
+ * difference on purpose: the old `SearchViewModel.search` read an empty set as "search everything", NSFW
+ * included. When no chip matches, the picks stand, as the old screen's `ifEmpty` did.
  *
- * - **The type chips do not narrow it.** The old screen drew the chips it was filtering by. This
- *   screen does not draw them yet (`SearchChipRow`'s KDoc), and a filter the user can neither see
- *   nor change is how an anime search on a fresh install, whose chips default to Movie and TV, comes
- *   back empty with the copy *"All nine selected sources answered"*.
- * - **When no pick survives, it falls back to [languageEnabled] and [preferredTypes], not to every
- *   installed provider.** The old `SearchViewModel.search` read an empty set as "search everything",
- *   NSFW included. A fallback is still needed, because the panel that changes the picks (artboard
- *   4d) is not built, so a user whose picks were all uninstalled would otherwise be stuck.
+ * @param types the lit chips' types. Empty is no narrowing at all.
  */
 internal fun selectSearchProviders(
     installed: List<MainAPI>,
     languageEnabled: Set<String>,
     preferredTypes: Set<Int>,
     picked: Set<String>,
+    types: List<TvType> = emptyList(),
 ): List<MainAPI> {
-    val eligible = installed.filter { api ->
-        api.name in languageEnabled && api.supportedTypes.any { it.ordinal in preferredTypes }
-    }
-    return eligible.filter { it.name in picked }.ifEmpty { eligible }
+    val eligible = eligibleSearchProviders(installed, languageEnabled, preferredTypes)
+    return providersUnderTypes(eligible.filter { it.name in picked }.ifEmpty { eligible }, types)
 }
+
+/** Installed, in an enabled language, serving a preferred media type: what keeps NSFW out unless asked for. */
+internal fun eligibleSearchProviders(
+    installed: List<MainAPI>,
+    languageEnabled: Set<String>,
+    preferredTypes: Set<Int>,
+): List<MainAPI> = installed.filter { api ->
+    api.name in languageEnabled && api.supportedTypes.any { it.ordinal in preferredTypes }
+}
+
+/** [providers] serving one of [types], or all of them when that is nobody or [types] is empty. */
+internal fun providersUnderTypes(providers: List<MainAPI>, types: List<TvType>): List<MainAPI> =
+    providers.filter { api -> api.supportedTypes.any { it in types } }.ifEmpty { providers }
+
+/** Which `TvType`s a chip stands for: the old screen's `HomeFragment.getPairList`, which is private there. */
+internal fun SearchTypeFilter.tvTypes(): List<TvType> = when (this) {
+    SearchTypeFilter.Movies -> listOf(TvType.Movie)
+    SearchTypeFilter.TvSeries -> listOf(TvType.TvSeries)
+    SearchTypeFilter.Anime -> listOf(TvType.Anime, TvType.OVA, TvType.AnimeMovie)
+    SearchTypeFilter.AsianDrama -> listOf(TvType.AsianDrama)
+    SearchTypeFilter.Cartoons -> listOf(TvType.Cartoon)
+    SearchTypeFilter.Documentaries -> listOf(TvType.Documentary)
+    SearchTypeFilter.Live -> listOf(TvType.Live)
+    SearchTypeFilter.Torrents -> listOf(TvType.Torrent)
+    SearchTypeFilter.Nsfw -> listOf(TvType.NSFW)
+    SearchTypeFilter.Others -> listOf(TvType.Others)
+}
+
+/**
+ * Provider text on its way to a row: third party, so control characters go and the length is capped. A
+ * name with a newline in it would otherwise break the row it is on.
+ */
+internal fun cleanProviderText(text: String): String =
+    text.filterNot { it.isISOControl() }.trim().take(MAX_PROVIDER_TEXT_CHARS)
+
+private const val MAX_PROVIDER_TEXT_CHARS = 60
+
+/** @property failedAt when it last failed, or `null` if its last answer was a good one. */
+internal data class ProviderHealth(val failedAt: Long?)
 
 /**
  * The old screen's rail order (`SearchFragment.kt:500`): pinned providers first, in reverse pin order,
