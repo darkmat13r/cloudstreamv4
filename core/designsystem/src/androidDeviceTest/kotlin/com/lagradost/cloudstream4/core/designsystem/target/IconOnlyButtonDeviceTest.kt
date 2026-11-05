@@ -148,11 +148,40 @@ class IconOnlyButtonDeviceTest {
         rule.assertScreenshot("icon-only-checked-overflow-focus-label", rule.onNodeWithTag(ROW))
     }
 
+    /** On and off side by side, with focus on the text button so neither shows its ring or label. */
+    @Test
+    fun screenshotToggleOnAndOffSideBySide() {
+        rule.setContent {
+            CloudStreamTheme {
+                Box(
+                    Modifier
+                        .fillMaxSize()
+                        .background(CloudStreamTheme.colors.bg)
+                        .padding(CloudStreamDimens.FocusBandInset),
+                ) {
+                    Box(Modifier.testTag(ROW).padding(bottom = IconOnlyButtonDefaults.LabelReserve)) {
+                        Row(
+                            horizontalArrangement = Arrangement.spacedBy(CloudStreamDimens.MinFocusGap),
+                            verticalAlignment = Alignment.CenterVertically,
+                        ) {
+                            GhostTextButton(label = TRAILER, onClick = {}, icon = CloudStreamIcons.Trailer)
+                            IconOnlyToggle(CloudStreamIcons.Bookmark, WATCHLIST, checked = true, onCheckedChange = {})
+                            IconOnlyToggle(CloudStreamIcons.Favorite, FAVOURITE, checked = false, onCheckedChange = {})
+                        }
+                    }
+                }
+            }
+        }
+        assertEquals(TRAILER, dpad.enter())
+        rule.assertScreenshot("icon-only-toggle-on-off", rule.onNodeWithTag(ROW))
+    }
+
     private companion object {
         const val ROW = "row"
         const val TRAILER = "Trailer"
         const val WATCHLIST = "Watchlist"
         const val MORE = "More"
+        const val FAVOURITE = "Favourite"
         const val WAIT_MS = 10_000L
     }
 }

@@ -20,6 +20,7 @@ import androidx.compose.ui.layout.onGloballyPositioned
 import com.lagradost.cloudstream4.core.designsystem.harness.Bounds
 import com.lagradost.cloudstream4.core.designsystem.harness.Dpad
 import com.lagradost.cloudstream4.core.designsystem.harness.Harness
+import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIconSize
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
@@ -70,8 +71,8 @@ class IconOnlyButtonTest {
         }
     }
 
-    private fun Color.near(other: Color): Boolean =
-        abs(red - other.red) <= TOLERANCE && abs(green - other.green) <= TOLERANCE && abs(blue - other.blue) <= TOLERANCE
+    private fun Color.near(other: Color, tolerance: Float = TOLERANCE): Boolean =
+        abs(red - other.red) <= tolerance && abs(green - other.green) <= tolerance && abs(blue - other.blue) <= tolerance
 
     /** Every pixel under the cell, in the label's line box and a little wider than the cell, that is not ground. */
     private fun PixelMap.labelInk(box: Rect): Int {
@@ -176,6 +177,34 @@ class IconOnlyButtonTest {
         }
     }
 
+    @Test
+    fun `a toggle that is on has an ink glyph, and off a muted one`() {
+        val dpad = Dpad()
+        val bounds = Bounds()
+        watched = false
+        Harness { Scene(dpad, bounds) }.use { harness ->
+            harness.settle()
+            val off = harness.pixels().glyphInk(bounds[TOGGLE])
+            assertTrue(off.isNotEmpty(), "the glyph draws")
+            assertTrue(off.none { it.near(colors.ink, GLYPH_TOLERANCE) }, "off is never ink")
+            assertTrue(off.any { it.near(colors.muted, GLYPH_TOLERANCE) }, "off is muted")
+            watched = true
+            harness.settle()
+            val on = harness.pixels().glyphInk(bounds[TOGGLE])
+            assertTrue(on.any { it.near(colors.ink, GLYPH_TOLERANCE) }, "on is ink")
+            assertTrue(harness.pixels().glyphInk(bounds[BUTTON]).any { it.near(colors.ink, GLYPH_TOLERANCE) }, "More stays ink")
+        }
+    }
+
+    /** The pixels inside the 16dp glyph box at the cell's centre that are neither the ground nor the raised fill. */
+    private fun PixelMap.glyphInk(box: Rect): List<Color> {
+        val glyph = CloudStreamIconSize.Small.dp.value.toInt()
+        val left = box.center.x.toInt() - glyph / 2
+        val top = box.center.y.toInt() - glyph / 2
+        return (left until left + glyph).flatMap { x -> (top until top + glyph).map { y -> this[x, y] } }
+            .filterNot { it.near(colors.bg) || it.near(colors.raised) }
+    }
+
     private companion object {
         const val TOGGLE = "toggle"
         const val BUTTON = "button"
@@ -185,5 +214,6 @@ class IconOnlyButtonTest {
         const val WALK_LIMIT = 12
         const val FILL_PROBE = 4
         const val TOLERANCE = 0.02f
+        const val GLYPH_TOLERANCE = 0.3f
     }
 }

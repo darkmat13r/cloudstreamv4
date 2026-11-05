@@ -16,8 +16,8 @@ time.
 |---|---|---|
 | Primary action | `PrimaryTextButton` | `Button` |
 | Secondary action | `GhostTextButton` | `OutlinedButton`, `TextButton` |
-| Icon-only target | `IconCell` | a bare `IconButton` |
-| Icon-only toggle, overflow or search beside text buttons | `IconOnlyToggle`, `IconOnlyButton` | an `IconCell` with no label |
+| Icon-only target: a toggle, overflow or search | `IconOnlyToggle`, `IconOnlyButton` | a bare `IconButton` |
+| The chrome's Back cell, player transport controls | `IconCell` | a bare `IconButton` |
 | Filter / tab | `Chip`, `ChipRow` | `FilterChip` |
 | A row in a list | `ListRow` + `ListRowState` | a hand-built `Row` |
 | A poster or backdrop | `PosterCard`, `BackdropCard` | `Card`, `Surface` |
@@ -65,7 +65,12 @@ meaning, icon buttons are for toggles and overflow, and a screen has one primary
    worse than none. The ones decided so far are listed under the table.
 4. **Icon-only is allowed only for toggles (bookmark, watchlist, favourite) and for overflow or
    search**, and it shows its label when focused and carries it as a content description:
-   `IconOnlyToggle`, `IconOnlyButton`. On TV a glyph never replaces a label anywhere else.
+   `IconOnlyToggle`, `IconOnlyButton`. A toggle that is on is an `ink` glyph on a `raised` fill;
+   off is a `muted` glyph with no fill (Tabler has no filled bookmark or heart).
+   **Three named exceptions**, which are standard TV conventions: the chrome's Back cell, the
+   player's transport controls (board 7d) and the nav rail are icon-only without showing a label on
+   focus. Each still carries a content description, and the rail shows its labels when expanded.
+   Anywhere else on TV, a glyph never replaces a label.
 5. **Targets keep the three settled classes** (`screen-implementation-handover.md` §5,
    `CloudStreamDimens`): an icon in a 48 dp cell (`IconTargetCell`), so `IconOnlyButton` is one; a
    text button 32 dp tall and at least 120 dp wide (`TextButtonHeight`, `TextButtonMinWidth`); a
@@ -79,8 +84,8 @@ meaning, icon buttons are for toggles and overflow, and a screen has one primary
 | Start over | `StartOver` | `Rotate` |
 | Trailer, Watch trailer | `Trailer` | `Movie` |
 | Download | `Download` | `Download` |
-| Retry, Try again, Retry failed, Retry sync | `Retry` | `Refresh` |
-| Search, Search all sources | `Search` | `Search` |
+| Retry, Try again, Retry failed, Retry N sources, Retry sync | `Retry` | `Refresh` |
+| Search, Search all sources, Search everything | `Search` | `Search` |
 | Settings, Open network settings | `Settings` | `Settings` |
 | Add, Add repository | `Add` | `Plus` |
 | Delete, Delete all | `Delete` | `Trash` |
@@ -88,7 +93,7 @@ meaning, icon buttons are for toggles and overflow, and a screen has one primary
 | Episodes | `Episodes` | `List` |
 | Browse library | `Library` | `Book` |
 | Browse home | `Home` | `Home` |
-| Back, Go back | `Back` | `ArrowLeft` |
+| Back: the chrome's icon cell (`IconCell`), an exception to rule 4; a state's "Go back" action is a text button with this glyph | `Back` | `ArrowLeft` |
 | Clear (a filter) | `Clear` | `CircleX` |
 | Extensions, Repositories | `Repository` | `Database` |
 | Manage profiles | `Profile` | `User` |

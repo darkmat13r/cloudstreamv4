@@ -73,6 +73,7 @@ fun IconOnlyButton(
         icon = icon,
         label = label,
         selected = false,
+        dimmed = false,
         enabled = enabled,
         interactionSource = interactionSource,
         modifier = modifier.clickable(
@@ -90,8 +91,10 @@ fun IconOnlyButton(
  * top of it, [checked] is the state.
  *
  * Checked is drawn as the system already draws *selected* (`Design System v2`): a `raised` fill with
- * an `ink` glyph, where unchecked has no fill. The ring is focus, and only focus. The state is also
- * in the semantics tree as a toggle, so a screen reader says on or off.
+ * an `ink` glyph. Unchecked has no fill and a `muted` glyph, because a fill alone is about 1.15:1
+ * against the ground and does not read at three metres, and Tabler has no filled bookmark or heart to
+ * switch to (`DEC-17`, 2026-11-05). The ring is focus, and only focus. The state is also in the
+ * semantics tree as a toggle, so a screen reader says on or off.
  *
  * @param checked whether the thing is on: the title is bookmarked, say.
  * @param onCheckedChange invoked with the new value on D-pad centre, Enter, or a tap.
@@ -110,6 +113,7 @@ fun IconOnlyToggle(
         icon = icon,
         label = label,
         selected = checked,
+        dimmed = !checked,
         enabled = enabled,
         interactionSource = interactionSource,
         modifier = modifier.toggleable(
@@ -128,6 +132,7 @@ private fun IconOnlyChassis(
     icon: ImageVector,
     label: String,
     selected: Boolean,
+    dimmed: Boolean,
     enabled: Boolean,
     interactionSource: MutableInteractionSource,
     modifier: Modifier,
@@ -151,7 +156,7 @@ private fun IconOnlyChassis(
                         icon = icon,
                         contentDescription = null,
                         size = CloudStreamIconSize.Small,
-                        tint = if (enabled) colors.ink else colors.muted,
+                        tint = if (enabled && !dimmed) colors.ink else colors.muted,
                     )
                 }
             }

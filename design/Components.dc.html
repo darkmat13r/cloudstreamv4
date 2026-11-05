@@ -86,6 +86,8 @@
           .itile { width: 64px; height: 64px; box-sizing: border-box; border-radius: 16px; color: #FFFFFF;
             box-shadow: inset 0 0 0 1px rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; }
           .itile.on { background: #15191E; }
+          /* a toggle that is off: Tabler has no filled bookmark or heart, so on is ink on the fill, off is muted */
+          .itile.off { color: #858585; }
           .icell.foc .itile { outline: 4px solid #FFFFFF; outline-offset: 4px; }
           .ilab { position: absolute; left: 50%; top: 96px; transform: translateX(-50%);
             font: 700 24px/32px Manrope, sans-serif; color: #FFFFFF; white-space: nowrap; }
@@ -260,10 +262,11 @@
                 <span class="btn dis">Unavailable</span>
                 <span class="fx gap24 ac" style="margin-bottom:32px">
                   <span class="icell foc"><span class="itile on"><span class="bgl"></span></span><span class="ilab">Watchlist</span></span>
+                  <span class="icell"><span class="itile off"><span class="bgl"></span></span></span>
                   <span class="icell"><span class="itile"><span class="bgl"></span></span></span>
                 </span>
               </div>
-              <div class="specm"><b>Primary is white fill, black label, and there is one, first.</b> A common action leads with its glyph, 32 square and 16 from the label, in the label’s colour; one that no glyph conveys stays text. Icon-only is for a toggle or overflow: a 64 tile in a 96 target that names itself under the cell when focused. There is no coloured button in this system. Disabled is 40% opacity and stays focusable so a loading screen never has zero focus owners.</div>
+              <div class="specm"><b>Primary is white fill, black label, and there is one, first.</b> A common action leads with its glyph, 32 square and 16 from the label, in the label’s colour; one that no glyph conveys stays text. Icon-only is for a toggle, overflow or search: a 64 tile in a 96 target that names itself under the cell when focused; a toggle on is an ink glyph on a raised fill, off a muted glyph. There is no coloured button in this system. Disabled is 40% opacity and stays focusable so a loading screen never has zero focus owners.</div>
             </div>
 
             <div class="spec">

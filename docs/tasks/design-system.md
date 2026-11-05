@@ -632,6 +632,14 @@ the chrome's bookmark moves into it, and 7b's one focus is the toggle, on, with 
 text button on the authoritative boards has its glyph square, per the table. `TV Onboarding Extensions`' two widest
 buttons grew by 64 to fit, on the step.
 
+**Review of #159, the coordinator's rulings.** Rule 4 names three exceptions that stay icon-only without a label on
+focus, each with a content description: the chrome's Back cell, the player's transport controls (7d) and the nav rail,
+which shows its labels when expanded. Favourite is an `IconOnlyToggle` in the chrome on 7a and 7b, the same 64 tile as
+the row's. A toggle that is off has a `muted` glyph, on an `ink` glyph on the `raised` fill, because the fill alone is
+about 1.15:1 and Tabler has no filled bookmark or heart. The strip under Resume ends at 632, so the cast header moved to
+696 to keep the 64 section gap, and the cast to 784..1024; the caption band above the row is unchanged. The notes the
+redraw had made wrong (7a LOADING and EMPTY, 7b PARTIAL and its band list, the closing note) are corrected.
+
 **Not done here.**
 - No screen adopts the glyphs. The list per screen is in the PR.
 - The episode list with season tabs under 7a's row is not drawn; board 6a has it.
