@@ -1,6 +1,14 @@
 package com.lagradost.cloudstream4.feature.library.tv
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Row
+import androidx.compose.ui.layout.ContentScale
+import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
+import com.lagradost.cloudstream4.core.designsystem.rail.NavRail
+import com.lagradost.cloudstream4.core.designsystem.rail.NavRailItem
+import com.lagradost.cloudstream4.core.devicetest.assertScreenshot
+import com.lagradost.cloudstream4.core.devicetest.solidPoster
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.collectAsState
@@ -275,6 +283,73 @@ class LibraryScreenTvDeviceTest {
         rule.onNode(Field).assert(hasText(""))
     }
 
+    // ---- Screenshots (`INF-11`): 5a with a card and with a tab focused, 5c with its action, and the filter field ------
+
+    /** The screen beside the rail, as the app shows it, with one-colour posters so nothing loads. */
+    private fun showForScreenshot() {
+        rule.setContent {
+            val state by viewModel.state.collectAsState()
+            CloudStreamTheme {
+                Row(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) {
+                    NavRail(ShotRail, selectedIndex = LIBRARY_INDEX, onSelect = {})
+                    LibraryScreenTv(
+                        state = state,
+                        onAction = viewModel::onAction,
+                        modifier = Modifier.weight(1f),
+                        artwork = { card ->
+                            Image(
+                                bitmap = solidPoster(ShotPosters[card.title.length % ShotPosters.size]),
+                                contentDescription = null,
+                                modifier = Modifier.fillMaxSize(),
+                                contentScale = ContentScale.FillBounds,
+                            )
+                        },
+                    )
+                }
+            }
+        }
+    }
+
+    private fun showShotLibrary() {
+        store.titles = ShotTitles
+        store.positions = ShotPositions
+        showForScreenshot()
+        focusTab(WATCHING)
+    }
+
+    @Test
+    fun screenshotGridFocusOnACard() {
+        showShotLibrary()
+        assertEquals(ShotTitles.first().title, pressUntil(Dpad.Down, { it == ShotTitles.first().title }))
+        rule.assertScreenshot("library-grid-focus-card")
+    }
+
+    @Test
+    fun screenshotGridFocusOnATab() {
+        showShotLibrary()
+        assertEquals("Completed", dpad.press(Dpad.Right))
+        rule.assertScreenshot("library-grid-focus-tab")
+    }
+
+    @Test
+    fun screenshotEmptyPageFocusOnItsAction() {
+        showShotLibrary()
+        focusTab(ON_HOLD)
+        dpad.center()
+        awaitText("This list is empty. Try switching to another one.")
+        assertEquals(WATCHING, pressUntil(Dpad.Down, { it == WATCHING }))
+        rule.assertScreenshot("library-empty-focus-action")
+    }
+
+    @Test
+    fun screenshotFilterFieldFocused() {
+        showShotLibrary()
+        generateSequence { dpad.press(Dpad.Up) }.take(MAX_PRESSES)
+            .first { rule.onAllNodes(Field and isFocused()).fetchSemanticsNodes().isNotEmpty() }
+        assertFalse(dpad.keyboardShown())
+        rule.assertScreenshot("library-filter-focus-field")
+    }
+
     private companion object {
         val Field = SemanticsMatcher.keyIsDefined(SemanticsProperties.EditableText)
         const val WAIT_MS = 10_000L
@@ -287,6 +362,29 @@ class LibraryScreenTvDeviceTest {
         val TAB_NAMES = listOf(WATCHING, "Completed", ON_HOLD, "Dropped", "Plan to Watch", "Favorites")
         const val LONG_TITLE = "The Extraordinarily Long Title Of A Film Whose Name Will Never Fit On Any Poster " +
             "Card In This Grid However Wide The Television Is"
+
+        const val LIBRARY_INDEX = 2
+        val ShotRail = listOf(
+            NavRailItem("Home", CloudStreamIcons.Home),
+            NavRailItem("Search", CloudStreamIcons.Search),
+            NavRailItem("Library", CloudStreamIcons.Library),
+            NavRailItem("Downloads", CloudStreamIcons.Download),
+            NavRailItem("Settings", CloudStreamIcons.Settings),
+        )
+        val ShotPosters = listOf(0xFF39505C.toInt(), 0xFF5C4A39.toInt(), 0xFF3F5C39.toInt())
+        private val ShotNames = listOf(
+            "Frieren: Beyond Journey's End", "Severance", "Blade Runner 2049", "The Long Dark", "Vinland Saga",
+            "Quiet Harbor", "Ashen Field", "Kingfisher", "Nine Lives", "The Final Cut", "Northern Line", "Paper Moons",
+            "Saltwater", "Dust and Iron", "Low Tide", "Grey Harbour", "The Warden", "Halcyon", "Summer Ghost", "Redwood",
+        )
+        private val ShotTypes = listOf("ANIME", "TV SERIES", "MOVIE")
+        val ShotTitles = ShotNames.mapIndexed { index, name ->
+            title(name, LibraryBucket.Watching, keptAt = 1000L - index).copy(typeLabel = ShotTypes[index % ShotTypes.size])
+        } + title("Arrival", LibraryBucket.Completed) + title("Dune", LibraryBucket.Favourites)
+        /** Every third title part-watched, so the progress rule shows. */
+        val ShotPositions = ShotTitles.filterIndexed { index, _ -> index % 3 == 0 }.mapIndexed { index, kept ->
+            WatchPosition(kept.id, null, positionMillis = 600_000L + index * 300_000L, durationMillis = 3_000_000L, watchedAt = 1L)
+        }
 
         fun title(name: String, bucket: LibraryBucket, keptAt: Long = 0L) = LibraryTitle(
             id = LibraryTitleId("id/$name"),
@@ -309,7 +407,9 @@ class LibraryScreenTvDeviceTest {
             return titles
         }
 
-        override suspend fun positions() = emptyList<WatchPosition>()
+        @Volatile var positions: List<WatchPosition> = emptyList()
+
+        override suspend fun positions() = positions
         override suspend fun remember(title: LibraryTitle) = Unit
         override suspend fun setBucket(id: LibraryTitleId, bucket: LibraryBucket?) = Unit
         override suspend fun record(position: WatchPosition) = Unit

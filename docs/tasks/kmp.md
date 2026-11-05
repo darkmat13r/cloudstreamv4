@@ -3343,6 +3343,10 @@ card, and the filter. `LibraryTvNavigationTest`, 1 in the real app beside the Co
 that answers nothing, Back restores focus, and LEFT then RIGHT returns to the same card. JVM: `AndroidLibraryStoreTest` 13,
 `LibraryViewModelTest` and `LibraryShelfTest` (added to).
 
+**Screenshots (`INF-11`).** Four cases in `LibraryScreenTvDeviceTest`, beside the design system's rail, with one-colour
+posters: `library-grid-focus-card` and `library-grid-focus-tab` (5a), `library-empty-focus-action` (5c) and
+`library-filter-focus-field`. Recorded once on `Television_720p`, each image looked at before it was committed.
+
 **Not verified:** a title's loaded page, because the stand-in provider answers nothing, so the page opened showed its
 failure; the search-by-name path when a provider is gone, which ran in earlier runs of this test and no longer does; real
 poster loading; favourites through the real keys (mapping is JVM-tested only); a language long enough to make
