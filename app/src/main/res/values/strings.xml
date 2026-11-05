@@ -207,8 +207,20 @@
 <string name="downloaded">"Downloaded"</string>
 <string name="downloaded_file">"Downloaded file"</string>
 <string name="downloading">"Downloading"</string>
+<string name="downloads_browse_library">"Browse library"</string>
 <string name="downloads_delete_select">"Select Items to Delete"</string>
 <string name="downloads_empty">"There are currently no downloads."</string>
+<string name="downloads_empty_body">"Downloads you start from a title's episode list appear here and play with no connection."</string>
+<string name="downloads_empty_headline">"No downloads yet"</string>
+<string name="downloads_free_up_space">"Free up space"</string>
+<string name="downloads_load_failed_body">"Your downloaded files have not been changed."</string>
+<string name="downloads_load_failed_headline">"Couldn't read your downloads"</string>
+<string name="downloads_offline_pill">"Offline · no connection"</string>
+<string name="downloads_play_from_url">"Play from URL"</string>
+<string name="downloads_select">"Select"</string>
+<string name="downloads_storage_full_headline">"Not enough storage"</string>
+<string name="downloads_storage_legend" formatted="true">"%1$s of %2$s used · %3$s in downloads"</string>
+<string name="downloads_storage_needs" formatted="true">"Needs %s more"</string>
 <string name="duplicate_add">"Add"</string>
 <string name="duplicate_cancel">@string/cancel</string>
 <string name="duplicate_message_multiple" formatted="true">"Potential duplicate items have been found in your library: \n\n%s \n\nWould you like to add this item anyway, replace the existing ones, or cancel the action?"</string>

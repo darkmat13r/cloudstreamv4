@@ -29,7 +29,19 @@
 <string name="download_storage_text">"Interne Berging"</string>
 <string name="downloaded">"Afgelaai"</string>
 <string name="downloading">"Laai tans af"</string>
+<string name="downloads_browse_library">"Blaai deur biblioteek"</string>
 <string name="downloads_delete_select">"Kies items om te verwyder"</string>
+<string name="downloads_empty_body">"Aflaaie wat jy vanaf 'n titel se episodelys begin, verskyn hier en speel sonder 'n verbinding."</string>
+<string name="downloads_empty_headline">"Nog geen aflaaie nie"</string>
+<string name="downloads_free_up_space">"Maak spasie vry"</string>
+<string name="downloads_load_failed_body">"Jou afgelaaide lêers is nie verander nie."</string>
+<string name="downloads_load_failed_headline">"Kon nie jou aflaaie lees nie"</string>
+<string name="downloads_offline_pill">"Vanlyn · geen verbinding nie"</string>
+<string name="downloads_play_from_url">"Speel vanaf URL"</string>
+<string name="downloads_select">"Kies"</string>
+<string name="downloads_storage_full_headline">"Nie genoeg berging nie"</string>
+<string name="downloads_storage_legend" formatted="true">"%1$s van %2$s gebruik · %3$s in aflaaie"</string>
+<string name="downloads_storage_needs" formatted="true">"Benodig nog %s"</string>
 <string name="duplicate_replace">"Vervang"</string>
 <string name="duration_format" formatted="true">"%d min"</string>
 <string name="edit">"Wysig"</string>

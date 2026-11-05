@@ -166,8 +166,20 @@
 <string name="downloaded">"Descărcat"</string>
 <string name="downloaded_file">"Fișier descărcat"</string>
 <string name="downloading">"Se descarcă"</string>
+<string name="downloads_browse_library">"Răsfoiește biblioteca"</string>
 <string name="downloads_delete_select">"Selectionati elementele de sters"</string>
 <string name="downloads_empty">"Nu există descărcări."</string>
+<string name="downloads_empty_body">"Descărcările pornite din lista de episoade a unui titlu apar aici și pot fi redate fără conexiune."</string>
+<string name="downloads_empty_headline">"Încă nu există descărcări"</string>
+<string name="downloads_free_up_space">"Eliberează spațiu"</string>
+<string name="downloads_load_failed_body">"Fișierele descărcate nu au fost modificate."</string>
+<string name="downloads_load_failed_headline">"Descărcările nu au putut fi citite"</string>
+<string name="downloads_offline_pill">"Offline · fără conexiune"</string>
+<string name="downloads_play_from_url">"Redă de la URL"</string>
+<string name="downloads_select">"Selectează"</string>
+<string name="downloads_storage_full_headline">"Stocare insuficientă"</string>
+<string name="downloads_storage_legend" formatted="true">"%1$s din %2$s folosiți · %3$s în descărcări"</string>
+<string name="downloads_storage_needs" formatted="true">"Mai sunt necesari %s"</string>
 <string name="duplicate_add">"Adaugă"</string>
 <string name="duplicate_message_multiple" formatted="true">"Elemente potențial duplicate au fost găsite în biblioteca ta: \n \n%s \n \nÎn ciuda acestui fapt, ai dori să adaugi acest alement, să le înlocuiești pe cele existente, sau să anulezi acțiunea?"</string>
 <string name="duplicate_message_single" formatted="true">"Se pare că un element potențial duplicat deja există în biblioteca ta: '%s.' \n \nÎn ciuda aceasta, ai dori să adaugi acest element, să îl înlocuiești pe cel existent, sau să anulezi acțiunea?"</string>

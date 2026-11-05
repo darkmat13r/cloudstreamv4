@@ -129,6 +129,18 @@
 <string name="downloaded">"ဒေါင်းလုဒ် လုပ်ပြီး"</string>
 <string name="downloaded_file">"ဖိုင်ဒေါင်းလုဒ်လုပ်ပြီး"</string>
 <string name="downloading">"ဒေါင်းလုဒ် လုပ်နေသည်"</string>
+<string name="downloads_browse_library">"လိုက်ဘရီကို ကြည့်ရှုရန်"</string>
+<string name="downloads_empty_body">"ခေါင်းစဉ်တစ်ခု၏ အပိုင်းစာရင်းမှ စတင်သော ဒေါင်းလုဒ်များသည် ဤနေရာတွင် ပေါ်လာပြီး အင်တာနက်မလိုဘဲ ဖွင့်နိုင်သည်။"</string>
+<string name="downloads_empty_headline">"ဒေါင်းလုဒ် မရှိသေးပါ"</string>
+<string name="downloads_free_up_space">"နေရာလွတ်ယူရန်"</string>
+<string name="downloads_load_failed_body">"ဒေါင်းလုဒ်လုပ်ထားသော ဖိုင်များကို မပြောင်းလဲထားပါ။"</string>
+<string name="downloads_load_failed_headline">"ဒေါင်းလုဒ်များကို ဖတ်၍မရပါ"</string>
+<string name="downloads_offline_pill">"အော့ဖ်လိုင်း · ချိတ်ဆက်မှုမရှိပါ"</string>
+<string name="downloads_play_from_url">"URL မှ ဖွင့်ရန်"</string>
+<string name="downloads_select">"ရွေးချယ်ရန်"</string>
+<string name="downloads_storage_full_headline">"သိုလှောင်ရုံ မလုံလောက်ပါ"</string>
+<string name="downloads_storage_legend" formatted="true">"%1$s / %2$s အသုံးပြုပြီး · ဒေါင်းလုဒ်တွင် %3$s"</string>
+<string name="downloads_storage_needs" formatted="true">"%s ထပ်လိုအပ်သည်"</string>
 <string name="duration">"ကြာချိန်"</string>
 <string name="duration_format" formatted="true">"%d မိနစ်"</string>
 <string name="edit">"တည်းဖြတ်ရန်"</string>

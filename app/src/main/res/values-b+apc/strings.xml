@@ -195,8 +195,20 @@
 <string name="downloaded">"منَزَل"</string>
 <string name="downloaded_file">"الملفات المنزلة"</string>
 <string name="downloading">"عم يتنَزَل"</string>
+<string name="downloads_browse_library">"تصفّح الرفّ"</string>
 <string name="downloads_delete_select">"نقي الإشيا اللي بدك تمحيها"</string>
 <string name="downloads_empty">"مافي تنزيلات هلّق."</string>
+<string name="downloads_empty_body">"التنزيلات اللي بتبلّشها من قائمة حلقات العنوان بتطلع هون وبتمشي بلا إنترنت."</string>
+<string name="downloads_empty_headline">"لسا مافي تنزيلات"</string>
+<string name="downloads_free_up_space">"فضّي مساحة"</string>
+<string name="downloads_load_failed_body">"ملفاتك المنزّلة ما تغيّرت."</string>
+<string name="downloads_load_failed_headline">"ما قدرنا نقرا تنزيلاتك"</string>
+<string name="downloads_offline_pill">"بلا إنترنت · مافي اتصال"</string>
+<string name="downloads_play_from_url">"مشّي من رابط URL"</string>
+<string name="downloads_select">"نقي"</string>
+<string name="downloads_storage_full_headline">"مافي مساحة تخزين كفاية"</string>
+<string name="downloads_storage_legend" formatted="true">"%1$s من %2$s مستعمل · %3$s بالتنزيلات"</string>
+<string name="downloads_storage_needs" formatted="true">"بدها %s زيادة"</string>
 <string name="duplicate_add">"زيد"</string>
 <string name="duplicate_message_multiple" formatted="true">"مبين إنو فيه عنصر متل هيدا موجود بال مكتبة عندكن: \n \n%s \n \nبدكن تزيدو هيدا العنصر بأيّ حال، أو تستبدلوه مع العنصر الموجود، أو تلغو الإجراء؟"</string>
 <string name="duplicate_message_single" formatted="true">"مبين إنو في عنصر متل هيدا موجود بالمكتبة عندكن: \n\"%s\" \n \nبدكن تزيدو هيدا العنصر بأيّ حال، أو تستبدلوّ مع العنصر الموجود، أو تلغو الإجراء؟"</string>

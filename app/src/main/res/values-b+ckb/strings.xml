@@ -26,8 +26,20 @@
 <string name="download_time_left_sec_format" formatted="true">"%1$ds"</string>
 <string name="downloaded">"دابەزێنراوە"</string>
 <string name="downloading">"دادەبەزێندرێت"</string>
+<string name="downloads_browse_library">"گەڕان لە کتێبخانە"</string>
 <string name="downloads_delete_select">"ئەو شتانە هەڵبژێرە کە دەتەوێت بیسڕیتەوە"</string>
 <string name="downloads_empty">"لە ئێستادا هیچ داونلۆدێک نییە."</string>
+<string name="downloads_empty_body">"ئەو داونلۆدانەی لە لیستی ئەڵقەکانی ناونیشانێکەوە دەستی پێ دەکەیت لێرە دەردەکەون و بەبێ پەیوەندی لێدەدرێن."</string>
+<string name="downloads_empty_headline">"هێشتا هیچ داونلۆدێک نییە"</string>
+<string name="downloads_free_up_space">"بۆشایی چۆڵ بکە"</string>
+<string name="downloads_load_failed_body">"فایلە داونلۆدکراوەکانت نەگۆڕدراون."</string>
+<string name="downloads_load_failed_headline">"نەتوانرا داونلۆدەکانت بخوێنرێنەوە"</string>
+<string name="downloads_offline_pill">"ئۆفلاین · پەیوەندی نییە"</string>
+<string name="downloads_play_from_url">"لێدان لە URL"</string>
+<string name="downloads_select">"هەڵبژێرە"</string>
+<string name="downloads_storage_full_headline">"کۆگا بەش ناکات"</string>
+<string name="downloads_storage_legend" formatted="true">"%1$s لە %2$s بەکارهاتووە · %3$s لە داونلۆدەکان"</string>
+<string name="downloads_storage_needs" formatted="true">"%s ی زیاتر پێویستە"</string>
 <string name="duration_format" formatted="true">"min%d"</string>
 <string name="episode_more_options_des">"هەڵبژاردنی زیاتر"</string>
 <string name="episode_poster_img_des">"پۆستەری ئەڵقە"</string>

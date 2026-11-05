@@ -175,8 +175,20 @@
 <string name="downloaded">"Ληφθέν"</string>
 <string name="downloaded_file">"Λήψη αρχείου"</string>
 <string name="downloading">"Κατεβαίνει"</string>
+<string name="downloads_browse_library">"Περιήγηση στη βιβλιοθήκη"</string>
 <string name="downloads_delete_select">"Επιλέξτε στοιχεία για Διαγραφή"</string>
 <string name="downloads_empty">"Δεν υπάρχουν προς το παρόν λήψεις."</string>
+<string name="downloads_empty_body">"Οι λήψεις που ξεκινάτε από τη λίστα επεισοδίων ενός τίτλου εμφανίζονται εδώ και αναπαράγονται χωρίς σύνδεση."</string>
+<string name="downloads_empty_headline">"Δεν υπάρχουν ακόμα λήψεις"</string>
+<string name="downloads_free_up_space">"Απελευθέρωση χώρου"</string>
+<string name="downloads_load_failed_body">"Τα ληφθέντα αρχεία σας δεν έχουν αλλάξει."</string>
+<string name="downloads_load_failed_headline">"Δεν ήταν δυνατή η ανάγνωση των λήψεών σας"</string>
+<string name="downloads_offline_pill">"Εκτός σύνδεσης · δεν υπάρχει σύνδεση"</string>
+<string name="downloads_play_from_url">"Αναπαραγωγή από URL"</string>
+<string name="downloads_select">"Επιλογή"</string>
+<string name="downloads_storage_full_headline">"Ανεπαρκής χώρος αποθήκευσης"</string>
+<string name="downloads_storage_legend" formatted="true">"%1$s από %2$s σε χρήση · %3$s σε λήψεις"</string>
+<string name="downloads_storage_needs" formatted="true">"Απαιτούνται ακόμα %s"</string>
 <string name="duplicate_add">"Προσθήκη"</string>
 <string name="duplicate_message_multiple" formatted="true">"Πιθανά διπλά αρχεία βρέθηκαν στην βιβλιοθήκη: \n \n%s \n \nΘα επιθυμούσατε να προσθέσετε αυτό το αρχείο ούτως η άλλως, να αντικαταστήσετε τα ήδη υπάρχοντα, ή να ακυρώσετε την ενέργεια?"</string>
 <string name="duplicate_message_single" formatted="true">"Φαίνεται πως ένα πιθανό αντίγραφο βρίσκεται στη βιβλιοθήκη σας: '%s.' \n \nΘα επιθυμούσατε να το προσθέσετε, να το αντικαταστήσετε, ή να ακυρώσετε την ενέργεια;"</string>

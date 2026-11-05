@@ -82,8 +82,20 @@
 <string name="download_storage_text">"Almacenamento Interno"</string>
 <string name="downloaded">"Descargado"</string>
 <string name="downloading">"Descargando"</string>
+<string name="downloads_browse_library">"Explorar biblioteca"</string>
 <string name="downloads_delete_select">"Escolla os elementos para eliminar"</string>
 <string name="downloads_empty">"Non hay descargas dispoñíbeis"</string>
+<string name="downloads_empty_body">"As descargas que inicies desde a lista de episodios dun título aparecen aquí e reprodúcense sen conexión."</string>
+<string name="downloads_empty_headline">"Aínda non hai descargas"</string>
+<string name="downloads_free_up_space">"Liberar espazo"</string>
+<string name="downloads_load_failed_body">"Os teus ficheiros descargados non se modificaron."</string>
+<string name="downloads_load_failed_headline">"Non se puideron ler as túas descargas"</string>
+<string name="downloads_offline_pill">"Sen conexión · sen rede"</string>
+<string name="downloads_play_from_url">"Reproducir desde URL"</string>
+<string name="downloads_select">"Seleccionar"</string>
+<string name="downloads_storage_full_headline">"Almacenamento insuficiente"</string>
+<string name="downloads_storage_legend" formatted="true">"%1$s de %2$s usados · %3$s en descargas"</string>
+<string name="downloads_storage_needs" formatted="true">"Precísanse %s máis"</string>
 <string name="duration">"Duración"</string>
 <string name="duration_format" formatted="true">"%d min"</string>
 <string name="eigengraumode_settings">"Velocidade de reproducción"</string>
