@@ -163,6 +163,24 @@
       /* black, not --acc: the contract forbids live on a button, and this bar lives inside the
          white primary. Progress reads as an ink inversion on the fill instead. */
       .pbar i { display:block; height:100%; background:#000000; }
+      /* DS-16 (DEC-17, 2026-11-05): a common action leads with its glyph, 32 square and 16 from the label, in the
+         label's own colour. The grey square stands for the CloudStreamIcons glyph the rule table names. */
+      .bgl { width:32px; height:32px; border-radius:8px; background:currentColor; flex:none; margin-right:16px; }
+      /* icon-only, for a toggle or overflow only: a 96 cell (the target), a 64 tile drawn like a ghost button with
+         the ring on it, and its label under the cell while focused, drawn over the reserve, never laid out */
+      .icell { position:absolute; width:96px; height:96px; display:flex; align-items:center; justify-content:center; }
+      .itile { width:64px; height:64px; box-sizing:border-box; border-radius:16px; color:var(--ink);
+        box-shadow: inset 0 0 0 4px var(--line); display:flex; align-items:center; justify-content:center; }
+      .itile.on { background:var(--raised); }
+      /* a toggle that is off: Tabler has no filled bookmark or heart, so on is an ink glyph on the fill, off a muted one */
+      .itile.off { color:var(--mut); }
+      .itile .bgl { margin-right:0; }
+      .icell.foc .itile { outline:4px solid var(--ink); outline-offset:4px; }
+      .ilab { position:absolute; left:50%; top:96px; transform:translateX(-50%);
+        font:700 24px/32px Manrope,sans-serif; color:var(--ink); white-space:nowrap; }
+      /* resume progress, under the primary and not in it: live is playback state, and this is */
+      .rprog { height:8px; background:rgba(255,255,255,0.18); }
+      .rprog i { display:block; height:100%; background:var(--acc); }
       /* rail cards: ring on the card, offset 0, lift 8 */
       .card { border-radius:12px; overflow:hidden; }
       .card.foc { outline:4px solid var(--ink); outline-offset:0; transform:translateY(-8px); }
@@ -285,12 +303,14 @@
     <!-- ============================== 7a ============================== -->
     <div class="shot">
       <div class="shotl"><span class="shotn">7a · TV show detail</span><span>One page, three focus bands:
-        chrome, a five-button action row, and the cast rail, which lands its last pixel at y968. Cast takes the
+        chrome, the action row, and the cast rail, which lands its last pixel at y1024, on the band's edge. Cast takes the
         first-screen rail because it is about this title; More like this is about other titles and moves below the
         fold (7a-ii). The hero is 600 tall because that is the tallest hero that still fits a 56 header plus a 288
-        poster row inside the band, and the cast block is shorter than that row. Resume names the
-        episode it resumes to and carries its own progress; the synopsis is clamped to two whole lines and its overflow
-        is recovered by a focusable button, not by a dialog.</span></div>
+        poster row inside the band, and the cast block is shorter than that row. The row follows <code>DEC-17</code>, 2026-11-05: one
+        white primary first with a play glyph, Start over and Trailer outlined with their glyphs, then a watchlist toggle and
+        More (…) icon-only, each naming itself under its cell when focused. Progress and time left sit under Resume, not in
+        it. Season and Episodes are not buttons: the episode list with season tabs is the next focus group down. The synopsis
+        is a text block that expands on OK, not a button.</span></div>
       <div class="shotc"><div class="tv" data-screen-label="TV show detail">
         <div class="abs art" style="left:0;top:0;width:1920px;height:600px;filter:brightness(1.45) saturate(1.1)"></div>
         <div class="abs heroscrim" style="left:0;top:0;width:1920px;height:600px"></div>
@@ -305,26 +325,25 @@
         <!-- chrome row y56..152 -->
         <div class="abs ibx" style="left:200px;top:56px"><div class="ivis"><div class="gl2"></div></div></div>
         <div class="abs meta" style="left:320px;top:88px;width:600px;color:#858585">HDRezka&nbsp; ·&nbsp; TV series</div>
-        <div class="abs ibx" style="left:1648px;top:56px"><div class="ivis"><div class="gl2"></div></div></div>
-        <div class="abs ibx" style="left:1768px;top:56px"><div class="ivis"><div class="gl2"></div></div></div>
+        <div class="icell" style="left:1768px;top:56px"><div class="itile off"><span class="bgl"></span></div></div>
 
         <!-- hero content -->
         <div class="abs h1" style="left:200px;top:176px;width:1200px">The Last Signal</div>
         <div class="abs meta" style="left:200px;top:272px;width:1200px">8.4/10.0&nbsp; ·&nbsp; Drama · Thriller · Mystery&nbsp; ·&nbsp; 2019&nbsp; ·&nbsp; TV-MA&nbsp; ·&nbsp; Ongoing</div>
         <div class="abs plot" style="left:200px;top:328px;width:1064px;height:80px">Six months after the broadcast went
           dark, a salvage crew picks up a repeating signal from a station decommissioned forty years ago…</div>
-        <div class="abs cap" style="left:200px;top:432px;width:440px">24m<br />remaining</div>
 
-        <!-- action row y512..576 -->
-        <div class="abs bbtn rsm foc" style="left:200px;top:512px;width:440px">Resume&nbsp; S1:E4 · Dead Air
-          <span class="pbar"><i style="width:272px"></i></span></div>
-        <div class="abs bbtn ghost" style="left:664px;top:512px;width:240px">Trailer</div>
-        <div class="abs bbtn ghost" style="left:928px;top:512px;width:240px">Season 1</div>
-        <div class="abs bbtn ghost" style="left:1192px;top:512px;width:280px">Episodes · 10</div>
-        <div class="abs bbtn ghost" style="left:1496px;top:512px;width:272px">Full synopsis</div>
+        <!-- action row y512..576; icon cells y496..592, their label 592..624 -->
+        <div class="abs bbtn foc" style="left:200px;top:512px;width:440px"><span class="bgl"></span>Resume S1 E4</div>
+        <div class="abs bbtn ghost" style="left:664px;top:512px;width:288px"><span class="bgl"></span>Start over</div>
+        <div class="abs bbtn ghost" style="left:976px;top:512px;width:240px"><span class="bgl"></span>Trailer</div>
+        <div class="icell" style="left:1240px;top:496px"><div class="itile off"><span class="bgl"></span></div></div>
+        <div class="icell" style="left:1360px;top:496px"><div class="itile"><span class="bgl"></span></div></div>
+        <div class="abs rprog" style="left:200px;top:592px;width:440px"><i style="width:272px"></i></div>
+        <div class="abs cap" style="left:200px;top:608px;width:440px">24 min left</div>
 
         <!-- cast rail: about THIS title, so it takes the first-screen slot; More like this moves to 7a-ii -->
-        <div class="abs rhd" style="left:200px;top:640px;width:1664px">
+        <div class="abs rhd" style="left:200px;top:696px;width:1664px">
           <span class="rt">Cast</span><span class="rm">38 · TMDB</span></div>
         <sc-for list="{{ castA }}" as="c" hint-placeholder-count="7">
           <div class="abs cast {{ c.cls }}" style="{{ c.pos }}">
@@ -333,13 +352,13 @@
             <div class="cnm2">{{ c.name }}</div><div class="crl">{{ c.role }}</div>
           </div>
         </sc-for>
-        <div class="abs card seeall" style="left:1712px;top:728px;width:152px;height:240px">
+        <div class="abs card seeall" style="left:1712px;top:784px;width:152px;height:240px">
           <div class="ct" style="font-size:24px">Full cast</div><div class="cy">38</div></div>
       </div></div>
       <div class="stt">
-        <b>FOCUS</b><span>Nav rail cells 1–5 (x56, y128/248/368/488/608) ⇄ RIGHT into whatever band shares their y; cell 1 overlaps the chrome row. Chrome: back (200,56) → bookmark (1648) → favourite (1768). DOWN from back → Resume. Action row L→R: Resume → Trailer → Season 1 → Episodes · 10 → Full synopsis. DOWN from any of them → the cast item whose x overlaps it; cast 1–7 then Full cast, UP back to the button above; DOWN from the cast row scrolls to 7a-ii. Entry focus: Resume. 21 focusables, all of them in this order.</span>
-        <b>LOADING</b><span>Shimmer occupies the resolved boxes exactly — title 200,176,720×88; meta 200,272,560×32; two plot bars at 328 and 368; one 1568-wide action bar at 512; seven 160 avatar circles on the 216 pitch at 728, each with a name bar at 904 and a role bar at 944. Focus rests on the back cell and moves once, to Resume.</span>
-        <b>EMPTY</b><span>No episodes: the caption slot at y432 carries the bound "No Episodes found" (<code>strings.xml:233</code>), Resume/Season/Episodes drop out and the row re-solves from x200. No cast — the provider sent none, or <code>show_cast_in_details_key</code> is off — removes the cast header and row entirely and More like this moves up into the 640 slot; the band is never a header over nothing.</span>
+        <b>FOCUS</b><span>Nav rail cells 1–5 (x56, y128/248/368/488/608) ⇄ RIGHT into whatever band shares their y; cell 1 overlaps the chrome row. Chrome: back (200,56) → favourite (1768), an icon-only toggle with the same 64 tile as the row's, naming itself under its cell when focused; the bookmark is the row's watchlist toggle now. DOWN from back → the synopsis block, which expands in place on OK; DOWN → Resume. Action row L→R: Resume → Start over → Trailer → watchlist (cell 1240) → More (cell 1360); a focused icon cell shows its label at y592..624. DOWN from any of them → the episode list with season tabs where the title has one (board 6a; not drawn here), else the cast item whose x overlaps it; cast 1–7 then Full cast, UP back to the button above; DOWN from the cast row scrolls to 7a-ii. Entry focus: Resume. 21 focusables, all of them in this order.</span>
+        <b>LOADING</b><span>Shimmer occupies the resolved boxes exactly — title 200,176,720×88; meta 200,272,560×32; two plot bars at 328 and 368; one action bar at 512 from x200 to x1440, where the row ends; the progress rule at 592 and a 240-wide time-left bar at 608; seven 160 avatar circles on the 216 pitch at 784, each with a name bar at 960 and a role bar at 1000. Focus rests on the back cell and moves once, to Resume.</span>
+        <b>EMPTY</b><span>No episodes: the caption slot at y432 carries the bound "No Episodes found" (<code>strings.xml:233</code>); Resume, Start over and the progress strip drop out, the row re-solves from x200 as Trailer, watchlist, More, and with no strip under it the cast header comes back up to 640 (cast 728..968). No cast — the provider sent none, or <code>show_cast_in_details_key</code> is off — removes the cast header and row entirely and More like this moves up into the cast slot; the band is never a header over nothing.</span>
         <b>ERROR</b><span>Hero and rail are replaced; nav rail and back cell stay live. The chassis state view centred on x1032: glyph 96×96 at x984 y240, headline 64/88 at y376, body 28/40 at y488, the URL demoted to mono 20/24 at y584, one 320×64 "Retry connection" at x872 y640 with an explicit nextFocusUp to the back cell (it does not horizontally overlap it) and a LEFT into the nav rail.</span>
         <b>OFFLINE</b><span>A banner over the chrome row, x320 y56 1232×96, replacing the provider label only; its Retry is a 240×64 text button at x1288 y72 — inside a row that is already in the focus order, so it costs zero vertical budget and the cast row stays at 968.</span>
         <b>PARTIAL</b><span>Same banner box, copy swaps to "Still loading details from AniList". Every box on this page is fixed-size precisely so <code>applyMeta</code> can backfill score, tags, plot and recommendations in place without moving focus (<code>ResultViewModel2.kt:1676-1703</code>).</span>
@@ -349,10 +368,12 @@
     <!-- ============================== 7b ============================== -->
     <div class="shot">
       <div class="shotl"><span class="shotn">7b · Movie detail</span><span>The same chassis with every y-coordinate
-        reused: chrome 56..152, title 176..264, meta 272..304, synopsis 328..408, caption 432..480, action row 512..576,
-        cast header 640..696, cast 728..968. Exactly two bands change content and neither changes geometry — the meta
-        run swaps status and season counts for runtime, and the action row loses Season and Episodes and gains Start over
-        and Download. A film resumes to a clock, not an episode.</span></div>
+        reused: chrome 56..152, title 176..264, meta 272..304, synopsis 328..408, caption 432..480 (empty here: time left
+        moved under Resume), action row 512..576, progress and time left 592..632, cast header 696..752, cast 784..1024.
+        Exactly two bands change content and neither changes geometry — the meta
+        run swaps status and season counts for runtime, and Resume says only "Resume", since a film has no episode to name.
+        Download, mark watched, share and sources are in More (…). The watchlist toggle is drawn focused and on, naming
+        itself under its cell.</span></div>
       <div class="shotc"><div class="tv" data-screen-label="Movie detail">
         <div class="abs art v3" style="left:0;top:0;width:1920px;height:600px;filter:hue-rotate(28deg) brightness(1.35)"></div>
         <div class="abs heroscrim" style="left:0;top:0;width:1920px;height:600px"></div>
@@ -366,23 +387,22 @@
 
         <div class="abs ibx" style="left:200px;top:56px"><div class="ivis"><div class="gl2"></div></div></div>
         <div class="abs meta" style="left:320px;top:88px;width:600px;color:#858585">HDRezka&nbsp; ·&nbsp; Film</div>
-        <div class="abs ibx" style="left:1648px;top:56px"><div class="ivis"><div class="gl2"></div></div></div>
-        <div class="abs ibx" style="left:1768px;top:56px"><div class="ivis"><div class="gl2"></div></div></div>
+        <div class="icell" style="left:1768px;top:56px"><div class="itile off"><span class="bgl"></span></div></div>
 
         <div class="abs h1" style="left:200px;top:176px;width:1200px">The Last Expedition</div>
         <div class="abs meta" style="left:200px;top:272px;width:1200px">2024&nbsp; ·&nbsp; 2h 16m&nbsp; ·&nbsp; 8.4/10.0&nbsp; ·&nbsp; PG-13&nbsp; ·&nbsp; Science Fiction · Thriller</div>
         <div class="abs plot" style="left:200px;top:328px;width:1064px;height:80px">A salvage crew answers a distress
           call from a ship that vanished forty years ago, with one more name on its manifest than there should be…</div>
-        <div class="abs cap" style="left:200px;top:432px;width:440px">52m<br />remaining</div>
 
-        <div class="abs bbtn rsm" style="left:200px;top:512px;width:440px">Resume from 1:24:07
-          <span class="pbar"><i style="width:272px"></i></span></div>
-        <div class="abs bbtn ghost" style="left:664px;top:512px;width:288px">Start over</div>
-        <div class="abs bbtn ghost" style="left:976px;top:512px;width:240px">Trailer</div>
-        <div class="abs bbtn ghost" style="left:1240px;top:512px;width:288px">Download</div>
-        <div class="abs bbtn ghost" style="left:1552px;top:512px;width:272px">Full synopsis</div>
+        <div class="abs bbtn" style="left:200px;top:512px;width:440px"><span class="bgl"></span>Resume</div>
+        <div class="abs bbtn ghost" style="left:664px;top:512px;width:288px"><span class="bgl"></span>Start over</div>
+        <div class="abs bbtn ghost" style="left:976px;top:512px;width:240px"><span class="bgl"></span>Trailer</div>
+        <div class="icell foc" style="left:1240px;top:496px"><div class="itile on"><span class="bgl"></span></div><span class="ilab">Watchlist</span></div>
+        <div class="icell" style="left:1360px;top:496px"><div class="itile"><span class="bgl"></span></div></div>
+        <div class="abs rprog" style="left:200px;top:592px;width:440px"><i style="width:272px"></i></div>
+        <div class="abs cap" style="left:200px;top:608px;width:440px">52 min left</div>
 
-        <div class="abs rhd" style="left:200px;top:640px;width:1664px">
+        <div class="abs rhd" style="left:200px;top:696px;width:1664px">
           <span class="rt">Cast</span><span class="rm">24 · TMDB</span></div>
         <sc-for list="{{ castB }}" as="c" hint-placeholder-count="7">
           <div class="abs cast {{ c.cls }}" style="{{ c.pos }}">
@@ -391,16 +411,16 @@
             <div class="cnm2">{{ c.name }}</div><div class="crl">{{ c.role }}</div>
           </div>
         </sc-for>
-        <div class="abs card seeall" style="left:1712px;top:728px;width:152px;height:240px">
+        <div class="abs card seeall" style="left:1712px;top:784px;width:152px;height:240px">
           <div class="ct" style="font-size:24px">Full cast</div><div class="cy">24</div></div>
       </div></div>
       <div class="stt">
-        <b>FOCUS</b><span>Identical to 7a, with Start over and Download standing in for Season and Episodes: back → bookmark → favourite; Resume → Start over → Trailer → Download → Full synopsis; DOWN into the cast item whose x overlaps, then Full cast; LEFT from any leftmost cell into the nav rail. Entry focus is Resume — the ring is drawn on cast item 2 here only to show the 8 lift and the ring following the avatar’s circle; the name and role lift with it and stay readable.</span>
+        <b>FOCUS</b><span>Identical to 7a: back → favourite; synopsis; Resume → Start over → Trailer → watchlist → More; DOWN into the cast item whose x overlaps, then Full cast; LEFT from any leftmost cell into the nav rail. Entry focus is Resume — the ring is drawn on the watchlist toggle here only to show an icon-only cell focused and on: the ring on its 64 tile, and its label under the cell.</span>
         <b>LOADING</b><span>Identical skeleton to 7a — the point of fixing the title, meta and caption bands is that a film and a series load into the same boxes, so nothing jumps when the type is known.</span>
         <b>EMPTY</b><span>A film has no <code>noEpisodesFoundText</code> (it is non-null only for series and anime, <code>ResultViewModel2.kt:356-359</code>), so "no playable source" needs its own signal; until then the caption slot stays empty and Resume degrades to Play.</span>
         <b>ERROR</b><span>Same state view as 7a, centred on x1032. Open-in-browser is deliberately absent on TV — it is commented out in both the layout and the fragment today (<code>ResultFragmentTv.kt:961</code>).</span>
         <b>OFFLINE</b><span>Banner over the chrome row; its action is "Go to Downloads", one D-pad LEFT into the rail's Downloads cell, which is already in the focus order.</span>
-        <b>PARTIAL</b><span>Same banner box. Download is the one control that changes label inside its own 288 box — Download → Queued → Downloading 42% (with a 4px ink bar on the button's bottom edge, never live) → Downloaded — so the row never reflows.</span>
+        <b>PARTIAL</b><span>Same banner box. Download lives in More (…): while one runs, More's 64 tile carries a 4px ink bar on its bottom edge (never live), and the Download row inside More's panel reads Queued → Downloading 42% → Downloaded, so the action row never changes.</span>
       </div>
     </div>
 
@@ -441,7 +461,7 @@
           <div class="ct" style="font-size:24px">See all</div><div class="cy">24</div></div>
       </div></div>
       <div class="stt">
-        <b>FOCUS</b><span>Cast row (y144) ⇄ Full cast; DOWN → the poster whose x overlaps; posters 1–7 then See all; UP returns to the cast item above; UP from the cast row scrolls back to 7a and lands on the action-row button above. The ring is drawn on poster 3. Cast header 56..112, cast 144..384, then the same 64 section gap 7a leaves between its action row and its rail header: related header 448..504, posters 536..824, both rows with 32 of lift clearance.</span>
+        <b>FOCUS</b><span>Cast row (y144) ⇄ Full cast; DOWN → the poster whose x overlaps; posters 1–7 then See all; UP returns to the cast item above; UP from the cast row scrolls back to 7a and lands on the action-row button above. The ring is drawn on poster 3. Cast header 56..112, cast 144..384, then the same 64 section gap 7a leaves between its time-left line and its rail header: related header 448..504, posters 536..824, both rows with 32 of lift clearance.</span>
         <b>FULL CAST</b><span>Opens the 560 side panel, not a new page: one 96 list row per person — 48 disc, name 24/32, role mono 20/24 — on the 120 pitch, Done pinned at y928. Specified here, not yet drawn. On AniList titles the name is the character, the second line its role, and a trailing column names the voice actor.</span>
         <b>TEXT ONLY</b><span>A person with no image keeps the same 160 circle with their initials (cast item 5 on 7a) — the circle is geometry, not a glyph, so the row never changes shape. Today the app decides image-or-text for the <i>whole list</i> from the first actor alone; see the note.</span>
       </div>
@@ -496,8 +516,8 @@
         <div class="abs t24" style="left:1392px;top:744px;width:472px">1 × timed out at 120 s</div>
         <div class="abs mono20" style="left:1392px;top:792px;width:472px">Wi-Fi profile · 4 links hidden</div>
 
-        <div class="abs bbtn" style="left:1392px;top:856px;width:472px;font-size:24px">Play now — VidSrc 1080p</div>
-        <div class="abs bbtn ghost" style="left:1392px;top:944px;width:472px">Stop and go back</div>
+        <div class="abs bbtn" style="left:1392px;top:856px;width:472px;font-size:24px"><span class="bgl"></span>Play now — VidSrc 1080p</div>
+        <div class="abs bbtn ghost" style="left:1392px;top:944px;width:472px"><span class="bgl"></span>Stop and go back</div>
       </div></div>
       <div class="stt">
         <b>FOCUS</b><span>back (200,56) → DOWN → row 1. Rows 1–6 at y272+i·120, UP/DOWN, ring never moves when a row repaints. Every row carries an explicit nextFocusRight to Play now (1392,856) because the status column has only two targets and neither shares a row's y; DOWN from Play now → Stop and go back (944); LEFT from either returns to the row last held. Entry focus: row 1. 9 focusables.</span>
@@ -644,17 +664,18 @@
       <code>gone</code>/<code>visible</code> rail buttons are what make today's TV result page reshuffle under the user's
       thumb — the trailer column disappearing shifts every control to its right (<code>fragment_result_tv.xml:307-542</code>).
       7a and 7b solve one row per state at a fixed y512 and a fixed left origin instead, which means the labels have to be
-      short and bounded: "Season 1" must be composed from <code>SeasonData.season</code> as an integer, never from the
-      provider's free-text season name, and "Episodes · 10" needs a per-season count. Neither is on <code>ResultData</code>
-      (<code>ResultViewModel2.kt:167-197</code>) — the TV drawer reads the view-model's season state directly today, so both
-      have to be lifted onto the detail state or the two controls degrade to "Seasons" and "Episodes". The resume label has
+      short and bounded. Season and Episodes left the row on 2026-11-05 (<code>DEC-17</code>): the episode list with season
+      tabs is the next focus group below it. Its tabs still need the season composed from <code>SeasonData.season</code> as
+      an integer, never from the provider's free-text season name, and a per-season count. Neither is on
+      <code>ResultData</code> (<code>ResultViewModel2.kt:167-197</code>) — the TV drawer reads the view-model's season state
+      directly today, so both have to be lifted onto the detail state. The resume label has
       the same shape of problem in reverse: <code>ResultFragmentTv.kt:516-527</code> sets only "S1:E4", and the episode
       <i>name</i> is set on a different view nested inside <code>resume.progress?.let { }</code> (<code>:490-498</code>), so
       the button silently loses half its label whenever a resume target exists with no stored position. A film is worse —
       the branch returns the bare word "Resume" (<code>:518</code>) and no formatter in the tree turns
-      <code>ResumeProgress.progress</code> into 1:24:07; <code>secondsToReadable</code> yields "1h 24m". We also made the
-      caption two mono lines on purpose, because the bound resource is <code>%s\nremaining</code>
-      (<code>strings.xml:253</code>) and a one-line box clips it.</p>
+      <code>ResumeProgress.progress</code> into 1:24:07; <code>secondsToReadable</code> yields "1h 24m". Time left is now one mono
+      line under Resume, and the bound resource is <code>%s\nremaining</code> (<code>strings.xml:253</code>), two lines,
+      so it needs a one-line string such as "%s min left".</p>
 
       <p><b>7c is the screen this redesign exists to argue for, and almost none of it can be built today.</b> A source
       has no identity before it succeeds: <code>ExtractorLink.source</code> is free text minted on a link that already
@@ -693,8 +714,8 @@
       state the user never sees is not a state. The replay glyph is phone-only today
       (<code>PlayerView.kt:558-559</code>), so an ended video on TV shows a stale play glyph.</p>
 
-      <p><b>Six more things these boards say out loud, and what each one costs.</b> <i>Download</i> is drawn on
-      7b as a 288 box and on 7d as the DOWNLOADED badge, and it has no entry point to restyle: the string
+      <p><b>Six more things these boards say out loud, and what each one costs.</b> <i>Download</i> is in
+      7b's More (…) and on 7d as the DOWNLOADED badge, and it has no entry point to restyle: the string
       "download" does not occur once in <code>fragment_result_tv.xml</code>'s 1110 lines — the TV result page's
       button column is bookmark / favourite / subscribe / search and nothing else — so that box is a new control,
       not a moved one. <i>Start over</i> is not Resume with a different label: <code>loadPlayer</code> keeps
@@ -847,8 +868,8 @@
         { n: "Hana Sato",      r: "Mara",           v: "v3" },
         { n: "Owen Pryce",     r: "Engineer Dahl",  v: "" }
       ];
-      var castA = buildCast(showCast, 728, -1);
-      var castB = buildCast(filmCast, 728, 1);
+      var castA = buildCast(showCast, 784, -1);
+      var castB = buildCast(filmCast, 784, -1);
       var castS = buildCast(showCast, 144, -1);
 
       /* ---- 7c: one row per extractor, appended in discovery order, repainted in place ---- */

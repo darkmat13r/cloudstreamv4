@@ -14,14 +14,19 @@ import compose.icons.tablericons.CircleX
 import compose.icons.tablericons.Database
 import compose.icons.tablericons.Dots
 import compose.icons.tablericons.Download
+import compose.icons.tablericons.ExternalLink
 import compose.icons.tablericons.Gauge
 import compose.icons.tablericons.Headphones
 import compose.icons.tablericons.Heart
 import compose.icons.tablericons.Home
+import compose.icons.tablericons.InfoCircle
+import compose.icons.tablericons.Link
+import compose.icons.tablericons.List
 import compose.icons.tablericons.Lock
 import compose.icons.tablericons.Maximize
 import compose.icons.tablericons.MessageCircle
 import compose.icons.tablericons.Minimize
+import compose.icons.tablericons.Movie
 import compose.icons.tablericons.PlayerPause
 import compose.icons.tablericons.PlayerPlay
 import compose.icons.tablericons.PlayerSkipBack
@@ -31,6 +36,7 @@ import compose.icons.tablericons.PlayerTrackNext
 import compose.icons.tablericons.PlayerTrackPrev
 import compose.icons.tablericons.Plus
 import compose.icons.tablericons.Refresh
+import compose.icons.tablericons.Rotate
 import compose.icons.tablericons.Search
 import compose.icons.tablericons.Server
 import compose.icons.tablericons.Settings
@@ -76,6 +82,9 @@ object CloudStreamIcons {
     val Muted: ImageVector get() = TablerIcons.Volume3
     val EnterFullscreen: ImageVector get() = TablerIcons.Maximize
     val ExitFullscreen: ImageVector get() = TablerIcons.Minimize
+    /** Plays from the beginning, beside a Resume. Not [Retry]: nothing failed. */
+    val StartOver: ImageVector get() = TablerIcons.Rotate
+    val Trailer: ImageVector get() = TablerIcons.Movie
 
     // Navigation and chrome
     val Back: ImageVector get() = TablerIcons.ArrowLeft
@@ -89,6 +98,14 @@ object CloudStreamIcons {
     val Disclosure: ImageVector get() = TablerIcons.ChevronRight
     val Library: ImageVector get() = TablerIcons.Book
     val Profile: ImageVector get() = TablerIcons.User
+    /** Opens what something is about, such as a title's page from the home's hero. Not [More]: that is an overflow. */
+    val Info: ImageVector get() = TablerIcons.InfoCircle
+    /** A title's episode list. */
+    val Episodes: ImageVector get() = TablerIcons.List
+    /** Leaves the app for a browser. */
+    val OpenExternal: ImageVector get() = TablerIcons.ExternalLink
+    /** Something reached by its URL, such as playing from a link. */
+    val Link: ImageVector get() = TablerIcons.Link
 
     // Actions and state
     val Download: ImageVector get() = TablerIcons.Download

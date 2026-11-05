@@ -80,6 +80,86 @@ interface HomeSource {
     suspend fun sources(): HomeSources
 
     suspend fun page(source: HomeSourceId, section: Int, page: Int): HomePageReply
+
+    /**
+     * What [item]'s own page says about it, for the hero (`TV Home` 3c), or null where there is nothing to show. Asking is
+     * a request to the source, so a host without a way to ask keeps the default and its home has no hero.
+     *
+     * Failing is normal, so a host returns null rather than throwing, though a throw is treated the same.
+     */
+    suspend fun featured(item: HomeItem): HomeFeatured? = null
+}
+
+/**
+ * The facts the hero shows (`TV Home` 3c). Each is null or empty where the source gave none, and the hero leaves that fact
+ * out rather than drawing a placeholder. Everything here came from a plugin and the host has cleaned it.
+ *
+ * @property id the same opaque id as [HomeItem.id], so opening it is the same flow as opening a card.
+ * @property backdropUrl wide art for behind the hero, or the poster where the source has none. Goes back to the host's
+ *   `artwork`, like a poster.
+ * @property score already written as the source gives it, such as `8.7`. Which site it is from is not known.
+ * @property contentRating a certificate such as `16+`, as the source writes it.
+ */
+@Immutable
+data class HomeFeatured(
+    val id: String,
+    val title: String,
+    val backdropUrl: String? = null,
+    val backdropHeaders: Map<String, String>? = null,
+    val year: Int? = null,
+    val durationMinutes: Int? = null,
+    val genres: List<String> = emptyList(),
+    val score: String? = null,
+    val contentRating: String? = null,
+    val synopsis: String? = null,
+)
+
+/**
+ * One title to go back to, from what this device has played (`TV Home` 3c's Continue watching).
+ *
+ * @property id the same opaque id as [HomeItem.id], so opening it is the same flow as opening a card.
+ * @property progress how far through the part it resumes from, `0f..1f`. Zero is real: a series moves on to its next
+ *   episode once one is nearly finished, and nothing of that one has played yet.
+ * @property season and [episode] the part it resumes from, where the title has parts.
+ * @property sourceName the source it will be opened from.
+ */
+@Immutable
+data class HomeResume(
+    val id: String,
+    val title: String,
+    val posterUrl: String? = null,
+    val posterHeaders: Map<String, String>? = null,
+    val progress: Float = 0f,
+    val season: Int? = null,
+    val episode: Int? = null,
+    val sourceName: String? = null,
+)
+
+/**
+ * What this device remembers playing. Local, so it is there with no source and no network.
+ *
+ * @property resume Continue watching, newest first.
+ * @property progress how far through each title is, `0f..1f`, by [HomeItem.id], for any title with a stored position.
+ *   A title with none has no entry.
+ */
+@Immutable
+data class HomeHistory(
+    val resume: List<HomeResume> = emptyList(),
+    val progress: Map<String, Float> = emptyMap(),
+)
+
+/**
+ * Where [HomeHistory] comes from. A host reads the store its library already reads, rather than keeping a second one.
+ *
+ * Every call reaches storage, so it may throw; the screen keeps what it had.
+ */
+interface HomeWatchHistory {
+    suspend fun read(): HomeHistory
+
+    /** Remembers nothing, for a host with no history to show. */
+    object None : HomeWatchHistory {
+        override suspend fun read(): HomeHistory = HomeHistory()
+    }
 }
 
 /** The source chosen last, kept by the host between launches. */

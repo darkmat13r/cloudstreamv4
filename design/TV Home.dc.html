@@ -128,6 +128,9 @@
           .tri { width: 0; height: 0; border-left: 16px solid currentColor;
             border-top: 8px solid transparent; border-bottom: 8px solid transparent; }
           .sq { width: 16px; height: 16px; border-radius: 8px; background: currentColor; }
+          /* DS-16: a button's glyph, 32 square, 16 from the label (the .btn gap), in the label's colour.
+             The grey square stands for the CloudStreamIcons glyph the rule table names. */
+          .bgl { width: 32px; height: 32px; border-radius: 8px; background: currentColor; flex: none; }
 
           /* pager — row height equals the count's line box, so nothing is offset off the step */
           .pager { display: flex; align-items: center; gap: 24px; height: 24px; }
@@ -226,8 +229,8 @@
                   <span class="cert">16+</span><span>2026 · 2 SEASONS</span><span class="rate">8.7</span>
                 </div>
                 <div class="btns abs" style="left:200px;top:504px">
-                  <div class="btn pri foc"><span class="tri"></span>Resume S2 E4</div>
-                  <div class="btn">Trailer</div>
+                  <div class="btn pri foc"><span class="bgl"></span>Resume S2 E4</div>
+                  <div class="btn"><span class="bgl"></span>Trailer</div>
                 </div>
 
                 <div class="g gsafe" style="left:48px;top:48px;right:48px;bottom:48px"></div>
@@ -260,8 +263,8 @@
                   <span class="cert">16+</span><span>2026 · 2 SEASONS</span><span class="rate">8.7</span>
                 </div>
                 <div class="btns abs" style="left:456px;top:504px">
-                  <div class="btn pri"><span class="tri"></span>Resume S2 E4</div>
-                  <div class="btn">Trailer</div>
+                  <div class="btn pri"><span class="bgl"></span>Resume S2 E4</div>
+                  <div class="btn"><span class="bgl"></span>Trailer</div>
                 </div>
 
                 <div class="rhd abs" style="left:456px;top:632px;width:1408px">
@@ -325,9 +328,9 @@
                   something still breathing on deck four.
                 </div>
                 <div class="btns abs" style="left:200px;top:504px">
-                  <div class="btn pri foc"><span class="tri"></span>Resume S2 E4</div>
-                  <div class="btn">Watch trailer</div>
-                  <div class="btn">+ Library</div>
+                  <div class="btn pri foc"><span class="bgl"></span>Resume S2 E4</div>
+                  <div class="btn"><span class="bgl"></span>Watch trailer</div>
+                  <div class="btn"><span class="bgl"></span>Library</div>
                   <div class="btn ico"><span class="sq"></span></div>
                 </div>
 
