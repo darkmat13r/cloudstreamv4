@@ -127,6 +127,10 @@ class TvRail(
         binding.navHostFragment.updateLayoutParams<ViewGroup.MarginLayoutParams> {
             marginStart = if (visible) railWidth else 0
         }
+        // It is constrained to the end of the XML rail, which is `GONE` here, so with no margin it starts at the screen's edge.
+        binding.castMiniControllerHolder.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+            marginStart = if (visible) railWidth else 0
+        }
     }
 
     /** Called before the key is dispatched, because by the time focus has moved Compose has forgotten where it was. */

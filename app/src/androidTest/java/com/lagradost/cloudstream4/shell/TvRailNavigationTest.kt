@@ -2,6 +2,7 @@ package com.lagradost.cloudstream4.shell
 
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.Rect
 import android.view.View
 import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
@@ -139,6 +140,36 @@ class TvRailNavigationTest {
             get() = onMain { activity ->
                 IntArray(2).also { activity.findViewById<View>(R.id.nav_host_fragment).getLocationOnScreen(it) }[0]
             } ?: -1
+
+        val railRight
+            get() = onMain { activity ->
+                railView(activity)?.let { rail ->
+                    IntArray(2).also(rail::getLocationOnScreen)[0] + rail.width
+                }
+            } ?: -1
+
+        private fun screenBounds(id: Int): Rect? = onMain { activity ->
+            val view = activity.findViewById<View>(id)
+            val origin = IntArray(2).also(view::getLocationOnScreen)
+            Rect(origin[0], origin[1], origin[0] + view.width, origin[1] + view.height)
+        }
+
+        val pageBounds get() = requireNotNull(screenBounds(R.id.nav_host_fragment))
+
+        /**
+         * The fragment hides its own view and the Cast SDK's `UIMediaController` shows it when a session has media, which
+         * takes a receiver. So this makes the one call that controller ends in, on the view the app really inflated, and
+         * waits for the real layout pass. The holder's own visibility is the app's: `updateNavBar` sets it.
+         */
+        fun showMiniController(): Rect {
+            scenario.onActivity { it.findViewById<View>(R.id.cast_mini_controller).visibility = View.VISIBLE }
+            val deadline = System.currentTimeMillis() + SCREEN_WAIT_MS
+            while (miniController.isEmpty && System.currentTimeMillis() < deadline) Thread.sleep(POLL_MS)
+            assertFalse("the mini controller has a size", miniController.isEmpty)
+            return miniController
+        }
+
+        val miniController get() = requireNotNull(screenBounds(R.id.cast_mini_controller))
 
         fun navigate(id: Int) = scenario.onActivity { navController(it).navigate(id) }
 
@@ -453,6 +484,35 @@ class TvRailNavigationTest {
     @Test
     fun noDeadEndsOnSettings() = noDeadEnds(SETTINGS, expected = labels - context.getString(R.string.title_home))
 
+    // ---- The cast mini controller -------------------------------------------------------------------------------
+
+    @Test
+    fun theMiniControllerStartsWhereThePageStarts() = launch {
+        waitForDestination(R.id.navigation_home)
+        val onHome = showMiniController()
+        assertEquals("its left edge is the rail's right edge", railRight, onHome.left)
+        assertEquals("which is where the page starts", pageLeft, onHome.left)
+        assertEquals("it runs to the screen's edge", device.displayWidth, onHome.right)
+        assertEquals("the page ends where it begins", onHome.top, pageBounds.bottom)
+
+        navigate(R.id.navigation_settings_ui)
+        waitForDestination(R.id.navigation_settings_ui)
+        assertEquals("a page below Settings keeps it there", railRight, miniController.left)
+    }
+
+    @Test
+    fun theMiniControllerGoesBackToTheEdgeOnAPageWithNoRail() = launch {
+        waitForDestination(R.id.navigation_home)
+        showMiniController()
+        navigate(R.id.navigation_setup_language)
+        waitForDestination(R.id.navigation_setup_language)
+        val deadline = System.currentTimeMillis() + SCREEN_WAIT_MS
+        while (miniController.left != 0 && System.currentTimeMillis() < deadline) Thread.sleep(POLL_MS)
+        assertFalse("this page has no rail", railShown)
+        assertEquals("the mini controller starts at the edge", 0, miniController.left)
+        assertEquals("as the page does", 0, pageLeft)
+    }
+
     // ---- What must not change --------------------------------------------------------------------------------
 
     @Test
@@ -475,6 +535,15 @@ class TvRailNavigationTest {
                 ),
                 field.visibleBounds.left,
             )
+        }
+    }
+
+    @Test
+    fun theSwitchPutsTheMiniControllerBackAfterTheXmlRail() {
+        TvRailSwitch.useComposeRail = false
+        launch {
+            waitForDestination(R.id.navigation_home)
+            assertNear("the mini controller's left edge", dp(XML_RAIL_DP), showMiniController().left)
         }
     }
 
@@ -535,6 +604,15 @@ class TvRailNavigationTest {
             assertTrue(xmlRailVisible)
             assertNear("XML rail width", dp(XML_RAIL_DP), xmlRailWidth)
             assertNear("page origin", dp(XML_RAIL_DP), pageLeft)
+        }
+    }
+
+    @Test
+    fun theEmulatorLayoutKeepsTheMiniControllerAfterItsRail() {
+        setLayoutPreference(LAYOUT_EMULATOR)
+        launch {
+            waitForDestination(R.id.navigation_home)
+            assertNear("the mini controller's left edge", dp(XML_RAIL_DP), showMiniController().left)
         }
     }
 

@@ -1410,3 +1410,42 @@ search all 12 sources anyway", and its note says "the action is the field". With
 and the search is confirmed from there, so it takes two presses. That reading fits the board's intent but not its words, and
 no board mentions the keyboard at all. Suggestions are not built, so nothing behaves wrongly today. Before 8b is
 built, either its copy changes or the owner decides otherwise.
+
+---
+
+## BUG-31 — The Mac's display slept during a video · **high** · owner's report 2026-11-04
+
+**Status:** in pr. The owner: "when video on fullscreen and playing the screen should not sleep". The desktop player held no power assertion, so the
+Mac's idle timer ran through a film. `PlayerKeepAwake.kt` runs `/usr/bin/caffeinate -d -w <pid>` while `status.playing` is true, whether the
+window is full screen or not, because a windowed film sleeps the same way. A pause, the player closing or the app dying lets go.
+
+**Measured on the built app, silently, on an isolated copy of the plugins:** during real CineTmdb playback `pmset -g assertions` showed `PreventUserIdleDisplaySleep 1` from `caffeinate -d -w <the app's pid>`. After the app exited, no such process remained and the count was `0`. `DisplayWakeHoldTest`: 5 of 5. **Not measured:** the display staying on past its real idle timeout, and a pause in the live window, which `DisplayWakeHoldTest` covers with a fake process.
+
+## BUG-32 — On TV, the Compose rail covered the start of the cast mini controller · **medium** · measured 2026-11-04
+
+**Status:** in pr (the PR that adds this entry). A regression from `KMP-33`. `cast_mini_controller_holder` is constrained to the end of
+`nav_rail_view`, and that rail is `GONE` under the Compose rail, so the holder started at the screen's edge and the rail covered its first
+76dp (101 px on `Television_720p`).
+
+**The fix.** `TvRail.onNavBarUpdated` gives the holder the page's `marginStart`: the rail's width when the rail shows, and 0 when it does not.
+`activity_main_tv.xml` is untouched, so the emulator layout does not change, and `TvRailSwitch.useComposeRail = false` builds no `TvRail`, so
+nothing sets the margin. On a page with no rail the holder is back at the edge, where it was on the XML rail.
+
+**Measured.** `TvRailNavigationTest` on `Television_720p`, four new tests. With the fix off, `theMiniControllerStartsWhereThePageStarts` fails:
+`its left edge is the rail's right edge expected:<101> but was:<0>`. `theMiniControllerGoesBackToTheEdgeOnAPageWithNoRail`, the switch test and the
+emulator test pass with it off and on: they guard what must not change, and the first would fail on a margin never cleared.
+
+**Not exercised.** A Cast session. The fragment's view is hidden until the Cast SDK's `UIMediaController` shows it, which takes a receiver, so the
+test sets that view `VISIBLE` itself. The fragment, its inflation, the holder's visibility from `updateNavBar` and the layout pass are real. Also
+not exercised: the controls inside it with real media, and moving focus between them and the rail.
+
+**Checked for the same problem, not changed.**
+
+- **Snackbars do not have it, and do the reverse.** `SnackbarHelper` adds them to `android.R.id.content`, after `homeRoot`, so they paint over the
+  rail. Measured with the Compose rail: bounds 11,647 at 1258x62 on a 1280x720 screen, with the text from x=33. For its duration a snackbar
+  overlaps the bottom of the rail, whose right edge is at 101. It was not measured on the XML rail.
+- **Toasts were not measured.** `CommonActivity.showToast` centres one at the bottom of its own window, so by the code the rail cannot cover it,
+  but UI Automator did not find the toast's text in the one attempt.
+- **Nothing else sits at the root.** Under `homeRoot` are the page's `ConstraintLayout`, the rail and the unused `focus_outline`, and nothing in
+  the code adds a view to `homeRoot` or `android.R.id.content` by hand. Pages are inside `nav_host_fragment`, which already has the margin. By
+  reading the code, not by running it.
