@@ -213,7 +213,7 @@ private fun ResultCard(
     val slots = remember(item.qualityLabel) {
         val quality = item.qualityLabel
         if (quality == null) MediaCardSlots.None else MediaCardSlots(
-            trailingBadge = { Badge(text = quality) },
+            leadingBadge = { Badge(text = quality) },
         )
     }
 
