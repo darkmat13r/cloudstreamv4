@@ -3321,7 +3321,7 @@ cellular paths have not run either, because this AVD's default network is Ethern
 
 ## KMP-37 — The TV home on Android: rails and a trailing card (queue `Q9`) · **measured 2026-11-05**
 
-**Status:** in pr. Board `3d` of `design/TV Home.dc.html`, and the source control `3c` draws. The hero and Continue watching
+**Status:** in pr #147. Board `3d` of `design/TV Home.dc.html`, and the source control `3c` draws. The hero and Continue watching
 (`3c`, `Q10`) are the next PR: the page is one keyed list, so they go in between the chrome and the rails. Android TV only.
 `TvHomeSwitch.useComposeHome = false` puts `HomeFragment` back, kept for one release (`DEC-17`). Phone and the emulator layout
 still use `HomeFragment`.
