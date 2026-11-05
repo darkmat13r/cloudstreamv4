@@ -607,9 +607,76 @@ aSidePanelOpenOnThePageDimsTheRailToo` opens a panel on the real Search page and
 cases: `cards-rail-end-poster-and-see-all` and `panel-open-over-rail` (new); every search and library reference was
 re-recorded after its diff was read, and `library-grid-focus-tab` already covers a selected tab with another focused.
 
+## DS-15 — Shared details from the second design review: marker, scrim, 5a's reveal, the state action's ring
+
+**Status:** in review · follows `DS-14` · `:core:designsystem`, two test fixtures, one board
+
+The design reviewer measured these off emulator captures after `#156`. Each was checked against the boards and the code
+before it changed, and each is held by a test that fails on the old drawing.
+
+| # | What | Was | Now | Source |
+|---|---|---|---|---|
+| 1 | `SelectionMarker` | a 2dp square-ended rule, the full 32dp of the row's content box | a 4dp by 24dp mark, `shapes.pill`, centred in the row | `.lmark { width: 8px; height: 48px; border-radius: 4px }` on 4d and every list-row board; `Design System v2`: *"The marker cell is 8 wide, not 4"* |
+| 2 | `SidePanelHost` scrim | 0.72, under a KDoc calling it invented | 0.6, the KDoc corrected | 4d `.scrim { background: rgba(0,0,0,0.6) }`; `bg` is `#000000` |
+| 3 | `TV Library` 5a `.revt` | `padding: 40px 16px 16px`, `0.94` at 34% | `padding: 32px 8px 8px`, `0.92` at 30%, the rule Search and Home use and the code draws | `MediaCardDefaults.RevealScrimLead`, `ContentPadding`, `SCRIM_END_ALPHA`, `SCRIM_SOLID_FRACTION` |
+| 4 | `StateActionButton` | held focus with no ring when `StateView` focused it on arrival | the ring, as any other focus | reported by `cloudstream-worker-1` on the TV detail failure state |
+
+**Item 1, callers.** `SelectionMarker` has one caller, `ListRow`, and a row draws a mark only when `selected`. On master
+that is the Home source panel's current source (`HomeSourcePanelTv`), on Android TV and anywhere else that panel is
+hosted, and `DownloadProgressRow` when a caller passes `selected`, which none does yet. Search's recent column and
+Detail's episode and link lists never select a row; `:desktopApp` does not use `ListRow`. Measured on the device at
+1.331 px/dp: the mark went from 3x42 px at x940 to 5x32 px at x939, rows 186 to 217 of a row at 170 to 234.
+
+**Item 2, the rail.** `SidePanelOutsideDim` carries the same value, so the TV rail now dims to 40% of its light, not 28%:
+the brightest rail pixel under an open panel is 102 (255 × 0.4), was 71 (255 × 0.28), on `panel-open-over-rail`.
+`TvRailNavigationTest.MAX_PANEL_DIM_RATIO` was derived from 0.72 (28% left, bound 0.4); it moves with the scrim to 0.52,
+the same 0.12 margin over 40%.
+
+**Item 3, measured** in Chromium with the fonts loaded (all seven faces reported `loaded`): 5a's focused card's `.revt`
+was 120 of 288px (41.7%) with the text at +16/+40; it is 104 of 288px (36.1%), 32 + 32 + 8 + 24 + 8, with the text at
++8/+32 and 176px wide. Every other element box on the board, 777 of them, hashed identically before and after. `DS-14`
+reported 5a as unruled; the brief ruled it: one rule per component.
+
+**Item 4, cause, measured.** `StateActionButton` read focus with `collectIsFocusedAsState`. `StateView` requests focus on it
+in its first frame, before that collector subscribes, and an interaction source does not replay, so the `Focus` interaction
+was lost. Focus that arrives later, by D-pad, was always drawn, which is why Home's, Search's and Library's references
+show a ring. The button now reads `onFocusChanged`. The ring itself was already the text button's: `tvFocusRing` with
+`FocusRingStroke` and `FocusRingOffset` on `shapes.medium`. Separately, a temporary probe showed that **in touch mode
+`StateView`'s initial focus lands nowhere** (`clickable` is only focusable in non-touch mode): a test that composes a
+failure state without a key press will see nothing focused, whatever the button does.
+
+**Tests.** JVM: `SelectionMarkerAndScrimTest` (2) and `StateActionRingTest` (1); control run against the old components,
+each red for its own reason (`the mark starts at the cell expected:<24> but was:<25>`, `published 0.72`,
+`expected:<128> but was:<120>`). Device: `StateActionDeviceTest.screenshotStateViewFailureFocusOnItsAction` asserts the
+even ring on all four sides on the emulator and records `state-view-failure-focus-action` (new).
+
+**Fixtures.** `home-source-panel-focus-current` composed its rail without the dim the TV shell applies, so its reference
+showed a bright rail beside an open panel; the test now applies `sidePanelOutsideDim` as `TvRail` does.
+`panel-open-over-rail` showed a selected row with a failed marker beside an unselected healthy one; it now has 4d's five
+providers in 4d's states.
+
+**Re-recorded, each diff read:** `panel-open-over-rail` (marker, scrim, rows), `home-source-panel-focus-current` (rail
+dimmed, page lighter under 0.6, the selected row's marker). New: `state-view-failure-focus-action`.
+
+**Screens whose look changed.** Android TV Home's source panel: the rail dims with the page, the page behind is lighter
+(0.6), and the current source's marker is the short rounded mark. On master that is the only real `SidePanelHost`; `#153`'s
+detail panels take the same. The state action's ring: wherever a `StateView` focuses its action on arrival, which is
+Android TV Home, Library, Search and Detail, and on desktop Home, Library, Search and the player. Every existing reference
+compared 0 pixels different, so none of the recorded screens was in that state; the JVM harness is desktop Compose and
+reproduced the missing ring, but `:desktopApp` was not run to look.
+
+**Results, local** on `Television_720p` and this machine, 2026-11-05: device 157 tests (`:core:designsystem` 19,
+`:core:connectivity` 2, `:core:strings` 6, `:feature:home` 31, `:feature:library` 13, `:feature:search` 15, `:app` 71),
+0 failures, 1 skipped; all 19 screenshot cases `same`, 0 pixels. Gates on `3bc4f8dab`: `abi=0 check=0 xml=0 extapi=0
+canary=0 dist=0`, 164 result files read.
+
+**Board upload.** `TV Library.dc.html` to the Claude Design project: the project's copy matched master byte for byte
+before the write (34,314 bytes, SHA-256 `8cb77682…`), and after it matches this branch's file byte for byte with the
+served page's injected block removed (34,312 bytes, `01764163…`).
+
 ---
 
-## DS-15 — Text buttons lead with a glyph; icon-only only for toggles and overflow
+## DS-16 — Text buttons lead with a glyph; icon-only only for toggles and overflow
 
 **Status:** in review · #159 · `DEC-17`, 2026-11-05: *"use icons here if possible or other places which are common, update the
 design and instructions"*, and the owner's ruling the same day.

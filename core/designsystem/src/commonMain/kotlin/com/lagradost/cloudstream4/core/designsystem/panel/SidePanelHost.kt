@@ -36,16 +36,17 @@ import androidx.compose.ui.input.key.type
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 
 /**
- * Opacity of the scrim over the content behind a fully open [SidePanel].
+ * Opacity of the scrim over the content behind a fully open [SidePanel]: `TV Search` 4d's
+ * `.scrim { background: rgba(0,0,0,0.6) }`.
  *
- * Invented, and the one number in this file the design did not give. It is not a dimension, so
- * the 4dp step does not apply to it; it was chosen so content stays legible as context but no
- * longer competes with the panel for attention at three metres. A designer should confirm it.
+ * The design gives it. This was 0.72 until `DS-15`, under a note calling the number invented; the
+ * board had it all along. The colour is the `bg` token, which is the board's `#000000`.
  *
  * It is the scrim's value at rest. While the panel slides the scrim is this times the panel's
- * travel, so the two arrive together — see [SidePanelMotion].
+ * travel, so the two arrive together — see [SidePanelMotion]. [SidePanelOutsideDim] carries the
+ * same value to the TV shell's rail.
  */
-private const val SCRIM_ALPHA = 0.72f
+private const val SCRIM_ALPHA = 0.6f
 
 /**
  * The panel's slide: **240ms, ease-out, and interruptible.**

@@ -32,8 +32,12 @@ import org.junit.runner.RunWith
 /**
  * `TV Search` 4d: an open source panel over a screen, with the rail dimmed beside it. The rail carries
  * [sidePanelOutsideDim] as the TV shell's does, so the case shows what the review found missing: the rail dimmed with
- * the page, the panel on `surface` with its selected row `raised`, and the header at the top. On Android TV the rail is a
+ * the page, the panel on `surface` with its selected rows `raised`, and the header at the top. On Android TV the rail is a
  * separate view; `TvRailNavigationTest` measures that on the real shell.
+ *
+ * The rows are 4d's five providers in 4d's states: the first three selected and healthy, `Zoro` off and failed, the last
+ * off and unchecked. Until `DS-15` the case had a selected row with a failed marker beside an unselected healthy one, a
+ * pairing 4d never draws.
  */
 @RunWith(AndroidJUnit4::class)
 class SidePanelScreenshotDeviceTest {
@@ -67,7 +71,7 @@ class SidePanelScreenshotDeviceTest {
         }
         rule.waitUntil(WAIT_MS) { SidePanelOutsideDim.alpha > 0f }
         rule.waitForIdle()
-        rule.onNodeWithText(ROWS.first()).assertExists()
+        rule.onNodeWithText(ROWS.first().name).assertExists()
         assertTrue("the rail is dimmed", SidePanelOutsideDim.alpha > 0f)
         rule.assertScreenshot("panel-open-over-rail")
     }
@@ -78,22 +82,31 @@ class SidePanelScreenshotDeviceTest {
             header = { RailHeader(title = "Sources", count = "3 OF 5") },
             commit = { ListRow(state = ListRowState(title = "Done"), onClick = {}, modifier = Modifier.fillMaxWidth()) },
         ) {
-            ROWS.forEachIndexed { index, name ->
+            ROWS.forEach { row ->
                 ListRow(
-                    state = ListRowState(title = name, subtitle = "EN · MOVIES", selected = index != 1),
+                    state = ListRowState(title = row.name, subtitle = row.subtitle, selected = row.selected),
                     onClick = {},
                     modifier = Modifier.fillMaxWidth(),
-                    trailing = { StatusDot(if (index == 2) StatusDotState.Failed else StatusDotState.Ok) },
+                    trailing = { StatusDot(row.status) },
                 )
             }
         }
     }
 
+    private data class Source(val name: String, val subtitle: String, val selected: Boolean, val status: StatusDotState)
+
     private companion object {
         const val SEARCH_INDEX = 1
         const val FIELD_WIDTH = 480
         const val WAIT_MS = 5_000L
-        val ROWS = listOf("Vidsrc", "Gogoanime", "Zoro")
+        /** `TV Search` 4d's `pr`. A subtitle too long for the panel ellipsizes, as 4d's does. */
+        val ROWS = listOf(
+            Source("Vidsrc", "EN · MOVIES, TV · PINNED", selected = true, StatusDotState.Ok),
+            Source("Gogoanime", "EN · ANIME", selected = true, StatusDotState.Ok),
+            Source("Filmxy", "EN · MOVIES", selected = true, StatusDotState.Ok),
+            Source("Zoro", "EN · ANIME · FAILED 2 MIN AGO", selected = false, StatusDotState.Failed),
+            Source("Dramacool", "KO · ASIAN DRAMA", selected = false, StatusDotState.Neutral),
+        )
         val Items = listOf(
             NavRailItem("Home", CloudStreamIcons.Home),
             NavRailItem("Search", CloudStreamIcons.Search),
