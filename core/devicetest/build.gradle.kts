@@ -1,5 +1,6 @@
 /**
- * `:core:devicetest` — what device tests share: the D-pad driver and its focus graph (`INF-10`).
+ * `:core:devicetest` — what device tests share: the D-pad driver and its focus graph (`INF-10`), and
+ * `assertScreenshot` (`.claude/rules/screenshot-testing.md`).
  *
  * Test scope only. Nothing depends on it except `androidDeviceTest` source sets (through
  * `cloudstream.kmp.device-test`) and `:app`'s `androidTestImplementation`. The libraries are `api`
