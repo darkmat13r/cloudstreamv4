@@ -49,7 +49,7 @@ class TextButtonIconTest {
     private fun Button(kind: Kind, label: String, icon: ImageVector?, modifier: Modifier) = when (kind) {
         Kind.Primary -> PrimaryTextButton(label = label, onClick = {}, modifier = modifier, icon = icon)
         Kind.Ghost -> GhostTextButton(label = label, onClick = {}, modifier = modifier, icon = icon)
-        Kind.State -> StateActionButton(action = StateAction(label, {}, icon), modifier = modifier)
+        Kind.State -> StateActionButton(action = StateAction(label, icon) {}, modifier = modifier)
     }
 
     /** What the inside of the button is, where nothing is drawn on it. */

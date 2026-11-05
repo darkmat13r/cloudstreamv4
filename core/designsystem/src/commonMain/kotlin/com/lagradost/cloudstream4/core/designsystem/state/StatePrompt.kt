@@ -18,14 +18,36 @@ import androidx.compose.ui.graphics.vector.ImageVector
  * @property onActivate what pressing it does. Held in state rather than passed alongside it so
  *   that the two cannot drift apart — a label without a behaviour is exactly the defect above.
  * @property icon the button's leading glyph from `CloudStreamIcons`, for a common action such as
- *   `Retry` (`ui-components.md`, "Text buttons that carry a glyph"). null, the default, is text only.
+ *   `Retry` (`ui-components.md`, "Buttons"). null, the default, is text only. Given through the
+ *   second constructor, `StateAction(label, icon) { … }`.
  */
 @Immutable
 data class StateAction(
     val label: String,
     val onActivate: () -> Unit,
-    val icon: ImageVector? = null,
-)
+) {
+    /**
+     * Not in the primary constructor, on purpose: callers write both `StateAction(label, action)` and
+     * `StateAction(label) { … }`, and a third parameter anywhere breaks one of the two. Set only by
+     * the constructor below, so it is as fixed as the other two, and it is part of [equals]. `copy()`
+     * is generated from the primary constructor and so drops it; build a new one instead.
+     */
+    var icon: ImageVector? = null
+        private set
+
+    constructor(label: String, icon: ImageVector?, onActivate: () -> Unit) : this(label, onActivate) {
+        this.icon = icon
+    }
+
+    override fun equals(other: Any?): Boolean =
+        other is StateAction && label == other.label && onActivate == other.onActivate && icon == other.icon
+
+    override fun hashCode(): Int = (label.hashCode() * HASH_PRIME + onActivate.hashCode()) * HASH_PRIME + icon.hashCode()
+
+    private companion object {
+        const val HASH_PRIME = 31
+    }
+}
 
 /**
  * What a full-surface state says: a headline, a line of body copy, and its single [action].

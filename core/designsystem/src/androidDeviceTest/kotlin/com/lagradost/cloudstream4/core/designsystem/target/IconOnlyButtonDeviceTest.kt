@@ -14,6 +14,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.toPixelMap
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.test.assertIsOff
+import androidx.compose.ui.test.assertIsOn
 import androidx.compose.ui.test.captureToImage
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
@@ -119,8 +121,13 @@ class IconOnlyButtonDeviceTest {
         dpad.press(Dpad.Right)
         dpad.center()
         rule.waitUntil(WAIT_MS) { watched }
+        // The toggle reads its value when it is clicked, so the next press waits for the recomposition.
+        rule.waitForIdle()
+        rule.onNodeWithContentDescription(WATCHLIST).assertIsOn()
         dpad.center()
         rule.waitUntil(WAIT_MS) { !watched }
+        rule.waitForIdle()
+        rule.onNodeWithContentDescription(WATCHLIST).assertIsOff()
     }
 
     @Test

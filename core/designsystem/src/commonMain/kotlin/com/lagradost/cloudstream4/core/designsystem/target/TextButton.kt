@@ -66,7 +66,7 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
  * @param focusableWhenDisabled see [TargetTextButton]. Defaults to false, which is the
  *   not-focusable disabled button every existing caller already has.
  * @param icon a leading glyph from `CloudStreamIcons`, for a common action whose meaning one
- *   glyph conveys (`ui-components.md`, "Text buttons that carry a glyph"). Tinted the label's
+ *   glyph conveys (`ui-components.md`, "Buttons"). Tinted the label's
  *   colour, so black here. null, the default, is the text-only button every existing caller has.
  */
 @Composable

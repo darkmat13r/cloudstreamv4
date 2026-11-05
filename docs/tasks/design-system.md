@@ -606,3 +606,35 @@ the empty-state body). `#153` brings the detail panels.
 aSidePanelOpenOnThePageDimsTheRailToo` opens a panel on the real Search page and measures the rail's brightness. Screenshot
 cases: `cards-rail-end-poster-and-see-all` and `panel-open-over-rail` (new); every search and library reference was
 re-recorded after its diff was read, and `library-grid-focus-tab` already covers a selected tab with another focused.
+
+---
+
+## DS-15 — Text buttons lead with a glyph; icon-only only for toggles and overflow
+
+**Status:** in review · `DEC-17`, 2026-11-05: *"use icons here if possible or other places which are common, update the
+design and instructions"*, and the owner's ruling the same day.
+
+**The rule** is in `.claude/rules/ui-components.md`, "Buttons", with the glyph table: one white primary, first; secondary
+common actions outlined with glyph and label; a meaning no glyph conveys stays text; icon-only only for toggles, overflow
+and search, naming itself when focused; every target at least 48 dp. `Design System v2` carries it as a law, with the
+planned phone and tablet direction as another, and `Components`' button spec draws it.
+
+**Compose.** `PrimaryTextButton`, `GhostTextButton` and `StateAction` take `icon: ImageVector? = null`: a 16 dp glyph
+(`CloudStreamIconSize.Small`), 8 dp (`TextButtonDefaults.IconGap`) before the label, in the label's colour, the pair
+centred. With null, the code path is the old one. `IconOnlyButton` and `IconOnlyToggle` are new: a 48 dp cell, a 32 dp
+outlined tile with the ring on it, `raised` when checked, and the label drawn under the cell while focused without being
+laid out. Five meanings added to `CloudStreamIcons`, all Tabler: `StartOver` (`Rotate`), `Trailer` (`Movie`),
+`Episodes` (`List`), `OpenExternal` (`ExternalLink`), `Link` (`Link`).
+
+**Boards.** 7a and 7b's row is redrawn to the ruling: Resume with a play glyph, the progress rule and time left under
+it, Start over, Trailer, then a watchlist toggle and More icon-only. Season, Episodes and Full synopsis leave the row,
+the chrome's bookmark moves into it, and 7b's one focus is the toggle, on, with its label. Every other common-action
+text button on the authoritative boards has its glyph square, per the table. `TV Onboarding Extensions`' two widest
+buttons grew by 64 to fit, on the step.
+
+**Not done here.**
+- The text buttons are 32 dp tall in Compose; the 48 dp minimum target holds only on the boards' `.btncell`. Making the
+  Compose target 48 dp changes every caller's layout, so it is a separate decision.
+- No screen adopts the glyphs. The list per screen is in the PR.
+- The episode list with season tabs under 7a's row is not drawn; board 6a has it.
+- `TV Home`'s hero still has its pre-existing icon-only `.btn.ico`, which by the rule needs a meaning and a label on focus.
