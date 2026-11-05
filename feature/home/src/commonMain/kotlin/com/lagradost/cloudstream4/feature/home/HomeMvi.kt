@@ -21,8 +21,13 @@ data class HomeState(
     val history: HomeHistory = HomeHistory(),
     /** The bookmarks rail and its filter (`TV Home Extras` 3e), from this device. Kept whatever the source is doing, too. */
     val bookmarks: HomeBookmarks = HomeBookmarks(),
+    /** A reload is in flight (3j). The rows stay on screen while it runs, and another press is ignored. */
+    val reloading: Boolean = false,
 ) {
     val selectedOption: HomeSourceOption? get() = sources.firstOrNull { it.id == selected }
+
+    /** `None` is chosen (3i): no source, so only what the device keeps. */
+    val unsourced: Boolean get() = selected == HomeSourceId.None
 }
 
 /** The hero, which needs one more request than the rows it comes from. */
@@ -70,6 +75,9 @@ data class HomeRowKey(val section: Int, val name: String) {
 
         /** The bookmarks rail, for [HomeReturn]. Not a section either. */
         val Bookmarks: HomeRowKey = HomeRowKey(section = -3, name = "")
+
+        /** The chrome's cells, for [HomeReturn]: Random opens a title, and focus comes back to it (3j). */
+        val Chrome: HomeRowKey = HomeRowKey(section = -4, name = "")
     }
 }
 
@@ -134,6 +142,9 @@ sealed interface HomeStatus {
     data class Failed(val detail: String) : HomeStatus
 
     data object Offline : HomeStatus
+
+    /** `None` is chosen (3i). Nothing was asked of a source, so this is neither empty nor a failure. */
+    data object Unsourced : HomeStatus
 }
 
 sealed interface HomeAction {
@@ -169,6 +180,23 @@ sealed interface HomeAction {
     data class BookmarkFilterPressed(val status: HomeWatchStatus) : HomeAction
 
     /**
+     * The chrome's Reload (3j): ask every section again, keeping the rows on screen until the answer replaces them. A
+     * second press while one runs is ignored. Only with rows loaded, so nothing to reload is not a reload.
+     */
+    data object ReloadRequested : HomeAction
+
+    /**
+     * The chrome's Random (3j): open one title chosen from what is loaded, as the old button did. Nothing loaded opens
+     * nothing.
+     *
+     * @param from where focus comes back to, the Random cell.
+     */
+    data class RandomRequested(val from: HomeReturn? = null) : HomeAction
+
+    /** The chrome's Search (3j): the only search on Home, of this source alone. Becomes [HomeEffect.OpenSourceSearch]. */
+    data object SourceSearchRequested : HomeAction
+
+    /**
      * Sources may have come or gone: plugins finished a stage of loading, or a setting or the account changed.
      *
      * Rows already on screen for the source that is still chosen are left alone, focus included.
@@ -193,4 +221,7 @@ sealed interface HomeEffect {
     data object OpenSearch : HomeEffect
     data object OpenExtensions : HomeEffect
     data object OpenAccounts : HomeEffect
+
+    /** Search [source] alone, with nothing typed yet, as the old home's search button did. */
+    data class OpenSourceSearch(val source: HomeSourceId) : HomeEffect
 }

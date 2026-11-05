@@ -324,12 +324,15 @@
 <string name="home_main_poster_img_des">Hlavní plakát</string>
 <string name="home_more_info">Více informací</string>
 <string name="home_next_random_img_des">Další náhodný</string>
+<string name="home_none_body">Vyberte zdroj a uvidíte tu jeho řady. Pokračovat ve sledování a vaše záložky zůstanou i bez něj.</string>
+<string name="home_none_headline">Není vybrán žádný zdroj</string>
 <string name="home_offline_bookmarks_body">Vaše záložky jsou uloženy v tomto zařízení.</string>
 <string name="home_offline_source_headline">%1$s potřebuje připojení</string>
 <string name="home_play">Přehrát</string>
 <string name="home_random">Náhodný</string>
 <string name="home_search_only_body">Žádné z vašich rozšíření nemá domovskou stránku, ale stále v nich můžete hledat.</string>
 <string name="home_source">Zdroj</string>
+<string name="home_source_none_subtitle">ŽÁDNÉ ŘADY · VAŠE ŘADY ZŮSTÁVAJÍ</string>
 <string name="install_prerelease">Nainstalovat předběžnou verzi</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">Nelze se připojit k serveru GitHub. Zapínání proxy jsDelivr…</string>

@@ -323,12 +323,15 @@
 <string name="home_main_poster_img_des">Glavni poster</string>
 <string name="home_more_info">Više informacija</string>
 <string name="home_next_random_img_des">Sljedeće slučajno odabrano</string>
+<string name="home_none_body">Odaberite izvor da biste ovdje vidjeli njegove redove. Nastavak gledanja i vaše oznake ostaju i bez njega.</string>
+<string name="home_none_headline">Nije odabran izvor</string>
 <string name="home_offline_bookmarks_body">Vaše oznake spremljene su na ovom uređaju.</string>
 <string name="home_offline_source_headline">%1$s treba vezu</string>
 <string name="home_play">Pokreni</string>
 <string name="home_random">Slučajno</string>
 <string name="home_search_only_body">Nijedno vaše proširenje nema početnu stranicu, ali i dalje možete pretraživati u njima.</string>
 <string name="home_source">Izvor</string>
+<string name="home_source_none_subtitle">NEMA REDOVA · VAŠI REDOVI OSTAJU</string>
 <string name="install_prerelease">Instaliraj predizdanje</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">Neuspješno dohvaćanje GitHuba. Uključuje se jsdelivr proxy …</string>

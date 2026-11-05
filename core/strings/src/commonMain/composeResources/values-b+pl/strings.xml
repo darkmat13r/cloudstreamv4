@@ -324,12 +324,15 @@
 <string name="home_main_poster_img_des">Główny obrazek</string>
 <string name="home_more_info">Więcej informacji</string>
 <string name="home_next_random_img_des">Następny losowy</string>
+<string name="home_none_body">Wybierz źródło, aby zobaczyć tu jego rzędy. Kontynuuj oglądanie i twoje zakładki zostają także bez niego.</string>
+<string name="home_none_headline">Nie wybrano źródła</string>
 <string name="home_offline_bookmarks_body">Twoje zakładki są zapisane na tym urządzeniu.</string>
 <string name="home_offline_source_headline">%1$s wymaga połączenia</string>
 <string name="home_play">Odtwórz</string>
 <string name="home_random">Losowy</string>
 <string name="home_search_only_body">Żadne z twoich rozszerzeń nie ma strony głównej, ale nadal możesz w nich szukać.</string>
 <string name="home_source">Źródło</string>
+<string name="home_source_none_subtitle">BRAK RZĘDÓW · TWOJE RZĘDY ZOSTAJĄ</string>
 <string name="install_prerelease">Zainstaluj wersję przedpremierową</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">Nie udało się połączyć z GitHubem. Włączono serwer pośredniczący jsDelivr…</string>

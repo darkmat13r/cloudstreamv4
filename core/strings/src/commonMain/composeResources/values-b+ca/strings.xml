@@ -155,12 +155,15 @@
 <string name="home_main_poster_img_des">Cartell principal</string>
 <string name="home_more_info">Més informació</string>
 <string name="home_next_random_img_des">Proper aleatori</string>
+<string name="home_none_body">Trieu una font per veure'n les files aquí. Continua mirant i els vostres favorits es queden sense cap font.</string>
+<string name="home_none_headline">Cap font triada</string>
 <string name="home_offline_bookmarks_body">Els vostres favorits es desen en aquest dispositiu.</string>
 <string name="home_offline_source_headline">%1$s necessita connexió</string>
 <string name="home_play">Reprodueix</string>
 <string name="home_random">Aleatori</string>
 <string name="home_search_only_body">Cap de les teves extensions té pàgina d'inici, però encara pots cercar-hi.</string>
 <string name="home_source">Font</string>
+<string name="home_source_none_subtitle">SENSE FILES · LES VOSTRES FILES ES QUEDEN</string>
 <string name="limit_title">Caràcters màxims al títol del reproductor</string>
 <string name="limit_title_rez">Resolució del reproductor de vídeo</string>
 <string name="links_reloaded_toast">S'han tornat a carregar els enllaços</string>

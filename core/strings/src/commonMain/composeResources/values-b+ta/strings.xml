@@ -324,12 +324,15 @@
 <string name="home_main_poster_img_des">முதன்மையான போச்டர்</string>
 <string name="home_more_info">மேலும் செய்தி</string>
 <string name="home_next_random_img_des">அடுத்து ஏதாவது</string>
+<string name="home_none_body">அதன் வரிசைகளை இங்கே காண ஒரு மூலத்தைத் தேர்ந்தெடுக்கவும். தொடர்ந்து பார்ப்பதும் உங்கள் புக்மார்க்குகளும் மூலம் இல்லாமலும் இருக்கும்.</string>
+<string name="home_none_headline">எந்த மூலமும் தேர்ந்தெடுக்கப்படவில்லை</string>
 <string name="home_offline_bookmarks_body">உங்கள் புக்மார்க்குகள் இந்தச் சாதனத்தில் சேமிக்கப்பட்டுள்ளன.</string>
 <string name="home_offline_source_headline">%1$s க்கு இணைப்பு தேவை</string>
 <string name="home_play">விளையாடுங்கள்</string>
 <string name="home_random">சீரற்ற</string>
 <string name="home_search_only_body">உங்கள் நீட்டிப்புகள் எதிலும் முகப்புப் பக்கம் இல்லை, ஆனால் அவற்றில் இன்னும் தேடலாம்.</string>
 <string name="home_source">மூலம்</string>
+<string name="home_source_none_subtitle">வரிசைகள் இல்லை · உங்கள் வரிசைகள் இருக்கும்</string>
 <string name="install_prerelease">வெளியீட்டிற்கு முந்தைய பதிப்பை நிறுவவும்</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">கிட்அப்பை அடைய முடியவில்லை. Jsdelivr ப்ராக்சியை இயக்குதல்…</string>

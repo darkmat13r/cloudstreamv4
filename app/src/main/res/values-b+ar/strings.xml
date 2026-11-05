@@ -323,12 +323,15 @@
 <string name="home_main_poster_img_des">"الملصق الرئيسي"</string>
 <string name="home_more_info">"مزيد من المعلومات"</string>
 <string name="home_next_random_img_des">"التالي عشوائي"</string>
+<string name="home_none_body">"اختر مصدرًا لعرض صفوفه هنا. تبقى متابعة المشاهدة وإشاراتك المرجعية من دونه."</string>
+<string name="home_none_headline">"لم يُختر أي مصدر"</string>
 <string name="home_offline_bookmarks_body">"إشاراتك المرجعية محفوظة على هذا الجهاز."</string>
 <string name="home_offline_source_headline" formatted="true">"يحتاج %1$s إلى اتصال"</string>
 <string name="home_play">"تشغيل"</string>
 <string name="home_random">"عشوائي"</string>
 <string name="home_search_only_body">"لا تحتوي أي من إضافاتك على صفحة رئيسية، لكن يمكنك البحث فيها."</string>
 <string name="home_source">"مصدر"</string>
+<string name="home_source_none_subtitle">"لا صفوف · تبقى صفوفك"</string>
 <string name="install_prerelease">"تثبيت الإصدار التجريبي"</string>
 <string name="is_adult">"18+"</string>
 <string name="jsdelivr_enabled">"تعذر الوصول إلى جيثب. تشغيل وكيل jsDelivr …"</string>

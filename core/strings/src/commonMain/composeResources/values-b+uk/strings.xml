@@ -324,12 +324,15 @@
 <string name="home_main_poster_img_des">Головний постер</string>
 <string name="home_more_info">Докладніше</string>
 <string name="home_next_random_img_des">Наступне випадкове</string>
+<string name="home_none_body">Виберіть джерело, щоб побачити тут його ряди. Продовжити перегляд і ваші закладки залишаються й без нього.</string>
+<string name="home_none_headline">Джерело не вибрано</string>
 <string name="home_offline_bookmarks_body">Ваші закладки збережено на цьому пристрої.</string>
 <string name="home_offline_source_headline">%1$s потребує з'єднання</string>
 <string name="home_play">Переглянути</string>
 <string name="home_random">Випадковий</string>
 <string name="home_search_only_body">Жодне з ваших розширень не має головної сторінки, але в них усе ще можна шукати.</string>
 <string name="home_source">Джерело</string>
+<string name="home_source_none_subtitle">НЕМАЄ РЯДІВ · ВАШІ РЯДИ ЗАЛИШАЮТЬСЯ</string>
 <string name="install_prerelease">Встановити передрелізну версію</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">Не вдалось отримати доступ до GitHub. Увімкнення проксі-сервера jsDelivr…</string>

@@ -164,10 +164,13 @@
 <string name="home_main_poster_img_des">اللافتة الاساسية</string>
 <string name="home_more_info">مزيد من المعلومات</string>
 <string name="home_next_random_img_des">عشوائي قادم</string>
+<string name="home_none_body">اختر مصدر عشان تشوف صفوفه هنا. متابعة المشاهدة وإشاراتك المرجعية تبقى بدونه.</string>
+<string name="home_none_headline">ما اخترت أي مصدر</string>
 <string name="home_offline_bookmarks_body">إشاراتك المرجعية محفوظة على هالجهاز.</string>
 <string name="home_offline_source_headline">%1$s يحتاج اتصال</string>
 <string name="home_play">العب</string>
 <string name="home_search_only_body">لا تحتوي أي من إضافاتك على صفحة رئيسية، لكن يمكنك البحث فيها.</string>
+<string name="home_source_none_subtitle">ما فيه صفوف · صفوفك تبقى</string>
 <string name="jsdelivr_enabled">...jsDelivr لا يمكن الوصول إلى جيتهاب. جارٍ تشغيل وكيل</string>
 <string name="jsdelivr_proxy_summary">.قد يتسبب في تأخير التحديثات لبضعة أيام .jsDelivr باستخدام GitHubيتجاوز حظر</string>
 <string name="kitsu_settings">عرض الملصقات من كيتسو</string>

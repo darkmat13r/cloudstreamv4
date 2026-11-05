@@ -141,12 +141,15 @@
 <string name="home_main_poster_img_des">പ്രധാന പോസ്റ്റർ</string>
 <string name="home_more_info">കൂടുതൽ വിവരം</string>
 <string name="home_next_random_img_des">അടുത്ത ക്രമരഹിതമായ</string>
+<string name="home_none_body">അതിന്റെ നിരകൾ ഇവിടെ കാണാൻ ഒരു ഉറവിടം തിരഞ്ഞെടുക്കുക. കാണൽ തുടരുക, നിങ്ങളുടെ ബുക്ക്‌മാർക്കുകൾ ഉറവിടമില്ലാതെയും നിലനിൽക്കും.</string>
+<string name="home_none_headline">ഉറവിടമൊന്നും തിരഞ്ഞെടുത്തിട്ടില്ല</string>
 <string name="home_offline_bookmarks_body">നിങ്ങളുടെ ബുക്ക്‌മാർക്കുകൾ ഈ ഉപകരണത്തിൽ സംരക്ഷിച്ചിരിക്കുന്നു.</string>
 <string name="home_offline_source_headline">%1$s-ന് കണക്ഷൻ ആവശ്യമാണ്</string>
 <string name="home_play">പ്ലേയ്</string>
 <string name="home_random">ക്രമരഹിതം</string>
 <string name="home_search_only_body">നിങ്ങളുടെ വിപുലീകരണങ്ങളിൽ ഒന്നിനും ഹോം പേജ് ഇല്ല, എങ്കിലും അവയിൽ തിരയാം.</string>
 <string name="home_source">ഉറവിടം</string>
+<string name="home_source_none_subtitle">നിരകളില്ല · നിങ്ങളുടെ നിരകൾ നിലനിൽക്കും</string>
 <string name="lightnovel">നമ്മുടെ ലൈറ്റ് നോവൽ ആപ്പ്</string>
 <string name="links_reloaded_toast">ലിങ്കുകൾ വീണ്ടും ലോഡുചെയ്‌തു</string>
 <string name="load_more">കൂടുതൽ ലോഡ് ചെയ്യുക</string>

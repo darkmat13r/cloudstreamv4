@@ -79,10 +79,13 @@
 <string name="home_main_poster_img_des">"Hoofplakkaat"</string>
 <string name="home_more_info">"Meer inligting"</string>
 <string name="home_next_random_img_des">"Volgende lukraak"</string>
+<string name="home_none_body">"Kies ’n bron om sy rye hier te sien. Kyk verder en jou boekmerke bly sonder een."</string>
+<string name="home_none_headline">"Geen bron gekies nie"</string>
 <string name="home_offline_bookmarks_body">"Jou boekmerke is op hierdie toestel gestoor."</string>
 <string name="home_offline_source_headline" formatted="true">"%1$s het ’n verbinding nodig"</string>
 <string name="home_play">"Speel"</string>
 <string name="home_search_only_body">"Geen van jou uitbreidings het 'n tuisblad nie, maar jy kan steeds daarin soek."</string>
+<string name="home_source_none_subtitle">"GEEN RYE · JOU RYE BLY"</string>
 <string name="load_more">"Laai meer"</string>
 <string name="loading">"Laai tans…"</string>
 <string name="new_update_format" formatted="true">"Nuwe opdatering gevind! \n%1$s -&gt; %2$s"</string>

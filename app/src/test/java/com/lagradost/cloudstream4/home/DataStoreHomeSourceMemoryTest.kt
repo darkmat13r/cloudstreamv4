@@ -29,13 +29,21 @@ class DataStoreHomeSourceMemoryTest {
         assertEquals(HomeSourceId("Two"), memory.last())
     }
 
-    /** The old screen can leave these in the same key, and neither is a source. */
+    /** The old screen can leave Random in the same key, which is not a source, and the owner ruled it out as one. */
     @Test
-    fun theOldScreensNoneAndRandomAreNotChoices() {
-        stored = APIRepository.noneApi.name
-        assertNull(memory.last())
+    fun theOldScreensRandomIsNotAChoice() {
         stored = APIRepository.randomApi.name
         assertNull(memory.last())
+    }
+
+    /** `None` is a choice (3h), kept under the old screen's name for it so both screens read it the same. */
+    @Test
+    fun noneIsKeptUnderTheOldScreensNameAndReadsBackAsNone() {
+        memory.remember(HomeSourceId.None)
+        assertEquals(APIRepository.noneApi.name, stored)
+        assertEquals(HomeSourceId.None, memory.last())
+        stored = APIRepository.noneApi.name
+        assertEquals(HomeSourceId.None, memory.last())
     }
 
     @Test

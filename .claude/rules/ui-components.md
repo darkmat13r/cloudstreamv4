@@ -84,7 +84,7 @@ meaning, icon buttons are for toggles and overflow, and a screen has one primary
 | Start over | `StartOver` | `Rotate` |
 | Trailer, Watch trailer | `Trailer` | `Movie` |
 | Download | `Download` | `Download` |
-| Retry, Try again, Retry failed, Retry N sources, Retry sync | `Retry` | `Refresh` |
+| Retry, Try again, Retry failed, Retry N sources, Retry sync, Reload (Home's chrome, `TV Home Extras` 3j) | `Retry` | `Refresh` |
 | Search, Search all sources, Search everything | `Search` | `Search` |
 | Settings, Open network settings | `Settings` | `Settings` |
 | Add, Add repository | `Add` | `Plus` |
@@ -98,6 +98,7 @@ meaning, icon buttons are for toggles and overflow, and a screen has one primary
 | Extensions, Repositories | `Repository` | `Database` |
 | Manage profiles | `Profile` | `User` |
 | Sources | `Source` | `Server` |
+| Random (Home's chrome: opens one loaded title, `TV Home Extras` 3j) | `Random` | `Dice` |
 | Share | `Share` | `Share` |
 | Open in browser | `OpenExternal` | `ExternalLink` |
 | Play from link | `Link` | `Link` |

@@ -216,12 +216,15 @@
 <string name="home_main_poster_img_des">Hlavný plagát</string>
 <string name="home_more_info">Viac informácií</string>
 <string name="home_next_random_img_des">Ďalší náhodný</string>
+<string name="home_none_body">Vyberte zdroj a uvidíte tu jeho rady. Pokračovať v sledovaní a vaše záložky zostanú aj bez neho.</string>
+<string name="home_none_headline">Nie je vybraný žiadny zdroj</string>
 <string name="home_offline_bookmarks_body">Vaše záložky sú uložené v tomto zariadení.</string>
 <string name="home_offline_source_headline">%1$s potrebuje pripojenie</string>
 <string name="home_play">Prehrať</string>
 <string name="home_random">Náhodné</string>
 <string name="home_search_only_body">Žiadne z vašich rozšírení nemá domovskú stránku, no stále v nich môžete hľadať.</string>
 <string name="home_source">Zdroj</string>
+<string name="home_source_none_subtitle">ŽIADNE RADY · VAŠE RADY ZOSTÁVAJÚ</string>
 <string name="install_prerelease">Nainštalujte pre-release verziu</string>
 <string name="jsdelivr_enabled">Nepodarilo sa pripojiť na GitHub. Zapína sa proxy jsDelivr…</string>
 <string name="jsdelivr_proxy">GitHub Proxy</string>

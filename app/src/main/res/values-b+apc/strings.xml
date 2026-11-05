@@ -323,12 +323,15 @@
 <string name="home_main_poster_img_des">"الپوسر الأساسية"</string>
 <string name="home_more_info">"بَعد معلومات"</string>
 <string name="home_next_random_img_des">"العشوائي يللي بعده"</string>
+<string name="home_none_body">"اختار مصدر لتشوف صفوفه هون. متابعة المشاهدة وإشاراتك المرجعية بيضلوا بدونه."</string>
+<string name="home_none_headline">"ما في مصدر مختار"</string>
 <string name="home_offline_bookmarks_body">"إشاراتك المرجعية محفوظة على هالجهاز."</string>
 <string name="home_offline_source_headline" formatted="true">"%1$s بدو اتصال"</string>
 <string name="home_play">"مشي"</string>
 <string name="home_random">"عشوائي"</string>
 <string name="home_search_only_body">"ما في ولا إضافة عندها صفحة رئيسية، بس فيك تنبش فيهن."</string>
 <string name="home_source">"مصدر"</string>
+<string name="home_source_none_subtitle">"ما في صفوف · صفوفك بتضل"</string>
 <string name="install_prerelease">"نزل النسخة التجريبية من الآپ"</string>
 <string name="is_adult">"18+"</string>
 <string name="jsdelivr_enabled">"م قدرنا نوصل ل \"گِت هَب\". عم ندَوِر پروكسي JSDelivr …"</string>

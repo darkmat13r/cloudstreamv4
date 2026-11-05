@@ -73,10 +73,13 @@
 <string name="home_main_poster_img_des">Kartellun Principali</string>
 <string name="home_more_info">Iktar Informazzjoni</string>
 <string name="home_next_random_img_des">Li jmiss bl'addoċċ</string>
+<string name="home_none_body">Agħżel sors biex tara r-ringieli tiegħu hawn. Kompli ara u l-bookmarks tiegħek jibqgħu anke mingħajru.</string>
+<string name="home_none_headline">Ebda sors magħżul</string>
 <string name="home_offline_bookmarks_body">Il-bookmarks tiegħek huma salvati fuq dan l-apparat.</string>
 <string name="home_offline_source_headline">%1$s jeħtieġ konnessjoni</string>
 <string name="home_play">Ibda</string>
 <string name="home_search_only_body">L-ebda waħda mill-estensjonijiet tiegħek m'għandha paġna ewlenija, imma xorta tista' tfittex fihom.</string>
+<string name="home_source_none_subtitle">EBDA RINGIELI · IR-RINGIELI TIEGĦEK JIBQGĦU</string>
 <string name="links_reloaded_toast">Links regaw gew mogħbija</string>
 <string name="load_more">Għabbi iktar</string>
 <string name="loading">Tagħbija…</string>

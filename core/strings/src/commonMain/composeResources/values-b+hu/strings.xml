@@ -285,12 +285,15 @@
 <string name="home_main_poster_img_des">Fő Plakát</string>
 <string name="home_more_info">Több információ</string>
 <string name="home_next_random_img_des">Következő véletlenszerű</string>
+<string name="home_none_body">Válasszon forrást, hogy itt lássa a sorait. A folytatás és a könyvjelzői forrás nélkül is megmaradnak.</string>
+<string name="home_none_headline">Nincs kiválasztott forrás</string>
 <string name="home_offline_bookmarks_body">A könyvjelzői ezen az eszközön vannak mentve.</string>
 <string name="home_offline_source_headline">A(z) %1$s kapcsolatot igényel</string>
 <string name="home_play">Lejátszás</string>
 <string name="home_random">Lepj meg</string>
 <string name="home_search_only_body">Egyik bővítményének sincs kezdőlapja, de továbbra is kereshet bennük.</string>
 <string name="home_source">Forrás</string>
+<string name="home_source_none_subtitle">NINCSENEK SOROK · A SAJÁT SORAI MARADNAK</string>
 <string name="install_prerelease">Telepít kiadás előtti verziót</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">Nem sikerült elérni a GitHubot, a jsdelivr proxy bekapcsolva…</string>

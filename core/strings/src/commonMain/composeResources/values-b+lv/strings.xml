@@ -266,12 +266,15 @@
 <string name="home_main_poster_img_des">Galvenais plakāts</string>
 <string name="home_more_info">Vairāk informācijas</string>
 <string name="home_next_random_img_des">Nākamais nejaušais</string>
+<string name="home_none_body">Izvēlieties avotu, lai šeit redzētu tā rindas. Turpināt skatīties un jūsu grāmatzīmes paliek arī bez tā.</string>
+<string name="home_none_headline">Nav izvēlēts avots</string>
 <string name="home_offline_bookmarks_body">Jūsu grāmatzīmes ir saglabātas šajā ierīcē.</string>
 <string name="home_offline_source_headline">%1$s nepieciešams savienojums</string>
 <string name="home_play">Atskaņot</string>
 <string name="home_random">Randoms</string>
 <string name="home_search_only_body">Nevienam no jūsu papildinājumiem nav sākumlapas, taču tajos joprojām var meklēt.</string>
 <string name="home_source">Devējs</string>
+<string name="home_source_none_subtitle">NAV RINDU · JŪSU RINDAS PALIEK</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">Neizdevās sasniegt GitHub. Pieslēdzas starpniekserverim caur jsDelivr…</string>
 <string name="jsdelivr_proxy">GitHub starpniekserveris</string>

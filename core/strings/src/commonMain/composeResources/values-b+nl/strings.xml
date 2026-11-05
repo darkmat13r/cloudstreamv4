@@ -298,12 +298,15 @@
 <string name="home_main_poster_img_des">Hoofdposter</string>
 <string name="home_more_info">Meer info</string>
 <string name="home_next_random_img_des">Volgende willekeurig</string>
+<string name="home_none_body">Kies een bron om hier de rijen te zien. Verder kijken en je bladwijzers blijven ook zonder bron.</string>
+<string name="home_none_headline">Geen bron gekozen</string>
 <string name="home_offline_bookmarks_body">Je bladwijzers zijn op dit apparaat opgeslagen.</string>
 <string name="home_offline_source_headline">%1$s heeft een verbinding nodig</string>
 <string name="home_play">Speel</string>
 <string name="home_random">Willekeurig</string>
 <string name="home_search_only_body">Geen van je uitbreidingen heeft een startpagina, maar je kunt er nog steeds in zoeken.</string>
 <string name="home_source">Bron</string>
+<string name="home_source_none_subtitle">GEEN RIJEN · JE RIJEN BLIJVEN</string>
 <string name="install_prerelease">Pre-releaseversie installeren</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">Kan GitHub niet bereiken, schakel jsDelivr proxy in…</string>

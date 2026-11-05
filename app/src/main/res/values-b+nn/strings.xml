@@ -106,10 +106,13 @@
 <string name="home_main_poster_img_des">"Hovudminiatyrbilete"</string>
 <string name="home_more_info">"Meir informasjon"</string>
 <string name="home_next_random_img_des">"Neste tilfeldig"</string>
+<string name="home_none_body">"Vel ei kjelde for å sjå radene her. Hald fram å sjå og bokmerka dine blir verande utan."</string>
+<string name="home_none_headline">"Inga kjelde vald"</string>
 <string name="home_offline_bookmarks_body">"Bokmerka dine er lagra på denne eininga."</string>
 <string name="home_offline_source_headline" formatted="true">"%1$s treng tilkopling"</string>
 <string name="home_play">"Spel(e) av"</string>
 <string name="home_search_only_body">"Ingen av utvidingane dine har ei heimeside, men du kan framleis søkje i dei."</string>
+<string name="home_source_none_subtitle">"INGEN RADER · RADENE DINE BLIR"</string>
 <string name="kitsu_settings">"Vis miniatyrbilete frå Kitsu"</string>
 <string name="lightnovel">"Lysnovelleprogram av dei same utviklarane"</string>
 <string name="live_singular">"Direktesending"</string>

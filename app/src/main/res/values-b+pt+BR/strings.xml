@@ -324,12 +324,15 @@
 <string name="home_main_poster_img_des">"Pôster principal"</string>
 <string name="home_more_info">"Mais informações"</string>
 <string name="home_next_random_img_des">"Próximo Aleatório"</string>
+<string name="home_none_body">"Escolha uma fonte para ver as fileiras dela aqui. Continuar assistindo e seus marcadores ficam mesmo sem ela."</string>
+<string name="home_none_headline">"Nenhuma fonte escolhida"</string>
 <string name="home_offline_bookmarks_body">"Seus marcadores estão salvos neste dispositivo."</string>
 <string name="home_offline_source_headline" formatted="true">"%1$s precisa de conexão"</string>
 <string name="home_play">"Reproduzir"</string>
 <string name="home_random">"Aleatório"</string>
 <string name="home_search_only_body">"Nenhuma das suas extensões tem página inicial, mas você ainda pode pesquisar nelas."</string>
 <string name="home_source">"Fonte"</string>
+<string name="home_source_none_subtitle">"SEM FILEIRAS · SUAS FILEIRAS FICAM"</string>
 <string name="install_prerelease">"Instalar versão antecipada"</string>
 <string name="is_adult">"18+"</string>
 <string name="jsdelivr_enabled">"Não foi possível se conectar ao GitHub. Ativando proxy JsDelivr…"</string>

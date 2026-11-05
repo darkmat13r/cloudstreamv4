@@ -323,12 +323,15 @@
 <string name="home_main_poster_img_des">"Асноўны плакат"</string>
 <string name="home_more_info">"Дадатковыя звесткі"</string>
 <string name="home_next_random_img_des">"Наступны выпадковы"</string>
+<string name="home_none_body">"Абярыце крыніцу, каб убачыць тут яе радкі. Працяг прагляду і закладкі застаюцца і без яе."</string>
+<string name="home_none_headline">"Крыніца не абрана"</string>
 <string name="home_offline_bookmarks_body">"Вашы закладкі захаваны на гэтай прыладзе."</string>
 <string name="home_offline_source_headline" formatted="true">"%1$s патрабуе злучэння"</string>
 <string name="home_play">"Прайграць"</string>
 <string name="home_random">"Выпадковае"</string>
 <string name="home_search_only_body">"Ніводнае з вашых пашырэнняў не мае дамашняй старонкі, але ў іх усё яшчэ можна шукаць."</string>
 <string name="home_source">"Крыніца"</string>
+<string name="home_source_none_subtitle">"НЯМА РАДКОЎ · ВАШЫ РАДКІ ЗАСТАЮЦЦА"</string>
 <string name="install_prerelease">"Усталяваць перадфінальную версію"</string>
 <string name="is_adult">"18+"</string>
 <string name="jsdelivr_enabled">"Не ўдалося дасягнуць GitHub. Уключэнне проксі jsDelivr…"</string>

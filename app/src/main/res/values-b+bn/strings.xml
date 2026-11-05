@@ -196,10 +196,13 @@
 <string name="home_main_poster_img_des">"মূল পোস্টার"</string>
 <string name="home_more_info">"আরো তথ্য"</string>
 <string name="home_next_random_img_des">"পরবর্তী র‍্যান্ডম"</string>
+<string name="home_none_body">"এখানে সারিগুলো দেখতে একটি উৎস বাছাই করুন। দেখা চালিয়ে যান ও আপনার বুকমার্কগুলো উৎস ছাড়াও থাকে।"</string>
+<string name="home_none_headline">"কোনো উৎস বাছাই করা হয়নি"</string>
 <string name="home_offline_bookmarks_body">"আপনার বুকমার্কগুলো এই ডিভাইসে সংরক্ষিত আছে।"</string>
 <string name="home_offline_source_headline" formatted="true">"%1$s-এর সংযোগ প্রয়োজন"</string>
 <string name="home_play">"চালান"</string>
 <string name="home_search_only_body">"আপনার কোনো এক্সটেনশনের হোম পেজ নেই, তবে আপনি সেগুলোতে খুঁজতে পারেন।"</string>
+<string name="home_source_none_subtitle">"কোনো সারি নেই · আপনার সারি থাকে"</string>
 <string name="install_prerelease">"প্রাক-মুক্তি সংস্করণ ইনস্টলেশন"</string>
 <string name="jsdelivr_enabled">"GitHub-এর সাথে সংযোগ করা যায়নি। jsDelivr proxy চালু করা হচ্ছে।"</string>
 <string name="jsdelivr_proxy">"গিডহাব প্রক্সি"</string>

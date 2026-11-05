@@ -341,12 +341,15 @@
 <string name="home_main_poster_img_des">Main Poster</string>
 <string name="home_more_info">More info</string>
 <string name="home_next_random_img_des">Next Random</string>
+<string name="home_none_body">Choose a source to see its rows here. Continue watching and your bookmarks stay without one.</string>
+<string name="home_none_headline">No source chosen</string>
 <string name="home_offline_bookmarks_body">Your bookmarks are saved on this device.</string>
 <string name="home_offline_source_headline">%1$s needs a connection</string>
 <string name="home_play">Play</string>
 <string name="home_random">Random</string>
 <string name="home_search_only_body">None of your extensions has a home page, but you can still search them.</string>
 <string name="home_source">Source</string>
+<string name="home_source_none_subtitle">NO RAILS · YOUR ROWS STAY</string>
 <string name="install_prerelease">Install pre-release version</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">Could not reach GitHub. Turning on jsDelivr proxy…</string>

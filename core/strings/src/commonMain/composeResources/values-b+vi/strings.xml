@@ -324,12 +324,15 @@
 <string name="home_main_poster_img_des">Poster chính</string>
 <string name="home_more_info">Thông tin thêm</string>
 <string name="home_next_random_img_des">Tập tiếp theo ngẫu nhiên</string>
+<string name="home_none_body">Chọn một nguồn để xem các hàng của nó ở đây. Xem tiếp và danh sách của bạn vẫn ở lại khi không có nguồn.</string>
+<string name="home_none_headline">Chưa chọn nguồn</string>
 <string name="home_offline_bookmarks_body">Danh sách của bạn được lưu trên thiết bị này.</string>
 <string name="home_offline_source_headline">%1$s cần kết nối</string>
 <string name="home_play">Phát</string>
 <string name="home_random">Ngẫu nhiên</string>
 <string name="home_search_only_body">Không có tiện ích mở rộng nào của bạn có trang chủ, nhưng bạn vẫn có thể tìm kiếm trong đó.</string>
 <string name="home_source">Nguồn</string>
+<string name="home_source_none_subtitle">KHÔNG CÓ HÀNG · HÀNG CỦA BẠN VẪN Ở LẠI</string>
 <string name="install_prerelease">Cài đặt phiên bản phát hành trước</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">Không thể kết nối được tới GitHub. Đang bật jsDelivr proxy…</string>

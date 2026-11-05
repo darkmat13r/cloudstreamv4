@@ -7,6 +7,7 @@ import com.lagradost.cloudstream4.compose.DefaultStateContainer
 import com.lagradost.cloudstream4.compose.EffectContainer
 import com.lagradost.cloudstream4.compose.StateContainer
 import kotlin.concurrent.Volatile
+import kotlin.random.Random
 import kotlin.coroutines.cancellation.CancellationException
 import kotlinx.coroutines.CompletableJob
 import kotlinx.coroutines.CoroutineScope
@@ -38,6 +39,7 @@ import kotlinx.coroutines.withTimeoutOrNull
  *   offline leaves it on screen.
  * @param bookmarkStore the bookmarks rail (`TV Home Extras` 3e) and its filter. Read when [history] is, for the same reasons, and
  *   kept on screen the same way.
+ * @param random what Random picks with (3j). A test passes a seeded one.
  */
 class HomeViewModel(
     private val source: HomeSource,
@@ -45,6 +47,7 @@ class HomeViewModel(
     private val memory: HomeSourceMemory = HomeSourceMemory.None,
     private val history: HomeWatchHistory = HomeWatchHistory.None,
     private val bookmarkStore: HomeBookmarkStore = HomeBookmarkStore.None,
+    private val random: Random = Random.Default,
 ) : ViewModel(),
     StateContainer<HomeState> by DefaultStateContainer(HomeState()),
     EffectContainer<HomeEffect> by DefaultEffectContainer(),
@@ -82,6 +85,11 @@ class HomeViewModel(
             HomeAction.ExtensionsRequested -> scope.launch { postEffect { HomeEffect.OpenExtensions } }
             HomeAction.AccountsRequested -> scope.launch { postEffect { HomeEffect.OpenAccounts } }
             is HomeAction.BookmarkFilterPressed -> filterBookmarks(action.status)
+            HomeAction.ReloadRequested -> reload()
+            is HomeAction.RandomRequested -> openRandom(action.from)
+            HomeAction.SourceSearchRequested -> state.value.selectedOption?.let { option ->
+                scope.launch { postEffect { HomeEffect.OpenSourceSearch(option.id) } }
+            }
             HomeAction.SourcesChanged -> {
                 sourcesChanged()
                 readLocal()
@@ -198,6 +206,16 @@ class HomeViewModel(
     private fun applySources(found: HomeSources, request: Int) {
         val current = state.value
         val remembered = memory.last()
+        if (remembered == HomeSourceId.None) {
+            // Chosen, and not a source: nothing to wait for and nothing to fall back from (3i).
+            if (current.unsourced && current.status == HomeStatus.Unsourced) {
+                updateCurrent(request) { copy(sources = found.options) }
+            } else {
+                restart()
+                updateState { unsourced(found.options) }
+            }
+            return
+        }
         val offered = { id: HomeSourceId? -> found.options.any { it.id == id } }
         val chosen = when {
             offered(remembered) -> remembered
@@ -217,7 +235,13 @@ class HomeViewModel(
             else -> {
                 val next = restart()
                 updateState {
-                    copy(sources = found.options, selected = chosen, status = HomeStatus.Loading, returnTo = null)
+                    copy(
+                        sources = found.options,
+                        selected = chosen,
+                        status = HomeStatus.Loading,
+                        returnTo = null,
+                        reloading = false,
+                    )
                 }
                 val option = found.options.first { it.id == chosen }
                 scope.launch(work) { loadFirstPages(option, next) }
@@ -230,16 +254,62 @@ class HomeViewModel(
         get() = this is HomeStatus.NoSources || this is HomeStatus.Failed || this is HomeStatus.Offline ||
             this is HomeStatus.Empty
 
+    /** `None` (3i): no hero, no source rails, and nothing asked of a source. */
+    private fun HomeState.unsourced(options: List<HomeSourceOption>) = copy(
+        sources = options,
+        selected = HomeSourceId.None,
+        status = HomeStatus.Unsourced,
+        hero = HomeHero.None,
+        returnTo = null,
+        reloading = false,
+    )
+
     private fun select(id: HomeSourceId) {
         val current = state.value
+        if (id == HomeSourceId.None) {
+            updateState { copy(pickerOpen = false) }
+            memory.remember(id)
+            if (current.unsourced) return
+            restart()
+            updateState { unsourced(sources) }
+            return
+        }
         val option = current.sources.firstOrNull { it.id == id }
         updateState { copy(pickerOpen = false) }
         if (option == null) return
         memory.remember(id)
         if (id == current.selected) return
         val request = restart()
-        updateState { copy(selected = id, status = HomeStatus.Loading, returnTo = null) }
+        updateState { copy(selected = id, status = HomeStatus.Loading, returnTo = null, reloading = false) }
         scope.launch(work) { loadFirstPages(option, request) }
+    }
+
+    /**
+     * 3j's Reload: every section asked again while the rows stay. The answer replaces them in place, a partial one is the
+     * built notice, and a failure is 3m, with what the device keeps above it. The hero stays as it was, since it came from
+     * a title's own page and the rows it stood beside are still the source's.
+     */
+    private fun reload() {
+        val current = state.value
+        val option = current.selectedOption ?: return
+        if (current.reloading || current.status.rows.isEmpty()) return
+        val request = restart()
+        updateState { copy(reloading = true) }
+        scope.launch(work) {
+            val replies = ask(option, (0 until option.sections).toList())
+            val next = HomePaging.fold(emptyList(), replies, option.sections)
+            updateCurrent(request) {
+                copy(status = next, reloading = false, hero = if (next.rows.isEmpty()) HomeHero.None else hero)
+            }
+        }
+    }
+
+    /** 3j's Random: one title from everything loaded, as the old button chose (`HomeFragment.kt:855-868` in `:app`). */
+    private fun openRandom(from: HomeReturn?) {
+        val title = state.value.status.rows.asSequence().flatMap { it.items.asSequence() }.distinctBy { it.id }.toList()
+            .randomOrNull(random) ?: return
+        from?.let { updateState { copy(returnTo = it) } }
+        scope.launch { postEffect { HomeEffect.OpenTitle(title.id) } }
     }
 
     private suspend fun loadFirstPages(option: HomeSourceOption, request: Int) {
@@ -285,10 +355,11 @@ class HomeViewModel(
         val option = current.selectedOption
         when {
             status is HomeStatus.Partial -> if (option != null && !status.retrying) retryFailed(option, status)
+            status == HomeStatus.Unsourced -> Unit
             option == null -> readSources()
             else -> {
                 val request = restart()
-                updateState { copy(status = HomeStatus.Loading) }
+                updateState { copy(status = HomeStatus.Loading, reloading = false) }
                 scope.launch(work) { loadFirstPages(option, request) }
             }
         }

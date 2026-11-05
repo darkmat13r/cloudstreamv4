@@ -760,4 +760,100 @@ class HomeViewModelTest {
         )
         assertEquals(listOf("w"), vm.state.value.bookmarks.shown.map { it.id })
     }
+
+    // ---- The chrome, and None (`TV Home Extras` 3h to 3j, 3m) -----------------------------------------------------
+
+    private suspend fun TestScope.effectAfter(vm: HomeViewModel, action: HomeAction): HomeEffect {
+        val effect = CompletableDeferred<HomeEffect>()
+        val job = launch(UnconfinedTestDispatcher(testScheduler)) { effect.complete(vm.effect.first()) }
+        vm.onAction(action)
+        runCurrent()
+        job.cancel()
+        return effect.await()
+    }
+
+    @Test
+    fun `choosing None asks nothing, keeps it, and survives the sources changing`() = runTest {
+        val memory = Kept()
+        val source = Fake(listOf(option(a))) { id, _, _ -> page(id.value, "1") }
+        val vm = model(source, memory)
+        val asked = source.calls.size
+        vm.onAction(HomeAction.SourceSelected(HomeSourceId.None))
+        assertEquals(HomeStatus.Unsourced, vm.state.value.status)
+        assertTrue(vm.state.value.unsourced)
+        assertEquals(HomeSourceId.None, memory.id)
+        vm.onAction(HomeAction.SourcesChanged)
+        vm.onAction(HomeAction.Retry)
+        assertEquals(HomeStatus.Unsourced, vm.state.value.status)
+        assertEquals(asked, source.calls.size)
+    }
+
+    @Test
+    fun `None remembered opens as None and does not wait for or fall back to a source`() = runTest {
+        val source = Fake(listOf(option(a))) { id, _, _ -> page(id.value, "1") }
+        val vm = model(source, Kept(HomeSourceId.None))
+        assertEquals(HomeStatus.Unsourced, vm.state.value.status)
+        assertTrue(source.calls.isEmpty())
+        vm.onAction(HomeAction.SourceSelected(a))
+        assertIs<HomeStatus.Showing>(vm.state.value.status)
+    }
+
+    @Test
+    fun `a reload keeps the rows while it runs, ignores a second press, and swaps them in place`() = runTest {
+        val gate = CompletableDeferred<Unit>()
+        var round = 0
+        val source = Fake(listOf(option(a))) { _, _, _ ->
+            if (round > 0) gate.await()
+            page("A", "r$round")
+        }
+        val vm = model(source)
+        round = 1
+        vm.onAction(HomeAction.ReloadRequested)
+        assertTrue(vm.state.value.reloading)
+        assertEquals(listOf("r0"), vm.state.value.status.rows.single().items.map { it.id })
+        val asked = source.calls.size
+        vm.onAction(HomeAction.ReloadRequested)
+        assertEquals(asked, source.calls.size)
+        gate.complete(Unit)
+        runCurrent()
+        assertFalse(vm.state.value.reloading)
+        assertEquals(listOf("r1"), vm.state.value.status.rows.single().items.map { it.id })
+    }
+
+    @Test
+    fun `a reload that fails is a failure, and with nothing loaded there is nothing to reload`() = runTest {
+        var fail = false
+        val source = Fake(listOf(option(a))) { _, _, _ -> if (fail) HomePageReply.Failed("HTTP 503") else page("A", "1") }
+        val vm = model(source)
+        fail = true
+        vm.onAction(HomeAction.ReloadRequested)
+        assertEquals(HomeStatus.Failed("HTTP 503"), vm.state.value.status)
+        val asked = source.calls.size
+        vm.onAction(HomeAction.ReloadRequested)
+        assertEquals(asked, source.calls.size)
+    }
+
+    @Test
+    fun `random opens one loaded title and keeps where to come back to, and nothing loaded opens nothing`() = runTest {
+        val vm = HomeViewModel(
+            Fake(listOf(option(a, sections = 2))) { _, section, _ -> page("S$section", "s$section-1", "s$section-2") },
+            TestScope(UnconfinedTestDispatcher(testScheduler)),
+            random = kotlin.random.Random(7),
+        )
+        val back = HomeReturn("random", HomeRowKey.Chrome)
+        val effect = assertIs<HomeEffect.OpenTitle>(effectAfter(vm, HomeAction.RandomRequested(back)))
+        assertTrue(effect.id in setOf("s0-1", "s0-2", "s1-1", "s1-2"), effect.id)
+        assertEquals(back, vm.state.value.returnTo)
+
+        val none = model(Fake(listOf(option(a))) { _, _, _ -> HomePageReply.Offline })
+        none.onAction(HomeAction.RandomRequested(back))
+        assertNull(none.state.value.returnTo)
+    }
+
+    @Test
+    fun `search from the chrome is of the chosen source alone`() = runTest {
+        val vm = model(Fake(listOf(option(a), option(b))) { id, _, _ -> page(id.value, "1") })
+        vm.onAction(HomeAction.SourceSelected(b))
+        assertEquals(HomeEffect.OpenSourceSearch(b), effectAfter(vm, HomeAction.SourceSearchRequested))
+    }
 }

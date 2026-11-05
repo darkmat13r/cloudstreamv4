@@ -107,10 +107,13 @@
 <string name="home_main_poster_img_des">"Ĉefa Afiŝo"</string>
 <string name="home_more_info">"Pli da informoj"</string>
 <string name="home_next_random_img_des">"Sekva Hazarda"</string>
+<string name="home_none_body">"Elektu fonton por vidi ĝiajn vicojn ĉi tie. Daŭrigi spekton kaj viaj legosignoj restas sen ĝi."</string>
+<string name="home_none_headline">"Neniu fonto elektita"</string>
 <string name="home_offline_bookmarks_body">"Viaj legosignoj estas konservitaj en ĉi tiu aparato."</string>
 <string name="home_offline_source_headline" formatted="true">"%1$s bezonas konekton"</string>
 <string name="home_play">"Spekti"</string>
 <string name="home_search_only_body">"Neniu el viaj kromprogramoj havas hejmpaĝon, sed vi ankoraŭ povas serĉi en ili."</string>
+<string name="home_source_none_subtitle">"NENIUJ VICOJ · VIAJ VICOJ RESTAS"</string>
 <string name="load_more">"Ŝargi pli"</string>
 <string name="loading">"Ŝarĝante…"</string>
 <string name="login">"Saluti"</string>

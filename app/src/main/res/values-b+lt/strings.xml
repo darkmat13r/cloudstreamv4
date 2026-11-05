@@ -146,10 +146,13 @@
 <string name="home_main_poster_img_des">"Pagrindinis Plakatas"</string>
 <string name="home_more_info">"Daugiau informacijos"</string>
 <string name="home_next_random_img_des">"Sekantis atsitiktinai"</string>
+<string name="home_none_body">"Pasirinkite šaltinį, kad čia matytumėte jo eilutes. Žiūrėjimo tęsimas ir jūsų žymos lieka ir be jo."</string>
+<string name="home_none_headline">"Nepasirinktas joks šaltinis"</string>
 <string name="home_offline_bookmarks_body">"Jūsų žymos išsaugotos šiame įrenginyje."</string>
 <string name="home_offline_source_headline" formatted="true">"%1$s reikia ryšio"</string>
 <string name="home_play">"Paleisti"</string>
 <string name="home_search_only_body">"Nė vienas jūsų plėtinys neturi pagrindinio puslapio, bet juose vis tiek galite ieškoti."</string>
+<string name="home_source_none_subtitle">"NĖRA EILUČIŲ · JŪSŲ EILUTĖS LIEKA"</string>
 <string name="is_adult">"18+"</string>
 <string name="library">"Biblioteka"</string>
 <string name="links_reloaded_toast">"Nuorodos perkrautos"</string>

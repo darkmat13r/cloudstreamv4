@@ -323,12 +323,15 @@
 <string name="home_main_poster_img_des">"主封面"</string>
 <string name="home_more_info">"更多資訊"</string>
 <string name="home_next_random_img_des">"隨機下一個"</string>
+<string name="home_none_body">"選擇一個來源即可在此查看它的列。繼續觀看和你的書籤在沒有來源時也會保留。"</string>
+<string name="home_none_headline">"未選擇來源"</string>
 <string name="home_offline_bookmarks_body">"你的書籤儲存在此裝置上。"</string>
 <string name="home_offline_source_headline" formatted="true">"%1$s 需要網路連線"</string>
 <string name="home_play">"播放"</string>
 <string name="home_random">"隨機"</string>
 <string name="home_search_only_body">"你的擴充功能都沒有主畫面，但仍可在其中搜尋。"</string>
 <string name="home_source">"來源"</string>
+<string name="home_source_none_subtitle">"無列 · 你的列保留"</string>
 <string name="install_prerelease">"安裝提前發行版"</string>
 <string name="is_adult">"18+"</string>
 <string name="jsdelivr_enabled">"無法存取 GitHub。 正在開啟 jsDelivr proxy…"</string>

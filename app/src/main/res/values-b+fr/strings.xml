@@ -324,12 +324,15 @@
 <string name="home_main_poster_img_des">"Affiche principale"</string>
 <string name="home_more_info">"Plus d'information"</string>
 <string name="home_next_random_img_des">"Aléatoire suivant"</string>
+<string name="home_none_body">"Choisissez une source pour voir ses rangées ici. Reprendre et vos marque-pages restent sans source."</string>
+<string name="home_none_headline">"Aucune source choisie"</string>
 <string name="home_offline_bookmarks_body">"Vos marque-pages sont enregistrés sur cet appareil."</string>
 <string name="home_offline_source_headline" formatted="true">"%1$s a besoin d'une connexion"</string>
 <string name="home_play">"Lecture"</string>
 <string name="home_random">"Aléatoire"</string>
 <string name="home_search_only_body">"Aucune de vos extensions n'a de page d'accueil, mais vous pouvez quand même y effectuer une recherche."</string>
 <string name="home_source">"Source"</string>
+<string name="home_source_none_subtitle">"AUCUNE RANGÉE · VOS RANGÉES RESTENT"</string>
 <string name="install_prerelease">"Installer la version préliminaire"</string>
 <string name="is_adult">"18+"</string>
 <string name="jsdelivr_enabled">"Impossible d'atteindre GitHub. Activation du proxy jsDelivr…"</string>

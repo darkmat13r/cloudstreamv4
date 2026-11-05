@@ -323,12 +323,15 @@
 <string name="home_main_poster_img_des">Pôster Principal</string>
 <string name="home_more_info">Mais info</string>
 <string name="home_next_random_img_des">Próximo Aleatório</string>
+<string name="home_none_body">Escolha uma fonte para ver aqui as suas filas. Continuar a ver e os seus marcadores ficam mesmo sem ela.</string>
+<string name="home_none_headline">Nenhuma fonte escolhida</string>
 <string name="home_offline_bookmarks_body">Os seus marcadores estão guardados neste dispositivo.</string>
 <string name="home_offline_source_headline">%1$s precisa de uma ligação</string>
 <string name="home_play">Reproduzir</string>
 <string name="home_random">Aleatório</string>
 <string name="home_search_only_body">Nenhuma das suas extensões tem página inicial, mas ainda pode pesquisar nelas.</string>
 <string name="home_source">Fonte</string>
+<string name="home_source_none_subtitle">SEM FILAS · AS SUAS FILAS FICAM</string>
 <string name="install_prerelease">Instalar versão de pré-lançamento</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">Não foi possível chegar ao GitHub. Ativando o proxy jsDelivr…</string>

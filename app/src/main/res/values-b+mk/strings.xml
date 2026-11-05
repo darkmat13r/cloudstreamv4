@@ -323,12 +323,15 @@
 <string name="home_main_poster_img_des">"Главен постер"</string>
 <string name="home_more_info">"Повеќе информации"</string>
 <string name="home_next_random_img_des">"Следен рандом"</string>
+<string name="home_none_body">"Изберете извор за да ги видите неговите редови тука. Продолжи со гледање и вашите обележувачи остануваат и без него."</string>
+<string name="home_none_headline">"Не е избран извор"</string>
 <string name="home_offline_bookmarks_body">"Вашите обележувачи се зачувани на овој уред."</string>
 <string name="home_offline_source_headline" formatted="true">"%1$s има потреба од врска"</string>
 <string name="home_play">"Пушти"</string>
 <string name="home_random">"Случајно"</string>
 <string name="home_search_only_body">"Ниту една од твоите екстензии нема почетна страница, но сепак можеш да пребаруваш во нив."</string>
 <string name="home_source">"Извор на видео и превод"</string>
+<string name="home_source_none_subtitle">"НЕМА РЕДОВИ · ВАШИТЕ РЕДОВИ ОСТАНУВААТ"</string>
 <string name="install_prerelease">"Инсталирај предиздавачка верзија"</string>
 <string name="is_adult">"18+"</string>
 <string name="jsdelivr_enabled">"Не успеа да стигне до GitHub. Вклучувам jsDelivr прокси…"</string>

@@ -95,10 +95,13 @@
 <string name="home_info">Impormasyon</string>
 <string name="home_more_info">Higit pang impormasyon</string>
 <string name="home_next_random_img_des">Susunod na Kahit Ano</string>
+<string name="home_none_body">Pumili ng source para makita rito ang mga row nito. Nananatili ang Ituloy ang panonood at ang mga bookmark mo kahit wala nito.</string>
+<string name="home_none_headline">Walang napiling source</string>
 <string name="home_offline_bookmarks_body">Naka-save sa device na ito ang mga bookmark mo.</string>
 <string name="home_offline_source_headline">Kailangan ng %1$s ng koneksyon</string>
 <string name="home_play">Ipatugtog</string>
 <string name="home_search_only_body">Wala sa iyong mga extension ang may home page, pero maaari ka pa ring maghanap sa mga ito.</string>
+<string name="home_source_none_subtitle">WALANG ROW · NANANATILI ANG MGA ROW MO</string>
 <string name="links_reloaded_toast">Ini-load muli ang mga link</string>
 <string name="load_more">Mag-load pa</string>
 <string name="loading">Naglo-load…</string>
