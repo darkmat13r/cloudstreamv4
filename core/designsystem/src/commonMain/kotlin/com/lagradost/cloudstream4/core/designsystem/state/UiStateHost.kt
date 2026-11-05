@@ -33,6 +33,8 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamCardSizes
  *   Your [content] gets none: it is your composable and carries its own.
  * @param glyph decoration for the three prompt states, chosen by the caller from the state it is
  *   handed. Not focusable; the design system ships no icon set.
+ * @param emptyActionElsewhere `true` when the caller draws [UiState.Empty]'s action itself, in its
+ *   chip row. See `showAction` on [StateView], which says what that makes the caller owe.
  * @param skeleton what [UiState.Loading] draws, handed the host's [modifier]. **Pass one shaped
  *   like your content** — the
  *   default is a generic landscape rail, and a screen that is not a rail of landscape cards will
@@ -44,6 +46,7 @@ fun <T> UiStateHost(
     state: UiState<T>,
     modifier: Modifier = Modifier,
     glyph: @Composable (UiState<T>) -> Unit = {},
+    emptyActionElsewhere: Boolean = false,
     skeleton: @Composable (Modifier) -> Unit = {
         SkeletonRail(rung = CloudStreamCardSizes.LandscapeLarge, modifier = it)
     },
@@ -51,7 +54,13 @@ fun <T> UiStateHost(
 ) {
     when (state) {
         is UiState.Loading -> skeleton(modifier)
-        is UiState.Empty -> Prompt(state.prompt, modifier, state.detail) { glyph(state) }
+        is UiState.Empty -> StateView(
+            prompt = state.prompt,
+            modifier = modifier,
+            detail = state.detail,
+            glyph = { glyph(state) },
+            showAction = !emptyActionElsewhere,
+        )
         is UiState.Offline -> Prompt(state.prompt, modifier) { glyph(state) }
         is UiState.Error -> Prompt(state.prompt, modifier, state.detail) { glyph(state) }
         is UiState.Partial -> content(state.value)

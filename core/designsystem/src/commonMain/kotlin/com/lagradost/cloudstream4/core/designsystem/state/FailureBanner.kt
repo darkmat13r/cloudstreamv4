@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
@@ -18,6 +19,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.lagradost.cloudstream4.core.designsystem.primitive.insetOutline
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 
@@ -29,6 +31,14 @@ object FailureBannerDefaults {
      * at three metres. Should be promoted to `dimens.StatusDotSize`.
      */
     val DotSize: Dp = 8.dp
+
+    /**
+     * The pill's height: `.failpill`'s 48px, the same 24dp as a chip's visual. Mirrors `ChipVisualHeight`.
+     */
+    val PillHeight: Dp = CloudStreamDimens.ChipVisualHeight
+
+    /** Inside the pill's ends: `.failpill`'s `padding: 0 24px`, halved. */
+    val PillHorizontalPadding: Dp = 12.dp
 
     /**
      * Gap between the dot, the headline and the mono detail — all non-focusable, so
@@ -82,8 +92,18 @@ fun FailureBanner(
         modifier = modifier.height(CloudStreamDimens.ChipFocusCell),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        NoticeLabels(notice = notice)
-        Spacer(Modifier.width(CloudStreamDimens.ChipRowSpacing))
+        Row(
+            modifier = Modifier
+                .weight(WEIGHT_REMAINING, fill = false)
+                .height(FailureBannerDefaults.PillHeight)
+                .background(color = CloudStreamTheme.colors.raised, shape = CloudStreamTheme.shapes.pill)
+                .insetOutline(CloudStreamTheme.colors.line, CloudStreamTheme.shapes.pill)
+                .padding(horizontal = FailureBannerDefaults.PillHorizontalPadding),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            NoticeLabels(notice = notice)
+        }
+        Spacer(Modifier.width(CloudStreamDimens.MinFocusGap))
         StateActionButton(
             action = notice.retry,
             emphasis = StateActionEmphasis.Secondary,
@@ -119,6 +139,8 @@ private fun RowScope.NoticeLabels(notice: FailureNotice) {
         modifier = Modifier.widthIn(max = FailureBannerDefaults.DetailMaxWidth),
     )
 }
+
+private const val WEIGHT_REMAINING = 1f
 
 private val PreviewNotice = FailureNotice(
     headline = "3 of 12 providers failed",
