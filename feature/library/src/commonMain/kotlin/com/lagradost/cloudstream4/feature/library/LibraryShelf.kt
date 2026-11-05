@@ -30,14 +30,18 @@ internal object LibraryShelf {
      *
      * **A bucket** is its titles, newest kept first, each carrying the progress of its newest position
      * whether or not that position is resumable — a finished thing in "Watching" should look finished.
+     *
+     * @param filter keeps titles containing this text, ignoring case. Blank keeps everything.
      */
     fun cards(
         tab: LibraryTab,
         titles: List<LibraryTitle>,
         positions: List<WatchPosition>,
+        filter: String = "",
     ): List<LibraryCard> {
         val newest = latestByTitle(positions)
-        return when (tab) {
+        val needle = filter.trim()
+        val cards = when (tab) {
             LibraryTab.ContinueWatching -> {
                 val known = titles.associateBy { it.id }
                 newest.values
@@ -52,7 +56,16 @@ internal object LibraryShelf {
                 .sortedByDescending { it.keptAt }
                 .map { it.toCard(newest[it.id]) }
         }
+        return if (needle.isEmpty()) cards else cards.filter { it.title.contains(needle, ignoreCase = true) }
     }
+
+    /** How many rows each list holds. A list with nothing in it has no entry. */
+    fun counts(titles: List<LibraryTitle>): Map<LibraryBucket, Int> =
+        titles.mapNotNull { it.bucket }.groupingBy { it }.eachCount()
+
+    /** Different titles in any list: one kept in two lists is one title. */
+    fun totalTitles(titles: List<LibraryTitle>): Int =
+        titles.filter { it.bucket != null }.distinctBy { it.id }.size
 
     private fun LibraryTitle.toCard(position: WatchPosition?) = LibraryCard(
         id = id,
@@ -65,6 +78,8 @@ internal object LibraryShelf {
         resume = position
             ?.takeIf { it.resumable }
             ?.let { LibraryResume(it.episodeData, it.positionMillis) },
+        typeLabel = typeLabel,
+        posterHeaders = posterHeaders,
     )
 
     /** Rows with nothing to say: in no list, and with no position worth resuming. */

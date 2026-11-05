@@ -1517,3 +1517,45 @@ a focusable. The ring is in the 4 dp above the row, so it is outside the viewpor
 missing, so the comparison passes today. A fix will fail that case: look at the diff, check that the only change is the ring's top edge, and re-record it.
 
 Not checked: whether the last row is cut off at the bottom when the list is full, and whether other TV screens with a `LazyColumn` do the same.
+
+## BUG-33 — Choosing a list after a failed read says the list is empty · **low** · read 2026-11-04
+
+**Status:** open. **Read from the code, not run:** no test or device has shown this happening.
+
+`LibraryViewModel.load` keeps `titles` and `positions` empty when the read fails, and `showTab` rebuilds the status from
+them unless the status is `Loading`. So from `LibraryStatus.Failed`, choosing another tab replaces the failure with
+`LibraryStatus.Empty`. The user is told a list is empty when the truth is that it could not be read.
+
+It reaches both screens that use this ViewModel, the desktop window and the TV library (`KMP-34`). On the TV page the store
+reads `SharedPreferences`, so a failed read should be rare. `KMP-34` left it alone because the fix changes desktop, whose
+behaviour that task had to keep.
+
+**The likely fix:** remember whether a read has ever succeeded, and keep showing `Failed` until one has.
+
+## BUG-34 — On TV, LEFT from a text field never reaches the rail · **medium** · measured 2026-11-05
+
+**Status:** open. Measured on `Television_720p`, API 36, with the Compose rail, driven by `DpadDriver`.
+
+From the search field or the library's filter, LEFT does nothing, however many times it is pressed. A person on the top
+row of either page has to go down a row first to reach the rail. Down still leaves the field, so it is not a trap.
+
+| Build, probe that pressed LEFT 3 or 4 times | Result |
+|---|---|
+| master `e4d97936a`, `SearchTvFragment`, no Quick Search in the process | Stays on the field |
+| master `e4d97936a`, the same after Quick Search and Back, in one activity | Stays on the field |
+| master `e4d97936a`, the same in a new activity after that one closed | Stays on the field |
+| `KMP-34`'s branch, `LibraryTvFragment`'s filter | Stays on the field |
+
+**So Quick Search does not cause it.** A person who uses Quick Search and then Search does hit it, and so does one who
+never opened Quick Search. In all three search cases, RIGHT from the rail landed on `Sources` and LEFT moved to the field,
+where it stopped. The field was not writable (`isInTouchMode` false) and no keyboard was showing.
+
+**Why `TvRailNavigationTest` only sometimes shows it.** `rightReturnsToTheExactStopOnSearch` and
+`everyItemOpensItsDestinationAndTheMarkFollows` pass alone: their route to the rail does not stay on the field. They failed
+with `LEFT never reached the rail, stuck on android.widget.EditText` in every run where a test had opened Quick Search
+earlier in the process (3 of 3), and passed in every run where none had (5 of 5, one of them on master). What Quick Search changes about their
+route was **not established**. The probe above took a different route and did not reproduce that difference.
+
+**Not established either:** the cause. The likely place is Compose's D-pad handling in a text field, which may consume the
+key when nothing in the Compose page lies to the left, so the view system never searches for the rail. That is a guess from
+the symptom, and those sources were not read.

@@ -22,7 +22,9 @@ import com.lagradost.cloudstream3.CloudStreamApp.Companion.setKey
 import com.lagradost.cloudstream3.MainActivity
 import com.lagradost.cloudstream3.R
 import com.lagradost.cloudstream3.ui.settings.Globals.updateTv
+import com.lagradost.cloudstream3.ui.WatchType
 import com.lagradost.cloudstream3.ui.setup.HAS_DONE_SETUP_KEY
+import com.lagradost.cloudstream3.utils.DataStoreHelper
 import com.lagradost.cloudstream4.core.designsystem.target.TextFieldDefaults
 import com.lagradost.cloudstream4.core.devicetest.Dpad
 import com.lagradost.cloudstream4.core.devicetest.DpadDriver
@@ -474,7 +476,32 @@ class TvRailNavigationTest {
     }
 
     @Test
-    fun noDeadEndsOnLibrary() = noDeadEnds(LIBRARY, lost = listOf("$LIBRARY_PAGER -> Right lost focus"))
+    fun noDeadEndsOnLibrary() {
+        // With a title, so the grid is what is walked: an empty library's action is named `Search`, and the walk
+        // cannot tell it from the rail's item. `KMP-34` took away the pager this used to lose focus on.
+        instrumentation.runOnMainSync {
+            DataStoreHelper.setResultWatchState(LIBRARY_STORED_ID, WatchType.WATCHING.internalId)
+            DataStoreHelper.setBookmarkedData(
+                LIBRARY_STORED_ID,
+                DataStoreHelper.BookmarkedData(
+                    bookmarkedTime = 1L,
+                    id = LIBRARY_STORED_ID,
+                    latestUpdatedTime = 1L,
+                    name = "A Bookmarked Title",
+                    url = "https://example.invalid/title",
+                    apiName = "NoSuchProvider",
+                    type = null,
+                    posterUrl = null,
+                    year = null,
+                ),
+            )
+        }
+        try {
+            noDeadEnds(LIBRARY)
+        } finally {
+            instrumentation.runOnMainSync { DataStoreHelper.deleteBookmarkedData(LIBRARY_STORED_ID) }
+        }
+    }
 
     @Test
     fun noDeadEndsOnDownloads() = noDeadEnds(DOWNLOADS)
@@ -559,10 +586,13 @@ class TvRailNavigationTest {
         }
     }
 
-    /** Measures that this loss is the page's, not the Compose rail's. It is not fixed here. */
+    /**
+     * Measures that this loss is the old page's, not the Compose rail's. It is not fixed here. On the emulator layout,
+     * because the TV layout now opens `LibraryTvFragment` (`KMP-34`) and has no pager.
+     */
     @Test
     fun theXmlRailLosesFocusFromTheLibrarysPagerToo() {
-        TvRailSwitch.useComposeRail = false
+        setLayoutPreference(LAYOUT_EMULATOR)
         launch {
             navigate(R.id.navigation_library)
             waitForDestination(R.id.navigation_library)
@@ -642,8 +672,7 @@ class TvRailNavigationTest {
         /** The provider button on Home with no extension installed. */
         const val NO_PROVIDER = "None"
 
-        /** How the driver names the Library's pager, which has no text, with its bounds taken off. */
-        const val LIBRARY_PAGER = "androidx.viewpager.widget.ViewPager"
+        const val LIBRARY_STORED_ID = 987_654_322
         val BOUNDS = Regex("@\\S+")
         const val EDIT_TEXT = "android.widget.EditText"
         const val RAIL_WAIT_MS = 5_000L

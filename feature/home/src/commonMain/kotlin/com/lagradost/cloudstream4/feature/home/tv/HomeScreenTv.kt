@@ -337,7 +337,8 @@ private fun HomeSourceControl(name: String, stops: HomeStops, onClick: () -> Uni
             .semantics { contentDescription = "$role · $name" }
             .clickable(interactionSource = interaction, indication = null, role = Role.Button, onClick = onClick)
             .padding(horizontal = HomeScreenTvDefaults.SourceControlPadding),
-        horizontalArrangement = Arrangement.spacedBy(CloudStreamDimens.ListRowPadding),
+        // The glyph at the far end, as 3c's `margin-left: auto` puts it, while the name decides the width.
+        horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
     ) {
         BasicText(
@@ -345,7 +346,8 @@ private fun HomeSourceControl(name: String, stops: HomeStops, onClick: () -> Uni
             style = remember(style, colors) { style.copy(color = colors.ink) },
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
-            modifier = Modifier.weight(1f),
+            // Not filling: a filling weight held the control at its maximum width whatever the name.
+            modifier = Modifier.weight(1f, fill = false).padding(end = CloudStreamDimens.ListRowPadding),
         )
         CloudStreamIcon(
             CloudStreamIcons.Disclosure,
