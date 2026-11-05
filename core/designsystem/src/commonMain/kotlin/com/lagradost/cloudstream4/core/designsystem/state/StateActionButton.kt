@@ -3,7 +3,6 @@ package com.lagradost.cloudstream4.core.designsystem.state
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.interaction.collectIsFocusedAsState
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -12,9 +11,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -63,6 +65,12 @@ object StateActionButtonDefaults {
  * it, so the button is in the D-pad order the moment it is composed. The indication is `null`
  * because the ring *is* the indication.
  *
+ * **Focus is read with `onFocusChanged`, not from the interaction source.** [StateView] requests
+ * focus on this button in its first frame, before `collectIsFocusedAsState` has subscribed, and an
+ * interaction source does not replay: the `Focus` interaction was lost, so the button held focus
+ * with no ring until focus left and came back. `DS-15` measured it on the emulator. `ListRow` reads
+ * its focus the same way.
+ *
  * This is a local button, not the shared one. When the controls group lands a general text
  * button with this geometry, delete this file and point [StateView] and [FailureBanner] at it.
  *
@@ -77,7 +85,7 @@ fun StateActionButton(
     emphasis: StateActionEmphasis = StateActionEmphasis.Primary,
 ) {
     val interactionSource = remember { MutableInteractionSource() }
-    val isFocused by interactionSource.collectIsFocusedAsState()
+    var isFocused by remember { mutableStateOf(false) }
     val colors = CloudStreamTheme.colors
     val shape = CloudStreamTheme.shapes.medium
     val isPrimary = emphasis == StateActionEmphasis.Primary
@@ -87,6 +95,7 @@ fun StateActionButton(
             .height(CloudStreamDimens.TextButtonHeight)
             .widthIn(min = CloudStreamDimens.TextButtonMinWidth)
             .background(color = if (isPrimary) colors.ink else colors.raised, shape = shape)
+            .onFocusChanged { isFocused = it.isFocused }
             .tvFocusRing(focused = isFocused, shape = shape)
             .clickable(
                 interactionSource = interactionSource,
