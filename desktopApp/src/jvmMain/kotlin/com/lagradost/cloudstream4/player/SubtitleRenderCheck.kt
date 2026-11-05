@@ -57,7 +57,9 @@ import org.jetbrains.skia.EncodedImageFormat
  *
  * With `--best-first` instead, it is the app's own start (`KMP-39`): the real `DetailViewModel` waits as the window
  * does and plays the best link found, and the screen moves on by itself from any that fail, through more silent hosts,
- * until one plays. It prints which qualities were found, chosen, failed and played; never a URL.
+ * until one plays. It prints which qualities were found, chosen, failed and played; never a URL. With `--break-first`
+ * too, the link it chose is swapped for a public address that answers 404, so the real host fails and moving on is
+ * what has to make it play.
  *
  * The real screen over the real sandboxed libVLC, in an offscreen scene: frames from the media host, a track
  * chosen with real key events through the real list, PNGs of what came out. It exists because the window
@@ -94,7 +96,9 @@ internal fun runSubtitleRenderCheck(args: List<String>): Int {
             val id = DesktopSearchSource.encodeId(source.name, first.url)
             val details = source.details(first.url)
             val data = details.dataUrl ?: details.episodes.firstOrNull()?.data ?: return@runBlocking NO_LINK
-            if (BEST_FIRST_ARGUMENT in args) return@runBlocking bestFirst(id, data, out, width, height)
+            if (BEST_FIRST_ARGUMENT in args) {
+                return@runBlocking bestFirst(id, data, out, width, height, broken = BREAK_FIRST_ARGUMENT in args)
+            }
             val answers = DesktopDetailSource().links(id, data)
             if (KEEP_SEARCHING_ARGUMENT in args) {
                 val found = MutableStateFlow(emptyList<StreamLink>())
@@ -121,7 +125,14 @@ internal fun runSubtitleRenderCheck(args: List<String>): Int {
 }
 
 /** Through the window's own path from a press of Play: the wait, the best link, and moving on from failures. */
-private suspend fun bestFirst(id: String, data: String, out: File, width: Int, height: Int): Int = coroutineScope {
+private suspend fun bestFirst(
+    id: String,
+    data: String,
+    out: File,
+    width: Int,
+    height: Int,
+    broken: Boolean,
+): Int = coroutineScope {
     val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
     // Every link without its separate audio stream, consistently, so the player's test for one stream still holds.
     fun List<StreamLink>.silent() = map { it.copy(audioUrl = null) }
@@ -139,7 +150,7 @@ private suspend fun bestFirst(id: String, data: String, out: File, width: Int, h
         "render: played ${play.link.quality}p after ${asked.elapsedNow().inWholeMilliseconds} ms, best of " +
             "${atStart.size} found then: ${atStart.bestFirst().take(QUALITIES_SHOWN).map { it.quality }}",
     )
-    val first = play.link.copy(audioUrl = null)
+    val first = if (broken) play.link.copy(url = BROKEN_URL, audioUrl = null) else play.link.copy(audioUrl = null)
     val player = VlcPlayer.createOrNull(silent = true) ?: return@coroutineScope NO_PLAYER.also { scope.cancel() }
     val switcher = SourceSwitcher(first)
     val run = Run(
@@ -414,6 +425,10 @@ private const val PLUGIN_PREFIX = "plugin:"
 private const val FIRST_LINK_ARGUMENT = "--first-link"
 private const val KEEP_SEARCHING_ARGUMENT = "--keep-searching"
 private const val BEST_FIRST_ARGUMENT = "--best-first"
+private const val BREAK_FIRST_ARGUMENT = "--break-first"
+
+/** Public, so the URL policy lets the host try it, and reserved for examples, so it serves no video. */
+private const val BROKEN_URL = "https://example.com/kmp-39-no-such-video.mp4"
 private val BEST_FIRST_LIMIT = 120.seconds
 private const val BEST_FIRST_PLAY_SECONDS = 120
 private const val PLAYED_MILLIS = 3_000L

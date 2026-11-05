@@ -3471,3 +3471,47 @@ own path silently.
 
 **Words:** none new. Android's player says `source_error` in a toast and moves on; no string says "trying the next source",
 so the notice is `Source error` and the name, and the rest is the transport's `Loading…` and the selector. No baseline move.
+
+### Verified, on the isolated copy
+
+The same fresh home, the packaged app at this branch, `--check-subtitle-render <out> 1280x720 plugin:CineTmdb:<query>
+--best-first`: the real `DetailViewModel` with the real 8 s wait, the real screen in an offscreen scene, every media host
+started with `silent = true` and no separate audio stream. Each run waits until the clock passes 3 s of playback.
+
+| Query | Played | After asking | Best found by then | Moved on | Played 3 s |
+|---|---|---:|---|---:|---|
+| inception | 2160p | 5,869 ms | 2160, 1080 ×6, 800 | 0 | yes, real frames (PNG read) |
+| oppenheimer | 2160p | 7,767 ms | 2160 ×2, 1080 ×5, 872 | 0 | yes |
+| breaking bad (S1E1) | 2160p | 5,748 ms | 2160 ×2, 1080 ×4, 720 ×2 | 0 | yes |
+
+Each start was a 2160p arrival ending the wait, not the 8 s running out. No real link failed, so a second flag forces one:
+`--break-first` swaps the chosen link's address for a public one that answers 404.
+
+| Query, `--break-first` | First | Failed | Moved to | Played 3 s |
+|---|---|---|---|---|
+| inception | the broken 2160p | it, by the real host | the real 2160p, the best not yet tried, through a second silent host | yes |
+| breaking bad | the broken 2160p | it | the real 2160p | yes |
+
+**Tests:** `StreamOrderTest` 10, `DetailViewModelTest` 26 (10 new), `SourceSwitcherTest` 10, `AudioChoiceTest` 6, and
+`PlayerScreenTest` 60 (2 new, 1 extended). With the sort removed (`bestFirst` returns arrival order), 11 tests fail; with the
+timed start, the skip past an unstartable link, the "ended with no frame" rule and the audio match each removed, 11 more
+fail, each the one aimed at it. The renders of the notice and of the list in both states were read as PNGs.
+
+### Not verified
+
+- **Nobody listened, or watched.** Every host here was silent; no run played sound and nobody looked at a live window. The
+  real-video checks are offscreen.
+- **The audio carry-over on a real stream.** `AudioChoice` is tested on the JVM only: no measured title had two audio
+  tracks to choose between.
+- **A stream that stalls, buffering for ever, is not a failure.** Nothing times it out; the selector is the way out. The
+  request named failing to open and stopping with no frames, and a timeout would cut off slow starts that do play.
+- **Titles without 2160p,** which wait the whole 8 s; none of the five measured lacked one.
+- **Plugins other than CineStream's three providers.**
+
+### Found, not changed
+
+- `DesktopDetailSource` labels a link `${quality}p` for any number above 0, so an unknown link reads `400p` and CineStream's
+  odd numbers read `266p`, `534p`, `872p`. The old app writes nothing for 400 (`Qualities.getStringByInt`). Suggest: the same
+  here, which is a separate change of what the rows say.
+- The detail page's own source list stays in arrival order: it grows at the foot so a row never slides under the pointer
+  (`BUG-19`). Only the player's list, which holds its rows while open, is best first.
