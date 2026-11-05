@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet data-dc-atomics>
+        <meta name="design_doc_mode" content="canvas" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
+        />
+        <style>
+          html { background: #0a0a0a; }
+          body { margin: 0; background: #0a0a0a; font-family: Manrope, system-ui, sans-serif; }
+
+          .sec { padding: 52px 64px 44px; }
+          .sechd { display: flex; align-items: baseline; gap: 12px; margin: 0 0 8px; }
+          .secid { font: 600 12px/16px "JetBrains Mono", monospace; padding: 4px 8px; background: #f0eee9; color: #14130f; border-radius: 4px; }
+          .secname { font: 700 16px/20px Manrope, sans-serif; color: #f0eee9; }
+          .secsub { font: 400 16px/28px Manrope, sans-serif; color: rgba(240,238,233,0.62); max-width: 1040px; margin: 0 0 32px; text-wrap: pretty; }
+          .secsub b { color: #f0eee9; font-weight: 600; }
+          .shots { display: flex; flex-direction: column; gap: 44px; align-items: flex-start; }
+          .shot { display: flex; flex-direction: column; gap: 12px; }
+          .shotl { display: flex; align-items: baseline; gap: 12px; font: 400 16px/24px Manrope, sans-serif; color: rgba(240,238,233,0.55); max-width: 1560px; }
+          .shotn { font: 700 16px/20px Manrope, sans-serif; color: #f0eee9; white-space: nowrap; }
+          .shotc { border-radius: 12px; overflow: hidden; box-shadow: 0 16px 60px rgba(0,0,0,0.6); }
+          .note { margin-top: 24px; padding: 16px 20px; border-left: 4px solid #858585;
+            background: rgba(255,255,255,0.04); font: 400 16px/28px Manrope, sans-serif;
+            color: rgba(255,255,255,0.78); max-width: 1180px; text-wrap: pretty; }
+          .note b { color: #FFFFFF; }
+          .note p { margin: 0 0 12px; } .note p:last-child { margin: 0; }
+          .note code { font: 500 14px/20px "JetBrains Mono", monospace; color: #FFFFFF; }
+          .note h3 { font: 700 16px/24px Manrope, sans-serif; color: #FFFFFF; margin: 20px 0 8px; }
+          .note h3:first-child { margin-top: 0; }
+
+          /* ================= TV shell =================
+             Artboard px / 2 = dp, and every declared dimension is a multiple of 8. Taken from
+             TV Home 3c and 3d, with these changes from the owner's rulings:
+             a ring sits on the visible control, 4 at offset 4; a text button and a list row
+             take the `medium` token, 16px; selected is raised + ink + a muted marker. */
+          .tv {
+            --bg:#000000; --surf:#0A1016; --raised:#15191E; --line:#242A31;
+            --ink:#FFFFFF; --ink2:#CCCCCC; --mut:#858585; --acc:#CD3D4B;
+            width: 1920px; height: 1080px; position: relative; overflow: hidden;
+            background: var(--bg); color: var(--ink); font-family: Manrope, sans-serif;
+          }
+          .abs { position: absolute; }
+
+          .art { position: relative; overflow: hidden; background:
+            radial-gradient(120% 100% at 62% 26%, #47576A 0%, #26313D 42%, transparent 72%),
+            radial-gradient(90% 80% at 88% 78%, #35414F 0%, transparent 64%),
+            linear-gradient(155deg, #2A3540, #0E141A 82%);
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.07); }
+          .art::after { content: ""; position: absolute; inset: 0;
+            background: repeating-linear-gradient(115deg, rgba(255,255,255,0.03) 0 2px, transparent 2px 8px); }
+          .scrimh { position: absolute; inset: 0; background:
+            linear-gradient(90deg, #000000 4%, rgba(0,0,0,0.9) 26%, rgba(0,0,0,0.46) 52%, rgba(0,0,0,0) 84%),
+            linear-gradient(0deg, #000000 2%, rgba(0,0,0,0.7) 24%, rgba(0,0,0,0) 64%); }
+
+          /* nav rail: Home, Search, Library, Downloads, Settings. Current is raised, with a muted marker. */
+          .railc { width: 152px; height: 1080px; box-sizing: border-box; padding: 56px 0 0 56px;
+            display: flex; flex-direction: column; gap: 8px;
+            background: linear-gradient(90deg, #000 76%, rgba(0,0,0,0)); }
+          .lgm { width: 48px; height: 48px; border-radius: 16px; background: var(--ink); margin: 0 24px 32px; flex: none; }
+          .nic { width: 96px; height: 96px; border-radius: 8px; display: flex; align-items: center;
+            justify-content: center; box-sizing: border-box; flex: none; position: relative; }
+          .nic .gl { width: 32px; height: 32px; border-radius: 8px; background: var(--mut); }
+          .nic.cur { background: var(--raised); }
+          .nic.cur .gl { background: var(--ink); }
+          .nic.cur::before { content: ""; position: absolute; left: 0; top: 24px;
+            width: 8px; height: 48px; border-radius: 4px; background: var(--mut); }
+
+          /* chrome: pill 320 + Reload + Random + Search this source + account, each a 96 cell, gaps 24 */
+          .ibx { width: 96px; height: 96px; display: flex; align-items: center; justify-content: center;
+            box-sizing: border-box; }
+          .ivis { width: 48px; height: 48px; border-radius: 8px; background: var(--raised);
+            box-shadow: inset 0 0 0 1px var(--line); display: flex; align-items: center; justify-content: center; flex: none; }
+          .ivis.foc { outline: 4px solid var(--ink); outline-offset: 4px; }
+          .gl2 { width: 32px; height: 32px; border-radius: 8px; background: var(--mut); flex: none; }
+          .ivis.foc .gl2 { background: var(--ink); }
+          .srcpill { display: flex; align-items: center; gap: 16px; height: 64px; width: 320px;
+            padding: 0 24px; box-sizing: border-box; border-radius: 32px; background: var(--raised);
+            box-shadow: inset 0 0 0 1px var(--line); font: 600 24px/32px Manrope, sans-serif; color: var(--ink); }
+          .srcpill.foc { outline: 4px solid var(--ink); outline-offset: 4px; }
+          .srcn { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+          .avatar { width: 64px; height: 64px; border-radius: 32px; flex: none;
+            background: linear-gradient(140deg, #47576A, #1A2027); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.28); }
+          .clock { font: 500 24px/32px "JetBrains Mono", monospace; color: var(--ink2); }
+
+          /* a notice rides the chrome row. Every child's box is centred on a 96 row at +32 or +40. */
+          .notice { display: flex; align-items: center; gap: 16px; height: 96px; }
+          .hollow { width: 16px; height: 16px; border-radius: 8px; box-sizing: border-box;
+            box-shadow: inset 0 0 0 2px var(--mut); flex: none; }
+          .nh { font: 600 24px/32px Manrope, sans-serif; color: var(--ink); white-space: nowrap; }
+          .nd { font: 500 20px/32px "JetBrains Mono", monospace; color: var(--mut); white-space: nowrap; }
+
+          /* hero, from 3c */
+          .eyebrow { font: 500 24px/32px "JetBrains Mono", monospace; letter-spacing: 0.24em; color: var(--ink2); }
+          .h1 { font: 800 88px/120px Manrope, sans-serif; letter-spacing: -0.035em; margin: 0;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-shadow: 0 4px 44px rgba(0,0,0,0.92); }
+          .meta { display: flex; align-items: center; gap: 16px; height: 32px;
+            font: 500 24px/32px "JetBrains Mono", monospace; color: var(--ink2); white-space: nowrap; }
+          .rate { display: inline-flex; align-items: center; height: 32px; padding: 0 8px; box-sizing: border-box;
+            border-radius: 8px; background: rgba(255,255,255,0.10); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.28);
+            font: 700 20px/32px "JetBrains Mono", monospace; color: var(--ink); }
+          .syn { font: 400 28px/40px Manrope, sans-serif; color: rgba(255,255,255,0.8);
+            display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+          .btns { display: flex; gap: 24px; align-items: center; height: 64px; }
+          .btn { display: inline-flex; align-items: center; justify-content: center; gap: 16px;
+            height: 64px; min-width: 240px; padding: 0 32px; box-sizing: border-box; border-radius: 16px;
+            font: 700 24px/32px Manrope, sans-serif; background: var(--raised); white-space: nowrap;
+            color: var(--ink); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.2); }
+          .btn.pri { background: var(--ink); color: #000000; box-shadow: none; font-weight: 800; }
+          .btn.foc { outline: 4px solid var(--ink); outline-offset: 4px; }
+          .sq { width: 16px; height: 16px; border-radius: 4px; background: currentColor; flex: none; }
+          .pager { display: flex; align-items: center; gap: 24px; height: 24px; }
+          .dots { display: flex; gap: 8px; align-items: center; }
+          .dt { width: 8px; height: 8px; border-radius: 4px; background: rgba(255,255,255,0.3); }
+          .dt.on { width: 32px; background: var(--ink2); }
+          .count { font: 500 20px/24px "JetBrains Mono", monospace; color: var(--ink2); }
+
+          /* rails */
+          .rhd { display: flex; align-items: center; gap: 16px; height: 56px; }
+          .rt { font: 700 40px/56px Manrope, sans-serif; letter-spacing: -0.02em; color: var(--ink); }
+          .row { display: flex; align-items: flex-start; gap: 24px; }
+
+          /* Bookmarks header: title and chips share a 96 row, so the title's line box is 96.
+             Chip visual 48 at +24. Label box 32 at +8. Marker 8x16 at +16. The marker cell is kept
+             on every chip, so choosing one moves nothing. */
+          .chiprow { display: flex; align-items: center; gap: 24px; height: 96px; }
+          .rtb { font: 700 40px/96px Manrope, sans-serif; letter-spacing: -0.02em; color: var(--ink); white-space: nowrap; }
+          .chip { display: flex; align-items: center; gap: 16px; height: 48px; padding: 0 24px 0 16px;
+            box-sizing: border-box; border-radius: 24px; box-shadow: inset 0 0 0 1px var(--line);
+            font: 600 24px/32px Manrope, sans-serif; color: var(--mut); white-space: nowrap; flex: none; }
+          .mk { width: 8px; height: 16px; border-radius: 4px; background: transparent; flex: none; }
+          .chip.sel { background: var(--raised); color: var(--ink); }
+          .chip.sel .mk { background: var(--mut); }
+          .chip.foc { outline: 4px solid var(--ink); outline-offset: 4px; }
+          .hint { font: 500 20px/96px "JetBrains Mono", monospace; color: var(--mut); text-align: right; white-space: nowrap; }
+
+          .ps { width: 160px; flex: none; }
+          .psa { height: 240px; border-radius: 8px; position: relative; }
+          .ps.foc { transform: translateY(-8px); }
+          .ps.foc .psa { outline: 4px solid var(--ink); outline-offset: 4px; box-shadow: 0 20px 44px rgba(0,0,0,0.7); overflow: visible; }
+          .ps.off { opacity: 0.4; }
+          .revt { display: block; position: absolute; left: 0; right: 0; bottom: 0; padding: 32px 8px 8px; z-index: 1;
+            font: 700 20px/32px Manrope, sans-serif; color: var(--ink); border-radius: 0 0 8px 8px;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+            background: linear-gradient(0deg, rgba(0,0,0,0.92) 30%, rgba(0,0,0,0)); }
+          .seeall { width: 160px; height: 240px; border-radius: 8px; box-sizing: border-box;
+            outline: 1px dashed var(--line); outline-offset: -1px; background: rgba(10,16,22,0.6);
+            display: flex; align-items: center; justify-content: center; text-align: center;
+            font: 600 24px/32px Manrope, sans-serif; color: var(--ink2); flex: none; }
+          .badges { position: absolute; left: 8px; top: 8px; display: flex; gap: 8px; z-index: 1; }
+          .bdg { display: inline-flex; align-items: center; height: 32px; padding: 0 8px; border-radius: 8px;
+            box-sizing: border-box; background: rgba(0,0,0,0.78); font: 700 20px/32px "JetBrains Mono", monospace; color: #FFFFFF; }
+          .skc { width: 160px; height: 240px; border-radius: 8px; background: var(--raised); flex: none; }
+
+          /* continue card, block 304, from 3c */
+          .cw { width: 384px; flex: none; }
+          .cwa { height: 216px; border-radius: 8px; }
+          .pbar { height: 8px; border-radius: 8px; background: rgba(255,255,255,0.18); margin-top: 8px; overflow: hidden; }
+          .pf { display: block; height: 100%; border-radius: 8px; background: var(--acc); }
+          .ct { font: 700 24px/32px Manrope, sans-serif; margin-top: 8px; color: var(--ink);
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+          .cs { font: 500 20px/24px "JetBrains Mono", monospace; color: var(--mut); margin-top: 8px;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+          /* a state inside a rail's own card band: 40 + 8 + 32 = 80, which centres in 240 at +80 */
+          .slot { border-radius: 8px; background: var(--surf); box-shadow: inset 0 0 0 1px var(--line); }
+          .sth { font: 600 28px/40px Manrope, sans-serif; color: var(--ink); text-align: center; }
+          .stb { font: 400 24px/32px Manrope, sans-serif; color: var(--mut); text-align: center; }
+
+          /* a page-level state */
+          .svh { font: 700 40px/56px Manrope, sans-serif; letter-spacing: -0.02em; color: var(--ink); text-align: center; }
+          .svb { font: 400 28px/40px Manrope, sans-serif; color: var(--mut); text-align: center; }
+          .bbtn { height: 64px; box-sizing: border-box; display: flex; align-items: center; justify-content: center;
+            border-radius: 16px; background: var(--ink); color: #000000; font: 800 24px/32px Manrope, sans-serif; white-space: nowrap; }
+          .bbtn.foc { outline: 4px solid var(--ink); outline-offset: 4px; }
+
+          /* side panel: 560, opaque, scrim behind, no bottom sheet on TV */
+          .scrim { position: absolute; inset: 0; background: rgba(0,0,0,0.6); }
+          .panel { position: absolute; right: 0; top: 0; bottom: 0; width: 560px; background: var(--surf);
+            box-shadow: inset 1px 0 0 var(--line), -32px 0 68px rgba(0,0,0,0.85); }
+          .ptitle { font: 700 40px/56px Manrope, sans-serif; color: var(--ink);
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+          .pmeta { font: 500 20px/24px "JetBrains Mono", monospace; color: var(--mut); white-space: nowrap; }
+          .pm24 { font: 500 24px/32px "JetBrains Mono", monospace; color: var(--ink2); white-space: nowrap; overflow: hidden; }
+          .plot { font: 400 28px/40px Manrope, sans-serif; color: rgba(255,255,255,0.8);
+            display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+          .skl { background: var(--raised); border-radius: 8px; }
+
+          /* list row: 8 marker cell, 64 text stack centring at +16, or a single 48 line box at +24 */
+          .lrow { display: flex; align-items: center; gap: 16px; height: 96px; box-sizing: border-box;
+            padding: 0 16px; border-radius: 16px; }
+          .lrow.foc { outline: 4px solid var(--ink); outline-offset: 4px; }
+          .lrow.sel { background: var(--raised); }
+          .lmark { width: 8px; height: 48px; border-radius: 4px; background: transparent; flex: none; }
+          .lrow.sel .lmark { background: var(--mut); }
+          .grow { flex: 1; min-width: 0; }
+          .lt { font: 600 24px/32px Manrope, sans-serif; color: var(--ink2);
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+          .lrow.sel .lt, .lrow.foc .lt { color: var(--ink); }
+          .lt1 { line-height: 48px; }
+          .ls { font: 400 20px/24px "JetBrains Mono", monospace; color: var(--mut); margin-top: 8px;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        </style>
+      </helmet>
+
+      <section class="sec">
+        <div class="sechd">
+          <span class="secid">3</span>
+          <span class="secname">CloudStream 4 — TV Home Extras (follows TV Home 3d)</span>
+        </div>
+        <p class="secsub">
+          Four old Home features the owner asked to have back on 2026-11-05: the bookmarks row with its
+          watch-status filter, Random, a details panel on a card with search of its source, and a manual
+          reload. <b>Nothing here is built, and nothing here has a seam yet.</b> Every board was read
+          from the old code first, and the closing note lists what each one needs, by file and line.
+          Boards continue from 3d, in this file because <code>TV Home</code> was being edited. Measured in
+          Chromium with fonts loaded, across <b>414 boxes</b> including every text box: <b>0 off-grid, 0 band
+          violations, 0 clipped, 0 collisions, 8 rings all 4px at 4px offset</b>, one focus owner per board, and
+          one peek row, on 3e.
+        </p>
+
+        <div class="shots">
+
+          <!-- ============ 3e BOOKMARKS ============ -->
+          <div class="shot" id="3e">
+            <div class="shotl">
+              <span class="shotn">3e · TV Home Extras — Bookmarks rail</span>
+              <span>Below Continue watching, above the source’s rails, as in the old page. The filter shares the title’s row and costs 40px, not a whole chip band. It shows only statuses that hold a title. A focused card’s rail names the gesture for details.</span>
+            </div>
+            <div class="shotc">
+              <div class="tv" data-screen-label="TV Home Extras — Bookmarks">
+                <div class="railc abs" style="left:0;top:0">
+                  <div class="lgm"></div>
+                  <sc-for list="{{ nav }}" as="n" hint-placeholder-count="5">
+                    <div class="nic {{ n.cls }}"><span class="gl"></span></div>
+                  </sc-for>
+                </div>
+                <div class="chiprow abs" style="left:200px;top:56px">
+                  <div class="rtb">{{ bookmarksTitle }}</div>
+                  <sc-for list="{{ chips }}" as="c" hint-placeholder-count="5">
+                    <div class="chip {{ c.cls }}"><span class="mk"></span><div>{{ c.l }}</div></div>
+                  </sc-for>
+                </div>
+                <div class="hint abs" style="left:1544px;top:56px;width:320px">{{ holdHint }}</div>
+                <div class="row abs" style="left:200px;top:184px">
+                  <sc-for list="{{ marks }}" as="p" hint-placeholder-count="9">
+                    <div class="ps {{ p.cls }}">
+                      <div class="art psa">
+                        <sc-if value="{{ p.badge }}" hint-placeholder-val="{{ true }}">
+                          <span class="badges"><span class="bdg">{{ p.badgeText }}</span></span>
+                        </sc-if>
+                        <sc-if value="{{ p.focused }}" hint-placeholder-val="{{ true }}">
+                          <span class="revt">{{ p.t }}</span>
+                        </sc-if>
+                      </div>
+                    </div>
+                  </sc-for>
+                </div>
+                <sc-for list="{{ belowRails }}" as="r" hint-placeholder-count="2">
+                  <div class="rhd abs" style="{{ r.hpos }}"><div class="rt">{{ r.title }}</div></div>
+                  <div class="row abs" style="{{ r.cpos }}">
+                    <sc-for list="{{ r.items }}" as="p" hint-placeholder-count="8">
+                      <div class="ps"><div class="art psa">
+                        <sc-if value="{{ p.badge }}" hint-placeholder-val="{{ true }}">
+                          <span class="badges"><span class="bdg">{{ p.badgeText }}</span></span>
+                        </sc-if>
+                      </div></div>
+                    </sc-for>
+                    <div class="seeall"><div>{{ loadMore }}</div></div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+
+          <!-- ============ 3f BOOKMARKS EMPTY ============ -->
+          <div class="shot" id="3f">
+            <div class="shotl">
+              <span class="shotn">3f · TV Home Extras — Bookmarks, no status chosen</span>
+              <span>Pressing the chosen chip clears it, which the old code allows. The band keeps its height and focus stays on the chip. The source’s rails are still loading beneath: bookmarks are on the device and do not wait for them.</span>
+            </div>
+            <div class="shotc">
+              <div class="tv" data-screen-label="TV Home Extras — Bookmarks, no status">
+                <div class="railc abs" style="left:0;top:0">
+                  <div class="lgm"></div>
+                  <sc-for list="{{ nav }}" as="n" hint-placeholder-count="5">
+                    <div class="nic {{ n.cls }}"><span class="gl"></span></div>
+                  </sc-for>
+                </div>
+                <div class="chiprow abs" style="left:200px;top:56px">
+                  <div class="rtb">{{ bookmarksTitle }}</div>
+                  <sc-for list="{{ chipsNone }}" as="c" hint-placeholder-count="5">
+                    <div class="chip {{ c.cls }}"><span class="mk"></span><div>{{ c.l }}</div></div>
+                  </sc-for>
+                </div>
+                <div class="slot abs" style="left:200px;top:184px;width:1664px;height:240px"></div>
+                <div class="sth abs" style="left:200px;top:264px;width:1664px">{{ noStatusHead }}</div>
+                <div class="stb abs" style="left:200px;top:312px;width:1664px">{{ noStatusBody }}</div>
+                <div class="row abs" style="left:200px;top:536px">
+                  <sc-for list="{{ skeleton }}" as="s" hint-placeholder-count="9"><div class="skc"></div></sc-for>
+                </div>
+                <div class="row abs" style="left:200px;top:888px">
+                  <sc-for list="{{ skeleton }}" as="s" hint-placeholder-count="9"><div class="skc"></div></sc-for>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ============ 3g OFFLINE ============ -->
+          <div class="shot" id="3g">
+            <div class="shotl">
+              <span class="shotn">3g · TV Home Extras — offline, bookmarks stay</span>
+              <span>Offline stops replacing the whole page. Bookmarks are local, so the rail stays and the source’s rails give way to the prompt beneath it. The cards are at 40% because opening one needs a connection. The chips are full strength because they work without one.</span>
+            </div>
+            <div class="shotc">
+              <div class="tv" data-screen-label="TV Home Extras — offline">
+                <div class="railc abs" style="left:0;top:0">
+                  <div class="lgm"></div>
+                  <sc-for list="{{ nav }}" as="n" hint-placeholder-count="5">
+                    <div class="nic {{ n.cls }}"><span class="gl"></span></div>
+                  </sc-for>
+                </div>
+                <div class="notice abs" style="left:200px;top:56px">
+                  <span class="hollow"></span>
+                  <div class="nh">{{ offlineHead }}</div>
+                  <div class="nd">{{ offlineCount }}</div>
+                </div>
+                <div class="srcpill abs" style="left:1424px;top:72px"><div class="srcn">{{ sourceName }}</div><span class="gl2"></span></div>
+                <div class="ibx abs" style="left:1768px;top:56px"><span class="avatar"></span></div>
+
+                <div class="chiprow abs" style="left:200px;top:176px">
+                  <div class="rtb">{{ bookmarksTitle }}</div>
+                  <sc-for list="{{ chipsRest }}" as="c" hint-placeholder-count="5">
+                    <div class="chip {{ c.cls }}"><span class="mk"></span><div>{{ c.l }}</div></div>
+                  </sc-for>
+                </div>
+                <div class="row abs" style="left:200px;top:304px">
+                  <sc-for list="{{ marksRest }}" as="p" hint-placeholder-count="9">
+                    <div class="ps off"><div class="art psa"></div></div>
+                  </sc-for>
+                </div>
+                <div class="svh abs" style="left:200px;top:696px;width:1664px">{{ offlinePrompt }}</div>
+                <div class="svb abs" style="left:200px;top:760px;width:1664px">{{ offlineBody }}</div>
+                <div class="bbtn foc abs" style="left:888px;top:824px;width:288px"><div>{{ tryAgain }}</div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ============ 3h SOURCE PANEL ============ -->
+          <div class="shot" id="3h">
+            <div class="shotl">
+              <span class="shotn">3h · TV Home Extras — source panel with None and Random</span>
+              <span>A single choice, so it applies at once with no buttons, and Back closes it. None and Random sit first, as they did. Random is an action and not a state: it picks one source and that source is what gets marked and kept, so its row never carries the marker.</span>
+            </div>
+            <div class="shotc">
+              <div class="tv" data-screen-label="TV Home Extras — source panel">
+                <div class="art abs" style="left:0;top:0;right:0;height:608px"></div>
+                <div class="scrimh abs" style="left:0;top:0;right:0;height:608px"></div>
+                <div class="railc abs" style="left:0;top:0">
+                  <div class="lgm"></div>
+                  <sc-for list="{{ nav }}" as="n" hint-placeholder-count="5">
+                    <div class="nic {{ n.cls }}"><span class="gl"></span></div>
+                  </sc-for>
+                </div>
+                <div class="eyebrow abs" style="left:200px;top:176px;width:800px">{{ heroSource }}</div>
+                <h1 class="h1 abs" style="left:200px;top:224px;width:1000px">{{ heroTitle }}</h1>
+                <div class="rhd abs" style="left:200px;top:632px;width:1664px"><div class="rt">{{ contTitle }}</div></div>
+                <div class="row abs" style="left:200px;top:720px">
+                  <sc-for list="{{ cont }}" as="c" hint-placeholder-count="4">
+                    <div class="cw"><div class="art cwa"></div></div>
+                  </sc-for>
+                </div>
+
+                <div class="scrim"></div>
+                <div class="panel">
+                  <div class="ptitle abs" style="left:32px;top:56px;width:472px">{{ sourcesTitle }}</div>
+                  <div class="pmeta abs" style="left:32px;top:120px;width:472px">{{ sourcesMeta }}</div>
+                  <sc-for list="{{ sourceRows }}" as="r" hint-placeholder-count="6">
+                    <div class="lrow {{ r.cls }} abs" style="{{ r.pos }}">
+                      <span class="lmark"></span>
+                      <div class="grow">
+                        <div class="lt">{{ r.n }}</div>
+                        <div class="ls">{{ r.m }}</div>
+                      </div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ============ 3i NONE ============ -->
+          <div class="shot" id="3i">
+            <div class="shotl">
+              <span class="shotn">3i · TV Home Extras — source None</span>
+              <span>The page after choosing None: no hero and no source rails, only what is kept on the device. Reload, Random and Search this source all need a source, so their cells go. Focus is back on the control that opened the panel.</span>
+            </div>
+            <div class="shotc">
+              <div class="tv" data-screen-label="TV Home Extras — None">
+                <div class="railc abs" style="left:0;top:0">
+                  <div class="lgm"></div>
+                  <sc-for list="{{ nav }}" as="n" hint-placeholder-count="5">
+                    <div class="nic {{ n.cls }}"><span class="gl"></span></div>
+                  </sc-for>
+                </div>
+                <div class="clock abs" style="left:200px;top:88px;width:200px">{{ clock }}</div>
+                <div class="srcpill foc abs" style="left:1424px;top:72px"><div class="srcn">{{ noneName }}</div><span class="gl2"></span></div>
+                <div class="ibx abs" style="left:1768px;top:56px"><span class="avatar"></span></div>
+
+                <div class="rhd abs" style="left:200px;top:176px;width:1664px"><div class="rt">{{ contTitle }}</div></div>
+                <div class="row abs" style="left:200px;top:264px">
+                  <sc-for list="{{ cont }}" as="c" hint-placeholder-count="4">
+                    <div class="cw">
+                      <div class="art cwa"></div>
+                      <div class="pbar"><i class="pf" style="{{ c.bar }}"></i></div>
+                      <div class="ct">{{ c.t }}</div>
+                      <div class="cs">{{ c.s }}</div>
+                    </div>
+                  </sc-for>
+                </div>
+                <div class="chiprow abs" style="left:200px;top:592px">
+                  <div class="rtb">{{ bookmarksTitle }}</div>
+                  <sc-for list="{{ chipsRest }}" as="c" hint-placeholder-count="5">
+                    <div class="chip {{ c.cls }}"><span class="mk"></span><div>{{ c.l }}</div></div>
+                  </sc-for>
+                </div>
+                <div class="row abs" style="left:200px;top:720px">
+                  <sc-for list="{{ marksRest }}" as="p" hint-placeholder-count="9">
+                    <div class="ps"><div class="art psa"></div></div>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ============ 3j CHROME, RELOAD ============ -->
+          <div class="shot" id="3j">
+            <div class="shotl">
+              <span class="shotn">3j · TV Home Extras — chrome named, a reload that failed</span>
+              <span>3c’s unnamed cells become Reload and Random, with Search this source added, in the old TV order. A reload keeps what is on screen until the new page lands, and when it fails nothing is lost. Focus stays on Reload, so pressing again is the retry, and the page needs no second button.</span>
+            </div>
+            <div class="shotc">
+              <div class="tv" data-screen-label="TV Home Extras — reload failed">
+                <div class="art abs" style="left:0;top:0;right:0;height:608px"></div>
+                <div class="scrimh abs" style="left:0;top:0;right:0;height:608px"></div>
+                <div class="railc abs" style="left:0;top:0;background:linear-gradient(90deg, rgba(0,0,0,0.96) 60%, rgba(0,0,0,0))">
+                  <div class="lgm"></div>
+                  <sc-for list="{{ nav }}" as="n" hint-placeholder-count="5">
+                    <div class="nic {{ n.cls }}"><span class="gl"></span></div>
+                  </sc-for>
+                </div>
+                <div class="clock abs" style="left:200px;top:88px;width:200px">{{ clock }}</div>
+                <div class="notice abs" style="left:424px;top:56px;width:616px">
+                  <span class="hollow"></span>
+                  <div class="nh">{{ reloadFailed }}</div>
+                  <div class="nd">{{ reloadDetail }}</div>
+                </div>
+                <div class="srcpill abs" style="left:1064px;top:72px"><div class="srcn">{{ sourceName }}</div><span class="gl2"></span></div>
+                <div class="ibx abs" style="left:1408px;top:56px"><span class="ivis foc"><span class="gl2"></span></span></div>
+                <div class="ibx abs" style="left:1528px;top:56px"><span class="ivis"><span class="gl2"></span></span></div>
+                <div class="ibx abs" style="left:1648px;top:56px"><span class="ivis"><span class="gl2"></span></span></div>
+                <div class="ibx abs" style="left:1768px;top:56px"><span class="avatar"></span></div>
+
+                <div class="eyebrow abs" style="left:200px;top:176px;width:800px">{{ heroSource }}</div>
+                <h1 class="h1 abs" style="left:200px;top:224px;width:1000px">{{ heroTitle }}</h1>
+                <div class="meta abs" style="left:200px;top:360px;width:1200px">
+                  <div>{{ heroMeta }}</div><span class="rate">{{ heroRate }}</span>
+                </div>
+                <div class="syn abs" style="left:200px;top:408px;width:800px;height:80px">{{ heroSyn }}</div>
+                <div class="btns abs" style="left:200px;top:504px">
+                  <div class="btn pri"><span class="sq"></span><div>{{ heroResume }}</div></div>
+                  <div class="btn"><div>{{ heroTrailer }}</div></div>
+                  <div class="btn"><div>{{ heroLibrary }}</div></div>
+                </div>
+                <div class="pager abs" style="right:56px;top:520px">
+                  <span class="dots">
+                    <span class="dt on"></span><span class="dt"></span><span class="dt"></span>
+                    <span class="dt"></span><span class="dt"></span>
+                  </span>
+                  <div class="count">{{ heroCount }}</div>
+                </div>
+                <div class="rhd abs" style="left:200px;top:632px;width:1664px"><div class="rt">{{ contTitle }}</div></div>
+                <div class="row abs" style="left:200px;top:720px">
+                  <sc-for list="{{ cont }}" as="c" hint-placeholder-count="4">
+                    <div class="cw">
+                      <div class="art cwa"></div>
+                      <div class="pbar"><i class="pf" style="{{ c.bar }}"></i></div>
+                      <div class="ct">{{ c.t }}</div>
+                      <div class="cs">{{ c.s }}</div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ============ 3k DETAILS ============ -->
+          <div class="shot" id="3k">
+            <div class="shotl">
+              <span class="shotn">3k · TV Home Extras — details panel</span>
+              <span>What the old popup held, as a side panel: backdrop, title, the four facts it showed, the plot, then its verbs. Reached by holding OK on a card, or the Menu key where a remote has one. Search this source runs Quick Search on that card’s source, with the title filled in.</span>
+            </div>
+            <div class="shotc">
+              <div class="tv" data-screen-label="TV Home Extras — details panel">
+                <div class="railc abs" style="left:0;top:0">
+                  <div class="lgm"></div>
+                  <sc-for list="{{ nav }}" as="n" hint-placeholder-count="5">
+                    <div class="nic {{ n.cls }}"><span class="gl"></span></div>
+                  </sc-for>
+                </div>
+                <div class="chiprow abs" style="left:200px;top:56px">
+                  <div class="rtb">{{ bookmarksTitle }}</div>
+                  <sc-for list="{{ chipsRest }}" as="c" hint-placeholder-count="5">
+                    <div class="chip {{ c.cls }}"><span class="mk"></span><div>{{ c.l }}</div></div>
+                  </sc-for>
+                </div>
+                <div class="row abs" style="left:200px;top:184px">
+                  <sc-for list="{{ marksRest }}" as="p" hint-placeholder-count="9">
+                    <div class="ps"><div class="art psa"></div></div>
+                  </sc-for>
+                </div>
+                <div class="rhd abs" style="left:200px;top:448px;width:1664px"><div class="rt">{{ popularTitle }}</div></div>
+                <div class="row abs" style="left:200px;top:536px">
+                  <sc-for list="{{ marksRest }}" as="p" hint-placeholder-count="9">
+                    <div class="ps"><div class="art psa"></div></div>
+                  </sc-for>
+                </div>
+
+                <div class="rhd abs" style="left:200px;top:800px;width:1664px"><div class="rt">{{ showsTitle }}</div></div>
+                <div class="row abs" style="left:200px;top:888px">
+                  <sc-for list="{{ marksRest }}" as="p" hint-placeholder-count="9">
+                    <div class="ps"><div class="art psa"></div></div>
+                  </sc-for>
+                </div>
+
+                <div class="scrim"></div>
+                <div class="panel">
+                  <div class="art abs" style="left:32px;top:56px;width:384px;height:216px;border-radius:8px"></div>
+                  <div class="ptitle abs" style="left:32px;top:296px;width:472px">{{ heroTitle }}</div>
+                  <div class="pm24 abs" style="left:32px;top:360px;width:472px">{{ detailMeta }}</div>
+                  <div class="plot abs" style="left:32px;top:408px;width:472px;height:120px">{{ detailPlot }}</div>
+                  <sc-for list="{{ detailRows }}" as="r" hint-placeholder-count="4">
+                    <div class="lrow {{ r.cls }} abs" style="{{ r.pos }}">
+                      <span class="lmark"></span>
+                      <span class="gl2"></span>
+                      <div class="grow">
+                        <div class="lt">{{ r.n }}</div>
+                        <div class="ls">{{ r.m }}</div>
+                      </div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ============ 3l DETAILS FAILED ============ -->
+          <div class="shot" id="3l">
+            <div class="shotl">
+              <span class="shotn">3l · TV Home Extras — details panel, load failed</span>
+              <span>The old code showed a toast and closed. Here the panel stays, with what the card already knew, and says what failed with a hollow marker and words. Verbs that need the loaded title go. Try again takes focus, and the others still work.</span>
+            </div>
+            <div class="shotc">
+              <div class="tv" data-screen-label="TV Home Extras — details failed">
+                <div class="railc abs" style="left:0;top:0">
+                  <div class="lgm"></div>
+                  <sc-for list="{{ nav }}" as="n" hint-placeholder-count="5">
+                    <div class="nic {{ n.cls }}"><span class="gl"></span></div>
+                  </sc-for>
+                </div>
+                <div class="rhd abs" style="left:200px;top:56px;width:1664px"><div class="rt">{{ popularTitle }}</div></div>
+                <div class="row abs" style="left:200px;top:144px">
+                  <sc-for list="{{ marksRest }}" as="p" hint-placeholder-count="9">
+                    <div class="ps"><div class="art psa"></div></div>
+                  </sc-for>
+                </div>
+                <div class="rhd abs" style="left:200px;top:408px;width:1664px"><div class="rt">{{ showsTitle }}</div></div>
+                <div class="row abs" style="left:200px;top:496px">
+                  <sc-for list="{{ marksRest }}" as="p" hint-placeholder-count="9">
+                    <div class="ps"><div class="art psa"></div></div>
+                  </sc-for>
+                </div>
+
+                <div class="rhd abs" style="left:200px;top:760px;width:1664px"><div class="rt">{{ latestTitle }}</div></div>
+                <div class="row abs" style="left:200px;top:848px">
+                  <sc-for list="{{ marksRest }}" as="p" hint-placeholder-count="9">
+                    <div class="ps"><div class="art psa"></div></div>
+                  </sc-for>
+                </div>
+
+                <div class="scrim"></div>
+                <div class="panel">
+                  <div class="art abs" style="left:32px;top:56px;width:384px;height:216px;border-radius:8px"></div>
+                  <div class="ptitle abs" style="left:32px;top:296px;width:472px">{{ failedTitle }}</div>
+                  <div class="notice abs" style="left:32px;top:344px;width:472px">
+                    <span class="hollow"></span>
+                    <div class="nh">{{ detailFailed }}</div>
+                  </div>
+                  <div class="plot abs" style="left:32px;top:448px;width:472px;height:40px">{{ detailFailedWhy }}</div>
+                  <sc-for list="{{ failedRows }}" as="r" hint-placeholder-count="3">
+                    <div class="lrow {{ r.cls }} abs" style="{{ r.pos }}">
+                      <span class="lmark"></span>
+                      <span class="gl2"></span>
+                      <div class="grow">
+                        <div class="lt">{{ r.n }}</div>
+                        <div class="ls">{{ r.m }}</div>
+                      </div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="note">
+          <h3>How a remote reaches the details panel (3k), and the question it leaves</h3>
+          <p>The owner’s word was <b>long press</b>, and the old TV page does exactly that:
+          <code>SearchResultBuilder.kt:231</code> sets a long-click listener on the card. A remote can’t be
+          relied on for it, because some remotes may report a key press and release together, and then
+          nothing fires. So these boards draw <b>three routes and no new stop on a card</b>:</p>
+          <p><b>1 · Hold OK</b> stays, as asked. <b>2 · The Menu key</b> opens the same panel on a remote
+          that has one. <b>3 · Without either,</b> nothing is out of reach: OK opens the title’s page,
+          which carries the details and the bookmark (7a), and the Search cell in the chrome (3j) searches
+          the source. The hint on 3e tells a person that the gesture exists, and only names Menu where
+          <code>KeyCharacterMap.deviceHasKey</code> says it is there.</p>
+          <p><b>Why not a trailing stop on each card.</b> It is the one route that can’t fail, and it
+          doubles every RIGHT along a rail: card 8 takes 14 presses rather than 7, on every rail, for
+          everyone, to serve the few whose remote fails. It would also break 3d’s rule that RIGHT walks
+          the cards. A stop at the end of the rail does not work either, because walking there moves focus
+          off the card it was for.</p>
+          <p><b>Not measured.</b> No board or emulator run can say which remotes fail, so “some remotes”
+          is the brief’s claim and my reasoning, not a test. Holding OK needs trying on real hardware.</p>
+
+          <h3>3e · Bookmarks rail</h3>
+          <p><b>Focus.</b> From Continue watching, DOWN reaches the chips, then DOWN the cards, then the
+          next rail. UP reverses it. LEFT from the first chip or card opens the nav rail. RIGHT at the last
+          card is a wall, as on every rail. Chips apply at once and selection does not follow focus.
+          <b>Filter.</b> One status at a time, or none: the old chip listener loads <code>setOf(watch)</code>
+          and the observer unticks the rest (<code>HomeParentItemAdapterPreview.kt:530-540</code>,
+          <code>:789-797</code>). The old rail has no paging, so no trailing card, and it is sorted by last
+          updated. A bookmark can come from any source, so it opens from its own.</p>
+          <p><b>States.</b> Content is here. Empty, meaning no bookmarks at all: the rail is absent, as it was
+          (<code>HomeViewModel.kt:186-190</code>), so nothing is promised. Empty filter: 3f. Loading: 3f’s skeleton
+          cards at this geometry, with no chips until the read returns. Offline: 3g. Error: the old
+          read reports nothing, and the rail stays absent. Partial does not apply, since one store answers.
+          <b>Prerequisites.</b> A bookmark seam, as <code>HomeSource</code> has only <code>sources()</code>
+          and <code>page()</code> (<code>HomeContracts.kt:79-83</code>) and <code>HomeStatus</code> holds
+          source rows only (<code>HomeMvi.kt:80-108</code>). Data is at <code>HomeViewModel.kt:168-209</code>,
+          <code>WatchType.kt:7</code> and <code>DataStoreHelper.kt:366</code>. The chip words exist:
+          <code>type_watching</code> and the rest, and <code>error_bookmarks_text</code> for the title.
+          Drawn without counts because the old code posts none, and with a badge only from
+          <code>BookmarkedData.quality</code>.</p>
+
+          <h3>3f · No status chosen</h3>
+          <p><b>Focus.</b> Stays on the chip just pressed, the only stop in this rail. DOWN skips the empty
+          band and goes to the next rail’s first card, once there are cards. <b>States.</b> Empty here, and
+          loading for the source rails beneath, built as <code>HomeRailSkeleton</code> draws them
+          (<code>HomeRailTv.kt:252</code>). <b>Prerequisites.</b> As 3e, plus two new strings for these words.
+          An empty <code>Set</code> is what <code>loadStoredData</code> already takes
+          (<code>HomeParentItemAdapterPreview.kt:535-537</code>).</p>
+
+          <h3>3g · Offline</h3>
+          <p><b>Focus.</b> Try again takes it when the state appears. UP reaches the chips, and UP again the
+          source control. A card can still be focused, and its details panel works, since a bookmark’s panel
+          reads only what is stored. Opening its page shows the detail screen’s own offline state.
+          <b>States.</b> Offline, with the cells that need a connection removed. If there are no bookmarks
+          this falls back to the built full-page prompt. <b>Prerequisites.</b> The rail must live outside
+          <code>HomeStatus.Offline</code>, which today replaces the page (<code>HomeScreenTv.kt:191-193</code>).
+          The count is <code>list.size</code> from the read. Words: <code>search_state_offline_headline</code>,
+          <code>search_state_retry</code> exist; the shorter body and <code>N BOOKMARKS</code> are new.</p>
+
+          <h3>3h · Source panel</h3>
+          <p><b>Focus.</b> Opens on the chosen source, as built (<code>HomeSourcePanelTv.kt:39</code>), and
+          UP reaches Random and None. OK applies and closes. Back closes, and focus returns to the source
+          control. <b>Random is one-shot:</b> the old code writes the picked source, not Random
+          (<code>HomeViewModel.kt:524-534</code>), so next launch opens on that source. It picks from
+          <code>filterProviderByPreferredMedia</code>, and with nothing to pick it means None. Its row is
+          absent when there are no sources. <b>States.</b> Content here. Loading: rows arrive as plugins do
+          (<code>HomeSources.stillLoading</code>). Empty: None alone, and the page’s built prompt behind it.
+          <b>Prerequisites.</b> <code>DataStoreHomeSourceMemory.kt:33</code> <b>refuses both names on
+          purpose</b>, and reads None as never having chosen, so PR #147 must change or None will not
+          survive a restart. The panel lists <code>state.sources</code> only
+          (<code>HomeSourcePanelTv.kt:48</code>). <code>applySources</code> in <code>feature/home</code>’s view model falls back to the
+          first source when none is remembered (<code>:131-135</code>), and needs a “none”
+          that is not null. Names: <code>APIRepository.kt:36,41</code>; words <code>none</code> and
+          <code>home_random</code> exist, the subtitles are new.</p>
+
+          <h3>3i · Source None</h3>
+          <p><b>Focus.</b> The source control after the panel closes. On a fresh launch the first card of the
+          first rail, as built. DOWN walks Continue watching, chips, cards. <b>States.</b> Content here. With
+          neither rail present it is Empty: the built <code>StateView</code>, with one action that opens
+          this panel, which needs new words. No error or partial exists, because nothing was asked of a
+          source. <b>Prerequisites.</b> As 3h, and the control is only drawn for a real selection today
+          (<code>HomeScreenTv.kt:277-279</code>). The old page hid reload and search on None
+          (<code>HomeFragment.kt:825-826</code>). Continue watching is 3c’s, with its source line left off:
+          PR #147 records per-card source as a gap.</p>
+
+          <h3>3j · Chrome, Reload, Random, Search</h3>
+          <p><b>Focus order.</b> Source, Reload, Random, Search, account, left to right, gaps 24. DOWN goes to
+          the hero’s Resume. Old TV order: <code>fragment_home_tv.xml:226,245,262</code>.
+          <b>Reload.</b> In flight, the same slot reads <code>RELOADING VIDSRC</code> with no marker, a second
+          press is ignored, and rows stay. On success rows swap in place and focus stays on the cell. A
+          partial result uses the built notice and its button, which retries only what failed. A failure
+          keeps the earlier rows: the old page went to a shimmer and an error page.
+          <b>Random.</b> Opens one title chosen from what is loaded, which is what the old button did
+          (<code>HomeFragment.kt:855-868</code>). It has no state of its own. <b>Search.</b> Quick Search
+          (8d in <code>TV Search Suggestions</code>) on this source, query blank, as the old button did
+          (<code>HomeViewModel.kt:473-477</code>). <b>Reachable when.</b> Reload and Random need loaded rows,
+          so during loading, error, empty, offline and None the cells are absent and the state’s own button
+          does the job. Search needs a source and a connection.
+          <b>Prerequisites.</b> A <code>HomeAction.Reload</code> that keeps rows:
+          in <code>feature/home</code>’s view model, <code>retry()</code> goes through <code>HomeStatus.Loading</code> (<code>:187-191</code>) and
+          <code>select()</code> returns early for the same source (<code>:168</code>). A way to fail with rows
+          still held, as <code>HomeStatus.Failed</code> carries none (<code>HomeMvi.kt:105</code>). New effects for
+          a random title and scoped search, as <code>HomeEffect.OpenSearch</code> takes no source
+          (<code>HomeMvi.kt:159</code>). TV Quick Search is not built. New <code>CloudStreamIcons</code>:
+          <code>TablerIcons.Dice</code> is in the 1.1.1 jar, Refresh is already <code>Retry</code>, Search exists.
+          Words: <code>reload_provider</code>, <code>home_random</code> and <code>search</code> exist. The hero
+          itself is 3c’s and its needs are <code>Q10</code>’s. Its eyebrow shows the source, because
+          <code>NEW SEASON</code> has no data.</p>
+
+          <h3>3k · Details panel</h3>
+          <p><b>Focus.</b> Lands on More info. DOWN through Bookmark, Favourite, Search, trapped in the panel.
+          Back closes and returns to the exact card. Bookmark opens a second panel of the same chassis with
+          the six <code>WatchType</code> rows, single choice, applying at once, and Back returns here.
+          <b>States.</b> Content here. Loading, from a source’s rail: the same geometry, title known, facts
+          and plot as skeleton, focus already on More info so nothing jumps. From a bookmark there is no
+          loading, as it reads stored fields (<code>ResultViewModel2.kt:2615</code>,
+          <code>HomeParentItemAdapterPreview.kt:256-259</code>). Error and offline: 3l. Empty: a title with no plot
+          leaves the band blank and the rows do not move.
+          <b>Prerequisites.</b> <code>HomeItem</code> has only id, title, poster and badge
+          (<code>HomeContracts.kt:49-57</code>), so the panel needs a load seam. Bound fields in the old popup:
+          <code>MainActivity.kt:1527-1541</code>; bookmark write at <code>:1551</code>. Card press is
+          <code>clickable</code> today (<code>HomeRailTv.kt:215</code>) and needs a long-click and a Menu key
+          route. Plot must be sanitized: old code sets it as HTML (<code>:1534</code>).
+          Words: <code>home_more_info</code>, <code>action_add_to_bookmarks</code>,
+          <code>action_add_to_favorites</code> and <code>search_hint_site</code> exist. Glyphs:
+          <code>Bookmark</code>, <code>Favorite</code>, <code>Search</code> exist, and More info wants
+          <code>Disclosure</code>.</p>
+
+          <h3>3l · Details, load failed</h3>
+          <p><b>Focus.</b> Try again, then More info, then Search. Back returns to the card. <b>States.</b>
+          Error here. Offline is this board with <code>You are offline</code> as the reason and Search removed.
+          Try again goes through the loading state of 3k. <b>Prerequisites.</b> As 3k. The old branch to
+          replace is <code>MainActivity.kt:1506-1510</code>. The poster is <code>HomeItem.posterUrl</code>, as
+          the card has no backdrop. Reason words <code>plugin_load_fail</code> exist; the headline is new.</p>
+
+          <h3>Questions for the owner</h3>
+          <p><b>1 · Long press.</b> Hold OK plus Menu plus the page as fallback, as drawn, or a guaranteed
+          per-card stop at double the RIGHT presses? <b>2 · Random as a source.</b> One-shot as the old code
+          has it, or a new source each launch? <b>3 · Random’s cell.</b> The old button sits behind a setting
+          that defaults to off (<code>HomeFragment.kt:807-816</code>). Drawn always on. Keep the setting?
+          <b>4 · Search on the card.</b> The old app has search only in the chrome, blank. Drawn in both,
+          with the title filled in from a card. Right? <b>5 · Subscribe.</b> The old popup also had it, for
+          some titles (<code>MainActivity.kt:1465</code>). Left off for height. Wanted? <b>6 · A failed reload</b>
+          keeps the earlier rows rather than the old error page. Agreed? <b>7 · Rows and icon tiles.</b> See
+          below: do tokens also win for list rows?</p>
+
+          <h3>What the measuring caught</h3>
+          <p>The scanner’s first run said zero, and it was wrong. Bound text sits in an inline span, so the
+          scanner counted no text boxes at all. Moving a box, clipping a label and colliding the notice with
+          the source control on purpose showed it: two of those went unreported. With text counted it found one real
+          fault, a synopsis clamped at two lines and cut off. It also flagged mono 20/24 for a content box of
+          25, which <code>Design System v2</code> §03 says does not clip, so vertical clipping now tests the
+          measured ink. Every ring was then read again from the pixels: gap and stroke on all four sides.</p>
+
+          <h3>Where these boards differ from others, on purpose</h3>
+          <p><b>Radius.</b> Text buttons are 16, as ruled. List rows are 16 too, because
+          <code>ListRow.kt:168</code> uses the same <code>medium</code> token and tokens win. Other boards still
+          draw rows at 8. <b>Rings.</b> On the visible control, so a chip’s ring hugs the 48 pill and an icon’s
+          the 48 tile. <code>Chip.kt</code> and <code>IconCell.kt</code> ring the cell, and <code>DS-11</code>
+          recorded that for chips as the rule, so the code and these boards disagree until someone rules.
+          <b>Selected chip.</b> Raised, ink, muted marker, as ruled. <code>Chip.kt</code> and
+          <code>TV Library</code>’s tab are a white fill. <b>White.</b> 3j’s Resume is 3c’s primary, a white
+          fill at rest, which the rule “white means focus only” does not obviously allow. It is kept to match
+          3c and is the owner’s to rule. <b>Continue</b> draws four cards so none crosses the band. Line
+          references to <code>feature/home</code> and <code>cloudstream4/home</code> files (<code>HomeContracts</code>, <code>HomeMvi</code>, <code>HomeScreenTv</code>, <code>HomeRailTv</code>, <code>HomeSourcePanelTv</code>, <code>DataStoreHomeSourceMemory</code>) and to <code>ListRow</code> are PR #147 at
+          <code>5921e6942</code>. A bare <code>HomeViewModel.kt</code>, and the other old-app files, are <code>:app</code> on master at <code>8f35d725f</code>.</p>
+        </div>
+      </section>
+    </x-dc>
+
+    <script type="text/x-dc" data-dc-script data-props='{}'>
+      class Component extends DCLogic {
+        renderVals() {
+          const nav = [{ cls: "cur" }, { cls: "" }, { cls: "" }, { cls: "" }, { cls: "" }];
+          const names = ["Watching", "Plan to Watch", "On-Hold", "Dropped", "Completed"];
+          const chipsOf = function (sel, foc) {
+            return names.map(function (l, i) {
+              return { l: l, cls: (i === sel ? "sel " : "") + (i === foc ? "foc" : "") };
+            });
+          };
+
+          const titles = [
+            ["The Long Dark"], ["Salt Road", "4K"], ["Hollow Crown"], ["Ashen Field", "HD"], ["Nine Lives"],
+            ["Kingfisher"], ["Paper Cities"], ["The Wake"], ["Greyline"]
+          ];
+          const marks = titles.map(function (p, i) {
+            return { t: p[0], badge: !!p[1], badgeText: p[1] || "", focused: i === 1, cls: i === 1 ? "foc" : "" };
+          });
+          const marksRest = titles.map(function (p) {
+            return { t: p[0], badge: false, badgeText: "", focused: false, cls: "" };
+          });
+          const plain = function (list) {
+            return list.map(function (p) { return { badge: !!p[1], badgeText: p[1] || "" }; });
+          };
+          const popular = plain([["Vantage"], ["Salt Road", "4K"], ["Drift"], ["Low Tide"], ["Quiet Harbor"], ["Meridian"], ["Cold Open"], ["Nightshift"]]);
+          const shows = plain([["The Long Dark"], ["Ashen Field", "DUB"], ["Hollow Crown"], ["Nine Lives"], ["Kingfisher"], ["Paper Cities"], ["The Wake"], ["Greyline"]]);
+
+          /* Bookmarks block 368 = header 96 + clearance 32 + card 240; a source rail is 328; gaps 24. */
+          const belowRails = [
+            { title: "Popular movies", items: popular, hpos: "left:200px;top:448px;width:1664px", cpos: "left:200px;top:536px" },
+            { title: "TV shows", items: shows, hpos: "left:200px;top:800px;width:1664px", cpos: "left:200px;top:888px" }
+          ];
+          const skeleton = [1, 2, 3, 4, 5, 6, 7, 8, 9].map(function (n) { return { n: n }; });
+
+          const cont = [
+            { t: "The Long Dark", s: "S2 E4 · 28m left", pct: 62 },
+            { t: "Hollow Crown", s: "S1 E7 · 12m left", pct: 81 },
+            { t: "Ashen Field", s: "E12 · 19m left", pct: 44 },
+            { t: "Quiet Harbor", s: "1h 04m left", pct: 22 }
+          ].map(function (c) { return { t: c.t, s: c.s, bar: { width: c.pct + "%" } }; });
+
+          const rowPos = function (i, first) { return "left:32px;top:" + (first + i * 120) + "px;width:472px"; };
+          const sourceRows = [
+            { n: "None", m: "NO RAILS · YOUR ROWS STAY", cls: "" },
+            { n: "Random", m: "PICKS ONE · THEN KEEPS IT", cls: "foc" },
+            { n: "vidsrc", m: "en", cls: "sel" },
+            { n: "filmxy", m: "en", cls: "" },
+            { n: "gogo", m: "ja", cls: "" },
+            { n: "vidplay", m: "en", cls: "" }
+          ].map(function (r, i) { return { n: r.n, m: r.m, cls: r.cls, pos: rowPos(i, 256) }; });
+
+          const detailRows = [
+            { n: "More info", m: "OPENS THE TITLE", cls: "foc" },
+            { n: "Set watch status", m: "WATCHING", cls: "" },
+            { n: "Add to favorites", m: "NOT IN FAVORITES", cls: "" },
+            { n: "Search vidsrc…", m: "THE LONG DARK", cls: "" }
+          ].map(function (r, i) { return { n: r.n, m: r.m, cls: r.cls, pos: rowPos(i, 552) }; });
+
+          const failedRows = [
+            { n: "Try again", m: "ASKS VIDSRC AGAIN", cls: "foc" },
+            { n: "More info", m: "OPENS THE TITLE", cls: "" },
+            { n: "Search vidsrc…", m: "VANTAGE", cls: "" }
+          ].map(function (r, i) { return { n: r.n, m: r.m, cls: r.cls, pos: rowPos(i, 552) }; });
+
+          return {
+            nav: nav, marks: marks, marksRest: marksRest, belowRails: belowRails, skeleton: skeleton, cont: cont,
+            chips: chipsOf(0, -1), chipsNone: chipsOf(-1, 0), chipsRest: chipsOf(0, -1),
+            bookmarksTitle: "Bookmarks", holdHint: "HOLD OK OR MENU · DETAILS", loadMore: "Load more",
+            noStatusHead: "No status chosen", noStatusBody: "Choose one above to see those bookmarks.",
+            offlineHead: "You are offline", offlineCount: "9 BOOKMARKS", sourceName: "vidsrc", noneName: "None",
+            offlinePrompt: "vidsrc needs a connection", offlineBody: "Your bookmarks are saved on this device.", tryAgain: "Try again",
+            sourcesTitle: "Sources", sourcesMeta: "14 SOURCES · APPLIES AT ONCE", sourceRows: sourceRows,
+            clock: "22:14", contTitle: "Continue watching", popularTitle: "Popular movies", showsTitle: "TV shows", latestTitle: "Latest",
+            reloadFailed: "Couldn’t reload vidsrc", reloadDetail: "HTTP 503 · EARLIER RESULTS",
+            heroSource: "VIDSRC", heroTitle: "The Long Dark", heroMeta: "2026 · 2 SEASONS · 24 EP · SCI-FI · THRILLER", heroRate: "8.7",
+            heroSyn: "A salvage crew wakes from cryo to find the relay station empty and the logs erased.",
+            heroResume: "Resume S2 E4", heroTrailer: "Watch trailer", heroLibrary: "+ Library", heroCount: "1 / 12",
+            detailMeta: "TV SERIES · 2026 · 8.7 · 52 MIN",
+            detailPlot: "A salvage crew wakes from cryo to find the relay station empty, the logs erased, and something on deck four.",
+            detailRows: detailRows, failedTitle: "Vantage", detailFailed: "Couldn’t load the details", detailFailedWhy: "Could not load vidsrc",
+            failedRows: failedRows
+          };
+        }
+      }
+    </script>
+  </body>
+</html>

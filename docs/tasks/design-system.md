@@ -540,3 +540,17 @@ along a `ChipRow` on `Television_720p`. Two tests pinned the old rule's sample s
 Compose draws that control as a `Chip`. `.cbtn` has no Compose control to compare yet. In `Components`: chip
 padding 16 px against `ChipDefaults.VisualHorizontalPadding` 24 px, chip spacing 8 px against `ChipRowSpacing` 48 px, so a
 ring there touches its neighbour, and `.seg` 56 px against the 48 px visual `SegmentedControl` documents.
+
+---
+
+## DS-13 — Boards: four old Home features, `TV Home Extras` 3e to 3l
+
+**Status:** in review, waiting on the owner · boards only, no Kotlin
+
+The owner asked on 2026-11-05 for the bookmarks row and its filter, Random and the `Random` and `None` sources, a details
+panel on a card with search of its source, and a manual reload. No board drew them. `design/TV Home Extras.dc.html` holds eight
+artboards, numbered on from 3d. Its closing note gives each board's focus order, states and prerequisites by file and line,
+and the questions for the owner, including how a remote reaches the panel. 414 boxes: 0 off-grid, 0 band violations, 0 clipped,
+0 collisions, 8 rings at 4px gap and 4px stroke on all four sides, from `getBoundingClientRect` and again from the pixels.
+
+---
