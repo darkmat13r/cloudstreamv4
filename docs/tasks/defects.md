@@ -1454,7 +1454,7 @@ not exercised: the controls inside it with real media, and moving focus between 
 
 ## BUG-36 — `SidePanelHost` returns focus to the content's first stop, not to the control that opened the panel · **medium**
 
-**Status:** found, not fixed · found 2026-11-05 by `KMP-38`'s device suite, the component's first production
+**Status:** found, not fixed · found 2026-11-05 by `KMP-38`'s device suite (pr #153), the component's first production
 caller · `core/designsystem/.../panel/SidePanelHost.kt:168-207`
 
 **Changes what users see on TV.** Dismissing a side panel drops focus on the first focusable in the content

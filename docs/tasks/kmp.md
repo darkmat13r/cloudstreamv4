@@ -3396,7 +3396,7 @@ dump, so `DownloadFacts` and its `Flow.map` helper classes appear, as do the man
 
 ## KMP-38 — The TV detail page on Android (queue `Q20`, boards 7a, 7b, 7a-ii) · **measured 2026-11-04**
 
-**Status:** in pr · **Owner's rulings it follows:** `DEC-17` (hollow neutral failure, panel commit rule, the
+**Status:** in pr #153 · **Owner's rulings it follows:** `DEC-17` (hollow neutral failure, panel commit rule, the
 program's merge rule). Android TV only. Phone and `EMULATOR` unchanged. The old `ResultFragmentTv` stays as
 the rollback for one release.
 
