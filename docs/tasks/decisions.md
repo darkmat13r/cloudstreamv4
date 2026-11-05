@@ -657,3 +657,5 @@ would fail closed: no plugins rather than unsandboxed plugins. `SandboxEscapeAtt
 - **Merging:** a PR merges once all gates and its Android UI tests pass on the emulator. Security-boundary, published-API and irreversible changes wait for the owner.
 - **Order:** every drawn TV screen first, drawing a missing TV board when one is needed. Then phone artboards from `Design System v2`, reviewed by the owner before they are built.
 - **Switching a screen in `:app`:** passing UI tests on the `Television_720p` emulator is enough, with the old screen kept as rollback for one release.
+
+**2026-11-05, the owner:** *"make chips even like buttons"*. The focus ring on a chip, a tab and a segmented option sits evenly around the visible control, as on text buttons, not around the taller focus cell, which stays the focus and hit target. The same day, relayed through the coordinator: tabs get the even ring too, and for button corners the token wins, so the boards draw a text button at 16 px, which is `shapes.medium`. Done in `DS-12`.

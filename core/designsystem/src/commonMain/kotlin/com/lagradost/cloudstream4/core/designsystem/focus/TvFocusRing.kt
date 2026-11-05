@@ -23,13 +23,13 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
  *
  * ## The contract — read this before writing a focusable
  *
- * **A focus ring is not a border.** It is a [CloudStreamDimens.FocusRingStroke] (4dp) stroke
- * sitting [CloudStreamDimens.FocusRingOffset] (4dp) outside the element's edge, so it occupies
- * [CloudStreamDimens.FocusRingBleed] (8dp) *entirely outside* the element's box. Concretely:
+ * **A focus ring is not a border.** It is a [CloudStreamDimens.FocusRingStroke] (2dp) stroke
+ * sitting [CloudStreamDimens.FocusRingOffset] (2dp) outside the element's edge, so it occupies
+ * [CloudStreamDimens.FocusRingBleed] (4dp) *entirely outside* the element's box. Concretely:
  *
- * - the inner edge of the stroke is 4dp outside the element,
- * - the outer edge of the stroke is 8dp outside the element,
- * - the centre of the stroke is 6dp outside the element, which is where this modifier puts it.
+ * - the inner edge of the stroke is 2dp outside the element,
+ * - the outer edge of the stroke is 4dp outside the element,
+ * - the centre of the stroke is 3dp outside the element, which is where this modifier puts it.
  *
  * **It must not change the element's measured size, and it does not.** This is a draw-only
  * modifier — `drawWithCache`, no layout phase, no padding, no `Modifier.border`. Drawn as a
@@ -37,20 +37,21 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
  * the bug this modifier exists to make impossible. Applying it can never move a sibling, change
  * an intrinsic measurement, or alter what the parent measures.
  *
- * **Where the 8dp bleed lives.** In the shared chassis it lives inside
+ * **Where the 4dp bleed lives.** In the shared chassis it lives inside
  * [CloudStreamDimens.FocusBandInset] (28dp): every focusable's own box lies inside the 28dp
  * margin, and the ring bleeds into the 24..28dp reserve. That is exactly why the artboard margin
  * is 56px and not 48px. It follows that **no ancestor may clip.** A ring on an element inside a
  * `Modifier.clip(...)`, a `graphicsLayer { clip = true }`, or a `LazyRow`'s viewport edge is
  * silently cut off. If you need clipping, clip a child, not the focusable.
  *
- * **Ring on the cell, not on the visual, for chips.** A chip's visual is
- * [CloudStreamDimens.ChipVisualHeight] (24dp) centred in a [CloudStreamDimens.ChipFocusCell]
- * (48dp) cell; this modifier goes on the cell. An icon-only target rings its
- * [CloudStreamDimens.IconTargetCell]; a text button and a list row ring themselves.
+ * **Ring the thing you can see.** A chip's visual is [CloudStreamDimens.ChipVisualHeight] (24dp)
+ * centred in a [CloudStreamDimens.ChipFocusCell] (48dp) cell; the cell takes focus and this
+ * modifier goes on the visual, so the gap is even on all four sides (`DEC-17`, 2026-11-05). A
+ * segmented option does the same, and a text button and a list row ring themselves. An icon-only
+ * target rings its [CloudStreamDimens.IconTargetCell], because it has no fill to ring.
  *
- * **Corners.** [shape] is the element's own shape. The ring is drawn on a shape expanded by 6dp
- * in every direction, so a rounded element gets a ring that stays a constant 4dp away from it all
+ * **Corners.** [shape] is the element's own shape. The ring is drawn on a shape expanded by 3dp
+ * in every direction, so a rounded element gets a ring that stays a constant 2dp away from it all
  * the way round rather than pinching at the corners. Only [CornerBasedShape]s are expanded; any
  * other [Shape] is stroked at its own corner geometry on the enlarged rect.
  *
@@ -78,7 +79,7 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
  * @param stroke the ring's stroke weight. Defaults to [CloudStreamDimens.FocusRingStroke]; the
  *   design has exactly one, so overriding this is a design change.
  * @param offset the gap between the element's edge and the ring's inner edge. Defaults to
- *   [CloudStreamDimens.FocusRingOffset]; changing it changes the 8dp bleed the 28dp band pays for.
+ *   [CloudStreamDimens.FocusRingOffset]; changing it changes the 4dp bleed the 28dp band pays for.
  */
 fun Modifier.tvFocusRing(
     focused: Boolean,

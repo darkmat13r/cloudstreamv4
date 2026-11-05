@@ -58,7 +58,7 @@ Files, in the order they should be read:
   "Retry failed" at the right end of the chip row) over a band of its own: a full-width banner costs
   120px and pushed Search's second rail 56px past the band.
 - **Three target classes, not one.** Icon-only = a 96×96 cell. Text button = 64 tall × ≥240 wide.
-  Chip = a 40-tall visual centred in a 96-tall focus cell. The ring always draws on the cell.
+  Chip = a 48-tall visual centred in a 96-tall focus cell. The ring draws on the visual (`DEC-17`, 2026-11-05).
 - The focus band is measured on the **element box**; the ring's 8px bleed lives in the 48..56
   reserve, which is why the outer margin is 56 and not 48.
 - Cards that lift on focus (`translateY -12`) need **24px** above the row, not 8 — otherwise the

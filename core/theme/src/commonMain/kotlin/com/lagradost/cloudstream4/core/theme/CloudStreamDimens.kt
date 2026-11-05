@@ -98,7 +98,7 @@ object CloudStreamDimens {
      */
     val ChipVisualHeight: Dp = 24.dp
 
-    /** The chip's focus cell. The ring goes on the **cell**, not on the visual. */
+    /** The chip's focus and hit cell. The ring goes on the **visual**, not on this cell. */
     val ChipFocusCell: Dp = 48.dp
 
     /** A glyph inside a chip: 32px, so it too centres onto the step. */
