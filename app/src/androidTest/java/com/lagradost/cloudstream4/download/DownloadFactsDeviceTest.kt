@@ -15,6 +15,7 @@ import com.lagradost.cloudstream3.utils.ExtractorLinkType
 import com.lagradost.cloudstream3.utils.downloader.DownloadFileManagement.getBasePath
 import com.lagradost.cloudstream3.utils.downloader.DownloadFileManagement.getFileName
 import com.lagradost.cloudstream3.utils.downloader.DownloadFileManagement.toFile
+import com.lagradost.cloudstream3.utils.downloader.DownloadObjects
 import com.lagradost.cloudstream3.utils.downloader.DownloadObjects.DownloadEpisodeMetadata
 import com.lagradost.cloudstream3.utils.downloader.DownloadObjects.DownloadItem
 import com.lagradost.cloudstream3.utils.downloader.DownloadObjects.DownloadResumePackage
@@ -49,7 +50,7 @@ import java.util.Collections
 import kotlin.concurrent.thread
 
 private const val MIB = 1_048_576L
-private const val RETRY_ROUNDS = 40
+private const val RETRY_ROUNDS = 80
 private const val TAG = "DownloadFactsMeasure"
 
 /** What the file holds at each offset, so a gap or a misplaced part shows up as a wrong byte. */
@@ -205,6 +206,17 @@ private class Episode(private val context: Context, val id: Int, vararg urls: St
             length = fileInfo?.fileLength
         }
         return length
+    }
+
+    /** The record and the file, waited for: the lookup is MediaStore's, which can miss a file it has just made. */
+    suspend fun awaitFileInfo(timeoutMs: Long = 10_000L): DownloadObjects.DownloadedFileInfoResult? {
+        val deadline = System.currentTimeMillis() + timeoutMs
+        var info = fileInfo
+        while (info == null && System.currentTimeMillis() < deadline) {
+            delay(50)
+            info = fileInfo
+        }
+        return info
     }
 
     /** How many bytes the file really holds, read back, which `_size` does not say. */
@@ -446,9 +458,10 @@ class DownloadFactsDeviceTest {
     }
 
     /**
-     * A retry resumes from what the file holds and appends nothing it already has (`BUG-39`). On the old code, which took
-     * the length from `_size`, this went wrong in 53 of 900 rounds, so 40 rounds catch it about 91% of the time. A round
-     * that ends with no file is another matter, and is skipped here.
+     * Both mirrors drop, so every round must end failed with its file kept, and a retry must append nothing the file
+     * already has (`BUG-39`). On the old code a retry went wrong in 53 of 900 rounds, and 35 of 1,200 ended "completed"
+     * with no file at all, because MediaStore's scanner deleted the new file's row. At
+     * those rates 80 rounds catch each about 99% and 90% of the time; it is a probabilistic test.
      */
     @Test
     fun aRetryAppendsNothingTheFileAlreadyHolds(): Unit = runBlocking {
@@ -458,11 +471,15 @@ class DownloadFactsDeviceTest {
                     val episode = episode(910_100 + round, first.url, second.url)
                     episode.start()
                     assertTrue("did not end", episode.awaitEnd())
-                    val reported = episode.fact?.bytesWritten
-                    if (reported != null) {
-                        assertEquals("round $round, ${second.requests.toList()}", reported, episode.bytesInFile())
-                        assertNull("round $round", episode.firstWrongOffset())
-                    }
+                    val instance = episode.instance!!
+                    assertTrue("round $round ended completed=${instance.isCompleted}", instance.isFailed)
+                    assertNotNull(
+                        "round $round left no file: fact ${episode.fact}, first ${first.requests.toList()}, second ${second.requests.toList()}",
+                        episode.awaitFileInfo(),
+                    )
+                    val reported = episode.fact!!.bytesWritten!!
+                    assertEquals("round $round, ${second.requests.toList()}", reported, episode.bytesInFile())
+                    assertNull("round $round", episode.firstWrongOffset())
                     episode.deleteFile()
                 }
             }

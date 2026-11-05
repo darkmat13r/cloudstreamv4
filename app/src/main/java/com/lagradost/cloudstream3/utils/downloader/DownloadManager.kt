@@ -545,8 +545,10 @@ object VideoDownloadManager {
             if (tryResume) {
                 foundFile to (fileLengthOnDisk(CloudStreamApp.context, foundFile.uri()) ?: foundFile.lengthOrThrow())
             } else {
-                foundFile.deleteOrThrow()
-                subDir.createFileOrThrow(displayName) to 0L
+                // Starting over keeps the file and truncates it: with a length of 0 the stream opens with "wt". Deleting
+                // it and making one at the same path raced MediaStore's scanner, which then deleted the new file's row
+                // while it was being written, so the download read as deleted and ended in success (`BUG-39`).
+                foundFile to 0L
             }
         }
 
@@ -1136,10 +1138,10 @@ object VideoDownloadManager {
             // if we have an output stream that cant be resumed then we delete the entire file
             // and set up the stream again
             if (!items.isResumed && stream.startAt > 0) {
+                // Truncated in place rather than deleted and made again, for the reason in setupStream (`BUG-39`).
                 fileStream.closeQuietly()
-                stream.delete()
                 metadata.setResumeLength(0)
-                stream = setupStream(baseFile, name, folder, extension, false)
+                stream = stream.copy(fileLength = 0L)
                 fileStream = stream.open()
             }
 

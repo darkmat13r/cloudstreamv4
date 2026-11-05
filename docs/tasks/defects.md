@@ -1562,9 +1562,9 @@ the symptom, and those sources were not read.
 
 ---
 
-## BUG-39 — An automatic retry could duplicate bytes in a file, because it resumed from a length that trails the file · **high** · measured 2026-11-05
+## BUG-39 — A download could duplicate bytes in its file, or report success with no file, through two MediaStore races · **high** · measured 2026-11-05
 
-**Status:** fixed in the PR that adds this entry, on the owner's decision. A second defect found on the way is below, and is not fixed. `Q14`'s screen is not involved.
+**Status:** both fixed in the PR that adds this entry, on the owner's decision. `Q14`'s screen is not involved.
 
 **The defect.** `setupStream` took a resume's `startAt` from `SafeFile.lengthOrThrow()`, which on `MediaFile` reads MediaStore's `_size` column (from SafeFile 0.0.8's bytecode), and `_size` trails the file. The stream then opens in append mode. `EpisodeDownloadInstance` retries by itself on `retrySame`, 1 to 8 ms after the close. So a short read asked for bytes the file already had and appended them. The download reported the right count over a wrong file, with a stretch repeated from the point the connection dropped, and nothing said so.
 
@@ -1574,10 +1574,11 @@ the symptom, and those sources were not read.
 
 All of it on TV emulators (`Television_720p`, `Television_720p_2`) against a fake server on loopback. **One kind of emulator over loopback is not a real device.** The scenario: a first mirror drops at 12 MiB of 15, a second at 5 MiB.
 
-| | Rounds | Corrupt | With no file (below) |
+| | Rounds | Corrupt | Success with no file (below) |
 |---|---|---|---|
 | Before the fix, three runs | 900 | **53** (20, 11, 22) | 29 |
-| After the fix | 300 | **0** | 6 |
+| After the length fix | 300 | **0** | 6 |
+| After both fixes | 300 | **0** | **0** |
 
 - After the fix, 294 rounds ended with a file. Every one held exactly what `bytesWritten` reported, read back and checked byte by byte. All 272 that resumed asked for exactly 5,242,880.
 - Before it, the worst case asked for `GET 65536-` and left 10,420,224 bytes against 5,242,880 reported. The first wrong byte was at exactly 5,242,880 every time.
@@ -1588,7 +1589,7 @@ All of it on TV emulators (`Television_720p`, `Television_720p_2`) against a fak
 ### The tests
 
 - `DownloadFactsDeviceTest` compared `fileInfo.fileLength` with `bytesWritten` straight after the end, so it failed on the lag alone, including in unrelated full `:app` runs. It now asserts what is guaranteed: the bytes read back equal `bytesWritten`, and `_size` catches up within 10 s. `awaitFileLength` returns the value it compared, because a second read can be short again. A planted one-byte mismatch turned all 6 tests red.
-- `aRetryAppendsNothingTheFileAlreadyHolds` runs 40 rounds. Against the unfixed downloader it went red at round 18 of its one control run. **It is probabilistic:** at the measured rate 40 rounds catch the old behaviour about 91% of the time, so one green run proves little alone. A test that forces a short `_size` was tried, by resuming with the stream still open. It passed on the unfixed code, so it was dropped.
+- `aRetryAppendsNothingTheFileAlreadyHolds` runs 80 rounds. Each must end failed, keep its file, hold exactly what was reported, and have every byte right. Control runs: on the unfixed downloader it went red at round 18 on corruption; with only the length fix, red at rounds 30, 78, 5 and 34 on `completed=true`. **It is probabilistic:** at the measured rates 80 rounds catch the duplication about 99% and the false success about 90% of the time. A test that forces a short `_size` was tried, by resuming with the stream still open. It passed on the unfixed code, so it was dropped.
 
 ### What else reads `_size`, not changed
 
@@ -1601,10 +1602,31 @@ All of it on TV emulators (`Television_720p`, `Television_720p_2`) against a fak
 | `DownloadViewModel.kt:382` | The bytes shown on a row |
 | `DownloadButtonSetup.kt:99` | Whether a long press shows the snackbar |
 
-None of them starts, resumes or finishes a transfer. `setupStream`'s other callers (`BackupUtils`, `SettingsUpdates`, `LogcatDialog`) all pass `tryResume = false`, so they never reach the changed line.
+None of them starts, resumes or finishes a transfer. `setupStream`'s other callers (`BackupUtils`, `SettingsUpdates`, `LogcatDialog`) all pass `tryResume = false`, so they never reach the length change; they do now truncate an existing file rather than delete it.
 
-**Not exercised:** a document-tree folder, HLS's resume, a real device, a slow disk, and `addToQueue`'s check, which was changed from reading the code, with no test of its own.
+**Not exercised:** a document-tree folder, HLS's resume, a real device, a slow disk, and `addToQueue`'s check, which was changed from reading the code, with no test of its own. Starting over by truncating also reaches backups, logcat export and the updater (`tryResume = false`); they were read, not run.
 
-### Found on the way, not fixed: a download can report success with its file gone
+### The second race: success with no file
 
-In the same scenario, **29 of 900 rounds before the fix and 6 of 300 after** ended `isCompleted` with no file, no record and no fact. In all 6 measured after the fix, with logging, `if (!stream.exists) metadata.type = DownloadType.IsStopped` fired just before: `exists` read false, the code took that as the person deleting the file, deleted the stream and returned `DOWNLOAD_STOPPED`, whose `success` is `true`. That the read was wrong rather than the file really gone is inferred from the transfer still writing to it, and was not measured directly. It has nothing to do with `lengthOrThrow`, so it needs its own decision and entry.
+**What happened.** **29 of 900 rounds before either fix and 6 of 300 after the first** ended `isCompleted` with no file, record or fact. A
+person would see a finished download with nothing to play.
+
+**The cause, from MediaProvider's own log in one such round, all within 9 ms.**
+
+1. Starting over on the next mirror deleted the first mirror's file (`Deleted ... 1 ... items`).
+2. That delete triggered a scan, which found the path gone (`ENOENT`).
+3. `setupStream` then made a new file at the same path.
+4. The scan's update of the old row failed (`Expected 1 rows but actual 0`), and the scanner deleted the new row (`1 deletes`).
+
+At that moment MediaStore held no row at all for the folder, while the transfer still wrote through its open stream. `stream.exists`
+then read false, which `downloadThing` takes as the person deleting the file, so it stopped, deleted what it had written and returned
+`DOWNLOAD_STOPPED`, whose `success` is `true`. The other order of the same race is the `UNIQUE constraint failed: files._data` that another
+agent's runs logged on the same create, after the same `ENOENT`. Here that order never showed: in 1,288 rounds counted for it (900 before the fixes, 300 after the first, 88 earlier) the second mirror was always asked.
+
+**The fix.** Starting over truncates the existing file in place, opening it with `"wt"` (SafeFile's mode when not appending, from its
+bytecode), instead of deleting it and making another at the same path. The same goes for a source that cannot resume.
+
+**Tried first and dropped:** checking a miss against `openFileDescriptor`. It changed nothing, because the row was gone, so there was no uri to open.
+
+**After both fixes,** the test below ran 300 rounds with every check on: each round ended failed with its file kept, the bytes read back equal
+to `bytesWritten`, and every byte right. The log had 0 `ENOENT` and 0 `UNIQUE constraint` lines.
