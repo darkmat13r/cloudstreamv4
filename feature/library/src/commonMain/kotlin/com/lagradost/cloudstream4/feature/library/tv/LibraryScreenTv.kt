@@ -1,6 +1,7 @@
 package com.lagradost.cloudstream4.feature.library.tv
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.focusGroup
 import androidx.compose.foundation.border
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
@@ -26,6 +27,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.focus.focusRestorer
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
@@ -117,13 +119,17 @@ fun LibraryScreenTv(
         onAction(LibraryAction.ReturnHandled)
     }
 
-    Column(modifier.fillMaxSize()) {
+    // The rail's RIGHT searches from just before the stop that left. Only a stop standing alone answers that search,
+    // and a stop inside a scrolling row or grid does not, so RIGHT landed on the field from every tab and card
+    // (measured, `TvRailNavigationTest`). Grouped, nothing answers, and the rail's fallback enters the group, which
+    // restores the stop.
+    Column(modifier.fillMaxSize().focusRestorer()) {
         Spacer(Modifier.height(CloudStreamDimens.ChromeRowTop))
         LibraryChromeRow(state, onAction, Modifier.contentInset().fillMaxWidth())
         Spacer(Modifier.height(LibraryScreenTvDefaults.ChromeToTabGap))
         LibraryTabRow(state, selectedTab, onAction)
 
-        val region = Modifier.contentInset().fillMaxSize()
+        val region = Modifier.contentInset().fillMaxSize().focusGroup()
         when (content) {
             is UiState.Empty -> StateView(
                 prompt = content.prompt,
@@ -169,7 +175,7 @@ private fun LibraryChromeRow(
 ) {
     val keyboard = LocalSoftwareKeyboardController.current
     Row(
-        modifier = modifier.height(CloudStreamDimens.ChromeRowHeight),
+        modifier = modifier.height(CloudStreamDimens.ChromeRowHeight).focusGroup(),
         horizontalArrangement = Arrangement.spacedBy(CloudStreamDimens.MinFocusGap),
         verticalAlignment = Alignment.CenterVertically,
     ) {
