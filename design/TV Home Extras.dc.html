@@ -117,6 +117,10 @@
           .btn.pri { background: var(--ink); color: #000000; box-shadow: none; font-weight: 800; }
           .btn.foc { outline: 4px solid var(--ink); outline-offset: 4px; }
           .sq { width: 16px; height: 16px; border-radius: 4px; background: currentColor; flex: none; }
+          /* DS-16: a button's glyph, 32 square, 16 from the label (the .btn gap), in the label's colour.
+             The grey square stands for the CloudStreamIcons glyph the rule table names. */
+          .bgl { width: 32px; height: 32px; border-radius: 8px; background: currentColor; flex: none; }
+          .bbtn .bgl { margin-right: 16px; }
           .pager { display: flex; align-items: center; gap: 24px; height: 24px; }
           .dots { display: flex; gap: 8px; align-items: center; }
           .dt { width: 8px; height: 8px; border-radius: 4px; background: rgba(255,255,255,0.3); }
@@ -349,7 +353,7 @@
                 </div>
                 <div class="svh abs" style="left:200px;top:696px;width:1664px">{{ offlinePrompt }}</div>
                 <div class="svb abs" style="left:200px;top:760px;width:1664px">{{ offlineBody }}</div>
-                <div class="bbtn foc abs" style="left:888px;top:824px;width:288px"><div>{{ tryAgain }}</div></div>
+                <div class="bbtn foc abs" style="left:888px;top:824px;width:288px"><span class="bgl"></span><div>{{ tryAgain }}</div></div>
               </div>
             </div>
           </div>
@@ -471,9 +475,9 @@
                 </div>
                 <div class="syn abs" style="left:200px;top:408px;width:800px;height:80px">{{ heroSyn }}</div>
                 <div class="btns abs" style="left:200px;top:504px">
-                  <div class="btn pri"><span class="sq"></span><div>{{ heroResume }}</div></div>
-                  <div class="btn"><div>{{ heroTrailer }}</div></div>
-                  <div class="btn"><div>{{ heroLibrary }}</div></div>
+                  <div class="btn pri"><span class="bgl"></span><div>{{ heroResume }}</div></div>
+                  <div class="btn"><span class="bgl"></span><div>{{ heroTrailer }}</div></div>
+                  <div class="btn"><span class="bgl"></span><div>{{ heroLibrary }}</div></div>
                 </div>
                 <div class="pager abs" style="right:56px;top:520px">
                   <span class="dots">
@@ -657,7 +661,7 @@
                   <span class="hollow"></span>
                   <div class="nh">{{ errorBody }}</div>
                   <div class="nd">{{ errorDetail }}</div>
-                  <div class="bbtn foc" style="width:288px;margin-left:auto;flex:none"><div>{{ tryAgain }}</div></div>
+                  <div class="bbtn foc" style="width:288px;margin-left:auto;flex:none"><span class="bgl"></span><div>{{ tryAgain }}</div></div>
                 </div>
               </div>
             </div>
@@ -909,7 +913,7 @@
             errorHead: "Source error", errorBody: "Could not load vidsrc", errorDetail: "SOURCE ERROR · HTTP 503 · RELOAD FAILED",
             heroSource: "VIDSRC", heroTitle: "The Long Dark", heroMeta: "2026 · 2 SEASONS · 24 EP · SCI-FI · THRILLER", heroRate: "8.7",
             heroSyn: "A salvage crew wakes from cryo to find the relay station empty and the logs erased.",
-            heroResume: "Resume S2 E4", heroTrailer: "Watch trailer", heroLibrary: "+ Library", heroCount: "1 / 12",
+            heroResume: "Resume S2 E4", heroTrailer: "Watch trailer", heroLibrary: "Library", heroCount: "1 / 12",
             detailMeta: "TV SERIES · 2026 · 8.7 · 52 MIN",
             detailPlot: "A salvage crew wakes from cryo to find the relay station empty, the logs erased, and something on deck four.",
             detailRows: detailRows, failedTitle: "Vantage", detailFailed: "Couldn’t load the details", detailFailedWhy: "Could not load vidsrc",
