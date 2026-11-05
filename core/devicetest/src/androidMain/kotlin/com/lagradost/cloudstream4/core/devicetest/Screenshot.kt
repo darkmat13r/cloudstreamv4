@@ -2,6 +2,8 @@ package com.lagradost.cloudstream4.core.devicetest
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asAndroidBitmap
 import androidx.compose.ui.graphics.asImageBitmap
@@ -52,6 +54,7 @@ object ScreenshotTolerance {
  * @param name lower-case words and hyphens, naming the state: `search-results-focus-card`.
  * @param node compares only this node and its ring (see [captureScreenshot]). The default is the whole window.
  */
+@RequiresApi(Build.VERSION_CODES.O)
 fun ComposeTestRule.assertScreenshot(name: String, node: SemanticsNodeInteraction? = null) {
     require(name.matches(Regex("[a-z0-9-]+"))) { "A screenshot name is lower-case words and hyphens, not '$name'" }
     val actual = captureScreenshot(node)
@@ -104,6 +107,7 @@ fun ComposeTestRule.assertScreenshot(name: String, node: SemanticsNodeInteractio
  *
  * @param bleed mirrors `CloudStreamDimens.FocusRingBleed`, which this module cannot see.
  */
+@RequiresApi(Build.VERSION_CODES.O)
 fun ComposeTestRule.captureScreenshot(node: SemanticsNodeInteraction? = null, bleed: Dp = 4.dp): Bitmap {
     waitForIdle()
     val window = onRoot().captureToImage().asAndroidBitmap()
