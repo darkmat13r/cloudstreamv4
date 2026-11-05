@@ -132,7 +132,7 @@ internal class AndroidHomeSource(
             score = runCatching { score?.toStringNull(0.1, 10, 1, false) }.getOrNull()?.safeText()
                 ?.take(MAX_BADGE_CHARS)?.ifEmpty { null },
             contentRating = contentRating?.safeText()?.take(MAX_BADGE_CHARS)?.ifEmpty { null },
-            synopsis = plot?.plainText()?.safeText(MAX_SYNOPSIS_CHARS)?.ifEmpty { null },
+            synopsis = plot?.plainText()?.safeSynopsis()?.ifEmpty { null },
         )
     }
 
@@ -188,8 +188,12 @@ internal class AndroidHomeSource(
             .associate { (name, value) -> name to value }
             .ifEmpty { null }
 
-    private fun String.safeText(limit: Int = MAX_TEXT_CHARS): String =
-        filterNot { it.isISOControl() || it.category == CharCategory.FORMAT }.trim().take(limit)
+    private fun String.safeText(): String =
+        filterNot { it.isISOControl() || it.category == CharCategory.FORMAT }.trim().take(MAX_TEXT_CHARS)
+
+    /** [safeText] with room for a synopsis. */
+    private fun String.safeSynopsis(): String =
+        filterNot { it.isISOControl() || it.category == CharCategory.FORMAT }.trim().take(MAX_SYNOPSIS_CHARS)
 
     private companion object {
         const val NOT_LOADED = "NOT_LOADED"
