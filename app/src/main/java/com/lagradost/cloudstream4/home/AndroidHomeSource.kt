@@ -6,6 +6,7 @@ import com.lagradost.cloudstream3.APIHolder
 import com.lagradost.cloudstream3.AnimeSearchResponse
 import com.lagradost.cloudstream3.DubStatus
 import com.lagradost.cloudstream3.HomePageList
+import com.lagradost.cloudstream3.LoadResponse
 import com.lagradost.cloudstream3.MainAPI
 import com.lagradost.cloudstream3.R
 import com.lagradost.cloudstream3.SearchResponse
@@ -15,6 +16,7 @@ import com.lagradost.cloudstream3.ui.APIRepository
 import com.lagradost.cloudstream3.ui.settings.SettingsUIScreen
 import com.lagradost.cloudstream3.utils.AppContextUtils.filterHomePageListByFilmQuality
 import com.lagradost.cloudstream3.utils.AppContextUtils.filterProviderByPreferredMedia
+import com.lagradost.cloudstream4.feature.home.HomeFeatured
 import com.lagradost.cloudstream4.feature.home.HomeItem
 import com.lagradost.cloudstream4.feature.home.HomePageReply
 import com.lagradost.cloudstream4.feature.home.HomeRowPage
@@ -22,6 +24,8 @@ import com.lagradost.cloudstream4.feature.home.HomeSource
 import com.lagradost.cloudstream4.feature.home.HomeSourceId
 import com.lagradost.cloudstream4.feature.home.HomeSourceOption
 import com.lagradost.cloudstream4.feature.home.HomeSources
+import com.lagradost.cloudstream4.feature.search.SearchResultId
+import com.lagradost.cloudstream4.search.decodeId
 import com.lagradost.cloudstream4.search.encodeId
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -43,6 +47,8 @@ import java.util.Locale
  * - A header with a line break in it is a request the image client refuses, or worse, one it sends.
  * - A title's address goes through a `Bundle` to reach the result page, and one big enough fails that transaction.
  * - Rows and items are bounded, because a section can answer with anything.
+ * - A synopsis may be HTML, as the old hero renders it. Here it is plain text: tags dropped, the common entities decoded,
+ *   and runs of space and line breaks made one space, before the same cleaning as any other text.
  *
  * @param providers the sources a person may browse, by the setting the old screen's picker reads.
  * @param installed how many there are of any kind, so "none has a main page" can differ from "nothing is installed".
@@ -97,6 +103,49 @@ internal class AndroidHomeSource(
         }
     }
 
+    /**
+     * The title's own page, as the old hero asks for it (`HomeViewModel.kt:314`): `APIRepository.load`, so the same cache
+     * and the same failure handling. Any failure is no hero.
+     */
+    override suspend fun featured(item: HomeItem): HomeFeatured? = withContext(io) {
+        val target = decodeId(SearchResultId(item.id)) ?: return@withContext null
+        val api = providers().firstOrNull { it.name == target.apiName } ?: return@withContext null
+        (APIRepository(api).load(target.url) as? Resource.Success)?.value?.toFeatured(item.id)
+    }
+
+    private fun LoadResponse.toFeatured(id: String): HomeFeatured? {
+        val title = name.safeText().ifEmpty { return null }
+        return HomeFeatured(
+            id = id,
+            title = title,
+            backdropUrl = backgroundPosterUrl?.safePosterUrl() ?: posterUrl?.safePosterUrl(),
+            backdropHeaders = posterHeaders?.safeHeaders(),
+            year = year?.takeIf { it in YEARS },
+            durationMinutes = duration?.takeIf { it in 1..MAX_MINUTES },
+            genres = tags.orEmpty().asSequence()
+                .map { it.safeText().take(MAX_BADGE_CHARS * 2) }
+                .filter { it.isNotEmpty() }
+                .distinct()
+                .take(MAX_GENRES)
+                .toList(),
+            // As the old hero writes it: one decimal out of ten, and nothing under 0.1, which is "no score".
+            score = runCatching { score?.toStringNull(0.1, 10, 1, false) }.getOrNull()?.safeText()
+                ?.take(MAX_BADGE_CHARS)?.ifEmpty { null },
+            contentRating = contentRating?.safeText()?.take(MAX_BADGE_CHARS)?.ifEmpty { null },
+            synopsis = plot?.plainText()?.safeSynopsis()?.ifEmpty { null },
+        )
+    }
+
+    private fun String.plainText(): String = take(MAX_SYNOPSIS_CHARS * 4)
+        .replace(TAG, " ")
+        .replace("&nbsp;", " ")
+        .replace("&lt;", "<")
+        .replace("&gt;", ">")
+        .replace("&quot;", "\"")
+        .replace("&#39;", "'")
+        .replace("&amp;", "&")
+        .replace(SPACE, " ")
+
     private fun Resource.Failure.toReply(): HomePageReply {
         // The first line: the rest of errorString is a stack trace, which is not for this screen.
         val reason = errorString.trim().lineSequence().first().safeText().ifEmpty { UNKNOWN_ERROR }
@@ -142,6 +191,10 @@ internal class AndroidHomeSource(
     private fun String.safeText(): String =
         filterNot { it.isISOControl() || it.category == CharCategory.FORMAT }.trim().take(MAX_TEXT_CHARS)
 
+    /** [safeText] with room for a synopsis. */
+    private fun String.safeSynopsis(): String =
+        filterNot { it.isISOControl() || it.category == CharCategory.FORMAT }.trim().take(MAX_SYNOPSIS_CHARS)
+
     private companion object {
         const val NOT_LOADED = "NOT_LOADED"
         const val BAD_SECTION = "BAD_SECTION"
@@ -154,6 +207,12 @@ internal class AndroidHomeSource(
         const val MAX_SECTIONS = 64
         const val MAX_ROWS_PER_PAGE = 64
         const val MAX_ITEMS_PER_PAGE = 500
+        const val MAX_GENRES = 3
+        const val MAX_MINUTES = 6000
+        const val MAX_SYNOPSIS_CHARS = 1000
+        val YEARS = 1870..2200
+        val TAG = Regex("<[^>]{0,256}>")
+        val SPACE = Regex("\\s+")
         val HTTP_PREFIXES = listOf("http://", "https://")
         val HEADER_NAME = Regex("[A-Za-z0-9-]{1,64}")
     }

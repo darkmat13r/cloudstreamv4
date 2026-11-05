@@ -2,9 +2,12 @@ package com.lagradost.cloudstream4.library
 
 import android.content.Context
 import android.content.res.Configuration
+import com.lagradost.cloudstream3.CloudStreamApp.Companion.getKey
 import com.lagradost.cloudstream3.TvType
 import com.lagradost.cloudstream3.ui.WatchType
 import com.lagradost.cloudstream3.ui.settings.SettingsProvidersScreen
+import com.lagradost.cloudstream3.utils.DOWNLOAD_HEADER_CACHE
+import com.lagradost.cloudstream3.utils.DOWNLOAD_HEADER_CACHE_BACKUP
 import com.lagradost.cloudstream3.utils.DataStoreHelper
 import com.lagradost.cloudstream3.utils.DataStoreHelper.fixVisual
 import com.lagradost.cloudstream3.utils.downloader.DownloadObjects
@@ -30,6 +33,12 @@ internal interface LocalLibraryRecords {
     fun favourites(): List<DataStoreHelper.FavoritesData>
     fun lastWatched(id: Int): DownloadObjects.ResumeWatching?
     fun viewPosition(id: Int): DataStoreHelper.PosDur?
+
+    /** Every title with a resume record, by the `Int` id it is stored under. Empty where a host keeps none. */
+    fun resumeIds(): List<Int> = emptyList()
+
+    /** What a resume record's title looks like, which the record itself does not carry. */
+    fun resumeHeader(parentId: Int): DownloadObjects.DownloadHeaderCached? = null
 }
 
 /** What `LocalList.library()` reads, for the current account. Read again on every call. */
@@ -44,7 +53,30 @@ internal object DataStoreLocalLibrary : LocalLibraryRecords {
 
     /** Snapped to 0 and full as the old cards do, so the two screens draw the same rule. */
     override fun viewPosition(id: Int) = DataStoreHelper.getViewPos(id)?.fixVisual()
+
+    override fun resumeIds() = DataStoreHelper.getAllResumeStateIds().orEmpty()
+
+    /**
+     * Where `HomeViewModel.getResumeWatching` looks, the backup included. That one also writes the backup back into the
+     * cache, which a screen that only reads leaves to the old home: the result is the same either way.
+     */
+    override fun resumeHeader(parentId: Int) =
+        getKey<DownloadObjects.DownloadHeaderCached>(DOWNLOAD_HEADER_CACHE, parentId.toString())
+            ?: getKey<DownloadObjects.DownloadHeaderCached>(DOWNLOAD_HEADER_CACHE_BACKUP, parentId.toString())
 }
+
+/**
+ * A title on Continue watching, as the old home lists it: the title, where it resumes, and the part it resumes from.
+ *
+ * @property position zero long and at zero where the part to resume has never played, which is what a series looks like
+ *   once it has moved on to its next episode.
+ */
+internal data class Resuming(
+    val title: LibraryTitle,
+    val position: WatchPosition,
+    val season: Int?,
+    val episode: Int?,
+)
 
 /**
  * [LibraryStore] over what `:app` really keeps, so a TV user's existing lists appear.
@@ -98,6 +130,52 @@ internal class AndroidLibraryStore(
         rows()
             .distinctBy { it.storedId }
             .mapNotNull { row -> positionOf(row) }
+    }
+
+    /**
+     * Continue watching, as the old home lists it (`HomeViewModel.getResumeWatching`): every resume record whose title is
+     * known, newest first, each with its own part's position.
+     *
+     * Not `LibraryShelf`'s rule, which keeps only a position past 30 s and short of 95%. On Android the resume record is
+     * what decides: the player removes it when a title is finished and moves it to the next episode at 90%, so a record at
+     * zero is the next episode waiting, and it is listed.
+     *
+     * The titles are not in [titles], so the library's lists are what they were.
+     */
+    suspend fun resuming(): List<Resuming> = withContext(io) {
+        records.resumeIds()
+            .mapNotNull { records.lastWatched(it) }
+            .sortedByDescending { it.updateTime }
+            .mapNotNull { resume -> resumingOf(resume) }
+            .distinctBy { it.title.id }
+            .take(MAX_RESUMING)
+    }
+
+    private fun resumingOf(resume: DownloadObjects.ResumeWatching): Resuming? {
+        val header = records.resumeHeader(resume.parentId) ?: return null
+        val title = header.name.cleanText().ifEmpty { return null }
+        if (header.url.isBlank() || header.apiName.isBlank()) return null
+        val id = LibraryTitleId(encodeId(header.apiName, header.url).value)
+        val position = records.viewPosition(resume.episodeId ?: resume.parentId)
+        return Resuming(
+            title = LibraryTitle(
+                id = id,
+                title = title,
+                bucket = null,
+                keptAt = resume.updateTime,
+                posterUrl = header.poster?.takeIf { it.isPlainHttp() },
+                providerName = header.apiName.cleanText().ifEmpty { null },
+            ),
+            position = WatchPosition(
+                id = id,
+                episodeData = resume.episodeId?.toString(),
+                positionMillis = position?.position ?: 0L,
+                durationMillis = position?.duration ?: 0L,
+                watchedAt = resume.updateTime,
+            ),
+            season = resume.season,
+            episode = resume.episode,
+        )
     }
 
     private fun rows(): List<Row> {
@@ -156,6 +234,9 @@ internal class AndroidLibraryStore(
 
     private companion object {
         const val MAX_TEXT_CHARS = 200
+
+        /** Mirrors `LibraryShelf.MAX_CONTINUE`. The old home lists every record, with no cap. */
+        const val MAX_RESUMING = 60
 
         fun String.cleanText(): String =
             filterNot { it.isISOControl() || it.category == CharCategory.FORMAT }.trim().take(MAX_TEXT_CHARS)
