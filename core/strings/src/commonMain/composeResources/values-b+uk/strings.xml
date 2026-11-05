@@ -5,6 +5,7 @@
 <string name="detail_load_failed_headline">Не вдалося відкрити цю назву</string>
 <plurals name="downloads_active"><item quantity="one">%d активне завантаження</item><item quantity="few">%d активні завантаження</item><item quantity="many">%d активних завантажень</item><item quantity="other">%d активних завантажень</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d завантаження в черзі</item><item quantity="few">%d завантаження в черзі</item><item quantity="many">%d завантажень у черзі</item><item quantity="other">%d завантажень у черзі</item></plurals>
+<plurals name="home_bookmarks_count"><item quantity="one">%d ЗАКЛАДКА</item><item quantity="few">%d ЗАКЛАДКИ</item><item quantity="many">%d ЗАКЛАДОК</item><item quantity="other">%d ЗАКЛАДКИ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Не вдалося завантажити %d розділ</item><item quantity="few">Не вдалося завантажити %d розділи</item><item quantity="many">Не вдалося завантажити %d розділів</item><item quantity="other">Не вдалося завантажити %d розділів</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d приховане посилання</item><item quantity="few">%d приховані посилання</item><item quantity="many">%d прихованих посилань</item><item quantity="other">%d прихованих посилань</item></plurals>
 <string name="account">обліковий запис</string>
@@ -315,12 +316,16 @@
 <string name="hide_player_control_names">Приховати назви елементів керування в програвачі</string>
 <string name="history">Історія</string>
 <string name="hls_playlist">Список відтворення HLS</string>
+<string name="home_bookmarks_no_status_body">Виберіть один вище, щоб побачити ці закладки.</string>
+<string name="home_bookmarks_no_status_headline">Статус не вибрано</string>
 <string name="home_change_provider_img_des">Змінити постачальника</string>
 <string name="home_expanded_hide">Приховати</string>
 <string name="home_info">Подробиці</string>
 <string name="home_main_poster_img_des">Головний постер</string>
 <string name="home_more_info">Докладніше</string>
 <string name="home_next_random_img_des">Наступне випадкове</string>
+<string name="home_offline_bookmarks_body">Ваші закладки збережено на цьому пристрої.</string>
+<string name="home_offline_source_headline">%1$s потребує з'єднання</string>
 <string name="home_play">Переглянути</string>
 <string name="home_random">Випадковий</string>
 <string name="home_search_only_body">Жодне з ваших розширень не має головної сторінки, але в них усе ще можна шукати.</string>

@@ -5,6 +5,7 @@
 <string name="detail_load_failed_headline">Насловот не може да се отвори</string>
 <plurals name="downloads_active"><item quantity="one">%d активно преземање</item><item quantity="other">%d активни преземања</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d преземање во редицата</item><item quantity="other">%d преземања во редицата</item></plurals>
+<plurals name="home_bookmarks_count"><item quantity="one">%d ОБЕЛЕЖУВАЧ</item><item quantity="other">%d ОБЕЛЕЖУВАЧИ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d дел не се вчита</item><item quantity="other">%d делови не се вчитаа</item></plurals>
 <string name="account">Корисничко име</string>
 <string name="action_add_to_bookmarks">Постави статус на пратење</string>
@@ -314,12 +315,16 @@
 <string name="hide_player_control_names">Сокриј ги имињата на контролите на корисникот</string>
 <string name="history">Историја</string>
 <string name="hls_playlist">ХЛС плејлиста</string>
+<string name="home_bookmarks_no_status_body">Изберете еден горе за да ги видите тие обележувачи.</string>
+<string name="home_bookmarks_no_status_headline">Не е избран статус</string>
 <string name="home_change_provider_img_des">Смени провајдер</string>
 <string name="home_expanded_hide">Скриј</string>
 <string name="home_info">Информации</string>
 <string name="home_main_poster_img_des">Главен постер</string>
 <string name="home_more_info">Повеќе информации</string>
 <string name="home_next_random_img_des">Следен рандом</string>
+<string name="home_offline_bookmarks_body">Вашите обележувачи се зачувани на овој уред.</string>
+<string name="home_offline_source_headline">%1$s има потреба од врска</string>
 <string name="home_play">Пушти</string>
 <string name="home_random">Случајно</string>
 <string name="home_search_only_body">Ниту една од твоите екстензии нема почетна страница, но сепак можеш да пребаруваш во нив.</string>

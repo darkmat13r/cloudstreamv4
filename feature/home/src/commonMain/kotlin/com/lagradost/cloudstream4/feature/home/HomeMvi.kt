@@ -19,6 +19,8 @@ data class HomeState(
     val hero: HomeHero = HomeHero.None,
     /** Continue watching and progress, from this device. Kept whatever the source is doing, offline included. */
     val history: HomeHistory = HomeHistory(),
+    /** The bookmarks rail and its filter (`TV Home Extras` 3e), from this device. Kept whatever the source is doing, too. */
+    val bookmarks: HomeBookmarks = HomeBookmarks(),
 ) {
     val selectedOption: HomeSourceOption? get() = sources.firstOrNull { it.id == selected }
 }
@@ -65,6 +67,9 @@ data class HomeRowKey(val section: Int, val name: String) {
 
         /** Continue watching, for [HomeReturn]. Not a section either. */
         val Continue: HomeRowKey = HomeRowKey(section = -2, name = "")
+
+        /** The bookmarks rail, for [HomeReturn]. Not a section either. */
+        val Bookmarks: HomeRowKey = HomeRowKey(section = -3, name = "")
     }
 }
 
@@ -157,6 +162,11 @@ sealed interface HomeAction {
 
     /** The account control on a TV. Becomes [HomeEffect.OpenAccounts]. */
     data object AccountsRequested : HomeAction
+
+    /**
+     * A bookmarks chip was pressed (3e). The chosen one clears the filter (3f); any other becomes the one. Kept by the host.
+     */
+    data class BookmarkFilterPressed(val status: HomeWatchStatus) : HomeAction
 
     /**
      * Sources may have come or gone: plugins finished a stage of loading, or a setting or the account changed.

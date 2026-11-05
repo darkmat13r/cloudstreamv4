@@ -3,6 +3,7 @@
 <resources>
 <string name="detail_load_failed_body">uhaauauau ahuuouaha oooohhaaaghh.</string>
 <string name="detail_load_failed_headline">ahooo uuhh ahhhaauugghh oouuh</string>
+<plurals name="home_bookmarks_count"><item quantity="other">%d OOUUH OOH</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">%d oooogg ooh aaahhu</item></plurals>
 <string name="account">aaaaggg</string>
 <string name="action_add_to_bookmarks">auugggguuuuuuhhh uuuu hhhhhhhhuhggghggg</string>
@@ -275,12 +276,16 @@
 <string name="hide_player_control_names">oohh uuugg ag aag player uuuugggg</string>
 <string name="history">aaaaggg</string>
 <string name="hls_playlist">uug uuuugggg</string>
+<string name="home_bookmarks_no_status_body">ooh aaa uuh ooh-ahh oouuh ooh.</string>
+<string name="home_bookmarks_no_status_headline">oooh ahh uuu</string>
 <string name="home_change_provider_img_des">ah ohaaaaghh aaahhu</string>
 <string name="home_expanded_hide">oh ahhh</string>
 <string name="home_info">aauugghh</string>
 <string name="home_main_poster_img_des">ahhhahaaaaaahhhaaaghh</string>
 <string name="home_more_info">ahooo a aaaghhouuhhh</string>
 <string name="home_next_random_img_des">aoooohh</string>
+<string name="home_offline_bookmarks_body">oouuh ooh aaah uuu.</string>
+<string name="home_offline_source_headline">%1$s ooogg eek</string>
 <string name="home_play">ooo-ahahouuhhh</string>
 <string name="home_random">aaaagg</string>
 <string name="home_search_only_body">aaaagg og ooogg oouuh</string>

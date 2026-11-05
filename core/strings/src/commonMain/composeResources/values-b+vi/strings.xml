@@ -5,6 +5,7 @@
 <string name="detail_load_failed_headline">Không thể mở tựa này</string>
 <plurals name="downloads_active"><item quantity="other">%d đang tải xuống</item></plurals>
 <plurals name="downloads_queued"><item quantity="other">%d tải xuống đang chờ</item></plurals>
+<plurals name="home_bookmarks_count"><item quantity="other">%d MỤC</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">Không tải được %d mục</item></plurals>
 <plurals name="links_hidden"><item quantity="other">%d liên kết bị ẩn</item></plurals>
 <string name="account">tài khoản</string>
@@ -315,12 +316,16 @@
 <string name="hide_player_control_names">Ẩn tên các nút điều khiển trình phát</string>
 <string name="history">Lịch sử</string>
 <string name="hls_playlist">Danh sách HLS</string>
+<string name="home_bookmarks_no_status_body">Chọn một mục ở trên để xem các mục đó.</string>
+<string name="home_bookmarks_no_status_headline">Chưa chọn trạng thái</string>
 <string name="home_change_provider_img_des">Thay đổi Nguồn phim</string>
 <string name="home_expanded_hide">Ẩn</string>
 <string name="home_info">Thông tin</string>
 <string name="home_main_poster_img_des">Poster chính</string>
 <string name="home_more_info">Thông tin thêm</string>
 <string name="home_next_random_img_des">Tập tiếp theo ngẫu nhiên</string>
+<string name="home_offline_bookmarks_body">Danh sách của bạn được lưu trên thiết bị này.</string>
+<string name="home_offline_source_headline">%1$s cần kết nối</string>
 <string name="home_play">Phát</string>
 <string name="home_random">Ngẫu nhiên</string>
 <string name="home_search_only_body">Không có tiện ích mở rộng nào của bạn có trang chủ, nhưng bạn vẫn có thể tìm kiếm trong đó.</string>

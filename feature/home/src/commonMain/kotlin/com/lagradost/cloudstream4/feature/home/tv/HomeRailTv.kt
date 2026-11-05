@@ -187,7 +187,7 @@ internal fun HomeRailTv(
  * returned to: it rebuilt that card's focus node when the condition went false, which dropped the focus it had just taken.
  */
 @Composable
-private fun HomeCardTv(
+internal fun HomeCardTv(
     item: HomeItem,
     landscape: Boolean,
     progress: Float?,

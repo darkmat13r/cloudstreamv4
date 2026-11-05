@@ -3,6 +3,7 @@
 <resources>
 <string name="detail_load_failed_body">উৎসটো পোৱা নাযাব পাৰে।</string>
 <string name="detail_load_failed_headline">এই শিৰোনামটো খুলিব নোৱাৰিলোঁ</string>
+<plurals name="home_bookmarks_count"><item quantity="one">%d টা বুকমাৰ্ক</item><item quantity="other">%d টা বুকমাৰ্ক</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d টা অংশ লোড কৰিব পৰা নগ'ল</item><item quantity="other">%d টা অংশ লোড কৰিব পৰা নগ'ল</item></plurals>
 <string name="account">একাউন্ট</string>
 <string name="action_add_to_bookmarks">দেখাৰ অৱস্থা নিৰ্ধাৰণ কৰক</string>
@@ -280,12 +281,16 @@
 <string name="hide_player_control_names">প্লেয়াৰৰ নিয়ন্ত্ৰণসমূহৰ নাম লুকাওক</string>
 <string name="history">ইতিহাস</string>
 <string name="hls_playlist">HLS প্লেলিস্ট</string>
+<string name="home_bookmarks_no_status_body">সেই বুকমাৰ্কসমূহ চাবলৈ ওপৰৰ পৰা এটা বাছনি কৰক।</string>
+<string name="home_bookmarks_no_status_headline">কোনো স্থিতি বাছনি কৰা হোৱা নাই</string>
 <string name="home_change_provider_img_des">প্ৰদানকাৰী সলনি কৰক</string>
 <string name="home_expanded_hide">লুকুৱাওক</string>
 <string name="home_info">তথ্য</string>
 <string name="home_main_poster_img_des">প্ৰধান পোস্টাৰ</string>
 <string name="home_more_info">অধিক তথ্য</string>
 <string name="home_next_random_img_des">পৰৱৰ্তী ৰেণ্ডম</string>
+<string name="home_offline_bookmarks_body">আপোনাৰ বুকমাৰ্কসমূহ এই ডিভাইচত সংৰক্ষিত।</string>
+<string name="home_offline_source_headline">%1$s ক সংযোগৰ প্ৰয়োজন</string>
 <string name="home_play">প্লে কৰক</string>
 <string name="home_random">যিকোনো এটা</string>
 <string name="home_search_only_body">আপোনাৰ কোনো এক্সটেনশ্যনৰ গৃহপৃষ্ঠা নাই, কিন্তু আপুনি সেইবোৰত সন্ধান কৰিব পাৰে।</string>

@@ -69,6 +69,17 @@ A section header, not an instruction.
 
 ---
 
+## Home's bookmarks and offline words (`TV Home Extras`, 2026-11-06)
+
+- **`home_bookmarks_no_status_headline`**, *"No status chosen"*: the **watch status** of a bookmark (Watching,
+  Plan to Watch, On-Hold, Dropped, Completed, which are `type_watching` and the rest), not a connection or a download
+  status. Shown when the person has cleared the filter chip above the bookmarks rail.
+- **`home_bookmarks_no_status_body`**: *"one"* is one of those status chips, which sit above this line.
+- **`home_offline_source_headline`**, *"%1$s needs a connection"*: `%1$s` is the name of the extension's source, as the
+  source names itself (`vidsrc`), never translated.
+- **`home_bookmarks_count`**: a count in the monospaced line beside *"You are offline"*. Written in capitals in English
+  because that line is; a script without case keeps its own form.
+
 ## Commented-out resources (45)
 
 Translations left behind when a key was deleted from the base. They are dead, and measurably so:

@@ -3,6 +3,7 @@
 <resources>
 <plurals name="downloads_active"><item quantity="one">"%d активная загрузка"</item><item quantity="few">"%d активные загрузки"</item><item quantity="many">"%d активных загрузок"</item><item quantity="other">"%d активных загрузок"</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">"Запланировано %d загрузка"</item><item quantity="few">"Запланировано %d загрузки"</item><item quantity="many">"Запланировано %d загрузок"</item><item quantity="other">"Запланировано %d загрузок"</item></plurals>
+<plurals name="home_bookmarks_count"><item quantity="one">"%d ЗАКЛАДКА"</item><item quantity="few">"%d ЗАКЛАДКИ"</item><item quantity="many">"%d ЗАКЛАДОК"</item><item quantity="other">"%d ЗАКЛАДКИ"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"Не удалось загрузить %d раздел"</item><item quantity="few">"Не удалось загрузить %d раздела"</item><item quantity="many">"Не удалось загрузить %d разделов"</item><item quantity="other">"Не удалось загрузить %d разделов"</item></plurals>
 <plurals name="links_hidden"><item quantity="one">"%d скрытая ссылка"</item><item quantity="few">"%d скрытые ссылки"</item><item quantity="many">"%d скрытых ссылок"</item><item quantity="other">"%d скрытых ссылок"</item></plurals>
 <string name="account">"учётная запись"</string>
@@ -315,12 +316,16 @@
 <string name="hide_player_control_names">"Скрыть имена контроля игроков"</string>
 <string name="history">"История"</string>
 <string name="hls_playlist">"Плейлист HLS"</string>
+<string name="home_bookmarks_no_status_body">"Выберите один выше, чтобы увидеть эти закладки."</string>
+<string name="home_bookmarks_no_status_headline">"Статус не выбран"</string>
 <string name="home_change_provider_img_des">"Изменить поставщика"</string>
 <string name="home_expanded_hide">"Прятать"</string>
 <string name="home_info">"Инфо"</string>
 <string name="home_main_poster_img_des">"Главный плакат"</string>
 <string name="home_more_info">"Подробнее"</string>
 <string name="home_next_random_img_des">"Следующий случайный"</string>
+<string name="home_offline_bookmarks_body">"Ваши закладки сохранены на этом устройстве."</string>
+<string name="home_offline_source_headline" formatted="true">"%1$s нужно подключение"</string>
 <string name="home_play">"Смотреть"</string>
 <string name="home_random">"Случайный"</string>
 <string name="home_search_only_body">"Ни у одного из ваших дополнений нет главной страницы, но в них всё равно можно искать."</string>

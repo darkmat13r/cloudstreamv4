@@ -3,6 +3,7 @@
 <resources>
 <string name="detail_load_failed_body">ምንጩ ላይገኝ ይችላል።</string>
 <string name="detail_load_failed_headline">ይህን ርዕስ መክፈት አልተቻለም</string>
+<plurals name="home_bookmarks_count"><item quantity="one">%d ዕልባት</item><item quantity="other">%d ዕልባቶች</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d ክፍል መጫን አልተቻለም</item><item quantity="other">%d ክፍል መጫን አልተቻለም</item></plurals>
 <string name="action_add_to_bookmarks">የምልከታ ሁኔታን ያቀናብሩ</string>
 <string name="action_open_watching">ተጨማሪ መረጃ</string>
@@ -63,12 +64,16 @@
 <string name="filter_bookmarks">ዕልባቶችን ማጣሪያ</string>
 <string name="go_back">ወደ ኋላ መመለሻ</string>
 <string name="go_back_img_des">ተመለስ</string>
+<string name="home_bookmarks_no_status_body">እነዚያን ዕልባቶች ለማየት ከላይ አንዱን ይምረጡ።</string>
+<string name="home_bookmarks_no_status_headline">ምንም ሁኔታ አልተመረጠም</string>
 <string name="home_change_provider_img_des">አቅራቢ ቀይር</string>
 <string name="home_expanded_hide">ደብቅ</string>
 <string name="home_info">መረጃ</string>
 <string name="home_main_poster_img_des">ዋና ፖስተር</string>
 <string name="home_more_info">ተጨማሪ መረጃ</string>
 <string name="home_next_random_img_des">ቀጣይ በዘፈቀደ</string>
+<string name="home_offline_bookmarks_body">ዕልባቶችዎ በዚህ መሣሪያ ላይ ተቀምጠዋል።</string>
+<string name="home_offline_source_headline">%1$s ግንኙነት ያስፈልገዋል</string>
 <string name="home_play">አጫውት</string>
 <string name="home_search_only_body">ከቅጥያዎችህ አንዳቸውም መነሻ ገጽ የላቸውም፣ ነገር ግን አሁንም በእነሱ መፈለግ ትችላለህ።</string>
 <string name="load_more">ተጨማሪ ጫን</string>

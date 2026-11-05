@@ -5,6 +5,7 @@
 <string name="detail_load_failed_headline">Nie udało się otworzyć tego tytułu</string>
 <plurals name="downloads_active"><item quantity="one">%d aktywne pobieranie</item><item quantity="few">%d aktywne pobierania</item><item quantity="many">%d aktywnych pobierań</item><item quantity="other">%d aktywnych pobierań</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d pobieranie w kolejce</item><item quantity="few">%d pobierania w kolejce</item><item quantity="many">%d pobierań w kolejce</item><item quantity="other">%d pobierań w kolejce</item></plurals>
+<plurals name="home_bookmarks_count"><item quantity="one">%d ZAKŁADKA</item><item quantity="few">%d ZAKŁADKI</item><item quantity="many">%d ZAKŁADEK</item><item quantity="other">%d ZAKŁADKI</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Nie udało się załadować %d sekcji</item><item quantity="few">Nie udało się załadować %d sekcji</item><item quantity="many">Nie udało się załadować %d sekcji</item><item quantity="other">Nie udało się załadować %d sekcji</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d ukryty odnośnik</item><item quantity="few">%d ukryte odnośniki</item><item quantity="many">%d ukrytych odnośników</item><item quantity="other">%d ukrytych odnośników</item></plurals>
 <string name="account">konto</string>
@@ -315,12 +316,16 @@
 <string name="hide_player_control_names">Ukryj nazwy elementów sterujących odtwarzacza</string>
 <string name="history">Historia</string>
 <string name="hls_playlist">Playlista HLS</string>
+<string name="home_bookmarks_no_status_body">Wybierz jeden powyżej, aby zobaczyć te zakładki.</string>
+<string name="home_bookmarks_no_status_headline">Nie wybrano statusu</string>
 <string name="home_change_provider_img_des">Zmień źródło</string>
 <string name="home_expanded_hide">Ukryj</string>
 <string name="home_info">Informacje</string>
 <string name="home_main_poster_img_des">Główny obrazek</string>
 <string name="home_more_info">Więcej informacji</string>
 <string name="home_next_random_img_des">Następny losowy</string>
+<string name="home_offline_bookmarks_body">Twoje zakładki są zapisane na tym urządzeniu.</string>
+<string name="home_offline_source_headline">%1$s wymaga połączenia</string>
 <string name="home_play">Odtwórz</string>
 <string name="home_random">Losowy</string>
 <string name="home_search_only_body">Żadne z twoich rozszerzeń nie ma strony głównej, ale nadal możesz w nich szukać.</string>

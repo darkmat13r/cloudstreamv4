@@ -5,6 +5,7 @@
 <string name="detail_load_failed_headline">Bu başlık açılamadı</string>
 <plurals name="downloads_active"><item quantity="one">%d aktif indirme</item><item quantity="other">%d aktif indirmeler</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d indirme kuyrukta</item><item quantity="other">%d indirilecekler kuyruğa alındı</item></plurals>
+<plurals name="home_bookmarks_count"><item quantity="one">%d YER İMİ</item><item quantity="other">%d YER İMİ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d kısım yüklenemedi</item><item quantity="other">%d kısım yüklenemedi</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d gizli bağlantı</item><item quantity="other">%d gizli bağlantı</item></plurals>
 <string name="account">hesap</string>
@@ -315,12 +316,16 @@
 <string name="hide_player_control_names">Oynatıcı kontrolünün adlarını gizle</string>
 <string name="history">Geçmiş</string>
 <string name="hls_playlist">HLS Oynatma Listesi</string>
+<string name="home_bookmarks_no_status_body">Bu yer imlerini görmek için yukarıdan birini seçin.</string>
+<string name="home_bookmarks_no_status_headline">Durum seçilmedi</string>
 <string name="home_change_provider_img_des">Sağlayıcıyı Değiştir</string>
 <string name="home_expanded_hide">Gizle</string>
 <string name="home_info">Bilgi</string>
 <string name="home_main_poster_img_des">Ana Afiş</string>
 <string name="home_more_info">Daha fazla bilgi</string>
 <string name="home_next_random_img_des">Sonraki Rastgele</string>
+<string name="home_offline_bookmarks_body">Yer imleriniz bu cihazda kayıtlı.</string>
+<string name="home_offline_source_headline">%1$s bağlantı gerektirir</string>
 <string name="home_play">Oynat</string>
 <string name="home_random">Rastgele</string>
 <string name="home_search_only_body">Eklentilerinizin hiçbirinde ana sayfa yok, ancak yine de onlarda arama yapabilirsiniz.</string>

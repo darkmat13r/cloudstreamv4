@@ -5,6 +5,7 @@
 <string name="detail_load_failed_headline">Impossibile aprire questo titolo</string>
 <plurals name="downloads_active"><item quantity="one">%d download attivo</item><item quantity="many">%d download attivi</item><item quantity="other">%d download attivi</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d download in coda</item><item quantity="many">%d download in coda</item><item quantity="other">%d download in coda</item></plurals>
+<plurals name="home_bookmarks_count"><item quantity="one">%d SEGNALIBRO</item><item quantity="many">%d DI SEGNALIBRI</item><item quantity="other">%d SEGNALIBRI</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Impossibile caricare %d sezione</item><item quantity="many">Impossibile caricare %d sezioni</item><item quantity="other">Impossibile caricare %d sezioni</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d collegamento nascosto</item><item quantity="many">%d collegamenti nascosti</item><item quantity="other">%d collegamenti nascosti</item></plurals>
 <string name="account">account</string>
@@ -315,12 +316,16 @@
 <string name="hide_player_control_names">Nascondi i nomi dei controlli del lettore</string>
 <string name="history">Cronologia</string>
 <string name="hls_playlist">Playlist HLS</string>
+<string name="home_bookmarks_no_status_body">Scegline uno sopra per vedere quei segnalibri.</string>
+<string name="home_bookmarks_no_status_headline">Nessuno stato scelto</string>
 <string name="home_change_provider_img_des">Cambia provider</string>
 <string name="home_expanded_hide">Nascondi</string>
 <string name="home_info">Info</string>
 <string name="home_main_poster_img_des">Poster principale</string>
 <string name="home_more_info">Più info</string>
 <string name="home_next_random_img_des">Prossimo casuale</string>
+<string name="home_offline_bookmarks_body">I tuoi segnalibri sono salvati su questo dispositivo.</string>
+<string name="home_offline_source_headline">%1$s richiede una connessione</string>
 <string name="home_play">Riproduci</string>
 <string name="home_random">Casuale</string>
 <string name="home_search_only_body">Nessuna delle tue estensioni ha una pagina iniziale, ma puoi comunque cercare al loro interno.</string>

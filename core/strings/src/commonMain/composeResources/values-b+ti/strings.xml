@@ -3,6 +3,7 @@
 <resources>
 <string name="detail_load_failed_body">ምንጪ ኣይርከብ ይኸውን።</string>
 <string name="detail_load_failed_headline">እዚ ኣርእስቲ ክኽፈት ኣይከኣለን</string>
+<plurals name="home_bookmarks_count"><item quantity="one">%d ምልክታት</item><item quantity="other">%d ምልክታት</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d ክፍሊ ክጽዓን ኣይከኣለን</item><item quantity="other">%d ክፍሊ ክጽዓን ኣይከኣለን</item></plurals>
 <string name="app_dub_sub_episode_text_format">%1$s ክፋል %2$d</string>
 <string name="cast_format">ተዋሳእቲ፡ %s</string>
@@ -34,6 +35,10 @@
 <string name="extension_warning_telemetry">መለለዪ መሳርሒ ይጠቅስ፡ እዚ ድማ መብዛሕትኡ ግዜ ንምክትታል ምትካል ይጥቀመሉ።</string>
 <string name="extension_warning_webview">ዌብ ቪው ይጥቀም፡ ዝኾነ ገጽ ክጽዕን ዝኽእል ውሽጣዊ ብራውዘር እዩ።</string>
 <string name="extensions_waiting_count">ንዓኻ ዝጽበዩ መስፋሕፋሕቲ: %d</string>
+<string name="home_bookmarks_no_status_body">ነቶም ምልክታት ንምርኣይ ካብ ላዕሊ ሓደ ምረጹ።</string>
+<string name="home_bookmarks_no_status_headline">ዝተመረጸ ኩነታት የለን</string>
+<string name="home_offline_bookmarks_body">ምልክታትኩም ኣብዚ መሳርሒ ተዓቂቦም ኣለዉ።</string>
+<string name="home_offline_source_headline">%1$s ምትእስሳር የድልዮ</string>
 <string name="home_search_only_body">ካብ መስፋሕፋሕትኻ ሓደ እኳ መበገሲ ገጽ የብሉን፡ ግን ሕጂ'ውን ኣብኡ ክትደሊ ትኽእል ኢኻ።</string>
 <string name="load_more">ተወሳኺ ጽዓን</string>
 <string name="next_episode_format">ክፋል %d በ ላይ ይወጣል</string>

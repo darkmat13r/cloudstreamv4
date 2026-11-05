@@ -36,12 +36,15 @@ import kotlinx.coroutines.withTimeoutOrNull
  * @param history what this device has played. Read when the page opens, comes back, or its sources change, because the
  *   player and an account switch both change it from elsewhere. It is independent of the source, so a failure or being
  *   offline leaves it on screen.
+ * @param bookmarkStore the bookmarks rail (`TV Home Extras` 3e) and its filter. Read when [history] is, for the same reasons, and
+ *   kept on screen the same way.
  */
 class HomeViewModel(
     private val source: HomeSource,
     private val scope: CoroutineScope,
     private val memory: HomeSourceMemory = HomeSourceMemory.None,
     private val history: HomeWatchHistory = HomeWatchHistory.None,
+    private val bookmarkStore: HomeBookmarkStore = HomeBookmarkStore.None,
 ) : ViewModel(),
     StateContainer<HomeState> by DefaultStateContainer(HomeState()),
     EffectContainer<HomeEffect> by DefaultEffectContainer(),
@@ -56,9 +59,12 @@ class HomeViewModel(
     /** The latest read of [history]. A newer one replaces it, so an older answer cannot land last. */
     private var historyRead: Job? = null
 
+    /** The latest read of [bookmarkStore], for the same reason. */
+    private var bookmarksRead: Job? = null
+
     init {
         readSources()
-        readHistory()
+        readLocal()
     }
 
     override fun onAction(action: HomeAction) {
@@ -75,13 +81,14 @@ class HomeViewModel(
             HomeAction.SearchRequested -> scope.launch { postEffect { HomeEffect.OpenSearch } }
             HomeAction.ExtensionsRequested -> scope.launch { postEffect { HomeEffect.OpenExtensions } }
             HomeAction.AccountsRequested -> scope.launch { postEffect { HomeEffect.OpenAccounts } }
+            is HomeAction.BookmarkFilterPressed -> filterBookmarks(action.status)
             HomeAction.SourcesChanged -> {
                 sourcesChanged()
-                readHistory()
+                readLocal()
             }
             HomeAction.Reappeared -> {
                 updateState { copy(appeared = true, returnTo = returnTo?.copy(ready = true)) }
-                readHistory()
+                readLocal()
             }
             HomeAction.Disappeared -> updateState { copy(appeared = false) }
             HomeAction.ReturnHandled -> updateState { copy(returnTo = null) }
@@ -90,6 +97,40 @@ class HomeViewModel(
     }
 
     private fun newWork() = SupervisorJob(scope.coroutineContext[Job])
+
+    /** What this device keeps, which no source decides: history and bookmarks. */
+    private fun readLocal() {
+        readHistory()
+        readBookmarks()
+    }
+
+    private fun readBookmarks() {
+        bookmarksRead?.cancel()
+        bookmarksRead = scope.launch {
+            val read = try {
+                HomeBookmarks(all = bookmarkStore.read(), chosen = bookmarkStore.chosen())
+            } catch (cancelled: CancellationException) {
+                throw cancelled
+            } catch (_: Exception) {
+                // As for history: what is on screen stays, and the next read asks again.
+                return@launch
+            }
+            updateState { copy(bookmarks = read) }
+        }
+    }
+
+    /** One status at a time, or none: the chosen chip clears it, as the old chips do (`HomeParentItemAdapterPreview.kt:530`). */
+    private fun filterBookmarks(status: HomeWatchStatus) {
+        val next = status.takeUnless { it == state.value.bookmarks.applied }
+        updateState { copy(bookmarks = bookmarks.copy(chosen = next)) }
+        try {
+            bookmarkStore.choose(next)
+        } catch (cancelled: CancellationException) {
+            throw cancelled
+        } catch (_: Exception) {
+            // The filter on screen is what was pressed; not keeping it costs only the next launch's choice.
+        }
+    }
 
     private fun readHistory() {
         historyRead?.cancel()

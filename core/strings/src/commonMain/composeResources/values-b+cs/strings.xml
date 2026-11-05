@@ -5,6 +5,7 @@
 <string name="detail_load_failed_headline">Tento titul se nepodařilo otevřít</string>
 <plurals name="downloads_active"><item quantity="one">%d aktivní stahování</item><item quantity="few">%d aktivní stahování</item><item quantity="many">%d aktivních stahování</item><item quantity="other">%d aktivních stahování</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d stahování uloženo do fronty</item><item quantity="few">%d stahování uložena do fronty</item><item quantity="many">%d stahování uloženo do fronty</item><item quantity="other">%d stahování uloženo do fronty</item></plurals>
+<plurals name="home_bookmarks_count"><item quantity="one">%d ZÁLOŽKA</item><item quantity="few">%d ZÁLOŽKY</item><item quantity="many">%d ZÁLOŽKY</item><item quantity="other">%d ZÁLOŽEK</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Nepodařilo se načíst %d sekci</item><item quantity="few">Nepodařilo se načíst %d sekce</item><item quantity="many">Nepodařilo se načíst %d sekcí</item><item quantity="other">Nepodařilo se načíst %d sekcí</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d skrytý odkaz</item><item quantity="few">%d skryté odkazy</item><item quantity="many">%d skrytých odkazů</item><item quantity="other">%d skrytých odkazů</item></plurals>
 <string name="account">účet</string>
@@ -315,12 +316,16 @@
 <string name="hide_player_control_names">Skrýt názvy ovládání přehrávače</string>
 <string name="history">Historie</string>
 <string name="hls_playlist">Playlist HLS</string>
+<string name="home_bookmarks_no_status_body">Vyberte jeden nahoře a uvidíte tyto záložky.</string>
+<string name="home_bookmarks_no_status_headline">Není vybrán žádný stav</string>
 <string name="home_change_provider_img_des">Změnit poskytovatele</string>
 <string name="home_expanded_hide">Skrýt</string>
 <string name="home_info">Info</string>
 <string name="home_main_poster_img_des">Hlavní plakát</string>
 <string name="home_more_info">Více informací</string>
 <string name="home_next_random_img_des">Další náhodný</string>
+<string name="home_offline_bookmarks_body">Vaše záložky jsou uloženy v tomto zařízení.</string>
+<string name="home_offline_source_headline">%1$s potřebuje připojení</string>
 <string name="home_play">Přehrát</string>
 <string name="home_random">Náhodný</string>
 <string name="home_search_only_body">Žádné z vašich rozšíření nemá domovskou stránku, ale stále v nich můžete hledat.</string>

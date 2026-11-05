@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
+import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.designsystem.state.FailureNotice
 import com.lagradost.cloudstream4.core.designsystem.state.StateAction
 import com.lagradost.cloudstream4.core.designsystem.state.StatePrompt
@@ -31,6 +32,8 @@ import org.jetbrains.compose.resources.stringResource
 /**
  * [HomeStatus] as the design system draws it, in the composition's locale.
  *
+ * Every action carries its glyph from `ui-components.md`'s table: `Retry` on Try again and Retry failed, `Search` on Search.
+ *
  * @param sourceName the selected source, which the failure sentence names.
  */
 @Composable
@@ -50,7 +53,7 @@ fun HomeStatus.toUiState(
     val latest by rememberUpdatedState(onAction)
     val retry = remember { { latest(HomeAction.Retry) } }
     val search = remember { { latest(HomeAction.SearchRequested) } }
-    val tryAgain = StateAction(stringResource(Res.string.search_state_retry), retry)
+    val tryAgain = StateAction(stringResource(Res.string.search_state_retry), CloudStreamIcons.Retry, retry)
     return when (this) {
         HomeStatus.Loading -> UiState.Loading
         is HomeStatus.Showing -> UiState.Content(rows)
@@ -63,6 +66,7 @@ fun HomeStatus.toUiState(
                 } · $detail",
                 retry = StateAction(
                     stringResource(if (retrying) Res.string.loading else Res.string.search_state_retry_failed),
+                    CloudStreamIcons.Retry,
                     retry,
                 ),
             ),
@@ -74,7 +78,7 @@ fun HomeStatus.toUiState(
                 StatePrompt(
                     headline = stringResource(Res.string.no_data),
                     body = stringResource(Res.string.home_search_only_body),
-                    action = StateAction(stringResource(Res.string.title_search), search),
+                    action = StateAction(stringResource(Res.string.title_search), CloudStreamIcons.Search, search),
                 ),
             )
         } else {

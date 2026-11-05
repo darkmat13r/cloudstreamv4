@@ -3,6 +3,7 @@ package com.lagradost.cloudstream4.library
 import android.content.Context
 import android.content.res.Configuration
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.getKey
+import com.lagradost.cloudstream3.SearchQuality
 import com.lagradost.cloudstream3.TvType
 import com.lagradost.cloudstream3.ui.WatchType
 import com.lagradost.cloudstream3.ui.settings.SettingsProvidersScreen
@@ -79,6 +80,15 @@ internal data class Resuming(
 )
 
 /**
+ * A title with a watch status, as Home's bookmarks rail lists it (`TV Home Extras` 3e), with the one fact a card shows that
+ * [LibraryTitle] does not carry: the quality its badge names.
+ */
+internal data class Bookmarked(
+    val title: LibraryTitle,
+    val quality: SearchQuality?,
+)
+
+/**
  * [LibraryStore] over what `:app` really keeps, so a TV user's existing lists appear.
  *
  * ## What it reads, and why not `SyncAPI`
@@ -149,6 +159,18 @@ internal class AndroidLibraryStore(
             .mapNotNull { resume -> resumingOf(resume) }
             .distinctBy { it.title.id }
             .take(MAX_RESUMING)
+    }
+
+    /**
+     * Every title with a watch status, as the old home's bookmarks rail reads them (`HomeViewModel.loadStoredData`): the
+     * same keys [titles] reads, without favourites, which the old rail does not show, cleaned the same way.
+     */
+    suspend fun bookmarked(): List<Bookmarked> = withContext(io) {
+        val words = labels()
+        rows().filter { it.bucket != LibraryBucket.Favourites }
+            .map { row -> Bookmarked(row.toTitle(words), row.record.quality) }
+            .sortedByDescending { it.title.keptAt }
+            .distinctBy { it.title.id to it.title.bucket }
     }
 
     private fun resumingOf(resume: DownloadObjects.ResumeWatching): Resuming? {

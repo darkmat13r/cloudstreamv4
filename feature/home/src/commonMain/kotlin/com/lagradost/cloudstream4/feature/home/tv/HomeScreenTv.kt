@@ -45,6 +45,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.lagradost.cloudstream4.core.designsystem.card.PosterRung
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIconSize
@@ -61,10 +62,16 @@ import com.lagradost.cloudstream4.core.designsystem.state.StateView
 import com.lagradost.cloudstream4.core.designsystem.state.UiState
 import com.lagradost.cloudstream4.core.designsystem.state.failureNotice
 import com.lagradost.cloudstream4.core.designsystem.target.IconCell
+import com.lagradost.cloudstream4.core.strings.UiString
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.extensions
+import com.lagradost.cloudstream4.core.strings.generated.resources.home_bookmarks_count
+import com.lagradost.cloudstream4.core.strings.generated.resources.home_offline_bookmarks_body
+import com.lagradost.cloudstream4.core.strings.generated.resources.home_offline_source_headline
 import com.lagradost.cloudstream4.core.strings.generated.resources.home_source
+import com.lagradost.cloudstream4.core.strings.generated.resources.search_state_offline_headline
 import com.lagradost.cloudstream4.core.strings.generated.resources.switch_account
+import com.lagradost.cloudstream4.core.strings.resolve
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.home.HomeAction
@@ -88,9 +95,10 @@ import org.jetbrains.compose.resources.stringResource
  *
  * ## The page, top to bottom
  *
- * One list with keyed items: the chrome with the hero under it (3c), then Continue watching, then the source's rails (3d,
- * which is this page scrolled). The hero is part of the chrome's item because its art runs behind the chrome. Continue
- * watching is this device's and not the source's, so it stays above a failure, being offline, or a page still loading.
+ * One list with keyed items: the chrome with the hero under it (3c), then Continue watching, then the bookmarks rail
+ * (`TV Home Extras` 3e), then the source's rails (3d, which is this page scrolled). The hero is part of the chrome's item
+ * because its art runs behind the chrome. Continue watching and the bookmarks are this device's and not the source's, so
+ * they stay above a failure, being offline (3g), or a page still loading (3f).
  *
  * ## Focus
  *
@@ -119,7 +127,7 @@ fun HomeScreenTv(
 ) {
     val installLabel = stringResource(Res.string.extensions)
     val install = remember(installLabel, onAction) {
-        StateAction(installLabel) { onAction(HomeAction.ExtensionsRequested) }
+        StateAction(installLabel, CloudStreamIcons.Repository) { onAction(HomeAction.ExtensionsRequested) }
     }
     val content = state.status.toUiState(state.selectedOption?.name, install, onAction)
     val rows = state.status.rows
@@ -128,6 +136,7 @@ fun HomeScreenTv(
     var focusTarget by remember { mutableStateOf<HomeFocusTarget?>(null) }
     var screenHasFocus by remember { mutableStateOf(false) }
     var continueHasFocus by remember { mutableStateOf(false) }
+    var bookmarksHaveFocus by remember { mutableStateOf(false) }
     // A view built again, coming back by the nav rail, lands once as the first open does. Measured in `:app`: the window
     // gives a rebuilt view's focus to its first stop, the source control, before the rows can, and it stayed there.
     var landingInView by remember { mutableStateOf(true) }
@@ -137,20 +146,28 @@ fun HomeScreenTv(
     val heroSettled = state.hero !is HomeHero.Loading
     val resume = state.history.resume
     val hasContinue = resume.isNotEmpty()
-    val itemsBeforeRails = if (hasContinue) ITEMS_BEFORE_CONTINUE + 1 else ITEMS_BEFORE_CONTINUE
+    // Absent with no bookmarks at all, as the old rail is. A filter that shows none still draws it (3f).
+    val bookmarks = state.bookmarks
+    val hasBookmarks = bookmarks.all.isNotEmpty()
+    val shownBookmarks = bookmarks.shown
+    val hasLocalRails = hasContinue || hasBookmarks
+    val itemsBeforeBookmarks = if (hasContinue) ITEMS_BEFORE_CONTINUE + 1 else ITEMS_BEFORE_CONTINUE
+    val itemsBeforeRails = if (hasBookmarks) itemsBeforeBookmarks + 1 else itemsBeforeBookmarks
+    val offline = state.status is HomeStatus.Offline
     val scope = rememberCoroutineScope()
     val stops = remember { HomeStops() }
 
     // A title that was opened. The rows are on screen by now, because they outlive the view.
-    LaunchedEffect(returnTo?.ready, hasRows, hero != null, hasContinue, state.status is HomeStatus.Loading) {
+    LaunchedEffect(returnTo?.ready, hasRows, hero != null, hasContinue, hasBookmarks, state.status is HomeStatus.Loading) {
         if (returnTo == null || !returnTo.ready || state.status is HomeStatus.Loading) return@LaunchedEffect
         val row = rows.firstOrNull { it.key == returnTo.rowKey }
         val back = when (returnTo.rowKey) {
             HomeRowKey.Hero -> hero?.takeIf { it.featured.id == returnTo.id }?.let { heroTarget(it.featured) }
             HomeRowKey.Continue -> resume.firstOrNull { it.id == returnTo.id }?.let { continueTarget(it) }
+            HomeRowKey.Bookmarks -> shownBookmarks.firstOrNull { it.id == returnTo.id }?.let { bookmarkTarget(it) }
             else -> row?.items?.firstOrNull { it.id == returnTo.id }?.let { HomeFocusTarget(row.key, it.id) }
         }
-        val fallback = back ?: landingTarget(hero, resume, rows)
+        val fallback = back ?: landingTarget(hero, resume, shownBookmarks, rows)
         when {
             back != null -> focusTarget = back
             fallback != null -> {
@@ -166,8 +183,8 @@ fun HomeScreenTv(
         if (!hasRows || !state.appeared || returnTo != null || !heroSettled) return@LaunchedEffect
         // After a frame, so that a button these rows replaced has given focus up.
         withFrameNanos { }
-        val free = (state.landingOwed || landingInView || !screenHasFocus) && !continueHasFocus
-        if (free && !state.pickerOpen && mayTakeFocus()) focusTarget = landingTarget(hero, resume, rows)
+        val free = (state.landingOwed || landingInView || !screenHasFocus) && !continueHasFocus && !bookmarksHaveFocus
+        if (free && !state.pickerOpen && mayTakeFocus()) focusTarget = landingTarget(hero, resume, shownBookmarks, rows)
         landingInView = false
         if (state.landingOwed) onAction(HomeAction.LandingHandled)
     }
@@ -199,10 +216,11 @@ fun HomeScreenTv(
             // its body goes (below). Any state that still does not fit grows rather than squeezing its button, which a fixed
             // height did to an empty ring (measured on the recorded screenshot), and when its button takes focus the page
             // moves until the chrome is wholly off the screen: moved by less, the chrome was left 4px from the top edge,
-            // where a TV's overscan cuts it.
+            // where a TV's overscan cuts it. The bookmarks rail above a state is the same (3g, 3m).
             val continueRoom = if (hasContinue) ContinueRailHeight + CloudStreamDimens.MinFocusGap else 0.dp
-            val promptHeight =
-                maxHeight - HomeScreenTvDefaults.PageAboveContent - CloudStreamDimens.FocusBandInset - continueRoom
+            val bookmarksRoom = if (hasBookmarks) BookmarksRailHeight + CloudStreamDimens.MinFocusGap else 0.dp
+            val promptHeight = maxHeight - HomeScreenTvDefaults.PageAboveContent - CloudStreamDimens.FocusBandInset -
+                continueRoom - bookmarksRoom
             val revealState: () -> Unit = {
                 val info = list.layoutInfo
                 val item = info.visibleItemsInfo.firstOrNull { it.index == itemsBeforeRails }
@@ -213,7 +231,7 @@ fun HomeScreenTv(
                     if (overflow > 0f) scope.launch { list.animateScrollBy(maxOf(overflow, chromeOnScreen.toFloat())) }
                 }
             }
-            val promptModifier = if (hasContinue) {
+            val promptModifier = if (hasLocalRails) {
                 Modifier.onFocusChanged { if (it.hasFocus) revealState() }
             } else {
                 Modifier
@@ -232,7 +250,14 @@ fun HomeScreenTv(
                         Box(Modifier.fillMaxWidth().onFocusChanged { if (it.hasFocus) scrollTo(0) }) {
                             hero?.let { HomeHeroBackdrop(it.featured, artwork) }
                             Column {
-                                HomeChromeRow(state, content.failureNotice, stops, onAction, Modifier.contentInset())
+                                HomeChromeRow(
+                                    state = state,
+                                    notice = content.failureNotice,
+                                    offlineBookmarks = bookmarks.all.size.takeIf { offline && hasBookmarks },
+                                    stops = stops,
+                                    onAction = onAction,
+                                    modifier = Modifier.contentInset(),
+                                )
                                 hero?.let {
                                     HomeHeroTv(
                                         hero = it,
@@ -291,19 +316,56 @@ fun HomeScreenTv(
                             )
                         }
                     }
+                    if (hasBookmarks) {
+                        item(key = BOOKMARKS_KEY) {
+                            val returning = returnTo?.takeIf { it.rowKey == HomeRowKey.Bookmarks }
+                            HomeBookmarksTv(
+                                bookmarks = bookmarks,
+                                focusTarget = focusTarget,
+                                initialCard = returning?.firstVisibleCard ?: 0,
+                                initialCardOffset = returning?.firstVisibleCardOffset ?: 0,
+                                onFocusTaken = onFocusTaken,
+                                onOpen = { item, rail ->
+                                    onAction(
+                                        HomeAction.TitleActivated(
+                                            id = item.id,
+                                            from = HomeReturn(
+                                                id = item.id,
+                                                rowKey = HomeRowKey.Bookmarks,
+                                                firstVisibleRow = list.firstVisibleItemIndex,
+                                                firstVisibleRowOffset = list.firstVisibleItemScrollOffset,
+                                                firstVisibleCard = rail.firstVisibleItemIndex,
+                                                firstVisibleCardOffset = rail.firstVisibleItemScrollOffset,
+                                            ),
+                                        ),
+                                    )
+                                },
+                                onFilter = { onAction(HomeAction.BookmarkFilterPressed(it)) },
+                                stops = stops,
+                                artwork = artwork,
+                                progress = state.history.progress,
+                                dimmed = offline,
+                                modifier = Modifier.onFocusChanged {
+                                    bookmarksHaveFocus = it.hasFocus
+                                    if (it.hasFocus) scrollTo(itemsBeforeBookmarks)
+                                },
+                            )
+                        }
+                    }
                     when (content) {
                         is UiState.Loading -> items(SKELETON_RAILS, key = { "skeleton/$it" }) { HomeRailSkeleton() }
                         is UiState.Empty -> item(key = STATE_KEY) {
-                            HomeStatePrompt(content.prompt, content.detail, promptHeight, hasContinue, state, mayTakeFocus, promptModifier)
+                            HomeStatePrompt(content.prompt, content.detail, promptHeight, hasLocalRails, state, mayTakeFocus, promptModifier)
                         }
                         is UiState.Offline -> item(key = STATE_KEY) {
                             // Under Continue watching the headline says it alone: the body is four lines, 80dp more than
-                            // the 720p screen has left, and its first sentence repeats the headline.
-                            val prompt = if (hasContinue) content.prompt.copy(body = "") else content.prompt
-                            HomeStatePrompt(prompt, null, promptHeight, hasContinue, state, mayTakeFocus, promptModifier)
+                            // the 720p screen has left, and its first sentence repeats the headline. Under the bookmarks it
+                            // says what needs the connection, as 3g does, and the chrome says that the page is offline.
+                            val prompt = offlinePrompt(content.prompt, state.selectedOption?.name, hasBookmarks, hasContinue)
+                            HomeStatePrompt(prompt, null, promptHeight, hasLocalRails, state, mayTakeFocus, promptModifier)
                         }
                         is UiState.Error -> item(key = STATE_KEY) {
-                            HomeStatePrompt(content.prompt, content.detail, promptHeight, hasContinue, state, mayTakeFocus, promptModifier)
+                            HomeStatePrompt(content.prompt, content.detail, promptHeight, hasLocalRails, state, mayTakeFocus, promptModifier)
                         }
                         // A row's key is a string, because a lazy list's key must fit in a Bundle on Android.
                         is UiState.Partial, is UiState.Content -> Unit
@@ -312,7 +374,7 @@ fun HomeScreenTv(
                     // list scrolls only as far as its content reaches: without this it stopped at the state's own overflow,
                     // 15px, and left the chrome in the overscan (measured).
                     val isState = content is UiState.Empty || content is UiState.Offline || content is UiState.Error
-                    if (hasContinue && isState) {
+                    if (hasLocalRails && isState) {
                         item(key = STATE_ROOM_KEY) { Spacer(Modifier.height(CloudStreamDimens.ChromeRowBottom)) }
                     }
                     when (content) {
@@ -360,15 +422,39 @@ fun HomeScreenTv(
     }
 }
 
-/** The first thing on the page: the hero's button, else the first Continue watching card, else the first card. */
-private fun landingTarget(hero: HomeHero.Shown?, resume: List<HomeResume>, rows: List<HomeRow>): HomeFocusTarget? {
+/**
+ * The first thing on the page: the hero's button, else the first Continue watching card, else the first bookmark shown,
+ * else the first card.
+ */
+private fun landingTarget(
+    hero: HomeHero.Shown?,
+    resume: List<HomeResume>,
+    bookmarks: List<HomeItem>,
+    rows: List<HomeRow>,
+): HomeFocusTarget? {
     if (hero != null) return heroTarget(hero.featured)
     resume.firstOrNull()?.let { return continueTarget(it) }
+    bookmarks.firstOrNull()?.let { return bookmarkTarget(it) }
     val row = rows.firstOrNull() ?: return null
     return row.items.firstOrNull()?.let { HomeFocusTarget(row.key, it.id) }
 }
 
 private fun continueTarget(entry: HomeResume) = HomeFocusTarget(HomeRowKey.Continue, entry.id)
+
+private fun bookmarkTarget(item: HomeItem) = HomeFocusTarget(HomeRowKey.Bookmarks, item.id)
+
+/**
+ * Offline's words where something local stays above them. Under the bookmarks, 3g's: what needs the connection, and that
+ * the bookmarks are kept. Under Continue watching, the headline alone, which is all there is room for at 720p.
+ */
+@Composable
+private fun offlinePrompt(prompt: StatePrompt, sourceName: String?, underBookmarks: Boolean, underContinue: Boolean): StatePrompt {
+    if (!underBookmarks) return if (underContinue) prompt.copy(body = "") else prompt
+    val headline = sourceName?.let { UiString.Resource(Res.string.home_offline_source_headline, listOf(it)).resolve() }
+        ?: prompt.headline
+    val body = if (underContinue) "" else stringResource(Res.string.home_offline_bookmarks_body)
+    return StatePrompt(headline = headline, body = body, action = prompt.action)
+}
 
 /**
  * A full-surface state, taking focus when it appears if that is this screen's to take.
@@ -401,6 +487,7 @@ private fun HomeStatePrompt(
 private fun HomeChromeRow(
     state: HomeState,
     notice: FailureNotice?,
+    offlineBookmarks: Int?,
     stops: HomeStops,
     onAction: (HomeAction) -> Unit,
     modifier: Modifier = Modifier,
@@ -412,7 +499,11 @@ private fun HomeChromeRow(
     ) {
         // The notice takes the free width rather than sharing it with a spacer: shared, its headline was squeezed to
         // nothing (measured on the recorded screenshot).
-        if (notice != null) HomeFailureNotice(notice, stops, Modifier.weight(1f)) else Spacer(Modifier.weight(1f))
+        when {
+            notice != null -> HomeFailureNotice(notice, stops, Modifier.weight(1f))
+            offlineBookmarks != null -> HomeOfflineNotice(offlineBookmarks, Modifier.weight(1f))
+            else -> Spacer(Modifier.weight(1f))
+        }
         state.selectedOption?.let { selected ->
             HomeSourceControl(name = selected.name, stops, onClick = { onAction(HomeAction.PickerOpened) })
         }
@@ -459,6 +550,37 @@ private fun HomeFailureNotice(notice: FailureNotice, stops: HomeStops, modifier:
         )
         Spacer(Modifier.width(CloudStreamDimens.ListRowPadding))
         StateActionButton(notice.retry, Modifier.homeStop(stops), StateActionEmphasis.Primary)
+    }
+}
+
+/**
+ * 3g's `.notice`: being offline said in the chrome, with how many bookmarks are kept, because the prompt below names what
+ * needs the connection. No button: the prompt's Try again is the way out, and one button for one thing is enough.
+ */
+@Composable
+private fun HomeOfflineNotice(bookmarks: Int, modifier: Modifier = Modifier) {
+    val colors = CloudStreamTheme.colors
+    val typography = CloudStreamTheme.typography
+    Row(
+        modifier = modifier,
+        horizontalArrangement = Arrangement.spacedBy(CloudStreamDimens.ListRowPadding),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        StatusDot(StatusDotState.Failed)
+        BasicText(
+            text = stringResource(Res.string.search_state_offline_headline),
+            style = typography.label.copy(color = colors.ink),
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+            modifier = Modifier.weight(1f, fill = false),
+        )
+        BasicText(
+            text = UiString.Plural(Res.plurals.home_bookmarks_count, bookmarks).resolve(),
+            style = typography.labelMono.copy(color = colors.muted),
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+            modifier = Modifier.widthIn(max = HomeScreenTvDefaults.FailureDetailMaxWidth),
+        )
     }
 }
 
@@ -573,12 +695,19 @@ object HomeScreenTvDefaults {
 
     /** Between facts on one mono line, as `KMP-37`'s failure line writes it. */
     const val META_SEPARATOR = " · "
+
+    /** A bookmark's card: 3e's `.psa`, 240px, which is a `PosterRung.Medium` poster's height. */
+    val BookmarksCardHeight: Dp = PosterRung.Medium.size.height
+
+    /** 3g's `.ps.off { opacity: 0.4 }`: a card that needs a connection to open, offline. */
+    const val OFFLINE_CARD_ALPHA = 0.4f
 }
 
 /** The chrome, which holds the hero when there is one. Continue watching, when there is any, follows it. */
 private const val ITEMS_BEFORE_CONTINUE = 1
 private const val CHROME_KEY = "chrome"
 private const val CONTINUE_KEY = "continue"
+private const val BOOKMARKS_KEY = "bookmarks"
 private const val STATE_KEY = "state"
 private const val STATE_ROOM_KEY = "state/room"
 private const val SKELETON_RAILS = 3

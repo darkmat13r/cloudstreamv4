@@ -28,6 +28,7 @@ import com.lagradost.cloudstream3.newMovieLoadResponse
 import com.lagradost.cloudstream3.newMovieSearchResponse
 import com.lagradost.cloudstream3.plugins.PLUGINS_KEY
 import com.lagradost.cloudstream3.plugins.PluginData
+import com.lagradost.cloudstream3.ui.WatchType
 import com.lagradost.cloudstream3.ui.home.HomeFragment
 import com.lagradost.cloudstream3.ui.result.ResultFragmentTv
 import com.lagradost.cloudstream3.ui.settings.Globals.updateTv
@@ -85,6 +86,7 @@ class TvHomeNavigationTest {
     @After
     fun restore() {
         forgetPlaying()
+        forgetBookmarks()
         TvHomeSwitch.useComposeHome = true
         setLayoutPreference(null)
         listOf(one, two).forEach {
@@ -132,6 +134,33 @@ class TvHomeNavigationTest {
             DataStoreHelper.setLastWatched(PLAYED_ID, PLAYED_PART, null, null)
             DataStoreHelper.setViewPos(PLAYED_PART, at, of)
         }
+    }
+
+    /** What a result page writes when a title is given a watch status: the status, and the title's fields. */
+    private fun bookmark(provider: FakeProvider, title: String, status: WatchType) {
+        instrumentation.runOnMainSync {
+            DataStoreHelper.setBookmarkedData(
+                BOOKMARKED_ID,
+                DataStoreHelper.BookmarkedData(
+                    bookmarkedTime = 1L,
+                    id = BOOKMARKED_ID,
+                    latestUpdatedTime = 1L,
+                    name = title,
+                    url = "${provider.mainUrl}/$title",
+                    apiName = provider.name,
+                    type = TvType.Movie,
+                    posterUrl = null,
+                    year = null,
+                ),
+            )
+            DataStoreHelper.setResultWatchState(BOOKMARKED_ID, status.internalId)
+            DataStoreHelper.homeBookmarkedList = intArrayOf(status.internalId)
+        }
+    }
+
+    private fun forgetBookmarks() = instrumentation.runOnMainSync {
+        DataStoreHelper.deleteBookmarkedData(BOOKMARKED_ID)
+        DataStoreHelper.homeBookmarkedList = intArrayOf()
     }
 
     private fun forgetPlaying() = instrumentation.runOnMainSync {
@@ -457,6 +486,49 @@ class TvHomeNavigationTest {
         }
     }
 
+    /**
+     * A title given a watch status on its page, under the keys the app really writes, is on the bookmarks rail with its
+     * status's chip chosen. A remote opens its real page, Back puts focus back on it, and a chip pressed is what the old
+     * home's key holds.
+     */
+    @Test
+    fun aBookmarkIsOnItsRailOpensItsRealPageAndFocusComesBackAndAChipIsKept() {
+        install(one)
+        bookmark(one, BOOKMARKED, WatchType.WATCHING)
+        launch {
+            waitForHome()
+            waitForHero(ONE)
+            val watching = context.getString(R.string.type_watching)
+            assertNotNull("the rail's name shows", device.findObject(By.text(context.getString(R.string.error_bookmarks_text))))
+            assertEquals(watching, dpad.press(Dpad.Down))
+            assertEquals(BOOKMARKED, dpad.press(Dpad.Down))
+            dpad.center()
+
+            waitFor("the title's page, was $fragmentClass") { fragmentClass == ResultFragmentTv::class.java }
+            waitFor("it asked the provider for that title") { "https://example.invalid/$BOOKMARKED" in one.loaded }
+            repeat(BACK_PRESSES) {
+                if (fragmentClass != HomeTvFragment::class.java) {
+                    device.pressBack()
+                    device.waitForIdle()
+                    Thread.sleep(SETTLE_MS)
+                }
+            }
+            waitForHome()
+            waitForFocus(BOOKMARKED)
+            assertFalse("on the card and not on the rail", railHasFocus)
+
+            // The chosen chip, pressed, clears the filter, and the old home's key says so.
+            assertEquals(watching, dpad.press(Dpad.Up))
+            dpad.center()
+            waitFor("the filter is cleared in the old key") {
+                var kept: IntArray? = null
+                instrumentation.runOnMainSync { kept = DataStoreHelper.homeBookmarkedList }
+                kept?.isEmpty() == true
+            }
+            assertNotNull(device.findObject(By.text(context.getString(R.string.home_bookmarks_no_status_headline))))
+        }
+    }
+
     // ---- With nothing installed ----------------------------------------------------------------------------------
 
     @Test
@@ -534,6 +606,9 @@ class TvHomeNavigationTest {
         const val MORE_INFO = "More info"
         const val CONTINUE = "Continue Watching"
         const val PLAYED = "Played Before"
+        const val BOOKMARKED = "Kept For Later"
+        /** As [PLAYED_ID]: no real title here hashes to it. */
+        const val BOOKMARKED_ID = 4244
         /** Ids no real title here has. A title's id is a hash of its address, so a small number is safe. */
         const val PLAYED_ID = 4242
         const val PLAYED_PART = 4243

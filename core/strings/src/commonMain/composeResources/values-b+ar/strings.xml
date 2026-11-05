@@ -5,6 +5,7 @@
 <string name="detail_load_failed_headline">تعذّر فتح هذا العنوان</string>
 <plurals name="downloads_active"><item quantity="zero">%d لا يوجد تنزيل نشط</item><item quantity="one">%d تنزيل واحد نشط</item><item quantity="two">%d تنزيلان نشطان</item><item quantity="few">%d تنزيلات نشطة</item><item quantity="many">%d تنزيل نشط</item><item quantity="other">%d تنزيل نشط</item></plurals>
 <plurals name="downloads_queued"><item quantity="zero">%d لا يوجد تنزيلات في قائمة الانتظار</item><item quantity="one">%d تنزيل واحد قيد الانتظار</item><item quantity="two">%d تنزيلان قيد الانتظار</item><item quantity="few">%d تنزيلات قيد الانتظار</item><item quantity="many">%d تنزيل قيد الانتظار</item><item quantity="other">%d تنزيل قيد الانتظار</item></plurals>
+<plurals name="home_bookmarks_count"><item quantity="zero">%d إشارة مرجعية</item><item quantity="one">%d إشارة مرجعية</item><item quantity="two">%d إشارتان مرجعيتان</item><item quantity="few">%d إشارات مرجعية</item><item quantity="many">%d إشارة مرجعية</item><item quantity="other">%d إشارة مرجعية</item></plurals>
 <plurals name="home_sections_failed"><item quantity="zero">تعذر تحميل %d قسم</item><item quantity="one">تعذر تحميل %d قسم</item><item quantity="two">تعذر تحميل %d قسمين</item><item quantity="few">تعذر تحميل %d أقسام</item><item quantity="many">تعذر تحميل %d قسمًا</item><item quantity="other">تعذر تحميل %d قسم</item></plurals>
 <string name="account">حساب</string>
 <string name="action_add_to_bookmarks">إعداد حالة المشاهدة</string>
@@ -314,12 +315,16 @@
 <string name="hide_player_control_names">إخفاء الأسم من عناصر تحكم المشغل</string>
 <string name="history">السجل</string>
 <string name="hls_playlist">قائمة HLS</string>
+<string name="home_bookmarks_no_status_body">اختر حالة من الأعلى لعرض تلك الإشارات المرجعية.</string>
+<string name="home_bookmarks_no_status_headline">لم تُختر أي حالة</string>
 <string name="home_change_provider_img_des">تغيير المصدر</string>
 <string name="home_expanded_hide">إخفاء</string>
 <string name="home_info">معلومات</string>
 <string name="home_main_poster_img_des">الملصق الرئيسي</string>
 <string name="home_more_info">مزيد من المعلومات</string>
 <string name="home_next_random_img_des">التالي عشوائي</string>
+<string name="home_offline_bookmarks_body">إشاراتك المرجعية محفوظة على هذا الجهاز.</string>
+<string name="home_offline_source_headline">يحتاج %1$s إلى اتصال</string>
 <string name="home_play">تشغيل</string>
 <string name="home_random">عشوائي</string>
 <string name="home_search_only_body">لا تحتوي أي من إضافاتك على صفحة رئيسية، لكن يمكنك البحث فيها.</string>
