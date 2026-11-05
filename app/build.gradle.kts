@@ -312,6 +312,7 @@ dependencies {
     implementation(project(":feature:search"))
     implementation(project(":feature:home"))
     implementation(project(":feature:library"))
+    implementation(project(":feature:downloads"))
     implementation(project(":core:designsystem"))
 
     // Plan row 17: AndroidExtensionRuntime implements the seam :feature:extensions declares.

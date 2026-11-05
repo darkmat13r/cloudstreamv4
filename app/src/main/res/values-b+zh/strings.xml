@@ -196,8 +196,20 @@
 <string name="downloaded">"已下载"</string>
 <string name="downloaded_file">"下载的文件"</string>
 <string name="downloading">"下载中"</string>
+<string name="downloads_browse_library">"浏览库"</string>
 <string name="downloads_delete_select">"选择要删除的项"</string>
 <string name="downloads_empty">"目前尚无下载。"</string>
+<string name="downloads_empty_body">"从内容的剧集列表开始的下载会显示在这里，无需连接即可播放。"</string>
+<string name="downloads_empty_headline">"尚无下载"</string>
+<string name="downloads_free_up_space">"释放空间"</string>
+<string name="downloads_load_failed_body">"你已下载的文件未被更改。"</string>
+<string name="downloads_load_failed_headline">"无法读取你的下载"</string>
+<string name="downloads_offline_pill">"脱机 · 无连接"</string>
+<string name="downloads_play_from_link">"从链接播放"</string>
+<string name="downloads_select">"选择"</string>
+<string name="downloads_storage_full_headline">"存储空间不足"</string>
+<string name="downloads_storage_legend" formatted="true">"已使用 %1$s / %2$s · 下载占用 %3$s"</string>
+<string name="downloads_storage_needs" formatted="true">"还需要 %s"</string>
 <string name="duplicate_add">"添加"</string>
 <string name="duplicate_message_multiple" formatted="true">"在您的资料库中发现了潜在的重复项目： \n \n%s \n \n您想添加此项目、替换现有项目还是取消操作？"</string>
 <string name="duplicate_message_single" formatted="true">"您的资料库中似乎已经存在一个可能相同的项目：'%s.' \n \n您想添加该项目、替换现有项目还是取消操作？"</string>

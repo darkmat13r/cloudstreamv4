@@ -27,6 +27,18 @@
 <string name="download_storage_text">"Ħażna Interna"</string>
 <string name="downloaded">"Imniżżel"</string>
 <string name="downloading">"Qed jinżlu"</string>
+<string name="downloads_browse_library">"Esplora l-librerija"</string>
+<string name="downloads_empty_body">"It-tniżżil li tibda mil-lista tal-episodji ta' titlu jidher hawn u jindaqq mingħajr konnessjoni."</string>
+<string name="downloads_empty_headline">"Għad m'hemmx tniżżil"</string>
+<string name="downloads_free_up_space">"Ħeles l-ispazju"</string>
+<string name="downloads_load_failed_body">"Il-fajls imniżżla tiegħek ma nbidlux."</string>
+<string name="downloads_load_failed_headline">"Ma setax jinqara t-tniżżil tiegħek"</string>
+<string name="downloads_offline_pill">"Offline · l-ebda konnessjoni"</string>
+<string name="downloads_play_from_link">"Indaqq minn ħolqa"</string>
+<string name="downloads_select">"Agħżel"</string>
+<string name="downloads_storage_full_headline">"M'hemmx biżżejjed ħażna"</string>
+<string name="downloads_storage_legend" formatted="true">"%1$s minn %2$s użati · %3$s fit-tniżżil"</string>
+<string name="downloads_storage_needs" formatted="true">"Hemm bżonn %s oħra"</string>
 <string name="duration_format" formatted="true">"%d min"</string>
 <string name="episode_more_options_des">"Iktar Preferenzi"</string>
 <string name="episode_poster_img_des">"Kartellun tal-episodju"</string>
