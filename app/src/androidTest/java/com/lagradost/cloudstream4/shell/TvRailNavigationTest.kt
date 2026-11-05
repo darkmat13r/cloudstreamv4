@@ -734,8 +734,11 @@ class TvRailNavigationTest {
         /** 46% dim leaves 54%. Margin, because focus moves off a filled row when the rail opens too. */
         const val MAX_DIMMED_RATIO = 0.75f
 
-        /** The panel's scrim is 0.72 `bg`, which leaves 28% of the rail's light; 0.4 allows for antialiasing and noise. */
-        const val MAX_PANEL_DIM_RATIO = 0.4f
+        /**
+         * The panel's scrim is 0.6 `bg` (4d, `DS-15`), which leaves 40% of the rail's light; 0.52 allows for antialiasing
+         * and noise, the same 0.12 margin the bound had over 28% when the scrim was 0.72.
+         */
+        const val MAX_PANEL_DIM_RATIO = 0.52f
         const val PANEL_SETTLE_MS = 1_000L
         const val PANEL_ROW = "Vidsrc"
 
