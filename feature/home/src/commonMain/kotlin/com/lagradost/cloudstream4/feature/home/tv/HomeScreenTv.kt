@@ -286,7 +286,7 @@ private fun HomeChromeRow(
 
 /**
  * `FailureBanner`'s content with a hollow neutral marker, which is what `DEC-17` rules a failure looks like. That component
- * still paints its dot in `live`, so it is not used here: reported in `KMP-35`, and left for the owner.
+ * still paints its dot in `live`, so it is not used here: reported in `KMP-36`, and left for the owner.
  */
 @Composable
 private fun HomeFailureNotice(notice: FailureNotice, stops: HomeStops, modifier: Modifier = Modifier) {

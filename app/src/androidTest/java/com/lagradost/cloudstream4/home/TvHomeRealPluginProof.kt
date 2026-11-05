@@ -26,7 +26,7 @@ import java.io.File
 
 /**
  * A real plugin in the real app, on a throwaway emulator: skipped unless someone has pushed one to [PLUGIN_ON_DEVICE],
- * which `scripts/device-tests.sh` never does, because it runs a third party's code and needs the network. `KMP-35` has the
+ * which `scripts/device-tests.sh` never does, because it runs a third party's code and needs the network. `KMP-36` has the
  * script and what it measured.
  *
  * It goes through a person's path: a saved plugin, `MainActivity`'s real loading stages, and the remembered source named

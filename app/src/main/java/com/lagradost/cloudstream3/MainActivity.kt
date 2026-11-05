@@ -1216,7 +1216,7 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
         enableEdgeToEdgeCompat()
         setNavigationBarColorCompat(R.attr.primaryGrayBackground)
         updateLocale()
-        // KMP-35: TV opens the new home screen. TvHomeSwitch is the rollback. Before super.onCreate, which is where a
+        // KMP-36: TV opens the new home screen. TvHomeSwitch is the rollback. Before super.onCreate, which is where a
         // restored process brings its fragments back, so the layout has to be known here too.
         updateTv()
         if (isLayout(TV) && TvHomeSwitch.useComposeHome) supportFragmentManager.fragmentFactory = TvHomeFragmentFactory
@@ -1782,7 +1782,7 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
                     showAccountSelectLinear()
                 }
 
-                // KMP-35: building this view model subscribes it to plugin loads, and it fetches the whole home page each
+                // KMP-36: building this view model subscribes it to plugin loads, and it fetches the whole home page each
                 // time. With `HomeTvFragment` on screen that would be every section twice, for a footer the Compose rail
                 // does not show.
                 if (isLayout(TV) && TvHomeSwitch.useComposeHome) {
