@@ -597,8 +597,10 @@ cards' square corner (`shapes.none`) where the boards draw 8px.
 **Screens whose look changed.** Android TV: Search (chips, the partial-failure banner, result badges and reveal, history
 subtitles, no-results body) and Library (tabs, grid badges and reveal, empty-page body). Desktop: Search and Home (the
 failure banner's dot and white retry), and the `StateView` body on Search, Home, Library, Detail and the player's error.
-`DetailScreenTv`'s list subtitles change too, but nothing hosts it on master. `SeeAllCard`, `IconCell`, `SidePanel`, the
-selected row and the rail dim have no caller on master; `#147` and `#153` bring the first panels.
+`DetailScreenTv`'s list subtitles change too, but nothing hosts it on master. Android TV Home (`#147`, merged
+while this was open): its own failure row now takes the `Primary` retry too, and every one of its six references changed
+(the account `IconCell`'s tile, badges, reveal, the see-all, the source panel's surface, header and raised selected row,
+the empty-state body). `#153` brings the detail panels.
 
 **Tests.** JVM: `DesignReviewFixesTest` (9) and one `FocusRingGapTest` case. Device: `TvRailNavigationTest.
 aSidePanelOpenOnThePageDimsTheRailToo` opens a panel on the real Search page and measures the rail's brightness. Screenshot
