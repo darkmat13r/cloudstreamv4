@@ -34,7 +34,19 @@ import org.jetbrains.compose.resources.stringResource
  * @param sourceName the selected source, which the failure sentence names.
  */
 @Composable
-fun HomeStatus.toUiState(sourceName: String?, onAction: (HomeAction) -> Unit): UiState<List<HomeRow>> {
+fun HomeStatus.toUiState(sourceName: String?, onAction: (HomeAction) -> Unit): UiState<List<HomeRow>> =
+    toUiState(sourceName, install = null, onAction)
+
+/**
+ * @param install what the nothing-installed prompt offers, on a host with somewhere to install from. Without one it
+ *   offers to look again.
+ */
+@Composable
+fun HomeStatus.toUiState(
+    sourceName: String?,
+    install: StateAction?,
+    onAction: (HomeAction) -> Unit,
+): UiState<List<HomeRow>> {
     val latest by rememberUpdatedState(onAction)
     val retry = remember { { latest(HomeAction.Retry) } }
     val search = remember { { latest(HomeAction.SearchRequested) } }
@@ -70,7 +82,7 @@ fun HomeStatus.toUiState(sourceName: String?, onAction: (HomeAction) -> Unit): U
                 StatePrompt(
                     headline = stringResource(Res.string.extension_install_first),
                     body = stringResource(Res.string.blank_repo_message),
-                    action = tryAgain,
+                    action = install ?: tryAgain,
                 ),
             )
         }

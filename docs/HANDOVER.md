@@ -22,6 +22,8 @@ when twenty-three more had merged since. **Trust `git log` over this heading.**
 
 ## Where things stand
 
+**Android TV opens the new home since `KMP-37`,** the first screen here to have run against a real plugin. `TvHomeSwitch.useComposeHome = false` is the rollback to `HomeFragment`, kept for one release. Phone and the emulator layout are unchanged.
+
 **Android TV opens the new downloads screen since `KMP-40`**, boards 6c and 6e. Deleting one line in `MainActivity` is the rollback, and `DownloadFragment` stays on every other layout.
 
 **Android TV shows the Compose rail since `KMP-33`.** `TvRailSwitch.useComposeRail = false` is the rollback to the XML

@@ -3615,6 +3615,153 @@ fail, each the one aimed at it. The renders of the notice and of the list in bot
   here, which is a separate change of what the rows say.
 - The detail page's own source list stays in arrival order: it grows at the foot so a row never slides under the pointer
   (`BUG-19`). Only the player's list, which holds its rows while open, is best first.
+---
+
+## KMP-37 — The TV home on Android: rails and a trailing card (queue `Q9`) · **measured 2026-11-05**
+
+**Status:** in pr #147. Board `3d` of `design/TV Home.dc.html`, and the source control `3c` draws. The hero and Continue watching
+(`3c`, `Q10`) are the next PR: the page is one keyed list, so they go in between the chrome and the rails. Android TV only.
+`TvHomeSwitch.useComposeHome = false` puts `HomeFragment` back, kept for one release (`DEC-17`). Phone and the emulator layout
+still use `HomeFragment`.
+
+**Parts.** `HomeScreenTv` in `:feature:home` `commonMain`. In `:app`: `HomeTvFragment`, `AndroidHomeSource` over `APIRepository`,
+and `DataStoreHomeSourceMemory` over the key the old screen already uses, `DataStoreHelper.currentHomePage`. That key is per
+account, and is also what `MainActivity` reads to load one plugin first. `HomeViewModel` gained, all with defaults, so desktop
+is unchanged: `SourcesChanged`, `Reappeared`, `Disappeared`, a return point, and "the remembered source wins over a fallback".
+
+### What the brief assumed, measured
+
+- **`setClassName` cannot switch a start destination.** `NavHostFragment` navigates to it during inflation, before
+  `MainActivity` has a `navController` to edit. Measured: with search's one line, `HomeFragment` stayed on screen and 9 of 13
+  `TvHomeNavigationTest` cases failed. So this is a `FragmentFactory` set before `super.onCreate`, which also covers a process
+  restored from saved state, and is one line. Merging with `#140`, its `MainActivity` line does not touch this one, and the
+  import lines and the dependency line in `app/build.gradle.kts` sit side by side, to keep both.
+- **The old home's view model kept running behind the new screen.** `MainActivity` builds it for the XML rail's footer, and it
+  fetches on every plugin stage. Measured with the guard off: `[0/1, 0/1, 1/1, 1/1]`, every section twice. The guard skips it
+  while `HomeTvFragment` is the home, so with the XML rail as well (`TvRailSwitch` off) that footer has no account picture.
+- **`SidePanelHost`'s `focusRestorer` does not restore on this page.** Closing the panel and RIGHT from the nav rail both landed
+  on the first card. `HomeStops` remembers the last stop and sends focus entering the page there.
+- **A `BringIntoViewSpec` cannot pin a rail.** It is asked again on every frame, so "pin it" stopped the scroll as soon as the
+  rail came inside the band, 269dp short. A rail decides once when it takes focus.
+- **Back on API 36.** Back closed the panel and also finished the activity in the module test, with only the panel's key
+  handler. `HomeTvFragment` also registers a callback for as long as the panel is open.
+- **A crash of mine, caught by the whole suite.** `ExampleInstrumentedTest.layoutTest` opens and closes `MainActivity` at once.
+  A view closed that fast never had its scope cancelled, so a 15.5 s timer reached a `viewModels` that throws once detached,
+  and the app's crash handler ended the process, in the middle of the next test. It writes only to `files/last_error`, which
+  Gradle's uninstall deletes, which is why logcat had no stack. Read by installing the APKs by hand. Why the scope is not
+  cancelled is read from `Fragment.performDestroyView`, not measured: it sends `ON_DESTROY` only if the view's lifecycle reached
+  `CREATED`. `aPageClosedAsSoonAsItOpensDoesNotCrashWhenItsTimerEnds` pins it.
+
+Focus follows `KMP-34`'s two traps: every card has the same modifier chain, and nothing is taken until `onResume`.
+
+**Plugins load behind a page already drawn.** `HomeSources.stillLoading` keeps it on the skeleton rather than saying nothing is
+installed, and a remembered source that is missing is waited for rather than fetching another source's page to throw away.
+It gives up after 15 s, because `loadedOnlinePlugins` is never true with auto-update off.
+
+**Sanitized,** because on Android a plugin answers from inside the process with no boundary before it: format and control
+characters in all text; only http(s) posters reach Coil, which would otherwise load `file:`, `content:` and
+`android.resource:`; header names and values that could split a request; an address too long for the `Bundle` that opens the
+title; and row, item and section counts. This keeps a bad answer from breaking the screen. It is no defence against a plugin.
+
+### Every reduction from the boards
+
+| Board | Drawn | Here | Why |
+|---|---|---|---|
+| 3d | `See all` | `Load more`, 62 of 62 translations | The press pages in place through `RowMoreRequested`. No board draws a destination, so `See all` would be untrue, and that key does not exist |
+| 3d | `See all` on every rail | Only on a rail with more to load | On a complete rail it would be a stop that does nothing |
+| 3d | `34 TITLES` on the card | None | A provider reports `hasNext`, never a total |
+| 3d | Dashed outline on that card | `SeeAllCard`'s raised fill and chevron | The existing component |
+| 3d | `ACROSS 12 EXTENSIONS`, `ADDED THIS WEEK` | None | No data. Home shows one source at a time |
+| 3d | Badges `NEW`, `SAVED` | None | No data |
+| 3d | Badges `4K`, `DUB` | Real: `SearchResponse.quality`, else sub or dub, in the existing words such as `HD` | Not a gap on a rail. Per-card source is, on `3c` |
+| 3d | Rails named `Popular movies`, `TV shows` | What the provider calls them, in its language | They are the provider's |
+| 3c | Source control | Built: 160dp minimum, `CloudStreamIcons.Disclosure` | The only way to change source. No board draws the panel, so it is `SidePanel`, as desktop has one and as `DEC-17` rules: no buttons, Back closes |
+| 3c | Avatar | Built as a generic `Profile` cell, no picture | See below |
+| 3c | Clock and two icon cells | None | `Q10` |
+| none | Partial failure | Text in the chrome row with a hollow `StatusDot` | `FailureBanner` paints `live`, against `DEC-17` |
+| none | Rows a provider marks horizontal | `BackdropCard`, 128x72 | The board draws posters only |
+
+**One deviation from the brief's "copy search":** cards are 12dp apart, not 24. `.row { gap: 24px }` halves to 12, and that is what
+fits nine cards where `3d` draws them.
+
+### What the old TV home does that this does not
+
+- **Random.** Not drawn. Also gone: choosing `None` or `Random` as the source. Either stored value reads as no choice.
+- **Bookmarks row and its watch-status filter.** Not drawn. They are in the library.
+- **Continue watching and the hero:** `Q10`. **Removing from Continue watching** is on no board.
+- **The expanded row sheet.** More of a row now arrives in the row.
+- **Reload provider.** A failure has Retry, but a page that loaded cannot be reloaded by hand.
+- **Search this provider.** The rail's Search searches every selected source.
+- **Long press on a card.** No metadata popup or quick actions.
+- **Watch progress on cards.** `HomeItem` has no field. Most provider hits have no `id` to look it up by.
+- **Account picture in the chrome.** Switching accounts is kept: this and the XML rail's footer were its only ways on a TV, and
+  `KMP-33` removed the footer, so dropping it would have left none.
+- `DEC-13`: no user-selected primary colour or Material You.
+
+**Strings.** No new key, so no `R` field. Coverage of those reused, out of 62, with the rest falling back to English: `load_more`
+62, `title_search` 61, `no_data` 61, `pick_source` 60, `loading` 59, `source_error` 54, `switch_account` 45, `home_source` 43,
+`extensions` 42, and `search_state_retry` and `search_state_retry_failed` 1, English only, as they already were.
+
+### Measured
+
+`HomeScreenTvDeviceTest` 25 and `TvHomeNavigationTest` 13 on `Television_720p`. JVM: `HomeViewModelTest` 34 (11 new),
+`HomeFocusScrollTest` 5 in `commonTest`, `AndroidHomeSourceTest` 17, `DataStoreHomeSourceMemoryTest` 5. `TvRailNavigationTest`: its cases
+about the old home's provider button now switch that screen back on, because they measure it, and `noDeadEndsOnHome` now
+walks the new one with no lost focus.
+
+**Each critical test was shown failing.** Fourteen `HomeScreenTvDeviceTest` cases went red with seven mutations together (the wall
+at a rail's end, focus after a page, the trailing card, focus on return, the resume gate, the pin, and focus on a state). Nine
+`TvHomeNavigationTest` cases with `setClassName`. Three with the old view model back, the fragment's Back callback gone and the
+`isAdded` check gone, and that crash stopped the run at 7 of 13, so `HomeStops` was shown failing separately: before it existed,
+`leftFromTheFirstCard…` read `A 0` for `B 0`.
+
+### A real plugin, on a throwaway emulator
+
+`TvHomeRealPluginProof`, skipped unless a plugin has been pushed, so it reports as skipped in every normal run. CineStream v487, sha
+`30dc6436…`, the reviewed copy, in a `-read-only` AVD that discards everything. It went through `MainActivity`'s real stages with `CineTmdb` remembered:
+
+- `PluginManager` loaded it in 0.3 s. It registered `CineStream` with 22 sections, `CineSimkl` 16, `CineTmdb` 17.
+- The page opened on `CineTmdb` with real posters, focus on the first card, `The Mongoose`, 3.1 s after the provider appeared, and the rail closed.
+- DOWN reached `Resident Evil`, RIGHT `Primetime`. OK opened its real `ResultFragmentTv` page. Back returned with focus on `Primetime`.
+
+This is the first plugin to have run in these Android tests. **It is not** playback, and it is one launch on the network of the moment.
+
+### Not verified
+
+A real TV remote. A cold start with the plugin already compiled, or on real hardware. Paging, sub and dub badges and the source panel
+against a real plugin (the proof pressed none of them). Account switching end to end: the effect is tested, and the dialog and what
+follows are not. A process restored from saved state, which the factory is for. A right-to-left layout. The XML rail with the new
+home, beyond its existing test.
+
+**Screenshots (`INF-11`).** Six cases in `HomeScreenTvDeviceTest`, 1280x720 on `Television_720p`, with solid posters: rails with a card
+focused, the trailing card focused, a partial failure with its retry focused, nothing installed with its action focused, the source panel on
+the current source, and loading. Recording them found one defect, now fixed: the failure's headline shared the chrome row's free width with
+a spacer and was squeezed to nothing.
+
+### Found, not changed
+
+```
+Found: `colors.live` on `FailureBanner`'s dot in core/designsystem/.../state/FailureBanner.kt:102
+Suggest: `StatusDot(StatusDotState.Failed)`
+Why: `DEC-17` rules a failure a hollow neutral marker. Search and desktop home still show it. Its KDoc still calls it legitimate.
+
+Found: a `Canvas` chevron in core/designsystem/.../card/SeeAllCard.kt, used here for the first time
+Suggest: `CloudStreamIcons.Disclosure`
+Why: `icons.md`. It predates the pack.
+
+Found: `HomePoster` is the third copy of the same 15 lines, after `SearchTvFragment` and `LibraryTvFragment`
+Suggest: one composable in `:app`
+Why: sharing means editing both of the others' fragments.
+```
+
+- **`focusRestorer` in `SidePanelHost`** may fail the same way on any lazy page. Search's and the library's panels are not built yet.
+- **The crash handler writes only to a file.** A crash in `androidTest` leaves `Process crashed` and no stack anywhere.
+
+### Published API
+
+Additions only: 102 lines in `app/api/classes-jar.api`, all under `com/lagradost/cloudstream4/home/`, none removed or changed.
+`:feature:home` is not merged into the jar.
+
 
 ## KMP-40 — The TV downloads screen on Android, boards 6c and 6e (queue `Q14`) · **measured 2026-11-05**
 

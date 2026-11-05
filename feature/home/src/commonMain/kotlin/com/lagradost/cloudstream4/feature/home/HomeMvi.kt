@@ -9,9 +9,36 @@ data class HomeState(
     /** The picker is open. In state, so Escape and an outside click close the same thing. */
     val pickerOpen: Boolean = false,
     val status: HomeStatus = HomeStatus.Loading,
+    /** Set when a title is opened from a rail, and cleared once focus is back on it. */
+    val returnTo: HomeReturn? = null,
+    /** The screen is resumed. Focus taken before that does not last on a TV: see [HomeReturn.ready]. */
+    val appeared: Boolean = false,
+    /** Rows have not yet landed since this page opened, so the first card still has first claim on focus. */
+    val landingOwed: Boolean = true,
 ) {
     val selectedOption: HomeSourceOption? get() = sources.firstOrNull { it.id == selected }
 }
+
+/**
+ * Where a person was when they opened a title, to put them back there.
+ *
+ * Held here and not in the screen, because the host's view is destroyed while the title's page is on top.
+ *
+ * @property rowKey which row: one title can be on several.
+ * @property ready the screen has come back, which [HomeAction.Reappeared] says. Focus waits for it. On
+ *   `Television_720p` a fragment composes its view well before it resumes, and focus taken in that gap was gone by the
+ *   time the page above had left: the window handed it to the rail (`KMP-34`, measured).
+ */
+@Immutable
+data class HomeReturn(
+    val id: String,
+    val rowKey: HomeRowKey,
+    val firstVisibleRow: Int = 0,
+    val firstVisibleRowOffset: Int = 0,
+    val firstVisibleCard: Int = 0,
+    val firstVisibleCardOffset: Int = 0,
+    val ready: Boolean = false,
+)
 
 /** Identifies a row across pages. Sections can answer with several rows, told apart by name. */
 @Immutable
@@ -95,13 +122,41 @@ sealed interface HomeAction {
      */
     data class RowMoreRequested(val key: HomeRowKey, val columns: Int) : HomeAction
 
-    data class TitleActivated(val id: String) : HomeAction
+    /** @param from where focus should come back to. A pointer screen has nothing to put back, so it may leave this out. */
+    data class TitleActivated(val id: String, val from: HomeReturn? = null) : HomeAction
 
     /** The no-main-page prompt's button. Becomes [HomeEffect.OpenSearch]. */
     data object SearchRequested : HomeAction
+
+    /** The nothing-installed prompt's button on a TV. Becomes [HomeEffect.OpenExtensions]. */
+    data object ExtensionsRequested : HomeAction
+
+    /** The account control on a TV. Becomes [HomeEffect.OpenAccounts]. */
+    data object AccountsRequested : HomeAction
+
+    /**
+     * Sources may have come or gone: plugins finished a stage of loading, or a setting or the account changed.
+     *
+     * Rows already on screen for the source that is still chosen are left alone, focus included.
+     */
+    data object SourcesChanged : HomeAction
+
+    /** The host has resumed. Focus may now be taken. */
+    data object Reappeared : HomeAction
+
+    /** The host has paused. */
+    data object Disappeared : HomeAction
+
+    /** Focus is back on the title, or that title has gone. */
+    data object ReturnHandled : HomeAction
+
+    /** The first landing has happened, whether or not it took focus. */
+    data object LandingHandled : HomeAction
 }
 
 sealed interface HomeEffect {
     data class OpenTitle(val id: String) : HomeEffect
     data object OpenSearch : HomeEffect
+    data object OpenExtensions : HomeEffect
+    data object OpenAccounts : HomeEffect
 }

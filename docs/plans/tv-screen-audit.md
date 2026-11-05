@@ -255,7 +255,7 @@ Columns: Strings = yes/no, estimated from a spot check of `values/strings.xml` k
 | **Q6** | Search 4d + type chips | 4d, full 8c | `:feature:search`, `A4/search/` | no | yes | small | `SearchSource` write seam; Q3 | Q3, Q4 |
 | **Q7** | Search suggestions | 8a, 8b | `:feature:search`, `A4/search/` | no | yes | yes | Wrap `SearchSuggestionApi` rather than move it (P:360). TMDB key already ships in jar | Q4 |
 | **Q8** | Quick Search panel | 8d, 8e | `:feature:search`, `A4/search/` | Yes, `navigation_quick_search` (`NAV:441`) at runtime, or swap callers | yes | small | Q3 | Q4 |
-| **Q9** | Home rails | 3d | `:feature:home/tv/`, `A4/home/` (model on `DK/home/DesktopHomeSource.kt:33`), `app/build.gradle.kts` | Yes, `navigation_home` (start destination, `NAV:6,293`) | yes | yes for a few | `HomeSourceMemory` impl | Q1, Q5 geometry |
+| **Q9** ✅ done, `KMP-37` | Home rails | 3d | `:feature:home/tv/`, `A4/home/` (model on `DK/home/DesktopHomeSource.kt:33`), `app/build.gradle.kts` | Yes, `navigation_home` (start destination, `NAV:6,293`) | yes | yes for a few | `HomeSourceMemory` impl | Q1, Q5 geometry |
 | **Q10** | Home hero + continue | 3c | `:feature:home`, `A4/home/`, DS below-art card, `BackdropCard` | no | yes | Few | Resume seam; per-card source/quality missing → owner: reduce or add | Q9 |
 | **Q11** (**done**, `KMP-34`) | Library grid, local provider | 5a, 5c | `:feature:library/tv/`, `A4/library/` | Yes, `navigation_library` (`NAV:173`) | yes | Some | **Model decision:** `LibraryStore` has no provider; `:app` is `SyncAPI`. New seam needed | Q1 |
 | **Q12** | Library sort + provider panels + unreachable | 5b, 5d, 5e | same | no | sidecar | Some | `lastSynced`, page counts (published `Page`), typed failure | Q3, Q11 |

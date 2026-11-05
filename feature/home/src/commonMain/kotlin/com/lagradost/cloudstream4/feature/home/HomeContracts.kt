@@ -29,9 +29,15 @@ data class HomeSourceOption(
  * @property options the sources that have a main page.
  * @property installed every source, with or without one. A source that only searches is common, and
  *   "none has a main page" needs different words from "nothing is installed".
+ * @property stillLoading the host has not finished bringing up its sources, so one that is missing now may yet
+ *   arrive. On Android plugins load in stages behind a screen that is already drawn.
  */
 @Immutable
-data class HomeSources(val options: List<HomeSourceOption>, val installed: Int)
+data class HomeSources(
+    val options: List<HomeSourceOption>,
+    val installed: Int,
+    val stillLoading: Boolean = false,
+)
 
 /**
  * One title. [id] is opaque, and is what the host's detail flow opens.
@@ -40,7 +46,15 @@ data class HomeSources(val options: List<HomeSourceOption>, val installed: Int)
  * `artwork`, never to anything in this module.
  */
 @Immutable
-data class HomeItem(val id: String, val title: String, val posterUrl: String? = null)
+data class HomeItem(
+    val id: String,
+    val title: String,
+    val posterUrl: String? = null,
+    /** Headers the host needs to fetch [posterUrl]. Goes back to the host's `artwork`, like the address. */
+    val posterHeaders: Map<String, String>? = null,
+    /** What the host knows and already put in words, such as a quality or `Dub`. Null draws no badge. */
+    val badge: String? = null,
+)
 
 /** A row as one page of one section reported it. */
 @Immutable
