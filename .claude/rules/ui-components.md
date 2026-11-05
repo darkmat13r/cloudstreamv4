@@ -66,9 +66,10 @@ meaning, icon buttons are for toggles and overflow, and a screen has one primary
 4. **Icon-only is allowed only for toggles (bookmark, watchlist, favourite) and for overflow or
    search**, and it shows its label when focused and carries it as a content description:
    `IconOnlyToggle`, `IconOnlyButton`. On TV a glyph never replaces a label anywhere else.
-5. **Every button's target is at least 48 dp.** `IconOnlyButton` is a 48 dp cell. The text buttons
-   are 32 dp tall in Compose today, inside the boards' 96 px (48 dp) `.btncell`; closing that gap
-   changes every caller's layout and is a separate decision, not done in `DS-15`.
+5. **Targets keep the three settled classes** (`screen-implementation-handover.md` §5,
+   `CloudStreamDimens`): an icon in a 48 dp cell (`IconTargetCell`), so `IconOnlyButton` is one; a
+   text button 32 dp tall and at least 120 dp wide (`TextButtonHeight`, `TextButtonMinWidth`); a
+   chip with a 24 dp visual in a 48 dp cell. A glyph changes none of them.
 
 **One glyph per meaning** (`icons.md`), so a meaning maps to exactly one entry:
 

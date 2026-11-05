@@ -616,7 +616,7 @@ design and instructions"*, and the owner's ruling the same day.
 
 **The rule** is in `.claude/rules/ui-components.md`, "Buttons", with the glyph table: one white primary, first; secondary
 common actions outlined with glyph and label; a meaning no glyph conveys stays text; icon-only only for toggles, overflow
-and search, naming itself when focused; every target at least 48 dp. `Design System v2` carries it as a law, with the
+and search, naming itself when focused; targets keep the three settled classes. `Design System v2` carries it as a law, with the
 planned phone and tablet direction as another, and `Components`' button spec draws it.
 
 **Compose.** `PrimaryTextButton`, `GhostTextButton` and `StateAction` take `icon: ImageVector? = null`: a 16 dp glyph
@@ -633,8 +633,6 @@ text button on the authoritative boards has its glyph square, per the table. `TV
 buttons grew by 64 to fit, on the step.
 
 **Not done here.**
-- The text buttons are 32 dp tall in Compose; the 48 dp minimum target holds only on the boards' `.btncell`. Making the
-  Compose target 48 dp changes every caller's layout, so it is a separate decision.
 - No screen adopts the glyphs. The list per screen is in the PR.
 - The episode list with season tabs under 7a's row is not drawn; board 6a has it.
 - `TV Home`'s hero still has its pre-existing icon-only `.btn.ico`, which by the rule needs a meaning and a label on focus.
