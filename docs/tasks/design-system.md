@@ -486,7 +486,7 @@ each stop by its accessible label, which is what caught 3.
 
 ## DS-11 — Boards: the text button's ring goes on the button
 
-**Status:** done · boards only, no Kotlin
+**Status:** done · #146 · boards only, no Kotlin
 
 `.btncell.foc` drew the ring on the 96px focus cell, so it sat 4px from a 64px button's sides and 20px from its top and
 bottom. `.btncell.foc .bbtn` now draws it on the button, in `TV Search`, `TV Search Suggestions`, `TV Library`,
