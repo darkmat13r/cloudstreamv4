@@ -34,14 +34,10 @@ import javax.net.ssl.SSLException
  *
  * ## This tells the truth where the older record does not
  *
- * [DownloadState.COMPLETED] means every declared byte was written, and only that. Two cases that the
- * downloader files as a success stay [DownloadState.FAILED] here, with the reason:
- *
- * - a failure past `DOWNLOAD_PARTIAL_MIN_SIZE`, which `failedStatus()` turns into a partial success;
- * - a connection lost in the last range, which `resolveSafe` reports as finished and which goes on to
- *   `IsDone` with fewer bytes than the server declared.
- *
- * So this can disagree with `VideoDownloadManager.downloadStatus` and with `DownloadedFileInfo`.
+ * [DownloadState.COMPLETED] means every declared byte was written, and only that. A source that ends
+ * cleanly short of what it declared has no error for the downloader to see, so it reaches `IsDone`
+ * with fewer bytes and stays [DownloadState.FAILED] here. That can disagree with
+ * `VideoDownloadManager.downloadStatus`.
  *
  * ## In memory only
  *

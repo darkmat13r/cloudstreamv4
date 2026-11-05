@@ -31,6 +31,8 @@ kotlin {
     android {
         withDeviceTest {
             instrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+            // Where `assertScreenshot` leaves its images on the device, so the script can find them for this module.
+            instrumentationRunnerArguments["screenshotModule"] = project.path.removePrefix(":").replace(':', '/')
         }
     }
 

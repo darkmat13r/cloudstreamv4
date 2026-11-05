@@ -3319,7 +3319,7 @@ cellular paths have not run either, because this AVD's default network is Ethern
 
 ## KMP-36 — Download facts: rate, ETA, queue position, state and a typed reason (queue `Q13`) · **measured 2026-11-04**
 
-**Status:** in pr #148 · **Waits on the owner:** the three findings below. Nothing here changes what a download does.
+**Status:** in pr #148 · **The three findings below:** fixed by `BUG-35`, on the owner's decision. This section records what the older code did, and nothing in `KMP-36` itself changed what a download does.
 
 `DownloadFacts` (`:app`, `cloudstream4/download/`) holds one `DownloadProgress` per episode id. Downloads screens observe
 `DownloadFacts.progress`, which adds the queue; their Android host will be in `:app`, so everything is `internal`.
@@ -3340,8 +3340,8 @@ swallowed exception are unchanged.
 
 ### What the older code does, measured on `Television_720p`
 
-`DownloadFactsDeviceTest`, through `EpisodeDownloadInstance`, a real MediaStore file and a fake server on loopback. These
-tests pin today's behaviour and go red when someone changes it, which is their job.
+`DownloadFactsDeviceTest`, through `EpisodeDownloadInstance`, a real MediaStore file and a fake server on loopback. `BUG-35` rewrote
+those tests to the new behaviour.
 
 | Fault | Written of total | Older record | Fact |
 |---|---|---|---|
@@ -3372,7 +3372,7 @@ range is the last one of every multi-range file, and the whole of any file under
 `pendingData`, and at 50 MB ahead `isTooFarAhead` keeps every job waiting. It holds its download slot until the user stops
 it, and no storage-full state can ever fire from the older record.
 
-**Recommended, for the owner to decide:** one behaviour PR. (1) `DOWNLOAD_PARTIAL_SUCCESS` becomes a failure that keeps the
+**Recommended to the owner, and approved as `BUG-35`:** one behaviour PR. (1) `DOWNLOAD_PARTIAL_SUCCESS` becomes a failure that keeps the
 file, so it gets a Retry. (2) `resolveSafe` returns false when the open-ended range ended by an error. (3) A failed write
 fails the transfer instead of retrying. (2) and (3) are bug fixes with no good reason to keep today's behaviour. (1) changes
 what users see on files that were silently partial, so it is the one that is a real choice. Each makes its pin red, to be
