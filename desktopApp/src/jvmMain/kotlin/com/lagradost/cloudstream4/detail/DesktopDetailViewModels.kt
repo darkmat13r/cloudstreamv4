@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.map
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * Keeps a title's ViewModel while the player is over it, so backing out of the player lands on the
@@ -22,7 +23,13 @@ internal object DesktopDetailViewModels {
     private val source: DetailSource = DesktopDetailSource()
 
     fun get(id: String, scope: CoroutineScope): DetailViewModel =
-        live.getOrPut(id) { DetailViewModel(id, source, scope) }
+        live.getOrPut(id) { DetailViewModel(id, source, scope, playBestAfter = BEST_LINK_WAIT) }
+
+    /**
+     * How long after a title's first playable link the best one found is played (owner, 2026-11-05: "highest
+     * resolution first"). Measured on CineStream's CineTmdb in a copy of the owner's plugins: see `KMP-39`.
+     */
+    val BEST_LINK_WAIT = 6.seconds
 
     /** What a title's search has found so far, for the player that is over its page. */
     fun subtitles(id: String): Flow<List<SubtitleTrack>> =

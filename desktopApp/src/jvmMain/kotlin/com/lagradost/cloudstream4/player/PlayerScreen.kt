@@ -30,7 +30,6 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.produceState
@@ -98,6 +97,7 @@ import kotlin.math.roundToInt
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
+import kotlinx.coroutines.flow.first
 import org.jetbrains.compose.resources.stringResource
 
 /**
@@ -117,13 +117,22 @@ import org.jetbrains.compose.resources.stringResource
  *   See [ResumeSeek].
  * @param onProgress told the position as the player reports it. Storage is the host's: this screen
  *   writes nothing, and the host decides which of these reports is worth keeping.
- * @param clock,session passed in so a check can read what this screen is showing.
+ * @param clock,session,switcher passed in so a check can read what this screen is showing.
  * @param arrivingSubtitles the tracks the search behind [link] has found so far, each time it finds more.
  * @param fullscreen the window's full screen, left when this screen closes. Null with no window to fill, as
  *   in a check, and then there is no control for it.
  * @param links the streams the search behind [link] has found so far, each time it finds more.
  * @param openPlayer a new player for a source someone chose. Null where sources cannot be switched, and then there
- *   is no selector for it.
+ *   is no selector for it, and nothing moves on by itself either.
+ *
+ * ## When a stream fails
+ *
+ * It fails when its host cannot start it, libVLC gives up on it, or it ends without a single frame. The screen then
+ * moves to the best link it has not yet tried ([SourceSwitcher]), at the same position, without asking, and says
+ * `Source error` with the name of the one that failed, as the Android player's toast does before it moves on. Each
+ * link is tried by itself once; when there is none left the failure stays on screen, the state it always had, and a
+ * link that arrives after that is tried in turn. The subtitle session is the screen's, so it carries over, and so does
+ * an audio track someone chose, matched by name or language ([AudioChoice]).
  */
 @Composable
 internal fun PlayerScreen(
@@ -141,14 +150,20 @@ internal fun PlayerScreen(
     fullscreen: PlayerFullscreen? = null,
     links: Flow<List<StreamLink>> = emptyFlow(),
     openPlayer: (() -> VlcPlayer?)? = null,
+    switcher: SourceSwitcher = remember(player, link) { SourceSwitcher(link) },
 ) {
     var playback by remember(player, link) { mutableStateOf(Playback(player, link, startAtMillis)) }
+    val audioChoice = remember(player, link) { AudioChoice() }
     // Keyed so a new player starts from its own values. Otherwise the first frame drawn would be the released player's.
     val frame = key(playback) { playback.player.frame.collectAsState().value }
     val pictureSize = key(playback) { playback.player.pictureSize.collectAsState().value }
     val status = key(playback) { playback.player.status.collectAsState().value }
     val audio = key(playback) { playback.player.audio.collectAsState().value }
-    var started by remember { mutableStateOf(true) }
+    // Per stream: a new one has not failed to start just because the last one did.
+    var started by remember(playback) { mutableStateOf(true) }
+    // Whether this stream has shown anything. One that ends without a frame never played, so it failed.
+    var framed by remember(playback) { mutableStateOf(false) }
+    LaunchedEffect(playback, frame != null) { if (frame != null) framed = true }
     DisposableEffect(playback) {
         val current = playback
         started = current.player.play(current.link.url, current.link.referer, current.link.userAgent, current.link.audioUrl)
@@ -157,7 +172,7 @@ internal fun PlayerScreen(
     }
     KeepDisplayAwake(status.playing)
     DisposableEffect(fullscreen) { onDispose { fullscreen?.leave() } }
-    LaunchedEffect(status.finished) { if (status.finished) onBack() }
+    LaunchedEffect(status.finished, framed) { if (status.finished && framed) onBack() }
     LaunchedEffect(playback, clock) { playback.player.status.collect(clock::onStatus) }
     val progress by rememberUpdatedState(onProgress)
     LaunchedEffect(playback) {
@@ -174,18 +189,25 @@ internal fun PlayerScreen(
     }
     LaunchedEffect(subtitles, arrivingSubtitles) { arrivingSubtitles.collect(subtitles::offer) }
     LaunchedEffect(subtitles, playback) { subtitles.offer(playback.link.subtitles) }
-    val failed = !started || status.failed
-    val failedLinks = remember(player, link) { mutableStateListOf<StreamLink>() }
-    LaunchedEffect(playback, failed) { if (failed) failedLinks += playback.link }
+    LaunchedEffect(playback) {
+        val current = playback
+        val listed = current.player.audio.first { it.tracks.isNotEmpty() }
+        audioChoice.match(listed)?.let(current.player::selectAudioTrack)
+    }
+    val failed = streamFailed(started, status, framed)
+    LaunchedEffect(playback, failed) { if (failed) switcher.onFailed(playback.link) }
     val found by produceState(emptyList<StreamLink>(), links) { links.collect { value = it } }
+    // Keyed on what has been found, so a link arriving after everything else failed is still tried.
+    LaunchedEffect(playback, failed, found) {
+        val open = openPlayer ?: return@LaunchedEffect
+        if (!failed) return@LaunchedEffect
+        val (next, opened) = switcher.fallThrough(playback.link, found, open) ?: return@LaunchedEffect
+        playback = Playback(opened, next, playback.resume.resumePoint(status.positionMillis))
+    }
     val sources = openPlayer?.let { open ->
-        PlayerSources(found, playback.link, failedLinks, playback.resume.resumePoint(status.positionMillis)) { chosen ->
-            val next = open()
-            if (next == null) {
-                failedLinks += chosen
-            } else {
-                failedLinks.removeAll { it.isSameStream(chosen) }
-                playback = Playback(next, chosen, playback.resume.resumePoint(status.positionMillis))
+        PlayerSources(found, playback.link, switcher.failed, playback.resume.resumePoint(status.positionMillis)) { chosen ->
+            switcher.choose(chosen, open)?.let { opened ->
+                playback = Playback(opened, chosen, playback.resume.resumePoint(status.positionMillis))
             }
         }
     }
@@ -205,6 +227,8 @@ internal fun PlayerScreen(
         audio = audio,
         fit = desktopPictureFit,
         sources = sources,
+        fellThrough = switcher.fellThrough,
+        onAudioChosen = audioChoice::chosen,
     )
 }
 
@@ -232,6 +256,8 @@ internal fun PlayerContent(
     audio: AudioTracks = AudioTracks(),
     fit: PictureFitChoice = remember { PictureFitChoice() },
     sources: PlayerSources? = null,
+    fellThrough: FallThrough? = null,
+    onAudioChosen: (AudioTrack) -> Unit = {},
 ) {
     LaunchedEffect(controls, volume.audible) { controls.setVolume(volume.audible) }
     val tracks by subtitles.tracks.collectAsState()
@@ -371,6 +397,8 @@ internal fun PlayerContent(
         )
         // Not over the list: the row it came from is saying the same thing.
         if (!listOpen) SubtitleNotice(selection, bottomInset)
+        // Nor this: the list's failed row says it too.
+        if (!listOpen) SourceNotice(fellThrough, bottomInset)
         AnimatedVisibility(
             visible = hudShown,
             enter = fadeIn(),
@@ -457,6 +485,7 @@ internal fun PlayerContent(
                 audio = audio.copy(tracks = audioListed),
                 onSelect = { track ->
                     controls.selectAudioTrack(track.id)
+                    onAudioChosen(track)
                     audioWanted = false
                 },
                 onDismiss = { audioWanted = false },
@@ -520,6 +549,38 @@ private fun BoxScope.SubtitleNotice(selection: SubtitleSelection, bottomInset: D
         modifier = Modifier
             .align(Alignment.BottomCenter)
             .padding(bottom = bottomInset + DesktopDimens.WindowMargin)
+            .background(
+                CloudStreamTheme.colors.surface.copy(alpha = PlayerScreenDefaults.ControlsAlpha),
+                CloudStreamTheme.shapes.medium,
+            )
+            .padding(horizontal = DesktopDimens.GroupGap, vertical = DesktopDimens.RelatedGap),
+    )
+}
+
+/**
+ * Says that a source failed and the next is being tried, for as long as [SubtitleNotice] says its piece. What is
+ * trying is on screen already: the transport says `Loading…`, and the Source selector names it.
+ */
+@Composable
+private fun BoxScope.SourceNotice(fellThrough: FallThrough?, bottomInset: Dp) {
+    var shown by remember { mutableStateOf<FallThrough?>(null) }
+    LaunchedEffect(fellThrough) {
+        shown = fellThrough
+        if (fellThrough != null) {
+            delay(PlayerScreenDefaults.NoticeMillis)
+            shown = null
+        }
+    }
+    val from = shown?.from ?: return
+    BasicText(
+        text = listOf(stringResource(Res.string.source_error), from.sourceName()).joinToString(SEPARATOR),
+        style = CloudStreamTheme.typography.body.copy(color = CloudStreamTheme.colors.ink),
+        maxLines = 1,
+        overflow = TextOverflow.Ellipsis,
+        modifier = Modifier
+            .align(Alignment.BottomCenter)
+            .padding(bottom = bottomInset + DesktopDimens.WindowMargin)
+            .widthIn(max = PlayerScreenDefaults.ControlsMaxWidth)
             .background(
                 CloudStreamTheme.colors.surface.copy(alpha = PlayerScreenDefaults.ControlsAlpha),
                 CloudStreamTheme.shapes.medium,
