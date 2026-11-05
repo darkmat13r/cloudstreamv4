@@ -393,8 +393,14 @@ private fun HomeChromeRow(
             HomeSourceControl(name = selected.name, stops, onClick = { onAction(HomeAction.PickerOpened) })
         }
         val accounts = stringResource(Res.string.switch_account)
-        IconCell(onClick = { onAction(HomeAction.AccountsRequested) }, modifier = Modifier.homeStop(stops)) {
-            CloudStreamIcon(CloudStreamIcons.Profile, contentDescription = accounts)
+        val colors = CloudStreamTheme.colors
+        // 3c's `.gl2` is `muted` at rest; the glyph turns `ink` only when its cell is focused.
+        IconCell(onClick = { onAction(HomeAction.AccountsRequested) }, modifier = Modifier.homeStop(stops)) { focused ->
+            CloudStreamIcon(
+                CloudStreamIcons.Profile,
+                contentDescription = accounts,
+                tint = if (focused) colors.ink else colors.muted,
+            )
         }
     }
 }
