@@ -3764,7 +3764,7 @@ Additions only: 102 lines in `app/api/classes-jar.api`, all under `com/lagradost
 
 ## KMP-40 — The TV home's hero, Continue watching, and watch progress on its cards (queue `Q10`) · **measured 2026-11-05**
 
-**Status:** in pr. Board `3c` of `design/TV Home.dc.html` and its closing note, on the page `KMP-37` built. Watch progress on
+**Status:** in pr #162. Board `3c` of `design/TV Home.dc.html` and its closing note, on the page `KMP-37` built. Watch progress on
 Home's cards is the owner's request, which the boards already draw. Android TV only; desktop's home is unchanged (its
 `HomeSource` keeps the default, so it has no hero, and nothing reads history there).
 
