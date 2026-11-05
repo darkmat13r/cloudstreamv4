@@ -26,7 +26,7 @@ import org.jetbrains.compose.resources.stringResource
  */
 internal data class AudioTrack(val id: Int, val name: String, val channels: Int = 0, val codec: String = "") {
     private val named = DESCRIPTION.matchEntire(name)
-    private val language = named?.groupValues?.get(2)?.trim().orEmpty()
+    internal val language = named?.groupValues?.get(2)?.trim().orEmpty()
     private val title = (named?.groupValues?.get(1) ?: name).trim()
 
     /** What the design's selector reads out: `English · 5.1 · EAC3`, as much of it as libVLC could say. */
@@ -62,6 +62,31 @@ internal data class AudioTracks(val tracks: List<AudioTrack> = emptyList(), val 
 
     companion object {
         const val NONE = -1
+    }
+}
+
+/**
+ * The audio track someone chose, carried to the next stream when the source changes, which has its own ids.
+ *
+ * Matched by libVLC's whole description first, then by its language alone: two sources of one film rarely number
+ * their tracks alike, and a source with no track in that language keeps libVLC's own choice. Only a person's choice
+ * is carried, and it is applied to a stream's first listing only, so choosing again on the new one is not undone.
+ *
+ * Before this, a switch started the new stream on libVLC's default track whatever had been chosen.
+ */
+internal class AudioChoice {
+    private var wanted: AudioTrack? = null
+
+    fun chosen(track: AudioTrack) {
+        wanted = track
+    }
+
+    /** @return the id in a new stream's first listing that matches what was chosen, unless it is already playing. */
+    fun match(tracks: AudioTracks): Int? {
+        val want = wanted ?: return null
+        val match = tracks.tracks.firstOrNull { it.name == want.name }
+            ?: tracks.tracks.firstOrNull { want.language.isNotEmpty() && it.language == want.language }
+        return match?.id?.takeIf { it != tracks.selected }
     }
 }
 

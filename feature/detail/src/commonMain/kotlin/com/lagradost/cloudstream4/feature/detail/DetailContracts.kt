@@ -41,6 +41,8 @@ data class TitleDetail(
  * @param subtitles what the provider had offered in the same call by the time this was read. A provider's
  *   subtitle list belongs to the title rather than to one stream, so every link of one answer carries the same
  *   list.
+ * @param quality the plugin's own number for it, `ExtractorLink.quality`, unread except to rank it (see [bestFirst]).
+ *   Null where nothing said.
  */
 @Immutable
 data class StreamLink(
@@ -51,6 +53,7 @@ data class StreamLink(
     val userAgent: String?,
     val audioUrl: String?,
     val subtitles: List<SubtitleTrack> = emptyList(),
+    val quality: Int? = null,
 )
 
 /**
