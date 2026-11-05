@@ -17,6 +17,7 @@ time.
 | Primary action | `PrimaryTextButton` | `Button` |
 | Secondary action | `GhostTextButton` | `OutlinedButton`, `TextButton` |
 | Icon-only target | `IconCell` | a bare `IconButton` |
+| Icon-only toggle, overflow or search beside text buttons | `IconOnlyToggle`, `IconOnlyButton` | an `IconCell` with no label |
 | Filter / tab | `Chip`, `ChipRow` | `FilterChip` |
 | A row in a list | `ListRow` + `ListRowState` | a hand-built `Row` |
 | A poster or backdrop | `PosterCard`, `BackdropCard` | `Card`, `Surface` |
@@ -49,7 +50,76 @@ control that opened it.
 - Card sizes: `CloudStreamCardSizes.*`. `CardSize` has an `internal` constructor precisely so a
   size off the media ladder cannot be expressed.
 
-Icons: see `icons.md`. No pack is chosen yet, so do not add an `ic_*.xml` and do not draw one.
+Icons: see `icons.md`. The pack is Tabler, through `CloudStreamIcons` (`DEC-11`); do not add an
+`ic_*.xml` and do not draw one.
+
+## Buttons: one primary, glyphs on common actions, icon-only only for toggles and overflow
+
+The owner, 2026-11-05 (`DEC-17`). The basis is Android TV's button guidance: the label carries the
+meaning, icon buttons are for toggles and overflow, and a screen has one primary action, first.
+
+1. **Exactly one primary, first.** `PrimaryTextButton`, with a glyph when its action has one in the
+   table below. Play and Resume are the primary on a title.
+2. **Secondary common actions are outlined, with a glyph and a label.** `GhostTextButton(icon = …)`.
+3. **A button whose meaning no glyph conveys stays text-only.** A glyph that has to be explained is
+   worse than none. The ones decided so far are listed under the table.
+4. **Icon-only is allowed only for toggles (bookmark, watchlist, favourite) and for overflow or
+   search**, and it shows its label when focused and carries it as a content description:
+   `IconOnlyToggle`, `IconOnlyButton`. On TV a glyph never replaces a label anywhere else.
+5. **Every button's target is at least 48 dp.** `IconOnlyButton` is a 48 dp cell. The text buttons
+   are 32 dp tall in Compose today, inside the boards' 96 px (48 dp) `.btncell`; closing that gap
+   changes every caller's layout and is a separate decision, not done in `DS-15`.
+
+**One glyph per meaning** (`icons.md`), so a meaning maps to exactly one entry:
+
+| Action, as labelled | `CloudStreamIcons` | Tabler |
+|---|---|---|
+| Play, Resume (the primary) | `Play` | `PlayerPlay` |
+| Start over | `StartOver` | `Rotate` |
+| Trailer, Watch trailer | `Trailer` | `Movie` |
+| Download | `Download` | `Download` |
+| Retry, Try again, Retry failed, Retry sync | `Retry` | `Refresh` |
+| Search, Search all sources | `Search` | `Search` |
+| Settings, Open network settings | `Settings` | `Settings` |
+| Add, Add repository | `Add` | `Plus` |
+| Delete, Delete all | `Delete` | `Trash` |
+| Play next | `NextEpisode` | `PlayerSkipForward` |
+| Episodes | `Episodes` | `List` |
+| Browse library | `Library` | `Book` |
+| Manage profiles | `Profile` | `User` |
+| Sources | `Source` | `Server` |
+| Share | `Share` | `Share` |
+| Open in browser | `OpenExternal` | `ExternalLink` |
+| Play from link | `Link` | `Link` |
+| Stop and go back, Cancel | `Close` | `X` |
+| Bookmark, Watchlist, Library (add to library): an icon-only toggle, or outlined with its label | `Bookmark` | `Bookmark` |
+| Favourite (icon-only toggle) | `Favorite` | `Heart` |
+| More (icon-only overflow) | `More` | `Dots` |
+
+**Text-only, and why:** *Skip for now* and *Go to Watching* (navigation with no object a glyph
+names); *Season N* (a choice, not an action); *Queue*, *Free up space* (no common glyph, and
+`Download` or `Delete` would claim the wrong action); *Update* and *Install* (the pack's candidates
+are `Download` and `Refresh`, which already mean other things); *Skip intro* (`SeekForward` and
+`NextEpisode` sit beside it in the HUD and mean other things). A new action not in the table is
+added here, by name, before it gets a glyph.
+
+**Geometry and colour, from tokens:**
+
+| | Value | Source |
+|---|---|---|
+| Glyph | 16 dp (32 px) | `CloudStreamIconSize.Small`, which is `CloudStreamDimens.ChipGlyphSize` |
+| Glyph to label | 8 dp (16 px) | `TextButtonDefaults.IconGap` |
+| Glyph tint | the label's colour: `bg` (black) on the white primary, `ink` on a ghost, `muted` disabled | the button's own skin; never a parameter |
+| Width | content-sized; the 120 dp (240 px) minimum still holds | `CloudStreamDimens.TextButtonMinWidth` |
+| Icon-only cell, tile | 48 dp cell, 32 dp tile, ring on the tile | `CloudStreamDimens.IconTargetCell`, `IconOnlyButtonDefaults.TileSize` |
+| Icon-only label | `typography.label`, `ink`, under the cell, focused only, drawn not laid out | leave `IconOnlyButtonDefaults.LabelReserve` (16 dp) unclipped below |
+
+`StateAction(icon = …)` gives `StateView` and `FailureBanner`'s button the same glyph.
+
+**Not TV — the planned direction for tablet and phone, no boards yet.** Phone stacks a full-width
+Play or Resume with the time left under it, then Start over, then a row of glyphs with their labels
+underneath (Watchlist, Trailer, Download, Share, More). Tablet keeps that order in one row, with
+labels always visible.
 
 ## Strings
 

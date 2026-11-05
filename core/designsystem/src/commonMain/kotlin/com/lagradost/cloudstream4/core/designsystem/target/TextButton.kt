@@ -5,7 +5,9 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsFocusedAsState
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
@@ -20,6 +22,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.drawOutline
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.disabled
 import androidx.compose.ui.semantics.role
@@ -27,6 +30,8 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
+import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
+import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIconSize
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 
@@ -60,6 +65,9 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
  *   `CloudStreamTheme.colors.raised` with a `muted` label.
  * @param focusableWhenDisabled see [TargetTextButton]. Defaults to false, which is the
  *   not-focusable disabled button every existing caller already has.
+ * @param icon a leading glyph from `CloudStreamIcons`, for a common action whose meaning one
+ *   glyph conveys (`ui-components.md`, "Text buttons that carry a glyph"). Tinted the label's
+ *   colour, so black here. null, the default, is the text-only button every existing caller has.
  */
 @Composable
 fun PrimaryTextButton(
@@ -68,6 +76,7 @@ fun PrimaryTextButton(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     focusableWhenDisabled: Boolean = false,
+    icon: ImageVector? = null,
 ) {
     val colors = CloudStreamTheme.colors
     val skin = remember(colors, enabled) {
@@ -84,6 +93,7 @@ fun PrimaryTextButton(
         modifier = modifier,
         enabled = enabled,
         focusableWhenDisabled = focusableWhenDisabled,
+        icon = icon,
     )
 }
 
@@ -107,6 +117,7 @@ fun PrimaryTextButton(
  * @param enabled when false the button does not click and its label drops to `muted`.
  * @param focusableWhenDisabled see [TargetTextButton]. Defaults to false, which is the
  *   not-focusable disabled button every existing caller already has.
+ * @param icon see [PrimaryTextButton]. Tinted the label's colour, so `ink` here.
  */
 @Composable
 fun GhostTextButton(
@@ -115,6 +126,7 @@ fun GhostTextButton(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     focusableWhenDisabled: Boolean = false,
+    icon: ImageVector? = null,
 ) {
     val colors = CloudStreamTheme.colors
     val skin = remember(colors, enabled) {
@@ -131,6 +143,7 @@ fun GhostTextButton(
         modifier = modifier,
         enabled = enabled,
         focusableWhenDisabled = focusableWhenDisabled,
+        icon = icon,
     )
 }
 
@@ -176,8 +189,17 @@ private data class TextButtonSkin(
  * and is what every other disabled thing in the kit already does. Per the project rule the token
  * wins; it is noted here so the next person does not read 40% and reach for `alpha`.
  *
+ * ## A leading glyph
+ *
+ * [icon] sits before the label, [CloudStreamIconSize.Small] square and
+ * [TextButtonDefaults.IconGap] from it, tinted the label's own colour, and the pair is centred as
+ * one. It adds its width and nothing else: the height, the padding, the 120dp minimum and the ring
+ * are the same, and with [icon] null this is exactly the text-only button. The glyph carries no
+ * content description, because the label beside it already says what the button does.
+ *
  * @param focusableWhenDisabled when [enabled] is false, whether the button keeps its focus target
  *   and its ring. Has no effect while [enabled] is true, which is already focusable.
+ * @param icon the leading glyph, or null for none.
  */
 @Composable
 private fun TargetTextButton(
@@ -187,6 +209,7 @@ private fun TargetTextButton(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     focusableWhenDisabled: Boolean = false,
+    icon: ImageVector? = null,
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val focused by interactionSource.collectIsFocusedAsState()
@@ -207,11 +230,33 @@ private fun TargetTextButton(
             .padding(horizontal = TextButtonDefaults.HorizontalPadding),
         contentAlignment = Alignment.Center,
     ) {
-        TargetLabel(
-            text = label,
-            style = CloudStreamTheme.typography.label,
-            color = skin.label,
-        )
+        if (icon == null) {
+            TargetLabel(
+                text = label,
+                style = CloudStreamTheme.typography.label,
+                color = skin.label,
+            )
+        } else {
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(TextButtonDefaults.IconGap),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                CloudStreamIcon(
+                    icon = icon,
+                    contentDescription = null,
+                    size = CloudStreamIconSize.Small,
+                    tint = skin.label,
+                )
+                // Not `fill`: the pair is centred as one, and a long label still ellipsises rather
+                // than pushing the glyph out of the button.
+                TargetLabel(
+                    text = label,
+                    style = CloudStreamTheme.typography.label,
+                    color = skin.label,
+                    modifier = Modifier.weight(1f, fill = false),
+                )
+            }
+        }
     }
 }
 
@@ -257,7 +302,7 @@ private fun Modifier.targetBehaviour(
  * exempts a hairline's own axis from the step. What matters is the half that does *not* happen:
  * nothing is inset, so the content box is identical with and without the hairline.
  */
-private fun Modifier.hairlineOutline(color: Color?, shape: Shape): Modifier =
+internal fun Modifier.hairlineOutline(color: Color?, shape: Shape): Modifier =
     if (color == null) {
         this
     } else {
@@ -284,4 +329,12 @@ object TextButtonDefaults {
      * intrinsic width, is what takes a button past the 120dp minimum.
      */
     val HorizontalPadding: Dp = 16.dp
+
+    /**
+     * Between a leading glyph and the label: 16px on the artboard, halved. No token means this, so
+     * it is named here; [StateActionButton][com.lagradost.cloudstream4.core.designsystem.state.StateActionButton]
+     * reads the same value. The glyph itself is [CloudStreamIconSize.Small], which is
+     * `CloudStreamDimens.ChipGlyphSize` (16dp).
+     */
+    val IconGap: Dp = 8.dp
 }

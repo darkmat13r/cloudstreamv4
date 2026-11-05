@@ -170,6 +170,9 @@
           .bbtn { height: 64px; min-width: 240px; padding: 0 32px; box-sizing: border-box;
             display: inline-flex; align-items: center; justify-content: center; border-radius: 16px;
             background: var(--ink); color: #000000; font: 800 24px/32px Manrope, sans-serif; white-space: nowrap; }
+          /* DS-15: a button's glyph, 32 square and 16 from the label, in the label's colour. The grey square stands for
+             the CloudStreamIcons glyph the rule table names. */
+          .bbtn .bgl { width:32px; height:32px; border-radius:8px; background:currentColor; flex:none; margin-right:16px; }
 
           /* side panel */
           .scrim { position: absolute; inset: 0; background: rgba(0,0,0,0.6); }
@@ -289,7 +292,7 @@
                     <span class="fh">3 sources failed</span>
                     <span class="fd">TIMEOUT 10S</span>
                   </span>
-                  <span class="btncell foc"><span class="bbtn">Retry failed</span></span>
+                  <span class="btncell foc"><span class="bbtn"><span class="bgl"></span>Retry failed</span></span>
                 </div>
 
                 <div class="abs" style="left:200px;top:296px">

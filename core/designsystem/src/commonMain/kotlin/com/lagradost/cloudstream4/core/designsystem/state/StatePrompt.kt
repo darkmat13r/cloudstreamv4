@@ -1,6 +1,7 @@
 package com.lagradost.cloudstream4.core.designsystem.state
 
 import androidx.compose.runtime.Immutable
+import androidx.compose.ui.graphics.vector.ImageVector
 
 /**
  * The one thing a state lets a person do.
@@ -16,11 +17,14 @@ import androidx.compose.runtime.Immutable
  *   `stringResource(...)`; this module never holds display strings.
  * @property onActivate what pressing it does. Held in state rather than passed alongside it so
  *   that the two cannot drift apart — a label without a behaviour is exactly the defect above.
+ * @property icon the button's leading glyph from `CloudStreamIcons`, for a common action such as
+ *   `Retry` (`ui-components.md`, "Text buttons that carry a glyph"). null, the default, is text only.
  */
 @Immutable
 data class StateAction(
     val label: String,
     val onActivate: () -> Unit,
+    val icon: ImageVector? = null,
 )
 
 /**

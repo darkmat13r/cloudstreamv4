@@ -106,6 +106,9 @@
       .bbtn { height:64px; min-width:240px; padding:0 32px; box-sizing:border-box;
         display:inline-flex; align-items:center; justify-content:center; border-radius:16px;
         background:var(--ink); color:#000000; font:800 24px/32px Manrope,sans-serif; white-space:nowrap; }
+      /* DS-15: a button's glyph, 32 square and 16 from the label, in the label's colour. The grey square stands for
+         the CloudStreamIcons glyph the rule table names. */
+      .bbtn .bgl { width:32px; height:32px; border-radius:8px; background:currentColor; flex:none; margin-right:16px; }
       .bbtn.ghost { background:transparent; color:var(--ink); box-shadow: inset 0 0 0 4px var(--line); }
       .bdg { display:inline-flex; align-items:center; height:32px; padding:0 8px; border-radius:4px;
         box-sizing:border-box; background:rgba(0,0,0,0.78);
@@ -250,7 +253,7 @@
           <div class="abs mn" style="left:56px;top:728px;width:1808px;">Paste from the clipboard, or type a short code — a full URL is not required.</div>
 
           <!-- action row 784..880 -->
-          <div class="abs btncell" style="left:56px;top:784px;"><div class="bbtn" style="width:288px;">Add repository</div></div>
+          <div class="abs btncell" style="left:56px;top:784px;"><div class="bbtn" style="width:288px;"><span class="bgl"></span>Add repository</div></div>
           <div class="abs btncell" style="left:368px;top:784px;"><div class="bbtn ghost" style="width:288px;">Skip for now</div></div>
 
         </div></div>
@@ -263,8 +266,8 @@
           rather than replacing it; the URL field stays drawn but disabled, because a typed URL is rejected offline; and the action row promotes the only
           control that can actually change the state — the TV's network settings — instead of a Retry that is guaranteed
           to fail. <b>Focus order</b> — the three buttons are the only focusables on the board; initial focus is
-          <i>Open network settings</i> (x56..408), RIGHT to <i>Try again</i> (x432..720), RIGHT to <i>Skip for now</i>
-          (x744..1032). UP and DOWN are no-ops by design: the banner and the disabled field carry no control, so no
+          <i>Open network settings</i> (x56..472), RIGHT to <i>Try again</i> (x496..784), RIGHT to <i>Skip for now</i>
+          (x808..1096). UP and DOWN are no-ops by design: the banner and the disabled field carry no control, so no
           focusable is stranded and no Retry is mounted that a D-pad cannot reach.</span></div>
         <div class="shotc"><div class="tv" data-screen-label="First run — offline">
 
@@ -290,9 +293,9 @@
           <div class="abs mn" style="left:56px;top:728px;width:1808px;">no route to host · last attempt 12:04:31</div>
 
           <!-- action row 784..880 — primary is the only control that can change the state -->
-          <div class="abs btncell foc" style="left:56px;top:784px;"><div class="bbtn" style="width:352px;">Open network settings</div></div>
-          <div class="abs btncell" style="left:432px;top:784px;"><div class="bbtn ghost" style="width:288px;">Try again</div></div>
-          <div class="abs btncell" style="left:744px;top:784px;"><div class="bbtn ghost" style="width:288px;">Skip for now</div></div>
+          <div class="abs btncell foc" style="left:56px;top:784px;"><div class="bbtn" style="width:416px;"><span class="bgl"></span>Open network settings</div></div>
+          <div class="abs btncell" style="left:496px;top:784px;"><div class="bbtn ghost" style="width:288px;"><span class="bgl"></span>Try again</div></div>
+          <div class="abs btncell" style="left:808px;top:784px;"><div class="bbtn ghost" style="width:288px;">Skip for now</div></div>
           <div class="abs mn" style="left:56px;top:904px;width:1808px;">Skipping leaves Home and Search empty until a source is added in Settings › Extensions.</div>
 
         </div></div>
@@ -324,7 +327,7 @@
           <!-- chrome 56..152 -->
           <div class="abs h3" style="left:200px;top:72px;width:600px;">Extensions</div>
           <div class="abs btncell" style="left:1264px;top:56px;"><div class="bbtn ghost" style="width:288px;">Update all · 3</div></div>
-          <div class="abs btncell" style="left:1576px;top:56px;"><div class="bbtn ghost" style="width:288px;">Add repository</div></div>
+          <div class="abs btncell" style="left:1576px;top:56px;"><div class="bbtn ghost" style="width:288px;"><span class="bgl"></span>Add repository</div></div>
 
           <!-- chip row 176..272, 48-tall visual at 200..248 -->
           <div class="abs chiprow" style="left:200px;top:176px;">
@@ -347,7 +350,7 @@
             <div class="lcol"><div class="lt">Beta Mirror</div>
               <div class="ls">Unreachable · 6 installed · last checked 2 h ago</div></div>
           </div>
-          <div class="abs btncell" style="left:1624px;top:776px;"><div class="bbtn ghost" style="width:240px;">Retry</div></div>
+          <div class="abs btncell" style="left:1624px;top:776px;"><div class="bbtn ghost" style="width:240px;"><span class="bgl"></span>Retry</div></div>
 
           <!-- plugin rows 416 / 536 / 656 / 896 -->
           <sc-for list="{{ plugins8b }}" as="p" hint-placeholder-count="4">
@@ -433,7 +436,7 @@
           <!-- chrome 56..152 -->
           <div class="abs h2" style="left:56px;top:56px;width:520px;">Who's watching?</div>
           <div class="abs mn" style="left:600px;top:88px;width:424px;">separate watch history · not logins</div>
-          <div class="abs btncell" style="left:1048px;top:56px;"><div class="bbtn ghost" style="width:288px;">Manage profiles</div></div>
+          <div class="abs btncell" style="left:1048px;top:56px;"><div class="bbtn ghost" style="width:352px;"><span class="bgl"></span>Manage profiles</div></div>
 
           <!-- profile cards 184..464, pitch 272, lift 8 -->
           <div class="card sel" style="left:56px;top:184px;">
