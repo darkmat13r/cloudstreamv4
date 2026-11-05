@@ -83,6 +83,8 @@ Conventions:
 | TV Onboarding Extensions 8c | Browse a repository | None | none | No. Old: `NAV:230` | Contract types exist unused (`FX/ExtensionInstall.kt`). `AndroidExtensionRuntime.install` refuses (`A4/extensions/AndroidExtensionRuntime.kt:69-79`). Min-app-version missing (`RepositoryManager.kt:59,163,170`) |
 | TV Onboarding Extensions 8d | Account select, Simkl pairing panel | None. No `:feature:account` | none | No. Old: `A/ui/account/AccountSelectActivity.kt`, `NAV:694` | Simkl flow exists (`A/syncproviders/providers/SimklApi.kt:58`, `A/ui/settings/SettingsAccount.kt:156`). OAuth-only providers (`MALApi.kt:42`, `AniListApi.kt:44`). Delete profile bug† (`A/ui/account/AccountViewModel.kt:73`). Skip check (`AccountSelectActivity.kt:76`) |
 
+**Added after this audit:** `TV Home Extras` 3e to 3m (`DS-13`) draws what §2 lists as not drawn for Home: the bookmarks row and filter, the Random button and the `None` source (the owner ruled Random out as a source), a details panel, and manual reload. Nothing is built; the file's closing note lists each board's prerequisites.
+
 ## 2. Feature gap list
 
 "Shared" means a commonMain implementation exists. Items that have a desktop or commonMain counterpart are marked as such.
@@ -253,9 +255,9 @@ Columns: Strings = yes/no, estimated from a spot check of `values/strings.xml` k
 | **Q6** | Search 4d + type chips | 4d, full 8c | `:feature:search`, `A4/search/` | no | yes | small | `SearchSource` write seam; Q3 | Q3, Q4 |
 | **Q7** | Search suggestions | 8a, 8b | `:feature:search`, `A4/search/` | no | yes | yes | Wrap `SearchSuggestionApi` rather than move it (P:360). TMDB key already ships in jar | Q4 |
 | **Q8** | Quick Search panel | 8d, 8e | `:feature:search`, `A4/search/` | Yes, `navigation_quick_search` (`NAV:441`) at runtime, or swap callers | yes | small | Q3 | Q4 |
-| **Q9** | Home rails | 3d | `:feature:home/tv/`, `A4/home/` (model on `DK/home/DesktopHomeSource.kt:33`), `app/build.gradle.kts` | Yes, `navigation_home` (start destination, `NAV:6,293`) | yes | yes for a few | `HomeSourceMemory` impl | Q1, Q5 geometry |
+| **Q9** ✅ done, `KMP-37` | Home rails | 3d | `:feature:home/tv/`, `A4/home/` (model on `DK/home/DesktopHomeSource.kt:33`), `app/build.gradle.kts` | Yes, `navigation_home` (start destination, `NAV:6,293`) | yes | yes for a few | `HomeSourceMemory` impl | Q1, Q5 geometry |
 | **Q10** | Home hero + continue | 3c | `:feature:home`, `A4/home/`, DS below-art card, `BackdropCard` | no | yes | Few | Resume seam; per-card source/quality missing → owner: reduce or add | Q9 |
-| **Q11** | Library grid, local provider | 5a, 5c | `:feature:library/tv/`, `A4/library/` | Yes, `navigation_library` (`NAV:173`) | yes | Some | **Model decision:** `LibraryStore` has no provider; `:app` is `SyncAPI`. New seam needed | Q1 |
+| **Q11** (**done**, `KMP-34`) | Library grid, local provider | 5a, 5c | `:feature:library/tv/`, `A4/library/` | Yes, `navigation_library` (`NAV:173`) | yes | Some | **Model decision:** `LibraryStore` has no provider; `:app` is `SyncAPI`. New seam needed | Q1 |
 | **Q12** | Library sort + provider panels + unreachable | 5b, 5d, 5e | same | no | sidecar | Some | `lastSynced`, page counts (published `Page`), typed failure | Q3, Q11 |
 | **Q13** ✅ done, `KMP-36` | Download facts, sidecar | enables 6b–6e | `:app` downloader (`A4/download/DownloadFacts.kt`, a flow rather than an event; downloader behaviour unchanged), `:media:model` `DownloadProgress` | no | yes, additive | no | **Corrections, measured:** `DownloadProgress` already existed, with rate, ETA and state. "Recorded as complete" past 50 MB is narrower than it reads, and the same truncation also happens under 50 MB; a full disk hangs instead of failing. All three fixed by `BUG-35`, see `KMP-36` | none |
 | **Q14** | Downloads list | 6c, 6e | **new `:feature:downloads`**, `A4/download/` | Yes, `navigation_downloads` (`NAV:327`) | yes | yes | P:O8. Queue and Play-from-URL undrawn | Q2, Q13 |

@@ -130,6 +130,7 @@ private fun RemoteLink.toStreamLink(subtitles: List<SubtitleTrack>) = StreamLink
     userAgent = userAgent,
     audioUrl = audioUrl,
     subtitles = subtitles,
+    quality = quality,
 )
 
 /**

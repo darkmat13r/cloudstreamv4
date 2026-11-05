@@ -37273,6 +37273,222 @@ public interface com/lagradost/cloudstream4/extensions/PluginManagerPort : java/
 	public abstract fun unload (Ljava/lang/String;)V
 }
 
+public final class com/lagradost/cloudstream4/home/AndroidHomeSource : java/lang/Object, com/lagradost/cloudstream4/feature/home/HomeSource {
+	public static final field $stable I
+	public static final field BAD_SECTION Ljava/lang/String;
+	public static final field MAX_BADGE_CHARS I
+	public static final field MAX_HEADERS I
+	public static final field MAX_HEADER_CHARS I
+	public static final field MAX_ITEMS_PER_PAGE I
+	public static final field MAX_ROWS_PER_PAGE I
+	public static final field MAX_SECTIONS I
+	public static final field MAX_TEXT_CHARS I
+	public static final field MAX_URL_CHARS I
+	public static final field NOT_LOADED Ljava/lang/String;
+	public static final field UNKNOWN_ERROR Ljava/lang/String;
+	public fun <init> (Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlinx/coroutines/CoroutineDispatcher;)V
+	public synthetic fun <init> (Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlinx/coroutines/CoroutineDispatcher;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public static final synthetic fun access$getHEADER_NAME$cp ()Lkotlin/text/Regex;
+	public static final synthetic fun access$getHTTP_PREFIXES$cp ()Ljava/util/List;
+	public static final synthetic fun access$getInstalled$p (Lcom/lagradost/cloudstream4/home/AndroidHomeSource;)Lkotlin/jvm/functions/Function0;
+	public static final synthetic fun access$getKeepOnRow$p (Lcom/lagradost/cloudstream4/home/AndroidHomeSource;)Lkotlin/jvm/functions/Function1;
+	public static final synthetic fun access$getLabelsFor$p (Lcom/lagradost/cloudstream4/home/AndroidHomeSource;)Lkotlin/jvm/functions/Function0;
+	public static final synthetic fun access$getProviders$p (Lcom/lagradost/cloudstream4/home/AndroidHomeSource;)Lkotlin/jvm/functions/Function0;
+	public static final synthetic fun access$getStillLoading$p (Lcom/lagradost/cloudstream4/home/AndroidHomeSource;)Lkotlin/jvm/functions/Function0;
+	public static final synthetic fun access$safeText (Lcom/lagradost/cloudstream4/home/AndroidHomeSource;Ljava/lang/String;)Ljava/lang/String;
+	public static final synthetic fun access$toReply (Lcom/lagradost/cloudstream4/home/AndroidHomeSource;Lcom/lagradost/cloudstream3/mvvm/Resource$Failure;)Lcom/lagradost/cloudstream4/feature/home/HomePageReply;
+	public static final synthetic fun access$toRow (Lcom/lagradost/cloudstream4/home/AndroidHomeSource;Lcom/lagradost/cloudstream3/HomePageList;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Lcom/lagradost/cloudstream4/feature/home/HomeRowPage;
+	public fun page-Kz6qOlc (Ljava/lang/String;IILkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun sources (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class com/lagradost/cloudstream4/home/AndroidHomeSourceKt : java/lang/Object {
+	public static final field PLUGIN_WAIT_MS J
+	public static final fun androidHomeSource (Landroid/content/Context;J)Lcom/lagradost/cloudstream4/home/AndroidHomeSource;
+	public static final fun pluginsStillLoading (JJ)Z
+}
+
+public final class com/lagradost/cloudstream4/home/ComposableSingletons$HomeTvFragmentKt : java/lang/Object {
+	public static final field INSTANCE Lcom/lagradost/cloudstream4/home/ComposableSingletons$HomeTvFragmentKt;
+	public fun <init> ()V
+	public final fun getLambda$922926020$app ()Lkotlin/jvm/functions/Function3;
+}
+
+public final class com/lagradost/cloudstream4/home/DataStoreHomeSourceMemory : java/lang/Object, com/lagradost/cloudstream4/feature/home/HomeSourceMemory {
+	public static final field $stable I
+	public static final field MAX_NAME_CHARS I
+	public fun <init> ()V
+	public fun <init> (Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;)V
+	public synthetic fun <init> (Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public static final synthetic fun access$getNOT_SOURCES$delegate$cp ()Lkotlin/Lazy;
+	public fun last-g0WWyAE ()Ljava/lang/String;
+	public fun remember-0eV7Z6k (Ljava/lang/String;)V
+}
+
+public final class com/lagradost/cloudstream4/home/HomeTvFragment : com/lagradost/cloudstream3/utils/BaseComposeFragment {
+	public static final field $stable I
+	public static final field BACK_CLOSES_PICKER Ljava/lang/String;
+	public static final field PLUGIN_WAIT_MARGIN_MS J
+	public fun <init> ()V
+	public fun Content (Landroidx/compose/runtime/Composer;I)V
+	public static final synthetic fun access$Content$lambda$0 (Landroidx/compose/runtime/State;)Lcom/lagradost/cloudstream4/feature/home/HomeState;
+	public static final synthetic fun access$getViewModel (Lcom/lagradost/cloudstream4/home/HomeTvFragment;)Lcom/lagradost/cloudstream4/feature/home/HomeViewModel;
+	public static final synthetic fun access$onEffect (Lcom/lagradost/cloudstream4/home/HomeTvFragment;Lcom/lagradost/cloudstream4/feature/home/HomeEffect;)V
+	public static final synthetic fun access$send (Lcom/lagradost/cloudstream4/home/HomeTvFragment;Lcom/lagradost/cloudstream4/feature/home/HomeAction;)V
+	public fun onDestroyView ()V
+	public fun onPause ()V
+	public fun onResume ()V
+	public fun onStop ()V
+	public fun onViewCreated (Landroid/view/View;Landroid/os/Bundle;)V
+}
+
+public final static class com/lagradost/cloudstream4/home/HomeTvFragment$special$$inlined$viewModels$default$1 : kotlin/jvm/internal/Lambda, kotlin/jvm/functions/Function0 {
+	public fun <init> (Landroidx/fragment/app/Fragment;)V
+	public final fun invoke ()Landroidx/fragment/app/Fragment;
+	public synthetic fun invoke ()Ljava/lang/Object;
+}
+
+public final static class com/lagradost/cloudstream4/home/HomeTvFragment$special$$inlined$viewModels$default$2 : kotlin/jvm/internal/Lambda, kotlin/jvm/functions/Function0 {
+	public fun <init> (Lkotlin/jvm/functions/Function0;)V
+	public final fun invoke ()Landroidx/lifecycle/ViewModelStoreOwner;
+	public synthetic fun invoke ()Ljava/lang/Object;
+}
+
+public final static class com/lagradost/cloudstream4/home/HomeTvFragment$special$$inlined$viewModels$default$3 : kotlin/jvm/internal/Lambda, kotlin/jvm/functions/Function0 {
+	public fun <init> (Lkotlin/Lazy;)V
+	public final fun invoke ()Landroidx/lifecycle/ViewModelStore;
+	public synthetic fun invoke ()Ljava/lang/Object;
+}
+
+public final static class com/lagradost/cloudstream4/home/HomeTvFragment$special$$inlined$viewModels$default$4 : kotlin/jvm/internal/Lambda, kotlin/jvm/functions/Function0 {
+	public fun <init> (Lkotlin/jvm/functions/Function0;Lkotlin/Lazy;)V
+	public final fun invoke ()Landroidx/lifecycle/viewmodel/CreationExtras;
+	public synthetic fun invoke ()Ljava/lang/Object;
+}
+
+public final static class com/lagradost/cloudstream4/home/HomeTvFragment$special$$inlined$viewModels$default$5 : kotlin/jvm/internal/Lambda, kotlin/jvm/functions/Function0 {
+	public fun <init> (Landroidx/fragment/app/Fragment;Lkotlin/Lazy;)V
+	public final fun invoke ()Landroidx/lifecycle/ViewModelProvider$Factory;
+	public synthetic fun invoke ()Ljava/lang/Object;
+}
+
+public final class com/lagradost/cloudstream4/home/HomeTvFragmentKt : java/lang/Object {
+	public static final synthetic fun access$HomePoster (Lcom/lagradost/cloudstream4/feature/home/HomeItem;Landroidx/compose/runtime/Composer;I)V
+}
+
+public final class com/lagradost/cloudstream4/home/TvHomeFragmentFactory : androidx/fragment/app/FragmentFactory {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/lagradost/cloudstream4/home/TvHomeFragmentFactory;
+	public fun instantiate (Ljava/lang/ClassLoader;Ljava/lang/String;)Landroidx/fragment/app/Fragment;
+}
+
+public final class com/lagradost/cloudstream4/home/TvHomeSwitch : java/lang/Object {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/lagradost/cloudstream4/home/TvHomeSwitch;
+	public static field useComposeHome Z
+}
+
+public final class com/lagradost/cloudstream4/library/AndroidLibraryStore : java/lang/Object, com/lagradost/cloudstream4/feature/library/LibraryStore {
+	public static final field $stable I
+	public static final field MAX_TEXT_CHARS I
+	public fun <init> (Landroid/content/Context;)V
+	public fun <init> (Lcom/lagradost/cloudstream4/library/LocalLibraryRecords;Lkotlin/jvm/functions/Function0;Lkotlinx/coroutines/CoroutineDispatcher;)V
+	public synthetic fun <init> (Lcom/lagradost/cloudstream4/library/LocalLibraryRecords;Lkotlin/jvm/functions/Function0;Lkotlinx/coroutines/CoroutineDispatcher;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public static final synthetic fun access$getCompanion$p ()Lcom/lagradost/cloudstream4/library/AndroidLibraryStore$Companion;
+	public static final synthetic fun access$getLabels$p (Lcom/lagradost/cloudstream4/library/AndroidLibraryStore;)Lkotlin/jvm/functions/Function0;
+	public static final synthetic fun access$positionOf (Lcom/lagradost/cloudstream4/library/AndroidLibraryStore;Lcom/lagradost/cloudstream4/library/AndroidLibraryStore$Row;)Lcom/lagradost/cloudstream4/feature/library/WatchPosition;
+	public static final synthetic fun access$rows (Lcom/lagradost/cloudstream4/library/AndroidLibraryStore;)Ljava/util/List;
+	public fun clearPositions-SGee5UE (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun positions (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun record (Lcom/lagradost/cloudstream4/feature/library/WatchPosition;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun remember (Lcom/lagradost/cloudstream4/feature/library/LibraryTitle;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun setBucket-DToEV4Y (Ljava/lang/String;Lcom/lagradost/cloudstream4/feature/library/LibraryBucket;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun titles (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final static class com/lagradost/cloudstream4/library/AndroidLibraryStore$titles$2$invokeSuspend$$inlined$sortedByDescending$1 : java/lang/Object, java/util/Comparator {
+	public fun <init> ()V
+	public final fun compare (Ljava/lang/Object;Ljava/lang/Object;)I
+}
+
+public final class com/lagradost/cloudstream4/library/AndroidLibraryStoreKt : java/lang/Object {
+	public static final fun target-7FYDLFk (Ljava/lang/String;)Lcom/lagradost/cloudstream4/search/SearchResultTarget;
+	public static final fun titleId (Lcom/lagradost/cloudstream3/utils/DataStoreHelper$LibrarySearchResponse;)Ljava/lang/String;
+	public static final fun toBucket (Lcom/lagradost/cloudstream3/ui/WatchType;)Lcom/lagradost/cloudstream4/feature/library/LibraryBucket;
+}
+
+public final static synthetic class com/lagradost/cloudstream4/library/AndroidLibraryStoreKt$WhenMappings : java/lang/Object {
+	public static final synthetic field $EnumSwitchMapping$0 [I
+}
+
+public final class com/lagradost/cloudstream4/library/ComposableSingletons$LibraryTvFragmentKt : java/lang/Object {
+	public static final field INSTANCE Lcom/lagradost/cloudstream4/library/ComposableSingletons$LibraryTvFragmentKt;
+	public fun <init> ()V
+	public final fun getLambda$-131743773$app ()Lkotlin/jvm/functions/Function3;
+}
+
+public final class com/lagradost/cloudstream4/library/DataStoreLocalLibrary : java/lang/Object, com/lagradost/cloudstream4/library/LocalLibraryRecords {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/lagradost/cloudstream4/library/DataStoreLocalLibrary;
+	public fun bookmark (I)Lcom/lagradost/cloudstream3/utils/DataStoreHelper$BookmarkedData;
+	public fun favourites ()Ljava/util/List;
+	public fun lastWatched (I)Lcom/lagradost/cloudstream3/utils/downloader/DownloadObjects$ResumeWatching;
+	public fun viewPosition (I)Lcom/lagradost/cloudstream3/utils/DataStoreHelper$PosDur;
+	public fun watchStates ()Ljava/util/List;
+}
+
+public final class com/lagradost/cloudstream4/library/LibraryTvFragment : com/lagradost/cloudstream3/utils/BaseComposeFragment {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun Content (Landroidx/compose/runtime/Composer;I)V
+	public static final synthetic fun access$getViewModel (Lcom/lagradost/cloudstream4/library/LibraryTvFragment;)Lcom/lagradost/cloudstream4/feature/library/LibraryViewModel;
+	public static final synthetic fun access$onEffect (Lcom/lagradost/cloudstream4/library/LibraryTvFragment;Lcom/lagradost/cloudstream4/feature/library/LibraryEffect;)V
+	public fun onResume ()V
+}
+
+public final static class com/lagradost/cloudstream4/library/LibraryTvFragment$special$$inlined$viewModels$default$1 : kotlin/jvm/internal/Lambda, kotlin/jvm/functions/Function0 {
+	public fun <init> (Landroidx/fragment/app/Fragment;)V
+	public final fun invoke ()Landroidx/fragment/app/Fragment;
+	public synthetic fun invoke ()Ljava/lang/Object;
+}
+
+public final static class com/lagradost/cloudstream4/library/LibraryTvFragment$special$$inlined$viewModels$default$2 : kotlin/jvm/internal/Lambda, kotlin/jvm/functions/Function0 {
+	public fun <init> (Lkotlin/jvm/functions/Function0;)V
+	public final fun invoke ()Landroidx/lifecycle/ViewModelStoreOwner;
+	public synthetic fun invoke ()Ljava/lang/Object;
+}
+
+public final static class com/lagradost/cloudstream4/library/LibraryTvFragment$special$$inlined$viewModels$default$3 : kotlin/jvm/internal/Lambda, kotlin/jvm/functions/Function0 {
+	public fun <init> (Lkotlin/Lazy;)V
+	public final fun invoke ()Landroidx/lifecycle/ViewModelStore;
+	public synthetic fun invoke ()Ljava/lang/Object;
+}
+
+public final static class com/lagradost/cloudstream4/library/LibraryTvFragment$special$$inlined$viewModels$default$4 : kotlin/jvm/internal/Lambda, kotlin/jvm/functions/Function0 {
+	public fun <init> (Lkotlin/jvm/functions/Function0;Lkotlin/Lazy;)V
+	public final fun invoke ()Landroidx/lifecycle/viewmodel/CreationExtras;
+	public synthetic fun invoke ()Ljava/lang/Object;
+}
+
+public final static class com/lagradost/cloudstream4/library/LibraryTvFragment$special$$inlined$viewModels$default$5 : kotlin/jvm/internal/Lambda, kotlin/jvm/functions/Function0 {
+	public fun <init> (Landroidx/fragment/app/Fragment;Lkotlin/Lazy;)V
+	public final fun invoke ()Landroidx/lifecycle/ViewModelProvider$Factory;
+	public synthetic fun invoke ()Ljava/lang/Object;
+}
+
+public final class com/lagradost/cloudstream4/library/LibraryTvFragmentKt : java/lang/Object {
+	public static final synthetic fun access$LibraryPoster (Lcom/lagradost/cloudstream4/feature/library/LibraryCard;Landroidx/compose/runtime/Composer;I)V
+	public static final fun openLibraryOnTvScreen (Landroidx/navigation/NavGraph;)V
+}
+
+public interface com/lagradost/cloudstream4/library/LocalLibraryRecords : java/lang/Object {
+	public abstract fun bookmark (I)Lcom/lagradost/cloudstream3/utils/DataStoreHelper$BookmarkedData;
+	public abstract fun favourites ()Ljava/util/List;
+	public abstract fun lastWatched (I)Lcom/lagradost/cloudstream3/utils/downloader/DownloadObjects$ResumeWatching;
+	public abstract fun viewPosition (I)Lcom/lagradost/cloudstream3/utils/DataStoreHelper$PosDur;
+	public abstract fun watchStates ()Ljava/util/List;
+}
+
 public final class com/lagradost/cloudstream4/search/ApiRepositorySearchSource : java/lang/Object, com/lagradost/cloudstream4/feature/search/SearchSource {
 	public static final field $stable I
 	public static final field FIRST_PAGE I

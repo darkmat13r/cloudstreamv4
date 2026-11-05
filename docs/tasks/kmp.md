@@ -3266,6 +3266,106 @@ The page's margin does not change, so it does not reflow.
 **Not tested:** `focusNavRail`'s call site, which needs a provider's hero on Home, and every page with content, since no
 extension is installed. A real TV remote.
 
+## KMP-34 — The TV library on Android: grid and empty page (queue `Q11`) · **measured 2026-11-04**
+
+**Status:** in pr. Boards `5a` and `5c` of `design/TV Library.dc.html`. Sort, the provider panel and the unreachable
+state (`5b`, `5d`, `5e`) are `Q12`. Android TV opens this through real navigation, and one line in `MainActivity`
+switches it; deleting that line is the rollback, and `LibraryFragment` stays for one release (`DEC-17`). Phone and the
+emulator layout still use `LibraryFragment`.
+
+**The model.** `:feature:library` had no provider and only a desktop store, and `:app`'s library is `SyncAPI`. Read, not
+assumed: the local list is `LocalList`, over `RESULT_WATCH_STATE` (status), `RESULT_WATCH_STATE_DATA` (`BookmarkedData`)
+and `RESULT_FAVORITES_STATE_DATA` (`FavoritesData`), per account. `AndroidLibraryStore` reads those same keys.
+
+The seam is small, and nothing published changed (`SyncAPI$Page` is untouched):
+
+- Reads are real. **Writes refuse**, as `AndroidExtensionRuntime.install` does: nothing on Android calls one, 5a and 5c
+  draw no control that writes, and a title's list is still changed on its result page. The first screen that needs a write
+  implements it.
+- `LibraryStore.titles()` may now return one id twice with different buckets, because on Android a title can be in
+  Watching and in Favourites at once. Desktop still returns one row per id.
+- Additive, all with defaults: `LibraryViewModel(initialTab)`, `LibraryTitle` and `LibraryCard` gain `typeLabel` and
+  `posterHeaders`, `LibraryState` gains `counts`, `totalTitles`, `filter` and `returnTo`, and there are new actions. The
+  desktop screen sends and reads none of them, so its behaviour is unchanged. `:desktopApp` compiled against this, and
+  `LibraryViewModelTest`'s existing cases still pass.
+
+Tab counts come from the rows read, so a tab cannot disagree with its page, and they are absent before the first read and
+after a failed one. A list holding nothing reads 0, which is a fact.
+
+**Every reduction from the boards, for the owner:**
+
+| Board | Drawn | Here | Why |
+|---|---|---|---|
+| 5a | Provider button, `AniList` / `LAGRADOST · SYNCED 4 MIN` | Plain text: `Library` and the total titles. Not a stop | Local only until `Q12`. No sync time exists. Its slot is kept, so the control moves nothing when it lands |
+| 5a | Sort button, `LAST UPDATED · NEWEST` | Empty slot. Order is newest `latestUpdatedTime` first | `Q12` |
+| 5a | Five tabs | Six: Favourites added | The old TV screen has it, and people's favourites are in it |
+| 5a | Rating badge, top right | None | Local bookmarks hold no rating of the user's own. `BookmarkedData.score` is the public score, which is not what the board means |
+| 5a | `12 / 28 EPISODES` in the reveal | Provider name | Local bookmarks hold no episode counts: `toLibraryItem` passes null for both |
+| 5a | Bar from episodes done over total | Position in the last-played part, from the keys `HomeViewModel` reads. No bar if never played | Same. A different fact, and a real one |
+| 5a | Field placeholder `Filter this list` | `Filter Bookmarks` | Existing key. The magnifier is drawn, `CloudStreamIcons.Search`, through a new optional `TextField(leadingIcon)`. Search's field does not ask for it, so it renders as it did |
+| 5a | Type badge in the board's words `ANIME`, `TV`, `MOVIE` | `TvType`'s own translated word, upper-cased: `TV SERIES`, `MOVIE` | Existing keys, so no new translations |
+| 5c | `Nothing on hold` | The list's name, `On-Hold` | No such key; no new key added |
+| 5c | `Titles you pause land here. Four are in Watching that you haven't opened in a month.` | `This list is empty. Try switching to another one.` | Nothing records when a title was last opened, so that sentence could not be true |
+| 5c | `Go to Watching` | The name of the first list with titles in it, `Watching` | No such key. With the whole library empty it is `Search`, with the old screen's empty-library message |
+
+**What the old TV screen does that this does not yet:** switching to a sync provider, so **AniList, MyAnimeList and Simkl
+lists are not on TV until `Q12`**; sorting; a saved per-list opener (`LibraryOpener`), so a title always opens its page, or
+a search by name when its provider is gone, which is the old default; Random; the long-press metadata popup. The old
+filter re-ranks by similarity, and this one narrows by containing the text. `DEC-13`: this screen takes `:core:theme`, so
+it has no user-selected primary colour or Material You.
+
+**Strings.** No new key, so no `R` field. Coverage of the keys reused, directories out of 62 (the rest fall back to
+English): `title_search`, `type_watching`, `type_completed`, `type_plan_to_watch` 61; `type_on_hold`, `type_dropped` 60;
+`filter_bookmarks` 59; `sort_clear` 58; `library` 49; `error` 45; `empty_library_logged_in_message`,
+`empty_library_no_accounts_message` 42; `plugin_load_fail` 41; `favorites_list_name` 39; `no_data` 61; and the retry
+label's `search_state_retry` 1, which is English only and already was.
+
+**Measured, each a wrong turn first.** Focus passed in the module and failed in the real app, repeatedly, for four
+causes, which is the case for the `:app` test:
+
+- Adding `focusRequester` to only the card being returned to rebuilt its focus node when that condition went false, which
+  dropped the focus it had just taken. The first version of the module test read focus the moment it arrived and missed
+  this. It now reads it after the return point is cleared. Every card now has the same modifier chain.
+- On `Television_720p` the fragment's view composed and took focus about 650 ms before `onResume`, and by `onResume` focus
+  was on the rail (logged with a global focus listener). So focus now waits for `LibraryAction.Reappeared`, which the
+  fragment sends from `onResume`. Retrying inside the first frames, tried first, did not help.
+- RIGHT from the rail searches from just before the stop that left, and on this screen that landed on the field from a tab
+  and on a tab from a card. `focusRestorer` and `focusGroup` did not change that, and why the search misses was not
+  established. `LibraryFocusMemory` sends focus on to the stop that left, whichever stop the search lands on.
+- Moving between two stops reports "no focus" for a moment, in the same frame, and acting on that sent focus back to the
+  stop it had just left. The memory now reads it through state, which the moment does not reach.
+
+**Tested:** `LibraryScreenTvDeviceTest`, 9 on `Television_720p` with a fake store and the real ViewModel: content, real
+counts, card size, opening a title, an empty page with a reachable action, an empty library, failure and retry, a long
+title ellipsized, a walk over every tab and 16 cards with no dead ends or traps and no keyboard, focus back on a third-row
+card, and the filter. `LibraryTvNavigationTest`, 1 in the real app beside the Compose rail: the rail opens
+`LibraryTvFragment`, a bookmark under the real keys is on it, a remote opens `ResultFragmentTv` through a stand-in provider
+that answers nothing, Back restores focus, and LEFT then RIGHT returns to the same card. JVM: `AndroidLibraryStoreTest` 13,
+`LibraryViewModelTest` and `LibraryShelfTest` (added to).
+
+**Screenshots (`INF-11`).** Four cases in `LibraryScreenTvDeviceTest`, beside the design system's rail, with one-colour
+posters: `library-grid-focus-card` and `library-grid-focus-tab` (5a), `library-empty-focus-action` (5c) and
+`library-filter-focus-field`. Recorded once on `Television_720p`, each image looked at before it was committed.
+
+**Not verified:** a title's loaded page, because the stand-in provider answers nothing, so the page opened showed its
+failure; the search-by-name path when a provider is gone, which ran in earlier runs of this test and no longer does; real
+poster loading; favourites through the real keys (mapping is JVM-tested only); a language long enough to make
+the tab row scroll; a long type word on a badge, which clips at the card edge; a focused card removed by the refresh on
+return, where focus falls to the window's choice.
+
+**`TvRailNavigationTest`, changed because this PR changes what it measured.** `KMP-33` wrote two cases against the old
+page. `noDeadEndsOnLibrary` expected focus to be lost at the pager's right edge, and the new page has no pager, so it now
+walks a seeded title and expects no loss. `theXmlRailLosesFocusFromTheLibrarysPagerToo` measures the old page, so it moved
+to the emulator layout, which still opens it. Its finding stands: that loss belongs to the old page.
+
+**Found, reported and not changed:**
+
+- `LibraryViewModel.showTab` after a failed read shows `Empty`: `BUG-33`.
+- LEFT from the library's filter field does not reach the rail: `BUG-34`, which search's field has too.
+- A stop reached by the empty page's action is not remembered, because `StateView` takes no modifier for its button. RIGHT
+  from the rail then returns to the last stop that was: a tab.
+- `LibraryPoster` repeats `PosterArtwork` from `SearchTvFragment`, 15 lines. Sharing them means editing search's fragment.
+
 ---
 
 ## KMP-35 — `ConnectivityFlow`: the offline state every screen can observe (queue `Q2`) · **measured 2026-11-04**
@@ -3787,3 +3887,273 @@ own — the four rails already live in their own files for exactly this reason. 
 over because of the host plumbing that `DetailPlayback.kt` would take anyway. `DetailScreenTvDeviceTest.kt` splits along the suite's own seams — focus-graph walks, panels,
 and content states — but its fixtures and `DpadDriver` helpers are shared, so that one wants `INF-10`'s view
 on where shared device-test helpers belong before it is cut.
+
+## KMP-39 — The highest resolution plays first, and the next best when it fails · **measured 2026-11-05**
+
+**Status:** in pr #155. **Owner's request 2026-11-05:** "random to the highest resolution, if not then next best resolution and
+then next", confirmed as: when a film or episode plays, try its highest-resolution link first, then the next best, then the
+next. Desktop first, because the owner uses it daily with CineStream's CineTmdb; the ordering is in common code for TV.
+
+### What it does
+
+- **Play plays.** Asking to play (Play, an episode, or Resume from the library) still opens the source list, and after a wait
+  plays the best link found so far. A row clicked inside the wait is the choice, and nothing plays over it. Backing out of
+  the player lands on the list, which does not play again by itself.
+- **The wait:** 8 s from the first playable link, or at once if the search ends sooner or a 2160p link arrives, since nothing
+  ranks above it (the Android player also starts at once at its own top, `AUTO_SKIP_PRIORITY`).
+- **On failure, the next best, without asking.** A stream fails when its host will not start it, libVLC gives up on it, or it
+  ends without a single frame. The player moves to the best link not yet tried, at the same position, and says
+  `Source error · <name> · <quality>` above the controls for five seconds while the transport says `Loading…`.
+- **No loop.** Each link is tried by itself once. When every link found has failed, the player shows the failure state it
+  always had, and the Source selector stays the way out. A link that arrives after that is tried in turn.
+- **The player's source list is best first,** the order it tries them in. It still holds its rows while open. Any row,
+  failed or not, can be chosen.
+- **What carries across a switch:** the position (`ResumeSeek`, as `KMP-29`), the subtitle track (the session is the
+  screen's), and now the audio track. **Before this, the audio track was not carried:** a new source opened a new host, and
+  nothing selected a track on it, so it played libVLC's default whatever had been chosen. Now a chosen track is matched on
+  the new stream by libVLC's whole description, then by its language, and left at the default when neither matches.
+
+### The ranking, from the old app
+
+`PlayerGeneratorViewModel.sortLinks` with `QualityDataHelper.getLinkPriority`: source priority plus quality priority, sorted
+high first, stable. With no profile changed every source is 1, so the order is the quality's `defaultPriority` for the
+`Qualities` entry nearest the link's number. Measured against the real enum for every number from -10 to 5000
+(`SourceSwitcherTest`).
+
+| Quality | 2160 | 1440 | 1080 | 720 | 480 | **Unknown (400)** | 360 | 240 | 144, and 0 (Auto) |
+|---|---|---|---|---|---|---|---|---|---|
+| Rank | 8 | 7 | 6 | 5 | 4 | **4** | 3 | 2 | 0 |
+
+**Unknown is not last, because the old app does otherwise:** `Qualities.Unknown` is 400 with priority 4, the same as 480p, so
+an unknown link ties with 480p (arrival order decides) and beats 360p. A null quality is unknown too (`closestQuality(null)`).
+CineStream's odd numbers rank as their nearest: 266 as 240p, 534 as 480p, 800 as 720p.
+
+**Where this differs from Android, on purpose:** Android's next mirror is the next index after the current one in the sorted
+list, so a better link that arrived after the start is skipped. Here the next is the best not yet tried.
+
+### The wait, measured
+
+Copied `~/.cloudstream4/extensions/CineStream.cs3`, its `.sha256` and `extensions.decisions` into a fresh home in the
+scratchpad; the packaged app with `JAVA_TOOL_OPTIONS=-Duser.home=<that home>`, `--check-extensions <query> --verbose`, which
+now prints each new link's quality and, at the end, which the player may open. Numbers only: no URL was logged. Times are
+for links the player may open, from the request; CineStream 487, sha256 `30dc6436…`.
+
+| CineTmdb | First playable answer | Best in it | Best overall | Arrived | After the first | Search ended |
+|---|---:|---:|---:|---:|---:|---:|
+| Inception | 1,149 ms | Unknown | 2160p | 5,642 ms | +4.5 s | 64.5 s |
+| The Godfather | 957 ms | Unknown | 2160p | 4,747 ms | +3.8 s | 73.1 s |
+| Interstellar | 1,088 ms | 1080p | 2160p | 8,200 ms | +7.1 s | 73.6 s |
+| Oppenheimer | 1,276 ms | 872 (as 720p) | 2160p | 7,273 ms | +6.0 s | 68.0 s |
+| Breaking Bad, S1E1 | 1,237 ms | 720p | 2160p | 6,102 ms | +4.9 s | 19.0 s |
+
+In none of the five was the first answer's best the title's best. CineStream's other two providers, in the same runs, put
+their best 0 to 7.2 s after their first, 15 runs in all, and the first 1080p 0 to 6.4 s after it. One earlier run of
+Inception, without the may-open column, had CineTmdb's first link (1080p, not one the player may open) at 187 ms and its
+first 2160p at 4,135 ms.
+
+**Chosen: wait, rather than start and upgrade.** Starting at once would show 480p or 720p about 1 s in, then restart the
+picture 4 to 7 s later for 2160p: a second host start (2.6 to 3.0 s for a remote switch, `KMP-29`), a rebuffer and a jump, to
+arrive at the same picture no sooner than waiting does. 8 s covers every run measured; a 2160p link ends the wait early, which
+in these runs was 3.8 to 7.1 s after the first link. A title with no 2160p waits the full 8 s. The constant is
+`DesktopDetailViewModels.BEST_LINK_WAIT`.
+
+### Where it lives
+
+`:feature:detail` common code: `bestFirst`, `rankOf`, `TOP_RANK` and `StreamQueue` (`StreamOrder.kt`), and the wait in
+`DetailViewModel(playBestAfter)`, null by default so a host that does not ask keeps today's behaviour. `StreamLink` gained
+`quality`, the plugin's own number. Desktop: `SourceSwitcher` (what the screen decides, testable with no host), `AudioChoice`,
+the notice in `PlayerScreen`, and `--check-subtitle-render … plugin:<provider>:<query> --best-first`, which runs the window's
+own path silently.
+
+**Words:** none new. Android's player says `source_error` in a toast and moves on; no string says "trying the next source",
+so the notice is `Source error` and the name, and the rest is the transport's `Loading…` and the selector. No baseline move.
+
+### Verified, on the isolated copy
+
+The same fresh home, the packaged app at this branch, `--check-subtitle-render <out> 1280x720 plugin:CineTmdb:<query>
+--best-first`: the real `DetailViewModel` with the real 8 s wait, the real screen in an offscreen scene, every media host
+started with `silent = true` and no separate audio stream. Each run waits until the clock passes 3 s of playback.
+
+| Query | Played | After asking | Best found by then | Moved on | Played 3 s |
+|---|---|---:|---|---:|---|
+| inception | 2160p | 5,869 ms | 2160, 1080 ×6, 800 | 0 | yes, real frames (PNG read) |
+| oppenheimer | 2160p | 7,767 ms | 2160 ×2, 1080 ×5, 872 | 0 | yes |
+| breaking bad (S1E1) | 2160p | 5,748 ms | 2160 ×2, 1080 ×4, 720 ×2 | 0 | yes |
+
+Each start was a 2160p arrival ending the wait, not the 8 s running out. No real link failed, so a second flag forces one:
+`--break-first` swaps the chosen link's address for a public one that answers 404.
+
+| Query, `--break-first` | First | Failed | Moved to | Played 3 s |
+|---|---|---|---|---|
+| inception | the broken 2160p | it, by the real host | the real 2160p, the best not yet tried, through a second silent host | yes |
+| breaking bad | the broken 2160p | it | the real 2160p | yes |
+
+**Tests:** `StreamOrderTest` 10, `DetailViewModelTest` 26 (10 new), `SourceSwitcherTest` 10, `AudioChoiceTest` 6, and
+`PlayerScreenTest` 60 (2 new, 1 extended). With the sort removed (`bestFirst` returns arrival order), 11 tests fail; with the
+timed start, the skip past an unstartable link, the "ended with no frame" rule and the audio match each removed, 11 more
+fail, each the one aimed at it. The renders of the notice and of the list in both states were read as PNGs.
+
+### Not verified
+
+- **Nobody listened, or watched.** Every host here was silent; no run played sound and nobody looked at a live window. The
+  real-video checks are offscreen.
+- **The audio carry-over on a real stream.** `AudioChoice` is tested on the JVM only: no measured title had two audio
+  tracks to choose between.
+- **A stream that stalls, buffering for ever, is not a failure.** Nothing times it out; the selector is the way out. The
+  request named failing to open and stopping with no frames, and a timeout would cut off slow starts that do play.
+- **Titles without 2160p,** which wait the whole 8 s; none of the five measured lacked one.
+- **Plugins other than CineStream's three providers.**
+
+### Found, not changed
+
+- `DesktopDetailSource` labels a link `${quality}p` for any number above 0, so an unknown link reads `400p` and CineStream's
+  odd numbers read `266p`, `534p`, `872p`. The old app writes nothing for 400 (`Qualities.getStringByInt`). Suggest: the same
+  here, which is a separate change of what the rows say.
+- The detail page's own source list stays in arrival order: it grows at the foot so a row never slides under the pointer
+  (`BUG-19`). Only the player's list, which holds its rows while open, is best first.
+---
+
+## KMP-37 — The TV home on Android: rails and a trailing card (queue `Q9`) · **measured 2026-11-05**
+
+**Status:** in pr #147. Board `3d` of `design/TV Home.dc.html`, and the source control `3c` draws. The hero and Continue watching
+(`3c`, `Q10`) are the next PR: the page is one keyed list, so they go in between the chrome and the rails. Android TV only.
+`TvHomeSwitch.useComposeHome = false` puts `HomeFragment` back, kept for one release (`DEC-17`). Phone and the emulator layout
+still use `HomeFragment`.
+
+**Parts.** `HomeScreenTv` in `:feature:home` `commonMain`. In `:app`: `HomeTvFragment`, `AndroidHomeSource` over `APIRepository`,
+and `DataStoreHomeSourceMemory` over the key the old screen already uses, `DataStoreHelper.currentHomePage`. That key is per
+account, and is also what `MainActivity` reads to load one plugin first. `HomeViewModel` gained, all with defaults, so desktop
+is unchanged: `SourcesChanged`, `Reappeared`, `Disappeared`, a return point, and "the remembered source wins over a fallback".
+
+### What the brief assumed, measured
+
+- **`setClassName` cannot switch a start destination.** `NavHostFragment` navigates to it during inflation, before
+  `MainActivity` has a `navController` to edit. Measured: with search's one line, `HomeFragment` stayed on screen and 9 of 13
+  `TvHomeNavigationTest` cases failed. So this is a `FragmentFactory` set before `super.onCreate`, which also covers a process
+  restored from saved state, and is one line. Merging with `#140`, its `MainActivity` line does not touch this one, and the
+  import lines and the dependency line in `app/build.gradle.kts` sit side by side, to keep both.
+- **The old home's view model kept running behind the new screen.** `MainActivity` builds it for the XML rail's footer, and it
+  fetches on every plugin stage. Measured with the guard off: `[0/1, 0/1, 1/1, 1/1]`, every section twice. The guard skips it
+  while `HomeTvFragment` is the home, so with the XML rail as well (`TvRailSwitch` off) that footer has no account picture.
+- **`SidePanelHost`'s `focusRestorer` does not restore on this page.** Closing the panel and RIGHT from the nav rail both landed
+  on the first card. `HomeStops` remembers the last stop and sends focus entering the page there.
+- **A `BringIntoViewSpec` cannot pin a rail.** It is asked again on every frame, so "pin it" stopped the scroll as soon as the
+  rail came inside the band, 269dp short. A rail decides once when it takes focus.
+- **Back on API 36.** Back closed the panel and also finished the activity in the module test, with only the panel's key
+  handler. `HomeTvFragment` also registers a callback for as long as the panel is open.
+- **A crash of mine, caught by the whole suite.** `ExampleInstrumentedTest.layoutTest` opens and closes `MainActivity` at once.
+  A view closed that fast never had its scope cancelled, so a 15.5 s timer reached a `viewModels` that throws once detached,
+  and the app's crash handler ended the process, in the middle of the next test. It writes only to `files/last_error`, which
+  Gradle's uninstall deletes, which is why logcat had no stack. Read by installing the APKs by hand. Why the scope is not
+  cancelled is read from `Fragment.performDestroyView`, not measured: it sends `ON_DESTROY` only if the view's lifecycle reached
+  `CREATED`. `aPageClosedAsSoonAsItOpensDoesNotCrashWhenItsTimerEnds` pins it.
+
+Focus follows `KMP-34`'s two traps: every card has the same modifier chain, and nothing is taken until `onResume`.
+
+**Plugins load behind a page already drawn.** `HomeSources.stillLoading` keeps it on the skeleton rather than saying nothing is
+installed, and a remembered source that is missing is waited for rather than fetching another source's page to throw away.
+It gives up after 15 s, because `loadedOnlinePlugins` is never true with auto-update off.
+
+**Sanitized,** because on Android a plugin answers from inside the process with no boundary before it: format and control
+characters in all text; only http(s) posters reach Coil, which would otherwise load `file:`, `content:` and
+`android.resource:`; header names and values that could split a request; an address too long for the `Bundle` that opens the
+title; and row, item and section counts. This keeps a bad answer from breaking the screen. It is no defence against a plugin.
+
+### Every reduction from the boards
+
+| Board | Drawn | Here | Why |
+|---|---|---|---|
+| 3d | `See all` | `Load more`, 62 of 62 translations | The press pages in place through `RowMoreRequested`. No board draws a destination, so `See all` would be untrue, and that key does not exist |
+| 3d | `See all` on every rail | Only on a rail with more to load | On a complete rail it would be a stop that does nothing |
+| 3d | `34 TITLES` on the card | None | A provider reports `hasNext`, never a total |
+| 3d | Dashed outline on that card | `SeeAllCard`'s raised fill and chevron | The existing component |
+| 3d | `ACROSS 12 EXTENSIONS`, `ADDED THIS WEEK` | None | No data. Home shows one source at a time |
+| 3d | Badges `NEW`, `SAVED` | None | No data |
+| 3d | Badges `4K`, `DUB` | Real: `SearchResponse.quality`, else sub or dub, in the existing words such as `HD` | Not a gap on a rail. Per-card source is, on `3c` |
+| 3d | Rails named `Popular movies`, `TV shows` | What the provider calls them, in its language | They are the provider's |
+| 3c | Source control | Built: 160dp minimum, `CloudStreamIcons.Disclosure` | The only way to change source. No board draws the panel, so it is `SidePanel`, as desktop has one and as `DEC-17` rules: no buttons, Back closes |
+| 3c | Avatar | Built as a generic `Profile` cell, no picture | See below |
+| 3c | Clock and two icon cells | None | `Q10` |
+| none | Partial failure | Text in the chrome row with a hollow `StatusDot` | `FailureBanner` paints `live`, against `DEC-17` |
+| none | Rows a provider marks horizontal | `BackdropCard`, 128x72 | The board draws posters only |
+
+**One deviation from the brief's "copy search":** cards are 12dp apart, not 24. `.row { gap: 24px }` halves to 12, and that is what
+fits nine cards where `3d` draws them.
+
+### What the old TV home does that this does not
+
+- **Random.** Not drawn. Also gone: choosing `None` or `Random` as the source. Either stored value reads as no choice.
+- **Bookmarks row and its watch-status filter.** Not drawn. They are in the library.
+- **Continue watching and the hero:** `Q10`. **Removing from Continue watching** is on no board.
+- **The expanded row sheet.** More of a row now arrives in the row.
+- **Reload provider.** A failure has Retry, but a page that loaded cannot be reloaded by hand.
+- **Search this provider.** The rail's Search searches every selected source.
+- **Long press on a card.** No metadata popup or quick actions.
+- **Watch progress on cards.** `HomeItem` has no field. Most provider hits have no `id` to look it up by.
+- **Account picture in the chrome.** Switching accounts is kept: this and the XML rail's footer were its only ways on a TV, and
+  `KMP-33` removed the footer, so dropping it would have left none.
+- `DEC-13`: no user-selected primary colour or Material You.
+
+**Strings.** No new key, so no `R` field. Coverage of those reused, out of 62, with the rest falling back to English: `load_more`
+62, `title_search` 61, `no_data` 61, `pick_source` 60, `loading` 59, `source_error` 54, `switch_account` 45, `home_source` 43,
+`extensions` 42, and `search_state_retry` and `search_state_retry_failed` 1, English only, as they already were.
+
+### Measured
+
+`HomeScreenTvDeviceTest` 25 and `TvHomeNavigationTest` 13 on `Television_720p`. JVM: `HomeViewModelTest` 34 (11 new),
+`HomeFocusScrollTest` 5 in `commonTest`, `AndroidHomeSourceTest` 17, `DataStoreHomeSourceMemoryTest` 5. `TvRailNavigationTest`: its cases
+about the old home's provider button now switch that screen back on, because they measure it, and `noDeadEndsOnHome` now
+walks the new one with no lost focus.
+
+**Each critical test was shown failing.** Fourteen `HomeScreenTvDeviceTest` cases went red with seven mutations together (the wall
+at a rail's end, focus after a page, the trailing card, focus on return, the resume gate, the pin, and focus on a state). Nine
+`TvHomeNavigationTest` cases with `setClassName`. Three with the old view model back, the fragment's Back callback gone and the
+`isAdded` check gone, and that crash stopped the run at 7 of 13, so `HomeStops` was shown failing separately: before it existed,
+`leftFromTheFirstCard…` read `A 0` for `B 0`.
+
+### A real plugin, on a throwaway emulator
+
+`TvHomeRealPluginProof`, skipped unless a plugin has been pushed, so it reports as skipped in every normal run. CineStream v487, sha
+`30dc6436…`, the reviewed copy, in a `-read-only` AVD that discards everything. It went through `MainActivity`'s real stages with `CineTmdb` remembered:
+
+- `PluginManager` loaded it in 0.3 s. It registered `CineStream` with 22 sections, `CineSimkl` 16, `CineTmdb` 17.
+- The page opened on `CineTmdb` with real posters, focus on the first card, `The Mongoose`, 3.1 s after the provider appeared, and the rail closed.
+- DOWN reached `Resident Evil`, RIGHT `Primetime`. OK opened its real `ResultFragmentTv` page. Back returned with focus on `Primetime`.
+
+This is the first plugin to have run in these Android tests. **It is not** playback, and it is one launch on the network of the moment.
+
+### Not verified
+
+A real TV remote. A cold start with the plugin already compiled, or on real hardware. Paging, sub and dub badges and the source panel
+against a real plugin (the proof pressed none of them). Account switching end to end: the effect is tested, and the dialog and what
+follows are not. A process restored from saved state, which the factory is for. A right-to-left layout. The XML rail with the new
+home, beyond its existing test.
+
+**Screenshots (`INF-11`).** Six cases in `HomeScreenTvDeviceTest`, 1280x720 on `Television_720p`, with solid posters: rails with a card
+focused, the trailing card focused, a partial failure with its retry focused, nothing installed with its action focused, the source panel on
+the current source, and loading. Recording them found one defect, now fixed: the failure's headline shared the chrome row's free width with
+a spacer and was squeezed to nothing.
+
+### Found, not changed
+
+```
+Found: `colors.live` on `FailureBanner`'s dot in core/designsystem/.../state/FailureBanner.kt:102
+Suggest: `StatusDot(StatusDotState.Failed)`
+Why: `DEC-17` rules a failure a hollow neutral marker. Search and desktop home still show it. Its KDoc still calls it legitimate.
+
+Found: a `Canvas` chevron in core/designsystem/.../card/SeeAllCard.kt, used here for the first time
+Suggest: `CloudStreamIcons.Disclosure`
+Why: `icons.md`. It predates the pack.
+
+Found: `HomePoster` is the third copy of the same 15 lines, after `SearchTvFragment` and `LibraryTvFragment`
+Suggest: one composable in `:app`
+Why: sharing means editing both of the others' fragments.
+```
+
+- **`focusRestorer` in `SidePanelHost`** may fail the same way on any lazy page. Search's and the library's panels are not built yet.
+- **The crash handler writes only to a file.** A crash in `androidTest` leaves `Process crashed` and no stack anywhere.
+
+### Published API
+
+Additions only: 102 lines in `app/api/classes-jar.api`, all under `com/lagradost/cloudstream4/home/`, none removed or changed.
+`:feature:home` is not merged into the jar.

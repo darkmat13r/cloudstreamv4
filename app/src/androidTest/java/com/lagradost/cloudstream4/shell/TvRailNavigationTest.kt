@@ -5,6 +5,9 @@ import android.graphics.Color
 import android.graphics.Rect
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.core.content.edit
 import androidx.core.view.children
@@ -22,11 +25,19 @@ import com.lagradost.cloudstream3.CloudStreamApp.Companion.setKey
 import com.lagradost.cloudstream3.MainActivity
 import com.lagradost.cloudstream3.R
 import com.lagradost.cloudstream3.ui.settings.Globals.updateTv
+import com.lagradost.cloudstream3.ui.WatchType
 import com.lagradost.cloudstream3.ui.setup.HAS_DONE_SETUP_KEY
+import com.lagradost.cloudstream3.utils.DataStoreHelper
+import com.lagradost.cloudstream4.core.designsystem.panel.SidePanel
+import com.lagradost.cloudstream4.core.designsystem.panel.SidePanelHost
+import com.lagradost.cloudstream4.core.designsystem.rows.ListRow
+import com.lagradost.cloudstream4.core.designsystem.rows.ListRowState
 import com.lagradost.cloudstream4.core.designsystem.target.TextFieldDefaults
 import com.lagradost.cloudstream4.core.devicetest.Dpad
 import com.lagradost.cloudstream4.core.devicetest.DpadDriver
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
+import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
+import com.lagradost.cloudstream4.home.TvHomeSwitch
 import com.lagradost.cloudstream4.search.SearchTvFragment
 import org.junit.After
 import org.junit.Assert.assertEquals
@@ -76,6 +87,7 @@ class TvRailNavigationTest {
     @After
     fun restore() {
         TvRailSwitch.useComposeRail = true
+        TvHomeSwitch.useComposeHome = true
         setLayoutPreference(null)
     }
 
@@ -230,6 +242,45 @@ class TvRailNavigationTest {
             waitForMark(labels[index])
         }
 
+        /**
+         * Opens a side panel on the current page, as a screen would: the page's own `ComposeView` hosts it, so the rail
+         * is outside the panel's composition, as it is when `TV Search` 4d opens.
+         */
+        fun openPanelOnPage() {
+            scenario.onActivity { activity ->
+                val host = activity.supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+                val page = requireNotNull(host.childFragmentManager.primaryNavigationFragment?.view) { "a page" }
+                val compose = requireNotNull(page.composeView()) { "a Compose page" }
+                compose.setContent {
+                    CloudStreamTheme {
+                        SidePanelHost(
+                            expanded = true,
+                            onDismissRequest = {},
+                            panel = { SidePanel { ListRow(ListRowState(title = PANEL_ROW, selected = true), onClick = {}) } },
+                        ) { Box(Modifier.fillMaxSize()) }
+                    }
+                }
+            }
+        }
+
+        private fun View.composeView(): ComposeView? =
+            this as? ComposeView ?: (this as? ViewGroup)?.children?.firstNotNullOfOrNull { it.composeView() }
+
+        /** The mean brightness of the collapsed rail's own 76dp. */
+        fun railBrightness(): Float {
+            val shot = requireNotNull(instrumentation.uiAutomation.takeScreenshot()).copy(Bitmap.Config.ARGB_8888, false)
+            var sum = 0L
+            var count = 0
+            for (x in 0 until dp(CloudStreamDimens.NavRailWidth.value) step SAMPLE_STEP) {
+                for (y in 0 until shot.height step SAMPLE_STEP) {
+                    val pixel = shot.getPixel(x, y)
+                    sum += Color.red(pixel) + Color.green(pixel) + Color.blue(pixel)
+                    count++
+                }
+            }
+            return sum.toFloat() / count
+        }
+
         /** The mean brightness of what is past the rail and its shadow: a page dim shows here and nothing else does. */
         fun pageBrightness(): Float {
             val shot = requireNotNull(instrumentation.uiAutomation.takeScreenshot()).copy(Bitmap.Config.ARGB_8888, false)
@@ -337,7 +388,7 @@ class TvRailNavigationTest {
         dpad.press(Dpad.Down)
     }
 
-    /** `None` is Home's one stop here, and DOWN from it loses focus: see [theXmlRailLosesFocusFromHomesProviderButtonToo]. */
+    /** `Extensions` is the page's only stop with nothing installed that is not the account cell above it. */
     @Test
     fun rightReturnsToTheExactStopOnHome() = rightReturnsToTheStopThatLeft(HOME, moveToStop = {})
 
@@ -371,15 +422,19 @@ class TvRailNavigationTest {
         assertEquals("RIGHT returns to that row and not the first", stop, dpad.press(Dpad.Right))
     }
 
+    /** The old home, because only its provider button has a DOWN that loses focus. */
     @Test
-    fun rightFindsThePageWhenTheStopThatLeftWasNeverOnScreen() = launch {
-        waitForDestination(R.id.navigation_home)
-        openRail()
-        val stop = dpad.press(Dpad.Right)
-        dpad.press(Dpad.Down)
-        assertNull("the stop that loses focus", dpad.focused())
-        assertEquals("LEFT still reaches the rail", labels[HOME], dpad.press(Dpad.Left))
-        assertEquals("and RIGHT finds the page's real stop", stop, dpad.press(Dpad.Right))
+    fun rightFindsThePageWhenTheStopThatLeftWasNeverOnScreen() {
+        TvHomeSwitch.useComposeHome = false
+        launch {
+            waitForDestination(R.id.navigation_home)
+            openRail()
+            val stop = dpad.press(Dpad.Right)
+            dpad.press(Dpad.Down)
+            assertNull("the stop that loses focus", dpad.focused())
+            assertEquals("LEFT still reaches the rail", labels[HOME], dpad.press(Dpad.Left))
+            assertEquals("and RIGHT finds the page's real stop", stop, dpad.press(Dpad.Right))
+        }
     }
 
     @Test
@@ -409,6 +464,26 @@ class TvRailNavigationTest {
         assertEquals("the page never reflows", left, pageLeft)
         val expanded = requireNotNull(device.findObject(By.text(labels[HOME]))) { "labels show once it is open" }
         assertTrue("the item reaches past the collapsed rail", expanded.visibleBounds.right > dp(CloudStreamDimens.NavRailWidth.value))
+    }
+
+    /**
+     * `TV Search` 4d dims the rail with the page while a side panel is open. The rail is its own view in the shell, so the
+     * page's scrim cannot reach it; `SidePanelOutsideDim` carries the panel's opacity across. Measured on the screen.
+     */
+    @Test
+    fun aSidePanelOpenOnThePageDimsTheRailToo() = launch {
+        commit(SEARCH)
+        dpad.press(Dpad.Right)
+        val atRest = railBrightness()
+        assertTrue("the rail has something on it to dim", atRest > 0f)
+        openPanelOnPage()
+        assertNotNull("the panel opened", device.wait(Until.findObject(By.text(PANEL_ROW)), SCREEN_WAIT_MS))
+        Thread.sleep(PANEL_SETTLE_MS)
+        val dimmed = railBrightness()
+        capture("panel-open-dims-rail")
+        assertTrue("the rail dims with the page: $atRest to $dimmed", dimmed <= atRest * MAX_PANEL_DIM_RATIO)
+        assertTrue("and still shows: $dimmed", dimmed > 0f)
+        assertFalse("the rail does not take focus behind the panel", railHasFocus)
     }
 
     @Test
@@ -458,10 +533,42 @@ class TvRailNavigationTest {
     }
 
     @Test
-    fun noDeadEndsOnHome() = noDeadEnds(HOME, lost = listOf("$NO_PROVIDER -> Down lost focus"))
+    fun noDeadEndsOnHome() = noDeadEnds(HOME)
+
+    /** What this suite pinned before `KMP-37`, kept while the old home is the rollback. */
+    @Test
+    fun noDeadEndsOnTheOldHome() {
+        TvHomeSwitch.useComposeHome = false
+        noDeadEnds(HOME, lost = listOf("$NO_PROVIDER -> Down lost focus"))
+    }
 
     @Test
-    fun noDeadEndsOnLibrary() = noDeadEnds(LIBRARY, lost = listOf("$LIBRARY_PAGER -> Right lost focus"))
+    fun noDeadEndsOnLibrary() {
+        // With a title, so the grid is what is walked: an empty library's action is named `Search`, and the walk
+        // cannot tell it from the rail's item. `KMP-34` took away the pager this used to lose focus on.
+        instrumentation.runOnMainSync {
+            DataStoreHelper.setResultWatchState(LIBRARY_STORED_ID, WatchType.WATCHING.internalId)
+            DataStoreHelper.setBookmarkedData(
+                LIBRARY_STORED_ID,
+                DataStoreHelper.BookmarkedData(
+                    bookmarkedTime = 1L,
+                    id = LIBRARY_STORED_ID,
+                    latestUpdatedTime = 1L,
+                    name = "A Bookmarked Title",
+                    url = "https://example.invalid/title",
+                    apiName = "NoSuchProvider",
+                    type = null,
+                    posterUrl = null,
+                    year = null,
+                ),
+            )
+        }
+        try {
+            noDeadEnds(LIBRARY)
+        } finally {
+            instrumentation.runOnMainSync { DataStoreHelper.deleteBookmarkedData(LIBRARY_STORED_ID) }
+        }
+    }
 
     @Test
     fun noDeadEndsOnDownloads() = noDeadEnds(DOWNLOADS)
@@ -538,6 +645,7 @@ class TvRailNavigationTest {
     @Test
     fun theXmlRailLosesFocusFromHomesProviderButtonToo() {
         TvRailSwitch.useComposeRail = false
+        TvHomeSwitch.useComposeHome = false
         launch {
             waitForDestination(R.id.navigation_home)
             assertEquals("Home's one stop", NO_PROVIDER, dpad.enter())
@@ -545,10 +653,13 @@ class TvRailNavigationTest {
         }
     }
 
-    /** Measures that this loss is the page's, not the Compose rail's. It is not fixed here. */
+    /**
+     * Measures that this loss is the old page's, not the Compose rail's. It is not fixed here. On the emulator layout,
+     * because the TV layout now opens `LibraryTvFragment` (`KMP-34`) and has no pager.
+     */
     @Test
     fun theXmlRailLosesFocusFromTheLibrarysPagerToo() {
-        TvRailSwitch.useComposeRail = false
+        setLayoutPreference(LAYOUT_EMULATOR)
         launch {
             navigate(R.id.navigation_library)
             waitForDestination(R.id.navigation_library)
@@ -622,14 +733,18 @@ class TvRailNavigationTest {
         /** 46% dim leaves 54%. Margin, because focus moves off a filled row when the rail opens too. */
         const val MAX_DIMMED_RATIO = 0.75f
 
+        /** The panel's scrim is 0.72 `bg`, which leaves 28% of the rail's light; 0.4 allows for antialiasing and noise. */
+        const val MAX_PANEL_DIM_RATIO = 0.4f
+        const val PANEL_SETTLE_MS = 1_000L
+        const val PANEL_ROW = "Vidsrc"
+
         const val VIEW_PAGER = "androidx.viewpager"
         const val RECYCLER_VIEW = "androidx.recyclerview"
 
         /** The provider button on Home with no extension installed. */
         const val NO_PROVIDER = "None"
 
-        /** How the driver names the Library's pager, which has no text, with its bounds taken off. */
-        const val LIBRARY_PAGER = "androidx.viewpager.widget.ViewPager"
+        const val LIBRARY_STORED_ID = 987_654_322
         val BOUNDS = Regex("@\\S+")
         const val EDIT_TEXT = "android.widget.EditText"
         const val RAIL_WAIT_MS = 5_000L

@@ -105,15 +105,23 @@ private suspend fun check(provider: SandboxedProvider, query: String, verbose: B
     return try {
         val asked = TimeSource.Monotonic.markNow()
         var firstLink: Duration? = null
+        var shown = 0
         val links = provider.linksAsTheyArrive(data).onEach { answer ->
             if (firstLink == null && answer.links.isNotEmpty()) firstLink = asked.elapsedNow()
-            if (verbose) println("check:   links ${answer.links.size}, subtitles ${answer.subtitles.size} at ${asked.elapsedNow().inWholeMilliseconds} ms")
+            // The plugin's own quality numbers for the links new since the last line, so when the best one arrived
+            // can be read off. Numbers only: a link's URL can carry a token.
+            val qualities = answer.links.drop(shown).map { it.quality }
+            shown = answer.links.size
+            if (verbose) println("check:   links ${answer.links.size} +$qualities, subtitles ${answer.subtitles.size} at ${asked.elapsedNow().inWholeMilliseconds} ms")
         }.last()
         val hosts = links.links.map { it.url.substringAfter("://").substringBefore('/') }.distinct()
         val subtitles = checkSubtitles(links.subtitles, verbose)
         val first = firstLink?.let { " · first link at ${it.inWholeMilliseconds} ms" }.orEmpty()
         val ended = links.stoppedEarly?.let { " · stopped early: $it" }.orEmpty()
-        val playable = withContext(Dispatchers.IO) { links.links.count { it.isPublic() } }
+        val public = withContext(Dispatchers.IO) { links.links.map { it.isPublic() } }
+        val playable = public.count { it }
+        // In arrival order, an x after each the player may not open: what it would have had to choose from, and when.
+        if (verbose) println("check:   qualities ${links.links.mapIndexed { i, link -> "${link.quality}${if (public[i]) "" else "x"}" }}")
         CheckOutcome(
             true,
             "$opened · ${links.links.size} links, $playable the player may open ${hosts.take(3)}, " +

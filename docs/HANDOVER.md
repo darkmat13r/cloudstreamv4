@@ -22,6 +22,8 @@ when twenty-three more had merged since. **Trust `git log` over this heading.**
 
 ## Where things stand
 
+**Android TV opens the new home since `KMP-37`,** the first screen here to have run against a real plugin. `TvHomeSwitch.useComposeHome = false` is the rollback to `HomeFragment`, kept for one release. Phone and the emulator layout are unchanged.
+
 **Android TV shows the Compose rail since `KMP-33`.** `TvRailSwitch.useComposeRail = false` is the rollback to the XML
 rail, kept for one release. Phone and the emulator layout are unchanged.
 
@@ -101,7 +103,7 @@ search's repoint is the draft PR above:
 | `KMP-12` (row 18) | `:feature:search` | Steps 1–3: the contracts, the MVI machine, the TV screen, and the `SearchSource`/`SearchHistoryStore` implementations for **both** hosts | Step 4 is the open draft #91; step 5 (deleting the old fragment) is a release away. The touch screen does not exist |
 | `KMP-20` | `:feature:home` | The `HomeSource` seam and the desktop screen | **The TV screen**, though `design/TV Home.dc.html` draws it. The chosen source is not remembered across launches |
 | `KMP-15`/`16`/`25` | `:feature:detail`, `:media:subtitle` | The desktop detail page, source list, player and subtitles | Source and audio selectors (artboard 7e). No Android host |
-| `KMP-26` | `:feature:library` | Continue Watching, six lists, watch progress, resume, and a file store beside the search history | A bookmark button on the detail page, progress on search and home cards, sorting, Android |
+| `KMP-26` | `:feature:library` | Continue Watching, six lists, watch progress, resume, and a file store beside the search history | A bookmark button on the detail page, progress on search and home cards, sorting. Android TV reads the local lists (`KMP-34`); writes and phone are not done |
 
 **Update, 2026-11-02: Android TV opens the new search screen** (`KMP-12` steps 3 and 4). The rest of
 this paragraph's table is history. `SearchTvFragment` is the glue, gated by one line in `MainActivity`;
@@ -325,6 +327,11 @@ test task. A failed run can leave the previous run's XML in place, so check the 
 
 **Never leave the emulator idle**, and when another emulator is running, address yours by serial.
 
+**Run `adb` diagnostics inside the slot.** Every device run uses port 5580, so `emulator-5580` is whichever run holds
+the slot, and the serial does not tell you it is yours. A `logcat` or `screencap` started beside a queued run attaches to
+the other agent's emulator: on 2026-11-04 `KMP-34`'s diagnostic logcat read another agent's whole run and none of its
+own. Start it from a script run under `with-gradle-lock.sh`, in the same slot as the Gradle run it is watching.
+
 **This AVD is not the artboard.** 1280x720 at 213 dpi is about 961.5x540.8 dp, not 960x540. Do not assert
 full-screen geometry against 960x540 or hard-code a screen size: assert component bounds, spacing and focus, and
 read the real size from the device where a test needs it.
@@ -344,7 +351,7 @@ Record, which replaces the references in the working tree, then read `git diff` 
 Compare with the same command without the `screenshots=record` line, or as part of the whole gate. `tests_regex` runs only the cases.
 A missing reference fails, and never records itself. To record one case, narrow `tests_regex` to its name.
 
-Images go to `<module>/build/screenshots`, and to `/private/tmp/cloudstream-shared/review/shots/<module>/` for the reviewer, with `:` as `-`:
+Images go to `<module>/build/screenshots`, and to `/private/tmp/cloudstream-shared/review/shots/<branch>/<module>/` for the reviewer (the branch name with `/` as `-`, because several branches record the same module at once), with `:` as `-`:
 `recorded/<name>.png`, `failures/<name>.{actual,reference,diff}.png`, and `comparisons.tsv` with each case's result, different pixels and largest delta.
 In a diff, magenta is what changed. Never re-record to make red go away: fix it, or say in the PR that the change is intended.
 

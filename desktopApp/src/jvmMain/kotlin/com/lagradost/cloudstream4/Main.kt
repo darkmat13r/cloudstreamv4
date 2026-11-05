@@ -412,9 +412,8 @@ private fun SearchHost(
  * A title's page.
  *
  * @param resume where the library left this title, or null. Non-null asks for that episode's sources as
- *   soon as the page has loaded — which is what Resume means here: the right episode, one press from
- *   playing, starting where it was left. It does not play by itself, because a link still has to be
- *   chosen and this is the screen that chooses one.
+ *   soon as the page has loaded — which is what Resume means here: the right episode, starting where it
+ *   was left. Asking plays the best link found, as Play does (`KMP-39`), unless a row is chosen first.
  * @param onPlay given what the library needs to record a position, as well as what the player needs.
  *   The episode is the `data` of the last [DetailAction.PlayRequested] to pass through this host, which
  *   is the only place that knows it: `DetailState` does not carry it.

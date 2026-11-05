@@ -101,9 +101,9 @@
             box-sizing: border-box; border-radius: 24px; background: var(--raised);
             box-shadow: inset 0 0 0 1px var(--line); font: 600 24px/32px Manrope, sans-serif;
             color: var(--mut); white-space: nowrap; }
-          .tab.sel { color: #000000; background: var(--ink); box-shadow: none; }
+          .tab.sel { color: var(--ink); box-shadow: inset 0 0 0 1px var(--mut); }
           .tabn { font: 500 20px/32px "JetBrains Mono", monospace; color: var(--mut); }
-          .tab.sel .tabn { color: rgba(0,0,0,0.6); }
+          .tab.sel .tabn { color: var(--mut); }
 
           /* grid card 192x288 — ring is an outline, lift is 8 */
           .gc { width: 192px; position: absolute; }

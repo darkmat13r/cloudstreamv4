@@ -257,4 +257,118 @@ class LibraryViewModelTest {
         assertEquals("Prov", card.providerName)
         assertTrue(card.progress == null)
     }
+
+    private fun TestScope.tvModel(store: LibraryStore) = LibraryViewModel(
+        store,
+        TestScope(UnconfinedTestDispatcher(testScheduler)),
+        initialTab = LibraryTab.Bucket(LibraryBucket.Watching),
+    )
+
+    @Test
+    fun `a screen can open on a list of its own`() = runTest {
+        val vm = tvModel(Fake(listOf(title(dune, LibraryBucket.Watching))))
+        assertEquals(LibraryTab.Bucket(LibraryBucket.Watching), vm.state.value.tab)
+        assertIs<LibraryStatus.Showing>(vm.state.value.status)
+    }
+
+    @Test
+    fun `tab counts are what was read and a title in two lists is one title`() = runTest {
+        val vm = tvModel(
+            Fake(
+                listOf(
+                    title(dune, LibraryBucket.Watching),
+                    title(dune, LibraryBucket.Favourites),
+                    title(arrival, LibraryBucket.Completed),
+                    title(LibraryTitleId("played only"), null),
+                ),
+            ),
+        )
+        assertEquals(
+            mapOf(LibraryBucket.Watching to 1, LibraryBucket.Favourites to 1, LibraryBucket.Completed to 1),
+            vm.state.value.counts,
+        )
+        assertEquals(2, vm.state.value.totalTitles)
+    }
+
+    @Test
+    fun `no counts exist before a read or after a failed one`() = runTest {
+        val store = Fake(listOf(title(dune, LibraryBucket.Watching)))
+        store.failReads = IllegalStateException("no")
+        val vm = tvModel(store)
+        assertEquals(emptyMap(), vm.state.value.counts)
+        assertNull(vm.state.value.totalTitles)
+
+        store.failReads = null
+        vm.onAction(LibraryAction.Retry)
+        assertEquals(1, vm.state.value.totalTitles)
+
+        store.failReads = IllegalStateException("no")
+        vm.onAction(LibraryAction.Retry)
+        assertEquals(emptyMap(), vm.state.value.counts)
+        assertNull(vm.state.value.totalTitles)
+    }
+
+    @Test
+    fun `a filter narrows the cards and leaves the counts alone`() = runTest {
+        val vm = tvModel(
+            Fake(listOf(title(dune, LibraryBucket.Watching), title(arrival, LibraryBucket.Watching))),
+        )
+        vm.onAction(LibraryAction.FilterChanged("ARRIV"))
+        val cards = assertIs<LibraryStatus.Showing>(vm.state.value.status).cards
+        assertEquals(listOf(arrival), cards.map { it.id })
+        assertEquals(2, vm.state.value.counts[LibraryBucket.Watching])
+
+        vm.onAction(LibraryAction.FilterChanged("nothing has this"))
+        assertEquals(LibraryStatus.Empty, vm.state.value.status)
+
+        vm.onAction(LibraryAction.FilterChanged(""))
+        assertEquals(2, assertIs<LibraryStatus.Showing>(vm.state.value.status).cards.size)
+    }
+
+    @Test
+    fun `a filter set over a failure leaves the failure showing`() = runTest {
+        val store = Fake()
+        store.failReads = IllegalStateException("no")
+        val vm = tvModel(store)
+        vm.onAction(LibraryAction.FilterChanged("x"))
+        assertIs<LibraryStatus.Failed>(vm.state.value.status)
+    }
+
+    @Test
+    fun `opening from a grid keeps a return point until it is handled`() = runTest {
+        val vm = tvModel(Fake(listOf(title(dune, LibraryBucket.Watching))))
+        vm.onAction(LibraryAction.TitleActivated(dune, firstVisibleIndex = 14))
+        assertEquals(LibraryReturn(dune, 14), vm.state.value.returnTo)
+        vm.onAction(LibraryAction.Reappeared)
+        assertEquals(LibraryReturn(dune, 14, ready = true), vm.state.value.returnTo)
+        vm.onAction(LibraryAction.ReturnHandled)
+        assertNull(vm.state.value.returnTo)
+    }
+
+    @Test
+    fun `opening without an index keeps no return point, which is what desktop sends`() = runTest {
+        val vm = model(Fake(listOf(title(dune, LibraryBucket.Watching))))
+        vm.onAction(LibraryAction.TitleActivated(dune))
+        assertNull(vm.state.value.returnTo)
+    }
+
+    /** Loading would take the focused action off the screen every time the page came back. */
+    @Test
+    fun `coming back to an empty list shows no skeleton, and still reads`() = runTest {
+        val store = Fake()
+        val seen = mutableListOf<LibraryStatus>()
+        val vm = tvModel(store)
+        val watcher = launch(UnconfinedTestDispatcher(testScheduler)) { vm.state.collect { seen += it.status } }
+        seen.clear()
+        val reads = store.reads
+
+        vm.onAction(LibraryAction.Reappeared)
+        assertEquals(reads + 1, store.reads)
+        assertTrue(seen.none { it is LibraryStatus.Loading }, "$seen")
+
+        store.titles += title(dune, LibraryBucket.Watching)
+        vm.onAction(LibraryAction.Reappeared)
+        assertIs<LibraryStatus.Showing>(vm.state.value.status)
+        watcher.cancel()
+    }
 }

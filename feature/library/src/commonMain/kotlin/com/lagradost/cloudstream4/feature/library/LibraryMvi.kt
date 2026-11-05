@@ -43,7 +43,25 @@ data class LibraryCard(
     val bucket: LibraryBucket? = null,
     val progress: Float? = null,
     val resume: LibraryResume? = null,
+    /** The kind of title, already translated, or null where the host holds none. */
+    val typeLabel: String? = null,
+    /** What [posterUrl] must be requested with, or null. */
+    val posterHeaders: Map<String, String>? = null,
 )
+
+/**
+ * Where focus goes back to when a screen comes back from a title's page.
+ *
+ * In state and not in the composition, because the fragment's view is destroyed while the page is open
+ * and the ViewModel is what survives. [firstVisibleIndex] puts the grid back where it was, so the focused
+ * card does not jump to the top row.
+ *
+ * @param ready whether the screen has actually come back, which [LibraryAction.Reappeared] says. Focus waits
+ *   for it. On `Television_720p` a fragment composes its view well before it resumes, and focus taken in that
+ *   gap was gone by the time the page above had finished leaving: the window handed it to the rail.
+ */
+@Immutable
+data class LibraryReturn(val id: LibraryTitleId, val firstVisibleIndex: Int, val ready: Boolean = false)
 
 /** The wordless status. [LibraryCopy] turns it into what the design system draws. */
 sealed interface LibraryStatus {
@@ -69,6 +87,17 @@ data class LibraryState(
      * set. The id rather than a boolean, because the panel names the title it is about.
      */
     val picking: LibraryTitleId? = null,
+    /**
+     * Titles per list, counted from what was read, so a tab's number cannot disagree with its page. Empty
+     * until the first read and after a failed one: a tab then carries no number rather than a guess.
+     */
+    val counts: Map<LibraryBucket, Int> = emptyMap(),
+    /** Different titles in any list, or null when [counts] is empty for the same reason. */
+    val totalTitles: Int? = null,
+    /** Narrows the cards on every list. Never changes [counts], which are the lists' real sizes. */
+    val filter: String = "",
+    /** Set when a title is opened from a grid, and cleared once focus is back. */
+    val returnTo: LibraryReturn? = null,
 ) {
     /** The card the picker is open for, where it is still on screen. */
     val pickingCard: LibraryCard?
@@ -78,8 +107,19 @@ data class LibraryState(
 sealed interface LibraryAction {
     data class TabSelected(val tab: LibraryTab) : LibraryAction
 
-    /** Open the title's page, as a search hit would. */
-    data class TitleActivated(val id: LibraryTitleId) : LibraryAction
+    /**
+     * Open the title's page, as a search hit would.
+     *
+     * @param firstVisibleIndex where the grid was, from a screen that restores focus on its way back.
+     *   Null, the default, keeps no return point.
+     */
+    data class TitleActivated(val id: LibraryTitleId, val firstVisibleIndex: Int? = null) : LibraryAction
+
+    /** Focus is back where [LibraryState.returnTo] said, or that place is gone. */
+    data object ReturnHandled : LibraryAction
+
+    /** Narrows the list to titles containing this text. */
+    data class FilterChanged(val text: String) : LibraryAction
 
     /** Play from where it was left. */
     data class ResumeActivated(val id: LibraryTitleId) : LibraryAction
@@ -107,6 +147,15 @@ sealed interface LibraryAction {
 
     /** Re-read the store. Sent on arrival, because a bookmark may have been made on another screen. */
     data object Refresh : LibraryAction
+
+    /**
+     * Re-read the store without a skeleton, even from an empty list.
+     *
+     * [Refresh] puts an empty list through Loading, which on a TV would take the focused action off the
+     * screen and drop focus every time the page came back. Desktop has no such focus to lose. It is also
+     * what tells a return point the screen is back.
+     */
+    data object Reappeared : LibraryAction
 
     data object Retry : LibraryAction
 }
