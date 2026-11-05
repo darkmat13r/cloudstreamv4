@@ -40,6 +40,7 @@ import com.lagradost.cloudstream4.core.devicetest.assertScreenshot
 import com.lagradost.cloudstream4.core.devicetest.focusedLabel
 import com.lagradost.cloudstream4.core.devicetest.solidPoster
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
+import com.lagradost.cloudstream4.core.designsystem.panel.sidePanelOutsideDim
 import com.lagradost.cloudstream4.core.designsystem.rail.NavRail
 import com.lagradost.cloudstream4.core.designsystem.rail.NavRailItem
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
@@ -639,7 +640,13 @@ class HomeScreenTvDeviceTest {
             val state by viewModel.state.collectAsState()
             CloudStreamTheme {
                 Row(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) {
-                    NavRail(ShotRail, selectedIndex = HOME_INDEX, onSelect = {})
+                    // Dimmed while a side panel is open, as the TV shell's rail is (`TvRail`, 4d).
+                    NavRail(
+                        ShotRail,
+                        selectedIndex = HOME_INDEX,
+                        onSelect = {},
+                        modifier = Modifier.sidePanelOutsideDim(CloudStreamTheme.colors.bg),
+                    )
                     HomeScreenTv(
                         state = state,
                         onAction = viewModel::onAction,
