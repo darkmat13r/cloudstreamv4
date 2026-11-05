@@ -91,6 +91,9 @@
           .bbtn { height: 64px; min-width: 240px; padding: 0 32px; box-sizing: border-box;
             display: inline-flex; align-items: center; justify-content: center; border-radius: 16px;
             background: var(--ink); color: #000000; font: 800 24px/32px Manrope, sans-serif; white-space: nowrap; }
+          /* DS-16: a button's glyph, 32 square and 16 from the label, in the label's colour. The grey square stands for
+             the CloudStreamIcons glyph the rule table names. */
+          .bbtn .bgl { width:32px; height:32px; border-radius:8px; background:currentColor; flex:none; margin-right:16px; }
 
           /* tabs — 48-tall visual centred in a 96 cell lands at y200.
              The count's line box is 32, not 24: a 24 box centred in the 48 pill lands at +12. */
@@ -259,7 +262,7 @@
                 </div>
                 <i class="sg fail abs" style="left:224px;top:96px"></i>
                 <div class="btncell abs" style="left:648px;top:56px">
-                  <span class="bbtn" style="min-width:288px">Retry sync</span>
+                  <span class="bbtn" style="min-width:288px"><span class="bgl"></span>Retry sync</span>
                 </div>
                 <div class="field abs" style="left:960px;top:56px;width:456px">
                   <span class="fgl"></span><span class="qtext ph">Filter</span>
