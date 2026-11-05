@@ -87,6 +87,10 @@ meaning, icon buttons are for toggles and overflow, and a screen has one primary
 | Play next | `NextEpisode` | `PlayerSkipForward` |
 | Episodes | `Episodes` | `List` |
 | Browse library | `Library` | `Book` |
+| Browse home | `Home` | `Home` |
+| Back, Go back | `Back` | `ArrowLeft` |
+| Clear (a filter) | `Clear` | `CircleX` |
+| Extensions, Repositories | `Repository` | `Database` |
 | Manage profiles | `Profile` | `User` |
 | Sources | `Source` | `Server` |
 | Share | `Share` | `Share` |
