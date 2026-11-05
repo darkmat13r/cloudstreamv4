@@ -3,7 +3,9 @@ package com.lagradost.cloudstream4.core.designsystem.state
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
@@ -23,6 +25,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
+import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
+import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIconSize
+import com.lagradost.cloudstream4.core.designsystem.target.TextButtonDefaults
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 
@@ -74,7 +79,11 @@ object StateActionButtonDefaults {
  * This is a local button, not the shared one. When the controls group lands a general text
  * button with this geometry, delete this file and point [StateView] and [FailureBanner] at it.
  *
- * @param action label and behaviour, inseparable. See [StateAction].
+ * A [StateAction.icon] leads the label as it does on the shared text button: a
+ * [CloudStreamIconSize.Small] glyph, [TextButtonDefaults.IconGap] from the label, in the label's
+ * colour, with the pair centred. Without one, this is the text-only button it always was.
+ *
+ * @param action label, glyph and behaviour, inseparable. See [StateAction].
  * @param modifier applied to the button's own box.
  * @param emphasis see [StateActionEmphasis].
  */
@@ -106,13 +115,37 @@ fun StateActionButton(
             .padding(horizontal = StateActionButtonDefaults.HorizontalPadding),
         contentAlignment = Alignment.Center,
     ) {
-        Text(
-            text = action.label,
-            style = CloudStreamTheme.typography.label,
-            color = if (isPrimary) colors.bg else colors.ink,
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis,
-        )
+        val labelColor = if (isPrimary) colors.bg else colors.ink
+        val icon = action.icon
+        if (icon == null) {
+            Text(
+                text = action.label,
+                style = CloudStreamTheme.typography.label,
+                color = labelColor,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+            )
+        } else {
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(TextButtonDefaults.IconGap),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                CloudStreamIcon(
+                    icon = icon,
+                    contentDescription = null,
+                    size = CloudStreamIconSize.Small,
+                    tint = labelColor,
+                )
+                Text(
+                    text = action.label,
+                    style = CloudStreamTheme.typography.label,
+                    color = labelColor,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier.weight(1f, fill = false),
+                )
+            }
+        }
     }
 }
 

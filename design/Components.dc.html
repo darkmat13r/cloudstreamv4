@@ -67,7 +67,7 @@
             box-shadow: inset 0 0 0 1px rgba(255,255,255,0.07); }
 
           /* ---------- primitives ---------- */
-          .btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+          .btn { display: inline-flex; align-items: center; justify-content: center; gap: 16px;
             height: 64px; min-width: 240px; padding: 0 32px; box-sizing: border-box; border-radius: 16px;
             font: 700 24px/1 Manrope, sans-serif; background: #15191E; color: #FFFFFF;
             border: 1px solid rgba(255,255,255,0.2); }
@@ -76,6 +76,21 @@
           .btn.dis { opacity: 0.4; }
           .tri { width: 0; height: 0; border-left: 12px solid currentColor;
             border-top: 8px solid transparent; border-bottom: 8px solid transparent; }
+          /* DS-16: a button's glyph, 32 square, 16 from the label (the .btn gap), in the label's colour.
+             The grey square stands for the CloudStreamIcons glyph the rule table names. */
+          .bgl { width: 32px; height: 32px; border-radius: 8px; background: currentColor; flex: none; }
+          /* icon-only, toggles and overflow only: 96 target, 64 tile drawn as an outlined button, ring on the
+             tile, label under the cell while focused (drawn over a 32px reserve, not laid out) */
+          .icell { position: relative; width: 96px; height: 96px; display: flex; align-items: center;
+            justify-content: center; flex: none; }
+          .itile { width: 64px; height: 64px; box-sizing: border-box; border-radius: 16px; color: #FFFFFF;
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; }
+          .itile.on { background: #15191E; }
+          /* a toggle that is off: Tabler has no filled bookmark or heart, so on is ink on the fill, off is muted */
+          .itile.off { color: #858585; }
+          .icell.foc .itile { outline: 4px solid #FFFFFF; outline-offset: 4px; }
+          .ilab { position: absolute; left: 50%; top: 96px; transform: translateX(-50%);
+            font: 700 24px/32px Manrope, sans-serif; color: #FFFFFF; white-space: nowrap; }
 
           .ibx { width: 96px; height: 96px; display: flex; align-items: center; justify-content: center;
             border-radius: 12px; box-sizing: border-box; }
@@ -241,12 +256,17 @@
             <div class="spec">
               <div class="specl">BUTTON · h64 · min-width 240</div>
               <div class="fx col gap16" style="align-items:flex-start">
-                <span class="btn pri"><span class="tri"></span>Resume S2 E4</span>
-                <span class="btn pri foc"><span class="tri"></span>Resume S2 E4</span>
-                <span class="btn">Watch trailer</span>
+                <span class="btn pri"><span class="bgl"></span>Resume S2 E4</span>
+                <span class="btn pri foc"><span class="bgl"></span>Resume S2 E4</span>
+                <span class="btn"><span class="bgl"></span>Watch trailer</span>
                 <span class="btn dis">Unavailable</span>
+                <span class="fx gap24 ac" style="margin-bottom:32px">
+                  <span class="icell foc"><span class="itile on"><span class="bgl"></span></span><span class="ilab">Watchlist</span></span>
+                  <span class="icell"><span class="itile off"><span class="bgl"></span></span></span>
+                  <span class="icell"><span class="itile"><span class="bgl"></span></span></span>
+                </span>
               </div>
-              <div class="specm"><b>Primary is white fill, black label.</b> There is no coloured button in this system. Disabled is 40% opacity and stays focusable so a loading screen never has zero focus owners.</div>
+              <div class="specm"><b>Primary is white fill, black label, and there is one, first.</b> A common action leads with its glyph, 32 square and 16 from the label, in the label’s colour; one that no glyph conveys stays text. Icon-only is for a toggle, overflow or search: a 64 tile in a 96 target that names itself under the cell when focused; a toggle on is an ink glyph on a raised fill, off a muted glyph. There is no coloured button in this system. Disabled is 40% opacity and stays focusable so a loading screen never has zero focus owners.</div>
             </div>
 
             <div class="spec">
@@ -423,12 +443,12 @@
                 <div class="sv">
                   <div class="svh">No sources installed</div>
                   <div class="svd">CloudStream ships empty — add a repository to get started.</div>
-                  <div class="svb"><span class="btn pri foc">Add repository</span></div>
+                  <div class="svb"><span class="btn pri foc"><span class="bgl"></span>Add repository</span></div>
                 </div>
                 <div class="sv">
                   <div class="svh">vidplay didn’t respond</div>
                   <div class="svd">4 OF 5 PROVIDERS ANSWERED · TIMEOUT AFTER 8S</div>
-                  <div class="svb"><span class="btn pri foc">Retry</span><span class="btn">Open in browser</span></div>
+                  <div class="svb"><span class="btn pri foc"><span class="bgl"></span>Retry</span><span class="btn"><span class="bgl"></span>Open in browser</span></div>
                 </div>
               </div>
               <div class="specm">Headline in Manrope, detail in mono, at most two actions, <b>exactly one focusable</b>. Never a Toast.</div>

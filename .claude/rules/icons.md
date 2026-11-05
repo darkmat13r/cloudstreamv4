@@ -49,6 +49,8 @@ covers 90% and leaves you drawing the other 10% has not solved the problem this 
 - Tint from a token. An icon is never a hardcoded colour.
 - One glyph per meaning across the whole app. If play-in-a-list and play-in-the-HUD differ, that
   is a decision someone should make on purpose, in the design system, once.
+- Which buttons carry a glyph, which glyph, and when a button may be icon-only: the table in
+  `ui-components.md`, "Buttons" (`DEC-17`, 2026-11-05).
 
 ## Exceptions, and they are narrow
 
