@@ -1,5 +1,6 @@
 package com.lagradost.cloudstream4.core.designsystem.target
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsFocusedAsState
@@ -15,12 +16,14 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
+import com.lagradost.cloudstream4.core.designsystem.primitive.insetOutline
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 
 /**
  * The **icon-only** target class: a [CloudStreamDimens.IconTargetCell] (48dp) square focus cell
- * with a [IconCellDefaults.GlyphSize] (16dp) glyph centred inside it.
+ * holding a [IconCellDefaults.TileSize] (24dp) tile, with a [IconCellDefaults.GlyphSize] (16dp)
+ * glyph centred on it.
  *
  * ## Why the cell and the glyph are different sizes
  *
@@ -30,9 +33,17 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
  * in its slot would land it off the 4dp step — the failure geometry rule 4 describes for chips,
  * in its icon form. The cell is the fixed thing; the glyph floats in the middle of it.
  *
- * This cell carries **no background**. Unfocused it is invisible: the glyph is the only thing on
- * screen. Focus is communicated entirely by the ring, which is why the cell must not sit inside a
- * clipping ancestor (see [tvFocusRing]).
+ * ## The ring goes on the tile, not the cell
+ *
+ * The tile is what the boards draw: `.ivis`, 48px, a `raised` fill with a `line` hairline, inside
+ * every 96px `.ibx`. The ring sits on it, [CloudStreamDimens.FocusRingOffset] (2dp) clear on all
+ * four sides, as `TV Home Extras` draws `.ivis.foc` and as the owner ruled for chips (`DEC-17`,
+ * 2026-11-05: *"make chips even like buttons"*). It used to ring the 48dp cell, which has no fill,
+ * so it sat 12dp from the tile on every side. The cell stays the focus and hit target and still
+ * sets every position. The ring stays inside the cell, so no neighbour is overdrawn.
+ *
+ * The tile's corner is `CloudStreamTheme.shapes.medium`, the token for a control, where the
+ * boards draw 8px.
  *
  * ## Focus
  *
@@ -69,6 +80,8 @@ fun IconCell(
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val focused by interactionSource.collectIsFocusedAsState()
+    val colors = CloudStreamTheme.colors
+    val shape = CloudStreamTheme.shapes.medium
     Box(
         modifier = modifier
             .size(CloudStreamDimens.IconTargetCell)
@@ -78,15 +91,23 @@ fun IconCell(
                 enabled = enabled,
                 role = Role.Button,
                 onClick = onClick,
-            )
-            .tvFocusRing(focused = focused, shape = CloudStreamTheme.shapes.medium),
+            ),
         contentAlignment = Alignment.Center,
     ) {
         Box(
-            modifier = Modifier.size(IconCellDefaults.GlyphSize),
+            modifier = Modifier
+                .size(IconCellDefaults.TileSize)
+                .tvFocusRing(focused = focused, shape = shape)
+                .background(colors.raised, shape)
+                .insetOutline(colors.line, shape),
             contentAlignment = Alignment.Center,
         ) {
-            glyph(focused)
+            Box(
+                modifier = Modifier.size(IconCellDefaults.GlyphSize),
+                contentAlignment = Alignment.Center,
+            ) {
+                glyph(focused)
+            }
         }
     }
 }
@@ -94,6 +115,14 @@ fun IconCell(
 /** Values [IconCell] needs that `:core:theme` does not name yet. */
 @Immutable
 object IconCellDefaults {
+
+    /**
+     * The visible tile the ring sits on: `.ivis`, 48px on the boards, halved.
+     *
+     * Mirrors [CloudStreamDimens.ChipVisualHeight] (24dp) numerically, the same half-of-the-cell
+     * visual. **Promote this to `CloudStreamDimens.IconTileSize`.**
+     */
+    val TileSize: Dp = 24.dp
 
     /**
      * The glyph inside the cell: 32px on the 1920x1080 artboard, halved.

@@ -132,10 +132,11 @@ private fun PromptText(prompt: StatePrompt, detail: String?) {
         modifier = Modifier.widthIn(max = StateViewDefaults.MaxTextWidth),
     )
     Spacer(Modifier.height(StateViewDefaults.TextGap))
+    // `muted`, as `TV Library` draws `.svb`; `TV Search`'s closing note, point 11, gives the contrast.
     Text(
         text = prompt.body,
         style = typography.body,
-        color = colors.ink2,
+        color = colors.muted,
         textAlign = TextAlign.Center,
         modifier = Modifier.widthIn(max = StateViewDefaults.MaxTextWidth),
     )

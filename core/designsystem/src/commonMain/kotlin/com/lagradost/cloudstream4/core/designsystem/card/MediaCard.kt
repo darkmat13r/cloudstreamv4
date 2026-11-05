@@ -94,13 +94,11 @@ private fun MediaCardSurface(
     ) {
         Box(Modifier.fillMaxSize(), propagateMinConstraints = true) { image() }
         if (state.focused && state.title != null) {
-            MediaCardScrim()
             MediaCardReveal(
                 title = state.title,
                 meta = state.meta,
-                modifier = Modifier
-                    .align(Alignment.BottomStart)
-                    .padding(rememberRevealPadding(hasProgressRule = state.progress != null)),
+                contentPadding = rememberRevealPadding(hasProgressRule = state.progress != null),
+                modifier = Modifier.align(Alignment.BottomStart),
             )
         }
         MediaCardBadges(slots)
@@ -130,8 +128,9 @@ private fun BoxScope.MediaCardBadges(slots: MediaCardSlots) {
 }
 
 /**
- * Inset for the revealed text stack. The bottom gains the rule's thickness when a progress rule is
- * present, so the title clears it: 8 + 4 = 12dp, still on the step.
+ * Inset for the revealed text stack inside its scrim block. The top is the scrim's lead above the
+ * text. The bottom gains the rule's thickness when a progress rule is present, so the title clears
+ * it: 4 + 4 = 8dp, still on the step.
  */
 @Composable
 private fun rememberRevealPadding(hasProgressRule: Boolean): PaddingValues =
@@ -139,7 +138,7 @@ private fun rememberRevealPadding(hasProgressRule: Boolean): PaddingValues =
         val inset = MediaCardDefaults.ContentPadding
         PaddingValues(
             start = inset,
-            top = inset,
+            top = MediaCardDefaults.RevealScrimLead,
             end = inset,
             bottom = if (hasProgressRule) inset + MediaCardDefaults.ProgressRuleHeight else inset,
         )

@@ -10,12 +10,14 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.runtime.State
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -206,6 +208,16 @@ fun SidePanelHost(
         }
     }
 
+    // The same scrim, for a view outside this host: the TV shell's rail (4d). See SidePanelOutsideDim.
+    LaunchedEffect(travel) {
+        snapshotFlow { SCRIM_ALPHA * (SidePanelMotion.CLOSED - travel.value) }.collect { alpha ->
+            if (alpha > 0f) SidePanelOutsideDim.publish(travel, alpha) else SidePanelOutsideDim.clear(travel)
+        }
+    }
+    DisposableEffect(travel) {
+        onDispose { SidePanelOutsideDim.clear(travel) }
+    }
+
     LaunchedEffect(expanded) {
         travel.animateTo(
             targetValue = if (expanded) SidePanelMotion.OPEN else SidePanelMotion.CLOSED,
@@ -226,6 +238,10 @@ fun SidePanelHost(
  * also ships to touch adds its own dismiss affordance over this.
  *
  * The alpha is read in `drawBehind`, so the scrim re-draws per frame without recomposing.
+ *
+ * The host also publishes this opacity to [SidePanelOutsideDim], so a view outside it can dim in
+ * step: `TV Search` 4d dims the nav rail with the content, and on Android TV the rail is a separate
+ * view in the shell.
  */
 @Composable
 private fun Scrim(travel: Animatable<Float, AnimationVector1D>) {

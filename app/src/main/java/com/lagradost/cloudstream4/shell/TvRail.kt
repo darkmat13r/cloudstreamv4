@@ -11,6 +11,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.ComposeView
@@ -23,6 +24,7 @@ import com.lagradost.cloudstream3.MainActivity
 import com.lagradost.cloudstream3.R
 import com.lagradost.cloudstream3.databinding.ActivityMainBinding
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
+import com.lagradost.cloudstream4.core.designsystem.panel.sidePanelOutsideDim
 import com.lagradost.cloudstream4.core.designsystem.rail.NavRailHost
 import com.lagradost.cloudstream4.core.designsystem.rail.NavRailItem
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
@@ -92,6 +94,8 @@ class TvRail(
                     selectedIndex = selectedIndex,
                     onSelect = { binding.navRailView.selectedItemId = destinations[it] },
                     onLeave = ::returnToPage,
+                    // An open side panel dims the rail with the page, as `TV Search` 4d draws it.
+                    modifier = Modifier.sidePanelOutsideDim(CloudStreamTheme.colors.bg),
                     onExpandedChange = { expanded ->
                         updateLayoutParams {
                             width = if (expanded) ViewGroup.LayoutParams.MATCH_PARENT else railWidth
