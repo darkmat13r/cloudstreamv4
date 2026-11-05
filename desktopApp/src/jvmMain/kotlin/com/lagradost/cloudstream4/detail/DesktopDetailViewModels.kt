@@ -26,10 +26,12 @@ internal object DesktopDetailViewModels {
         live.getOrPut(id) { DetailViewModel(id, source, scope, playBestAfter = BEST_LINK_WAIT) }
 
     /**
-     * How long after a title's first playable link the best one found is played (owner, 2026-11-05: "highest
-     * resolution first"). Measured on CineStream's CineTmdb in a copy of the owner's plugins: see `KMP-39`.
+     * How long after a title's first playable link the best one found is played, unless a 2160p one arrives first
+     * (owner, 2026-11-05: "highest resolution first"). CineStream's CineTmdb, five titles in a copy of the owner's
+     * plugins: its best link came 3.8 to 7.1 s after its first, and 7.2 s was the latest in all 15 runs of its three
+     * providers. See `KMP-39`.
      */
-    val BEST_LINK_WAIT = 6.seconds
+    val BEST_LINK_WAIT = 8.seconds
 
     /** What a title's search has found so far, for the player that is over its page. */
     fun subtitles(id: String): Flow<List<SubtitleTrack>> =

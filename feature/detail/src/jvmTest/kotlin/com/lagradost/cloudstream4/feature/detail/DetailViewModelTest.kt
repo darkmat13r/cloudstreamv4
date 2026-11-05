@@ -272,6 +272,21 @@ class DetailViewModelTest {
     }
 
     @Test
+    fun `a 2160p link plays at once, because nothing can rank above it`() = runTest {
+        val arriving = Arriving()
+        val vm = waiting(FakeSource({ movie }, stream = { arriving.flow }))
+        val played = plays(vm)
+        vm.onAction(DetailAction.PlayRequested("data"))
+        arriving.send(sd, fhd)
+        assertEquals(emptyList(), played)
+        arriving.send(sd, fhd, uhd)
+        assertEquals(listOf(uhd), played, "without waiting out the rest")
+        advanceTimeBy(WAIT * 2)
+        arriving.updates.close()
+        assertEquals(listOf(uhd), played)
+    }
+
+    @Test
     fun `the wait counts from the first link, not from the request`() = runTest {
         val arriving = Arriving()
         val vm = waiting(FakeSource({ movie }, stream = { arriving.flow }))
@@ -316,7 +331,7 @@ class DetailViewModelTest {
         val vm = waiting(FakeSource({ movie }, stream = { arriving.flow }))
         val played = plays(vm)
         vm.onAction(DetailAction.PlayRequested("data"))
-        arriving.send(sd, uhd)
+        arriving.send(sd, fhd)
         vm.onAction(DetailAction.LinkActivated(sd))
         advanceTimeBy(WAIT * 2)
         arriving.updates.close()
@@ -329,7 +344,7 @@ class DetailViewModelTest {
         val vm = waiting(FakeSource({ movie }, stream = { arriving.flow }))
         val played = plays(vm)
         vm.onAction(DetailAction.PlayRequested("data"))
-        arriving.send(uhd)
+        arriving.send(fhd)
         vm.onAction(DetailAction.LinksDismissed)
         advanceTimeBy(WAIT * 2)
         assertEquals(emptyList(), played)

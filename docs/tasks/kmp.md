@@ -3391,3 +3391,83 @@ dump, so `DownloadFacts` and its `Flow.map` helper classes appear, as do the man
 - Queue positions with the real service running. `merge` is tested on the JVM; the device test reads `DownloadFacts.progress`
   with an empty queue only.
 - What the notification shows for a truncated file.
+
+## KMP-39 — The highest resolution plays first, and the next best when it fails · **measured 2026-11-05**
+
+**Status:** in pr. **Owner's request 2026-11-05:** "random to the highest resolution, if not then next best resolution and
+then next", confirmed as: when a film or episode plays, try its highest-resolution link first, then the next best, then the
+next. Desktop first, because the owner uses it daily with CineStream's CineTmdb; the ordering is in common code for TV.
+
+### What it does
+
+- **Play plays.** Asking to play (Play, an episode, or Resume from the library) still opens the source list, and after a wait
+  plays the best link found so far. A row clicked inside the wait is the choice, and nothing plays over it. Backing out of
+  the player lands on the list, which does not play again by itself.
+- **The wait:** 8 s from the first playable link, or at once if the search ends sooner or a 2160p link arrives, since nothing
+  ranks above it (the Android player also starts at once at its own top, `AUTO_SKIP_PRIORITY`).
+- **On failure, the next best, without asking.** A stream fails when its host will not start it, libVLC gives up on it, or it
+  ends without a single frame. The player moves to the best link not yet tried, at the same position, and says
+  `Source error · <name> · <quality>` above the controls for five seconds while the transport says `Loading…`.
+- **No loop.** Each link is tried by itself once. When every link found has failed, the player shows the failure state it
+  always had, and the Source selector stays the way out. A link that arrives after that is tried in turn.
+- **The player's source list is best first,** the order it tries them in. It still holds its rows while open. Any row,
+  failed or not, can be chosen.
+- **What carries across a switch:** the position (`ResumeSeek`, as `KMP-29`), the subtitle track (the session is the
+  screen's), and now the audio track. **Before this, the audio track was not carried:** a new source opened a new host, and
+  nothing selected a track on it, so it played libVLC's default whatever had been chosen. Now a chosen track is matched on
+  the new stream by libVLC's whole description, then by its language, and left at the default when neither matches.
+
+### The ranking, from the old app
+
+`PlayerGeneratorViewModel.sortLinks` with `QualityDataHelper.getLinkPriority`: source priority plus quality priority, sorted
+high first, stable. With no profile changed every source is 1, so the order is the quality's `defaultPriority` for the
+`Qualities` entry nearest the link's number. Measured against the real enum for every number from -10 to 5000
+(`SourceSwitcherTest`).
+
+| Quality | 2160 | 1440 | 1080 | 720 | 480 | **Unknown (400)** | 360 | 240 | 144, and 0 (Auto) |
+|---|---|---|---|---|---|---|---|---|---|
+| Rank | 8 | 7 | 6 | 5 | 4 | **4** | 3 | 2 | 0 |
+
+**Unknown is not last, because the old app does otherwise:** `Qualities.Unknown` is 400 with priority 4, the same as 480p, so
+an unknown link ties with 480p (arrival order decides) and beats 360p. A null quality is unknown too (`closestQuality(null)`).
+CineStream's odd numbers rank as their nearest: 266 as 240p, 534 as 480p, 800 as 720p.
+
+**Where this differs from Android, on purpose:** Android's next mirror is the next index after the current one in the sorted
+list, so a better link that arrived after the start is skipped. Here the next is the best not yet tried.
+
+### The wait, measured
+
+Copied `~/.cloudstream4/extensions/CineStream.cs3`, its `.sha256` and `extensions.decisions` into a fresh home in the
+scratchpad; the packaged app with `JAVA_TOOL_OPTIONS=-Duser.home=<that home>`, `--check-extensions <query> --verbose`, which
+now prints each new link's quality and, at the end, which the player may open. Numbers only: no URL was logged. Times are
+for links the player may open, from the request; CineStream 487, sha256 `30dc6436…`.
+
+| CineTmdb | First playable answer | Best in it | Best overall | Arrived | After the first | Search ended |
+|---|---:|---:|---:|---:|---:|---:|
+| Inception | 1,149 ms | Unknown | 2160p | 5,642 ms | +4.5 s | 64.5 s |
+| The Godfather | 957 ms | Unknown | 2160p | 4,747 ms | +3.8 s | 73.1 s |
+| Interstellar | 1,088 ms | 1080p | 2160p | 8,200 ms | +7.1 s | 73.6 s |
+| Oppenheimer | 1,276 ms | 872 (as 720p) | 2160p | 7,273 ms | +6.0 s | 68.0 s |
+| Breaking Bad, S1E1 | 1,237 ms | 720p | 2160p | 6,102 ms | +4.9 s | 19.0 s |
+
+In none of the five was the first answer's best the title's best. CineStream's other two providers, in the same runs, put
+their best 0 to 7.2 s after their first, 15 runs in all, and the first 1080p 0 to 6.4 s after it. One earlier run of
+Inception, without the may-open column, had CineTmdb's first link (1080p, not one the player may open) at 187 ms and its
+first 2160p at 4,135 ms.
+
+**Chosen: wait, rather than start and upgrade.** Starting at once would show 480p or 720p about 1 s in, then restart the
+picture 4 to 7 s later for 2160p: a second host start (2.6 to 3.0 s for a remote switch, `KMP-29`), a rebuffer and a jump, to
+arrive at the same picture no sooner than waiting does. 8 s covers every run measured; a 2160p link ends the wait early, which
+in these runs was 3.8 to 7.1 s after the first link. A title with no 2160p waits the full 8 s. The constant is
+`DesktopDetailViewModels.BEST_LINK_WAIT`.
+
+### Where it lives
+
+`:feature:detail` common code: `bestFirst`, `rankOf`, `TOP_RANK` and `StreamQueue` (`StreamOrder.kt`), and the wait in
+`DetailViewModel(playBestAfter)`, null by default so a host that does not ask keeps today's behaviour. `StreamLink` gained
+`quality`, the plugin's own number. Desktop: `SourceSwitcher` (what the screen decides, testable with no host), `AudioChoice`,
+the notice in `PlayerScreen`, and `--check-subtitle-render … plugin:<provider>:<query> --best-first`, which runs the window's
+own path silently.
+
+**Words:** none new. Android's player says `source_error` in a toast and moves on; no string says "trying the next source",
+so the notice is `Source error` and the name, and the rest is the transport's `Loading…` and the selector. No baseline move.

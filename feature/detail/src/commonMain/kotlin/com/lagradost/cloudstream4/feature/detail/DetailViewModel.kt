@@ -23,8 +23,9 @@ import kotlinx.coroutines.launch
  *
  * @param id opaque to this module; the value [DetailSource] was given to resolve.
  * @param playBestAfter when set, asking to play also plays: the best link found so far ([bestFirst]) once this long
- *   has passed since the first one arrived, or as soon as the search ends if that is sooner. Once per request, and
- *   not at all if someone chose a row first. Null leaves the choice to the person.
+ *   has passed since the first one arrived, or sooner if the search ends or a link of the top rank arrives, since
+ *   nothing can beat that ([TOP_RANK]). Once per request, and not at all if someone chose a row first. Null leaves
+ *   the choice to the person.
  */
 class DetailViewModel(
     private val id: String,
@@ -100,6 +101,8 @@ class DetailViewModel(
                     source.links(id, data).collect { links ->
                         latest = links
                         updateState { if (request == linksRequest) copy(links = DetailLoad.Loaded(links)) else this }
+                        // Nothing ranks above it, so there is nothing left to wait for.
+                        if (playBestAfter != null && links.any { rankOf(it.quality) == TOP_RANK }) playBest(request, links)
                         if (playBestAfter != null && wait == null && links.isNotEmpty()) {
                             wait = launch {
                                 delay(playBestAfter)

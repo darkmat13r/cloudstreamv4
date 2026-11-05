@@ -44,6 +44,9 @@ private val QUALITY_RANKS = listOf(
 
 private const val UNKNOWN_RANK = 4
 
+/** 2160p's, the highest any quality can rank: the Android player starts at once at its own top (`AUTO_SKIP_PRIORITY`). */
+const val TOP_RANK = 8
+
 /**
  * Which stream to play, best first, and which next when one fails, for a player that is given a title's links as
  * they are found. Desktop's player uses it; Android TV's can, because it knows nothing of either.
