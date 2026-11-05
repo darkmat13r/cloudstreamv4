@@ -17,6 +17,8 @@
 : ${ANDROID_HOME:=$HOME/Library/Android/sdk}
 export ANDROID_HOME
 avd=${1:?usage: device-tests.sh <avd> [gradle task or flag ...]}
+# The shared slot wrapper may hand this run the second TV emulator (owner, 2026-11-05). Both have the same image and size.
+avd=${CS_EMULATOR_AVD:-$avd}
 shift
 
 flags=()
@@ -47,7 +49,7 @@ if (( ${#builds} )); then
     TZ=UTC taskpolicy -c utility ./gradlew $flags $builds || exit $?
 fi
 
-PORT=5580
+PORT=${CS_EMULATOR_PORT:-5580}
 export ANDROID_SERIAL=emulator-$PORT
 adb=$ANDROID_HOME/platform-tools/adb
 
