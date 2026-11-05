@@ -36,7 +36,7 @@ enum class StateActionEmphasis {
     /** An `ink` fill with a `bg` label. The one action of a full-surface state. */
     Primary,
 
-    /** A `raised` fill with an `ink` label. The retry that rides a chip row. */
+    /** A `raised` fill with an `ink` label. No caller uses it since `FailureBanner`'s retry became [Primary]. */
     Secondary,
 }
 

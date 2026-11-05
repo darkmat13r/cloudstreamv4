@@ -400,8 +400,8 @@ private fun HomeChromeRow(
 }
 
 /**
- * `FailureBanner`'s content with a hollow neutral marker, which is what `DEC-17` rules a failure looks like. That component
- * still paints its dot in `live`, so it is not used here: reported in `KMP-37`, and left for the owner.
+ * `FailureBanner`'s content: a hollow neutral marker, which is what `DEC-17` rules a failure looks like, and the retry as the
+ * `ink` primary, as `FailureBanner` draws it since `DS-14` (`TV Search` 4b's `.bbtn`).
  */
 @Composable
 private fun HomeFailureNotice(notice: FailureNotice, stops: HomeStops, modifier: Modifier = Modifier) {
@@ -428,7 +428,7 @@ private fun HomeFailureNotice(notice: FailureNotice, stops: HomeStops, modifier:
             modifier = Modifier.widthIn(max = HomeScreenTvDefaults.FailureDetailMaxWidth),
         )
         Spacer(Modifier.width(CloudStreamDimens.ListRowPadding))
-        StateActionButton(notice.retry, Modifier.homeStop(stops), StateActionEmphasis.Secondary)
+        StateActionButton(notice.retry, Modifier.homeStop(stops), StateActionEmphasis.Primary)
     }
 }
 

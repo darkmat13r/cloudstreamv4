@@ -1,6 +1,7 @@
 package com.lagradost.cloudstream4.core.designsystem.target
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -130,6 +131,35 @@ class FocusRingGapTest {
 
             names.forEach { name ->
                 assertTrue(dpad.press(FocusDirection.Next, harness), "focus reaches $name")
+                harness.pixels().assertEvenRing(visuals.getValue(name), name)
+            }
+        }
+    }
+
+    @Test
+    fun `an icon cell's ring is on its 24dp tile, the same distance on all four sides`() {
+        val dpad = Dpad()
+        val bounds = Bounds()
+        Harness {
+            dpad.Install()
+            Ground {
+                Row(horizontalArrangement = Arrangement.spacedBy(CloudStreamDimens.MinFocusGap)) {
+                    IconCell({}, Modifier.onGloballyPositioned(bounds.record(FIRST))) {}
+                    IconCell({}, Modifier.onGloballyPositioned(bounds.record(SECOND))) {}
+                }
+            }
+        }.use { harness ->
+            harness.settle()
+            val rest = harness.pixels()
+            val tile = IconCellDefaults.TileSize.value.toInt()
+            val visuals = listOf(FIRST, SECOND).associateWith { rest.chipVisual(bounds[it]) }
+            visuals.forEach { (name, visual) ->
+                assertEquals(tile, visual.right - visual.left, "$name: the tile is drawn at rest")
+                assertEquals(tile, visual.bottom - visual.top, "$name: the tile is drawn at rest")
+            }
+            listOf(FIRST, SECOND).forEach { name ->
+                assertTrue(dpad.press(FocusDirection.Next, harness), "focus reaches $name")
+                assertEquals(CloudStreamDimens.IconTargetCell.value, bounds[name].width, "$name: the cell is still 48dp")
                 harness.pixels().assertEvenRing(visuals.getValue(name), name)
             }
         }
