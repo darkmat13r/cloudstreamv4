@@ -161,6 +161,10 @@
 <string name="search_hint">Axtar…</string>
 <string name="search_poster_img_des">Afişa</string>
 <string name="search_state_idle_body_desktop">Başlıq yazın. Hər mənbə cavab verdikcə nəticələr onun altında görünür.</string>
+<string name="search_state_no_results_type_filter">Yalnız %s. Növ filtriniz axtarışı daraldır.</string>
+<string name="search_tv_source_failed">UĞURSUZ %s</string>
+<string name="search_tv_source_pinned">SABİTLƏNİB</string>
+<string name="search_tv_sources_panel_meta">%2$d İÇİNDƏN %1$d AKTİV · DƏYİŞİKLİKLƏR HAZIR İLƏ TƏTBİQ OLUNUR</string>
 <string name="season">Sezon</string>
 <string name="season_short">S</string>
 <string name="seek_back_10_seconds">10 saniyə geri keç</string>

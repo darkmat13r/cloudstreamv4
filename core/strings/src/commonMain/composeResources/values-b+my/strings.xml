@@ -417,6 +417,10 @@
 <string name="search_provider_text_providers">ပ့ံပိုးပေးသောဝန်ဆောင်မှုများအသုံးပြု၍ရှာရန်</string>
 <string name="search_provider_text_types">အမျိုးအစားများအသုံးပြု၍ရှာရန်</string>
 <string name="search_state_idle_body_desktop">ခေါင်းစဉ်တစ်ခု ရိုက်ထည့်ပါ။ ရင်းမြစ်တစ်ခုစီ တုံ့ပြန်သည်နှင့် ရလဒ်များကို ၎င်းအောက်တွင် ပြသပါမည်။</string>
+<string name="search_state_no_results_type_filter">%s သာ။ သင့်အမျိုးအစား စစ်ထုတ်မှုက ရှာဖွေမှုကို ကျဉ်းစေနေသည်။</string>
+<string name="search_tv_source_failed">မအောင်မြင်ပါ %s</string>
+<string name="search_tv_source_pinned">ပင်ထိုးထား</string>
+<string name="search_tv_sources_panel_meta">%2$d ခုအနက် %1$d ခု ဖွင့်ထား · ပြောင်းလဲမှုများကို ပြီးပြီ တွင် အသုံးပြုမည်</string>
 <string name="season">အတွဲ</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">အတွဲ</string>

@@ -120,6 +120,10 @@
 <string name="search_provider_text_providers">"አቅራቢዎችን በመጠቀም ይፈልጉ"</string>
 <string name="search_provider_text_types">"ዓይነቶችን በመጠቀም ይፈልጉ"</string>
 <string name="search_state_idle_body_desktop">"ርዕስ ይተይቡ። ውጤቶች እያንዳንዱ ምንጭ ሲመልስ ከሱ ስር ይታያሉ።"</string>
+<string name="search_state_no_results_type_filter" formatted="true">"%s ብቻ። የአይነት ማጣሪያዎ ፍለጋውን እያጠበበው ነው።"</string>
+<string name="search_tv_source_failed" formatted="true">"አልተሳካም %s"</string>
+<string name="search_tv_source_pinned">"ተሰክቷል"</string>
+<string name="search_tv_sources_panel_meta" formatted="true">"ከ%2$d ውስጥ %1$d ነቅተዋል · ለውጦች በተከናውኗል ላይ ይተገበራሉ"</string>
 <string name="seek_back_10_seconds">"10 ሰከንድ ወደ ኋላ"</string>
 <string name="seek_forward_10_seconds">"10 ሰከንድ ወደ ፊት"</string>
 <string name="skip_loading">"መጫንን ዝለል"</string>

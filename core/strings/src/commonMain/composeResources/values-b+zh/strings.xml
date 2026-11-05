@@ -572,8 +572,12 @@
 <string name="search_provider_text_providers">按片源搜索</string>
 <string name="search_provider_text_types">按类型搜索</string>
 <string name="search_state_idle_body_desktop">输入标题。每个来源响应后，结果会显示在其下方。</string>
+<string name="search_state_no_results_type_filter">仅限%s。类型筛选正在缩小搜索范围。</string>
 <string name="search_suggestions">搜索建议</string>
 <string name="search_suggestions_des">输入时显示搜索建议</string>
+<string name="search_tv_source_failed">失败 %s</string>
+<string name="search_tv_source_pinned">已置顶</string>
+<string name="search_tv_sources_panel_meta">已启用 %1$d / %2$d · 更改将在点击完成后生效</string>
 <string name="season">季</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">S</string>

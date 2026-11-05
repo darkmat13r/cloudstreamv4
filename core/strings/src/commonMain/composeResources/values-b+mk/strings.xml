@@ -568,8 +568,12 @@
 <string name="search_provider_text_providers">Пребарувај користејќи провајдери</string>
 <string name="search_provider_text_types">Пребарувај користејќи типови</string>
 <string name="search_state_idle_body_desktop">Внеси наслов. Резултатите се појавуваат под секој извор кога ќе одговори.</string>
+<string name="search_state_no_results_type_filter">Само %s. Вашиот филтер за тип го стеснува пребарувањето.</string>
 <string name="search_suggestions">Предлози за пребарување</string>
 <string name="search_suggestions_des">Прикажувај предлози за пребарување додека пишуваш</string>
+<string name="search_tv_source_failed">НЕУСПЕШНО %s</string>
+<string name="search_tv_source_pinned">ЗАКАЧЕНО</string>
+<string name="search_tv_sources_panel_meta">%1$d ОД %2$d ОВОЗМОЖЕНИ · ПРОМЕНИТЕ СЕ ПРИМЕНУВААТ ПО ГОТОВО</string>
 <string name="season">Сезона</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">С</string>

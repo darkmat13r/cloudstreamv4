@@ -503,6 +503,10 @@
 <string name="search_provider_text_providers">Căutare în funcție de furnizor</string>
 <string name="search_provider_text_types">Căutare în funcție de tip</string>
 <string name="search_state_idle_body_desktop">Tastați un titlu. Rezultatele apar sub fiecare sursă când răspunde.</string>
+<string name="search_state_no_results_type_filter">Doar %s. Filtrul de tip restrânge căutarea.</string>
+<string name="search_tv_source_failed">EȘUAT %s</string>
+<string name="search_tv_source_pinned">FIXAT</string>
+<string name="search_tv_sources_panel_meta">%1$d DIN %2$d ACTIVATE · MODIFICĂRILE SE APLICĂ LA TERMINAT</string>
 <string name="season">Sezonul</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">S</string>

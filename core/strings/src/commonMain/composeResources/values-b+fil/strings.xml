@@ -161,6 +161,10 @@
 <string name="search_provider_text_providers">Maghanap gamit ang mga tagatustos</string>
 <string name="search_provider_text_types">Maghanap gamit ang mga uri</string>
 <string name="search_state_idle_body_desktop">Mag-type ng pamagat. Lalabas ang mga resulta sa ilalim ng bawat source kapag sumagot ito.</string>
+<string name="search_state_no_results_type_filter">%s lang. Pinipigilan ng type filter mo ang paghahanap.</string>
+<string name="search_tv_source_failed">NABIGO %s</string>
+<string name="search_tv_source_pinned">NAKA-PIN</string>
+<string name="search_tv_sources_panel_meta">%1$d SA %2$d ANG NAKA-ENABLE · ILALAPAT ANG MGA PAGBABAGO KAPAG PININDOT ANG TAPOS NA</string>
 <string name="seek_back_10_seconds">Bumalik ng 10 segundo</string>
 <string name="seek_forward_10_seconds">Umabante ng 10 segundo</string>
 <string name="select_all">Piliin Lahat</string>

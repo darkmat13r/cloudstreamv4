@@ -568,8 +568,12 @@
 <string name="search_provider_text_providers">"Traži koristeći pružatelje usluga"</string>
 <string name="search_provider_text_types">"Traži koristeći vrste"</string>
 <string name="search_state_idle_body_desktop">"Upišite naslov. Rezultati se pojavljuju ispod svakog izvora kad odgovori."</string>
+<string name="search_state_no_results_type_filter" formatted="true">"Samo %s. Vaš filtar vrste sužava pretraživanje."</string>
 <string name="search_suggestions">"Prijedlozi za pretraživanje"</string>
 <string name="search_suggestions_des">"Prikaži prijedloge za pretraživanje tijekom tipkanja"</string>
+<string name="search_tv_source_failed" formatted="true">"NEUSPJELO %s"</string>
+<string name="search_tv_source_pinned">"PRIKVAČENO"</string>
+<string name="search_tv_sources_panel_meta" formatted="true">"%1$d OD %2$d UKLJUČENO · PROMJENE VRIJEDE NAKON GOTOVO"</string>
 <string name="season">"Sezona"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"S"</string>

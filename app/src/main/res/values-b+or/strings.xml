@@ -153,6 +153,10 @@
 <string name="search_poster_img_des">"ପୋଷ୍ଟର୍"</string>
 <string name="search_provider_text_providers">"ପ୍ରଦାତା ଵ୍ୟଵହାର କରି ଖୋଜିବା"</string>
 <string name="search_state_idle_body_desktop">"ଏକ ଶୀର୍ଷକ ଟାଇପ୍ କରନ୍ତୁ। ପ୍ରତ୍ୟେକ ଉତ୍ସ ଉତ୍ତର ଦେଲେ ଫଳାଫଳ ତା ତଳେ ଦେଖାଯିବ।"</string>
+<string name="search_state_no_results_type_filter" formatted="true">"କେବଳ %s। ଆପଣଙ୍କ ପ୍ରକାର ଫିଲ୍ଟର ସନ୍ଧାନକୁ ସଂକୁଚିତ କରୁଛି।"</string>
+<string name="search_tv_source_failed" formatted="true">"ବିଫଳ %s"</string>
+<string name="search_tv_source_pinned">"ପିନ୍ କରାଯାଇଛି"</string>
+<string name="search_tv_sources_panel_meta" formatted="true">"%2$d ମଧ୍ୟରୁ %1$d ସକ୍ରିୟ · ହେଲା ଦବାଇଲେ ପରିବର୍ତ୍ତନ ଲାଗୁ ହେବ"</string>
 <string name="season">"ଋତୁ"</string>
 <string name="season_short">"ଋ"</string>
 <string name="seek_back_10_seconds">"୧୦ ସେକେଣ୍ଡ ପଛକୁ ଯାଅ"</string>

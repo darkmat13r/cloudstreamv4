@@ -571,8 +571,12 @@
 <string name="search_provider_text_providers">البحث باستخدام المصادر</string>
 <string name="search_provider_text_types">البحث باستخدام الأنواع</string>
 <string name="search_state_idle_body_desktop">اكتب عنوانًا. تظهر النتائج تحت كل مصدر عند استجابته.</string>
+<string name="search_state_no_results_type_filter">%s فقط. عامل تصفية النوع يضيّق نطاق البحث.</string>
 <string name="search_suggestions">اقتراحات البحث</string>
 <string name="search_suggestions_des">عرض اقتراحات البحث أثناء الكتابة</string>
+<string name="search_tv_source_failed">فشل %s</string>
+<string name="search_tv_source_pinned">مثبّت</string>
+<string name="search_tv_sources_panel_meta">%1$d من %2$d مفعّل · تُطبَّق التغييرات عند «تم»</string>
 <string name="season">موسم</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">م</string>

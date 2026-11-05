@@ -433,6 +433,10 @@
 <string name="search_provider_text_providers">"חפש באמצעות הספקים"</string>
 <string name="search_provider_text_types">"חפש באמצעות סוגים"</string>
 <string name="search_state_idle_body_desktop">"הקלד כותרת. התוצאות יופיעו מתחת לכל מקור כשיענה."</string>
+<string name="search_state_no_results_type_filter" formatted="true">"%s בלבד. מסנן הסוג מצמצם את החיפוש."</string>
+<string name="search_tv_source_failed" formatted="true">"נכשל %s"</string>
+<string name="search_tv_source_pinned">"מוצמד"</string>
+<string name="search_tv_sources_panel_meta" formatted="true">"%1$d מתוך %2$d פעילים · השינויים יחולו בלחיצה על סוים"</string>
 <string name="season">"עונה"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"עו"</string>

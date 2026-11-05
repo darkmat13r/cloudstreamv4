@@ -133,6 +133,10 @@
 <string name="search_provider_text_providers">प्रोभाईडर उपयोग गरी खोज्नुहोस्</string>
 <string name="search_provider_text_types">प्रकारको उपयोग गरी खोज्नुहोस्</string>
 <string name="search_state_idle_body_desktop">शीर्षक टाइप गर्नुहोस्। प्रत्येक स्रोतले जवाफ दिएपछि नतिजा त्यसको तल देखिन्छ।</string>
+<string name="search_state_no_results_type_filter">%s मात्र। तपाईंको प्रकार फिल्टरले खोजी साँघुरो बनाइरहेको छ।</string>
+<string name="search_tv_source_failed">असफल %s</string>
+<string name="search_tv_source_pinned">पिन गरिएको</string>
+<string name="search_tv_sources_panel_meta">%2$d मध्ये %1$d सक्रिय · सकियो थिच्दा परिवर्तन लागू हुन्छ</string>
 <string name="seek_back_10_seconds">10 सेकेन्ड पछाडि जानुहोस्</string>
 <string name="seek_forward_10_seconds">10 सेकेन्ड अगाडि जानुहोस्</string>
 <string name="show_log_cat">Logcat देखाउनुहोस</string>
