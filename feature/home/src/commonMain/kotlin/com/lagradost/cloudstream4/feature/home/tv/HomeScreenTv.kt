@@ -346,8 +346,11 @@ private fun HomeSourceControl(name: String, stops: HomeStops, onClick: () -> Uni
             style = remember(style, colors) { style.copy(color = colors.ink) },
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
-            // Not filling: a filling weight held the control at its maximum width whatever the name.
-            modifier = Modifier.weight(1f, fill = false).padding(end = CloudStreamDimens.ListRowPadding),
+            // No weight: a Row with a weighted child takes its whole maximum width, filling or not (measured: the
+            // screenshot did not move with `fill = false`). A cap on the name lets the control fit its content.
+            modifier = Modifier
+                .widthIn(max = HomeScreenTvDefaults.SourceNameMaxWidth)
+                .padding(end = CloudStreamDimens.ListRowPadding),
         )
         CloudStreamIcon(
             CloudStreamIcons.Disclosure,
@@ -387,6 +390,10 @@ object HomeScreenTvDefaults {
 
     /** 3c's `.srcpill { padding: 0 24px }`. */
     val SourceControlPadding: Dp = 12.dp
+
+    /** What is left of [SourceControlMaxWidth] for the name: its padding, the gap and the 16dp glyph (`ChipGlyphSize`). */
+    val SourceNameMaxWidth: Dp =
+        SourceControlMaxWidth - SourceControlPadding * 2 - CloudStreamDimens.ListRowPadding - CloudStreamDimens.ChipGlyphSize
 
     /** Mirrors `FailureBannerDefaults.DetailMaxWidth`. */
     val FailureDetailMaxWidth: Dp = 240.dp
