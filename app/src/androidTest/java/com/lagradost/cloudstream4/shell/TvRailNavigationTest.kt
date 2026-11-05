@@ -26,6 +26,7 @@ import com.lagradost.cloudstream4.core.designsystem.target.TextFieldDefaults
 import com.lagradost.cloudstream4.core.devicetest.Dpad
 import com.lagradost.cloudstream4.core.devicetest.DpadDriver
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
+import com.lagradost.cloudstream4.home.TvHomeSwitch
 import com.lagradost.cloudstream4.search.SearchTvFragment
 import org.junit.After
 import org.junit.Assert.assertEquals
@@ -75,6 +76,7 @@ class TvRailNavigationTest {
     @After
     fun restore() {
         TvRailSwitch.useComposeRail = true
+        TvHomeSwitch.useComposeHome = true
         setLayoutPreference(null)
     }
 
@@ -306,7 +308,7 @@ class TvRailNavigationTest {
         dpad.press(Dpad.Down)
     }
 
-    /** `None` is Home's one stop here, and DOWN from it loses focus: see [theXmlRailLosesFocusFromHomesProviderButtonToo]. */
+    /** `Extensions` is the page's only stop with nothing installed that is not the account cell above it. */
     @Test
     fun rightReturnsToTheExactStopOnHome() = rightReturnsToTheStopThatLeft(HOME, moveToStop = {})
 
@@ -340,15 +342,19 @@ class TvRailNavigationTest {
         assertEquals("RIGHT returns to that row and not the first", stop, dpad.press(Dpad.Right))
     }
 
+    /** The old home, because only its provider button has a DOWN that loses focus. */
     @Test
-    fun rightFindsThePageWhenTheStopThatLeftWasNeverOnScreen() = launch {
-        waitForDestination(R.id.navigation_home)
-        openRail()
-        val stop = dpad.press(Dpad.Right)
-        dpad.press(Dpad.Down)
-        assertNull("the stop that loses focus", dpad.focused())
-        assertEquals("LEFT still reaches the rail", labels[HOME], dpad.press(Dpad.Left))
-        assertEquals("and RIGHT finds the page's real stop", stop, dpad.press(Dpad.Right))
+    fun rightFindsThePageWhenTheStopThatLeftWasNeverOnScreen() {
+        TvHomeSwitch.useComposeHome = false
+        launch {
+            waitForDestination(R.id.navigation_home)
+            openRail()
+            val stop = dpad.press(Dpad.Right)
+            dpad.press(Dpad.Down)
+            assertNull("the stop that loses focus", dpad.focused())
+            assertEquals("LEFT still reaches the rail", labels[HOME], dpad.press(Dpad.Left))
+            assertEquals("and RIGHT finds the page's real stop", stop, dpad.press(Dpad.Right))
+        }
     }
 
     @Test
@@ -427,7 +433,14 @@ class TvRailNavigationTest {
     }
 
     @Test
-    fun noDeadEndsOnHome() = noDeadEnds(HOME, lost = listOf("$NO_PROVIDER -> Down lost focus"))
+    fun noDeadEndsOnHome() = noDeadEnds(HOME)
+
+    /** What this suite pinned before `KMP-35`, kept while the old home is the rollback. */
+    @Test
+    fun noDeadEndsOnTheOldHome() {
+        TvHomeSwitch.useComposeHome = false
+        noDeadEnds(HOME, lost = listOf("$NO_PROVIDER -> Down lost focus"))
+    }
 
     @Test
     fun noDeadEndsOnLibrary() = noDeadEnds(LIBRARY, lost = listOf("$LIBRARY_PAGER -> Right lost focus"))
@@ -469,6 +482,7 @@ class TvRailNavigationTest {
     @Test
     fun theXmlRailLosesFocusFromHomesProviderButtonToo() {
         TvRailSwitch.useComposeRail = false
+        TvHomeSwitch.useComposeHome = false
         launch {
             waitForDestination(R.id.navigation_home)
             assertEquals("Home's one stop", NO_PROVIDER, dpad.enter())
