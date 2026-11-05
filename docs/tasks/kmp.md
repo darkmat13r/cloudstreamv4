@@ -3407,7 +3407,7 @@ fits nine cards where `3d` draws them.
 ### Measured
 
 `HomeScreenTvDeviceTest` 25 and `TvHomeNavigationTest` 13 on `Television_720p`. JVM: `HomeViewModelTest` 34 (11 new),
-`HomeFocusScrollTest` 6 in `commonTest`, `AndroidHomeSourceTest` 17, `DataStoreHomeSourceMemoryTest` 5. `TvRailNavigationTest`: its cases
+`HomeFocusScrollTest` 5 in `commonTest`, `AndroidHomeSourceTest` 17, `DataStoreHomeSourceMemoryTest` 5. `TvRailNavigationTest`: its cases
 about the old home's provider button now switch that screen back on, because they measure it, and `noDeadEndsOnHome` now
 walks the new one with no lost focus.
 
