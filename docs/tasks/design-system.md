@@ -658,6 +658,18 @@ providers in 4d's states.
 **Re-recorded, each diff read:** `panel-open-over-rail` (marker, scrim, rows), `home-source-panel-focus-current` (rail
 dimmed, page lighter under 0.6, the selected row's marker). New: `state-view-failure-focus-action`.
 
+**Screens whose look changed.** Android TV Home's source panel: the rail dims with the page, the page behind is lighter
+(0.6), and the current source's marker is the short rounded mark. On master that is the only real `SidePanelHost`; `#153`'s
+detail panels take the same. The state action's ring: wherever a `StateView` focuses its action on arrival, which is
+Android TV Home, Library, Search and Detail, and on desktop Home, Library, Search and the player. Every existing reference
+compared 0 pixels different, so none of the recorded screens was in that state; the JVM harness is desktop Compose and
+reproduced the missing ring, but `:desktopApp` was not run to look.
+
+**Results, local** on `Television_720p` and this machine, 2026-11-05: device 157 tests (`:core:designsystem` 19,
+`:core:connectivity` 2, `:core:strings` 6, `:feature:home` 31, `:feature:library` 13, `:feature:search` 15, `:app` 71),
+0 failures, 1 skipped; all 19 screenshot cases `same`, 0 pixels. Gates on `3bc4f8dab`: `abi=0 check=0 xml=0 extapi=0
+canary=0 dist=0`, 164 result files read.
+
 **Board upload.** `TV Library.dc.html` to the Claude Design project: the project's copy matched master byte for byte
 before the write (34,314 bytes, SHA-256 `8cb77682…`), and after it matches this branch's file byte for byte with the
 served page's injected block removed (34,312 bytes, `01764163…`).
