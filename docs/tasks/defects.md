@@ -1501,3 +1501,19 @@ so that path is unchanged. A document-tree folder. A real queue service: the slo
 service filters on. The UI above was read, not driven. An unknown-length source that ends uncleanly after its last byte now fails where it used to finish: that follows from fix 2 and has
 no test. A range still in flight keeps reading up to the end of its range after a failure before its job ends, at most 10 MiB; on loopback that took 303 ms, and a slow source will take longer.
 **Unexplained:** the length read straight after a retry was once still the earlier one, and correct a moment later, so the test now waits up to 10 s for it. The cause was not established.
+
+---
+
+## BUG-37 — On TV search's history, the first row's focus ring is cut off at the top · **low** · measured 2026-11-05
+
+**Status:** open, not fixed · found by `INF-11`'s first screenshot run · `SearchRecentColumn.kt`
+
+When the first history row has focus, its ring has no top edge. In `search-history-focus-row.png` (`Television_720p`, 1280x720), the ring's sides
+start at y 250, and above the row at x 700 there is no ring pixel at all. The bottom edge is drawn, white at y 317 and 318. The row is the first item
+of a `LazyColumn`, and the list's viewport clips everything above its top. That is the clipping `tvFocusRing`'s KDoc warns about: no ancestor may clip
+a focusable. The ring is in the 4 dp above the row, so it is outside the viewport.
+
+**The reference holds the bug.** `feature/search/src/androidDeviceTest/resources/screenshots/search-history-focus-row.png` was recorded with the top edge
+missing, so the comparison passes today. A fix will fail that case: look at the diff, check that the only change is the ring's top edge, and re-record it.
+
+Not checked: whether the last row is cut off at the bottom when the list is full, and whether other TV screens with a `LazyColumn` do the same.

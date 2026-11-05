@@ -710,6 +710,8 @@ different and largest delta 0, in all 6 cases, each time.
 | Reference deleted | `nav-rail-collapsed` | Fails, "A missing reference fails" |
 | Nothing | `nav-rail-expanded-focus-current` | Passes |
 
-**What the first run found, reported rather than changed:** on `search-history-focus-row` the top of the ring is cut off, at y 250 in the reference. The
-first row sits against the top of the list's viewport, which is the clipping `tvFocusRing`'s KDoc warns about. The reference holds that state, so
-fixing it means looking at the diff and re-recording.
+**What the first run found, reported rather than changed:** on `search-history-focus-row` the top of the ring is cut off, filed as `BUG-37`. The
+reference holds that state and stays as it is; the fix will re-record it.
+
+**After `#150` merged** (the chip and segment ring on the visual), a compare run on the merged tree differed in 0 pixels in all six cases. None of them
+focuses a chip or a segment, and an unfocused chip draws no ring, so nothing was re-recorded.
