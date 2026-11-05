@@ -10,6 +10,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Build.VERSION.SDK_INT
+import android.os.Environment
 import android.text.format.Formatter.formatShortFileSize
 import android.util.Log
 import android.widget.Toast
@@ -85,6 +86,9 @@ import com.lagradost.cloudstream3.utils.downloader.DownloadUtils.getEstimatedTim
 import com.lagradost.cloudstream3.utils.downloader.DownloadUtils.getImageBitmapFromUrl
 import com.lagradost.cloudstream3.utils.downloader.DownloadUtils.join
 import com.lagradost.cloudstream3.utils.txt
+import com.lagradost.cloudstream4.download.DownloadFacts
+import com.lagradost.cloudstream4.media.model.DownloadFailure
+import com.lagradost.cloudstream4.media.model.SegmentProgress
 import com.lagradost.safefile.SafeFile
 import com.lagradost.safefile.closeQuietly
 import kotlinx.coroutines.CancellationException
@@ -572,6 +576,28 @@ object VideoDownloadManager {
                 (bytesDownloaded * (total / hlsProgress.toFloat())).toLong()
             } ?: bytesDownloaded
 
+        /** Where this file is being written, for [DownloadFacts] to ask how much room is left. */
+        internal var storagePath: String? = null
+
+        /** Tells [DownloadFacts] why this is going wrong. Observation only: nothing here reads it back. */
+        internal fun noteFailure(failure: DownloadFailure) {
+            if (id == null) return
+            DownloadFacts.note(
+                id,
+                if (failure is DownloadFailure.StorageFull) {
+                    failure.copy(
+                        bytesShort = DownloadFacts.bytesShort(
+                            totalBytes,
+                            bytesWritten,
+                            DownloadFacts.availableBytes(storagePath)
+                        )
+                    )
+                } else failure,
+                bytesDownloaded,
+                bytesWritten,
+            )
+        }
+
         private var stopListener: (() -> Unit)? = null
 
         /** on cancel button pressed or failed invoke this once and only once */
@@ -677,6 +703,7 @@ object VideoDownloadManager {
 
             //internalType = DownloadType.IsStopped
             notify()
+            if (id != null) DownloadFacts.clear(id)
         }
 
         companion object {
@@ -734,6 +761,17 @@ object VideoDownloadManager {
                     downloadStatus[id] = type
                     downloadProgressEvent(Triple(id, bytesDownloaded, bytes))
                     downloadStatusEvent(id to type)
+                    DownloadFacts.report(
+                        id = id,
+                        type = type,
+                        bytesDownloaded = bytesDownloaded,
+                        bytesWritten = bytesWritten,
+                        // bytes is an estimate from the segments seen so far, and has no meaning before the first
+                        bytesTotal = if (isHLS) bytes.takeIf { hlsProgress > 0 } else totalBytes,
+                        totalIsDeclared = !isHLS,
+                        bytesPerSecond = bytesPerSecond,
+                        segments = hlsTotal?.let { SegmentProgress(hlsProgress.toLong(), it.toLong()) },
+                    )
                 }
             } catch (t: Throwable) {
                 logError(t)
@@ -791,6 +829,17 @@ object VideoDownloadManager {
     ) {
         val size get() = chuckStartByte.size
 
+        /** The last error a range hit, for [DownloadFacts]. Ranges retry, so it may have been recovered from. */
+        @Volatile
+        internal var lastFailure: Throwable? = null
+
+        /**
+         * The error that ended the last range. [resolveSafe] calls that range finished however it
+         * ended, so this is the only record that it did not reach the end of the file.
+         */
+        @Volatile
+        internal var openEndedFailure: Throwable? = null
+
         /** returns what byte it has downloaded,
          * so start at 10 and download 4 bytes = return 14
          *
@@ -842,6 +891,8 @@ object VideoDownloadManager {
                 throw e
             } catch (t: Throwable) {
                 logError(t)
+                lastFailure = t
+                if (endByte == null) openEndedFailure = t
             } finally {
                 requestStream.closeQuietly()
             }
@@ -867,11 +918,13 @@ object VideoDownloadManager {
                     if (end == null) return true
                     // we have download more or exactly what we needed
                     if (start >= end) return true
-                } catch (_: IllegalStateException) {
+                } catch (t: IllegalStateException) {
+                    lastFailure = t
                     return false
                 } catch (_: CancellationException) {
                     return false
-                } catch (_: Throwable) {
+                } catch (t: Throwable) {
+                    lastFailure = t
                     continue
                 }
             }
@@ -1024,7 +1077,11 @@ object VideoDownloadManager {
             // get the file path
             val (baseFile, basePath) = context.getBasePath()
             val displayName = getDisplayName(name, extension)
-            if (baseFile == null) return@withContext DOWNLOAD_BAD_CONFIG
+            if (baseFile == null) {
+                metadata.noteFailure(DownloadFailure.StorageUnavailable)
+                return@withContext DOWNLOAD_BAD_CONFIG
+            }
+            metadata.storagePath = factsStoragePath(basePath)
 
             // set up the download file
             var stream = setupStream(baseFile, name, folder, extension, tryResume)
@@ -1050,6 +1107,7 @@ object VideoDownloadManager {
                 fileStream.closeQuietly()
                 metadata.onDelete()
                 stream.delete()
+                metadata.noteFailure(DownloadFailure.NoUsableLink)
                 return@withContext DOWNLOAD_INVALID_INPUT
             }
 
@@ -1129,11 +1187,13 @@ object VideoDownloadManager {
 
                                 if (response.startByte == metadata.bytesWritten) {
                                     // if we are first in the queue then write it directly
-                                    fileStream.write(
-                                        response.bytes,
-                                        0,
-                                        responseSize.toInt()
-                                    )
+                                    metadata.notingWriteFailure {
+                                        fileStream.write(
+                                            response.bytes,
+                                            0,
+                                            responseSize.toInt()
+                                        )
+                                    }
                                     metadata.addBytesWritten(responseSize)
                                 } else {
                                     // otherwise append to queue, we need to clone the bytes as they will be overridden otherwise
@@ -1149,11 +1209,13 @@ object VideoDownloadManager {
 
                                     val size = pending.size
 
-                                    fileStream.write(
-                                        pending.bytes,
-                                        0,
-                                        size.toInt()
-                                    )
+                                    metadata.notingWriteFailure {
+                                        fileStream.write(
+                                            pending.bytes,
+                                            0,
+                                            size.toInt()
+                                        )
+                                    }
                                     metadata.addBytesWritten(size)
                                 }
                             }
@@ -1195,6 +1257,10 @@ object VideoDownloadManager {
                         if (!items.resolveSafe(index, buffer = buffer, callback = callback)) {
                             fileMutex.withLock {
                                 if (metadata.type != DownloadType.IsStopped) {
+                                    metadata.noteFailure(
+                                        items.lastFailure?.let(DownloadFacts::classify)
+                                            ?: DownloadFailure.SourceFailed
+                                    )
                                     metadata.type = DownloadType.IsFailed
                                 }
                             }
@@ -1235,21 +1301,25 @@ object VideoDownloadManager {
                 fileStream.closeQuietly()
                 metadata.onDelete()
                 stream.delete()
+                metadata.noteFailure(DownloadFailure.NoUsableLink)
                 return@withContext DOWNLOAD_INVALID_INPUT
             }
 
+            items.openEndedFailure?.let { metadata.noteFailure(DownloadFacts.classify(it)) }
             metadata.type = DownloadType.IsDone
             return@withContext DOWNLOAD_SUCCESS
         } catch (e: IOException) {
             // some sort of IO error, this should not happened
             // we just rethrow it
             logError(e)
+            metadata.noteFailure(DownloadFacts.classify(e))
             throw e
         } catch (t: Throwable) {
             // some sort of network error, will error
             logError(t)
             // note that when failing we don't want to delete the file,
             // only user interaction has that power
+            metadata.noteFailure(DownloadFacts.classify(t))
             metadata.type = DownloadType.IsFailed
             return@withContext metadata.failedStatus()
         } finally {
@@ -1286,7 +1356,11 @@ object VideoDownloadManager {
 
             // set up the file data
             val (baseFile, basePath) = context.getBasePath()
-            if (baseFile == null) return@withContext DOWNLOAD_BAD_CONFIG
+            if (baseFile == null) {
+                metadata.noteFailure(DownloadFailure.StorageUnavailable)
+                return@withContext DOWNLOAD_BAD_CONFIG
+            }
+            metadata.storagePath = factsStoragePath(basePath)
 
             val displayName = getDisplayName(name, extension)
             val stream =
@@ -1380,6 +1454,7 @@ object VideoDownloadManager {
                         val bytes = items.resolveLinkSafe(index) ?: run {
                             fileMutex.withLock {
                                 if (metadata.type != DownloadType.IsStopped) {
+                                    metadata.noteFailure(DownloadFailure.SourceFailed)
                                     metadata.type = DownloadType.IsFailed
                                 }
                             }
@@ -1423,6 +1498,7 @@ object VideoDownloadManager {
                                 // this is in case of write fail
                                 logError(t)
                                 if (metadata.type != DownloadType.IsStopped) {
+                                    metadata.noteFailure(DownloadFacts.classify(t))
                                     metadata.type = DownloadType.IsFailed
                                 }
                             }
@@ -1459,6 +1535,7 @@ object VideoDownloadManager {
             return@withContext DOWNLOAD_SUCCESS
         } catch (t: Throwable) {
             logError(t)
+            metadata.noteFailure(DownloadFacts.classify(t))
             metadata.type = DownloadType.IsFailed
             return@withContext metadata.failedStatus()
         } finally {
@@ -1466,6 +1543,19 @@ object VideoDownloadManager {
             metadata.close()
         }
     }
+
+    /** Runs one file write and notes why it failed. The error carries on exactly as it would have. */
+    private inline fun DownloadMetaData.notingWriteFailure(write: () -> Unit) {
+        try {
+            write()
+        } catch (e: IOException) {
+            noteFailure(DownloadFacts.classify(e))
+            throw e
+        }
+    }
+
+    private fun factsStoragePath(basePath: String?): String? =
+        DownloadFacts.storagePathOf(basePath, Environment.getExternalStorageDirectory()?.path)
 
     private fun getDisplayName(name: String, extension: String): String {
         return "$name.$extension"
@@ -1482,6 +1572,7 @@ object VideoDownloadManager {
     ): DownloadStatus {
         // no support for these file formats
         if (link.type == ExtractorLinkType.MAGNET || link.type == ExtractorLinkType.TORRENT || link.type == ExtractorLinkType.DASH) {
+            DownloadFacts.note(ep.id, DownloadFailure.NoUsableLink)
             return DOWNLOAD_INVALID_INPUT
         }
 
@@ -1634,6 +1725,7 @@ object VideoDownloadManager {
             downloadProgressEvent.invoke(Triple(id, 0, 0))
             downloadStatusEvent.invoke(id to DownloadType.IsStopped)
             downloadDeleteEvent.invoke(id)
+            DownloadFacts.clear(id)
         }
 
         return isFileDeleted
@@ -1720,6 +1812,7 @@ object VideoDownloadManager {
 
             downloadStatusEvent.invoke(Pair(id, status))
             downloadStatus[id] = status
+            DownloadFacts.finish(id, status)
             downloadEvent.invoke(Pair(id, DownloadActionType.Stop))
 
             // Force refresh the queue when failed.
@@ -2063,6 +2156,7 @@ object VideoDownloadManager {
                         Toast.LENGTH_SHORT
                     )
                 }
+                DownloadFacts.note(downloadItem.episode.id, DownloadFailure.NoUsableLink)
                 isFailed = true
                 return
             } else {
