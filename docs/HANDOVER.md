@@ -32,14 +32,25 @@ Phone and `EMULATOR` are unchanged, and **note the audit was wrong about how**: 
 too — the runtime `setClassName` form is the only mechanism that moves TV alone, and **no** nav node can be
 repointed in XML. `Q21` and `Q22` inherit that.
 
-**One thing in `KMP-38` waits on the owner, and it is a real regression, not a reduction.** Playback started
-from the new detail page writes no `setLastWatched`, because the player only writes it for a `ResultEpisode` or
-`ExtractorUri` meta (`DataStoreHelper.kt:693-742`) and the new host plays through a `NoVideoGenerator`. A
-position is saved for a movie and for the episode that was already last-watched, and **not** for any other
-episode. So watching a series episode there adds nothing to Home's Continue Watching and never advances which
-episode the viewer is up to. The fix needs either `ResultViewModel2`'s per-response-type episode-id arithmetic
-lifted into something callable, or an episode id on the `DetailSource` seam. Do not start `Q21` assuming this
-is solved.
+**`KMP-38`'s `setLastWatched` regression is fixed, and the fix is the thing to know before `Q21`.** Playback
+from the new detail page used to write no `setLastWatched`: the player writes it only for a `ResultEpisode` or
+`ExtractorUri` meta (`DataStoreHelper.kt:693-742`) and the host played through a `NoVideoGenerator`, whose
+`videos` list is empty. The owner chose the first of the two candidate fixes, so **`ResultViewModel2`'s
+per-response-type episode-id arithmetic is now lifted** into `episodeSlots(mainId)` in
+`app/.../ui/result/EpisodeSlots.kt`, which both the old result page and the new detail page call. `postEpisodes`
+consumes it; nothing is copied.
+
+Three things follow for anyone touching this area:
+
+- **That id is a storage key, so never derive one.** It keys the stored position, the watched marker, the
+  download record and the Continue Watching entry. Call `episodeSlots`. A derivation that differs by one does
+  not render slightly differently — it files the viewer's progress where nothing reads it.
+- **The walk order is part of the formula.** `episode ?: (index + 1)` numbers an unnumbered part by where it
+  sits, so the sort (series: sorted; anime: insertion order) cannot be changed without moving stored positions.
+  `EpisodeSlotsTest` pins all of it against the pre-lift expression and against ids worked out by hand.
+- **Playback now goes through `RepoLinkGenerator`**, which is the old page's own generator, so the player's
+  next and previous episode and the twenty-minute link cache came back with it. Those were listed as losses and
+  are not losses any more.
 
 Master is at `26acd8f8` (#104). **One pull request is open: #91**, a **draft** — `KMP-12` steps 3 and 4,
 Android TV opening the new search screen. `DEC-17` accepts passing UI tests on the `Television_720p` emulator as proof for

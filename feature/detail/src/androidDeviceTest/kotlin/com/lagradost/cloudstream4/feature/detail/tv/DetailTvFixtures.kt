@@ -97,6 +97,9 @@ internal object DetailFixtures {
     const val Id = "7:FakeApihttps://example.invalid/the-last-signal"
 
     private const val Headshot = "https://example.invalid/headshot"
+
+    /** Exposed so a screenshot host can tell a headshot from the hero when it fills `artwork`. */
+    const val HeadshotUrl = Headshot
     private const val Poster = "https://example.invalid/poster"
 
     /** The third one is the only member with a voice actor, which is the only press a cast item has. */

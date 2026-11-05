@@ -22,6 +22,11 @@ import com.lagradost.cloudstream3.TvSeriesSearchResponse
 import com.lagradost.cloudstream3.mvvm.Resource
 import com.lagradost.cloudstream3.ui.APIRepository
 import com.lagradost.cloudstream3.ui.WatchType
+import com.lagradost.cloudstream3.ui.player.RepoLinkGenerator
+import com.lagradost.cloudstream3.ui.result.EpisodeSlot
+import com.lagradost.cloudstream3.ui.result.ResultEpisode
+import com.lagradost.cloudstream3.ui.result.buildResultEpisode
+import com.lagradost.cloudstream3.ui.result.episodeSlots
 import com.lagradost.cloudstream3.ui.result.getId
 import com.lagradost.cloudstream3.utils.AppContextUtils.updateHasTrailers
 import com.lagradost.cloudstream3.utils.DataStoreHelper
@@ -106,6 +111,18 @@ internal class AndroidDetailSource(
     internal fun hostFacts(id: String): DetailHostFacts? =
         lastFacts?.takeIf { it.first == id }?.second
 
+    /**
+     * What the host needs to *play* the title [details] last answered with, kept apart from
+     * [DetailHostFacts] for one blunt reason: that class is in `app/api/classes-jar.api`, and a field
+     * on it rewrites its `copy` and `<init>` lines. A changed line there stops for the owner, so a new
+     * class it is.
+     */
+    @Volatile
+    private var lastParts: Pair<String, DetailPlaybackParts>? = null
+
+    internal fun playbackParts(id: String): DetailPlaybackParts? =
+        lastParts?.takeIf { it.first == id }?.second
+
     override suspend fun details(id: String): TitleDetail = withContext(io) {
         val response = load(id)
         // The old TV page re-reads this preference before deciding whether to offer a trailer
@@ -114,6 +131,7 @@ internal class AndroidDetailSource(
         runCatching { context.updateHasTrailers() }
         val titleId = response.getId()
         val episodes = response.detailEpisodes(records.dub(titleId))
+        val chosenDub = response.chosenDub(records.dub(titleId))
         val playData = response.playData()
         val detail = response.toTitleDetail(
             episodes = episodes,
@@ -130,6 +148,14 @@ internal class AndroidDetailSource(
             trailers = response.trailers.toList(),
             syncData = response.syncData.toMap(),
             posterHeaders = response.posterHeaders,
+        )
+        lastParts = id to DetailPlaybackParts(
+            response = response,
+            titleId = titleId,
+            // One dub list, as the old page's generator is built from one
+            // (`ResultViewModel2.kt:2119-2124`), so the player's next and previous stay inside the
+            // list the page is showing instead of walking into the other one.
+            slots = response.episodeSlots(titleId).filter { it.dub == chosenDub },
         )
         detail
     }
@@ -373,6 +399,77 @@ internal data class DetailHostFacts(
 )
 
 /**
+ * The title's playable parts, as the player needs them.
+ *
+ * The point of this class is the `Int` id on each part. `NoVideoGenerator` carries one id and an empty
+ * `videos` list, so `PlayerGeneratorViewModel` had no meta to hand `setViewPosAndResume`
+ * (`:396`), and that function writes the Continue Watching entry only for a `ResultEpisode`
+ * (`DataStoreHelper.kt:719-742`). A series played from this page therefore kept no position and never
+ * appeared in Continue Watching — the regression `KMP-38` reported and the owner ruled on.
+ *
+ * `RepoLinkGenerator` takes the real list, which also restores the two things that hung off it: the
+ * player's next and previous episode, and the twenty-minute link cache.
+ *
+ * @param slots one dub list's parts, in `episodeSlots` order. See [AndroidDetailSource.playbackParts].
+ */
+internal data class DetailPlaybackParts(
+    val response: LoadResponse,
+    val titleId: Int,
+    val slots: List<EpisodeSlot>,
+) {
+
+    /**
+     * The part the screen means by [data], or null when nothing in this response matches.
+     *
+     * By `data` and not by index, because the screen's own episode list is sorted by a comparator of
+     * its own and the two orders need not agree. Where a provider gives two parts the same `data` the
+     * first wins; they resolve to one stream either way, so what is lost is only which of the two ids
+     * the position lands under.
+     */
+    fun indexOf(data: String): Int? = slots.indexOfFirst { it.data == data }.takeIf { it >= 0 }
+
+    /**
+     * Built here and not at load time: `buildResultEpisode` reads the stored position and the watched
+     * marker, and the player may have moved both since the page loaded.
+     */
+    fun episodes(): List<ResultEpisode> = slots.map { slot -> slot.toResultEpisode(response, titleId) }
+}
+
+/**
+ * One slot as `:app`'s own episode, filled as `postEpisodes` fills it (`:2241-2320`).
+ *
+ * `isFiller` is the one field left null that the old page can set: it comes from the filler-list
+ * request `updateFillers` makes, which this page does not make. The player's filler badge is off
+ * until it does.
+ */
+private fun EpisodeSlot.toResultEpisode(response: LoadResponse, titleId: Int): ResultEpisode {
+    val show = response as? EpisodeResponse
+    // `ResultViewModel2.getSeason`'s body (`:622-625`), which is private to its companion.
+    val seasonData = season?.let { value -> show?.seasonNames?.firstOrNull { it.season == value } }
+    return buildResultEpisode(
+        headerName = response.name,
+        name = if (source == null) response.name else source.name?.takeIf { !it.matches(FILLER_NAME) },
+        poster = source?.posterUrl,
+        episode = episode,
+        seasonIndex = season,
+        season = if (seasonData != null) seasonData.displaySeason else season,
+        data = data,
+        apiName = response.apiName,
+        id = id,
+        index = index,
+        rating = source?.score,
+        description = source?.description,
+        isFiller = null,
+        tvType = response.type,
+        parentId = titleId,
+        totalEpisodeIndex = season?.let { value -> show?.getTotalEpisodeIndex(episode, value) },
+        airDate = source?.date,
+        runTime = source?.runTime,
+        seasonData = seasonData,
+    )
+}
+
+/**
  * The title's fields, straight across where they are data and decided where they are not.
  *
  * `providerName` is the response's own `apiName` rather than the `MainAPI`'s, because that is what
@@ -422,7 +519,11 @@ internal fun LoadResponse.toTitleDetail(
 internal fun LoadResponse.playData(): String? = when (this) {
     is MovieLoadResponse -> dataUrl
     is LiveStreamLoadResponse -> dataUrl
-    is TorrentLoadResponse -> magnet ?: torrent
+    // `torrent` before `magnet`, which is the order `postEpisodes` has always had (`:2385`). It was
+    // the other way round here, and that was a real fault once the player started storing positions:
+    // the part the page plays has to be the part whose id `:app` keeps that position under, and for a
+    // provider that sends both this page would have played the magnet and found no slot for it.
+    is TorrentLoadResponse -> torrent ?: magnet
     else -> null
 }?.takeIf { !APIRepository.isInvalidData(it) }
 
@@ -440,11 +541,24 @@ internal fun LoadResponse.playData(): String? = when (this) {
  */
 internal fun LoadResponse.detailEpisodes(preferredDub: DubStatus?): List<DetailEpisode> = when (this) {
     is TvSeriesLoadResponse -> episodes.toDetailEpisodes()
-    is AnimeLoadResponse -> (
-        episodes[preferredDub]?.takeIf { it.isNotEmpty() }
-            ?: episodes.entries.firstOrNull { it.value.isNotEmpty() }?.value.orEmpty()
-        ).toDetailEpisodes()
+    is AnimeLoadResponse -> episodes[chosenDub(preferredDub)].orEmpty().toDetailEpisodes()
     else -> emptyList()
+}
+
+/**
+ * Which of an anime's dub lists this page is showing, and [DubStatus.None] for everything else.
+ *
+ * Its own function because two callers have to agree on it: the episodes the page draws and the parts
+ * the player is given. Were they to disagree, the viewer would press an episode of the list they can
+ * see and the player would walk forward through the other one.
+ */
+internal fun LoadResponse.chosenDub(preferredDub: DubStatus?): DubStatus = when (this) {
+    is AnimeLoadResponse ->
+        preferredDub?.takeIf { episodes[it]?.isNotEmpty() == true }
+            ?: episodes.entries.firstOrNull { it.value.isNotEmpty() }?.key
+            ?: DubStatus.None
+
+    else -> DubStatus.None
 }
 
 private fun List<Episode>.toDetailEpisodes(): List<DetailEpisode> =

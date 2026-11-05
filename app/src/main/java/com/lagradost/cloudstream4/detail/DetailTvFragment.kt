@@ -24,24 +24,18 @@ import coil3.compose.AsyncImage
 import coil3.network.NetworkHeaders
 import coil3.network.httpHeaders
 import coil3.request.ImageRequest
-import com.lagradost.cloudstream3.APIHolder
 import com.lagradost.cloudstream3.R
 import com.lagradost.cloudstream3.TrailerData
 import com.lagradost.cloudstream3.USER_AGENT
-import com.lagradost.cloudstream3.ui.APIRepository
 import com.lagradost.cloudstream3.ui.player.ExtractorLinkGenerator
-import com.lagradost.cloudstream3.ui.player.ExtractorUri
 import com.lagradost.cloudstream3.ui.player.GeneratorPlayer
-import com.lagradost.cloudstream3.ui.player.NoVideoGenerator
-import com.lagradost.cloudstream3.ui.player.PlayerSubtitleHelper
-import com.lagradost.cloudstream3.ui.player.SubtitleData
+import com.lagradost.cloudstream3.ui.player.RepoLinkGenerator
 import com.lagradost.cloudstream3.ui.player.VideoGenerator
 import com.lagradost.cloudstream3.ui.result.ResultFragment.getStoredData
 import com.lagradost.cloudstream3.utils.AppContextUtils.loadResult
 import com.lagradost.cloudstream3.utils.BaseComposeFragment
 import com.lagradost.cloudstream3.utils.DataStoreHelper
 import com.lagradost.cloudstream3.utils.ExtractorLink
-import com.lagradost.cloudstream3.utils.ExtractorLinkType
 import com.lagradost.cloudstream3.utils.INFER_TYPE
 import com.lagradost.cloudstream3.utils.Qualities
 import com.lagradost.cloudstream3.utils.UIHelper.navigate
@@ -91,8 +85,8 @@ import kotlinx.coroutines.withContext
  *   30 s, because `setViewPos` early-returns there (`DataStoreHelper.kt:683-687`). The alternative is
  *   an explicit start position on `GeneratorPlayer`/`VideoGenerator`, which are in the published ABI
  *   dump; that is the owner's call.
- * - **An episode's stored id.** See [DetailHostFacts]: this host only ever uses an id a seam gave it,
- *   so a part it has no id for is played with none, and the player then keeps no position for it.
+ * - **The filler badge.** [DetailPlaybackParts] fills every field of the player's episode meta but
+ *   `isFiller`, which comes from a filler-list request this page does not make.
  */
 class DetailTvFragment : BaseComposeFragment() {
 
@@ -178,34 +172,26 @@ class DetailTvFragment : BaseComposeFragment() {
     /**
      * The existing player, by the path `ResultViewModel2.handleEpisodeClickEvent` takes
      * (`:1602-1607`): a generator, an index and the sync ids, then the global player action.
+     *
+     * The generator is `RepoLinkGenerator` over the title's real parts, which is the same generator
+     * the old page builds (`ResultViewModel2.kt:2116-2125`) and the reason the player can store a
+     * position and a Continue Watching entry at all — see [DetailPlaybackParts].
      */
     private fun openPlayer(data: String, fromStart: Boolean) {
-        val facts = source.hostFacts(titleId ?: return) ?: return
-        val episodeId = episodeIdOf(data, facts)
-        if (fromStart && episodeId != null) {
+        val id = titleId ?: return
+        val facts = source.hostFacts(id) ?: return
+        val parts = source.playbackParts(id) ?: return
+        val index = parts.indexOf(data) ?: return
+        val episodes = parts.episodes()
+        if (fromStart) {
             // The stored duration is reused rather than passed as zero, because `setViewPos`
             // early-returns when the duration is under 30 s (`DataStoreHelper.kt:683-687`). Read
             // live: the player may have moved it since this page loaded.
+            val episodeId = episodes[index].id
             DataStoreHelper.getViewPos(episodeId)
                 ?.let { stored -> DataStoreHelper.setViewPos(episodeId, 0L, stored.duration) }
         }
-        openPlayer(DetailPlaybackGenerator(facts.apiName, data, episodeId), facts)
-    }
-
-    /**
-     * The id `:app` keeps this part's position under, or null when this host does not know one.
-     *
-     * Only the two a seam answers for: the part the viewer was last on, and the title itself, whose
-     * id a playable title's own position is kept under. Everything else is null on purpose — see
-     * [DetailHostFacts].
-     */
-    private fun episodeIdOf(data: String, facts: DetailHostFacts): Int? {
-        val detail = viewModel.state.value.detail
-        return when (data) {
-            detail?.resume?.data -> facts.resumeEpisodeId
-            detail?.playData -> facts.titleId
-            else -> null
-        }
+        openPlayer(RepoLinkGenerator(episodes, page = parts.response), facts, index)
     }
 
     /** `ResultFragmentTv.kt:548-567`, which resolves the trailers and reuses the same player. */
@@ -219,10 +205,18 @@ class DetailTvFragment : BaseComposeFragment() {
     }
 
     private fun openPlayer(generator: VideoGenerator<*>, facts: DetailHostFacts?) {
+        openPlayer(generator, facts, FIRST_PART)
+    }
+
+    /**
+     * Two overloads and not one default parameter: a default rewrites this function's synthetic
+     * accessor in `app/api/classes-jar.api`, and a changed line there stops for the owner.
+     */
+    private fun openPlayer(generator: VideoGenerator<*>, facts: DetailHostFacts?, index: Int) {
         val syncData = facts?.syncData?.let { HashMap(it) }
         activity.navigate(
             R.id.global_to_navigation_player,
-            GeneratorPlayer.newInstance(generator, FIRST_PART, syncData),
+            GeneratorPlayer.newInstance(generator, index, syncData),
         )
     }
 
@@ -270,46 +264,6 @@ class DetailTvFragment : BaseComposeFragment() {
 internal fun NavGraph.openDetailOnTvScreen() {
     (findNode(R.id.navigation_results_tv) as? FragmentNavigator.Destination)
         ?.setClassName(DetailTvFragment::class.java.name)
-}
-
-/**
- * One part's links, from the provider that owns it.
- *
- * `NoVideoGenerator` is the existing shape for "a generator with one known, or unknown, id" —
- * `ExtractorLinkGenerator` is its sibling — and its `id` being nullable is the point: the player reads
- * and writes a stored position under `generator.getId(index)`
- * (`GeneratorPlayer.kt:247-254`, `:1747`), so a null id makes it keep none rather than write one under
- * a key nothing else reads.
- *
- * `RepoLinkGenerator` is not used because it takes `List<ResultEpisode>`, and a `ResultEpisode` needs
- * the non-null `Int` id that only `ResultViewModel2.postEpisodes`' private arithmetic produces. What
- * this costs, and it is not nothing: that generator's twenty-minute link cache, the player's next and
- * previous episode buttons, and the `setLastWatched` write that puts a title in Continue Watching —
- * `setViewPosAndResume` makes it only for a `ResultEpisode` meta (`DataStoreHelper.kt:719-742`).
- */
-private class DetailPlaybackGenerator(
-    private val apiName: String,
-    private val data: String,
-    id: Int?,
-) : NoVideoGenerator(id) {
-
-    override suspend fun generateLinks(
-        clearCache: Boolean,
-        sourceTypes: Set<ExtractorLinkType>,
-        callback: (Pair<ExtractorLink?, ExtractorUri?>) -> Unit,
-        subtitleCallback: (SubtitleData) -> Unit,
-        offset: Int,
-        isCasting: Boolean,
-    ): Boolean {
-        val api = APIHolder.getApiFromNameNull(apiName) ?: return false
-        return APIRepository(api).loadLinks(
-            data = data,
-            isCasting = isCasting,
-            subtitleCallback = { file -> subtitleCallback(PlayerSubtitleHelper.getSubtitleData(file)) },
-            // The user's "which protocols may play" set, which `ExtractorLinkGenerator` also honours.
-            callback = { link -> if (link.type in sourceTypes) callback(link to null) },
-        )
-    }
 }
 
 /**

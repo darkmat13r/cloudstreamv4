@@ -29291,6 +29291,39 @@ public final class com/lagradost/cloudstream3/ui/result/EpisodeRange : java/lang
 	public fun toString ()Ljava/lang/String;
 }
 
+public final class com/lagradost/cloudstream3/ui/result/EpisodeSlot : java/lang/Object {
+	public static final field $stable I
+	public fun <init> (Lcom/lagradost/cloudstream3/DubStatus;Lcom/lagradost/cloudstream3/Episode;Ljava/lang/Integer;ILjava/lang/String;II)V
+	public final fun component1 ()Lcom/lagradost/cloudstream3/DubStatus;
+	public final fun component2 ()Lcom/lagradost/cloudstream3/Episode;
+	public final fun component3 ()Ljava/lang/Integer;
+	public final fun component4 ()I
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()I
+	public final fun component7 ()I
+	public final fun copy (Lcom/lagradost/cloudstream3/DubStatus;Lcom/lagradost/cloudstream3/Episode;Ljava/lang/Integer;ILjava/lang/String;II)Lcom/lagradost/cloudstream3/ui/result/EpisodeSlot;
+	public static synthetic fun copy$default (Lcom/lagradost/cloudstream3/ui/result/EpisodeSlot;Lcom/lagradost/cloudstream3/DubStatus;Lcom/lagradost/cloudstream3/Episode;Ljava/lang/Integer;ILjava/lang/String;IIILjava/lang/Object;)Lcom/lagradost/cloudstream3/ui/result/EpisodeSlot;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getData ()Ljava/lang/String;
+	public final fun getDub ()Lcom/lagradost/cloudstream3/DubStatus;
+	public final fun getEpisode ()I
+	public final fun getId ()I
+	public final fun getIndex ()I
+	public final fun getSeason ()Ljava/lang/Integer;
+	public final fun getSource ()Lcom/lagradost/cloudstream3/Episode;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/lagradost/cloudstream3/ui/result/EpisodeSlotsKt : java/lang/Object {
+	public static final fun episodeSlots (Lcom/lagradost/cloudstream3/LoadResponse;I)Ljava/util/List;
+}
+
+public final static class com/lagradost/cloudstream3/ui/result/EpisodeSlotsKt$tvSeriesSlots$$inlined$sortedBy$1 : java/lang/Object, java/util/Comparator {
+	public fun <init> ()V
+	public final fun compare (Ljava/lang/Object;Ljava/lang/Object;)I
+}
+
 public final enum com/lagradost/cloudstream3/ui/result/EpisodeSortType : java/lang/Enum {
 	public static final field DATE_NEWEST Lcom/lagradost/cloudstream3/ui/result/EpisodeSortType;
 	public static final field DATE_OLDEST Lcom/lagradost/cloudstream3/ui/result/EpisodeSortType;
@@ -30057,11 +30090,6 @@ public final static class com/lagradost/cloudstream3/ui/result/ResultViewModel2$
 }
 
 public final static class com/lagradost/cloudstream3/ui/result/ResultViewModel2$postEpisodeRange$$inlined$sortedBy$1 : java/lang/Object, java/util/Comparator {
-	public fun <init> ()V
-	public final fun compare (Ljava/lang/Object;Ljava/lang/Object;)I
-}
-
-public final static class com/lagradost/cloudstream3/ui/result/ResultViewModel2$postEpisodes$$inlined$sortedBy$1 : java/lang/Object, java/util/Comparator {
 	public fun <init> ()V
 	public final fun compare (Ljava/lang/Object;Ljava/lang/Object;)I
 }
@@ -36977,15 +37005,19 @@ public final class com/lagradost/cloudstream4/detail/AndroidDetailSource : java/
 	public static final synthetic fun access$load (Lcom/lagradost/cloudstream4/detail/AndroidDetailSource;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final synthetic fun access$provider (Lcom/lagradost/cloudstream4/detail/AndroidDetailSource;Ljava/lang/String;)Lcom/lagradost/cloudstream3/MainAPI;
 	public static final synthetic fun access$setLastFacts$p (Lcom/lagradost/cloudstream4/detail/AndroidDetailSource;Lkotlin/Pair;)V
+	public static final synthetic fun access$setLastParts$p (Lcom/lagradost/cloudstream4/detail/AndroidDetailSource;Lkotlin/Pair;)V
 	public fun details (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun hostFacts$app (Ljava/lang/String;)Lcom/lagradost/cloudstream4/detail/DetailHostFacts;
 	public fun links (Ljava/lang/String;Ljava/lang/String;)Lkotlinx/coroutines/flow/Flow;
+	public final fun playbackParts$app (Ljava/lang/String;)Lcom/lagradost/cloudstream4/detail/DetailPlaybackParts;
 	public fun setFavourite (Ljava/lang/String;ZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun setWatchStatus (Ljava/lang/String;Lcom/lagradost/cloudstream4/feature/detail/DetailWatchStatus;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class com/lagradost/cloudstream4/detail/AndroidDetailSourceKt : java/lang/Object {
+	public static final synthetic fun access$toResultEpisode (Lcom/lagradost/cloudstream3/ui/result/EpisodeSlot;Lcom/lagradost/cloudstream3/LoadResponse;I)Lcom/lagradost/cloudstream3/ui/result/ResultEpisode;
 	public static final fun bookmarkOf (Lcom/lagradost/cloudstream3/LoadResponse;ILcom/lagradost/cloudstream3/utils/DataStoreHelper$BookmarkedData;)Lcom/lagradost/cloudstream3/utils/DataStoreHelper$BookmarkedData;
+	public static final fun chosenDub (Lcom/lagradost/cloudstream3/LoadResponse;Lcom/lagradost/cloudstream3/DubStatus;)Lcom/lagradost/cloudstream3/DubStatus;
 	public static final fun detailEpisodes (Lcom/lagradost/cloudstream3/LoadResponse;Lcom/lagradost/cloudstream3/DubStatus;)Ljava/util/List;
 	public static final fun favouriteOf (Lcom/lagradost/cloudstream3/LoadResponse;ILcom/lagradost/cloudstream3/utils/DataStoreHelper$FavoritesData;)Lcom/lagradost/cloudstream3/utils/DataStoreHelper$FavoritesData;
 	public static final fun playData (Lcom/lagradost/cloudstream3/LoadResponse;)Ljava/lang/String;
@@ -37051,6 +37083,24 @@ public final class com/lagradost/cloudstream4/detail/DetailHostFacts : java/lang
 	public final fun getTitleId ()I
 	public final fun getTrailers ()Ljava/util/List;
 	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/lagradost/cloudstream4/detail/DetailPlaybackParts : java/lang/Object {
+	public static final field $stable I
+	public fun <init> (Lcom/lagradost/cloudstream3/LoadResponse;ILjava/util/List;)V
+	public final fun component1 ()Lcom/lagradost/cloudstream3/LoadResponse;
+	public final fun component2 ()I
+	public final fun component3 ()Ljava/util/List;
+	public final fun copy (Lcom/lagradost/cloudstream3/LoadResponse;ILjava/util/List;)Lcom/lagradost/cloudstream4/detail/DetailPlaybackParts;
+	public static synthetic fun copy$default (Lcom/lagradost/cloudstream4/detail/DetailPlaybackParts;Lcom/lagradost/cloudstream3/LoadResponse;ILjava/util/List;ILjava/lang/Object;)Lcom/lagradost/cloudstream4/detail/DetailPlaybackParts;
+	public final fun episodes ()Ljava/util/List;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getResponse ()Lcom/lagradost/cloudstream3/LoadResponse;
+	public final fun getSlots ()Ljava/util/List;
+	public final fun getTitleId ()I
+	public fun hashCode ()I
+	public final fun indexOf (Ljava/lang/String;)Ljava/lang/Integer;
 	public fun toString ()Ljava/lang/String;
 }
 
