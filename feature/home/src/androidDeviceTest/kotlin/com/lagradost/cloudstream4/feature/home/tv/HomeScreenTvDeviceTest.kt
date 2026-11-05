@@ -2,7 +2,9 @@ package com.lagradost.cloudstream4.feature.home.tv
 
 import androidx.activity.ComponentActivity
 import androidx.activity.OnBackPressedCallback
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.DisposableEffect
@@ -11,6 +13,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.semantics.SemanticsActions
 import androidx.compose.ui.semantics.SemanticsProperties
@@ -33,7 +36,12 @@ import androidx.test.uiautomator.UiDevice
 import com.lagradost.cloudstream4.compose.ObserveEffect
 import com.lagradost.cloudstream4.core.devicetest.Dpad
 import com.lagradost.cloudstream4.core.devicetest.DpadDriver
+import com.lagradost.cloudstream4.core.devicetest.assertScreenshot
 import com.lagradost.cloudstream4.core.devicetest.focusedLabel
+import com.lagradost.cloudstream4.core.devicetest.solidPoster
+import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
+import com.lagradost.cloudstream4.core.designsystem.rail.NavRail
+import com.lagradost.cloudstream4.core.designsystem.rail.NavRailItem
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.home.HomeAction
 import com.lagradost.cloudstream4.feature.home.HomeEffect
@@ -50,6 +58,7 @@ import com.lagradost.cloudstream4.feature.home.HomeViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.awaitCancellation
 import kotlinx.coroutines.cancel
 import org.junit.After
 import org.junit.Assert.assertEquals
@@ -622,6 +631,109 @@ class HomeScreenTvDeviceTest {
         assertEquals(HomeEffect.OpenAccounts, effects.single())
     }
 
+    // ---- Screenshots (`INF-11`), compared with the references in src/androidDeviceTest/resources/screenshots ---------
+
+    /** As the app shows it: the rail beside the screen, which puts the page at the board's x, and solid posters. */
+    private fun showForScreenshot() {
+        rule.setContent {
+            val state by viewModel.state.collectAsState()
+            CloudStreamTheme {
+                Row(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) {
+                    NavRail(ShotRail, selectedIndex = HOME_INDEX, onSelect = {})
+                    HomeScreenTv(
+                        state = state,
+                        onAction = viewModel::onAction,
+                        modifier = Modifier.weight(1f),
+                        artwork = { item ->
+                            Image(
+                                bitmap = solidPoster(ShotPosters[(item.title.hashCode() and Int.MAX_VALUE) % ShotPosters.size]),
+                                contentDescription = null,
+                                modifier = Modifier.fillMaxSize(),
+                                contentScale = ContentScale.FillBounds,
+                            )
+                        },
+                    )
+                }
+            }
+        }
+        rule.runOnIdle { viewModel.onAction(HomeAction.Reappeared) }
+    }
+
+    /** Three rails as 3d draws them, the first with more to load, and a badge where the provider gave a quality. */
+    private fun shotRails(failSection: Int? = null) {
+        source.sections = 3
+        source.answer = { _, section, _ ->
+            when (section) {
+                failSection -> HomePageReply.Failed("HTTP 503")
+                0 -> shotRow("Popular movies", ShotTitles.take(8), hasNext = true)
+                1 -> shotRow("TV shows", ShotTitles.drop(8).take(9))
+                else -> shotRow("Latest", ShotTitles.drop(17))
+            }
+        }
+    }
+
+    @Test
+    fun screenshotRailsFocusOnACard() {
+        shotRails()
+        showForScreenshot()
+        awaitFocus(ShotTitles[0])
+        assertEquals(ShotTitles[1], dpad.press(Dpad.Right))
+        rule.assertScreenshot("home-rails-focus-card")
+    }
+
+    @Test
+    fun screenshotRailsFocusOnLoadMore() {
+        shotRails()
+        showForScreenshot()
+        awaitFocus(ShotTitles[0])
+        pressUntil(Dpad.Right, "$LOAD_MORE · Popular movies", presses = 9)
+        rule.assertScreenshot("home-rails-focus-load-more")
+    }
+
+    @Test
+    fun screenshotPartialFailureFocusOnRetry() {
+        shotRails(failSection = 1)
+        showForScreenshot()
+        awaitFocus(ShotTitles[0])
+        pressUntil(Dpad.Up, RETRY_FAILED)
+        rule.assertScreenshot("home-partial-failure-focus-retry")
+    }
+
+    @Test
+    fun screenshotNothingInstalledFocusOnItsAction() {
+        source.options = emptyList()
+        source.installed = 0
+        showForScreenshot()
+        awaitFocus(EXTENSIONS)
+        rule.assertScreenshot("home-nothing-installed-focus-action")
+    }
+
+    @Test
+    fun screenshotSourcePanelFocusOnTheCurrentSource() {
+        shotRails()
+        source.options = listOf(ONE, TWO, THREE)
+        memory.id = TWO.id
+        showForScreenshot()
+        awaitFocus(ShotTitles[0])
+        pressUntil(Dpad.Up, SOURCE_TWO)
+        dpad.center()
+        awaitFocus(TWO.name)
+        rule.assertScreenshot("home-source-panel-focus-current")
+    }
+
+    /** No page ever answers. Under a test the skeleton's pulse is held still, so this is one frame of it. */
+    @Test
+    fun screenshotLoading() {
+        source.sections = 3
+        source.answer = { _, _, _ -> HomePageReply.Loaded(emptyList(), hasNext = false) }
+        source.hold = true
+        showForScreenshot()
+        rule.waitUntil(WAIT_MS) { viewModel.state.value.selected != null }
+        rule.waitForIdle()
+        assertTrue(viewModel.state.value.status is HomeStatus.Loading)
+        rule.assertScreenshot("home-loading")
+    }
+
     private data class Call(val source: HomeSourceId, val section: Int, val page: Int)
 
     private class Kept(var id: HomeSourceId? = null) : HomeSourceMemory {
@@ -637,6 +749,8 @@ class HomeScreenTvDeviceTest {
         @Volatile var installed = 1
         @Volatile var sections = 1
         @Volatile var stillLoading = false
+        /** Every page waits forever. */
+        @Volatile var hold = false
         @Volatile var answer: (HomeSourceId, Int, Int) -> HomePageReply = { _, _, _ -> loaded("A", listOf("A 0")) }
         val calls = CopyOnWriteArrayList<Call>()
 
@@ -644,6 +758,7 @@ class HomeScreenTvDeviceTest {
 
         override suspend fun page(source: HomeSourceId, section: Int, page: Int): HomePageReply {
             calls += Call(source, section, page)
+            if (hold) awaitCancellation()
             return answer(source, section, page)
         }
     }
@@ -662,6 +777,30 @@ class HomeScreenTvDeviceTest {
             "Of Any Television Even One Of Some Considerable Width And Then Some More Words After That For Luck"
         val ONE = HomeSourceOption(HomeSourceId("one"), "Source One")
         val TWO = HomeSourceOption(HomeSourceId("two"), "Source Two")
+        val THREE = HomeSourceOption(HomeSourceId("three"), "Source Three", language = "en")
+        const val HOME_INDEX = 0
+        val ShotRail = listOf(
+            NavRailItem("Home", CloudStreamIcons.Home),
+            NavRailItem("Search", CloudStreamIcons.Search),
+            NavRailItem("Library", CloudStreamIcons.Library),
+            NavRailItem("Downloads", CloudStreamIcons.Download),
+            NavRailItem("Settings", CloudStreamIcons.Settings),
+        )
+        val ShotPosters = listOf(0xFF39505C.toInt(), 0xFF5C4A39.toInt(), 0xFF3F5C39.toInt(), 0xFF4A395C.toInt())
+        val ShotTitles = listOf(
+            "Vantage", "Salt Road", "Drift", "Low Tide", "Quiet Harbor", "Meridian", "Cold Open", "Nightshift",
+            "The Long Dark", "Ashen Field", "Hollow Crown", "Nine Lives", "Kingfisher", "Paper Cities", "The Wake",
+            "Greyline", "Signal Hill", "Tidewater", "Northbound", "Copper Sky", "Afterglow", "Lantern", "Glass Bay",
+            "Redwing", "Stillwater",
+        )
+        val ShotBadges = mapOf("Salt Road" to "4K", "Ashen Field" to "DUB")
+
+        fun shotRow(row: String, titles: List<String>, hasNext: Boolean = false) = HomePageReply.Loaded(
+            rows = listOf(
+                HomeRowPage(row, landscape = false, items = titles.map { HomeItem("id/$it", it, badge = ShotBadges[it]) }),
+            ),
+            hasNext = hasNext,
+        )
         val SOURCE_ONE = "Source · ${ONE.name}"
         val SOURCE_TWO = "Source · ${TWO.name}"
 

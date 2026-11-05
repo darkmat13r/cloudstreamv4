@@ -272,8 +272,9 @@ private fun HomeChromeRow(
         horizontalArrangement = Arrangement.spacedBy(CloudStreamDimens.MinFocusGap),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        if (notice != null) HomeFailureNotice(notice, stops, Modifier.weight(1f, fill = false))
-        Spacer(Modifier.weight(1f))
+        // The notice takes the free width rather than sharing it with a spacer: shared, its headline was squeezed to
+        // nothing (measured on the recorded screenshot).
+        if (notice != null) HomeFailureNotice(notice, stops, Modifier.weight(1f)) else Spacer(Modifier.weight(1f))
         state.selectedOption?.let { selected ->
             HomeSourceControl(name = selected.name, stops, onClick = { onAction(HomeAction.PickerOpened) })
         }

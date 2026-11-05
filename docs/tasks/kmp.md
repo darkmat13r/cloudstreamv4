@@ -3507,8 +3507,12 @@ This is the first plugin to have run in these Android tests. **It is not** playb
 A real TV remote. A cold start with the plugin already compiled, or on real hardware. Paging, sub and dub badges and the source panel
 against a real plugin (the proof pressed none of them). Account switching end to end: the effect is tested, and the dialog and what
 follows are not. A process restored from saved state, which the factory is for. A right-to-left layout. The XML rail with the new
-home, beyond its existing test. Screenshots: `:core:screenshot` has no case for this, as with search and the library,
-since the plugin renders nothing on this toolchain.
+home, beyond its existing test.
+
+**Screenshots (`INF-11`).** Six cases in `HomeScreenTvDeviceTest`, 1280x720 on `Television_720p`, with solid posters: rails with a card
+focused, the trailing card focused, a partial failure with its retry focused, nothing installed with its action focused, the source panel on
+the current source, and loading. Recording them found one defect, now fixed: the failure's headline shared the chrome row's free width with
+a spacer and was squeezed to nothing.
 
 ### Found, not changed
 
