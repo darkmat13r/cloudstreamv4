@@ -681,7 +681,7 @@ geometry against the artboard.
 
 ## INF-11 — Compose screenshot tests on the emulator · **measured 2026-11-05**
 
-**Status:** in pr (the PR that adds this entry) · answers `DEC-10`, unblocks `DS-04` · no new dependency.
+**Status:** in pr #151 · answers `DEC-10`, unblocks `DS-04` · no new dependency.
 
 `assertScreenshot` in `:core:devicetest` captures the window with `captureToImage` and compares every pixel with a committed PNG. How to use
 it is in `docs/HANDOVER.md`, what it cannot catch is in `.claude/rules/screenshot-testing.md`.
