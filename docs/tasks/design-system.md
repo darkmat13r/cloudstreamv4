@@ -611,7 +611,7 @@ re-recorded after its diff was read, and `library-grid-focus-tab` already covers
 
 ## DS-15 — Text buttons lead with a glyph; icon-only only for toggles and overflow
 
-**Status:** in review · `DEC-17`, 2026-11-05: *"use icons here if possible or other places which are common, update the
+**Status:** in review · #159 · `DEC-17`, 2026-11-05: *"use icons here if possible or other places which are common, update the
 design and instructions"*, and the owner's ruling the same day.
 
 **The rule** is in `.claude/rules/ui-components.md`, "Buttons", with the glyph table: one white primary, first; secondary
