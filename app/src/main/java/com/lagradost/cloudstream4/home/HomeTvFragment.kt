@@ -82,7 +82,7 @@ internal object TvHomeFragmentFactory : FragmentFactory() {
  * The home destination on the TV layout, the glue around `HomeScreenTv`, as `SearchTvFragment` is for search: it owns the
  * ViewModel, turns effects into navigation and loads posters.
  *
- * `docs/tasks/kmp.md` (`KMP-36`) lists what the old screen does that this does not.
+ * `docs/tasks/kmp.md` (`KMP-37`) lists what the old screen does that this does not.
  */
 class HomeTvFragment : BaseComposeFragment() {
 

@@ -466,7 +466,7 @@ class TvRailNavigationTest {
     @Test
     fun noDeadEndsOnHome() = noDeadEnds(HOME)
 
-    /** What this suite pinned before `KMP-36`, kept while the old home is the rollback. */
+    /** What this suite pinned before `KMP-37`, kept while the old home is the rollback. */
     @Test
     fun noDeadEndsOnTheOldHome() {
         TvHomeSwitch.useComposeHome = false
