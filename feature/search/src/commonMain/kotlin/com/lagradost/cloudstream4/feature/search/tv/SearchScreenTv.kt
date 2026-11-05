@@ -303,6 +303,9 @@ private fun Modifier.contentRegionInset(): Modifier =
  */
 object SearchScreenTvDefaults {
 
+    /** Between two badges on a card: `.badges { gap: 8px }` in 4a, halved. Equal to `MediaCardDefaults.ContentPadding`. */
+    val BadgeGap: Dp = 4.dp
+
     /**
      * The y every artboard in the cluster mounts its one content region at — 296 artboard px.
      *

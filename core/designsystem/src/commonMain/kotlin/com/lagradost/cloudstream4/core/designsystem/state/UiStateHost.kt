@@ -32,7 +32,7 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamCardSizes
  * @param modifier applied to the state components this host draws — the prompt and the skeleton.
  *   Your [content] gets none: it is your composable and carries its own.
  * @param glyph decoration for the three prompt states, chosen by the caller from the state it is
- *   handed. Not focusable; the design system ships no icon set.
+ *   handed, from `CloudStreamIcons`. Not focusable.
  * @param emptyActionElsewhere `true` when the caller draws [UiState.Empty]'s action itself, in its
  *   chip row. See `showAction` on [StateView], which says what that makes the caller owe.
  * @param skeleton what [UiState.Loading] draws, handed the host's [modifier]. **Pass one shaped

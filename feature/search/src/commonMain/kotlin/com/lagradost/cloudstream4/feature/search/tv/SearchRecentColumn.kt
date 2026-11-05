@@ -1,6 +1,7 @@
 package com.lagradost.cloudstream4.feature.search.tv
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -38,6 +39,7 @@ import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIconSize
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
+import com.lagradost.cloudstream4.core.designsystem.target.IconCellDefaults
 import com.lagradost.cloudstream4.core.designsystem.rows.ListRow
 import com.lagradost.cloudstream4.core.designsystem.rows.ListRowDefaults
 import com.lagradost.cloudstream4.core.designsystem.rows.ListRowState
@@ -191,6 +193,9 @@ private fun HistoryDisc() {
  * `Clear all searches`: a list row's geometry with the board's `.lt`, 24/32px, which is the `label` token.
  *
  * Not `ListRow`, because its lone title is always `body` (28/40px) and that is a choice for every list on TV.
+ *
+ * The trash sits in a cell the size of a remove's, with a remove's tile, so its centre is the right
+ * column's removes' x as 4c draws it. The cell is not a stop: the row is the one control.
  */
 @Composable
 private fun ClearAllRow(stops: SearchStops, onClick: () -> Unit) {
@@ -205,24 +210,37 @@ private fun ClearAllRow(stops: SearchStops, onClick: () -> Unit) {
             .focusProperties { right = FocusRequester.Cancel }
             .onFocusChanged { focused = it.isFocused }
             .clickable(interactionSource = null, indication = null, role = Role.Button, onClick = onClick)
-            .tvFocusRing(focused = focused, shape = shape)
-            .padding(CloudStreamDimens.ListRowPadding),
+            .tvFocusRing(focused = focused, shape = shape),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Spacer(Modifier.width(SearchRecentDefaults.MarkerInset))
-        Text(
-            text = stringResource(Res.string.search_tv_clear_all),
-            style = CloudStreamTheme.typography.label,
-            color = colors.ink,
-            maxLines = 1,
-            modifier = Modifier.weight(ROWS_WEIGHT),
-        )
-        CloudStreamIcon(
-            icon = CloudStreamIcons.Delete,
-            contentDescription = null,
-            size = CloudStreamIconSize.Small,
-            tint = if (focused) colors.ink else colors.muted,
-        )
+        Row(
+            modifier = Modifier.weight(ROWS_WEIGHT).padding(CloudStreamDimens.ListRowPadding),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Spacer(Modifier.width(SearchRecentDefaults.MarkerInset))
+            Text(
+                text = stringResource(Res.string.search_tv_clear_all),
+                style = CloudStreamTheme.typography.label,
+                color = colors.ink,
+                maxLines = 1,
+            )
+        }
+        Box(Modifier.size(CloudStreamDimens.IconTargetCell), contentAlignment = Alignment.Center) {
+            Box(
+                modifier = Modifier
+                    .size(IconCellDefaults.TileSize)
+                    .background(colors.raised, CloudStreamTheme.shapes.medium)
+                    .border(CloudStreamDimens.Hairline, colors.line, CloudStreamTheme.shapes.medium),
+                contentAlignment = Alignment.Center,
+            ) {
+                CloudStreamIcon(
+                    icon = CloudStreamIcons.Delete,
+                    contentDescription = null,
+                    size = CloudStreamIconSize.Small,
+                    tint = if (focused) colors.ink else colors.muted,
+                )
+            }
+        }
     }
 }
 

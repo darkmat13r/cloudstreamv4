@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -210,10 +211,15 @@ private fun ResultCard(
     modifier: Modifier = Modifier,
 ) {
     var focused by remember { mutableStateOf(false) }
-    val slots = remember(item.qualityLabel) {
-        val quality = item.qualityLabel
-        if (quality == null) MediaCardSlots.None else MediaCardSlots(
-            leadingBadge = { Badge(text = quality) },
+    // 4a's `.badges`: the quality first, then `DUB` or `SUB`, side by side at the leading corner.
+    val slots = remember(item.qualityLabel, item.dubLabel) {
+        val labels = listOfNotNull(item.qualityLabel, item.dubLabel)
+        if (labels.isEmpty()) MediaCardSlots.None else MediaCardSlots(
+            leadingBadge = {
+                Row(horizontalArrangement = Arrangement.spacedBy(SearchScreenTvDefaults.BadgeGap)) {
+                    labels.forEach { Badge(text = it) }
+                }
+            },
         )
     }
 
@@ -222,7 +228,8 @@ private fun ResultCard(
         state = MediaCardState(
             focused = focused,
             title = item.title,
-            meta = item.dubLabel ?: item.typeLabel,
+            // 4a's reveal is the title alone. The dub status is a badge, and the type has no place on the card.
+            meta = null,
             progress = item.watchProgress,
         ),
         modifier = modifier

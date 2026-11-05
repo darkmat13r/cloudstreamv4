@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
+import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.designsystem.state.FailureNotice
 import com.lagradost.cloudstream4.core.designsystem.state.StateAction
 import com.lagradost.cloudstream4.core.designsystem.state.StatePrompt
@@ -72,7 +73,7 @@ fun SearchStatus.toUiState(
             notice = FailureNotice(
                 headline = UiString.Plural(Res.plurals.search_state_partial_headline, total - answered).resolve(),
                 detail = detail,
-                retry = StateAction(stringResource(Res.string.search_state_retry_failed), retry),
+                retry = StateAction(stringResource(Res.string.search_state_retry_failed), CloudStreamIcons.Retry, retry),
             ),
         )
 
@@ -80,7 +81,7 @@ fun SearchStatus.toUiState(
             StatePrompt(
                 headline = stringResource(Res.string.search_state_idle_headline),
                 body = stringResource(idleBody),
-                action = StateAction(stringResource(Res.string.search_state_idle_action), browse),
+                action = StateAction(stringResource(Res.string.search_state_idle_action), CloudStreamIcons.Home, browse),
             ),
         )
 
@@ -97,7 +98,7 @@ fun SearchStatus.toUiState(
                     narrowingSentence(narrowedBy),
                 ).joinToString("\n"),
                 // 8c's note: the label names both halves of what it clears, so the binding has to clear both.
-                action = StateAction(stringResource(Res.string.search_state_no_results_action), everything),
+                action = StateAction(stringResource(Res.string.search_state_no_results_action), CloudStreamIcons.Search, everything),
             ),
             // 8c's mono line. Every number is final and the arithmetic closes: this status means every
             // queried source answered and none failed.

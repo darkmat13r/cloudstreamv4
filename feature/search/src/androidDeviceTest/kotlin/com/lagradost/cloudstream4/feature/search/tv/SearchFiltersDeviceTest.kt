@@ -464,6 +464,21 @@ class SearchFiltersDeviceTest {
         rule.waitForIdle()
     }
 
+    /** A full rail scrolled to its end, where `SeeAllCard` waits. 4a's `See all`, paging in place. */
+    @Test
+    fun screenshotFullRailEndingInTheSeeAllTile() {
+        val full = SearchViewModel(FullPagedSource, NoHistory)
+        show(full)
+        full.onAction(SearchAction.RecentActivated(QUERY))
+        awaitText("Filmxy")
+        onTheField()
+        assertEquals(FullPagedSource.titles.first(), dpad.press(Dpad.Down))
+        val reached = generateSequence { dpad.press(Dpad.Right) }.take(FullPagedSource.titles.size + 1).firstOrNull { it == "Load more" }
+        assertEquals("Load more", reached)
+        rule.waitForIdle()
+        rule.assertScreenshot("search-rail-ends-in-see-all")
+    }
+
     @Test
     fun screenshotSourcePanelOpen() {
         showWithRail()
@@ -637,6 +652,17 @@ class SearchFiltersDeviceTest {
         override suspend fun sources() = SearchSources(1, 1, quickSearchable = false)
         override suspend fun search(query: String): SearchOutcome =
             SearchOutcome.Complete(listOf(hit(FIRST_CARD, "Filmxy")), setOf("Filmxy"))
+        override suspend fun quickSearch(query: String) = search(query)
+        override suspend fun searchMore(query: String, providerName: String, page: Int): SearchOutcome =
+            SearchOutcome.Complete(listOf(hit("Second page", "Filmxy")))
+    }
+
+    /** One rail longer than the screen, with another page behind its `See all`. */
+    private object FullPagedSource : SearchSource {
+        val titles = (1..10).map { "Result $it" }
+        override suspend fun sources() = SearchSources(1, 1, quickSearchable = false)
+        override suspend fun search(query: String): SearchOutcome =
+            SearchOutcome.Complete(titles.map { hit(it, "Filmxy") }, setOf("Filmxy"))
         override suspend fun quickSearch(query: String) = search(query)
         override suspend fun searchMore(query: String, providerName: String, page: Int): SearchOutcome =
             SearchOutcome.Complete(listOf(hit("Second page", "Filmxy")))

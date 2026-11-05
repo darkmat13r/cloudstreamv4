@@ -77,8 +77,7 @@ object StateViewDefaults {
  *   ago, and a TV whose focus has nowhere to land answers the D-pad with nothing. Turn it off
  *   only when something else on the screen is deliberately taking focus instead.
  * @param glyph optional decoration, measured into a [StateViewDefaults.GlyphSize] box. Not
- *   focusable, not interactive — the design system ships no icon set, so the icon is the
- *   caller's.
+ *   focusable, not interactive. The caller chooses it, from `CloudStreamIcons`.
  * @param showAction `false` when the caller draws [StatePrompt.action] somewhere else, which
  *   `TV Search Suggestions` 8c does: its action rides the chip row. The caller then owes that action
  *   a focus stop, and owes it [requestInitialFocus]'s job too. The exactly-one-action rule still holds.

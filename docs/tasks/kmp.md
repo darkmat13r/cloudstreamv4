@@ -3503,7 +3503,9 @@ dump, so `DownloadFacts` and its `Flow.map` helper classes appear, as do the man
 - **Type chips (4b, 8c).** A chip narrows the search. Nothing lit means nothing narrows.
 - **8c's action.** It sits on the chip row, clears the provider and type filters, then searches.
 - **`See all` pages in place** with `SeeAllCard`, labelled `load_more`.
-- **4c.** Two columns, a leading disc, a per-row remove as a trailing stop, and a clock glyph (`CloudStreamIcons.History`).
+- **4c.** Two columns, a leading disc, a per-row remove as a trailing stop, and a clock glyph (`CloudStreamIcons.History`). `Clear all`'s trash sits in a remove's cell with a remove's tile, so it lines up with the right column's removes.
+- **Cards (4a).** The quality badge and then `DUB` or `SUB` sit side by side at the leading corner. The reveal is the title alone.
+- **The state actions carry #159's glyphs:** `Retry failed` has `Retry`, `Search everything` has `Search`, and `Browse home` has `Home`.
 - **Search's rails use the 12 gap**, and `SkeletonRail` still spaces at `ChipRowSpacing` 24, so a rail moves when it replaces its skeleton.
 
 ### Focus choices
@@ -3546,16 +3548,14 @@ Two control runs on the device, with the fix removed and then restored:
 - A Done with nothing lit falls back to everything eligible.
 - Panel rows narrow by the lit types, so a panel's total can exceed its row count.
 - A source's health is held in memory only.
-- History dates stay lower case, from `DateUtils`.
+- History dates stay lower case, from `DateUtils`, and `today` drops 4c's time (`TODAY 19:04`).
+- 4d's leading disc is not drawn. An installed plugin's record (`PluginData`) keeps no icon. `iconUrl` arrives only with a network fetch of the repository's plugin list, and one plugin can register several providers.
+- A card no longer shows its type (`Movie`), because 4a's reveal has no meta line.
 - The first entry from the rail lands on the field.
 
 ### Found, not changed
 
 ```
-Found: `Clear all`'s trash glyph centres at x≈1221 px and the remove glyphs at x≈1211, in `SearchRecentColumn.kt`
-Suggest: one column for both
-Why: 4c lines them up.
-
 Found: `SkeletonRail` spaces at `ChipRowSpacing` 24, and the rails it stands in for now space at 12
 Suggest: move the skeleton, which is shared
 Why: a rail jumps when it replaces its skeleton.
@@ -3565,7 +3565,8 @@ Suggest: one copy in the design system
 Why: not on this task's approved list of shared changes.
 ```
 
-- **4c's `.rm` draws no tile,** and `IconCell` has one at rest since #156.
+- **4c's `.rm` draws no tile,** and `IconCell` has one at rest since #156. `Clear all`'s trash copies the tile so the two match.
+- **A remove sits outside its focused row's ring,** because `ListRow`'s actions are beside the row. That is a shared `ListRow` question, raised separately.
 - **Home's panel rows sit about 3 dp lower** than search's.
 - **`action_remove_from_bookmarks`,** the remove's description, is in 59 of 62 locales, so 3 fall back to English.
 - **Translations are weakest** in `ti`, `am`, `so`, `mt`, `ckb`, `my`, `or`, `as` and `qt`. The 18 locales with no `setup_done` use a chosen word for Done.
