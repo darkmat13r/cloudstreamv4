@@ -226,7 +226,12 @@ class DownloadsTvNavigationTest {
             dpad.center()
             // The old screen's dialog, with its positive button.
             assertTrue(device.wait(Until.hasObject(By.text(delete)), SCREEN_WAIT_MS))
-            device.findObject(By.text(delete)).click()
+            // By remote. A touch here would leave the display in touch mode, where the next test's screen cannot take focus.
+            if (dpad.focused() != delete) {
+                generateSequence { dpad.press(Dpad.Right) }.take(RAIL_PRESSES).firstOrNull { it == delete }
+                    ?: generateSequence { dpad.press(Dpad.Left) }.take(RAIL_PRESSES).first { it == delete }
+            }
+            dpad.center()
 
             waitFor(NO_DOWNLOADS)
             assertFalse(
