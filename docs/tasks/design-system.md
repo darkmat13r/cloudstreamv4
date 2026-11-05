@@ -543,14 +543,17 @@ ring there touches its neighbour, and `.seg` 56 px against the 48 px visual `Seg
 
 ---
 
-## DS-13 — Boards: four old Home features, `TV Home Extras` 3e to 3l
+## DS-13 — Boards: four old Home features, `TV Home Extras` 3e to 3m
 
-**Status:** in review, waiting on the owner · boards only, no Kotlin
+**Status:** in review · #149 · boards only, no Kotlin
 
-The owner asked on 2026-11-05 for the bookmarks row and its filter, Random and the `Random` and `None` sources, a details
-panel on a card with search of its source, and a manual reload. No board drew them. `design/TV Home Extras.dc.html` holds eight
-artboards, numbered on from 3d. Its closing note gives each board's focus order, states and prerequisites by file and line,
-and the questions for the owner, including how a remote reaches the panel. 414 boxes: 0 off-grid, 0 band violations, 0 clipped,
-0 collisions, 8 rings at 4px gap and 4px stroke on all four sides, from `getBoundingClientRect` and again from the pixels.
+The owner asked on 2026-11-05 for the bookmarks row and its filter, a Random button and `None` as a source, a details panel
+on a card, and a manual reload. No board drew them. `design/TV Home Extras.dc.html` holds nine artboards, numbered on from 3d,
+redrawn the same day to the owner's rulings: hold OK plus the Menu key reach the panel; Random is not a Home source, and
+`None` alone remains, while the Random button stays, always shown; search is in the top bar only; a failed reload shows the
+error page (3m); Subscribe is in the panel; the token wins for list rows and rings; and a primary at rest is not white. Its
+closing note gives each board's focus order, states and prerequisites by file and line. 429 boxes: 0 off-grid, 0 band
+violations, 0 clipped, 0 collisions, 9 rings at 4px gap and 4px stroke on all four sides, from `getBoundingClientRect` and
+again from the pixels.
 
 ---

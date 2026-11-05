@@ -114,7 +114,10 @@
             height: 64px; min-width: 240px; padding: 0 32px; box-sizing: border-box; border-radius: 16px;
             font: 700 24px/32px Manrope, sans-serif; background: var(--raised); white-space: nowrap;
             color: var(--ink); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.2); }
-          .btn.pri { background: var(--ink); color: #000000; box-shadow: none; font-weight: 800; }
+          .btn { color: var(--ink2); }
+          /* white means focus only: a primary at rest is raised, ink, 800, with a muted hairline */
+          .btn.pri { color: var(--ink); box-shadow: inset 0 0 0 1px var(--mut); font-weight: 800; }
+          .btn.pri.foc { background: var(--ink); color: #000000; box-shadow: none; }
           .btn.foc { outline: 4px solid var(--ink); outline-offset: 4px; }
           .sq { width: 16px; height: 16px; border-radius: 4px; background: currentColor; flex: none; }
           .pager { display: flex; align-items: center; gap: 24px; height: 24px; }
@@ -218,12 +221,12 @@
         </div>
         <p class="secsub">
           Four old Home features the owner asked to have back on 2026-11-05: the bookmarks row with its
-          watch-status filter, Random, a details panel on a card with search of its source, and a manual
-          reload. <b>Nothing here is built, and nothing here has a seam yet.</b> Every board was read
+          watch-status filter, a Random button and <code>None</code> as a source, a details panel on a card,
+          and a manual reload. Redrawn the same day to the owner’s rulings, listed first in the note. <b>Nothing here is built, and nothing here has a seam yet.</b> Every board was read
           from the old code first, and the closing note lists what each one needs, by file and line.
           Boards continue from 3d, in this file because <code>TV Home</code> was being edited. Measured in
-          Chromium with fonts loaded, across <b>414 boxes</b> including every text box: <b>0 off-grid, 0 band
-          violations, 0 clipped, 0 collisions, 8 rings all 4px at 4px offset</b>, one focus owner per board, and
+          Chromium with fonts loaded, across <b>429 boxes</b> including every text box: <b>0 off-grid, 0 band
+          violations, 0 clipped, 0 collisions, 9 rings all 4px at 4px offset</b>, one focus owner per board, and
           one peek row, on 3e.
         </p>
 
@@ -357,8 +360,8 @@
           <!-- ============ 3h SOURCE PANEL ============ -->
           <div class="shot" id="3h">
             <div class="shotl">
-              <span class="shotn">3h · TV Home Extras — source panel with None and Random</span>
-              <span>A single choice, so it applies at once with no buttons, and Back closes it. None and Random sit first, as they did. Random is an action and not a state: it picks one source and that source is what gets marked and kept, so its row never carries the marker.</span>
+              <span class="shotn">3h · TV Home Extras — source panel with None</span>
+              <span>A single choice, so it applies at once with no buttons, and Back closes it. None sits first, as it did, and is the only choice that is not a source: the owner ruled Random out of this list. Random lives on as a button in the chrome (3j).</span>
             </div>
             <div class="shotc">
               <div class="tv" data-screen-label="TV Home Extras — source panel">
@@ -444,11 +447,11 @@
           <!-- ============ 3j CHROME, RELOAD ============ -->
           <div class="shot" id="3j">
             <div class="shotl">
-              <span class="shotn">3j · TV Home Extras — chrome named, a reload that failed</span>
-              <span>3c’s unnamed cells become Reload and Random, with Search this source added, in the old TV order. A reload keeps what is on screen until the new page lands, and when it fails nothing is lost. Focus stays on Reload, so pressing again is the retry, and the page needs no second button.</span>
+              <span class="shotn">3j · TV Home Extras — chrome named</span>
+              <span>3c’s unnamed cells become Reload and Random, with Search this source added, in the old TV order. Random is always shown and opens a random title. Search lives here and nowhere else on Home. Resume is a primary at rest, so it is not white: white means focus.</span>
             </div>
             <div class="shotc">
-              <div class="tv" data-screen-label="TV Home Extras — reload failed">
+              <div class="tv" data-screen-label="TV Home Extras — chrome named">
                 <div class="art abs" style="left:0;top:0;right:0;height:608px"></div>
                 <div class="scrimh abs" style="left:0;top:0;right:0;height:608px"></div>
                 <div class="railc abs" style="left:0;top:0;background:linear-gradient(90deg, rgba(0,0,0,0.96) 60%, rgba(0,0,0,0))">
@@ -458,11 +461,6 @@
                   </sc-for>
                 </div>
                 <div class="clock abs" style="left:200px;top:88px;width:200px">{{ clock }}</div>
-                <div class="notice abs" style="left:424px;top:56px;width:616px">
-                  <span class="hollow"></span>
-                  <div class="nh">{{ reloadFailed }}</div>
-                  <div class="nd">{{ reloadDetail }}</div>
-                </div>
                 <div class="srcpill abs" style="left:1064px;top:72px"><div class="srcn">{{ sourceName }}</div><span class="gl2"></span></div>
                 <div class="ibx abs" style="left:1408px;top:56px"><span class="ivis foc"><span class="gl2"></span></span></div>
                 <div class="ibx abs" style="left:1528px;top:56px"><span class="ivis"><span class="gl2"></span></span></div>
@@ -506,7 +504,7 @@
           <div class="shot" id="3k">
             <div class="shotl">
               <span class="shotn">3k · TV Home Extras — details panel</span>
-              <span>What the old popup held, as a side panel: backdrop, title, the four facts it showed, the plot, then its verbs. Reached by holding OK on a card, or the Menu key where a remote has one. Search this source runs Quick Search on that card’s source, with the title filled in.</span>
+              <span>What the old popup held, as a side panel: backdrop, title, the four facts it showed, the plot, then its verbs, Subscribe included. Reached by holding OK on a card, or the Menu key where a remote has one. Search is not here: on Home it lives in the top bar only.</span>
             </div>
             <div class="shotc">
               <div class="tv" data-screen-label="TV Home Extras — details panel">
@@ -566,7 +564,7 @@
           <div class="shot" id="3l">
             <div class="shotl">
               <span class="shotn">3l · TV Home Extras — details panel, load failed</span>
-              <span>The old code showed a toast and closed. Here the panel stays, with what the card already knew, and says what failed with a hollow marker and words. Verbs that need the loaded title go. Try again takes focus, and the others still work.</span>
+              <span>The old code showed a toast and closed. Here the panel stays, with what the card already knew, and says what failed with a hollow marker and words. Set watch status, favourites and Subscribe need the loaded title, so they wait for it. Try again takes focus, and More info still works.</span>
             </div>
             <div class="shotc">
               <div class="tv" data-screen-label="TV Home Extras — details failed">
@@ -620,26 +618,53 @@
             </div>
           </div>
 
+          <!-- ============ 3m RELOAD FAILED ============ -->
+          <div class="shot" id="3m">
+            <div class="shotl">
+              <span class="shotn">3m · TV Home Extras — a reload that failed</span>
+              <span>As ruled, a failed reload shows the error page: the built state, below the chrome. Reload and Random go with the rows they act on, and the state’s own Try again takes focus. Search stays, because the source can still be searched.</span>
+            </div>
+            <div class="shotc">
+              <div class="tv" data-screen-label="TV Home Extras — reload failed">
+                <div class="railc abs" style="left:0;top:0">
+                  <div class="lgm"></div>
+                  <sc-for list="{{ nav }}" as="n" hint-placeholder-count="5">
+                    <div class="nic {{ n.cls }}"><span class="gl"></span></div>
+                  </sc-for>
+                </div>
+                <div class="clock abs" style="left:200px;top:88px;width:200px">{{ clock }}</div>
+                <div class="srcpill abs" style="left:1304px;top:72px"><div class="srcn">{{ sourceName }}</div><span class="gl2"></span></div>
+                <div class="ibx abs" style="left:1648px;top:56px"><span class="ivis"><span class="gl2"></span></span></div>
+                <div class="ibx abs" style="left:1768px;top:56px"><span class="avatar"></span></div>
+
+                <span class="hollow abs" style="left:1024px;top:448px"></span>
+                <div class="svh abs" style="left:200px;top:480px;width:1664px">{{ errorHead }}</div>
+                <div class="svb abs" style="left:200px;top:544px;width:1664px">{{ errorBody }}</div>
+                <div class="nd abs" style="left:200px;top:592px;width:1664px;text-align:center">{{ errorDetail }}</div>
+                <div class="bbtn foc abs" style="left:888px;top:656px;width:288px"><div>{{ tryAgain }}</div></div>
+              </div>
+            </div>
+          </div>
+
         </div>
 
         <div class="note">
-          <h3>How a remote reaches the details panel (3k), and the question it leaves</h3>
-          <p>The owner’s word was <b>long press</b>, and the old TV page does exactly that:
-          <code>SearchResultBuilder.kt:231</code> sets a long-click listener on the card. A remote can’t be
-          relied on for it, because some remotes may report a key press and release together, and then
-          nothing fires. So these boards draw <b>three routes and no new stop on a card</b>:</p>
-          <p><b>1 · Hold OK</b> stays, as asked. <b>2 · The Menu key</b> opens the same panel on a remote
-          that has one. <b>3 · Without either,</b> nothing is out of reach: OK opens the title’s page,
-          which carries the details and the bookmark (7a), and the Search cell in the chrome (3j) searches
-          the source. The hint on 3e tells a person that the gesture exists, and only names Menu where
-          <code>KeyCharacterMap.deviceHasKey</code> says it is there.</p>
-          <p><b>Why not a trailing stop on each card.</b> It is the one route that can’t fail, and it
-          doubles every RIGHT along a rail: card 8 takes 14 presses rather than 7, on every rail, for
-          everyone, to serve the few whose remote fails. It would also break 3d’s rule that RIGHT walks
-          the cards. A stop at the end of the rail does not work either, because walking there moves focus
-          off the card it was for.</p>
-          <p><b>Not measured.</b> No board or emulator run can say which remotes fail, so “some remotes”
-          is the brief’s claim and my reasoning, not a test. Holding OK needs trying on real hardware.</p>
+          <h3>The owner’s rulings, 2026-11-05, and what changed for them</h3>
+          <p><b>1 · Details panel:</b> hold OK, plus the Menu key, as drawn. <b>2 · Random is not a Home
+          source.</b> It is gone from 3h, and <code>None</code> alone remains beside the real sources. The
+          Random <i>button</i> stays in the chrome, always shown, and opens a random title. <b>3 · Search is in
+          the top bar only.</b> It is gone from the details panel and from cards. <b>4 · A failed reload shows
+          the error page,</b> now 3m, not the kept rows. <b>5 · Subscribe</b> is in 3k, inside the band, and 3l
+          matches. <b>6 · The token wins</b> for list rows (16) and rings (4 at 4, on the visible control).
+          <b>7 · White means focus only,</b> so 3j’s Resume is no longer white at rest.</p>
+
+          <h3>How a remote reaches the details panel (3k)</h3>
+          <p><b>Hold OK</b> on a card, as the old TV page did (<code>SearchResultBuilder.kt:231</code>), or
+          <b>the Menu key</b> where a remote has one. No card gains a stop, so RIGHT still walks the cards. On a
+          remote that delivers neither, OK still opens the title’s page, which carries the details and the
+          bookmark (7a). The hint on 3e names the gesture, and names Menu only where
+          <code>KeyCharacterMap.deviceHasKey</code> says it is there. <b>Not measured:</b> which remotes fail to
+          hold OK. That needs real hardware.</p>
 
           <h3>3e · Bookmarks rail</h3>
           <p><b>Focus.</b> From Continue watching, DOWN reaches the chips, then DOWN the cards, then the
@@ -681,58 +706,56 @@
 
           <h3>3h · Source panel</h3>
           <p><b>Focus.</b> Opens on the chosen source, as built (<code>HomeSourcePanelTv.kt:39</code>), and
-          UP reaches Random and None. OK applies and closes. Back closes, and focus returns to the source
-          control. <b>Random is one-shot:</b> the old code writes the picked source, not Random
-          (<code>HomeViewModel.kt:524-534</code>), so next launch opens on that source. It picks from
-          <code>filterProviderByPreferredMedia</code>, and with nothing to pick it means None. Its row is
-          absent when there are no sources. <b>States.</b> Content here. Loading: rows arrive as plugins do
+          UP reaches None. OK applies and closes. Back closes, and focus returns to the source control.
+          <b>Only <code>None</code> remains</b> beside the sources; Random is not offered here. The old picker
+          added both (<code>HomeFragment.kt:384-387</code>), so dropping Random is a change from the old app.
+          A <code>Random</code> already stored by the old screen reads as never having chosen, which
+          PR #147 already does. <b>States.</b> Content here. Loading: rows arrive as plugins do
           (<code>HomeSources.stillLoading</code>). Empty: None alone, and the page’s built prompt behind it.
-          <b>Prerequisites.</b> <code>DataStoreHomeSourceMemory.kt:33</code> <b>refuses both names on
-          purpose</b>, and reads None as never having chosen, so PR #147 must change or None will not
-          survive a restart. The panel lists <code>state.sources</code> only
-          (<code>HomeSourcePanelTv.kt:48</code>). <code>applySources</code> in <code>feature/home</code>’s view model falls back to the
-          first source when none is remembered (<code>:131-135</code>), and needs a “none”
-          that is not null. Names: <code>APIRepository.kt:36,41</code>; words <code>none</code> and
-          <code>home_random</code> exist, the subtitles are new.</p>
+          <b>Prerequisites.</b> <code>DataStoreHomeSourceMemory.kt:33</code> refuses <code>None</code> on
+          purpose and reads it as never having chosen, so PR #147 must change or None will not survive a
+          restart. The panel lists <code>state.sources</code> only (<code>HomeSourcePanelTv.kt:48</code>).
+          <code>applySources</code> in <code>feature/home</code>’s view model falls back to the first source
+          when none is remembered (<code>:131-135</code>), and needs a “none” that is not null. Name:
+          <code>APIRepository.kt:36</code>; the word <code>none</code> exists, the subtitle is new.</p>
 
           <h3>3i · Source None</h3>
           <p><b>Focus.</b> The source control after the panel closes. On a fresh launch the first card of the
           first rail, as built. DOWN walks Continue watching, chips, cards. <b>States.</b> Content here. With
           neither rail present it is Empty: the built <code>StateView</code>, with one action that opens
-          this panel, which needs new words. No error or partial exists, because nothing was asked of a
+          the panel, which needs new words. No error or partial exists, because nothing was asked of a
           source. <b>Prerequisites.</b> As 3h, and the control is only drawn for a real selection today
-          (<code>HomeScreenTv.kt:277-279</code>). The old page hid reload and search on None
-          (<code>HomeFragment.kt:825-826</code>). Continue watching is 3c’s, with its source line left off:
-          PR #147 records per-card source as a gap.</p>
+          (<code>HomeScreenTv.kt:277-279</code>). Reload, Random and Search all need a source, and the old
+          page hid reload and search on None (<code>HomeFragment.kt:825-826</code>). Continue watching is 3c’s,
+          with its source line left off: PR #147 records per-card source as a gap.</p>
 
           <h3>3j · Chrome, Reload, Random, Search</h3>
           <p><b>Focus order.</b> Source, Reload, Random, Search, account, left to right, gaps 24. DOWN goes to
           the hero’s Resume. Old TV order: <code>fragment_home_tv.xml:226,245,262</code>.
-          <b>Reload.</b> In flight, the same slot reads <code>RELOADING VIDSRC</code> with no marker, a second
-          press is ignored, and rows stay. On success rows swap in place and focus stays on the cell. A
-          partial result uses the built notice and its button, which retries only what failed. A failure
-          keeps the earlier rows: the old page went to a shimmer and an error page.
-          <b>Random.</b> Opens one title chosen from what is loaded, which is what the old button did
-          (<code>HomeFragment.kt:855-868</code>). It has no state of its own. <b>Search.</b> Quick Search
-          (8d in <code>TV Search Suggestions</code>) on this source, query blank, as the old button did
-          (<code>HomeViewModel.kt:473-477</code>). <b>Reachable when.</b> Reload and Random need loaded rows,
-          so during loading, error, empty, offline and None the cells are absent and the state’s own button
-          does the job. Search needs a source and a connection.
-          <b>Prerequisites.</b> A <code>HomeAction.Reload</code> that keeps rows:
-          in <code>feature/home</code>’s view model, <code>retry()</code> goes through <code>HomeStatus.Loading</code> (<code>:187-191</code>) and
-          <code>select()</code> returns early for the same source (<code>:168</code>). A way to fail with rows
-          still held, as <code>HomeStatus.Failed</code> carries none (<code>HomeMvi.kt:105</code>). New effects for
-          a random title and scoped search, as <code>HomeEffect.OpenSearch</code> takes no source
-          (<code>HomeMvi.kt:159</code>). TV Quick Search is not built. New <code>CloudStreamIcons</code>:
-          <code>TablerIcons.Dice</code> is in the 1.1.1 jar, Refresh is already <code>Retry</code>, Search exists.
-          Words: <code>reload_provider</code>, <code>home_random</code> and <code>search</code> exist. The hero
-          itself is 3c’s and its needs are <code>Q10</code>’s. Its eyebrow shows the source, because
-          <code>NEW SEASON</code> has no data.</p>
+          <b>Reload.</b> In flight the cells stay and rows stay, a second press is ignored, and on success
+          rows swap in place with focus on the cell. A partial result uses the built notice and its button,
+          which retries only what failed. A failure is 3m. <b>Random.</b> Always shown while rows are loaded,
+          with no setting in front of it (the old one is at <code>HomeFragment.kt:807-816</code>). It opens one
+          title chosen from what is loaded, as the old button did (<code>HomeFragment.kt:855-868</code>).
+          <b>Search.</b> The only search on Home: Quick Search (8d in <code>TV Search Suggestions</code>) on
+          this source, query blank, as the old button did (<code>HomeViewModel.kt:473-477</code>).
+          <b>Reachable when.</b> Reload and Random need loaded rows, so during loading, error, empty, offline
+          and None they are absent and the state’s own button does the job. Search needs a source and a
+          connection. <b>Prerequisites.</b> A <code>HomeAction.Reload</code>: in <code>feature/home</code>’s
+          view model <code>select()</code> returns early for the same source (<code>:168</code>), and
+          <code>retry()</code> drops to <code>HomeStatus.Loading</code>, so rows vanish while it runs (<code>:187-191</code>). New effects for a random title and a scoped
+          search, as <code>HomeEffect.OpenSearch</code> takes no source (<code>HomeMvi.kt:159</code>). TV Quick
+          Search is not built. New <code>CloudStreamIcons</code>: <code>TablerIcons.Dice</code> is in the 1.1.1
+          jar, Refresh is already <code>Retry</code>, Search exists. Words: <code>reload_provider</code>,
+          <code>home_random</code> and <code>search</code> exist. The hero is 3c’s and its needs are
+          <code>Q10</code>’s; its eyebrow shows the source, because <code>NEW SEASON</code> has no data.</p>
 
           <h3>3k · Details panel</h3>
-          <p><b>Focus.</b> Lands on More info. DOWN through Bookmark, Favourite, Search, trapped in the panel.
-          Back closes and returns to the exact card. Bookmark opens a second panel of the same chassis with
-          the six <code>WatchType</code> rows, single choice, applying at once, and Back returns here.
+          <p><b>Focus.</b> Lands on More info. DOWN through Set watch status, Add to favorites, Subscribe,
+          trapped in the panel. Back closes and returns to the exact card. Set watch status opens a second
+          panel of the same chassis with the six <code>WatchType</code> rows, single choice, applying at once,
+          and Back returns here. Subscribe toggles in place, and shows only for a title that can notify, as
+          the old popup did (<code>MainActivity.kt:1465</code>); without it the rows above do not move.
           <b>States.</b> Content here. Loading, from a source’s rail: the same geometry, title known, facts
           and plot as skeleton, focus already on More info so nothing jumps. From a bookmark there is no
           loading, as it reads stored fields (<code>ResultViewModel2.kt:2615</code>,
@@ -744,27 +767,27 @@
           <code>clickable</code> today (<code>HomeRailTv.kt:215</code>) and needs a long-click and a Menu key
           route. Plot must be sanitized: old code sets it as HTML (<code>:1534</code>).
           Words: <code>home_more_info</code>, <code>action_add_to_bookmarks</code>,
-          <code>action_add_to_favorites</code> and <code>search_hint_site</code> exist. Glyphs:
-          <code>Bookmark</code>, <code>Favorite</code>, <code>Search</code> exist, and More info wants
-          <code>Disclosure</code>.</p>
+          <code>action_add_to_favorites</code>, <code>action_subscribe</code> and <code>subscribe_tooltip</code>
+          exist. Glyphs: <code>Bookmark</code> and <code>Favorite</code> exist; More info wants
+          <code>Disclosure</code>, and Subscribe a bell, which <code>CloudStreamIcons</code> lacks.</p>
 
           <h3>3l · Details, load failed</h3>
-          <p><b>Focus.</b> Try again, then More info, then Search. Back returns to the card. <b>States.</b>
-          Error here. Offline is this board with <code>You are offline</code> as the reason and Search removed.
-          Try again goes through the loading state of 3k. <b>Prerequisites.</b> As 3k. The old branch to
-          replace is <code>MainActivity.kt:1506-1510</code>. The poster is <code>HomeItem.posterUrl</code>, as
-          the card has no backdrop. Reason words <code>plugin_load_fail</code> exist; the headline is new.</p>
+          <p><b>Focus.</b> Try again, then More info. Back returns to the card. <b>States.</b> Error here.
+          Offline is this board with <code>You are offline</code> as the reason. Set watch status, favourites and
+          Subscribe all need the loaded title, so they are absent until Try again succeeds through 3k’s
+          loading state. <b>Prerequisites.</b> As 3k. The old branch to replace is
+          <code>MainActivity.kt:1506-1510</code>. The poster is <code>HomeItem.posterUrl</code>, as the card has
+          no backdrop. Reason words <code>plugin_load_fail</code> exist; the headline is new.</p>
 
-          <h3>Questions for the owner</h3>
-          <p><b>1 · Long press.</b> Hold OK plus Menu plus the page as fallback, as drawn, or a guaranteed
-          per-card stop at double the RIGHT presses? <b>2 · Random as a source.</b> One-shot as the old code
-          has it, or a new source each launch? <b>3 · Random’s cell.</b> The old button sits behind a setting
-          that defaults to off (<code>HomeFragment.kt:807-816</code>). Drawn always on. Keep the setting?
-          <b>4 · Search on the card.</b> The old app has search only in the chrome, blank. Drawn in both,
-          with the title filled in from a card. Right? <b>5 · Subscribe.</b> The old popup also had it, for
-          some titles (<code>MainActivity.kt:1465</code>). Left off for height. Wanted? <b>6 · A failed reload</b>
-          keeps the earlier rows rather than the old error page. Agreed? <b>7 · Rows and icon tiles.</b> See
-          below: do tokens also win for list rows?</p>
+          <h3>3m · Reload failed</h3>
+          <p><b>Focus.</b> Try again takes it, as the state’s own button does in the built page. UP reaches
+          Search and the source control. <b>States.</b> Error here: the page below the chrome is the built
+          <code>StateView</code>, with the source named, the detail line a person can paste into a report,
+          and a hollow neutral marker. Try again shows the loading skeleton, then content or this page again.
+          Reload and Random are absent because nothing is loaded. <b>Prerequisites.</b> This is what
+          <code>HomeStatus.Failed</code> already draws (<code>HomeMvi.kt:105</code>, <code>HomeCopy.kt:98-106</code>),
+          reached from a reload. Words: <code>source_error</code>, <code>plugin_load_fail</code> and
+          <code>search_state_retry</code> exist.</p>
 
           <h3>What the measuring caught</h3>
           <p>The scanner’s first run said zero, and it was wrong. Bound text sits in an inline span, so the
@@ -774,18 +797,25 @@
           25, which <code>Design System v2</code> §03 says does not clip, so vertical clipping now tests the
           measured ink. Every ring was then read again from the pixels: gap and stroke on all four sides.</p>
 
-          <h3>Where these boards differ from others, on purpose</h3>
-          <p><b>Radius.</b> Text buttons are 16, as ruled. List rows are 16 too, because
-          <code>ListRow.kt:168</code> uses the same <code>medium</code> token and tokens win. Other boards still
-          draw rows at 8. <b>Rings.</b> On the visible control, so a chip’s ring hugs the 48 pill and an icon’s
-          the 48 tile. <code>Chip.kt</code> and <code>IconCell.kt</code> ring the cell, and <code>DS-11</code>
-          recorded that for chips as the rule, so the code and these boards disagree until someone rules.
-          <b>Selected chip.</b> Raised, ink, muted marker, as ruled. <code>Chip.kt</code> and
-          <code>TV Library</code>’s tab are a white fill. <b>White.</b> 3j’s Resume is 3c’s primary, a white
-          fill at rest, which the rule “white means focus only” does not obviously allow. It is kept to match
-          3c and is the owner’s to rule. <b>Continue</b> draws four cards so none crosses the band. Line
-          references to <code>feature/home</code> and <code>cloudstream4/home</code> files (<code>HomeContracts</code>, <code>HomeMvi</code>, <code>HomeScreenTv</code>, <code>HomeRailTv</code>, <code>HomeSourcePanelTv</code>, <code>DataStoreHomeSourceMemory</code>) and to <code>ListRow</code> are PR #147 at
-          <code>5921e6942</code>. A bare <code>HomeViewModel.kt</code>, and the other old-app files, are <code>:app</code> on master at <code>8f35d725f</code>.</p>
+          <h3>Where these boards clash with others, for the owner</h3>
+          <p><b>Primary at rest.</b> <code>Components</code> draws the primary button white at rest
+          (<code>.btn.pri</code>, “Primary is white fill, black label”), and so do 3c and
+          <code>StateActionButton</code>. Under “white means focus only” 3j draws it at rest as a raised fill
+          with an ink label in 800 and a muted hairline, so it still outranks the secondaries, whose labels are
+          ink2. This is an invention, not a <code>Components</code> state, and 3c, <code>Components</code>
+          and the built button all still say white. The focused primary on 3g and 3m is white with the ring,
+          as <code>Components</code> draws it. <b>Error with local rows.</b> 3g keeps the bookmarks rail
+          offline; 3m, as ruled, shows the error page alone. If Continue watching or bookmarks should stay
+          above it as on 3g, that is one more ruling. <b>Random “always shown”.</b> Read as: no setting in front of it. With nothing loaded it has
+          nothing to pick from, so 3g, 3i and 3m leave it out. If it should show there too, it needs a rule for
+          what it does. <b>Icon rings.</b> The ring sits on the 48 tile; Compose’s
+          <code>IconCell</code> has no tile and rings its cell, which <code>DS-12</code> left unruled.
+          <b>List rows</b> are 16, which other boards still draw at 8. <b>Continue</b> draws four cards so
+          none crosses the band. Line references to <code>feature/home</code> and <code>cloudstream4/home</code>
+          files (<code>HomeContracts</code>, <code>HomeMvi</code>, <code>HomeCopy</code>, <code>HomeScreenTv</code>,
+          <code>HomeRailTv</code>, <code>HomeSourcePanelTv</code>, <code>DataStoreHomeSourceMemory</code>) are
+          PR #147 at <code>5921e6942</code>. A bare <code>HomeViewModel.kt</code>, and the other old-app files,
+          are <code>:app</code> on master.</p>
         </div>
       </section>
     </x-dc>
@@ -833,25 +863,24 @@
 
           const rowPos = function (i, first) { return "left:32px;top:" + (first + i * 120) + "px;width:472px"; };
           const sourceRows = [
-            { n: "None", m: "NO RAILS · YOUR ROWS STAY", cls: "" },
-            { n: "Random", m: "PICKS ONE · THEN KEEPS IT", cls: "foc" },
+            { n: "None", m: "NO RAILS · YOUR ROWS STAY", cls: "foc" },
             { n: "vidsrc", m: "en", cls: "sel" },
             { n: "filmxy", m: "en", cls: "" },
             { n: "gogo", m: "ja", cls: "" },
-            { n: "vidplay", m: "en", cls: "" }
+            { n: "vidplay", m: "en", cls: "" },
+            { n: "hdtoday", m: "en", cls: "" }
           ].map(function (r, i) { return { n: r.n, m: r.m, cls: r.cls, pos: rowPos(i, 256) }; });
 
           const detailRows = [
             { n: "More info", m: "OPENS THE TITLE", cls: "foc" },
             { n: "Set watch status", m: "WATCHING", cls: "" },
             { n: "Add to favorites", m: "NOT IN FAVORITES", cls: "" },
-            { n: "Search vidsrc…", m: "THE LONG DARK", cls: "" }
+            { n: "Subscribe", m: "NEW EPISODE NOTIFICATION", cls: "" }
           ].map(function (r, i) { return { n: r.n, m: r.m, cls: r.cls, pos: rowPos(i, 552) }; });
 
           const failedRows = [
             { n: "Try again", m: "ASKS VIDSRC AGAIN", cls: "foc" },
-            { n: "More info", m: "OPENS THE TITLE", cls: "" },
-            { n: "Search vidsrc…", m: "VANTAGE", cls: "" }
+            { n: "More info", m: "OPENS THE TITLE", cls: "" }
           ].map(function (r, i) { return { n: r.n, m: r.m, cls: r.cls, pos: rowPos(i, 552) }; });
 
           return {
@@ -861,9 +890,9 @@
             noStatusHead: "No status chosen", noStatusBody: "Choose one above to see those bookmarks.",
             offlineHead: "You are offline", offlineCount: "9 BOOKMARKS", sourceName: "vidsrc", noneName: "None",
             offlinePrompt: "vidsrc needs a connection", offlineBody: "Your bookmarks are saved on this device.", tryAgain: "Try again",
-            sourcesTitle: "Sources", sourcesMeta: "14 SOURCES · APPLIES AT ONCE", sourceRows: sourceRows,
+            sourcesTitle: "Sources", sourcesMeta: "14 SOURCES AND NONE · APPLIES AT ONCE", sourceRows: sourceRows,
             clock: "22:14", contTitle: "Continue watching", popularTitle: "Popular movies", showsTitle: "TV shows", latestTitle: "Latest",
-            reloadFailed: "Couldn’t reload vidsrc", reloadDetail: "HTTP 503 · EARLIER RESULTS",
+            errorHead: "Source error", errorBody: "Could not load vidsrc", errorDetail: "HTTP 503 · RELOAD FAILED",
             heroSource: "VIDSRC", heroTitle: "The Long Dark", heroMeta: "2026 · 2 SEASONS · 24 EP · SCI-FI · THRILLER", heroRate: "8.7",
             heroSyn: "A salvage crew wakes from cryo to find the relay station empty and the logs erased.",
             heroResume: "Resume S2 E4", heroTrailer: "Watch trailer", heroLibrary: "+ Library", heroCount: "1 / 12",
