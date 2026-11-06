@@ -4805,3 +4805,43 @@ that exist because the old downloader broke them:
 - No Android device run: a test APK would hit the same minSdk wall.
 - DNS rebinding, as above.
 - The engine's unthrottled slowdown is not profiled.
+
+## KMP-54 — The Mac downloads page, boards D1 to D6 · **built 2026-11-06, not wired**
+
+`DownloadsScreenDesktop` in `:feature:downloads`, `desktop/`, from `design/Desktop Downloads.dc.html` (`DS-18`, #172). It runs
+on `DownloadsViewModel` and `DownloadsState` unchanged: what is shared is the state, the logic and the words; what is the Mac's
+is the row, the selection, the menu and the sheet (`DEC-19`). Built on `DesktopFoundation`'s existing components; the
+desktop component layer (`DS-19`) comes later. Strings are `I18N-11` (#178), which this stacks on.
+
+**What it does.**
+- **D1:** a 56 row per title with art, name and kind, status with its rule, and size. On hover the row shows its verbs:
+  Retry or Resume, Show in Finder, and Delete. They are glyph-only 24 cells with tooltips (rule 4, extended by the owner).
+- **D2:** selection is the pointer's, as in Finder. Click, ⌘-click, ⇧-click and ⌘A all act on press.
+  - `DownloadsDesktopSelection` turns each gesture into the view model's existing actions, so TV's choosing mode is
+    untouched.
+  - Right-click, or Control-click, opens a menu at the pointer (Show in Finder, Delete), which acts on the selection.
+  - The footer counts the titles and their size, or what is selected.
+- **D3:** the confirmation sheet hangs under the toolbar, and Cancel is the filled default (rule 1). Return and Escape
+  both cancel; only a click deletes.
+- **D5:** the offline pill sits beside the title. The storage-full banner offers Free up space, and the view model decides
+  between choosing rows and the system's storage settings. Empty and failed are `StateView`s that never take focus.
+- **D6:** below a 780-wide page the size column folds into the second line.
+- **Keys:** ⌘A, ⌘⌫ (asks first), Return opens the one selected title, ⌘R shows it in Finder, and Escape clears.
+- `CloudStreamIcons.Folder` (Tabler `Folder`) is added for Show in Finder, as the glyph table rules.
+
+**Measured.** All local:
+- `DownloadsScreenTest`: 7 tests in `:desktopApp`, with real pointer and key events against a fake source and the real view
+  model. Renders: `-Pcloudstream.downloads.renders=<dir>`.
+- `DownloadsDesktopSelectionTest`: 10 tests in `commonTest`.
+
+**Not here.**
+- **Wiring.** The host needs:
+  - `KMP-52`'s source (#177): `fileOf` behind `canReveal` and `onReveal`, and `delete` after the sheet;
+  - the shell's sidebar entry (`KMP-53`).
+
+  Both are a few lines in `:desktopApp` once those land. #177 also adds `:feature:downloads` to `:desktopApp`, so the second
+  to land drops the duplicate line.
+- **One series (D4).** It is the next step, on `DownloadSeriesViewModel`.
+- **Open in the menu.** No word for it yet; double-click and Return open.
+- **The transfer rate.** `DownloadTitle` carries none.
+- **New components.** The tooltip, the context menu and the bottom rule are private here. They are candidates for `DS-19`.
