@@ -46,6 +46,7 @@ import com.lagradost.cloudstream4.feature.home.HomeHero
 import com.lagradost.cloudstream4.feature.home.HomeItem
 import com.lagradost.cloudstream4.feature.home.HomeStatus
 import com.lagradost.cloudstream4.feature.home.HomeViewModel
+import com.lagradost.cloudstream4.feature.home.tv.HomeHostFocus
 import com.lagradost.cloudstream4.feature.home.tv.HomeScreenTv
 import com.lagradost.cloudstream4.feature.search.SearchResultId
 import com.lagradost.cloudstream4.library.AndroidLibraryStore
@@ -123,6 +124,9 @@ class HomeTvFragment : BaseComposeFragment() {
 
     private val reloadRequested: (Boolean) -> Unit = { send(HomeAction.Retry) }
 
+    /** This page's own focus request in [onResume], which the page does not take for a person's choice (`BUG-41`). */
+    private val hostFocus = HomeHostFocus()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // A remembered source that never arrives has to stop being waited for even if no event says so.
@@ -140,7 +144,8 @@ class HomeTvFragment : BaseComposeFragment() {
         reloadHomeEvent += reloadRequested
         // The first time the page opens the window may have handed focus to the first thing it found, the nav rail, which
         // would open it over a page nobody has asked to leave. Nothing has been pressed yet, so it is this page's to take.
-        if (viewModel.state.value.landingOwed) view?.requestFocus()
+        val page = view
+        if (viewModel.state.value.landingOwed && page != null && !page.hasFocus()) hostFocus.request { page.requestFocus() }
         viewModel.onAction(HomeAction.Reappeared)
         viewModel.onAction(HomeAction.SourcesChanged)
     }
@@ -194,6 +199,8 @@ class HomeTvFragment : BaseComposeFragment() {
     @Composable
     override fun Content() {
         val state by viewModel.state.collectAsState()
+        // Read here rather than inside the lambdas below, which would need a synthetic accessor in the published jar.
+        val pageFocus = hostFocus
         LaunchedEffect(viewModel) {
             viewModel.effect.collect { onEffect(it) }
         }
@@ -217,6 +224,7 @@ class HomeTvFragment : BaseComposeFragment() {
                         val owner = activity?.currentFocus
                         owner == null || view?.hasFocus() == true
                     },
+                    hostFocus = pageFocus,
                 )
             }
         }

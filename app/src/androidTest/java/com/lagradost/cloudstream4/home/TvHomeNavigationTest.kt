@@ -48,6 +48,7 @@ import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import kotlinx.coroutines.CompletableDeferred
 import java.util.concurrent.CopyOnWriteArrayList
 import kotlin.math.abs
 import kotlin.math.roundToInt
@@ -85,6 +86,7 @@ class TvHomeNavigationTest {
 
     @After
     fun restore() {
+        listOf(one, two).forEach { it.gate?.complete(Unit) }
         forgetPlaying()
         forgetBookmarks()
         TvHomeSwitch.useComposeHome = true
@@ -586,6 +588,33 @@ class TvHomeNavigationTest {
         }
     }
 
+    /**
+     * `BUG-41`'s other side, through the real window: the nav rail is a view of its own, so RIGHT from it into the bookmarks
+     * sends Home no key. That is still a person's choice, and the hero landing later leaves focus where they put it.
+     */
+    @Test
+    fun aRailEnteredFromTheNavRailBeforeTheRowsLandKeepsFocus() {
+        install(one)
+        bookmark(one, BOOKMARKED, WatchType.WATCHING)
+        val pages = CompletableDeferred<Unit>()
+        one.gate = pages
+        launch {
+            waitForHome()
+            val watching = context.getString(R.string.type_watching)
+            assertTrue("the bookmarks rail shows", device.wait(Until.hasObject(By.text(watching)), SCREEN_WAIT_MS))
+            pressUntil(Dpad.Left, RAIL_HOME)
+            assertTrue("on the nav rail", railHasFocus)
+            val entered = dpad.press(Dpad.Right)
+            assertTrue("RIGHT from the nav rail enters the bookmarks, was $entered", entered == watching || entered == BOOKMARKED)
+            assertFalse("and leaves the nav rail", railHasFocus)
+
+            pages.complete(Unit)
+            waitFor("the hero's title is asked for") { "https://example.invalid/$ONE A 0" in one.loaded }
+            Thread.sleep(SETTLE_MS)
+            assertEquals("focus stays where the person put it", entered, dpad.focused())
+        }
+    }
+
     // ---- With nothing installed ----------------------------------------------------------------------------------
 
     @Test
@@ -640,9 +669,15 @@ class TvHomeNavigationTest {
         override val mainPage = listOf(MainPageData("A", "0"), MainPageData("B", "1"))
         val asked = CopyOnWriteArrayList<String>()
         val loaded = CopyOnWriteArrayList<String>()
+        /** Every home page waits until this completes. */
+        @Volatile var gate: CompletableDeferred<Unit>? = null
+        // A held page keeps the skeleton pulsing, so the window is never idle and every focus read waits out UiAutomator's
+        // idle timeout: the presses alone came within reach of the default 120 s, after which a held page fails.
+        override val getMainPageTimeoutMs: Long = 480_000L
 
         override suspend fun getMainPage(page: Int, request: MainPageRequest): HomePageResponse {
             asked += "${request.data}/$page"
+            gate?.await()
             val titles = List(TITLES) { index ->
                 val title = "$name ${request.name} $index"
                 newMovieSearchResponse(title, "$mainUrl/$title", TvType.Movie, fix = false)

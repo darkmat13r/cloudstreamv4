@@ -1543,16 +1543,27 @@ and the host's first focus request, which is why the same commit passed 17/17 at
 | the class alone, from a cleared app (each run boots the `-read-only` AVD and installs fresh), unfixed master x3 | `Television_720p` | 17/17 each time (18:41, 18:48, 18:56Z): the race went the hero's way |
 | a module case that fixes the order, unfixed: bookmarks on screen, pages held, the host view asked for focus as `onResume` does, then the pages released | `Television_720p` | **red**, `what holds focus expected:<More info · The Long Dark> but was:<[Watching]>`, the app's symptom |
 | the same case with the fix, and the whole module suite | `Television_720p` | 79/79, 18 screenshots `same` at 0/0 |
-| the full `:app` suite with the fix | `Television_720p_2` | 93 run, 92 passed, 0 failed, 1 skipped (`TvHomeRealPluginProof`), 21:10:32Z; `TvHomeNavigationTest` 17/17 |
-| the class alone with the fix, x2 | `Television_720p_2` | 17/17 each time (21:20, 21:33Z) |
+| `c5f3b18d3` (first fix), the reviewer's real-path case: rows held, LEFT to the nav rail, RIGHT into the bookmarks, release | `Television_720p` | **green**, 330 s: LEFT's key-down had reached Home |
+| the full `:app` suite with the first fix | `Television_720p_2` | 93 run, 92 passed, 0 failed, 1 skipped (`TvHomeRealPluginProof`), 21:10:32Z; `TvHomeNavigationTest` 17/17 |
+| the class alone with the first fix, x2 | `Television_720p_2` | 17/17 each time (21:20, 21:33Z) |
+| the final fix: gates, `HomeScreenTvDeviceTest`, the class alone, the full `:app` suite | see the PR | FINAL_RESULTS |
 
 The module case's first assertion is the precondition: the host's focus request does put focus on the chip. It is what makes the
 race deterministic, and what the fix is shown against.
 
-**The fix.** Focus in Continue watching or the bookmarks counts as a person's choice only after a key has been pressed on the
-page (`keyPressed`, set by any key-down the screen sees). Before one, it is where the window put it, and the landing goes to the
-hero, the first Continue card or the first bookmark as before. A person who has pressed into either rail still keeps focus
-there. The assert is unchanged, and no retry was added.
+**The fix.** The host's own request is marked. `HomeTvFragment.onResume` makes it through `HomeHostFocus.request`, and when the
+page next gains focus it records whether that arrival was the host's. Only that arrival, with no key pressed on the page since,
+is not a person's: the landing then goes to the hero, the first Continue card or the first bookmark as before. Every other
+arrival in Continue watching or the bookmarks is a choice, whether by a key on the page or from the nav rail, which is a view of
+its own and sends Home no key. The first landing clears the mark, so a request that gave the page nothing cannot mislabel a
+later arrival. The assert is unchanged, and no retry was added.
+
+**Review: the first fix guessed from keys.** `c5f3b18d3` counted focus in a rail as a person's only after a key-down reached
+Home. The reviewer pointed out that the nav rail is its own view: RIGHT from it into a chip sends Home no key. On a real remote,
+though, the LEFT that reaches the nav rail starts on Home, so its key-down had already been seen, and the reviewer's case is
+green on `c5f3b18d3` (below). A rail with no key ever pressed on Home was tried too: RIGHT from it enters the chrome
+(`Switch account`), not a rail, so that path does not exist. The fix was still changed, to name the one arrival that is not a
+person's rather than infer it.
 
 **Not verified.** A failing in-app run on unfixed master on this machine: 0 of 3 class-alone runs hit the race. worker-2's two
 failures are the in-app evidence. The unfixed runs here all took slot 1 and the fixed `:app` runs slot 2, so neither slot is shown to make it likelier.

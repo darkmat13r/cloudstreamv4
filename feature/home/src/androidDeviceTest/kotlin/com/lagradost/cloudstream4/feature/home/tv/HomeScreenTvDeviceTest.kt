@@ -121,6 +121,7 @@ class HomeScreenTvDeviceTest {
     private var mayTakeFocus = true
     /** The view hosting the screen, which `HomeTvFragment.onResume` asks for focus as the page first opens. */
     private var hostView: android.view.View? = null
+    private val hostFocus = HomeHostFocus()
 
     private val viewModel by lazy { HomeViewModel(source, scope, memory, history, shelf) }
 
@@ -145,7 +146,12 @@ class HomeScreenTvDeviceTest {
             CloudStreamTheme {
                 Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) {
                     if (onScreen) {
-                        HomeScreenTv(state = state, onAction = viewModel::onAction, mayTakeFocus = { mayTakeFocus })
+                        HomeScreenTv(
+                            state = state,
+                            onAction = viewModel::onAction,
+                            mayTakeFocus = { mayTakeFocus },
+                            hostFocus = hostFocus,
+                        )
                     }
                 }
             }
@@ -1113,8 +1119,8 @@ class HomeScreenTvDeviceTest {
 
     /**
      * `BUG-41`. The bookmarks are one local read, so at launch they can be on screen before the source's rows and the hero.
-     * The page then asks for focus as `HomeTvFragment.onResume` does, nothing pressed, and the window gives it to the first
-     * stop it finds, a chip. That is not a person choosing the bookmarks, so when the hero lands it still takes focus.
+     * The page then asks for focus as `HomeTvFragment.onResume` does, through [HomeHostFocus], and the window gives it to
+     * the first stop it finds, a chip. That is not a person choosing the bookmarks, so when the hero lands it takes focus.
      */
     @Test
     fun focusTheWindowGaveTheBookmarksBeforeTheHeroLandedStillGoesToTheHero() {
@@ -1125,7 +1131,7 @@ class HomeScreenTvDeviceTest {
         source.gate = pages
         showScreen()
         awaitText(WATCHING)
-        rule.runOnIdle { hostView!!.requestFocus() }
+        rule.runOnIdle { hostFocus.request { hostView!!.requestFocus() } }
         rule.waitForIdle()
         // The precondition the launch race produces: focus sits in the bookmarks rail, nothing pressed.
         val given = dpad.focused()
@@ -1133,6 +1139,29 @@ class HomeScreenTvDeviceTest {
 
         pages.complete(Unit)
         awaitFocus(HERO)
+    }
+
+    /**
+     * `BUG-41`'s other side: a person who presses into the bookmarks while the rows are still loading has chosen them, so
+     * the hero landing later leaves focus where they put it.
+     */
+    @Test
+    fun aPersonWhoPressedIntoTheBookmarksBeforeTheHeroLandedKeepsFocusThere() {
+        rails(1)
+        featuring(FEATURED)
+        bookmarking(2)
+        val pages = kotlinx.coroutines.CompletableDeferred<Unit>()
+        source.gate = pages
+        showScreen()
+        awaitText(WATCHING)
+        rule.onNodeWithContentDescription(ACCOUNTS).performSemanticsAction(SemanticsActions.RequestFocus)
+        awaitFocus(ACCOUNTS)
+        pressUntil(Dpad.Down, WATCHING)
+
+        pages.complete(Unit)
+        rule.waitUntil(WAIT_MS) { viewModel.state.value.hero is HomeHero.Shown && viewModel.state.value.status.rows.isNotEmpty() }
+        rule.waitForIdle()
+        assertEquals("focus stays where the person put it", WATCHING, dpad.focused())
     }
 
     @Test
