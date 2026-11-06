@@ -262,6 +262,10 @@
 <string name="search_provider_text_providers">"Ieškoti naudojant tiekėjus"</string>
 <string name="search_provider_text_types">"Ieškoti naudojant tipus"</string>
 <string name="search_state_idle_body_desktop">"Įveskite pavadinimą. Rezultatai rodomi po kiekvienu šaltiniu, kai šis atsako."</string>
+<string name="search_state_no_results_type_filter" formatted="true">"Tik %s. Jūsų tipų filtras siaurina paiešką."</string>
+<string name="search_tv_source_failed" formatted="true">"NEPAVYKO %s"</string>
+<string name="search_tv_source_pinned">"PRISEGTA"</string>
+<string name="search_tv_sources_panel_meta" formatted="true">"ĮJUNGTA %1$d IŠ %2$d · PAKEITIMAI TAIKOMI PASPAUDUS BAIGTA"</string>
 <string name="season">"Sezonas"</string>
 <string name="seek_back_10_seconds">"Atsukti 10 sekundžių atgal"</string>
 <string name="seek_forward_10_seconds">"Persukti 10 sekundžių į priekį"</string>

@@ -584,8 +584,12 @@
 <string name="search_provider_text_providers">"Cerca per provider"</string>
 <string name="search_provider_text_types">"Cerca per tipo"</string>
 <string name="search_state_idle_body_desktop">"Digita un titolo. I risultati compaiono sotto ogni fonte quando risponde."</string>
+<string name="search_state_no_results_type_filter" formatted="true">"Solo %s. Il filtro per tipo sta restringendo la ricerca."</string>
 <string name="search_suggestions">"Suggerimenti per la ricerca"</string>
 <string name="search_suggestions_des">"Mostra suggerimenti di ricerca durante la digitazione"</string>
+<string name="search_tv_source_failed" formatted="true">"FALLITO %s"</string>
+<string name="search_tv_source_pinned">"FISSATO"</string>
+<string name="search_tv_sources_panel_meta" formatted="true">"%1$d SU %2$d ATTIVI · LE MODIFICHE SI APPLICANO CON FATTO"</string>
 <string name="season">"Stagione"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"S"</string>

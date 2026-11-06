@@ -458,6 +458,10 @@
 <string name="search_provider_text_providers">"Carian mengikut sumber"</string>
 <string name="search_provider_text_types">"Carian mengikut jenis"</string>
 <string name="search_state_idle_body_desktop">"Taip tajuk. Hasil muncul di bawah setiap sumber apabila ia menjawab."</string>
+<string name="search_state_no_results_type_filter" formatted="true">"Hanya %s. Penapis jenis anda mengecilkan carian."</string>
+<string name="search_tv_source_failed" formatted="true">"GAGAL %s"</string>
+<string name="search_tv_source_pinned">"DISEMATKAN"</string>
+<string name="search_tv_sources_panel_meta" formatted="true">"%1$d DARIPADA %2$d DIDAYAKAN · PERUBAHAN DIGUNAKAN SELEPAS TAMAT"</string>
 <string name="season">"Musim"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"S"</string>

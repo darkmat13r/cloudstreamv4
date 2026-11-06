@@ -3492,6 +3492,95 @@ dump, so `DownloadFacts` and its `Flow.map` helper classes appear, as do the man
   with an empty queue only.
 - What the notification shows for a truncated file.
 
+## KMP-42 — TV search: the source panel, type chips and the D-pad's moves (queue `Q6`) · **measured 2026-11-05**
+
+**Status:** in pr. Boards 4a, 4b, 4c, 4d and 8c on `Television_720p`, API 36. Fixes `BUG-37`, and `BUG-34` for search.
+
+### What it adds
+
+- **The source panel (4d, `DEC-17`).** Multi-select. Done applies, and Back discards. The picks persist the way `:app` already keeps them.
+- **`SearchSource` can write.** `choices`, `selectSources`, `searchMore`, `typeFilters`, `selectTypes` and `clearFilters` have interface defaults, so `DesktopSearchSource` is untouched.
+- **Type chips (4b, 8c).** A chip narrows the search. Nothing lit means nothing narrows.
+- **8c's action.** It sits on the chip row, clears the provider and type filters, then searches.
+- **`See all` pages in place** with `SeeAllCard`, labelled `load_more`.
+- **4c.** Two columns, a leading disc, a per-row remove as a trailing stop, and a clock glyph (`CloudStreamIcons.History`). `Clear all`'s trash sits in a remove's cell with a remove's tile, so it lines up with the right column's removes.
+- **Cards (4a).** The quality badge and then `DUB` or `SUB` sit side by side at the leading corner. The reveal is the title alone.
+- **The state actions carry #159's glyphs:** `Retry failed` has `Retry`, `Search everything` has `Search`, and `Browse home` has `Home`.
+- **Search's rails use the 12 gap**, and `SkeletonRail` still spaces at `ChipRowSpacing` 24, so a rail moves when it replaces its skeleton.
+
+### Focus choices
+
+| Press | Goes to |
+|---|---|
+| Down from the field, no chips | The first card of the first row |
+| Down from the field, with chips | The first chip, then Down to the first card |
+| Right at a rail's end | Stays |
+| Left from the field | The rail, with text in the field or without |
+| Right from the rail, first time | The field |
+| Right from the rail, later | The stop that left |
+
+**Why the page remembers its own last stop.** `focusRestorer` does not see a page's view losing focus to a rail in the host's views, the same as `KMP-33` and `HomeStops`' KDoc. RIGHT then went by geometry and found `Sources` (measured: `expected Browse home, was Sources`). `SearchStops` is Home's pattern, so three small helpers now exist twice. Why geometry picks `Sources` was not measured.
+
+### Each critical test was made to fail
+
+Two control runs on the device, with the fix removed and then restored:
+
+| Fix removed | Failed with |
+|---|---|
+| Down's target | `withNoChipsDownFromTheField…`: `expected Blade Runner, was Final Cut` |
+| Rail's right wall | `rightAtTheEndOfARail…`: `expected Final Cut, was Sources` |
+| Left to the host | `leftFromTheField…`, `leftFromAField…`, and on the real path `leftFromTheFieldReachesTheRail` |
+| `SearchStops` | `rightFromTheRail…`, and on the real path `rightReturnsToTheExactStopOnSearch` |
+| Done's write | `doneApplies…`, at the results changing |
+| Dismiss not discarding | `backDiscards…`: `expected [Filmxy, Vidplay], was [Vidplay]` |
+| The type write | `eachTypeChip…`, at the write |
+| `clearFilters` | `noResultsAction…`: `expected [Filmxy, Vidplay, Zoro], was [Filmxy, Vidplay]` |
+| The platform back callback | `sourcesOpens…`: Back left for Home |
+| The history list's padding (`BUG-37`) | `search-history-filled`, 26,660 pixels, and the ring's top edge is cut off in the actual image |
+
+**One wall is not shown to matter.** With `Sources`' `right = Cancel` removed, `sourcesOpens…` still passes: nothing lies to its right.
+
+### Reduced from the boards
+
+- `.failpill`'s gap of 12 px is 6 dp, off the step, so it uses 8.
+- The board's unnamed button beside the field is not built, because voice search was dropped. It leaves a 72 dp slot, which the board should correct.
+- Chips scroll rather than using `ChipRow`, and 10 exist where the board draws 7. Labels are the existing words (`Asian Dramas`, `TV Series`, `Livestreams`).
+- A Done with nothing lit falls back to everything eligible.
+- Panel rows narrow by the lit types, so a panel's total can exceed its row count.
+- A source's health is held in memory only.
+- History dates stay lower case, from `DateUtils`, and `today` drops 4c's time (`TODAY 19:04`).
+- 4d's leading disc is not drawn. An installed plugin's record (`PluginData`) keeps no icon. `iconUrl` arrives only with a network fetch of the repository's plugin list, and one plugin can register several providers.
+- A card no longer shows its type (`Movie`), because 4a's reveal has no meta line.
+- The first entry from the rail lands on the field.
+
+### Found, not changed
+
+```
+Found: `SkeletonRail` spaces at `ChipRowSpacing` 24, and the rails it stands in for now space at 12
+Suggest: move the skeleton, which is shared
+Why: a rail jumps when it replaces its skeleton.
+
+Found: `SearchStops` repeats `HomeStops`' three helpers
+Suggest: one copy in the design system
+Why: not on this task's approved list of shared changes.
+```
+
+- **4c's `.rm` draws no tile,** and `IconCell` has one at rest since #156. `Clear all`'s trash copies the tile so the two match.
+- **A remove sits outside its focused row's ring,** because `ListRow`'s actions are beside the row. That is a shared `ListRow` question, raised separately.
+- **Home's panel rows sit about 3 dp lower** than search's.
+- **`action_remove_from_bookmarks`,** the remove's description, is in 59 of 62 locales, so 3 fall back to English.
+- **Translations are weakest** in `ti`, `am`, `so`, `mt`, `ckb`, `my`, `or`, `as` and `qt`. The 18 locales with no `setup_done` use a chosen word for Done.
+
+### Not verified
+
+`TalkBack`, a real remote, a real provider on the live path (no extension is installed on the AVD), the first-card move from a scrolled rail, and how desktop looks with the shared `FailureBanner` pill.
+
+### Published API
+
+Additions only, none removed or changed. `selectSearchProviders` keeps its signature, and the chips' version is an overload.
+
+---
+
 ## KMP-39 — The highest resolution plays first, and the next best when it fails · **measured 2026-11-05**
 
 **Status:** in pr #155. **Owner's request 2026-11-05:** "random to the highest resolution, if not then next best resolution and

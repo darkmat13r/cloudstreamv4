@@ -294,6 +294,10 @@
 <string name="search_provider_text_providers">"Cerca amb proveïdors"</string>
 <string name="search_provider_text_types">"Cerca per tipus"</string>
 <string name="search_state_idle_body_desktop">"Escriu un títol. Els resultats apareixen sota cada font quan respon."</string>
+<string name="search_state_no_results_type_filter" formatted="true">"Només %s. El filtre de tipus està limitant la cerca."</string>
+<string name="search_tv_source_failed" formatted="true">"HA FALLAT %s"</string>
+<string name="search_tv_source_pinned">"FIXAT"</string>
+<string name="search_tv_sources_panel_meta" formatted="true">"%1$d DE %2$d ACTIVATS · ELS CANVIS ES REGISTREN AMB FET"</string>
 <string name="seek_back_10_seconds">"Retrocedeix 10 segons"</string>
 <string name="seek_forward_10_seconds">"Avança 10 segons"</string>
 <string name="select_all">"Seleccionar tot"</string>

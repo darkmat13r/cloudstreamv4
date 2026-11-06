@@ -627,6 +627,7 @@ values-b+af	string	search_state_no_results_action	-	Search everything
 values-b+af	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+af	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+af	string	search_state_no_results_headline	-	No results
+values-b+af	string	search_state_no_results_type_filter	-	Slegs %s. Jou tipe-filter beperk die soektog.
 values-b+af	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+af	string	search_state_offline_headline	-	You are offline
 values-b+af	string	search_state_retry	-	Try again
@@ -636,7 +637,10 @@ values-b+af	string	search_suggestions_des	-	Show search suggestions while typing
 values-b+af	string	search_tv_clear_all	-	Clear all searches
 values-b+af	string	search_tv_field_placeholder	-	Search all sources
 values-b+af	string	search_tv_recent_headline	-	Recent searches
+values-b+af	string	search_tv_source_failed	-	MISLUK %s
+values-b+af	string	search_tv_source_pinned	-	VASGESPELD
 values-b+af	string	search_tv_sources_label	-	Sources
+values-b+af	string	search_tv_sources_panel_meta	-	%1$d VAN %2$d GEAKTIVEER · WYSIGINGS GELD BY KLAAR
 values-b+af	string	season	-	Seisoen
 values-b+af	string	season_format	-	%1$s %2$d%3$s
 values-b+af	string	season_short	-	S
@@ -1483,6 +1487,7 @@ values-b+am	string	search_state_no_results_action	-	Search everything
 values-b+am	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+am	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+am	string	search_state_no_results_headline	-	No results
+values-b+am	string	search_state_no_results_type_filter	-	%s ብቻ። የአይነት ማጣሪያዎ ፍለጋውን እያጠበበው ነው።
 values-b+am	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+am	string	search_state_offline_headline	-	You are offline
 values-b+am	string	search_state_retry	-	Try again
@@ -1492,7 +1497,10 @@ values-b+am	string	search_suggestions_des	-	Show search suggestions while typing
 values-b+am	string	search_tv_clear_all	-	Clear all searches
 values-b+am	string	search_tv_field_placeholder	-	Search all sources
 values-b+am	string	search_tv_recent_headline	-	Recent searches
+values-b+am	string	search_tv_source_failed	-	አልተሳካም %s
+values-b+am	string	search_tv_source_pinned	-	ተሰክቷል
 values-b+am	string	search_tv_sources_label	-	Sources
+values-b+am	string	search_tv_sources_panel_meta	-	ከ%2$d ውስጥ %1$d ነቅተዋል · ለውጦች በተከናውኗል ላይ ይተገበራሉ
 values-b+am	string	season	-	Season
 values-b+am	string	season_format	-	%1$s %2$d%3$s
 values-b+am	string	season_short	-	S
@@ -2339,6 +2347,7 @@ values-b+apc	string	search_state_no_results_action	-	Search everything
 values-b+apc	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+apc	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+apc	string	search_state_no_results_headline	-	No results
+values-b+apc	string	search_state_no_results_type_filter	-	%s بس. فلتر النوع عم يضيّق البحث.
 values-b+apc	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+apc	string	search_state_offline_headline	-	You are offline
 values-b+apc	string	search_state_retry	-	Try again
@@ -2348,7 +2357,10 @@ values-b+apc	string	search_suggestions_des	-	بت فرجي اقتراحات إن
 values-b+apc	string	search_tv_clear_all	-	Clear all searches
 values-b+apc	string	search_tv_field_placeholder	-	Search all sources
 values-b+apc	string	search_tv_recent_headline	-	Recent searches
+values-b+apc	string	search_tv_source_failed	-	فشل %s
+values-b+apc	string	search_tv_source_pinned	-	مثبّت
 values-b+apc	string	search_tv_sources_label	-	Sources
+values-b+apc	string	search_tv_sources_panel_meta	-	%1$d من %2$d مفعّل · التغييرات بتنطبق عند خلصت
 values-b+apc	string	season	-	جزء
 values-b+apc	string	season_format	-	%1$s%2$d%3$s
 values-b+apc	string	season_short	-	ج
@@ -3207,6 +3219,7 @@ values-b+ar	string	search_state_no_results_action	-	Search everything
 values-b+ar	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+ar	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+ar	string	search_state_no_results_headline	-	No results
+values-b+ar	string	search_state_no_results_type_filter	-	%s فقط. عامل تصفية النوع يضيّق نطاق البحث.
 values-b+ar	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+ar	string	search_state_offline_headline	-	You are offline
 values-b+ar	string	search_state_retry	-	Try again
@@ -3216,7 +3229,10 @@ values-b+ar	string	search_suggestions_des	-	عرض اقتراحات البحث �
 values-b+ar	string	search_tv_clear_all	-	Clear all searches
 values-b+ar	string	search_tv_field_placeholder	-	Search all sources
 values-b+ar	string	search_tv_recent_headline	-	Recent searches
+values-b+ar	string	search_tv_source_failed	-	فشل %s
+values-b+ar	string	search_tv_source_pinned	-	مثبّت
 values-b+ar	string	search_tv_sources_label	-	Sources
+values-b+ar	string	search_tv_sources_panel_meta	-	%1$d من %2$d مفعّل · تُطبَّق التغييرات عند «تم»
 values-b+ar	string	season	-	موسم
 values-b+ar	string	season_format	-	%1$s %2$d%3$s
 values-b+ar	string	season_short	-	م
@@ -4067,6 +4083,7 @@ values-b+ars	string	search_state_no_results_action	-	Search everything
 values-b+ars	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+ars	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+ars	string	search_state_no_results_headline	-	No results
+values-b+ars	string	search_state_no_results_type_filter	-	%s بس. فلتر النوع يضيّق البحث.
 values-b+ars	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+ars	string	search_state_offline_headline	-	You are offline
 values-b+ars	string	search_state_retry	-	Try again
@@ -4076,7 +4093,10 @@ values-b+ars	string	search_suggestions_des	-	Show search suggestions while typin
 values-b+ars	string	search_tv_clear_all	-	Clear all searches
 values-b+ars	string	search_tv_field_placeholder	-	Search all sources
 values-b+ars	string	search_tv_recent_headline	-	Recent searches
+values-b+ars	string	search_tv_source_failed	-	فشل %s
+values-b+ars	string	search_tv_source_pinned	-	مثبّت
 values-b+ars	string	search_tv_sources_label	-	Sources
+values-b+ars	string	search_tv_sources_panel_meta	-	%1$d من %2$d مفعّل · التغييرات تنطبق عند «تم»
 values-b+ars	string	season	-	موسم
 values-b+ars	string	season_format	-	%1$s%2$d%3$s
 values-b+ars	string	season_short	-	س
@@ -4923,6 +4943,7 @@ values-b+as	string	search_state_no_results_action	-	Search everything
 values-b+as	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+as	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+as	string	search_state_no_results_headline	-	No results
+values-b+as	string	search_state_no_results_type_filter	-	কেৱল %s। আপোনাৰ ধৰণৰ ফিল্টাৰে সন্ধান সংকীৰ্ণ কৰিছে।
 values-b+as	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+as	string	search_state_offline_headline	-	You are offline
 values-b+as	string	search_state_retry	-	Try again
@@ -4932,7 +4953,10 @@ values-b+as	string	search_suggestions_des	-	Show search suggestions while typing
 values-b+as	string	search_tv_clear_all	-	Clear all searches
 values-b+as	string	search_tv_field_placeholder	-	Search all sources
 values-b+as	string	search_tv_recent_headline	-	Recent searches
+values-b+as	string	search_tv_source_failed	-	ব্যৰ্থ %s
+values-b+as	string	search_tv_source_pinned	-	পিন কৰা হৈছে
 values-b+as	string	search_tv_sources_label	-	Sources
+values-b+as	string	search_tv_sources_panel_meta	-	%2$dৰ ভিতৰত %1$d সক্ষম · পৰিৱৰ্তনসমূহ সম্পূৰ্ণ ত প্ৰয়োগ হয়
 values-b+as	string	season	-	চিজন
 values-b+as	string	season_format	-	%1$s %2$d%3$s
 values-b+as	string	season_short	-	চি
@@ -5779,6 +5803,7 @@ values-b+az	string	search_state_no_results_action	-	Search everything
 values-b+az	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+az	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+az	string	search_state_no_results_headline	-	No results
+values-b+az	string	search_state_no_results_type_filter	-	Yalnız %s. Növ filtriniz axtarışı daraldır.
 values-b+az	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+az	string	search_state_offline_headline	-	You are offline
 values-b+az	string	search_state_retry	-	Try again
@@ -5788,7 +5813,10 @@ values-b+az	string	search_suggestions_des	-	Show search suggestions while typing
 values-b+az	string	search_tv_clear_all	-	Clear all searches
 values-b+az	string	search_tv_field_placeholder	-	Search all sources
 values-b+az	string	search_tv_recent_headline	-	Recent searches
+values-b+az	string	search_tv_source_failed	-	UĞURSUZ %s
+values-b+az	string	search_tv_source_pinned	-	SABİTLƏNİB
 values-b+az	string	search_tv_sources_label	-	Sources
+values-b+az	string	search_tv_sources_panel_meta	-	%2$d İÇİNDƏN %1$d AKTİV · DƏYİŞİKLİKLƏR HAZIR İLƏ TƏTBİQ OLUNUR
 values-b+az	string	season	-	Sezon
 values-b+az	string	season_format	-	%1$s %2$d%3$s
 values-b+az	string	season_short	-	S
@@ -6641,6 +6669,7 @@ values-b+be	string	search_state_no_results_action	-	Search everything
 values-b+be	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+be	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+be	string	search_state_no_results_headline	-	No results
+values-b+be	string	search_state_no_results_type_filter	-	Толькі %s. Фільтр па тыпе звужае пошук.
 values-b+be	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+be	string	search_state_offline_headline	-	You are offline
 values-b+be	string	search_state_retry	-	Try again
@@ -6650,7 +6679,10 @@ values-b+be	string	search_suggestions_des	-	Паказваць прапанов�
 values-b+be	string	search_tv_clear_all	-	Clear all searches
 values-b+be	string	search_tv_field_placeholder	-	Search all sources
 values-b+be	string	search_tv_recent_headline	-	Recent searches
+values-b+be	string	search_tv_source_failed	-	ЗБОЙ %s
+values-b+be	string	search_tv_source_pinned	-	ЗАМАЦАВАНА
 values-b+be	string	search_tv_sources_label	-	Sources
+values-b+be	string	search_tv_sources_panel_meta	-	%1$d З %2$d УКЛЮЧАНА · ЗМЕНЫ ПРЫМЯНЯЮЦЦА ПАСЛЯ ГАТОВА
 values-b+be	string	season	-	Сезон
 values-b+be	string	season_format	-	%1$s %2$d%3$s
 values-b+be	string	season_short	-	Сез
@@ -7497,6 +7529,7 @@ values-b+bg	string	search_state_no_results_action	-	Search everything
 values-b+bg	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+bg	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+bg	string	search_state_no_results_headline	-	No results
+values-b+bg	string	search_state_no_results_type_filter	-	Само %s. Филтърът по тип стеснява търсенето.
 values-b+bg	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+bg	string	search_state_offline_headline	-	You are offline
 values-b+bg	string	search_state_retry	-	Try again
@@ -7506,7 +7539,10 @@ values-b+bg	string	search_suggestions_des	-	Показвай предложен�
 values-b+bg	string	search_tv_clear_all	-	Clear all searches
 values-b+bg	string	search_tv_field_placeholder	-	Search all sources
 values-b+bg	string	search_tv_recent_headline	-	Recent searches
+values-b+bg	string	search_tv_source_failed	-	НЕУСПЕШНО %s
+values-b+bg	string	search_tv_source_pinned	-	ЗАКАЧЕН
 values-b+bg	string	search_tv_sources_label	-	Sources
+values-b+bg	string	search_tv_sources_panel_meta	-	%1$d ОТ %2$d ВКЛЮЧЕНИ · ПРОМЕНИТЕ СЕ ПРИЛАГАТ СЛЕД КРАЙ
 values-b+bg	string	season	-	Сезон
 values-b+bg	string	season_format	-	%1$s %2$d%3$s
 values-b+bg	string	season_short	-	С
@@ -8353,6 +8389,7 @@ values-b+bn	string	search_state_no_results_action	-	Search everything
 values-b+bn	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+bn	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+bn	string	search_state_no_results_headline	-	No results
+values-b+bn	string	search_state_no_results_type_filter	-	শুধু %s। আপনার ধরনের ফিল্টার অনুসন্ধান সীমিত করছে।
 values-b+bn	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+bn	string	search_state_offline_headline	-	You are offline
 values-b+bn	string	search_state_retry	-	Try again
@@ -8362,7 +8399,10 @@ values-b+bn	string	search_suggestions_des	-	টাইপ করার সময�
 values-b+bn	string	search_tv_clear_all	-	Clear all searches
 values-b+bn	string	search_tv_field_placeholder	-	Search all sources
 values-b+bn	string	search_tv_recent_headline	-	Recent searches
+values-b+bn	string	search_tv_source_failed	-	ব্যর্থ %s
+values-b+bn	string	search_tv_source_pinned	-	পিন করা
 values-b+bn	string	search_tv_sources_label	-	Sources
+values-b+bn	string	search_tv_sources_panel_meta	-	%2$d-এর মধ্যে %1$d চালু · সম্পন্ন চাপলে পরিবর্তন প্রযোজ্য হবে
 values-b+bn	string	season	-	সিজন
 values-b+bn	string	season_format	-	%1$s %2$d%3$s
 values-b+bn	string	season_short	-	S
@@ -9210,6 +9250,7 @@ values-b+ca	string	search_state_no_results_action	-	Search everything
 values-b+ca	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+ca	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+ca	string	search_state_no_results_headline	-	No results
+values-b+ca	string	search_state_no_results_type_filter	-	Només %s. El filtre de tipus està limitant la cerca.
 values-b+ca	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+ca	string	search_state_offline_headline	-	You are offline
 values-b+ca	string	search_state_retry	-	Try again
@@ -9219,7 +9260,10 @@ values-b+ca	string	search_suggestions_des	-	Show search suggestions while typing
 values-b+ca	string	search_tv_clear_all	-	Clear all searches
 values-b+ca	string	search_tv_field_placeholder	-	Search all sources
 values-b+ca	string	search_tv_recent_headline	-	Recent searches
+values-b+ca	string	search_tv_source_failed	-	HA FALLAT %s
+values-b+ca	string	search_tv_source_pinned	-	FIXAT
 values-b+ca	string	search_tv_sources_label	-	Sources
+values-b+ca	string	search_tv_sources_panel_meta	-	%1$d DE %2$d ACTIVATS · ELS CANVIS ES REGISTREN AMB FET
 values-b+ca	string	season	-	Season
 values-b+ca	string	season_format	-	%1$s %2$d%3$s
 values-b+ca	string	season_short	-	S
@@ -10066,6 +10110,7 @@ values-b+ckb	string	search_state_no_results_action	-	Search everything
 values-b+ckb	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+ckb	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+ckb	string	search_state_no_results_headline	-	No results
+values-b+ckb	string	search_state_no_results_type_filter	-	تەنها %s. فلتەری جۆرەکەت گەڕانەکە سنووردار دەکات.
 values-b+ckb	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+ckb	string	search_state_offline_headline	-	You are offline
 values-b+ckb	string	search_state_retry	-	Try again
@@ -10075,7 +10120,10 @@ values-b+ckb	string	search_suggestions_des	-	Show search suggestions while typin
 values-b+ckb	string	search_tv_clear_all	-	Clear all searches
 values-b+ckb	string	search_tv_field_placeholder	-	Search all sources
 values-b+ckb	string	search_tv_recent_headline	-	Recent searches
+values-b+ckb	string	search_tv_source_failed	-	شکستی هێنا %s
+values-b+ckb	string	search_tv_source_pinned	-	جێگیرکراو
 values-b+ckb	string	search_tv_sources_label	-	Sources
+values-b+ckb	string	search_tv_sources_panel_meta	-	%1$d لە %2$d چالاککراون · گۆڕانکارییەکان دوای تەواو جێبەجێ دەبن
 values-b+ckb	string	season	-	Season
 values-b+ckb	string	season_format	-	%1$s %2$d%3$s
 values-b+ckb	string	season_short	-	S
@@ -10930,6 +10978,7 @@ values-b+cs	string	search_state_no_results_action	-	Search everything
 values-b+cs	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+cs	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+cs	string	search_state_no_results_headline	-	No results
+values-b+cs	string	search_state_no_results_type_filter	-	Pouze %s. Filtr typů zužuje hledání.
 values-b+cs	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+cs	string	search_state_offline_headline	-	You are offline
 values-b+cs	string	search_state_retry	-	Try again
@@ -10939,7 +10988,10 @@ values-b+cs	string	search_suggestions_des	-	Zobrazit návrhy vyhledávání běh
 values-b+cs	string	search_tv_clear_all	-	Clear all searches
 values-b+cs	string	search_tv_field_placeholder	-	Search all sources
 values-b+cs	string	search_tv_recent_headline	-	Recent searches
+values-b+cs	string	search_tv_source_failed	-	SELHALO %s
+values-b+cs	string	search_tv_source_pinned	-	PŘIPNUTO
 values-b+cs	string	search_tv_sources_label	-	Sources
+values-b+cs	string	search_tv_sources_panel_meta	-	%1$d Z %2$d ZAPNUTO · ZMĚNY SE UPLATNÍ STISKNUTÍM HOTOVO
 values-b+cs	string	season	-	Sezóna
 values-b+cs	string	season_format	-	%1$s %2$d%3$s
 values-b+cs	string	season_short	-	S
@@ -11786,6 +11838,7 @@ values-b+de	string	search_state_no_results_action	-	Search everything
 values-b+de	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+de	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+de	string	search_state_no_results_headline	-	No results
+values-b+de	string	search_state_no_results_type_filter	-	Nur %s. Der Typfilter schränkt die Suche ein.
 values-b+de	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+de	string	search_state_offline_headline	-	You are offline
 values-b+de	string	search_state_retry	-	Try again
@@ -11795,7 +11848,10 @@ values-b+de	string	search_suggestions_des	-	Beim Tippen Suchempfehlungen anzeige
 values-b+de	string	search_tv_clear_all	-	Clear all searches
 values-b+de	string	search_tv_field_placeholder	-	Search all sources
 values-b+de	string	search_tv_recent_headline	-	Recent searches
+values-b+de	string	search_tv_source_failed	-	FEHLGESCHLAGEN %s
+values-b+de	string	search_tv_source_pinned	-	ANGEPINNT
 values-b+de	string	search_tv_sources_label	-	Sources
+values-b+de	string	search_tv_sources_panel_meta	-	%1$d VON %2$d AKTIV · ÄNDERUNGEN WERDEN BEI FERTIG ÜBERNOMMEN
 values-b+de	string	season	-	Staffel
 values-b+de	string	season_format	-	%1$s %2$d%3$s
 values-b+de	string	season_short	-	S
@@ -12642,6 +12698,7 @@ values-b+el	string	search_state_no_results_action	-	Search everything
 values-b+el	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+el	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+el	string	search_state_no_results_headline	-	No results
+values-b+el	string	search_state_no_results_type_filter	-	Μόνο %s. Το φίλτρο τύπου περιορίζει την αναζήτηση.
 values-b+el	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+el	string	search_state_offline_headline	-	You are offline
 values-b+el	string	search_state_retry	-	Try again
@@ -12651,7 +12708,10 @@ values-b+el	string	search_suggestions_des	-	Show search suggestions while typing
 values-b+el	string	search_tv_clear_all	-	Clear all searches
 values-b+el	string	search_tv_field_placeholder	-	Search all sources
 values-b+el	string	search_tv_recent_headline	-	Recent searches
+values-b+el	string	search_tv_source_failed	-	ΑΠΟΤΥΧΙΑ %s
+values-b+el	string	search_tv_source_pinned	-	ΚΑΡΦΙΤΣΩΜΕΝΟ
 values-b+el	string	search_tv_sources_label	-	Sources
+values-b+el	string	search_tv_sources_panel_meta	-	%1$d ΑΠΟ %2$d ΕΝΕΡΓΕΣ · ΟΙ ΑΛΛΑΓΕΣ ΕΦΑΡΜΟΖΟΝΤΑΙ ΜΕ ΤΟ ΕΓΙΝΕ
 values-b+el	string	season	-	Κύκλος
 values-b+el	string	season_format	-	%1$s %2$d%3$s
 values-b+el	string	season_short	-	Σ
@@ -13498,6 +13558,7 @@ values-b+eo	string	search_state_no_results_action	-	Search everything
 values-b+eo	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+eo	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+eo	string	search_state_no_results_headline	-	No results
+values-b+eo	string	search_state_no_results_type_filter	-	Nur %s. Via tipfiltrilo mallarĝigas la serĉon.
 values-b+eo	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+eo	string	search_state_offline_headline	-	You are offline
 values-b+eo	string	search_state_retry	-	Try again
@@ -13507,7 +13568,10 @@ values-b+eo	string	search_suggestions_des	-	Show search suggestions while typing
 values-b+eo	string	search_tv_clear_all	-	Clear all searches
 values-b+eo	string	search_tv_field_placeholder	-	Search all sources
 values-b+eo	string	search_tv_recent_headline	-	Recent searches
+values-b+eo	string	search_tv_source_failed	-	MALSUKCESIS %s
+values-b+eo	string	search_tv_source_pinned	-	FIKSITA
 values-b+eo	string	search_tv_sources_label	-	Sources
+values-b+eo	string	search_tv_sources_panel_meta	-	%1$d EL %2$d ŜALTITAJ · ŜANĜOJ APLIKIĜAS PER FARITE
 values-b+eo	string	season	-	Sezono
 values-b+eo	string	season_format	-	%1$s %2$d%3$s
 values-b+eo	string	season_short	-	S
@@ -14358,6 +14422,7 @@ values-b+es	string	search_state_no_results_action	-	Search everything
 values-b+es	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+es	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+es	string	search_state_no_results_headline	-	No results
+values-b+es	string	search_state_no_results_type_filter	-	Solo %s. Su filtro de tipo está reduciendo la búsqueda.
 values-b+es	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+es	string	search_state_offline_headline	-	You are offline
 values-b+es	string	search_state_retry	-	Try again
@@ -14367,7 +14432,10 @@ values-b+es	string	search_suggestions_des	-	Mostrar sugerencias de búsqueda mie
 values-b+es	string	search_tv_clear_all	-	Clear all searches
 values-b+es	string	search_tv_field_placeholder	-	Search all sources
 values-b+es	string	search_tv_recent_headline	-	Recent searches
+values-b+es	string	search_tv_source_failed	-	FALLÓ %s
+values-b+es	string	search_tv_source_pinned	-	FIJADO
 values-b+es	string	search_tv_sources_label	-	Sources
+values-b+es	string	search_tv_sources_panel_meta	-	%1$d DE %2$d ACTIVADOS · LOS CAMBIOS SE APLICAN AL PULSAR HECHO
 values-b+es	string	season	-	Temporada
 values-b+es	string	season_format	-	%1$s %2$d%3$s
 values-b+es	string	season_short	-	T
@@ -15214,6 +15282,7 @@ values-b+fa	string	search_state_no_results_action	-	Search everything
 values-b+fa	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+fa	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+fa	string	search_state_no_results_headline	-	No results
+values-b+fa	string	search_state_no_results_type_filter	-	فقط %s. فیلتر نوع شما جستجو را محدود می‌کند.
 values-b+fa	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+fa	string	search_state_offline_headline	-	You are offline
 values-b+fa	string	search_state_retry	-	Try again
@@ -15223,7 +15292,10 @@ values-b+fa	string	search_suggestions_des	-	Show search suggestions while typing
 values-b+fa	string	search_tv_clear_all	-	Clear all searches
 values-b+fa	string	search_tv_field_placeholder	-	Search all sources
 values-b+fa	string	search_tv_recent_headline	-	Recent searches
+values-b+fa	string	search_tv_source_failed	-	ناموفق %s
+values-b+fa	string	search_tv_source_pinned	-	سنجاق‌شده
 values-b+fa	string	search_tv_sources_label	-	Sources
+values-b+fa	string	search_tv_sources_panel_meta	-	%1$d از %2$d فعال · تغییرات پس از «انجام شد» اعمال می‌شود
 values-b+fa	string	season	-	فصل
 values-b+fa	string	season_format	-	%1$s %2$d%3$s
 values-b+fa	string	season_short	-	ف
@@ -16070,6 +16142,7 @@ values-b+fil	string	search_state_no_results_action	-	Search everything
 values-b+fil	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+fil	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+fil	string	search_state_no_results_headline	-	No results
+values-b+fil	string	search_state_no_results_type_filter	-	%s lang. Pinipigilan ng type filter mo ang paghahanap.
 values-b+fil	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+fil	string	search_state_offline_headline	-	You are offline
 values-b+fil	string	search_state_retry	-	Try again
@@ -16079,7 +16152,10 @@ values-b+fil	string	search_suggestions_des	-	Show search suggestions while typin
 values-b+fil	string	search_tv_clear_all	-	Clear all searches
 values-b+fil	string	search_tv_field_placeholder	-	Search all sources
 values-b+fil	string	search_tv_recent_headline	-	Recent searches
+values-b+fil	string	search_tv_source_failed	-	NABIGO %s
+values-b+fil	string	search_tv_source_pinned	-	NAKA-PIN
 values-b+fil	string	search_tv_sources_label	-	Sources
+values-b+fil	string	search_tv_sources_panel_meta	-	%1$d SA %2$d ANG NAKA-ENABLE · ILALAPAT ANG MGA PAGBABAGO KAPAG PININDOT ANG TAPOS NA
 values-b+fil	string	season	-	Season
 values-b+fil	string	season_format	-	%1$s %2$d%3$s
 values-b+fil	string	season_short	-	S
@@ -16930,6 +17006,7 @@ values-b+fr	string	search_state_no_results_action	-	Search everything
 values-b+fr	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+fr	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+fr	string	search_state_no_results_headline	-	No results
+values-b+fr	string	search_state_no_results_type_filter	-	%s uniquement. Votre filtre de type restreint la recherche.
 values-b+fr	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+fr	string	search_state_offline_headline	-	You are offline
 values-b+fr	string	search_state_retry	-	Try again
@@ -16939,7 +17016,10 @@ values-b+fr	string	search_suggestions_des	-	Afficher des suggestions de recherch
 values-b+fr	string	search_tv_clear_all	-	Clear all searches
 values-b+fr	string	search_tv_field_placeholder	-	Search all sources
 values-b+fr	string	search_tv_recent_headline	-	Recent searches
+values-b+fr	string	search_tv_source_failed	-	ÉCHEC %s
+values-b+fr	string	search_tv_source_pinned	-	ÉPINGLÉ
 values-b+fr	string	search_tv_sources_label	-	Sources
+values-b+fr	string	search_tv_sources_panel_meta	-	%1$d SUR %2$d ACTIVÉS · LES MODIFICATIONS PRENNENT EFFET AVEC FINIR
 values-b+fr	string	season	-	Saison
 values-b+fr	string	season_format	-	%1$s %2$d%3$s
 values-b+fr	string	season_short	-	S
@@ -17786,6 +17866,7 @@ values-b+gl	string	search_state_no_results_action	-	Search everything
 values-b+gl	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+gl	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+gl	string	search_state_no_results_headline	-	No results
+values-b+gl	string	search_state_no_results_type_filter	-	Só %s. O filtro de tipo está limitando a busca.
 values-b+gl	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+gl	string	search_state_offline_headline	-	You are offline
 values-b+gl	string	search_state_retry	-	Try again
@@ -17795,7 +17876,10 @@ values-b+gl	string	search_suggestions_des	-	Show search suggestions while typing
 values-b+gl	string	search_tv_clear_all	-	Clear all searches
 values-b+gl	string	search_tv_field_placeholder	-	Search all sources
 values-b+gl	string	search_tv_recent_headline	-	Recent searches
+values-b+gl	string	search_tv_source_failed	-	FALLOU %s
+values-b+gl	string	search_tv_source_pinned	-	FIXADO
 values-b+gl	string	search_tv_sources_label	-	Sources
+values-b+gl	string	search_tv_sources_panel_meta	-	%1$d DE %2$d ACTIVADOS · OS CAMBIOS APLÍCANSE CON FEITO
 values-b+gl	string	season	-	Temporada
 values-b+gl	string	season_format	-	%1$s %2$d%3$s
 values-b+gl	string	season_short	-	T
@@ -18642,6 +18726,7 @@ values-b+hi	string	search_state_no_results_action	-	Search everything
 values-b+hi	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+hi	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+hi	string	search_state_no_results_headline	-	No results
+values-b+hi	string	search_state_no_results_type_filter	-	सिर्फ़ %s। आपका प्रकार फ़िल्टर खोज को सीमित कर रहा है।
 values-b+hi	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+hi	string	search_state_offline_headline	-	You are offline
 values-b+hi	string	search_state_retry	-	Try again
@@ -18651,7 +18736,10 @@ values-b+hi	string	search_suggestions_des	-	Show search suggestions while typing
 values-b+hi	string	search_tv_clear_all	-	Clear all searches
 values-b+hi	string	search_tv_field_placeholder	-	Search all sources
 values-b+hi	string	search_tv_recent_headline	-	Recent searches
+values-b+hi	string	search_tv_source_failed	-	विफल %s
+values-b+hi	string	search_tv_source_pinned	-	पिन किया गया
 values-b+hi	string	search_tv_sources_label	-	Sources
+values-b+hi	string	search_tv_sources_panel_meta	-	%2$d में से %1$d चालू · बदलाव हो गया दबाने पर लागू होंगे
 values-b+hi	string	season	-	सत्र
 values-b+hi	string	season_format	-	%1$s %2$d%3$s
 values-b+hi	string	season_short	-	S
@@ -19501,6 +19589,7 @@ values-b+hr	string	search_state_no_results_action	-	Search everything
 values-b+hr	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+hr	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+hr	string	search_state_no_results_headline	-	No results
+values-b+hr	string	search_state_no_results_type_filter	-	Samo %s. Vaš filtar vrste sužava pretraživanje.
 values-b+hr	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+hr	string	search_state_offline_headline	-	You are offline
 values-b+hr	string	search_state_retry	-	Try again
@@ -19510,7 +19599,10 @@ values-b+hr	string	search_suggestions_des	-	Prikaži prijedloge za pretraživanj
 values-b+hr	string	search_tv_clear_all	-	Clear all searches
 values-b+hr	string	search_tv_field_placeholder	-	Search all sources
 values-b+hr	string	search_tv_recent_headline	-	Recent searches
+values-b+hr	string	search_tv_source_failed	-	NEUSPJELO %s
+values-b+hr	string	search_tv_source_pinned	-	PRIKVAČENO
 values-b+hr	string	search_tv_sources_label	-	Sources
+values-b+hr	string	search_tv_sources_panel_meta	-	%1$d OD %2$d UKLJUČENO · PROMJENE VRIJEDE NAKON GOTOVO
 values-b+hr	string	season	-	Sezona
 values-b+hr	string	season_format	-	%1$s %2$d%3$s
 values-b+hr	string	season_short	-	S
@@ -20357,6 +20449,7 @@ values-b+hu	string	search_state_no_results_action	-	Search everything
 values-b+hu	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+hu	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+hu	string	search_state_no_results_headline	-	No results
+values-b+hu	string	search_state_no_results_type_filter	-	Csak %s. A típusszűrő szűkíti a keresést.
 values-b+hu	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+hu	string	search_state_offline_headline	-	You are offline
 values-b+hu	string	search_state_retry	-	Try again
@@ -20366,7 +20459,10 @@ values-b+hu	string	search_suggestions_des	-	Mutasson keresési javaslatok gépel
 values-b+hu	string	search_tv_clear_all	-	Clear all searches
 values-b+hu	string	search_tv_field_placeholder	-	Search all sources
 values-b+hu	string	search_tv_recent_headline	-	Recent searches
+values-b+hu	string	search_tv_source_failed	-	SIKERTELEN %s
+values-b+hu	string	search_tv_source_pinned	-	KITŰZVE
 values-b+hu	string	search_tv_sources_label	-	Sources
+values-b+hu	string	search_tv_sources_panel_meta	-	%2$d KÖZÜL %1$d ENGEDÉLYEZVE · A VÁLTOZÁSOK A KÉSZ GOMBBAL ÉRVÉNYESÜLNEK
 values-b+hu	string	season	-	Évad
 values-b+hu	string	season_format	-	%1$s %2$d%3$s
 values-b+hu	string	season_short	-	Év
@@ -21209,6 +21305,7 @@ values-b+in	string	search_state_no_results_action	-	Search everything
 values-b+in	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+in	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+in	string	search_state_no_results_headline	-	No results
+values-b+in	string	search_state_no_results_type_filter	-	Hanya %s. Filter jenis Anda mempersempit pencarian.
 values-b+in	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+in	string	search_state_offline_headline	-	You are offline
 values-b+in	string	search_state_retry	-	Try again
@@ -21218,7 +21315,10 @@ values-b+in	string	search_suggestions_des	-	Tampilkan saran pencarian saat menge
 values-b+in	string	search_tv_clear_all	-	Clear all searches
 values-b+in	string	search_tv_field_placeholder	-	Search all sources
 values-b+in	string	search_tv_recent_headline	-	Recent searches
+values-b+in	string	search_tv_source_failed	-	GAGAL %s
+values-b+in	string	search_tv_source_pinned	-	DISEMATKAN
 values-b+in	string	search_tv_sources_label	-	Sources
+values-b+in	string	search_tv_sources_panel_meta	-	%1$d DARI %2$d DIAKTIFKAN · PERUBAHAN BERLAKU SETELAH SELESAI
 values-b+in	string	season	-	Season
 values-b+in	string	season_format	-	%1$s %2$d%3$s
 values-b+in	string	season_short	-	S
@@ -22069,6 +22169,7 @@ values-b+it	string	search_state_no_results_action	-	Search everything
 values-b+it	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+it	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+it	string	search_state_no_results_headline	-	No results
+values-b+it	string	search_state_no_results_type_filter	-	Solo %s. Il filtro per tipo sta restringendo la ricerca.
 values-b+it	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+it	string	search_state_offline_headline	-	You are offline
 values-b+it	string	search_state_retry	-	Try again
@@ -22078,7 +22179,10 @@ values-b+it	string	search_suggestions_des	-	Mostra suggerimenti di ricerca duran
 values-b+it	string	search_tv_clear_all	-	Clear all searches
 values-b+it	string	search_tv_field_placeholder	-	Search all sources
 values-b+it	string	search_tv_recent_headline	-	Recent searches
+values-b+it	string	search_tv_source_failed	-	FALLITO %s
+values-b+it	string	search_tv_source_pinned	-	FISSATO
 values-b+it	string	search_tv_sources_label	-	Sources
+values-b+it	string	search_tv_sources_panel_meta	-	%1$d SU %2$d ATTIVI · LE MODIFICHE SI APPLICANO CON FATTO
 values-b+it	string	season	-	Stagione
 values-b+it	string	season_format	-	%1$s %2$d%3$s
 values-b+it	string	season_short	-	S
@@ -22926,6 +23030,7 @@ values-b+iw	string	search_state_no_results_action	-	Search everything
 values-b+iw	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+iw	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+iw	string	search_state_no_results_headline	-	No results
+values-b+iw	string	search_state_no_results_type_filter	-	%s בלבד. מסנן הסוג מצמצם את החיפוש.
 values-b+iw	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+iw	string	search_state_offline_headline	-	You are offline
 values-b+iw	string	search_state_retry	-	Try again
@@ -22935,7 +23040,10 @@ values-b+iw	string	search_suggestions_des	-	Show search suggestions while typing
 values-b+iw	string	search_tv_clear_all	-	Clear all searches
 values-b+iw	string	search_tv_field_placeholder	-	Search all sources
 values-b+iw	string	search_tv_recent_headline	-	Recent searches
+values-b+iw	string	search_tv_source_failed	-	נכשל %s
+values-b+iw	string	search_tv_source_pinned	-	מוצמד
 values-b+iw	string	search_tv_sources_label	-	Sources
+values-b+iw	string	search_tv_sources_panel_meta	-	%1$d מתוך %2$d פעילים · השינויים יחולו בלחיצה על סוים
 values-b+iw	string	season	-	עונה
 values-b+iw	string	season_format	-	%1$s %2$d%3$s
 values-b+iw	string	season_short	-	עו
@@ -23778,6 +23886,7 @@ values-b+ja	string	search_state_no_results_action	-	Search everything
 values-b+ja	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+ja	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+ja	string	search_state_no_results_headline	-	No results
+values-b+ja	string	search_state_no_results_type_filter	-	%sのみ。種類フィルターで検索が絞り込まれています。
 values-b+ja	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+ja	string	search_state_offline_headline	-	You are offline
 values-b+ja	string	search_state_retry	-	Try again
@@ -23787,7 +23896,10 @@ values-b+ja	string	search_suggestions_des	-	入力中に検索候補を表示す
 values-b+ja	string	search_tv_clear_all	-	Clear all searches
 values-b+ja	string	search_tv_field_placeholder	-	Search all sources
 values-b+ja	string	search_tv_recent_headline	-	Recent searches
+values-b+ja	string	search_tv_source_failed	-	失敗 %s
+values-b+ja	string	search_tv_source_pinned	-	固定済み
 values-b+ja	string	search_tv_sources_label	-	Sources
+values-b+ja	string	search_tv_sources_panel_meta	-	%2$d件中%1$d件が有効 · 変更は「完了」で反映
 values-b+ja	string	season	-	シーズン
 values-b+ja	string	season_format	-	%1$s %2$d%3$s
 values-b+ja	string	season_short	-	シーズン
@@ -24634,6 +24746,7 @@ values-b+kn	string	search_state_no_results_action	-	Search everything
 values-b+kn	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+kn	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+kn	string	search_state_no_results_headline	-	No results
+values-b+kn	string	search_state_no_results_type_filter	-	%s ಮಾತ್ರ. ನಿಮ್ಮ ಪ್ರಕಾರದ ಫಿಲ್ಟರ್ ಹುಡುಕಾಟವನ್ನು ಕಿರಿದುಗೊಳಿಸುತ್ತಿದೆ.
 values-b+kn	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+kn	string	search_state_offline_headline	-	You are offline
 values-b+kn	string	search_state_retry	-	Try again
@@ -24643,7 +24756,10 @@ values-b+kn	string	search_suggestions_des	-	Show search suggestions while typing
 values-b+kn	string	search_tv_clear_all	-	Clear all searches
 values-b+kn	string	search_tv_field_placeholder	-	Search all sources
 values-b+kn	string	search_tv_recent_headline	-	Recent searches
+values-b+kn	string	search_tv_source_failed	-	ವಿಫಲ %s
+values-b+kn	string	search_tv_source_pinned	-	ಪಿನ್ ಮಾಡಲಾಗಿದೆ
 values-b+kn	string	search_tv_sources_label	-	Sources
+values-b+kn	string	search_tv_sources_panel_meta	-	%2$d ರಲ್ಲಿ %1$d ಸಕ್ರಿಯ · ಬದಲಾವಣೆಗಳು ಮುಗಿದಿದೆ ನಂತರ ಅನ್ವಯವಾಗುತ್ತವೆ
 values-b+kn	string	season	-	Season
 values-b+kn	string	season_format	-	%1$s %2$d%3$s
 values-b+kn	string	season_short	-	S
@@ -25487,6 +25603,7 @@ values-b+ko	string	search_state_no_results_action	-	Search everything
 values-b+ko	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+ko	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+ko	string	search_state_no_results_headline	-	No results
+values-b+ko	string	search_state_no_results_type_filter	-	%s만. 유형 필터가 검색을 좁히고 있습니다.
 values-b+ko	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+ko	string	search_state_offline_headline	-	You are offline
 values-b+ko	string	search_state_retry	-	Try again
@@ -25496,7 +25613,10 @@ values-b+ko	string	search_suggestions_des	-	입력하는 동안 검색어 제안
 values-b+ko	string	search_tv_clear_all	-	Clear all searches
 values-b+ko	string	search_tv_field_placeholder	-	Search all sources
 values-b+ko	string	search_tv_recent_headline	-	Recent searches
+values-b+ko	string	search_tv_source_failed	-	실패 %s
+values-b+ko	string	search_tv_source_pinned	-	고정됨
 values-b+ko	string	search_tv_sources_label	-	Sources
+values-b+ko	string	search_tv_sources_panel_meta	-	%2$d개 중 %1$d개 사용 중 · 변경 사항은 완료를 누르면 적용됩니다
 values-b+ko	string	season	-	시즌
 values-b+ko	string	season_format	-	%1$s %2$d%3$s
 values-b+ko	string	season_short	-	시즌
@@ -26345,6 +26465,7 @@ values-b+lt	string	search_state_no_results_action	-	Search everything
 values-b+lt	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+lt	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+lt	string	search_state_no_results_headline	-	No results
+values-b+lt	string	search_state_no_results_type_filter	-	Tik %s. Jūsų tipų filtras siaurina paiešką.
 values-b+lt	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+lt	string	search_state_offline_headline	-	You are offline
 values-b+lt	string	search_state_retry	-	Try again
@@ -26354,7 +26475,10 @@ values-b+lt	string	search_suggestions_des	-	Show search suggestions while typing
 values-b+lt	string	search_tv_clear_all	-	Clear all searches
 values-b+lt	string	search_tv_field_placeholder	-	Search all sources
 values-b+lt	string	search_tv_recent_headline	-	Recent searches
+values-b+lt	string	search_tv_source_failed	-	NEPAVYKO %s
+values-b+lt	string	search_tv_source_pinned	-	PRISEGTA
 values-b+lt	string	search_tv_sources_label	-	Sources
+values-b+lt	string	search_tv_sources_panel_meta	-	ĮJUNGTA %1$d IŠ %2$d · PAKEITIMAI TAIKOMI PASPAUDUS BAIGTA
 values-b+lt	string	season	-	Sezonas
 values-b+lt	string	season_format	-	%1$s %2$d%3$s
 values-b+lt	string	season_short	-	S
@@ -27203,6 +27327,7 @@ values-b+lv	string	search_state_no_results_action	-	Search everything
 values-b+lv	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+lv	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+lv	string	search_state_no_results_headline	-	No results
+values-b+lv	string	search_state_no_results_type_filter	-	Tikai %s. Jūsu veida filtrs sašaurina meklēšanu.
 values-b+lv	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+lv	string	search_state_offline_headline	-	You are offline
 values-b+lv	string	search_state_retry	-	Try again
@@ -27212,7 +27337,10 @@ values-b+lv	string	search_suggestions_des	-	Show search suggestions while typing
 values-b+lv	string	search_tv_clear_all	-	Clear all searches
 values-b+lv	string	search_tv_field_placeholder	-	Search all sources
 values-b+lv	string	search_tv_recent_headline	-	Recent searches
+values-b+lv	string	search_tv_source_failed	-	NEIZDEVĀS %s
+values-b+lv	string	search_tv_source_pinned	-	PIESPRAUSTS
 values-b+lv	string	search_tv_sources_label	-	Sources
+values-b+lv	string	search_tv_sources_panel_meta	-	IESLĒGTI %1$d NO %2$d · IZMAIŅAS TIEK PIEMĒROTAS, NOSPIEŽOT PABEIGTS
 values-b+lv	string	season	-	Sezona
 values-b+lv	string	season_format	-	%1$s %2$d%3$s
 values-b+lv	string	season_short	-	S
@@ -28059,6 +28187,7 @@ values-b+mk	string	search_state_no_results_action	-	Search everything
 values-b+mk	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+mk	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+mk	string	search_state_no_results_headline	-	No results
+values-b+mk	string	search_state_no_results_type_filter	-	Само %s. Вашиот филтер за тип го стеснува пребарувањето.
 values-b+mk	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+mk	string	search_state_offline_headline	-	You are offline
 values-b+mk	string	search_state_retry	-	Try again
@@ -28068,7 +28197,10 @@ values-b+mk	string	search_suggestions_des	-	Прикажувај предлоз�
 values-b+mk	string	search_tv_clear_all	-	Clear all searches
 values-b+mk	string	search_tv_field_placeholder	-	Search all sources
 values-b+mk	string	search_tv_recent_headline	-	Recent searches
+values-b+mk	string	search_tv_source_failed	-	НЕУСПЕШНО %s
+values-b+mk	string	search_tv_source_pinned	-	ЗАКАЧЕНО
 values-b+mk	string	search_tv_sources_label	-	Sources
+values-b+mk	string	search_tv_sources_panel_meta	-	%1$d ОД %2$d ОВОЗМОЖЕНИ · ПРОМЕНИТЕ СЕ ПРИМЕНУВААТ ПО ГОТОВО
 values-b+mk	string	season	-	Сезона
 values-b+mk	string	season_format	-	%1$s %2$d%3$s
 values-b+mk	string	season_short	-	С
@@ -28915,6 +29047,7 @@ values-b+ml	string	search_state_no_results_action	-	Search everything
 values-b+ml	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+ml	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+ml	string	search_state_no_results_headline	-	No results
+values-b+ml	string	search_state_no_results_type_filter	-	%s മാത്രം. നിങ്ങളുടെ തരം ഫിൽട്ടർ തിരയൽ ചുരുക്കുന്നു.
 values-b+ml	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+ml	string	search_state_offline_headline	-	You are offline
 values-b+ml	string	search_state_retry	-	Try again
@@ -28924,7 +29057,10 @@ values-b+ml	string	search_suggestions_des	-	Show search suggestions while typing
 values-b+ml	string	search_tv_clear_all	-	Clear all searches
 values-b+ml	string	search_tv_field_placeholder	-	Search all sources
 values-b+ml	string	search_tv_recent_headline	-	Recent searches
+values-b+ml	string	search_tv_source_failed	-	പരാജയപ്പെട്ടു %s
+values-b+ml	string	search_tv_source_pinned	-	പിൻ ചെയ്തു
 values-b+ml	string	search_tv_sources_label	-	Sources
+values-b+ml	string	search_tv_sources_panel_meta	-	%2$d-ൽ %1$d പ്രവർത്തനക്ഷമം · പൂർത്തിയായി അമർത്തുമ്പോൾ മാറ്റങ്ങൾ ബാധകമാകും
 values-b+ml	string	season	-	സീസൺ
 values-b+ml	string	season_format	-	%1$s %2$d%3$s
 values-b+ml	string	season_short	-	S
@@ -29770,6 +29906,7 @@ values-b+ms	string	search_state_no_results_action	-	Search everything
 values-b+ms	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+ms	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+ms	string	search_state_no_results_headline	-	No results
+values-b+ms	string	search_state_no_results_type_filter	-	Hanya %s. Penapis jenis anda mengecilkan carian.
 values-b+ms	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+ms	string	search_state_offline_headline	-	You are offline
 values-b+ms	string	search_state_retry	-	Try again
@@ -29779,7 +29916,10 @@ values-b+ms	string	search_suggestions_des	-	Show search suggestions while typing
 values-b+ms	string	search_tv_clear_all	-	Clear all searches
 values-b+ms	string	search_tv_field_placeholder	-	Search all sources
 values-b+ms	string	search_tv_recent_headline	-	Recent searches
+values-b+ms	string	search_tv_source_failed	-	GAGAL %s
+values-b+ms	string	search_tv_source_pinned	-	DISEMATKAN
 values-b+ms	string	search_tv_sources_label	-	Sources
+values-b+ms	string	search_tv_sources_panel_meta	-	%1$d DARIPADA %2$d DIDAYAKAN · PERUBAHAN DIGUNAKAN SELEPAS TAMAT
 values-b+ms	string	season	-	Musim
 values-b+ms	string	season_format	-	%1$s %2$d%3$s
 values-b+ms	string	season_short	-	S
@@ -30629,6 +30769,7 @@ values-b+mt	string	search_state_no_results_action	-	Search everything
 values-b+mt	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+mt	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+mt	string	search_state_no_results_headline	-	No results
+values-b+mt	string	search_state_no_results_type_filter	-	%s biss. Il-filtru tat-tip qed jirrestrinġi l-fittxija.
 values-b+mt	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+mt	string	search_state_offline_headline	-	You are offline
 values-b+mt	string	search_state_retry	-	Try again
@@ -30638,7 +30779,10 @@ values-b+mt	string	search_suggestions_des	-	Show search suggestions while typing
 values-b+mt	string	search_tv_clear_all	-	Clear all searches
 values-b+mt	string	search_tv_field_placeholder	-	Search all sources
 values-b+mt	string	search_tv_recent_headline	-	Recent searches
+values-b+mt	string	search_tv_source_failed	-	FALLA %s
+values-b+mt	string	search_tv_source_pinned	-	IPPINJAT
 values-b+mt	string	search_tv_sources_label	-	Sources
+values-b+mt	string	search_tv_sources_panel_meta	-	%1$d MINN %2$d ATTIVATI · IL-BIDLIET JIDĦLU FIS-SEĦĦ META TAGĦFAS LEST
 values-b+mt	string	season	-	Season
 values-b+mt	string	season_format	-	%1$s %2$d%3$s
 values-b+mt	string	season_short	-	S
@@ -31484,6 +31628,7 @@ values-b+my	string	search_state_no_results_action	-	Search everything
 values-b+my	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+my	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+my	string	search_state_no_results_headline	-	No results
+values-b+my	string	search_state_no_results_type_filter	-	%s သာ။ သင့်အမျိုးအစား စစ်ထုတ်မှုက ရှာဖွေမှုကို ကျဉ်းစေနေသည်။
 values-b+my	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+my	string	search_state_offline_headline	-	You are offline
 values-b+my	string	search_state_retry	-	Try again
@@ -31493,7 +31638,10 @@ values-b+my	string	search_suggestions_des	-	Show search suggestions while typing
 values-b+my	string	search_tv_clear_all	-	Clear all searches
 values-b+my	string	search_tv_field_placeholder	-	Search all sources
 values-b+my	string	search_tv_recent_headline	-	Recent searches
+values-b+my	string	search_tv_source_failed	-	မအောင်မြင်ပါ %s
+values-b+my	string	search_tv_source_pinned	-	ပင်ထိုးထား
 values-b+my	string	search_tv_sources_label	-	Sources
+values-b+my	string	search_tv_sources_panel_meta	-	%2$d ခုအနက် %1$d ခု ဖွင့်ထား · ပြောင်းလဲမှုများကို ပြီးပြီ တွင် အသုံးပြုမည်
 values-b+my	string	season	-	အတွဲ
 values-b+my	string	season_format	-	%1$s %2$d%3$s
 values-b+my	string	season_short	-	အတွဲ
@@ -32340,6 +32488,7 @@ values-b+ne	string	search_state_no_results_action	-	Search everything
 values-b+ne	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+ne	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+ne	string	search_state_no_results_headline	-	No results
+values-b+ne	string	search_state_no_results_type_filter	-	%s मात्र। तपाईंको प्रकार फिल्टरले खोजी साँघुरो बनाइरहेको छ।
 values-b+ne	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+ne	string	search_state_offline_headline	-	You are offline
 values-b+ne	string	search_state_retry	-	Try again
@@ -32349,7 +32498,10 @@ values-b+ne	string	search_suggestions_des	-	Show search suggestions while typing
 values-b+ne	string	search_tv_clear_all	-	Clear all searches
 values-b+ne	string	search_tv_field_placeholder	-	Search all sources
 values-b+ne	string	search_tv_recent_headline	-	Recent searches
+values-b+ne	string	search_tv_source_failed	-	असफल %s
+values-b+ne	string	search_tv_source_pinned	-	पिन गरिएको
 values-b+ne	string	search_tv_sources_label	-	Sources
+values-b+ne	string	search_tv_sources_panel_meta	-	%2$d मध्ये %1$d सक्रिय · सकियो थिच्दा परिवर्तन लागू हुन्छ
 values-b+ne	string	season	-	Season
 values-b+ne	string	season_format	-	%1$s %2$d%3$s
 values-b+ne	string	season_short	-	S
@@ -33196,6 +33348,7 @@ values-b+nl	string	search_state_no_results_action	-	Search everything
 values-b+nl	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+nl	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+nl	string	search_state_no_results_headline	-	No results
+values-b+nl	string	search_state_no_results_type_filter	-	Alleen %s. Je typefilter beperkt de zoekopdracht.
 values-b+nl	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+nl	string	search_state_offline_headline	-	You are offline
 values-b+nl	string	search_state_retry	-	Try again
@@ -33205,7 +33358,10 @@ values-b+nl	string	search_suggestions_des	-	Zoeksuggesties laten zien tijdens he
 values-b+nl	string	search_tv_clear_all	-	Clear all searches
 values-b+nl	string	search_tv_field_placeholder	-	Search all sources
 values-b+nl	string	search_tv_recent_headline	-	Recent searches
+values-b+nl	string	search_tv_source_failed	-	MISLUKT %s
+values-b+nl	string	search_tv_source_pinned	-	VASTGEPIND
 values-b+nl	string	search_tv_sources_label	-	Sources
+values-b+nl	string	search_tv_sources_panel_meta	-	%1$d VAN %2$d INGESCHAKELD · WIJZIGINGEN GELDEN NA KLAAR
 values-b+nl	string	season	-	Seizoen
 values-b+nl	string	season_format	-	%1$s %2$d%3$s
 values-b+nl	string	season_short	-	S
@@ -34052,6 +34208,7 @@ values-b+nn	string	search_state_no_results_action	-	Search everything
 values-b+nn	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+nn	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+nn	string	search_state_no_results_headline	-	No results
+values-b+nn	string	search_state_no_results_type_filter	-	Berre %s. Typefilteret ditt avgrensar søket.
 values-b+nn	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+nn	string	search_state_offline_headline	-	You are offline
 values-b+nn	string	search_state_retry	-	Try again
@@ -34061,7 +34218,10 @@ values-b+nn	string	search_suggestions_des	-	Show search suggestions while typing
 values-b+nn	string	search_tv_clear_all	-	Clear all searches
 values-b+nn	string	search_tv_field_placeholder	-	Search all sources
 values-b+nn	string	search_tv_recent_headline	-	Recent searches
+values-b+nn	string	search_tv_source_failed	-	FEILA %s
+values-b+nn	string	search_tv_source_pinned	-	FESTA
 values-b+nn	string	search_tv_sources_label	-	Sources
+values-b+nn	string	search_tv_sources_panel_meta	-	%1$d AV %2$d AKTIVERTE · ENDRINGAR GJELD ETTER FERDIG
 values-b+nn	string	season	-	Sesong
 values-b+nn	string	season_format	-	%1$s %2$d%3$s
 values-b+nn	string	season_short	-	S
@@ -34908,6 +35068,7 @@ values-b+no	string	search_state_no_results_action	-	Search everything
 values-b+no	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+no	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+no	string	search_state_no_results_headline	-	No results
+values-b+no	string	search_state_no_results_type_filter	-	Bare %s. Typefilteret ditt begrenser søket.
 values-b+no	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+no	string	search_state_offline_headline	-	You are offline
 values-b+no	string	search_state_retry	-	Try again
@@ -34917,7 +35078,10 @@ values-b+no	string	search_suggestions_des	-	Show search suggestions while typing
 values-b+no	string	search_tv_clear_all	-	Clear all searches
 values-b+no	string	search_tv_field_placeholder	-	Search all sources
 values-b+no	string	search_tv_recent_headline	-	Recent searches
+values-b+no	string	search_tv_source_failed	-	FEILET %s
+values-b+no	string	search_tv_source_pinned	-	FESTET
 values-b+no	string	search_tv_sources_label	-	Sources
+values-b+no	string	search_tv_sources_panel_meta	-	%1$d AV %2$d AKTIVERT · ENDRINGER GJELDER ETTER FERDIG
 values-b+no	string	season	-	Sesong
 values-b+no	string	season_format	-	%1$s %2$d%3$s
 values-b+no	string	season_short	-	S
@@ -35764,6 +35928,7 @@ values-b+or	string	search_state_no_results_action	-	Search everything
 values-b+or	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+or	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+or	string	search_state_no_results_headline	-	No results
+values-b+or	string	search_state_no_results_type_filter	-	କେବଳ %s। ଆପଣଙ୍କ ପ୍ରକାର ଫିଲ୍ଟର ସନ୍ଧାନକୁ ସଂକୁଚିତ କରୁଛି।
 values-b+or	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+or	string	search_state_offline_headline	-	You are offline
 values-b+or	string	search_state_retry	-	Try again
@@ -35773,7 +35938,10 @@ values-b+or	string	search_suggestions_des	-	Show search suggestions while typing
 values-b+or	string	search_tv_clear_all	-	Clear all searches
 values-b+or	string	search_tv_field_placeholder	-	Search all sources
 values-b+or	string	search_tv_recent_headline	-	Recent searches
+values-b+or	string	search_tv_source_failed	-	ବିଫଳ %s
+values-b+or	string	search_tv_source_pinned	-	ପିନ୍ କରାଯାଇଛି
 values-b+or	string	search_tv_sources_label	-	Sources
+values-b+or	string	search_tv_sources_panel_meta	-	%2$d ମଧ୍ୟରୁ %1$d ସକ୍ରିୟ · ହେଲା ଦବାଇଲେ ପରିବର୍ତ୍ତନ ଲାଗୁ ହେବ
 values-b+or	string	season	-	ଋତୁ
 values-b+or	string	season_format	-	%1$s %2$d%3$s
 values-b+or	string	season_short	-	ଋ
@@ -36628,6 +36796,7 @@ values-b+pl	string	search_state_no_results_action	-	Search everything
 values-b+pl	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+pl	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+pl	string	search_state_no_results_headline	-	No results
+values-b+pl	string	search_state_no_results_type_filter	-	Tylko %s. Filtr typu zawęża wyszukiwanie.
 values-b+pl	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+pl	string	search_state_offline_headline	-	You are offline
 values-b+pl	string	search_state_retry	-	Try again
@@ -36637,7 +36806,10 @@ values-b+pl	string	search_suggestions_des	-	Pokaż sugestie wyszukiwania podczas
 values-b+pl	string	search_tv_clear_all	-	Clear all searches
 values-b+pl	string	search_tv_field_placeholder	-	Search all sources
 values-b+pl	string	search_tv_recent_headline	-	Recent searches
+values-b+pl	string	search_tv_source_failed	-	BŁĄD %s
+values-b+pl	string	search_tv_source_pinned	-	PRZYPIĘTE
 values-b+pl	string	search_tv_sources_label	-	Sources
+values-b+pl	string	search_tv_sources_panel_meta	-	WŁĄCZONO %1$d Z %2$d · ZMIANY OBOWIĄZUJĄ PO GOTOWE
 values-b+pl	string	season	-	Sezon
 values-b+pl	string	season_format	-	%1$s %2$d%3$s
 values-b+pl	string	season_short	-	S
@@ -37488,6 +37660,7 @@ values-b+pt	string	search_state_no_results_action	-	Search everything
 values-b+pt	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+pt	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+pt	string	search_state_no_results_headline	-	No results
+values-b+pt	string	search_state_no_results_type_filter	-	Apenas %s. O filtro de tipo está a limitar a pesquisa.
 values-b+pt	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+pt	string	search_state_offline_headline	-	You are offline
 values-b+pt	string	search_state_retry	-	Try again
@@ -37497,7 +37670,10 @@ values-b+pt	string	search_suggestions_des	-	Mostrar sugestões de pesquisa enqua
 values-b+pt	string	search_tv_clear_all	-	Clear all searches
 values-b+pt	string	search_tv_field_placeholder	-	Search all sources
 values-b+pt	string	search_tv_recent_headline	-	Recent searches
+values-b+pt	string	search_tv_source_failed	-	FALHOU %s
+values-b+pt	string	search_tv_source_pinned	-	FIXADO
 values-b+pt	string	search_tv_sources_label	-	Sources
+values-b+pt	string	search_tv_sources_panel_meta	-	%1$d DE %2$d ATIVADOS · AS ALTERAÇÕES APLICAM-SE APÓS FEITO
 values-b+pt	string	season	-	Temporada
 values-b+pt	string	season_format	-	%1$s %2$d%3$s
 values-b+pt	string	season_short	-	T
@@ -38348,6 +38524,7 @@ values-b+pt+BR	string	search_state_no_results_action	-	Search everything
 values-b+pt+BR	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+pt+BR	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+pt+BR	string	search_state_no_results_headline	-	No results
+values-b+pt+BR	string	search_state_no_results_type_filter	-	Somente %s. O filtro de tipo está restringindo a pesquisa.
 values-b+pt+BR	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+pt+BR	string	search_state_offline_headline	-	You are offline
 values-b+pt+BR	string	search_state_retry	-	Try again
@@ -38357,7 +38534,10 @@ values-b+pt+BR	string	search_suggestions_des	-	Exibir sugestões de pesquisa dur
 values-b+pt+BR	string	search_tv_clear_all	-	Clear all searches
 values-b+pt+BR	string	search_tv_field_placeholder	-	Search all sources
 values-b+pt+BR	string	search_tv_recent_headline	-	Recent searches
+values-b+pt+BR	string	search_tv_source_failed	-	FALHOU %s
+values-b+pt+BR	string	search_tv_source_pinned	-	FIXADO
 values-b+pt+BR	string	search_tv_sources_label	-	Sources
+values-b+pt+BR	string	search_tv_sources_panel_meta	-	%1$d DE %2$d ATIVADOS · AS ALTERAÇÕES SÃO APLICADAS APÓS FEITO
 values-b+pt+BR	string	season	-	Temporada
 values-b+pt+BR	string	season_format	-	%1$s %2$d%3$s
 values-b+pt+BR	string	season_short	-	T
@@ -39203,6 +39383,7 @@ values-b+qt	string	search_state_no_results_action	-	Search everything
 values-b+qt	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+qt	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+qt	string	search_state_no_results_headline	-	No results
+values-b+qt	string	search_state_no_results_type_filter	-	%s uuhaa. oouuh aagggh uuk.
 values-b+qt	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+qt	string	search_state_offline_headline	-	You are offline
 values-b+qt	string	search_state_retry	-	Try again
@@ -39212,7 +39393,10 @@ values-b+qt	string	search_suggestions_des	-	Show search suggestions while typing
 values-b+qt	string	search_tv_clear_all	-	Clear all searches
 values-b+qt	string	search_tv_field_placeholder	-	Search all sources
 values-b+qt	string	search_tv_recent_headline	-	Recent searches
+values-b+qt	string	search_tv_source_failed	-	AAGGH %s
+values-b+qt	string	search_tv_source_pinned	-	OOHHAA
 values-b+qt	string	search_tv_sources_label	-	Sources
+values-b+qt	string	search_tv_sources_panel_meta	-	%1$d OOHH %2$d AAHH · UUGH AAK EEEK
 values-b+qt	string	season	-	ooo-ahah
 values-b+qt	string	season_format	-	%1$s %2$d%3$s
 values-b+qt	string	season_short	-	H
@@ -40060,6 +40244,7 @@ values-b+ro	string	search_state_no_results_action	-	Search everything
 values-b+ro	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+ro	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+ro	string	search_state_no_results_headline	-	No results
+values-b+ro	string	search_state_no_results_type_filter	-	Doar %s. Filtrul de tip restrânge căutarea.
 values-b+ro	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+ro	string	search_state_offline_headline	-	You are offline
 values-b+ro	string	search_state_retry	-	Try again
@@ -40069,7 +40254,10 @@ values-b+ro	string	search_suggestions_des	-	Show search suggestions while typing
 values-b+ro	string	search_tv_clear_all	-	Clear all searches
 values-b+ro	string	search_tv_field_placeholder	-	Search all sources
 values-b+ro	string	search_tv_recent_headline	-	Recent searches
+values-b+ro	string	search_tv_source_failed	-	EȘUAT %s
+values-b+ro	string	search_tv_source_pinned	-	FIXAT
 values-b+ro	string	search_tv_sources_label	-	Sources
+values-b+ro	string	search_tv_sources_panel_meta	-	%1$d DIN %2$d ACTIVATE · MODIFICĂRILE SE APLICĂ LA TERMINAT
 values-b+ro	string	season	-	Sezonul
 values-b+ro	string	season_format	-	%1$s %2$d%3$s
 values-b+ro	string	season_short	-	S
@@ -40924,6 +41112,7 @@ values-b+ru	string	search_state_no_results_action	-	Search everything
 values-b+ru	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+ru	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+ru	string	search_state_no_results_headline	-	No results
+values-b+ru	string	search_state_no_results_type_filter	-	Только %s. Фильтр по типу сужает поиск.
 values-b+ru	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+ru	string	search_state_offline_headline	-	You are offline
 values-b+ru	string	search_state_retry	-	Try again
@@ -40933,7 +41122,10 @@ values-b+ru	string	search_suggestions_des	-	Показывать подсказ�
 values-b+ru	string	search_tv_clear_all	-	Clear all searches
 values-b+ru	string	search_tv_field_placeholder	-	Search all sources
 values-b+ru	string	search_tv_recent_headline	-	Recent searches
+values-b+ru	string	search_tv_source_failed	-	СБОЙ %s
+values-b+ru	string	search_tv_source_pinned	-	ЗАКРЕПЛЕНО
 values-b+ru	string	search_tv_sources_label	-	Sources
+values-b+ru	string	search_tv_sources_panel_meta	-	ВКЛЮЧЕНО %1$d ИЗ %2$d · ИЗМЕНЕНИЯ ВСТУПЯТ В СИЛУ ПОСЛЕ НАЖАТИЯ ГОТОВО
 values-b+ru	string	season	-	Сезон
 values-b+ru	string	season_format	-	%1$s %2$d%3$s
 values-b+ru	string	season_short	-	С
@@ -41782,6 +41974,7 @@ values-b+sk	string	search_state_no_results_action	-	Search everything
 values-b+sk	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+sk	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+sk	string	search_state_no_results_headline	-	No results
+values-b+sk	string	search_state_no_results_type_filter	-	Iba %s. Filter typov zužuje hľadanie.
 values-b+sk	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+sk	string	search_state_offline_headline	-	You are offline
 values-b+sk	string	search_state_retry	-	Try again
@@ -41791,7 +41984,10 @@ values-b+sk	string	search_suggestions_des	-	Zobraziť návrhy vyhľadávania pri
 values-b+sk	string	search_tv_clear_all	-	Clear all searches
 values-b+sk	string	search_tv_field_placeholder	-	Search all sources
 values-b+sk	string	search_tv_recent_headline	-	Recent searches
+values-b+sk	string	search_tv_source_failed	-	ZLYHALO %s
+values-b+sk	string	search_tv_source_pinned	-	PRIPNUTÉ
 values-b+sk	string	search_tv_sources_label	-	Sources
+values-b+sk	string	search_tv_sources_panel_meta	-	%1$d Z %2$d ZAPNUTÝCH · ZMENY SA UPLATNIA PO STLAČENÍ HOTOVO
 values-b+sk	string	season	-	Sezóna
 values-b+sk	string	season_format	-	%1$s %2$d%3$s
 values-b+sk	string	season_short	-	S
@@ -42638,6 +42834,7 @@ values-b+so	string	search_state_no_results_action	-	Search everything
 values-b+so	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+so	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+so	string	search_state_no_results_headline	-	No results
+values-b+so	string	search_state_no_results_type_filter	-	Kaliya %s. Shaandhada nooca ayaa soo koobaya raadinta.
 values-b+so	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+so	string	search_state_offline_headline	-	You are offline
 values-b+so	string	search_state_retry	-	Try again
@@ -42647,7 +42844,10 @@ values-b+so	string	search_suggestions_des	-	Soo bandhig talooyinka inta aad wax 
 values-b+so	string	search_tv_clear_all	-	Clear all searches
 values-b+so	string	search_tv_field_placeholder	-	Search all sources
 values-b+so	string	search_tv_recent_headline	-	Recent searches
+values-b+so	string	search_tv_source_failed	-	FASHILAY %s
+values-b+so	string	search_tv_source_pinned	-	LA DHEJIYAY
 values-b+so	string	search_tv_sources_label	-	Sources
+values-b+so	string	search_tv_sources_panel_meta	-	%1$d KA %2$d LA HAWLGELIYAY · ISBEDDELADA WAXAY DHAQAN GALAAN MARKA LA DOOTO DHAN
 values-b+so	string	season	-	Kalka
 values-b+so	string	season_format	-	%1$s %2$d%3$s
 values-b+so	string	season_short	-	K
@@ -43494,6 +43694,7 @@ values-b+sq	string	search_state_no_results_action	-	Search everything
 values-b+sq	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+sq	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+sq	string	search_state_no_results_headline	-	No results
+values-b+sq	string	search_state_no_results_type_filter	-	Vetëm %s. Filtri i llojit po e ngushton kërkimin.
 values-b+sq	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+sq	string	search_state_offline_headline	-	You are offline
 values-b+sq	string	search_state_retry	-	Try again
@@ -43503,7 +43704,10 @@ values-b+sq	string	search_suggestions_des	-	Trego sugjerimet ndërkohë që shkr
 values-b+sq	string	search_tv_clear_all	-	Clear all searches
 values-b+sq	string	search_tv_field_placeholder	-	Search all sources
 values-b+sq	string	search_tv_recent_headline	-	Recent searches
+values-b+sq	string	search_tv_source_failed	-	DËSHTOI %s
+values-b+sq	string	search_tv_source_pinned	-	I FIKSUAR
 values-b+sq	string	search_tv_sources_label	-	Sources
+values-b+sq	string	search_tv_sources_panel_meta	-	%1$d NGA %2$d AKTIVIZUAR · NDRYSHIMET ZBATOHEN ME U KRYE
 values-b+sq	string	season	-	Sezoni
 values-b+sq	string	season_format	-	%1$s %2$d%3$s
 values-b+sq	string	season_short	-	S
@@ -44350,6 +44554,7 @@ values-b+sv	string	search_state_no_results_action	-	Search everything
 values-b+sv	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+sv	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+sv	string	search_state_no_results_headline	-	No results
+values-b+sv	string	search_state_no_results_type_filter	-	Endast %s. Ditt typfilter begränsar sökningen.
 values-b+sv	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+sv	string	search_state_offline_headline	-	You are offline
 values-b+sv	string	search_state_retry	-	Try again
@@ -44359,7 +44564,10 @@ values-b+sv	string	search_suggestions_des	-	Visa sökförslag medan du skriver
 values-b+sv	string	search_tv_clear_all	-	Clear all searches
 values-b+sv	string	search_tv_field_placeholder	-	Search all sources
 values-b+sv	string	search_tv_recent_headline	-	Recent searches
+values-b+sv	string	search_tv_source_failed	-	MISSLYCKADES %s
+values-b+sv	string	search_tv_source_pinned	-	FASTSATT
 values-b+sv	string	search_tv_sources_label	-	Sources
+values-b+sv	string	search_tv_sources_panel_meta	-	%1$d AV %2$d AKTIVERADE · ÄNDRINGAR TILLÄMPAS VID KLAR
 values-b+sv	string	season	-	Säsong
 values-b+sv	string	season_format	-	%1$s %2$d%3$s
 values-b+sv	string	season_short	-	S
@@ -45206,6 +45414,7 @@ values-b+ta	string	search_state_no_results_action	-	Search everything
 values-b+ta	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+ta	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+ta	string	search_state_no_results_headline	-	No results
+values-b+ta	string	search_state_no_results_type_filter	-	%s மட்டும். உங்கள் வகை வடிப்பான் தேடலைக் குறுக்குகிறது.
 values-b+ta	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+ta	string	search_state_offline_headline	-	You are offline
 values-b+ta	string	search_state_retry	-	Try again
@@ -45215,7 +45424,10 @@ values-b+ta	string	search_suggestions_des	-	தட்டச்சு செய�
 values-b+ta	string	search_tv_clear_all	-	Clear all searches
 values-b+ta	string	search_tv_field_placeholder	-	Search all sources
 values-b+ta	string	search_tv_recent_headline	-	Recent searches
+values-b+ta	string	search_tv_source_failed	-	தோல்வி %s
+values-b+ta	string	search_tv_source_pinned	-	பின் செய்யப்பட்டது
 values-b+ta	string	search_tv_sources_label	-	Sources
+values-b+ta	string	search_tv_sources_panel_meta	-	%2$d இல் %1$d இயக்கப்பட்டது · முடிந்தது அழுத்தியதும் மாற்றங்கள் பொருந்தும்
 values-b+ta	string	season	-	பருவம்
 values-b+ta	string	season_format	-	%1$s %2$d %3$s
 values-b+ta	string	season_short	-	கள்
@@ -46062,6 +46274,7 @@ values-b+ti	string	search_state_no_results_action	-	Search everything
 values-b+ti	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+ti	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+ti	string	search_state_no_results_headline	-	No results
+values-b+ti	string	search_state_no_results_type_filter	-	%s ጥራይ። ማጣሪያ ዓይነትካ ፍለጋ የጽብብ ኣሎ።
 values-b+ti	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+ti	string	search_state_offline_headline	-	You are offline
 values-b+ti	string	search_state_retry	-	Try again
@@ -46071,7 +46284,10 @@ values-b+ti	string	search_suggestions_des	-	Show search suggestions while typing
 values-b+ti	string	search_tv_clear_all	-	Clear all searches
 values-b+ti	string	search_tv_field_placeholder	-	Search all sources
 values-b+ti	string	search_tv_recent_headline	-	Recent searches
+values-b+ti	string	search_tv_source_failed	-	ኣይተኻኣለን %s
+values-b+ti	string	search_tv_source_pinned	-	ተሰኪሉ
 values-b+ti	string	search_tv_sources_label	-	Sources
+values-b+ti	string	search_tv_sources_panel_meta	-	%1$d ካብ %2$d ተኸፊቱ · ለውጥታት ብተፈጸመ ይትግበሩ
 values-b+ti	string	season	-	Season
 values-b+ti	string	season_format	-	%1$s %2$d%3$s
 values-b+ti	string	season_short	-	S
@@ -46918,6 +47134,7 @@ values-b+tl	string	search_state_no_results_action	-	Search everything
 values-b+tl	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+tl	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+tl	string	search_state_no_results_headline	-	No results
+values-b+tl	string	search_state_no_results_type_filter	-	%s lang. Pinipigilan ng type filter mo ang paghahanap.
 values-b+tl	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+tl	string	search_state_offline_headline	-	You are offline
 values-b+tl	string	search_state_retry	-	Try again
@@ -46927,7 +47144,10 @@ values-b+tl	string	search_suggestions_des	-	Show search suggestions while typing
 values-b+tl	string	search_tv_clear_all	-	Clear all searches
 values-b+tl	string	search_tv_field_placeholder	-	Search all sources
 values-b+tl	string	search_tv_recent_headline	-	Recent searches
+values-b+tl	string	search_tv_source_failed	-	NABIGO %s
+values-b+tl	string	search_tv_source_pinned	-	NAKA-PIN
 values-b+tl	string	search_tv_sources_label	-	Sources
+values-b+tl	string	search_tv_sources_panel_meta	-	%1$d SA %2$d ANG NAKA-ENABLE · ILALAPAT ANG MGA PAGBABAGO KAPAG PININDOT ANG TAPOS NA
 values-b+tl	string	season	-	Season
 values-b+tl	string	season_format	-	%1$s %2$d%3$s
 values-b+tl	string	season_short	-	S
@@ -47774,6 +47994,7 @@ values-b+tr	string	search_state_no_results_action	-	Search everything
 values-b+tr	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+tr	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+tr	string	search_state_no_results_headline	-	No results
+values-b+tr	string	search_state_no_results_type_filter	-	Yalnızca %s. Tür filtreniz aramayı daraltıyor.
 values-b+tr	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+tr	string	search_state_offline_headline	-	You are offline
 values-b+tr	string	search_state_retry	-	Try again
@@ -47783,7 +48004,10 @@ values-b+tr	string	search_suggestions_des	-	Yazarken arama önerilerini göster
 values-b+tr	string	search_tv_clear_all	-	Clear all searches
 values-b+tr	string	search_tv_field_placeholder	-	Search all sources
 values-b+tr	string	search_tv_recent_headline	-	Recent searches
+values-b+tr	string	search_tv_source_failed	-	BAŞARISIZ %s
+values-b+tr	string	search_tv_source_pinned	-	SABİTLENDİ
 values-b+tr	string	search_tv_sources_label	-	Sources
+values-b+tr	string	search_tv_sources_panel_meta	-	%2$d İÇİNDEN %1$d ETKİN · DEĞİŞİKLİKLER BİTTİ İLE UYGULANIR
 values-b+tr	string	season	-	Sezon
 values-b+tr	string	season_format	-	%1$s %2$d%3$s
 values-b+tr	string	season_short	-	S
@@ -48638,6 +48862,7 @@ values-b+uk	string	search_state_no_results_action	-	Search everything
 values-b+uk	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+uk	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+uk	string	search_state_no_results_headline	-	No results
+values-b+uk	string	search_state_no_results_type_filter	-	Лише %s. Фільтр за типом звужує пошук.
 values-b+uk	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+uk	string	search_state_offline_headline	-	You are offline
 values-b+uk	string	search_state_retry	-	Try again
@@ -48647,7 +48872,10 @@ values-b+uk	string	search_suggestions_des	-	Показувати підказк�
 values-b+uk	string	search_tv_clear_all	-	Clear all searches
 values-b+uk	string	search_tv_field_placeholder	-	Search all sources
 values-b+uk	string	search_tv_recent_headline	-	Recent searches
+values-b+uk	string	search_tv_source_failed	-	ЗБІЙ %s
+values-b+uk	string	search_tv_source_pinned	-	ЗАКРІПЛЕНО
 values-b+uk	string	search_tv_sources_label	-	Sources
+values-b+uk	string	search_tv_sources_panel_meta	-	УВІМКНЕНО %1$d З %2$d · ЗМІНИ ЗАСТОСОВУЮТЬСЯ ПІСЛЯ НАТИСКАННЯ ГОТОВО
 values-b+uk	string	season	-	Сезон
 values-b+uk	string	season_format	-	%1$s %2$d%3$s
 values-b+uk	string	season_short	-	С
@@ -49494,6 +49722,7 @@ values-b+ur	string	search_state_no_results_action	-	Search everything
 values-b+ur	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+ur	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+ur	string	search_state_no_results_headline	-	No results
+values-b+ur	string	search_state_no_results_type_filter	-	صرف %s۔ آپ کا قسم فلٹر تلاش کو محدود کر رہا ہے۔
 values-b+ur	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+ur	string	search_state_offline_headline	-	You are offline
 values-b+ur	string	search_state_retry	-	Try again
@@ -49503,7 +49732,10 @@ values-b+ur	string	search_suggestions_des	-	Show search suggestions while typing
 values-b+ur	string	search_tv_clear_all	-	Clear all searches
 values-b+ur	string	search_tv_field_placeholder	-	Search all sources
 values-b+ur	string	search_tv_recent_headline	-	Recent searches
+values-b+ur	string	search_tv_source_failed	-	ناکام %s
+values-b+ur	string	search_tv_source_pinned	-	پن کیا گیا
 values-b+ur	string	search_tv_sources_label	-	Sources
+values-b+ur	string	search_tv_sources_panel_meta	-	%2$d میں سے %1$d فعال · تبدیلیاں ہو گیا پر لاگو ہوں گی
 values-b+ur	string	season	-	سیزن
 values-b+ur	string	season_format	-	%1$s %2$d%3$s
 values-b+ur	string	season_short	-	S
@@ -50346,6 +50578,7 @@ values-b+vi	string	search_state_no_results_action	-	Search everything
 values-b+vi	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+vi	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+vi	string	search_state_no_results_headline	-	No results
+values-b+vi	string	search_state_no_results_type_filter	-	Chỉ %s. Bộ lọc loại của bạn đang thu hẹp kết quả tìm kiếm.
 values-b+vi	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+vi	string	search_state_offline_headline	-	You are offline
 values-b+vi	string	search_state_retry	-	Try again
@@ -50355,7 +50588,10 @@ values-b+vi	string	search_suggestions_des	-	Hiển thị gợi ý tìm kiếm kh
 values-b+vi	string	search_tv_clear_all	-	Clear all searches
 values-b+vi	string	search_tv_field_placeholder	-	Search all sources
 values-b+vi	string	search_tv_recent_headline	-	Recent searches
+values-b+vi	string	search_tv_source_failed	-	THẤT BẠI %s
+values-b+vi	string	search_tv_source_pinned	-	ĐÃ GHIM
 values-b+vi	string	search_tv_sources_label	-	Sources
+values-b+vi	string	search_tv_sources_panel_meta	-	%1$d TRÊN %2$d ĐÃ BẬT · THAY ĐỔI ÁP DỤNG KHI NHẤN HOÀN TẤT
 values-b+vi	string	season	-	Mùa
 values-b+vi	string	season_format	-	%1$s %2$d%3$s
 values-b+vi	string	season_short	-	Mùa
@@ -51198,6 +51434,7 @@ values-b+zh	string	search_state_no_results_action	-	Search everything
 values-b+zh	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+zh	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+zh	string	search_state_no_results_headline	-	No results
+values-b+zh	string	search_state_no_results_type_filter	-	仅限%s。类型筛选正在缩小搜索范围。
 values-b+zh	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+zh	string	search_state_offline_headline	-	You are offline
 values-b+zh	string	search_state_retry	-	Try again
@@ -51207,7 +51444,10 @@ values-b+zh	string	search_suggestions_des	-	输入时显示搜索建议
 values-b+zh	string	search_tv_clear_all	-	Clear all searches
 values-b+zh	string	search_tv_field_placeholder	-	Search all sources
 values-b+zh	string	search_tv_recent_headline	-	Recent searches
+values-b+zh	string	search_tv_source_failed	-	失败 %s
+values-b+zh	string	search_tv_source_pinned	-	已置顶
 values-b+zh	string	search_tv_sources_label	-	Sources
+values-b+zh	string	search_tv_sources_panel_meta	-	已启用 %1$d / %2$d · 更改将在点击完成后生效
 values-b+zh	string	season	-	季
 values-b+zh	string	season_format	-	%1$s %2$d%3$s
 values-b+zh	string	season_short	-	S
@@ -52051,6 +52291,7 @@ values-b+zh+TW	string	search_state_no_results_action	-	Search everything
 values-b+zh+TW	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 values-b+zh+TW	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+zh+TW	string	search_state_no_results_headline	-	No results
+values-b+zh+TW	string	search_state_no_results_type_filter	-	僅限%s。類型篩選器正在縮小搜尋範圍。
 values-b+zh+TW	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+zh+TW	string	search_state_offline_headline	-	You are offline
 values-b+zh+TW	string	search_state_retry	-	Try again
@@ -52060,7 +52301,10 @@ values-b+zh+TW	string	search_suggestions_des	-	輸入時顯示搜尋建議
 values-b+zh+TW	string	search_tv_clear_all	-	Clear all searches
 values-b+zh+TW	string	search_tv_field_placeholder	-	Search all sources
 values-b+zh+TW	string	search_tv_recent_headline	-	Recent searches
+values-b+zh+TW	string	search_tv_source_failed	-	失敗 %s
+values-b+zh+TW	string	search_tv_source_pinned	-	已置頂
 values-b+zh+TW	string	search_tv_sources_label	-	Sources
+values-b+zh+TW	string	search_tv_sources_panel_meta	-	已啟用 %1$d / %2$d · 變更將在點選完成後生效
 values-b+zh+TW	string	season	-	季
 values-b+zh+TW	string	season_format	-	%1$s %2$d%3$s
 values-b+zh+TW	string	season_short	-	S
@@ -52907,6 +53151,7 @@ en	string	search_state_no_results_action	-	Search everything
 en	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 en	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 en	string	search_state_no_results_headline	-	No results
+en	string	search_state_no_results_type_filter	-	%s only. Your type filter is narrowing the search.
 en	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 en	string	search_state_offline_headline	-	You are offline
 en	string	search_state_retry	-	Try again
@@ -52916,7 +53161,10 @@ en	string	search_suggestions_des	-	Show search suggestions while typing
 en	string	search_tv_clear_all	-	Clear all searches
 en	string	search_tv_field_placeholder	-	Search all sources
 en	string	search_tv_recent_headline	-	Recent searches
+en	string	search_tv_source_failed	-	FAILED %s
+en	string	search_tv_source_pinned	-	PINNED
 en	string	search_tv_sources_label	-	Sources
+en	string	search_tv_sources_panel_meta	-	%1$d OF %2$d ENABLED · CHANGES APPLY ON DONE
 en	string	season	-	Season
 en	string	season_format	-	%1$s %2$d%3$s
 en	string	season_short	-	S
@@ -53763,6 +54011,7 @@ en-US	string	search_state_no_results_action	-	Search everything
 en-US	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 en-US	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 en-US	string	search_state_no_results_headline	-	No results
+en-US	string	search_state_no_results_type_filter	-	%s only. Your type filter is narrowing the search.
 en-US	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 en-US	string	search_state_offline_headline	-	You are offline
 en-US	string	search_state_retry	-	Try again
@@ -53772,7 +54021,10 @@ en-US	string	search_suggestions_des	-	Show search suggestions while typing
 en-US	string	search_tv_clear_all	-	Clear all searches
 en-US	string	search_tv_field_placeholder	-	Search all sources
 en-US	string	search_tv_recent_headline	-	Recent searches
+en-US	string	search_tv_source_failed	-	FAILED %s
+en-US	string	search_tv_source_pinned	-	PINNED
 en-US	string	search_tv_sources_label	-	Sources
+en-US	string	search_tv_sources_panel_meta	-	%1$d OF %2$d ENABLED · CHANGES APPLY ON DONE
 en-US	string	season	-	Season
 en-US	string	season_format	-	%1$s %2$d%3$s
 en-US	string	season_short	-	S
@@ -54619,6 +54871,7 @@ en-GB	string	search_state_no_results_action	-	Search everything
 en-GB	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 en-GB	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 en-GB	string	search_state_no_results_headline	-	No results
+en-GB	string	search_state_no_results_type_filter	-	%s only. Your type filter is narrowing the search.
 en-GB	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 en-GB	string	search_state_offline_headline	-	You are offline
 en-GB	string	search_state_retry	-	Try again
@@ -54628,7 +54881,10 @@ en-GB	string	search_suggestions_des	-	Show search suggestions while typing
 en-GB	string	search_tv_clear_all	-	Clear all searches
 en-GB	string	search_tv_field_placeholder	-	Search all sources
 en-GB	string	search_tv_recent_headline	-	Recent searches
+en-GB	string	search_tv_source_failed	-	FAILED %s
+en-GB	string	search_tv_source_pinned	-	PINNED
 en-GB	string	search_tv_sources_label	-	Sources
+en-GB	string	search_tv_sources_panel_meta	-	%1$d OF %2$d ENABLED · CHANGES APPLY ON DONE
 en-GB	string	season	-	Season
 en-GB	string	season_format	-	%1$s %2$d%3$s
 en-GB	string	season_short	-	S
@@ -55479,6 +55735,7 @@ pt	string	search_state_no_results_action	-	Search everything
 pt	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 pt	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 pt	string	search_state_no_results_headline	-	No results
+pt	string	search_state_no_results_type_filter	-	Apenas %s. O filtro de tipo está a limitar a pesquisa.
 pt	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 pt	string	search_state_offline_headline	-	You are offline
 pt	string	search_state_retry	-	Try again
@@ -55488,7 +55745,10 @@ pt	string	search_suggestions_des	-	Mostrar sugestões de pesquisa enquanto digit
 pt	string	search_tv_clear_all	-	Clear all searches
 pt	string	search_tv_field_placeholder	-	Search all sources
 pt	string	search_tv_recent_headline	-	Recent searches
+pt	string	search_tv_source_failed	-	FALHOU %s
+pt	string	search_tv_source_pinned	-	FIXADO
 pt	string	search_tv_sources_label	-	Sources
+pt	string	search_tv_sources_panel_meta	-	%1$d DE %2$d ATIVADOS · AS ALTERAÇÕES APLICAM-SE APÓS FEITO
 pt	string	season	-	Temporada
 pt	string	season_format	-	%1$s %2$d%3$s
 pt	string	season_short	-	T
@@ -56339,6 +56599,7 @@ pt-PT	string	search_state_no_results_action	-	Search everything
 pt-PT	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 pt-PT	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 pt-PT	string	search_state_no_results_headline	-	No results
+pt-PT	string	search_state_no_results_type_filter	-	Apenas %s. O filtro de tipo está a limitar a pesquisa.
 pt-PT	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 pt-PT	string	search_state_offline_headline	-	You are offline
 pt-PT	string	search_state_retry	-	Try again
@@ -56348,7 +56609,10 @@ pt-PT	string	search_suggestions_des	-	Mostrar sugestões de pesquisa enquanto di
 pt-PT	string	search_tv_clear_all	-	Clear all searches
 pt-PT	string	search_tv_field_placeholder	-	Search all sources
 pt-PT	string	search_tv_recent_headline	-	Recent searches
+pt-PT	string	search_tv_source_failed	-	FALHOU %s
+pt-PT	string	search_tv_source_pinned	-	FIXADO
 pt-PT	string	search_tv_sources_label	-	Sources
+pt-PT	string	search_tv_sources_panel_meta	-	%1$d DE %2$d ATIVADOS · AS ALTERAÇÕES APLICAM-SE APÓS FEITO
 pt-PT	string	season	-	Temporada
 pt-PT	string	season_format	-	%1$s %2$d%3$s
 pt-PT	string	season_short	-	T
@@ -57199,6 +57463,7 @@ pt-BR	string	search_state_no_results_action	-	Search everything
 pt-BR	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 pt-BR	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 pt-BR	string	search_state_no_results_headline	-	No results
+pt-BR	string	search_state_no_results_type_filter	-	Somente %s. O filtro de tipo está restringindo a pesquisa.
 pt-BR	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 pt-BR	string	search_state_offline_headline	-	You are offline
 pt-BR	string	search_state_retry	-	Try again
@@ -57208,7 +57473,10 @@ pt-BR	string	search_suggestions_des	-	Exibir sugestões de pesquisa durante a di
 pt-BR	string	search_tv_clear_all	-	Clear all searches
 pt-BR	string	search_tv_field_placeholder	-	Search all sources
 pt-BR	string	search_tv_recent_headline	-	Recent searches
+pt-BR	string	search_tv_source_failed	-	FALHOU %s
+pt-BR	string	search_tv_source_pinned	-	FIXADO
 pt-BR	string	search_tv_sources_label	-	Sources
+pt-BR	string	search_tv_sources_panel_meta	-	%1$d DE %2$d ATIVADOS · AS ALTERAÇÕES SÃO APLICADAS APÓS FEITO
 pt-BR	string	season	-	Temporada
 pt-BR	string	season_format	-	%1$s %2$d%3$s
 pt-BR	string	season_short	-	T
@@ -58055,6 +58323,7 @@ fil	string	search_state_no_results_action	-	Search everything
 fil	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 fil	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 fil	string	search_state_no_results_headline	-	No results
+fil	string	search_state_no_results_type_filter	-	%s lang. Pinipigilan ng type filter mo ang paghahanap.
 fil	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 fil	string	search_state_offline_headline	-	You are offline
 fil	string	search_state_retry	-	Try again
@@ -58064,7 +58333,10 @@ fil	string	search_suggestions_des	-	Show search suggestions while typing
 fil	string	search_tv_clear_all	-	Clear all searches
 fil	string	search_tv_field_placeholder	-	Search all sources
 fil	string	search_tv_recent_headline	-	Recent searches
+fil	string	search_tv_source_failed	-	NABIGO %s
+fil	string	search_tv_source_pinned	-	NAKA-PIN
 fil	string	search_tv_sources_label	-	Sources
+fil	string	search_tv_sources_panel_meta	-	%1$d SA %2$d ANG NAKA-ENABLE · ILALAPAT ANG MGA PAGBABAGO KAPAG PININDOT ANG TAPOS NA
 fil	string	season	-	Season
 fil	string	season_format	-	%1$s %2$d%3$s
 fil	string	season_short	-	S
@@ -58911,6 +59183,7 @@ tl	string	search_state_no_results_action	-	Search everything
 tl	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 tl	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 tl	string	search_state_no_results_headline	-	No results
+tl	string	search_state_no_results_type_filter	-	%s lang. Pinipigilan ng type filter mo ang paghahanap.
 tl	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 tl	string	search_state_offline_headline	-	You are offline
 tl	string	search_state_retry	-	Try again
@@ -58920,7 +59193,10 @@ tl	string	search_suggestions_des	-	Show search suggestions while typing
 tl	string	search_tv_clear_all	-	Clear all searches
 tl	string	search_tv_field_placeholder	-	Search all sources
 tl	string	search_tv_recent_headline	-	Recent searches
+tl	string	search_tv_source_failed	-	NABIGO %s
+tl	string	search_tv_source_pinned	-	NAKA-PIN
 tl	string	search_tv_sources_label	-	Sources
+tl	string	search_tv_sources_panel_meta	-	%1$d SA %2$d ANG NAKA-ENABLE · ILALAPAT ANG MGA PAGBABAGO KAPAG PININDOT ANG TAPOS NA
 tl	string	season	-	Season
 tl	string	season_format	-	%1$s %2$d%3$s
 tl	string	season_short	-	S
@@ -59767,6 +60043,7 @@ fil-PH	string	search_state_no_results_action	-	Search everything
 fil-PH	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 fil-PH	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 fil-PH	string	search_state_no_results_headline	-	No results
+fil-PH	string	search_state_no_results_type_filter	-	%s lang. Pinipigilan ng type filter mo ang paghahanap.
 fil-PH	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 fil-PH	string	search_state_offline_headline	-	You are offline
 fil-PH	string	search_state_retry	-	Try again
@@ -59776,7 +60053,10 @@ fil-PH	string	search_suggestions_des	-	Show search suggestions while typing
 fil-PH	string	search_tv_clear_all	-	Clear all searches
 fil-PH	string	search_tv_field_placeholder	-	Search all sources
 fil-PH	string	search_tv_recent_headline	-	Recent searches
+fil-PH	string	search_tv_source_failed	-	NABIGO %s
+fil-PH	string	search_tv_source_pinned	-	NAKA-PIN
 fil-PH	string	search_tv_sources_label	-	Sources
+fil-PH	string	search_tv_sources_panel_meta	-	%1$d SA %2$d ANG NAKA-ENABLE · ILALAPAT ANG MGA PAGBABAGO KAPAG PININDOT ANG TAPOS NA
 fil-PH	string	season	-	Season
 fil-PH	string	season_format	-	%1$s %2$d%3$s
 fil-PH	string	season_short	-	S
@@ -60619,6 +60899,7 @@ zh	string	search_state_no_results_action	-	Search everything
 zh	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 zh	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 zh	string	search_state_no_results_headline	-	No results
+zh	string	search_state_no_results_type_filter	-	仅限%s。类型筛选正在缩小搜索范围。
 zh	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 zh	string	search_state_offline_headline	-	You are offline
 zh	string	search_state_retry	-	Try again
@@ -60628,7 +60909,10 @@ zh	string	search_suggestions_des	-	输入时显示搜索建议
 zh	string	search_tv_clear_all	-	Clear all searches
 zh	string	search_tv_field_placeholder	-	Search all sources
 zh	string	search_tv_recent_headline	-	Recent searches
+zh	string	search_tv_source_failed	-	失败 %s
+zh	string	search_tv_source_pinned	-	已置顶
 zh	string	search_tv_sources_label	-	Sources
+zh	string	search_tv_sources_panel_meta	-	已启用 %1$d / %2$d · 更改将在点击完成后生效
 zh	string	season	-	季
 zh	string	season_format	-	%1$s %2$d%3$s
 zh	string	season_short	-	S
@@ -61471,6 +61755,7 @@ zh-CN	string	search_state_no_results_action	-	Search everything
 zh-CN	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 zh-CN	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 zh-CN	string	search_state_no_results_headline	-	No results
+zh-CN	string	search_state_no_results_type_filter	-	仅限%s。类型筛选正在缩小搜索范围。
 zh-CN	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 zh-CN	string	search_state_offline_headline	-	You are offline
 zh-CN	string	search_state_retry	-	Try again
@@ -61480,7 +61765,10 @@ zh-CN	string	search_suggestions_des	-	输入时显示搜索建议
 zh-CN	string	search_tv_clear_all	-	Clear all searches
 zh-CN	string	search_tv_field_placeholder	-	Search all sources
 zh-CN	string	search_tv_recent_headline	-	Recent searches
+zh-CN	string	search_tv_source_failed	-	失败 %s
+zh-CN	string	search_tv_source_pinned	-	已置顶
 zh-CN	string	search_tv_sources_label	-	Sources
+zh-CN	string	search_tv_sources_panel_meta	-	已启用 %1$d / %2$d · 更改将在点击完成后生效
 zh-CN	string	season	-	季
 zh-CN	string	season_format	-	%1$s %2$d%3$s
 zh-CN	string	season_short	-	S
@@ -62323,6 +62611,7 @@ zh-Hans-CN	string	search_state_no_results_action	-	Search everything
 zh-Hans-CN	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 zh-Hans-CN	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 zh-Hans-CN	string	search_state_no_results_headline	-	No results
+zh-Hans-CN	string	search_state_no_results_type_filter	-	仅限%s。类型筛选正在缩小搜索范围。
 zh-Hans-CN	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 zh-Hans-CN	string	search_state_offline_headline	-	You are offline
 zh-Hans-CN	string	search_state_retry	-	Try again
@@ -62332,7 +62621,10 @@ zh-Hans-CN	string	search_suggestions_des	-	输入时显示搜索建议
 zh-Hans-CN	string	search_tv_clear_all	-	Clear all searches
 zh-Hans-CN	string	search_tv_field_placeholder	-	Search all sources
 zh-Hans-CN	string	search_tv_recent_headline	-	Recent searches
+zh-Hans-CN	string	search_tv_source_failed	-	失败 %s
+zh-Hans-CN	string	search_tv_source_pinned	-	已置顶
 zh-Hans-CN	string	search_tv_sources_label	-	Sources
+zh-Hans-CN	string	search_tv_sources_panel_meta	-	已启用 %1$d / %2$d · 更改将在点击完成后生效
 zh-Hans-CN	string	season	-	季
 zh-Hans-CN	string	season_format	-	%1$s %2$d%3$s
 zh-Hans-CN	string	season_short	-	S
@@ -63176,6 +63468,7 @@ zh-TW	string	search_state_no_results_action	-	Search everything
 zh-TW	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 zh-TW	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 zh-TW	string	search_state_no_results_headline	-	No results
+zh-TW	string	search_state_no_results_type_filter	-	僅限%s。類型篩選器正在縮小搜尋範圍。
 zh-TW	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 zh-TW	string	search_state_offline_headline	-	You are offline
 zh-TW	string	search_state_retry	-	Try again
@@ -63185,7 +63478,10 @@ zh-TW	string	search_suggestions_des	-	輸入時顯示搜尋建議
 zh-TW	string	search_tv_clear_all	-	Clear all searches
 zh-TW	string	search_tv_field_placeholder	-	Search all sources
 zh-TW	string	search_tv_recent_headline	-	Recent searches
+zh-TW	string	search_tv_source_failed	-	失敗 %s
+zh-TW	string	search_tv_source_pinned	-	已置頂
 zh-TW	string	search_tv_sources_label	-	Sources
+zh-TW	string	search_tv_sources_panel_meta	-	已啟用 %1$d / %2$d · 變更將在點選完成後生效
 zh-TW	string	season	-	季
 zh-TW	string	season_format	-	%1$s %2$d%3$s
 zh-TW	string	season_short	-	S
@@ -64029,6 +64325,7 @@ zh-Hant-TW	string	search_state_no_results_action	-	Search everything
 zh-Hant-TW	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 zh-Hant-TW	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 zh-Hant-TW	string	search_state_no_results_headline	-	No results
+zh-Hant-TW	string	search_state_no_results_type_filter	-	僅限%s。類型篩選器正在縮小搜尋範圍。
 zh-Hant-TW	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 zh-Hant-TW	string	search_state_offline_headline	-	You are offline
 zh-Hant-TW	string	search_state_retry	-	Try again
@@ -64038,7 +64335,10 @@ zh-Hant-TW	string	search_suggestions_des	-	輸入時顯示搜尋建議
 zh-Hant-TW	string	search_tv_clear_all	-	Clear all searches
 zh-Hant-TW	string	search_tv_field_placeholder	-	Search all sources
 zh-Hant-TW	string	search_tv_recent_headline	-	Recent searches
+zh-Hant-TW	string	search_tv_source_failed	-	失敗 %s
+zh-Hant-TW	string	search_tv_source_pinned	-	已置頂
 zh-Hant-TW	string	search_tv_sources_label	-	Sources
+zh-Hant-TW	string	search_tv_sources_panel_meta	-	已啟用 %1$d / %2$d · 變更將在點選完成後生效
 zh-Hant-TW	string	season	-	季
 zh-Hant-TW	string	season_format	-	%1$s %2$d%3$s
 zh-Hant-TW	string	season_short	-	S
@@ -64882,6 +65182,7 @@ zh-HK	string	search_state_no_results_action	-	Search everything
 zh-HK	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 zh-HK	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 zh-HK	string	search_state_no_results_headline	-	No results
+zh-HK	string	search_state_no_results_type_filter	-	僅限%s。類型篩選器正在縮小搜尋範圍。
 zh-HK	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 zh-HK	string	search_state_offline_headline	-	You are offline
 zh-HK	string	search_state_retry	-	Try again
@@ -64891,7 +65192,10 @@ zh-HK	string	search_suggestions_des	-	輸入時顯示搜尋建議
 zh-HK	string	search_tv_clear_all	-	Clear all searches
 zh-HK	string	search_tv_field_placeholder	-	Search all sources
 zh-HK	string	search_tv_recent_headline	-	Recent searches
+zh-HK	string	search_tv_source_failed	-	失敗 %s
+zh-HK	string	search_tv_source_pinned	-	已置頂
 zh-HK	string	search_tv_sources_label	-	Sources
+zh-HK	string	search_tv_sources_panel_meta	-	已啟用 %1$d / %2$d · 變更將在點選完成後生效
 zh-HK	string	season	-	季
 zh-HK	string	season_format	-	%1$s %2$d%3$s
 zh-HK	string	season_short	-	S
@@ -65735,6 +66039,7 @@ zh-Hant-HK	string	search_state_no_results_action	-	Search everything
 zh-Hant-HK	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 zh-Hant-HK	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 zh-Hant-HK	string	search_state_no_results_headline	-	No results
+zh-Hant-HK	string	search_state_no_results_type_filter	-	僅限%s。類型篩選器正在縮小搜尋範圍。
 zh-Hant-HK	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 zh-Hant-HK	string	search_state_offline_headline	-	You are offline
 zh-Hant-HK	string	search_state_retry	-	Try again
@@ -65744,7 +66049,10 @@ zh-Hant-HK	string	search_suggestions_des	-	輸入時顯示搜尋建議
 zh-Hant-HK	string	search_tv_clear_all	-	Clear all searches
 zh-Hant-HK	string	search_tv_field_placeholder	-	Search all sources
 zh-Hant-HK	string	search_tv_recent_headline	-	Recent searches
+zh-Hant-HK	string	search_tv_source_failed	-	失敗 %s
+zh-Hant-HK	string	search_tv_source_pinned	-	已置頂
 zh-Hant-HK	string	search_tv_sources_label	-	Sources
+zh-Hant-HK	string	search_tv_sources_panel_meta	-	已啟用 %1$d / %2$d · 變更將在點選完成後生效
 zh-Hant-HK	string	season	-	季
 zh-Hant-HK	string	season_format	-	%1$s %2$d%3$s
 zh-Hant-HK	string	season_short	-	S
@@ -66591,6 +66899,7 @@ no	string	search_state_no_results_action	-	Search everything
 no	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 no	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 no	string	search_state_no_results_headline	-	No results
+no	string	search_state_no_results_type_filter	-	Bare %s. Typefilteret ditt begrenser søket.
 no	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 no	string	search_state_offline_headline	-	You are offline
 no	string	search_state_retry	-	Try again
@@ -66600,7 +66909,10 @@ no	string	search_suggestions_des	-	Show search suggestions while typing
 no	string	search_tv_clear_all	-	Clear all searches
 no	string	search_tv_field_placeholder	-	Search all sources
 no	string	search_tv_recent_headline	-	Recent searches
+no	string	search_tv_source_failed	-	FEILET %s
+no	string	search_tv_source_pinned	-	FESTET
 no	string	search_tv_sources_label	-	Sources
+no	string	search_tv_sources_panel_meta	-	%1$d AV %2$d AKTIVERT · ENDRINGER GJELDER ETTER FERDIG
 no	string	season	-	Sesong
 no	string	season_format	-	%1$s %2$d%3$s
 no	string	season_short	-	S
@@ -67447,6 +67759,7 @@ nb	string	search_state_no_results_action	-	Search everything
 nb	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 nb	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 nb	string	search_state_no_results_headline	-	No results
+nb	string	search_state_no_results_type_filter	-	%s only. Your type filter is narrowing the search.
 nb	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 nb	string	search_state_offline_headline	-	You are offline
 nb	string	search_state_retry	-	Try again
@@ -67456,7 +67769,10 @@ nb	string	search_suggestions_des	-	Show search suggestions while typing
 nb	string	search_tv_clear_all	-	Clear all searches
 nb	string	search_tv_field_placeholder	-	Search all sources
 nb	string	search_tv_recent_headline	-	Recent searches
+nb	string	search_tv_source_failed	-	FAILED %s
+nb	string	search_tv_source_pinned	-	PINNED
 nb	string	search_tv_sources_label	-	Sources
+nb	string	search_tv_sources_panel_meta	-	%1$d OF %2$d ENABLED · CHANGES APPLY ON DONE
 nb	string	season	-	Season
 nb	string	season_format	-	%1$s %2$d%3$s
 nb	string	season_short	-	S
@@ -68303,6 +68619,7 @@ nb-NO	string	search_state_no_results_action	-	Search everything
 nb-NO	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 nb-NO	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 nb-NO	string	search_state_no_results_headline	-	No results
+nb-NO	string	search_state_no_results_type_filter	-	%s only. Your type filter is narrowing the search.
 nb-NO	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 nb-NO	string	search_state_offline_headline	-	You are offline
 nb-NO	string	search_state_retry	-	Try again
@@ -68312,7 +68629,10 @@ nb-NO	string	search_suggestions_des	-	Show search suggestions while typing
 nb-NO	string	search_tv_clear_all	-	Clear all searches
 nb-NO	string	search_tv_field_placeholder	-	Search all sources
 nb-NO	string	search_tv_recent_headline	-	Recent searches
+nb-NO	string	search_tv_source_failed	-	FAILED %s
+nb-NO	string	search_tv_source_pinned	-	PINNED
 nb-NO	string	search_tv_sources_label	-	Sources
+nb-NO	string	search_tv_sources_panel_meta	-	%1$d OF %2$d ENABLED · CHANGES APPLY ON DONE
 nb-NO	string	season	-	Season
 nb-NO	string	season_format	-	%1$s %2$d%3$s
 nb-NO	string	season_short	-	S
@@ -69160,6 +69480,7 @@ iw	string	search_state_no_results_action	-	Search everything
 iw	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 iw	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 iw	string	search_state_no_results_headline	-	No results
+iw	string	search_state_no_results_type_filter	-	%s בלבד. מסנן הסוג מצמצם את החיפוש.
 iw	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 iw	string	search_state_offline_headline	-	You are offline
 iw	string	search_state_retry	-	Try again
@@ -69169,7 +69490,10 @@ iw	string	search_suggestions_des	-	Show search suggestions while typing
 iw	string	search_tv_clear_all	-	Clear all searches
 iw	string	search_tv_field_placeholder	-	Search all sources
 iw	string	search_tv_recent_headline	-	Recent searches
+iw	string	search_tv_source_failed	-	נכשל %s
+iw	string	search_tv_source_pinned	-	מוצמד
 iw	string	search_tv_sources_label	-	Sources
+iw	string	search_tv_sources_panel_meta	-	%1$d מתוך %2$d פעילים · השינויים יחולו בלחיצה על סוים
 iw	string	season	-	עונה
 iw	string	season_format	-	%1$s %2$d%3$s
 iw	string	season_short	-	עו
@@ -70017,6 +70341,7 @@ he	string	search_state_no_results_action	-	Search everything
 he	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 he	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 he	string	search_state_no_results_headline	-	No results
+he	string	search_state_no_results_type_filter	-	%s בלבד. מסנן הסוג מצמצם את החיפוש.
 he	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 he	string	search_state_offline_headline	-	You are offline
 he	string	search_state_retry	-	Try again
@@ -70026,7 +70351,10 @@ he	string	search_suggestions_des	-	Show search suggestions while typing
 he	string	search_tv_clear_all	-	Clear all searches
 he	string	search_tv_field_placeholder	-	Search all sources
 he	string	search_tv_recent_headline	-	Recent searches
+he	string	search_tv_source_failed	-	נכשל %s
+he	string	search_tv_source_pinned	-	מוצמד
 he	string	search_tv_sources_label	-	Sources
+he	string	search_tv_sources_panel_meta	-	%1$d מתוך %2$d פעילים · השינויים יחולו בלחיצה על סוים
 he	string	season	-	עונה
 he	string	season_format	-	%1$s %2$d%3$s
 he	string	season_short	-	עו
@@ -70874,6 +71202,7 @@ he-IL	string	search_state_no_results_action	-	Search everything
 he-IL	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 he-IL	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 he-IL	string	search_state_no_results_headline	-	No results
+he-IL	string	search_state_no_results_type_filter	-	%s בלבד. מסנן הסוג מצמצם את החיפוש.
 he-IL	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 he-IL	string	search_state_offline_headline	-	You are offline
 he-IL	string	search_state_retry	-	Try again
@@ -70883,7 +71212,10 @@ he-IL	string	search_suggestions_des	-	Show search suggestions while typing
 he-IL	string	search_tv_clear_all	-	Clear all searches
 he-IL	string	search_tv_field_placeholder	-	Search all sources
 he-IL	string	search_tv_recent_headline	-	Recent searches
+he-IL	string	search_tv_source_failed	-	נכשל %s
+he-IL	string	search_tv_source_pinned	-	מוצמד
 he-IL	string	search_tv_sources_label	-	Sources
+he-IL	string	search_tv_sources_panel_meta	-	%1$d מתוך %2$d פעילים · השינויים יחולו בלחיצה על סוים
 he-IL	string	season	-	עונה
 he-IL	string	season_format	-	%1$s %2$d%3$s
 he-IL	string	season_short	-	עו
@@ -71726,6 +72058,7 @@ in	string	search_state_no_results_action	-	Search everything
 in	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 in	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 in	string	search_state_no_results_headline	-	No results
+in	string	search_state_no_results_type_filter	-	Hanya %s. Filter jenis Anda mempersempit pencarian.
 in	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 in	string	search_state_offline_headline	-	You are offline
 in	string	search_state_retry	-	Try again
@@ -71735,7 +72068,10 @@ in	string	search_suggestions_des	-	Tampilkan saran pencarian saat mengetik
 in	string	search_tv_clear_all	-	Clear all searches
 in	string	search_tv_field_placeholder	-	Search all sources
 in	string	search_tv_recent_headline	-	Recent searches
+in	string	search_tv_source_failed	-	GAGAL %s
+in	string	search_tv_source_pinned	-	DISEMATKAN
 in	string	search_tv_sources_label	-	Sources
+in	string	search_tv_sources_panel_meta	-	%1$d DARI %2$d DIAKTIFKAN · PERUBAHAN BERLAKU SETELAH SELESAI
 in	string	season	-	Season
 in	string	season_format	-	%1$s %2$d%3$s
 in	string	season_short	-	S
@@ -72578,6 +72914,7 @@ id	string	search_state_no_results_action	-	Search everything
 id	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 id	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 id	string	search_state_no_results_headline	-	No results
+id	string	search_state_no_results_type_filter	-	Hanya %s. Filter jenis Anda mempersempit pencarian.
 id	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 id	string	search_state_offline_headline	-	You are offline
 id	string	search_state_retry	-	Try again
@@ -72587,7 +72924,10 @@ id	string	search_suggestions_des	-	Tampilkan saran pencarian saat mengetik
 id	string	search_tv_clear_all	-	Clear all searches
 id	string	search_tv_field_placeholder	-	Search all sources
 id	string	search_tv_recent_headline	-	Recent searches
+id	string	search_tv_source_failed	-	GAGAL %s
+id	string	search_tv_source_pinned	-	DISEMATKAN
 id	string	search_tv_sources_label	-	Sources
+id	string	search_tv_sources_panel_meta	-	%1$d DARI %2$d DIAKTIFKAN · PERUBAHAN BERLAKU SETELAH SELESAI
 id	string	season	-	Season
 id	string	season_format	-	%1$s %2$d%3$s
 id	string	season_short	-	S
@@ -73430,6 +73770,7 @@ id-ID	string	search_state_no_results_action	-	Search everything
 id-ID	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 id-ID	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 id-ID	string	search_state_no_results_headline	-	No results
+id-ID	string	search_state_no_results_type_filter	-	Hanya %s. Filter jenis Anda mempersempit pencarian.
 id-ID	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 id-ID	string	search_state_offline_headline	-	You are offline
 id-ID	string	search_state_retry	-	Try again
@@ -73439,7 +73780,10 @@ id-ID	string	search_suggestions_des	-	Tampilkan saran pencarian saat mengetik
 id-ID	string	search_tv_clear_all	-	Clear all searches
 id-ID	string	search_tv_field_placeholder	-	Search all sources
 id-ID	string	search_tv_recent_headline	-	Recent searches
+id-ID	string	search_tv_source_failed	-	GAGAL %s
+id-ID	string	search_tv_source_pinned	-	DISEMATKAN
 id-ID	string	search_tv_sources_label	-	Sources
+id-ID	string	search_tv_sources_panel_meta	-	%1$d DARI %2$d DIAKTIFKAN · PERUBAHAN BERLAKU SETELAH SELESAI
 id-ID	string	season	-	Season
 id-ID	string	season_format	-	%1$s %2$d%3$s
 id-ID	string	season_short	-	S
@@ -74286,6 +74630,7 @@ arz	string	search_state_no_results_action	-	Search everything
 arz	string	search_state_no_results_body_unknown	-	Every selected source answered and none of them carry it.
 arz	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 arz	string	search_state_no_results_headline	-	No results
+arz	string	search_state_no_results_type_filter	-	%s only. Your type filter is narrowing the search.
 arz	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 arz	string	search_state_offline_headline	-	You are offline
 arz	string	search_state_retry	-	Try again
@@ -74295,7 +74640,10 @@ arz	string	search_suggestions_des	-	Show search suggestions while typing
 arz	string	search_tv_clear_all	-	Clear all searches
 arz	string	search_tv_field_placeholder	-	Search all sources
 arz	string	search_tv_recent_headline	-	Recent searches
+arz	string	search_tv_source_failed	-	FAILED %s
+arz	string	search_tv_source_pinned	-	PINNED
 arz	string	search_tv_sources_label	-	Sources
+arz	string	search_tv_sources_panel_meta	-	%1$d OF %2$d ENABLED · CHANGES APPLY ON DONE
 arz	string	season	-	Season
 arz	string	season_format	-	%1$s %2$d%3$s
 arz	string	season_short	-	S

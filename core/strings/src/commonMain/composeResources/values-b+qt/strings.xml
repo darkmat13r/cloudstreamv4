@@ -515,6 +515,10 @@
 <string name="search_provider_text_providers">aauuhaauugghhahhh ohaauugghhouuhhh</string>
 <string name="search_provider_text_types">ahhhahoooohhaa ahhhoohahh</string>
 <string name="search_state_idle_body_desktop">oouuh aaaaggg uuuk ooh</string>
+<string name="search_state_no_results_type_filter">%s uuhaa. oouuh aagggh uuk.</string>
+<string name="search_tv_source_failed">AAGGH %s</string>
+<string name="search_tv_source_pinned">OOHHAA</string>
+<string name="search_tv_sources_panel_meta">%1$d OOHH %2$d AAHH · UUGH AAK EEEK</string>
 <string name="season">ooo-ahah</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">H</string>

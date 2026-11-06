@@ -619,6 +619,7 @@
 <string name="search_state_no_results_body_unknown">"Every selected source answered and none of them carry it."</string>
 <string name="search_state_no_results_detail" formatted="true">"%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS"</string>
 <string name="search_state_no_results_headline">"No results"</string>
+<string name="search_state_no_results_type_filter" formatted="true">"%s only. Your type filter is narrowing the search."</string>
 <string name="search_state_offline_body">"Search needs a connection. Your downloads are still available."</string>
 <string name="search_state_offline_headline">"You are offline"</string>
 <string name="search_state_retry">"Try again"</string>
@@ -628,7 +629,10 @@
 <string name="search_tv_clear_all">"Clear all searches"</string>
 <string name="search_tv_field_placeholder">"Search all sources"</string>
 <string name="search_tv_recent_headline">"Recent searches"</string>
+<string name="search_tv_source_failed" formatted="true">"FAILED %s"</string>
+<string name="search_tv_source_pinned">"PINNED"</string>
 <string name="search_tv_sources_label">"Sources"</string>
+<string name="search_tv_sources_panel_meta" formatted="true">"%1$d OF %2$d ENABLED · CHANGES APPLY ON DONE"</string>
 <string name="season">"Season"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"S"</string>

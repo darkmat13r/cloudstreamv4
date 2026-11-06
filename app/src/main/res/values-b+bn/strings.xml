@@ -350,8 +350,12 @@
 <string name="search_provider_text_providers">"প্রভাইডার অনুযায়ি খুঁজুন"</string>
 <string name="search_provider_text_types">"ধরণ অনুযায়ি খুঁজুন"</string>
 <string name="search_state_idle_body_desktop">"একটি শিরোনাম লিখুন। প্রতিটি সোর্স উত্তর দিলে ফলাফল তার নিচে দেখা যাবে।"</string>
+<string name="search_state_no_results_type_filter" formatted="true">"শুধু %s। আপনার ধরনের ফিল্টার অনুসন্ধান সীমিত করছে।"</string>
 <string name="search_suggestions">"সার্চ সাজেশন"</string>
 <string name="search_suggestions_des">"টাইপ করার সময় সার্চ সাজেশন দেখান"</string>
+<string name="search_tv_source_failed" formatted="true">"ব্যর্থ %s"</string>
+<string name="search_tv_source_pinned">"পিন করা"</string>
+<string name="search_tv_sources_panel_meta" formatted="true">"%2$d-এর মধ্যে %1$d চালু · সম্পন্ন চাপলে পরিবর্তন প্রযোজ্য হবে"</string>
 <string name="season">"সিজন"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"S"</string>

@@ -584,8 +584,12 @@
 <string name="search_provider_text_providers">வழங்குபவர்கள் பயன்படுத்தி தேடுங்கள்</string>
 <string name="search_provider_text_types">வகைகளைப் பயன்படுத்தி தேடுங்கள்</string>
 <string name="search_state_idle_body_desktop">ஒரு தலைப்பைத் தட்டச்சு செய்யவும். ஒவ்வொரு மூலமும் பதிலளிக்கும்போது முடிவுகள் அதன் கீழ் தோன்றும்.</string>
+<string name="search_state_no_results_type_filter">%s மட்டும். உங்கள் வகை வடிப்பான் தேடலைக் குறுக்குகிறது.</string>
 <string name="search_suggestions">தேடல் பரிந்துரைகள்</string>
 <string name="search_suggestions_des">தட்டச்சு செய்யும் போது தேடல் பரிந்துரைகளைக் காட்டு</string>
+<string name="search_tv_source_failed">தோல்வி %s</string>
+<string name="search_tv_source_pinned">பின் செய்யப்பட்டது</string>
+<string name="search_tv_sources_panel_meta">%2$d இல் %1$d இயக்கப்பட்டது · முடிந்தது அழுத்தியதும் மாற்றங்கள் பொருந்தும்</string>
 <string name="season">பருவம்</string>
 <string name="season_format">%1$s %2$d %3$s</string>
 <string name="season_short">கள்</string>

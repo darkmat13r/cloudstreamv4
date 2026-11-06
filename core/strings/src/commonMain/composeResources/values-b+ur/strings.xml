@@ -493,6 +493,10 @@
 <string name="search_provider_text_providers">ذرائع کا استعمال کرتے ہوئے تلاش کریں</string>
 <string name="search_provider_text_types">انواع کا استعمال کرتے ہوئے تلاش کریں</string>
 <string name="search_state_idle_body_desktop">عنوان لکھیں۔ ہر ذریعہ کے جواب دینے پر نتائج اس کے نیچے ظاہر ہوں گے۔</string>
+<string name="search_state_no_results_type_filter">صرف %s۔ آپ کا قسم فلٹر تلاش کو محدود کر رہا ہے۔</string>
+<string name="search_tv_source_failed">ناکام %s</string>
+<string name="search_tv_source_pinned">پن کیا گیا</string>
+<string name="search_tv_sources_panel_meta">%2$d میں سے %1$d فعال · تبدیلیاں ہو گیا پر لاگو ہوں گی</string>
 <string name="season">سیزن</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">S</string>

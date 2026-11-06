@@ -498,7 +498,11 @@
 <string name="search_provider_text_providers">"Meklēt izmantojot devējus"</string>
 <string name="search_provider_text_types">"Meklēt izmantojot tipus"</string>
 <string name="search_state_idle_body_desktop">"Ievadiet nosaukumu. Rezultāti parādās zem katra devēja, tiklīdz tas atbild."</string>
+<string name="search_state_no_results_type_filter" formatted="true">"Tikai %s. Jūsu veida filtrs sašaurina meklēšanu."</string>
 <string name="search_suggestions">"Meklēšanas ieteikumi"</string>
+<string name="search_tv_source_failed" formatted="true">"NEIZDEVĀS %s"</string>
+<string name="search_tv_source_pinned">"PIESPRAUSTS"</string>
+<string name="search_tv_sources_panel_meta" formatted="true">"IESLĒGTI %1$d NO %2$d · IZMAIŅAS TIEK PIEMĒROTAS, NOSPIEŽOT PABEIGTS"</string>
 <string name="season">"Sezona"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"S"</string>

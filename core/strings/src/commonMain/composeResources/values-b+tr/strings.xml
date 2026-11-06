@@ -584,8 +584,12 @@
 <string name="search_provider_text_providers">Sağlayıcıları kullanarak ara</string>
 <string name="search_provider_text_types">Türleri kullanarak ara</string>
 <string name="search_state_idle_body_desktop">Bir başlık yazın. Sonuçlar, her kaynak yanıt verdikçe onun altında görünür.</string>
+<string name="search_state_no_results_type_filter">Yalnızca %s. Tür filtreniz aramayı daraltıyor.</string>
 <string name="search_suggestions">Arama Önerileri</string>
 <string name="search_suggestions_des">Yazarken arama önerilerini göster</string>
+<string name="search_tv_source_failed">BAŞARISIZ %s</string>
+<string name="search_tv_source_pinned">SABİTLENDİ</string>
+<string name="search_tv_sources_panel_meta">%2$d İÇİNDEN %1$d ETKİN · DEĞİŞİKLİKLER BİTTİ İLE UYGULANIR</string>
 <string name="season">Sezon</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">S</string>

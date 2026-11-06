@@ -196,6 +196,10 @@
 <string name="search_provider_text_providers">Søk basert på leverandør</string>
 <string name="search_provider_text_types">Søk ved bruk av typer</string>
 <string name="search_state_idle_body_desktop">Skriv ein tittel. Resultata kjem under kvar kjelde når ho svarar.</string>
+<string name="search_state_no_results_type_filter">Berre %s. Typefilteret ditt avgrensar søket.</string>
+<string name="search_tv_source_failed">FEILA %s</string>
+<string name="search_tv_source_pinned">FESTA</string>
+<string name="search_tv_sources_panel_meta">%1$d AV %2$d AKTIVERTE · ENDRINGAR GJELD ETTER FERDIG</string>
 <string name="season">Sesong</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">S</string>

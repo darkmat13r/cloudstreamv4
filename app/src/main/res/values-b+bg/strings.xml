@@ -574,8 +574,12 @@
 <string name="search_provider_text_providers">"Търсене чрез доставчици"</string>
 <string name="search_provider_text_types">"Търсене с помощта на типове"</string>
 <string name="search_state_idle_body_desktop">"Въведете заглавие. Резултатите се появяват под всеки източник, когато той отговори."</string>
+<string name="search_state_no_results_type_filter" formatted="true">"Само %s. Филтърът по тип стеснява търсенето."</string>
 <string name="search_suggestions">"Предложения за търсене"</string>
 <string name="search_suggestions_des">"Показвай предложения за търсене по време на писане"</string>
+<string name="search_tv_source_failed" formatted="true">"НЕУСПЕШНО %s"</string>
+<string name="search_tv_source_pinned">"ЗАКАЧЕН"</string>
+<string name="search_tv_sources_panel_meta" formatted="true">"%1$d ОТ %2$d ВКЛЮЧЕНИ · ПРОМЕНИТЕ СЕ ПРИЛАГАТ СЛЕД КРАЙ"</string>
 <string name="season">"Сезон"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"С"</string>

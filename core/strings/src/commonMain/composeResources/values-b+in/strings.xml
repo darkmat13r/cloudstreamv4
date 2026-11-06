@@ -584,8 +584,12 @@
 <string name="search_provider_text_providers">Cari menggunakan penyedia</string>
 <string name="search_provider_text_types">Cari menggunakan jenis</string>
 <string name="search_state_idle_body_desktop">Ketik judul. Hasil muncul di bawah setiap sumber saat sumber itu menjawab.</string>
+<string name="search_state_no_results_type_filter">Hanya %s. Filter jenis Anda mempersempit pencarian.</string>
 <string name="search_suggestions">Saran pencarian</string>
 <string name="search_suggestions_des">Tampilkan saran pencarian saat mengetik</string>
+<string name="search_tv_source_failed">GAGAL %s</string>
+<string name="search_tv_source_pinned">DISEMATKAN</string>
+<string name="search_tv_sources_panel_meta">%1$d DARI %2$d DIAKTIFKAN · PERUBAHAN BERLAKU SETELAH SELESAI</string>
 <string name="season">Season</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">S</string>
