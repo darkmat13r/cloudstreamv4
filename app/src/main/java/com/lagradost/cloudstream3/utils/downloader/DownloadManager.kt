@@ -89,6 +89,8 @@ import com.lagradost.cloudstream3.utils.downloader.DownloadUtils.getImageBitmapF
 import com.lagradost.cloudstream3.utils.downloader.DownloadUtils.join
 import com.lagradost.cloudstream3.utils.txt
 import com.lagradost.cloudstream4.download.DownloadFacts
+import com.lagradost.cloudstream4.download.EngineDownloadSwitch
+import com.lagradost.cloudstream4.download.EngineVideoDownload
 import com.lagradost.cloudstream4.media.model.DownloadFailure
 import com.lagradost.cloudstream4.media.model.SegmentProgress
 import com.lagradost.safefile.SafeFile
@@ -1661,6 +1663,10 @@ object VideoDownloadManager {
                 }
 
                 ExtractorLinkType.VIDEO -> {
+                    if (EngineDownloadSwitch.useSegmentedEngine) {
+                        return EngineVideoDownload.fromSwitch(context)
+                            .download(link, name, folder ?: "", tryResume, ep.id, callback)
+                    }
                     return downloadThing(
                         context,
                         link,
