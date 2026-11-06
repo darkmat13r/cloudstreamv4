@@ -120,7 +120,7 @@ appears for all 87 requests, 2,349 cells. `report.txt` moved only in its counts:
 keys 789 -> 816, and 27 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
 `ANDROID_FALLBACK` at 172.** `expectedOwn` 33,005 -> 34,679.
 
-## Twelfth move, 2026-11-06 — `KMP-43`, 5 new keys for Home's bookmarks rail
+## Twelfth move, 2026-11-06 — `KMP-45`, 5 new keys for Home's bookmarks rail
 
 New keys are approved in general (`I18N-09`). Additive, authored in all 62 directories: four strings and one plural,
 `home_bookmarks_count`, with each directory's own plural categories (the set `home_sections_failed` declares there). Measured by

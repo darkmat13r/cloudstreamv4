@@ -3910,7 +3910,7 @@ Suggest: nothing more here; noted because every page with a chrome row will meet
 Why: `KMP-34`'s `LibraryFocusMemory` and this page's landing both work around the same window behaviour
 ```
 
-## KMP-43 — Home's bookmarks rail and its watch-status filter (`TV Home Extras` 3e to 3g), and glyphs on Home's state buttons · **measured 2026-11-06**
+## KMP-45 — Home's bookmarks rail and its watch-status filter (`TV Home Extras` 3e to 3g), and glyphs on Home's state buttons · **measured 2026-11-06**
 
 **Status:** in review. Boards `3e`, `3f` and `3g` of `design/TV Home Extras.dc.html` (`DS-13`), on the page `KMP-37` and `KMP-41`
 built. Android TV only; desktop's home gains nothing but the state buttons' glyphs (its `HomeViewModel` keeps
