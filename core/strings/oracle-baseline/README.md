@@ -120,26 +120,27 @@ appears for all 87 requests, 2,349 cells. `report.txt` moved only in its counts:
 keys 789 -> 816, and 27 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
 `ANDROID_FALLBACK` at 172.** `expectedOwn` 33,005 -> 34,679.
 
-## Seventeenth move, 2026-11-06 — `I18N-11`, 7 new keys for the desktop downloads screen
+## Seventeenth move, 2026-11-06 — `I18N-11`, 10 new keys for the desktop downloads pages
 
-New keys are approved in general (`I18N-09`). Additive, authored in all 62 directories: four strings and three plurals,
-`downloads_delete_confirm_title`, `downloads_titles_status` and `downloads_episode_count`, with each directory's own plural categories (the set
+New keys are approved in general (`I18N-09`). Additive, authored in all 62 directories: five strings and five plurals,
+`downloads_delete_confirm_title`, `downloads_titles_status`, `downloads_episode_count`, `downloads_count_downloading` and
+`downloads_count_queued`, with each directory's own plural categories (the set
 `home_sections_failed` declares there). Captured from the live generator with `--rerun-tasks -Pcloudstream.strings.guards=fail`,
 on master's baseline after the sixteenth.
 
 | file | before | after | added | changed | lost |
 |---|---|---|---|---|---|
-| `decoded.tsv` | 38,317 | 39,015 | 698 | 0 | 0 |
-| `emitted.tsv` | 40,410 | 41,128 | 718 | 0 | 0 |
-| `lookup.tsv` | 77,082 | 78,018 | 936 | 0 | 0 |
+| `decoded.tsv` | 38,317 | 39,377 | 1,060 | 0 | 0 |
+| `emitted.tsv` | 40,410 | 41,500 | 1,090 | 0 | 0 |
+| `lookup.tsv` | 77,082 | 78,497 | 1,415 | 0 | 0 |
 | `requests.tsv` | 87 | 87 | 0 | 0 | 0 |
 | `findings.tsv` | 0 | 0 | 0 | 0 | 0 |
 
 Measured by whole-line set difference twice over, a multiset in Python and `sort | comm`: 0 lines lost in any file, every
-added line names one of the seven keys, and removing the added lines from each new file gives the old one in the same order.
+added line names one of the ten keys, and removing the added lines from each new file gives the old one in the same order.
 In `lookup.tsv` each key appears for all 87 requests: 87 cells for each `<string>`, 196 for each plural. `report.txt` moved
-only in its counts: `OWN` 37,827 -> 38,261 (7 x 62), visible keys 873 -> 880, plurals 12 -> 15, and 7 more values in each
-of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at 173.** `expectedOwn` 37,827 -> 38,261.
+only in its counts: `OWN` 37,827 -> 38,447 (10 x 62), visible keys 873 -> 883, plurals 12 -> 17, and 10 more values in each
+of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at 173.** `expectedOwn` 37,827 -> 38,447.
 
 ## Sixteenth move, 2026-11-06 — `KMP-45`, 5 new keys for Home's bookmarks rail
 
