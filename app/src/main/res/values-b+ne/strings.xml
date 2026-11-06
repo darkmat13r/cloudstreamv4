@@ -105,6 +105,11 @@
 <string name="home_play">"प्ले"</string>
 <string name="home_search_only_body">"तपाईंका कुनै पनि एक्सटेन्सनमा होम पेज छैन, तर तपाईं तिनमा अझै खोज्न सक्नुहुन्छ।"</string>
 <string name="home_source_none_subtitle">"पङ्क्ति छैन · तपाईंका पङ्क्ति रहन्छन्"</string>
+<string name="library_not_connected">"जडान छैन"</string>
+<string name="library_on_device">"यन्त्रमा"</string>
+<string name="library_source">"लाइब्रेरी स्रोत"</string>
+<string name="library_source_note">"एक पटकमा एउटा · बदल्दा फेरि लोड हुन्छ"</string>
+<string name="library_synced_format" formatted="true">"%s अघि सिंक गरियो"</string>
 <string name="links_reloaded_toast">"लिङ्कहरू रिलोड गरियो"</string>
 <string name="load_more">"थप लोड गर्नुहोस्"</string>
 <string name="loading">"लोड हुँदै…"</string>
