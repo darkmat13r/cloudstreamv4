@@ -86,6 +86,7 @@
 <string name="delete_message_series_only" formatted="true">"আপনি কি নিশ্চিত যে আপনি নিচের সিরিজটির সব এপিসোড স্থায়ীভাবে মুছে ফেলতে চান?\n\n%s"</string>
 <string name="delete_message_series_section" formatted="true">"আপনি নিচের সিরিজগুলোর সব এপিসোডও স্থায়ীভাবে মুছে ফেলবেন:\n\n%s"</string>
 <string name="deselect_all">"সব ডিসিলেক্ট করুন"</string>
+<string name="desktop_menu_go">"যান"</string>
 <string name="detail_load_failed_body">"সোর্সটি হয়তো পাওয়া যাচ্ছে না।"</string>
 <string name="detail_load_failed_headline">"এই শিরোনামটি খোলা যায়নি"</string>
 <string name="discord">"ডিসকর্ডে যোগ দিন"</string>

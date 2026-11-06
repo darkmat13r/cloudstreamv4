@@ -33,6 +33,7 @@
 <string name="delete">"Slett"</string>
 <string name="delete_file">"Slett fil"</string>
 <string name="delete_message" formatted="true">"Dette vil slette %s permanent. \nEr du sikker på dette?"</string>
+<string name="desktop_menu_go">"Gå"</string>
 <string name="detail_load_failed_body">"Kjelda er kanskje ikkje tilgjengeleg."</string>
 <string name="detail_load_failed_headline">"Kunne ikkje opne denne tittelen"</string>
 <string name="discord">"Bli med i Discord"</string>

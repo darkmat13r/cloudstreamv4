@@ -158,6 +158,7 @@
 <string name="delete_repository">"Izbriši repozitorij"</string>
 <string name="delete_repository_plugins">"Ovo će također izbrisati sve dodatke repozitorija"</string>
 <string name="deselect_all">"Odznači sve"</string>
+<string name="desktop_menu_go">"Idi"</string>
 <string name="detail_load_failed_body">"Izvor možda nije dostupan."</string>
 <string name="detail_load_failed_headline">"Naslov se nije mogao otvoriti"</string>
 <string name="device_pin_counter_text" formatted="true">"Kod isteče za %1$d min %2$d s"</string>

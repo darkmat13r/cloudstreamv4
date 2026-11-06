@@ -108,6 +108,7 @@
 <string name="delete_repository">"מחק מאגר"</string>
 <string name="delete_repository_plugins">"פעולה זו תמחק גם את כל תוספי המאגר"</string>
 <string name="deselect_all">"הסר בחירה מהכל"</string>
+<string name="desktop_menu_go">"מעבר"</string>
 <string name="detail_load_failed_body">"ייתכן שהמקור אינו זמין."</string>
 <string name="detail_load_failed_headline">"לא ניתן לפתוח את הכותר הזה"</string>
 <string name="disable">"ביטול"</string>

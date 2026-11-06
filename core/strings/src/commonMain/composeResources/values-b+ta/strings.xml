@@ -161,6 +161,7 @@
 <string name="delete_repository">களஞ்சியத்தை நீக்கு</string>
 <string name="delete_repository_plugins">இது அனைத்து களஞ்சிய செருகுநிரல்களையும் நீக்கிவிடும்</string>
 <string name="deselect_all">அனைத்தையும் தேர்வு செய்யுங்கள்</string>
+<string name="desktop_menu_go">செல்</string>
 <string name="device_pin_counter_text">குறியீடு %1$dm %2$ds இல் காலாவதியாகிறது</string>
 <string name="device_pin_error_message">சாதன முள் குறியீட்டைப் பெற முடியாது, உள்ளக அங்கீகாரத்தை முயற்சிக்கவும்</string>
 <string name="device_pin_expired_message">முள் குறியீடு இப்போது காலாவதியானது!</string>

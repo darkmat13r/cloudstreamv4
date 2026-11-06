@@ -52,6 +52,7 @@
 <string name="delete_repository">"ശേഖരം ഇല്ലാതാക്കുക"</string>
 <string name="delete_repository_plugins">"ഇത് എല്ലാ റിപ്പോസിറ്ററി പ്ലഗിന്നുകളും ഇല്ലാതാക്കും"</string>
 <string name="deselect_all">"തിരഞ്ഞെടുത്തവയെല്ലാം ഒഴിവാക്കു"</string>
+<string name="desktop_menu_go">"പോകുക"</string>
 <string name="detail_load_failed_body">"ഉറവിടം ലഭ്യമല്ലായിരിക്കാം."</string>
 <string name="detail_load_failed_headline">"ഈ ശീർഷകം തുറക്കാനായില്ല"</string>
 <string name="discord">"ഡിസ്‌കോർഡിലേക്ക് സ്വാഗതം"</string>

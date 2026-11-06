@@ -32,6 +32,7 @@
 <string name="confirm_before_exiting_desc">Ipakita ang dialog bago lumabas sa app</string>
 <string name="confirm_before_exiting_title">Kumpirmahin bago lumabas</string>
 <string name="deselect_all">Alisin sa pagkakapili ang Lahat</string>
+<string name="desktop_menu_go">Pumunta</string>
 <string name="download">I-download</string>
 <string name="download_all_plugins_from_repo">Babala: Walang pananagutan ang CloudStream 3 sa paggamit ng mga extension ng third-party at hindi kami nagbibigay ng anumang suporta para sa kanila!</string>
 <string name="download_canceled">Kinansela ang pag-download</string>

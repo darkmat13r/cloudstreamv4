@@ -159,6 +159,7 @@
 <string name="delete_repository">"Radera databasen"</string>
 <string name="delete_repository_plugins">"Detta kommer också att ta bort alla tillägg för databasen"</string>
 <string name="deselect_all">"Avmarkera alla"</string>
+<string name="desktop_menu_go">"Gå"</string>
 <string name="detail_load_failed_body">"Källan kanske inte är tillgänglig."</string>
 <string name="detail_load_failed_headline">"Titeln kunde inte öppnas"</string>
 <string name="device_pin_counter_text" formatted="true">"Koden löper ut om %1$dm %2$ds"</string>

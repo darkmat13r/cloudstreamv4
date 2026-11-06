@@ -18,6 +18,7 @@
 <string name="cast">"ተዋናዮች"</string>
 <string name="cast_format" formatted="true">"ተዋናዮች: %s"</string>
 <string name="continue_watching">"መመልከትዎን ይቀጥሉ"</string>
+<string name="desktop_menu_go">"ሂድ"</string>
 <string name="detail_load_failed_body">"ምንጩ ላይገኝ ይችላል።"</string>
 <string name="detail_load_failed_headline">"ይህን ርዕስ መክፈት አልተቻለም"</string>
 <string name="download">"ማውረጃ"</string>

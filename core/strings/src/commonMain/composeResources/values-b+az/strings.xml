@@ -39,6 +39,7 @@
 <string name="delete_message">%s həmişəlik silinəcək\nƏminsiniz?</string>
 <string name="delete_message_multiple">Aşağıdakı faylları həmişəlik silmək istədiyinizə əminsinizmi?\n\n%s</string>
 <string name="delete_message_series_episodes">%1$s içindəki aşağıdakı bölümləri həmişəlik silmək istədiyinizdən əminsinizmi?\n\n%2$s</string>
+<string name="desktop_menu_go">Keç</string>
 <string name="documentaries">Sənədli filmlər</string>
 <string name="documentaries_singular">Sənədli film</string>
 <string name="double_tap_to_pause_settings_des">Dayandırma üçün videonun ortasına iki dəfə toxunun</string>

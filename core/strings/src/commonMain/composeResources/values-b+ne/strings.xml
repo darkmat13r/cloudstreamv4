@@ -21,6 +21,7 @@
 <string name="cast_format">अभिनेता:%s</string>
 <string name="chromecast_subtitles_settings">Chromecast को उपशीर्षकहरु</string>
 <string name="continue_watching">हेर्न सुचारु राख्नुहोस</string>
+<string name="desktop_menu_go">जानुहोस्</string>
 <string name="download">डाउनलोड</string>
 <string name="download_canceled">डाउनलोड रद्द गरियो</string>
 <string name="download_done">डाउनलोड भयो</string>

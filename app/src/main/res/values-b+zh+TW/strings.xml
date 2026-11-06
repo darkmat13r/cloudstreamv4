@@ -158,6 +158,7 @@
 <string name="delete_repository">"刪除資源庫"</string>
 <string name="delete_repository_plugins">"這也將刪除所有在資源庫中的外掛"</string>
 <string name="deselect_all">"取消全選"</string>
+<string name="desktop_menu_go">"前往"</string>
 <string name="detail_load_failed_body">"來源可能無法使用。"</string>
 <string name="detail_load_failed_headline">"無法開啟此內容"</string>
 <string name="device_pin_counter_text" formatted="true">"驗證碼將在 %1$d 分 %2$d 秒後過期"</string>

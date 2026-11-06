@@ -19,6 +19,7 @@
 <string name="cast_format" formatted="true">"अभिनेता:%s"</string>
 <string name="chromecast_subtitles_settings">"Chromecast को उपशीर्षकहरु"</string>
 <string name="continue_watching">"हेर्न सुचारु राख्नुहोस"</string>
+<string name="desktop_menu_go">"जानुहोस्"</string>
 <string name="detail_load_failed_body">"स्रोत उपलब्ध नहुन सक्छ।"</string>
 <string name="detail_load_failed_headline">"यो शीर्षक खोल्न सकिएन"</string>
 <string name="download">"डाउनलोड"</string>

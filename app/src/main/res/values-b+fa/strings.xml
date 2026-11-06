@@ -76,6 +76,7 @@
 <string name="delete_repository">"حذف مخزن"</string>
 <string name="delete_repository_plugins">"این همچنین تمام مخزن افزونه‌ها را پاک می‌کند"</string>
 <string name="deselect_all">"انتخاب نکردن همه"</string>
+<string name="desktop_menu_go">"رفتن"</string>
 <string name="detail_load_failed_body">"ممکن است منبع در دسترس نباشد."</string>
 <string name="detail_load_failed_headline">"این عنوان باز نشد"</string>
 <string name="discord">"عضویت در دیسکورد"</string>

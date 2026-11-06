@@ -67,6 +67,7 @@
 <string name="delete_message_series_only">Está seguro de querer borrar permanentemente todos os episodios da serie?\n\n%s</string>
 <string name="delete_message_series_section">Tamén borrará permanentemente todos os capítulos das seguintes series:\n\n%s</string>
 <string name="deselect_all">Deseleccionar todo</string>
+<string name="desktop_menu_go">Ir</string>
 <string name="discord">Únete o Discord</string>
 <string name="documentaries">Documentales</string>
 <string name="documentaries_singular">Documental</string>

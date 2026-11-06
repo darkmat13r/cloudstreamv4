@@ -132,6 +132,7 @@
 <string name="delete_repository">"Tároló törlése"</string>
 <string name="delete_repository_plugins">"Ez az összes tároló bővítményt is törli"</string>
 <string name="deselect_all">"Mindent Kijelölés Eltávolítása"</string>
+<string name="desktop_menu_go">"Ugrás"</string>
 <string name="detail_load_failed_body">"Lehet, hogy a forrás nem érhető el."</string>
 <string name="detail_load_failed_headline">"Ezt a címet nem sikerült megnyitni"</string>
 <string name="device_pin_counter_text" formatted="true">"A kód %1$dm %2$ds után lejár"</string>

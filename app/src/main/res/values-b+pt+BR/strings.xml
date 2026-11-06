@@ -159,6 +159,7 @@
 <string name="delete_repository">"Apagar repositório"</string>
 <string name="delete_repository_plugins">"Isto irá apagar todos os repositórios de plugins"</string>
 <string name="deselect_all">"Desmarcar todos"</string>
+<string name="desktop_menu_go">"Ir"</string>
 <string name="detail_load_failed_body">"A fonte pode estar indisponível."</string>
 <string name="detail_load_failed_headline">"Não foi possível abrir este título"</string>
 <string name="device_pin_counter_text" formatted="true">"O código expira em %1$dm %2$ds"</string>

@@ -100,6 +100,7 @@
 <string name="delete_repository">"Zmazať repozitár"</string>
 <string name="delete_repository_plugins">"Toto tiež odstráni všetky doplnky repozitára"</string>
 <string name="deselect_all">"Zrušiť výber všetkých"</string>
+<string name="desktop_menu_go">"Prejsť"</string>
 <string name="detail_load_failed_body">"Zdroj možno nie je dostupný."</string>
 <string name="detail_load_failed_headline">"Tento titul sa nepodarilo otvoriť"</string>
 <string name="disable">"Zakázať"</string>

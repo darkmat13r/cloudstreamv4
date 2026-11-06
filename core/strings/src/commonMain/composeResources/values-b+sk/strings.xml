@@ -102,6 +102,7 @@
 <string name="delete_repository">Zmazať repozitár</string>
 <string name="delete_repository_plugins">Toto tiež odstráni všetky doplnky repozitára</string>
 <string name="deselect_all">Zrušiť výber všetkých</string>
+<string name="desktop_menu_go">Prejsť</string>
 <string name="disable">Zakázať</string>
 <string name="discord">Pripojte sa na Discord</string>
 <string name="display_subbed_dubbed_settings">Zobraziť anime dabované/s titulkami</string>

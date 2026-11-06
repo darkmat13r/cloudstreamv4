@@ -158,6 +158,7 @@
 <string name="delete_repository">"Избриши извор"</string>
 <string name="delete_repository_plugins">"Ова исто така ќе ги избрише сите приклучоци"</string>
 <string name="deselect_all">"Деселектирај сѐ"</string>
+<string name="desktop_menu_go">"Оди"</string>
 <string name="detail_load_failed_body">"Изворот можеби не е достапен."</string>
 <string name="detail_load_failed_headline">"Насловот не може да се отвори"</string>
 <string name="device_pin_counter_text" formatted="true">"Кодот истекува за %1$d минута/и и %2$d секунда/и"</string>

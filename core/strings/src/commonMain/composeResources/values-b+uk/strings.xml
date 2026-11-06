@@ -161,6 +161,7 @@
 <string name="delete_repository">Видалити сховище</string>
 <string name="delete_repository_plugins">Це також призведе до видалення всіх розширень сховища</string>
 <string name="deselect_all">Зняти виділення</string>
+<string name="desktop_menu_go">Перейти</string>
 <string name="device_pin_counter_text">Термін дії коду закінчується через %1$d хв %2$d с</string>
 <string name="device_pin_error_message">Не вдається отримати PIN-код пристрою, спробуйте локальну автентифікацію</string>
 <string name="device_pin_expired_message">Термін дії PIN-коду закінчився!</string>

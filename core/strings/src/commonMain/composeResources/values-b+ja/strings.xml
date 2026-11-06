@@ -161,6 +161,7 @@
 <string name="delete_repository">リポジトリ削除</string>
 <string name="delete_repository_plugins">これにより、リポジトリのすべてのプラグインも削除されます</string>
 <string name="deselect_all">すべて選択解除</string>
+<string name="desktop_menu_go">移動</string>
 <string name="device_pin_counter_text">%1$dm %2$ds でコードが切れます</string>
 <string name="device_pin_error_message">デバイスPINコードを取得できません。ローカル認証を試してください</string>
 <string name="device_pin_expired_message">PINコードが期限切れになりました！</string>

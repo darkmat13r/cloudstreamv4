@@ -161,6 +161,7 @@
 <string name="delete_repository">Odstranit repozitář</string>
 <string name="delete_repository_plugins">Tímto také odstraníte všechny doplňky repozitářů</string>
 <string name="deselect_all">Zrušit výběr všeho</string>
+<string name="desktop_menu_go">Přejít</string>
 <string name="device_pin_counter_text">Kód vyprší za %1$dm %2$ds</string>
 <string name="device_pin_error_message">Nepodařilo se získat PIN kód, zkuste místní ověření</string>
 <string name="device_pin_expired_message">PIN kód vypršel!</string>

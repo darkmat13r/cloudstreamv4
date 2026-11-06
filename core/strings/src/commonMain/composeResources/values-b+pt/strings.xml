@@ -160,6 +160,7 @@
 <string name="delete_repository">Apagar repositório</string>
 <string name="delete_repository_plugins">Isto irá apagar todos os repositórios de plugins</string>
 <string name="deselect_all">Desselecionar todos</string>
+<string name="desktop_menu_go">Ir</string>
 <string name="device_pin_counter_text">O código expira em %1$dm %2$ds</string>
 <string name="device_pin_error_message">Não é possível receber o PIN do dispositivo, tentando autenticação local</string>
 <string name="device_pin_expired_message">O código PIN está agora expirado !</string>

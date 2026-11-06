@@ -54,6 +54,7 @@
 <string name="delete_repository">ശേഖരം ഇല്ലാതാക്കുക</string>
 <string name="delete_repository_plugins">ഇത് എല്ലാ റിപ്പോസിറ്ററി പ്ലഗിന്നുകളും ഇല്ലാതാക്കും</string>
 <string name="deselect_all">തിരഞ്ഞെടുത്തവയെല്ലാം ഒഴിവാക്കു</string>
+<string name="desktop_menu_go">പോകുക</string>
 <string name="discord">ഡിസ്‌കോർഡിലേക്ക് സ്വാഗതം</string>
 <string name="dont_show_again">ഇനിയും കാണിക്കരുത്</string>
 <string name="double_tap_to_pause_settings">രണ്ടുവട്ടം ടാപ്പ് ചെയ്താൽ താൽകാലികമായി നിർത്തിവെക്കാം</string>

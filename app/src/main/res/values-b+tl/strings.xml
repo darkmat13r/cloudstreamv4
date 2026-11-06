@@ -56,6 +56,7 @@
 <string name="delete">"Tanggalin"</string>
 <string name="delete_file">"Burahin ang file"</string>
 <string name="delete_message" formatted="true">"This will permanently delete %s \nAre you sure?"</string>
+<string name="desktop_menu_go">"Pumunta"</string>
 <string name="detail_load_failed_body">"Maaaring hindi available ang source."</string>
 <string name="detail_load_failed_headline">"Hindi mabuksan ang pamagat na ito"</string>
 <string name="discord">"Sumali sa Discord"</string>

@@ -160,6 +160,7 @@
 <string name="delete_repository">Изтриване на хранилище</string>
 <string name="delete_repository_plugins">Това също ще изтрие всички хранилища за плъгини</string>
 <string name="deselect_all">Премахване на избора на всички</string>
+<string name="desktop_menu_go">Отиди</string>
 <string name="device_pin_counter_text">Кодът изтича след %1$dm %2$ds</string>
 <string name="device_pin_error_message">Не може да се получи PIN кода на устройството, опитайте локално удостоверяване</string>
 <string name="device_pin_expired_message">PIN кодът е изтекъл !</string>

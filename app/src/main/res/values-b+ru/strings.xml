@@ -159,6 +159,7 @@
 <string name="delete_repository">"Удалить репозиторий"</string>
 <string name="delete_repository_plugins">"Это также удалит все дополнения из источника"</string>
 <string name="deselect_all">"Отменить выбор"</string>
+<string name="desktop_menu_go">"Переход"</string>
 <string name="detail_load_failed_body">"Источник может быть недоступен."</string>
 <string name="detail_load_failed_headline">"Не удалось открыть это название"</string>
 <string name="device_pin_counter_text" formatted="true">"Код истекает через %1$dмин %2$dсек"</string>

@@ -37,6 +37,7 @@
 <string name="delete_message" formatted="true">"%s həmişəlik silinəcək\nƏminsiniz?"</string>
 <string name="delete_message_multiple" formatted="true">"Aşağıdakı faylları həmişəlik silmək istədiyinizə əminsinizmi?\n\n%s"</string>
 <string name="delete_message_series_episodes" formatted="true">"%1$s içindəki aşağıdakı bölümləri həmişəlik silmək istədiyinizdən əminsinizmi?\n\n%2$s"</string>
+<string name="desktop_menu_go">"Keç"</string>
 <string name="detail_load_failed_body">"Mənbə əlçatmaz ola bilər."</string>
 <string name="detail_load_failed_headline">"Bu başlıq açıla bilmədi"</string>
 <string name="documentaries">"Sənədli filmlər"</string>

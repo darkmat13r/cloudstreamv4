@@ -160,6 +160,7 @@
 <string name="delete_repository">Izbriši repozitorij</string>
 <string name="delete_repository_plugins">Ovo će također izbrisati sve dodatke repozitorija</string>
 <string name="deselect_all">Odznači sve</string>
+<string name="desktop_menu_go">Idi</string>
 <string name="device_pin_counter_text">Kod isteče za %1$d min %2$d s</string>
 <string name="device_pin_error_message">Neuspjelo dobivanje PIN koda uređaja, pokušaj s lokalnom autentifikacijom</string>
 <string name="device_pin_expired_message">PIN kod je sada istekao!</string>

@@ -161,6 +161,7 @@
 <string name="delete_repository">Repository löschen</string>
 <string name="delete_repository_plugins">Dadurch werden auch alle Repository-Plugins gelöscht</string>
 <string name="deselect_all">Alle abwählen</string>
+<string name="desktop_menu_go">Gehe zu</string>
 <string name="device_pin_counter_text">Code läuft ab in %1$dm %2$ds</string>
 <string name="device_pin_error_message">PIN-Code vom Gerät nicht abrufbar, versuche lokale Authentifizierung</string>
 <string name="device_pin_expired_message">PIN-Code ist jetzt abgelaufen!</string>

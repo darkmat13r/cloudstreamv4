@@ -159,6 +159,7 @@
 <string name="delete_repository">"删除仓库"</string>
 <string name="delete_repository_plugins">"这也将删除所有仓库插件"</string>
 <string name="deselect_all">"全不选"</string>
+<string name="desktop_menu_go">"前往"</string>
 <string name="detail_load_failed_body">"来源可能不可用。"</string>
 <string name="detail_load_failed_headline">"无法打开此内容"</string>
 <string name="device_pin_counter_text" formatted="true">"验证码 %1$dm %2$ds 后过期"</string>

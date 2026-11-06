@@ -9,6 +9,7 @@
 <string name="app_dub_sub_episode_text_format">%1$s ክፋል %2$d</string>
 <string name="cast">ተዋሳእቲ</string>
 <string name="cast_format">ተዋሳእቲ፡ %s</string>
+<string name="desktop_menu_go">ኪድ</string>
 <string name="downloads_browse_library">ቤተ-መጻሕፍቲ ድለ</string>
 <string name="downloads_delete_all">ኩሉ ሰርዝ</string>
 <string name="downloads_empty_body">ካብ ዝርዝር ክፋላት ናይ ሓደ ኣርእስቲ እትጅምሮም ውርዳት ኣብዚ ይርአዩ፣ ብዘይ መራኸቢ ድማ ይጻወቱ።</string>

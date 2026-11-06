@@ -159,6 +159,7 @@
 <string name="delete_repository">"Видалити сховище"</string>
 <string name="delete_repository_plugins">"Це також призведе до видалення всіх розширень сховища"</string>
 <string name="deselect_all">"Зняти виділення"</string>
+<string name="desktop_menu_go">"Перейти"</string>
 <string name="detail_load_failed_body">"Джерело може бути недоступним."</string>
 <string name="detail_load_failed_headline">"Не вдалося відкрити цю назву"</string>
 <string name="device_pin_counter_text" formatted="true">"Термін дії коду закінчується через %1$d хв %2$d с"</string>

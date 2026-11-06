@@ -143,6 +143,7 @@
 <string name="delete_repository">ৰিপ'জিট'ৰি ডিলিট কৰক</string>
 <string name="delete_repository_plugins">এইটোয়ে সমস্ত ৰিপ'জিট'ৰি প্লাগইনসমূহও ডিলিট কৰিব</string>
 <string name="deselect_all">সকলো বাদ দিয়ক</string>
+<string name="desktop_menu_go">যাওক</string>
 <string name="device_pin_counter_text">ক'ড মেয়াদ শেষ হব %1$dm %2$ds</string>
 <string name="device_pin_error_message">ডিভাইচ পিন ক'ড পোৱা নাই, স্থানীয় প্ৰমাণীকৰণ চেষ্টা কৰক</string>
 <string name="device_pin_expired_message">পিন ক'ডৰ মেয়াদ শেষ হৈছে!</string>

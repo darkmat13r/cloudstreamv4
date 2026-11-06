@@ -159,6 +159,7 @@
 <string name="delete_repository">"Xoá kho nguồn phim"</string>
 <string name="delete_repository_plugins">"Việc này sẽ xóa tất cả tiện ích mở rộng trong kho nguồn phim"</string>
 <string name="deselect_all">"Bỏ chọn tất cả"</string>
+<string name="desktop_menu_go">"Đi"</string>
 <string name="detail_load_failed_body">"Nguồn có thể không khả dụng."</string>
 <string name="detail_load_failed_headline">"Không thể mở tựa này"</string>
 <string name="device_pin_counter_text" formatted="true">"Mã sẽ hết hạn trong %1$d phút %2$d giây"</string>

@@ -161,6 +161,7 @@
 <string name="delete_repository">Xoá kho nguồn phim</string>
 <string name="delete_repository_plugins">Việc này sẽ xóa tất cả tiện ích mở rộng trong kho nguồn phim</string>
 <string name="deselect_all">Bỏ chọn tất cả</string>
+<string name="desktop_menu_go">Đi</string>
 <string name="device_pin_counter_text">Mã sẽ hết hạn trong %1$d phút %2$d giây</string>
 <string name="device_pin_error_message">Không lấy được mã PIN, vui lòng thử xác thực cục bộ</string>
 <string name="device_pin_expired_message">Mã PIN đã hết hạn!</string>

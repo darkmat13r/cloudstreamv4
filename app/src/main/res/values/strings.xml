@@ -168,6 +168,7 @@
 <string name="delete_repository">"Delete repository"</string>
 <string name="delete_repository_plugins">"This will also delete all repository plugins"</string>
 <string name="deselect_all">"Deselect All"</string>
+<string name="desktop_menu_go">"Go"</string>
 <string name="detail_load_failed_body">"Its source may be unavailable."</string>
 <string name="detail_load_failed_headline">"Couldn't open this title"</string>
 <string name="device_pin_counter_text" formatted="true">"Code expires in %1$dm %2$ds"</string>

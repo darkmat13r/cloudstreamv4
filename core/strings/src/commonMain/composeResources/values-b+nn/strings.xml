@@ -35,6 +35,7 @@
 <string name="delete">Slett</string>
 <string name="delete_file">Slett fil</string>
 <string name="delete_message">Dette vil slette %s permanent. \nEr du sikker på dette?</string>
+<string name="desktop_menu_go">Gå</string>
 <string name="discord">Bli med i Discord</string>
 <string name="dns_pref">DNS over HTTPS</string>
 <string name="documentaries">Dokumentarar</string>

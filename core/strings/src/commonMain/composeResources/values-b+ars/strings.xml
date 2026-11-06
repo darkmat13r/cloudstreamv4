@@ -72,6 +72,7 @@
 <string name="delete">مسح</string>
 <string name="delete_file">حذف ملف</string>
 <string name="delete_message">نهائيا %sسيؤدي هذا الى حذف \nهل أنت متأكد؟</string>
+<string name="desktop_menu_go">انتقال</string>
 <string name="discord">انضم إلى الديسكورد</string>
 <string name="display_subbed_dubbed_settings">عرض الأنمي المدبلج/المترجم</string>
 <string name="dns_pref">DNS عبر HTTPS</string>

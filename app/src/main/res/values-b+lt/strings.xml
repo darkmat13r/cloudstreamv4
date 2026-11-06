@@ -52,6 +52,7 @@
 <string name="delete">"Ištrinti"</string>
 <string name="delete_file">"Ištrinti failą"</string>
 <string name="deselect_all">"Panaikinti visus pasirinkimus"</string>
+<string name="desktop_menu_go">"Eiti"</string>
 <string name="detail_load_failed_body">"Šaltinis gali būti nepasiekiamas."</string>
 <string name="detail_load_failed_headline">"Nepavyko atidaryti šio pavadinimo"</string>
 <string name="disable">"Išjungti"</string>

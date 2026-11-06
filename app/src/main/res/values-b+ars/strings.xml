@@ -70,6 +70,7 @@
 <string name="delete">"مسح"</string>
 <string name="delete_file">"حذف ملف"</string>
 <string name="delete_message" formatted="true">"نهائيا %sسيؤدي هذا الى حذف \nهل أنت متأكد؟"</string>
+<string name="desktop_menu_go">"انتقال"</string>
 <string name="detail_load_failed_body">"يمكن المصدر مو متاح."</string>
 <string name="detail_load_failed_headline">"ما قدرنا نفتح هالعنوان"</string>
 <string name="discord">"انضم إلى الديسكورد"</string>

@@ -25,6 +25,7 @@
 <string name="delete_files">"Forigi Dosierojn"</string>
 <string name="delete_format" formatted="true">"Forigi (%1$d | %2$s)"</string>
 <string name="deselect_all">"Malselekti Ĉion"</string>
+<string name="desktop_menu_go">"Iri"</string>
 <string name="detail_load_failed_body">"La fonto eble ne disponeblas."</string>
 <string name="detail_load_failed_headline">"Ne eblis malfermi ĉi tiun titolon"</string>
 <string name="discord">"Aligi Diskordon"</string>

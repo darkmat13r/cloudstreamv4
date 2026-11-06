@@ -78,6 +78,7 @@
 <string name="delete_repository">حذف مخزن</string>
 <string name="delete_repository_plugins">این همچنین تمام مخزن افزونه‌ها را پاک می‌کند</string>
 <string name="deselect_all">انتخاب نکردن همه</string>
+<string name="desktop_menu_go">رفتن</string>
 <string name="discord">عضویت در دیسکورد</string>
 <string name="display_subbed_dubbed_settings">نمایش دادن انیمه های دوبله شده یا دارای زیرنویس</string>
 <string name="dns_pref_summary">برای دورزدن سرویس‌دهنده اینترنت مفید است</string>

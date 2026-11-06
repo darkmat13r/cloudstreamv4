@@ -159,6 +159,7 @@
 <string name="delete_repository">"களஞ்சியத்தை நீக்கு"</string>
 <string name="delete_repository_plugins">"இது அனைத்து களஞ்சிய செருகுநிரல்களையும் நீக்கிவிடும்"</string>
 <string name="deselect_all">"அனைத்தையும் தேர்வு செய்யுங்கள்"</string>
+<string name="desktop_menu_go">"செல்"</string>
 <string name="detail_load_failed_body">"மூலம் கிடைக்காமல் இருக்கலாம்."</string>
 <string name="detail_load_failed_headline">"இந்தத் தலைப்பைத் திறக்க முடியவில்லை"</string>
 <string name="device_pin_counter_text" formatted="true">"குறியீடு %1$dm %2$ds இல் காலாவதியாகிறது"</string>
