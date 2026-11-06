@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
+import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.designsystem.state.StateAction
 import com.lagradost.cloudstream4.core.designsystem.state.StatePrompt
 import com.lagradost.cloudstream4.core.designsystem.state.UiState
@@ -103,7 +104,7 @@ fun LibraryStatus.toUiState(onAction: (LibraryAction) -> Unit): UiState<List<Lib
                     Res.string.plugin_load_fail,
                     listOf(stringResource(Res.string.library)),
                 ).resolve(),
-                action = StateAction(stringResource(Res.string.search_state_retry), retry),
+                action = StateAction(stringResource(Res.string.search_state_retry), CloudStreamIcons.Retry, retry),
             ),
             detail,
         )

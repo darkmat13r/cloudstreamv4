@@ -61,8 +61,12 @@ internal fun LibraryState.toTvUiState(onAction: (LibraryAction) -> Unit): UiStat
     )
 }
 
-/** The tabs this TV screen shows: the tracking service's own lists where one is shown, else the store's. */
-internal fun LibraryState.tvTabs(): List<LibraryTab> = syncedTabs ?: LibraryTvTabs
+/**
+ * The tabs this TV screen shows: the tracking service's own lists where one is shown, else the store's. A service whose
+ * lists are not read yet, or could not be, has none: the store's would be the local list's, under the service's name.
+ */
+internal fun LibraryState.tvTabs(): List<LibraryTab> =
+    syncedTabs ?: if (shownSource?.local == false) emptyList() else LibraryTvTabs
 
 /** How many titles [tab] holds, from what was read, or null before a read. A list with nothing in it is 0. */
 internal fun LibraryState.countOf(tab: LibraryTab): Int? {

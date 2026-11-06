@@ -27,6 +27,7 @@ import androidx.compose.ui.test.isFocused
 import androidx.compose.ui.test.isSelectable
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onAllNodesWithText
+import androidx.compose.ui.test.onFirst
 import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.requestFocus
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -45,6 +46,7 @@ import com.lagradost.cloudstream4.feature.library.LibraryBucket
 import com.lagradost.cloudstream4.feature.library.LibrarySource
 import com.lagradost.cloudstream4.feature.library.LibrarySourceId
 import com.lagradost.cloudstream4.feature.library.LibrarySources
+import com.lagradost.cloudstream4.feature.library.LibraryStatus
 import com.lagradost.cloudstream4.feature.library.LibraryStore
 import com.lagradost.cloudstream4.feature.library.LibraryTitle
 import com.lagradost.cloudstream4.feature.library.LibraryTitleId
@@ -62,7 +64,9 @@ import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import java.io.IOException
 import java.util.concurrent.CopyOnWriteArrayList
+import java.util.concurrent.atomic.AtomicInteger
 
 /**
  * `KMP-49` on a device: 5a's provider button and 5e's panel, with a fake store, fake sources and the real ViewModel.
@@ -138,6 +142,19 @@ class LibrarySourcesTvDeviceTest {
             rule.waitUntil(WAIT_MS) { rule.onAllNodes(Field and isFocused()).fetchSemanticsNodes().isNotEmpty() }
         }
         assertEquals(name, dpad.press(Dpad.Left))
+    }
+
+    /** With no tabs, Down from the provider button is the failure page's action. */
+    private fun focusRetryFromTheButton() {
+        awaitText(FAILED)
+        rule.onAllNodesWithText(ANILIST).onFirst().requestFocus()
+        rule.waitUntil(WAIT_MS) { rule.focusedLabel() == ANILIST }
+        assertEquals(RETRY, pressUntil(Dpad.Down) { it == RETRY })
+    }
+
+    /** An unfocused card shows no title, so what is shown is read from the state. */
+    private fun awaitShowing(cards: Int) = rule.waitUntil(WAIT_MS) {
+        (viewModel.state.value.status as? LibraryStatus.Showing)?.cards?.size == cards
     }
 
     private fun openPanel(shown: String) {
@@ -273,7 +290,35 @@ class LibrarySourcesTvDeviceTest {
         awaitText("9.1")
     }
 
-    // ---- Screenshots: 5a over a service, and 5e open --------------------------------------------------------------
+    /** A service's list with nothing in it is 5c's page, and its way out is the service's first list with titles. */
+    @Test
+    fun aServicesEmptyListOffersItsFirstListWithTitles() {
+        showScreen()
+        focusTab("Dropped")
+        dpad.center()
+        awaitText("This list is empty. Try switching to another one.")
+        assertEquals(FIRST_LIST, pressUntil(Dpad.Down) { it == FIRST_LIST })
+        dpad.center()
+        awaitShowing(SyncedNames.size)
+    }
+
+    /** A service that cannot be read is the shared failure page, and Retry reads it again. */
+    @Test
+    fun aServiceThatCannotBeReadFailsAndRetryReadsItAgain() {
+        sources.failing = true
+        showScreen()
+        focusRetryFromTheButton()
+        // No tabs: the store's would be the local list's, under the service's name.
+        listOf(FIRST_LIST, "Completed", "Favorites").forEach { tab ->
+            assertTrue(tab, rule.onAllNodesWithText(tab).fetchSemanticsNodes().isEmpty())
+        }
+        sources.failing = false
+        dpad.center()
+        awaitShowing(SyncedNames.size)
+        assertEquals(2, sources.reads.get())
+    }
+
+    // ---- Screenshots: 5a over a service, 5e open, and a service that failed --------------------------------------------------------------
 
     @Test
     fun screenshotServiceGridFocusOnACard() {
@@ -292,6 +337,14 @@ class LibrarySourcesTvDeviceTest {
         rule.assertScreenshot("library-source-panel")
     }
 
+    @Test
+    fun screenshotServiceFailedFocusOnRetry() {
+        sources.failing = true
+        showScreen()
+        focusRetryFromTheButton()
+        rule.assertScreenshot("library-service-failed-focus-retry")
+    }
+
     private companion object {
         val Field = SemanticsMatcher.keyIsDefined(SemanticsProperties.EditableText)
         const val WAIT_MS = 10_000L
@@ -300,6 +353,8 @@ class LibrarySourcesTvDeviceTest {
         const val LOCAL = "Local"
         const val MAL = "MyAnimeList"
         const val DONE = "Done"
+        const val FAILED = "Error"
+        const val RETRY = "Try again"
         const val SOURCE_PANEL = "Library source"
         const val FIRST_LIST = "Watching"
         const val NOW = 10_000_000L
@@ -350,6 +405,8 @@ class LibrarySourcesTvDeviceTest {
     private class FakeSources : LibrarySources {
         @Volatile private var current = LibrarySourceId(ANILIST)
         val chosen = CopyOnWriteArrayList<LibrarySourceId>()
+        val reads = AtomicInteger()
+        @Volatile var failing = false
 
         override suspend fun sources() = listOf(
             LibrarySource(LibrarySourceId(ANILIST), ANILIST, account = "lagradost", syncedAt = SYNCED_AT),
@@ -364,7 +421,13 @@ class LibrarySourcesTvDeviceTest {
             current = id
         }
 
-        override suspend fun lists(id: LibrarySourceId) = listOf(
+        override suspend fun lists(id: LibrarySourceId): List<SyncedList> {
+            reads.incrementAndGet()
+            if (failing) throw IOException("unreachable")
+            return lists
+        }
+
+        private val lists = listOf(
             SyncedList("watching", FIRST_LIST, Watching),
             SyncedList("rewatching", "Rewatching", Rewatching),
             SyncedList("dropped", "Dropped", emptyList()),

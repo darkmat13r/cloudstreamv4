@@ -1,7 +1,6 @@
 package com.lagradost.cloudstream4.feature.library.tv
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsFocusedAsState
@@ -27,16 +26,16 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
 import com.lagradost.cloudstream4.core.designsystem.panel.SidePanel
 import com.lagradost.cloudstream4.core.designsystem.panel.SidePanelDefaults
 import com.lagradost.cloudstream4.core.designsystem.primitive.StatusDot
 import com.lagradost.cloudstream4.core.designsystem.primitive.StatusDotState
+import com.lagradost.cloudstream4.core.designsystem.primitive.insetOutline
 import com.lagradost.cloudstream4.core.designsystem.rows.ListRow
 import com.lagradost.cloudstream4.core.designsystem.rows.ListRowState
 import com.lagradost.cloudstream4.core.designsystem.rows.RailHeader
+import com.lagradost.cloudstream4.core.designsystem.target.ChromeButtonDefaults
 import com.lagradost.cloudstream4.core.strings.UiString
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_joined
@@ -44,13 +43,13 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.duration_hour
 import com.lagradost.cloudstream4.core.strings.generated.resources.episode_format
 import com.lagradost.cloudstream4.core.strings.generated.resources.episodes
 import com.lagradost.cloudstream4.core.strings.generated.resources.library_episodes_progress
+import com.lagradost.cloudstream4.core.strings.generated.resources.library_not_connected
 import com.lagradost.cloudstream4.core.strings.generated.resources.library_on_device
 import com.lagradost.cloudstream4.core.strings.generated.resources.library_source
 import com.lagradost.cloudstream4.core.strings.generated.resources.library_source_note
 import com.lagradost.cloudstream4.core.strings.generated.resources.library_synced_format
 import com.lagradost.cloudstream4.core.strings.generated.resources.next_episode_time_day_format
 import com.lagradost.cloudstream4.core.strings.generated.resources.next_episode_time_min_format
-import com.lagradost.cloudstream4.core.strings.generated.resources.library_not_connected
 import com.lagradost.cloudstream4.core.strings.generated.resources.setup_done
 import com.lagradost.cloudstream4.core.strings.resolve
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
@@ -64,8 +63,10 @@ import org.jetbrains.compose.resources.stringResource
 /**
  * 5a's provider button: the shown source's name over what it is, in the chrome row's left slot. It opens 5e.
  *
- * The board's `.cbtn`: a raised ground with a hairline, the ring on the button, and a two-line stack of 16 + 4 + 12
- * that centres at +8 in the 48dp row, as [LibraryScreenTvDefaults] and the readout it replaces already do.
+ * The board's `.cbtn`: `ChromeButton`'s ground, inset hairline, ring and padding, with a two-line stack of 16 + 4 + 12
+ * that centres at +8 in the 48dp row, as [LibraryScreenTvDefaults] and the readout it replaces already do. It is not a
+ * `ChromeButton`: that one is a label and a count on one line, and this is the only two-line chrome button so far, so a
+ * variant in the design system would have one caller.
  *
  * @param now the time an age is measured to, or null to show none. From the host, because this module has no clock.
  */
@@ -90,9 +91,9 @@ internal fun LibraryProviderButton(
             .height(CloudStreamDimens.ChromeRowHeight)
             .tvFocusRing(focused = focused, shape = shape)
             .background(colors.raised, shape)
-            .border(CloudStreamDimens.Hairline, colors.line, shape)
+            .insetOutline(colors.line, shape)
             .clickable(interactionSource = interaction, indication = null, role = Role.Button, onClick = onClick)
-            .padding(horizontal = LibrarySourcesTvDefaults.ButtonPadding),
+            .padding(horizontal = ChromeButtonDefaults.HorizontalPadding),
         verticalArrangement = Arrangement.spacedBy(CloudStreamDimens.StackGap, Alignment.CenterVertically),
     ) {
         BasicText(
@@ -260,12 +261,6 @@ internal fun LibraryCard.metaLine(): String? {
 @Composable
 private fun joined(first: String, second: String): String =
     UiString.Resource(Res.string.downloads_joined, listOf(first, second)).resolve()
-
-/** 5a's chrome geometry for the provider button, halved from the artboard. */
-internal object LibrarySourcesTvDefaults {
-    /** `.cbtn`'s `padding: 0 24px`, halved. Mirrors `ChromeButtonDefaults.HorizontalPadding`. */
-    val ButtonPadding: Dp = 12.dp
-}
 
 private const val SINGLE_LINE = 1
 private const val MILLIS_PER_MINUTE = 60_000L

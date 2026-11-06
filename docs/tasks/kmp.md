@@ -4861,6 +4861,9 @@ bar from episodes seen over episodes in all. A local card is unchanged.
 long-press popup), and saying why a service could not be read (`KMP-51`; for now it is the shared failure page with
 Retry).
 
+**A service's cards are in the order they were last updated** (`lastUpdatedUnixTime`, newest first), as the local
+list's are by `keptAt`, not in the order the service returns them.
+
 ### Measured, each one a wrong turn first
 
 - **The provider button's second line was clipped** in the first recording: its descenders were cut. It used
@@ -4880,6 +4883,20 @@ Retry).
 - **Two translations escaped an apostrophe** as `\'`, which `materialiseComposeStrings` refuses. These sources hold a
   plain `'`.
 
+### From the review on `#175`
+
+- **Switching back to a service shown from its cache opened the wrong titles.** The opener's map was one for all
+  sources, replaced only by a fresh read, so A, then B, then A from the cache kept B's, and A's cards fell back to the
+  local opener. It is kept per source now, with the one shown. The new JVM test fails on the old code.
+- **A service not read yet, or not readable, showed the local list's tabs** under its name: the first recording of the
+  failure page had Watching to Favorites over AniList's error. It has no tabs now (`tvTabs`).
+- **The provider button** takes `ChromeButton`'s padding and inset outline. `insetOutline` was internal to
+  `:core:designsystem` and is public now. It is not a `ChromeButton` variant: that is one line, a label and a count,
+  and a two-line variant would have this one caller.
+- **The failure page's Try again** carries the Retry glyph (`DEC-17`). The line is `KMP-34`'s.
+- **A service's empty list and a service's failure** have device cases, and the failure a screenshot.
+- **`DEC-20`, not `DEC-18`**: master's `DEC-18` is minSdk 24, and `DEC-19` is taken.
+
 ### Each critical test shown to fail
 
 Temporary changes, each reverted, on `Television_720p`.
@@ -4893,17 +4910,18 @@ Temporary changes, each reverted, on `Television_720p`.
 
 ### Tested
 
-- **JVM.** `LibrarySourcesViewModelTest` 13, `LibraryShelfTest` (4 added), and `AndroidLibrarySourcesTest` 11 over a fake
+- **JVM.** `LibrarySourcesViewModelTest` 13, `LibraryShelfTest` (4 added), and `AndroidLibrarySourcesTest` 12 over a fake
   `SyncAPI`: the order, the source to open on, the lists and their words, sanitising, a rating of 0, the recorded time
-  and the service's cache, both failures, and the opener's rule.
-- **Device, `:feature:library`.** `LibrarySourcesTvDeviceTest`, 10 with fake sources: the button and Left from the field,
+  and the service's cache, switching back to a cached service, both failures, and the opener's rule.
+- **Device, `:feature:library`.** `LibrarySourcesTvDeviceTest`, 13 with fake sources: the button and Left from the field,
   the panel opening on the shown source with every source's state, a choice applying at once, reopening on the new
   choice, a disabled row that is a stop and chooses nothing, Done and BACK each closing with focus back on the button, a
-  service's own tabs and its cards' facts, and two screenshots. `KMP-34`'s four screenshots are unchanged, 0 pixels.
+  service's own tabs and its cards' facts, a service's empty list, a service that fails and Retry, and three screenshots. `KMP-34`'s four screenshots are unchanged, 0 pixels.
 - **Device, `:app`.** `LibrarySourcesTvNavigationTest`, 3 in the real app: the panel over the real `syncApis`, none
   signed in and none made; Left from the field reaching the rail (`BUG-34`); and both records under the real keys.
 
-**Screenshots:** `library-service-grid-focus-card` (5a over a service) and `library-source-panel` (5e), each looked at.
+**Screenshots:** `library-service-grid-focus-card` (5a over a service), `library-source-panel` (5e) and
+`library-service-failed-focus-retry`, each looked at.
 
 ### Not verified
 

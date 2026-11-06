@@ -106,9 +106,12 @@ internal class AndroidLibrarySources(
     /** The last read per source, which a service's own cache lets this show again. */
     private val lastRead = ConcurrentHashMap<LibrarySourceId, List<SyncedList>>()
 
-    /** What each shown title is, for the opener. Replaced on every read, so it is only ever the shown source's. */
+    /** What each title of a source's last read is, for the opener, kept beside [lastRead] so a cached read has its own. */
+    private val titles = ConcurrentHashMap<LibrarySourceId, Map<LibraryTitleId, SyncedTitle>>()
+
+    /** The service whose lists were asked for last, from a read or from the cache: the one shown. */
     @Volatile
-    private var titles: Map<LibraryTitleId, SyncedTitle> = emptyMap()
+    private var shown: LibrarySourceId? = null
 
     override suspend fun sources(): List<LibrarySource> = withContext(io) {
         val count = runCatching { localCount() }.getOrNull()
@@ -136,7 +139,10 @@ internal class AndroidLibrarySources(
     override suspend fun lists(id: LibrarySourceId): List<SyncedList> = withContext(io) {
         val source = all().first { it.id == id }
         val repo = source.repo
-        lastRead[id]?.takeIf { !repo.requireLibraryRefresh }?.let { return@withContext it }
+        lastRead[id]?.takeIf { !repo.requireLibraryRefresh }?.let {
+            shown = id
+            return@withContext it
+        }
         val metadata = repo.library().getOrThrow() ?: throw IllegalStateException("Unable to fetch library")
         repo.requireLibraryRefresh = false
         records.synced(id.value, clock())
@@ -144,13 +150,14 @@ internal class AndroidLibrarySources(
         val lists = syncedLists(metadata, labels(), typeLabels()) { titleId, item ->
             read[titleId] = SyncedTitle(item, repo.syncIdName)
         }
-        titles = read
+        titles[id] = read
         lastRead[id] = lists
+        shown = id
         lists
     }
 
     /** The title [id] was read as, where it is one of the shown service's. */
-    fun synced(id: LibraryTitleId): SyncedTitle? = titles[id]
+    fun synced(id: LibraryTitleId): SyncedTitle? = shown?.let { titles[it] }?.get(id)
 
     companion object {
         /**

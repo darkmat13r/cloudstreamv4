@@ -125,7 +125,6 @@ data class LibraryState(
     val shownSource: LibrarySource?
         get() = source?.let { id -> sources.firstOrNull { it.id == id } }
 
-
     /** The card the picker is open for, where it is still on screen. */
     val pickingCard: LibraryCard?
         get() = picking?.let { id -> (status as? LibraryStatus.Showing)?.cards?.firstOrNull { it.id == id } }

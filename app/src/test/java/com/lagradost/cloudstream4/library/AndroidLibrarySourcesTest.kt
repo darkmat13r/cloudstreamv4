@@ -225,6 +225,31 @@ class AndroidLibrarySourcesTest {
         assertNull(host.synced(LibraryTitleId("Prov\u0000/dune")))
     }
 
+    /** The reviewer's case on `#175`: A, then B, then A again from the cache must open A's titles, not B's. */
+    @Test
+    fun `switching back to a service shown from its cache opens that service's titles`() = runBlocking {
+        val simklApi = FakeSyncApi("Simkl", {
+            SyncAPI.LibraryMetadata(
+                listOf(SyncAPI.LibraryList(txt(R.string.type_watching), listOf(item("Mushishi", url = "https://simkl.com/anime/1")))),
+                emptySet(),
+            )
+        })
+        val simkl = SyncLibrarySource(SyncRepo(simklApi), connected = { true }, account = { "lagradost" })
+        val host = sources(aniList, simkl, local)
+        val frierenId = LibraryTitleId(encodeId("AniList", "https://anilist.co/anime/Frieren").value)
+        val mushishiId = LibraryTitleId(encodeId("AniList", "https://simkl.com/anime/1").value)
+
+        host.lists(LibrarySourceId("AniList"))
+        host.lists(LibrarySourceId("Simkl"))
+        assertEquals("sync-Mushishi", host.synced(mushishiId)?.item?.syncId)
+        assertNull("AniList is not shown", host.synced(frierenId))
+
+        host.lists(LibrarySourceId("AniList"))
+        assertEquals("AniList came from its cache", 1, aniListApi.asked)
+        assertEquals("sync-Frieren", host.synced(frierenId)?.item?.syncId)
+        assertNull("Simkl is not shown any more", host.synced(mushishiId))
+    }
+
     // The opener: `LibraryFragment.loadLibraryItem`'s rule.
 
     private val frieren = SyncedTitle(item("Frieren"), SyncIdName.Anilist)
