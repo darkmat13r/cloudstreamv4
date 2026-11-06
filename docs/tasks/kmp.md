@@ -4653,6 +4653,8 @@ that exist because the old downloader broke them:
 - `SearchSuggestionsDeviceTest` (device, 8, the board's data): six rows with counts 7, 9, 6, 4, 2, 0; the D-pad walk; OK on a row; 8b keeps the field focused and its action searches; screenshots `search-suggestions-counted`, `-counting`, `-partial`, `-nothing-matches`, each looked at before it was recorded.
 - `TvSearchNavigationTest` (`:app`, the real path): with suggestions on, typing one letter by remote (OK, the keyboard, then `input text`) shows 8b through the real fragment, setting and `SearchSuggestionApi`; with them off, no suggestions appear. One letter, because the API answers it without the network. The test waits for 8b's action on the chip row, not its headline: it first passed, then failed twice waiting for the headline, and a run that printed the screen's text showed the query, `Search all 0 sources` and the open keyboard's own words, with no headline. The keyboard covers the middle of the screen, where 8b's headline sits.
 
+**The gates caught one more:** `HashMap.putIfAbsent` in the merge is `java.util`'s, so the iOS canary did not resolve it and lint's `NewApi` stopped on it at minSdk 23. It is `getOrPut` now. The JVM and Android builds compiled it.
+
 **One fix was caught by a test, and one test was made deterministic.** The first device run failed `nothingMatchesKeeps…` at the field's focus (`Focused = 'false'`): the chip row's action requested focus on appearing, as 8c wants. The screenshot showed the ring on `Search all 12 sources`.
 
 ### Found, not changed
