@@ -668,4 +668,10 @@ would fail closed: no plugins rather than unsandboxed plugins. `SandboxEscapeAtt
 
 The rule and the glyph table are in `.claude/rules/ui-components.md`, "Buttons". Done in `DS-16`.
 
-**2026-11-06, the owner,** asked by the coordinator whether board 6d's icon-only row verbs break the rule above: **trailing actions on a list row are icon-only**, as 6d draws them, each showing its label under the cell when focused and carrying it as a content description. A fourth named exception to rule 4 in `.claude/rules/ui-components.md`. First used by `KMP-43` (Play, the state's verb and Delete beside each episode).
+**2026-11-06, the owner,** on boards 7f to 7l (`design/TV Detail Row.dc.html`), asked through the coordinator:
+- **Icon-only glyphs are `muted` at rest and `ink` on focus**, matching the boards' chrome (raised on #165's Home top bar). Colour now says focus, so a toggle says on or off by its shape. Built app-wide in `DS-17`.
+- **The watchlist toggle swaps glyph: Plus off, Check on.** The first choice, an outline then a filled bookmark, cannot be built: Tabler 1.1.1, the last release of this Compose port, has no filled family (checked in the artifact: no `BookmarkFilled`, no `HeartFilled`). Plus then Check is Netflix's "My List" pattern.
+- **The title detail action row is a named icon-only exception** to rule 4: Start over, Trailer, Download and Mark watched become icon-only cells with their label on focus. This replaces the 2026-11-05 line that put download and mark watched under More: Download and Mark watched sit in the row for films; a series keeps them in its episode list. Elsewhere, secondaries stay outlined with glyph and label.
+- **Mark watched gets a glyph:** Tabler `EyeCheck`, as `CloudStreamIcons.MarkWatched`.
+
+**2026-11-06, the owner,** asked by the coordinator whether board 6d's icon-only row verbs break the rule above: **trailing actions on a list row are icon-only**, as 6d draws them, each showing its label under the cell when focused and carrying it as a content description. A second ruled exception to rule 4, beside the title detail action row, in `.claude/rules/ui-components.md`. First used by `KMP-43` (Play, the state's verb and Delete beside each episode).

@@ -4546,7 +4546,7 @@ page listed only episodes with a file, so a queued one appeared only once it had
 
 - **The three verbs are icon-only, as 6d draws them**, and each names itself under its cell when focused. `DS-16`'s rule 4 allowed icon-only
   only for toggles, overflow and search. Asked through the coordinator, the owner ruled on 2026-11-06 that trailing actions on a list row are a
-  fourth exception (`DEC-17`; rule 4 in `ui-components.md`). `IconOnlyButton` draws a 32 dp outlined tile in a 48 dp cell, where 6d has a
+  second ruled exception, beside the title detail action row (`DEC-17`; rule 4 in `ui-components.md`). `IconOnlyButton` draws a 32 dp outlined tile in a 48 dp cell, where 6d has a
   24 dp raised tile.
 - **No Back cell and no free-space figure** in the top row. The remote's Back does what the cell would, and the rail is beside the page.
 - **A season's header is a row tall and has no count.** 6d draws it 28 dp, which would put every row after it off the scroll pitch. Its count
