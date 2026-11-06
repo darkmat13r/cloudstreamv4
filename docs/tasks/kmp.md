@@ -4088,3 +4088,69 @@ Found: `focusRestorer`-style default entry, measured again: a rebuilt view's fir
 Suggest: nothing more here; noted because every page with a chrome row will meet it (search's and the library's do)
 Why: `KMP-34`'s `LibraryFocusMemory` and this page's landing both work around the same window behaviour
 ```
+
+---
+
+## KMP-47 — TV search suggests while typing, boards 8a and 8b (queue `Q7`) · **measured 2026-11-06**
+
+**Status:** in pr. Boards 8a and 8b of `design/TV Search Suggestions.dc.html` on `Television_720p`, API 36.
+
+### What it adds
+
+- **8a: one column of suggestions while typing.** Up to six rows. They merge what the suggestion service offers with recent searches that contain the typed words. A recent search and a suggestion that differ only in case fold into one row, `RECENT · ALSO SUGGESTED`, keeping the recent search's words. Recent searches keep two of the six places. The row equal to the typed text comes first, then the service's order, then recent-only rows.
+- **A count per row, `7 SOURCES`.** It is the number of distinct sources whose quick search returned that exact title (ignoring case). Before the fan-out answers, a row shows no number, so nothing is shown that could change. A partial fan-out rides the chip row as `FailureBanner` with `Retry failed`, and the counts are of the sources that answered.
+- **OK on a row** runs the full search for its words and records them in history.
+- **8b: nothing matches.** Nothing suggested and nothing recent matching gives `Nothing matches “…”` with the query quoted, and `Search all N sources` on the chip row. **The field keeps the focus** (8c's action takes it; 8b's does not, because the user is still typing). Offline with nothing suggested says offline, not that nothing matches.
+- **The old `SearchSuggestionApi` is wrapped, not moved** (plan §5.3). `:feature:search` has a `SearchSuggestionSource` seam; `SearchTvFragment` passes one when `search_suggestions_enabled` is on (default on), and none when it is off. With none, typing runs the quick search into rails as before. Desktop passes none.
+- 8 new keys, in all 62 locales.
+
+### Focus
+
+| Press | Goes to |
+|---|---|
+| Down from the field, with suggestions | The first chip, then Down to the first row |
+| Down / Up in the column | The next / previous row |
+| Right on a row | Stays |
+| Down from the field, 8b | The first chip; Right along the chips reaches `Search all N sources` |
+
+### Reduced from the boards
+
+- **The count and its word are one line, `7 SOURCES`,** not the board's number over a word. A plural word without its number fails lint's `ImpliedQuantity` in 19 locales (wherever one form covers several numbers: `fr` 0 and 1, `ru` 1, 21, 31…), and `:app:lintPrereleaseDebug` stops on it. The trail is at least 120 dp (`.trail` 240 px) and grows for a long word.
+- **8b's copy changed for `BUG-30`:** "Press OK on the field" is now "Press the keyboard’s search key", since OK on the field opens the keyboard.
+- `dune messiah` sits sixth, where the board has it fifth: recent-only rows follow the service's suggestions.
+- The focused row has no selected fill, like 4c; 8a draws one.
+- The retry keeps `Retry failed`, not the board's `Retry 3 sources`.
+- History dates stay lower case (`2 days ago`), as in `KMP-42`.
+- Captions use the theme's caption face; the board draws them in mono.
+- **A suggestion service that is down reads as 8b.** `SearchSuggestionApi.getSuggestions` returns an empty list on any failure (it logs it), so "down" and "answered with nothing" cannot be told apart without changing it.
+- **Counts appear only when the selected sources can quick-search.** `MainAPI.hasQuickSearch` defaults to false, so on most installs typing runs no fan-out and the rows have no counts. Whether typing should run a full search per settled keystroke instead is a product question, raised with the PR.
+- The setting is read when the screen is made, so changing it applies on the next visit.
+
+### Tests
+
+- `SearchSuggestionsTest` (common, 7): the board's merge, the six-row and two-recent caps, filling from recent, exclusion, blank input, the counts.
+- `SearchSuggestionsViewModelTest` (JVM, 9): only the settled query is asked, rows before counts, 8b, 8b's Submit, offline, a partial fan-out, no quick search, a row's full search, no suggestion source.
+- `SearchSuggestionsDeviceTest` (device, 8, the board's data): six rows with counts 7, 9, 6, 4, 2, 0; the D-pad walk; OK on a row; 8b keeps the field focused and its action searches; screenshots `search-suggestions-counted`, `-counting`, `-partial`, `-nothing-matches`, each looked at before it was recorded.
+- `TvSearchNavigationTest` (`:app`, the real path): with suggestions on, typing one letter by remote (OK, the keyboard, then `input text`) shows 8b through the real fragment, setting and `SearchSuggestionApi`; with them off, no suggestions appear. One letter, because the API answers it without the network. The test waits for 8b's action on the chip row, not its headline: it first passed, then failed twice waiting for the headline, and a run that printed the screen's text showed the query, `Search all 0 sources` and the open keyboard's own words, with no headline. The keyboard covers the middle of the screen, where 8b's headline sits.
+
+**One fix was caught by a test, and one test was made deterministic.** The first device run failed `nothingMatchesKeeps…` at the field's focus (`Focused = 'false'`): the chip row's action requested focus on appearing, as 8c wants. The screenshot showed the ring on `Search all 12 sources`.
+
+### Found, not changed
+
+```
+Found: `SearchSuggestionApi.getSuggestions` returns an empty list on every failure
+Suggest: return a result that tells a failure from no suggestions
+Why: a suggestion service that is down shows 8b's "Nothing matches", which is not true.
+
+Found: while the keyboard is open, 8b's headline and body sit behind it; only the chip row's action shows
+Suggest: a design decision on where 8b's message goes while typing (on the chip row, or above the keyboard)
+Why: the user typing is the one 8b speaks to, and the keyboard is open while they type.
+```
+
+### Not verified
+
+`TalkBack`, a real remote, the live TMDB answer on the device (the real-path test's one letter never reaches the network), counts against a real quick-searchable provider (none is installed on the AVD), and the least-confident translations: `ti`, `am`, `ckb`, `my`, `or`, `as`, `mt`, `apc`.
+
+### Published API
+
+Additions only. `app/api/classes-jar.api` gains 8 `R` fields (3 `R$plurals`, 5 `R$string`), 0 removed or changed.
