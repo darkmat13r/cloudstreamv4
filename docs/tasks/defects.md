@@ -1518,6 +1518,45 @@ missing, so the comparison passes today. A fix will fail that case: look at the 
 
 Not checked: whether the last row is cut off at the bottom when the list is full, and whether other TV screens with a `LazyColumn` do the same.
 
+## BUG-41 — On TV, Home's first focus could stay on the bookmarks' first chip instead of landing on the hero · **medium** · measured 2026-11-06
+
+**Status:** fixed, in a PR of its own · found by `TvHomeNavigationTest.aBookmarkIsOnItsRailOpensItsRealPageAndFocusComesBackAndAChipIsKept`
+on master `d0b21dc56` (worker-2, twice on `Television_720p`: in #175's full run, and alone at 18:29:22) ·
+`feature/home/.../tv/HomeScreenTv.kt`, the landing's `free`
+
+**What a person saw.** With a bookmark kept and a source that gives a hero, a launch could open with focus on the bookmarks rail's
+`Watching` chip, not on the hero's button, as 3c draws it at rest. The test's message: `the hero of Fake One holds focus, was
+Watching`.
+
+**The cause, in the app, from `KMP-45`.** The landing gave way whenever focus was already in Continue watching or the bookmarks
+(`!continueHasFocus && !bookmarksHaveFocus`), which is meant to leave a person who has moved there alone. But it did not ask
+whether a person moved. On its first `onResume` `HomeTvFragment` asks its view for focus (nothing has been pressed, so the page
+takes it from the nav rail), and Compose gives that focus to the first stop it finds. The bookmarks are one local read, so they
+can be on screen before the source's rows and the hero; when they are, that first stop is a chip. `bookmarksHaveFocus` was then
+true, and the landing never moved focus to the hero. Whether the bookmarks have composed by then is a race between a local read
+and the host's first focus request, which is why the same commit passed 17/17 at 14:56 and failed at 18:29.
+
+**Evidence.**
+
+| run | where | result |
+|---|---|---|
+| the class alone, from a cleared app (each run boots the `-read-only` AVD and installs fresh), unfixed master x3 | `Television_720p` | 17/17 each time (18:41, 18:48, 18:56Z): the race went the hero's way |
+| a module case that fixes the order, unfixed: bookmarks on screen, pages held, the host view asked for focus as `onResume` does, then the pages released | `Television_720p` | **red**, `what holds focus expected:<More info · The Long Dark> but was:<[Watching]>`, the app's symptom |
+| the same case with the fix, and the whole module suite | `Television_720p` | 79/79, 18 screenshots `same` at 0/0 |
+
+The module case's first assertion is the precondition: the host's focus request does put focus on the chip. It is what makes the
+race deterministic, and what the fix is shown against.
+
+**The fix.** Focus in Continue watching or the bookmarks counts as a person's choice only after a key has been pressed on the
+page (`keyPressed`, set by any key-down the screen sees). Before one, it is where the window put it, and the landing goes to the
+hero, the first Continue card or the first bookmark as before. A person who has pressed into either rail still keeps focus
+there. The assert is unchanged, and no retry was added.
+
+**Not verified.** A failing in-app run on unfixed master on this machine: 0 of 3 class-alone runs hit the race. worker-2's two
+failures are the in-app evidence. Whether `Television_720p_2` makes it likelier: all four runs here took slot 1.
+
+---
+
 ## BUG-40 — The TV detail page's text ladder runs about 5dp high against its boards · **low** · measured 2026-11-06
 
 **Status:** found, not fixed · found 2026-11-06 while fixing the head block's height for `KMP-38` (pr #153) ·

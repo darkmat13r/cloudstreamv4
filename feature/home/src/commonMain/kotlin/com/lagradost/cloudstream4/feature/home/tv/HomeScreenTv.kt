@@ -42,6 +42,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.input.key.KeyEventType
+import androidx.compose.ui.input.key.onPreviewKeyEvent
+import androidx.compose.ui.input.key.type
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.Role
@@ -150,6 +153,10 @@ fun HomeScreenTv(
     // A view built again, coming back by the nav rail, lands once as the first open does. Measured in `:app`: the window
     // gives a rebuilt view's focus to its first stop, the source control, before the rows can, and it stayed there.
     var landingInView by remember { mutableStateOf(true) }
+    // Whether a key has been pressed on this view. Focus in Continue watching or the bookmarks is a person's choice only
+    // after one: before it, the window put it there (`BUG-41`). The bookmarks are one local read, so at launch they can be
+    // on screen before the rows, and the host's first focus request then lands on a chip, which kept it from the hero.
+    var keyPressed by remember { mutableStateOf(false) }
     val hasRows = rows.isNotEmpty()
     // Only beside the rows it came from: a page that failed or went offline has no hero, whatever was found before.
     val hero = (state.hero as? HomeHero.Shown)?.takeIf { hasRows }
@@ -198,7 +205,8 @@ fun HomeScreenTv(
         if (!landable || !state.appeared || returnTo != null || !heroSettled) return@LaunchedEffect
         // After a frame, so that a button these rows replaced has given focus up.
         withFrameNanos { }
-        val free = (state.landingOwed || landingInView || !screenHasFocus) && !continueHasFocus && !bookmarksHaveFocus
+        val inLocalRail = continueHasFocus || bookmarksHaveFocus
+        val free = (state.landingOwed || landingInView || !screenHasFocus) && !(keyPressed && inLocalRail)
         if (free && !state.pickerOpen && mayTakeFocus()) focusTarget = landingTarget(hero, resume, shownBookmarks, rows)
         landingInView = false
         if (state.landingOwed) onAction(HomeAction.LandingHandled)
@@ -213,7 +221,12 @@ fun HomeScreenTv(
     SidePanelHost(
         expanded = state.pickerOpen,
         onDismissRequest = { onAction(HomeAction.PickerDismissed) },
-        modifier = modifier.onFocusChanged { screenHasFocus = it.hasFocus },
+        modifier = modifier
+            .onFocusChanged { screenHasFocus = it.hasFocus }
+            .onPreviewKeyEvent {
+                if (it.type == KeyEventType.KeyDown) keyPressed = true
+                false
+            },
         panel = { HomeSourcePanelTv(state, onAction) },
     ) {
         BoxWithConstraints(Modifier.fillMaxSize().homeStopsGroup(stops)) {

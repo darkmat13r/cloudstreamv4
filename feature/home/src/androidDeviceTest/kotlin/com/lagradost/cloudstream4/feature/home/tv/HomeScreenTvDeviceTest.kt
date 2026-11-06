@@ -119,6 +119,8 @@ class HomeScreenTvDeviceTest {
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
     private var onScreen by mutableStateOf(true)
     private var mayTakeFocus = true
+    /** The view hosting the screen, which `HomeTvFragment.onResume` asks for focus as the page first opens. */
+    private var hostView: android.view.View? = null
 
     private val viewModel by lazy { HomeViewModel(source, scope, memory, history, shelf) }
 
@@ -128,6 +130,8 @@ class HomeScreenTvDeviceTest {
     private fun showScreen(resume: Boolean = true) {
         rule.setContent {
             val state by viewModel.state.collectAsState()
+            val view = androidx.compose.ui.platform.LocalView.current
+            androidx.compose.runtime.SideEffect { hostView = view }
             ObserveEffect(viewModel.effect) { effects += it }
             // What `HomeTvFragment` does: on this API level Back can finish the activity past the panel's own key handler.
             val dispatcher = (LocalContext.current as ComponentActivity).onBackPressedDispatcher
@@ -1107,6 +1111,30 @@ class HomeScreenTvDeviceTest {
         assertTrue("Up comes back to a chip", dpad.press(Dpad.Up) in setOf(WATCHING, COMPLETED))
     }
 
+    /**
+     * `BUG-41`. The bookmarks are one local read, so at launch they can be on screen before the source's rows and the hero.
+     * The page then asks for focus as `HomeTvFragment.onResume` does, nothing pressed, and the window gives it to the first
+     * stop it finds, a chip. That is not a person choosing the bookmarks, so when the hero lands it still takes focus.
+     */
+    @Test
+    fun focusTheWindowGaveTheBookmarksBeforeTheHeroLandedStillGoesToTheHero() {
+        rails(1)
+        featuring(FEATURED)
+        bookmarking(2)
+        val pages = kotlinx.coroutines.CompletableDeferred<Unit>()
+        source.gate = pages
+        showScreen()
+        awaitText(WATCHING)
+        rule.runOnIdle { hostView!!.requestFocus() }
+        rule.waitForIdle()
+        // The precondition the launch race produces: focus sits in the bookmarks rail, nothing pressed.
+        val given = dpad.focused()
+        assertTrue("the window gave focus to the bookmarks rail, was $given", given == WATCHING || given?.startsWith(SAVED) == true)
+
+        pages.complete(Unit)
+        awaitFocus(HERO)
+    }
+
     @Test
     fun noBookmarksIsNoRail() {
         rails(1)
@@ -1723,6 +1751,8 @@ class HomeScreenTvDeviceTest {
         @Volatile var stillLoading = false
         /** Every page waits forever. */
         @Volatile var hold = false
+        /** Every page waits until this completes. */
+        @Volatile var gate: kotlinx.coroutines.CompletableDeferred<Unit>? = null
         @Volatile var answer: (HomeSourceId, Int, Int) -> HomePageReply = { _, _, _ -> loaded("A", listOf("A 0")) }
         /** The hero's facts by title id. None by default, which is a host that cannot ask: no hero. */
         @Volatile var featured: (HomeItem) -> HomeFeatured? = { null }
@@ -1735,6 +1765,7 @@ class HomeScreenTvDeviceTest {
         override suspend fun page(source: HomeSourceId, section: Int, page: Int): HomePageReply {
             calls += Call(source, section, page)
             if (hold) awaitCancellation()
+            gate?.await()
             return answer(source, section, page)
         }
     }
