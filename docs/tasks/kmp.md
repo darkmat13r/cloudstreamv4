@@ -3974,6 +3974,16 @@ screenshot cases, `home-bookmarks-focus-card`, `home-bookmarks-no-status-focus-c
 rail with its chip chosen, opens its real `ResultFragmentTv` page, Back puts focus back on it, and the chosen chip pressed
 empties the old home's key.
 
+**Each critical test was shown failing**, in two control runs. Six mutations together (the rail dropped under a state, a
+bookmark's return target, bookmarks out of the landing, the wall, the dim, the filter never clearing, and the fragment given no
+store) turned 11 of the bookmark cases and the `:app` case red; the wall and the clear were hidden behind the landing, so a
+second run with those two alone turned both red (`expected Saved 1 but was Watching`; a timeout waiting for the cleared filter).
+Every file was restored and a real run replaced that XML.
+
+**One run lost focus mid-run and is not counted.** On `Television_720p_2` the first 17 cases passed and every one after reported no
+focus, the old tests included; the same commit was green on both emulators before and after. It reads like the display leaving
+D-pad mode, which nothing in these tests does (no `.click()`); not explained, and recorded here rather than passed over.
+
 **Screenshots.** Three references changed, each only by the state button's glyph, each looked at: `home-partial-failure-focus-retry`
 (`Retry`), `home-nothing-installed-focus-action` (`Repository`), `home-offline-continue-focus-retry` (`Retry`).
 
