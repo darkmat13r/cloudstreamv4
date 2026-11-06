@@ -195,8 +195,20 @@
 <string name="downloaded">"Preuzeto"</string>
 <string name="downloaded_file">"Preuzeta datoteka"</string>
 <string name="downloading">"Preuzimanje u tijeku"</string>
+<string name="downloads_browse_library">"Pregledaj biblioteku"</string>
 <string name="downloads_delete_select">"Odaberi stavke za brisanje"</string>
 <string name="downloads_empty">"Trenutačno nema preuzimanja."</string>
+<string name="downloads_empty_body">"Preuzimanja pokrenuta s popisa epizoda naslova pojavljuju se ovdje i reproduciraju se bez veze."</string>
+<string name="downloads_empty_headline">"Još nema preuzimanja"</string>
+<string name="downloads_free_up_space">"Oslobodi prostor"</string>
+<string name="downloads_load_failed_body">"Vaše preuzete datoteke nisu promijenjene."</string>
+<string name="downloads_load_failed_headline">"Nije moguće pročitati vaša preuzimanja"</string>
+<string name="downloads_offline_pill">"Offline · nema veze"</string>
+<string name="downloads_play_from_link">"Pokreni s poveznice"</string>
+<string name="downloads_select">"Odaberi"</string>
+<string name="downloads_storage_full_headline">"Nedovoljno pohrane"</string>
+<string name="downloads_storage_legend" formatted="true">"Iskorišteno %1$s od %2$s · %3$s u preuzimanjima"</string>
+<string name="downloads_storage_needs" formatted="true">"Potrebno još %s"</string>
 <string name="duplicate_add">"Dodaj"</string>
 <string name="duplicate_message_multiple" formatted="true">"Potencijalni duplikati pronađeni su u vašoj biblioteci: \n \n%s \n \nŽelite li ipak dodati ovu stavku koja zamjenjuje postojeće ili poništiti radnju?"</string>
 <string name="duplicate_message_single" formatted="true">"Čini se da potencijalno duplicirana stavka već postoji u vašoj biblioteci: '%s.' \n \nŽelite li ipak dodati ovu stavku koja zamjenjuje postojeću ili poništiti radnju?"</string>

@@ -35,6 +35,18 @@
 <string name="dont_show_again">"ପୁନଃ ଦେଖାଅନି"</string>
 <string name="download_storage_text">"ଅନ୍ତଃ-ଷ୍ଟୋରେଜ୍"</string>
 <string name="download_time_left_hour_min_sec_format" formatted="true">"%1$dଘଣ୍ଟା %2$dମିନିଟ୍ %3$dସେକେଣ୍ଡ"</string>
+<string name="downloads_browse_library">"ଲାଇବ୍ରେରୀ ବ୍ରାଉଜ୍ କର"</string>
+<string name="downloads_empty_body">"ଶୀର୍ଷକର ଏପିସୋଡ୍ ତାଲିକାରୁ ଆରମ୍ଭ କରାଯାଇଥିବା ଡାଉନଲୋଡ୍ ଏଠାରେ ଦେଖାଯାଏ ଏବଂ ସଂଯୋଗ ବିନା ଚାଲେ।"</string>
+<string name="downloads_empty_headline">"ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ଡାଉନଲୋଡ୍ ନାହିଁ"</string>
+<string name="downloads_free_up_space">"ସ୍ଥାନ ଖାଲି କର"</string>
+<string name="downloads_load_failed_body">"ଆପଣଙ୍କ ଡାଉନଲୋଡ୍ ହୋଇଥିବା ଫାଇଲଗୁଡ଼ିକ ବଦଳାଯାଇନାହିଁ।"</string>
+<string name="downloads_load_failed_headline">"ଆପଣଙ୍କ ଡାଉନଲୋଡ୍ ପଢ଼ିହେଲା ନାହିଁ"</string>
+<string name="downloads_offline_pill">"ଅଫଲାଇନ୍ · ସଂଯୋଗ ନାହିଁ"</string>
+<string name="downloads_play_from_link">"ଲିଙ୍କରୁ ଚଲାଅ"</string>
+<string name="downloads_select">"ବାଛ"</string>
+<string name="downloads_storage_full_headline">"ପର୍ଯ୍ୟାପ୍ତ ଷ୍ଟୋରେଜ୍ ନାହିଁ"</string>
+<string name="downloads_storage_legend" formatted="true">"%1$s / %2$s ଵ୍ୟଵହୃତ · ଡାଉନଲୋଡରେ %3$s"</string>
+<string name="downloads_storage_needs" formatted="true">"ଆଉ %s ଦରକାର"</string>
 <string name="duration">"ଅଵଧି"</string>
 <string name="duration_format" formatted="true">"%d ମିନିଟ୍"</string>
 <string name="episode">"ଅଧ୍ୟାୟ"</string>

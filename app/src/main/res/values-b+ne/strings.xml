@@ -27,6 +27,18 @@
 <string name="download_storage_text">"भित्री स्टोरेज"</string>
 <string name="downloaded">"डाउनलोड भयो"</string>
 <string name="downloading">"डाउनलोड हुदैछ"</string>
+<string name="downloads_browse_library">"लाइब्रेरी हेर्नुहोस्"</string>
+<string name="downloads_empty_body">"शीर्षकको एपिसोड सूचीबाट सुरु गरिएका डाउनलोडहरू यहाँ देखिन्छन् र जडान बिना प्ले हुन्छन्।"</string>
+<string name="downloads_empty_headline">"अहिलेसम्म कुनै डाउनलोड छैन"</string>
+<string name="downloads_free_up_space">"ठाउँ खाली गर्नुहोस्"</string>
+<string name="downloads_load_failed_body">"तपाईंका डाउनलोड गरिएका फाइलहरू परिवर्तन गरिएका छैनन्।"</string>
+<string name="downloads_load_failed_headline">"तपाईंका डाउनलोडहरू पढ्न सकिएन"</string>
+<string name="downloads_offline_pill">"अफलाइन · जडान छैन"</string>
+<string name="downloads_play_from_link">"लिङ्कबाट प्ले गर्नुहोस्"</string>
+<string name="downloads_select">"चयन गर्नुहोस्"</string>
+<string name="downloads_storage_full_headline">"पर्याप्त स्टोरेज छैन"</string>
+<string name="downloads_storage_legend" formatted="true">"%1$s / %2$s प्रयोग भयो · डाउनलोडमा %3$s"</string>
+<string name="downloads_storage_needs" formatted="true">"थप %s चाहिन्छ"</string>
 <string name="duration_format" formatted="true">"%d मिनेट"</string>
 <string name="episode_more_options_des">"थप विकल्पहरू"</string>
 <string name="episode_poster_img_des">"एपिसोडको पोस्टर"</string>

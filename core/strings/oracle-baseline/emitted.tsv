@@ -215,8 +215,23 @@ values	string	download_time_left_sec_format	-	%1$ds
 values	string	downloaded	-	Downloaded
 values	string	downloaded_file	-	Downloaded file
 values	string	downloading	-	Downloading
+values	string	downloads_browse_library	-	Browse library
+values	string	downloads_delete_chosen	-	%1$s (%2$d · %3$s)
 values	string	downloads_delete_select	-	Select Items to Delete
 values	string	downloads_empty	-	There are currently no downloads.
+values	string	downloads_empty_body	-	Downloads you start from a title's episode list appear here and play with no connection.
+values	string	downloads_empty_headline	-	No downloads yet
+values	string	downloads_film_subtitle	-	%1$s · %2$s
+values	string	downloads_free_up_space	-	Free up space
+values	string	downloads_load_failed_body	-	Your downloaded files have not been changed.
+values	string	downloads_load_failed_headline	-	Couldn't read your downloads
+values	string	downloads_offline_pill	-	Offline · no connection
+values	string	downloads_play_from_link	-	Play from link
+values	string	downloads_select	-	Select
+values	string	downloads_series_subtitle	-	%1$d %2$s · %3$s
+values	string	downloads_storage_full_headline	-	Not enough storage
+values	string	downloads_storage_legend	-	%1$s of %2$s used · %3$s in downloads
+values	string	downloads_storage_needs	-	Needs %s more
 values	string	duplicate_add	-	Add
 values	string	duplicate_cancel	-	Cancel
 values	string	duplicate_message_multiple	-	Potential duplicate items have been found in your library: \n\n%s \n\nWould you like to add this item anyway, replace the existing ones, or cancel the action?
@@ -875,7 +890,19 @@ values-b+af	string	download_started	-	Aflaai het begin
 values-b+af	string	download_storage_text	-	Interne Berging
 values-b+af	string	downloaded	-	Afgelaai
 values-b+af	string	downloading	-	Laai tans af
+values-b+af	string	downloads_browse_library	-	Blaai deur biblioteek
 values-b+af	string	downloads_delete_select	-	Kies items om te verwyder
+values-b+af	string	downloads_empty_body	-	Aflaaie wat jy vanaf 'n titel se episodelys begin, verskyn hier en speel sonder 'n verbinding.
+values-b+af	string	downloads_empty_headline	-	Nog geen aflaaie nie
+values-b+af	string	downloads_free_up_space	-	Maak spasie vry
+values-b+af	string	downloads_load_failed_body	-	Jou afgelaaide lêers is nie verander nie.
+values-b+af	string	downloads_load_failed_headline	-	Kon nie jou aflaaie lees nie
+values-b+af	string	downloads_offline_pill	-	Vanlyn · geen verbinding nie
+values-b+af	string	downloads_play_from_link	-	Speel vanaf skakel
+values-b+af	string	downloads_select	-	Kies
+values-b+af	string	downloads_storage_full_headline	-	Nie genoeg berging nie
+values-b+af	string	downloads_storage_legend	-	%1$s van %2$s gebruik · %3$s in aflaaie
+values-b+af	string	downloads_storage_needs	-	Benodig nog %s
 values-b+af	string	duplicate_cancel	-	Kanselleer
 values-b+af	string	duplicate_replace	-	Vervang
 values-b+af	string	duration_format	-	%d min
@@ -1052,6 +1079,18 @@ values-b+am	string	download_started	-	ማውረድ ተጀምሯል
 values-b+am	string	download_storage_text	-	ውስጣዊ ማከማቻ
 values-b+am	string	downloaded	-	ወርዷል
 values-b+am	string	downloading	-	በማውረድ ላይ
+values-b+am	string	downloads_browse_library	-	ቤተ-መጽሐፍት አስስ
+values-b+am	string	downloads_empty_body	-	ከርዕስ የክፍሎች ዝርዝር የጀመሯቸው ውርዶች እዚህ ይታያሉ፣ ያለ ግንኙነትም ይጫወታሉ።
+values-b+am	string	downloads_empty_headline	-	እስካሁን ምንም ውርዶች የሉም
+values-b+am	string	downloads_free_up_space	-	ቦታ አስለቅቅ
+values-b+am	string	downloads_load_failed_body	-	የወረዱ ፋይሎችዎ አልተቀየሩም።
+values-b+am	string	downloads_load_failed_headline	-	ውርዶችዎን ማንበብ አልተቻለም
+values-b+am	string	downloads_offline_pill	-	ከመስመር ውጭ · ግንኙነት የለም
+values-b+am	string	downloads_play_from_link	-	ከሊንክ አጫውት
+values-b+am	string	downloads_select	-	ምረጥ
+values-b+am	string	downloads_storage_full_headline	-	በቂ ማከማቻ የለም
+values-b+am	string	downloads_storage_legend	-	%1$s ከ%2$s ጥቅም ላይ ውሏል · %3$s በውርዶች ውስጥ
+values-b+am	string	downloads_storage_needs	-	ተጨማሪ %s ያስፈልጋል
 values-b+am	string	duration_format	-	%d ደቂቃ
 values-b+am	string	episode_more_options_des	-	ተጨማሪ አማራጮች
 values-b+am	string	episode_play_img_des	-	ክፍልን አጫውት
@@ -1392,8 +1431,20 @@ values-b+apc	string	download_time_left_sec_format	-	%1$dث
 values-b+apc	string	downloaded	-	منَزَل
 values-b+apc	string	downloaded_file	-	الملفات المنزلة
 values-b+apc	string	downloading	-	عم يتنَزَل
+values-b+apc	string	downloads_browse_library	-	تصفّح الرفّ
 values-b+apc	string	downloads_delete_select	-	نقي الإشيا اللي بدك تمحيها
 values-b+apc	string	downloads_empty	-	مافي تنزيلات هلّق.
+values-b+apc	string	downloads_empty_body	-	التنزيلات اللي بتبلّشها من قائمة حلقات العنوان بتطلع هون وبتمشي بلا إنترنت.
+values-b+apc	string	downloads_empty_headline	-	لسا مافي تنزيلات
+values-b+apc	string	downloads_free_up_space	-	فضّي مساحة
+values-b+apc	string	downloads_load_failed_body	-	ملفاتك المنزّلة ما تغيّرت.
+values-b+apc	string	downloads_load_failed_headline	-	ما قدرنا نقرا تنزيلاتك
+values-b+apc	string	downloads_offline_pill	-	بلا إنترنت · مافي اتصال
+values-b+apc	string	downloads_play_from_link	-	مشّي من رابط
+values-b+apc	string	downloads_select	-	نقي
+values-b+apc	string	downloads_storage_full_headline	-	مافي مساحة تخزين كفاية
+values-b+apc	string	downloads_storage_legend	-	%1$s من %2$s مستعمل · %3$s بالتنزيلات
+values-b+apc	string	downloads_storage_needs	-	بدها %s زيادة
 values-b+apc	string	duplicate_add	-	زيد
 values-b+apc	string	duplicate_cancel	-	كَنسِل
 values-b+apc	string	duplicate_message_multiple	-	مبين إنو فيه عنصر متل هيدا موجود بال مكتبة عندكن: \n \n%s \n \nبدكن تزيدو هيدا العنصر بأيّ حال، أو تستبدلوه مع العنصر الموجود، أو تلغو الإجراء؟
@@ -2202,8 +2253,20 @@ values-b+ar	string	download_time_left_sec_format	-	%1$dث
 values-b+ar	string	downloaded	-	تم التنزيل
 values-b+ar	string	downloaded_file	-	الملف الذي تم تنزيله
 values-b+ar	string	downloading	-	جاري التنزيل
+values-b+ar	string	downloads_browse_library	-	تصفّح المكتبة
 values-b+ar	string	downloads_delete_select	-	الرجاء تحديد العناصر للحذف
 values-b+ar	string	downloads_empty	-	لا يوجد حالياً اى تنزيلات.
+values-b+ar	string	downloads_empty_body	-	تظهر هنا التنزيلات التي تبدأها من قائمة حلقات العنوان، ويمكن تشغيلها دون اتصال.
+values-b+ar	string	downloads_empty_headline	-	لا توجد تنزيلات بعد
+values-b+ar	string	downloads_free_up_space	-	إخلاء مساحة
+values-b+ar	string	downloads_load_failed_body	-	لم تتغيّر ملفاتك التي تم تنزيلها.
+values-b+ar	string	downloads_load_failed_headline	-	تعذّرت قراءة تنزيلاتك
+values-b+ar	string	downloads_offline_pill	-	غير متصل · لا يوجد اتصال
+values-b+ar	string	downloads_play_from_link	-	تشغيل من رابط
+values-b+ar	string	downloads_select	-	تحديد
+values-b+ar	string	downloads_storage_full_headline	-	مساحة التخزين غير كافية
+values-b+ar	string	downloads_storage_legend	-	%1$s من %2$s مستخدم · %3$s في التنزيلات
+values-b+ar	string	downloads_storage_needs	-	يلزم %s إضافية
 values-b+ar	string	duplicate_add	-	اضافة
 values-b+ar	string	duplicate_cancel	-	إلغاء
 values-b+ar	string	duplicate_message_multiple	-	احتمال وجود تكرارات في مكتبتك. \n \n%s \n \nهل تريد الاضافة على اي حال مستبدلاً النسخة الموجودة بالفعل, أم تفضل إلغاء العملية؟
@@ -2904,6 +2967,18 @@ values-b+ars	string	download_started	-	بدأ التنزيل
 values-b+ars	string	download_storage_text	-	التخزين الداخلي
 values-b+ars	string	downloaded	-	تنززل
 values-b+ars	string	downloading	-	جارى التحميل
+values-b+ars	string	downloads_browse_library	-	تصفّح المكتبة
+values-b+ars	string	downloads_empty_body	-	التحميلات اللي تبداها من قائمة حلقات العنوان تطلع هنا وتشتغل بدون اتصال.
+values-b+ars	string	downloads_empty_headline	-	ما فيه تحميلات للحين
+values-b+ars	string	downloads_free_up_space	-	فضّ مساحة
+values-b+ars	string	downloads_load_failed_body	-	ملفاتك المحمّلة ما تغيّرت.
+values-b+ars	string	downloads_load_failed_headline	-	ما قدرنا نقرأ تحميلاتك
+values-b+ars	string	downloads_offline_pill	-	غير متصل · ما فيه اتصال
+values-b+ars	string	downloads_play_from_link	-	شغّل من رابط
+values-b+ars	string	downloads_select	-	حدد
+values-b+ars	string	downloads_storage_full_headline	-	مساحة التخزين ما تكفي
+values-b+ars	string	downloads_storage_legend	-	%1$s من %2$s مستعمل · %3$s في التحميلات
+values-b+ars	string	downloads_storage_needs	-	تحتاج %s زيادة
 values-b+ars	string	duplicate_cancel	-	الغي
 values-b+ars	string	duration	-	مدة
 values-b+ars	string	duration_format	-	%dاقل
@@ -3383,8 +3458,20 @@ values-b+as	string	download_storage_text	-	অভ্যন্তৰীণ সং
 values-b+as	string	downloaded	-	ডাউনলোড সম্পূৰ্ণ
 values-b+as	string	downloaded_file	-	ডাউনলোড কৰা ফাইল
 values-b+as	string	downloading	-	ডাউনলোড হৈ আছে
+values-b+as	string	downloads_browse_library	-	পুথিভঁৰাল ব্ৰাউজ কৰক
 values-b+as	string	downloads_delete_select	-	মুছিবলৈ আইটেমসমূহ নিৰ্ব্বাচন কৰক
 values-b+as	string	downloads_empty	-	বৰ্তমান কোনো ডাউনলোড নাই।
+values-b+as	string	downloads_empty_body	-	কোনো শিৰোনামৰ পৰ্বৰ তালিকাৰ পৰা আৰম্ভ কৰা ডাউনলোডসমূহ ইয়াত দেখা যায় আৰু সংযোগ অবিহনে প্লে হয়।
+values-b+as	string	downloads_empty_headline	-	এতিয়ালৈকে কোনো ডাউনলোড নাই
+values-b+as	string	downloads_free_up_space	-	ঠাই খালী কৰক
+values-b+as	string	downloads_load_failed_body	-	আপোনাৰ ডাউনলোড কৰা ফাইলসমূহ সলনি কৰা হোৱা নাই।
+values-b+as	string	downloads_load_failed_headline	-	আপোনাৰ ডাউনলোডসমূহ পঢ়িব নোৱাৰিলোঁ
+values-b+as	string	downloads_offline_pill	-	অফলাইন · সংযোগ নাই
+values-b+as	string	downloads_play_from_link	-	লিংকৰ পৰা প্লে কৰক
+values-b+as	string	downloads_select	-	বাছক
+values-b+as	string	downloads_storage_full_headline	-	পৰ্যাপ্ত সংৰক্ষণ নাই
+values-b+as	string	downloads_storage_legend	-	%1$s / %2$s ব্যৱহৃত · ডাউনলোডত %3$s
+values-b+as	string	downloads_storage_needs	-	আৰু %s লাগিব
 values-b+as	string	duplicate_add	-	যোগ কৰক
 values-b+as	string	duplicate_cancel	-	বাতিল কৰক
 values-b+as	string	duplicate_message_multiple	-	আপোনাৰ পুথিভঁৰালীতে সম্ভাৱ্য নকল বস্তুসমূহ পোৱা গৈছে: \n \n%s \n \nআপুনি এই বস্তু যিকোনো হ'লে যোগ কৰিব বিচাৰেনে, বিদ্যমানবোৰ প্ৰতিস্থাপন কৰিব, বা কাৰ্য বাতিল কৰিব বিচাৰেনে?
@@ -3958,8 +4045,20 @@ values-b+az	string	download_paused	-	Yükləmə dayandırıldı
 values-b+az	string	download_started	-	Yükləmə başladıldı
 values-b+az	string	downloaded	-	Yükləndi
 values-b+az	string	downloading	-	Yüklənir
+values-b+az	string	downloads_browse_library	-	Kitabxanaya bax
 values-b+az	string	downloads_delete_select	-	Silinəcək faylları seçin
 values-b+az	string	downloads_empty	-	Hal-hazırda heç bir yükləmə yoxdur.
+values-b+az	string	downloads_empty_body	-	Başlığın bölüm siyahısından başlatdığınız yükləmələr burada görünür və bağlantı olmadan oynadılır.
+values-b+az	string	downloads_empty_headline	-	Hələ yükləmə yoxdur
+values-b+az	string	downloads_free_up_space	-	Yer boşalt
+values-b+az	string	downloads_load_failed_body	-	Yüklənmiş fayllarınız dəyişdirilməyib.
+values-b+az	string	downloads_load_failed_headline	-	Yükləmələriniz oxuna bilmədi
+values-b+az	string	downloads_offline_pill	-	Oflayn · bağlantı yoxdur
+values-b+az	string	downloads_play_from_link	-	Keçiddən oynat
+values-b+az	string	downloads_select	-	Seç
+values-b+az	string	downloads_storage_full_headline	-	Yaddaş kifayət deyil
+values-b+az	string	downloads_storage_legend	-	%1$s / %2$s istifadə olunub · Yükləmələrdə %3$s
+values-b+az	string	downloads_storage_needs	-	Daha %s lazımdır
 values-b+az	string	duplicate_cancel	-	Ləğv et
 values-b+az	string	duration_format	-	%d dəqiqə
 values-b+az	string	eigengraumode_settings	-	Pleyer oynadılma sürəti
@@ -4322,8 +4421,20 @@ values-b+be	string	download_time_left_sec_format	-	%1$d с
 values-b+be	string	downloaded	-	Спампавана
 values-b+be	string	downloaded_file	-	Спампаваны файл
 values-b+be	string	downloading	-	Ідзе спампоўванне
+values-b+be	string	downloads_browse_library	-	Агляд бібліятэкі
 values-b+be	string	downloads_delete_select	-	Выберыце элементы для выдалення
 values-b+be	string	downloads_empty	-	Спамповак пакуль што няма.
+values-b+be	string	downloads_empty_body	-	Спампоўкі, запушчаныя са спіса серый, з'яўляюцца тут і прайграюцца без злучэння.
+values-b+be	string	downloads_empty_headline	-	Спамповак пакуль няма
+values-b+be	string	downloads_free_up_space	-	Вызваліць месца
+values-b+be	string	downloads_load_failed_body	-	Вашы спампаваныя файлы не зменены.
+values-b+be	string	downloads_load_failed_headline	-	Не ўдалося прачытаць спампоўкі
+values-b+be	string	downloads_offline_pill	-	Па-за сеткай · няма злучэння
+values-b+be	string	downloads_play_from_link	-	Прайграць па спасылцы
+values-b+be	string	downloads_select	-	Выбраць
+values-b+be	string	downloads_storage_full_headline	-	Недастаткова месца ў сховішчы
+values-b+be	string	downloads_storage_legend	-	Ужыта %1$s з %2$s · %3$s у спампоўках
+values-b+be	string	downloads_storage_needs	-	Патрабуецца яшчэ %s
 values-b+be	string	duplicate_add	-	Дадаць
 values-b+be	string	duplicate_cancel	-	Скасаваць
 values-b+be	string	duplicate_message_multiple	-	У вашай бібліятэцы знойдзены магчымыя дублікаты: \n\n%s \n\nЦі хочаце вы ўсё роўна яго дадаць, замяніць ужо існуючыя, або скасаваць дзеянне?
@@ -5117,8 +5228,20 @@ values-b+bg	string	download_storage_text	-	Вътрешна памет
 values-b+bg	string	downloaded	-	Изтеглено
 values-b+bg	string	downloaded_file	-	Изтеглен файл
 values-b+bg	string	downloading	-	Изтегля се
+values-b+bg	string	downloads_browse_library	-	Преглед на библиотеката
 values-b+bg	string	downloads_delete_select	-	Изберете елементите за изтриване
 values-b+bg	string	downloads_empty	-	В момента няма изтегляния.
+values-b+bg	string	downloads_empty_body	-	Изтеглянията, стартирани от списъка с епизоди на заглавие, се показват тук и се възпроизвеждат без връзка.
+values-b+bg	string	downloads_empty_headline	-	Все още няма изтегляния
+values-b+bg	string	downloads_free_up_space	-	Освобождаване на място
+values-b+bg	string	downloads_load_failed_body	-	Изтеглените ви файлове не са променени.
+values-b+bg	string	downloads_load_failed_headline	-	Изтеглянията ви не можаха да се прочетат
+values-b+bg	string	downloads_offline_pill	-	Офлайн · няма връзка
+values-b+bg	string	downloads_play_from_link	-	Пускане от връзка
+values-b+bg	string	downloads_select	-	Избиране
+values-b+bg	string	downloads_storage_full_headline	-	Няма достатъчно памет
+values-b+bg	string	downloads_storage_legend	-	%1$s от %2$s използвани · %3$s в изтегляния
+values-b+bg	string	downloads_storage_needs	-	Нужни са още %s
 values-b+bg	string	duplicate_add	-	Добави
 values-b+bg	string	duplicate_cancel	-	Отказ
 values-b+bg	string	duplicate_message_multiple	-	Във вашата библиотека са намерени потенциални дублиращи се елементи: \n \n%s \n \nИскате ли все пак да добавите този елемент, да замените съществуващите или да отмените действието?
@@ -5823,8 +5946,20 @@ values-b+bn	string	download_time_left_min_sec_format	-	%1$dমিনিট %2$d�
 values-b+bn	string	download_time_left_sec_format	-	%1$dসেকেন্ড
 values-b+bn	string	downloaded	-	ডাউনলোড হয়েছে
 values-b+bn	string	downloading	-	ডাউনলোড চলছে
+values-b+bn	string	downloads_browse_library	-	লাইব্রেরী ব্রাউজ করুন
 values-b+bn	string	downloads_delete_select	-	ডিলিট করার জন্য আইটেম সিলেক্ট করুন
 values-b+bn	string	downloads_empty	-	বর্তমানে কোনো ডাউনলোড নেই।
+values-b+bn	string	downloads_empty_body	-	কোনো শিরোনামের এপিসোড তালিকা থেকে শুরু করা ডাউনলোডগুলো এখানে দেখা যাবে এবং সংযোগ ছাড়াই চলবে।
+values-b+bn	string	downloads_empty_headline	-	এখনো কোনো ডাউনলোড নেই
+values-b+bn	string	downloads_free_up_space	-	জায়গা খালি করুন
+values-b+bn	string	downloads_load_failed_body	-	আপনার ডাউনলোড করা ফাইলগুলো পরিবর্তন করা হয়নি।
+values-b+bn	string	downloads_load_failed_headline	-	আপনার ডাউনলোডগুলো পড়া যায়নি
+values-b+bn	string	downloads_offline_pill	-	অফলাইন · কোনো সংযোগ নেই
+values-b+bn	string	downloads_play_from_link	-	লিংক থেকে চালান
+values-b+bn	string	downloads_select	-	সিলেক্ট করুন
+values-b+bn	string	downloads_storage_full_headline	-	যথেষ্ট স্টোরেজ নেই
+values-b+bn	string	downloads_storage_legend	-	%1$s / %2$s ব্যবহৃত · ডাউনলোডে %3$s
+values-b+bn	string	downloads_storage_needs	-	আরও %s প্রয়োজন
 values-b+bn	string	duplicate_cancel	-	বাতিল করুন
 values-b+bn	string	duration	-	সময়কাল
 values-b+bn	string	duration_format	-	%d মিনিট
@@ -6241,8 +6376,20 @@ values-b+ca	string	download_time_left_min_sec_format	-	%1$dm%2$ds
 values-b+ca	string	download_time_left_sec_format	-	%1$ds
 values-b+ca	string	downloaded_file	-	Fitxer descarregat
 values-b+ca	string	downloading	-	Descarregant
+values-b+ca	string	downloads_browse_library	-	Explora la biblioteca
 values-b+ca	string	downloads_delete_select	-	Selecciona els elements a eliminar
 values-b+ca	string	downloads_empty	-	No hi ha descàrregues en curs.
+values-b+ca	string	downloads_empty_body	-	Les descàrregues que inicieu des de la llista d'episodis d'un títol apareixen aquí i es reprodueixen sense connexió.
+values-b+ca	string	downloads_empty_headline	-	Encara no hi ha descàrregues
+values-b+ca	string	downloads_free_up_space	-	Allibera espai
+values-b+ca	string	downloads_load_failed_body	-	Els fitxers descarregats no s'han modificat.
+values-b+ca	string	downloads_load_failed_headline	-	No s'han pogut llegir les descàrregues
+values-b+ca	string	downloads_offline_pill	-	Fora de línia · sense connexió
+values-b+ca	string	downloads_play_from_link	-	Reprodueix des d'un enllaç
+values-b+ca	string	downloads_select	-	Selecciona
+values-b+ca	string	downloads_storage_full_headline	-	No hi ha prou emmagatzematge
+values-b+ca	string	downloads_storage_legend	-	%1$s de %2$s usats · %3$s en descàrregues
+values-b+ca	string	downloads_storage_needs	-	Calen %s més
 values-b+ca	string	duplicate_add	-	Afegir
 values-b+ca	string	duplicate_message_multiple	-	Diversos possibles duplicats ja existeixen a la vostra bibliotèca:\n\n%s\n\nVol afegir aquest element de totes maneres, reemplaçar els existents o cancel·lar aquesta acció?
 values-b+ca	string	duplicate_message_single	-	Un possible duplicat ja existeix a la vostra bibliotèca: '%s'.\n\nVol afegir aquest element de totes maneres, reemplaçar l'existent o cancel·lar aquesta acció?
@@ -6589,8 +6736,20 @@ values-b+ckb	string	download_time_left_min_sec_format	-	%1$dm %2$ds
 values-b+ckb	string	download_time_left_sec_format	-	%1$ds
 values-b+ckb	string	downloaded	-	دابەزێنراوە
 values-b+ckb	string	downloading	-	دادەبەزێندرێت
+values-b+ckb	string	downloads_browse_library	-	گەڕان لە کتێبخانە
 values-b+ckb	string	downloads_delete_select	-	ئەو شتانە هەڵبژێرە کە دەتەوێت بیسڕیتەوە
 values-b+ckb	string	downloads_empty	-	لە ئێستادا هیچ داونلۆدێک نییە.
+values-b+ckb	string	downloads_empty_body	-	ئەو داونلۆدانەی لە لیستی ئەڵقەکانی ناونیشانێکەوە دەستی پێ دەکەیت لێرە دەردەکەون و بەبێ پەیوەندی لێدەدرێن.
+values-b+ckb	string	downloads_empty_headline	-	هێشتا هیچ داونلۆدێک نییە
+values-b+ckb	string	downloads_free_up_space	-	بۆشایی چۆڵ بکە
+values-b+ckb	string	downloads_load_failed_body	-	فایلە داونلۆدکراوەکانت نەگۆڕدراون.
+values-b+ckb	string	downloads_load_failed_headline	-	نەتوانرا داونلۆدەکانت بخوێنرێنەوە
+values-b+ckb	string	downloads_offline_pill	-	ئۆفلاین · پەیوەندی نییە
+values-b+ckb	string	downloads_play_from_link	-	لێدان لە بەستەر
+values-b+ckb	string	downloads_select	-	هەڵبژێرە
+values-b+ckb	string	downloads_storage_full_headline	-	کۆگا بەش ناکات
+values-b+ckb	string	downloads_storage_legend	-	%1$s لە %2$s بەکارهاتووە · %3$s لە داونلۆدەکان
+values-b+ckb	string	downloads_storage_needs	-	%s ی زیاتر پێویستە
 values-b+ckb	string	duration_format	-	min%d
 values-b+ckb	string	episode_more_options_des	-	هەڵبژاردنی زیاتر
 values-b+ckb	string	episode_poster_img_des	-	پۆستەری ئەڵقە
@@ -6914,8 +7073,20 @@ values-b+cs	string	download_time_left_sec_format	-	%1$ds
 values-b+cs	string	downloaded	-	Stáhnuto
 values-b+cs	string	downloaded_file	-	Stažen soubor
 values-b+cs	string	downloading	-	Stahování
+values-b+cs	string	downloads_browse_library	-	Procházet knihovnu
 values-b+cs	string	downloads_delete_select	-	Zvolte položky k odstranění
 values-b+cs	string	downloads_empty	-	Aktuálně neprobíhají žádná stahování.
+values-b+cs	string	downloads_empty_body	-	Stahování spuštěná ze seznamu epizod titulu se zobrazí zde a přehrají se bez připojení.
+values-b+cs	string	downloads_empty_headline	-	Zatím žádná stahování
+values-b+cs	string	downloads_free_up_space	-	Uvolnit místo
+values-b+cs	string	downloads_load_failed_body	-	Vaše stažené soubory nebyly změněny.
+values-b+cs	string	downloads_load_failed_headline	-	Stahování se nepodařilo načíst
+values-b+cs	string	downloads_offline_pill	-	Offline · bez připojení
+values-b+cs	string	downloads_play_from_link	-	Přehrát z odkazu
+values-b+cs	string	downloads_select	-	Vybrat
+values-b+cs	string	downloads_storage_full_headline	-	Nedostatek úložiště
+values-b+cs	string	downloads_storage_legend	-	Použito %1$s z %2$s · %3$s ve stahování
+values-b+cs	string	downloads_storage_needs	-	Potřeba dalších %s
 values-b+cs	string	duplicate_add	-	Přidat
 values-b+cs	string	duplicate_cancel	-	Zrušit
 values-b+cs	string	duplicate_message_multiple	-	Ve vaší knihovně byl nalezen potenciální duplikát: \n \n%s \n \nChcete přesto přidat tuto položku, nahradit existující nebo zrušit akci?
@@ -7719,8 +7890,20 @@ values-b+de	string	download_time_left_sec_format	-	%1$ds
 values-b+de	string	downloaded	-	Heruntergeladen
 values-b+de	string	downloaded_file	-	Heruntergeladene Datei
 values-b+de	string	downloading	-	Lädt herunter
+values-b+de	string	downloads_browse_library	-	Bibliothek durchsuchen
 values-b+de	string	downloads_delete_select	-	Elemente zum Löschen auswählen
 values-b+de	string	downloads_empty	-	Zur Zeit sind keine Downloads verfügbar.
+values-b+de	string	downloads_empty_body	-	Downloads, die du in der Episodenliste eines Titels startest, erscheinen hier und lassen sich ohne Verbindung abspielen.
+values-b+de	string	downloads_empty_headline	-	Noch keine Downloads
+values-b+de	string	downloads_free_up_space	-	Speicher freigeben
+values-b+de	string	downloads_load_failed_body	-	Deine heruntergeladenen Dateien wurden nicht verändert.
+values-b+de	string	downloads_load_failed_headline	-	Downloads konnten nicht gelesen werden
+values-b+de	string	downloads_offline_pill	-	Offline · keine Verbindung
+values-b+de	string	downloads_play_from_link	-	Von Link abspielen
+values-b+de	string	downloads_select	-	Auswählen
+values-b+de	string	downloads_storage_full_headline	-	Nicht genug Speicher
+values-b+de	string	downloads_storage_legend	-	%1$s von %2$s belegt · %3$s in Downloads
+values-b+de	string	downloads_storage_needs	-	%s mehr benötigt
 values-b+de	string	duplicate_add	-	Hinzufügen
 values-b+de	string	duplicate_cancel	-	Abbrechen
 values-b+de	string	duplicate_message_multiple	-	Es wurden potentielle Duplikate in deiner Bibliothek gefunden: \n \n%s \n \nMöchtest du dieses Element dennoch hinzufügen, das existierende ersetzen oder diese Aktion abbrechen?
@@ -8500,8 +8683,20 @@ values-b+el	string	download_storage_text	-	Εσωτερικός χώρος απ�
 values-b+el	string	downloaded	-	Ληφθέν
 values-b+el	string	downloaded_file	-	Λήψη αρχείου
 values-b+el	string	downloading	-	Κατεβαίνει
+values-b+el	string	downloads_browse_library	-	Περιήγηση στη βιβλιοθήκη
 values-b+el	string	downloads_delete_select	-	Επιλέξτε στοιχεία για Διαγραφή
 values-b+el	string	downloads_empty	-	Δεν υπάρχουν προς το παρόν λήψεις.
+values-b+el	string	downloads_empty_body	-	Οι λήψεις που ξεκινάτε από τη λίστα επεισοδίων ενός τίτλου εμφανίζονται εδώ και αναπαράγονται χωρίς σύνδεση.
+values-b+el	string	downloads_empty_headline	-	Δεν υπάρχουν ακόμα λήψεις
+values-b+el	string	downloads_free_up_space	-	Απελευθέρωση χώρου
+values-b+el	string	downloads_load_failed_body	-	Τα ληφθέντα αρχεία σας δεν έχουν αλλάξει.
+values-b+el	string	downloads_load_failed_headline	-	Δεν ήταν δυνατή η ανάγνωση των λήψεών σας
+values-b+el	string	downloads_offline_pill	-	Εκτός σύνδεσης · δεν υπάρχει σύνδεση
+values-b+el	string	downloads_play_from_link	-	Αναπαραγωγή από σύνδεσμο
+values-b+el	string	downloads_select	-	Επιλογή
+values-b+el	string	downloads_storage_full_headline	-	Ανεπαρκής χώρος αποθήκευσης
+values-b+el	string	downloads_storage_legend	-	%1$s από %2$s σε χρήση · %3$s σε λήψεις
+values-b+el	string	downloads_storage_needs	-	Απαιτούνται ακόμα %s
 values-b+el	string	duplicate_add	-	Προσθήκη
 values-b+el	string	duplicate_cancel	-	Ακύρωση
 values-b+el	string	duplicate_message_multiple	-	Πιθανά διπλά αρχεία βρέθηκαν στην βιβλιοθήκη: \n \n%s \n \nΘα επιθυμούσατε να προσθέσετε αυτό το αρχείο ούτως η άλλως, να αντικαταστήσετε τα ήδη υπάρχοντα, ή να ακυρώσετε την ενέργεια?
@@ -9088,7 +9283,19 @@ values-b+eo	string	download_time_left_min_sec_format	-	%1$dm %2$ds
 values-b+eo	string	download_time_left_sec_format	-	%1$ds
 values-b+eo	string	downloaded	-	Elŝutite
 values-b+eo	string	downloading	-	Elŝutante
+values-b+eo	string	downloads_browse_library	-	Foliumi bibliotekon
 values-b+eo	string	downloads_empty	-	Ne estas elŝuto ĉimomente.
+values-b+eo	string	downloads_empty_body	-	Elŝutoj, kiujn vi komencas el la epizodlisto de titolo, aperas ĉi tie kaj ludiĝas sen konekto.
+values-b+eo	string	downloads_empty_headline	-	Ankoraŭ neniu elŝuto
+values-b+eo	string	downloads_free_up_space	-	Liberigi spacon
+values-b+eo	string	downloads_load_failed_body	-	Viaj elŝutitaj dosieroj ne ŝanĝiĝis.
+values-b+eo	string	downloads_load_failed_headline	-	Ne eblis legi viajn elŝutojn
+values-b+eo	string	downloads_offline_pill	-	Eksterrete · neniu konekto
+values-b+eo	string	downloads_play_from_link	-	Ludi el ligilo
+values-b+eo	string	downloads_select	-	Selekti
+values-b+eo	string	downloads_storage_full_headline	-	Ne sufiĉas stokspaco
+values-b+eo	string	downloads_storage_legend	-	%1$s el %2$s uzitaj · %3$s en elŝutoj
+values-b+eo	string	downloads_storage_needs	-	Bezonas %s pli
 values-b+eo	string	duplicate_cancel	-	Nuligi
 values-b+eo	string	duration	-	Daŭro
 values-b+eo	string	duration_format	-	%d min
@@ -9502,8 +9709,20 @@ values-b+es	string	download_time_left_sec_format	-	%1$d s
 values-b+es	string	downloaded	-	Descargado
 values-b+es	string	downloaded_file	-	Archivo descargado
 values-b+es	string	downloading	-	Descargando
+values-b+es	string	downloads_browse_library	-	Explorar biblioteca
 values-b+es	string	downloads_delete_select	-	Seleccionar elementos para eliminar
 values-b+es	string	downloads_empty	-	Actualmente no hay descargas disponibles.
+values-b+es	string	downloads_empty_body	-	Las descargas que inicies desde la lista de episodios de un título aparecen aquí y se reproducen sin conexión.
+values-b+es	string	downloads_empty_headline	-	Aún no hay descargas
+values-b+es	string	downloads_free_up_space	-	Liberar espacio
+values-b+es	string	downloads_load_failed_body	-	Tus archivos descargados no se han modificado.
+values-b+es	string	downloads_load_failed_headline	-	No se pudieron leer tus descargas
+values-b+es	string	downloads_offline_pill	-	Sin conexión · sin red
+values-b+es	string	downloads_play_from_link	-	Reproducir desde enlace
+values-b+es	string	downloads_select	-	Seleccionar
+values-b+es	string	downloads_storage_full_headline	-	Almacenamiento insuficiente
+values-b+es	string	downloads_storage_legend	-	%1$s de %2$s usados · %3$s en descargas
+values-b+es	string	downloads_storage_needs	-	Se necesitan %s más
 values-b+es	string	duplicate_add	-	Añadir
 values-b+es	string	duplicate_cancel	-	Cancelar
 values-b+es	string	duplicate_message_multiple	-	Se han encontrado posibles elementos duplicados en su biblioteca: \n \n%s \n \n¿Desea añadir este elemento de todos modos, sustituir los existentes o cancelar la acción?
@@ -10204,8 +10423,20 @@ values-b+fa	string	download_started	-	دانلود آغاز شد
 values-b+fa	string	download_storage_text	-	حافظه درونی(داخلی)
 values-b+fa	string	downloaded	-	دانلود شده
 values-b+fa	string	downloading	-	در حال دانلود
+values-b+fa	string	downloads_browse_library	-	مرور کتابخانه
 values-b+fa	string	downloads_delete_select	-	انتخاب برای حذف
 values-b+fa	string	downloads_empty	-	در حال حاضر دانلودی وجود ندارد.
+values-b+fa	string	downloads_empty_body	-	دانلودهایی که از فهرست قسمت‌های یک عنوان شروع می‌کنید اینجا نمایش داده می‌شوند و بدون اتصال پخش می‌شوند.
+values-b+fa	string	downloads_empty_headline	-	هنوز دانلودی وجود ندارد
+values-b+fa	string	downloads_free_up_space	-	آزاد کردن فضا
+values-b+fa	string	downloads_load_failed_body	-	فایل‌های دانلودشده شما تغییر نکرده‌اند.
+values-b+fa	string	downloads_load_failed_headline	-	دانلودهای شما خوانده نشد
+values-b+fa	string	downloads_offline_pill	-	آفلاین · بدون اتصال
+values-b+fa	string	downloads_play_from_link	-	پخش از پیوند
+values-b+fa	string	downloads_select	-	انتخاب
+values-b+fa	string	downloads_storage_full_headline	-	حافظه کافی نیست
+values-b+fa	string	downloads_storage_legend	-	%1$s از %2$s استفاده شده · %3$s در دانلودها
+values-b+fa	string	downloads_storage_needs	-	%s بیشتر لازم است
 values-b+fa	string	duplicate_cancel	-	لغو
 values-b+fa	string	duration	-	طول
 values-b+fa	string	duration_format	-	%d دقیقه
@@ -10600,8 +10831,20 @@ values-b+fil	string	download_time_left_min_sec_format	-	%1$dm %2$ds
 values-b+fil	string	download_time_left_sec_format	-	%1$ds
 values-b+fil	string	downloaded	-	Na-download
 values-b+fil	string	downloading	-	Dina-download
+values-b+fil	string	downloads_browse_library	-	I-browse ang library
 values-b+fil	string	downloads_delete_select	-	Piliin ang Mga Item na Tatanggalin
 values-b+fil	string	downloads_empty	-	Kasalukuyang walang mga dina-download.
+values-b+fil	string	downloads_empty_body	-	Lalabas dito ang mga download na sinimulan mo mula sa listahan ng episode ng isang pamagat at mapapanood nang walang koneksyon.
+values-b+fil	string	downloads_empty_headline	-	Wala pang mga download
+values-b+fil	string	downloads_free_up_space	-	Magbakante ng espasyo
+values-b+fil	string	downloads_load_failed_body	-	Hindi nabago ang mga na-download mong file.
+values-b+fil	string	downloads_load_failed_headline	-	Hindi mabasa ang iyong mga download
+values-b+fil	string	downloads_offline_pill	-	Offline · walang koneksyon
+values-b+fil	string	downloads_play_from_link	-	I-play mula sa link
+values-b+fil	string	downloads_select	-	Piliin
+values-b+fil	string	downloads_storage_full_headline	-	Kulang ang imbakan
+values-b+fil	string	downloads_storage_legend	-	%1$s ng %2$s ang nagamit · %3$s sa mga download
+values-b+fil	string	downloads_storage_needs	-	Kailangan ng %s pa
 values-b+fil	string	duplicate_cancel	-	Kanselahin
 values-b+fil	string	duplicate_message_multiple	-	May nakitang potensyal na mga nag-doble na mga items sa iyong library: \n\n%s \n\nGusto mo pa rin bang idagdag ang item na ito, palitan ang mga nauna na, o kanselahin ito?
 values-b+fil	string	duplicate_message_single	-	Lumalabas na mayroong potensyal na nag-doble na item sa iyong library: '%s.' \n\nGusto mo pa rin bang idagdag ang item na ito, palitan ang nauna, o kanselahin ito?
@@ -11053,8 +11296,20 @@ values-b+fr	string	download_time_left_sec_format	-	%1$ds
 values-b+fr	string	downloaded	-	Téléchargé
 values-b+fr	string	downloaded_file	-	Fichier téléchargé
 values-b+fr	string	downloading	-	Téléchargement
+values-b+fr	string	downloads_browse_library	-	Parcourir la bibliothèque
 values-b+fr	string	downloads_delete_select	-	Sélectionner les éléments à supprimer
 values-b+fr	string	downloads_empty	-	Aucun téléchargement.
+values-b+fr	string	downloads_empty_body	-	Les téléchargements lancés depuis la liste d'épisodes d'un titre apparaissent ici et se lisent sans connexion.
+values-b+fr	string	downloads_empty_headline	-	Aucun téléchargement pour l'instant
+values-b+fr	string	downloads_free_up_space	-	Libérer de l'espace
+values-b+fr	string	downloads_load_failed_body	-	Vos fichiers téléchargés n'ont pas été modifiés.
+values-b+fr	string	downloads_load_failed_headline	-	Impossible de lire vos téléchargements
+values-b+fr	string	downloads_offline_pill	-	Hors-ligne · pas de connexion
+values-b+fr	string	downloads_play_from_link	-	Lire depuis un lien
+values-b+fr	string	downloads_select	-	Sélectionner
+values-b+fr	string	downloads_storage_full_headline	-	Stockage insuffisant
+values-b+fr	string	downloads_storage_legend	-	%1$s sur %2$s utilisés · %3$s en téléchargements
+values-b+fr	string	downloads_storage_needs	-	%s supplémentaires requis
 values-b+fr	string	duplicate_add	-	Ajouter
 values-b+fr	string	duplicate_cancel	-	Annuler
 values-b+fr	string	duplicate_message_multiple	-	Des doublons potentiels ont été trouvés dans votre bibliothèque : \n \n%s \n \nSouhaitez-vous ajouter cet élément, remplacer les éléments existants ou annuler l'action ?
@@ -11740,8 +11995,20 @@ values-b+gl	string	download_started	-	Descarga comezada
 values-b+gl	string	download_storage_text	-	Almacenamento Interno
 values-b+gl	string	downloaded	-	Descargado
 values-b+gl	string	downloading	-	Descargando
+values-b+gl	string	downloads_browse_library	-	Explorar biblioteca
 values-b+gl	string	downloads_delete_select	-	Escolla os elementos para eliminar
 values-b+gl	string	downloads_empty	-	Non hay descargas dispoñíbeis
+values-b+gl	string	downloads_empty_body	-	As descargas que inicies desde a lista de episodios dun título aparecen aquí e reprodúcense sen conexión.
+values-b+gl	string	downloads_empty_headline	-	Aínda non hai descargas
+values-b+gl	string	downloads_free_up_space	-	Liberar espazo
+values-b+gl	string	downloads_load_failed_body	-	Os teus ficheiros descargados non se modificaron.
+values-b+gl	string	downloads_load_failed_headline	-	Non se puideron ler as túas descargas
+values-b+gl	string	downloads_offline_pill	-	Sen conexión · sen rede
+values-b+gl	string	downloads_play_from_link	-	Reproducir desde ligazón
+values-b+gl	string	downloads_select	-	Seleccionar
+values-b+gl	string	downloads_storage_full_headline	-	Almacenamento insuficiente
+values-b+gl	string	downloads_storage_legend	-	%1$s de %2$s usados · %3$s en descargas
+values-b+gl	string	downloads_storage_needs	-	Precísanse %s máis
 values-b+gl	string	duplicate_cancel	-	Cancelar
 values-b+gl	string	duration	-	Duración
 values-b+gl	string	duration_format	-	%d min
@@ -12146,8 +12413,20 @@ values-b+he	string	download_time_left_sec_format	-	%1$d שניות
 values-b+he	string	downloaded	-	הורד
 values-b+he	string	downloaded_file	-	קובץ שהורד
 values-b+he	string	downloading	-	מוריד
+values-b+he	string	downloads_browse_library	-	עיון בספריה
 values-b+he	string	downloads_delete_select	-	בחר פריטים למחוק
 values-b+he	string	downloads_empty	-	אין הורדות כרגע.
+values-b+he	string	downloads_empty_body	-	הורדות שתתחיל מרשימת הפרקים של כותר יופיעו כאן ויופעלו ללא חיבור.
+values-b+he	string	downloads_empty_headline	-	אין עדיין הורדות
+values-b+he	string	downloads_free_up_space	-	פינוי מקום
+values-b+he	string	downloads_load_failed_body	-	הקבצים שהורדת לא שונו.
+values-b+he	string	downloads_load_failed_headline	-	לא ניתן לקרוא את ההורדות שלך
+values-b+he	string	downloads_offline_pill	-	אופליין · אין חיבור
+values-b+he	string	downloads_play_from_link	-	הפעל מקישור
+values-b+he	string	downloads_select	-	בחר
+values-b+he	string	downloads_storage_full_headline	-	אין מספיק אחסון
+values-b+he	string	downloads_storage_legend	-	%1$s מתוך %2$s בשימוש · %3$s בהורדות
+values-b+he	string	downloads_storage_needs	-	נדרשים עוד %s
 values-b+he	string	duplicate_cancel	-	בטל
 values-b+he	string	duration	-	משך זמן
 values-b+he	string	duration_format	-	%d דקות
@@ -12737,8 +13016,20 @@ values-b+hi	string	download_time_left_min_sec_format	-	%1$d मि %2$d से
 values-b+hi	string	download_time_left_sec_format	-	%1$d सेकंड
 values-b+hi	string	downloaded	-	डाउनलोड किया गया
 values-b+hi	string	downloading	-	डाउनलोड हो रहा
+values-b+hi	string	downloads_browse_library	-	लाइब्रेरी ब्राउज़ करें
 values-b+hi	string	downloads_delete_select	-	मिटाने के लिए वस्तु चुनें
 values-b+hi	string	downloads_empty	-	वर्तमान में कोई डाउनलोड नहीं है।
+values-b+hi	string	downloads_empty_body	-	किसी शीर्षक की एपिसोड सूची से शुरू किए गए डाउनलोड यहाँ दिखते हैं और बिना कनेक्शन के चलते हैं।
+values-b+hi	string	downloads_empty_headline	-	अभी तक कोई डाउनलोड नहीं
+values-b+hi	string	downloads_free_up_space	-	जगह ख़ाली करें
+values-b+hi	string	downloads_load_failed_body	-	आपकी डाउनलोड की गई फ़ाइलें नहीं बदली गई हैं।
+values-b+hi	string	downloads_load_failed_headline	-	आपके डाउनलोड पढ़े नहीं जा सके
+values-b+hi	string	downloads_offline_pill	-	ऑफ़लाइन · कोई कनेक्शन नहीं
+values-b+hi	string	downloads_play_from_link	-	लिंक से चलाएं
+values-b+hi	string	downloads_select	-	चुनें
+values-b+hi	string	downloads_storage_full_headline	-	पर्याप्त स्टोरेज नहीं है
+values-b+hi	string	downloads_storage_legend	-	%1$s / %2$s इस्तेमाल में · डाउनलोड में %3$s
+values-b+hi	string	downloads_storage_needs	-	%s और चाहिए
 values-b+hi	string	duplicate_add	-	जोड़े
 values-b+hi	string	duplicate_cancel	-	रद्द करें
 values-b+hi	string	duplicate_message_multiple	-	आपकी लाइब्रेरी में संभावित डुप्लिकेट आइटम पाए गए हैं: \n \n%s \n \nक्या आप किसी भी तरह इस आइटम को जोड़ना चाहेंगे, मौजूदा आइटम को बदलना चाहेंगे, या कार्रवाई रद्द करना चाहेंगे?
@@ -13299,8 +13590,20 @@ values-b+hr	string	download_time_left_sec_format	-	%1$ds
 values-b+hr	string	downloaded	-	Preuzeto
 values-b+hr	string	downloaded_file	-	Preuzeta datoteka
 values-b+hr	string	downloading	-	Preuzimanje u tijeku
+values-b+hr	string	downloads_browse_library	-	Pregledaj biblioteku
 values-b+hr	string	downloads_delete_select	-	Odaberi stavke za brisanje
 values-b+hr	string	downloads_empty	-	Trenutačno nema preuzimanja.
+values-b+hr	string	downloads_empty_body	-	Preuzimanja pokrenuta s popisa epizoda naslova pojavljuju se ovdje i reproduciraju se bez veze.
+values-b+hr	string	downloads_empty_headline	-	Još nema preuzimanja
+values-b+hr	string	downloads_free_up_space	-	Oslobodi prostor
+values-b+hr	string	downloads_load_failed_body	-	Vaše preuzete datoteke nisu promijenjene.
+values-b+hr	string	downloads_load_failed_headline	-	Nije moguće pročitati vaša preuzimanja
+values-b+hr	string	downloads_offline_pill	-	Offline · nema veze
+values-b+hr	string	downloads_play_from_link	-	Pokreni s poveznice
+values-b+hr	string	downloads_select	-	Odaberi
+values-b+hr	string	downloads_storage_full_headline	-	Nedovoljno pohrane
+values-b+hr	string	downloads_storage_legend	-	Iskorišteno %1$s od %2$s · %3$s u preuzimanjima
+values-b+hr	string	downloads_storage_needs	-	Potrebno još %s
 values-b+hr	string	duplicate_add	-	Dodaj
 values-b+hr	string	duplicate_cancel	-	Odustani
 values-b+hr	string	duplicate_message_multiple	-	Potencijalni duplikati pronađeni su u vašoj biblioteci: \n \n%s \n \nŽelite li ipak dodati ovu stavku koja zamjenjuje postojeće ili poništiti radnju?
@@ -14065,8 +14368,20 @@ values-b+hu	string	download_time_left_sec_format	-	%1$ds
 values-b+hu	string	downloaded	-	Letöltve
 values-b+hu	string	downloaded_file	-	Letöltött fájl
 values-b+hu	string	downloading	-	Letöltés
+values-b+hu	string	downloads_browse_library	-	Könyvtár böngészése
 values-b+hu	string	downloads_delete_select	-	Válassza ki a Törlendő Elemeket
 values-b+hu	string	downloads_empty	-	Jelenleg nincs letöltés.
+values-b+hu	string	downloads_empty_body	-	A cím epizódlistájából indított letöltések itt jelennek meg, és kapcsolat nélkül is lejátszhatók.
+values-b+hu	string	downloads_empty_headline	-	Még nincs letöltés
+values-b+hu	string	downloads_free_up_space	-	Hely felszabadítása
+values-b+hu	string	downloads_load_failed_body	-	A letöltött fájlok nem változtak.
+values-b+hu	string	downloads_load_failed_headline	-	Nem sikerült beolvasni a letöltéseket
+values-b+hu	string	downloads_offline_pill	-	Offline · nincs kapcsolat
+values-b+hu	string	downloads_play_from_link	-	Lejátszás hivatkozásról
+values-b+hu	string	downloads_select	-	Kiválasztás
+values-b+hu	string	downloads_storage_full_headline	-	Nincs elég tárhely
+values-b+hu	string	downloads_storage_legend	-	%1$s / %2$s használatban · %3$s a letöltésekben
+values-b+hu	string	downloads_storage_needs	-	Még %s szükséges
 values-b+hu	string	duplicate_add	-	Hozzáadás
 values-b+hu	string	duplicate_cancel	-	Mégse
 values-b+hu	string	duplicate_message_multiple	-	Potenciálisan dupla elemek a könyvtárjában: \n \n%s \n \nSzeretné hozzáadni ezt az elemet mindenképpen, ezzel felülírva a jelenlegit, vagy visszavonja a műveletet?
@@ -14794,8 +15109,20 @@ values-b+id	string	download_time_left_sec_format	-	%1$dd
 values-b+id	string	downloaded	-	Terunduh
 values-b+id	string	downloaded_file	-	Berkas terunduh
 values-b+id	string	downloading	-	Mengunduh
+values-b+id	string	downloads_browse_library	-	Jelajahi pustaka
 values-b+id	string	downloads_delete_select	-	Pilih item untuk Dihapus
 values-b+id	string	downloads_empty	-	Tidak ada unduhan.
+values-b+id	string	downloads_empty_body	-	Unduhan yang Anda mulai dari daftar episode judul muncul di sini dan dapat diputar tanpa koneksi.
+values-b+id	string	downloads_empty_headline	-	Belum ada unduhan
+values-b+id	string	downloads_free_up_space	-	Kosongkan ruang
+values-b+id	string	downloads_load_failed_body	-	File unduhan Anda tidak berubah.
+values-b+id	string	downloads_load_failed_headline	-	Tidak dapat membaca unduhan Anda
+values-b+id	string	downloads_offline_pill	-	Luring · tidak ada koneksi
+values-b+id	string	downloads_play_from_link	-	Putar dari tautan
+values-b+id	string	downloads_select	-	Pilih
+values-b+id	string	downloads_storage_full_headline	-	Penyimpanan tidak cukup
+values-b+id	string	downloads_storage_legend	-	%1$s dari %2$s terpakai · %3$s di unduhan
+values-b+id	string	downloads_storage_needs	-	Perlu %s lagi
 values-b+id	string	duplicate_add	-	Tambahkan
 values-b+id	string	duplicate_cancel	-	Batalkan
 values-b+id	string	duplicate_message_multiple	-	Item duplikat potensial telah ditemukan di pustaka Anda: \n \n%s \n \nApakah Anda tetap ingin menambahkan item ini, mengganti item yang sudah ada, atau membatalkan tindakan?
@@ -15593,8 +15920,20 @@ values-b+in	string	download_time_left_sec_format	-	%1$dd
 values-b+in	string	downloaded	-	Terunduh
 values-b+in	string	downloaded_file	-	Berkas terunduh
 values-b+in	string	downloading	-	Mengunduh
+values-b+in	string	downloads_browse_library	-	Jelajahi pustaka
 values-b+in	string	downloads_delete_select	-	Pilih item untuk Dihapus
 values-b+in	string	downloads_empty	-	Tidak ada unduhan.
+values-b+in	string	downloads_empty_body	-	Unduhan yang Anda mulai dari daftar episode judul muncul di sini dan dapat diputar tanpa koneksi.
+values-b+in	string	downloads_empty_headline	-	Belum ada unduhan
+values-b+in	string	downloads_free_up_space	-	Kosongkan ruang
+values-b+in	string	downloads_load_failed_body	-	File unduhan Anda tidak berubah.
+values-b+in	string	downloads_load_failed_headline	-	Tidak dapat membaca unduhan Anda
+values-b+in	string	downloads_offline_pill	-	Luring · tidak ada koneksi
+values-b+in	string	downloads_play_from_link	-	Putar dari tautan
+values-b+in	string	downloads_select	-	Pilih
+values-b+in	string	downloads_storage_full_headline	-	Penyimpanan tidak cukup
+values-b+in	string	downloads_storage_legend	-	%1$s dari %2$s terpakai · %3$s di unduhan
+values-b+in	string	downloads_storage_needs	-	Perlu %s lagi
 values-b+in	string	duplicate_add	-	Tambahkan
 values-b+in	string	duplicate_cancel	-	Batalkan
 values-b+in	string	duplicate_message_multiple	-	Item duplikat potensial telah ditemukan di pustaka Anda: \n \n%s \n \nApakah Anda tetap ingin menambahkan item ini, mengganti item yang sudah ada, atau membatalkan tindakan?
@@ -16400,8 +16739,20 @@ values-b+it	string	download_time_left_sec_format	-	%1$ds
 values-b+it	string	downloaded	-	Scaricato
 values-b+it	string	downloaded_file	-	File scaricato
 values-b+it	string	downloading	-	Download in corso
+values-b+it	string	downloads_browse_library	-	Sfoglia libreria
 values-b+it	string	downloads_delete_select	-	Seleziona elementi da eliminare
 values-b+it	string	downloads_empty	-	Al momento non ci sono download.
+values-b+it	string	downloads_empty_body	-	I download avviati dall'elenco degli episodi di un titolo appaiono qui e si riproducono senza connessione.
+values-b+it	string	downloads_empty_headline	-	Ancora nessun download
+values-b+it	string	downloads_free_up_space	-	Libera spazio
+values-b+it	string	downloads_load_failed_body	-	I file scaricati non sono stati modificati.
+values-b+it	string	downloads_load_failed_headline	-	Impossibile leggere i download
+values-b+it	string	downloads_offline_pill	-	Offline · nessuna connessione
+values-b+it	string	downloads_play_from_link	-	Riproduci da link
+values-b+it	string	downloads_select	-	Seleziona
+values-b+it	string	downloads_storage_full_headline	-	Spazio di archiviazione insufficiente
+values-b+it	string	downloads_storage_legend	-	%1$s di %2$s usati · %3$s nei download
+values-b+it	string	downloads_storage_needs	-	Servono altri %s
 values-b+it	string	duplicate_add	-	Aggiungi
 values-b+it	string	duplicate_cancel	-	Annulla
 values-b+it	string	duplicate_message_multiple	-	Dei possibili duplicati sono stati trovati nella tua libreria: \n \n%s \n \nVorresti aggiungere l'oggetto alla libreria comunque, rimpiazzare l'esistente, o cancellare l'azione?
@@ -17142,8 +17493,20 @@ values-b+iw	string	download_time_left_sec_format	-	%1$d שניות
 values-b+iw	string	downloaded	-	הורד
 values-b+iw	string	downloaded_file	-	קובץ שהורד
 values-b+iw	string	downloading	-	מוריד
+values-b+iw	string	downloads_browse_library	-	עיון בספריה
 values-b+iw	string	downloads_delete_select	-	בחר פריטים למחוק
 values-b+iw	string	downloads_empty	-	אין הורדות כרגע.
+values-b+iw	string	downloads_empty_body	-	הורדות שתתחיל מרשימת הפרקים של כותר יופיעו כאן ויופעלו ללא חיבור.
+values-b+iw	string	downloads_empty_headline	-	אין עדיין הורדות
+values-b+iw	string	downloads_free_up_space	-	פינוי מקום
+values-b+iw	string	downloads_load_failed_body	-	הקבצים שהורדת לא שונו.
+values-b+iw	string	downloads_load_failed_headline	-	לא ניתן לקרוא את ההורדות שלך
+values-b+iw	string	downloads_offline_pill	-	אופליין · אין חיבור
+values-b+iw	string	downloads_play_from_link	-	הפעל מקישור
+values-b+iw	string	downloads_select	-	בחר
+values-b+iw	string	downloads_storage_full_headline	-	אין מספיק אחסון
+values-b+iw	string	downloads_storage_legend	-	%1$s מתוך %2$s בשימוש · %3$s בהורדות
+values-b+iw	string	downloads_storage_needs	-	נדרשים עוד %s
 values-b+iw	string	duplicate_cancel	-	בטל
 values-b+iw	string	duration	-	משך זמן
 values-b+iw	string	duration_format	-	%d דקות
@@ -17813,8 +18176,20 @@ values-b+ja	string	download_time_left_sec_format	-	%1$d秒
 values-b+ja	string	downloaded	-	ダウンロード済
 values-b+ja	string	downloaded_file	-	ダウンロードしたファイル
 values-b+ja	string	downloading	-	ダウンロード中
+values-b+ja	string	downloads_browse_library	-	ライブラリを見る
 values-b+ja	string	downloads_delete_select	-	削除する項目を選択
 values-b+ja	string	downloads_empty	-	現在ダウンロードはがありません。
+values-b+ja	string	downloads_empty_body	-	作品のエピソード一覧から開始したダウンロードはここに表示され、接続なしで再生できます。
+values-b+ja	string	downloads_empty_headline	-	ダウンロードはまだありません
+values-b+ja	string	downloads_free_up_space	-	空き容量を増やす
+values-b+ja	string	downloads_load_failed_body	-	ダウンロード済みのファイルは変更されていません。
+values-b+ja	string	downloads_load_failed_headline	-	ダウンロードを読み込めませんでした
+values-b+ja	string	downloads_offline_pill	-	オフライン · 接続なし
+values-b+ja	string	downloads_play_from_link	-	リンクから再生
+values-b+ja	string	downloads_select	-	選択
+values-b+ja	string	downloads_storage_full_headline	-	ストレージの空き容量が足りません
+values-b+ja	string	downloads_storage_legend	-	%1$s / %2$s 使用 · ダウンロード %3$s
+values-b+ja	string	downloads_storage_needs	-	あと %s 必要
 values-b+ja	string	duplicate_add	-	追加
 values-b+ja	string	duplicate_cancel	-	キャンセル
 values-b+ja	string	duplicate_message_multiple	-	ライブラリに潜在的な重複アイテムが見つかりました: \n\n%s \n\nこのアイテムを追加しますか、既存のものを置き換えますか、それともアクションをキャンセルしますか？
@@ -18447,6 +18822,18 @@ values-b+kn	string	download_started	-	ಡೌನ್‌ಲೋಡ್ ಪ್ರಾ�
 values-b+kn	string	download_storage_text	-	ಇಂಟರ್ನಲ್ ಸ್ಟೋರೇಜ್
 values-b+kn	string	downloaded	-	ಡೌನ್‌ಲೋಡ್ ಮಾಡಲಾಗಿದೆ
 values-b+kn	string	downloading	-	ಡೌನ್‌ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ
+values-b+kn	string	downloads_browse_library	-	ಲೈಬ್ರರಿ ಬ್ರೌಸ್ ಮಾಡಿ
+values-b+kn	string	downloads_empty_body	-	ಶೀರ್ಷಿಕೆಯ ಸಂಚಿಕೆ ಪಟ್ಟಿಯಿಂದ ನೀವು ಪ್ರಾರಂಭಿಸುವ ಡೌನ್‌ಲೋಡ್‌ಗಳು ಇಲ್ಲಿ ಕಾಣಿಸುತ್ತವೆ ಮತ್ತು ಸಂಪರ್ಕವಿಲ್ಲದೆ ಪ್ಲೇ ಆಗುತ್ತವೆ.
+values-b+kn	string	downloads_empty_headline	-	ಇನ್ನೂ ಡೌನ್‌ಲೋಡ್‌ಗಳಿಲ್ಲ
+values-b+kn	string	downloads_free_up_space	-	ಸ್ಥಳವನ್ನು ಖಾಲಿ ಮಾಡಿ
+values-b+kn	string	downloads_load_failed_body	-	ನಿಮ್ಮ ಡೌನ್‌ಲೋಡ್ ಮಾಡಿದ ಫೈಲ್‌ಗಳನ್ನು ಬದಲಾಯಿಸಲಾಗಿಲ್ಲ.
+values-b+kn	string	downloads_load_failed_headline	-	ನಿಮ್ಮ ಡೌನ್‌ಲೋಡ್‌ಗಳನ್ನು ಓದಲಾಗಲಿಲ್ಲ
+values-b+kn	string	downloads_offline_pill	-	ಆಫ್‌ಲೈನ್ · ಸಂಪರ್ಕವಿಲ್ಲ
+values-b+kn	string	downloads_play_from_link	-	ಲಿಂಕ್‌ನಿಂದ ಪ್ಲೇ ಮಾಡಿ
+values-b+kn	string	downloads_select	-	ಆಯ್ಕೆಮಾಡಿ
+values-b+kn	string	downloads_storage_full_headline	-	ಸಾಕಷ್ಟು ಸ್ಟೋರೇಜ್ ಇಲ್ಲ
+values-b+kn	string	downloads_storage_legend	-	%1$s / %2$s ಬಳಸಲಾಗಿದೆ · ಡೌನ್‌ಲೋಡ್‌ಗಳಲ್ಲಿ %3$s
+values-b+kn	string	downloads_storage_needs	-	ಇನ್ನೂ %s ಬೇಕು
 values-b+kn	string	duration_format	-	%dಮಿನ
 values-b+kn	string	episode_more_options_des	-	ಹೆಚ್ಚಿನ ಆಯ್ಕೆ
 values-b+kn	string	episode_play_img_des	-	ಸಂಚಿಕೆಯನ್ನು ಪ್ಲೇ ಮಾಡಿ
@@ -18799,8 +19186,20 @@ values-b+ko	string	download_time_left_sec_format	-	%1$d초
 values-b+ko	string	downloaded	-	다운로드됨
 values-b+ko	string	downloaded_file	-	다운로드한 파일
 values-b+ko	string	downloading	-	다운로드중
+values-b+ko	string	downloads_browse_library	-	라이브러리 둘러보기
 values-b+ko	string	downloads_delete_select	-	삭제할 항목을 선택하십시오
 values-b+ko	string	downloads_empty	-	현재 다운로드가 없습니다.
+values-b+ko	string	downloads_empty_body	-	작품의 에피소드 목록에서 시작한 다운로드가 여기에 표시되며 연결 없이 재생됩니다.
+values-b+ko	string	downloads_empty_headline	-	아직 다운로드가 없습니다
+values-b+ko	string	downloads_free_up_space	-	공간 확보
+values-b+ko	string	downloads_load_failed_body	-	다운로드한 파일은 변경되지 않았습니다.
+values-b+ko	string	downloads_load_failed_headline	-	다운로드를 읽을 수 없습니다
+values-b+ko	string	downloads_offline_pill	-	오프라인 · 연결 없음
+values-b+ko	string	downloads_play_from_link	-	링크에서 재생
+values-b+ko	string	downloads_select	-	선택
+values-b+ko	string	downloads_storage_full_headline	-	저장공간 부족
+values-b+ko	string	downloads_storage_legend	-	%1$s / %2$s 사용됨 · 다운로드 %3$s
+values-b+ko	string	downloads_storage_needs	-	%s 더 필요
 values-b+ko	string	duplicate_add	-	추가
 values-b+ko	string	duplicate_cancel	-	취소
 values-b+ko	string	duplicate_message_multiple	-	당신의 라이브러리에 잠재적으로 중복된 항목이 발견되었습니다: \n \n%s \n \n이 항목을 그래도 추가하시겠습니까, 기존 항목을 교체하시겠습니까, 아니면 작업을 취소하시겠습니까?
@@ -19466,8 +19865,20 @@ values-b+lt	string	download_started	-	Siuntimas pradėtas
 values-b+lt	string	download_storage_text	-	Vidinė atmintis
 values-b+lt	string	downloaded	-	Atsisiųsta
 values-b+lt	string	downloading	-	Siunčiama
+values-b+lt	string	downloads_browse_library	-	Naršyti biblioteką
 values-b+lt	string	downloads_delete_select	-	Pasirinkite elementus, kuriuos norite pašalinti
 values-b+lt	string	downloads_empty	-	Šiuo metu atsisiuntimų nėra.
+values-b+lt	string	downloads_empty_body	-	Atsisiuntimai, pradėti iš pavadinimo epizodų sąrašo, rodomi čia ir paleidžiami be ryšio.
+values-b+lt	string	downloads_empty_headline	-	Atsisiuntimų dar nėra
+values-b+lt	string	downloads_free_up_space	-	Atlaisvinti vietos
+values-b+lt	string	downloads_load_failed_body	-	Jūsų atsisiųsti failai nebuvo pakeisti.
+values-b+lt	string	downloads_load_failed_headline	-	Nepavyko nuskaityti atsisiuntimų
+values-b+lt	string	downloads_offline_pill	-	Neprisijungus · nėra ryšio
+values-b+lt	string	downloads_play_from_link	-	Paleisti iš nuorodos
+values-b+lt	string	downloads_select	-	Pasirinkti
+values-b+lt	string	downloads_storage_full_headline	-	Nepakanka atminties
+values-b+lt	string	downloads_storage_legend	-	Naudojama %1$s iš %2$s · %3$s atsisiuntimuose
+values-b+lt	string	downloads_storage_needs	-	Reikia dar %s
 values-b+lt	string	duplicate_cancel	-	Atšaukti
 values-b+lt	string	duration_format	-	%d min
 values-b+lt	string	edit	-	Redaguoti
@@ -19913,8 +20324,20 @@ values-b+lv	string	download_time_left_sec_format	-	%1$dsek.
 values-b+lv	string	downloaded	-	Ieladēts
 values-b+lv	string	downloaded_file	-	Lejupielādēta datne
 values-b+lv	string	downloading	-	Lādējas
+values-b+lv	string	downloads_browse_library	-	Pārlūkot bibliotēku
 values-b+lv	string	downloads_delete_select	-	Atlasiet vienumus, ko dzēst
 values-b+lv	string	downloads_empty	-	Pašlaik nav pieejama neviena lejupielāde.
+values-b+lv	string	downloads_empty_body	-	Lejupielādes, kuras sākat no nosaukuma epizožu saraksta, tiek rādītas šeit un atskaņojamas bez savienojuma.
+values-b+lv	string	downloads_empty_headline	-	Vēl nav lejupielāžu
+values-b+lv	string	downloads_free_up_space	-	Atbrīvot vietu
+values-b+lv	string	downloads_load_failed_body	-	Jūsu lejupielādētie faili nav mainīti.
+values-b+lv	string	downloads_load_failed_headline	-	Neizdevās nolasīt lejupielādes
+values-b+lv	string	downloads_offline_pill	-	Bezsaistē · nav savienojuma
+values-b+lv	string	downloads_play_from_link	-	Atskaņot no saites
+values-b+lv	string	downloads_select	-	Atlasīt
+values-b+lv	string	downloads_storage_full_headline	-	Nepietiek atmiņas
+values-b+lv	string	downloads_storage_legend	-	Izmantoti %1$s no %2$s · %3$s lejupielādēs
+values-b+lv	string	downloads_storage_needs	-	Nepieciešami vēl %s
 values-b+lv	string	duplicate_add	-	Pievienot
 values-b+lv	string	duplicate_cancel	-	Atcelt
 values-b+lv	string	duplicate_replace	-	Aizstāt
@@ -20637,8 +21060,20 @@ values-b+mk	string	download_time_left_sec_format	-	%1$dс
 values-b+mk	string	downloaded	-	Преземено
 values-b+mk	string	downloaded_file	-	Преземена датотека
 values-b+mk	string	downloading	-	Преземање
+values-b+mk	string	downloads_browse_library	-	Прелистај библиотека
 values-b+mk	string	downloads_delete_select	-	Одбери ставки за бришење
 values-b+mk	string	downloads_empty	-	Во моментов нема преземања.
+values-b+mk	string	downloads_empty_body	-	Преземањата што ќе ги започнете од списокот со епизоди на насловот се појавуваат тука и се пуштаат без врска.
+values-b+mk	string	downloads_empty_headline	-	Сè уште нема преземања
+values-b+mk	string	downloads_free_up_space	-	Ослободи простор
+values-b+mk	string	downloads_load_failed_body	-	Вашите преземени датотеки не се променети.
+values-b+mk	string	downloads_load_failed_headline	-	Не може да се прочитаат вашите преземања
+values-b+mk	string	downloads_offline_pill	-	Офлајн · нема врска
+values-b+mk	string	downloads_play_from_link	-	Пушти од врска
+values-b+mk	string	downloads_select	-	Одбери
+values-b+mk	string	downloads_storage_full_headline	-	Нема доволно меморија
+values-b+mk	string	downloads_storage_legend	-	Искористени %1$s од %2$s · %3$s во преземања
+values-b+mk	string	downloads_storage_needs	-	Потребни се уште %s
 values-b+mk	string	duplicate_add	-	Додади
 values-b+mk	string	duplicate_cancel	-	Откажи
 values-b+mk	string	duplicate_message_multiple	-	Пронајдени се потенцијални дупликатни ставки во твојата библиотека:\n\n%s\n\nДали сакаш да ја додадеш оваа ставка, да ги замениш постојните или да ја откажеш акцијата?
@@ -21309,8 +21744,20 @@ values-b+ml	string	download_time_left_min_sec_format	-	%1$dm %2$ds
 values-b+ml	string	download_time_left_sec_format	-	%1$ds
 values-b+ml	string	downloaded	-	ഡൌൺലോഡ് ചെയ്തവ
 values-b+ml	string	downloading	-	ഡൌൺലോഡ് ചെയ്യുന്നു
+values-b+ml	string	downloads_browse_library	-	ലൈബ്രറി ബ്രൗസ് ചെയ്യുക
 values-b+ml	string	downloads_delete_select	-	ഡിലീറ്റ് ചെയ്യേണ്ടവ തിരഞ്ഞെടുക്കുക
 values-b+ml	string	downloads_empty	-	നിലവിൽ ഡൗൺലോഡുകൾ ഒന്നും തന്നെയില്ല.
+values-b+ml	string	downloads_empty_body	-	ഒരു ശീർഷകത്തിന്റെ എപ്പിസോഡ് ലിസ്റ്റിൽ നിന്ന് ആരംഭിക്കുന്ന ഡൗൺലോഡുകൾ ഇവിടെ കാണാം, കണക്ഷനില്ലാതെ പ്ലേ ചെയ്യാം.
+values-b+ml	string	downloads_empty_headline	-	ഇതുവരെ ഡൗൺലോഡുകളൊന്നുമില്ല
+values-b+ml	string	downloads_free_up_space	-	ഇടം ഒഴിവാക്കുക
+values-b+ml	string	downloads_load_failed_body	-	നിങ്ങൾ ഡൗൺലോഡ് ചെയ്ത ഫയലുകൾ മാറ്റിയിട്ടില്ല.
+values-b+ml	string	downloads_load_failed_headline	-	നിങ്ങളുടെ ഡൗൺലോഡുകൾ വായിക്കാനായില്ല
+values-b+ml	string	downloads_offline_pill	-	ഓഫ്‌ലൈൻ · കണക്ഷനില്ല
+values-b+ml	string	downloads_play_from_link	-	ലിങ്കിൽ നിന്ന് പ്ലേ ചെയ്യുക
+values-b+ml	string	downloads_select	-	തിരഞ്ഞെടുക്കുക
+values-b+ml	string	downloads_storage_full_headline	-	ആവശ്യത്തിന് സ്റ്റോറേജില്ല
+values-b+ml	string	downloads_storage_legend	-	%1$s / %2$s ഉപയോഗത്തിൽ · ഡൗൺലോഡുകളിൽ %3$s
+values-b+ml	string	downloads_storage_needs	-	%s കൂടി വേണം
 values-b+ml	string	duplicate_cancel	-	റദ്ദാക്കുക
 values-b+ml	string	duration	-	ദൈര്ഘം
 values-b+ml	string	duration_format	-	%d മിനിറ്റ്
@@ -21735,8 +22182,20 @@ values-b+ms	string	download_time_left_sec_format	-	%1$ds
 values-b+ms	string	downloaded	-	Dimuat turun
 values-b+ms	string	downloaded_file	-	Fail dimuat turun
 values-b+ms	string	downloading	-	Memuat turun
+values-b+ms	string	downloads_browse_library	-	Layari perpustakaan
 values-b+ms	string	downloads_delete_select	-	Pilih benda untuk dibuang
 values-b+ms	string	downloads_empty	-	Tiada yang dimuat turun.
+values-b+ms	string	downloads_empty_body	-	Muat turun yang anda mulakan daripada senarai episod tajuk muncul di sini dan dipasang tanpa sambungan.
+values-b+ms	string	downloads_empty_headline	-	Belum ada muat turun
+values-b+ms	string	downloads_free_up_space	-	Kosongkan ruang
+values-b+ms	string	downloads_load_failed_body	-	Fail muat turun anda tidak diubah.
+values-b+ms	string	downloads_load_failed_headline	-	Tidak dapat membaca muat turun anda
+values-b+ms	string	downloads_offline_pill	-	Luar talian · tiada sambungan
+values-b+ms	string	downloads_play_from_link	-	Pasang dari pautan
+values-b+ms	string	downloads_select	-	Pilih
+values-b+ms	string	downloads_storage_full_headline	-	Storan tidak mencukupi
+values-b+ms	string	downloads_storage_legend	-	%1$s daripada %2$s diguna · %3$s dalam muat turun
+values-b+ms	string	downloads_storage_needs	-	Perlu %s lagi
 values-b+ms	string	duplicate_add	-	Tambah
 values-b+ms	string	duplicate_cancel	-	Batal
 values-b+ms	string	duplicate_replace	-	Tukar
@@ -22209,6 +22668,18 @@ values-b+mt	string	download_started	-	Beda t-tniżżil
 values-b+mt	string	download_storage_text	-	Ħażna Interna
 values-b+mt	string	downloaded	-	Imniżżel
 values-b+mt	string	downloading	-	Qed jinżlu
+values-b+mt	string	downloads_browse_library	-	Esplora l-librerija
+values-b+mt	string	downloads_empty_body	-	It-tniżżil li tibda mil-lista tal-episodji ta' titlu jidher hawn u jindaqq mingħajr konnessjoni.
+values-b+mt	string	downloads_empty_headline	-	Għad m'hemmx tniżżil
+values-b+mt	string	downloads_free_up_space	-	Ħeles l-ispazju
+values-b+mt	string	downloads_load_failed_body	-	Il-fajls imniżżla tiegħek ma nbidlux.
+values-b+mt	string	downloads_load_failed_headline	-	Ma setax jinqara t-tniżżil tiegħek
+values-b+mt	string	downloads_offline_pill	-	Offline · l-ebda konnessjoni
+values-b+mt	string	downloads_play_from_link	-	Indaqq minn ħolqa
+values-b+mt	string	downloads_select	-	Agħżel
+values-b+mt	string	downloads_storage_full_headline	-	M'hemmx biżżejjed ħażna
+values-b+mt	string	downloads_storage_legend	-	%1$s minn %2$s użati · %3$s fit-tniżżil
+values-b+mt	string	downloads_storage_needs	-	Hemm bżonn %s oħra
 values-b+mt	string	duration_format	-	%d min
 values-b+mt	string	episode_more_options_des	-	Iktar Preferenzi
 values-b+mt	string	episode_play_img_des	-	Ibda l-episodju
@@ -22493,6 +22964,18 @@ values-b+my	string	download_storage_text	-	ဖုန်း သိုလှော
 values-b+my	string	downloaded	-	ဒေါင်းလုဒ် လုပ်ပြီး
 values-b+my	string	downloaded_file	-	ဖိုင်ဒေါင်းလုဒ်လုပ်ပြီး
 values-b+my	string	downloading	-	ဒေါင်းလုဒ် လုပ်နေသည်
+values-b+my	string	downloads_browse_library	-	လိုက်ဘရီကို ကြည့်ရှုရန်
+values-b+my	string	downloads_empty_body	-	ခေါင်းစဉ်တစ်ခု၏ အပိုင်းစာရင်းမှ စတင်သော ဒေါင်းလုဒ်များသည် ဤနေရာတွင် ပေါ်လာပြီး အင်တာနက်မလိုဘဲ ဖွင့်နိုင်သည်။
+values-b+my	string	downloads_empty_headline	-	ဒေါင်းလုဒ် မရှိသေးပါ
+values-b+my	string	downloads_free_up_space	-	နေရာလွတ်ယူရန်
+values-b+my	string	downloads_load_failed_body	-	ဒေါင်းလုဒ်လုပ်ထားသော ဖိုင်များကို မပြောင်းလဲထားပါ။
+values-b+my	string	downloads_load_failed_headline	-	ဒေါင်းလုဒ်များကို ဖတ်၍မရပါ
+values-b+my	string	downloads_offline_pill	-	အော့ဖ်လိုင်း · ချိတ်ဆက်မှုမရှိပါ
+values-b+my	string	downloads_play_from_link	-	လင့်ခ်မှ ဖွင့်ရန်
+values-b+my	string	downloads_select	-	ရွေးချယ်ရန်
+values-b+my	string	downloads_storage_full_headline	-	သိုလှောင်ရုံ မလုံလောက်ပါ
+values-b+my	string	downloads_storage_legend	-	%1$s / %2$s အသုံးပြုပြီး · ဒေါင်းလုဒ်တွင် %3$s
+values-b+my	string	downloads_storage_needs	-	%s ထပ်လိုအပ်သည်
 values-b+my	string	duplicate_cancel	-	ပယ်ဖျက်ရန်
 values-b+my	string	duration	-	ကြာချိန်
 values-b+my	string	duration_format	-	%d မိနစ်
@@ -22977,6 +23460,18 @@ values-b+ne	string	download_started	-	डाउनलोड सुरु भय�
 values-b+ne	string	download_storage_text	-	भित्री स्टोरेज
 values-b+ne	string	downloaded	-	डाउनलोड भयो
 values-b+ne	string	downloading	-	डाउनलोड हुदैछ
+values-b+ne	string	downloads_browse_library	-	लाइब्रेरी हेर्नुहोस्
+values-b+ne	string	downloads_empty_body	-	शीर्षकको एपिसोड सूचीबाट सुरु गरिएका डाउनलोडहरू यहाँ देखिन्छन् र जडान बिना प्ले हुन्छन्।
+values-b+ne	string	downloads_empty_headline	-	अहिलेसम्म कुनै डाउनलोड छैन
+values-b+ne	string	downloads_free_up_space	-	ठाउँ खाली गर्नुहोस्
+values-b+ne	string	downloads_load_failed_body	-	तपाईंका डाउनलोड गरिएका फाइलहरू परिवर्तन गरिएका छैनन्।
+values-b+ne	string	downloads_load_failed_headline	-	तपाईंका डाउनलोडहरू पढ्न सकिएन
+values-b+ne	string	downloads_offline_pill	-	अफलाइन · जडान छैन
+values-b+ne	string	downloads_play_from_link	-	लिङ्कबाट प्ले गर्नुहोस्
+values-b+ne	string	downloads_select	-	चयन गर्नुहोस्
+values-b+ne	string	downloads_storage_full_headline	-	पर्याप्त स्टोरेज छैन
+values-b+ne	string	downloads_storage_legend	-	%1$s / %2$s प्रयोग भयो · डाउनलोडमा %3$s
+values-b+ne	string	downloads_storage_needs	-	थप %s चाहिन्छ
 values-b+ne	string	duration_format	-	%d मिनेट
 values-b+ne	string	episode_more_options_des	-	थप विकल्पहरू
 values-b+ne	string	episode_play_img_des	-	एपिसोड प्ले गर्नुहोस्
@@ -23314,8 +23809,20 @@ values-b+nl	string	download_time_left_sec_format	-	%1$d s
 values-b+nl	string	downloaded	-	Gedownload
 values-b+nl	string	downloaded_file	-	Gedownload bestand
 values-b+nl	string	downloading	-	Downloaden
+values-b+nl	string	downloads_browse_library	-	Bibliotheek bekijken
 values-b+nl	string	downloads_delete_select	-	Selecteer items om te verwijderen
 values-b+nl	string	downloads_empty	-	Er zijn momenteel geen downloads beschikbaar.
+values-b+nl	string	downloads_empty_body	-	Downloads die je start vanuit de afleveringenlijst van een titel verschijnen hier en spelen af zonder verbinding.
+values-b+nl	string	downloads_empty_headline	-	Nog geen downloads
+values-b+nl	string	downloads_free_up_space	-	Ruimte vrijmaken
+values-b+nl	string	downloads_load_failed_body	-	Je gedownloade bestanden zijn niet gewijzigd.
+values-b+nl	string	downloads_load_failed_headline	-	Kon je downloads niet lezen
+values-b+nl	string	downloads_offline_pill	-	Offline · geen verbinding
+values-b+nl	string	downloads_play_from_link	-	Afspelen vanaf link
+values-b+nl	string	downloads_select	-	Selecteren
+values-b+nl	string	downloads_storage_full_headline	-	Niet genoeg opslag
+values-b+nl	string	downloads_storage_legend	-	%1$s van %2$s gebruikt · %3$s in downloads
+values-b+nl	string	downloads_storage_needs	-	Nog %s nodig
 values-b+nl	string	duplicate_add	-	Toevoegen
 values-b+nl	string	duplicate_cancel	-	annuleer
 values-b+nl	string	duplicate_message_multiple	-	Er zijn mogelijk dubbele items gevonden in uw bibliotheek: \n \n%s \n \nWilt u dit item toch toevoegen, de bestaande vervangen of de actie annuleren?
@@ -23934,6 +24441,18 @@ values-b+nn	string	download_started	-	Nedlasting starta
 values-b+nn	string	download_storage_text	-	Internlagring
 values-b+nn	string	downloaded	-	Lasta ned
 values-b+nn	string	downloading	-	Nedlasting pågår
+values-b+nn	string	downloads_browse_library	-	Bla i biblioteket
+values-b+nn	string	downloads_empty_body	-	Nedlastingar du startar frå episodelista til ein tittel, blir viste her og kan spelast av utan tilkopling.
+values-b+nn	string	downloads_empty_headline	-	Ingen nedlastingar enno
+values-b+nn	string	downloads_free_up_space	-	Frigjer plass
+values-b+nn	string	downloads_load_failed_body	-	Dei nedlasta filene dine er ikkje endra.
+values-b+nn	string	downloads_load_failed_headline	-	Kunne ikkje lese nedlastingane dine
+values-b+nn	string	downloads_offline_pill	-	Fråkopla · inga tilkopling
+values-b+nn	string	downloads_play_from_link	-	Spel av frå lenkje
+values-b+nn	string	downloads_select	-	Vel
+values-b+nn	string	downloads_storage_full_headline	-	Ikkje nok lagringsplass
+values-b+nn	string	downloads_storage_legend	-	%1$s av %2$s brukt · %3$s i nedlastingar
+values-b+nn	string	downloads_storage_needs	-	Treng %s til
 values-b+nn	string	duplicate_cancel	-	Avbryt
 values-b+nn	string	duration	-	Varigheit
 values-b+nn	string	duration_format	-	%d minutt
@@ -24276,6 +24795,18 @@ values-b+no	string	download_storage_text	-	Intern lagring
 values-b+no	string	downloaded	-	Lastet ned
 values-b+no	string	downloaded_file	-	Nedlastet fil
 values-b+no	string	downloading	-	Nedlasting pågår
+values-b+no	string	downloads_browse_library	-	Bla i biblioteket
+values-b+no	string	downloads_empty_body	-	Nedlastinger du starter fra episodelisten til en tittel, vises her og kan spilles av uten tilkobling.
+values-b+no	string	downloads_empty_headline	-	Ingen nedlastinger ennå
+values-b+no	string	downloads_free_up_space	-	Frigjør plass
+values-b+no	string	downloads_load_failed_body	-	De nedlastede filene dine er ikke endret.
+values-b+no	string	downloads_load_failed_headline	-	Kunne ikke lese nedlastingene dine
+values-b+no	string	downloads_offline_pill	-	Frakoblet · ingen tilkobling
+values-b+no	string	downloads_play_from_link	-	Spill av fra lenke
+values-b+no	string	downloads_select	-	Velg
+values-b+no	string	downloads_storage_full_headline	-	Ikke nok lagringsplass
+values-b+no	string	downloads_storage_legend	-	%1$s av %2$s brukt · %3$s i nedlastinger
+values-b+no	string	downloads_storage_needs	-	Trenger %s til
 values-b+no	string	duplicate_cancel	-	Avbryt
 values-b+no	string	duration	-	Varighet
 values-b+no	string	duration_format	-	%d min
@@ -24764,6 +25295,18 @@ values-b+or	string	documentaries_singular	-	ଵୃତ୍ତଚିତ୍ର
 values-b+or	string	dont_show_again	-	ପୁନଃ ଦେଖାଅନି
 values-b+or	string	download_storage_text	-	ଅନ୍ତଃ-ଷ୍ଟୋରେଜ୍
 values-b+or	string	download_time_left_hour_min_sec_format	-	%1$dଘଣ୍ଟା %2$dମିନିଟ୍ %3$dସେକେଣ୍ଡ
+values-b+or	string	downloads_browse_library	-	ଲାଇବ୍ରେରୀ ବ୍ରାଉଜ୍ କର
+values-b+or	string	downloads_empty_body	-	ଶୀର୍ଷକର ଏପିସୋଡ୍ ତାଲିକାରୁ ଆରମ୍ଭ କରାଯାଇଥିବା ଡାଉନଲୋଡ୍ ଏଠାରେ ଦେଖାଯାଏ ଏବଂ ସଂଯୋଗ ବିନା ଚାଲେ।
+values-b+or	string	downloads_empty_headline	-	ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ଡାଉନଲୋଡ୍ ନାହିଁ
+values-b+or	string	downloads_free_up_space	-	ସ୍ଥାନ ଖାଲି କର
+values-b+or	string	downloads_load_failed_body	-	ଆପଣଙ୍କ ଡାଉନଲୋଡ୍ ହୋଇଥିବା ଫାଇଲଗୁଡ଼ିକ ବଦଳାଯାଇନାହିଁ।
+values-b+or	string	downloads_load_failed_headline	-	ଆପଣଙ୍କ ଡାଉନଲୋଡ୍ ପଢ଼ିହେଲା ନାହିଁ
+values-b+or	string	downloads_offline_pill	-	ଅଫଲାଇନ୍ · ସଂଯୋଗ ନାହିଁ
+values-b+or	string	downloads_play_from_link	-	ଲିଙ୍କରୁ ଚଲାଅ
+values-b+or	string	downloads_select	-	ବାଛ
+values-b+or	string	downloads_storage_full_headline	-	ପର୍ଯ୍ୟାପ୍ତ ଷ୍ଟୋରେଜ୍ ନାହିଁ
+values-b+or	string	downloads_storage_legend	-	%1$s / %2$s ଵ୍ୟଵହୃତ · ଡାଉନଲୋଡରେ %3$s
+values-b+or	string	downloads_storage_needs	-	ଆଉ %s ଦରକାର
 values-b+or	string	duration	-	ଅଵଧି
 values-b+or	string	duration_format	-	%d ମିନିଟ୍
 values-b+or	string	episode	-	ଅଧ୍ୟାୟ
@@ -25155,8 +25698,20 @@ values-b+pl	string	download_time_left_sec_format	-	%1$ds
 values-b+pl	string	downloaded	-	Pobrane
 values-b+pl	string	downloaded_file	-	Pobrano plik
 values-b+pl	string	downloading	-	Pobieranie
+values-b+pl	string	downloads_browse_library	-	Przeglądaj bibliotekę
 values-b+pl	string	downloads_delete_select	-	Zaznacz elementy do usunięcia
 values-b+pl	string	downloads_empty	-	Obecnie nie ma żadnych pobrań.
+values-b+pl	string	downloads_empty_body	-	Pobrania rozpoczęte z listy odcinków tytułu pojawiają się tutaj i można je odtwarzać bez połączenia.
+values-b+pl	string	downloads_empty_headline	-	Nie ma jeszcze pobranych
+values-b+pl	string	downloads_free_up_space	-	Zwolnij miejsce
+values-b+pl	string	downloads_load_failed_body	-	Pobrane pliki nie zostały zmienione.
+values-b+pl	string	downloads_load_failed_headline	-	Nie udało się odczytać pobranych
+values-b+pl	string	downloads_offline_pill	-	Offline · brak połączenia
+values-b+pl	string	downloads_play_from_link	-	Odtwórz z linku
+values-b+pl	string	downloads_select	-	Zaznacz
+values-b+pl	string	downloads_storage_full_headline	-	Za mało pamięci
+values-b+pl	string	downloads_storage_legend	-	Użyto %1$s z %2$s · %3$s w pobranych
+values-b+pl	string	downloads_storage_needs	-	Potrzeba jeszcze %s
 values-b+pl	string	duplicate_add	-	Dodaj
 values-b+pl	string	duplicate_cancel	-	Anuluj
 values-b+pl	string	duplicate_message_multiple	-	W swojej bibliotece znaleziono potencjalne duplikaty: \n \n%s \n \nCzy chcesz dodać ten element, zastąpić istniejące, czy anulować operację?
@@ -25964,8 +26519,20 @@ values-b+pt	string	download_time_left_sec_format	-	%1$ds
 values-b+pt	string	downloaded	-	Baixado
 values-b+pt	string	downloaded_file	-	Arquivo baixado
 values-b+pt	string	downloading	-	Baixando
+values-b+pt	string	downloads_browse_library	-	Explorar biblioteca
 values-b+pt	string	downloads_delete_select	-	Selecionar Items para Eliminar
 values-b+pt	string	downloads_empty	-	Não existem downloads disponíveis.
+values-b+pt	string	downloads_empty_body	-	Os downloads iniciados na lista de episódios de um título aparecem aqui e são reproduzidos sem ligação.
+values-b+pt	string	downloads_empty_headline	-	Ainda não existem downloads
+values-b+pt	string	downloads_free_up_space	-	Libertar espaço
+values-b+pt	string	downloads_load_failed_body	-	Os seus ficheiros transferidos não foram alterados.
+values-b+pt	string	downloads_load_failed_headline	-	Não foi possível ler os seus downloads
+values-b+pt	string	downloads_offline_pill	-	Offline · sem ligação
+values-b+pt	string	downloads_play_from_link	-	Reproduzir a partir de ligação
+values-b+pt	string	downloads_select	-	Selecionar
+values-b+pt	string	downloads_storage_full_headline	-	Armazenamento insuficiente
+values-b+pt	string	downloads_storage_legend	-	%1$s de %2$s usados · %3$s em downloads
+values-b+pt	string	downloads_storage_needs	-	Faltam %s
 values-b+pt	string	duplicate_add	-	Adicionar
 values-b+pt	string	duplicate_cancel	-	Cancelar
 values-b+pt	string	duplicate_message_multiple	-	Potenciais itens duplicados foram encontrados na sua biblioteca: \n \n%s \n \nDeseja adicionar esse item mesmo assim, subtituir os existentes, ou cancelar a ação?
@@ -26769,8 +27336,20 @@ values-b+pt+BR	string	download_time_left_sec_format	-	%1$d s
 values-b+pt+BR	string	downloaded	-	Baixado
 values-b+pt+BR	string	downloaded_file	-	Arquivo baixado
 values-b+pt+BR	string	downloading	-	Baixando
+values-b+pt+BR	string	downloads_browse_library	-	Explorar biblioteca
 values-b+pt+BR	string	downloads_delete_select	-	Selecionar itens para excluir
 values-b+pt+BR	string	downloads_empty	-	Atualmente não há downloads disponíveis.
+values-b+pt+BR	string	downloads_empty_body	-	Os downloads iniciados na lista de episódios de um título aparecem aqui e são reproduzidos sem conexão.
+values-b+pt+BR	string	downloads_empty_headline	-	Ainda não há downloads
+values-b+pt+BR	string	downloads_free_up_space	-	Liberar espaço
+values-b+pt+BR	string	downloads_load_failed_body	-	Seus arquivos baixados não foram alterados.
+values-b+pt+BR	string	downloads_load_failed_headline	-	Não foi possível ler seus downloads
+values-b+pt+BR	string	downloads_offline_pill	-	Offline · sem conexão
+values-b+pt+BR	string	downloads_play_from_link	-	Reproduzir de link
+values-b+pt+BR	string	downloads_select	-	Selecionar
+values-b+pt+BR	string	downloads_storage_full_headline	-	Armazenamento insuficiente
+values-b+pt+BR	string	downloads_storage_legend	-	%1$s de %2$s usados · %3$s em downloads
+values-b+pt+BR	string	downloads_storage_needs	-	Faltam %s
 values-b+pt+BR	string	duplicate_add	-	Adicionar
 values-b+pt+BR	string	duplicate_message_multiple	-	Possíveis itens duplicados foram encontrados em sua biblioteca: \n \n %s \n \nGostaria de adicionar este item mesmo assim, substituir os existentes ou cancelar a ação?
 values-b+pt+BR	string	duplicate_message_single	-	Parece que já existe um item potencialmente duplicado na sua biblioteca: '%s.' \n \nGostaria de adicionar este item mesmo assim, substituir o existente ou cancelar a ação?
@@ -27538,8 +28117,20 @@ values-b+qt	string	download_storage_text	-	aauugghhahahhah
 values-b+qt	string	downloaded	-	ooo-ahahaaaghh
 values-b+qt	string	downloaded_file	-	aaaagggaah aagg
 values-b+qt	string	downloading	-	oohahaaoouuh
+values-b+qt	string	downloads_browse_library	-	ooh uuuuuuuh
 values-b+qt	string	downloads_delete_select	-	eeeeek uuuhh oh aaaagg
 values-b+qt	string	downloads_empty	-	uuuhh aah uuuugggog ug aaaagggog
+values-b+qt	string	downloads_empty_body	-	uuuhh aah uuuugggog ug aaaagggog aaaagggoh ooh uuuugggh uuuuhhh.
+values-b+qt	string	downloads_empty_headline	-	uuuhh aauuhah
+values-b+qt	string	downloads_free_up_space	-	ooo-ahahaaaaa oh
+values-b+qt	string	downloads_load_failed_body	-	ouuhhuhooh ooh uuh ahooo.
+values-b+qt	string	downloads_load_failed_headline	-	ahooo uuhh ouuhhuhooh ooh
+values-b+qt	string	downloads_offline_pill	-	aaaagggoh ooh · uuuhh
+values-b+qt	string	downloads_play_from_link	-	aaaaa uuuuhhh
+values-b+qt	string	downloads_select	-	uuuugg
+values-b+qt	string	downloads_storage_full_headline	-	uuuhh aauugghhahahhah
+values-b+qt	string	downloads_storage_legend	-	%1$s oh %2$s ahhahhh · %3$s ouuhhuhooh
+values-b+qt	string	downloads_storage_needs	-	aah %s oh
 values-b+qt	string	duplicate_add	-	oog
 values-b+qt	string	duplicate_cancel	-	oooohh
 values-b+qt	string	duplicate_message_multiple	-	uuuuggguk uuuuhhhoh uuugg aahh aaak uuugg ag oohh library: \n \n%s \n \nWould aag aagg og uuk uugg oogg anyway, aaaahhh ooh uuuugggh ones, ek uuuuhh aah action?
@@ -28226,8 +28817,20 @@ values-b+ro	string	download_time_left_sec_format	-	%1$ds
 values-b+ro	string	downloaded	-	Descărcat
 values-b+ro	string	downloaded_file	-	Fișier descărcat
 values-b+ro	string	downloading	-	Se descarcă
+values-b+ro	string	downloads_browse_library	-	Răsfoiește biblioteca
 values-b+ro	string	downloads_delete_select	-	Selectionati elementele de sters
 values-b+ro	string	downloads_empty	-	Nu există descărcări.
+values-b+ro	string	downloads_empty_body	-	Descărcările pornite din lista de episoade a unui titlu apar aici și pot fi redate fără conexiune.
+values-b+ro	string	downloads_empty_headline	-	Încă nu există descărcări
+values-b+ro	string	downloads_free_up_space	-	Eliberează spațiu
+values-b+ro	string	downloads_load_failed_body	-	Fișierele descărcate nu au fost modificate.
+values-b+ro	string	downloads_load_failed_headline	-	Descărcările nu au putut fi citite
+values-b+ro	string	downloads_offline_pill	-	Offline · fără conexiune
+values-b+ro	string	downloads_play_from_link	-	Redă de la link
+values-b+ro	string	downloads_select	-	Selectează
+values-b+ro	string	downloads_storage_full_headline	-	Stocare insuficientă
+values-b+ro	string	downloads_storage_legend	-	%1$s din %2$s folosiți · %3$s în descărcări
+values-b+ro	string	downloads_storage_needs	-	Mai sunt necesari %s
 values-b+ro	string	duplicate_add	-	Adaugă
 values-b+ro	string	duplicate_cancel	-	Anulează
 values-b+ro	string	duplicate_message_multiple	-	Elemente potențial duplicate au fost găsite în biblioteca ta: \n \n%s \n \nÎn ciuda acestui fapt, ai dori să adaugi acest alement, să le înlocuiești pe cele existente, sau să anulezi acțiunea?
@@ -28957,8 +29560,20 @@ values-b+ru	string	download_time_left_sec_format	-	%1$dс
 values-b+ru	string	downloaded	-	Скачано
 values-b+ru	string	downloaded_file	-	Скачано файл
 values-b+ru	string	downloading	-	Скачивание
+values-b+ru	string	downloads_browse_library	-	Открыть библиотеку
 values-b+ru	string	downloads_delete_select	-	Выберите элементы для удаления
 values-b+ru	string	downloads_empty	-	В данный момент скачиваний нет.
+values-b+ru	string	downloads_empty_body	-	Скачивания, начатые из списка серий, появляются здесь и воспроизводятся без сети.
+values-b+ru	string	downloads_empty_headline	-	Скачанного пока нет
+values-b+ru	string	downloads_free_up_space	-	Освободить место
+values-b+ru	string	downloads_load_failed_body	-	Ваши скачанные файлы не изменены.
+values-b+ru	string	downloads_load_failed_headline	-	Не удалось прочитать скачанное
+values-b+ru	string	downloads_offline_pill	-	Без сети · нет соединения
+values-b+ru	string	downloads_play_from_link	-	Смотреть по ссылке
+values-b+ru	string	downloads_select	-	Выбрать
+values-b+ru	string	downloads_storage_full_headline	-	Недостаточно памяти
+values-b+ru	string	downloads_storage_legend	-	Использовано %1$s из %2$s · %3$s в скачанном
+values-b+ru	string	downloads_storage_needs	-	Нужно ещё %s
 values-b+ru	string	duplicate_add	-	Добавить
 values-b+ru	string	duplicate_cancel	-	Отмена
 values-b+ru	string	duplicate_message_multiple	-	В вашей библиотеке есть возможно повторяющиеся элементы: \n \n'%s.' \n \nХотите ли вы всё равно добавить этот элемент в библиотеку, заменить уже существующий или отменить действие?
@@ -29693,8 +30308,20 @@ values-b+sk	string	download_time_left_sec_format	-	%1$ds
 values-b+sk	string	downloaded	-	Stiahnuté
 values-b+sk	string	downloaded_file	-	Stiahnutý súbor
 values-b+sk	string	downloading	-	Sťahovanie
+values-b+sk	string	downloads_browse_library	-	Prehľadávať knižnicu
 values-b+sk	string	downloads_delete_select	-	Vyberte položky na odstránenie
 values-b+sk	string	downloads_empty	-	Momentálne nie sú žiadne stiahnutia.
+values-b+sk	string	downloads_empty_body	-	Sťahovania spustené zo zoznamu epizód titulu sa zobrazia tu a prehrajú sa bez pripojenia.
+values-b+sk	string	downloads_empty_headline	-	Zatiaľ žiadne stiahnutia
+values-b+sk	string	downloads_free_up_space	-	Uvoľniť miesto
+values-b+sk	string	downloads_load_failed_body	-	Vaše stiahnuté súbory neboli zmenené.
+values-b+sk	string	downloads_load_failed_headline	-	Stiahnutia sa nepodarilo načítať
+values-b+sk	string	downloads_offline_pill	-	Offline · bez pripojenia
+values-b+sk	string	downloads_play_from_link	-	Prehrať z odkazu
+values-b+sk	string	downloads_select	-	Vybrať
+values-b+sk	string	downloads_storage_full_headline	-	Nedostatok úložiska
+values-b+sk	string	downloads_storage_legend	-	Využité %1$s z %2$s · %3$s v stiahnutiach
+values-b+sk	string	downloads_storage_needs	-	Treba ešte %s
 values-b+sk	string	duplicate_cancel	-	Zrušiť
 values-b+sk	string	duration	-	Trvanie
 values-b+sk	string	duration_format	-	%d min
@@ -30234,8 +30861,20 @@ values-b+so	string	download_time_left_sec_format	-	%1$dilb
 values-b+so	string	downloaded	-	La degtay
 values-b+so	string	downloaded_file	-	Waa ka dejiyey faylka
 values-b+so	string	downloading	-	Soo degaya
+values-b+so	string	downloads_browse_library	-	Baadh kaydka
 values-b+so	string	downloads_delete_select	-	Dooro waxyaabaha aad tirayso
 values-b+so	string	downloads_empty	-	Ma jiro muuqaal aad soo degsatay.
+values-b+so	string	downloads_empty_body	-	Soo dejinta aad ka bilowdo liiska qaybaha cinwaanka halkan ayay ka muuqdaan oo waxay shaqeeyaan khad la'aan.
+values-b+so	string	downloads_empty_headline	-	Weli ma jiraan soo dejin
+values-b+so	string	downloads_free_up_space	-	Bannee meel
+values-b+so	string	downloads_load_failed_body	-	Faylasha aad soo dejisay lama beddelin.
+values-b+so	string	downloads_load_failed_headline	-	Lama akhrin karo soo dejintaada
+values-b+so	string	downloads_offline_pill	-	Khad la'aan · ma jiro isku xir
+values-b+so	string	downloads_play_from_link	-	Ka daar xiriir
+values-b+so	string	downloads_select	-	Dooro
+values-b+so	string	downloads_storage_full_headline	-	Kayd ku filan ma jiro
+values-b+so	string	downloads_storage_legend	-	%1$s oo ka mid ah %2$s ayaa la isticmaalay · %3$s soo dejinta
+values-b+so	string	downloads_storage_needs	-	Waxaa loo baahan yahay %s dheeraad ah
 values-b+so	string	duplicate_cancel	-	Jooji
 values-b+so	string	duration	-	Muddada
 values-b+so	string	eigengraumode_settings	-	Xawaaraha muuqaalka
@@ -30874,8 +31513,20 @@ values-b+sq	string	download_time_left_sec_format	-	%1$ds
 values-b+sq	string	downloaded	-	U shkarkua
 values-b+sq	string	downloaded_file	-	Skedar i shkarkuar
 values-b+sq	string	downloading	-	Duke u shkarkuar
+values-b+sq	string	downloads_browse_library	-	Shfleto bibliotekën
 values-b+sq	string	downloads_delete_select	-	Zgjidhni artikuj për të fshirë
 values-b+sq	string	downloads_empty	-	Momentalisht nuk ka shkarkime.
+values-b+sq	string	downloads_empty_body	-	Shkarkimet që nis nga lista e episodeve të një titulli shfaqen këtu dhe luhen pa lidhje.
+values-b+sq	string	downloads_empty_headline	-	Ende nuk ka shkarkime
+values-b+sq	string	downloads_free_up_space	-	Liro hapësirë
+values-b+sq	string	downloads_load_failed_body	-	Skedarët e shkarkuar nuk janë ndryshuar.
+values-b+sq	string	downloads_load_failed_headline	-	Shkarkimet nuk mund të lexoheshin
+values-b+sq	string	downloads_offline_pill	-	Offline · pa lidhje
+values-b+sq	string	downloads_play_from_link	-	Luaj nga lidhja
+values-b+sq	string	downloads_select	-	Zgjidh
+values-b+sq	string	downloads_storage_full_headline	-	Memorie e pamjaftueshme
+values-b+sq	string	downloads_storage_legend	-	%1$s nga %2$s të përdorura · %3$s në shkarkime
+values-b+sq	string	downloads_storage_needs	-	Nevojiten edhe %s
 values-b+sq	string	duplicate_add	-	Shto
 values-b+sq	string	duplicate_cancel	-	Anulo
 values-b+sq	string	duplicate_message_multiple	-	Janë gjetur artikuj të mundshëm të dyfishtë në bibliotekën tuaj:\n\n%s\n\nDëshironi ta shtoni gjithsesi, të zëvendësoni ato ekzistuesit, apo të anuloni veprimin?
@@ -31679,8 +32330,20 @@ values-b+sv	string	download_time_left_sec_format	-	%1$ds
 values-b+sv	string	downloaded	-	Nerladdad
 values-b+sv	string	downloaded_file	-	Nedladdad fil
 values-b+sv	string	downloading	-	Laddar ner
+values-b+sv	string	downloads_browse_library	-	Bläddra i biblioteket
 values-b+sv	string	downloads_delete_select	-	Välj objekt att ta bort
 values-b+sv	string	downloads_empty	-	Det finns för närvarande inga nedladdningar.
+values-b+sv	string	downloads_empty_body	-	Nerladdningar du startar från en titels avsnittslista visas här och spelas upp utan anslutning.
+values-b+sv	string	downloads_empty_headline	-	Inga nerladdningar ännu
+values-b+sv	string	downloads_free_up_space	-	Frigör utrymme
+values-b+sv	string	downloads_load_failed_body	-	Dina nerladdade filer har inte ändrats.
+values-b+sv	string	downloads_load_failed_headline	-	Kunde inte läsa dina nerladdningar
+values-b+sv	string	downloads_offline_pill	-	Offline · ingen anslutning
+values-b+sv	string	downloads_play_from_link	-	Spela upp från länk
+values-b+sv	string	downloads_select	-	Välj
+values-b+sv	string	downloads_storage_full_headline	-	Inte tillräckligt med lagring
+values-b+sv	string	downloads_storage_legend	-	%1$s av %2$s använt · %3$s i nerladdningar
+values-b+sv	string	downloads_storage_needs	-	Behöver %s till
 values-b+sv	string	duplicate_add	-	Lägg till
 values-b+sv	string	duplicate_cancel	-	Avbryt
 values-b+sv	string	duplicate_message_multiple	-	Det verkar som om ett potentiellt duplicerat objekt redan finns i ditt bibliotek: \n \n'%s.' \n \nVill du lägga till det här objektet ändå, ersätta det befintliga eller avbryta åtgärden?
@@ -32484,8 +33147,20 @@ values-b+ta	string	download_time_left_sec_format	-	%1$d விநாடி
 values-b+ta	string	downloaded	-	பதிவிறக்கப்பட்டது
 values-b+ta	string	downloaded_file	-	பதிவிறக்கம் செய்யப்பட்ட கோப்பு
 values-b+ta	string	downloading	-	பதிவிறக்குகிறது
+values-b+ta	string	downloads_browse_library	-	நூலகத்தை உலாவு
 values-b+ta	string	downloads_delete_select	-	அழிப்பதற்கு தேர்ந்தெடுக்கவும்
 values-b+ta	string	downloads_empty	-	தற்போது பதிவிறக்கங்கள் எதுவும் இல்லை.
+values-b+ta	string	downloads_empty_body	-	தலைப்பின் எபிசோட் பட்டியலிலிருந்து நீங்கள் தொடங்கும் பதிவிறக்கங்கள் இங்கே தோன்றும், இணைப்பு இல்லாமல் இயங்கும்.
+values-b+ta	string	downloads_empty_headline	-	இன்னும் பதிவிறக்கங்கள் இல்லை
+values-b+ta	string	downloads_free_up_space	-	இடத்தை விடுவி
+values-b+ta	string	downloads_load_failed_body	-	நீங்கள் பதிவிறக்கிய கோப்புகள் மாற்றப்படவில்லை.
+values-b+ta	string	downloads_load_failed_headline	-	உங்கள் பதிவிறக்கங்களைப் படிக்க முடியவில்லை
+values-b+ta	string	downloads_offline_pill	-	ஆஃப்லைன் · இணைப்பு இல்லை
+values-b+ta	string	downloads_play_from_link	-	இணைப்பிலிருந்து இயக்கு
+values-b+ta	string	downloads_select	-	தேர்ந்தெடு
+values-b+ta	string	downloads_storage_full_headline	-	போதுமான சேமிப்பகம் இல்லை
+values-b+ta	string	downloads_storage_legend	-	%1$s / %2$s பயன்படுத்தப்பட்டது · பதிவிறக்கங்களில் %3$s
+values-b+ta	string	downloads_storage_needs	-	மேலும் %s தேவை
 values-b+ta	string	duplicate_add	-	கூட்டு
 values-b+ta	string	duplicate_cancel	-	ரத்துசெய்
 values-b+ta	string	duplicate_message_multiple	-	உங்கள் நூலகத்தில் சாத்தியமான நகல் உருப்படிகள் கண்டறியப்பட்டுள்ளன:\n\n %s\n\n இந்த உருப்படியை எப்படியும் சேர்க்க விரும்புகிறீர்களா, ஏற்கனவே உள்ளவற்றை மாற்ற விரும்புகிறீர்களா அல்லது செயலை ரத்து செய்ய விரும்புகிறீர்களா?
@@ -33091,6 +33766,18 @@ values-b+ti	string	app_dub_sub_episode_text_format	-	%1$s ክፋል %2$d
 values-b+ti	string	cast_format	-	ተዋሳእቲ፡ %s
 values-b+ti	string	detail_load_failed_body	-	ምንጪ ኣይርከብ ይኸውን።
 values-b+ti	string	detail_load_failed_headline	-	እዚ ኣርእስቲ ክኽፈት ኣይከኣለን
+values-b+ti	string	downloads_browse_library	-	ቤተ-መጻሕፍቲ ድለ
+values-b+ti	string	downloads_empty_body	-	ካብ ዝርዝር ክፋላት ናይ ሓደ ኣርእስቲ እትጅምሮም ውርዳት ኣብዚ ይርአዩ፣ ብዘይ መራኸቢ ድማ ይጻወቱ።
+values-b+ti	string	downloads_empty_headline	-	ክሳብ ሕጂ ውርዳት የለዉን
+values-b+ti	string	downloads_free_up_space	-	ቦታ ኣናጽፍ
+values-b+ti	string	downloads_load_failed_body	-	ዝወረዱ ፋይላትካ ኣይተቐየሩን።
+values-b+ti	string	downloads_load_failed_headline	-	ውርዳትካ ክንበብ ኣይከኣለን
+values-b+ti	string	downloads_offline_pill	-	ካብ መስመር ወጻኢ · መራኸቢ የለን
+values-b+ti	string	downloads_play_from_link	-	ካብ መላግቦ ተጻወት
+values-b+ti	string	downloads_select	-	ምረጽ
+values-b+ti	string	downloads_storage_full_headline	-	እኹል መኽዘን የለን
+values-b+ti	string	downloads_storage_legend	-	%1$s ካብ %2$s ተጠቒሙ · %3$s ኣብ ውርዳት
+values-b+ti	string	downloads_storage_needs	-	ተወሳኺ %s የድሊ
 values-b+ti	string	extension_allow	-	ፍቀድ
 values-b+ti	string	extension_decision_not_saved	-	ምርጫኻ ክዕቀብ ኣይከኣለን፡ ስለዚ እዚ መስፋሕፋሕ ጠፊኡ ይጸንሕ። እንደገና ክትሕተት ኢኻ።
 values-b+ti	string	extension_decisions_unreadable	-	ዝተዓቀበ ምርጫታትካ ክንበብ ኣይከኣለን፡ ስለዚ ኣይተወሰደን። መጠንቀቕታ ዘለዎም መስፋሕፋሕቲ ክሳብ እንደገና እትመርጽ ጠፊኦም ይጸንሑ።
@@ -33235,8 +33922,20 @@ values-b+tl	string	download_storage_text	-	Internal Storage
 values-b+tl	string	download_time_left_hour_min_sec_format	-	%1$do %2$dm %3$ds
 values-b+tl	string	downloaded	-	Downloaded
 values-b+tl	string	downloading	-	Downloading
+values-b+tl	string	downloads_browse_library	-	I-browse ang library
 values-b+tl	string	downloads_delete_select	-	Piliin ang Mga Item na Tatanggalin
 values-b+tl	string	downloads_empty	-	Kasalukuyang walang mga dina-download.
+values-b+tl	string	downloads_empty_body	-	Lalabas dito ang mga download na sinimulan mo mula sa listahan ng episode ng isang pamagat at mapapanood nang walang koneksyon.
+values-b+tl	string	downloads_empty_headline	-	Wala pang mga download
+values-b+tl	string	downloads_free_up_space	-	Magbakante ng espasyo
+values-b+tl	string	downloads_load_failed_body	-	Hindi nabago ang mga na-download mong file.
+values-b+tl	string	downloads_load_failed_headline	-	Hindi mabasa ang iyong mga download
+values-b+tl	string	downloads_offline_pill	-	Offline · walang koneksyon
+values-b+tl	string	downloads_play_from_link	-	I-play mula sa link
+values-b+tl	string	downloads_select	-	Piliin
+values-b+tl	string	downloads_storage_full_headline	-	Kulang ang storage
+values-b+tl	string	downloads_storage_legend	-	%1$s ng %2$s ang gamit · %3$s sa mga download
+values-b+tl	string	downloads_storage_needs	-	Kailangan ng %s pa
 values-b+tl	string	duplicate_cancel	-	Kanselahin
 values-b+tl	string	duplicate_message_multiple	-	May nakitang potensyal na mga nag-doble na mga items sa iyong library: \n\n%s \n\nGusto mo pa rin bang idagdag ang item na ito, palitan ang mga nauna na, o kanselahin ito?
 values-b+tl	string	duplicate_message_single	-	Lumalabas na mayroong potensyal na nag-doble na item sa iyong library: '%s.' \n\nGusto mo pa rin bang idagdag ang item na ito, palitan ang nauna, o kanselahin ito?
@@ -33714,8 +34413,20 @@ values-b+tr	string	download_time_left_sec_format	-	%1$dsn
 values-b+tr	string	downloaded	-	İndirildi
 values-b+tr	string	downloaded_file	-	İndirilen dosya
 values-b+tr	string	downloading	-	İndiriliyor
+values-b+tr	string	downloads_browse_library	-	Kütüphaneye göz at
 values-b+tr	string	downloads_delete_select	-	Silinecek Öğeleri Seçin
 values-b+tr	string	downloads_empty	-	Şu an hiç bir indirme bulunmamaktadır.
+values-b+tr	string	downloads_empty_body	-	Bir başlığın bölüm listesinden başlattığınız indirmeler burada görünür ve bağlantı olmadan oynatılır.
+values-b+tr	string	downloads_empty_headline	-	Henüz indirme yok
+values-b+tr	string	downloads_free_up_space	-	Yer aç
+values-b+tr	string	downloads_load_failed_body	-	İndirilen dosyalarınız değiştirilmedi.
+values-b+tr	string	downloads_load_failed_headline	-	İndirmeleriniz okunamadı
+values-b+tr	string	downloads_offline_pill	-	Çevrimdışı · bağlantı yok
+values-b+tr	string	downloads_play_from_link	-	Bağlantıdan oynat
+values-b+tr	string	downloads_select	-	Seç
+values-b+tr	string	downloads_storage_full_headline	-	Yeterli depolama yok
+values-b+tr	string	downloads_storage_legend	-	%1$s / %2$s kullanıldı · İndirilenlerde %3$s
+values-b+tr	string	downloads_storage_needs	-	%s daha gerekli
 values-b+tr	string	duplicate_add	-	Ekle
 values-b+tr	string	duplicate_cancel	-	İptal
 values-b+tr	string	duplicate_message_multiple	-	Kütüphanenizde potensiyel kopya ürünler bulundu: \n \n%s \n \nYine de ekleyerek var olanları değiştirmek mi istersiniz, yoksa iptal etmek mi?
@@ -34527,8 +35238,20 @@ values-b+uk	string	download_time_left_sec_format	-	%1$d с
 values-b+uk	string	downloaded	-	Завантажено
 values-b+uk	string	downloaded_file	-	Завантажений файл
 values-b+uk	string	downloading	-	Завантаження
+values-b+uk	string	downloads_browse_library	-	Переглянути бібліотеку
 values-b+uk	string	downloads_delete_select	-	Оберіть елементи для видалення
 values-b+uk	string	downloads_empty	-	Наразі завантажень немає.
+values-b+uk	string	downloads_empty_body	-	Завантаження, розпочаті зі списку серій, з'являються тут і відтворюються без мережі.
+values-b+uk	string	downloads_empty_headline	-	Завантажень ще немає
+values-b+uk	string	downloads_free_up_space	-	Звільнити місце
+values-b+uk	string	downloads_load_failed_body	-	Ваші завантажені файли не змінено.
+values-b+uk	string	downloads_load_failed_headline	-	Не вдалося прочитати завантаження
+values-b+uk	string	downloads_offline_pill	-	Поза мережею · немає з'єднання
+values-b+uk	string	downloads_play_from_link	-	Відтворити за посиланням
+values-b+uk	string	downloads_select	-	Обрати
+values-b+uk	string	downloads_storage_full_headline	-	Недостатньо пам'яті
+values-b+uk	string	downloads_storage_legend	-	Зайнято %1$s із %2$s · %3$s у завантаженнях
+values-b+uk	string	downloads_storage_needs	-	Потрібно ще %s
 values-b+uk	string	duplicate_add	-	Додати
 values-b+uk	string	duplicate_cancel	-	Скасувати
 values-b+uk	string	duplicate_message_multiple	-	У вашій бібліотеці виявлено можливі дублікати:\n\n%s\n\nУсе одно хочете додати цей елемент, замінити наявні чи скасувати дію?
@@ -35288,8 +36011,20 @@ values-b+ur	string	download_storage_text	-	انٹرنل سٹوریج
 values-b+ur	string	downloaded	-	ڈاؤن لوڈ کردہ ویڈیوز
 values-b+ur	string	downloaded_file	-	ڈاؤن لوڈڈ فائل
 values-b+ur	string	downloading	-	ڈاؤن لوڈ ہو رہا ہے
+values-b+ur	string	downloads_browse_library	-	لائبریری براؤز کریں
 values-b+ur	string	downloads_delete_select	-	ڈیلیٹ کرنے کے لئے چیزیں چنیں
 values-b+ur	string	downloads_empty	-	فی الحال کوئی ڈاونلوڈ نہیں۔
+values-b+ur	string	downloads_empty_body	-	کسی عنوان کی اقساط کی فہرست سے شروع کیے گئے ڈاؤن لوڈ یہاں نظر آتے ہیں اور کنکشن کے بغیر چلتے ہیں۔
+values-b+ur	string	downloads_empty_headline	-	ابھی تک کوئی ڈاؤن لوڈ نہیں
+values-b+ur	string	downloads_free_up_space	-	جگہ خالی کریں
+values-b+ur	string	downloads_load_failed_body	-	آپ کی ڈاؤن لوڈ کردہ فائلیں تبدیل نہیں ہوئیں۔
+values-b+ur	string	downloads_load_failed_headline	-	آپ کے ڈاؤن لوڈ پڑھے نہیں جا سکے
+values-b+ur	string	downloads_offline_pill	-	آف لائن · کوئی کنکشن نہیں
+values-b+ur	string	downloads_play_from_link	-	لنک سے چلائیں
+values-b+ur	string	downloads_select	-	چنیں
+values-b+ur	string	downloads_storage_full_headline	-	کافی سٹوریج نہیں
+values-b+ur	string	downloads_storage_legend	-	%1$s از %2$s استعمال شُدہ · ڈاؤن لوڈ میں %3$s
+values-b+ur	string	downloads_storage_needs	-	مزید %s درکار
 values-b+ur	string	duplicate_add	-	جمع کریں
 values-b+ur	string	duplicate_cancel	-	منسوخ کریں
 values-b+ur	string	duplicate_message_multiple	-	آپ کی لائبریری میں ممکنہ ڈپلیکیٹ آئٹمز مل گئے ہیں: \n \n%s \n \nکیا آپ بہرحال اس آئٹم کو شامل کرنا چاہیں گے، موجودہ کو تبدیل کرنا چاہیں گے، یا کارروائی کو منسوخ کریں گے؟
@@ -35995,8 +36730,20 @@ values-b+vi	string	download_time_left_sec_format	-	%1$d giây
 values-b+vi	string	downloaded	-	Đã tải xuống
 values-b+vi	string	downloaded_file	-	Tệp đã tải xuống
 values-b+vi	string	downloading	-	Đang tải xuống
+values-b+vi	string	downloads_browse_library	-	Duyệt thư viện
 values-b+vi	string	downloads_delete_select	-	Chọn mục để xoá
 values-b+vi	string	downloads_empty	-	Không có tải xuống nào.
+values-b+vi	string	downloads_empty_body	-	Các mục tải xuống bạn bắt đầu từ danh sách tập của một tựa sẽ xuất hiện ở đây và phát được khi không có kết nối.
+values-b+vi	string	downloads_empty_headline	-	Chưa có tải xuống nào
+values-b+vi	string	downloads_free_up_space	-	Giải phóng dung lượng
+values-b+vi	string	downloads_load_failed_body	-	Các tệp đã tải xuống của bạn không bị thay đổi.
+values-b+vi	string	downloads_load_failed_headline	-	Không thể đọc các tải xuống của bạn
+values-b+vi	string	downloads_offline_pill	-	Ngoại tuyến · không có kết nối
+values-b+vi	string	downloads_play_from_link	-	Phát từ liên kết
+values-b+vi	string	downloads_select	-	Chọn
+values-b+vi	string	downloads_storage_full_headline	-	Không đủ bộ nhớ
+values-b+vi	string	downloads_storage_legend	-	Đã dùng %1$s trên %2$s · %3$s cho tải xuống
+values-b+vi	string	downloads_storage_needs	-	Cần thêm %s
 values-b+vi	string	duplicate_add	-	Thêm vào
 values-b+vi	string	duplicate_cancel	-	Hủy bỏ
 values-b+vi	string	duplicate_message_multiple	-	Các mục có thể trùng lặp đã được tìm thấy trong thư viện của bạn: \n \n%s \n \nBạn vẫn muốn thêm mục này, thay thế những mục hiện có hay hủy hành động?
@@ -36796,8 +37543,20 @@ values-b+zh	string	download_time_left_sec_format	-	%1$d秒
 values-b+zh	string	downloaded	-	已下载
 values-b+zh	string	downloaded_file	-	下载的文件
 values-b+zh	string	downloading	-	下载中
+values-b+zh	string	downloads_browse_library	-	浏览库
 values-b+zh	string	downloads_delete_select	-	选择要删除的项
 values-b+zh	string	downloads_empty	-	目前尚无下载。
+values-b+zh	string	downloads_empty_body	-	从内容的剧集列表开始的下载会显示在这里，无需连接即可播放。
+values-b+zh	string	downloads_empty_headline	-	尚无下载
+values-b+zh	string	downloads_free_up_space	-	释放空间
+values-b+zh	string	downloads_load_failed_body	-	你已下载的文件未被更改。
+values-b+zh	string	downloads_load_failed_headline	-	无法读取你的下载
+values-b+zh	string	downloads_offline_pill	-	脱机 · 无连接
+values-b+zh	string	downloads_play_from_link	-	从链接播放
+values-b+zh	string	downloads_select	-	选择
+values-b+zh	string	downloads_storage_full_headline	-	存储空间不足
+values-b+zh	string	downloads_storage_legend	-	已使用 %1$s / %2$s · 下载占用 %3$s
+values-b+zh	string	downloads_storage_needs	-	还需要 %s
 values-b+zh	string	duplicate_add	-	添加
 values-b+zh	string	duplicate_cancel	-	取消
 values-b+zh	string	duplicate_message_multiple	-	在您的资料库中发现了潜在的重复项目： \n \n%s \n \n您想添加此项目、替换现有项目还是取消操作？
@@ -37595,8 +38354,20 @@ values-b+zh+TW	string	download_time_left_sec_format	-	%1$d秒
 values-b+zh+TW	string	downloaded	-	已下載
 values-b+zh+TW	string	downloaded_file	-	下載的檔案
 values-b+zh+TW	string	downloading	-	下載中
+values-b+zh+TW	string	downloads_browse_library	-	瀏覽媒體庫
 values-b+zh+TW	string	downloads_delete_select	-	選擇要刪除的項目
 values-b+zh+TW	string	downloads_empty	-	目前沒有任何下載。
+values-b+zh+TW	string	downloads_empty_body	-	從內容的集數清單開始的下載會顯示在這裡，無需連線即可播放。
+values-b+zh+TW	string	downloads_empty_headline	-	尚無下載
+values-b+zh+TW	string	downloads_free_up_space	-	釋放空間
+values-b+zh+TW	string	downloads_load_failed_body	-	你已下載的檔案未變更。
+values-b+zh+TW	string	downloads_load_failed_headline	-	無法讀取你的下載
+values-b+zh+TW	string	downloads_offline_pill	-	離線 · 無連線
+values-b+zh+TW	string	downloads_play_from_link	-	從連結播放
+values-b+zh+TW	string	downloads_select	-	選取
+values-b+zh+TW	string	downloads_storage_full_headline	-	儲存空間不足
+values-b+zh+TW	string	downloads_storage_legend	-	已使用 %1$s / %2$s · 下載佔用 %3$s
+values-b+zh+TW	string	downloads_storage_needs	-	還需要 %s
 values-b+zh+TW	string	duplicate_add	-	加入
 values-b+zh+TW	string	duplicate_message_multiple	-	您的媒體庫中似乎有多個重覆的項目： \n \n%s \n \n您要強制加入、取代已有項目、還是取消操作？
 values-b+zh+TW	string	duplicate_message_single	-	您的媒體庫中似乎有重覆的項目：「%s」。 \n \n您要強制加入、取代已有項目、還是取消操作？
