@@ -324,8 +324,15 @@ private fun reason(failure: DownloadFailure): String? = when (failure) {
     is DownloadFailure.StorageFull -> stringResource(Res.string.downloads_reason_storage_full)
     DownloadFailure.StorageUnavailable -> stringResource(Res.string.downloads_reason_storage_unavailable)
     DownloadFailure.NoUsableLink -> stringResource(Res.string.downloads_reason_no_link)
-    DownloadFailure.SourceFailed -> stringResource(Res.string.downloads_reason_source)
-    DownloadFailure.Unknown -> null
+    is DownloadFailure.InsufficientSpace -> stringResource(Res.string.downloads_reason_storage_full)
+    DownloadFailure.SourceFailed,
+    is DownloadFailure.ServerRefused,
+    DownloadFailure.AddressRefused,
+    DownloadFailure.SourceChanged,
+    is DownloadFailure.SizeMismatch,
+    DownloadFailure.HashMismatch,
+    -> stringResource(Res.string.downloads_reason_source)
+    DownloadFailure.Unknown, DownloadFailure.DestinationExists -> null
 }
 
 /** The old notification's own formats. */
