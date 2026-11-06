@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
+import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.designsystem.state.StateAction
 import com.lagradost.cloudstream4.core.designsystem.state.StatePrompt
 import com.lagradost.cloudstream4.core.designsystem.state.UiState
@@ -95,7 +96,7 @@ private fun titlePrompt(retry: () -> Unit) =
 private fun prompt(headline: StringResource, body: StringResource, retry: () -> Unit) = StatePrompt(
     headline = stringResource(headline),
     body = stringResource(body),
-    action = StateAction(stringResource(Res.string.search_state_retry), retry),
+    action = StateAction(stringResource(Res.string.search_state_retry), CloudStreamIcons.Retry, retry),
 )
 
 /** A provider's type name as words. Null for one with no copy, which then shows nothing. */
