@@ -4,6 +4,7 @@
 <string name="detail_load_failed_body">Mənbə əlçatmaz ola bilər.</string>
 <string name="detail_load_failed_headline">Bu başlıq açıla bilmədi</string>
 <plurals name="downloads_failed_count"><item quantity="one">%d uğursuz</item><item quantity="other">%d uğursuz</item></plurals>
+<plurals name="home_bookmarks_count"><item quantity="one">%d ƏLFƏCİN</item><item quantity="other">%d ƏLFƏCİN</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d bölmə yüklənmədi</item><item quantity="other">%d bölmə yüklənmədi</item></plurals>
 <string name="advanced_search">Təkmilləşdirilmiş Axtarış</string>
 <string name="anime">Anime-lər</string>
@@ -114,9 +115,13 @@
 <string name="go_back_30">-30</string>
 <string name="go_back_img_des">Geri get</string>
 <string name="go_forward_30">+30</string>
+<string name="home_bookmarks_no_status_body">Həmin əlfəcinləri görmək üçün yuxarıdan birini seçin.</string>
+<string name="home_bookmarks_no_status_headline">Status seçilməyib</string>
 <string name="home_change_provider_img_des">Provayderi dəyişdir</string>
 <string name="home_main_poster_img_des">Əsas Afişa</string>
 <string name="home_next_random_img_des">Sonrakı Təsadüfi</string>
+<string name="home_offline_bookmarks_body">Əlfəcinləriniz bu cihazda saxlanılıb.</string>
+<string name="home_offline_source_headline">%1$s bağlantı tələb edir</string>
 <string name="home_search_only_body">Uzantılarınızın heç birində ana səhifə yoxdur, amma yenə də onlarda axtarış edə bilərsiniz.</string>
 <string name="kitsu_settings">Kitsu afişalarını, posterlərini göstər</string>
 <string name="library">Kitabxana</string>

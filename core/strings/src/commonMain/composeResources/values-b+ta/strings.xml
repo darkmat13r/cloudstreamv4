@@ -6,6 +6,7 @@
 <plurals name="downloads_active"><item quantity="one">%d செயலில் பதிவிறக்கம்</item><item quantity="other">%d செயலில் உள்ள பதிவிறக்கங்கள்</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d தோல்வி</item><item quantity="other">%d தோல்வி</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d பதிவிறக்கம் வரிசையில் உள்ளது</item><item quantity="other">%d பதிவிறக்கங்கள் வரிசையில் உள்ளன</item></plurals>
+<plurals name="home_bookmarks_count"><item quantity="one">%d புக்மார்க்</item><item quantity="other">%d புக்மார்க்குகள்</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d பிரிவை ஏற்ற முடியவில்லை</item><item quantity="other">%d பிரிவுகளை ஏற்ற முடியவில்லை</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d மறைக்கப்பட்ட இணைப்பு</item><item quantity="other">%d மறைக்கப்பட்ட இணைப்புகள்</item></plurals>
 <string name="account">கணக்கு</string>
@@ -341,12 +342,16 @@
 <string name="hide_player_control_names">வீரரின் கட்டுப்பாடுகளின் பெயர்களை மறைக்கவும்</string>
 <string name="history">வரலாறு</string>
 <string name="hls_playlist">எச்.எல்.எச் பிளேலிச்ட்</string>
+<string name="home_bookmarks_no_status_body">அந்த புக்மார்க்குகளைக் காண மேலே ஒன்றைத் தேர்ந்தெடுக்கவும்.</string>
+<string name="home_bookmarks_no_status_headline">எந்த நிலையும் தேர்ந்தெடுக்கப்படவில்லை</string>
 <string name="home_change_provider_img_des">வழங்குநரை மாற்றவும்</string>
 <string name="home_expanded_hide">மறை</string>
 <string name="home_info">செய்தி</string>
 <string name="home_main_poster_img_des">முதன்மையான போச்டர்</string>
 <string name="home_more_info">மேலும் செய்தி</string>
 <string name="home_next_random_img_des">அடுத்து ஏதாவது</string>
+<string name="home_offline_bookmarks_body">உங்கள் புக்மார்க்குகள் இந்தச் சாதனத்தில் சேமிக்கப்பட்டுள்ளன.</string>
+<string name="home_offline_source_headline">%1$s க்கு இணைப்பு தேவை</string>
 <string name="home_play">விளையாடுங்கள்</string>
 <string name="home_random">சீரற்ற</string>
 <string name="home_search_only_body">உங்கள் நீட்டிப்புகள் எதிலும் முகப்புப் பக்கம் இல்லை, ஆனால் அவற்றில் இன்னும் தேடலாம்.</string>

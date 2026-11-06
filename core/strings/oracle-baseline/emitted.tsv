@@ -7,6 +7,8 @@ values	plurals	downloads_queued	one	%d download queued
 values	plurals	downloads_queued	other	%d downloads queued
 values	plurals	episodes	one	Episode
 values	plurals	episodes	other	Episodes
+values	plurals	home_bookmarks_count	one	%d BOOKMARK
+values	plurals	home_bookmarks_count	other	%d BOOKMARKS
 values	plurals	home_sections_failed	one	%d section failed to load
 values	plurals	home_sections_failed	other	%d sections failed to load
 values	plurals	links_hidden	one	%d hidden link
@@ -373,12 +375,16 @@ values	string	help	-	Help
 values	string	hide_player_control_names	-	Hide names of the player's controls
 values	string	history	-	History
 values	string	hls_playlist	-	HLS Playlist
+values	string	home_bookmarks_no_status_body	-	Choose one above to see those bookmarks.
+values	string	home_bookmarks_no_status_headline	-	No status chosen
 values	string	home_change_provider_img_des	-	Change Provider
 values	string	home_expanded_hide	-	Hide
 values	string	home_info	-	Info
 values	string	home_main_poster_img_des	-	Main Poster
 values	string	home_more_info	-	More info
 values	string	home_next_random_img_des	-	Next Random
+values	string	home_offline_bookmarks_body	-	Your bookmarks are saved on this device.
+values	string	home_offline_source_headline	-	%1$s needs a connection
 values	string	home_play	-	Play
 values	string	home_random	-	Random
 values	string	home_search_only_body	-	None of your extensions has a home page, but you can still search them.
@@ -886,6 +892,8 @@ values	string	year_format	-	%d
 values	string	yes	-	Yes
 values-b+af	plurals	downloads_failed_count	one	%d het misluk
 values-b+af	plurals	downloads_failed_count	other	%d het misluk
+values-b+af	plurals	home_bookmarks_count	one	%d BOEKMERK
+values-b+af	plurals	home_bookmarks_count	other	%d BOEKMERKE
 values-b+af	plurals	home_sections_failed	one	%d afdeling kon nie laai nie
 values-b+af	plurals	home_sections_failed	other	%d afdelings kon nie laai nie
 values-b+af	string	action_add_to_bookmarks	-	Stel kykstatus
@@ -984,12 +992,16 @@ values-b+af	string	filter_bookmarks	-	Filter boekmerke
 values-b+af	string	free_storage	-	Gratis
 values-b+af	string	go_back	-	Gaan Terug
 values-b+af	string	go_back_img_des	-	Gaan terug
+values-b+af	string	home_bookmarks_no_status_body	-	Kies een hierbo om daardie boekmerke te sien.
+values-b+af	string	home_bookmarks_no_status_headline	-	Geen status gekies
 values-b+af	string	home_change_provider_img_des	-	Verander Verskaffer
 values-b+af	string	home_expanded_hide	-	Versteek
 values-b+af	string	home_info	-	Inligting
 values-b+af	string	home_main_poster_img_des	-	Hoofplakkaat
 values-b+af	string	home_more_info	-	Meer inligting
 values-b+af	string	home_next_random_img_des	-	Volgende lukraak
+values-b+af	string	home_offline_bookmarks_body	-	Jou boekmerke is op hierdie toestel gestoor.
+values-b+af	string	home_offline_source_headline	-	%1$s het ’n verbinding nodig
 values-b+af	string	home_play	-	Speel
 values-b+af	string	home_search_only_body	-	Geen van jou uitbreidings het 'n tuisblad nie, maar jy kan steeds daarin soek.
 values-b+af	string	library_not_connected	-	Nie gekoppel
@@ -1098,6 +1110,8 @@ values-b+af	string	update_started	-	Opdatering het begin
 values-b+af	string	use	-	Gebruik
 values-b+am	plurals	downloads_failed_count	one	%d አልተሳካም
 values-b+am	plurals	downloads_failed_count	other	%d አልተሳኩም
+values-b+am	plurals	home_bookmarks_count	one	%d ዕልባት
+values-b+am	plurals	home_bookmarks_count	other	%d ዕልባቶች
 values-b+am	plurals	home_sections_failed	one	%d ክፍል መጫን አልተቻለም
 values-b+am	plurals	home_sections_failed	other	%d ክፍል መጫን አልተቻለም
 values-b+am	string	action_add_to_bookmarks	-	የምልከታ ሁኔታን ያቀናብሩ
@@ -1188,12 +1202,16 @@ values-b+am	string	filler	-	መሙያ
 values-b+am	string	filter_bookmarks	-	ዕልባቶችን ማጣሪያ
 values-b+am	string	go_back	-	ወደ ኋላ መመለሻ
 values-b+am	string	go_back_img_des	-	ተመለስ
+values-b+am	string	home_bookmarks_no_status_body	-	እነዚያን ዕልባቶች ለማየት ከላይ አንዱን ይምረጡ።
+values-b+am	string	home_bookmarks_no_status_headline	-	ምንም ሁኔታ አልተመረጠም
 values-b+am	string	home_change_provider_img_des	-	አቅራቢ ቀይር
 values-b+am	string	home_expanded_hide	-	ደብቅ
 values-b+am	string	home_info	-	መረጃ
 values-b+am	string	home_main_poster_img_des	-	ዋና ፖስተር
 values-b+am	string	home_more_info	-	ተጨማሪ መረጃ
 values-b+am	string	home_next_random_img_des	-	ቀጣይ በዘፈቀደ
+values-b+am	string	home_offline_bookmarks_body	-	ዕልባቶችዎ በዚህ መሣሪያ ላይ ተቀምጠዋል።
+values-b+am	string	home_offline_source_headline	-	%1$s ግንኙነት ያስፈልገዋል
 values-b+am	string	home_play	-	አጫውት
 values-b+am	string	home_search_only_body	-	ከቅጥያዎችህ አንዳቸውም መነሻ ገጽ የላቸውም፣ ነገር ግን አሁንም በእነሱ መፈለግ ትችላለህ።
 values-b+am	string	library_not_connected	-	አልተገናኘም
@@ -1302,6 +1320,8 @@ values-b+apc	plurals	downloads_queued	one	مافي شي بعد بده يبلش �
 values-b+apc	plurals	downloads_queued	other	فيه شي واحد بعد بده يبلش يتنزل
 values-b+apc	plurals	episodes	one	حلقة
 values-b+apc	plurals	episodes	other	حلقات
+values-b+apc	plurals	home_bookmarks_count	one	%d إشارة مرجعية
+values-b+apc	plurals	home_bookmarks_count	other	%d إشارات مرجعية
 values-b+apc	plurals	home_sections_failed	one	م قدرنا نفتح %d قسم
 values-b+apc	plurals	home_sections_failed	other	م قدرنا نفتح %d أقسام
 values-b+apc	string	account	-	أكونت
@@ -1644,12 +1664,16 @@ values-b+apc	string	help	-	ساعدوني
 values-b+apc	string	hide_player_control_names	-	محي اسامي كبسات صيطرة مشغل الڤيديو
 values-b+apc	string	history	-	السجل
 values-b+apc	string	hls_playlist	-	پلاي ليست "ايش أل أس"
+values-b+apc	string	home_bookmarks_no_status_body	-	اختار وحدة من فوق لتشوف هالإشارات المرجعية.
+values-b+apc	string	home_bookmarks_no_status_headline	-	ما في حالة مختارة
 values-b+apc	string	home_change_provider_img_des	-	غير المصدر
 values-b+apc	string	home_expanded_hide	-	خبي
 values-b+apc	string	home_info	-	معلومات
 values-b+apc	string	home_main_poster_img_des	-	الپوسر الأساسية
 values-b+apc	string	home_more_info	-	بَعد معلومات
 values-b+apc	string	home_next_random_img_des	-	العشوائي يللي بعده
+values-b+apc	string	home_offline_bookmarks_body	-	إشاراتك المرجعية محفوظة على هالجهاز.
+values-b+apc	string	home_offline_source_headline	-	%1$s بدو اتصال
 values-b+apc	string	home_play	-	مشي
 values-b+apc	string	home_random	-	عشوائي
 values-b+apc	string	home_search_only_body	-	ما في ولا إضافة عندها صفحة رئيسية، بس فيك تنبش فيهن.
@@ -2145,6 +2169,12 @@ values-b+ar	plurals	downloads_queued	two	%d تنزيلان قيد الانتظا
 values-b+ar	plurals	downloads_queued	zero	%d لا يوجد تنزيلات في قائمة الانتظار
 values-b+ar	plurals	episodes	one	حلقة
 values-b+ar	plurals	episodes	other	حلقات
+values-b+ar	plurals	home_bookmarks_count	few	%d إشارات مرجعية
+values-b+ar	plurals	home_bookmarks_count	many	%d إشارة مرجعية
+values-b+ar	plurals	home_bookmarks_count	one	%d إشارة مرجعية
+values-b+ar	plurals	home_bookmarks_count	other	%d إشارة مرجعية
+values-b+ar	plurals	home_bookmarks_count	two	%d إشارتان مرجعيتان
+values-b+ar	plurals	home_bookmarks_count	zero	%d إشارة مرجعية
 values-b+ar	plurals	home_sections_failed	few	تعذر تحميل %d أقسام
 values-b+ar	plurals	home_sections_failed	many	تعذر تحميل %d قسمًا
 values-b+ar	plurals	home_sections_failed	one	تعذر تحميل %d قسم
@@ -2491,12 +2521,16 @@ values-b+ar	string	help	-	مساعدة
 values-b+ar	string	hide_player_control_names	-	إخفاء الأسم من عناصر تحكم المشغل
 values-b+ar	string	history	-	السجل
 values-b+ar	string	hls_playlist	-	قائمة HLS
+values-b+ar	string	home_bookmarks_no_status_body	-	اختر حالة من الأعلى لعرض تلك الإشارات المرجعية.
+values-b+ar	string	home_bookmarks_no_status_headline	-	لم تُختر أي حالة
 values-b+ar	string	home_change_provider_img_des	-	تغيير المصدر
 values-b+ar	string	home_expanded_hide	-	إخفاء
 values-b+ar	string	home_info	-	معلومات
 values-b+ar	string	home_main_poster_img_des	-	الملصق الرئيسي
 values-b+ar	string	home_more_info	-	مزيد من المعلومات
 values-b+ar	string	home_next_random_img_des	-	التالي عشوائي
+values-b+ar	string	home_offline_bookmarks_body	-	إشاراتك المرجعية محفوظة على هذا الجهاز.
+values-b+ar	string	home_offline_source_headline	-	يحتاج %1$s إلى اتصال
 values-b+ar	string	home_play	-	تشغيل
 values-b+ar	string	home_random	-	عشوائي
 values-b+ar	string	home_search_only_body	-	لا تحتوي أي من إضافاتك على صفحة رئيسية، لكن يمكنك البحث فيها.
@@ -2985,6 +3019,12 @@ values-b+ars	plurals	downloads_failed_count	two	فشل %d
 values-b+ars	plurals	downloads_failed_count	zero	فشل %d
 values-b+ars	plurals	episodes	one	حلقة
 values-b+ars	plurals	episodes	other	الحلقات
+values-b+ars	plurals	home_bookmarks_count	few	%d إشارات مرجعية
+values-b+ars	plurals	home_bookmarks_count	many	%d إشارة مرجعية
+values-b+ars	plurals	home_bookmarks_count	one	%d إشارة مرجعية
+values-b+ars	plurals	home_bookmarks_count	other	%d إشارة مرجعية
+values-b+ars	plurals	home_bookmarks_count	two	%d إشارتان مرجعيتان
+values-b+ars	plurals	home_bookmarks_count	zero	%d إشارة مرجعية
 values-b+ars	plurals	home_sections_failed	few	تعذر تحميل %d أقسام
 values-b+ars	plurals	home_sections_failed	many	تعذر تحميل %d قسمًا
 values-b+ars	plurals	home_sections_failed	one	تعذر تحميل %d قسم
@@ -3174,12 +3214,16 @@ values-b+ars	string	go_back_img_des	-	اذهب للخالف
 values-b+ars	string	go_forward_30	-	+30
 values-b+ars	string	help	-	مساعدة
 values-b+ars	string	history	-	تاريخ
+values-b+ars	string	home_bookmarks_no_status_body	-	اختر وحدة من فوق عشان تشوف هالإشارات المرجعية.
+values-b+ars	string	home_bookmarks_no_status_headline	-	ما اخترت أي حالة
 values-b+ars	string	home_change_provider_img_des	-	تغيير مزود
 values-b+ars	string	home_expanded_hide	-	اخفي
 values-b+ars	string	home_info	-	معلومات
 values-b+ars	string	home_main_poster_img_des	-	اللافتة الاساسية
 values-b+ars	string	home_more_info	-	مزيد من المعلومات
 values-b+ars	string	home_next_random_img_des	-	عشوائي قادم
+values-b+ars	string	home_offline_bookmarks_body	-	إشاراتك المرجعية محفوظة على هالجهاز.
+values-b+ars	string	home_offline_source_headline	-	%1$s يحتاج اتصال
 values-b+ars	string	home_play	-	العب
 values-b+ars	string	home_search_only_body	-	لا تحتوي أي من إضافاتك على صفحة رئيسية، لكن يمكنك البحث فيها.
 values-b+ars	string	jsdelivr_enabled	-	...jsDelivr لا يمكن الوصول إلى جيتهاب. جارٍ تشغيل وكيل
@@ -3421,6 +3465,8 @@ values-b+as	plurals	downloads_failed_count	one	%d টা বিফল
 values-b+as	plurals	downloads_failed_count	other	%d টা বিফল
 values-b+as	plurals	episodes	one	এপিচ’ড
 values-b+as	plurals	episodes	other	এপিচ’ডসমূহ
+values-b+as	plurals	home_bookmarks_count	one	%d টা বুকমাৰ্ক
+values-b+as	plurals	home_bookmarks_count	other	%d টা বুকমাৰ্ক
 values-b+as	plurals	home_sections_failed	one	%d টা অংশ লোড কৰিব পৰা নগ'ল
 values-b+as	plurals	home_sections_failed	other	%d টা অংশ লোড কৰিব পৰা নগ'ল
 values-b+as	string	account	-	একাউন্ট
@@ -3730,12 +3776,16 @@ values-b+as	string	help	-	সহায়
 values-b+as	string	hide_player_control_names	-	প্লেয়াৰৰ নিয়ন্ত্ৰণসমূহৰ নাম লুকাওক
 values-b+as	string	history	-	ইতিহাস
 values-b+as	string	hls_playlist	-	HLS প্লেলিস্ট
+values-b+as	string	home_bookmarks_no_status_body	-	সেই বুকমাৰ্কসমূহ চাবলৈ ওপৰৰ পৰা এটা বাছনি কৰক।
+values-b+as	string	home_bookmarks_no_status_headline	-	কোনো স্থিতি বাছনি কৰা হোৱা নাই
 values-b+as	string	home_change_provider_img_des	-	প্ৰদানকাৰী সলনি কৰক
 values-b+as	string	home_expanded_hide	-	লুকুৱাওক
 values-b+as	string	home_info	-	তথ্য
 values-b+as	string	home_main_poster_img_des	-	প্ৰধান পোস্টাৰ
 values-b+as	string	home_more_info	-	অধিক তথ্য
 values-b+as	string	home_next_random_img_des	-	পৰৱৰ্তী ৰেণ্ডম
+values-b+as	string	home_offline_bookmarks_body	-	আপোনাৰ বুকমাৰ্কসমূহ এই ডিভাইচত সংৰক্ষিত।
+values-b+as	string	home_offline_source_headline	-	%1$s ক সংযোগৰ প্ৰয়োজন
 values-b+as	string	home_play	-	প্লে কৰক
 values-b+as	string	home_random	-	যিকোনো এটা
 values-b+as	string	home_search_only_body	-	আপোনাৰ কোনো এক্সটেনশ্যনৰ গৃহপৃষ্ঠা নাই, কিন্তু আপুনি সেইবোৰত সন্ধান কৰিব পাৰে।
@@ -4154,6 +4204,8 @@ values-b+as	string	year	-	বৰ্ষ
 values-b+as	string	yes	-	হয়
 values-b+az	plurals	downloads_failed_count	one	%d uğursuz
 values-b+az	plurals	downloads_failed_count	other	%d uğursuz
+values-b+az	plurals	home_bookmarks_count	one	%d ƏLFƏCİN
+values-b+az	plurals	home_bookmarks_count	other	%d ƏLFƏCİN
 values-b+az	plurals	home_sections_failed	one	%d bölmə yüklənmədi
 values-b+az	plurals	home_sections_failed	other	%d bölmə yüklənmədi
 values-b+az	string	advanced_search	-	Təkmilləşdirilmiş Axtarış
@@ -4270,9 +4322,13 @@ values-b+az	string	go_back	-	Geri dön
 values-b+az	string	go_back_30	-	-30
 values-b+az	string	go_back_img_des	-	Geri get
 values-b+az	string	go_forward_30	-	+30
+values-b+az	string	home_bookmarks_no_status_body	-	Həmin əlfəcinləri görmək üçün yuxarıdan birini seçin.
+values-b+az	string	home_bookmarks_no_status_headline	-	Status seçilməyib
 values-b+az	string	home_change_provider_img_des	-	Provayderi dəyişdir
 values-b+az	string	home_main_poster_img_des	-	Əsas Afişa
 values-b+az	string	home_next_random_img_des	-	Sonrakı Təsadüfi
+values-b+az	string	home_offline_bookmarks_body	-	Əlfəcinləriniz bu cihazda saxlanılıb.
+values-b+az	string	home_offline_source_headline	-	%1$s bağlantı tələb edir
 values-b+az	string	home_search_only_body	-	Uzantılarınızın heç birində ana səhifə yoxdur, amma yenə də onlarda axtarış edə bilərsiniz.
 values-b+az	string	kitsu_settings	-	Kitsu afişalarını, posterlərini göstər
 values-b+az	string	library	-	Kitabxana
@@ -4402,6 +4458,10 @@ values-b+be	plurals	downloads_queued	one	%d спампоўванне ў чарз
 values-b+be	plurals	downloads_queued	other	%d спампоўванняў у чарзе
 values-b+be	plurals	episodes	one	Серыя
 values-b+be	plurals	episodes	other	Серый
+values-b+be	plurals	home_bookmarks_count	few	%d ЗАКЛАДКІ
+values-b+be	plurals	home_bookmarks_count	many	%d ЗАКЛАДАК
+values-b+be	plurals	home_bookmarks_count	one	%d ЗАКЛАДКА
+values-b+be	plurals	home_bookmarks_count	other	%d ЗАКЛАДКІ
 values-b+be	plurals	home_sections_failed	few	Не ўдалося загрузіць %d раздзелы
 values-b+be	plurals	home_sections_failed	many	Не ўдалося загрузіць %d раздзелаў
 values-b+be	plurals	home_sections_failed	one	Не ўдалося загрузіць %d раздзел
@@ -4746,12 +4806,16 @@ values-b+be	string	help	-	Даведка
 values-b+be	string	hide_player_control_names	-	Схаваць назвы элементаў кіравання прайгравальніка
 values-b+be	string	history	-	Гісторыя
 values-b+be	string	hls_playlist	-	Плэй-ліст HLS
+values-b+be	string	home_bookmarks_no_status_body	-	Абярыце адзін вышэй, каб убачыць гэтыя закладкі.
+values-b+be	string	home_bookmarks_no_status_headline	-	Статус не абраны
 values-b+be	string	home_change_provider_img_des	-	Змяніць пастаўшчыка
 values-b+be	string	home_expanded_hide	-	Схаваць
 values-b+be	string	home_info	-	Звесткі
 values-b+be	string	home_main_poster_img_des	-	Асноўны плакат
 values-b+be	string	home_more_info	-	Дадатковыя звесткі
 values-b+be	string	home_next_random_img_des	-	Наступны выпадковы
+values-b+be	string	home_offline_bookmarks_body	-	Вашы закладкі захаваны на гэтай прыладзе.
+values-b+be	string	home_offline_source_headline	-	%1$s патрабуе злучэння
 values-b+be	string	home_play	-	Прайграць
 values-b+be	string	home_random	-	Выпадковае
 values-b+be	string	home_search_only_body	-	Ніводнае з вашых пашырэнняў не мае дамашняй старонкі, але ў іх усё яшчэ можна шукаць.
@@ -5235,6 +5299,8 @@ values-b+bg	plurals	downloads_queued	one	%d изтегляне в опашкат
 values-b+bg	plurals	downloads_queued	other	%d изтегляния в опашката
 values-b+bg	plurals	episodes	one	Епизод
 values-b+bg	plurals	episodes	other	Епизоди
+values-b+bg	plurals	home_bookmarks_count	one	%d ОТМЕТКА
+values-b+bg	plurals	home_bookmarks_count	other	%d ОТМЕТКИ
 values-b+bg	plurals	home_sections_failed	one	%d секция не се зареди
 values-b+bg	plurals	home_sections_failed	other	%d секции не се заредиха
 values-b+bg	string	account	-	Акаунт
@@ -5571,12 +5637,16 @@ values-b+bg	string	help	-	Помощ
 values-b+bg	string	hide_player_control_names	-	Скрий имената на контролните елементи на играча
 values-b+bg	string	history	-	История
 values-b+bg	string	hls_playlist	-	HLS плейлист
+values-b+bg	string	home_bookmarks_no_status_body	-	Изберете един отгоре, за да видите тези отметки.
+values-b+bg	string	home_bookmarks_no_status_headline	-	Не е избран статус
 values-b+bg	string	home_change_provider_img_des	-	Смяна на доставчика
 values-b+bg	string	home_expanded_hide	-	Скрий
 values-b+bg	string	home_info	-	Информация
 values-b+bg	string	home_main_poster_img_des	-	Main Poster
 values-b+bg	string	home_more_info	-	Повече информация
 values-b+bg	string	home_next_random_img_des	-	Следващ произволен
+values-b+bg	string	home_offline_bookmarks_body	-	Отметките ви са запазени на това устройство.
+values-b+bg	string	home_offline_source_headline	-	%1$s се нуждае от връзка
 values-b+bg	string	home_play	-	Пусни
 values-b+bg	string	home_random	-	Случаен
 values-b+bg	string	home_search_only_body	-	Нито едно от разширенията ви няма начална страница, но все пак можете да търсите в тях.
@@ -6052,6 +6122,8 @@ values-b+bn	plurals	downloads_failed_count	one	%dটি ব্যর্থ
 values-b+bn	plurals	downloads_failed_count	other	%dটি ব্যর্থ
 values-b+bn	plurals	episodes	one	পর্ব
 values-b+bn	plurals	episodes	other	পর্ব
+values-b+bn	plurals	home_bookmarks_count	one	%d টি বুকমার্ক
+values-b+bn	plurals	home_bookmarks_count	other	%d টি বুকমার্ক
 values-b+bn	plurals	home_sections_failed	one	%dটি বিভাগ লোড করা যায়নি
 values-b+bn	plurals	home_sections_failed	other	%dটি বিভাগ লোড করা যায়নি
 values-b+bn	string	account	-	অ্যাকাউন্ট
@@ -6269,12 +6341,16 @@ values-b+bn	string	go_back_30	-	-৩০
 values-b+bn	string	go_back_img_des	-	ফিরে যান
 values-b+bn	string	go_forward_30	-	+৩০
 values-b+bn	string	history	-	ইতিহাস
+values-b+bn	string	home_bookmarks_no_status_body	-	সেই বুকমার্কগুলো দেখতে উপরে একটি বাছাই করুন।
+values-b+bn	string	home_bookmarks_no_status_headline	-	কোনো স্ট্যাটাস বাছাই করা হয়নি
 values-b+bn	string	home_change_provider_img_des	-	প্রোভাইডার পরিবর্তন করুন
 values-b+bn	string	home_expanded_hide	-	বন্ধ করুন
 values-b+bn	string	home_info	-	তথ্য
 values-b+bn	string	home_main_poster_img_des	-	মূল পোস্টার
 values-b+bn	string	home_more_info	-	আরো তথ্য
 values-b+bn	string	home_next_random_img_des	-	পরবর্তী র‍্যান্ডম
+values-b+bn	string	home_offline_bookmarks_body	-	আপনার বুকমার্কগুলো এই ডিভাইসে সংরক্ষিত আছে।
+values-b+bn	string	home_offline_source_headline	-	%1$s-এর সংযোগ প্রয়োজন
 values-b+bn	string	home_play	-	চালান
 values-b+bn	string	home_search_only_body	-	আপনার কোনো এক্সটেনশনের হোম পেজ নেই, তবে আপনি সেগুলোতে খুঁজতে পারেন।
 values-b+bn	string	install_prerelease	-	প্রাক-মুক্তি সংস্করণ ইনস্টলেশন
@@ -6550,6 +6626,9 @@ values-b+bn	string	year	-	বছর
 values-b+ca	plurals	downloads_failed_count	many	%d fallides
 values-b+ca	plurals	downloads_failed_count	one	%d fallida
 values-b+ca	plurals	downloads_failed_count	other	%d fallides
+values-b+ca	plurals	home_bookmarks_count	many	%d DE FAVORITS
+values-b+ca	plurals	home_bookmarks_count	one	%d FAVORIT
+values-b+ca	plurals	home_bookmarks_count	other	%d FAVORITS
 values-b+ca	plurals	home_sections_failed	many	No s'han pogut carregar %d seccions
 values-b+ca	plurals	home_sections_failed	one	No s'ha pogut carregar %d secció
 values-b+ca	plurals	home_sections_failed	other	No s'han pogut carregar %d seccions
@@ -6724,12 +6803,16 @@ values-b+ca	string	filter_bookmarks	-	Filtra els favorits
 values-b+ca	string	go_back	-	Torna
 values-b+ca	string	go_back_img_des	-	Tornar
 values-b+ca	string	help	-	Ajuda
+values-b+ca	string	home_bookmarks_no_status_body	-	Trieu-ne un a dalt per veure aquests favorits.
+values-b+ca	string	home_bookmarks_no_status_headline	-	Cap estat triat
 values-b+ca	string	home_change_provider_img_des	-	Canvia el proveïdor
 values-b+ca	string	home_expanded_hide	-	Amaga
 values-b+ca	string	home_info	-	Informació
 values-b+ca	string	home_main_poster_img_des	-	Cartell principal
 values-b+ca	string	home_more_info	-	Més informació
 values-b+ca	string	home_next_random_img_des	-	Proper aleatori
+values-b+ca	string	home_offline_bookmarks_body	-	Els vostres favorits es desen en aquest dispositiu.
+values-b+ca	string	home_offline_source_headline	-	%1$s necessita connexió
 values-b+ca	string	home_play	-	Reprodueix
 values-b+ca	string	home_random	-	Aleatori
 values-b+ca	string	home_search_only_body	-	Cap de les teves extensions té pàgina d'inici, però encara pots cercar-hi.
@@ -6972,6 +7055,8 @@ values-b+ca	string	watch_quality_pref	-	Qualitat de vídeo preferida (WiFi)
 values-b+ca	string	watch_quality_pref_data	-	Qualitat de vídeo preferida (dades mòbils)
 values-b+ckb	plurals	downloads_failed_count	one	%d شکستی هێنا
 values-b+ckb	plurals	downloads_failed_count	other	%d شکستی هێنا
+values-b+ckb	plurals	home_bookmarks_count	one	%d ئاماژە
+values-b+ckb	plurals	home_bookmarks_count	other	%d ئاماژە
 values-b+ckb	plurals	home_sections_failed	one	%d بەش بار نەکرا
 values-b+ckb	plurals	home_sections_failed	other	%d بەش بار نەکرا
 values-b+ckb	string	action_add_to_bookmarks	-	دۆخی تەماشاکردن دابنێ
@@ -7062,12 +7147,16 @@ values-b+ckb	string	filler	-	فیلەر
 values-b+ckb	string	filter_bookmarks	-	فلتەرکردنی ئاماژەکان
 values-b+ckb	string	go_back	-	گەڕانەوە بۆ دواوە
 values-b+ckb	string	go_back_img_des	-	گەڕانەوە
+values-b+ckb	string	home_bookmarks_no_status_body	-	یەکێک لە سەرەوە هەڵبژێرە بۆ بینینی ئەو ئاماژانە.
+values-b+ckb	string	home_bookmarks_no_status_headline	-	هیچ دۆخێک هەڵنەبژێردراوە
 values-b+ckb	string	home_change_provider_img_des	-	گۆڕینی دابینکەر
 values-b+ckb	string	home_expanded_hide	-	شاردنەوە
 values-b+ckb	string	home_info	-	زانیاری
 values-b+ckb	string	home_main_poster_img_des	-	پۆستەری سەرەکی
 values-b+ckb	string	home_more_info	-	زانیاری زیاتر
 values-b+ckb	string	home_next_random_img_des	-	داهاتوو بە هەڕەمەکی
+values-b+ckb	string	home_offline_bookmarks_body	-	ئاماژەکانت لەسەر ئەم ئامێرە پاشەکەوت کراون.
+values-b+ckb	string	home_offline_source_headline	-	%1$s پێویستی بە پەیوەندییە
 values-b+ckb	string	home_search_only_body	-	هیچ کام لە زیادکراوەکانت پەڕەی سەرەکییان نییە، بەڵام هێشتا دەتوانیت تێیاندا بگەڕێیت.
 values-b+ckb	string	library_not_connected	-	پەیوەست نییە
 values-b+ckb	string	library_on_device	-	لەسەر ئامێر
@@ -7157,6 +7246,10 @@ values-b+cs	plurals	downloads_queued	one	%d stahování uloženo do fronty
 values-b+cs	plurals	downloads_queued	other	%d stahování uloženo do fronty
 values-b+cs	plurals	episodes	one	Epizoda
 values-b+cs	plurals	episodes	other	Epizody
+values-b+cs	plurals	home_bookmarks_count	few	%d ZÁLOŽKY
+values-b+cs	plurals	home_bookmarks_count	many	%d ZÁLOŽKY
+values-b+cs	plurals	home_bookmarks_count	one	%d ZÁLOŽKA
+values-b+cs	plurals	home_bookmarks_count	other	%d ZÁLOŽEK
 values-b+cs	plurals	home_sections_failed	few	Nepodařilo se načíst %d sekce
 values-b+cs	plurals	home_sections_failed	many	Nepodařilo se načíst %d sekcí
 values-b+cs	plurals	home_sections_failed	one	Nepodařilo se načíst %d sekci
@@ -7505,12 +7598,16 @@ values-b+cs	string	help	-	Nápověda
 values-b+cs	string	hide_player_control_names	-	Skrýt názvy ovládání přehrávače
 values-b+cs	string	history	-	Historie
 values-b+cs	string	hls_playlist	-	Playlist HLS
+values-b+cs	string	home_bookmarks_no_status_body	-	Vyberte jeden nahoře a uvidíte tyto záložky.
+values-b+cs	string	home_bookmarks_no_status_headline	-	Není vybrán žádný stav
 values-b+cs	string	home_change_provider_img_des	-	Změnit poskytovatele
 values-b+cs	string	home_expanded_hide	-	Skrýt
 values-b+cs	string	home_info	-	Info
 values-b+cs	string	home_main_poster_img_des	-	Hlavní plakát
 values-b+cs	string	home_more_info	-	Více informací
 values-b+cs	string	home_next_random_img_des	-	Další náhodný
+values-b+cs	string	home_offline_bookmarks_body	-	Vaše záložky jsou uloženy v tomto zařízení.
+values-b+cs	string	home_offline_source_headline	-	%1$s potřebuje připojení
 values-b+cs	string	home_play	-	Přehrát
 values-b+cs	string	home_random	-	Náhodný
 values-b+cs	string	home_search_only_body	-	Žádné z vašich rozšíření nemá domovskou stránku, ale stále v nich můžete hledat.
@@ -7999,6 +8096,8 @@ values-b+de	plurals	downloads_queued	one	%d Download in Warteschlange
 values-b+de	plurals	downloads_queued	other	%d Downloads in Warteschlange
 values-b+de	plurals	episodes	one	Episode
 values-b+de	plurals	episodes	other	Episoden
+values-b+de	plurals	home_bookmarks_count	one	%d LESEZEICHEN
+values-b+de	plurals	home_bookmarks_count	other	%d LESEZEICHEN
 values-b+de	plurals	home_sections_failed	one	%d Bereich konnte nicht geladen werden
 values-b+de	plurals	home_sections_failed	other	%d Bereiche konnten nicht geladen werden
 values-b+de	plurals	links_hidden	one	%d ausgeblendeter Link
@@ -8343,12 +8442,16 @@ values-b+de	string	help	-	Hilfe
 values-b+de	string	hide_player_control_names	-	Namen von Player-Steuerelementen ausblenden
 values-b+de	string	history	-	Verlauf
 values-b+de	string	hls_playlist	-	HLS-Playlist
+values-b+de	string	home_bookmarks_no_status_body	-	Wählen Sie oben einen, um diese Lesezeichen zu sehen.
+values-b+de	string	home_bookmarks_no_status_headline	-	Kein Status gewählt
 values-b+de	string	home_change_provider_img_des	-	Anbieter wechseln
 values-b+de	string	home_expanded_hide	-	Verstecken
 values-b+de	string	home_info	-	Info
 values-b+de	string	home_main_poster_img_des	-	Medienvorschaubild
 values-b+de	string	home_more_info	-	Mehr Infos
 values-b+de	string	home_next_random_img_des	-	Nächstes zufällig
+values-b+de	string	home_offline_bookmarks_body	-	Ihre Lesezeichen sind auf diesem Gerät gespeichert.
+values-b+de	string	home_offline_source_headline	-	%1$s braucht eine Verbindung
 values-b+de	string	home_play	-	Abspielen
 values-b+de	string	home_random	-	Zufällig
 values-b+de	string	home_search_only_body	-	Keine Ihrer Erweiterungen hat eine Startseite, aber Sie können trotzdem darin suchen.
@@ -8833,6 +8936,8 @@ values-b+el	plurals	downloads_failed_count	one	%d απέτυχε
 values-b+el	plurals	downloads_failed_count	other	%d απέτυχαν
 values-b+el	plurals	episodes	one	Επεισόδιο
 values-b+el	plurals	episodes	other	Επεισόδια
+values-b+el	plurals	home_bookmarks_count	one	%d ΣΕΛΙΔΟΔΕΙΚΤΗΣ
+values-b+el	plurals	home_bookmarks_count	other	%d ΣΕΛΙΔΟΔΕΙΚΤΕΣ
 values-b+el	plurals	home_sections_failed	one	Αποτυχία φόρτωσης %d ενότητας
 values-b+el	plurals	home_sections_failed	other	Αποτυχία φόρτωσης %d ενοτήτων
 values-b+el	string	account	-	Λογαριασμός
@@ -9146,12 +9251,16 @@ values-b+el	string	help	-	Βοήθεια
 values-b+el	string	hide_player_control_names	-	Απόκρυψη των ονομάτων των χειρισμών του παίκτη
 values-b+el	string	history	-	Ιστορικό
 values-b+el	string	hls_playlist	-	HLS Playlist
+values-b+el	string	home_bookmarks_no_status_body	-	Επιλέξτε μία παραπάνω για να δείτε αυτούς τους σελιδοδείκτες.
+values-b+el	string	home_bookmarks_no_status_headline	-	Δεν επιλέχθηκε κατάσταση
 values-b+el	string	home_change_provider_img_des	-	Αλλαγή Παρόχου
 values-b+el	string	home_expanded_hide	-	Απόκρυψη
 values-b+el	string	home_info	-	Πληροφορίες
 values-b+el	string	home_main_poster_img_des	-	Κύρια αφίσα
 values-b+el	string	home_more_info	-	Περαιτέρω πληροφορίες
 values-b+el	string	home_next_random_img_des	-	Next Random
+values-b+el	string	home_offline_bookmarks_body	-	Οι σελιδοδείκτες σας είναι αποθηκευμένοι σε αυτή τη συσκευή.
+values-b+el	string	home_offline_source_headline	-	Το %1$s χρειάζεται σύνδεση
 values-b+el	string	home_play	-	Αναπαραγωγή
 values-b+el	string	home_random	-	Τυχαίο
 values-b+el	string	home_search_only_body	-	Καμία από τις επεκτάσεις σας δεν έχει αρχική σελίδα, αλλά μπορείτε να αναζητήσετε σε αυτές.
@@ -9593,6 +9702,8 @@ values-b+eo	plurals	downloads_failed_count	one	%d malsukcesis
 values-b+eo	plurals	downloads_failed_count	other	%d malsukcesis
 values-b+eo	plurals	episodes	one	Epizodo
 values-b+eo	plurals	episodes	other	Epizodoj
+values-b+eo	plurals	home_bookmarks_count	one	%d LEGOSIGNO
+values-b+eo	plurals	home_bookmarks_count	other	%d LEGOSIGNOJ
 values-b+eo	plurals	home_sections_failed	one	%d sekcio ne ŝargiĝis
 values-b+eo	plurals	home_sections_failed	other	%d sekcioj ne ŝargiĝis
 values-b+eo	string	account	-	konto
@@ -9719,12 +9830,16 @@ values-b+eo	string	go_back_30	-	−30
 values-b+eo	string	go_back_img_des	-	Reen
 values-b+eo	string	go_forward_30	-	+30
 values-b+eo	string	history	-	Historio
+values-b+eo	string	home_bookmarks_no_status_body	-	Elektu unu supre por vidi tiujn legosignojn.
+values-b+eo	string	home_bookmarks_no_status_headline	-	Neniu stato elektita
 values-b+eo	string	home_change_provider_img_des	-	Ŝanĝi Provizanton
 values-b+eo	string	home_expanded_hide	-	Kaŝi
 values-b+eo	string	home_info	-	Informoj
 values-b+eo	string	home_main_poster_img_des	-	Ĉefa Afiŝo
 values-b+eo	string	home_more_info	-	Pli da informoj
 values-b+eo	string	home_next_random_img_des	-	Sekva Hazarda
+values-b+eo	string	home_offline_bookmarks_body	-	Viaj legosignoj estas konservitaj en ĉi tiu aparato.
+values-b+eo	string	home_offline_source_headline	-	%1$s bezonas konekton
 values-b+eo	string	home_play	-	Spekti
 values-b+eo	string	home_search_only_body	-	Neniu el viaj kromprogramoj havas hejmpaĝon, sed vi ankoraŭ povas serĉi en ili.
 values-b+eo	string	library_not_connected	-	Ne konektita
@@ -9879,6 +9994,9 @@ values-b+es	plurals	downloads_queued	one	%d descarga encolada
 values-b+es	plurals	downloads_queued	other	%d descargas encoladas
 values-b+es	plurals	episodes	one	Episodio
 values-b+es	plurals	episodes	other	Episodios
+values-b+es	plurals	home_bookmarks_count	many	%d DE MARCADORES
+values-b+es	plurals	home_bookmarks_count	one	%d MARCADOR
+values-b+es	plurals	home_bookmarks_count	other	%d MARCADORES
 values-b+es	plurals	home_sections_failed	many	No se pudieron cargar %d secciones
 values-b+es	plurals	home_sections_failed	one	No se pudo cargar %d sección
 values-b+es	plurals	home_sections_failed	other	No se pudieron cargar %d secciones
@@ -10225,12 +10343,16 @@ values-b+es	string	help	-	Ayuda
 values-b+es	string	hide_player_control_names	-	Ocultar los nombres de los controles del reproductor
 values-b+es	string	history	-	Historial
 values-b+es	string	hls_playlist	-	Lista de reproducción HLS
+values-b+es	string	home_bookmarks_no_status_body	-	Elige uno arriba para ver esos marcadores.
+values-b+es	string	home_bookmarks_no_status_headline	-	Ningún estado elegido
 values-b+es	string	home_change_provider_img_des	-	Cambiar proveedor
 values-b+es	string	home_expanded_hide	-	Ocultar
 values-b+es	string	home_info	-	Info
 values-b+es	string	home_main_poster_img_des	-	Póster principal
 values-b+es	string	home_more_info	-	Más información
 values-b+es	string	home_next_random_img_des	-	Siguiente al azar
+values-b+es	string	home_offline_bookmarks_body	-	Tus marcadores están guardados en este dispositivo.
+values-b+es	string	home_offline_source_headline	-	%1$s necesita conexión
 values-b+es	string	home_play	-	Reproducir
 values-b+es	string	home_random	-	Aleatorio
 values-b+es	string	home_search_only_body	-	Ninguna de sus extensiones tiene página de inicio, pero aún puede buscar en ellas.
@@ -10715,6 +10837,8 @@ values-b+fa	plurals	downloads_failed_count	one	%d ناموفق
 values-b+fa	plurals	downloads_failed_count	other	%d ناموفق
 values-b+fa	plurals	episodes	one	قسمت
 values-b+fa	plurals	episodes	other	قسمت‌ها
+values-b+fa	plurals	home_bookmarks_count	one	%d نشانک
+values-b+fa	plurals	home_bookmarks_count	other	%d نشانک
 values-b+fa	plurals	home_sections_failed	one	%d بخش بارگیری نشد
 values-b+fa	plurals	home_sections_failed	other	%d بخش بارگیری نشد
 values-b+fa	string	action_add_to_bookmarks	-	تنظیم وضعیت تماشا
@@ -10899,12 +11023,16 @@ values-b+fa	string	go_back_30	-	−۳۰
 values-b+fa	string	go_back_img_des	-	بازگشت
 values-b+fa	string	go_forward_30	-	+۳۰
 values-b+fa	string	history	-	تاریخچه
+values-b+fa	string	home_bookmarks_no_status_body	-	یکی را در بالا انتخاب کنید تا آن نشانک‌ها را ببینید.
+values-b+fa	string	home_bookmarks_no_status_headline	-	هیچ وضعیتی انتخاب نشده
 values-b+fa	string	home_change_provider_img_des	-	تغییر ارائه‌دهنده
 values-b+fa	string	home_expanded_hide	-	پنهان کردن
 values-b+fa	string	home_info	-	درباره
 values-b+fa	string	home_main_poster_img_des	-	پوستر اصلی
 values-b+fa	string	home_more_info	-	اطلاعات بیشتر
 values-b+fa	string	home_next_random_img_des	-	تصادفی بعدی
+values-b+fa	string	home_offline_bookmarks_body	-	نشانک‌های شما روی این دستگاه ذخیره شده‌اند.
+values-b+fa	string	home_offline_source_headline	-	%1$s به اتصال نیاز دارد
 values-b+fa	string	home_play	-	نمایش
 values-b+fa	string	home_search_only_body	-	هیچ‌یک از افزونه‌های شما صفحهٔ اصلی ندارد، اما همچنان می‌توانید در آن‌ها جست‌وجو کنید.
 values-b+fa	string	jsdelivr_proxy_summary	-	دورزدن نشانی‌های خام github توسط jsDelivr. ممکن است باعث تاخیر چند روزه به‌روزرسانی شود.
@@ -11158,6 +11286,8 @@ values-b+fa	string	wifi	-	وای‌فای
 values-b+fa	string	year	-	سال
 values-b+fil	plurals	downloads_failed_count	one	%d nabigo
 values-b+fil	plurals	downloads_failed_count	other	%d nabigo
+values-b+fil	plurals	home_bookmarks_count	one	%d BOOKMARK
+values-b+fil	plurals	home_bookmarks_count	other	%d BOOKMARK
 values-b+fil	plurals	home_sections_failed	one	Hindi na-load ang %d seksyon
 values-b+fil	plurals	home_sections_failed	other	Hindi na-load ang %d seksyon
 values-b+fil	string	action_add_to_bookmarks	-	Itakda ang kapalaran ng panonood
@@ -11326,11 +11456,15 @@ values-b+fil	string	go_back	-	Bumalik
 values-b+fil	string	go_back_img_des	-	Bumalik
 values-b+fil	string	hide_player_control_names	-	Itago ang mga pangalan ng mga kontrol ng player
 values-b+fil	string	history	-	Kasaysayan
+values-b+fil	string	home_bookmarks_no_status_body	-	Pumili ng isa sa itaas para makita ang mga bookmark na iyon.
+values-b+fil	string	home_bookmarks_no_status_headline	-	Walang napiling status
 values-b+fil	string	home_change_provider_img_des	-	Baguhin ang Tagatustos
 values-b+fil	string	home_expanded_hide	-	Itago
 values-b+fil	string	home_info	-	Impormasyon
 values-b+fil	string	home_more_info	-	Higit pang impormasyon
 values-b+fil	string	home_next_random_img_des	-	Susunod na Kahit Ano
+values-b+fil	string	home_offline_bookmarks_body	-	Naka-save sa device na ito ang mga bookmark mo.
+values-b+fil	string	home_offline_source_headline	-	Kailangan ng %1$s ng koneksyon
 values-b+fil	string	home_play	-	Ipatugtog
 values-b+fil	string	home_search_only_body	-	Wala sa iyong mga extension ang may home page, pero maaari ka pa ring maghanap sa mga ito.
 values-b+fil	string	kitsu_settings	-	Ipakita ang posters mula sa Kitsu
@@ -11529,6 +11663,9 @@ values-b+fr	plurals	downloads_queued	one	%d téléchargement en attente
 values-b+fr	plurals	downloads_queued	other	%d téléchargements en attente
 values-b+fr	plurals	episodes	one	Épisode
 values-b+fr	plurals	episodes	other	Épisodes
+values-b+fr	plurals	home_bookmarks_count	many	%d DE MARQUE-PAGES
+values-b+fr	plurals	home_bookmarks_count	one	%d MARQUE-PAGE
+values-b+fr	plurals	home_bookmarks_count	other	%d MARQUE-PAGES
 values-b+fr	plurals	home_sections_failed	many	%d sections n'ont pas pu être chargées
 values-b+fr	plurals	home_sections_failed	one	%d section n'a pas pu être chargée
 values-b+fr	plurals	home_sections_failed	other	%d sections n'ont pas pu être chargées
@@ -11875,12 +12012,16 @@ values-b+fr	string	help	-	Aide
 values-b+fr	string	hide_player_control_names	-	Masquer les noms des commandes du lecteur
 values-b+fr	string	history	-	Historique
 values-b+fr	string	hls_playlist	-	Playlist HLS
+values-b+fr	string	home_bookmarks_no_status_body	-	Choisissez-en un ci-dessus pour voir ces marque-pages.
+values-b+fr	string	home_bookmarks_no_status_headline	-	Aucun statut choisi
 values-b+fr	string	home_change_provider_img_des	-	Changer le fournisseur
 values-b+fr	string	home_expanded_hide	-	Cacher
 values-b+fr	string	home_info	-	Infos
 values-b+fr	string	home_main_poster_img_des	-	Affiche principale
 values-b+fr	string	home_more_info	-	Plus d'information
 values-b+fr	string	home_next_random_img_des	-	Aléatoire suivant
+values-b+fr	string	home_offline_bookmarks_body	-	Vos marque-pages sont enregistrés sur cet appareil.
+values-b+fr	string	home_offline_source_headline	-	%1$s a besoin d'une connexion
 values-b+fr	string	home_play	-	Lecture
 values-b+fr	string	home_random	-	Aléatoire
 values-b+fr	string	home_search_only_body	-	Aucune de vos extensions n'a de page d'accueil, mais vous pouvez quand même y effectuer une recherche.
@@ -12364,6 +12505,8 @@ values-b+gl	plurals	downloads_failed_count	one	%d fallida
 values-b+gl	plurals	downloads_failed_count	other	%d fallidas
 values-b+gl	plurals	episodes	one	Capítulo
 values-b+gl	plurals	episodes	other	Episodes
+values-b+gl	plurals	home_bookmarks_count	one	%d MARCADOR
+values-b+gl	plurals	home_bookmarks_count	other	%d MARCADORES
 values-b+gl	plurals	home_sections_failed	one	Non se puido cargar %d sección
 values-b+gl	plurals	home_sections_failed	other	Non se puideron cargar %d seccións
 values-b+gl	string	action_add_to_bookmarks	-	Seleccionar estado de visualización
@@ -12536,12 +12679,16 @@ values-b+gl	string	go_back	-	Volver
 values-b+gl	string	go_back_30	-	-30
 values-b+gl	string	go_back_img_des	-	Regresar
 values-b+gl	string	go_forward_30	-	+30
+values-b+gl	string	home_bookmarks_no_status_body	-	Escolle un arriba para ver eses marcadores.
+values-b+gl	string	home_bookmarks_no_status_headline	-	Ningún estado escollido
 values-b+gl	string	home_change_provider_img_des	-	Cambiar provedor
 values-b+gl	string	home_expanded_hide	-	Agochar
 values-b+gl	string	home_info	-	Info
 values-b+gl	string	home_main_poster_img_des	-	Póster Principal
 values-b+gl	string	home_more_info	-	Máis información
 values-b+gl	string	home_next_random_img_des	-	Seguinte ó azar
+values-b+gl	string	home_offline_bookmarks_body	-	Os teus marcadores están gardados neste dispositivo.
+values-b+gl	string	home_offline_source_headline	-	%1$s precisa conexión
 values-b+gl	string	home_play	-	Reproducir
 values-b+gl	string	home_search_only_body	-	Ningunha das súas extensións ten páxina de inicio, pero aínda pode buscar nelas.
 values-b+gl	string	kitsu_settings	-	Mostrar pósters de Kitsu
@@ -12749,6 +12896,9 @@ values-b+he	plurals	downloads_failed_count	other	%d נכשלו
 values-b+he	plurals	downloads_failed_count	two	%d נכשלו
 values-b+he	plurals	episodes	one	פרק
 values-b+he	plurals	episodes	other	פרקים
+values-b+he	plurals	home_bookmarks_count	one	%d סימנייה
+values-b+he	plurals	home_bookmarks_count	other	%d סימניות
+values-b+he	plurals	home_bookmarks_count	two	%d סימניות
 values-b+he	plurals	home_sections_failed	one	טעינת %d קטע נכשלה
 values-b+he	plurals	home_sections_failed	other	טעינת %d קטעים נכשלה
 values-b+he	plurals	home_sections_failed	two	טעינת %d קטעים נכשלה
@@ -13006,12 +13156,16 @@ values-b+he	string	go_forward_30	-	+30
 values-b+he	string	help	-	עזרה
 values-b+he	string	history	-	היסטוריה
 values-b+he	string	hls_playlist	-	פלייליסט HLS
+values-b+he	string	home_bookmarks_no_status_body	-	בחרו אחד למעלה כדי לראות את הסימניות האלה.
+values-b+he	string	home_bookmarks_no_status_headline	-	לא נבחר סטטוס
 values-b+he	string	home_change_provider_img_des	-	לשנות ספק
 values-b+he	string	home_expanded_hide	-	להתחבא
 values-b+he	string	home_info	-	מידע
 values-b+he	string	home_main_poster_img_des	-	פוסטר ראשי
 values-b+he	string	home_more_info	-	יותר מידע
 values-b+he	string	home_next_random_img_des	-	ארקאי הבא
+values-b+he	string	home_offline_bookmarks_body	-	הסימניות שלך שמורות במכשיר הזה.
+values-b+he	string	home_offline_source_headline	-	%1$s צריך חיבור
 values-b+he	string	home_play	-	נגן
 values-b+he	string	home_random	-	אקראי
 values-b+he	string	home_search_only_body	-	לאף אחת מההרחבות שלך אין דף בית, אבל עדיין אפשר לחפש בהן.
@@ -13394,6 +13548,8 @@ values-b+hi	plurals	downloads_failed_count	one	%d विफल
 values-b+hi	plurals	downloads_failed_count	other	%d विफल
 values-b+hi	plurals	episodes	one	प्रकरण
 values-b+hi	plurals	episodes	other	Episodes
+values-b+hi	plurals	home_bookmarks_count	one	%d बुकमार्क
+values-b+hi	plurals	home_bookmarks_count	other	%d बुकमार्क
 values-b+hi	plurals	home_sections_failed	one	%d अनुभाग लोड नहीं हो सका
 values-b+hi	plurals	home_sections_failed	other	%d अनुभाग लोड नहीं हो सके
 values-b+hi	string	account	-	खाता
@@ -13623,12 +13779,16 @@ values-b+hi	string	go_back_30	-	-३०
 values-b+hi	string	go_back_img_des	-	वापिस जाओ
 values-b+hi	string	go_forward_30	-	+३०
 values-b+hi	string	history	-	इतिहास
+values-b+hi	string	home_bookmarks_no_status_body	-	वे बुकमार्क देखने के लिए ऊपर से एक चुनें।
+values-b+hi	string	home_bookmarks_no_status_headline	-	कोई स्थिति नहीं चुनी गई
 values-b+hi	string	home_change_provider_img_des	-	प्रोवाइडर बदलें
 values-b+hi	string	home_expanded_hide	-	छिपाएं
 values-b+hi	string	home_info	-	जानकारी
 values-b+hi	string	home_main_poster_img_des	-	मुख्य पोस्टर
 values-b+hi	string	home_more_info	-	और जानकारी
 values-b+hi	string	home_next_random_img_des	-	अगला रैंडम
+values-b+hi	string	home_offline_bookmarks_body	-	आपके बुकमार्क इस डिवाइस पर सहेजे गए हैं।
+values-b+hi	string	home_offline_source_headline	-	%1$s को कनेक्शन चाहिए
 values-b+hi	string	home_play	-	चलाएं
 values-b+hi	string	home_search_only_body	-	आपके किसी भी एक्सटेंशन में होम पेज नहीं है, फिर भी आप उनमें खोज सकते हैं।
 values-b+hi	string	install_prerelease	-	प्री-रिलीज़ संस्करण स्थापित करें
@@ -13911,6 +14071,9 @@ values-b+hr	plurals	downloads_queued	one	%d preuzimanje u redu čekanja
 values-b+hr	plurals	downloads_queued	other	%d preuzimanja u redu čekanja
 values-b+hr	plurals	episodes	one	Epizoda
 values-b+hr	plurals	episodes	other	Epizoda
+values-b+hr	plurals	home_bookmarks_count	few	%d OZNAKE
+values-b+hr	plurals	home_bookmarks_count	one	%d OZNAKA
+values-b+hr	plurals	home_bookmarks_count	other	%d OZNAKA
 values-b+hr	plurals	home_sections_failed	few	Nisu učitana %d odjeljka
 values-b+hr	plurals	home_sections_failed	one	Nije učitan %d odjeljak
 values-b+hr	plurals	home_sections_failed	other	Nije učitano %d odjeljaka
@@ -14254,12 +14417,16 @@ values-b+hr	string	help	-	Pomoć
 values-b+hr	string	hide_player_control_names	-	Sakrij nazive kontrola playera
 values-b+hr	string	history	-	Povijest
 values-b+hr	string	hls_playlist	-	HLS playlista
+values-b+hr	string	home_bookmarks_no_status_body	-	Odaberite jedan gore da biste vidjeli te oznake.
+values-b+hr	string	home_bookmarks_no_status_headline	-	Nije odabran status
 values-b+hr	string	home_change_provider_img_des	-	Promijeni pružatelja usluge
 values-b+hr	string	home_expanded_hide	-	Sakrij
 values-b+hr	string	home_info	-	Informacije
 values-b+hr	string	home_main_poster_img_des	-	Glavni poster
 values-b+hr	string	home_more_info	-	Više informacija
 values-b+hr	string	home_next_random_img_des	-	Sljedeće slučajno odabrano
+values-b+hr	string	home_offline_bookmarks_body	-	Vaše oznake spremljene su na ovom uređaju.
+values-b+hr	string	home_offline_source_headline	-	%1$s treba vezu
 values-b+hr	string	home_play	-	Pokreni
 values-b+hr	string	home_random	-	Slučajno
 values-b+hr	string	home_search_only_body	-	Nijedno vaše proširenje nema početnu stranicu, ali i dalje možete pretraživati u njima.
@@ -14739,6 +14906,8 @@ values-b+hu	plurals	downloads_failed_count	one	%d sikertelen
 values-b+hu	plurals	downloads_failed_count	other	%d sikertelen
 values-b+hu	plurals	episodes	one	Epizód
 values-b+hu	plurals	episodes	other	Epizódok
+values-b+hu	plurals	home_bookmarks_count	one	%d KÖNYVJELZŐ
+values-b+hu	plurals	home_bookmarks_count	other	%d KÖNYVJELZŐ
 values-b+hu	plurals	home_sections_failed	one	%d szakasz betöltése sikertelen
 values-b+hu	plurals	home_sections_failed	other	%d szakasz betöltése sikertelen
 values-b+hu	string	account	-	Fiók
@@ -15045,12 +15214,16 @@ values-b+hu	string	help	-	Segítség
 values-b+hu	string	hide_player_control_names	-	A lejátszó vezérlői neveinek elrejtése
 values-b+hu	string	history	-	Előzmények
 values-b+hu	string	hls_playlist	-	HLS lejátszási lista
+values-b+hu	string	home_bookmarks_no_status_body	-	Válasszon egyet fent, hogy lássa azokat a könyvjelzőket.
+values-b+hu	string	home_bookmarks_no_status_headline	-	Nincs kiválasztott állapot
 values-b+hu	string	home_change_provider_img_des	-	Szolgáltató Váltás
 values-b+hu	string	home_expanded_hide	-	Elrejtés
 values-b+hu	string	home_info	-	Információ
 values-b+hu	string	home_main_poster_img_des	-	Fő Plakát
 values-b+hu	string	home_more_info	-	Több információ
 values-b+hu	string	home_next_random_img_des	-	Következő véletlenszerű
+values-b+hu	string	home_offline_bookmarks_body	-	A könyvjelzői ezen az eszközön vannak mentve.
+values-b+hu	string	home_offline_source_headline	-	A(z) %1$s kapcsolatot igényel
 values-b+hu	string	home_play	-	Lejátszás
 values-b+hu	string	home_random	-	Lepj meg
 values-b+hu	string	home_search_only_body	-	Egyik bővítményének sincs kezdőlapja, de továbbra is kereshet bennük.
@@ -15474,6 +15647,7 @@ values-b+id	plurals	downloads_failed_count	other	%d gagal
 values-b+id	plurals	downloads_queued	other	%d unduhan dalam antrean
 values-b+id	plurals	episodes	one	Episode
 values-b+id	plurals	episodes	other	Episode
+values-b+id	plurals	home_bookmarks_count	other	%d MARKAH
 values-b+id	plurals	home_sections_failed	other	%d bagian gagal dimuat
 values-b+id	plurals	links_hidden	other	%d link tersembunyi
 values-b+id	string	account	-	akun
@@ -15814,12 +15988,16 @@ values-b+id	string	help	-	Bantuan
 values-b+id	string	hide_player_control_names	-	Sembunyikan Nama Kontrol Pemain
 values-b+id	string	history	-	Riwayat
 values-b+id	string	hls_playlist	-	Daftar putar HLS
+values-b+id	string	home_bookmarks_no_status_body	-	Pilih salah satu di atas untuk melihat markah tersebut.
+values-b+id	string	home_bookmarks_no_status_headline	-	Tidak ada status dipilih
 values-b+id	string	home_change_provider_img_des	-	Ganti Penyedia
 values-b+id	string	home_expanded_hide	-	Sembunyikan
 values-b+id	string	home_info	-	Info
 values-b+id	string	home_main_poster_img_des	-	Poster Utama
 values-b+id	string	home_more_info	-	Lebih banyak info
 values-b+id	string	home_next_random_img_des	-	Acak selanjutnya
+values-b+id	string	home_offline_bookmarks_body	-	Markah Anda tersimpan di perangkat ini.
+values-b+id	string	home_offline_source_headline	-	%1$s memerlukan koneksi
 values-b+id	string	home_play	-	Putar
 values-b+id	string	home_random	-	Acak
 values-b+id	string	home_search_only_body	-	Tidak ada ekstensi Anda yang memiliki beranda, tetapi Anda tetap dapat mencari di dalamnya.
@@ -16305,6 +16483,7 @@ values-b+in	plurals	downloads_failed_count	other	%d gagal
 values-b+in	plurals	downloads_queued	other	%d unduhan dalam antrean
 values-b+in	plurals	episodes	one	Episode
 values-b+in	plurals	episodes	other	Episode
+values-b+in	plurals	home_bookmarks_count	other	%d MARKAH
 values-b+in	plurals	home_sections_failed	other	%d bagian gagal dimuat
 values-b+in	plurals	links_hidden	other	%d link tersembunyi
 values-b+in	string	account	-	akun
@@ -16645,12 +16824,16 @@ values-b+in	string	help	-	Bantuan
 values-b+in	string	hide_player_control_names	-	Sembunyikan Nama Kontrol Pemain
 values-b+in	string	history	-	Riwayat
 values-b+in	string	hls_playlist	-	Daftar putar HLS
+values-b+in	string	home_bookmarks_no_status_body	-	Pilih salah satu di atas untuk melihat markah tersebut.
+values-b+in	string	home_bookmarks_no_status_headline	-	Tidak ada status dipilih
 values-b+in	string	home_change_provider_img_des	-	Ganti Penyedia
 values-b+in	string	home_expanded_hide	-	Sembunyikan
 values-b+in	string	home_info	-	Info
 values-b+in	string	home_main_poster_img_des	-	Poster Utama
 values-b+in	string	home_more_info	-	Lebih banyak info
 values-b+in	string	home_next_random_img_des	-	Acak selanjutnya
+values-b+in	string	home_offline_bookmarks_body	-	Markah Anda tersimpan di perangkat ini.
+values-b+in	string	home_offline_source_headline	-	%1$s memerlukan koneksi
 values-b+in	string	home_play	-	Putar
 values-b+in	string	home_random	-	Acak
 values-b+in	string	home_search_only_body	-	Tidak ada ekstensi Anda yang memiliki beranda, tetapi Anda tetap dapat mencari di dalamnya.
@@ -17142,6 +17325,9 @@ values-b+it	plurals	downloads_queued	one	%d download in coda
 values-b+it	plurals	downloads_queued	other	%d download in coda
 values-b+it	plurals	episodes	one	Episodio
 values-b+it	plurals	episodes	other	Episodi
+values-b+it	plurals	home_bookmarks_count	many	%d DI SEGNALIBRI
+values-b+it	plurals	home_bookmarks_count	one	%d SEGNALIBRO
+values-b+it	plurals	home_bookmarks_count	other	%d SEGNALIBRI
 values-b+it	plurals	home_sections_failed	many	Impossibile caricare %d sezioni
 values-b+it	plurals	home_sections_failed	one	Impossibile caricare %d sezione
 values-b+it	plurals	home_sections_failed	other	Impossibile caricare %d sezioni
@@ -17486,12 +17672,16 @@ values-b+it	string	help	-	Aiuto
 values-b+it	string	hide_player_control_names	-	Nascondi i nomi dei controlli del lettore
 values-b+it	string	history	-	Cronologia
 values-b+it	string	hls_playlist	-	Playlist HLS
+values-b+it	string	home_bookmarks_no_status_body	-	Scegline uno sopra per vedere quei segnalibri.
+values-b+it	string	home_bookmarks_no_status_headline	-	Nessuno stato scelto
 values-b+it	string	home_change_provider_img_des	-	Cambia provider
 values-b+it	string	home_expanded_hide	-	Nascondi
 values-b+it	string	home_info	-	Info
 values-b+it	string	home_main_poster_img_des	-	Poster principale
 values-b+it	string	home_more_info	-	Più info
 values-b+it	string	home_next_random_img_des	-	Prossimo casuale
+values-b+it	string	home_offline_bookmarks_body	-	I tuoi segnalibri sono salvati su questo dispositivo.
+values-b+it	string	home_offline_source_headline	-	%1$s richiede una connessione
 values-b+it	string	home_play	-	Riproduci
 values-b+it	string	home_random	-	Casuale
 values-b+it	string	home_search_only_body	-	Nessuna delle tue estensioni ha una pagina iniziale, ma puoi comunque cercare al loro interno.
@@ -17977,6 +18167,9 @@ values-b+iw	plurals	downloads_failed_count	other	%d נכשלו
 values-b+iw	plurals	downloads_failed_count	two	%d נכשלו
 values-b+iw	plurals	episodes	one	פרק
 values-b+iw	plurals	episodes	other	פרקים
+values-b+iw	plurals	home_bookmarks_count	one	%d סימנייה
+values-b+iw	plurals	home_bookmarks_count	other	%d סימניות
+values-b+iw	plurals	home_bookmarks_count	two	%d סימניות
 values-b+iw	plurals	home_sections_failed	one	טעינת %d קטע נכשלה
 values-b+iw	plurals	home_sections_failed	other	טעינת %d קטעים נכשלה
 values-b+iw	plurals	home_sections_failed	two	טעינת %d קטעים נכשלה
@@ -18234,12 +18427,16 @@ values-b+iw	string	go_forward_30	-	+30
 values-b+iw	string	help	-	עזרה
 values-b+iw	string	history	-	היסטוריה
 values-b+iw	string	hls_playlist	-	פלייליסט HLS
+values-b+iw	string	home_bookmarks_no_status_body	-	בחרו אחד למעלה כדי לראות את הסימניות האלה.
+values-b+iw	string	home_bookmarks_no_status_headline	-	לא נבחר סטטוס
 values-b+iw	string	home_change_provider_img_des	-	לשנות ספק
 values-b+iw	string	home_expanded_hide	-	להתחבא
 values-b+iw	string	home_info	-	מידע
 values-b+iw	string	home_main_poster_img_des	-	פוסטר ראשי
 values-b+iw	string	home_more_info	-	יותר מידע
 values-b+iw	string	home_next_random_img_des	-	ארקאי הבא
+values-b+iw	string	home_offline_bookmarks_body	-	הסימניות שלך שמורות במכשיר הזה.
+values-b+iw	string	home_offline_source_headline	-	%1$s צריך חיבור
 values-b+iw	string	home_play	-	נגן
 values-b+iw	string	home_random	-	אקראי
 values-b+iw	string	home_search_only_body	-	לאף אחת מההרחבות שלך אין דף בית, אבל עדיין אפשר לחפש בהן.
@@ -18623,6 +18820,7 @@ values-b+ja	plurals	downloads_failed_count	other	%d 件失敗
 values-b+ja	plurals	downloads_queued	other	%d 件が待機中
 values-b+ja	plurals	episodes	one	エピソード
 values-b+ja	plurals	episodes	other	エピソード
+values-b+ja	plurals	home_bookmarks_count	other	%d 件のブックマーク
 values-b+ja	plurals	home_sections_failed	other	%d 件のセクションを読み込めませんでした
 values-b+ja	plurals	links_hidden	other	%d件の非表示リンク
 values-b+ja	string	account	-	アカウント
@@ -18965,12 +19163,16 @@ values-b+ja	string	help	-	ヘルプ
 values-b+ja	string	hide_player_control_names	-	プレーヤーのコントロール名を非表示
 values-b+ja	string	history	-	履歴
 values-b+ja	string	hls_playlist	-	HLSプレイリスト
+values-b+ja	string	home_bookmarks_no_status_body	-	上で 1 つ選ぶと、そのブックマークが表示されます。
+values-b+ja	string	home_bookmarks_no_status_headline	-	ステータスが選択されていません
 values-b+ja	string	home_change_provider_img_des	-	プロバイダーの変更
 values-b+ja	string	home_expanded_hide	-	閉じる
 values-b+ja	string	home_info	-	情報
 values-b+ja	string	home_main_poster_img_des	-	主要ポスター
 values-b+ja	string	home_more_info	-	詳細情報
 values-b+ja	string	home_next_random_img_des	-	次のランダム
+values-b+ja	string	home_offline_bookmarks_body	-	ブックマークはこのデバイスに保存されています。
+values-b+ja	string	home_offline_source_headline	-	%1$s には接続が必要です
 values-b+ja	string	home_play	-	再生
 values-b+ja	string	home_random	-	任意
 values-b+ja	string	home_search_only_body	-	ホームページを持つ拡張機能はありませんが、検索は引き続き利用できます。
@@ -19453,6 +19655,8 @@ values-b+ja	string	year	-	年
 values-b+ja	string	yes	-	はい
 values-b+kn	plurals	downloads_failed_count	one	%d ವಿಫಲವಾಗಿದೆ
 values-b+kn	plurals	downloads_failed_count	other	%d ವಿಫಲವಾಗಿವೆ
+values-b+kn	plurals	home_bookmarks_count	one	%d ಬುಕ್‌ಮಾರ್ಕ್
+values-b+kn	plurals	home_bookmarks_count	other	%d ಬುಕ್‌ಮಾರ್ಕ್‌ಗಳು
 values-b+kn	plurals	home_sections_failed	one	%d ವಿಭಾಗವನ್ನು ಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ
 values-b+kn	plurals	home_sections_failed	other	%d ವಿಭಾಗಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ
 values-b+kn	string	action_add_to_bookmarks	-	ಸೆಟ್ ವಾಚ್ ಸ್ಟೇಟಸ್
@@ -19548,12 +19752,16 @@ values-b+kn	string	filler	-	ಫಿಲ್ಲರ್
 values-b+kn	string	filter_bookmarks	-	ಬುಕ್‌ಮಾರ್ಕ್‌ಗಳನ್ನು ಫಿಲ್ಟರ್ ಮಾಡಿ
 values-b+kn	string	go_back	-	ಹಿಂದೆ ಹೋಗು
 values-b+kn	string	go_back_img_des	-	ಹಿಂದೆ ಹೋಗು
+values-b+kn	string	home_bookmarks_no_status_body	-	ಆ ಬುಕ್‌ಮಾರ್ಕ್‌ಗಳನ್ನು ನೋಡಲು ಮೇಲೆ ಒಂದನ್ನು ಆಯ್ಕೆಮಾಡಿ.
+values-b+kn	string	home_bookmarks_no_status_headline	-	ಯಾವುದೇ ಸ್ಥಿತಿ ಆಯ್ಕೆ ಮಾಡಿಲ್ಲ
 values-b+kn	string	home_change_provider_img_des	-	ಪ್ರೊವೈಡರ್ ಬದಲಾಯಿಸಿ
 values-b+kn	string	home_expanded_hide	-	ಹೈಡ್
 values-b+kn	string	home_info	-	ಮಾಹಿತಿ
 values-b+kn	string	home_main_poster_img_des	-	ಮೇನ್ ಪೋಸ್ಟರ್
 values-b+kn	string	home_more_info	-	ಹೆಚ್ಚಿನ ಮಾಹಿತಿ
 values-b+kn	string	home_next_random_img_des	-	ಮುಂದಿನ ರಾಂಡಮ್
+values-b+kn	string	home_offline_bookmarks_body	-	ನಿಮ್ಮ ಬುಕ್‌ಮಾರ್ಕ್‌ಗಳನ್ನು ಈ ಸಾಧನದಲ್ಲಿ ಉಳಿಸಲಾಗಿದೆ.
+values-b+kn	string	home_offline_source_headline	-	%1$s ಗೆ ಸಂಪರ್ಕ ಬೇಕು
 values-b+kn	string	home_play	-	ಪ್ಲೇ
 values-b+kn	string	home_search_only_body	-	ನಿಮ್ಮ ಯಾವುದೇ ವಿಸ್ತರಣೆಗೆ ಹೋಂ ಪುಟವಿಲ್ಲ, ಆದರೆ ನೀವು ಅವುಗಳಲ್ಲಿ ಹುಡುಕಬಹುದು.
 values-b+kn	string	library_not_connected	-	ಸಂಪರ್ಕಗೊಂಡಿಲ್ಲ
@@ -19674,6 +19882,7 @@ values-b+ko	plurals	downloads_failed_count	other	%d개 실패
 values-b+ko	plurals	downloads_queued	other	%d 다운로드
 values-b+ko	plurals	episodes	one	에피소드
 values-b+ko	plurals	episodes	other	에피소드
+values-b+ko	plurals	home_bookmarks_count	other	북마크 %d개
 values-b+ko	plurals	home_sections_failed	other	섹션 %d개를 불러오지 못했습니다
 values-b+ko	string	account	-	계정
 values-b+ko	string	action_add_to_bookmarks	-	시청 상태 설정
@@ -20015,12 +20224,16 @@ values-b+ko	string	help	-	도움
 values-b+ko	string	hide_player_control_names	-	플레이어 내 버튼명 숨기기
 values-b+ko	string	history	-	기록
 values-b+ko	string	hls_playlist	-	HLS 재생목록
+values-b+ko	string	home_bookmarks_no_status_body	-	위에서 하나를 선택하면 해당 북마크가 표시됩니다.
+values-b+ko	string	home_bookmarks_no_status_headline	-	선택한 상태 없음
 values-b+ko	string	home_change_provider_img_des	-	소스 변경
 values-b+ko	string	home_expanded_hide	-	숨기기
 values-b+ko	string	home_info	-	정보
 values-b+ko	string	home_main_poster_img_des	-	메인 포스터
 values-b+ko	string	home_more_info	-	상세 정보
 values-b+ko	string	home_next_random_img_des	-	다음 추천
+values-b+ko	string	home_offline_bookmarks_body	-	북마크는 이 기기에 저장되어 있습니다.
+values-b+ko	string	home_offline_source_headline	-	%1$s에 연결이 필요합니다
 values-b+ko	string	home_play	-	재생
 values-b+ko	string	home_random	-	랜덤
 values-b+ko	string	home_search_only_body	-	홈 페이지가 있는 확장 기능은 없지만 검색은 계속 사용할 수 있습니다.
@@ -20502,6 +20715,10 @@ values-b+lt	plurals	downloads_failed_count	one	%d nepavyko
 values-b+lt	plurals	downloads_failed_count	other	%d nepavyko
 values-b+lt	plurals	episodes	one	Serija
 values-b+lt	plurals	episodes	other	Serijos
+values-b+lt	plurals	home_bookmarks_count	few	%d ŽYMOS
+values-b+lt	plurals	home_bookmarks_count	many	%d ŽYMOS
+values-b+lt	plurals	home_bookmarks_count	one	%d ŽYMA
+values-b+lt	plurals	home_bookmarks_count	other	%d ŽYMŲ
 values-b+lt	plurals	home_sections_failed	few	Nepavyko įkelti %d skilčių
 values-b+lt	plurals	home_sections_failed	many	Nepavyko įkelti %d skilties
 values-b+lt	plurals	home_sections_failed	one	Nepavyko įkelti %d skilties
@@ -20669,12 +20886,16 @@ values-b+lt	string	go_back_img_des	-	Grįžti atgal
 values-b+lt	string	go_forward_30	-	+30
 values-b+lt	string	help	-	Pagalba
 values-b+lt	string	history	-	Istorija
+values-b+lt	string	home_bookmarks_no_status_body	-	Pasirinkite vieną viršuje, kad matytumėte tas žymas.
+values-b+lt	string	home_bookmarks_no_status_headline	-	Nepasirinkta jokia būsena
 values-b+lt	string	home_change_provider_img_des	-	Keisti teikėją
 values-b+lt	string	home_expanded_hide	-	Slėpti
 values-b+lt	string	home_info	-	Informacija
 values-b+lt	string	home_main_poster_img_des	-	Pagrindinis Plakatas
 values-b+lt	string	home_more_info	-	Daugiau informacijos
 values-b+lt	string	home_next_random_img_des	-	Sekantis atsitiktinai
+values-b+lt	string	home_offline_bookmarks_body	-	Jūsų žymos išsaugotos šiame įrenginyje.
+values-b+lt	string	home_offline_source_headline	-	%1$s reikia ryšio
 values-b+lt	string	home_play	-	Paleisti
 values-b+lt	string	home_search_only_body	-	Nė vienas jūsų plėtinys neturi pagrindinio puslapio, bet juose vis tiek galite ieškoti.
 values-b+lt	string	is_adult	-	18+
@@ -20898,6 +21119,9 @@ values-b+lv	plurals	downloads_failed_count	other	%d neizdevās
 values-b+lv	plurals	downloads_failed_count	zero	%d neizdevās
 values-b+lv	plurals	episodes	one	Epizode
 values-b+lv	plurals	episodes	other	Epizodes
+values-b+lv	plurals	home_bookmarks_count	one	%d GRĀMATZĪME
+values-b+lv	plurals	home_bookmarks_count	other	%d GRĀMATZĪMES
+values-b+lv	plurals	home_bookmarks_count	zero	%d GRĀMATZĪMJU
 values-b+lv	plurals	home_sections_failed	one	Neizdevās ielādēt %d sadaļu
 values-b+lv	plurals	home_sections_failed	other	Neizdevās ielādēt %d sadaļas
 values-b+lv	plurals	home_sections_failed	zero	Neizdevās ielādēt %d sadaļu
@@ -21185,12 +21409,16 @@ values-b+lv	string	go_forward_30	-	+30
 values-b+lv	string	help	-	Palīdzība
 values-b+lv	string	history	-	Vēsture
 values-b+lv	string	hls_playlist	-	HLS atskaņošanas saraksts
+values-b+lv	string	home_bookmarks_no_status_body	-	Izvēlieties vienu augšā, lai redzētu šīs grāmatzīmes.
+values-b+lv	string	home_bookmarks_no_status_headline	-	Nav izvēlēts statuss
 values-b+lv	string	home_change_provider_img_des	-	Nomainīt dvēju
 values-b+lv	string	home_expanded_hide	-	Slēpt
 values-b+lv	string	home_info	-	Informācija
 values-b+lv	string	home_main_poster_img_des	-	Galvenais plakāts
 values-b+lv	string	home_more_info	-	Vairāk informācijas
 values-b+lv	string	home_next_random_img_des	-	Nākamais nejaušais
+values-b+lv	string	home_offline_bookmarks_body	-	Jūsu grāmatzīmes ir saglabātas šajā ierīcē.
+values-b+lv	string	home_offline_source_headline	-	%1$s nepieciešams savienojums
 values-b+lv	string	home_play	-	Atskaņot
 values-b+lv	string	home_random	-	Randoms
 values-b+lv	string	home_search_only_body	-	Nevienam no jūsu papildinājumiem nav sākumlapas, taču tajos joprojām var meklēt.
@@ -21612,6 +21840,8 @@ values-b+mk	plurals	downloads_queued	one	%d преземање во редица
 values-b+mk	plurals	downloads_queued	other	%d преземања во редицата
 values-b+mk	plurals	episodes	one	Епизода
 values-b+mk	plurals	episodes	other	Епизоди
+values-b+mk	plurals	home_bookmarks_count	one	%d ОБЕЛЕЖУВАЧ
+values-b+mk	plurals	home_bookmarks_count	other	%d ОБЕЛЕЖУВАЧИ
 values-b+mk	plurals	home_sections_failed	one	%d дел не се вчита
 values-b+mk	plurals	home_sections_failed	other	%d делови не се вчитаа
 values-b+mk	string	account	-	Корисничко име
@@ -21954,12 +22184,16 @@ values-b+mk	string	help	-	Помош
 values-b+mk	string	hide_player_control_names	-	Сокриј ги имињата на контролите на корисникот
 values-b+mk	string	history	-	Историја
 values-b+mk	string	hls_playlist	-	ХЛС плејлиста
+values-b+mk	string	home_bookmarks_no_status_body	-	Изберете еден горе за да ги видите тие обележувачи.
+values-b+mk	string	home_bookmarks_no_status_headline	-	Не е избран статус
 values-b+mk	string	home_change_provider_img_des	-	Смени провајдер
 values-b+mk	string	home_expanded_hide	-	Скриј
 values-b+mk	string	home_info	-	Информации
 values-b+mk	string	home_main_poster_img_des	-	Главен постер
 values-b+mk	string	home_more_info	-	Повеќе информации
 values-b+mk	string	home_next_random_img_des	-	Следен рандом
+values-b+mk	string	home_offline_bookmarks_body	-	Вашите обележувачи се зачувани на овој уред.
+values-b+mk	string	home_offline_source_headline	-	%1$s има потреба од врска
 values-b+mk	string	home_play	-	Пушти
 values-b+mk	string	home_random	-	Случајно
 values-b+mk	string	home_search_only_body	-	Ниту една од твоите екстензии нема почетна страница, но сепак можеш да пребаруваш во нив.
@@ -22439,6 +22673,8 @@ values-b+ml	plurals	downloads_failed_count	one	%d പരാജയപ്പെട
 values-b+ml	plurals	downloads_failed_count	other	%d പരാജയപ്പെട്ടു
 values-b+ml	plurals	episodes	one	എപ്പിസോഡ്
 values-b+ml	plurals	episodes	other	എപ്പിസോഡുകൾ
+values-b+ml	plurals	home_bookmarks_count	one	%d ബുക്ക്‌മാർക്ക്
+values-b+ml	plurals	home_bookmarks_count	other	%d ബുക്ക്‌മാർക്കുകൾ
 values-b+ml	plurals	home_sections_failed	one	%d വിഭാഗം ലോഡ് ചെയ്യാനായില്ല
 values-b+ml	plurals	home_sections_failed	other	%d വിഭാഗങ്ങൾ ലോഡ് ചെയ്യാനായില്ല
 values-b+ml	string	action_add_to_bookmarks	-	വാച്ച് സ്റ്റാറ്റസ് സജ്ജീകരിക്കുക
@@ -22599,12 +22835,16 @@ values-b+ml	string	github	-	ഗിറ്റ്ഹബ്
 values-b+ml	string	go_back	-	പിന്നോട്ട് പോകുക
 values-b+ml	string	go_back_img_des	-	മടങ്ങിപ്പോവുക
 values-b+ml	string	history	-	ചരിത്രം
+values-b+ml	string	home_bookmarks_no_status_body	-	ആ ബുക്ക്‌മാർക്കുകൾ കാണാൻ മുകളിൽ നിന്ന് ഒന്ന് തിരഞ്ഞെടുക്കുക.
+values-b+ml	string	home_bookmarks_no_status_headline	-	സ്റ്റാറ്റസൊന്നും തിരഞ്ഞെടുത്തിട്ടില്ല
 values-b+ml	string	home_change_provider_img_des	-	ദാതാവിനെ മാറ്റുക
 values-b+ml	string	home_expanded_hide	-	ഒളിക്കുക
 values-b+ml	string	home_info	-	വിവരം
 values-b+ml	string	home_main_poster_img_des	-	പ്രധാന പോസ്റ്റർ
 values-b+ml	string	home_more_info	-	കൂടുതൽ വിവരം
 values-b+ml	string	home_next_random_img_des	-	അടുത്ത ക്രമരഹിതമായ
+values-b+ml	string	home_offline_bookmarks_body	-	നിങ്ങളുടെ ബുക്ക്‌മാർക്കുകൾ ഈ ഉപകരണത്തിൽ സംരക്ഷിച്ചിരിക്കുന്നു.
+values-b+ml	string	home_offline_source_headline	-	%1$s-ന് കണക്ഷൻ ആവശ്യമാണ്
 values-b+ml	string	home_play	-	പ്ലേയ്
 values-b+ml	string	home_random	-	ക്രമരഹിതം
 values-b+ml	string	home_search_only_body	-	നിങ്ങളുടെ വിപുലീകരണങ്ങളിൽ ഒന്നിനും ഹോം പേജ് ഇല്ല, എങ്കിലും അവയിൽ തിരയാം.
@@ -22819,6 +23059,7 @@ values-b+ml	string	year	-	വർഷം
 values-b+ms	plurals	downloads_failed_count	other	%d gagal
 values-b+ms	plurals	episodes	one	Episod
 values-b+ms	plurals	episodes	other	Episodes
+values-b+ms	plurals	home_bookmarks_count	other	%d PENANDA HALAMAN
 values-b+ms	plurals	home_sections_failed	other	%d bahagian gagal dimuatkan
 values-b+ms	string	account	-	akaun
 values-b+ms	string	action_add_to_bookmarks	-	Tetapkan status tontonan
@@ -23095,12 +23336,16 @@ values-b+ms	string	go_back_img_des	-	Pergi Kembali
 values-b+ms	string	go_forward_30	-	+30
 values-b+ms	string	help	-	Bantuan
 values-b+ms	string	history	-	Sejarah
+values-b+ms	string	home_bookmarks_no_status_body	-	Pilih satu di atas untuk melihat penanda halaman tersebut.
+values-b+ms	string	home_bookmarks_no_status_headline	-	Tiada status dipilih
 values-b+ms	string	home_change_provider_img_des	-	Tukar Pembekal
 values-b+ms	string	home_expanded_hide	-	Sembunyi
 values-b+ms	string	home_info	-	Info
 values-b+ms	string	home_main_poster_img_des	-	Poster Utama
 values-b+ms	string	home_more_info	-	Lebih maklumat
 values-b+ms	string	home_next_random_img_des	-	Seterusnya Rawak
+values-b+ms	string	home_offline_bookmarks_body	-	Penanda halaman anda disimpan pada peranti ini.
+values-b+ms	string	home_offline_source_headline	-	%1$s memerlukan sambungan
 values-b+ms	string	home_play	-	Pasang
 values-b+ms	string	home_random	-	Rawak
 values-b+ms	string	home_search_only_body	-	Tiada tambahan anda yang mempunyai halaman utama, tetapi anda masih boleh mencari di dalamnya.
@@ -23450,6 +23695,11 @@ values-b+mt	plurals	downloads_failed_count	many	%d fallew
 values-b+mt	plurals	downloads_failed_count	one	%d falla
 values-b+mt	plurals	downloads_failed_count	other	%d fallew
 values-b+mt	plurals	downloads_failed_count	two	%d fallew
+values-b+mt	plurals	home_bookmarks_count	few	%d BOOKMARKS
+values-b+mt	plurals	home_bookmarks_count	many	%d BOOKMARKS
+values-b+mt	plurals	home_bookmarks_count	one	%d BOOKMARK
+values-b+mt	plurals	home_bookmarks_count	other	%d BOOKMARKS
+values-b+mt	plurals	home_bookmarks_count	two	%d BOOKMARKS
 values-b+mt	plurals	home_sections_failed	few	Ma setgħux jiġu mgħobbija %d taqsimat
 values-b+mt	plurals	home_sections_failed	many	Ma setgħux jiġu mgħobbija %d taqsima
 values-b+mt	plurals	home_sections_failed	one	Ma setgħetx tiġi mgħobbija %d taqsima
@@ -23543,12 +23793,16 @@ values-b+mt	string	filler	-	Mili
 values-b+mt	string	filter_bookmarks	-	Iffiltra l-Bookmarks
 values-b+mt	string	go_back	-	Mur lura
 values-b+mt	string	go_back_img_des	-	Mur Lura
+values-b+mt	string	home_bookmarks_no_status_body	-	Agħżel wieħed hawn fuq biex tara dawk il-bookmarks.
+values-b+mt	string	home_bookmarks_no_status_headline	-	Ebda status magħżul
 values-b+mt	string	home_change_provider_img_des	-	Ibdel Il-fornitur
 values-b+mt	string	home_expanded_hide	-	Aħbi
 values-b+mt	string	home_info	-	Info
 values-b+mt	string	home_main_poster_img_des	-	Kartellun Principali
 values-b+mt	string	home_more_info	-	Iktar Informazzjoni
 values-b+mt	string	home_next_random_img_des	-	Li jmiss bl'addoċċ
+values-b+mt	string	home_offline_bookmarks_body	-	Il-bookmarks tiegħek huma salvati fuq dan l-apparat.
+values-b+mt	string	home_offline_source_headline	-	%1$s jeħtieġ konnessjoni
 values-b+mt	string	home_play	-	Ibda
 values-b+mt	string	home_search_only_body	-	L-ebda waħda mill-estensjonijiet tiegħek m'għandha paġna ewlenija, imma xorta tista' tfittex fihom.
 values-b+mt	string	library_not_connected	-	Mhux konness
@@ -23665,6 +23919,7 @@ values-b+mt	string	vpn_torrent	-	Dan il-fornitur huwa torrent, VPN huwa rakkoman
 values-b+my	plurals	downloads_failed_count	other	%d ခု မအောင်မြင်
 values-b+my	plurals	episodes	one	အပိုင်း
 values-b+my	plurals	episodes	other	အပိုင်းများ
+values-b+my	plurals	home_bookmarks_count	other	စာမှတ် %d ခု
 values-b+my	plurals	home_sections_failed	other	အပိုင်း %d ခု တင်သွင်း၍မရပါ
 values-b+my	string	account	-	အကောင့်
 values-b+my	string	action_add_to_bookmarks	-	ကြည့်ရှုမှုအခြေအနေသတ်မှတ်ခြင်း
@@ -23911,12 +24166,16 @@ values-b+my	string	go_forward_30	-	+30
 values-b+my	string	help	-	အကူအညီ
 values-b+my	string	history	-	ကြည့်ရှုခဲ့သည်များ
 values-b+my	string	hls_playlist	-	HLS ဖွင့်စဥ်
+values-b+my	string	home_bookmarks_no_status_body	-	ထိုစာမှတ်များကို ကြည့်ရန် အပေါ်မှ တစ်ခုကို ရွေးပါ။
+values-b+my	string	home_bookmarks_no_status_headline	-	အခြေအနေ မရွေးရသေးပါ
 values-b+my	string	home_change_provider_img_des	-	ပံ့ပိုးပေးသောဝန်ဆောင်မှုပြောင်းရန်
 values-b+my	string	home_expanded_hide	-	ဝုက်ရန်
 values-b+my	string	home_info	-	အချက်အလက်
 values-b+my	string	home_main_poster_img_des	-	မိန်း ပိုစတာ
 values-b+my	string	home_more_info	-	ပိုမို၍
 values-b+my	string	home_next_random_img_des	-	နောက် ကျပန်း
+values-b+my	string	home_offline_bookmarks_body	-	သင့်စာမှတ်များကို ဤစက်ပေါ်တွင် သိမ်းထားသည်။
+values-b+my	string	home_offline_source_headline	-	%1$s သည် ချိတ်ဆက်မှု လိုအပ်သည်
 values-b+my	string	home_play	-	ကြည့်မည်
 values-b+my	string	home_random	-	ကျပန်း
 values-b+my	string	home_search_only_body	-	သင့်အဆက်များတွင် ပင်မစာမျက်နှာ မရှိပါ၊ သို့သော် ၎င်းတို့တွင် ရှာဖွေနိုင်ပါသေးသည်။
@@ -24283,6 +24542,8 @@ values-b+my	string	year	-	ခုနစ်
 values-b+my	string	yes	-	သေချာသည်
 values-b+ne	plurals	downloads_failed_count	one	%d असफल
 values-b+ne	plurals	downloads_failed_count	other	%d असफल
+values-b+ne	plurals	home_bookmarks_count	one	%d बुकमार्क
+values-b+ne	plurals	home_bookmarks_count	other	%d बुकमार्क
 values-b+ne	plurals	home_sections_failed	one	%d खण्ड लोड हुन सकेन
 values-b+ne	plurals	home_sections_failed	other	%d खण्डहरू लोड हुन सकेनन्
 values-b+ne	string	action_add_to_bookmarks	-	हेरेको स्थिति निर्धारण गर्नुहोस्
@@ -24374,12 +24635,16 @@ values-b+ne	string	filler	-	फिलर
 values-b+ne	string	filter_bookmarks	-	बुकमार्कहरू फिल्टर गर्नुहोस्
 values-b+ne	string	go_back	-	पछाडि जानुहोस्
 values-b+ne	string	go_back_img_des	-	पछाडी जाउ
+values-b+ne	string	home_bookmarks_no_status_body	-	ती बुकमार्कहरू हेर्न माथिबाट एउटा छान्नुहोस्।
+values-b+ne	string	home_bookmarks_no_status_headline	-	कुनै स्थिति छानिएको छैन
 values-b+ne	string	home_change_provider_img_des	-	प्रोवाइडर परिवर्तन गर्नुहोस्
 values-b+ne	string	home_expanded_hide	-	लुकाउनुहोस्
 values-b+ne	string	home_info	-	जानकारी
 values-b+ne	string	home_main_poster_img_des	-	मुख्य पोस्टर
 values-b+ne	string	home_more_info	-	थप जानकारी
 values-b+ne	string	home_next_random_img_des	-	अर्को अनियमित
+values-b+ne	string	home_offline_bookmarks_body	-	तपाईंका बुकमार्कहरू यो यन्त्रमा सुरक्षित छन्।
+values-b+ne	string	home_offline_source_headline	-	%1$s लाई जडान चाहिन्छ
 values-b+ne	string	home_play	-	प्ले
 values-b+ne	string	home_search_only_body	-	तपाईंका कुनै पनि एक्सटेन्सनमा होम पेज छैन, तर तपाईं तिनमा अझै खोज्न सक्नुहुन्छ।
 values-b+ne	string	library_not_connected	-	जडान छैन
@@ -24502,6 +24767,8 @@ values-b+nl	plurals	downloads_failed_count	one	%d mislukt
 values-b+nl	plurals	downloads_failed_count	other	%d mislukt
 values-b+nl	plurals	episodes	one	Aflevering
 values-b+nl	plurals	episodes	other	afleveringen
+values-b+nl	plurals	home_bookmarks_count	one	%d BLADWIJZER
+values-b+nl	plurals	home_bookmarks_count	other	%d BLADWIJZERS
 values-b+nl	plurals	home_sections_failed	one	%d sectie kon niet worden geladen
 values-b+nl	plurals	home_sections_failed	other	%d secties konden niet worden geladen
 values-b+nl	string	account	-	account
@@ -24821,12 +25088,16 @@ values-b+nl	string	help	-	Help
 values-b+nl	string	hide_player_control_names	-	Verberg de namen van de besturingselementen van de speler
 values-b+nl	string	history	-	Geschiedenis
 values-b+nl	string	hls_playlist	-	HLS Afspeellijst
+values-b+nl	string	home_bookmarks_no_status_body	-	Kies er hierboven een om die bladwijzers te zien.
+values-b+nl	string	home_bookmarks_no_status_headline	-	Geen status gekozen
 values-b+nl	string	home_change_provider_img_des	-	Wijzig provider
 values-b+nl	string	home_expanded_hide	-	Verberg
 values-b+nl	string	home_info	-	Info
 values-b+nl	string	home_main_poster_img_des	-	Hoofdposter
 values-b+nl	string	home_more_info	-	Meer info
 values-b+nl	string	home_next_random_img_des	-	Volgende willekeurig
+values-b+nl	string	home_offline_bookmarks_body	-	Je bladwijzers zijn op dit apparaat opgeslagen.
+values-b+nl	string	home_offline_source_headline	-	%1$s heeft een verbinding nodig
 values-b+nl	string	home_play	-	Speel
 values-b+nl	string	home_random	-	Willekeurig
 values-b+nl	string	home_search_only_body	-	Geen van je uitbreidingen heeft een startpagina, maar je kunt er nog steeds in zoeken.
@@ -25283,6 +25554,8 @@ values-b+nn	plurals	downloads_failed_count	one	%d feila
 values-b+nn	plurals	downloads_failed_count	other	%d feila
 values-b+nn	plurals	episodes	one	Episode
 values-b+nn	plurals	episodes	other	Episodar
+values-b+nn	plurals	home_bookmarks_count	one	%d BOKMERKE
+values-b+nn	plurals	home_bookmarks_count	other	%d BOKMERKE
 values-b+nn	plurals	home_sections_failed	one	%d del kunne ikkje lastast
 values-b+nn	plurals	home_sections_failed	other	%d delar kunne ikkje lastast
 values-b+nn	string	action_add_to_bookmarks	-	Sett visingstatus
@@ -25410,12 +25683,16 @@ values-b+nn	string	go_back	-	Gå tilbake
 values-b+nn	string	go_back_30	-	-30
 values-b+nn	string	go_back_img_des	-	Gå tilbake
 values-b+nn	string	go_forward_30	-	+30
+values-b+nn	string	home_bookmarks_no_status_body	-	Vel ein ovanfor for å sjå dei bokmerka.
+values-b+nn	string	home_bookmarks_no_status_headline	-	Ingen status vald
 values-b+nn	string	home_change_provider_img_des	-	Endre leverandør
 values-b+nn	string	home_expanded_hide	-	Gøym
 values-b+nn	string	home_info	-	Informasjon
 values-b+nn	string	home_main_poster_img_des	-	Hovudminiatyrbilete
 values-b+nn	string	home_more_info	-	Meir informasjon
 values-b+nn	string	home_next_random_img_des	-	Neste tilfeldig
+values-b+nn	string	home_offline_bookmarks_body	-	Bokmerka dine er lagra på denne eininga.
+values-b+nn	string	home_offline_source_headline	-	%1$s treng tilkopling
 values-b+nn	string	home_play	-	Spel(e) av
 values-b+nn	string	home_search_only_body	-	Ingen av utvidingane dine har ei heimeside, men du kan framleis søkje i dei.
 values-b+nn	string	kitsu_settings	-	Vis miniatyrbilete frå Kitsu
@@ -25579,6 +25856,8 @@ values-b+no	plurals	downloads_failed_count	one	%d mislyktes
 values-b+no	plurals	downloads_failed_count	other	%d mislyktes
 values-b+no	plurals	episodes	one	Episode
 values-b+no	plurals	episodes	other	Episoder
+values-b+no	plurals	home_bookmarks_count	one	%d BOKMERKE
+values-b+no	plurals	home_bookmarks_count	other	%d BOKMERKER
 values-b+no	plurals	home_sections_failed	one	%d del kunne ikke lastes inn
 values-b+no	plurals	home_sections_failed	other	%d deler kunne ikke lastes inn
 values-b+no	string	account	-	konto
@@ -25824,12 +26103,16 @@ values-b+no	string	go_forward_30	-	+30
 values-b+no	string	help	-	Hjelp
 values-b+no	string	history	-	Historikk
 values-b+no	string	hls_playlist	-	HLS-spilleliste
+values-b+no	string	home_bookmarks_no_status_body	-	Velg en ovenfor for å se de bokmerkene.
+values-b+no	string	home_bookmarks_no_status_headline	-	Ingen status valgt
 values-b+no	string	home_change_provider_img_des	-	Bytt leverandør
 values-b+no	string	home_expanded_hide	-	Gjemme seg
 values-b+no	string	home_info	-	Informasjon
 values-b+no	string	home_main_poster_img_des	-	Main Plakat
 values-b+no	string	home_more_info	-	Mer informasjon
 values-b+no	string	home_next_random_img_des	-	Neste tilfeldig
+values-b+no	string	home_offline_bookmarks_body	-	Bokmerkene dine er lagret på denne enheten.
+values-b+no	string	home_offline_source_headline	-	%1$s trenger tilkobling
 values-b+no	string	home_play	-	Spille
 values-b+no	string	home_random	-	Tilfeldig
 values-b+no	string	home_search_only_body	-	Ingen av utvidelsene dine har en hjemmeside, men du kan fortsatt søke i dem.
@@ -26189,6 +26472,8 @@ values-b+or	plurals	downloads_failed_count	one	%d ଵିଫଳ ହେଲା
 values-b+or	plurals	downloads_failed_count	other	%d ଵିଫଳ ହେଲା
 values-b+or	plurals	episodes	one	ଅଧ୍ୟାୟ
 values-b+or	plurals	episodes	other	ଟି ଅଧ୍ୟାୟ
+values-b+or	plurals	home_bookmarks_count	one	%d ବୁକମାର୍କ
+values-b+or	plurals	home_bookmarks_count	other	%d ବୁକମାର୍କ
 values-b+or	plurals	home_sections_failed	one	%d ଵିଭାଗ ଲୋଡ୍ ହୋଇପାରିଲା ନାହିଁ
 values-b+or	plurals	home_sections_failed	other	%d ଵିଭାଗ ଲୋଡ୍ ହୋଇପାରିଲା ନାହିଁ
 values-b+or	string	action_default	-	ଡିଫଲ୍ଟ
@@ -26307,11 +26592,15 @@ values-b+or	string	go_back_30	-	-୩୦
 values-b+or	string	go_forward_30	-	+୩୦
 values-b+or	string	history	-	ଇତିଵୃତ୍ତି
 values-b+or	string	hls_playlist	-	HLS ଚାଳନାତାଲିକା
+values-b+or	string	home_bookmarks_no_status_body	-	ସେହି ବୁକମାର୍କଗୁଡ଼ିକ ଦେଖିବାକୁ ଉପରୁ ଗୋଟିଏ ବାଛନ୍ତୁ।
+values-b+or	string	home_bookmarks_no_status_headline	-	କୌଣସି ସ୍ଥିତି ବଛାଯାଇନାହିଁ
 values-b+or	string	home_change_provider_img_des	-	ପ୍ରଦାତା ବଦଳାଅ
 values-b+or	string	home_expanded_hide	-	ଲୁଚାଅ
 values-b+or	string	home_info	-	ସୂଚନା
 values-b+or	string	home_main_poster_img_des	-	ମୁଖ୍ୟ ପୋଷ୍ଟର୍
 values-b+or	string	home_more_info	-	ଅଧିକ ସୂଚନା
+values-b+or	string	home_offline_bookmarks_body	-	ଆପଣଙ୍କ ବୁକମାର୍କଗୁଡ଼ିକ ଏହି ଡିଭାଇସରେ ସଞ୍ଚିତ ଅଛି।
+values-b+or	string	home_offline_source_headline	-	%1$s ପାଇଁ ସଂଯୋଗ ଆବଶ୍ୟକ
 values-b+or	string	home_play	-	ଚଲାଅ
 values-b+or	string	home_search_only_body	-	ଆପଣଙ୍କର କୌଣସି ଏକ୍ସଟେନସନରେ ହୋମ୍ ପୃଷ୍ଠା ନାହିଁ, କିନ୍ତୁ ଆପଣ ସେଗୁଡ଼ିକରେ ସନ୍ଧାନ କରିପାରିବେ।
 values-b+or	string	library	-	ଲାଇବ୍ରେରୀ
@@ -26452,6 +26741,10 @@ values-b+pl	plurals	downloads_queued	one	%d pobieranie w kolejce
 values-b+pl	plurals	downloads_queued	other	%d pobierań w kolejce
 values-b+pl	plurals	episodes	one	Odcinek
 values-b+pl	plurals	episodes	other	Odcinki
+values-b+pl	plurals	home_bookmarks_count	few	%d ZAKŁADKI
+values-b+pl	plurals	home_bookmarks_count	many	%d ZAKŁADEK
+values-b+pl	plurals	home_bookmarks_count	one	%d ZAKŁADKA
+values-b+pl	plurals	home_bookmarks_count	other	%d ZAKŁADKI
 values-b+pl	plurals	home_sections_failed	few	Nie udało się załadować %d sekcji
 values-b+pl	plurals	home_sections_failed	many	Nie udało się załadować %d sekcji
 values-b+pl	plurals	home_sections_failed	one	Nie udało się załadować %d sekcji
@@ -26800,12 +27093,16 @@ values-b+pl	string	help	-	Pomoc
 values-b+pl	string	hide_player_control_names	-	Ukryj nazwy elementów sterujących odtwarzacza
 values-b+pl	string	history	-	Historia
 values-b+pl	string	hls_playlist	-	Playlista HLS
+values-b+pl	string	home_bookmarks_no_status_body	-	Wybierz jeden powyżej, aby zobaczyć te zakładki.
+values-b+pl	string	home_bookmarks_no_status_headline	-	Nie wybrano statusu
 values-b+pl	string	home_change_provider_img_des	-	Zmień źródło
 values-b+pl	string	home_expanded_hide	-	Ukryj
 values-b+pl	string	home_info	-	Informacje
 values-b+pl	string	home_main_poster_img_des	-	Główny obrazek
 values-b+pl	string	home_more_info	-	Więcej informacji
 values-b+pl	string	home_next_random_img_des	-	Następny losowy
+values-b+pl	string	home_offline_bookmarks_body	-	Twoje zakładki są zapisane na tym urządzeniu.
+values-b+pl	string	home_offline_source_headline	-	%1$s wymaga połączenia
 values-b+pl	string	home_play	-	Odtwórz
 values-b+pl	string	home_random	-	Losowy
 values-b+pl	string	home_search_only_body	-	Żadne z twoich rozszerzeń nie ma strony głównej, ale nadal możesz w nich szukać.
@@ -27297,6 +27594,9 @@ values-b+pt	plurals	downloads_queued	one	%d download na fila
 values-b+pt	plurals	downloads_queued	other	%d downloads na fila
 values-b+pt	plurals	episodes	one	Episódio
 values-b+pt	plurals	episodes	other	Episódios
+values-b+pt	plurals	home_bookmarks_count	many	%d DE MARCADORES
+values-b+pt	plurals	home_bookmarks_count	one	%d MARCADOR
+values-b+pt	plurals	home_bookmarks_count	other	%d MARCADORES
 values-b+pt	plurals	home_sections_failed	many	Falha ao carregar %d secções
 values-b+pt	plurals	home_sections_failed	one	Falha ao carregar %d secção
 values-b+pt	plurals	home_sections_failed	other	Falha ao carregar %d secções
@@ -27643,12 +27943,16 @@ values-b+pt	string	help	-	Ajuda
 values-b+pt	string	hide_player_control_names	-	Esconde os nomes dos botões do player
 values-b+pt	string	history	-	Histórico
 values-b+pt	string	hls_playlist	-	Playlist HLS
+values-b+pt	string	home_bookmarks_no_status_body	-	Escolha um acima para ver esses marcadores.
+values-b+pt	string	home_bookmarks_no_status_headline	-	Nenhum estado escolhido
 values-b+pt	string	home_change_provider_img_des	-	Alterar Provedor
 values-b+pt	string	home_expanded_hide	-	Esconder
 values-b+pt	string	home_info	-	Info
 values-b+pt	string	home_main_poster_img_des	-	Pôster Principal
 values-b+pt	string	home_more_info	-	Mais info
 values-b+pt	string	home_next_random_img_des	-	Próximo Aleatório
+values-b+pt	string	home_offline_bookmarks_body	-	Os seus marcadores estão guardados neste dispositivo.
+values-b+pt	string	home_offline_source_headline	-	%1$s precisa de uma ligação
 values-b+pt	string	home_play	-	Reproduzir
 values-b+pt	string	home_random	-	Aleatório
 values-b+pt	string	home_search_only_body	-	Nenhuma das suas extensões tem página inicial, mas ainda pode pesquisar nelas.
@@ -28138,6 +28442,9 @@ values-b+pt+BR	plurals	downloads_failed_count	other	%d falharam
 values-b+pt+BR	plurals	downloads_queued	many	%d downloads na sequência
 values-b+pt+BR	plurals	downloads_queued	one	%d download na sequência
 values-b+pt+BR	plurals	downloads_queued	other	%d downloads na sequência
+values-b+pt+BR	plurals	home_bookmarks_count	many	%d DE MARCADORES
+values-b+pt+BR	plurals	home_bookmarks_count	one	%d MARCADOR
+values-b+pt+BR	plurals	home_bookmarks_count	other	%d MARCADORES
 values-b+pt+BR	plurals	home_sections_failed	many	Falha ao carregar %d seções
 values-b+pt+BR	plurals	home_sections_failed	one	Falha ao carregar %d seção
 values-b+pt+BR	plurals	home_sections_failed	other	Falha ao carregar %d seções
@@ -28480,12 +28787,16 @@ values-b+pt+BR	string	help	-	Ajuda
 values-b+pt+BR	string	hide_player_control_names	-	Ocultar os nomes dos controles do player
 values-b+pt+BR	string	history	-	Historico
 values-b+pt+BR	string	hls_playlist	-	Lista de reprodução HLS
+values-b+pt+BR	string	home_bookmarks_no_status_body	-	Escolha um acima para ver esses marcadores.
+values-b+pt+BR	string	home_bookmarks_no_status_headline	-	Nenhum status escolhido
 values-b+pt+BR	string	home_change_provider_img_des	-	Alterar provedor
 values-b+pt+BR	string	home_expanded_hide	-	Ocultar
 values-b+pt+BR	string	home_info	-	Informações
 values-b+pt+BR	string	home_main_poster_img_des	-	Pôster principal
 values-b+pt+BR	string	home_more_info	-	Mais informações
 values-b+pt+BR	string	home_next_random_img_des	-	Próximo Aleatório
+values-b+pt+BR	string	home_offline_bookmarks_body	-	Seus marcadores estão salvos neste dispositivo.
+values-b+pt+BR	string	home_offline_source_headline	-	%1$s precisa de conexão
 values-b+pt+BR	string	home_play	-	Reproduzir
 values-b+pt+BR	string	home_random	-	Aleatório
 values-b+pt+BR	string	home_search_only_body	-	Nenhuma das suas extensões tem página inicial, mas você ainda pode pesquisar nelas.
@@ -28967,6 +29278,7 @@ values-b+pt+BR	string	yes	-	Sim
 values-b+qt	plurals	downloads_failed_count	other	%d oooogg
 values-b+qt	plurals	episodes	one	ahhhaaahhu
 values-b+qt	plurals	episodes	other	ahhh ooooo
+values-b+qt	plurals	home_bookmarks_count	other	%d OOUUH OOH
 values-b+qt	plurals	home_sections_failed	other	%d oooogg ooh aaahhu
 values-b+qt	string	account	-	aaaaggg
 values-b+qt	string	action_add_to_bookmarks	-	auugggguuuuuuhhh uuuu hhhhhhhhuhggghggg
@@ -29270,12 +29582,16 @@ values-b+qt	string	help	-	uugg
 values-b+qt	string	hide_player_control_names	-	oohh uuugg ag aag player uuuugggg
 values-b+qt	string	history	-	aaaaggg
 values-b+qt	string	hls_playlist	-	uug uuuugggg
+values-b+qt	string	home_bookmarks_no_status_body	-	ooh aaa uuh ooh-ahh oouuh ooh.
+values-b+qt	string	home_bookmarks_no_status_headline	-	oooh ahh uuu
 values-b+qt	string	home_change_provider_img_des	-	ah ohaaaaghh aaahhu
 values-b+qt	string	home_expanded_hide	-	oh ahhh
 values-b+qt	string	home_info	-	aauugghh
 values-b+qt	string	home_main_poster_img_des	-	ahhhahaaaaaahhhaaaghh
 values-b+qt	string	home_more_info	-	ahooo a aaaghhouuhhh
 values-b+qt	string	home_next_random_img_des	-	aoooohh
+values-b+qt	string	home_offline_bookmarks_body	-	oouuh ooh aaah uuu.
+values-b+qt	string	home_offline_source_headline	-	%1$s ooogg eek
 values-b+qt	string	home_play	-	ooo-ahahouuhhh
 values-b+qt	string	home_random	-	aaaagg
 values-b+qt	string	home_search_only_body	-	aaaagg og ooogg oouuh
@@ -29688,6 +30004,9 @@ values-b+ro	plurals	downloads_failed_count	one	%d a eșuat
 values-b+ro	plurals	downloads_failed_count	other	%d au eșuat
 values-b+ro	plurals	episodes	one	Episodul
 values-b+ro	plurals	episodes	other	Episoade
+values-b+ro	plurals	home_bookmarks_count	few	%d MARCAJE
+values-b+ro	plurals	home_bookmarks_count	one	%d MARCAJ
+values-b+ro	plurals	home_bookmarks_count	other	%d DE MARCAJE
 values-b+ro	plurals	home_sections_failed	few	Nu s-au putut încărca %d secțiuni
 values-b+ro	plurals	home_sections_failed	one	Nu s-a putut încărca %d secțiune
 values-b+ro	plurals	home_sections_failed	other	Nu s-au putut încărca %d de secțiuni
@@ -29993,12 +30312,16 @@ values-b+ro	string	go_forward_30	-	+30
 values-b+ro	string	help	-	Ajutor
 values-b+ro	string	history	-	Istoric
 values-b+ro	string	hls_playlist	-	Playlist HLS
+values-b+ro	string	home_bookmarks_no_status_body	-	Alegeți unul mai sus pentru a vedea acele marcaje.
+values-b+ro	string	home_bookmarks_no_status_headline	-	Niciun status ales
 values-b+ro	string	home_change_provider_img_des	-	Schimbă furnizorul
 values-b+ro	string	home_expanded_hide	-	Ascunde
 values-b+ro	string	home_info	-	Informații
 values-b+ro	string	home_main_poster_img_des	-	Poster Principal
 values-b+ro	string	home_more_info	-	Mai multe informații
 values-b+ro	string	home_next_random_img_des	-	Următorul la Întâmplare
+values-b+ro	string	home_offline_bookmarks_body	-	Marcajele dvs. sunt salvate pe acest dispozitiv.
+values-b+ro	string	home_offline_source_headline	-	%1$s are nevoie de conexiune
 values-b+ro	string	home_play	-	Începe
 values-b+ro	string	home_random	-	Aleatoriu
 values-b+ro	string	home_search_only_body	-	Niciuna dintre extensiile dvs. nu are o pagină principală, dar puteți căuta în continuare în ele.
@@ -30422,6 +30745,10 @@ values-b+ru	plurals	downloads_queued	one	Запланировано %d загр�
 values-b+ru	plurals	downloads_queued	other	Запланировано %d загрузок
 values-b+ru	plurals	episodes	one	Серия
 values-b+ru	plurals	episodes	other	Серии
+values-b+ru	plurals	home_bookmarks_count	few	%d ЗАКЛАДКИ
+values-b+ru	plurals	home_bookmarks_count	many	%d ЗАКЛАДОК
+values-b+ru	plurals	home_bookmarks_count	one	%d ЗАКЛАДКА
+values-b+ru	plurals	home_bookmarks_count	other	%d ЗАКЛАДКИ
 values-b+ru	plurals	home_sections_failed	few	Не удалось загрузить %d раздела
 values-b+ru	plurals	home_sections_failed	many	Не удалось загрузить %d разделов
 values-b+ru	plurals	home_sections_failed	one	Не удалось загрузить %d раздел
@@ -30770,12 +31097,16 @@ values-b+ru	string	help	-	Помощь
 values-b+ru	string	hide_player_control_names	-	Скрыть имена контроля игроков
 values-b+ru	string	history	-	История
 values-b+ru	string	hls_playlist	-	Плейлист HLS
+values-b+ru	string	home_bookmarks_no_status_body	-	Выберите один выше, чтобы увидеть эти закладки.
+values-b+ru	string	home_bookmarks_no_status_headline	-	Статус не выбран
 values-b+ru	string	home_change_provider_img_des	-	Изменить поставщика
 values-b+ru	string	home_expanded_hide	-	Прятать
 values-b+ru	string	home_info	-	Инфо
 values-b+ru	string	home_main_poster_img_des	-	Главный плакат
 values-b+ru	string	home_more_info	-	Подробнее
 values-b+ru	string	home_next_random_img_des	-	Следующий случайный
+values-b+ru	string	home_offline_bookmarks_body	-	Ваши закладки сохранены на этом устройстве.
+values-b+ru	string	home_offline_source_headline	-	%1$s нужно подключение
 values-b+ru	string	home_play	-	Смотреть
 values-b+ru	string	home_random	-	Случайный
 values-b+ru	string	home_search_only_body	-	Ни у одного из ваших дополнений нет главной страницы, но в них всё равно можно искать.
@@ -31262,6 +31593,10 @@ values-b+sk	plurals	downloads_failed_count	one	%d neúspešné
 values-b+sk	plurals	downloads_failed_count	other	%d neúspešných
 values-b+sk	plurals	episodes	one	Epizóda
 values-b+sk	plurals	episodes	other	Epizódy
+values-b+sk	plurals	home_bookmarks_count	few	%d ZÁLOŽKY
+values-b+sk	plurals	home_bookmarks_count	many	%d ZÁLOŽKY
+values-b+sk	plurals	home_bookmarks_count	one	%d ZÁLOŽKA
+values-b+sk	plurals	home_bookmarks_count	other	%d ZÁLOŽIEK
 values-b+sk	plurals	home_sections_failed	few	Nepodarilo sa načítať %d sekcie
 values-b+sk	plurals	home_sections_failed	many	Nepodarilo sa načítať %d sekcií
 values-b+sk	plurals	home_sections_failed	one	Nepodarilo sa načítať %d sekciu
@@ -31501,12 +31836,16 @@ values-b+sk	string	go_back	-	Ísť späť
 values-b+sk	string	go_back_30	-	-30
 values-b+sk	string	go_back_img_des	-	Ísť späť
 values-b+sk	string	go_forward_30	-	+30
+values-b+sk	string	home_bookmarks_no_status_body	-	Vyberte jeden hore a uvidíte tieto záložky.
+values-b+sk	string	home_bookmarks_no_status_headline	-	Nie je vybraný žiadny stav
 values-b+sk	string	home_change_provider_img_des	-	Zmeniť poskytovateľa
 values-b+sk	string	home_expanded_hide	-	Skryť
 values-b+sk	string	home_info	-	Info
 values-b+sk	string	home_main_poster_img_des	-	Hlavný plagát
 values-b+sk	string	home_more_info	-	Viac informácií
 values-b+sk	string	home_next_random_img_des	-	Ďalší náhodný
+values-b+sk	string	home_offline_bookmarks_body	-	Vaše záložky sú uložené v tomto zariadení.
+values-b+sk	string	home_offline_source_headline	-	%1$s potrebuje pripojenie
 values-b+sk	string	home_play	-	Prehrať
 values-b+sk	string	home_random	-	Náhodné
 values-b+sk	string	home_search_only_body	-	Žiadne z vašich rozšírení nemá domovskú stránku, no stále v nich môžete hľadať.
@@ -31836,6 +32175,8 @@ values-b+so	plurals	downloads_failed_count	one	%d ayaa fashilmay
 values-b+so	plurals	downloads_failed_count	other	%d ayaa fashilmay
 values-b+so	plurals	episodes	one	Xalqad
 values-b+so	plurals	episodes	other	Xalqado
+values-b+so	plurals	home_bookmarks_count	one	%d CALAAMAD
+values-b+so	plurals	home_bookmarks_count	other	%d CALAAMADOOD
 values-b+so	plurals	home_sections_failed	one	Waa ka keeni kari waayey %d qayb
 values-b+so	plurals	home_sections_failed	other	Waa ka keeni kari waayey %d qaybood
 values-b+so	string	account	-	Akoonka
@@ -32085,12 +32426,16 @@ values-b+so	string	go_back_img_des	-	Dib u noqo
 values-b+so	string	go_forward_30	-	+30
 values-b+so	string	history	-	Taariikhda
 values-b+so	string	hls_playlist	-	HLS playlist
+values-b+so	string	home_bookmarks_no_status_body	-	Mid ka dooro korka si aad u aragto calaamadahaas.
+values-b+so	string	home_bookmarks_no_status_headline	-	Xaalad lama dooran
 values-b+so	string	home_change_provider_img_des	-	Beddel qaybiyaha
 values-b+so	string	home_expanded_hide	-	Qari
 values-b+so	string	home_info	-	Warbixin
 values-b+so	string	home_main_poster_img_des	-	Boodhka weyn
 values-b+so	string	home_more_info	-	Warbixin dheeraad ah
 values-b+so	string	home_next_random_img_des	-	X.la'aanta xigta
+values-b+so	string	home_offline_bookmarks_body	-	Calaamadahaagu waxay ku kaydsan yihiin qalabkan.
+values-b+so	string	home_offline_source_headline	-	%1$s wuxuu u baahan yahay xiriir
 values-b+so	string	home_play	-	Daar
 values-b+so	string	home_random	-	Xulasho la'aan
 values-b+so	string	home_search_only_body	-	Mid ka mid ah kordhiyeyaashaada ma laha bog hore, laakiin weli waad ka raadin kartaa.
@@ -32444,6 +32789,8 @@ values-b+sq	plurals	downloads_queued	one	%d shkarkim në radhë
 values-b+sq	plurals	downloads_queued	other	%d shkarkime në radhë
 values-b+sq	plurals	episodes	one	Episodi
 values-b+sq	plurals	episodes	other	Episode
+values-b+sq	plurals	home_bookmarks_count	one	%d TË RUAJTURA
+values-b+sq	plurals	home_bookmarks_count	other	%d TË RUAJTURA
 values-b+sq	plurals	home_sections_failed	one	Nuk mund të ngarkohej %d seksion
 values-b+sq	plurals	home_sections_failed	other	Nuk mund të ngarkoheshin %d seksione
 values-b+sq	plurals	links_hidden	one	%d link i fshehur
@@ -32788,12 +33135,16 @@ values-b+sq	string	help	-	Ndihmë
 values-b+sq	string	hide_player_control_names	-	Fshih emrat e kontrolleve të luajtësit
 values-b+sq	string	history	-	Historia
 values-b+sq	string	hls_playlist	-	Lista e HLS
+values-b+sq	string	home_bookmarks_no_status_body	-	Zgjidhni një më sipër për të parë ato të ruajtura.
+values-b+sq	string	home_bookmarks_no_status_headline	-	Nuk është zgjedhur asnjë status
 values-b+sq	string	home_change_provider_img_des	-	Ndrysho ofruesin
 values-b+sq	string	home_expanded_hide	-	Fsheh
 values-b+sq	string	home_info	-	Informacion
 values-b+sq	string	home_main_poster_img_des	-	Posteri kryesor
 values-b+sq	string	home_more_info	-	Më shumë info
 values-b+sq	string	home_next_random_img_des	-	Tjetër rastësore
+values-b+sq	string	home_offline_bookmarks_body	-	Të ruajturat tuaja janë në këtë pajisje.
+values-b+sq	string	home_offline_source_headline	-	%1$s ka nevojë për lidhje
 values-b+sq	string	home_play	-	Luaj
 values-b+sq	string	home_random	-	Rastësor
 values-b+sq	string	home_search_only_body	-	Asnjë nga shtesat tuaja nuk ka faqe kryesore, por mund të kërkoni ende në to.
@@ -33282,6 +33633,8 @@ values-b+sv	plurals	downloads_queued	one	%d nedladdning i kö
 values-b+sv	plurals	downloads_queued	other	%d nedladdningar i kö
 values-b+sv	plurals	episodes	one	Avsnitt
 values-b+sv	plurals	episodes	other	Avsnitt
+values-b+sv	plurals	home_bookmarks_count	one	%d BOKMÄRKE
+values-b+sv	plurals	home_bookmarks_count	other	%d BOKMÄRKEN
 values-b+sv	plurals	home_sections_failed	one	%d sektion kunde inte laddas
 values-b+sv	plurals	home_sections_failed	other	%d sektioner kunde inte laddas
 values-b+sv	plurals	links_hidden	one	%d dold länk
@@ -33626,12 +33979,16 @@ values-b+sv	string	help	-	Hjälp
 values-b+sv	string	hide_player_control_names	-	Dölj namnen på spelarens kontroller
 values-b+sv	string	history	-	Historik
 values-b+sv	string	hls_playlist	-	HLS spellista
+values-b+sv	string	home_bookmarks_no_status_body	-	Välj en ovan för att se de bokmärkena.
+values-b+sv	string	home_bookmarks_no_status_headline	-	Ingen status vald
 values-b+sv	string	home_change_provider_img_des	-	Byt leverantör
 values-b+sv	string	home_expanded_hide	-	Göm
 values-b+sv	string	home_info	-	Info
 values-b+sv	string	home_main_poster_img_des	-	Affisch
 values-b+sv	string	home_more_info	-	Mer information
 values-b+sv	string	home_next_random_img_des	-	Nästa slumpvis
+values-b+sv	string	home_offline_bookmarks_body	-	Dina bokmärken sparas på den här enheten.
+values-b+sv	string	home_offline_source_headline	-	%1$s behöver en anslutning
 values-b+sv	string	home_play	-	Spela upp
 values-b+sv	string	home_random	-	Slumpmässig
 values-b+sv	string	home_search_only_body	-	Inget av dina tillägg har en startsida, men du kan fortfarande söka i dem.
@@ -34120,6 +34477,8 @@ values-b+ta	plurals	downloads_queued	one	%d பதிவிறக்கம் �
 values-b+ta	plurals	downloads_queued	other	%d பதிவிறக்கங்கள் வரிசையில் உள்ளன
 values-b+ta	plurals	episodes	one	அத்தியாயம்
 values-b+ta	plurals	episodes	other	அத்தியாயங்கள்
+values-b+ta	plurals	home_bookmarks_count	one	%d புக்மார்க்
+values-b+ta	plurals	home_bookmarks_count	other	%d புக்மார்க்குகள்
 values-b+ta	plurals	home_sections_failed	one	%d பிரிவை ஏற்ற முடியவில்லை
 values-b+ta	plurals	home_sections_failed	other	%d பிரிவுகளை ஏற்ற முடியவில்லை
 values-b+ta	plurals	links_hidden	one	%d மறைக்கப்பட்ட இணைப்பு
@@ -34464,12 +34823,16 @@ values-b+ta	string	help	-	உதவி
 values-b+ta	string	hide_player_control_names	-	வீரரின் கட்டுப்பாடுகளின் பெயர்களை மறைக்கவும்
 values-b+ta	string	history	-	வரலாறு
 values-b+ta	string	hls_playlist	-	எச்.எல்.எச் பிளேலிச்ட்
+values-b+ta	string	home_bookmarks_no_status_body	-	அந்த புக்மார்க்குகளைக் காண மேலே ஒன்றைத் தேர்ந்தெடுக்கவும்.
+values-b+ta	string	home_bookmarks_no_status_headline	-	எந்த நிலையும் தேர்ந்தெடுக்கப்படவில்லை
 values-b+ta	string	home_change_provider_img_des	-	வழங்குநரை மாற்றவும்
 values-b+ta	string	home_expanded_hide	-	மறை
 values-b+ta	string	home_info	-	செய்தி
 values-b+ta	string	home_main_poster_img_des	-	முதன்மையான போச்டர்
 values-b+ta	string	home_more_info	-	மேலும் செய்தி
 values-b+ta	string	home_next_random_img_des	-	அடுத்து ஏதாவது
+values-b+ta	string	home_offline_bookmarks_body	-	உங்கள் புக்மார்க்குகள் இந்தச் சாதனத்தில் சேமிக்கப்பட்டுள்ளன.
+values-b+ta	string	home_offline_source_headline	-	%1$s க்கு இணைப்பு தேவை
 values-b+ta	string	home_play	-	விளையாடுங்கள்
 values-b+ta	string	home_random	-	சீரற்ற
 values-b+ta	string	home_search_only_body	-	உங்கள் நீட்டிப்புகள் எதிலும் முகப்புப் பக்கம் இல்லை, ஆனால் அவற்றில் இன்னும் தேடலாம்.
@@ -34952,6 +35315,8 @@ values-b+ta	string	year	-	ஆண்டு
 values-b+ta	string	yes	-	ஆம்
 values-b+ti	plurals	downloads_failed_count	one	%d ኣይተዓወተን
 values-b+ti	plurals	downloads_failed_count	other	%d ኣይተዓወቱን
+values-b+ti	plurals	home_bookmarks_count	one	%d ምልክታት
+values-b+ti	plurals	home_bookmarks_count	other	%d ምልክታት
 values-b+ti	plurals	home_sections_failed	one	%d ክፍሊ ክጽዓን ኣይከኣለን
 values-b+ti	plurals	home_sections_failed	other	%d ክፍሊ ክጽዓን ኣይከኣለን
 values-b+ti	string	app_dub_sub_episode_text_format	-	%1$s ክፋል %2$d
@@ -35010,6 +35375,10 @@ values-b+ti	string	extension_warning_suspicious_string	-	ኣብዚ ኮምፒተ�
 values-b+ti	string	extension_warning_telemetry	-	መለለዪ መሳርሒ ይጠቅስ፡ እዚ ድማ መብዛሕትኡ ግዜ ንምክትታል ምትካል ይጥቀመሉ።
 values-b+ti	string	extension_warning_webview	-	ዌብ ቪው ይጥቀም፡ ዝኾነ ገጽ ክጽዕን ዝኽእል ውሽጣዊ ብራውዘር እዩ።
 values-b+ti	string	extensions_waiting_count	-	ንዓኻ ዝጽበዩ መስፋሕፋሕቲ: %d
+values-b+ti	string	home_bookmarks_no_status_body	-	ነቶም ምልክታት ንምርኣይ ካብ ላዕሊ ሓደ ምረጹ።
+values-b+ti	string	home_bookmarks_no_status_headline	-	ዝተመረጸ ኩነታት የለን
+values-b+ti	string	home_offline_bookmarks_body	-	ምልክታትኩም ኣብዚ መሳርሒ ተዓቂቦም ኣለዉ።
+values-b+ti	string	home_offline_source_headline	-	%1$s ምትእስሳር የድልዮ
 values-b+ti	string	home_search_only_body	-	ካብ መስፋሕፋሕትኻ ሓደ እኳ መበገሲ ገጽ የብሉን፡ ግን ሕጂ'ውን ኣብኡ ክትደሊ ትኽእል ኢኻ።
 values-b+ti	string	library_not_connected	-	ኣይተራኸበን
 values-b+ti	string	library_on_device	-	ኣብ መሳርሒ
@@ -35043,6 +35412,8 @@ values-b+ti	string	subtitles_format_unsupported	-	እዚ ቅርጺ ንኡስ ጽ
 values-b+ti	string	subtitles_load_failed	-	ነዚ ንኡስ ጽሑፋት ክጽዓን ኣይተኻእለን
 values-b+tl	plurals	downloads_failed_count	one	%d nabigo
 values-b+tl	plurals	downloads_failed_count	other	%d nabigo
+values-b+tl	plurals	home_bookmarks_count	one	%d BOOKMARK
+values-b+tl	plurals	home_bookmarks_count	other	%d BOOKMARK
 values-b+tl	plurals	home_sections_failed	one	Hindi na-load ang %d seksyon
 values-b+tl	plurals	home_sections_failed	other	Hindi na-load ang %d seksyon
 values-b+tl	string	action_add_to_bookmarks	-	I-set ang Status
@@ -35225,12 +35596,16 @@ values-b+tl	string	go_back_img_des	-	Go back
 values-b+tl	string	go_forward_30	-	+30
 values-b+tl	string	hide_player_control_names	-	Itago ang mga pangalan ng mga kontrol ng player
 values-b+tl	string	history	-	Kasaysayan
+values-b+tl	string	home_bookmarks_no_status_body	-	Pumili ng isa sa itaas para makita ang mga bookmark na iyon.
+values-b+tl	string	home_bookmarks_no_status_headline	-	Walang napiling status
 values-b+tl	string	home_change_provider_img_des	-	Change Provider
 values-b+tl	string	home_expanded_hide	-	Itago
 values-b+tl	string	home_info	-	Impormasyon
 values-b+tl	string	home_main_poster_img_des	-	Main Poster
 values-b+tl	string	home_more_info	-	More Info
 values-b+tl	string	home_next_random_img_des	-	Next Random
+values-b+tl	string	home_offline_bookmarks_body	-	Naka-save sa device na ito ang mga bookmark mo.
+values-b+tl	string	home_offline_source_headline	-	Kailangan ng %1$s ng koneksyon
 values-b+tl	string	home_play	-	I-play
 values-b+tl	string	home_search_only_body	-	Wala sa mga extension mo ang may home page, pero puwede ka pa ring maghanap sa mga ito.
 values-b+tl	string	kitsu_settings	-	Ipakita ang posters mula sa Kitsu
@@ -35448,6 +35823,8 @@ values-b+tr	plurals	downloads_queued	one	%d indirme kuyrukta
 values-b+tr	plurals	downloads_queued	other	%d indirilecekler kuyruğa alındı
 values-b+tr	plurals	episodes	one	Bölüm
 values-b+tr	plurals	episodes	other	Bölüm
+values-b+tr	plurals	home_bookmarks_count	one	%d YER İMİ
+values-b+tr	plurals	home_bookmarks_count	other	%d YER İMİ
 values-b+tr	plurals	home_sections_failed	one	%d kısım yüklenemedi
 values-b+tr	plurals	home_sections_failed	other	%d kısım yüklenemedi
 values-b+tr	plurals	links_hidden	one	%d gizli bağlantı
@@ -35792,12 +36169,16 @@ values-b+tr	string	help	-	Yardım
 values-b+tr	string	hide_player_control_names	-	Oynatıcı kontrolünün adlarını gizle
 values-b+tr	string	history	-	Geçmiş
 values-b+tr	string	hls_playlist	-	HLS Oynatma Listesi
+values-b+tr	string	home_bookmarks_no_status_body	-	Bu yer imlerini görmek için yukarıdan birini seçin.
+values-b+tr	string	home_bookmarks_no_status_headline	-	Durum seçilmedi
 values-b+tr	string	home_change_provider_img_des	-	Sağlayıcıyı Değiştir
 values-b+tr	string	home_expanded_hide	-	Gizle
 values-b+tr	string	home_info	-	Bilgi
 values-b+tr	string	home_main_poster_img_des	-	Ana Afiş
 values-b+tr	string	home_more_info	-	Daha fazla bilgi
 values-b+tr	string	home_next_random_img_des	-	Sonraki Rastgele
+values-b+tr	string	home_offline_bookmarks_body	-	Yer imleriniz bu cihazda kayıtlı.
+values-b+tr	string	home_offline_source_headline	-	%1$s bağlantı gerektirir
 values-b+tr	string	home_play	-	Oynat
 values-b+tr	string	home_random	-	Rastgele
 values-b+tr	string	home_search_only_body	-	Eklentilerinizin hiçbirinde ana sayfa yok, ancak yine de onlarda arama yapabilirsiniz.
@@ -36292,6 +36673,10 @@ values-b+uk	plurals	downloads_queued	one	%d завантаження в черз
 values-b+uk	plurals	downloads_queued	other	%d завантажень у черзі
 values-b+uk	plurals	episodes	one	Епізод
 values-b+uk	plurals	episodes	other	Епізоди
+values-b+uk	plurals	home_bookmarks_count	few	%d ЗАКЛАДКИ
+values-b+uk	plurals	home_bookmarks_count	many	%d ЗАКЛАДОК
+values-b+uk	plurals	home_bookmarks_count	one	%d ЗАКЛАДКА
+values-b+uk	plurals	home_bookmarks_count	other	%d ЗАКЛАДКИ
 values-b+uk	plurals	home_sections_failed	few	Не вдалося завантажити %d розділи
 values-b+uk	plurals	home_sections_failed	many	Не вдалося завантажити %d розділів
 values-b+uk	plurals	home_sections_failed	one	Не вдалося завантажити %d розділ
@@ -36640,12 +37025,16 @@ values-b+uk	string	help	-	Довідка
 values-b+uk	string	hide_player_control_names	-	Приховати назви елементів керування в програвачі
 values-b+uk	string	history	-	Історія
 values-b+uk	string	hls_playlist	-	Список відтворення HLS
+values-b+uk	string	home_bookmarks_no_status_body	-	Виберіть один вище, щоб побачити ці закладки.
+values-b+uk	string	home_bookmarks_no_status_headline	-	Статус не вибрано
 values-b+uk	string	home_change_provider_img_des	-	Змінити постачальника
 values-b+uk	string	home_expanded_hide	-	Приховати
 values-b+uk	string	home_info	-	Подробиці
 values-b+uk	string	home_main_poster_img_des	-	Головний постер
 values-b+uk	string	home_more_info	-	Докладніше
 values-b+uk	string	home_next_random_img_des	-	Наступне випадкове
+values-b+uk	string	home_offline_bookmarks_body	-	Ваші закладки збережено на цьому пристрої.
+values-b+uk	string	home_offline_source_headline	-	%1$s потребує з'єднання
 values-b+uk	string	home_play	-	Переглянути
 values-b+uk	string	home_random	-	Випадковий
 values-b+uk	string	home_search_only_body	-	Жодне з ваших розширень не має головної сторінки, але в них усе ще можна шукати.
@@ -37130,6 +37519,8 @@ values-b+ur	plurals	downloads_failed_count	one	%d ناکام
 values-b+ur	plurals	downloads_failed_count	other	%d ناکام
 values-b+ur	plurals	episodes	one	قسط
 values-b+ur	plurals	episodes	other	اقساط
+values-b+ur	plurals	home_bookmarks_count	one	%d بک مارک
+values-b+ur	plurals	home_bookmarks_count	other	%d بک مارکس
 values-b+ur	plurals	home_sections_failed	one	%d سیکشن لوڈ نہیں ہو سکا
 values-b+ur	plurals	home_sections_failed	other	%d سیکشنز لوڈ نہیں ہو سکے
 values-b+ur	string	account	-	اكاؤنٹ
@@ -37420,12 +37811,16 @@ values-b+ur	string	go_forward_30	-	+30
 values-b+ur	string	help	-	مدد
 values-b+ur	string	history	-	تاریخ
 values-b+ur	string	hls_playlist	-	HLS پلے لسٹ
+values-b+ur	string	home_bookmarks_no_status_body	-	وہ بک مارکس دیکھنے کے لیے اوپر سے ایک منتخب کریں۔
+values-b+ur	string	home_bookmarks_no_status_headline	-	کوئی حیثیت منتخب نہیں
 values-b+ur	string	home_change_provider_img_des	-	ذریعہ تبدیل کریں
 values-b+ur	string	home_expanded_hide	-	چھپائیں
 values-b+ur	string	home_info	-	معلومات
 values-b+ur	string	home_main_poster_img_des	-	مرکزی پوسٹر
 values-b+ur	string	home_more_info	-	مزید معلومات
 values-b+ur	string	home_next_random_img_des	-	اگلا بے ترتیب
+values-b+ur	string	home_offline_bookmarks_body	-	آپ کے بک مارکس اس ڈیوائس پر محفوظ ہیں۔
+values-b+ur	string	home_offline_source_headline	-	%1$s کو کنکشن درکار ہے
 values-b+ur	string	home_play	-	چلائیں
 values-b+ur	string	home_random	-	بے ترتیب
 values-b+ur	string	home_search_only_body	-	آپ کی کسی بھی ایکسٹینشن میں ہوم پیج نہیں ہے، لیکن آپ پھر بھی ان میں تلاش کر سکتے ہیں۔
@@ -37830,6 +38225,7 @@ values-b+vi	plurals	downloads_failed_count	other	%d thất bại
 values-b+vi	plurals	downloads_queued	other	%d tải xuống đang chờ
 values-b+vi	plurals	episodes	one	Tập
 values-b+vi	plurals	episodes	other	Tập
+values-b+vi	plurals	home_bookmarks_count	other	%d MỤC
 values-b+vi	plurals	home_sections_failed	other	Không tải được %d mục
 values-b+vi	plurals	links_hidden	other	%d liên kết bị ẩn
 values-b+vi	string	account	-	tài khoản
@@ -38172,12 +38568,16 @@ values-b+vi	string	help	-	Trợ giúp
 values-b+vi	string	hide_player_control_names	-	Ẩn tên các nút điều khiển trình phát
 values-b+vi	string	history	-	Lịch sử
 values-b+vi	string	hls_playlist	-	Danh sách HLS
+values-b+vi	string	home_bookmarks_no_status_body	-	Chọn một mục ở trên để xem các mục đó.
+values-b+vi	string	home_bookmarks_no_status_headline	-	Chưa chọn trạng thái
 values-b+vi	string	home_change_provider_img_des	-	Thay đổi Nguồn phim
 values-b+vi	string	home_expanded_hide	-	Ẩn
 values-b+vi	string	home_info	-	Thông tin
 values-b+vi	string	home_main_poster_img_des	-	Poster chính
 values-b+vi	string	home_more_info	-	Thông tin thêm
 values-b+vi	string	home_next_random_img_des	-	Tập tiếp theo ngẫu nhiên
+values-b+vi	string	home_offline_bookmarks_body	-	Danh sách của bạn được lưu trên thiết bị này.
+values-b+vi	string	home_offline_source_headline	-	%1$s cần kết nối
 values-b+vi	string	home_play	-	Phát
 values-b+vi	string	home_random	-	Ngẫu nhiên
 values-b+vi	string	home_search_only_body	-	Không có tiện ích mở rộng nào của bạn có trang chủ, nhưng bạn vẫn có thể tìm kiếm trong đó.
@@ -38663,6 +39063,7 @@ values-b+zh	plurals	downloads_failed_count	other	%d 个失败
 values-b+zh	plurals	downloads_queued	other	队列中有 %d 个下载
 values-b+zh	plurals	episodes	one	集
 values-b+zh	plurals	episodes	other	集
+values-b+zh	plurals	home_bookmarks_count	other	%d 个书签
 values-b+zh	plurals	home_sections_failed	other	%d 个分区加载失败
 values-b+zh	plurals	links_hidden	other	%d 条隐藏链接
 values-b+zh	string	account	-	账户
@@ -39005,12 +39406,16 @@ values-b+zh	string	help	-	帮助
 values-b+zh	string	hide_player_control_names	-	隐藏播放器控件名称
 values-b+zh	string	history	-	历史记录
 values-b+zh	string	hls_playlist	-	HLS 播放列表
+values-b+zh	string	home_bookmarks_no_status_body	-	在上方选择一个即可查看这些书签。
+values-b+zh	string	home_bookmarks_no_status_headline	-	未选择状态
 values-b+zh	string	home_change_provider_img_des	-	更改片源
 values-b+zh	string	home_expanded_hide	-	隐藏
 values-b+zh	string	home_info	-	信息
 values-b+zh	string	home_main_poster_img_des	-	主封面
 values-b+zh	string	home_more_info	-	更多信息
 values-b+zh	string	home_next_random_img_des	-	随机下一个
+values-b+zh	string	home_offline_bookmarks_body	-	你的书签保存在此设备上。
+values-b+zh	string	home_offline_source_headline	-	%1$s 需要网络连接
 values-b+zh	string	home_play	-	播放
 values-b+zh	string	home_random	-	随机
 values-b+zh	string	home_search_only_body	-	你的扩展都没有主页，但仍可在其中搜索。
@@ -39494,6 +39899,7 @@ values-b+zh	string	yes	-	是
 values-b+zh+TW	plurals	downloads_active	other	%d 個正在下載
 values-b+zh+TW	plurals	downloads_failed_count	other	%d 個失敗
 values-b+zh+TW	plurals	downloads_queued	other	佇列中有 %d 個下載
+values-b+zh+TW	plurals	home_bookmarks_count	other	%d 個書籤
 values-b+zh+TW	plurals	home_sections_failed	other	%d 個分區載入失敗
 values-b+zh+TW	plurals	links_hidden	one	%d hidden link
 values-b+zh+TW	plurals	links_hidden	other	%d hidden links
@@ -39835,12 +40241,16 @@ values-b+zh+TW	string	help	-	說明
 values-b+zh+TW	string	hide_player_control_names	-	隱藏播放器控制項名稱
 values-b+zh+TW	string	history	-	歷史紀錄
 values-b+zh+TW	string	hls_playlist	-	HLS 播放清單
+values-b+zh+TW	string	home_bookmarks_no_status_body	-	在上方選擇一個即可查看這些書籤。
+values-b+zh+TW	string	home_bookmarks_no_status_headline	-	未選擇狀態
 values-b+zh+TW	string	home_change_provider_img_des	-	更改片源
 values-b+zh+TW	string	home_expanded_hide	-	隱藏
 values-b+zh+TW	string	home_info	-	資訊
 values-b+zh+TW	string	home_main_poster_img_des	-	主封面
 values-b+zh+TW	string	home_more_info	-	更多資訊
 values-b+zh+TW	string	home_next_random_img_des	-	隨機下一個
+values-b+zh+TW	string	home_offline_bookmarks_body	-	你的書籤儲存在此裝置上。
+values-b+zh+TW	string	home_offline_source_headline	-	%1$s 需要網路連線
 values-b+zh+TW	string	home_play	-	播放
 values-b+zh+TW	string	home_random	-	隨機
 values-b+zh+TW	string	home_search_only_body	-	你的擴充功能都沒有主畫面，但仍可在其中搜尋。

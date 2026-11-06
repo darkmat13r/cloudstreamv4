@@ -4,6 +4,7 @@
 <plurals name="downloads_active"><item quantity="other">"%d 个活跃下载"</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="other">"%d 个失败"</item></plurals>
 <plurals name="downloads_queued"><item quantity="other">"队列中有 %d 个下载"</item></plurals>
+<plurals name="home_bookmarks_count"><item quantity="other">"%d 个书签"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">"%d 个分区加载失败"</item></plurals>
 <plurals name="links_hidden"><item quantity="other">"%d 条隐藏链接"</item></plurals>
 <string name="account">"账户"</string>
@@ -341,12 +342,16 @@
 <string name="hide_player_control_names">"隐藏播放器控件名称"</string>
 <string name="history">"历史记录"</string>
 <string name="hls_playlist">"HLS 播放列表"</string>
+<string name="home_bookmarks_no_status_body">"在上方选择一个即可查看这些书签。"</string>
+<string name="home_bookmarks_no_status_headline">"未选择状态"</string>
 <string name="home_change_provider_img_des">"更改片源"</string>
 <string name="home_expanded_hide">"隐藏"</string>
 <string name="home_info">"信息"</string>
 <string name="home_main_poster_img_des">"主封面"</string>
 <string name="home_more_info">"更多信息"</string>
 <string name="home_next_random_img_des">"随机下一个"</string>
+<string name="home_offline_bookmarks_body">"你的书签保存在此设备上。"</string>
+<string name="home_offline_source_headline" formatted="true">"%1$s 需要网络连接"</string>
 <string name="home_play">"播放"</string>
 <string name="home_random">"随机"</string>
 <string name="home_search_only_body">"你的扩展都没有主页，但仍可在其中搜索。"</string>

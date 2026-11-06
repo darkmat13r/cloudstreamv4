@@ -2,8 +2,8 @@
  * `:media:download`: the segmented byte engine (plan §4.3). New code, not a move, so no class in
  * `app/api/classes-jar.api` is affected and the `$stable` trap (`KMP-09`) does not apply.
  *
- * Nothing depends on this module yet. FileKit 0.17.0 is why that matters: a consumer inherits
- * stdlib 2.4.21, serialization 1.12.0 and a minSdk of 24, where the project is on 2.4.0, 1.11.0 and 23.
+ * FileKit 0.17.0 means a consumer inherits stdlib 2.4.21, serialization 1.12.0 and a minSdk of 24.
+ * `:app` moved to all three in `DEC-18`; `:library` deliberately did not.
  *
  * `jvmCommonMain` is declared here as `:core:http` does it.
  */

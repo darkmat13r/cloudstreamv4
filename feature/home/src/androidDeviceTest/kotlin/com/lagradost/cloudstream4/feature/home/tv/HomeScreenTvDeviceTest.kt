@@ -28,6 +28,8 @@ import androidx.compose.ui.test.onAllNodesWithContentDescription
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.onRoot
+import androidx.compose.ui.test.performSemanticsAction
 import androidx.compose.ui.graphics.asAndroidBitmap
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.test.captureToImage
@@ -51,6 +53,8 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.cloudStreamDarkColors
 import com.lagradost.cloudstream4.feature.home.HomeAction
+import com.lagradost.cloudstream4.feature.home.HomeBookmark
+import com.lagradost.cloudstream4.feature.home.HomeBookmarkStore
 import com.lagradost.cloudstream4.feature.home.HomeEffect
 import com.lagradost.cloudstream4.feature.home.HomeFeatured
 import com.lagradost.cloudstream4.feature.home.HomeHero
@@ -67,6 +71,7 @@ import com.lagradost.cloudstream4.feature.home.HomeSources
 import com.lagradost.cloudstream4.feature.home.HomeStatus
 import com.lagradost.cloudstream4.feature.home.HomeViewModel
 import com.lagradost.cloudstream4.feature.home.HomeWatchHistory
+import com.lagradost.cloudstream4.feature.home.HomeWatchStatus
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -109,12 +114,13 @@ class HomeScreenTvDeviceTest {
     private val source = FakeSource()
     private val memory = Kept()
     private val history = FakeHistory()
+    private val shelf = FakeShelf()
     private val effects = CopyOnWriteArrayList<HomeEffect>()
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
     private var onScreen by mutableStateOf(true)
     private var mayTakeFocus = true
 
-    private val viewModel by lazy { HomeViewModel(source, scope, memory, history) }
+    private val viewModel by lazy { HomeViewModel(source, scope, memory, history, shelf) }
 
     @After
     fun stopTheViewModel() = scope.cancel()
@@ -980,6 +986,232 @@ class HomeScreenTvDeviceTest {
         assertEquals(HERO, dpad.focused())
     }
 
+    // ---- Bookmarks (`TV Home Extras` 3e to 3g) ---------------------------------------------------------------------
+
+    /** [count] bookmarks named `Saved 0`, `Saved 1`, newest first, in [status], with [others] in Completed. */
+    private fun bookmarking(count: Int, status: HomeWatchStatus = HomeWatchStatus.Watching, others: Int = 0, kept: HomeWatchStatus? = status) {
+        shelf.all = List(count) { HomeBookmark(HomeItem("bm/$it", "$SAVED $it"), status, updatedAt = (count - it).toLong()) } +
+            List(others) { HomeBookmark(HomeItem("done/$it", "$DONE $it"), HomeWatchStatus.Completed, updatedAt = 0L) }
+        shelf.kept = kept
+    }
+
+    @Test
+    fun theBookmarksRailSitsBetweenContinueWatchingAndTheRailsAndTheDpadWalksChipsThenCards() {
+        rails(2, cards = 4)
+        featuring(FEATURED)
+        resuming(2)
+        bookmarking(3, others = 1)
+        showScreen()
+        awaitFocus(HERO)
+
+        // Each Down reaches the next group, at whichever stop lies under the last one's middle, as Compose's search does.
+        assertEquals("$RESUME 0", dpad.press(Dpad.Down))
+        assertEquals(WATCHING, dpad.press(Dpad.Down))
+        val card = dpad.press(Dpad.Down)
+        assertTrue("Down from the chips is a bookmark, was $card", card?.startsWith(SAVED) == true)
+        val rail = dpad.press(Dpad.Down)
+        assertTrue("Down from a bookmark is the next rail, was $rail", rail?.startsWith("A ") == true)
+        assertEquals(card, dpad.press(Dpad.Up))
+        assertTrue("Up from a bookmark is a chip", dpad.press(Dpad.Up) in setOf(WATCHING, COMPLETED))
+        // A chip only for a status that holds a title, in the old order: no Plan to Watch, On-Hold or Dropped here.
+        rule.onNodeWithText(COMPLETED).assertIsDisplayed()
+        rule.onAllNodesWithText("Dropped").fetchSemanticsNodes().let { assertTrue("no empty status gets a chip", it.isEmpty()) }
+        // The title is on the chips' row, not a header of its own.
+        val title = rule.onNodeWithText(BOOKMARKS).getUnclippedBoundsInRoot()
+        val chip = rule.onNode(isFocused()).getUnclippedBoundsInRoot()
+        assertEquals((chip.top + chip.bottom).value / 2, (title.top + title.bottom).value / 2, GEOMETRY_SLACK)
+        rule.onNode(isFocused()).assertHeightIsEqualTo(CloudStreamDimens.ChipFocusCell)
+
+        val graph = dpad.walk()
+        val expected = listOf(HERO, SOURCE_ONE, ACCOUNTS, WATCHING, COMPLETED) + List(2) { "$RESUME $it" } +
+            titles(SAVED, 3) + titles("A", 4) + titles("B", 4)
+        assertEquals(graph.toString(), emptyList<String>(), graph.unreachable(expected))
+        assertEquals(graph.toString(), emptyList<String>(), graph.deadEnds())
+        assertEquals(graph.toString(), emptyList<String>(), graph.traps())
+    }
+
+    @Test
+    fun theLastChipAndTheLastBookmarkAreWalls() {
+        rails(1)
+        bookmarking(2, others = 1)
+        showScreen()
+        awaitFocus("$SAVED 0")
+        assertEquals("$SAVED 1", dpad.press(Dpad.Right))
+        assertEquals("$SAVED 1", dpad.press(Dpad.Right))
+        pressUntil(Dpad.Up, WATCHING, presses = 2)
+        assertEquals(COMPLETED, dpad.press(Dpad.Right))
+        assertEquals(COMPLETED, dpad.press(Dpad.Right))
+    }
+
+    @Test
+    fun aChipAppliesAtOnceFocusStaysOnItAndPressingTheChosenOneShowsNoStatusChosen() {
+        rails(1, cards = 4)
+        bookmarking(2, others = 2)
+        showScreen()
+        awaitFocus("$SAVED 0")
+        pressUntil(Dpad.Up, WATCHING, presses = 1)
+        assertEquals(COMPLETED, dpad.press(Dpad.Right))
+        // Walking onto a chip chose nothing.
+        rule.waitForIdle()
+        assertEquals(HomeWatchStatus.Watching, viewModel.state.value.bookmarks.applied)
+
+        dpad.center()
+        rule.waitUntil(WAIT_MS) { viewModel.state.value.bookmarks.applied == HomeWatchStatus.Completed }
+        rule.waitForIdle()
+        assertEquals(COMPLETED, dpad.focused())
+        assertEquals(titles(DONE, 2).map { "done/${it.removePrefix("$DONE ")}" }, viewModel.state.value.bookmarks.shown.map { it.id })
+        assertEquals(HomeWatchStatus.Completed, shelf.kept)
+        // The cards under it are the Completed ones.
+        val card = dpad.press(Dpad.Down)
+        assertTrue("Down reaches a Completed card, was $card", card?.startsWith(DONE) == true)
+        // Up lands on the chip above the card's middle, which need not be the one pressed.
+        assertTrue("Up comes back to a chip", dpad.press(Dpad.Up) in setOf(WATCHING, COMPLETED))
+        pressUntil(Dpad.Right, COMPLETED, presses = 1)
+
+        dpad.center()
+        awaitText(NO_STATUS)
+        assertEquals(COMPLETED, dpad.focused())
+        assertEquals(null, shelf.kept)
+        rule.onNodeWithText(NO_STATUS_BODY).assertIsDisplayed()
+        // The band keeps the cards' height, so the rails below do not move, and it is not a stop: Down goes past it.
+        val band = rule.onNodeWithText(NO_STATUS).getUnclippedBoundsInRoot()
+        val below = dpad.press(Dpad.Down)
+        assertTrue("Down goes past the band to the next rail, was $below", below?.startsWith("A ") == true)
+        assertTrue("the next rail is below the band", rule.onNode(isFocused()).getUnclippedBoundsInRoot().top >= band.bottom)
+        assertTrue("Up comes back to a chip", dpad.press(Dpad.Up) in setOf(WATCHING, COMPLETED))
+    }
+
+    @Test
+    fun noBookmarksIsNoRail() {
+        rails(1)
+        showScreen()
+        awaitFocus("A 0")
+        rule.onAllNodesWithText(BOOKMARKS).fetchSemanticsNodes().let { assertTrue("no bookmarks, no rail", it.isEmpty()) }
+    }
+
+    @Test
+    fun withNoHeroOrContinueWatchingFocusLandsOnTheFirstBookmark() {
+        rails(1)
+        bookmarking(2)
+        showScreen()
+        awaitFocus("$SAVED 0")
+        dpad.center()
+        rule.waitUntil(WAIT_MS) { effects.isNotEmpty() }
+        assertEquals(HomeEffect.OpenTitle("bm/0"), effects.single())
+    }
+
+    @Test
+    fun focusComesBackToTheBookmarkThatWasOpened() {
+        rails(2)
+        featuring(FEATURED)
+        bookmarking(9)
+        showScreen()
+        awaitFocus(HERO)
+        // Down to the chips, then to whichever card is under the chip, then along to the eighth.
+        assertEquals(WATCHING, dpad.press(Dpad.Down))
+        dpad.press(Dpad.Down)
+        rule.waitUntil(WAIT_MS) { dpad.focused()?.startsWith(SAVED) == true }
+        if (dpad.focused() != "$SAVED 0") pressUntil(Dpad.Left, "$SAVED 0", presses = 3)
+        pressUntil(Dpad.Right, "$SAVED 7", presses = 7)
+
+        openAndComeBack(HomeEffect.OpenTitle("bm/7"))
+        assertEquals("$SAVED 7", dpad.focused())
+        rule.onNode(isFocused()).assertIsDisplayed()
+    }
+
+    /** 3g: offline no longer replaces the page. The bookmarks stay, dimmed, and the chrome says how many are kept. */
+    @Test
+    fun offlineKeepsTheBookmarksAboveTheStateDimmedAndSaysWhatNeedsTheConnection() {
+        source.answer = { _, _, _ -> HomePageReply.Offline }
+        bookmarking(3)
+        showScreen()
+
+        awaitFocus(RETRY)
+        rule.waitForIdle()
+        // It fits under the bookmarks, so nothing moved: the chrome is where it rests, with the notice in it.
+        assertEquals(CHROME_CONTROL_TOP, rule.onNodeWithContentDescription(SOURCE_ONE).getUnclippedBoundsInRoot().top.value, GEOMETRY_SLACK)
+        rule.onNodeWithText(OFFLINE).assertIsDisplayed()
+        rule.onNodeWithText("3 BOOKMARKS").assertIsDisplayed()
+        rule.onNodeWithText("${ONE.name} needs a connection").assertIsDisplayed()
+        rule.onNodeWithText("Your bookmarks are saved on this device.").assertIsDisplayed()
+        val chips = rule.onNodeWithText(WATCHING).getUnclippedBoundsInRoot()
+        val retry = rule.onNode(isFocused()).getUnclippedBoundsInRoot()
+        assertTrue("the rail is above the state", chips.bottom + BookmarksRailHeight - CloudStreamDimens.ChipFocusCell <= retry.top)
+        assertTrue("the button is inside the band", retry.bottom.value <= SCREEN_HEIGHT_DP - 28f + GEOMETRY_SLACK)
+
+        // Up reaches a card, then the chips, which work offline; Down comes back.
+        pressUntil(Dpad.Up, WATCHING, presses = 2)
+        pressUntil(Dpad.Down, RETRY, presses = 2)
+        val graph = dpad.walk()
+        val expected = titles(SAVED, 3) + listOf(WATCHING, RETRY, SOURCE_ONE, ACCOUNTS)
+        assertEquals(graph.toString(), emptyList<String>(), graph.unreachable(expected))
+        assertEquals(graph.toString(), emptyList<String>(), graph.deadEnds())
+        assertEquals(graph.toString(), emptyList<String>(), graph.traps())
+    }
+
+    /** A card's middle, under the rail's title: cards start where the title does, a chip cell and the clearance below. */
+    private fun firstBookmarkPixel(): Int {
+        val title = rule.onNodeWithText(BOOKMARKS).getUnclippedBoundsInRoot()
+        val chip = rule.onNodeWithText(WATCHING).getUnclippedBoundsInRoot()
+        val cardTop = (chip.top + chip.bottom).value / 2 + CloudStreamDimens.ChipFocusCell.value / 2 +
+            CloudStreamDimens.LiftedRowClearance.value
+        val density = InstrumentationRegistry.getInstrumentation().targetContext.resources.displayMetrics.density
+        val image = rule.onRoot().captureToImage().asAndroidBitmap()
+        return image.getPixel(((title.left.value + 40f) * density).toInt(), ((cardTop + 60f) * density).toInt())
+    }
+
+    /** A dimmed card is 40% of the same card at rest: read from its pixels against the black ground. */
+    @Test
+    fun offlineBookmarksAreDrawnAtFortyPercent() {
+        source.answer = { _, _, _ -> HomePageReply.Offline }
+        bookmarking(1)
+        showForScreenshot()
+        awaitFocus(RETRY)
+        rule.waitForIdle()
+        val dim = firstBookmarkPixel()
+        source.answer = { _, _, _ -> loaded("A", listOf("A 0")) }
+        rule.runOnIdle { viewModel.onAction(HomeAction.Retry) }
+        awaitText("A")
+        rule.waitForIdle()
+        // Retry was focused, and the page landed elsewhere: put focus on the chip, away from the card being read.
+        rule.onNodeWithText(WATCHING).performSemanticsAction(SemanticsActions.RequestFocus)
+        rule.waitForIdle()
+        val full = firstBookmarkPixel()
+        val ratio = android.graphics.Color.green(dim).toFloat() / android.graphics.Color.green(full)
+        assertEquals("dimmed over full, ${Integer.toHexString(dim)} over ${Integer.toHexString(full)}", 0.4f, ratio, 0.05f)
+    }
+
+    /** 3m's rule, which the first load meets too: a failure keeps the bookmarks above it, and Try again takes focus. */
+    @Test
+    fun aFailureKeepsTheBookmarksAboveIt() {
+        source.answer = { _, _, _ -> HomePageReply.Failed("HTTP 503") }
+        resuming(2)
+        bookmarking(2)
+        showScreen()
+        awaitFocus(RETRY)
+        rule.waitForIdle()
+        rule.onNode(isFocused()).assertIsDisplayed()
+        rule.onNodeWithText("HTTP 503").assertIsDisplayed()
+        val retry = rule.onNode(isFocused()).getUnclippedBoundsInRoot()
+        val card = dpad.press(Dpad.Up)
+        assertTrue("Up from Try again is the bookmarks rail, was $card", card?.startsWith(SAVED) == true || card == WATCHING)
+        rule.onNode(isFocused()).assertIsDisplayed()
+        assertTrue("the bookmarks are above the state", rule.onNode(isFocused()).getUnclippedBoundsInRoot().bottom <= retry.top)
+    }
+
+    /** What the page reserves for the bookmarks above a state, against the rail as it really measures. */
+    @Test
+    fun theBookmarksReservedHeightIsTheRealRail() {
+        rails(1)
+        bookmarking(1)
+        showScreen()
+        awaitFocus("$SAVED 0")
+        val card = rule.onNode(isFocused()).getUnclippedBoundsInRoot()
+        val chip = rule.onNodeWithText(WATCHING).getUnclippedBoundsInRoot()
+        val chipCell = (chip.top + chip.bottom).value / 2 - CloudStreamDimens.ChipFocusCell.value / 2
+        assertEquals(BookmarksRailHeight.value, card.bottom.value - chipCell, ROUNDING_SLACK)
+    }
+
     // ---- Screenshots (`INF-11`), compared with the references in src/androidDeviceTest/resources/screenshots ---------
 
     /** As the app shows it: the rail beside the screen, which puts the page at the board's x, and solid posters. */
@@ -1151,6 +1383,72 @@ class HomeScreenTvDeviceTest {
         rule.assertScreenshot("home-offline-continue-focus-retry")
     }
 
+    /** 3e: the bookmarks rail with a card focused, as the board draws it, Continue watching above and a rail below. */
+    @Test
+    fun screenshotBookmarksFocusOnACard() {
+        shotRails()
+        shotBookmarks()
+        showForScreenshot()
+        // With no hero and no Continue watching, the first bookmark is the first thing on the page.
+        awaitFocus(ShotMarks[0])
+        assertEquals(ShotMarks[1], dpad.press(Dpad.Right))
+        rule.assertScreenshot("home-bookmarks-focus-card")
+    }
+
+    /** 3f: no status chosen, focus on the chip just pressed, the source's rails still loading beneath. */
+    @Test
+    fun screenshotBookmarksNoStatusFocusOnTheChip() {
+        source.sections = 2
+        source.answer = { _, _, _ -> HomePageReply.Loaded(emptyList(), hasNext = false) }
+        source.hold = true
+        shotBookmarks(kept = null)
+        showForScreenshot()
+        rule.waitUntil(WAIT_MS) { viewModel.state.value.bookmarks.all.isNotEmpty() }
+        rule.waitForIdle()
+        // Nothing lands while the rails load, and a press with nothing focused goes wherever the window starts.
+        rule.onNodeWithText(WATCHING).performSemanticsAction(SemanticsActions.RequestFocus)
+        awaitFocus(WATCHING)
+        rule.assertScreenshot("home-bookmarks-no-status-focus-chip")
+    }
+
+    /** 3g: offline, the bookmarks dimmed above the prompt, the chrome saying so, Try again focused. */
+    @Test
+    fun screenshotOfflineWithBookmarksFocusOnRetry() {
+        source.answer = { _, _, _ -> HomePageReply.Offline }
+        shotBookmarks()
+        showForScreenshot()
+        awaitFocus(RETRY)
+        rule.assertScreenshot("home-offline-bookmarks-focus-retry")
+    }
+
+    /**
+     * 3g at its tightest at 720p: offline with Continue watching and the bookmarks both above the prompt. The prompt keeps
+     * the source's headline and drops its body, and Try again is focused, on screen and out of the bottom focus band.
+     */
+    @Test
+    fun screenshotOfflineWithContinueWatchingAndBookmarksFocusOnRetry() {
+        shot3c()
+        shotBookmarks()
+        source.answer = { _, _, _ -> HomePageReply.Offline }
+        showForScreenshot()
+        awaitFocus(RETRY)
+        rule.waitForIdle()
+        rule.onNodeWithText("${ONE.name} needs a connection").assertIsDisplayed()
+        rule.onNodeWithText("Your bookmarks are saved on this device.").assertDoesNotExist()
+        rule.onNode(isFocused()).assertIsDisplayed()
+        val retry = rule.onNode(isFocused()).getUnclippedBoundsInRoot()
+        assertTrue("the button is inside the band, bottom ${retry.bottom}", retry.bottom.value <= SCREEN_HEIGHT_DP - 28f + GEOMETRY_SLACK)
+        rule.assertScreenshot("home-offline-continue-bookmarks-focus-retry")
+    }
+
+    /** 3e's nine bookmarks, two with a quality badge, and one Completed so that two chips show. */
+    private fun shotBookmarks(kept: HomeWatchStatus? = HomeWatchStatus.Watching) {
+        shelf.all = ShotMarks.mapIndexed { index, title ->
+            HomeBookmark(HomeItem("bm/$title", title, badge = ShotBadges[title]), HomeWatchStatus.Watching, updatedAt = 100L - index)
+        } + listOf(HomeBookmark(HomeItem("bm/done", "Signal Hill"), HomeWatchStatus.Completed))
+        shelf.kept = kept
+    }
+
     private data class Call(val source: HomeSourceId, val section: Int, val page: Int)
 
     private class Kept(var id: HomeSourceId? = null) : HomeSourceMemory {
@@ -1190,6 +1488,19 @@ class HomeScreenTvDeviceTest {
         override suspend fun read(): HomeHistory = history
     }
 
+    private class FakeShelf : HomeBookmarkStore {
+        @Volatile var all = emptyList<HomeBookmark>()
+        @Volatile var kept: HomeWatchStatus? = null
+
+        override suspend fun read() = all
+
+        override fun chosen() = kept
+
+        override fun choose(status: HomeWatchStatus?) {
+            kept = status
+        }
+    }
+
     private companion object {
         const val WAIT_MS = 10_000L
         const val MAX_PRESSES = 8
@@ -1226,6 +1537,17 @@ class HomeScreenTvDeviceTest {
             "Nine Lives" to 0.92f,
         )
         const val MORE_INFO = "More info"
+        const val BOOKMARKS = "Bookmarks"
+        const val WATCHING = "Watching"
+        const val COMPLETED = "Completed"
+        const val SAVED = "Saved"
+        const val DONE = "Done"
+        const val NO_STATUS = "No status chosen"
+        const val NO_STATUS_BODY = "Choose one above to see those bookmarks."
+        val ShotMarks = listOf(
+            "The Long Dark", "Salt Road", "Hollow Crown", "Ashen Field", "Nine Lives", "Kingfisher", "Paper Cities", "The Wake",
+            "Greyline",
+        )
         const val CONTINUE = "Continue Watching"
         const val OFFLINE = "You are offline"
         const val RESUME = "Resume"

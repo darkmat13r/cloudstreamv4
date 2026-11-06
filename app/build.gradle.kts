@@ -328,6 +328,11 @@ tasks.register<Jar>("androidSourcesJar") {
     from(android.sourceSets.getByName("main").java.directories) // Full Sources
 }
 
+// FileKit 0.17.0 needs stdlib 2.4.21; the compiler stays on kotlinGradlePlugin (DEC entry for minSdk 24).
+kotlin {
+    coreLibrariesVersion = libs.versions.kotlinStdlibApp.get()
+}
+
 tasks.withType<KotlinJvmCompile> {
     compilerOptions {
         jvmTarget.set(javaTarget)

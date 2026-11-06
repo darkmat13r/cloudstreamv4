@@ -4502,6 +4502,102 @@ Suggest: nothing more here; noted because every page with a chrome row will meet
 Why: `KMP-34`'s `LibraryFocusMemory` and this page's landing both work around the same window behaviour
 ```
 
+## KMP-45 — Home's bookmarks rail and its watch-status filter (`TV Home Extras` 3e to 3g), and glyphs on Home's state buttons · **measured 2026-11-06**
+
+**Status:** in pr #164. Boards `3e`, `3f` and `3g` of `design/TV Home Extras.dc.html` (`DS-13`), on the page `KMP-37` and `KMP-41`
+built. Android TV only; desktop's home gains nothing but the state buttons' glyphs (its `HomeViewModel` keeps
+`HomeBookmarkStore.None`, so it has no rail). `KMP-44` (Reload, Random, Search, `None`) and the details panel follow.
+
+**The page now reads:** the chrome and hero, Continue watching, **Bookmarks**, then the source's rails. Bookmarks are this device's,
+so, as the owner ruled for 3g and 3m, they stay above being offline, a failure, a page still loading, and "nothing installed".
+
+**Parts.** In `:feature:home`: `HomeWatchStatus`, `HomeBookmark`, `HomeBookmarks` (in the state), `HomeBookmarkStore` (with a `None`
+default), `HomeAction.BookmarkFilterPressed`, `HomeRowKey.Bookmarks`, and `tv/HomeBookmarksTv.kt`. In `:app`: `LibraryHomeBookmarks`, and
+`AndroidLibraryStore.bookmarked()`, which reads the same rows `titles()` does without favourites and keeps `quality` for the badge.
+
+### Read the way the old home reads it
+
+- **The rows** are the library store's watch-status rows (`KMP-34`), so no second store and nothing new written. Newest by
+  `latestUpdatedTime`, no paging, no trailing card, as the old rail.
+- **The filter** is the old home's key, `DataStoreHelper.homeBookmarkedList` (per account), so the rollback and this screen agree.
+  One status, or none; pressing the chosen chip clears it (`HomeParentItemAdapterPreview.kt:530-540`). The old home reads an empty
+  key as none chosen, and so does this, which is why a first launch with bookmarks opens on 3f.
+- **A chip only for a status that holds a title.** A kept status that no longer does reads as none chosen; the old one left an
+  invisible chip checked.
+- **A bookmark opens from its own source**, by the same `encodeId` as a card, whichever source the page shows.
+- **Bookmarks are read locally, so they arrive before the source's rows.** Nothing reserves their band while the read runs; if
+  that read ever became slower than the source's, everything below would jump down by `BookmarksRailHeight` (184dp: the 48dp chip
+  cell, 16dp clearance and a 120dp poster).
+
+### Every reduction from the boards
+
+| Board | Drawn | Here | Why |
+|---|---|---|---|
+| 3e | Chips 12dp apart (`.chiprow { gap: 24px }`) | `ChipRow`'s 24dp (`ChipRowSpacing`) | The token wins (owner's ruling 6 on these boards); the CSS-against-token question is already open in `HANDOVER.md` |
+| 3e | The chip's 8x16 marker cell | `Chip` as built: the selected chip's `muted` edge is its marker | The shared component |
+| 3e | `HOLD OK OR MENU · DETAILS` on the rail | None | It names the details panel's gesture, which is the next PR's |
+| 3e, 3f | Loading: skeleton cards with no chips | Nothing until the first read returns | It is one local read; a skeleton band for everyone without bookmarks would appear and vanish, moving the rails below it |
+| 3g | Offline's body under Continue watching as well as the bookmarks | Under the bookmarks alone, the body; under Continue watching, the headline alone | `KMP-41`'s measured rule: there is no room at 720p |
+| 3g | `9 BOOKMARKS` | Every bookmark, whatever the filter shows (`10 BOOKMARKS` in the screenshot) | "The count is `list.size` from the read" |
+
+### Glyphs on Home's state buttons
+
+`StateAction(icon = …)` per `ui-components.md`'s table: `Retry` on Try again and Retry failed, `Search` on Search, `Repository` on
+Extensions. `Browse home` is not one of Home's: it is search's idle state (`search_state_idle_action`), so it is not touched here.
+Desktop's home draws the same `StateView`, so its state buttons gain the same glyphs.
+
+### Strings
+
+Five new keys, each in all 62 directories, with translator notes in `docs/strings-translator-notes.md`:
+`home_bookmarks_no_status_headline`, `home_bookmarks_no_status_body`, `home_offline_source_headline` (`%1$s`),
+`home_offline_bookmarks_body`, and the plural `home_bookmarks_count`, with each directory's own plural categories. Reused:
+`error_bookmarks_text`, `type_watching` and the four other statuses, `search_state_offline_headline`.
+
+### Measured, each a wrong turn first
+
+- **The offline state under the bookmarks moved the chrome off the screen for nothing.** Recorded: the state sized to exactly
+  what is left came out a pixel over, from each band above rounding to whole pixels, and `KMP-41`'s reveal then moves the page
+  by the whole chrome. A state now has to overflow by more than two pixels to move the page.
+- **A rail card has no description**, so tests cannot find an unfocused one by its title; they walk to it and read focus.
+- **Which chip is above a card** is Compose's search, under the card's middle, so tests accept either.
+
+### Tested
+
+JVM: `HomeViewModelTest` 47 (5 new). Device, `Television_720p`: `HomeScreenTvDeviceTest` 64 (14 new), including four
+screenshot cases, `home-bookmarks-focus-card`, `home-bookmarks-no-status-focus-chip`, `home-offline-bookmarks-focus-retry`, and
+`home-offline-continue-bookmarks-focus-retry` (review): offline with Continue watching and the bookmarks both above the prompt,
+the tightest page at 720p and the one path that drops the bookmarks' offline body, with Try again focused and out of the bottom
+focus band. `TvHomeNavigationTest` gains one through real navigation: a title given a watch status under the keys the app writes
+is on the rail with its chip chosen, opens its real title page (`DetailTvFragment` since `KMP-38`, #153, merged in; it was
+`ResultFragmentTv` before), Back puts focus back on it, and the chosen chip pressed empties the old home's key.
+
+**Each critical test was shown failing**, in two control runs. Six mutations together (the rail dropped under a state, a
+bookmark's return target, bookmarks out of the landing, the wall, the dim, the filter never clearing, and the fragment given no
+store) turned 11 of the bookmark cases and the `:app` case red; the wall and the clear were hidden behind the landing, so a
+second run with those two alone turned both red (`expected Saved 1 but was Watching`; a timeout waiting for the cleared filter).
+Every file was restored and a real run replaced that XML.
+
+**One run lost focus mid-run and is not counted.** On `Television_720p_2` the first 17 cases passed and every one after reported no
+focus, the old tests included; the same commit was green on both emulators before and after. It reads like the display leaving
+D-pad mode, which nothing in these tests does (no `.click()`); not explained, and recorded here rather than passed over.
+
+**Screenshots.** Three references changed, each only by the state button's glyph, each looked at: `home-partial-failure-focus-retry`
+(`Retry`), `home-nothing-installed-focus-action` (`Repository`), `home-offline-continue-focus-retry` (`Retry`).
+
+### Published API
+
+Additions only: 50 lines in `app/api/classes-jar.api` (five `R$string`/`R$plurals` fields, `LibraryHomeBookmarks`, `Bookmarked`,
+`AndroidLibraryStore.bookmarked`), none removed or changed.
+
+### Not verified
+
+A real remote; real bookmarks with posters; an account switch re-reading the rail; right-to-left; a language whose chips do not
+fit the row (`ChipRow` does not scroll, by design).
+
+### Found, not changed
+
+Nothing new.
+
 ---
 
 ## KMP-43 — One series' downloads on TV, boards 6d and 6b (queue `Q15`) · **measured 2026-11-06**
@@ -4716,7 +4812,7 @@ that exist because the old downloader broke them:
 
 **Status:** in pr · Android TV only. The library opens on the source chosen last, as the old screen does, and shows the
 local list or a tracking service's own lists. Sort (5d) is `KMP-50` and the unreachable and cached states (5b) with
-offline are `KMP-51`. The owner's rulings for all three are `DEC-18`.
+offline are `KMP-51`. The owner's rulings for all three are `DEC-20`.
 
 **The seam.** `:feature:library` gains `LibrarySources`: every source with its state (connected, account, the time of
 its last read as this app recorded it, the local list's count), the one to open on, remembering a choice, and reading a
@@ -4733,7 +4829,7 @@ which is desktop's: nothing there changes, and `:desktopApp`'s 395 JVM tests sti
   library"` where a service answers nothing. While `requireLibraryRefresh` is false, the last read is shown again, as
   `reloadPages(false)` does. A successful read clears that flag, as the old screen does.
 - **The time of a read** is a new key, `"$currentAccount/library_synced_at"`, written only on a successful read. Nothing
-  before this PR wrote one, so no source shows an age until it has been read once here (`DEC-18`).
+  before this PR wrote one, so no source shows an age until it has been read once here (`DEC-20`).
 - **A service's title** opens through the old screen's opener (`LibraryFragment.loadLibraryItem`): the opener saved for
   the title, unless it is the default, else the one saved for the service, else the default. That is the title's page
   where a provider of that name is loaded, and a search by its name otherwise. A service's titles are not providers, so
@@ -4742,7 +4838,7 @@ which is desktop's: nothing there changes, and `:desktopApp`'s 395 JVM tests sti
   `LibrarySourceText.kt` rather than moved: moving them took `MAX_TEXT_CHARS` and a synthetic accessor out of
   `classes-jar.api`, which may only grow.
 
-**The owner's choices, each in one place** (`DEC-18`): which sources are listed and in what order is
+**The owner's choices, each in one place** (`DEC-20`): which sources are listed and in what order is
 `AndroidLibrarySources.listed`, how a service's lists become tabs is `syncedLists`, and what a source that is not signed
 in does is `LibrarySourcePanelTv`'s row.
 
@@ -4750,9 +4846,9 @@ in does is `LibrarySourcePanelTv`'s row.
 
 | Board | Drawn | Here | Why |
 |---|---|---|---|
-| 5e | AniList, Local, MyAnimeList, Simkl, Trakt | MAL, Kitsu, AniList, Simkl, Local, signed-in ones first | `DEC-18`: the five the app has. MyAnimeList is `MAL`, the app's own name for it |
+| 5e | AniList, Local, MyAnimeList, Simkl, Trakt | MAL, Kitsu, AniList, Simkl, Local, signed-in ones first | `DEC-20`: the five the app has. MyAnimeList is `MAL`, the app's own name for it |
 | 5e | A leading disc on each row | None | It would hold the service's logo, a brand mark this module does not have |
-| 5e | `NOT CONNECTED` | `Not connected`, disabled and still a stop | `DEC-18`. A stop, so its reason can be read at three metres: `ListRowState.focusableWhenDisabled`. Logging in stays in account settings |
+| 5e | `NOT CONNECTED` | `Not connected`, disabled and still a stop | `DEC-20`. A stop, so its reason can be read at three metres: `ListRowState.focusableWhenDisabled`. Logging in stays in account settings |
 | 5e, 5a | `SYNCED 4 MIN` | `Synced 4m ago` | The app's own `%dm` / `%1$dh %2$dm` / `%1$dd %2$dh %3$dm` formats. Upper case is not applied, as the readout's is not |
 | 5e | Local's `ON DEVICE · 308 TITLES` | `On device · 308` | No `titles` word in every language; the readout already shows the number alone |
 | 5a | A rating badge `★ 9.1` | `9.1` in the card's trailing badge | `Badge` has no glyph slot. The badge is only on a service's card with a rating of the user's own |

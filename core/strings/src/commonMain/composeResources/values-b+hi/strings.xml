@@ -4,6 +4,7 @@
 <string name="detail_load_failed_body">हो सकता है स्रोत उपलब्ध न हो।</string>
 <string name="detail_load_failed_headline">यह शीर्षक नहीं खुल सका</string>
 <plurals name="downloads_failed_count"><item quantity="one">%d विफल</item><item quantity="other">%d विफल</item></plurals>
+<plurals name="home_bookmarks_count"><item quantity="one">%d बुकमार्क</item><item quantity="other">%d बुकमार्क</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d अनुभाग लोड नहीं हो सका</item><item quantity="other">%d अनुभाग लोड नहीं हो सके</item></plurals>
 <string name="account">खाता</string>
 <string name="action_add_to_bookmarks">दर्शन स्थिति सेट करें</string>
@@ -225,12 +226,16 @@
 <string name="go_back_img_des">वापिस जाओ</string>
 <string name="go_forward_30">+३०</string>
 <string name="history">इतिहास</string>
+<string name="home_bookmarks_no_status_body">वे बुकमार्क देखने के लिए ऊपर से एक चुनें।</string>
+<string name="home_bookmarks_no_status_headline">कोई स्थिति नहीं चुनी गई</string>
 <string name="home_change_provider_img_des">प्रोवाइडर बदलें</string>
 <string name="home_expanded_hide">छिपाएं</string>
 <string name="home_info">जानकारी</string>
 <string name="home_main_poster_img_des">मुख्य पोस्टर</string>
 <string name="home_more_info">और जानकारी</string>
 <string name="home_next_random_img_des">अगला रैंडम</string>
+<string name="home_offline_bookmarks_body">आपके बुकमार्क इस डिवाइस पर सहेजे गए हैं।</string>
+<string name="home_offline_source_headline">%1$s को कनेक्शन चाहिए</string>
 <string name="home_play">चलाएं</string>
 <string name="home_search_only_body">आपके किसी भी एक्सटेंशन में होम पेज नहीं है, फिर भी आप उनमें खोज सकते हैं।</string>
 <string name="install_prerelease">प्री-रिलीज़ संस्करण स्थापित करें</string>

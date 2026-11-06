@@ -98,6 +98,7 @@ class HomeTvFragment : BaseComposeFragment() {
                     scope = scope,
                     memory = DataStoreHomeSourceMemory(),
                     history = LibraryHomeHistory(AndroidLibraryStore(app)),
+                    bookmarkStore = LibraryHomeBookmarks(app),
                 ).also { it.addCloseable(AutoCloseable { scope.cancel() }) }
             }
         }
@@ -174,7 +175,7 @@ class HomeTvFragment : BaseComposeFragment() {
         }
     }
 
-    /** A card, the hero or a Continue watching entry: all three carry the same id, and open the title's page. */
+    /** A card, the hero, a Continue watching entry or a bookmark: all carry the same id, and open the title's page. */
     private fun open(id: String) {
         val target = decodeId(SearchResultId(id)) ?: return
         val state = viewModel.state.value
@@ -183,6 +184,7 @@ class HomeTvFragment : BaseComposeFragment() {
         val name = rows.orEmpty().firstNotNullOfOrNull { row -> row.items.firstOrNull { it.id == id } }?.title
             ?: (state.hero as? HomeHero.Shown)?.featured?.takeIf { it.id == id }?.title
             ?: state.history.resume.firstOrNull { it.id == id }?.title
+            ?: state.bookmarks.all.firstOrNull { it.item.id == id }?.item?.title
         loadResult(url = target.url, apiName = target.apiName, name = name.orEmpty())
     }
 
