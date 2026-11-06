@@ -144,7 +144,7 @@
 <string name="search_poster_img_des">پۆستەر</string>
 <string name="search_state_idle_body_desktop">ناونیشانێک بنووسە. ئەنجامەکان لە ژێر هەر سەرچاوەیەک دەردەکەون کاتێک وەڵام دەداتەوە.</string>
 <string name="search_state_no_results_type_filter">تەنها %s. فلتەری جۆرەکەت گەڕانەکە سنووردار دەکات.</string>
-<string name="search_state_no_suggestions_detail">پێشنیارەکان وەڵامیان دایەوە · 0 هاوتا</string>
+<string name="search_state_no_suggestions_detail">0 پێشنیار · 0 هاوتای دوایین</string>
 <string name="search_state_no_suggestions_headline">هیچ شتێک لەگەڵ «%s» ناگونجێت</string>
 <string name="search_tv_source_failed">شکستی هێنا %s</string>
 <string name="search_tv_source_pinned">جێگیرکراو</string>

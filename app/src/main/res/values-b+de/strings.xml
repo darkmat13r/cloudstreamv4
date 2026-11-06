@@ -603,7 +603,7 @@
 <string name="search_provider_text_types">"Suche anhand Typen"</string>
 <string name="search_state_idle_body_desktop">"Titel eingeben. Ergebnisse erscheinen unter jeder Quelle, sobald sie antwortet."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"Nur %s. Der Typfilter schränkt die Suche ein."</string>
-<string name="search_state_no_suggestions_detail">"VORSCHLÄGE BEANTWORTET · 0 TREFFER"</string>
+<string name="search_state_no_suggestions_detail">"0 VORSCHLÄGE · 0 TREFFER IM VERLAUF"</string>
 <string name="search_state_no_suggestions_headline" formatted="true">"Nichts passt zu „%s“"</string>
 <string name="search_suggestions">"Empfehlungen suchen"</string>
 <string name="search_suggestions_des">"Beim Tippen Suchempfehlungen anzeigen"</string>

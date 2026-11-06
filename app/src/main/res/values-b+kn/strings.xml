@@ -163,7 +163,7 @@
 <string name="search_provider_text_types">"ಪ್ರಕಾರಗಳನ್ನು ಬಳಸಿಕೊಂಡು ಹುಡುಕಿ"</string>
 <string name="search_state_idle_body_desktop">"ಶೀರ್ಷಿಕೆಯನ್ನು ಟೈಪ್ ಮಾಡಿ. ಪ್ರತಿಯೊಂದು ಮೂಲ ಉತ್ತರಿಸಿದಂತೆ ಫಲಿತಾಂಶಗಳು ಅದರ ಕೆಳಗೆ ಕಾಣಿಸುತ್ತವೆ."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"%s ಮಾತ್ರ. ನಿಮ್ಮ ಪ್ರಕಾರದ ಫಿಲ್ಟರ್ ಹುಡುಕಾಟವನ್ನು ಕಿರಿದುಗೊಳಿಸುತ್ತಿದೆ."</string>
-<string name="search_state_no_suggestions_detail">"ಸಲಹೆಗಳು ಉತ್ತರಿಸಿವೆ · 0 ಹೊಂದಾಣಿಕೆಗಳು"</string>
+<string name="search_state_no_suggestions_detail">"0 ಸಲಹೆಗಳು · 0 ಇತ್ತೀಚಿನ ಹೊಂದಾಣಿಕೆಗಳು"</string>
 <string name="search_state_no_suggestions_headline" formatted="true">"“%s” ಗೆ ಯಾವುದೂ ಹೊಂದುವುದಿಲ್ಲ"</string>
 <string name="search_tv_source_failed" formatted="true">"ವಿಫಲ %s"</string>
 <string name="search_tv_source_pinned">"ಪಿನ್ ಮಾಡಲಾಗಿದೆ"</string>

@@ -599,7 +599,7 @@
 <string name="search_provider_text_types">"Пошук праз тыпы"</string>
 <string name="search_state_idle_body_desktop">"Увядзіце назву. Вынікі з'яўляюцца пад кожнай крыніцай, калі яна адказвае."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"Толькі %s. Фільтр па тыпе звужае пошук."</string>
-<string name="search_state_no_suggestions_detail">"ПРАПАНОВЫ АДКАЗАЛІ · 0 СУПАДЗЕННЯЎ"</string>
+<string name="search_state_no_suggestions_detail">"0 ПРАПАНОЎ · 0 НЯДАЎНІХ СУПАДЗЕННЯЎ"</string>
 <string name="search_state_no_suggestions_headline" formatted="true">"Нічога не адпавядае «%s»"</string>
 <string name="search_suggestions">"Прапановы пошуку"</string>
 <string name="search_suggestions_des">"Паказваць прапановы пошуку падчас уводу тэксту"</string>

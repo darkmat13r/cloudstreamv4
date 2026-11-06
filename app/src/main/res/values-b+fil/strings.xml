@@ -192,7 +192,7 @@
 <string name="search_provider_text_types">"Maghanap gamit ang mga uri"</string>
 <string name="search_state_idle_body_desktop">"Mag-type ng pamagat. Lalabas ang mga resulta sa ilalim ng bawat source kapag sumagot ito."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"%s lang. Pinipigilan ng type filter mo ang paghahanap."</string>
-<string name="search_state_no_suggestions_detail">"SUMAGOT ANG MGA MUNGKAHI · 0 TUGMA"</string>
+<string name="search_state_no_suggestions_detail">"0 MUNGKAHI · 0 KAMAKAILANG TUGMA"</string>
 <string name="search_state_no_suggestions_headline" formatted="true">"Walang tumutugma sa “%s”"</string>
 <string name="search_tv_source_failed" formatted="true">"NABIGO %s"</string>
 <string name="search_tv_source_pinned">"NAKA-PIN"</string>

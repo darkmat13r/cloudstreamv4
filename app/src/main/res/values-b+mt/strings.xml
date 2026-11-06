@@ -158,7 +158,7 @@
 <string name="search_provider_text_types">"Fittex bl-użu ta 'tipi"</string>
 <string name="search_state_idle_body_desktop">"Ikteb titlu. Ir-riżultati jidhru taħt kull sors meta jwieġeb."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"%s biss. Il-filtru tat-tip qed jirrestrinġi l-fittxija."</string>
-<string name="search_state_no_suggestions_detail">"IS-SUĠĠERIMENTI WIEĠBU · 0 TAQBIL"</string>
+<string name="search_state_no_suggestions_detail">"0 SUĠĠERIMENTI · 0 TAQBIL REĊENTI"</string>
 <string name="search_state_no_suggestions_headline" formatted="true">"Xejn ma jaqbel ma' “%s”"</string>
 <string name="search_tv_source_failed" formatted="true">"FALLA %s"</string>
 <string name="search_tv_source_pinned">"IPPINJAT"</string>

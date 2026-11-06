@@ -439,7 +439,7 @@
 <string name="search_provider_text_types">Søk med typer</string>
 <string name="search_state_idle_body_desktop">Skriv inn en tittel. Resultatene vises under hver kilde når den svarer.</string>
 <string name="search_state_no_results_type_filter">Bare %s. Typefilteret ditt begrenser søket.</string>
-<string name="search_state_no_suggestions_detail">FORSLAG SVARTE · 0 TREFF</string>
+<string name="search_state_no_suggestions_detail">0 FORSLAG · 0 NYLIGE TREFF</string>
 <string name="search_state_no_suggestions_headline">Ingenting samsvarer med «%s»</string>
 <string name="search_tv_source_failed">FEILET %s</string>
 <string name="search_tv_source_pinned">FESTET</string>

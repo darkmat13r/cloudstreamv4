@@ -334,7 +334,7 @@
 <string name="search_provider_text_types">جستجو از طریق انواع</string>
 <string name="search_state_idle_body_desktop">عنوانی را بنویسید. نتایج هر منبع پس از پاسخ آن، زیر نامش نمایش داده می‌شود.</string>
 <string name="search_state_no_results_type_filter">فقط %s. فیلتر نوع شما جستجو را محدود می‌کند.</string>
-<string name="search_state_no_suggestions_detail">پیشنهادها پاسخ دادند · 0 مورد منطبق</string>
+<string name="search_state_no_suggestions_detail">0 پیشنهاد · 0 مورد منطبق اخیر</string>
 <string name="search_state_no_suggestions_headline">هیچ چیزی با «%s» مطابقت ندارد</string>
 <string name="search_tv_source_failed">ناموفق %s</string>
 <string name="search_tv_source_pinned">سنجاق‌شده</string>

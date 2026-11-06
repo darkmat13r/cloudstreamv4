@@ -184,7 +184,7 @@
 <string name="search_provider_text_providers">"ପ୍ରଦାତା ଵ୍ୟଵହାର କରି ଖୋଜିବା"</string>
 <string name="search_state_idle_body_desktop">"ଏକ ଶୀର୍ଷକ ଟାଇପ୍ କରନ୍ତୁ। ପ୍ରତ୍ୟେକ ଉତ୍ସ ଉତ୍ତର ଦେଲେ ଫଳାଫଳ ତା ତଳେ ଦେଖାଯିବ।"</string>
 <string name="search_state_no_results_type_filter" formatted="true">"କେବଳ %s। ଆପଣଙ୍କ ପ୍ରକାର ଫିଲ୍ଟର ସନ୍ଧାନକୁ ସଂକୁଚିତ କରୁଛି।"</string>
-<string name="search_state_no_suggestions_detail">"ପରାମର୍ଶ ଉତ୍ତର ଦେଲା · 0 ମେଳ"</string>
+<string name="search_state_no_suggestions_detail">"0 ପରାମର୍ଶ · 0 ସାମ୍ପ୍ରତିକ ମେଳ"</string>
 <string name="search_state_no_suggestions_headline" formatted="true">"“%s” ସହ କିଛି ମେଳ ଖାଉନାହିଁ"</string>
 <string name="search_tv_source_failed" formatted="true">"ବିଫଳ %s"</string>
 <string name="search_tv_source_pinned">"ପିନ୍ କରାଯାଇଛି"</string>

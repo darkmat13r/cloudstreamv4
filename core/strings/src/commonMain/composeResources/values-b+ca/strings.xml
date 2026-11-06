@@ -313,7 +313,7 @@
 <string name="search_provider_text_types">Cerca per tipus</string>
 <string name="search_state_idle_body_desktop">Escriu un títol. Els resultats apareixen sota cada font quan respon.</string>
 <string name="search_state_no_results_type_filter">Només %s. El filtre de tipus està limitant la cerca.</string>
-<string name="search_state_no_suggestions_detail">SUGGERIMENTS RESPOSTOS · 0 COINCIDÈNCIES</string>
+<string name="search_state_no_suggestions_detail">0 SUGGERIMENTS · 0 COINCIDÈNCIES RECENTS</string>
 <string name="search_state_no_suggestions_headline">Res no coincideix amb «%s»</string>
 <string name="search_tv_source_failed">HA FALLAT %s</string>
 <string name="search_tv_source_pinned">FIXAT</string>

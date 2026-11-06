@@ -443,7 +443,7 @@
 <string name="search_provider_text_types">"Ku raadi noocyada"</string>
 <string name="search_state_idle_body_desktop">"Qor cinwaan. Natiijooyinku waxay ka muuqdaan xigasho kasta hoosteeda marka ay jawaabto."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"Kaliya %s. Shaandhada nooca ayaa soo koobaya raadinta."</string>
-<string name="search_state_no_suggestions_detail">"TALOOYINKA WAA LA HELAY · 0 ISKU-EG"</string>
+<string name="search_state_no_suggestions_detail">"0 TALOOYIN · 0 ISKU-EG DHOWAAN"</string>
 <string name="search_state_no_suggestions_headline" formatted="true">"Waxba kuma habboona “%s”"</string>
 <string name="search_suggestions">"Talooyinka Raadinta"</string>
 <string name="search_suggestions_des">"Soo bandhig talooyinka inta aad wax qorayso"</string>

@@ -599,7 +599,7 @@
 <string name="search_provider_text_types">"عوزو الأنواع ل تنبّشو"</string>
 <string name="search_state_idle_body_desktop">"اكتب عنوان. النتايج بتطلع تحت كل مصدر لما يرد."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"%s بس. فلتر النوع عم يضيّق البحث."</string>
-<string name="search_state_no_suggestions_detail">"ردّت الاقتراحات · 0 تطابق"</string>
+<string name="search_state_no_suggestions_detail">"0 اقتراحات · 0 تطابق مؤخراً"</string>
 <string name="search_state_no_suggestions_headline" formatted="true">"ما في شي بيطابق «%s»"</string>
 <string name="search_suggestions">"اقتراحات التنبيش"</string>
 <string name="search_suggestions_des">"بت فرجي اقتراحات إنتا و عم بت نَبّش"</string>

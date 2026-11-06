@@ -603,7 +603,7 @@
 <string name="search_provider_text_types">Türleri kullanarak ara</string>
 <string name="search_state_idle_body_desktop">Bir başlık yazın. Sonuçlar, her kaynak yanıt verdikçe onun altında görünür.</string>
 <string name="search_state_no_results_type_filter">Yalnızca %s. Tür filtreniz aramayı daraltıyor.</string>
-<string name="search_state_no_suggestions_detail">ÖNERİLER YANITLANDI · 0 EŞLEŞME</string>
+<string name="search_state_no_suggestions_detail">0 ÖNERİ · 0 YAKIN ZAMANLI EŞLEŞME</string>
 <string name="search_state_no_suggestions_headline">“%s” ile eşleşen bir şey yok</string>
 <string name="search_suggestions">Arama Önerileri</string>
 <string name="search_suggestions_des">Yazarken arama önerilerini göster</string>

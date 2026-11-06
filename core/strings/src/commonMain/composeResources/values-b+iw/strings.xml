@@ -464,7 +464,7 @@
 <string name="search_provider_text_types">חפש באמצעות סוגים</string>
 <string name="search_state_idle_body_desktop">הקלד כותרת. התוצאות יופיעו מתחת לכל מקור כשיענה.</string>
 <string name="search_state_no_results_type_filter">%s בלבד. מסנן הסוג מצמצם את החיפוש.</string>
-<string name="search_state_no_suggestions_detail">ההצעות התקבלו · 0 התאמות</string>
+<string name="search_state_no_suggestions_detail">0 הצעות · 0 התאמות אחרונות</string>
 <string name="search_state_no_suggestions_headline">שום דבר לא תואם ל-“%s”</string>
 <string name="search_tv_source_failed">נכשל %s</string>
 <string name="search_tv_source_pinned">מוצמד</string>

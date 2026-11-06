@@ -641,7 +641,7 @@
 <string name="search_state_no_results_detail" formatted="true">"%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS"</string>
 <string name="search_state_no_results_headline">"No results"</string>
 <string name="search_state_no_results_type_filter" formatted="true">"%s only. Your type filter is narrowing the search."</string>
-<string name="search_state_no_suggestions_detail">"SUGGESTIONS ANSWERED · 0 MATCHES"</string>
+<string name="search_state_no_suggestions_detail">"0 SUGGESTIONS · 0 RECENT MATCHES"</string>
 <string name="search_state_no_suggestions_headline" formatted="true">"Nothing matches “%s”"</string>
 <string name="search_state_offline_body">"Search needs a connection. Your downloads are still available."</string>
 <string name="search_state_offline_headline">"You are offline"</string>

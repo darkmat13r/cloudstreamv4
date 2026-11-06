@@ -599,7 +599,7 @@
 <string name="search_provider_text_types">按類型搜尋</string>
 <string name="search_state_idle_body_desktop">輸入標題。每個來源回應後，結果會顯示在其下方。</string>
 <string name="search_state_no_results_type_filter">僅限%s。類型篩選器正在縮小搜尋範圍。</string>
-<string name="search_state_no_suggestions_detail">建議已回應 · 0 個相符</string>
+<string name="search_state_no_suggestions_detail">0 個建議 · 0 個最近相符</string>
 <string name="search_state_no_suggestions_headline">沒有符合「%s」的內容</string>
 <string name="search_suggestions">搜尋建議</string>
 <string name="search_suggestions_des">輸入時顯示搜尋建議</string>

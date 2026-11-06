@@ -385,7 +385,7 @@
 <string name="search_provider_text_types">"प्रकार का उपयोग करके खोजें"</string>
 <string name="search_state_idle_body_desktop">"कोई शीर्षक लिखें। हर स्रोत के जवाब देने पर नतीजे उसके नीचे दिखेंगे।"</string>
 <string name="search_state_no_results_type_filter" formatted="true">"सिर्फ़ %s। आपका प्रकार फ़िल्टर खोज को सीमित कर रहा है।"</string>
-<string name="search_state_no_suggestions_detail">"सुझावों ने जवाब दिया · 0 मिलान"</string>
+<string name="search_state_no_suggestions_detail">"0 सुझाव · 0 हालिया मिलान"</string>
 <string name="search_state_no_suggestions_headline" formatted="true">"“%s” से कुछ भी मेल नहीं खाता"</string>
 <string name="search_tv_source_failed" formatted="true">"विफल %s"</string>
 <string name="search_tv_source_pinned">"पिन किया गया"</string>

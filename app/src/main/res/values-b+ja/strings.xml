@@ -603,7 +603,7 @@
 <string name="search_provider_text_types">"使用タイプの検索"</string>
 <string name="search_state_idle_body_desktop">"タイトルを入力してください。各ソースが応答すると、その下に結果が表示されます。"</string>
 <string name="search_state_no_results_type_filter" formatted="true">"%sのみ。種類フィルターで検索が絞り込まれています。"</string>
-<string name="search_state_no_suggestions_detail">"候補の応答あり · 一致 0 件"</string>
+<string name="search_state_no_suggestions_detail">"候補 0 件 · 最近の一致 0 件"</string>
 <string name="search_state_no_suggestions_headline" formatted="true">"「%s」に一致するものはありません"</string>
 <string name="search_suggestions">"検索候補"</string>
 <string name="search_suggestions_des">"入力中に検索候補を表示する"</string>

@@ -159,7 +159,7 @@
 <string name="search_provider_text_types">Soek met behulp van tipes</string>
 <string name="search_state_idle_body_desktop">Tik 'n titel. Resultate verskyn onder elke bron soos dit antwoord.</string>
 <string name="search_state_no_results_type_filter">Slegs %s. Jou tipe-filter beperk die soektog.</string>
-<string name="search_state_no_suggestions_detail">VOORSTELLE BEANTWOORD · 0 OOREENKOMSTE</string>
+<string name="search_state_no_suggestions_detail">0 VOORSTELLE · 0 ONLANGSE OOREENKOMSTE</string>
 <string name="search_state_no_suggestions_headline">Niks stem ooreen met “%s” nie</string>
 <string name="search_tv_source_failed">MISLUK %s</string>
 <string name="search_tv_source_pinned">VASGESPELD</string>

@@ -150,7 +150,7 @@ class SearchSuggestionsDeviceTest {
 
         rule.onNodeWithText("Nothing matches “dunnne”").assertExists()
         rule.onNodeWithText("Press the keyboard’s search key to search all 12 sources anyway.").assertExists()
-        rule.onNodeWithText("SUGGESTIONS ANSWERED · 0 MATCHES").assertExists()
+        rule.onNodeWithText("0 SUGGESTIONS · 0 RECENT MATCHES").assertExists()
         rule.onNode(Field).assertIsFocused()
 
         // The chips first, then the action at the row's end; nothing below it to fall into.

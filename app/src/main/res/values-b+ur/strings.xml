@@ -511,7 +511,7 @@
 <string name="search_provider_text_types">"انواع کا استعمال کرتے ہوئے تلاش کریں"</string>
 <string name="search_state_idle_body_desktop">"عنوان لکھیں۔ ہر ذریعہ کے جواب دینے پر نتائج اس کے نیچے ظاہر ہوں گے۔"</string>
 <string name="search_state_no_results_type_filter" formatted="true">"صرف %s۔ آپ کا قسم فلٹر تلاش کو محدود کر رہا ہے۔"</string>
-<string name="search_state_no_suggestions_detail">"تجاویز کا جواب آ گیا · 0 مماثلتیں"</string>
+<string name="search_state_no_suggestions_detail">"0 تجاویز · 0 حالیہ مماثلتیں"</string>
 <string name="search_state_no_suggestions_headline" formatted="true">"“%s” سے کچھ بھی مماثل نہیں"</string>
 <string name="search_tv_source_failed" formatted="true">"ناکام %s"</string>
 <string name="search_tv_source_pinned">"پن کیا گیا"</string>

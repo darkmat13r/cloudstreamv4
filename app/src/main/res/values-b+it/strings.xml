@@ -603,7 +603,7 @@
 <string name="search_provider_text_types">"Cerca per tipo"</string>
 <string name="search_state_idle_body_desktop">"Digita un titolo. I risultati compaiono sotto ogni fonte quando risponde."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"Solo %s. Il filtro per tipo sta restringendo la ricerca."</string>
-<string name="search_state_no_suggestions_detail">"SUGGERIMENTI RICEVUTI · 0 CORRISPONDENZE"</string>
+<string name="search_state_no_suggestions_detail">"0 SUGGERIMENTI · 0 CORRISPONDENZE RECENTI"</string>
 <string name="search_state_no_suggestions_headline" formatted="true">"Nessun risultato per «%s»"</string>
 <string name="search_suggestions">"Suggerimenti per la ricerca"</string>
 <string name="search_suggestions_des">"Mostra suggerimenti di ricerca durante la digitazione"</string>

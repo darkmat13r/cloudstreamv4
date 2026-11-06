@@ -548,7 +548,7 @@
 <string name="search_provider_text_types">"Αναζήτηση βάσει τύπων"</string>
 <string name="search_state_idle_body_desktop">"Πληκτρολογήστε έναν τίτλο. Τα αποτελέσματα εμφανίζονται κάτω από κάθε πηγή μόλις απαντήσει."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"Μόνο %s. Το φίλτρο τύπου περιορίζει την αναζήτηση."</string>
-<string name="search_state_no_suggestions_detail">"ΟΙ ΠΡΟΤΑΣΕΙΣ ΑΠΑΝΤΗΣΑΝ · 0 ΑΝΤΙΣΤΟΙΧΙΕΣ"</string>
+<string name="search_state_no_suggestions_detail">"0 ΠΡΟΤΑΣΕΙΣ · 0 ΠΡΟΣΦΑΤΕΣ ΑΝΤΙΣΤΟΙΧΙΕΣ"</string>
 <string name="search_state_no_suggestions_headline" formatted="true">"Τίποτα δεν ταιριάζει με «%s»"</string>
 <string name="search_tv_source_failed" formatted="true">"ΑΠΟΤΥΧΙΑ %s"</string>
 <string name="search_tv_source_pinned">"ΚΑΡΦΙΤΣΩΜΕΝΟ"</string>

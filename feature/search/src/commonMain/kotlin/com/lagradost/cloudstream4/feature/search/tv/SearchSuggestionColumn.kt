@@ -90,7 +90,7 @@ private fun OriginDisc(recent: Boolean) {
     }
 }
 
-/** `.trail`: the count over its word, right-aligned in the board's 240px, with a row's two line boxes. */
+/** `.trail`: the count and its word on one line, `7 SOURCES`, right-aligned in at least the board's 240px. */
 @Composable
 private fun SourceCount(count: Int) {
     val colors = CloudStreamTheme.colors

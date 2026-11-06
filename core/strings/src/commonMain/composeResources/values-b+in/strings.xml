@@ -603,7 +603,7 @@
 <string name="search_provider_text_types">Cari menggunakan jenis</string>
 <string name="search_state_idle_body_desktop">Ketik judul. Hasil muncul di bawah setiap sumber saat sumber itu menjawab.</string>
 <string name="search_state_no_results_type_filter">Hanya %s. Filter jenis Anda mempersempit pencarian.</string>
-<string name="search_state_no_suggestions_detail">SARAN TERJAWAB · 0 COCOK</string>
+<string name="search_state_no_suggestions_detail">0 SARAN · 0 COCOK TERBARU</string>
 <string name="search_state_no_suggestions_headline">Tidak ada yang cocok dengan “%s”</string>
 <string name="search_suggestions">Saran pencarian</string>
 <string name="search_suggestions_des">Tampilkan saran pencarian saat mengetik</string>

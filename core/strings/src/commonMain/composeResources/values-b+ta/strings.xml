@@ -603,7 +603,7 @@
 <string name="search_provider_text_types">வகைகளைப் பயன்படுத்தி தேடுங்கள்</string>
 <string name="search_state_idle_body_desktop">ஒரு தலைப்பைத் தட்டச்சு செய்யவும். ஒவ்வொரு மூலமும் பதிலளிக்கும்போது முடிவுகள் அதன் கீழ் தோன்றும்.</string>
 <string name="search_state_no_results_type_filter">%s மட்டும். உங்கள் வகை வடிப்பான் தேடலைக் குறுக்குகிறது.</string>
-<string name="search_state_no_suggestions_detail">பரிந்துரைகள் பதிலளித்தன · 0 பொருத்தங்கள்</string>
+<string name="search_state_no_suggestions_detail">0 பரிந்துரைகள் · 0 சமீபத்திய பொருத்தங்கள்</string>
 <string name="search_state_no_suggestions_headline">“%s” உடன் எதுவும் பொருந்தவில்லை</string>
 <string name="search_suggestions">தேடல் பரிந்துரைகள்</string>
 <string name="search_suggestions_des">தட்டச்சு செய்யும் போது தேடல் பரிந்துரைகளைக் காட்டு</string>

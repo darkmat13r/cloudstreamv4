@@ -599,7 +599,7 @@
 <string name="search_provider_text_types">"Traži koristeći vrste"</string>
 <string name="search_state_idle_body_desktop">"Upišite naslov. Rezultati se pojavljuju ispod svakog izvora kad odgovori."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"Samo %s. Vaš filtar vrste sužava pretraživanje."</string>
-<string name="search_state_no_suggestions_detail">"PRIJEDLOZI SU ODGOVORILI · 0 PODUDARANJA"</string>
+<string name="search_state_no_suggestions_detail">"0 PRIJEDLOGA · 0 NEDAVNIH PODUDARANJA"</string>
 <string name="search_state_no_suggestions_headline" formatted="true">"Ništa ne odgovara „%s“"</string>
 <string name="search_suggestions">"Prijedlozi za pretraživanje"</string>
 <string name="search_suggestions_des">"Prikaži prijedloge za pretraživanje tijekom tipkanja"</string>

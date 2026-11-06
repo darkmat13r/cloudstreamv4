@@ -80,7 +80,7 @@
 <string name="player_unmute">ድምጺ ወልዕ</string>
 <string name="search_state_idle_body_desktop">ኣርእስቲ ጽሓፍ። ውጽኢታት ነፍሲ ወከፍ ምንጪ ምስ መለሰ ኣብ ትሕቲኡ ይርአዩ።</string>
 <string name="search_state_no_results_type_filter">%s ጥራይ። ማጣሪያ ዓይነትካ ፍለጋ የጽብብ ኣሎ።</string>
-<string name="search_state_no_suggestions_detail">ሓሳባት መለሱ · 0 ተመሳሰልቲ</string>
+<string name="search_state_no_suggestions_detail">0 ሓሳባት · 0 ናይ ቀረባ ተመሳሰልቲ</string>
 <string name="search_state_no_suggestions_headline">ምስ «%s» ዝሰማማዕ የለን</string>
 <string name="search_tv_source_failed">ኣይተኻኣለን %s</string>
 <string name="search_tv_source_pinned">ተሰኪሉ</string>

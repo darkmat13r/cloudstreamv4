@@ -603,7 +603,7 @@
 <string name="search_provider_text_types">Recherche par types</string>
 <string name="search_state_idle_body_desktop">Saisissez un titre. Les résultats apparaissent sous chaque source dès qu'elle répond.</string>
 <string name="search_state_no_results_type_filter">%s uniquement. Votre filtre de type restreint la recherche.</string>
-<string name="search_state_no_suggestions_detail">SUGGESTIONS REÇUES · 0 CORRESPONDANCE</string>
+<string name="search_state_no_suggestions_detail">0 SUGGESTION · 0 CORRESPONDANCE RÉCENTE</string>
 <string name="search_state_no_suggestions_headline">Aucun résultat pour « %s »</string>
 <string name="search_suggestions">Suggestions de recherche</string>
 <string name="search_suggestions_des">Afficher des suggestions de recherche pendant la saisie</string>

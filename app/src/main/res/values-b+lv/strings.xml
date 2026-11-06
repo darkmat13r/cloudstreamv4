@@ -517,7 +517,7 @@
 <string name="search_provider_text_types">"Meklēt izmantojot tipus"</string>
 <string name="search_state_idle_body_desktop">"Ievadiet nosaukumu. Rezultāti parādās zem katra devēja, tiklīdz tas atbild."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"Tikai %s. Jūsu veida filtrs sašaurina meklēšanu."</string>
-<string name="search_state_no_suggestions_detail">"IETEIKUMI SAŅEMTI · 0 ATBILSTĪBU"</string>
+<string name="search_state_no_suggestions_detail">"0 IETEIKUMU · 0 NESENU ATBILSTĪBU"</string>
 <string name="search_state_no_suggestions_headline" formatted="true">"Nekas neatbilst „%s”"</string>
 <string name="search_suggestions">"Meklēšanas ieteikumi"</string>
 <string name="search_tv_source_failed" formatted="true">"NEIZDEVĀS %s"</string>

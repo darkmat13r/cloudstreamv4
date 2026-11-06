@@ -540,7 +540,7 @@
 <string name="search_provider_text_types">"প্ৰকাৰৰ দ্বাৰা সন্ধান কৰক"</string>
 <string name="search_state_idle_body_desktop">"এটা শিৰোনাম টাইপ কৰক। প্ৰতিটো উৎসই উত্তৰ দিয়াৰ লগে লগে ফলাফল তাৰ তলত দেখা যাব।"</string>
 <string name="search_state_no_results_type_filter" formatted="true">"কেৱল %s। আপোনাৰ ধৰণৰ ফিল্টাৰে সন্ধান সংকীৰ্ণ কৰিছে।"</string>
-<string name="search_state_no_suggestions_detail">"পৰামৰ্শই উত্তৰ দিলে · 0 টা মিল"</string>
+<string name="search_state_no_suggestions_detail">"0 টা পৰামৰ্শ · 0 টা শেহতীয়া মিল"</string>
 <string name="search_state_no_suggestions_headline" formatted="true">"“%s”ৰ সৈতে একো নিমিলে"</string>
 <string name="search_tv_source_failed" formatted="true">"ব্যৰ্থ %s"</string>
 <string name="search_tv_source_pinned">"পিন কৰা হৈছে"</string>

@@ -603,7 +603,7 @@
 <string name="search_provider_text_types">"Пошук за типами"</string>
 <string name="search_state_idle_body_desktop">"Введіть назву. Результати з'являться під кожним джерелом, коли воно відповість."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"Лише %s. Фільтр за типом звужує пошук."</string>
-<string name="search_state_no_suggestions_detail">"ПІДКАЗКИ ОТРИМАНО · 0 ЗБІГІВ"</string>
+<string name="search_state_no_suggestions_detail">"0 ПІДКАЗОК · 0 НЕЩОДАВНІХ ЗБІГІВ"</string>
 <string name="search_state_no_suggestions_headline" formatted="true">"Нічого не відповідає «%s»"</string>
 <string name="search_suggestions">"Пропозиції пошуку"</string>
 <string name="search_suggestions_des">"Показувати підказки пошуку під час введення тексту"</string>

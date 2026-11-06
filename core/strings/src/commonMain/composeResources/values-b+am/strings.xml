@@ -150,7 +150,7 @@
 <string name="search_provider_text_types">ዓይነቶችን በመጠቀም ይፈልጉ</string>
 <string name="search_state_idle_body_desktop">ርዕስ ይተይቡ። ውጤቶች እያንዳንዱ ምንጭ ሲመልስ ከሱ ስር ይታያሉ።</string>
 <string name="search_state_no_results_type_filter">%s ብቻ። የአይነት ማጣሪያዎ ፍለጋውን እያጠበበው ነው።</string>
-<string name="search_state_no_suggestions_detail">ጥቆማዎች ምላሽ ሰጥተዋል · 0 ተዛማጆች</string>
+<string name="search_state_no_suggestions_detail">0 ጥቆማዎች · 0 የቅርብ ጊዜ ተዛማጆች</string>
 <string name="search_state_no_suggestions_headline">ከ«%s» ጋር የሚዛመድ ምንም የለም</string>
 <string name="search_tv_source_failed">አልተሳካም %s</string>
 <string name="search_tv_source_pinned">ተሰክቷል</string>

@@ -2,6 +2,9 @@ package com.lagradost.cloudstream4.feature.search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.lagradost.cloudstream4.core.connectivity.Connectivity
+import com.lagradost.cloudstream4.core.connectivity.ConnectivityFlow
+import com.lagradost.cloudstream4.core.connectivity.UnknownConnectivityFlow
 import com.lagradost.cloudstream4.compose.ActionHandler
 import com.lagradost.cloudstream4.compose.DebounceQuery
 import com.lagradost.cloudstream4.compose.DefaultEffectContainer
@@ -41,6 +44,9 @@ import kotlinx.coroutines.sync.withLock
  * With [suggestions], typing shows artboard 8a's column instead of rails, and only a submit or a row shows
  * results. Without it, typing runs the quick search into rails, as before; desktop passes none.
  *
+ * [connectivity] is how 8b tells offline from nothing matching when no fan-out ran. The default knows nothing, and
+ * behaves as online.
+ *
  * ## Why [scope] is a parameter, and why that is not a rule violation
  *
  * `.claude/rules/mvi-viewmodel.md` says "`viewModelScope` only, never `GlobalScope`", and the
@@ -59,6 +65,7 @@ class SearchViewModel(
     dispatcher: CoroutineDispatcher = Dispatchers.Default,
     private val scope: CoroutineScope? = null,
     private val suggestions: SearchSuggestionSource? = null,
+    private val connectivity: ConnectivityFlow = UnknownConnectivityFlow,
 ) : ViewModel(),
     StateContainer<SearchState> by DefaultStateContainer(SearchState()),
     EffectContainer<SearchEffect> by DefaultEffectContainer(),
@@ -293,8 +300,9 @@ class SearchViewModel(
                 val recent = history.recent()
                 val rows = mergeSuggestions(query, suggestions.suggest(query), recent)
                 if (rows.isEmpty()) {
-                    // Offline also empties the suggestions, and saying nothing matches would be wrong.
-                    val offline = fanOut?.await() == SearchOutcome.Offline
+                    // Offline also empties the suggestions, and saying nothing matches would be wrong. The fan-out only runs
+                    // for quick-searchable sources, which most installs have none of, so the device is asked directly too.
+                    val offline = connectivity.status.value == Connectivity.OFFLINE || fanOut?.await() == SearchOutcome.Offline
                     updateState {
                         copy(status = if (offline) SearchStatus.Offline else SearchStatus.NoSuggestions(query, sources.selected))
                     }

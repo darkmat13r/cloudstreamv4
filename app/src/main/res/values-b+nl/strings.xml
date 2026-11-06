@@ -561,7 +561,7 @@
 <string name="search_provider_text_types">"Zoeken met types"</string>
 <string name="search_state_idle_body_desktop">"Typ een titel. Resultaten verschijnen onder elke bron zodra die antwoordt."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"Alleen %s. Je typefilter beperkt de zoekopdracht."</string>
-<string name="search_state_no_suggestions_detail">"SUGGESTIES ONTVANGEN · 0 OVEREENKOMSTEN"</string>
+<string name="search_state_no_suggestions_detail">"0 SUGGESTIES · 0 RECENTE OVEREENKOMSTEN"</string>
 <string name="search_state_no_suggestions_headline" formatted="true">"Niets komt overeen met “%s”"</string>
 <string name="search_suggestions">"Zoeksuggesties"</string>
 <string name="search_suggestions_des">"Zoeksuggesties laten zien tijdens het typen"</string>

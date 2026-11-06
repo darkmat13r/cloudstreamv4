@@ -163,7 +163,7 @@
 <string name="search_provider_text_types">प्रकारको उपयोग गरी खोज्नुहोस्</string>
 <string name="search_state_idle_body_desktop">शीर्षक टाइप गर्नुहोस्। प्रत्येक स्रोतले जवाफ दिएपछि नतिजा त्यसको तल देखिन्छ।</string>
 <string name="search_state_no_results_type_filter">%s मात्र। तपाईंको प्रकार फिल्टरले खोजी साँघुरो बनाइरहेको छ।</string>
-<string name="search_state_no_suggestions_detail">सुझावहरूले जवाफ दिए · 0 मेल</string>
+<string name="search_state_no_suggestions_detail">0 सुझाव · 0 हालैका मेल</string>
 <string name="search_state_no_suggestions_headline">“%s” सँग केही पनि मेल खाँदैन</string>
 <string name="search_tv_source_failed">असफल %s</string>
 <string name="search_tv_source_pinned">पिन गरिएको</string>

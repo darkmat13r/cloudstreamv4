@@ -206,7 +206,7 @@
 <string name="search_provider_text_types">Serĉi uzante tipojn</string>
 <string name="search_state_idle_body_desktop">Tajpu titolon. Rezultoj aperas sub ĉiu fonto kiam ĝi respondas.</string>
 <string name="search_state_no_results_type_filter">Nur %s. Via tipfiltrilo mallarĝigas la serĉon.</string>
-<string name="search_state_no_suggestions_detail">SUGESTOJ RESPONDIS · 0 KONGRUOJ</string>
+<string name="search_state_no_suggestions_detail">0 SUGESTOJ · 0 LASTATEMPAJ KONGRUOJ</string>
 <string name="search_state_no_suggestions_headline">Nenio kongruas kun “%s”</string>
 <string name="search_suggestions">Serĉaj Sugestoj</string>
 <string name="search_tv_source_failed">MALSUKCESIS %s</string>

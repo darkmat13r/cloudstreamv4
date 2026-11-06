@@ -603,7 +603,7 @@
 <string name="search_provider_text_types">"Tìm kiếm theo thể loại"</string>
 <string name="search_state_idle_body_desktop">"Nhập tiêu đề. Kết quả sẽ hiện dưới mỗi nguồn khi nguồn đó phản hồi."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"Chỉ %s. Bộ lọc loại của bạn đang thu hẹp kết quả tìm kiếm."</string>
-<string name="search_state_no_suggestions_detail">"ĐÃ CÓ GỢI Ý · 0 KẾT QUẢ KHỚP"</string>
+<string name="search_state_no_suggestions_detail">"0 GỢI Ý · 0 KẾT QUẢ GẦN ĐÂY KHỚP"</string>
 <string name="search_state_no_suggestions_headline" formatted="true">"Không có gì khớp với “%s”"</string>
 <string name="search_suggestions">"Gợi ý tìm kiếm"</string>
 <string name="search_suggestions_des">"Hiển thị gợi ý tìm kiếm khi đang nhập"</string>

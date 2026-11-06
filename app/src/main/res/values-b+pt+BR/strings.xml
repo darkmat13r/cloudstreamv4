@@ -603,7 +603,7 @@
 <string name="search_provider_text_types">"Pesquisar usando tipos"</string>
 <string name="search_state_idle_body_desktop">"Digite um título. Os resultados aparecem abaixo de cada fonte assim que ela responde."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"Somente %s. O filtro de tipo está restringindo a pesquisa."</string>
-<string name="search_state_no_suggestions_detail">"SUGESTÕES RESPONDERAM · 0 CORRESPONDÊNCIAS"</string>
+<string name="search_state_no_suggestions_detail">"0 SUGESTÕES · 0 CORRESPONDÊNCIAS RECENTES"</string>
 <string name="search_state_no_suggestions_headline" formatted="true">"Nada corresponde a “%s”"</string>
 <string name="search_suggestions">"Sugestões de Busca"</string>
 <string name="search_suggestions_des">"Exibir sugestões de pesquisa durante a digitação"</string>

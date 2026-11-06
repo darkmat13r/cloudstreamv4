@@ -281,7 +281,7 @@
 <string name="search_provider_text_types">Procurar por tipos</string>
 <string name="search_state_idle_body_desktop">Escriba un título. Os resultados aparecen baixo cada fonte cando responde.</string>
 <string name="search_state_no_results_type_filter">Só %s. O filtro de tipo está limitando a busca.</string>
-<string name="search_state_no_suggestions_detail">SUXESTIÓNS RESPONDIDAS · 0 COINCIDENCIAS</string>
+<string name="search_state_no_suggestions_detail">0 SUXESTIÓNS · 0 COINCIDENCIAS RECENTES</string>
 <string name="search_state_no_suggestions_headline">Nada coincide con «%s»</string>
 <string name="search_tv_source_failed">FALLOU %s</string>
 <string name="search_tv_source_pinned">FIXADO</string>

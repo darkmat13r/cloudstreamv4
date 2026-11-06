@@ -42,6 +42,7 @@ import com.lagradost.cloudstream3.utils.AppContextUtils.loadResult
 import com.lagradost.cloudstream3.utils.AppContextUtils.setDefaultFocus
 import com.lagradost.cloudstream3.utils.BaseComposeFragment
 import com.lagradost.cloudstream3.utils.UIHelper.hideKeyboard
+import com.lagradost.cloudstream4.core.connectivity.AndroidConnectivityFlow
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.search.SearchAction
 import com.lagradost.cloudstream4.feature.search.SearchContent
@@ -52,6 +53,10 @@ import com.lagradost.cloudstream4.feature.search.SearchStatus
 import com.lagradost.cloudstream4.feature.search.SearchSuggestionSource
 import com.lagradost.cloudstream4.feature.search.SearchViewModel
 import com.lagradost.cloudstream4.feature.search.tv.SearchScreenTv
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 
 /**
@@ -71,7 +76,14 @@ class SearchTvFragment : BaseComposeFragment() {
         val app = requireContext().applicationContext
         viewModelFactory {
             initializer {
-                SearchViewModel(source = ApiRepositorySearchSource(app), history = history, suggestions = suggestions(app))
+                // Its own scope, ended with the view model: the connectivity flow stays subscribed only while search is.
+                val network = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
+                SearchViewModel(
+                    source = ApiRepositorySearchSource(app),
+                    history = history,
+                    suggestions = suggestions(app),
+                    connectivity = AndroidConnectivityFlow(app, network),
+                ).also { it.addCloseable(AutoCloseable { network.cancel() }) }
             }
         }
     }

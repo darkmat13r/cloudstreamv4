@@ -477,7 +477,7 @@
 <string name="search_provider_text_types">Carian mengikut jenis</string>
 <string name="search_state_idle_body_desktop">Taip tajuk. Hasil muncul di bawah setiap sumber apabila ia menjawab.</string>
 <string name="search_state_no_results_type_filter">Hanya %s. Penapis jenis anda mengecilkan carian.</string>
-<string name="search_state_no_suggestions_detail">CADANGAN DIJAWAB · 0 PADANAN</string>
+<string name="search_state_no_suggestions_detail">0 CADANGAN · 0 PADANAN TERKINI</string>
 <string name="search_state_no_suggestions_headline">Tiada yang sepadan dengan “%s”</string>
 <string name="search_tv_source_failed">GAGAL %s</string>
 <string name="search_tv_source_pinned">DISEMATKAN</string>

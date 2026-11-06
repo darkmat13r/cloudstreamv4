@@ -603,7 +603,7 @@
 <string name="search_provider_text_types">"Szukaj według typów"</string>
 <string name="search_state_idle_body_desktop">"Wpisz tytuł. Wyniki pojawiają się pod każdym źródłem, gdy odpowie."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"Tylko %s. Filtr typu zawęża wyszukiwanie."</string>
-<string name="search_state_no_suggestions_detail">"SUGESTIE ODPOWIEDZIAŁY · 0 DOPASOWAŃ"</string>
+<string name="search_state_no_suggestions_detail">"0 SUGESTII · 0 OSTATNICH DOPASOWAŃ"</string>
 <string name="search_state_no_suggestions_headline" formatted="true">"Nic nie pasuje do „%s”"</string>
 <string name="search_suggestions">"Sugestie wyszukiwania"</string>
 <string name="search_suggestions_des">"Pokaż sugestie wyszukiwania podczas pisania"</string>

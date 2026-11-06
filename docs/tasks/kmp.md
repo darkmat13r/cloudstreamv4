@@ -4743,6 +4743,8 @@ that exist because the old downloader broke them:
 - The retry keeps `Retry failed`, not the board's `Retry 3 sources`.
 - History dates stay lower case (`2 days ago`), as in `KMP-42`.
 - Captions use the theme's caption face; the board draws them in mono.
+- **8b's mono line counts instead of claiming an answer:** `0 SUGGESTIONS · 0 RECENT MATCHES`, not the board's `SUGGESTIONS ANSWERED · 0 MATCHES`, which a failed service would make false (the Found item below).
+- **Offline is read from the device on 8b's path** (`:core:connectivity`'s `ConnectivityFlow`), not only from the fan-out, which runs only for quick-searchable sources. Before this, offline on most installs showed "Nothing matches". `UNKNOWN` behaves as online.
 - **A suggestion service that is down reads as 8b.** `SearchSuggestionApi.getSuggestions` returns an empty list on any failure (it logs it), so "down" and "answered with nothing" cannot be told apart without changing it.
 - **Counts appear only when the selected sources can quick-search.** `MainAPI.hasQuickSearch` defaults to false, so on most installs typing runs no fan-out and the rows have no counts. A full search per settled keystroke was ruled out: it would query every provider on every keystroke (Found, not changed).
 - The setting is read when the screen is made, so changing it applies on the next visit.
@@ -4750,7 +4752,7 @@ that exist because the old downloader broke them:
 ### Tests
 
 - `SearchSuggestionsTest` (common, 7): the board's merge, the six-row and two-recent caps, filling from recent, exclusion, blank input, the counts.
-- `SearchSuggestionsViewModelTest` (JVM, 9): only the settled query is asked, rows before counts, 8b, 8b's Submit, offline, a partial fan-out, no quick search, a row's full search, no suggestion source.
+- `SearchSuggestionsViewModelTest` (JVM, 11): offline with no quick-searchable source (it failed before the connectivity check), online and unknown being 8b, and only the settled query is asked, rows before counts, 8b, 8b's Submit, offline, a partial fan-out, no quick search, a row's full search, no suggestion source.
 - `SearchSuggestionsDeviceTest` (device, 8, the board's data): six rows with counts 7, 9, 6, 4, 2, 0; the D-pad walk; OK on a row; 8b keeps the field focused and its action searches; screenshots `search-suggestions-counted`, `-counting`, `-partial`, `-nothing-matches`, each looked at before it was recorded.
 - `TvSearchNavigationTest` (`:app`, the real path): with suggestions on, typing one letter by remote (OK, the keyboard, then `input text`) shows 8b through the real fragment, setting and `SearchSuggestionApi`; with them off, no suggestions appear. One letter, because the API answers it without the network. The test waits for 8b's action on the chip row, not its headline: it first passed, then failed twice waiting for the headline, and a run that printed the screen's text showed the query, `Search all 0 sources` and the open keyboard's own words, with no headline. The keyboard covers the middle of the screen, where 8b's headline sits.
 
@@ -4763,7 +4765,7 @@ that exist because the old downloader broke them:
 ```
 Found: `SearchSuggestionApi.getSuggestions` returns an empty list on every failure
 Suggest: return a result that tells a failure from no suggestions
-Why: a suggestion service that is down shows 8b's "Nothing matches", which is not true.
+Why: a suggestion service that is down shows 8b's "Nothing matches", which is not true. 8b's mono line is worded to be true either way meanwhile.
 
 Found: rows count only quick-searchable sources, and `MainAPI.hasQuickSearch` defaults to false, so most installs show no counts
 Suggest: nothing; a full search per settled keystroke was ruled out (app-10, 2026-11-06)

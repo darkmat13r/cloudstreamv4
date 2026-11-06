@@ -603,7 +603,7 @@
 <string name="search_provider_text_types">"Kërko duke përdorur tipet"</string>
 <string name="search_state_idle_body_desktop">"Shkruani një titull. Rezultatet shfaqen nën çdo burim sapo ai përgjigjet."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"Vetëm %s. Filtri i llojit po e ngushton kërkimin."</string>
-<string name="search_state_no_suggestions_detail">"SUGJERIMET U PËRGJIGJËN · 0 PËRPUTHJE"</string>
+<string name="search_state_no_suggestions_detail">"0 SUGJERIME · 0 PËRPUTHJE TË FUNDIT"</string>
 <string name="search_state_no_suggestions_headline" formatted="true">"Asgjë nuk përputhet me “%s”"</string>
 <string name="search_suggestions">"Kërkime të sugjeruara"</string>
 <string name="search_suggestions_des">"Trego sugjerimet ndërkohë që shkruani"</string>

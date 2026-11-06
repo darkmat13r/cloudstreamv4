@@ -6,10 +6,15 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertIs
 import kotlin.test.assertTrue
+import com.lagradost.cloudstream4.core.connectivity.Connectivity
+import com.lagradost.cloudstream4.core.connectivity.ConnectivityFlow
+import com.lagradost.cloudstream4.core.connectivity.UnknownConnectivityFlow
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
@@ -76,7 +81,12 @@ class SearchSuggestionsViewModelTest {
         source: SearchSource,
         suggestions: SearchSuggestionSource?,
         history: SearchHistoryStore = FakeHistory(),
-    ) = SearchViewModel(source, history, dispatcher, suggestions = suggestions)
+        connectivity: ConnectivityFlow = UnknownConnectivityFlow,
+    ) = SearchViewModel(source, history, dispatcher, suggestions = suggestions, connectivity = connectivity)
+
+    private fun network(now: Connectivity) = object : ConnectivityFlow {
+        override val status: StateFlow<Connectivity> = MutableStateFlow(now)
+    }
 
     private fun SearchStatus.rows(): List<SearchSuggestion> = when (this) {
         is SearchStatus.Showing -> assertIs<SearchContent.Suggestions>(content).rows
@@ -150,6 +160,35 @@ class SearchSuggestionsViewModelTest {
         settle()
 
         assertEquals(SearchStatus.Offline, vm.state.value.status)
+    }
+
+    /** Most installs: no source can quick-search, so no fan-out runs to find out, and the device has to be asked. */
+    @Test
+    fun `offline with no quick-searchable source and nothing suggested says offline`() = runTest(dispatcher) {
+        val source = FakeSource(sources = SearchSources(selected = 12, total = 48, quickSearchable = false))
+        val vm = viewModel(source, FakeSuggestions(emptyList()), connectivity = network(Connectivity.OFFLINE))
+        settle()
+
+        vm.onAction(SearchAction.QueryChanged("dune"))
+        settle()
+
+        assertEquals(SearchStatus.Offline, vm.state.value.status)
+        assertTrue(source.quickSearched.isEmpty())
+    }
+
+    /** Unknown is never drawn as offline (`Connectivity.UNKNOWN`), and online with nothing suggested is 8b. */
+    @Test
+    fun `online or unknown with no quick-searchable source and nothing suggested is 8b`() = runTest(dispatcher) {
+        for (now in listOf(Connectivity.ONLINE, Connectivity.UNKNOWN)) {
+            val source = FakeSource(sources = SearchSources(selected = 12, total = 48, quickSearchable = false))
+            val vm = viewModel(source, FakeSuggestions(emptyList()), connectivity = network(now))
+            settle()
+
+            vm.onAction(SearchAction.QueryChanged("dune"))
+            settle()
+
+            assertEquals(SearchStatus.NoSuggestions("dune", 12), vm.state.value.status, "$now")
+        }
     }
 
     @Test

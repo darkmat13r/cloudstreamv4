@@ -369,7 +369,7 @@
 <string name="search_provider_text_types">ধরণ অনুযায়ি খুঁজুন</string>
 <string name="search_state_idle_body_desktop">একটি শিরোনাম লিখুন। প্রতিটি সোর্স উত্তর দিলে ফলাফল তার নিচে দেখা যাবে।</string>
 <string name="search_state_no_results_type_filter">শুধু %s। আপনার ধরনের ফিল্টার অনুসন্ধান সীমিত করছে।</string>
-<string name="search_state_no_suggestions_detail">সাজেশন উত্তর দিয়েছে · 0টি মিল</string>
+<string name="search_state_no_suggestions_detail">0টি সাজেশন · 0টি সাম্প্রতিক মিল</string>
 <string name="search_state_no_suggestions_headline">“%s”-এর সাথে কিছুই মেলেনি</string>
 <string name="search_suggestions">সার্চ সাজেশন</string>
 <string name="search_suggestions_des">টাইপ করার সময় সার্চ সাজেশন দেখান</string>

@@ -599,7 +599,7 @@
 <string name="search_provider_text_types">Пребарувај користејќи типови</string>
 <string name="search_state_idle_body_desktop">Внеси наслов. Резултатите се појавуваат под секој извор кога ќе одговори.</string>
 <string name="search_state_no_results_type_filter">Само %s. Вашиот филтер за тип го стеснува пребарувањето.</string>
-<string name="search_state_no_suggestions_detail">ПРЕДЛОЗИТЕ ОДГОВОРИЈА · 0 СОВПАЃАЊА</string>
+<string name="search_state_no_suggestions_detail">0 ПРЕДЛОЗИ · 0 НЕОДАМНЕШНИ СОВПАЃАЊА</string>
 <string name="search_state_no_suggestions_headline">Ништо не одговара на „%s“</string>
 <string name="search_suggestions">Предлози за пребарување</string>
 <string name="search_suggestions_des">Прикажувај предлози за пребарување додека пишуваш</string>

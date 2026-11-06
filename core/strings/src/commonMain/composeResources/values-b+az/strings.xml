@@ -191,7 +191,7 @@
 <string name="search_poster_img_des">Afişa</string>
 <string name="search_state_idle_body_desktop">Başlıq yazın. Hər mənbə cavab verdikcə nəticələr onun altında görünür.</string>
 <string name="search_state_no_results_type_filter">Yalnız %s. Növ filtriniz axtarışı daraldır.</string>
-<string name="search_state_no_suggestions_detail">TƏKLİFLƏR CAVAB VERDİ · 0 UYĞUNLUQ</string>
+<string name="search_state_no_suggestions_detail">0 TƏKLİF · 0 SON UYĞUNLUQ</string>
 <string name="search_state_no_suggestions_headline">«%s» ilə uyğun heç nə yoxdur</string>
 <string name="search_tv_source_failed">UĞURSUZ %s</string>
 <string name="search_tv_source_pinned">SABİTLƏNİB</string>

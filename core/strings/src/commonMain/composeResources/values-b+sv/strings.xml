@@ -603,7 +603,7 @@
 <string name="search_provider_text_types">Sök med hjälp av typer</string>
 <string name="search_state_idle_body_desktop">Skriv en titel. Resultaten visas under varje källa när den svarar.</string>
 <string name="search_state_no_results_type_filter">Endast %s. Ditt typfilter begränsar sökningen.</string>
-<string name="search_state_no_suggestions_detail">FÖRSLAG BESVARADE · 0 TRÄFFAR</string>
+<string name="search_state_no_suggestions_detail">0 FÖRSLAG · 0 NYLIGA TRÄFFAR</string>
 <string name="search_state_no_suggestions_headline">Inget matchar ”%s”</string>
 <string name="search_suggestions">Sökförslag</string>
 <string name="search_suggestions_des">Visa sökförslag medan du skriver</string>

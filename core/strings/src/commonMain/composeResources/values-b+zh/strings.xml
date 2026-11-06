@@ -603,7 +603,7 @@
 <string name="search_provider_text_types">按类型搜索</string>
 <string name="search_state_idle_body_desktop">输入标题。每个来源响应后，结果会显示在其下方。</string>
 <string name="search_state_no_results_type_filter">仅限%s。类型筛选正在缩小搜索范围。</string>
-<string name="search_state_no_suggestions_detail">建议已返回 · 0 个匹配</string>
+<string name="search_state_no_suggestions_detail">0 个建议 · 0 个最近匹配</string>
 <string name="search_state_no_suggestions_headline">没有与“%s”匹配的内容</string>
 <string name="search_suggestions">搜索建议</string>
 <string name="search_suggestions_des">输入时显示搜索建议</string>

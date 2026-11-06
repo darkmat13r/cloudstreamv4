@@ -129,6 +129,8 @@ fun SearchStatus.toUiState(
                     submit,
                 ),
             ),
+            // Counts, not the board's `SUGGESTIONS ANSWERED`: `SearchSuggestionApi` returns an empty list on a failure as
+            // well, so "answered" could be false. `KMP-47`'s first Found item.
             detail = stringResource(Res.string.search_state_no_suggestions_detail),
         )
 

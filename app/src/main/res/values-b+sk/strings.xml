@@ -423,7 +423,7 @@
 <string name="search_provider_text_types">"Hľadať pomocou typov"</string>
 <string name="search_state_idle_body_desktop">"Zadajte názov. Výsledky sa zobrazia pod každým zdrojom, keď odpovie."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"Iba %s. Filter typov zužuje hľadanie."</string>
-<string name="search_state_no_suggestions_detail">"NÁVRHY ODPOVEDALI · 0 ZHÔD"</string>
+<string name="search_state_no_suggestions_detail">"0 NÁVRHOV · 0 NEDÁVNYCH ZHÔD"</string>
 <string name="search_state_no_suggestions_headline" formatted="true">"Nič nezodpovedá „%s“"</string>
 <string name="search_suggestions">"Návrhy vyhľadávania"</string>
 <string name="search_suggestions_des">"Zobraziť návrhy vyhľadávania pri písaní"</string>

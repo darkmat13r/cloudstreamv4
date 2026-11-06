@@ -539,7 +539,7 @@
 <string name="search_provider_text_types">Keresés típusok szerint</string>
 <string name="search_state_idle_body_desktop">Írjon be egy címet. Az eredmények az egyes források alatt jelennek meg, amint válaszolnak.</string>
 <string name="search_state_no_results_type_filter">Csak %s. A típusszűrő szűkíti a keresést.</string>
-<string name="search_state_no_suggestions_detail">A JAVASLATOK MEGÉRKEZTEK · 0 TALÁLAT</string>
+<string name="search_state_no_suggestions_detail">0 JAVASLAT · 0 LEGUTÓBBI TALÁLAT</string>
 <string name="search_state_no_suggestions_headline">Semmi sem egyezik ezzel: „%s”</string>
 <string name="search_suggestions">Keresési javaslatok</string>
 <string name="search_suggestions_des">Mutasson keresési javaslatok gépelés közben</string>

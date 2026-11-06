@@ -592,7 +592,7 @@
 <string name="search_provider_text_types">"Търсене с помощта на типове"</string>
 <string name="search_state_idle_body_desktop">"Въведете заглавие. Резултатите се появяват под всеки източник, когато той отговори."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"Само %s. Филтърът по тип стеснява търсенето."</string>
-<string name="search_state_no_suggestions_detail">"ПРЕДЛОЖЕНИЯТА ОТГОВОРИХА · 0 СЪВПАДЕНИЯ"</string>
+<string name="search_state_no_suggestions_detail">"0 ПРЕДЛОЖЕНИЯ · 0 СКОРОШНИ СЪВПАДЕНИЯ"</string>
 <string name="search_state_no_suggestions_headline" formatted="true">"Нищо не съответства на „%s“"</string>
 <string name="search_suggestions">"Предложения за търсене"</string>
 <string name="search_suggestions_des">"Показвай предложения за търсене по време на писане"</string>

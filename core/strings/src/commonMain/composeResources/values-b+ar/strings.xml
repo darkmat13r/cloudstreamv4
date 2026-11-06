@@ -602,7 +602,7 @@
 <string name="search_provider_text_types">البحث باستخدام الأنواع</string>
 <string name="search_state_idle_body_desktop">اكتب عنوانًا. تظهر النتائج تحت كل مصدر عند استجابته.</string>
 <string name="search_state_no_results_type_filter">%s فقط. عامل تصفية النوع يضيّق نطاق البحث.</string>
-<string name="search_state_no_suggestions_detail">ردّت الاقتراحات · 0 تطابق</string>
+<string name="search_state_no_suggestions_detail">0 اقتراحات · 0 تطابق حديث</string>
 <string name="search_state_no_suggestions_headline">لا شيء يطابق «%s»</string>
 <string name="search_suggestions">اقتراحات البحث</string>
 <string name="search_suggestions_des">عرض اقتراحات البحث أثناء الكتابة</string>

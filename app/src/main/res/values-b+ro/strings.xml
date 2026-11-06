@@ -534,7 +534,7 @@
 <string name="search_provider_text_types">"Căutare în funcție de tip"</string>
 <string name="search_state_idle_body_desktop">"Tastați un titlu. Rezultatele apar sub fiecare sursă când răspunde."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"Doar %s. Filtrul de tip restrânge căutarea."</string>
-<string name="search_state_no_suggestions_detail">"SUGESTII PRIMITE · 0 POTRIVIRI"</string>
+<string name="search_state_no_suggestions_detail">"0 SUGESTII · 0 POTRIVIRI RECENTE"</string>
 <string name="search_state_no_suggestions_headline" formatted="true">"Nimic nu se potrivește cu „%s”"</string>
 <string name="search_tv_source_failed" formatted="true">"EȘUAT %s"</string>
 <string name="search_tv_source_pinned">"FIXAT"</string>

@@ -447,7 +447,7 @@
 <string name="search_provider_text_types">"အမျိုးအစားများအသုံးပြု၍ရှာရန်"</string>
 <string name="search_state_idle_body_desktop">"ခေါင်းစဉ်တစ်ခု ရိုက်ထည့်ပါ။ ရင်းမြစ်တစ်ခုစီ တုံ့ပြန်သည်နှင့် ရလဒ်များကို ၎င်းအောက်တွင် ပြသပါမည်။"</string>
 <string name="search_state_no_results_type_filter" formatted="true">"%s သာ။ သင့်အမျိုးအစား စစ်ထုတ်မှုက ရှာဖွေမှုကို ကျဉ်းစေနေသည်။"</string>
-<string name="search_state_no_suggestions_detail">"အကြံပြုချက်များ ပြန်ဖြေပြီး · ကိုက်ညီမှု 0 ခု"</string>
+<string name="search_state_no_suggestions_detail">"အကြံပြုချက် 0 ခု · မကြာသေးမီ ကိုက်ညီမှု 0 ခု"</string>
 <string name="search_state_no_suggestions_headline" formatted="true">"“%s” နှင့် ကိုက်ညီသည့်အရာ မရှိပါ"</string>
 <string name="search_tv_source_failed" formatted="true">"မအောင်မြင်ပါ %s"</string>
 <string name="search_tv_source_pinned">"ပင်ထိုးထား"</string>
