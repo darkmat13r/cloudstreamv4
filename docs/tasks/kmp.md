@@ -5073,17 +5073,37 @@ Seen in `EngineDownloadDeviceTest` (`aDownloadCutOffMidway…`): the split's new
 
 The test now bounds the union of the requested ranges, not their sum, so it still proves a resume. The cause is not investigated. The first place to look is where `PartScheduler` picks the split point against the victim's open request.
 
-## KMP-62 — The old downloader keeps whole links in `KEY_RESUME_PACKAGES` · **open**, waits on the owner
+## KMP-62 — The old downloader stores no link · **built 2026-11-07**, waits on review
 
-Found while checking `KMP-59` against the owner's no-link ruling for `KMP-52` (2026-11-06). Not changed.
-- **What is stored.** `DownloadManager.kt:1923-1927` writes `DownloadResumePackage(item, index)` to `KEY_RESUME_PACKAGES` before every
-  attempt. `DownloadItem.links` is `List<ExtractorLink>`, serialised with `url`, `referer` and `headers`
-  (`library/.../ExtractorApi.kt:700-708`). It goes to SharedPreferences.
-- **Which paths store it.** Both: the write comes before `downloadSingleEpisode`, so it happens with `KMP-59`'s switch on or off. The
-  engine path adds no link of its own. Its marker holds a size and a name, and its state file holds the size, ETag, Last-Modified and ranges.
-- **Applying the ruling.** Keep `ep`, the provider and the episode's `loadLinks` data. Run `loadLinks` again on resume, and on start-up
-  re-queueing from `DownloadQueueManager.init`.
-- **Waiting on the owner.** That changes the existing downloader for every user, so the owner decides before anyone builds it.
+Found while checking `KMP-59` against the no-link ruling for `KMP-52`; the owner approved applying it here (2026-11-06). The old downloader keeps what it needs to ask the provider again, not the links.
+No `DownloadObjects` class changed, and `:app:checkExtensionApi` shows no diff.
+- **What was stored.**
+  - `KEY_RESUME_PACKAGES` held each `ExtractorLink` (url, referer, headers, audio tracks).
+  - `KEY_RESUME_IN_QUEUE` and `QUEUE_KEY` held the same, plus `SubtitleData` (url, headers) for a picked mirror.
+- **Now.**
+  - Those three keys are written with `links` empty and `subs` null.
+  - A side record under the private key `download_resume_source/<id>/` holds:
+    - `item`: the `DownloadQueueItem` without links or subs, which carries the episode's `data` and the provider;
+    - `mirror`: the picked mirror's `source`/`name`;
+    - `attempt`: the `source`/`name` of the link the partial file came from.
+  - A resume with no links runs `RepoLinkGenerator` again, with the same `LOADTYPE_INAPP_DOWNLOAD` filter and profile
+    order as a first download. A picked mirror is kept if the provider still offers it, otherwise the profile's top
+    link is used. The partial file resumes only on the link it came from.
+  - Links the user just picked stay in memory for the running process.
+- **Removed** with `KEY_RESUME_PACKAGES` (the queue service's Stop handling and `PieFetchButton`), and when a download
+  completes. It is kept out of backups. A finished download reads nothing from it.
+- **Migration** runs at `DownloadQueueManager.init`. It is idempotent, and it writes the side record before it strips
+  the package that needs it.
+  - A package whose queued item survives gets a side record and loses its links.
+  - Queued items lose theirs.
+  - A package with nothing to ask the provider with keeps its links until it finishes or is removed.
+- **Behaviour change.** A source that no longer answers now fails that resume with `DownloadFailure.NoUsableLink`, and
+  the partial file is kept.
+- **Tests.** `NoStoredLinksDeviceTest`, 8 cases. They read every `shared_prefs/*.xml` raw and look for markers in a
+  link's url, referer and headers and in a subtitle's url and headers. The checks run after enqueue, run, fail,
+  stop, finish, restart and migration.
+- **Known and left.** `KEY_DOWNLOAD_INFO.linkHash` (`url.hashCode()`) and `DOWNLOAD_HEADER_CACHE.url` (the result
+  page URL).
 
 ## KMP-52 — The Mac download service and its data · **open**
 
