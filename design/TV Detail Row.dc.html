@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<script src="./support.js"></script></head><body>
+<x-dc>
+  <helmet data-dc-atomics>
+    <meta name="design_doc_mode" content="canvas" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" />
+    <style>
+      html { background:#0a0a0a; }
+      body { margin:0; background:#0a0a0a; font-family:Manrope,system-ui,sans-serif; }
+      .sec { padding:52px 64px 44px; }
+      .sechd { display:flex; align-items:baseline; gap:12px; margin:0 0 8px; }
+      .secid { font:600 12px/16px "JetBrains Mono",monospace; padding:4px 8px; background:#f0eee9; color:#14130f; border-radius:4px; }
+      .secname { font:700 16px/20px Manrope,sans-serif; color:#f0eee9; }
+      .secsub { font:400 16px/28px Manrope,sans-serif; color:rgba(240,238,233,0.62); max-width:1040px; margin:0 0 32px; text-wrap:pretty; }
+      .secsub b { color:#f0eee9; font-weight:600; }
+      .shots { display:flex; flex-direction:column; gap:44px; align-items:flex-start; }
+      .shot { display:flex; flex-direction:column; gap:12px; }
+      .shotl { display:flex; align-items:baseline; gap:12px; font:400 16px/24px Manrope,sans-serif; color:rgba(240,238,233,0.55); max-width:1560px; }
+      .shotn { font:700 16px/20px Manrope,sans-serif; color:#f0eee9; white-space:nowrap; }
+      .shotc { border-radius:12px; overflow:hidden; box-shadow:0 16px 60px rgba(0,0,0,0.6); }
+      .note { margin-top:24px; padding:16px 20px; border-left:4px solid #CD3D4B; background:rgba(205,61,75,0.07);
+        font:400 16px/28px Manrope,sans-serif; color:rgba(255,255,255,0.78); max-width:1180px; text-wrap:pretty; }
+      .note b { color:#FFFFFF; } .note p { margin:0 0 12px; } .note p:last-child { margin:0; }
+      .note code { font:500 14px/20px "JetBrains Mono",monospace; color:#FFFFFF; }
+      .ask { border-left-color:#E8B93B; background:rgba(232,185,59,0.07); }
+
+      .stt { display:grid; grid-template-columns:96px 1fr; gap:4px 16px; max-width:1560px; margin-top:6px; }
+      .stt b { font:700 11px/22px "JetBrains Mono",monospace; color:rgba(240,238,233,0.75); letter-spacing:0.08em; }
+      .stt span { font:400 14px/22px Manrope,sans-serif; color:rgba(240,238,233,0.5); }
+
+      /* ================= THE SHARED TV CHASSIS (copied from TV Detail Player) ================= */
+      .tv { --bg:#000000; --surf:#0A1016; --raised:#15191E; --line:#242A31;
+            --ink:#FFFFFF; --ink2:#CCCCCC; --mut:#858585; --acc:#CD3D4B;
+            width:1920px; height:1080px; position:relative; overflow:hidden;
+            background:var(--bg); color:var(--ink); font-family:Manrope,sans-serif; }
+      .abs { position:absolute; }
+      .art { position:relative; overflow:hidden; background:
+        radial-gradient(120% 100% at 62% 26%, #47576A 0%, #26313D 42%, transparent 72%),
+        radial-gradient(90% 80% at 88% 78%, #35414F 0%, transparent 64%),
+        linear-gradient(155deg, #2A3540, #0E141A 82%);
+        box-shadow: inset 0 0 0 1px rgba(255,255,255,0.07); }
+      .art::after { content:""; position:absolute; inset:0;
+        background: repeating-linear-gradient(115deg, rgba(255,255,255,0.03) 0 2px, transparent 2px 8px); }
+      .heroscrim { background:
+        linear-gradient(90deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.72) 66%, rgba(0,0,0,0) 96%),
+        linear-gradient(0deg, #000000 0%, rgba(0,0,0,0) 34%); }
+      .railc { width:152px; height:1080px; box-sizing:border-box; padding:56px 0 0 56px;
+        display:flex; flex-direction:column; gap:24px; background:#000000;
+        box-shadow: inset -1px 0 0 var(--line); }
+      .lgm { width:48px; height:48px; border-radius:12px; background:var(--ink); margin:0 24px 0; }
+      .nic { width:96px; height:96px; border-radius:12px; display:flex; align-items:center;
+        justify-content:center; box-sizing:border-box; flex:none; position:relative; }
+      .nic .gl { width:32px; height:32px; border-radius:8px; background:var(--mut); }
+
+      .h1 { font:700 64px/88px Manrope,sans-serif; letter-spacing:-0.02em; color:var(--ink);
+        white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+      .meta { font:400 24px/32px Manrope,sans-serif; color:var(--ink2); white-space:nowrap; }
+      .plot { font:400 28px/40px Manrope,sans-serif; color:var(--ink2);
+        display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+      .cap { font:500 20px/24px "JetBrains Mono",monospace; color:var(--mut); }
+
+      /* chrome back cell */
+      .ibx { width:96px; height:96px; display:flex; align-items:center; justify-content:center; position:absolute; }
+      .ivis { width:48px; height:48px; border-radius:8px; background:var(--raised);
+        display:flex; align-items:center; justify-content:center; }
+      .ibx.foc .ivis { outline:4px solid var(--ink); outline-offset:4px; }
+      .gl2 { width:32px; height:32px; border-radius:8px; background:var(--mut); }
+
+      /* ---- text buttons ---- */
+      .bbtn { height:64px; min-width:240px; padding:0 32px; box-sizing:border-box;
+        display:inline-flex; align-items:center; justify-content:center; border-radius:16px;
+        background:var(--ink); color:var(--bg); font:600 28px/32px Manrope,sans-serif; }
+      .bbtn.ghost { background:transparent; color:var(--ink); box-shadow: inset 0 0 0 4px var(--line); }
+      .bbtn.foc { outline:4px solid var(--ink); outline-offset:4px; }
+      .bgl { width:32px; height:32px; border-radius:8px; background:currentColor; flex:none; margin-right:16px; }
+
+      /* ---- icon-only cells: 96 cell, 64 tile, 32 glyph, 32 label reserve ----
+         OWNER RULING 2026-11-06: the glyph is --mut at rest and --ink on focus, whatever the
+         toggle state. The raised fill is what still carries checked/unchecked. */
+      .icell { position:absolute; width:96px; height:96px; display:flex; align-items:center; justify-content:center; }
+      .itile { width:64px; height:64px; box-sizing:border-box; border-radius:16px;
+        display:flex; align-items:center; justify-content:center;
+        box-shadow: inset 0 0 0 4px var(--line); color:var(--mut); }
+      .itile.on { background:var(--raised); }
+      .itile .bgl { margin-right:0; }
+      .icell.foc .itile { color:var(--ink); outline:4px solid var(--ink); outline-offset:4px; }
+      .ilbl { position:absolute; left:-72px; top:96px; width:240px; text-align:center;
+        font:500 24px/32px Manrope,sans-serif; color:var(--ink); white-space:nowrap; }
+
+      .rprog { height:8px; background:rgba(255,255,255,0.18); }
+      .rprog i { display:block; height:100%; background:var(--acc); }
+
+      /* ---- rail header ---- */
+      .rhd { display:flex; align-items:flex-end; gap:16px; height:56px; }
+      .rt { font:700 40px/56px Manrope,sans-serif; color:var(--ink); }
+      .rm { font:500 24px/32px "JetBrains Mono",monospace; color:var(--mut); }
+
+      /* ---- cast ---- */
+      .cast { width:192px; height:240px; position:absolute; }
+      .cav2 { position:absolute; left:16px; top:0; width:160px; height:160px; border-radius:80px; }
+      .cini { position:absolute; left:16px; top:0; width:160px; height:160px; border-radius:80px;
+        background:var(--raised); display:flex; align-items:center; justify-content:center;
+        font:700 40px/48px Manrope,sans-serif; color:var(--ink2); }
+      .cnm2 { position:absolute; left:0; top:176px; width:192px; font:600 24px/32px Manrope,sans-serif;
+        color:var(--ink); text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+      .crl { position:absolute; left:0; top:216px; width:192px; font:400 20px/24px "JetBrains Mono",monospace;
+        color:var(--mut); text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+      .seeall { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;
+        background:var(--raised); border-radius:8px; position:absolute; }
+      .ct { font:600 24px/32px Manrope,sans-serif; color:var(--ink); }
+      .cy { font:500 20px/24px "JetBrains Mono",monospace; color:var(--ink2); }
+
+      /* ---- chips: ChipRowSpacing 24dp = 48px, ChipFocusCell 48dp = 96px ---- */
+      .chiprow { display:flex; gap:48px; align-items:center; height:96px; position:absolute; }
+      .chipcell { height:96px; display:inline-flex; align-items:center; box-sizing:border-box; }
+      .chip { display:inline-flex; align-items:center; gap:16px; height:48px; padding:0 24px;
+        border-radius:24px; box-sizing:border-box; box-shadow:inset 0 0 0 4px var(--line);
+        font:600 24px/32px Manrope,sans-serif; color:var(--ink2); white-space:nowrap; }
+      .chip.sel { background:var(--raised); color:var(--ink); }
+      .chipcell.foc .chip { outline:4px solid var(--ink); outline-offset:4px; }
+
+      /* ---- list rows: ListRowHeight 48dp = 96px, marker 4x24dp = 8x48px (DS-15) ---- */
+      .lrow { position:absolute; display:flex; align-items:center; gap:16px; height:96px;
+        box-sizing:border-box; padding:0 16px; border-radius:8px; }
+      .lrow.sel { background:var(--raised); }
+      .lrow.foc { outline:4px solid var(--ink); outline-offset:4px; }
+      .lmark { width:8px; height:48px; border-radius:4px; background:transparent; flex:none; }
+      .lrow.sel .lmark { background:var(--mut); }
+      .ldisc { width:56px; font:500 24px/32px "JetBrains Mono",monospace; color:var(--mut); text-align:center; flex:none; }
+      .lbody { flex:1; display:flex; flex-direction:column; gap:8px; min-width:0; }
+      .lt { font:600 28px/32px Manrope,sans-serif; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+      .ls { font:400 24px/24px Manrope,sans-serif; color:var(--mut); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+      .ltrail { font:500 24px/32px "JetBrains Mono",monospace; color:var(--mut); flex:none; }
+
+      /* ---- side panel: SidePanelWidth 280dp = 560px, scrim 0.6 (DS-15) ---- */
+      .scrim { position:absolute; inset:0; background:rgba(0,0,0,0.6); }
+      .panel { position:absolute; right:0; top:0; width:560px; height:1080px;
+        background:var(--surf); box-shadow: inset 1px 0 0 var(--line); }
+      .ptitle { font:700 40px/56px Manrope,sans-serif; color:var(--ink); }
+      .pbody { font:400 28px/40px Manrope,sans-serif; color:var(--ink2); }
+
+      /* ---- state view ---- */
+      .stglyph { width:128px; height:128px; border-radius:24px; background:var(--raised);
+        display:flex; align-items:center; justify-content:center; }
+      .stglyph i { width:56px; height:56px; border-radius:12px; background:var(--mut); display:block; }
+      .sthd { font:700 56px/72px Manrope,sans-serif; color:var(--ink); text-align:center; }
+      .stbd { font:400 28px/40px Manrope,sans-serif; color:var(--mut); text-align:center; }
+
+      /* ---- specimen board furniture (7h only) ---- */
+      .spec { position:absolute; }
+      .speccap { font:500 22px/28px "JetBrains Mono",monospace; color:var(--mut); text-align:center; width:320px; }
+      .spechd { font:700 32px/40px Manrope,sans-serif; color:var(--ink); }
+      .specsub { font:400 24px/32px Manrope,sans-serif; color:var(--mut); }
+      .specbox { position:absolute; border-radius:12px; box-shadow:inset 0 0 0 2px #242A31; }
+    </style>
+  </helmet>
+
+<div class="sec">
+  <div class="sechd"><span class="secid">7f–7l</span><span class="secname">TV Detail — the action row follow-up</span></div>
+  <p class="secsub">Variants of <b>7a</b>'s action row for the owner, drawn before anything is built. The page,
+  the hero, the cast rail and every token are 7a's; only the row, the episode list, the synopsis and the failure
+  action change. Board px ÷ 2 = dp throughout. <b>Nothing here is settled</b> — two of these boards ask the owner a
+  question rather than answer one, and both are marked.</p>
+
+  <div class="shots">
+
+    <!-- ============================== 7f ============================== -->
+    <div class="shot">
+      <div class="shotl"><span class="shotn">7f · Detail row — series</span><span>The row as asked: one white
+        primary text button with its Play glyph, and <b>every other action an icon-only glyph cell</b>. Start over and
+        Trailer lose their labels and keep them only on focus. The page above and the cast rail below are 7a's,
+        unmoved — the cast row still opens at y784 (392 dp), because nothing above it changed height.</span></div>
+      <div class="shotc"><div class="tv" data-screen-label="Detail row — series">
+        <div class="abs art" style="left:0;top:0;width:1920px;height:600px;filter:brightness(1.45) saturate(1.1)"></div>
+        <div class="abs heroscrim" style="left:0;top:0;width:1920px;height:600px"></div>
+
+        <div class="abs railc" style="left:0;top:0">
+          <div class="lgm"></div>
+          <div class="nic"><div class="gl"></div></div><div class="nic"><div class="gl"></div></div>
+          <div class="nic"><div class="gl"></div></div><div class="nic"><div class="gl"></div></div>
+          <div class="nic"><div class="gl"></div></div>
+        </div>
+
+        <div class="ibx" style="left:200px;top:56px"><div class="ivis"><div class="gl2"></div></div></div>
+        <div class="abs meta" style="left:320px;top:88px;width:600px;color:#858585">HDRezka&nbsp; ·&nbsp; TV series</div>
+        <div class="icell" style="left:1768px;top:56px"><div class="itile"><span class="bgl"></span></div></div>
+
+        <div class="abs h1" style="left:200px;top:176px;width:1200px">The Last Signal</div>
+        <div class="abs meta" style="left:200px;top:272px;width:1200px">8.4/10.0&nbsp; ·&nbsp; Drama · Thriller · Mystery&nbsp; ·&nbsp; 2019&nbsp; ·&nbsp; TV-MA&nbsp; ·&nbsp; Ongoing</div>
+        <div class="abs plot" style="left:200px;top:328px;width:1064px;height:80px">Six months after the broadcast went
+          dark, a salvage crew picks up a repeating signal from a station decommissioned forty years ago…</div>
+
+        <!-- the row: primary 200..640, then 96 cells on the 24 MinFocusGap -->
+        <div class="abs bbtn foc" style="left:200px;top:512px;width:440px"><span class="bgl"></span>Resume S1 E4</div>
+        <div class="icell" style="left:664px;top:496px"><div class="itile"><span class="bgl"></span></div></div>
+        <div class="icell" style="left:784px;top:496px"><div class="itile"><span class="bgl"></span></div></div>
+        <div class="icell" style="left:904px;top:496px"><div class="itile"><span class="bgl"></span></div></div>
+        <div class="icell" style="left:1024px;top:496px"><div class="itile"><span class="bgl"></span></div></div>
+        <div class="abs rprog" style="left:200px;top:592px;width:440px"><i style="width:272px"></i></div>
+        <div class="abs cap" style="left:200px;top:608px;width:440px">24 min left</div>
+
+        <div class="abs rhd" style="left:200px;top:696px;width:1664px">
+          <span class="rt">Cast</span><span class="rm">38 · TMDB</span></div>
+        <div class="cast" style="left:200px;top:784px"><div class="cav2 art"></div><div class="cnm2">Ines Marlowe</div><div class="crl">Cdr. Rhea Voss</div></div>
+        <div class="cast" style="left:416px;top:784px"><div class="cav2 art"></div><div class="cnm2">Tobias Kerr</div><div class="crl">Idris Pell</div></div>
+        <div class="cast" style="left:632px;top:784px"><div class="cav2 art"></div><div class="cnm2">Amara Osei</div><div class="crl">Dr. Lune Hart</div></div>
+        <div class="cast" style="left:848px;top:784px"><div class="cav2 art"></div><div class="cnm2">Jonah Wilde</div><div class="crl">Casimir</div></div>
+        <div class="cast" style="left:1064px;top:784px"><div class="cini">RT</div><div class="cnm2">Ren Takeda</div><div class="crl">Ohara</div></div>
+        <div class="cast" style="left:1280px;top:784px"><div class="cav2 art"></div><div class="cnm2">Saoirse Doyle</div><div class="crl">The Signal</div></div>
+        <div class="cast" style="left:1496px;top:784px"><div class="cav2 art"></div><div class="cnm2">Maya Lindqvist</div><div class="crl">Kestrel</div></div>
+        <div class="seeall" style="left:1712px;top:784px;width:152px;height:240px">
+          <div class="ct">Full cast</div><div class="cy">38</div></div>
+      </div></div>
+      <div class="stt">
+        <b>ROW</b><span>Resume 200..640 (440 = 220 dp, <code>ResumeWidth</code>), then four 96 cells at 664, 784, 904, 1024, each gap 24 px = 12 dp = <code>MinFocusGap</code>. Cells y496..592 so their 64 tiles centre on the 64 text button at y512..576. L→R: Resume → Start over → Trailer → watchlist → More. <b>Row ends at x1120</b> (cell edge); the last visible tile edge is <b>x1104</b> = 552 dp.</span>
+        <b>GLYPHS</b><span>Play, StartOver, Trailer, Bookmark, More — all five already in the <code>ui-components.md</code> table, one glyph per meaning. Grey at rest, white on focus, per the owner's 2026-11-06 ruling.</span>
+        <b>LADDER</b><span>Unchanged from 7a and that is the point: progress 592..600, caption 608..632, <code>SectionGap</code> 64, rail header 696..752, cast 784..1024. Cast opens at <b>392 dp</b>, exactly as 7a.</span>
+      </div>
+    </div>
+
+    <!-- ============================== 7g ============================== -->
+    <div class="shot">
+      <div class="shotl"><span class="shotn">7g · Detail row — film</span><span>The same row for a film, which is the
+        only type that gets <b>Download</b> and <b>Mark watched</b>. Six cells rather than four. Focus is drawn on
+        Download to show the focused label and the white-on-focus glyph together.</span></div>
+      <div class="shotc"><div class="tv" data-screen-label="Detail row — film">
+        <div class="abs art" style="left:0;top:0;width:1920px;height:600px;filter:brightness(1.45) saturate(1.1)"></div>
+        <div class="abs heroscrim" style="left:0;top:0;width:1920px;height:600px"></div>
+
+        <div class="abs railc" style="left:0;top:0">
+          <div class="lgm"></div>
+          <div class="nic"><div class="gl"></div></div><div class="nic"><div class="gl"></div></div>
+          <div class="nic"><div class="gl"></div></div><div class="nic"><div class="gl"></div></div>
+          <div class="nic"><div class="gl"></div></div>
+        </div>
+
+        <div class="ibx" style="left:200px;top:56px"><div class="ivis"><div class="gl2"></div></div></div>
+        <div class="abs meta" style="left:320px;top:88px;width:600px;color:#858585">HDRezka&nbsp; ·&nbsp; Film</div>
+        <div class="icell" style="left:1768px;top:56px"><div class="itile"><span class="bgl"></span></div></div>
+
+        <div class="abs h1" style="left:200px;top:176px;width:1200px">Northwind</div>
+        <div class="abs meta" style="left:200px;top:272px;width:1200px">7.1/10.0&nbsp; ·&nbsp; Drama&nbsp; ·&nbsp; 2016&nbsp; ·&nbsp; PG-13&nbsp; ·&nbsp; 118 min</div>
+        <div class="abs plot" style="left:200px;top:328px;width:1064px;height:80px">A lighthouse keeper and the pilot he
+          pulls from the water spend one winter deciding whether either of them is telling the truth…</div>
+
+        <div class="abs bbtn" style="left:200px;top:512px;width:440px"><span class="bgl"></span>Resume</div>
+        <div class="icell" style="left:664px;top:496px"><div class="itile"><span class="bgl"></span></div></div>
+        <div class="icell" style="left:784px;top:496px"><div class="itile"><span class="bgl"></span></div></div>
+        <div class="icell foc" style="left:904px;top:496px"><div class="itile"><span class="bgl"></span></div><div class="ilbl">Download</div></div>
+        <div class="icell" style="left:1024px;top:496px"><div class="itile"><span class="bgl"></span></div></div>
+        <div class="icell" style="left:1144px;top:496px"><div class="itile on"><span class="bgl"></span></div></div>
+        <div class="icell" style="left:1264px;top:496px"><div class="itile"><span class="bgl"></span></div></div>
+        <div class="abs rprog" style="left:200px;top:592px;width:440px"><i style="width:144px"></i></div>
+        <div class="abs cap" style="left:200px;top:608px;width:440px">79 min left</div>
+
+        <div class="abs rhd" style="left:200px;top:696px;width:1664px">
+          <span class="rt">Cast</span><span class="rm">24 · TMDB</span></div>
+        <div class="cast" style="left:200px;top:784px"><div class="cav2 art"></div><div class="cnm2">Ines Marlowe</div><div class="crl">Vera</div></div>
+        <div class="cast" style="left:416px;top:784px"><div class="cav2 art"></div><div class="cnm2">Tobias Kerr</div><div class="crl">The pilot</div></div>
+        <div class="cast" style="left:632px;top:784px"><div class="cini">AO</div><div class="cnm2">Amara Osei</div><div class="crl">Harbourmaster</div></div>
+        <div class="cast" style="left:848px;top:784px"><div class="cav2 art"></div><div class="cnm2">Jonah Wilde</div><div class="crl">Eli</div></div>
+        <div class="cast" style="left:1064px;top:784px"><div class="cav2 art"></div><div class="cnm2">Ren Takeda</div><div class="crl">Doctor Ohara</div></div>
+        <div class="cast" style="left:1280px;top:784px"><div class="cav2 art"></div><div class="cnm2">Saoirse Doyle</div><div class="crl">Mrs Vane</div></div>
+        <div class="cast" style="left:1496px;top:784px"><div class="cav2 art"></div><div class="cnm2">Maya Lindqvist</div><div class="crl">Kestrel</div></div>
+        <div class="seeall" style="left:1712px;top:784px;width:152px;height:240px">
+          <div class="ct">Full cast</div><div class="cy">24</div></div>
+      </div></div>
+      <div class="stt">
+        <b>ROW</b><span>Resume 200..640, then six cells at 664, 784, 904, 1024, 1144, 1264: Start over → Trailer → <b>Download</b> → <b>Mark watched</b> → watchlist → More. <b>Row ends at x1360</b>; last visible tile edge <b>x1344</b> = 672 dp. Series (7f) ends at 1104 — the two types end at different x, which the skeleton has to account for.</span>
+        <b>FILMS ONLY</b><span>Download and Mark watched appear for a film and for nothing else. A series downloads and marks per episode, in the episode row (6b), not for the whole title.</span>
+        <b>WATCHLIST</b><span>Drawn checked here (the <code>raised</code> fill at x1144) and unchecked in 7f, so the two read side by side.</span>
+      </div>
+      <div class="note ask"><p><b>This board asks a question it cannot answer: "Mark watched" has no glyph.</b>
+        <code>ui-components.md</code>'s table is one glyph per meaning and Mark watched is not in it. Its rule 3 says a
+        button whose meaning no glyph conveys <i>stays text-only</i>, and its "Text-only, and why" list exists for
+        exactly this case. The cell at x1024 is drawn with the neutral placeholder every board uses, which is not a
+        proposal — <b>it needs either a named Tabler glyph added to the table, or Mark watched stays a text button and
+        this row has five cells, not six.</b> Nothing should be built from this cell until that is settled.</p></div>
+    </div>
+
+    <!-- ============================== 7h ============================== -->
+    <div class="shot">
+      <div class="shotl"><span class="shotn">7h · Watchlist toggle — four states</span><span>The
+        <code>IconOnlyToggle</code> at 1:1, in the four states it ships: unchecked and checked, each at rest and
+        focused. <b>Checked is <code>status != None</code></b> — any watch status at all, not a separate flag — and the
+        focused label is <b>"Set watch status"</b>, because OK opens the status panel rather than toggling silently.</span></div>
+      <div class="shotc"><div class="tv" data-screen-label="Watchlist toggle states">
+        <div class="abs spechd" style="left:200px;top:112px">IconOnlyToggle · watchlist</div>
+        <div class="abs specsub" style="left:200px;top:168px;width:1500px">48 dp cell, 32 dp tile, 16 dp glyph, 16 dp label reserve below the cell. The glyph is grey at rest and white on focus (owner, 2026-11-06); the <span style="color:#CCCCCC">raised</span> fill is what says checked.</div>
+
+        <div class="abs specbox" style="left:200px;top:304px;width:1520px;height:360px"></div>
+
+        <!-- unchecked, rest -->
+        <div class="icell" style="left:336px;top:400px"><div class="itile"><span class="bgl"></span></div></div>
+        <div class="abs speccap" style="left:224px;top:584px">unchecked<br/>at rest</div>
+        <!-- unchecked, focused -->
+        <div class="icell foc" style="left:712px;top:400px"><div class="itile"><span class="bgl"></span></div><div class="ilbl">Set watch status</div></div>
+        <div class="abs speccap" style="left:600px;top:584px">unchecked<br/>focused</div>
+        <!-- checked, rest -->
+        <div class="icell" style="left:1088px;top:400px"><div class="itile on"><span class="bgl"></span></div></div>
+        <div class="abs speccap" style="left:976px;top:584px">checked<br/>at rest</div>
+        <!-- checked, focused -->
+        <div class="icell foc" style="left:1464px;top:400px"><div class="itile on"><span class="bgl"></span></div><div class="ilbl">Set watch status</div></div>
+        <div class="abs speccap" style="left:1352px;top:584px">checked<br/>focused</div>
+
+        <div class="abs specsub" style="left:200px;top:744px;width:1520px">The label is drawn, not laid out: it occupies the 32 px (16 dp) reserve under the cell and appears only while focused, so the row's height never changes. Content description is carried in every state, focused or not.</div>
+        <div class="abs specsub" style="left:200px;top:840px;width:1520px;color:#858585">Checked = <span style="color:#CCCCCC">status != None</span> — Watching, Completed, On hold, Dropped or Plan to watch all read as checked. There is no separate "bookmarked" boolean on this page.</div>
+      </div></div>
+      <div class="stt">
+        <b>STATES</b><span>Four, and they are all of them: the toggle has no disabled state on this page because a title that loaded always has a status to set.</span>
+        <b>OK</b><span>Opens the watch-status side panel (280 dp from the right, focus trapped, BACK returns focus to this cell). It does not cycle status in place — five values cannot be cycled on a remote.</span>
+      </div>
+      <div class="note ask"><p><b>The owner's ruling and <code>ui-components.md</code> rule 4 do not currently agree,
+        and this board follows the ruling.</b> Rule 4 says a toggle that is on is an <code>ink</code> glyph on a
+        <code>raised</code> fill, and off is a <code>muted</code> glyph with no fill — so the glyph colour carries
+        checked. The 2026-11-06 ruling says the glyph is grey at rest and white on focus, which makes the glyph
+        colour carry <i>focus</i> instead, and leaves the fill alone to carry checked. Both cannot hold. Drawn here
+        the new way, with the fill doing the work; <code>IconOnlyToggle</code>'s KDoc and rule 4 both need editing to
+        match, and that edit is the owner's to approve.</p>
+        <p>Worth knowing before ruling: the KDoc's reason for colouring the glyph was that <b>a fill alone is about
+        1.15:1 against the page</b>, which is why unchecked had no fill and a muted glyph. If the fill is now the only
+        signal, checked-at-rest and unchecked-at-rest differ by that 1.15:1 and nothing else.</p></div>
+    </div>
+
+    <!-- ============================== 7i ============================== -->
+    <div class="shot">
+      <div class="shotl"><span class="shotn">7i · Inline episode list with season chips</span><span>The page scrolled
+        to the episode band. The list is <b>inline in the content band</b>, not the 560 panel of 6a — the departure
+        <code>KMP-38</code> documented and this board is the first to draw. Season chips are a
+        <code>ChipRow</code>: one row, no scrolling, 24 dp between chips.</span></div>
+      <div class="shotc"><div class="tv" data-screen-label="Inline episode list">
+        <div class="abs railc" style="left:0;top:0">
+          <div class="lgm"></div>
+          <div class="nic"><div class="gl"></div></div><div class="nic"><div class="gl"></div></div>
+          <div class="nic"><div class="gl"></div></div><div class="nic"><div class="gl"></div></div>
+          <div class="nic"><div class="gl"></div></div>
+        </div>
+
+        <div class="abs rhd" style="left:200px;top:56px;width:1664px">
+          <span class="rt">Episodes</span><span class="rm">24 · HDREZKA</span></div>
+
+        <div class="chiprow" style="left:200px;top:144px">
+          <div class="chipcell"><span class="chip sel">Season 1</span></div>
+          <div class="chipcell"><span class="chip">Season 2</span></div>
+          <div class="chipcell"><span class="chip">Season 3</span></div>
+          <div class="chipcell"><span class="chip">Specials</span></div>
+        </div>
+
+        <div class="lrow sel" style="left:200px;top:272px;width:1664px">
+          <div class="lmark"></div><div class="ldisc">1</div>
+          <div class="lbody"><div class="lt">The Salvage</div><div class="ls">24 min · 12 Mar 2019</div></div>
+          <div class="ltrail">WATCHED</div></div>
+        <div class="lrow foc" style="left:200px;top:392px;width:1664px">
+          <div class="lmark"></div><div class="ldisc">2</div>
+          <div class="lbody"><div class="lt">Forty Years of Carrier</div><div class="ls">26 min · 19 Mar 2019</div></div>
+          <div class="ltrail">24 MIN LEFT</div></div>
+        <div class="lrow" style="left:200px;top:512px;width:1664px">
+          <div class="lmark"></div><div class="ldisc">3</div>
+          <div class="lbody"><div class="lt">Decommissioned</div><div class="ls">24 min · 26 Mar 2019</div></div>
+          <div class="ltrail"></div></div>
+        <div class="lrow" style="left:200px;top:632px;width:1664px">
+          <div class="lmark"></div><div class="ldisc">4</div>
+          <div class="lbody"><div class="lt">Station Keeping</div><div class="ls">25 min · 2 Apr 2019</div></div>
+          <div class="ltrail"></div></div>
+        <div class="lrow" style="left:200px;top:752px;width:1664px">
+          <div class="lmark"></div><div class="ldisc">5</div>
+          <div class="lbody"><div class="lt">The Repeating Part</div><div class="ls">24 min · 9 Apr 2019</div></div>
+          <div class="ltrail"></div></div>
+        <div class="lrow" style="left:200px;top:872px;width:1664px">
+          <div class="lmark"></div><div class="ldisc">6</div>
+          <div class="lbody"><div class="lt">Carrier Lost</div><div class="ls">27 min · 16 Apr 2019</div></div>
+          <div class="ltrail"></div></div>
+      </div></div>
+      <div class="stt">
+        <b>GEOMETRY</b><span>Header 56..112. Chip row 144..240, a 96 (48 dp) <code>ChipFocusCell</code> with 48 px = 24 dp between chips, which is <code>ChipRowSpacing</code> and twice <code>MinFocusGap</code>. Rows 96 tall (<code>ListRowHeight</code> 48 dp) on a 120 pitch — 96 plus the 24 <code>MinFocusGap</code> — at 272, 392, 512, 632, 752, 872, the last ending at 968, inside the band foot at 1024.</span>
+        <b>MARKER</b><span>8 × 48 px (4 × 24 dp), <code>shapes.pill</code>, centred in the row — <code>DS-15</code> item 1, not the old full-height 2 dp rule. Drawn on episode 1, the selected row.</span>
+        <b>FOCUS</b><span>UP from row 1 → the chip row; UP from the chips → the action row above (7f). DOWN past the last row loads the next page of episodes. LEFT from any row → the nav rail. The chips are one row that does not scroll, per <code>ChipRow</code>; a title with more seasons than fit is an overflow problem this does not silently solve.</span>
+      </div>
+      <div class="note"><p><b>6a's chip gap and this one differ, and this one follows the token.</b> Board 6a draws its
+        range chips at <code>gap:24</code> px = 12 dp, which is <code>MinFocusGap</code>, the <i>minimum</i> legal gap
+        between focusables. <code>ChipRow</code> spaces chips by <code>ChipRowSpacing</code> = 24 dp = 48 px, and its
+        KDoc says so explicitly — "double <code>MinFocusGap</code> … chips sit at twice the minimum". This board is
+        drawn at 48 px. 6a is an owner-touched file and is left alone; <b>it is a board bug, not a code bug.</b></p></div>
+    </div>
+
+    <!-- ============================== 7j ============================== -->
+    <div class="shot">
+      <div class="shotl"><span class="shotn">7j · Synopsis collapsed</span><span>The hero's synopsis clamped to its two
+        lines with the page at rest, and the same block focused. It is a <b>focus stop, not a button</b> — no fill, no
+        outline at rest; focus is the ring on the text block's own bounds, and OK opens the panel in 7k.</span></div>
+      <div class="shotc"><div class="tv" data-screen-label="Synopsis collapsed">
+        <div class="abs art" style="left:0;top:0;width:1920px;height:600px;filter:brightness(1.45) saturate(1.1)"></div>
+        <div class="abs heroscrim" style="left:0;top:0;width:1920px;height:600px"></div>
+
+        <div class="abs railc" style="left:0;top:0">
+          <div class="lgm"></div>
+          <div class="nic"><div class="gl"></div></div><div class="nic"><div class="gl"></div></div>
+          <div class="nic"><div class="gl"></div></div><div class="nic"><div class="gl"></div></div>
+          <div class="nic"><div class="gl"></div></div>
+        </div>
+
+        <div class="ibx" style="left:200px;top:56px"><div class="ivis"><div class="gl2"></div></div></div>
+        <div class="abs meta" style="left:320px;top:88px;width:600px;color:#858585">HDRezka&nbsp; ·&nbsp; TV series</div>
+        <div class="icell" style="left:1768px;top:56px"><div class="itile"><span class="bgl"></span></div></div>
+
+        <div class="abs h1" style="left:200px;top:176px;width:1200px">The Last Signal</div>
+        <div class="abs meta" style="left:200px;top:272px;width:1200px">8.4/10.0&nbsp; ·&nbsp; Drama · Thriller · Mystery&nbsp; ·&nbsp; 2019&nbsp; ·&nbsp; TV-MA&nbsp; ·&nbsp; Ongoing</div>
+
+        <!-- the focused synopsis block: ring on its own bounds, 1064 x 80 -->
+        <div class="abs plot" style="left:200px;top:328px;width:1064px;height:80px;outline:4px solid #FFFFFF;outline-offset:8px">Six months after the broadcast went
+          dark, a salvage crew picks up a repeating signal from a station decommissioned forty years ago…</div>
+        <div class="abs cap" style="left:200px;top:432px;width:1064px">OK TO READ ON</div>
+
+        <div class="abs bbtn" style="left:200px;top:512px;width:440px"><span class="bgl"></span>Resume S1 E4</div>
+        <div class="icell" style="left:664px;top:496px"><div class="itile"><span class="bgl"></span></div></div>
+        <div class="icell" style="left:784px;top:496px"><div class="itile"><span class="bgl"></span></div></div>
+        <div class="icell" style="left:904px;top:496px"><div class="itile"><span class="bgl"></span></div></div>
+        <div class="icell" style="left:1024px;top:496px"><div class="itile"><span class="bgl"></span></div></div>
+        <div class="abs rprog" style="left:200px;top:592px;width:440px"><i style="width:272px"></i></div>
+        <div class="abs cap" style="left:200px;top:608px;width:440px">24 min left</div>
+
+        <div class="abs rhd" style="left:200px;top:696px;width:1664px">
+          <span class="rt">Cast</span><span class="rm">38 · TMDB</span></div>
+        <div class="cast" style="left:200px;top:784px"><div class="cav2 art"></div><div class="cnm2">Ines Marlowe</div><div class="crl">Cdr. Rhea Voss</div></div>
+        <div class="cast" style="left:416px;top:784px"><div class="cav2 art"></div><div class="cnm2">Tobias Kerr</div><div class="crl">Idris Pell</div></div>
+        <div class="cast" style="left:632px;top:784px"><div class="cav2 art"></div><div class="cnm2">Amara Osei</div><div class="crl">Dr. Lune Hart</div></div>
+        <div class="cast" style="left:848px;top:784px"><div class="cav2 art"></div><div class="cnm2">Jonah Wilde</div><div class="crl">Casimir</div></div>
+        <div class="cast" style="left:1064px;top:784px"><div class="cini">RT</div><div class="cnm2">Ren Takeda</div><div class="crl">Ohara</div></div>
+        <div class="cast" style="left:1280px;top:784px"><div class="cav2 art"></div><div class="cnm2">Saoirse Doyle</div><div class="crl">The Signal</div></div>
+        <div class="cast" style="left:1496px;top:784px"><div class="cav2 art"></div><div class="cnm2">Maya Lindqvist</div><div class="crl">Kestrel</div></div>
+        <div class="seeall" style="left:1712px;top:784px;width:152px;height:240px">
+          <div class="ct">Full cast</div><div class="cy">38</div></div>
+      </div></div>
+      <div class="stt">
+        <b>CLAMP</b><span>Two lines at 28/40 px (14/20 dp), <code>PlotHeight</code> 40 dp = 80 px, <code>PlotMaxWidth</code> 532 dp = 1064 px. The clamp is the same two lines whether or not the block has focus, so taking focus never reflows the hero.</span>
+        <b>RING</b><span>On the text block's own 1064 × 80 bounds at an 8 px (4 dp) offset, which is <code>FocusRingOffset</code> plus the ring's own 4 px bleed. Nothing is filled and no outline is drawn at rest — a synopsis that looked like a button at rest would be the fourth thing in this row competing with the primary.</span>
+        <b>HINT</b><span>"OK TO READ ON" at y432 appears only while the block has focus, in <code>typography.labelMono</code> and <code>muted</code>, in the 24 px (12 dp) <code>PlotToCaption</code> gap that already exists under the plot. It is drawn, not laid out.</span>
+      </div>
+    </div>
+
+    <!-- ============================== 7k ============================== -->
+    <div class="shot">
+      <div class="shotl"><span class="shotn">7k · Synopsis panel</span><span>OK on the block in 7j opens the full
+        synopsis in the standard 280 dp side panel — the page behind scrimmed at 0.6 and <b>still mounted</b>, focus
+        trapped, BACK returning focus to the synopsis block it came from.</span></div>
+      <div class="shotc"><div class="tv" data-screen-label="Synopsis panel">
+        <div class="abs art" style="left:0;top:0;width:1920px;height:600px;filter:brightness(1.45) saturate(1.1)"></div>
+        <div class="abs heroscrim" style="left:0;top:0;width:1920px;height:600px"></div>
+        <div class="abs railc" style="left:0;top:0">
+          <div class="lgm"></div>
+          <div class="nic"><div class="gl"></div></div><div class="nic"><div class="gl"></div></div>
+          <div class="nic"><div class="gl"></div></div><div class="nic"><div class="gl"></div></div>
+          <div class="nic"><div class="gl"></div></div>
+        </div>
+        <div class="ibx" style="left:200px;top:56px"><div class="ivis"><div class="gl2"></div></div></div>
+        <div class="abs meta" style="left:320px;top:88px;width:600px;color:#858585">HDRezka&nbsp; ·&nbsp; TV series</div>
+        <div class="abs h1" style="left:200px;top:176px;width:1200px">The Last Signal</div>
+        <div class="abs meta" style="left:200px;top:272px;width:1200px">8.4/10.0&nbsp; ·&nbsp; Drama · Thriller · Mystery&nbsp; ·&nbsp; 2019&nbsp; ·&nbsp; TV-MA&nbsp; ·&nbsp; Ongoing</div>
+        <div class="abs plot" style="left:200px;top:328px;width:1064px;height:80px">Six months after the broadcast went
+          dark, a salvage crew picks up a repeating signal from a station decommissioned forty years ago…</div>
+        <div class="abs bbtn" style="left:200px;top:512px;width:440px"><span class="bgl"></span>Resume S1 E4</div>
+        <div class="icell" style="left:664px;top:496px"><div class="itile"><span class="bgl"></span></div></div>
+        <div class="icell" style="left:784px;top:496px"><div class="itile"><span class="bgl"></span></div></div>
+        <div class="icell" style="left:904px;top:496px"><div class="itile"><span class="bgl"></span></div></div>
+        <div class="icell" style="left:1024px;top:496px"><div class="itile"><span class="bgl"></span></div></div>
+        <div class="abs rprog" style="left:200px;top:592px;width:440px"><i style="width:272px"></i></div>
+        <div class="abs cap" style="left:200px;top:608px;width:440px">24 min left</div>
+        <div class="abs rhd" style="left:200px;top:696px;width:1664px">
+          <span class="rt">Cast</span><span class="rm">38 · TMDB</span></div>
+        <div class="cast" style="left:200px;top:784px"><div class="cav2 art"></div><div class="cnm2">Ines Marlowe</div><div class="crl">Cdr. Rhea Voss</div></div>
+        <div class="cast" style="left:416px;top:784px"><div class="cav2 art"></div><div class="cnm2">Tobias Kerr</div><div class="crl">Idris Pell</div></div>
+        <div class="cast" style="left:632px;top:784px"><div class="cav2 art"></div><div class="cnm2">Amara Osei</div><div class="crl">Dr. Lune Hart</div></div>
+        <div class="cast" style="left:848px;top:784px"><div class="cav2 art"></div><div class="cnm2">Jonah Wilde</div><div class="crl">Casimir</div></div>
+
+        <div class="scrim"></div>
+
+        <div class="panel"></div>
+        <div class="abs ptitle" style="left:1392px;top:56px;width:496px">Synopsis</div>
+        <div class="abs cap" style="left:1392px;top:128px;width:496px">THE LAST SIGNAL · 2019</div>
+        <div class="abs pbody" style="left:1392px;top:200px;width:496px">Six months after the broadcast went dark, a
+          salvage crew picks up a repeating signal from a station decommissioned forty years ago. What begins as a
+          recovery contract turns into a question none of them wants to put into words: the carrier is forty years
+          old, and the message on it is four days old.<br/><br/>Cdr. Rhea Voss has three weeks of air, a crew she did
+          not pick, and an owner on the surface who stops answering on day nine.</div>
+      </div></div>
+      <div class="stt">
+        <b>PANEL</b><span>560 px = 280 dp (<code>SidePanelWidth</code>) off the right edge, <code>surface</code> fill, a <code>line</code> hairline on its left edge. Content inset 32 px = 16 dp (<code>SidePanelContentInset</code>), so the column is 1392..1888.</span>
+        <b>SCRIM</b><span>0.6 over the whole page, <code>DS-15</code> item 2 — not the 0.72 the first boards drew. The page stays mounted behind it, which is why the hero and the cast row are still drawn.</span>
+        <b>FOCUS</b><span>Trapped in the panel. The body scrolls if it overflows; the panel has no action and no button, so BACK is the only way out and it returns focus to the synopsis block in 7j.</span>
+      </div>
+    </div>
+
+    <!-- ============================== 7l ============================== -->
+    <div class="shot">
+      <div class="shotl"><span class="shotn">7l · Failure — Try again with its glyph</span><span>The title failed to
+        load. The only change from what ships today is that <b>Try again now carries the Retry glyph</b>, which the
+        <code>ui-components.md</code> table has had all along and <code>DetailCopy.kt</code> was not passing.</span></div>
+      <div class="shotc"><div class="tv" data-screen-label="Failure — Try again">
+        <div class="abs railc" style="left:0;top:0">
+          <div class="lgm"></div>
+          <div class="nic"><div class="gl"></div></div><div class="nic"><div class="gl"></div></div>
+          <div class="nic"><div class="gl"></div></div><div class="nic"><div class="gl"></div></div>
+          <div class="nic"><div class="gl"></div></div>
+        </div>
+        <div class="ibx" style="left:200px;top:56px"><div class="ivis"><div class="gl2"></div></div></div>
+
+        <div class="abs stglyph" style="left:968px;top:360px"><i></i></div>
+        <div class="abs sthd" style="left:432px;top:544px;width:1200px">Couldn't open this title</div>
+        <div class="abs stbd" style="left:432px;top:632px;width:1200px">Its source may be unavailable.</div>
+        <div class="abs bbtn foc" style="left:912px;top:720px;width:240px"><span class="bgl"></span>Try again</div>
+      </div></div>
+      <div class="stt">
+        <b>CHANGE</b><span>One line: <code>StateAction(stringResource(Res.string.search_state_retry), retry)</code> becomes <code>StateAction(…, CloudStreamIcons.Retry, retry)</code> in <code>DetailCopy.kt:98</code>. The glyph is the label's colour — <code>bg</code> on the white primary — and is never a parameter.</span>
+        <b>CENTRE</b><span>The state view centres on the content band, x1032 on 7a and 7b. The button is 240 wide (120 dp, <code>TextButtonMinWidth</code>) and the glyph plus its 16 px gap fit inside that minimum, so adding the glyph does not widen the button and nothing below it moves.</span>
+        <b>RING</b><span>Drawn, because <code>StateView</code> focuses its action on arrival and <code>#160</code> made that focus readable — <code>StateActionButton</code> reads <code>onFocusChanged</code> rather than the interaction source, which never replayed the first-frame request.</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="note"><p><b>The skeleton's action bar has to be re-derived per type, and that is new.</b> On 7a the
+  loading skeleton drew one action bar from x200 to x1440 because the row was three text buttons and two cells and
+  ended there. These rows do not: <b>7f ends at x1104</b> (552 dp) and <b>7g at x1344</b> (672 dp), measured to the last
+  visible tile edge rather than the 96 cell edge, because the tile is the ink. The skeleton cannot know the type
+  before the title resolves, so either it draws the shorter of the two and a film's row grows on arrival, or the bar
+  stops being one bar and becomes the primary's 440 plus a cell-sized box per action. <b>Drawing the shorter bar and
+  letting it grow is the smaller jump and is what this set assumes</b>, but it is still a jump and the owner may
+  prefer the second. Today's built page has the same fault in a different place — the skeleton's bar runs to 1076 px
+  against the loaded row's 1030 px at 1280 wide, a 46 px jump nobody drew.</p></div>
+
+  <div class="note"><p><b>Header order: count · provider, everywhere.</b> The boards are inconsistent — Cast reads
+  "38 · TMDB" in three places and More like this reads "HDREZKA · 24" in one. <b>This set draws count first</b>, for a
+  reason that is in the component rather than in taste: <code>RailHeader</code> takes a single optional
+  <code>count</code> string, so a rail with no provider shows just "38". With count first that degrades to "38" with
+  the same element leading; with provider first the leading element changes when attribution is missing. 7i therefore
+  reads "Episodes 24 · HDREZKA". <b>"More like this HDREZKA · 24" on 7a-ii is the one that should change</b>, and it
+  is in an owner-touched file, so it is not changed here.</p></div>
+
+  <div class="note"><p><b>The cast row is at 392 dp on every board here, and the built page puts it at 358.5 dp.</b>
+  Nothing in this set moves it: the ladder above the cast rail — progress 592..600, caption 608..632,
+  <code>SectionGap</code> 64, rail header 696..752 — is 7a's, unchanged, because the new row occupies the same
+  y496..632 the old one did. So the 33.5 dp shortfall is in the build and not in the row, and it is <b>not</b>
+  <code>BUG-40</code>, whose shift is a uniform 5 dp inside the head block's text ladder. It wants its own
+  measurement against this board before any of this is built.</p></div>
+
+  <div class="note ask"><p><b>The one thing this whole set is really asking.</b> Rule 2 of
+  <code>ui-components.md</code> says secondary common actions are <i>outlined, with a glyph and a label</i>, and rule 4
+  says icon-only is allowed <i>only</i> for toggles, overflow and search, with three named exceptions — the chrome's
+  Back cell, the player transport, and the nav rail. 7f and 7g make Start over, Trailer, Download and Mark watched
+  icon-only, which is none of those. That is the request as it was given and it is drawn faithfully, but it is a
+  change to <code>DEC-17</code>, taken on 2026-11-05, not an application of it. <b>If the owner wants this row, rule 2
+  and rule 4 need rewriting in the same breath</b> — otherwise the next screen that reaches for an icon-only
+  secondary has a rule saying no and a board saying yes.</p></div>
+</div>
+</x-dc>
+</body></html>
