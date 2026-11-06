@@ -115,6 +115,7 @@
 <string name="cancel_queue_message">"Bạn có muốn hủy tất cả tải xuống đang chờ không?"</string>
 <string name="cartoons">"Hoạt Hình"</string>
 <string name="cartoons_singular">"Hoạt Hình"</string>
+<string name="cast">"Diễn viên"</string>
 <string name="cast_format" formatted="true">"Diễn viên: %s"</string>
 <string name="category_account">"Tài khoản và Bảo mật"</string>
 <string name="category_general">"Tổng quan"</string>
@@ -219,6 +220,7 @@
 <string name="duplicate_title">"Đã tìm thấy bản sao tiềm năng"</string>
 <string name="duration">"Thời lượng"</string>
 <string name="duration_format" formatted="true">"%d phút"</string>
+<string name="duration_hours_minutes_format" formatted="true">"%1$d giờ %2$d phút"</string>
 <string name="edit">"Điều chỉnh"</string>
 <string name="edit_account">"Chỉnh sửa hồ sơ"</string>
 <string name="edit_profile_image_error_empty">"Không tìm thấy URL"</string>
@@ -370,6 +372,7 @@
 <string name="middle_right">"Giữa phải"</string>
 <string name="min">"Tối thiểu"</string>
 <string name="mobile_data">"Dữ liệu di động"</string>
+<string name="more_like_this">"Nội dung tương tự"</string>
 <string name="movies">"Phim Lẻ"</string>
 <string name="movies_singular">"Phim Lẻ"</string>
 <string name="music_singular">"Nhạc"</string>

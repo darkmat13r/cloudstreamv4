@@ -117,6 +117,7 @@
 <string name="cancel_queue_message">Chcete zrušit všechna stahování ve frontě?</string>
 <string name="cartoons">Animované</string>
 <string name="cartoons_singular">Animovaný</string>
+<string name="cast">Hrají</string>
 <string name="cast_format">Hrají: %s</string>
 <string name="category_account">Účty a zabezpečení</string>
 <string name="category_general">Obecné</string>
@@ -219,6 +220,7 @@
 <string name="duplicate_title">Nalezena potenciální duplicita</string>
 <string name="duration">Trvání</string>
 <string name="duration_format">%d min</string>
+<string name="duration_hours_minutes_format">%1$dh %2$dmin</string>
 <string name="edit">Upravit</string>
 <string name="edit_account">Upravit účet</string>
 <string name="edit_profile_image_error_empty">Adresa nenalezena</string>
@@ -370,6 +372,7 @@
 <string name="middle_right">Vpravo uprostřed</string>
 <string name="min">Min</string>
 <string name="mobile_data">Mobilní data</string>
+<string name="more_like_this">Podobné</string>
 <string name="movies">Filmy</string>
 <string name="movies_singular">Film</string>
 <string name="music_singular">Hudba</string>

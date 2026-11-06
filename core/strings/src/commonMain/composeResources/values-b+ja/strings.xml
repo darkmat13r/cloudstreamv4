@@ -117,6 +117,7 @@
 <string name="cancel_queue_message">ダウンロードキューをすべてキャンセルしますか？</string>
 <string name="cartoons">カートゥーン</string>
 <string name="cartoons_singular">カートゥーン</string>
+<string name="cast">出演者</string>
 <string name="cast_format">出演者：%s</string>
 <string name="category_account">ア﻿カ﻿ウ﻿ン﻿トとセキュリティ</string>
 <string name="category_general">全般</string>
@@ -219,6 +220,7 @@
 <string name="duplicate_title">潜在的な重複が見つかりました</string>
 <string name="duration">時間</string>
 <string name="duration_format">%d分</string>
+<string name="duration_hours_minutes_format">%1$d時間 %2$d分</string>
 <string name="edit">編集</string>
 <string name="edit_account">アカウントを編集</string>
 <string name="edit_profile_image_error_empty">URLが見つかりません</string>
@@ -370,6 +372,7 @@
 <string name="middle_right">中央右</string>
 <string name="min">最小</string>
 <string name="mobile_data">モバイルデータ</string>
+<string name="more_like_this">関連作品</string>
 <string name="movies">映画</string>
 <string name="movies_singular">映画</string>
 <string name="music_singular">音楽</string>

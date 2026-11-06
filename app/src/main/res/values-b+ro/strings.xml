@@ -100,6 +100,7 @@
 <string name="cancel">"Anulează"</string>
 <string name="cartoons">"Desene Animate"</string>
 <string name="cartoons_singular">"Desen Animat"</string>
+<string name="cast">"Distribuție"</string>
 <string name="cast_format" formatted="true">"Distribuție: %s"</string>
 <string name="category_account">"Conturi și Securitate"</string>
 <string name="category_general">"General"</string>
@@ -189,6 +190,7 @@
 <string name="duplicate_title">"Posibil Duplicat Găsit"</string>
 <string name="duration">"Durată"</string>
 <string name="duration_format" formatted="true">"%d min"</string>
+<string name="duration_hours_minutes_format" formatted="true">"%1$do %2$dm"</string>
 <string name="edit">"Editați"</string>
 <string name="edit_account">"Editare cont"</string>
 <string name="eigengraumode_settings">"viteza de redare"</string>
@@ -326,6 +328,7 @@
 <string name="max">"Maxim"</string>
 <string name="min">"Minim"</string>
 <string name="mobile_data">"Date mobile"</string>
+<string name="more_like_this">"Similare"</string>
 <string name="movies">"Filme"</string>
 <string name="movies_singular">"Film"</string>
 <string name="music_singular">"Muzică"</string>

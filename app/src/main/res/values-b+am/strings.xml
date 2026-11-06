@@ -14,6 +14,7 @@
 <string name="benene_count_text" formatted="true">"%d ሙዝ ለዴቭሎፐሮቹ ተሰጥቷል"</string>
 <string name="benene_count_text_none">"ምንም ሙዝ አልተሰጠም"</string>
 <string name="browser">"አሳሽ"</string>
+<string name="cast">"ተዋናዮች"</string>
 <string name="cast_format" formatted="true">"ተዋናዮች: %s"</string>
 <string name="continue_watching">"መመልከትዎን ይቀጥሉ"</string>
 <string name="detail_load_failed_body">"ምንጩ ላይገኝ ይችላል።"</string>
@@ -90,6 +91,7 @@
 <string name="home_search_only_body">"ከቅጥያዎችህ አንዳቸውም መነሻ ገጽ የላቸውም፣ ነገር ግን አሁንም በእነሱ መፈለግ ትችላለህ።"</string>
 <string name="load_more">"ተጨማሪ ጫን"</string>
 <string name="loading">"በመጫን ላይ…"</string>
+<string name="more_like_this">"ተጨማሪ እንደዚህ ያሉ"</string>
 <string name="new_update_format" formatted="true">"አዲስ ማሻሻያ ተገኝቷል! \n%1$s -&gt; %2$s"</string>
 <string name="next_episode">"ቀጣይ ክፍል"</string>
 <string name="next_episode_format" formatted="true">"ክፍል %d በ ይለቀቃል"</string>

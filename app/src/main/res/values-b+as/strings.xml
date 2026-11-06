@@ -100,6 +100,7 @@
 <string name="cancel">"বাতিল কৰক"</string>
 <string name="cartoons">"কাৰ্টুন"</string>
 <string name="cartoons_singular">"কাৰ্টুন"</string>
+<string name="cast">"Cast"</string>
 <string name="cast_format" formatted="true">"Cast: %s"</string>
 <string name="category_account">"একাউণ্ট আৰু সুৰক্ষা"</string>
 <string name="category_general">"সাধাৰণ"</string>
@@ -331,6 +332,7 @@
 <string name="max">"সৰ্বাধিক"</string>
 <string name="min">"সৰ্বনিম্ন"</string>
 <string name="mobile_data">"ম'বাইল ডাটা"</string>
+<string name="more_like_this">"এনেধৰণৰ আৰু"</string>
 <string name="movies">"চিত্ৰপট"</string>
 <string name="movies_singular">"চিত্ৰপট"</string>
 <string name="music_singular">"সংগীত"</string>

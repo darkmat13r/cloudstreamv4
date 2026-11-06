@@ -1518,6 +1518,132 @@ missing, so the comparison passes today. A fix will fail that case: look at the 
 
 Not checked: whether the last row is cut off at the bottom when the list is full, and whether other TV screens with a `LazyColumn` do the same.
 
+## BUG-40 — The TV detail page's text ladder runs about 5dp high against its boards · **low** · measured 2026-11-06
+
+**Status:** found, not fixed · found 2026-11-06 while fixing the head block's height for `KMP-38` (pr #153) ·
+`feature/detail/.../tv/DetailScreenTv.kt`, the `HeadColumn` ladder
+
+**Nothing is out of place relative to anything else** — the whole block below the title simply sits about 5dp
+higher than boards 7a and 7b draw it. Measured off the committed references at density 1.3333, calibrated
+against the 220dp `ResumeWidth` rather than assumed:
+
+| element | measured | board | delta |
+|---|---|---|---|
+| chrome row cell | 28..76dp | 28..76 | 0 |
+| action row top | 250.8dp | 256 | −5.2 |
+| cast header ink | 318.8..332.2dp | header box 320..348 | ≈ −5 |
+| cast avatars top | 358.5dp | 364 | −5.5 |
+
+The deltas are the same number all the way down, which is what says it is one cause and not several.
+
+**The cause is the ladder's assumed text boxes.** Every spacer in `HeadColumn` is a gap between *text*, and the
+board's boxes for that text — the title at 44dp and the meta at 16dp — are not what `typography.h1` and
+`typography.label` actually render into on this device. The spacers are right; the things they sit between are
+not the height the board assumed. `CloudStreamTypography`'s measured line boxes are 1.375x rather than 1.3,
+which `docs/memory/cloudstream4-type-metrics.md` already records as the source of most off-grid geometry in
+this project.
+
+**Not fixed here, deliberately.** Correcting it means changing either the type metrics or the board's assumed
+boxes, both of which reach well past this screen; the typography work owns that. `KMP-38` fixed the one error
+that was *not* typography — the head block taking the hero's 300dp so the next section's `SectionGap` counted
+from the hero's foot instead of the action row's bottom, which was a separate 12dp and is gone: the measured
+gap from the action row to the avatars is now 75.7dp against the board's 76.
+
+**Why nothing caught it.** The same reason `BUG-38` went unseen: `DetailScreenTvDeviceTest` asserts the gaps
+between elements, and every gap here is correct. Only an absolute y against the board shows it, and the only
+absolute the suite pins is the chrome row's, which is exact.
+
+## BUG-38 — On TV, the detail page arrives with its chrome row scrolled off the top · **medium** · measured 2026-11-05
+
+**Status:** fixed · found 2026-11-05 by `KMP-38`'s own screenshot cases (pr #153), cause established by the
+design review the same day, fixed in the same PR · `feature/detail/.../tv/DetailFocusScroll.kt`
+
+**Changes what users see on TV.** On arrival the viewer has **no visible way back**, no favourite and no
+watch-status control: the whole chrome row is above the top edge. The three loaded-page references show it,
+and the loading and error states — which draw their chrome row from the other call site — do not.
+
+**Measured**, in the screen's own device-test host on `Television_720p_2`:
+
+```
+the back cell is laid out at -76.0..-12.0 in a root 720 tall, but only 0.0 of it
+survives the column's clip
+```
+
+The ladder in `HeadBlock` puts that cell at 28..76dp, which is 37..101px here, so the page arrives about
+113px — roughly 85dp — already scrolled. The row is 64px (48dp) tall and every pixel of it is clipped.
+
+**The cause: the page had no `BringIntoViewSpec`.** Entry focus landing on the primary asked Compose to bring
+it into view, and with no spec of its own the page got the default TV pivot — which put Resume's top, and a
+focused poster's top, at 0.3 of a 720px viewport, or y216. The chrome row rides item 0 up with it. It was
+never the focus or the ladder: the screen's KDoc is right that the hero and the chrome row scrolling away as
+item 0 leaves **is** the design, and the fault was only that it had already happened before the viewer did
+anything.
+
+**The fix** is `HomeNoScrollSpec`'s, which `TV Home` had already needed for the same reason: the list refuses
+to scroll for focus (`DetailNoScrollSpec`) and each band asks for the stop its board draws instead
+(`DetailFocusScroll.stopFor`, pure and unit-tested). The three stops are 7a's — the head block and the cast
+row at the page's origin, and anything below the cast at 7a-ii, which is the cast row whole at the top of the
+band. The same cause was cutting the cast row off on 7a-ii, with the focused poster's top at 162dp against
+the board's 268.
+
+**One claim it disproves.** `DetailScreenTv`'s KDoc said 7a and 7a-ii are "the same page at one scroll offset
+… There is no fixed 292dp jump." The boards draw the cast avatars at 364dp on 7a and 72dp on 7a-ii, which is
+a fixed 292dp jump exactly. The KDoc is corrected.
+
+**Why nothing caught it.** `DetailScreenTvDeviceTest` asserts the gaps *between* elements and never an
+absolute top, so a page shifted up as a whole passes all of it. The images are what raised it.
+
+**A trap worth keeping, for anyone writing the assertion.** `SemanticsNode.boundsInRoot` is **clipped**: a row
+scrolled out from under a `LazyColumn`'s clip reports an empty rect at y=0, so the obvious
+`top >= 0 && bottom <= root` can never fail. Measure `positionInRoot` + `size` and compare the clipped
+rect's height against it. Two earlier versions of this measurement also passed for reasons unrelated to the
+page — one matched the side panel's "Go Back" *text* instead of the chrome icon's content description, and one
+read bounds before the bring-into-view scroll had settled.
+
+## BUG-36 — `SidePanelHost` returns focus to the content's first stop, not to the control that opened the panel · **medium**
+
+**Status:** found, not fixed · found 2026-11-05 by `KMP-38`'s device suite (pr #153), the component's first production
+caller · `core/designsystem/.../panel/SidePanelHost.kt:168-207`
+
+**Changes what users see on TV.** Dismissing a side panel drops focus on the first focusable in the content
+group instead of the cell the viewer opened the panel from, so they lose their place in the row every time.
+On a 10-foot UI focus is the only cursor there is.
+
+Measured on `Television_720p` by `DetailScreenTvDeviceTest.theWatchStatusPickerOpensIsTrappedAndCommitsOnARowPress`,
+on both dismiss paths — platform BACK, and the row press that commits under `DEC-17`:
+
+```
+expected:<[Set watch status]> but was:<[Go Back]>
+```
+
+The KDoc promises *"on close, focus returns to the control that opened the panel"* via
+`Modifier.focusRestorer()` on the content group, and that *"It needs no wiring from the caller"*. The
+component's own jvmTest `closing the panel gives focus back to the control that opened it` **passes**, so
+this is not a regression in the restore — it is a limit of it. The difference is **depth**:
+
+| | opener |
+|---|---|
+| jvmTest (passes) | a direct child of the content group, held by a `FocusRequester` |
+| TV detail page (fails) | an `IconCell` inside a `Row` inside a `LazyColumn`'s keyed item |
+
+`focusRestorer()` restores the child it recorded; that child then enters at its own first stop rather than
+replaying the chain down to the cell. So the promise holds for a flat opener and silently degrades for a
+nested one, which is the ordinary shape of a real screen.
+
+**Why it was not fixed with the finding:** `SidePanelHost` is working shared code and
+`.claude/rules/no-unsolicited-changes.md` says to propose a change to it rather than make one. Four more
+hosts are queued behind it — `TV Search` 4d, `TV Library` 5d and 5e, the player's 7e — so whatever is done
+should be done once, in the component. Two candidates: `focusRestorer()` on the nested groups, or an opener
+`FocusRequester` the caller hands in — the second contradicts the "no wiring from the caller" promise, so it
+is a contract decision and not a patch.
+
+The TV detail page's test asserts the **current** behaviour, the way `SidePanelMotionTest` pins its own
+exit-window focus hole, so fixing this fails that test and the fix gets looked at rather than landing silently.
+
+Not to be confused with the separate, already-recorded defect in the same component: a D-pad move during the
+240 ms exit drops focus entirely (`SidePanelMotionTest`, *"a D-pad move during the exit does not re-enter the
+leaving panel"*).
+
 ## BUG-33 — Choosing a list after a failed read says the list is empty · **low** · read 2026-11-04
 
 **Status:** open. **Read from the code, not run:** no test or device has shown this happening.

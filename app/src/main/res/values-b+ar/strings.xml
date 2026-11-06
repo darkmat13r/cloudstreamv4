@@ -114,6 +114,7 @@
 <string name="cancel_queue_message">"هل ترغب في إلغاء جميع التنزيلات قيد الانتظار؟"</string>
 <string name="cartoons">"رسوم متحركة"</string>
 <string name="cartoons_singular">"كرتون"</string>
+<string name="cast">"طاقم العمل"</string>
 <string name="cast_format" formatted="true">"طاقم العمل: %s"</string>
 <string name="category_account">"الحسابات والأمن"</string>
 <string name="category_general">"عام"</string>
@@ -218,6 +219,7 @@
 <string name="duplicate_title">"احتمال أن يكون موجود بالفعل"</string>
 <string name="duration">"المدة الزمنية"</string>
 <string name="duration_format" formatted="true">"%d دقيقة"</string>
+<string name="duration_hours_minutes_format" formatted="true">"%1$dh %2$dm"</string>
 <string name="edit">"تعديل"</string>
 <string name="edit_account">"تعديل الحساب"</string>
 <string name="edit_profile_image_error_empty">"لم يتم العثور على الرابط"</string>
@@ -369,6 +371,7 @@
 <string name="middle_right">"منتصف يمين"</string>
 <string name="min">"الحد الأدنى"</string>
 <string name="mobile_data">"بيانات الهاتف"</string>
+<string name="more_like_this">"المزيد مثل هذا"</string>
 <string name="movies">"أفلام"</string>
 <string name="movies_singular">"فيلم"</string>
 <string name="music_singular">"موسيقى"</string>

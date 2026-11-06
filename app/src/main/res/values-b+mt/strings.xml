@@ -15,6 +15,7 @@
 <string name="benene_count_text" formatted="true">"%d Benenes mogħtija lil devs"</string>
 <string name="benene_count_text_none">"Ebda Benenes mogħtija"</string>
 <string name="browser">"Brawser"</string>
+<string name="cast">"Atturi"</string>
 <string name="cast_format" formatted="true">"Atturi: %s"</string>
 <string name="continue_watching">"Kompli Ara"</string>
 <string name="detail_load_failed_body">"Is-sors jista' jkun mhux disponibbli."</string>
@@ -92,6 +93,7 @@
 <string name="links_reloaded_toast">"Links regaw gew mogħbija"</string>
 <string name="load_more">"Għabbi iktar"</string>
 <string name="loading">"Tagħbija…"</string>
+<string name="more_like_this">"Aktar bħal dan"</string>
 <string name="new_update_format" formatted="true">"Aġġornament ġdid misjub! \n%1$s -&gt; %2$s"</string>
 <string name="next_episode">"L-episodju li'jmiss"</string>
 <string name="next_episode_format" formatted="true">"L-episodju %d ha johrog fil"</string>

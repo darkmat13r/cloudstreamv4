@@ -53,6 +53,7 @@
 <string name="cancel">لغو</string>
 <string name="cartoons">کارتون‌ها</string>
 <string name="cartoons_singular">کارتون</string>
+<string name="cast">بازیگران</string>
 <string name="cast_format">بازیگران: %s</string>
 <string name="category_account">حساب‌ها و امنیت</string>
 <string name="category_general">کلی</string>
@@ -195,6 +196,7 @@
 <string name="logout">خروج</string>
 <string name="max">حداکثر</string>
 <string name="mobile_data">دیتای گوشی</string>
+<string name="more_like_this">موارد مشابه</string>
 <string name="movies">فیلم‌ها</string>
 <string name="movies_singular">فیلم</string>
 <string name="music_singular">موسیقی</string>

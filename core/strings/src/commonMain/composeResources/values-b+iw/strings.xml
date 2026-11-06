@@ -83,6 +83,7 @@
 <string name="cancel">בטל</string>
 <string name="cartoons">סדרות/סרטים מצוירים</string>
 <string name="cartoons_singular">סדרה/סרט מצויר</string>
+<string name="cast">צוות שחקנים</string>
 <string name="cast_format">צוות שחקנים: %s</string>
 <string name="category_account">חשבונות ובטיחות</string>
 <string name="category_general">כללי</string>
@@ -152,6 +153,7 @@
 <string name="downloads_storage_needs">נדרשים עוד %s</string>
 <string name="duration">משך זמן</string>
 <string name="duration_format">%d דקות</string>
+<string name="duration_hours_minutes_format">%1$d שעות %2$d דקות</string>
 <string name="edit">עריכה</string>
 <string name="eigengraumode_settings">מהירות ניגון</string>
 <string name="empty_library_logged_in_message">נראה שהרשימה הזו ריקה, נסו לעבור לרשימה אחרת.</string>
@@ -274,6 +276,7 @@
 <string name="max">מקסימום</string>
 <string name="min">מינימום</string>
 <string name="mobile_data">רשת סלולארית</string>
+<string name="more_like_this">כותרים דומים</string>
 <string name="movies">סרטים</string>
 <string name="movies_singular">סרט</string>
 <string name="network_adress_example">קישור לשידור</string>

@@ -116,6 +116,7 @@
 <string name="cancel_queue_message">Želiš li otkazati sva preuzimanja u redu čekanja?</string>
 <string name="cartoons">Crtići</string>
 <string name="cartoons_singular">Crtić</string>
+<string name="cast">Glumačka postava</string>
 <string name="cast_format">Glumačka postava: %s</string>
 <string name="category_account">Računi i sigurnost</string>
 <string name="category_general">Općenito</string>
@@ -218,6 +219,7 @@
 <string name="duplicate_title">Pronađen potencijalni duplikat</string>
 <string name="duration">Trajanje</string>
 <string name="duration_format">%d min</string>
+<string name="duration_hours_minutes_format">%1$dh %2$dmin</string>
 <string name="edit">Uredi</string>
 <string name="edit_account">Uredi račun</string>
 <string name="edit_profile_image_error_empty">Nijedan URL nije pronađen</string>
@@ -369,6 +371,7 @@
 <string name="middle_right">Desno u sredini</string>
 <string name="min">Min.</string>
 <string name="mobile_data">Mobilni podaci</string>
+<string name="more_like_this">Slično ovome</string>
 <string name="movies">Filmovi</string>
 <string name="movies_singular">Film</string>
 <string name="music_singular">Glazba</string>

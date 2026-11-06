@@ -117,6 +117,7 @@
 <string name="cancel_queue_message">Kuyruktaki tüm indirmeleri iptal etmek istiyor musunuz?</string>
 <string name="cartoons">Çizgi filmler</string>
 <string name="cartoons_singular">Çizgi film</string>
+<string name="cast">Oyuncular</string>
 <string name="cast_format">Oyuncular: %s</string>
 <string name="category_account">Hesaplar ve Güvenlik</string>
 <string name="category_general">Genel</string>
@@ -219,6 +220,7 @@
 <string name="duplicate_title">Potensiyel Kopya Bulundu</string>
 <string name="duration">Süre</string>
 <string name="duration_format">%d dakika</string>
+<string name="duration_hours_minutes_format">%1$dsa %2$ddk</string>
 <string name="edit">Düzenle</string>
 <string name="edit_account">Hesabı düzenle</string>
 <string name="edit_profile_image_error_empty">URL bulunamadı</string>
@@ -370,6 +372,7 @@
 <string name="middle_right">Orta sağ</string>
 <string name="min">Asgari</string>
 <string name="mobile_data">Mobil veri</string>
+<string name="more_like_this">Benzer içerikler</string>
 <string name="movies">Filmler</string>
 <string name="movies_singular">Film</string>
 <string name="music_singular">Müzik</string>

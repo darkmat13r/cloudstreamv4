@@ -675,6 +675,14 @@ exited 0. `allTests --rerun` does not help, because it reruns the aggregate only
 `<module>:jvmTest --rerun` and read the XML. Not fixed here: it is existing build behaviour, and it needs its own
 decision.
 
+**Follow-up found by `KMP-38`: `DpadDriver` has no public BACK.** `closeKeyboard()` sends one, but only while
+the keyboard is up, so a test that dismisses a panel, a dialog or a destination has to reimplement the event by
+hand — both phases, `KeyCharacterMap.VIRTUAL_KEYBOARD`, `InputDevice.SOURCE_HDMI`, through
+`uiAutomation.injectInputEvent`. `DetailScreenTvDeviceTest` does exactly that. **`UiDevice.pressBack()` is not a
+substitute**: it goes past a focused Compose panel to the activity and finishes it, which is how that test first
+failed with *"No compose hierarchies found in the app"*. A `back()` on the driver beside `center()` and
+`enterKey()`, with `closeKeyboard()` using it, would stop every TV screen test reinventing it.
+
 **The gate.** The sixth, device-only, not part of `check`: `docs/HANDOVER.md`. `Television_720p` is
 1280x720 at 213 dpi, about 961.5x540.8 dp rather than the artboard's 960x540, so no test asserts full-screen
 geometry against the artboard.
