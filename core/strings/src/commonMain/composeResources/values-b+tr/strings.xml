@@ -458,6 +458,14 @@
 <string name="player_fit_screen">Ekranı doldur</string>
 <string name="player_fit_title">Görüntü boyutu</string>
 <string name="player_fit_width">Genişliği doldur</string>
+<string name="player_hud_buffering">ARABELLEĞE ALINIYOR</string>
+<string name="player_hud_failed_detail">Aşağıdan başka bir kaynak seçin.</string>
+<string name="player_hud_offline_copy">Bağlantı yok — indirilen kopya oynatılıyor</string>
+<string name="player_hud_previous_episode">Önceki bölüm</string>
+<string name="player_hud_seek_back">Geri sar</string>
+<string name="player_hud_seek_forward">İleri sar</string>
+<string name="player_hud_speed">Hız</string>
+<string name="player_hud_up_next">Sıradaki · %s</string>
 <string name="player_is_live">Canlı</string>
 <string name="player_load_one_subtitle_online">İlk kullanılabiliri yükle</string>
 <string name="player_load_subtitles">Dosyadan yükle</string>

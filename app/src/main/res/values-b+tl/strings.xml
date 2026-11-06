@@ -211,6 +211,14 @@
 <string name="player_fit_screen">"Punuin ang screen"</string>
 <string name="player_fit_title">"Laki ng larawan"</string>
 <string name="player_fit_width">"Punuin ang lapad"</string>
+<string name="player_hud_buffering">"NAGBA-BUFFER"</string>
+<string name="player_hud_failed_detail">"Pumili ng ibang source sa ibaba."</string>
+<string name="player_hud_offline_copy">"Walang koneksyon — pinapatugtog ang na-download na kopya"</string>
+<string name="player_hud_previous_episode">"Nakaraang episode"</string>
+<string name="player_hud_seek_back">"I-rewind"</string>
+<string name="player_hud_seek_forward">"I-forward"</string>
+<string name="player_hud_speed">"Bilis"</string>
+<string name="player_hud_up_next" formatted="true">"Susunod · %s"</string>
 <string name="player_mute">"I-mute"</string>
 <string name="player_size_settings">"Pindutan upang baguhin ang laki"</string>
 <string name="player_size_settings_des">"Alisin ang black borders"</string>

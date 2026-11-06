@@ -1,0 +1,122 @@
+package com.lagradost.cloudstream4.player
+
+import com.lagradost.cloudstream3.utils.ExtractorLink
+import com.lagradost.cloudstream3.utils.ExtractorLinkType
+import com.lagradost.cloudstream4.feature.player.HudBanner
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertNull
+import org.junit.Assert.assertTrue
+import org.junit.Test
+
+/**
+ * [toHudState] is the TV HUD's security boundary (`KMP-64`): a stream's URL, its headers and its referer go in with the
+ * link, and none of them may come out in the HUD's state, which is what the screen and its semantics tree are drawn
+ * from.
+ */
+class TvHudFactsTest {
+
+    @Suppress("DEPRECATION")
+    private fun link(name: String = "VidSrc Pro") = ExtractorLink(
+        source = "vidsrc",
+        name = name,
+        url = "https://stream.example.invalid/$SECRET_PATH/master.m3u8?token=$SECRET_TOKEN",
+        referer = "https://referer.example.invalid/$SECRET_REFERER",
+        quality = 1080,
+        headers = mapOf("Cookie" to "session=$SECRET_COOKIE", "Authorization" to "Bearer $SECRET_TOKEN"),
+        type = ExtractorLinkType.M3U8,
+    )
+
+    private fun facts(
+        link: ExtractorLink? = link(),
+        downloaded: Boolean = false,
+        subtitle: String? = "English (SRT)",
+        offline: Boolean = false,
+        failed: Boolean = false,
+    ) = TvHudFacts(
+        title = "Arcane",
+        season = 1,
+        episode = 4,
+        episodeName = "Powder",
+        videoHeight = 1080,
+        videoCodec = "AVC",
+        audioLanguage = "English",
+        audioChannels = "5.1",
+        audioCodec = "EAC3",
+        link = link,
+        downloaded = downloaded,
+        sourceFallback = "Downloaded",
+        subtitle = subtitle,
+        playing = true,
+        buffering = false,
+        positionMs = 2_533_000,
+        durationMs = 3_704_000,
+        bufferedMs = 3_100_000,
+        speed = 1f,
+        marks = listOf(1_200_000, 3_200_000),
+        skipLabel = "Skip opening",
+        hasPrevious = true,
+        hasNext = true,
+        nextSeason = 1,
+        nextEpisode = 5,
+        nextName = "The Base Violence Necessary for Change",
+        failed = failed,
+        offline = offline,
+    )
+
+    @Test
+    fun theBoardsLinesComeOutOfTheBoardsFacts() {
+        val state = facts().toHudState()
+        assertEquals("Arcane", state.title)
+        assertEquals("S1:E4 · Powder · 1080p · AVC · English 5.1", state.meta)
+        assertEquals("VidSrc Pro · 1080p", state.source)
+        assertEquals("English · 5.1 · EAC3", state.audio)
+        assertEquals("English (SRT)", state.subtitles)
+        assertEquals("S1:E5 The Base Violence Necessary for Change", state.upNext)
+        assertEquals("Skip opening", state.skip?.label)
+        assertEquals(listOf(1_200_000L, 3_200_000L), state.marks)
+    }
+
+    @Test
+    fun noUrlHeaderOrRefererReachesTheState() {
+        val everything = facts().toHudState().toString()
+        for (secret in listOf(SECRET_PATH, SECRET_TOKEN, SECRET_REFERER, SECRET_COOKIE, "example.invalid", "http")) {
+            assertFalse("`$secret` reached the HUD: $everything", secret in everything)
+        }
+    }
+
+    /** A provider can put anything in a link's name. One that reads as an address is dropped, not shown. */
+    @Test
+    fun aLinkNameThatIsAnAddressIsDropped() {
+        for (name in listOf("https://cdn.example.invalid/$SECRET_PATH", "/storage/emulated/0/$SECRET_PATH", "content://x/$SECRET_PATH")) {
+            val state = facts(link = link(name = name), subtitle = name).toHudState()
+            assertEquals("1080p", state.source)
+            assertNull(state.subtitles)
+            assertFalse(state.toString(), SECRET_PATH in state.toString())
+        }
+    }
+
+    @Test
+    fun providerTextLosesControlCharacters() {
+        val state = facts(link = link(name = "Vid\nSrc\u0007 Pro")).toHudState()
+        assertEquals("VidSrc Pro · 1080p", state.source)
+    }
+
+    @Test
+    fun aDownloadSaysSoAndItsOfflineBannerNeedsTheDownload() {
+        val local = facts(link = null, downloaded = true, offline = true).toHudState()
+        assertTrue(local.downloaded)
+        assertEquals("Downloaded · 1080p", local.source)
+        assertEquals(HudBanner.OfflineCopy, local.banner)
+
+        assertNull("streaming offline is the player's error, not this banner", facts(offline = true).toHudState().banner)
+        assertEquals(HudBanner.Failed, facts(failed = true).toHudState().banner)
+    }
+
+    private companion object {
+        const val SECRET_PATH = "PATHSECRET42"
+        const val SECRET_TOKEN = "TOKENSECRET42"
+        const val SECRET_REFERER = "REFERERSECRET42"
+        const val SECRET_COOKIE = "COOKIESECRET42"
+    }
+}

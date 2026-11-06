@@ -312,6 +312,14 @@
 <string name="player_fit_screen">स्क्रीन भरें</string>
 <string name="player_fit_title">चित्र का आकार</string>
 <string name="player_fit_width">चौड़ाई भरें</string>
+<string name="player_hud_buffering">बफ़र हो रहा है</string>
+<string name="player_hud_failed_detail">नीचे कोई और स्रोत चुनें।</string>
+<string name="player_hud_offline_copy">कनेक्शन नहीं — डाउनलोड की गई कॉपी चल रही है</string>
+<string name="player_hud_previous_episode">पिछला एपिसोड</string>
+<string name="player_hud_seek_back">पीछे जाएँ</string>
+<string name="player_hud_seek_forward">आगे जाएँ</string>
+<string name="player_hud_speed">गति</string>
+<string name="player_hud_up_next">अगला · %s</string>
 <string name="player_mute">म्यूट करें</string>
 <string name="player_size_settings">प्लेयर आकार परिवर्तन बटन</string>
 <string name="player_size_settings_des">काले बॉर्डर हटाएँ</string>

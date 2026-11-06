@@ -389,6 +389,14 @@
 <string name="player_fit_screen">"اسکرین بھریں"</string>
 <string name="player_fit_title">"تصویر کا سائز"</string>
 <string name="player_fit_width">"چوڑائی بھریں"</string>
+<string name="player_hud_buffering">"بفر ہو رہا ہے"</string>
+<string name="player_hud_failed_detail">"نیچے کوئی اور ذریعہ منتخب کریں۔"</string>
+<string name="player_hud_offline_copy">"کنکشن نہیں — ڈاؤن لوڈ کی گئی کاپی چل رہی ہے"</string>
+<string name="player_hud_previous_episode">"پچھلی قسط"</string>
+<string name="player_hud_seek_back">"پیچھے"</string>
+<string name="player_hud_seek_forward">"آگے"</string>
+<string name="player_hud_speed">"رفتار"</string>
+<string name="player_hud_up_next" formatted="true">"اگلا · %s"</string>
 <string name="player_load_subtitles">"فائل سے لوڈ کریں"</string>
 <string name="player_load_subtitles_online">"انٹرنیٹ سے لوڈ کریں"</string>
 <string name="player_loaded_subtitles" formatted="true">"لوڈ %s"</string>

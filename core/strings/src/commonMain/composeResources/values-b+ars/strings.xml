@@ -252,6 +252,14 @@
 <string name="player_fit_screen">ملء الشاشة</string>
 <string name="player_fit_title">حجم الصورة</string>
 <string name="player_fit_width">ملء العرض</string>
+<string name="player_hud_buffering">جاري التحميل</string>
+<string name="player_hud_failed_detail">اختر مصدر ثاني تحت.</string>
+<string name="player_hud_offline_copy">ما فيه اتصال — يشتغل النسخة المحمّلة</string>
+<string name="player_hud_previous_episode">الحلقة السابقة</string>
+<string name="player_hud_seek_back">رجوع</string>
+<string name="player_hud_seek_forward">تقديم</string>
+<string name="player_hud_speed">السرعة</string>
+<string name="player_hud_up_next">التالي · %s</string>
 <string name="player_mute">كتم الصوت</string>
 <string name="player_size_settings">زر تغيير حجم المشغل</string>
 <string name="player_size_settings_des">إزالة الحدود السوداء</string>

@@ -103,6 +103,7 @@ import com.lagradost.cloudstream3.ui.subtitles.SubtitlesFragment
 import com.lagradost.cloudstream3.ui.subtitles.SubtitlesFragment.Companion.getAutoSelectLanguageTagIETF
 import com.lagradost.cloudstream3.utils.AppContextUtils.getShortSeasonText
 import com.lagradost.cloudstream3.utils.AppContextUtils.html
+import com.lagradost.cloudstream3.utils.AppContextUtils.isNetworkAvailable
 import com.lagradost.cloudstream3.utils.AppContextUtils.sortSubs
 import com.lagradost.cloudstream3.utils.Coroutines.ioSafe
 import com.lagradost.cloudstream3.utils.Coroutines.runOnMainThread
@@ -128,6 +129,7 @@ import com.lagradost.cloudstream3.utils.downloader.DownloadUtils.getImageBitmapF
 import com.lagradost.cloudstream3.utils.setText
 import com.lagradost.cloudstream3.utils.txt
 import com.lagradost.cloudstream3.utils.videoskip.VideoSkipStamp
+import com.lagradost.cloudstream4.player.TvHudFacts
 import com.lagradost.safefile.SafeFile
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -180,6 +182,9 @@ class GeneratorPlayer : FullScreenPlayer() {
 
     private var currentSelectedLink: Pair<ExtractorLink?, ExtractorUri?>? = null
     private var currentSelectedSubtitles: SubtitleData? = null
+
+    /** For the TV HUD (`KMP-64`): the skip button's words while it is offered. */
+    private var hudSkipLabel: String? = null
     private val currentMeta: Any? get() = viewModel.state.generatorState?.meta
     private val nextMeta: Any? get() = viewModel.state.generatorState?.nextMeta
 
@@ -515,6 +520,7 @@ class GeneratorPlayer : FullScreenPlayer() {
         // uiReset() // Removed due to UX
 
         currentSelectedLink = link
+        tvHudFailed = false
         //  setEpisodes(viewModel.getAllMeta() ?: emptyList())
         setPlayerDimen(null)
         setTitle()
@@ -2114,21 +2120,84 @@ class GeneratorPlayer : FullScreenPlayer() {
     }
 
     override fun onTimestampSkipped(timestamp: VideoSkipStamp) {
+        hudSkipLabel = null
         displayTimeStamp(false)
     }
 
     override fun onTimestamp(timestamp: VideoSkipStamp?) {
         if (timestamp != null) {
             playerBinding?.skipChapterButton?.setText(timestamp.uiText)
+            hudSkipLabel = context?.let { timestamp.uiText.asString(it) }
             displayTimeStamp(true)
             val currentIndex = skipIndex
             playerBinding?.skipChapterButton?.handler?.postDelayed({
-                if (skipIndex == currentIndex)
+                if (skipIndex == currentIndex) {
+                    hudSkipLabel = null
                     displayTimeStamp(false)
+                }
             }, 6000)
         } else {
+            hudSkipLabel = null
             displayTimeStamp(false)
         }
+    }
+
+    /**
+     * 7d's facts (`KMP-64`). Labels and numbers only leave here through [toHudState]: the link and the local file go in
+     * so their display name and quality can be read, and their URL, headers, referer and path stay behind.
+     */
+    override fun tvHudFacts(): TvHudFacts? {
+        val ctx = context ?: return null
+        val meta = getMetaData()
+        val tracks = player.getVideoTracks()
+        val video = tracks.currentVideoTrack
+        val audio = tracks.currentAudioTrack
+        val next = if (viewModel.hasNextEpisode() == true) {
+            viewModel.generator?.videos?.getOrNull(viewModel.episodeIndex + 1) as? ResultEpisode
+        } else {
+            null
+        }
+        val stamps = viewModel.currentStamps.value?.value.orEmpty()
+        return TvHudFacts(
+            title = meta.name,
+            season = meta.season,
+            episode = meta.episode,
+            episodeName = (currentMeta as? ResultEpisode)?.name,
+            videoHeight = video?.height,
+            videoCodec = videoCodecName(video?.sampleMimeType),
+            audioLanguage = fromTagToLanguageName(audio?.language) ?: audio?.label,
+            audioChannels = audio?.channelCount?.let(::hudChannels),
+            audioCodec = audioCodecName(audio?.sampleMimeType).ifBlank { null },
+            link = currentSelectedLink?.first,
+            downloaded = currentSelectedLink?.second != null,
+            sourceFallback = ctx.getString(R.string.downloaded),
+            subtitle = currentSelectedSubtitles?.name,
+            playing = player.getIsPlaying(),
+            buffering = currentPlayerStatus == CSPlayerLoading.IsBuffering,
+            positionMs = player.getPosition() ?: 0,
+            durationMs = player.getDuration()?.takeIf { it > 0 } ?: 0,
+            bufferedMs = (player as? CS3IPlayer)?.getBufferedPosition() ?: 0,
+            speed = player.getPlaybackSpeed(),
+            marks = stamps.map { it.timestamp.startMs },
+            skipLabel = hudSkipLabel,
+            hasPrevious = viewModel.hasPrevEpisode() == true,
+            hasNext = viewModel.hasNextEpisode() == true,
+            nextSeason = next?.season,
+            nextEpisode = next?.episode,
+            nextName = next?.name,
+            failed = tvHudFailed,
+            offline = !ctx.isNetworkAvailable(),
+        )
+    }
+
+    /** The old info line's names for a channel count: `Stereo`, `5.1`. */
+    private fun hudChannels(count: Int): String? = when {
+        count <= 0 -> null
+        count == 1 -> "Mono"
+        count == 2 -> "Stereo"
+        count == 6 -> "5.1"
+        count == 8 -> "7.1"
+        else -> "${count}ch"
     }
 
     override fun isThereEpisodes(): Boolean {

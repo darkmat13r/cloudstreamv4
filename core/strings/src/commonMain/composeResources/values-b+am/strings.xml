@@ -128,6 +128,14 @@
 <string name="player_fit_screen">ማያውን ሙላ</string>
 <string name="player_fit_title">የምስል መጠን</string>
 <string name="player_fit_width">ስፋቱን ሙላ</string>
+<string name="player_hud_buffering">በመጫን ላይ</string>
+<string name="player_hud_failed_detail">ከታች ሌላ ምንጭ ይምረጡ።</string>
+<string name="player_hud_offline_copy">ግንኙነት የለም — የወረደው ቅጂ እየተጫወተ ነው</string>
+<string name="player_hud_previous_episode">ቀዳሚ ክፍል</string>
+<string name="player_hud_seek_back">ወደኋላ ዝለል</string>
+<string name="player_hud_seek_forward">ወደፊት ዝለል</string>
+<string name="player_hud_speed">ፍጥነት</string>
+<string name="player_hud_up_next">ቀጣይ · %s</string>
 <string name="player_mute">ድምፅ አጥፋ</string>
 <string name="player_source_playing">በመጫወት ላይ</string>
 <string name="player_source_resumes_at">መቀየር ቦታዎን ይጠብቃል፦ ከ%1$s ይቀጥላል</string>

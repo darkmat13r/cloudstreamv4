@@ -451,6 +451,14 @@
 <string name="player_fit_screen">Запълване на екрана</string>
 <string name="player_fit_title">Размер на картината</string>
 <string name="player_fit_width">Запълване по ширина</string>
+<string name="player_hud_buffering">БУФЕРИРАНЕ</string>
+<string name="player_hud_failed_detail">Изберете друг източник по-долу.</string>
+<string name="player_hud_offline_copy">Няма връзка — пуска се изтеглено копие</string>
+<string name="player_hud_previous_episode">Предишен епизод</string>
+<string name="player_hud_seek_back">Превъртане назад</string>
+<string name="player_hud_seek_forward">Превъртане напред</string>
+<string name="player_hud_speed">Скорост</string>
+<string name="player_hud_up_next">Следва · %s</string>
 <string name="player_load_one_subtitle_online">Зареди първия наличен</string>
 <string name="player_load_subtitles">Зареди от файл</string>
 <string name="player_load_subtitles_online">Зареди от Интернет</string>

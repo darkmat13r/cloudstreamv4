@@ -333,6 +333,14 @@
 <string name="player_fit_screen">Buuxi shaashadda</string>
 <string name="player_fit_title">Cabbirka sawirka</string>
 <string name="player_fit_width">Buuxi ballaca</string>
+<string name="player_hud_buffering">WAA LA KAYDINAYAA</string>
+<string name="player_hud_failed_detail">Hoos ka dooro il kale.</string>
+<string name="player_hud_offline_copy">Xiriir ma jiro — waxaa socda nuqulka la soo dejiyay</string>
+<string name="player_hud_previous_episode">Qaybtii hore</string>
+<string name="player_hud_seek_back">Dib u celi</string>
+<string name="player_hud_seek_forward">Hore u soco</string>
+<string name="player_hud_speed">Xawaare</string>
+<string name="player_hud_up_next">Xiga · %s</string>
 <string name="player_load_subtitles">Faylashaada ka keen</string>
 <string name="player_load_subtitles_online">Internetka ka keen</string>
 <string name="player_loaded_subtitles">Waxa laso kiciyey %s</string>

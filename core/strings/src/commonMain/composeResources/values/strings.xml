@@ -483,6 +483,14 @@
 <string name="player_fit_screen">Fill screen</string>
 <string name="player_fit_title">Picture size</string>
 <string name="player_fit_width">Fill width</string>
+<string name="player_hud_buffering">BUFFERING</string>
+<string name="player_hud_failed_detail">Choose another source below.</string>
+<string name="player_hud_offline_copy">No connection — playing the downloaded copy</string>
+<string name="player_hud_previous_episode">Previous episode</string>
+<string name="player_hud_seek_back">Seek back</string>
+<string name="player_hud_seek_forward">Seek forward</string>
+<string name="player_hud_speed">Speed</string>
+<string name="player_hud_up_next">Up next · %s</string>
 <string name="player_is_live">Live</string>
 <string name="player_load_one_subtitle_online">Load first available</string>
 <string name="player_load_subtitles">Load from file</string>

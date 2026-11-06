@@ -191,6 +191,12 @@ class CS3IPlayer : IPlayer {
 
     override fun getDuration(): Long? = exoPlayer?.duration
     override fun getPosition(): Long? = exoPlayer?.currentPosition
+
+    /**
+     * How far ahead the player holds, for the TV HUD's buffered band (`KMP-64`). On this final class only, not on
+     * [IPlayer], so no implementer of the published interface has a new member to provide.
+     */
+    fun getBufferedPosition(): Long? = exoPlayer?.bufferedPosition
     override fun getIsPlaying(): Boolean = isPlaying
     override fun getPlaybackSpeed(): Float = playBackSpeed
 

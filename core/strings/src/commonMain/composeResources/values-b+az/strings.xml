@@ -166,6 +166,14 @@
 <string name="player_fit_screen">Ekranı doldur</string>
 <string name="player_fit_title">Şəkil ölçüsü</string>
 <string name="player_fit_width">Eni doldur</string>
+<string name="player_hud_buffering">BUFERLƏMƏ</string>
+<string name="player_hud_failed_detail">Aşağıda başqa mənbə seçin.</string>
+<string name="player_hud_offline_copy">Bağlantı yoxdur — endirilmiş nüsxə oynadılır</string>
+<string name="player_hud_previous_episode">Əvvəlki epizod</string>
+<string name="player_hud_seek_back">Geri çək</string>
+<string name="player_hud_seek_forward">İrəli çək</string>
+<string name="player_hud_speed">Sürət</string>
+<string name="player_hud_up_next">Növbəti · %s</string>
 <string name="player_mute">Səssizə al</string>
 <string name="player_size_settings">Pleyeri yenidən ölçüləndirmə düyməsini</string>
 <string name="player_size_settings_des">Qara sərhədləri, kənarları sil</string>

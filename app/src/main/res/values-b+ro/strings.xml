@@ -405,6 +405,14 @@
 <string name="player_fit_screen">"Umple ecranul"</string>
 <string name="player_fit_title">"Dimensiune imagine"</string>
 <string name="player_fit_width">"Umple lățimea"</string>
+<string name="player_hud_buffering">"SE ÎNCARCĂ"</string>
+<string name="player_hud_failed_detail">"Alegeți altă sursă mai jos."</string>
+<string name="player_hud_offline_copy">"Fără conexiune — se redă copia descărcată"</string>
+<string name="player_hud_previous_episode">"Episodul anterior"</string>
+<string name="player_hud_seek_back">"Înapoi"</string>
+<string name="player_hud_seek_forward">"Înainte"</string>
+<string name="player_hud_speed">"Viteză"</string>
+<string name="player_hud_up_next" formatted="true">"Urmează · %s"</string>
 <string name="player_load_one_subtitle_online">"Încărcați prima disponibilă"</string>
 <string name="player_load_subtitles">"Încărcați din fișier"</string>
 <string name="player_load_subtitles_online">"Încărcare de pe Internet"</string>

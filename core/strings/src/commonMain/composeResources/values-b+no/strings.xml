@@ -327,6 +327,14 @@
 <string name="player_fit_screen">Fyll skjermen</string>
 <string name="player_fit_title">Bildestørrelse</string>
 <string name="player_fit_width">Fyll bredden</string>
+<string name="player_hud_buffering">BUFRER</string>
+<string name="player_hud_failed_detail">Velg en annen kilde nedenfor.</string>
+<string name="player_hud_offline_copy">Ingen tilkobling — den nedlastede kopien spilles</string>
+<string name="player_hud_previous_episode">Forrige episode</string>
+<string name="player_hud_seek_back">Spol tilbake</string>
+<string name="player_hud_seek_forward">Spol fremover</string>
+<string name="player_hud_speed">Hastighet</string>
+<string name="player_hud_up_next">Neste · %s</string>
 <string name="player_load_subtitles">Last inn fra fil</string>
 <string name="player_load_subtitles_online">Last inn fra Internett</string>
 <string name="player_loaded_subtitles">Lastet inn %s</string>

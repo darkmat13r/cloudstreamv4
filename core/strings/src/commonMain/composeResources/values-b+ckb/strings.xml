@@ -127,6 +127,14 @@
 <string name="player_fit_screen">پڕکردنی شاشە</string>
 <string name="player_fit_title">قەبارەی وێنە</string>
 <string name="player_fit_width">پڕکردنی پانی</string>
+<string name="player_hud_buffering">بارکردن</string>
+<string name="player_hud_failed_detail">سەرچاوەیەکی تر لە خوارەوە هەڵبژێرە.</string>
+<string name="player_hud_offline_copy">پەیوەندی نییە — کۆپییە داگیراوەکە لێدەدرێت</string>
+<string name="player_hud_previous_episode">ئەڵقەی پێشوو</string>
+<string name="player_hud_seek_back">گەڕانەوە بۆ دواوە</string>
+<string name="player_hud_seek_forward">چوون بۆ پێشەوە</string>
+<string name="player_hud_speed">خێرایی</string>
+<string name="player_hud_up_next">دواتر · %s</string>
 <string name="player_mute">بێدەنگکردن</string>
 <string name="player_source_playing">لێدەدرێت</string>
 <string name="player_source_resumes_at">گۆڕین شوێنەکەت دەپارێزێت: لە %1$s بەردەوام دەبێت</string>

@@ -346,6 +346,14 @@
 <string name="player_fit_screen">מילוי מסך</string>
 <string name="player_fit_title">גודל תמונה</string>
 <string name="player_fit_width">מילוי רוחב</string>
+<string name="player_hud_buffering">טוען</string>
+<string name="player_hud_failed_detail">בחרו מקור אחר למטה.</string>
+<string name="player_hud_offline_copy">אין חיבור — מתנגן העותק שהורד</string>
+<string name="player_hud_previous_episode">הפרק הקודם</string>
+<string name="player_hud_seek_back">אחורה</string>
+<string name="player_hud_seek_forward">קדימה</string>
+<string name="player_hud_speed">מהירות</string>
+<string name="player_hud_up_next">הבא · %s</string>
 <string name="player_load_subtitles">טען מקובץ</string>
 <string name="player_load_subtitles_online">טען מהאינטרנט</string>
 <string name="player_loaded_subtitles">נטען %s</string>

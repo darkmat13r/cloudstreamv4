@@ -134,6 +134,14 @@
 <string name="player_fit_screen">स्क्रिन भर्नुहोस्</string>
 <string name="player_fit_title">चित्रको आकार</string>
 <string name="player_fit_width">चौडाइ भर्नुहोस्</string>
+<string name="player_hud_buffering">बफर हुँदैछ</string>
+<string name="player_hud_failed_detail">तल अर्को स्रोत छान्नुहोस्।</string>
+<string name="player_hud_offline_copy">जडान छैन — डाउनलोड गरिएको प्रति बजिरहेको छ</string>
+<string name="player_hud_previous_episode">अघिल्लो एपिसोड</string>
+<string name="player_hud_seek_back">पछाडि</string>
+<string name="player_hud_seek_forward">अगाडि</string>
+<string name="player_hud_speed">गति</string>
+<string name="player_hud_up_next">अर्को · %s</string>
 <string name="player_mute">म्यूट गर्नुहोस्</string>
 <string name="player_size_settings">प्लेयर resize गर्ने वटन</string>
 <string name="player_size_settings_des">कालो सीमा हटाउनुहोस</string>
