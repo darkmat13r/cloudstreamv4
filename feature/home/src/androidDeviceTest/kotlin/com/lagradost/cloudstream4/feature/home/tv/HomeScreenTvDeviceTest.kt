@@ -1159,7 +1159,9 @@ class HomeScreenTvDeviceTest {
         pressUntil(Dpad.Down, WATCHING)
 
         pages.complete(Unit)
-        rule.waitUntil(WAIT_MS) { viewModel.state.value.hero is HomeHero.Shown && viewModel.state.value.status.rows.isNotEmpty() }
+        // The hero is found from the rows' first title, so it being shown means the rows landed too.
+        rule.waitUntil(WAIT_MS) { viewModel.state.value.hero is HomeHero.Shown }
+        awaitText("A")
         rule.waitForIdle()
         assertEquals("focus stays where the person put it", WATCHING, dpad.focused())
     }
