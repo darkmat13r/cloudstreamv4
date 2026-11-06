@@ -3910,7 +3910,7 @@ Suggest: nothing more here; noted because every page with a chrome row will meet
 Why: `KMP-34`'s `LibraryFocusMemory` and this page's landing both work around the same window behaviour
 ```
 
-## KMP-43 — Home's bookmarks rail and its watch-status filter (`TV Home Extras` 3e to 3g), and glyphs on Home's state buttons · **measured 2026-11-06**
+## KMP-45 — Home's bookmarks rail and its watch-status filter (`TV Home Extras` 3e to 3g), and glyphs on Home's state buttons · **measured 2026-11-06**
 
 **Status:** in review. Boards `3e`, `3f` and `3g` of `design/TV Home Extras.dc.html` (`DS-13`), on the page `KMP-37` and `KMP-41`
 built. Android TV only; desktop's home gains nothing but the state buttons' glyphs (its `HomeViewModel` keeps
@@ -3993,7 +3993,7 @@ Nothing new.
 
 ## KMP-44 — Home's chrome named: Reload, Random and Search, and `None` as a source (`TV Home Extras` 3h to 3j, 3m) · **measured 2026-11-06**
 
-**Status:** in review, stacked on `KMP-43`. Boards `3h`, `3i`, `3j` and `3m` (`DS-13`) and the owner's rulings of 2026-11-05: no Random
+**Status:** in review, stacked on `KMP-45`. Boards `3h`, `3i`, `3j` and `3m` (`DS-13`) and the owner's rulings of 2026-11-05: no Random
 as a source, `None` stays; the Random button always shown, opening a random loaded title, absent when nothing is loaded; search in
 the top bar only; a failed reload keeps the local rows above the error; a single choice applies at once with no buttons. Android TV
 only; desktop's panel offers no `None` and its effect handler ignores the new effect.

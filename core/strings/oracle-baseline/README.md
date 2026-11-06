@@ -126,7 +126,7 @@ Additive, authored in all 62 directories, no plural. Measured by whole-line mult
 lost in any file, and every new line names one of the three keys: 186 in `decoded.tsv`, 192 in `emitted.tsv`, 261 in
 `lookup.tsv`. **`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at 172.** `expectedOwn` 35,919 -> 36,105.
 
-## Twelfth move, 2026-11-06 — `KMP-43`, 5 new keys for Home's bookmarks rail
+## Twelfth move, 2026-11-06 — `KMP-45`, 5 new keys for Home's bookmarks rail
 
 New keys are approved in general (`I18N-09`). Additive, authored in all 62 directories: four strings and one plural,
 `home_bookmarks_count`, with each directory's own plural categories (the set `home_sections_failed` declares there). Measured by
