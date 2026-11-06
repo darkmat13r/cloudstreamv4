@@ -4052,6 +4052,11 @@ the new cells and the panel's first row); four screenshot cases, `home-chrome-fo
 `home-none-focus-source`, `home-reload-failed-focus-retry`. `TvHomeNavigationTest` 17 (2 new, through real navigation: `None`
 chosen in the panel asks nothing and survives a restart; Random opens a loaded title's real page and Back puts focus on Random).
 
+**Each critical test was shown failing**, in one control run with four mutations together (a reload that drops the rows, Random
+forgetting where to come back to, Search offered offline, and `None` not kept by the host): all five cases red, three in the
+module and both `:app` cases (`expected None but was null`; `expected Random but was More info · Fake One A 0`). Every file was
+restored and a real run replaced that XML.
+
 **Screenshots.** Ten references changed, each looked at: every page with rows gains Reload, Random and Search in the chrome; loading
 gains Search; the source panel gains `None` as its first row.
 
