@@ -4617,6 +4617,12 @@ In `:app`: `DataStoreHomeSourceMemory` keeps `None` under the old screen's own n
   replaces the rows in place, a partial answer is the built notice, and a failure is 3m, with Continue watching and the bookmarks
   above it and Try again focused. The hero stays: it came from a title's own page. `APIRepository.getMainPage` keeps no cache,
   so a reload is a real request.
+- **3m's band** (review): under Continue watching or the bookmarks, a failure, a reload's or a first load's, is not the full-page
+  `StateView` but one 48dp band where the source's rails were: the chrome's own `HomeFailureNotice` (hollow marker, "Could not
+  load <source>", the source's mono detail, Try again at the band's end) in 3m's `.slot`, `surface` with a `line` hairline. Try
+  again takes focus when it lands. With neither local rail the failure is still the built full-page error, as 3m says. This fixed
+  what the first build of 3m drew: the headline and body read the wrong way round, Continue's art was cut by the top edge, and the
+  ring sat inside the 28dp bottom focus band.
 - **Random** (3j): one title from everything loaded, distinct by id, as `HomeFragment.kt:855-868` chose; focus comes back to the
   cell when the title closes.
 - **Search** (3j): the only search on Home, of this source alone.
@@ -4631,10 +4637,12 @@ In `:app`: `DataStoreHomeSourceMemory` keeps `None` under the old screen's own n
 |---|---|---|---|
 | 3j | Clock `22:14` | None | `KMP-41`'s, still not built |
 | 3j | Cells as a 48px tile in a 96px cell, glyphs `muted` at rest | `IconOnlyButton`: 32dp tile in the 48dp cell, glyph `ink` at rest, label drawn under the cell on focus | The shared component, which the brief names for icon-only cells |
-| 3j | Reload and Random icon-only | Icon-only, as drawn | `ui-components.md` rule 4 allows icon-only only for toggles, overflow and search; the boards are the owner's, so this is raised below rather than redrawn |
+| 3j | Reload and Random icon-only | Icon-only, as drawn | The owner named them an exception to `ui-components.md` rule 4 on 2026-11-06 (`DEC-17`) |
 | 3j | Search during loading | Shown | It needs a source and a connection, and loading has both |
 | 3h | Header meta `14 SOURCES AND NONE · APPLIES AT ONCE` | None | The panel's header is the built `RailHeader`; no word holds that line |
 | 3m | Detail `SOURCE ERROR · HTTP 503 · RELOAD FAILED` | The source's own detail, `HTTP 503` | The built state's detail line; nothing says "reload failed" that the headline does not |
+| 3m | Try again 144dp wide (`width: 288px`) | `StateActionButton`'s own width | The built button the notice already uses |
+| 3m | Band padding 16dp and 12dp (`0 24px 0 32px`) | 16dp, and `MinFocusGap` for the 12 | In `HomeScreenTvDefaults`, as the rule for a value no token means asks |
 
 ### Strings
 
@@ -4662,7 +4670,7 @@ gains Search; the source panel gains `None` as its first row.
 Additions only, in `app/api/classes-jar.api`: three `R$string` fields and one synthetic accessor in `DataStoreHomeSourceMemory`'s
 companion (`access$getNONE$delegate$cp`), none removed or changed.
 
-### For the owner
+### For the owner — both answered 2026-11-06
 
 ```
 Found: Reload and Random are icon-only on 3j, and `ui-components.md` rule 4 allows icon-only only for toggles, overflow and search
@@ -4670,11 +4678,17 @@ Suggest: name the chrome's cells as a fourth exception, or draw them as text but
 Why: built as drawn; the rule and the board disagree
 ```
 
+**Answered:** they stay icon-only with the label on focus, as built. Rule 4 names "Home top bar: Reload, Random" as an exception,
+and `DEC-17` records the ruling.
+
 ```
 Found: `IconOnlyButton` draws its glyph `ink` at rest, while the chrome's `IconCell` (Profile) is `muted` at rest
 Suggest: one rule for an icon in the chrome at rest
 Why: 3c and 3j draw every chrome glyph `muted` at rest
 ```
+
+**Decided:** `muted` at rest. It changes the shared `IconOnlyButton` on every screen, so it is its own design-system PR after this
+one and `KMP-45` merge; nothing here changes it.
 
 ### Not verified
 

@@ -866,13 +866,15 @@ class HomeScreenTvDeviceTest {
     }
 
     /**
-     * A failure whose detail wraps to three lines is taller than the 216.8dp left under Continue watching at 720p, so the
-     * page moves. It moves until the chrome is wholly off the screen: less would leave it cut by a TV's overscan.
+     * Offline under Continue watching and the bookmarks is taller than what 720p leaves below both rails, so the page moves.
+     * It moves until the chrome is wholly off the screen: less would leave it cut by a TV's overscan. (A failure was this
+     * case's state until 3m made a failure under the local rails a 48dp band, which fits.)
      */
     @Test
     fun aStateTooTallUnderContinueWatchingMovesTheChromeWhollyOffTheScreen() {
-        source.answer = { _, _, _ -> HomePageReply.Failed(LONG_DETAIL) }
+        source.answer = { _, _, _ -> HomePageReply.Offline }
         resuming(3)
+        bookmarking(3)
         showScreen()
 
         awaitFocus(RETRY)
@@ -884,8 +886,25 @@ class HomeScreenTvDeviceTest {
             chrome.all { it.boundsInRoot.bottom <= 0f },
         )
         assertTrue("the button is inside the band", retry.bottom.value <= SCREEN_HEIGHT_DP - 28f + GEOMETRY_SLACK)
+        rule.onNode(isFocused()).assertIsDisplayed()
+    }
+
+    /** 3m: under Continue watching a failure is the 48dp band, whose detail is one ellipsized line, and nothing moves. */
+    @Test
+    fun aFailureWithALongDetailUnderContinueWatchingIsOneBandAndNothingMoves() {
+        source.answer = { _, _, _ -> HomePageReply.Failed(LONG_DETAIL) }
+        resuming(3)
+        showScreen()
+
+        awaitFocus(RETRY)
+        rule.waitForIdle()
+        assertEquals(CHROME_CONTROL_TOP, rule.onNodeWithContentDescription(SOURCE_ONE).getUnclippedBoundsInRoot().top.value, GEOMETRY_SLACK)
         rule.onNodeWithContentDescription("$RESUME 0").assertIsDisplayed()
-        rule.onNodeWithText(LONG_DETAIL).assertIsDisplayed()
+        val detail = rule.onNodeWithText(LONG_DETAIL).getUnclippedBoundsInRoot()
+        val retry = rule.onNode(isFocused()).getUnclippedBoundsInRoot()
+        assertTrue("the detail is one line beside Try again, was $detail against $retry", detail.bottom - detail.top < retry.bottom - retry.top)
+        assertTrue("the detail ends before Try again", detail.right <= retry.left)
+        assertTheRingIsAboveTheBottomBand()
     }
 
     /** What the page reserves for Continue watching above a state, against the card as it really measures. */
@@ -1320,6 +1339,10 @@ class HomeScreenTvDeviceTest {
         rule.waitForIdle()
         rule.onNode(isFocused()).assertIsDisplayed()
         rule.onNodeWithText("HTTP 503").assertIsDisplayed()
+        // 3m's band, not the full-page state: what failed is its one line, and there is no page headline above it.
+        rule.onNodeWithText("Could not load ${ONE.name}").assertIsDisplayed()
+        rule.onAllNodesWithText(SOURCE_ERROR).fetchSemanticsNodes().let { assertTrue("no full-page headline", it.isEmpty()) }
+        assertTheRingIsAboveTheBottomBand()
         rule.onAllNodesWithContentDescription(RELOAD).fetchSemanticsNodes().let { assertTrue("no Reload with no rows", it.isEmpty()) }
         // Up reaches the bookmarks above, then the chips, then Continue watching.
         val above = generateSequence { dpad.press(Dpad.Up) }.take(4).toList()
@@ -1669,7 +1692,18 @@ class HomeScreenTvDeviceTest {
         dpad.center()
         awaitFocus(RETRY)
         rule.waitForIdle()
+        assertTheRingIsAboveTheBottomBand()
         rule.assertScreenshot("home-reload-failed-focus-retry")
+    }
+
+    /**
+     * The focused control's ring, which sits `FocusRingBleed` outside it, stays out of the `FocusBandInset` the screen keeps
+     * free at its foot: a ring in that band is in a TV's overscan.
+     */
+    private fun assertTheRingIsAboveTheBottomBand() {
+        val ringBottom = rule.onNode(isFocused()).getUnclippedBoundsInRoot().bottom + CloudStreamDimens.FocusRingBleed
+        val limit = SCREEN_HEIGHT_DP - CloudStreamDimens.FocusBandInset.value
+        assertTrue("the ring's foot is at ${ringBottom.value}dp, past the band at ${limit}dp", ringBottom.value <= limit + GEOMETRY_SLACK)
     }
 
     private data class Call(val source: HomeSourceId, val section: Int, val page: Int)
@@ -1728,6 +1762,7 @@ class HomeScreenTvDeviceTest {
         const val WAIT_MS = 10_000L
         const val MAX_PRESSES = 8
         const val RETRY = "Try again"
+        const val SOURCE_ERROR = "Source error"
         const val RETRY_FAILED = "Retry failed"
         const val LOAD_MORE = "Load more"
         const val EXTENSIONS = "Extensions"

@@ -73,11 +73,13 @@ meaning, icon buttons are for toggles and overflow, and a screen has one primary
    **Three named exceptions**, which are standard TV conventions: the chrome's Back cell, the
    player's transport controls (board 7d) and the nav rail are icon-only without showing a label on
    focus. Each still carries a content description, and the rail shows its labels when expanded.
-   **One ruled exception**, which is not a convention but the owner's call (2026-11-06, `DEC-17`):
+   **Two ruled exceptions**, which are not conventions but the owner's calls (2026-11-06, `DEC-17`):
    **the title detail action row.** After the primary Play or Resume, its secondaries (Start over,
    Trailer, Download, Mark watched) are icon-only cells, and each shows its label on focus, as
    rule 4's toggles do. Download and Mark watched appear for films only; a series downloads and
    marks from its episode list.
+   **Home top bar: Reload, Random** (`TV Home Extras` 3j). Icon-only cells beside the source
+   control and Search, each showing its label on focus.
    Anywhere else on TV, a glyph never replaces a label.
 5. **Targets keep the three settled classes** (`screen-implementation-handover.md` §5,
    `CloudStreamDimens`): an icon in a 48 dp cell (`IconTargetCell`), so `IconOnlyButton` is one; a

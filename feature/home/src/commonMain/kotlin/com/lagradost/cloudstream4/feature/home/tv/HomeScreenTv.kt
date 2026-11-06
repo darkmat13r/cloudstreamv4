@@ -2,6 +2,7 @@ package com.lagradost.cloudstream4.feature.home.tv
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.LocalBringIntoViewSpec
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -12,6 +13,7 @@ import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -399,7 +401,13 @@ fun HomeScreenTv(
                             HomeStatePrompt(prompt, null, promptHeight, hasLocalRails, state, mayTakeFocus, promptModifier)
                         }
                         is UiState.Error -> item(key = STATE_KEY) {
-                            HomeStatePrompt(content.prompt, content.detail, promptHeight, hasLocalRails, state, mayTakeFocus, promptModifier)
+                            // 3m: under what the device keeps, the failure is a 48dp band where the source's rails were,
+                            // not a page. With neither local rail it is the built full-page error.
+                            if (hasLocalRails) {
+                                HomeFailureBand(content.prompt, content.detail, state, mayTakeFocus, stops, promptModifier)
+                            } else {
+                                HomeStatePrompt(content.prompt, content.detail, promptHeight, hasLocalRails, state, mayTakeFocus, promptModifier)
+                            }
                         }
                         // A row's key is a string, because a lazy list's key must fit in a Bundle on Android.
                         is UiState.Partial, is UiState.Content -> Unit
@@ -512,6 +520,45 @@ private fun HomeStatePrompt(
 }
 
 /**
+ * 3m's `.slot.notice`: a failure under the rails the device keeps, as one 48dp band where the source's rails were. It is
+ * [HomeFailureNotice], the chrome's partial-failure notice: the hollow marker, what failed ("Could not load <source>"), the
+ * source's mono detail, and Try again, here at the band's end. Try again takes focus when the band appears, as the
+ * full-page state's button does.
+ */
+@Composable
+private fun HomeFailureBand(
+    prompt: StatePrompt,
+    detail: String?,
+    state: HomeState,
+    mayTakeFocus: () -> Boolean,
+    stops: HomeStops,
+    modifier: Modifier = Modifier,
+) {
+    val colors = CloudStreamTheme.colors
+    val shape = CloudStreamTheme.shapes.small
+    val takeFocus = remember(state.appeared) { state.appeared && !state.pickerOpen && mayTakeFocus() }
+    val retry = remember { FocusRequester() }
+    LaunchedEffect(takeFocus) {
+        if (!takeFocus) return@LaunchedEffect
+        withFrameNanos { }
+        retry.requestFocusIfAttached()
+    }
+    HomeFailureNotice(
+        notice = FailureNotice(headline = prompt.body, detail = detail.orEmpty(), retry = prompt.action),
+        stops = stops,
+        retryAtEnd = true,
+        retryModifier = Modifier.focusRequester(retry),
+        modifier = modifier
+            .fillMaxWidth()
+            .contentInset()
+            .height(CloudStreamDimens.ChipFocusCell)
+            .background(colors.surface, shape)
+            .border(CloudStreamDimens.Hairline, colors.line, shape)
+            .padding(start = HomeScreenTvDefaults.FailureBandPaddingStart, end = HomeScreenTvDefaults.FailureBandPaddingEnd),
+    )
+}
+
+/**
  * The top of the page: what failed on the left, as `TV Search` 4b draws a shortfall inside a row rather than in a band of
  * its own, and 3c's source control and account cell on the right.
  *
@@ -609,16 +656,21 @@ private fun HomeChromeCell(
 /**
  * `FailureBanner`'s content: a hollow neutral marker, which is what `DEC-17` rules a failure looks like, and the retry as the
  * `ink` primary, as `FailureBanner` draws it since `DS-14` (`TV Search` 4b's `.bbtn`).
+ *
+ * @param retryAtEnd puts the retry at the row's end rather than beside the detail, as 3m's band draws it.
+ * @param retryModifier applied to the retry, after its focus stop.
  */
 @Composable
-private fun HomeFailureNotice(notice: FailureNotice, stops: HomeStops, modifier: Modifier = Modifier) {
+private fun HomeFailureNotice(
+    notice: FailureNotice,
+    stops: HomeStops,
+    modifier: Modifier = Modifier,
+    retryAtEnd: Boolean = false,
+    retryModifier: Modifier = Modifier,
+) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
-    Row(
-        modifier = modifier,
-        horizontalArrangement = Arrangement.spacedBy(CloudStreamDimens.ListRowPadding),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
+    val labels: @Composable RowScope.() -> Unit = {
         StatusDot(StatusDotState.Failed)
         BasicText(
             text = notice.headline,
@@ -634,8 +686,26 @@ private fun HomeFailureNotice(notice: FailureNotice, stops: HomeStops, modifier:
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier.widthIn(max = HomeScreenTvDefaults.FailureDetailMaxWidth),
         )
-        Spacer(Modifier.width(CloudStreamDimens.ListRowPadding))
-        StateActionButton(notice.retry, Modifier.homeStop(stops), StateActionEmphasis.Primary)
+    }
+    Row(
+        modifier = modifier,
+        horizontalArrangement = Arrangement.spacedBy(CloudStreamDimens.ListRowPadding),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        if (retryAtEnd) {
+            // The labels take the free width as one group, so the retry sits at the row's end and the headline still
+            // ellipsizes rather than pushing it off.
+            Row(
+                modifier = Modifier.weight(1f),
+                horizontalArrangement = Arrangement.spacedBy(CloudStreamDimens.ListRowPadding),
+                verticalAlignment = Alignment.CenterVertically,
+                content = labels,
+            )
+        } else {
+            labels()
+            Spacer(Modifier.width(CloudStreamDimens.ListRowPadding))
+        }
+        StateActionButton(notice.retry, Modifier.homeStop(stops).then(retryModifier), StateActionEmphasis.Primary)
     }
 }
 
@@ -749,6 +819,12 @@ object HomeScreenTvDefaults {
 
     /** Mirrors `FailureBannerDefaults.DetailMaxWidth`. */
     val FailureDetailMaxWidth: Dp = 240.dp
+
+    /** 3m's `.slot.notice` left padding, 32px: from the band's edge to its hollow marker. */
+    val FailureBandPaddingStart: Dp = 16.dp
+
+    /** 3m's `.slot.notice` right padding, 24px: from Try again to the band's edge. Mirrors `dimens.MinFocusGap`. */
+    val FailureBandPaddingEnd: Dp = CloudStreamDimens.MinFocusGap
 
     /** 3c's `.art`, 608px from the top of the screen. */
     val HeroArtHeight: Dp = 304.dp

@@ -673,3 +673,8 @@ The rule and the glyph table are in `.claude/rules/ui-components.md`, "Buttons".
 - **The watchlist toggle swaps glyph: Plus off, Check on.** The first choice, an outline then a filled bookmark, cannot be built: Tabler 1.1.1, the last release of this Compose port, has no filled family (checked in the artifact: no `BookmarkFilled`, no `HeartFilled`). Plus then Check is Netflix's "My List" pattern.
 - **The title detail action row is a named icon-only exception** to rule 4: Start over, Trailer, Download and Mark watched become icon-only cells with their label on focus. This replaces the 2026-11-05 line that put download and mark watched under More: Download and Mark watched sit in the row for films; a series keeps them in its episode list. Elsewhere, secondaries stay outlined with glyph and label.
 - **Mark watched gets a glyph:** Tabler `EyeCheck`, as `CloudStreamIcons.MarkWatched`.
+
+**2026-11-06, the owner,** relayed through the coordinator on `KMP-44` (#165): **Reload and Random in Home's top bar stay icon-only
+with the label on focus, as built** (`TV Home Extras` 3j). A second ruled exception in `ui-components.md` rule 4, beside the detail
+row: "Home top bar: Reload, Random". Their glyph at rest is the `muted` of the line above; that change is `DS-17`'s own PR, after
+`KMP-44` and `KMP-45` merge, and nothing in `KMP-44` changes `IconOnlyButton`.
