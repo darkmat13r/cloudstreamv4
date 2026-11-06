@@ -775,6 +775,19 @@ and there is nothing below the last row to take focus. Both halves are measured,
   The existing forty-episode test could not show this: `pressUntil` stops at its first match, so it never
   presses past the row it was looking for.
 
+### Second correction: the pill is drawn on a finished episode
+
+7i draws `WATCHED` on episode 1 and `24 MIN LEFT` on episode 2, and puts the marker on **episode 1**
+("Drawn on episode 1, the selected row"). So the board marks an episode the viewer has finished while
+the next one is part-watched — and Resume on that page would start episode 2, not episode 1.
+
+`#181` marks **what Play or Resume will start** instead, which on that fixture is episode 2. The
+owner's call, via `PM` (2026-11-07): a pill a viewer can act on beats one that says where they have
+been. `selectedEpisodeIndex`'s KDoc states the divergence rather than implying the board agrees.
+
+**Suggested correction:** move 7i's marker to episode 2, or change episode 1's badge so the marked row
+is the one Resume would start. Either keeps "the selected row" meaning one thing.
+
 **One trap for whoever picks this up:** `DetailTvFragment.kt:194` reads
 `RepoLinkGenerator(episodes, page = parts.response)`. That `page` is the extension API's `LoadResponse`
 parameter name, **not** a pagination cursor. It greps as if paging existed.

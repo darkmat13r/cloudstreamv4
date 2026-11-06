@@ -724,11 +724,17 @@ private fun episodesHeaderIndex(detail: TitleDetail): Int =
         (if (detail.recommendations.isNotEmpty()) ONE_ITEM else NO_ITEM)
 
 /**
- * Which episode row board 7i's pill marks: the one the primary button would act on.
+ * Which episode row carries board 7i's pill: the one the primary button would act on.
  *
  * [TitleDetail.primaryData] is the resume target, else the title's own play data, else the first
- * episode, so the mark lands on the row Resume or Play Episode would play. 7i draws it on episode 1,
- * which is that row for a title nobody has started.
+ * episode, so the mark lands on the row Resume or Play Episode would play.
+ *
+ * **Board 7i does not agree, and this is deliberate.** 7i marks episode 1 while drawing `WATCHED` on
+ * it and `24 MIN LEFT` on episode 2 — so the board's pill sits on a *finished* episode while the next
+ * one is part-watched, and Resume on that page would start episode 2. The rule here is that the pill
+ * marks what pressing Play or Resume will actually start, because that is the meaning a viewer can act
+ * on; a mark on a finished episode says only where they have been. Recorded as a board correction in
+ * `DS-20`.
  *
  * The **first** match, not every equal one: provider data can repeat, which is why the list's lazy
  * keys carry the index too, and two rows both marked selected would be worse than none. Returns
