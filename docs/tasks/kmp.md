@@ -3909,3 +3909,84 @@ Found: `focusRestorer`-style default entry, measured again: a rebuilt view's fir
 Suggest: nothing more here; noted because every page with a chrome row will meet it (search's and the library's do)
 Why: `KMP-34`'s `LibraryFocusMemory` and this page's landing both work around the same window behaviour
 ```
+
+## KMP-43 — Home's bookmarks rail and its watch-status filter (`TV Home Extras` 3e to 3g), and glyphs on Home's state buttons · **measured 2026-11-06**
+
+**Status:** in review. Boards `3e`, `3f` and `3g` of `design/TV Home Extras.dc.html` (`DS-13`), on the page `KMP-37` and `KMP-41`
+built. Android TV only; desktop's home gains nothing but the state buttons' glyphs (its `HomeViewModel` keeps
+`HomeBookmarkStore.None`, so it has no rail). `KMP-44` (Reload, Random, Search, `None`) and the details panel follow.
+
+**The page now reads:** the chrome and hero, Continue watching, **Bookmarks**, then the source's rails. Bookmarks are this device's,
+so, as the owner ruled for 3g and 3m, they stay above being offline, a failure, a page still loading, and "nothing installed".
+
+**Parts.** In `:feature:home`: `HomeWatchStatus`, `HomeBookmark`, `HomeBookmarks` (in the state), `HomeBookmarkStore` (with a `None`
+default), `HomeAction.BookmarkFilterPressed`, `HomeRowKey.Bookmarks`, and `tv/HomeBookmarksTv.kt`. In `:app`: `LibraryHomeBookmarks`, and
+`AndroidLibraryStore.bookmarked()`, which reads the same rows `titles()` does without favourites and keeps `quality` for the badge.
+
+### Read the way the old home reads it
+
+- **The rows** are the library store's watch-status rows (`KMP-34`), so no second store and nothing new written. Newest by
+  `latestUpdatedTime`, no paging, no trailing card, as the old rail.
+- **The filter** is the old home's key, `DataStoreHelper.homeBookmarkedList` (per account), so the rollback and this screen agree.
+  One status, or none; pressing the chosen chip clears it (`HomeParentItemAdapterPreview.kt:530-540`). The old home reads an empty
+  key as none chosen, and so does this, which is why a first launch with bookmarks opens on 3f.
+- **A chip only for a status that holds a title.** A kept status that no longer does reads as none chosen; the old one left an
+  invisible chip checked.
+- **A bookmark opens from its own source**, by the same `encodeId` as a card, whichever source the page shows.
+
+### Every reduction from the boards
+
+| Board | Drawn | Here | Why |
+|---|---|---|---|
+| 3e | Chips 12dp apart (`.chiprow { gap: 24px }`) | `ChipRow`'s 24dp (`ChipRowSpacing`) | The token wins (owner's ruling 6 on these boards); the CSS-against-token question is already open in `HANDOVER.md` |
+| 3e | The chip's 8x16 marker cell | `Chip` as built: the selected chip's `muted` edge is its marker | The shared component |
+| 3e | `HOLD OK OR MENU · DETAILS` on the rail | None | It names the details panel's gesture, which is the next PR's |
+| 3e, 3f | Loading: skeleton cards with no chips | Nothing until the first read returns | It is one local read; a skeleton band for everyone without bookmarks would appear and vanish, moving the rails below it |
+| 3g | Offline's body under Continue watching as well as the bookmarks | Under the bookmarks alone, the body; under Continue watching, the headline alone | `KMP-41`'s measured rule: there is no room at 720p |
+| 3g | `9 BOOKMARKS` | Every bookmark, whatever the filter shows (`10 BOOKMARKS` in the screenshot) | "The count is `list.size` from the read" |
+
+### Glyphs on Home's state buttons
+
+`StateAction(icon = …)` per `ui-components.md`'s table: `Retry` on Try again and Retry failed, `Search` on Search, `Repository` on
+Extensions. `Browse home` is not one of Home's: it is search's idle state (`search_state_idle_action`), so it is not touched here.
+Desktop's home draws the same `StateView`, so its state buttons gain the same glyphs.
+
+### Strings
+
+Five new keys, each in all 62 directories, with translator notes in `docs/strings-translator-notes.md`:
+`home_bookmarks_no_status_headline`, `home_bookmarks_no_status_body`, `home_offline_source_headline` (`%1$s`),
+`home_offline_bookmarks_body`, and the plural `home_bookmarks_count`, with each directory's own plural categories. Reused:
+`error_bookmarks_text`, `type_watching` and the four other statuses, `search_state_offline_headline`.
+
+### Measured, each a wrong turn first
+
+- **The offline state under the bookmarks moved the chrome off the screen for nothing.** Recorded: the state sized to exactly
+  what is left came out a pixel over, from each band above rounding to whole pixels, and `KMP-41`'s reveal then moves the page
+  by the whole chrome. A state now has to overflow by more than two pixels to move the page.
+- **A rail card has no description**, so tests cannot find an unfocused one by its title; they walk to it and read focus.
+- **Which chip is above a card** is Compose's search, under the card's middle, so tests accept either.
+
+### Tested
+
+JVM: `HomeViewModelTest` 47 (5 new). Device, `Television_720p`: `HomeScreenTvDeviceTest` 63 (13 new), including three
+screenshot cases, `home-bookmarks-focus-card`, `home-bookmarks-no-status-focus-chip`, `home-offline-bookmarks-focus-retry`.
+`TvHomeNavigationTest` gains one through real navigation: a title given a watch status under the keys the app writes is on the
+rail with its chip chosen, opens its real `ResultFragmentTv` page, Back puts focus back on it, and the chosen chip pressed
+empties the old home's key.
+
+**Screenshots.** Three references changed, each only by the state button's glyph, each looked at: `home-partial-failure-focus-retry`
+(`Retry`), `home-nothing-installed-focus-action` (`Repository`), `home-offline-continue-focus-retry` (`Retry`).
+
+### Published API
+
+Additions only: 50 lines in `app/api/classes-jar.api` (five `R$string`/`R$plurals` fields, `LibraryHomeBookmarks`, `Bookmarked`,
+`AndroidLibraryStore.bookmarked`), none removed or changed.
+
+### Not verified
+
+A real remote; real bookmarks with posters; an account switch re-reading the rail; right-to-left; a language whose chips do not
+fit the row (`ChipRow` does not scroll, by design).
+
+### Found, not changed
+
+Nothing new.
