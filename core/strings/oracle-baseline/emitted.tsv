@@ -642,6 +642,13 @@ values	string	search_hint_site	-	Search %s…
 values	string	search_poster_img_des	-	Poster
 values	string	search_provider_text_providers	-	Search using providers
 values	string	search_provider_text_types	-	Search using types
+values	string	search_quick_empty_body	-	Every source answered and none of them carry “%s”. Try a shorter query, or open full search to change the source set.
+values	string	search_quick_empty_headline	-	No matches
+values	string	search_quick_meta_answered	-	ALL SOURCES ANSWERED
+values	string	search_quick_meta_answering	-	RESULTS STREAM IN AS SOURCES ANSWER
+values	string	search_quick_open_full	-	Open full search
+values	string	search_quick_status	-	%1$d OF %2$d ANSWERED · %3$d FAILED
+values	string	search_quick_title	-	Quick search
 values	string	search_state_failed_body	-	None of your sources answered.
 values	string	search_state_failed_headline	-	Search failed
 values	string	search_state_idle_action	-	Browse home
@@ -1054,6 +1061,13 @@ values-b+af	string	search_hint_site	-	Soek %s…
 values-b+af	string	search_poster_img_des	-	Plakkaat
 values-b+af	string	search_provider_text_providers	-	Soek deur verskaffers te gebruik
 values-b+af	string	search_provider_text_types	-	Soek met behulp van tipes
+values-b+af	string	search_quick_empty_body	-	Elke bron het geantwoord en nie een het “%s” nie. Probeer ’n korter soektog, of maak die volle soektog oop om die bronne te verander.
+values-b+af	string	search_quick_empty_headline	-	Geen passende resultate nie
+values-b+af	string	search_quick_meta_answered	-	ALLE BRONNE HET GEANTWOORD
+values-b+af	string	search_quick_meta_answering	-	RESULTATE KOM IN SOOS BRONNE ANTWOORD
+values-b+af	string	search_quick_open_full	-	Maak volle soektog oop
+values-b+af	string	search_quick_status	-	%1$d VAN %2$d GEANTWOORD · %3$d MISLUK
+values-b+af	string	search_quick_title	-	Vinnige soektog
 values-b+af	string	search_state_idle_body_desktop	-	Tik 'n titel. Resultate verskyn onder elke bron soos dit antwoord.
 values-b+af	string	search_state_no_results_type_filter	-	Slegs %s. Jou tipe-filter beperk die soektog.
 values-b+af	string	search_state_no_suggestions_detail	-	0 VOORSTELLE · 0 ONLANGSE OOREENKOMSTE
@@ -1262,6 +1276,13 @@ values-b+am	string	search_hint_site	-	%sን ፈልግ…
 values-b+am	string	search_poster_img_des	-	ፖስተር
 values-b+am	string	search_provider_text_providers	-	አቅራቢዎችን በመጠቀም ይፈልጉ
 values-b+am	string	search_provider_text_types	-	ዓይነቶችን በመጠቀም ይፈልጉ
+values-b+am	string	search_quick_empty_body	-	ሁሉም ምንጮች መልሰዋል፣ ግን አንዳቸውም «%s» የላቸውም። አጭር ፍለጋ ይሞክሩ፣ ወይም ምንጮቹን ለመቀየር ሙሉ ፍለጋን ይክፈቱ።
+values-b+am	string	search_quick_empty_headline	-	ምንም ተዛማጅ የለም
+values-b+am	string	search_quick_meta_answered	-	ሁሉም ምንጮች መልሰዋል
+values-b+am	string	search_quick_meta_answering	-	ምንጮች ሲመልሱ ውጤቶች ይመጣሉ
+values-b+am	string	search_quick_open_full	-	ሙሉ ፍለጋን ክፈት
+values-b+am	string	search_quick_status	-	ከ%2$d ውስጥ %1$d መልሰዋል · %3$d አልተሳኩም
+values-b+am	string	search_quick_title	-	ፈጣን ፍለጋ
 values-b+am	string	search_state_idle_body_desktop	-	ርዕስ ይተይቡ። ውጤቶች እያንዳንዱ ምንጭ ሲመልስ ከሱ ስር ይታያሉ።
 values-b+am	string	search_state_no_results_type_filter	-	%s ብቻ። የአይነት ማጣሪያዎ ፍለጋውን እያጠበበው ነው።
 values-b+am	string	search_state_no_suggestions_detail	-	0 ጥቆማዎች · 0 የቅርብ ጊዜ ተዛማጆች
@@ -1922,6 +1943,13 @@ values-b+apc	string	search_hint_site	-	نبّش %s…
 values-b+apc	string	search_poster_img_des	-	پوستر
 values-b+apc	string	search_provider_text_providers	-	عوزو المصادر لَ تنبّشو
 values-b+apc	string	search_provider_text_types	-	عوزو الأنواع ل تنبّشو
+values-b+apc	string	search_quick_empty_body	-	كل المصادر ردّت وما حدا فيهن عندو «%s». جرّب بحث أقصر، أو افتح البحث الكامل لتغيّر المصادر.
+values-b+apc	string	search_quick_empty_headline	-	ما في تطابق
+values-b+apc	string	search_quick_meta_answered	-	كل المصادر ردّت
+values-b+apc	string	search_quick_meta_answering	-	النتائج عم توصل لما المصادر ترد
+values-b+apc	string	search_quick_open_full	-	افتح البحث الكامل
+values-b+apc	string	search_quick_status	-	%1$d من %2$d ردّوا · %3$d فشلوا
+values-b+apc	string	search_quick_title	-	بحث سريع
 values-b+apc	string	search_state_idle_body_desktop	-	اكتب عنوان. النتايج بتطلع تحت كل مصدر لما يرد.
 values-b+apc	string	search_state_no_results_type_filter	-	%s بس. فلتر النوع عم يضيّق البحث.
 values-b+apc	string	search_state_no_suggestions_detail	-	0 اقتراحات · 0 تطابق مؤخراً
@@ -2790,6 +2818,13 @@ values-b+ar	string	search_hint_site	-	بحث %s…
 values-b+ar	string	search_poster_img_des	-	الصورة الدعائية
 values-b+ar	string	search_provider_text_providers	-	البحث باستخدام المصادر
 values-b+ar	string	search_provider_text_types	-	البحث باستخدام الأنواع
+values-b+ar	string	search_quick_empty_body	-	ردّت جميع المصادر ولا يحتوي أيٌّ منها على «%s». جرّب بحثًا أقصر، أو افتح البحث الكامل لتغيير المصادر.
+values-b+ar	string	search_quick_empty_headline	-	لا توجد تطابقات
+values-b+ar	string	search_quick_meta_answered	-	ردّت جميع المصادر
+values-b+ar	string	search_quick_meta_answering	-	تصل النتائج مع ردّ المصادر
+values-b+ar	string	search_quick_open_full	-	فتح البحث الكامل
+values-b+ar	string	search_quick_status	-	ردّ %1$d من %2$d · فشل %3$d
+values-b+ar	string	search_quick_title	-	بحث سريع
 values-b+ar	string	search_state_idle_body_desktop	-	اكتب عنوانًا. تظهر النتائج تحت كل مصدر عند استجابته.
 values-b+ar	string	search_state_no_results_type_filter	-	%s فقط. عامل تصفية النوع يضيّق نطاق البحث.
 values-b+ar	string	search_state_no_suggestions_detail	-	0 اقتراحات · 0 تطابق حديث
@@ -3350,6 +3385,13 @@ values-b+ars	string	search_hint_site	-	...%sابحث
 values-b+ars	string	search_poster_img_des	-	لافتة
 values-b+ars	string	search_provider_text_providers	-	البحث باستخدام مقدمي الخدمات
 values-b+ars	string	search_provider_text_types	-	البحث باستخدام الأنواع
+values-b+ars	string	search_quick_empty_body	-	كل المصادر ردّت وما فيها شي يحتوي «%s». جرّب بحث أقصر، أو افتح البحث الكامل عشان تغيّر المصادر.
+values-b+ars	string	search_quick_empty_headline	-	ما فيه تطابق
+values-b+ars	string	search_quick_meta_answered	-	كل المصادر ردّت
+values-b+ars	string	search_quick_meta_answering	-	النتائج توصل مع ردّ المصادر
+values-b+ars	string	search_quick_open_full	-	افتح البحث الكامل
+values-b+ars	string	search_quick_status	-	ردّ %1$d من %2$d · فشل %3$d
+values-b+ars	string	search_quick_title	-	بحث سريع
 values-b+ars	string	search_state_idle_body_desktop	-	اكتب عنوانًا. تظهر النتائج تحت كل مصدر عند استجابته.
 values-b+ars	string	search_state_no_results_type_filter	-	%s بس. فلتر النوع يضيّق البحث.
 values-b+ars	string	search_state_no_suggestions_detail	-	0 اقتراحات · 0 تطابق حديث
@@ -4026,6 +4068,13 @@ values-b+as	string	search_hint_site	-	%sত সন্ধান কৰক…
 values-b+as	string	search_poster_img_des	-	পোস্টাৰ
 values-b+as	string	search_provider_text_providers	-	প্ৰদানকাৰীৰে সন্ধান কৰক
 values-b+as	string	search_provider_text_types	-	প্ৰকাৰৰ দ্বাৰা সন্ধান কৰক
+values-b+as	string	search_quick_empty_body	-	সকলো উৎসই উত্তৰ দিলে কিন্তু কাৰো ওচৰত “%s” নাই। চুটি সন্ধান চেষ্টা কৰক, বা উৎস সলনি কৰিবলৈ সম্পূৰ্ণ সন্ধান খোলক।
+values-b+as	string	search_quick_empty_headline	-	কোনো মিল নাই
+values-b+as	string	search_quick_meta_answered	-	সকলো উৎসই উত্তৰ দিলে
+values-b+as	string	search_quick_meta_answering	-	উৎসসমূহে উত্তৰ দিয়াৰ লগে লগে ফলাফল আহে
+values-b+as	string	search_quick_open_full	-	সম্পূৰ্ণ সন্ধান খোলক
+values-b+as	string	search_quick_status	-	%2$dৰ ভিতৰত %1$dয়ে উত্তৰ দিলে · %3$d ব্যৰ্থ
+values-b+as	string	search_quick_title	-	দ্ৰুত সন্ধান
 values-b+as	string	search_state_idle_body_desktop	-	এটা শিৰোনাম টাইপ কৰক। প্ৰতিটো উৎসই উত্তৰ দিয়াৰ লগে লগে ফলাফল তাৰ তলত দেখা যাব।
 values-b+as	string	search_state_no_results_type_filter	-	কেৱল %s। আপোনাৰ ধৰণৰ ফিল্টাৰে সন্ধান সংকীৰ্ণ কৰিছে।
 values-b+as	string	search_state_no_suggestions_detail	-	0 টা পৰামৰ্শ · 0 টা শেহতীয়া মিল
@@ -4413,6 +4462,13 @@ values-b+az	string	resume	-	Davam et
 values-b+az	string	search	-	Axtar
 values-b+az	string	search_hint	-	Axtar…
 values-b+az	string	search_poster_img_des	-	Afişa
+values-b+az	string	search_quick_empty_body	-	Bütün mənbələr cavab verdi və heç birində «%s» yoxdur. Daha qısa sorğu yoxlayın və ya mənbələri dəyişmək üçün tam axtarışı açın.
+values-b+az	string	search_quick_empty_headline	-	Uyğunluq yoxdur
+values-b+az	string	search_quick_meta_answered	-	BÜTÜN MƏNBƏLƏR CAVAB VERDİ
+values-b+az	string	search_quick_meta_answering	-	MƏNBƏLƏR CAVAB VERDİKCƏ NƏTİCƏLƏR GƏLİR
+values-b+az	string	search_quick_open_full	-	Tam axtarışı aç
+values-b+az	string	search_quick_status	-	%2$d İÇİNDƏN %1$d CAVAB VERDİ · %3$d UĞURSUZ
+values-b+az	string	search_quick_title	-	Sürətli axtarış
 values-b+az	string	search_state_idle_body_desktop	-	Başlıq yazın. Hər mənbə cavab verdikcə nəticələr onun altında görünür.
 values-b+az	string	search_state_no_results_type_filter	-	Yalnız %s. Növ filtriniz axtarışı daraldır.
 values-b+az	string	search_state_no_suggestions_detail	-	0 TƏKLİF · 0 SON UYĞUNLUQ
@@ -5084,6 +5140,13 @@ values-b+be	string	search_hint_site	-	Шукаць па %s…
 values-b+be	string	search_poster_img_des	-	Плакат
 values-b+be	string	search_provider_text_providers	-	Пошук праз пастаўшчыкоў
 values-b+be	string	search_provider_text_types	-	Пошук праз тыпы
+values-b+be	string	search_quick_empty_body	-	Усе крыніцы адказалі, і ні ў адной няма «%s». Паспрабуйце карацейшы запыт або адкрыйце поўны пошук, каб змяніць крыніцы.
+values-b+be	string	search_quick_empty_headline	-	Няма супадзенняў
+values-b+be	string	search_quick_meta_answered	-	УСЕ КРЫНІЦЫ АДКАЗАЛІ
+values-b+be	string	search_quick_meta_answering	-	ВЫНІКІ З'ЯЎЛЯЮЦЦА ПА МЕРЫ АДКАЗАЎ КРЫНІЦ
+values-b+be	string	search_quick_open_full	-	Адкрыць поўны пошук
+values-b+be	string	search_quick_status	-	АДКАЗАЛІ %1$d З %2$d · ЗБОЙ %3$d
+values-b+be	string	search_quick_title	-	Хуткі пошук
 values-b+be	string	search_state_idle_body_desktop	-	Увядзіце назву. Вынікі з'яўляюцца пад кожнай крыніцай, калі яна адказвае.
 values-b+be	string	search_state_no_results_type_filter	-	Толькі %s. Фільтр па тыпе звужае пошук.
 values-b+be	string	search_state_no_suggestions_detail	-	0 ПРАПАНОЎ · 0 НЯДАЎНІХ СУПАДЗЕННЯЎ
@@ -5914,6 +5977,13 @@ values-b+bg	string	search_hint_site	-	Търси %s…
 values-b+bg	string	search_poster_img_des	-	Постер
 values-b+bg	string	search_provider_text_providers	-	Търсене чрез доставчици
 values-b+bg	string	search_provider_text_types	-	Търсене с помощта на типове
+values-b+bg	string	search_quick_empty_body	-	Всички източници отговориха и никой няма „%s“. Опитайте по-кратко търсене или отворете пълното търсене, за да смените източниците.
+values-b+bg	string	search_quick_empty_headline	-	Няма съвпадения
+values-b+bg	string	search_quick_meta_answered	-	ВСИЧКИ ИЗТОЧНИЦИ ОТГОВОРИХА
+values-b+bg	string	search_quick_meta_answering	-	РЕЗУЛТАТИТЕ ИДВАТ С ОТГОВОРИТЕ НА ИЗТОЧНИЦИТЕ
+values-b+bg	string	search_quick_open_full	-	Отвори пълното търсене
+values-b+bg	string	search_quick_status	-	ОТГОВОРИЛИ %1$d ОТ %2$d · НЕУСПЕШНИ %3$d
+values-b+bg	string	search_quick_title	-	Бързо търсене
 values-b+bg	string	search_state_idle_body_desktop	-	Въведете заглавие. Резултатите се появяват под всеки източник, когато той отговори.
 values-b+bg	string	search_state_no_results_type_filter	-	Само %s. Филтърът по тип стеснява търсенето.
 values-b+bg	string	search_state_no_suggestions_detail	-	0 ПРЕДЛОЖЕНИЯ · 0 СКОРОШНИ СЪВПАДЕНИЯ
@@ -6516,6 +6586,13 @@ values-b+bn	string	search_hint_site	-	খুঁজুন %s…
 values-b+bn	string	search_poster_img_des	-	পোস্টার
 values-b+bn	string	search_provider_text_providers	-	প্রভাইডার অনুযায়ি খুঁজুন
 values-b+bn	string	search_provider_text_types	-	ধরণ অনুযায়ি খুঁজুন
+values-b+bn	string	search_quick_empty_body	-	সব উৎস উত্তর দিয়েছে কিন্তু কারও কাছে “%s” নেই। ছোট অনুসন্ধান চেষ্টা করুন, অথবা উৎস বদলাতে পূর্ণ অনুসন্ধান খুলুন।
+values-b+bn	string	search_quick_empty_headline	-	কোনো মিল নেই
+values-b+bn	string	search_quick_meta_answered	-	সব উৎস উত্তর দিয়েছে
+values-b+bn	string	search_quick_meta_answering	-	উৎসগুলো উত্তর দিলেই ফলাফল আসে
+values-b+bn	string	search_quick_open_full	-	পূর্ণ অনুসন্ধান খুলুন
+values-b+bn	string	search_quick_status	-	%2$d-এর মধ্যে %1$d উত্তর দিয়েছে · %3$d ব্যর্থ
+values-b+bn	string	search_quick_title	-	দ্রুত অনুসন্ধান
 values-b+bn	string	search_state_idle_body_desktop	-	একটি শিরোনাম লিখুন। প্রতিটি সোর্স উত্তর দিলে ফলাফল তার নিচে দেখা যাবে।
 values-b+bn	string	search_state_no_results_type_filter	-	শুধু %s। আপনার ধরনের ফিল্টার অনুসন্ধান সীমিত করছে।
 values-b+bn	string	search_state_no_suggestions_detail	-	0টি সাজেশন · 0টি সাম্প্রতিক মিল
@@ -6964,6 +7041,13 @@ values-b+ca	string	search_hint_site	-	Cercar a %s…
 values-b+ca	string	search_poster_img_des	-	Cartell
 values-b+ca	string	search_provider_text_providers	-	Cerca amb proveïdors
 values-b+ca	string	search_provider_text_types	-	Cerca per tipus
+values-b+ca	string	search_quick_empty_body	-	Totes les fonts han respost i cap no té «%s». Proveu una cerca més curta o obriu la cerca completa per canviar les fonts.
+values-b+ca	string	search_quick_empty_headline	-	Cap coincidència
+values-b+ca	string	search_quick_meta_answered	-	TOTES LES FONTS HAN RESPOST
+values-b+ca	string	search_quick_meta_answering	-	ELS RESULTATS ARRIBEN A MESURA QUE RESPONEN LES FONTS
+values-b+ca	string	search_quick_open_full	-	Obre la cerca completa
+values-b+ca	string	search_quick_status	-	%1$d DE %2$d HAN RESPOST · %3$d HAN FALLAT
+values-b+ca	string	search_quick_title	-	Cerca ràpida
 values-b+ca	string	search_state_idle_body_desktop	-	Escriu un títol. Els resultats apareixen sota cada font quan respon.
 values-b+ca	string	search_state_no_results_type_filter	-	Només %s. El filtre de tipus està limitant la cerca.
 values-b+ca	string	search_state_no_suggestions_detail	-	0 SUGGERIMENTS · 0 COINCIDÈNCIES RECENTS
@@ -7221,6 +7305,13 @@ values-b+ckb	string	result_tags	-	ژانرەکان
 values-b+ckb	string	search_hint	-	گەڕان…
 values-b+ckb	string	search_hint_site	-	بگەڕێ بۆ%s…
 values-b+ckb	string	search_poster_img_des	-	پۆستەر
+values-b+ckb	string	search_quick_empty_body	-	هەموو سەرچاوەکان وەڵامیان دایەوە و هیچیان «%s»ـیان نییە. گەڕانێکی کورتتر تاقی بکەرەوە، یان گەڕانی تەواو بکەرەوە بۆ گۆڕینی سەرچاوەکان.
+values-b+ckb	string	search_quick_empty_headline	-	هیچ گونجانێک نییە
+values-b+ckb	string	search_quick_meta_answered	-	هەموو سەرچاوەکان وەڵامیان دایەوە
+values-b+ckb	string	search_quick_meta_answering	-	ئەنجامەکان لەگەڵ وەڵامدانەوەی سەرچاوەکان دێن
+values-b+ckb	string	search_quick_open_full	-	کردنەوەی گەڕانی تەواو
+values-b+ckb	string	search_quick_status	-	%1$d لە %2$d وەڵامیان دایەوە · %3$d شکستیان هێنا
+values-b+ckb	string	search_quick_title	-	گەڕانی خێرا
 values-b+ckb	string	search_state_idle_body_desktop	-	ناونیشانێک بنووسە. ئەنجامەکان لە ژێر هەر سەرچاوەیەک دەردەکەون کاتێک وەڵام دەداتەوە.
 values-b+ckb	string	search_state_no_results_type_filter	-	تەنها %s. فلتەری جۆرەکەت گەڕانەکە سنووردار دەکات.
 values-b+ckb	string	search_state_no_suggestions_detail	-	0 پێشنیار · 0 هاوتای دوایین
@@ -7885,6 +7976,13 @@ values-b+cs	string	search_hint_site	-	Hledat %s…
 values-b+cs	string	search_poster_img_des	-	Plakát
 values-b+cs	string	search_provider_text_providers	-	Hledat pomocí poskytovatelů
 values-b+cs	string	search_provider_text_types	-	Hledat pomocí typů
+values-b+cs	string	search_quick_empty_body	-	Všechny zdroje odpověděly a žádný nemá „%s“. Zkuste kratší dotaz nebo otevřete úplné hledání a změňte zdroje.
+values-b+cs	string	search_quick_empty_headline	-	Žádné shody
+values-b+cs	string	search_quick_meta_answered	-	VŠECHNY ZDROJE ODPOVĚDĚLY
+values-b+cs	string	search_quick_meta_answering	-	VÝSLEDKY PŘIBÝVAJÍ, JAK ZDROJE ODPOVÍDAJÍ
+values-b+cs	string	search_quick_open_full	-	Otevřít úplné hledání
+values-b+cs	string	search_quick_status	-	ODPOVĚDĚLO %1$d Z %2$d · SELHALO %3$d
+values-b+cs	string	search_quick_title	-	Rychlé hledání
 values-b+cs	string	search_state_idle_body_desktop	-	Zadejte název. Výsledky se zobrazí pod každým zdrojem, jakmile odpoví.
 values-b+cs	string	search_state_no_results_type_filter	-	Pouze %s. Filtr typů zužuje hledání.
 values-b+cs	string	search_state_no_suggestions_detail	-	0 NÁVRHŮ · 0 NEDÁVNÝCH SHOD
@@ -8729,6 +8827,13 @@ values-b+de	string	search_hint_site	-	Suche %s…
 values-b+de	string	search_poster_img_des	-	Vorschaubild
 values-b+de	string	search_provider_text_providers	-	Suche anhand Anbietern
 values-b+de	string	search_provider_text_types	-	Suche anhand Typen
+values-b+de	string	search_quick_empty_body	-	Alle Quellen haben geantwortet, und keine hat „%s“. Versuche eine kürzere Suche oder öffne die vollständige Suche, um die Quellen zu ändern.
+values-b+de	string	search_quick_empty_headline	-	Keine Treffer
+values-b+de	string	search_quick_meta_answered	-	ALLE QUELLEN HABEN GEANTWORTET
+values-b+de	string	search_quick_meta_answering	-	ERGEBNISSE KOMMEN, SOBALD QUELLEN ANTWORTEN
+values-b+de	string	search_quick_open_full	-	Vollständige Suche öffnen
+values-b+de	string	search_quick_status	-	%1$d VON %2$d GEANTWORTET · %3$d FEHLGESCHLAGEN
+values-b+de	string	search_quick_title	-	Schnellsuche
 values-b+de	string	search_state_idle_body_desktop	-	Titel eingeben. Ergebnisse erscheinen unter jeder Quelle, sobald sie antwortet.
 values-b+de	string	search_state_no_results_type_filter	-	Nur %s. Der Typfilter schränkt die Suche ein.
 values-b+de	string	search_state_no_suggestions_detail	-	0 VORSCHLÄGE · 0 TREFFER IM VERLAUF
@@ -9515,6 +9620,13 @@ values-b+el	string	search_hint_site	-	Αναζήτηση %s…
 values-b+el	string	search_poster_img_des	-	Αφίσα
 values-b+el	string	search_provider_text_providers	-	Αναζήτηση βάσει παρόχων
 values-b+el	string	search_provider_text_types	-	Αναζήτηση βάσει τύπων
+values-b+el	string	search_quick_empty_body	-	Όλες οι πηγές απάντησαν και καμία δεν έχει «%s». Δοκιμάστε μικρότερη αναζήτηση ή ανοίξτε την πλήρη αναζήτηση για να αλλάξετε τις πηγές.
+values-b+el	string	search_quick_empty_headline	-	Καμία αντιστοιχία
+values-b+el	string	search_quick_meta_answered	-	ΑΠΑΝΤΗΣΑΝ ΟΛΕΣ ΟΙ ΠΗΓΕΣ
+values-b+el	string	search_quick_meta_answering	-	ΤΑ ΑΠΟΤΕΛΕΣΜΑΤΑ ΕΡΧΟΝΤΑΙ ΚΑΘΩΣ ΑΠΑΝΤΟΥΝ ΟΙ ΠΗΓΕΣ
+values-b+el	string	search_quick_open_full	-	Άνοιγμα πλήρους αναζήτησης
+values-b+el	string	search_quick_status	-	ΑΠΑΝΤΗΣΑΝ %1$d ΑΠΟ %2$d · ΑΠΕΤΥΧΑΝ %3$d
+values-b+el	string	search_quick_title	-	Γρήγορη αναζήτηση
 values-b+el	string	search_state_idle_body_desktop	-	Πληκτρολογήστε έναν τίτλο. Τα αποτελέσματα εμφανίζονται κάτω από κάθε πηγή μόλις απαντήσει.
 values-b+el	string	search_state_no_results_type_filter	-	Μόνο %s. Το φίλτρο τύπου περιορίζει την αναζήτηση.
 values-b+el	string	search_state_no_suggestions_detail	-	0 ΠΡΟΤΑΣΕΙΣ · 0 ΠΡΟΣΦΑΤΕΣ ΑΝΤΙΣΤΟΙΧΙΕΣ
@@ -9937,6 +10049,13 @@ values-b+eo	string	search_hint_site	-	Serĉi %s…
 values-b+eo	string	search_poster_img_des	-	Afiŝo
 values-b+eo	string	search_provider_text_providers	-	Serĉi uzante provizantojn
 values-b+eo	string	search_provider_text_types	-	Serĉi uzante tipojn
+values-b+eo	string	search_quick_empty_body	-	Ĉiuj fontoj respondis kaj neniu havas “%s”. Provu pli mallongan serĉon, aŭ malfermu la plenan serĉon por ŝanĝi la fontojn.
+values-b+eo	string	search_quick_empty_headline	-	Neniu kongruo
+values-b+eo	string	search_quick_meta_answered	-	ĈIUJ FONTOJ RESPONDIS
+values-b+eo	string	search_quick_meta_answering	-	REZULTOJ ALVENAS DUM FONTOJ RESPONDAS
+values-b+eo	string	search_quick_open_full	-	Malfermi plenan serĉon
+values-b+eo	string	search_quick_status	-	%1$d EL %2$d RESPONDIS · %3$d MALSUKCESIS
+values-b+eo	string	search_quick_title	-	Rapida serĉo
 values-b+eo	string	search_state_idle_body_desktop	-	Tajpu titolon. Rezultoj aperas sub ĉiu fonto kiam ĝi respondas.
 values-b+eo	string	search_state_no_results_type_filter	-	Nur %s. Via tipfiltrilo mallarĝigas la serĉon.
 values-b+eo	string	search_state_no_suggestions_detail	-	0 SUGESTOJ · 0 LASTATEMPAJ KONGRUOJ
@@ -10632,6 +10751,13 @@ values-b+es	string	search_hint_site	-	Buscar en %s…
 values-b+es	string	search_poster_img_des	-	Póster
 values-b+es	string	search_provider_text_providers	-	Buscar usando proveedores
 values-b+es	string	search_provider_text_types	-	Buscar por tipos
+values-b+es	string	search_quick_empty_body	-	Todas las fuentes respondieron y ninguna tiene «%s». Pruebe una búsqueda más corta o abra la búsqueda completa para cambiar las fuentes.
+values-b+es	string	search_quick_empty_headline	-	Sin coincidencias
+values-b+es	string	search_quick_meta_answered	-	TODAS LAS FUENTES HAN RESPONDIDO
+values-b+es	string	search_quick_meta_answering	-	LOS RESULTADOS LLEGAN SEGÚN RESPONDEN LAS FUENTES
+values-b+es	string	search_quick_open_full	-	Abrir búsqueda completa
+values-b+es	string	search_quick_status	-	%1$d DE %2$d RESPONDIERON · %3$d FALLARON
+values-b+es	string	search_quick_title	-	Búsqueda rápida
 values-b+es	string	search_state_idle_body_desktop	-	Escriba un título. Los resultados aparecen bajo cada fuente cuando responde.
 values-b+es	string	search_state_no_results_type_filter	-	Solo %s. Su filtro de tipo está reduciendo la búsqueda.
 values-b+es	string	search_state_no_suggestions_detail	-	0 SUGERENCIAS · 0 COINCIDENCIAS RECIENTES
@@ -11203,6 +11329,13 @@ values-b+fa	string	search_hint_site	-	جست‌و‌جوی %s…
 values-b+fa	string	search_poster_img_des	-	پوستر
 values-b+fa	string	search_provider_text_providers	-	جستجو از طریق ارائه‌دهنده‌ها
 values-b+fa	string	search_provider_text_types	-	جستجو از طریق انواع
+values-b+fa	string	search_quick_empty_body	-	همه منابع پاسخ دادند و هیچ‌کدام «%s» را ندارند. جستجوی کوتاه‌تری را امتحان کنید یا برای تغییر منابع، جستجوی کامل را باز کنید.
+values-b+fa	string	search_quick_empty_headline	-	موردی مطابقت ندارد
+values-b+fa	string	search_quick_meta_answered	-	همه منابع پاسخ دادند
+values-b+fa	string	search_quick_meta_answering	-	نتایج با پاسخ منابع می‌رسند
+values-b+fa	string	search_quick_open_full	-	باز کردن جستجوی کامل
+values-b+fa	string	search_quick_status	-	%1$d از %2$d پاسخ دادند · %3$d ناموفق
+values-b+fa	string	search_quick_title	-	جستجوی سریع
 values-b+fa	string	search_state_idle_body_desktop	-	عنوانی را بنویسید. نتایج هر منبع پس از پاسخ آن، زیر نامش نمایش داده می‌شود.
 values-b+fa	string	search_state_no_results_type_filter	-	فقط %s. فیلتر نوع شما جستجو را محدود می‌کند.
 values-b+fa	string	search_state_no_suggestions_detail	-	0 پیشنهاد · 0 مورد منطبق اخیر
@@ -11590,6 +11723,13 @@ values-b+fil	string	search_hint	-	Maghanap…
 values-b+fil	string	search_hint_site	-	Maghanap %s…
 values-b+fil	string	search_provider_text_providers	-	Maghanap gamit ang mga tagatustos
 values-b+fil	string	search_provider_text_types	-	Maghanap gamit ang mga uri
+values-b+fil	string	search_quick_empty_body	-	Sumagot ang lahat ng source at wala ni isang may “%s”. Subukan ang mas maikling paghahanap, o buksan ang buong paghahanap para palitan ang mga source.
+values-b+fil	string	search_quick_empty_headline	-	Walang tugma
+values-b+fil	string	search_quick_meta_answered	-	SUMAGOT NA ANG LAHAT NG SOURCE
+values-b+fil	string	search_quick_meta_answering	-	DUMARATING ANG MGA RESULTA HABANG SUMASAGOT ANG MGA SOURCE
+values-b+fil	string	search_quick_open_full	-	Buksan ang buong paghahanap
+values-b+fil	string	search_quick_status	-	%1$d SA %2$d ANG SUMAGOT · %3$d ANG NABIGO
+values-b+fil	string	search_quick_title	-	Mabilis na paghahanap
 values-b+fil	string	search_state_idle_body_desktop	-	Mag-type ng pamagat. Lalabas ang mga resulta sa ilalim ng bawat source kapag sumagot ito.
 values-b+fil	string	search_state_no_results_type_filter	-	%s lang. Pinipigilan ng type filter mo ang paghahanap.
 values-b+fil	string	search_state_no_suggestions_detail	-	0 MUNGKAHI · 0 KAMAKAILANG TUGMA
@@ -12302,6 +12442,13 @@ values-b+fr	string	search_hint_site	-	Rechercher sur %s…
 values-b+fr	string	search_poster_img_des	-	Affiche
 values-b+fr	string	search_provider_text_providers	-	Recherche par fournisseur
 values-b+fr	string	search_provider_text_types	-	Recherche par types
+values-b+fr	string	search_quick_empty_body	-	Toutes les sources ont répondu et aucune ne propose « %s ». Essayez une recherche plus courte, ou ouvrez la recherche complète pour changer de sources.
+values-b+fr	string	search_quick_empty_headline	-	Aucune correspondance
+values-b+fr	string	search_quick_meta_answered	-	TOUTES LES SOURCES ONT RÉPONDU
+values-b+fr	string	search_quick_meta_answering	-	LES RÉSULTATS ARRIVENT À MESURE QUE LES SOURCES RÉPONDENT
+values-b+fr	string	search_quick_open_full	-	Ouvrir la recherche complète
+values-b+fr	string	search_quick_status	-	%1$d SUR %2$d ONT RÉPONDU · %3$d EN ÉCHEC
+values-b+fr	string	search_quick_title	-	Recherche rapide
 values-b+fr	string	search_state_idle_body_desktop	-	Saisissez un titre. Les résultats apparaissent sous chaque source dès qu'elle répond.
 values-b+fr	string	search_state_no_results_type_filter	-	%s uniquement. Votre filtre de type restreint la recherche.
 values-b+fr	string	search_state_no_suggestions_detail	-	0 SUGGESTION · 0 CORRESPONDANCE RÉCENTE
@@ -12821,6 +12968,13 @@ values-b+gl	string	search_hint_site	-	Procurar en %s…
 values-b+gl	string	search_poster_img_des	-	Cartel
 values-b+gl	string	search_provider_text_providers	-	Procurar usando proveedores
 values-b+gl	string	search_provider_text_types	-	Procurar por tipos
+values-b+gl	string	search_quick_empty_body	-	Todas as fontes responderon e ningunha ten «%s». Proba unha busca máis curta ou abre a busca completa para cambiar as fontes.
+values-b+gl	string	search_quick_empty_headline	-	Sen coincidencias
+values-b+gl	string	search_quick_meta_answered	-	TODAS AS FONTES RESPONDERON
+values-b+gl	string	search_quick_meta_answering	-	OS RESULTADOS CHEGAN SEGUNDO RESPONDEN AS FONTES
+values-b+gl	string	search_quick_open_full	-	Abrir a busca completa
+values-b+gl	string	search_quick_status	-	%1$d DE %2$d RESPONDERON · %3$d FALLARON
+values-b+gl	string	search_quick_title	-	Busca rápida
 values-b+gl	string	search_state_idle_body_desktop	-	Escriba un título. Os resultados aparecen baixo cada fonte cando responde.
 values-b+gl	string	search_state_no_results_type_filter	-	Só %s. O filtro de tipo está limitando a busca.
 values-b+gl	string	search_state_no_suggestions_detail	-	0 SUXESTIÓNS · 0 COINCIDENCIAS RECENTES
@@ -13399,6 +13553,13 @@ values-b+he	string	search_hint_site	-	חיפוש %s…
 values-b+he	string	search_poster_img_des	-	פוסטר
 values-b+he	string	search_provider_text_providers	-	חפש באמצעות הספקים
 values-b+he	string	search_provider_text_types	-	חפש באמצעות סוגים
+values-b+he	string	search_quick_empty_body	-	כל המקורות ענו ואף אחד מהם לא מכיל את “%s”. נסו חיפוש קצר יותר, או פתחו את החיפוש המלא כדי לשנות את המקורות.
+values-b+he	string	search_quick_empty_headline	-	אין התאמות
+values-b+he	string	search_quick_meta_answered	-	כל המקורות ענו
+values-b+he	string	search_quick_meta_answering	-	התוצאות מגיעות כשהמקורות עונים
+values-b+he	string	search_quick_open_full	-	פתיחת החיפוש המלא
+values-b+he	string	search_quick_status	-	%1$d מתוך %2$d ענו · %3$d נכשלו
+values-b+he	string	search_quick_title	-	חיפוש מהיר
 values-b+he	string	search_state_idle_body_desktop	-	הקלד כותרת. התוצאות יופיעו מתחת לכל מקור כשיענה.
 values-b+he	string	search_state_no_results_type_filter	-	%s בלבד. מסנן הסוג מצמצם את החיפוש.
 values-b+he	string	search_state_no_suggestions_detail	-	0 הצעות · 0 התאמות אחרונות
@@ -13970,6 +14131,13 @@ values-b+hi	string	search_hint_site	-	%s पर खोजें…
 values-b+hi	string	search_poster_img_des	-	पोस्टर
 values-b+hi	string	search_provider_text_providers	-	प्रोवाइडरों का उपयोग कर खोजें
 values-b+hi	string	search_provider_text_types	-	प्रकार का उपयोग करके खोजें
+values-b+hi	string	search_quick_empty_body	-	सभी स्रोतों ने जवाब दिया और किसी के पास “%s” नहीं है। छोटी खोज आज़माएँ, या स्रोत बदलने के लिए पूरी खोज खोलें।
+values-b+hi	string	search_quick_empty_headline	-	कोई मेल नहीं
+values-b+hi	string	search_quick_meta_answered	-	सभी स्रोतों ने जवाब दिया
+values-b+hi	string	search_quick_meta_answering	-	स्रोतों के जवाब के साथ नतीजे आते हैं
+values-b+hi	string	search_quick_open_full	-	पूरी खोज खोलें
+values-b+hi	string	search_quick_status	-	%2$d में से %1$d ने जवाब दिया · %3$d विफल
+values-b+hi	string	search_quick_title	-	त्वरित खोज
 values-b+hi	string	search_state_idle_body_desktop	-	कोई शीर्षक लिखें। हर स्रोत के जवाब देने पर नतीजे उसके नीचे दिखेंगे।
 values-b+hi	string	search_state_no_results_type_filter	-	सिर्फ़ %s। आपका प्रकार फ़िल्टर खोज को सीमित कर रहा है।
 values-b+hi	string	search_state_no_suggestions_detail	-	0 सुझाव · 0 हालिया मिलान
@@ -14709,6 +14877,13 @@ values-b+hr	string	search_hint_site	-	Traži %s …
 values-b+hr	string	search_poster_img_des	-	Poster
 values-b+hr	string	search_provider_text_providers	-	Traži koristeći pružatelje usluga
 values-b+hr	string	search_provider_text_types	-	Traži koristeći vrste
+values-b+hr	string	search_quick_empty_body	-	Svi su izvori odgovorili i nijedan nema „%s“. Pokušajte s kraćim upitom ili otvorite potpuno pretraživanje da biste promijenili izvore.
+values-b+hr	string	search_quick_empty_headline	-	Nema podudaranja
+values-b+hr	string	search_quick_meta_answered	-	SVI SU IZVORI ODGOVORILI
+values-b+hr	string	search_quick_meta_answering	-	REZULTATI STIŽU KAKO IZVORI ODGOVARAJU
+values-b+hr	string	search_quick_open_full	-	Otvori potpuno pretraživanje
+values-b+hr	string	search_quick_status	-	ODGOVORILO %1$d OD %2$d · NEUSPJELO %3$d
+values-b+hr	string	search_quick_title	-	Brzo pretraživanje
 values-b+hr	string	search_state_idle_body_desktop	-	Upišite naslov. Rezultati se pojavljuju ispod svakog izvora kad odgovori.
 values-b+hr	string	search_state_no_results_type_filter	-	Samo %s. Vaš filtar vrste sužava pretraživanje.
 values-b+hr	string	search_state_no_suggestions_detail	-	0 PRIJEDLOGA · 0 NEDAVNIH PODUDARANJA
@@ -15484,6 +15659,13 @@ values-b+hu	string	search_hint_site	-	Keresés %s…
 values-b+hu	string	search_poster_img_des	-	Poszter
 values-b+hu	string	search_provider_text_providers	-	Keresés szolgáltatók szerint
 values-b+hu	string	search_provider_text_types	-	Keresés típusok szerint
+values-b+hu	string	search_quick_empty_body	-	Minden forrás válaszolt, és egyiknél sincs meg ez: „%s”. Próbáljon rövidebb keresést, vagy nyissa meg a teljes keresést a források módosításához.
+values-b+hu	string	search_quick_empty_headline	-	Nincs egyezés
+values-b+hu	string	search_quick_meta_answered	-	MINDEN FORRÁS VÁLASZOLT
+values-b+hu	string	search_quick_meta_answering	-	AZ EREDMÉNYEK A FORRÁSOK VÁLASZAIVAL ÉRKEZNEK
+values-b+hu	string	search_quick_open_full	-	Teljes keresés megnyitása
+values-b+hu	string	search_quick_status	-	%2$d KÖZÜL %1$d VÁLASZOLT · %3$d SIKERTELEN
+values-b+hu	string	search_quick_title	-	Gyorskeresés
 values-b+hu	string	search_state_idle_body_desktop	-	Írjon be egy címet. Az eredmények az egyes források alatt jelennek meg, amint válaszolnak.
 values-b+hu	string	search_state_no_results_type_filter	-	Csak %s. A típusszűrő szűkíti a keresést.
 values-b+hu	string	search_state_no_suggestions_detail	-	0 JAVASLAT · 0 LEGUTÓBBI TALÁLAT
@@ -16281,6 +16463,13 @@ values-b+id	string	search_hint_site	-	Cari %s…
 values-b+id	string	search_poster_img_des	-	Poster
 values-b+id	string	search_provider_text_providers	-	Cari menggunakan penyedia
 values-b+id	string	search_provider_text_types	-	Cari menggunakan jenis
+values-b+id	string	search_quick_empty_body	-	Semua sumber menjawab dan tidak ada yang memiliki “%s”. Coba pencarian yang lebih pendek, atau buka pencarian lengkap untuk mengganti sumber.
+values-b+id	string	search_quick_empty_headline	-	Tidak ada yang cocok
+values-b+id	string	search_quick_meta_answered	-	SEMUA SUMBER TELAH MENJAWAB
+values-b+id	string	search_quick_meta_answering	-	HASIL MASUK SAAT SUMBER MENJAWAB
+values-b+id	string	search_quick_open_full	-	Buka pencarian lengkap
+values-b+id	string	search_quick_status	-	%1$d DARI %2$d MENJAWAB · %3$d GAGAL
+values-b+id	string	search_quick_title	-	Pencarian cepat
 values-b+id	string	search_state_idle_body_desktop	-	Ketik judul. Hasil muncul di bawah setiap sumber saat sumber itu menjawab.
 values-b+id	string	search_state_no_results_type_filter	-	Hanya %s. Filter jenis Anda mempersempit pencarian.
 values-b+id	string	search_state_no_suggestions_detail	-	0 SARAN · 0 COCOK TERBARU
@@ -17115,6 +17304,13 @@ values-b+in	string	search_hint_site	-	Cari %s…
 values-b+in	string	search_poster_img_des	-	Poster
 values-b+in	string	search_provider_text_providers	-	Cari menggunakan penyedia
 values-b+in	string	search_provider_text_types	-	Cari menggunakan jenis
+values-b+in	string	search_quick_empty_body	-	Semua sumber menjawab dan tidak ada yang memiliki “%s”. Coba pencarian yang lebih pendek, atau buka pencarian lengkap untuk mengganti sumber.
+values-b+in	string	search_quick_empty_headline	-	Tidak ada yang cocok
+values-b+in	string	search_quick_meta_answered	-	SEMUA SUMBER TELAH MENJAWAB
+values-b+in	string	search_quick_meta_answering	-	HASIL MASUK SAAT SUMBER MENJAWAB
+values-b+in	string	search_quick_open_full	-	Buka pencarian lengkap
+values-b+in	string	search_quick_status	-	%1$d DARI %2$d MENJAWAB · %3$d GAGAL
+values-b+in	string	search_quick_title	-	Pencarian cepat
 values-b+in	string	search_state_idle_body_desktop	-	Ketik judul. Hasil muncul di bawah setiap sumber saat sumber itu menjawab.
 values-b+in	string	search_state_no_results_type_filter	-	Hanya %s. Filter jenis Anda mempersempit pencarian.
 values-b+in	string	search_state_no_suggestions_detail	-	0 SARAN · 0 COCOK TERBARU
@@ -17965,6 +18161,13 @@ values-b+it	string	search_hint_site	-	Cerca in %s…
 values-b+it	string	search_poster_img_des	-	Poster
 values-b+it	string	search_provider_text_providers	-	Cerca per provider
 values-b+it	string	search_provider_text_types	-	Cerca per tipo
+values-b+it	string	search_quick_empty_body	-	Tutte le fonti hanno risposto e nessuna ha «%s». Prova una ricerca più breve o apri la ricerca completa per cambiare le fonti.
+values-b+it	string	search_quick_empty_headline	-	Nessuna corrispondenza
+values-b+it	string	search_quick_meta_answered	-	TUTTE LE FONTI HANNO RISPOSTO
+values-b+it	string	search_quick_meta_answering	-	I RISULTATI ARRIVANO MAN MANO CHE LE FONTI RISPONDONO
+values-b+it	string	search_quick_open_full	-	Apri la ricerca completa
+values-b+it	string	search_quick_status	-	%1$d SU %2$d HANNO RISPOSTO · %3$d NON RIUSCITE
+values-b+it	string	search_quick_title	-	Ricerca rapida
 values-b+it	string	search_state_idle_body_desktop	-	Digita un titolo. I risultati compaiono sotto ogni fonte quando risponde.
 values-b+it	string	search_state_no_results_type_filter	-	Solo %s. Il filtro per tipo sta restringendo la ricerca.
 values-b+it	string	search_state_no_suggestions_detail	-	0 SUGGERIMENTI · 0 CORRISPONDENZE RECENTI
@@ -18672,6 +18875,13 @@ values-b+iw	string	search_hint_site	-	חיפוש %s…
 values-b+iw	string	search_poster_img_des	-	פוסטר
 values-b+iw	string	search_provider_text_providers	-	חפש באמצעות הספקים
 values-b+iw	string	search_provider_text_types	-	חפש באמצעות סוגים
+values-b+iw	string	search_quick_empty_body	-	כל המקורות ענו ואף אחד מהם לא מכיל את “%s”. נסו חיפוש קצר יותר, או פתחו את החיפוש המלא כדי לשנות את המקורות.
+values-b+iw	string	search_quick_empty_headline	-	אין התאמות
+values-b+iw	string	search_quick_meta_answered	-	כל המקורות ענו
+values-b+iw	string	search_quick_meta_answering	-	התוצאות מגיעות כשהמקורות עונים
+values-b+iw	string	search_quick_open_full	-	פתיחת החיפוש המלא
+values-b+iw	string	search_quick_status	-	%1$d מתוך %2$d ענו · %3$d נכשלו
+values-b+iw	string	search_quick_title	-	חיפוש מהיר
 values-b+iw	string	search_state_idle_body_desktop	-	הקלד כותרת. התוצאות יופיעו מתחת לכל מקור כשיענה.
 values-b+iw	string	search_state_no_results_type_filter	-	%s בלבד. מסנן הסוג מצמצם את החיפוש.
 values-b+iw	string	search_state_no_suggestions_detail	-	0 הצעות · 0 התאמות אחרונות
@@ -19456,6 +19666,13 @@ values-b+ja	string	search_hint_site	-	%sを検索…
 values-b+ja	string	search_poster_img_des	-	ポスター
 values-b+ja	string	search_provider_text_providers	-	プロバイダーから探す
 values-b+ja	string	search_provider_text_types	-	使用タイプの検索
+values-b+ja	string	search_quick_empty_body	-	すべてのソースが応答しましたが、「%s」はどこにもありません。短いキーワードで試すか、完全な検索を開いてソースを変更してください。
+values-b+ja	string	search_quick_empty_headline	-	一致なし
+values-b+ja	string	search_quick_meta_answered	-	すべてのソースが応答しました
+values-b+ja	string	search_quick_meta_answering	-	ソースが応答するたびに結果が届きます
+values-b+ja	string	search_quick_open_full	-	完全な検索を開く
+values-b+ja	string	search_quick_status	-	%2$d件中%1$d件が応答 · %3$d件が失敗
+values-b+ja	string	search_quick_title	-	クイック検索
 values-b+ja	string	search_state_idle_body_desktop	-	タイトルを入力してください。各ソースが応答すると、その下に結果が表示されます。
 values-b+ja	string	search_state_no_results_type_filter	-	%sのみ。種類フィルターで検索が絞り込まれています。
 values-b+ja	string	search_state_no_suggestions_detail	-	候補 0 件 · 最近の一致 0 件
@@ -19851,6 +20068,13 @@ values-b+kn	string	search_hint_site	-	ಹುಡುಕು %s…
 values-b+kn	string	search_poster_img_des	-	ಪೋಸ್ಟರ್
 values-b+kn	string	search_provider_text_providers	-	ಪೂರೈಕೆದಾರರನ್ನು ಬಳಸಿಕೊಂಡು ಹುಡುಕಿ
 values-b+kn	string	search_provider_text_types	-	ಪ್ರಕಾರಗಳನ್ನು ಬಳಸಿಕೊಂಡು ಹುಡುಕಿ
+values-b+kn	string	search_quick_empty_body	-	ಎಲ್ಲಾ ಮೂಲಗಳು ಉತ್ತರಿಸಿವೆ, ಆದರೆ ಯಾವುದರಲ್ಲೂ “%s” ಇಲ್ಲ. ಚಿಕ್ಕ ಹುಡುಕಾಟ ಪ್ರಯತ್ನಿಸಿ, ಅಥವಾ ಮೂಲಗಳನ್ನು ಬದಲಿಸಲು ಪೂರ್ಣ ಹುಡುಕಾಟ ತೆರೆಯಿರಿ.
+values-b+kn	string	search_quick_empty_headline	-	ಯಾವುದೇ ಹೊಂದಾಣಿಕೆ ಇಲ್ಲ
+values-b+kn	string	search_quick_meta_answered	-	ಎಲ್ಲಾ ಮೂಲಗಳು ಉತ್ತರಿಸಿವೆ
+values-b+kn	string	search_quick_meta_answering	-	ಮೂಲಗಳು ಉತ್ತರಿಸಿದಂತೆ ಫಲಿತಾಂಶಗಳು ಬರುತ್ತವೆ
+values-b+kn	string	search_quick_open_full	-	ಪೂರ್ಣ ಹುಡುಕಾಟ ತೆರೆಯಿರಿ
+values-b+kn	string	search_quick_status	-	%2$d ರಲ್ಲಿ %1$d ಉತ್ತರಿಸಿವೆ · %3$d ವಿಫಲ
+values-b+kn	string	search_quick_title	-	ತ್ವರಿತ ಹುಡುಕಾಟ
 values-b+kn	string	search_state_idle_body_desktop	-	ಶೀರ್ಷಿಕೆಯನ್ನು ಟೈಪ್ ಮಾಡಿ. ಪ್ರತಿಯೊಂದು ಮೂಲ ಉತ್ತರಿಸಿದಂತೆ ಫಲಿತಾಂಶಗಳು ಅದರ ಕೆಳಗೆ ಕಾಣಿಸುತ್ತವೆ.
 values-b+kn	string	search_state_no_results_type_filter	-	%s ಮಾತ್ರ. ನಿಮ್ಮ ಪ್ರಕಾರದ ಫಿಲ್ಟರ್ ಹುಡುಕಾಟವನ್ನು ಕಿರಿದುಗೊಳಿಸುತ್ತಿದೆ.
 values-b+kn	string	search_state_no_suggestions_detail	-	0 ಸಲಹೆಗಳು · 0 ಇತ್ತೀಚಿನ ಹೊಂದಾಣಿಕೆಗಳು
@@ -20512,6 +20736,13 @@ values-b+ko	string	search_hint_site	-	검색 %s…
 values-b+ko	string	search_poster_img_des	-	포스터
 values-b+ko	string	search_provider_text_providers	-	소스로 검색
 values-b+ko	string	search_provider_text_types	-	유형을 사용하여 검색
+values-b+ko	string	search_quick_empty_body	-	모든 소스가 응답했지만 “%s”이(가) 있는 소스가 없습니다. 더 짧게 검색하거나 전체 검색을 열어 소스를 변경하세요.
+values-b+ko	string	search_quick_empty_headline	-	일치 항목 없음
+values-b+ko	string	search_quick_meta_answered	-	모든 소스가 응답함
+values-b+ko	string	search_quick_meta_answering	-	소스가 응답하는 대로 결과가 표시됩니다
+values-b+ko	string	search_quick_open_full	-	전체 검색 열기
+values-b+ko	string	search_quick_status	-	%2$d개 중 %1$d개 응답 · %3$d개 실패
+values-b+ko	string	search_quick_title	-	빠른 검색
 values-b+ko	string	search_state_idle_body_desktop	-	제목을 입력하세요. 각 소스가 응답하면 그 아래에 결과가 표시됩니다.
 values-b+ko	string	search_state_no_results_type_filter	-	%s만. 유형 필터가 검색을 좁히고 있습니다.
 values-b+ko	string	search_state_no_suggestions_detail	-	추천 0개 · 최근 일치 0개
@@ -21036,6 +21267,13 @@ values-b+lt	string	search_hint_site	-	Ieškoti %s…
 values-b+lt	string	search_poster_img_des	-	Plakatas
 values-b+lt	string	search_provider_text_providers	-	Ieškoti naudojant tiekėjus
 values-b+lt	string	search_provider_text_types	-	Ieškoti naudojant tipus
+values-b+lt	string	search_quick_empty_body	-	Atsakė visi šaltiniai, ir nė viename nėra „%s“. Pabandykite trumpesnę paiešką arba atidarykite visą paiešką ir pakeiskite šaltinius.
+values-b+lt	string	search_quick_empty_headline	-	Atitikmenų nėra
+values-b+lt	string	search_quick_meta_answered	-	ATSAKĖ VISI ŠALTINIAI
+values-b+lt	string	search_quick_meta_answering	-	REZULTATAI ATEINA ATSAKANT ŠALTINIAMS
+values-b+lt	string	search_quick_open_full	-	Atidaryti visą paiešką
+values-b+lt	string	search_quick_status	-	ATSAKĖ %1$d IŠ %2$d · NEPAVYKO %3$d
+values-b+lt	string	search_quick_title	-	Greita paieška
 values-b+lt	string	search_state_idle_body_desktop	-	Įveskite pavadinimą. Rezultatai rodomi po kiekvienu šaltiniu, kai šis atsako.
 values-b+lt	string	search_state_no_results_type_filter	-	Tik %s. Jūsų tipų filtras siaurina paiešką.
 values-b+lt	string	search_state_no_suggestions_detail	-	0 PASIŪLYMŲ · 0 NESENIŲ ATITIKMENŲ
@@ -21678,6 +21916,13 @@ values-b+lv	string	search_hint_site	-	Meklēt %s…
 values-b+lv	string	search_poster_img_des	-	Plakāts
 values-b+lv	string	search_provider_text_providers	-	Meklēt izmantojot devējus
 values-b+lv	string	search_provider_text_types	-	Meklēt izmantojot tipus
+values-b+lv	string	search_quick_empty_body	-	Visi avoti atbildēja, un nevienā nav „%s”. Mēģiniet īsāku vaicājumu vai atveriet pilno meklēšanu, lai mainītu avotus.
+values-b+lv	string	search_quick_empty_headline	-	Nav atbilstību
+values-b+lv	string	search_quick_meta_answered	-	VISI AVOTI IR ATBILDĒJUŠI
+values-b+lv	string	search_quick_meta_answering	-	REZULTĀTI IENĀK, KAD AVOTI ATBILD
+values-b+lv	string	search_quick_open_full	-	Atvērt pilno meklēšanu
+values-b+lv	string	search_quick_status	-	ATBILDĒJA %1$d NO %2$d · NEIZDEVĀS %3$d
+values-b+lv	string	search_quick_title	-	Ātrā meklēšana
 values-b+lv	string	search_state_idle_body_desktop	-	Ievadiet nosaukumu. Rezultāti parādās zem katra devēja, tiklīdz tas atbild.
 values-b+lv	string	search_state_no_results_type_filter	-	Tikai %s. Jūsu veida filtrs sašaurina meklēšanu.
 values-b+lv	string	search_state_no_suggestions_detail	-	0 IETEIKUMU · 0 NESENU ATBILSTĪBU
@@ -22478,6 +22723,13 @@ values-b+mk	string	search_hint_site	-	Пребарај %s…
 values-b+mk	string	search_poster_img_des	-	Постер
 values-b+mk	string	search_provider_text_providers	-	Пребарувај користејќи провајдери
 values-b+mk	string	search_provider_text_types	-	Пребарувај користејќи типови
+values-b+mk	string	search_quick_empty_body	-	Сите извори одговорија и ниеден нема „%s“. Обидете се со пократко пребарување или отворете го целото пребарување за да ги смените изворите.
+values-b+mk	string	search_quick_empty_headline	-	Нема совпаѓања
+values-b+mk	string	search_quick_meta_answered	-	СИТЕ ИЗВОРИ ОДГОВОРИЈА
+values-b+mk	string	search_quick_meta_answering	-	РЕЗУЛТАТИТЕ ПРИСТИГНУВААТ КАКО ШТО ОДГОВАРААТ ИЗВОРИТЕ
+values-b+mk	string	search_quick_open_full	-	Отвори го целото пребарување
+values-b+mk	string	search_quick_status	-	ОДГОВОРИЈА %1$d ОД %2$d · НЕУСПЕШНИ %3$d
+values-b+mk	string	search_quick_title	-	Брзо пребарување
 values-b+mk	string	search_state_idle_body_desktop	-	Внеси наслов. Резултатите се појавуваат под секој извор кога ќе одговори.
 values-b+mk	string	search_state_no_results_type_filter	-	Само %s. Вашиот филтер за тип го стеснува пребарувањето.
 values-b+mk	string	search_state_no_suggestions_detail	-	0 ПРЕДЛОЗИ · 0 НЕОДАМНЕШНИ СОВПАЃАЊА
@@ -22983,6 +23235,13 @@ values-b+ml	string	search_hint_site	-	തിരയുക %s…
 values-b+ml	string	search_poster_img_des	-	പോസ്റ്റർ
 values-b+ml	string	search_provider_text_providers	-	സ്രോതസ് അടിസ്ഥാനത്തിൽ തിരയുക
 values-b+ml	string	search_provider_text_types	-	തരം അടിസ്ഥാനത്തിൽ തിരയുക
+values-b+ml	string	search_quick_empty_body	-	എല്ലാ ഉറവിടങ്ങളും മറുപടി നൽകി, പക്ഷേ ഒന്നിലും “%s” ഇല്ല. ചെറിയ തിരയൽ പരീക്ഷിക്കുക, അല്ലെങ്കിൽ ഉറവിടങ്ങൾ മാറ്റാൻ പൂർണ്ണ തിരയൽ തുറക്കുക.
+values-b+ml	string	search_quick_empty_headline	-	പൊരുത്തങ്ങളില്ല
+values-b+ml	string	search_quick_meta_answered	-	എല്ലാ ഉറവിടങ്ങളും മറുപടി നൽകി
+values-b+ml	string	search_quick_meta_answering	-	ഉറവിടങ്ങൾ മറുപടി നൽകുന്നതനുസരിച്ച് ഫലങ്ങൾ വരുന്നു
+values-b+ml	string	search_quick_open_full	-	പൂർണ്ണ തിരയൽ തുറക്കുക
+values-b+ml	string	search_quick_status	-	%2$d-ൽ %1$d മറുപടി നൽകി · %3$d പരാജയപ്പെട്ടു
+values-b+ml	string	search_quick_title	-	ദ്രുത തിരയൽ
 values-b+ml	string	search_state_idle_body_desktop	-	ഒരു ശീർഷകം ടൈപ്പ് ചെയ്യുക. ഓരോ ഉറവിടവും മറുപടി നൽകുമ്പോൾ ഫലങ്ങൾ അതിനു താഴെ കാണിക്കും.
 values-b+ml	string	search_state_no_results_type_filter	-	%s മാത്രം. നിങ്ങളുടെ തരം ഫിൽട്ടർ തിരയൽ ചുരുക്കുന്നു.
 values-b+ml	string	search_state_no_suggestions_detail	-	0 നിർദ്ദേശങ്ങൾ · 0 സമീപകാല പൊരുത്തങ്ങൾ
@@ -23571,6 +23830,13 @@ values-b+ms	string	search_hint_site	-	Cari %s…
 values-b+ms	string	search_poster_img_des	-	Poster
 values-b+ms	string	search_provider_text_providers	-	Carian mengikut sumber
 values-b+ms	string	search_provider_text_types	-	Carian mengikut jenis
+values-b+ms	string	search_quick_empty_body	-	Semua sumber menjawab dan tiada satu pun yang mempunyai “%s”. Cuba carian yang lebih pendek, atau buka carian penuh untuk menukar sumber.
+values-b+ms	string	search_quick_empty_headline	-	Tiada padanan
+values-b+ms	string	search_quick_meta_answered	-	SEMUA SUMBER TELAH MENJAWAB
+values-b+ms	string	search_quick_meta_answering	-	HASIL TIBA APABILA SUMBER MENJAWAB
+values-b+ms	string	search_quick_open_full	-	Buka carian penuh
+values-b+ms	string	search_quick_status	-	%1$d DARIPADA %2$d MENJAWAB · %3$d GAGAL
+values-b+ms	string	search_quick_title	-	Carian pantas
 values-b+ms	string	search_state_idle_body_desktop	-	Taip tajuk. Hasil muncul di bawah setiap sumber apabila ia menjawab.
 values-b+ms	string	search_state_no_results_type_filter	-	Hanya %s. Penapis jenis anda mengecilkan carian.
 values-b+ms	string	search_state_no_suggestions_detail	-	0 CADANGAN · 0 PADANAN TERKINI
@@ -23900,6 +24166,13 @@ values-b+mt	string	search_hint_site	-	Fittex%s…
 values-b+mt	string	search_poster_img_des	-	Kartellun
 values-b+mt	string	search_provider_text_providers	-	Fittex bl-użu ta' fornituri
 values-b+mt	string	search_provider_text_types	-	Fittex bl-użu ta 'tipi
+values-b+mt	string	search_quick_empty_body	-	Is-sorsi kollha wieġbu u l-ebda wieħed ma għandu “%s”. Ipprova tfittxija iqsar, jew iftaħ it-tfittxija sħiħa biex tibdel is-sorsi.
+values-b+mt	string	search_quick_empty_headline	-	L-ebda qbil
+values-b+mt	string	search_quick_meta_answered	-	IS-SORSI KOLLHA WIEĠBU
+values-b+mt	string	search_quick_meta_answering	-	IR-RIŻULTATI JASLU HEKK KIF IS-SORSI JWIEĠBU
+values-b+mt	string	search_quick_open_full	-	Iftaħ it-tfittxija sħiħa
+values-b+mt	string	search_quick_status	-	WIEĠBU %1$d MINN %2$d · FALLEW %3$d
+values-b+mt	string	search_quick_title	-	Tfittxija mgħaġġla
 values-b+mt	string	search_state_idle_body_desktop	-	Ikteb titlu. Ir-riżultati jidhru taħt kull sors meta jwieġeb.
 values-b+mt	string	search_state_no_results_type_filter	-	%s biss. Il-filtru tat-tip qed jirrestrinġi l-fittxija.
 values-b+mt	string	search_state_no_suggestions_detail	-	0 SUĠĠERIMENTI · 0 TAQBIL REĊENTI
@@ -24407,6 +24680,13 @@ values-b+my	string	search_hint_site	-	ရှာရန် %s…
 values-b+my	string	search_poster_img_des	-	ပိုစတာ
 values-b+my	string	search_provider_text_providers	-	ပ့ံပိုးပေးသောဝန်ဆောင်မှုများအသုံးပြု၍ရှာရန်
 values-b+my	string	search_provider_text_types	-	အမျိုးအစားများအသုံးပြု၍ရှာရန်
+values-b+my	string	search_quick_empty_body	-	ရင်းမြစ်အားလုံး ဖြေကြားပြီး “%s” ပါသည့် ရင်းမြစ် မရှိပါ။ ပိုတိုသော ရှာဖွေမှုကို စမ်းကြည့်ပါ၊ သို့မဟုတ် ရင်းမြစ်များ ပြောင်းရန် အပြည့်အစုံ ရှာဖွေမှုကို ဖွင့်ပါ။
+values-b+my	string	search_quick_empty_headline	-	ကိုက်ညီမှု မရှိပါ
+values-b+my	string	search_quick_meta_answered	-	ရင်းမြစ်အားလုံး ဖြေကြားပြီး
+values-b+my	string	search_quick_meta_answering	-	ရင်းမြစ်များ ဖြေကြားသလို ရလဒ်များ ရောက်လာမည်
+values-b+my	string	search_quick_open_full	-	အပြည့်အစုံ ရှာဖွေမှု ဖွင့်ရန်
+values-b+my	string	search_quick_status	-	%2$d ခုအနက် %1$d ခု ဖြေကြား · %3$d ခု မအောင်မြင်
+values-b+my	string	search_quick_title	-	အမြန်ရှာဖွေမှု
 values-b+my	string	search_state_idle_body_desktop	-	ခေါင်းစဉ်တစ်ခု ရိုက်ထည့်ပါ။ ရင်းမြစ်တစ်ခုစီ တုံ့ပြန်သည်နှင့် ရလဒ်များကို ၎င်းအောက်တွင် ပြသပါမည်။
 values-b+my	string	search_state_no_results_type_filter	-	%s သာ။ သင့်အမျိုးအစား စစ်ထုတ်မှုက ရှာဖွေမှုကို ကျဉ်းစေနေသည်။
 values-b+my	string	search_state_no_suggestions_detail	-	အကြံပြုချက် 0 ခု · မကြာသေးမီ ကိုက်ညီမှု 0 ခု
@@ -24745,6 +25025,13 @@ values-b+ne	string	search_hint_site	-	%s खोज्नुहोस्…
 values-b+ne	string	search_poster_img_des	-	पोस्टर
 values-b+ne	string	search_provider_text_providers	-	प्रोभाईडर उपयोग गरी खोज्नुहोस्
 values-b+ne	string	search_provider_text_types	-	प्रकारको उपयोग गरी खोज्नुहोस्
+values-b+ne	string	search_quick_empty_body	-	सबै स्रोतहरूले जवाफ दिए तर कसैसँग “%s” छैन। छोटो खोजी प्रयास गर्नुहोस्, वा स्रोत बदल्न पूर्ण खोज खोल्नुहोस्।
+values-b+ne	string	search_quick_empty_headline	-	कुनै मेल छैन
+values-b+ne	string	search_quick_meta_answered	-	सबै स्रोतहरूले जवाफ दिए
+values-b+ne	string	search_quick_meta_answering	-	स्रोतहरूले जवाफ दिँदै गर्दा नतिजा आउँछन्
+values-b+ne	string	search_quick_open_full	-	पूर्ण खोज खोल्नुहोस्
+values-b+ne	string	search_quick_status	-	%2$d मध्ये %1$d ले जवाफ दिए · %3$d असफल
+values-b+ne	string	search_quick_title	-	छिटो खोज
 values-b+ne	string	search_state_idle_body_desktop	-	शीर्षक टाइप गर्नुहोस्। प्रत्येक स्रोतले जवाफ दिएपछि नतिजा त्यसको तल देखिन्छ।
 values-b+ne	string	search_state_no_results_type_filter	-	%s मात्र। तपाईंको प्रकार फिल्टरले खोजी साँघुरो बनाइरहेको छ।
 values-b+ne	string	search_state_no_suggestions_detail	-	0 सुझाव · 0 हालैका मेल
@@ -25371,6 +25658,13 @@ values-b+nl	string	search_hint_site	-	Zoeken %s…
 values-b+nl	string	search_poster_img_des	-	Poster
 values-b+nl	string	search_provider_text_providers	-	Zoeken met providers
 values-b+nl	string	search_provider_text_types	-	Zoeken met types
+values-b+nl	string	search_quick_empty_body	-	Alle bronnen hebben geantwoord en geen enkele heeft “%s”. Probeer een kortere zoekopdracht, of open volledig zoeken om de bronnen te wijzigen.
+values-b+nl	string	search_quick_empty_headline	-	Geen overeenkomsten
+values-b+nl	string	search_quick_meta_answered	-	ALLE BRONNEN HEBBEN GEANTWOORD
+values-b+nl	string	search_quick_meta_answering	-	RESULTATEN KOMEN BINNEN ZODRA BRONNEN ANTWOORDEN
+values-b+nl	string	search_quick_open_full	-	Volledig zoeken openen
+values-b+nl	string	search_quick_status	-	%1$d VAN %2$d GEANTWOORD · %3$d MISLUKT
+values-b+nl	string	search_quick_title	-	Snel zoeken
 values-b+nl	string	search_state_idle_body_desktop	-	Typ een titel. Resultaten verschijnen onder elke bron zodra die antwoordt.
 values-b+nl	string	search_state_no_results_type_filter	-	Alleen %s. Je typefilter beperkt de zoekopdracht.
 values-b+nl	string	search_state_no_suggestions_detail	-	0 SUGGESTIES · 0 RECENTE OVEREENKOMSTEN
@@ -25812,6 +26106,13 @@ values-b+nn	string	search_hint_site	-	Søk i %s…
 values-b+nn	string	search_poster_img_des	-	Plakat
 values-b+nn	string	search_provider_text_providers	-	Søk basert på leverandør
 values-b+nn	string	search_provider_text_types	-	Søk ved bruk av typer
+values-b+nn	string	search_quick_empty_body	-	Alle kjeldene svara, og ingen av dei har «%s». Prøv eit kortare søk, eller opne fullt søk for å endre kjeldene.
+values-b+nn	string	search_quick_empty_headline	-	Ingen treff
+values-b+nn	string	search_quick_meta_answered	-	ALLE KJELDENE HAR SVARA
+values-b+nn	string	search_quick_meta_answering	-	RESULTAT KJEM ETTER KVART SOM KJELDENE SVARAR
+values-b+nn	string	search_quick_open_full	-	Opne fullt søk
+values-b+nn	string	search_quick_status	-	%1$d AV %2$d HAR SVARA · %3$d FEILA
+values-b+nn	string	search_quick_title	-	Snøggsøk
 values-b+nn	string	search_state_idle_body_desktop	-	Skriv ein tittel. Resultata kjem under kvar kjelde når ho svarar.
 values-b+nn	string	search_state_no_results_type_filter	-	Berre %s. Typefilteret ditt avgrensar søket.
 values-b+nn	string	search_state_no_suggestions_detail	-	0 FORSLAG · 0 NYLEGE TREFF
@@ -26338,6 +26639,13 @@ values-b+no	string	search_hint_site	-	Søk i %s …
 values-b+no	string	search_poster_img_des	-	Plakat
 values-b+no	string	search_provider_text_providers	-	Søk med leverandører
 values-b+no	string	search_provider_text_types	-	Søk med typer
+values-b+no	string	search_quick_empty_body	-	Alle kildene svarte, og ingen av dem har «%s». Prøv et kortere søk, eller åpne fullt søk for å endre kildene.
+values-b+no	string	search_quick_empty_headline	-	Ingen treff
+values-b+no	string	search_quick_meta_answered	-	ALLE KILDENE HAR SVART
+values-b+no	string	search_quick_meta_answering	-	RESULTATER KOMMER ETTER HVERT SOM KILDENE SVARER
+values-b+no	string	search_quick_open_full	-	Åpne fullt søk
+values-b+no	string	search_quick_status	-	%1$d AV %2$d HAR SVART · %3$d FEILET
+values-b+no	string	search_quick_title	-	Hurtigsøk
 values-b+no	string	search_state_idle_body_desktop	-	Skriv inn en tittel. Resultatene vises under hver kilde når den svarer.
 values-b+no	string	search_state_no_results_type_filter	-	Bare %s. Typefilteret ditt begrenser søket.
 values-b+no	string	search_state_no_suggestions_detail	-	0 FORSLAG · 0 NYLIGE TREFF
@@ -26698,6 +27006,13 @@ values-b+or	string	search_hint	-	ସନ୍ଧାନ କରିବା…
 values-b+or	string	search_hint_site	-	%s ସନ୍ଧାନ କରିବା…
 values-b+or	string	search_poster_img_des	-	ପୋଷ୍ଟର୍
 values-b+or	string	search_provider_text_providers	-	ପ୍ରଦାତା ଵ୍ୟଵହାର କରି ଖୋଜିବା
+values-b+or	string	search_quick_empty_body	-	ସମସ୍ତ ଉତ୍ସ ଉତ୍ତର ଦେଲେ କିନ୍ତୁ କାହା ପାଖରେ “%s” ନାହିଁ। ଛୋଟ ସନ୍ଧାନ ଚେଷ୍ଟା କରନ୍ତୁ, କିମ୍ବା ଉତ୍ସ ବଦଳାଇବାକୁ ପୂର୍ଣ୍ଣ ସନ୍ଧାନ ଖୋଲନ୍ତୁ।
+values-b+or	string	search_quick_empty_headline	-	କୌଣସି ମେଳ ନାହିଁ
+values-b+or	string	search_quick_meta_answered	-	ସମସ୍ତ ଉତ୍ସ ଉତ୍ତର ଦେଲେ
+values-b+or	string	search_quick_meta_answering	-	ଉତ୍ସଗୁଡ଼ିକ ଉତ୍ତର ଦେବା ସହିତ ଫଳାଫଳ ଆସେ
+values-b+or	string	search_quick_open_full	-	ପୂର୍ଣ୍ଣ ସନ୍ଧାନ ଖୋଲନ୍ତୁ
+values-b+or	string	search_quick_status	-	%2$d ମଧ୍ୟରୁ %1$d ଉତ୍ତର ଦେଲେ · %3$d ବିଫଳ
+values-b+or	string	search_quick_title	-	ଦ୍ରୁତ ସନ୍ଧାନ
 values-b+or	string	search_state_idle_body_desktop	-	ଏକ ଶୀର୍ଷକ ଟାଇପ୍ କରନ୍ତୁ। ପ୍ରତ୍ୟେକ ଉତ୍ସ ଉତ୍ତର ଦେଲେ ଫଳାଫଳ ତା ତଳେ ଦେଖାଯିବ।
 values-b+or	string	search_state_no_results_type_filter	-	କେବଳ %s। ଆପଣଙ୍କ ପ୍ରକାର ଫିଲ୍ଟର ସନ୍ଧାନକୁ ସଂକୁଚିତ କରୁଛି।
 values-b+or	string	search_state_no_suggestions_detail	-	0 ପରାମର୍ଶ · 0 ସାମ୍ପ୍ରତିକ ମେଳ
@@ -27396,6 +27711,13 @@ values-b+pl	string	search_hint_site	-	Szukaj %s…
 values-b+pl	string	search_poster_img_des	-	Poster
 values-b+pl	string	search_provider_text_providers	-	Szukaj według źródeł
 values-b+pl	string	search_provider_text_types	-	Szukaj według typów
+values-b+pl	string	search_quick_empty_body	-	Wszystkie źródła odpowiedziały i żadne nie ma „%s”. Spróbuj krótszego zapytania albo otwórz pełne wyszukiwanie, aby zmienić źródła.
+values-b+pl	string	search_quick_empty_headline	-	Brak dopasowań
+values-b+pl	string	search_quick_meta_answered	-	WSZYSTKIE ŹRÓDŁA ODPOWIEDZIAŁY
+values-b+pl	string	search_quick_meta_answering	-	WYNIKI NAPŁYWAJĄ W MIARĘ ODPOWIEDZI ŹRÓDEŁ
+values-b+pl	string	search_quick_open_full	-	Otwórz pełne wyszukiwanie
+values-b+pl	string	search_quick_status	-	ODPOWIEDZIAŁO %1$d Z %2$d · BŁĘDY: %3$d
+values-b+pl	string	search_quick_title	-	Szybkie wyszukiwanie
 values-b+pl	string	search_state_idle_body_desktop	-	Wpisz tytuł. Wyniki pojawiają się pod każdym źródłem, gdy odpowie.
 values-b+pl	string	search_state_no_results_type_filter	-	Tylko %s. Filtr typu zawęża wyszukiwanie.
 values-b+pl	string	search_state_no_suggestions_detail	-	0 SUGESTII · 0 OSTATNICH DOPASOWAŃ
@@ -28248,6 +28570,13 @@ values-b+pt	string	search_hint_site	-	Pesquisar %s…
 values-b+pt	string	search_poster_img_des	-	Poster
 values-b+pt	string	search_provider_text_providers	-	Procurar usando fornecedores
 values-b+pt	string	search_provider_text_types	-	Procurar usando tipos
+values-b+pt	string	search_quick_empty_body	-	Todas as fontes responderam e nenhuma tem «%s». Experimente uma pesquisa mais curta ou abra a pesquisa completa para mudar as fontes.
+values-b+pt	string	search_quick_empty_headline	-	Sem correspondências
+values-b+pt	string	search_quick_meta_answered	-	TODAS AS FONTES RESPONDERAM
+values-b+pt	string	search_quick_meta_answering	-	OS RESULTADOS CHEGAM À MEDIDA QUE AS FONTES RESPONDEM
+values-b+pt	string	search_quick_open_full	-	Abrir pesquisa completa
+values-b+pt	string	search_quick_status	-	%1$d DE %2$d RESPONDERAM · %3$d FALHARAM
+values-b+pt	string	search_quick_title	-	Pesquisa rápida
 values-b+pt	string	search_state_idle_body_desktop	-	Escreva um título. Os resultados aparecem sob cada fonte assim que ela responde.
 values-b+pt	string	search_state_no_results_type_filter	-	Apenas %s. O filtro de tipo está a limitar a pesquisa.
 values-b+pt	string	search_state_no_suggestions_detail	-	0 SUGESTÕES · 0 CORRESPONDÊNCIAS RECENTES
@@ -29093,6 +29422,13 @@ values-b+pt+BR	string	search_hint_site	-	Pesquisar %s…
 values-b+pt+BR	string	search_poster_img_des	-	Pôster
 values-b+pt+BR	string	search_provider_text_providers	-	Pesquisar usando fornecedor
 values-b+pt+BR	string	search_provider_text_types	-	Pesquisar usando tipos
+values-b+pt+BR	string	search_quick_empty_body	-	Todas as fontes responderam e nenhuma tem “%s”. Tente uma pesquisa mais curta ou abra a pesquisa completa para mudar as fontes.
+values-b+pt+BR	string	search_quick_empty_headline	-	Nenhuma correspondência
+values-b+pt+BR	string	search_quick_meta_answered	-	TODAS AS FONTES RESPONDERAM
+values-b+pt+BR	string	search_quick_meta_answering	-	OS RESULTADOS CHEGAM CONFORME AS FONTES RESPONDEM
+values-b+pt+BR	string	search_quick_open_full	-	Abrir pesquisa completa
+values-b+pt+BR	string	search_quick_status	-	%1$d DE %2$d RESPONDERAM · %3$d FALHARAM
+values-b+pt+BR	string	search_quick_title	-	Pesquisa rápida
 values-b+pt+BR	string	search_state_idle_body_desktop	-	Digite um título. Os resultados aparecem abaixo de cada fonte assim que ela responde.
 values-b+pt+BR	string	search_state_no_results_type_filter	-	Somente %s. O filtro de tipo está restringindo a pesquisa.
 values-b+pt+BR	string	search_state_no_suggestions_detail	-	0 SUGESTÕES · 0 CORRESPONDÊNCIAS RECENTES
@@ -29858,6 +30194,13 @@ values-b+qt	string	search_hint_site	-	aaoohhu %s aoouu
 values-b+qt	string	search_poster_img_des	-	aaaaaah
 values-b+qt	string	search_provider_text_providers	-	aauuhaauugghhahhh ohaauugghhouuhhh
 values-b+qt	string	search_provider_text_types	-	ahhhahoooohhaa ahhhoohahh
+values-b+qt	string	search_quick_empty_body	-	oohh aagh uuk “%s”. ooh aak oohh, aagh uuk oohh aah.
+values-b+qt	string	search_quick_empty_headline	-	ooh aagg
+values-b+qt	string	search_quick_meta_answered	-	OOHH AAGH UUK
+values-b+qt	string	search_quick_meta_answering	-	AAGH OOHH UUK AAH
+values-b+qt	string	search_quick_open_full	-	oohh aagh
+values-b+qt	string	search_quick_status	-	%1$d OOHH %2$d AAGH · %3$d UUK
+values-b+qt	string	search_quick_title	-	oohh aak
 values-b+qt	string	search_state_idle_body_desktop	-	oouuh aaaaggg uuuk ooh
 values-b+qt	string	search_state_no_results_type_filter	-	%s uuhaa. oouuh aagggh uuk.
 values-b+qt	string	search_state_no_suggestions_detail	-	0 AAAHHUU · 0 AAOOH UUGH
@@ -30591,6 +30934,13 @@ values-b+ro	string	search_hint_site	-	Căutați %s…
 values-b+ro	string	search_poster_img_des	-	Poster
 values-b+ro	string	search_provider_text_providers	-	Căutare în funcție de furnizor
 values-b+ro	string	search_provider_text_types	-	Căutare în funcție de tip
+values-b+ro	string	search_quick_empty_body	-	Toate sursele au răspuns și niciuna nu are „%s”. Încercați o căutare mai scurtă sau deschideți căutarea completă pentru a schimba sursele.
+values-b+ro	string	search_quick_empty_headline	-	Nicio potrivire
+values-b+ro	string	search_quick_meta_answered	-	TOATE SURSELE AU RĂSPUNS
+values-b+ro	string	search_quick_meta_answering	-	REZULTATELE SOSESC PE MĂSURĂ CE SURSELE RĂSPUND
+values-b+ro	string	search_quick_open_full	-	Deschide căutarea completă
+values-b+ro	string	search_quick_status	-	AU RĂSPUNS %1$d DIN %2$d · %3$d EȘUATE
+values-b+ro	string	search_quick_title	-	Căutare rapidă
 values-b+ro	string	search_state_idle_body_desktop	-	Tastați un titlu. Rezultatele apar sub fiecare sursă când răspunde.
 values-b+ro	string	search_state_no_results_type_filter	-	Doar %s. Filtrul de tip restrânge căutarea.
 values-b+ro	string	search_state_no_suggestions_detail	-	0 SUGESTII · 0 POTRIVIRI RECENTE
@@ -31408,6 +31758,13 @@ values-b+ru	string	search_hint_site	-	Поиск %s…
 values-b+ru	string	search_poster_img_des	-	Плакат
 values-b+ru	string	search_provider_text_providers	-	Поиск с использованием поставщиков
 values-b+ru	string	search_provider_text_types	-	Поиск с использованием типов
+values-b+ru	string	search_quick_empty_body	-	Все источники ответили, и ни в одном нет «%s». Попробуйте запрос короче или откройте полный поиск, чтобы сменить источники.
+values-b+ru	string	search_quick_empty_headline	-	Нет совпадений
+values-b+ru	string	search_quick_meta_answered	-	ВСЕ ИСТОЧНИКИ ОТВЕТИЛИ
+values-b+ru	string	search_quick_meta_answering	-	РЕЗУЛЬТАТЫ ПРИХОДЯТ ПО МЕРЕ ОТВЕТОВ ИСТОЧНИКОВ
+values-b+ru	string	search_quick_open_full	-	Открыть полный поиск
+values-b+ru	string	search_quick_status	-	ОТВЕТИЛИ %1$d ИЗ %2$d · СБОЙ %3$d
+values-b+ru	string	search_quick_title	-	Быстрый поиск
 values-b+ru	string	search_state_idle_body_desktop	-	Введите название. Результаты появятся под каждым источником, когда он ответит.
 values-b+ru	string	search_state_no_results_type_filter	-	Только %s. Фильтр по типу сужает поиск.
 values-b+ru	string	search_state_no_suggestions_detail	-	0 ПОДСКАЗОК · 0 НЕДАВНИХ СОВПАДЕНИЙ
@@ -32079,6 +32436,13 @@ values-b+sk	string	search_hint_site	-	Hľadať %s…
 values-b+sk	string	search_poster_img_des	-	Plagát
 values-b+sk	string	search_provider_text_providers	-	Hľadať pomocou poskytovateľov
 values-b+sk	string	search_provider_text_types	-	Hľadať pomocou typov
+values-b+sk	string	search_quick_empty_body	-	Všetky zdroje odpovedali a žiadny nemá „%s“. Skúste kratší dopyt alebo otvorte úplné hľadanie a zmeňte zdroje.
+values-b+sk	string	search_quick_empty_headline	-	Žiadne zhody
+values-b+sk	string	search_quick_meta_answered	-	VŠETKY ZDROJE ODPOVEDALI
+values-b+sk	string	search_quick_meta_answering	-	VÝSLEDKY PRIBÚDAJÚ, AKO ZDROJE ODPOVEDAJÚ
+values-b+sk	string	search_quick_open_full	-	Otvoriť úplné hľadanie
+values-b+sk	string	search_quick_status	-	ODPOVEDALO %1$d Z %2$d · ZLYHALO %3$d
+values-b+sk	string	search_quick_title	-	Rýchle hľadanie
 values-b+sk	string	search_state_idle_body_desktop	-	Zadajte názov. Výsledky sa zobrazia pod každým zdrojom, keď odpovie.
 values-b+sk	string	search_state_no_results_type_filter	-	Iba %s. Filter typov zužuje hľadanie.
 values-b+sk	string	search_state_no_suggestions_detail	-	0 NÁVRHOV · 0 NEDÁVNYCH ZHÔD
@@ -32677,6 +33041,13 @@ values-b+so	string	search_hint_site	-	Raadi %s…
 values-b+so	string	search_poster_img_des	-	Sawirka
 values-b+so	string	search_provider_text_providers	-	Ku raadi qaybiyeyaasha
 values-b+so	string	search_provider_text_types	-	Ku raadi noocyada
+values-b+so	string	search_quick_empty_body	-	Dhammaan ilaha way ka jawaabeen midkoodna ma laha “%s”. Isku day raadin gaaban, ama fur raadinta buuxda si aad u beddesho ilaha.
+values-b+so	string	search_quick_empty_headline	-	Wax isku mid ah ma jiro
+values-b+so	string	search_quick_meta_answered	-	DHAMMAAN ILAHA WAY KA JAWAABEEN
+values-b+so	string	search_quick_meta_answering	-	NATIIJOOYINKU WAY YIMAADAAN MARKA ILAHA KA JAWAABAAN
+values-b+so	string	search_quick_open_full	-	Fur raadinta buuxda
+values-b+so	string	search_quick_status	-	%1$d KA MID AH %2$d AYAA KA JAWAABAY · %3$d WAY FASHILMEEN
+values-b+so	string	search_quick_title	-	Raadin degdeg ah
 values-b+so	string	search_state_idle_body_desktop	-	Qor cinwaan. Natiijooyinku waxay ka muuqdaan xigasho kasta hoosteeda marka ay jawaabto.
 values-b+so	string	search_state_no_results_type_filter	-	Kaliya %s. Shaandhada nooca ayaa soo koobaya raadinta.
 values-b+so	string	search_state_no_suggestions_detail	-	0 TALOOYIN · 0 ISKU-EG DHOWAAN
@@ -33450,6 +33821,13 @@ values-b+sq	string	search_hint_site	-	Kërko %s…
 values-b+sq	string	search_poster_img_des	-	Posteri
 values-b+sq	string	search_provider_text_providers	-	Kërko duke përdorur ofruesit
 values-b+sq	string	search_provider_text_types	-	Kërko duke përdorur tipet
+values-b+sq	string	search_quick_empty_body	-	Të gjitha burimet u përgjigjën dhe asnjë nuk ka “%s”. Provoni një kërkim më të shkurtër ose hapni kërkimin e plotë për të ndryshuar burimet.
+values-b+sq	string	search_quick_empty_headline	-	Asnjë përputhje
+values-b+sq	string	search_quick_meta_answered	-	TË GJITHA BURIMET U PËRGJIGJËN
+values-b+sq	string	search_quick_meta_answering	-	REZULTATET VIJNË NDËRSA BURIMET PËRGJIGJEN
+values-b+sq	string	search_quick_open_full	-	Hap kërkimin e plotë
+values-b+sq	string	search_quick_status	-	U PËRGJIGJËN %1$d NGA %2$d · DËSHTUAN %3$d
+values-b+sq	string	search_quick_title	-	Kërkim i shpejtë
 values-b+sq	string	search_state_idle_body_desktop	-	Shkruani një titull. Rezultatet shfaqen nën çdo burim sapo ai përgjigjet.
 values-b+sq	string	search_state_no_results_type_filter	-	Vetëm %s. Filtri i llojit po e ngushton kërkimin.
 values-b+sq	string	search_state_no_suggestions_detail	-	0 SUGJERIME · 0 PËRPUTHJE TË FUNDIT
@@ -34294,6 +34672,13 @@ values-b+sv	string	search_hint_site	-	Sök %s…
 values-b+sv	string	search_poster_img_des	-	Affisch
 values-b+sv	string	search_provider_text_providers	-	Sök med hjälp av leverantörer
 values-b+sv	string	search_provider_text_types	-	Sök med hjälp av typer
+values-b+sv	string	search_quick_empty_body	-	Alla källor svarade och ingen har ”%s”. Prova en kortare sökning, eller öppna fullständig sökning för att byta källor.
+values-b+sv	string	search_quick_empty_headline	-	Inga träffar
+values-b+sv	string	search_quick_meta_answered	-	ALLA KÄLLOR HAR SVARAT
+values-b+sv	string	search_quick_meta_answering	-	RESULTATEN KOMMER NÄR KÄLLORNA SVARAR
+values-b+sv	string	search_quick_open_full	-	Öppna fullständig sökning
+values-b+sv	string	search_quick_status	-	%1$d AV %2$d HAR SVARAT · %3$d MISSLYCKADES
+values-b+sv	string	search_quick_title	-	Snabbsökning
 values-b+sv	string	search_state_idle_body_desktop	-	Skriv en titel. Resultaten visas under varje källa när den svarar.
 values-b+sv	string	search_state_no_results_type_filter	-	Endast %s. Ditt typfilter begränsar sökningen.
 values-b+sv	string	search_state_no_suggestions_detail	-	0 FÖRSLAG · 0 NYLIGA TRÄFFAR
@@ -35138,6 +35523,13 @@ values-b+ta	string	search_hint_site	-	%s இல் தேடவும்…
 values-b+ta	string	search_poster_img_des	-	போச்டர்
 values-b+ta	string	search_provider_text_providers	-	வழங்குபவர்கள் பயன்படுத்தி தேடுங்கள்
 values-b+ta	string	search_provider_text_types	-	வகைகளைப் பயன்படுத்தி தேடுங்கள்
+values-b+ta	string	search_quick_empty_body	-	எல்லா மூலங்களும் பதிலளித்தன, ஆனால் எதிலும் “%s” இல்லை. சிறிய தேடலை முயலவும், அல்லது மூலங்களை மாற்ற முழுத் தேடலைத் திறக்கவும்.
+values-b+ta	string	search_quick_empty_headline	-	பொருத்தங்கள் இல்லை
+values-b+ta	string	search_quick_meta_answered	-	எல்லா மூலங்களும் பதிலளித்தன
+values-b+ta	string	search_quick_meta_answering	-	மூலங்கள் பதிலளிக்கும்போது முடிவுகள் வருகின்றன
+values-b+ta	string	search_quick_open_full	-	முழுத் தேடலைத் திற
+values-b+ta	string	search_quick_status	-	%2$d இல் %1$d பதிலளித்தன · %3$d தோல்வி
+values-b+ta	string	search_quick_title	-	விரைவுத் தேடல்
 values-b+ta	string	search_state_idle_body_desktop	-	ஒரு தலைப்பைத் தட்டச்சு செய்யவும். ஒவ்வொரு மூலமும் பதிலளிக்கும்போது முடிவுகள் அதன் கீழ் தோன்றும்.
 values-b+ta	string	search_state_no_results_type_filter	-	%s மட்டும். உங்கள் வகை வடிப்பான் தேடலைக் குறுக்குகிறது.
 values-b+ta	string	search_state_no_suggestions_detail	-	0 பரிந்துரைகள் · 0 சமீபத்திய பொருத்தங்கள்
@@ -35448,6 +35840,13 @@ values-b+ti	string	player_source_resumes_at	-	ምቕያር ቦታኻ ይሕል�
 values-b+ti	string	player_source_retry	-	እንደገና ፈትን
 values-b+ti	string	player_source_switch	-	ቀይር
 values-b+ti	string	player_unmute	-	ድምጺ ወልዕ
+values-b+ti	string	search_quick_empty_body	-	ኩሎም ምንጭታት መሊሶም፣ ሓደ ካብኦም ግን «%s» የብሉን። ሓጺር ምድላይ ፈትኑ፣ ወይ ምንጭታት ንምቕያር ምሉእ ምድላይ ክፈቱ።
+values-b+ti	string	search_quick_empty_headline	-	ዝሰማማዕ የለን
+values-b+ti	string	search_quick_meta_answered	-	ኩሎም ምንጭታት መሊሶም
+values-b+ti	string	search_quick_meta_answering	-	ምንጭታት ክምልሱ ከለዉ ውጽኢታት ይመጹ
+values-b+ti	string	search_quick_open_full	-	ምሉእ ምድላይ ክፈት
+values-b+ti	string	search_quick_status	-	ካብ %2$d %1$d መሊሶም · %3$d ፈሺሎም
+values-b+ti	string	search_quick_title	-	ቅልጡፍ ምድላይ
 values-b+ti	string	search_state_idle_body_desktop	-	ኣርእስቲ ጽሓፍ። ውጽኢታት ነፍሲ ወከፍ ምንጪ ምስ መለሰ ኣብ ትሕቲኡ ይርአዩ።
 values-b+ti	string	search_state_no_results_type_filter	-	%s ጥራይ። ማጣሪያ ዓይነትካ ፍለጋ የጽብብ ኣሎ።
 values-b+ti	string	search_state_no_suggestions_detail	-	0 ሓሳባት · 0 ናይ ቀረባ ተመሳሰልቲ
@@ -35767,6 +36166,13 @@ values-b+tl	string	search_hint_site	-	Hanapin ang %s…
 values-b+tl	string	search_poster_img_des	-	Poster
 values-b+tl	string	search_provider_text_providers	-	Search using providers
 values-b+tl	string	search_provider_text_types	-	Search using types
+values-b+tl	string	search_quick_empty_body	-	Sumagot ang lahat ng source at wala ni isang may “%s”. Subukan ang mas maikling paghahanap, o buksan ang buong paghahanap para palitan ang mga source.
+values-b+tl	string	search_quick_empty_headline	-	Walang tugma
+values-b+tl	string	search_quick_meta_answered	-	SUMAGOT NA ANG LAHAT NG SOURCE
+values-b+tl	string	search_quick_meta_answering	-	DUMARATING ANG MGA RESULTA HABANG SUMASAGOT ANG MGA SOURCE
+values-b+tl	string	search_quick_open_full	-	Buksan ang buong paghahanap
+values-b+tl	string	search_quick_status	-	%1$d SA %2$d ANG SUMAGOT · %3$d ANG NABIGO
+values-b+tl	string	search_quick_title	-	Mabilis na paghahanap
 values-b+tl	string	search_state_idle_body_desktop	-	Mag-type ng pamagat. Lalabas ang mga resulta sa ilalim ng bawat source kapag sumagot ito.
 values-b+tl	string	search_state_no_results_type_filter	-	%s lang. Pinipigilan ng type filter mo ang paghahanap.
 values-b+tl	string	search_state_no_suggestions_detail	-	0 MUNGKAHI · 0 KAMAKAILANG TUGMA
@@ -36484,6 +36890,13 @@ values-b+tr	string	search_hint_site	-	%s sağlayıcısında ara…
 values-b+tr	string	search_poster_img_des	-	Afiş
 values-b+tr	string	search_provider_text_providers	-	Sağlayıcıları kullanarak ara
 values-b+tr	string	search_provider_text_types	-	Türleri kullanarak ara
+values-b+tr	string	search_quick_empty_body	-	Tüm kaynaklar yanıt verdi ve hiçbirinde “%s” yok. Daha kısa bir arama deneyin veya kaynakları değiştirmek için tam aramayı açın.
+values-b+tr	string	search_quick_empty_headline	-	Eşleşme yok
+values-b+tr	string	search_quick_meta_answered	-	TÜM KAYNAKLAR YANIT VERDİ
+values-b+tr	string	search_quick_meta_answering	-	KAYNAKLAR YANIT VERDİKÇE SONUÇLAR GELİR
+values-b+tr	string	search_quick_open_full	-	Tam aramayı aç
+values-b+tr	string	search_quick_status	-	%2$d KAYNAKTAN %1$d YANIT VERDİ · %3$d BAŞARISIZ
+values-b+tr	string	search_quick_title	-	Hızlı arama
 values-b+tr	string	search_state_idle_body_desktop	-	Bir başlık yazın. Sonuçlar, her kaynak yanıt verdikçe onun altında görünür.
 values-b+tr	string	search_state_no_results_type_filter	-	Yalnızca %s. Tür filtreniz aramayı daraltıyor.
 values-b+tr	string	search_state_no_suggestions_detail	-	0 ÖNERİ · 0 YAKIN ZAMANLI EŞLEŞME
@@ -37344,6 +37757,13 @@ values-b+uk	string	search_hint_site	-	Пошук на %s…
 values-b+uk	string	search_poster_img_des	-	Плакат
 values-b+uk	string	search_provider_text_providers	-	Пошук за постачальниками
 values-b+uk	string	search_provider_text_types	-	Пошук за типами
+values-b+uk	string	search_quick_empty_body	-	Усі джерела відповіли, і в жодному немає «%s». Спробуйте коротший запит або відкрийте повний пошук, щоб змінити джерела.
+values-b+uk	string	search_quick_empty_headline	-	Немає збігів
+values-b+uk	string	search_quick_meta_answered	-	УСІ ДЖЕРЕЛА ВІДПОВІЛИ
+values-b+uk	string	search_quick_meta_answering	-	РЕЗУЛЬТАТИ НАДХОДЯТЬ, ЩОЙНО ДЖЕРЕЛА ВІДПОВІДАЮТЬ
+values-b+uk	string	search_quick_open_full	-	Відкрити повний пошук
+values-b+uk	string	search_quick_status	-	ВІДПОВІЛИ %1$d З %2$d · ЗБІЙ %3$d
+values-b+uk	string	search_quick_title	-	Швидкий пошук
 values-b+uk	string	search_state_idle_body_desktop	-	Введіть назву. Результати з'являться під кожним джерелом, коли воно відповість.
 values-b+uk	string	search_state_no_results_type_filter	-	Лише %s. Фільтр за типом звужує пошук.
 values-b+uk	string	search_state_no_suggestions_detail	-	0 ПІДКАЗОК · 0 НЕЩОДАВНІХ ЗБІГІВ
@@ -38093,6 +38513,13 @@ values-b+ur	string	search_hint_site	-	فراہم کنندہ میں تلاش کر
 values-b+ur	string	search_poster_img_des	-	پروموشنل تصویر
 values-b+ur	string	search_provider_text_providers	-	ذرائع کا استعمال کرتے ہوئے تلاش کریں
 values-b+ur	string	search_provider_text_types	-	انواع کا استعمال کرتے ہوئے تلاش کریں
+values-b+ur	string	search_quick_empty_body	-	تمام ذرائع نے جواب دیا اور کسی کے پاس “%s” نہیں ہے۔ مختصر تلاش آزمائیں، یا ذرائع بدلنے کے لیے مکمل تلاش کھولیں۔
+values-b+ur	string	search_quick_empty_headline	-	کوئی مماثلت نہیں
+values-b+ur	string	search_quick_meta_answered	-	تمام ذرائع نے جواب دیا
+values-b+ur	string	search_quick_meta_answering	-	ذرائع کے جواب کے ساتھ نتائج آتے ہیں
+values-b+ur	string	search_quick_open_full	-	مکمل تلاش کھولیں
+values-b+ur	string	search_quick_status	-	%2$d میں سے %1$d نے جواب دیا · %3$d ناکام
+values-b+ur	string	search_quick_title	-	فوری تلاش
 values-b+ur	string	search_state_idle_body_desktop	-	عنوان لکھیں۔ ہر ذریعہ کے جواب دینے پر نتائج اس کے نیچے ظاہر ہوں گے۔
 values-b+ur	string	search_state_no_results_type_filter	-	صرف %s۔ آپ کا قسم فلٹر تلاش کو محدود کر رہا ہے۔
 values-b+ur	string	search_state_no_suggestions_detail	-	0 تجاویز · 0 حالیہ مماثلتیں
@@ -38885,6 +39312,13 @@ values-b+vi	string	search_hint_site	-	Tìm kiếm %s…
 values-b+vi	string	search_poster_img_des	-	Poster
 values-b+vi	string	search_provider_text_providers	-	Tìm kiếm theo nguồn phim
 values-b+vi	string	search_provider_text_types	-	Tìm kiếm theo thể loại
+values-b+vi	string	search_quick_empty_body	-	Tất cả nguồn đã trả lời và không nguồn nào có “%s”. Hãy thử tìm ngắn hơn, hoặc mở tìm kiếm đầy đủ để đổi nguồn.
+values-b+vi	string	search_quick_empty_headline	-	Không có kết quả khớp
+values-b+vi	string	search_quick_meta_answered	-	TẤT CẢ NGUỒN ĐÃ TRẢ LỜI
+values-b+vi	string	search_quick_meta_answering	-	KẾT QUẢ ĐẾN KHI CÁC NGUỒN TRẢ LỜI
+values-b+vi	string	search_quick_open_full	-	Mở tìm kiếm đầy đủ
+values-b+vi	string	search_quick_status	-	%1$d/%2$d ĐÃ TRẢ LỜI · %3$d THẤT BẠI
+values-b+vi	string	search_quick_title	-	Tìm kiếm nhanh
 values-b+vi	string	search_state_idle_body_desktop	-	Nhập tiêu đề. Kết quả sẽ hiện dưới mỗi nguồn khi nguồn đó phản hồi.
 values-b+vi	string	search_state_no_results_type_filter	-	Chỉ %s. Bộ lọc loại của bạn đang thu hẹp kết quả tìm kiếm.
 values-b+vi	string	search_state_no_suggestions_detail	-	0 GỢI Ý · 0 KẾT QUẢ GẦN ĐÂY KHỚP
@@ -39721,6 +40155,13 @@ values-b+zh	string	search_hint_site	-	搜索 %s…
 values-b+zh	string	search_poster_img_des	-	封面
 values-b+zh	string	search_provider_text_providers	-	按片源搜索
 values-b+zh	string	search_provider_text_types	-	按类型搜索
+values-b+zh	string	search_quick_empty_body	-	所有来源均已响应，但都没有“%s”。请尝试更短的搜索词，或打开完整搜索以更改来源。
+values-b+zh	string	search_quick_empty_headline	-	无匹配
+values-b+zh	string	search_quick_meta_answered	-	所有来源均已响应
+values-b+zh	string	search_quick_meta_answering	-	结果随来源响应陆续出现
+values-b+zh	string	search_quick_open_full	-	打开完整搜索
+values-b+zh	string	search_quick_status	-	%2$d 个中 %1$d 个已响应 · %3$d 个失败
+values-b+zh	string	search_quick_title	-	快速搜索
 values-b+zh	string	search_state_idle_body_desktop	-	输入标题。每个来源响应后，结果会显示在其下方。
 values-b+zh	string	search_state_no_results_type_filter	-	仅限%s。类型筛选正在缩小搜索范围。
 values-b+zh	string	search_state_no_suggestions_detail	-	0 个建议 · 0 个最近匹配
@@ -40554,6 +40995,13 @@ values-b+zh+TW	string	search_hint_site	-	搜尋 %s…
 values-b+zh+TW	string	search_poster_img_des	-	封面
 values-b+zh+TW	string	search_provider_text_providers	-	按片源搜尋
 values-b+zh+TW	string	search_provider_text_types	-	按類型搜尋
+values-b+zh+TW	string	search_quick_empty_body	-	所有來源皆已回應，但都沒有「%s」。請嘗試更短的搜尋字詞，或開啟完整搜尋以變更來源。
+values-b+zh+TW	string	search_quick_empty_headline	-	沒有符合項目
+values-b+zh+TW	string	search_quick_meta_answered	-	所有來源皆已回應
+values-b+zh+TW	string	search_quick_meta_answering	-	結果隨來源回應陸續出現
+values-b+zh+TW	string	search_quick_open_full	-	開啟完整搜尋
+values-b+zh+TW	string	search_quick_status	-	%2$d 個中 %1$d 個已回應 · %3$d 個失敗
+values-b+zh+TW	string	search_quick_title	-	快速搜尋
 values-b+zh+TW	string	search_state_idle_body_desktop	-	輸入標題。每個來源回應後，結果會顯示在其下方。
 values-b+zh+TW	string	search_state_no_results_type_filter	-	僅限%s。類型篩選器正在縮小搜尋範圍。
 values-b+zh+TW	string	search_state_no_suggestions_detail	-	0 個建議 · 0 個最近相符

@@ -642,6 +642,13 @@ values-b+af	string	search_hint_site	-	Soek %s…
 values-b+af	string	search_poster_img_des	-	Plakkaat
 values-b+af	string	search_provider_text_providers	-	Soek deur verskaffers te gebruik
 values-b+af	string	search_provider_text_types	-	Soek met behulp van tipes
+values-b+af	string	search_quick_empty_body	-	Elke bron het geantwoord en nie een het “%s” nie. Probeer ’n korter soektog, of maak die volle soektog oop om die bronne te verander.
+values-b+af	string	search_quick_empty_headline	-	Geen passende resultate nie
+values-b+af	string	search_quick_meta_answered	-	ALLE BRONNE HET GEANTWOORD
+values-b+af	string	search_quick_meta_answering	-	RESULTATE KOM IN SOOS BRONNE ANTWOORD
+values-b+af	string	search_quick_open_full	-	Maak volle soektog oop
+values-b+af	string	search_quick_status	-	%1$d VAN %2$d GEANTWOORD · %3$d MISLUK
+values-b+af	string	search_quick_title	-	Vinnige soektog
 values-b+af	string	search_state_failed_body	-	None of your sources answered.
 values-b+af	string	search_state_failed_headline	-	Search failed
 values-b+af	string	search_state_idle_action	-	Browse home
@@ -1532,6 +1539,13 @@ values-b+am	string	search_hint_site	-	%sን ፈልግ…
 values-b+am	string	search_poster_img_des	-	ፖስተር
 values-b+am	string	search_provider_text_providers	-	አቅራቢዎችን በመጠቀም ይፈልጉ
 values-b+am	string	search_provider_text_types	-	ዓይነቶችን በመጠቀም ይፈልጉ
+values-b+am	string	search_quick_empty_body	-	ሁሉም ምንጮች መልሰዋል፣ ግን አንዳቸውም «%s» የላቸውም። አጭር ፍለጋ ይሞክሩ፣ ወይም ምንጮቹን ለመቀየር ሙሉ ፍለጋን ይክፈቱ።
+values-b+am	string	search_quick_empty_headline	-	ምንም ተዛማጅ የለም
+values-b+am	string	search_quick_meta_answered	-	ሁሉም ምንጮች መልሰዋል
+values-b+am	string	search_quick_meta_answering	-	ምንጮች ሲመልሱ ውጤቶች ይመጣሉ
+values-b+am	string	search_quick_open_full	-	ሙሉ ፍለጋን ክፈት
+values-b+am	string	search_quick_status	-	ከ%2$d ውስጥ %1$d መልሰዋል · %3$d አልተሳኩም
+values-b+am	string	search_quick_title	-	ፈጣን ፍለጋ
 values-b+am	string	search_state_failed_body	-	None of your sources answered.
 values-b+am	string	search_state_failed_headline	-	Search failed
 values-b+am	string	search_state_idle_action	-	Browse home
@@ -2422,6 +2436,13 @@ values-b+apc	string	search_hint_site	-	نبّش %s…
 values-b+apc	string	search_poster_img_des	-	پوستر
 values-b+apc	string	search_provider_text_providers	-	عوزو المصادر لَ تنبّشو
 values-b+apc	string	search_provider_text_types	-	عوزو الأنواع ل تنبّشو
+values-b+apc	string	search_quick_empty_body	-	كل المصادر ردّت وما حدا فيهن عندو «%s». جرّب بحث أقصر، أو افتح البحث الكامل لتغيّر المصادر.
+values-b+apc	string	search_quick_empty_headline	-	ما في تطابق
+values-b+apc	string	search_quick_meta_answered	-	كل المصادر ردّت
+values-b+apc	string	search_quick_meta_answering	-	النتائج عم توصل لما المصادر ترد
+values-b+apc	string	search_quick_open_full	-	افتح البحث الكامل
+values-b+apc	string	search_quick_status	-	%1$d من %2$d ردّوا · %3$d فشلوا
+values-b+apc	string	search_quick_title	-	بحث سريع
 values-b+apc	string	search_state_failed_body	-	None of your sources answered.
 values-b+apc	string	search_state_failed_headline	-	Search failed
 values-b+apc	string	search_state_idle_action	-	Browse home
@@ -3340,6 +3361,13 @@ values-b+ar	string	search_hint_site	-	بحث %s…
 values-b+ar	string	search_poster_img_des	-	الصورة الدعائية
 values-b+ar	string	search_provider_text_providers	-	البحث باستخدام المصادر
 values-b+ar	string	search_provider_text_types	-	البحث باستخدام الأنواع
+values-b+ar	string	search_quick_empty_body	-	ردّت جميع المصادر ولا يحتوي أيٌّ منها على «%s». جرّب بحثًا أقصر، أو افتح البحث الكامل لتغيير المصادر.
+values-b+ar	string	search_quick_empty_headline	-	لا توجد تطابقات
+values-b+ar	string	search_quick_meta_answered	-	ردّت جميع المصادر
+values-b+ar	string	search_quick_meta_answering	-	تصل النتائج مع ردّ المصادر
+values-b+ar	string	search_quick_open_full	-	فتح البحث الكامل
+values-b+ar	string	search_quick_status	-	ردّ %1$d من %2$d · فشل %3$d
+values-b+ar	string	search_quick_title	-	بحث سريع
 values-b+ar	string	search_state_failed_body	-	None of your sources answered.
 values-b+ar	string	search_state_failed_headline	-	Search failed
 values-b+ar	string	search_state_idle_action	-	Browse home
@@ -4250,6 +4278,13 @@ values-b+ars	string	search_hint_site	-	...%sابحث
 values-b+ars	string	search_poster_img_des	-	لافتة
 values-b+ars	string	search_provider_text_providers	-	البحث باستخدام مقدمي الخدمات
 values-b+ars	string	search_provider_text_types	-	البحث باستخدام الأنواع
+values-b+ars	string	search_quick_empty_body	-	كل المصادر ردّت وما فيها شي يحتوي «%s». جرّب بحث أقصر، أو افتح البحث الكامل عشان تغيّر المصادر.
+values-b+ars	string	search_quick_empty_headline	-	ما فيه تطابق
+values-b+ars	string	search_quick_meta_answered	-	كل المصادر ردّت
+values-b+ars	string	search_quick_meta_answering	-	النتائج توصل مع ردّ المصادر
+values-b+ars	string	search_quick_open_full	-	افتح البحث الكامل
+values-b+ars	string	search_quick_status	-	ردّ %1$d من %2$d · فشل %3$d
+values-b+ars	string	search_quick_title	-	بحث سريع
 values-b+ars	string	search_state_failed_body	-	None of your sources answered.
 values-b+ars	string	search_state_failed_headline	-	Search failed
 values-b+ars	string	search_state_idle_action	-	Browse home
@@ -5140,6 +5175,13 @@ values-b+as	string	search_hint_site	-	%sত সন্ধান কৰক…
 values-b+as	string	search_poster_img_des	-	পোস্টাৰ
 values-b+as	string	search_provider_text_providers	-	প্ৰদানকাৰীৰে সন্ধান কৰক
 values-b+as	string	search_provider_text_types	-	প্ৰকাৰৰ দ্বাৰা সন্ধান কৰক
+values-b+as	string	search_quick_empty_body	-	সকলো উৎসই উত্তৰ দিলে কিন্তু কাৰো ওচৰত “%s” নাই। চুটি সন্ধান চেষ্টা কৰক, বা উৎস সলনি কৰিবলৈ সম্পূৰ্ণ সন্ধান খোলক।
+values-b+as	string	search_quick_empty_headline	-	কোনো মিল নাই
+values-b+as	string	search_quick_meta_answered	-	সকলো উৎসই উত্তৰ দিলে
+values-b+as	string	search_quick_meta_answering	-	উৎসসমূহে উত্তৰ দিয়াৰ লগে লগে ফলাফল আহে
+values-b+as	string	search_quick_open_full	-	সম্পূৰ্ণ সন্ধান খোলক
+values-b+as	string	search_quick_status	-	%2$dৰ ভিতৰত %1$dয়ে উত্তৰ দিলে · %3$d ব্যৰ্থ
+values-b+as	string	search_quick_title	-	দ্ৰুত সন্ধান
 values-b+as	string	search_state_failed_body	-	None of your sources answered.
 values-b+as	string	search_state_failed_headline	-	Search failed
 values-b+as	string	search_state_idle_action	-	Browse home
@@ -6030,6 +6072,13 @@ values-b+az	string	search_hint_site	-	Search %s…
 values-b+az	string	search_poster_img_des	-	Afişa
 values-b+az	string	search_provider_text_providers	-	Search using providers
 values-b+az	string	search_provider_text_types	-	Search using types
+values-b+az	string	search_quick_empty_body	-	Bütün mənbələr cavab verdi və heç birində «%s» yoxdur. Daha qısa sorğu yoxlayın və ya mənbələri dəyişmək üçün tam axtarışı açın.
+values-b+az	string	search_quick_empty_headline	-	Uyğunluq yoxdur
+values-b+az	string	search_quick_meta_answered	-	BÜTÜN MƏNBƏLƏR CAVAB VERDİ
+values-b+az	string	search_quick_meta_answering	-	MƏNBƏLƏR CAVAB VERDİKCƏ NƏTİCƏLƏR GƏLİR
+values-b+az	string	search_quick_open_full	-	Tam axtarışı aç
+values-b+az	string	search_quick_status	-	%2$d İÇİNDƏN %1$d CAVAB VERDİ · %3$d UĞURSUZ
+values-b+az	string	search_quick_title	-	Sürətli axtarış
 values-b+az	string	search_state_failed_body	-	None of your sources answered.
 values-b+az	string	search_state_failed_headline	-	Search failed
 values-b+az	string	search_state_idle_action	-	Browse home
@@ -6934,6 +6983,13 @@ values-b+be	string	search_hint_site	-	Шукаць па %s…
 values-b+be	string	search_poster_img_des	-	Плакат
 values-b+be	string	search_provider_text_providers	-	Пошук праз пастаўшчыкоў
 values-b+be	string	search_provider_text_types	-	Пошук праз тыпы
+values-b+be	string	search_quick_empty_body	-	Усе крыніцы адказалі, і ні ў адной няма «%s». Паспрабуйце карацейшы запыт або адкрыйце поўны пошук, каб змяніць крыніцы.
+values-b+be	string	search_quick_empty_headline	-	Няма супадзенняў
+values-b+be	string	search_quick_meta_answered	-	УСЕ КРЫНІЦЫ АДКАЗАЛІ
+values-b+be	string	search_quick_meta_answering	-	ВЫНІКІ З'ЯЎЛЯЮЦЦА ПА МЕРЫ АДКАЗАЎ КРЫНІЦ
+values-b+be	string	search_quick_open_full	-	Адкрыць поўны пошук
+values-b+be	string	search_quick_status	-	АДКАЗАЛІ %1$d З %2$d · ЗБОЙ %3$d
+values-b+be	string	search_quick_title	-	Хуткі пошук
 values-b+be	string	search_state_failed_body	-	None of your sources answered.
 values-b+be	string	search_state_failed_headline	-	Search failed
 values-b+be	string	search_state_idle_action	-	Browse home
@@ -7824,6 +7880,13 @@ values-b+bg	string	search_hint_site	-	Търси %s…
 values-b+bg	string	search_poster_img_des	-	Постер
 values-b+bg	string	search_provider_text_providers	-	Търсене чрез доставчици
 values-b+bg	string	search_provider_text_types	-	Търсене с помощта на типове
+values-b+bg	string	search_quick_empty_body	-	Всички източници отговориха и никой няма „%s“. Опитайте по-кратко търсене или отворете пълното търсене, за да смените източниците.
+values-b+bg	string	search_quick_empty_headline	-	Няма съвпадения
+values-b+bg	string	search_quick_meta_answered	-	ВСИЧКИ ИЗТОЧНИЦИ ОТГОВОРИХА
+values-b+bg	string	search_quick_meta_answering	-	РЕЗУЛТАТИТЕ ИДВАТ С ОТГОВОРИТЕ НА ИЗТОЧНИЦИТЕ
+values-b+bg	string	search_quick_open_full	-	Отвори пълното търсене
+values-b+bg	string	search_quick_status	-	ОТГОВОРИЛИ %1$d ОТ %2$d · НЕУСПЕШНИ %3$d
+values-b+bg	string	search_quick_title	-	Бързо търсене
 values-b+bg	string	search_state_failed_body	-	None of your sources answered.
 values-b+bg	string	search_state_failed_headline	-	Search failed
 values-b+bg	string	search_state_idle_action	-	Browse home
@@ -8714,6 +8777,13 @@ values-b+bn	string	search_hint_site	-	খুঁজুন %s…
 values-b+bn	string	search_poster_img_des	-	পোস্টার
 values-b+bn	string	search_provider_text_providers	-	প্রভাইডার অনুযায়ি খুঁজুন
 values-b+bn	string	search_provider_text_types	-	ধরণ অনুযায়ি খুঁজুন
+values-b+bn	string	search_quick_empty_body	-	সব উৎস উত্তর দিয়েছে কিন্তু কারও কাছে “%s” নেই। ছোট অনুসন্ধান চেষ্টা করুন, অথবা উৎস বদলাতে পূর্ণ অনুসন্ধান খুলুন।
+values-b+bn	string	search_quick_empty_headline	-	কোনো মিল নেই
+values-b+bn	string	search_quick_meta_answered	-	সব উৎস উত্তর দিয়েছে
+values-b+bn	string	search_quick_meta_answering	-	উৎসগুলো উত্তর দিলেই ফলাফল আসে
+values-b+bn	string	search_quick_open_full	-	পূর্ণ অনুসন্ধান খুলুন
+values-b+bn	string	search_quick_status	-	%2$d-এর মধ্যে %1$d উত্তর দিয়েছে · %3$d ব্যর্থ
+values-b+bn	string	search_quick_title	-	দ্রুত অনুসন্ধান
 values-b+bn	string	search_state_failed_body	-	None of your sources answered.
 values-b+bn	string	search_state_failed_headline	-	Search failed
 values-b+bn	string	search_state_idle_action	-	Browse home
@@ -9609,6 +9679,13 @@ values-b+ca	string	search_hint_site	-	Cercar a %s…
 values-b+ca	string	search_poster_img_des	-	Cartell
 values-b+ca	string	search_provider_text_providers	-	Cerca amb proveïdors
 values-b+ca	string	search_provider_text_types	-	Cerca per tipus
+values-b+ca	string	search_quick_empty_body	-	Totes les fonts han respost i cap no té «%s». Proveu una cerca més curta o obriu la cerca completa per canviar les fonts.
+values-b+ca	string	search_quick_empty_headline	-	Cap coincidència
+values-b+ca	string	search_quick_meta_answered	-	TOTES LES FONTS HAN RESPOST
+values-b+ca	string	search_quick_meta_answering	-	ELS RESULTATS ARRIBEN A MESURA QUE RESPONEN LES FONTS
+values-b+ca	string	search_quick_open_full	-	Obre la cerca completa
+values-b+ca	string	search_quick_status	-	%1$d DE %2$d HAN RESPOST · %3$d HAN FALLAT
+values-b+ca	string	search_quick_title	-	Cerca ràpida
 values-b+ca	string	search_state_failed_body	-	None of your sources answered.
 values-b+ca	string	search_state_failed_headline	-	Search failed
 values-b+ca	string	search_state_idle_action	-	Browse home
@@ -10499,6 +10576,13 @@ values-b+ckb	string	search_hint_site	-	بگەڕێ بۆ%s…
 values-b+ckb	string	search_poster_img_des	-	پۆستەر
 values-b+ckb	string	search_provider_text_providers	-	Search using providers
 values-b+ckb	string	search_provider_text_types	-	Search using types
+values-b+ckb	string	search_quick_empty_body	-	هەموو سەرچاوەکان وەڵامیان دایەوە و هیچیان «%s»ـیان نییە. گەڕانێکی کورتتر تاقی بکەرەوە، یان گەڕانی تەواو بکەرەوە بۆ گۆڕینی سەرچاوەکان.
+values-b+ckb	string	search_quick_empty_headline	-	هیچ گونجانێک نییە
+values-b+ckb	string	search_quick_meta_answered	-	هەموو سەرچاوەکان وەڵامیان دایەوە
+values-b+ckb	string	search_quick_meta_answering	-	ئەنجامەکان لەگەڵ وەڵامدانەوەی سەرچاوەکان دێن
+values-b+ckb	string	search_quick_open_full	-	کردنەوەی گەڕانی تەواو
+values-b+ckb	string	search_quick_status	-	%1$d لە %2$d وەڵامیان دایەوە · %3$d شکستیان هێنا
+values-b+ckb	string	search_quick_title	-	گەڕانی خێرا
 values-b+ckb	string	search_state_failed_body	-	None of your sources answered.
 values-b+ckb	string	search_state_failed_headline	-	Search failed
 values-b+ckb	string	search_state_idle_action	-	Browse home
@@ -11405,6 +11489,13 @@ values-b+cs	string	search_hint_site	-	Hledat %s…
 values-b+cs	string	search_poster_img_des	-	Plakát
 values-b+cs	string	search_provider_text_providers	-	Hledat pomocí poskytovatelů
 values-b+cs	string	search_provider_text_types	-	Hledat pomocí typů
+values-b+cs	string	search_quick_empty_body	-	Všechny zdroje odpověděly a žádný nemá „%s“. Zkuste kratší dotaz nebo otevřete úplné hledání a změňte zdroje.
+values-b+cs	string	search_quick_empty_headline	-	Žádné shody
+values-b+cs	string	search_quick_meta_answered	-	VŠECHNY ZDROJE ODPOVĚDĚLY
+values-b+cs	string	search_quick_meta_answering	-	VÝSLEDKY PŘIBÝVAJÍ, JAK ZDROJE ODPOVÍDAJÍ
+values-b+cs	string	search_quick_open_full	-	Otevřít úplné hledání
+values-b+cs	string	search_quick_status	-	ODPOVĚDĚLO %1$d Z %2$d · SELHALO %3$d
+values-b+cs	string	search_quick_title	-	Rychlé hledání
 values-b+cs	string	search_state_failed_body	-	None of your sources answered.
 values-b+cs	string	search_state_failed_headline	-	Search failed
 values-b+cs	string	search_state_idle_action	-	Browse home
@@ -12295,6 +12386,13 @@ values-b+de	string	search_hint_site	-	Suche %s…
 values-b+de	string	search_poster_img_des	-	Vorschaubild
 values-b+de	string	search_provider_text_providers	-	Suche anhand Anbietern
 values-b+de	string	search_provider_text_types	-	Suche anhand Typen
+values-b+de	string	search_quick_empty_body	-	Alle Quellen haben geantwortet, und keine hat „%s“. Versuche eine kürzere Suche oder öffne die vollständige Suche, um die Quellen zu ändern.
+values-b+de	string	search_quick_empty_headline	-	Keine Treffer
+values-b+de	string	search_quick_meta_answered	-	ALLE QUELLEN HABEN GEANTWORTET
+values-b+de	string	search_quick_meta_answering	-	ERGEBNISSE KOMMEN, SOBALD QUELLEN ANTWORTEN
+values-b+de	string	search_quick_open_full	-	Vollständige Suche öffnen
+values-b+de	string	search_quick_status	-	%1$d VON %2$d GEANTWORTET · %3$d FEHLGESCHLAGEN
+values-b+de	string	search_quick_title	-	Schnellsuche
 values-b+de	string	search_state_failed_body	-	None of your sources answered.
 values-b+de	string	search_state_failed_headline	-	Search failed
 values-b+de	string	search_state_idle_action	-	Browse home
@@ -13185,6 +13283,13 @@ values-b+el	string	search_hint_site	-	Αναζήτηση %s…
 values-b+el	string	search_poster_img_des	-	Αφίσα
 values-b+el	string	search_provider_text_providers	-	Αναζήτηση βάσει παρόχων
 values-b+el	string	search_provider_text_types	-	Αναζήτηση βάσει τύπων
+values-b+el	string	search_quick_empty_body	-	Όλες οι πηγές απάντησαν και καμία δεν έχει «%s». Δοκιμάστε μικρότερη αναζήτηση ή ανοίξτε την πλήρη αναζήτηση για να αλλάξετε τις πηγές.
+values-b+el	string	search_quick_empty_headline	-	Καμία αντιστοιχία
+values-b+el	string	search_quick_meta_answered	-	ΑΠΑΝΤΗΣΑΝ ΟΛΕΣ ΟΙ ΠΗΓΕΣ
+values-b+el	string	search_quick_meta_answering	-	ΤΑ ΑΠΟΤΕΛΕΣΜΑΤΑ ΕΡΧΟΝΤΑΙ ΚΑΘΩΣ ΑΠΑΝΤΟΥΝ ΟΙ ΠΗΓΕΣ
+values-b+el	string	search_quick_open_full	-	Άνοιγμα πλήρους αναζήτησης
+values-b+el	string	search_quick_status	-	ΑΠΑΝΤΗΣΑΝ %1$d ΑΠΟ %2$d · ΑΠΕΤΥΧΑΝ %3$d
+values-b+el	string	search_quick_title	-	Γρήγορη αναζήτηση
 values-b+el	string	search_state_failed_body	-	None of your sources answered.
 values-b+el	string	search_state_failed_headline	-	Search failed
 values-b+el	string	search_state_idle_action	-	Browse home
@@ -14075,6 +14180,13 @@ values-b+eo	string	search_hint_site	-	Serĉi %s…
 values-b+eo	string	search_poster_img_des	-	Afiŝo
 values-b+eo	string	search_provider_text_providers	-	Serĉi uzante provizantojn
 values-b+eo	string	search_provider_text_types	-	Serĉi uzante tipojn
+values-b+eo	string	search_quick_empty_body	-	Ĉiuj fontoj respondis kaj neniu havas “%s”. Provu pli mallongan serĉon, aŭ malfermu la plenan serĉon por ŝanĝi la fontojn.
+values-b+eo	string	search_quick_empty_headline	-	Neniu kongruo
+values-b+eo	string	search_quick_meta_answered	-	ĈIUJ FONTOJ RESPONDIS
+values-b+eo	string	search_quick_meta_answering	-	REZULTOJ ALVENAS DUM FONTOJ RESPONDAS
+values-b+eo	string	search_quick_open_full	-	Malfermi plenan serĉon
+values-b+eo	string	search_quick_status	-	%1$d EL %2$d RESPONDIS · %3$d MALSUKCESIS
+values-b+eo	string	search_quick_title	-	Rapida serĉo
 values-b+eo	string	search_state_failed_body	-	None of your sources answered.
 values-b+eo	string	search_state_failed_headline	-	Search failed
 values-b+eo	string	search_state_idle_action	-	Browse home
@@ -14973,6 +15085,13 @@ values-b+es	string	search_hint_site	-	Buscar en %s…
 values-b+es	string	search_poster_img_des	-	Póster
 values-b+es	string	search_provider_text_providers	-	Buscar usando proveedores
 values-b+es	string	search_provider_text_types	-	Buscar por tipos
+values-b+es	string	search_quick_empty_body	-	Todas las fuentes respondieron y ninguna tiene «%s». Pruebe una búsqueda más corta o abra la búsqueda completa para cambiar las fuentes.
+values-b+es	string	search_quick_empty_headline	-	Sin coincidencias
+values-b+es	string	search_quick_meta_answered	-	TODAS LAS FUENTES HAN RESPONDIDO
+values-b+es	string	search_quick_meta_answering	-	LOS RESULTADOS LLEGAN SEGÚN RESPONDEN LAS FUENTES
+values-b+es	string	search_quick_open_full	-	Abrir búsqueda completa
+values-b+es	string	search_quick_status	-	%1$d DE %2$d RESPONDIERON · %3$d FALLARON
+values-b+es	string	search_quick_title	-	Búsqueda rápida
 values-b+es	string	search_state_failed_body	-	None of your sources answered.
 values-b+es	string	search_state_failed_headline	-	Search failed
 values-b+es	string	search_state_idle_action	-	Browse home
@@ -15863,6 +15982,13 @@ values-b+fa	string	search_hint_site	-	جست‌و‌جوی %s…
 values-b+fa	string	search_poster_img_des	-	پوستر
 values-b+fa	string	search_provider_text_providers	-	جستجو از طریق ارائه‌دهنده‌ها
 values-b+fa	string	search_provider_text_types	-	جستجو از طریق انواع
+values-b+fa	string	search_quick_empty_body	-	همه منابع پاسخ دادند و هیچ‌کدام «%s» را ندارند. جستجوی کوتاه‌تری را امتحان کنید یا برای تغییر منابع، جستجوی کامل را باز کنید.
+values-b+fa	string	search_quick_empty_headline	-	موردی مطابقت ندارد
+values-b+fa	string	search_quick_meta_answered	-	همه منابع پاسخ دادند
+values-b+fa	string	search_quick_meta_answering	-	نتایج با پاسخ منابع می‌رسند
+values-b+fa	string	search_quick_open_full	-	باز کردن جستجوی کامل
+values-b+fa	string	search_quick_status	-	%1$d از %2$d پاسخ دادند · %3$d ناموفق
+values-b+fa	string	search_quick_title	-	جستجوی سریع
 values-b+fa	string	search_state_failed_body	-	None of your sources answered.
 values-b+fa	string	search_state_failed_headline	-	Search failed
 values-b+fa	string	search_state_idle_action	-	Browse home
@@ -16753,6 +16879,13 @@ values-b+fil	string	search_hint_site	-	Maghanap %s…
 values-b+fil	string	search_poster_img_des	-	Poster
 values-b+fil	string	search_provider_text_providers	-	Maghanap gamit ang mga tagatustos
 values-b+fil	string	search_provider_text_types	-	Maghanap gamit ang mga uri
+values-b+fil	string	search_quick_empty_body	-	Sumagot ang lahat ng source at wala ni isang may “%s”. Subukan ang mas maikling paghahanap, o buksan ang buong paghahanap para palitan ang mga source.
+values-b+fil	string	search_quick_empty_headline	-	Walang tugma
+values-b+fil	string	search_quick_meta_answered	-	SUMAGOT NA ANG LAHAT NG SOURCE
+values-b+fil	string	search_quick_meta_answering	-	DUMARATING ANG MGA RESULTA HABANG SUMASAGOT ANG MGA SOURCE
+values-b+fil	string	search_quick_open_full	-	Buksan ang buong paghahanap
+values-b+fil	string	search_quick_status	-	%1$d SA %2$d ANG SUMAGOT · %3$d ANG NABIGO
+values-b+fil	string	search_quick_title	-	Mabilis na paghahanap
 values-b+fil	string	search_state_failed_body	-	None of your sources answered.
 values-b+fil	string	search_state_failed_headline	-	Search failed
 values-b+fil	string	search_state_idle_action	-	Browse home
@@ -17651,6 +17784,13 @@ values-b+fr	string	search_hint_site	-	Rechercher sur %s…
 values-b+fr	string	search_poster_img_des	-	Affiche
 values-b+fr	string	search_provider_text_providers	-	Recherche par fournisseur
 values-b+fr	string	search_provider_text_types	-	Recherche par types
+values-b+fr	string	search_quick_empty_body	-	Toutes les sources ont répondu et aucune ne propose « %s ». Essayez une recherche plus courte, ou ouvrez la recherche complète pour changer de sources.
+values-b+fr	string	search_quick_empty_headline	-	Aucune correspondance
+values-b+fr	string	search_quick_meta_answered	-	TOUTES LES SOURCES ONT RÉPONDU
+values-b+fr	string	search_quick_meta_answering	-	LES RÉSULTATS ARRIVENT À MESURE QUE LES SOURCES RÉPONDENT
+values-b+fr	string	search_quick_open_full	-	Ouvrir la recherche complète
+values-b+fr	string	search_quick_status	-	%1$d SUR %2$d ONT RÉPONDU · %3$d EN ÉCHEC
+values-b+fr	string	search_quick_title	-	Recherche rapide
 values-b+fr	string	search_state_failed_body	-	None of your sources answered.
 values-b+fr	string	search_state_failed_headline	-	Search failed
 values-b+fr	string	search_state_idle_action	-	Browse home
@@ -18541,6 +18681,13 @@ values-b+gl	string	search_hint_site	-	Procurar en %s…
 values-b+gl	string	search_poster_img_des	-	Cartel
 values-b+gl	string	search_provider_text_providers	-	Procurar usando proveedores
 values-b+gl	string	search_provider_text_types	-	Procurar por tipos
+values-b+gl	string	search_quick_empty_body	-	Todas as fontes responderon e ningunha ten «%s». Proba unha busca máis curta ou abre a busca completa para cambiar as fontes.
+values-b+gl	string	search_quick_empty_headline	-	Sen coincidencias
+values-b+gl	string	search_quick_meta_answered	-	TODAS AS FONTES RESPONDERON
+values-b+gl	string	search_quick_meta_answering	-	OS RESULTADOS CHEGAN SEGUNDO RESPONDEN AS FONTES
+values-b+gl	string	search_quick_open_full	-	Abrir a busca completa
+values-b+gl	string	search_quick_status	-	%1$d DE %2$d RESPONDERON · %3$d FALLARON
+values-b+gl	string	search_quick_title	-	Busca rápida
 values-b+gl	string	search_state_failed_body	-	None of your sources answered.
 values-b+gl	string	search_state_failed_headline	-	Search failed
 values-b+gl	string	search_state_idle_action	-	Browse home
@@ -19431,6 +19578,13 @@ values-b+hi	string	search_hint_site	-	%s पर खोजें…
 values-b+hi	string	search_poster_img_des	-	पोस्टर
 values-b+hi	string	search_provider_text_providers	-	प्रोवाइडरों का उपयोग कर खोजें
 values-b+hi	string	search_provider_text_types	-	प्रकार का उपयोग करके खोजें
+values-b+hi	string	search_quick_empty_body	-	सभी स्रोतों ने जवाब दिया और किसी के पास “%s” नहीं है। छोटी खोज आज़माएँ, या स्रोत बदलने के लिए पूरी खोज खोलें।
+values-b+hi	string	search_quick_empty_headline	-	कोई मेल नहीं
+values-b+hi	string	search_quick_meta_answered	-	सभी स्रोतों ने जवाब दिया
+values-b+hi	string	search_quick_meta_answering	-	स्रोतों के जवाब के साथ नतीजे आते हैं
+values-b+hi	string	search_quick_open_full	-	पूरी खोज खोलें
+values-b+hi	string	search_quick_status	-	%2$d में से %1$d ने जवाब दिया · %3$d विफल
+values-b+hi	string	search_quick_title	-	त्वरित खोज
 values-b+hi	string	search_state_failed_body	-	None of your sources answered.
 values-b+hi	string	search_state_failed_headline	-	Search failed
 values-b+hi	string	search_state_idle_action	-	Browse home
@@ -20328,6 +20482,13 @@ values-b+hr	string	search_hint_site	-	Traži %s …
 values-b+hr	string	search_poster_img_des	-	Poster
 values-b+hr	string	search_provider_text_providers	-	Traži koristeći pružatelje usluga
 values-b+hr	string	search_provider_text_types	-	Traži koristeći vrste
+values-b+hr	string	search_quick_empty_body	-	Svi su izvori odgovorili i nijedan nema „%s“. Pokušajte s kraćim upitom ili otvorite potpuno pretraživanje da biste promijenili izvore.
+values-b+hr	string	search_quick_empty_headline	-	Nema podudaranja
+values-b+hr	string	search_quick_meta_answered	-	SVI SU IZVORI ODGOVORILI
+values-b+hr	string	search_quick_meta_answering	-	REZULTATI STIŽU KAKO IZVORI ODGOVARAJU
+values-b+hr	string	search_quick_open_full	-	Otvori potpuno pretraživanje
+values-b+hr	string	search_quick_status	-	ODGOVORILO %1$d OD %2$d · NEUSPJELO %3$d
+values-b+hr	string	search_quick_title	-	Brzo pretraživanje
 values-b+hr	string	search_state_failed_body	-	None of your sources answered.
 values-b+hr	string	search_state_failed_headline	-	Search failed
 values-b+hr	string	search_state_idle_action	-	Browse home
@@ -21218,6 +21379,13 @@ values-b+hu	string	search_hint_site	-	Keresés %s…
 values-b+hu	string	search_poster_img_des	-	Poszter
 values-b+hu	string	search_provider_text_providers	-	Keresés szolgáltatók szerint
 values-b+hu	string	search_provider_text_types	-	Keresés típusok szerint
+values-b+hu	string	search_quick_empty_body	-	Minden forrás válaszolt, és egyiknél sincs meg ez: „%s”. Próbáljon rövidebb keresést, vagy nyissa meg a teljes keresést a források módosításához.
+values-b+hu	string	search_quick_empty_headline	-	Nincs egyezés
+values-b+hu	string	search_quick_meta_answered	-	MINDEN FORRÁS VÁLASZOLT
+values-b+hu	string	search_quick_meta_answering	-	AZ EREDMÉNYEK A FORRÁSOK VÁLASZAIVAL ÉRKEZNEK
+values-b+hu	string	search_quick_open_full	-	Teljes keresés megnyitása
+values-b+hu	string	search_quick_status	-	%2$d KÖZÜL %1$d VÁLASZOLT · %3$d SIKERTELEN
+values-b+hu	string	search_quick_title	-	Gyorskeresés
 values-b+hu	string	search_state_failed_body	-	None of your sources answered.
 values-b+hu	string	search_state_failed_headline	-	Search failed
 values-b+hu	string	search_state_idle_action	-	Browse home
@@ -22100,6 +22268,13 @@ values-b+in	string	search_hint_site	-	Cari %s…
 values-b+in	string	search_poster_img_des	-	Poster
 values-b+in	string	search_provider_text_providers	-	Cari menggunakan penyedia
 values-b+in	string	search_provider_text_types	-	Cari menggunakan jenis
+values-b+in	string	search_quick_empty_body	-	Semua sumber menjawab dan tidak ada yang memiliki “%s”. Coba pencarian yang lebih pendek, atau buka pencarian lengkap untuk mengganti sumber.
+values-b+in	string	search_quick_empty_headline	-	Tidak ada yang cocok
+values-b+in	string	search_quick_meta_answered	-	SEMUA SUMBER TELAH MENJAWAB
+values-b+in	string	search_quick_meta_answering	-	HASIL MASUK SAAT SUMBER MENJAWAB
+values-b+in	string	search_quick_open_full	-	Buka pencarian lengkap
+values-b+in	string	search_quick_status	-	%1$d DARI %2$d MENJAWAB · %3$d GAGAL
+values-b+in	string	search_quick_title	-	Pencarian cepat
 values-b+in	string	search_state_failed_body	-	None of your sources answered.
 values-b+in	string	search_state_failed_headline	-	Search failed
 values-b+in	string	search_state_idle_action	-	Browse home
@@ -22998,6 +23173,13 @@ values-b+it	string	search_hint_site	-	Cerca in %s…
 values-b+it	string	search_poster_img_des	-	Poster
 values-b+it	string	search_provider_text_providers	-	Cerca per provider
 values-b+it	string	search_provider_text_types	-	Cerca per tipo
+values-b+it	string	search_quick_empty_body	-	Tutte le fonti hanno risposto e nessuna ha «%s». Prova una ricerca più breve o apri la ricerca completa per cambiare le fonti.
+values-b+it	string	search_quick_empty_headline	-	Nessuna corrispondenza
+values-b+it	string	search_quick_meta_answered	-	TUTTE LE FONTI HANNO RISPOSTO
+values-b+it	string	search_quick_meta_answering	-	I RISULTATI ARRIVANO MAN MANO CHE LE FONTI RISPONDONO
+values-b+it	string	search_quick_open_full	-	Apri la ricerca completa
+values-b+it	string	search_quick_status	-	%1$d SU %2$d HANNO RISPOSTO · %3$d NON RIUSCITE
+values-b+it	string	search_quick_title	-	Ricerca rapida
 values-b+it	string	search_state_failed_body	-	None of your sources answered.
 values-b+it	string	search_state_failed_headline	-	Search failed
 values-b+it	string	search_state_idle_action	-	Browse home
@@ -23893,6 +24075,13 @@ values-b+iw	string	search_hint_site	-	חיפוש %s…
 values-b+iw	string	search_poster_img_des	-	פוסטר
 values-b+iw	string	search_provider_text_providers	-	חפש באמצעות הספקים
 values-b+iw	string	search_provider_text_types	-	חפש באמצעות סוגים
+values-b+iw	string	search_quick_empty_body	-	כל המקורות ענו ואף אחד מהם לא מכיל את “%s”. נסו חיפוש קצר יותר, או פתחו את החיפוש המלא כדי לשנות את המקורות.
+values-b+iw	string	search_quick_empty_headline	-	אין התאמות
+values-b+iw	string	search_quick_meta_answered	-	כל המקורות ענו
+values-b+iw	string	search_quick_meta_answering	-	התוצאות מגיעות כשהמקורות עונים
+values-b+iw	string	search_quick_open_full	-	פתיחת החיפוש המלא
+values-b+iw	string	search_quick_status	-	%1$d מתוך %2$d ענו · %3$d נכשלו
+values-b+iw	string	search_quick_title	-	חיפוש מהיר
 values-b+iw	string	search_state_failed_body	-	None of your sources answered.
 values-b+iw	string	search_state_failed_headline	-	Search failed
 values-b+iw	string	search_state_idle_action	-	Browse home
@@ -24775,6 +24964,13 @@ values-b+ja	string	search_hint_site	-	%sを検索…
 values-b+ja	string	search_poster_img_des	-	ポスター
 values-b+ja	string	search_provider_text_providers	-	プロバイダーから探す
 values-b+ja	string	search_provider_text_types	-	使用タイプの検索
+values-b+ja	string	search_quick_empty_body	-	すべてのソースが応答しましたが、「%s」はどこにもありません。短いキーワードで試すか、完全な検索を開いてソースを変更してください。
+values-b+ja	string	search_quick_empty_headline	-	一致なし
+values-b+ja	string	search_quick_meta_answered	-	すべてのソースが応答しました
+values-b+ja	string	search_quick_meta_answering	-	ソースが応答するたびに結果が届きます
+values-b+ja	string	search_quick_open_full	-	完全な検索を開く
+values-b+ja	string	search_quick_status	-	%2$d件中%1$d件が応答 · %3$d件が失敗
+values-b+ja	string	search_quick_title	-	クイック検索
 values-b+ja	string	search_state_failed_body	-	None of your sources answered.
 values-b+ja	string	search_state_failed_headline	-	Search failed
 values-b+ja	string	search_state_idle_action	-	Browse home
@@ -25665,6 +25861,13 @@ values-b+kn	string	search_hint_site	-	ಹುಡುಕು %s…
 values-b+kn	string	search_poster_img_des	-	ಪೋಸ್ಟರ್
 values-b+kn	string	search_provider_text_providers	-	ಪೂರೈಕೆದಾರರನ್ನು ಬಳಸಿಕೊಂಡು ಹುಡುಕಿ
 values-b+kn	string	search_provider_text_types	-	ಪ್ರಕಾರಗಳನ್ನು ಬಳಸಿಕೊಂಡು ಹುಡುಕಿ
+values-b+kn	string	search_quick_empty_body	-	ಎಲ್ಲಾ ಮೂಲಗಳು ಉತ್ತರಿಸಿವೆ, ಆದರೆ ಯಾವುದರಲ್ಲೂ “%s” ಇಲ್ಲ. ಚಿಕ್ಕ ಹುಡುಕಾಟ ಪ್ರಯತ್ನಿಸಿ, ಅಥವಾ ಮೂಲಗಳನ್ನು ಬದಲಿಸಲು ಪೂರ್ಣ ಹುಡುಕಾಟ ತೆರೆಯಿರಿ.
+values-b+kn	string	search_quick_empty_headline	-	ಯಾವುದೇ ಹೊಂದಾಣಿಕೆ ಇಲ್ಲ
+values-b+kn	string	search_quick_meta_answered	-	ಎಲ್ಲಾ ಮೂಲಗಳು ಉತ್ತರಿಸಿವೆ
+values-b+kn	string	search_quick_meta_answering	-	ಮೂಲಗಳು ಉತ್ತರಿಸಿದಂತೆ ಫಲಿತಾಂಶಗಳು ಬರುತ್ತವೆ
+values-b+kn	string	search_quick_open_full	-	ಪೂರ್ಣ ಹುಡುಕಾಟ ತೆರೆಯಿರಿ
+values-b+kn	string	search_quick_status	-	%2$d ರಲ್ಲಿ %1$d ಉತ್ತರಿಸಿವೆ · %3$d ವಿಫಲ
+values-b+kn	string	search_quick_title	-	ತ್ವರಿತ ಹುಡುಕಾಟ
 values-b+kn	string	search_state_failed_body	-	None of your sources answered.
 values-b+kn	string	search_state_failed_headline	-	Search failed
 values-b+kn	string	search_state_idle_action	-	Browse home
@@ -26548,6 +26751,13 @@ values-b+ko	string	search_hint_site	-	검색 %s…
 values-b+ko	string	search_poster_img_des	-	포스터
 values-b+ko	string	search_provider_text_providers	-	소스로 검색
 values-b+ko	string	search_provider_text_types	-	유형을 사용하여 검색
+values-b+ko	string	search_quick_empty_body	-	모든 소스가 응답했지만 “%s”이(가) 있는 소스가 없습니다. 더 짧게 검색하거나 전체 검색을 열어 소스를 변경하세요.
+values-b+ko	string	search_quick_empty_headline	-	일치 항목 없음
+values-b+ko	string	search_quick_meta_answered	-	모든 소스가 응답함
+values-b+ko	string	search_quick_meta_answering	-	소스가 응답하는 대로 결과가 표시됩니다
+values-b+ko	string	search_quick_open_full	-	전체 검색 열기
+values-b+ko	string	search_quick_status	-	%2$d개 중 %1$d개 응답 · %3$d개 실패
+values-b+ko	string	search_quick_title	-	빠른 검색
 values-b+ko	string	search_state_failed_body	-	None of your sources answered.
 values-b+ko	string	search_state_failed_headline	-	Search failed
 values-b+ko	string	search_state_idle_action	-	Browse home
@@ -27448,6 +27658,13 @@ values-b+lt	string	search_hint_site	-	Ieškoti %s…
 values-b+lt	string	search_poster_img_des	-	Plakatas
 values-b+lt	string	search_provider_text_providers	-	Ieškoti naudojant tiekėjus
 values-b+lt	string	search_provider_text_types	-	Ieškoti naudojant tipus
+values-b+lt	string	search_quick_empty_body	-	Atsakė visi šaltiniai, ir nė viename nėra „%s“. Pabandykite trumpesnę paiešką arba atidarykite visą paiešką ir pakeiskite šaltinius.
+values-b+lt	string	search_quick_empty_headline	-	Atitikmenų nėra
+values-b+lt	string	search_quick_meta_answered	-	ATSAKĖ VISI ŠALTINIAI
+values-b+lt	string	search_quick_meta_answering	-	REZULTATAI ATEINA ATSAKANT ŠALTINIAMS
+values-b+lt	string	search_quick_open_full	-	Atidaryti visą paiešką
+values-b+lt	string	search_quick_status	-	ATSAKĖ %1$d IŠ %2$d · NEPAVYKO %3$d
+values-b+lt	string	search_quick_title	-	Greita paieška
 values-b+lt	string	search_state_failed_body	-	None of your sources answered.
 values-b+lt	string	search_state_failed_headline	-	Search failed
 values-b+lt	string	search_state_idle_action	-	Browse home
@@ -28344,6 +28561,13 @@ values-b+lv	string	search_hint_site	-	Meklēt %s…
 values-b+lv	string	search_poster_img_des	-	Plakāts
 values-b+lv	string	search_provider_text_providers	-	Meklēt izmantojot devējus
 values-b+lv	string	search_provider_text_types	-	Meklēt izmantojot tipus
+values-b+lv	string	search_quick_empty_body	-	Visi avoti atbildēja, un nevienā nav „%s”. Mēģiniet īsāku vaicājumu vai atveriet pilno meklēšanu, lai mainītu avotus.
+values-b+lv	string	search_quick_empty_headline	-	Nav atbilstību
+values-b+lv	string	search_quick_meta_answered	-	VISI AVOTI IR ATBILDĒJUŠI
+values-b+lv	string	search_quick_meta_answering	-	REZULTĀTI IENĀK, KAD AVOTI ATBILD
+values-b+lv	string	search_quick_open_full	-	Atvērt pilno meklēšanu
+values-b+lv	string	search_quick_status	-	ATBILDĒJA %1$d NO %2$d · NEIZDEVĀS %3$d
+values-b+lv	string	search_quick_title	-	Ātrā meklēšana
 values-b+lv	string	search_state_failed_body	-	None of your sources answered.
 values-b+lv	string	search_state_failed_headline	-	Search failed
 values-b+lv	string	search_state_idle_action	-	Browse home
@@ -29234,6 +29458,13 @@ values-b+mk	string	search_hint_site	-	Пребарај %s…
 values-b+mk	string	search_poster_img_des	-	Постер
 values-b+mk	string	search_provider_text_providers	-	Пребарувај користејќи провајдери
 values-b+mk	string	search_provider_text_types	-	Пребарувај користејќи типови
+values-b+mk	string	search_quick_empty_body	-	Сите извори одговорија и ниеден нема „%s“. Обидете се со пократко пребарување или отворете го целото пребарување за да ги смените изворите.
+values-b+mk	string	search_quick_empty_headline	-	Нема совпаѓања
+values-b+mk	string	search_quick_meta_answered	-	СИТЕ ИЗВОРИ ОДГОВОРИЈА
+values-b+mk	string	search_quick_meta_answering	-	РЕЗУЛТАТИТЕ ПРИСТИГНУВААТ КАКО ШТО ОДГОВАРААТ ИЗВОРИТЕ
+values-b+mk	string	search_quick_open_full	-	Отвори го целото пребарување
+values-b+mk	string	search_quick_status	-	ОДГОВОРИЈА %1$d ОД %2$d · НЕУСПЕШНИ %3$d
+values-b+mk	string	search_quick_title	-	Брзо пребарување
 values-b+mk	string	search_state_failed_body	-	None of your sources answered.
 values-b+mk	string	search_state_failed_headline	-	Search failed
 values-b+mk	string	search_state_idle_action	-	Browse home
@@ -30124,6 +30355,13 @@ values-b+ml	string	search_hint_site	-	തിരയുക %s…
 values-b+ml	string	search_poster_img_des	-	പോസ്റ്റർ
 values-b+ml	string	search_provider_text_providers	-	സ്രോതസ് അടിസ്ഥാനത്തിൽ തിരയുക
 values-b+ml	string	search_provider_text_types	-	തരം അടിസ്ഥാനത്തിൽ തിരയുക
+values-b+ml	string	search_quick_empty_body	-	എല്ലാ ഉറവിടങ്ങളും മറുപടി നൽകി, പക്ഷേ ഒന്നിലും “%s” ഇല്ല. ചെറിയ തിരയൽ പരീക്ഷിക്കുക, അല്ലെങ്കിൽ ഉറവിടങ്ങൾ മാറ്റാൻ പൂർണ്ണ തിരയൽ തുറക്കുക.
+values-b+ml	string	search_quick_empty_headline	-	പൊരുത്തങ്ങളില്ല
+values-b+ml	string	search_quick_meta_answered	-	എല്ലാ ഉറവിടങ്ങളും മറുപടി നൽകി
+values-b+ml	string	search_quick_meta_answering	-	ഉറവിടങ്ങൾ മറുപടി നൽകുന്നതനുസരിച്ച് ഫലങ്ങൾ വരുന്നു
+values-b+ml	string	search_quick_open_full	-	പൂർണ്ണ തിരയൽ തുറക്കുക
+values-b+ml	string	search_quick_status	-	%2$d-ൽ %1$d മറുപടി നൽകി · %3$d പരാജയപ്പെട്ടു
+values-b+ml	string	search_quick_title	-	ദ്രുത തിരയൽ
 values-b+ml	string	search_state_failed_body	-	None of your sources answered.
 values-b+ml	string	search_state_failed_headline	-	Search failed
 values-b+ml	string	search_state_idle_action	-	Browse home
@@ -31009,6 +31247,13 @@ values-b+ms	string	search_hint_site	-	Cari %s…
 values-b+ms	string	search_poster_img_des	-	Poster
 values-b+ms	string	search_provider_text_providers	-	Carian mengikut sumber
 values-b+ms	string	search_provider_text_types	-	Carian mengikut jenis
+values-b+ms	string	search_quick_empty_body	-	Semua sumber menjawab dan tiada satu pun yang mempunyai “%s”. Cuba carian yang lebih pendek, atau buka carian penuh untuk menukar sumber.
+values-b+ms	string	search_quick_empty_headline	-	Tiada padanan
+values-b+ms	string	search_quick_meta_answered	-	SEMUA SUMBER TELAH MENJAWAB
+values-b+ms	string	search_quick_meta_answering	-	HASIL TIBA APABILA SUMBER MENJAWAB
+values-b+ms	string	search_quick_open_full	-	Buka carian penuh
+values-b+ms	string	search_quick_status	-	%1$d DARIPADA %2$d MENJAWAB · %3$d GAGAL
+values-b+ms	string	search_quick_title	-	Carian pantas
 values-b+ms	string	search_state_failed_body	-	None of your sources answered.
 values-b+ms	string	search_state_failed_headline	-	Search failed
 values-b+ms	string	search_state_idle_action	-	Browse home
@@ -31914,6 +32159,13 @@ values-b+mt	string	search_hint_site	-	Fittex%s…
 values-b+mt	string	search_poster_img_des	-	Kartellun
 values-b+mt	string	search_provider_text_providers	-	Fittex bl-użu ta' fornituri
 values-b+mt	string	search_provider_text_types	-	Fittex bl-użu ta 'tipi
+values-b+mt	string	search_quick_empty_body	-	Is-sorsi kollha wieġbu u l-ebda wieħed ma għandu “%s”. Ipprova tfittxija iqsar, jew iftaħ it-tfittxija sħiħa biex tibdel is-sorsi.
+values-b+mt	string	search_quick_empty_headline	-	L-ebda qbil
+values-b+mt	string	search_quick_meta_answered	-	IS-SORSI KOLLHA WIEĠBU
+values-b+mt	string	search_quick_meta_answering	-	IR-RIŻULTATI JASLU HEKK KIF IS-SORSI JWIEĠBU
+values-b+mt	string	search_quick_open_full	-	Iftaħ it-tfittxija sħiħa
+values-b+mt	string	search_quick_status	-	WIEĠBU %1$d MINN %2$d · FALLEW %3$d
+values-b+mt	string	search_quick_title	-	Tfittxija mgħaġġla
 values-b+mt	string	search_state_failed_body	-	None of your sources answered.
 values-b+mt	string	search_state_failed_headline	-	Search failed
 values-b+mt	string	search_state_idle_action	-	Browse home
@@ -32799,6 +33051,13 @@ values-b+my	string	search_hint_site	-	ရှာရန် %s…
 values-b+my	string	search_poster_img_des	-	ပိုစတာ
 values-b+my	string	search_provider_text_providers	-	ပ့ံပိုးပေးသောဝန်ဆောင်မှုများအသုံးပြု၍ရှာရန်
 values-b+my	string	search_provider_text_types	-	အမျိုးအစားများအသုံးပြု၍ရှာရန်
+values-b+my	string	search_quick_empty_body	-	ရင်းမြစ်အားလုံး ဖြေကြားပြီး “%s” ပါသည့် ရင်းမြစ် မရှိပါ။ ပိုတိုသော ရှာဖွေမှုကို စမ်းကြည့်ပါ၊ သို့မဟုတ် ရင်းမြစ်များ ပြောင်းရန် အပြည့်အစုံ ရှာဖွေမှုကို ဖွင့်ပါ။
+values-b+my	string	search_quick_empty_headline	-	ကိုက်ညီမှု မရှိပါ
+values-b+my	string	search_quick_meta_answered	-	ရင်းမြစ်အားလုံး ဖြေကြားပြီး
+values-b+my	string	search_quick_meta_answering	-	ရင်းမြစ်များ ဖြေကြားသလို ရလဒ်များ ရောက်လာမည်
+values-b+my	string	search_quick_open_full	-	အပြည့်အစုံ ရှာဖွေမှု ဖွင့်ရန်
+values-b+my	string	search_quick_status	-	%2$d ခုအနက် %1$d ခု ဖြေကြား · %3$d ခု မအောင်မြင်
+values-b+my	string	search_quick_title	-	အမြန်ရှာဖွေမှု
 values-b+my	string	search_state_failed_body	-	None of your sources answered.
 values-b+my	string	search_state_failed_headline	-	Search failed
 values-b+my	string	search_state_idle_action	-	Browse home
@@ -33689,6 +33948,13 @@ values-b+ne	string	search_hint_site	-	%s खोज्नुहोस्…
 values-b+ne	string	search_poster_img_des	-	पोस्टर
 values-b+ne	string	search_provider_text_providers	-	प्रोभाईडर उपयोग गरी खोज्नुहोस्
 values-b+ne	string	search_provider_text_types	-	प्रकारको उपयोग गरी खोज्नुहोस्
+values-b+ne	string	search_quick_empty_body	-	सबै स्रोतहरूले जवाफ दिए तर कसैसँग “%s” छैन। छोटो खोजी प्रयास गर्नुहोस्, वा स्रोत बदल्न पूर्ण खोज खोल्नुहोस्।
+values-b+ne	string	search_quick_empty_headline	-	कुनै मेल छैन
+values-b+ne	string	search_quick_meta_answered	-	सबै स्रोतहरूले जवाफ दिए
+values-b+ne	string	search_quick_meta_answering	-	स्रोतहरूले जवाफ दिँदै गर्दा नतिजा आउँछन्
+values-b+ne	string	search_quick_open_full	-	पूर्ण खोज खोल्नुहोस्
+values-b+ne	string	search_quick_status	-	%2$d मध्ये %1$d ले जवाफ दिए · %3$d असफल
+values-b+ne	string	search_quick_title	-	छिटो खोज
 values-b+ne	string	search_state_failed_body	-	None of your sources answered.
 values-b+ne	string	search_state_failed_headline	-	Search failed
 values-b+ne	string	search_state_idle_action	-	Browse home
@@ -34579,6 +34845,13 @@ values-b+nl	string	search_hint_site	-	Zoeken %s…
 values-b+nl	string	search_poster_img_des	-	Poster
 values-b+nl	string	search_provider_text_providers	-	Zoeken met providers
 values-b+nl	string	search_provider_text_types	-	Zoeken met types
+values-b+nl	string	search_quick_empty_body	-	Alle bronnen hebben geantwoord en geen enkele heeft “%s”. Probeer een kortere zoekopdracht, of open volledig zoeken om de bronnen te wijzigen.
+values-b+nl	string	search_quick_empty_headline	-	Geen overeenkomsten
+values-b+nl	string	search_quick_meta_answered	-	ALLE BRONNEN HEBBEN GEANTWOORD
+values-b+nl	string	search_quick_meta_answering	-	RESULTATEN KOMEN BINNEN ZODRA BRONNEN ANTWOORDEN
+values-b+nl	string	search_quick_open_full	-	Volledig zoeken openen
+values-b+nl	string	search_quick_status	-	%1$d VAN %2$d GEANTWOORD · %3$d MISLUKT
+values-b+nl	string	search_quick_title	-	Snel zoeken
 values-b+nl	string	search_state_failed_body	-	None of your sources answered.
 values-b+nl	string	search_state_failed_headline	-	Search failed
 values-b+nl	string	search_state_idle_action	-	Browse home
@@ -35469,6 +35742,13 @@ values-b+nn	string	search_hint_site	-	Søk i %s…
 values-b+nn	string	search_poster_img_des	-	Plakat
 values-b+nn	string	search_provider_text_providers	-	Søk basert på leverandør
 values-b+nn	string	search_provider_text_types	-	Søk ved bruk av typer
+values-b+nn	string	search_quick_empty_body	-	Alle kjeldene svara, og ingen av dei har «%s». Prøv eit kortare søk, eller opne fullt søk for å endre kjeldene.
+values-b+nn	string	search_quick_empty_headline	-	Ingen treff
+values-b+nn	string	search_quick_meta_answered	-	ALLE KJELDENE HAR SVARA
+values-b+nn	string	search_quick_meta_answering	-	RESULTAT KJEM ETTER KVART SOM KJELDENE SVARAR
+values-b+nn	string	search_quick_open_full	-	Opne fullt søk
+values-b+nn	string	search_quick_status	-	%1$d AV %2$d HAR SVARA · %3$d FEILA
+values-b+nn	string	search_quick_title	-	Snøggsøk
 values-b+nn	string	search_state_failed_body	-	None of your sources answered.
 values-b+nn	string	search_state_failed_headline	-	Search failed
 values-b+nn	string	search_state_idle_action	-	Browse home
@@ -36359,6 +36639,13 @@ values-b+no	string	search_hint_site	-	Søk i %s …
 values-b+no	string	search_poster_img_des	-	Plakat
 values-b+no	string	search_provider_text_providers	-	Søk med leverandører
 values-b+no	string	search_provider_text_types	-	Søk med typer
+values-b+no	string	search_quick_empty_body	-	Alle kildene svarte, og ingen av dem har «%s». Prøv et kortere søk, eller åpne fullt søk for å endre kildene.
+values-b+no	string	search_quick_empty_headline	-	Ingen treff
+values-b+no	string	search_quick_meta_answered	-	ALLE KILDENE HAR SVART
+values-b+no	string	search_quick_meta_answering	-	RESULTATER KOMMER ETTER HVERT SOM KILDENE SVARER
+values-b+no	string	search_quick_open_full	-	Åpne fullt søk
+values-b+no	string	search_quick_status	-	%1$d AV %2$d HAR SVART · %3$d FEILET
+values-b+no	string	search_quick_title	-	Hurtigsøk
 values-b+no	string	search_state_failed_body	-	None of your sources answered.
 values-b+no	string	search_state_failed_headline	-	Search failed
 values-b+no	string	search_state_idle_action	-	Browse home
@@ -37249,6 +37536,13 @@ values-b+or	string	search_hint_site	-	%s ସନ୍ଧାନ କରିବା…
 values-b+or	string	search_poster_img_des	-	ପୋଷ୍ଟର୍
 values-b+or	string	search_provider_text_providers	-	ପ୍ରଦାତା ଵ୍ୟଵହାର କରି ଖୋଜିବା
 values-b+or	string	search_provider_text_types	-	Search using types
+values-b+or	string	search_quick_empty_body	-	ସମସ୍ତ ଉତ୍ସ ଉତ୍ତର ଦେଲେ କିନ୍ତୁ କାହା ପାଖରେ “%s” ନାହିଁ। ଛୋଟ ସନ୍ଧାନ ଚେଷ୍ଟା କରନ୍ତୁ, କିମ୍ବା ଉତ୍ସ ବଦଳାଇବାକୁ ପୂର୍ଣ୍ଣ ସନ୍ଧାନ ଖୋଲନ୍ତୁ।
+values-b+or	string	search_quick_empty_headline	-	କୌଣସି ମେଳ ନାହିଁ
+values-b+or	string	search_quick_meta_answered	-	ସମସ୍ତ ଉତ୍ସ ଉତ୍ତର ଦେଲେ
+values-b+or	string	search_quick_meta_answering	-	ଉତ୍ସଗୁଡ଼ିକ ଉତ୍ତର ଦେବା ସହିତ ଫଳାଫଳ ଆସେ
+values-b+or	string	search_quick_open_full	-	ପୂର୍ଣ୍ଣ ସନ୍ଧାନ ଖୋଲନ୍ତୁ
+values-b+or	string	search_quick_status	-	%2$d ମଧ୍ୟରୁ %1$d ଉତ୍ତର ଦେଲେ · %3$d ବିଫଳ
+values-b+or	string	search_quick_title	-	ଦ୍ରୁତ ସନ୍ଧାନ
 values-b+or	string	search_state_failed_body	-	None of your sources answered.
 values-b+or	string	search_state_failed_headline	-	Search failed
 values-b+or	string	search_state_idle_action	-	Browse home
@@ -38155,6 +38449,13 @@ values-b+pl	string	search_hint_site	-	Szukaj %s…
 values-b+pl	string	search_poster_img_des	-	Poster
 values-b+pl	string	search_provider_text_providers	-	Szukaj według źródeł
 values-b+pl	string	search_provider_text_types	-	Szukaj według typów
+values-b+pl	string	search_quick_empty_body	-	Wszystkie źródła odpowiedziały i żadne nie ma „%s”. Spróbuj krótszego zapytania albo otwórz pełne wyszukiwanie, aby zmienić źródła.
+values-b+pl	string	search_quick_empty_headline	-	Brak dopasowań
+values-b+pl	string	search_quick_meta_answered	-	WSZYSTKIE ŹRÓDŁA ODPOWIEDZIAŁY
+values-b+pl	string	search_quick_meta_answering	-	WYNIKI NAPŁYWAJĄ W MIARĘ ODPOWIEDZI ŹRÓDEŁ
+values-b+pl	string	search_quick_open_full	-	Otwórz pełne wyszukiwanie
+values-b+pl	string	search_quick_status	-	ODPOWIEDZIAŁO %1$d Z %2$d · BŁĘDY: %3$d
+values-b+pl	string	search_quick_title	-	Szybkie wyszukiwanie
 values-b+pl	string	search_state_failed_body	-	None of your sources answered.
 values-b+pl	string	search_state_failed_headline	-	Search failed
 values-b+pl	string	search_state_idle_action	-	Browse home
@@ -39053,6 +39354,13 @@ values-b+pt	string	search_hint_site	-	Pesquisar %s…
 values-b+pt	string	search_poster_img_des	-	Poster
 values-b+pt	string	search_provider_text_providers	-	Procurar usando fornecedores
 values-b+pt	string	search_provider_text_types	-	Procurar usando tipos
+values-b+pt	string	search_quick_empty_body	-	Todas as fontes responderam e nenhuma tem «%s». Experimente uma pesquisa mais curta ou abra a pesquisa completa para mudar as fontes.
+values-b+pt	string	search_quick_empty_headline	-	Sem correspondências
+values-b+pt	string	search_quick_meta_answered	-	TODAS AS FONTES RESPONDERAM
+values-b+pt	string	search_quick_meta_answering	-	OS RESULTADOS CHEGAM À MEDIDA QUE AS FONTES RESPONDEM
+values-b+pt	string	search_quick_open_full	-	Abrir pesquisa completa
+values-b+pt	string	search_quick_status	-	%1$d DE %2$d RESPONDERAM · %3$d FALHARAM
+values-b+pt	string	search_quick_title	-	Pesquisa rápida
 values-b+pt	string	search_state_failed_body	-	None of your sources answered.
 values-b+pt	string	search_state_failed_headline	-	Search failed
 values-b+pt	string	search_state_idle_action	-	Browse home
@@ -39951,6 +40259,13 @@ values-b+pt+BR	string	search_hint_site	-	Pesquisar %s…
 values-b+pt+BR	string	search_poster_img_des	-	Pôster
 values-b+pt+BR	string	search_provider_text_providers	-	Pesquisar usando fornecedor
 values-b+pt+BR	string	search_provider_text_types	-	Pesquisar usando tipos
+values-b+pt+BR	string	search_quick_empty_body	-	Todas as fontes responderam e nenhuma tem “%s”. Tente uma pesquisa mais curta ou abra a pesquisa completa para mudar as fontes.
+values-b+pt+BR	string	search_quick_empty_headline	-	Nenhuma correspondência
+values-b+pt+BR	string	search_quick_meta_answered	-	TODAS AS FONTES RESPONDERAM
+values-b+pt+BR	string	search_quick_meta_answering	-	OS RESULTADOS CHEGAM CONFORME AS FONTES RESPONDEM
+values-b+pt+BR	string	search_quick_open_full	-	Abrir pesquisa completa
+values-b+pt+BR	string	search_quick_status	-	%1$d DE %2$d RESPONDERAM · %3$d FALHARAM
+values-b+pt+BR	string	search_quick_title	-	Pesquisa rápida
 values-b+pt+BR	string	search_state_failed_body	-	None of your sources answered.
 values-b+pt+BR	string	search_state_failed_headline	-	Search failed
 values-b+pt+BR	string	search_state_idle_action	-	Browse home
@@ -40836,6 +41151,13 @@ values-b+qt	string	search_hint_site	-	aaoohhu %s aoouu
 values-b+qt	string	search_poster_img_des	-	aaaaaah
 values-b+qt	string	search_provider_text_providers	-	aauuhaauugghhahhh ohaauugghhouuhhh
 values-b+qt	string	search_provider_text_types	-	ahhhahoooohhaa ahhhoohahh
+values-b+qt	string	search_quick_empty_body	-	oohh aagh uuk “%s”. ooh aak oohh, aagh uuk oohh aah.
+values-b+qt	string	search_quick_empty_headline	-	ooh aagg
+values-b+qt	string	search_quick_meta_answered	-	OOHH AAGH UUK
+values-b+qt	string	search_quick_meta_answering	-	AAGH OOHH UUK AAH
+values-b+qt	string	search_quick_open_full	-	oohh aagh
+values-b+qt	string	search_quick_status	-	%1$d OOHH %2$d AAGH · %3$d UUK
+values-b+qt	string	search_quick_title	-	oohh aak
 values-b+qt	string	search_state_failed_body	-	None of your sources answered.
 values-b+qt	string	search_state_failed_headline	-	Search failed
 values-b+qt	string	search_state_idle_action	-	Browse home
@@ -41731,6 +42053,13 @@ values-b+ro	string	search_hint_site	-	Căutați %s…
 values-b+ro	string	search_poster_img_des	-	Poster
 values-b+ro	string	search_provider_text_providers	-	Căutare în funcție de furnizor
 values-b+ro	string	search_provider_text_types	-	Căutare în funcție de tip
+values-b+ro	string	search_quick_empty_body	-	Toate sursele au răspuns și niciuna nu are „%s”. Încercați o căutare mai scurtă sau deschideți căutarea completă pentru a schimba sursele.
+values-b+ro	string	search_quick_empty_headline	-	Nicio potrivire
+values-b+ro	string	search_quick_meta_answered	-	TOATE SURSELE AU RĂSPUNS
+values-b+ro	string	search_quick_meta_answering	-	REZULTATELE SOSESC PE MĂSURĂ CE SURSELE RĂSPUND
+values-b+ro	string	search_quick_open_full	-	Deschide căutarea completă
+values-b+ro	string	search_quick_status	-	AU RĂSPUNS %1$d DIN %2$d · %3$d EȘUATE
+values-b+ro	string	search_quick_title	-	Căutare rapidă
 values-b+ro	string	search_state_failed_body	-	None of your sources answered.
 values-b+ro	string	search_state_failed_headline	-	Search failed
 values-b+ro	string	search_state_idle_action	-	Browse home
@@ -42637,6 +42966,13 @@ values-b+ru	string	search_hint_site	-	Поиск %s…
 values-b+ru	string	search_poster_img_des	-	Плакат
 values-b+ru	string	search_provider_text_providers	-	Поиск с использованием поставщиков
 values-b+ru	string	search_provider_text_types	-	Поиск с использованием типов
+values-b+ru	string	search_quick_empty_body	-	Все источники ответили, и ни в одном нет «%s». Попробуйте запрос короче или откройте полный поиск, чтобы сменить источники.
+values-b+ru	string	search_quick_empty_headline	-	Нет совпадений
+values-b+ru	string	search_quick_meta_answered	-	ВСЕ ИСТОЧНИКИ ОТВЕТИЛИ
+values-b+ru	string	search_quick_meta_answering	-	РЕЗУЛЬТАТЫ ПРИХОДЯТ ПО МЕРЕ ОТВЕТОВ ИСТОЧНИКОВ
+values-b+ru	string	search_quick_open_full	-	Открыть полный поиск
+values-b+ru	string	search_quick_status	-	ОТВЕТИЛИ %1$d ИЗ %2$d · СБОЙ %3$d
+values-b+ru	string	search_quick_title	-	Быстрый поиск
 values-b+ru	string	search_state_failed_body	-	None of your sources answered.
 values-b+ru	string	search_state_failed_headline	-	Search failed
 values-b+ru	string	search_state_idle_action	-	Browse home
@@ -43537,6 +43873,13 @@ values-b+sk	string	search_hint_site	-	Hľadať %s…
 values-b+sk	string	search_poster_img_des	-	Plagát
 values-b+sk	string	search_provider_text_providers	-	Hľadať pomocou poskytovateľov
 values-b+sk	string	search_provider_text_types	-	Hľadať pomocou typov
+values-b+sk	string	search_quick_empty_body	-	Všetky zdroje odpovedali a žiadny nemá „%s“. Skúste kratší dopyt alebo otvorte úplné hľadanie a zmeňte zdroje.
+values-b+sk	string	search_quick_empty_headline	-	Žiadne zhody
+values-b+sk	string	search_quick_meta_answered	-	VŠETKY ZDROJE ODPOVEDALI
+values-b+sk	string	search_quick_meta_answering	-	VÝSLEDKY PRIBÚDAJÚ, AKO ZDROJE ODPOVEDAJÚ
+values-b+sk	string	search_quick_open_full	-	Otvoriť úplné hľadanie
+values-b+sk	string	search_quick_status	-	ODPOVEDALO %1$d Z %2$d · ZLYHALO %3$d
+values-b+sk	string	search_quick_title	-	Rýchle hľadanie
 values-b+sk	string	search_state_failed_body	-	None of your sources answered.
 values-b+sk	string	search_state_failed_headline	-	Search failed
 values-b+sk	string	search_state_idle_action	-	Browse home
@@ -44427,6 +44770,13 @@ values-b+so	string	search_hint_site	-	Raadi %s…
 values-b+so	string	search_poster_img_des	-	Sawirka
 values-b+so	string	search_provider_text_providers	-	Ku raadi qaybiyeyaasha
 values-b+so	string	search_provider_text_types	-	Ku raadi noocyada
+values-b+so	string	search_quick_empty_body	-	Dhammaan ilaha way ka jawaabeen midkoodna ma laha “%s”. Isku day raadin gaaban, ama fur raadinta buuxda si aad u beddesho ilaha.
+values-b+so	string	search_quick_empty_headline	-	Wax isku mid ah ma jiro
+values-b+so	string	search_quick_meta_answered	-	DHAMMAAN ILAHA WAY KA JAWAABEEN
+values-b+so	string	search_quick_meta_answering	-	NATIIJOOYINKU WAY YIMAADAAN MARKA ILAHA KA JAWAABAAN
+values-b+so	string	search_quick_open_full	-	Fur raadinta buuxda
+values-b+so	string	search_quick_status	-	%1$d KA MID AH %2$d AYAA KA JAWAABAY · %3$d WAY FASHILMEEN
+values-b+so	string	search_quick_title	-	Raadin degdeg ah
 values-b+so	string	search_state_failed_body	-	None of your sources answered.
 values-b+so	string	search_state_failed_headline	-	Search failed
 values-b+so	string	search_state_idle_action	-	Browse home
@@ -45317,6 +45667,13 @@ values-b+sq	string	search_hint_site	-	Kërko %s…
 values-b+sq	string	search_poster_img_des	-	Posteri
 values-b+sq	string	search_provider_text_providers	-	Kërko duke përdorur ofruesit
 values-b+sq	string	search_provider_text_types	-	Kërko duke përdorur tipet
+values-b+sq	string	search_quick_empty_body	-	Të gjitha burimet u përgjigjën dhe asnjë nuk ka “%s”. Provoni një kërkim më të shkurtër ose hapni kërkimin e plotë për të ndryshuar burimet.
+values-b+sq	string	search_quick_empty_headline	-	Asnjë përputhje
+values-b+sq	string	search_quick_meta_answered	-	TË GJITHA BURIMET U PËRGJIGJËN
+values-b+sq	string	search_quick_meta_answering	-	REZULTATET VIJNË NDËRSA BURIMET PËRGJIGJEN
+values-b+sq	string	search_quick_open_full	-	Hap kërkimin e plotë
+values-b+sq	string	search_quick_status	-	U PËRGJIGJËN %1$d NGA %2$d · DËSHTUAN %3$d
+values-b+sq	string	search_quick_title	-	Kërkim i shpejtë
 values-b+sq	string	search_state_failed_body	-	None of your sources answered.
 values-b+sq	string	search_state_failed_headline	-	Search failed
 values-b+sq	string	search_state_idle_action	-	Browse home
@@ -46207,6 +46564,13 @@ values-b+sv	string	search_hint_site	-	Sök %s…
 values-b+sv	string	search_poster_img_des	-	Affisch
 values-b+sv	string	search_provider_text_providers	-	Sök med hjälp av leverantörer
 values-b+sv	string	search_provider_text_types	-	Sök med hjälp av typer
+values-b+sv	string	search_quick_empty_body	-	Alla källor svarade och ingen har ”%s”. Prova en kortare sökning, eller öppna fullständig sökning för att byta källor.
+values-b+sv	string	search_quick_empty_headline	-	Inga träffar
+values-b+sv	string	search_quick_meta_answered	-	ALLA KÄLLOR HAR SVARAT
+values-b+sv	string	search_quick_meta_answering	-	RESULTATEN KOMMER NÄR KÄLLORNA SVARAR
+values-b+sv	string	search_quick_open_full	-	Öppna fullständig sökning
+values-b+sv	string	search_quick_status	-	%1$d AV %2$d HAR SVARAT · %3$d MISSLYCKADES
+values-b+sv	string	search_quick_title	-	Snabbsökning
 values-b+sv	string	search_state_failed_body	-	None of your sources answered.
 values-b+sv	string	search_state_failed_headline	-	Search failed
 values-b+sv	string	search_state_idle_action	-	Browse home
@@ -47097,6 +47461,13 @@ values-b+ta	string	search_hint_site	-	%s இல் தேடவும்…
 values-b+ta	string	search_poster_img_des	-	போச்டர்
 values-b+ta	string	search_provider_text_providers	-	வழங்குபவர்கள் பயன்படுத்தி தேடுங்கள்
 values-b+ta	string	search_provider_text_types	-	வகைகளைப் பயன்படுத்தி தேடுங்கள்
+values-b+ta	string	search_quick_empty_body	-	எல்லா மூலங்களும் பதிலளித்தன, ஆனால் எதிலும் “%s” இல்லை. சிறிய தேடலை முயலவும், அல்லது மூலங்களை மாற்ற முழுத் தேடலைத் திறக்கவும்.
+values-b+ta	string	search_quick_empty_headline	-	பொருத்தங்கள் இல்லை
+values-b+ta	string	search_quick_meta_answered	-	எல்லா மூலங்களும் பதிலளித்தன
+values-b+ta	string	search_quick_meta_answering	-	மூலங்கள் பதிலளிக்கும்போது முடிவுகள் வருகின்றன
+values-b+ta	string	search_quick_open_full	-	முழுத் தேடலைத் திற
+values-b+ta	string	search_quick_status	-	%2$d இல் %1$d பதிலளித்தன · %3$d தோல்வி
+values-b+ta	string	search_quick_title	-	விரைவுத் தேடல்
 values-b+ta	string	search_state_failed_body	-	None of your sources answered.
 values-b+ta	string	search_state_failed_headline	-	Search failed
 values-b+ta	string	search_state_idle_action	-	Browse home
@@ -47987,6 +48358,13 @@ values-b+ti	string	search_hint_site	-	Search %s…
 values-b+ti	string	search_poster_img_des	-	Poster
 values-b+ti	string	search_provider_text_providers	-	Search using providers
 values-b+ti	string	search_provider_text_types	-	Search using types
+values-b+ti	string	search_quick_empty_body	-	ኩሎም ምንጭታት መሊሶም፣ ሓደ ካብኦም ግን «%s» የብሉን። ሓጺር ምድላይ ፈትኑ፣ ወይ ምንጭታት ንምቕያር ምሉእ ምድላይ ክፈቱ።
+values-b+ti	string	search_quick_empty_headline	-	ዝሰማማዕ የለን
+values-b+ti	string	search_quick_meta_answered	-	ኩሎም ምንጭታት መሊሶም
+values-b+ti	string	search_quick_meta_answering	-	ምንጭታት ክምልሱ ከለዉ ውጽኢታት ይመጹ
+values-b+ti	string	search_quick_open_full	-	ምሉእ ምድላይ ክፈት
+values-b+ti	string	search_quick_status	-	ካብ %2$d %1$d መሊሶም · %3$d ፈሺሎም
+values-b+ti	string	search_quick_title	-	ቅልጡፍ ምድላይ
 values-b+ti	string	search_state_failed_body	-	None of your sources answered.
 values-b+ti	string	search_state_failed_headline	-	Search failed
 values-b+ti	string	search_state_idle_action	-	Browse home
@@ -48877,6 +49255,13 @@ values-b+tl	string	search_hint_site	-	Hanapin ang %s…
 values-b+tl	string	search_poster_img_des	-	Poster
 values-b+tl	string	search_provider_text_providers	-	Search using providers
 values-b+tl	string	search_provider_text_types	-	Search using types
+values-b+tl	string	search_quick_empty_body	-	Sumagot ang lahat ng source at wala ni isang may “%s”. Subukan ang mas maikling paghahanap, o buksan ang buong paghahanap para palitan ang mga source.
+values-b+tl	string	search_quick_empty_headline	-	Walang tugma
+values-b+tl	string	search_quick_meta_answered	-	SUMAGOT NA ANG LAHAT NG SOURCE
+values-b+tl	string	search_quick_meta_answering	-	DUMARATING ANG MGA RESULTA HABANG SUMASAGOT ANG MGA SOURCE
+values-b+tl	string	search_quick_open_full	-	Buksan ang buong paghahanap
+values-b+tl	string	search_quick_status	-	%1$d SA %2$d ANG SUMAGOT · %3$d ANG NABIGO
+values-b+tl	string	search_quick_title	-	Mabilis na paghahanap
 values-b+tl	string	search_state_failed_body	-	None of your sources answered.
 values-b+tl	string	search_state_failed_headline	-	Search failed
 values-b+tl	string	search_state_idle_action	-	Browse home
@@ -49767,6 +50152,13 @@ values-b+tr	string	search_hint_site	-	%s sağlayıcısında ara…
 values-b+tr	string	search_poster_img_des	-	Afiş
 values-b+tr	string	search_provider_text_providers	-	Sağlayıcıları kullanarak ara
 values-b+tr	string	search_provider_text_types	-	Türleri kullanarak ara
+values-b+tr	string	search_quick_empty_body	-	Tüm kaynaklar yanıt verdi ve hiçbirinde “%s” yok. Daha kısa bir arama deneyin veya kaynakları değiştirmek için tam aramayı açın.
+values-b+tr	string	search_quick_empty_headline	-	Eşleşme yok
+values-b+tr	string	search_quick_meta_answered	-	TÜM KAYNAKLAR YANIT VERDİ
+values-b+tr	string	search_quick_meta_answering	-	KAYNAKLAR YANIT VERDİKÇE SONUÇLAR GELİR
+values-b+tr	string	search_quick_open_full	-	Tam aramayı aç
+values-b+tr	string	search_quick_status	-	%2$d KAYNAKTAN %1$d YANIT VERDİ · %3$d BAŞARISIZ
+values-b+tr	string	search_quick_title	-	Hızlı arama
 values-b+tr	string	search_state_failed_body	-	None of your sources answered.
 values-b+tr	string	search_state_failed_headline	-	Search failed
 values-b+tr	string	search_state_idle_action	-	Browse home
@@ -50673,6 +51065,13 @@ values-b+uk	string	search_hint_site	-	Пошук на %s…
 values-b+uk	string	search_poster_img_des	-	Плакат
 values-b+uk	string	search_provider_text_providers	-	Пошук за постачальниками
 values-b+uk	string	search_provider_text_types	-	Пошук за типами
+values-b+uk	string	search_quick_empty_body	-	Усі джерела відповіли, і в жодному немає «%s». Спробуйте коротший запит або відкрийте повний пошук, щоб змінити джерела.
+values-b+uk	string	search_quick_empty_headline	-	Немає збігів
+values-b+uk	string	search_quick_meta_answered	-	УСІ ДЖЕРЕЛА ВІДПОВІЛИ
+values-b+uk	string	search_quick_meta_answering	-	РЕЗУЛЬТАТИ НАДХОДЯТЬ, ЩОЙНО ДЖЕРЕЛА ВІДПОВІДАЮТЬ
+values-b+uk	string	search_quick_open_full	-	Відкрити повний пошук
+values-b+uk	string	search_quick_status	-	ВІДПОВІЛИ %1$d З %2$d · ЗБІЙ %3$d
+values-b+uk	string	search_quick_title	-	Швидкий пошук
 values-b+uk	string	search_state_failed_body	-	None of your sources answered.
 values-b+uk	string	search_state_failed_headline	-	Search failed
 values-b+uk	string	search_state_idle_action	-	Browse home
@@ -51563,6 +51962,13 @@ values-b+ur	string	search_hint_site	-	فراہم کنندہ میں تلاش کر
 values-b+ur	string	search_poster_img_des	-	پروموشنل تصویر
 values-b+ur	string	search_provider_text_providers	-	ذرائع کا استعمال کرتے ہوئے تلاش کریں
 values-b+ur	string	search_provider_text_types	-	انواع کا استعمال کرتے ہوئے تلاش کریں
+values-b+ur	string	search_quick_empty_body	-	تمام ذرائع نے جواب دیا اور کسی کے پاس “%s” نہیں ہے۔ مختصر تلاش آزمائیں، یا ذرائع بدلنے کے لیے مکمل تلاش کھولیں۔
+values-b+ur	string	search_quick_empty_headline	-	کوئی مماثلت نہیں
+values-b+ur	string	search_quick_meta_answered	-	تمام ذرائع نے جواب دیا
+values-b+ur	string	search_quick_meta_answering	-	ذرائع کے جواب کے ساتھ نتائج آتے ہیں
+values-b+ur	string	search_quick_open_full	-	مکمل تلاش کھولیں
+values-b+ur	string	search_quick_status	-	%2$d میں سے %1$d نے جواب دیا · %3$d ناکام
+values-b+ur	string	search_quick_title	-	فوری تلاش
 values-b+ur	string	search_state_failed_body	-	None of your sources answered.
 values-b+ur	string	search_state_failed_headline	-	Search failed
 values-b+ur	string	search_state_idle_action	-	Browse home
@@ -52445,6 +52851,13 @@ values-b+vi	string	search_hint_site	-	Tìm kiếm %s…
 values-b+vi	string	search_poster_img_des	-	Poster
 values-b+vi	string	search_provider_text_providers	-	Tìm kiếm theo nguồn phim
 values-b+vi	string	search_provider_text_types	-	Tìm kiếm theo thể loại
+values-b+vi	string	search_quick_empty_body	-	Tất cả nguồn đã trả lời và không nguồn nào có “%s”. Hãy thử tìm ngắn hơn, hoặc mở tìm kiếm đầy đủ để đổi nguồn.
+values-b+vi	string	search_quick_empty_headline	-	Không có kết quả khớp
+values-b+vi	string	search_quick_meta_answered	-	TẤT CẢ NGUỒN ĐÃ TRẢ LỜI
+values-b+vi	string	search_quick_meta_answering	-	KẾT QUẢ ĐẾN KHI CÁC NGUỒN TRẢ LỜI
+values-b+vi	string	search_quick_open_full	-	Mở tìm kiếm đầy đủ
+values-b+vi	string	search_quick_status	-	%1$d/%2$d ĐÃ TRẢ LỜI · %3$d THẤT BẠI
+values-b+vi	string	search_quick_title	-	Tìm kiếm nhanh
 values-b+vi	string	search_state_failed_body	-	None of your sources answered.
 values-b+vi	string	search_state_failed_headline	-	Search failed
 values-b+vi	string	search_state_idle_action	-	Browse home
@@ -53327,6 +53740,13 @@ values-b+zh	string	search_hint_site	-	搜索 %s…
 values-b+zh	string	search_poster_img_des	-	封面
 values-b+zh	string	search_provider_text_providers	-	按片源搜索
 values-b+zh	string	search_provider_text_types	-	按类型搜索
+values-b+zh	string	search_quick_empty_body	-	所有来源均已响应，但都没有“%s”。请尝试更短的搜索词，或打开完整搜索以更改来源。
+values-b+zh	string	search_quick_empty_headline	-	无匹配
+values-b+zh	string	search_quick_meta_answered	-	所有来源均已响应
+values-b+zh	string	search_quick_meta_answering	-	结果随来源响应陆续出现
+values-b+zh	string	search_quick_open_full	-	打开完整搜索
+values-b+zh	string	search_quick_status	-	%2$d 个中 %1$d 个已响应 · %3$d 个失败
+values-b+zh	string	search_quick_title	-	快速搜索
 values-b+zh	string	search_state_failed_body	-	None of your sources answered.
 values-b+zh	string	search_state_failed_headline	-	Search failed
 values-b+zh	string	search_state_idle_action	-	Browse home
@@ -54210,6 +54630,13 @@ values-b+zh+TW	string	search_hint_site	-	搜尋 %s…
 values-b+zh+TW	string	search_poster_img_des	-	封面
 values-b+zh+TW	string	search_provider_text_providers	-	按片源搜尋
 values-b+zh+TW	string	search_provider_text_types	-	按類型搜尋
+values-b+zh+TW	string	search_quick_empty_body	-	所有來源皆已回應，但都沒有「%s」。請嘗試更短的搜尋字詞，或開啟完整搜尋以變更來源。
+values-b+zh+TW	string	search_quick_empty_headline	-	沒有符合項目
+values-b+zh+TW	string	search_quick_meta_answered	-	所有來源皆已回應
+values-b+zh+TW	string	search_quick_meta_answering	-	結果隨來源回應陸續出現
+values-b+zh+TW	string	search_quick_open_full	-	開啟完整搜尋
+values-b+zh+TW	string	search_quick_status	-	%2$d 個中 %1$d 個已回應 · %3$d 個失敗
+values-b+zh+TW	string	search_quick_title	-	快速搜尋
 values-b+zh+TW	string	search_state_failed_body	-	None of your sources answered.
 values-b+zh+TW	string	search_state_failed_headline	-	Search failed
 values-b+zh+TW	string	search_state_idle_action	-	Browse home
@@ -55100,6 +55527,13 @@ en	string	search_hint_site	-	Search %s…
 en	string	search_poster_img_des	-	Poster
 en	string	search_provider_text_providers	-	Search using providers
 en	string	search_provider_text_types	-	Search using types
+en	string	search_quick_empty_body	-	Every source answered and none of them carry “%s”. Try a shorter query, or open full search to change the source set.
+en	string	search_quick_empty_headline	-	No matches
+en	string	search_quick_meta_answered	-	ALL SOURCES ANSWERED
+en	string	search_quick_meta_answering	-	RESULTS STREAM IN AS SOURCES ANSWER
+en	string	search_quick_open_full	-	Open full search
+en	string	search_quick_status	-	%1$d OF %2$d ANSWERED · %3$d FAILED
+en	string	search_quick_title	-	Quick search
 en	string	search_state_failed_body	-	None of your sources answered.
 en	string	search_state_failed_headline	-	Search failed
 en	string	search_state_idle_action	-	Browse home
@@ -55990,6 +56424,13 @@ en-US	string	search_hint_site	-	Search %s…
 en-US	string	search_poster_img_des	-	Poster
 en-US	string	search_provider_text_providers	-	Search using providers
 en-US	string	search_provider_text_types	-	Search using types
+en-US	string	search_quick_empty_body	-	Every source answered and none of them carry “%s”. Try a shorter query, or open full search to change the source set.
+en-US	string	search_quick_empty_headline	-	No matches
+en-US	string	search_quick_meta_answered	-	ALL SOURCES ANSWERED
+en-US	string	search_quick_meta_answering	-	RESULTS STREAM IN AS SOURCES ANSWER
+en-US	string	search_quick_open_full	-	Open full search
+en-US	string	search_quick_status	-	%1$d OF %2$d ANSWERED · %3$d FAILED
+en-US	string	search_quick_title	-	Quick search
 en-US	string	search_state_failed_body	-	None of your sources answered.
 en-US	string	search_state_failed_headline	-	Search failed
 en-US	string	search_state_idle_action	-	Browse home
@@ -56880,6 +57321,13 @@ en-GB	string	search_hint_site	-	Search %s…
 en-GB	string	search_poster_img_des	-	Poster
 en-GB	string	search_provider_text_providers	-	Search using providers
 en-GB	string	search_provider_text_types	-	Search using types
+en-GB	string	search_quick_empty_body	-	Every source answered and none of them carry “%s”. Try a shorter query, or open full search to change the source set.
+en-GB	string	search_quick_empty_headline	-	No matches
+en-GB	string	search_quick_meta_answered	-	ALL SOURCES ANSWERED
+en-GB	string	search_quick_meta_answering	-	RESULTS STREAM IN AS SOURCES ANSWER
+en-GB	string	search_quick_open_full	-	Open full search
+en-GB	string	search_quick_status	-	%1$d OF %2$d ANSWERED · %3$d FAILED
+en-GB	string	search_quick_title	-	Quick search
 en-GB	string	search_state_failed_body	-	None of your sources answered.
 en-GB	string	search_state_failed_headline	-	Search failed
 en-GB	string	search_state_idle_action	-	Browse home
@@ -57778,6 +58226,13 @@ pt	string	search_hint_site	-	Pesquisar %s…
 pt	string	search_poster_img_des	-	Poster
 pt	string	search_provider_text_providers	-	Procurar usando fornecedores
 pt	string	search_provider_text_types	-	Procurar usando tipos
+pt	string	search_quick_empty_body	-	Todas as fontes responderam e nenhuma tem «%s». Experimente uma pesquisa mais curta ou abra a pesquisa completa para mudar as fontes.
+pt	string	search_quick_empty_headline	-	Sem correspondências
+pt	string	search_quick_meta_answered	-	TODAS AS FONTES RESPONDERAM
+pt	string	search_quick_meta_answering	-	OS RESULTADOS CHEGAM À MEDIDA QUE AS FONTES RESPONDEM
+pt	string	search_quick_open_full	-	Abrir pesquisa completa
+pt	string	search_quick_status	-	%1$d DE %2$d RESPONDERAM · %3$d FALHARAM
+pt	string	search_quick_title	-	Pesquisa rápida
 pt	string	search_state_failed_body	-	None of your sources answered.
 pt	string	search_state_failed_headline	-	Search failed
 pt	string	search_state_idle_action	-	Browse home
@@ -58676,6 +59131,13 @@ pt-PT	string	search_hint_site	-	Pesquisar %s…
 pt-PT	string	search_poster_img_des	-	Poster
 pt-PT	string	search_provider_text_providers	-	Procurar usando fornecedores
 pt-PT	string	search_provider_text_types	-	Procurar usando tipos
+pt-PT	string	search_quick_empty_body	-	Todas as fontes responderam e nenhuma tem «%s». Experimente uma pesquisa mais curta ou abra a pesquisa completa para mudar as fontes.
+pt-PT	string	search_quick_empty_headline	-	Sem correspondências
+pt-PT	string	search_quick_meta_answered	-	TODAS AS FONTES RESPONDERAM
+pt-PT	string	search_quick_meta_answering	-	OS RESULTADOS CHEGAM À MEDIDA QUE AS FONTES RESPONDEM
+pt-PT	string	search_quick_open_full	-	Abrir pesquisa completa
+pt-PT	string	search_quick_status	-	%1$d DE %2$d RESPONDERAM · %3$d FALHARAM
+pt-PT	string	search_quick_title	-	Pesquisa rápida
 pt-PT	string	search_state_failed_body	-	None of your sources answered.
 pt-PT	string	search_state_failed_headline	-	Search failed
 pt-PT	string	search_state_idle_action	-	Browse home
@@ -59574,6 +60036,13 @@ pt-BR	string	search_hint_site	-	Pesquisar %s…
 pt-BR	string	search_poster_img_des	-	Pôster
 pt-BR	string	search_provider_text_providers	-	Pesquisar usando fornecedor
 pt-BR	string	search_provider_text_types	-	Pesquisar usando tipos
+pt-BR	string	search_quick_empty_body	-	Todas as fontes responderam e nenhuma tem “%s”. Tente uma pesquisa mais curta ou abra a pesquisa completa para mudar as fontes.
+pt-BR	string	search_quick_empty_headline	-	Nenhuma correspondência
+pt-BR	string	search_quick_meta_answered	-	TODAS AS FONTES RESPONDERAM
+pt-BR	string	search_quick_meta_answering	-	OS RESULTADOS CHEGAM CONFORME AS FONTES RESPONDEM
+pt-BR	string	search_quick_open_full	-	Abrir pesquisa completa
+pt-BR	string	search_quick_status	-	%1$d DE %2$d RESPONDERAM · %3$d FALHARAM
+pt-BR	string	search_quick_title	-	Pesquisa rápida
 pt-BR	string	search_state_failed_body	-	None of your sources answered.
 pt-BR	string	search_state_failed_headline	-	Search failed
 pt-BR	string	search_state_idle_action	-	Browse home
@@ -60464,6 +60933,13 @@ fil	string	search_hint_site	-	Maghanap %s…
 fil	string	search_poster_img_des	-	Poster
 fil	string	search_provider_text_providers	-	Maghanap gamit ang mga tagatustos
 fil	string	search_provider_text_types	-	Maghanap gamit ang mga uri
+fil	string	search_quick_empty_body	-	Sumagot ang lahat ng source at wala ni isang may “%s”. Subukan ang mas maikling paghahanap, o buksan ang buong paghahanap para palitan ang mga source.
+fil	string	search_quick_empty_headline	-	Walang tugma
+fil	string	search_quick_meta_answered	-	SUMAGOT NA ANG LAHAT NG SOURCE
+fil	string	search_quick_meta_answering	-	DUMARATING ANG MGA RESULTA HABANG SUMASAGOT ANG MGA SOURCE
+fil	string	search_quick_open_full	-	Buksan ang buong paghahanap
+fil	string	search_quick_status	-	%1$d SA %2$d ANG SUMAGOT · %3$d ANG NABIGO
+fil	string	search_quick_title	-	Mabilis na paghahanap
 fil	string	search_state_failed_body	-	None of your sources answered.
 fil	string	search_state_failed_headline	-	Search failed
 fil	string	search_state_idle_action	-	Browse home
@@ -61354,6 +61830,13 @@ tl	string	search_hint_site	-	Hanapin ang %s…
 tl	string	search_poster_img_des	-	Poster
 tl	string	search_provider_text_providers	-	Search using providers
 tl	string	search_provider_text_types	-	Search using types
+tl	string	search_quick_empty_body	-	Sumagot ang lahat ng source at wala ni isang may “%s”. Subukan ang mas maikling paghahanap, o buksan ang buong paghahanap para palitan ang mga source.
+tl	string	search_quick_empty_headline	-	Walang tugma
+tl	string	search_quick_meta_answered	-	SUMAGOT NA ANG LAHAT NG SOURCE
+tl	string	search_quick_meta_answering	-	DUMARATING ANG MGA RESULTA HABANG SUMASAGOT ANG MGA SOURCE
+tl	string	search_quick_open_full	-	Buksan ang buong paghahanap
+tl	string	search_quick_status	-	%1$d SA %2$d ANG SUMAGOT · %3$d ANG NABIGO
+tl	string	search_quick_title	-	Mabilis na paghahanap
 tl	string	search_state_failed_body	-	None of your sources answered.
 tl	string	search_state_failed_headline	-	Search failed
 tl	string	search_state_idle_action	-	Browse home
@@ -62244,6 +62727,13 @@ fil-PH	string	search_hint_site	-	Maghanap %s…
 fil-PH	string	search_poster_img_des	-	Poster
 fil-PH	string	search_provider_text_providers	-	Maghanap gamit ang mga tagatustos
 fil-PH	string	search_provider_text_types	-	Maghanap gamit ang mga uri
+fil-PH	string	search_quick_empty_body	-	Sumagot ang lahat ng source at wala ni isang may “%s”. Subukan ang mas maikling paghahanap, o buksan ang buong paghahanap para palitan ang mga source.
+fil-PH	string	search_quick_empty_headline	-	Walang tugma
+fil-PH	string	search_quick_meta_answered	-	SUMAGOT NA ANG LAHAT NG SOURCE
+fil-PH	string	search_quick_meta_answering	-	DUMARATING ANG MGA RESULTA HABANG SUMASAGOT ANG MGA SOURCE
+fil-PH	string	search_quick_open_full	-	Buksan ang buong paghahanap
+fil-PH	string	search_quick_status	-	%1$d SA %2$d ANG SUMAGOT · %3$d ANG NABIGO
+fil-PH	string	search_quick_title	-	Mabilis na paghahanap
 fil-PH	string	search_state_failed_body	-	None of your sources answered.
 fil-PH	string	search_state_failed_headline	-	Search failed
 fil-PH	string	search_state_idle_action	-	Browse home
@@ -63126,6 +63616,13 @@ zh	string	search_hint_site	-	搜索 %s…
 zh	string	search_poster_img_des	-	封面
 zh	string	search_provider_text_providers	-	按片源搜索
 zh	string	search_provider_text_types	-	按类型搜索
+zh	string	search_quick_empty_body	-	所有来源均已响应，但都没有“%s”。请尝试更短的搜索词，或打开完整搜索以更改来源。
+zh	string	search_quick_empty_headline	-	无匹配
+zh	string	search_quick_meta_answered	-	所有来源均已响应
+zh	string	search_quick_meta_answering	-	结果随来源响应陆续出现
+zh	string	search_quick_open_full	-	打开完整搜索
+zh	string	search_quick_status	-	%2$d 个中 %1$d 个已响应 · %3$d 个失败
+zh	string	search_quick_title	-	快速搜索
 zh	string	search_state_failed_body	-	None of your sources answered.
 zh	string	search_state_failed_headline	-	Search failed
 zh	string	search_state_idle_action	-	Browse home
@@ -64008,6 +64505,13 @@ zh-CN	string	search_hint_site	-	搜索 %s…
 zh-CN	string	search_poster_img_des	-	封面
 zh-CN	string	search_provider_text_providers	-	按片源搜索
 zh-CN	string	search_provider_text_types	-	按类型搜索
+zh-CN	string	search_quick_empty_body	-	所有来源均已响应，但都没有“%s”。请尝试更短的搜索词，或打开完整搜索以更改来源。
+zh-CN	string	search_quick_empty_headline	-	无匹配
+zh-CN	string	search_quick_meta_answered	-	所有来源均已响应
+zh-CN	string	search_quick_meta_answering	-	结果随来源响应陆续出现
+zh-CN	string	search_quick_open_full	-	打开完整搜索
+zh-CN	string	search_quick_status	-	%2$d 个中 %1$d 个已响应 · %3$d 个失败
+zh-CN	string	search_quick_title	-	快速搜索
 zh-CN	string	search_state_failed_body	-	None of your sources answered.
 zh-CN	string	search_state_failed_headline	-	Search failed
 zh-CN	string	search_state_idle_action	-	Browse home
@@ -64890,6 +65394,13 @@ zh-Hans-CN	string	search_hint_site	-	搜索 %s…
 zh-Hans-CN	string	search_poster_img_des	-	封面
 zh-Hans-CN	string	search_provider_text_providers	-	按片源搜索
 zh-Hans-CN	string	search_provider_text_types	-	按类型搜索
+zh-Hans-CN	string	search_quick_empty_body	-	所有来源均已响应，但都没有“%s”。请尝试更短的搜索词，或打开完整搜索以更改来源。
+zh-Hans-CN	string	search_quick_empty_headline	-	无匹配
+zh-Hans-CN	string	search_quick_meta_answered	-	所有来源均已响应
+zh-Hans-CN	string	search_quick_meta_answering	-	结果随来源响应陆续出现
+zh-Hans-CN	string	search_quick_open_full	-	打开完整搜索
+zh-Hans-CN	string	search_quick_status	-	%2$d 个中 %1$d 个已响应 · %3$d 个失败
+zh-Hans-CN	string	search_quick_title	-	快速搜索
 zh-Hans-CN	string	search_state_failed_body	-	None of your sources answered.
 zh-Hans-CN	string	search_state_failed_headline	-	Search failed
 zh-Hans-CN	string	search_state_idle_action	-	Browse home
@@ -65773,6 +66284,13 @@ zh-TW	string	search_hint_site	-	搜尋 %s…
 zh-TW	string	search_poster_img_des	-	封面
 zh-TW	string	search_provider_text_providers	-	按片源搜尋
 zh-TW	string	search_provider_text_types	-	按類型搜尋
+zh-TW	string	search_quick_empty_body	-	所有來源皆已回應，但都沒有「%s」。請嘗試更短的搜尋字詞，或開啟完整搜尋以變更來源。
+zh-TW	string	search_quick_empty_headline	-	沒有符合項目
+zh-TW	string	search_quick_meta_answered	-	所有來源皆已回應
+zh-TW	string	search_quick_meta_answering	-	結果隨來源回應陸續出現
+zh-TW	string	search_quick_open_full	-	開啟完整搜尋
+zh-TW	string	search_quick_status	-	%2$d 個中 %1$d 個已回應 · %3$d 個失敗
+zh-TW	string	search_quick_title	-	快速搜尋
 zh-TW	string	search_state_failed_body	-	None of your sources answered.
 zh-TW	string	search_state_failed_headline	-	Search failed
 zh-TW	string	search_state_idle_action	-	Browse home
@@ -66656,6 +67174,13 @@ zh-Hant-TW	string	search_hint_site	-	搜尋 %s…
 zh-Hant-TW	string	search_poster_img_des	-	封面
 zh-Hant-TW	string	search_provider_text_providers	-	按片源搜尋
 zh-Hant-TW	string	search_provider_text_types	-	按類型搜尋
+zh-Hant-TW	string	search_quick_empty_body	-	所有來源皆已回應，但都沒有「%s」。請嘗試更短的搜尋字詞，或開啟完整搜尋以變更來源。
+zh-Hant-TW	string	search_quick_empty_headline	-	沒有符合項目
+zh-Hant-TW	string	search_quick_meta_answered	-	所有來源皆已回應
+zh-Hant-TW	string	search_quick_meta_answering	-	結果隨來源回應陸續出現
+zh-Hant-TW	string	search_quick_open_full	-	開啟完整搜尋
+zh-Hant-TW	string	search_quick_status	-	%2$d 個中 %1$d 個已回應 · %3$d 個失敗
+zh-Hant-TW	string	search_quick_title	-	快速搜尋
 zh-Hant-TW	string	search_state_failed_body	-	None of your sources answered.
 zh-Hant-TW	string	search_state_failed_headline	-	Search failed
 zh-Hant-TW	string	search_state_idle_action	-	Browse home
@@ -67539,6 +68064,13 @@ zh-HK	string	search_hint_site	-	搜尋 %s…
 zh-HK	string	search_poster_img_des	-	封面
 zh-HK	string	search_provider_text_providers	-	按片源搜尋
 zh-HK	string	search_provider_text_types	-	按類型搜尋
+zh-HK	string	search_quick_empty_body	-	所有來源皆已回應，但都沒有「%s」。請嘗試更短的搜尋字詞，或開啟完整搜尋以變更來源。
+zh-HK	string	search_quick_empty_headline	-	沒有符合項目
+zh-HK	string	search_quick_meta_answered	-	所有來源皆已回應
+zh-HK	string	search_quick_meta_answering	-	結果隨來源回應陸續出現
+zh-HK	string	search_quick_open_full	-	開啟完整搜尋
+zh-HK	string	search_quick_status	-	%2$d 個中 %1$d 個已回應 · %3$d 個失敗
+zh-HK	string	search_quick_title	-	快速搜尋
 zh-HK	string	search_state_failed_body	-	None of your sources answered.
 zh-HK	string	search_state_failed_headline	-	Search failed
 zh-HK	string	search_state_idle_action	-	Browse home
@@ -68422,6 +68954,13 @@ zh-Hant-HK	string	search_hint_site	-	搜尋 %s…
 zh-Hant-HK	string	search_poster_img_des	-	封面
 zh-Hant-HK	string	search_provider_text_providers	-	按片源搜尋
 zh-Hant-HK	string	search_provider_text_types	-	按類型搜尋
+zh-Hant-HK	string	search_quick_empty_body	-	所有來源皆已回應，但都沒有「%s」。請嘗試更短的搜尋字詞，或開啟完整搜尋以變更來源。
+zh-Hant-HK	string	search_quick_empty_headline	-	沒有符合項目
+zh-Hant-HK	string	search_quick_meta_answered	-	所有來源皆已回應
+zh-Hant-HK	string	search_quick_meta_answering	-	結果隨來源回應陸續出現
+zh-Hant-HK	string	search_quick_open_full	-	開啟完整搜尋
+zh-Hant-HK	string	search_quick_status	-	%2$d 個中 %1$d 個已回應 · %3$d 個失敗
+zh-Hant-HK	string	search_quick_title	-	快速搜尋
 zh-Hant-HK	string	search_state_failed_body	-	None of your sources answered.
 zh-Hant-HK	string	search_state_failed_headline	-	Search failed
 zh-Hant-HK	string	search_state_idle_action	-	Browse home
@@ -69312,6 +69851,13 @@ no	string	search_hint_site	-	Søk i %s …
 no	string	search_poster_img_des	-	Plakat
 no	string	search_provider_text_providers	-	Søk med leverandører
 no	string	search_provider_text_types	-	Søk med typer
+no	string	search_quick_empty_body	-	Alle kildene svarte, og ingen av dem har «%s». Prøv et kortere søk, eller åpne fullt søk for å endre kildene.
+no	string	search_quick_empty_headline	-	Ingen treff
+no	string	search_quick_meta_answered	-	ALLE KILDENE HAR SVART
+no	string	search_quick_meta_answering	-	RESULTATER KOMMER ETTER HVERT SOM KILDENE SVARER
+no	string	search_quick_open_full	-	Åpne fullt søk
+no	string	search_quick_status	-	%1$d AV %2$d HAR SVART · %3$d FEILET
+no	string	search_quick_title	-	Hurtigsøk
 no	string	search_state_failed_body	-	None of your sources answered.
 no	string	search_state_failed_headline	-	Search failed
 no	string	search_state_idle_action	-	Browse home
@@ -70202,6 +70748,13 @@ nb	string	search_hint_site	-	Search %s…
 nb	string	search_poster_img_des	-	Poster
 nb	string	search_provider_text_providers	-	Search using providers
 nb	string	search_provider_text_types	-	Search using types
+nb	string	search_quick_empty_body	-	Every source answered and none of them carry “%s”. Try a shorter query, or open full search to change the source set.
+nb	string	search_quick_empty_headline	-	No matches
+nb	string	search_quick_meta_answered	-	ALL SOURCES ANSWERED
+nb	string	search_quick_meta_answering	-	RESULTS STREAM IN AS SOURCES ANSWER
+nb	string	search_quick_open_full	-	Open full search
+nb	string	search_quick_status	-	%1$d OF %2$d ANSWERED · %3$d FAILED
+nb	string	search_quick_title	-	Quick search
 nb	string	search_state_failed_body	-	None of your sources answered.
 nb	string	search_state_failed_headline	-	Search failed
 nb	string	search_state_idle_action	-	Browse home
@@ -71092,6 +71645,13 @@ nb-NO	string	search_hint_site	-	Search %s…
 nb-NO	string	search_poster_img_des	-	Poster
 nb-NO	string	search_provider_text_providers	-	Search using providers
 nb-NO	string	search_provider_text_types	-	Search using types
+nb-NO	string	search_quick_empty_body	-	Every source answered and none of them carry “%s”. Try a shorter query, or open full search to change the source set.
+nb-NO	string	search_quick_empty_headline	-	No matches
+nb-NO	string	search_quick_meta_answered	-	ALL SOURCES ANSWERED
+nb-NO	string	search_quick_meta_answering	-	RESULTS STREAM IN AS SOURCES ANSWER
+nb-NO	string	search_quick_open_full	-	Open full search
+nb-NO	string	search_quick_status	-	%1$d OF %2$d ANSWERED · %3$d FAILED
+nb-NO	string	search_quick_title	-	Quick search
 nb-NO	string	search_state_failed_body	-	None of your sources answered.
 nb-NO	string	search_state_failed_headline	-	Search failed
 nb-NO	string	search_state_idle_action	-	Browse home
@@ -71987,6 +72547,13 @@ iw	string	search_hint_site	-	חיפוש %s…
 iw	string	search_poster_img_des	-	פוסטר
 iw	string	search_provider_text_providers	-	חפש באמצעות הספקים
 iw	string	search_provider_text_types	-	חפש באמצעות סוגים
+iw	string	search_quick_empty_body	-	כל המקורות ענו ואף אחד מהם לא מכיל את “%s”. נסו חיפוש קצר יותר, או פתחו את החיפוש המלא כדי לשנות את המקורות.
+iw	string	search_quick_empty_headline	-	אין התאמות
+iw	string	search_quick_meta_answered	-	כל המקורות ענו
+iw	string	search_quick_meta_answering	-	התוצאות מגיעות כשהמקורות עונים
+iw	string	search_quick_open_full	-	פתיחת החיפוש המלא
+iw	string	search_quick_status	-	%1$d מתוך %2$d ענו · %3$d נכשלו
+iw	string	search_quick_title	-	חיפוש מהיר
 iw	string	search_state_failed_body	-	None of your sources answered.
 iw	string	search_state_failed_headline	-	Search failed
 iw	string	search_state_idle_action	-	Browse home
@@ -72882,6 +73449,13 @@ he	string	search_hint_site	-	חיפוש %s…
 he	string	search_poster_img_des	-	פוסטר
 he	string	search_provider_text_providers	-	חפש באמצעות הספקים
 he	string	search_provider_text_types	-	חפש באמצעות סוגים
+he	string	search_quick_empty_body	-	כל המקורות ענו ואף אחד מהם לא מכיל את “%s”. נסו חיפוש קצר יותר, או פתחו את החיפוש המלא כדי לשנות את המקורות.
+he	string	search_quick_empty_headline	-	אין התאמות
+he	string	search_quick_meta_answered	-	כל המקורות ענו
+he	string	search_quick_meta_answering	-	התוצאות מגיעות כשהמקורות עונים
+he	string	search_quick_open_full	-	פתיחת החיפוש המלא
+he	string	search_quick_status	-	%1$d מתוך %2$d ענו · %3$d נכשלו
+he	string	search_quick_title	-	חיפוש מהיר
 he	string	search_state_failed_body	-	None of your sources answered.
 he	string	search_state_failed_headline	-	Search failed
 he	string	search_state_idle_action	-	Browse home
@@ -73777,6 +74351,13 @@ he-IL	string	search_hint_site	-	חיפוש %s…
 he-IL	string	search_poster_img_des	-	פוסטר
 he-IL	string	search_provider_text_providers	-	חפש באמצעות הספקים
 he-IL	string	search_provider_text_types	-	חפש באמצעות סוגים
+he-IL	string	search_quick_empty_body	-	כל המקורות ענו ואף אחד מהם לא מכיל את “%s”. נסו חיפוש קצר יותר, או פתחו את החיפוש המלא כדי לשנות את המקורות.
+he-IL	string	search_quick_empty_headline	-	אין התאמות
+he-IL	string	search_quick_meta_answered	-	כל המקורות ענו
+he-IL	string	search_quick_meta_answering	-	התוצאות מגיעות כשהמקורות עונים
+he-IL	string	search_quick_open_full	-	פתיחת החיפוש המלא
+he-IL	string	search_quick_status	-	%1$d מתוך %2$d ענו · %3$d נכשלו
+he-IL	string	search_quick_title	-	חיפוש מהיר
 he-IL	string	search_state_failed_body	-	None of your sources answered.
 he-IL	string	search_state_failed_headline	-	Search failed
 he-IL	string	search_state_idle_action	-	Browse home
@@ -74659,6 +75240,13 @@ in	string	search_hint_site	-	Cari %s…
 in	string	search_poster_img_des	-	Poster
 in	string	search_provider_text_providers	-	Cari menggunakan penyedia
 in	string	search_provider_text_types	-	Cari menggunakan jenis
+in	string	search_quick_empty_body	-	Semua sumber menjawab dan tidak ada yang memiliki “%s”. Coba pencarian yang lebih pendek, atau buka pencarian lengkap untuk mengganti sumber.
+in	string	search_quick_empty_headline	-	Tidak ada yang cocok
+in	string	search_quick_meta_answered	-	SEMUA SUMBER TELAH MENJAWAB
+in	string	search_quick_meta_answering	-	HASIL MASUK SAAT SUMBER MENJAWAB
+in	string	search_quick_open_full	-	Buka pencarian lengkap
+in	string	search_quick_status	-	%1$d DARI %2$d MENJAWAB · %3$d GAGAL
+in	string	search_quick_title	-	Pencarian cepat
 in	string	search_state_failed_body	-	None of your sources answered.
 in	string	search_state_failed_headline	-	Search failed
 in	string	search_state_idle_action	-	Browse home
@@ -75541,6 +76129,13 @@ id	string	search_hint_site	-	Cari %s…
 id	string	search_poster_img_des	-	Poster
 id	string	search_provider_text_providers	-	Cari menggunakan penyedia
 id	string	search_provider_text_types	-	Cari menggunakan jenis
+id	string	search_quick_empty_body	-	Semua sumber menjawab dan tidak ada yang memiliki “%s”. Coba pencarian yang lebih pendek, atau buka pencarian lengkap untuk mengganti sumber.
+id	string	search_quick_empty_headline	-	Tidak ada yang cocok
+id	string	search_quick_meta_answered	-	SEMUA SUMBER TELAH MENJAWAB
+id	string	search_quick_meta_answering	-	HASIL MASUK SAAT SUMBER MENJAWAB
+id	string	search_quick_open_full	-	Buka pencarian lengkap
+id	string	search_quick_status	-	%1$d DARI %2$d MENJAWAB · %3$d GAGAL
+id	string	search_quick_title	-	Pencarian cepat
 id	string	search_state_failed_body	-	None of your sources answered.
 id	string	search_state_failed_headline	-	Search failed
 id	string	search_state_idle_action	-	Browse home
@@ -76423,6 +77018,13 @@ id-ID	string	search_hint_site	-	Cari %s…
 id-ID	string	search_poster_img_des	-	Poster
 id-ID	string	search_provider_text_providers	-	Cari menggunakan penyedia
 id-ID	string	search_provider_text_types	-	Cari menggunakan jenis
+id-ID	string	search_quick_empty_body	-	Semua sumber menjawab dan tidak ada yang memiliki “%s”. Coba pencarian yang lebih pendek, atau buka pencarian lengkap untuk mengganti sumber.
+id-ID	string	search_quick_empty_headline	-	Tidak ada yang cocok
+id-ID	string	search_quick_meta_answered	-	SEMUA SUMBER TELAH MENJAWAB
+id-ID	string	search_quick_meta_answering	-	HASIL MASUK SAAT SUMBER MENJAWAB
+id-ID	string	search_quick_open_full	-	Buka pencarian lengkap
+id-ID	string	search_quick_status	-	%1$d DARI %2$d MENJAWAB · %3$d GAGAL
+id-ID	string	search_quick_title	-	Pencarian cepat
 id-ID	string	search_state_failed_body	-	None of your sources answered.
 id-ID	string	search_state_failed_headline	-	Search failed
 id-ID	string	search_state_idle_action	-	Browse home
@@ -77313,6 +77915,13 @@ arz	string	search_hint_site	-	Search %s…
 arz	string	search_poster_img_des	-	Poster
 arz	string	search_provider_text_providers	-	Search using providers
 arz	string	search_provider_text_types	-	Search using types
+arz	string	search_quick_empty_body	-	Every source answered and none of them carry “%s”. Try a shorter query, or open full search to change the source set.
+arz	string	search_quick_empty_headline	-	No matches
+arz	string	search_quick_meta_answered	-	ALL SOURCES ANSWERED
+arz	string	search_quick_meta_answering	-	RESULTS STREAM IN AS SOURCES ANSWER
+arz	string	search_quick_open_full	-	Open full search
+arz	string	search_quick_status	-	%1$d OF %2$d ANSWERED · %3$d FAILED
+arz	string	search_quick_title	-	Quick search
 arz	string	search_state_failed_body	-	None of your sources answered.
 arz	string	search_state_failed_headline	-	Search failed
 arz	string	search_state_idle_action	-	Browse home

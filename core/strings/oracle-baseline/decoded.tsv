@@ -160,6 +160,13 @@ values-b+af/strings.xml	string	search_hint_site	-	STR	Soek %s…
 values-b+af/strings.xml	string	search_poster_img_des	-	STR	Plakkaat	
 values-b+af/strings.xml	string	search_provider_text_providers	-	STR	Soek deur verskaffers te gebruik	
 values-b+af/strings.xml	string	search_provider_text_types	-	STR	Soek met behulp van tipes	
+values-b+af/strings.xml	string	search_quick_empty_body	-	STR	Elke bron het geantwoord en nie een het “%s” nie. Probeer ’n korter soektog, of maak die volle soektog oop om die bronne te verander.	
+values-b+af/strings.xml	string	search_quick_empty_headline	-	STR	Geen passende resultate nie	
+values-b+af/strings.xml	string	search_quick_meta_answered	-	STR	ALLE BRONNE HET GEANTWOORD	
+values-b+af/strings.xml	string	search_quick_meta_answering	-	STR	RESULTATE KOM IN SOOS BRONNE ANTWOORD	
+values-b+af/strings.xml	string	search_quick_open_full	-	STR	Maak volle soektog oop	
+values-b+af/strings.xml	string	search_quick_status	-	STR	%1$d VAN %2$d GEANTWOORD · %3$d MISLUK	
+values-b+af/strings.xml	string	search_quick_title	-	STR	Vinnige soektog	
 values-b+af/strings.xml	string	search_state_idle_body_desktop	-	STR	Tik 'n titel. Resultate verskyn onder elke bron soos dit antwoord.	
 values-b+af/strings.xml	string	search_state_no_results_type_filter	-	STR	Slegs %s. Jou tipe-filter beperk die soektog.	
 values-b+af/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 VOORSTELLE · 0 ONLANGSE OOREENKOMSTE	
@@ -364,6 +371,13 @@ values-b+am/strings.xml	string	search_hint_site	-	STR	%sን ፈልግ…
 values-b+am/strings.xml	string	search_poster_img_des	-	STR	ፖስተር	
 values-b+am/strings.xml	string	search_provider_text_providers	-	STR	አቅራቢዎችን በመጠቀም ይፈልጉ	
 values-b+am/strings.xml	string	search_provider_text_types	-	STR	ዓይነቶችን በመጠቀም ይፈልጉ	
+values-b+am/strings.xml	string	search_quick_empty_body	-	STR	ሁሉም ምንጮች መልሰዋል፣ ግን አንዳቸውም «%s» የላቸውም። አጭር ፍለጋ ይሞክሩ፣ ወይም ምንጮቹን ለመቀየር ሙሉ ፍለጋን ይክፈቱ።	
+values-b+am/strings.xml	string	search_quick_empty_headline	-	STR	ምንም ተዛማጅ የለም	
+values-b+am/strings.xml	string	search_quick_meta_answered	-	STR	ሁሉም ምንጮች መልሰዋል	
+values-b+am/strings.xml	string	search_quick_meta_answering	-	STR	ምንጮች ሲመልሱ ውጤቶች ይመጣሉ	
+values-b+am/strings.xml	string	search_quick_open_full	-	STR	ሙሉ ፍለጋን ክፈት	
+values-b+am/strings.xml	string	search_quick_status	-	STR	ከ%2$d ውስጥ %1$d መልሰዋል · %3$d አልተሳኩም	
+values-b+am/strings.xml	string	search_quick_title	-	STR	ፈጣን ፍለጋ	
 values-b+am/strings.xml	string	search_state_idle_body_desktop	-	STR	ርዕስ ይተይቡ። ውጤቶች እያንዳንዱ ምንጭ ሲመልስ ከሱ ስር ይታያሉ።	
 values-b+am/strings.xml	string	search_state_no_results_type_filter	-	STR	%s ብቻ። የአይነት ማጣሪያዎ ፍለጋውን እያጠበበው ነው።	
 values-b+am/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 ጥቆማዎች · 0 የቅርብ ጊዜ ተዛማጆች	
@@ -1016,6 +1030,13 @@ values-b+apc/strings.xml	string	search_hint_site	-	STR	نبّش %s…
 values-b+apc/strings.xml	string	search_poster_img_des	-	STR	پوستر	
 values-b+apc/strings.xml	string	search_provider_text_providers	-	STR	عوزو المصادر لَ تنبّشو	
 values-b+apc/strings.xml	string	search_provider_text_types	-	STR	عوزو الأنواع ل تنبّشو	
+values-b+apc/strings.xml	string	search_quick_empty_body	-	STR	كل المصادر ردّت وما حدا فيهن عندو «%s». جرّب بحث أقصر، أو افتح البحث الكامل لتغيّر المصادر.	
+values-b+apc/strings.xml	string	search_quick_empty_headline	-	STR	ما في تطابق	
+values-b+apc/strings.xml	string	search_quick_meta_answered	-	STR	كل المصادر ردّت	
+values-b+apc/strings.xml	string	search_quick_meta_answering	-	STR	النتائج عم توصل لما المصادر ترد	
+values-b+apc/strings.xml	string	search_quick_open_full	-	STR	افتح البحث الكامل	
+values-b+apc/strings.xml	string	search_quick_status	-	STR	%1$d من %2$d ردّوا · %3$d فشلوا	
+values-b+apc/strings.xml	string	search_quick_title	-	STR	بحث سريع	
 values-b+apc/strings.xml	string	search_state_idle_body_desktop	-	STR	اكتب عنوان. النتايج بتطلع تحت كل مصدر لما يرد.	
 values-b+apc/strings.xml	string	search_state_no_results_type_filter	-	STR	%s بس. فلتر النوع عم يضيّق البحث.	
 values-b+apc/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 اقتراحات · 0 تطابق مؤخراً	
@@ -1873,6 +1894,13 @@ values-b+ar/strings.xml	string	search_hint_site	-	STR	بحث %s…
 values-b+ar/strings.xml	string	search_poster_img_des	-	STR	الصورة الدعائية	
 values-b+ar/strings.xml	string	search_provider_text_providers	-	STR	البحث باستخدام المصادر	
 values-b+ar/strings.xml	string	search_provider_text_types	-	STR	البحث باستخدام الأنواع	
+values-b+ar/strings.xml	string	search_quick_empty_body	-	STR	ردّت جميع المصادر ولا يحتوي أيٌّ منها على «%s». جرّب بحثًا أقصر، أو افتح البحث الكامل لتغيير المصادر.	
+values-b+ar/strings.xml	string	search_quick_empty_headline	-	STR	لا توجد تطابقات	
+values-b+ar/strings.xml	string	search_quick_meta_answered	-	STR	ردّت جميع المصادر	
+values-b+ar/strings.xml	string	search_quick_meta_answering	-	STR	تصل النتائج مع ردّ المصادر	
+values-b+ar/strings.xml	string	search_quick_open_full	-	STR	فتح البحث الكامل	
+values-b+ar/strings.xml	string	search_quick_status	-	STR	ردّ %1$d من %2$d · فشل %3$d	
+values-b+ar/strings.xml	string	search_quick_title	-	STR	بحث سريع	
 values-b+ar/strings.xml	string	search_state_idle_body_desktop	-	STR	اكتب عنوانًا. تظهر النتائج تحت كل مصدر عند استجابته.	
 values-b+ar/strings.xml	string	search_state_no_results_type_filter	-	STR	%s فقط. عامل تصفية النوع يضيّق نطاق البحث.	
 values-b+ar/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 اقتراحات · 0 تطابق حديث	
@@ -2421,6 +2449,13 @@ values-b+ars/strings.xml	string	search_hint_site	-	STR	...%sابحث
 values-b+ars/strings.xml	string	search_poster_img_des	-	STR	لافتة	
 values-b+ars/strings.xml	string	search_provider_text_providers	-	STR	البحث باستخدام مقدمي الخدمات	
 values-b+ars/strings.xml	string	search_provider_text_types	-	STR	البحث باستخدام الأنواع	
+values-b+ars/strings.xml	string	search_quick_empty_body	-	STR	كل المصادر ردّت وما فيها شي يحتوي «%s». جرّب بحث أقصر، أو افتح البحث الكامل عشان تغيّر المصادر.	
+values-b+ars/strings.xml	string	search_quick_empty_headline	-	STR	ما فيه تطابق	
+values-b+ars/strings.xml	string	search_quick_meta_answered	-	STR	كل المصادر ردّت	
+values-b+ars/strings.xml	string	search_quick_meta_answering	-	STR	النتائج توصل مع ردّ المصادر	
+values-b+ars/strings.xml	string	search_quick_open_full	-	STR	افتح البحث الكامل	
+values-b+ars/strings.xml	string	search_quick_status	-	STR	ردّ %1$d من %2$d · فشل %3$d	
+values-b+ars/strings.xml	string	search_quick_title	-	STR	بحث سريع	
 values-b+ars/strings.xml	string	search_state_idle_body_desktop	-	STR	اكتب عنوانًا. تظهر النتائج تحت كل مصدر عند استجابته.	
 values-b+ars/strings.xml	string	search_state_no_results_type_filter	-	STR	%s بس. فلتر النوع يضيّق البحث.	
 values-b+ars/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 اقتراحات · 0 تطابق حديث	
@@ -3088,6 +3123,13 @@ values-b+as/strings.xml	string	search_hint_site	-	STR	%sত সন্ধান �
 values-b+as/strings.xml	string	search_poster_img_des	-	STR	পোস্টাৰ	
 values-b+as/strings.xml	string	search_provider_text_providers	-	STR	প্ৰদানকাৰীৰে সন্ধান কৰক	
 values-b+as/strings.xml	string	search_provider_text_types	-	STR	প্ৰকাৰৰ দ্বাৰা সন্ধান কৰক	
+values-b+as/strings.xml	string	search_quick_empty_body	-	STR	সকলো উৎসই উত্তৰ দিলে কিন্তু কাৰো ওচৰত “%s” নাই। চুটি সন্ধান চেষ্টা কৰক, বা উৎস সলনি কৰিবলৈ সম্পূৰ্ণ সন্ধান খোলক।	
+values-b+as/strings.xml	string	search_quick_empty_headline	-	STR	কোনো মিল নাই	
+values-b+as/strings.xml	string	search_quick_meta_answered	-	STR	সকলো উৎসই উত্তৰ দিলে	
+values-b+as/strings.xml	string	search_quick_meta_answering	-	STR	উৎসসমূহে উত্তৰ দিয়াৰ লগে লগে ফলাফল আহে	
+values-b+as/strings.xml	string	search_quick_open_full	-	STR	সম্পূৰ্ণ সন্ধান খোলক	
+values-b+as/strings.xml	string	search_quick_status	-	STR	%2$dৰ ভিতৰত %1$dয়ে উত্তৰ দিলে · %3$d ব্যৰ্থ	
+values-b+as/strings.xml	string	search_quick_title	-	STR	দ্ৰুত সন্ধান	
 values-b+as/strings.xml	string	search_state_idle_body_desktop	-	STR	এটা শিৰোনাম টাইপ কৰক। প্ৰতিটো উৎসই উত্তৰ দিয়াৰ লগে লগে ফলাফল তাৰ তলত দেখা যাব।	
 values-b+as/strings.xml	string	search_state_no_results_type_filter	-	STR	কেৱল %s। আপোনাৰ ধৰণৰ ফিল্টাৰে সন্ধান সংকীৰ্ণ কৰিছে।	
 values-b+as/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 টা পৰামৰ্শ · 0 টা শেহতীয়া মিল	
@@ -3469,6 +3511,13 @@ values-b+az/strings.xml	string	resume	-	STR	Davam et
 values-b+az/strings.xml	string	search	-	STR	Axtar	
 values-b+az/strings.xml	string	search_hint	-	STR	Axtar…	
 values-b+az/strings.xml	string	search_poster_img_des	-	STR	Afişa	
+values-b+az/strings.xml	string	search_quick_empty_body	-	STR	Bütün mənbələr cavab verdi və heç birində «%s» yoxdur. Daha qısa sorğu yoxlayın və ya mənbələri dəyişmək üçün tam axtarışı açın.	
+values-b+az/strings.xml	string	search_quick_empty_headline	-	STR	Uyğunluq yoxdur	
+values-b+az/strings.xml	string	search_quick_meta_answered	-	STR	BÜTÜN MƏNBƏLƏR CAVAB VERDİ	
+values-b+az/strings.xml	string	search_quick_meta_answering	-	STR	MƏNBƏLƏR CAVAB VERDİKCƏ NƏTİCƏLƏR GƏLİR	
+values-b+az/strings.xml	string	search_quick_open_full	-	STR	Tam axtarışı aç	
+values-b+az/strings.xml	string	search_quick_status	-	STR	%2$d İÇİNDƏN %1$d CAVAB VERDİ · %3$d UĞURSUZ	
+values-b+az/strings.xml	string	search_quick_title	-	STR	Sürətli axtarış	
 values-b+az/strings.xml	string	search_state_idle_body_desktop	-	STR	Başlıq yazın. Hər mənbə cavab verdikcə nəticələr onun altında görünür.	
 values-b+az/strings.xml	string	search_state_no_results_type_filter	-	STR	Yalnız %s. Növ filtriniz axtarışı daraldır.	
 values-b+az/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 TƏKLİF · 0 SON UYĞUNLUQ	
@@ -4131,6 +4180,13 @@ values-b+be/strings.xml	string	search_hint_site	-	STR	Шукаць па %s…
 values-b+be/strings.xml	string	search_poster_img_des	-	STR	Плакат	
 values-b+be/strings.xml	string	search_provider_text_providers	-	STR	Пошук праз пастаўшчыкоў	
 values-b+be/strings.xml	string	search_provider_text_types	-	STR	Пошук праз тыпы	
+values-b+be/strings.xml	string	search_quick_empty_body	-	STR	Усе крыніцы адказалі, і ні ў адной няма «%s». Паспрабуйце карацейшы запыт або адкрыйце поўны пошук, каб змяніць крыніцы.	
+values-b+be/strings.xml	string	search_quick_empty_headline	-	STR	Няма супадзенняў	
+values-b+be/strings.xml	string	search_quick_meta_answered	-	STR	УСЕ КРЫНІЦЫ АДКАЗАЛІ	
+values-b+be/strings.xml	string	search_quick_meta_answering	-	STR	ВЫНІКІ З'ЯЎЛЯЮЦЦА ПА МЕРЫ АДКАЗАЎ КРЫНІЦ	
+values-b+be/strings.xml	string	search_quick_open_full	-	STR	Адкрыць поўны пошук	
+values-b+be/strings.xml	string	search_quick_status	-	STR	АДКАЗАЛІ %1$d З %2$d · ЗБОЙ %3$d	
+values-b+be/strings.xml	string	search_quick_title	-	STR	Хуткі пошук	
 values-b+be/strings.xml	string	search_state_idle_body_desktop	-	STR	Увядзіце назву. Вынікі з'яўляюцца пад кожнай крыніцай, калі яна адказвае.	
 values-b+be/strings.xml	string	search_state_no_results_type_filter	-	STR	Толькі %s. Фільтр па тыпе звужае пошук.	
 values-b+be/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 ПРАПАНОЎ · 0 НЯДАЎНІХ СУПАДЗЕННЯЎ	
@@ -4950,6 +5006,13 @@ values-b+bg/strings.xml	string	search_hint_site	-	STR	Търси %s…
 values-b+bg/strings.xml	string	search_poster_img_des	-	STR	Постер	
 values-b+bg/strings.xml	string	search_provider_text_providers	-	STR	Търсене чрез доставчици	
 values-b+bg/strings.xml	string	search_provider_text_types	-	STR	Търсене с помощта на типове	
+values-b+bg/strings.xml	string	search_quick_empty_body	-	STR	Всички източници отговориха и никой няма „%s“. Опитайте по-кратко търсене или отворете пълното търсене, за да смените източниците.	
+values-b+bg/strings.xml	string	search_quick_empty_headline	-	STR	Няма съвпадения	
+values-b+bg/strings.xml	string	search_quick_meta_answered	-	STR	ВСИЧКИ ИЗТОЧНИЦИ ОТГОВОРИХА	
+values-b+bg/strings.xml	string	search_quick_meta_answering	-	STR	РЕЗУЛТАТИТЕ ИДВАТ С ОТГОВОРИТЕ НА ИЗТОЧНИЦИТЕ	
+values-b+bg/strings.xml	string	search_quick_open_full	-	STR	Отвори пълното търсене	
+values-b+bg/strings.xml	string	search_quick_status	-	STR	ОТГОВОРИЛИ %1$d ОТ %2$d · НЕУСПЕШНИ %3$d	
+values-b+bg/strings.xml	string	search_quick_title	-	STR	Бързо търсене	
 values-b+bg/strings.xml	string	search_state_idle_body_desktop	-	STR	Въведете заглавие. Резултатите се появяват под всеки източник, когато той отговори.	
 values-b+bg/strings.xml	string	search_state_no_results_type_filter	-	STR	Само %s. Филтърът по тип стеснява търсенето.	
 values-b+bg/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 ПРЕДЛОЖЕНИЯ · 0 СКОРОШНИ СЪВПАДЕНИЯ	
@@ -5541,6 +5604,13 @@ values-b+bn/strings.xml	string	search_hint_site	-	STR	খুঁজুন %s…
 values-b+bn/strings.xml	string	search_poster_img_des	-	STR	পোস্টার	
 values-b+bn/strings.xml	string	search_provider_text_providers	-	STR	প্রভাইডার অনুযায়ি খুঁজুন	
 values-b+bn/strings.xml	string	search_provider_text_types	-	STR	ধরণ অনুযায়ি খুঁজুন	
+values-b+bn/strings.xml	string	search_quick_empty_body	-	STR	সব উৎস উত্তর দিয়েছে কিন্তু কারও কাছে “%s” নেই। ছোট অনুসন্ধান চেষ্টা করুন, অথবা উৎস বদলাতে পূর্ণ অনুসন্ধান খুলুন।	
+values-b+bn/strings.xml	string	search_quick_empty_headline	-	STR	কোনো মিল নেই	
+values-b+bn/strings.xml	string	search_quick_meta_answered	-	STR	সব উৎস উত্তর দিয়েছে	
+values-b+bn/strings.xml	string	search_quick_meta_answering	-	STR	উৎসগুলো উত্তর দিলেই ফলাফল আসে	
+values-b+bn/strings.xml	string	search_quick_open_full	-	STR	পূর্ণ অনুসন্ধান খুলুন	
+values-b+bn/strings.xml	string	search_quick_status	-	STR	%2$d-এর মধ্যে %1$d উত্তর দিয়েছে · %3$d ব্যর্থ	
+values-b+bn/strings.xml	string	search_quick_title	-	STR	দ্রুত অনুসন্ধান	
 values-b+bn/strings.xml	string	search_state_idle_body_desktop	-	STR	একটি শিরোনাম লিখুন। প্রতিটি সোর্স উত্তর দিলে ফলাফল তার নিচে দেখা যাবে।	
 values-b+bn/strings.xml	string	search_state_no_results_type_filter	-	STR	শুধু %s। আপনার ধরনের ফিল্টার অনুসন্ধান সীমিত করছে।	
 values-b+bn/strings.xml	string	search_state_no_suggestions_detail	-	STR	0টি সাজেশন · 0টি সাম্প্রতিক মিল	
@@ -5986,6 +6056,13 @@ values-b+ca/strings.xml	string	search_hint_site	-	STR	Cercar a %s…
 values-b+ca/strings.xml	string	search_poster_img_des	-	STR	Cartell	
 values-b+ca/strings.xml	string	search_provider_text_providers	-	STR	Cerca amb proveïdors	
 values-b+ca/strings.xml	string	search_provider_text_types	-	STR	Cerca per tipus	
+values-b+ca/strings.xml	string	search_quick_empty_body	-	STR	Totes les fonts han respost i cap no té «%s». Proveu una cerca més curta o obriu la cerca completa per canviar les fonts.	
+values-b+ca/strings.xml	string	search_quick_empty_headline	-	STR	Cap coincidència	
+values-b+ca/strings.xml	string	search_quick_meta_answered	-	STR	TOTES LES FONTS HAN RESPOST	
+values-b+ca/strings.xml	string	search_quick_meta_answering	-	STR	ELS RESULTATS ARRIBEN A MESURA QUE RESPONEN LES FONTS	
+values-b+ca/strings.xml	string	search_quick_open_full	-	STR	Obre la cerca completa	
+values-b+ca/strings.xml	string	search_quick_status	-	STR	%1$d DE %2$d HAN RESPOST · %3$d HAN FALLAT	
+values-b+ca/strings.xml	string	search_quick_title	-	STR	Cerca ràpida	
 values-b+ca/strings.xml	string	search_state_idle_body_desktop	-	STR	Escriu un títol. Els resultats apareixen sota cada font quan respon.	
 values-b+ca/strings.xml	string	search_state_no_results_type_filter	-	STR	Només %s. El filtre de tipus està limitant la cerca.	
 values-b+ca/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SUGGERIMENTS · 0 COINCIDÈNCIES RECENTS	
@@ -6240,6 +6317,13 @@ values-b+ckb/strings.xml	string	result_tags	-	STR	ژانرەکان
 values-b+ckb/strings.xml	string	search_hint	-	STR	گەڕان…	
 values-b+ckb/strings.xml	string	search_hint_site	-	STR	بگەڕێ بۆ%s…	
 values-b+ckb/strings.xml	string	search_poster_img_des	-	STR	پۆستەر	
+values-b+ckb/strings.xml	string	search_quick_empty_body	-	STR	هەموو سەرچاوەکان وەڵامیان دایەوە و هیچیان «%s»ـیان نییە. گەڕانێکی کورتتر تاقی بکەرەوە، یان گەڕانی تەواو بکەرەوە بۆ گۆڕینی سەرچاوەکان.	
+values-b+ckb/strings.xml	string	search_quick_empty_headline	-	STR	هیچ گونجانێک نییە	
+values-b+ckb/strings.xml	string	search_quick_meta_answered	-	STR	هەموو سەرچاوەکان وەڵامیان دایەوە	
+values-b+ckb/strings.xml	string	search_quick_meta_answering	-	STR	ئەنجامەکان لەگەڵ وەڵامدانەوەی سەرچاوەکان دێن	
+values-b+ckb/strings.xml	string	search_quick_open_full	-	STR	کردنەوەی گەڕانی تەواو	
+values-b+ckb/strings.xml	string	search_quick_status	-	STR	%1$d لە %2$d وەڵامیان دایەوە · %3$d شکستیان هێنا	
+values-b+ckb/strings.xml	string	search_quick_title	-	STR	گەڕانی خێرا	
 values-b+ckb/strings.xml	string	search_state_idle_body_desktop	-	STR	ناونیشانێک بنووسە. ئەنجامەکان لە ژێر هەر سەرچاوەیەک دەردەکەون کاتێک وەڵام دەداتەوە.	
 values-b+ckb/strings.xml	string	search_state_no_results_type_filter	-	STR	تەنها %s. فلتەری جۆرەکەت گەڕانەکە سنووردار دەکات.	
 values-b+ckb/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 پێشنیار · 0 هاوتای دوایین	
@@ -6896,6 +6980,13 @@ values-b+cs/strings.xml	string	search_hint_site	-	STR	Hledat %s…
 values-b+cs/strings.xml	string	search_poster_img_des	-	STR	Plakát	
 values-b+cs/strings.xml	string	search_provider_text_providers	-	STR	Hledat pomocí poskytovatelů	
 values-b+cs/strings.xml	string	search_provider_text_types	-	STR	Hledat pomocí typů	
+values-b+cs/strings.xml	string	search_quick_empty_body	-	STR	Všechny zdroje odpověděly a žádný nemá „%s“. Zkuste kratší dotaz nebo otevřete úplné hledání a změňte zdroje.	
+values-b+cs/strings.xml	string	search_quick_empty_headline	-	STR	Žádné shody	
+values-b+cs/strings.xml	string	search_quick_meta_answered	-	STR	VŠECHNY ZDROJE ODPOVĚDĚLY	
+values-b+cs/strings.xml	string	search_quick_meta_answering	-	STR	VÝSLEDKY PŘIBÝVAJÍ, JAK ZDROJE ODPOVÍDAJÍ	
+values-b+cs/strings.xml	string	search_quick_open_full	-	STR	Otevřít úplné hledání	
+values-b+cs/strings.xml	string	search_quick_status	-	STR	ODPOVĚDĚLO %1$d Z %2$d · SELHALO %3$d	
+values-b+cs/strings.xml	string	search_quick_title	-	STR	Rychlé hledání	
 values-b+cs/strings.xml	string	search_state_idle_body_desktop	-	STR	Zadejte název. Výsledky se zobrazí pod každým zdrojem, jakmile odpoví.	
 values-b+cs/strings.xml	string	search_state_no_results_type_filter	-	STR	Pouze %s. Filtr typů zužuje hledání.	
 values-b+cs/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 NÁVRHŮ · 0 NEDÁVNÝCH SHOD	
@@ -7729,6 +7820,13 @@ values-b+de/strings.xml	string	search_hint_site	-	STR	Suche %s…
 values-b+de/strings.xml	string	search_poster_img_des	-	STR	Vorschaubild	
 values-b+de/strings.xml	string	search_provider_text_providers	-	STR	Suche anhand Anbietern	
 values-b+de/strings.xml	string	search_provider_text_types	-	STR	Suche anhand Typen	
+values-b+de/strings.xml	string	search_quick_empty_body	-	STR	Alle Quellen haben geantwortet, und keine hat „%s“. Versuche eine kürzere Suche oder öffne die vollständige Suche, um die Quellen zu ändern.	
+values-b+de/strings.xml	string	search_quick_empty_headline	-	STR	Keine Treffer	
+values-b+de/strings.xml	string	search_quick_meta_answered	-	STR	ALLE QUELLEN HABEN GEANTWORTET	
+values-b+de/strings.xml	string	search_quick_meta_answering	-	STR	ERGEBNISSE KOMMEN, SOBALD QUELLEN ANTWORTEN	
+values-b+de/strings.xml	string	search_quick_open_full	-	STR	Vollständige Suche öffnen	
+values-b+de/strings.xml	string	search_quick_status	-	STR	%1$d VON %2$d GEANTWORTET · %3$d FEHLGESCHLAGEN	
+values-b+de/strings.xml	string	search_quick_title	-	STR	Schnellsuche	
 values-b+de/strings.xml	string	search_state_idle_body_desktop	-	STR	Titel eingeben. Ergebnisse erscheinen unter jeder Quelle, sobald sie antwortet.	
 values-b+de/strings.xml	string	search_state_no_results_type_filter	-	STR	Nur %s. Der Typfilter schränkt die Suche ein.	
 values-b+de/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 VORSCHLÄGE · 0 TREFFER IM VERLAUF	
@@ -8504,6 +8602,13 @@ values-b+el/strings.xml	string	search_hint_site	-	STR	Αναζήτηση %s…
 values-b+el/strings.xml	string	search_poster_img_des	-	STR	Αφίσα	
 values-b+el/strings.xml	string	search_provider_text_providers	-	STR	Αναζήτηση βάσει παρόχων	
 values-b+el/strings.xml	string	search_provider_text_types	-	STR	Αναζήτηση βάσει τύπων	
+values-b+el/strings.xml	string	search_quick_empty_body	-	STR	Όλες οι πηγές απάντησαν και καμία δεν έχει «%s». Δοκιμάστε μικρότερη αναζήτηση ή ανοίξτε την πλήρη αναζήτηση για να αλλάξετε τις πηγές.	
+values-b+el/strings.xml	string	search_quick_empty_headline	-	STR	Καμία αντιστοιχία	
+values-b+el/strings.xml	string	search_quick_meta_answered	-	STR	ΑΠΑΝΤΗΣΑΝ ΟΛΕΣ ΟΙ ΠΗΓΕΣ	
+values-b+el/strings.xml	string	search_quick_meta_answering	-	STR	ΤΑ ΑΠΟΤΕΛΕΣΜΑΤΑ ΕΡΧΟΝΤΑΙ ΚΑΘΩΣ ΑΠΑΝΤΟΥΝ ΟΙ ΠΗΓΕΣ	
+values-b+el/strings.xml	string	search_quick_open_full	-	STR	Άνοιγμα πλήρους αναζήτησης	
+values-b+el/strings.xml	string	search_quick_status	-	STR	ΑΠΑΝΤΗΣΑΝ %1$d ΑΠΟ %2$d · ΑΠΕΤΥΧΑΝ %3$d	
+values-b+el/strings.xml	string	search_quick_title	-	STR	Γρήγορη αναζήτηση	
 values-b+el/strings.xml	string	search_state_idle_body_desktop	-	STR	Πληκτρολογήστε έναν τίτλο. Τα αποτελέσματα εμφανίζονται κάτω από κάθε πηγή μόλις απαντήσει.	
 values-b+el/strings.xml	string	search_state_no_results_type_filter	-	STR	Μόνο %s. Το φίλτρο τύπου περιορίζει την αναζήτηση.	
 values-b+el/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 ΠΡΟΤΑΣΕΙΣ · 0 ΠΡΟΣΦΑΤΕΣ ΑΝΤΙΣΤΟΙΧΙΕΣ	
@@ -8917,6 +9022,13 @@ values-b+eo/strings.xml	string	search_hint_site	-	STR	Serĉi %s…
 values-b+eo/strings.xml	string	search_poster_img_des	-	STR	Afiŝo	
 values-b+eo/strings.xml	string	search_provider_text_providers	-	STR	Serĉi uzante provizantojn	
 values-b+eo/strings.xml	string	search_provider_text_types	-	STR	Serĉi uzante tipojn	
+values-b+eo/strings.xml	string	search_quick_empty_body	-	STR	Ĉiuj fontoj respondis kaj neniu havas “%s”. Provu pli mallongan serĉon, aŭ malfermu la plenan serĉon por ŝanĝi la fontojn.	
+values-b+eo/strings.xml	string	search_quick_empty_headline	-	STR	Neniu kongruo	
+values-b+eo/strings.xml	string	search_quick_meta_answered	-	STR	ĈIUJ FONTOJ RESPONDIS	
+values-b+eo/strings.xml	string	search_quick_meta_answering	-	STR	REZULTOJ ALVENAS DUM FONTOJ RESPONDAS	
+values-b+eo/strings.xml	string	search_quick_open_full	-	STR	Malfermi plenan serĉon	
+values-b+eo/strings.xml	string	search_quick_status	-	STR	%1$d EL %2$d RESPONDIS · %3$d MALSUKCESIS	
+values-b+eo/strings.xml	string	search_quick_title	-	STR	Rapida serĉo	
 values-b+eo/strings.xml	string	search_state_idle_body_desktop	-	STR	Tajpu titolon. Rezultoj aperas sub ĉiu fonto kiam ĝi respondas.	
 values-b+eo/strings.xml	string	search_state_no_results_type_filter	-	STR	Nur %s. Via tipfiltrilo mallarĝigas la serĉon.	
 values-b+eo/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SUGESTOJ · 0 LASTATEMPAJ KONGRUOJ	
@@ -9601,6 +9713,13 @@ values-b+es/strings.xml	string	search_hint_site	-	STR	Buscar en %s…
 values-b+es/strings.xml	string	search_poster_img_des	-	STR	Póster	
 values-b+es/strings.xml	string	search_provider_text_providers	-	STR	Buscar usando proveedores	
 values-b+es/strings.xml	string	search_provider_text_types	-	STR	Buscar por tipos	
+values-b+es/strings.xml	string	search_quick_empty_body	-	STR	Todas las fuentes respondieron y ninguna tiene «%s». Pruebe una búsqueda más corta o abra la búsqueda completa para cambiar las fuentes.	
+values-b+es/strings.xml	string	search_quick_empty_headline	-	STR	Sin coincidencias	
+values-b+es/strings.xml	string	search_quick_meta_answered	-	STR	TODAS LAS FUENTES HAN RESPONDIDO	
+values-b+es/strings.xml	string	search_quick_meta_answering	-	STR	LOS RESULTADOS LLEGAN SEGÚN RESPONDEN LAS FUENTES	
+values-b+es/strings.xml	string	search_quick_open_full	-	STR	Abrir búsqueda completa	
+values-b+es/strings.xml	string	search_quick_status	-	STR	%1$d DE %2$d RESPONDIERON · %3$d FALLARON	
+values-b+es/strings.xml	string	search_quick_title	-	STR	Búsqueda rápida	
 values-b+es/strings.xml	string	search_state_idle_body_desktop	-	STR	Escriba un título. Los resultados aparecen bajo cada fuente cuando responde.	
 values-b+es/strings.xml	string	search_state_no_results_type_filter	-	STR	Solo %s. Su filtro de tipo está reduciendo la búsqueda.	
 values-b+es/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SUGERENCIAS · 0 COINCIDENCIAS RECIENTES	
@@ -10162,6 +10281,13 @@ values-b+fa/strings.xml	string	search_hint_site	-	STR	جست‌و‌جوی %s…
 values-b+fa/strings.xml	string	search_poster_img_des	-	STR	پوستر	
 values-b+fa/strings.xml	string	search_provider_text_providers	-	STR	جستجو از طریق ارائه‌دهنده‌ها	
 values-b+fa/strings.xml	string	search_provider_text_types	-	STR	جستجو از طریق انواع	
+values-b+fa/strings.xml	string	search_quick_empty_body	-	STR	همه منابع پاسخ دادند و هیچ‌کدام «%s» را ندارند. جستجوی کوتاه‌تری را امتحان کنید یا برای تغییر منابع، جستجوی کامل را باز کنید.	
+values-b+fa/strings.xml	string	search_quick_empty_headline	-	STR	موردی مطابقت ندارد	
+values-b+fa/strings.xml	string	search_quick_meta_answered	-	STR	همه منابع پاسخ دادند	
+values-b+fa/strings.xml	string	search_quick_meta_answering	-	STR	نتایج با پاسخ منابع می‌رسند	
+values-b+fa/strings.xml	string	search_quick_open_full	-	STR	باز کردن جستجوی کامل	
+values-b+fa/strings.xml	string	search_quick_status	-	STR	%1$d از %2$d پاسخ دادند · %3$d ناموفق	
+values-b+fa/strings.xml	string	search_quick_title	-	STR	جستجوی سریع	
 values-b+fa/strings.xml	string	search_state_idle_body_desktop	-	STR	عنوانی را بنویسید. نتایج هر منبع پس از پاسخ آن، زیر نامش نمایش داده می‌شود.	
 values-b+fa/strings.xml	string	search_state_no_results_type_filter	-	STR	فقط %s. فیلتر نوع شما جستجو را محدود می‌کند.	
 values-b+fa/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 پیشنهاد · 0 مورد منطبق اخیر	
@@ -10461,6 +10587,13 @@ values-b+fil/strings.xml	string	search_hint	-	STR	Maghanap…
 values-b+fil/strings.xml	string	search_hint_site	-	STR	Maghanap %s…	
 values-b+fil/strings.xml	string	search_provider_text_providers	-	STR	Maghanap gamit ang mga tagatustos	
 values-b+fil/strings.xml	string	search_provider_text_types	-	STR	Maghanap gamit ang mga uri	
+values-b+fil/strings.xml	string	search_quick_empty_body	-	STR	Sumagot ang lahat ng source at wala ni isang may “%s”. Subukan ang mas maikling paghahanap, o buksan ang buong paghahanap para palitan ang mga source.	
+values-b+fil/strings.xml	string	search_quick_empty_headline	-	STR	Walang tugma	
+values-b+fil/strings.xml	string	search_quick_meta_answered	-	STR	SUMAGOT NA ANG LAHAT NG SOURCE	
+values-b+fil/strings.xml	string	search_quick_meta_answering	-	STR	DUMARATING ANG MGA RESULTA HABANG SUMASAGOT ANG MGA SOURCE	
+values-b+fil/strings.xml	string	search_quick_open_full	-	STR	Buksan ang buong paghahanap	
+values-b+fil/strings.xml	string	search_quick_status	-	STR	%1$d SA %2$d ANG SUMAGOT · %3$d ANG NABIGO	
+values-b+fil/strings.xml	string	search_quick_title	-	STR	Mabilis na paghahanap	
 values-b+fil/strings.xml	string	search_state_idle_body_desktop	-	STR	Mag-type ng pamagat. Lalabas ang mga resulta sa ilalim ng bawat source kapag sumagot ito.	
 values-b+fil/strings.xml	string	search_state_no_results_type_filter	-	STR	%s lang. Pinipigilan ng type filter mo ang paghahanap.	
 values-b+fil/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 MUNGKAHI · 0 KAMAKAILANG TUGMA	
@@ -11134,6 +11267,13 @@ values-b+fr/strings.xml	string	search_hint_site	-	STR	Rechercher sur %s…
 values-b+fr/strings.xml	string	search_poster_img_des	-	STR	Affiche	
 values-b+fr/strings.xml	string	search_provider_text_providers	-	STR	Recherche par fournisseur	
 values-b+fr/strings.xml	string	search_provider_text_types	-	STR	Recherche par types	
+values-b+fr/strings.xml	string	search_quick_empty_body	-	STR	Toutes les sources ont répondu et aucune ne propose « %s ». Essayez une recherche plus courte, ou ouvrez la recherche complète pour changer de sources.	
+values-b+fr/strings.xml	string	search_quick_empty_headline	-	STR	Aucune correspondance	
+values-b+fr/strings.xml	string	search_quick_meta_answered	-	STR	TOUTES LES SOURCES ONT RÉPONDU	
+values-b+fr/strings.xml	string	search_quick_meta_answering	-	STR	LES RÉSULTATS ARRIVENT À MESURE QUE LES SOURCES RÉPONDENT	
+values-b+fr/strings.xml	string	search_quick_open_full	-	STR	Ouvrir la recherche complète	
+values-b+fr/strings.xml	string	search_quick_status	-	STR	%1$d SUR %2$d ONT RÉPONDU · %3$d EN ÉCHEC	
+values-b+fr/strings.xml	string	search_quick_title	-	STR	Recherche rapide	
 values-b+fr/strings.xml	string	search_state_idle_body_desktop	-	STR	Saisissez un titre. Les résultats apparaissent sous chaque source dès qu'elle répond.	
 values-b+fr/strings.xml	string	search_state_no_results_type_filter	-	STR	%s uniquement. Votre filtre de type restreint la recherche.	
 values-b+fr/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SUGGESTION · 0 CORRESPONDANCE RÉCENTE	
@@ -11642,6 +11782,13 @@ values-b+gl/strings.xml	string	search_hint_site	-	STR	Procurar en %s…
 values-b+gl/strings.xml	string	search_poster_img_des	-	STR	Cartel	
 values-b+gl/strings.xml	string	search_provider_text_providers	-	STR	Procurar usando proveedores	
 values-b+gl/strings.xml	string	search_provider_text_types	-	STR	Procurar por tipos	
+values-b+gl/strings.xml	string	search_quick_empty_body	-	STR	Todas as fontes responderon e ningunha ten «%s». Proba unha busca máis curta ou abre a busca completa para cambiar as fontes.	
+values-b+gl/strings.xml	string	search_quick_empty_headline	-	STR	Sen coincidencias	
+values-b+gl/strings.xml	string	search_quick_meta_answered	-	STR	TODAS AS FONTES RESPONDERON	
+values-b+gl/strings.xml	string	search_quick_meta_answering	-	STR	OS RESULTADOS CHEGAN SEGUNDO RESPONDEN AS FONTES	
+values-b+gl/strings.xml	string	search_quick_open_full	-	STR	Abrir a busca completa	
+values-b+gl/strings.xml	string	search_quick_status	-	STR	%1$d DE %2$d RESPONDERON · %3$d FALLARON	
+values-b+gl/strings.xml	string	search_quick_title	-	STR	Busca rápida	
 values-b+gl/strings.xml	string	search_state_idle_body_desktop	-	STR	Escriba un título. Os resultados aparecen baixo cada fonte cando responde.	
 values-b+gl/strings.xml	string	search_state_no_results_type_filter	-	STR	Só %s. O filtro de tipo está limitando a busca.	
 values-b+gl/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SUXESTIÓNS · 0 COINCIDENCIAS RECENTES	
@@ -12127,6 +12274,13 @@ values-b+hi/strings.xml	string	search_hint_site	-	STR	%s पर खोजें�
 values-b+hi/strings.xml	string	search_poster_img_des	-	STR	पोस्टर	
 values-b+hi/strings.xml	string	search_provider_text_providers	-	STR	प्रोवाइडरों का उपयोग कर खोजें	
 values-b+hi/strings.xml	string	search_provider_text_types	-	STR	प्रकार का उपयोग करके खोजें	
+values-b+hi/strings.xml	string	search_quick_empty_body	-	STR	सभी स्रोतों ने जवाब दिया और किसी के पास “%s” नहीं है। छोटी खोज आज़माएँ, या स्रोत बदलने के लिए पूरी खोज खोलें।	
+values-b+hi/strings.xml	string	search_quick_empty_headline	-	STR	कोई मेल नहीं	
+values-b+hi/strings.xml	string	search_quick_meta_answered	-	STR	सभी स्रोतों ने जवाब दिया	
+values-b+hi/strings.xml	string	search_quick_meta_answering	-	STR	स्रोतों के जवाब के साथ नतीजे आते हैं	
+values-b+hi/strings.xml	string	search_quick_open_full	-	STR	पूरी खोज खोलें	
+values-b+hi/strings.xml	string	search_quick_status	-	STR	%2$d में से %1$d ने जवाब दिया · %3$d विफल	
+values-b+hi/strings.xml	string	search_quick_title	-	STR	त्वरित खोज	
 values-b+hi/strings.xml	string	search_state_idle_body_desktop	-	STR	कोई शीर्षक लिखें। हर स्रोत के जवाब देने पर नतीजे उसके नीचे दिखेंगे।	
 values-b+hi/strings.xml	string	search_state_no_results_type_filter	-	STR	सिर्फ़ %s। आपका प्रकार फ़िल्टर खोज को सीमित कर रहा है।	
 values-b+hi/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 सुझाव · 0 हालिया मिलान	
@@ -12857,6 +13011,13 @@ values-b+hr/strings.xml	string	search_hint_site	-	STR	Traži %s …
 values-b+hr/strings.xml	string	search_poster_img_des	-	STR	Poster	
 values-b+hr/strings.xml	string	search_provider_text_providers	-	STR	Traži koristeći pružatelje usluga	
 values-b+hr/strings.xml	string	search_provider_text_types	-	STR	Traži koristeći vrste	
+values-b+hr/strings.xml	string	search_quick_empty_body	-	STR	Svi su izvori odgovorili i nijedan nema „%s“. Pokušajte s kraćim upitom ili otvorite potpuno pretraživanje da biste promijenili izvore.	
+values-b+hr/strings.xml	string	search_quick_empty_headline	-	STR	Nema podudaranja	
+values-b+hr/strings.xml	string	search_quick_meta_answered	-	STR	SVI SU IZVORI ODGOVORILI	
+values-b+hr/strings.xml	string	search_quick_meta_answering	-	STR	REZULTATI STIŽU KAKO IZVORI ODGOVARAJU	
+values-b+hr/strings.xml	string	search_quick_open_full	-	STR	Otvori potpuno pretraživanje	
+values-b+hr/strings.xml	string	search_quick_status	-	STR	ODGOVORILO %1$d OD %2$d · NEUSPJELO %3$d	
+values-b+hr/strings.xml	string	search_quick_title	-	STR	Brzo pretraživanje	
 values-b+hr/strings.xml	string	search_state_idle_body_desktop	-	STR	Upišite naslov. Rezultati se pojavljuju ispod svakog izvora kad odgovori.	
 values-b+hr/strings.xml	string	search_state_no_results_type_filter	-	STR	Samo %s. Vaš filtar vrste sužava pretraživanje.	
 values-b+hr/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 PRIJEDLOGA · 0 NEDAVNIH PODUDARANJA	
@@ -13621,6 +13782,13 @@ values-b+hu/strings.xml	string	search_hint_site	-	STR	Keresés %s…
 values-b+hu/strings.xml	string	search_poster_img_des	-	STR	Poszter	
 values-b+hu/strings.xml	string	search_provider_text_providers	-	STR	Keresés szolgáltatók szerint	
 values-b+hu/strings.xml	string	search_provider_text_types	-	STR	Keresés típusok szerint	
+values-b+hu/strings.xml	string	search_quick_empty_body	-	STR	Minden forrás válaszolt, és egyiknél sincs meg ez: „%s”. Próbáljon rövidebb keresést, vagy nyissa meg a teljes keresést a források módosításához.	
+values-b+hu/strings.xml	string	search_quick_empty_headline	-	STR	Nincs egyezés	
+values-b+hu/strings.xml	string	search_quick_meta_answered	-	STR	MINDEN FORRÁS VÁLASZOLT	
+values-b+hu/strings.xml	string	search_quick_meta_answering	-	STR	AZ EREDMÉNYEK A FORRÁSOK VÁLASZAIVAL ÉRKEZNEK	
+values-b+hu/strings.xml	string	search_quick_open_full	-	STR	Teljes keresés megnyitása	
+values-b+hu/strings.xml	string	search_quick_status	-	STR	%2$d KÖZÜL %1$d VÁLASZOLT · %3$d SIKERTELEN	
+values-b+hu/strings.xml	string	search_quick_title	-	STR	Gyorskeresés	
 values-b+hu/strings.xml	string	search_state_idle_body_desktop	-	STR	Írjon be egy címet. Az eredmények az egyes források alatt jelennek meg, amint válaszolnak.	
 values-b+hu/strings.xml	string	search_state_no_results_type_filter	-	STR	Csak %s. A típusszűrő szűkíti a keresést.	
 values-b+hu/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 JAVASLAT · 0 LEGUTÓBBI TALÁLAT	
@@ -14409,6 +14577,13 @@ values-b+in/strings.xml	string	search_hint_site	-	STR	Cari %s…
 values-b+in/strings.xml	string	search_poster_img_des	-	STR	Poster	
 values-b+in/strings.xml	string	search_provider_text_providers	-	STR	Cari menggunakan penyedia	
 values-b+in/strings.xml	string	search_provider_text_types	-	STR	Cari menggunakan jenis	
+values-b+in/strings.xml	string	search_quick_empty_body	-	STR	Semua sumber menjawab dan tidak ada yang memiliki “%s”. Coba pencarian yang lebih pendek, atau buka pencarian lengkap untuk mengganti sumber.	
+values-b+in/strings.xml	string	search_quick_empty_headline	-	STR	Tidak ada yang cocok	
+values-b+in/strings.xml	string	search_quick_meta_answered	-	STR	SEMUA SUMBER TELAH MENJAWAB	
+values-b+in/strings.xml	string	search_quick_meta_answering	-	STR	HASIL MASUK SAAT SUMBER MENJAWAB	
+values-b+in/strings.xml	string	search_quick_open_full	-	STR	Buka pencarian lengkap	
+values-b+in/strings.xml	string	search_quick_status	-	STR	%1$d DARI %2$d MENJAWAB · %3$d GAGAL	
+values-b+in/strings.xml	string	search_quick_title	-	STR	Pencarian cepat	
 values-b+in/strings.xml	string	search_state_idle_body_desktop	-	STR	Ketik judul. Hasil muncul di bawah setiap sumber saat sumber itu menjawab.	
 values-b+in/strings.xml	string	search_state_no_results_type_filter	-	STR	Hanya %s. Filter jenis Anda mempersempit pencarian.	
 values-b+in/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SARAN · 0 COCOK TERBARU	
@@ -15250,6 +15425,13 @@ values-b+it/strings.xml	string	search_hint_site	-	STR	Cerca in %s…
 values-b+it/strings.xml	string	search_poster_img_des	-	STR	Poster	
 values-b+it/strings.xml	string	search_provider_text_providers	-	STR	Cerca per provider	
 values-b+it/strings.xml	string	search_provider_text_types	-	STR	Cerca per tipo	
+values-b+it/strings.xml	string	search_quick_empty_body	-	STR	Tutte le fonti hanno risposto e nessuna ha «%s». Prova una ricerca più breve o apri la ricerca completa per cambiare le fonti.	
+values-b+it/strings.xml	string	search_quick_empty_headline	-	STR	Nessuna corrispondenza	
+values-b+it/strings.xml	string	search_quick_meta_answered	-	STR	TUTTE LE FONTI HANNO RISPOSTO	
+values-b+it/strings.xml	string	search_quick_meta_answering	-	STR	I RISULTATI ARRIVANO MAN MANO CHE LE FONTI RISPONDONO	
+values-b+it/strings.xml	string	search_quick_open_full	-	STR	Apri la ricerca completa	
+values-b+it/strings.xml	string	search_quick_status	-	STR	%1$d SU %2$d HANNO RISPOSTO · %3$d NON RIUSCITE	
+values-b+it/strings.xml	string	search_quick_title	-	STR	Ricerca rapida	
 values-b+it/strings.xml	string	search_state_idle_body_desktop	-	STR	Digita un titolo. I risultati compaiono sotto ogni fonte quando risponde.	
 values-b+it/strings.xml	string	search_state_no_results_type_filter	-	STR	Solo %s. Il filtro per tipo sta restringendo la ricerca.	
 values-b+it/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SUGGERIMENTI · 0 CORRISPONDENZE RECENTI	
@@ -15946,6 +16128,13 @@ values-b+iw/strings.xml	string	search_hint_site	-	STR	חיפוש %s…
 values-b+iw/strings.xml	string	search_poster_img_des	-	STR	פוסטר	
 values-b+iw/strings.xml	string	search_provider_text_providers	-	STR	חפש באמצעות הספקים	
 values-b+iw/strings.xml	string	search_provider_text_types	-	STR	חפש באמצעות סוגים	
+values-b+iw/strings.xml	string	search_quick_empty_body	-	STR	כל המקורות ענו ואף אחד מהם לא מכיל את “%s”. נסו חיפוש קצר יותר, או פתחו את החיפוש המלא כדי לשנות את המקורות.	
+values-b+iw/strings.xml	string	search_quick_empty_headline	-	STR	אין התאמות	
+values-b+iw/strings.xml	string	search_quick_meta_answered	-	STR	כל המקורות ענו	
+values-b+iw/strings.xml	string	search_quick_meta_answering	-	STR	התוצאות מגיעות כשהמקורות עונים	
+values-b+iw/strings.xml	string	search_quick_open_full	-	STR	פתיחת החיפוש המלא	
+values-b+iw/strings.xml	string	search_quick_status	-	STR	%1$d מתוך %2$d ענו · %3$d נכשלו	
+values-b+iw/strings.xml	string	search_quick_title	-	STR	חיפוש מהיר	
 values-b+iw/strings.xml	string	search_state_idle_body_desktop	-	STR	הקלד כותרת. התוצאות יופיעו מתחת לכל מקור כשיענה.	
 values-b+iw/strings.xml	string	search_state_no_results_type_filter	-	STR	%s בלבד. מסנן הסוג מצמצם את החיפוש.	
 values-b+iw/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 הצעות · 0 התאמות אחרונות	
@@ -16719,6 +16908,13 @@ values-b+ja/strings.xml	string	search_hint_site	-	STR	%sを検索…
 values-b+ja/strings.xml	string	search_poster_img_des	-	STR	ポスター	
 values-b+ja/strings.xml	string	search_provider_text_providers	-	STR	プロバイダーから探す	
 values-b+ja/strings.xml	string	search_provider_text_types	-	STR	使用タイプの検索	
+values-b+ja/strings.xml	string	search_quick_empty_body	-	STR	すべてのソースが応答しましたが、「%s」はどこにもありません。短いキーワードで試すか、完全な検索を開いてソースを変更してください。	
+values-b+ja/strings.xml	string	search_quick_empty_headline	-	STR	一致なし	
+values-b+ja/strings.xml	string	search_quick_meta_answered	-	STR	すべてのソースが応答しました	
+values-b+ja/strings.xml	string	search_quick_meta_answering	-	STR	ソースが応答するたびに結果が届きます	
+values-b+ja/strings.xml	string	search_quick_open_full	-	STR	完全な検索を開く	
+values-b+ja/strings.xml	string	search_quick_status	-	STR	%2$d件中%1$d件が応答 · %3$d件が失敗	
+values-b+ja/strings.xml	string	search_quick_title	-	STR	クイック検索	
 values-b+ja/strings.xml	string	search_state_idle_body_desktop	-	STR	タイトルを入力してください。各ソースが応答すると、その下に結果が表示されます。	
 values-b+ja/strings.xml	string	search_state_no_results_type_filter	-	STR	%sのみ。種類フィルターで検索が絞り込まれています。	
 values-b+ja/strings.xml	string	search_state_no_suggestions_detail	-	STR	候補 0 件 · 最近の一致 0 件	
@@ -17109,6 +17305,13 @@ values-b+kn/strings.xml	string	search_hint_site	-	STR	ಹುಡುಕು %s…
 values-b+kn/strings.xml	string	search_poster_img_des	-	STR	ಪೋಸ್ಟರ್	
 values-b+kn/strings.xml	string	search_provider_text_providers	-	STR	ಪೂರೈಕೆದಾರರನ್ನು ಬಳಸಿಕೊಂಡು ಹುಡುಕಿ	
 values-b+kn/strings.xml	string	search_provider_text_types	-	STR	ಪ್ರಕಾರಗಳನ್ನು ಬಳಸಿಕೊಂಡು ಹುಡುಕಿ	
+values-b+kn/strings.xml	string	search_quick_empty_body	-	STR	ಎಲ್ಲಾ ಮೂಲಗಳು ಉತ್ತರಿಸಿವೆ, ಆದರೆ ಯಾವುದರಲ್ಲೂ “%s” ಇಲ್ಲ. ಚಿಕ್ಕ ಹುಡುಕಾಟ ಪ್ರಯತ್ನಿಸಿ, ಅಥವಾ ಮೂಲಗಳನ್ನು ಬದಲಿಸಲು ಪೂರ್ಣ ಹುಡುಕಾಟ ತೆರೆಯಿರಿ.	
+values-b+kn/strings.xml	string	search_quick_empty_headline	-	STR	ಯಾವುದೇ ಹೊಂದಾಣಿಕೆ ಇಲ್ಲ	
+values-b+kn/strings.xml	string	search_quick_meta_answered	-	STR	ಎಲ್ಲಾ ಮೂಲಗಳು ಉತ್ತರಿಸಿವೆ	
+values-b+kn/strings.xml	string	search_quick_meta_answering	-	STR	ಮೂಲಗಳು ಉತ್ತರಿಸಿದಂತೆ ಫಲಿತಾಂಶಗಳು ಬರುತ್ತವೆ	
+values-b+kn/strings.xml	string	search_quick_open_full	-	STR	ಪೂರ್ಣ ಹುಡುಕಾಟ ತೆರೆಯಿರಿ	
+values-b+kn/strings.xml	string	search_quick_status	-	STR	%2$d ರಲ್ಲಿ %1$d ಉತ್ತರಿಸಿವೆ · %3$d ವಿಫಲ	
+values-b+kn/strings.xml	string	search_quick_title	-	STR	ತ್ವರಿತ ಹುಡುಕಾಟ	
 values-b+kn/strings.xml	string	search_state_idle_body_desktop	-	STR	ಶೀರ್ಷಿಕೆಯನ್ನು ಟೈಪ್ ಮಾಡಿ. ಪ್ರತಿಯೊಂದು ಮೂಲ ಉತ್ತರಿಸಿದಂತೆ ಫಲಿತಾಂಶಗಳು ಅದರ ಕೆಳಗೆ ಕಾಣಿಸುತ್ತವೆ.	
 values-b+kn/strings.xml	string	search_state_no_results_type_filter	-	STR	%s ಮಾತ್ರ. ನಿಮ್ಮ ಪ್ರಕಾರದ ಫಿಲ್ಟರ್ ಹುಡುಕಾಟವನ್ನು ಕಿರಿದುಗೊಳಿಸುತ್ತಿದೆ.	
 values-b+kn/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 ಸಲಹೆಗಳು · 0 ಇತ್ತೀಚಿನ ಹೊಂದಾಣಿಕೆಗಳು	
@@ -17762,6 +17965,13 @@ values-b+ko/strings.xml	string	search_hint_site	-	STR	검색 %s…
 values-b+ko/strings.xml	string	search_poster_img_des	-	STR	포스터	
 values-b+ko/strings.xml	string	search_provider_text_providers	-	STR	소스로 검색	
 values-b+ko/strings.xml	string	search_provider_text_types	-	STR	유형을 사용하여 검색	
+values-b+ko/strings.xml	string	search_quick_empty_body	-	STR	모든 소스가 응답했지만 “%s”이(가) 있는 소스가 없습니다. 더 짧게 검색하거나 전체 검색을 열어 소스를 변경하세요.	
+values-b+ko/strings.xml	string	search_quick_empty_headline	-	STR	일치 항목 없음	
+values-b+ko/strings.xml	string	search_quick_meta_answered	-	STR	모든 소스가 응답함	
+values-b+ko/strings.xml	string	search_quick_meta_answering	-	STR	소스가 응답하는 대로 결과가 표시됩니다	
+values-b+ko/strings.xml	string	search_quick_open_full	-	STR	전체 검색 열기	
+values-b+ko/strings.xml	string	search_quick_status	-	STR	%2$d개 중 %1$d개 응답 · %3$d개 실패	
+values-b+ko/strings.xml	string	search_quick_title	-	STR	빠른 검색	
 values-b+ko/strings.xml	string	search_state_idle_body_desktop	-	STR	제목을 입력하세요. 각 소스가 응답하면 그 아래에 결과가 표시됩니다.	
 values-b+ko/strings.xml	string	search_state_no_results_type_filter	-	STR	%s만. 유형 필터가 검색을 좁히고 있습니다.	
 values-b+ko/strings.xml	string	search_state_no_suggestions_detail	-	STR	추천 0개 · 최근 일치 0개	
@@ -18277,6 +18487,13 @@ values-b+lt/strings.xml	string	search_hint_site	-	STR	Ieškoti %s…
 values-b+lt/strings.xml	string	search_poster_img_des	-	STR	Plakatas	
 values-b+lt/strings.xml	string	search_provider_text_providers	-	STR	Ieškoti naudojant tiekėjus	
 values-b+lt/strings.xml	string	search_provider_text_types	-	STR	Ieškoti naudojant tipus	
+values-b+lt/strings.xml	string	search_quick_empty_body	-	STR	Atsakė visi šaltiniai, ir nė viename nėra „%s“. Pabandykite trumpesnę paiešką arba atidarykite visą paiešką ir pakeiskite šaltinius.	
+values-b+lt/strings.xml	string	search_quick_empty_headline	-	STR	Atitikmenų nėra	
+values-b+lt/strings.xml	string	search_quick_meta_answered	-	STR	ATSAKĖ VISI ŠALTINIAI	
+values-b+lt/strings.xml	string	search_quick_meta_answering	-	STR	REZULTATAI ATEINA ATSAKANT ŠALTINIAMS	
+values-b+lt/strings.xml	string	search_quick_open_full	-	STR	Atidaryti visą paiešką	
+values-b+lt/strings.xml	string	search_quick_status	-	STR	ATSAKĖ %1$d IŠ %2$d · NEPAVYKO %3$d	
+values-b+lt/strings.xml	string	search_quick_title	-	STR	Greita paieška	
 values-b+lt/strings.xml	string	search_state_idle_body_desktop	-	STR	Įveskite pavadinimą. Rezultatai rodomi po kiekvienu šaltiniu, kai šis atsako.	
 values-b+lt/strings.xml	string	search_state_no_results_type_filter	-	STR	Tik %s. Jūsų tipų filtras siaurina paiešką.	
 values-b+lt/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 PASIŪLYMŲ · 0 NESENIŲ ATITIKMENŲ	
@@ -18910,6 +19127,13 @@ values-b+lv/strings.xml	string	search_hint_site	-	STR	Meklēt %s…
 values-b+lv/strings.xml	string	search_poster_img_des	-	STR	Plakāts	
 values-b+lv/strings.xml	string	search_provider_text_providers	-	STR	Meklēt izmantojot devējus	
 values-b+lv/strings.xml	string	search_provider_text_types	-	STR	Meklēt izmantojot tipus	
+values-b+lv/strings.xml	string	search_quick_empty_body	-	STR	Visi avoti atbildēja, un nevienā nav „%s”. Mēģiniet īsāku vaicājumu vai atveriet pilno meklēšanu, lai mainītu avotus.	
+values-b+lv/strings.xml	string	search_quick_empty_headline	-	STR	Nav atbilstību	
+values-b+lv/strings.xml	string	search_quick_meta_answered	-	STR	VISI AVOTI IR ATBILDĒJUŠI	
+values-b+lv/strings.xml	string	search_quick_meta_answering	-	STR	REZULTĀTI IENĀK, KAD AVOTI ATBILD	
+values-b+lv/strings.xml	string	search_quick_open_full	-	STR	Atvērt pilno meklēšanu	
+values-b+lv/strings.xml	string	search_quick_status	-	STR	ATBILDĒJA %1$d NO %2$d · NEIZDEVĀS %3$d	
+values-b+lv/strings.xml	string	search_quick_title	-	STR	Ātrā meklēšana	
 values-b+lv/strings.xml	string	search_state_idle_body_desktop	-	STR	Ievadiet nosaukumu. Rezultāti parādās zem katra devēja, tiklīdz tas atbild.	
 values-b+lv/strings.xml	string	search_state_no_results_type_filter	-	STR	Tikai %s. Jūsu veida filtrs sašaurina meklēšanu.	
 values-b+lv/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 IETEIKUMU · 0 NESENU ATBILSTĪBU	
@@ -19699,6 +19923,13 @@ values-b+mk/strings.xml	string	search_hint_site	-	STR	Пребарај %s…
 values-b+mk/strings.xml	string	search_poster_img_des	-	STR	Постер	
 values-b+mk/strings.xml	string	search_provider_text_providers	-	STR	Пребарувај користејќи провајдери	
 values-b+mk/strings.xml	string	search_provider_text_types	-	STR	Пребарувај користејќи типови	
+values-b+mk/strings.xml	string	search_quick_empty_body	-	STR	Сите извори одговорија и ниеден нема „%s“. Обидете се со пократко пребарување или отворете го целото пребарување за да ги смените изворите.	
+values-b+mk/strings.xml	string	search_quick_empty_headline	-	STR	Нема совпаѓања	
+values-b+mk/strings.xml	string	search_quick_meta_answered	-	STR	СИТЕ ИЗВОРИ ОДГОВОРИЈА	
+values-b+mk/strings.xml	string	search_quick_meta_answering	-	STR	РЕЗУЛТАТИТЕ ПРИСТИГНУВААТ КАКО ШТО ОДГОВАРААТ ИЗВОРИТЕ	
+values-b+mk/strings.xml	string	search_quick_open_full	-	STR	Отвори го целото пребарување	
+values-b+mk/strings.xml	string	search_quick_status	-	STR	ОДГОВОРИЈА %1$d ОД %2$d · НЕУСПЕШНИ %3$d	
+values-b+mk/strings.xml	string	search_quick_title	-	STR	Брзо пребарување	
 values-b+mk/strings.xml	string	search_state_idle_body_desktop	-	STR	Внеси наслов. Резултатите се појавуваат под секој извор кога ќе одговори.	
 values-b+mk/strings.xml	string	search_state_no_results_type_filter	-	STR	Само %s. Вашиот филтер за тип го стеснува пребарувањето.	
 values-b+mk/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 ПРЕДЛОЗИ · 0 НЕОДАМНЕШНИ СОВПАЃАЊА	
@@ -20195,6 +20426,13 @@ values-b+ml/strings.xml	string	search_hint_site	-	STR	തിരയുക %s…
 values-b+ml/strings.xml	string	search_poster_img_des	-	STR	പോസ്റ്റർ	
 values-b+ml/strings.xml	string	search_provider_text_providers	-	STR	സ്രോതസ് അടിസ്ഥാനത്തിൽ തിരയുക	
 values-b+ml/strings.xml	string	search_provider_text_types	-	STR	തരം അടിസ്ഥാനത്തിൽ തിരയുക	
+values-b+ml/strings.xml	string	search_quick_empty_body	-	STR	എല്ലാ ഉറവിടങ്ങളും മറുപടി നൽകി, പക്ഷേ ഒന്നിലും “%s” ഇല്ല. ചെറിയ തിരയൽ പരീക്ഷിക്കുക, അല്ലെങ്കിൽ ഉറവിടങ്ങൾ മാറ്റാൻ പൂർണ്ണ തിരയൽ തുറക്കുക.	
+values-b+ml/strings.xml	string	search_quick_empty_headline	-	STR	പൊരുത്തങ്ങളില്ല	
+values-b+ml/strings.xml	string	search_quick_meta_answered	-	STR	എല്ലാ ഉറവിടങ്ങളും മറുപടി നൽകി	
+values-b+ml/strings.xml	string	search_quick_meta_answering	-	STR	ഉറവിടങ്ങൾ മറുപടി നൽകുന്നതനുസരിച്ച് ഫലങ്ങൾ വരുന്നു	
+values-b+ml/strings.xml	string	search_quick_open_full	-	STR	പൂർണ്ണ തിരയൽ തുറക്കുക	
+values-b+ml/strings.xml	string	search_quick_status	-	STR	%2$d-ൽ %1$d മറുപടി നൽകി · %3$d പരാജയപ്പെട്ടു	
+values-b+ml/strings.xml	string	search_quick_title	-	STR	ദ്രുത തിരയൽ	
 values-b+ml/strings.xml	string	search_state_idle_body_desktop	-	STR	ഒരു ശീർഷകം ടൈപ്പ് ചെയ്യുക. ഓരോ ഉറവിടവും മറുപടി നൽകുമ്പോൾ ഫലങ്ങൾ അതിനു താഴെ കാണിക്കും.	
 values-b+ml/strings.xml	string	search_state_no_results_type_filter	-	STR	%s മാത്രം. നിങ്ങളുടെ തരം ഫിൽട്ടർ തിരയൽ ചുരുക്കുന്നു.	
 values-b+ml/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 നിർദ്ദേശങ്ങൾ · 0 സമീപകാല പൊരുത്തങ്ങൾ	
@@ -20776,6 +21014,13 @@ values-b+ms/strings.xml	string	search_hint_site	-	STR	Cari %s…
 values-b+ms/strings.xml	string	search_poster_img_des	-	STR	Poster	
 values-b+ms/strings.xml	string	search_provider_text_providers	-	STR	Carian mengikut sumber	
 values-b+ms/strings.xml	string	search_provider_text_types	-	STR	Carian mengikut jenis	
+values-b+ms/strings.xml	string	search_quick_empty_body	-	STR	Semua sumber menjawab dan tiada satu pun yang mempunyai “%s”. Cuba carian yang lebih pendek, atau buka carian penuh untuk menukar sumber.	
+values-b+ms/strings.xml	string	search_quick_empty_headline	-	STR	Tiada padanan	
+values-b+ms/strings.xml	string	search_quick_meta_answered	-	STR	SEMUA SUMBER TELAH MENJAWAB	
+values-b+ms/strings.xml	string	search_quick_meta_answering	-	STR	HASIL TIBA APABILA SUMBER MENJAWAB	
+values-b+ms/strings.xml	string	search_quick_open_full	-	STR	Buka carian penuh	
+values-b+ms/strings.xml	string	search_quick_status	-	STR	%1$d DARIPADA %2$d MENJAWAB · %3$d GAGAL	
+values-b+ms/strings.xml	string	search_quick_title	-	STR	Carian pantas	
 values-b+ms/strings.xml	string	search_state_idle_body_desktop	-	STR	Taip tajuk. Hasil muncul di bawah setiap sumber apabila ia menjawab.	
 values-b+ms/strings.xml	string	search_state_no_results_type_filter	-	STR	Hanya %s. Penapis jenis anda mengecilkan carian.	
 values-b+ms/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 CADANGAN · 0 PADANAN TERKINI	
@@ -21100,6 +21345,13 @@ values-b+mt/strings.xml	string	search_hint_site	-	STR	Fittex%s…
 values-b+mt/strings.xml	string	search_poster_img_des	-	STR	Kartellun	
 values-b+mt/strings.xml	string	search_provider_text_providers	-	STR	Fittex bl-użu ta' fornituri	
 values-b+mt/strings.xml	string	search_provider_text_types	-	STR	Fittex bl-użu ta 'tipi	
+values-b+mt/strings.xml	string	search_quick_empty_body	-	STR	Is-sorsi kollha wieġbu u l-ebda wieħed ma għandu “%s”. Ipprova tfittxija iqsar, jew iftaħ it-tfittxija sħiħa biex tibdel is-sorsi.	
+values-b+mt/strings.xml	string	search_quick_empty_headline	-	STR	L-ebda qbil	
+values-b+mt/strings.xml	string	search_quick_meta_answered	-	STR	IS-SORSI KOLLHA WIEĠBU	
+values-b+mt/strings.xml	string	search_quick_meta_answering	-	STR	IR-RIŻULTATI JASLU HEKK KIF IS-SORSI JWIEĠBU	
+values-b+mt/strings.xml	string	search_quick_open_full	-	STR	Iftaħ it-tfittxija sħiħa	
+values-b+mt/strings.xml	string	search_quick_status	-	STR	WIEĠBU %1$d MINN %2$d · FALLEW %3$d	
+values-b+mt/strings.xml	string	search_quick_title	-	STR	Tfittxija mgħaġġla	
 values-b+mt/strings.xml	string	search_state_idle_body_desktop	-	STR	Ikteb titlu. Ir-riżultati jidhru taħt kull sors meta jwieġeb.	
 values-b+mt/strings.xml	string	search_state_no_results_type_filter	-	STR	%s biss. Il-filtru tat-tip qed jirrestrinġi l-fittxija.	
 values-b+mt/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SUĠĠERIMENTI · 0 TAQBIL REĊENTI	
@@ -21599,6 +21851,13 @@ values-b+my/strings.xml	string	search_hint_site	-	STR	ရှာရန် %s…
 values-b+my/strings.xml	string	search_poster_img_des	-	STR	ပိုစတာ	
 values-b+my/strings.xml	string	search_provider_text_providers	-	STR	ပ့ံပိုးပေးသောဝန်ဆောင်မှုများအသုံးပြု၍ရှာရန်	
 values-b+my/strings.xml	string	search_provider_text_types	-	STR	အမျိုးအစားများအသုံးပြု၍ရှာရန်	
+values-b+my/strings.xml	string	search_quick_empty_body	-	STR	ရင်းမြစ်အားလုံး ဖြေကြားပြီး “%s” ပါသည့် ရင်းမြစ် မရှိပါ။ ပိုတိုသော ရှာဖွေမှုကို စမ်းကြည့်ပါ၊ သို့မဟုတ် ရင်းမြစ်များ ပြောင်းရန် အပြည့်အစုံ ရှာဖွေမှုကို ဖွင့်ပါ။	
+values-b+my/strings.xml	string	search_quick_empty_headline	-	STR	ကိုက်ညီမှု မရှိပါ	
+values-b+my/strings.xml	string	search_quick_meta_answered	-	STR	ရင်းမြစ်အားလုံး ဖြေကြားပြီး	
+values-b+my/strings.xml	string	search_quick_meta_answering	-	STR	ရင်းမြစ်များ ဖြေကြားသလို ရလဒ်များ ရောက်လာမည်	
+values-b+my/strings.xml	string	search_quick_open_full	-	STR	အပြည့်အစုံ ရှာဖွေမှု ဖွင့်ရန်	
+values-b+my/strings.xml	string	search_quick_status	-	STR	%2$d ခုအနက် %1$d ခု ဖြေကြား · %3$d ခု မအောင်မြင်	
+values-b+my/strings.xml	string	search_quick_title	-	STR	အမြန်ရှာဖွေမှု	
 values-b+my/strings.xml	string	search_state_idle_body_desktop	-	STR	ခေါင်းစဉ်တစ်ခု ရိုက်ထည့်ပါ။ ရင်းမြစ်တစ်ခုစီ တုံ့ပြန်သည်နှင့် ရလဒ်များကို ၎င်းအောက်တွင် ပြသပါမည်။	
 values-b+my/strings.xml	string	search_state_no_results_type_filter	-	STR	%s သာ။ သင့်အမျိုးအစား စစ်ထုတ်မှုက ရှာဖွေမှုကို ကျဉ်းစေနေသည်။	
 values-b+my/strings.xml	string	search_state_no_suggestions_detail	-	STR	အကြံပြုချက် 0 ခု · မကြာသေးမီ ကိုက်ညီမှု 0 ခု	
@@ -21931,6 +22190,13 @@ values-b+ne/strings.xml	string	search_hint_site	-	STR	%s खोज्नुह�
 values-b+ne/strings.xml	string	search_poster_img_des	-	STR	पोस्टर	
 values-b+ne/strings.xml	string	search_provider_text_providers	-	STR	प्रोभाईडर उपयोग गरी खोज्नुहोस्	
 values-b+ne/strings.xml	string	search_provider_text_types	-	STR	प्रकारको उपयोग गरी खोज्नुहोस्	
+values-b+ne/strings.xml	string	search_quick_empty_body	-	STR	सबै स्रोतहरूले जवाफ दिए तर कसैसँग “%s” छैन। छोटो खोजी प्रयास गर्नुहोस्, वा स्रोत बदल्न पूर्ण खोज खोल्नुहोस्।	
+values-b+ne/strings.xml	string	search_quick_empty_headline	-	STR	कुनै मेल छैन	
+values-b+ne/strings.xml	string	search_quick_meta_answered	-	STR	सबै स्रोतहरूले जवाफ दिए	
+values-b+ne/strings.xml	string	search_quick_meta_answering	-	STR	स्रोतहरूले जवाफ दिँदै गर्दा नतिजा आउँछन्	
+values-b+ne/strings.xml	string	search_quick_open_full	-	STR	पूर्ण खोज खोल्नुहोस्	
+values-b+ne/strings.xml	string	search_quick_status	-	STR	%2$d मध्ये %1$d ले जवाफ दिए · %3$d असफल	
+values-b+ne/strings.xml	string	search_quick_title	-	STR	छिटो खोज	
 values-b+ne/strings.xml	string	search_state_idle_body_desktop	-	STR	शीर्षक टाइप गर्नुहोस्। प्रत्येक स्रोतले जवाफ दिएपछि नतिजा त्यसको तल देखिन्छ।	
 values-b+ne/strings.xml	string	search_state_no_results_type_filter	-	STR	%s मात्र। तपाईंको प्रकार फिल्टरले खोजी साँघुरो बनाइरहेको छ।	
 values-b+ne/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 सुझाव · 0 हालैका मेल	
@@ -22549,6 +22815,13 @@ values-b+nl/strings.xml	string	search_hint_site	-	STR	Zoeken %s…
 values-b+nl/strings.xml	string	search_poster_img_des	-	STR	Poster	
 values-b+nl/strings.xml	string	search_provider_text_providers	-	STR	Zoeken met providers	
 values-b+nl/strings.xml	string	search_provider_text_types	-	STR	Zoeken met types	
+values-b+nl/strings.xml	string	search_quick_empty_body	-	STR	Alle bronnen hebben geantwoord en geen enkele heeft “%s”. Probeer een kortere zoekopdracht, of open volledig zoeken om de bronnen te wijzigen.	
+values-b+nl/strings.xml	string	search_quick_empty_headline	-	STR	Geen overeenkomsten	
+values-b+nl/strings.xml	string	search_quick_meta_answered	-	STR	ALLE BRONNEN HEBBEN GEANTWOORD	
+values-b+nl/strings.xml	string	search_quick_meta_answering	-	STR	RESULTATEN KOMEN BINNEN ZODRA BRONNEN ANTWOORDEN	
+values-b+nl/strings.xml	string	search_quick_open_full	-	STR	Volledig zoeken openen	
+values-b+nl/strings.xml	string	search_quick_status	-	STR	%1$d VAN %2$d GEANTWOORD · %3$d MISLUKT	
+values-b+nl/strings.xml	string	search_quick_title	-	STR	Snel zoeken	
 values-b+nl/strings.xml	string	search_state_idle_body_desktop	-	STR	Typ een titel. Resultaten verschijnen onder elke bron zodra die antwoordt.	
 values-b+nl/strings.xml	string	search_state_no_results_type_filter	-	STR	Alleen %s. Je typefilter beperkt de zoekopdracht.	
 values-b+nl/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SUGGESTIES · 0 RECENTE OVEREENKOMSTEN	
@@ -22978,6 +23251,13 @@ values-b+nn/strings.xml	string	search_hint_site	-	STR	Søk i %s…
 values-b+nn/strings.xml	string	search_poster_img_des	-	STR	Plakat	
 values-b+nn/strings.xml	string	search_provider_text_providers	-	STR	Søk basert på leverandør	
 values-b+nn/strings.xml	string	search_provider_text_types	-	STR	Søk ved bruk av typer	
+values-b+nn/strings.xml	string	search_quick_empty_body	-	STR	Alle kjeldene svara, og ingen av dei har «%s». Prøv eit kortare søk, eller opne fullt søk for å endre kjeldene.	
+values-b+nn/strings.xml	string	search_quick_empty_headline	-	STR	Ingen treff	
+values-b+nn/strings.xml	string	search_quick_meta_answered	-	STR	ALLE KJELDENE HAR SVARA	
+values-b+nn/strings.xml	string	search_quick_meta_answering	-	STR	RESULTAT KJEM ETTER KVART SOM KJELDENE SVARAR	
+values-b+nn/strings.xml	string	search_quick_open_full	-	STR	Opne fullt søk	
+values-b+nn/strings.xml	string	search_quick_status	-	STR	%1$d AV %2$d HAR SVARA · %3$d FEILA	
+values-b+nn/strings.xml	string	search_quick_title	-	STR	Snøggsøk	
 values-b+nn/strings.xml	string	search_state_idle_body_desktop	-	STR	Skriv ein tittel. Resultata kjem under kvar kjelde når ho svarar.	
 values-b+nn/strings.xml	string	search_state_no_results_type_filter	-	STR	Berre %s. Typefilteret ditt avgrensar søket.	
 values-b+nn/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 FORSLAG · 0 NYLEGE TREFF	
@@ -23495,6 +23775,13 @@ values-b+no/strings.xml	string	search_hint_site	-	STR	Søk i %s …
 values-b+no/strings.xml	string	search_poster_img_des	-	STR	Plakat	
 values-b+no/strings.xml	string	search_provider_text_providers	-	STR	Søk med leverandører	
 values-b+no/strings.xml	string	search_provider_text_types	-	STR	Søk med typer	
+values-b+no/strings.xml	string	search_quick_empty_body	-	STR	Alle kildene svarte, og ingen av dem har «%s». Prøv et kortere søk, eller åpne fullt søk for å endre kildene.	
+values-b+no/strings.xml	string	search_quick_empty_headline	-	STR	Ingen treff	
+values-b+no/strings.xml	string	search_quick_meta_answered	-	STR	ALLE KILDENE HAR SVART	
+values-b+no/strings.xml	string	search_quick_meta_answering	-	STR	RESULTATER KOMMER ETTER HVERT SOM KILDENE SVARER	
+values-b+no/strings.xml	string	search_quick_open_full	-	STR	Åpne fullt søk	
+values-b+no/strings.xml	string	search_quick_status	-	STR	%1$d AV %2$d HAR SVART · %3$d FEILET	
+values-b+no/strings.xml	string	search_quick_title	-	STR	Hurtigsøk	
 values-b+no/strings.xml	string	search_state_idle_body_desktop	-	STR	Skriv inn en tittel. Resultatene vises under hver kilde når den svarer.	
 values-b+no/strings.xml	string	search_state_no_results_type_filter	-	STR	Bare %s. Typefilteret ditt begrenser søket.	
 values-b+no/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 FORSLAG · 0 NYLIGE TREFF	
@@ -23845,6 +24132,13 @@ values-b+or/strings.xml	string	search_hint	-	STR	ସନ୍ଧାନ କରିବ
 values-b+or/strings.xml	string	search_hint_site	-	STR	%s ସନ୍ଧାନ କରିବା…	
 values-b+or/strings.xml	string	search_poster_img_des	-	STR	ପୋଷ୍ଟର୍	
 values-b+or/strings.xml	string	search_provider_text_providers	-	STR	ପ୍ରଦାତା ଵ୍ୟଵହାର କରି ଖୋଜିବା	
+values-b+or/strings.xml	string	search_quick_empty_body	-	STR	ସମସ୍ତ ଉତ୍ସ ଉତ୍ତର ଦେଲେ କିନ୍ତୁ କାହା ପାଖରେ “%s” ନାହିଁ। ଛୋଟ ସନ୍ଧାନ ଚେଷ୍ଟା କରନ୍ତୁ, କିମ୍ବା ଉତ୍ସ ବଦଳାଇବାକୁ ପୂର୍ଣ୍ଣ ସନ୍ଧାନ ଖୋଲନ୍ତୁ।	
+values-b+or/strings.xml	string	search_quick_empty_headline	-	STR	କୌଣସି ମେଳ ନାହିଁ	
+values-b+or/strings.xml	string	search_quick_meta_answered	-	STR	ସମସ୍ତ ଉତ୍ସ ଉତ୍ତର ଦେଲେ	
+values-b+or/strings.xml	string	search_quick_meta_answering	-	STR	ଉତ୍ସଗୁଡ଼ିକ ଉତ୍ତର ଦେବା ସହିତ ଫଳାଫଳ ଆସେ	
+values-b+or/strings.xml	string	search_quick_open_full	-	STR	ପୂର୍ଣ୍ଣ ସନ୍ଧାନ ଖୋଲନ୍ତୁ	
+values-b+or/strings.xml	string	search_quick_status	-	STR	%2$d ମଧ୍ୟରୁ %1$d ଉତ୍ତର ଦେଲେ · %3$d ବିଫଳ	
+values-b+or/strings.xml	string	search_quick_title	-	STR	ଦ୍ରୁତ ସନ୍ଧାନ	
 values-b+or/strings.xml	string	search_state_idle_body_desktop	-	STR	ଏକ ଶୀର୍ଷକ ଟାଇପ୍ କରନ୍ତୁ। ପ୍ରତ୍ୟେକ ଉତ୍ସ ଉତ୍ତର ଦେଲେ ଫଳାଫଳ ତା ତଳେ ଦେଖାଯିବ।	
 values-b+or/strings.xml	string	search_state_no_results_type_filter	-	STR	କେବଳ %s। ଆପଣଙ୍କ ପ୍ରକାର ଫିଲ୍ଟର ସନ୍ଧାନକୁ ସଂକୁଚିତ କରୁଛି।	
 values-b+or/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 ପରାମର୍ଶ · 0 ସାମ୍ପ୍ରତିକ ମେଳ	
@@ -24535,6 +24829,13 @@ values-b+pl/strings.xml	string	search_hint_site	-	STR	Szukaj %s…
 values-b+pl/strings.xml	string	search_poster_img_des	-	STR	Poster	
 values-b+pl/strings.xml	string	search_provider_text_providers	-	STR	Szukaj według źródeł	
 values-b+pl/strings.xml	string	search_provider_text_types	-	STR	Szukaj według typów	
+values-b+pl/strings.xml	string	search_quick_empty_body	-	STR	Wszystkie źródła odpowiedziały i żadne nie ma „%s”. Spróbuj krótszego zapytania albo otwórz pełne wyszukiwanie, aby zmienić źródła.	
+values-b+pl/strings.xml	string	search_quick_empty_headline	-	STR	Brak dopasowań	
+values-b+pl/strings.xml	string	search_quick_meta_answered	-	STR	WSZYSTKIE ŹRÓDŁA ODPOWIEDZIAŁY	
+values-b+pl/strings.xml	string	search_quick_meta_answering	-	STR	WYNIKI NAPŁYWAJĄ W MIARĘ ODPOWIEDZI ŹRÓDEŁ	
+values-b+pl/strings.xml	string	search_quick_open_full	-	STR	Otwórz pełne wyszukiwanie	
+values-b+pl/strings.xml	string	search_quick_status	-	STR	ODPOWIEDZIAŁO %1$d Z %2$d · BŁĘDY: %3$d	
+values-b+pl/strings.xml	string	search_quick_title	-	STR	Szybkie wyszukiwanie	
 values-b+pl/strings.xml	string	search_state_idle_body_desktop	-	STR	Wpisz tytuł. Wyniki pojawiają się pod każdym źródłem, gdy odpowie.	
 values-b+pl/strings.xml	string	search_state_no_results_type_filter	-	STR	Tylko %s. Filtr typu zawęża wyszukiwanie.	
 values-b+pl/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SUGESTII · 0 OSTATNICH DOPASOWAŃ	
@@ -25376,6 +25677,13 @@ values-b+pt+BR/strings.xml	string	search_hint_site	-	STR	Pesquisar %s…
 values-b+pt+BR/strings.xml	string	search_poster_img_des	-	STR	Pôster	
 values-b+pt+BR/strings.xml	string	search_provider_text_providers	-	STR	Pesquisar usando fornecedor	
 values-b+pt+BR/strings.xml	string	search_provider_text_types	-	STR	Pesquisar usando tipos	
+values-b+pt+BR/strings.xml	string	search_quick_empty_body	-	STR	Todas as fontes responderam e nenhuma tem “%s”. Tente uma pesquisa mais curta ou abra a pesquisa completa para mudar as fontes.	
+values-b+pt+BR/strings.xml	string	search_quick_empty_headline	-	STR	Nenhuma correspondência	
+values-b+pt+BR/strings.xml	string	search_quick_meta_answered	-	STR	TODAS AS FONTES RESPONDERAM	
+values-b+pt+BR/strings.xml	string	search_quick_meta_answering	-	STR	OS RESULTADOS CHEGAM CONFORME AS FONTES RESPONDEM	
+values-b+pt+BR/strings.xml	string	search_quick_open_full	-	STR	Abrir pesquisa completa	
+values-b+pt+BR/strings.xml	string	search_quick_status	-	STR	%1$d DE %2$d RESPONDERAM · %3$d FALHARAM	
+values-b+pt+BR/strings.xml	string	search_quick_title	-	STR	Pesquisa rápida	
 values-b+pt+BR/strings.xml	string	search_state_idle_body_desktop	-	STR	Digite um título. Os resultados aparecem abaixo de cada fonte assim que ela responde.	
 values-b+pt+BR/strings.xml	string	search_state_no_results_type_filter	-	STR	Somente %s. O filtro de tipo está restringindo a pesquisa.	
 values-b+pt+BR/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SUGESTÕES · 0 CORRESPONDÊNCIAS RECENTES	
@@ -26211,6 +26519,13 @@ values-b+pt/strings.xml	string	search_hint_site	-	STR	Pesquisar %s…
 values-b+pt/strings.xml	string	search_poster_img_des	-	STR	Poster	
 values-b+pt/strings.xml	string	search_provider_text_providers	-	STR	Procurar usando fornecedores	
 values-b+pt/strings.xml	string	search_provider_text_types	-	STR	Procurar usando tipos	
+values-b+pt/strings.xml	string	search_quick_empty_body	-	STR	Todas as fontes responderam e nenhuma tem «%s». Experimente uma pesquisa mais curta ou abra a pesquisa completa para mudar as fontes.	
+values-b+pt/strings.xml	string	search_quick_empty_headline	-	STR	Sem correspondências	
+values-b+pt/strings.xml	string	search_quick_meta_answered	-	STR	TODAS AS FONTES RESPONDERAM	
+values-b+pt/strings.xml	string	search_quick_meta_answering	-	STR	OS RESULTADOS CHEGAM À MEDIDA QUE AS FONTES RESPONDEM	
+values-b+pt/strings.xml	string	search_quick_open_full	-	STR	Abrir pesquisa completa	
+values-b+pt/strings.xml	string	search_quick_status	-	STR	%1$d DE %2$d RESPONDERAM · %3$d FALHARAM	
+values-b+pt/strings.xml	string	search_quick_title	-	STR	Pesquisa rápida	
 values-b+pt/strings.xml	string	search_state_idle_body_desktop	-	STR	Escreva um título. Os resultados aparecem sob cada fonte assim que ela responde.	
 values-b+pt/strings.xml	string	search_state_no_results_type_filter	-	STR	Apenas %s. O filtro de tipo está a limitar a pesquisa.	
 values-b+pt/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SUGESTÕES · 0 CORRESPONDÊNCIAS RECENTES	
@@ -26964,6 +27279,13 @@ values-b+qt/strings.xml	string	search_hint_site	-	STR	aaoohhu %s aoouu
 values-b+qt/strings.xml	string	search_poster_img_des	-	STR	aaaaaah	
 values-b+qt/strings.xml	string	search_provider_text_providers	-	STR	aauuhaauugghhahhh ohaauugghhouuhhh	
 values-b+qt/strings.xml	string	search_provider_text_types	-	STR	ahhhahoooohhaa ahhhoohahh	
+values-b+qt/strings.xml	string	search_quick_empty_body	-	STR	oohh aagh uuk “%s”. ooh aak oohh, aagh uuk oohh aah.	
+values-b+qt/strings.xml	string	search_quick_empty_headline	-	STR	ooh aagg	
+values-b+qt/strings.xml	string	search_quick_meta_answered	-	STR	OOHH AAGH UUK	
+values-b+qt/strings.xml	string	search_quick_meta_answering	-	STR	AAGH OOHH UUK AAH	
+values-b+qt/strings.xml	string	search_quick_open_full	-	STR	oohh aagh	
+values-b+qt/strings.xml	string	search_quick_status	-	STR	%1$d OOHH %2$d AAGH · %3$d UUK	
+values-b+qt/strings.xml	string	search_quick_title	-	STR	oohh aak	
 values-b+qt/strings.xml	string	search_state_idle_body_desktop	-	STR	oouuh aaaaggg uuuk ooh	
 values-b+qt/strings.xml	string	search_state_no_results_type_filter	-	STR	%s uuhaa. oouuh aagggh uuk.	
 values-b+qt/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 AAAHHUU · 0 AAOOH UUGH	
@@ -27686,6 +28008,13 @@ values-b+ro/strings.xml	string	search_hint_site	-	STR	Căutați %s…
 values-b+ro/strings.xml	string	search_poster_img_des	-	STR	Poster	
 values-b+ro/strings.xml	string	search_provider_text_providers	-	STR	Căutare în funcție de furnizor	
 values-b+ro/strings.xml	string	search_provider_text_types	-	STR	Căutare în funcție de tip	
+values-b+ro/strings.xml	string	search_quick_empty_body	-	STR	Toate sursele au răspuns și niciuna nu are „%s”. Încercați o căutare mai scurtă sau deschideți căutarea completă pentru a schimba sursele.	
+values-b+ro/strings.xml	string	search_quick_empty_headline	-	STR	Nicio potrivire	
+values-b+ro/strings.xml	string	search_quick_meta_answered	-	STR	TOATE SURSELE AU RĂSPUNS	
+values-b+ro/strings.xml	string	search_quick_meta_answering	-	STR	REZULTATELE SOSESC PE MĂSURĂ CE SURSELE RĂSPUND	
+values-b+ro/strings.xml	string	search_quick_open_full	-	STR	Deschide căutarea completă	
+values-b+ro/strings.xml	string	search_quick_status	-	STR	AU RĂSPUNS %1$d DIN %2$d · %3$d EȘUATE	
+values-b+ro/strings.xml	string	search_quick_title	-	STR	Căutare rapidă	
 values-b+ro/strings.xml	string	search_state_idle_body_desktop	-	STR	Tastați un titlu. Rezultatele apar sub fiecare sursă când răspunde.	
 values-b+ro/strings.xml	string	search_state_no_results_type_filter	-	STR	Doar %s. Filtrul de tip restrânge căutarea.	
 values-b+ro/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SUGESTII · 0 POTRIVIRI RECENTE	
@@ -28492,6 +28821,13 @@ values-b+ru/strings.xml	string	search_hint_site	-	STR	Поиск %s…
 values-b+ru/strings.xml	string	search_poster_img_des	-	STR	Плакат	
 values-b+ru/strings.xml	string	search_provider_text_providers	-	STR	Поиск с использованием поставщиков	
 values-b+ru/strings.xml	string	search_provider_text_types	-	STR	Поиск с использованием типов	
+values-b+ru/strings.xml	string	search_quick_empty_body	-	STR	Все источники ответили, и ни в одном нет «%s». Попробуйте запрос короче или откройте полный поиск, чтобы сменить источники.	
+values-b+ru/strings.xml	string	search_quick_empty_headline	-	STR	Нет совпадений	
+values-b+ru/strings.xml	string	search_quick_meta_answered	-	STR	ВСЕ ИСТОЧНИКИ ОТВЕТИЛИ	
+values-b+ru/strings.xml	string	search_quick_meta_answering	-	STR	РЕЗУЛЬТАТЫ ПРИХОДЯТ ПО МЕРЕ ОТВЕТОВ ИСТОЧНИКОВ	
+values-b+ru/strings.xml	string	search_quick_open_full	-	STR	Открыть полный поиск	
+values-b+ru/strings.xml	string	search_quick_status	-	STR	ОТВЕТИЛИ %1$d ИЗ %2$d · СБОЙ %3$d	
+values-b+ru/strings.xml	string	search_quick_title	-	STR	Быстрый поиск	
 values-b+ru/strings.xml	string	search_state_idle_body_desktop	-	STR	Введите название. Результаты появятся под каждым источником, когда он ответит.	
 values-b+ru/strings.xml	string	search_state_no_results_type_filter	-	STR	Только %s. Фильтр по типу сужает поиск.	
 values-b+ru/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 ПОДСКАЗОК · 0 НЕДАВНИХ СОВПАДЕНИЙ	
@@ -29152,6 +29488,13 @@ values-b+sk/strings.xml	string	search_hint_site	-	STR	Hľadať %s…
 values-b+sk/strings.xml	string	search_poster_img_des	-	STR	Plagát	
 values-b+sk/strings.xml	string	search_provider_text_providers	-	STR	Hľadať pomocou poskytovateľov	
 values-b+sk/strings.xml	string	search_provider_text_types	-	STR	Hľadať pomocou typov	
+values-b+sk/strings.xml	string	search_quick_empty_body	-	STR	Všetky zdroje odpovedali a žiadny nemá „%s“. Skúste kratší dopyt alebo otvorte úplné hľadanie a zmeňte zdroje.	
+values-b+sk/strings.xml	string	search_quick_empty_headline	-	STR	Žiadne zhody	
+values-b+sk/strings.xml	string	search_quick_meta_answered	-	STR	VŠETKY ZDROJE ODPOVEDALI	
+values-b+sk/strings.xml	string	search_quick_meta_answering	-	STR	VÝSLEDKY PRIBÚDAJÚ, AKO ZDROJE ODPOVEDAJÚ	
+values-b+sk/strings.xml	string	search_quick_open_full	-	STR	Otvoriť úplné hľadanie	
+values-b+sk/strings.xml	string	search_quick_status	-	STR	ODPOVEDALO %1$d Z %2$d · ZLYHALO %3$d	
+values-b+sk/strings.xml	string	search_quick_title	-	STR	Rýchle hľadanie	
 values-b+sk/strings.xml	string	search_state_idle_body_desktop	-	STR	Zadajte názov. Výsledky sa zobrazia pod každým zdrojom, keď odpovie.	
 values-b+sk/strings.xml	string	search_state_no_results_type_filter	-	STR	Iba %s. Filter typov zužuje hľadanie.	
 values-b+sk/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 NÁVRHOV · 0 NEDÁVNYCH ZHÔD	
@@ -29739,6 +30082,13 @@ values-b+so/strings.xml	string	search_hint_site	-	STR	Raadi %s…
 values-b+so/strings.xml	string	search_poster_img_des	-	STR	Sawirka	
 values-b+so/strings.xml	string	search_provider_text_providers	-	STR	Ku raadi qaybiyeyaasha	
 values-b+so/strings.xml	string	search_provider_text_types	-	STR	Ku raadi noocyada	
+values-b+so/strings.xml	string	search_quick_empty_body	-	STR	Dhammaan ilaha way ka jawaabeen midkoodna ma laha “%s”. Isku day raadin gaaban, ama fur raadinta buuxda si aad u beddesho ilaha.	
+values-b+so/strings.xml	string	search_quick_empty_headline	-	STR	Wax isku mid ah ma jiro	
+values-b+so/strings.xml	string	search_quick_meta_answered	-	STR	DHAMMAAN ILAHA WAY KA JAWAABEEN	
+values-b+so/strings.xml	string	search_quick_meta_answering	-	STR	NATIIJOOYINKU WAY YIMAADAAN MARKA ILAHA KA JAWAABAAN	
+values-b+so/strings.xml	string	search_quick_open_full	-	STR	Fur raadinta buuxda	
+values-b+so/strings.xml	string	search_quick_status	-	STR	%1$d KA MID AH %2$d AYAA KA JAWAABAY · %3$d WAY FASHILMEEN	
+values-b+so/strings.xml	string	search_quick_title	-	STR	Raadin degdeg ah	
 values-b+so/strings.xml	string	search_state_idle_body_desktop	-	STR	Qor cinwaan. Natiijooyinku waxay ka muuqdaan xigasho kasta hoosteeda marka ay jawaabto.	
 values-b+so/strings.xml	string	search_state_no_results_type_filter	-	STR	Kaliya %s. Shaandhada nooca ayaa soo koobaya raadinta.	
 values-b+so/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 TALOOYIN · 0 ISKU-EG DHOWAAN	
@@ -30501,6 +30851,13 @@ values-b+sq/strings.xml	string	search_hint_site	-	STR	Kërko %s…
 values-b+sq/strings.xml	string	search_poster_img_des	-	STR	Posteri	
 values-b+sq/strings.xml	string	search_provider_text_providers	-	STR	Kërko duke përdorur ofruesit	
 values-b+sq/strings.xml	string	search_provider_text_types	-	STR	Kërko duke përdorur tipet	
+values-b+sq/strings.xml	string	search_quick_empty_body	-	STR	Të gjitha burimet u përgjigjën dhe asnjë nuk ka “%s”. Provoni një kërkim më të shkurtër ose hapni kërkimin e plotë për të ndryshuar burimet.	
+values-b+sq/strings.xml	string	search_quick_empty_headline	-	STR	Asnjë përputhje	
+values-b+sq/strings.xml	string	search_quick_meta_answered	-	STR	TË GJITHA BURIMET U PËRGJIGJËN	
+values-b+sq/strings.xml	string	search_quick_meta_answering	-	STR	REZULTATET VIJNË NDËRSA BURIMET PËRGJIGJEN	
+values-b+sq/strings.xml	string	search_quick_open_full	-	STR	Hap kërkimin e plotë	
+values-b+sq/strings.xml	string	search_quick_status	-	STR	U PËRGJIGJËN %1$d NGA %2$d · DËSHTUAN %3$d	
+values-b+sq/strings.xml	string	search_quick_title	-	STR	Kërkim i shpejtë	
 values-b+sq/strings.xml	string	search_state_idle_body_desktop	-	STR	Shkruani një titull. Rezultatet shfaqen nën çdo burim sapo ai përgjigjet.	
 values-b+sq/strings.xml	string	search_state_no_results_type_filter	-	STR	Vetëm %s. Filtri i llojit po e ngushton kërkimin.	
 values-b+sq/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SUGJERIME · 0 PËRPUTHJE TË FUNDIT	
@@ -31334,6 +31691,13 @@ values-b+sv/strings.xml	string	search_hint_site	-	STR	Sök %s…
 values-b+sv/strings.xml	string	search_poster_img_des	-	STR	Affisch	
 values-b+sv/strings.xml	string	search_provider_text_providers	-	STR	Sök med hjälp av leverantörer	
 values-b+sv/strings.xml	string	search_provider_text_types	-	STR	Sök med hjälp av typer	
+values-b+sv/strings.xml	string	search_quick_empty_body	-	STR	Alla källor svarade och ingen har ”%s”. Prova en kortare sökning, eller öppna fullständig sökning för att byta källor.	
+values-b+sv/strings.xml	string	search_quick_empty_headline	-	STR	Inga träffar	
+values-b+sv/strings.xml	string	search_quick_meta_answered	-	STR	ALLA KÄLLOR HAR SVARAT	
+values-b+sv/strings.xml	string	search_quick_meta_answering	-	STR	RESULTATEN KOMMER NÄR KÄLLORNA SVARAR	
+values-b+sv/strings.xml	string	search_quick_open_full	-	STR	Öppna fullständig sökning	
+values-b+sv/strings.xml	string	search_quick_status	-	STR	%1$d AV %2$d HAR SVARAT · %3$d MISSLYCKADES	
+values-b+sv/strings.xml	string	search_quick_title	-	STR	Snabbsökning	
 values-b+sv/strings.xml	string	search_state_idle_body_desktop	-	STR	Skriv en titel. Resultaten visas under varje källa när den svarar.	
 values-b+sv/strings.xml	string	search_state_no_results_type_filter	-	STR	Endast %s. Ditt typfilter begränsar sökningen.	
 values-b+sv/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 FÖRSLAG · 0 NYLIGA TRÄFFAR	
@@ -32167,6 +32531,13 @@ values-b+ta/strings.xml	string	search_hint_site	-	STR	%s இல் தேடவ�
 values-b+ta/strings.xml	string	search_poster_img_des	-	STR	போச்டர்	
 values-b+ta/strings.xml	string	search_provider_text_providers	-	STR	வழங்குபவர்கள் பயன்படுத்தி தேடுங்கள்	
 values-b+ta/strings.xml	string	search_provider_text_types	-	STR	வகைகளைப் பயன்படுத்தி தேடுங்கள்	
+values-b+ta/strings.xml	string	search_quick_empty_body	-	STR	எல்லா மூலங்களும் பதிலளித்தன, ஆனால் எதிலும் “%s” இல்லை. சிறிய தேடலை முயலவும், அல்லது மூலங்களை மாற்ற முழுத் தேடலைத் திறக்கவும்.	
+values-b+ta/strings.xml	string	search_quick_empty_headline	-	STR	பொருத்தங்கள் இல்லை	
+values-b+ta/strings.xml	string	search_quick_meta_answered	-	STR	எல்லா மூலங்களும் பதிலளித்தன	
+values-b+ta/strings.xml	string	search_quick_meta_answering	-	STR	மூலங்கள் பதிலளிக்கும்போது முடிவுகள் வருகின்றன	
+values-b+ta/strings.xml	string	search_quick_open_full	-	STR	முழுத் தேடலைத் திற	
+values-b+ta/strings.xml	string	search_quick_status	-	STR	%2$d இல் %1$d பதிலளித்தன · %3$d தோல்வி	
+values-b+ta/strings.xml	string	search_quick_title	-	STR	விரைவுத் தேடல்	
 values-b+ta/strings.xml	string	search_state_idle_body_desktop	-	STR	ஒரு தலைப்பைத் தட்டச்சு செய்யவும். ஒவ்வொரு மூலமும் பதிலளிக்கும்போது முடிவுகள் அதன் கீழ் தோன்றும்.	
 values-b+ta/strings.xml	string	search_state_no_results_type_filter	-	STR	%s மட்டும். உங்கள் வகை வடிப்பான் தேடலைக் குறுக்குகிறது.	
 values-b+ta/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 பரிந்துரைகள் · 0 சமீபத்திய பொருத்தங்கள்	
@@ -32474,6 +32845,13 @@ values-b+ti/strings.xml	string	player_source_resumes_at	-	STR	ምቕያር ቦ�
 values-b+ti/strings.xml	string	player_source_retry	-	STR	እንደገና ፈትን	
 values-b+ti/strings.xml	string	player_source_switch	-	STR	ቀይር	
 values-b+ti/strings.xml	string	player_unmute	-	STR	ድምጺ ወልዕ	
+values-b+ti/strings.xml	string	search_quick_empty_body	-	STR	ኩሎም ምንጭታት መሊሶም፣ ሓደ ካብኦም ግን «%s» የብሉን። ሓጺር ምድላይ ፈትኑ፣ ወይ ምንጭታት ንምቕያር ምሉእ ምድላይ ክፈቱ።	
+values-b+ti/strings.xml	string	search_quick_empty_headline	-	STR	ዝሰማማዕ የለን	
+values-b+ti/strings.xml	string	search_quick_meta_answered	-	STR	ኩሎም ምንጭታት መሊሶም	
+values-b+ti/strings.xml	string	search_quick_meta_answering	-	STR	ምንጭታት ክምልሱ ከለዉ ውጽኢታት ይመጹ	
+values-b+ti/strings.xml	string	search_quick_open_full	-	STR	ምሉእ ምድላይ ክፈት	
+values-b+ti/strings.xml	string	search_quick_status	-	STR	ካብ %2$d %1$d መሊሶም · %3$d ፈሺሎም	
+values-b+ti/strings.xml	string	search_quick_title	-	STR	ቅልጡፍ ምድላይ	
 values-b+ti/strings.xml	string	search_state_idle_body_desktop	-	STR	ኣርእስቲ ጽሓፍ። ውጽኢታት ነፍሲ ወከፍ ምንጪ ምስ መለሰ ኣብ ትሕቲኡ ይርአዩ።	
 values-b+ti/strings.xml	string	search_state_no_results_type_filter	-	STR	%s ጥራይ። ማጣሪያ ዓይነትካ ፍለጋ የጽብብ ኣሎ።	
 values-b+ti/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 ሓሳባት · 0 ናይ ቀረባ ተመሳሰልቲ	
@@ -32745,6 +33123,13 @@ values-b+tl/strings.xml	string	search_hint_site	-	STR	Hanapin ang %s…
 values-b+tl/strings.xml	string	search_poster_img_des	-	REF	string/result_poster_img_des	
 values-b+tl/strings.xml	string	search_provider_text_providers	-	STR	Search using providers	
 values-b+tl/strings.xml	string	search_provider_text_types	-	STR	Search using types	
+values-b+tl/strings.xml	string	search_quick_empty_body	-	STR	Sumagot ang lahat ng source at wala ni isang may “%s”. Subukan ang mas maikling paghahanap, o buksan ang buong paghahanap para palitan ang mga source.	
+values-b+tl/strings.xml	string	search_quick_empty_headline	-	STR	Walang tugma	
+values-b+tl/strings.xml	string	search_quick_meta_answered	-	STR	SUMAGOT NA ANG LAHAT NG SOURCE	
+values-b+tl/strings.xml	string	search_quick_meta_answering	-	STR	DUMARATING ANG MGA RESULTA HABANG SUMASAGOT ANG MGA SOURCE	
+values-b+tl/strings.xml	string	search_quick_open_full	-	STR	Buksan ang buong paghahanap	
+values-b+tl/strings.xml	string	search_quick_status	-	STR	%1$d SA %2$d ANG SUMAGOT · %3$d ANG NABIGO	
+values-b+tl/strings.xml	string	search_quick_title	-	STR	Mabilis na paghahanap	
 values-b+tl/strings.xml	string	search_state_idle_body_desktop	-	STR	Mag-type ng pamagat. Lalabas ang mga resulta sa ilalim ng bawat source kapag sumagot ito.	
 values-b+tl/strings.xml	string	search_state_no_results_type_filter	-	STR	%s lang. Pinipigilan ng type filter mo ang paghahanap.	
 values-b+tl/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 MUNGKAHI · 0 KAMAKAILANG TUGMA	
@@ -33441,6 +33826,13 @@ values-b+tr/strings.xml	string	search_hint_site	-	STR	%s sağlayıcısında ara�
 values-b+tr/strings.xml	string	search_poster_img_des	-	STR	Afiş	
 values-b+tr/strings.xml	string	search_provider_text_providers	-	STR	Sağlayıcıları kullanarak ara	
 values-b+tr/strings.xml	string	search_provider_text_types	-	STR	Türleri kullanarak ara	
+values-b+tr/strings.xml	string	search_quick_empty_body	-	STR	Tüm kaynaklar yanıt verdi ve hiçbirinde “%s” yok. Daha kısa bir arama deneyin veya kaynakları değiştirmek için tam aramayı açın.	
+values-b+tr/strings.xml	string	search_quick_empty_headline	-	STR	Eşleşme yok	
+values-b+tr/strings.xml	string	search_quick_meta_answered	-	STR	TÜM KAYNAKLAR YANIT VERDİ	
+values-b+tr/strings.xml	string	search_quick_meta_answering	-	STR	KAYNAKLAR YANIT VERDİKÇE SONUÇLAR GELİR	
+values-b+tr/strings.xml	string	search_quick_open_full	-	STR	Tam aramayı aç	
+values-b+tr/strings.xml	string	search_quick_status	-	STR	%2$d KAYNAKTAN %1$d YANIT VERDİ · %3$d BAŞARISIZ	
+values-b+tr/strings.xml	string	search_quick_title	-	STR	Hızlı arama	
 values-b+tr/strings.xml	string	search_state_idle_body_desktop	-	STR	Bir başlık yazın. Sonuçlar, her kaynak yanıt verdikçe onun altında görünür.	
 values-b+tr/strings.xml	string	search_state_no_results_type_filter	-	STR	Yalnızca %s. Tür filtreniz aramayı daraltıyor.	
 values-b+tr/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 ÖNERİ · 0 YAKIN ZAMANLI EŞLEŞME	
@@ -34290,6 +34682,13 @@ values-b+uk/strings.xml	string	search_hint_site	-	STR	Пошук на %s…
 values-b+uk/strings.xml	string	search_poster_img_des	-	STR	Плакат	
 values-b+uk/strings.xml	string	search_provider_text_providers	-	STR	Пошук за постачальниками	
 values-b+uk/strings.xml	string	search_provider_text_types	-	STR	Пошук за типами	
+values-b+uk/strings.xml	string	search_quick_empty_body	-	STR	Усі джерела відповіли, і в жодному немає «%s». Спробуйте коротший запит або відкрийте повний пошук, щоб змінити джерела.	
+values-b+uk/strings.xml	string	search_quick_empty_headline	-	STR	Немає збігів	
+values-b+uk/strings.xml	string	search_quick_meta_answered	-	STR	УСІ ДЖЕРЕЛА ВІДПОВІЛИ	
+values-b+uk/strings.xml	string	search_quick_meta_answering	-	STR	РЕЗУЛЬТАТИ НАДХОДЯТЬ, ЩОЙНО ДЖЕРЕЛА ВІДПОВІДАЮТЬ	
+values-b+uk/strings.xml	string	search_quick_open_full	-	STR	Відкрити повний пошук	
+values-b+uk/strings.xml	string	search_quick_status	-	STR	ВІДПОВІЛИ %1$d З %2$d · ЗБІЙ %3$d	
+values-b+uk/strings.xml	string	search_quick_title	-	STR	Швидкий пошук	
 values-b+uk/strings.xml	string	search_state_idle_body_desktop	-	STR	Введіть назву. Результати з'являться під кожним джерелом, коли воно відповість.	
 values-b+uk/strings.xml	string	search_state_no_results_type_filter	-	STR	Лише %s. Фільтр за типом звужує пошук.	
 values-b+uk/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 ПІДКАЗОК · 0 НЕЩОДАВНІХ ЗБІГІВ	
@@ -35028,6 +35427,13 @@ values-b+ur/strings.xml	string	search_hint_site	-	STR	فراہم کنندہ می
 values-b+ur/strings.xml	string	search_poster_img_des	-	STR	پروموشنل تصویر	
 values-b+ur/strings.xml	string	search_provider_text_providers	-	STR	ذرائع کا استعمال کرتے ہوئے تلاش کریں	
 values-b+ur/strings.xml	string	search_provider_text_types	-	STR	انواع کا استعمال کرتے ہوئے تلاش کریں	
+values-b+ur/strings.xml	string	search_quick_empty_body	-	STR	تمام ذرائع نے جواب دیا اور کسی کے پاس “%s” نہیں ہے۔ مختصر تلاش آزمائیں، یا ذرائع بدلنے کے لیے مکمل تلاش کھولیں۔	
+values-b+ur/strings.xml	string	search_quick_empty_headline	-	STR	کوئی مماثلت نہیں	
+values-b+ur/strings.xml	string	search_quick_meta_answered	-	STR	تمام ذرائع نے جواب دیا	
+values-b+ur/strings.xml	string	search_quick_meta_answering	-	STR	ذرائع کے جواب کے ساتھ نتائج آتے ہیں	
+values-b+ur/strings.xml	string	search_quick_open_full	-	STR	مکمل تلاش کھولیں	
+values-b+ur/strings.xml	string	search_quick_status	-	STR	%2$d میں سے %1$d نے جواب دیا · %3$d ناکام	
+values-b+ur/strings.xml	string	search_quick_title	-	STR	فوری تلاش	
 values-b+ur/strings.xml	string	search_state_idle_body_desktop	-	STR	عنوان لکھیں۔ ہر ذریعہ کے جواب دینے پر نتائج اس کے نیچے ظاہر ہوں گے۔	
 values-b+ur/strings.xml	string	search_state_no_results_type_filter	-	STR	صرف %s۔ آپ کا قسم فلٹر تلاش کو محدود کر رہا ہے۔	
 values-b+ur/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 تجاویز · 0 حالیہ مماثلتیں	
@@ -35809,6 +36215,13 @@ values-b+vi/strings.xml	string	search_hint_site	-	STR	Tìm kiếm %s…
 values-b+vi/strings.xml	string	search_poster_img_des	-	STR	Poster	
 values-b+vi/strings.xml	string	search_provider_text_providers	-	STR	Tìm kiếm theo nguồn phim	
 values-b+vi/strings.xml	string	search_provider_text_types	-	STR	Tìm kiếm theo thể loại	
+values-b+vi/strings.xml	string	search_quick_empty_body	-	STR	Tất cả nguồn đã trả lời và không nguồn nào có “%s”. Hãy thử tìm ngắn hơn, hoặc mở tìm kiếm đầy đủ để đổi nguồn.	
+values-b+vi/strings.xml	string	search_quick_empty_headline	-	STR	Không có kết quả khớp	
+values-b+vi/strings.xml	string	search_quick_meta_answered	-	STR	TẤT CẢ NGUỒN ĐÃ TRẢ LỜI	
+values-b+vi/strings.xml	string	search_quick_meta_answering	-	STR	KẾT QUẢ ĐẾN KHI CÁC NGUỒN TRẢ LỜI	
+values-b+vi/strings.xml	string	search_quick_open_full	-	STR	Mở tìm kiếm đầy đủ	
+values-b+vi/strings.xml	string	search_quick_status	-	STR	%1$d/%2$d ĐÃ TRẢ LỜI · %3$d THẤT BẠI	
+values-b+vi/strings.xml	string	search_quick_title	-	STR	Tìm kiếm nhanh	
 values-b+vi/strings.xml	string	search_state_idle_body_desktop	-	STR	Nhập tiêu đề. Kết quả sẽ hiện dưới mỗi nguồn khi nguồn đó phản hồi.	
 values-b+vi/strings.xml	string	search_state_no_results_type_filter	-	STR	Chỉ %s. Bộ lọc loại của bạn đang thu hẹp kết quả tìm kiếm.	
 values-b+vi/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 GỢI Ý · 0 KẾT QUẢ GẦN ĐÂY KHỚP	
@@ -36630,6 +37043,13 @@ values-b+zh+TW/strings.xml	string	search_hint_site	-	STR	搜尋 %s…
 values-b+zh+TW/strings.xml	string	search_poster_img_des	-	STR	封面	
 values-b+zh+TW/strings.xml	string	search_provider_text_providers	-	STR	按片源搜尋	
 values-b+zh+TW/strings.xml	string	search_provider_text_types	-	STR	按類型搜尋	
+values-b+zh+TW/strings.xml	string	search_quick_empty_body	-	STR	所有來源皆已回應，但都沒有「%s」。請嘗試更短的搜尋字詞，或開啟完整搜尋以變更來源。	
+values-b+zh+TW/strings.xml	string	search_quick_empty_headline	-	STR	沒有符合項目	
+values-b+zh+TW/strings.xml	string	search_quick_meta_answered	-	STR	所有來源皆已回應	
+values-b+zh+TW/strings.xml	string	search_quick_meta_answering	-	STR	結果隨來源回應陸續出現	
+values-b+zh+TW/strings.xml	string	search_quick_open_full	-	STR	開啟完整搜尋	
+values-b+zh+TW/strings.xml	string	search_quick_status	-	STR	%2$d 個中 %1$d 個已回應 · %3$d 個失敗	
+values-b+zh+TW/strings.xml	string	search_quick_title	-	STR	快速搜尋	
 values-b+zh+TW/strings.xml	string	search_state_idle_body_desktop	-	STR	輸入標題。每個來源回應後，結果會顯示在其下方。	
 values-b+zh+TW/strings.xml	string	search_state_no_results_type_filter	-	STR	僅限%s。類型篩選器正在縮小搜尋範圍。	
 values-b+zh+TW/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 個建議 · 0 個最近相符	
@@ -37453,6 +37873,13 @@ values-b+zh/strings.xml	string	search_hint_site	-	STR	搜索 %s…
 values-b+zh/strings.xml	string	search_poster_img_des	-	STR	封面	
 values-b+zh/strings.xml	string	search_provider_text_providers	-	STR	按片源搜索	
 values-b+zh/strings.xml	string	search_provider_text_types	-	STR	按类型搜索	
+values-b+zh/strings.xml	string	search_quick_empty_body	-	STR	所有来源均已响应，但都没有“%s”。请尝试更短的搜索词，或打开完整搜索以更改来源。	
+values-b+zh/strings.xml	string	search_quick_empty_headline	-	STR	无匹配	
+values-b+zh/strings.xml	string	search_quick_meta_answered	-	STR	所有来源均已响应	
+values-b+zh/strings.xml	string	search_quick_meta_answering	-	STR	结果随来源响应陆续出现	
+values-b+zh/strings.xml	string	search_quick_open_full	-	STR	打开完整搜索	
+values-b+zh/strings.xml	string	search_quick_status	-	STR	%2$d 个中 %1$d 个已响应 · %3$d 个失败	
+values-b+zh/strings.xml	string	search_quick_title	-	STR	快速搜索	
 values-b+zh/strings.xml	string	search_state_idle_body_desktop	-	STR	输入标题。每个来源响应后，结果会显示在其下方。	
 values-b+zh/strings.xml	string	search_state_no_results_type_filter	-	STR	仅限%s。类型筛选正在缩小搜索范围。	
 values-b+zh/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 个建议 · 0 个最近匹配	
@@ -38431,6 +38858,13 @@ values/strings.xml	string	search_hint_site	-	STR	Search %s…
 values/strings.xml	string	search_poster_img_des	-	STR	Poster	
 values/strings.xml	string	search_provider_text_providers	-	STR	Search using providers	
 values/strings.xml	string	search_provider_text_types	-	STR	Search using types	
+values/strings.xml	string	search_quick_empty_body	-	STR	Every source answered and none of them carry “%s”. Try a shorter query, or open full search to change the source set.	
+values/strings.xml	string	search_quick_empty_headline	-	STR	No matches	
+values/strings.xml	string	search_quick_meta_answered	-	STR	ALL SOURCES ANSWERED	
+values/strings.xml	string	search_quick_meta_answering	-	STR	RESULTS STREAM IN AS SOURCES ANSWER	
+values/strings.xml	string	search_quick_open_full	-	STR	Open full search	
+values/strings.xml	string	search_quick_status	-	STR	%1$d OF %2$d ANSWERED · %3$d FAILED	
+values/strings.xml	string	search_quick_title	-	STR	Quick search	
 values/strings.xml	string	search_state_failed_body	-	STR	None of your sources answered.	
 values/strings.xml	string	search_state_failed_headline	-	STR	Search failed	
 values/strings.xml	string	search_state_idle_action	-	STR	Browse home	
