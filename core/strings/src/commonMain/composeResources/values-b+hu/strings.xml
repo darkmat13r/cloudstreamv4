@@ -3,6 +3,7 @@
 <resources>
 <string name="detail_load_failed_body">Lehet, hogy a forrás nem érhető el.</string>
 <string name="detail_load_failed_headline">Ezt a címet nem sikerült megnyitni</string>
+<plurals name="downloads_failed_count"><item quantity="one">%d sikertelen</item><item quantity="other">%d sikertelen</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d szakasz betöltése sikertelen</item><item quantity="other">%d szakasz betöltése sikertelen</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Keresés %d forrásban</item><item quantity="other">Keresés mind a(z) %d forrásban</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Nyomja meg a billentyűzet keresőgombját, hogy mégis keressen %d forrásban.</item><item quantity="other">Nyomja meg a billentyűzet keresőgombját, hogy mégis keressen mind a(z) %d forrásban.</item></plurals>
@@ -170,6 +171,7 @@
 <string name="downloaded_file">Letöltött fájl</string>
 <string name="downloading">Letöltés</string>
 <string name="downloads_browse_library">Könyvtár böngészése</string>
+<string name="downloads_delete_all">Összes törlése</string>
 <string name="downloads_delete_select">Válassza ki a Törlendő Elemeket</string>
 <string name="downloads_empty">Jelenleg nincs letöltés.</string>
 <string name="downloads_empty_body">A cím epizódlistájából indított letöltések itt jelennek meg, és kapcsolat nélkül is lejátszhatók.</string>
@@ -178,11 +180,21 @@
 <string name="downloads_load_failed_body">A letöltött fájlok nem változtak.</string>
 <string name="downloads_load_failed_headline">Nem sikerült beolvasni a letöltéseket</string>
 <string name="downloads_offline_pill">Offline · nincs kapcsolat</string>
+<string name="downloads_on_disk">%s a lemezen</string>
 <string name="downloads_play_from_link">Lejátszás hivatkozásról</string>
+<string name="downloads_play_next">Következő lejátszása</string>
+<string name="downloads_reason_network">Hálózat megszakadt</string>
+<string name="downloads_reason_no_link">Nincs működő link</string>
+<string name="downloads_reason_source">A forrás korán leállt</string>
+<string name="downloads_reason_storage_full">Tárhely megtelt</string>
+<string name="downloads_reason_storage_unavailable">Tárhely nem elérhető</string>
+<string name="downloads_retry_failed">Sikertelenek újra (%d)</string>
 <string name="downloads_select">Kiválasztás</string>
+<string name="downloads_state_queued">Sorban áll</string>
 <string name="downloads_storage_full_headline">Nincs elég tárhely</string>
 <string name="downloads_storage_legend">%1$s / %2$s használatban · %3$s a letöltésekben</string>
 <string name="downloads_storage_needs">Még %s szükséges</string>
+<string name="downloads_watched">%d%% megtekintve</string>
 <string name="duplicate_add">Hozzáadás</string>
 <string name="duplicate_message_multiple">Potenciálisan dupla elemek a könyvtárjában: \n \n%s \n \nSzeretné hozzáadni ezt az elemet mindenképpen, ezzel felülírva a jelenlegit, vagy visszavonja a műveletet?</string>
 <string name="duplicate_message_single">Úgy tűnik egy potenciálisan dupla elem már létezik a könyvtárjában: '%s.' \n \nMindenképpen hozzá akarja adni ezt az elemet, ezzel felülírva a régit, vagy visszavonja a műveletet?</string>

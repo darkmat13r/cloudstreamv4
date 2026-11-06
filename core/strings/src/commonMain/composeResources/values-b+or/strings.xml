@@ -3,6 +3,7 @@
 <resources>
 <string name="detail_load_failed_body">ଉତ୍ସ ଉପଲବ୍ଧ ନ ହୋଇପାରେ।</string>
 <string name="detail_load_failed_headline">ଏହି ଶୀର୍ଷକ ଖୋଲିହେଲା ନାହିଁ</string>
+<plurals name="downloads_failed_count"><item quantity="one">%d ଵିଫଳ ହେଲା</item><item quantity="other">%d ଵିଫଳ ହେଲା</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d ଵିଭାଗ ଲୋଡ୍ ହୋଇପାରିଲା ନାହିଁ</item><item quantity="other">%d ଵିଭାଗ ଲୋଡ୍ ହୋଇପାରିଲା ନାହିଁ</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">%d ଉତ୍ସରେ ସନ୍ଧାନ କରନ୍ତୁ</item><item quantity="other">ସମସ୍ତ %d ଉତ୍ସରେ ସନ୍ଧାନ କରନ୍ତୁ</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">ତଥାପି %d ଉତ୍ସରେ ସନ୍ଧାନ କରିବାକୁ କୀବୋର୍ଡର ସନ୍ଧାନ କୀ ଦବାନ୍ତୁ।</item><item quantity="other">ତଥାପି ସମସ୍ତ %d ଉତ୍ସରେ ସନ୍ଧାନ କରିବାକୁ କୀବୋର୍ଡର ସନ୍ଧାନ କୀ ଦବାନ୍ତୁ।</item></plurals>
@@ -40,17 +41,28 @@
 <string name="download_storage_text">ଅନ୍ତଃ-ଷ୍ଟୋରେଜ୍</string>
 <string name="download_time_left_hour_min_sec_format">%1$dଘଣ୍ଟା %2$dମିନିଟ୍ %3$dସେକେଣ୍ଡ</string>
 <string name="downloads_browse_library">ଲାଇବ୍ରେରୀ ବ୍ରାଉଜ୍ କର</string>
+<string name="downloads_delete_all">ସବୁ ଵିଲୋପ କର</string>
 <string name="downloads_empty_body">ଶୀର୍ଷକର ଏପିସୋଡ୍ ତାଲିକାରୁ ଆରମ୍ଭ କରାଯାଇଥିବା ଡାଉନଲୋଡ୍ ଏଠାରେ ଦେଖାଯାଏ ଏବଂ ସଂଯୋଗ ବିନା ଚାଲେ।</string>
 <string name="downloads_empty_headline">ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ଡାଉନଲୋଡ୍ ନାହିଁ</string>
 <string name="downloads_free_up_space">ସ୍ଥାନ ଖାଲି କର</string>
 <string name="downloads_load_failed_body">ଆପଣଙ୍କ ଡାଉନଲୋଡ୍ ହୋଇଥିବା ଫାଇଲଗୁଡ଼ିକ ବଦଳାଯାଇନାହିଁ।</string>
 <string name="downloads_load_failed_headline">ଆପଣଙ୍କ ଡାଉନଲୋଡ୍ ପଢ଼ିହେଲା ନାହିଁ</string>
 <string name="downloads_offline_pill">ଅଫଲାଇନ୍ · ସଂଯୋଗ ନାହିଁ</string>
+<string name="downloads_on_disk">ଡିସ୍କରେ %s</string>
 <string name="downloads_play_from_link">ଲିଙ୍କରୁ ଚଲାଅ</string>
+<string name="downloads_play_next">ପରବର୍ତ୍ତୀ ଚଲାଅ</string>
+<string name="downloads_reason_network">ନେଟୱର୍କ ହଜିଗଲା</string>
+<string name="downloads_reason_no_link">କାମ କରୁଥିବା ଲିଙ୍କ୍ ନାହିଁ</string>
+<string name="downloads_reason_source">ଉତ୍ସ ଶୀଘ୍ର ବନ୍ଦ ହେଲା</string>
+<string name="downloads_reason_storage_full">ଷ୍ଟୋରେଜ୍ ପୂର୍ଣ୍ଣ</string>
+<string name="downloads_reason_storage_unavailable">ଷ୍ଟୋରେଜ୍ ଉପଲବ୍ଧ ନାହିଁ</string>
+<string name="downloads_retry_failed">ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ (%d)</string>
 <string name="downloads_select">ବାଛ</string>
+<string name="downloads_state_queued">ଧାଡ଼ିରେ ଅଛି</string>
 <string name="downloads_storage_full_headline">ପର୍ଯ୍ୟାପ୍ତ ଷ୍ଟୋରେଜ୍ ନାହିଁ</string>
 <string name="downloads_storage_legend">%1$s / %2$s ଵ୍ୟଵହୃତ · ଡାଉନଲୋଡରେ %3$s</string>
 <string name="downloads_storage_needs">ଆଉ %s ଦରକାର</string>
+<string name="downloads_watched">%d%% ଦେଖାଯାଇଛି</string>
 <string name="duration">ଅଵଧି</string>
 <string name="duration_format">%d ମିନିଟ୍</string>
 <string name="duration_hours_minutes_format">%1$dଘଣ୍ଟା %2$dମିନିଟ୍</string>

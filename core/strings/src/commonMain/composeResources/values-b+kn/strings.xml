@@ -3,6 +3,7 @@
 <resources>
 <string name="detail_load_failed_body">ಮೂಲ ಲಭ್ಯವಿಲ್ಲದಿರಬಹುದು.</string>
 <string name="detail_load_failed_headline">ಈ ಶೀರ್ಷಿಕೆಯನ್ನು ತೆರೆಯಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ</string>
+<plurals name="downloads_failed_count"><item quantity="one">%d ವಿಫಲವಾಗಿದೆ</item><item quantity="other">%d ವಿಫಲವಾಗಿವೆ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d ವಿಭಾಗವನ್ನು ಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ</item><item quantity="other">%d ವಿಭಾಗಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">%d ಮೂಲದಲ್ಲಿ ಹುಡುಕಿ</item><item quantity="other">ಎಲ್ಲಾ %d ಮೂಲಗಳಲ್ಲಿ ಹುಡುಕಿ</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">ಹಾಗಿದ್ದರೂ %d ಮೂಲದಲ್ಲಿ ಹುಡುಕಲು ಕೀಬೋರ್ಡ್‌ನ ಹುಡುಕಾಟ ಕೀ ಒತ್ತಿರಿ.</item><item quantity="other">ಹಾಗಿದ್ದರೂ ಎಲ್ಲಾ %d ಮೂಲಗಳಲ್ಲಿ ಹುಡುಕಲು ಕೀಬೋರ್ಡ್‌ನ ಹುಡುಕಾಟ ಕೀ ಒತ್ತಿರಿ.</item></plurals>
@@ -37,17 +38,28 @@
 <string name="downloaded">ಡೌನ್‌ಲೋಡ್ ಮಾಡಲಾಗಿದೆ</string>
 <string name="downloading">ಡೌನ್‌ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ</string>
 <string name="downloads_browse_library">ಲೈಬ್ರರಿ ಬ್ರೌಸ್ ಮಾಡಿ</string>
+<string name="downloads_delete_all">ಎಲ್ಲವನ್ನೂ ಅಳಿಸಿ</string>
 <string name="downloads_empty_body">ಶೀರ್ಷಿಕೆಯ ಸಂಚಿಕೆ ಪಟ್ಟಿಯಿಂದ ನೀವು ಪ್ರಾರಂಭಿಸುವ ಡೌನ್‌ಲೋಡ್‌ಗಳು ಇಲ್ಲಿ ಕಾಣಿಸುತ್ತವೆ ಮತ್ತು ಸಂಪರ್ಕವಿಲ್ಲದೆ ಪ್ಲೇ ಆಗುತ್ತವೆ.</string>
 <string name="downloads_empty_headline">ಇನ್ನೂ ಡೌನ್‌ಲೋಡ್‌ಗಳಿಲ್ಲ</string>
 <string name="downloads_free_up_space">ಸ್ಥಳವನ್ನು ಖಾಲಿ ಮಾಡಿ</string>
 <string name="downloads_load_failed_body">ನಿಮ್ಮ ಡೌನ್‌ಲೋಡ್ ಮಾಡಿದ ಫೈಲ್‌ಗಳನ್ನು ಬದಲಾಯಿಸಲಾಗಿಲ್ಲ.</string>
 <string name="downloads_load_failed_headline">ನಿಮ್ಮ ಡೌನ್‌ಲೋಡ್‌ಗಳನ್ನು ಓದಲಾಗಲಿಲ್ಲ</string>
 <string name="downloads_offline_pill">ಆಫ್‌ಲೈನ್ · ಸಂಪರ್ಕವಿಲ್ಲ</string>
+<string name="downloads_on_disk">ಡಿಸ್ಕಿನಲ್ಲಿ %s</string>
 <string name="downloads_play_from_link">ಲಿಂಕ್‌ನಿಂದ ಪ್ಲೇ ಮಾಡಿ</string>
+<string name="downloads_play_next">ಮುಂದಿನದನ್ನು ಪ್ಲೇ ಮಾಡಿ</string>
+<string name="downloads_reason_network">ನೆಟ್‌ವರ್ಕ್ ಕಳೆದುಹೋಗಿದೆ</string>
+<string name="downloads_reason_no_link">ಕೆಲಸ ಮಾಡುವ ಲಿಂಕ್ ಇಲ್ಲ</string>
+<string name="downloads_reason_source">ಮೂಲ ಬೇಗನೆ ನಿಂತಿತು</string>
+<string name="downloads_reason_storage_full">ಸ್ಟೋರೇಜ್ ತುಂಬಿದೆ</string>
+<string name="downloads_reason_storage_unavailable">ಸ್ಟೋರೇಜ್ ಲಭ್ಯವಿಲ್ಲ</string>
+<string name="downloads_retry_failed">ಮರುಪ್ರಯತ್ನಿಸಿ (%d)</string>
 <string name="downloads_select">ಆಯ್ಕೆಮಾಡಿ</string>
+<string name="downloads_state_queued">ಸರತಿಯಲ್ಲಿದೆ</string>
 <string name="downloads_storage_full_headline">ಸಾಕಷ್ಟು ಸ್ಟೋರೇಜ್ ಇಲ್ಲ</string>
 <string name="downloads_storage_legend">%1$s / %2$s ಬಳಸಲಾಗಿದೆ · ಡೌನ್‌ಲೋಡ್‌ಗಳಲ್ಲಿ %3$s</string>
 <string name="downloads_storage_needs">ಇನ್ನೂ %s ಬೇಕು</string>
+<string name="downloads_watched">%d%% ವೀಕ್ಷಿಸಲಾಗಿದೆ</string>
 <string name="duration_format">%dಮಿನ</string>
 <string name="episode_more_options_des">ಹೆಚ್ಚಿನ ಆಯ್ಕೆ</string>
 <string name="episode_poster_img_des">ಸಂಚಿಕೆ ಪೋಸ್ಟರ್</string>

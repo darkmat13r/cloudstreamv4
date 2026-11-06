@@ -4,6 +4,7 @@
 <string name="detail_load_failed_body">La source est peut-être indisponible.</string>
 <string name="detail_load_failed_headline">Impossible d'ouvrir ce titre</string>
 <plurals name="downloads_active"><item quantity="one">%d téléchargement actif</item><item quantity="many">%d téléchargements actifs</item><item quantity="other">%d téléchargements actifs</item></plurals>
+<plurals name="downloads_failed_count"><item quantity="one">%d échec</item><item quantity="many">%d échecs</item><item quantity="other">%d échecs</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d téléchargement en attente</item><item quantity="many">%d téléchargements en attente</item><item quantity="other">%d téléchargements en attente</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d section n'a pas pu être chargée</item><item quantity="many">%d sections n'ont pas pu être chargées</item><item quantity="other">%d sections n'ont pas pu être chargées</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d lien caché</item><item quantity="many">%d liens cachés</item><item quantity="other">%d liens cachés</item></plurals>
@@ -201,6 +202,7 @@
 <string name="downloaded_file">Fichier téléchargé</string>
 <string name="downloading">Téléchargement</string>
 <string name="downloads_browse_library">Parcourir la bibliothèque</string>
+<string name="downloads_delete_all">Tout supprimer</string>
 <string name="downloads_delete_select">Sélectionner les éléments à supprimer</string>
 <string name="downloads_empty">Aucun téléchargement.</string>
 <string name="downloads_empty_body">Les téléchargements lancés depuis la liste d'épisodes d'un titre apparaissent ici et se lisent sans connexion.</string>
@@ -209,11 +211,21 @@
 <string name="downloads_load_failed_body">Vos fichiers téléchargés n'ont pas été modifiés.</string>
 <string name="downloads_load_failed_headline">Impossible de lire vos téléchargements</string>
 <string name="downloads_offline_pill">Hors-ligne · pas de connexion</string>
+<string name="downloads_on_disk">%s sur le disque</string>
 <string name="downloads_play_from_link">Lire depuis un lien</string>
+<string name="downloads_play_next">Lire le suivant</string>
+<string name="downloads_reason_network">Réseau perdu</string>
+<string name="downloads_reason_no_link">Aucun lien fonctionnel</string>
+<string name="downloads_reason_source">La source s'est arrêtée tôt</string>
+<string name="downloads_reason_storage_full">Stockage plein</string>
+<string name="downloads_reason_storage_unavailable">Stockage indisponible</string>
+<string name="downloads_retry_failed">Réessayer les échecs (%d)</string>
 <string name="downloads_select">Sélectionner</string>
+<string name="downloads_state_queued">En attente</string>
 <string name="downloads_storage_full_headline">Stockage insuffisant</string>
 <string name="downloads_storage_legend">%1$s sur %2$s utilisés · %3$s en téléchargements</string>
 <string name="downloads_storage_needs">%s supplémentaires requis</string>
+<string name="downloads_watched">Vu à %d%%</string>
 <string name="duplicate_add">Ajouter</string>
 <string name="duplicate_message_multiple">Des doublons potentiels ont été trouvés dans votre bibliothèque : \n \n%s \n \nSouhaitez-vous ajouter cet élément, remplacer les éléments existants ou annuler l'action ?</string>
 <string name="duplicate_message_single">Il semble qu'un élément potentiellement dupliqué existe déjà dans votre bibliothèque : '%s. \n \nSouhaitez-vous ajouter cet élément, remplacer l'élément existant ou annuler l'action ?</string>

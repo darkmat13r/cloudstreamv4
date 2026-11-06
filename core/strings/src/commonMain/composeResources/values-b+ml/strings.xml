@@ -3,6 +3,7 @@
 <resources>
 <string name="detail_load_failed_body">ഉറവിടം ലഭ്യമല്ലായിരിക്കാം.</string>
 <string name="detail_load_failed_headline">ഈ ശീർഷകം തുറക്കാനായില്ല</string>
+<plurals name="downloads_failed_count"><item quantity="one">%d പരാജയപ്പെട്ടു</item><item quantity="other">%d പരാജയപ്പെട്ടു</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d വിഭാഗം ലോഡ് ചെയ്യാനായില്ല</item><item quantity="other">%d വിഭാഗങ്ങൾ ലോഡ് ചെയ്യാനായില്ല</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">%d ഉറവിടത്തിൽ തിരയുക</item><item quantity="other">എല്ലാ %d ഉറവിടങ്ങളിലും തിരയുക</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">എന്നിട്ടും %d ഉറവിടത്തിൽ തിരയാൻ കീബോർഡിലെ തിരയൽ കീ അമർത്തുക.</item><item quantity="other">എന്നിട്ടും എല്ലാ %d ഉറവിടങ്ങളിലും തിരയാൻ കീബോർഡിലെ തിരയൽ കീ അമർത്തുക.</item></plurals>
@@ -78,6 +79,7 @@
 <string name="downloaded">ഡൌൺലോഡ് ചെയ്തവ</string>
 <string name="downloading">ഡൌൺലോഡ് ചെയ്യുന്നു</string>
 <string name="downloads_browse_library">ലൈബ്രറി ബ്രൗസ് ചെയ്യുക</string>
+<string name="downloads_delete_all">എല്ലാം ഡിലീറ്റ് ചെയ്യുക</string>
 <string name="downloads_delete_select">ഡിലീറ്റ് ചെയ്യേണ്ടവ തിരഞ്ഞെടുക്കുക</string>
 <string name="downloads_empty">നിലവിൽ ഡൗൺലോഡുകൾ ഒന്നും തന്നെയില്ല.</string>
 <string name="downloads_empty_body">ഒരു ശീർഷകത്തിന്റെ എപ്പിസോഡ് ലിസ്റ്റിൽ നിന്ന് ആരംഭിക്കുന്ന ഡൗൺലോഡുകൾ ഇവിടെ കാണാം, കണക്ഷനില്ലാതെ പ്ലേ ചെയ്യാം.</string>
@@ -86,11 +88,21 @@
 <string name="downloads_load_failed_body">നിങ്ങൾ ഡൗൺലോഡ് ചെയ്ത ഫയലുകൾ മാറ്റിയിട്ടില്ല.</string>
 <string name="downloads_load_failed_headline">നിങ്ങളുടെ ഡൗൺലോഡുകൾ വായിക്കാനായില്ല</string>
 <string name="downloads_offline_pill">ഓഫ്‌ലൈൻ · കണക്ഷനില്ല</string>
+<string name="downloads_on_disk">ഡിസ്കിൽ %s</string>
 <string name="downloads_play_from_link">ലിങ്കിൽ നിന്ന് പ്ലേ ചെയ്യുക</string>
+<string name="downloads_play_next">അടുത്തത് പ്ലേ ചെയ്യുക</string>
+<string name="downloads_reason_network">നെറ്റ്‌വർക്ക് നഷ്ടമായി</string>
+<string name="downloads_reason_no_link">പ്രവർത്തിക്കുന്ന ലിങ്കില്ല</string>
+<string name="downloads_reason_source">ഉറവിടം നേരത്തെ നിന്നു</string>
+<string name="downloads_reason_storage_full">സ്റ്റോറേജ് നിറഞ്ഞു</string>
+<string name="downloads_reason_storage_unavailable">സ്റ്റോറേജ് ലഭ്യമല്ല</string>
+<string name="downloads_retry_failed">പരാജയപ്പെട്ടവ വീണ്ടും ശ്രമിക്കുക (%d)</string>
 <string name="downloads_select">തിരഞ്ഞെടുക്കുക</string>
+<string name="downloads_state_queued">ക്യൂവിലാണ്</string>
 <string name="downloads_storage_full_headline">ആവശ്യത്തിന് സ്റ്റോറേജില്ല</string>
 <string name="downloads_storage_legend">%1$s / %2$s ഉപയോഗത്തിൽ · ഡൗൺലോഡുകളിൽ %3$s</string>
 <string name="downloads_storage_needs">%s കൂടി വേണം</string>
+<string name="downloads_watched">%d%% കണ്ടു</string>
 <string name="duration">ദൈര്ഘം</string>
 <string name="duration_format">%d മിനിറ്റ്</string>
 <string name="duration_hours_minutes_format">%1$dh %2$dm</string>

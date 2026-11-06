@@ -4,6 +4,7 @@
 <string name="detail_load_failed_body">Avots, iespējams, nav pieejams.</string>
 <string name="detail_load_failed_headline">Šo nosaukumu neizdevās atvērt</string>
 <plurals name="downloads_active"><item quantity="zero">%d aktīvas lejupielādes</item><item quantity="one">%d aktīva lejupielāde</item><item quantity="other">%d aktīvas lejupielādes</item></plurals>
+<plurals name="downloads_failed_count"><item quantity="zero">%d neizdevās</item><item quantity="one">%d neizdevās</item><item quantity="other">%d neizdevās</item></plurals>
 <plurals name="home_sections_failed"><item quantity="zero">Neizdevās ielādēt %d sadaļu</item><item quantity="one">Neizdevās ielādēt %d sadaļu</item><item quantity="other">Neizdevās ielādēt %d sadaļas</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="zero">Meklēt visos %d devējos</item><item quantity="one">Meklēt %d devējā</item><item quantity="other">Meklēt visos %d devējos</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="zero">Nospiediet tastatūras meklēšanas taustiņu, lai tomēr meklētu visos %d devējos.</item><item quantity="one">Nospiediet tastatūras meklēšanas taustiņu, lai tomēr meklētu %d devējā.</item><item quantity="other">Nospiediet tastatūras meklēšanas taustiņu, lai tomēr meklētu visos %d devējos.</item></plurals>
@@ -155,6 +156,7 @@
 <string name="downloaded_file">Lejupielādēta datne</string>
 <string name="downloading">Lādējas</string>
 <string name="downloads_browse_library">Pārlūkot bibliotēku</string>
+<string name="downloads_delete_all">Dzēst visu</string>
 <string name="downloads_delete_select">Atlasiet vienumus, ko dzēst</string>
 <string name="downloads_empty">Pašlaik nav pieejama neviena lejupielāde.</string>
 <string name="downloads_empty_body">Lejupielādes, kuras sākat no nosaukuma epizožu saraksta, tiek rādītas šeit un atskaņojamas bez savienojuma.</string>
@@ -163,11 +165,21 @@
 <string name="downloads_load_failed_body">Jūsu lejupielādētie faili nav mainīti.</string>
 <string name="downloads_load_failed_headline">Neizdevās nolasīt lejupielādes</string>
 <string name="downloads_offline_pill">Bezsaistē · nav savienojuma</string>
+<string name="downloads_on_disk">%s diskā</string>
 <string name="downloads_play_from_link">Atskaņot no saites</string>
+<string name="downloads_play_next">Atskaņot nākamo</string>
+<string name="downloads_reason_network">Tīkls zudis</string>
+<string name="downloads_reason_no_link">Nav strādājošas saites</string>
+<string name="downloads_reason_source">Avots apstājās pāragri</string>
+<string name="downloads_reason_storage_full">Atmiņa pilna</string>
+<string name="downloads_reason_storage_unavailable">Atmiņa nav pieejama</string>
+<string name="downloads_retry_failed">Atkārtot neizdevušās (%d)</string>
 <string name="downloads_select">Atlasīt</string>
+<string name="downloads_state_queued">Rindā</string>
 <string name="downloads_storage_full_headline">Nepietiek atmiņas</string>
 <string name="downloads_storage_legend">Izmantoti %1$s no %2$s · %3$s lejupielādēs</string>
 <string name="downloads_storage_needs">Nepieciešami vēl %s</string>
+<string name="downloads_watched">Noskatīti %d%%</string>
 <string name="duplicate_add">Pievienot</string>
 <string name="duplicate_replace">Aizstāt</string>
 <string name="duplicate_replace_all">Aizstāt visus</string>

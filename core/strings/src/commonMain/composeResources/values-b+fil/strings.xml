@@ -3,6 +3,7 @@
 <resources>
 <string name="detail_load_failed_body">Maaaring hindi available ang source.</string>
 <string name="detail_load_failed_headline">Hindi mabuksan ang pamagat na ito</string>
+<plurals name="downloads_failed_count"><item quantity="one">%d nabigo</item><item quantity="other">%d nabigo</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Hindi na-load ang %d seksyon</item><item quantity="other">Hindi na-load ang %d seksyon</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Maghanap sa %d mapagkukunan</item><item quantity="other">Maghanap sa lahat ng %d mapagkukunan</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Pindutin ang search key ng keyboard para maghanap pa rin sa %d mapagkukunan.</item><item quantity="other">Pindutin ang search key ng keyboard para maghanap pa rin sa lahat ng %d mapagkukunan.</item></plurals>
@@ -48,6 +49,7 @@
 <string name="downloaded">Na-download</string>
 <string name="downloading">Dina-download</string>
 <string name="downloads_browse_library">I-browse ang library</string>
+<string name="downloads_delete_all">Burahin lahat</string>
 <string name="downloads_delete_select">Piliin ang Mga Item na Tatanggalin</string>
 <string name="downloads_empty">Kasalukuyang walang mga dina-download.</string>
 <string name="downloads_empty_body">Lalabas dito ang mga download na sinimulan mo mula sa listahan ng episode ng isang pamagat at mapapanood nang walang koneksyon.</string>
@@ -56,11 +58,21 @@
 <string name="downloads_load_failed_body">Hindi nabago ang mga na-download mong file.</string>
 <string name="downloads_load_failed_headline">Hindi mabasa ang iyong mga download</string>
 <string name="downloads_offline_pill">Offline · walang koneksyon</string>
+<string name="downloads_on_disk">%s sa disk</string>
 <string name="downloads_play_from_link">I-play mula sa link</string>
+<string name="downloads_play_next">I-play ang susunod</string>
+<string name="downloads_reason_network">Nawala ang network</string>
+<string name="downloads_reason_no_link">Walang gumaganang link</string>
+<string name="downloads_reason_source">Maagang huminto ang source</string>
+<string name="downloads_reason_storage_full">Puno na ang imbakan</string>
+<string name="downloads_reason_storage_unavailable">Hindi maabot ang imbakan</string>
+<string name="downloads_retry_failed">Subukang muli ang nabigo (%d)</string>
 <string name="downloads_select">Piliin</string>
+<string name="downloads_state_queued">Nakapila</string>
 <string name="downloads_storage_full_headline">Kulang ang imbakan</string>
 <string name="downloads_storage_legend">%1$s ng %2$s ang nagamit · %3$s sa mga download</string>
 <string name="downloads_storage_needs">Kailangan ng %s pa</string>
+<string name="downloads_watched">%d%% napanood</string>
 <string name="duplicate_message_multiple">May nakitang potensyal na mga nag-doble na mga items sa iyong library: \n\n%s \n\nGusto mo pa rin bang idagdag ang item na ito, palitan ang mga nauna na, o kanselahin ito?</string>
 <string name="duplicate_message_single">Lumalabas na mayroong potensyal na nag-doble na item sa iyong library: '%s.' \n\nGusto mo pa rin bang idagdag ang item na ito, palitan ang nauna, o kanselahin ito?</string>
 <string name="duplicate_title">May Natagpuan na Nag-doble</string>

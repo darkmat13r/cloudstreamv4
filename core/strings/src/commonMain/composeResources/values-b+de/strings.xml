@@ -4,6 +4,7 @@
 <string name="detail_load_failed_body">Die Quelle ist möglicherweise nicht verfügbar.</string>
 <string name="detail_load_failed_headline">Titel konnte nicht geöffnet werden</string>
 <plurals name="downloads_active"><item quantity="one">%d aktiver Download</item><item quantity="other">%d aktive Downloads</item></plurals>
+<plurals name="downloads_failed_count"><item quantity="one">%d fehlgeschlagen</item><item quantity="other">%d fehlgeschlagen</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d Download in Warteschlange</item><item quantity="other">%d Downloads in Warteschlange</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d Bereich konnte nicht geladen werden</item><item quantity="other">%d Bereiche konnten nicht geladen werden</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d ausgeblendeter Link</item><item quantity="other">%d ausgeblendete Links</item></plurals>
@@ -201,6 +202,7 @@
 <string name="downloaded_file">Heruntergeladene Datei</string>
 <string name="downloading">Lädt herunter</string>
 <string name="downloads_browse_library">Bibliothek durchsuchen</string>
+<string name="downloads_delete_all">Alle löschen</string>
 <string name="downloads_delete_select">Elemente zum Löschen auswählen</string>
 <string name="downloads_empty">Zur Zeit sind keine Downloads verfügbar.</string>
 <string name="downloads_empty_body">Downloads, die du in der Episodenliste eines Titels startest, erscheinen hier und lassen sich ohne Verbindung abspielen.</string>
@@ -209,11 +211,21 @@
 <string name="downloads_load_failed_body">Deine heruntergeladenen Dateien wurden nicht verändert.</string>
 <string name="downloads_load_failed_headline">Downloads konnten nicht gelesen werden</string>
 <string name="downloads_offline_pill">Offline · keine Verbindung</string>
+<string name="downloads_on_disk">%s auf Datenträger</string>
 <string name="downloads_play_from_link">Von Link abspielen</string>
+<string name="downloads_play_next">Nächste abspielen</string>
+<string name="downloads_reason_network">Netzwerk getrennt</string>
+<string name="downloads_reason_no_link">Kein funktionierender Link</string>
+<string name="downloads_reason_source">Quelle brach vorzeitig ab</string>
+<string name="downloads_reason_storage_full">Speicher voll</string>
+<string name="downloads_reason_storage_unavailable">Speicher nicht verfügbar</string>
+<string name="downloads_retry_failed">Fehlgeschlagene wiederholen (%d)</string>
 <string name="downloads_select">Auswählen</string>
+<string name="downloads_state_queued">In Warteschlange</string>
 <string name="downloads_storage_full_headline">Nicht genug Speicher</string>
 <string name="downloads_storage_legend">%1$s von %2$s belegt · %3$s in Downloads</string>
 <string name="downloads_storage_needs">%s mehr benötigt</string>
+<string name="downloads_watched">%d%% gesehen</string>
 <string name="duplicate_add">Hinzufügen</string>
 <string name="duplicate_message_multiple">Es wurden potentielle Duplikate in deiner Bibliothek gefunden: \n \n%s \n \nMöchtest du dieses Element dennoch hinzufügen, das existierende ersetzen oder diese Aktion abbrechen?</string>
 <string name="duplicate_message_single">Deine Bibliothek enthält möglicherweise schon ein Duplikat dieses Elements: '%s' \n \nMöchtest du dieses Element dennoch hinzufügen, das existierende ersetzen oder diese Aktion abbrechen?</string>
