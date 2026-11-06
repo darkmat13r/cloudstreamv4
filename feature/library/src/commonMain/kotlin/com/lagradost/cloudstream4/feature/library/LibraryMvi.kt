@@ -14,6 +14,12 @@ sealed interface LibraryTab {
 
     data class Bucket(val bucket: LibraryBucket) : LibraryTab
 
+    /**
+     * One of a tracking service's own lists ([SyncedList]), named in its words. Never in [all]: which there are
+     * depends on the source, and only a screen with [LibraryState.sources] shows them.
+     */
+    data class Synced(val key: String, val label: String) : LibraryTab
+
     companion object {
         /** The order of the selector. Continue watching first, because it is the one with an answer. */
         val all: List<LibraryTab> = listOf(ContinueWatching) + LibraryBucket.entries.map(::Bucket)
@@ -47,6 +53,12 @@ data class LibraryCard(
     val typeLabel: String? = null,
     /** What [posterUrl] must be requested with, or null. */
     val posterHeaders: Map<String, String>? = null,
+    /** [LibraryTitle.episodesWatched]. */
+    val episodesWatched: Int? = null,
+    /** [LibraryTitle.episodesTotal], where it is more than 0. */
+    val episodesTotal: Int? = null,
+    /** [LibraryTitle.rating]. */
+    val rating: String? = null,
 )
 
 /**
@@ -98,7 +110,21 @@ data class LibraryState(
     val filter: String = "",
     /** Set when a title is opened from a grid, and cleared once focus is back. */
     val returnTo: LibraryReturn? = null,
+    /** Every source, where the host has [LibrarySources]. Empty on a screen without them, which shows only its store. */
+    val sources: List<LibrarySource> = emptyList(),
+    /** The source being shown, or null where there are no [sources]. */
+    val source: LibrarySourceId? = null,
+    /** The shown source's lists as tabs, in its order, where it is a tracking service. Null for the local list. */
+    val syncedTabs: List<LibraryTab.Synced>? = null,
+    /** Titles per [syncedTabs] key, as [counts] is per bucket: from what was read, and empty until then. */
+    val syncedCounts: Map<String, Int> = emptyMap(),
+    /** Whether the panel that chooses a source (`TV Library` 5e) is open. */
+    val sourcesOpen: Boolean = false,
 ) {
+    /** The source being shown, where it is known. */
+    val shownSource: LibrarySource?
+        get() = source?.let { id -> sources.firstOrNull { it.id == id } }
+
     /** The card the picker is open for, where it is still on screen. */
     val pickingCard: LibraryCard?
         get() = picking?.let { id -> (status as? LibraryStatus.Showing)?.cards?.firstOrNull { it.id == id } }
@@ -158,6 +184,15 @@ sealed interface LibraryAction {
     data object Reappeared : LibraryAction
 
     data object Retry : LibraryAction
+
+    /** Opens the panel that chooses a source. */
+    data object SourcesOpened : LibraryAction
+
+    /** Closes it, choosing nothing. */
+    data object SourcesDismissed : LibraryAction
+
+    /** Shows [id]'s lists, and remembers it as the source to open on. A source that is not connected is refused. */
+    data class SourceChosen(val id: LibrarySourceId) : LibraryAction
 }
 
 sealed interface LibraryEffect {

@@ -366,6 +366,11 @@
 <string name="kitsu_settings">顯示來自 Kitsu 的封面</string>
 <string name="legal_notice">免責聲明</string>
 <string name="library">媒體庫</string>
+<string name="library_not_connected">未連線</string>
+<string name="library_on_device">本機</string>
+<string name="library_source">媒體庫來源</string>
+<string name="library_source_note">一次一個 · 切換會重新載入</string>
+<string name="library_synced_format">%s前已同步</string>
 <string name="lightnovel">由相同開發者開發的輕小說應用程式</string>
 <string name="limit_title">影片播放器標題最大字數</string>
 <string name="limit_title_rez">顯示播放器資訊</string>

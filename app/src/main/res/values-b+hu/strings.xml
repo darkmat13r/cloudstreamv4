@@ -328,6 +328,11 @@
 <string name="kitsu_settings">"Poszterek megjelenítése Kitsu-ról"</string>
 <string name="legal_notice">"Jogi nyilatkozat"</string>
 <string name="library">"Könyvtár"</string>
+<string name="library_not_connected">"Nincs csatlakoztatva"</string>
+<string name="library_on_device">"Az eszközön"</string>
+<string name="library_source">"Könyvtár forrása"</string>
+<string name="library_source_note">"Egyszerre egy · váltáskor újratölt"</string>
+<string name="library_synced_format" formatted="true">"%s ezelőtt szinkronizálva"</string>
 <string name="lightnovel">"Light novel applikáció ugyanazoktól a fejlesztőktől"</string>
 <string name="limit_title">"Videolejátszó cím max karakterek"</string>
 <string name="limit_title_rez">"Videolejátszó felbontása"</string>

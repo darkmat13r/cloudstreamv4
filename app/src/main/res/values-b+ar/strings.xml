@@ -366,6 +366,11 @@
 <string name="kitsu_settings">"عرض ملصقات من كيتسو"</string>
 <string name="legal_notice">"إخلاء مسؤولية"</string>
 <string name="library">"المكتبة"</string>
+<string name="library_not_connected">"غير متصل"</string>
+<string name="library_on_device">"على الجهاز"</string>
+<string name="library_source">"مصدر المكتبة"</string>
+<string name="library_source_note">"مصدر واحد في كل مرة · التبديل يعيد التحميل"</string>
+<string name="library_synced_format" formatted="true">"تمت المزامنة منذ %s"</string>
 <string name="lightnovel">"تطبيق روايات خفيف من نفس المطورين"</string>
 <string name="limit_title">"أقصى عدد لحروف عنوان مُشغل الفيديو"</string>
 <string name="limit_title_rez">"عرض معلومات المشغل"</string>

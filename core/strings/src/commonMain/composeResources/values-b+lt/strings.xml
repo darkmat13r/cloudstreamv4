@@ -180,6 +180,11 @@
 <string name="home_source_none_subtitle">NĖRA EILUČIŲ · JŪSŲ EILUTĖS LIEKA</string>
 <string name="is_adult">18+</string>
 <string name="library">Biblioteka</string>
+<string name="library_not_connected">Neprijungta</string>
+<string name="library_on_device">Įrenginyje</string>
+<string name="library_source">Bibliotekos šaltinis</string>
+<string name="library_source_note">Po vieną · perjungus įkeliama iš naujo</string>
+<string name="library_synced_format">Sinchronizuota prieš %s</string>
 <string name="links_reloaded_toast">Nuorodos perkrautos</string>
 <string name="live_singular">Gyva transliacija</string>
 <string name="livestreams">Gyvos transliacijos</string>

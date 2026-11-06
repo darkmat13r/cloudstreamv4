@@ -325,6 +325,11 @@
 <string name="kitsu_settings">"oohh uuuuggg uuhh uuugg"</string>
 <string name="legal_notice">"ah huu oouhhau aoaoaaohoo ha"</string>
 <string name="library">"uuuuuuuh aaaoo o"</string>
+<string name="library_not_connected">"ooo-ahah aagg"</string>
+<string name="library_on_device">"uuhh ooo"</string>
+<string name="library_source">"aaaghh ooo-ahah"</string>
+<string name="library_source_note">"ooo aagg · uuhh-ahah"</string>
+<string name="library_synced_format" formatted="true">"aaghh %s ooo"</string>
 <string name="lightnovel">"ooo-ahahoh ohaaauugghh ahhh haaahooo"</string>
 <string name="limit_title">"aaahh aaaahh ooohh uuk uuugg"</string>
 <string name="limit_title_rez">"ooohh uuuuhh aaaahhhooh"</string>

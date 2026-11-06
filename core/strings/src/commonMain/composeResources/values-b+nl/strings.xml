@@ -341,6 +341,11 @@
 <string name="kitsu_settings">Toon posters van Kitsu</string>
 <string name="legal_notice">Disclaimer</string>
 <string name="library">Bibliotheek</string>
+<string name="library_not_connected">Niet verbonden</string>
+<string name="library_on_device">Op apparaat</string>
+<string name="library_source">Bibliotheekbron</string>
+<string name="library_source_note">Eén tegelijk · wisselen laadt opnieuw</string>
+<string name="library_synced_format">%s geleden gesynchroniseerd</string>
 <string name="lightnovel">Light novel app van dezelfde ontwikkelaars</string>
 <string name="limit_title">Maximaal aantal tekens voor titel van videospeler</string>
 <string name="limit_title_rez">Toon spelerinformatie</string>

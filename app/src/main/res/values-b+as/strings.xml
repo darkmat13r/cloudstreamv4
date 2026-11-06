@@ -330,6 +330,11 @@
 <string name="kitsu_settings">"কিৎসুৰ পৰা প'ষ্টাৰ দেখুৱাওক"</string>
 <string name="legal_notice">"দায়ৱলী"</string>
 <string name="library">"পুথিভঁৰাল"</string>
+<string name="library_not_connected">"সংযোগ নাই"</string>
+<string name="library_on_device">"ডিভাইচত"</string>
+<string name="library_source">"পুথিভঁৰালৰ উৎস"</string>
+<string name="library_source_note">"এবাৰত এটা · সলনি কৰিলে পুনৰ লোড হয়"</string>
+<string name="library_synced_format" formatted="true">"%s আগতে ছিংক কৰা হৈছে"</string>
 <string name="lightnovel">"একেই ডেভেলপাৰৰ দ্বাৰা লাইট নভেল এপ্‌"</string>
 <string name="limit_title">"ভিডিঅ' প্লেয়াৰৰ শিৰোনামৰ সৰ্বাধিক অক্ষৰ"</string>
 <string name="limit_title_rez">"ভিডিঅ' প্লেয়াৰৰ ৰিজল্যুশন"</string>

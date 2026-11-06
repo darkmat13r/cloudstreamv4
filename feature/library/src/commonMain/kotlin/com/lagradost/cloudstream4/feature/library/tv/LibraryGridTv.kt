@@ -91,10 +91,12 @@ internal fun LibraryGridTv(
 }
 
 /**
- * One poster: the kind of title top left, the title and provider revealed on focus, and how far through
- * the last-played part is.
+ * One poster: the kind of title top left, the user's own rating top right where there is one, the title and a line
+ * revealed on focus, and how far through it is.
  *
- * 5a's episode count and the user's own rating are not here: local bookmarks hold neither. The full list of
+ * The line is a tracking service's `12 / 28 Episodes` where it has the count, else the provider. The bar is the last
+ * played part's position on a local list and episodes seen over episodes in all on a service's. Local bookmarks hold
+ * neither a count nor a rating of the user's own, so their cards still have no badge on the right. The full list of
  * what this screen reduces is in `docs/tasks/kmp.md`.
  *
  * Every card keeps the same modifier chain, focus requester included. Adding or removing one only on the
@@ -120,16 +122,24 @@ private fun LibraryGridCard(
         focusRequester.requestFocusIfAttached()
         onFocusTaken()
     }
-    val slots = remember(card.typeLabel) {
+    val slots = remember(card.typeLabel, card.rating) {
         val type = card.typeLabel
-        if (type == null) MediaCardSlots.None else MediaCardSlots(leadingBadge = { Badge(text = type) })
+        val rating = card.rating
+        if (type == null && rating == null) {
+            MediaCardSlots.None
+        } else {
+            MediaCardSlots(
+                leadingBadge = type?.let { { Badge(text = it) } },
+                trailingBadge = rating?.let { { Badge(text = it) } },
+            )
+        }
     }
     PosterCard(
         rung = PosterRung.Large,
         state = MediaCardState(
             focused = focused,
             title = card.title,
-            meta = card.providerName,
+            meta = card.metaLine(),
             progress = card.progress,
         ),
         modifier = modifier

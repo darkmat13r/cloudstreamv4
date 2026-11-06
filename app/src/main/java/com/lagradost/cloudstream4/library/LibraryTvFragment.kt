@@ -1,5 +1,8 @@
 package com.lagradost.cloudstream4.library
 
+import android.os.Bundle
+import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import androidx.navigation.NavGraph
@@ -41,6 +45,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
 
 /**
  * The library destination on the TV layout, the glue around `LibraryScreenTv`, as `SearchTvFragment` is for
@@ -55,19 +60,52 @@ class LibraryTvFragment : BaseComposeFragment() {
         viewModelFactory {
             initializer {
                 val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
+                val store = AndroidLibraryStore(app)
+                val sources = AndroidLibrarySources(app, store)
                 LibraryViewModel(
-                    store = AndroidLibraryStore(app),
+                    store = store,
                     scope = scope,
                     initialTab = LibraryTvTabs.first(),
-                ).also { it.addCloseable(AutoCloseable { scope.cancel() }) }
+                    sources = sources,
+                ).also {
+                    it.addCloseable(AutoCloseable { scope.cancel() })
+                    // Kept with the ViewModel, so a new fragment after a configuration change opens what it shows.
+                    it.addCloseable(SOURCES_KEY, HeldSources(sources))
+                }
             }
         }
     }
+
+    private val sources: AndroidLibrarySources?
+        get() = viewModel.getCloseable<HeldSources>(SOURCES_KEY)?.sources
 
     /**
      * A bookmark may have changed on a result page, and the account may have changed anywhere. This is also
      * the moment a card opened from here takes focus back: see `LibraryReturn.ready`.
      */
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        wirePanelBack()
+    }
+
+    /**
+     * BACK closes the source panel, as `DetailTvFragment.wirePanelBack` does for its panels and for the same reason:
+     * `SidePanelHost` takes BACK only as a key event, and on `Television_720p` an injected BACK reaches the activity
+     * first, which here would leave the library with the panel open. Enabled only while the panel is, so BACK with no
+     * panel up still leaves the screen.
+     */
+    private fun wirePanelBack() {
+        val callback = object : OnBackPressedCallback(false) {
+            override fun handleOnBackPressed() {
+                viewModel.onAction(LibraryAction.SourcesDismissed)
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.state.collect { callback.isEnabled = it.sourcesOpen }
+        }
+    }
+
     override fun onResume() {
         super.onResume()
         viewModel.onAction(LibraryAction.Reappeared)
@@ -89,10 +127,15 @@ class LibraryTvFragment : BaseComposeFragment() {
     }
 
     /**
-     * The old screen's default opener: the title's page, or a search by name when the provider is gone.
-     * `LibraryFragment.loadLibraryItem` also honours a saved per-list opener. This does not yet.
+     * The old screen's default opener for a local title: the title's page, or a search by name when the provider is
+     * gone. A tracking service's title goes through `openSyncedTitle`, which also honours a saved opener.
      */
     private fun open(id: LibraryTitleId) {
+        // A title from a tracking service's list, through the old screen's opener.
+        sources?.synced(id)?.let { synced ->
+            activity?.openSyncedTitle(synced)
+            return
+        }
         val target = id.target() ?: return
         val name = (viewModel.state.value.status as? LibraryStatus.Showing)
             ?.cards?.firstOrNull { it.id == id }?.title.orEmpty()
@@ -115,11 +158,21 @@ class LibraryTvFragment : BaseComposeFragment() {
                     state = state,
                     onAction = viewModel::onAction,
                     artwork = { card -> LibraryPoster(card) },
+                    now = System::currentTimeMillis,
+                    // The rail is a view outside this composition, and the field consumes Left (`BUG-34`).
+                    onLeftEdge = { view?.focusSearch(View.FOCUS_LEFT)?.requestFocus() },
                 )
             }
         }
     }
 }
+
+/** The sources, held by the ViewModel. Nothing to close: they hold no resource of their own. */
+private class HeldSources(val sources: AndroidLibrarySources) : AutoCloseable {
+    override fun close() = Unit
+}
+
+private const val SOURCES_KEY = "library_sources"
 
 /**
  * Sends the library destination to [LibraryTvFragment]. Call once, with the graph just inflated. Deleting the
