@@ -350,12 +350,15 @@ values	string	home_info	-	Info
 values	string	home_main_poster_img_des	-	Main Poster
 values	string	home_more_info	-	More info
 values	string	home_next_random_img_des	-	Next Random
+values	string	home_none_body	-	Choose a source to see its rows here. Continue watching and your bookmarks stay without one.
+values	string	home_none_headline	-	No source chosen
 values	string	home_offline_bookmarks_body	-	Your bookmarks are saved on this device.
 values	string	home_offline_source_headline	-	%1$s needs a connection
 values	string	home_play	-	Play
 values	string	home_random	-	Random
 values	string	home_search_only_body	-	None of your extensions has a home page, but you can still search them.
 values	string	home_source	-	Source
+values	string	home_source_none_subtitle	-	NO RAILS · YOUR ROWS STAY
 values	string	install_prerelease	-	Install pre-release version
 values	string	is_adult	-	18+
 values	string	jsdelivr_enabled	-	Could not reach GitHub. Turning on jsDelivr proxy…
@@ -930,10 +933,13 @@ values-b+af	string	home_info	-	Inligting
 values-b+af	string	home_main_poster_img_des	-	Hoofplakkaat
 values-b+af	string	home_more_info	-	Meer inligting
 values-b+af	string	home_next_random_img_des	-	Volgende lukraak
+values-b+af	string	home_none_body	-	Kies ’n bron om sy rye hier te sien. Kyk verder en jou boekmerke bly sonder een.
+values-b+af	string	home_none_headline	-	Geen bron gekies nie
 values-b+af	string	home_offline_bookmarks_body	-	Jou boekmerke is op hierdie toestel gestoor.
 values-b+af	string	home_offline_source_headline	-	%1$s het ’n verbinding nodig
 values-b+af	string	home_play	-	Speel
 values-b+af	string	home_search_only_body	-	Geen van jou uitbreidings het 'n tuisblad nie, maar jy kan steeds daarin soek.
+values-b+af	string	home_source_none_subtitle	-	GEEN RYE · JOU RYE BLY
 values-b+af	string	load_more	-	Laai meer
 values-b+af	string	loading	-	Laai tans…
 values-b+af	string	new_update_format	-	Nuwe opdatering gevind! \n%1$s -> %2$s
@@ -1104,10 +1110,13 @@ values-b+am	string	home_info	-	መረጃ
 values-b+am	string	home_main_poster_img_des	-	ዋና ፖስተር
 values-b+am	string	home_more_info	-	ተጨማሪ መረጃ
 values-b+am	string	home_next_random_img_des	-	ቀጣይ በዘፈቀደ
+values-b+am	string	home_none_body	-	ረድፎቹን እዚህ ለማየት ምንጭ ይምረጡ። መመልከት ይቀጥሉ እና ዕልባቶችዎ ያለ ምንጭ ይቆያሉ።
+values-b+am	string	home_none_headline	-	ምንም ምንጭ አልተመረጠም
 values-b+am	string	home_offline_bookmarks_body	-	ዕልባቶችዎ በዚህ መሣሪያ ላይ ተቀምጠዋል።
 values-b+am	string	home_offline_source_headline	-	%1$s ግንኙነት ያስፈልገዋል
 values-b+am	string	home_play	-	አጫውት
 values-b+am	string	home_search_only_body	-	ከቅጥያዎችህ አንዳቸውም መነሻ ገጽ የላቸውም፣ ነገር ግን አሁንም በእነሱ መፈለግ ትችላለህ።
+values-b+am	string	home_source_none_subtitle	-	ረድፎች የሉም · የእርስዎ ረድፎች ይቆያሉ
 values-b+am	string	load_more	-	ተጨማሪ ጫን
 values-b+am	string	loading	-	በመጫን ላይ…
 values-b+am	string	new_update_format	-	አዲስ ማሻሻያ ተገኝቷል! \n%1$s -> %2$s
@@ -1529,12 +1538,15 @@ values-b+apc	string	home_info	-	معلومات
 values-b+apc	string	home_main_poster_img_des	-	الپوسر الأساسية
 values-b+apc	string	home_more_info	-	بَعد معلومات
 values-b+apc	string	home_next_random_img_des	-	العشوائي يللي بعده
+values-b+apc	string	home_none_body	-	اختار مصدر لتشوف صفوفه هون. متابعة المشاهدة وإشاراتك المرجعية بيضلوا بدونه.
+values-b+apc	string	home_none_headline	-	ما في مصدر مختار
 values-b+apc	string	home_offline_bookmarks_body	-	إشاراتك المرجعية محفوظة على هالجهاز.
 values-b+apc	string	home_offline_source_headline	-	%1$s بدو اتصال
 values-b+apc	string	home_play	-	مشي
 values-b+apc	string	home_random	-	عشوائي
 values-b+apc	string	home_search_only_body	-	ما في ولا إضافة عندها صفحة رئيسية، بس فيك تنبش فيهن.
 values-b+apc	string	home_source	-	مصدر
+values-b+apc	string	home_source_none_subtitle	-	ما في صفوف · صفوفك بتضل
 values-b+apc	string	install_prerelease	-	نزل النسخة التجريبية من الآپ
 values-b+apc	string	is_adult	-	18+
 values-b+apc	string	jsdelivr_enabled	-	م قدرنا نوصل ل "گِت هَب". عم ندَوِر پروكسي JSDelivr …
@@ -2345,12 +2357,15 @@ values-b+ar	string	home_info	-	معلومات
 values-b+ar	string	home_main_poster_img_des	-	الملصق الرئيسي
 values-b+ar	string	home_more_info	-	مزيد من المعلومات
 values-b+ar	string	home_next_random_img_des	-	التالي عشوائي
+values-b+ar	string	home_none_body	-	اختر مصدرًا لعرض صفوفه هنا. تبقى متابعة المشاهدة وإشاراتك المرجعية من دونه.
+values-b+ar	string	home_none_headline	-	لم يُختر أي مصدر
 values-b+ar	string	home_offline_bookmarks_body	-	إشاراتك المرجعية محفوظة على هذا الجهاز.
 values-b+ar	string	home_offline_source_headline	-	يحتاج %1$s إلى اتصال
 values-b+ar	string	home_play	-	تشغيل
 values-b+ar	string	home_random	-	عشوائي
 values-b+ar	string	home_search_only_body	-	لا تحتوي أي من إضافاتك على صفحة رئيسية، لكن يمكنك البحث فيها.
 values-b+ar	string	home_source	-	مصدر
+values-b+ar	string	home_source_none_subtitle	-	لا صفوف · تبقى صفوفك
 values-b+ar	string	install_prerelease	-	تثبيت الإصدار التجريبي
 values-b+ar	string	is_adult	-	18+
 values-b+ar	string	jsdelivr_enabled	-	تعذر الوصول إلى جيثب. تشغيل وكيل jsDelivr …
@@ -2998,10 +3013,13 @@ values-b+ars	string	home_info	-	معلومات
 values-b+ars	string	home_main_poster_img_des	-	اللافتة الاساسية
 values-b+ars	string	home_more_info	-	مزيد من المعلومات
 values-b+ars	string	home_next_random_img_des	-	عشوائي قادم
+values-b+ars	string	home_none_body	-	اختر مصدر عشان تشوف صفوفه هنا. متابعة المشاهدة وإشاراتك المرجعية تبقى بدونه.
+values-b+ars	string	home_none_headline	-	ما اخترت أي مصدر
 values-b+ars	string	home_offline_bookmarks_body	-	إشاراتك المرجعية محفوظة على هالجهاز.
 values-b+ars	string	home_offline_source_headline	-	%1$s يحتاج اتصال
 values-b+ars	string	home_play	-	العب
 values-b+ars	string	home_search_only_body	-	لا تحتوي أي من إضافاتك على صفحة رئيسية، لكن يمكنك البحث فيها.
+values-b+ars	string	home_source_none_subtitle	-	ما فيه صفوف · صفوفك تبقى
 values-b+ars	string	jsdelivr_enabled	-	...jsDelivr لا يمكن الوصول إلى جيتهاب. جارٍ تشغيل وكيل
 values-b+ars	string	jsdelivr_proxy_summary	-	.قد يتسبب في تأخير التحديثات لبضعة أيام .jsDelivr باستخدام GitHubيتجاوز حظر
 values-b+ars	string	kitsu_settings	-	عرض الملصقات من كيتسو
@@ -3524,12 +3542,15 @@ values-b+as	string	home_info	-	তথ্য
 values-b+as	string	home_main_poster_img_des	-	প্ৰধান পোস্টাৰ
 values-b+as	string	home_more_info	-	অধিক তথ্য
 values-b+as	string	home_next_random_img_des	-	পৰৱৰ্তী ৰেণ্ডম
+values-b+as	string	home_none_body	-	ইয়াত শাৰীবোৰ চাবলৈ এটা উৎস বাছনি কৰক। চোৱা অব্যাহত আৰু আপোনাৰ বুকমাৰ্কসমূহ উৎস নোহোৱাকৈও থাকে।
+values-b+as	string	home_none_headline	-	কোনো উৎস বাছনি কৰা হোৱা নাই
 values-b+as	string	home_offline_bookmarks_body	-	আপোনাৰ বুকমাৰ্কসমূহ এই ডিভাইচত সংৰক্ষিত।
 values-b+as	string	home_offline_source_headline	-	%1$s ক সংযোগৰ প্ৰয়োজন
 values-b+as	string	home_play	-	প্লে কৰক
 values-b+as	string	home_random	-	যিকোনো এটা
 values-b+as	string	home_search_only_body	-	আপোনাৰ কোনো এক্সটেনশ্যনৰ গৃহপৃষ্ঠা নাই, কিন্তু আপুনি সেইবোৰত সন্ধান কৰিব পাৰে।
 values-b+as	string	home_source	-	উৎস
+values-b+as	string	home_source_none_subtitle	-	শাৰী নাই · আপোনাৰ শাৰী থাকে
 values-b+as	string	is_adult	-	১৮+
 values-b+as	string	jsdelivr_enabled	-	GitHub পাবলৈ সক্ষম নহ'ল। jsDelivr প্ৰক্সি সক্ৰিয় কৰি দিছে…
 values-b+as	string	jsdelivr_proxy	-	GitHub প্ৰক্সি
@@ -4031,9 +4052,12 @@ values-b+az	string	home_bookmarks_no_status_headline	-	Status seçilməyib
 values-b+az	string	home_change_provider_img_des	-	Provayderi dəyişdir
 values-b+az	string	home_main_poster_img_des	-	Əsas Afişa
 values-b+az	string	home_next_random_img_des	-	Sonrakı Təsadüfi
+values-b+az	string	home_none_body	-	Sıralarını burada görmək üçün mənbə seçin. Davam et və əlfəcinləriniz mənbəsiz də qalır.
+values-b+az	string	home_none_headline	-	Mənbə seçilməyib
 values-b+az	string	home_offline_bookmarks_body	-	Əlfəcinləriniz bu cihazda saxlanılıb.
 values-b+az	string	home_offline_source_headline	-	%1$s bağlantı tələb edir
 values-b+az	string	home_search_only_body	-	Uzantılarınızın heç birində ana səhifə yoxdur, amma yenə də onlarda axtarış edə bilərsiniz.
+values-b+az	string	home_source_none_subtitle	-	SIRA YOXDUR · SIRALARINIZ QALIR
 values-b+az	string	kitsu_settings	-	Kitsu afişalarını, posterlərini göstər
 values-b+az	string	library	-	Kitabxana
 values-b+az	string	live_singular	-	Canlı yayım
@@ -4479,12 +4503,15 @@ values-b+be	string	home_info	-	Звесткі
 values-b+be	string	home_main_poster_img_des	-	Асноўны плакат
 values-b+be	string	home_more_info	-	Дадатковыя звесткі
 values-b+be	string	home_next_random_img_des	-	Наступны выпадковы
+values-b+be	string	home_none_body	-	Абярыце крыніцу, каб убачыць тут яе радкі. Працяг прагляду і закладкі застаюцца і без яе.
+values-b+be	string	home_none_headline	-	Крыніца не абрана
 values-b+be	string	home_offline_bookmarks_body	-	Вашы закладкі захаваны на гэтай прыладзе.
 values-b+be	string	home_offline_source_headline	-	%1$s патрабуе злучэння
 values-b+be	string	home_play	-	Прайграць
 values-b+be	string	home_random	-	Выпадковае
 values-b+be	string	home_search_only_body	-	Ніводнае з вашых пашырэнняў не мае дамашняй старонкі, але ў іх усё яшчэ можна шукаць.
 values-b+be	string	home_source	-	Крыніца
+values-b+be	string	home_source_none_subtitle	-	НЯМА РАДКОЎ · ВАШЫ РАДКІ ЗАСТАЮЦЦА
 values-b+be	string	install_prerelease	-	Усталяваць перадфінальную версію
 values-b+be	string	is_adult	-	18+
 values-b+be	string	jsdelivr_enabled	-	Не ўдалося дасягнуць GitHub. Уключэнне проксі jsDelivr…
@@ -5274,12 +5301,15 @@ values-b+bg	string	home_info	-	Информация
 values-b+bg	string	home_main_poster_img_des	-	Main Poster
 values-b+bg	string	home_more_info	-	Повече информация
 values-b+bg	string	home_next_random_img_des	-	Следващ произволен
+values-b+bg	string	home_none_body	-	Изберете източник, за да видите редовете му тук. Продължете гледането и отметките ви остават и без него.
+values-b+bg	string	home_none_headline	-	Не е избран източник
 values-b+bg	string	home_offline_bookmarks_body	-	Отметките ви са запазени на това устройство.
 values-b+bg	string	home_offline_source_headline	-	%1$s се нуждае от връзка
 values-b+bg	string	home_play	-	Пусни
 values-b+bg	string	home_random	-	Случаен
 values-b+bg	string	home_search_only_body	-	Нито едно от разширенията ви няма начална страница, но все пак можете да търсите в тях.
 values-b+bg	string	home_source	-	Източник
+values-b+bg	string	home_source_none_subtitle	-	БЕЗ РЕДОВЕ · ВАШИТЕ РЕДОВЕ ОСТАВАТ
 values-b+bg	string	install_prerelease	-	Инсталирай предварителна версия
 values-b+bg	string	is_adult	-	18+
 values-b+bg	string	jsdelivr_enabled	-	Неуспешно свързване с GitHub. Включване на jsDelivr прокси…
@@ -5941,10 +5971,13 @@ values-b+bn	string	home_info	-	তথ্য
 values-b+bn	string	home_main_poster_img_des	-	মূল পোস্টার
 values-b+bn	string	home_more_info	-	আরো তথ্য
 values-b+bn	string	home_next_random_img_des	-	পরবর্তী র‍্যান্ডম
+values-b+bn	string	home_none_body	-	এখানে সারিগুলো দেখতে একটি উৎস বাছাই করুন। দেখা চালিয়ে যান ও আপনার বুকমার্কগুলো উৎস ছাড়াও থাকে।
+values-b+bn	string	home_none_headline	-	কোনো উৎস বাছাই করা হয়নি
 values-b+bn	string	home_offline_bookmarks_body	-	আপনার বুকমার্কগুলো এই ডিভাইসে সংরক্ষিত আছে।
 values-b+bn	string	home_offline_source_headline	-	%1$s-এর সংযোগ প্রয়োজন
 values-b+bn	string	home_play	-	চালান
 values-b+bn	string	home_search_only_body	-	আপনার কোনো এক্সটেনশনের হোম পেজ নেই, তবে আপনি সেগুলোতে খুঁজতে পারেন।
+values-b+bn	string	home_source_none_subtitle	-	কোনো সারি নেই · আপনার সারি থাকে
 values-b+bn	string	install_prerelease	-	প্রাক-মুক্তি সংস্করণ ইনস্টলেশন
 values-b+bn	string	jsdelivr_enabled	-	GitHub-এর সাথে সংযোগ করা যায়নি। jsDelivr proxy চালু করা হচ্ছে।
 values-b+bn	string	jsdelivr_proxy	-	গিডহাব প্রক্সি
@@ -6365,12 +6398,15 @@ values-b+ca	string	home_info	-	Informació
 values-b+ca	string	home_main_poster_img_des	-	Cartell principal
 values-b+ca	string	home_more_info	-	Més informació
 values-b+ca	string	home_next_random_img_des	-	Proper aleatori
+values-b+ca	string	home_none_body	-	Trieu una font per veure'n les files aquí. Continua mirant i els vostres favorits es queden sense cap font.
+values-b+ca	string	home_none_headline	-	Cap font triada
 values-b+ca	string	home_offline_bookmarks_body	-	Els vostres favorits es desen en aquest dispositiu.
 values-b+ca	string	home_offline_source_headline	-	%1$s necessita connexió
 values-b+ca	string	home_play	-	Reprodueix
 values-b+ca	string	home_random	-	Aleatori
 values-b+ca	string	home_search_only_body	-	Cap de les teves extensions té pàgina d'inici, però encara pots cercar-hi.
 values-b+ca	string	home_source	-	Font
+values-b+ca	string	home_source_none_subtitle	-	SENSE FILES · LES VOSTRES FILES ES QUEDEN
 values-b+ca	string	limit_title	-	Caràcters màxims al títol del reproductor
 values-b+ca	string	limit_title_rez	-	Resolució del reproductor de vídeo
 values-b+ca	string	links_reloaded_toast	-	S'han tornat a carregar els enllaços
@@ -6672,9 +6708,12 @@ values-b+ckb	string	home_info	-	زانیاری
 values-b+ckb	string	home_main_poster_img_des	-	پۆستەری سەرەکی
 values-b+ckb	string	home_more_info	-	زانیاری زیاتر
 values-b+ckb	string	home_next_random_img_des	-	داهاتوو بە هەڕەمەکی
+values-b+ckb	string	home_none_body	-	سەرچاوەیەک هەڵبژێرە بۆ بینینی ڕیزەکانی لێرە. بەردەوامبوون لە سەیرکردن و ئاماژەکانت بەبێ سەرچاوە دەمێننەوە.
+values-b+ckb	string	home_none_headline	-	هیچ سەرچاوەیەک هەڵنەبژێردراوە
 values-b+ckb	string	home_offline_bookmarks_body	-	ئاماژەکانت لەسەر ئەم ئامێرە پاشەکەوت کراون.
 values-b+ckb	string	home_offline_source_headline	-	%1$s پێویستی بە پەیوەندییە
 values-b+ckb	string	home_search_only_body	-	هیچ کام لە زیادکراوەکانت پەڕەی سەرەکییان نییە، بەڵام هێشتا دەتوانیت تێیاندا بگەڕێیت.
+values-b+ckb	string	home_source_none_subtitle	-	هیچ ڕیزێک · ڕیزەکانت دەمێننەوە
 values-b+ckb	string	load_more	-	زیاتر باربکە
 values-b+ckb	string	new_update_format	-	نوێکاری نوێ دۆزرایەوە!\n%1$s->%2$s
 values-b+ckb	string	next_episode	-	ئەڵقەی داهاتوو
@@ -7084,12 +7123,15 @@ values-b+cs	string	home_info	-	Info
 values-b+cs	string	home_main_poster_img_des	-	Hlavní plakát
 values-b+cs	string	home_more_info	-	Více informací
 values-b+cs	string	home_next_random_img_des	-	Další náhodný
+values-b+cs	string	home_none_body	-	Vyberte zdroj a uvidíte tu jeho řady. Pokračovat ve sledování a vaše záložky zůstanou i bez něj.
+values-b+cs	string	home_none_headline	-	Není vybrán žádný zdroj
 values-b+cs	string	home_offline_bookmarks_body	-	Vaše záložky jsou uloženy v tomto zařízení.
 values-b+cs	string	home_offline_source_headline	-	%1$s potřebuje připojení
 values-b+cs	string	home_play	-	Přehrát
 values-b+cs	string	home_random	-	Náhodný
 values-b+cs	string	home_search_only_body	-	Žádné z vašich rozšíření nemá domovskou stránku, ale stále v nich můžete hledat.
 values-b+cs	string	home_source	-	Zdroj
+values-b+cs	string	home_source_none_subtitle	-	ŽÁDNÉ ŘADY · VAŠE ŘADY ZŮSTÁVAJÍ
 values-b+cs	string	install_prerelease	-	Nainstalovat předběžnou verzi
 values-b+cs	string	is_adult	-	18+
 values-b+cs	string	jsdelivr_enabled	-	Nelze se připojit k serveru GitHub. Zapínání proxy jsDelivr…
@@ -7891,12 +7933,15 @@ values-b+de	string	home_info	-	Info
 values-b+de	string	home_main_poster_img_des	-	Medienvorschaubild
 values-b+de	string	home_more_info	-	Mehr Infos
 values-b+de	string	home_next_random_img_des	-	Nächstes zufällig
+values-b+de	string	home_none_body	-	Wählen Sie eine Quelle, um ihre Reihen hier zu sehen. Weiterschauen und Ihre Lesezeichen bleiben auch ohne.
+values-b+de	string	home_none_headline	-	Keine Quelle gewählt
 values-b+de	string	home_offline_bookmarks_body	-	Ihre Lesezeichen sind auf diesem Gerät gespeichert.
 values-b+de	string	home_offline_source_headline	-	%1$s braucht eine Verbindung
 values-b+de	string	home_play	-	Abspielen
 values-b+de	string	home_random	-	Zufällig
 values-b+de	string	home_search_only_body	-	Keine Ihrer Erweiterungen hat eine Startseite, aber Sie können trotzdem darin suchen.
 values-b+de	string	home_source	-	Quelle
+values-b+de	string	home_source_none_subtitle	-	KEINE REIHEN · IHRE REIHEN BLEIBEN
 values-b+de	string	install_prerelease	-	Vorabversion installieren
 values-b+de	string	is_adult	-	18+
 values-b+de	string	jsdelivr_enabled	-	GitHub konnte nicht erreicht werden. Der jsDelivr-Proxy wird aktiviert …
@@ -8664,12 +8709,15 @@ values-b+el	string	home_info	-	Πληροφορίες
 values-b+el	string	home_main_poster_img_des	-	Κύρια αφίσα
 values-b+el	string	home_more_info	-	Περαιτέρω πληροφορίες
 values-b+el	string	home_next_random_img_des	-	Next Random
+values-b+el	string	home_none_body	-	Επιλέξτε μια πηγή για να δείτε εδώ τις σειρές της. Η συνέχεια παρακολούθησης και οι σελιδοδείκτες σας μένουν και χωρίς αυτή.
+values-b+el	string	home_none_headline	-	Δεν επιλέχθηκε πηγή
 values-b+el	string	home_offline_bookmarks_body	-	Οι σελιδοδείκτες σας είναι αποθηκευμένοι σε αυτή τη συσκευή.
 values-b+el	string	home_offline_source_headline	-	Το %1$s χρειάζεται σύνδεση
 values-b+el	string	home_play	-	Αναπαραγωγή
 values-b+el	string	home_random	-	Τυχαίο
 values-b+el	string	home_search_only_body	-	Καμία από τις επεκτάσεις σας δεν έχει αρχική σελίδα, αλλά μπορείτε να αναζητήσετε σε αυτές.
 values-b+el	string	home_source	-	Πηγή
+values-b+el	string	home_source_none_subtitle	-	ΧΩΡΙΣ ΣΕΙΡΕΣ · ΟΙ ΣΕΙΡΕΣ ΣΑΣ ΜΕΝΟΥΝ
 values-b+el	string	is_adult	-	18+
 values-b+el	string	jsdelivr_enabled	-	Το GitHub δεν είναι προσβάσιμο. Ενεργοποίηση διακομιστή μεσολάβησης jsDelivr…
 values-b+el	string	jsdelivr_proxy	-	Διακομιστής μεσολάβησης GitHub
@@ -9206,10 +9254,13 @@ values-b+eo	string	home_info	-	Informoj
 values-b+eo	string	home_main_poster_img_des	-	Ĉefa Afiŝo
 values-b+eo	string	home_more_info	-	Pli da informoj
 values-b+eo	string	home_next_random_img_des	-	Sekva Hazarda
+values-b+eo	string	home_none_body	-	Elektu fonton por vidi ĝiajn vicojn ĉi tie. Daŭrigi spekton kaj viaj legosignoj restas sen ĝi.
+values-b+eo	string	home_none_headline	-	Neniu fonto elektita
 values-b+eo	string	home_offline_bookmarks_body	-	Viaj legosignoj estas konservitaj en ĉi tiu aparato.
 values-b+eo	string	home_offline_source_headline	-	%1$s bezonas konekton
 values-b+eo	string	home_play	-	Spekti
 values-b+eo	string	home_search_only_body	-	Neniu el viaj kromprogramoj havas hejmpaĝon, sed vi ankoraŭ povas serĉi en ili.
+values-b+eo	string	home_source_none_subtitle	-	NENIUJ VICOJ · VIAJ VICOJ RESTAS
 values-b+eo	string	load_more	-	Ŝargi pli
 values-b+eo	string	loading	-	Ŝarĝante…
 values-b+eo	string	login	-	Saluti
@@ -9681,12 +9732,15 @@ values-b+es	string	home_info	-	Info
 values-b+es	string	home_main_poster_img_des	-	Póster principal
 values-b+es	string	home_more_info	-	Más información
 values-b+es	string	home_next_random_img_des	-	Siguiente al azar
+values-b+es	string	home_none_body	-	Elige una fuente para ver aquí sus filas. Seguir viendo y tus marcadores se quedan sin ella.
+values-b+es	string	home_none_headline	-	Ninguna fuente elegida
 values-b+es	string	home_offline_bookmarks_body	-	Tus marcadores están guardados en este dispositivo.
 values-b+es	string	home_offline_source_headline	-	%1$s necesita conexión
 values-b+es	string	home_play	-	Reproducir
 values-b+es	string	home_random	-	Aleatorio
 values-b+es	string	home_search_only_body	-	Ninguna de sus extensiones tiene página de inicio, pero aún puede buscar en ellas.
 values-b+es	string	home_source	-	Fuente
+values-b+es	string	home_source_none_subtitle	-	SIN FILAS · TUS FILAS SE QUEDAN
 values-b+es	string	install_prerelease	-	Instalar version pre-lanzamiento
 values-b+es	string	is_adult	-	18+
 values-b+es	string	jsdelivr_enabled	-	No se ha podido acceder a GitHub. Activando el proxy jsDelivr…
@@ -10325,10 +10379,13 @@ values-b+fa	string	home_info	-	درباره
 values-b+fa	string	home_main_poster_img_des	-	پوستر اصلی
 values-b+fa	string	home_more_info	-	اطلاعات بیشتر
 values-b+fa	string	home_next_random_img_des	-	تصادفی بعدی
+values-b+fa	string	home_none_body	-	یک منبع انتخاب کنید تا ردیف‌هایش را اینجا ببینید. ادامه تماشا و نشانک‌های شما بدون آن هم می‌مانند.
+values-b+fa	string	home_none_headline	-	هیچ منبعی انتخاب نشده
 values-b+fa	string	home_offline_bookmarks_body	-	نشانک‌های شما روی این دستگاه ذخیره شده‌اند.
 values-b+fa	string	home_offline_source_headline	-	%1$s به اتصال نیاز دارد
 values-b+fa	string	home_play	-	نمایش
 values-b+fa	string	home_search_only_body	-	هیچ‌یک از افزونه‌های شما صفحهٔ اصلی ندارد، اما همچنان می‌توانید در آن‌ها جست‌وجو کنید.
+values-b+fa	string	home_source_none_subtitle	-	بدون ردیف · ردیف‌های شما می‌مانند
 values-b+fa	string	jsdelivr_proxy_summary	-	دورزدن نشانی‌های خام github توسط jsDelivr. ممکن است باعث تاخیر چند روزه به‌روزرسانی شود.
 values-b+fa	string	kitsu_settings	-	نمیش پوستر از kitsu
 values-b+fa	string	legal_notice	-	هشدار
@@ -10720,10 +10777,13 @@ values-b+fil	string	home_expanded_hide	-	Itago
 values-b+fil	string	home_info	-	Impormasyon
 values-b+fil	string	home_more_info	-	Higit pang impormasyon
 values-b+fil	string	home_next_random_img_des	-	Susunod na Kahit Ano
+values-b+fil	string	home_none_body	-	Pumili ng source para makita rito ang mga row nito. Nananatili ang Ituloy ang panonood at ang mga bookmark mo kahit wala nito.
+values-b+fil	string	home_none_headline	-	Walang napiling source
 values-b+fil	string	home_offline_bookmarks_body	-	Naka-save sa device na ito ang mga bookmark mo.
 values-b+fil	string	home_offline_source_headline	-	Kailangan ng %1$s ng koneksyon
 values-b+fil	string	home_play	-	Ipatugtog
 values-b+fil	string	home_search_only_body	-	Wala sa iyong mga extension ang may home page, pero maaari ka pa ring maghanap sa mga ito.
+values-b+fil	string	home_source_none_subtitle	-	WALANG ROW · NANANATILI ANG MGA ROW MO
 values-b+fil	string	kitsu_settings	-	Ipakita ang posters mula sa Kitsu
 values-b+fil	string	lightnovel	-	Light novel app ng parehong devs
 values-b+fil	string	links_reloaded_toast	-	Ini-load muli ang mga link
@@ -11239,12 +11299,15 @@ values-b+fr	string	home_info	-	Infos
 values-b+fr	string	home_main_poster_img_des	-	Affiche principale
 values-b+fr	string	home_more_info	-	Plus d'information
 values-b+fr	string	home_next_random_img_des	-	Aléatoire suivant
+values-b+fr	string	home_none_body	-	Choisissez une source pour voir ses rangées ici. Reprendre et vos marque-pages restent sans source.
+values-b+fr	string	home_none_headline	-	Aucune source choisie
 values-b+fr	string	home_offline_bookmarks_body	-	Vos marque-pages sont enregistrés sur cet appareil.
 values-b+fr	string	home_offline_source_headline	-	%1$s a besoin d'une connexion
 values-b+fr	string	home_play	-	Lecture
 values-b+fr	string	home_random	-	Aléatoire
 values-b+fr	string	home_search_only_body	-	Aucune de vos extensions n'a de page d'accueil, mais vous pouvez quand même y effectuer une recherche.
 values-b+fr	string	home_source	-	Source
+values-b+fr	string	home_source_none_subtitle	-	AUCUNE RANGÉE · VOS RANGÉES RESTENT
 values-b+fr	string	install_prerelease	-	Installer la version préliminaire
 values-b+fr	string	is_adult	-	18+
 values-b+fr	string	jsdelivr_enabled	-	Impossible d'atteindre GitHub. Activation du proxy jsDelivr…
@@ -11870,10 +11933,13 @@ values-b+gl	string	home_info	-	Info
 values-b+gl	string	home_main_poster_img_des	-	Póster Principal
 values-b+gl	string	home_more_info	-	Máis información
 values-b+gl	string	home_next_random_img_des	-	Seguinte ó azar
+values-b+gl	string	home_none_body	-	Escolle unha fonte para ver aquí as súas filas. Seguir vendo e os teus marcadores quedan sen ela.
+values-b+gl	string	home_none_headline	-	Ningunha fonte escollida
 values-b+gl	string	home_offline_bookmarks_body	-	Os teus marcadores están gardados neste dispositivo.
 values-b+gl	string	home_offline_source_headline	-	%1$s precisa conexión
 values-b+gl	string	home_play	-	Reproducir
 values-b+gl	string	home_search_only_body	-	Ningunha das súas extensións ten páxina de inicio, pero aínda pode buscar nelas.
+values-b+gl	string	home_source_none_subtitle	-	SEN FILAS · AS TÚAS FILAS QUEDAN
 values-b+gl	string	kitsu_settings	-	Mostrar pósters de Kitsu
 values-b+gl	string	library	-	Biblioteca
 values-b+gl	string	lightnovel	-	Aplicativo de novela lixeira dos mesmos desenvolvedores
@@ -12309,12 +12375,15 @@ values-b+he	string	home_info	-	מידע
 values-b+he	string	home_main_poster_img_des	-	פוסטר ראשי
 values-b+he	string	home_more_info	-	יותר מידע
 values-b+he	string	home_next_random_img_des	-	ארקאי הבא
+values-b+he	string	home_none_body	-	בחרו מקור כדי לראות כאן את השורות שלו. המשך צפייה והסימניות שלך נשארים גם בלעדיו.
+values-b+he	string	home_none_headline	-	לא נבחר מקור
 values-b+he	string	home_offline_bookmarks_body	-	הסימניות שלך שמורות במכשיר הזה.
 values-b+he	string	home_offline_source_headline	-	%1$s צריך חיבור
 values-b+he	string	home_play	-	נגן
 values-b+he	string	home_random	-	אקראי
 values-b+he	string	home_search_only_body	-	לאף אחת מההרחבות שלך אין דף בית, אבל עדיין אפשר לחפש בהן.
 values-b+he	string	home_source	-	מקור
+values-b+he	string	home_source_none_subtitle	-	אין שורות · השורות שלך נשארות
 values-b+he	string	is_adult	-	18+
 values-b+he	string	jsdelivr_enabled	-	ההתחברות אל GitHub נכשלה. מדליק פרוקסי אל jsDelivr…
 values-b+he	string	jsdelivr_proxy	-	פרוקסי עבור raw.githubusercontent.com
@@ -12895,10 +12964,13 @@ values-b+hi	string	home_info	-	जानकारी
 values-b+hi	string	home_main_poster_img_des	-	मुख्य पोस्टर
 values-b+hi	string	home_more_info	-	और जानकारी
 values-b+hi	string	home_next_random_img_des	-	अगला रैंडम
+values-b+hi	string	home_none_body	-	यहाँ उसकी पंक्तियाँ देखने के लिए एक स्रोत चुनें। देखना जारी रखें और आपके बुकमार्क उसके बिना भी रहते हैं।
+values-b+hi	string	home_none_headline	-	कोई स्रोत नहीं चुना गया
 values-b+hi	string	home_offline_bookmarks_body	-	आपके बुकमार्क इस डिवाइस पर सहेजे गए हैं।
 values-b+hi	string	home_offline_source_headline	-	%1$s को कनेक्शन चाहिए
 values-b+hi	string	home_play	-	चलाएं
 values-b+hi	string	home_search_only_body	-	आपके किसी भी एक्सटेंशन में होम पेज नहीं है, फिर भी आप उनमें खोज सकते हैं।
+values-b+hi	string	home_source_none_subtitle	-	कोई पंक्ति नहीं · आपकी पंक्तियाँ रहती हैं
 values-b+hi	string	install_prerelease	-	प्री-रिलीज़ संस्करण स्थापित करें
 values-b+hi	string	jsdelivr_enabled	-	गिटहब तक नहीं पहुंचा जा सका। जेएस डीलीवर प्रॉक्सी चालू किया जा रहा है…
 values-b+hi	string	jsdelivr_proxy	-	गिटहब प्रॉक्सी
@@ -13495,12 +13567,15 @@ values-b+hr	string	home_info	-	Informacije
 values-b+hr	string	home_main_poster_img_des	-	Glavni poster
 values-b+hr	string	home_more_info	-	Više informacija
 values-b+hr	string	home_next_random_img_des	-	Sljedeće slučajno odabrano
+values-b+hr	string	home_none_body	-	Odaberite izvor da biste ovdje vidjeli njegove redove. Nastavak gledanja i vaše oznake ostaju i bez njega.
+values-b+hr	string	home_none_headline	-	Nije odabran izvor
 values-b+hr	string	home_offline_bookmarks_body	-	Vaše oznake spremljene su na ovom uređaju.
 values-b+hr	string	home_offline_source_headline	-	%1$s treba vezu
 values-b+hr	string	home_play	-	Pokreni
 values-b+hr	string	home_random	-	Slučajno
 values-b+hr	string	home_search_only_body	-	Nijedno vaše proširenje nema početnu stranicu, ali i dalje možete pretraživati u njima.
 values-b+hr	string	home_source	-	Izvor
+values-b+hr	string	home_source_none_subtitle	-	NEMA REDOVA · VAŠI REDOVI OSTAJU
 values-b+hr	string	install_prerelease	-	Instaliraj predizdanje
 values-b+hr	string	is_adult	-	18+
 values-b+hr	string	jsdelivr_enabled	-	Neuspješno dohvaćanje GitHuba. Uključuje se jsdelivr proxy …
@@ -14255,12 +14330,15 @@ values-b+hu	string	home_info	-	Információ
 values-b+hu	string	home_main_poster_img_des	-	Fő Plakát
 values-b+hu	string	home_more_info	-	Több információ
 values-b+hu	string	home_next_random_img_des	-	Következő véletlenszerű
+values-b+hu	string	home_none_body	-	Válasszon forrást, hogy itt lássa a sorait. A folytatás és a könyvjelzői forrás nélkül is megmaradnak.
+values-b+hu	string	home_none_headline	-	Nincs kiválasztott forrás
 values-b+hu	string	home_offline_bookmarks_body	-	A könyvjelzői ezen az eszközön vannak mentve.
 values-b+hu	string	home_offline_source_headline	-	A(z) %1$s kapcsolatot igényel
 values-b+hu	string	home_play	-	Lejátszás
 values-b+hu	string	home_random	-	Lepj meg
 values-b+hu	string	home_search_only_body	-	Egyik bővítményének sincs kezdőlapja, de továbbra is kereshet bennük.
 values-b+hu	string	home_source	-	Forrás
+values-b+hu	string	home_source_none_subtitle	-	NINCSENEK SOROK · A SAJÁT SORAI MARADNAK
 values-b+hu	string	install_prerelease	-	Telepít kiadás előtti verziót
 values-b+hu	string	is_adult	-	18+
 values-b+hu	string	jsdelivr_enabled	-	Nem sikerült elérni a GitHubot, a jsdelivr proxy bekapcsolva…
@@ -14993,12 +15071,15 @@ values-b+id	string	home_info	-	Info
 values-b+id	string	home_main_poster_img_des	-	Poster Utama
 values-b+id	string	home_more_info	-	Lebih banyak info
 values-b+id	string	home_next_random_img_des	-	Acak selanjutnya
+values-b+id	string	home_none_body	-	Pilih sumber untuk melihat barisnya di sini. Lanjutkan menonton dan markah Anda tetap ada tanpa sumber.
+values-b+id	string	home_none_headline	-	Tidak ada sumber dipilih
 values-b+id	string	home_offline_bookmarks_body	-	Markah Anda tersimpan di perangkat ini.
 values-b+id	string	home_offline_source_headline	-	%1$s memerlukan koneksi
 values-b+id	string	home_play	-	Putar
 values-b+id	string	home_random	-	Acak
 values-b+id	string	home_search_only_body	-	Tidak ada ekstensi Anda yang memiliki beranda, tetapi Anda tetap dapat mencari di dalamnya.
 values-b+id	string	home_source	-	Sumber
+values-b+id	string	home_source_none_subtitle	-	TANPA BARIS · BARIS ANDA TETAP
 values-b+id	string	install_prerelease	-	Pasang versi pra-rilis
 values-b+id	string	is_adult	-	18+
 values-b+id	string	jsdelivr_enabled	-	Gagal terhubung ke GitHub. Mengaktifkan proksi jsDelivr…
@@ -15793,12 +15874,15 @@ values-b+in	string	home_info	-	Info
 values-b+in	string	home_main_poster_img_des	-	Poster Utama
 values-b+in	string	home_more_info	-	Lebih banyak info
 values-b+in	string	home_next_random_img_des	-	Acak selanjutnya
+values-b+in	string	home_none_body	-	Pilih sumber untuk melihat barisnya di sini. Lanjutkan menonton dan markah Anda tetap ada tanpa sumber.
+values-b+in	string	home_none_headline	-	Tidak ada sumber dipilih
 values-b+in	string	home_offline_bookmarks_body	-	Markah Anda tersimpan di perangkat ini.
 values-b+in	string	home_offline_source_headline	-	%1$s memerlukan koneksi
 values-b+in	string	home_play	-	Putar
 values-b+in	string	home_random	-	Acak
 values-b+in	string	home_search_only_body	-	Tidak ada ekstensi Anda yang memiliki beranda, tetapi Anda tetap dapat mencari di dalamnya.
 values-b+in	string	home_source	-	Sumber
+values-b+in	string	home_source_none_subtitle	-	TANPA BARIS · BARIS ANDA TETAP
 values-b+in	string	install_prerelease	-	Pasang versi pra-rilis
 values-b+in	string	is_adult	-	18+
 values-b+in	string	jsdelivr_enabled	-	Gagal terhubung ke GitHub. Mengaktifkan proksi jsDelivr…
@@ -16603,12 +16687,15 @@ values-b+it	string	home_info	-	Info
 values-b+it	string	home_main_poster_img_des	-	Poster principale
 values-b+it	string	home_more_info	-	Più info
 values-b+it	string	home_next_random_img_des	-	Prossimo casuale
+values-b+it	string	home_none_body	-	Scegli una fonte per vederne qui le righe. Continua a guardare e i tuoi segnalibri restano anche senza.
+values-b+it	string	home_none_headline	-	Nessuna fonte scelta
 values-b+it	string	home_offline_bookmarks_body	-	I tuoi segnalibri sono salvati su questo dispositivo.
 values-b+it	string	home_offline_source_headline	-	%1$s richiede una connessione
 values-b+it	string	home_play	-	Riproduci
 values-b+it	string	home_random	-	Casuale
 values-b+it	string	home_search_only_body	-	Nessuna delle tue estensioni ha una pagina iniziale, ma puoi comunque cercare al loro interno.
 values-b+it	string	home_source	-	Fonte
+values-b+it	string	home_source_none_subtitle	-	NESSUNA RIGA · LE TUE RIGHE RESTANO
 values-b+it	string	install_prerelease	-	Installa la versione pre-release
 values-b+it	string	is_adult	-	18+
 values-b+it	string	jsdelivr_enabled	-	Impossibile raggiungere GitHub. Attivazione proxy jsDelivr…
@@ -17320,12 +17407,15 @@ values-b+iw	string	home_info	-	מידע
 values-b+iw	string	home_main_poster_img_des	-	פוסטר ראשי
 values-b+iw	string	home_more_info	-	יותר מידע
 values-b+iw	string	home_next_random_img_des	-	ארקאי הבא
+values-b+iw	string	home_none_body	-	בחרו מקור כדי לראות כאן את השורות שלו. המשך צפייה והסימניות שלך נשארים גם בלעדיו.
+values-b+iw	string	home_none_headline	-	לא נבחר מקור
 values-b+iw	string	home_offline_bookmarks_body	-	הסימניות שלך שמורות במכשיר הזה.
 values-b+iw	string	home_offline_source_headline	-	%1$s צריך חיבור
 values-b+iw	string	home_play	-	נגן
 values-b+iw	string	home_random	-	אקראי
 values-b+iw	string	home_search_only_body	-	לאף אחת מההרחבות שלך אין דף בית, אבל עדיין אפשר לחפש בהן.
 values-b+iw	string	home_source	-	מקור
+values-b+iw	string	home_source_none_subtitle	-	אין שורות · השורות שלך נשארות
 values-b+iw	string	is_adult	-	18+
 values-b+iw	string	jsdelivr_enabled	-	ההתחברות אל GitHub נכשלה. מדליק פרוקסי אל jsDelivr…
 values-b+iw	string	jsdelivr_proxy	-	פרוקסי עבור raw.githubusercontent.com
@@ -18020,12 +18110,15 @@ values-b+ja	string	home_info	-	情報
 values-b+ja	string	home_main_poster_img_des	-	主要ポスター
 values-b+ja	string	home_more_info	-	詳細情報
 values-b+ja	string	home_next_random_img_des	-	次のランダム
+values-b+ja	string	home_none_body	-	ソースを選ぶと、ここにその列が表示されます。視聴を続けるとブックマークはソースなしでも残ります。
+values-b+ja	string	home_none_headline	-	ソースが選択されていません
 values-b+ja	string	home_offline_bookmarks_body	-	ブックマークはこのデバイスに保存されています。
 values-b+ja	string	home_offline_source_headline	-	%1$s には接続が必要です
 values-b+ja	string	home_play	-	再生
 values-b+ja	string	home_random	-	任意
 values-b+ja	string	home_search_only_body	-	ホームページを持つ拡張機能はありませんが、検索は引き続き利用できます。
 values-b+ja	string	home_source	-	ソース
+values-b+ja	string	home_source_none_subtitle	-	列なし · あなたの列は残ります
 values-b+ja	string	install_prerelease	-	プレリリース版をインストール
 values-b+ja	string	is_adult	-	18+
 values-b+ja	string	jsdelivr_enabled	-	GitHubに接続できません。jsDelivrプロキシをオンにします…
@@ -18573,10 +18666,13 @@ values-b+kn	string	home_info	-	ಮಾಹಿತಿ
 values-b+kn	string	home_main_poster_img_des	-	ಮೇನ್ ಪೋಸ್ಟರ್
 values-b+kn	string	home_more_info	-	ಹೆಚ್ಚಿನ ಮಾಹಿತಿ
 values-b+kn	string	home_next_random_img_des	-	ಮುಂದಿನ ರಾಂಡಮ್
+values-b+kn	string	home_none_body	-	ಇಲ್ಲಿ ಅದರ ಸಾಲುಗಳನ್ನು ನೋಡಲು ಮೂಲವನ್ನು ಆಯ್ಕೆಮಾಡಿ. ವೀಕ್ಷಣೆ ಮುಂದುವರಿಸಿ ಮತ್ತು ನಿಮ್ಮ ಬುಕ್‌ಮಾರ್ಕ್‌ಗಳು ಮೂಲವಿಲ್ಲದೆಯೂ ಉಳಿಯುತ್ತವೆ.
+values-b+kn	string	home_none_headline	-	ಯಾವುದೇ ಮೂಲ ಆಯ್ಕೆ ಮಾಡಿಲ್ಲ
 values-b+kn	string	home_offline_bookmarks_body	-	ನಿಮ್ಮ ಬುಕ್‌ಮಾರ್ಕ್‌ಗಳನ್ನು ಈ ಸಾಧನದಲ್ಲಿ ಉಳಿಸಲಾಗಿದೆ.
 values-b+kn	string	home_offline_source_headline	-	%1$s ಗೆ ಸಂಪರ್ಕ ಬೇಕು
 values-b+kn	string	home_play	-	ಪ್ಲೇ
 values-b+kn	string	home_search_only_body	-	ನಿಮ್ಮ ಯಾವುದೇ ವಿಸ್ತರಣೆಗೆ ಹೋಂ ಪುಟವಿಲ್ಲ, ಆದರೆ ನೀವು ಅವುಗಳಲ್ಲಿ ಹುಡುಕಬಹುದು.
+values-b+kn	string	home_source_none_subtitle	-	ಸಾಲುಗಳಿಲ್ಲ · ನಿಮ್ಮ ಸಾಲುಗಳು ಉಳಿಯುತ್ತವೆ
 values-b+kn	string	load_more	-	ಇನ್ನಷ್ಟು ಲೋಡ್ ಮಾಡಿ
 values-b+kn	string	loading	-	ಲೋಡಿಂಗ್…
 values-b+kn	string	new_update_format	-	ಹೊಸ ಅಪ್ಡೇಟ್ ಬಂದಿದೆ \n%1$s-%2$s
@@ -19009,12 +19105,15 @@ values-b+ko	string	home_info	-	정보
 values-b+ko	string	home_main_poster_img_des	-	메인 포스터
 values-b+ko	string	home_more_info	-	상세 정보
 values-b+ko	string	home_next_random_img_des	-	다음 추천
+values-b+ko	string	home_none_body	-	소스를 선택하면 여기에 해당 줄이 표시됩니다. 이어 보기와 북마크는 소스 없이도 남습니다.
+values-b+ko	string	home_none_headline	-	선택한 소스 없음
 values-b+ko	string	home_offline_bookmarks_body	-	북마크는 이 기기에 저장되어 있습니다.
 values-b+ko	string	home_offline_source_headline	-	%1$s에 연결이 필요합니다
 values-b+ko	string	home_play	-	재생
 values-b+ko	string	home_random	-	랜덤
 values-b+ko	string	home_search_only_body	-	홈 페이지가 있는 확장 기능은 없지만 검색은 계속 사용할 수 있습니다.
 values-b+ko	string	home_source	-	소스
+values-b+ko	string	home_source_none_subtitle	-	줄 없음 · 내 줄은 유지
 values-b+ko	string	install_prerelease	-	출시 전 버전 설치
 values-b+ko	string	is_adult	-	18+
 values-b+ko	string	jsdelivr_enabled	-	GitHub에 연결할 수 없습니다. jsDelivr 프록시를 켜는 중…
@@ -19633,10 +19732,13 @@ values-b+lt	string	home_info	-	Informacija
 values-b+lt	string	home_main_poster_img_des	-	Pagrindinis Plakatas
 values-b+lt	string	home_more_info	-	Daugiau informacijos
 values-b+lt	string	home_next_random_img_des	-	Sekantis atsitiktinai
+values-b+lt	string	home_none_body	-	Pasirinkite šaltinį, kad čia matytumėte jo eilutes. Žiūrėjimo tęsimas ir jūsų žymos lieka ir be jo.
+values-b+lt	string	home_none_headline	-	Nepasirinktas joks šaltinis
 values-b+lt	string	home_offline_bookmarks_body	-	Jūsų žymos išsaugotos šiame įrenginyje.
 values-b+lt	string	home_offline_source_headline	-	%1$s reikia ryšio
 values-b+lt	string	home_play	-	Paleisti
 values-b+lt	string	home_search_only_body	-	Nė vienas jūsų plėtinys neturi pagrindinio puslapio, bet juose vis tiek galite ieškoti.
+values-b+lt	string	home_source_none_subtitle	-	NĖRA EILUČIŲ · JŪSŲ EILUTĖS LIEKA
 values-b+lt	string	is_adult	-	18+
 values-b+lt	string	library	-	Biblioteka
 values-b+lt	string	links_reloaded_toast	-	Nuorodos perkrautos
@@ -20118,12 +20220,15 @@ values-b+lv	string	home_info	-	Informācija
 values-b+lv	string	home_main_poster_img_des	-	Galvenais plakāts
 values-b+lv	string	home_more_info	-	Vairāk informācijas
 values-b+lv	string	home_next_random_img_des	-	Nākamais nejaušais
+values-b+lv	string	home_none_body	-	Izvēlieties avotu, lai šeit redzētu tā rindas. Turpināt skatīties un jūsu grāmatzīmes paliek arī bez tā.
+values-b+lv	string	home_none_headline	-	Nav izvēlēts avots
 values-b+lv	string	home_offline_bookmarks_body	-	Jūsu grāmatzīmes ir saglabātas šajā ierīcē.
 values-b+lv	string	home_offline_source_headline	-	%1$s nepieciešams savienojums
 values-b+lv	string	home_play	-	Atskaņot
 values-b+lv	string	home_random	-	Randoms
 values-b+lv	string	home_search_only_body	-	Nevienam no jūsu papildinājumiem nav sākumlapas, taču tajos joprojām var meklēt.
 values-b+lv	string	home_source	-	Devējs
+values-b+lv	string	home_source_none_subtitle	-	NAV RINDU · JŪSU RINDAS PALIEK
 values-b+lv	string	is_adult	-	18+
 values-b+lv	string	jsdelivr_enabled	-	Neizdevās sasniegt GitHub. Pieslēdzas starpniekserverim caur jsDelivr…
 values-b+lv	string	jsdelivr_proxy	-	GitHub starpniekserveris
@@ -20856,12 +20961,15 @@ values-b+mk	string	home_info	-	Информации
 values-b+mk	string	home_main_poster_img_des	-	Главен постер
 values-b+mk	string	home_more_info	-	Повеќе информации
 values-b+mk	string	home_next_random_img_des	-	Следен рандом
+values-b+mk	string	home_none_body	-	Изберете извор за да ги видите неговите редови тука. Продолжи со гледање и вашите обележувачи остануваат и без него.
+values-b+mk	string	home_none_headline	-	Не е избран извор
 values-b+mk	string	home_offline_bookmarks_body	-	Вашите обележувачи се зачувани на овој уред.
 values-b+mk	string	home_offline_source_headline	-	%1$s има потреба од врска
 values-b+mk	string	home_play	-	Пушти
 values-b+mk	string	home_random	-	Случајно
 values-b+mk	string	home_search_only_body	-	Ниту една од твоите екстензии нема почетна страница, но сепак можеш да пребаруваш во нив.
 values-b+mk	string	home_source	-	Извор на видео и превод
+values-b+mk	string	home_source_none_subtitle	-	НЕМА РЕДОВИ · ВАШИТЕ РЕДОВИ ОСТАНУВААТ
 values-b+mk	string	install_prerelease	-	Инсталирај предиздавачка верзија
 values-b+mk	string	is_adult	-	18+
 values-b+mk	string	jsdelivr_enabled	-	Не успеа да стигне до GitHub. Вклучувам jsDelivr прокси…
@@ -21470,12 +21578,15 @@ values-b+ml	string	home_info	-	വിവരം
 values-b+ml	string	home_main_poster_img_des	-	പ്രധാന പോസ്റ്റർ
 values-b+ml	string	home_more_info	-	കൂടുതൽ വിവരം
 values-b+ml	string	home_next_random_img_des	-	അടുത്ത ക്രമരഹിതമായ
+values-b+ml	string	home_none_body	-	അതിന്റെ നിരകൾ ഇവിടെ കാണാൻ ഒരു ഉറവിടം തിരഞ്ഞെടുക്കുക. കാണൽ തുടരുക, നിങ്ങളുടെ ബുക്ക്‌മാർക്കുകൾ ഉറവിടമില്ലാതെയും നിലനിൽക്കും.
+values-b+ml	string	home_none_headline	-	ഉറവിടമൊന്നും തിരഞ്ഞെടുത്തിട്ടില്ല
 values-b+ml	string	home_offline_bookmarks_body	-	നിങ്ങളുടെ ബുക്ക്‌മാർക്കുകൾ ഈ ഉപകരണത്തിൽ സംരക്ഷിച്ചിരിക്കുന്നു.
 values-b+ml	string	home_offline_source_headline	-	%1$s-ന് കണക്ഷൻ ആവശ്യമാണ്
 values-b+ml	string	home_play	-	പ്ലേയ്
 values-b+ml	string	home_random	-	ക്രമരഹിതം
 values-b+ml	string	home_search_only_body	-	നിങ്ങളുടെ വിപുലീകരണങ്ങളിൽ ഒന്നിനും ഹോം പേജ് ഇല്ല, എങ്കിലും അവയിൽ തിരയാം.
 values-b+ml	string	home_source	-	ഉറവിടം
+values-b+ml	string	home_source_none_subtitle	-	നിരകളില്ല · നിങ്ങളുടെ നിരകൾ നിലനിൽക്കും
 values-b+ml	string	lightnovel	-	നമ്മുടെ ലൈറ്റ് നോവൽ ആപ്പ്
 values-b+ml	string	links_reloaded_toast	-	ലിങ്കുകൾ വീണ്ടും ലോഡുചെയ്‌തു
 values-b+ml	string	load_more	-	കൂടുതൽ ലോഡ് ചെയ്യുക
@@ -21935,12 +22046,15 @@ values-b+ms	string	home_info	-	Info
 values-b+ms	string	home_main_poster_img_des	-	Poster Utama
 values-b+ms	string	home_more_info	-	Lebih maklumat
 values-b+ms	string	home_next_random_img_des	-	Seterusnya Rawak
+values-b+ms	string	home_none_body	-	Pilih sumber untuk melihat barisnya di sini. Teruskan menonton dan penanda halaman anda kekal tanpanya.
+values-b+ms	string	home_none_headline	-	Tiada sumber dipilih
 values-b+ms	string	home_offline_bookmarks_body	-	Penanda halaman anda disimpan pada peranti ini.
 values-b+ms	string	home_offline_source_headline	-	%1$s memerlukan sambungan
 values-b+ms	string	home_play	-	Pasang
 values-b+ms	string	home_random	-	Rawak
 values-b+ms	string	home_search_only_body	-	Tiada tambahan anda yang mempunyai halaman utama, tetapi anda masih boleh mencari di dalamnya.
 values-b+ms	string	home_source	-	Sumber
+values-b+ms	string	home_source_none_subtitle	-	TIADA BARIS · BARIS ANDA KEKAL
 values-b+ms	string	is_adult	-	18+
 values-b+ms	string	jsdelivr_enabled	-	Github tidak dapat dicapai. Menghidupkan proksi jsDelivr…
 values-b+ms	string	jsdelivr_proxy	-	Proksi Github
@@ -22353,10 +22467,13 @@ values-b+mt	string	home_info	-	Info
 values-b+mt	string	home_main_poster_img_des	-	Kartellun Principali
 values-b+mt	string	home_more_info	-	Iktar Informazzjoni
 values-b+mt	string	home_next_random_img_des	-	Li jmiss bl'addoċċ
+values-b+mt	string	home_none_body	-	Agħżel sors biex tara r-ringieli tiegħu hawn. Kompli ara u l-bookmarks tiegħek jibqgħu anke mingħajru.
+values-b+mt	string	home_none_headline	-	Ebda sors magħżul
 values-b+mt	string	home_offline_bookmarks_body	-	Il-bookmarks tiegħek huma salvati fuq dan l-apparat.
 values-b+mt	string	home_offline_source_headline	-	%1$s jeħtieġ konnessjoni
 values-b+mt	string	home_play	-	Ibda
 values-b+mt	string	home_search_only_body	-	L-ebda waħda mill-estensjonijiet tiegħek m'għandha paġna ewlenija, imma xorta tista' tfittex fihom.
+values-b+mt	string	home_source_none_subtitle	-	EBDA RINGIELI · IR-RINGIELI TIEGĦEK JIBQGĦU
 values-b+mt	string	links_reloaded_toast	-	Links regaw gew mogħbija
 values-b+mt	string	load_more	-	Għabbi iktar
 values-b+mt	string	loading	-	Tagħbija…
@@ -22691,12 +22808,15 @@ values-b+my	string	home_info	-	အချက်အလက်
 values-b+my	string	home_main_poster_img_des	-	မိန်း ပိုစတာ
 values-b+my	string	home_more_info	-	ပိုမို၍
 values-b+my	string	home_next_random_img_des	-	နောက် ကျပန်း
+values-b+my	string	home_none_body	-	ဤနေရာတွင် ၎င်း၏အတန်းများကို ကြည့်ရန် ရင်းမြစ်တစ်ခု ရွေးပါ။ ဆက်ကြည့်ရန်နှင့် သင့်စာမှတ်များသည် ရင်းမြစ်မပါဘဲ ကျန်ရှိနေမည်။
+values-b+my	string	home_none_headline	-	ရင်းမြစ် မရွေးရသေးပါ
 values-b+my	string	home_offline_bookmarks_body	-	သင့်စာမှတ်များကို ဤစက်ပေါ်တွင် သိမ်းထားသည်။
 values-b+my	string	home_offline_source_headline	-	%1$s သည် ချိတ်ဆက်မှု လိုအပ်သည်
 values-b+my	string	home_play	-	ကြည့်မည်
 values-b+my	string	home_random	-	ကျပန်း
 values-b+my	string	home_search_only_body	-	သင့်အဆက်များတွင် ပင်မစာမျက်နှာ မရှိပါ၊ သို့သော် ၎င်းတို့တွင် ရှာဖွေနိုင်ပါသေးသည်။
 values-b+my	string	home_source	-	ရင်းမြစ်
+values-b+my	string	home_source_none_subtitle	-	အတန်းမရှိ · သင့်အတန်းများ ကျန်ရှိ
 values-b+my	string	is_adult	-	အသက်ပြည့်ပြီးသူများသာ
 values-b+my	string	jsdelivr_enabled	-	GitHub သို့ မရောက်ရှိနိုင်ပါ။ jsDelivr ပရောက်စီကို ဖွင့်နေသည်…
 values-b+my	string	jsdelivr_proxy	-	raw.githubusercontent.com ပရောက်စီ
@@ -23124,10 +23244,13 @@ values-b+ne	string	home_info	-	जानकारी
 values-b+ne	string	home_main_poster_img_des	-	मुख्य पोस्टर
 values-b+ne	string	home_more_info	-	थप जानकारी
 values-b+ne	string	home_next_random_img_des	-	अर्को अनियमित
+values-b+ne	string	home_none_body	-	यहाँ यसका पङ्क्तिहरू हेर्न एउटा स्रोत छान्नुहोस्। हेर्न जारी राख्नुहोस् र तपाईंका बुकमार्कहरू स्रोतबिना पनि रहन्छन्।
+values-b+ne	string	home_none_headline	-	कुनै स्रोत छानिएको छैन
 values-b+ne	string	home_offline_bookmarks_body	-	तपाईंका बुकमार्कहरू यो यन्त्रमा सुरक्षित छन्।
 values-b+ne	string	home_offline_source_headline	-	%1$s लाई जडान चाहिन्छ
 values-b+ne	string	home_play	-	प्ले
 values-b+ne	string	home_search_only_body	-	तपाईंका कुनै पनि एक्सटेन्सनमा होम पेज छैन, तर तपाईं तिनमा अझै खोज्न सक्नुहुन्छ।
+values-b+ne	string	home_source_none_subtitle	-	पङ्क्ति छैन · तपाईंका पङ्क्ति रहन्छन्
 values-b+ne	string	links_reloaded_toast	-	लिङ्कहरू रिलोड गरियो
 values-b+ne	string	load_more	-	थप लोड गर्नुहोस्
 values-b+ne	string	loading	-	लोड हुँदै…
@@ -23540,12 +23663,15 @@ values-b+nl	string	home_info	-	Info
 values-b+nl	string	home_main_poster_img_des	-	Hoofdposter
 values-b+nl	string	home_more_info	-	Meer info
 values-b+nl	string	home_next_random_img_des	-	Volgende willekeurig
+values-b+nl	string	home_none_body	-	Kies een bron om hier de rijen te zien. Verder kijken en je bladwijzers blijven ook zonder bron.
+values-b+nl	string	home_none_headline	-	Geen bron gekozen
 values-b+nl	string	home_offline_bookmarks_body	-	Je bladwijzers zijn op dit apparaat opgeslagen.
 values-b+nl	string	home_offline_source_headline	-	%1$s heeft een verbinding nodig
 values-b+nl	string	home_play	-	Speel
 values-b+nl	string	home_random	-	Willekeurig
 values-b+nl	string	home_search_only_body	-	Geen van je uitbreidingen heeft een startpagina, maar je kunt er nog steeds in zoeken.
 values-b+nl	string	home_source	-	Bron
+values-b+nl	string	home_source_none_subtitle	-	GEEN RIJEN · JE RIJEN BLIJVEN
 values-b+nl	string	install_prerelease	-	Pre-releaseversie installeren
 values-b+nl	string	is_adult	-	18+
 values-b+nl	string	jsdelivr_enabled	-	Kan GitHub niet bereiken, schakel jsDelivr proxy in…
@@ -24099,10 +24225,13 @@ values-b+nn	string	home_info	-	Informasjon
 values-b+nn	string	home_main_poster_img_des	-	Hovudminiatyrbilete
 values-b+nn	string	home_more_info	-	Meir informasjon
 values-b+nn	string	home_next_random_img_des	-	Neste tilfeldig
+values-b+nn	string	home_none_body	-	Vel ei kjelde for å sjå radene her. Hald fram å sjå og bokmerka dine blir verande utan.
+values-b+nn	string	home_none_headline	-	Inga kjelde vald
 values-b+nn	string	home_offline_bookmarks_body	-	Bokmerka dine er lagra på denne eininga.
 values-b+nn	string	home_offline_source_headline	-	%1$s treng tilkopling
 values-b+nn	string	home_play	-	Spel(e) av
 values-b+nn	string	home_search_only_body	-	Ingen av utvidingane dine har ei heimeside, men du kan framleis søkje i dei.
+values-b+nn	string	home_source_none_subtitle	-	INGEN RADER · RADENE DINE BLIR
 values-b+nn	string	kitsu_settings	-	Vis miniatyrbilete frå Kitsu
 values-b+nn	string	lightnovel	-	Lysnovelleprogram av dei same utviklarane
 values-b+nn	string	live_singular	-	Direktesending
@@ -24483,12 +24612,15 @@ values-b+no	string	home_info	-	Informasjon
 values-b+no	string	home_main_poster_img_des	-	Main Plakat
 values-b+no	string	home_more_info	-	Mer informasjon
 values-b+no	string	home_next_random_img_des	-	Neste tilfeldig
+values-b+no	string	home_none_body	-	Velg en kilde for å se radene her. Fortsett å se og bokmerkene dine blir værende uten.
+values-b+no	string	home_none_headline	-	Ingen kilde valgt
 values-b+no	string	home_offline_bookmarks_body	-	Bokmerkene dine er lagret på denne enheten.
 values-b+no	string	home_offline_source_headline	-	%1$s trenger tilkobling
 values-b+no	string	home_play	-	Spille
 values-b+no	string	home_random	-	Tilfeldig
 values-b+no	string	home_search_only_body	-	Ingen av utvidelsene dine har en hjemmeside, men du kan fortsatt søke i dem.
 values-b+no	string	home_source	-	Kilde
+values-b+no	string	home_source_none_subtitle	-	INGEN RADER · RADENE DINE BLIR
 values-b+no	string	is_adult	-	18+
 values-b+no	string	jsdelivr_enabled	-	Kunne ikke nå GitHub. Skrur på jsDelivr-mellomtjener …
 values-b+no	string	jsdelivr_proxy	-	raw.githubusercontent.com-mellomtjener
@@ -24934,10 +25066,13 @@ values-b+or	string	home_expanded_hide	-	ଲୁଚାଅ
 values-b+or	string	home_info	-	ସୂଚନା
 values-b+or	string	home_main_poster_img_des	-	ମୁଖ୍ୟ ପୋଷ୍ଟର୍
 values-b+or	string	home_more_info	-	ଅଧିକ ସୂଚନା
+values-b+or	string	home_none_body	-	ଏଠାରେ ଏହାର ଧାଡ଼ିଗୁଡ଼ିକ ଦେଖିବାକୁ ଗୋଟିଏ ଉତ୍ସ ବାଛନ୍ତୁ। ଦେଖିବା ଜାରି ରଖନ୍ତୁ ଏବଂ ଆପଣଙ୍କ ବୁକମାର୍କଗୁଡ଼ିକ ଉତ୍ସ ବିନା ରହିଥାଏ।
+values-b+or	string	home_none_headline	-	କୌଣସି ଉତ୍ସ ବଛାଯାଇନାହିଁ
 values-b+or	string	home_offline_bookmarks_body	-	ଆପଣଙ୍କ ବୁକମାର୍କଗୁଡ଼ିକ ଏହି ଡିଭାଇସରେ ସଞ୍ଚିତ ଅଛି।
 values-b+or	string	home_offline_source_headline	-	%1$s ପାଇଁ ସଂଯୋଗ ଆବଶ୍ୟକ
 values-b+or	string	home_play	-	ଚଲାଅ
 values-b+or	string	home_search_only_body	-	ଆପଣଙ୍କର କୌଣସି ଏକ୍ସଟେନସନରେ ହୋମ୍ ପୃଷ୍ଠା ନାହିଁ, କିନ୍ତୁ ଆପଣ ସେଗୁଡ଼ିକରେ ସନ୍ଧାନ କରିପାରିବେ।
+values-b+or	string	home_source_none_subtitle	-	ଧାଡ଼ି ନାହିଁ · ଆପଣଙ୍କ ଧାଡ଼ି ରହେ
 values-b+or	string	library	-	ଲାଇବ୍ରେରୀ
 values-b+or	string	live_singular	-	ସିଧାପ୍ରସାରଣ
 values-b+or	string	livestreams	-	ସିଧାପ୍ରସାରଣ
@@ -25397,12 +25532,15 @@ values-b+pl	string	home_info	-	Informacje
 values-b+pl	string	home_main_poster_img_des	-	Główny obrazek
 values-b+pl	string	home_more_info	-	Więcej informacji
 values-b+pl	string	home_next_random_img_des	-	Następny losowy
+values-b+pl	string	home_none_body	-	Wybierz źródło, aby zobaczyć tu jego rzędy. Kontynuuj oglądanie i twoje zakładki zostają także bez niego.
+values-b+pl	string	home_none_headline	-	Nie wybrano źródła
 values-b+pl	string	home_offline_bookmarks_body	-	Twoje zakładki są zapisane na tym urządzeniu.
 values-b+pl	string	home_offline_source_headline	-	%1$s wymaga połączenia
 values-b+pl	string	home_play	-	Odtwórz
 values-b+pl	string	home_random	-	Losowy
 values-b+pl	string	home_search_only_body	-	Żadne z twoich rozszerzeń nie ma strony głównej, ale nadal możesz w nich szukać.
 values-b+pl	string	home_source	-	Źródło
+values-b+pl	string	home_source_none_subtitle	-	BRAK RZĘDÓW · TWOJE RZĘDY ZOSTAJĄ
 values-b+pl	string	install_prerelease	-	Zainstaluj wersję przedpremierową
 values-b+pl	string	is_adult	-	18+
 values-b+pl	string	jsdelivr_enabled	-	Nie udało się połączyć z GitHubem. Włączono serwer pośredniczący jsDelivr…
@@ -26209,12 +26347,15 @@ values-b+pt	string	home_info	-	Info
 values-b+pt	string	home_main_poster_img_des	-	Pôster Principal
 values-b+pt	string	home_more_info	-	Mais info
 values-b+pt	string	home_next_random_img_des	-	Próximo Aleatório
+values-b+pt	string	home_none_body	-	Escolha uma fonte para ver aqui as suas filas. Continuar a ver e os seus marcadores ficam mesmo sem ela.
+values-b+pt	string	home_none_headline	-	Nenhuma fonte escolhida
 values-b+pt	string	home_offline_bookmarks_body	-	Os seus marcadores estão guardados neste dispositivo.
 values-b+pt	string	home_offline_source_headline	-	%1$s precisa de uma ligação
 values-b+pt	string	home_play	-	Reproduzir
 values-b+pt	string	home_random	-	Aleatório
 values-b+pt	string	home_search_only_body	-	Nenhuma das suas extensões tem página inicial, mas ainda pode pesquisar nelas.
 values-b+pt	string	home_source	-	Fonte
+values-b+pt	string	home_source_none_subtitle	-	SEM FILAS · AS SUAS FILAS FICAM
 values-b+pt	string	install_prerelease	-	Instalar versão de pré-lançamento
 values-b+pt	string	is_adult	-	18+
 values-b+pt	string	jsdelivr_enabled	-	Não foi possível chegar ao GitHub. Ativando o proxy jsDelivr…
@@ -27015,12 +27156,15 @@ values-b+pt+BR	string	home_info	-	Informações
 values-b+pt+BR	string	home_main_poster_img_des	-	Pôster principal
 values-b+pt+BR	string	home_more_info	-	Mais informações
 values-b+pt+BR	string	home_next_random_img_des	-	Próximo Aleatório
+values-b+pt+BR	string	home_none_body	-	Escolha uma fonte para ver as fileiras dela aqui. Continuar assistindo e seus marcadores ficam mesmo sem ela.
+values-b+pt+BR	string	home_none_headline	-	Nenhuma fonte escolhida
 values-b+pt+BR	string	home_offline_bookmarks_body	-	Seus marcadores estão salvos neste dispositivo.
 values-b+pt+BR	string	home_offline_source_headline	-	%1$s precisa de conexão
 values-b+pt+BR	string	home_play	-	Reproduzir
 values-b+pt+BR	string	home_random	-	Aleatório
 values-b+pt+BR	string	home_search_only_body	-	Nenhuma das suas extensões tem página inicial, mas você ainda pode pesquisar nelas.
 values-b+pt+BR	string	home_source	-	Fonte
+values-b+pt+BR	string	home_source_none_subtitle	-	SEM FILEIRAS · SUAS FILEIRAS FICAM
 values-b+pt+BR	string	install_prerelease	-	Instalar versão antecipada
 values-b+pt+BR	string	is_adult	-	18+
 values-b+pt+BR	string	jsdelivr_enabled	-	Não foi possível se conectar ao GitHub. Ativando proxy JsDelivr…
@@ -27775,12 +27919,15 @@ values-b+qt	string	home_info	-	aauugghh
 values-b+qt	string	home_main_poster_img_des	-	ahhhahaaaaaahhhaaaghh
 values-b+qt	string	home_more_info	-	ahooo a aaaghhouuhhh
 values-b+qt	string	home_next_random_img_des	-	aoooohh
+values-b+qt	string	home_none_body	-	ooh aaa uuh ooh-ahh. oogg eek oouuh ooh.
+values-b+qt	string	home_none_headline	-	oooh uuu ahh
 values-b+qt	string	home_offline_bookmarks_body	-	oouuh ooh aaah uuu.
 values-b+qt	string	home_offline_source_headline	-	%1$s ooogg eek
 values-b+qt	string	home_play	-	ooo-ahahouuhhh
 values-b+qt	string	home_random	-	aaaagg
 values-b+qt	string	home_search_only_body	-	aaaagg og ooogg oouuh
 values-b+qt	string	home_source	-	aaaahh
+values-b+qt	string	home_source_none_subtitle	-	OOH UUU · OOUUH AHH
 values-b+qt	string	is_adult	-	18+
 values-b+qt	string	jsdelivr_enabled	-	aaahh uug uuuhh aaaahh uuuuggg og uuuuhhhk proxy…
 values-b+qt	string	jsdelivr_proxy	-	eeeeek uuugg
@@ -28467,12 +28614,15 @@ values-b+ro	string	home_info	-	Informații
 values-b+ro	string	home_main_poster_img_des	-	Poster Principal
 values-b+ro	string	home_more_info	-	Mai multe informații
 values-b+ro	string	home_next_random_img_des	-	Următorul la Întâmplare
+values-b+ro	string	home_none_body	-	Alegeți o sursă pentru a-i vedea rândurile aici. Continuă vizionarea și marcajele dvs. rămân și fără ea.
+values-b+ro	string	home_none_headline	-	Nicio sursă aleasă
 values-b+ro	string	home_offline_bookmarks_body	-	Marcajele dvs. sunt salvate pe acest dispozitiv.
 values-b+ro	string	home_offline_source_headline	-	%1$s are nevoie de conexiune
 values-b+ro	string	home_play	-	Începe
 values-b+ro	string	home_random	-	Aleatoriu
 values-b+ro	string	home_search_only_body	-	Niciuna dintre extensiile dvs. nu are o pagină principală, dar puteți căuta în continuare în ele.
 values-b+ro	string	home_source	-	Sursa
+values-b+ro	string	home_source_none_subtitle	-	FĂRĂ RÂNDURI · RÂNDURILE DVS. RĂMÂN
 values-b+ro	string	install_prerelease	-	Instalează versiunea preliminară
 values-b+ro	string	is_adult	-	18+
 values-b+ro	string	jsdelivr_enabled	-	Nu s-a putut ajunge la GitHub. Se activează proxy-ul jsDelivr…
@@ -29213,12 +29363,15 @@ values-b+ru	string	home_info	-	Инфо
 values-b+ru	string	home_main_poster_img_des	-	Главный плакат
 values-b+ru	string	home_more_info	-	Подробнее
 values-b+ru	string	home_next_random_img_des	-	Следующий случайный
+values-b+ru	string	home_none_body	-	Выберите источник, чтобы увидеть здесь его ряды. Продолжить просмотр и ваши закладки останутся и без него.
+values-b+ru	string	home_none_headline	-	Источник не выбран
 values-b+ru	string	home_offline_bookmarks_body	-	Ваши закладки сохранены на этом устройстве.
 values-b+ru	string	home_offline_source_headline	-	%1$s нужно подключение
 values-b+ru	string	home_play	-	Смотреть
 values-b+ru	string	home_random	-	Случайный
 values-b+ru	string	home_search_only_body	-	Ни у одного из ваших дополнений нет главной страницы, но в них всё равно можно искать.
 values-b+ru	string	home_source	-	Источник
+values-b+ru	string	home_source_none_subtitle	-	НЕТ РЯДОВ · ВАШИ РЯДЫ ОСТАЮТСЯ
 values-b+ru	string	install_prerelease	-	Установить предварительный выпуск
 values-b+ru	string	is_adult	-	18+
 values-b+ru	string	jsdelivr_enabled	-	Не удалось подключиться к GitHub. Включаем проксирование через jsDelivr…
@@ -29913,12 +30066,15 @@ values-b+sk	string	home_info	-	Info
 values-b+sk	string	home_main_poster_img_des	-	Hlavný plagát
 values-b+sk	string	home_more_info	-	Viac informácií
 values-b+sk	string	home_next_random_img_des	-	Ďalší náhodný
+values-b+sk	string	home_none_body	-	Vyberte zdroj a uvidíte tu jeho rady. Pokračovať v sledovaní a vaše záložky zostanú aj bez neho.
+values-b+sk	string	home_none_headline	-	Nie je vybraný žiadny zdroj
 values-b+sk	string	home_offline_bookmarks_body	-	Vaše záložky sú uložené v tomto zariadení.
 values-b+sk	string	home_offline_source_headline	-	%1$s potrebuje pripojenie
 values-b+sk	string	home_play	-	Prehrať
 values-b+sk	string	home_random	-	Náhodné
 values-b+sk	string	home_search_only_body	-	Žiadne z vašich rozšírení nemá domovskú stránku, no stále v nich môžete hľadať.
 values-b+sk	string	home_source	-	Zdroj
+values-b+sk	string	home_source_none_subtitle	-	ŽIADNE RADY · VAŠE RADY ZOSTÁVAJÚ
 values-b+sk	string	install_prerelease	-	Nainštalujte pre-release verziu
 values-b+sk	string	jsdelivr_enabled	-	Nepodarilo sa pripojiť na GitHub. Zapína sa proxy jsDelivr…
 values-b+sk	string	jsdelivr_proxy	-	GitHub Proxy
@@ -30466,12 +30622,15 @@ values-b+so	string	home_info	-	Warbixin
 values-b+so	string	home_main_poster_img_des	-	Boodhka weyn
 values-b+so	string	home_more_info	-	Warbixin dheeraad ah
 values-b+so	string	home_next_random_img_des	-	X.la'aanta xigta
+values-b+so	string	home_none_body	-	Dooro il si aad halkan ugu aragto safafkiisa. Sii daawo iyo calaamadahaagu way sii jiraan la'aantiis.
+values-b+so	string	home_none_headline	-	Il lama dooran
 values-b+so	string	home_offline_bookmarks_body	-	Calaamadahaagu waxay ku kaydsan yihiin qalabkan.
 values-b+so	string	home_offline_source_headline	-	%1$s wuxuu u baahan yahay xiriir
 values-b+so	string	home_play	-	Daar
 values-b+so	string	home_random	-	Xulasho la'aan
 values-b+so	string	home_search_only_body	-	Mid ka mid ah kordhiyeyaashaada ma laha bog hore, laakiin weli waad ka raadin kartaa.
 values-b+so	string	home_source	-	Xigashada
+values-b+so	string	home_source_none_subtitle	-	SAFAF MA JIRAAN · SAFAFKAAGU WAY JIRAAN
 values-b+so	string	install_prerelease	-	Soo deji nooca hordhaca ah
 values-b+so	string	is_adult	-	18+
 values-b+so	string	kitsu_settings	-	Tusi Boodhka Kitsu
@@ -31138,12 +31297,15 @@ values-b+sq	string	home_info	-	Informacion
 values-b+sq	string	home_main_poster_img_des	-	Posteri kryesor
 values-b+sq	string	home_more_info	-	Më shumë info
 values-b+sq	string	home_next_random_img_des	-	Tjetër rastësore
+values-b+sq	string	home_none_body	-	Zgjidhni një burim për të parë këtu rreshtat e tij. Vazhdo shikimin dhe të ruajturat tuaja mbeten edhe pa të.
+values-b+sq	string	home_none_headline	-	Nuk është zgjedhur asnjë burim
 values-b+sq	string	home_offline_bookmarks_body	-	Të ruajturat tuaja janë në këtë pajisje.
 values-b+sq	string	home_offline_source_headline	-	%1$s ka nevojë për lidhje
 values-b+sq	string	home_play	-	Luaj
 values-b+sq	string	home_random	-	Rastësor
 values-b+sq	string	home_search_only_body	-	Asnjë nga shtesat tuaja nuk ka faqe kryesore, por mund të kërkoni ende në to.
 values-b+sq	string	home_source	-	Burimi
+values-b+sq	string	home_source_none_subtitle	-	PA RRESHTA · RRESHTAT TUAJ MBETEN
 values-b+sq	string	install_prerelease	-	Instalo versione beta
 values-b+sq	string	is_adult	-	18+
 values-b+sq	string	jsdelivr_enabled	-	Nuk mund të arrihej GitHub. Po aktivizohet proxy jsDelivr…
@@ -31945,12 +32107,15 @@ values-b+sv	string	home_info	-	Info
 values-b+sv	string	home_main_poster_img_des	-	Affisch
 values-b+sv	string	home_more_info	-	Mer information
 values-b+sv	string	home_next_random_img_des	-	Nästa slumpvis
+values-b+sv	string	home_none_body	-	Välj en källa för att se dess rader här. Fortsätt titta och dina bokmärken finns kvar utan.
+values-b+sv	string	home_none_headline	-	Ingen källa vald
 values-b+sv	string	home_offline_bookmarks_body	-	Dina bokmärken sparas på den här enheten.
 values-b+sv	string	home_offline_source_headline	-	%1$s behöver en anslutning
 values-b+sv	string	home_play	-	Spela upp
 values-b+sv	string	home_random	-	Slumpmässig
 values-b+sv	string	home_search_only_body	-	Inget av dina tillägg har en startsida, men du kan fortfarande söka i dem.
 values-b+sv	string	home_source	-	Källa
+values-b+sv	string	home_source_none_subtitle	-	INGA RADER · DINA RADER BLIR KVAR
 values-b+sv	string	install_prerelease	-	Installera förhandsversionen
 values-b+sv	string	is_adult	-	18+
 values-b+sv	string	jsdelivr_enabled	-	Kunde inte nå GitHub, sätter på jsDelivr proxy…
@@ -32752,12 +32917,15 @@ values-b+ta	string	home_info	-	செய்தி
 values-b+ta	string	home_main_poster_img_des	-	முதன்மையான போச்டர்
 values-b+ta	string	home_more_info	-	மேலும் செய்தி
 values-b+ta	string	home_next_random_img_des	-	அடுத்து ஏதாவது
+values-b+ta	string	home_none_body	-	அதன் வரிசைகளை இங்கே காண ஒரு மூலத்தைத் தேர்ந்தெடுக்கவும். தொடர்ந்து பார்ப்பதும் உங்கள் புக்மார்க்குகளும் மூலம் இல்லாமலும் இருக்கும்.
+values-b+ta	string	home_none_headline	-	எந்த மூலமும் தேர்ந்தெடுக்கப்படவில்லை
 values-b+ta	string	home_offline_bookmarks_body	-	உங்கள் புக்மார்க்குகள் இந்தச் சாதனத்தில் சேமிக்கப்பட்டுள்ளன.
 values-b+ta	string	home_offline_source_headline	-	%1$s க்கு இணைப்பு தேவை
 values-b+ta	string	home_play	-	விளையாடுங்கள்
 values-b+ta	string	home_random	-	சீரற்ற
 values-b+ta	string	home_search_only_body	-	உங்கள் நீட்டிப்புகள் எதிலும் முகப்புப் பக்கம் இல்லை, ஆனால் அவற்றில் இன்னும் தேடலாம்.
 values-b+ta	string	home_source	-	மூலம்
+values-b+ta	string	home_source_none_subtitle	-	வரிசைகள் இல்லை · உங்கள் வரிசைகள் இருக்கும்
 values-b+ta	string	install_prerelease	-	வெளியீட்டிற்கு முந்தைய பதிப்பை நிறுவவும்
 values-b+ta	string	is_adult	-	18+
 values-b+ta	string	jsdelivr_enabled	-	கிட்அப்பை அடைய முடியவில்லை. Jsdelivr ப்ராக்சியை இயக்குதல்…
@@ -33262,9 +33430,12 @@ values-b+ti	string	extension_warning_webview	-	ዌብ ቪው ይጥቀም፡ ዝ
 values-b+ti	string	extensions_waiting_count	-	ንዓኻ ዝጽበዩ መስፋሕፋሕቲ: %d
 values-b+ti	string	home_bookmarks_no_status_body	-	ነቶም ምልክታት ንምርኣይ ካብ ላዕሊ ሓደ ምረጹ።
 values-b+ti	string	home_bookmarks_no_status_headline	-	ዝተመረጸ ኩነታት የለን
+values-b+ti	string	home_none_body	-	መስመራቱ ኣብዚ ንምርኣይ ምንጪ ምረጹ። ምርኣይ ቀጽሉን ምልክታትኩምን ብዘይ ምንጪ ይጸንሑ።
+values-b+ti	string	home_none_headline	-	ዝተመረጸ ምንጪ የለን
 values-b+ti	string	home_offline_bookmarks_body	-	ምልክታትኩም ኣብዚ መሳርሒ ተዓቂቦም ኣለዉ።
 values-b+ti	string	home_offline_source_headline	-	%1$s ምትእስሳር የድልዮ
 values-b+ti	string	home_search_only_body	-	ካብ መስፋሕፋሕትኻ ሓደ እኳ መበገሲ ገጽ የብሉን፡ ግን ሕጂ'ውን ኣብኡ ክትደሊ ትኽእል ኢኻ።
+values-b+ti	string	home_source_none_subtitle	-	መስመራት የለን · መስመራትኩም ይጸንሑ
 values-b+ti	string	load_more	-	ተወሳኺ ጽዓን
 values-b+ti	string	next_episode_format	-	ክፋል %d በ ላይ ይወጣል
 values-b+ti	string	player_enter_fullscreen	-	ናብ ምሉእ ስክሪን እቶ
@@ -33452,10 +33623,13 @@ values-b+tl	string	home_info	-	Impormasyon
 values-b+tl	string	home_main_poster_img_des	-	Main Poster
 values-b+tl	string	home_more_info	-	More Info
 values-b+tl	string	home_next_random_img_des	-	Next Random
+values-b+tl	string	home_none_body	-	Pumili ng source para makita rito ang mga row nito. Nananatili ang Ituloy ang panonood at ang mga bookmark mo kahit wala nito.
+values-b+tl	string	home_none_headline	-	Walang napiling source
 values-b+tl	string	home_offline_bookmarks_body	-	Naka-save sa device na ito ang mga bookmark mo.
 values-b+tl	string	home_offline_source_headline	-	Kailangan ng %1$s ng koneksyon
 values-b+tl	string	home_play	-	I-play
 values-b+tl	string	home_search_only_body	-	Wala sa mga extension mo ang may home page, pero puwede ka pa ring maghanap sa mga ito.
+values-b+tl	string	home_source_none_subtitle	-	WALANG ROW · NANANATILI ANG MGA ROW MO
 values-b+tl	string	kitsu_settings	-	Ipakita ang posters mula sa Kitsu
 values-b+tl	string	lightnovel	-	Light novel app ng parehong devs
 values-b+tl	string	links_reloaded_toast	-	Ini-load muli ang mga link
@@ -33988,12 +34162,15 @@ values-b+tr	string	home_info	-	Bilgi
 values-b+tr	string	home_main_poster_img_des	-	Ana Afiş
 values-b+tr	string	home_more_info	-	Daha fazla bilgi
 values-b+tr	string	home_next_random_img_des	-	Sonraki Rastgele
+values-b+tr	string	home_none_body	-	Sıralarını burada görmek için bir kaynak seçin. İzlemeye devam et ve yer imleriniz kaynak olmadan da kalır.
+values-b+tr	string	home_none_headline	-	Kaynak seçilmedi
 values-b+tr	string	home_offline_bookmarks_body	-	Yer imleriniz bu cihazda kayıtlı.
 values-b+tr	string	home_offline_source_headline	-	%1$s bağlantı gerektirir
 values-b+tr	string	home_play	-	Oynat
 values-b+tr	string	home_random	-	Rastgele
 values-b+tr	string	home_search_only_body	-	Eklentilerinizin hiçbirinde ana sayfa yok, ancak yine de onlarda arama yapabilirsiniz.
 values-b+tr	string	home_source	-	Kaynak
+values-b+tr	string	home_source_none_subtitle	-	SIRA YOK · SIRALARINIZ KALIR
 values-b+tr	string	install_prerelease	-	Ön sürümünü yükleyin
 values-b+tr	string	is_adult	-	+18
 values-b+tr	string	jsdelivr_enabled	-	GitHub'a ulaşılamadı. jsDelivr vekil sunucusu etkinleştiriliyor…
@@ -34805,12 +34982,15 @@ values-b+uk	string	home_info	-	Подробиці
 values-b+uk	string	home_main_poster_img_des	-	Головний постер
 values-b+uk	string	home_more_info	-	Докладніше
 values-b+uk	string	home_next_random_img_des	-	Наступне випадкове
+values-b+uk	string	home_none_body	-	Виберіть джерело, щоб побачити тут його ряди. Продовжити перегляд і ваші закладки залишаються й без нього.
+values-b+uk	string	home_none_headline	-	Джерело не вибрано
 values-b+uk	string	home_offline_bookmarks_body	-	Ваші закладки збережено на цьому пристрої.
 values-b+uk	string	home_offline_source_headline	-	%1$s потребує з'єднання
 values-b+uk	string	home_play	-	Переглянути
 values-b+uk	string	home_random	-	Випадковий
 values-b+uk	string	home_search_only_body	-	Жодне з ваших розширень не має головної сторінки, але в них усе ще можна шукати.
 values-b+uk	string	home_source	-	Джерело
+values-b+uk	string	home_source_none_subtitle	-	НЕМАЄ РЯДІВ · ВАШІ РЯДИ ЗАЛИШАЮТЬСЯ
 values-b+uk	string	install_prerelease	-	Встановити передрелізну версію
 values-b+uk	string	is_adult	-	18+
 values-b+uk	string	jsdelivr_enabled	-	Не вдалось отримати доступ до GitHub. Увімкнення проксі-сервера jsDelivr…
@@ -35555,12 +35735,15 @@ values-b+ur	string	home_info	-	معلومات
 values-b+ur	string	home_main_poster_img_des	-	مرکزی پوسٹر
 values-b+ur	string	home_more_info	-	مزید معلومات
 values-b+ur	string	home_next_random_img_des	-	اگلا بے ترتیب
+values-b+ur	string	home_none_body	-	یہاں اس کی قطاریں دیکھنے کے لیے ایک ذریعہ منتخب کریں۔ دیکھنا جاری رکھیں اور آپ کے بک مارکس اس کے بغیر بھی رہتے ہیں۔
+values-b+ur	string	home_none_headline	-	کوئی ذریعہ منتخب نہیں
 values-b+ur	string	home_offline_bookmarks_body	-	آپ کے بک مارکس اس ڈیوائس پر محفوظ ہیں۔
 values-b+ur	string	home_offline_source_headline	-	%1$s کو کنکشن درکار ہے
 values-b+ur	string	home_play	-	چلائیں
 values-b+ur	string	home_random	-	بے ترتیب
 values-b+ur	string	home_search_only_body	-	آپ کی کسی بھی ایکسٹینشن میں ہوم پیج نہیں ہے، لیکن آپ پھر بھی ان میں تلاش کر سکتے ہیں۔
 values-b+ur	string	home_source	-	ذریعہ
+values-b+ur	string	home_source_none_subtitle	-	کوئی قطار نہیں · آپ کی قطاریں رہتی ہیں
 values-b+ur	string	is_adult	-	18+
 values-b+ur	string	jsdelivr_enabled	-	Could not reach GitHub. Turning on jsDelivr proxy…
 values-b+ur	string	jsdelivr_proxy	-	GitHub Proxy
@@ -36276,12 +36459,15 @@ values-b+vi	string	home_info	-	Thông tin
 values-b+vi	string	home_main_poster_img_des	-	Poster chính
 values-b+vi	string	home_more_info	-	Thông tin thêm
 values-b+vi	string	home_next_random_img_des	-	Tập tiếp theo ngẫu nhiên
+values-b+vi	string	home_none_body	-	Chọn một nguồn để xem các hàng của nó ở đây. Xem tiếp và danh sách của bạn vẫn ở lại khi không có nguồn.
+values-b+vi	string	home_none_headline	-	Chưa chọn nguồn
 values-b+vi	string	home_offline_bookmarks_body	-	Danh sách của bạn được lưu trên thiết bị này.
 values-b+vi	string	home_offline_source_headline	-	%1$s cần kết nối
 values-b+vi	string	home_play	-	Phát
 values-b+vi	string	home_random	-	Ngẫu nhiên
 values-b+vi	string	home_search_only_body	-	Không có tiện ích mở rộng nào của bạn có trang chủ, nhưng bạn vẫn có thể tìm kiếm trong đó.
 values-b+vi	string	home_source	-	Nguồn
+values-b+vi	string	home_source_none_subtitle	-	KHÔNG CÓ HÀNG · HÀNG CỦA BẠN VẪN Ở LẠI
 values-b+vi	string	install_prerelease	-	Cài đặt phiên bản phát hành trước
 values-b+vi	string	is_adult	-	18+
 values-b+vi	string	jsdelivr_enabled	-	Không thể kết nối được tới GitHub. Đang bật jsDelivr proxy…
@@ -37078,12 +37264,15 @@ values-b+zh	string	home_info	-	信息
 values-b+zh	string	home_main_poster_img_des	-	主封面
 values-b+zh	string	home_more_info	-	更多信息
 values-b+zh	string	home_next_random_img_des	-	随机下一个
+values-b+zh	string	home_none_body	-	选择一个来源即可在此查看它的行。继续观看和你的书签在没有来源时也会保留。
+values-b+zh	string	home_none_headline	-	未选择来源
 values-b+zh	string	home_offline_bookmarks_body	-	你的书签保存在此设备上。
 values-b+zh	string	home_offline_source_headline	-	%1$s 需要网络连接
 values-b+zh	string	home_play	-	播放
 values-b+zh	string	home_random	-	随机
 values-b+zh	string	home_search_only_body	-	你的扩展都没有主页，但仍可在其中搜索。
 values-b+zh	string	home_source	-	来源
+values-b+zh	string	home_source_none_subtitle	-	无行 · 你的行保留
 values-b+zh	string	install_prerelease	-	安装预发行版
 values-b+zh	string	is_adult	-	18+
 values-b+zh	string	jsdelivr_enabled	-	无法访问 GitHub。正在开启 jsDelivr 代理…
@@ -37877,12 +38066,15 @@ values-b+zh+TW	string	home_info	-	資訊
 values-b+zh+TW	string	home_main_poster_img_des	-	主封面
 values-b+zh+TW	string	home_more_info	-	更多資訊
 values-b+zh+TW	string	home_next_random_img_des	-	隨機下一個
+values-b+zh+TW	string	home_none_body	-	選擇一個來源即可在此查看它的列。繼續觀看和你的書籤在沒有來源時也會保留。
+values-b+zh+TW	string	home_none_headline	-	未選擇來源
 values-b+zh+TW	string	home_offline_bookmarks_body	-	你的書籤儲存在此裝置上。
 values-b+zh+TW	string	home_offline_source_headline	-	%1$s 需要網路連線
 values-b+zh+TW	string	home_play	-	播放
 values-b+zh+TW	string	home_random	-	隨機
 values-b+zh+TW	string	home_search_only_body	-	你的擴充功能都沒有主畫面，但仍可在其中搜尋。
 values-b+zh+TW	string	home_source	-	來源
+values-b+zh+TW	string	home_source_none_subtitle	-	無列 · 你的列保留
 values-b+zh+TW	string	install_prerelease	-	安裝提前發行版
 values-b+zh+TW	string	is_adult	-	18+
 values-b+zh+TW	string	jsdelivr_enabled	-	無法存取 GitHub。 正在開啟 jsDelivr proxy…
