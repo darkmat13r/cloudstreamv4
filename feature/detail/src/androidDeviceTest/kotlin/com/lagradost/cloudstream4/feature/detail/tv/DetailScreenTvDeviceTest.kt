@@ -70,11 +70,15 @@ import kotlin.math.roundToInt
  * instead of trailing the screen by up to 2 s, and every "it is not there" assertion runs frames
  * throughout rather than sampling once.
  *
- * ## There is no nav rail on this destination
+ * ## There is no nav rail in *this host*, and that is not what the page does
  *
- * `MainActivity.updateNavBar` leaves `navigation_results_tv` out of its visible-nav list, so the shell
- * hides the rail here and BACK leaves the screen. Nothing below expects a rail cell, and no test
- * presses LEFT hoping to find one.
+ * The real page **does** show the rail: the owner ruled it does, and `MainActivity.updateNavBar` puts it
+ * there for `navigation_results_tv` through `railOnDetail` (`KMP-38`). The rail is the shell's, and this
+ * host composes `DetailScreenTv` on its own, so there is no rail cell here to find — which is also why
+ * this module's references draw content at 24dp rather than at the board's 76dp origin.
+ *
+ * Nothing below expects a rail cell and no test presses LEFT hoping to find one. LEFT into the rail and
+ * RIGHT back out are `:app`'s `TvDetailNavigationTest`, which runs the real shell.
  *
  * ## The strings are English literals
  *

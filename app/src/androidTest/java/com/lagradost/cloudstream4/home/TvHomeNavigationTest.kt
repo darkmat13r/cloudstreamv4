@@ -442,7 +442,9 @@ class TvHomeNavigationTest {
             assertEquals(PLAYED, dpad.press(Dpad.Up))
             dpad.center()
 
-            waitFor("the title's page, was $fragmentClass") { fragmentClass == ResultFragmentTv::class.java }
+            // KMP-38, as above: this destination now hosts the Compose detail page. `KMP-41` added this
+            // case against `ResultFragmentTv`, which this branch had already repointed.
+            waitFor("the title's page, was $fragmentClass") { fragmentClass == DetailTvFragment::class.java }
             assertEquals(R.id.navigation_results_tv, destination)
             waitFor("it asked the provider for that title") { "https://example.invalid/$ONE A 1" in one.loaded }
 
