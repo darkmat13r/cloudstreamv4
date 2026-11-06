@@ -127,6 +127,13 @@ class DetailScreenTvScreenshotTest {
 
     private fun awaitFocus(label: String) = rule.waitUntil(WAIT_MS) { rule.focusedLabel() == label }
 
+    /** RIGHT until [label] holds focus, so a reordered row fails here rather than shooting the wrong cell. */
+    private fun pressUntilFocused(label: String): String {
+        if (rule.focusedLabel() == label) return label
+        return generateSequence { dpad.press(Dpad.Right) }.take(MAX_PRESSES).firstOrNull { it == label }
+            ?: error("RIGHT never reached $label in $MAX_PRESSES presses, stopped on ${rule.focusedLabel()}")
+    }
+
     /**
      * DOWN until a focused stop's label contains one of [wanted], so the ring is where a remote would
      * have put it. Returns the trail, so a failure says what it walked past instead of only where it
@@ -166,6 +173,33 @@ class DetailScreenTvScreenshotTest {
         awaitText(DetailFixtures.Movie.title)
         awaitFocus(RESUME)
         rule.assertScreenshot("detail-movie-focus-primary")
+    }
+
+    /**
+     * The state rule 4 rests on: an **icon-only cell with focus**, drawing its label.
+     *
+     * Rule 4 allows a glyph to stand in for a label only because the label comes back when the control
+     * is focused — "each shows its label on focus", in `DEC-17`'s own words. Nothing else in this set
+     * covers it: the two primary-focused cases above have focus on Resume, which is a text button, so
+     * every icon cell in them is at rest with no label drawn. A regression that stopped drawing the
+     * label would leave a row of unexplained glyphs and pass all six.
+     *
+     * The watch-status cell, because it also carries the half of `DEC-17` that colour no longer says:
+     * `Done` (Check) here against `Add` (Plus) on the film page, both at rest in the other references.
+     *
+     * The label is **drawn, not laid out** — it occupies `IconOnlyButtonDefaults.LabelReserve` under
+     * the cell and is painted only while focused — so a semantics assertion cannot see it and a
+     * screenshot is the only thing that can.
+     */
+    @Test
+    fun screenshotWatchStatusCellFocusedWithItsLabel() {
+        show(DetailFixtures.Show)
+        awaitText(DetailFixtures.Show.title)
+        awaitFocus(RESUME)
+        // Right from Resume: Trailer, then the watch-status cell. Walked rather than assumed, so a
+        // reordering of the row fails here instead of silently shooting a different control.
+        pressUntilFocused(WATCH_STATUS)
+        rule.assertScreenshot("detail-watch-status-cell-focused")
     }
 
     /** The state with no content: the fake never answers, which is what the page sees while loading. */
@@ -246,6 +280,7 @@ class DetailScreenTvScreenshotTest {
         const val RETRY = "Try again"
         const val FAILED_HEADLINE = "Couldn't open this title"
         const val SYNOPSIS = "Synopsis"
+        const val WATCH_STATUS = "Set watch status"
         const val GO_BACK = "Go Back"
 
         /** The action row's control and the open panel's header, which is how many "Synopsis" there are. */

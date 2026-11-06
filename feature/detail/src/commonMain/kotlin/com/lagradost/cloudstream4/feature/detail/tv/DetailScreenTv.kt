@@ -51,7 +51,6 @@ import com.lagradost.cloudstream4.core.designsystem.rows.RailHeader
 import com.lagradost.cloudstream4.core.designsystem.state.UiStateHost
 import com.lagradost.cloudstream4.core.designsystem.target.IconCell
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
-import com.lagradost.cloudstream4.core.strings.generated.resources.action_add_to_bookmarks
 import com.lagradost.cloudstream4.core.strings.generated.resources.episodes
 import com.lagradost.cloudstream4.core.strings.generated.resources.favorite
 import com.lagradost.cloudstream4.core.strings.generated.resources.go_back
@@ -66,7 +65,6 @@ import com.lagradost.cloudstream4.feature.detail.DetailEpisode
 import com.lagradost.cloudstream4.feature.detail.DetailFocus
 import com.lagradost.cloudstream4.feature.detail.DetailLoad
 import com.lagradost.cloudstream4.feature.detail.DetailState
-import com.lagradost.cloudstream4.feature.detail.DetailWatchStatus
 import com.lagradost.cloudstream4.feature.detail.META_SEPARATOR
 import com.lagradost.cloudstream4.feature.detail.StreamLink
 import com.lagradost.cloudstream4.feature.detail.TitleDetail
@@ -174,7 +172,6 @@ fun DetailScreenTv(
                         detail = null,
                         onAction = onAction,
                         onBack = onBack,
-                        onWatchStatusRequested = openWatchStatus,
                         takeFocus = !entryFocusPlaced && state.content is DetailLoad.Loading,
                         // Deliberately not recorded as the entry focus: the board says focus rests here
                         // and "moves once, to Resume" when the title lands.
@@ -189,7 +186,6 @@ fun DetailScreenTv(
                     detail = null,
                     onAction = onAction,
                     onBack = { onAction(DetailAction.LinksDismissed) },
-                    onWatchStatusRequested = {},
                     takeFocus = false,
                     onFocusTaken = {},
                 )
@@ -431,7 +427,6 @@ private fun HeadColumn(
             detail = detail,
             onAction = onAction,
             onBack = onBack,
-            onWatchStatusRequested = onWatchStatusRequested,
             takeFocus = takeBackFocus,
             onFocusTaken = onBackFocusTaken,
         )
@@ -470,14 +465,18 @@ private fun HeadColumn(
                 takeFocus = takePrimaryFocus,
                 onFocusTaken = onPrimaryFocusTaken,
                 onScrollToEpisodes = onScrollToEpisodes,
+                onWatchStatusRequested = onWatchStatusRequested,
             )
         }
     }
 }
 
 /**
- * The chrome row, y28 to y76: the back cell at x100, the provider-and-type label at x160, and the two
- * state cells at x824 and x884, which is the band's right edge less two 48dp cells and a 12dp gap.
+ * The chrome row, y28 to y76: the back cell at x100, the provider-and-type label at x160, and the
+ * favourite cell at the band's right edge, less one 48dp cell.
+ *
+ * The **watchlist cell has left this row** for the action row, where boards 7f and 7g put it
+ * (`DEC-17`). Favourite stays: no board moves it, and it is a true toggle rather than a panel opener.
  *
  * A [detail] of null is the row loading, failed, or over the source list: the back cell alone.
  *
@@ -490,7 +489,6 @@ private fun ChromeRow(
     detail: TitleDetail?,
     onAction: (DetailAction) -> Unit,
     onBack: () -> Unit,
-    onWatchStatusRequested: () -> Unit,
     takeFocus: Boolean,
     onFocusTaken: () -> Unit,
     modifier: Modifier = Modifier,
@@ -521,19 +519,6 @@ private fun ChromeRow(
             color = colors.muted,
             modifier = Modifier.weight(REMAINING_WIDTH),
         )
-        // Drawn only where the host has the feature at all: a dead control is worse than none.
-        val watchStatus = detail?.watchStatus
-        if (watchStatus != null) {
-            IconCell(onClick = onWatchStatusRequested) { focused ->
-                ChromeGlyph(
-                    icon = CloudStreamIcons.Bookmark,
-                    label = stringResource(Res.string.action_add_to_bookmarks),
-                    focused = focused,
-                    selected = watchStatus != DetailWatchStatus.None,
-                )
-            }
-            Spacer(Modifier.width(DetailScreenTvDefaults.ChromeGap))
-        }
         val favourite = detail?.isFavourite
         if (favourite != null) {
             IconCell(onClick = { onAction(DetailAction.FavouriteToggled) }) { focused ->
@@ -551,9 +536,13 @@ private fun ChromeRow(
 /**
  * One chrome glyph: `muted` at rest, `ink` under focus, and `ink` while the state it reports is on.
  *
- * The boards draw all three cells as undifferentiated `muted` squares and say nothing about a selected
- * state, so the `ink` of a set bookmark or a favourite is a decision taken here and worth revisiting
- * with the design: without it a 48dp cell reports a two-state feature with one appearance.
+ * Two cells use it now — Back, which has no state, and Favourite, which has. The watch-status cell left
+ * this row for the action row under `DEC-17`, where it says its state by swapping glyph instead.
+ *
+ * The boards draw the cells as undifferentiated `muted` squares and say nothing about a selected state,
+ * so the `ink` of a set favourite is a decision taken here and worth revisiting with the design:
+ * without it a 48dp cell reports a two-state feature with one appearance. `DS-17` will make every
+ * icon-only glyph `muted` at rest app-wide, which is where that question is settled.
  */
 @Composable
 private fun ChromeGlyph(
@@ -821,10 +810,15 @@ object DetailScreenTvDefaults {
     const val CaptionLines = 2
 
     /**
-     * Caption ends at y480, the action row starts at y512. Mirrors
-     * `CloudStreamDimens.LiftedRowClearance` numerically only; nothing lifts here.
+     * Caption ends at y480; the action row's **cell box** starts at y496 and its text buttons at y512.
+     *
+     * 8dp, not 16, since `DEC-17` made the row a [CloudStreamDimens.IconTargetCell] (48dp) box with the
+     * 32dp text buttons centred in it: the cell puts 8dp above the buttons, so the gap before the box
+     * is the board's 16dp to the buttons less that 8. The buttons therefore stay on the board's y512
+     * and the ladder above them does not move — only what is below the row drops, by the 8dp the cell
+     * adds under them.
      */
-    val CaptionToActions: Dp = 16.dp
+    val CaptionToActions: Dp = 8.dp
 
     /**
      * Between a section and the next header: y576 to y640 on 7a, and the same 64px between 7a-ii's cast
