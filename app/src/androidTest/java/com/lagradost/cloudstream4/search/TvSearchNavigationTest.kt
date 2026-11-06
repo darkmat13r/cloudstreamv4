@@ -22,6 +22,7 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import java.util.regex.Pattern
 
 /**
  * The real app on a TV: search opens the new screen through the nav rail, by remote, and a remote can
@@ -143,19 +144,19 @@ class TvSearchNavigationTest {
     }
 
     /**
-     * Artboard 8b on the live path: the real fragment, the real `SearchSuggestionApi` and the real setting. A query nobody
-     * carries gets nothing from TheMovieDB, and nothing when the emulator has no network either, so this holds both ways.
+     * Artboard 8b on the live path: the real fragment, the real setting and the real `SearchSuggestionApi`, which answers
+     * one letter with nothing before it reaches the network. It waits for 8b's action on the chip row, not the headline:
+     * the keyboard is still open and covers the middle of the screen, so the headline is not always in the tree
+     * (measured: the action and the query on screen, the headline not).
      */
     @Test
     fun withSuggestionsOnTypingWhatNothingMatchesShowsEightB() {
         setSuggestions(true)
         ActivityScenario.launch(MainActivity::class.java).use {
             openSearchFromTheRail()
-            typeIntoTheField(NOBODY_CARRIES)
-            assertTrue(
-                "No 8b for a query nothing matches",
-                device.wait(Until.hasObject(By.text("Nothing matches “$NOBODY_CARRIES”")), SCREEN_WAIT_MS),
-            )
+            typeIntoTheField(ONE_LETTER)
+            val shown = device.wait(Until.hasObject(By.text(EIGHT_B_ACTION)), SCREEN_WAIT_MS)
+            assertTrue("No 8b for a query nothing matches; on screen: ${visibleText()}", shown)
         }
     }
 
@@ -169,7 +170,7 @@ class TvSearchNavigationTest {
             assertTrue("The query never reached the field", device.wait(Until.hasObject(By.text(NOBODY_CARRIES)), SCREEN_WAIT_MS))
             assertFalse(
                 "8b showed with suggestions off",
-                device.wait(Until.hasObject(By.textStartsWith("Nothing matches")), NO_KEYBOARD_WAIT_MS),
+                device.wait(Until.hasObject(By.text(EIGHT_B_ACTION)), NO_KEYBOARD_WAIT_MS),
             )
         }
     }
@@ -198,6 +199,9 @@ class TvSearchNavigationTest {
         assertTrue("Never reached the field, last on $field", field.isField())
     }
 
+    /** What a failed wait saw, so the message says which state the screen was in instead. */
+    private fun visibleText(): List<String> = device.findObjects(By.textContains("")).mapNotNull { it.text?.takeIf(String::isNotBlank) }
+
     /** The empty field has no text to be named by, so the driver names it by class and bounds. */
     private fun String?.isField() = this?.startsWith(EDIT_TEXT_CLASS) == true
 
@@ -216,5 +220,11 @@ class TvSearchNavigationTest {
 
         /** Letters no title has. Plain ASCII, because `input text` types no other. */
         const val NOBODY_CARRIES = "zxqvbnmkjh"
+
+        /** Shorter than `SearchSuggestionApi`'s two letters, so it is answered without the network. */
+        const val ONE_LETTER = "q"
+
+        /** 8b's action on the chip row, which the open keyboard does not cover. The field's placeholder has no number. */
+        val EIGHT_B_ACTION: Pattern = Pattern.compile("Search all \\d+ sources")
     }
 }
