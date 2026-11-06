@@ -8,6 +8,7 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="one">ብዝኾነ ኣብ %d ምንጪ ንምድላይ ናይ ኪቦርድ መድለዪ መጠወቒ ጠውቑ።</item><item quantity="other">ብዝኾነ ኣብ ኩሎም %d ምንጭታት ንምድላይ ናይ ኪቦርድ መድለዪ መጠወቒ ጠውቑ።</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d ምንጪ</item><item quantity="other">%d ምንጭታት</item></plurals>
 <string name="app_dub_sub_episode_text_format">%1$s ክፋል %2$d</string>
+<string name="cast">ተዋሳእቲ</string>
 <string name="cast_format">ተዋሳእቲ፡ %s</string>
 <string name="downloads_browse_library">ቤተ-መጻሕፍቲ ድለ</string>
 <string name="downloads_empty_body">ካብ ዝርዝር ክፋላት ናይ ሓደ ኣርእስቲ እትጅምሮም ውርዳት ኣብዚ ይርአዩ፣ ብዘይ መራኸቢ ድማ ይጻወቱ።</string>
@@ -51,6 +52,7 @@
 <string name="extensions_waiting_count">ንዓኻ ዝጽበዩ መስፋሕፋሕቲ: %d</string>
 <string name="home_search_only_body">ካብ መስፋሕፋሕትኻ ሓደ እኳ መበገሲ ገጽ የብሉን፡ ግን ሕጂ'ውን ኣብኡ ክትደሊ ትኽእል ኢኻ።</string>
 <string name="load_more">ተወሳኺ ጽዓን</string>
+<string name="more_like_this">ተመሳሳሊ</string>
 <string name="next_episode_format">ክፋል %d በ ላይ ይወጣል</string>
 <string name="player_enter_fullscreen">ናብ ምሉእ ስክሪን እቶ</string>
 <string name="player_exit_fullscreen">ካብ ምሉእ ስክሪን ውጻእ</string>

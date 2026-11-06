@@ -16,6 +16,7 @@
 <string name="benene_count_text" formatted="true">"%d केरा डेभलपर लाई दिइयो"</string>
 <string name="benene_count_text_none">"एउटै पनी केरा दिइएन"</string>
 <string name="browser">"ब्राउजर"</string>
+<string name="cast">"अभिनेता"</string>
 <string name="cast_format" formatted="true">"अभिनेता:%s"</string>
 <string name="chromecast_subtitles_settings">"Chromecast को उपशीर्षकहरु"</string>
 <string name="continue_watching">"हेर्न सुचारु राख्नुहोस"</string>
@@ -90,6 +91,7 @@
 <string name="links_reloaded_toast">"लिङ्कहरू रिलोड गरियो"</string>
 <string name="load_more">"थप लोड गर्नुहोस्"</string>
 <string name="loading">"लोड हुँदै…"</string>
+<string name="more_like_this">"यस्तै अरू"</string>
 <string name="new_update_format" formatted="true">"नयाँ अपडेट भेटियो! \n%1$s -&gt; %2$s"</string>
 <string name="next_episode">"अर्को एपिसोड"</string>
 <string name="next_episode_format" formatted="true">"एपिसोड %d रिलीज हुने समय"</string>

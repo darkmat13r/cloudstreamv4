@@ -23,6 +23,7 @@
 <string name="cancel">"Ləğv et"</string>
 <string name="cartoons">"Cizgi filmləri"</string>
 <string name="cartoons_singular">"Cizgi filmi"</string>
+<string name="cast">"Oyunçu heyəti"</string>
 <string name="cast_format" formatted="true">"Oyunçu heyəti: %s"</string>
 <string name="category_account">"Hesablar və Təhlükəsizlik"</string>
 <string name="category_updates">"Yeniləmələr və Ehtiyat Nüsxələmə"</string>
@@ -114,6 +115,7 @@
 <string name="livestreams">"Canlı yayımlar"</string>
 <string name="load_more">"Daha çox yüklə"</string>
 <string name="loading">"Yüklənir…"</string>
+<string name="more_like_this">"Buna bənzər"</string>
 <string name="movies_singular">"Film"</string>
 <string name="music_singular">"Musiqi"</string>
 <string name="new_update_format" formatted="true">"Yeniləmə mövcuddur!\n%1$s -&gt; %2$s"</string>

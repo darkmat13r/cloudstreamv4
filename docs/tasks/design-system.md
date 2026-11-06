@@ -711,3 +711,13 @@ redraw had made wrong (7a LOADING and EMPTY, 7b PARTIAL and its band list, the c
 - No screen adopts the glyphs. The list per screen is in the PR.
 - The episode list with season tabs under 7a's row is not drawn; board 6a has it.
 - `TV Home`'s hero still has its pre-existing icon-only `.btn.ico`, which by the rule needs a meaning and a label on focus.
+
+## DS-17 — Icon-only glyphs muted at rest, ink on focus; the watchlist toggle by shape
+
+**Status:** open, decided 2026-11-06 by the owner (`DEC-17`). Not built. Recorded first in `.claude/rules/ui-components.md` rule 4.
+
+- `IconOnlyButton` and `IconOnlyToggle` draw their glyph `muted` at rest and `ink` on focus, on every screen. Today it is `ink` at rest.
+- A toggle shows on or off by glyph, not colour. The detail row's watchlist toggle is `Add` (Plus) off and `Done` (Check) on. `Done` already exists on Tabler `Check` (the subtitle picker's chosen mark); a second name for it, `Added`, fails `CloudStreamIconsTest`'s one-glyph-per-meaning check, so the toggle reuses `Done`. A toggle whose pair is named draws no `raised` fill for on: shape alone says state.
+- Fold in the account cell on Home's top bar, which is still `IconCell` (a smaller filled tile with a muted glyph, ringing its cell) beside `IconOnlyButton`s, so one row shows two icon styles. Raised by the reviewer on #165.
+- Every screenshot reference that shows an icon-only control at rest changes. Each diff is looked at, not re-recorded blind.
+

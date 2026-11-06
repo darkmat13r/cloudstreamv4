@@ -119,6 +119,7 @@
 <string name="cancel_queue_message">Vous voulez annuler tous les téléchargements en file d'attente ?</string>
 <string name="cartoons">Dessins animés</string>
 <string name="cartoons_singular">Dessin animé</string>
+<string name="cast">Distribution</string>
 <string name="cast_format">Distribution : %s</string>
 <string name="category_account">Comptes et Sécurité</string>
 <string name="category_general">Général</string>
@@ -221,6 +222,7 @@
 <string name="duplicate_title">Doublon potentiel trouvé</string>
 <string name="duration">Durée</string>
 <string name="duration_format">%d min</string>
+<string name="duration_hours_minutes_format">%1$dh %2$dm</string>
 <string name="edit">Modifier</string>
 <string name="edit_account">Modifier le compte</string>
 <string name="edit_profile_image_error_empty">Aucune URL trouvée</string>
@@ -368,6 +370,7 @@
 <string name="middle_right">Au milieu à droite</string>
 <string name="min">Min</string>
 <string name="mobile_data">Données mobiles</string>
+<string name="more_like_this">Titres similaires</string>
 <string name="movies">Films</string>
 <string name="movies_singular">Film</string>
 <string name="music_singular">Musique</string>

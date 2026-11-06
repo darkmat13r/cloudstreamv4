@@ -65,11 +65,21 @@ meaning, icon buttons are for toggles and overflow, and a screen has one primary
    worse than none. The ones decided so far are listed under the table.
 4. **Icon-only is allowed only for toggles (bookmark, watchlist, favourite) and for overflow or
    search**, and it shows its label when focused and carries it as a content description:
-   `IconOnlyToggle`, `IconOnlyButton`. A toggle that is on is an `ink` glyph on a `raised` fill;
-   off is a `muted` glyph with no fill (Tabler has no filled bookmark or heart).
+   `IconOnlyToggle`, `IconOnlyButton`. **Colour says focus, shape says state** (the owner,
+   2026-11-06, `DS-17`): an icon-only glyph is `muted` at rest and `ink` on focus, so a toggle shows
+   on or off by changing glyph, never by colour. Tabler 1.1.1 has no filled bookmark or heart, so a
+   toggle swaps to a different glyph: the watchlist is `Add` (Plus) off and `Done` (Check) on, the
+   same check that marks a chosen subtitle (one glyph, one meaning: "this is on"). A toggle whose
+   pair is named draws no `raised` fill, so state is said once, by shape. A toggle with no pair yet
+   keeps today's `raised` fill for on until its pair is named here.
    **Three named exceptions**, which are standard TV conventions: the chrome's Back cell, the
    player's transport controls (board 7d) and the nav rail are icon-only without showing a label on
    focus. Each still carries a content description, and the rail shows its labels when expanded.
+   **One ruled exception**, which is not a convention but the owner's call (2026-11-06, `DEC-17`):
+   **the title detail action row.** After the primary Play or Resume, its secondaries (Start over,
+   Trailer, Download, Mark watched) are icon-only cells, and each shows its label on focus, as
+   rule 4's toggles do. Download and Mark watched appear for films only; a series downloads and
+   marks from its episode list.
    Anywhere else on TV, a glyph never replaces a label.
 5. **Targets keep the three settled classes** (`screen-implementation-handover.md` §5,
    `CloudStreamDimens`): an icon in a 48 dp cell (`IconTargetCell`), so `IconOnlyButton` is one; a
@@ -84,6 +94,7 @@ meaning, icon buttons are for toggles and overflow, and a screen has one primary
 | Start over | `StartOver` | `Rotate` |
 | Trailer, Watch trailer | `Trailer` | `Movie` |
 | Download | `Download` | `Download` |
+| Mark watched (the detail row, films) | `MarkWatched` | `EyeCheck` |
 | Retry, Try again, Retry failed, Retry N sources, Retry sync | `Retry` | `Refresh` |
 | Search, Search all sources, Search everything | `Search` | `Search` |
 | Settings, Open network settings | `Settings` | `Settings` |
@@ -103,6 +114,7 @@ meaning, icon buttons are for toggles and overflow, and a screen has one primary
 | Play from link | `Link` | `Link` |
 | Stop and go back, Cancel | `Close` | `X` |
 | Bookmark, Watchlist, Library (add to library): an icon-only toggle, or outlined with its label | `Bookmark` | `Bookmark` |
+| The detail row's watchlist toggle: off, then on (rule 4, colour says focus, shape says state) | `Add`, then `Done` | `Plus`, then `Check` |
 | Favourite (icon-only toggle) | `Favorite` | `Heart` |
 | More (icon-only overflow) | `More` | `Dots` |
 | More info (opens a title's page from Home's hero, which does not play: rule 1's Play or Resume when it can, `KMP-41`) | `Info` | `InfoCircle` |

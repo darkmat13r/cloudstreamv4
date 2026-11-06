@@ -91,6 +91,7 @@
 <string name="cancel">"Atcelt"</string>
 <string name="cartoons">"Animācija"</string>
 <string name="cartoons_singular">"Animācija"</string>
+<string name="cast">"Lomās"</string>
 <string name="cast_format" formatted="true">"Lomās: %s"</string>
 <string name="category_account">"Konti un drošība"</string>
 <string name="category_general">"Vispārīgie"</string>
@@ -172,6 +173,7 @@
 <string name="duplicate_replace_all">"Aizstāt visus"</string>
 <string name="duration">"Ilgums"</string>
 <string name="duration_format" formatted="true">"%d min."</string>
+<string name="duration_hours_minutes_format" formatted="true">"%1$dst. %2$dmin."</string>
 <string name="edit">"Rediģēt"</string>
 <string name="edit_account">"Rediģēt kontu"</string>
 <string name="edit_profile_image_error_empty">"URL nav norādīts vai atrodams"</string>
@@ -304,6 +306,7 @@
 <string name="max">"Maksimālais"</string>
 <string name="min">"Minimālais"</string>
 <string name="mobile_data">"Mobilie dati"</string>
+<string name="more_like_this">"Līdzīgi"</string>
 <string name="movies">"Filmas"</string>
 <string name="movies_singular">"Filmas"</string>
 <string name="music_singular">"Mūzika"</string>

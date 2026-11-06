@@ -2215,59 +2215,52 @@ class ResultViewModel2 : ViewModel() {
             updateFillers(loadResponse)
         }
 
-        val allEpisodes = when (loadResponse) {
+        // The ids, the walk order and the de-duplication all come from `episodeSlots`, which the TV
+        // detail page calls too — see `EpisodeSlot`. What stays here is everything the old page needs
+        // and the id does not depend on: season names, fillers and the total-episode index.
+        val slots = loadResponse.episodeSlots(mainId)
+        val allEpisodes: Map<EpisodeIndexer, List<ResultEpisode>> = when (loadResponse) {
             is AnimeLoadResponse -> {
-                val existingEpisodes = HashSet<Int>()
                 val episodes: MutableMap<EpisodeIndexer, MutableList<ResultEpisode>> =
                     mutableMapOf()
-                loadResponse.episodes.map { ep ->
-                    val idIndex = ep.key.id
-                    for ((index, i) in ep.value.withIndex()) {
-                        val episode = i.episode ?: (index + 1)
-                        val id =
-                            mainId + episode + idIndex * 1_000_000 + (i.season?.times(10_000)
-                                ?: 0)
-
-                        val totalIndex =
-                            i.season?.let { season ->
-                                loadResponse.getTotalEpisodeIndex(
-                                    episode,
-                                    season
-                                )
-                            }
-
-                        if (!existingEpisodes.contains(id)) {
-                            existingEpisodes.add(id)
-                            val seasonData = loadResponse.seasonNames.getSeason(i.season)
-                            val eps =
-                                buildResultEpisode(
-                                    loadResponse.name,
-                                    filterName(i.name),
-                                    i.posterUrl,
-                                    episode,
-                                    i.season,
-                                    if (seasonData != null) seasonData.displaySeason else i.season,
-                                    i.data,
-                                    loadResponse.apiName,
-                                    id,
-                                    index,
-                                    i.score,
-                                    i.description,
-                                    fillers.contains(episode),
-                                    loadResponse.type,
-                                    mainId,
-                                    totalIndex,
-                                    airDate = i.date,
-                                    runTime = i.runTime,
-                                    seasonData = seasonData,
-                                )
-
-                            val season = eps.seasonIndex ?: 0
-                            val indexer = EpisodeIndexer(ep.key, season)
-                            episodes[indexer]?.add(eps) ?: run {
-                                episodes[indexer] = mutableListOf(eps)
-                            }
+                for (slot in slots) {
+                    val i = slot.source ?: continue
+                    val totalIndex =
+                        slot.season?.let { season ->
+                            loadResponse.getTotalEpisodeIndex(
+                                slot.episode,
+                                season
+                            )
                         }
+
+                    val seasonData = loadResponse.seasonNames.getSeason(slot.season)
+                    val eps =
+                        buildResultEpisode(
+                            loadResponse.name,
+                            filterName(i.name),
+                            i.posterUrl,
+                            slot.episode,
+                            slot.season,
+                            if (seasonData != null) seasonData.displaySeason else slot.season,
+                            i.data,
+                            loadResponse.apiName,
+                            slot.id,
+                            slot.index,
+                            i.score,
+                            i.description,
+                            fillers.contains(slot.episode),
+                            loadResponse.type,
+                            mainId,
+                            totalIndex,
+                            airDate = i.date,
+                            runTime = i.runTime,
+                            seasonData = seasonData,
+                        )
+
+                    val season = eps.seasonIndex ?: 0
+                    val indexer = EpisodeIndexer(slot.dub, season)
+                    episodes[indexer]?.add(eps) ?: run {
+                        episodes[indexer] = mutableListOf(eps)
                     }
                 }
                 episodes
@@ -2276,125 +2269,72 @@ class ResultViewModel2 : ViewModel() {
             is TvSeriesLoadResponse -> {
                 val episodes: MutableMap<EpisodeIndexer, MutableList<ResultEpisode>> =
                     mutableMapOf()
-                val existingEpisodes = HashSet<Int>()
-                for ((index, episode) in loadResponse.episodes.sortedBy {
-                    (it.season?.times(10_000) ?: 0) + (it.episode ?: 0)
-                }.withIndex()) {
-                    val episodeIndex = episode.episode ?: (index + 1)
-                    val id =
-                        mainId + (episode.season?.times(100_000) ?: 0) + episodeIndex + 1
-                    if (!existingEpisodes.contains(id)) {
-                        existingEpisodes.add(id)
-                        val seasonData =
-                            loadResponse.seasonNames.getSeason(episode.season)
+                for (slot in slots) {
+                    val episode = slot.source ?: continue
+                    val seasonData =
+                        loadResponse.seasonNames.getSeason(slot.season)
 
-                        val totalIndex =
-                            episode.season?.let { season ->
-                                loadResponse.getTotalEpisodeIndex(
-                                    episodeIndex,
-                                    season
-                                )
-                            }
-
-                        val ep =
-                            buildResultEpisode(
-                                loadResponse.name,
-                                filterName(episode.name),
-                                episode.posterUrl,
-                                episodeIndex,
-                                episode.season,
-                                if (seasonData != null) seasonData.displaySeason else episode.season,
-                                episode.data,
-                                loadResponse.apiName,
-                                id,
-                                index,
-                                episode.score,
-                                episode.description,
-                                null,
-                                loadResponse.type,
-                                mainId,
-                                totalIndex,
-                                airDate = episode.date,
-                                runTime = episode.runTime,
-                                seasonData = seasonData,
+                    val totalIndex =
+                        slot.season?.let { season ->
+                            loadResponse.getTotalEpisodeIndex(
+                                slot.episode,
+                                season
                             )
-
-                        val season = ep.seasonIndex ?: 0
-                        val indexer = EpisodeIndexer(DubStatus.None, season)
-
-                        episodes[indexer]?.add(ep) ?: kotlin.run {
-                            episodes[indexer] = mutableListOf(ep)
                         }
+
+                    val ep =
+                        buildResultEpisode(
+                            loadResponse.name,
+                            filterName(episode.name),
+                            episode.posterUrl,
+                            slot.episode,
+                            slot.season,
+                            if (seasonData != null) seasonData.displaySeason else slot.season,
+                            episode.data,
+                            loadResponse.apiName,
+                            slot.id,
+                            slot.index,
+                            episode.score,
+                            episode.description,
+                            null,
+                            loadResponse.type,
+                            mainId,
+                            totalIndex,
+                            airDate = episode.date,
+                            runTime = episode.runTime,
+                            seasonData = seasonData,
+                        )
+
+                    val season = ep.seasonIndex ?: 0
+                    val indexer = EpisodeIndexer(DubStatus.None, season)
+
+                    episodes[indexer]?.add(ep) ?: kotlin.run {
+                        episodes[indexer] = mutableListOf(ep)
                     }
                 }
                 episodes
             }
 
-            is MovieLoadResponse -> {
-                singleMap(
+            is MovieLoadResponse, is LiveStreamLoadResponse, is TorrentLoadResponse -> {
+                val slot = slots.firstOrNull()
+                if (slot == null) mapOf() else singleMap(
                     buildResultEpisode(
                         loadResponse.name,
                         loadResponse.name,
                         null,
-                        0,
+                        slot.episode,
                         null,
                         null,
-                        loadResponse.dataUrl,
+                        slot.data,
                         loadResponse.apiName,
-                        (mainId), // HAS SAME ID
-                        0,
+                        slot.id, // HAS SAME ID
+                        slot.index,
                         null,
                         null,
                         null,
                         loadResponse.type,
                         mainId,
                         null,
-                    )
-                )
-            }
-
-            is LiveStreamLoadResponse -> {
-                singleMap(
-                    buildResultEpisode(
-                        loadResponse.name,
-                        loadResponse.name,
-                        null,
-                        0,
-                        null,
-                        null,
-                        loadResponse.dataUrl,
-                        loadResponse.apiName,
-                        (mainId), // HAS SAME ID
-                        0,
-                        null,
-                        null,
-                        null,
-                        loadResponse.type,
-                        mainId,
-                        null
-                    )
-                )
-            }
-
-            is TorrentLoadResponse -> {
-                singleMap(
-                    buildResultEpisode(
-                        loadResponse.name,
-                        loadResponse.name,
-                        null,
-                        0,
-                        null,
-                        null,
-                        loadResponse.torrent ?: loadResponse.magnet ?: "",
-                        loadResponse.apiName,
-                        (mainId), // HAS SAME ID
-                        0,
-                        null,
-                        null,
-                        null,
-                        loadResponse.type,
-                        mainId,
-                        null
                     )
                 )
             }

@@ -117,6 +117,7 @@
 <string name="cancel_queue_message">"Apakah kamu ingin membatalkan semua unduhan dalam antrean?"</string>
 <string name="cartoons">"Kartun"</string>
 <string name="cartoons_singular">"Kartun"</string>
+<string name="cast">"Pemeran"</string>
 <string name="cast_format" formatted="true">"Pemeran: %s"</string>
 <string name="category_account">"Akun dan Keamanan"</string>
 <string name="category_general">"Umum"</string>
@@ -221,6 +222,7 @@
 <string name="duplicate_title">"Ditemukan Potensi Duplikat"</string>
 <string name="duration">"Durasi"</string>
 <string name="duration_format" formatted="true">"%d mnt"</string>
+<string name="duration_hours_minutes_format" formatted="true">"%1$dj %2$dm"</string>
 <string name="edit">"Edit"</string>
 <string name="edit_account">"Edit akun"</string>
 <string name="edit_profile_image_error_empty">"URL Tidak Ditemukan"</string>
@@ -368,6 +370,7 @@
 <string name="middle_right">"Tengah kanan"</string>
 <string name="min">"Min"</string>
 <string name="mobile_data">"Data seluler"</string>
+<string name="more_like_this">"Serupa dengan ini"</string>
 <string name="movies">"Movie"</string>
 <string name="movies_singular">"Movie"</string>
 <string name="music_singular">"Musik"</string>

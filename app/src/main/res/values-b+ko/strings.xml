@@ -116,6 +116,7 @@
 <string name="cancel_queue_message">"모든 다운로드 작업을 취소하시겠습니까?"</string>
 <string name="cartoons">"카툰"</string>
 <string name="cartoons_singular">"카툰"</string>
+<string name="cast">"출연"</string>
 <string name="cast_format" formatted="true">"출연: %s"</string>
 <string name="category_account">"계정 및 보안"</string>
 <string name="category_general">"일반"</string>
@@ -220,6 +221,7 @@
 <string name="duplicate_title">"잠재적 중복 발견"</string>
 <string name="duration">"시간"</string>
 <string name="duration_format" formatted="true">"%d분"</string>
+<string name="duration_hours_minutes_format" formatted="true">"%1$d시간 %2$d분"</string>
 <string name="edit">"편집"</string>
 <string name="edit_account">"계정 편집"</string>
 <string name="edit_profile_image_error_empty">"URL을 찾을 수 없습니다"</string>
@@ -367,6 +369,7 @@
 <string name="middle_right">"오른쪽 중앙"</string>
 <string name="min">"최소"</string>
 <string name="mobile_data">"모바일 데이터"</string>
+<string name="more_like_this">"비슷한 콘텐츠"</string>
 <string name="movies">"영화"</string>
 <string name="movies_singular">"영화"</string>
 <string name="music_singular">"음악"</string>

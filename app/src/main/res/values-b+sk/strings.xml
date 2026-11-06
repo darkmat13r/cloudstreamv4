@@ -71,6 +71,7 @@
 <string name="cancel">"Zrušiť"</string>
 <string name="cartoons">"Kreslené"</string>
 <string name="cartoons_singular">"Kreslený"</string>
+<string name="cast">"Hrajú"</string>
 <string name="cast_format" formatted="true">"Hrajú: %s"</string>
 <string name="category_account">"Účty a Zabezpečenie"</string>
 <string name="category_general">"Všeobecné"</string>
@@ -147,6 +148,7 @@
 <string name="downloads_storage_needs" formatted="true">"Treba ešte %s"</string>
 <string name="duration">"Trvanie"</string>
 <string name="duration_format" formatted="true">"%d min"</string>
+<string name="duration_hours_minutes_format" formatted="true">"%1$dh %2$dm"</string>
 <string name="eigengraumode_settings">"Rýchlosť prehrávania (Eigengravy režim)"</string>
 <string name="emulator_layout">"Rozloženie emulátora"</string>
 <string name="enable_nsfw_on_providers">"Povoliť NSFW u podporovaných rozšírení"</string>
@@ -252,6 +254,7 @@
 <string name="logout">"Odhlásiť sa"</string>
 <string name="max">"Maximum"</string>
 <string name="min">"Minimum"</string>
+<string name="more_like_this">"Podobné"</string>
 <string name="movies">"Filmy"</string>
 <string name="movies_singular">"Film"</string>
 <string name="music_singular">"Hudba"</string>

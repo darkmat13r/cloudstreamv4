@@ -61,6 +61,7 @@
 <string name="cancel">"বাতিল করুন"</string>
 <string name="cartoons">"কার্টুন"</string>
 <string name="cartoons_singular">"কার্টুন"</string>
+<string name="cast">"অভিনয়ে"</string>
 <string name="cast_format" formatted="true">"অভিনয়ে: %s"</string>
 <string name="category_account">"অ্যাকাউন্টসমূহ এবং নিরাপত্তা"</string>
 <string name="category_general">"সাধারণ"</string>
@@ -130,6 +131,7 @@
 <string name="downloads_storage_needs" formatted="true">"আরও %s প্রয়োজন"</string>
 <string name="duration">"সময়কাল"</string>
 <string name="duration_format" formatted="true">"%d মিনিট"</string>
+<string name="duration_hours_minutes_format" formatted="true">"%1$dঘন্টা %2$dমিনিট"</string>
 <string name="eigengraumode_settings">"প্লেব্যাক এর গতি"</string>
 <string name="emulator_layout">"এমুলেটর লেআউট"</string>
 <string name="enable_nsfw_on_providers">"সমর্থিত এক্সটেনশনগুলিতে NSFW সক্ষম করুন"</string>
@@ -228,6 +230,7 @@
 <string name="login">"প্রবেশ করুন"</string>
 <string name="login_format" formatted="true">"%1$s %2$s"</string>
 <string name="logout">"প্রস্থান"</string>
+<string name="more_like_this">"এরকম আরও"</string>
 <string name="movies">"সিনেমা"</string>
 <string name="movies_singular">"সিনেমা"</string>
 <string name="music_singular">"সঙ্গীত"</string>
