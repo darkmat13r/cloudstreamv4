@@ -198,6 +198,7 @@ internal fun DownloadsDesktopRow(
                     modifier = Modifier.width(DownloadsScreenDesktopDefaults.SizeWidth),
                 )
             }
+            Spacer(Modifier.width(DesktopDimens.RelatedGap))
             Row(
                 horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap, Alignment.End),
                 verticalAlignment = Alignment.CenterVertically,
@@ -248,7 +249,8 @@ private fun StatusCell(title: DownloadTitle) {
             )
         }
         val progress = title.progress
-        if (progress != null && title.state != DownloadTitleState.Done) {
+        // A failed row draws no rule: it is not moving, and its mark is the glyph and the word.
+        if (progress != null && (title.state == DownloadTitleState.Running || title.state == DownloadTitleState.Paused)) {
             ProgressRule(
                 progress = progress,
                 color = colors.ink,
@@ -263,12 +265,12 @@ private fun StatusCell(title: DownloadTitle) {
 @Composable
 private fun Verbs(title: DownloadTitle, canReveal: Boolean, onResume: () -> Unit, onReveal: () -> Unit, onDelete: () -> Unit) {
     when (title.state) {
-        DownloadTitleState.Failed -> Verb(CloudStreamIcons.Retry, stringResource(Res.string.player_source_retry), onResume)
-        DownloadTitleState.Paused -> Verb(CloudStreamIcons.Play, stringResource(Res.string.popup_resume_download), onResume)
+        DownloadTitleState.Failed -> DesktopVerb(CloudStreamIcons.Retry, stringResource(Res.string.player_source_retry), onResume)
+        DownloadTitleState.Paused -> DesktopVerb(CloudStreamIcons.Play, stringResource(Res.string.popup_resume_download), onResume)
         DownloadTitleState.Running, DownloadTitleState.Done -> Unit
     }
-    if (canReveal) Verb(CloudStreamIcons.Folder, stringResource(Res.string.downloads_show_in_finder), onReveal)
-    Verb(CloudStreamIcons.Delete, stringResource(Res.string.delete), onDelete)
+    if (canReveal) DesktopVerb(CloudStreamIcons.Folder, stringResource(Res.string.downloads_show_in_finder), onReveal)
+    DesktopVerb(CloudStreamIcons.Delete, stringResource(Res.string.delete), onDelete)
 }
 
 /**
@@ -276,7 +278,7 @@ private fun Verbs(title: DownloadTitle, canReveal: Boolean, onResume: () -> Unit
  * pointer rests on it, a tooltip under it. Its own press is consumed, so it never also selects the row.
  */
 @Composable
-private fun Verb(icon: ImageVector, label: String, onClick: () -> Unit) {
+internal fun DesktopVerb(icon: ImageVector, label: String, onClick: () -> Unit) {
     val source = remember { MutableInteractionSource() }
     val hovered by source.collectIsHoveredAsState()
     var tip by remember { mutableStateOf(false) }

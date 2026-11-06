@@ -4806,7 +4806,7 @@ that exist because the old downloader broke them:
 - DNS rebinding, as above.
 - The engine's unthrottled slowdown is not profiled.
 
-## KMP-54 — The Mac downloads page, boards D1 to D6 · **built 2026-11-06, not wired**
+## KMP-54 — The Mac downloads pages, boards D1 to D6 · **built 2026-11-07, not wired**
 
 `DownloadsScreenDesktop` in `:feature:downloads`, `desktop/`, from `design/Desktop Downloads.dc.html` (`DS-18`, #172). It runs
 on `DownloadsViewModel` and `DownloadsState` unchanged: what is shared is the state, the logic and the words; what is the Mac's
@@ -4826,6 +4826,14 @@ desktop component layer (`DS-19`) comes later. Strings are `I18N-11` (#178), whi
 - **D5:** the offline pill sits beside the title. The storage-full banner offers Free up space, and the view model decides
   between choosing rows and the system's storage settings. Empty and failed are `StateView`s that never take focus.
 - **D6:** below a 780-wide page the size column folds into the second line.
+- **D4, one series:** `DownloadSeriesScreenDesktop` on `DownloadSeriesViewModel` unchanged.
+  - The toolbar has Back (⌘[) and the path, Downloads › the series.
+  - Below the art and counts: Play next, Retry failed (when there is one), and Delete all, through the same sheet.
+  - Episodes sit under season headers, which now give the count through `downloads_episode_count`.
+  - Each row's hover verbs: Play when there is something on the disk, the state's verb (Pause, Resume, Retry or Cancel),
+    Show in Finder, and Delete. A double-click plays.
+  - **A failure names its reason.** The owner ruled on `KMP-52` that a resume asks the extension for a fresh link, so a resume
+    that finds none reads "Download Failed · No working link" and offers Retry.
 - **Keys:** ⌘A, ⌘⌫ (asks first), Return opens the one selected title, ⌘R shows it in Finder, and Escape clears.
 - `CloudStreamIcons.Folder` (Tabler `Folder`) is added for Show in Finder, as the glyph table rules.
 
@@ -4841,7 +4849,21 @@ desktop component layer (`DS-19`) comes later. Strings are `I18N-11` (#178), whi
 
   Both are a few lines in `:desktopApp` once those land. #177 also adds `:feature:downloads` to `:desktopApp`, so the second
   to land drops the duplicate line.
-- **One series (D4).** It is the next step, on `DownloadSeriesViewModel`.
 - **Open in the menu.** No word for it yet; double-click and Return open.
 - **The transfer rate.** `DownloadTitle` carries none.
 - **New components.** The tooltip, the context menu and the bottom rule are private here. They are candidates for `DS-19`.
+- **Shared words.** The episode title and the failure reason duplicate TV's private rules in `SeriesRows`. Making them one
+  function means rerunning the TV suites, so it waits until the TV PRs settle.
+- **"Show in Finder" is the Mac's word.** It sits in a shared key; Windows and Linux will need their own ("Show in folder")
+  when those builds exist.
+
+**Reductions from the board**, where existing copy was reused rather than adding keys:
+- "Download Failed" and "Download Paused · 40%" for D1's "1 failed" and "Paused · 40%".
+- "Download queue · 1/4" for "Queue 1/4".
+- "Play from link" for "Play link".
+- "Movie" for "Film".
+- "4.24 GB / 5.10 GB" for "4.24 GB of 5.10 GB".
+- "Not enough storage · Needs 2.40 GB more" for D5's sentence.
+- "Free up space" for "Open Storage Settings".
+- D5's empty copy is TV's.
+- The D3 sheet's body gives the size freed without the titles' names.

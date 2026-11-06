@@ -6,8 +6,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.shape.CornerBasedShape
-import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
@@ -24,7 +22,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -62,13 +59,9 @@ import com.lagradost.cloudstream4.core.designsystem.state.StatePrompt
 import com.lagradost.cloudstream4.core.designsystem.state.StateView
 import com.lagradost.cloudstream4.core.strings.UiString
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
-import com.lagradost.cloudstream4.core.strings.generated.resources.cancel
-import com.lagradost.cloudstream4.core.strings.generated.resources.delete
 import com.lagradost.cloudstream4.core.strings.generated.resources.download_queue
 import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_browse_library
 import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_column_size
-import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_delete_confirm_body
-import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_delete_confirm_title
 import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_empty_body
 import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_empty_headline
 import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_free_up_space
@@ -176,7 +169,10 @@ fun DownloadsScreenDesktop(
             )
             Footer(state, formatBytes)
         }
-        confirming?.let { ids -> DeleteSheet(state, ids, formatBytes, onConfirmDelete, onCancelDelete) }
+        confirming?.let { ids ->
+            val bytes = state.titles.filter { it.id in ids }.sumOf { it.bytesDone }
+            DesktopDeleteSheet(ids.size, bytes, formatBytes, onConfirmDelete, onCancelDelete)
+        }
     }
 }
 
@@ -198,8 +194,14 @@ private fun Toolbar(state: DownloadsState, onAction: (DownloadsAction) -> Unit) 
             icon = CloudStreamIcons.Link,
         )
         val queue = stringResource(Res.string.download_queue)
+        val label = if (state.queue.total > 0) {
+            // The count joins the word through the shared separator key, so a translation and RTL order it.
+            UiString.Resource(Res.string.downloads_joined, listOf(queue, "${state.queue.running}/${state.queue.total}")).resolve()
+        } else {
+            queue
+        }
         DesktopButton(
-            label = if (state.queue.total > 0) "$queue ${state.queue.running}/${state.queue.total}" else queue,
+            label = label,
             onClick = { onAction(DownloadsAction.QueueRequested) },
         )
     }
@@ -281,8 +283,8 @@ private fun StorageFullBanner(shortfall: StorageShortfall, onAction: (DownloadsA
         )
         DesktopButton(
             label = stringResource(Res.string.downloads_free_up_space),
+            // Text-only: rule 3 of `ui-components.md` lists Free up space, and Settings would claim the wrong action.
             onClick = { onAction(DownloadsAction.FreeUpSpace) },
-            icon = CloudStreamIcons.Settings,
         )
     }
 }
@@ -411,7 +413,7 @@ private fun ColumnHeaders(wide: Boolean) {
                 modifier = Modifier.width(DownloadsScreenDesktopDefaults.SizeWidth),
             )
         }
-        Spacer(Modifier.width(DownloadsScreenDesktopDefaults.VerbsWidth))
+        Spacer(Modifier.width(DesktopDimens.RelatedGap + DownloadsScreenDesktopDefaults.VerbsWidth))
     }
 }
 
@@ -440,73 +442,6 @@ private fun Footer(state: DownloadsState, formatBytes: (Long) -> String) {
     ) {
         BasicText(text, style = CloudStreamTheme.typography.caption.copy(color = colors.ink2), maxLines = 1)
     }
-}
-
-/**
- * Board D3: a sheet from under the toolbar, over a dimmed page. **Cancel is the filled default** (`DEC-19`, rule 1 of
- * `ui-components.md`): the delete cannot be undone. Return and Escape both land on Cancel; only a click deletes.
- */
-@Composable
-private fun DeleteSheet(
-    state: DownloadsState,
-    ids: Set<DownloadTitleId>,
-    formatBytes: (Long) -> String,
-    onConfirm: () -> Unit,
-    onCancel: () -> Unit,
-) {
-    val colors = CloudStreamTheme.colors
-    val bytes = state.titles.filter { it.id in ids }.sumOf { it.bytesDone }
-    val cancelFocus = remember { FocusRequester() }
-    Box(
-        contentAlignment = Alignment.TopCenter,
-        modifier = Modifier
-            .fillMaxSize()
-            .background(colors.bg.copy(alpha = DownloadsScreenDesktopDefaults.ScrimAlpha))
-            .clickable(interactionSource = remember { MutableInteractionSource() }, indication = null, onClick = {})
-            // Under the toolbar band, as board D3 hangs it: the sheet belongs to the page, not to the window's title bar.
-            .padding(top = DownloadsScreenDesktopDefaults.ToolbarHeight)
-            .onPreviewKeyEvent { event ->
-                val answers = event.type == KeyEventType.KeyDown &&
-                    (event.key == Key.Escape || event.key == Key.Enter || event.key == Key.NumPadEnter)
-                if (answers) onCancel()
-                answers
-            },
-    ) {
-        // Hangs from the window's top edge, so only its lower corners are round. On `surface`, not `raised`, so the
-        // secondary Delete, which is `raised`, reads as a button.
-        val large = CloudStreamTheme.shapes.large
-        val shape = (large as? CornerBasedShape)?.copy(topStart = CornerSize(0.dp), topEnd = CornerSize(0.dp)) ?: large
-        Column(
-            verticalArrangement = Arrangement.spacedBy(DesktopDimens.GroupGap),
-            modifier = Modifier
-                .width(DownloadsScreenDesktopDefaults.SheetWidth)
-                .background(colors.surface, shape)
-                .border(CloudStreamDimens.Hairline, colors.line, shape)
-                .padding(DesktopDimens.WindowMargin),
-        ) {
-            BasicText(
-                text = UiString.Plural(Res.plurals.downloads_delete_confirm_title, ids.size).resolve(),
-                style = CloudStreamTheme.typography.railTitle.copy(color = colors.ink),
-            )
-            BasicText(
-                text = UiString.Resource(Res.string.downloads_delete_confirm_body, listOf(formatBytes(bytes))).resolve(),
-                style = CloudStreamTheme.typography.body.copy(color = colors.ink2),
-            )
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap, Alignment.End),
-                modifier = Modifier.fillMaxWidth().padding(top = DesktopDimens.RelatedGap),
-            ) {
-                DesktopButton(label = stringResource(Res.string.delete), onClick = onConfirm)
-                DesktopButton(
-                    label = stringResource(Res.string.cancel),
-                    onClick = onCancel,
-                    primary = true,
-                    modifier = Modifier.focusRequester(cancelFocus),
-                )
-            }
-        }
-    }
-    LaunchedEffect(Unit) { cancelFocus.requestFocus() }
 }
 
 /** A hairline under the column names, as a Finder list draws it. A stroke, so it is exempt from the 4 dp step. */

@@ -272,7 +272,8 @@ class DownloadsScreenTest {
 
     @Test
     fun `hovering a failed row shows Retry, which asks the source for what is left`() {
-        val harness = Harness(contents())
+        // Severance's finished episodes are on the disk, so all three verbs show: Retry, Show in Finder, Delete.
+        val harness = Harness(contents(), revealable = setOf(DownloadTitleId(3)))
         val scene = scene(harness)
         scene.settle()
         scene.hover(Offset(NAME_X, rowY(2)))
@@ -337,7 +338,7 @@ class DownloadsScreenTest {
         const val FIRST_ROW_Y = 214f
         const val ROW_PITCH = 56f
         const val NAME_X = 120f
-        const val FIRST_VERB_X = 992f
+        const val FIRST_VERB_X = 960f
         const val MENU_ITEM_X = 40f
         const val MENU_DELETE_Y = 61f
         const val SHEET_DELETE_X = 575f
