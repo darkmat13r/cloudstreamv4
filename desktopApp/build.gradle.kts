@@ -4,6 +4,8 @@ plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.compose.multiplatform)
     alias(libs.plugins.compose.compiler)
+    // KMP-52: the downloads file is kotlinx.serialization JSON.
+    alias(libs.plugins.kotlin.serialization)
 }
 
 kotlin {
@@ -47,6 +49,10 @@ kotlin {
             implementation(project(":core:strings"))
             implementation(project(":core:data"))
             implementation(project(":library"))
+            // KMP-52: the Mac download service. The engine, the contracts it is read through, and its file.
+            implementation(project(":media:download"))
+            implementation(project(":feature:downloads"))
+            implementation(libs.kotlinx.serialization.json)
         }
         jvmTest.dependencies {
             implementation(libs.kotlin.test)
