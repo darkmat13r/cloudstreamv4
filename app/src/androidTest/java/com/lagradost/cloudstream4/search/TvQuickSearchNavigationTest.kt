@@ -9,6 +9,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.uiautomator.By
 import androidx.test.uiautomator.UiDevice
+import androidx.test.uiautomator.UiObject2
 import androidx.test.uiautomator.Until
 import com.lagradost.cloudstream3.APIHolder
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.removeKey
@@ -28,6 +29,7 @@ import com.lagradost.cloudstream3.ui.setup.HAS_DONE_SETUP_KEY
 import com.lagradost.cloudstream4.core.devicetest.Dpad
 import com.lagradost.cloudstream4.core.devicetest.DpadDriver
 import com.lagradost.cloudstream4.home.HomeTvFragment
+import com.lagradost.cloudstream4.shell.TvRailSwitch
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertSame
@@ -54,11 +56,20 @@ class TvQuickSearchNavigationTest {
     private val dpad = DpadDriver()
     private val answers = FakeProvider(ANSWERS, fails = false)
     private val fails = FakeProvider(FAILS, fails = true)
+    private val carriesNothing = FakeProvider(CARRIES_NOTHING, fails = false, empty = true)
+    private val context = instrumentation.targetContext
+    private val railHome = context.getString(R.string.title_home)
+    private val railSearch = context.getString(R.string.title_search)
+    private val railLabels = listOf(
+        R.string.title_home, R.string.title_search, R.string.library, R.string.title_downloads, R.string.title_settings,
+    ).map(context::getString).toSet()
 
     @Before
     fun aPersonWhoHasSetUp() {
         answers.install()
         fails.install()
+        carriesNothing.install()
+        TvRailSwitch.useComposeRail = true
         instrumentation.runOnMainSync {
             setKey(HAS_DONE_SETUP_KEY, true)
             // A saved plugin that does not exist keeps the extension setup page from opening over Home.
@@ -68,7 +79,8 @@ class TvQuickSearchNavigationTest {
 
     @After
     fun restore() {
-        listOf(answers, fails).forEach {
+        TvRailSwitch.useComposeRail = true
+        listOf(answers, fails, carriesNothing).forEach {
             APIHolder.allProviders.remove(it)
             APIHolder.removePluginMapping(it)
         }
@@ -98,8 +110,8 @@ class TvQuickSearchNavigationTest {
         return page() as? HomeTvFragment ?: error("Not on the new home, on ${page()?.javaClass}")
     }
 
-    private fun ActivityScenario<MainActivity>.openQuickSearch(query: String) {
-        onActivity { QuickSearchFragment.pushSearch(it, query, arrayOf(ANSWERS, FAILS)) }
+    private fun ActivityScenario<MainActivity>.openQuickSearch(query: String, providers: Array<String> = arrayOf(ANSWERS, FAILS)) {
+        onActivity { QuickSearchFragment.pushSearch(it, query, providers) }
         assertTrue("No panel", device.wait(Until.hasObject(By.text(TITLE)), SCREEN_WAIT_MS))
     }
 
@@ -172,8 +184,51 @@ class TvQuickSearchNavigationTest {
         }
     }
 
+    /**
+     * 8e on the real path: nobody carries it, and `Open full search` takes the query to the real search screen, with the
+     * Compose rail (`TvRailSwitch`) marking Search, as the intent handler leaves it.
+     */
+    @Test
+    fun openFullSearchTakesTheQueryToTheSearchScreenAndTheRailMarksSearch() {
+        ActivityScenario.launch(MainActivity::class.java).use { scenario ->
+            scenario.onHome()
+            waitForMark(railHome)
+            scenario.openQuickSearch(NOBODY, arrayOf(CARRIES_NOTHING))
+            assertTrue("No 8e", device.wait(Until.hasObject(By.text("No matches")), SCREEN_WAIT_MS))
+            waitForFocus(OPEN_FULL)
+
+            dpad.center()
+            assertTrue("The panel stayed up", device.wait(Until.gone(By.text(TITLE)), SCREEN_WAIT_MS))
+            val deadline = System.currentTimeMillis() + SCREEN_WAIT_MS
+            while (scenario.page() !is SearchTvFragment && System.currentTimeMillis() < deadline) Thread.sleep(POLL_MS)
+            assertTrue("Not on search, on ${scenario.page()?.javaClass}", scenario.page() is SearchTvFragment)
+            assertEquals(R.id.navigation_search, scenario.navController().currentDestination?.id)
+            assertTrue("The field does not show the query", device.wait(Until.hasObject(By.text(NOBODY)), SCREEN_WAIT_MS))
+            waitForMark(railSearch)
+        }
+    }
+
+    /** The rail item marked as the current page, read as `TvRailNavigationTest` reads it. */
+    private fun currentMark(): String? =
+        device.findObjects(By.selected(true)).firstNotNullOfOrNull { node -> labelOf(node)?.takeIf { it in railLabels } }
+
+    private fun labelOf(node: UiObject2): String? =
+        node.text?.takeIf { it.isNotBlank() }
+            ?: node.contentDescription?.takeIf { it.isNotBlank() }
+            ?: node.children.firstNotNullOfOrNull(::labelOf)
+
+    private fun waitForMark(label: String) {
+        val deadline = System.currentTimeMillis() + SCREEN_WAIT_MS
+        while (currentMark() != label && System.currentTimeMillis() < deadline) Thread.sleep(POLL_MS)
+        assertEquals("the rail's mark", label, currentMark())
+    }
+
     /** Answers `search` with two titles, or fails it as a dead site does. Registered where a plugin's provider goes. */
-    private class FakeProvider(override var name: String, private val fails: Boolean) : MainAPI() {
+    private class FakeProvider(
+        override var name: String,
+        private val fails: Boolean,
+        private val empty: Boolean = false,
+    ) : MainAPI() {
         override var mainUrl = "https://example.invalid/${name.replace(' ', '-')}"
         override var lang = "en"
         override val hasMainPage = false
@@ -189,6 +244,7 @@ class TvQuickSearchNavigationTest {
         override suspend fun search(query: String): List<SearchResponse> {
             searched += query
             if (fails) throw IOException("TIMEOUT")
+            if (empty) return emptyList()
             return listOf(FIRST, SECOND).map { newMovieSearchResponse(it, "$mainUrl/$it", TvType.Movie, fix = false) }
         }
 
@@ -201,6 +257,9 @@ class TvQuickSearchNavigationTest {
     private companion object {
         const val ANSWERS = "Fake Quick Answers"
         const val FAILS = "Fake Quick Fails"
+        const val CARRIES_NOTHING = "Fake Quick Carries Nothing"
+        const val NOBODY = "zxqvbnmkjh"
+        const val OPEN_FULL = "Open full search"
         const val TITLE = "Quick search"
         const val DONE = "Done"
         const val FIRST = "Dune Part Two"

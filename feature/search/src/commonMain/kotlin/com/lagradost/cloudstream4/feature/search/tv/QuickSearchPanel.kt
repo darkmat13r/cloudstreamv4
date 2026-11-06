@@ -1,12 +1,16 @@
 package com.lagradost.cloudstream4.feature.search.tv
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.LocalBringIntoViewSpec
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
@@ -15,6 +19,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -23,6 +28,7 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.layout
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
@@ -35,6 +41,8 @@ import com.lagradost.cloudstream4.core.designsystem.panel.SidePanelDefaults
 import com.lagradost.cloudstream4.core.designsystem.primitive.HairlineDivider
 import com.lagradost.cloudstream4.core.designsystem.rows.ListRow
 import com.lagradost.cloudstream4.core.designsystem.rows.ListRowState
+import com.lagradost.cloudstream4.core.designsystem.scroll.RowScroll
+import com.lagradost.cloudstream4.core.designsystem.scroll.RowScrollSpec
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_quick_empty_body
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_quick_empty_headline
@@ -90,10 +98,24 @@ fun QuickSearchPanel(
                 Outcome.Failed, Outcome.Offline -> Res.string.search_state_retry to QuickSearchAction.Retry
                 Outcome.Answering, Outcome.Rows -> Res.string.setup_done to QuickSearchAction.Done
             }
+            // `Try again` carries `Retry`, as every retry does (`DEC-17`'s table); `Done` and `Open full search` have none.
+            val retries = action == QuickSearchAction.Retry
             ListRow(
                 state = ListRowState(title = stringResource(label)),
                 onClick = { onAction(action) },
                 modifier = Modifier.fillMaxWidth().focusRequester(commitFocus),
+                leading = if (retries) {
+                    {
+                        CloudStreamIcon(
+                            icon = CloudStreamIcons.Retry,
+                            contentDescription = null,
+                            size = CloudStreamIconSize.Small,
+                            tint = CloudStreamTheme.colors.ink2,
+                        )
+                    }
+                } else {
+                    null
+                },
             )
         },
     ) {
@@ -177,28 +199,55 @@ private fun PanelHeader(progress: QuickSearchProgress?) {
  * The rows, then 8d's rule above the commit row. The viewport reaches one ring's bleed past its slot at both ends and
  * gives it back as padding, so the first row stays at `SidePanelFirstRowY`, five rows fit whole above the rule, and
  * neither end cuts a ring (`BUG-37`).
+ *
+ * Scrolling is [RowScroll]'s, the downloads list's: a row that fits does not move the list, and one that does not moves
+ * it by whole rows, so no row is ever cut against the header or the rule.
  */
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun ColumnScope.ResultRows(items: List<SearchResultItem>, onAction: (QuickSearchAction) -> Unit) {
     val first = remember { FocusRequester() }
-    LazyColumn(
-        modifier = Modifier
-            .weight(1f)
-            .fillMaxWidth()
-            .bleedPastSlot(CloudStreamDimens.FocusRingBleed),
-        contentPadding = PaddingValues(vertical = CloudStreamDimens.FocusRingBleed),
-        verticalArrangement = Arrangement.spacedBy(SidePanelDefaults.RowGap),
-    ) {
-        itemsIndexed(items = items, key = { _, item -> item.id.value }) { index, item ->
-            ListRow(
-                state = ListRowState(title = item.title, subtitle = item.detailLine()),
-                onClick = { onAction(QuickSearchAction.ResultActivated(item.id)) },
-                modifier = Modifier.fillMaxWidth().then(if (index == 0) Modifier.focusRequester(first) else Modifier),
-                leading = { ResultDisc() },
-            )
-        }
+    val density = LocalDensity.current
+    val bleed = with(density) { CloudStreamDimens.FocusRingBleed.roundToPx() }
+    val gap = with(density) { SidePanelDefaults.RowGap.roundToPx() }
+    // The same rounding `spacedBy` and the row's own height get, so a pitch here is a pitch on screen.
+    val row = with(density) { CloudStreamDimens.ListRowHeight.roundToPx() }
+    val pitch = row + gap
+    val scrollSpec = remember(bleed, row, pitch) {
+        RowScrollSpec(bleed.toFloat(), bleed.toFloat(), row.toFloat(), pitch.toFloat())
     }
-    PanelRule()
+    // One child of the panel's rows slot, list and rule together: the slot spaces its children `RowGap` apart, and a
+    // second child cost the list 12dp, which cut the fifth row and made a row that fits scroll the list.
+    Column(Modifier.weight(1f).fillMaxWidth()) {
+        BoxWithConstraints(
+            Modifier
+                .weight(1f)
+                .fillMaxWidth()
+                .bleedPastSlot(CloudStreamDimens.FocusRingBleed),
+        ) {
+            val endPadding = RowScroll.listEndPadding(constraints.maxHeight, items.size, bleed, bleed, pitch, gap)
+            CompositionLocalProvider(LocalBringIntoViewSpec provides scrollSpec) {
+                LazyColumn(
+                    modifier = Modifier.fillMaxSize(),
+                    contentPadding = PaddingValues(
+                        top = CloudStreamDimens.FocusRingBleed,
+                        bottom = with(density) { endPadding.toDp() },
+                    ),
+                    verticalArrangement = Arrangement.spacedBy(SidePanelDefaults.RowGap),
+                ) {
+                    itemsIndexed(items = items, key = { _, item -> item.id.value }) { index, item ->
+                        ListRow(
+                            state = ListRowState(title = item.title, subtitle = item.detailLine()),
+                            onClick = { onAction(QuickSearchAction.ResultActivated(item.id)) },
+                            modifier = Modifier.fillMaxWidth().then(if (index == 0) Modifier.focusRequester(first) else Modifier),
+                            leading = { ResultDisc() },
+                        )
+                    }
+                }
+            }
+        }
+        PanelRule()
+    }
     // The first answer moves focus off `Done`, which was the only stop until then: 8d draws it on the first row.
     val hasRows = items.isNotEmpty()
     LaunchedEffect(hasRows) { if (hasRows) first.requestFocus() }
@@ -231,30 +280,33 @@ private fun ResultDisc() {
 private fun ColumnScope.PanelState(glyph: ImageVector, headline: String, body: String) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
-    Column(
-        modifier = Modifier.weight(1f).fillMaxWidth(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-    ) {
-        Spacer(Modifier.height(QuickSearchPanelDefaults.StateTop))
-        Box(
-            modifier = Modifier
-                .size(QuickSearchPanelDefaults.StateGlyphSize)
-                .background(colors.raised, CloudStreamTheme.shapes.large),
-            contentAlignment = Alignment.Center,
+    // One child of the rows slot, as `ResultRows` is, so the rule lands where it does over rows.
+    Column(Modifier.weight(1f).fillMaxWidth()) {
+        Column(
+            modifier = Modifier.weight(1f).fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            CloudStreamIcon(
-                icon = glyph,
-                contentDescription = null,
-                size = CloudStreamIconSize.Large,
-                tint = colors.muted,
-            )
+            Spacer(Modifier.height(QuickSearchPanelDefaults.StateTop))
+            Box(
+                modifier = Modifier
+                    .size(QuickSearchPanelDefaults.StateGlyphSize)
+                    .background(colors.raised, CloudStreamTheme.shapes.large),
+                contentAlignment = Alignment.Center,
+            ) {
+                CloudStreamIcon(
+                    icon = glyph,
+                    contentDescription = null,
+                    size = CloudStreamIconSize.Large,
+                    tint = colors.muted,
+                )
+            }
+            Spacer(Modifier.height(QuickSearchPanelDefaults.StateGlyphGap))
+            Text(text = headline, style = typography.railTitle, color = colors.ink, textAlign = TextAlign.Center)
+            Spacer(Modifier.height(QuickSearchPanelDefaults.StateTextGap))
+            Text(text = body, style = typography.label, color = colors.muted, textAlign = TextAlign.Center)
         }
-        Spacer(Modifier.height(QuickSearchPanelDefaults.StateGlyphGap))
-        Text(text = headline, style = typography.railTitle, color = colors.ink, textAlign = TextAlign.Center)
-        Spacer(Modifier.height(QuickSearchPanelDefaults.StateTextGap))
-        Text(text = body, style = typography.label, color = colors.muted, textAlign = TextAlign.Center)
+        PanelRule()
     }
-    PanelRule()
 }
 
 /**

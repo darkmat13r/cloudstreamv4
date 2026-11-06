@@ -138,6 +138,31 @@ class QuickSearchPanelDeviceTest {
         assertEquals(SECOND, dpad.focused())
     }
 
+    /** `RowScroll`, shared with downloads: five rows fit and do not move the list; the sixth moves it by one whole row. */
+    @Test
+    fun aSixthRowMovesTheListByOneWholeRowAndBackRestoresIt() {
+        val viewModel = show()
+        answer(Long, viewModel)
+        assertEquals(FIRST, dpad.focused())
+        val firstTop = rowTop(FIRST)
+        val fifthTop = rowTop(FIFTH)
+
+        assertEquals(listOf(SECOND, THIRD, FOURTH, FIFTH), (1..4).map { dpad.press(Dpad.Down) })
+        assertEquals("A row that fits moved the list", firstTop, rowTop(FIRST), 0.5f)
+
+        assertEquals(SIXTH, dpad.press(Dpad.Down))
+        rule.waitForIdle()
+        assertEquals("The sixth row is not where the fifth was", fifthTop, rowTop(SIXTH), 0.5f)
+        val pitch = fifthTop - rowTop(FOURTH)
+        assertEquals("Not one whole row", fifthTop - pitch, rowTop(FIFTH), 0.5f)
+
+        assertEquals(listOf(FIFTH, FOURTH, THIRD, SECOND, FIRST), (1..5).map { dpad.press(Dpad.Up) })
+        rule.waitForIdle()
+        assertEquals("Back at the top, the first row is not where it began", firstTop, rowTop(FIRST), 0.5f)
+    }
+
+    private fun rowTop(title: String): Float = rule.onNodeWithText(title).fetchSemanticsNode().boundsInRoot.top
+
     // ---- 8e and the failures ----
 
     @Test
@@ -199,6 +224,18 @@ class QuickSearchPanelDeviceTest {
         rule.assertScreenshot("quick-search-answering")
     }
 
+    /** Past the fifth row: the list has moved by one whole row, and nothing is cut at the header or the rule. */
+    @Test
+    fun screenshotScrolledByOneRow() {
+        val viewModel = show()
+        answer(Long, viewModel)
+        assertEquals(FIRST, dpad.focused())
+        repeat(5) { dpad.press(Dpad.Down) }
+        assertEquals(SIXTH, dpad.focused())
+        rule.waitForIdle()
+        rule.assertScreenshot("quick-search-scrolled")
+    }
+
     /** 8e: everyone answered, nobody carries it, and the action that can change that has the focus. */
     @Test
     fun screenshotEmpty() {
@@ -246,6 +283,7 @@ class QuickSearchPanelDeviceTest {
         const val THIRD = "Dune"
         const val FOURTH = "Dune: Prophecy"
         const val FIFTH = "Dune (1984)"
+        const val SIXTH = "Duna"
 
         val Rail = listOf(
             NavRailItem("Home", CloudStreamIcons.Home),
@@ -275,6 +313,14 @@ class QuickSearchPanelDeviceTest {
             answered = 3,
             failed = 2,
             total = 12,
+        )
+        /** More rows than the panel holds whole. */
+        val Long = Answering.copy(
+            items = Answering.items + listOf(
+                hit(SIXTH, "Gogo", "Movie"),
+                hit("Dune Messiah", "Vidsrc", "TV Series"),
+                hit("Dune: Water", "FilmXY", "Movie"),
+            ),
         )
         val Empty = QuickSearchProgress(items = emptyList(), answered = 12, failed = 0, total = 12)
         val Failed = QuickSearchProgress(items = emptyList(), answered = 0, failed = 12, total = 12)
