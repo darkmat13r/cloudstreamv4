@@ -4805,3 +4805,62 @@ that exist because the old downloader broke them:
 - No Android device run: a test APK would hit the same minSdk wall.
 - DNS rebinding, as above.
 - The engine's unthrottled slowdown is not profiled.
+
+## KMP-52 — The Mac download service and its data · **measured 2026-11-06**
+
+`:media:download` runs on the JVM in `:desktopApp`, in package `com.lagradost.cloudstream4.downloads`, with a queue, persistence and the two
+download sources. There is no UI: that is `KMP-54`, which wires `source()` and `series(id)` into its screen. No caller enqueues anything yet.
+
+**The contract with `KMP-54`.**
+- `DesktopDownloadsSource : DownloadsSource`. `storage` is the volume holding the download folder, non-null from the first emission.
+- `DesktopDownloadSeriesSource : DownloadSeriesSource`.
+- The host `DesktopDownloads` has `delete(Set<DownloadTitleId>)`, `deleteEpisodes(Set<DownloadEpisodeId>)`, and `fileOf` for a title and
+  for an episode. `fileOf` is null until done and on disk; for a series it gives the folder.
+- Ids are stable across restarts.
+- `contents` emits at most once every 250 ms while running, and not at all when idle.
+- There are no changes to `:feature:downloads`.
+
+**Shape.**
+- `enqueue(DesktopDownloadRequest)` accepts VIDEO links only; HLS, DASH and torrents are refused with a typed `EnqueueRefusal`.
+  `DesktopDownloadLink.of(RemoteLink)` adapts the sandbox's link.
+- At most 3 downloads run at once, first in, first out. Pause frees the slot (on Android a paused download keeps it).
+- Cancel discards the parts and the record.
+- Enqueuing a paused or failed episode again takes the new link, because signed URLs expire.
+- The engine writes straight into `~/Downloads/CloudStream/<title>/`. On the JVM its atomic move works, so there is no staging (unlike `KMP-59`).
+- File names are `S01E02 Name.mp4`, or the title for a film, with ` (2)` on a clash. `DownloadPaths` restates the engine's internal name
+  rules more strictly, so the result is always one safe path segment.
+- The HTTP client is `HttpClientFactory(posterHttpClient())`. It verifies TLS and checks the resolved and connected addresses, which also
+  closes the engine's DNS-rebinding gap on the Mac.
+- Delete removes only empty folders, and refuses a folder whose real path is not directly inside the download root.
+- After a restart nothing starts by itself. An unfinished episode comes back Paused, with its bytes measured from the engine's part files.
+  A finished episode whose file is gone is dropped.
+- Logging: the exception class and a fixed text only.
+
+**Persisted: `~/.cloudstream4/downloads.json`, `0600`, written atomically.**
+- *What it holds:* ids, metadata, folder and file name, state, byte counts and queue order.
+- *The link, in plain text:* **`url`, `headers` and `referer`**, so a paused download can resume after a restart. Headers can carry
+  cookies or tokens.
+- *Reading it back:* everything is validated again (path segments, enum names, an http(s) URL), and a bad record is dropped.
+- *What stays out:* no `toString` includes the link.
+
+**Tests** (local, none CI). Counted from the XML:
+- `DesktopDownloadsTest`: 11/11, against a JDK `HttpServer` with Range and ETag support; every completion is compared byte for byte.
+  It covers:
+  - done, and `fileOf` only at done
+  - at most 3 running
+  - pause and resume continuing from disk, with a ranged request after 0
+  - a restart with a new host over the same files: same ids, Paused, then resumed and byte-identical
+  - cancel; delete of a title and of an episode
+  - a file deleted outside the app, noticed on `refresh`
+  - the emission rate: 2.64–2.68/s while running, every gap ≥ 240 ms, nothing over 1.25 s idle
+  - the file's permissions are `rw-------`
+  - no link text in logs, stdout, stderr or any public `toString`
+- Without the 250 ms throttle and with a fourth slot, 3 of these fail.
+- Full `:desktopApp:jvmTest`: 406/0. `:desktopApp:createDistributable` builds; the app was not launched.
+
+**Not verified.**
+- The production client against a real host.
+- A full disk.
+- An unreadable downloads file, where `contents` throws and `enqueue` returns `StoreUnreadable`.
+- A process kill, as opposed to `close()`.
+- A failure's reason is in memory only, so after a restart a failed episode reads as Paused, as the contract says.
