@@ -3935,7 +3935,9 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field search_types_list_key I
 	public static field season I
 	public static field season_format I
+	public static field season_other I
 	public static field season_short I
+	public static field season_specials I
 	public static field seek_back_10_seconds I
 	public static field seek_forward_10_seconds I
 	public static field select_all I
