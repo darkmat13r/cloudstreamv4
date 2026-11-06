@@ -3196,10 +3196,13 @@ public final static class com/lagradost/cloudstream3/R$plurals : java/lang/Objec
 	public static field home_sections_failed I
 	public static field links_hidden I
 	public static field search_state_no_results_body I
+	public static field search_state_no_suggestions_action I
+	public static field search_state_no_suggestions_body I
 	public static field search_state_partial_headline I
 	public static field search_tv_recent_count I
 	public static field search_tv_result_count I
 	public static field search_tv_sources_count I
+	public static field search_tv_suggestion_sources I
 }
 
 public final static class com/lagradost/cloudstream3/R$string : java/lang/Object {
@@ -3887,6 +3890,8 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field search_state_no_results_detail I
 	public static field search_state_no_results_headline I
 	public static field search_state_no_results_type_filter I
+	public static field search_state_no_suggestions_detail I
+	public static field search_state_no_suggestions_headline I
 	public static field search_state_offline_body I
 	public static field search_state_offline_headline I
 	public static field search_state_retry I
@@ -3900,6 +3905,9 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field search_tv_source_pinned I
 	public static field search_tv_sources_label I
 	public static field search_tv_sources_panel_meta I
+	public static field search_tv_suggestion_recent I
+	public static field search_tv_suggestion_recent_suggested I
+	public static field search_tv_suggestion_suggested I
 	public static field search_types_list_key I
 	public static field season I
 	public static field season_format I
