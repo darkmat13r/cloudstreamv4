@@ -3496,7 +3496,7 @@ dump, so `DownloadFacts` and its `Flow.map` helper classes appear, as do the man
 
 ## KMP-38 — The TV detail page on Android (queue `Q20`, boards 7a, 7b, 7a-ii) · **measured 2026-11-04**, id lift **2026-11-05**
 
-**Status:** in pr #153 · **Owner's rulings it follows:** `DEC-17` (hollow neutral failure, panel commit rule, the
+**Status:** `#153` merged; the icon-only row follow-up is in pr `#170` · **Owner's rulings it follows:** `DEC-17` (hollow neutral failure, panel commit rule, the
 program's merge rule). Android TV only. Phone and `EMULATOR` unchanged. The old `ResultFragmentTv` stays as
 the rollback for one release.
 
@@ -3902,6 +3902,55 @@ own — the four rails already live in their own files for exactly this reason. 
 over because of the host plumbing that `DetailPlayback.kt` would take anyway. `DetailScreenTvDeviceTest.kt` splits along the suite's own seams — focus-graph walks, panels,
 and content states — but its fixtures and `DpadDriver` helpers are shared, so that one wants `INF-10`'s view
 on where shared device-test helpers belong before it is cut.
+
+### Follow-up: the action row becomes icon-only (`DEC-17`, boards 7f–7l) · **2026-11-06**
+
+`#153` shipped the row as five text buttons. The owner then asked for 7a's row redrawn with icon-only
+secondaries; boards **7f–7l** are in `design/TV Detail Row.dc.html`, and the rule they needed is
+`ui-components.md` rule 4's **one ruled exception** (`DEC-17`, `#168`), with the watchlist's glyph pair
+settled by `#169`.
+
+**`#170`, in pr:** Start over and Trailer become `IconOnlyButton` cells and the primary gains its `Play`
+glyph; the watchlist leaves the chrome row for the action row as `Add` (Plus) off and `Done` (Check) on;
+the row's box becomes `IconTargetCell` with the 32dp text buttons centred; `DetailCopy` passes
+`CloudStreamIcons.Retry` (board 7l); board 7a-ii's rail header reads `24 · HDREZKA`.
+
+The watchlist is an `IconOnlyButton`, **not** an `IconOnlyToggle`: OK opens the five-value status panel
+rather than flipping a flag, and the toggle's checked `raised` fill is what `#169` removed. State is said
+once, by shape. Favourite stays in the chrome row — no board moves it, and it is a real toggle.
+
+A new `CloudStreamIcons.Added` on Tabler `Check` **cannot** be added: `Done` is already that glyph and is
+live at `SubtitlePicker.kt:207`, so `CloudStreamIconsTest."one glyph per meaning"` fails with
+`expected:<[]> but was:<[[Done, Added]]>`. Measured, not argued; `#169` is the answer and the test is
+untouched.
+
+`DetailSkeletonDefaults.ActionBarWidth` is re-derived as
+`ResumeWidth + 3 × (MinFocusGap + IconTargetCell) + MinFocusGap + TextButtonMinWidth` = **532dp** — the
+**film** row, which is now the shorter of the two, the opposite of the boards, because 7g's extra length
+was Download and Mark watched. On the recorded images the bar ends at x739 and a film's row at x741, two
+pixels apart; the old 784dp overhung by 46.
+
+### Open after `#170`
+
+- **The cast row is 17.75 dp short of board 7a, and that is a live question.** Measured on the recorded
+  references: the avatars' first inked row moves 478 → **499 px**, identical on both the series and film
+  pages. The viewport is 540dp tall (`DetailFocusScrollTest.containerSize`), so 720/540 = 1.3333 px/dp and
+  cast sits at **374.25 dp** against the board's **392**. The +15.75dp of that move is exactly the row
+  growing 32dp → 48dp, so `#170` narrowed the gap from 33.5dp without touching the ladder. It is **not** a
+  missing rail header — "Cast 3" draws normally at x33 — and it is **not** `BUG-40`, whose shift is a
+  uniform 5dp inside the head block. It wants its own measurement against the board.
+- **Icon-only glyphs render `ink` at rest, not `muted`.** That is `DS-17`, app-wide; `#170` does not touch
+  `IconOnlyButton`'s tint, and every reference showing an icon-only control at rest changes again when
+  DS-17 lands.
+- **Season, Episodes and Full synopsis still trail the row as text buttons.** They are on no board here and
+  stay until their replacements exist. The row's order is the board's **as a prefix**, so nothing is
+  reordered when they go.
+- **Queued, in order:** board 7i, the inline episode list with season chips (Season and Episodes leave the
+  row); boards 7j and 7k, the collapsed synopsis opening the panel (Synopsis leaves); then Download and
+  Mark watched for films, wired to real `DetailAction`s with tests — `DetailAction` has neither today,
+  which is why 7g's two cells are not drawn. **More** has no board yet.
+- **Board 6a's chip gap is wrong**, not the code's: 6a draws range chips at 12dp where `ChipRow` spaces at
+  `ChipRowSpacing` 24dp. Board 7i is drawn at the token. Raised as an owner correction.
 
 ---
 
