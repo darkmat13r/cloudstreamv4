@@ -146,6 +146,8 @@ class QuickSearchPanelDeviceTest {
         assertEquals(FIRST, dpad.focused())
         val firstTop = rowTop(FIRST)
         val fifthTop = rowTop(FIFTH)
+        // Measured before anything moves: after, every row is a pitch higher and a difference of two reads nothing.
+        val pitch = rowTop(SECOND) - firstTop
 
         assertEquals(listOf(SECOND, THIRD, FOURTH, FIFTH), (1..4).map { dpad.press(Dpad.Down) })
         assertEquals("A row that fits moved the list", firstTop, rowTop(FIRST), 0.5f)
@@ -153,7 +155,6 @@ class QuickSearchPanelDeviceTest {
         assertEquals(SIXTH, dpad.press(Dpad.Down))
         rule.waitForIdle()
         assertEquals("The sixth row is not where the fifth was", fifthTop, rowTop(SIXTH), 0.5f)
-        val pitch = fifthTop - rowTop(FOURTH)
         assertEquals("Not one whole row", fifthTop - pitch, rowTop(FIFTH), 0.5f)
 
         assertEquals(listOf(FIFTH, FOURTH, THIRD, SECOND, FIRST), (1..5).map { dpad.press(Dpad.Up) })

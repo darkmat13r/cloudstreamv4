@@ -30,6 +30,7 @@ import com.lagradost.cloudstream4.core.devicetest.Dpad
 import com.lagradost.cloudstream4.core.devicetest.DpadDriver
 import com.lagradost.cloudstream4.home.HomeTvFragment
 import com.lagradost.cloudstream4.shell.TvRailSwitch
+import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertSame
@@ -80,6 +81,9 @@ class TvQuickSearchNavigationTest {
     @After
     fun restore() {
         TvRailSwitch.useComposeRail = true
+        // The search screen records what it searched. Left in history, it is a recent search containing "q", and
+        // `TvSearchNavigationTest`'s one-letter 8b test then gets a suggestion row instead: measured, in one run.
+        runBlocking { DataStoreSearchHistory().remove(NOBODY) }
         listOf(answers, fails, carriesNothing).forEach {
             APIHolder.allProviders.remove(it)
             APIHolder.removePluginMapping(it)
@@ -258,7 +262,8 @@ class TvQuickSearchNavigationTest {
         const val ANSWERS = "Fake Quick Answers"
         const val FAILS = "Fake Quick Fails"
         const val CARRIES_NOTHING = "Fake Quick Carries Nothing"
-        const val NOBODY = "zxqvbnmkjh"
+        // No "q": `TvSearchNavigationTest` types one, and a recent search containing it would be suggested.
+        const val NOBODY = "zxvbnmkjh"
         const val OPEN_FULL = "Open full search"
         const val TITLE = "Quick search"
         const val DONE = "Done"
