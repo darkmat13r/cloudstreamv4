@@ -197,8 +197,20 @@
 <string name="downloaded">"Téléchargé"</string>
 <string name="downloaded_file">"Fichier téléchargé"</string>
 <string name="downloading">"Téléchargement"</string>
+<string name="downloads_browse_library">"Parcourir la bibliothèque"</string>
 <string name="downloads_delete_select">"Sélectionner les éléments à supprimer"</string>
 <string name="downloads_empty">"Aucun téléchargement."</string>
+<string name="downloads_empty_body">"Les téléchargements lancés depuis la liste d'épisodes d'un titre apparaissent ici et se lisent sans connexion."</string>
+<string name="downloads_empty_headline">"Aucun téléchargement pour l'instant"</string>
+<string name="downloads_free_up_space">"Libérer de l'espace"</string>
+<string name="downloads_load_failed_body">"Vos fichiers téléchargés n'ont pas été modifiés."</string>
+<string name="downloads_load_failed_headline">"Impossible de lire vos téléchargements"</string>
+<string name="downloads_offline_pill">"Hors-ligne · pas de connexion"</string>
+<string name="downloads_play_from_link">"Lire depuis un lien"</string>
+<string name="downloads_select">"Sélectionner"</string>
+<string name="downloads_storage_full_headline">"Stockage insuffisant"</string>
+<string name="downloads_storage_legend" formatted="true">"%1$s sur %2$s utilisés · %3$s en téléchargements"</string>
+<string name="downloads_storage_needs" formatted="true">"%s supplémentaires requis"</string>
 <string name="duplicate_add">"Ajouter"</string>
 <string name="duplicate_message_multiple" formatted="true">"Des doublons potentiels ont été trouvés dans votre bibliothèque : \n \n%s \n \nSouhaitez-vous ajouter cet élément, remplacer les éléments existants ou annuler l'action ?"</string>
 <string name="duplicate_message_single" formatted="true">"Il semble qu'un élément potentiellement dupliqué existe déjà dans votre bibliothèque : '%s. \n \nSouhaitez-vous ajouter cet élément, remplacer l'élément existant ou annuler l'action ?"</string>
@@ -577,8 +589,12 @@
 <string name="search_provider_text_providers">"Recherche par fournisseur"</string>
 <string name="search_provider_text_types">"Recherche par types"</string>
 <string name="search_state_idle_body_desktop">"Saisissez un titre. Les résultats apparaissent sous chaque source dès qu'elle répond."</string>
+<string name="search_state_no_results_type_filter" formatted="true">"%s uniquement. Votre filtre de type restreint la recherche."</string>
 <string name="search_suggestions">"Suggestions de recherche"</string>
 <string name="search_suggestions_des">"Afficher des suggestions de recherche pendant la saisie"</string>
+<string name="search_tv_source_failed" formatted="true">"ÉCHEC %s"</string>
+<string name="search_tv_source_pinned">"ÉPINGLÉ"</string>
+<string name="search_tv_sources_panel_meta" formatted="true">"%1$d SUR %2$d ACTIVÉS · LES MODIFICATIONS PRENNENT EFFET AVEC FINIR"</string>
 <string name="season">"Saison"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"S"</string>

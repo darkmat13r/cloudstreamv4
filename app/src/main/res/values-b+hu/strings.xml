@@ -166,8 +166,20 @@
 <string name="downloaded">"Letöltve"</string>
 <string name="downloaded_file">"Letöltött fájl"</string>
 <string name="downloading">"Letöltés"</string>
+<string name="downloads_browse_library">"Könyvtár böngészése"</string>
 <string name="downloads_delete_select">"Válassza ki a Törlendő Elemeket"</string>
 <string name="downloads_empty">"Jelenleg nincs letöltés."</string>
+<string name="downloads_empty_body">"A cím epizódlistájából indított letöltések itt jelennek meg, és kapcsolat nélkül is lejátszhatók."</string>
+<string name="downloads_empty_headline">"Még nincs letöltés"</string>
+<string name="downloads_free_up_space">"Hely felszabadítása"</string>
+<string name="downloads_load_failed_body">"A letöltött fájlok nem változtak."</string>
+<string name="downloads_load_failed_headline">"Nem sikerült beolvasni a letöltéseket"</string>
+<string name="downloads_offline_pill">"Offline · nincs kapcsolat"</string>
+<string name="downloads_play_from_link">"Lejátszás hivatkozásról"</string>
+<string name="downloads_select">"Kiválasztás"</string>
+<string name="downloads_storage_full_headline">"Nincs elég tárhely"</string>
+<string name="downloads_storage_legend" formatted="true">"%1$s / %2$s használatban · %3$s a letöltésekben"</string>
+<string name="downloads_storage_needs" formatted="true">"Még %s szükséges"</string>
 <string name="duplicate_add">"Hozzáadás"</string>
 <string name="duplicate_message_multiple" formatted="true">"Potenciálisan dupla elemek a könyvtárjában: \n \n%s \n \nSzeretné hozzáadni ezt az elemet mindenképpen, ezzel felülírva a jelenlegit, vagy visszavonja a műveletet?"</string>
 <string name="duplicate_message_single" formatted="true">"Úgy tűnik egy potenciálisan dupla elem már létezik a könyvtárjában: '%s.' \n \nMindenképpen hozzá akarja adni ezt az elemet, ezzel felülírva a régit, vagy visszavonja a műveletet?"</string>
@@ -513,8 +525,12 @@
 <string name="search_provider_text_providers">"Keresés szolgáltatók szerint"</string>
 <string name="search_provider_text_types">"Keresés típusok szerint"</string>
 <string name="search_state_idle_body_desktop">"Írjon be egy címet. Az eredmények az egyes források alatt jelennek meg, amint válaszolnak."</string>
+<string name="search_state_no_results_type_filter" formatted="true">"Csak %s. A típusszűrő szűkíti a keresést."</string>
 <string name="search_suggestions">"Keresési javaslatok"</string>
 <string name="search_suggestions_des">"Mutasson keresési javaslatok gépelés közben"</string>
+<string name="search_tv_source_failed" formatted="true">"SIKERTELEN %s"</string>
+<string name="search_tv_source_pinned">"KITŰZVE"</string>
+<string name="search_tv_sources_panel_meta" formatted="true">"%2$d KÖZÜL %1$d ENGEDÉLYEZVE · A VÁLTOZÁSOK A KÉSZ GOMBBAL ÉRVÉNYESÜLNEK"</string>
 <string name="season">"Évad"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"Év"</string>

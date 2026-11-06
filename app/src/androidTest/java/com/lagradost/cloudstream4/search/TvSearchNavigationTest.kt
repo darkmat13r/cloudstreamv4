@@ -104,12 +104,57 @@ class TvSearchNavigationTest {
         }
     }
 
+    /** `BUG-34` on the real rail, which is outside the screen's composition. */
+    @Test
+    fun leftFromTheFieldReachesTheRail() {
+        ActivityScenario.launch(MainActivity::class.java).use {
+            openSearchFromTheRail()
+            onTheField()
+            assertEquals(RAIL_SEARCH, dpad.press(Dpad.Left))
+        }
+    }
+
+    /** `Sources` opens 4d on the real path. Back closes it with the screen still there, and so does Done. */
+    @Test
+    fun sourcesOpensThePanelAndBothWaysOutKeepTheScreen() {
+        ActivityScenario.launch(MainActivity::class.java).use { scenario ->
+            openSearchFromTheRail()
+            onTheField()
+            assertEquals(SOURCES, dpad.press(Dpad.Right))
+            assertEquals("Right past `Sources` stays put", SOURCES, dpad.press(Dpad.Right))
+
+            dpad.center()
+            assertTrue("No panel", device.wait(Until.hasObject(By.text(DONE)), SCREEN_WAIT_MS))
+            device.pressBack()
+            assertTrue("Back left the panel up", device.wait(Until.gone(By.text(DONE)), SCREEN_WAIT_MS))
+            assertEquals(SearchTvFragment::class.java, scenario.currentFragment()?.javaClass)
+            assertEquals(SOURCES, dpad.focused())
+
+            dpad.center()
+            assertTrue("No panel the second time", device.wait(Until.hasObject(By.text(DONE)), SCREEN_WAIT_MS))
+            dpad.press(Dpad.Down)
+            dpad.center()
+            assertTrue("Done left the panel up", device.wait(Until.gone(By.text(DONE)), SCREEN_WAIT_MS))
+            assertEquals(SearchTvFragment::class.java, scenario.currentFragment()?.javaClass)
+            assertEquals(SOURCES, dpad.focused())
+        }
+    }
+
+    private fun onTheField() {
+        var field = dpad.press(Dpad.Right)
+        repeat(RAIL_PRESSES) {
+            if (!field.isField()) field = dpad.press(if (field == SOURCES) Dpad.Left else Dpad.Up)
+        }
+        assertTrue("Never reached the field, last on $field", field.isField())
+    }
+
     /** The empty field has no text to be named by, so the driver names it by class and bounds. */
     private fun String?.isField() = this?.startsWith(EDIT_TEXT_CLASS) == true
 
     private companion object {
         const val RAIL_SEARCH = "Search"
         const val SOURCES = "Sources"
+        const val DONE = "Done"
         const val RAIL_WAIT_MS = 5_000L
         const val SCREEN_WAIT_MS = 10_000L
         const val SETUP_BACK_PRESSES = 3

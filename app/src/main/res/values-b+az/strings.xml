@@ -48,8 +48,20 @@
 <string name="download_started">"Yükləmə başladıldı"</string>
 <string name="downloaded">"Yükləndi"</string>
 <string name="downloading">"Yüklənir"</string>
+<string name="downloads_browse_library">"Kitabxanaya bax"</string>
 <string name="downloads_delete_select">"Silinəcək faylları seçin"</string>
 <string name="downloads_empty">"Hal-hazırda heç bir yükləmə yoxdur."</string>
+<string name="downloads_empty_body">"Başlığın bölüm siyahısından başlatdığınız yükləmələr burada görünür və bağlantı olmadan oynadılır."</string>
+<string name="downloads_empty_headline">"Hələ yükləmə yoxdur"</string>
+<string name="downloads_free_up_space">"Yer boşalt"</string>
+<string name="downloads_load_failed_body">"Yüklənmiş fayllarınız dəyişdirilməyib."</string>
+<string name="downloads_load_failed_headline">"Yükləmələriniz oxuna bilmədi"</string>
+<string name="downloads_offline_pill">"Oflayn · bağlantı yoxdur"</string>
+<string name="downloads_play_from_link">"Keçiddən oynat"</string>
+<string name="downloads_select">"Seç"</string>
+<string name="downloads_storage_full_headline">"Yaddaş kifayət deyil"</string>
+<string name="downloads_storage_legend" formatted="true">"%1$s / %2$s istifadə olunub · Yükləmələrdə %3$s"</string>
+<string name="downloads_storage_needs" formatted="true">"Daha %s lazımdır"</string>
 <string name="duration_format" formatted="true">"%d dəqiqə"</string>
 <string name="eigengraumode_settings">"Pleyer oynadılma sürəti"</string>
 <string name="encoding_error">"Kodlama xətası"</string>
@@ -166,6 +178,10 @@
 <string name="search_hint">"Axtar…"</string>
 <string name="search_poster_img_des">"Afişa"</string>
 <string name="search_state_idle_body_desktop">"Başlıq yazın. Hər mənbə cavab verdikcə nəticələr onun altında görünür."</string>
+<string name="search_state_no_results_type_filter" formatted="true">"Yalnız %s. Növ filtriniz axtarışı daraldır."</string>
+<string name="search_tv_source_failed" formatted="true">"UĞURSUZ %s"</string>
+<string name="search_tv_source_pinned">"SABİTLƏNİB"</string>
+<string name="search_tv_sources_panel_meta" formatted="true">"%2$d İÇİNDƏN %1$d AKTİV · DƏYİŞİKLİKLƏR HAZIR İLƏ TƏTBİQ OLUNUR"</string>
 <string name="season">"Sezon"</string>
 <string name="season_short">"S"</string>
 <string name="seek_back_10_seconds">"10 saniyə geri keç"</string>

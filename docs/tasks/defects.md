@@ -1500,13 +1500,13 @@ changes for them until they act on it.
 so that path is unchanged. A document-tree folder. A real queue service: the slot is measured as `currentDownloads` letting go of the id and `isFailed`, which is what the
 service filters on. The UI above was read, not driven. An unknown-length source that ends uncleanly after its last byte now fails where it used to finish: that follows from fix 2 and has
 no test. A range still in flight keeps reading up to the end of its range after a failure before its job ends, at most 10 MiB; on loopback that took 303 ms, and a slow source will take longer.
-**Unexplained:** the length read straight after a retry was once still the earlier one, and correct a moment later, so the test now waits up to 10 s for it. The cause was not established.
+**Explained by `BUG-39`:** the length read straight after a retry was once still the earlier one, and correct a moment later, so the test waits up to 10 s for it.
 
 ---
 
 ## BUG-37 — On TV search's history, the first row's focus ring is cut off at the top · **low** · measured 2026-11-05
 
-**Status:** open, not fixed · found by `INF-11`'s first screenshot run · `SearchRecentColumn.kt`
+**Status:** fixed in `KMP-42`: the list carries the ring's bleed as content padding, and with that padding removed `search-history-filled` fails with the top edge cut off · found by `INF-11`'s first screenshot run · `SearchRecentColumn.kt`
 
 When the first history row has focus, its ring has no top edge. In `search-history-focus-row.png` (`Television_720p`, 1280x720), the ring's sides
 start at y 250, and above the row at x 700 there is no ring pixel at all. The bottom edge is drawn, white at y 317 and 318. The row is the first item
@@ -1534,7 +1534,7 @@ behaviour that task had to keep.
 
 ## BUG-34 — On TV, LEFT from a text field never reaches the rail · **medium** · measured 2026-11-05
 
-**Status:** open. Measured on `Television_720p`, API 36, with the Compose rail, driven by `DpadDriver`.
+**Status:** fixed for search in `KMP-42`, and still open for the library's filter, which passes no `onLeftEdge`. The cause was as guessed below: `TextField` now handles Left before the cursor does, and calls `onLeftEdge` when nothing in the composition is to its left. Measured on `Television_720p`, API 36, with the Compose rail, driven by `DpadDriver`.
 
 From the search field or the library's filter, LEFT does nothing, however many times it is pressed. A person on the top
 row of either page has to go down a row first to reach the rail. Down still leaves the field, so it is not a trap.
@@ -1559,3 +1559,74 @@ route was **not established**. The probe above took a different route and did no
 **Not established either:** the cause. The likely place is Compose's D-pad handling in a text field, which may consume the
 key when nothing in the Compose page lies to the left, so the view system never searches for the rail. That is a guess from
 the symptom, and those sources were not read.
+
+---
+
+## BUG-39 — A download could duplicate bytes in its file, or report success with no file, through two MediaStore races · **high** · measured 2026-11-05
+
+**Status:** both fixed in the PR that adds this entry, on the owner's decision. `Q14`'s screen is not involved.
+
+**The defect.** `setupStream` took a resume's `startAt` from `SafeFile.lengthOrThrow()`, which on `MediaFile` reads MediaStore's `_size` column (from SafeFile 0.0.8's bytecode), and `_size` trails the file. The stream then opens in append mode. `EpisodeDownloadInstance` retries by itself on `retrySame`, 1 to 8 ms after the close. So a short read asked for bytes the file already had and appended them. The download reported the right count over a wrong file, with a stretch repeated from the point the connection dropped, and nothing said so.
+
+**The fix.** `setupStream` and `addToQueue`'s "over 98% is complete" check read the file's own length, `openFileDescriptor().statSize`, through `fileLengthOnDisk`. If that cannot be read, they fall back to the old read. No published signature changes.
+
+### Measured
+
+All of it on TV emulators (`Television_720p`, `Television_720p_2`) against a fake server on loopback. **One kind of emulator over loopback is not a real device.** The scenario: a first mirror drops at 12 MiB of 15, a second at 5 MiB.
+
+| | Rounds | Corrupt | Success with no file (below) |
+|---|---|---|---|
+| Before the fix, three runs | 900 | **53** (20, 11, 22) | 29 |
+| After the length fix | 300 | **0** | 6 |
+| After both fixes | 300 | **0** | **0** |
+
+- After the fix, 294 rounds ended with a file. Every one held exactly what `bytesWritten` reported, read back and checked byte by byte. All 272 that resumed asked for exactly 5,242,880.
+- Before it, the worst case asked for `GET 65536-` and left 10,420,224 bytes against 5,242,880 reported. The first wrong byte was at exactly 5,242,880 every time.
+- The same scenario with one mirror and a larger file, 120 rounds before the fix: every automatic retry was correct. Why the second mirror's case is the one that goes wrong was not established.
+
+**Other measurements of the lag, before the fix:** short in 15 of 150 failures polled for 2 s, all caught up by 33 ms, none wrong at 2 s; `fstat` read 62,300,160 where the app read 60,465,152; a failure of the old assertion read 1,441,792 against 15,728,640 written, timing not measured.
+
+### The tests
+
+- `DownloadFactsDeviceTest` compared `fileInfo.fileLength` with `bytesWritten` straight after the end, so it failed on the lag alone, including in unrelated full `:app` runs. It now asserts what is guaranteed: the bytes read back equal `bytesWritten`, and `_size` catches up within 10 s. `awaitFileLength` returns the value it compared, because a second read can be short again. A planted one-byte mismatch turned all 6 tests red.
+- `aRetryAppendsNothingTheFileAlreadyHolds` runs 80 rounds. Each must end failed, keep its file, hold exactly what was reported, and have every byte right. Control runs: on the unfixed downloader it went red at round 18 on corruption; with only the length fix, red at rounds 30, 78, 5 and 34 on `completed=true`. **It is probabilistic:** at the measured rates 80 rounds catch the duplication about 99% and the false success about 90% of the time. A test that forces a short `_size` was tried, by resuming with the stream still open. It passed on the unfixed code, so it was dropped.
+
+### What else reads `_size`, not changed
+
+`getDownloadFileInfo().fileLength` is still `lengthOrThrow()`. It can read short for a moment after a download ends, and these read it:
+
+| Where | Decides |
+|---|---|
+| `BaseFetchButton.kt:85` | The bar, and with no status in memory, whether the button shows done or paused |
+| `DownloadViewModel.kt:309`, `:312` | Hides a file of 1 byte or less, and sums sizes |
+| `DownloadViewModel.kt:382` | The bytes shown on a row |
+| `DownloadButtonSetup.kt:99` | Whether a long press shows the snackbar |
+
+None of them starts, resumes or finishes a transfer. `setupStream`'s other callers (`BackupUtils`, `SettingsUpdates`, `LogcatDialog`) all pass `tryResume = false`, so they never reach the length change; they do now truncate an existing file rather than delete it.
+
+**Not exercised:** a document-tree folder, HLS's resume, a real device, a slow disk, and `addToQueue`'s check, which was changed from reading the code, with no test of its own. Starting over by truncating also reaches backups, logcat export and the updater (`tryResume = false`); they were read, not run.
+
+### The second race: success with no file
+
+**What happened.** **29 of 900 rounds before either fix and 6 of 300 after the first** ended `isCompleted` with no file, record or fact. A
+person would see a finished download with nothing to play.
+
+**The cause, from MediaProvider's own log in one such round, all within 9 ms.**
+
+1. Starting over on the next mirror deleted the first mirror's file (`Deleted ... 1 ... items`).
+2. That delete triggered a scan, which found the path gone (`ENOENT`).
+3. `setupStream` then made a new file at the same path.
+4. The scan's update of the old row failed (`Expected 1 rows but actual 0`), and the scanner deleted the new row (`1 deletes`).
+
+At that moment MediaStore held no row at all for the folder, while the transfer still wrote through its open stream. `stream.exists`
+then read false, which `downloadThing` takes as the person deleting the file, so it stopped, deleted what it had written and returned
+`DOWNLOAD_STOPPED`, whose `success` is `true`. The other order of the same race is the `UNIQUE constraint failed: files._data` that another
+agent's runs logged on the same create, after the same `ENOENT`. Here that order never showed: in 1,288 rounds counted for it (900 before the fixes, 300 after the first, 88 earlier) the second mirror was always asked.
+
+**The fix.** Starting over truncates the existing file in place, opening it with `"wt"` (SafeFile's mode when not appending, from its
+bytecode), instead of deleting it and making another at the same path. The same goes for a source that cannot resume.
+
+**Tried first and dropped:** checking a miss against `openFileDescriptor`. It changed nothing, because the row was gone, so there was no uri to open.
+
+**After both fixes,** the test below ran 300 rounds with every check on: each round ended failed with its file kept, the bytes read back equal
+to `bytesWritten`, and every byte right. The log had 0 `ENOENT` and 0 `UNIQUE constraint` lines.

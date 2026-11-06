@@ -28,6 +28,7 @@ import com.lagradost.cloudstream3.ui.settings.Globals.updateTv
 import com.lagradost.cloudstream3.ui.WatchType
 import com.lagradost.cloudstream3.ui.setup.HAS_DONE_SETUP_KEY
 import com.lagradost.cloudstream3.utils.DataStoreHelper
+import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIconSize
 import com.lagradost.cloudstream4.core.designsystem.panel.SidePanel
 import com.lagradost.cloudstream4.core.designsystem.panel.SidePanelHost
 import com.lagradost.cloudstream4.core.designsystem.rows.ListRow
@@ -320,7 +321,7 @@ class TvRailNavigationTest {
         val field = requireNotNull(device.wait(Until.findObject(By.clazz(EDIT_TEXT)), SCREEN_WAIT_MS))
         assertNear(
             "the field's text",
-            dp(CloudStreamDimens.ContentOriginX.value + TextFieldDefaults.HorizontalPadding.value),
+            dp(CloudStreamDimens.ContentOriginX.value + FieldTextInset),
             field.visibleBounds.left,
         )
     }
@@ -625,7 +626,7 @@ class TvRailNavigationTest {
                 "the 14dp miss the audit inferred",
                 dp(
                     XML_RAIL_DP + CloudStreamDimens.ContentOriginX.value - CloudStreamDimens.NavRailWidth.value +
-                        TextFieldDefaults.HorizontalPadding.value,
+                        FieldTextInset,
                 ),
                 field.visibleBounds.left,
             )
@@ -757,3 +758,8 @@ class TvRailNavigationTest {
         const val RAIL_PRESSES = 6
     }
 }
+
+/** Where the field's text starts: its padding, then the leading glyph and its gap. */
+private val FieldTextInset: Float
+    get() = TextFieldDefaults.HorizontalPadding.value + CloudStreamIconSize.Small.dp.value +
+        TextFieldDefaults.LeadingIconGap.value

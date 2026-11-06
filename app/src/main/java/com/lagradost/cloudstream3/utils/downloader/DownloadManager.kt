@@ -8,6 +8,7 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.os.Build.VERSION.SDK_INT
 import android.os.Environment
@@ -23,6 +24,7 @@ import androidx.core.net.toUri
 import androidx.preference.PreferenceManager
 import com.lagradost.cloudstream3.APIHolder.getApiFromNameNull
 import com.lagradost.cloudstream3.BuildConfig
+import com.lagradost.cloudstream3.CloudStreamApp
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.getKey
 import com.lagradost.cloudstream3.CommonActivity.showToast
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.removeKey
@@ -505,6 +507,21 @@ object VideoDownloadManager {
     }
 
     /**
+     * The length of the file itself, or null if it cannot be read that way.
+     *
+     * `SafeFile.lengthOrThrow()` on a `MediaFile` is MediaStore's `_size`, which trails the file after a close. A resume
+     * cannot use that: it would ask for bytes the file already has and append them (`BUG-39`).
+     */
+    internal fun fileLengthOnDisk(context: Context?, uri: Uri?): Long? {
+        if (context == null || uri == null) return null
+        return try {
+            context.contentResolver.openFileDescriptor(uri, "r")?.use { it.statSize }?.takeIf { it >= 0L }
+        } catch (_: Exception) {
+            null
+        }
+    }
+
+    /**
      * Sets up the appropriate file and creates a data stream from the file.
      * Used for initializing downloads and backups.
      * */
@@ -526,10 +543,12 @@ object VideoDownloadManager {
             subDir.createFileOrThrow(displayName) to 0L
         } else {
             if (tryResume) {
-                foundFile to foundFile.lengthOrThrow()
+                foundFile to (fileLengthOnDisk(CloudStreamApp.context, foundFile.uri()) ?: foundFile.lengthOrThrow())
             } else {
-                foundFile.deleteOrThrow()
-                subDir.createFileOrThrow(displayName) to 0L
+                // Starting over keeps the file and truncates it: with a length of 0 the stream opens with "wt". Deleting
+                // it and making one at the same path raced MediaStore's scanner, which then deleted the new file's row
+                // while it was being written, so the download read as deleted and ended in success (`BUG-39`).
+                foundFile to 0L
             }
         }
 
@@ -1119,10 +1138,10 @@ object VideoDownloadManager {
             // if we have an output stream that cant be resumed then we delete the entire file
             // and set up the stream again
             if (!items.isResumed && stream.startAt > 0) {
+                // Truncated in place rather than deleted and made again, for the reason in setupStream (`BUG-39`).
                 fileStream.closeQuietly()
-                stream.delete()
                 metadata.setResumeLength(0)
-                stream = setupStream(baseFile, name, folder, extension, false)
+                stream = stream.copy(fileLength = 0L)
                 fileStream = stream.open()
             }
 

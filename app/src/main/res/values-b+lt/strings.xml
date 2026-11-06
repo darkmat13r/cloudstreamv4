@@ -66,8 +66,20 @@
 <string name="download_storage_text">"Vidinė atmintis"</string>
 <string name="downloaded">"Atsisiųsta"</string>
 <string name="downloading">"Siunčiama"</string>
+<string name="downloads_browse_library">"Naršyti biblioteką"</string>
 <string name="downloads_delete_select">"Pasirinkite elementus, kuriuos norite pašalinti"</string>
 <string name="downloads_empty">"Šiuo metu atsisiuntimų nėra."</string>
+<string name="downloads_empty_body">"Atsisiuntimai, pradėti iš pavadinimo epizodų sąrašo, rodomi čia ir paleidžiami be ryšio."</string>
+<string name="downloads_empty_headline">"Atsisiuntimų dar nėra"</string>
+<string name="downloads_free_up_space">"Atlaisvinti vietos"</string>
+<string name="downloads_load_failed_body">"Jūsų atsisiųsti failai nebuvo pakeisti."</string>
+<string name="downloads_load_failed_headline">"Nepavyko nuskaityti atsisiuntimų"</string>
+<string name="downloads_offline_pill">"Neprisijungus · nėra ryšio"</string>
+<string name="downloads_play_from_link">"Paleisti iš nuorodos"</string>
+<string name="downloads_select">"Pasirinkti"</string>
+<string name="downloads_storage_full_headline">"Nepakanka atminties"</string>
+<string name="downloads_storage_legend" formatted="true">"Naudojama %1$s iš %2$s · %3$s atsisiuntimuose"</string>
+<string name="downloads_storage_needs" formatted="true">"Reikia dar %s"</string>
 <string name="duration_format" formatted="true">"%d min"</string>
 <string name="edit">"Redaguoti"</string>
 <string name="eigengraumode_settings">"Atkūrimo sparta"</string>
@@ -255,6 +267,10 @@
 <string name="search_provider_text_providers">"Ieškoti naudojant tiekėjus"</string>
 <string name="search_provider_text_types">"Ieškoti naudojant tipus"</string>
 <string name="search_state_idle_body_desktop">"Įveskite pavadinimą. Rezultatai rodomi po kiekvienu šaltiniu, kai šis atsako."</string>
+<string name="search_state_no_results_type_filter" formatted="true">"Tik %s. Jūsų tipų filtras siaurina paiešką."</string>
+<string name="search_tv_source_failed" formatted="true">"NEPAVYKO %s"</string>
+<string name="search_tv_source_pinned">"PRISEGTA"</string>
+<string name="search_tv_sources_panel_meta" formatted="true">"ĮJUNGTA %1$d IŠ %2$d · PAKEITIMAI TAIKOMI PASPAUDUS BAIGTA"</string>
 <string name="season">"Sezonas"</string>
 <string name="seek_back_10_seconds">"Atsukti 10 sekundžių atgal"</string>
 <string name="seek_forward_10_seconds">"Persukti 10 sekundžių į priekį"</string>

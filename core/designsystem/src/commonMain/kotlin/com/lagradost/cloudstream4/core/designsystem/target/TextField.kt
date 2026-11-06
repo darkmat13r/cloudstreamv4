@@ -1,7 +1,6 @@
 package com.lagradost.cloudstream4.core.designsystem.target
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsFocusedAsState
 import androidx.compose.foundation.layout.Box
@@ -16,8 +15,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusDirection
+import androidx.compose.ui.input.key.Key
+import androidx.compose.ui.input.key.KeyEventType
+import androidx.compose.ui.input.key.key
+import androidx.compose.ui.input.key.onPreviewKeyEvent
+import androidx.compose.ui.input.key.type
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.input.ImeAction
@@ -26,6 +33,7 @@ import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIconSize
+import com.lagradost.cloudstream4.core.designsystem.primitive.insetOutline
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 
@@ -56,18 +64,11 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
  * box without changing it, so no ancestor may clip. On TV the field is normally the leading
  * focusable of its screen.
  *
- * ## The hairline here consumes layout, and on the board it does not
+ * ## The hairline costs no layout, and focus drops it
  *
- * The board draws the field's edge as `box-shadow: inset 0 0 0 1px var(--line)`, which costs no
- * layout: with `box-sizing: border-box` and `padding: 0 24px`, text starts at exactly 24px. This
- * implementation uses `Modifier.border`, which insets the content box by
- * [CloudStreamDimens.Hairline], so text starts at 13dp rather than 12dp — one dp off the 4dp step,
- * for the reason [GhostTextButton]'s KDoc spells out at length and solves with a draw-only
- * `hairlineOutline`.
- *
- * It is **kept as it was** on purpose: this task moved the component and promised the search
- * screen would look identical, and correcting it is a 1dp visual change that belongs in its own
- * change with its own diff to look at. Reported, not fixed.
+ * The board draws the field's edge as `box-shadow: inset 0 0 0 1px var(--line)`, so the edge is drawn
+ * and not laid out, and text starts where the padding says. `.field.foc` sets `box-shadow: none`: a
+ * focused field has the ring and no hairline.
  *
  * ## The magnifier is the caller's
  *
@@ -89,6 +90,9 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
  *   Back closes it. See [KeyboardOnOk].
  * @param leadingIcon a glyph from `CloudStreamIcons` before the text, as decoration: the placeholder says what
  *   the field is for.
+ * @param onLeftEdge with [keyboardOnOk], what Left does when nothing in this composition is to the
+ *   field's left. Left unhandled, that Left becomes a cursor move, which is consumed, so the key never
+ *   reaches a host's own views (`BUG-34`). The host moves focus out itself.
  */
 @Composable
 fun TextField(
@@ -100,6 +104,7 @@ fun TextField(
     onSubmit: () -> Unit = {},
     keyboardOnOk: Boolean = false,
     leadingIcon: ImageVector? = null,
+    onLeftEdge: (() -> Unit)? = null,
 ) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
@@ -107,13 +112,15 @@ fun TextField(
     val focused by interactionSource.collectIsFocusedAsState()
     val shape = CloudStreamTheme.shapes.medium
     val keyboard = remember { KeyboardOnOk() }
+    val focusManager = LocalFocusManager.current
+    val leftEdge by rememberUpdatedState(onLeftEdge)
 
     Box(
         modifier = modifier
             .height(TextFieldDefaults.Height)
             .tvFocusRing(focused = focused, shape = shape)
             .background(color = colors.surface, shape = shape)
-            .border(width = CloudStreamDimens.Hairline, color = colors.line, shape = shape)
+            .then(if (focused) Modifier else Modifier.insetOutline(colors.line, shape))
             .padding(horizontal = TextFieldDefaults.HorizontalPadding),
         contentAlignment = Alignment.CenterStart,
     ) {
@@ -134,7 +141,20 @@ fun TextField(
             value = value,
             onValueChange = onValueChange,
             modifier = textInset.then(
-                if (keyboardOnOk) Modifier.fillMaxWidth().then(keyboard.modifier) else Modifier.fillMaxWidth(),
+                if (keyboardOnOk) {
+                    Modifier
+                        .fillMaxWidth()
+                        .onPreviewKeyEvent { event ->
+                            val handler = leftEdge
+                            val leaving = handler != null && !keyboard.isOpen &&
+                                event.key == Key.DirectionLeft && event.type == KeyEventType.KeyDown
+                            if (leaving && !focusManager.moveFocus(FocusDirection.Left)) handler?.invoke()
+                            leaving
+                        }
+                        .then(keyboard.modifier)
+                } else {
+                    Modifier.fillMaxWidth()
+                },
             ),
             readOnly = keyboardOnOk && keyboard.readOnly,
             textStyle = typography.body.copy(color = colors.ink),

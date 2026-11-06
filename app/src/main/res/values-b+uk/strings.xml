@@ -197,8 +197,20 @@
 <string name="downloaded">"Завантажено"</string>
 <string name="downloaded_file">"Завантажений файл"</string>
 <string name="downloading">"Завантаження"</string>
+<string name="downloads_browse_library">"Переглянути бібліотеку"</string>
 <string name="downloads_delete_select">"Оберіть елементи для видалення"</string>
 <string name="downloads_empty">"Наразі завантажень немає."</string>
+<string name="downloads_empty_body">"Завантаження, розпочаті зі списку серій, з'являються тут і відтворюються без мережі."</string>
+<string name="downloads_empty_headline">"Завантажень ще немає"</string>
+<string name="downloads_free_up_space">"Звільнити місце"</string>
+<string name="downloads_load_failed_body">"Ваші завантажені файли не змінено."</string>
+<string name="downloads_load_failed_headline">"Не вдалося прочитати завантаження"</string>
+<string name="downloads_offline_pill">"Поза мережею · немає з'єднання"</string>
+<string name="downloads_play_from_link">"Відтворити за посиланням"</string>
+<string name="downloads_select">"Обрати"</string>
+<string name="downloads_storage_full_headline">"Недостатньо пам'яті"</string>
+<string name="downloads_storage_legend" formatted="true">"Зайнято %1$s із %2$s · %3$s у завантаженнях"</string>
+<string name="downloads_storage_needs" formatted="true">"Потрібно ще %s"</string>
 <string name="duplicate_add">"Додати"</string>
 <string name="duplicate_message_multiple" formatted="true">"У вашій бібліотеці виявлено можливі дублікати:\n\n%s\n\nУсе одно хочете додати цей елемент, замінити наявні чи скасувати дію?"</string>
 <string name="duplicate_message_single" formatted="true">"Схоже, що у вашій бібліотеці вже є можливий дублікат: '%s.'\n\nУсе одно хочете додати цей елемент, замінити наявний чи скасувати дію?"</string>
@@ -577,8 +589,12 @@
 <string name="search_provider_text_providers">"Пошук за постачальниками"</string>
 <string name="search_provider_text_types">"Пошук за типами"</string>
 <string name="search_state_idle_body_desktop">"Введіть назву. Результати з'являться під кожним джерелом, коли воно відповість."</string>
+<string name="search_state_no_results_type_filter" formatted="true">"Лише %s. Фільтр за типом звужує пошук."</string>
 <string name="search_suggestions">"Пропозиції пошуку"</string>
 <string name="search_suggestions_des">"Показувати підказки пошуку під час введення тексту"</string>
+<string name="search_tv_source_failed" formatted="true">"ЗБІЙ %s"</string>
+<string name="search_tv_source_pinned">"ЗАКРІПЛЕНО"</string>
+<string name="search_tv_sources_panel_meta" formatted="true">"УВІМКНЕНО %1$d З %2$d · ЗМІНИ ЗАСТОСОВУЮТЬСЯ ПІСЛЯ НАТИСКАННЯ ГОТОВО"</string>
 <string name="season">"Сезон"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"С"</string>

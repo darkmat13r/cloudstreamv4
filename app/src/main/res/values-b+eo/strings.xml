@@ -38,7 +38,19 @@
 <string name="download_time_left_sec_format" formatted="true">"%1$ds"</string>
 <string name="downloaded">"Elŝutite"</string>
 <string name="downloading">"Elŝutante"</string>
+<string name="downloads_browse_library">"Foliumi bibliotekon"</string>
 <string name="downloads_empty">"Ne estas elŝuto ĉimomente."</string>
+<string name="downloads_empty_body">"Elŝutoj, kiujn vi komencas el la epizodlisto de titolo, aperas ĉi tie kaj ludiĝas sen konekto."</string>
+<string name="downloads_empty_headline">"Ankoraŭ neniu elŝuto"</string>
+<string name="downloads_free_up_space">"Liberigi spacon"</string>
+<string name="downloads_load_failed_body">"Viaj elŝutitaj dosieroj ne ŝanĝiĝis."</string>
+<string name="downloads_load_failed_headline">"Ne eblis legi viajn elŝutojn"</string>
+<string name="downloads_offline_pill">"Eksterrete · neniu konekto"</string>
+<string name="downloads_play_from_link">"Ludi el ligilo"</string>
+<string name="downloads_select">"Selekti"</string>
+<string name="downloads_storage_full_headline">"Ne sufiĉas stokspaco"</string>
+<string name="downloads_storage_legend" formatted="true">"%1$s el %2$s uzitaj · %3$s en elŝutoj"</string>
+<string name="downloads_storage_needs" formatted="true">"Bezonas %s pli"</string>
 <string name="duration">"Daŭro"</string>
 <string name="duration_format" formatted="true">"%d min"</string>
 <string name="episode">"Epizodo"</string>
@@ -180,7 +192,11 @@
 <string name="search_provider_text_providers">"Serĉi uzante provizantojn"</string>
 <string name="search_provider_text_types">"Serĉi uzante tipojn"</string>
 <string name="search_state_idle_body_desktop">"Tajpu titolon. Rezultoj aperas sub ĉiu fonto kiam ĝi respondas."</string>
+<string name="search_state_no_results_type_filter" formatted="true">"Nur %s. Via tipfiltrilo mallarĝigas la serĉon."</string>
 <string name="search_suggestions">"Serĉaj Sugestoj"</string>
+<string name="search_tv_source_failed" formatted="true">"MALSUKCESIS %s"</string>
+<string name="search_tv_source_pinned">"FIKSITA"</string>
+<string name="search_tv_sources_panel_meta" formatted="true">"%1$d EL %2$d ŜALTITAJ · ŜANĜOJ APLIKIĜAS PER FARITE"</string>
 <string name="season">"Sezono"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"S"</string>

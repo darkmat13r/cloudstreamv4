@@ -433,6 +433,211 @@ class SearchViewModelTest {
                 assertEquals(SearchSources(selected = 12, total = 50), vm.state.value.sources)
             }
         }
+
+    // ---- Artboard 4d's panel, the type chips, and 8c's action ----
+
+    private class FilterSource(
+        var outcome: SearchOutcome = SearchOutcome.Complete(emptyList()),
+    ) : SearchSource {
+        val calls = mutableListOf<String>()
+        var selected = setOf("a", "b")
+        var types = setOf(SearchTypeFilter.Movies)
+
+        override suspend fun sources() = SearchSources(selected = selected.size, total = 3, quickSearchable = false)
+        override suspend fun choices() = listOf("a", "b", "c").map { SearchSourceChoice(it, it, selected = it in selected) }
+        override suspend fun selectSources(ids: Set<String>) {
+            calls += "select$ids"
+            selected = ids
+        }
+        override suspend fun typeFilters() =
+            SearchTypeFilters(listOf(SearchTypeFilter.Movies, SearchTypeFilter.Anime), types)
+        override suspend fun selectTypes(types: Set<SearchTypeFilter>) {
+            calls += "types$types"
+            this.types = types
+        }
+        override suspend fun clearFilters() {
+            calls += "clear"
+            selected = setOf("a", "b", "c")
+            types = emptySet()
+        }
+        override suspend fun search(query: String): SearchOutcome {
+            calls += "search:${selected.size}"
+            return outcome
+        }
+        override suspend fun quickSearch(query: String) = outcome
+    }
+
+    private fun filterTest(block: suspend (FilterSource, SearchViewModel) -> Unit) = withMain {
+        runTest(dispatcher) {
+            val source = FilterSource()
+            block(source, viewModel(source))
+        }
+    }
+
+    @Test
+    fun `opening the panel offers the rows with their selection as the draft`() = filterTest { source, vm ->
+        vm.onAction(SearchAction.SourcePanelOpened)
+        settle()
+        val panel = vm.state.value.sourcePanel!!
+        assertEquals(listOf("a", "b", "c"), panel.choices.map { it.id })
+        assertEquals(setOf("a", "b"), panel.draft)
+        assertEquals(emptyList<String>(), source.calls)
+    }
+
+    @Test
+    fun `a row press changes only the draft`() = filterTest { source, vm ->
+        vm.onAction(SearchAction.SourcePanelOpened)
+        settle()
+        vm.onAction(SearchAction.SourceToggled("a"))
+        vm.onAction(SearchAction.SourceToggled("c"))
+        assertEquals(setOf("b", "c"), vm.state.value.sourcePanel!!.draft)
+        settle()
+        assertEquals(emptyList<String>(), source.calls)
+    }
+
+    @Test
+    fun `back discards the draft`() = filterTest { source, vm ->
+        vm.onAction(SearchAction.SourcePanelOpened)
+        settle()
+        vm.onAction(SearchAction.SourceToggled("a"))
+        vm.onAction(SearchAction.SourcePanelDismissed)
+        settle()
+        assertEquals(null, vm.state.value.sourcePanel)
+        assertEquals(setOf("a", "b"), source.selected)
+        assertEquals(emptyList<String>(), source.calls)
+    }
+
+    @Test
+    fun `done writes before it searches and the count follows`() = filterTest { source, vm ->
+        vm.onAction(SearchAction.QueryChanged("dune"))
+        vm.onAction(SearchAction.SourcePanelOpened)
+        settle()
+        vm.onAction(SearchAction.SourceToggled("a"))
+        vm.onAction(SearchAction.SourcePanelDone)
+        settle()
+        assertEquals(null, vm.state.value.sourcePanel)
+        assertEquals(listOf("select[b]", "search:1"), source.calls)
+        assertEquals(1, vm.state.value.sources.selected)
+    }
+
+    @Test
+    fun `done with nothing changed writes nothing and does not search`() = filterTest { source, vm ->
+        vm.onAction(SearchAction.QueryChanged("dune"))
+        vm.onAction(SearchAction.SourcePanelOpened)
+        settle()
+        vm.onAction(SearchAction.SourceToggled("a"))
+        vm.onAction(SearchAction.SourceToggled("a"))
+        vm.onAction(SearchAction.SourcePanelDone)
+        settle()
+        assertEquals(emptyList<String>(), source.calls)
+    }
+
+    @Test
+    fun `done with no query writes and does not search`() = filterTest { source, vm ->
+        vm.onAction(SearchAction.SourcePanelOpened)
+        settle()
+        vm.onAction(SearchAction.SourceToggled("a"))
+        vm.onAction(SearchAction.SourcePanelDone)
+        settle()
+        assertEquals(listOf("select[b]"), source.calls)
+    }
+
+    @Test
+    fun `a chip lights at once, writes, and searches again`() = filterTest { source, vm ->
+        settle()
+        vm.onAction(SearchAction.QueryChanged("dune"))
+        vm.onAction(SearchAction.TypeFilterToggled(SearchTypeFilter.Anime))
+        assertEquals(setOf(SearchTypeFilter.Movies, SearchTypeFilter.Anime), vm.state.value.typeFilters.selected)
+        settle()
+        assertEquals(1, source.calls.count { it.startsWith("types") })
+        assertEquals("search:2", source.calls.last())
+        vm.onAction(SearchAction.TypeFilterToggled(SearchTypeFilter.Movies))
+        settle()
+        assertEquals(setOf(SearchTypeFilter.Anime), source.types)
+    }
+
+    @Test
+    fun `search everything clears both filters and then searches`() = filterTest { source, vm ->
+        settle()
+        vm.onAction(SearchAction.QueryChanged("dune"))
+        vm.onAction(SearchAction.SearchEverything)
+        settle()
+        assertEquals(listOf("clear", "search:3"), source.calls)
+        assertEquals(emptySet<SearchTypeFilter>(), vm.state.value.typeFilters.selected)
+        assertEquals(3, vm.state.value.sources.selected)
+    }
+
+    @Test
+    fun `no results quotes the count after the filters were cleared`() = filterTest { _, vm ->
+        settle()
+        vm.onAction(SearchAction.QueryChanged("dune"))
+        vm.onAction(SearchAction.SearchEverything)
+        settle()
+        assertEquals(SearchStatus.NoResults(3), vm.state.value.status)
+    }
+
+    // ---- A rail's trailing card ----
+
+    private class PagedSource : SearchSource {
+        val asked = mutableListOf<Int>()
+        var next: SearchOutcome = SearchOutcome.Complete(emptyList())
+        override suspend fun sources() = SearchSources(selected = 1, total = 1, quickSearchable = false)
+        override suspend fun search(query: String): SearchOutcome =
+            SearchOutcome.Complete(listOf(SearchResultItem(SearchResultId("a"), "a", providerName = "p")), setOf("p"))
+        override suspend fun quickSearch(query: String) = search(query)
+        override suspend fun searchMore(query: String, providerName: String, page: Int): SearchOutcome {
+            asked += page
+            return next
+        }
+    }
+
+    private fun railGroup(vm: SearchViewModel) =
+        ((vm.state.value.status as SearchStatus.Showing).content as SearchContent.Results).groups.single()
+
+    @Test
+    fun `the next page lands on the same rail, without repeats, and the card goes with the last page`() = withMain {
+        runTest(dispatcher) {
+            val source = PagedSource()
+            val vm = viewModel(source)
+            vm.onAction(SearchAction.RecentActivated("dune"))
+            settle()
+            assertEquals(true, railGroup(vm).hasMore)
+
+            source.next = SearchOutcome.Complete(
+                listOf(
+                    SearchResultItem(SearchResultId("a"), "a", providerName = "p"),
+                    SearchResultItem(SearchResultId("b"), "b", providerName = "p"),
+                ),
+                setOf("p"),
+            )
+            vm.onAction(SearchAction.RailMoreRequested("p"))
+            settle()
+            assertEquals(listOf("a", "b"), railGroup(vm).items.map { it.id.value })
+
+            source.next = SearchOutcome.Complete(emptyList())
+            vm.onAction(SearchAction.RailMoreRequested("p"))
+            settle()
+            assertEquals(false, railGroup(vm).hasMore)
+            assertEquals(listOf(2, 3), source.asked)
+        }
+    }
+
+    @Test
+    fun `a page that fails keeps the rail and says so on the chip row`() = withMain {
+        runTest(dispatcher) {
+            val source = PagedSource()
+            val vm = viewModel(source)
+            vm.onAction(SearchAction.RecentActivated("dune"))
+            settle()
+            source.next = SearchOutcome.Failed("HTTP 503")
+            vm.onAction(SearchAction.RailMoreRequested("p"))
+            settle()
+            val status = vm.state.value.status as SearchStatus.Partial
+            assertEquals("HTTP 503", status.detail)
+            assertEquals(1, status.total - status.answered)
+            assertEquals(true, ((status.content) as SearchContent.Results).groups.single().hasMore)
+        }
+    }
 }
 
 private const val STRESS_MODELS = 200
