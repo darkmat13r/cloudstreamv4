@@ -165,4 +165,46 @@ class LibraryShelfTest {
         assertEquals("MOVIE", card.typeLabel)
         assertEquals(mapOf("a" to "b"), card.posterHeaders)
     }
+
+    private fun synced(id: LibraryTitleId, keptAt: Long, watched: Int? = null, total: Int? = null) =
+        LibraryTitle(id = id, title = id.value, bucket = null, keptAt = keptAt, episodesWatched = watched, episodesTotal = total)
+
+    @Test
+    fun `a service's list is newest kept first, one card per title`() {
+        val list = SyncedList("w", "Watching", listOf(synced(dune, 1), synced(arrival, 3), synced(dune, 1)))
+        assertEquals(listOf(arrival, dune), LibraryShelf.syncedCards(list).map { it.id })
+    }
+
+    @Test
+    fun `a service's bar is episodes seen over episodes in all, and none where either is missing`() {
+        val list = SyncedList(
+            "w",
+            "Watching",
+            listOf(synced(dune, 2, watched = 3, total = 12), synced(arrival, 1, watched = 0, total = 12)),
+        )
+        val cards = LibraryShelf.syncedCards(list).associateBy { it.id }
+        assertEquals(0.25f, cards.getValue(dune).progress)
+        assertNull(cards.getValue(arrival).progress, "nothing seen is no bar")
+        val unknown = SyncedList("w", "Watching", listOf(synced(dune, 1, watched = 3, total = 0)))
+        val card = LibraryShelf.syncedCards(unknown).single()
+        assertNull(card.progress)
+        assertNull(card.episodesTotal, "a total of 0 is not known")
+        assertEquals(3, card.episodesWatched)
+    }
+
+    @Test
+    fun `a service's list narrows by its filter, and a store tab never shows a service's titles`() {
+        val list = SyncedList("w", "Watching", listOf(synced(dune, 1), synced(arrival, 2)))
+        assertEquals(listOf(arrival), LibraryShelf.syncedCards(list, "ARRIV").map { it.id })
+        assertTrue(LibraryShelf.cards(LibraryTab.Synced("w", "Watching"), listOf(title(dune, null)), emptyList()).isEmpty())
+    }
+
+    @Test
+    fun `a service's titles are counted once across its lists`() {
+        val lists = listOf(
+            SyncedList("w", "Watching", listOf(synced(dune, 1))),
+            SyncedList("r", "Rewatching", listOf(synced(dune, 1), synced(arrival, 1))),
+        )
+        assertEquals(2, LibraryShelf.syncedTotal(lists))
+    }
 }

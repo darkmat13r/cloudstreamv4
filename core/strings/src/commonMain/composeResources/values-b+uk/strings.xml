@@ -367,6 +367,11 @@
 <string name="kitsu_settings">Показувати плакати від Kitsu</string>
 <string name="legal_notice">Застереження</string>
 <string name="library">Бібліотека</string>
+<string name="library_not_connected">Не підключено</string>
+<string name="library_on_device">На пристрої</string>
+<string name="library_source">Джерело бібліотеки</string>
+<string name="library_source_note">По одному · перемикання перезавантажує</string>
+<string name="library_synced_format">Синхронізовано %s тому</string>
 <string name="lightnovel">Застосунок для ранобе від тих самих розробників</string>
 <string name="limit_title">Макс. кількість символів у заголовку програвача</string>
 <string name="limit_title_rez">Показувати інформацію про програвач</string>

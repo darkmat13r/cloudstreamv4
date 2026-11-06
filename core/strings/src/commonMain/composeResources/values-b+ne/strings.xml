@@ -216,4 +216,9 @@
 <string name="update_started">अपडेट सुरु</string>
 <string name="vpn_might_be_needed">यो प्रोभाईडर सही ढंगले प्रयोग गर्न VPN प्रयोग गर्नुपर्ने हुन सक्छ</string>
 <string name="vpn_torrent">यो प्रोभाईडर torrent हो त्यसैले VPN प्रयाेग गर्नुहुन सिफारिश गरिन्छ</string>
+<string name="library_not_connected">जडान छैन</string>
+<string name="library_on_device">यन्त्रमा</string>
+<string name="library_source">लाइब्रेरी स्रोत</string>
+<string name="library_source_note">एक पटकमा एउटा · बदल्दा फेरि लोड हुन्छ</string>
+<string name="library_synced_format">%s अघि सिंक गरियो</string>
 </resources>

@@ -36,6 +36,7 @@ import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIconSize
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
+import com.lagradost.cloudstream4.core.designsystem.panel.SidePanelHost
 import com.lagradost.cloudstream4.core.designsystem.state.StateView
 import com.lagradost.cloudstream4.core.designsystem.state.UiState
 import com.lagradost.cloudstream4.core.designsystem.state.UiStateHost
@@ -90,7 +91,15 @@ val LibraryTvTabs: List<LibraryTab> = LibraryBucket.entries.map { LibraryTab.Buc
  * Pressing that action removes the button under focus, so focus moves to the selected tab rather than
  * being dropped. A card that was opened gets focus back through [LibraryState.returnTo].
  *
+ * ## Sources (`KMP-49`)
+ *
+ * Where the host gives [LibraryState.sources], the left slot is 5a's provider button and opens 5e's panel, and the
+ * tabs are the shown source's: the store's six for the list on this device, a tracking service's own lists for one of
+ * those. Without sources the slot keeps its readout, which is what the desktop-shaped previews show.
+ *
  * @param artwork draws a title's poster. Image loading is the host's.
+ * @param now the time a source's last sync is measured to, or null to show no age. The host's clock.
+ * @param onLeftEdge moves focus out to the host when Left from the field has nowhere to go here (`BUG-34`).
  */
 @Composable
 fun LibraryScreenTv(
@@ -98,9 +107,12 @@ fun LibraryScreenTv(
     onAction: (LibraryAction) -> Unit,
     modifier: Modifier = Modifier,
     artwork: @Composable (LibraryCard) -> Unit = {},
+    now: (() -> Long)? = null,
+    onLeftEdge: (() -> Unit)? = null,
 ) {
-    val tabFocus = remember { LibraryTvTabs.associateWith { FocusRequester() } }
-    val selectedTab = tabFocus.getValue(state.tab)
+    val tabs = state.tvTabs()
+    val tabFocus = remember(tabs) { tabs.associateWith { FocusRequester() } }
+    val selectedTab = tabFocus[state.tab]
     var promptPresses by remember { mutableIntStateOf(0) }
     val content = state.toTvUiState { action ->
         onAction(action)
@@ -108,7 +120,7 @@ fun LibraryScreenTv(
     }
 
     LaunchedEffect(promptPresses, state.tab) {
-        if (promptPresses > 0) selectedTab.requestFocusIfAttached()
+        if (promptPresses > 0) selectedTab?.requestFocusIfAttached()
     }
 
     // The grid restores a card it still has. Anything else, a title removed on its own page say, comes here.
@@ -118,7 +130,7 @@ fun LibraryScreenTv(
         if (returnTo == null || !returnTo.ready || status is LibraryStatus.Loading) return@LaunchedEffect
         val stillThere = (status as? LibraryStatus.Showing)?.cards.orEmpty().any { it.id == returnTo.id }
         if (stillThere) return@LaunchedEffect
-        selectedTab.requestFocusIfAttached()
+        selectedTab?.requestFocusIfAttached()
         onAction(LibraryAction.ReturnHandled)
     }
 
@@ -136,38 +148,45 @@ fun LibraryScreenTv(
         if (!screenHasFocus) focusMemory.left()
     }
 
-    Column(modifier.fillMaxSize().onFocusChanged { screenHasFocus = it.hasFocus }) {
-        Spacer(Modifier.height(CloudStreamDimens.ChromeRowTop))
-        LibraryChromeRow(state, focusMemory, onAction, Modifier.contentInset().fillMaxWidth())
-        Spacer(Modifier.height(LibraryScreenTvDefaults.ChromeToTabGap))
-        LibraryTabRow(state, tabFocus, focusMemory, onAction)
+    SidePanelHost(
+        expanded = state.sourcesOpen,
+        onDismissRequest = { onAction(LibraryAction.SourcesDismissed) },
+        modifier = modifier.fillMaxSize().onFocusChanged { screenHasFocus = it.hasFocus },
+        panel = { LibrarySourcePanelTv(state, now, onAction) },
+    ) {
+        Column(Modifier.fillMaxSize()) {
+            Spacer(Modifier.height(CloudStreamDimens.ChromeRowTop))
+            LibraryChromeRow(state, focusMemory, onAction, now, onLeftEdge, Modifier.contentInset().fillMaxWidth())
+            Spacer(Modifier.height(LibraryScreenTvDefaults.ChromeToTabGap))
+            LibraryTabRow(state, tabs, tabFocus, focusMemory, onAction)
 
-        val region = Modifier.contentInset().fillMaxSize()
-        when (content) {
-            is UiState.Empty -> StateView(
-                prompt = content.prompt,
-                modifier = region,
-                detail = content.detail,
-                requestInitialFocus = false,
-                glyph = { LibraryEmptyGlyph() },
-            )
+            val region = Modifier.contentInset().fillMaxSize()
+            when (content) {
+                is UiState.Empty -> StateView(
+                    prompt = content.prompt,
+                    modifier = region,
+                    detail = content.detail,
+                    requestInitialFocus = false,
+                    glyph = { LibraryEmptyGlyph() },
+                )
 
-            is UiState.Error -> StateView(content.prompt, region, content.detail, requestInitialFocus = false)
-            else -> UiStateHost(
-                state = content,
-                modifier = region,
-                skeleton = { LibraryGridSkeleton(it) },
-            ) { cards ->
-                // Each list keeps its own scroll: a list you have not opened starts at its top.
-                key(state.tab) {
-                    LibraryGridTv(
-                        cards = cards,
-                        returnTo = returnTo,
-                        focusMemory = focusMemory,
-                        onAction = onAction,
-                        artwork = artwork,
-                        modifier = Modifier.fillMaxSize(),
-                    )
+                is UiState.Error -> StateView(content.prompt, region, content.detail, requestInitialFocus = false)
+                else -> UiStateHost(
+                    state = content,
+                    modifier = region,
+                    skeleton = { LibraryGridSkeleton(it) },
+                ) { cards ->
+                    // Each list keeps its own scroll: a list you have not opened starts at its top.
+                    key(state.tab) {
+                        LibraryGridTv(
+                            cards = cards,
+                            returnTo = returnTo,
+                            focusMemory = focusMemory,
+                            onAction = onAction,
+                            artwork = artwork,
+                            modifier = Modifier.fillMaxSize(),
+                        )
+                    }
                 }
             }
         }
@@ -175,7 +194,8 @@ fun LibraryScreenTv(
 }
 
 /**
- * 5a's chrome row, y56 to y152 on the artboard. Only the field is a control so far.
+ * 5a's chrome row, y56 to y152 on the artboard: the provider button where there are sources, the field, and the
+ * sort button's slot.
  *
  * The readout is plain text, with no fill and no focus: 5a draws it as a button, and something that looks
  * focusable and does nothing is the defect `StateAction` exists to prevent. It becomes the button when the
@@ -186,16 +206,29 @@ private fun LibraryChromeRow(
     state: LibraryState,
     focusMemory: LibraryFocusMemory,
     onAction: (LibraryAction) -> Unit,
+    now: (() -> Long)?,
+    onLeftEdge: (() -> Unit)?,
     modifier: Modifier = Modifier,
 ) {
     val fieldFocus = remember { FocusRequester() }
+    val providerFocus = remember { FocusRequester() }
     val keyboard = LocalSoftwareKeyboardController.current
     Row(
         modifier = modifier.height(CloudStreamDimens.ChromeRowHeight),
         horizontalArrangement = Arrangement.spacedBy(CloudStreamDimens.MinFocusGap),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        LibraryReadout(state.totalTitles, Modifier.width(LibraryScreenTvDefaults.ChromeSlotWidth))
+        val slot = Modifier.width(LibraryScreenTvDefaults.ChromeSlotWidth)
+        if (state.sources.isEmpty()) {
+            LibraryReadout(state.totalTitles, slot)
+        } else {
+            LibraryProviderButton(
+                state = state,
+                now = now,
+                onClick = { onAction(LibraryAction.SourcesOpened) },
+                modifier = slot.libraryStop(providerFocus, focusMemory),
+            )
+        }
         TextField(
             value = state.filter,
             onValueChange = { onAction(LibraryAction.FilterChanged(it)) },
@@ -206,6 +239,8 @@ private fun LibraryChromeRow(
             // `BUG-30`: passing through the row must not open a keyboard that then takes the D-pad.
             keyboardOnOk = true,
             leadingIcon = CloudStreamIcons.Search,
+            // The provider button is to its left where there is one; this is for when nothing is.
+            onLeftEdge = onLeftEdge,
         )
         Spacer(Modifier.width(LibraryScreenTvDefaults.ChromeSlotWidth))
     }
@@ -250,25 +285,25 @@ private fun LibraryReadout(totalTitles: Int?, modifier: Modifier = Modifier) {
 @Composable
 private fun LibraryTabRow(
     state: LibraryState,
+    tabs: List<LibraryTab>,
     tabFocus: Map<LibraryTab, FocusRequester>,
     focusMemory: LibraryFocusMemory,
     onAction: (LibraryAction) -> Unit,
 ) {
-    val counted = state.totalTitles != null
     ChipRow(
         modifier = Modifier
             .fillMaxWidth()
             .horizontalScroll(rememberScrollState())
             .contentInset(),
     ) {
-        LibraryTvTabs.forEach { tab ->
+        tabs.forEach { tab ->
             val selected = tab == state.tab
             Chip(
                 label = tab.label(),
                 selected = selected,
                 onClick = { onAction(LibraryAction.TabSelected(tab)) },
                 modifier = Modifier.libraryStop(tabFocus.getValue(tab), focusMemory),
-                count = if (counted && tab is LibraryTab.Bucket) (state.counts[tab.bucket] ?: 0).toString() else null,
+                count = state.countOf(tab)?.toString(),
             )
         }
     }

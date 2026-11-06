@@ -3496,7 +3496,7 @@ dump, so `DownloadFacts` and its `Flow.map` helper classes appear, as do the man
 
 ## KMP-38 — The TV detail page on Android (queue `Q20`, boards 7a, 7b, 7a-ii) · **measured 2026-11-04**, id lift **2026-11-05**
 
-**Status:** in pr #153 · **Owner's rulings it follows:** `DEC-17` (hollow neutral failure, panel commit rule, the
+**Status:** `#153` merged; the icon-only row follow-up is in pr `#170` · **Owner's rulings it follows:** `DEC-17` (hollow neutral failure, panel commit rule, the
 program's merge rule). Android TV only. Phone and `EMULATOR` unchanged. The old `ResultFragmentTv` stays as
 the rollback for one release.
 
@@ -3902,6 +3902,61 @@ own — the four rails already live in their own files for exactly this reason. 
 over because of the host plumbing that `DetailPlayback.kt` would take anyway. `DetailScreenTvDeviceTest.kt` splits along the suite's own seams — focus-graph walks, panels,
 and content states — but its fixtures and `DpadDriver` helpers are shared, so that one wants `INF-10`'s view
 on where shared device-test helpers belong before it is cut.
+
+### Follow-up: the action row becomes icon-only (`DEC-17`, boards 7f–7l) · **2026-11-06**
+
+`#153` shipped the row as five text buttons. The owner then asked for 7a's row redrawn with icon-only
+secondaries; boards **7f–7l** are in `design/TV Detail Row.dc.html`, and the rule they needed is
+`ui-components.md` rule 4's **one ruled exception** (`DEC-17`, `#168`), with the watchlist's glyph pair
+settled by `#169`.
+
+**`#170`, in pr:** Start over and Trailer become `IconOnlyButton` cells and the primary gains its `Play`
+glyph; the watchlist leaves the chrome row for the action row as `Add` (Plus) off and `Done` (Check) on;
+the row's box becomes `IconTargetCell` with the 32dp text buttons centred; `DetailCopy` passes
+`CloudStreamIcons.Retry` (board 7l); board 7a-ii's rail header reads `24 · HDREZKA`.
+
+The watchlist is an `IconOnlyButton`, **not** an `IconOnlyToggle`: OK opens the five-value status panel
+rather than flipping a flag, and the toggle's checked `raised` fill is what `#169` removed. State is said
+once, by shape. Favourite stays in the chrome row — no board moves it, and it is a real toggle.
+
+A new `CloudStreamIcons.Added` on Tabler `Check` **cannot** be added: `Done` is already that glyph and is
+live at `SubtitlePicker.kt:207`, so `CloudStreamIconsTest."one glyph per meaning"` fails with
+`expected:<[]> but was:<[[Done, Added]]>`. Measured, not argued; `#169` is the answer and the test is
+untouched.
+
+The 48dp cell also moved two things the full device suite caught and the screenshot-only pass could
+not: `CaptionToActions` is 8dp rather than 16, because the board's 16 is measured to the text buttons
+and the cell now supplies 8 of it, and `DetailSkeletonDefaults.ActionCellPadding` adds that 8 back in
+the skeleton, which has no cell and whose bar stands for the row's 32dp of ink at the board's y512.
+
+`DetailSkeletonDefaults.ActionBarWidth` is re-derived as
+`ResumeWidth + 3 × (MinFocusGap + IconTargetCell) + MinFocusGap + TextButtonMinWidth` = **532dp** — the
+**film** row, which is now the shorter of the two, the opposite of the boards, because 7g's extra length
+was Download and Mark watched. On the recorded images the bar ends at x739 and a film's row at x741, two
+pixels apart; the old 784dp overhung by 46.
+
+### Open after `#170`
+
+- **The cast row is 25.25 dp short of board 7a, and that is a live question.** Measured on the recorded
+  references: the avatars' first inked row moves 478 → **489 px**, identical on both the series and film
+  pages. The viewport is 540dp tall (`DetailFocusScrollTest.containerSize`), so 720/540 = 1.3333 px/dp and
+  cast sits at **366.75 dp** against the board's **392**. The +8.25dp of that move is what the 48dp cell
+  adds *below* the buttons once `CaptionToActions` absorbs the 8dp above them, so `#170` narrowed the gap
+  from 33.5dp without touching the ladder above the row. It is **not** a
+  missing rail header — "Cast 3" draws normally at x33 — and it is **not** `BUG-40`, whose shift is a
+  uniform 5dp inside the head block. It wants its own measurement against the board.
+- **Icon-only glyphs render `ink` at rest, not `muted`.** That is `DS-17`, app-wide; `#170` does not touch
+  `IconOnlyButton`'s tint, and every reference showing an icon-only control at rest changes again when
+  DS-17 lands.
+- **Season, Episodes and Full synopsis still trail the row as text buttons.** They are on no board here and
+  stay until their replacements exist. The row's order is the board's **as a prefix**, so nothing is
+  reordered when they go.
+- **Queued, in order:** board 7i, the inline episode list with season chips (Season and Episodes leave the
+  row); boards 7j and 7k, the collapsed synopsis opening the panel (Synopsis leaves); then Download and
+  Mark watched for films, wired to real `DetailAction`s with tests — `DetailAction` has neither today,
+  which is why 7g's two cells are not drawn. **More** has no board yet.
+- **Board 6a's chip gap is wrong**, not the code's: 6a draws range chips at 12dp where `ChipRow` spaces at
+  `ChipRowSpacing` 24dp. Board 7i is drawn at the token. Raised as an owner correction.
 
 ---
 
@@ -4905,3 +4960,269 @@ that exist because the old downloader broke them:
 - No Android device run: a test APK would hit the same minSdk wall.
 - DNS rebinding, as above.
 - The engine's unthrottled slowdown is not profiled.
+
+## KMP-59 — The Android downloader runs `:media:download` behind a switch · **measured 2026-11-06**
+
+`ExtractorLinkType.VIDEO` downloads can go through the segmented engine (`KMP-46`) instead of `downloadThing`.
+The switch is `EngineDownloadSwitch.useSegmentedEngine`. **It defaults to `false`**, so nothing changes for users until it is turned on.
+Subtitles, HLS, DASH and torrents stay on their own paths. Builds on `DEC-18` (minSdk 24). Android only:
+the Mac service is `KMP-52`.
+
+**Shape.**
+- `DownloadManager`'s `VIDEO` arm gets one `if`, and `DownloadQueueManager.init` gets one call (the sweep below). Nothing else in an existing file changes.
+- `EngineVideoDownload` reports through the same `DownloadMetaData` as `downloadThing`. So events, `DownloadFacts` (`KMP-36`),
+  the notification and the foreground service hear what they always heard.
+- `EngineDownloadRules` holds the pure decisions and has 19 unit tests.
+- **Staging.** Every destination (MediaStore, a document tree, a path) gets a staged copy first, in `noBackupFilesDir/downloads/<episode id>/`.
+  This is because the engine needs a real directory with atomic moves.
+- **On COMPLETED, in this order:**
+  1. Write the marker `complete`.
+  2. Copy into the destination that `setupStream` resolves (truncating).
+  3. Check the copy's length on disk.
+  4. Write `KEY_DOWNLOAD_INFO`.
+  5. Delete the staging directory.
+- **If it crashes:**
+  - *After the copy:* one visible file. The restart copies again without fetching.
+  - *During the copy:* the restart copies over the partial.
+  - *A wrong length:* the destination is deleted, the staged file is kept, and the result is `SizeMismatch` with no next mirror.
+- **Space.** The peak is about 2× the file, checked at the first snapshot that carries a total and again before the copy (`InsufficientSpace`).
+- **Sweep.** At start-up, staging whose episode is gone (stopped, deleted, or pruned after a failure) is removed. It never touches an id that is
+  running, queued, or has a resume package and an episode entry.
+
+**API 24/25: kotlinx-io has no atomic move there.**
+- kotlinx-io 0.9.1 picks its mover with `Class.forName("java.nio.file.Files")`. Below API 26 that class does not exist, so it throws
+  `UnsupportedOperationException`. This was measured on an API 25 emulator, for kotlinx-io directly and through FileKit.
+- Desugaring does not help: it rewrites class references to `j$.nio.file.Files` but not the string.
+- **The fix:** `FileKitStorage.atomicMove` falls back to `File.renameTo` only on that exception. A `false` from it becomes an
+  `IOException`, and the source is kept.
+- Before the fix, 3 of the 5 move tests failed on API 25.
+- `media/download` now applies `cloudstream.kmp.device-test`. `AtomicMoveDeviceTest` passes 6/6 on `Api25_Test` (7.1.1).
+  The JVM's `AtomicMoveFallbackTest` adds 6 more, and `jvmTest` passes 203/0.
+
+**What changes when the switch is on.** TLS and the LAN refusal first.
+
+| Old behaviour | New behaviour | Who notices |
+|---|---|---|
+| — | **Switch off too:** `DownloadQueueManager.init` runs the staging sweep at every start. With nothing staged it reads one directory listing (null when the directory does not exist) and returns | Nobody |
+| TLS not checked (`verify = false`) | Checked, over `app.baseClient`: self-signed or expired hosts fail | Users of sources with broken certificates |
+| LAN, loopback and private addresses allowed | Refused (`AddressRefused`, next mirror) | Users downloading from LAN or self-hosted servers |
+| The partial file is visible and listed in Downloads | Nothing is visible or listed until the copy ends. Every list reader drops an episode with no file. The fix is a reader change (below) | Everyone |
+| Peak space ≈ 1× the file | ≈ 2×, always on internal storage, even when downloads go to an SD card, USB drive or document tree | TV boxes with small internal storage. Likely the most visible |
+| Done at the last byte | Plus a full local copy; the notification sits at 100% meanwhile | Big files on slow storage |
+| A failed download keeps its file | Its staged parts stay on internal storage until the next start after the episode is stopped, deleted or pruned | Users with failed downloads |
+| 3 connections (`download_concurrent_key`) | 8; the setting is ignored | Throttling hosts; users who set it |
+| Under 10 MiB is invalid; over 50 MB a failure keeps the file and tries no other mirror | Neither rule. HTML is refused by content (`NoUsableLink`) | Users of short clips |
+| Resume needs ranges | Also needs an ETag or Last-Modified, or it starts again from 0 | Users of minimal servers |
+| An old-path partial resumes | Ignored; the engine starts again in staging, and the old partial stays visible until the copy overwrites it | Users mid-download when the switch flips |
+| OkHttp follows 20 redirects | 5, each re-checked; HTTPS→HTTP refused | Long redirect chains |
+| Extension headers sent as given | `Range`, `If-Range`, `Accept-Encoding`, `Host`, `Content-Length`, `Transfer-Encoding`, `Connection` and non-ASCII values are dropped | Extensions that set those |
+| Name from `getFileName` | Engine sanitising on top (control and bidi characters, reserved names, 200 bytes) | Rare; subtitle matching by name in those cases |
+| Deleting the file mid-download stops it (`fileChecker`) | No file exists yet to delete | — |
+| A running queue item offers "Delete file" | Offers "Cancel", which cleans up staging | Queue users |
+| Pause keeps connections open | Pause closes them | Servers |
+| Work stealing (engine) | A split can fetch an in-flight range's tail twice (seen as `GET 32153500-33554431` inside `GET 30687232-33554431`) | Bandwidth on metered links (`KMP-61`) |
+
+**"Not listed until done" needs a reader change.** The smallest one: a `getDownloadListInfo(id)` that falls back to
+`KEY_DOWNLOAD_INFO` and the staged length when the file is missing. It would be used in `DownloadViewModel.calculateDownloadStats`,
+`DownloadViewModel.updateChildList`, `AndroidDownloadsSource.readEpisodes` and `AndroidDownloadSeriesSource`.
+Their `fileLength <= 1` filters and the play actions would need to handle it. Not done here, because it changes the list readers: that is `KMP-60`, which blocks turning the switch on.
+
+**Tests** (all local, none CI).
+- **Unit:** `:app:testPrereleaseDebugUnitTest` 230/0; `EngineDownloadRulesTest` 19/19.
+- **`EngineDownloadDeviceTest`:** 8/8 on `Television_720p` (API 36) and 8/8 on `Api25_Test` (API 25).
+  - Switch on: byte-identical. Switch off: still `downloadThing`.
+  - Cut off midway and resumed from disk in a fresh instance, with no held byte fetched again.
+  - A dropped connection resumed within its part.
+  - A full disk: `StorageFull`, no visible file, parts kept.
+  - A crash after the copy, and one during it: each restart copies without fetching.
+  - The start-up sweep.
+- Below API 29 the test grants storage permission with `pm grant`.
+- The full `:app` device suite: 97 tests, 0 failures, 1 skipped (`TvHomeRealPluginProof`).
+- **`checkExtensionApi`:** additions only, for the new classes. No existing line removed or changed.
+
+**Not verified.**
+- A real process kill on Android. The device test cancels and resumes in a fresh instance; the engine's JVM `KillSuiteTest` kills a process.
+- Document-tree folders, SD cards and a real full partition (only an injected quota).
+- The sweep inside a real `DownloadQueueManager.init` at app start; the test calls it directly.
+- A pause or resume sent through `downloadEvent` during a run.
+- A DNS setting change rebuilding the client.
+- The two space refusals on a device (unit tests only).
+
+## KMP-60 — Engine downloads listed while they run · **open**, blocks turning `KMP-59`'s switch on
+
+With `EngineDownloadSwitch.useSegmentedEngine` on, a download appears in no Downloads list until its copy finishes:
+- `getDownloadFileInfo` returns null while the destination file is missing (`DownloadManager.kt` ~1699).
+- All four list readers drop null.
+- The pruning in `calculateDownloadStats` keys off the same null.
+
+Writing `KEY_DOWNLOAD_INFO` at start changes nothing by itself. Smallest fix, as reported in `KMP-59`:
+- Add a `getDownloadListInfo(id)` that falls back to `KEY_DOWNLOAD_INFO`, with the staged length and an empty path.
+- Use it in `DownloadViewModel.calculateDownloadStats`, `DownloadViewModel.updateChildList`, `AndroidDownloadsSource.readEpisodes` and `AndroidDownloadSeriesSource`.
+- The `fileLength <= 1` filters must let a just-started download through.
+- The play actions must refuse the empty path.
+
+Tests to write before the switch goes on (not needed for `KMP-59`'s merge):
+- Stop or Cancel during the fetch, and during the copy. The staging and the destination must both be gone.
+- Pause and Resume sent through `downloadEvent` during a run. Resume must go on from disk.
+
+## KMP-61 — Engine: a work steal refetches an in-flight range's tail · **open**, measured, no fix
+
+Seen in `EngineDownloadDeviceTest` (`aDownloadCutOffMidway…`): the split's new request started inside a range already in flight, so 1,400,932 bytes were fetched twice on a 32 MiB file.
+- The range in flight was `#18 GET 30687232-33554431`.
+- The new request was `#19 GET 32153500-33554431`.
+
+The test now bounds the union of the requested ranges, not their sum, so it still proves a resume. The cause is not investigated. The first place to look is where `PartScheduler` picks the split point against the victim's open request.
+
+## KMP-62 — The old downloader keeps whole links in `KEY_RESUME_PACKAGES` · **open**, waits on the owner
+
+Found while checking `KMP-59` against the owner's no-link ruling for `KMP-52` (2026-11-06). Not changed.
+- **What is stored.** `DownloadManager.kt:1923-1927` writes `DownloadResumePackage(item, index)` to `KEY_RESUME_PACKAGES` before every
+  attempt. `DownloadItem.links` is `List<ExtractorLink>`, serialised with `url`, `referer` and `headers`
+  (`library/.../ExtractorApi.kt:700-708`). It goes to SharedPreferences.
+- **Which paths store it.** Both: the write comes before `downloadSingleEpisode`, so it happens with `KMP-59`'s switch on or off. The
+  engine path adds no link of its own. Its marker holds a size and a name, and its state file holds the size, ETag, Last-Modified and ranges.
+- **Applying the ruling.** Keep `ep`, the provider and the episode's `loadLinks` data. Run `loadLinks` again on resume, and on start-up
+  re-queueing from `DownloadQueueManager.init`.
+- **Waiting on the owner.** That changes the existing downloader for every user, so the owner decides before anyone builds it.
+
+## KMP-52 — The Mac download service and its data · **open**
+
+`:media:download` on the JVM in `:desktopApp`, with real paths, a queue, persistence and data flows. No UI: the Downloads UI is `KMP-54`.
+The contract with `KMP-54`, all in `:desktopApp` under `com.lagradost.cloudstream4.downloads`:
+- `DesktopDownloadsSource : DownloadsSource`. Its storage is the volume holding the download folder, non-null from the first emission.
+- `DesktopDownloadSeriesSource : DownloadSeriesSource`.
+- A host class `DesktopDownloads` with `delete(ids: Set<DownloadTitleId>)`, `deleteEpisodes(ids: Set<DownloadEpisodeId>)`,
+  and `fileOf(id)`, which is null until the download is complete.
+- Ids stay the same across restarts.
+- `contents` emits at most about 4 times a second while running, and not at all when idle.
+- No change to `:feature:downloads`.
+
+---
+
+## KMP-49 — The TV library's sources: 5e's panel, 5a's provider button, a service's lists (queue `Q12`, first slice) · **measured 2026-11-06**
+
+**Status:** in pr · Android TV only. The library opens on the source chosen last, as the old screen does, and shows the
+local list or a tracking service's own lists. Sort (5d) is `KMP-50` and the unreachable and cached states (5b) with
+offline are `KMP-51`. The owner's rulings for all three are `DEC-20`.
+
+**The seam.** `:feature:library` gains `LibrarySources`: every source with its state (connected, account, the time of
+its last read as this app recorded it, the local list's count), the one to open on, remembering a choice, and reading a
+service's lists. `SyncedList` is a service's own list, and `LibraryTab.Synced` its tab. `LibraryTitle` and `LibraryCard`
+gain, with defaults, `episodesWatched`, `episodesTotal` and `rating`. `LibraryViewModel(sources = null)` is the default,
+which is desktop's: nothing there changes, and `:desktopApp`'s 395 JVM tests still pass.
+
+**On Android.** `AndroidLibrarySources` reads `AccountManager.syncApis` through `SyncRepo`, the old screen's way:
+
+- **The source to open on** is `LibraryViewModel.currentSyncApi`'s rule: the one under `"$currentAccount/last_sync_api"`
+  where it is still signed in, else the first that is. Choosing one writes that same key, so the old screen and this one
+  agree.
+- **A read** is `SyncRepo.library()`. It fails with the exception it holds, or with the old screen's `"Unable to fetch
+  library"` where a service answers nothing. While `requireLibraryRefresh` is false, the last read is shown again, as
+  `reloadPages(false)` does. A successful read clears that flag, as the old screen does.
+- **The time of a read** is a new key, `"$currentAccount/library_synced_at"`, written only on a successful read. Nothing
+  before this PR wrote one, so no source shows an age until it has been read once here (`DEC-20`).
+- **A service's title** opens through the old screen's opener (`LibraryFragment.loadLibraryItem`): the opener saved for
+  the title, unless it is the default, else the one saved for the service, else the default. That is the title's page
+  where a provider of that name is loaded, and a search by its name otherwise. A service's titles are not providers, so
+  in practice a search. The saved openers are read, never written.
+- **Its text is sanitised** as the local store's is. `AndroidLibraryStore`'s three helpers are repeated in
+  `LibrarySourceText.kt` rather than moved: moving them took `MAX_TEXT_CHARS` and a synthetic accessor out of
+  `classes-jar.api`, which may only grow.
+
+**The owner's choices, each in one place** (`DEC-20`): which sources are listed and in what order is
+`AndroidLibrarySources.listed`, how a service's lists become tabs is `syncedLists`, and what a source that is not signed
+in does is `LibrarySourcePanelTv`'s row.
+
+### What the boards draw that this does not, or draws differently
+
+| Board | Drawn | Here | Why |
+|---|---|---|---|
+| 5e | AniList, Local, MyAnimeList, Simkl, Trakt | MAL, Kitsu, AniList, Simkl, Local, signed-in ones first | `DEC-20`: the five the app has. MyAnimeList is `MAL`, the app's own name for it |
+| 5e | A leading disc on each row | None | It would hold the service's logo, a brand mark this module does not have |
+| 5e | `NOT CONNECTED` | `Not connected`, disabled and still a stop | `DEC-20`. A stop, so its reason can be read at three metres: `ListRowState.focusableWhenDisabled`. Logging in stays in account settings |
+| 5e, 5a | `SYNCED 4 MIN` | `Synced 4m ago` | The app's own `%dm` / `%1$dh %2$dm` / `%1$dd %2$dh %3$dm` formats. Upper case is not applied, as the readout's is not |
+| 5e | Local's `ON DEVICE · 308 TITLES` | `On device · 308` | No `titles` word in every language; the readout already shows the number alone |
+| 5a | A rating badge `★ 9.1` | `9.1` in the card's trailing badge | `Badge` has no glyph slot. The badge is only on a service's card with a rating of the user's own |
+| 5a | `12 / 28 EPISODES` | `12 / 28 Episodes` | `library_episodes_progress` with the `episodes` plural |
+
+**Gained back from `KMP-34`'s reductions,** for a service's cards only: the user's own rating, the episode count, and the
+bar from episodes seen over episodes in all. A local card is unchanged.
+
+**What the old TV screen does that this still does not:** sort (`KMP-50`), Random, choosing or changing an opener (the
+long-press popup), and saying why a service could not be read (`KMP-51`; for now it is the shared failure page with
+Retry).
+
+**A service's cards are in the order they were last updated** (`lastUpdatedUnixTime`, newest first), as the local
+list's are by `keptAt`, not in the order the service returns them.
+
+### Measured, each one a wrong turn first
+
+- **The provider button's second line was clipped** in the first recording: its descenders were cut. It used
+  `labelMono`, a 32px line, in the stack's 12dp box. The board's `.cbm` is 20/24px, which is `captionMono`. The panel's
+  note had the same mistake.
+- **BACK left the screen with the panel open.** `UiDevice.pressBack()` finished the test's activity, and so did a
+  remote's BACK, sent as `DetailScreenTvDeviceTest` sends it, with or without the field ever focused and after a press
+  inside the panel. The logcat showed it going to the window's back dispatcher, which held only the activity's own
+  callback. `SidePanelHost`'s KDoc says a host must wire platform back itself, and `DetailTvFragment.wirePanelBack` does;
+  this fragment did not, so **in the real app BACK would have left the library rather than closing the panel**.
+  `LibraryTvFragment` now registers the same callback, enabled while the panel is open, and the device test hosts one
+  as the detail test does. Every later `SidePanelHost` caller needs those lines too, which is the detail fragment's
+  argument for the design system owning them.
+- **Waiting for the panel's focus by label proved nothing**: the button and the shown source's row have the same words.
+  The device test waits on where the focused node is.
+- **The first API dump removed two lines**, from moving the store's helpers. They are repeated instead (above).
+- **Two translations escaped an apostrophe** as `\'`, which `materialiseComposeStrings` refuses. These sources hold a
+  plain `'`.
+
+### From the review on `#175`
+
+- **Switching back to a service shown from its cache opened the wrong titles.** The opener's map was one for all
+  sources, replaced only by a fresh read, so A, then B, then A from the cache kept B's, and A's cards fell back to the
+  local opener. It is kept per source now, with the one shown. The new JVM test fails on the old code.
+- **A late read could still take the shown source's place**: the shown one was set when a read returned, so a slow read
+  for B returning after switching back to A made B the shown one. It is set when a source is asked for now, and a late
+  read stores only its own titles. A second JVM test, with B's read held open, fails on the previous code.
+- **A service not read yet, or not readable, showed the local list's tabs** under its name: the first recording of the
+  failure page had Watching to Favorites over AniList's error. It has no tabs now (`tvTabs`).
+- **The provider button** takes `ChromeButton`'s padding and inset outline. `insetOutline` was internal to
+  `:core:designsystem` and is public now. It is not a `ChromeButton` variant: that is one line, a label and a count,
+  and a two-line variant would have this one caller.
+- **The failure page's Try again** carries the Retry glyph (`DEC-17`). The line is `KMP-34`'s.
+- **A service's empty list and a service's failure** have device cases, and the failure a screenshot.
+- **`DEC-20`, not `DEC-18`**: master's `DEC-18` is minSdk 24, and `DEC-19` is taken.
+
+### Each critical test shown to fail
+
+Temporary changes, each reverted, on `Television_720p`.
+
+| Change | What went red |
+|---|---|
+| A disabled row is not a stop; the panel does not land on the shown source; the store's tabs on a service | the disabled-row test, the service's-tabs test, both screenshots (13,098 and 15,986 pixels). The landing test then stayed green, because the shown source was also the first row, so a test that reopens on the second was added |
+| The panel does not land on the shown source, alone | `reopenedAfterAChoiceThePanelLandsOnTheNewSource` |
+| No platform back callback (the code as first written) | `backClosesThePanelAndFocusComesBackToTheButton`: BACK finished the activity |
+| `:app`: the fragment's ViewModel without sources | `theButtonOpensEveryRealSourceAndOnlyTheLocalListIsConnected` and `leftFromTheFieldReachesTheRail`; the records test stayed green, as it should |
+
+### Tested
+
+- **JVM.** `LibrarySourcesViewModelTest` 13, `LibraryShelfTest` (4 added), and `AndroidLibrarySourcesTest` 13 over a fake
+  `SyncAPI`: the order, the source to open on, the lists and their words, sanitising, a rating of 0, the recorded time
+  and the service's cache, switching back to a cached service and a late read for another, both failures, and the opener's rule.
+- **Device, `:feature:library`.** `LibrarySourcesTvDeviceTest`, 13 with fake sources: the button and Left from the field,
+  the panel opening on the shown source with every source's state, a choice applying at once, reopening on the new
+  choice, a disabled row that is a stop and chooses nothing, Done and BACK each closing with focus back on the button, a
+  service's own tabs and its cards' facts, a service's empty list, a service that fails and Retry, and three screenshots. `KMP-34`'s four screenshots are unchanged, 0 pixels.
+- **Device, `:app`.** `LibrarySourcesTvNavigationTest`, 3 in the real app: the panel over the real `syncApis`, none
+  signed in and none made; Left from the field reaching the rail (`BUG-34`); and both records under the real keys.
+
+**Screenshots:** `library-service-grid-focus-card` (5a over a service), `library-source-panel` (5e) and
+`library-service-failed-focus-retry`, each looked at.
+
+### Not verified
+
+- **A real service's lists.** No account is signed in on the emulator and none is made: every service read in a test is
+  a fake `SyncAPI`.
+- **A service's title opening.** The opener's rule is JVM-tested; the activity calls it makes are the old screen's and
+  were not run.
+- **Logging in or out while the page is open.** The next arrival reads the sources again.
+- **Any language but English on a device**, or a native speaker reading the five new translations. Least sure: `ti`,
+  `am`, `so`, `mt`, `ckb`, `my`, `or`, `as`, `kn`, `ml`, `ne`, `eo` and `apc`.

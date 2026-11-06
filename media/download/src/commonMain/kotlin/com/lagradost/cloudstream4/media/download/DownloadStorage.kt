@@ -72,7 +72,31 @@ class FileKitStorage : DownloadStorage {
 
     override fun source(file: PlatformFile): RawSource = file.source()
 
-    override suspend fun atomicMove(from: PlatformFile, to: PlatformFile) = from.atomicMove(to)
+    /**
+     * FileKit's move, with a rename for the one case where it cannot run at all.
+     *
+     * On Android API 24 and 25 `java.nio.file` does not exist. FileKit 0.17.0 calls kotlinx-io 0.9.1's
+     * `SystemFileSystem.atomicMove`, which looks up `java.nio.file.Files` by name and, without it, throws
+     * `UnsupportedOperationException("Atomic move not supported")` on every call. Measured on an API 25
+     * emulator (`AtomicMoveDeviceTest`): both FileKit and kotlinx-io throw exactly that, and so every
+     * download failed at its first state write. `:app`'s core-library desugaring (nio flavour) does not
+     * help: it renames the `Files` references to `j$.nio.file.Files` but leaves the `Class.forName`
+     * string alone, and the same test on a desugared APK failed the same way.
+     *
+     * The fallback, as the review set it:
+     * - it runs **only** on `UnsupportedOperationException`; every other exception propagates unchanged;
+     * - it is [renameFallback]: `File.renameTo`, which is POSIX `rename(2)` on Android, so atomic on one
+     *   volume and replacing an existing destination;
+     * - a `false` from it is an `IOException`, which the engine files as a storage failure
+     *   (`StorageUnavailable`) like any other, and nothing is deleted.
+     */
+    override suspend fun atomicMove(from: PlatformFile, to: PlatformFile) {
+        try {
+            from.atomicMove(to)
+        } catch (e: UnsupportedOperationException) {
+            renameFallback(from, to, e)
+        }
+    }
 
     override suspend fun availableBytes(directory: PlatformFile): Long? = platformAvailableBytes(directory.path)
 }
@@ -82,3 +106,9 @@ class FileKitStorage : DownloadStorage {
  * nearest existing ancestor answers: the directory is about to be created on the same volume.
  */
 internal expect suspend fun platformAvailableBytes(path: String): Long?
+
+/**
+ * Moves [from] to [to] by renaming, for [FileKitStorage.atomicMove] when the atomic move was
+ * [unsupported]. Throws an `IOException` when the rename fails, and leaves both files as they were.
+ */
+internal expect fun renameFallback(from: PlatformFile, to: PlatformFile, unsupported: UnsupportedOperationException)

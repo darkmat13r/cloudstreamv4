@@ -105,6 +105,11 @@
 <string name="home_play">"Ibda"</string>
 <string name="home_search_only_body">"L-ebda waħda mill-estensjonijiet tiegħek m'għandha paġna ewlenija, imma xorta tista' tfittex fihom."</string>
 <string name="home_source_none_subtitle">"EBDA RINGIELI · IR-RINGIELI TIEGĦEK JIBQGĦU"</string>
+<string name="library_not_connected">"Mhux konness"</string>
+<string name="library_on_device">"Fuq l-apparat"</string>
+<string name="library_source">"Sors tal-librerija"</string>
+<string name="library_source_note">"Wieħed kull darba · il-bidla tgħabbi mill-ġdid"</string>
+<string name="library_synced_format" formatted="true">"Sinkronizzat %s ilu"</string>
 <string name="links_reloaded_toast">"Links regaw gew mogħbija"</string>
 <string name="load_more">"Għabbi iktar"</string>
 <string name="loading">"Tagħbija…"</string>

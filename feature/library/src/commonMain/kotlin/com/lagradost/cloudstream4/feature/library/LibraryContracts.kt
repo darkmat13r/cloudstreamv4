@@ -85,6 +85,12 @@ data class LibraryTitle(
     val providerName: String? = null,
     val typeLabel: String? = null,
     val posterHeaders: Map<String, String>? = null,
+    /** Episodes seen, as a tracking service counts them. Null where the host holds no count, as on a local list. */
+    val episodesWatched: Int? = null,
+    /** Episodes in all, as a tracking service counts them. Null or 0 where it is not known. */
+    val episodesTotal: Int? = null,
+    /** The user's own rating, already formatted, or null where there is none. Never the public score. */
+    val rating: String? = null,
 )
 
 /**
