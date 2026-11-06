@@ -305,6 +305,8 @@ dependencies {
     implementation(project(":core:data"))
     implementation(project(":core:model"))
     implementation(project(":media:model"))
+    implementation(project(":media:download"))
+    implementation(project(":core:http"))
 
     // Phase 7 step 3: :app implements the seams :feature:search declares. :core:designsystem is
     // listed explicitly because :feature:search depends on it with `implementation` scope, so the

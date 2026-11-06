@@ -326,6 +326,11 @@
 <string name="kitsu_settings">Arată afișele de la Kitsu</string>
 <string name="legal_notice">Aviz juridic (declinarea responsabilității și drepturi de autor)</string>
 <string name="library">Librărie</string>
+<string name="library_not_connected">Neconectat</string>
+<string name="library_on_device">Pe dispozitiv</string>
+<string name="library_source">Sursa bibliotecii</string>
+<string name="library_source_note">Câte una · schimbarea reîncarcă</string>
+<string name="library_synced_format">Sincronizat acum %s</string>
 <string name="lightnovel">&gt;Aplicație Light Novel realizată de aceiași dezvoltator</string>
 <string name="limit_title">Limitarea caracterelor de titlu în player</string>
 <string name="limit_title_rez">Rezoluția playerului video</string>

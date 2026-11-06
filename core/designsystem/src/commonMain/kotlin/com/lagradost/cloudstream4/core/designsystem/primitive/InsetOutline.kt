@@ -16,8 +16,11 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
  *
  * Draw-only, so it obeys the rule on [CloudStreamDimens.Hairline]: a hairline must not consume layout. It is
  * [hairline] for a whole outline, where that one paints a single straight edge.
+ *
+ * Public since `KMP-49`, for a feature's control built on a design-system one's ground, as the library's provider
+ * button is on `ChromeButton`'s.
  */
-internal fun Modifier.insetOutline(
+fun Modifier.insetOutline(
     color: Color,
     shape: Shape,
     stroke: Dp = CloudStreamDimens.Hairline,

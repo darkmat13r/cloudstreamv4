@@ -4,29 +4,31 @@ import android.os.SystemClock
 import android.view.InputDevice
 import android.view.KeyCharacterMap
 import android.view.KeyEvent
+import androidx.activity.ComponentActivity
+import androidx.activity.OnBackPressedCallback
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.toPixelMap
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.semantics.SemanticsNode
+import androidx.compose.ui.test.ComposeTimeoutException
 import androidx.compose.ui.test.SemanticsNodeInteraction
 import androidx.compose.ui.test.assertIsNotSelected
 import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.captureToImage
 import androidx.compose.ui.test.hasClickAction
-import androidx.activity.ComponentActivity
-import androidx.activity.OnBackPressedCallback
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberUpdatedState
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.test.ComposeTimeoutException
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onAllNodesWithText
+import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.unit.Dp
@@ -44,6 +46,10 @@ import com.lagradost.cloudstream4.feature.detail.DetailEffect
 import com.lagradost.cloudstream4.feature.detail.DetailViewModel
 import com.lagradost.cloudstream4.feature.detail.DetailWatchStatus
 import com.lagradost.cloudstream4.feature.detail.TitleDetail
+import java.io.IOException
+import java.util.concurrent.CopyOnWriteArrayList
+import kotlin.math.abs
+import kotlin.math.roundToInt
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -56,10 +62,6 @@ import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import java.io.IOException
-import java.util.concurrent.CopyOnWriteArrayList
-import kotlin.math.abs
-import kotlin.math.roundToInt
 
 /**
  * The TV detail page on a device, with [FakeDetailSource] and the real [DetailViewModel]: no `:app`,
@@ -203,6 +205,21 @@ class DetailScreenTvDeviceTest {
     }
 
     /** Presses [direction] until [label] holds focus, as a person finds a control on a TV screen. */
+    /**
+     * Back to the watch-status cell from wherever a panel dismiss left focus.
+     *
+     * It is in the action row now, not the chrome, so a landing in the chrome comes DOWN into the row
+     * first and then walks right. From inside the row the direction depends on which side of the cell
+     * focus landed: Resume and Trailer are left of it, everything else right.
+     */
+    private fun returnToWatchStatus(from: String) {
+        if (from == BACK || from == FAVOURITE) {
+            dpad.press(Dpad.Down)
+        }
+        val towards = if (rule.focusedLabel() in setOf(RESUME, TRAILER)) Dpad.Right else Dpad.Left
+        assertEquals(WATCH_STATUS, pressUntil(towards, WATCH_STATUS))
+    }
+
     private fun pressUntil(direction: Dpad, label: String, presses: Int = MAX_PRESSES): String {
         if (rule.focusedLabel() == label) return label
         return generateSequence { dpad.press(direction) }.take(presses).firstOrNull { it == label }
@@ -224,22 +241,39 @@ class DetailScreenTvDeviceTest {
     }
 
     /**
-     * Asserts each of [labels] still measured at least [CloudStreamDimens.TextButtonMinWidth] and ends
-     * inside the content band, which runs from [DetailScreenTvDefaults.ContentStart] to the screen's
-     * width less [DetailScreenTvDefaults.ContentEnd].
+     * Asserts every control in the row still measured at least its own floor and ends inside the
+     * content band, which runs from [DetailScreenTvDefaults.ContentStart] to the screen's width less
+     * [DetailScreenTvDefaults.ContentEnd].
+     *
+     * Two floors, because the row holds two kinds of control since `DEC-17`: a [texts] button is held
+     * to [CloudStreamDimens.TextButtonMinWidth] (120dp) and an icon-only [cells] entry to
+     * [CloudStreamDimens.IconTargetCell] (48dp). An icon cell is **not** let off the check — it is held
+     * to the smaller number that is correct for it.
+     *
+     * A cell is found by content description rather than text: its label is drawn on focus, not laid
+     * out, so there is no `Text` node to match.
      */
-    private fun assertActionRowFits(labels: List<String>) {
+    private fun assertActionRowFits(texts: List<String>, cells: List<String> = emptyList()) {
         val width = rule.onRoot().fetchSemanticsNode().size.width
         val bandEnd = width - dp(DetailScreenTvDefaults.ContentEnd)
-        labels.forEach { label ->
-            val node = rule.onNodeWithText(label).fetchSemanticsNode()
+        fun check(label: String, node: SemanticsNode, floor: Dp) {
             assertTrue(
-                "$label measured ${node.size.width}px, under the ${CloudStreamDimens.TextButtonMinWidth} minimum",
-                node.size.width >= dp(CloudStreamDimens.TextButtonMinWidth),
+                "$label measured ${node.size.width}px, under the $floor minimum",
+                node.size.width >= dp(floor),
             )
             assertTrue(
                 "$label ends at ${node.boundsInRoot.right}, past the band's $bandEnd of $width",
                 node.boundsInRoot.right <= bandEnd,
+            )
+        }
+        texts.forEach { label ->
+            check(label, rule.onNodeWithText(label).fetchSemanticsNode(), CloudStreamDimens.TextButtonMinWidth)
+        }
+        cells.forEach { label ->
+            check(
+                label,
+                rule.onNodeWithContentDescription(label).fetchSemanticsNode(),
+                CloudStreamDimens.IconTargetCell,
             )
         }
     }
@@ -331,7 +365,9 @@ class DetailScreenTvDeviceTest {
         awaitFocus(RESUME)
 
         rule.onNodeWithText(DetailFixtures.Movie.title).assertExists()
-        rule.onNodeWithText(PLAY_MOVIE).assertExists()
+        // By content description, not text: "start over" is an icon-only cell under rule 4's ruled
+        // exception, and its label is drawn only on focus rather than laid out as a `Text` node.
+        rule.onNodeWithContentDescription(PLAY_MOVIE).assertExists()
         assertNoText(PLAY_EPISODE)
         assertNoText(DetailFixtures.episodeName(0))
         // No season pair: a film names no season, so neither button is drawn.
@@ -464,8 +500,14 @@ class DetailScreenTvDeviceTest {
         assertNear("the plot's width", dp(DetailScreenTvDefaults.PlotMaxWidth), plot.size.width)
         assertNear("the plot's height", dp(DetailScreenTvDefaults.PlotHeight), plot.size.height)
 
+        // To the primary's own top, which is not the row's: `DEC-17` made the row a 48dp
+        // `IconTargetCell` box with the 32dp text buttons centred, so the cell puts
+        // `(IconTargetCell - TextButtonHeight) / 2` above the primary. Named here rather than folded
+        // into `CaptionToActions`, so that if the row ever stops centring, this fails instead of
+        // quietly agreeing with whatever it does.
+        val cellPadding = (CloudStreamDimens.IconTargetCell - CloudStreamDimens.TextButtonHeight) / 2
         val gap = DetailScreenTvDefaults.PlotToCaption + DetailScreenTvDefaults.CaptionHeight +
-            DetailScreenTvDefaults.CaptionToActions
+            DetailScreenTvDefaults.CaptionToActions + cellPadding
         assertNear(
             "plot to action row",
             dp(gap),
@@ -608,9 +650,14 @@ class DetailScreenTvDeviceTest {
         awaitFocus(RESUME)
 
         // No "start over": the fixture is a series, and `KMP-38` makes that control a playable title's.
+        //
+        // The chrome row is Back and Favourite only: `DEC-17` moved the watch-status cell down into the
+        // action row, where boards 7f and 7g draw it, after Trailer. Trailer and the watch-status cell
+        // are icon-only now and carry their label as a content description, which is what
+        // `focusedLabel()` falls back to, so the walk still names them exactly as before.
         val expected = listOf(
-            BACK, WATCH_STATUS, FAVOURITE,
-            RESUME, TRAILER, "$SEASON 1", "$EPISODES_PLURAL · 2", SYNOPSIS,
+            BACK, FAVOURITE,
+            RESUME, TRAILER, WATCH_STATUS, "$SEASON 1", "$EPISODES_PLURAL · 2", SYNOPSIS,
         ) +
             DetailFixtures.Cast.map { it.name } +
             DetailFixtures.Recommendations.map { it.title } +
@@ -629,32 +676,41 @@ class DetailScreenTvDeviceTest {
     }
 
     /**
-     * A show's action row at its ceiling: **five** controls — Resume, Trailer, Season N, Episodes · N,
-     * Synopsis — which is [DetailScreenTvDefaults.ResumeWidth] (220dp) plus four
-     * [CloudStreamDimens.TextButtonMinWidth] ghosts and four [CloudStreamDimens.MinFocusGap] gaps, so
-     * 748dp against the band's 833dp (961.5 less [DetailScreenTvDefaults.ContentStart] and
-     * [DetailScreenTvDefaults.ContentEnd]).
+     * A show's action row at its ceiling: **six** controls — Resume, Trailer, the watch-status cell,
+     * Season N, Episodes · N, Synopsis.
+     *
+     * `DEC-17` is what let it reach six without overflowing. Trailer and the watch-status cell are
+     * [CloudStreamDimens.IconTargetCell] (48dp) rather than
+     * [CloudStreamDimens.TextButtonMinWidth] (120dp) ghosts, so the row is
+     * [DetailScreenTvDefaults.ResumeWidth] 220 + 2 x (12 + 48) + 3 x (12 + 120) = **736dp** against the
+     * band's 833 (961.5 less [DetailScreenTvDefaults.ContentStart] and
+     * [DetailScreenTvDefaults.ContentEnd]). The old five-text-button row was 748dp and a sixth text
+     * button would have been 880, which is what used to overflow this band.
      *
      * There is no "start over" here and that is the point. `KMP-38`: a series' only candidate for it is
      * **episode 1**, which beside a Resume of S3:E4 is a different action rather than the same one from
-     * the beginning, so the control is 7b's alone. That is also what took the row off the six-control
-     * 880dp case that overflowed this band.
+     * the beginning, so the control is 7g's alone.
      *
      * The measurement is kept because it is what caught that: a `Row` that overflows measures its last
      * children down towards nothing, so a control that has silently stopped fitting is still in the
-     * semantics tree and still "exists" — only its width says otherwise.
+     * semantics tree and still "exists" — only its width says otherwise. Each control is held to its
+     * own floor, so an icon cell is not let off the check — it is held to 48dp instead of 120.
      */
     @Test
-    fun theShowsActionRowFitsTheBandAtItsFiveControlCeiling() {
+    fun theShowsActionRowFitsTheBandAtItsSixControlCeiling() {
         show(DetailFixtures.Show)
         awaitFocus(RESUME)
 
         assertNoText(PLAY_EPISODE)
-        assertActionRowFits(listOf(RESUME, TRAILER, "$SEASON 1", "$EPISODES_PLURAL · 3", SYNOPSIS))
+        assertActionRowFits(
+            texts = listOf(RESUME, "$SEASON 1", "$EPISODES_PLURAL · 3", SYNOPSIS),
+            cells = listOf(TRAILER, WATCH_STATUS),
+        )
     }
 
     /**
-     * A film's row, which is the board that **does** draw "start over": four controls, 616dp.
+     * A film's row, which is the board that **does** draw "start over": five controls, 532dp while
+     * resuming — which is exactly what the loading skeleton's bar is derived from.
      *
      * Asserted from both sides deliberately. The show case above says the control is absent for a
      * series; without this one, a regression that dropped it everywhere would pass both.
@@ -664,8 +720,11 @@ class DetailScreenTvDeviceTest {
         show(DetailFixtures.Movie)
         awaitFocus(RESUME)
 
-        rule.onNodeWithText(PLAY_MOVIE).assertExists()
-        assertActionRowFits(listOf(RESUME, PLAY_MOVIE, TRAILER, SYNOPSIS))
+        rule.onNodeWithContentDescription(PLAY_MOVIE).assertExists()
+        assertActionRowFits(
+            texts = listOf(RESUME, SYNOPSIS),
+            cells = listOf(PLAY_MOVIE, TRAILER, WATCH_STATUS),
+        )
     }
 
     /**
@@ -752,8 +811,8 @@ class DetailScreenTvDeviceTest {
         show(DetailFixtures.Show)
         awaitFocus(RESUME)
 
-        assertEquals(BACK, pressUntil(Dpad.Up, BACK))
-        assertEquals(WATCH_STATUS, dpad.press(Dpad.Right))
+        // The opener is in the action row now, two stops right of Resume, rather than in the chrome.
+        assertEquals(WATCH_STATUS, pressUntil(Dpad.Right, WATCH_STATUS))
 
         dpad.center()
         awaitFocus(WATCHING)
@@ -765,15 +824,14 @@ class DetailScreenTvDeviceTest {
         // Focus has to come back to the page's chrome row, and this names which control it reached.
         // Both dismiss paths are measured and both are asserted at the end of the test rather than
         // here, so that one run reports both instead of stopping at the first.
-        val landedOnBack = awaitOneOf(WATCH_STATUS, BACK, FAVOURITE)
+        val landedOnBack = awaitOneOf(WATCH_STATUS, BACK, FAVOURITE, RESUME, TRAILER)
         assertEquals("BACK committed nothing", emptyList<DetailWatchStatus>(), source.watchStatuses.toList())
         assertEquals("the panel is closed", false, viewModel.state.value.panelOpen)
 
-        // Back to the opener for the commit half, from wherever the restore put focus. The chrome row runs
-        // back -> watch status -> favourite, so the direction depends on where it landed.
+        // Back to the opener for the commit half, from wherever the restore put focus. The opener now
+        // sits in the action row, so a landing in the chrome has to come down into the row first.
         if (landedOnBack != WATCH_STATUS) {
-            val towards = if (landedOnBack == FAVOURITE) Dpad.Left else Dpad.Right
-            assertEquals(WATCH_STATUS, pressUntil(towards, WATCH_STATUS))
+            returnToWatchStatus(landedOnBack)
         }
 
         dpad.center()
@@ -785,7 +843,7 @@ class DetailScreenTvDeviceTest {
         assertEquals(listOf(DetailWatchStatus.Completed), source.watchStatuses.toList())
         // The commit is also a dismiss, so the same restore has to happen — and the panel the viewer
         // sees sliding out must still be the picker, which is what `PanelLatch` is for.
-        val landedOnCommit = awaitOneOf(WATCH_STATUS, BACK, FAVOURITE)
+        val landedOnCommit = awaitOneOf(WATCH_STATUS, BACK, FAVOURITE, RESUME, TRAILER)
         assertEquals("the panel is closed after the commit", false, viewModel.state.value.panelOpen)
 
         // A known defect, asserted so that fixing it fails here — the idiom `SidePanelMotionTest` uses
@@ -911,3 +969,5 @@ private fun PanelBackHost(enabled: Boolean, onBack: () -> Unit) {
     }
     LaunchedEffect(enabled) { callback.isEnabled = enabled }
 }
+
+

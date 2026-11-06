@@ -111,6 +111,11 @@
 <string name="home_play">"Speel"</string>
 <string name="home_search_only_body">"Geen van jou uitbreidings het 'n tuisblad nie, maar jy kan steeds daarin soek."</string>
 <string name="home_source_none_subtitle">"GEEN RYE · JOU RYE BLY"</string>
+<string name="library_not_connected">"Nie gekoppel"</string>
+<string name="library_on_device">"Op toestel"</string>
+<string name="library_source">"Biblioteekbron"</string>
+<string name="library_source_note">"Een op 'n slag · oorskakel herlaai"</string>
+<string name="library_synced_format" formatted="true">"%s gelede gesinkroniseer"</string>
 <string name="load_more">"Laai meer"</string>
 <string name="loading">"Laai tans…"</string>
 <string name="more_like_this">"Meer soos hierdie"</string>

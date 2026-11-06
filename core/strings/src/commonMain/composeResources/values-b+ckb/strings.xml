@@ -174,4 +174,9 @@
 <string name="type_re_watching">دووبارە سەیرکردنەوە</string>
 <string name="type_watching">تەماشاکردن</string>
 <string name="update_started">نوێکردنەوە دەستی پێکرد</string>
+<string name="library_not_connected">پەیوەست نییە</string>
+<string name="library_on_device">لەسەر ئامێر</string>
+<string name="library_source">سەرچاوەی کتێبخانە</string>
+<string name="library_source_note">یەک بە یەک · گۆڕین دووبارە باری دەکاتەوە</string>
+<string name="library_synced_format">%s لەمەوبەر هاوکات کرا</string>
 </resources>

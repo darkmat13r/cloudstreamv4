@@ -401,6 +401,12 @@ values	string	kitsu_settings	-	Show posters from Kitsu
 values	string	legal_notice	-	Disclaimer
 values	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values	string	library	-	Library
+values	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values	string	library_not_connected	-	Not connected
+values	string	library_on_device	-	On device
+values	string	library_source	-	Library source
+values	string	library_source_note	-	One at a time · switching reloads
+values	string	library_synced_format	-	Synced %s ago
 values	string	lightnovel	-	Light novel app by the same devs
 values	string	limit_title	-	Video player title max chars
 values	string	limit_title_rez	-	Show player information
@@ -1004,6 +1010,11 @@ values-b+af	string	home_offline_source_headline	-	%1$s het ’n verbinding nodig
 values-b+af	string	home_play	-	Speel
 values-b+af	string	home_search_only_body	-	Geen van jou uitbreidings het 'n tuisblad nie, maar jy kan steeds daarin soek.
 values-b+af	string	home_source_none_subtitle	-	GEEN RYE · JOU RYE BLY
+values-b+af	string	library_not_connected	-	Nie gekoppel
+values-b+af	string	library_on_device	-	Op toestel
+values-b+af	string	library_source	-	Biblioteekbron
+values-b+af	string	library_source_note	-	Een op 'n slag · oorskakel herlaai
+values-b+af	string	library_synced_format	-	%s gelede gesinkroniseer
 values-b+af	string	load_more	-	Laai meer
 values-b+af	string	loading	-	Laai tans…
 values-b+af	string	more_like_this	-	Meer soos hierdie
@@ -1212,6 +1223,11 @@ values-b+am	string	home_offline_source_headline	-	%1$s ግንኙነት ያስፈ
 values-b+am	string	home_play	-	አጫውት
 values-b+am	string	home_search_only_body	-	ከቅጥያዎችህ አንዳቸውም መነሻ ገጽ የላቸውም፣ ነገር ግን አሁንም በእነሱ መፈለግ ትችላለህ።
 values-b+am	string	home_source_none_subtitle	-	ረድፎች የሉም · የእርስዎ ረድፎች ይቆያሉ
+values-b+am	string	library_not_connected	-	አልተገናኘም
+values-b+am	string	library_on_device	-	በመሣሪያ ላይ
+values-b+am	string	library_source	-	የቤተ-መጽሐፍት ምንጭ
+values-b+am	string	library_source_note	-	አንድ በአንድ · መቀየር እንደገና ይጭናል
+values-b+am	string	library_synced_format	-	ከ%s በፊት ተመሳስሏል
 values-b+am	string	load_more	-	ተጨማሪ ጫን
 values-b+am	string	loading	-	በመጫን ላይ…
 values-b+am	string	more_like_this	-	ተጨማሪ እንደዚህ ያሉ
@@ -1682,6 +1698,11 @@ values-b+apc	string	jsdelivr_proxy_summary	-	تجاوز منع روابط "گِ�
 values-b+apc	string	kitsu_settings	-	فرجي الپوسترات من موقع "كيتسو"
 values-b+apc	string	legal_notice	-	إخلاء مسؤولية
 values-b+apc	string	library	-	رفّ
+values-b+apc	string	library_not_connected	-	مش متصل
+values-b+apc	string	library_on_device	-	عالجهاز
+values-b+apc	string	library_source	-	مصدر الرفّ
+values-b+apc	string	library_source_note	-	وحدة بكل مرة · التبديل بيعيد التحميل
+values-b+apc	string	library_synced_format	-	تزامن من %s
 values-b+apc	string	lightnovel	-	آپ من نفس المطورين للروايات الخفيفة، بدل من الڤيديوات
 values-b+apc	string	limit_title	-	الحد الأعلى للحروف بعنوان الڤيديو
 values-b+apc	string	limit_title_rez	-	فرجي معلومات مشغل الڤيديو
@@ -2537,6 +2558,11 @@ values-b+ar	string	jsdelivr_proxy_summary	-	تجاوز حظر عناوين URL �
 values-b+ar	string	kitsu_settings	-	عرض ملصقات من كيتسو
 values-b+ar	string	legal_notice	-	إخلاء مسؤولية
 values-b+ar	string	library	-	المكتبة
+values-b+ar	string	library_not_connected	-	غير متصل
+values-b+ar	string	library_on_device	-	على الجهاز
+values-b+ar	string	library_source	-	مصدر المكتبة
+values-b+ar	string	library_source_note	-	مصدر واحد في كل مرة · التبديل يعيد التحميل
+values-b+ar	string	library_synced_format	-	تمت المزامنة منذ %s
 values-b+ar	string	lightnovel	-	تطبيق روايات خفيف من نفس المطورين
 values-b+ar	string	limit_title	-	أقصى عدد لحروف عنوان مُشغل الفيديو
 values-b+ar	string	limit_title_rez	-	عرض معلومات المشغل
@@ -3223,6 +3249,11 @@ values-b+ars	string	jsdelivr_proxy_summary	-	.قد يتسبب في تأخير ا
 values-b+ars	string	kitsu_settings	-	عرض الملصقات من كيتسو
 values-b+ars	string	legal_notice	-	تنصل
 values-b+ars	string	library	-	مكتبة
+values-b+ars	string	library_not_connected	-	غير متصل
+values-b+ars	string	library_on_device	-	على الجهاز
+values-b+ars	string	library_source	-	مصدر المكتبة
+values-b+ars	string	library_source_note	-	مصدر واحد في كل مرة · التبديل يعيد التحميل
+values-b+ars	string	library_synced_format	-	تمت المزامنة قبل %s
 values-b+ars	string	lightnovel	-	تطبيق رواية خفيفة من نفس المطورين
 values-b+ars	string	limit_title	-	عنوان مشغل الفيديو بحد أقصى لعدد الأحرف
 values-b+ars	string	limit_title_rez	-	دقة مشغل الفيديو
@@ -3787,6 +3818,11 @@ values-b+as	string	jsdelivr_proxy_summary	-	jsDelivr ব্যৱহাৰ ক�
 values-b+as	string	kitsu_settings	-	কিৎসুৰ পৰা প'ষ্টাৰ দেখুৱাওক
 values-b+as	string	legal_notice	-	দায়ৱলী
 values-b+as	string	library	-	পুথিভঁৰাল
+values-b+as	string	library_not_connected	-	সংযোগ নাই
+values-b+as	string	library_on_device	-	ডিভাইচত
+values-b+as	string	library_source	-	পুথিভঁৰালৰ উৎস
+values-b+as	string	library_source_note	-	এবাৰত এটা · সলনি কৰিলে পুনৰ লোড হয়
+values-b+as	string	library_synced_format	-	%s আগতে ছিংক কৰা হৈছে
 values-b+as	string	lightnovel	-	একেই ডেভেলপাৰৰ দ্বাৰা লাইট নভেল এপ্‌
 values-b+as	string	limit_title	-	ভিডিঅ' প্লেয়াৰৰ শিৰোনামৰ সৰ্বাধিক অক্ষৰ
 values-b+as	string	limit_title_rez	-	ভিডিঅ' প্লেয়াৰৰ ৰিজল্যুশন
@@ -4320,6 +4356,11 @@ values-b+az	string	home_search_only_body	-	Uzantılarınızın heç birində ana
 values-b+az	string	home_source_none_subtitle	-	SIRA YOXDUR · SIRALARINIZ QALIR
 values-b+az	string	kitsu_settings	-	Kitsu afişalarını, posterlərini göstər
 values-b+az	string	library	-	Kitabxana
+values-b+az	string	library_not_connected	-	Qoşulmayıb
+values-b+az	string	library_on_device	-	Cihazda
+values-b+az	string	library_source	-	Kitabxana mənbəyi
+values-b+az	string	library_source_note	-	Eyni anda bir · dəyişmək yenidən yükləyir
+values-b+az	string	library_synced_format	-	%s əvvəl sinxronlaşdırılıb
 values-b+az	string	live_singular	-	Canlı yayım
 values-b+az	string	livestreams	-	Canlı yayımlar
 values-b+az	string	load_more	-	Daha çox yüklə
@@ -4814,6 +4855,11 @@ values-b+be	string	jsdelivr_proxy_summary	-	Абыходзьце блакіро�
 values-b+be	string	kitsu_settings	-	Паказваць плакаты з Kitsu
 values-b+be	string	legal_notice	-	Адмова ад адказнасці
 values-b+be	string	library	-	Бібліятэка
+values-b+be	string	library_not_connected	-	Не падключана
+values-b+be	string	library_on_device	-	На прыладзе
+values-b+be	string	library_source	-	Крыніца бібліятэкі
+values-b+be	string	library_source_note	-	Па адной · пераключэнне перазагружае
+values-b+be	string	library_synced_format	-	Сінхранізавана %s таму
 values-b+be	string	lightnovel	-	Лёгкая праграма для раманаў ад тых жа распрацоўшчыкаў
 values-b+be	string	limit_title	-	Максімальная колькасць сімвалаў у загалоўку праглядальніка
 values-b+be	string	limit_title_rez	-	Паказваць інфармацыю ў прайгравальніку
@@ -5643,6 +5689,11 @@ values-b+bg	string	jsdelivr_proxy_summary	-	Заобикали блокиран�
 values-b+bg	string	kitsu_settings	-	Покажете плакати от Kitsu
 values-b+bg	string	legal_notice	-	Опровержение
 values-b+bg	string	library	-	Библиотека
+values-b+bg	string	library_not_connected	-	Не е свързан
+values-b+bg	string	library_on_device	-	На устройството
+values-b+bg	string	library_source	-	Източник на библиотеката
+values-b+bg	string	library_source_note	-	Един по един · превключването презарежда
+values-b+bg	string	library_synced_format	-	Синхронизирано преди %s
 values-b+bg	string	lightnovel	-	Light novel - приложение от същите разработчици
 values-b+bg	string	limit_title	-	Максимален брой знаци за заглавие във видеоплейъра
 values-b+bg	string	limit_title_rez	-	Покажи информация за плейъра
@@ -6342,6 +6393,11 @@ values-b+bn	string	jsdelivr_proxy_summary	-	jsDelivr ব্যবহার ক�
 values-b+bn	string	kitsu_settings	-	Kitsu থেকে পোস্টারসমূহ প্রদর্শন করুন
 values-b+bn	string	legal_notice	-	দাবিত্যাগ
 values-b+bn	string	library	-	লাইব্রেরী
+values-b+bn	string	library_not_connected	-	সংযুক্ত নয়
+values-b+bn	string	library_on_device	-	ডিভাইসে
+values-b+bn	string	library_source	-	লাইব্রেরির উৎস
+values-b+bn	string	library_source_note	-	একবারে একটি · পরিবর্তন করলে আবার লোড হয়
+values-b+bn	string	library_synced_format	-	%s আগে সিঙ্ক হয়েছে
 values-b+bn	string	lightnovel	-	আমাদের তৈরি ছোট উপন্যাস পড়ার অ্যাপ্লিকেশন
 values-b+bn	string	limit_title	-	ভিডিও প্লেয়ারের টাইটেল এ সর্বোচ্চ ক্যারেক্টার
 values-b+bn	string	limit_title_rez	-	ভিডিও প্লেয়ারে রেজুলেশন
@@ -6797,6 +6853,11 @@ values-b+ca	string	home_random	-	Aleatori
 values-b+ca	string	home_search_only_body	-	Cap de les teves extensions té pàgina d'inici, però encara pots cercar-hi.
 values-b+ca	string	home_source	-	Font
 values-b+ca	string	home_source_none_subtitle	-	SENSE FILES · LES VOSTRES FILES ES QUEDEN
+values-b+ca	string	library_not_connected	-	No connectat
+values-b+ca	string	library_on_device	-	Al dispositiu
+values-b+ca	string	library_source	-	Font de la biblioteca
+values-b+ca	string	library_source_note	-	Una alhora · canviar torna a carregar
+values-b+ca	string	library_synced_format	-	Sincronitzat fa %s
 values-b+ca	string	limit_title	-	Caràcters màxims al títol del reproductor
 values-b+ca	string	limit_title_rez	-	Resolució del reproductor de vídeo
 values-b+ca	string	links_reloaded_toast	-	S'han tornat a carregar els enllaços
@@ -7136,6 +7197,11 @@ values-b+ckb	string	home_offline_bookmarks_body	-	ئاماژەکانت لەسە�
 values-b+ckb	string	home_offline_source_headline	-	%1$s پێویستی بە پەیوەندییە
 values-b+ckb	string	home_search_only_body	-	هیچ کام لە زیادکراوەکانت پەڕەی سەرەکییان نییە، بەڵام هێشتا دەتوانیت تێیاندا بگەڕێیت.
 values-b+ckb	string	home_source_none_subtitle	-	هیچ ڕیزێک · ڕیزەکانت دەمێننەوە
+values-b+ckb	string	library_not_connected	-	پەیوەست نییە
+values-b+ckb	string	library_on_device	-	لەسەر ئامێر
+values-b+ckb	string	library_source	-	سەرچاوەی کتێبخانە
+values-b+ckb	string	library_source_note	-	یەک بە یەک · گۆڕین دووبارە باری دەکاتەوە
+values-b+ckb	string	library_synced_format	-	%s لەمەوبەر هاوکات کرا
 values-b+ckb	string	load_more	-	زیاتر باربکە
 values-b+ckb	string	more_like_this	-	زیاتر لەم جۆرە
 values-b+ckb	string	new_update_format	-	نوێکاری نوێ دۆزرایەوە!\n%1$s->%2$s
@@ -7596,6 +7662,11 @@ values-b+cs	string	jsdelivr_proxy_summary	-	Obejít blokování přímých adres
 values-b+cs	string	kitsu_settings	-	Zobrazit plakáty z Kitsu
 values-b+cs	string	legal_notice	-	Odmítnutí odpovědnosti
 values-b+cs	string	library	-	Knihovna
+values-b+cs	string	library_not_connected	-	Nepřipojeno
+values-b+cs	string	library_on_device	-	V zařízení
+values-b+cs	string	library_source	-	Zdroj knihovny
+values-b+cs	string	library_source_note	-	Jeden po druhém · přepnutí znovu načte
+values-b+cs	string	library_synced_format	-	Synchronizováno před %s
 values-b+cs	string	lightnovel	-	Nenáročná aplikace pro romány od stejných vývojářů
 values-b+cs	string	limit_title	-	Maximální počet znaků v názvu přehrávače
 values-b+cs	string	limit_title_rez	-	Zobrazit informace o přehrávači
@@ -8438,6 +8509,11 @@ values-b+de	string	jsdelivr_proxy_summary	-	Umgehung der Sperre von GitHub-URLs 
 values-b+de	string	kitsu_settings	-	Vorschaubilder von Kitsu anzeigen
 values-b+de	string	legal_notice	-	Haftungsausschluss
 values-b+de	string	library	-	Bibliothek
+values-b+de	string	library_not_connected	-	Nicht verbunden
+values-b+de	string	library_on_device	-	Auf dem Gerät
+values-b+de	string	library_source	-	Bibliotheksquelle
+values-b+de	string	library_source_note	-	Jeweils eine · Wechsel lädt neu
+values-b+de	string	library_synced_format	-	Vor %s synchronisiert
 values-b+de	string	lightnovel	-	Light Novel App von denselben Entwicklern
 values-b+de	string	limit_title	-	Videoplayertitel max. Zeichen
 values-b+de	string	limit_title_rez	-	Zeige Playerinformationen
@@ -9244,6 +9320,11 @@ values-b+el	string	jsdelivr_proxy_summary	-	Παράκαμψη απαγόρευ�
 values-b+el	string	kitsu_settings	-	Εμφάνιση αφισών από Kitsu
 values-b+el	string	legal_notice	-	Αποποίηση ευθυνών
 values-b+el	string	library	-	Βιβλιοθήκη
+values-b+el	string	library_not_connected	-	Δεν έχει συνδεθεί
+values-b+el	string	library_on_device	-	Στη συσκευή
+values-b+el	string	library_source	-	Πηγή βιβλιοθήκης
+values-b+el	string	library_source_note	-	Μία κάθε φορά · η εναλλαγή επαναφορτώνει
+values-b+el	string	library_synced_format	-	Συγχρονίστηκε πριν από %s
 values-b+el	string	lightnovel	-	Εφαρμογή βιβλίων από τους ίδιους προγραμματιστές
 values-b+el	string	limit_title	-	Μέγιστος αριθμός χαρακτήρων τίτλου
 values-b+el	string	limit_title_rez	-	Ανάλυση προγράμματος αναπαραγωγής βίντεο
@@ -9812,6 +9893,11 @@ values-b+eo	string	home_offline_source_headline	-	%1$s bezonas konekton
 values-b+eo	string	home_play	-	Spekti
 values-b+eo	string	home_search_only_body	-	Neniu el viaj kromprogramoj havas hejmpaĝon, sed vi ankoraŭ povas serĉi en ili.
 values-b+eo	string	home_source_none_subtitle	-	NENIUJ VICOJ · VIAJ VICOJ RESTAS
+values-b+eo	string	library_not_connected	-	Ne konektita
+values-b+eo	string	library_on_device	-	En aparato
+values-b+eo	string	library_source	-	Fonto de biblioteko
+values-b+eo	string	library_source_note	-	Po unu · ŝanĝo reŝargas
+values-b+eo	string	library_synced_format	-	Sinkronigita antaŭ %s
 values-b+eo	string	load_more	-	Ŝargi pli
 values-b+eo	string	loading	-	Ŝarĝante…
 values-b+eo	string	login	-	Saluti
@@ -10333,6 +10419,11 @@ values-b+es	string	jsdelivr_proxy_summary	-	Eludir el bloqueo de URLs crudas de 
 values-b+es	string	kitsu_settings	-	Mostrar pósters de Kitsu
 values-b+es	string	legal_notice	-	Descargo de responsabilidad
 values-b+es	string	library	-	Biblioteca
+values-b+es	string	library_not_connected	-	No conectado
+values-b+es	string	library_on_device	-	En el dispositivo
+values-b+es	string	library_source	-	Origen de la biblioteca
+values-b+es	string	library_source_note	-	Uno a la vez · cambiar recarga
+values-b+es	string	library_synced_format	-	Sincronizado hace %s
 values-b+es	string	lightnovel	-	App de novela ligera de los mismos desarrolladores
 values-b+es	string	limit_title	-	Máxima cantidad de caracteres en el título del reproductor
 values-b+es	string	limit_title_rez	-	Mostrar la información del reproductor de video
@@ -11005,6 +11096,11 @@ values-b+fa	string	jsdelivr_proxy_summary	-	دورزدن نشانی‌های خ�
 values-b+fa	string	kitsu_settings	-	نمیش پوستر از kitsu
 values-b+fa	string	legal_notice	-	هشدار
 values-b+fa	string	library	-	کتابخانه
+values-b+fa	string	library_not_connected	-	متصل نیست
+values-b+fa	string	library_on_device	-	روی دستگاه
+values-b+fa	string	library_source	-	منبع کتابخانه
+values-b+fa	string	library_source_note	-	هر بار یکی · تغییر، دوباره بارگذاری می‌کند
+values-b+fa	string	library_synced_format	-	%s پیش همگام‌سازی شد
 values-b+fa	string	lightnovel	-	برنامه سبک رمان از توسعه دهندگان یکسان
 values-b+fa	string	limit_title_rez	-	کیفیت پخش‌کننده ویدئو
 values-b+fa	string	links_reloaded_toast	-	پیوندها دوباره بارگیری شدند
@@ -11432,6 +11528,11 @@ values-b+fil	string	home_play	-	Ipatugtog
 values-b+fil	string	home_search_only_body	-	Wala sa iyong mga extension ang may home page, pero maaari ka pa ring maghanap sa mga ito.
 values-b+fil	string	home_source_none_subtitle	-	WALANG ROW · NANANATILI ANG MGA ROW MO
 values-b+fil	string	kitsu_settings	-	Ipakita ang posters mula sa Kitsu
+values-b+fil	string	library_not_connected	-	Hindi nakakonekta
+values-b+fil	string	library_on_device	-	Sa device
+values-b+fil	string	library_source	-	Pinagmulan ng library
+values-b+fil	string	library_source_note	-	Isa-isa · nagre-reload kapag nagpalit
+values-b+fil	string	library_synced_format	-	Na-sync %s ang nakalipas
 values-b+fil	string	lightnovel	-	Light novel app ng parehong devs
 values-b+fil	string	links_reloaded_toast	-	Ini-load muli ang mga link
 values-b+fil	string	load_more	-	Mag-load pa
@@ -11996,6 +12097,11 @@ values-b+fr	string	jsdelivr_proxy_summary	-	Contourne le blocage de GitHub en ut
 values-b+fr	string	kitsu_settings	-	Montrer les affiches provenant de Kitsu
 values-b+fr	string	legal_notice	-	Non-responsabilité
 values-b+fr	string	library	-	Bibliothèque
+values-b+fr	string	library_not_connected	-	Non connecté
+values-b+fr	string	library_on_device	-	Sur l'appareil
+values-b+fr	string	library_source	-	Source de la bibliothèque
+values-b+fr	string	library_source_note	-	Une à la fois · changer recharge
+values-b+fr	string	library_synced_format	-	Synchronisé il y a %s
 values-b+fr	string	lightnovel	-	Application Light Novel par les mêmes devs
 values-b+fr	string	limit_title	-	Nombre maximal de caractères dans le titre du lecteur vidéo
 values-b+fr	string	limit_title_rez	-	Afficher les informations du lecteur
@@ -12653,6 +12759,11 @@ values-b+gl	string	home_search_only_body	-	Ningunha das súas extensións ten p�
 values-b+gl	string	home_source_none_subtitle	-	SEN FILAS · AS TÚAS FILAS QUEDAN
 values-b+gl	string	kitsu_settings	-	Mostrar pósters de Kitsu
 values-b+gl	string	library	-	Biblioteca
+values-b+gl	string	library_not_connected	-	Non conectado
+values-b+gl	string	library_on_device	-	No dispositivo
+values-b+gl	string	library_source	-	Orixe da biblioteca
+values-b+gl	string	library_source_note	-	Unha de cada vez · cambiar recarga
+values-b+gl	string	library_synced_format	-	Sincronizado hai %s
 values-b+gl	string	lightnovel	-	Aplicativo de novela lixeira dos mesmos desenvolvedores
 values-b+gl	string	links_reloaded_toast	-	Ligazóns recargadas
 values-b+gl	string	live_singular	-	Transmisión en vivo
@@ -13135,6 +13246,11 @@ values-b+he	string	jsdelivr_proxy_summary	-	עוקף את החסימה של GitH
 values-b+he	string	kitsu_settings	-	הצג פוסטרים מKitsu
 values-b+he	string	legal_notice	-	כתב ויתור
 values-b+he	string	library	-	ספריה
+values-b+he	string	library_not_connected	-	לא מחובר
+values-b+he	string	library_on_device	-	במכשיר
+values-b+he	string	library_source	-	מקור הספריה
+values-b+he	string	library_source_note	-	אחד בכל פעם · החלפה טוענת מחדש
+values-b+he	string	library_synced_format	-	סונכרן לפני %s
 values-b+he	string	lightnovel	-	אפליקצית רומנים קלים על ידי אותו מפתחים
 values-b+he	string	limit_title	-	נגן וידאו כותרת מקסימום תווים
 values-b+he	string	limit_title_rez	-	רזולוציית נגן וידאו
@@ -13754,6 +13870,11 @@ values-b+hi	string	jsdelivr_proxy_summary	-	जेएस डीलीवर क�
 values-b+hi	string	kitsu_settings	-	Kitsu से पोस्टर दिखाएं
 values-b+hi	string	legal_notice	-	अस्वीकरण
 values-b+hi	string	library	-	लाइब्रेरी
+values-b+hi	string	library_not_connected	-	कनेक्ट नहीं है
+values-b+hi	string	library_on_device	-	डिवाइस पर
+values-b+hi	string	library_source	-	लाइब्रेरी स्रोत
+values-b+hi	string	library_source_note	-	एक समय में एक · बदलने पर फिर से लोड होता है
+values-b+hi	string	library_synced_format	-	%s पहले सिंक हुआ
 values-b+hi	string	lightnovel	-	उन्हीं डेवलपर्स द्वारा Light novel ऐप
 values-b+hi	string	limit_title	-	वीडियो प्लेयर शीर्षक अधिकतम वर्ण
 values-b+hi	string	limit_title_rez	-	वीडियो प्लेयर रिज़ॉल्यूशन
@@ -14393,6 +14514,11 @@ values-b+hr	string	jsdelivr_proxy_summary	-	Zaobilazi blokiranje neobrađenih Gi
 values-b+hr	string	kitsu_settings	-	Prikaži postere iz Kitsua
 values-b+hr	string	legal_notice	-	Pravna obavijest
 values-b+hr	string	library	-	Biblioteka
+values-b+hr	string	library_not_connected	-	Nije povezano
+values-b+hr	string	library_on_device	-	Na uređaju
+values-b+hr	string	library_source	-	Izvor biblioteke
+values-b+hr	string	library_source_note	-	Jedan po jedan · promjena ponovno učitava
+values-b+hr	string	library_synced_format	-	Sinkronizirano prije %s
 values-b+hr	string	lightnovel	-	Aplikacija za romane od istih programera
 values-b+hr	string	limit_title	-	Maksimalni broj znakova u naslovu video playera
 values-b+hr	string	limit_title_rez	-	Prikaži podatke playera
@@ -15188,6 +15314,11 @@ values-b+hu	string	jsdelivr_proxy_summary	-	A jsDelivr használatával a tiszta 
 values-b+hu	string	kitsu_settings	-	Poszterek megjelenítése Kitsu-ról
 values-b+hu	string	legal_notice	-	Jogi nyilatkozat
 values-b+hu	string	library	-	Könyvtár
+values-b+hu	string	library_not_connected	-	Nincs csatlakoztatva
+values-b+hu	string	library_on_device	-	Az eszközön
+values-b+hu	string	library_source	-	Könyvtár forrása
+values-b+hu	string	library_source_note	-	Egyszerre egy · váltáskor újratölt
+values-b+hu	string	library_synced_format	-	%s ezelőtt szinkronizálva
 values-b+hu	string	lightnovel	-	Light novel applikáció ugyanazoktól a fejlesztőktől
 values-b+hu	string	limit_title	-	Videolejátszó cím max karakterek
 values-b+hu	string	limit_title_rez	-	Videolejátszó felbontása
@@ -15960,6 +16091,11 @@ values-b+id	string	jsdelivr_proxy_summary	-	Lewati pemblokiran raw URL github me
 values-b+id	string	kitsu_settings	-	Tampilkan poster dari Kitsu
 values-b+id	string	legal_notice	-	Disclaimer
 values-b+id	string	library	-	Pustaka
+values-b+id	string	library_not_connected	-	Tidak terhubung
+values-b+id	string	library_on_device	-	Di perangkat
+values-b+id	string	library_source	-	Sumber pustaka
+values-b+id	string	library_source_note	-	Satu per satu · beralih memuat ulang
+values-b+id	string	library_synced_format	-	Disinkronkan %s lalu
 values-b+id	string	lightnovel	-	Aplikasi novel ringan dari developer yang sama
 values-b+id	string	limit_title	-	Karakter maksimal judul pemutar video
 values-b+id	string	limit_title_rez	-	Tampilkan informasi pemutar
@@ -16794,6 +16930,11 @@ values-b+in	string	jsdelivr_proxy_summary	-	Lewati pemblokiran raw URL github me
 values-b+in	string	kitsu_settings	-	Tampilkan poster dari Kitsu
 values-b+in	string	legal_notice	-	Disclaimer
 values-b+in	string	library	-	Pustaka
+values-b+in	string	library_not_connected	-	Tidak terhubung
+values-b+in	string	library_on_device	-	Di perangkat
+values-b+in	string	library_source	-	Sumber pustaka
+values-b+in	string	library_source_note	-	Satu per satu · beralih memuat ulang
+values-b+in	string	library_synced_format	-	Disinkronkan %s lalu
 values-b+in	string	lightnovel	-	Aplikasi novel ringan dari developer yang sama
 values-b+in	string	limit_title	-	Karakter maksimal judul pemutar video
 values-b+in	string	limit_title_rez	-	Tampilkan informasi pemutar
@@ -17640,6 +17781,11 @@ values-b+it	string	jsdelivr_proxy_summary	-	Evita il blocco degli URL github non
 values-b+it	string	kitsu_settings	-	Mostra poster da Kitsu
 values-b+it	string	legal_notice	-	Avvertenza
 values-b+it	string	library	-	Libreria
+values-b+it	string	library_not_connected	-	Non connesso
+values-b+it	string	library_on_device	-	Sul dispositivo
+values-b+it	string	library_source	-	Origine della libreria
+values-b+it	string	library_source_note	-	Una alla volta · cambiare ricarica
+values-b+it	string	library_synced_format	-	Sincronizzato %s fa
 values-b+it	string	lightnovel	-	App per Light Novel degli stessi sviluppatori
 values-b+it	string	limit_title	-	Limita i caratteri del titolo nel lettore
 values-b+it	string	limit_title_rez	-	Mostra informazioni sul lettore
@@ -18392,6 +18538,11 @@ values-b+iw	string	jsdelivr_proxy_summary	-	עוקף את החסימה של GitH
 values-b+iw	string	kitsu_settings	-	הצג פוסטרים מKitsu
 values-b+iw	string	legal_notice	-	כתב ויתור
 values-b+iw	string	library	-	ספריה
+values-b+iw	string	library_not_connected	-	לא מחובר
+values-b+iw	string	library_on_device	-	במכשיר
+values-b+iw	string	library_source	-	מקור הספריה
+values-b+iw	string	library_source_note	-	אחד בכל פעם · החלפה טוענת מחדש
+values-b+iw	string	library_synced_format	-	סונכרן לפני %s
 values-b+iw	string	lightnovel	-	אפליקצית רומנים קלים על ידי אותו מפתחים
 values-b+iw	string	limit_title	-	נגן וידאו כותרת מקסימום תווים
 values-b+iw	string	limit_title_rez	-	רזולוציית נגן וידאו
@@ -19127,6 +19278,11 @@ values-b+ja	string	jsdelivr_proxy_summary	-	jsDelivrを使用して生のGitHub 
 values-b+ja	string	kitsu_settings	-	Kitsuのポスターを表示
 values-b+ja	string	legal_notice	-	免責
 values-b+ja	string	library	-	ライブラリ
+values-b+ja	string	library_not_connected	-	未接続
+values-b+ja	string	library_on_device	-	このデバイス
+values-b+ja	string	library_source	-	ライブラリのソース
+values-b+ja	string	library_source_note	-	一度に1つ · 切り替えると再読み込み
+values-b+ja	string	library_synced_format	-	%s前に同期
 values-b+ja	string	lightnovel	-	同じ開発者によるライトノベルアプリ
 values-b+ja	string	limit_title	-	ビデオプレーヤーのタイトル最大文字数
 values-b+ja	string	limit_title_rez	-	プレイヤー情報を表示
@@ -19704,6 +19860,11 @@ values-b+kn	string	home_offline_source_headline	-	%1$s ಗೆ ಸಂಪರ್ಕ
 values-b+kn	string	home_play	-	ಪ್ಲೇ
 values-b+kn	string	home_search_only_body	-	ನಿಮ್ಮ ಯಾವುದೇ ವಿಸ್ತರಣೆಗೆ ಹೋಂ ಪುಟವಿಲ್ಲ, ಆದರೆ ನೀವು ಅವುಗಳಲ್ಲಿ ಹುಡುಕಬಹುದು.
 values-b+kn	string	home_source_none_subtitle	-	ಸಾಲುಗಳಿಲ್ಲ · ನಿಮ್ಮ ಸಾಲುಗಳು ಉಳಿಯುತ್ತವೆ
+values-b+kn	string	library_not_connected	-	ಸಂಪರ್ಕಗೊಂಡಿಲ್ಲ
+values-b+kn	string	library_on_device	-	ಸಾಧನದಲ್ಲಿ
+values-b+kn	string	library_source	-	ಲೈಬ್ರರಿ ಮೂಲ
+values-b+kn	string	library_source_note	-	ಒಂದು ಬಾರಿಗೆ ಒಂದು · ಬದಲಿಸಿದರೆ ಮರುಲೋಡ್ ಆಗುತ್ತದೆ
+values-b+kn	string	library_synced_format	-	%s ಹಿಂದೆ ಸಿಂಕ್ ಮಾಡಲಾಗಿದೆ
 values-b+kn	string	load_more	-	ಇನ್ನಷ್ಟು ಲೋಡ್ ಮಾಡಿ
 values-b+kn	string	loading	-	ಲೋಡಿಂಗ್…
 values-b+kn	string	more_like_this	-	ಇಂತಹ ಇನ್ನಷ್ಟು
@@ -20184,6 +20345,11 @@ values-b+ko	string	jsdelivr_proxy_summary	-	jsDelivr를 사용하여 차단된 G
 values-b+ko	string	kitsu_settings	-	Kitsu에서 포스터 가져오기
 values-b+ko	string	legal_notice	-	거부
 values-b+ko	string	library	-	라이브러리
+values-b+ko	string	library_not_connected	-	연결되지 않음
+values-b+ko	string	library_on_device	-	기기에 저장됨
+values-b+ko	string	library_source	-	라이브러리 소스
+values-b+ko	string	library_source_note	-	한 번에 하나 · 전환하면 다시 불러옴
+values-b+ko	string	library_synced_format	-	%s 전에 동기화됨
 values-b+ko	string	lightnovel	-	같은 개발자가 만든 라이트 노벨 앱
 values-b+ko	string	limit_title	-	플레이어 내 표시 제목의 최대 글자 수
 values-b+ko	string	limit_title_rez	-	플레이어 내 표시 정보
@@ -20836,6 +21002,11 @@ values-b+lt	string	home_search_only_body	-	Nė vienas jūsų plėtinys neturi pa
 values-b+lt	string	home_source_none_subtitle	-	NĖRA EILUČIŲ · JŪSŲ EILUTĖS LIEKA
 values-b+lt	string	is_adult	-	18+
 values-b+lt	string	library	-	Biblioteka
+values-b+lt	string	library_not_connected	-	Neprijungta
+values-b+lt	string	library_on_device	-	Įrenginyje
+values-b+lt	string	library_source	-	Bibliotekos šaltinis
+values-b+lt	string	library_source_note	-	Po vieną · perjungus įkeliama iš naujo
+values-b+lt	string	library_synced_format	-	Sinchronizuota prieš %s
 values-b+lt	string	links_reloaded_toast	-	Nuorodos perkrautos
 values-b+lt	string	live_singular	-	Gyva transliacija
 values-b+lt	string	livestreams	-	Gyvos transliacijos
@@ -21364,6 +21535,11 @@ values-b+lv	string	jsdelivr_proxy_summary	-	Apiet tiešo GitHub URL saišu piek�
 values-b+lv	string	kitsu_settings	-	Rādīt Kitsu vietnes plakātus
 values-b+lv	string	legal_notice	-	Atruna
 values-b+lv	string	library	-	Library
+values-b+lv	string	library_not_connected	-	Nav savienots
+values-b+lv	string	library_on_device	-	Ierīcē
+values-b+lv	string	library_source	-	Bibliotēkas avots
+values-b+lv	string	library_source_note	-	Pa vienam · pārslēgšana pārlādē
+values-b+lv	string	library_synced_format	-	Sinhronizēts pirms %s
 values-b+lv	string	lightnovel	-	Viegla romānu lietotne no šiem pašiem izstrādātājiem
 values-b+lv	string	limit_title	-	Video players nosaukuma maksimālie burti
 values-b+lv	string	limit_title_rez	-	Video atskaņotāja kvalitāte
@@ -22138,6 +22314,11 @@ values-b+mk	string	jsdelivr_proxy_summary	-	Заобиколи го блокир
 values-b+mk	string	kitsu_settings	-	Прикажи постери од Kitsu
 values-b+mk	string	legal_notice	-	Disclaimer
 values-b+mk	string	library	-	Библиотека
+values-b+mk	string	library_not_connected	-	Не е поврзано
+values-b+mk	string	library_on_device	-	На уредот
+values-b+mk	string	library_source	-	Извор на библиотеката
+values-b+mk	string	library_source_note	-	Еден по еден · менувањето превчитува
+values-b+mk	string	library_synced_format	-	Синхронизирано пред %s
 values-b+mk	string	lightnovel	-	Едноставна апликација за новели од истите развивачи
 values-b+mk	string	limit_title	-	Наслов на видео плеер максимални знаци
 values-b+mk	string	limit_title_rez	-	Прикажи информации за плеерот
@@ -22779,6 +22960,11 @@ values-b+ml	string	home_random	-	ക്രമരഹിതം
 values-b+ml	string	home_search_only_body	-	നിങ്ങളുടെ വിപുലീകരണങ്ങളിൽ ഒന്നിനും ഹോം പേജ് ഇല്ല, എങ്കിലും അവയിൽ തിരയാം.
 values-b+ml	string	home_source	-	ഉറവിടം
 values-b+ml	string	home_source_none_subtitle	-	നിരകളില്ല · നിങ്ങളുടെ നിരകൾ നിലനിൽക്കും
+values-b+ml	string	library_not_connected	-	കണക്റ്റ് ചെയ്തിട്ടില്ല
+values-b+ml	string	library_on_device	-	ഉപകരണത്തിൽ
+values-b+ml	string	library_source	-	ലൈബ്രറി ഉറവിടം
+values-b+ml	string	library_source_note	-	ഒരേ സമയം ഒന്ന് · മാറ്റിയാൽ വീണ്ടും ലോഡ് ചെയ്യും
+values-b+ml	string	library_synced_format	-	%s മുമ്പ് സമന്വയിപ്പിച്ചു
 values-b+ml	string	lightnovel	-	നമ്മുടെ ലൈറ്റ് നോവൽ ആപ്പ്
 values-b+ml	string	links_reloaded_toast	-	ലിങ്കുകൾ വീണ്ടും ലോഡുചെയ്‌തു
 values-b+ml	string	load_more	-	കൂടുതൽ ലോഡ് ചെയ്യുക
@@ -23284,6 +23470,11 @@ values-b+ms	string	jsdelivr_proxy	-	Proksi Github
 values-b+ms	string	kitsu_settings	-	Tunjuk poster dari Kitsu
 values-b+ms	string	legal_notice	-	Penafian
 values-b+ms	string	library	-	Perpustakaan
+values-b+ms	string	library_not_connected	-	Tidak disambungkan
+values-b+ms	string	library_on_device	-	Pada peranti
+values-b+ms	string	library_source	-	Sumber perpustakaan
+values-b+ms	string	library_source_note	-	Satu demi satu · menukar memuat semula
+values-b+ms	string	library_synced_format	-	Disegerakkan %s lalu
 values-b+ms	string	lightnovel	-	Aplikasi Light novel oleh pembangun sama
 values-b+ms	string	limit_title	-	char maximum tajuk pemain video
 values-b+ms	string	limit_title_rez	-	Resolusi pemain video
@@ -23731,6 +23922,11 @@ values-b+mt	string	home_offline_source_headline	-	%1$s jeħtieġ konnessjoni
 values-b+mt	string	home_play	-	Ibda
 values-b+mt	string	home_search_only_body	-	L-ebda waħda mill-estensjonijiet tiegħek m'għandha paġna ewlenija, imma xorta tista' tfittex fihom.
 values-b+mt	string	home_source_none_subtitle	-	EBDA RINGIELI · IR-RINGIELI TIEGĦEK JIBQGĦU
+values-b+mt	string	library_not_connected	-	Mhux konness
+values-b+mt	string	library_on_device	-	Fuq l-apparat
+values-b+mt	string	library_source	-	Sors tal-librerija
+values-b+mt	string	library_source_note	-	Wieħed kull darba · il-bidla tgħabbi mill-ġdid
+values-b+mt	string	library_synced_format	-	Sinkronizzat %s ilu
 values-b+mt	string	links_reloaded_toast	-	Links regaw gew mogħbija
 values-b+mt	string	load_more	-	Għabbi iktar
 values-b+mt	string	loading	-	Tagħbija…
@@ -24111,6 +24307,11 @@ values-b+my	string	jsdelivr_proxy_summary	-	jsDelivr ကို အသုံး�
 values-b+my	string	kitsu_settings	-	Kitsu မှ ပိုစတာများကိုပြရန်
 values-b+my	string	legal_notice	-	ရှင်းလင်းချက်
 values-b+my	string	library	-	လိုက်ဘရီ
+values-b+my	string	library_not_connected	-	ချိတ်ဆက်မထားပါ
+values-b+my	string	library_on_device	-	စက်ပေါ်တွင်
+values-b+my	string	library_source	-	လိုက်ဘရီ ရင်းမြစ်
+values-b+my	string	library_source_note	-	တစ်ကြိမ်လျှင် တစ်ခု · ပြောင်းလျှင် ပြန်ဖွင့်သည်
+values-b+my	string	library_synced_format	-	%s က ချိန်ကိုက်ခဲ့သည်
 values-b+my	string	lightnovel	-	တူညီသောအက်ပ်ရေးသားသူများ၏ ဝတ္ထုရှည်များဖတ်နိုင်သည့် အက်ပ်
 values-b+my	string	limit_title	-	ခေါင်းစဥ်အတွက်စာလုံးရေပြည့်ခြင်း
 values-b+my	string	limit_title_rez	-	ကြည့်ရှုမှု အရည်အသွေး
@@ -24569,6 +24770,11 @@ values-b+ne	string	home_offline_source_headline	-	%1$s लाई जडान �
 values-b+ne	string	home_play	-	प्ले
 values-b+ne	string	home_search_only_body	-	तपाईंका कुनै पनि एक्सटेन्सनमा होम पेज छैन, तर तपाईं तिनमा अझै खोज्न सक्नुहुन्छ।
 values-b+ne	string	home_source_none_subtitle	-	पङ्क्ति छैन · तपाईंका पङ्क्ति रहन्छन्
+values-b+ne	string	library_not_connected	-	जडान छैन
+values-b+ne	string	library_on_device	-	यन्त्रमा
+values-b+ne	string	library_source	-	लाइब्रेरी स्रोत
+values-b+ne	string	library_source_note	-	एक पटकमा एउटा · बदल्दा फेरि लोड हुन्छ
+values-b+ne	string	library_synced_format	-	%s अघि सिंक गरियो
 values-b+ne	string	links_reloaded_toast	-	लिङ्कहरू रिलोड गरियो
 values-b+ne	string	load_more	-	थप लोड गर्नुहोस्
 values-b+ne	string	loading	-	लोड हुँदै…
@@ -25030,6 +25236,11 @@ values-b+nl	string	jsdelivr_proxy_summary	-	Omzeil de blokkering van ruwe GitHub
 values-b+nl	string	kitsu_settings	-	Toon posters van Kitsu
 values-b+nl	string	legal_notice	-	Disclaimer
 values-b+nl	string	library	-	Bibliotheek
+values-b+nl	string	library_not_connected	-	Niet verbonden
+values-b+nl	string	library_on_device	-	Op apparaat
+values-b+nl	string	library_source	-	Bibliotheekbron
+values-b+nl	string	library_source_note	-	Eén tegelijk · wisselen laadt opnieuw
+values-b+nl	string	library_synced_format	-	%s geleden gesynchroniseerd
 values-b+nl	string	lightnovel	-	Light novel app van dezelfde ontwikkelaars
 values-b+nl	string	limit_title	-	Maximaal aantal tekens voor titel van videospeler
 values-b+nl	string	limit_title_rez	-	Toon spelerinformatie
@@ -25614,6 +25825,11 @@ values-b+nn	string	home_play	-	Spel(e) av
 values-b+nn	string	home_search_only_body	-	Ingen av utvidingane dine har ei heimeside, men du kan framleis søkje i dei.
 values-b+nn	string	home_source_none_subtitle	-	INGEN RADER · RADENE DINE BLIR
 values-b+nn	string	kitsu_settings	-	Vis miniatyrbilete frå Kitsu
+values-b+nn	string	library_not_connected	-	Ikkje tilkopla
+values-b+nn	string	library_on_device	-	På eininga
+values-b+nn	string	library_source	-	Bibliotekskjelde
+values-b+nn	string	library_source_note	-	Éin om gongen · byte lastar på nytt
+values-b+nn	string	library_synced_format	-	Synkronisert for %s sidan
 values-b+nn	string	lightnovel	-	Lysnovelleprogram av dei same utviklarane
 values-b+nn	string	live_singular	-	Direktesending
 values-b+nn	string	livestreams	-	Direktesendingar
@@ -26039,6 +26255,11 @@ values-b+no	string	jsdelivr_proxy	-	raw.githubusercontent.com-mellomtjener
 values-b+no	string	jsdelivr_proxy_summary	-	Omgår blokkering av GitHub ved hjelp av jsDelivr. Dette kan forårsake forsinkelser på oppdateringer med noen få dager.
 values-b+no	string	kitsu_settings	-	Vis plakater fra Kitsu
 values-b+no	string	library	-	Bibliotek
+values-b+no	string	library_not_connected	-	Ikke tilkoblet
+values-b+no	string	library_on_device	-	På enheten
+values-b+no	string	library_source	-	Bibliotekkilde
+values-b+no	string	library_source_note	-	Én om gangen · bytte laster inn på nytt
+values-b+no	string	library_synced_format	-	Synkronisert for %s siden
 values-b+no	string	lightnovel	-	Light novel app av samme devs
 values-b+no	string	limit_title	-	Maks. antall tegn for navn i videospiller
 values-b+no	string	limit_title_rez	-	Videooppløsning
@@ -26518,6 +26739,11 @@ values-b+or	string	home_play	-	ଚଲାଅ
 values-b+or	string	home_search_only_body	-	ଆପଣଙ୍କର କୌଣସି ଏକ୍ସଟେନସନରେ ହୋମ୍ ପୃଷ୍ଠା ନାହିଁ, କିନ୍ତୁ ଆପଣ ସେଗୁଡ଼ିକରେ ସନ୍ଧାନ କରିପାରିବେ।
 values-b+or	string	home_source_none_subtitle	-	ଧାଡ଼ି ନାହିଁ · ଆପଣଙ୍କ ଧାଡ଼ି ରହେ
 values-b+or	string	library	-	ଲାଇବ୍ରେରୀ
+values-b+or	string	library_not_connected	-	ସଂଯୁକ୍ତ ନାହିଁ
+values-b+or	string	library_on_device	-	ଡିଭାଇସରେ
+values-b+or	string	library_source	-	ଲାଇବ୍ରେରୀ ଉତ୍ସ
+values-b+or	string	library_source_note	-	ଥରକେ ଗୋଟିଏ · ବଦଳାଇଲେ ପୁଣି ଲୋଡ୍ ହୁଏ
+values-b+or	string	library_synced_format	-	%s ପୂର୍ବରୁ ସିଙ୍କ ହୋଇଛି
 values-b+or	string	live_singular	-	ସିଧାପ୍ରସାରଣ
 values-b+or	string	livestreams	-	ସିଧାପ୍ରସାରଣ
 values-b+or	string	load_more	-	ଅଧିକ ଲୋଡ୍ କର
@@ -27027,6 +27253,11 @@ values-b+pl	string	jsdelivr_proxy_summary	-	Obchodzi blokadę surowych adresów 
 values-b+pl	string	kitsu_settings	-	Pokaż obrazki z Kitsu
 values-b+pl	string	legal_notice	-	Zastrzeżenie
 values-b+pl	string	library	-	Biblioteka
+values-b+pl	string	library_not_connected	-	Nie połączono
+values-b+pl	string	library_on_device	-	Na urządzeniu
+values-b+pl	string	library_source	-	Źródło biblioteki
+values-b+pl	string	library_source_note	-	Jedno naraz · przełączenie wczytuje ponownie
+values-b+pl	string	library_synced_format	-	Zsynchronizowano %s temu
 values-b+pl	string	lightnovel	-	Aplikacja do light novel od nas
 values-b+pl	string	limit_title	-	Maksymalna liczba znaków w tytule odtwarzacza
 values-b+pl	string	limit_title_rez	-	Pokaż informacje o odtwarzaczu
@@ -27875,6 +28106,11 @@ values-b+pt	string	jsdelivr_proxy_summary	-	Contorna o bloqueio de URLs raw do G
 values-b+pt	string	kitsu_settings	-	Mostrar posters do kitsu
 values-b+pt	string	legal_notice	-	Aviso Legal
 values-b+pt	string	library	-	Biblioteca
+values-b+pt	string	library_not_connected	-	Não conectado
+values-b+pt	string	library_on_device	-	No dispositivo
+values-b+pt	string	library_source	-	Origem da biblioteca
+values-b+pt	string	library_source_note	-	Uma de cada vez · mudar recarrega
+values-b+pt	string	library_synced_format	-	Sincronizado há %s
 values-b+pt	string	lightnovel	-	App light novel pelos mesmos devs
 values-b+pt	string	limit_title	-	Máximo de caracteres do título no player de video
 values-b+pt	string	limit_title_rez	-	Mostrar informações do player de vídeo
@@ -28717,6 +28953,11 @@ values-b+pt+BR	string	jsdelivr_proxy_summary	-	Contorne o bloqueio de URLs "raw"
 values-b+pt+BR	string	kitsu_settings	-	Mostrar posters do Kitsu
 values-b+pt+BR	string	legal_notice	-	Aviso Legal
 values-b+pt+BR	string	library	-	Biblioteca
+values-b+pt+BR	string	library_not_connected	-	Não conectado
+values-b+pt+BR	string	library_on_device	-	No dispositivo
+values-b+pt+BR	string	library_source	-	Fonte da biblioteca
+values-b+pt+BR	string	library_source_note	-	Uma por vez · trocar recarrega
+values-b+pt+BR	string	library_synced_format	-	Sincronizado há %s
 values-b+pt+BR	string	lightnovel	-	App de Light novel criado pelos mesmos desenvolvedores
 values-b+pt+BR	string	limit_title	-	Máximo de caracteres do título de vídeos
 values-b+pt+BR	string	limit_title_rez	-	Exibir informação do reprodutor
@@ -29509,6 +29750,11 @@ values-b+qt	string	jsdelivr_proxy_summary	-	uuuuhh uuuuuukk oh aah aaaagg uugg u
 values-b+qt	string	kitsu_settings	-	oohh uuuuggg uuhh uuugg
 values-b+qt	string	legal_notice	-	ah huu oouhhau aoaoaaohoo ha
 values-b+qt	string	library	-	uuuuuuuh aaaoo o
+values-b+qt	string	library_not_connected	-	ooo-ahah aagg
+values-b+qt	string	library_on_device	-	uuhh ooo
+values-b+qt	string	library_source	-	aaaghh ooo-ahah
+values-b+qt	string	library_source_note	-	ooo aagg · uuhh-ahah
+values-b+qt	string	library_synced_format	-	aaghh %s ooo
 values-b+qt	string	lightnovel	-	ooo-ahahoh ohaaauugghh ahhh haaahooo
 values-b+qt	string	limit_title	-	aaahh aaaahh ooohh uuk uuugg
 values-b+qt	string	limit_title_rez	-	ooohh uuuuhh aaaahhhooh
@@ -30238,6 +30484,11 @@ values-b+ro	string	jsdelivr_proxy_summary	-	Ocolește blocarea URL-urilor brute 
 values-b+ro	string	kitsu_settings	-	Arată afișele de la Kitsu
 values-b+ro	string	legal_notice	-	Aviz juridic (declinarea responsabilității și drepturi de autor)
 values-b+ro	string	library	-	Librărie
+values-b+ro	string	library_not_connected	-	Neconectat
+values-b+ro	string	library_on_device	-	Pe dispozitiv
+values-b+ro	string	library_source	-	Sursa bibliotecii
+values-b+ro	string	library_source_note	-	Câte una · schimbarea reîncarcă
+values-b+ro	string	library_synced_format	-	Sincronizat acum %s
 values-b+ro	string	lightnovel	-	>Aplicație Light Novel realizată de aceiași dezvoltator
 values-b+ro	string	limit_title	-	Limitarea caracterelor de titlu în player
 values-b+ro	string	limit_title_rez	-	Rezoluția playerului video
@@ -31021,6 +31272,11 @@ values-b+ru	string	jsdelivr_proxy_summary	-	Обход ограничения д
 values-b+ru	string	kitsu_settings	-	Показывать афиши из Kitsu
 values-b+ru	string	legal_notice	-	Оговорка
 values-b+ru	string	library	-	Библиотека
+values-b+ru	string	library_not_connected	-	Не подключено
+values-b+ru	string	library_on_device	-	На устройстве
+values-b+ru	string	library_source	-	Источник библиотеки
+values-b+ru	string	library_source_note	-	По одному · переключение перезагружает
+values-b+ru	string	library_synced_format	-	Синхронизировано %s назад
 values-b+ru	string	lightnovel	-	Лёгкое приложение для новелл от тех же разработчиков
 values-b+ru	string	limit_title	-	Максимум символов
 values-b+ru	string	limit_title_rez	-	Показывать информацию про видеоплеер
@@ -31757,6 +32013,11 @@ values-b+sk	string	jsdelivr_proxy_summary	-	Obchádza blokovanie GitHubu pomocou
 values-b+sk	string	kitsu_settings	-	Zobraziť plagáty z Kitsu
 values-b+sk	string	legal_notice	-	Vylúčenie zodpovednosti
 values-b+sk	string	library	-	Knižnica
+values-b+sk	string	library_not_connected	-	Nepripojené
+values-b+sk	string	library_on_device	-	V zariadení
+values-b+sk	string	library_source	-	Zdroj knižnice
+values-b+sk	string	library_source_note	-	Jeden naraz · prepnutie znova načíta
+values-b+sk	string	library_synced_format	-	Synchronizované pred %s
 values-b+sk	string	lightnovel	-	Nenáročná aplikácia pre romány od rovnakých vývojárov
 values-b+sk	string	limit_title	-	Maximálny počet znakov v názve prehrávača
 values-b+sk	string	limit_title_rez	-	Informácie o prehrávači
@@ -32343,6 +32604,11 @@ values-b+so	string	is_adult	-	18+
 values-b+so	string	kitsu_settings	-	Tusi Boodhka Kitsu
 values-b+so	string	legal_notice	-	Aaraar
 values-b+so	string	library	-	Kaydka
+values-b+so	string	library_not_connected	-	Lama xiriirin
+values-b+so	string	library_on_device	-	Qalabka ku jira
+values-b+so	string	library_source	-	Isha kaydka
+values-b+so	string	library_source_note	-	Mid mid · beddelku wuu dib u soo raraa
+values-b+so	string	library_synced_format	-	La waafajiyay %s kahor
 values-b+so	string	lightnovel	-	Light novel app, isla dhiseyaasha appkan baa leh
 values-b+so	string	limit_title	-	Tirada inta ka muuqanaysa magaca filinka
 values-b+so	string	limit_title_rez	-	Daaraha korkiisa
@@ -33053,6 +33319,11 @@ values-b+sq	string	jsdelivr_proxy_summary	-	Anashkalon bllokimin e URL-ve të Gi
 values-b+sq	string	kitsu_settings	-	Shfaq posterat nga Kitsu
 values-b+sq	string	legal_notice	-	Mohim përgjegjësie
 values-b+sq	string	library	-	Bilblioteka
+values-b+sq	string	library_not_connected	-	Nuk është lidhur
+values-b+sq	string	library_on_device	-	Në pajisje
+values-b+sq	string	library_source	-	Burimi i bibliotekës
+values-b+sq	string	library_source_note	-	Një në një kohë · ndërrimi ringarkon
+values-b+sq	string	library_synced_format	-	Sinkronizuar para %s
 values-b+sq	string	lightnovel	-	Aplikacioni Light Novel nga të njëjtit developer-a
 values-b+sq	string	limit_title	-	Numri maksimal i karaktereve të titullit
 values-b+sq	string	limit_title_rez	-	Shfaq informacionin e luajtësit
@@ -33895,6 +34166,11 @@ values-b+sv	string	jsdelivr_proxy_summary	-	Gå förbi blockering av rå GitHub-
 values-b+sv	string	kitsu_settings	-	Visa bilder från Kitsu
 values-b+sv	string	legal_notice	-	Ansvarsfriskrivning
 values-b+sv	string	library	-	Bibliotek
+values-b+sv	string	library_not_connected	-	Inte ansluten
+values-b+sv	string	library_on_device	-	På enheten
+values-b+sv	string	library_source	-	Bibliotekskälla
+values-b+sv	string	library_source_note	-	En i taget · byte laddar om
+values-b+sv	string	library_synced_format	-	Synkroniserad för %s sedan
 values-b+sv	string	lightnovel	-	Lightnovel app av samma utvecklare
 values-b+sv	string	limit_title	-	Max tecken i videospelartiteln
 values-b+sv	string	limit_title_rez	-	Visa videospelarens information
@@ -34737,6 +35013,11 @@ values-b+ta	string	jsdelivr_proxy_summary	-	JSdelivr ஐப் பயன்ப�
 values-b+ta	string	kitsu_settings	-	கிட்சுவிலிருந்து சுவரொட்டிகளைக் காட்டு
 values-b+ta	string	legal_notice	-	மறுப்பு
 values-b+ta	string	library	-	நூலகம்
+values-b+ta	string	library_not_connected	-	இணைக்கப்படவில்லை
+values-b+ta	string	library_on_device	-	சாதனத்தில்
+values-b+ta	string	library_source	-	நூலக மூலம்
+values-b+ta	string	library_source_note	-	ஒரு நேரத்தில் ஒன்று · மாற்றினால் மீண்டும் ஏற்றும்
+values-b+ta	string	library_synced_format	-	%s முன்பு ஒத்திசைக்கப்பட்டது
 values-b+ta	string	lightnovel	-	அதே தேவ்சின் ஒளி நாவல் பயன்பாடு
 values-b+ta	string	limit_title	-	வீடியோ பிளேயர் தலைப்பு மேக்ச் சார்ச்
 values-b+ta	string	limit_title_rez	-	பிளேயர் தகவலைக் காட்டு
@@ -35270,6 +35551,11 @@ values-b+ti	string	home_offline_bookmarks_body	-	ምልክታትኩም ኣብዚ
 values-b+ti	string	home_offline_source_headline	-	%1$s ምትእስሳር የድልዮ
 values-b+ti	string	home_search_only_body	-	ካብ መስፋሕፋሕትኻ ሓደ እኳ መበገሲ ገጽ የብሉን፡ ግን ሕጂ'ውን ኣብኡ ክትደሊ ትኽእል ኢኻ።
 values-b+ti	string	home_source_none_subtitle	-	መስመራት የለን · መስመራትኩም ይጸንሑ
+values-b+ti	string	library_not_connected	-	ኣይተራኸበን
+values-b+ti	string	library_on_device	-	ኣብ መሳርሒ
+values-b+ti	string	library_source	-	ምንጪ ቤተ-መጻሕፍቲ
+values-b+ti	string	library_source_note	-	ሓደ ብሓደ · ምቕያር ዳግም ይጽዕን
+values-b+ti	string	library_synced_format	-	ቅድሚ %s ተሰማሚዑ
 values-b+ti	string	load_more	-	ተወሳኺ ጽዓን
 values-b+ti	string	more_like_this	-	ተመሳሳሊ
 values-b+ti	string	next_episode_format	-	ክፋል %d በ ላይ ይወጣል
@@ -35497,6 +35783,11 @@ values-b+tl	string	home_play	-	I-play
 values-b+tl	string	home_search_only_body	-	Wala sa mga extension mo ang may home page, pero puwede ka pa ring maghanap sa mga ito.
 values-b+tl	string	home_source_none_subtitle	-	WALANG ROW · NANANATILI ANG MGA ROW MO
 values-b+tl	string	kitsu_settings	-	Ipakita ang posters mula sa Kitsu
+values-b+tl	string	library_not_connected	-	Hindi nakakonekta
+values-b+tl	string	library_on_device	-	Sa device
+values-b+tl	string	library_source	-	Pinagmulan ng library
+values-b+tl	string	library_source_note	-	Isa-isa · nagre-reload kapag nagpalit
+values-b+tl	string	library_synced_format	-	Na-sync %s ang nakalipas
 values-b+tl	string	lightnovel	-	Light novel app ng parehong devs
 values-b+tl	string	links_reloaded_toast	-	Ini-load muli ang mga link
 values-b+tl	string	load_more	-	Mag-load pa
@@ -36077,6 +36368,11 @@ values-b+tr	string	jsdelivr_proxy_summary	-	jsDelivr kullanarak ham github URL'l
 values-b+tr	string	kitsu_settings	-	Kitsu posterlerini göster
 values-b+tr	string	legal_notice	-	Yasal uyarı
 values-b+tr	string	library	-	Kütüphane
+values-b+tr	string	library_not_connected	-	Bağlı değil
+values-b+tr	string	library_on_device	-	Cihazda
+values-b+tr	string	library_source	-	Kütüphane kaynağı
+values-b+tr	string	library_source_note	-	Aynı anda bir tane · değiştirmek yeniden yükler
+values-b+tr	string	library_synced_format	-	%s önce eşitlendi
 values-b+tr	string	lightnovel	-	Aynı geliştiricilerin Lightnovel Crawler uygulaması
 values-b+tr	string	limit_title	-	Video oynatıcı başlığı karakter üst sınırı
 values-b+tr	string	limit_title_rez	-	Oynatıcı bilgisini göster
@@ -36931,6 +37227,11 @@ values-b+uk	string	jsdelivr_proxy_summary	-	Обхід блокування пр
 values-b+uk	string	kitsu_settings	-	Показувати плакати від Kitsu
 values-b+uk	string	legal_notice	-	Застереження
 values-b+uk	string	library	-	Бібліотека
+values-b+uk	string	library_not_connected	-	Не підключено
+values-b+uk	string	library_on_device	-	На пристрої
+values-b+uk	string	library_source	-	Джерело бібліотеки
+values-b+uk	string	library_source_note	-	По одному · перемикання перезавантажує
+values-b+uk	string	library_synced_format	-	Синхронізовано %s тому
 values-b+uk	string	lightnovel	-	Застосунок для ранобе від тих самих розробників
 values-b+uk	string	limit_title	-	Макс. кількість символів у заголовку програвача
 values-b+uk	string	limit_title_rez	-	Показувати інформацію про програвач
@@ -37714,6 +38015,11 @@ values-b+ur	string	jsdelivr_proxy_summary	-	Bypass blocking of raw github URLs u
 values-b+ur	string	kitsu_settings	-	کٹسو سے پوسٹر نمایش کریں
 values-b+ur	string	legal_notice	-	دستبرداری
 values-b+ur	string	library	-	لائبریری
+values-b+ur	string	library_not_connected	-	منسلک نہیں
+values-b+ur	string	library_on_device	-	ڈیوائس پر
+values-b+ur	string	library_source	-	لائبریری کا ذریعہ
+values-b+ur	string	library_source_note	-	ایک وقت میں ایک · تبدیل کرنے پر دوبارہ لوڈ ہوتا ہے
+values-b+ur	string	library_synced_format	-	%s پہلے ہم آہنگ کیا گیا
 values-b+ur	string	lightnovel	-	یہ لائٹ ناول ایپ وہی ڈویلپرز نے تیار کی ہے جو اس ایپ کو ڈویلپ کیا ہے
 values-b+ur	string	limit_title	-	ویڈیو پلیئر کے عنوان کے زیادہ سے زیادہ حروف
 values-b+ur	string	limit_title_rez	-	ویڈیو پلیئر resolution
@@ -38470,6 +38776,11 @@ values-b+vi	string	jsdelivr_proxy_summary	-	Bỏ chặn các URL gốc của Git
 values-b+vi	string	kitsu_settings	-	Hiển thị poster từ Kitsu
 values-b+vi	string	legal_notice	-	Tuyên bố miễn trừ trách nhiệm
 values-b+vi	string	library	-	Thư viện
+values-b+vi	string	library_not_connected	-	Chưa kết nối
+values-b+vi	string	library_on_device	-	Trên thiết bị
+values-b+vi	string	library_source	-	Nguồn thư viện
+values-b+vi	string	library_source_note	-	Mỗi lần một nguồn · chuyển sẽ tải lại
+values-b+vi	string	library_synced_format	-	Đã đồng bộ %s trước
 values-b+vi	string	lightnovel	-	Ứng dụng đọc tiểu thuyết của cùng nhà phát triển
 values-b+vi	string	limit_title	-	Số ký tự tối đa tiêu đề trình phát
 values-b+vi	string	limit_title_rez	-	Hiển thị thông tin trình phát
@@ -39306,6 +39617,11 @@ values-b+zh	string	jsdelivr_proxy_summary	-	使用 jsDelivr 绕过 raw github UR
 values-b+zh	string	kitsu_settings	-	显示来自 Kitsu 的封面
 values-b+zh	string	legal_notice	-	免责声明
 values-b+zh	string	library	-	库
+values-b+zh	string	library_not_connected	-	未连接
+values-b+zh	string	library_on_device	-	本机
+values-b+zh	string	library_source	-	媒体库来源
+values-b+zh	string	library_source_note	-	一次一个 · 切换会重新加载
+values-b+zh	string	library_synced_format	-	%s前已同步
 values-b+zh	string	lightnovel	-	由相同开发者开发的轻小说应用
 values-b+zh	string	limit_title	-	视频播放器标题最多字符
 values-b+zh	string	limit_title_rez	-	显示播放器信息
@@ -40139,6 +40455,11 @@ values-b+zh+TW	string	jsdelivr_proxy_summary	-	使用 jsDelivr 繞過直接使�
 values-b+zh+TW	string	kitsu_settings	-	顯示來自 Kitsu 的封面
 values-b+zh+TW	string	legal_notice	-	免責聲明
 values-b+zh+TW	string	library	-	媒體庫
+values-b+zh+TW	string	library_not_connected	-	未連線
+values-b+zh+TW	string	library_on_device	-	本機
+values-b+zh+TW	string	library_source	-	媒體庫來源
+values-b+zh+TW	string	library_source_note	-	一次一個 · 切換會重新載入
+values-b+zh+TW	string	library_synced_format	-	%s前已同步
 values-b+zh+TW	string	lightnovel	-	由相同開發者開發的輕小說應用程式
 values-b+zh+TW	string	limit_title	-	影片播放器標題最大字數
 values-b+zh+TW	string	limit_title_rez	-	顯示播放器資訊

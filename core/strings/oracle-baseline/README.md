@@ -120,6 +120,33 @@ appears for all 87 requests, 2,349 cells. `report.txt` moved only in its counts:
 keys 789 -> 816, and 27 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
 `ANDROID_FALLBACK` at 172.** `expectedOwn` 33,005 -> 34,679.
 
+## Eighteenth move, 2026-11-07 — Train 1 (`#170`, `#174`, `#175`), one move: `KMP-49`'s 6 new keys for the TV library's sources
+
+One combined baseline move for the train that merges `#170` (`KMP-38`), `#174` (`KMP-59`) and `#175` (`KMP-49`) together.
+Only `#175` adds strings; `#170` and `#174` add none, and the regenerated oracle confirms that. `#175` recorded this move as
+its own "seventeenth", branched from master's sixteenth; master's seventeenth (`KMP-44`) landed first, so the train
+regenerated it once from the live generator on master's baseline with the seventeenth in it, and it is recorded here as
+the eighteenth.
+
+New keys are approved in general (`I18N-09`, above). Additive. 5 are authored in all 62 directories, none a plural
+(`library_not_connected`, `library_on_device`, `library_source`, `library_source_note`, `library_synced_format`); 1 is a
+format with no words (`library_episodes_progress`), in the default directory only.
+
+| file | before | after | added | changed | lost |
+|---|---|---|---|---|---|
+| `decoded.tsv` | 38,503 | 38,814 | 311 | 0 | 0 |
+| `emitted.tsv` | 40,602 | 40,923 | 321 | 0 | 0 |
+| `lookup.tsv` | 77,343 | 77,865 | 522 | 0 | 0 |
+| `requests.tsv` | 87 | 87 | 0 | 0 | 0 |
+| `findings.tsv` | 0 | 0 | 0 | 0 | 0 |
+
+Measured against master's baseline by whole-line set difference twice over, a multiset in Python and `sort | comm`:
+0 lines lost in any file, and every added line names one of the six keys, all six present. `decoded` +311 = 5 x 62 + 1;
+`emitted` +321 = 5 x 64 + 1 (the two locale copies); `lookup` +522 = 6 x 87 requests. These are the same additions `#175`
+measured on its own branch. `report.txt` moved only in its counts: `OWN` 38,013 -> 38,324, visible keys 876 -> 882, and
+5 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at 173.**
+`expectedOwn` 38,013 -> 38,324.
+
 ## Seventeenth move, 2026-11-06 — `KMP-44`, 3 new keys for `None` as Home's source
 
 New keys are approved in general (`I18N-09`). Additive, all three authored in all 62 directories, none a plural. Redone from the

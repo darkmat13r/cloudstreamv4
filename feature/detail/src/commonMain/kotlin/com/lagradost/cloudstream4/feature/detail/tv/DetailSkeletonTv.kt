@@ -93,6 +93,12 @@ internal fun DetailSkeletonTv(modifier: Modifier = Modifier) {
         Spacer(Modifier.height(DetailScreenTvDefaults.PlotToCaption))
         Spacer(Modifier.height(DetailScreenTvDefaults.CaptionHeight))
         Spacer(Modifier.height(DetailScreenTvDefaults.CaptionToActions))
+        // The bar stands for the row's *ink*, which is 32dp tall and starts at the board's y512 — both
+        // the text buttons and the 32dp tiles inside the 48dp cells. `CaptionToActions` is 8dp rather
+        // than the board's 16 because the loaded row's cell supplies the other 8 above its buttons;
+        // the skeleton has no cell, so it adds that 8 back here. Without it the bar sits 8dp above the
+        // primary it is standing in for, and the page jumps up on arrival.
+        Spacer(Modifier.height(DetailSkeletonDefaults.ActionCellPadding))
         SkeletonBlock(
             alpha = alpha,
             shape = CloudStreamTheme.shapes.medium,
@@ -161,8 +167,43 @@ internal object DetailSkeletonDefaults {
      */
     val LineGap: Dp = CloudStreamDimens.StackGap
 
-    /** x200..x1768 on the artboard: one bar standing for the whole action row. */
-    val ActionBarWidth: Dp = 784.dp
+    /**
+     * One bar standing for the action row, and **the shorter of the two rows the page can show**.
+     *
+     * The skeleton cannot know the title's type before it resolves, so the bar either stops short of
+     * the row it becomes or overhangs it. The board set takes the first: a bar that grows on arrival
+     * reads as the page filling in, where one that shrinks reads as a mistake. So this is the film
+     * row — primary, Start over, Trailer, the watchlist, Full synopsis — and a series' row, which
+     * adds Season and Episodes, grows past it.
+     *
+     * Re-derived for the icon-only row (`DEC-17`, boards 7f and 7g). The old 784 came from the
+     * artboard's x200..x1768 and stood for a row of five text buttons; measured against what the page
+     * actually drew it overhung by 46px at 1280 wide. Three 48dp cells in place of three 120dp ghosts
+     * is what moves the number.
+     *
+     * `ResumeWidth` + 3 × (`MinFocusGap` + `IconTargetCell`) + `MinFocusGap` + `TextButtonMinWidth`
+     * = 220 + 180 + 12 + 120 = 532.
+     *
+     * That is a film's row **while resuming**. Start over is drawn only for a stored position, so a
+     * film opened fresh is one 48dp cell and one gap shorter, at 472, and the bar overhangs it by 60.
+     * Taking the shorter of those two instead would understate every other row by the same 60, and the
+     * resuming case is the one both boards draw.
+     */
+    val ActionBarWidth: Dp = DetailScreenTvDefaults.ResumeWidth +
+        (CloudStreamDimens.MinFocusGap + CloudStreamDimens.IconTargetCell) * ICON_SECONDARIES +
+        CloudStreamDimens.MinFocusGap + CloudStreamDimens.TextButtonMinWidth
+
+    /** Start over, Trailer and the watchlist: the icon-only cells a film's row carries. */
+    private const val ICON_SECONDARIES = 3
+
+    /**
+     * What the loaded row's 48dp cell puts above its 32dp buttons, and the skeleton does not have.
+     *
+     * Mirrors the term `DetailScreenTvDeviceTest` names when it measures plot-to-primary, so the two
+     * move together.
+     */
+    val ActionCellPadding: Dp =
+        (CloudStreamDimens.IconTargetCell - CloudStreamDimens.TextButtonHeight) / 2
 
     /** Seven, as the board draws, which is also what fills the band at the 108dp pitch. */
     const val CastCount = 7

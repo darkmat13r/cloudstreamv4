@@ -22,11 +22,14 @@ import kotlinx.coroutines.launch
  *
  * @param initialTab which list opens first. The TV boards draw no Continue watching, so that screen opens
  *   on its first list. The default is what the desktop window opens on.
+ * @param sources where the library can also come from, a tracking service's lists (`TV Library` 5e). Null, the
+ *   default, is a screen that shows only [store], which is desktop's: nothing about it changes.
  */
 class LibraryViewModel(
     private val store: LibraryStore,
     private val scope: CoroutineScope,
-    initialTab: LibraryTab = LibraryTab.ContinueWatching,
+    private val initialTab: LibraryTab = LibraryTab.ContinueWatching,
+    private val sources: LibrarySources? = null,
 ) : ViewModel(),
     StateContainer<LibraryState> by DefaultStateContainer(LibraryState(tab = initialTab)),
     EffectContainer<LibraryEffect> by DefaultEffectContainer(),
@@ -38,6 +41,9 @@ class LibraryViewModel(
 
     private var titles: List<LibraryTitle> = emptyList()
     private var positions: List<WatchPosition> = emptyList()
+
+    /** The shown tracking service's lists, or null while the local list is shown. */
+    private var synced: List<SyncedList>? = null
 
     init {
         read()
@@ -63,6 +69,40 @@ class LibraryViewModel(
             LibraryAction.SearchRequested -> scope.launch { postEffect { LibraryEffect.OpenSearch } }
             LibraryAction.Refresh, LibraryAction.Retry -> read()
             LibraryAction.Reappeared -> reread()
+            // Nothing to choose between before the sources are read, or on a screen without them.
+            LibraryAction.SourcesOpened -> updateState { copy(sourcesOpen = this.sources.isNotEmpty()) }
+            LibraryAction.SourcesDismissed -> updateState { copy(sourcesOpen = false) }
+            is LibraryAction.SourceChosen -> chooseSource(action.id)
+        }
+    }
+
+    /**
+     * Shows another source's lists. The old screen reloads on a switch (`LibraryViewModel.switchList`), and so does
+     * this, through Loading: a list read from a service a moment ago is not the one about to be shown.
+     */
+    private fun chooseSource(id: LibrarySourceId) {
+        val host = sources ?: return
+        val state = state.value
+        val chosen = state.sources.firstOrNull { it.id == id }
+        if (chosen == null || !chosen.connected || id == state.source) {
+            updateState { copy(sourcesOpen = false) }
+            return
+        }
+        val request = ++generation
+        updateState {
+            copy(
+                sourcesOpen = false,
+                source = id,
+                status = LibraryStatus.Loading,
+                counts = emptyMap(),
+                syncedCounts = emptyMap(),
+                totalTitles = null,
+                returnTo = null,
+            )
+        }
+        scope.launch {
+            write { host.choose(id) }
+            load(request)
         }
     }
 
@@ -123,6 +163,63 @@ class LibraryViewModel(
     }
 
     private suspend fun load(request: Int) {
+        val host = sources
+        if (host == null) {
+            loadStore(request)
+            return
+        }
+        val read = runCatching { host.sources() to host.current() }
+        val failure = read.exceptionOrNull()
+        if (failure is CancellationException) throw failure
+        if (request != generation) return
+        val (known, current) = read.getOrElse {
+            // Without the sources there is still the store, which is what the screen showed before it had any.
+            loadStore(request)
+            return
+        }
+        val shown = known.firstOrNull { it.id == current }
+        updateState { copy(sources = known, source = shown?.id) }
+        if (shown == null || shown.local) loadStore(request) else loadSynced(host, shown.id, request)
+    }
+
+    /** A tracking service's lists, as tabs in its order, with the panel's rows read again for the time it recorded. */
+    private suspend fun loadSynced(host: LibrarySources, id: LibrarySourceId, request: Int) {
+        val read = runCatching { host.lists(id) }
+        val failure = read.exceptionOrNull()
+        if (failure is CancellationException) throw failure
+        if (request != generation) return
+        val lists = read.getOrElse {
+            synced = null
+            updateState {
+                copy(
+                    status = LibraryStatus.Failed(it.reason()),
+                    syncedTabs = null,
+                    syncedCounts = emptyMap(),
+                    counts = emptyMap(),
+                    totalTitles = null,
+                )
+            }
+            return
+        }
+        val known = runCatching { host.sources() }.getOrNull()
+        if (request != generation) return
+        synced = lists
+        val tabs = lists.map { LibraryTab.Synced(it.key, it.label) }
+        updateState {
+            val tab = tab.takeIf { it in tabs } ?: tabs.firstOrNull() ?: tab
+            copy(
+                sources = known ?: sources,
+                tab = tab,
+                syncedTabs = tabs,
+                syncedCounts = lists.associate { it.key to it.titles.distinctBy { title -> title.id }.size },
+                counts = emptyMap(),
+                totalTitles = LibraryShelf.syncedTotal(lists),
+                status = statusFor(tab, filter),
+            )
+        }
+    }
+
+    private suspend fun loadStore(request: Int) {
         val read = runCatching { store.titles() to store.positions() }
         val failure = read.exceptionOrNull()
         if (failure is CancellationException) throw failure
@@ -133,8 +230,14 @@ class LibraryViewModel(
         }
         titles = loadedTitles
         positions = loadedPositions
+        synced = null
         updateState {
+            // Back from a service's lists, the store's own tabs.
+            val tab = if (tab is LibraryTab.Synced) initialTab else tab
             copy(
+                tab = tab,
+                syncedTabs = null,
+                syncedCounts = emptyMap(),
                 status = statusFor(tab, filter),
                 counts = LibraryShelf.counts(loadedTitles),
                 totalTitles = LibraryShelf.totalTitles(loadedTitles),
@@ -143,7 +246,12 @@ class LibraryViewModel(
     }
 
     private fun statusFor(tab: LibraryTab, filter: String): LibraryStatus {
-        val cards = LibraryShelf.cards(tab, titles, positions, filter)
+        val lists = synced
+        val cards = if (tab is LibraryTab.Synced && lists != null) {
+            lists.firstOrNull { it.key == tab.key }?.let { LibraryShelf.syncedCards(it, filter) }.orEmpty()
+        } else {
+            LibraryShelf.cards(tab, titles, positions, filter)
+        }
         return if (cards.isEmpty()) LibraryStatus.Empty else LibraryStatus.Showing(cards)
     }
 

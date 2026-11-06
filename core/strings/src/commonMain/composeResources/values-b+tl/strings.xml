@@ -340,4 +340,9 @@
 <string name="vpn_torrent">Ito ay torrent, inirerekomenda ang paggamit ng VPN</string>
 <string name="watch_quality_pref">Preferred watch quality</string>
 <string name="year">Taon</string>
+<string name="library_not_connected">Hindi nakakonekta</string>
+<string name="library_on_device">Sa device</string>
+<string name="library_source">Pinagmulan ng library</string>
+<string name="library_source_note">Isa-isa · nagre-reload kapag nagpalit</string>
+<string name="library_synced_format">Na-sync %s ang nakalipas</string>
 </resources>

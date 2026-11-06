@@ -2,6 +2,7 @@
 
 package com.lagradost.cloudstream4.media.download
 
+import io.github.vinceglb.filekit.PlatformFile
 import kotlinx.cinterop.Arena
 import kotlinx.cinterop.BetaInteropApi
 import kotlinx.cinterop.ByteVar
@@ -59,6 +60,14 @@ internal actual suspend fun platformAvailableBytes(path: String): Long? = withCo
     val attributes = manager.attributesOfFileSystemForPath(candidate, error = null) ?: return@withContext null
     (attributes[NSFileSystemFreeSize] as? Number)?.toLong()?.takeIf { it > 0L }
 }
+
+/**
+ * Never reached: the fallback exists for Android API 24/25, where `java.nio.file` is missing. kotlinx-io's
+ * atomic move on iOS is POSIX `rename`, which does not throw `UnsupportedOperationException`, so whatever
+ * did is rethrown as it came.
+ */
+internal actual fun renameFallback(from: PlatformFile, to: PlatformFile, unsupported: UnsupportedOperationException): Unit =
+    throw unsupported
 
 /**
  * `getaddrinfo` off the caller's thread, returning the raw address bytes (4 or 16) of every result.

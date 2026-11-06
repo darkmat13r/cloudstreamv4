@@ -6,9 +6,13 @@
  * `:app` moved to all three in `DEC-18`; `:library` deliberately did not.
  *
  * `jvmCommonMain` is declared here as `:core:http` does it.
+ *
+ * `androidDeviceTest` runs the file operations on a real API 24/25 device, where `java.nio.file` does
+ * not exist and kotlinx-io's atomic move throws: see `FileKitStorage.atomicMove`.
  */
 plugins {
     id("cloudstream.kmp.library")
+    id("cloudstream.kmp.device-test")
 }
 
 kotlin {

@@ -139,6 +139,11 @@
 <string name="home_search_only_body">"Ingen av utvidingane dine har ei heimeside, men du kan framleis søkje i dei."</string>
 <string name="home_source_none_subtitle">"INGEN RADER · RADENE DINE BLIR"</string>
 <string name="kitsu_settings">"Vis miniatyrbilete frå Kitsu"</string>
+<string name="library_not_connected">"Ikkje tilkopla"</string>
+<string name="library_on_device">"På eininga"</string>
+<string name="library_source">"Bibliotekskjelde"</string>
+<string name="library_source_note">"Éin om gongen · byte lastar på nytt"</string>
+<string name="library_synced_format" formatted="true">"Synkronisert for %s sidan"</string>
 <string name="lightnovel">"Lysnovelleprogram av dei same utviklarane"</string>
 <string name="live_singular">"Direktesending"</string>
 <string name="livestreams">"Direktesendingar"</string>

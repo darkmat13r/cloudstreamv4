@@ -128,6 +128,11 @@
 <string name="home_play">"Ipatugtog"</string>
 <string name="home_search_only_body">"Wala sa iyong mga extension ang may home page, pero maaari ka pa ring maghanap sa mga ito."</string>
 <string name="home_source_none_subtitle">"WALANG ROW · NANANATILI ANG MGA ROW MO"</string>
+<string name="library_not_connected">"Hindi nakakonekta"</string>
+<string name="library_on_device">"Sa device"</string>
+<string name="library_source">"Pinagmulan ng library"</string>
+<string name="library_source_note">"Isa-isa · nagre-reload kapag nagpalit"</string>
+<string name="library_synced_format" formatted="true">"Na-sync %s ang nakalipas"</string>
 <string name="links_reloaded_toast">"Ini-load muli ang mga link"</string>
 <string name="load_more">"Mag-load pa"</string>
 <string name="loading">"Naglo-load…"</string>

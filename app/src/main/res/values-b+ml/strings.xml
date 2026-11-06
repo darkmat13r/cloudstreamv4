@@ -176,6 +176,11 @@
 <string name="home_search_only_body">"നിങ്ങളുടെ വിപുലീകരണങ്ങളിൽ ഒന്നിനും ഹോം പേജ് ഇല്ല, എങ്കിലും അവയിൽ തിരയാം."</string>
 <string name="home_source">"ഉറവിടം"</string>
 <string name="home_source_none_subtitle">"നിരകളില്ല · നിങ്ങളുടെ നിരകൾ നിലനിൽക്കും"</string>
+<string name="library_not_connected">"കണക്റ്റ് ചെയ്തിട്ടില്ല"</string>
+<string name="library_on_device">"ഉപകരണത്തിൽ"</string>
+<string name="library_source">"ലൈബ്രറി ഉറവിടം"</string>
+<string name="library_source_note">"ഒരേ സമയം ഒന്ന് · മാറ്റിയാൽ വീണ്ടും ലോഡ് ചെയ്യും"</string>
+<string name="library_synced_format" formatted="true">"%s മുമ്പ് സമന്വയിപ്പിച്ചു"</string>
 <string name="lightnovel">"നമ്മുടെ ലൈറ്റ് നോവൽ ആപ്പ്"</string>
 <string name="links_reloaded_toast">"ലിങ്കുകൾ വീണ്ടും ലോഡുചെയ്‌തു"</string>
 <string name="load_more">"കൂടുതൽ ലോഡ് ചെയ്യുക"</string>

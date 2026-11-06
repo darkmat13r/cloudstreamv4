@@ -93,4 +93,9 @@
 <string name="subtitles_file_empty">እዚ ፋይል ንኡስ ጽሑፍ ባዶ እዩ</string>
 <string name="subtitles_format_unsupported">እዚ ቅርጺ ንኡስ ጽሑፍ ኣይድገፍን እዩ</string>
 <string name="subtitles_load_failed">ነዚ ንኡስ ጽሑፋት ክጽዓን ኣይተኻእለን</string>
+<string name="library_not_connected">ኣይተራኸበን</string>
+<string name="library_on_device">ኣብ መሳርሒ</string>
+<string name="library_source">ምንጪ ቤተ-መጻሕፍቲ</string>
+<string name="library_source_note">ሓደ ብሓደ · ምቕያር ዳግም ይጽዕን</string>
+<string name="library_synced_format">ቅድሚ %s ተሰማሚዑ</string>
 </resources>

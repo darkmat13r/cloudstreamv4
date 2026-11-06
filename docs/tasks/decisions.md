@@ -746,3 +746,16 @@ based on platform so each have best experience based on each platform"*.
 | Cancel as the default in a destructive confirmation | **Yes.** The safe choice is the filled one | `ui-components.md` rule 1 |
 | A `Folder` glyph for Show in Finder | **Yes**, `CloudStreamIcons.Folder`, Tabler `Folder` | `ui-components.md` glyph table; code with `KMP-54` |
 
+## DEC-20 — The TV library's sources (`Q12`)
+
+**Status:** **decided 2026-11-06 by the owner**, asked through the coordinator from the `Q12` report. First used by `KMP-49`.
+
+| Question | Ruling |
+|---|---|
+| **Which sources** 5e lists, which draws Trakt and not Kitsu | **The five the app has: AniList, MyAnimeList, Kitsu, Simkl and Local.** Trakt is dropped: there is no such provider |
+| **A tracking service's tabs** | **The service's own lists, in its order.** AniList shows Rewatching. Favourites is on Local only |
+| **A source that is not signed in** | **Listed, disabled, reading "Not connected".** Logging in stays in account settings |
+| **The age of a sync** | **Never an age the app did not record.** Only a read this app timed has one |
+| **Sort** | **One choice for every source**, as the old screen keeps it. A source that cannot sort by it falls back (`KMP-50`) |
+
+In code: `AndroidLibrarySources.listed` and `syncedLists`, and `LibrarySourcePanelTv`'s rows, one place each.

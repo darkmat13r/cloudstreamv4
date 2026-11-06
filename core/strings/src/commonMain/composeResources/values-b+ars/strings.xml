@@ -201,6 +201,11 @@
 <string name="kitsu_settings">عرض الملصقات من كيتسو</string>
 <string name="legal_notice">تنصل</string>
 <string name="library">مكتبة</string>
+<string name="library_not_connected">غير متصل</string>
+<string name="library_on_device">على الجهاز</string>
+<string name="library_source">مصدر المكتبة</string>
+<string name="library_source_note">مصدر واحد في كل مرة · التبديل يعيد التحميل</string>
+<string name="library_synced_format">تمت المزامنة قبل %s</string>
 <string name="lightnovel">تطبيق رواية خفيفة من نفس المطورين</string>
 <string name="limit_title">عنوان مشغل الفيديو بحد أقصى لعدد الأحرف</string>
 <string name="limit_title_rez">دقة مشغل الفيديو</string>

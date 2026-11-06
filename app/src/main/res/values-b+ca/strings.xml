@@ -190,6 +190,11 @@
 <string name="home_search_only_body">"Cap de les teves extensions té pàgina d'inici, però encara pots cercar-hi."</string>
 <string name="home_source">"Font"</string>
 <string name="home_source_none_subtitle">"SENSE FILES · LES VOSTRES FILES ES QUEDEN"</string>
+<string name="library_not_connected">"No connectat"</string>
+<string name="library_on_device">"Al dispositiu"</string>
+<string name="library_source">"Font de la biblioteca"</string>
+<string name="library_source_note">"Una alhora · canviar torna a carregar"</string>
+<string name="library_synced_format" formatted="true">"Sincronitzat fa %s"</string>
 <string name="limit_title">"Caràcters màxims al títol del reproductor"</string>
 <string name="limit_title_rez">"Resolució del reproductor de vídeo"</string>
 <string name="links_reloaded_toast">"S'han tornat a carregar els enllaços"</string>

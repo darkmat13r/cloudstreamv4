@@ -211,4 +211,9 @@
 <string name="update_started">Beda l-aġġornament</string>
 <string name="vpn_might_be_needed">Jista' jkun hemm bżonn ta' VPN biex dan il-fornitur jaħdem b'mod korrett</string>
 <string name="vpn_torrent">Dan il-fornitur huwa torrent, VPN huwa rakkomandat</string>
+<string name="library_not_connected">Mhux konness</string>
+<string name="library_on_device">Fuq l-apparat</string>
+<string name="library_source">Sors tal-librerija</string>
+<string name="library_source_note">Wieħed kull darba · il-bidla tgħabbi mill-ġdid</string>
+<string name="library_synced_format">Sinkronizzat %s ilu</string>
 </resources>
