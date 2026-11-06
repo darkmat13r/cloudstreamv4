@@ -125,6 +125,8 @@ fun SearchScreenDesktop(
                 when (loaded) {
                     is SearchContent.Recent -> Recent(loaded.entries, onAction)
                     is SearchContent.Results -> Results(loaded.groups, onAction, artwork)
+                    // Only with a suggestion source, and desktop passes none.
+                    is SearchContent.Suggestions -> Unit
                 }
             }
         }

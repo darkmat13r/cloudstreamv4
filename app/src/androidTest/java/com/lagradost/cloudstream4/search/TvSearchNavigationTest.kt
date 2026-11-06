@@ -1,6 +1,7 @@
 package com.lagradost.cloudstream4.search
 
 import androidx.fragment.app.Fragment
+import androidx.preference.PreferenceManager
 import androidx.navigation.fragment.NavHostFragment
 import androidx.test.core.app.ActivityScenario
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -17,6 +18,7 @@ import com.lagradost.cloudstream4.core.devicetest.DpadDriver
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
+import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -140,6 +142,54 @@ class TvSearchNavigationTest {
         }
     }
 
+    /**
+     * Artboard 8b on the live path: the real fragment, the real `SearchSuggestionApi` and the real setting. A query nobody
+     * carries gets nothing from TheMovieDB, and nothing when the emulator has no network either, so this holds both ways.
+     */
+    @Test
+    fun withSuggestionsOnTypingWhatNothingMatchesShowsEightB() {
+        setSuggestions(true)
+        ActivityScenario.launch(MainActivity::class.java).use {
+            openSearchFromTheRail()
+            typeIntoTheField(NOBODY_CARRIES)
+            assertTrue(
+                "No 8b for a query nothing matches",
+                device.wait(Until.hasObject(By.text("Nothing matches “$NOBODY_CARRIES”")), SCREEN_WAIT_MS),
+            )
+        }
+    }
+
+    /** With the setting off, typing is what it was before 8a: no suggestions, so no 8b. */
+    @Test
+    fun withSuggestionsOffTypingShowsNoSuggestions() {
+        setSuggestions(false)
+        ActivityScenario.launch(MainActivity::class.java).use {
+            openSearchFromTheRail()
+            typeIntoTheField(NOBODY_CARRIES)
+            assertTrue("The query never reached the field", device.wait(Until.hasObject(By.text(NOBODY_CARRIES)), SCREEN_WAIT_MS))
+            assertFalse(
+                "8b showed with suggestions off",
+                device.wait(Until.hasObject(By.textStartsWith("Nothing matches")), NO_KEYBOARD_WAIT_MS),
+            )
+        }
+    }
+
+    @After
+    fun restoreSuggestions() = setSuggestions(true)
+
+    private fun setSuggestions(enabled: Boolean) {
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean(SUGGESTIONS_SETTING, enabled).commit()
+    }
+
+    /** By remote: onto the field, OK for the keyboard (`BUG-30`), then the text through it. */
+    private fun typeIntoTheField(text: String) {
+        onTheField()
+        dpad.center()
+        assertTrue("OK did not open the keyboard", dpad.keyboardOpens(KEYBOARD_WAIT_MS))
+        device.executeShellCommand("input text $text")
+    }
+
     private fun onTheField() {
         var field = dpad.press(Dpad.Right)
         repeat(RAIL_PRESSES) {
@@ -162,5 +212,9 @@ class TvSearchNavigationTest {
         const val NO_KEYBOARD_WAIT_MS = 3_000L
         const val KEYBOARD_WAIT_MS = 10_000L
         const val EDIT_TEXT_CLASS = "android.widget.EditText"
+        const val SUGGESTIONS_SETTING = "search_suggestions_enabled"
+
+        /** Letters no title has. Plain ASCII, because `input text` types no other. */
+        const val NOBODY_CARRIES = "zxqvbnmkjh"
     }
 }

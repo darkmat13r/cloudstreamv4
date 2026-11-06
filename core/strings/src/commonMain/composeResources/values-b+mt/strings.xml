@@ -4,6 +4,9 @@
 <string name="detail_load_failed_body">Is-sors jista' jkun mhux disponibbli.</string>
 <string name="detail_load_failed_headline">It-titlu ma setax jinfetaħ</string>
 <plurals name="home_sections_failed"><item quantity="one">Ma setgħetx tiġi mgħobbija %d taqsima</item><item quantity="two">Ma setgħux jiġu mgħobbija %d taqsimat</item><item quantity="few">Ma setgħux jiġu mgħobbija %d taqsimat</item><item quantity="many">Ma setgħux jiġu mgħobbija %d taqsima</item><item quantity="other">Ma setgħux jiġu mgħobbija %d taqsima</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">Fittex f'%d sors</item><item quantity="two">Fittex fil-%d sorsi kollha</item><item quantity="few">Fittex fil-%d sorsi kollha</item><item quantity="many">Fittex fil-%d sors kollha</item><item quantity="other">Fittex fil-%d sors kollha</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">Agħfas il-buttuna tat-tiftix tat-tastiera biex tfittex xorta f'%d sors.</item><item quantity="two">Agħfas il-buttuna tat-tiftix tat-tastiera biex tfittex xorta fil-%d sorsi kollha.</item><item quantity="few">Agħfas il-buttuna tat-tiftix tat-tastiera biex tfittex xorta fil-%d sorsi kollha.</item><item quantity="many">Agħfas il-buttuna tat-tiftix tat-tastiera biex tfittex xorta fil-%d sors kollha.</item><item quantity="other">Agħfas il-buttuna tat-tiftix tat-tastiera biex tfittex xorta fil-%d sors kollha.</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">%d SORS</item><item quantity="two">%d SORSI</item><item quantity="few">%d SORSI</item><item quantity="many">%d SORS</item><item quantity="other">%d SORS</item></plurals>
 <string name="action_add_to_bookmarks">Issettja l-istatus ta-rajtux</string>
 <string name="action_open_play">Ibda</string>
 <string name="action_open_watching">Iktar informazzjoni</string>
@@ -141,9 +144,14 @@
 <string name="search_provider_text_types">Fittex bl-użu ta 'tipi</string>
 <string name="search_state_idle_body_desktop">Ikteb titlu. Ir-riżultati jidhru taħt kull sors meta jwieġeb.</string>
 <string name="search_state_no_results_type_filter">%s biss. Il-filtru tat-tip qed jirrestrinġi l-fittxija.</string>
+<string name="search_state_no_suggestions_detail">IS-SUĠĠERIMENTI WIEĠBU · 0 TAQBIL</string>
+<string name="search_state_no_suggestions_headline">Xejn ma jaqbel ma' “%s”</string>
 <string name="search_tv_source_failed">FALLA %s</string>
 <string name="search_tv_source_pinned">IPPINJAT</string>
 <string name="search_tv_sources_panel_meta">%1$d MINN %2$d ATTIVATI · IL-BIDLIET JIDĦLU FIS-SEĦĦ META TAGĦFAS LEST</string>
+<string name="search_tv_suggestion_recent">REĊENTI · %s</string>
+<string name="search_tv_suggestion_recent_suggested">REĊENTI · SUĠĠERIT UKOLL</string>
+<string name="search_tv_suggestion_suggested">SUĠĠERIT</string>
 <string name="seek_back_10_seconds">Mur lura 10 sekondi</string>
 <string name="seek_forward_10_seconds">Mur 'il quddiem 10 sekondi</string>
 <string name="show_log_cat">Uri Logcat 🐈</string>

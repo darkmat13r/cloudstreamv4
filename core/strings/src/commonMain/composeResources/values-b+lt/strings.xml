@@ -4,6 +4,9 @@
 <string name="detail_load_failed_body">Šaltinis gali būti nepasiekiamas.</string>
 <string name="detail_load_failed_headline">Nepavyko atidaryti šio pavadinimo</string>
 <plurals name="home_sections_failed"><item quantity="one">Nepavyko įkelti %d skilties</item><item quantity="few">Nepavyko įkelti %d skilčių</item><item quantity="many">Nepavyko įkelti %d skilties</item><item quantity="other">Nepavyko įkelti %d skilčių</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">Ieškoti %d šaltinyje</item><item quantity="few">Ieškoti visuose šaltiniuose (%d)</item><item quantity="many">Ieškoti visuose šaltiniuose (%d)</item><item quantity="other">Ieškoti visuose šaltiniuose (%d)</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">Paspauskite klaviatūros paieškos klavišą, kad vis tiek ieškotumėte %d šaltinyje.</item><item quantity="few">Paspauskite klaviatūros paieškos klavišą, kad vis tiek ieškotumėte visuose šaltiniuose (%d).</item><item quantity="many">Paspauskite klaviatūros paieškos klavišą, kad vis tiek ieškotumėte visuose šaltiniuose (%d).</item><item quantity="other">Paspauskite klaviatūros paieškos klavišą, kad vis tiek ieškotumėte visuose šaltiniuose (%d).</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">%d ŠALTINIS</item><item quantity="few">%d ŠALTINIAI</item><item quantity="many">%d ŠALTINIO</item><item quantity="other">%d ŠALTINIŲ</item></plurals>
 <string name="action_add_to_bookmarks">Nustatyti žiūrėjimo statusą</string>
 <string name="action_mark_as_watched">Pažymėti kaip žiūrima</string>
 <string name="action_open_watching">Daugiau informacijos</string>
@@ -263,9 +266,14 @@
 <string name="search_provider_text_types">Ieškoti naudojant tipus</string>
 <string name="search_state_idle_body_desktop">Įveskite pavadinimą. Rezultatai rodomi po kiekvienu šaltiniu, kai šis atsako.</string>
 <string name="search_state_no_results_type_filter">Tik %s. Jūsų tipų filtras siaurina paiešką.</string>
+<string name="search_state_no_suggestions_detail">PASIŪLYMAI GAUTI · 0 ATITIKMENŲ</string>
+<string name="search_state_no_suggestions_headline">Niekas neatitinka „%s“</string>
 <string name="search_tv_source_failed">NEPAVYKO %s</string>
 <string name="search_tv_source_pinned">PRISEGTA</string>
 <string name="search_tv_sources_panel_meta">ĮJUNGTA %1$d IŠ %2$d · PAKEITIMAI TAIKOMI PASPAUDUS BAIGTA</string>
+<string name="search_tv_suggestion_recent">NESENIAI · %s</string>
+<string name="search_tv_suggestion_recent_suggested">NESENIAI · TAIP PAT SIŪLOMA</string>
+<string name="search_tv_suggestion_suggested">SIŪLOMA</string>
 <string name="season">Sezonas</string>
 <string name="seek_back_10_seconds">Atsukti 10 sekundžių atgal</string>
 <string name="seek_forward_10_seconds">Persukti 10 sekundžių į priekį</string>

@@ -5,6 +5,9 @@
 <plurals name="downloads_queued"><item quantity="one">"%d téléchargement en attente"</item><item quantity="many">"%d téléchargements en attente"</item><item quantity="other">"%d téléchargements en attente"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d section n'a pas pu être chargée"</item><item quantity="many">"%d sections n'ont pas pu être chargées"</item><item quantity="other">"%d sections n'ont pas pu être chargées"</item></plurals>
 <plurals name="links_hidden"><item quantity="one">"%d lien caché"</item><item quantity="many">"%d liens cachés"</item><item quantity="other">"%d liens cachés"</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">"Rechercher dans %d source"</item><item quantity="many">"Rechercher dans les %d sources"</item><item quantity="other">"Rechercher dans les %d sources"</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">"Appuyez sur la touche de recherche du clavier pour rechercher quand même dans %d source."</item><item quantity="many">"Appuyez sur la touche de recherche du clavier pour rechercher quand même dans les %d sources."</item><item quantity="other">"Appuyez sur la touche de recherche du clavier pour rechercher quand même dans les %d sources."</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">"%d SOURCE"</item><item quantity="many">"%d SOURCES"</item><item quantity="other">"%d SOURCES"</item></plurals>
 <string name="account">"compte"</string>
 <string name="action_add_to_bookmarks">"Définir le statut de visionage"</string>
 <string name="action_add_to_favorites">"Ajouter aux favoris"</string>
@@ -585,11 +588,16 @@
 <string name="search_provider_text_types">"Recherche par types"</string>
 <string name="search_state_idle_body_desktop">"Saisissez un titre. Les résultats apparaissent sous chaque source dès qu'elle répond."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"%s uniquement. Votre filtre de type restreint la recherche."</string>
+<string name="search_state_no_suggestions_detail">"SUGGESTIONS REÇUES · 0 CORRESPONDANCE"</string>
+<string name="search_state_no_suggestions_headline" formatted="true">"Aucun résultat pour « %s »"</string>
 <string name="search_suggestions">"Suggestions de recherche"</string>
 <string name="search_suggestions_des">"Afficher des suggestions de recherche pendant la saisie"</string>
 <string name="search_tv_source_failed" formatted="true">"ÉCHEC %s"</string>
 <string name="search_tv_source_pinned">"ÉPINGLÉ"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"%1$d SUR %2$d ACTIVÉS · LES MODIFICATIONS PRENNENT EFFET AVEC FINIR"</string>
+<string name="search_tv_suggestion_recent" formatted="true">"RÉCENT · %s"</string>
+<string name="search_tv_suggestion_recent_suggested">"RÉCENT · ÉGALEMENT SUGGÉRÉ"</string>
+<string name="search_tv_suggestion_suggested">"SUGGÉRÉ"</string>
 <string name="season">"Saison"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"S"</string>

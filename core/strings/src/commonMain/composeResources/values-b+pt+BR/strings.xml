@@ -7,6 +7,9 @@
 <plurals name="downloads_queued"><item quantity="one">%d download na sequência</item><item quantity="many">%d downloads na sequência</item><item quantity="other">%d downloads na sequência</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Falha ao carregar %d seção</item><item quantity="many">Falha ao carregar %d seções</item><item quantity="other">Falha ao carregar %d seções</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d link oculto</item><item quantity="many">%d link ocultos</item><item quantity="other">%d link ocultos</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">Pesquisar em %d fonte</item><item quantity="many">Pesquisar em todas as %d fontes</item><item quantity="other">Pesquisar em todas as %d fontes</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">Pressione a tecla de pesquisa do teclado para pesquisar mesmo assim em %d fonte.</item><item quantity="many">Pressione a tecla de pesquisa do teclado para pesquisar mesmo assim em todas as %d fontes.</item><item quantity="other">Pressione a tecla de pesquisa do teclado para pesquisar mesmo assim em todas as %d fontes.</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">%d FONTE</item><item quantity="many">%d FONTES</item><item quantity="other">%d FONTES</item></plurals>
 <string name="account">Conta</string>
 <string name="action_add_to_bookmarks">Adicionar a lista</string>
 <string name="action_add_to_favorites">Adicionar aos favoritos</string>
@@ -585,11 +588,16 @@
 <string name="search_provider_text_types">Pesquisar usando tipos</string>
 <string name="search_state_idle_body_desktop">Digite um título. Os resultados aparecem abaixo de cada fonte assim que ela responde.</string>
 <string name="search_state_no_results_type_filter">Somente %s. O filtro de tipo está restringindo a pesquisa.</string>
+<string name="search_state_no_suggestions_detail">SUGESTÕES RESPONDERAM · 0 CORRESPONDÊNCIAS</string>
+<string name="search_state_no_suggestions_headline">Nada corresponde a “%s”</string>
 <string name="search_suggestions">Sugestões de Busca</string>
 <string name="search_suggestions_des">Exibir sugestões de pesquisa durante a digitação</string>
 <string name="search_tv_source_failed">FALHOU %s</string>
 <string name="search_tv_source_pinned">FIXADO</string>
 <string name="search_tv_sources_panel_meta">%1$d DE %2$d ATIVADOS · AS ALTERAÇÕES SÃO APLICADAS APÓS FEITO</string>
+<string name="search_tv_suggestion_recent">RECENTE · %s</string>
+<string name="search_tv_suggestion_recent_suggested">RECENTE · TAMBÉM SUGERIDO</string>
+<string name="search_tv_suggestion_suggested">SUGERIDO</string>
 <string name="season">Temporada</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">T</string>

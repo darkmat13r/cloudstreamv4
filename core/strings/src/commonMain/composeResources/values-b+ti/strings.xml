@@ -4,6 +4,9 @@
 <string name="detail_load_failed_body">ምንጪ ኣይርከብ ይኸውን።</string>
 <string name="detail_load_failed_headline">እዚ ኣርእስቲ ክኽፈት ኣይከኣለን</string>
 <plurals name="home_sections_failed"><item quantity="one">%d ክፍሊ ክጽዓን ኣይከኣለን</item><item quantity="other">%d ክፍሊ ክጽዓን ኣይከኣለን</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">ኣብ %d ምንጪ ድለ</item><item quantity="other">ኣብ ኩሎም %d ምንጭታት ድለ</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">ብዝኾነ ኣብ %d ምንጪ ንምድላይ ናይ ኪቦርድ መድለዪ መጠወቒ ጠውቑ።</item><item quantity="other">ብዝኾነ ኣብ ኩሎም %d ምንጭታት ንምድላይ ናይ ኪቦርድ መድለዪ መጠወቒ ጠውቑ።</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">%d ምንጪ</item><item quantity="other">%d ምንጭታት</item></plurals>
 <string name="app_dub_sub_episode_text_format">%1$s ክፋል %2$d</string>
 <string name="cast_format">ተዋሳእቲ፡ %s</string>
 <string name="downloads_browse_library">ቤተ-መጻሕፍቲ ድለ</string>
@@ -63,9 +66,14 @@
 <string name="player_unmute">ድምጺ ወልዕ</string>
 <string name="search_state_idle_body_desktop">ኣርእስቲ ጽሓፍ። ውጽኢታት ነፍሲ ወከፍ ምንጪ ምስ መለሰ ኣብ ትሕቲኡ ይርአዩ።</string>
 <string name="search_state_no_results_type_filter">%s ጥራይ። ማጣሪያ ዓይነትካ ፍለጋ የጽብብ ኣሎ።</string>
+<string name="search_state_no_suggestions_detail">ሓሳባት መለሱ · 0 ተመሳሰልቲ</string>
+<string name="search_state_no_suggestions_headline">ምስ «%s» ዝሰማማዕ የለን</string>
 <string name="search_tv_source_failed">ኣይተኻኣለን %s</string>
 <string name="search_tv_source_pinned">ተሰኪሉ</string>
 <string name="search_tv_sources_panel_meta">%1$d ካብ %2$d ተኸፊቱ · ለውጥታት ብተፈጸመ ይትግበሩ</string>
+<string name="search_tv_suggestion_recent">ናይ ቀረባ · %s</string>
+<string name="search_tv_suggestion_recent_suggested">ናይ ቀረባ · ከምኡውን ዝተመኽረ</string>
+<string name="search_tv_suggestion_suggested">ዝተመኽረ</string>
 <string name="seek_back_10_seconds">10 ካልኢት ንድሕሪት</string>
 <string name="seek_forward_10_seconds">10 ካልኢት ንቕድሚት</string>
 <string name="subtitles_file_empty">እዚ ፋይል ንኡስ ጽሑፍ ባዶ እዩ</string>

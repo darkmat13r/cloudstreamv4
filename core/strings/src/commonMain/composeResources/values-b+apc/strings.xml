@@ -6,6 +6,9 @@
 <plurals name="downloads_active"><item quantity="one">م شي عم يتنزل</item><item quantity="other">شي واحد عم يتنزل</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">مافي شي بعد بده يبلش يتنزل</item><item quantity="other">فيه شي واحد بعد بده يبلش يتنزل</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">م قدرنا نفتح %d قسم</item><item quantity="other">م قدرنا نفتح %d أقسام</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">نبّش بـ%d مصدر</item><item quantity="other">نبّش بكل المصادر الـ%d</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">اكبس زر التنبيش بالكيبورد لتنبّش بـ%d مصدر على كل حال.</item><item quantity="other">اكبس زر التنبيش بالكيبورد لتنبّش بكل المصادر الـ%d على كل حال.</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">%d مصدر</item><item quantity="other">%d مصادر</item></plurals>
 <string name="account">أكونت</string>
 <string name="action_add_to_bookmarks">عدل حالة الحَضِر</string>
 <string name="action_add_to_favorites">زيدو ع المفضل</string>
@@ -581,11 +584,16 @@
 <string name="search_provider_text_types">عوزو الأنواع ل تنبّشو</string>
 <string name="search_state_idle_body_desktop">اكتب عنوان. النتايج بتطلع تحت كل مصدر لما يرد.</string>
 <string name="search_state_no_results_type_filter">%s بس. فلتر النوع عم يضيّق البحث.</string>
+<string name="search_state_no_suggestions_detail">ردّت الاقتراحات · 0 تطابق</string>
+<string name="search_state_no_suggestions_headline">ما في شي بيطابق «%s»</string>
 <string name="search_suggestions">اقتراحات التنبيش</string>
 <string name="search_suggestions_des">بت فرجي اقتراحات إنتا و عم بت نَبّش</string>
 <string name="search_tv_source_failed">فشل %s</string>
 <string name="search_tv_source_pinned">مثبّت</string>
 <string name="search_tv_sources_panel_meta">%1$d من %2$d مفعّل · التغييرات بتنطبق عند خلصت</string>
+<string name="search_tv_suggestion_recent">مؤخراً · %s</string>
+<string name="search_tv_suggestion_recent_suggested">مؤخراً · ومقترح كمان</string>
+<string name="search_tv_suggestion_suggested">مقترح</string>
 <string name="season">جزء</string>
 <string name="season_format">%1$s%2$d%3$s</string>
 <string name="season_short">ج</string>

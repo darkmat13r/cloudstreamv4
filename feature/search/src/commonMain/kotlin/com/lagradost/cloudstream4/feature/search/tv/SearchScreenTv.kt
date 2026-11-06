@@ -43,7 +43,7 @@ import com.lagradost.cloudstream4.feature.search.toUiState
 
 /**
  * The TV search screen: `design/TV Search.dc.html` artboards **4a**, **4b** and **4c**, plus
- * **8c** from `design/TV Search Suggestions.dc.html`.
+ * **8a**, **8b** and **8c** from `design/TV Search Suggestions.dc.html`.
  *
  * ## What it is, and what it is not
  *
@@ -115,8 +115,9 @@ fun SearchScreenTv(
 ) {
     val content = state.status.toUiState(onAction, narrowedBy = state.typeFilters.selected)
     val notice = content.failureNotice
-    // 8c's action rides the chip row: its closing note calls a floating action a defect.
-    val rowAction = (content as? UiState.Empty)?.prompt?.action?.takeIf { state.status is SearchStatus.NoResults }
+    // 8b's and 8c's action rides the chip row: the cluster's closing note calls a floating action a defect.
+    val stateOnTheRow = state.status is SearchStatus.NoResults || state.status is SearchStatus.NoSuggestions
+    val rowAction = (content as? UiState.Empty)?.prompt?.action?.takeIf { stateOnTheRow }
     val contentEntry = remember { FocusRequester() }
     val firstChip = remember { FocusRequester() }
     val trailing = remember { FocusRequester() }
@@ -176,7 +177,7 @@ fun SearchScreenTv(
                 UiStateHost(
                     state = content,
                     modifier = Modifier.contentRegionInset().fillMaxSize(),
-                    glyph = { if (state.status is SearchStatus.NoResults) NoResultsGlyph() },
+                    glyph = { if (stateOnTheRow) NoResultsGlyph() },
                     emptyActionElsewhere = rowAction != null,
                     skeleton = { skeletonModifier ->
                         SearchSkeleton(modifier = skeletonModifier)
@@ -185,6 +186,13 @@ fun SearchScreenTv(
                     when (loaded) {
                         is SearchContent.Recent -> SearchRecentColumn(
                             entries = loaded.entries,
+                            onAction = onAction,
+                            stops = stops,
+                            modifier = Modifier.contentRegionInset().fillMaxSize(),
+                        )
+
+                        is SearchContent.Suggestions -> SearchSuggestionColumn(
+                            rows = loaded.rows,
                             onAction = onAction,
                             stops = stops,
                             modifier = Modifier.contentRegionInset().fillMaxSize(),
@@ -266,7 +274,7 @@ private fun <T : Any> rememberLastNonNull(value: T?): T? {
     return last.value
 }
 
-/** 8c's `.svg1`: a raised tile, 48dp, round at 12dp, holding the glyph. */
+/** 8b's and 8c's `.svg1`: a raised tile, 48dp, round at 12dp, holding the glyph. */
 @Composable
 private fun NoResultsGlyph() {
     Box(

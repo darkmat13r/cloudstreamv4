@@ -33,12 +33,20 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.search_state_
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_state_offline_headline
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_state_partial_headline
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_state_no_results_type_filter
+import com.lagradost.cloudstream4.core.strings.generated.resources.search_state_no_suggestions_action
+import com.lagradost.cloudstream4.core.strings.generated.resources.search_state_no_suggestions_body
+import com.lagradost.cloudstream4.core.strings.generated.resources.search_state_no_suggestions_detail
+import com.lagradost.cloudstream4.core.strings.generated.resources.search_state_no_suggestions_headline
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_state_retry
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_state_retry_failed
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_recent_count
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_result_count
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_sources_count
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_sources_panel_meta
+import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_suggestion_recent
+import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_suggestion_recent_suggested
+import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_suggestion_sources
+import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_suggestion_suggested
 import com.lagradost.cloudstream4.core.strings.generated.resources.torrent
 import com.lagradost.cloudstream4.core.strings.generated.resources.tv_series
 import com.lagradost.cloudstream4.core.strings.resolve
@@ -65,6 +73,7 @@ fun SearchStatus.toUiState(
     val retry = remember { { latest(SearchAction.Retry) } }
     val browse = remember { { latest(SearchAction.BrowseRequested) } }
     val everything = remember { { latest(SearchAction.SearchEverything) } }
+    val submit = remember { { latest(SearchAction.Submit) } }
     return when (this) {
         SearchStatus.Loading -> UiState.Loading
         is SearchStatus.Showing -> UiState.Content(content)
@@ -106,6 +115,21 @@ fun SearchStatus.toUiState(
                 Res.string.search_state_no_results_detail,
                 listOf(queried, queried, 0, 0),
             ).resolve(),
+        )
+
+        // 8b. The field keeps focus and its OK opens the keyboard (`BUG-30`), so the body names the keyboard's key
+        // where the board said "Press OK on the field". The action rides the chip row, as 8c's does.
+        is SearchStatus.NoSuggestions -> UiState.Empty(
+            prompt = StatePrompt(
+                headline = UiString.Resource(Res.string.search_state_no_suggestions_headline, listOf(query)).resolve(),
+                body = UiString.Plural(Res.plurals.search_state_no_suggestions_body, selected).resolve(),
+                action = StateAction(
+                    UiString.Plural(Res.plurals.search_state_no_suggestions_action, selected).resolve(),
+                    CloudStreamIcons.Search,
+                    submit,
+                ),
+            ),
+            detail = stringResource(Res.string.search_state_no_suggestions_detail),
         )
 
         is SearchStatus.Failed -> UiState.Error(
@@ -152,6 +176,22 @@ internal fun typeFilterLabel(type: SearchTypeFilter): String = stringResource(
         SearchTypeFilter.Others -> Res.string.others
     },
 )
+
+/** 8a's second line: where the row came from. */
+@Composable
+internal fun suggestionOriginText(row: SearchSuggestion): String = when {
+    row.recentWhen != null && row.suggested -> stringResource(Res.string.search_tv_suggestion_recent_suggested)
+    row.recentWhen != null -> UiString.Resource(Res.string.search_tv_suggestion_recent, listOf(row.recentWhen)).resolve()
+    else -> stringResource(Res.string.search_tv_suggestion_suggested)
+}
+
+/**
+ * 8a's count with its word, `7 SOURCES`. One string rather than the board's number over a word: a plural word without its
+ * number reads wrong wherever one form covers several numbers (lint's `ImpliedQuantity`, 19 locales).
+ */
+@Composable
+internal fun suggestionSourcesText(count: Int): String =
+    UiString.Plural(Res.plurals.search_tv_suggestion_sources, count).resolve()
 
 /** The panel's mono line: `12 OF 48 ENABLED · CHANGES APPLY ON DONE`. */
 @Composable

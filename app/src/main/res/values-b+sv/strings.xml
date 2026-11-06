@@ -5,6 +5,9 @@
 <plurals name="downloads_queued"><item quantity="one">"%d nedladdning i kö"</item><item quantity="other">"%d nedladdningar i kö"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d sektion kunde inte laddas"</item><item quantity="other">"%d sektioner kunde inte laddas"</item></plurals>
 <plurals name="links_hidden"><item quantity="one">"%d dold länk"</item><item quantity="other">"%d dolda länkar"</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">"Sök i %d källa"</item><item quantity="other">"Sök i alla %d källor"</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">"Tryck på tangentbordets söktangent för att söka i %d källa ändå."</item><item quantity="other">"Tryck på tangentbordets söktangent för att söka i alla %d källor ändå."</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">"%d KÄLLA"</item><item quantity="other">"%d KÄLLOR"</item></plurals>
 <string name="account">"konto"</string>
 <string name="action_add_to_bookmarks">"Ange visningsstatus"</string>
 <string name="action_add_to_favorites">"Lägg till i favoriter"</string>
@@ -585,11 +588,16 @@
 <string name="search_provider_text_types">"Sök med hjälp av typer"</string>
 <string name="search_state_idle_body_desktop">"Skriv en titel. Resultaten visas under varje källa när den svarar."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"Endast %s. Ditt typfilter begränsar sökningen."</string>
+<string name="search_state_no_suggestions_detail">"FÖRSLAG BESVARADE · 0 TRÄFFAR"</string>
+<string name="search_state_no_suggestions_headline" formatted="true">"Inget matchar ”%s”"</string>
 <string name="search_suggestions">"Sökförslag"</string>
 <string name="search_suggestions_des">"Visa sökförslag medan du skriver"</string>
 <string name="search_tv_source_failed" formatted="true">"MISSLYCKADES %s"</string>
 <string name="search_tv_source_pinned">"FASTSATT"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"%1$d AV %2$d AKTIVERADE · ÄNDRINGAR TILLÄMPAS VID KLAR"</string>
+<string name="search_tv_suggestion_recent" formatted="true">"NYLIGEN · %s"</string>
+<string name="search_tv_suggestion_recent_suggested">"NYLIGEN · ÄVEN FÖRESLAGEN"</string>
+<string name="search_tv_suggestion_suggested">"FÖRESLAGEN"</string>
 <string name="season">"Säsong"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"S"</string>

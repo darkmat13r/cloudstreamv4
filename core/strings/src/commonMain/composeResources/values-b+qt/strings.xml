@@ -4,6 +4,9 @@
 <string name="detail_load_failed_body">uhaauauau ahuuouaha oooohhaaaghh.</string>
 <string name="detail_load_failed_headline">ahooo uuhh ahhhaauugghh oouuh</string>
 <plurals name="home_sections_failed"><item quantity="other">%d oooogg ooh aaahhu</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="other">aaoog %d ooh uugg</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="other">uuh aagg oooh aaahh uug %d ooogg aah.</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="other">%d OOGAH</item></plurals>
 <string name="account">aaaaggg</string>
 <string name="action_add_to_bookmarks">auugggguuuuuuhhh uuuu hhhhhhhhuhggghggg</string>
 <string name="action_add_to_favorites">uuh ah aaaahhhag</string>
@@ -516,9 +519,14 @@
 <string name="search_provider_text_types">ahhhahoooohhaa ahhhoohahh</string>
 <string name="search_state_idle_body_desktop">oouuh aaaaggg uuuk ooh</string>
 <string name="search_state_no_results_type_filter">%s uuhaa. oouuh aagggh uuk.</string>
+<string name="search_state_no_suggestions_detail">AAAHHUU OOGG · 0 UUGH</string>
+<string name="search_state_no_suggestions_headline">ooh aagg “%s”</string>
 <string name="search_tv_source_failed">AAGGH %s</string>
 <string name="search_tv_source_pinned">OOHHAA</string>
 <string name="search_tv_sources_panel_meta">%1$d OOHH %2$d AAHH · UUGH AAK EEEK</string>
+<string name="search_tv_suggestion_recent">AAOOH · %s</string>
+<string name="search_tv_suggestion_recent_suggested">AAOOH · UUGG AAH</string>
+<string name="search_tv_suggestion_suggested">UUGGAH</string>
 <string name="season">ooo-ahah</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">H</string>

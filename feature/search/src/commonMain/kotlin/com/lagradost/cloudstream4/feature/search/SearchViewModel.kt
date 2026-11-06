@@ -12,6 +12,8 @@ import com.lagradost.cloudstream4.compose.StateContainer
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
@@ -36,6 +38,9 @@ import kotlinx.coroutines.sync.withLock
  *
  * [dispatcher] is injected rather than hardcoded to `Dispatchers.IO`, so tests drive it.
  *
+ * With [suggestions], typing shows artboard 8a's column instead of rails, and only a submit or a row shows
+ * results. Without it, typing runs the quick search into rails, as before; desktop passes none.
+ *
  * ## Why [scope] is a parameter, and why that is not a rule violation
  *
  * `.claude/rules/mvi-viewmodel.md` says "`viewModelScope` only, never `GlobalScope`", and the
@@ -53,6 +58,7 @@ class SearchViewModel(
     private val history: SearchHistoryStore,
     dispatcher: CoroutineDispatcher = Dispatchers.Default,
     private val scope: CoroutineScope? = null,
+    private val suggestions: SearchSuggestionSource? = null,
 ) : ViewModel(),
     StateContainer<SearchState> by DefaultStateContainer(SearchState()),
     EffectContainer<SearchEffect> by DefaultEffectContainer(),
@@ -91,7 +97,7 @@ class SearchViewModel(
             debounce.launch {
                 val current = state.value.query
                 if (current.isNotBlank() && current != submitted) {
-                    runSearch(current, quick = true)
+                    if (suggestions != null) runSuggestions(current, suggestions) else runSearch(current, quick = true)
                 }
             }
         }
@@ -134,11 +140,9 @@ class SearchViewModel(
 
             SearchAction.SearchEverything -> applyFiltersThenSearch { source.clearFilters() }
 
-            is SearchAction.RecentActivated -> {
-                submitted = action.query
-                updateState { copy(query = action.query, status = SearchStatus.Loading) }
-                work.launch { runSearch(action.query, quick = false) }
-            }
+            is SearchAction.RecentActivated -> searchNow(action.query)
+
+            is SearchAction.SuggestionActivated -> searchNow(action.query)
 
             is SearchAction.RecentRemoved -> work.launch {
                 history.remove(action.query)
@@ -157,10 +161,17 @@ class SearchViewModel(
         updateState { copy(query = query) }
         if (query.isBlank()) {
             showIdle()
-        } else if (state.value.sources.quickSearchable) {
+        } else if (suggestions != null || state.value.sources.quickSearchable) {
             updateState { copy(status = SearchStatus.Loading) }
             work.launch { debounce.emit(query) }
         }
+    }
+
+    /** This exact text, full search, now: a recent search or a suggestion. */
+    private fun searchNow(query: String) {
+        submitted = query
+        updateState { copy(query = query, status = SearchStatus.Loading) }
+        work.launch { runSearch(query, quick = false) }
     }
 
     private fun submitCurrentQuery() {
@@ -266,6 +277,44 @@ class SearchViewModel(
             val outcome = if (quick) source.quickSearch(query) else source.search(query)
             updateState { copy(status = outcome.toStatus(sources.selected)) }
         }
+    }
+
+    /**
+     * Artboard 8a: the suggestion service and the recent searches give the rows, and the quick search's fan-out gives
+     * their counts once it has answered. The rows land first, with no count, so a slow source does not hold them back.
+     *
+     * With no source that can quick-search there is no fan-out, and the rows never get a count.
+     */
+    private suspend fun runSuggestions(query: String, suggestions: SearchSuggestionSource) {
+        pages.clear()
+        inFlight.launch {
+            coroutineScope {
+                val fanOut = if (state.value.sources.quickSearchable) async { source.quickSearch(query) } else null
+                val recent = history.recent()
+                val rows = mergeSuggestions(query, suggestions.suggest(query), recent)
+                if (rows.isEmpty()) {
+                    // Offline also empties the suggestions, and saying nothing matches would be wrong.
+                    val offline = fanOut?.await() == SearchOutcome.Offline
+                    updateState {
+                        copy(status = if (offline) SearchStatus.Offline else SearchStatus.NoSuggestions(query, sources.selected))
+                    }
+                    return@coroutineScope
+                }
+                updateState { copy(status = SearchStatus.Showing(SearchContent.Suggestions(rows))) }
+                val outcome = fanOut?.await() ?: return@coroutineScope
+                updateState { copy(status = outcome.toSuggestionStatus(rows, sources.selected)) }
+            }
+        }
+    }
+
+    /** The rows with their counts, and the fan-out's shortfall on the chip row as with results. */
+    private fun SearchOutcome.toSuggestionStatus(rows: List<SearchSuggestion>, selected: Int): SearchStatus = when (this) {
+        is SearchOutcome.Complete -> SearchStatus.Showing(SearchContent.Suggestions(rows.withSourceCounts(items)))
+        is SearchOutcome.Partial ->
+            SearchStatus.Partial(SearchContent.Suggestions(rows.withSourceCounts(items)), answered, total, detail)
+        // Nothing answered, so no row can have a count; the rows stay, and so does what went wrong.
+        is SearchOutcome.Failed -> SearchStatus.Partial(SearchContent.Suggestions(rows), 0, selected, detail)
+        SearchOutcome.Offline -> SearchStatus.Partial(SearchContent.Suggestions(rows), 0, selected, OFFLINE_DETAIL)
     }
 
     /**

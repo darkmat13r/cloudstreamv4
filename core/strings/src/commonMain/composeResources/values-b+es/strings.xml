@@ -7,6 +7,9 @@
 <plurals name="downloads_queued"><item quantity="one">%d descarga encolada</item><item quantity="many">%d descargas encoladas</item><item quantity="other">%d descargas encoladas</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">No se pudo cargar %d sección</item><item quantity="many">No se pudieron cargar %d secciones</item><item quantity="other">No se pudieron cargar %d secciones</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d enlace oculto</item><item quantity="many">%d enlaces ocultos</item><item quantity="other">%d enlaces ocultos</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">Buscar en %d fuente</item><item quantity="many">Buscar en las %d fuentes</item><item quantity="other">Buscar en las %d fuentes</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">Pulsa la tecla de búsqueda del teclado para buscar igualmente en %d fuente.</item><item quantity="many">Pulsa la tecla de búsqueda del teclado para buscar igualmente en las %d fuentes.</item><item quantity="other">Pulsa la tecla de búsqueda del teclado para buscar igualmente en las %d fuentes.</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">%d FUENTE</item><item quantity="many">%d FUENTES</item><item quantity="other">%d FUENTES</item></plurals>
 <string name="account">Cuenta</string>
 <string name="action_add_to_bookmarks">Seleccionar estado de visualización</string>
 <string name="action_add_to_favorites">Añadido a favoritos</string>
@@ -585,11 +588,16 @@
 <string name="search_provider_text_types">Buscar por tipos</string>
 <string name="search_state_idle_body_desktop">Escriba un título. Los resultados aparecen bajo cada fuente cuando responde.</string>
 <string name="search_state_no_results_type_filter">Solo %s. Su filtro de tipo está reduciendo la búsqueda.</string>
+<string name="search_state_no_suggestions_detail">SUGERENCIAS RESPONDIDAS · 0 COINCIDENCIAS</string>
+<string name="search_state_no_suggestions_headline">Nada coincide con «%s»</string>
 <string name="search_suggestions">Sugerencias de Búsqueda</string>
 <string name="search_suggestions_des">Mostrar sugerencias de búsqueda mientras escribe</string>
 <string name="search_tv_source_failed">FALLÓ %s</string>
 <string name="search_tv_source_pinned">FIJADO</string>
 <string name="search_tv_sources_panel_meta">%1$d DE %2$d ACTIVADOS · LOS CAMBIOS SE APLICAN AL PULSAR HECHO</string>
+<string name="search_tv_suggestion_recent">RECIENTE · %s</string>
+<string name="search_tv_suggestion_recent_suggested">RECIENTE · TAMBIÉN SUGERIDO</string>
+<string name="search_tv_suggestion_suggested">SUGERIDO</string>
 <string name="season">Temporada</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">T</string>

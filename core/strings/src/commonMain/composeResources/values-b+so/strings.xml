@@ -4,6 +4,9 @@
 <string name="detail_load_failed_body">Isha waxaa laga yaabaa inaysan diyaar ahayn.</string>
 <string name="detail_load_failed_headline">Cinwaankan lama furi karo</string>
 <plurals name="home_sections_failed"><item quantity="one">Waa ka keeni kari waayey %d qayb</item><item quantity="other">Waa ka keeni kari waayey %d qaybood</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">Ka raadi %d il</item><item quantity="other">Ka raadi dhammaan %d ilood</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">Riix furaha raadinta ee kiiboodhka si aad u raadiso %d il si kastaba ha ahaatee.</item><item quantity="other">Riix furaha raadinta ee kiiboodhka si aad u raadiso dhammaan %d ilood si kastaba ha ahaatee.</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">%d IL</item><item quantity="other">%d ILOOD</item></plurals>
 <string name="account">Akoonka</string>
 <string name="action_add_to_bookmarks">Xagee marinaysaa</string>
 <string name="action_default">Sidiisaa</string>
@@ -425,11 +428,16 @@
 <string name="search_provider_text_types">Ku raadi noocyada</string>
 <string name="search_state_idle_body_desktop">Qor cinwaan. Natiijooyinku waxay ka muuqdaan xigasho kasta hoosteeda marka ay jawaabto.</string>
 <string name="search_state_no_results_type_filter">Kaliya %s. Shaandhada nooca ayaa soo koobaya raadinta.</string>
+<string name="search_state_no_suggestions_detail">TALOOYINKA WAA LA HELAY · 0 ISKU-EG</string>
+<string name="search_state_no_suggestions_headline">Waxba kuma habboona “%s”</string>
 <string name="search_suggestions">Talooyinka Raadinta</string>
 <string name="search_suggestions_des">Soo bandhig talooyinka inta aad wax qorayso</string>
 <string name="search_tv_source_failed">FASHILAY %s</string>
 <string name="search_tv_source_pinned">LA DHEJIYAY</string>
 <string name="search_tv_sources_panel_meta">%1$d KA %2$d LA HAWLGELIYAY · ISBEDDELADA WAXAY DHAQAN GALAAN MARKA LA DOOTO DHAN</string>
+<string name="search_tv_suggestion_recent">DHOWAAN · %s</string>
+<string name="search_tv_suggestion_recent_suggested">DHOWAAN · SIDOO KALE LA SOO JEEDIYAY</string>
+<string name="search_tv_suggestion_suggested">LA SOO JEEDIYAY</string>
 <string name="season">Kalka</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">K</string>

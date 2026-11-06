@@ -4,6 +4,9 @@
 <string name="detail_load_failed_body">ଉତ୍ସ ଉପଲବ୍ଧ ନ ହୋଇପାରେ।</string>
 <string name="detail_load_failed_headline">ଏହି ଶୀର୍ଷକ ଖୋଲିହେଲା ନାହିଁ</string>
 <plurals name="home_sections_failed"><item quantity="one">%d ଵିଭାଗ ଲୋଡ୍ ହୋଇପାରିଲା ନାହିଁ</item><item quantity="other">%d ଵିଭାଗ ଲୋଡ୍ ହୋଇପାରିଲା ନାହିଁ</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">%d ଉତ୍ସରେ ସନ୍ଧାନ କରନ୍ତୁ</item><item quantity="other">ସମସ୍ତ %d ଉତ୍ସରେ ସନ୍ଧାନ କରନ୍ତୁ</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">ତଥାପି %d ଉତ୍ସରେ ସନ୍ଧାନ କରିବାକୁ କୀବୋର୍ଡର ସନ୍ଧାନ କୀ ଦବାନ୍ତୁ।</item><item quantity="other">ତଥାପି ସମସ୍ତ %d ଉତ୍ସରେ ସନ୍ଧାନ କରିବାକୁ କୀବୋର୍ଡର ସନ୍ଧାନ କୀ ଦବାନ୍ତୁ।</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">%d ଉତ୍ସ</item><item quantity="other">%d ଉତ୍ସ</item></plurals>
 <string name="action_default">ଡିଫଲ୍ଟ</string>
 <string name="added_sync_format">%s ଯୋଡ଼ାଗଲା</string>
 <string name="all_languages_preference">ସବୁ ଭାଷା</string>
@@ -166,9 +169,14 @@
 <string name="search_provider_text_providers">ପ୍ରଦାତା ଵ୍ୟଵହାର କରି ଖୋଜିବା</string>
 <string name="search_state_idle_body_desktop">ଏକ ଶୀର୍ଷକ ଟାଇପ୍ କରନ୍ତୁ। ପ୍ରତ୍ୟେକ ଉତ୍ସ ଉତ୍ତର ଦେଲେ ଫଳାଫଳ ତା ତଳେ ଦେଖାଯିବ।</string>
 <string name="search_state_no_results_type_filter">କେବଳ %s। ଆପଣଙ୍କ ପ୍ରକାର ଫିଲ୍ଟର ସନ୍ଧାନକୁ ସଂକୁଚିତ କରୁଛି।</string>
+<string name="search_state_no_suggestions_detail">ପରାମର୍ଶ ଉତ୍ତର ଦେଲା · 0 ମେଳ</string>
+<string name="search_state_no_suggestions_headline">“%s” ସହ କିଛି ମେଳ ଖାଉନାହିଁ</string>
 <string name="search_tv_source_failed">ବିଫଳ %s</string>
 <string name="search_tv_source_pinned">ପିନ୍ କରାଯାଇଛି</string>
 <string name="search_tv_sources_panel_meta">%2$d ମଧ୍ୟରୁ %1$d ସକ୍ରିୟ · ହେଲା ଦବାଇଲେ ପରିବର୍ତ୍ତନ ଲାଗୁ ହେବ</string>
+<string name="search_tv_suggestion_recent">ସାମ୍ପ୍ରତିକ · %s</string>
+<string name="search_tv_suggestion_recent_suggested">ସାମ୍ପ୍ରତିକ · ପରାମର୍ଶିତ ମଧ୍ୟ</string>
+<string name="search_tv_suggestion_suggested">ପରାମର୍ଶିତ</string>
 <string name="season">ଋତୁ</string>
 <string name="season_short">ଋ</string>
 <string name="seek_back_10_seconds">୧୦ ସେକେଣ୍ଡ ପଛକୁ ଯାଅ</string>

@@ -4,6 +4,9 @@
 <string name="detail_load_failed_body">Pode que a fonte non estea dispoñible.</string>
 <string name="detail_load_failed_headline">Non se puido abrir este título</string>
 <plurals name="home_sections_failed"><item quantity="one">Non se puido cargar %d sección</item><item quantity="other">Non se puideron cargar %d seccións</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">Procurar en %d fonte</item><item quantity="other">Procurar en todas as %d fontes</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">Preme a tecla de busca do teclado para procurar igualmente en %d fonte.</item><item quantity="other">Preme a tecla de busca do teclado para procurar igualmente en todas as %d fontes.</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">%d FONTE</item><item quantity="other">%d FONTES</item></plurals>
 <string name="action_add_to_bookmarks">Seleccionar estado de visualización</string>
 <string name="action_default">Por defecto</string>
 <string name="action_open_play">Reproducir</string>
@@ -264,9 +267,14 @@
 <string name="search_provider_text_types">Procurar por tipos</string>
 <string name="search_state_idle_body_desktop">Escriba un título. Os resultados aparecen baixo cada fonte cando responde.</string>
 <string name="search_state_no_results_type_filter">Só %s. O filtro de tipo está limitando a busca.</string>
+<string name="search_state_no_suggestions_detail">SUXESTIÓNS RESPONDIDAS · 0 COINCIDENCIAS</string>
+<string name="search_state_no_suggestions_headline">Nada coincide con «%s»</string>
 <string name="search_tv_source_failed">FALLOU %s</string>
 <string name="search_tv_source_pinned">FIXADO</string>
 <string name="search_tv_sources_panel_meta">%1$d DE %2$d ACTIVADOS · OS CAMBIOS APLÍCANSE CON FEITO</string>
+<string name="search_tv_suggestion_recent">RECENTE · %s</string>
+<string name="search_tv_suggestion_recent_suggested">RECENTE · TAMÉN SUXERIDO</string>
+<string name="search_tv_suggestion_suggested">SUXERIDO</string>
 <string name="season">Temporada</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">T</string>

@@ -4,6 +4,9 @@
 <plurals name="downloads_active"><item quantity="one">"%d актыўнае спампоўванне"</item><item quantity="few">"%d актыўных спампоўвання"</item><item quantity="many">"%d актыўных спампоўванняў"</item><item quantity="other">"%d актыўных спампоўванняў"</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">"%d спампоўванне ў чарзе"</item><item quantity="few">"%d спампоўвання ў чарзе"</item><item quantity="many">"%d спампоўванняў у чарзе"</item><item quantity="other">"%d спампоўванняў у чарзе"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"Не ўдалося загрузіць %d раздзел"</item><item quantity="few">"Не ўдалося загрузіць %d раздзелы"</item><item quantity="many">"Не ўдалося загрузіць %d раздзелаў"</item><item quantity="other">"Не ўдалося загрузіць %d раздзелаў"</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">"Шукаць у %d крыніцы"</item><item quantity="few">"Шукаць ва ўсіх %d крыніцах"</item><item quantity="many">"Шукаць ва ўсіх %d крыніцах"</item><item quantity="other">"Шукаць ва ўсіх %d крыніцах"</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">"Націсніце клавішу пошуку на клавіятуры, каб усё роўна шукаць у %d крыніцы."</item><item quantity="few">"Націсніце клавішу пошуку на клавіятуры, каб усё роўна шукаць ва ўсіх %d крыніцах."</item><item quantity="many">"Націсніце клавішу пошуку на клавіятуры, каб усё роўна шукаць ва ўсіх %d крыніцах."</item><item quantity="other">"Націсніце клавішу пошуку на клавіятуры, каб усё роўна шукаць ва ўсіх %d крыніцах."</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">"%d КРЫНІЦА"</item><item quantity="few">"%d КРЫНІЦЫ"</item><item quantity="many">"%d КРЫНІЦ"</item><item quantity="other">"%d КРЫНІЦЫ"</item></plurals>
 <string name="account">"уліковы запіс"</string>
 <string name="action_add_to_bookmarks">"Задаць статус прагляду"</string>
 <string name="action_add_to_favorites">"Дадаць у абранае"</string>
@@ -581,11 +584,16 @@
 <string name="search_provider_text_types">"Пошук праз тыпы"</string>
 <string name="search_state_idle_body_desktop">"Увядзіце назву. Вынікі з'яўляюцца пад кожнай крыніцай, калі яна адказвае."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"Толькі %s. Фільтр па тыпе звужае пошук."</string>
+<string name="search_state_no_suggestions_detail">"ПРАПАНОВЫ АДКАЗАЛІ · 0 СУПАДЗЕННЯЎ"</string>
+<string name="search_state_no_suggestions_headline" formatted="true">"Нічога не адпавядае «%s»"</string>
 <string name="search_suggestions">"Прапановы пошуку"</string>
 <string name="search_suggestions_des">"Паказваць прапановы пошуку падчас уводу тэксту"</string>
 <string name="search_tv_source_failed" formatted="true">"ЗБОЙ %s"</string>
 <string name="search_tv_source_pinned">"ЗАМАЦАВАНА"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"%1$d З %2$d УКЛЮЧАНА · ЗМЕНЫ ПРЫМЯНЯЮЦЦА ПАСЛЯ ГАТОВА"</string>
+<string name="search_tv_suggestion_recent" formatted="true">"НЯДАЎНА · %s"</string>
+<string name="search_tv_suggestion_recent_suggested">"НЯДАЎНА · ТАКСАМА ПРАПАНАВАНА"</string>
+<string name="search_tv_suggestion_suggested">"ПРАПАНАВАНА"</string>
 <string name="season">"Сезон"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"Сез"</string>

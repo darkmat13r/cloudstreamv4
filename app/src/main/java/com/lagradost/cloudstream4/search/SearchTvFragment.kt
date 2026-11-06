@@ -1,5 +1,6 @@
 package com.lagradost.cloudstream4.search
 
+import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
@@ -23,6 +24,7 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import androidx.navigation.NavGraph
 import androidx.navigation.fragment.FragmentNavigator
+import androidx.preference.PreferenceManager
 import coil3.compose.AsyncImage
 import coil3.network.NetworkHeaders
 import coil3.network.httpHeaders
@@ -35,6 +37,7 @@ import com.lagradost.cloudstream3.R
 import com.lagradost.cloudstream3.USER_AGENT
 import com.lagradost.cloudstream3.mvvm.logError
 import com.lagradost.cloudstream3.ui.search.SearchFragment
+import com.lagradost.cloudstream3.ui.search.SearchSuggestionApi
 import com.lagradost.cloudstream3.utils.AppContextUtils.loadResult
 import com.lagradost.cloudstream3.utils.AppContextUtils.setDefaultFocus
 import com.lagradost.cloudstream3.utils.BaseComposeFragment
@@ -46,6 +49,7 @@ import com.lagradost.cloudstream4.feature.search.SearchEffect
 import com.lagradost.cloudstream4.feature.search.SearchResultId
 import com.lagradost.cloudstream4.feature.search.SearchResultItem
 import com.lagradost.cloudstream4.feature.search.SearchStatus
+import com.lagradost.cloudstream4.feature.search.SearchSuggestionSource
 import com.lagradost.cloudstream4.feature.search.SearchViewModel
 import com.lagradost.cloudstream4.feature.search.tv.SearchScreenTv
 import kotlinx.coroutines.launch
@@ -66,8 +70,20 @@ class SearchTvFragment : BaseComposeFragment() {
     private val viewModel: SearchViewModel by viewModels {
         val app = requireContext().applicationContext
         viewModelFactory {
-            initializer { SearchViewModel(source = ApiRepositorySearchSource(app), history = history) }
+            initializer {
+                SearchViewModel(source = ApiRepositorySearchSource(app), history = history, suggestions = suggestions(app))
+            }
         }
+    }
+
+    /**
+     * Artboard 8a's suggestions, from the old `SearchSuggestionApi`, wrapped and not moved: it is in `classes.jar`.
+     * Behind the same setting the old screen reads, read when the screen is made, so a change in settings applies the
+     * next time search opens. With it off, typing runs the quick search into rails, as before.
+     */
+    private fun suggestions(context: Context): SearchSuggestionSource? {
+        val enabled = PreferenceManager.getDefaultSharedPreferences(context).getBoolean("search_suggestions_enabled", true)
+        return if (enabled) SearchSuggestionSource { SearchSuggestionApi.getSuggestions(it) } else null
     }
 
     private val sourcesChanged: (Boolean) -> Unit = {
@@ -126,6 +142,11 @@ class SearchTvFragment : BaseComposeFragment() {
             }
 
             is SearchAction.RecentActivated -> record(action.query)
+
+            is SearchAction.SuggestionActivated -> {
+                record(action.query)
+                hideKeyboard(view)
+            }
 
             else -> Unit
         }

@@ -4,6 +4,9 @@
 <string name="detail_load_failed_body">সোর্সটি হয়তো পাওয়া যাচ্ছে না।</string>
 <string name="detail_load_failed_headline">এই শিরোনামটি খোলা যায়নি</string>
 <plurals name="home_sections_failed"><item quantity="one">%dটি বিভাগ লোড করা যায়নি</item><item quantity="other">%dটি বিভাগ লোড করা যায়নি</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">%dটি উৎসে খুঁজুন</item><item quantity="other">সব %dটি উৎসে খুঁজুন</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">তবুও %dটি উৎসে খুঁজতে কীবোর্ডের সার্চ কী চাপুন।</item><item quantity="other">তবুও সব %dটি উৎসে খুঁজতে কীবোর্ডের সার্চ কী চাপুন।</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">%d উৎস</item><item quantity="other">%d উৎস</item></plurals>
 <string name="account">অ্যাকাউন্ট</string>
 <string name="action_add_to_bookmarks">বুকমার্ক করুন</string>
 <string name="action_default">ডিফল্ট</string>
@@ -351,11 +354,16 @@
 <string name="search_provider_text_types">ধরণ অনুযায়ি খুঁজুন</string>
 <string name="search_state_idle_body_desktop">একটি শিরোনাম লিখুন। প্রতিটি সোর্স উত্তর দিলে ফলাফল তার নিচে দেখা যাবে।</string>
 <string name="search_state_no_results_type_filter">শুধু %s। আপনার ধরনের ফিল্টার অনুসন্ধান সীমিত করছে।</string>
+<string name="search_state_no_suggestions_detail">সাজেশন উত্তর দিয়েছে · 0টি মিল</string>
+<string name="search_state_no_suggestions_headline">“%s”-এর সাথে কিছুই মেলেনি</string>
 <string name="search_suggestions">সার্চ সাজেশন</string>
 <string name="search_suggestions_des">টাইপ করার সময় সার্চ সাজেশন দেখান</string>
 <string name="search_tv_source_failed">ব্যর্থ %s</string>
 <string name="search_tv_source_pinned">পিন করা</string>
 <string name="search_tv_sources_panel_meta">%2$d-এর মধ্যে %1$d চালু · সম্পন্ন চাপলে পরিবর্তন প্রযোজ্য হবে</string>
+<string name="search_tv_suggestion_recent">সাম্প্রতিক · %s</string>
+<string name="search_tv_suggestion_recent_suggested">সাম্প্রতিক · প্রস্তাবিতও</string>
+<string name="search_tv_suggestion_suggested">প্রস্তাবিত</string>
 <string name="season">সিজন</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">S</string>

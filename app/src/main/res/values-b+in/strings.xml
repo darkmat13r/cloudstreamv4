@@ -5,6 +5,9 @@
 <plurals name="downloads_queued"><item quantity="other">"%d unduhan dalam antrean"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">"%d bagian gagal dimuat"</item></plurals>
 <plurals name="links_hidden"><item quantity="other">"%d link tersembunyi"</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="other">"Cari di semua %d sumber"</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="other">"Tekan tombol cari di keyboard untuk tetap mencari di semua %d sumber."</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="other">"%d SUMBER"</item></plurals>
 <string name="account">"akun"</string>
 <string name="action_add_to_bookmarks">"Atur status tontonan"</string>
 <string name="action_add_to_favorites">"Tambahkan ke favorit"</string>
@@ -585,11 +588,16 @@
 <string name="search_provider_text_types">"Cari menggunakan jenis"</string>
 <string name="search_state_idle_body_desktop">"Ketik judul. Hasil muncul di bawah setiap sumber saat sumber itu menjawab."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"Hanya %s. Filter jenis Anda mempersempit pencarian."</string>
+<string name="search_state_no_suggestions_detail">"SARAN TERJAWAB · 0 COCOK"</string>
+<string name="search_state_no_suggestions_headline" formatted="true">"Tidak ada yang cocok dengan “%s”"</string>
 <string name="search_suggestions">"Saran pencarian"</string>
 <string name="search_suggestions_des">"Tampilkan saran pencarian saat mengetik"</string>
 <string name="search_tv_source_failed" formatted="true">"GAGAL %s"</string>
 <string name="search_tv_source_pinned">"DISEMATKAN"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"%1$d DARI %2$d DIAKTIFKAN · PERUBAHAN BERLAKU SETELAH SELESAI"</string>
+<string name="search_tv_suggestion_recent" formatted="true">"TERBARU · %s"</string>
+<string name="search_tv_suggestion_recent_suggested">"TERBARU · JUGA DISARANKAN"</string>
+<string name="search_tv_suggestion_suggested">"DISARANKAN"</string>
 <string name="season">"Season"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"S"</string>

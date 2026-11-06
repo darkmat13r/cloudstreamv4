@@ -5,6 +5,9 @@
 <plurals name="downloads_queued"><item quantity="other">"%d tải xuống đang chờ"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">"Không tải được %d mục"</item></plurals>
 <plurals name="links_hidden"><item quantity="other">"%d liên kết bị ẩn"</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="other">"Tìm kiếm trên cả %d nguồn"</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="other">"Nhấn phím tìm kiếm trên bàn phím để vẫn tìm kiếm trên cả %d nguồn."</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="other">"%d NGUỒN"</item></plurals>
 <string name="account">"tài khoản"</string>
 <string name="action_add_to_bookmarks">"Đặt trạng thái xem"</string>
 <string name="action_add_to_favorites">"Thêm vào mục yêu thích"</string>
@@ -585,11 +588,16 @@
 <string name="search_provider_text_types">"Tìm kiếm theo thể loại"</string>
 <string name="search_state_idle_body_desktop">"Nhập tiêu đề. Kết quả sẽ hiện dưới mỗi nguồn khi nguồn đó phản hồi."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"Chỉ %s. Bộ lọc loại của bạn đang thu hẹp kết quả tìm kiếm."</string>
+<string name="search_state_no_suggestions_detail">"ĐÃ CÓ GỢI Ý · 0 KẾT QUẢ KHỚP"</string>
+<string name="search_state_no_suggestions_headline" formatted="true">"Không có gì khớp với “%s”"</string>
 <string name="search_suggestions">"Gợi ý tìm kiếm"</string>
 <string name="search_suggestions_des">"Hiển thị gợi ý tìm kiếm khi đang nhập"</string>
 <string name="search_tv_source_failed" formatted="true">"THẤT BẠI %s"</string>
 <string name="search_tv_source_pinned">"ĐÃ GHIM"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"%1$d TRÊN %2$d ĐÃ BẬT · THAY ĐỔI ÁP DỤNG KHI NHẤN HOÀN TẤT"</string>
+<string name="search_tv_suggestion_recent" formatted="true">"GẦN ĐÂY · %s"</string>
+<string name="search_tv_suggestion_recent_suggested">"GẦN ĐÂY · CŨNG ĐƯỢC GỢI Ý"</string>
+<string name="search_tv_suggestion_suggested">"ĐƯỢC GỢI Ý"</string>
 <string name="season">"Mùa"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"Mùa"</string>

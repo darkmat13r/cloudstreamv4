@@ -4,6 +4,9 @@
 <string name="detail_load_failed_body">Sursa poate fi indisponibilă.</string>
 <string name="detail_load_failed_headline">Titlul nu a putut fi deschis</string>
 <plurals name="home_sections_failed"><item quantity="one">Nu s-a putut încărca %d secțiune</item><item quantity="few">Nu s-au putut încărca %d secțiuni</item><item quantity="other">Nu s-au putut încărca %d de secțiuni</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">Caută în %d sursă</item><item quantity="few">Caută în toate cele %d surse</item><item quantity="other">Caută în toate cele %d de surse</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">Apăsați tasta de căutare a tastaturii pentru a căuta oricum în %d sursă.</item><item quantity="few">Apăsați tasta de căutare a tastaturii pentru a căuta oricum în toate cele %d surse.</item><item quantity="other">Apăsați tasta de căutare a tastaturii pentru a căuta oricum în toate cele %d de surse.</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">%d SURSĂ</item><item quantity="few">%d SURSE</item><item quantity="other">%d DE SURSE</item></plurals>
 <string name="account">Cont</string>
 <string name="action_add_to_bookmarks">Adaugă</string>
 <string name="action_add_to_favorites">Adaugă la favoriți/te</string>
@@ -516,9 +519,14 @@
 <string name="search_provider_text_types">Căutare în funcție de tip</string>
 <string name="search_state_idle_body_desktop">Tastați un titlu. Rezultatele apar sub fiecare sursă când răspunde.</string>
 <string name="search_state_no_results_type_filter">Doar %s. Filtrul de tip restrânge căutarea.</string>
+<string name="search_state_no_suggestions_detail">SUGESTII PRIMITE · 0 POTRIVIRI</string>
+<string name="search_state_no_suggestions_headline">Nimic nu se potrivește cu „%s”</string>
 <string name="search_tv_source_failed">EȘUAT %s</string>
 <string name="search_tv_source_pinned">FIXAT</string>
 <string name="search_tv_sources_panel_meta">%1$d DIN %2$d ACTIVATE · MODIFICĂRILE SE APLICĂ LA TERMINAT</string>
+<string name="search_tv_suggestion_recent">RECENT · %s</string>
+<string name="search_tv_suggestion_recent_suggested">RECENT · ȘI SUGERAT</string>
+<string name="search_tv_suggestion_suggested">SUGERAT</string>
 <string name="season">Sezonul</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">S</string>
