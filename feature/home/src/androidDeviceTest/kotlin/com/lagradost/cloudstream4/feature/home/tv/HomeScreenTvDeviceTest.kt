@@ -631,7 +631,10 @@ class HomeScreenTvDeviceTest {
         awaitFocus(ONE.name)
 
         assertEquals(ONE.name, dpad.press(Dpad.Left))
-        assertEquals(ONE.name, dpad.press(Dpad.Up))
+        // None sits above the sources (3h), and is the panel's top.
+        assertEquals(NONE, dpad.press(Dpad.Up))
+        assertEquals(NONE, dpad.press(Dpad.Up))
+        assertEquals(ONE.name, dpad.press(Dpad.Down))
         assertEquals(TWO.name, dpad.press(Dpad.Down))
         assertEquals(TWO.name, dpad.press(Dpad.Down))
         device.pressBack()
@@ -1227,12 +1230,11 @@ class HomeScreenTvDeviceTest {
         showScreen()
         awaitFocus("A 0")
         pressUntil(Dpad.Up, SOURCE_ONE)
+        // Icon-only, named by its description; the label drawn under it on focus is in the screenshot (3j).
         assertEquals(RELOAD, dpad.press(Dpad.Right))
-        // Icon-only, so the label shows under the cell while focused, and is its description.
-        rule.onNodeWithText(RELOAD).assertIsDisplayed()
         rule.onNode(isFocused()).assertWidthIsEqualTo(CloudStreamDimens.IconTargetCell)
         assertEquals(RANDOM, dpad.press(Dpad.Right))
-        rule.onAllNodesWithText(RELOAD).fetchSemanticsNodes().let { assertTrue("a label only on focus", it.isEmpty()) }
+        assertEquals(SEARCH, dpad.press(Dpad.Right))
     }
 
     @Test
