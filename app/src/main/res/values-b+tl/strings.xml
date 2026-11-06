@@ -74,6 +74,18 @@
 <string name="download_storage_text">"Internal Storage"</string>
 <string name="downloaded">"Downloaded"</string>
 <string name="downloading">"Downloading"</string>
+<string name="downloads_browse_library">"I-browse ang library"</string>
+<string name="downloads_empty_body">"Lalabas dito ang mga download na sinimulan mo mula sa listahan ng episode ng isang pamagat at mapapanood nang walang koneksyon."</string>
+<string name="downloads_empty_headline">"Wala pang mga download"</string>
+<string name="downloads_free_up_space">"Magbakante ng espasyo"</string>
+<string name="downloads_load_failed_body">"Hindi nabago ang mga na-download mong file."</string>
+<string name="downloads_load_failed_headline">"Hindi mabasa ang iyong mga download"</string>
+<string name="downloads_offline_pill">"Offline · walang koneksyon"</string>
+<string name="downloads_play_from_link">"I-play mula sa link"</string>
+<string name="downloads_select">"Piliin"</string>
+<string name="downloads_storage_full_headline">"Kulang ang storage"</string>
+<string name="downloads_storage_legend" formatted="true">"%1$s ng %2$s ang gamit · %3$s sa mga download"</string>
+<string name="downloads_storage_needs" formatted="true">"Kailangan ng %s pa"</string>
 <string name="duration">"Tagal"</string>
 <string name="duration_format" formatted="true">"%d min"</string>
 <string name="eigengraumode_settings">"Eigengravy Mode"</string>
@@ -226,6 +238,10 @@
 <string name="search_provider_text_providers">"Search using providers"</string>
 <string name="search_provider_text_types">"Search using types"</string>
 <string name="search_state_idle_body_desktop">"Mag-type ng pamagat. Lalabas ang mga resulta sa ilalim ng bawat source kapag sumagot ito."</string>
+<string name="search_state_no_results_type_filter" formatted="true">"%s lang. Pinipigilan ng type filter mo ang paghahanap."</string>
+<string name="search_tv_source_failed" formatted="true">"NABIGO %s"</string>
+<string name="search_tv_source_pinned">"NAKA-PIN"</string>
+<string name="search_tv_sources_panel_meta" formatted="true">"%1$d SA %2$d ANG NAKA-ENABLE · ILALAPAT ANG MGA PAGBABAGO KAPAG PININDOT ANG TAPOS NA"</string>
 <string name="season">"Season"</string>
 <string name="season_short">"S"</string>
 <string name="seek_back_10_seconds">"Bumalik ng 10 segundo"</string>

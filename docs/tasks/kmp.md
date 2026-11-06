@@ -3903,6 +3903,97 @@ over because of the host plumbing that `DetailPlayback.kt` would take anyway. `D
 and content states — but its fixtures and `DpadDriver` helpers are shared, so that one wants `INF-10`'s view
 on where shared device-test helpers belong before it is cut.
 
+---
+
+## KMP-42 — TV search: the source panel, type chips and the D-pad's moves (queue `Q6`) · **measured 2026-11-05**
+
+**Status:** in pr. Boards 4a, 4b, 4c, 4d and 8c on `Television_720p`, API 36. Fixes `BUG-37`, and `BUG-34` for search.
+
+### What it adds
+
+- **The source panel (4d, `DEC-17`).** Multi-select. Done applies, and Back discards. The picks persist the way `:app` already keeps them.
+- **`SearchSource` can write.** `choices`, `selectSources`, `searchMore`, `typeFilters`, `selectTypes` and `clearFilters` have interface defaults, so `DesktopSearchSource` is untouched.
+- **Type chips (4b, 8c).** A chip narrows the search. Nothing lit means nothing narrows.
+- **8c's action.** It sits on the chip row, clears the provider and type filters, then searches.
+- **`See all` pages in place** with `SeeAllCard`, labelled `load_more`.
+- **4c.** Two columns, a leading disc, a per-row remove as a trailing stop, and a clock glyph (`CloudStreamIcons.History`). `Clear all`'s trash sits in a remove's cell with a remove's tile, so it lines up with the right column's removes.
+- **Cards (4a).** The quality badge and then `DUB` or `SUB` sit side by side at the leading corner. The reveal is the title alone.
+- **The state actions carry #159's glyphs:** `Retry failed` has `Retry`, `Search everything` has `Search`, and `Browse home` has `Home`.
+- **Search's rails use the 12 gap**, and `SkeletonRail` still spaces at `ChipRowSpacing` 24, so a rail moves when it replaces its skeleton.
+
+### Focus choices
+
+| Press | Goes to |
+|---|---|
+| Down from the field, no chips | The first card of the first row |
+| Down from the field, with chips | The first chip, then Down to the first card |
+| Right at a rail's end | Stays |
+| Left from the field | The rail, with text in the field or without |
+| Right from the rail, first time | The field |
+| Right from the rail, later | The stop that left |
+
+**Why the page remembers its own last stop.** `focusRestorer` does not see a page's view losing focus to a rail in the host's views, the same as `KMP-33` and `HomeStops`' KDoc. RIGHT then went by geometry and found `Sources` (measured: `expected Browse home, was Sources`). `SearchStops` is Home's pattern, so three small helpers now exist twice. Why geometry picks `Sources` was not measured.
+
+### Each critical test was made to fail
+
+Two control runs on the device, with the fix removed and then restored:
+
+| Fix removed | Failed with |
+|---|---|
+| Down's target | `withNoChipsDownFromTheField…`: `expected Blade Runner, was Final Cut` |
+| Rail's right wall | `rightAtTheEndOfARail…`: `expected Final Cut, was Sources` |
+| Left to the host | `leftFromTheField…`, `leftFromAField…`, and on the real path `leftFromTheFieldReachesTheRail` |
+| `SearchStops` | `rightFromTheRail…`, and on the real path `rightReturnsToTheExactStopOnSearch` |
+| Done's write | `doneApplies…`, at the results changing |
+| Dismiss not discarding | `backDiscards…`: `expected [Filmxy, Vidplay], was [Vidplay]` |
+| The type write | `eachTypeChip…`, at the write |
+| `clearFilters` | `noResultsAction…`: `expected [Filmxy, Vidplay, Zoro], was [Filmxy, Vidplay]` |
+| The platform back callback | `sourcesOpens…`: Back left for Home |
+| The history list's padding (`BUG-37`) | `search-history-filled`, 26,660 pixels, and the ring's top edge is cut off in the actual image |
+
+**One wall is not shown to matter.** With `Sources`' `right = Cancel` removed, `sourcesOpens…` still passes: nothing lies to its right.
+
+### Reduced from the boards
+
+- `.failpill`'s gap of 12 px is 6 dp, off the step, so it uses 8.
+- The board's unnamed button beside the field is not built, because voice search was dropped. It leaves a 72 dp slot, which the board should correct.
+- Chips scroll rather than using `ChipRow`, and 10 exist where the board draws 7. Labels are the existing words (`Asian Dramas`, `TV Series`, `Livestreams`).
+- A Done with nothing lit falls back to everything eligible.
+- Panel rows narrow by the lit types, so a panel's total can exceed its row count.
+- A source's health is held in memory only.
+- History dates stay lower case, from `DateUtils`, and `today` drops 4c's time (`TODAY 19:04`).
+- 4d's leading disc is not drawn. An installed plugin's record (`PluginData`) keeps no icon. `iconUrl` arrives only with a network fetch of the repository's plugin list, and one plugin can register several providers.
+- A card no longer shows its type (`Movie`), because 4a's reveal has no meta line.
+- The first entry from the rail lands on the field.
+
+### Found, not changed
+
+```
+Found: `SkeletonRail` spaces at `ChipRowSpacing` 24, and the rails it stands in for now space at 12
+Suggest: move the skeleton, which is shared
+Why: a rail jumps when it replaces its skeleton.
+
+Found: `SearchStops` repeats `HomeStops`' three helpers
+Suggest: one copy in the design system
+Why: not on this task's approved list of shared changes.
+```
+
+- **4c's `.rm` draws no tile,** and `IconCell` has one at rest since #156. `Clear all`'s trash copies the tile so the two match.
+- **A remove sits outside its focused row's ring,** because `ListRow`'s actions are beside the row. That is a shared `ListRow` question, raised separately.
+- **Home's panel rows sit about 3 dp lower** than search's.
+- **`action_remove_from_bookmarks`,** the remove's description, is in 59 of 62 locales, so 3 fall back to English.
+- **Translations are weakest** in `ti`, `am`, `so`, `mt`, `ckb`, `my`, `or`, `as` and `qt`. The 18 locales with no `setup_done` use a chosen word for Done.
+
+### Not verified
+
+`TalkBack`, a real remote, a real provider on the live path (no extension is installed on the AVD), the first-card move from a scrolled rail, and how desktop looks with the shared `FailureBanner` pill.
+
+### Published API
+
+Additions only, none removed or changed. `selectSearchProviders` keeps its signature, and the chips' version is an overload.
+
+---
+
 ## KMP-39 — The highest resolution plays first, and the next best when it fails · **measured 2026-11-05**
 
 **Status:** in pr #155. **Owner's request 2026-11-05:** "random to the highest resolution, if not then next best resolution and
@@ -4172,3 +4263,241 @@ Why: sharing means editing both of the others' fragments.
 
 Additions only: 102 lines in `app/api/classes-jar.api`, all under `com/lagradost/cloudstream4/home/`, none removed or changed.
 `:feature:home` is not merged into the jar.
+
+
+## KMP-40 — The TV downloads screen on Android, boards 6c and 6e (queue `Q14`) · **measured 2026-11-05**
+
+**Status:** in pr · Android TV only: `MainActivity` sends `navigation_downloads` to `DownloadsTvFragment` in one line, and deleting that line is the rollback. `DownloadFragment` is
+untouched and stays the screen on every other layout. `DEC-17` is the authority to switch.
+
+| | |
+|---|---|
+| `:feature:downloads` | New. `DownloadsSource` is the seam, `DownloadShelf` turns disk and `DownloadFacts` figures into a row, `DownloadsViewModel` holds the network and what is being chosen, `DownloadsScreenTv` is 6c and 6e |
+| `AndroidDownloadsSource` | `:app`. The same `DownloadViewModel` the old screen reads, per-episode figures read beside it with the same two calls, and `DownloadFacts.progress` |
+| `DownloadsTvFragment` | `:app`. The glue: effects into navigation, the old screen's delete dialog, Back ends choosing |
+| `PlayFromUrlDialog` | `:app`. A copy of `DownloadFragment.showStreamInputDialog`, which is private to the rollback and leaves with it |
+
+**A failed row has a verb the board does not draw.** 6c draws a failed row with no way back in, and the board's own note says a failure has no other re-entry. `Retry` sits beside the row as a
+separate stop, as 6d draws its verbs, and asks for what the title has left through the old `DOWNLOAD_ACTION_RESUME_DOWNLOAD`. A short file with no fact, which is also what a failure is after a restart,
+reads `Download Paused` with `Resume Download`: facts are in memory, so it makes no claim that nobody can back.
+
+**The two chromes.** 6c has the meter on top and chips in the band. On 6e the band belongs to the storage strip or the banner, so `Play from link` and the queue become buttons on the top row. Offline rides the
+top row's middle on both. Choosing what to delete has no board, and takes the band in the same chips.
+
+### What the old screen did that this does not, on a TV
+
+| Lost | Why | Back with |
+|---|---|---|
+| Pause, on a film's row | 6c's rows have no verbs, and 6d has no film row | undecided |
+| Opening a title's result page from its poster | 6c draws no poster | `Q15` for a series; a film has no drawn route |
+| Poster and watch progress on a row | Not on 6c | undecided |
+| One-row delete from a film's popup | `Select`, then `Delete`, does the same | not needed |
+
+Unchanged routes, no board: **the queue** opens the old XML page, **Play from link** opens the old dialog, which still calls it what it did, a **series** opens `DownloadChildFragment` until `Q15`, and a **film** plays as the old row did, a partial
+one included. **Open local file** was already hidden on TV, so nothing is lost. The delete dialog and its wording are the old screen's.
+
+### Where this departs from the boards
+
+- **Words reuse keys:** chip count `1/4`, not `1 of 4`. `Download queue (0/3)`, not `Queue (0/3)`. `5.4 GB / 6.4 GB`, not the board's `of`. Row and delete figures use the board's `·`, through three format keys. `Download Failed`, not `failed`. The legend is sentence case.
+- **One word for one action:** 6c says `Play from URL` and 6e says `Play from link`. Both say `Play from link`, as `DS-15`'s table does.
+- **`3 QUEUED ITEMS TOTAL 2.4 GB` keeps the count and drops the total:** a waiting download has not read its size. Nothing is invented.
+- **Whole sizes come from the platform.** `formatShortFileSize` on API 36 gives `384 GB` and `10 GB` but `1.0 GB` and `2.0 GB`, so a `.0` shows on a whole size under 10 GB. Removing it would mean editing a locale's formatted number, so it stays. Under 10 GB this differs from the board; `.0` above that came only from the test's fake, which is fixed.
+- **The shortfall is as of the failed write**, and the banner goes when that download is retried or deleted. `KMP-36`'s pre-flight check still does not exist, so the banner never appears first.
+- **Free up space with nothing to delete** opens the system's storage settings. The note on the board only covers the case with titles.
+- **The leading glyph** is `Play` for a film and `Disclosure` for a series, which is what OK does. The pack has no film or series glyph.
+- **The offline pill** carries a hollow marker, because `StatusPill` requires one. The failed trailing word is `ink2`, as the board's closing note says, and the marker beside it stays `muted`.
+- **Scrolling** follows the board, after design review: a row that fits does not move the list, and one that does not moves it by whole rows, so nothing is cut against the chips. `DownloadsRowScroll`. The default TV pivot moved the list for rows that fitted and left half a row showing.
+
+### Measured, each one a wrong turn first
+
+- **`stringResource(res, args)` leaves `%s` and `%d` on screen.** The first recording showed `Needs %s more · %d downloads queued`. `UiString` is the rule, written down in `UiStringFormat`.
+- **When a focused stop leaves, the view hands focus to another stop by itself, before any effect runs.** So `last` already names the stop it chose: a row removed under focus landed on `Download queue`, and
+  cancelling from its chip landed on the first row. What held focus is therefore read during composition, before the change is applied.
+- **`requestFocus()` on a requester with no node returns `false` rather than throwing** on this Compose, so `requestFocusIfAttached`'s answer is what decides the fallback.
+- **Right from a row with no verb stays put, so it needs no guard.** I had added one on the argument that it would land on the neighbouring row's verb. Removed alone in a control run, `aRowWithNoVerbDoesNotSendRightToAnotherRowsVerb` still passed with the verb directly below, so the guard went. The test stays as a pin, and has not been shown to fail.
+- **Up from a row lands on the nearest chip,** `Select` or `Delete`, not the first. Every chip is along the row.
+- **A touch in one test class took away the next class's focus.** The navigation test first tapped the delete dialog's button with `UiObject2.click()`, which puts the display in touch mode, where it stays until a key is pressed. `HomeTvFragment` lands focus before any key is pressed, so `TvHomeNavigationTest` went 9 red of 13 straight after this class and 13 of 13 green alone. The button is now pressed by D-pad, and with that one change the whole `:app` suite is green. A remote cannot put a display in touch mode; a touch or pointer device on a TV might, and that was not tried.
+
+**Strings:** 12 new keys in all 62 directories and 3 formats with no words in the default one, all machine translated and not reviewed by a native speaker; `qt` uses only words from its own file. `ti`, `ckb`, `mt`, `so`, `or`, `my` and `am` are the least sure, `apc` and `ars` are
+dialect approximations, and `so`'s word for library and storage is the same. Fourteen locales read the legend as `X / Y used` to keep the arguments in order. Twelfth move of the oracle baseline. Reused keys keep the directories they had.
+
+**Glyphs** follow `DS-16`: `Link` on the top row's Play from link, `Library` on Browse library, `Retry` on both Retries, `Play` on Resume. Queue and Free up space stay text-only, as its table says, and a `Chip` has no glyph, so the band's chips have none.
+
+**Loading** shows six skeleton rows at the row's geometry with an undivided meter. The board has the meter running on its own, but the source answers with both at once, so the storage figures do not arrive first.
+
+**Published API:** `app/api/classes-jar.api` +127 lines, 0 removed: 15 `R$string` fields and the new `cloudstream4.download` classes.
+
+### Each critical test shown to fail
+
+Temporary changes, all reverted. One run on `:feature:downloads`, 13 of 32 red, and one on `:app`, 4 of 5 red.
+
+| Change | What went red |
+|---|---|
+| A failed row has no verb | `aFailedTransferShowsRetry...`, the list's walk, `whileChoosingNoRowOffersAVerb` |
+| The banner's rule is `live` | `aFailureSpendsNoLive`, `screenshotStorageFullOverTitles` |
+| `UNKNOWN` reads as offline | `offlineRidesTheTopRow...` |
+| A row takes focus before the screen has resumed | `focusReturnsToTheOpenedRow...` |
+| The list stops at 20 rows | `fortyRowsAreAllReachable...` |
+| `MainActivity`'s one line removed | 4 of 5 in `DownloadsTvNavigationTest`. `thePhoneLayoutKeepsTheOldFragment` stays green, as it should |
+| Before the focus fix, not a planted change | `cancellingFromItsChip...`, `aRowThatGoesWhileFocused...`, `theLastRowGoing...`, `aRowDeletedWhileAway...` |
+
+Screenshots are 1280x720, recorded on `Television_720p`. With `Television_720p_2`, the cases the changes did not touch compared 0 pixels different.
+
+**Re-recorded once, after `DS-14` merged.** All 7 went red against the merged design system, by 3,950 to 7,898 pixels, and no other test did. Each new image was looked at, and the diffs looked at for two: the changes are `DS-14` items 4 (`ListRow` subtitle and `StateView` body to `muted`) and 5 (`Chip` to `raised` with a hairline and a `muted` label). Layout, focus rings, `Retry`, the failure marker, the meter and the banner did not move. `git status` showed those 7 PNGs and nothing else.
+
+**Re-recorded a second time, after design review and `DS-15`/`DS-16` merged,** with 3 new cases: loading, the failed read, and a scrolled list. Each of the 10 was looked at against the reference in git before it was kept. The changes: the failed word in `ink2`, the separators, `Play from link`, glyphs on Retry, Play from link and Browse library, `DS-15`'s selection marker, and no scroll on rows that fit. **The scrolled case caught a bug in the first try at whole-row scrolling:** Compose asks the scroll spec again on every step of the animation and takes the answer as what is left, so a distance rounded up to a whole row answered 0 as soon as the row fitted, and the list stopped 20 px short with a row's foot against the chips. The spec now names a fixed line, and a JVM test asks it again part way, as Compose does.
+
+### Not verified
+
+- **A real retry finishing.** `Retry` is pressed against a fake source; through the real app it is shown reachable but not pressed. The old resume path itself is `BUG-35`'s measurement. `getDownloadResumePackage` returning null makes a retry do nothing, as on the old button.
+- **A film opening the player**, and `Free up space` reaching the system's storage settings: only the effect is tested.
+- **Real rate and progress on the screen.** Figures come from `DownloadShelf`'s tests and a real `IsFailed` fact; no live transfer ran under this screen.
+- **Any language but English on a device,** and any native speaker reading the 12 translations.
+
+## KMP-41 — The TV home's hero, Continue watching, and watch progress on its cards (queue `Q10`) · **measured 2026-11-05**
+
+**Status:** in pr #162. Board `3c` of `design/TV Home.dc.html` and its closing note, on the page `KMP-37` built. Watch progress on
+Home's cards is the owner's request, which the boards already draw. Android TV only; desktop's home is unchanged (its
+`HomeSource` keeps the default, so it has no hero, and nothing reads history there).
+
+**The page now reads, top to bottom:** the chrome, with the hero under it and the hero's art behind both; Continue watching;
+the source's rails. The hero is in the chrome's list item because its art runs behind the chrome. Continue watching is this
+device's and not the source's, so it stays above a failure, being offline, a page still loading and "nothing installed",
+as the owner ruled for `3g` and `3m`.
+
+**Parts.** In `:feature:home`: `HomeSource.featured` (with a default, so no host has to change), `HomeFeatured`,
+`HomeWatchHistory` / `HomeHistory` / `HomeResume`, `HomeHero` in the state, `tv/HomeHeroTv.kt`, `tv/HomeContinueTv.kt`, and
+progress on `HomeRailTv`'s cards. In `:app`: `AndroidHomeSource.featured`, `LibraryHomeHistory`, and
+`AndroidLibraryStore.resuming`.
+
+### One store, read the way the old home reads it
+
+Continue watching reads through `AndroidLibraryStore`, the store the TV library already reads (`KMP-34`), and its records
+seam gained two reads with defaults: the resume record ids and the title each one is about. **No second store, and nothing
+new is written.** Desktop's `KMP-26` rule (`LibraryShelf`: a position past 30 s and short of 95%) is **not** used, because on
+Android the resume record already decides: the player removes it when a title is finished, and at 90% moves it to the next
+episode, which has played for 0 s. That rule would hide exactly the "next episode" entries the old home shows. So the list
+is the old home's (`HomeViewModel.getResumeWatching`): every record with a known title, newest first, its part's position,
+capped at 60 as `LibraryShelf` caps. Resume-only titles do not enter `titles()`, so the library's lists are unchanged.
+
+Card progress comes from the same store: every position it knows, bookmarks and resume records alike, newest per title,
+keyed by `encodeId(apiName, url)`, which is also a card's id. Zero is not drawn on a rail card.
+
+### Every reduction from 3c
+
+| Drawn | Here | Why |
+|---|---|---|
+| Hero carousel, pager `1 / 12` and dots | One title | The first of the source's first three titles whose own page answers, asked one at a time (one request when it answers). A carousel needs a paging control the board does not place on the D-pad |
+| Eyebrow `FEATURED · NEW SEASON` | The name of the row the title was found on | Nothing says "featured" or "new season" |
+| `2 SEASONS · 24 EP` | None | The old hero does not show them, and no key holds either with its number |
+| `8.7 IMDb` | `8.7` | Which site the score is from is not known |
+| `Resume S2 E4` | `More info` with `CloudStreamIcons.Info`, which opens the title's page | `ui-components.md` rule 1 makes Play or Resume a title's primary. This button does not play, so `Resume` would be untrue; it is the old TV hero's only button, which also opens the page (confirmed in review). `More info` is in that rule's table with its glyph, and becomes Resume when the hero can resume |
+| `Watch trailer` and `Library`, each with its glyph on the board, and the square cell | None | No trailer player is built; a library write is the next PR's (`TV Home Extras`); the cell's meaning is not drawn |
+| Art under the nav rail | Art from the page's edge | The rail is the shell's; the page starts beside it |
+| `6 ITEMS` on Continue watching | None | `KMP-37` shows no counts on rail headers either |
+| Card line `S2 E4 · 28m left · vidplay 1080p` | `S2 E4 · <source>` | Time left has no key without a line break (`resume_time_left`): `I18N-10`, blocked only on that key, since the store has the duration. Quality is not stored |
+| `SAVED` badge | None | Bookmark state on Home is the next PR's |
+| Art 16:9 | The poster, cropped | A resume record keeps a poster and no backdrop |
+
+| Offline's body under Continue watching | The headline and Retry only | `StateView` is 180dp plus its body; the body is four lines, 260dp in all, and 216.8dp is left at 720p. Without it the state fits and nothing moves. Its first sentence repeats the headline |
+
+**Gap, not drawn:** removing an entry from Continue watching. The old home does it with a long press; no board draws it.
+
+**Kept for the next PR, with room as 3c leaves it:** the bookmarks row, Random, the details panel and reload
+(`design/TV Home Extras.dc.html`).
+
+`DEC-17`: `live` is only the progress rule; the one button is `PrimaryTextButton`, white at rest. `DEC-13` as before.
+
+### Focus
+
+- **Landing** waits for the hero to be found or given up (at most 6 s), so focus lands once: on the hero's button, as 3c
+  draws it at rest; else the first Continue watching card; else the first card. It does not take focus from a Continue
+  watching card, or from the nav rail.
+- **Return** works for all three: the hero, a Continue watching card and a rail card. An entry that has gone (finished while
+  its page was open) falls back to the landing.
+- Every card keeps one modifier chain (`KMP-34`'s trap); nothing is taken before `Reappeared` (the 650 ms trap).
+- **Down from a Continue watching card lands on the poster under its middle**, which for the first card is the second poster:
+  the card is 192dp wide over 80dp posters. Compose's own search; measured and kept.
+
+### Strings
+
+No new key, so no `R` field. Reused, with their coverage out of 62 (the rest fall back to English): `home_more_info` 60,
+`duration_format` 59, `continue_watching` 56, `season_short` 51, `episode_short` 50.
+
+### Sanitized
+
+A title's page is plugin output read inside the process: text loses control and format characters and is capped; the synopsis
+is HTML in some plugins, so tags are dropped, five entities decoded, and spaces folded; only http(s) art reaches Coil, a
+backdrop that is not falls back to the poster; header names and values are checked; year, minutes and genres are bounded.
+Resume records are read the same way: a title with no usable name is dropped, and a poster that is not http(s) is dropped.
+
+### Measured, each a wrong turn first
+
+- **A state under Continue watching had no room for its button.** Recording `home-offline-continue-focus-retry` showed Retry
+  squeezed to an empty ring: 216.8dp is left under the rail at 720p, and the offline state needs 260. The first fix grew the
+  state and moved the page by the least that showed the button, 44px, which left the chrome 4px from the top edge, inside a TV's
+  overscan (design review of #162). Now offline fits without its body and nothing moves; a state that still does not fit, such as
+  a failure whose detail wraps, moves the page until the chrome is wholly off the screen. That first stopped 15px short: a list
+  scrolls only as far as its content reaches, so a state under Continue watching now has `ChromeRowBottom` of room under it. The
+  rail's header then sits 12dp from the top. Without Continue watching nothing changed.
+- **Coming back by the nav rail left focus on the source control.** `TvHomeNavigationTest` read `Source · Fake One`: the window
+  gives a rebuilt view's focus to its first stop before the rows can take it. A rebuilt view now lands once, as the first open
+  does; anything that takes focus first, a return included, is that landing.
+- **The hero's page may not be asked for at all.** `APIRepository` keeps a title's page for 10 minutes across the process, so
+  the second test to open a source's home asked for nothing. The `:app` cases assert at most one request.
+- **Down from a Continue watching card** lands on the poster under its middle (see Focus). Up from a centred state's button
+  lands on the card above its middle.
+- A Continue card measures 150.99dp tall, not 152, on `Television_720p`: five bands each rounded to a pixel at 1.33125.
+
+### Tested
+
+`HomeScreenTvDeviceTest` 50 on `Television_720p` (25 new): the hero present with its facts at the board's y, a hero with no
+facts, no hero, Continue watching with one entry and with twelve, a position of 0 and of half by pixel colour, progress on a rail
+card by pixel colour, long titles in the hero and on a card, offline with Continue watching above the state and the chrome where it rests, a state too tall for that moving the chrome wholly
+off the screen, the height reserved for Continue watching against the card as it measures, a walk from the hero
+through every rail with no dead ends or traps, and focus back on a Continue card, on the hero, and on the hero when the entry has
+gone. Four screenshot cases: `home-hero-focus-button`, `home-continue-focus-card`, `home-offline-continue-focus-retry`,
+`home-rails-progress-focus-card`.
+`TvHomeNavigationTest` 14 (1 new, through real navigation and the player's real keys: a played title is on Continue watching,
+opens its real `ResultFragmentTv` page, and Back puts focus back on it); its other cases now land on the hero.
+`TvRailNavigationTest` and `LibraryTvNavigationTest` unchanged and passing. JVM: `HomeViewModelTest` 42 (8 new),
+`AndroidHomeSourceTest` 20 (3 new), `LibraryHomeHistoryTest` 6, `AndroidLibraryStoreTest` 13 unchanged.
+
+**Each critical test was shown failing,** in one control run with six mutations together (14 of 47 red): the hero not landed,
+Continue watching dropped when there are no rows, no progress on rail cards, no wall at the rail's end, and a card drawn full
+whatever its progress. Returning to a Continue card was hidden behind the first, so it was shown alone: `expected Resume 6 but
+was More info · The Long Dark`. Every file was restored and the real run replaced that XML.
+
+**Screenshots.** After `#156` merged, eight Home references differed and each diff was looked at against git first: five by 130
+pixels, only the Profile glyph, which is now `muted` at rest and `ink` focused, as the boards draw it (a reviewer's finding); the
+hero, Continue watching and offline cases also by `#156`'s badges, icon tile and secondary text colour. Re-recorded, the eight
+are pixel-identical to the images looked at. After `#159` and `#160`, a compare run on the merged tree changed only what this PR
+changed: the hero's button gained `Info` (817 pixels, inside the button, in the hero and Continue watching cases), and offline
+moved because it no longer scrolls; `#160`'s ring and scrim changed none of Home's images. Each was looked at, re-recorded, and
+checked pixel-identical to what was looked at. The last compare run read 0 pixels different in all ten.
+
+### Not verified
+
+A real plugin's hero (the `:app` fakes answer with a title only); a real remote; real poster loading on a Continue card; a
+download's resume record (`isFromDownload`, which the old home plays directly; here it opens the page like any other); an account
+switch re-reading the list; right-to-left; the 6 s hero wait against a slow source.
+
+### Published API
+
+Additions only: 60 lines in `app/api/classes-jar.api`, all under `com/lagradost/cloudstream4/home/` and `/library/`, none removed
+or changed. A first dump had one changed line, a synthetic accessor of a private helper given a default parameter; the helper
+was put back and the synopsis given its own.
+
+### Found, not changed
+
+```
+Found: Home's state actions (`Try again`, `Retry failed`, `Extensions`, `Search`) are text-only in HomeCopy.kt
+Suggest: `StateAction(icon = CloudStreamIcons.Retry / Repository / Search)`, as `ui-components.md`'s table lists
+Why: rule 2 and the table since #159; this is `KMP-37`'s copy, and the change moves every Home state's reference
+```
+
+```
+Found: `focusRestorer`-style default entry, measured again: a rebuilt view's first stop takes focus before the page can place it
+Suggest: nothing more here; noted because every page with a chrome row will meet it (search's and the library's do)
+Why: `KMP-34`'s `LibraryFocusMemory` and this page's landing both work around the same window behaviour
+```

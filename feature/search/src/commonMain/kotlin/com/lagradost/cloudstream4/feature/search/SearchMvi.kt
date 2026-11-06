@@ -20,6 +20,20 @@ data class SearchState(
     /** The chrome row's `Sources 12 / 48`, and the number 8c's no-results copy quotes. */
     val sources: SearchSources = SearchSources(),
     val status: SearchStatus = SearchStatus.Loading,
+    /** The chip row. Nothing to draw until [SearchSource.typeFilters] answers. */
+    val typeFilters: SearchTypeFilters = SearchTypeFilters(),
+    /** Artboard 4d's panel, or `null` while it is closed. */
+    val sourcePanel: SourcePanelState? = null,
+)
+
+/**
+ * The open panel. Multi-select, so it applies on Done and Back discards (`DEC-17`): [draft] is what the
+ * user has toggled so far, held here so that nothing is written until Done.
+ */
+@Immutable
+data class SourcePanelState(
+    val choices: List<SearchSourceChoice>,
+    val draft: Set<String>,
 )
 
 /**
@@ -93,6 +107,27 @@ sealed interface SearchAction {
      * settings. Re-reads [SearchState.sources], and runs no search.
      */
     data object SourcesChanged : SearchAction
+
+    /** A rail's trailing card was pressed: its provider's next page lands on the same rail. */
+    data class RailMoreRequested(val providerName: String) : SearchAction
+
+    /** `Sources` was pressed: reads the choices and opens artboard 4d's panel. */
+    data object SourcePanelOpened : SearchAction
+
+    /** A panel row was pressed. Changes [SourcePanelState.draft] and writes nothing. */
+    data class SourceToggled(val id: String) : SearchAction
+
+    /** The panel's Done: writes the draft, closes, and searches again if the choice changed. */
+    data object SourcePanelDone : SearchAction
+
+    /** Back on the panel: closes and discards the draft. */
+    data object SourcePanelDismissed : SearchAction
+
+    /** A type chip was pressed. Writes at once, and searches again if there is a query. */
+    data class TypeFilterToggled(val type: SearchTypeFilter) : SearchAction
+
+    /** 8c's action: clears the provider and the type filter, then runs the query. */
+    data object SearchEverything : SearchAction
 
     /** One row's remove affordance. */
     data class RecentRemoved(val query: String) : SearchAction

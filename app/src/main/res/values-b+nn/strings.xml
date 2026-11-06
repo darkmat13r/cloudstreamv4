@@ -48,6 +48,18 @@
 <string name="download_storage_text">"Internlagring"</string>
 <string name="downloaded">"Lasta ned"</string>
 <string name="downloading">"Nedlasting pågår"</string>
+<string name="downloads_browse_library">"Bla i biblioteket"</string>
+<string name="downloads_empty_body">"Nedlastingar du startar frå episodelista til ein tittel, blir viste her og kan spelast av utan tilkopling."</string>
+<string name="downloads_empty_headline">"Ingen nedlastingar enno"</string>
+<string name="downloads_free_up_space">"Frigjer plass"</string>
+<string name="downloads_load_failed_body">"Dei nedlasta filene dine er ikkje endra."</string>
+<string name="downloads_load_failed_headline">"Kunne ikkje lese nedlastingane dine"</string>
+<string name="downloads_offline_pill">"Fråkopla · inga tilkopling"</string>
+<string name="downloads_play_from_link">"Spel av frå lenkje"</string>
+<string name="downloads_select">"Vel"</string>
+<string name="downloads_storage_full_headline">"Ikkje nok lagringsplass"</string>
+<string name="downloads_storage_legend" formatted="true">"%1$s av %2$s brukt · %3$s i nedlastingar"</string>
+<string name="downloads_storage_needs" formatted="true">"Treng %s til"</string>
 <string name="duration">"Varigheit"</string>
 <string name="duration_format" formatted="true">"%d minutt"</string>
 <string name="episode">"Episode"</string>
@@ -186,6 +198,10 @@
 <string name="search_provider_text_providers">"Søk basert på leverandør"</string>
 <string name="search_provider_text_types">"Søk ved bruk av typer"</string>
 <string name="search_state_idle_body_desktop">"Skriv ein tittel. Resultata kjem under kvar kjelde når ho svarar."</string>
+<string name="search_state_no_results_type_filter" formatted="true">"Berre %s. Typefilteret ditt avgrensar søket."</string>
+<string name="search_tv_source_failed" formatted="true">"FEILA %s"</string>
+<string name="search_tv_source_pinned">"FESTA"</string>
+<string name="search_tv_sources_panel_meta" formatted="true">"%1$d AV %2$d AKTIVERTE · ENDRINGAR GJELD ETTER FERDIG"</string>
 <string name="season">"Sesong"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"S"</string>

@@ -77,6 +77,8 @@ internal data class HomeFocusTarget(val row: HomeRowKey, val id: String)
  *
  * @param columns every title loaded is on the one line a rail has, which is what `RowMoreRequested` is told. That is
  *   also what makes each press fetch a page rather than reveal cards the row already holds.
+ * @param progress how far through each title is, by id, where this device has a position for it. Drawn as the card's
+ *   progress rule.
  */
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -92,6 +94,7 @@ internal fun HomeRailTv(
     onAction: (HomeAction) -> Unit,
     artwork: @Composable (HomeItem) -> Unit,
     modifier: Modifier = Modifier,
+    progress: Map<String, Float> = emptyMap(),
 ) {
     val rail = rememberLazyListState(initialCard, initialCardOffset)
     val direction = LocalLayoutDirection.current
@@ -152,6 +155,7 @@ internal fun HomeRailTv(
                     HomeCardTv(
                         item = item,
                         landscape = row.landscape,
+                        progress = progress[item.id],
                         takeFocus = focusTarget == HomeFocusTarget(row.key, item.id),
                         onFocusTaken = onFocusTaken,
                         onOpen = { onOpen(item, rail) },
@@ -186,6 +190,7 @@ internal fun HomeRailTv(
 private fun HomeCardTv(
     item: HomeItem,
     landscape: Boolean,
+    progress: Float?,
     takeFocus: Boolean,
     onFocusTaken: () -> Unit,
     onOpen: () -> Unit,
@@ -205,7 +210,11 @@ private fun HomeCardTv(
         val badge = item.badge
         if (badge == null) MediaCardSlots.None else MediaCardSlots(leadingBadge = { Badge(text = badge) })
     }
-    val state = MediaCardState(focused = focused, title = item.title)
+    val state = MediaCardState(
+        focused = focused,
+        title = item.title,
+        progress = progress?.takeUnless { it.isNaN() }?.coerceIn(MediaCardState.PROGRESS_EMPTY, MediaCardState.PROGRESS_FULL),
+    )
     val chain = Modifier
         .focusRequester(requester)
         .onFocusChanged {

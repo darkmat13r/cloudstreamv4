@@ -11,6 +11,7 @@ import compose.icons.tablericons.Cast
 import compose.icons.tablericons.Check
 import compose.icons.tablericons.ChevronRight
 import compose.icons.tablericons.CircleX
+import compose.icons.tablericons.Clock
 import compose.icons.tablericons.Database
 import compose.icons.tablericons.Dots
 import compose.icons.tablericons.Download
@@ -19,6 +20,7 @@ import compose.icons.tablericons.Gauge
 import compose.icons.tablericons.Headphones
 import compose.icons.tablericons.Heart
 import compose.icons.tablericons.Home
+import compose.icons.tablericons.InfoCircle
 import compose.icons.tablericons.Link
 import compose.icons.tablericons.List
 import compose.icons.tablericons.Lock
@@ -88,6 +90,8 @@ object CloudStreamIcons {
     // Navigation and chrome
     val Back: ImageVector get() = TablerIcons.ArrowLeft
     val Close: ImageVector get() = TablerIcons.X
+    /** Something done before: a recent search. */
+    val History: ImageVector get() = TablerIcons.Clock
     /** Empties a field. Not [Close]: nothing goes away, and Mac search fields draw it circled. */
     val Clear: ImageVector get() = TablerIcons.CircleX
     val Search: ImageVector get() = TablerIcons.Search
@@ -97,6 +101,8 @@ object CloudStreamIcons {
     val Disclosure: ImageVector get() = TablerIcons.ChevronRight
     val Library: ImageVector get() = TablerIcons.Book
     val Profile: ImageVector get() = TablerIcons.User
+    /** Opens what something is about, such as a title's page from the home's hero. Not [More]: that is an overflow. */
+    val Info: ImageVector get() = TablerIcons.InfoCircle
     /** A title's episode list. */
     val Episodes: ImageVector get() = TablerIcons.List
     /** Leaves the app for a browser. */

@@ -44,9 +44,10 @@ sealed interface SearchContent {
 /**
  * One provider's hits: one rail on screen.
  *
- * [items] is the whole group, not a window. The rail shows what fits and offers `See all`
- * (`SeeAllCard`) for the rest, so the count on the header — artboard 4b's `21 RESULTS` — is
- * [items]`.size` and cannot disagree with what the rail scrolls through. The suggestions cluster
+ * [items] is everything loaded, and the rail scrolls through all of it, so the count on the header —
+ * artboard 4b's `21 RESULTS` — is [items]`.size` and cannot disagree with it. [hasMore] is a further page
+ * from the provider: the rail's trailing card asks for it in place, because no board draws where
+ * `See all` would go. The suggestions cluster
  * was re-solved twice over exactly this class of defect: *"The status line and the rows have to
  * agree, and they did not."*
  */
@@ -54,6 +55,7 @@ sealed interface SearchContent {
 data class SearchResultGroup(
     val providerName: String,
     val items: List<SearchResultItem>,
+    val hasMore: Boolean = false,
 )
 
 /**
@@ -65,6 +67,8 @@ data class SearchResultGroup(
  * which moves a focused card out from under the user — the failure `SingleActiveQuery` exists to
  * prevent at the request level.
  */
-fun List<SearchResultItem>.groupByProvider(): List<SearchResultGroup> =
+fun List<SearchResultItem>.groupByProvider(morePages: Set<String> = emptySet()): List<SearchResultGroup> =
     groupBy { it.providerName }
-        .map { (provider, items) -> SearchResultGroup(providerName = provider, items = items) }
+        .map { (provider, items) ->
+            SearchResultGroup(providerName = provider, items = items, hasMore = provider in morePages)
+        }

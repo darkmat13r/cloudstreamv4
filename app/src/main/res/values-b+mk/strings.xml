@@ -196,8 +196,20 @@
 <string name="downloaded">"Преземено"</string>
 <string name="downloaded_file">"Преземена датотека"</string>
 <string name="downloading">"Преземање"</string>
+<string name="downloads_browse_library">"Прелистај библиотека"</string>
 <string name="downloads_delete_select">"Одбери ставки за бришење"</string>
 <string name="downloads_empty">"Во моментов нема преземања."</string>
+<string name="downloads_empty_body">"Преземањата што ќе ги започнете од списокот со епизоди на насловот се појавуваат тука и се пуштаат без врска."</string>
+<string name="downloads_empty_headline">"Сè уште нема преземања"</string>
+<string name="downloads_free_up_space">"Ослободи простор"</string>
+<string name="downloads_load_failed_body">"Вашите преземени датотеки не се променети."</string>
+<string name="downloads_load_failed_headline">"Не може да се прочитаат вашите преземања"</string>
+<string name="downloads_offline_pill">"Офлајн · нема врска"</string>
+<string name="downloads_play_from_link">"Пушти од врска"</string>
+<string name="downloads_select">"Одбери"</string>
+<string name="downloads_storage_full_headline">"Нема доволно меморија"</string>
+<string name="downloads_storage_legend" formatted="true">"Искористени %1$s од %2$s · %3$s во преземања"</string>
+<string name="downloads_storage_needs" formatted="true">"Потребни се уште %s"</string>
 <string name="duplicate_add">"Додади"</string>
 <string name="duplicate_message_multiple" formatted="true">"Пронајдени се потенцијални дупликатни ставки во твојата библиотека:\n\n%s\n\nДали сакаш да ја додадеш оваа ставка, да ги замениш постојните или да ја откажеш акцијата?"</string>
 <string name="duplicate_message_single" formatted="true">"Се чини дека потенцијален дупликат веќе постои во твојата библиотека: „%s“.\n\nДали сепак сакаш да ја додадеш оваа ставка, да ја замениш постојната или да го откажеш дејството?"</string>
@@ -571,8 +583,12 @@
 <string name="search_provider_text_providers">"Пребарувај користејќи провајдери"</string>
 <string name="search_provider_text_types">"Пребарувај користејќи типови"</string>
 <string name="search_state_idle_body_desktop">"Внеси наслов. Резултатите се појавуваат под секој извор кога ќе одговори."</string>
+<string name="search_state_no_results_type_filter" formatted="true">"Само %s. Вашиот филтер за тип го стеснува пребарувањето."</string>
 <string name="search_suggestions">"Предлози за пребарување"</string>
 <string name="search_suggestions_des">"Прикажувај предлози за пребарување додека пишуваш"</string>
+<string name="search_tv_source_failed" formatted="true">"НЕУСПЕШНО %s"</string>
+<string name="search_tv_source_pinned">"ЗАКАЧЕНО"</string>
+<string name="search_tv_sources_panel_meta" formatted="true">"%1$d ОД %2$d ОВОЗМОЖЕНИ · ПРОМЕНИТЕ СЕ ПРИМЕНУВААТ ПО ГОТОВО"</string>
 <string name="season">"Сезона"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"С"</string>

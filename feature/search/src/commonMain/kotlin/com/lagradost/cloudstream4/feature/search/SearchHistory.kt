@@ -59,8 +59,8 @@ interface SearchHistoryStore {
  * number in the chrome row and the number in the empty state's copy are the same fact and must
  * agree. [selected] is what a search actually queries; [total] is how many are installed.
  *
- * The side panel that *changes* the selection is artboard 4d and is not built yet; this type is
- * the half the search screen needs to render, and it is read-only here.
+ * The side panel that *changes* the selection is artboard 4d: [SourcePanelState], which writes
+ * through [SearchSource.selectSources]. This type is what the chrome row renders.
  */
 @Immutable
 data class SearchSources(

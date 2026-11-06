@@ -74,8 +74,20 @@
 <string name="download_time_left_sec_format" formatted="true">"%1$ds"</string>
 <string name="downloaded">"ഡൌൺലോഡ് ചെയ്തവ"</string>
 <string name="downloading">"ഡൌൺലോഡ് ചെയ്യുന്നു"</string>
+<string name="downloads_browse_library">"ലൈബ്രറി ബ്രൗസ് ചെയ്യുക"</string>
 <string name="downloads_delete_select">"ഡിലീറ്റ് ചെയ്യേണ്ടവ തിരഞ്ഞെടുക്കുക"</string>
 <string name="downloads_empty">"നിലവിൽ ഡൗൺലോഡുകൾ ഒന്നും തന്നെയില്ല."</string>
+<string name="downloads_empty_body">"ഒരു ശീർഷകത്തിന്റെ എപ്പിസോഡ് ലിസ്റ്റിൽ നിന്ന് ആരംഭിക്കുന്ന ഡൗൺലോഡുകൾ ഇവിടെ കാണാം, കണക്ഷനില്ലാതെ പ്ലേ ചെയ്യാം."</string>
+<string name="downloads_empty_headline">"ഇതുവരെ ഡൗൺലോഡുകളൊന്നുമില്ല"</string>
+<string name="downloads_free_up_space">"ഇടം ഒഴിവാക്കുക"</string>
+<string name="downloads_load_failed_body">"നിങ്ങൾ ഡൗൺലോഡ് ചെയ്ത ഫയലുകൾ മാറ്റിയിട്ടില്ല."</string>
+<string name="downloads_load_failed_headline">"നിങ്ങളുടെ ഡൗൺലോഡുകൾ വായിക്കാനായില്ല"</string>
+<string name="downloads_offline_pill">"ഓഫ്‌ലൈൻ · കണക്ഷനില്ല"</string>
+<string name="downloads_play_from_link">"ലിങ്കിൽ നിന്ന് പ്ലേ ചെയ്യുക"</string>
+<string name="downloads_select">"തിരഞ്ഞെടുക്കുക"</string>
+<string name="downloads_storage_full_headline">"ആവശ്യത്തിന് സ്റ്റോറേജില്ല"</string>
+<string name="downloads_storage_legend" formatted="true">"%1$s / %2$s ഉപയോഗത്തിൽ · ഡൗൺലോഡുകളിൽ %3$s"</string>
+<string name="downloads_storage_needs" formatted="true">"%s കൂടി വേണം"</string>
 <string name="duration">"ദൈര്ഘം"</string>
 <string name="duration_format" formatted="true">"%d മിനിറ്റ്"</string>
 <string name="duration_hours_minutes_format" formatted="true">"%1$dh %2$dm"</string>
@@ -243,6 +255,10 @@
 <string name="search_provider_text_providers">"സ്രോതസ് അടിസ്ഥാനത്തിൽ തിരയുക"</string>
 <string name="search_provider_text_types">"തരം അടിസ്ഥാനത്തിൽ തിരയുക"</string>
 <string name="search_state_idle_body_desktop">"ഒരു ശീർഷകം ടൈപ്പ് ചെയ്യുക. ഓരോ ഉറവിടവും മറുപടി നൽകുമ്പോൾ ഫലങ്ങൾ അതിനു താഴെ കാണിക്കും."</string>
+<string name="search_state_no_results_type_filter" formatted="true">"%s മാത്രം. നിങ്ങളുടെ തരം ഫിൽട്ടർ തിരയൽ ചുരുക്കുന്നു."</string>
+<string name="search_tv_source_failed" formatted="true">"പരാജയപ്പെട്ടു %s"</string>
+<string name="search_tv_source_pinned">"പിൻ ചെയ്തു"</string>
+<string name="search_tv_sources_panel_meta" formatted="true">"%2$d-ൽ %1$d പ്രവർത്തനക്ഷമം · പൂർത്തിയായി അമർത്തുമ്പോൾ മാറ്റങ്ങൾ ബാധകമാകും"</string>
 <string name="season">"സീസൺ"</string>
 <string name="seek_back_10_seconds">"10 സെക്കൻഡ് പിന്നോട്ട് പോകുക"</string>
 <string name="seek_forward_10_seconds">"10 സെക്കൻഡ് മുന്നോട്ട് പോകുക"</string>

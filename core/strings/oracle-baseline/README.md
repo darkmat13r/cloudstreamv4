@@ -25,9 +25,9 @@ and decides — in a commit of its own that says so — to move the baseline.
 
 | File | Rows | What it holds |
 |---|---:|---|
-| `decoded.tsv` | 35,923 | aapt2's decoded table, one row per item: source file, type, name, plural category, kind (`STR`/`STYLED`/`REF`/`ATTR`/`UNSUPPORTED`), text, spans. The raw oracle, before resolution. |
-| `emitted.tsv` | 37,939 | What the generator wrote: one row per emitted value, keyed by output directory, type, name, plural category. Includes resolved references, locale-fallback copies and the `values-b+he` / `values-b+id` copies. |
-| `lookup.tsv` | 73,210 | For each of the 87 parity requests, the value Android resolves for every key — the per-locale lookup table the parity test compares Compose against. |
+| `decoded.tsv` | 37,084 | aapt2's decoded table, one row per item: source file, type, name, plural category, kind (`STR`/`STYLED`/`REF`/`ATTR`/`UNSUPPORTED`), text, spans. The raw oracle, before resolution. |
+| `emitted.tsv` | 39,139 | What the generator wrote: one row per emitted value, keyed by output directory, type, name, plural category. Includes resolved references, locale-fallback copies and the `values-b+he` / `values-b+id` copies. |
+| `lookup.tsv` | 75,124 | For each of the 87 parity requests, the value Android resolves for every key — the per-locale lookup table the parity test compares Compose against. |
 | `requests.tsv` | 87 | The parsed `parity-requests.txt`: request id, Android tag, Compose language/script/region, expectation, note. |
 | `findings.tsv` | 0 | Every finding the pipeline raised. **Empty since the flip** — it was 31 `STRAY_TEXT_REMOVED` and 34 `STYLED_AS_PLAIN_TEXT`, and a generated res has neither stray text nor `<b>`. |
 | `report.txt` | 12 | The human-readable run summary. |
@@ -120,16 +120,21 @@ appears for all 87 requests, 2,349 cells. `report.txt` moved only in its counts:
 keys 789 -> 816, and 27 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
 `ANDROID_FALLBACK` at 172.** `expectedOwn` 33,005 -> 34,679.
 
-## Twelfth move, 2026-11-06 — `KMP-38`, 3 new keys for the TV detail page
+## Fourteenth move, 2026-11-06 — `KMP-38`, 3 new keys for the TV detail page
 
 New keys are approved in general (`I18N-09`, above). Additive, none a plural. Measured by whole-line set difference twice over,
-a multiset in Python and `sort | comm`: **0 lines lost or changed in any file.** `expectedOwn` 35,609 -> 35,775.
+a multiset in Python and `sort | comm`: **0 lines lost or changed in any file.** `expectedOwn` 36,604 -> 36,770.
+
+This move branched from 35,609, the same point as the twelfth and thirteenth below, and the counts here are stated
+**against master with both of those already in it**. Merged as a whole-line multiset union and checked both ways: 0
+lines lost from either side, every line this branch contributed still present, and every line the merge added one of
+this move's own three keys.
 
 | file | before | after | added | changed | lost |
 |---|---|---|---|---|---|
-| `decoded.tsv` | 35,923 | 36,089 | 166 | 0 | 0 |
-| `emitted.tsv` | 37,939 | 38,112 | 173 | 0 | 0 |
-| `lookup.tsv` | 73,210 | 73,471 | 261 | 0 | 0 |
+| `decoded.tsv` | 36,918 | 37,084 | 166 | 0 | 0 |
+| `emitted.tsv` | 38,966 | 39,139 | 173 | 0 | 0 |
+| `lookup.tsv` | 74,863 | 75,124 | 261 | 0 | 0 |
 | `requests.tsv` | 87 | 87 | 0 | 0 | 0 |
 | `findings.tsv` | 0 | 0 | 0 | 0 | 0 |
 
@@ -158,6 +163,18 @@ each directory's `download_time_left_hour_min_sec_format` with the seconds compo
 letters — Filipino's `%1$do` for *oras*, German's `%1$dstd`, Japanese's `%1$d時間 %2$d分`. Only `more_like_this` is new
 translation, and like `I18N-09`'s it has not been reviewed by a native speaker; every entry was checked to be in the same script
 as that directory's existing strings, which caught one error.
+
+## Thirteenth move, 2026-11-05 — `KMP-42`, 4 new keys for TV search's source panel
+
+New keys are approved in general (`I18N-09`, above). Additive, all four authored in all 62 directories, none a plural. Measured by whole-line set
+difference twice over, a multiset in Python and `sort | comm`: 0 lines lost or changed in any file, and every new line names one of the 4 keys: 248 in
+`decoded.tsv`, 256 in `emitted.tsv`, 348 in `lookup.tsv`. **`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at 172.**
+`expectedOwn` 36,356 -> 36,604, on top of the twelfth (both moves branched from 35,609; merged as a whole-line multiset union, 0 lines lost from either side).
+
+## Twelfth move, 2026-11-05 — `Q14`, 15 new keys for the TV downloads screen
+
+New keys are approved in general (`I18N-09`, above). Additive. 12 are authored in all 62 directories, none a plural. 3 are formats with no words, `downloads_delete_chosen`, `downloads_film_subtitle` and `downloads_series_subtitle`, in the default directory only, as `extra_info_format` and `storage_size_format` are. Measured by whole-line set difference against master: 0 lines lost or changed in any file, and every new line names one of the keys: 747 in `decoded.tsv`, 771 in `emitted.tsv`, 1,305 in `lookup.tsv`. **`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at 172.**
+`expectedOwn` 35,609 -> 36,356.
 
 ## Eleventh move, 2026-11-04 — `BUG-28`, 1 new key for a plugin's new version
 
