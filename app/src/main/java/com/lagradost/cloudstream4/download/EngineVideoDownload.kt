@@ -2,9 +2,9 @@ package com.lagradost.cloudstream4.download
 
 import android.content.Context
 import android.os.Environment
+import android.util.Log
 import com.lagradost.cloudstream3.IDownloadableMinimum
 import com.lagradost.cloudstream3.app
-import com.lagradost.cloudstream3.mvvm.logError
 import com.lagradost.cloudstream3.services.DownloadQueueService
 import com.lagradost.cloudstream3.utils.DOWNLOAD_EPISODE_CACHE
 import com.lagradost.cloudstream3.utils.DataStore.getKeys
@@ -174,7 +174,7 @@ internal class EngineVideoDownload(
         } catch (e: CancellationException) {
             throw e
         } catch (t: Throwable) {
-            logError(t)
+            logFailure("download ended by an error", t)
             val failure = DownloadFacts.classify(t)
             fail(id, metadata, failure, EngineDownloadRules.statusOf(failure))
         } finally {
@@ -266,7 +266,7 @@ internal class EngineVideoDownload(
                     is RunTerminal -> finished(call, result.snapshot)
                     is RunRefused -> FetchedEnded(fail(call, result.failure, EngineDownloadRules.NO_MIRROR))
                     is RunCrashed -> {
-                        logError(result.error)
+                        logFailure("engine run ended by an error", result.error)
                         val failure = DownloadFacts.classify(result.error)
                         FetchedEnded(fail(call, failure, EngineDownloadRules.statusOf(failure)))
                     }
@@ -341,7 +341,7 @@ internal class EngineVideoDownload(
         } catch (e: CancellationException) {
             throw e
         } catch (e: IOException) {
-            logError(e)
+            logFailure("copy to the destination failed", e)
             stream.delete()
             return fail(call, DownloadFacts.classify(e), EngineDownloadRules.NO_MIRROR)
         }
@@ -479,8 +479,18 @@ internal class EngineVideoDownload(
                     File(root, name).deleteRecursively()
                 }
             } catch (t: Throwable) {
-                logError(t)
+                logFailure("staging sweep failed", t)
             }
+        }
+
+        private const val TAG = "EngineVideoDownload"
+
+        /**
+         * The exception's class and a fixed text only. Its message and stack trace can carry the destination
+         * path (the user's folder and file names), and this code never logs a URL, header or path.
+         */
+        private fun logFailure(what: String, t: Throwable) {
+            Log.w(TAG, "$what: ${t.javaClass.name}")
         }
     }
 }

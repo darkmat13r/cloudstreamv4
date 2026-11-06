@@ -4848,6 +4848,7 @@ the Mac service is `KMP-52`.
 
 | Old behaviour | New behaviour | Who notices |
 |---|---|---|
+| — | **Switch off too:** `DownloadQueueManager.init` runs the staging sweep at every start. With nothing staged it reads one directory listing (null when the directory does not exist) and returns | Nobody |
 | TLS not checked (`verify = false`) | Checked, over `app.baseClient`: self-signed or expired hosts fail | Users of sources with broken certificates |
 | LAN, loopback and private addresses allowed | Refused (`AddressRefused`, next mirror) | Users downloading from LAN or self-hosted servers |
 | The partial file is visible and listed in Downloads | Nothing is visible or listed until the copy ends. Every list reader drops an episode with no file. The fix is a reader change (below) | Everyone |
@@ -4864,12 +4865,12 @@ the Mac service is `KMP-52`.
 | Deleting the file mid-download stops it (`fileChecker`) | No file exists yet to delete | — |
 | A running queue item offers "Delete file" | Offers "Cancel", which cleans up staging | Queue users |
 | Pause keeps connections open | Pause closes them | Servers |
-| Work stealing (engine) | A split can fetch an in-flight range's tail twice (seen as `GET 32153500-33554431` inside `GET 30687232-33554431`) | Bandwidth on metered links |
+| Work stealing (engine) | A split can fetch an in-flight range's tail twice (seen as `GET 32153500-33554431` inside `GET 30687232-33554431`) | Bandwidth on metered links (`KMP-61`) |
 
 **"Not listed until done" needs a reader change.** The smallest one: a `getDownloadListInfo(id)` that falls back to
 `KEY_DOWNLOAD_INFO` and the staged length when the file is missing. It would be used in `DownloadViewModel.calculateDownloadStats`,
 `DownloadViewModel.updateChildList`, `AndroidDownloadsSource.readEpisodes` and `AndroidDownloadSeriesSource`.
-Their `fileLength <= 1` filters and the play actions would need to handle it. Not done here, because it changes the list readers.
+Their `fileLength <= 1` filters and the play actions would need to handle it. Not done here, because it changes the list readers: that is `KMP-60`, which blocks turning the switch on.
 
 **Tests** (all local, none CI).
 - **Unit:** `:app:testPrereleaseDebugUnitTest` 230/0; `EngineDownloadRulesTest` 19/19.
@@ -4891,6 +4892,31 @@ Their `fileLength <= 1` filters and the play actions would need to handle it. No
 - A pause or resume sent through `downloadEvent` during a run.
 - A DNS setting change rebuilding the client.
 - The two space refusals on a device (unit tests only).
+
+## KMP-60 — Engine downloads listed while they run · **open**, blocks turning `KMP-59`'s switch on
+
+With `EngineDownloadSwitch.useSegmentedEngine` on, a download appears in no Downloads list until its copy finishes:
+- `getDownloadFileInfo` returns null while the destination file is missing (`DownloadManager.kt` ~1699).
+- All four list readers drop null.
+- The pruning in `calculateDownloadStats` keys off the same null.
+
+Writing `KEY_DOWNLOAD_INFO` at start changes nothing by itself. Smallest fix, as reported in `KMP-59`:
+- Add a `getDownloadListInfo(id)` that falls back to `KEY_DOWNLOAD_INFO`, with the staged length and an empty path.
+- Use it in `DownloadViewModel.calculateDownloadStats`, `DownloadViewModel.updateChildList`, `AndroidDownloadsSource.readEpisodes` and `AndroidDownloadSeriesSource`.
+- The `fileLength <= 1` filters must let a just-started download through.
+- The play actions must refuse the empty path.
+
+Tests to write before the switch goes on (not needed for `KMP-59`'s merge):
+- Stop or Cancel during the fetch, and during the copy. The staging and the destination must both be gone.
+- Pause and Resume sent through `downloadEvent` during a run. Resume must go on from disk.
+
+## KMP-61 — Engine: a work steal refetches an in-flight range's tail · **open**, measured, no fix
+
+Seen in `EngineDownloadDeviceTest` (`aDownloadCutOffMidway…`): the split's new request started inside a range already in flight, so 1,400,932 bytes were fetched twice on a 32 MiB file.
+- The range in flight was `#18 GET 30687232-33554431`.
+- The new request was `#19 GET 32153500-33554431`.
+
+The test now bounds the union of the requested ranges, not their sum, so it still proves a resume. The cause is not investigated. The first place to look is where `PartScheduler` picks the split point against the victim's open request.
 
 ## KMP-52 — The Mac download service and its data · **open**
 

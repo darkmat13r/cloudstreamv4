@@ -37474,6 +37474,105 @@ public final class com/lagradost/cloudstream4/download/DownloadsTvFragmentKt : j
 	public static final fun openDownloadsOnTvScreen (Landroidx/navigation/NavGraph;)V
 }
 
+public final class com/lagradost/cloudstream4/download/EngineDownloadRules : java/lang/Object {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/lagradost/cloudstream4/download/EngineDownloadRules;
+	public static final field MARKER_FILE_NAME Ljava/lang/String;
+	public final fun copyShortfall (JLjava/lang/Long;)Lcom/lagradost/cloudstream4/media/model/DownloadFailure$InsufficientSpace;
+	public final fun destinationStem (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public final fun formatMarker (Lcom/lagradost/cloudstream4/download/EngineDownloadRules$StagedMarker;)Ljava/lang/String;
+	public final fun getFAILED ()Lcom/lagradost/cloudstream3/utils/downloader/DownloadObjects$DownloadStatus;
+	public final fun getNO_MIRROR ()Lcom/lagradost/cloudstream3/utils/downloader/DownloadObjects$DownloadStatus;
+	public final fun getRETRY_SAME ()Lcom/lagradost/cloudstream3/utils/downloader/DownloadObjects$DownloadStatus;
+	public final fun getSTOPPED ()Lcom/lagradost/cloudstream3/utils/downloader/DownloadObjects$DownloadStatus;
+	public final fun getSUCCESS ()Lcom/lagradost/cloudstream3/utils/downloader/DownloadObjects$DownloadStatus;
+	public final fun getTRY_NEXT ()Lcom/lagradost/cloudstream3/utils/downloader/DownloadObjects$DownloadStatus;
+	public final fun idOfKey (Ljava/lang/String;)Ljava/lang/Integer;
+	public final fun minOfKnown (Ljava/lang/Long;Ljava/lang/Long;)Ljava/lang/Long;
+	public final fun parseMarker (Ljava/lang/String;)Lcom/lagradost/cloudstream4/download/EngineDownloadRules$StagedMarker;
+	public final fun stagingShortfall (JJLjava/lang/Long;)Lcom/lagradost/cloudstream4/media/model/DownloadFailure$InsufficientSpace;
+	public final fun stagingToSweep (Ljava/util/Collection;Ljava/util/Set;Ljava/util/Set;Ljava/util/Set;Ljava/util/Set;)Ljava/util/List;
+	public final fun startAction (ZLcom/lagradost/cloudstream4/download/EngineDownloadRules$StagedMarker;Ljava/lang/Long;)Lcom/lagradost/cloudstream4/download/EngineDownloadRules$StartAction;
+	public final fun statusOf (Lcom/lagradost/cloudstream4/media/model/DownloadFailure;)Lcom/lagradost/cloudstream3/utils/downloader/DownloadObjects$DownloadStatus;
+	public final fun typeOf (Lcom/lagradost/cloudstream4/media/model/DownloadState;)Lcom/lagradost/cloudstream3/utils/downloader/VideoDownloadManager$DownloadType;
+}
+
+public final static class com/lagradost/cloudstream4/download/EngineDownloadRules$StagedMarker : java/lang/Object {
+	public static final field $stable I
+	public fun <init> (JLjava/lang/String;)V
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBytes ()J
+	public final fun getFileName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final static enum com/lagradost/cloudstream4/download/EngineDownloadRules$StartAction : java/lang/Enum {
+	public static final field COPY_STAGED Lcom/lagradost/cloudstream4/download/EngineDownloadRules$StartAction;
+	public static final field DOWNLOAD_FRESH Lcom/lagradost/cloudstream4/download/EngineDownloadRules$StartAction;
+	public static final field DOWNLOAD_RESUME Lcom/lagradost/cloudstream4/download/EngineDownloadRules$StartAction;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/lagradost/cloudstream4/download/EngineDownloadRules$StartAction;
+	public static fun values ()[Lcom/lagradost/cloudstream4/download/EngineDownloadRules$StartAction;
+}
+
+public final static synthetic class com/lagradost/cloudstream4/download/EngineDownloadRules$WhenMappings : java/lang/Object {
+	public static final synthetic field $EnumSwitchMapping$0 [I
+}
+
+public final class com/lagradost/cloudstream4/download/EngineDownloadSwitch : java/lang/Object {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/lagradost/cloudstream4/download/EngineDownloadSwitch;
+	public static field allowPrivateAddressesForTests Z
+	public static field stagingRootForTests Ljava/io/File;
+	public static field storageForTests Lcom/lagradost/cloudstream4/media/download/DownloadStorage;
+	public static field useSegmentedEngine Z
+}
+
+public final class com/lagradost/cloudstream4/download/EngineVideoDownload : java/lang/Object {
+	public static final field $stable I
+	public static final field Companion Lcom/lagradost/cloudstream4/download/EngineVideoDownload$Companion;
+	public fun <init> (Landroid/content/Context;Lcom/lagradost/cloudstream4/media/download/SegmentedDownloader;Ljava/io/File;ZLkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;)V
+	public synthetic fun <init> (Landroid/content/Context;Lcom/lagradost/cloudstream4/media/download/SegmentedDownloader;Ljava/io/File;ZLkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public static final synthetic fun access$apply (Lcom/lagradost/cloudstream4/download/EngineVideoDownload;Lcom/lagradost/cloudstream4/download/EngineVideoDownload$Call;Lcom/lagradost/cloudstream4/media/download/DownloadSnapshot;Lcom/lagradost/cloudstream4/download/EngineVideoDownload$RunProgress;)V
+	public static final synthetic fun access$copy (Lcom/lagradost/cloudstream4/download/EngineVideoDownload;Ljava/io/File;Ljava/io/OutputStream;Ljava/util/concurrent/atomic/AtomicBoolean;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final synthetic fun access$deliver (Lcom/lagradost/cloudstream4/download/EngineVideoDownload;Lcom/lagradost/cloudstream4/download/EngineVideoDownload$Call;Ljava/io/File;JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final synthetic fun access$fail (Lcom/lagradost/cloudstream4/download/EngineVideoDownload;ILcom/lagradost/cloudstream3/utils/downloader/VideoDownloadManager$DownloadMetaData;Lcom/lagradost/cloudstream4/media/model/DownloadFailure;Lcom/lagradost/cloudstream3/utils/downloader/DownloadObjects$DownloadStatus;)Lcom/lagradost/cloudstream3/utils/downloader/DownloadObjects$DownloadStatus;
+	public static final synthetic fun access$fail (Lcom/lagradost/cloudstream4/download/EngineVideoDownload;Lcom/lagradost/cloudstream4/download/EngineVideoDownload$Call;Lcom/lagradost/cloudstream4/media/model/DownloadFailure;Lcom/lagradost/cloudstream3/utils/downloader/DownloadObjects$DownloadStatus;)Lcom/lagradost/cloudstream3/utils/downloader/DownloadObjects$DownloadStatus;
+	public static final synthetic fun access$fetch (Lcom/lagradost/cloudstream4/download/EngineVideoDownload;Lcom/lagradost/cloudstream4/download/EngineVideoDownload$Call;Lcom/lagradost/cloudstream4/media/download/DownloadRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final synthetic fun access$finished (Lcom/lagradost/cloudstream4/download/EngineVideoDownload;Lcom/lagradost/cloudstream4/download/EngineVideoDownload$Call;Lcom/lagradost/cloudstream4/media/download/DownloadSnapshot;)Lcom/lagradost/cloudstream4/download/Fetched;
+	public static final synthetic fun access$getClient$cp ()Lkotlin/Pair;
+	public static final synthetic fun access$getContext$p (Lcom/lagradost/cloudstream4/download/EngineVideoDownload;)Landroid/content/Context;
+	public static final synthetic fun access$getDownloader$p (Lcom/lagradost/cloudstream4/download/EngineVideoDownload;)Lcom/lagradost/cloudstream4/media/download/SegmentedDownloader;
+	public static final synthetic fun access$getOnSnapshot$p (Lcom/lagradost/cloudstream4/download/EngineVideoDownload;)Lkotlin/jvm/functions/Function1;
+	public static final synthetic fun access$getStagingRoot$p (Lcom/lagradost/cloudstream4/download/EngineVideoDownload;)Ljava/io/File;
+	public static final synthetic fun access$run (Lcom/lagradost/cloudstream4/download/EngineVideoDownload;Lcom/lagradost/cloudstream4/download/EngineVideoDownload$Call;Lcom/lagradost/cloudstream3/IDownloadableMinimum;ZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final synthetic fun access$setClient$cp (Lkotlin/Pair;)V
+	public static final synthetic fun access$stop (Lcom/lagradost/cloudstream4/download/EngineVideoDownload;Lcom/lagradost/cloudstream4/download/EngineVideoDownload$Call;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final synthetic fun access$wipeStaging (Lcom/lagradost/cloudstream4/download/EngineVideoDownload;Lcom/lagradost/cloudstream4/download/EngineVideoDownload$Call;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun download (Lcom/lagradost/cloudstream3/IDownloadableMinimum;Ljava/lang/String;Ljava/lang/String;ZILkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final static class com/lagradost/cloudstream4/download/EngineVideoDownload$Companion : java/lang/Object {
+	public synthetic fun <init> (Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun defaultStagingRoot (Landroid/content/Context;)Ljava/io/File;
+	public final fun fromSwitch (Landroid/content/Context;)Lcom/lagradost/cloudstream4/download/EngineVideoDownload;
+	public final fun sweepOrphanedStaging (Landroid/content/Context;Ljava/util/Collection;Ljava/io/File;)V
+	public static synthetic fun sweepOrphanedStaging$default (Lcom/lagradost/cloudstream4/download/EngineVideoDownload$Companion;Landroid/content/Context;Ljava/util/Collection;Ljava/io/File;ILjava/lang/Object;)V
+}
+
+public final static synthetic class com/lagradost/cloudstream4/download/EngineVideoDownload$WhenMappings : java/lang/Object {
+	public static final synthetic field $EnumSwitchMapping$0 [I
+}
+
+public final static synthetic class com/lagradost/cloudstream4/download/EngineVideoDownload$download$2$WhenMappings : java/lang/Object {
+	public static final synthetic field $EnumSwitchMapping$0 [I
+}
+
+public final static synthetic class com/lagradost/cloudstream4/download/EngineVideoDownload$fetch$2$WhenMappings : java/lang/Object {
+	public static final synthetic field $EnumSwitchMapping$0 [I
+}
+
 public final class com/lagradost/cloudstream4/download/PlayFromUrlDialogKt : java/lang/Object {
 	public static final synthetic fun access$showPlayFromUrlDialog$matchHlsSwitch (Lcom/lagradost/cloudstream3/databinding/StreamInputBinding;Ljava/lang/String;)V
 	public static final fun showPlayFromUrlDialog (Landroid/app/Activity;)V
