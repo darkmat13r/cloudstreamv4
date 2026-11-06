@@ -4918,6 +4918,18 @@ Seen in `EngineDownloadDeviceTest` (`aDownloadCutOffMidway…`): the split's new
 
 The test now bounds the union of the requested ranges, not their sum, so it still proves a resume. The cause is not investigated. The first place to look is where `PartScheduler` picks the split point against the victim's open request.
 
+## KMP-62 — The old downloader keeps whole links in `KEY_RESUME_PACKAGES` · **open**, waits on the owner
+
+Found while checking `KMP-59` against the owner's no-link ruling for `KMP-52` (2026-11-06). Not changed.
+- **What is stored.** `DownloadManager.kt:1923-1927` writes `DownloadResumePackage(item, index)` to `KEY_RESUME_PACKAGES` before every
+  attempt. `DownloadItem.links` is `List<ExtractorLink>`, serialised with `url`, `referer` and `headers`
+  (`library/.../ExtractorApi.kt:700-708`). It goes to SharedPreferences.
+- **Which paths store it.** Both: the write comes before `downloadSingleEpisode`, so it happens with `KMP-59`'s switch on or off. The
+  engine path adds no link of its own. Its marker holds a size and a name, and its state file holds the size, ETag, Last-Modified and ranges.
+- **Applying the ruling.** Keep `ep`, the provider and the episode's `loadLinks` data. Run `loadLinks` again on resume, and on start-up
+  re-queueing from `DownloadQueueManager.init`.
+- **Waiting on the owner.** That changes the existing downloader for every user, so the owner decides before anyone builds it.
+
 ## KMP-52 — The Mac download service and its data · **open**
 
 `:media:download` on the JVM in `:desktopApp`, with real paths, a queue, persistence and data flows. No UI: the Downloads UI is `KMP-54`.
