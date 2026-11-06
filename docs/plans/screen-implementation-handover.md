@@ -55,6 +55,9 @@ https://claude.ai/design/p/c5fd7e44-70f5-41b6-8a48-e850eb88334b, holds the same 
 | `TV Episodes Downloads.dc.html` | Episode panel, episode-row board, downloads ×3 |
 | `Desktop Downloads.dc.html` | `DS-18`. Downloads on the Mac: titles, multi-select and menu, confirm, one series, empty/offline/full, minimum window. 1 px = 1 dp |
 | `Phone Downloads.dc.html` | `DS-18`. Downloads on phone and tablet: titles, swipe, choosing, one series, the verb sheet, empty/offline/full, two-pane tablet. 1 px = 1 dp |
+| `Desktop Home.dc.html` | `DS-21`. Home on the Mac: hero, Continue watching, bookmarks with status chips, a card's menu, the source panel with None, offline and a failed reload, no source, minimum window. 1 px = 1 dp |
+| `Desktop Detail.dc.html` | `DS-21`. A title's page on the Mac: series and film, an episode's hover verbs, the sources panel as links arrive, loading, failed, minimum window. 1 px = 1 dp |
+| `Phone Home Detail.dc.html` | `DS-21`. Home and a title's page on phone (source sheet, offline, the glyph row, the sources sheet) and tablet (rail, two columns). 1 px = 1 dp |
 | `TV Detail Player.dc.html` | Show detail, movie detail, link loading, player HUD, selectors |
 | `TV Onboarding Extensions.dc.html` | First run, first run offline, extensions ×2, account select |
 | `Design System.dc.html`, `TV Directions.dc.html`, `TV Screens.dc.html` | **Superseded.** Do not build from these. `TV Screens` still contains the banned 320×180 rung. |
