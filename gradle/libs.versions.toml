@@ -33,7 +33,13 @@ kotlinxCollectionsImmutable = "0.4.0"
 kotlinxCoroutines = "1.11.0"
 kotlinxDatetime = "0.8.0"
 kotlinxIOCore = "0.9.1"
-kotlinxSerializationJson = "1.11.0"
+kotlinxSerializationJson = "1.12.0"
+# :library's own pin. 1.12.0 declares stdlib 2.4.10, and :library's POM must not lift the stdlib
+# for extension authors (DEC entry for minSdk 24). The app build resolves 1.12.0 regardless.
+kotlinxSerializationJsonLibrary = "1.11.0"
+# :app's stdlib, set with `coreLibrariesVersion` in app/build.gradle.kts only. FileKit 0.17.0
+# (:media:download) needs it; the compiler stays on kotlinGradlePlugin. Never applied to :library.
+kotlinStdlibApp = "2.4.21"
 ksoup = "0.2.6"
 ktor = "3.6.0" # Also the ktor-http extensions use at runtime: URL parsing changed, see KtorUrlBehaviourTest and docs/plans/kmp-migration.md (I3)
 lifecycleKtx = "2.10.0"
@@ -79,7 +85,10 @@ lifecycleViewmodelCompose = "2.11.0"
 # "Error was captured in composition. java.lang.AbstractMethodError"
 jvmTarget = "11"
 jdkToolchain = "17"
-minSdk = "23"
+minSdk = "24"
+# :library stays on 23 so that extensions built at minSdk 23 keep merging its manifest. The app moved
+# to 24 for FileKit 0.17.0 (:media:download); see the DEC entry for minSdk 24.
+libraryMinSdk = "23"
 compileSdk = "37"
 targetSdk = "36"
 
@@ -124,6 +133,7 @@ kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-t
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinxDatetime" }
 kotlinx-io-core = { module = "org.jetbrains.kotlinx:kotlinx-io-core", version.ref = "kotlinxIOCore" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+kotlinx-serialization-json-library = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJsonLibrary" }
 ksoup = { module = "com.fleeksoft.ksoup:ksoup", version.ref = "ksoup" }
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }

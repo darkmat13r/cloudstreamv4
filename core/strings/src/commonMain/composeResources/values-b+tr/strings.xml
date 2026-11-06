@@ -4,6 +4,7 @@
 <string name="detail_load_failed_body">Kaynak kullanılamıyor olabilir.</string>
 <string name="detail_load_failed_headline">Bu başlık açılamadı</string>
 <plurals name="downloads_active"><item quantity="one">%d aktif indirme</item><item quantity="other">%d aktif indirmeler</item></plurals>
+<plurals name="downloads_failed_count"><item quantity="one">%d başarısız</item><item quantity="other">%d başarısız</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d indirme kuyrukta</item><item quantity="other">%d indirilecekler kuyruğa alındı</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d YER İMİ</item><item quantity="other">%d YER İMİ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d kısım yüklenemedi</item><item quantity="other">%d kısım yüklenemedi</item></plurals>
@@ -199,6 +200,7 @@
 <string name="downloaded_file">İndirilen dosya</string>
 <string name="downloading">İndiriliyor</string>
 <string name="downloads_browse_library">Kütüphaneye göz at</string>
+<string name="downloads_delete_all">Tümünü sil</string>
 <string name="downloads_delete_select">Silinecek Öğeleri Seçin</string>
 <string name="downloads_empty">Şu an hiç bir indirme bulunmamaktadır.</string>
 <string name="downloads_empty_body">Bir başlığın bölüm listesinden başlattığınız indirmeler burada görünür ve bağlantı olmadan oynatılır.</string>
@@ -207,11 +209,21 @@
 <string name="downloads_load_failed_body">İndirilen dosyalarınız değiştirilmedi.</string>
 <string name="downloads_load_failed_headline">İndirmeleriniz okunamadı</string>
 <string name="downloads_offline_pill">Çevrimdışı · bağlantı yok</string>
+<string name="downloads_on_disk">Diskte %s</string>
 <string name="downloads_play_from_link">Bağlantıdan oynat</string>
+<string name="downloads_play_next">Sonrakini oynat</string>
+<string name="downloads_reason_network">Ağ bağlantısı koptu</string>
+<string name="downloads_reason_no_link">Çalışan bağlantı yok</string>
+<string name="downloads_reason_source">Kaynak erken durdu</string>
+<string name="downloads_reason_storage_full">Depolama dolu</string>
+<string name="downloads_reason_storage_unavailable">Depolama kullanılamıyor</string>
+<string name="downloads_retry_failed">Başarısızları yeniden dene (%d)</string>
 <string name="downloads_select">Seç</string>
+<string name="downloads_state_queued">Sırada</string>
 <string name="downloads_storage_full_headline">Yeterli depolama yok</string>
 <string name="downloads_storage_legend">%1$s / %2$s kullanıldı · İndirilenlerde %3$s</string>
 <string name="downloads_storage_needs">%s daha gerekli</string>
+<string name="downloads_watched">%%%d izlendi</string>
 <string name="duplicate_add">Ekle</string>
 <string name="duplicate_message_multiple">Kütüphanenizde potensiyel kopya ürünler bulundu: \n \n%s \n \nYine de ekleyerek var olanları değiştirmek mi istersiniz, yoksa iptal etmek mi?</string>
 <string name="duplicate_message_single">Görünüşe göre potansiyel bir kopya kütüphanenizde zaten bulunuyor: '%s' \n \nYine de ekleyerek var olanı değiştirmek mi istersiniz, yoksa iptal etmek mi?</string>

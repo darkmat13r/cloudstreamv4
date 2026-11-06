@@ -4700,6 +4700,107 @@ a real plugin; right-to-left.
 
 ---
 
+## KMP-43 — One series' downloads on TV, boards 6d and 6b (queue `Q15`) · **measured 2026-11-06**
+
+**Status:** in pr · Android TV only. `MainActivity` sends `navigation_download_child` to `DownloadSeriesTvFragment` in one line, and deleting that
+line is the rollback. `DownloadChildFragment` is untouched and stays the page on every other layout. It has the same destination and the same
+`name` and `folder` arguments, so both callers, `DownloadsTvFragment` and `DownloadFragment`, open it unchanged.
+
+**What it is.** `:feature:downloads` gains `series/`:
+- `DownloadSeriesSource`, `SeriesShelf` (one episode's state, `Play next`, the order) and `DownloadSeriesViewModel`.
+- `DownloadSeriesScreenTv`: the name, two lines of figures, `Play next`, `Delete all` and `Retry failed (n)`, then the episodes under
+  their seasons. Beside each episode are 6d's three verbs: Play, the state's own verb, and Delete.
+
+`:app` gains `AndroidDownloadSeriesSource`, over the keys `updateChildList` reads plus `DownloadFacts`, and `DownloadSeriesTvFragment`. Play,
+pause, resume, cancel and delete all go through the old screen's own calls. **Play** is `handleDownloadClick(DOWNLOAD_ACTION_PLAY_FILE)`, so the
+player still gets the whole series as a playlist from that episode.
+
+**Column B**, the verb 6d's note calls the only way back into a dead download:
+
+| State | B |
+|---|---|
+| Downloading | Pause |
+| Paused | Resume |
+| Failed | Retry |
+| Queued | Cancel |
+| Done | Nothing, and its place stays empty, so B never moves and Down from a B lands on the B below |
+
+Resume and Retry are both the old popup's Resume, which did both.
+
+### What the old page did that this does not, on a TV
+
+- **Choosing some episodes and deleting them together.** Long-press, the checkboxes, Select all and `Delete (n | size)` are gone. Each row has
+  Delete, and `Delete all` takes the series. Both go through the old dialogs.
+- **The circular watch-progress mark**, and the check it became at 95%. Now it is the words `38% watched` on a finished row.
+- **The download button's long-press snackbar** (`offline_file`).
+- **`S1:E2 Name`.** Now it is `S1 · E2 · Name`.
+
+**Gained:** Retry, Cancel, Pause on the row itself, `Play next`, `Retry failed (n)`, the poster, and a queued episode with no file yet. The old
+page listed only episodes with a file, so a queued one appeared only once it had started.
+
+### Where this departs from the boards
+
+- **The three verbs are icon-only, as 6d draws them**, and each names itself under its cell when focused. `DS-16`'s rule 4 allowed icon-only
+  only for toggles, overflow and search. Asked through the coordinator, the owner ruled on 2026-11-06 that trailing actions on a list row are a
+  second ruled exception, beside the title detail action row (`DEC-17`; rule 4 in `ui-components.md`). `IconOnlyButton` draws a 32 dp outlined tile in a 48 dp cell, where 6d has a
+  24 dp raised tile.
+- **No Back cell and no free-space figure** in the top row. The remote's Back does what the cell would, and the rail is beside the page.
+- **A season's header is a row tall and has no count.** 6d draws it 28 dp, which would put every row after it off the scroll pitch. Its count
+  is left out because `episodes` is the word alone, and no format in every language joins a number to it. `3 MORE EPISODES` under the list is
+  not drawn: the list scrolls.
+- **Words reuse keys.**
+  - The second figure line reads `1 active download · 1 download queued · 1 failed`.
+  - A running row reads `128 MB / 500 MB · 4.2 MB/s · 1m 30s`, with no "left", from the old notification's own formats.
+  - A queued row reads `Queued · 2/3 · 500 MB`.
+  - A failed row reads `Download Failed · Network lost · 96 MB / 500 MB`.
+  - A title reads `S1 · E3 · Name` where 6d has `S1 E3 · Name`.
+- **A finished row's B is empty**, where 6d draws a dimmed Pause.
+- **A failure's reason reuses five keys.** `NetworkLost` reads "Network lost"; `StorageFull` and, since `KMP-46`, `InsufficientSpace`
+  read "Storage full"; `StorageUnavailable` and `NoUsableLink` have their own; `SourceFailed` and `KMP-46`'s `ServerRefused`,
+  `AddressRefused`, `SourceChanged`, `SizeMismatch` and `HashMismatch` read the source reason. `Unknown` and `DestinationExists` show
+  none, only `Download Failed`. No new key: nothing produces `KMP-46`'s cases yet, as no consumer uses the new engine.
+- **A queued row has no leading glyph:** the pack has no queue glyph. A paused one has Pause.
+- **A queued row's Play is disabled** until something is on disk, so Right from that row is Cancel. The old popup allowed Play only with bytes too.
+- **`Retry failed` is there only when something failed**, and it hands focus to `Play next` when it goes.
+- **Loading, empty, a failed read and offline have no board**:
+  - **loading:** six skeleton rows;
+  - **empty:** "No downloads yet" with `Go Back`, from the keys and the glyph table `KMP-40` and `DS-16` use;
+  - **a failed read:** `KMP-40`'s words with Retry;
+  - **offline:** the pill on the top row, which costs nothing.
+
+  A page that empties while open closes, as the old one did.
+- **Scrolling** is `KMP-40`'s: a row that fits does not move the list, and one that does not moves it by whole rows.
+
+### Measured, each one a wrong turn first
+
+- **The figure line read `Episodes · 980 MB on disk`**, with no number, on the first recording: the `episodes` plural is the word alone. It now
+  uses `downloads_series_subtitle`, as the Downloads page's rows do. The season header had the same flaw, which is why it has no count.
+- **A header for an unknown season** would have drawn nothing and still taken a slot, putting the rows after it off the pitch. Episodes with no
+  season now have no header item.
+- **Rows below the fold are not composed**, so a test that waited for one's text timed out. The tests travel there by remote.
+- **Every row's verbs share their labels**, so `DpadDriver` names a stop the same on every row. The tests find the row from where the
+  focused stop sits.
+
+### Each critical test shown to fail
+
+Temporary changes, all reverted. One run on `:feature:downloads` went 12 of 61 red; one on `:app` is recorded in the PR.
+
+| Change | What went red |
+|---|---|
+| A failed row has no verb | the column test, the column-held-on-Down test, the Retry test, the failed-row screenshot |
+| Nothing lands on arrival | arrival, `Play next`, `Delete all` and `Retry failed`, offline, two screenshots |
+| Coming back does not look for the stop that left | the focus-return test |
+| The platform's default scrolling | `series-scrolled`, by 124,121 pixels. **The forty-row test stayed green**, so it pins reachability, not the scroll |
+
+### Not verified
+
+- **The player opening** from Play or `Play next`. Only the effect is tested on the device; the real call is the old page's.
+- **Pause, resume and cancel on a live transfer.** The source is driven with fakes. In the real app only a real failure fact was shown
+  reaching its Retry; Retry was not pressed.
+- **The poster loading**, which uses the app's loader and its user agent.
+- **Any language but English on a device**, and any native speaker reading the 12 translations. Least sure: `ti`, `ckb`, `mt`, `so`, `my`,
+  `or`, `am`, `apc` and `kn`. In `fa`, `kn`, `am`, `ti`, `ckb` and `az`, `Retry failed (n)` reads "Retry (n)", the file's own word kept short.
+
 ## KMP-46 — `:media:download`: a segmented downloader in commonMain, on FileKit · **measured 2026-11-06**
 
 New module, new code. It downloads one file over several ranged connections at once and joins them.

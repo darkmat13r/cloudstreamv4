@@ -27,7 +27,7 @@ kotlin {
         namespace = "com.lagradost.api"
 
         compileSdk = libs.versions.compileSdk.get().toInt()
-        minSdk = libs.versions.minSdk.get().toInt()
+        minSdk = libs.versions.libraryMinSdk.get().toInt()
 
         compilerOptions {
             jvmTarget.set(javaTarget)
@@ -60,7 +60,7 @@ kotlin {
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.kotlinx.datetime)
             implementation(libs.kotlinx.io.core)
-            implementation(libs.kotlinx.serialization.json) // JSON Parser
+            implementation(libs.kotlinx.serialization.json.library) // JSON Parser
             implementation(libs.ksoup) // HTML Parser
             implementation(libs.ktor.http)
             implementation(libs.nicehttp) // HTTP Library

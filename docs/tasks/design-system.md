@@ -717,7 +717,7 @@ redraw had made wrong (7a LOADING and EMPTY, 7b PARTIAL and its band list, the c
 **Status:** open, decided 2026-11-06 by the owner (`DEC-17`). Not built. Recorded first in `.claude/rules/ui-components.md` rule 4.
 
 - `IconOnlyButton` and `IconOnlyToggle` draw their glyph `muted` at rest and `ink` on focus, on every screen. Today it is `ink` at rest.
-- A toggle shows on or off by glyph, not colour. The detail row's watchlist toggle is `Add` (Plus) off and `Added` (Check) on. `Added` is a new `CloudStreamIcons` entry on Tabler `Check`.
+- A toggle shows on or off by glyph, not colour. The detail row's watchlist toggle is `Add` (Plus) off and `Done` (Check) on. `Done` already exists on Tabler `Check` (the subtitle picker's chosen mark); a second name for it, `Added`, fails `CloudStreamIconsTest`'s one-glyph-per-meaning check, so the toggle reuses `Done`. A toggle whose pair is named draws no `raised` fill for on: shape alone says state.
 - Fold in the account cell on Home's top bar, which is still `IconCell` (a smaller filled tile with a muted glyph, ringing its cell) beside `IconOnlyButton`s, so one row shows two icon styles. Raised by the reviewer on #165.
 - Every screenshot reference that shows an icon-only control at rest changes. Each diff is looked at, not re-recorded blind.
 

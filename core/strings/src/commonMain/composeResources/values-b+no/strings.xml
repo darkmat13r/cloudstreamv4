@@ -3,6 +3,7 @@
 <resources>
 <string name="detail_load_failed_body">Kilden er kanskje ikke tilgjengelig.</string>
 <string name="detail_load_failed_headline">Kunne ikke åpne denne tittelen</string>
+<plurals name="downloads_failed_count"><item quantity="one">%d mislyktes</item><item quantity="other">%d mislyktes</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d BOKMERKE</item><item quantity="other">%d BOKMERKER</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d del kunne ikke lastes inn</item><item quantity="other">%d deler kunne ikke lastes inn</item></plurals>
 <string name="account">konto</string>
@@ -129,17 +130,28 @@
 <string name="downloaded_file">Nedlastet fil</string>
 <string name="downloading">Nedlasting pågår</string>
 <string name="downloads_browse_library">Bla i biblioteket</string>
+<string name="downloads_delete_all">Slett alle</string>
 <string name="downloads_empty_body">Nedlastinger du starter fra episodelisten til en tittel, vises her og kan spilles av uten tilkobling.</string>
 <string name="downloads_empty_headline">Ingen nedlastinger ennå</string>
 <string name="downloads_free_up_space">Frigjør plass</string>
 <string name="downloads_load_failed_body">De nedlastede filene dine er ikke endret.</string>
 <string name="downloads_load_failed_headline">Kunne ikke lese nedlastingene dine</string>
 <string name="downloads_offline_pill">Frakoblet · ingen tilkobling</string>
+<string name="downloads_on_disk">%s på disk</string>
 <string name="downloads_play_from_link">Spill av fra lenke</string>
+<string name="downloads_play_next">Spill neste</string>
+<string name="downloads_reason_network">Mistet nettverk</string>
+<string name="downloads_reason_no_link">Ingen fungerende lenke</string>
+<string name="downloads_reason_source">Kilden stoppet tidlig</string>
+<string name="downloads_reason_storage_full">Lagring full</string>
+<string name="downloads_reason_storage_unavailable">Lagring utilgjengelig</string>
+<string name="downloads_retry_failed">Prøv mislykkede igjen (%d)</string>
 <string name="downloads_select">Velg</string>
+<string name="downloads_state_queued">I kø</string>
 <string name="downloads_storage_full_headline">Ikke nok lagringsplass</string>
 <string name="downloads_storage_legend">%1$s av %2$s brukt · %3$s i nedlastinger</string>
 <string name="downloads_storage_needs">Trenger %s til</string>
+<string name="downloads_watched">%d%% sett</string>
 <string name="duration">Varighet</string>
 <string name="duration_format">%d min</string>
 <string name="edit">Rediger</string>

@@ -4,6 +4,7 @@
 <string name="detail_load_failed_body">Источник может быть недоступен.</string>
 <string name="detail_load_failed_headline">Не удалось открыть это название</string>
 <plurals name="downloads_active"><item quantity="one">%d активная загрузка</item><item quantity="few">%d активные загрузки</item><item quantity="many">%d активных загрузок</item><item quantity="other">%d активных загрузок</item></plurals>
+<plurals name="downloads_failed_count"><item quantity="one">%d неудачная</item><item quantity="few">%d неудачные</item><item quantity="many">%d неудачных</item><item quantity="other">%d неудачных</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">Запланировано %d загрузка</item><item quantity="few">Запланировано %d загрузки</item><item quantity="many">Запланировано %d загрузок</item><item quantity="other">Запланировано %d загрузок</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ЗАКЛАДКА</item><item quantity="few">%d ЗАКЛАДКИ</item><item quantity="many">%d ЗАКЛАДОК</item><item quantity="other">%d ЗАКЛАДКИ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Не удалось загрузить %d раздел</item><item quantity="few">Не удалось загрузить %d раздела</item><item quantity="many">Не удалось загрузить %d разделов</item><item quantity="other">Не удалось загрузить %d разделов</item></plurals>
@@ -199,6 +200,7 @@
 <string name="downloaded_file">Скачано файл</string>
 <string name="downloading">Скачивание</string>
 <string name="downloads_browse_library">Открыть библиотеку</string>
+<string name="downloads_delete_all">Удалить все</string>
 <string name="downloads_delete_select">Выберите элементы для удаления</string>
 <string name="downloads_empty">В данный момент скачиваний нет.</string>
 <string name="downloads_empty_body">Скачивания, начатые из списка серий, появляются здесь и воспроизводятся без сети.</string>
@@ -207,11 +209,21 @@
 <string name="downloads_load_failed_body">Ваши скачанные файлы не изменены.</string>
 <string name="downloads_load_failed_headline">Не удалось прочитать скачанное</string>
 <string name="downloads_offline_pill">Без сети · нет соединения</string>
+<string name="downloads_on_disk">%s на диске</string>
 <string name="downloads_play_from_link">Смотреть по ссылке</string>
+<string name="downloads_play_next">Смотреть следующую</string>
+<string name="downloads_reason_network">Сеть потеряна</string>
+<string name="downloads_reason_no_link">Нет рабочей ссылки</string>
+<string name="downloads_reason_source">Источник оборвался раньше</string>
+<string name="downloads_reason_storage_full">Память заполнена</string>
+<string name="downloads_reason_storage_unavailable">Память недоступна</string>
+<string name="downloads_retry_failed">Повторить неудачные (%d)</string>
 <string name="downloads_select">Выбрать</string>
+<string name="downloads_state_queued">В очереди</string>
 <string name="downloads_storage_full_headline">Недостаточно памяти</string>
 <string name="downloads_storage_legend">Использовано %1$s из %2$s · %3$s в скачанном</string>
 <string name="downloads_storage_needs">Нужно ещё %s</string>
+<string name="downloads_watched">Просмотрено %d%%</string>
 <string name="duplicate_add">Добавить</string>
 <string name="duplicate_message_multiple">В вашей библиотеке есть возможно повторяющиеся элементы: \n \n'%s.' \n \nХотите ли вы всё равно добавить этот элемент в библиотеку, заменить уже существующий или отменить действие?</string>
 <string name="duplicate_message_single">Кажется, что в вашей библиотеке уже есть такой элемент: '%s.' \n \nВы хотите всё равно добавить его, заменить уже существующий или отменить действие?</string>

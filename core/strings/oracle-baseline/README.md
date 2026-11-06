@@ -25,9 +25,9 @@ and decides — in a commit of its own that says so — to move the baseline.
 
 | File | Rows | What it holds |
 |---|---:|---|
-| `decoded.tsv` | 37,668 | aapt2's decoded table, one row per item: source file, type, name, plural category, kind (`STR`/`STYLED`/`REF`/`ATTR`/`UNSUPPORTED`), text, spans. The raw oracle, before resolution. |
-| `emitted.tsv` | 39,741 | What the generator wrote: one row per emitted value, keyed by output directory, type, name, plural category. Includes resolved references, locale-fallback copies and the `values-b+he` / `values-b+id` copies. |
-| `lookup.tsv` | 75,929 | For each of the 87 parity requests, the value Android resolves for every key — the per-locale lookup table the parity test compares Compose against. |
+| `decoded.tsv` | 37,084 | aapt2's decoded table, one row per item: source file, type, name, plural category, kind (`STR`/`STYLED`/`REF`/`ATTR`/`UNSUPPORTED`), text, spans. The raw oracle, before resolution. |
+| `emitted.tsv` | 39,139 | What the generator wrote: one row per emitted value, keyed by output directory, type, name, plural category. Includes resolved references, locale-fallback copies and the `values-b+he` / `values-b+id` copies. |
+| `lookup.tsv` | 75,124 | For each of the 87 parity requests, the value Android resolves for every key — the per-locale lookup table the parity test compares Compose against. |
 | `requests.tsv` | 87 | The parsed `parity-requests.txt`: request id, Android tag, Compose language/script/region, expectation, note. |
 | `findings.tsv` | 0 | Every finding the pipeline raised. **Empty since the flip** — it was 31 `STRAY_TEXT_REMOVED` and 34 `STYLED_AS_PLAIN_TEXT`, and a generated res has neither stray text nor `<b>`. |
 | `report.txt` | 12 | The human-readable run summary. |
@@ -120,42 +120,47 @@ appears for all 87 requests, 2,349 cells. `report.txt` moved only in its counts:
 keys 789 -> 816, and 27 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
 `ANDROID_FALLBACK` at 172.** `expectedOwn` 33,005 -> 34,679.
 
-## Sixteenth move, 2026-11-06 — `KMP-44`, 3 new keys for `None` as Home's source
+## Seventeenth move, 2026-11-06 — `KMP-44`, 3 new keys for `None` as Home's source
 
-New keys are approved in general (`I18N-09`). Additive, all three authored in all 62 directories, none a plural. Stacked on the
-fifteenth (`KMP-45`); first measured on that move's pre-merge baseline, then redone from the live generator on top of it.
+New keys are approved in general (`I18N-09`). Additive, all three authored in all 62 directories, none a plural. Redone from the
+live generator on master's baseline with the sixteenth move (`KMP-45`) in it.
 
 | file | before | after | added | changed | lost |
 |---|---|---|---|---|---|
-| `decoded.tsv` | 37,482 | 37,668 | 186 | 0 | 0 |
-| `emitted.tsv` | 39,549 | 39,741 | 192 | 0 | 0 |
-| `lookup.tsv` | 75,668 | 75,929 | 261 | 0 | 0 |
+| `decoded.tsv` | 38,317 | 38,503 | 186 | 0 | 0 |
+| `emitted.tsv` | 40,410 | 40,602 | 192 | 0 | 0 |
+| `lookup.tsv` | 77,082 | 77,343 | 261 | 0 | 0 |
 | `requests.tsv` | 87 | 87 | 0 | 0 | 0 |
 | `findings.tsv` | 0 | 0 | 0 | 0 | 0 |
 
 Measured by whole-line set difference twice over, a multiset in Python and `sort | comm`: 0 lines lost in any file, and every
-added line names one of the three keys. `report.txt` moved only in its counts: `OWN` 37,080 -> 37,266 (3 x 62), visible keys
-858 -> 861, and 3 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at
-173.** `expectedOwn` 37,080 -> 37,266.
+added line names one of the three keys. `report.txt` moved only in its counts: `OWN` 37,827 -> 38,013 (3 x 62), visible keys
+873 -> 876, and 3 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at
+173.** `expectedOwn` 37,827 -> 38,013.
 
-## Fifteenth move, 2026-11-06 — `KMP-45`, 5 new keys for Home's bookmarks rail
+## Sixteenth move, 2026-11-06 — `KMP-45`, 5 new keys for Home's bookmarks rail
 
 New keys are approved in general (`I18N-09`). Additive, authored in all 62 directories: four strings and one plural,
 `home_bookmarks_count`, with each directory's own plural categories (the set `home_sections_failed` declares there). This move
-branched from 35,609 and was redone, from the live generator, on master's baseline with the twelfth to fourteenth moves in it.
+branched from 35,609 and was redone, from the live generator, on master's baseline with the twelfth to fifteenth moves in it.
 
 | file | before | after | added | changed | lost |
 |---|---|---|---|---|---|
-| `decoded.tsv` | 37,084 | 37,482 | 398 | 0 | 0 |
-| `emitted.tsv` | 39,139 | 39,549 | 410 | 0 | 0 |
-| `lookup.tsv` | 75,124 | 75,668 | 544 | 0 | 0 |
+| `decoded.tsv` | 37,919 | 38,317 | 398 | 0 | 0 |
+| `emitted.tsv` | 40,000 | 40,410 | 410 | 0 | 0 |
+| `lookup.tsv` | 76,538 | 77,082 | 544 | 0 | 0 |
 | `requests.tsv` | 87 | 87 | 0 | 0 | 0 |
 | `findings.tsv` | 0 | 0 | 0 | 0 | 0 |
 
 Measured by whole-line set difference twice over, a multiset in Python and `sort | comm`: 0 lines lost in any file, and every
-added line names one of the five keys. `report.txt` moved only in its counts: `OWN` 36,770 -> 37,080 (5 x 62), visible keys 853 -> 858, plurals 10 -> 11, and 5 more
-values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at 173.** `expectedOwn`
-36,770 -> 37,080.
+added line names one of the five keys. `report.txt` moved only in its counts: `OWN` 37,517 -> 37,827 (5 x 62), visible keys
+868 -> 873, plurals 11 -> 12, and 5 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
+`ANDROID_FALLBACK` at 173.** `expectedOwn` 37,517 -> 37,827.
+
+## Fifteenth move, 2026-11-06 — `Q15`, 15 new keys for one series' downloads on TV
+
+New keys are approved in general (`I18N-09`, above). Additive. 12 are authored in all 62 directories, one of them a plural (`downloads_failed_count`); 3 are formats with no words (`downloads_joined`, `downloads_rate`, `downloads_episode_code`) in the default directory only. Measured by whole-line multiset difference against master after the fourteenth: 0 lines lost or changed in any file, and every new line names one of the keys: 835 in `decoded.tsv`, 861 in `emitted.tsv`, 1,414 in `lookup.tsv`; `requests.tsv` and `findings.tsv` unchanged. **`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at 173.** The first `%%` in the corpus is this move's `downloads_watched`, which is why `FormatterParityTest` now expects `%`.
+`expectedOwn` 36,770 -> 37,517, on top of the fourteenth.
 
 ## Fourteenth move, 2026-11-06 — `KMP-38`, 3 new keys for the TV detail page
 

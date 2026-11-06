@@ -3,6 +3,7 @@
 <resources>
 <string name="detail_load_failed_body">ייתכן שהמקור אינו זמין.</string>
 <string name="detail_load_failed_headline">לא ניתן לפתוח את הכותר הזה</string>
+<plurals name="downloads_failed_count"><item quantity="one">%d נכשלה</item><item quantity="two">%d נכשלו</item><item quantity="other">%d נכשלו</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d סימנייה</item><item quantity="two">%d סימניות</item><item quantity="other">%d סימניות</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">טעינת %d קטע נכשלה</item><item quantity="two">טעינת %d קטעים נכשלה</item><item quantity="other">טעינת %d קטעים נכשלה</item></plurals>
 <string name="account">חשבון</string>
@@ -138,6 +139,7 @@
 <string name="downloaded_file">קובץ שהורד</string>
 <string name="downloading">מוריד</string>
 <string name="downloads_browse_library">עיון בספריה</string>
+<string name="downloads_delete_all">מחק הכל</string>
 <string name="downloads_delete_select">בחר פריטים למחוק</string>
 <string name="downloads_empty">אין הורדות כרגע.</string>
 <string name="downloads_empty_body">הורדות שתתחיל מרשימת הפרקים של כותר יופיעו כאן ויופעלו ללא חיבור.</string>
@@ -146,11 +148,21 @@
 <string name="downloads_load_failed_body">הקבצים שהורדת לא שונו.</string>
 <string name="downloads_load_failed_headline">לא ניתן לקרוא את ההורדות שלך</string>
 <string name="downloads_offline_pill">אופליין · אין חיבור</string>
+<string name="downloads_on_disk">%s בכונן</string>
 <string name="downloads_play_from_link">הפעל מקישור</string>
+<string name="downloads_play_next">נגן את הבא</string>
+<string name="downloads_reason_network">הרשת אבדה</string>
+<string name="downloads_reason_no_link">אין קישור תקין</string>
+<string name="downloads_reason_source">המקור נעצר מוקדם</string>
+<string name="downloads_reason_storage_full">האחסון מלא</string>
+<string name="downloads_reason_storage_unavailable">האחסון אינו זמין</string>
+<string name="downloads_retry_failed">ניסיון חוזר לנכשלים (%d)</string>
 <string name="downloads_select">בחר</string>
+<string name="downloads_state_queued">בתור</string>
 <string name="downloads_storage_full_headline">אין מספיק אחסון</string>
 <string name="downloads_storage_legend">%1$s מתוך %2$s בשימוש · %3$s בהורדות</string>
 <string name="downloads_storage_needs">נדרשים עוד %s</string>
+<string name="downloads_watched">%d%% נצפה</string>
 <string name="duration">משך זמן</string>
 <string name="duration_format">%d דקות</string>
 <string name="duration_hours_minutes_format">%1$d שעות %2$d דקות</string>

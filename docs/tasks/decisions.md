@@ -674,7 +674,44 @@ The rule and the glyph table are in `.claude/rules/ui-components.md`, "Buttons".
 - **The title detail action row is a named icon-only exception** to rule 4: Start over, Trailer, Download and Mark watched become icon-only cells with their label on focus. This replaces the 2026-11-05 line that put download and mark watched under More: Download and Mark watched sit in the row for films; a series keeps them in its episode list. Elsewhere, secondaries stay outlined with glyph and label.
 - **Mark watched gets a glyph:** Tabler `EyeCheck`, as `CloudStreamIcons.MarkWatched`.
 
+**2026-11-06, the owner,** asked by the coordinator whether board 6d's icon-only row verbs break the rule above: **trailing actions on a list row are icon-only**, as 6d draws them, each showing its label under the cell when focused and carrying it as a content description. A second ruled exception to rule 4, beside the title detail action row, in `.claude/rules/ui-components.md`. First used by `KMP-43` (Play, the state's verb and Delete beside each episode).
+
+
 **2026-11-06, the owner,** relayed through the coordinator on `KMP-44` (#165): **Reload and Random in Home's top bar stay icon-only
-with the label on focus, as built** (`TV Home Extras` 3j). A second ruled exception in `ui-components.md` rule 4, beside the detail
-row: "Home top bar: Reload, Random". Their glyph at rest is the `muted` of the line above; that change is `DS-17`'s own PR, after
-`KMP-44` and `KMP-45` merge, and nothing in `KMP-44` changes `IconOnlyButton`.
+with the label on focus, as built** (`TV Home Extras` 3j). A third ruled exception in `ui-components.md` rule 4, beside the detail
+row and a list row's trailing actions: "Home top bar: Reload, Random". Their glyph at rest is the `muted` of the 2026-11-06 line
+above; that change is `DS-17`'s own PR, after `KMP-44` and `KMP-45` merge, and nothing in `KMP-44` changes `IconOnlyButton`.
+
+---
+
+## DEC-18 — The app moves to Android 7 (minSdk 24); the extension library stays on 23 · **decided 2026-11-06**
+
+**Status:** **decided 2026-11-06 by the owner**, relayed through the coordinator.
+
+**Ruling:** `:app` raises its minSdk from 23 (Android 6) to 24 (Android 7), so `:media:download` (`KMP-46`) can be adopted with FileKit 0.17.0. FileKit needs minSdk 24, and its forced bumps come with it.
+
+**What changed, and what deliberately did not:**
+
+| | Before | After | Why |
+|---|---|---|---|
+| `minSdk` (catalog): `:app` and every KMP module | 23 | **24** | FileKit 0.17.0's minimum |
+| `libraryMinSdk` (catalog): `:library` only | — | **23** | Extensions built at 23 must keep merging `:library`'s manifest |
+| `:app` stdlib (`coreLibrariesVersion`) | 2.4.0 | **2.4.21** | FileKit 0.17.0. The compiler and Kotlin Gradle plugin stay on 2.4.0 |
+| `kotlinxSerializationJson` | 1.11.0 | **1.12.0** | FileKit 0.17.0. The runtime only; the compiler plugin follows the Kotlin Gradle plugin |
+| `kotlinxSerializationJsonLibrary`: `:library` only | — | **1.11.0** | 1.12.0 declares stdlib 2.4.10, which would lift extension authors' stdlib through `:library`'s POM |
+
+**The app and the library now differ, on purpose.** The owner asked for `:app`, not for extension authors.
+
+`:library` is the published API. Its AAR manifest still says `minSdkVersion="23"`, and its `.pom` and `.module` files are byte-identical to master's, with stdlib still 2.4.0, both checked with `publishToMavenLocal` on master and on this change.
+
+Raising `:library` to 24, or giving it 2.4.21, would be a separate decision for the owner, because it reaches every extension build.
+
+**Code that becomes dead at minSdk 24** (listed, not deleted: a separate cleanup):
+- `Build.VERSION.SDK_INT >= Build.VERSION_CODES.N`, now always true:
+  - `app/.../cloudstream3/CommonActivity.kt:228` and `:300`
+  - `app/.../cloudstream3/ui/player/PlayerPipHelper.kt:59`
+  - `app/.../cloudstream3/ui/result/ResultFragmentPhone.kt:1187`
+  - `core/connectivity/.../AndroidConnectivityFlow.kt:53` and `:57`. The pre-24 branch there is dead.
+- `app/src/main/res/drawable-v24/`: its `ic_banner_foreground.xml` and `ic_launcher_foreground.xml` now always win, so the copies in `drawable/` are dead.
+- `tools:targetApi="n"` in `app/src/main/res/layout/settings_title_top.xml:21` is now moot.
+- Already dead at minSdk 23, so not new: 10 `SDK_INT >= M` checks and `PowerManagerAPI.kt:26`'s `SDK_INT >= 23`.

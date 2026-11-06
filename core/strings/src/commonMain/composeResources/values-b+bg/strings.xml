@@ -4,6 +4,7 @@
 <string name="detail_load_failed_body">Източникът може да не е наличен.</string>
 <string name="detail_load_failed_headline">Заглавието не можа да се отвори</string>
 <plurals name="downloads_active"><item quantity="one">%d активно изтегляне</item><item quantity="other">%d активни изтегляния</item></plurals>
+<plurals name="downloads_failed_count"><item quantity="one">%d неуспешно</item><item quantity="other">%d неуспешни</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d изтегляне в опашката</item><item quantity="other">%d изтегляния в опашката</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ОТМЕТКА</item><item quantity="other">%d ОТМЕТКИ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d секция не се зареди</item><item quantity="other">%d секции не се заредиха</item></plurals>
@@ -195,6 +196,7 @@
 <string name="downloaded_file">Изтеглен файл</string>
 <string name="downloading">Изтегля се</string>
 <string name="downloads_browse_library">Преглед на библиотеката</string>
+<string name="downloads_delete_all">Изтрий всички</string>
 <string name="downloads_delete_select">Изберете елементите за изтриване</string>
 <string name="downloads_empty">В момента няма изтегляния.</string>
 <string name="downloads_empty_body">Изтеглянията, стартирани от списъка с епизоди на заглавие, се показват тук и се възпроизвеждат без връзка.</string>
@@ -203,11 +205,21 @@
 <string name="downloads_load_failed_body">Изтеглените ви файлове не са променени.</string>
 <string name="downloads_load_failed_headline">Изтеглянията ви не можаха да се прочетат</string>
 <string name="downloads_offline_pill">Офлайн · няма връзка</string>
+<string name="downloads_on_disk">%s на диска</string>
 <string name="downloads_play_from_link">Пускане от връзка</string>
+<string name="downloads_play_next">Пусни следващия</string>
+<string name="downloads_reason_network">Връзката е загубена</string>
+<string name="downloads_reason_no_link">Няма работеща връзка</string>
+<string name="downloads_reason_source">Източникът спря рано</string>
+<string name="downloads_reason_storage_full">Паметта е пълна</string>
+<string name="downloads_reason_storage_unavailable">Паметта е недостъпна</string>
+<string name="downloads_retry_failed">Нов опит за неуспешните (%d)</string>
 <string name="downloads_select">Избиране</string>
+<string name="downloads_state_queued">На опашката</string>
 <string name="downloads_storage_full_headline">Няма достатъчно памет</string>
 <string name="downloads_storage_legend">%1$s от %2$s използвани · %3$s в изтегляния</string>
 <string name="downloads_storage_needs">Нужни са още %s</string>
+<string name="downloads_watched">Гледано %d%%</string>
 <string name="duplicate_add">Добави</string>
 <string name="duplicate_message_multiple">Във вашата библиотека са намерени потенциални дублиращи се елементи: \n \n%s \n \nИскате ли все пак да добавите този елемент, да замените съществуващите или да отмените действието?</string>
 <string name="duplicate_message_single">Изглежда, че потенциално дублиран елемент вече съществува във вашата библиотека: „%s“. \n \nИскате ли все пак да добавите този елемент, да замените съществуващия или да отмените действието?</string>
