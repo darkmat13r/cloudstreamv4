@@ -228,6 +228,11 @@
 <string name="kitsu_settings">"Kitsu থেকে পোস্টারসমূহ প্রদর্শন করুন"</string>
 <string name="legal_notice">"দাবিত্যাগ"</string>
 <string name="library">"লাইব্রেরী"</string>
+<string name="library_not_connected">"সংযুক্ত নয়"</string>
+<string name="library_on_device">"ডিভাইসে"</string>
+<string name="library_source">"লাইব্রেরির উৎস"</string>
+<string name="library_source_note">"একবারে একটি · পরিবর্তন করলে আবার লোড হয়"</string>
+<string name="library_synced_format" formatted="true">"%s আগে সিঙ্ক হয়েছে"</string>
 <string name="lightnovel">"আমাদের তৈরি ছোট উপন্যাস পড়ার অ্যাপ্লিকেশন"</string>
 <string name="limit_title">"ভিডিও প্লেয়ারের টাইটেল এ সর্বোচ্চ ক্যারেক্টার"</string>
 <string name="limit_title_rez">"ভিডিও প্লেয়ারে রেজুলেশন"</string>

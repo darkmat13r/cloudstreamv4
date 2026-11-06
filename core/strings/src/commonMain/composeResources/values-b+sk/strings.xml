@@ -250,6 +250,11 @@
 <string name="kitsu_settings">Zobraziť plagáty z Kitsu</string>
 <string name="legal_notice">Vylúčenie zodpovednosti</string>
 <string name="library">Knižnica</string>
+<string name="library_not_connected">Nepripojené</string>
+<string name="library_on_device">V zariadení</string>
+<string name="library_source">Zdroj knižnice</string>
+<string name="library_source_note">Jeden naraz · prepnutie znova načíta</string>
+<string name="library_synced_format">Synchronizované pred %s</string>
 <string name="lightnovel">Nenáročná aplikácia pre romány od rovnakých vývojárov</string>
 <string name="limit_title">Maximálny počet znakov v názve prehrávača</string>
 <string name="limit_title_rez">Informácie o prehrávači</string>

@@ -240,6 +240,11 @@
 <string name="kitsu_settings">"Kitsu से पोस्टर दिखाएं"</string>
 <string name="legal_notice">"अस्वीकरण"</string>
 <string name="library">"लाइब्रेरी"</string>
+<string name="library_not_connected">"कनेक्ट नहीं है"</string>
+<string name="library_on_device">"डिवाइस पर"</string>
+<string name="library_source">"लाइब्रेरी स्रोत"</string>
+<string name="library_source_note">"एक समय में एक · बदलने पर फिर से लोड होता है"</string>
+<string name="library_synced_format" formatted="true">"%s पहले सिंक हुआ"</string>
 <string name="lightnovel">"उन्हीं डेवलपर्स द्वारा Light novel ऐप"</string>
 <string name="limit_title">"वीडियो प्लेयर शीर्षक अधिकतम वर्ण"</string>
 <string name="limit_title_rez">"वीडियो प्लेयर रिज़ॉल्यूशन"</string>

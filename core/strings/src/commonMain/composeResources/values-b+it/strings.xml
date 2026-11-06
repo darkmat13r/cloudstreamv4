@@ -359,6 +359,11 @@
 <string name="kitsu_settings">Mostra poster da Kitsu</string>
 <string name="legal_notice">Avvertenza</string>
 <string name="library">Libreria</string>
+<string name="library_not_connected">Non connesso</string>
+<string name="library_on_device">Sul dispositivo</string>
+<string name="library_source">Origine della libreria</string>
+<string name="library_source_note">Una alla volta · cambiare ricarica</string>
+<string name="library_synced_format">Sincronizzato %s fa</string>
 <string name="lightnovel">App per Light Novel degli stessi sviluppatori</string>
 <string name="limit_title">Limita i caratteri del titolo nel lettore</string>
 <string name="limit_title_rez">Mostra informazioni sul lettore</string>

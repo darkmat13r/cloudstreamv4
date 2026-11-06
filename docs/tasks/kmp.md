@@ -4709,3 +4709,112 @@ that exist because the old downloader broke them:
 - No Android device run: a test APK would hit the same minSdk wall.
 - DNS rebinding, as above.
 - The engine's unthrottled slowdown is not profiled.
+
+---
+
+## KMP-49 — The TV library's sources: 5e's panel, 5a's provider button, a service's lists (queue `Q12`, first slice) · **measured 2026-11-06**
+
+**Status:** in pr · Android TV only. The library opens on the source chosen last, as the old screen does, and shows the
+local list or a tracking service's own lists. Sort (5d) is `KMP-50` and the unreachable and cached states (5b) with
+offline are `KMP-51`. The owner's rulings for all three are `DEC-18`.
+
+**The seam.** `:feature:library` gains `LibrarySources`: every source with its state (connected, account, the time of
+its last read as this app recorded it, the local list's count), the one to open on, remembering a choice, and reading a
+service's lists. `SyncedList` is a service's own list, and `LibraryTab.Synced` its tab. `LibraryTitle` and `LibraryCard`
+gain, with defaults, `episodesWatched`, `episodesTotal` and `rating`. `LibraryViewModel(sources = null)` is the default,
+which is desktop's: nothing there changes, and `:desktopApp`'s 395 JVM tests still pass.
+
+**On Android.** `AndroidLibrarySources` reads `AccountManager.syncApis` through `SyncRepo`, the old screen's way:
+
+- **The source to open on** is `LibraryViewModel.currentSyncApi`'s rule: the one under `"$currentAccount/last_sync_api"`
+  where it is still signed in, else the first that is. Choosing one writes that same key, so the old screen and this one
+  agree.
+- **A read** is `SyncRepo.library()`. It fails with the exception it holds, or with the old screen's `"Unable to fetch
+  library"` where a service answers nothing. While `requireLibraryRefresh` is false, the last read is shown again, as
+  `reloadPages(false)` does. A successful read clears that flag, as the old screen does.
+- **The time of a read** is a new key, `"$currentAccount/library_synced_at"`, written only on a successful read. Nothing
+  before this PR wrote one, so no source shows an age until it has been read once here (`DEC-18`).
+- **A service's title** opens through the old screen's opener (`LibraryFragment.loadLibraryItem`): the opener saved for
+  the title, unless it is the default, else the one saved for the service, else the default. That is the title's page
+  where a provider of that name is loaded, and a search by its name otherwise. A service's titles are not providers, so
+  in practice a search. The saved openers are read, never written.
+- **Its text is sanitised** as the local store's is. `AndroidLibraryStore`'s three helpers are repeated in
+  `LibrarySourceText.kt` rather than moved: moving them took `MAX_TEXT_CHARS` and a synthetic accessor out of
+  `classes-jar.api`, which may only grow.
+
+**The owner's choices, each in one place** (`DEC-18`): which sources are listed and in what order is
+`AndroidLibrarySources.listed`, how a service's lists become tabs is `syncedLists`, and what a source that is not signed
+in does is `LibrarySourcePanelTv`'s row.
+
+### What the boards draw that this does not, or draws differently
+
+| Board | Drawn | Here | Why |
+|---|---|---|---|
+| 5e | AniList, Local, MyAnimeList, Simkl, Trakt | MAL, Kitsu, AniList, Simkl, Local, signed-in ones first | `DEC-18`: the five the app has. MyAnimeList is `MAL`, the app's own name for it |
+| 5e | A leading disc on each row | None | It would hold the service's logo, a brand mark this module does not have |
+| 5e | `NOT CONNECTED` | `Not connected`, disabled and still a stop | `DEC-18`. A stop, so its reason can be read at three metres: `ListRowState.focusableWhenDisabled`. Logging in stays in account settings |
+| 5e, 5a | `SYNCED 4 MIN` | `Synced 4m ago` | The app's own `%dm` / `%1$dh %2$dm` / `%1$dd %2$dh %3$dm` formats. Upper case is not applied, as the readout's is not |
+| 5e | Local's `ON DEVICE · 308 TITLES` | `On device · 308` | No `titles` word in every language; the readout already shows the number alone |
+| 5a | A rating badge `★ 9.1` | `9.1` in the card's trailing badge | `Badge` has no glyph slot. The badge is only on a service's card with a rating of the user's own |
+| 5a | `12 / 28 EPISODES` | `12 / 28 Episodes` | `library_episodes_progress` with the `episodes` plural |
+
+**Gained back from `KMP-34`'s reductions,** for a service's cards only: the user's own rating, the episode count, and the
+bar from episodes seen over episodes in all. A local card is unchanged.
+
+**What the old TV screen does that this still does not:** sort (`KMP-50`), Random, choosing or changing an opener (the
+long-press popup), and saying why a service could not be read (`KMP-51`; for now it is the shared failure page with
+Retry).
+
+### Measured, each one a wrong turn first
+
+- **The provider button's second line was clipped** in the first recording: its descenders were cut. It used
+  `labelMono`, a 32px line, in the stack's 12dp box. The board's `.cbm` is 20/24px, which is `captionMono`. The panel's
+  note had the same mistake.
+- **BACK left the screen with the panel open.** `UiDevice.pressBack()` finished the test's activity, and so did a
+  remote's BACK, sent as `DetailScreenTvDeviceTest` sends it, with or without the field ever focused and after a press
+  inside the panel. The logcat showed it going to the window's back dispatcher, which held only the activity's own
+  callback. `SidePanelHost`'s KDoc says a host must wire platform back itself, and `DetailTvFragment.wirePanelBack` does;
+  this fragment did not, so **in the real app BACK would have left the library rather than closing the panel**.
+  `LibraryTvFragment` now registers the same callback, enabled while the panel is open, and the device test hosts one
+  as the detail test does. Every later `SidePanelHost` caller needs those lines too, which is the detail fragment's
+  argument for the design system owning them.
+- **Waiting for the panel's focus by label proved nothing**: the button and the shown source's row have the same words.
+  The device test waits on where the focused node is.
+- **The first API dump removed two lines**, from moving the store's helpers. They are repeated instead (above).
+- **Two translations escaped an apostrophe** as `\'`, which `materialiseComposeStrings` refuses. These sources hold a
+  plain `'`.
+
+### Each critical test shown to fail
+
+Temporary changes, each reverted, on `Television_720p`.
+
+| Change | What went red |
+|---|---|
+| A disabled row is not a stop; the panel does not land on the shown source; the store's tabs on a service | the disabled-row test, the service's-tabs test, both screenshots (13,098 and 15,986 pixels). The landing test then stayed green, because the shown source was also the first row, so a test that reopens on the second was added |
+| The panel does not land on the shown source, alone | `reopenedAfterAChoiceThePanelLandsOnTheNewSource` |
+| No platform back callback (the code as first written) | `backClosesThePanelAndFocusComesBackToTheButton`: BACK finished the activity |
+| `:app`: the fragment's ViewModel without sources | `theButtonOpensEveryRealSourceAndOnlyTheLocalListIsConnected` and `leftFromTheFieldReachesTheRail`; the records test stayed green, as it should |
+
+### Tested
+
+- **JVM.** `LibrarySourcesViewModelTest` 13, `LibraryShelfTest` (4 added), and `AndroidLibrarySourcesTest` 11 over a fake
+  `SyncAPI`: the order, the source to open on, the lists and their words, sanitising, a rating of 0, the recorded time
+  and the service's cache, both failures, and the opener's rule.
+- **Device, `:feature:library`.** `LibrarySourcesTvDeviceTest`, 10 with fake sources: the button and Left from the field,
+  the panel opening on the shown source with every source's state, a choice applying at once, reopening on the new
+  choice, a disabled row that is a stop and chooses nothing, Done and BACK each closing with focus back on the button, a
+  service's own tabs and its cards' facts, and two screenshots. `KMP-34`'s four screenshots are unchanged, 0 pixels.
+- **Device, `:app`.** `LibrarySourcesTvNavigationTest`, 3 in the real app: the panel over the real `syncApis`, none
+  signed in and none made; Left from the field reaching the rail (`BUG-34`); and both records under the real keys.
+
+**Screenshots:** `library-service-grid-focus-card` (5a over a service) and `library-source-panel` (5e), each looked at.
+
+### Not verified
+
+- **A real service's lists.** No account is signed in on the emulator and none is made: every service read in a test is
+  a fake `SyncAPI`.
+- **A service's title opening.** The opener's rule is JVM-tested; the activity calls it makes are the old screen's and
+  were not run.
+- **Logging in or out while the page is open.** The next arrival reads the sources again.
+- **Any language but English on a device**, or a native speaker reading the five new translations. Least sure: `ti`,
+  `am`, `so`, `mt`, `ckb`, `my`, `or`, `as`, `kn`, `ml`, `ne`, `eo` and `apc`.

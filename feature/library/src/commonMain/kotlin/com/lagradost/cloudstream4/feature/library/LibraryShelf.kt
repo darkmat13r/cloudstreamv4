@@ -55,8 +55,37 @@ internal object LibraryShelf {
                 .filter { it.bucket == tab.bucket }
                 .sortedByDescending { it.keptAt }
                 .map { it.toCard(newest[it.id]) }
+
+            // A service's list is not a bucket of the store's: see [syncedCards].
+            is LibraryTab.Synced -> emptyList()
         }
-        return if (needle.isEmpty()) cards else cards.filter { it.title.contains(needle, ignoreCase = true) }
+        return cards.narrowedTo(needle)
+    }
+
+    /**
+     * The cards for one of a tracking service's lists, newest kept first as a bucket's are.
+     *
+     * No position is joined: the service's titles are not the store's, and a position under the same id would be
+     * a coincidence. The bar is the service's own count, episodes seen over episodes in all, where it has both.
+     */
+    fun syncedCards(list: SyncedList, filter: String = ""): List<LibraryCard> =
+        list.titles
+            .sortedByDescending { it.keptAt }
+            .distinctBy { it.id }
+            .map { it.toCard(position = null) }
+            .narrowedTo(filter.trim())
+
+    /** Different titles across a service's lists: one in two lists is one title. */
+    fun syncedTotal(lists: List<SyncedList>): Int = lists.flatMap { it.titles }.distinctBy { it.id }.size
+
+    private fun List<LibraryCard>.narrowedTo(needle: String) =
+        if (needle.isEmpty()) this else filter { it.title.contains(needle, ignoreCase = true) }
+
+    /** Episodes seen over episodes in all, where both are known and it is more than nothing. */
+    private fun LibraryTitle.episodeProgress(): Float? {
+        val total = episodesTotal?.takeIf { it > 0 } ?: return null
+        val watched = episodesWatched ?: return null
+        return (watched.toFloat() / total).coerceIn(0f, 1f).takeIf { it > 0f }
     }
 
     /** How many rows each list holds. A list with nothing in it has no entry. */
@@ -74,12 +103,15 @@ internal object LibraryShelf {
         providerName = providerName,
         bucket = bucket,
         // Zero is not progress, and a full bar on a card you can no longer resume is a lie worth avoiding.
-        progress = position?.fraction?.takeIf { it > 0f },
+        progress = position?.fraction?.takeIf { it > 0f } ?: episodeProgress(),
         resume = position
             ?.takeIf { it.resumable }
             ?.let { LibraryResume(it.episodeData, it.positionMillis) },
         typeLabel = typeLabel,
         posterHeaders = posterHeaders,
+        episodesWatched = episodesWatched,
+        episodesTotal = episodesTotal?.takeIf { it > 0 },
+        rating = rating,
     )
 
     /** Rows with nothing to say: in no list, and with no position worth resuming. */

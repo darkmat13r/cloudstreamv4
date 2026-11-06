@@ -60,6 +60,11 @@
 <string name="extension_warning_webview">"ዌብ ቪው ይጥቀም፡ ዝኾነ ገጽ ክጽዕን ዝኽእል ውሽጣዊ ብራውዘር እዩ።"</string>
 <string name="extensions_waiting_count" formatted="true">"ንዓኻ ዝጽበዩ መስፋሕፋሕቲ: %d"</string>
 <string name="home_search_only_body">"ካብ መስፋሕፋሕትኻ ሓደ እኳ መበገሲ ገጽ የብሉን፡ ግን ሕጂ'ውን ኣብኡ ክትደሊ ትኽእል ኢኻ።"</string>
+<string name="library_not_connected">"ኣይተራኸበን"</string>
+<string name="library_on_device">"ኣብ መሳርሒ"</string>
+<string name="library_source">"ምንጪ ቤተ-መጻሕፍቲ"</string>
+<string name="library_source_note">"ሓደ ብሓደ · ምቕያር ዳግም ይጽዕን"</string>
+<string name="library_synced_format" formatted="true">"ቅድሚ %s ተሰማሚዑ"</string>
 <string name="load_more">"ተወሳኺ ጽዓን"</string>
 <string name="more_like_this">"ተመሳሳሊ"</string>
 <string name="next_episode_format" formatted="true">"ክፋል %d በ ላይ ይወጣል"</string>

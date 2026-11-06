@@ -96,6 +96,11 @@
 <string name="home_next_random_img_des">"ቀጣይ በዘፈቀደ"</string>
 <string name="home_play">"አጫውት"</string>
 <string name="home_search_only_body">"ከቅጥያዎችህ አንዳቸውም መነሻ ገጽ የላቸውም፣ ነገር ግን አሁንም በእነሱ መፈለግ ትችላለህ።"</string>
+<string name="library_not_connected">"አልተገናኘም"</string>
+<string name="library_on_device">"በመሣሪያ ላይ"</string>
+<string name="library_source">"የቤተ-መጽሐፍት ምንጭ"</string>
+<string name="library_source_note">"አንድ በአንድ · መቀየር እንደገና ይጭናል"</string>
+<string name="library_synced_format" formatted="true">"ከ%s በፊት ተመሳስሏል"</string>
 <string name="load_more">"ተጨማሪ ጫን"</string>
 <string name="loading">"በመጫን ላይ…"</string>
 <string name="more_like_this">"ተጨማሪ እንደዚህ ያሉ"</string>

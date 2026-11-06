@@ -260,6 +260,11 @@
 <string name="kitsu_settings">"Kitsu မှ ပိုစတာများကိုပြရန်"</string>
 <string name="legal_notice">"ရှင်းလင်းချက်"</string>
 <string name="library">"လိုက်ဘရီ"</string>
+<string name="library_not_connected">"ချိတ်ဆက်မထားပါ"</string>
+<string name="library_on_device">"စက်ပေါ်တွင်"</string>
+<string name="library_source">"လိုက်ဘရီ ရင်းမြစ်"</string>
+<string name="library_source_note">"တစ်ကြိမ်လျှင် တစ်ခု · ပြောင်းလျှင် ပြန်ဖွင့်သည်"</string>
+<string name="library_synced_format" formatted="true">"%s က ချိန်ကိုက်ခဲ့သည်"</string>
 <string name="lightnovel">"တူညီသောအက်ပ်ရေးသားသူများ၏ ဝတ္ထုရှည်များဖတ်နိုင်သည့် အက်ပ်"</string>
 <string name="limit_title">"ခေါင်းစဥ်အတွက်စာလုံးရေပြည့်ခြင်း"</string>
 <string name="limit_title_rez">"ကြည့်ရှုမှု အရည်အသွေး"</string>

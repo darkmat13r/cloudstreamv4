@@ -163,6 +163,11 @@
 <string name="home_play">"I-play"</string>
 <string name="home_search_only_body">"Wala sa mga extension mo ang may home page, pero puwede ka pa ring maghanap sa mga ito."</string>
 <string name="kitsu_settings">"Ipakita ang posters mula sa Kitsu"</string>
+<string name="library_not_connected">"Hindi nakakonekta"</string>
+<string name="library_on_device">"Sa device"</string>
+<string name="library_source">"Pinagmulan ng library"</string>
+<string name="library_source_note">"Isa-isa · nagre-reload kapag nagpalit"</string>
+<string name="library_synced_format" formatted="true">"Na-sync %s ang nakalipas"</string>
 <string name="lightnovel">"Light novel app ng parehong devs"</string>
 <string name="load_more">"Mag-load pa"</string>
 <string name="loading">"Loading…"</string>

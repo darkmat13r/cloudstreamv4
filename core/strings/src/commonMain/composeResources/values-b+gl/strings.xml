@@ -178,6 +178,11 @@
 <string name="home_search_only_body">Ningunha das súas extensións ten páxina de inicio, pero aínda pode buscar nelas.</string>
 <string name="kitsu_settings">Mostrar pósters de Kitsu</string>
 <string name="library">Biblioteca</string>
+<string name="library_not_connected">Non conectado</string>
+<string name="library_on_device">No dispositivo</string>
+<string name="library_source">Orixe da biblioteca</string>
+<string name="library_source_note">Unha de cada vez · cambiar recarga</string>
+<string name="library_synced_format">Sincronizado hai %s</string>
 <string name="lightnovel">Aplicativo de novela lixeira dos mesmos desenvolvedores</string>
 <string name="links_reloaded_toast">Ligazóns recargadas</string>
 <string name="live_singular">Transmisión en vivo</string>

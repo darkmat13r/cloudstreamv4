@@ -120,6 +120,11 @@ appears for all 87 requests, 2,349 cells. `report.txt` moved only in its counts:
 keys 789 -> 816, and 27 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
 `ANDROID_FALLBACK` at 172.** `expectedOwn` 33,005 -> 34,679.
 
+## Sixteenth move, 2026-11-06 — `KMP-49`, 6 new keys for the TV library's sources
+
+New keys are approved in general (`I18N-09`, above). Additive. 5 are authored in all 62 directories, none a plural (`library_not_connected`, `library_on_device`, `library_source`, `library_source_note`, `library_synced_format`); 1 is a format with no words (`library_episodes_progress`) in the default directory only. Measured by whole-line multiset difference against master: 0 lines lost or changed in any file, and every new line names one of the keys: 311 in `decoded.tsv`, 321 in `emitted.tsv`, 522 in `lookup.tsv`; `requests.tsv` and `findings.tsv` unchanged. **`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at 173.**
+`expectedOwn` 37,517 -> 37,828.
+
 ## Fifteenth move, 2026-11-06 — `Q15`, 15 new keys for one series' downloads on TV
 
 New keys are approved in general (`I18N-09`, above). Additive. 12 are authored in all 62 directories, one of them a plural (`downloads_failed_count`); 3 are formats with no words (`downloads_joined`, `downloads_rate`, `downloads_episode_code`) in the default directory only. Measured by whole-line multiset difference against master after the fourteenth: 0 lines lost or changed in any file, and every new line names one of the keys: 835 in `decoded.tsv`, 861 in `emitted.tsv`, 1,414 in `lookup.tsv`; `requests.tsv` and `findings.tsv` unchanged. **`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at 173.** The first `%%` in the corpus is this move's `downloads_watched`, which is why `FormatterParityTest` now expects `%`.

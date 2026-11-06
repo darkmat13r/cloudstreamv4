@@ -300,6 +300,11 @@
 <string name="kitsu_settings">Rādīt Kitsu vietnes plakātus</string>
 <string name="legal_notice">Atruna</string>
 <string name="library">Library</string>
+<string name="library_not_connected">Nav savienots</string>
+<string name="library_on_device">Ierīcē</string>
+<string name="library_source">Bibliotēkas avots</string>
+<string name="library_source_note">Pa vienam · pārslēgšana pārlādē</string>
+<string name="library_synced_format">Sinhronizēts pirms %s</string>
 <string name="lightnovel">Viegla romānu lietotne no šiem pašiem izstrādātājiem</string>
 <string name="limit_title">Video players nosaukuma maksimālie burti</string>
 <string name="limit_title_rez">Video atskaņotāja kvalitāte</string>

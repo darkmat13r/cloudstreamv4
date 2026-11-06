@@ -359,6 +359,11 @@
 <string name="kitsu_settings">Kitsuのポスターを表示</string>
 <string name="legal_notice">免責</string>
 <string name="library">ライブラリ</string>
+<string name="library_not_connected">未接続</string>
+<string name="library_on_device">このデバイス</string>
+<string name="library_source">ライブラリのソース</string>
+<string name="library_source_note">一度に1つ · 切り替えると再読み込み</string>
+<string name="library_synced_format">%s前に同期</string>
 <string name="lightnovel">同じ開発者によるライトノベルアプリ</string>
 <string name="limit_title">ビデオプレーヤーのタイトル最大文字数</string>
 <string name="limit_title_rez">プレイヤー情報を表示</string>

@@ -97,6 +97,11 @@
 <string name="home_more_info">"زانیاری زیاتر"</string>
 <string name="home_next_random_img_des">"داهاتوو بە هەڕەمەکی"</string>
 <string name="home_search_only_body">"هیچ کام لە زیادکراوەکانت پەڕەی سەرەکییان نییە، بەڵام هێشتا دەتوانیت تێیاندا بگەڕێیت."</string>
+<string name="library_not_connected">"پەیوەست نییە"</string>
+<string name="library_on_device">"لەسەر ئامێر"</string>
+<string name="library_source">"سەرچاوەی کتێبخانە"</string>
+<string name="library_source_note">"یەک بە یەک · گۆڕین دووبارە باری دەکاتەوە"</string>
+<string name="library_synced_format" formatted="true">"%s لەمەوبەر هاوکات کرا"</string>
 <string name="load_more">"زیاتر باربکە"</string>
 <string name="more_like_this">"زیاتر لەم جۆرە"</string>
 <string name="new_update_format" formatted="true">"نوێکاری نوێ دۆزرایەوە!\n%1$s-&gt;%2$s"</string>

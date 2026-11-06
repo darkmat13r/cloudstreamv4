@@ -3617,6 +3617,12 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field legal_notice_key I
 	public static field legal_notice_text I
 	public static field library I
+	public static field library_episodes_progress I
+	public static field library_not_connected I
+	public static field library_on_device I
+	public static field library_source I
+	public static field library_source_note I
+	public static field library_synced_format I
 	public static field lightnovel I
 	public static field limit_title I
 	public static field limit_title_rez I
@@ -37647,6 +37653,34 @@ public final class com/lagradost/cloudstream4/home/TvHomeSwitch : java/lang/Obje
 	public static field useComposeHome Z
 }
 
+public final class com/lagradost/cloudstream4/library/AndroidLibrarySources : java/lang/Object, com/lagradost/cloudstream4/feature/library/LibrarySources {
+	public static final field $stable I
+	public static final field Companion Lcom/lagradost/cloudstream4/library/AndroidLibrarySources$Companion;
+	public fun <init> (Landroid/content/Context;Lcom/lagradost/cloudstream4/library/AndroidLibraryStore;)V
+	public fun <init> (Lkotlin/jvm/functions/Function0;Lcom/lagradost/cloudstream4/library/LibrarySourceRecords;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlinx/coroutines/CoroutineDispatcher;)V
+	public synthetic fun <init> (Lkotlin/jvm/functions/Function0;Lcom/lagradost/cloudstream4/library/LibrarySourceRecords;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlinx/coroutines/CoroutineDispatcher;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public static final synthetic fun access$getAll$p (Lcom/lagradost/cloudstream4/library/AndroidLibrarySources;)Lkotlin/jvm/functions/Function0;
+	public static final synthetic fun access$getClock$p (Lcom/lagradost/cloudstream4/library/AndroidLibrarySources;)Lkotlin/jvm/functions/Function0;
+	public static final synthetic fun access$getLabels$p (Lcom/lagradost/cloudstream4/library/AndroidLibrarySources;)Lkotlin/jvm/functions/Function0;
+	public static final synthetic fun access$getLastRead$p (Lcom/lagradost/cloudstream4/library/AndroidLibrarySources;)Ljava/util/concurrent/ConcurrentHashMap;
+	public static final synthetic fun access$getLocalCount$p (Lcom/lagradost/cloudstream4/library/AndroidLibrarySources;)Lkotlin/jvm/functions/Function1;
+	public static final synthetic fun access$getRecords$p (Lcom/lagradost/cloudstream4/library/AndroidLibrarySources;)Lcom/lagradost/cloudstream4/library/LibrarySourceRecords;
+	public static final synthetic fun access$getTypeLabels$p (Lcom/lagradost/cloudstream4/library/AndroidLibrarySources;)Lkotlin/jvm/functions/Function0;
+	public static final synthetic fun access$setTitles$p (Lcom/lagradost/cloudstream4/library/AndroidLibrarySources;Ljava/util/Map;)V
+	public fun choose-rmBC984 (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun current-lELlgS8 (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun lists-rmBC984 (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun sources (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun synced-7FYDLFk (Ljava/lang/String;)Lcom/lagradost/cloudstream4/library/SyncedTitle;
+}
+
+public final static class com/lagradost/cloudstream4/library/AndroidLibrarySources$Companion : java/lang/Object {
+	public synthetic fun <init> (Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun listed$app (Ljava/util/List;)Ljava/util/List;
+	public final fun syncedLists$app (Lcom/lagradost/cloudstream3/syncproviders/SyncAPI$LibraryMetadata;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function2;)Ljava/util/List;
+	public static synthetic fun syncedLists$app$default (Lcom/lagradost/cloudstream4/library/AndroidLibrarySources$Companion;Lcom/lagradost/cloudstream3/syncproviders/SyncAPI$LibraryMetadata;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)Ljava/util/List;
+}
+
 public final class com/lagradost/cloudstream4/library/AndroidLibraryStore : java/lang/Object, com/lagradost/cloudstream4/feature/library/LibraryStore {
 	public static final field $stable I
 	public static final field MAX_RESUMING I
@@ -37695,6 +37729,23 @@ public final class com/lagradost/cloudstream4/library/ComposableSingletons$Libra
 	public final fun getLambda$-131743773$app ()Lkotlin/jvm/functions/Function3;
 }
 
+public final class com/lagradost/cloudstream4/library/DataStoreLibrarySourceRecords : java/lang/Object, com/lagradost/cloudstream4/library/LibrarySourceRecords {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/lagradost/cloudstream4/library/DataStoreLibrarySourceRecords;
+	public fun choose (Ljava/lang/String;)V
+	public fun chosen ()Ljava/lang/String;
+	public fun synced (Ljava/lang/String;J)V
+	public fun syncedAt (Ljava/lang/String;)Ljava/lang/Long;
+}
+
+public final static class com/lagradost/cloudstream4/library/DataStoreLibrarySourceRecords$chosen$$inlined$getKey$1 : com/fasterxml/jackson/core/type/TypeReference {
+	public fun <init> ()V
+}
+
+public final static class com/lagradost/cloudstream4/library/DataStoreLibrarySourceRecords$syncedAt$$inlined$getKey$1 : com/fasterxml/jackson/core/type/TypeReference {
+	public fun <init> ()V
+}
+
 public final class com/lagradost/cloudstream4/library/DataStoreLocalLibrary : java/lang/Object, com/lagradost/cloudstream4/library/LocalLibraryRecords {
 	public static final field $stable I
 	public static final field INSTANCE Lcom/lagradost/cloudstream4/library/DataStoreLocalLibrary;
@@ -37712,6 +37763,34 @@ public final static class com/lagradost/cloudstream4/library/DataStoreLocalLibra
 }
 
 public final static class com/lagradost/cloudstream4/library/DataStoreLocalLibrary$resumeHeader$$inlined$getKey$2 : com/fasterxml/jackson/core/type/TypeReference {
+	public fun <init> ()V
+}
+
+public interface com/lagradost/cloudstream4/library/LibrarySourceRecords : java/lang/Object {
+	public abstract fun choose (Ljava/lang/String;)V
+	public abstract fun chosen ()Ljava/lang/String;
+	public abstract fun synced (Ljava/lang/String;J)V
+	public abstract fun syncedAt (Ljava/lang/String;)Ljava/lang/Long;
+}
+
+public final class com/lagradost/cloudstream4/library/LibrarySourceTextKt : java/lang/Object {
+	public static final fun isSourceHeaderSafe (Ljava/lang/String;)Z
+	public static final fun isSourceUrl (Ljava/lang/String;)Z
+	public static final fun sourceContext (Landroid/content/Context;)Landroid/content/Context;
+	public static final fun sourceText (Ljava/lang/String;)Ljava/lang/String;
+	public static final fun sourceTypeWords (Landroid/content/Context;)Lkotlin/jvm/functions/Function1;
+}
+
+public final class com/lagradost/cloudstream4/library/LibrarySyncOpenerKt : java/lang/Object {
+	public static final fun openSyncedTitle (Landroidx/fragment/app/FragmentActivity;Lcom/lagradost/cloudstream4/library/SyncedTitle;)V
+	public static final fun syncedOpen (Lcom/lagradost/cloudstream4/library/SyncedTitle;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;)Lcom/lagradost/cloudstream4/library/SyncedOpen;
+}
+
+public final static synthetic class com/lagradost/cloudstream4/library/LibrarySyncOpenerKt$WhenMappings : java/lang/Object {
+	public static final synthetic field $EnumSwitchMapping$0 [I
+}
+
+public final static class com/lagradost/cloudstream4/library/LibrarySyncOpenerKt$openSyncedTitle$lambda$0$$inlined$getKey$1 : com/fasterxml/jackson/core/type/TypeReference {
 	public fun <init> ()V
 }
 
@@ -37790,6 +37869,94 @@ public final class com/lagradost/cloudstream4/library/Resuming : java/lang/Objec
 	public final fun getPosition ()Lcom/lagradost/cloudstream4/feature/library/WatchPosition;
 	public final fun getSeason ()Ljava/lang/Integer;
 	public final fun getTitle ()Lcom/lagradost/cloudstream4/feature/library/LibraryTitle;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/lagradost/cloudstream4/library/SyncLibrarySource : java/lang/Object {
+	public static final field $stable I
+	public fun <init> (Lcom/lagradost/cloudstream3/syncproviders/SyncRepo;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Z)V
+	public synthetic fun <init> (Lcom/lagradost/cloudstream3/syncproviders/SyncRepo;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getAccount ()Lkotlin/jvm/functions/Function0;
+	public final fun getConnected ()Lkotlin/jvm/functions/Function0;
+	public final fun getId-VpFB0-E ()Ljava/lang/String;
+	public final fun getLocal ()Z
+	public final fun getRepo ()Lcom/lagradost/cloudstream3/syncproviders/SyncRepo;
+}
+
+public interface com/lagradost/cloudstream4/library/SyncedOpen : java/lang/Object {
+}
+
+public final static class com/lagradost/cloudstream4/library/SyncedOpen$Browser : java/lang/Object, com/lagradost/cloudstream4/library/SyncedOpen {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lcom/lagradost/cloudstream4/library/SyncedOpen$Browser;
+	public static synthetic fun copy$default (Lcom/lagradost/cloudstream4/library/SyncedOpen$Browser;Ljava/lang/String;ILjava/lang/Object;)Lcom/lagradost/cloudstream4/library/SyncedOpen$Browser;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getUrl ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final static class com/lagradost/cloudstream4/library/SyncedOpen$Nothing : java/lang/Object, com/lagradost/cloudstream4/library/SyncedOpen {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/lagradost/cloudstream4/library/SyncedOpen$Nothing;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final static class com/lagradost/cloudstream4/library/SyncedOpen$Page : java/lang/Object, com/lagradost/cloudstream4/library/SyncedOpen {
+	public static final field $stable I
+	public fun <init> (Lcom/lagradost/cloudstream3/syncproviders/SyncAPI$LibraryItem;)V
+	public final fun component1 ()Lcom/lagradost/cloudstream3/syncproviders/SyncAPI$LibraryItem;
+	public final fun copy (Lcom/lagradost/cloudstream3/syncproviders/SyncAPI$LibraryItem;)Lcom/lagradost/cloudstream4/library/SyncedOpen$Page;
+	public static synthetic fun copy$default (Lcom/lagradost/cloudstream4/library/SyncedOpen$Page;Lcom/lagradost/cloudstream3/syncproviders/SyncAPI$LibraryItem;ILjava/lang/Object;)Lcom/lagradost/cloudstream4/library/SyncedOpen$Page;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getItem ()Lcom/lagradost/cloudstream3/syncproviders/SyncAPI$LibraryItem;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final static class com/lagradost/cloudstream4/library/SyncedOpen$Provider : java/lang/Object, com/lagradost/cloudstream4/library/SyncedOpen {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/lagradost/cloudstream4/library/SyncedOpen$Provider;
+	public static synthetic fun copy$default (Lcom/lagradost/cloudstream4/library/SyncedOpen$Provider;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/lagradost/cloudstream4/library/SyncedOpen$Provider;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getApiName ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getUrl ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final static class com/lagradost/cloudstream4/library/SyncedOpen$Search : java/lang/Object, com/lagradost/cloudstream4/library/SyncedOpen {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lcom/lagradost/cloudstream4/library/SyncedOpen$Search;
+	public static synthetic fun copy$default (Lcom/lagradost/cloudstream4/library/SyncedOpen$Search;Ljava/lang/String;ILjava/lang/Object;)Lcom/lagradost/cloudstream4/library/SyncedOpen$Search;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/lagradost/cloudstream4/library/SyncedTitle : java/lang/Object {
+	public static final field $stable I
+	public fun <init> (Lcom/lagradost/cloudstream3/syncproviders/SyncAPI$LibraryItem;Lcom/lagradost/cloudstream3/syncproviders/SyncIdName;)V
+	public final fun component1 ()Lcom/lagradost/cloudstream3/syncproviders/SyncAPI$LibraryItem;
+	public final fun component2 ()Lcom/lagradost/cloudstream3/syncproviders/SyncIdName;
+	public final fun copy (Lcom/lagradost/cloudstream3/syncproviders/SyncAPI$LibraryItem;Lcom/lagradost/cloudstream3/syncproviders/SyncIdName;)Lcom/lagradost/cloudstream4/library/SyncedTitle;
+	public static synthetic fun copy$default (Lcom/lagradost/cloudstream4/library/SyncedTitle;Lcom/lagradost/cloudstream3/syncproviders/SyncAPI$LibraryItem;Lcom/lagradost/cloudstream3/syncproviders/SyncIdName;ILjava/lang/Object;)Lcom/lagradost/cloudstream4/library/SyncedTitle;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getItem ()Lcom/lagradost/cloudstream3/syncproviders/SyncAPI$LibraryItem;
+	public final fun getSyncName ()Lcom/lagradost/cloudstream3/syncproviders/SyncIdName;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }

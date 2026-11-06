@@ -359,6 +359,11 @@
 <string name="kitsu_settings">"கிட்சுவிலிருந்து சுவரொட்டிகளைக் காட்டு"</string>
 <string name="legal_notice">"மறுப்பு"</string>
 <string name="library">"நூலகம்"</string>
+<string name="library_not_connected">"இணைக்கப்படவில்லை"</string>
+<string name="library_on_device">"சாதனத்தில்"</string>
+<string name="library_source">"நூலக மூலம்"</string>
+<string name="library_source_note">"ஒரு நேரத்தில் ஒன்று · மாற்றினால் மீண்டும் ஏற்றும்"</string>
+<string name="library_synced_format" formatted="true">"%s முன்பு ஒத்திசைக்கப்பட்டது"</string>
 <string name="lightnovel">"அதே தேவ்சின் ஒளி நாவல் பயன்பாடு"</string>
 <string name="limit_title">"வீடியோ பிளேயர் தலைப்பு மேக்ச் சார்ச்"</string>
 <string name="limit_title_rez">"பிளேயர் தகவலைக் காட்டு"</string>

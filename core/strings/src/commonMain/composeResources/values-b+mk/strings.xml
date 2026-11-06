@@ -358,6 +358,11 @@
 <string name="kitsu_settings">Прикажи постери од Kitsu</string>
 <string name="legal_notice">Disclaimer</string>
 <string name="library">Библиотека</string>
+<string name="library_not_connected">Не е поврзано</string>
+<string name="library_on_device">На уредот</string>
+<string name="library_source">Извор на библиотеката</string>
+<string name="library_source_note">Еден по еден · менувањето превчитува</string>
+<string name="library_synced_format">Синхронизирано пред %s</string>
 <string name="lightnovel">Едноставна апликација за новели од истите развивачи</string>
 <string name="limit_title">Наслов на видео плеер максимални знаци</string>
 <string name="limit_title_rez">Прикажи информации за плеерот</string>

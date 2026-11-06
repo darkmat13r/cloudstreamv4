@@ -291,6 +291,11 @@
 <string name="kitsu_settings">"Tunjuk poster dari Kitsu"</string>
 <string name="legal_notice">"Penafian"</string>
 <string name="library">"Perpustakaan"</string>
+<string name="library_not_connected">"Tidak disambungkan"</string>
+<string name="library_on_device">"Pada peranti"</string>
+<string name="library_source">"Sumber perpustakaan"</string>
+<string name="library_source_note">"Satu demi satu · menukar memuat semula"</string>
+<string name="library_synced_format" formatted="true">"Disegerakkan %s lalu"</string>
 <string name="lightnovel">"Aplikasi Light novel oleh pembangun sama"</string>
 <string name="limit_title">"char maximum tajuk pemain video"</string>
 <string name="limit_title_rez">"Resolusi pemain video"</string>

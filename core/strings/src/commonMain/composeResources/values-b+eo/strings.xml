@@ -264,4 +264,9 @@
 <string name="video_source">Fonto</string>
 <string name="year">Jaro</string>
 <string name="yes">Jes</string>
+<string name="library_not_connected">Ne konektita</string>
+<string name="library_on_device">En aparato</string>
+<string name="library_source">Fonto de biblioteko</string>
+<string name="library_source_note">Po unu · ŝanĝo reŝargas</string>
+<string name="library_synced_format">Sinkronigita antaŭ %s</string>
 </resources>

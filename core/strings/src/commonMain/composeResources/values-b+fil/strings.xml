@@ -239,4 +239,9 @@
 <string name="volume_exceeded_100">Lakas ng tunog ay lumampas sa 100%</string>
 <string name="vpn_might_be_needed">Maaaring kailanganin ng VPN para gumana ang provider na ito</string>
 <string name="vpn_torrent">Ang provider na ito ay isang torrent, inirerekomendang gumamit ng VPN</string>
+<string name="library_not_connected">Hindi nakakonekta</string>
+<string name="library_on_device">Sa device</string>
+<string name="library_source">Pinagmulan ng library</string>
+<string name="library_source_note">Isa-isa · nagre-reload kapag nagpalit</string>
+<string name="library_synced_format">Na-sync %s ang nakalipas</string>
 </resources>

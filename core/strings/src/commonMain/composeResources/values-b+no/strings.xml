@@ -257,6 +257,11 @@
 <string name="jsdelivr_proxy_summary">Omgår blokkering av GitHub ved hjelp av jsDelivr. Dette kan forårsake forsinkelser på oppdateringer med noen få dager.</string>
 <string name="kitsu_settings">Vis plakater fra Kitsu</string>
 <string name="library">Bibliotek</string>
+<string name="library_not_connected">Ikke tilkoblet</string>
+<string name="library_on_device">På enheten</string>
+<string name="library_source">Bibliotekkilde</string>
+<string name="library_source_note">Én om gangen · bytte laster inn på nytt</string>
+<string name="library_synced_format">Synkronisert for %s siden</string>
 <string name="lightnovel">Light novel app av samme devs</string>
 <string name="limit_title">Maks. antall tegn for navn i videospiller</string>
 <string name="limit_title_rez">Videooppløsning</string>

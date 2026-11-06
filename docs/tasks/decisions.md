@@ -675,3 +675,17 @@ The rule and the glyph table are in `.claude/rules/ui-components.md`, "Buttons".
 - **Mark watched gets a glyph:** Tabler `EyeCheck`, as `CloudStreamIcons.MarkWatched`.
 
 **2026-11-06, the owner,** asked by the coordinator whether board 6d's icon-only row verbs break the rule above: **trailing actions on a list row are icon-only**, as 6d draws them, each showing its label under the cell when focused and carrying it as a content description. A second ruled exception to rule 4, beside the title detail action row, in `.claude/rules/ui-components.md`. First used by `KMP-43` (Play, the state's verb and Delete beside each episode).
+
+## DEC-18 — The TV library's sources (`Q12`)
+
+**Status:** **decided 2026-11-06 by the owner**, asked through the coordinator from the `Q12` report. First used by `KMP-49`.
+
+| Question | Ruling |
+|---|---|
+| **Which sources** 5e lists, which draws Trakt and not Kitsu | **The five the app has: AniList, MyAnimeList, Kitsu, Simkl and Local.** Trakt is dropped: there is no such provider |
+| **A tracking service's tabs** | **The service's own lists, in its order.** AniList shows Rewatching. Favourites is on Local only |
+| **A source that is not signed in** | **Listed, disabled, reading "Not connected".** Logging in stays in account settings |
+| **The age of a sync** | **Never an age the app did not record.** Only a read this app timed has one |
+| **Sort** | **One choice for every source**, as the old screen keeps it. A source that cannot sort by it falls back (`KMP-50`) |
+
+In code: `AndroidLibrarySources.listed` and `syncedLists`, and `LibrarySourcePanelTv`'s rows, one place each.

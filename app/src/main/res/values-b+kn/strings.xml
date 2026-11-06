@@ -102,6 +102,11 @@
 <string name="home_next_random_img_des">"ಮುಂದಿನ ರಾಂಡಮ್"</string>
 <string name="home_play">"ಪ್ಲೇ"</string>
 <string name="home_search_only_body">"ನಿಮ್ಮ ಯಾವುದೇ ವಿಸ್ತರಣೆಗೆ ಹೋಂ ಪುಟವಿಲ್ಲ, ಆದರೆ ನೀವು ಅವುಗಳಲ್ಲಿ ಹುಡುಕಬಹುದು."</string>
+<string name="library_not_connected">"ಸಂಪರ್ಕಗೊಂಡಿಲ್ಲ"</string>
+<string name="library_on_device">"ಸಾಧನದಲ್ಲಿ"</string>
+<string name="library_source">"ಲೈಬ್ರರಿ ಮೂಲ"</string>
+<string name="library_source_note">"ಒಂದು ಬಾರಿಗೆ ಒಂದು · ಬದಲಿಸಿದರೆ ಮರುಲೋಡ್ ಆಗುತ್ತದೆ"</string>
+<string name="library_synced_format" formatted="true">"%s ಹಿಂದೆ ಸಿಂಕ್ ಮಾಡಲಾಗಿದೆ"</string>
 <string name="load_more">"ಇನ್ನಷ್ಟು ಲೋಡ್ ಮಾಡಿ"</string>
 <string name="loading">"ಲೋಡಿಂಗ್…"</string>
 <string name="more_like_this">"ಇಂತಹ ಇನ್ನಷ್ಟು"</string>

@@ -11,7 +11,6 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.no_data
 import com.lagradost.cloudstream4.core.strings.generated.resources.sort_clear
 import com.lagradost.cloudstream4.core.strings.generated.resources.title_search
 import com.lagradost.cloudstream4.feature.library.LibraryAction
-import com.lagradost.cloudstream4.feature.library.LibraryBucket
 import com.lagradost.cloudstream4.feature.library.LibraryCard
 import com.lagradost.cloudstream4.feature.library.LibraryState
 import com.lagradost.cloudstream4.feature.library.LibraryStatus
@@ -32,12 +31,12 @@ import org.jetbrains.compose.resources.stringResource
 internal fun LibraryState.toTvUiState(onAction: (LibraryAction) -> Unit): UiState<List<LibraryCard>> {
     val shared = status.toUiState(onAction)
     if (status != LibraryStatus.Empty) return shared
-    val here = (tab as? LibraryTab.Bucket)?.bucket
-    val elsewhere = LibraryTvTabs.firstOrNull { it != tab && it.heldIn(counts) }
+    val here = countOf(tab)
+    val elsewhere = tvTabs().firstOrNull { it != tab && (countOf(it) ?: 0) > 0 }
     return UiState.Empty(
         when {
             // The list has titles and the filter hides them all, so the filter is what is empty.
-            here != null && (counts[here] ?: 0) > 0 -> StatePrompt(
+            here != null && here > 0 -> StatePrompt(
                 headline = stringResource(Res.string.no_data),
                 body = filter.trim(),
                 action = StateAction(stringResource(Res.string.sort_clear)) {
@@ -62,5 +61,15 @@ internal fun LibraryState.toTvUiState(onAction: (LibraryAction) -> Unit): UiStat
     )
 }
 
-private fun LibraryTab.heldIn(counts: Map<LibraryBucket, Int>): Boolean =
-    this is LibraryTab.Bucket && (counts[bucket] ?: 0) > 0
+/** The tabs this TV screen shows: the tracking service's own lists where one is shown, else the store's. */
+internal fun LibraryState.tvTabs(): List<LibraryTab> = syncedTabs ?: LibraryTvTabs
+
+/** How many titles [tab] holds, from what was read, or null before a read. A list with nothing in it is 0. */
+internal fun LibraryState.countOf(tab: LibraryTab): Int? {
+    if (totalTitles == null) return null
+    return when (tab) {
+        is LibraryTab.Bucket -> counts[tab.bucket] ?: 0
+        is LibraryTab.Synced -> syncedCounts[tab.key] ?: 0
+        LibraryTab.ContinueWatching -> null
+    }
+}

@@ -260,6 +260,11 @@
 <string name="kitsu_settings">Tusi Boodhka Kitsu</string>
 <string name="legal_notice">Aaraar</string>
 <string name="library">Kaydka</string>
+<string name="library_not_connected">Lama xiriirin</string>
+<string name="library_on_device">Qalabka ku jira</string>
+<string name="library_source">Isha kaydka</string>
+<string name="library_source_note">Mid mid · beddelku wuu dib u soo raraa</string>
+<string name="library_synced_format">La waafajiyay %s kahor</string>
 <string name="lightnovel">Light novel app, isla dhiseyaasha appkan baa leh</string>
 <string name="limit_title">Tirada inta ka muuqanaysa magaca filinka</string>
 <string name="limit_title_rez">Daaraha korkiisa</string>

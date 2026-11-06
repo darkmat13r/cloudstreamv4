@@ -57,6 +57,9 @@ fun LibraryTab.label(): String = when (this) {
         LibraryBucket.PlanToWatch -> stringResource(Res.string.type_plan_to_watch)
         LibraryBucket.Favourites -> stringResource(Res.string.favorites_list_name)
     }
+
+    // Already in the service's words, from the host.
+    is LibraryTab.Synced -> label
 }
 
 /** The words on a card's controls, resolved once for the whole screen rather than per card. */

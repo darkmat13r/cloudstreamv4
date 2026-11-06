@@ -280,4 +280,9 @@
 <string name="vpn_torrent">Denne leverandøren er en torrent, og det anbefales å bruke en VPN-tjeneste.</string>
 <string name="watch_quality_pref">Føretrekt oppløysing</string>
 <string name="year">År</string>
+<string name="library_not_connected">Ikkje tilkopla</string>
+<string name="library_on_device">På eininga</string>
+<string name="library_source">Bibliotekskjelde</string>
+<string name="library_source_note">Éin om gongen · byte lastar på nytt</string>
+<string name="library_synced_format">Synkronisert for %s sidan</string>
 </resources>

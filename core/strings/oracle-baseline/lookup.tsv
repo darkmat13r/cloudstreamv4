@@ -392,6 +392,12 @@ values-b+af	string	kitsu_settings	-	Show posters from Kitsu
 values-b+af	string	legal_notice	-	Disclaimer
 values-b+af	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+af	string	library	-	Library
+values-b+af	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+af	string	library_not_connected	-	Nie gekoppel
+values-b+af	string	library_on_device	-	Op toestel
+values-b+af	string	library_source	-	Biblioteekbron
+values-b+af	string	library_source_note	-	Een op 'n slag · oorskakel herlaai
+values-b+af	string	library_synced_format	-	%s gelede gesinkroniseer
 values-b+af	string	lightnovel	-	Light novel app by the same devs
 values-b+af	string	limit_title	-	Video player title max chars
 values-b+af	string	limit_title_rez	-	Show player information
@@ -1271,6 +1277,12 @@ values-b+am	string	kitsu_settings	-	Show posters from Kitsu
 values-b+am	string	legal_notice	-	Disclaimer
 values-b+am	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+am	string	library	-	Library
+values-b+am	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+am	string	library_not_connected	-	አልተገናኘም
+values-b+am	string	library_on_device	-	በመሣሪያ ላይ
+values-b+am	string	library_source	-	የቤተ-መጽሐፍት ምንጭ
+values-b+am	string	library_source_note	-	አንድ በአንድ · መቀየር እንደገና ይጭናል
+values-b+am	string	library_synced_format	-	ከ%s በፊት ተመሳስሏል
 values-b+am	string	lightnovel	-	Light novel app by the same devs
 values-b+am	string	limit_title	-	Video player title max chars
 values-b+am	string	limit_title_rez	-	Show player information
@@ -2150,6 +2162,12 @@ values-b+apc	string	kitsu_settings	-	فرجي الپوسترات من موقع "
 values-b+apc	string	legal_notice	-	إخلاء مسؤولية
 values-b+apc	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+apc	string	library	-	رفّ
+values-b+apc	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+apc	string	library_not_connected	-	مش متصل
+values-b+apc	string	library_on_device	-	عالجهاز
+values-b+apc	string	library_source	-	مصدر الرفّ
+values-b+apc	string	library_source_note	-	وحدة بكل مرة · التبديل بيعيد التحميل
+values-b+apc	string	library_synced_format	-	تزامن من %s
 values-b+apc	string	lightnovel	-	آپ من نفس المطورين للروايات الخفيفة، بدل من الڤيديوات
 values-b+apc	string	limit_title	-	الحد الأعلى للحروف بعنوان الڤيديو
 values-b+apc	string	limit_title_rez	-	فرجي معلومات مشغل الڤيديو
@@ -3045,6 +3063,12 @@ values-b+ar	string	kitsu_settings	-	عرض ملصقات من كيتسو
 values-b+ar	string	legal_notice	-	إخلاء مسؤولية
 values-b+ar	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+ar	string	library	-	المكتبة
+values-b+ar	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+ar	string	library_not_connected	-	غير متصل
+values-b+ar	string	library_on_device	-	على الجهاز
+values-b+ar	string	library_source	-	مصدر المكتبة
+values-b+ar	string	library_source_note	-	مصدر واحد في كل مرة · التبديل يعيد التحميل
+values-b+ar	string	library_synced_format	-	تمت المزامنة منذ %s
 values-b+ar	string	lightnovel	-	تطبيق روايات خفيف من نفس المطورين
 values-b+ar	string	limit_title	-	أقصى عدد لحروف عنوان مُشغل الفيديو
 values-b+ar	string	limit_title_rez	-	عرض معلومات المشغل
@@ -3932,6 +3956,12 @@ values-b+ars	string	kitsu_settings	-	عرض الملصقات من كيتسو
 values-b+ars	string	legal_notice	-	تنصل
 values-b+ars	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+ars	string	library	-	مكتبة
+values-b+ars	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+ars	string	library_not_connected	-	غير متصل
+values-b+ars	string	library_on_device	-	على الجهاز
+values-b+ars	string	library_source	-	مصدر المكتبة
+values-b+ars	string	library_source_note	-	مصدر واحد في كل مرة · التبديل يعيد التحميل
+values-b+ars	string	library_synced_format	-	تمت المزامنة قبل %s
 values-b+ars	string	lightnovel	-	تطبيق رواية خفيفة من نفس المطورين
 values-b+ars	string	limit_title	-	عنوان مشغل الفيديو بحد أقصى لعدد الأحرف
 values-b+ars	string	limit_title_rez	-	دقة مشغل الفيديو
@@ -4811,6 +4841,12 @@ values-b+as	string	kitsu_settings	-	কিৎসুৰ পৰা প'ষ্ট�
 values-b+as	string	legal_notice	-	দায়ৱলী
 values-b+as	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+as	string	library	-	পুথিভঁৰাল
+values-b+as	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+as	string	library_not_connected	-	সংযোগ নাই
+values-b+as	string	library_on_device	-	ডিভাইচত
+values-b+as	string	library_source	-	পুথিভঁৰালৰ উৎস
+values-b+as	string	library_source_note	-	এবাৰত এটা · সলনি কৰিলে পুনৰ লোড হয়
+values-b+as	string	library_synced_format	-	%s আগতে ছিংক কৰা হৈছে
 values-b+as	string	lightnovel	-	একেই ডেভেলপাৰৰ দ্বাৰা লাইট নভেল এপ্‌
 values-b+as	string	limit_title	-	ভিডিঅ' প্লেয়াৰৰ শিৰোনামৰ সৰ্বাধিক অক্ষৰ
 values-b+as	string	limit_title_rez	-	ভিডিঅ' প্লেয়াৰৰ ৰিজল্যুশন
@@ -5690,6 +5726,12 @@ values-b+az	string	kitsu_settings	-	Kitsu afişalarını, posterlərini göstər
 values-b+az	string	legal_notice	-	Disclaimer
 values-b+az	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+az	string	library	-	Kitabxana
+values-b+az	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+az	string	library_not_connected	-	Qoşulmayıb
+values-b+az	string	library_on_device	-	Cihazda
+values-b+az	string	library_source	-	Kitabxana mənbəyi
+values-b+az	string	library_source_note	-	Eyni anda bir · dəyişmək yenidən yükləyir
+values-b+az	string	library_synced_format	-	%s əvvəl sinxronlaşdırılıb
 values-b+az	string	lightnovel	-	Light novel app by the same devs
 values-b+az	string	limit_title	-	Video player title max chars
 values-b+az	string	limit_title_rez	-	Show player information
@@ -6577,6 +6619,12 @@ values-b+be	string	kitsu_settings	-	Паказваць плакаты з Kitsu
 values-b+be	string	legal_notice	-	Адмова ад адказнасці
 values-b+be	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+be	string	library	-	Бібліятэка
+values-b+be	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+be	string	library_not_connected	-	Не падключана
+values-b+be	string	library_on_device	-	На прыладзе
+values-b+be	string	library_source	-	Крыніца бібліятэкі
+values-b+be	string	library_source_note	-	Па адной · пераключэнне перазагружае
+values-b+be	string	library_synced_format	-	Сінхранізавана %s таму
 values-b+be	string	lightnovel	-	Лёгкая праграма для раманаў ад тых жа распрацоўшчыкаў
 values-b+be	string	limit_title	-	Максімальная колькасць сімвалаў у загалоўку праглядальніка
 values-b+be	string	limit_title_rez	-	Паказваць інфармацыю ў прайгравальніку
@@ -7456,6 +7504,12 @@ values-b+bg	string	kitsu_settings	-	Покажете плакати от Kitsu
 values-b+bg	string	legal_notice	-	Опровержение
 values-b+bg	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+bg	string	library	-	Библиотека
+values-b+bg	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+bg	string	library_not_connected	-	Не е свързан
+values-b+bg	string	library_on_device	-	На устройството
+values-b+bg	string	library_source	-	Източник на библиотеката
+values-b+bg	string	library_source_note	-	Един по един · превключването презарежда
+values-b+bg	string	library_synced_format	-	Синхронизирано преди %s
 values-b+bg	string	lightnovel	-	Light novel - приложение от същите разработчици
 values-b+bg	string	limit_title	-	Максимален брой знаци за заглавие във видеоплейъра
 values-b+bg	string	limit_title_rez	-	Покажи информация за плейъра
@@ -8335,6 +8389,12 @@ values-b+bn	string	kitsu_settings	-	Kitsu থেকে পোস্টারস�
 values-b+bn	string	legal_notice	-	দাবিত্যাগ
 values-b+bn	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+bn	string	library	-	লাইব্রেরী
+values-b+bn	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+bn	string	library_not_connected	-	সংযুক্ত নয়
+values-b+bn	string	library_on_device	-	ডিভাইসে
+values-b+bn	string	library_source	-	লাইব্রেরির উৎস
+values-b+bn	string	library_source_note	-	একবারে একটি · পরিবর্তন করলে আবার লোড হয়
+values-b+bn	string	library_synced_format	-	%s আগে সিঙ্ক হয়েছে
 values-b+bn	string	lightnovel	-	আমাদের তৈরি ছোট উপন্যাস পড়ার অ্যাপ্লিকেশন
 values-b+bn	string	limit_title	-	ভিডিও প্লেয়ারের টাইটেল এ সর্বোচ্চ ক্যারেক্টার
 values-b+bn	string	limit_title_rez	-	ভিডিও প্লেয়ারে রেজুলেশন
@@ -9216,6 +9276,12 @@ values-b+ca	string	kitsu_settings	-	Show posters from Kitsu
 values-b+ca	string	legal_notice	-	Disclaimer
 values-b+ca	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+ca	string	library	-	Library
+values-b+ca	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+ca	string	library_not_connected	-	No connectat
+values-b+ca	string	library_on_device	-	Al dispositiu
+values-b+ca	string	library_source	-	Font de la biblioteca
+values-b+ca	string	library_source_note	-	Una alhora · canviar torna a carregar
+values-b+ca	string	library_synced_format	-	Sincronitzat fa %s
 values-b+ca	string	lightnovel	-	Light novel app by the same devs
 values-b+ca	string	limit_title	-	Caràcters màxims al títol del reproductor
 values-b+ca	string	limit_title_rez	-	Resolució del reproductor de vídeo
@@ -10095,6 +10161,12 @@ values-b+ckb	string	kitsu_settings	-	Show posters from Kitsu
 values-b+ckb	string	legal_notice	-	Disclaimer
 values-b+ckb	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+ckb	string	library	-	Library
+values-b+ckb	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+ckb	string	library_not_connected	-	پەیوەست نییە
+values-b+ckb	string	library_on_device	-	لەسەر ئامێر
+values-b+ckb	string	library_source	-	سەرچاوەی کتێبخانە
+values-b+ckb	string	library_source_note	-	یەک بە یەک · گۆڕین دووبارە باری دەکاتەوە
+values-b+ckb	string	library_synced_format	-	%s لەمەوبەر هاوکات کرا
 values-b+ckb	string	lightnovel	-	Light novel app by the same devs
 values-b+ckb	string	limit_title	-	Video player title max chars
 values-b+ckb	string	limit_title_rez	-	Show player information
@@ -10984,6 +11056,12 @@ values-b+cs	string	kitsu_settings	-	Zobrazit plakáty z Kitsu
 values-b+cs	string	legal_notice	-	Odmítnutí odpovědnosti
 values-b+cs	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+cs	string	library	-	Knihovna
+values-b+cs	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+cs	string	library_not_connected	-	Nepřipojeno
+values-b+cs	string	library_on_device	-	V zařízení
+values-b+cs	string	library_source	-	Zdroj knihovny
+values-b+cs	string	library_source_note	-	Jeden po druhém · přepnutí znovu načte
+values-b+cs	string	library_synced_format	-	Synchronizováno před %s
 values-b+cs	string	lightnovel	-	Nenáročná aplikace pro romány od stejných vývojářů
 values-b+cs	string	limit_title	-	Maximální počet znaků v názvu přehrávače
 values-b+cs	string	limit_title_rez	-	Zobrazit informace o přehrávači
@@ -11863,6 +11941,12 @@ values-b+de	string	kitsu_settings	-	Vorschaubilder von Kitsu anzeigen
 values-b+de	string	legal_notice	-	Haftungsausschluss
 values-b+de	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+de	string	library	-	Bibliothek
+values-b+de	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+de	string	library_not_connected	-	Nicht verbunden
+values-b+de	string	library_on_device	-	Auf dem Gerät
+values-b+de	string	library_source	-	Bibliotheksquelle
+values-b+de	string	library_source_note	-	Jeweils eine · Wechsel lädt neu
+values-b+de	string	library_synced_format	-	Vor %s synchronisiert
 values-b+de	string	lightnovel	-	Light Novel App von denselben Entwicklern
 values-b+de	string	limit_title	-	Videoplayertitel max. Zeichen
 values-b+de	string	limit_title_rez	-	Zeige Playerinformationen
@@ -12742,6 +12826,12 @@ values-b+el	string	kitsu_settings	-	Εμφάνιση αφισών από Kitsu
 values-b+el	string	legal_notice	-	Αποποίηση ευθυνών
 values-b+el	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+el	string	library	-	Βιβλιοθήκη
+values-b+el	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+el	string	library_not_connected	-	Δεν έχει συνδεθεί
+values-b+el	string	library_on_device	-	Στη συσκευή
+values-b+el	string	library_source	-	Πηγή βιβλιοθήκης
+values-b+el	string	library_source_note	-	Μία κάθε φορά · η εναλλαγή επαναφορτώνει
+values-b+el	string	library_synced_format	-	Συγχρονίστηκε πριν από %s
 values-b+el	string	lightnovel	-	Εφαρμογή βιβλίων από τους ίδιους προγραμματιστές
 values-b+el	string	limit_title	-	Μέγιστος αριθμός χαρακτήρων τίτλου
 values-b+el	string	limit_title_rez	-	Ανάλυση προγράμματος αναπαραγωγής βίντεο
@@ -13621,6 +13711,12 @@ values-b+eo	string	kitsu_settings	-	Show posters from Kitsu
 values-b+eo	string	legal_notice	-	Disclaimer
 values-b+eo	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+eo	string	library	-	Library
+values-b+eo	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+eo	string	library_not_connected	-	Ne konektita
+values-b+eo	string	library_on_device	-	En aparato
+values-b+eo	string	library_source	-	Fonto de biblioteko
+values-b+eo	string	library_source_note	-	Po unu · ŝanĝo reŝargas
+values-b+eo	string	library_synced_format	-	Sinkronigita antaŭ %s
 values-b+eo	string	lightnovel	-	Light novel app by the same devs
 values-b+eo	string	limit_title	-	Video player title max chars
 values-b+eo	string	limit_title_rez	-	Show player information
@@ -14505,6 +14601,12 @@ values-b+es	string	kitsu_settings	-	Mostrar pósters de Kitsu
 values-b+es	string	legal_notice	-	Descargo de responsabilidad
 values-b+es	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+es	string	library	-	Biblioteca
+values-b+es	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+es	string	library_not_connected	-	No conectado
+values-b+es	string	library_on_device	-	En el dispositivo
+values-b+es	string	library_source	-	Origen de la biblioteca
+values-b+es	string	library_source_note	-	Uno a la vez · cambiar recarga
+values-b+es	string	library_synced_format	-	Sincronizado hace %s
 values-b+es	string	lightnovel	-	App de novela ligera de los mismos desarrolladores
 values-b+es	string	limit_title	-	Máxima cantidad de caracteres en el título del reproductor
 values-b+es	string	limit_title_rez	-	Mostrar la información del reproductor de video
@@ -15384,6 +15486,12 @@ values-b+fa	string	kitsu_settings	-	نمیش پوستر از kitsu
 values-b+fa	string	legal_notice	-	هشدار
 values-b+fa	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+fa	string	library	-	کتابخانه
+values-b+fa	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+fa	string	library_not_connected	-	متصل نیست
+values-b+fa	string	library_on_device	-	روی دستگاه
+values-b+fa	string	library_source	-	منبع کتابخانه
+values-b+fa	string	library_source_note	-	هر بار یکی · تغییر، دوباره بارگذاری می‌کند
+values-b+fa	string	library_synced_format	-	%s پیش همگام‌سازی شد
 values-b+fa	string	lightnovel	-	برنامه سبک رمان از توسعه دهندگان یکسان
 values-b+fa	string	limit_title	-	Video player title max chars
 values-b+fa	string	limit_title_rez	-	کیفیت پخش‌کننده ویدئو
@@ -16263,6 +16371,12 @@ values-b+fil	string	kitsu_settings	-	Ipakita ang posters mula sa Kitsu
 values-b+fil	string	legal_notice	-	Disclaimer
 values-b+fil	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+fil	string	library	-	Library
+values-b+fil	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+fil	string	library_not_connected	-	Hindi nakakonekta
+values-b+fil	string	library_on_device	-	Sa device
+values-b+fil	string	library_source	-	Pinagmulan ng library
+values-b+fil	string	library_source_note	-	Isa-isa · nagre-reload kapag nagpalit
+values-b+fil	string	library_synced_format	-	Na-sync %s ang nakalipas
 values-b+fil	string	lightnovel	-	Light novel app ng parehong devs
 values-b+fil	string	limit_title	-	Video player title max chars
 values-b+fil	string	limit_title_rez	-	Show player information
@@ -17147,6 +17261,12 @@ values-b+fr	string	kitsu_settings	-	Montrer les affiches provenant de Kitsu
 values-b+fr	string	legal_notice	-	Non-responsabilité
 values-b+fr	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+fr	string	library	-	Bibliothèque
+values-b+fr	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+fr	string	library_not_connected	-	Non connecté
+values-b+fr	string	library_on_device	-	Sur l'appareil
+values-b+fr	string	library_source	-	Source de la bibliothèque
+values-b+fr	string	library_source_note	-	Une à la fois · changer recharge
+values-b+fr	string	library_synced_format	-	Synchronisé il y a %s
 values-b+fr	string	lightnovel	-	Application Light Novel par les mêmes devs
 values-b+fr	string	limit_title	-	Nombre maximal de caractères dans le titre du lecteur vidéo
 values-b+fr	string	limit_title_rez	-	Afficher les informations du lecteur
@@ -18026,6 +18146,12 @@ values-b+gl	string	kitsu_settings	-	Mostrar pósters de Kitsu
 values-b+gl	string	legal_notice	-	Disclaimer
 values-b+gl	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+gl	string	library	-	Biblioteca
+values-b+gl	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+gl	string	library_not_connected	-	Non conectado
+values-b+gl	string	library_on_device	-	No dispositivo
+values-b+gl	string	library_source	-	Orixe da biblioteca
+values-b+gl	string	library_source_note	-	Unha de cada vez · cambiar recarga
+values-b+gl	string	library_synced_format	-	Sincronizado hai %s
 values-b+gl	string	lightnovel	-	Aplicativo de novela lixeira dos mesmos desenvolvedores
 values-b+gl	string	limit_title	-	Video player title max chars
 values-b+gl	string	limit_title_rez	-	Show player information
@@ -18905,6 +19031,12 @@ values-b+hi	string	kitsu_settings	-	Kitsu से पोस्टर दिखा
 values-b+hi	string	legal_notice	-	अस्वीकरण
 values-b+hi	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+hi	string	library	-	लाइब्रेरी
+values-b+hi	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+hi	string	library_not_connected	-	कनेक्ट नहीं है
+values-b+hi	string	library_on_device	-	डिवाइस पर
+values-b+hi	string	library_source	-	लाइब्रेरी स्रोत
+values-b+hi	string	library_source_note	-	एक समय में एक · बदलने पर फिर से लोड होता है
+values-b+hi	string	library_synced_format	-	%s पहले सिंक हुआ
 values-b+hi	string	lightnovel	-	उन्हीं डेवलपर्स द्वारा Light novel ऐप
 values-b+hi	string	limit_title	-	वीडियो प्लेयर शीर्षक अधिकतम वर्ण
 values-b+hi	string	limit_title_rez	-	वीडियो प्लेयर रिज़ॉल्यूशन
@@ -19788,6 +19920,12 @@ values-b+hr	string	kitsu_settings	-	Prikaži postere iz Kitsua
 values-b+hr	string	legal_notice	-	Pravna obavijest
 values-b+hr	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+hr	string	library	-	Biblioteka
+values-b+hr	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+hr	string	library_not_connected	-	Nije povezano
+values-b+hr	string	library_on_device	-	Na uređaju
+values-b+hr	string	library_source	-	Izvor biblioteke
+values-b+hr	string	library_source_note	-	Jedan po jedan · promjena ponovno učitava
+values-b+hr	string	library_synced_format	-	Sinkronizirano prije %s
 values-b+hr	string	lightnovel	-	Aplikacija za romane od istih programera
 values-b+hr	string	limit_title	-	Maksimalni broj znakova u naslovu video playera
 values-b+hr	string	limit_title_rez	-	Prikaži podatke playera
@@ -20667,6 +20805,12 @@ values-b+hu	string	kitsu_settings	-	Poszterek megjelenítése Kitsu-ról
 values-b+hu	string	legal_notice	-	Jogi nyilatkozat
 values-b+hu	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+hu	string	library	-	Könyvtár
+values-b+hu	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+hu	string	library_not_connected	-	Nincs csatlakoztatva
+values-b+hu	string	library_on_device	-	Az eszközön
+values-b+hu	string	library_source	-	Könyvtár forrása
+values-b+hu	string	library_source_note	-	Egyszerre egy · váltáskor újratölt
+values-b+hu	string	library_synced_format	-	%s ezelőtt szinkronizálva
 values-b+hu	string	lightnovel	-	Light novel applikáció ugyanazoktól a fejlesztőktől
 values-b+hu	string	limit_title	-	Videolejátszó cím max karakterek
 values-b+hu	string	limit_title_rez	-	Videolejátszó felbontása
@@ -21541,6 +21685,12 @@ values-b+in	string	kitsu_settings	-	Tampilkan poster dari Kitsu
 values-b+in	string	legal_notice	-	Disclaimer
 values-b+in	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+in	string	library	-	Pustaka
+values-b+in	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+in	string	library_not_connected	-	Tidak terhubung
+values-b+in	string	library_on_device	-	Di perangkat
+values-b+in	string	library_source	-	Sumber pustaka
+values-b+in	string	library_source_note	-	Satu per satu · beralih memuat ulang
+values-b+in	string	library_synced_format	-	Disinkronkan %s lalu
 values-b+in	string	lightnovel	-	Aplikasi novel ringan dari developer yang sama
 values-b+in	string	limit_title	-	Karakter maksimal judul pemutar video
 values-b+in	string	limit_title_rez	-	Tampilkan informasi pemutar
@@ -22425,6 +22575,12 @@ values-b+it	string	kitsu_settings	-	Mostra poster da Kitsu
 values-b+it	string	legal_notice	-	Avvertenza
 values-b+it	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+it	string	library	-	Libreria
+values-b+it	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+it	string	library_not_connected	-	Non connesso
+values-b+it	string	library_on_device	-	Sul dispositivo
+values-b+it	string	library_source	-	Origine della libreria
+values-b+it	string	library_source_note	-	Una alla volta · cambiare ricarica
+values-b+it	string	library_synced_format	-	Sincronizzato %s fa
 values-b+it	string	lightnovel	-	App per Light Novel degli stessi sviluppatori
 values-b+it	string	limit_title	-	Limita i caratteri del titolo nel lettore
 values-b+it	string	limit_title_rez	-	Mostra informazioni sul lettore
@@ -23306,6 +23462,12 @@ values-b+iw	string	kitsu_settings	-	הצג פוסטרים מKitsu
 values-b+iw	string	legal_notice	-	כתב ויתור
 values-b+iw	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+iw	string	library	-	ספריה
+values-b+iw	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+iw	string	library_not_connected	-	לא מחובר
+values-b+iw	string	library_on_device	-	במכשיר
+values-b+iw	string	library_source	-	מקור הספריה
+values-b+iw	string	library_source_note	-	אחד בכל פעם · החלפה טוענת מחדש
+values-b+iw	string	library_synced_format	-	סונכרן לפני %s
 values-b+iw	string	lightnovel	-	אפליקצית רומנים קלים על ידי אותו מפתחים
 values-b+iw	string	limit_title	-	נגן וידאו כותרת מקסימום תווים
 values-b+iw	string	limit_title_rez	-	רזולוציית נגן וידאו
@@ -24180,6 +24342,12 @@ values-b+ja	string	kitsu_settings	-	Kitsuのポスターを表示
 values-b+ja	string	legal_notice	-	免責
 values-b+ja	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+ja	string	library	-	ライブラリ
+values-b+ja	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+ja	string	library_not_connected	-	未接続
+values-b+ja	string	library_on_device	-	このデバイス
+values-b+ja	string	library_source	-	ライブラリのソース
+values-b+ja	string	library_source_note	-	一度に1つ · 切り替えると再読み込み
+values-b+ja	string	library_synced_format	-	%s前に同期
 values-b+ja	string	lightnovel	-	同じ開発者によるライトノベルアプリ
 values-b+ja	string	limit_title	-	ビデオプレーヤーのタイトル最大文字数
 values-b+ja	string	limit_title_rez	-	プレイヤー情報を表示
@@ -25059,6 +25227,12 @@ values-b+kn	string	kitsu_settings	-	Show posters from Kitsu
 values-b+kn	string	legal_notice	-	Disclaimer
 values-b+kn	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+kn	string	library	-	Library
+values-b+kn	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+kn	string	library_not_connected	-	ಸಂಪರ್ಕಗೊಂಡಿಲ್ಲ
+values-b+kn	string	library_on_device	-	ಸಾಧನದಲ್ಲಿ
+values-b+kn	string	library_source	-	ಲೈಬ್ರರಿ ಮೂಲ
+values-b+kn	string	library_source_note	-	ಒಂದು ಬಾರಿಗೆ ಒಂದು · ಬದಲಿಸಿದರೆ ಮರುಲೋಡ್ ಆಗುತ್ತದೆ
+values-b+kn	string	library_synced_format	-	%s ಹಿಂದೆ ಸಿಂಕ್ ಮಾಡಲಾಗಿದೆ
 values-b+kn	string	lightnovel	-	Light novel app by the same devs
 values-b+kn	string	limit_title	-	Video player title max chars
 values-b+kn	string	limit_title_rez	-	Show player information
@@ -25934,6 +26108,12 @@ values-b+ko	string	kitsu_settings	-	Kitsu에서 포스터 가져오기
 values-b+ko	string	legal_notice	-	거부
 values-b+ko	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+ko	string	library	-	라이브러리
+values-b+ko	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+ko	string	library_not_connected	-	연결되지 않음
+values-b+ko	string	library_on_device	-	기기에 저장됨
+values-b+ko	string	library_source	-	라이브러리 소스
+values-b+ko	string	library_source_note	-	한 번에 하나 · 전환하면 다시 불러옴
+values-b+ko	string	library_synced_format	-	%s 전에 동기화됨
 values-b+ko	string	lightnovel	-	같은 개발자가 만든 라이트 노벨 앱
 values-b+ko	string	limit_title	-	플레이어 내 표시 제목의 최대 글자 수
 values-b+ko	string	limit_title_rez	-	플레이어 내 표시 정보
@@ -26817,6 +26997,12 @@ values-b+lt	string	kitsu_settings	-	Show posters from Kitsu
 values-b+lt	string	legal_notice	-	Disclaimer
 values-b+lt	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+lt	string	library	-	Biblioteka
+values-b+lt	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+lt	string	library_not_connected	-	Neprijungta
+values-b+lt	string	library_on_device	-	Įrenginyje
+values-b+lt	string	library_source	-	Bibliotekos šaltinis
+values-b+lt	string	library_source_note	-	Po vieną · perjungus įkeliama iš naujo
+values-b+lt	string	library_synced_format	-	Sinchronizuota prieš %s
 values-b+lt	string	lightnovel	-	Light novel app by the same devs
 values-b+lt	string	limit_title	-	Video player title max chars
 values-b+lt	string	limit_title_rez	-	Show player information
@@ -27699,6 +27885,12 @@ values-b+lv	string	kitsu_settings	-	Rādīt Kitsu vietnes plakātus
 values-b+lv	string	legal_notice	-	Atruna
 values-b+lv	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+lv	string	library	-	Library
+values-b+lv	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+lv	string	library_not_connected	-	Nav savienots
+values-b+lv	string	library_on_device	-	Ierīcē
+values-b+lv	string	library_source	-	Bibliotēkas avots
+values-b+lv	string	library_source_note	-	Pa vienam · pārslēgšana pārlādē
+values-b+lv	string	library_synced_format	-	Sinhronizēts pirms %s
 values-b+lv	string	lightnovel	-	Viegla romānu lietotne no šiem pašiem izstrādātājiem
 values-b+lv	string	limit_title	-	Video players nosaukuma maksimālie burti
 values-b+lv	string	limit_title_rez	-	Video atskaņotāja kvalitāte
@@ -28578,6 +28770,12 @@ values-b+mk	string	kitsu_settings	-	Прикажи постери од Kitsu
 values-b+mk	string	legal_notice	-	Disclaimer
 values-b+mk	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+mk	string	library	-	Библиотека
+values-b+mk	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+mk	string	library_not_connected	-	Не е поврзано
+values-b+mk	string	library_on_device	-	На уредот
+values-b+mk	string	library_source	-	Извор на библиотеката
+values-b+mk	string	library_source_note	-	Еден по еден · менувањето превчитува
+values-b+mk	string	library_synced_format	-	Синхронизирано пред %s
 values-b+mk	string	lightnovel	-	Едноставна апликација за новели од истите развивачи
 values-b+mk	string	limit_title	-	Наслов на видео плеер максимални знаци
 values-b+mk	string	limit_title_rez	-	Прикажи информации за плеерот
@@ -29457,6 +29655,12 @@ values-b+ml	string	kitsu_settings	-	Show posters from Kitsu
 values-b+ml	string	legal_notice	-	Disclaimer
 values-b+ml	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+ml	string	library	-	Library
+values-b+ml	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+ml	string	library_not_connected	-	കണക്റ്റ് ചെയ്തിട്ടില്ല
+values-b+ml	string	library_on_device	-	ഉപകരണത്തിൽ
+values-b+ml	string	library_source	-	ലൈബ്രറി ഉറവിടം
+values-b+ml	string	library_source_note	-	ഒരേ സമയം ഒന്ന് · മാറ്റിയാൽ വീണ്ടും ലോഡ് ചെയ്യും
+values-b+ml	string	library_synced_format	-	%s മുമ്പ് സമന്വയിപ്പിച്ചു
 values-b+ml	string	lightnovel	-	നമ്മുടെ ലൈറ്റ് നോവൽ ആപ്പ്
 values-b+ml	string	limit_title	-	Video player title max chars
 values-b+ml	string	limit_title_rez	-	Show player information
@@ -30334,6 +30538,12 @@ values-b+ms	string	kitsu_settings	-	Tunjuk poster dari Kitsu
 values-b+ms	string	legal_notice	-	Penafian
 values-b+ms	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+ms	string	library	-	Perpustakaan
+values-b+ms	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+ms	string	library_not_connected	-	Tidak disambungkan
+values-b+ms	string	library_on_device	-	Pada peranti
+values-b+ms	string	library_source	-	Sumber perpustakaan
+values-b+ms	string	library_source_note	-	Satu demi satu · menukar memuat semula
+values-b+ms	string	library_synced_format	-	Disegerakkan %s lalu
 values-b+ms	string	lightnovel	-	Aplikasi Light novel oleh pembangun sama
 values-b+ms	string	limit_title	-	char maximum tajuk pemain video
 values-b+ms	string	limit_title_rez	-	Resolusi pemain video
@@ -31219,6 +31429,12 @@ values-b+mt	string	kitsu_settings	-	Show posters from Kitsu
 values-b+mt	string	legal_notice	-	Disclaimer
 values-b+mt	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+mt	string	library	-	Library
+values-b+mt	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+mt	string	library_not_connected	-	Mhux konness
+values-b+mt	string	library_on_device	-	Fuq l-apparat
+values-b+mt	string	library_source	-	Sors tal-librerija
+values-b+mt	string	library_source_note	-	Wieħed kull darba · il-bidla tgħabbi mill-ġdid
+values-b+mt	string	library_synced_format	-	Sinkronizzat %s ilu
 values-b+mt	string	lightnovel	-	Light novel app by the same devs
 values-b+mt	string	limit_title	-	Video player title max chars
 values-b+mt	string	limit_title_rez	-	Show player information
@@ -32096,6 +32312,12 @@ values-b+my	string	kitsu_settings	-	Kitsu မှ ပိုစတာများ�
 values-b+my	string	legal_notice	-	ရှင်းလင်းချက်
 values-b+my	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+my	string	library	-	လိုက်ဘရီ
+values-b+my	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+my	string	library_not_connected	-	ချိတ်ဆက်မထားပါ
+values-b+my	string	library_on_device	-	စက်ပေါ်တွင်
+values-b+my	string	library_source	-	လိုက်ဘရီ ရင်းမြစ်
+values-b+my	string	library_source_note	-	တစ်ကြိမ်လျှင် တစ်ခု · ပြောင်းလျှင် ပြန်ဖွင့်သည်
+values-b+my	string	library_synced_format	-	%s က ချိန်ကိုက်ခဲ့သည်
 values-b+my	string	lightnovel	-	တူညီသောအက်ပ်ရေးသားသူများ၏ ဝတ္ထုရှည်များဖတ်နိုင်သည့် အက်ပ်
 values-b+my	string	limit_title	-	ခေါင်းစဥ်အတွက်စာလုံးရေပြည့်ခြင်း
 values-b+my	string	limit_title_rez	-	ကြည့်ရှုမှု အရည်အသွေး
@@ -32975,6 +33197,12 @@ values-b+ne	string	kitsu_settings	-	Show posters from Kitsu
 values-b+ne	string	legal_notice	-	Disclaimer
 values-b+ne	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+ne	string	library	-	Library
+values-b+ne	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+ne	string	library_not_connected	-	जडान छैन
+values-b+ne	string	library_on_device	-	यन्त्रमा
+values-b+ne	string	library_source	-	लाइब्रेरी स्रोत
+values-b+ne	string	library_source_note	-	एक पटकमा एउटा · बदल्दा फेरि लोड हुन्छ
+values-b+ne	string	library_synced_format	-	%s अघि सिंक गरियो
 values-b+ne	string	lightnovel	-	Light novel app by the same devs
 values-b+ne	string	limit_title	-	Video player title max chars
 values-b+ne	string	limit_title_rez	-	Show player information
@@ -33854,6 +34082,12 @@ values-b+nl	string	kitsu_settings	-	Toon posters van Kitsu
 values-b+nl	string	legal_notice	-	Disclaimer
 values-b+nl	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+nl	string	library	-	Bibliotheek
+values-b+nl	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+nl	string	library_not_connected	-	Niet verbonden
+values-b+nl	string	library_on_device	-	Op apparaat
+values-b+nl	string	library_source	-	Bibliotheekbron
+values-b+nl	string	library_source_note	-	Eén tegelijk · wisselen laadt opnieuw
+values-b+nl	string	library_synced_format	-	%s geleden gesynchroniseerd
 values-b+nl	string	lightnovel	-	Light novel app van dezelfde ontwikkelaars
 values-b+nl	string	limit_title	-	Maximaal aantal tekens voor titel van videospeler
 values-b+nl	string	limit_title_rez	-	Toon spelerinformatie
@@ -34733,6 +34967,12 @@ values-b+nn	string	kitsu_settings	-	Vis miniatyrbilete frå Kitsu
 values-b+nn	string	legal_notice	-	Disclaimer
 values-b+nn	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+nn	string	library	-	Library
+values-b+nn	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+nn	string	library_not_connected	-	Ikkje tilkopla
+values-b+nn	string	library_on_device	-	På eininga
+values-b+nn	string	library_source	-	Bibliotekskjelde
+values-b+nn	string	library_source_note	-	Éin om gongen · byte lastar på nytt
+values-b+nn	string	library_synced_format	-	Synkronisert for %s sidan
 values-b+nn	string	lightnovel	-	Lysnovelleprogram av dei same utviklarane
 values-b+nn	string	limit_title	-	Video player title max chars
 values-b+nn	string	limit_title_rez	-	Show player information
@@ -35612,6 +35852,12 @@ values-b+no	string	kitsu_settings	-	Vis plakater fra Kitsu
 values-b+no	string	legal_notice	-	Disclaimer
 values-b+no	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+no	string	library	-	Bibliotek
+values-b+no	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+no	string	library_not_connected	-	Ikke tilkoblet
+values-b+no	string	library_on_device	-	På enheten
+values-b+no	string	library_source	-	Bibliotekkilde
+values-b+no	string	library_source_note	-	Én om gangen · bytte laster inn på nytt
+values-b+no	string	library_synced_format	-	Synkronisert for %s siden
 values-b+no	string	lightnovel	-	Light novel app av samme devs
 values-b+no	string	limit_title	-	Maks. antall tegn for navn i videospiller
 values-b+no	string	limit_title_rez	-	Videooppløsning
@@ -36491,6 +36737,12 @@ values-b+or	string	kitsu_settings	-	Show posters from Kitsu
 values-b+or	string	legal_notice	-	Disclaimer
 values-b+or	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+or	string	library	-	ଲାଇବ୍ରେରୀ
+values-b+or	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+or	string	library_not_connected	-	ସଂଯୁକ୍ତ ନାହିଁ
+values-b+or	string	library_on_device	-	ଡିଭାଇସରେ
+values-b+or	string	library_source	-	ଲାଇବ୍ରେରୀ ଉତ୍ସ
+values-b+or	string	library_source_note	-	ଥରକେ ଗୋଟିଏ · ବଦଳାଇଲେ ପୁଣି ଲୋଡ୍ ହୁଏ
+values-b+or	string	library_synced_format	-	%s ପୂର୍ବରୁ ସିଙ୍କ ହୋଇଛି
 values-b+or	string	lightnovel	-	Light novel app by the same devs
 values-b+or	string	limit_title	-	Video player title max chars
 values-b+or	string	limit_title_rez	-	Show player information
@@ -37380,6 +37632,12 @@ values-b+pl	string	kitsu_settings	-	Pokaż obrazki z Kitsu
 values-b+pl	string	legal_notice	-	Zastrzeżenie
 values-b+pl	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+pl	string	library	-	Biblioteka
+values-b+pl	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+pl	string	library_not_connected	-	Nie połączono
+values-b+pl	string	library_on_device	-	Na urządzeniu
+values-b+pl	string	library_source	-	Źródło biblioteki
+values-b+pl	string	library_source_note	-	Jedno naraz · przełączenie wczytuje ponownie
+values-b+pl	string	library_synced_format	-	Zsynchronizowano %s temu
 values-b+pl	string	lightnovel	-	Aplikacja do light novel od nas
 values-b+pl	string	limit_title	-	Maksymalna liczba znaków w tytule odtwarzacza
 values-b+pl	string	limit_title_rez	-	Pokaż informacje o odtwarzaczu
@@ -38264,6 +38522,12 @@ values-b+pt	string	kitsu_settings	-	Mostrar posters do kitsu
 values-b+pt	string	legal_notice	-	Aviso Legal
 values-b+pt	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+pt	string	library	-	Biblioteca
+values-b+pt	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+pt	string	library_not_connected	-	Não conectado
+values-b+pt	string	library_on_device	-	No dispositivo
+values-b+pt	string	library_source	-	Origem da biblioteca
+values-b+pt	string	library_source_note	-	Uma de cada vez · mudar recarrega
+values-b+pt	string	library_synced_format	-	Sincronizado há %s
 values-b+pt	string	lightnovel	-	App light novel pelos mesmos devs
 values-b+pt	string	limit_title	-	Máximo de caracteres do título no player de video
 values-b+pt	string	limit_title_rez	-	Mostrar informações do player de vídeo
@@ -39148,6 +39412,12 @@ values-b+pt+BR	string	kitsu_settings	-	Mostrar posters do Kitsu
 values-b+pt+BR	string	legal_notice	-	Aviso Legal
 values-b+pt+BR	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+pt+BR	string	library	-	Biblioteca
+values-b+pt+BR	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+pt+BR	string	library_not_connected	-	Não conectado
+values-b+pt+BR	string	library_on_device	-	No dispositivo
+values-b+pt+BR	string	library_source	-	Fonte da biblioteca
+values-b+pt+BR	string	library_source_note	-	Uma por vez · trocar recarrega
+values-b+pt+BR	string	library_synced_format	-	Sincronizado há %s
 values-b+pt+BR	string	lightnovel	-	App de Light novel criado pelos mesmos desenvolvedores
 values-b+pt+BR	string	limit_title	-	Máximo de caracteres do título de vídeos
 values-b+pt+BR	string	limit_title_rez	-	Exibir informação do reprodutor
@@ -40025,6 +40295,12 @@ values-b+qt	string	kitsu_settings	-	oohh uuuuggg uuhh uuugg
 values-b+qt	string	legal_notice	-	ah huu oouhhau aoaoaaohoo ha
 values-b+qt	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+qt	string	library	-	uuuuuuuh aaaoo o
+values-b+qt	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+qt	string	library_not_connected	-	ooo-ahah aagg
+values-b+qt	string	library_on_device	-	uuhh ooo
+values-b+qt	string	library_source	-	aaaghh ooo-ahah
+values-b+qt	string	library_source_note	-	ooo aagg · uuhh-ahah
+values-b+qt	string	library_synced_format	-	aaghh %s ooo
 values-b+qt	string	lightnovel	-	ooo-ahahoh ohaaauugghh ahhh haaahooo
 values-b+qt	string	limit_title	-	aaahh aaaahh ooohh uuk uuugg
 values-b+qt	string	limit_title_rez	-	ooohh uuuuhh aaaahhhooh
@@ -40906,6 +41182,12 @@ values-b+ro	string	kitsu_settings	-	Arată afișele de la Kitsu
 values-b+ro	string	legal_notice	-	Aviz juridic (declinarea responsabilității și drepturi de autor)
 values-b+ro	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+ro	string	library	-	Librărie
+values-b+ro	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+ro	string	library_not_connected	-	Neconectat
+values-b+ro	string	library_on_device	-	Pe dispozitiv
+values-b+ro	string	library_source	-	Sursa bibliotecii
+values-b+ro	string	library_source_note	-	Câte una · schimbarea reîncarcă
+values-b+ro	string	library_synced_format	-	Sincronizat acum %s
 values-b+ro	string	lightnovel	-	>Aplicație Light Novel realizată de aceiași dezvoltator
 values-b+ro	string	limit_title	-	Limitarea caracterelor de titlu în player
 values-b+ro	string	limit_title_rez	-	Rezoluția playerului video
@@ -41795,6 +42077,12 @@ values-b+ru	string	kitsu_settings	-	Показывать афиши из Kitsu
 values-b+ru	string	legal_notice	-	Оговорка
 values-b+ru	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+ru	string	library	-	Библиотека
+values-b+ru	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+ru	string	library_not_connected	-	Не подключено
+values-b+ru	string	library_on_device	-	На устройстве
+values-b+ru	string	library_source	-	Источник библиотеки
+values-b+ru	string	library_source_note	-	По одному · переключение перезагружает
+values-b+ru	string	library_synced_format	-	Синхронизировано %s назад
 values-b+ru	string	lightnovel	-	Лёгкое приложение для новелл от тех же разработчиков
 values-b+ru	string	limit_title	-	Максимум символов
 values-b+ru	string	limit_title_rez	-	Показывать информацию про видеоплеер
@@ -42678,6 +42966,12 @@ values-b+sk	string	kitsu_settings	-	Zobraziť plagáty z Kitsu
 values-b+sk	string	legal_notice	-	Vylúčenie zodpovednosti
 values-b+sk	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+sk	string	library	-	Knižnica
+values-b+sk	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+sk	string	library_not_connected	-	Nepripojené
+values-b+sk	string	library_on_device	-	V zariadení
+values-b+sk	string	library_source	-	Zdroj knižnice
+values-b+sk	string	library_source_note	-	Jeden naraz · prepnutie znova načíta
+values-b+sk	string	library_synced_format	-	Synchronizované pred %s
 values-b+sk	string	lightnovel	-	Nenáročná aplikácia pre romány od rovnakých vývojárov
 values-b+sk	string	limit_title	-	Maximálny počet znakov v názve prehrávača
 values-b+sk	string	limit_title_rez	-	Informácie o prehrávači
@@ -43557,6 +43851,12 @@ values-b+so	string	kitsu_settings	-	Tusi Boodhka Kitsu
 values-b+so	string	legal_notice	-	Aaraar
 values-b+so	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+so	string	library	-	Kaydka
+values-b+so	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+so	string	library_not_connected	-	Lama xiriirin
+values-b+so	string	library_on_device	-	Qalabka ku jira
+values-b+so	string	library_source	-	Isha kaydka
+values-b+so	string	library_source_note	-	Mid mid · beddelku wuu dib u soo raraa
+values-b+so	string	library_synced_format	-	La waafajiyay %s kahor
 values-b+so	string	lightnovel	-	Light novel app, isla dhiseyaasha appkan baa leh
 values-b+so	string	limit_title	-	Tirada inta ka muuqanaysa magaca filinka
 values-b+so	string	limit_title_rez	-	Daaraha korkiisa
@@ -44436,6 +44736,12 @@ values-b+sq	string	kitsu_settings	-	Shfaq posterat nga Kitsu
 values-b+sq	string	legal_notice	-	Mohim përgjegjësie
 values-b+sq	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+sq	string	library	-	Bilblioteka
+values-b+sq	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+sq	string	library_not_connected	-	Nuk është lidhur
+values-b+sq	string	library_on_device	-	Në pajisje
+values-b+sq	string	library_source	-	Burimi i bibliotekës
+values-b+sq	string	library_source_note	-	Një në një kohë · ndërrimi ringarkon
+values-b+sq	string	library_synced_format	-	Sinkronizuar para %s
 values-b+sq	string	lightnovel	-	Aplikacioni Light Novel nga të njëjtit developer-a
 values-b+sq	string	limit_title	-	Numri maksimal i karaktereve të titullit
 values-b+sq	string	limit_title_rez	-	Shfaq informacionin e luajtësit
@@ -45315,6 +45621,12 @@ values-b+sv	string	kitsu_settings	-	Visa bilder från Kitsu
 values-b+sv	string	legal_notice	-	Ansvarsfriskrivning
 values-b+sv	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+sv	string	library	-	Bibliotek
+values-b+sv	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+sv	string	library_not_connected	-	Inte ansluten
+values-b+sv	string	library_on_device	-	På enheten
+values-b+sv	string	library_source	-	Bibliotekskälla
+values-b+sv	string	library_source_note	-	En i taget · byte laddar om
+values-b+sv	string	library_synced_format	-	Synkroniserad för %s sedan
 values-b+sv	string	lightnovel	-	Lightnovel app av samma utvecklare
 values-b+sv	string	limit_title	-	Max tecken i videospelartiteln
 values-b+sv	string	limit_title_rez	-	Visa videospelarens information
@@ -46194,6 +46506,12 @@ values-b+ta	string	kitsu_settings	-	கிட்சுவிலிருந்�
 values-b+ta	string	legal_notice	-	மறுப்பு
 values-b+ta	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+ta	string	library	-	நூலகம்
+values-b+ta	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+ta	string	library_not_connected	-	இணைக்கப்படவில்லை
+values-b+ta	string	library_on_device	-	சாதனத்தில்
+values-b+ta	string	library_source	-	நூலக மூலம்
+values-b+ta	string	library_source_note	-	ஒரு நேரத்தில் ஒன்று · மாற்றினால் மீண்டும் ஏற்றும்
+values-b+ta	string	library_synced_format	-	%s முன்பு ஒத்திசைக்கப்பட்டது
 values-b+ta	string	lightnovel	-	அதே தேவ்சின் ஒளி நாவல் பயன்பாடு
 values-b+ta	string	limit_title	-	வீடியோ பிளேயர் தலைப்பு மேக்ச் சார்ச்
 values-b+ta	string	limit_title_rez	-	பிளேயர் தகவலைக் காட்டு
@@ -47073,6 +47391,12 @@ values-b+ti	string	kitsu_settings	-	Show posters from Kitsu
 values-b+ti	string	legal_notice	-	Disclaimer
 values-b+ti	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+ti	string	library	-	Library
+values-b+ti	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+ti	string	library_not_connected	-	ኣይተራኸበን
+values-b+ti	string	library_on_device	-	ኣብ መሳርሒ
+values-b+ti	string	library_source	-	ምንጪ ቤተ-መጻሕፍቲ
+values-b+ti	string	library_source_note	-	ሓደ ብሓደ · ምቕያር ዳግም ይጽዕን
+values-b+ti	string	library_synced_format	-	ቅድሚ %s ተሰማሚዑ
 values-b+ti	string	lightnovel	-	Light novel app by the same devs
 values-b+ti	string	limit_title	-	Video player title max chars
 values-b+ti	string	limit_title_rez	-	Show player information
@@ -47952,6 +48276,12 @@ values-b+tl	string	kitsu_settings	-	Ipakita ang posters mula sa Kitsu
 values-b+tl	string	legal_notice	-	Disclaimer
 values-b+tl	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+tl	string	library	-	Library
+values-b+tl	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+tl	string	library_not_connected	-	Hindi nakakonekta
+values-b+tl	string	library_on_device	-	Sa device
+values-b+tl	string	library_source	-	Pinagmulan ng library
+values-b+tl	string	library_source_note	-	Isa-isa · nagre-reload kapag nagpalit
+values-b+tl	string	library_synced_format	-	Na-sync %s ang nakalipas
 values-b+tl	string	lightnovel	-	Light novel app ng parehong devs
 values-b+tl	string	limit_title	-	Video player title max chars
 values-b+tl	string	limit_title_rez	-	Show player information
@@ -48831,6 +49161,12 @@ values-b+tr	string	kitsu_settings	-	Kitsu posterlerini göster
 values-b+tr	string	legal_notice	-	Yasal uyarı
 values-b+tr	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+tr	string	library	-	Kütüphane
+values-b+tr	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+tr	string	library_not_connected	-	Bağlı değil
+values-b+tr	string	library_on_device	-	Cihazda
+values-b+tr	string	library_source	-	Kütüphane kaynağı
+values-b+tr	string	library_source_note	-	Aynı anda bir tane · değiştirmek yeniden yükler
+values-b+tr	string	library_synced_format	-	%s önce eşitlendi
 values-b+tr	string	lightnovel	-	Aynı geliştiricilerin Lightnovel Crawler uygulaması
 values-b+tr	string	limit_title	-	Video oynatıcı başlığı karakter üst sınırı
 values-b+tr	string	limit_title_rez	-	Oynatıcı bilgisini göster
@@ -49720,6 +50056,12 @@ values-b+uk	string	kitsu_settings	-	Показувати плакати від K
 values-b+uk	string	legal_notice	-	Застереження
 values-b+uk	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+uk	string	library	-	Бібліотека
+values-b+uk	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+uk	string	library_not_connected	-	Не підключено
+values-b+uk	string	library_on_device	-	На пристрої
+values-b+uk	string	library_source	-	Джерело бібліотеки
+values-b+uk	string	library_source_note	-	По одному · перемикання перезавантажує
+values-b+uk	string	library_synced_format	-	Синхронізовано %s тому
 values-b+uk	string	lightnovel	-	Застосунок для ранобе від тих самих розробників
 values-b+uk	string	limit_title	-	Макс. кількість символів у заголовку програвача
 values-b+uk	string	limit_title_rez	-	Показувати інформацію про програвач
@@ -50599,6 +50941,12 @@ values-b+ur	string	kitsu_settings	-	کٹسو سے پوسٹر نمایش کریں
 values-b+ur	string	legal_notice	-	دستبرداری
 values-b+ur	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+ur	string	library	-	لائبریری
+values-b+ur	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+ur	string	library_not_connected	-	منسلک نہیں
+values-b+ur	string	library_on_device	-	ڈیوائس پر
+values-b+ur	string	library_source	-	لائبریری کا ذریعہ
+values-b+ur	string	library_source_note	-	ایک وقت میں ایک · تبدیل کرنے پر دوبارہ لوڈ ہوتا ہے
+values-b+ur	string	library_synced_format	-	%s پہلے ہم آہنگ کیا گیا
 values-b+ur	string	lightnovel	-	یہ لائٹ ناول ایپ وہی ڈویلپرز نے تیار کی ہے جو اس ایپ کو ڈویلپ کیا ہے
 values-b+ur	string	limit_title	-	ویڈیو پلیئر کے عنوان کے زیادہ سے زیادہ حروف
 values-b+ur	string	limit_title_rez	-	ویڈیو پلیئر resolution
@@ -51473,6 +51821,12 @@ values-b+vi	string	kitsu_settings	-	Hiển thị poster từ Kitsu
 values-b+vi	string	legal_notice	-	Tuyên bố miễn trừ trách nhiệm
 values-b+vi	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+vi	string	library	-	Thư viện
+values-b+vi	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+vi	string	library_not_connected	-	Chưa kết nối
+values-b+vi	string	library_on_device	-	Trên thiết bị
+values-b+vi	string	library_source	-	Nguồn thư viện
+values-b+vi	string	library_source_note	-	Mỗi lần một nguồn · chuyển sẽ tải lại
+values-b+vi	string	library_synced_format	-	Đã đồng bộ %s trước
 values-b+vi	string	lightnovel	-	Ứng dụng đọc tiểu thuyết của cùng nhà phát triển
 values-b+vi	string	limit_title	-	Số ký tự tối đa tiêu đề trình phát
 values-b+vi	string	limit_title_rez	-	Hiển thị thông tin trình phát
@@ -52347,6 +52701,12 @@ values-b+zh	string	kitsu_settings	-	显示来自 Kitsu 的封面
 values-b+zh	string	legal_notice	-	免责声明
 values-b+zh	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+zh	string	library	-	库
+values-b+zh	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+zh	string	library_not_connected	-	未连接
+values-b+zh	string	library_on_device	-	本机
+values-b+zh	string	library_source	-	媒体库来源
+values-b+zh	string	library_source_note	-	一次一个 · 切换会重新加载
+values-b+zh	string	library_synced_format	-	%s前已同步
 values-b+zh	string	lightnovel	-	由相同开发者开发的轻小说应用
 values-b+zh	string	limit_title	-	视频播放器标题最多字符
 values-b+zh	string	limit_title_rez	-	显示播放器信息
@@ -53222,6 +53582,12 @@ values-b+zh+TW	string	kitsu_settings	-	顯示來自 Kitsu 的封面
 values-b+zh+TW	string	legal_notice	-	免責聲明
 values-b+zh+TW	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 values-b+zh+TW	string	library	-	媒體庫
+values-b+zh+TW	string	library_episodes_progress	-	%1$d / %2$d %3$s
+values-b+zh+TW	string	library_not_connected	-	未連線
+values-b+zh+TW	string	library_on_device	-	本機
+values-b+zh+TW	string	library_source	-	媒體庫來源
+values-b+zh+TW	string	library_source_note	-	一次一個 · 切換會重新載入
+values-b+zh+TW	string	library_synced_format	-	%s前已同步
 values-b+zh+TW	string	lightnovel	-	由相同開發者開發的輕小說應用程式
 values-b+zh+TW	string	limit_title	-	影片播放器標題最大字數
 values-b+zh+TW	string	limit_title_rez	-	顯示播放器資訊
@@ -54101,6 +54467,12 @@ en	string	kitsu_settings	-	Show posters from Kitsu
 en	string	legal_notice	-	Disclaimer
 en	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 en	string	library	-	Library
+en	string	library_episodes_progress	-	%1$d / %2$d %3$s
+en	string	library_not_connected	-	Not connected
+en	string	library_on_device	-	On device
+en	string	library_source	-	Library source
+en	string	library_source_note	-	One at a time · switching reloads
+en	string	library_synced_format	-	Synced %s ago
 en	string	lightnovel	-	Light novel app by the same devs
 en	string	limit_title	-	Video player title max chars
 en	string	limit_title_rez	-	Show player information
@@ -54980,6 +55352,12 @@ en-US	string	kitsu_settings	-	Show posters from Kitsu
 en-US	string	legal_notice	-	Disclaimer
 en-US	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 en-US	string	library	-	Library
+en-US	string	library_episodes_progress	-	%1$d / %2$d %3$s
+en-US	string	library_not_connected	-	Not connected
+en-US	string	library_on_device	-	On device
+en-US	string	library_source	-	Library source
+en-US	string	library_source_note	-	One at a time · switching reloads
+en-US	string	library_synced_format	-	Synced %s ago
 en-US	string	lightnovel	-	Light novel app by the same devs
 en-US	string	limit_title	-	Video player title max chars
 en-US	string	limit_title_rez	-	Show player information
@@ -55859,6 +56237,12 @@ en-GB	string	kitsu_settings	-	Show posters from Kitsu
 en-GB	string	legal_notice	-	Disclaimer
 en-GB	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 en-GB	string	library	-	Library
+en-GB	string	library_episodes_progress	-	%1$d / %2$d %3$s
+en-GB	string	library_not_connected	-	Not connected
+en-GB	string	library_on_device	-	On device
+en-GB	string	library_source	-	Library source
+en-GB	string	library_source_note	-	One at a time · switching reloads
+en-GB	string	library_synced_format	-	Synced %s ago
 en-GB	string	lightnovel	-	Light novel app by the same devs
 en-GB	string	limit_title	-	Video player title max chars
 en-GB	string	limit_title_rez	-	Show player information
@@ -56743,6 +57127,12 @@ pt	string	kitsu_settings	-	Mostrar posters do kitsu
 pt	string	legal_notice	-	Aviso Legal
 pt	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 pt	string	library	-	Biblioteca
+pt	string	library_episodes_progress	-	%1$d / %2$d %3$s
+pt	string	library_not_connected	-	Não conectado
+pt	string	library_on_device	-	No dispositivo
+pt	string	library_source	-	Origem da biblioteca
+pt	string	library_source_note	-	Uma de cada vez · mudar recarrega
+pt	string	library_synced_format	-	Sincronizado há %s
 pt	string	lightnovel	-	App light novel pelos mesmos devs
 pt	string	limit_title	-	Máximo de caracteres do título no player de video
 pt	string	limit_title_rez	-	Mostrar informações do player de vídeo
@@ -57627,6 +58017,12 @@ pt-PT	string	kitsu_settings	-	Mostrar posters do kitsu
 pt-PT	string	legal_notice	-	Aviso Legal
 pt-PT	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 pt-PT	string	library	-	Biblioteca
+pt-PT	string	library_episodes_progress	-	%1$d / %2$d %3$s
+pt-PT	string	library_not_connected	-	Não conectado
+pt-PT	string	library_on_device	-	No dispositivo
+pt-PT	string	library_source	-	Origem da biblioteca
+pt-PT	string	library_source_note	-	Uma de cada vez · mudar recarrega
+pt-PT	string	library_synced_format	-	Sincronizado há %s
 pt-PT	string	lightnovel	-	App light novel pelos mesmos devs
 pt-PT	string	limit_title	-	Máximo de caracteres do título no player de video
 pt-PT	string	limit_title_rez	-	Mostrar informações do player de vídeo
@@ -58511,6 +58907,12 @@ pt-BR	string	kitsu_settings	-	Mostrar posters do Kitsu
 pt-BR	string	legal_notice	-	Aviso Legal
 pt-BR	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 pt-BR	string	library	-	Biblioteca
+pt-BR	string	library_episodes_progress	-	%1$d / %2$d %3$s
+pt-BR	string	library_not_connected	-	Não conectado
+pt-BR	string	library_on_device	-	No dispositivo
+pt-BR	string	library_source	-	Fonte da biblioteca
+pt-BR	string	library_source_note	-	Uma por vez · trocar recarrega
+pt-BR	string	library_synced_format	-	Sincronizado há %s
 pt-BR	string	lightnovel	-	App de Light novel criado pelos mesmos desenvolvedores
 pt-BR	string	limit_title	-	Máximo de caracteres do título de vídeos
 pt-BR	string	limit_title_rez	-	Exibir informação do reprodutor
@@ -59390,6 +59792,12 @@ fil	string	kitsu_settings	-	Ipakita ang posters mula sa Kitsu
 fil	string	legal_notice	-	Disclaimer
 fil	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 fil	string	library	-	Library
+fil	string	library_episodes_progress	-	%1$d / %2$d %3$s
+fil	string	library_not_connected	-	Hindi nakakonekta
+fil	string	library_on_device	-	Sa device
+fil	string	library_source	-	Pinagmulan ng library
+fil	string	library_source_note	-	Isa-isa · nagre-reload kapag nagpalit
+fil	string	library_synced_format	-	Na-sync %s ang nakalipas
 fil	string	lightnovel	-	Light novel app ng parehong devs
 fil	string	limit_title	-	Video player title max chars
 fil	string	limit_title_rez	-	Show player information
@@ -60269,6 +60677,12 @@ tl	string	kitsu_settings	-	Ipakita ang posters mula sa Kitsu
 tl	string	legal_notice	-	Disclaimer
 tl	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 tl	string	library	-	Library
+tl	string	library_episodes_progress	-	%1$d / %2$d %3$s
+tl	string	library_not_connected	-	Hindi nakakonekta
+tl	string	library_on_device	-	Sa device
+tl	string	library_source	-	Pinagmulan ng library
+tl	string	library_source_note	-	Isa-isa · nagre-reload kapag nagpalit
+tl	string	library_synced_format	-	Na-sync %s ang nakalipas
 tl	string	lightnovel	-	Light novel app ng parehong devs
 tl	string	limit_title	-	Video player title max chars
 tl	string	limit_title_rez	-	Show player information
@@ -61148,6 +61562,12 @@ fil-PH	string	kitsu_settings	-	Ipakita ang posters mula sa Kitsu
 fil-PH	string	legal_notice	-	Disclaimer
 fil-PH	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 fil-PH	string	library	-	Library
+fil-PH	string	library_episodes_progress	-	%1$d / %2$d %3$s
+fil-PH	string	library_not_connected	-	Hindi nakakonekta
+fil-PH	string	library_on_device	-	Sa device
+fil-PH	string	library_source	-	Pinagmulan ng library
+fil-PH	string	library_source_note	-	Isa-isa · nagre-reload kapag nagpalit
+fil-PH	string	library_synced_format	-	Na-sync %s ang nakalipas
 fil-PH	string	lightnovel	-	Light novel app ng parehong devs
 fil-PH	string	limit_title	-	Video player title max chars
 fil-PH	string	limit_title_rez	-	Show player information
@@ -62022,6 +62442,12 @@ zh	string	kitsu_settings	-	显示来自 Kitsu 的封面
 zh	string	legal_notice	-	免责声明
 zh	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 zh	string	library	-	库
+zh	string	library_episodes_progress	-	%1$d / %2$d %3$s
+zh	string	library_not_connected	-	未连接
+zh	string	library_on_device	-	本机
+zh	string	library_source	-	媒体库来源
+zh	string	library_source_note	-	一次一个 · 切换会重新加载
+zh	string	library_synced_format	-	%s前已同步
 zh	string	lightnovel	-	由相同开发者开发的轻小说应用
 zh	string	limit_title	-	视频播放器标题最多字符
 zh	string	limit_title_rez	-	显示播放器信息
@@ -62896,6 +63322,12 @@ zh-CN	string	kitsu_settings	-	显示来自 Kitsu 的封面
 zh-CN	string	legal_notice	-	免责声明
 zh-CN	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 zh-CN	string	library	-	库
+zh-CN	string	library_episodes_progress	-	%1$d / %2$d %3$s
+zh-CN	string	library_not_connected	-	未连接
+zh-CN	string	library_on_device	-	本机
+zh-CN	string	library_source	-	媒体库来源
+zh-CN	string	library_source_note	-	一次一个 · 切换会重新加载
+zh-CN	string	library_synced_format	-	%s前已同步
 zh-CN	string	lightnovel	-	由相同开发者开发的轻小说应用
 zh-CN	string	limit_title	-	视频播放器标题最多字符
 zh-CN	string	limit_title_rez	-	显示播放器信息
@@ -63770,6 +64202,12 @@ zh-Hans-CN	string	kitsu_settings	-	显示来自 Kitsu 的封面
 zh-Hans-CN	string	legal_notice	-	免责声明
 zh-Hans-CN	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 zh-Hans-CN	string	library	-	库
+zh-Hans-CN	string	library_episodes_progress	-	%1$d / %2$d %3$s
+zh-Hans-CN	string	library_not_connected	-	未连接
+zh-Hans-CN	string	library_on_device	-	本机
+zh-Hans-CN	string	library_source	-	媒体库来源
+zh-Hans-CN	string	library_source_note	-	一次一个 · 切换会重新加载
+zh-Hans-CN	string	library_synced_format	-	%s前已同步
 zh-Hans-CN	string	lightnovel	-	由相同开发者开发的轻小说应用
 zh-Hans-CN	string	limit_title	-	视频播放器标题最多字符
 zh-Hans-CN	string	limit_title_rez	-	显示播放器信息
@@ -64645,6 +65083,12 @@ zh-TW	string	kitsu_settings	-	顯示來自 Kitsu 的封面
 zh-TW	string	legal_notice	-	免責聲明
 zh-TW	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 zh-TW	string	library	-	媒體庫
+zh-TW	string	library_episodes_progress	-	%1$d / %2$d %3$s
+zh-TW	string	library_not_connected	-	未連線
+zh-TW	string	library_on_device	-	本機
+zh-TW	string	library_source	-	媒體庫來源
+zh-TW	string	library_source_note	-	一次一個 · 切換會重新載入
+zh-TW	string	library_synced_format	-	%s前已同步
 zh-TW	string	lightnovel	-	由相同開發者開發的輕小說應用程式
 zh-TW	string	limit_title	-	影片播放器標題最大字數
 zh-TW	string	limit_title_rez	-	顯示播放器資訊
@@ -65520,6 +65964,12 @@ zh-Hant-TW	string	kitsu_settings	-	顯示來自 Kitsu 的封面
 zh-Hant-TW	string	legal_notice	-	免責聲明
 zh-Hant-TW	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 zh-Hant-TW	string	library	-	媒體庫
+zh-Hant-TW	string	library_episodes_progress	-	%1$d / %2$d %3$s
+zh-Hant-TW	string	library_not_connected	-	未連線
+zh-Hant-TW	string	library_on_device	-	本機
+zh-Hant-TW	string	library_source	-	媒體庫來源
+zh-Hant-TW	string	library_source_note	-	一次一個 · 切換會重新載入
+zh-Hant-TW	string	library_synced_format	-	%s前已同步
 zh-Hant-TW	string	lightnovel	-	由相同開發者開發的輕小說應用程式
 zh-Hant-TW	string	limit_title	-	影片播放器標題最大字數
 zh-Hant-TW	string	limit_title_rez	-	顯示播放器資訊
@@ -66395,6 +66845,12 @@ zh-HK	string	kitsu_settings	-	顯示來自 Kitsu 的封面
 zh-HK	string	legal_notice	-	免責聲明
 zh-HK	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 zh-HK	string	library	-	媒體庫
+zh-HK	string	library_episodes_progress	-	%1$d / %2$d %3$s
+zh-HK	string	library_not_connected	-	未連線
+zh-HK	string	library_on_device	-	本機
+zh-HK	string	library_source	-	媒體庫來源
+zh-HK	string	library_source_note	-	一次一個 · 切換會重新載入
+zh-HK	string	library_synced_format	-	%s前已同步
 zh-HK	string	lightnovel	-	由相同開發者開發的輕小說應用程式
 zh-HK	string	limit_title	-	影片播放器標題最大字數
 zh-HK	string	limit_title_rez	-	顯示播放器資訊
@@ -67270,6 +67726,12 @@ zh-Hant-HK	string	kitsu_settings	-	顯示來自 Kitsu 的封面
 zh-Hant-HK	string	legal_notice	-	免責聲明
 zh-Hant-HK	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 zh-Hant-HK	string	library	-	媒體庫
+zh-Hant-HK	string	library_episodes_progress	-	%1$d / %2$d %3$s
+zh-Hant-HK	string	library_not_connected	-	未連線
+zh-Hant-HK	string	library_on_device	-	本機
+zh-Hant-HK	string	library_source	-	媒體庫來源
+zh-Hant-HK	string	library_source_note	-	一次一個 · 切換會重新載入
+zh-Hant-HK	string	library_synced_format	-	%s前已同步
 zh-Hant-HK	string	lightnovel	-	由相同開發者開發的輕小說應用程式
 zh-Hant-HK	string	limit_title	-	影片播放器標題最大字數
 zh-Hant-HK	string	limit_title_rez	-	顯示播放器資訊
@@ -68149,6 +68611,12 @@ no	string	kitsu_settings	-	Vis plakater fra Kitsu
 no	string	legal_notice	-	Disclaimer
 no	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 no	string	library	-	Bibliotek
+no	string	library_episodes_progress	-	%1$d / %2$d %3$s
+no	string	library_not_connected	-	Ikke tilkoblet
+no	string	library_on_device	-	På enheten
+no	string	library_source	-	Bibliotekkilde
+no	string	library_source_note	-	Én om gangen · bytte laster inn på nytt
+no	string	library_synced_format	-	Synkronisert for %s siden
 no	string	lightnovel	-	Light novel app av samme devs
 no	string	limit_title	-	Maks. antall tegn for navn i videospiller
 no	string	limit_title_rez	-	Videooppløsning
@@ -69028,6 +69496,12 @@ nb	string	kitsu_settings	-	Show posters from Kitsu
 nb	string	legal_notice	-	Disclaimer
 nb	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 nb	string	library	-	Library
+nb	string	library_episodes_progress	-	%1$d / %2$d %3$s
+nb	string	library_not_connected	-	Not connected
+nb	string	library_on_device	-	On device
+nb	string	library_source	-	Library source
+nb	string	library_source_note	-	One at a time · switching reloads
+nb	string	library_synced_format	-	Synced %s ago
 nb	string	lightnovel	-	Light novel app by the same devs
 nb	string	limit_title	-	Video player title max chars
 nb	string	limit_title_rez	-	Show player information
@@ -69907,6 +70381,12 @@ nb-NO	string	kitsu_settings	-	Show posters from Kitsu
 nb-NO	string	legal_notice	-	Disclaimer
 nb-NO	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 nb-NO	string	library	-	Library
+nb-NO	string	library_episodes_progress	-	%1$d / %2$d %3$s
+nb-NO	string	library_not_connected	-	Not connected
+nb-NO	string	library_on_device	-	On device
+nb-NO	string	library_source	-	Library source
+nb-NO	string	library_source_note	-	One at a time · switching reloads
+nb-NO	string	library_synced_format	-	Synced %s ago
 nb-NO	string	lightnovel	-	Light novel app by the same devs
 nb-NO	string	limit_title	-	Video player title max chars
 nb-NO	string	limit_title_rez	-	Show player information
@@ -70788,6 +71268,12 @@ iw	string	kitsu_settings	-	הצג פוסטרים מKitsu
 iw	string	legal_notice	-	כתב ויתור
 iw	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 iw	string	library	-	ספריה
+iw	string	library_episodes_progress	-	%1$d / %2$d %3$s
+iw	string	library_not_connected	-	לא מחובר
+iw	string	library_on_device	-	במכשיר
+iw	string	library_source	-	מקור הספריה
+iw	string	library_source_note	-	אחד בכל פעם · החלפה טוענת מחדש
+iw	string	library_synced_format	-	סונכרן לפני %s
 iw	string	lightnovel	-	אפליקצית רומנים קלים על ידי אותו מפתחים
 iw	string	limit_title	-	נגן וידאו כותרת מקסימום תווים
 iw	string	limit_title_rez	-	רזולוציית נגן וידאו
@@ -71669,6 +72155,12 @@ he	string	kitsu_settings	-	הצג פוסטרים מKitsu
 he	string	legal_notice	-	כתב ויתור
 he	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 he	string	library	-	ספריה
+he	string	library_episodes_progress	-	%1$d / %2$d %3$s
+he	string	library_not_connected	-	לא מחובר
+he	string	library_on_device	-	במכשיר
+he	string	library_source	-	מקור הספריה
+he	string	library_source_note	-	אחד בכל פעם · החלפה טוענת מחדש
+he	string	library_synced_format	-	סונכרן לפני %s
 he	string	lightnovel	-	אפליקצית רומנים קלים על ידי אותו מפתחים
 he	string	limit_title	-	נגן וידאו כותרת מקסימום תווים
 he	string	limit_title_rez	-	רזולוציית נגן וידאו
@@ -72550,6 +73042,12 @@ he-IL	string	kitsu_settings	-	הצג פוסטרים מKitsu
 he-IL	string	legal_notice	-	כתב ויתור
 he-IL	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 he-IL	string	library	-	ספריה
+he-IL	string	library_episodes_progress	-	%1$d / %2$d %3$s
+he-IL	string	library_not_connected	-	לא מחובר
+he-IL	string	library_on_device	-	במכשיר
+he-IL	string	library_source	-	מקור הספריה
+he-IL	string	library_source_note	-	אחד בכל פעם · החלפה טוענת מחדש
+he-IL	string	library_synced_format	-	סונכרן לפני %s
 he-IL	string	lightnovel	-	אפליקצית רומנים קלים על ידי אותו מפתחים
 he-IL	string	limit_title	-	נגן וידאו כותרת מקסימום תווים
 he-IL	string	limit_title_rez	-	רזולוציית נגן וידאו
@@ -73424,6 +73922,12 @@ in	string	kitsu_settings	-	Tampilkan poster dari Kitsu
 in	string	legal_notice	-	Disclaimer
 in	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 in	string	library	-	Pustaka
+in	string	library_episodes_progress	-	%1$d / %2$d %3$s
+in	string	library_not_connected	-	Tidak terhubung
+in	string	library_on_device	-	Di perangkat
+in	string	library_source	-	Sumber pustaka
+in	string	library_source_note	-	Satu per satu · beralih memuat ulang
+in	string	library_synced_format	-	Disinkronkan %s lalu
 in	string	lightnovel	-	Aplikasi novel ringan dari developer yang sama
 in	string	limit_title	-	Karakter maksimal judul pemutar video
 in	string	limit_title_rez	-	Tampilkan informasi pemutar
@@ -74298,6 +74802,12 @@ id	string	kitsu_settings	-	Tampilkan poster dari Kitsu
 id	string	legal_notice	-	Disclaimer
 id	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 id	string	library	-	Pustaka
+id	string	library_episodes_progress	-	%1$d / %2$d %3$s
+id	string	library_not_connected	-	Tidak terhubung
+id	string	library_on_device	-	Di perangkat
+id	string	library_source	-	Sumber pustaka
+id	string	library_source_note	-	Satu per satu · beralih memuat ulang
+id	string	library_synced_format	-	Disinkronkan %s lalu
 id	string	lightnovel	-	Aplikasi novel ringan dari developer yang sama
 id	string	limit_title	-	Karakter maksimal judul pemutar video
 id	string	limit_title_rez	-	Tampilkan informasi pemutar
@@ -75172,6 +75682,12 @@ id-ID	string	kitsu_settings	-	Tampilkan poster dari Kitsu
 id-ID	string	legal_notice	-	Disclaimer
 id-ID	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 id-ID	string	library	-	Pustaka
+id-ID	string	library_episodes_progress	-	%1$d / %2$d %3$s
+id-ID	string	library_not_connected	-	Tidak terhubung
+id-ID	string	library_on_device	-	Di perangkat
+id-ID	string	library_source	-	Sumber pustaka
+id-ID	string	library_source_note	-	Satu per satu · beralih memuat ulang
+id-ID	string	library_synced_format	-	Disinkronkan %s lalu
 id-ID	string	lightnovel	-	Aplikasi novel ringan dari developer yang sama
 id-ID	string	limit_title	-	Karakter maksimal judul pemutar video
 id-ID	string	limit_title_rez	-	Tampilkan informasi pemutar
@@ -76051,6 +76567,12 @@ arz	string	kitsu_settings	-	Show posters from Kitsu
 arz	string	legal_notice	-	Disclaimer
 arz	string	legal_notice_text	-	Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.
 arz	string	library	-	Library
+arz	string	library_episodes_progress	-	%1$d / %2$d %3$s
+arz	string	library_not_connected	-	Not connected
+arz	string	library_on_device	-	On device
+arz	string	library_source	-	Library source
+arz	string	library_source_note	-	One at a time · switching reloads
+arz	string	library_synced_format	-	Synced %s ago
 arz	string	lightnovel	-	Light novel app by the same devs
 arz	string	limit_title	-	Video player title max chars
 arz	string	limit_title_rez	-	Show player information

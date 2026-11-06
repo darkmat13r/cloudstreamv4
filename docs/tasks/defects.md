@@ -1660,7 +1660,7 @@ behaviour that task had to keep.
 
 ## BUG-34 — On TV, LEFT from a text field never reaches the rail · **medium** · measured 2026-11-05
 
-**Status:** fixed for search in `KMP-42`, and still open for the library's filter, which passes no `onLeftEdge`. The cause was as guessed below: `TextField` now handles Left before the cursor does, and calls `onLeftEdge` when nothing in the composition is to its left. Measured on `Television_720p`, API 36, with the Compose rail, driven by `DpadDriver`.
+**Status:** fixed for search in `KMP-42`, and for the library's filter in `KMP-49`: the provider button is now to the field's left, so Left reaches it and the button's Left reaches the rail, and the field passes `onLeftEdge` as search's does for when nothing is to its left. `LibrarySourcesTvNavigationTest.leftFromTheFieldReachesTheRail` presses that route in the real app. The cause was as guessed below: `TextField` now handles Left before the cursor does, and calls `onLeftEdge` when nothing in the composition is to its left. Measured on `Television_720p`, API 36, with the Compose rail, driven by `DpadDriver`.
 
 From the search field or the library's filter, LEFT does nothing, however many times it is pressed. A person on the top
 row of either page has to go down a row first to reach the rail. Down still leaves the field, so it is not a trap.

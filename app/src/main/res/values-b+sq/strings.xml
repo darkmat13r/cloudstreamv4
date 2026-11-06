@@ -359,6 +359,11 @@
 <string name="kitsu_settings">"Shfaq posterat nga Kitsu"</string>
 <string name="legal_notice">"Mohim përgjegjësie"</string>
 <string name="library">"Bilblioteka"</string>
+<string name="library_not_connected">"Nuk është lidhur"</string>
+<string name="library_on_device">"Në pajisje"</string>
+<string name="library_source">"Burimi i bibliotekës"</string>
+<string name="library_source_note">"Një në një kohë · ndërrimi ringarkon"</string>
+<string name="library_synced_format" formatted="true">"Sinkronizuar para %s"</string>
 <string name="lightnovel">"Aplikacioni Light Novel nga të njëjtit developer-a"</string>
 <string name="limit_title">"Numri maksimal i karaktereve të titullit"</string>
 <string name="limit_title_rez">"Shfaq informacionin e luajtësit"</string>
