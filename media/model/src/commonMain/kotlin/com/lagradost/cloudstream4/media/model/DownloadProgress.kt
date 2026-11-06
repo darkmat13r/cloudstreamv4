@@ -134,6 +134,27 @@ sealed interface DownloadFailure {
 
     /** It failed, and nothing recorded why. */
     data object Unknown : DownloadFailure
+
+    /** The server answered with a status that retrying will not change, such as 403 or 404. */
+    data class ServerRefused(val statusCode: Int) : DownloadFailure
+
+    /** The file on the server changed between requests, so the bytes held cannot be joined to the rest. */
+    data object SourceChanged : DownloadFailure
+
+    /** The finished file is not the size that was declared. */
+    data class SizeMismatch(val expected: Long, val actual: Long) : DownloadFailure
+
+    /** The finished file does not match the hash the caller supplied. */
+    data object HashMismatch : DownloadFailure
+
+    /** Known before the first byte: the folder does not have the room this download needs. */
+    data class InsufficientSpace(val bytesNeeded: Long, val bytesAvailable: Long) : DownloadFailure
+
+    /** The address is one a download may not reach: not http(s), or private, loopback or link-local. */
+    data object AddressRefused : DownloadFailure
+
+    /** A file with the target name is already there, and the caller did not ask to replace it. */
+    data object DestinationExists : DownloadFailure
 }
 
 /** Progress counted in parts rather than bytes, for segmented formats. */
