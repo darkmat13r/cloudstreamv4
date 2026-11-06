@@ -350,12 +350,15 @@
 <string name="home_main_poster_img_des">"主要ポスター"</string>
 <string name="home_more_info">"詳細情報"</string>
 <string name="home_next_random_img_des">"次のランダム"</string>
+<string name="home_none_body">"ソースを選ぶと、ここにその列が表示されます。視聴を続けるとブックマークはソースなしでも残ります。"</string>
+<string name="home_none_headline">"ソースが選択されていません"</string>
 <string name="home_offline_bookmarks_body">"ブックマークはこのデバイスに保存されています。"</string>
 <string name="home_offline_source_headline" formatted="true">"%1$s には接続が必要です"</string>
 <string name="home_play">"再生"</string>
 <string name="home_random">"任意"</string>
 <string name="home_search_only_body">"ホームページを持つ拡張機能はありませんが、検索は引き続き利用できます。"</string>
 <string name="home_source">"ソース"</string>
+<string name="home_source_none_subtitle">"列なし · あなたの列は残ります"</string>
 <string name="install_prerelease">"プレリリース版をインストール"</string>
 <string name="is_adult">"18+"</string>
 <string name="jsdelivr_enabled">"GitHubに接続できません。jsDelivrプロキシをオンにします…"</string>

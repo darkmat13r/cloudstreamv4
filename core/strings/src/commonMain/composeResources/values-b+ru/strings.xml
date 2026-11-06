@@ -350,12 +350,15 @@
 <string name="home_main_poster_img_des">Главный плакат</string>
 <string name="home_more_info">Подробнее</string>
 <string name="home_next_random_img_des">Следующий случайный</string>
+<string name="home_none_body">Выберите источник, чтобы увидеть здесь его ряды. Продолжить просмотр и ваши закладки останутся и без него.</string>
+<string name="home_none_headline">Источник не выбран</string>
 <string name="home_offline_bookmarks_body">Ваши закладки сохранены на этом устройстве.</string>
 <string name="home_offline_source_headline">%1$s нужно подключение</string>
 <string name="home_play">Смотреть</string>
 <string name="home_random">Случайный</string>
 <string name="home_search_only_body">Ни у одного из ваших дополнений нет главной страницы, но в них всё равно можно искать.</string>
 <string name="home_source">Источник</string>
+<string name="home_source_none_subtitle">НЕТ РЯДОВ · ВАШИ РЯДЫ ОСТАЮТСЯ</string>
 <string name="install_prerelease">Установить предварительный выпуск</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">Не удалось подключиться к GitHub. Включаем проксирование через jsDelivr…</string>

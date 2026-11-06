@@ -350,12 +350,15 @@
 <string name="home_main_poster_img_des">Poster principale</string>
 <string name="home_more_info">Più info</string>
 <string name="home_next_random_img_des">Prossimo casuale</string>
+<string name="home_none_body">Scegli una fonte per vederne qui le righe. Continua a guardare e i tuoi segnalibri restano anche senza.</string>
+<string name="home_none_headline">Nessuna fonte scelta</string>
 <string name="home_offline_bookmarks_body">I tuoi segnalibri sono salvati su questo dispositivo.</string>
 <string name="home_offline_source_headline">%1$s richiede una connessione</string>
 <string name="home_play">Riproduci</string>
 <string name="home_random">Casuale</string>
 <string name="home_search_only_body">Nessuna delle tue estensioni ha una pagina iniziale, ma puoi comunque cercare al loro interno.</string>
 <string name="home_source">Fonte</string>
+<string name="home_source_none_subtitle">NESSUNA RIGA · LE TUE RIGHE RESTANO</string>
 <string name="install_prerelease">Installa la versione pre-release</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">Impossibile raggiungere GitHub. Attivazione proxy jsDelivr…</string>

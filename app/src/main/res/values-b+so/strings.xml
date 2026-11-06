@@ -254,12 +254,15 @@
 <string name="home_main_poster_img_des">"Boodhka weyn"</string>
 <string name="home_more_info">"Warbixin dheeraad ah"</string>
 <string name="home_next_random_img_des">"X.la'aanta xigta"</string>
+<string name="home_none_body">"Dooro il si aad halkan ugu aragto safafkiisa. Sii daawo iyo calaamadahaagu way sii jiraan la'aantiis."</string>
+<string name="home_none_headline">"Il lama dooran"</string>
 <string name="home_offline_bookmarks_body">"Calaamadahaagu waxay ku kaydsan yihiin qalabkan."</string>
 <string name="home_offline_source_headline" formatted="true">"%1$s wuxuu u baahan yahay xiriir"</string>
 <string name="home_play">"Daar"</string>
 <string name="home_random">"Xulasho la'aan"</string>
 <string name="home_search_only_body">"Mid ka mid ah kordhiyeyaashaada ma laha bog hore, laakiin weli waad ka raadin kartaa."</string>
 <string name="home_source">"Xigashada"</string>
+<string name="home_source_none_subtitle">"SAFAF MA JIRAAN · SAFAFKAAGU WAY JIRAAN"</string>
 <string name="install_prerelease">"Soo deji nooca hordhaca ah"</string>
 <string name="is_adult">"18+"</string>
 <string name="kitsu_settings">"Tusi Boodhka Kitsu"</string>

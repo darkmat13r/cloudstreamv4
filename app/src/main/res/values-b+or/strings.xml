@@ -122,10 +122,13 @@
 <string name="home_info">"ସୂଚନା"</string>
 <string name="home_main_poster_img_des">"ମୁଖ୍ୟ ପୋଷ୍ଟର୍"</string>
 <string name="home_more_info">"ଅଧିକ ସୂଚନା"</string>
+<string name="home_none_body">"ଏଠାରେ ଏହାର ଧାଡ଼ିଗୁଡ଼ିକ ଦେଖିବାକୁ ଗୋଟିଏ ଉତ୍ସ ବାଛନ୍ତୁ। ଦେଖିବା ଜାରି ରଖନ୍ତୁ ଏବଂ ଆପଣଙ୍କ ବୁକମାର୍କଗୁଡ଼ିକ ଉତ୍ସ ବିନା ରହିଥାଏ।"</string>
+<string name="home_none_headline">"କୌଣସି ଉତ୍ସ ବଛାଯାଇନାହିଁ"</string>
 <string name="home_offline_bookmarks_body">"ଆପଣଙ୍କ ବୁକମାର୍କଗୁଡ଼ିକ ଏହି ଡିଭାଇସରେ ସଞ୍ଚିତ ଅଛି।"</string>
 <string name="home_offline_source_headline" formatted="true">"%1$s ପାଇଁ ସଂଯୋଗ ଆବଶ୍ୟକ"</string>
 <string name="home_play">"ଚଲାଅ"</string>
 <string name="home_search_only_body">"ଆପଣଙ୍କର କୌଣସି ଏକ୍ସଟେନସନରେ ହୋମ୍ ପୃଷ୍ଠା ନାହିଁ, କିନ୍ତୁ ଆପଣ ସେଗୁଡ଼ିକରେ ସନ୍ଧାନ କରିପାରିବେ।"</string>
+<string name="home_source_none_subtitle">"ଧାଡ଼ି ନାହିଁ · ଆପଣଙ୍କ ଧାଡ଼ି ରହେ"</string>
 <string name="library">"ଲାଇବ୍ରେରୀ"</string>
 <string name="live_singular">"ସିଧାପ୍ରସାରଣ"</string>
 <string name="livestreams">"ସିଧାପ୍ରସାରଣ"</string>

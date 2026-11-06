@@ -103,10 +103,13 @@
 <string name="home_main_poster_img_des">ಮೇನ್ ಪೋಸ್ಟರ್</string>
 <string name="home_more_info">ಹೆಚ್ಚಿನ ಮಾಹಿತಿ</string>
 <string name="home_next_random_img_des">ಮುಂದಿನ ರಾಂಡಮ್</string>
+<string name="home_none_body">ಇಲ್ಲಿ ಅದರ ಸಾಲುಗಳನ್ನು ನೋಡಲು ಮೂಲವನ್ನು ಆಯ್ಕೆಮಾಡಿ. ವೀಕ್ಷಣೆ ಮುಂದುವರಿಸಿ ಮತ್ತು ನಿಮ್ಮ ಬುಕ್‌ಮಾರ್ಕ್‌ಗಳು ಮೂಲವಿಲ್ಲದೆಯೂ ಉಳಿಯುತ್ತವೆ.</string>
+<string name="home_none_headline">ಯಾವುದೇ ಮೂಲ ಆಯ್ಕೆ ಮಾಡಿಲ್ಲ</string>
 <string name="home_offline_bookmarks_body">ನಿಮ್ಮ ಬುಕ್‌ಮಾರ್ಕ್‌ಗಳನ್ನು ಈ ಸಾಧನದಲ್ಲಿ ಉಳಿಸಲಾಗಿದೆ.</string>
 <string name="home_offline_source_headline">%1$s ಗೆ ಸಂಪರ್ಕ ಬೇಕು</string>
 <string name="home_play">ಪ್ಲೇ</string>
 <string name="home_search_only_body">ನಿಮ್ಮ ಯಾವುದೇ ವಿಸ್ತರಣೆಗೆ ಹೋಂ ಪುಟವಿಲ್ಲ, ಆದರೆ ನೀವು ಅವುಗಳಲ್ಲಿ ಹುಡುಕಬಹುದು.</string>
+<string name="home_source_none_subtitle">ಸಾಲುಗಳಿಲ್ಲ · ನಿಮ್ಮ ಸಾಲುಗಳು ಉಳಿಯುತ್ತವೆ</string>
 <string name="load_more">ಇನ್ನಷ್ಟು ಲೋಡ್ ಮಾಡಿ</string>
 <string name="loading">ಲೋಡಿಂಗ್…</string>
 <string name="more_like_this">ಇಂತಹ ಇನ್ನಷ್ಟು</string>

@@ -149,7 +149,7 @@ val verifyStringsRoundTrip = tasks.register<strings.VerifyStringsRoundTripTask>(
     baselineLookup.set(layout.projectDirectory.file("oracle-baseline/lookup.tsv"))
     // Every value emitted outside the two localeCopies directories; each must come from the directory that
     // declares it. A REFERENCE_IN_LOCALE or ANDROID_FALLBACK in the second pass means a value is missing.
-    expectedOwn.set(37827)
+    expectedOwn.set(38013)
     outputDir.set(layout.buildDirectory.dir("stringsRoundTrip"))
 }
 

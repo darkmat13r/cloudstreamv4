@@ -314,12 +314,15 @@
 <string name="home_main_poster_img_des">"প্ৰধান পোস্টাৰ"</string>
 <string name="home_more_info">"অধিক তথ্য"</string>
 <string name="home_next_random_img_des">"পৰৱৰ্তী ৰেণ্ডম"</string>
+<string name="home_none_body">"ইয়াত শাৰীবোৰ চাবলৈ এটা উৎস বাছনি কৰক। চোৱা অব্যাহত আৰু আপোনাৰ বুকমাৰ্কসমূহ উৎস নোহোৱাকৈও থাকে।"</string>
+<string name="home_none_headline">"কোনো উৎস বাছনি কৰা হোৱা নাই"</string>
 <string name="home_offline_bookmarks_body">"আপোনাৰ বুকমাৰ্কসমূহ এই ডিভাইচত সংৰক্ষিত।"</string>
 <string name="home_offline_source_headline" formatted="true">"%1$s ক সংযোগৰ প্ৰয়োজন"</string>
 <string name="home_play">"প্লে কৰক"</string>
 <string name="home_random">"যিকোনো এটা"</string>
 <string name="home_search_only_body">"আপোনাৰ কোনো এক্সটেনশ্যনৰ গৃহপৃষ্ঠা নাই, কিন্তু আপুনি সেইবোৰত সন্ধান কৰিব পাৰে।"</string>
 <string name="home_source">"উৎস"</string>
+<string name="home_source_none_subtitle">"শাৰী নাই · আপোনাৰ শাৰী থাকে"</string>
 <string name="is_adult">"১৮+"</string>
 <string name="jsdelivr_enabled">"GitHub পাবলৈ সক্ষম নহ'ল। jsDelivr প্ৰক্সি সক্ৰিয় কৰি দিছে…"</string>
 <string name="jsdelivr_proxy">"GitHub প্ৰক্সি"</string>

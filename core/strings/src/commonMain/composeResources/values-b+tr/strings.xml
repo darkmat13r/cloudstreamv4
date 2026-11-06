@@ -350,12 +350,15 @@
 <string name="home_main_poster_img_des">Ana Afiş</string>
 <string name="home_more_info">Daha fazla bilgi</string>
 <string name="home_next_random_img_des">Sonraki Rastgele</string>
+<string name="home_none_body">Sıralarını burada görmek için bir kaynak seçin. İzlemeye devam et ve yer imleriniz kaynak olmadan da kalır.</string>
+<string name="home_none_headline">Kaynak seçilmedi</string>
 <string name="home_offline_bookmarks_body">Yer imleriniz bu cihazda kayıtlı.</string>
 <string name="home_offline_source_headline">%1$s bağlantı gerektirir</string>
 <string name="home_play">Oynat</string>
 <string name="home_random">Rastgele</string>
 <string name="home_search_only_body">Eklentilerinizin hiçbirinde ana sayfa yok, ancak yine de onlarda arama yapabilirsiniz.</string>
 <string name="home_source">Kaynak</string>
+<string name="home_source_none_subtitle">SIRA YOK · SIRALARINIZ KALIR</string>
 <string name="install_prerelease">Ön sürümünü yükleyin</string>
 <string name="is_adult">+18</string>
 <string name="jsdelivr_enabled">GitHub'a ulaşılamadı. jsDelivr vekil sunucusu etkinleştiriliyor…</string>

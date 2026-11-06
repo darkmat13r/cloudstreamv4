@@ -261,12 +261,15 @@
 <string name="home_main_poster_img_des">"פוסטר ראשי"</string>
 <string name="home_more_info">"יותר מידע"</string>
 <string name="home_next_random_img_des">"ארקאי הבא"</string>
+<string name="home_none_body">"בחרו מקור כדי לראות כאן את השורות שלו. המשך צפייה והסימניות שלך נשארים גם בלעדיו."</string>
+<string name="home_none_headline">"לא נבחר מקור"</string>
 <string name="home_offline_bookmarks_body">"הסימניות שלך שמורות במכשיר הזה."</string>
 <string name="home_offline_source_headline" formatted="true">"%1$s צריך חיבור"</string>
 <string name="home_play">"נגן"</string>
 <string name="home_random">"אקראי"</string>
 <string name="home_search_only_body">"לאף אחת מההרחבות שלך אין דף בית, אבל עדיין אפשר לחפש בהן."</string>
 <string name="home_source">"מקור"</string>
+<string name="home_source_none_subtitle">"אין שורות · השורות שלך נשארות"</string>
 <string name="is_adult">"18+"</string>
 <string name="jsdelivr_enabled">"ההתחברות אל GitHub נכשלה. מדליק פרוקסי אל jsDelivr…"</string>
 <string name="jsdelivr_proxy">"פרוקסי עבור raw.githubusercontent.com"</string>

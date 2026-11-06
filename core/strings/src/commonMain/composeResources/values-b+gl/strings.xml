@@ -177,10 +177,13 @@
 <string name="home_main_poster_img_des">Póster Principal</string>
 <string name="home_more_info">Máis información</string>
 <string name="home_next_random_img_des">Seguinte ó azar</string>
+<string name="home_none_body">Escolle unha fonte para ver aquí as súas filas. Seguir vendo e os teus marcadores quedan sen ela.</string>
+<string name="home_none_headline">Ningunha fonte escollida</string>
 <string name="home_offline_bookmarks_body">Os teus marcadores están gardados neste dispositivo.</string>
 <string name="home_offline_source_headline">%1$s precisa conexión</string>
 <string name="home_play">Reproducir</string>
 <string name="home_search_only_body">Ningunha das súas extensións ten páxina de inicio, pero aínda pode buscar nelas.</string>
+<string name="home_source_none_subtitle">SEN FILAS · AS TÚAS FILAS QUEDAN</string>
 <string name="kitsu_settings">Mostrar pósters de Kitsu</string>
 <string name="library">Biblioteca</string>
 <string name="lightnovel">Aplicativo de novela lixeira dos mesmos desenvolvedores</string>

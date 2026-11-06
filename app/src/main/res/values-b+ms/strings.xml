@@ -284,12 +284,15 @@
 <string name="home_main_poster_img_des">"Poster Utama"</string>
 <string name="home_more_info">"Lebih maklumat"</string>
 <string name="home_next_random_img_des">"Seterusnya Rawak"</string>
+<string name="home_none_body">"Pilih sumber untuk melihat barisnya di sini. Teruskan menonton dan penanda halaman anda kekal tanpanya."</string>
+<string name="home_none_headline">"Tiada sumber dipilih"</string>
 <string name="home_offline_bookmarks_body">"Penanda halaman anda disimpan pada peranti ini."</string>
 <string name="home_offline_source_headline" formatted="true">"%1$s memerlukan sambungan"</string>
 <string name="home_play">"Pasang"</string>
 <string name="home_random">"Rawak"</string>
 <string name="home_search_only_body">"Tiada tambahan anda yang mempunyai halaman utama, tetapi anda masih boleh mencari di dalamnya."</string>
 <string name="home_source">"Sumber"</string>
+<string name="home_source_none_subtitle">"TIADA BARIS · BARIS ANDA KEKAL"</string>
 <string name="is_adult">"18+"</string>
 <string name="jsdelivr_enabled">"Github tidak dapat dicapai. Menghidupkan proksi jsDelivr…"</string>
 <string name="jsdelivr_proxy">"Proksi Github"</string>

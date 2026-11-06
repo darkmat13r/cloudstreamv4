@@ -631,7 +631,10 @@ class HomeScreenTvDeviceTest {
         awaitFocus(ONE.name)
 
         assertEquals(ONE.name, dpad.press(Dpad.Left))
-        assertEquals(ONE.name, dpad.press(Dpad.Up))
+        // None sits above the sources (3h), and is the panel's top.
+        assertEquals(NONE, dpad.press(Dpad.Up))
+        assertEquals(NONE, dpad.press(Dpad.Up))
+        assertEquals(ONE.name, dpad.press(Dpad.Down))
         assertEquals(TWO.name, dpad.press(Dpad.Down))
         assertEquals(TWO.name, dpad.press(Dpad.Down))
         device.pressBack()
@@ -645,6 +648,10 @@ class HomeScreenTvDeviceTest {
         awaitFocus("A 0")
 
         pressUntil(Dpad.Up, SOURCE_ONE)
+        // 3j's order: the source, Reload, Random, Search, then the account.
+        assertEquals(RELOAD, dpad.press(Dpad.Right))
+        assertEquals(RANDOM, dpad.press(Dpad.Right))
+        assertEquals(SEARCH, dpad.press(Dpad.Right))
         assertEquals(ACCOUNTS, dpad.press(Dpad.Right))
         dpad.center()
         rule.waitUntil(WAIT_MS) { effects.isNotEmpty() }
@@ -859,13 +866,15 @@ class HomeScreenTvDeviceTest {
     }
 
     /**
-     * A failure whose detail wraps to three lines is taller than the 216.8dp left under Continue watching at 720p, so the
-     * page moves. It moves until the chrome is wholly off the screen: less would leave it cut by a TV's overscan.
+     * Offline under Continue watching and the bookmarks is taller than what 720p leaves below both rails, so the page moves.
+     * It moves until the chrome is wholly off the screen: less would leave it cut by a TV's overscan. (A failure was this
+     * case's state until 3m made a failure under the local rails a 48dp band, which fits.)
      */
     @Test
     fun aStateTooTallUnderContinueWatchingMovesTheChromeWhollyOffTheScreen() {
-        source.answer = { _, _, _ -> HomePageReply.Failed(LONG_DETAIL) }
+        source.answer = { _, _, _ -> HomePageReply.Offline }
         resuming(3)
+        bookmarking(3)
         showScreen()
 
         awaitFocus(RETRY)
@@ -877,8 +886,25 @@ class HomeScreenTvDeviceTest {
             chrome.all { it.boundsInRoot.bottom <= 0f },
         )
         assertTrue("the button is inside the band", retry.bottom.value <= SCREEN_HEIGHT_DP - 28f + GEOMETRY_SLACK)
+        rule.onNode(isFocused()).assertIsDisplayed()
+    }
+
+    /** 3m: under Continue watching a failure is the 48dp band, whose detail is one ellipsized line, and nothing moves. */
+    @Test
+    fun aFailureWithALongDetailUnderContinueWatchingIsOneBandAndNothingMoves() {
+        source.answer = { _, _, _ -> HomePageReply.Failed(LONG_DETAIL) }
+        resuming(3)
+        showScreen()
+
+        awaitFocus(RETRY)
+        rule.waitForIdle()
+        assertEquals(CHROME_CONTROL_TOP, rule.onNodeWithContentDescription(SOURCE_ONE).getUnclippedBoundsInRoot().top.value, GEOMETRY_SLACK)
         rule.onNodeWithContentDescription("$RESUME 0").assertIsDisplayed()
-        rule.onNodeWithText(LONG_DETAIL).assertIsDisplayed()
+        val detail = rule.onNodeWithText(LONG_DETAIL).getUnclippedBoundsInRoot()
+        val retry = rule.onNode(isFocused()).getUnclippedBoundsInRoot()
+        assertTrue("the detail is one line beside Try again, was $detail against $retry", detail.bottom - detail.top < retry.bottom - retry.top)
+        assertTrue("the detail ends before Try again", detail.right <= retry.left)
+        assertTheRingIsAboveTheBottomBand()
     }
 
     /** What the page reserves for Continue watching above a state, against the card as it really measures. */
@@ -915,7 +941,7 @@ class HomeScreenTvDeviceTest {
         // Back at rest: the chrome and the hero's title are on screen again.
         rule.onNodeWithContentDescription(SOURCE_ONE).assertIsDisplayed()
         rule.onNodeWithText(FEATURED.title).assertIsDisplayed()
-        pressUntil(Dpad.Up, SOURCE_ONE, presses = 1)
+        upToTheSourceControl()
 
         val graph = dpad.walk()
         val expected = listOf(HERO, SOURCE_ONE, ACCOUNTS) + List(3) { "$RESUME $it" } +
@@ -1212,6 +1238,173 @@ class HomeScreenTvDeviceTest {
         assertEquals(BookmarksRailHeight.value, card.bottom.value - chipCell, ROUNDING_SLACK)
     }
 
+    // ---- The chrome, and None (`TV Home Extras` 3h to 3j, 3m) ------------------------------------------------------
+
+    /** Up from the hero lands on whichever chrome cell is nearest above it; the source control is the row's first. */
+    private fun upToTheSourceControl() {
+        if (dpad.press(Dpad.Up) != SOURCE_ONE) pressUntil(Dpad.Left, SOURCE_ONE, presses = 4)
+    }
+
+    @Test
+    fun theChromesCellsNameThemselvesAndAreThereOnlyBesideRows() {
+        rails(1)
+        showScreen()
+        awaitFocus("A 0")
+        pressUntil(Dpad.Up, SOURCE_ONE)
+        // Icon-only, named by its description; the label drawn under it on focus is in the screenshot (3j).
+        assertEquals(RELOAD, dpad.press(Dpad.Right))
+        rule.onNode(isFocused()).assertWidthIsEqualTo(CloudStreamDimens.IconTargetCell)
+        assertEquals(RANDOM, dpad.press(Dpad.Right))
+        assertEquals(SEARCH, dpad.press(Dpad.Right))
+    }
+
+    @Test
+    fun offlineHasNoReloadOrRandomOrSearch() {
+        source.answer = { _, _, _ -> HomePageReply.Offline }
+        showScreen()
+        awaitFocus(RETRY)
+        listOf(RELOAD, RANDOM, SEARCH).forEach { cell ->
+            rule.onAllNodesWithContentDescription(cell).fetchSemanticsNodes().let { assertTrue("no $cell offline", it.isEmpty()) }
+        }
+    }
+
+    @Test
+    fun searchFromTheChromeIsOfThisSource() {
+        rails(1)
+        showScreen()
+        awaitFocus("A 0")
+        pressUntil(Dpad.Up, SOURCE_ONE)
+        pressUntil(Dpad.Right, SEARCH, presses = 3)
+        dpad.center()
+        rule.waitUntil(WAIT_MS) { effects.isNotEmpty() }
+        assertEquals(HomeEffect.OpenSourceSearch(ONE.id), effects.single())
+    }
+
+    @Test
+    fun randomOpensALoadedTitleAndFocusComesBackToItsCell() {
+        rails(2)
+        showScreen()
+        awaitFocus("A 0")
+        pressUntil(Dpad.Up, SOURCE_ONE)
+        pressUntil(Dpad.Right, RANDOM, presses = 2)
+        dpad.center()
+        rule.waitUntil(WAIT_MS) { effects.isNotEmpty() }
+        val opened = effects.single() as HomeEffect.OpenTitle
+        assertTrue("a loaded title, was ${opened.id}", opened.id in (titles("A", 3) + titles("B", 3)).map { "id/$it" })
+        rule.runOnIdle { viewModel.onAction(HomeAction.Disappeared) }
+        onScreen = false
+        rule.waitForIdle()
+        onScreen = true
+        rule.waitForIdle()
+        rule.runOnIdle { viewModel.onAction(HomeAction.Reappeared) }
+        rule.waitUntil(WAIT_MS) { viewModel.state.value.returnTo == null }
+        rule.waitForIdle()
+        assertEquals(RANDOM, dpad.focused())
+    }
+
+    /** 3j: a reload in flight keeps the rows and focus, a second press asks nothing, and the answer swaps in place. */
+    @Test
+    fun aReloadKeepsTheRowsAndFocusWhileItRunsAndSwapsThemInPlace() {
+        rails(1)
+        showScreen()
+        awaitFocus("A 0")
+        pressUntil(Dpad.Up, SOURCE_ONE)
+        pressUntil(Dpad.Right, RELOAD, presses = 1)
+        val before = source.calls.size
+        source.hold = true
+        dpad.center()
+        rule.waitUntil(WAIT_MS) { viewModel.state.value.reloading }
+        dpad.center()
+        rule.waitForIdle()
+        assertEquals("a second press asks nothing", before + 1, source.calls.size)
+        assertEquals(listOf("A"), viewModel.state.value.status.let { (it as? HomeStatus.Showing)?.rows?.map { row -> row.title } })
+        rule.onNodeWithText("A").assertIsDisplayed()
+        assertEquals(RELOAD, dpad.focused())
+    }
+
+    /** 3m: a failed reload shows the error where the rails were, with what the device keeps above it, and Try again. */
+    @Test
+    fun aReloadThatFailsKeepsWhatTheDeviceKeepsAboveTheErrorAndTryAgainTakesFocus() {
+        rails(1)
+        resuming(2)
+        bookmarking(2)
+        featuring(FEATURED)
+        showScreen()
+        awaitFocus(HERO)
+        upToTheSourceControl()
+        pressUntil(Dpad.Right, RELOAD, presses = 1)
+        source.answer = { _, _, _ -> HomePageReply.Failed("HTTP 503") }
+        dpad.center()
+        awaitFocus(RETRY)
+        rule.waitForIdle()
+        rule.onNode(isFocused()).assertIsDisplayed()
+        rule.onNodeWithText("HTTP 503").assertIsDisplayed()
+        // 3m's band, not the full-page state: what failed is its one line, and there is no page headline above it.
+        rule.onNodeWithText("Could not load ${ONE.name}").assertIsDisplayed()
+        rule.onAllNodesWithText(SOURCE_ERROR).fetchSemanticsNodes().let { assertTrue("no full-page headline", it.isEmpty()) }
+        assertTheRingIsAboveTheBottomBand()
+        rule.onAllNodesWithContentDescription(RELOAD).fetchSemanticsNodes().let { assertTrue("no Reload with no rows", it.isEmpty()) }
+        // Up reaches the bookmarks above, then the chips, then Continue watching.
+        val above = generateSequence { dpad.press(Dpad.Up) }.take(4).toList()
+        assertTrue("Up walks the kept rails, was $above", above.any { it?.startsWith(SAVED) == true })
+        assertTrue("and Continue watching, was $above", above.any { it?.startsWith(RESUME) == true })
+    }
+
+    /** 3h: None sits first, and choosing it applies at once and closes. */
+    @Test
+    fun noneIsFirstInThePanelAndChoosingItShowsOnlyWhatTheDeviceKeeps() {
+        rails(1)
+        resuming(1)
+        bookmarking(1)
+        showScreen()
+        awaitFocus("$RESUME 0")
+        pressUntil(Dpad.Up, SOURCE_ONE)
+        dpad.center()
+        awaitFocus(ONE.name)
+        assertEquals(NONE, dpad.press(Dpad.Up))
+        rule.onNodeWithText(NONE_SUBTITLE).assertIsDisplayed()
+        dpad.center()
+        rule.waitUntil(WAIT_MS) { !viewModel.state.value.pickerOpen }
+        assertEquals(HomeSourceId.None, memory.id)
+
+        // 3i: the control names None, focus is back on it, and no source rails, Reload, Random or Search.
+        awaitFocus(SOURCE_NONE)
+        rule.onAllNodesWithText("A").fetchSemanticsNodes().let { assertTrue("no source rails", it.isEmpty()) }
+        listOf(RELOAD, RANDOM, SEARCH).forEach { cell ->
+            rule.onAllNodesWithContentDescription(cell).fetchSemanticsNodes().let { assertTrue("no $cell on None", it.isEmpty()) }
+        }
+        rule.onNodeWithContentDescription("$RESUME 0").assertExists()
+        rule.onNodeWithText(BOOKMARKS).assertIsDisplayed()
+        val graph = dpad.walk()
+        val expected = listOf(SOURCE_NONE, ACCOUNTS, "$RESUME 0", WATCHING, "$SAVED 0")
+        assertEquals(graph.toString(), emptyList<String>(), graph.unreachable(expected))
+        assertEquals(graph.toString(), emptyList<String>(), graph.deadEnds())
+        assertEquals(graph.toString(), emptyList<String>(), graph.traps())
+    }
+
+    @Test
+    fun noneRememberedLandsOnTheFirstCardKeptOnTheDevice() {
+        rails(1)
+        bookmarking(2)
+        memory.id = HomeSourceId.None
+        showScreen()
+        awaitFocus("$SAVED 0")
+        assertTrue("nothing asked of a source", source.calls.isEmpty())
+    }
+
+    /** 3i with neither rail kept: the built state, whose one button opens the panel. */
+    @Test
+    fun noneWithNothingKeptIsAStateWhoseButtonOpensThePanel() {
+        rails(1)
+        memory.id = HomeSourceId.None
+        showScreen()
+        awaitFocus(SOURCES)
+        rule.onNodeWithText(NO_SOURCE).assertIsDisplayed()
+        dpad.center()
+        rule.waitUntil(WAIT_MS) { viewModel.state.value.pickerOpen }
+        awaitFocus(NONE)
+    }
+
     // ---- Screenshots (`INF-11`), compared with the references in src/androidDeviceTest/resources/screenshots ---------
 
     /** As the app shows it: the rail beside the screen, which puts the page at the board's x, and solid posters. */
@@ -1449,6 +1642,70 @@ class HomeScreenTvDeviceTest {
         shelf.kept = kept
     }
 
+    /** 3j at rest with Random focused: the source, Reload, Random named under its cell, Search and the account. */
+    @Test
+    fun screenshotChromeFocusOnRandom() {
+        shot3c()
+        showForScreenshot()
+        awaitFocus("$MORE_INFO · ${ShotTitles[0]}")
+        upToTheSourceControl()
+        pressUntil(Dpad.Right, RANDOM, presses = 2)
+        rule.assertScreenshot("home-chrome-focus-random")
+    }
+
+    /** 3h: the panel with None first and focused, the current source marked. */
+    @Test
+    fun screenshotSourcePanelFocusOnNone() {
+        shotRails()
+        source.options = listOf(ONE, TWO, THREE)
+        showForScreenshot()
+        awaitFocus(ShotTitles[0])
+        pressUntil(Dpad.Up, SOURCE_ONE)
+        dpad.center()
+        awaitFocus(ONE.name)
+        assertEquals(NONE, dpad.press(Dpad.Up))
+        rule.assertScreenshot("home-source-panel-focus-none")
+    }
+
+    /** 3i: None, with Continue watching and the bookmarks, focus on the source control. */
+    @Test
+    fun screenshotNoneFocusOnTheSourceControl() {
+        shot3c()
+        shotBookmarks()
+        memory.id = HomeSourceId.None
+        showForScreenshot()
+        awaitFocus(ShotContinue[0].first)
+        pressUntil(Dpad.Up, SOURCE_NONE, presses = 1)
+        rule.assertScreenshot("home-none-focus-source")
+    }
+
+    /** 3m: a reload that failed, the kept rails above the error, Try again focused. */
+    @Test
+    fun screenshotReloadFailedFocusOnTryAgain() {
+        shot3c()
+        shotBookmarks()
+        showForScreenshot()
+        awaitFocus("$MORE_INFO · ${ShotTitles[0]}")
+        upToTheSourceControl()
+        pressUntil(Dpad.Right, RELOAD, presses = 1)
+        source.answer = { _, _, _ -> HomePageReply.Failed("HTTP 503") }
+        dpad.center()
+        awaitFocus(RETRY)
+        rule.waitForIdle()
+        assertTheRingIsAboveTheBottomBand()
+        rule.assertScreenshot("home-reload-failed-focus-retry")
+    }
+
+    /**
+     * The focused control's ring, which sits `FocusRingBleed` outside it, stays out of the `FocusBandInset` the screen keeps
+     * free at its foot: a ring in that band is in a TV's overscan.
+     */
+    private fun assertTheRingIsAboveTheBottomBand() {
+        val ringBottom = rule.onNode(isFocused()).getUnclippedBoundsInRoot().bottom + CloudStreamDimens.FocusRingBleed
+        val limit = SCREEN_HEIGHT_DP - CloudStreamDimens.FocusBandInset.value
+        assertTrue("the ring's foot is at ${ringBottom.value}dp, past the band at ${limit}dp", ringBottom.value <= limit + GEOMETRY_SLACK)
+    }
+
     private data class Call(val source: HomeSourceId, val section: Int, val page: Int)
 
     private class Kept(var id: HomeSourceId? = null) : HomeSourceMemory {
@@ -1505,6 +1762,7 @@ class HomeScreenTvDeviceTest {
         const val WAIT_MS = 10_000L
         const val MAX_PRESSES = 8
         const val RETRY = "Try again"
+        const val SOURCE_ERROR = "Source error"
         const val RETRY_FAILED = "Retry failed"
         const val LOAD_MORE = "Load more"
         const val EXTENSIONS = "Extensions"
@@ -1538,6 +1796,14 @@ class HomeScreenTvDeviceTest {
         )
         const val MORE_INFO = "More info"
         const val BOOKMARKS = "Bookmarks"
+        const val RELOAD = "Reload Provider"
+        const val RANDOM = "Random"
+        const val SEARCH = "Search"
+        const val NONE = "None"
+        const val NONE_SUBTITLE = "NO RAILS · YOUR ROWS STAY"
+        const val SOURCE_NONE = "Source · None"
+        const val SOURCES = "Sources"
+        const val NO_SOURCE = "No source chosen"
         const val WATCHING = "Watching"
         const val COMPLETED = "Completed"
         const val SAVED = "Saved"

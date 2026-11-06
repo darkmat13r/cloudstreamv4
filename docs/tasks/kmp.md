@@ -4598,6 +4598,106 @@ fit the row (`ChipRow` does not scroll, by design).
 
 Nothing new.
 
+## KMP-44 — Home's chrome named: Reload, Random and Search, and `None` as a source (`TV Home Extras` 3h to 3j, 3m) · **measured 2026-11-06**
+
+**Status:** in pr #165, stacked on `KMP-45` (#164). Boards `3h`, `3i`, `3j` and `3m` (`DS-13`) and the owner's rulings of 2026-11-05: no Random
+as a source, `None` stays; the Random button always shown, opening a random loaded title, absent when nothing is loaded; search in
+the top bar only; a failed reload keeps the local rows above the error; a single choice applies at once with no buttons. Android TV
+only; desktop's panel offers no `None` and its effect handler ignores the new effect.
+
+**Parts.** `HomeSourceId.None`, `HomeStatus.Unsourced`, `HomeState.reloading` and `unsourced`, `HomeRowKey.Chrome`, the actions
+`ReloadRequested`, `RandomRequested`, `SourceSearchRequested`, the effect `OpenSourceSearch`, and an injectable `Random` on
+`HomeViewModel`. `CloudStreamIcons.Random` (Tabler `Dice`, in the 1.1.1 jar), and the glyph table's `Reload` and `Random` rows.
+In `:app`: `DataStoreHomeSourceMemory` keeps `None` under the old screen's own name for it (`APIRepository.noneApi.name`), and
+`HomeTvFragment` opens Quick Search on the source with nothing typed, as the old TV search button did.
+
+### What each does
+
+- **Reload** (3j): every section asked again while the rows and focus stay; a second press while one runs asks nothing; the answer
+  replaces the rows in place, a partial answer is the built notice, and a failure is 3m, with Continue watching and the bookmarks
+  above it and Try again focused. The hero stays: it came from a title's own page. `APIRepository.getMainPage` keeps no cache,
+  so a reload is a real request.
+- **3m's band** (review): under Continue watching or the bookmarks, a failure, a reload's or a first load's, is not the full-page
+  `StateView` but one 48dp band where the source's rails were: the chrome's own `HomeFailureNotice` (hollow marker, "Could not
+  load <source>", the source's mono detail, Try again at the band's end) in 3m's `.slot`, `surface` with a `line` hairline. Try
+  again takes focus when it lands. With neither local rail the failure is still the built full-page error, as 3m says. This fixed
+  what the first build of 3m drew: the headline and body read the wrong way round, Continue's art was cut by the top edge, and the
+  ring sat inside the 28dp bottom focus band.
+- **Random** (3j): one title from everything loaded, distinct by id, as `HomeFragment.kt:855-868` chose; focus comes back to the
+  cell when the title closes.
+- **Search** (3j): the only search on Home, of this source alone.
+- **`None`** (3h, 3i): first in the panel, applies at once and closes. No hero, no source rails, nothing asked of a source; Reload,
+  Random and Search are absent. Focus lands on the first card kept on the device; with neither rail kept it is the built
+  `StateView`, whose one button (`Sources`, with `Source`) opens the panel. A `None` the old screen stored now reads as `None`; a
+  stored `Random` still reads as never having chosen.
+
+### Every reduction from the boards
+
+| Board | Drawn | Here | Why |
+|---|---|---|---|
+| 3j | Clock `22:14` | None | `KMP-41`'s, still not built |
+| 3j | Cells as a 48px tile in a 96px cell, glyphs `muted` at rest | `IconOnlyButton`: 32dp tile in the 48dp cell, glyph `ink` at rest, label drawn under the cell on focus | The shared component, which the brief names for icon-only cells |
+| 3j | Reload and Random icon-only | Icon-only, as drawn | The owner named them an exception to `ui-components.md` rule 4 on 2026-11-06 (`DEC-17`) |
+| 3j | Search during loading | Shown | It needs a source and a connection, and loading has both |
+| 3h | Header meta `14 SOURCES AND NONE · APPLIES AT ONCE` | None | The panel's header is the built `RailHeader`; no word holds that line |
+| 3m | Detail `SOURCE ERROR · HTTP 503 · RELOAD FAILED` | The source's own detail, `HTTP 503` | The built state's detail line; nothing says "reload failed" that the headline does not |
+| 3m | Try again 144dp wide (`width: 288px`) | `StateActionButton`'s own width | The built button the notice already uses |
+| 3m | Band padding 16dp and 12dp (`0 24px 0 32px`) | 16dp, and `MinFocusGap` for the 12 | In `HomeScreenTvDefaults`, as the rule for a value no token means asks |
+
+### Strings
+
+Three new keys in all 62 directories, with translator notes: `home_none_headline`, `home_none_body`, `home_source_none_subtitle`.
+Reused: `reload_provider`, `home_random`, `search`, `none`, `pick_source`.
+
+### Tested
+
+JVM: `HomeViewModelTest` 53 (6 new), `DataStoreHomeSourceMemoryTest` 6 (1 new, 1 changed: `None` is now a choice),
+`CloudStreamIconsTest` 6 unchanged (no glyph shared). Device, `Television_720p`: `HomeScreenTvDeviceTest` 76 (13 new, 2 changed for
+the new cells and the panel's first row), 78 on top of `KMP-45`'s review (its one new case, and 3m's review here: one new,
+`aFailureWithALongDetailUnderContinueWatchingIsOneBandAndNothingMoves`, and two changed, the reload failure asserting the band and
+its ring, and `KMP-41`'s too-tall case moved to offline under both rails); four screenshot cases, `home-chrome-focus-random`, `home-source-panel-focus-none`,
+`home-none-focus-source`, `home-reload-failed-focus-retry`. `TvHomeNavigationTest` 17 (2 new, through real navigation: `None`
+chosen in the panel asks nothing and survives a restart; Random opens a loaded title's real page and Back puts focus on Random).
+
+**Each critical test was shown failing**, in one control run with four mutations together (a reload that drops the rows, Random
+forgetting where to come back to, Search offered offline, and `None` not kept by the host): all five cases red, three in the
+module and both `:app` cases (`expected None but was null`; `expected Random but was More info · Fake One A 0`). Every file was
+restored and a real run replaced that XML.
+
+**Screenshots.** Ten references changed, each looked at: every page with rows gains Reload, Random and Search in the chrome; loading
+gains Search; the source panel gains `None` as its first row. After review, `home-reload-failed-focus-retry` changed once more, on purpose: 3m's band in place of the
+full-page state, looked at; it is the only reference this PR re-recorded after the first build.
+
+### Published API
+
+Additions only, in `app/api/classes-jar.api`: three `R$string` fields and one synthetic accessor in `DataStoreHomeSourceMemory`'s
+companion (`access$getNONE$delegate$cp`), none removed or changed.
+
+### For the owner — both answered 2026-11-06
+
+```
+Found: Reload and Random are icon-only on 3j, and `ui-components.md` rule 4 allows icon-only only for toggles, overflow and search
+Suggest: name the chrome's cells as a fourth exception, or draw them as text buttons
+Why: built as drawn; the rule and the board disagree
+```
+
+**Answered:** they stay icon-only with the label on focus, as built. Rule 4 names "Home top bar: Reload, Random" as an exception,
+and `DEC-17` records the ruling.
+
+```
+Found: `IconOnlyButton` draws its glyph `ink` at rest, while the chrome's `IconCell` (Profile) is `muted` at rest
+Suggest: one rule for an icon in the chrome at rest
+Why: 3c and 3j draw every chrome glyph `muted` at rest
+```
+
+**Decided:** `muted` at rest. It changes the shared `IconOnlyButton` on every screen, so it is its own design-system PR after this
+one and `KMP-45` merge; nothing here changes it.
+
+### Not verified
+
+A real remote; Quick Search opened from Home on a TV (the effect is tested, the fragment it opens is the old one); a reload against
+a real plugin; right-to-left.
+
 ---
 
 ## KMP-43 — One series' downloads on TV, boards 6d and 6b (queue `Q15`) · **measured 2026-11-06**

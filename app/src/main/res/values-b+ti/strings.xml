@@ -62,9 +62,12 @@
 <string name="extensions_waiting_count" formatted="true">"ንዓኻ ዝጽበዩ መስፋሕፋሕቲ: %d"</string>
 <string name="home_bookmarks_no_status_body">"ነቶም ምልክታት ንምርኣይ ካብ ላዕሊ ሓደ ምረጹ።"</string>
 <string name="home_bookmarks_no_status_headline">"ዝተመረጸ ኩነታት የለን"</string>
+<string name="home_none_body">"መስመራቱ ኣብዚ ንምርኣይ ምንጪ ምረጹ። ምርኣይ ቀጽሉን ምልክታትኩምን ብዘይ ምንጪ ይጸንሑ።"</string>
+<string name="home_none_headline">"ዝተመረጸ ምንጪ የለን"</string>
 <string name="home_offline_bookmarks_body">"ምልክታትኩም ኣብዚ መሳርሒ ተዓቂቦም ኣለዉ።"</string>
 <string name="home_offline_source_headline" formatted="true">"%1$s ምትእስሳር የድልዮ"</string>
 <string name="home_search_only_body">"ካብ መስፋሕፋሕትኻ ሓደ እኳ መበገሲ ገጽ የብሉን፡ ግን ሕጂ'ውን ኣብኡ ክትደሊ ትኽእል ኢኻ።"</string>
+<string name="home_source_none_subtitle">"መስመራት የለን · መስመራትኩም ይጸንሑ"</string>
 <string name="load_more">"ተወሳኺ ጽዓን"</string>
 <string name="more_like_this">"ተመሳሳሊ"</string>
 <string name="next_episode_format" formatted="true">"ክፋል %d በ ላይ ይወጣል"</string>

@@ -14,11 +14,14 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.blank_repo_message
 import com.lagradost.cloudstream4.core.strings.generated.resources.empty_library_logged_in_message
 import com.lagradost.cloudstream4.core.strings.generated.resources.extension_install_first
+import com.lagradost.cloudstream4.core.strings.generated.resources.home_none_body
+import com.lagradost.cloudstream4.core.strings.generated.resources.home_none_headline
 import com.lagradost.cloudstream4.core.strings.generated.resources.home_search_only_body
 import com.lagradost.cloudstream4.core.strings.generated.resources.home_sections_failed
 import com.lagradost.cloudstream4.core.strings.generated.resources.loading
 import com.lagradost.cloudstream4.core.strings.generated.resources.no_data
 import com.lagradost.cloudstream4.core.strings.generated.resources.no_internet_connection
+import com.lagradost.cloudstream4.core.strings.generated.resources.pick_source
 import com.lagradost.cloudstream4.core.strings.generated.resources.plugin_load_fail
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_state_offline_headline
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_state_retry
@@ -53,6 +56,7 @@ fun HomeStatus.toUiState(
     val latest by rememberUpdatedState(onAction)
     val retry = remember { { latest(HomeAction.Retry) } }
     val search = remember { { latest(HomeAction.SearchRequested) } }
+    val choose = remember { { latest(HomeAction.PickerOpened) } }
     val tryAgain = StateAction(stringResource(Res.string.search_state_retry), CloudStreamIcons.Retry, retry)
     return when (this) {
         HomeStatus.Loading -> UiState.Loading
@@ -107,6 +111,15 @@ fun HomeStatus.toUiState(
                 action = tryAgain,
             ),
             detail,
+        )
+
+        // 3i with neither local rail: nothing was asked of a source, so the way on is to choose one.
+        HomeStatus.Unsourced -> UiState.Empty(
+            StatePrompt(
+                headline = stringResource(Res.string.home_none_headline),
+                body = stringResource(Res.string.home_none_body),
+                action = StateAction(stringResource(Res.string.pick_source), CloudStreamIcons.Source, choose),
+            ),
         )
 
         HomeStatus.Offline -> UiState.Offline(

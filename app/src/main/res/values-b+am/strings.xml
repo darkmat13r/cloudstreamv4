@@ -97,10 +97,13 @@
 <string name="home_main_poster_img_des">"ዋና ፖስተር"</string>
 <string name="home_more_info">"ተጨማሪ መረጃ"</string>
 <string name="home_next_random_img_des">"ቀጣይ በዘፈቀደ"</string>
+<string name="home_none_body">"ረድፎቹን እዚህ ለማየት ምንጭ ይምረጡ። መመልከት ይቀጥሉ እና ዕልባቶችዎ ያለ ምንጭ ይቆያሉ።"</string>
+<string name="home_none_headline">"ምንም ምንጭ አልተመረጠም"</string>
 <string name="home_offline_bookmarks_body">"ዕልባቶችዎ በዚህ መሣሪያ ላይ ተቀምጠዋል።"</string>
 <string name="home_offline_source_headline" formatted="true">"%1$s ግንኙነት ያስፈልገዋል"</string>
 <string name="home_play">"አጫውት"</string>
 <string name="home_search_only_body">"ከቅጥያዎችህ አንዳቸውም መነሻ ገጽ የላቸውም፣ ነገር ግን አሁንም በእነሱ መፈለግ ትችላለህ።"</string>
+<string name="home_source_none_subtitle">"ረድፎች የሉም · የእርስዎ ረድፎች ይቆያሉ"</string>
 <string name="load_more">"ተጨማሪ ጫን"</string>
 <string name="loading">"በመጫን ላይ…"</string>
 <string name="more_like_this">"ተጨማሪ እንደዚህ ያሉ"</string>

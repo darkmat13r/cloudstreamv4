@@ -309,12 +309,15 @@
 <string name="home_main_poster_img_des">"Poster Principal"</string>
 <string name="home_more_info">"Mai multe informații"</string>
 <string name="home_next_random_img_des">"Următorul la Întâmplare"</string>
+<string name="home_none_body">"Alegeți o sursă pentru a-i vedea rândurile aici. Continuă vizionarea și marcajele dvs. rămân și fără ea."</string>
+<string name="home_none_headline">"Nicio sursă aleasă"</string>
 <string name="home_offline_bookmarks_body">"Marcajele dvs. sunt salvate pe acest dispozitiv."</string>
 <string name="home_offline_source_headline" formatted="true">"%1$s are nevoie de conexiune"</string>
 <string name="home_play">"Începe"</string>
 <string name="home_random">"Aleatoriu"</string>
 <string name="home_search_only_body">"Niciuna dintre extensiile dvs. nu are o pagină principală, dar puteți căuta în continuare în ele."</string>
 <string name="home_source">"Sursa"</string>
+<string name="home_source_none_subtitle">"FĂRĂ RÂNDURI · RÂNDURILE DVS. RĂMÂN"</string>
 <string name="install_prerelease">"Instalează versiunea preliminară"</string>
 <string name="is_adult">"18+"</string>
 <string name="jsdelivr_enabled">"Nu s-a putut ajunge la GitHub. Se activează proxy-ul jsDelivr…"</string>

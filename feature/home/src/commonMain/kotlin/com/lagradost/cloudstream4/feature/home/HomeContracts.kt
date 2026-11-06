@@ -6,7 +6,16 @@ import kotlin.jvm.JvmInline
 
 /** Which source's main page is showing. Opaque here; the host that made it resolves it. */
 @JvmInline
-value class HomeSourceId(val value: String)
+value class HomeSourceId(val value: String) {
+    companion object {
+        /**
+         * `None` (`TV Home Extras` 3h, 3i): no source, so no hero and no source rails, only what is kept on the device. A
+         * choice of the person's, remembered like a source, and never a source a host offers. No host's id can be it: a
+         * name has no NUL in it.
+         */
+        val None: HomeSourceId = HomeSourceId("\u0000none")
+    }
+}
 
 /**
  * One choice in the source picker.

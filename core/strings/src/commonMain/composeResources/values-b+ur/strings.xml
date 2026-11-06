@@ -295,12 +295,15 @@
 <string name="home_main_poster_img_des">مرکزی پوسٹر</string>
 <string name="home_more_info">مزید معلومات</string>
 <string name="home_next_random_img_des">اگلا بے ترتیب</string>
+<string name="home_none_body">یہاں اس کی قطاریں دیکھنے کے لیے ایک ذریعہ منتخب کریں۔ دیکھنا جاری رکھیں اور آپ کے بک مارکس اس کے بغیر بھی رہتے ہیں۔</string>
+<string name="home_none_headline">کوئی ذریعہ منتخب نہیں</string>
 <string name="home_offline_bookmarks_body">آپ کے بک مارکس اس ڈیوائس پر محفوظ ہیں۔</string>
 <string name="home_offline_source_headline">%1$s کو کنکشن درکار ہے</string>
 <string name="home_play">چلائیں</string>
 <string name="home_random">بے ترتیب</string>
 <string name="home_search_only_body">آپ کی کسی بھی ایکسٹینشن میں ہوم پیج نہیں ہے، لیکن آپ پھر بھی ان میں تلاش کر سکتے ہیں۔</string>
 <string name="home_source">ذریعہ</string>
+<string name="home_source_none_subtitle">کوئی قطار نہیں · آپ کی قطاریں رہتی ہیں</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">Could not reach GitHub. Turning on jsDelivr proxy…</string>
 <string name="jsdelivr_proxy">GitHub Proxy</string>

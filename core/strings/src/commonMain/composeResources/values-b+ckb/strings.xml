@@ -99,9 +99,12 @@
 <string name="home_main_poster_img_des">پۆستەری سەرەکی</string>
 <string name="home_more_info">زانیاری زیاتر</string>
 <string name="home_next_random_img_des">داهاتوو بە هەڕەمەکی</string>
+<string name="home_none_body">سەرچاوەیەک هەڵبژێرە بۆ بینینی ڕیزەکانی لێرە. بەردەوامبوون لە سەیرکردن و ئاماژەکانت بەبێ سەرچاوە دەمێننەوە.</string>
+<string name="home_none_headline">هیچ سەرچاوەیەک هەڵنەبژێردراوە</string>
 <string name="home_offline_bookmarks_body">ئاماژەکانت لەسەر ئەم ئامێرە پاشەکەوت کراون.</string>
 <string name="home_offline_source_headline">%1$s پێویستی بە پەیوەندییە</string>
 <string name="home_search_only_body">هیچ کام لە زیادکراوەکانت پەڕەی سەرەکییان نییە، بەڵام هێشتا دەتوانیت تێیاندا بگەڕێیت.</string>
+<string name="home_source_none_subtitle">هیچ ڕیزێک · ڕیزەکانت دەمێننەوە</string>
 <string name="load_more">زیاتر باربکە</string>
 <string name="more_like_this">زیاتر لەم جۆرە</string>
 <string name="new_update_format">نوێکاری نوێ دۆزرایەوە!\n%1$s-&gt;%2$s</string>

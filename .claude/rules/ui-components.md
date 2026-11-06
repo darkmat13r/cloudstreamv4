@@ -75,13 +75,15 @@ meaning, icon buttons are for toggles and overflow, and a screen has one primary
    **Three named exceptions**, which are standard TV conventions: the chrome's Back cell, the
    player's transport controls (board 7d) and the nav rail are icon-only without showing a label on
    focus. Each still carries a content description, and the rail shows its labels when expanded.
-   **Two ruled exceptions**, which are not conventions but the owner's calls (2026-11-06, `DEC-17`).
-   Both show each label on focus, as rule 4's toggles do:
+   **Three ruled exceptions**, which are not conventions but the owner's calls (2026-11-06, `DEC-17`).
+   All three show each label on focus, as rule 4's toggles do:
    - **The title detail action row.** After the primary Play or Resume, its secondaries (Start over,
      Trailer, Download, Mark watched) are icon-only cells. Download and Mark watched appear for films
      only; a series downloads and marks from its episode list.
    - **Trailing actions on a list row** (board 6d's Play, state verb and Delete beside each episode)
      are `IconOnlyButton`s, each naming itself under its cell.
+   - **Home top bar: Reload, Random** (`TV Home Extras` 3j). Icon-only cells beside the source control
+     and Search.
    Anywhere else on TV, a glyph never replaces a label.
 5. **Targets keep the three settled classes** (`screen-implementation-handover.md` §5,
    `CloudStreamDimens`): an icon in a 48 dp cell (`IconTargetCell`), so `IconOnlyButton` is one; a
@@ -97,7 +99,7 @@ meaning, icon buttons are for toggles and overflow, and a screen has one primary
 | Trailer, Watch trailer | `Trailer` | `Movie` |
 | Download | `Download` | `Download` |
 | Mark watched (the detail row, films) | `MarkWatched` | `EyeCheck` |
-| Retry, Try again, Retry failed, Retry N sources, Retry sync | `Retry` | `Refresh` |
+| Retry, Try again, Retry failed, Retry N sources, Retry sync, Reload (Home's chrome, `TV Home Extras` 3j) | `Retry` | `Refresh` |
 | Search, Search all sources, Search everything | `Search` | `Search` |
 | Settings, Open network settings | `Settings` | `Settings` |
 | Add, Add repository | `Add` | `Plus` |
@@ -111,6 +113,7 @@ meaning, icon buttons are for toggles and overflow, and a screen has one primary
 | Extensions, Repositories | `Repository` | `Database` |
 | Manage profiles | `Profile` | `User` |
 | Sources | `Source` | `Server` |
+| Random (Home's chrome: opens one loaded title, `TV Home Extras` 3j) | `Random` | `Dice` |
 | Share | `Share` | `Share` |
 | Open in browser | `OpenExternal` | `ExternalLink` |
 | Play from link | `Link` | `Link` |

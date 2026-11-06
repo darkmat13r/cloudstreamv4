@@ -80,6 +80,12 @@ A section header, not an instruction.
 - **`home_bookmarks_count`**: a count in the monospaced line beside *"You are offline"*. Written in capitals in English
   because that line is; a script without case keeps its own form.
 
+- **`home_source_none_subtitle`**, *"NO RAILS · YOUR ROWS STAY"*: the line under **None** in the list of sources. *Rails*
+  are the rows of titles a source sends; *your rows* are Continue watching and the bookmarks, which are kept on the device
+  and stay when no source is chosen. Capitals as for `home_bookmarks_count`.
+- **`home_none_headline`**, **`home_none_body`**: shown when **None** is the chosen source and nothing is kept on the
+  device. *Continue watching* is the name of that row (`continue_watching`).
+
 ## Commented-out resources (45)
 
 Translations left behind when a key was deleted from the base. They are dead, and measurably so:

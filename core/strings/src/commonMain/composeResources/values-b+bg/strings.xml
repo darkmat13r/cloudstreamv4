@@ -343,12 +343,15 @@
 <string name="home_main_poster_img_des">Main Poster</string>
 <string name="home_more_info">Повече информация</string>
 <string name="home_next_random_img_des">Следващ произволен</string>
+<string name="home_none_body">Изберете източник, за да видите редовете му тук. Продължете гледането и отметките ви остават и без него.</string>
+<string name="home_none_headline">Не е избран източник</string>
 <string name="home_offline_bookmarks_body">Отметките ви са запазени на това устройство.</string>
 <string name="home_offline_source_headline">%1$s се нуждае от връзка</string>
 <string name="home_play">Пусни</string>
 <string name="home_random">Случаен</string>
 <string name="home_search_only_body">Нито едно от разширенията ви няма начална страница, но все пак можете да търсите в тях.</string>
 <string name="home_source">Източник</string>
+<string name="home_source_none_subtitle">БЕЗ РЕДОВЕ · ВАШИТЕ РЕДОВЕ ОСТАВАТ</string>
 <string name="install_prerelease">Инсталирай предварителна версия</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">Неуспешно свързване с GitHub. Включване на jsDelivr прокси…</string>

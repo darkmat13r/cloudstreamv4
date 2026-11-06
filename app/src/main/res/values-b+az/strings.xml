@@ -120,9 +120,12 @@
 <string name="home_change_provider_img_des">"Provayderi dəyişdir"</string>
 <string name="home_main_poster_img_des">"Əsas Afişa"</string>
 <string name="home_next_random_img_des">"Sonrakı Təsadüfi"</string>
+<string name="home_none_body">"Sıralarını burada görmək üçün mənbə seçin. Davam et və əlfəcinləriniz mənbəsiz də qalır."</string>
+<string name="home_none_headline">"Mənbə seçilməyib"</string>
 <string name="home_offline_bookmarks_body">"Əlfəcinləriniz bu cihazda saxlanılıb."</string>
 <string name="home_offline_source_headline" formatted="true">"%1$s bağlantı tələb edir"</string>
 <string name="home_search_only_body">"Uzantılarınızın heç birində ana səhifə yoxdur, amma yenə də onlarda axtarış edə bilərsiniz."</string>
+<string name="home_source_none_subtitle">"SIRA YOXDUR · SIRALARINIZ QALIR"</string>
 <string name="kitsu_settings">"Kitsu afişalarını, posterlərini göstər"</string>
 <string name="library">"Kitabxana"</string>
 <string name="live_singular">"Canlı yayım"</string>
