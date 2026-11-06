@@ -3,7 +3,10 @@
 <resources>
 <string name="detail_load_failed_body">Pode que a fonte non estea dispoñible.</string>
 <string name="detail_load_failed_headline">Non se puido abrir este título</string>
+<plurals name="downloads_delete_confirm_title"><item quantity="one">Eliminar %d descarga?</item><item quantity="other">Eliminar %d descargas?</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="one">%d episodio</item><item quantity="other">%d episodios</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d fallida</item><item quantity="other">%d fallidas</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="one">%1$d título · %2$s</item><item quantity="other">%1$d títulos · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d MARCADOR</item><item quantity="other">%d MARCADORES</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Non se puido cargar %d sección</item><item quantity="other">Non se puideron cargar %d seccións</item></plurals>
 <string name="action_add_to_bookmarks">Seleccionar estado de visualización</string>
@@ -86,7 +89,9 @@
 <string name="downloaded">Descargado</string>
 <string name="downloading">Descargando</string>
 <string name="downloads_browse_library">Explorar biblioteca</string>
+<string name="downloads_column_size">Tamaño</string>
 <string name="downloads_delete_all">Borrar todo</string>
+<string name="downloads_delete_confirm_body">Isto libera %s e non se pode desfacer.</string>
 <string name="downloads_delete_select">Escolla os elementos para eliminar</string>
 <string name="downloads_empty">Non hay descargas dispoñíbeis</string>
 <string name="downloads_empty_body">As descargas que inicies desde a lista de episodios dun título aparecen aquí e reprodúcense sen conexión.</string>
@@ -105,6 +110,8 @@
 <string name="downloads_reason_storage_unavailable">Almacenamento non dispoñible</string>
 <string name="downloads_retry_failed">Tentar de novo as fallidas (%d)</string>
 <string name="downloads_select">Seleccionar</string>
+<string name="downloads_selected_status">%1$d de %2$d seleccionados · %3$s</string>
+<string name="downloads_show_in_finder">Mostrar no Finder</string>
 <string name="downloads_state_queued">En cola</string>
 <string name="downloads_storage_full_headline">Almacenamento insuficiente</string>
 <string name="downloads_storage_legend">%1$s de %2$s usados · %3$s en descargas</string>

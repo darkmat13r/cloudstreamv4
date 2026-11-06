@@ -4,8 +4,11 @@
 <string name="detail_load_failed_body">மூலம் கிடைக்காமல் இருக்கலாம்.</string>
 <string name="detail_load_failed_headline">இந்தத் தலைப்பைத் திறக்க முடியவில்லை</string>
 <plurals name="downloads_active"><item quantity="one">%d செயலில் பதிவிறக்கம்</item><item quantity="other">%d செயலில் உள்ள பதிவிறக்கங்கள்</item></plurals>
+<plurals name="downloads_delete_confirm_title"><item quantity="one">%d பதிவிறக்கத்தை நீக்கவா?</item><item quantity="other">%d பதிவிறக்கங்களை நீக்கவா?</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="one">%d அத்தியாயம்</item><item quantity="other">%d அத்தியாயங்கள்</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d தோல்வி</item><item quantity="other">%d தோல்வி</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d பதிவிறக்கம் வரிசையில் உள்ளது</item><item quantity="other">%d பதிவிறக்கங்கள் வரிசையில் உள்ளன</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="one">%1$d தலைப்பு · %2$s</item><item quantity="other">%1$d தலைப்புகள் · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d புக்மார்க்</item><item quantity="other">%d புக்மார்க்குகள்</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d பிரிவை ஏற்ற முடியவில்லை</item><item quantity="other">%d பிரிவுகளை ஏற்ற முடியவில்லை</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d மறைக்கப்பட்ட இணைப்பு</item><item quantity="other">%d மறைக்கப்பட்ட இணைப்புகள்</item></plurals>
@@ -200,7 +203,9 @@
 <string name="downloaded_file">பதிவிறக்கம் செய்யப்பட்ட கோப்பு</string>
 <string name="downloading">பதிவிறக்குகிறது</string>
 <string name="downloads_browse_library">நூலகத்தை உலாவு</string>
+<string name="downloads_column_size">அளவு</string>
 <string name="downloads_delete_all">அனைத்தையும் அழி</string>
+<string name="downloads_delete_confirm_body">இது %s இடத்தை விடுவிக்கும், இதைச் செயல்தவிர்க்க முடியாது.</string>
 <string name="downloads_delete_select">அழிப்பதற்கு தேர்ந்தெடுக்கவும்</string>
 <string name="downloads_empty">தற்போது பதிவிறக்கங்கள் எதுவும் இல்லை.</string>
 <string name="downloads_empty_body">தலைப்பின் எபிசோட் பட்டியலிலிருந்து நீங்கள் தொடங்கும் பதிவிறக்கங்கள் இங்கே தோன்றும், இணைப்பு இல்லாமல் இயங்கும்.</string>
@@ -219,6 +224,8 @@
 <string name="downloads_reason_storage_unavailable">சேமிப்பகம் கிடைக்கவில்லை</string>
 <string name="downloads_retry_failed">தோல்வியடைந்தவற்றை மீண்டும் முயல்க (%d)</string>
 <string name="downloads_select">தேர்ந்தெடு</string>
+<string name="downloads_selected_status">%2$d இல் %1$d தேர்ந்தெடுக்கப்பட்டது · %3$s</string>
+<string name="downloads_show_in_finder">Finder இல் காட்டு</string>
 <string name="downloads_state_queued">வரிசையில்</string>
 <string name="downloads_storage_full_headline">போதுமான சேமிப்பகம் இல்லை</string>
 <string name="downloads_storage_legend">%1$s / %2$s பயன்படுத்தப்பட்டது · பதிவிறக்கங்களில் %3$s</string>

@@ -3,7 +3,10 @@
 <resources>
 <string name="detail_load_failed_body">উৎসটো পোৱা নাযাব পাৰে।</string>
 <string name="detail_load_failed_headline">এই শিৰোনামটো খুলিব নোৱাৰিলোঁ</string>
+<plurals name="downloads_delete_confirm_title"><item quantity="one">%d টা ডাউনলোড মচিবনে?</item><item quantity="other">%d টা ডাউনলোড মচিবনে?</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="one">%d টা পৰ্ব</item><item quantity="other">%d টা পৰ্ব</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d টা বিফল</item><item quantity="other">%d টা বিফল</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="one">%1$d টা শিৰোনাম · %2$s</item><item quantity="other">%1$d টা শিৰোনাম · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d টা বুকমাৰ্ক</item><item quantity="other">%d টা বুকমাৰ্ক</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d টা অংশ লোড কৰিব পৰা নগ'ল</item><item quantity="other">%d টা অংশ লোড কৰিব পৰা নগ'ল</item></plurals>
 <string name="account">একাউন্ট</string>
@@ -175,7 +178,9 @@
 <string name="downloaded_file">ডাউনলোড কৰা ফাইল</string>
 <string name="downloading">ডাউনলোড হৈ আছে</string>
 <string name="downloads_browse_library">পুথিভঁৰাল ব্ৰাউজ কৰক</string>
+<string name="downloads_column_size">আকাৰ</string>
 <string name="downloads_delete_all">সকলো ডিলিট কৰক</string>
+<string name="downloads_delete_confirm_body">ই %s মুকলি কৰিব আৰু ইয়াক পূৰ্বাৱস্থালৈ ঘূৰাই নিব নোৱাৰি।</string>
 <string name="downloads_delete_select">মুছিবলৈ আইটেমসমূহ নিৰ্ব্বাচন কৰক</string>
 <string name="downloads_empty">বৰ্তমান কোনো ডাউনলোড নাই।</string>
 <string name="downloads_empty_body">কোনো শিৰোনামৰ পৰ্বৰ তালিকাৰ পৰা আৰম্ভ কৰা ডাউনলোডসমূহ ইয়াত দেখা যায় আৰু সংযোগ অবিহনে প্লে হয়।</string>
@@ -194,6 +199,8 @@
 <string name="downloads_reason_storage_unavailable">সংৰক্ষণ উপলব্ধ নহয়</string>
 <string name="downloads_retry_failed">বিফলবোৰ পুনৰ চেষ্টা কৰক (%d)</string>
 <string name="downloads_select">বাছক</string>
+<string name="downloads_selected_status">%2$d টাৰ ভিতৰত %1$d টা বাছনি কৰা হৈছে · %3$s</string>
+<string name="downloads_show_in_finder">Finder-ত দেখুৱাওক</string>
 <string name="downloads_state_queued">পংক্তিবদ্ধ</string>
 <string name="downloads_storage_full_headline">পৰ্যাপ্ত সংৰক্ষণ নাই</string>
 <string name="downloads_storage_legend">%1$s / %2$s ব্যৱহৃত · ডাউনলোডত %3$s</string>

@@ -3,7 +3,10 @@
 <resources>
 <string name="detail_load_failed_body">Isha waxaa laga yaabaa inaysan diyaar ahayn.</string>
 <string name="detail_load_failed_headline">Cinwaankan lama furi karo</string>
+<plurals name="downloads_delete_confirm_title"><item quantity="one">Ma tirtirtaa %d soo dejin?</item><item quantity="other">Ma tirtirtaa %d soo dejin?</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="one">%d qaybood</item><item quantity="other">%d qaybood</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d ayaa fashilmay</item><item quantity="other">%d ayaa fashilmay</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="one">%1$d cinwaan · %2$s</item><item quantity="other">%1$d cinwaan · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d CALAAMAD</item><item quantity="other">%d CALAAMADOOD</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Waa ka keeni kari waayey %d qayb</item><item quantity="other">Waa ka keeni kari waayey %d qaybood</item></plurals>
 <string name="account">Akoonka</string>
@@ -134,7 +137,9 @@
 <string name="downloaded_file">Waa ka dejiyey faylka</string>
 <string name="downloading">Soo degaya</string>
 <string name="downloads_browse_library">Baadh kaydka</string>
+<string name="downloads_column_size">Cabbir</string>
 <string name="downloads_delete_all">Tirtir dhammaan</string>
+<string name="downloads_delete_confirm_body">Tani waxay xoreyn doontaa %s dibna looma celin karo.</string>
 <string name="downloads_delete_select">Dooro waxyaabaha aad tirayso</string>
 <string name="downloads_empty">Ma jiro muuqaal aad soo degsatay.</string>
 <string name="downloads_empty_body">Soo dejinta aad ka bilowdo liiska qaybaha cinwaanka halkan ayay ka muuqdaan oo waxay shaqeeyaan khad la'aan.</string>
@@ -153,6 +158,8 @@
 <string name="downloads_reason_storage_unavailable">Kaydka lama heli karo</string>
 <string name="downloads_retry_failed">Isku day kuwa fashilmay (%d)</string>
 <string name="downloads_select">Dooro</string>
+<string name="downloads_selected_status">%1$d ka mid ah %2$d ayaa la doortay · %3$s</string>
+<string name="downloads_show_in_finder">Ku tus Finder</string>
 <string name="downloads_state_queued">Horran</string>
 <string name="downloads_storage_full_headline">Kayd ku filan ma jiro</string>
 <string name="downloads_storage_legend">%1$s oo ka mid ah %2$s ayaa la isticmaalay · %3$s soo dejinta</string>

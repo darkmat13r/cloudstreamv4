@@ -3,7 +3,10 @@
 <resources>
 <string name="detail_load_failed_body">Zdroj možno nie je dostupný.</string>
 <string name="detail_load_failed_headline">Tento titul sa nepodarilo otvoriť</string>
+<plurals name="downloads_delete_confirm_title"><item quantity="one">Odstrániť %d stiahnutý súbor?</item><item quantity="few">Odstrániť %d stiahnuté súbory?</item><item quantity="many">Odstrániť %d stiahnutého súboru?</item><item quantity="other">Odstrániť %d stiahnutých súborov?</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="one">%d epizóda</item><item quantity="few">%d epizódy</item><item quantity="many">%d epizódy</item><item quantity="other">%d epizód</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d neúspešné</item><item quantity="few">%d neúspešné</item><item quantity="many">%d neúspešných</item><item quantity="other">%d neúspešných</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="one">%1$d titul · %2$s</item><item quantity="few">%1$d tituly · %2$s</item><item quantity="many">%1$d titulu · %2$s</item><item quantity="other">%1$d titulov · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ZÁLOŽKA</item><item quantity="few">%d ZÁLOŽKY</item><item quantity="many">%d ZÁLOŽKY</item><item quantity="other">%d ZÁLOŽIEK</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Nepodarilo sa načítať %d sekciu</item><item quantity="few">Nepodarilo sa načítať %d sekcie</item><item quantity="many">Nepodarilo sa načítať %d sekcií</item><item quantity="other">Nepodarilo sa načítať %d sekcií</item></plurals>
 <string name="account">účet</string>
@@ -132,7 +135,9 @@
 <string name="downloaded_file">Stiahnutý súbor</string>
 <string name="downloading">Sťahovanie</string>
 <string name="downloads_browse_library">Prehľadávať knižnicu</string>
+<string name="downloads_column_size">Veľkosť</string>
 <string name="downloads_delete_all">Zmazať všetko</string>
+<string name="downloads_delete_confirm_body">Uvoľní sa tým %s a nedá sa to vrátiť späť.</string>
 <string name="downloads_delete_select">Vyberte položky na odstránenie</string>
 <string name="downloads_empty">Momentálne nie sú žiadne stiahnutia.</string>
 <string name="downloads_empty_body">Sťahovania spustené zo zoznamu epizód titulu sa zobrazia tu a prehrajú sa bez pripojenia.</string>
@@ -151,6 +156,8 @@
 <string name="downloads_reason_storage_unavailable">Úložisko nedostupné</string>
 <string name="downloads_retry_failed">Skúsiť znova neúspešné (%d)</string>
 <string name="downloads_select">Vybrať</string>
+<string name="downloads_selected_status">Vybraté %1$d z %2$d · %3$s</string>
+<string name="downloads_show_in_finder">Zobraziť vo Finderi</string>
 <string name="downloads_state_queued">Vo fronte</string>
 <string name="downloads_storage_full_headline">Nedostatok úložiska</string>
 <string name="downloads_storage_legend">Využité %1$s z %2$s · %3$s v stiahnutiach</string>

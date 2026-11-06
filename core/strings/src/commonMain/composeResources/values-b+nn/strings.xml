@@ -3,7 +3,10 @@
 <resources>
 <string name="detail_load_failed_body">Kjelda er kanskje ikkje tilgjengeleg.</string>
 <string name="detail_load_failed_headline">Kunne ikkje opne denne tittelen</string>
+<plurals name="downloads_delete_confirm_title"><item quantity="one">Slette %d nedlasting?</item><item quantity="other">Slette %d nedlastingar?</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="one">%d episode</item><item quantity="other">%d episodar</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d feila</item><item quantity="other">%d feila</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="one">%1$d tittel · %2$s</item><item quantity="other">%1$d titlar · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d BOKMERKE</item><item quantity="other">%d BOKMERKE</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d del kunne ikkje lastast</item><item quantity="other">%d delar kunne ikkje lastast</item></plurals>
 <string name="action_add_to_bookmarks">Sett visingstatus</string>
@@ -51,7 +54,9 @@
 <string name="downloaded">Lasta ned</string>
 <string name="downloading">Nedlasting pågår</string>
 <string name="downloads_browse_library">Bla i biblioteket</string>
+<string name="downloads_column_size">Storleik</string>
 <string name="downloads_delete_all">Slett alle</string>
+<string name="downloads_delete_confirm_body">Dette frigjer %s og kan ikkje angrast.</string>
 <string name="downloads_empty_body">Nedlastingar du startar frå episodelista til ein tittel, blir viste her og kan spelast av utan tilkopling.</string>
 <string name="downloads_empty_headline">Ingen nedlastingar enno</string>
 <string name="downloads_free_up_space">Frigjer plass</string>
@@ -68,6 +73,8 @@
 <string name="downloads_reason_storage_unavailable">Lagring utilgjengeleg</string>
 <string name="downloads_retry_failed">Prøv mislukka på nytt (%d)</string>
 <string name="downloads_select">Vel</string>
+<string name="downloads_selected_status">%1$d av %2$d valde · %3$s</string>
+<string name="downloads_show_in_finder">Vis i Finder</string>
 <string name="downloads_state_queued">I kø</string>
 <string name="downloads_storage_full_headline">Ikkje nok lagringsplass</string>
 <string name="downloads_storage_legend">%1$s av %2$s brukt · %3$s i nedlastingar</string>

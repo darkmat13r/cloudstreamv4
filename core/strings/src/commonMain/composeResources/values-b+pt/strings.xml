@@ -4,8 +4,11 @@
 <string name="detail_load_failed_body">A fonte pode estar indisponível.</string>
 <string name="detail_load_failed_headline">Não foi possível abrir este título</string>
 <plurals name="downloads_active"><item quantity="one">%d download ativo</item><item quantity="many">%d downloads ativos</item><item quantity="other">%d downloads ativos</item></plurals>
+<plurals name="downloads_delete_confirm_title"><item quantity="one">Eliminar %d transferência?</item><item quantity="many">Eliminar %d transferências?</item><item quantity="other">Eliminar %d transferências?</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="one">%d episódio</item><item quantity="many">%d episódios</item><item quantity="other">%d episódios</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d falhado</item><item quantity="many">%d falhados</item><item quantity="other">%d falhados</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d download na fila</item><item quantity="many">%d downloads na fila</item><item quantity="other">%d downloads na fila</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="one">%1$d título · %2$s</item><item quantity="many">%1$d títulos · %2$s</item><item quantity="other">%1$d títulos · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d MARCADOR</item><item quantity="many">%d DE MARCADORES</item><item quantity="other">%d MARCADORES</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Falha ao carregar %d secção</item><item quantity="many">Falha ao carregar %d secções</item><item quantity="other">Falha ao carregar %d secções</item></plurals>
 <string name="account">Conta</string>
@@ -199,7 +202,9 @@
 <string name="downloaded_file">Arquivo baixado</string>
 <string name="downloading">Baixando</string>
 <string name="downloads_browse_library">Explorar biblioteca</string>
+<string name="downloads_column_size">Tamanho</string>
 <string name="downloads_delete_all">Eliminar tudo</string>
+<string name="downloads_delete_confirm_body">Isto liberta %s e não pode ser anulado.</string>
 <string name="downloads_delete_select">Selecionar Items para Eliminar</string>
 <string name="downloads_empty">Não existem downloads disponíveis.</string>
 <string name="downloads_empty_body">Os downloads iniciados na lista de episódios de um título aparecem aqui e são reproduzidos sem ligação.</string>
@@ -218,6 +223,8 @@
 <string name="downloads_reason_storage_unavailable">Armazenamento indisponível</string>
 <string name="downloads_retry_failed">Repetir falhados (%d)</string>
 <string name="downloads_select">Selecionar</string>
+<string name="downloads_selected_status">%1$d de %2$d selecionados · %3$s</string>
+<string name="downloads_show_in_finder">Mostrar no Finder</string>
 <string name="downloads_state_queued">Na fila</string>
 <string name="downloads_storage_full_headline">Armazenamento insuficiente</string>
 <string name="downloads_storage_legend">%1$s de %2$s usados · %3$s em downloads</string>

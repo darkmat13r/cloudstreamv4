@@ -3,7 +3,10 @@
 <resources>
 <string name="detail_load_failed_body">Die bron is dalk nie beskikbaar nie.</string>
 <string name="detail_load_failed_headline">Kon nie hierdie titel oopmaak nie</string>
+<plurals name="downloads_delete_confirm_title"><item quantity="one">Skrap %d aflaai?</item><item quantity="other">Skrap %d aflaaie?</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="one">%d episode</item><item quantity="other">%d episodes</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d het misluk</item><item quantity="other">%d het misluk</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="one">%1$d titel · %2$s</item><item quantity="other">%1$d titels · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d BOEKMERK</item><item quantity="other">%d BOEKMERKE</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d afdeling kon nie laai nie</item><item quantity="other">%d afdelings kon nie laai nie</item></plurals>
 <string name="action_add_to_bookmarks">Stel kykstatus</string>
@@ -33,7 +36,9 @@
 <string name="downloaded">Afgelaai</string>
 <string name="downloading">Laai tans af</string>
 <string name="downloads_browse_library">Blaai deur biblioteek</string>
+<string name="downloads_column_size">Grootte</string>
 <string name="downloads_delete_all">Wis alles uit</string>
+<string name="downloads_delete_confirm_body">Dit maak %s vry en kan nie ontdoen word nie.</string>
 <string name="downloads_delete_select">Kies items om te verwyder</string>
 <string name="downloads_empty_body">Aflaaie wat jy vanaf 'n titel se episodelys begin, verskyn hier en speel sonder 'n verbinding.</string>
 <string name="downloads_empty_headline">Nog geen aflaaie nie</string>
@@ -51,6 +56,8 @@
 <string name="downloads_reason_storage_unavailable">Berging onbeskikbaar</string>
 <string name="downloads_retry_failed">Probeer mislukte weer (%d)</string>
 <string name="downloads_select">Kies</string>
+<string name="downloads_selected_status">%1$d van %2$d gekies · %3$s</string>
+<string name="downloads_show_in_finder">Wys in Finder</string>
 <string name="downloads_state_queued">In wagry</string>
 <string name="downloads_storage_full_headline">Nie genoeg berging nie</string>
 <string name="downloads_storage_legend">%1$s van %2$s gebruik · %3$s in aflaaie</string>

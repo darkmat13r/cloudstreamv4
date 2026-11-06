@@ -3,7 +3,10 @@
 <resources>
 <string name="detail_load_failed_body">Šaltinis gali būti nepasiekiamas.</string>
 <string name="detail_load_failed_headline">Nepavyko atidaryti šio pavadinimo</string>
+<plurals name="downloads_delete_confirm_title"><item quantity="one">Ištrinti %d atsisiuntimą?</item><item quantity="few">Ištrinti %d atsisiuntimus?</item><item quantity="many">Ištrinti %d atsisiuntimo?</item><item quantity="other">Ištrinti %d atsisiuntimų?</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="one">%d serija</item><item quantity="few">%d serijos</item><item quantity="many">%d serijos</item><item quantity="other">%d serijų</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d nepavyko</item><item quantity="few">%d nepavyko</item><item quantity="many">%d nepavyko</item><item quantity="other">%d nepavyko</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="one">%1$d pavadinimas · %2$s</item><item quantity="few">%1$d pavadinimai · %2$s</item><item quantity="many">%1$d pavadinimo · %2$s</item><item quantity="other">%1$d pavadinimų · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ŽYMA</item><item quantity="few">%d ŽYMOS</item><item quantity="many">%d ŽYMOS</item><item quantity="other">%d ŽYMŲ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Nepavyko įkelti %d skilties</item><item quantity="few">Nepavyko įkelti %d skilčių</item><item quantity="many">Nepavyko įkelti %d skilties</item><item quantity="other">Nepavyko įkelti %d skilčių</item></plurals>
 <string name="action_add_to_bookmarks">Nustatyti žiūrėjimo statusą</string>
@@ -69,7 +72,9 @@
 <string name="downloaded">Atsisiųsta</string>
 <string name="downloading">Siunčiama</string>
 <string name="downloads_browse_library">Naršyti biblioteką</string>
+<string name="downloads_column_size">Dydis</string>
 <string name="downloads_delete_all">Ištrinti visus</string>
+<string name="downloads_delete_confirm_body">Tai atlaisvins %s ir to nebus galima atšaukti.</string>
 <string name="downloads_delete_select">Pasirinkite elementus, kuriuos norite pašalinti</string>
 <string name="downloads_empty">Šiuo metu atsisiuntimų nėra.</string>
 <string name="downloads_empty_body">Atsisiuntimai, pradėti iš pavadinimo epizodų sąrašo, rodomi čia ir paleidžiami be ryšio.</string>
@@ -88,6 +93,8 @@
 <string name="downloads_reason_storage_unavailable">Atmintis nepasiekiama</string>
 <string name="downloads_retry_failed">Kartoti nepavykusius (%d)</string>
 <string name="downloads_select">Pasirinkti</string>
+<string name="downloads_selected_status">Pasirinkta %1$d iš %2$d · %3$s</string>
+<string name="downloads_show_in_finder">Rodyti Finder</string>
 <string name="downloads_state_queued">Eilėje</string>
 <string name="downloads_storage_full_headline">Nepakanka atminties</string>
 <string name="downloads_storage_legend">Naudojama %1$s iš %2$s · %3$s atsisiuntimuose</string>
