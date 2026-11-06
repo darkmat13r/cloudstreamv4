@@ -4857,7 +4857,7 @@ desktop component layer (`DS-19`) comes later. Strings are `I18N-11` (#178), whi
 - **The transfer rate.** `DownloadTitle` carries none.
 - **New components.** The tooltip, the context menu and the bottom rule are private here. They are candidates for `DS-19`.
 - **Shared words.** The episode title and the failure reason are copies of TV's private rules in `SeriesRows`, kept
-  identical until `KMP-64`.
+  identical until `KMP-65`.
 - **"Show in Finder" is the Mac's word.** It sits in a shared key; Windows and Linux will need their own ("Show in folder")
   when those builds exist.
 
@@ -4880,7 +4880,7 @@ desktop component layer (`DS-19`) comes later. Strings are `I18N-11` (#178), whi
 - D5's empty copy is TV's.
 - The D3 sheet's body gives the size freed without the titles' names.
 
-## KMP-64 — One source for a series' words on TV and the Mac · **open**, follow-up of `KMP-54`
+## KMP-65 — One source for a series' words on TV and the Mac · **open**, follow-up of `KMP-54`
 
 `DownloadSeriesScreenDesktop` copies two private rules from TV's `series/tv/SeriesRows.kt`: `titleOf` ("S1 · E3 ·
 Name") and `reason` (a `DownloadFailure` in words). They are kept identical meanwhile. To do:

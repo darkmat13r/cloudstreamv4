@@ -558,7 +558,7 @@ private fun EpisodeStatus(episode: DownloadEpisode, formatBytes: (Long) -> Strin
 
 /**
  * "S1 · E3 · Name", or as much of it as is known: a copy of TV's private rule in `SeriesRows`, kept identical until
- * `KMP-64` makes the two one function (which also replaces `episode_short` + number with a key that takes the number).
+ * `KMP-65` makes the two one function (which also replaces `episode_short` + number with a key that takes the number).
  */
 @Composable
 private fun titleOf(episode: DownloadEpisode): String {
@@ -580,7 +580,7 @@ private fun titleOf(episode: DownloadEpisode): String {
     }
 }
 
-/** Why it failed: a copy of TV's private rule in `SeriesRows`, kept identical until `KMP-64`. Null where nothing recorded why. */
+/** Why it failed: a copy of TV's private rule in `SeriesRows`, kept identical until `KMP-65`. Null where nothing recorded why. */
 @Composable
 private fun reason(failure: DownloadFailure): String? = when (failure) {
     DownloadFailure.NetworkLost -> stringResource(Res.string.downloads_reason_network)
