@@ -4822,10 +4822,11 @@ download sources. There is no UI: that is `KMP-54`, which wires `source()` and `
 
 **Shape.**
 - `enqueue(DesktopDownloadRequest)` accepts VIDEO links only; HLS, DASH and torrents are refused with a typed `EnqueueRefusal`.
-  `DesktopDownloadLink.of(RemoteLink)` adapts the sandbox's link.
+  `DesktopDownloadLink.of(RemoteLink)` adapts the sandbox's link. A request names its source (`DownloadSourceRef`: provider and episode
+  data); its link is optional and only ever in memory.
 - At most 3 downloads run at once, first in, first out. Pause frees the slot (on Android a paused download keeps it).
 - Cancel discards the parts and the record.
-- Enqueuing a paused or failed episode again takes the new link, because signed URLs expire.
+- Enqueuing a paused or failed episode again takes the new link, because signed URLs expire. A blank source is `EnqueueRefusal.NoSource`.
 - The engine writes straight into `~/Downloads/CloudStream/<title>/`. On the JVM its atomic move works, so there is no staging (unlike `KMP-59`).
 - File names are `S01E02 Name.mp4`, or the title for a film, with ` (2)` on a clash. `DownloadPaths` restates the engine's internal name
   rules more strictly, so the result is always one safe path segment.
@@ -4836,15 +4837,26 @@ download sources. There is no UI: that is `KMP-54`, which wires `source()` and `
   A finished episode whose file is gone is dropped.
 - Logging: the exception class and a fixed text only.
 
-**Persisted: `~/.cloudstream4/downloads.json`, `0600`, written atomically.**
-- *What it holds:* ids, metadata, folder and file name, state, byte counts and queue order.
-- *The link, in plain text:* **`url`, `headers` and `referer`**, so a paused download can resume after a restart. Headers can carry
-  cookies or tokens.
-- *Reading it back:* everything is validated again (path segments, enum names, an http(s) URL), and a bad record is dropped.
-- *What stays out:* no `toString` includes the link.
+**Persisted: `~/.cloudstream4/downloads.json`, format 2, `0600`, written atomically. No link (owner's ruling, 2026-11-06).**
+- *What it holds:*
+  - ids, metadata, folder and file name, state, byte counts and queue order;
+  - the episode's source: `provider` (the extension's name) and `episodeData`, the string the player passes to
+    `SandboxedProvider.links(data)`.
+- *Not a link, but not "no URL at all":* `episodeData` is the same episode reference that watch history and bookmarks keep. It is often
+  an episode-page URL on the provider's site, and sometimes JSON with URLs inside.
+- *What it never holds:* the media link's `url`, `headers` or `referer`. Those stay in memory for the current process only.
+- *Resume and retry:* a resume after a restart, and every retry, asks the extension again through `LinkResolver`. In production that is
+  `SandboxLinkResolver`, which works the player's way: provider by name, then `links(data)`, then `isPublic`, then quality rank. The first
+  VIDEO link is used.
+  - No usable link: `NoUsableLink`.
+  - The resolver throws or takes more than 60 s: `SourceFailed`.
+  - Either way the part files stay.
+- *Resume after a pause* in the same process reuses the link in memory.
+- *Reading it back:* everything is validated again (path segments, enum names), a bad record is dropped, and a format-1 file is refused.
+- *What stays out:* no `toString` includes the source or the link.
 
 **Tests** (local, none CI). Counted from the XML:
-- `DesktopDownloadsTest`: 11/11, against a JDK `HttpServer` with Range and ETag support; every completion is compared byte for byte.
+- `DesktopDownloadsTest`: 14/14, against a JDK `HttpServer` with Range and ETag support; every completion is compared byte for byte.
   It covers:
   - done, and `fileOf` only at done
   - at most 3 running
@@ -4855,11 +4867,18 @@ download sources. There is no UI: that is `KMP-54`, which wires `source()` and `
   - the emission rate: 2.64–2.68/s while running, every gap ≥ 240 ms, nothing over 1.25 s idle
   - the file's permissions are `rw-------`
   - no link text in logs, stdout, stderr or any public `toString`
+  - no link text on disk: marker strings in the url, a header, the user agent and the referer never appear in the raw bytes of
+    `downloads.json`, any other file in its folder, or any file under the download root (the engine's state and parts). This is checked
+    after each of Queued, Running, Running past the engine's state rewrite, Paused, Done and Failed.
+  - after a restart, the resolver is asked once with the stored provider and data; a fresh URL resumes from the parts, byte-identical
+  - a resolver with nothing, only HLS, or an exception: `NoUsableLink` or `SourceFailed`, with the parts unchanged
+  - a retry asks again; a resume after a pause does not
 - Without the 250 ms throttle and with a fourth slot, 3 of these fail.
-- Full `:desktopApp:jvmTest`: 406/0. `:desktopApp:createDistributable` builds; the app was not launched.
+- Full `:desktopApp:jvmTest`: 409/0. `:desktopApp:createDistributable` builds; the app was not launched.
 
 **Not verified.**
-- The production client against a real host.
+- The production client against a real host, and `SandboxLinkResolver` against a real loaded extension (compiled only).
+- The resolver's 60 s timeout.
 - A full disk.
 - An unreadable downloads file, where `contents` throws and `enqueue` returns `StoreUnreadable`.
 - A process kill, as opposed to `close()`.

@@ -10,6 +10,7 @@ import com.lagradost.cloudstream4.feature.downloads.series.DownloadEpisode
 import com.lagradost.cloudstream4.feature.downloads.series.DownloadEpisodeId
 import com.lagradost.cloudstream4.feature.downloads.series.DownloadEpisodeState
 import com.lagradost.cloudstream4.media.download.DownloadOptions
+import com.lagradost.cloudstream4.media.model.DownloadFailure
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancelAndJoin
@@ -51,10 +52,16 @@ class DesktopDownloadsTest {
     }
 
     /** Loopback is a private address: this is the one place it is allowed, and only for these tests. */
-    private fun host(maxRunning: Int = 3, stateFile: File = this.stateFile, log: (String) -> Unit = {}) = DesktopDownloads(
+    private fun host(
+        maxRunning: Int = 3,
+        stateFile: File = this.stateFile,
+        log: (String) -> Unit = {},
+        resolver: LinkResolver = LinkResolver { error("no test here expects to be asked") },
+    ) = DesktopDownloads(
         downloadRoot = root,
         stateFile = stateFile,
         httpClient = HttpClientFactory(OkHttpClient()).create(),
+        resolver = resolver,
         options = DownloadOptions(parts = 1, allowPrivateAddresses = true, backoffBaseMillis = 10, backoffMaxMillis = 50),
         maxRunning = maxRunning,
         log = log,
@@ -70,8 +77,11 @@ class DesktopDownloadsTest {
             season = null,
             episode = null,
             episodeName = null,
+            source = sourceOf(id),
             link = DesktopDownloadLink(url, headers, referer),
         )
+
+    private fun sourceOf(id: Int) = DownloadSourceRef("Test Provider", "episode-data-$id")
 
     private fun episode(id: Int, titleId: Int, season: Int, number: Int, url: String) = DesktopDownloadRequest(
         episodeId = id,
@@ -81,6 +91,7 @@ class DesktopDownloadsTest {
         season = season,
         episode = number,
         episodeName = "Episode $number",
+        source = sourceOf(id),
         link = DesktopDownloadLink(url),
     )
 
@@ -163,34 +174,163 @@ class DesktopDownloadsTest {
         assertTrue(resumedAt.isNotEmpty() && resumedAt.first() >= paused.bytesDone - 1024 * 1024, "resumed from $resumedAt")
     }
 
-    @Test
-    fun `after a restart the same ids are there, paused, and resume completes byte-identical`() = runBlocking {
-        val body = server.add("restart.bin", 2 * 1024 * 1024)
-        server.chunkDelayMillis.set(10)
+    /** Starts [request] on a first host, stops it part-way, and returns how many bytes its parts held. */
+    private suspend fun interruptedPartWay(request: DesktopDownloadRequest): Long {
         val first = host()
-        first.enqueue(episode(7, 70, 1, 3, server.url("restart.bin")))
-        first.awaitEpisode(70, 7) { it.state == DownloadEpisodeState.Running && it.bytesDone >= 256 * 1024 }
+        first.enqueue(request)
+        first.awaitEpisode(request.titleId, request.episodeId) {
+            it.state == DownloadEpisodeState.Running && it.bytesDone >= 256 * 1024
+        }
         first.close()
         hosts.remove(first)
+        return partFiles().sumOf { it.length() }
+    }
 
-        val second = host()
-        val contents = second.awaitContents { it.titles.isNotEmpty() }
-        val title = contents.titles.single()
-        assertEquals(DownloadTitleId(70), title.id)
-        assertEquals(DownloadTitleState.Paused, title.state)
-        assertEquals(DownloadTitleKind.Series, title.kind)
-        val episode = second.awaitEpisode(70, 7) { true }
-        assertEquals(DownloadEpisodeState.Paused, episode.state, "nothing starts on its own after a restart")
-        assertEquals(1, episode.season)
-        assertEquals(3, episode.episode)
-        assertTrue(episode.bytesDone > 0L, "the parts on disk are counted: ${episode.bytesDone}")
+    /** The engine's part files under the download root. */
+    private fun partFiles(): List<File> =
+        root.walkTopDown().filter { it.isFile && it.parentFile.name.endsWith(".csdl") && it.name.startsWith("part-") }.toList()
 
-        second.resume(DownloadEpisodeId(7))
-        second.awaitDone(70, 7)
-        val file = second.fileOf(DownloadEpisodeId(7))!!
-        assertEquals("S01E03 Episode 3.mp4", file.name)
-        assertContentEquals(body, file.readBytes())
-        assertTrue(server.resumedFrom("restart.bin").isNotEmpty(), "the second run continued from the parts")
+    @Test
+    fun `after a restart the same ids are there, paused, and resume asks for a fresh link and completes byte-identical`() =
+        runBlocking {
+            val body = server.add("restart.bin", 2 * 1024 * 1024)
+            server.alias("restart-fresh.bin", "restart.bin")
+            server.chunkDelayMillis.set(10)
+            val held = interruptedPartWay(episode(7, 70, 1, 3, server.url("restart.bin")))
+            assertTrue(held > 0L, "parts on disk after the first host stopped")
+
+            val asked = CopyOnWriteArrayList<DownloadSourceRef>()
+            val second = host(resolver = { ref ->
+                asked += ref
+                listOf(
+                    DesktopDownloadLink(server.url("restart.m3u8"), type = ExtractorLinkType.M3U8),
+                    DesktopDownloadLink(server.url("restart-fresh.bin")),
+                )
+            })
+            val contents = second.awaitContents { it.titles.isNotEmpty() }
+            val title = contents.titles.single()
+            assertEquals(DownloadTitleId(70), title.id)
+            assertEquals(DownloadTitleState.Paused, title.state)
+            assertEquals(DownloadTitleKind.Series, title.kind)
+            val episode = second.awaitEpisode(70, 7) { true }
+            assertEquals(DownloadEpisodeState.Paused, episode.state, "nothing starts on its own after a restart")
+            assertEquals(1, episode.season)
+            assertEquals(3, episode.episode)
+            assertTrue(episode.bytesDone > 0L, "the parts on disk are counted: ${episode.bytesDone}")
+            assertTrue(asked.isEmpty(), "nothing asked before a resume")
+
+            second.resume(DownloadEpisodeId(7))
+            second.awaitDone(70, 7)
+            assertEquals(listOf(sourceOf(7)), asked, "asked once, with the stored provider and episode data")
+            val file = second.fileOf(DownloadEpisodeId(7))!!
+            assertEquals("S01E03 Episode 3.mp4", file.name)
+            assertContentEquals(body, file.readBytes())
+            val resumedAt = server.resumedFrom("restart-fresh.bin")
+            assertTrue(resumedAt.isNotEmpty() && resumedAt.first() >= held - 1024 * 1024, "the fresh link resumed from the parts: $resumedAt, held $held")
+            assertNull(server.ranges["restart.m3u8"], "the HLS link was skipped")
+        }
+
+    @Test
+    fun `after a restart a resolver with no VIDEO link fails the episode and keeps its parts`() = runBlocking {
+        server.add("nolink.bin", 2 * 1024 * 1024)
+        server.chunkDelayMillis.set(10)
+        val held = interruptedPartWay(film(8, "No Link", server.url("nolink.bin")))
+        assertTrue(held > 0L)
+
+        val empty = host(resolver = { emptyList() })
+        empty.resume(DownloadEpisodeId(8))
+        val none = empty.awaitEpisode(800, 8) { it.state == DownloadEpisodeState.Failed }
+        assertEquals(DownloadFailure.NoUsableLink, none.failure)
+        assertEquals(held, partFiles().sumOf { it.length() }, "the parts are untouched")
+        assertTrue(none.bytesDone > 0L)
+        empty.close()
+        hosts.remove(empty)
+
+        val hlsOnly = host(resolver = { listOf(DesktopDownloadLink(server.url("x.m3u8"), type = ExtractorLinkType.M3U8)) })
+        hlsOnly.resume(DownloadEpisodeId(8))
+        assertEquals(DownloadFailure.NoUsableLink, hlsOnly.awaitEpisode(800, 8) { it.state == DownloadEpisodeState.Failed }.failure)
+        hlsOnly.close()
+        hosts.remove(hlsOnly)
+
+        val throwing = host(resolver = { throw java.io.IOException("the extension is not loaded") })
+        throwing.resume(DownloadEpisodeId(8))
+        val threw = throwing.awaitEpisode(800, 8) { it.state == DownloadEpisodeState.Failed }
+        assertEquals(DownloadFailure.SourceFailed, threw.failure)
+        assertEquals(held, partFiles().sumOf { it.length() }, "the parts are untouched")
+        assertEquals(1, partFiles().size)
+    }
+
+    @Test
+    fun `a retry asks the extension again, a resume of a pause does not`() = runBlocking {
+        val body = server.add("retry.bin", 1024 * 1024)
+        server.chunkDelayMillis.set(5)
+        val asked = CopyOnWriteArrayList<DownloadSourceRef>()
+        val host = host(resolver = { ref -> asked += ref; listOf(DesktopDownloadLink(server.url("retry.bin"))) })
+        host.enqueue(film(9, "Retry", server.url("retry-missing.bin")))
+        val failed = host.awaitEpisode(900, 9) { it.state == DownloadEpisodeState.Failed }
+        assertEquals(DownloadFailure.ServerRefused(404), failed.failure)
+        assertTrue(asked.isEmpty(), "the enqueued link was used first")
+
+        host.retry(DownloadEpisodeId(9))
+        host.awaitEpisode(900, 9) { it.state == DownloadEpisodeState.Running && it.bytesDone > 0L }
+        host.pause(DownloadEpisodeId(9))
+        host.awaitEpisode(900, 9) { it.state == DownloadEpisodeState.Paused }
+        host.resume(DownloadEpisodeId(9))
+        host.awaitDone(900, 9)
+        assertEquals(listOf(sourceOf(9)), asked, "asked once, by the retry; the resume reused the link in memory")
+        assertContentEquals(body, host.fileOf(DownloadEpisodeId(9))!!.readBytes())
+    }
+
+    @Test
+    fun `no link text ever reaches the downloads file or the engine's state`() = runBlocking {
+        val markers = listOf("URLMARKER7Q", "HEADERMARKER7Q", "REFERERMARKER7Q", "AGENTMARKER7Q")
+        server.add("blocker.bin", 2 * 1024 * 1024)
+        // About 4 s at this pace, so it is still running after the engine's 2 s state-file interval.
+        server.add("marked.bin", 6 * 1024 * 1024)
+        server.chunkDelayMillis.set(10)
+        val dataDir = stateFile.parentFile
+
+        fun scan(stage: String, state: String) {
+            val written = stateFile.readBytes().toString(Charsets.ISO_8859_1)
+            assertTrue("\"state\":\"$state\"" in written, "$stage: the file was written with $state")
+            val files = dataDir.listFiles()!!.filter { it.isFile } + root.walkTopDown().filter { it.isFile }
+            files.forEach { file ->
+                val text = file.readBytes().toString(Charsets.ISO_8859_1)
+                markers.forEach { marker -> assertFalse(marker in text, "$stage: $marker is in ${file.name}") }
+            }
+        }
+
+        fun marked(id: Int, path: String) = film(
+            id, "Marked $id", server.url(path) + "?token=URLMARKER7Q",
+            headers = mapOf("X-Key" to "HEADERMARKER7Q", "User-Agent" to "AGENTMARKER7Q"),
+            referer = "https://referer.example/REFERERMARKER7Q",
+        )
+
+        val host = host(maxRunning = 1)
+        host.enqueue(film(1, "Blocker", server.url("blocker.bin")))
+        host.awaitEpisode(100, 1) { it.state == DownloadEpisodeState.Running }
+        host.enqueue(marked(2, "marked.bin"))
+        host.awaitEpisode(200, 2) { it.state == DownloadEpisodeState.Queued }
+        scan("queued", "Queued")
+
+        host.pause(DownloadEpisodeId(1))
+        host.awaitEpisode(200, 2) { it.state == DownloadEpisodeState.Running && it.bytesDone > 0L }
+        scan("running", "Running")
+        delay(2_300) // past the engine's 2 s state-file interval, so its state file has been rewritten mid-run
+        scan("running, later", "Running")
+
+        host.pause(DownloadEpisodeId(2))
+        host.awaitEpisode(200, 2) { it.state == DownloadEpisodeState.Paused }
+        scan("paused", "Paused")
+
+        host.resume(DownloadEpisodeId(2))
+        host.awaitDone(200, 2)
+        scan("done", "Done")
+
+        host.enqueue(marked(3, "marked-missing.bin"))
+        host.awaitEpisode(300, 3) { it.state == DownloadEpisodeState.Failed }
+        scan("failed", "Failed")
+        assertTrue("episode-data-2" in stateFile.readText(), "the source to ask again is what is kept")
     }
 
     @Test
@@ -313,17 +453,20 @@ class DesktopDownloadsTest {
     fun `only VIDEO links over http are taken`() = runBlocking {
         val host = host()
         val hls = film(1, "Hls", server.url("x.m3u8")).let {
-            DesktopDownloadRequest(it.episodeId, it.titleId, it.titleName, it.kind, null, null, null,
+            DesktopDownloadRequest(it.episodeId, it.titleId, it.titleName, it.kind, null, null, null, sourceOf(1),
                 DesktopDownloadLink(server.url("x.m3u8"), type = ExtractorLinkType.M3U8))
         }
         assertEquals(EnqueueResult.Refused(EnqueueRefusal.UnsupportedLinkType), host.enqueue(hls))
         listOf(ExtractorLinkType.DASH, ExtractorLinkType.TORRENT, ExtractorLinkType.MAGNET).forEach { type ->
-            val request = DesktopDownloadRequest(2, 200, "T", DownloadTitleKind.Film, null, null, null, DesktopDownloadLink(server.url("x"), type = type))
+            val request = DesktopDownloadRequest(2, 200, "T", DownloadTitleKind.Film, null, null, null, sourceOf(2), DesktopDownloadLink(server.url("x"), type = type))
             assertEquals(EnqueueResult.Refused(EnqueueRefusal.UnsupportedLinkType), host.enqueue(request))
         }
         listOf("ftp://example.com/a", "file:///etc/passwd", "https://user:pw@example.com/a", "not a url").forEach { url ->
             assertEquals(EnqueueResult.Refused(EnqueueRefusal.InvalidUrl), host.enqueue(film(3, "Bad", url)), url)
         }
+        val noSource = DesktopDownloadRequest(4, 400, "T", DownloadTitleKind.Film, null, null, null,
+            DownloadSourceRef("Test Provider", " "), DesktopDownloadLink(server.url("x")))
+        assertEquals(EnqueueResult.Refused(EnqueueRefusal.NoSource), host.enqueue(noSource))
         assertTrue(host.awaitContents { true }.titles.isEmpty())
     }
 
@@ -347,7 +490,7 @@ class DesktopDownloadsTest {
                 headers = mapOf("X-Api-Key" to "HEADERSECRET", "User-Agent" to "UASECRET"),
                 referer = "https://referer.example/REFSECRET",
             )
-            val request = DesktopDownloadRequest(1, 100, "Secret", DownloadTitleKind.Film, null, null, null, link)
+            val request = DesktopDownloadRequest(1, 100, "Secret", DownloadTitleKind.Film, null, null, null, sourceOf(1), link)
             val missing = film(2, "Missing", server.url("SECRETPATH-missing.bin") + "?sig=SIGSECRET")
             val results = listOf(host.enqueue(request), host.enqueue(missing))
             host.awaitDone(100, 1)

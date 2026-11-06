@@ -16,8 +16,9 @@ import java.nio.file.attribute.PosixFilePermissions
 /**
  * One episode as it is written to the downloads file.
  *
- * [url], [headers] and [referer] are what a paused download needs to carry on, and they are credentials, so
- * [toString] leaves them out and nothing logs this class.
+ * No link is written: no URL, header or referer (the owner's ruling on `KMP-52`). A resume after a restart asks the
+ * extension again with [provider] and [episodeData]. [episodeData] is the provider's own string, often an episode
+ * page's URL, so [toString] leaves it out and nothing logs this class.
  *
  * [state] is a [Phase] name. Only `Done` survives a restart as itself: anything else reads back as paused.
  */
@@ -41,9 +42,10 @@ internal class StoredEpisode(
     val addedSeq: Long,
     /** When it last went into the queue, as a sequence number. Orders the queue. */
     val queueSeq: Long,
-    val url: String,
-    val headers: Map<String, String> = emptyMap(),
-    val referer: String? = null,
+    /** The extension's provider name, as `SandboxedProvider.name`. */
+    val provider: String,
+    /** What the player passes to `SandboxedProvider.links` for this episode. */
+    val episodeData: String,
 ) {
     override fun toString(): String = "StoredEpisode(episodeId=$episodeId, titleId=$titleId, state=$state)"
 }
@@ -57,7 +59,8 @@ internal class StoredDownloads(
     override fun toString(): String = "StoredDownloads(episodes=${episodes.size})"
 
     companion object {
-        const val FORMAT = 1
+        /** 2: no link fields; the source to ask again instead. A format-1 file is refused, not migrated (unreleased). */
+        const val FORMAT = 2
     }
 }
 

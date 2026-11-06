@@ -44,8 +44,11 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withTimeoutOrNull
 
 /** Where one episode stands. Only [Done] is written back as itself after a restart; the rest read as [Paused]. */
 internal enum class Phase { Queued, Running, Paused, Failed, Done }
@@ -101,6 +104,14 @@ internal class EpisodeView(
  * failure reads after a restart, and its bytes are what the engine's parts hold on disk. A finished episode whose
  * file is gone is dropped, as Android's list readers drop one.
  *
+ * ## Links
+ *
+ * The downloads file holds no link (owner's ruling): only the provider and the episode's data. A link lives in
+ * memory for this process: the one [enqueue] was given, or the last one [LinkResolver] returned. A paused episode
+ * resumes with it. With none in memory (after a restart) and on every retry of a failure, the run first asks the
+ * [LinkResolver] and takes the first VIDEO link with an http(s) URL. None, a throw or a timeout fails the episode,
+ * [DownloadFailure.NoUsableLink] or [DownloadFailure.SourceFailed], and its parts stay on disk.
+ *
  * ## Security
  *
  * TLS is verified and private, loopback and link-local addresses are refused: the engine's defaults, and the
@@ -111,6 +122,8 @@ class DesktopDownloads internal constructor(
     downloadRoot: File,
     stateFile: File,
     private val httpClient: HttpClient,
+    /** Asks the extension for fresh links when there is none in memory: after a restart, and on every retry. */
+    private val resolver: LinkResolver,
     /** The engine's options. Production takes the defaults; only a test may pass `allowPrivateAddresses`. */
     private val options: DownloadOptions,
     private val maxRunning: Int,
@@ -128,6 +141,7 @@ class DesktopDownloads internal constructor(
         downloadRoot = downloadRoot,
         stateFile = stateFile,
         httpClient = defaultHttpClient(),
+        resolver = SandboxLinkResolver(),
         options = DownloadOptions(),
         maxRunning = MAX_RUNNING,
         log = ::defaultLog,
@@ -395,8 +409,15 @@ class DesktopDownloads internal constructor(
         data object Refresh : Command
     }
 
-    /** How a run ended. [snapshot] is its last, or null when it threw. */
-    private class Outcome(val snapshot: DownloadSnapshot?)
+    /**
+     * How a run ended. [snapshot] is its last, or null when it threw or never reached the engine; [failure], when
+     * set, is why it never did. [link] is the link the run used, to keep in memory.
+     */
+    private class Outcome(
+        val snapshot: DownloadSnapshot?,
+        val failure: DownloadFailure? = null,
+        val link: DesktopDownloadLink? = null,
+    )
 
     private class Run(val token: Any = Any()) {
         lateinit var job: Job
@@ -404,6 +425,10 @@ class DesktopDownloads internal constructor(
         /** Set by the run before it says it has finished, so a pause that lands as it ends still sees how. */
         @Volatile
         var outcome: Outcome? = null
+
+        /** The link this run is using, once known, so a pause keeps a freshly resolved one in memory. */
+        @Volatile
+        var link: DesktopDownloadLink? = null
     }
 
     private inner class Item(
@@ -416,9 +441,9 @@ class DesktopDownloads internal constructor(
         val episodeName: String?,
         val folderName: String,
         var fileName: String,
-        var url: String,
-        var headers: Map<String, String>,
-        var referer: String?,
+        val source: DownloadSourceRef,
+        /** In memory only: never written. Null after a restart and before a retry, until the resolver answers. */
+        var link: DesktopDownloadLink?,
         var phase: Phase,
         var bytesOnDisk: Long,
         var bytesTotal: Long?,
@@ -454,9 +479,8 @@ class DesktopDownloads internal constructor(
             bytesTotal = bytesTotal,
             addedSeq = addedSeq,
             queueSeq = queueSeq,
-            url = url,
-            headers = headers,
-            referer = referer,
+            provider = source.providerName,
+            episodeData = source.episodeData,
         )
     }
 
@@ -528,7 +552,7 @@ class DesktopDownloads internal constructor(
         if (!stored.fileName.endsWith(".${DownloadPaths.EXTENSION}")) return null
         val kind = DownloadTitleKind.entries.firstOrNull { it.name == stored.kind } ?: return null
         val phase = Phase.entries.firstOrNull { it.name == stored.state } ?: return null
-        if (cleanUrl(stored.url) == null) return null
+        val source = sourceOf(stored.provider, stored.episodeData) ?: return null
         return Item(
             episodeId = stored.episodeId,
             titleId = stored.titleId,
@@ -539,9 +563,8 @@ class DesktopDownloads internal constructor(
             episodeName = DownloadPaths.displayText(stored.episodeName),
             folderName = stored.folder,
             fileName = stored.fileName,
-            url = stored.url,
-            headers = stored.headers,
-            referer = stored.referer,
+            source = source,
+            link = null,
             phase = phase,
             bytesOnDisk = stored.bytesDone.coerceAtLeast(0L),
             bytesTotal = stored.bytesTotal?.takeIf { it >= 0L },
@@ -551,18 +574,22 @@ class DesktopDownloads internal constructor(
     }
 
     private fun enqueueNow(request: DesktopDownloadRequest): EnqueueResult {
-        val link = request.link
-        if (link.type != ExtractorLinkType.VIDEO) return EnqueueResult.Refused(EnqueueRefusal.UnsupportedLinkType)
-        val url = cleanUrl(link.url) ?: return EnqueueResult.Refused(EnqueueRefusal.InvalidUrl)
+        val given = request.link
+        val link = if (given == null) {
+            null
+        } else {
+            if (given.type != ExtractorLinkType.VIDEO) return EnqueueResult.Refused(EnqueueRefusal.UnsupportedLinkType)
+            usable(given) ?: return EnqueueResult.Refused(EnqueueRefusal.InvalidUrl)
+        }
+        val source = sourceOf(request.source.providerName, request.source.episodeData)
+            ?: return EnqueueResult.Refused(EnqueueRefusal.NoSource)
         if (!readable) return EnqueueResult.Refused(EnqueueRefusal.StoreUnreadable)
 
         items[request.episodeId]?.let { existing ->
             if (existing.phase != Phase.Paused && existing.phase != Phase.Failed) return EnqueueResult.AlreadyPresent
-            // A paused or failed episode enqueued again takes the new link: a signed URL expires.
-            existing.url = url
-            existing.headers = link.headers
-            existing.referer = link.referer
+            // A paused or failed episode enqueued again goes in line; a new link replaces the one in memory.
             resumeNow(existing)
+            if (link != null) existing.link = link
             return EnqueueResult.Queued
         }
 
@@ -591,9 +618,8 @@ class DesktopDownloads internal constructor(
             episodeName = DownloadPaths.displayText(request.episodeName),
             folderName = folderName,
             fileName = fileName,
-            url = url,
-            headers = link.headers,
-            referer = link.referer,
+            source = source,
+            link = link,
             phase = Phase.Queued,
             bytesOnDisk = 0L,
             bytesTotal = null,
@@ -625,6 +651,8 @@ class DesktopDownloads internal constructor(
 
     private fun resumeNow(item: Item) {
         if (item.phase != Phase.Paused && item.phase != Phase.Failed) return
+        // A retry asks the extension again: the link in memory may be what failed. A pause keeps it.
+        if (item.phase == Phase.Failed) item.link = null
         item.phase = Phase.Queued
         item.failure = null
         item.queueSeq = nextSeq++
@@ -642,6 +670,7 @@ class DesktopDownloads internal constructor(
         run.job.cancelAndJoin()
         item.run = null
         live.remove(item.episodeId)
+        run.link?.let { item.link = it }
         val outcome = run.outcome ?: return true
         finish(item, outcome)
         return false
@@ -649,6 +678,7 @@ class DesktopDownloads internal constructor(
 
     private fun finish(item: Item, outcome: Outcome) {
         live.remove(item.episodeId)
+        outcome.link?.let { item.link = it }
         val snapshot = outcome.snapshot
         when (snapshot?.state) {
             DownloadState.COMPLETED -> {
@@ -671,7 +701,7 @@ class DesktopDownloads internal constructor(
             }
             else -> {
                 item.phase = Phase.Failed
-                item.failure = DownloadFailure.Unknown
+                item.failure = outcome.failure ?: DownloadFailure.Unknown
                 item.bytesOnDisk = measureParts(item)
             }
         }
@@ -691,16 +721,29 @@ class DesktopDownloads internal constructor(
     private fun start(item: Item) {
         val id = item.episodeId
         val run = Run()
-        val request = DownloadRequest(
-            url = item.url,
-            folder = PlatformFile(item.folder),
-            fileName = item.fileName,
-            headers = item.headers,
-            referer = item.referer,
-            overwrite = false,
-            options = options,
-        )
+        val known = item.link
+        val source = item.source
+        val folder = PlatformFile(item.folder)
+        val fileName = item.fileName
         run.job = scope.launch(start = CoroutineStart.LAZY) {
+            val link = known ?: when (val resolved = resolve(source)) {
+                is Resolved.Link -> resolved.link
+                is Resolved.Failed -> {
+                    run.outcome = Outcome(null, resolved.failure)
+                    commands.trySend(Command.Finished(id, run.token))
+                    return@launch
+                }
+            }
+            run.link = link
+            val request = DownloadRequest(
+                url = link.url,
+                folder = folder,
+                fileName = fileName,
+                headers = link.headers,
+                referer = link.referer,
+                overwrite = false,
+                options = options,
+            )
             var last: DownloadSnapshot? = null
             try {
                 SegmentedDownloader(httpClient, storage).download(request).collect { snapshot ->
@@ -716,7 +759,7 @@ class DesktopDownloads internal constructor(
                 log("a download ended by an error: ${e.javaClass.name}")
                 last = null
             }
-            run.outcome = Outcome(last)
+            run.outcome = Outcome(last, link = link)
             commands.trySend(Command.Finished(id, run.token))
         }
         item.run = run
@@ -724,6 +767,36 @@ class DesktopDownloads internal constructor(
         item.failure = null
         item.startedSeq = nextSeq++
         run.job.start()
+    }
+
+    private sealed interface Resolved {
+        class Link(val link: DesktopDownloadLink) : Resolved
+        class Failed(val failure: DownloadFailure) : Resolved
+    }
+
+    /**
+     * The first usable VIDEO link the extension offers now. None is [DownloadFailure.NoUsableLink]; a throw or no
+     * answer within [RESOLVE_TIMEOUT_MILLIS] is [DownloadFailure.SourceFailed]. Cancellation (a pause) passes through.
+     */
+    private suspend fun resolve(source: DownloadSourceRef): Resolved {
+        val links = try {
+            withTimeoutOrNull(RESOLVE_TIMEOUT_MILLIS) { resolver.resolve(source) }
+        } catch (e: CancellationException) {
+            if (currentCoroutineContext().isActive) {
+                log("asking the extension for links ended by a cancellation")
+                return Resolved.Failed(DownloadFailure.SourceFailed)
+            }
+            throw e
+        } catch (e: Throwable) {
+            log("asking the extension for links failed: ${e.javaClass.name}")
+            return Resolved.Failed(DownloadFailure.SourceFailed)
+        } ?: run {
+            log("asking the extension for links timed out")
+            return Resolved.Failed(DownloadFailure.SourceFailed)
+        }
+        val link = links.asSequence().filter { it.type == ExtractorLinkType.VIDEO }.mapNotNull(::usable).firstOrNull()
+            ?: return Resolved.Failed(DownloadFailure.NoUsableLink)
+        return Resolved.Link(link)
     }
 
     private suspend fun remove(targets: List<Item>) {
@@ -826,6 +899,25 @@ class DesktopDownloads internal constructor(
     companion object {
         /** Android's default, `download_parallel_key`. */
         const val MAX_RUNNING = 3
+
+        /** How long the extension has to answer for links before the episode fails with SourceFailed. */
+        internal const val RESOLVE_TIMEOUT_MILLIS = 60_000L
+
+        /** [link] with its URL cleaned by [cleanUrl], or null when that refuses it. */
+        internal fun usable(link: DesktopDownloadLink): DesktopDownloadLink? {
+            val url = cleanUrl(link.url) ?: return null
+            return if (url == link.url) link else DesktopDownloadLink(url, link.headers, link.referer, link.type)
+        }
+
+        /** A source that can be asked again: a provider name and episode data, neither blank nor absurdly long. */
+        internal fun sourceOf(provider: String, episodeData: String): DownloadSourceRef? {
+            if (provider.isBlank() || episodeData.isBlank()) return null
+            if (provider.length > MAX_PROVIDER_CHARS || episodeData.length > MAX_EPISODE_DATA_CHARS) return null
+            return DownloadSourceRef(provider, episodeData)
+        }
+
+        private const val MAX_PROVIDER_CHARS = 200
+        private const val MAX_EPISODE_DATA_CHARS = 64 * 1024
 
         /** At most four emissions a second while anything runs. */
         internal const val EMIT_INTERVAL_MILLIS = 250L

@@ -43,6 +43,11 @@ internal class RangeServer : AutoCloseable {
     fun add(name: String, size: Int, seed: Int = name.hashCode()): ByteArray =
         Random(seed).nextBytes(size).also { files[name] = it }
 
+    /** Serves [existing]'s bytes at [name] as well, with the same ETag: the same file behind a fresh URL. */
+    fun alias(name: String, existing: String) {
+        files[name] = files.getValue(existing)
+    }
+
     fun url(name: String) = "http://127.0.0.1:${server.address.port}/$name"
 
     /** Ranged requests that did not start at 0: what a resume sends. */
@@ -57,7 +62,8 @@ internal class RangeServer : AutoCloseable {
             exchange.sendResponseHeaders(404, -1)
             return
         }
-        exchange.responseHeaders.add("ETag", "\"${name.hashCode()}\"")
+        // From the content, so an alias of the same bytes is the same file to the engine.
+        exchange.responseHeaders.add("ETag", "\"${body.contentHashCode()}\"")
         exchange.responseHeaders.add("Accept-Ranges", "bytes")
         exchange.responseHeaders.add("Content-Type", "application/octet-stream")
         val header = exchange.requestHeaders.getFirst("Range")

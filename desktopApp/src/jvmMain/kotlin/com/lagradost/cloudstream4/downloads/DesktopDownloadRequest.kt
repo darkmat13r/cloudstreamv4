@@ -39,11 +39,40 @@ class DesktopDownloadLink(
 }
 
 /**
+ * What the extension needs to be asked for an episode's links again: the provider's name and the episode's data,
+ * exactly what the desktop player passes to `SandboxedProvider.links`. This is what the downloads file keeps, in
+ * place of a link.
+ *
+ * [episodeData] is the provider's own string. It is often a URL (an episode page, not a media link) and can be a
+ * JSON blob, so [toString] leaves it out.
+ */
+class DownloadSourceRef(val providerName: String, val episodeData: String) {
+    override fun equals(other: Any?): Boolean =
+        other is DownloadSourceRef && other.providerName == providerName && other.episodeData == episodeData
+
+    override fun hashCode(): Int = 31 * providerName.hashCode() + episodeData.hashCode()
+
+    override fun toString(): String = "DownloadSourceRef(providerName=$providerName)"
+}
+
+/**
+ * Asks the extension for an episode's links again, for a resume after a restart and for every retry. Best first;
+ * [DesktopDownloads] takes the first [ExtractorLinkType.VIDEO] one. Throwing, or returning none, fails the episode
+ * and keeps its parts.
+ */
+fun interface LinkResolver {
+    suspend fun resolve(ref: DownloadSourceRef): List<DesktopDownloadLink>
+}
+
+/**
  * One episode, or a film's one file, to download.
  *
  * @param episodeId the episode's id. Stable across restarts; one record per id.
  * @param titleId the film's or series' id. Episodes with the same one are one row on the list.
  * @param titleName what the row says, and the name of the folder the file goes in.
+ * @param source how to ask for the links again. Written to the downloads file.
+ * @param link the link to start with, when the caller already has one. Kept in memory only, never written; without
+ *   one, the first run asks [source].
  */
 class DesktopDownloadRequest(
     val episodeId: Int,
@@ -53,7 +82,8 @@ class DesktopDownloadRequest(
     val season: Int?,
     val episode: Int?,
     val episodeName: String?,
-    val link: DesktopDownloadLink,
+    val source: DownloadSourceRef,
+    val link: DesktopDownloadLink? = null,
 ) {
     override fun toString(): String =
         "DesktopDownloadRequest(episodeId=$episodeId, titleId=$titleId, kind=$kind, season=$season, episode=$episode)"
@@ -76,6 +106,9 @@ enum class EnqueueRefusal {
 
     /** Not an absolute `http` or `https` URL with a host, or one carrying user information. */
     InvalidUrl,
+
+    /** No provider name or no episode data, so the links could never be asked for again. */
+    NoSource,
 
     /** The downloads file could not be read at start-up, so nothing is written over it. */
     StoreUnreadable,
