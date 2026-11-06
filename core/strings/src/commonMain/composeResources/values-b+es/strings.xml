@@ -116,6 +116,7 @@
 <string name="cancel_queue_message">¿Desea cancelar todas las descargas de la cola?</string>
 <string name="cartoons">Dibujos animados</string>
 <string name="cartoons_singular">Dibujo animado</string>
+<string name="cast">Reparto</string>
 <string name="cast_format">Reparto: %s</string>
 <string name="category_account">Cuentas y seguridad</string>
 <string name="category_general">General</string>
@@ -218,6 +219,7 @@
 <string name="duplicate_title">Posible duplicado encontrado</string>
 <string name="duration">Duración</string>
 <string name="duration_format">%d min</string>
+<string name="duration_hours_minutes_format">%1$d h %2$d m</string>
 <string name="edit">Editar</string>
 <string name="edit_account">Editar la cuenta</string>
 <string name="edit_profile_image_error_empty">Ninguna URL Encontrada</string>
@@ -365,6 +367,7 @@
 <string name="middle_right">Medio derecha</string>
 <string name="min">Mínimo</string>
 <string name="mobile_data">Datos móviles</string>
+<string name="more_like_this">Más como esto</string>
 <string name="movies">Películas</string>
 <string name="movies_singular">Película</string>
 <string name="music_singular">Música</string>

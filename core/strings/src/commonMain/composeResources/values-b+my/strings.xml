@@ -80,6 +80,7 @@
 <string name="cancel">ပယ်ဖျက်ရန်</string>
 <string name="cartoons">ကာတွန်းများ</string>
 <string name="cartoons_singular">ကာတွန်း</string>
+<string name="cast">သရုပ်ဆောင်များ</string>
 <string name="cast_format">သရုပ်ဆောင်များ: %s</string>
 <string name="category_account">အကောင့်များ</string>
 <string name="category_general">အထွေထွေ</string>
@@ -260,6 +261,7 @@
 <string name="max">အပြည့်</string>
 <string name="min">အနည်းဆုံး</string>
 <string name="mobile_data">မိုဘိုင်းဒေတာ</string>
+<string name="more_like_this">ဤကဲ့သို့ နောက်ထပ်</string>
 <string name="movies">ရုပ်ရှင်များ</string>
 <string name="movies_singular">ရုပ်ရှင်</string>
 <string name="network_adress_example">ထုတ်လွှင့်ရန် လင့်ခ် နှင့်ချိတ်ပါ</string>

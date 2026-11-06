@@ -114,6 +114,7 @@
 <string name="cancel_queue_message">"要取消队列中的所有下载吗？"</string>
 <string name="cartoons">"卡通"</string>
 <string name="cartoons_singular">"卡通"</string>
+<string name="cast">"演员"</string>
 <string name="cast_format" formatted="true">"演员：%s"</string>
 <string name="category_account">"账户和安全"</string>
 <string name="category_general">"通用"</string>
@@ -218,6 +219,7 @@
 <string name="duplicate_title">"发现潜在重复"</string>
 <string name="duration">"时间"</string>
 <string name="duration_format" formatted="true">"%d 分钟"</string>
+<string name="duration_hours_minutes_format" formatted="true">"%1$d小时 %2$d分钟"</string>
 <string name="edit">"编辑"</string>
 <string name="edit_account">"编辑账户"</string>
 <string name="edit_profile_image_error_empty">"未找到 URL"</string>
@@ -365,6 +367,7 @@
 <string name="middle_right">"中右"</string>
 <string name="min">"最小"</string>
 <string name="mobile_data">"移动流量"</string>
+<string name="more_like_this">"相关推荐"</string>
 <string name="movies">"电影"</string>
 <string name="movies_singular">"电影"</string>
 <string name="music_singular">"音乐"</string>

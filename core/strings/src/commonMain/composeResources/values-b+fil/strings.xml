@@ -25,6 +25,7 @@
 <string name="biometric_warning">Na-back up na ngayon ang iyong data sa CloudStream. Bagama't napakababa ng posibilidad nito, lahat ng device ay maaaring kumilos nang iba. Sa pambihirang kaso, na ma-lock out ka mula sa pag-access sa app, ganap na i-clear ang data ng app at i-restore mula sa isang backup. Lubos kaming humihingi ng paumanhin para sa anumang abala na dulot nito.</string>
 <string name="blank_repo_message">Ang CloudStream ay walang mga site na naka-install sa umpisa. Kailangan mong i-install ang mga site mula sa mga repositoryo. \n \nSumali sa aming Discord o maghanap online.</string>
 <string name="browser">Browser</string>
+<string name="cast">Tauhan</string>
 <string name="cast_format">Tauhan: %s</string>
 <string name="confirm_before_exiting_desc">Ipakita ang dialog bago lumabas sa app</string>
 <string name="confirm_before_exiting_title">Kumpirmahin bago lumabas</string>
@@ -61,6 +62,7 @@
 <string name="duplicate_message_single">Lumalabas na mayroong potensyal na nag-doble na item sa iyong library: '%s.' \n\nGusto mo pa rin bang idagdag ang item na ito, palitan ang nauna, o kanselahin ito?</string>
 <string name="duplicate_title">May Natagpuan na Nag-doble</string>
 <string name="duration_format">%d min</string>
+<string name="duration_hours_minutes_format">%1$do %2$dm</string>
 <string name="episode_more_options_des">Iba pang Mga Pagpipilian</string>
 <string name="episode_poster_img_des">Poster ng Kabanata</string>
 <string name="episode_sync_settings_des">Awtomatikong i-sync ang iyong kasalukuyang episode</string>
@@ -109,6 +111,7 @@
 <string name="links_reloaded_toast">Ini-load muli ang mga link</string>
 <string name="load_more">Mag-load pa</string>
 <string name="loading">Naglo-load…</string>
+<string name="more_like_this">Higit pang katulad nito</string>
 <string name="new_update_format">May nakitang bagong update!\n%1$s -&gt; %2$s</string>
 <string name="next_episode">Susunod na kabanata</string>
 <string name="next_episode_format">Kabanata %d ay ipapalabas sa</string>

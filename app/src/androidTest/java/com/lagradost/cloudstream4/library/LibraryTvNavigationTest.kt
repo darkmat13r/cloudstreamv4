@@ -14,7 +14,7 @@ import com.lagradost.cloudstream3.MainAPI
 import com.lagradost.cloudstream3.MainActivity
 import com.lagradost.cloudstream3.R
 import com.lagradost.cloudstream3.ui.WatchType
-import com.lagradost.cloudstream3.ui.result.ResultFragmentTv
+import com.lagradost.cloudstream4.detail.DetailTvFragment
 import com.lagradost.cloudstream3.ui.setup.HAS_DONE_SETUP_KEY
 import com.lagradost.cloudstream3.utils.DataStoreHelper
 import com.lagradost.cloudstream4.core.devicetest.Dpad
@@ -108,7 +108,8 @@ class LibraryTvNavigationTest {
             pressToTheTitle()
             dpad.center()
             device.wait(Until.gone(By.text(WATCHING)), SCREEN_WAIT_MS)
-            assertEquals(ResultFragmentTv::class.java, scenario.currentFragment()?.javaClass)
+            // KMP-38: TV opens the new detail page at this destination.
+            assertEquals(DetailTvFragment::class.java, scenario.currentFragment()?.javaClass)
 
             repeat(BACK_PRESSES) {
                 if (scenario.currentFragment()?.javaClass != LibraryTvFragment::class.java) {

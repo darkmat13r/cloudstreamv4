@@ -317,6 +317,10 @@ dependencies {
 
     // Plan row 17: AndroidExtensionRuntime implements the seam :feature:extensions declares.
     implementation(project(":feature:extensions"))
+
+    // Queue Q20: AndroidDetailSource implements the seam :feature:detail declares, and
+    // DetailTvFragment hosts DetailScreenTv on the TV layout.
+    implementation(project(":feature:detail"))
 }
 
 tasks.register<Jar>("androidSourcesJar") {

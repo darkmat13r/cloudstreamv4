@@ -13,6 +13,7 @@ values-b+af/strings.xml	string	benene_count_text	-	STR	%d Benenes gegee aan devs
 values-b+af/strings.xml	string	benene_count_text_none	-	STR	Geen Benenes gegee	
 values-b+af/strings.xml	string	browser	-	STR	Blaaier	
 values-b+af/strings.xml	string	cancel	-	STR	Kanselleer	
+values-b+af/strings.xml	string	cast	-	STR	Rolverdeling	
 values-b+af/strings.xml	string	cast_format	-	STR	Rolverdeling: %s	
 values-b+af/strings.xml	string	category_providers	-	STR	Verskaffers	
 values-b+af/strings.xml	string	continue_watching	-	STR	Kyk verder	
@@ -91,6 +92,7 @@ values-b+af/strings.xml	string	home_play	-	STR	Speel
 values-b+af/strings.xml	string	home_search_only_body	-	STR	Geen van jou uitbreidings het 'n tuisblad nie, maar jy kan steeds daarin soek.	
 values-b+af/strings.xml	string	load_more	-	STR	Laai meer	
 values-b+af/strings.xml	string	loading	-	STR	Laai tans…	
+values-b+af/strings.xml	string	more_like_this	-	STR	Meer soos hierdie	
 values-b+af/strings.xml	string	new_update_format	-	STR	Nuwe opdatering gevind! \n%1$s -> %2$s	
 values-b+af/strings.xml	string	next_episode	-	STR	Volgende episode	
 values-b+af/strings.xml	string	next_episode_format	-	STR	Episode %d sal vrygestel word in	
@@ -199,6 +201,7 @@ values-b+am/strings.xml	string	app_subbed_text	-	STR	ትርጉም ጽሁፍ
 values-b+am/strings.xml	string	benene_count_text	-	STR	%d ሙዝ ለዴቭሎፐሮቹ ተሰጥቷል	
 values-b+am/strings.xml	string	benene_count_text_none	-	STR	ምንም ሙዝ አልተሰጠም	
 values-b+am/strings.xml	string	browser	-	STR	አሳሽ	
+values-b+am/strings.xml	string	cast	-	STR	ተዋናዮች	
 values-b+am/strings.xml	string	cast_format	-	STR	ተዋናዮች: %s	
 values-b+am/strings.xml	string	continue_watching	-	STR	መመልከትዎን ይቀጥሉ	
 values-b+am/strings.xml	string	detail_load_failed_body	-	STR	ምንጩ ላይገኝ ይችላል።	
@@ -271,6 +274,7 @@ values-b+am/strings.xml	string	home_play	-	STR	አጫውት
 values-b+am/strings.xml	string	home_search_only_body	-	STR	ከቅጥያዎችህ አንዳቸውም መነሻ ገጽ የላቸውም፣ ነገር ግን አሁንም በእነሱ መፈለግ ትችላለህ።	
 values-b+am/strings.xml	string	load_more	-	STR	ተጨማሪ ጫን	
 values-b+am/strings.xml	string	loading	-	STR	በመጫን ላይ…	
+values-b+am/strings.xml	string	more_like_this	-	STR	ተጨማሪ እንደዚህ ያሉ	
 values-b+am/strings.xml	string	new_update_format	-	STR	አዲስ ማሻሻያ ተገኝቷል! \n%1$s -> %2$s	
 values-b+am/strings.xml	string	next_episode	-	STR	ቀጣይ ክፍል	
 values-b+am/strings.xml	string	next_episode_format	-	STR	ክፍል %d በ ይለቀቃል	
@@ -476,6 +480,7 @@ values-b+apc/strings.xml	string	cancel_all	-	STR	لغين كلن
 values-b+apc/strings.xml	string	cancel_queue_message	-	STR	بدك تلغي كل شي عم يتنَزَّل؟	
 values-b+apc/strings.xml	string	cartoons	-	STR	رسوم مُتَحَرِكة	
 values-b+apc/strings.xml	string	cartoons_singular	-	STR	رسوم مُتَحَرِكة	
+values-b+apc/strings.xml	string	cast	-	STR	ممثلين	
 values-b+apc/strings.xml	string	cast_format	-	STR	ممثلين: %s	
 values-b+apc/strings.xml	string	category_account	-	STR	الحسابات وال أمان	
 values-b+apc/strings.xml	string	category_general	-	STR	عام	
@@ -580,6 +585,7 @@ values-b+apc/strings.xml	string	duplicate_replace_all	-	STR	ستبدلوّن ك�
 values-b+apc/strings.xml	string	duplicate_title	-	STR	معقول يكون موجود أصلًا	
 values-b+apc/strings.xml	string	duration	-	STR	طولو	
 values-b+apc/strings.xml	string	duration_format	-	STR	دقايق: %d	
+values-b+apc/strings.xml	string	duration_hours_minutes_format	-	STR	%1$dساعة %2$dد	
 values-b+apc/strings.xml	string	edit	-	STR	عَدِل	
 values-b+apc/strings.xml	string	edit_account	-	STR	عدلو الأكونت	
 values-b+apc/strings.xml	string	edit_profile_image_error_empty	-	STR	م لقينا الرابط	
@@ -727,6 +733,7 @@ values-b+apc/strings.xml	string	middle_left	-	STR	نُص، شمال
 values-b+apc/strings.xml	string	middle_right	-	STR	نُص، عال يمين	
 values-b+apc/strings.xml	string	min	-	STR	الحد الأدنى	
 values-b+apc/strings.xml	string	mobile_data	-	STR	3G/4G…	
+values-b+apc/strings.xml	string	more_like_this	-	STR	المزيد متل هيك	
 values-b+apc/strings.xml	string	movies	-	STR	أفلام	
 values-b+apc/strings.xml	string	movies_singular	-	STR	فيلم	
 values-b+apc/strings.xml	string	music_singular	-	STR	موسيقى	
@@ -1287,6 +1294,7 @@ values-b+ar/strings.xml	string	cancel_all	-	STR	إلغاء الكل
 values-b+ar/strings.xml	string	cancel_queue_message	-	STR	هل ترغب في إلغاء جميع التنزيلات قيد الانتظار؟	
 values-b+ar/strings.xml	string	cartoons	-	STR	رسوم متحركة	
 values-b+ar/strings.xml	string	cartoons_singular	-	STR	كرتون	
+values-b+ar/strings.xml	string	cast	-	STR	طاقم العمل	
 values-b+ar/strings.xml	string	cast_format	-	STR	طاقم العمل: %s	
 values-b+ar/strings.xml	string	category_account	-	STR	الحسابات والأمن	
 values-b+ar/strings.xml	string	category_general	-	STR	عام	
@@ -1391,6 +1399,7 @@ values-b+ar/strings.xml	string	duplicate_replace_all	-	STR	تبديل الكل
 values-b+ar/strings.xml	string	duplicate_title	-	STR	احتمال أن يكون موجود بالفعل	
 values-b+ar/strings.xml	string	duration	-	STR	المدة الزمنية	
 values-b+ar/strings.xml	string	duration_format	-	STR	%d دقيقة	
+values-b+ar/strings.xml	string	duration_hours_minutes_format	-	STR	%1$dh %2$dm	
 values-b+ar/strings.xml	string	edit	-	STR	تعديل	
 values-b+ar/strings.xml	string	edit_account	-	STR	تعديل الحساب	
 values-b+ar/strings.xml	string	edit_profile_image_error_empty	-	STR	لم يتم العثور على الرابط	
@@ -1538,6 +1547,7 @@ values-b+ar/strings.xml	string	middle_left	-	STR	منتصف اليسار
 values-b+ar/strings.xml	string	middle_right	-	STR	منتصف يمين	
 values-b+ar/strings.xml	string	min	-	STR	الحد الأدنى	
 values-b+ar/strings.xml	string	mobile_data	-	STR	بيانات الهاتف	
+values-b+ar/strings.xml	string	more_like_this	-	STR	المزيد مثل هذا	
 values-b+ar/strings.xml	string	movies	-	STR	أفلام	
 values-b+ar/strings.xml	string	movies_singular	-	STR	فيلم	
 values-b+ar/strings.xml	string	music_singular	-	STR	موسيقى	
@@ -2032,6 +2042,7 @@ values-b+ars/strings.xml	string	browser	-	STR	المتصفح
 values-b+ars/strings.xml	string	cancel	-	STR	الغي	
 values-b+ars/strings.xml	string	cartoons	-	STR	الرسوم المتحركة	
 values-b+ars/strings.xml	string	cartoons_singular	-	STR	فلم كرتون	
+values-b+ars/strings.xml	string	cast	-	STR	طاقم العمل	
 values-b+ars/strings.xml	string	cast_format	-	STR	بث%s	
 values-b+ars/strings.xml	string	category_account	-	STR	حسابات	
 values-b+ars/strings.xml	string	category_updates	-	STR	التحديثات والنسخ الاحتياطي	
@@ -2168,6 +2179,7 @@ values-b+ars/strings.xml	string	livestreams	-	STR	بثات مباشرة
 values-b+ars/strings.xml	string	load_more	-	STR	تحميل المزيد	
 values-b+ars/strings.xml	string	loading	-	STR	تحميل…	
 values-b+ars/strings.xml	string	mobile_data	-	STR	بيانات الجوال	
+values-b+ars/strings.xml	string	more_like_this	-	STR	المزيد مثل هذا	
 values-b+ars/strings.xml	string	movies	-	STR	افلام	
 values-b+ars/strings.xml	string	movies_singular	-	STR	فلم	
 values-b+ars/strings.xml	string	new_update_format	-	STR	!تم العثور على تحديث جديد \n%1$s -> %2$s	
@@ -2481,6 +2493,7 @@ values-b+as/strings.xml	string	browser	-	STR	ব্ৰাউজাৰ
 values-b+as/strings.xml	string	cancel	-	STR	বাতিল কৰক	
 values-b+as/strings.xml	string	cartoons	-	STR	কাৰ্টুন	
 values-b+as/strings.xml	string	cartoons_singular	-	STR	কাৰ্টুন	
+values-b+as/strings.xml	string	cast	-	STR	Cast	
 values-b+as/strings.xml	string	cast_format	-	STR	Cast: %s	
 values-b+as/strings.xml	string	category_account	-	STR	একাউণ্ট আৰু সুৰক্ষা	
 values-b+as/strings.xml	string	category_general	-	STR	সাধাৰণ	
@@ -2708,6 +2721,7 @@ values-b+as/strings.xml	string	manage_accounts	-	STR	একাউণ্টসম
 values-b+as/strings.xml	string	max	-	STR	সৰ্বাধিক	
 values-b+as/strings.xml	string	min	-	STR	সৰ্বনিম্ন	
 values-b+as/strings.xml	string	mobile_data	-	STR	ম'বাইল ডাটা	
+values-b+as/strings.xml	string	more_like_this	-	STR	এনেধৰণৰ আৰু	
 values-b+as/strings.xml	string	movies	-	STR	চিত্ৰপট	
 values-b+as/strings.xml	string	movies_singular	-	STR	চিত্ৰপট	
 values-b+as/strings.xml	string	music_singular	-	STR	সংগীত	
@@ -3106,6 +3120,7 @@ values-b+az/strings.xml	string	browser	-	STR	Brauzer
 values-b+az/strings.xml	string	cancel	-	STR	Ləğv et	
 values-b+az/strings.xml	string	cartoons	-	STR	Cizgi filmləri	
 values-b+az/strings.xml	string	cartoons_singular	-	STR	Cizgi filmi	
+values-b+az/strings.xml	string	cast	-	STR	Oyunçu heyəti	
 values-b+az/strings.xml	string	cast_format	-	STR	Oyunçu heyəti: %s	
 values-b+az/strings.xml	string	category_account	-	STR	Hesablar və Təhlükəsizlik	
 values-b+az/strings.xml	string	category_updates	-	STR	Yeniləmələr və Ehtiyat Nüsxələmə	
@@ -3197,6 +3212,7 @@ values-b+az/strings.xml	string	live_singular	-	STR	Canlı yayım
 values-b+az/strings.xml	string	livestreams	-	STR	Canlı yayımlar	
 values-b+az/strings.xml	string	load_more	-	STR	Daha çox yüklə	
 values-b+az/strings.xml	string	loading	-	STR	Yüklənir…	
+values-b+az/strings.xml	string	more_like_this	-	STR	Buna bənzər	
 values-b+az/strings.xml	string	movies_singular	-	STR	Film	
 values-b+az/strings.xml	string	music_singular	-	STR	Musiqi	
 values-b+az/strings.xml	string	new_update_format	-	STR	Yeniləmə mövcuddur!\n%1$s -> %2$s	
@@ -3419,6 +3435,7 @@ values-b+be/strings.xml	string	cancel_all	-	STR	Скасаваць усё
 values-b+be/strings.xml	string	cancel_queue_message	-	STR	Скасаваць усе спампоўванні ў чарзе?	
 values-b+be/strings.xml	string	cartoons	-	STR	Мультфільмы	
 values-b+be/strings.xml	string	cartoons_singular	-	STR	Мультфільм	
+values-b+be/strings.xml	string	cast	-	STR	Склад	
 values-b+be/strings.xml	string	cast_format	-	STR	Склад: %s	
 values-b+be/strings.xml	string	category_account	-	STR	Уліковыя запісы і бяспека	
 values-b+be/strings.xml	string	category_general	-	STR	Агульныя	
@@ -3523,6 +3540,7 @@ values-b+be/strings.xml	string	duplicate_replace_all	-	STR	Замяніць ус
 values-b+be/strings.xml	string	duplicate_title	-	STR	Знойдзены магчымы дублікат	
 values-b+be/strings.xml	string	duration	-	STR	Працягласць	
 values-b+be/strings.xml	string	duration_format	-	STR	%d хвіл	
+values-b+be/strings.xml	string	duration_hours_minutes_format	-	STR	%1$d гадз %2$d хв	
 values-b+be/strings.xml	string	edit	-	STR	Рэдагаваць	
 values-b+be/strings.xml	string	edit_account	-	STR	Рэдагаваць уліковы запіс	
 values-b+be/strings.xml	string	edit_profile_image_error_empty	-	STR	URL-адрас не знойдзены	
@@ -3670,6 +3688,7 @@ values-b+be/strings.xml	string	middle_left	-	STR	У сярэдзіне злев�
 values-b+be/strings.xml	string	middle_right	-	STR	У сярэдзіне справа	
 values-b+be/strings.xml	string	min	-	STR	Мін.	
 values-b+be/strings.xml	string	mobile_data	-	STR	Мабільная перадача дадзеных	
+values-b+be/strings.xml	string	more_like_this	-	STR	Падобнае	
 values-b+be/strings.xml	string	movies	-	STR	Фільмы	
 values-b+be/strings.xml	string	movies_singular	-	STR	Фільм	
 values-b+be/strings.xml	string	music_singular	-	STR	Музыка	
@@ -4218,6 +4237,7 @@ values-b+bg/strings.xml	string	cancel_all	-	STR	Откажи всички
 values-b+bg/strings.xml	string	cancel_queue_message	-	STR	Искаш ли да отмениш всички изтегляния в опашката?	
 values-b+bg/strings.xml	string	cartoons	-	STR	Анимационни филми	
 values-b+bg/strings.xml	string	cartoons_singular	-	STR	Анимационен филм	
+values-b+bg/strings.xml	string	cast	-	STR	Актьори	
 values-b+bg/strings.xml	string	cast_format	-	STR	Актьори: %s	
 values-b+bg/strings.xml	string	category_account	-	STR	Акаунти и сигурност	
 values-b+bg/strings.xml	string	category_general	-	STR	Общ	
@@ -4464,6 +4484,7 @@ values-b+bg/strings.xml	string	middle_left	-	STR	В средата вляво
 values-b+bg/strings.xml	string	middle_right	-	STR	В средата вдясно	
 values-b+bg/strings.xml	string	min	-	STR	Мин	
 values-b+bg/strings.xml	string	mobile_data	-	STR	Мобилни данни	
+values-b+bg/strings.xml	string	more_like_this	-	STR	Подобни	
 values-b+bg/strings.xml	string	movies	-	STR	Филми	
 values-b+bg/strings.xml	string	movies_singular	-	STR	Филм	
 values-b+bg/strings.xml	string	music_singular	-	STR	Музика	
@@ -4951,6 +4972,7 @@ values-b+bn/strings.xml	string	browser	-	STR	ব্রাউজার
 values-b+bn/strings.xml	string	cancel	-	STR	বাতিল করুন	
 values-b+bn/strings.xml	string	cartoons	-	STR	কার্টুন	
 values-b+bn/strings.xml	string	cartoons_singular	-	STR	কার্টুন	
+values-b+bn/strings.xml	string	cast	-	STR	অভিনয়ে	
 values-b+bn/strings.xml	string	cast_format	-	STR	অভিনয়ে: %s	
 values-b+bn/strings.xml	string	category_account	-	STR	অ্যাকাউন্টসমূহ এবং নিরাপত্তা	
 values-b+bn/strings.xml	string	category_general	-	STR	সাধারণ	
@@ -5020,6 +5042,7 @@ values-b+bn/strings.xml	string	downloads_storage_legend	-	STR	%1$s / %2$s ব্
 values-b+bn/strings.xml	string	downloads_storage_needs	-	STR	আরও %s প্রয়োজন	
 values-b+bn/strings.xml	string	duration	-	STR	সময়কাল	
 values-b+bn/strings.xml	string	duration_format	-	STR	%d মিনিট	
+values-b+bn/strings.xml	string	duration_hours_minutes_format	-	STR	%1$dঘন্টা %2$dমিনিট	
 values-b+bn/strings.xml	string	eigengraumode_settings	-	STR	প্লেব্যাক এর গতি	
 values-b+bn/strings.xml	string	emulator_layout	-	STR	এমুলেটর লেআউট	
 values-b+bn/strings.xml	string	enable_nsfw_on_providers	-	STR	সমর্থিত এক্সটেনশনগুলিতে NSFW সক্ষম করুন	
@@ -5118,6 +5141,7 @@ values-b+bn/strings.xml	string	loading	-	STR	লোডিং…
 values-b+bn/strings.xml	string	login	-	STR	প্রবেশ করুন	
 values-b+bn/strings.xml	string	login_format	-	STR	%1$s %2$s	
 values-b+bn/strings.xml	string	logout	-	STR	প্রস্থান	
+values-b+bn/strings.xml	string	more_like_this	-	STR	এরকম আরও	
 values-b+bn/strings.xml	string	movies	-	STR	সিনেমা	
 values-b+bn/strings.xml	string	movies_singular	-	STR	সিনেমা	
 values-b+bn/strings.xml	string	music_singular	-	STR	সঙ্গীত	
@@ -5401,6 +5425,7 @@ values-b+ca/strings.xml	string	benene_count_text_none	-	STR	No s'han donat banan
 values-b+ca/strings.xml	string	bottom_title_settings	-	STR	Ubicació del títol al cartell	
 values-b+ca/strings.xml	string	bottom_title_settings_des	-	STR	Mostra el títol sota el cartell	
 values-b+ca/strings.xml	string	browser	-	STR	Navegador	
+values-b+ca/strings.xml	string	cast	-	STR	Repartiment	
 values-b+ca/strings.xml	string	cast_format	-	STR	Repartiment:%s	
 values-b+ca/strings.xml	string	category_general	-	STR	General	
 values-b+ca/strings.xml	string	category_player	-	STR	Reproductor	
@@ -5450,6 +5475,7 @@ values-b+ca/strings.xml	string	duplicate_replace	-	STR	Reemplaça
 values-b+ca/strings.xml	string	duplicate_replace_all	-	STR	Reemplaça-ho tot	
 values-b+ca/strings.xml	string	duplicate_title	-	STR	S'ha trobat un possible duplicat	
 values-b+ca/strings.xml	string	duration_format	-	STR	%d min	
+values-b+ca/strings.xml	string	duration_hours_minutes_format	-	STR	%1$dh%2$dm	
 values-b+ca/strings.xml	string	edit	-	STR	Edita	
 values-b+ca/strings.xml	string	edit_account	-	STR	Edita el compte	
 values-b+ca/strings.xml	string	emulator_layout	-	STR	Disseny a l'emulador	
@@ -5544,6 +5570,7 @@ values-b+ca/strings.xml	string	logout	-	STR	Tanca la sessió
 values-b+ca/strings.xml	string	manage_accounts	-	STR	Gestiona els comptes	
 values-b+ca/strings.xml	string	max	-	STR	Màx	
 values-b+ca/strings.xml	string	min	-	STR	Mín	
+values-b+ca/strings.xml	string	more_like_this	-	STR	Més com això	
 values-b+ca/strings.xml	string	network_adress_example	-	STR	https://exemple.cat/exemple.mp4	
 values-b+ca/strings.xml	string	new_update_format	-	STR	S'ha trobat una nova actualització!\n%1$s->%2$s	
 values-b+ca/strings.xml	string	next	-	STR	Següent	
@@ -5769,6 +5796,7 @@ values-b+ckb/strings.xml	string	app_name	-	STR	کلاود ستریم
 values-b+ckb/strings.xml	string	app_subbed_text	-	STR	ژێرنووس	
 values-b+ckb/strings.xml	string	begin_speaking	-	STR	دەست بکە بە قسەکردن…	
 values-b+ckb/strings.xml	string	browser	-	STR	براوزەر	
+values-b+ckb/strings.xml	string	cast	-	STR	تیم	
 values-b+ckb/strings.xml	string	cast_format	-	STR	تیم:%s	
 values-b+ckb/strings.xml	string	deselect_all	-	STR	هەمووی لابدە	
 values-b+ckb/strings.xml	string	detail_load_failed_body	-	STR	ڕەنگە سەرچاوەکە بەردەست نەبێت.	
@@ -5800,6 +5828,7 @@ values-b+ckb/strings.xml	string	downloads_storage_full_headline	-	STR	کۆگا �
 values-b+ckb/strings.xml	string	downloads_storage_legend	-	STR	%1$s لە %2$s بەکارهاتووە · %3$s لە داونلۆدەکان	
 values-b+ckb/strings.xml	string	downloads_storage_needs	-	STR	%s ی زیاتر پێویستە	
 values-b+ckb/strings.xml	string	duration_format	-	STR	min%d	
+values-b+ckb/strings.xml	string	duration_hours_minutes_format	-	STR	%1$dh %2$dm	
 values-b+ckb/strings.xml	string	episode_more_options_des	-	STR	هەڵبژاردنی زیاتر	
 values-b+ckb/strings.xml	string	episode_poster_img_des	-	STR	پۆستەری ئەڵقە	
 values-b+ckb/strings.xml	string	error_bookmarks_text	-	STR	ئاماژەکان	
@@ -5843,6 +5872,7 @@ values-b+ckb/strings.xml	string	home_more_info	-	STR	زانیاری زیاتر
 values-b+ckb/strings.xml	string	home_next_random_img_des	-	STR	داهاتوو بە هەڕەمەکی	
 values-b+ckb/strings.xml	string	home_search_only_body	-	STR	هیچ کام لە زیادکراوەکانت پەڕەی سەرەکییان نییە، بەڵام هێشتا دەتوانیت تێیاندا بگەڕێیت.	
 values-b+ckb/strings.xml	string	load_more	-	STR	زیاتر باربکە	
+values-b+ckb/strings.xml	string	more_like_this	-	STR	زیاتر لەم جۆرە	
 values-b+ckb/strings.xml	string	new_update_format	-	STR	نوێکاری نوێ دۆزرایەوە!\n%1$s->%2$s	
 values-b+ckb/strings.xml	string	next_episode	-	STR	ئەڵقەی داهاتوو	
 values-b+ckb/strings.xml	string	next_episode_format	-	STR	ئەڵقەی %d لە	
@@ -6035,6 +6065,7 @@ values-b+cs/strings.xml	string	cancel_all	-	STR	Zrušit vše
 values-b+cs/strings.xml	string	cancel_queue_message	-	STR	Chcete zrušit všechna stahování ve frontě?	
 values-b+cs/strings.xml	string	cartoons	-	STR	Animované	
 values-b+cs/strings.xml	string	cartoons_singular	-	STR	Animovaný	
+values-b+cs/strings.xml	string	cast	-	STR	Hrají	
 values-b+cs/strings.xml	string	cast_format	-	STR	Hrají: %s	
 values-b+cs/strings.xml	string	category_account	-	STR	Účty a zabezpečení	
 values-b+cs/strings.xml	string	category_general	-	STR	Obecné	
@@ -6139,6 +6170,7 @@ values-b+cs/strings.xml	string	duplicate_replace_all	-	STR	Nahradit vše
 values-b+cs/strings.xml	string	duplicate_title	-	STR	Nalezena potenciální duplicita	
 values-b+cs/strings.xml	string	duration	-	STR	Trvání	
 values-b+cs/strings.xml	string	duration_format	-	STR	%d min	
+values-b+cs/strings.xml	string	duration_hours_minutes_format	-	STR	%1$dh %2$dmin	
 values-b+cs/strings.xml	string	edit	-	STR	Upravit	
 values-b+cs/strings.xml	string	edit_account	-	STR	Upravit účet	
 values-b+cs/strings.xml	string	edit_profile_image_error_empty	-	STR	Adresa nenalezena	
@@ -6286,6 +6318,7 @@ values-b+cs/strings.xml	string	middle_left	-	STR	Vlevo uprostřed
 values-b+cs/strings.xml	string	middle_right	-	STR	Vpravo uprostřed	
 values-b+cs/strings.xml	string	min	-	STR	Min	
 values-b+cs/strings.xml	string	mobile_data	-	STR	Mobilní data	
+values-b+cs/strings.xml	string	more_like_this	-	STR	Podobné	
 values-b+cs/strings.xml	string	movies	-	STR	Filmy	
 values-b+cs/strings.xml	string	movies_singular	-	STR	Film	
 values-b+cs/strings.xml	string	music_singular	-	STR	Hudba	
@@ -6841,6 +6874,7 @@ values-b+de/strings.xml	string	cancel_all	-	STR	Alles abbrechen
 values-b+de/strings.xml	string	cancel_queue_message	-	STR	Möchtest du alle Downloads in der Warteschlange abbrechen?	
 values-b+de/strings.xml	string	cartoons	-	STR	Trickfilme	
 values-b+de/strings.xml	string	cartoons_singular	-	STR	Trickfilm	
+values-b+de/strings.xml	string	cast	-	STR	Besetzung	
 values-b+de/strings.xml	string	cast_format	-	STR	Besetzung: %s	
 values-b+de/strings.xml	string	category_account	-	STR	Konten und Sicherheit	
 values-b+de/strings.xml	string	category_general	-	STR	Allgemein	
@@ -6945,6 +6979,7 @@ values-b+de/strings.xml	string	duplicate_replace_all	-	STR	Alle ersetzen
 values-b+de/strings.xml	string	duplicate_title	-	STR	Potentielles Duplikat gefunden	
 values-b+de/strings.xml	string	duration	-	STR	Länge	
 values-b+de/strings.xml	string	duration_format	-	STR	%d Min	
+values-b+de/strings.xml	string	duration_hours_minutes_format	-	STR	%1$dstd%2$dm	
 values-b+de/strings.xml	string	edit	-	STR	Bearbeiten	
 values-b+de/strings.xml	string	edit_account	-	STR	Konto bearbeiten	
 values-b+de/strings.xml	string	edit_profile_image_error_empty	-	STR	Keine URL gefunden	
@@ -7092,6 +7127,7 @@ values-b+de/strings.xml	string	middle_left	-	STR	Mitte links
 values-b+de/strings.xml	string	middle_right	-	STR	Mitte rechts	
 values-b+de/strings.xml	string	min	-	STR	Min	
 values-b+de/strings.xml	string	mobile_data	-	STR	Mobile Daten	
+values-b+de/strings.xml	string	more_like_this	-	STR	Ähnliche Titel	
 values-b+de/strings.xml	string	movies	-	STR	Filme	
 values-b+de/strings.xml	string	movies_singular	-	STR	Film	
 values-b+de/strings.xml	string	music_singular	-	STR	Musik	
@@ -7633,6 +7669,7 @@ values-b+el/strings.xml	string	browser	-	STR	Περιηγητής
 values-b+el/strings.xml	string	cancel	-	STR	Ακύρωση	
 values-b+el/strings.xml	string	cartoons	-	STR	Κινούμενα σχέδια	
 values-b+el/strings.xml	string	cartoons_singular	-	STR	Κινούμενα Σχέδια	
+values-b+el/strings.xml	string	cast	-	STR	Ηθοποιοί	
 values-b+el/strings.xml	string	cast_format	-	STR	Ηθοποιοί: %s	
 values-b+el/strings.xml	string	category_account	-	STR	Λογαριασμοί και Ασφάλεια	
 values-b+el/strings.xml	string	category_general	-	STR	Γενικά	
@@ -7860,6 +7897,7 @@ values-b+el/strings.xml	string	manage_accounts	-	STR	Διαχείριση λογ
 values-b+el/strings.xml	string	max	-	STR	Μέγιστο	
 values-b+el/strings.xml	string	min	-	STR	Ελάχιστο	
 values-b+el/strings.xml	string	mobile_data	-	STR	Δεδομένα τηλεφώνου	
+values-b+el/strings.xml	string	more_like_this	-	STR	Παρόμοια	
 values-b+el/strings.xml	string	movies	-	STR	Ταινίες	
 values-b+el/strings.xml	string	movies_singular	-	STR	Ταινία	
 values-b+el/strings.xml	string	music_singular	-	STR	Μουσική	
@@ -8274,6 +8312,7 @@ values-b+eo/strings.xml	string	asian_drama_singular	-	STR	Azia dramo
 values-b+eo/strings.xml	string	begin_speaking	-	STR	Komencu paroli…	
 values-b+eo/strings.xml	string	browser	-	STR	Retumilo	
 values-b+eo/strings.xml	string	cancel	-	STR	Nuligi	
+values-b+eo/strings.xml	string	cast	-	STR	Rolantaro	
 values-b+eo/strings.xml	string	cast_format	-	STR	Rolantaro: %s	
 values-b+eo/strings.xml	string	category_account	-	STR	Kontoj kaj Sekureco	
 values-b+eo/strings.xml	string	delete	-	STR	Forigi	
@@ -8311,6 +8350,7 @@ values-b+eo/strings.xml	string	downloads_storage_legend	-	STR	%1$s el %2$s uzita
 values-b+eo/strings.xml	string	downloads_storage_needs	-	STR	Bezonas %s pli	
 values-b+eo/strings.xml	string	duration	-	STR	Daŭro	
 values-b+eo/strings.xml	string	duration_format	-	STR	%d min	
+values-b+eo/strings.xml	string	duration_hours_minutes_format	-	STR	%1$dh %2$dm	
 values-b+eo/strings.xml	string	episode	-	STR	Epizodo	
 values-b+eo/strings.xml	string	episode_format	-	STR	%1$d %2$s	
 values-b+eo/strings.xml	string	episode_more_options_des	-	STR	Pli da Opcioj	
@@ -8381,6 +8421,7 @@ values-b+eo/strings.xml	string	load_more	-	STR	Ŝargi pli
 values-b+eo/strings.xml	string	loading	-	STR	Ŝarĝante…	
 values-b+eo/strings.xml	string	login	-	STR	Saluti	
 values-b+eo/strings.xml	string	logout	-	STR	Adiaŭi	
+values-b+eo/strings.xml	string	more_like_this	-	STR	Pli similaj	
 values-b+eo/strings.xml	string	movies	-	STR	Filmoj	
 values-b+eo/strings.xml	string	movies_singular	-	STR	Filmo	
 values-b+eo/strings.xml	string	new_update_format	-	STR	Nova ĝisdatigo trovita! \n%1$s -> %2$s	
@@ -8629,6 +8670,7 @@ values-b+es/strings.xml	string	cancel_all	-	STR	Cancelar todo
 values-b+es/strings.xml	string	cancel_queue_message	-	STR	¿Desea cancelar todas las descargas de la cola?	
 values-b+es/strings.xml	string	cartoons	-	STR	Dibujos animados	
 values-b+es/strings.xml	string	cartoons_singular	-	STR	Dibujo animado	
+values-b+es/strings.xml	string	cast	-	STR	Reparto	
 values-b+es/strings.xml	string	cast_format	-	STR	Reparto: %s	
 values-b+es/strings.xml	string	category_account	-	STR	Cuentas y seguridad	
 values-b+es/strings.xml	string	category_general	-	STR	General	
@@ -8733,6 +8775,7 @@ values-b+es/strings.xml	string	duplicate_replace_all	-	STR	Remplazar todo
 values-b+es/strings.xml	string	duplicate_title	-	STR	Posible duplicado encontrado	
 values-b+es/strings.xml	string	duration	-	STR	Duración	
 values-b+es/strings.xml	string	duration_format	-	STR	%d min	
+values-b+es/strings.xml	string	duration_hours_minutes_format	-	STR	%1$d h %2$d m	
 values-b+es/strings.xml	string	edit	-	STR	Editar	
 values-b+es/strings.xml	string	edit_account	-	STR	Editar la cuenta	
 values-b+es/strings.xml	string	edit_profile_image_error_empty	-	STR	Ninguna URL Encontrada	
@@ -8880,6 +8923,7 @@ values-b+es/strings.xml	string	middle_left	-	STR	Medio izquierda
 values-b+es/strings.xml	string	middle_right	-	STR	Medio derecha	
 values-b+es/strings.xml	string	min	-	STR	Mínimo	
 values-b+es/strings.xml	string	mobile_data	-	STR	Datos móviles	
+values-b+es/strings.xml	string	more_like_this	-	STR	Más como esto	
 values-b+es/strings.xml	string	movies	-	STR	Películas	
 values-b+es/strings.xml	string	movies_singular	-	STR	Película	
 values-b+es/strings.xml	string	music_singular	-	STR	Música	
@@ -9368,6 +9412,7 @@ values-b+fa/strings.xml	string	browser	-	STR	مرورگر
 values-b+fa/strings.xml	string	cancel	-	STR	لغو	
 values-b+fa/strings.xml	string	cartoons	-	STR	کارتون‌ها	
 values-b+fa/strings.xml	string	cartoons_singular	-	STR	کارتون	
+values-b+fa/strings.xml	string	cast	-	STR	بازیگران	
 values-b+fa/strings.xml	string	cast_format	-	STR	بازیگران: %s	
 values-b+fa/strings.xml	string	category_account	-	STR	حساب‌ها و امنیت	
 values-b+fa/strings.xml	string	category_general	-	STR	کلی	
@@ -9508,6 +9553,7 @@ values-b+fa/strings.xml	string	login	-	STR	ورود
 values-b+fa/strings.xml	string	logout	-	STR	خروج	
 values-b+fa/strings.xml	string	max	-	STR	حداکثر	
 values-b+fa/strings.xml	string	mobile_data	-	STR	دیتای گوشی	
+values-b+fa/strings.xml	string	more_like_this	-	STR	موارد مشابه	
 values-b+fa/strings.xml	string	movies	-	STR	فیلم‌ها	
 values-b+fa/strings.xml	string	movies_singular	-	STR	فیلم	
 values-b+fa/strings.xml	string	music_singular	-	STR	موسیقی	
@@ -9756,6 +9802,7 @@ values-b+fil/strings.xml	string	benene_count_text_none	-	STR	Walang Benenes na b
 values-b+fil/strings.xml	string	biometric_warning	-	STR	Na-back up na ngayon ang iyong data sa CloudStream. Bagama't napakababa ng posibilidad nito, lahat ng device ay maaaring kumilos nang iba. Sa pambihirang kaso, na ma-lock out ka mula sa pag-access sa app, ganap na i-clear ang data ng app at i-restore mula sa isang backup. Lubos kaming humihingi ng paumanhin para sa anumang abala na dulot nito.	
 values-b+fil/strings.xml	string	blank_repo_message	-	STR	Ang CloudStream ay walang mga site na naka-install sa umpisa. Kailangan mong i-install ang mga site mula sa mga repositoryo. \n \nSumali sa aming Discord o maghanap online.	
 values-b+fil/strings.xml	string	browser	-	STR	Browser	
+values-b+fil/strings.xml	string	cast	-	STR	Tauhan	
 values-b+fil/strings.xml	string	cast_format	-	STR	Tauhan: %s	
 values-b+fil/strings.xml	string	confirm_before_exiting_desc	-	STR	Ipakita ang dialog bago lumabas sa app	
 values-b+fil/strings.xml	string	confirm_before_exiting_title	-	STR	Kumpirmahin bago lumabas	
@@ -9794,6 +9841,7 @@ values-b+fil/strings.xml	string	duplicate_message_multiple	-	STR	May nakitang po
 values-b+fil/strings.xml	string	duplicate_message_single	-	STR	Lumalabas na mayroong potensyal na nag-doble na item sa iyong library: '%s.' \n\nGusto mo pa rin bang idagdag ang item na ito, palitan ang nauna, o kanselahin ito?	
 values-b+fil/strings.xml	string	duplicate_title	-	STR	May Natagpuan na Nag-doble	
 values-b+fil/strings.xml	string	duration_format	-	STR	%d min	
+values-b+fil/strings.xml	string	duration_hours_minutes_format	-	STR	%1$do %2$dm	
 values-b+fil/strings.xml	string	episode_more_options_des	-	STR	Iba pang Mga Pagpipilian	
 values-b+fil/strings.xml	string	episode_poster_img_des	-	STR	Poster ng Kabanata	
 values-b+fil/strings.xml	string	episode_sync_settings_des	-	STR	Awtomatikong i-sync ang iyong kasalukuyang episode	
@@ -9842,6 +9890,7 @@ values-b+fil/strings.xml	string	home_search_only_body	-	STR	Wala sa iyong mga ex
 values-b+fil/strings.xml	string	links_reloaded_toast	-	STR	Ini-load muli ang mga link	
 values-b+fil/strings.xml	string	load_more	-	STR	Mag-load pa	
 values-b+fil/strings.xml	string	loading	-	STR	Naglo-load…	
+values-b+fil/strings.xml	string	more_like_this	-	STR	Higit pang katulad nito	
 values-b+fil/strings.xml	string	new_update_format	-	STR	May nakitang bagong update!\n%1$s -> %2$s	
 values-b+fil/strings.xml	string	next_episode	-	STR	Susunod na kabanata	
 values-b+fil/strings.xml	string	next_episode_format	-	STR	Kabanata %d ay ipapalabas sa	
@@ -10078,6 +10127,7 @@ values-b+fr/strings.xml	string	cancel_all	-	STR	Tout annuler
 values-b+fr/strings.xml	string	cancel_queue_message	-	STR	Vous voulez annuler tous les téléchargements en file d'attente ?	
 values-b+fr/strings.xml	string	cartoons	-	STR	Dessins animés	
 values-b+fr/strings.xml	string	cartoons_singular	-	STR	Dessin animé	
+values-b+fr/strings.xml	string	cast	-	STR	Distribution	
 values-b+fr/strings.xml	string	cast_format	-	STR	Distribution : %s	
 values-b+fr/strings.xml	string	category_account	-	STR	Comptes et Sécurité	
 values-b+fr/strings.xml	string	category_general	-	STR	Général	
@@ -10182,6 +10232,7 @@ values-b+fr/strings.xml	string	duplicate_replace_all	-	STR	Tout remplacer
 values-b+fr/strings.xml	string	duplicate_title	-	STR	Doublon potentiel trouvé	
 values-b+fr/strings.xml	string	duration	-	STR	Durée	
 values-b+fr/strings.xml	string	duration_format	-	STR	%d min	
+values-b+fr/strings.xml	string	duration_hours_minutes_format	-	STR	%1$dh %2$dm	
 values-b+fr/strings.xml	string	edit	-	STR	Modifier	
 values-b+fr/strings.xml	string	edit_account	-	STR	Modifier le compte	
 values-b+fr/strings.xml	string	edit_profile_image_error_empty	-	STR	Aucune URL trouvée	
@@ -10329,6 +10380,7 @@ values-b+fr/strings.xml	string	middle_left	-	STR	Au milieu à gauche
 values-b+fr/strings.xml	string	middle_right	-	STR	Au milieu à droite	
 values-b+fr/strings.xml	string	min	-	STR	Min	
 values-b+fr/strings.xml	string	mobile_data	-	STR	Données mobiles	
+values-b+fr/strings.xml	string	more_like_this	-	STR	Titres similaires	
 values-b+fr/strings.xml	string	movies	-	STR	Films	
 values-b+fr/strings.xml	string	movies_singular	-	STR	Film	
 values-b+fr/strings.xml	string	music_singular	-	STR	Musique	
@@ -10810,6 +10862,7 @@ values-b+gl/strings.xml	string	browser	-	STR	Navegador
 values-b+gl/strings.xml	string	cancel	-	STR	Cancelar	
 values-b+gl/strings.xml	string	cartoons	-	STR	Debuxos animados	
 values-b+gl/strings.xml	string	cartoons_singular	-	STR	Debuxo animado	
+values-b+gl/strings.xml	string	cast	-	STR	Elenco	
 values-b+gl/strings.xml	string	cast_format	-	STR	Elenco: %s	
 values-b+gl/strings.xml	string	category_account	-	STR	Contas e seguridade	
 values-b+gl/strings.xml	string	category_updates	-	STR	Actualizacións e copias de seguridade	
@@ -10938,6 +10991,7 @@ values-b+gl/strings.xml	string	live_singular	-	STR	Transmisión en vivo
 values-b+gl/strings.xml	string	livestreams	-	STR	Transmisións en vivo	
 values-b+gl/strings.xml	string	load_more	-	STR	Cargar máis	
 values-b+gl/strings.xml	string	loading	-	STR	Cargando…	
+values-b+gl/strings.xml	string	more_like_this	-	STR	Máis coma isto	
 values-b+gl/strings.xml	string	movies	-	STR	Películas	
 values-b+gl/strings.xml	string	movies_singular	-	STR	Película	
 values-b+gl/strings.xml	string	music_singular	-	STR	Música	
@@ -11185,6 +11239,7 @@ values-b+hi/strings.xml	string	browser	-	STR	ब्राउज़र
 values-b+hi/strings.xml	string	cancel	-	STR	रद्द करें	
 values-b+hi/strings.xml	string	cartoons	-	STR	कार्टून	
 values-b+hi/strings.xml	string	cartoons_singular	-	STR	हास्यचित्र	
+values-b+hi/strings.xml	string	cast	-	STR	Cast	
 values-b+hi/strings.xml	string	cast_format	-	STR	Cast: %s	
 values-b+hi/strings.xml	string	category_account	-	STR	खाते और सुरक्षा	
 values-b+hi/strings.xml	string	category_general	-	STR	सामान्य	
@@ -11259,6 +11314,7 @@ values-b+hi/strings.xml	string	duplicate_replace_all	-	STR	सबको बद�
 values-b+hi/strings.xml	string	duplicate_title	-	STR	संभावित डुप्लिकेट मिला	
 values-b+hi/strings.xml	string	duration	-	STR	अवधि	
 values-b+hi/strings.xml	string	duration_format	-	STR	%d मिनट	
+values-b+hi/strings.xml	string	duration_hours_minutes_format	-	STR	%1$dh %2$dm	
 values-b+hi/strings.xml	string	eigengraumode_settings	-	STR	प्रतिश्रवण गति	
 values-b+hi/strings.xml	string	emulator_layout	-	STR	एमुलेटर रुप दर्शन	
 values-b+hi/strings.xml	string	enable_nsfw_on_providers	-	STR	सपोर्टेड एक्सटेंशन पर एन एस एफ डब्ल्यू (NSFW) चालू करें	
@@ -11360,6 +11416,7 @@ values-b+hi/strings.xml	string	lock_profile	-	STR	प्रोफ़ाइल �
 values-b+hi/strings.xml	string	login	-	STR	लॉग इन	
 values-b+hi/strings.xml	string	login_format	-	STR	%1$s %2$s	
 values-b+hi/strings.xml	string	logout	-	STR	लॉग आउट	
+values-b+hi/strings.xml	string	more_like_this	-	STR	इस जैसे और	
 values-b+hi/strings.xml	string	movies	-	STR	मूवीज	
 values-b+hi/strings.xml	string	movies_singular	-	STR	फिल्म	
 values-b+hi/strings.xml	string	music_singular	-	STR	संगीत	
@@ -11720,6 +11777,7 @@ values-b+hr/strings.xml	string	cancel_all	-	STR	Odustani od svega
 values-b+hr/strings.xml	string	cancel_queue_message	-	STR	Želiš li otkazati sva preuzimanja u redu čekanja?	
 values-b+hr/strings.xml	string	cartoons	-	STR	Crtići	
 values-b+hr/strings.xml	string	cartoons_singular	-	STR	Crtić	
+values-b+hr/strings.xml	string	cast	-	STR	Glumačka postava	
 values-b+hr/strings.xml	string	cast_format	-	STR	Glumačka postava: %s	
 values-b+hr/strings.xml	string	category_account	-	STR	Računi i sigurnost	
 values-b+hr/strings.xml	string	category_general	-	STR	Općenito	
@@ -11824,6 +11882,7 @@ values-b+hr/strings.xml	string	duplicate_replace_all	-	STR	Zamjeni sve
 values-b+hr/strings.xml	string	duplicate_title	-	STR	Pronađen potencijalni duplikat	
 values-b+hr/strings.xml	string	duration	-	STR	Trajanje	
 values-b+hr/strings.xml	string	duration_format	-	STR	%d min	
+values-b+hr/strings.xml	string	duration_hours_minutes_format	-	STR	%1$dh %2$dmin	
 values-b+hr/strings.xml	string	edit	-	STR	Uredi	
 values-b+hr/strings.xml	string	edit_account	-	STR	Uredi račun	
 values-b+hr/strings.xml	string	edit_profile_image_error_empty	-	STR	Nijedan URL nije pronađen	
@@ -11971,6 +12030,7 @@ values-b+hr/strings.xml	string	middle_left	-	STR	Sredina lijevo
 values-b+hr/strings.xml	string	middle_right	-	STR	Desno u sredini	
 values-b+hr/strings.xml	string	min	-	STR	Min.	
 values-b+hr/strings.xml	string	mobile_data	-	STR	Mobilni podaci	
+values-b+hr/strings.xml	string	more_like_this	-	STR	Slično ovome	
 values-b+hr/strings.xml	string	movies	-	STR	Filmovi	
 values-b+hr/strings.xml	string	movies_singular	-	STR	Film	
 values-b+hr/strings.xml	string	music_singular	-	STR	Glazba	
@@ -12496,6 +12556,7 @@ values-b+hu/strings.xml	string	browser	-	STR	Böngésző
 values-b+hu/strings.xml	string	cancel	-	STR	Mégse	
 values-b+hu/strings.xml	string	cartoons	-	STR	Rajzfilmek	
 values-b+hu/strings.xml	string	cartoons_singular	-	STR	Rajzfilm	
+values-b+hu/strings.xml	string	cast	-	STR	Stáblista	
 values-b+hu/strings.xml	string	cast_format	-	STR	Stáblista: %s	
 values-b+hu/strings.xml	string	category_account	-	STR	Fiókok és Biztonság	
 values-b+hu/strings.xml	string	category_general	-	STR	Általános	
@@ -12591,6 +12652,7 @@ values-b+hu/strings.xml	string	duplicate_replace_all	-	STR	Mind Kicserélése
 values-b+hu/strings.xml	string	duplicate_title	-	STR	Potenciális Dupla Találat	
 values-b+hu/strings.xml	string	duration	-	STR	Időtartam	
 values-b+hu/strings.xml	string	duration_format	-	STR	%d perc	
+values-b+hu/strings.xml	string	duration_hours_minutes_format	-	STR	%1$dh %2$dm	
 values-b+hu/strings.xml	string	edit	-	STR	Szerkeszt	
 values-b+hu/strings.xml	string	edit_account	-	STR	Fiók módosítása	
 values-b+hu/strings.xml	string	eigengraumode_settings	-	STR	Visszajátszás sebessége	
@@ -12727,6 +12789,7 @@ values-b+hu/strings.xml	string	manage_accounts	-	STR	Fiókok kezelése
 values-b+hu/strings.xml	string	max	-	STR	Max	
 values-b+hu/strings.xml	string	min	-	STR	Min	
 values-b+hu/strings.xml	string	mobile_data	-	STR	Mobil adat	
+values-b+hu/strings.xml	string	more_like_this	-	STR	Hasonlók	
 values-b+hu/strings.xml	string	movies	-	STR	Filmek	
 values-b+hu/strings.xml	string	movies_singular	-	STR	Film	
 values-b+hu/strings.xml	string	music_singular	-	STR	Zene	
@@ -13219,6 +13282,7 @@ values-b+in/strings.xml	string	cancel_all	-	STR	Batalkan semua
 values-b+in/strings.xml	string	cancel_queue_message	-	STR	Apakah kamu ingin membatalkan semua unduhan dalam antrean?	
 values-b+in/strings.xml	string	cartoons	-	STR	Kartun	
 values-b+in/strings.xml	string	cartoons_singular	-	STR	Kartun	
+values-b+in/strings.xml	string	cast	-	STR	Pemeran	
 values-b+in/strings.xml	string	cast_format	-	STR	Pemeran: %s	
 values-b+in/strings.xml	string	category_account	-	STR	Akun dan Keamanan	
 values-b+in/strings.xml	string	category_general	-	STR	Umum	
@@ -13323,6 +13387,7 @@ values-b+in/strings.xml	string	duplicate_replace_all	-	STR	Timpa Semua
 values-b+in/strings.xml	string	duplicate_title	-	STR	Ditemukan Potensi Duplikat	
 values-b+in/strings.xml	string	duration	-	STR	Durasi	
 values-b+in/strings.xml	string	duration_format	-	STR	%d mnt	
+values-b+in/strings.xml	string	duration_hours_minutes_format	-	STR	%1$dj %2$dm	
 values-b+in/strings.xml	string	edit	-	STR	Edit	
 values-b+in/strings.xml	string	edit_account	-	STR	Edit akun	
 values-b+in/strings.xml	string	edit_profile_image_error_empty	-	STR	URL Tidak Ditemukan	
@@ -13470,6 +13535,7 @@ values-b+in/strings.xml	string	middle_left	-	STR	Tengah kiri
 values-b+in/strings.xml	string	middle_right	-	STR	Tengah kanan	
 values-b+in/strings.xml	string	min	-	STR	Min	
 values-b+in/strings.xml	string	mobile_data	-	STR	Data seluler	
+values-b+in/strings.xml	string	more_like_this	-	STR	Serupa dengan ini	
 values-b+in/strings.xml	string	movies	-	STR	Movie	
 values-b+in/strings.xml	string	movies_singular	-	STR	Movie	
 values-b+in/strings.xml	string	music_singular	-	STR	Musik	
@@ -14029,6 +14095,7 @@ values-b+it/strings.xml	string	cancel_all	-	STR	Annulla tutto
 values-b+it/strings.xml	string	cancel_queue_message	-	STR	Vuoi annullare tutti i download in coda?	
 values-b+it/strings.xml	string	cartoons	-	STR	Cartone	
 values-b+it/strings.xml	string	cartoons_singular	-	STR	Cartoni	
+values-b+it/strings.xml	string	cast	-	STR	Cast	
 values-b+it/strings.xml	string	cast_format	-	STR	Cast: %s	
 values-b+it/strings.xml	string	category_account	-	STR	Account e sicurezza	
 values-b+it/strings.xml	string	category_general	-	STR	Generale	
@@ -14133,6 +14200,7 @@ values-b+it/strings.xml	string	duplicate_replace_all	-	STR	Sostituisci tutto
 values-b+it/strings.xml	string	duplicate_title	-	STR	Trovato Possibile Duplicato	
 values-b+it/strings.xml	string	duration	-	STR	Durata	
 values-b+it/strings.xml	string	duration_format	-	STR	%d min	
+values-b+it/strings.xml	string	duration_hours_minutes_format	-	STR	%1$dh %2$dm	
 values-b+it/strings.xml	string	edit	-	STR	Modifica	
 values-b+it/strings.xml	string	edit_account	-	STR	Modifica account	
 values-b+it/strings.xml	string	edit_profile_image_error_empty	-	STR	Nessun URL trovato	
@@ -14280,6 +14348,7 @@ values-b+it/strings.xml	string	middle_left	-	STR	In centro a sinistra
 values-b+it/strings.xml	string	middle_right	-	STR	In centro a destra	
 values-b+it/strings.xml	string	min	-	STR	Min	
 values-b+it/strings.xml	string	mobile_data	-	STR	Dati Mobili	
+values-b+it/strings.xml	string	more_like_this	-	STR	Titoli simili	
 values-b+it/strings.xml	string	movies	-	STR	Film	
 values-b+it/strings.xml	string	movies_singular	-	STR	Film	
 values-b+it/strings.xml	string	music_singular	-	STR	Musica	
@@ -14799,6 +14868,7 @@ values-b+iw/strings.xml	string	browser	-	STR	‪דפדפן
 values-b+iw/strings.xml	string	cancel	-	STR	בטל	
 values-b+iw/strings.xml	string	cartoons	-	STR	סדרות/סרטים מצוירים	
 values-b+iw/strings.xml	string	cartoons_singular	-	STR	סדרה/סרט מצויר	
+values-b+iw/strings.xml	string	cast	-	STR	צוות שחקנים	
 values-b+iw/strings.xml	string	cast_format	-	STR	צוות שחקנים: %s	
 values-b+iw/strings.xml	string	category_account	-	STR	חשבונות ובטיחות	
 values-b+iw/strings.xml	string	category_general	-	STR	כללי	
@@ -14870,6 +14940,7 @@ values-b+iw/strings.xml	string	downloads_storage_legend	-	STR	%1$s מתוך %2$s
 values-b+iw/strings.xml	string	downloads_storage_needs	-	STR	נדרשים עוד %s	
 values-b+iw/strings.xml	string	duration	-	STR	משך זמן	
 values-b+iw/strings.xml	string	duration_format	-	STR	%d דקות	
+values-b+iw/strings.xml	string	duration_hours_minutes_format	-	STR	%1$d שעות %2$d דקות	
 values-b+iw/strings.xml	string	edit	-	STR	עריכה	
 values-b+iw/strings.xml	string	eigengraumode_settings	-	STR	מהירות ניגון	
 values-b+iw/strings.xml	string	empty_library_logged_in_message	-	STR	נראה שהרשימה הזו ריקה, נסו לעבור לרשימה אחרת.	
@@ -14988,6 +15059,7 @@ values-b+iw/strings.xml	string	logout	-	STR	התנתק
 values-b+iw/strings.xml	string	max	-	STR	מקסימום	
 values-b+iw/strings.xml	string	min	-	STR	מינימום	
 values-b+iw/strings.xml	string	mobile_data	-	STR	רשת סלולארית	
+values-b+iw/strings.xml	string	more_like_this	-	STR	כותרים דומים	
 values-b+iw/strings.xml	string	movies	-	STR	סרטים	
 values-b+iw/strings.xml	string	movies_singular	-	STR	סרט	
 values-b+iw/strings.xml	string	network_adress_example	-	STR	קישור לשידור	
@@ -15444,6 +15516,7 @@ values-b+ja/strings.xml	string	cancel_all	-	STR	すべてキャンセル
 values-b+ja/strings.xml	string	cancel_queue_message	-	STR	ダウンロードキューをすべてキャンセルしますか？	
 values-b+ja/strings.xml	string	cartoons	-	STR	カートゥーン	
 values-b+ja/strings.xml	string	cartoons_singular	-	STR	カートゥーン	
+values-b+ja/strings.xml	string	cast	-	STR	出演者	
 values-b+ja/strings.xml	string	cast_format	-	STR	出演者：%s	
 values-b+ja/strings.xml	string	category_account	-	STR	ア﻿カ﻿ウ﻿ン﻿トとセキュリティ	
 values-b+ja/strings.xml	string	category_general	-	STR	全般	
@@ -15548,6 +15621,7 @@ values-b+ja/strings.xml	string	duplicate_replace_all	-	STR	すべて置き換え
 values-b+ja/strings.xml	string	duplicate_title	-	STR	潜在的な重複が見つかりました	
 values-b+ja/strings.xml	string	duration	-	STR	時間	
 values-b+ja/strings.xml	string	duration_format	-	STR	%d分	
+values-b+ja/strings.xml	string	duration_hours_minutes_format	-	STR	%1$d時間 %2$d分	
 values-b+ja/strings.xml	string	edit	-	STR	編集	
 values-b+ja/strings.xml	string	edit_account	-	STR	アカウントを編集	
 values-b+ja/strings.xml	string	edit_profile_image_error_empty	-	STR	URLが見つかりません	
@@ -15695,6 +15769,7 @@ values-b+ja/strings.xml	string	middle_left	-	STR	中央左
 values-b+ja/strings.xml	string	middle_right	-	STR	中央右	
 values-b+ja/strings.xml	string	min	-	STR	最小	
 values-b+ja/strings.xml	string	mobile_data	-	STR	モバイルデータ	
+values-b+ja/strings.xml	string	more_like_this	-	STR	関連作品	
 values-b+ja/strings.xml	string	movies	-	STR	映画	
 values-b+ja/strings.xml	string	movies_singular	-	STR	映画	
 values-b+ja/strings.xml	string	music_singular	-	STR	音楽	
@@ -16149,6 +16224,7 @@ values-b+kn/strings.xml	string	autoplay_next_settings_des	-	STR	ಈಗಿನ ಎ
 values-b+kn/strings.xml	string	benene_count_text	-	STR	%d ಡೇವ್‌ಗಳಿಗೆ ಬೆನೆನೆಸ್ ನೀಡಲಾಗಿದೆ	
 values-b+kn/strings.xml	string	benene_count_text_none	-	STR	ಯಾವುದೇ ಬೆನೆನ್ಸ್ ನೀಡಿಲ್ಲ	
 values-b+kn/strings.xml	string	browser	-	STR	ಬ್ರೌಸರ್	
+values-b+kn/strings.xml	string	cast	-	STR	ಕ್ಯಾಸ್ಟ್	
 values-b+kn/strings.xml	string	cast_format	-	STR	ಕ್ಯಾಸ್ಟ್:%s	
 values-b+kn/strings.xml	string	chromecast_subtitles_settings	-	STR	ಕ್ರೋಮ್ ಕ್ಯಾಸ್ಟ್ ಸಬ್ ಟೈಟಲ್ಸ್	
 values-b+kn/strings.xml	string	chromecast_subtitles_settings_des	-	STR	ಕ್ರೋಮ್ ಕ್ಯಾಸ್ಟ್ ಸಬ್ ಟೈಟಲ್ಸ್ ಸೆಟ್ಟಿಂಗ್ಸ್	
@@ -16224,6 +16300,7 @@ values-b+kn/strings.xml	string	home_play	-	STR	ಪ್ಲೇ
 values-b+kn/strings.xml	string	home_search_only_body	-	STR	ನಿಮ್ಮ ಯಾವುದೇ ವಿಸ್ತರಣೆಗೆ ಹೋಂ ಪುಟವಿಲ್ಲ, ಆದರೆ ನೀವು ಅವುಗಳಲ್ಲಿ ಹುಡುಕಬಹುದು.	
 values-b+kn/strings.xml	string	load_more	-	STR	ಇನ್ನಷ್ಟು ಲೋಡ್ ಮಾಡಿ	
 values-b+kn/strings.xml	string	loading	-	STR	ಲೋಡಿಂಗ್…	
+values-b+kn/strings.xml	string	more_like_this	-	STR	ಇಂತಹ ಇನ್ನಷ್ಟು	
 values-b+kn/strings.xml	string	new_update_format	-	STR	ಹೊಸ ಅಪ್ಡೇಟ್ ಬಂದಿದೆ \n%1$s-%2$s	
 values-b+kn/strings.xml	string	next_episode	-	STR	ಮುಂದಿನ ಸಂಚಿಕೆ	
 values-b+kn/strings.xml	string	next_episode_format	-	STR	ಸಂಚಿಕೆ%d ಬಿಡುಗಡೆಯಾಗಲಿದೆ	
@@ -16441,6 +16518,7 @@ values-b+ko/strings.xml	string	cancel_all	-	STR	모두 취소
 values-b+ko/strings.xml	string	cancel_queue_message	-	STR	모든 다운로드 작업을 취소하시겠습니까?	
 values-b+ko/strings.xml	string	cartoons	-	STR	카툰	
 values-b+ko/strings.xml	string	cartoons_singular	-	STR	카툰	
+values-b+ko/strings.xml	string	cast	-	STR	출연	
 values-b+ko/strings.xml	string	cast_format	-	STR	출연: %s	
 values-b+ko/strings.xml	string	category_account	-	STR	계정 및 보안	
 values-b+ko/strings.xml	string	category_general	-	STR	일반	
@@ -16545,6 +16623,7 @@ values-b+ko/strings.xml	string	duplicate_replace_all	-	STR	전부 대체
 values-b+ko/strings.xml	string	duplicate_title	-	STR	잠재적 중복 발견	
 values-b+ko/strings.xml	string	duration	-	STR	시간	
 values-b+ko/strings.xml	string	duration_format	-	STR	%d분	
+values-b+ko/strings.xml	string	duration_hours_minutes_format	-	STR	%1$d시간 %2$d분	
 values-b+ko/strings.xml	string	edit	-	STR	편집	
 values-b+ko/strings.xml	string	edit_account	-	STR	계정 편집	
 values-b+ko/strings.xml	string	edit_profile_image_error_empty	-	STR	URL을 찾을 수 없습니다	
@@ -16692,6 +16771,7 @@ values-b+ko/strings.xml	string	middle_left	-	STR	왼쪽 중앙
 values-b+ko/strings.xml	string	middle_right	-	STR	오른쪽 중앙	
 values-b+ko/strings.xml	string	min	-	STR	최소	
 values-b+ko/strings.xml	string	mobile_data	-	STR	모바일 데이터	
+values-b+ko/strings.xml	string	more_like_this	-	STR	비슷한 콘텐츠	
 values-b+ko/strings.xml	string	movies	-	STR	영화	
 values-b+ko/strings.xml	string	movies_singular	-	STR	영화	
 values-b+ko/strings.xml	string	music_singular	-	STR	음악	
@@ -17162,6 +17242,7 @@ values-b+lt/strings.xml	string	blank_repo_message	-	STR	Pagal numatytuosius nust
 values-b+lt/strings.xml	string	browser	-	STR	Naršyklė	
 values-b+lt/strings.xml	string	cancel	-	STR	Atšaukti	
 values-b+lt/strings.xml	string	cartoons_singular	-	STR	Filmukas	
+values-b+lt/strings.xml	string	cast	-	STR	Aktoriai	
 values-b+lt/strings.xml	string	cast_format	-	STR	Skleisti: %s	
 values-b+lt/strings.xml	string	category_account	-	STR	Paskyros	
 values-b+lt/strings.xml	string	chromecast_subtitles_settings	-	STR	Chromecast subtitrai	
@@ -17294,6 +17375,7 @@ values-b+lt/strings.xml	string	loading	-	STR	Kraunama…
 values-b+lt/strings.xml	string	login	-	STR	Prisijungti	
 values-b+lt/strings.xml	string	logout	-	STR	Atsijungti	
 values-b+lt/strings.xml	string	mobile_data	-	STR	Mobilūs duomenys	
+values-b+lt/strings.xml	string	more_like_this	-	STR	Panašūs	
 values-b+lt/strings.xml	string	movies_singular	-	STR	Filmas	
 values-b+lt/strings.xml	string	new_update_format	-	STR	Rastas atnaujinimas!\n%1$s -> %2$s	
 values-b+lt/strings.xml	string	next	-	STR	Kitas	
@@ -17581,6 +17663,7 @@ values-b+lv/strings.xml	string	browser	-	STR	Pārlūks
 values-b+lv/strings.xml	string	cancel	-	STR	Atcelt	
 values-b+lv/strings.xml	string	cartoons	-	STR	Animācija	
 values-b+lv/strings.xml	string	cartoons_singular	-	STR	Animācija	
+values-b+lv/strings.xml	string	cast	-	STR	Lomās	
 values-b+lv/strings.xml	string	cast_format	-	STR	Lomās: %s	
 values-b+lv/strings.xml	string	category_account	-	STR	Konti un drošība	
 values-b+lv/strings.xml	string	category_general	-	STR	Vispārīgie	
@@ -17662,6 +17745,7 @@ values-b+lv/strings.xml	string	duplicate_replace	-	STR	Aizstāt
 values-b+lv/strings.xml	string	duplicate_replace_all	-	STR	Aizstāt visus	
 values-b+lv/strings.xml	string	duration	-	STR	Ilgums	
 values-b+lv/strings.xml	string	duration_format	-	STR	%d min.	
+values-b+lv/strings.xml	string	duration_hours_minutes_format	-	STR	%1$dst. %2$dmin.	
 values-b+lv/strings.xml	string	edit	-	STR	Rediģēt	
 values-b+lv/strings.xml	string	edit_account	-	STR	Rediģēt kontu	
 values-b+lv/strings.xml	string	edit_profile_image_error_empty	-	STR	URL nav norādīts vai atrodams	
@@ -17794,6 +17878,7 @@ values-b+lv/strings.xml	string	manage_accounts	-	STR	Pārvaldīt kontus
 values-b+lv/strings.xml	string	max	-	STR	Maksimālais	
 values-b+lv/strings.xml	string	min	-	STR	Minimālais	
 values-b+lv/strings.xml	string	mobile_data	-	STR	Mobilie dati	
+values-b+lv/strings.xml	string	more_like_this	-	STR	Līdzīgi	
 values-b+lv/strings.xml	string	movies	-	STR	Filmas	
 values-b+lv/strings.xml	string	movies_singular	-	STR	Filmas	
 values-b+lv/strings.xml	string	music_singular	-	STR	Mūzika	
@@ -18286,6 +18371,7 @@ values-b+mk/strings.xml	string	cancel_all	-	STR	Откажи сѐ
 values-b+mk/strings.xml	string	cancel_queue_message	-	STR	Дали сакате да ги откажете сите преземања во редицата?	
 values-b+mk/strings.xml	string	cartoons	-	STR	Цртани	
 values-b+mk/strings.xml	string	cartoons_singular	-	STR	Цртан филм	
+values-b+mk/strings.xml	string	cast	-	STR	Актери	
 values-b+mk/strings.xml	string	cast_format	-	STR	Актери: %s	
 values-b+mk/strings.xml	string	category_account	-	STR	Сметки и безбедност	
 values-b+mk/strings.xml	string	category_general	-	STR	Општи поставки	
@@ -18390,6 +18476,7 @@ values-b+mk/strings.xml	string	duplicate_replace_all	-	STR	Замени ги с�
 values-b+mk/strings.xml	string	duplicate_title	-	STR	Пронајден е потенцијален дупликат	
 values-b+mk/strings.xml	string	duration	-	STR	Времетраење	
 values-b+mk/strings.xml	string	duration_format	-	STR	%d мин	
+values-b+mk/strings.xml	string	duration_hours_minutes_format	-	STR	%1$dч %2$dм	
 values-b+mk/strings.xml	string	edit	-	STR	Уреди	
 values-b+mk/strings.xml	string	edit_account	-	STR	Уреди корисници	
 values-b+mk/strings.xml	string	edit_profile_image_error_empty	-	STR	Линкот не е пронајден	
@@ -18537,6 +18624,7 @@ values-b+mk/strings.xml	string	middle_left	-	STR	Средина на лево
 values-b+mk/strings.xml	string	middle_right	-	STR	Средина на десно	
 values-b+mk/strings.xml	string	min	-	STR	Минимум	
 values-b+mk/strings.xml	string	mobile_data	-	STR	Мобилен интернет	
+values-b+mk/strings.xml	string	more_like_this	-	STR	Слично	
 values-b+mk/strings.xml	string	movies	-	STR	Филмови	
 values-b+mk/strings.xml	string	movies_singular	-	STR	Филм	
 values-b+mk/strings.xml	string	music_singular	-	STR	Музика	
@@ -19002,6 +19090,7 @@ values-b+ml/strings.xml	string	blank_repo_message	-	STR	CloudStream-ന് സ�
 values-b+ml/strings.xml	string	browser	-	STR	ബ്രൗസർ	
 values-b+ml/strings.xml	string	cancel	-	STR	റദ്ദാക്കുക	
 values-b+ml/strings.xml	string	cartoons	-	STR	കാർട്ടൂൺസ്	
+values-b+ml/strings.xml	string	cast	-	STR	കാസ്റ്റ്	
 values-b+ml/strings.xml	string	cast_format	-	STR	കാസ്റ്റ്:%s	
 values-b+ml/strings.xml	string	category_updates	-	STR	അപ്ഡേറ്റുകളും ഒപ്പം ബാക്കപ്പും	
 values-b+ml/strings.xml	string	check_for_update	-	STR	അപ്ഡേറ്റിനായി തിരയുക	
@@ -19059,6 +19148,7 @@ values-b+ml/strings.xml	string	downloads_storage_legend	-	STR	%1$s / %2$s ഉപ
 values-b+ml/strings.xml	string	downloads_storage_needs	-	STR	%s കൂടി വേണം	
 values-b+ml/strings.xml	string	duration	-	STR	ദൈര്ഘം	
 values-b+ml/strings.xml	string	duration_format	-	STR	%d മിനിറ്റ്	
+values-b+ml/strings.xml	string	duration_hours_minutes_format	-	STR	%1$dh %2$dm	
 values-b+ml/strings.xml	string	edit	-	STR	തിരുത്തുക	
 values-b+ml/strings.xml	string	edit_account	-	STR	അക്കൗണ്ട് തിരുത്തുക	
 values-b+ml/strings.xml	string	eigengraumode_settings	-	STR	പ്ലേ ചെയ്യുന്ന വേഗത	
@@ -19131,6 +19221,7 @@ values-b+ml/strings.xml	string	loading	-	STR	ലോഡിംഗ്…
 values-b+ml/strings.xml	string	lock_profile	-	STR	പ്രൊഫൈൽ ലോക്ക് ചെയ്യുക	
 values-b+ml/strings.xml	string	logged_account	-	STR	%s ആയി ലോഗിൻ ചെയ്തു	
 values-b+ml/strings.xml	string	manage_accounts	-	STR	അക്കൗണ്ടുകൾ കൈകാര്യം ചെയ്യുക	
+values-b+ml/strings.xml	string	more_like_this	-	STR	സമാനമായവ	
 values-b+ml/strings.xml	string	movies	-	STR	സിനിമ	
 values-b+ml/strings.xml	string	name	-	STR	നാമം	
 values-b+ml/strings.xml	string	new_update_format	-	STR	പുതിയ അപ്ഡേറ്റ്! \n%1$s -> %2$s	
@@ -19406,6 +19497,7 @@ values-b+ms/strings.xml	string	browser	-	STR	Pelayar
 values-b+ms/strings.xml	string	cancel	-	STR	Batal	
 values-b+ms/strings.xml	string	cartoons	-	STR	Kartun	
 values-b+ms/strings.xml	string	cartoons_singular	-	STR	Kartun	
+values-b+ms/strings.xml	string	cast	-	STR	Pelakon	
 values-b+ms/strings.xml	string	cast_format	-	STR	Pelakon:%s	
 values-b+ms/strings.xml	string	category_account	-	STR	Akaun dan Sekuriti	
 values-b+ms/strings.xml	string	category_general	-	STR	Umum	
@@ -19494,6 +19586,7 @@ values-b+ms/strings.xml	string	duplicate_replace_all	-	STR	Tukar Semua
 values-b+ms/strings.xml	string	duplicate_title	-	STR	Potensi Duplikasi Dijumpai	
 values-b+ms/strings.xml	string	duration	-	STR	Durasi	
 values-b+ms/strings.xml	string	duration_format	-	STR	%d min	
+values-b+ms/strings.xml	string	duration_hours_minutes_format	-	STR	%1$dj %2$dm	
 values-b+ms/strings.xml	string	edit	-	STR	Sunting	
 values-b+ms/strings.xml	string	edit_account	-	STR	Sunting Akaun	
 values-b+ms/strings.xml	string	eigengraumode_settings	-	STR	Kelajuan pemain	
@@ -19616,6 +19709,7 @@ values-b+ms/strings.xml	string	manage_accounts	-	STR	Urus akaun
 values-b+ms/strings.xml	string	max	-	STR	Maks	
 values-b+ms/strings.xml	string	min	-	STR	Min	
 values-b+ms/strings.xml	string	mobile_data	-	STR	Data mudah alih	
+values-b+ms/strings.xml	string	more_like_this	-	STR	Lagi seperti ini	
 values-b+ms/strings.xml	string	movies	-	STR	Filem	
 values-b+ms/strings.xml	string	movies_singular	-	STR	Movie	
 values-b+ms/strings.xml	string	music_singular	-	STR	Musik	
@@ -19940,6 +20034,7 @@ values-b+mt/strings.xml	string	app_subbed_text	-	STR	Sut
 values-b+mt/strings.xml	string	benene_count_text	-	STR	%d Benenes mogħtija lil devs	
 values-b+mt/strings.xml	string	benene_count_text_none	-	STR	Ebda Benenes mogħtija	
 values-b+mt/strings.xml	string	browser	-	STR	Brawser	
+values-b+mt/strings.xml	string	cast	-	STR	Atturi	
 values-b+mt/strings.xml	string	cast_format	-	STR	Atturi: %s	
 values-b+mt/strings.xml	string	continue_watching	-	STR	Kompli Ara	
 values-b+mt/strings.xml	string	detail_load_failed_body	-	STR	Is-sors jista' jkun mhux disponibbli.	
@@ -20013,6 +20108,7 @@ values-b+mt/strings.xml	string	home_search_only_body	-	STR	L-ebda waħda mill-es
 values-b+mt/strings.xml	string	links_reloaded_toast	-	STR	Links regaw gew mogħbija	
 values-b+mt/strings.xml	string	load_more	-	STR	Għabbi iktar	
 values-b+mt/strings.xml	string	loading	-	STR	Tagħbija…	
+values-b+mt/strings.xml	string	more_like_this	-	STR	Aktar bħal dan	
 values-b+mt/strings.xml	string	new_update_format	-	STR	Aġġornament ġdid misjub! \n%1$s -> %2$s	
 values-b+mt/strings.xml	string	next_episode	-	STR	L-episodju li'jmiss	
 values-b+mt/strings.xml	string	next_episode_format	-	STR	L-episodju %d ha johrog fil	
@@ -20192,6 +20288,7 @@ values-b+my/strings.xml	string	browser	-	STR	ဘရောက်ဇာ
 values-b+my/strings.xml	string	cancel	-	STR	ပယ်ဖျက်ရန်	
 values-b+my/strings.xml	string	cartoons	-	STR	ကာတွန်းများ	
 values-b+my/strings.xml	string	cartoons_singular	-	STR	ကာတွန်း	
+values-b+my/strings.xml	string	cast	-	STR	သရုပ်ဆောင်များ	
 values-b+my/strings.xml	string	cast_format	-	STR	သရုပ်ဆောင်များ: %s	
 values-b+my/strings.xml	string	category_account	-	STR	အကောင့်များ	
 values-b+my/strings.xml	string	category_general	-	STR	အထွေထွေ	
@@ -20374,6 +20471,7 @@ values-b+my/strings.xml	string	logout	-	STR	အကောင့်ထွက်မ
 values-b+my/strings.xml	string	max	-	STR	အပြည့်	
 values-b+my/strings.xml	string	min	-	STR	အနည်းဆုံး	
 values-b+my/strings.xml	string	mobile_data	-	STR	မိုဘိုင်းဒေတာ	
+values-b+my/strings.xml	string	more_like_this	-	STR	ဤကဲ့သို့ နောက်ထပ်	
 values-b+my/strings.xml	string	movies	-	STR	ရုပ်ရှင်များ	
 values-b+my/strings.xml	string	movies_singular	-	STR	ရုပ်ရှင်	
 values-b+my/strings.xml	string	network_adress_example	-	STR	ထုတ်လွှင့်ရန် လင့်ခ် နှင့်ချိတ်ပါ	
@@ -20717,6 +20815,7 @@ values-b+ne/strings.xml	string	app_subbed_text	-	STR	Sub
 values-b+ne/strings.xml	string	benene_count_text	-	STR	%d केरा डेभलपर लाई दिइयो	
 values-b+ne/strings.xml	string	benene_count_text_none	-	STR	एउटै पनी केरा दिइएन	
 values-b+ne/strings.xml	string	browser	-	STR	ब्राउजर	
+values-b+ne/strings.xml	string	cast	-	STR	अभिनेता	
 values-b+ne/strings.xml	string	cast_format	-	STR	अभिनेता:%s	
 values-b+ne/strings.xml	string	chromecast_subtitles_settings	-	STR	Chromecast को उपशीर्षकहरु	
 values-b+ne/strings.xml	string	continue_watching	-	STR	हेर्न सुचारु राख्नुहोस	
@@ -20791,6 +20890,7 @@ values-b+ne/strings.xml	string	home_search_only_body	-	STR	तपाईंका
 values-b+ne/strings.xml	string	links_reloaded_toast	-	STR	लिङ्कहरू रिलोड गरियो	
 values-b+ne/strings.xml	string	load_more	-	STR	थप लोड गर्नुहोस्	
 values-b+ne/strings.xml	string	loading	-	STR	लोड हुँदै…	
+values-b+ne/strings.xml	string	more_like_this	-	STR	यस्तै अरू	
 values-b+ne/strings.xml	string	new_update_format	-	STR	नयाँ अपडेट भेटियो! \n%1$s -> %2$s	
 values-b+ne/strings.xml	string	next_episode	-	STR	अर्को एपिसोड	
 values-b+ne/strings.xml	string	next_episode_format	-	STR	एपिसोड %d रिलीज हुने समय	
@@ -20996,6 +21096,7 @@ values-b+nl/strings.xml	string	browser	-	STR	Browser
 values-b+nl/strings.xml	string	cancel	-	STR	annuleer	
 values-b+nl/strings.xml	string	cartoons	-	STR	tekenfilms	
 values-b+nl/strings.xml	string	cartoons_singular	-	STR	Tekenfilm	
+values-b+nl/strings.xml	string	cast	-	STR	Cast	
 values-b+nl/strings.xml	string	cast_format	-	STR	Cast: %s	
 values-b+nl/strings.xml	string	category_account	-	STR	Accounts en Beveiliging	
 values-b+nl/strings.xml	string	category_general	-	STR	Algemeen	
@@ -21096,6 +21197,7 @@ values-b+nl/strings.xml	string	duplicate_replace_all	-	STR	Alles Vervangen
 values-b+nl/strings.xml	string	duplicate_title	-	STR	Mogelijk Duplicaat Gevonden	
 values-b+nl/strings.xml	string	duration	-	STR	Duur	
 values-b+nl/strings.xml	string	duration_format	-	STR	%d min	
+values-b+nl/strings.xml	string	duration_hours_minutes_format	-	STR	%1$d u %2$d m	
 values-b+nl/strings.xml	string	edit	-	STR	Aanpassen	
 values-b+nl/strings.xml	string	edit_account	-	STR	Account bewerken	
 values-b+nl/strings.xml	string	eigengraumode_settings	-	STR	Afspeelsnelheid	
@@ -21234,6 +21336,7 @@ values-b+nl/strings.xml	string	manage_accounts	-	STR	Beheer Accounts
 values-b+nl/strings.xml	string	max	-	STR	Max	
 values-b+nl/strings.xml	string	min	-	STR	Min	
 values-b+nl/strings.xml	string	mobile_data	-	STR	Mobiele data	
+values-b+nl/strings.xml	string	more_like_this	-	STR	Vergelijkbare titels	
 values-b+nl/strings.xml	string	movies	-	STR	Films	
 values-b+nl/strings.xml	string	movies_singular	-	STR	Film	
 values-b+nl/strings.xml	string	music_singular	-	STR	Muziek	
@@ -21669,6 +21772,7 @@ values-b+nn/strings.xml	string	browser	-	STR	Nettlesar
 values-b+nn/strings.xml	string	cancel	-	STR	Avbryt	
 values-b+nn/strings.xml	string	cartoons	-	STR	Teikneseriar	
 values-b+nn/strings.xml	string	cartoons_singular	-	STR	Teiknefilm	
+values-b+nn/strings.xml	string	cast	-	STR	Rollebesetning	
 values-b+nn/strings.xml	string	cast_format	-	STR	Rollebesetning: %s	
 values-b+nn/strings.xml	string	category_account	-	STR	Kontoar	
 values-b+nn/strings.xml	string	category_updates	-	STR	Oppdateringar og sikkerheitskopiering av data	
@@ -21770,6 +21874,7 @@ values-b+nn/strings.xml	string	live_singular	-	STR	Direktesending
 values-b+nn/strings.xml	string	livestreams	-	STR	Direktesendingar	
 values-b+nn/strings.xml	string	load_more	-	STR	Last inn fleire	
 values-b+nn/strings.xml	string	loading	-	STR	Laster inn…	
+values-b+nn/strings.xml	string	more_like_this	-	STR	Liknande	
 values-b+nn/strings.xml	string	movies	-	STR	Filmar	
 values-b+nn/strings.xml	string	movies_singular	-	STR	Film	
 values-b+nn/strings.xml	string	new_update_format	-	STR	Ny oppdatering tilgjengeleg! \n%1$s -> %2$s	
@@ -21989,6 +22094,7 @@ values-b+no/strings.xml	string	browser	-	STR	Nettleser
 values-b+no/strings.xml	string	cancel	-	STR	Avbryt	
 values-b+no/strings.xml	string	cartoons	-	STR	Tegneserier	
 values-b+no/strings.xml	string	cartoons_singular	-	STR	Tegnefilm	
+values-b+no/strings.xml	string	cast	-	STR	Besetning	
 values-b+no/strings.xml	string	cast_format	-	STR	Besetning: %s	
 values-b+no/strings.xml	string	category_account	-	STR	Kontoer	
 values-b+no/strings.xml	string	category_general	-	STR	Grunnleggende	
@@ -22170,6 +22276,7 @@ values-b+no/strings.xml	string	login_format	-	STR	%1$s %2$s
 values-b+no/strings.xml	string	logout	-	STR	Logg ut	
 values-b+no/strings.xml	string	max	-	STR	Maks	
 values-b+no/strings.xml	string	min	-	STR	Min	
+values-b+no/strings.xml	string	more_like_this	-	STR	Lignende	
 values-b+no/strings.xml	string	movies	-	STR	Filmer	
 values-b+no/strings.xml	string	movies_singular	-	STR	Film	
 values-b+no/strings.xml	string	network_adress_example	-	STR	Lenke til strøm	
@@ -22511,6 +22618,7 @@ values-b+or/strings.xml	string	backup_failed	-	STR	ଷ୍ଟୋରେଜ୍ ଅ�
 values-b+or/strings.xml	string	backup_failed_error_format	-	STR	%s ବ୍ୟାକଅପ୍ ନେବାରେ ତ୍ରୁଟି ଘଟିଲା	
 values-b+or/strings.xml	string	backup_settings	-	STR	ତଥ୍ୟର ବ୍ୟାକଅପ୍ ନେବା	
 values-b+or/strings.xml	string	backup_success	-	STR	ତଥ୍ୟ ଗଚ୍ଛିତ ହୋଇଛି	
+values-b+or/strings.xml	string	cast	-	STR	ପାତ୍ର	
 values-b+or/strings.xml	string	cast_format	-	STR	ପାତ୍ର: %s	
 values-b+or/strings.xml	string	category_general	-	STR	ସାଧାରଣ	
 values-b+or/strings.xml	string	category_player	-	STR	ଚାଳକ	
@@ -22541,6 +22649,7 @@ values-b+or/strings.xml	string	downloads_storage_legend	-	STR	%1$s / %2$s ଵ୍
 values-b+or/strings.xml	string	downloads_storage_needs	-	STR	ଆଉ %s ଦରକାର	
 values-b+or/strings.xml	string	duration	-	STR	ଅଵଧି	
 values-b+or/strings.xml	string	duration_format	-	STR	%d ମିନିଟ୍	
+values-b+or/strings.xml	string	duration_hours_minutes_format	-	STR	%1$dଘଣ୍ଟା %2$dମିନିଟ୍	
 values-b+or/strings.xml	string	episode	-	STR	ଅଧ୍ୟାୟ	
 values-b+or/strings.xml	string	episode_action_auto_download	-	STR	ସ୍ୱତଃ ଡାଉନଲୋଡ୍	
 values-b+or/strings.xml	string	episode_action_chromecast_episode	-	STR	Chromecast ଅଧ୍ୟାୟ	
@@ -22603,6 +22712,7 @@ values-b+or/strings.xml	string	library	-	STR	ଲାଇବ୍ରେରୀ
 values-b+or/strings.xml	string	live_singular	-	STR	ସିଧାପ୍ରସାରଣ	
 values-b+or/strings.xml	string	livestreams	-	STR	ସିଧାପ୍ରସାରଣ	
 values-b+or/strings.xml	string	load_more	-	STR	ଅଧିକ ଲୋଡ୍ କର	
+values-b+or/strings.xml	string	more_like_this	-	STR	ଏହିପରି ଆଉ	
 values-b+or/strings.xml	string	movies	-	STR	ଚଳଚ୍ଚିତ୍ର	
 values-b+or/strings.xml	string	movies_singular	-	STR	ଚଳଚ୍ଚିତ୍ର	
 values-b+or/strings.xml	string	new_update_format	-	STR	ନୂଆ ଅଦ୍ୟତନ ମିଳିଲା! \n%1$s -> %2$s	
@@ -22842,6 +22952,7 @@ values-b+pl/strings.xml	string	cancel_all	-	STR	Anuluj wszystkie
 values-b+pl/strings.xml	string	cancel_queue_message	-	STR	Czy chcesz anulować wszystkie pliki do pobrania z kolejki?	
 values-b+pl/strings.xml	string	cartoons	-	STR	Kreskówki	
 values-b+pl/strings.xml	string	cartoons_singular	-	STR	Kreskówka	
+values-b+pl/strings.xml	string	cast	-	STR	Obsada	
 values-b+pl/strings.xml	string	cast_format	-	STR	Obsada: %s	
 values-b+pl/strings.xml	string	category_account	-	STR	Konta i zabezpieczenia	
 values-b+pl/strings.xml	string	category_general	-	STR	Ogólne	
@@ -22946,6 +23057,7 @@ values-b+pl/strings.xml	string	duplicate_replace_all	-	STR	Zamień wszystko
 values-b+pl/strings.xml	string	duplicate_title	-	STR	Znaleziono potencjalny duplikat	
 values-b+pl/strings.xml	string	duration	-	STR	Czas trwania	
 values-b+pl/strings.xml	string	duration_format	-	STR	%d min	
+values-b+pl/strings.xml	string	duration_hours_minutes_format	-	STR	%1$dh %2$dm	
 values-b+pl/strings.xml	string	edit	-	STR	Edytuj	
 values-b+pl/strings.xml	string	edit_account	-	STR	Edytuj konto	
 values-b+pl/strings.xml	string	edit_profile_image_error_empty	-	STR	Nie znaleziono adresu URL	
@@ -23093,6 +23205,7 @@ values-b+pl/strings.xml	string	middle_left	-	STR	Środkowe lewe
 values-b+pl/strings.xml	string	middle_right	-	STR	Środkowe prawe	
 values-b+pl/strings.xml	string	min	-	STR	Min	
 values-b+pl/strings.xml	string	mobile_data	-	STR	Dane mobilne	
+values-b+pl/strings.xml	string	more_like_this	-	STR	Podobne	
 values-b+pl/strings.xml	string	movies	-	STR	Filmy	
 values-b+pl/strings.xml	string	movies_singular	-	STR	Film	
 values-b+pl/strings.xml	string	music_singular	-	STR	Muzyka	
@@ -23652,6 +23765,7 @@ values-b+pt+BR/strings.xml	string	cancel_all	-	STR	Cancelar tudo
 values-b+pt+BR/strings.xml	string	cancel_queue_message	-	STR	Você gostaria de cancelar todos os downloads da fila?	
 values-b+pt+BR/strings.xml	string	cartoons	-	STR	Desenhos animados	
 values-b+pt+BR/strings.xml	string	cartoons_singular	-	STR	Desenho Animado	
+values-b+pt+BR/strings.xml	string	cast	-	STR	Elenco	
 values-b+pt+BR/strings.xml	string	cast_format	-	STR	Elenco: %s	
 values-b+pt+BR/strings.xml	string	category_account	-	STR	Contas e Segurança	
 values-b+pt+BR/strings.xml	string	category_general	-	STR	Geral	
@@ -23756,6 +23870,7 @@ values-b+pt+BR/strings.xml	string	duplicate_replace_all	-	STR	Substitua tudo
 values-b+pt+BR/strings.xml	string	duplicate_title	-	STR	Duplicata em potencial encontrada	
 values-b+pt+BR/strings.xml	string	duration	-	STR	Duração	
 values-b+pt+BR/strings.xml	string	duration_format	-	STR	%d min	
+values-b+pt+BR/strings.xml	string	duration_hours_minutes_format	-	STR	%1$dh %2$dm	
 values-b+pt+BR/strings.xml	string	edit	-	STR	Editar	
 values-b+pt+BR/strings.xml	string	edit_account	-	STR	Editar conta	
 values-b+pt+BR/strings.xml	string	edit_profile_image_error_empty	-	STR	Nenhum URL Encontrado	
@@ -23903,6 +24018,7 @@ values-b+pt+BR/strings.xml	string	middle_left	-	STR	Centro esquerdo
 values-b+pt+BR/strings.xml	string	middle_right	-	STR	Centro direito	
 values-b+pt+BR/strings.xml	string	min	-	STR	Min	
 values-b+pt+BR/strings.xml	string	mobile_data	-	STR	Dados móveis	
+values-b+pt+BR/strings.xml	string	more_like_this	-	STR	Títulos semelhantes	
 values-b+pt+BR/strings.xml	string	movies	-	STR	Filmes	
 values-b+pt+BR/strings.xml	string	movies_singular	-	STR	Filme	
 values-b+pt+BR/strings.xml	string	music_singular	-	STR	Música	
@@ -24459,6 +24575,7 @@ values-b+pt/strings.xml	string	cancel_all	-	STR	Cancelar tudo
 values-b+pt/strings.xml	string	cancel_queue_message	-	STR	Deseja cancelar todos os downloads em fila?	
 values-b+pt/strings.xml	string	cartoons	-	STR	Desenhos Animados	
 values-b+pt/strings.xml	string	cartoons_singular	-	STR	Desenho Animado	
+values-b+pt/strings.xml	string	cast	-	STR	Elenco	
 values-b+pt/strings.xml	string	cast_format	-	STR	Elenco: %s	
 values-b+pt/strings.xml	string	category_account	-	STR	Contas e segurança	
 values-b+pt/strings.xml	string	category_general	-	STR	Geral	
@@ -24563,6 +24680,7 @@ values-b+pt/strings.xml	string	duplicate_replace_all	-	STR	Substituir Tudo
 values-b+pt/strings.xml	string	duplicate_title	-	STR	Possível duplicata encontrada	
 values-b+pt/strings.xml	string	duration	-	STR	Duração	
 values-b+pt/strings.xml	string	duration_format	-	STR	%d min	
+values-b+pt/strings.xml	string	duration_hours_minutes_format	-	STR	%1$dh:%2$dm:	
 values-b+pt/strings.xml	string	edit	-	STR	Editar	
 values-b+pt/strings.xml	string	edit_account	-	STR	Editar conta	
 values-b+pt/strings.xml	string	edit_profile_image_error_empty	-	STR	Nenhum URL Encontrado	
@@ -24710,6 +24828,7 @@ values-b+pt/strings.xml	string	middle_left	-	STR	Esquerda no centro
 values-b+pt/strings.xml	string	middle_right	-	STR	Direita no centro	
 values-b+pt/strings.xml	string	min	-	STR	Min	
 values-b+pt/strings.xml	string	mobile_data	-	STR	Dados móveis	
+values-b+pt/strings.xml	string	more_like_this	-	STR	Semelhantes	
 values-b+pt/strings.xml	string	movies	-	STR	Filmes	
 values-b+pt/strings.xml	string	movies_singular	-	STR	Filme	
 values-b+pt/strings.xml	string	music_singular	-	STR	Música	
@@ -25239,6 +25358,7 @@ values-b+qt/strings.xml	string	browser	-	STR	oooaaaauhgaaaa
 values-b+qt/strings.xml	string	cancel	-	STR	oooohh	
 values-b+qt/strings.xml	string	cartoons	-	STR	ahoooouuhhh	
 values-b+qt/strings.xml	string	cartoons_singular	-	STR	uuuuggg	
+values-b+qt/strings.xml	string	cast	-	STR	oouaaahh	
 values-b+qt/strings.xml	string	cast_format	-	STR	oouaaahh %s	
 values-b+qt/strings.xml	string	category_account	-	STR	oooogggg aah aaaaaakh	
 values-b+qt/strings.xml	string	category_general	-	STR	a ahu uoo uoahuo uo	
@@ -25463,6 +25583,7 @@ values-b+qt/strings.xml	string	manage_accounts	-	STR	aaaagg aaaagggh
 values-b+qt/strings.xml	string	max	-	STR	aah	
 values-b+qt/strings.xml	string	min	-	STR	oog	
 values-b+qt/strings.xml	string	mobile_data	-	STR	aaaahh uugg	
+values-b+qt/strings.xml	string	more_like_this	-	STR	ahooo aaaahhhaahh	
 values-b+qt/strings.xml	string	movies	-	STR	a oouuh	
 values-b+qt/strings.xml	string	movies_singular	-	STR	oooouuuh	
 values-b+qt/strings.xml	string	music_singular	-	STR	aaahh	
@@ -25932,6 +26053,7 @@ values-b+ro/strings.xml	string	browser	-	STR	Browser
 values-b+ro/strings.xml	string	cancel	-	STR	Anulează	
 values-b+ro/strings.xml	string	cartoons	-	STR	Desene Animate	
 values-b+ro/strings.xml	string	cartoons_singular	-	STR	Desen Animat	
+values-b+ro/strings.xml	string	cast	-	STR	Distribuție	
 values-b+ro/strings.xml	string	cast_format	-	STR	Distribuție: %s	
 values-b+ro/strings.xml	string	category_account	-	STR	Conturi și Securitate	
 values-b+ro/strings.xml	string	category_general	-	STR	General	
@@ -26021,6 +26143,7 @@ values-b+ro/strings.xml	string	duplicate_replace_all	-	STR	Înlocuiește tot
 values-b+ro/strings.xml	string	duplicate_title	-	STR	Posibil Duplicat Găsit	
 values-b+ro/strings.xml	string	duration	-	STR	Durată	
 values-b+ro/strings.xml	string	duration_format	-	STR	%d min	
+values-b+ro/strings.xml	string	duration_hours_minutes_format	-	STR	%1$do %2$dm	
 values-b+ro/strings.xml	string	edit	-	STR	Editați	
 values-b+ro/strings.xml	string	edit_account	-	STR	Editare cont	
 values-b+ro/strings.xml	string	eigengraumode_settings	-	STR	viteza de redare	
@@ -26154,6 +26277,7 @@ values-b+ro/strings.xml	string	manage_accounts	-	STR	Administrați conturile
 values-b+ro/strings.xml	string	max	-	STR	Maxim	
 values-b+ro/strings.xml	string	min	-	STR	Minim	
 values-b+ro/strings.xml	string	mobile_data	-	STR	Date mobile	
+values-b+ro/strings.xml	string	more_like_this	-	STR	Similare	
 values-b+ro/strings.xml	string	movies	-	STR	Filme	
 values-b+ro/strings.xml	string	movies_singular	-	STR	Film	
 values-b+ro/strings.xml	string	music_singular	-	STR	Muzică	
@@ -26649,6 +26773,7 @@ values-b+ru/strings.xml	string	cancel_all	-	STR	Отменить всё
 values-b+ru/strings.xml	string	cancel_queue_message	-	STR	Вы хотите отменить всё запланированные загрузки?	
 values-b+ru/strings.xml	string	cartoons	-	STR	Мультфильмы	
 values-b+ru/strings.xml	string	cartoons_singular	-	STR	Мультфильм	
+values-b+ru/strings.xml	string	cast	-	STR	В ролях	
 values-b+ru/strings.xml	string	cast_format	-	STR	В ролях: %s	
 values-b+ru/strings.xml	string	category_account	-	STR	Учётные записи и Безопасность	
 values-b+ru/strings.xml	string	category_general	-	STR	Общие	
@@ -26753,6 +26878,7 @@ values-b+ru/strings.xml	string	duplicate_replace_all	-	STR	Заменить вс
 values-b+ru/strings.xml	string	duplicate_title	-	STR	Найден потенциальный дубликат	
 values-b+ru/strings.xml	string	duration	-	STR	Продолжительность	
 values-b+ru/strings.xml	string	duration_format	-	STR	%d мин	
+values-b+ru/strings.xml	string	duration_hours_minutes_format	-	STR	%1$dч %2$dм	
 values-b+ru/strings.xml	string	edit	-	STR	Изменить	
 values-b+ru/strings.xml	string	edit_account	-	STR	Изменить учётную запись	
 values-b+ru/strings.xml	string	edit_profile_image_error_empty	-	STR	URL не найден	
@@ -26900,6 +27026,7 @@ values-b+ru/strings.xml	string	middle_left	-	STR	Средний левый
 values-b+ru/strings.xml	string	middle_right	-	STR	Средний правый	
 values-b+ru/strings.xml	string	min	-	STR	Мин	
 values-b+ru/strings.xml	string	mobile_data	-	STR	Мобильный интернет	
+values-b+ru/strings.xml	string	more_like_this	-	STR	Похожее	
 values-b+ru/strings.xml	string	movies	-	STR	Фильмы	
 values-b+ru/strings.xml	string	movies_singular	-	STR	Фильм	
 values-b+ru/strings.xml	string	music_singular	-	STR	Музыка	
@@ -27408,6 +27535,7 @@ values-b+sk/strings.xml	string	browser	-	STR	Prehliadač
 values-b+sk/strings.xml	string	cancel	-	STR	Zrušiť	
 values-b+sk/strings.xml	string	cartoons	-	STR	Kreslené	
 values-b+sk/strings.xml	string	cartoons_singular	-	STR	Kreslený	
+values-b+sk/strings.xml	string	cast	-	STR	Hrajú	
 values-b+sk/strings.xml	string	cast_format	-	STR	Hrajú: %s	
 values-b+sk/strings.xml	string	category_account	-	STR	Účty a Zabezpečenie	
 values-b+sk/strings.xml	string	category_general	-	STR	Všeobecné	
@@ -27484,6 +27612,7 @@ values-b+sk/strings.xml	string	downloads_storage_legend	-	STR	Využité %1$s z %
 values-b+sk/strings.xml	string	downloads_storage_needs	-	STR	Treba ešte %s	
 values-b+sk/strings.xml	string	duration	-	STR	Trvanie	
 values-b+sk/strings.xml	string	duration_format	-	STR	%d min	
+values-b+sk/strings.xml	string	duration_hours_minutes_format	-	STR	%1$dh %2$dm	
 values-b+sk/strings.xml	string	eigengraumode_settings	-	STR	Rýchlosť prehrávania (Eigengravy režim)	
 values-b+sk/strings.xml	string	emulator_layout	-	STR	Rozloženie emulátora	
 values-b+sk/strings.xml	string	enable_nsfw_on_providers	-	STR	Povoliť NSFW u podporovaných rozšírení	
@@ -27589,6 +27718,7 @@ values-b+sk/strings.xml	string	login_format	-	STR	%1$s %2$s
 values-b+sk/strings.xml	string	logout	-	STR	Odhlásiť sa	
 values-b+sk/strings.xml	string	max	-	STR	Maximum	
 values-b+sk/strings.xml	string	min	-	STR	Minimum	
+values-b+sk/strings.xml	string	more_like_this	-	STR	Podobné	
 values-b+sk/strings.xml	string	movies	-	STR	Filmy	
 values-b+sk/strings.xml	string	movies_singular	-	STR	Film	
 values-b+sk/strings.xml	string	music_singular	-	STR	Hudba	
@@ -27955,6 +28085,7 @@ values-b+so/strings.xml	string	browser	-	STR	biraawsar
 values-b+so/strings.xml	string	cancel	-	STR	Jooji	
 values-b+so/strings.xml	string	cartoons	-	STR	Kartoon	
 values-b+so/strings.xml	string	cartoons_singular	-	STR	Kartoob	
+values-b+so/strings.xml	string	cast	-	STR	Metalaya	
 values-b+so/strings.xml	string	cast_format	-	STR	Metalaya: %s	
 values-b+so/strings.xml	string	category_account	-	STR	Akoonada iyo Amniga	
 values-b+so/strings.xml	string	category_general	-	STR	Guud	
@@ -28025,6 +28156,7 @@ values-b+so/strings.xml	string	downloads_storage_full_headline	-	STR	Kayd ku fil
 values-b+so/strings.xml	string	downloads_storage_legend	-	STR	%1$s oo ka mid ah %2$s ayaa la isticmaalay · %3$s soo dejinta	
 values-b+so/strings.xml	string	downloads_storage_needs	-	STR	Waxaa loo baahan yahay %s dheeraad ah	
 values-b+so/strings.xml	string	duration	-	STR	Muddada	
+values-b+so/strings.xml	string	duration_hours_minutes_format	-	STR	%1$d saac %2$d daq	
 values-b+so/strings.xml	string	eigengraumode_settings	-	STR	Xawaaraha muuqaalka	
 values-b+so/strings.xml	string	emulator_layout	-	STR	Qaab emulator	
 values-b+so/strings.xml	string	enable_nsfw_on_providers	-	STR	Tusi CEEBta qaybiyayaasha ku shaqeeya	
@@ -28139,6 +28271,7 @@ values-b+so/strings.xml	string	login_format	-	STR	%1$s %2$s
 values-b+so/strings.xml	string	logout	-	STR	Ka bax	
 values-b+so/strings.xml	string	max	-	STR	Ugu weyn	
 values-b+so/strings.xml	string	min	-	STR	Ugu yar	
+values-b+so/strings.xml	string	more_like_this	-	STR	Kuwo la mid ah	
 values-b+so/strings.xml	string	movies	-	STR	Filimaan	
 values-b+so/strings.xml	string	movies_singular	-	STR	Filin	
 values-b+so/strings.xml	string	network_adress_example	-	STR	Lifaaqa daalacashada	
@@ -28569,6 +28702,7 @@ values-b+sq/strings.xml	string	cancel_all	-	STR	Anulo të gjitha
 values-b+sq/strings.xml	string	cancel_queue_message	-	STR	Dëshiron të anulosh të gjitha shkarkimet në radhë?	
 values-b+sq/strings.xml	string	cartoons	-	STR	Vizatimore	
 values-b+sq/strings.xml	string	cartoons_singular	-	STR	Vizatimorë	
+values-b+sq/strings.xml	string	cast	-	STR	Kasti	
 values-b+sq/strings.xml	string	cast_format	-	STR	Kasti: %s	
 values-b+sq/strings.xml	string	category_account	-	STR	Llogaritë dhe Siguria	
 values-b+sq/strings.xml	string	category_general	-	STR	Të përgjithshme	
@@ -28673,6 +28807,7 @@ values-b+sq/strings.xml	string	duplicate_replace_all	-	STR	Zëvendëso të gjith
 values-b+sq/strings.xml	string	duplicate_title	-	STR	U gjet dublikatë e mundshme	
 values-b+sq/strings.xml	string	duration	-	STR	Kohëzgjatja	
 values-b+sq/strings.xml	string	duration_format	-	STR	%d min	
+values-b+sq/strings.xml	string	duration_hours_minutes_format	-	STR	%1$do %2$dm	
 values-b+sq/strings.xml	string	edit	-	STR	Ndrysho	
 values-b+sq/strings.xml	string	edit_account	-	STR	Ndrysho llogarinë	
 values-b+sq/strings.xml	string	edit_profile_image_error_empty	-	STR	Nuk u gjet asnjë URL	
@@ -28820,6 +28955,7 @@ values-b+sq/strings.xml	string	middle_left	-	STR	Në mes majtas
 values-b+sq/strings.xml	string	middle_right	-	STR	Në mes djathtas	
 values-b+sq/strings.xml	string	min	-	STR	Minimumi	
 values-b+sq/strings.xml	string	mobile_data	-	STR	Mobile data	
+values-b+sq/strings.xml	string	more_like_this	-	STR	Të ngjashme	
 values-b+sq/strings.xml	string	movies	-	STR	Filmat	
 values-b+sq/strings.xml	string	movies_singular	-	STR	Film	
 values-b+sq/strings.xml	string	music_singular	-	STR	Muzikë	
@@ -29375,6 +29511,7 @@ values-b+sv/strings.xml	string	cancel_all	-	STR	Avbryt alla
 values-b+sv/strings.xml	string	cancel_queue_message	-	STR	Vill du avbryta alla köade hämtningar?	
 values-b+sv/strings.xml	string	cartoons	-	STR	Cartoons	
 values-b+sv/strings.xml	string	cartoons_singular	-	STR	Tecknade serier	
+values-b+sv/strings.xml	string	cast	-	STR	Skådespelare	
 values-b+sv/strings.xml	string	cast_format	-	STR	Skådespelare: %s	
 values-b+sv/strings.xml	string	category_account	-	STR	Konton och säkerhet	
 values-b+sv/strings.xml	string	category_general	-	STR	Allmänna Inställningar	
@@ -29479,6 +29616,7 @@ values-b+sv/strings.xml	string	duplicate_replace_all	-	STR	Ersätt alla
 values-b+sv/strings.xml	string	duplicate_title	-	STR	Potentiell Dublett Hittad	
 values-b+sv/strings.xml	string	duration	-	STR	Längd	
 values-b+sv/strings.xml	string	duration_format	-	STR	%d min	
+values-b+sv/strings.xml	string	duration_hours_minutes_format	-	STR	%1$dh %2$dm	
 values-b+sv/strings.xml	string	edit	-	STR	Ändra	
 values-b+sv/strings.xml	string	edit_account	-	STR	Redigera konto	
 values-b+sv/strings.xml	string	edit_profile_image_error_empty	-	STR	Inget URL hittades	
@@ -29626,6 +29764,7 @@ values-b+sv/strings.xml	string	middle_left	-	STR	Mitten vänster
 values-b+sv/strings.xml	string	middle_right	-	STR	Mitten till höger	
 values-b+sv/strings.xml	string	min	-	STR	Max	
 values-b+sv/strings.xml	string	mobile_data	-	STR	Mobildata	
+values-b+sv/strings.xml	string	more_like_this	-	STR	Liknande	
 values-b+sv/strings.xml	string	movies	-	STR	Filmer	
 values-b+sv/strings.xml	string	movies_singular	-	STR	Film	
 values-b+sv/strings.xml	string	music_singular	-	STR	Musik	
@@ -30181,6 +30320,7 @@ values-b+ta/strings.xml	string	cancel_all	-	STR	அனைத்தையும�
 values-b+ta/strings.xml	string	cancel_queue_message	-	STR	வரிசைப்படுத்தப்பட்ட அனைத்து பதிவிறக்கங்களையும் ரத்துசெய்ய விரும்புகிறீர்களா?	
 values-b+ta/strings.xml	string	cartoons	-	STR	கார்ட்டூன்கள்	
 values-b+ta/strings.xml	string	cartoons_singular	-	STR	கார்ட்டூன்	
+values-b+ta/strings.xml	string	cast	-	STR	நடிகர்கள்	
 values-b+ta/strings.xml	string	cast_format	-	STR	நடிகர்கள்: %s	
 values-b+ta/strings.xml	string	category_account	-	STR	கணக்குகள் மற்றும் பாதுகாப்பு	
 values-b+ta/strings.xml	string	category_general	-	STR	பொது	
@@ -30285,6 +30425,7 @@ values-b+ta/strings.xml	string	duplicate_replace_all	-	STR	அனைத்தை
 values-b+ta/strings.xml	string	duplicate_title	-	STR	சாத்தியமான நகல் காணப்படுகிறது	
 values-b+ta/strings.xml	string	duration	-	STR	காலம்	
 values-b+ta/strings.xml	string	duration_format	-	STR	%d நிமி	
+values-b+ta/strings.xml	string	duration_hours_minutes_format	-	STR	%1$d மணி %2$d நிமிடம்	
 values-b+ta/strings.xml	string	edit	-	STR	தொகு	
 values-b+ta/strings.xml	string	edit_account	-	STR	கணக்கைத் திருத்தவும்	
 values-b+ta/strings.xml	string	edit_profile_image_error_empty	-	STR	முகவரி இல்லை	
@@ -30432,6 +30573,7 @@ values-b+ta/strings.xml	string	middle_left	-	STR	நடுத்தர இடத
 values-b+ta/strings.xml	string	middle_right	-	STR	நடுத்தர வலது	
 values-b+ta/strings.xml	string	min	-	STR	மணித்துளி	
 values-b+ta/strings.xml	string	mobile_data	-	STR	மொபைல் தரவு	
+values-b+ta/strings.xml	string	more_like_this	-	STR	இது போன்றவை	
 values-b+ta/strings.xml	string	movies	-	STR	திரைப்படங்கள்	
 values-b+ta/strings.xml	string	movies_singular	-	STR	படம்	
 values-b+ta/strings.xml	string	music_singular	-	STR	இசை	
@@ -30873,6 +31015,7 @@ values-b+ta/strings.xml	string	yes	-	STR	ஆம்
 values-b+ti/strings.xml	plurals	home_sections_failed	one	STR	%d ክፍሊ ክጽዓን ኣይከኣለን	
 values-b+ti/strings.xml	plurals	home_sections_failed	other	STR	%d ክፍሊ ክጽዓን ኣይከኣለን	
 values-b+ti/strings.xml	string	app_dub_sub_episode_text_format	-	STR	%1$s ክፋል %2$d	
+values-b+ti/strings.xml	string	cast	-	STR	ተዋሳእቲ	
 values-b+ti/strings.xml	string	cast_format	-	STR	ተዋሳእቲ፡ %s	
 values-b+ti/strings.xml	string	detail_load_failed_body	-	STR	ምንጪ ኣይርከብ ይኸውን።	
 values-b+ti/strings.xml	string	detail_load_failed_headline	-	STR	እዚ ኣርእስቲ ክኽፈት ኣይከኣለን	
@@ -30918,6 +31061,7 @@ values-b+ti/strings.xml	string	extension_warning_webview	-	STR	ዌብ ቪው ይ
 values-b+ti/strings.xml	string	extensions_waiting_count	-	STR	ንዓኻ ዝጽበዩ መስፋሕፋሕቲ: %d	
 values-b+ti/strings.xml	string	home_search_only_body	-	STR	ካብ መስፋሕፋሕትኻ ሓደ እኳ መበገሲ ገጽ የብሉን፡ ግን ሕጂ'ውን ኣብኡ ክትደሊ ትኽእል ኢኻ።	
 values-b+ti/strings.xml	string	load_more	-	STR	ተወሳኺ ጽዓን	
+values-b+ti/strings.xml	string	more_like_this	-	STR	ተመሳሳሊ	
 values-b+ti/strings.xml	string	next_episode_format	-	STR	ክፋል %d በ ላይ ይወጣል	
 values-b+ti/strings.xml	string	player_enter_fullscreen	-	STR	ናብ ምሉእ ስክሪን እቶ	
 values-b+ti/strings.xml	string	player_exit_fullscreen	-	STR	ካብ ምሉእ ስክሪን ውጻእ	
@@ -30983,6 +31127,7 @@ values-b+tl/strings.xml	string	bottom_title_settings	-	STR	Lokasyon ng Poster ti
 values-b+tl/strings.xml	string	bottom_title_settings_des	-	STR	Ilagay ang title sa ibaba ng poster	
 values-b+tl/strings.xml	string	cancel	-	STR	Kanselahin	
 values-b+tl/strings.xml	string	cartoons	-	STR	Cartoons	
+values-b+tl/strings.xml	string	cast	-	STR	I-Cast	
 values-b+tl/strings.xml	string	cast_format	-	STR	I-Cast: %s	
 values-b+tl/strings.xml	string	category_general	-	STR	Pangkalahatan	
 values-b+tl/strings.xml	string	check_for_update	-	STR	Tingnan kung may bagong update	
@@ -31095,6 +31240,7 @@ values-b+tl/strings.xml	string	lightnovel	-	STR	Light novel app ng parehong devs
 values-b+tl/strings.xml	string	load_more	-	STR	Mag-load pa	
 values-b+tl/strings.xml	string	loading	-	STR	Loading…	
 values-b+tl/strings.xml	string	logout	-	STR	Mag log out	
+values-b+tl/strings.xml	string	more_like_this	-	STR	Higit pang katulad nito	
 values-b+tl/strings.xml	string	movies	-	STR	Pelikula	
 values-b+tl/strings.xml	string	new_update_format	-	STR	Bagong update! \n%1$s -> %2$s	
 values-b+tl/strings.xml	string	next_episode	-	STR	Susunod na Episode	
@@ -31376,6 +31522,7 @@ values-b+tr/strings.xml	string	cancel_all	-	STR	Tümünü iptal et
 values-b+tr/strings.xml	string	cancel_queue_message	-	STR	Kuyruktaki tüm indirmeleri iptal etmek istiyor musunuz?	
 values-b+tr/strings.xml	string	cartoons	-	STR	Çizgi filmler	
 values-b+tr/strings.xml	string	cartoons_singular	-	STR	Çizgi film	
+values-b+tr/strings.xml	string	cast	-	STR	Oyuncular	
 values-b+tr/strings.xml	string	cast_format	-	STR	Oyuncular: %s	
 values-b+tr/strings.xml	string	category_account	-	STR	Hesaplar ve Güvenlik	
 values-b+tr/strings.xml	string	category_general	-	STR	Genel	
@@ -31480,6 +31627,7 @@ values-b+tr/strings.xml	string	duplicate_replace_all	-	STR	Tümünü Değiştir
 values-b+tr/strings.xml	string	duplicate_title	-	STR	Potensiyel Kopya Bulundu	
 values-b+tr/strings.xml	string	duration	-	STR	Süre	
 values-b+tr/strings.xml	string	duration_format	-	STR	%d dakika	
+values-b+tr/strings.xml	string	duration_hours_minutes_format	-	STR	%1$dsa %2$ddk	
 values-b+tr/strings.xml	string	edit	-	STR	Düzenle	
 values-b+tr/strings.xml	string	edit_account	-	STR	Hesabı düzenle	
 values-b+tr/strings.xml	string	edit_profile_image_error_empty	-	STR	URL bulunamadı	
@@ -31627,6 +31775,7 @@ values-b+tr/strings.xml	string	middle_left	-	STR	Orta sol
 values-b+tr/strings.xml	string	middle_right	-	STR	Orta sağ	
 values-b+tr/strings.xml	string	min	-	STR	Asgari	
 values-b+tr/strings.xml	string	mobile_data	-	STR	Mobil veri	
+values-b+tr/strings.xml	string	more_like_this	-	STR	Benzer içerikler	
 values-b+tr/strings.xml	string	movies	-	STR	Filmler	
 values-b+tr/strings.xml	string	movies_singular	-	STR	Film	
 values-b+tr/strings.xml	string	music_singular	-	STR	Müzik	
@@ -32190,6 +32339,7 @@ values-b+uk/strings.xml	string	cancel_all	-	STR	Скасувати все
 values-b+uk/strings.xml	string	cancel_queue_message	-	STR	Бажаєте скасувати всі завантаження в черзі?	
 values-b+uk/strings.xml	string	cartoons	-	STR	Мультфільми	
 values-b+uk/strings.xml	string	cartoons_singular	-	STR	Мультфільм	
+values-b+uk/strings.xml	string	cast	-	STR	У ролях	
 values-b+uk/strings.xml	string	cast_format	-	STR	У ролях: %s	
 values-b+uk/strings.xml	string	category_account	-	STR	Облікові записи та безпека	
 values-b+uk/strings.xml	string	category_general	-	STR	Загальні	
@@ -32294,6 +32444,7 @@ values-b+uk/strings.xml	string	duplicate_replace_all	-	STR	Замінити вс
 values-b+uk/strings.xml	string	duplicate_title	-	STR	Знайдено можливий дублікат	
 values-b+uk/strings.xml	string	duration	-	STR	Тривалість	
 values-b+uk/strings.xml	string	duration_format	-	STR	%d хв	
+values-b+uk/strings.xml	string	duration_hours_minutes_format	-	STR	%1$d год %2$d хв	
 values-b+uk/strings.xml	string	edit	-	STR	Редагувати	
 values-b+uk/strings.xml	string	edit_account	-	STR	Редагувати обліковий запис	
 values-b+uk/strings.xml	string	edit_profile_image_error_empty	-	STR	URL-адресу не знайдено	
@@ -32441,6 +32592,7 @@ values-b+uk/strings.xml	string	middle_left	-	STR	Посередині зліва
 values-b+uk/strings.xml	string	middle_right	-	STR	Посередині справа	
 values-b+uk/strings.xml	string	min	-	STR	Мін.	
 values-b+uk/strings.xml	string	mobile_data	-	STR	Мобільні дані	
+values-b+uk/strings.xml	string	more_like_this	-	STR	Схоже	
 values-b+uk/strings.xml	string	movies	-	STR	Фільми	
 values-b+uk/strings.xml	string	movies_singular	-	STR	Фільм	
 values-b+uk/strings.xml	string	music_singular	-	STR	Музика	
@@ -32977,6 +33129,7 @@ values-b+ur/strings.xml	string	browser	-	STR	براؤزر
 values-b+ur/strings.xml	string	cancel	-	STR	منسوخ کریں	
 values-b+ur/strings.xml	string	cartoons	-	STR	کارٹون	
 values-b+ur/strings.xml	string	cartoons_singular	-	STR	کارٹون	
+values-b+ur/strings.xml	string	cast	-	STR	کاسٹ	
 values-b+ur/strings.xml	string	cast_format	-	STR	کاسٹ: %s	
 values-b+ur/strings.xml	string	category_account	-	STR	اکاؤنٹس اور سیکیورٹی	
 values-b+ur/strings.xml	string	category_general	-	STR	عمومی	
@@ -33186,6 +33339,7 @@ values-b+ur/strings.xml	string	manage_accounts	-	STR	اکاؤنٹس کا نظم 
 values-b+ur/strings.xml	string	max	-	STR	زیادہ سے زیادہ	
 values-b+ur/strings.xml	string	min	-	STR	کم از کم	
 values-b+ur/strings.xml	string	mobile_data	-	STR	موبائل ڈیٹا	
+values-b+ur/strings.xml	string	more_like_this	-	STR	اس جیسے مزید	
 values-b+ur/strings.xml	string	movies	-	STR	فلمیں	
 values-b+ur/strings.xml	string	movies_singular	-	STR	فلم	
 values-b+ur/strings.xml	string	music_singular	-	STR	موسیقی	
@@ -33660,6 +33814,7 @@ values-b+vi/strings.xml	string	cancel_all	-	STR	Hủy tất cả
 values-b+vi/strings.xml	string	cancel_queue_message	-	STR	Bạn có muốn hủy tất cả tải xuống đang chờ không?	
 values-b+vi/strings.xml	string	cartoons	-	STR	Hoạt Hình	
 values-b+vi/strings.xml	string	cartoons_singular	-	STR	Hoạt Hình	
+values-b+vi/strings.xml	string	cast	-	STR	Diễn viên	
 values-b+vi/strings.xml	string	cast_format	-	STR	Diễn viên: %s	
 values-b+vi/strings.xml	string	category_account	-	STR	Tài khoản và Bảo mật	
 values-b+vi/strings.xml	string	category_general	-	STR	Tổng quan	
@@ -33764,6 +33919,7 @@ values-b+vi/strings.xml	string	duplicate_replace_all	-	STR	Thay thế tất cả
 values-b+vi/strings.xml	string	duplicate_title	-	STR	Đã tìm thấy bản sao tiềm năng	
 values-b+vi/strings.xml	string	duration	-	STR	Thời lượng	
 values-b+vi/strings.xml	string	duration_format	-	STR	%d phút	
+values-b+vi/strings.xml	string	duration_hours_minutes_format	-	STR	%1$d giờ %2$d phút	
 values-b+vi/strings.xml	string	edit	-	STR	Điều chỉnh	
 values-b+vi/strings.xml	string	edit_account	-	STR	Chỉnh sửa hồ sơ	
 values-b+vi/strings.xml	string	edit_profile_image_error_empty	-	STR	Không tìm thấy URL	
@@ -33911,6 +34067,7 @@ values-b+vi/strings.xml	string	middle_left	-	STR	Giữa trái
 values-b+vi/strings.xml	string	middle_right	-	STR	Giữa phải	
 values-b+vi/strings.xml	string	min	-	STR	Tối thiểu	
 values-b+vi/strings.xml	string	mobile_data	-	STR	Dữ liệu di động	
+values-b+vi/strings.xml	string	more_like_this	-	STR	Nội dung tương tự	
 values-b+vi/strings.xml	string	movies	-	STR	Phim Lẻ	
 values-b+vi/strings.xml	string	movies_singular	-	STR	Phim Lẻ	
 values-b+vi/strings.xml	string	music_singular	-	STR	Nhạc	
@@ -34461,6 +34618,7 @@ values-b+zh+TW/strings.xml	string	cancel_all	-	STR	全部取消
 values-b+zh+TW/strings.xml	string	cancel_queue_message	-	STR	需取消佇列中的所有下載嗎？	
 values-b+zh+TW/strings.xml	string	cartoons	-	STR	卡通	
 values-b+zh+TW/strings.xml	string	cartoons_singular	-	STR	卡通	
+values-b+zh+TW/strings.xml	string	cast	-	STR	演員	
 values-b+zh+TW/strings.xml	string	cast_format	-	STR	演員：%s	
 values-b+zh+TW/strings.xml	string	category_account	-	STR	帳戶和安全	
 values-b+zh+TW/strings.xml	string	category_general	-	STR	通用	
@@ -34565,6 +34723,7 @@ values-b+zh+TW/strings.xml	string	duplicate_replace_all	-	STR	全部取代
 values-b+zh+TW/strings.xml	string	duplicate_title	-	STR	找到可能重覆的項目	
 values-b+zh+TW/strings.xml	string	duration	-	STR	時間	
 values-b+zh+TW/strings.xml	string	duration_format	-	STR	%d 分鐘	
+values-b+zh+TW/strings.xml	string	duration_hours_minutes_format	-	STR	%1$d小時 %2$d分鐘	
 values-b+zh+TW/strings.xml	string	edit	-	STR	編輯	
 values-b+zh+TW/strings.xml	string	edit_account	-	STR	編輯帳號	
 values-b+zh+TW/strings.xml	string	edit_profile_image_error_empty	-	STR	未找到該網址	
@@ -34712,6 +34871,7 @@ values-b+zh+TW/strings.xml	string	middle_left	-	STR	左中
 values-b+zh+TW/strings.xml	string	middle_right	-	STR	右中	
 values-b+zh+TW/strings.xml	string	min	-	STR	最小	
 values-b+zh+TW/strings.xml	string	mobile_data	-	STR	行動數據	
+values-b+zh+TW/strings.xml	string	more_like_this	-	STR	相關推薦	
 values-b+zh+TW/strings.xml	string	movies	-	STR	電影	
 values-b+zh+TW/strings.xml	string	movies_singular	-	STR	電影	
 values-b+zh+TW/strings.xml	string	music_singular	-	STR	音樂	
@@ -35258,6 +35418,7 @@ values-b+zh/strings.xml	string	cancel_all	-	STR	全部取消
 values-b+zh/strings.xml	string	cancel_queue_message	-	STR	要取消队列中的所有下载吗？	
 values-b+zh/strings.xml	string	cartoons	-	STR	卡通	
 values-b+zh/strings.xml	string	cartoons_singular	-	STR	卡通	
+values-b+zh/strings.xml	string	cast	-	STR	演员	
 values-b+zh/strings.xml	string	cast_format	-	STR	演员：%s	
 values-b+zh/strings.xml	string	category_account	-	STR	账户和安全	
 values-b+zh/strings.xml	string	category_general	-	STR	通用	
@@ -35362,6 +35523,7 @@ values-b+zh/strings.xml	string	duplicate_replace_all	-	STR	替换全部
 values-b+zh/strings.xml	string	duplicate_title	-	STR	发现潜在重复	
 values-b+zh/strings.xml	string	duration	-	STR	时间	
 values-b+zh/strings.xml	string	duration_format	-	STR	%d 分钟	
+values-b+zh/strings.xml	string	duration_hours_minutes_format	-	STR	%1$d小时 %2$d分钟	
 values-b+zh/strings.xml	string	edit	-	STR	编辑	
 values-b+zh/strings.xml	string	edit_account	-	STR	编辑账户	
 values-b+zh/strings.xml	string	edit_profile_image_error_empty	-	STR	未找到 URL	
@@ -35509,6 +35671,7 @@ values-b+zh/strings.xml	string	middle_left	-	STR	中左
 values-b+zh/strings.xml	string	middle_right	-	STR	中右	
 values-b+zh/strings.xml	string	min	-	STR	最小	
 values-b+zh/strings.xml	string	mobile_data	-	STR	移动流量	
+values-b+zh/strings.xml	string	more_like_this	-	STR	相关推荐	
 values-b+zh/strings.xml	string	movies	-	STR	电影	
 values-b+zh/strings.xml	string	movies_singular	-	STR	电影	
 values-b+zh/strings.xml	string	music_singular	-	STR	音乐	
@@ -36186,6 +36349,7 @@ values/strings.xml	string	cancel_all	-	STR	Cancel all
 values/strings.xml	string	cancel_queue_message	-	STR	Do you want to cancel all queued downloads?	
 values/strings.xml	string	cartoons	-	STR	Cartoons	
 values/strings.xml	string	cartoons_singular	-	STR	Cartoon	
+values/strings.xml	string	cast	-	STR	Cast	
 values/strings.xml	string	cast_format	-	STR	Cast: %s	
 values/strings.xml	string	category_account	-	STR	Accounts and Security	
 values/strings.xml	string	category_general	-	STR	General	
@@ -36299,6 +36463,7 @@ values/strings.xml	string	duplicate_replace_all	-	STR	Replace All
 values/strings.xml	string	duplicate_title	-	STR	Potential Duplicate Found	
 values/strings.xml	string	duration	-	STR	Duration	
 values/strings.xml	string	duration_format	-	STR	%d min	
+values/strings.xml	string	duration_hours_minutes_format	-	STR	%1$dh %2$dm	
 values/strings.xml	string	edit	-	STR	Edit	
 values/strings.xml	string	edit_account	-	STR	Edit account	
 values/strings.xml	string	edit_profile_image_error_empty	-	STR	No URL Found	
@@ -36453,6 +36618,7 @@ values/strings.xml	string	middle_left	-	STR	Middle left
 values/strings.xml	string	middle_right	-	STR	Middle right	
 values/strings.xml	string	min	-	STR	Min	
 values/strings.xml	string	mobile_data	-	STR	Mobile data	
+values/strings.xml	string	more_like_this	-	STR	More like this	
 values/strings.xml	string	movies	-	STR	Movies	
 values/strings.xml	string	movies_singular	-	STR	Movie	
 values/strings.xml	string	music_singular	-	STR	Music	
