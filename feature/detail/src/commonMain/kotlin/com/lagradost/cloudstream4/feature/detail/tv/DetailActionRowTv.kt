@@ -17,10 +17,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.designsystem.target.GhostTextButton
+import com.lagradost.cloudstream4.core.designsystem.target.IconOnlyButton
 import com.lagradost.cloudstream4.core.designsystem.target.PrimaryTextButton
 import com.lagradost.cloudstream4.core.strings.UiString
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
+import com.lagradost.cloudstream4.core.strings.generated.resources.action_add_to_bookmarks
 import com.lagradost.cloudstream4.core.strings.generated.resources.episodes
 import com.lagradost.cloudstream4.core.strings.generated.resources.play_episode
 import com.lagradost.cloudstream4.core.strings.generated.resources.play_movie_button
@@ -32,6 +35,7 @@ import com.lagradost.cloudstream4.core.strings.resolve
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.detail.DetailAction
+import com.lagradost.cloudstream4.feature.detail.DetailWatchStatus
 import com.lagradost.cloudstream4.feature.detail.META_SEPARATOR
 import com.lagradost.cloudstream4.feature.detail.TitleDetail
 import com.lagradost.cloudstream4.feature.detail.namedSeason
@@ -45,21 +49,33 @@ import org.jetbrains.compose.resources.stringResource
  * thumb. So the primary is always first and always [DetailScreenTvDefaults.ResumeWidth] wide, and a
  * control that has nothing behind it is absent rather than dead.
  *
- * Order follows the boards, and so does the **count**: 7a draws Resume, Trailer, Season, Episodes and
- * Full synopsis, and 7b draws Resume, Start over, Trailer, Download and Full synopsis. Neither draws
- * six, and six would not fit — the band leaves 833dp here and `ResumeWidth` plus five ghosts at
- * [CloudStreamDimens.TextButtonMinWidth] and five gaps is 880, which a `Row` resolves by squeezing its
- * last child under its own minimum. Every ghost sits at that 120dp floor at 12sp, so a longer
- * translation only makes it worse. The most this row ever holds is five.
+ ## The secondaries are icon-only (`DEC-17`, boards 7f and 7g)
+ *
+ * Rule 4 of `ui-components.md` carries **one ruled exception** — this row — so Start over, Trailer and
+ * the watchlist are [IconOnlyButton] cells that show their label on focus, and the primary keeps its
+ * own [CloudStreamIcons.Play] glyph. That also buys back the width the old five-ghost row had no room
+ * for: a 48dp cell against a 120dp ghost.
+ *
+ * Order is the board's, as a prefix: Resume, Start over, Trailer, watchlist. Season, Episodes and Full
+ * synopsis follow as text buttons and are **not** on 7f or 7g — they stay only until their
+ * replacements exist (the inline episode list of 7i, and the synopsis stop of 7j/7k). Removing them
+ * first would leave no way to pick an episode or read a clamped plot, so when those land the row
+ * becomes 7f exactly, with nothing to reorder.
+ *
+ * Still absent, and deliberately: **Download** and **Mark watched**, which 7g draws for films —
+ * `DetailAction` has neither action, and a control with nothing behind it is worse than none. **More**
+ * has no board yet. Both are later tasks.
  *
  * The reductions the strings force: "start over" is `play_movie_button` / `play_episode`, because
  * nothing says "Start over" and "Resume" beside "Play Movie" reads correctly as
- * resume-versus-from-the-start. 7b's Download is absent: `DetailAction` has no download action to send.
+ * resume-versus-from-the-start.
  *
  * @param takeFocus whether the primary takes focus now — on arrival, which both boards state, or on
  *   coming back from the player.
  * @param onScrollToEpisodes what Season and Episodes do, in place of the episode panel they are drawn
  *   for, which is board 6a and a later task.
+ * @param onWatchStatusRequested opens the watch-status panel. The cell is a button, not a toggle: five
+ *   values cannot be cycled on a remote.
  */
 @Composable
 internal fun DetailActionRowTv(
@@ -68,6 +84,7 @@ internal fun DetailActionRowTv(
     takeFocus: Boolean,
     onFocusTaken: () -> Unit,
     onScrollToEpisodes: () -> Unit,
+    onWatchStatusRequested: () -> Unit,
 ) {
     val fromStart = if (detail.playData != null) {
         stringResource(Res.string.play_movie_button)
@@ -76,8 +93,11 @@ internal fun DetailActionRowTv(
     }
     val resuming = detail.resume?.fraction
     Row(
-        modifier = Modifier.height(CloudStreamDimens.TextButtonHeight),
+        // The cell, not the text button: board 7f draws the 48dp icon cells y248..296 with the 32dp
+        // text buttons centred on them at y256..288. Everything in the row is still on one baseline.
+        modifier = Modifier.height(CloudStreamDimens.IconTargetCell),
         horizontalArrangement = Arrangement.spacedBy(CloudStreamDimens.MinFocusGap),
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         val primaryData = detail.primaryData
         if (primaryData != null) {
@@ -99,15 +119,34 @@ internal fun DetailActionRowTv(
         // is meant.
         val restartData = detail.playData
         if (resuming != null && restartData != null) {
-            GhostTextButton(
+            IconOnlyButton(
+                icon = CloudStreamIcons.StartOver,
                 label = fromStart,
                 onClick = { onAction(DetailAction.PlaybackRequested(restartData, fromStart = true)) },
             )
         }
         if (detail.hasTrailer) {
-            GhostTextButton(
+            IconOnlyButton(
+                icon = CloudStreamIcons.Trailer,
                 label = stringResource(Res.string.trailer),
                 onClick = { onAction(DetailAction.TrailerRequested) },
+            )
+        }
+        // The watchlist, moved out of the chrome row because 7f and 7g put it here. Not an
+        // `IconOnlyToggle`: OK opens the five-value status panel rather than flipping a flag, so this
+        // is a button, and `IconOnlyToggle`'s checked `raised` fill would be wrong twice over — rule 4
+        // now says a toggle whose glyph pair is named draws no fill, and this is not a toggle at all.
+        // The pair is the rule's own: `Add` (Plus) off, `Done` (Check) on, state carried by shape.
+        val watchStatus = detail.watchStatus
+        if (watchStatus != null) {
+            IconOnlyButton(
+                icon = if (watchStatus != DetailWatchStatus.None) {
+                    CloudStreamIcons.Done
+                } else {
+                    CloudStreamIcons.Add
+                },
+                label = stringResource(Res.string.action_add_to_bookmarks),
+                onClick = onWatchStatusRequested,
             )
         }
         // Both are dropped where there is no one season to name — see `namedSeason`. A button of fixed
@@ -173,6 +212,7 @@ private fun ResumeButton(
             label = label,
             onClick = onClick,
             modifier = Modifier.fillMaxWidth().focusRequester(focusRequester),
+            icon = CloudStreamIcons.Play,
         )
         if (progress != null) {
             Box(Modifier.matchParentSize().clip(shape)) {

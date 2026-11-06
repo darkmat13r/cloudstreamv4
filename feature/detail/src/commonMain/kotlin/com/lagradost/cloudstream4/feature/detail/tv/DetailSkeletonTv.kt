@@ -161,8 +161,29 @@ internal object DetailSkeletonDefaults {
      */
     val LineGap: Dp = CloudStreamDimens.StackGap
 
-    /** x200..x1768 on the artboard: one bar standing for the whole action row. */
-    val ActionBarWidth: Dp = 784.dp
+    /**
+     * One bar standing for the action row, and **the shorter of the two rows the page can show**.
+     *
+     * The skeleton cannot know the title's type before it resolves, so the bar either stops short of
+     * the row it becomes or overhangs it. The board set takes the first: a bar that grows on arrival
+     * reads as the page filling in, where one that shrinks reads as a mistake. So this is the film
+     * row — primary, Start over, Trailer, the watchlist, Full synopsis — and a series' row, which
+     * adds Season and Episodes, grows past it.
+     *
+     * Re-derived for the icon-only row (`DEC-17`, boards 7f and 7g). The old 784 came from the
+     * artboard's x200..x1768 and stood for a row of five text buttons; measured against what the page
+     * actually drew it overhung by 46px at 1280 wide. Three 48dp cells in place of three 120dp ghosts
+     * is what moves the number.
+     *
+     * `ResumeWidth` + 3 × (`MinFocusGap` + `IconTargetCell`) + `MinFocusGap` + `TextButtonMinWidth`
+     * = 220 + 180 + 12 + 120 = 532.
+     */
+    val ActionBarWidth: Dp = DetailScreenTvDefaults.ResumeWidth +
+        (CloudStreamDimens.MinFocusGap + CloudStreamDimens.IconTargetCell) * ICON_SECONDARIES +
+        CloudStreamDimens.MinFocusGap + CloudStreamDimens.TextButtonMinWidth
+
+    /** Start over, Trailer and the watchlist: the icon-only cells a film's row carries. */
+    private const val ICON_SECONDARIES = 3
 
     /** Seven, as the board draws, which is also what fills the band at the 108dp pitch. */
     const val CastCount = 7

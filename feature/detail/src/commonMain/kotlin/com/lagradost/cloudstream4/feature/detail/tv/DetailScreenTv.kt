@@ -66,7 +66,6 @@ import com.lagradost.cloudstream4.feature.detail.DetailEpisode
 import com.lagradost.cloudstream4.feature.detail.DetailFocus
 import com.lagradost.cloudstream4.feature.detail.DetailLoad
 import com.lagradost.cloudstream4.feature.detail.DetailState
-import com.lagradost.cloudstream4.feature.detail.DetailWatchStatus
 import com.lagradost.cloudstream4.feature.detail.META_SEPARATOR
 import com.lagradost.cloudstream4.feature.detail.StreamLink
 import com.lagradost.cloudstream4.feature.detail.TitleDetail
@@ -174,7 +173,6 @@ fun DetailScreenTv(
                         detail = null,
                         onAction = onAction,
                         onBack = onBack,
-                        onWatchStatusRequested = openWatchStatus,
                         takeFocus = !entryFocusPlaced && state.content is DetailLoad.Loading,
                         // Deliberately not recorded as the entry focus: the board says focus rests here
                         // and "moves once, to Resume" when the title lands.
@@ -189,7 +187,6 @@ fun DetailScreenTv(
                     detail = null,
                     onAction = onAction,
                     onBack = { onAction(DetailAction.LinksDismissed) },
-                    onWatchStatusRequested = {},
                     takeFocus = false,
                     onFocusTaken = {},
                 )
@@ -431,7 +428,6 @@ private fun HeadColumn(
             detail = detail,
             onAction = onAction,
             onBack = onBack,
-            onWatchStatusRequested = onWatchStatusRequested,
             takeFocus = takeBackFocus,
             onFocusTaken = onBackFocusTaken,
         )
@@ -470,14 +466,18 @@ private fun HeadColumn(
                 takeFocus = takePrimaryFocus,
                 onFocusTaken = onPrimaryFocusTaken,
                 onScrollToEpisodes = onScrollToEpisodes,
+                onWatchStatusRequested = onWatchStatusRequested,
             )
         }
     }
 }
 
 /**
- * The chrome row, y28 to y76: the back cell at x100, the provider-and-type label at x160, and the two
- * state cells at x824 and x884, which is the band's right edge less two 48dp cells and a 12dp gap.
+ * The chrome row, y28 to y76: the back cell at x100, the provider-and-type label at x160, and the
+ * favourite cell at the band's right edge, less one 48dp cell.
+ *
+ * The **watchlist cell has left this row** for the action row, where boards 7f and 7g put it
+ * (`DEC-17`). Favourite stays: no board moves it, and it is a true toggle rather than a panel opener.
  *
  * A [detail] of null is the row loading, failed, or over the source list: the back cell alone.
  *
@@ -490,7 +490,6 @@ private fun ChromeRow(
     detail: TitleDetail?,
     onAction: (DetailAction) -> Unit,
     onBack: () -> Unit,
-    onWatchStatusRequested: () -> Unit,
     takeFocus: Boolean,
     onFocusTaken: () -> Unit,
     modifier: Modifier = Modifier,
@@ -521,19 +520,6 @@ private fun ChromeRow(
             color = colors.muted,
             modifier = Modifier.weight(REMAINING_WIDTH),
         )
-        // Drawn only where the host has the feature at all: a dead control is worse than none.
-        val watchStatus = detail?.watchStatus
-        if (watchStatus != null) {
-            IconCell(onClick = onWatchStatusRequested) { focused ->
-                ChromeGlyph(
-                    icon = CloudStreamIcons.Bookmark,
-                    label = stringResource(Res.string.action_add_to_bookmarks),
-                    focused = focused,
-                    selected = watchStatus != DetailWatchStatus.None,
-                )
-            }
-            Spacer(Modifier.width(DetailScreenTvDefaults.ChromeGap))
-        }
         val favourite = detail?.isFavourite
         if (favourite != null) {
             IconCell(onClick = { onAction(DetailAction.FavouriteToggled) }) { focused ->
