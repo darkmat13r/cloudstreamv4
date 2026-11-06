@@ -369,6 +369,7 @@
 <string name="library">Bibliothek</string>
 <string name="library_not_connected">Nicht verbunden</string>
 <string name="library_on_device">Auf dem Gerät</string>
+<string name="library_sort_not_kept">Von %s nicht gespeichert</string>
 <string name="library_source">Bibliotheksquelle</string>
 <string name="library_source_note">Jeweils eine · Wechsel lädt neu</string>
 <string name="library_synced_format">Vor %s synchronisiert</string>

@@ -313,6 +313,7 @@
 <string name="library">"لائبریری"</string>
 <string name="library_not_connected">"منسلک نہیں"</string>
 <string name="library_on_device">"ڈیوائس پر"</string>
+<string name="library_sort_not_kept" formatted="true">"%s اسے نہیں رکھتا"</string>
 <string name="library_source">"لائبریری کا ذریعہ"</string>
 <string name="library_source_note">"ایک وقت میں ایک · تبدیل کرنے پر دوبارہ لوڈ ہوتا ہے"</string>
 <string name="library_synced_format" formatted="true">"%s پہلے ہم آہنگ کیا گیا"</string>

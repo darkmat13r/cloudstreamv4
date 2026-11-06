@@ -199,6 +199,7 @@
 <string name="vpn_torrent">ይህ አቅራቢ ቶረንት ነው፣ ቪፒኤን ይመከራል</string>
 <string name="library_not_connected">አልተገናኘም</string>
 <string name="library_on_device">በመሣሪያ ላይ</string>
+<string name="library_sort_not_kept">በ%s አይያዝም</string>
 <string name="library_source">የቤተ-መጽሐፍት ምንጭ</string>
 <string name="library_source_note">አንድ በአንድ · መቀየር እንደገና ይጭናል</string>
 <string name="library_synced_format">ከ%s በፊት ተመሳስሏል</string>

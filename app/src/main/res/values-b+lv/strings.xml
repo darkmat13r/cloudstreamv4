@@ -310,6 +310,7 @@
 <string name="library">"Library"</string>
 <string name="library_not_connected">"Nav savienots"</string>
 <string name="library_on_device">"Ierīcē"</string>
+<string name="library_sort_not_kept" formatted="true">"%s to neglabā"</string>
 <string name="library_source">"Bibliotēkas avots"</string>
 <string name="library_source_note">"Pa vienam · pārslēgšana pārlādē"</string>
 <string name="library_synced_format" formatted="true">"Sinhronizēts pirms %s"</string>

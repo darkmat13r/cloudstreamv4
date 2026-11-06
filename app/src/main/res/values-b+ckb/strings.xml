@@ -107,6 +107,7 @@
 <string name="home_source_none_subtitle">"هیچ ڕیزێک · ڕیزەکانت دەمێننەوە"</string>
 <string name="library_not_connected">"پەیوەست نییە"</string>
 <string name="library_on_device">"لەسەر ئامێر"</string>
+<string name="library_sort_not_kept" formatted="true">"%s ئەمە هەڵناگرێت"</string>
 <string name="library_source">"سەرچاوەی کتێبخانە"</string>
 <string name="library_source_note">"یەک بە یەک · گۆڕین دووبارە باری دەکاتەوە"</string>
 <string name="library_synced_format" formatted="true">"%s لەمەوبەر هاوکات کرا"</string>

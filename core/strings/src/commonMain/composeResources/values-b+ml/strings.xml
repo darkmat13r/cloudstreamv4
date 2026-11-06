@@ -378,6 +378,7 @@
 <string name="year">വർഷം</string>
 <string name="library_not_connected">കണക്റ്റ് ചെയ്തിട്ടില്ല</string>
 <string name="library_on_device">ഉപകരണത്തിൽ</string>
+<string name="library_sort_not_kept">%s ഇത് സൂക്ഷിക്കുന്നില്ല</string>
 <string name="library_source">ലൈബ്രറി ഉറവിടം</string>
 <string name="library_source_note">ഒരേ സമയം ഒന്ന് · മാറ്റിയാൽ വീണ്ടും ലോഡ് ചെയ്യും</string>
 <string name="library_synced_format">%s മുമ്പ് സമന്വയിപ്പിച്ചു</string>

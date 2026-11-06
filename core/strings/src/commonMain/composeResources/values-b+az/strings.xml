@@ -130,6 +130,7 @@
 <string name="library">Kitabxana</string>
 <string name="library_not_connected">Qoşulmayıb</string>
 <string name="library_on_device">Cihazda</string>
+<string name="library_sort_not_kept">%s bunu saxlamır</string>
 <string name="library_source">Kitabxana mənbəyi</string>
 <string name="library_source_note">Eyni anda bir · dəyişmək yenidən yükləyir</string>
 <string name="library_synced_format">%s əvvəl sinxronlaşdırılıb</string>

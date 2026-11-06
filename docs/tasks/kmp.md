@@ -5226,3 +5226,87 @@ Temporary changes, each reverted, on `Television_720p`.
 - **Logging in or out while the page is open.** The next arrival reads the sources again.
 - **Any language but English on a device**, or a native speaker reading the five new translations. Least sure: `ti`,
   `am`, `so`, `mt`, `ckb`, `my`, `or`, `as`, `kn`, `ml`, `ne`, `eo` and `apc`.
+
+## KMP-50 — The TV library's sort: 5d's panel and 5a's sort button (queue `Q12`, second slice) · **measured 2026-11-07**
+
+**Status:** in pr, on master after `KMP-49` (`#175`, train 1). Android TV only. The owner's ruling is `DEC-20`'s last row: **one sort
+for every source, as the old screen keeps it, with a fallback for a source that cannot sort by it.**
+
+**The seam.** `LibrarySort` is a criterion (`Updated`, `Title`, `Released`, `Rating`) and a direction: the old
+screen's eight `ListSorting` entries, four criteria each both ways. A `LibrarySource` says which criteria it can sort by.
+`LibrarySources` gains `sort()` and `sortBy()`, both with defaults, so a host that keeps none has the default.
+`LibraryTitle` gains `releaseYear` and `ratingValue` (out of 100), both null by default. Desktop has no sources and
+shows no sort button; its cards are in the same order as before, and its tests pass unchanged.
+
+**The rules, each in one place.**
+
+- **The default** is `LibrarySort.Default`, last updated, newest first. It is the order a list had before this, so
+  `KMP-34`'s screenshots are unchanged.
+- **The fallback** is `appliedTo`: the choice where the shown source can sort by it, else the default. The choice is
+  kept, not overwritten, so a source that can sort by it shows it again. The button names the applied sort, never one
+  the grid is not in.
+- **A press** (`chooseSort`) applies at once and leaves the panel open (`DEC-17`, a single choice). The row already
+  applied turns the other way round. A criterion the shown source keeps nothing for is refused.
+- **Ties and gaps** (`LibraryShelf.sortedBy`): titles are put newest kept first before the sort, so a tie keeps that
+  order. A title with no year, or no rating, goes last both ways round. A name sorts ignoring case. Continue watching is
+  always newest watched first.
+
+**On Android.**
+
+- **The choice is the old screen's own key**, `"$currentAccount/library_sorting_mode"`, as the `ListSorting` ordinal,
+  so both screens read the same choice. The key is read raw: `DataStoreHelper.librarySortingMode` answers
+  `AlphabeticalA` where nothing is stored, and nothing stored is this screen's default. The old screen writes the key
+  as soon as it shows a list, so **a user who has opened it gets the order it showed them**, A to Z unless they chose
+  another. `Query` (no sort) and an ordinal this build does not know read as the default. All nine ordinals are
+  pinned by a test.
+- **What a service can sort by** is its read's `supportedListSorting`. Before the first read nothing is ruled out, and
+  the panel's rows are read again with the sources after it. The local list sorts by everything but a rating,
+  `LocalList`'s own set.
+- **A service's title** carries the year of its `releaseDate`, and its rating out of 100 only where it shows one: 0 is
+  AniList's and MAL's "not rated". **A local title** carries its bookmark's `year`, one line in `AndroidLibraryStore`.
+
+### What the board draws that this does not, or draws differently
+
+| Board | Drawn | Here | Why |
+|---|---|---|---|
+| 5d | Four rows, each a criterion over a second line, with the direction trailing | Four rows, each one of the app's eight labels, e.g. `Updated (New to Old)` | The eight are translated in every language already. One new string in all, for the reason below |
+| 5d | `LOCAL SUPPORTS 3 OF 4 CRITERIA` | Not drawn | The disabled row and its reason say which |
+| 5d | `NOT STORED BY LOCAL LISTS` | `Not kept by Local`, disabled and still a stop | `library_sort_not_kept`, with the source's name |
+| 5a | `Sort` / `LAST UPDATED · NEWEST` | `Sort` / `Updated (New to Old)` | The applied sort, in the same label as its row |
+
+### Measured, a wrong turn first
+
+- **Focus after BACK goes to the provider button, not to Sort.** That is `BUG-36`: `SidePanelHost` restores a nested
+  opener at its first stop. The source panel never showed it, because the provider button is the row's first stop.
+  The device test pins it as it is, as the detail page's does, so the component's fix fails it and gets looked at.
+  It is not patched here: `BUG-36` names 5d among the hosts the fix should be made once for.
+
+### Each critical test shown to fail
+
+Temporary changes, each reverted, on the JVM.
+
+| Change | What went red |
+|---|---|
+| `appliedTo` returns the choice unchanged (no fallback) | `LibrarySortShelfTest`'s fallback test and `LibrarySortViewModelTest`'s fallback test |
+| A press never flips (always the criterion's first direction) | `pressing the applied row again turns it the other way round` |
+
+### Tested
+
+- **JVM.** `LibrarySortShelfTest` 9 (each criterion both ways, gaps last, ties, a service's list, continue watching,
+  the fallback), `LibrarySortViewModelTest` 8, and 5 added to `AndroidLibrarySourcesTest`: the nine ordinals, the
+  mapping, the stored choice, what a service and the local list can sort by, a title's year and rating.
+- **Device, `:feature:library`.** 5 added to `LibrarySourcesTvDeviceTest`: the button names the applied sort and the
+  panel opens on it, a press applies at once and a second turns it round, a criterion the source keeps nothing for
+  is a stop that chooses nothing, BACK closes with the choice applied (`BUG-36` pinned), and a screenshot.
+- **Device, `:app`.** `theSortIsKeptUnderTheOldScreensKeyAsItsOrdinal`: the real key, read back by the old screen's
+  own delegate.
+
+**Screenshots:** `library-sort-panel` is new. `library-service-grid-focus-card` and `library-service-failed-focus-retry`
+change only by the sort button in the right slot, which was empty. Each looked at.
+
+### Not verified
+
+- **The old phone screen reading a choice made here**, on a device. The key and the ordinal are tested; the old
+  screen's own reading of them was not run.
+- **A real service's `supportedListSorting`.** Every service read in a test is a fake.
+- **A native speaker reading the new string** in any language.

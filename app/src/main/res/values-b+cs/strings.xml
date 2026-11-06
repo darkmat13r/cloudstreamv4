@@ -369,6 +369,7 @@
 <string name="library">"Knihovna"</string>
 <string name="library_not_connected">"Nepřipojeno"</string>
 <string name="library_on_device">"V zařízení"</string>
+<string name="library_sort_not_kept" formatted="true">"%s toto neuchovává"</string>
 <string name="library_source">"Zdroj knihovny"</string>
 <string name="library_source_note">"Jeden po druhém · přepnutí znovu načte"</string>
 <string name="library_synced_format" formatted="true">"Synchronizováno před %s"</string>

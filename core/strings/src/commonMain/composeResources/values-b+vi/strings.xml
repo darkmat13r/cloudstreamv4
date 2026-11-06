@@ -369,6 +369,7 @@
 <string name="library">Thư viện</string>
 <string name="library_not_connected">Chưa kết nối</string>
 <string name="library_on_device">Trên thiết bị</string>
+<string name="library_sort_not_kept">%s không lưu mục này</string>
 <string name="library_source">Nguồn thư viện</string>
 <string name="library_source_note">Mỗi lần một nguồn · chuyển sẽ tải lại</string>
 <string name="library_synced_format">Đã đồng bộ %s trước</string>

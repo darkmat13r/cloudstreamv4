@@ -120,10 +120,18 @@ data class LibraryState(
     val syncedCounts: Map<String, Int> = emptyMap(),
     /** Whether the panel that chooses a source (`TV Library` 5e) is open. */
     val sourcesOpen: Boolean = false,
+    /** The sort chosen, for every source. What a source shows is [appliedSort], which may be the fallback. */
+    val sort: LibrarySort = LibrarySort.Default,
+    /** Whether the sort panel (`TV Library` 5d) is open. */
+    val sortOpen: Boolean = false,
 ) {
     /** The source being shown, where it is known. */
     val shownSource: LibrarySource?
         get() = source?.let { id -> sources.firstOrNull { it.id == id } }
+
+    /** The sort the shown source's cards are in: [sort], or the fallback where the source cannot sort by it. */
+    val appliedSort: LibrarySort
+        get() = sort.appliedTo(shownSource)
 
     /** The card the picker is open for, where it is still on screen. */
     val pickingCard: LibraryCard?
@@ -193,6 +201,18 @@ sealed interface LibraryAction {
 
     /** Shows [id]'s lists, and remembers it as the source to open on. A source that is not connected is refused. */
     data class SourceChosen(val id: LibrarySourceId) : LibraryAction
+
+    /** Opens the sort panel. */
+    data object SortOpened : LibraryAction
+
+    /** Closes it. A choice is already applied. */
+    data object SortDismissed : LibraryAction
+
+    /**
+     * Sorts by [criterion], at once (`DEC-17`, a single choice). The criterion already applied turns the other way
+     * round. One the shown source cannot sort by is refused.
+     */
+    data class SortChosen(val criterion: LibrarySortCriterion) : LibraryAction
 }
 
 sealed interface LibraryEffect {

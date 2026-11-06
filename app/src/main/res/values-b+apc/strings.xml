@@ -368,6 +368,7 @@
 <string name="library">"رفّ"</string>
 <string name="library_not_connected">"مش متصل"</string>
 <string name="library_on_device">"عالجهاز"</string>
+<string name="library_sort_not_kept" formatted="true">"%s ما بيحفظه"</string>
 <string name="library_source">"مصدر الرفّ"</string>
 <string name="library_source_note">"وحدة بكل مرة · التبديل بيعيد التحميل"</string>
 <string name="library_synced_format" formatted="true">"تزامن من %s"</string>

@@ -3628,6 +3628,7 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field library_episodes_progress I
 	public static field library_not_connected I
 	public static field library_on_device I
+	public static field library_sort_not_kept I
 	public static field library_source I
 	public static field library_source_note I
 	public static field library_synced_format I
@@ -37795,25 +37796,36 @@ public final class com/lagradost/cloudstream4/library/AndroidLibrarySources : ja
 	public synthetic fun <init> (Lkotlin/jvm/functions/Function0;Lcom/lagradost/cloudstream4/library/LibrarySourceRecords;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlinx/coroutines/CoroutineDispatcher;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public static final synthetic fun access$getAll$p (Lcom/lagradost/cloudstream4/library/AndroidLibrarySources;)Lkotlin/jvm/functions/Function0;
 	public static final synthetic fun access$getClock$p (Lcom/lagradost/cloudstream4/library/AndroidLibrarySources;)Lkotlin/jvm/functions/Function0;
+	public static final synthetic fun access$getLOCAL_SORTS$cp ()Ljava/util/Set;
 	public static final synthetic fun access$getLabels$p (Lcom/lagradost/cloudstream4/library/AndroidLibrarySources;)Lkotlin/jvm/functions/Function0;
 	public static final synthetic fun access$getLastRead$p (Lcom/lagradost/cloudstream4/library/AndroidLibrarySources;)Ljava/util/concurrent/ConcurrentHashMap;
 	public static final synthetic fun access$getLocalCount$p (Lcom/lagradost/cloudstream4/library/AndroidLibrarySources;)Lkotlin/jvm/functions/Function1;
 	public static final synthetic fun access$getRecords$p (Lcom/lagradost/cloudstream4/library/AndroidLibrarySources;)Lcom/lagradost/cloudstream4/library/LibrarySourceRecords;
+	public static final synthetic fun access$getSorts$p (Lcom/lagradost/cloudstream4/library/AndroidLibrarySources;)Ljava/util/concurrent/ConcurrentHashMap;
 	public static final synthetic fun access$getTitles$p (Lcom/lagradost/cloudstream4/library/AndroidLibrarySources;)Ljava/util/concurrent/ConcurrentHashMap;
 	public static final synthetic fun access$getTypeLabels$p (Lcom/lagradost/cloudstream4/library/AndroidLibrarySources;)Lkotlin/jvm/functions/Function0;
 	public static final synthetic fun access$setShown$p (Lcom/lagradost/cloudstream4/library/AndroidLibrarySources;Ljava/lang/String;)V
 	public fun choose-rmBC984 (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun current-lELlgS8 (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun lists-rmBC984 (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun sort (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun sortBy (Lcom/lagradost/cloudstream4/feature/library/LibrarySort;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun sources (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun synced-7FYDLFk (Ljava/lang/String;)Lcom/lagradost/cloudstream4/library/SyncedTitle;
 }
 
 public final static class com/lagradost/cloudstream4/library/AndroidLibrarySources$Companion : java/lang/Object {
 	public synthetic fun <init> (Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getLOCAL_SORTS$app ()Ljava/util/Set;
 	public final fun listed$app (Ljava/util/List;)Ljava/util/List;
 	public final fun syncedLists$app (Lcom/lagradost/cloudstream3/syncproviders/SyncAPI$LibraryMetadata;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function2;)Ljava/util/List;
 	public static synthetic fun syncedLists$app$default (Lcom/lagradost/cloudstream4/library/AndroidLibrarySources$Companion;Lcom/lagradost/cloudstream3/syncproviders/SyncAPI$LibraryMetadata;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)Ljava/util/List;
+	public final fun toLibrarySort$app (Lcom/lagradost/cloudstream3/ui/library/ListSorting;)Lcom/lagradost/cloudstream4/feature/library/LibrarySort;
+	public final fun toListSorting$app (Lcom/lagradost/cloudstream4/feature/library/LibrarySort;)Lcom/lagradost/cloudstream3/ui/library/ListSorting;
+}
+
+public final static synthetic class com/lagradost/cloudstream4/library/AndroidLibrarySources$Companion$WhenMappings : java/lang/Object {
+	public static final synthetic field $EnumSwitchMapping$0 [I
 }
 
 public final class com/lagradost/cloudstream4/library/AndroidLibraryStore : java/lang/Object, com/lagradost/cloudstream4/feature/library/LibraryStore {
@@ -37889,11 +37901,17 @@ public final class com/lagradost/cloudstream4/library/DataStoreLibrarySourceReco
 	public static final field INSTANCE Lcom/lagradost/cloudstream4/library/DataStoreLibrarySourceRecords;
 	public fun choose (Ljava/lang/String;)V
 	public fun chosen ()Ljava/lang/String;
+	public fun sortBy (I)V
+	public fun sortingMode ()Ljava/lang/Integer;
 	public fun synced (Ljava/lang/String;J)V
 	public fun syncedAt (Ljava/lang/String;)Ljava/lang/Long;
 }
 
 public final static class com/lagradost/cloudstream4/library/DataStoreLibrarySourceRecords$chosen$$inlined$getKey$1 : com/fasterxml/jackson/core/type/TypeReference {
+	public fun <init> ()V
+}
+
+public final static class com/lagradost/cloudstream4/library/DataStoreLibrarySourceRecords$sortingMode$$inlined$getKey$1 : com/fasterxml/jackson/core/type/TypeReference {
 	public fun <init> ()V
 }
 
@@ -37922,10 +37940,19 @@ public final static class com/lagradost/cloudstream4/library/DataStoreLocalLibra
 }
 
 public interface com/lagradost/cloudstream4/library/LibrarySourceRecords : java/lang/Object {
+	public static synthetic fun access$sortBy$jd (Lcom/lagradost/cloudstream4/library/LibrarySourceRecords;I)V
+	public static synthetic fun access$sortingMode$jd (Lcom/lagradost/cloudstream4/library/LibrarySourceRecords;)Ljava/lang/Integer;
 	public abstract fun choose (Ljava/lang/String;)V
 	public abstract fun chosen ()Ljava/lang/String;
+	public fun sortBy (I)V
+	public fun sortingMode ()Ljava/lang/Integer;
 	public abstract fun synced (Ljava/lang/String;J)V
 	public abstract fun syncedAt (Ljava/lang/String;)Ljava/lang/Long;
+}
+
+public final static class com/lagradost/cloudstream4/library/LibrarySourceRecords$DefaultImpls : java/lang/Object {
+	public static fun sortBy (Lcom/lagradost/cloudstream4/library/LibrarySourceRecords;I)V
+	public static fun sortingMode (Lcom/lagradost/cloudstream4/library/LibrarySourceRecords;)Ljava/lang/Integer;
 }
 
 public final class com/lagradost/cloudstream4/library/LibrarySourceTextKt : java/lang/Object {

@@ -238,6 +238,7 @@
 <string name="library">"লাইব্রেরী"</string>
 <string name="library_not_connected">"সংযুক্ত নয়"</string>
 <string name="library_on_device">"ডিভাইসে"</string>
+<string name="library_sort_not_kept" formatted="true">"%s এটি রাখে না"</string>
 <string name="library_source">"লাইব্রেরির উৎস"</string>
 <string name="library_source_note">"একবারে একটি · পরিবর্তন করলে আবার লোড হয়"</string>
 <string name="library_synced_format" formatted="true">"%s আগে সিঙ্ক হয়েছে"</string>

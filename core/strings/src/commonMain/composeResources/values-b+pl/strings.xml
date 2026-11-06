@@ -369,6 +369,7 @@
 <string name="library">Biblioteka</string>
 <string name="library_not_connected">Nie połączono</string>
 <string name="library_on_device">Na urządzeniu</string>
+<string name="library_sort_not_kept">%s tego nie przechowuje</string>
 <string name="library_source">Źródło biblioteki</string>
 <string name="library_source_note">Jedno naraz · przełączenie wczytuje ponownie</string>
 <string name="library_synced_format">Zsynchronizowano %s temu</string>

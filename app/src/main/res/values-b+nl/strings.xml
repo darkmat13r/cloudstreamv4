@@ -343,6 +343,7 @@
 <string name="library">"Bibliotheek"</string>
 <string name="library_not_connected">"Niet verbonden"</string>
 <string name="library_on_device">"Op apparaat"</string>
+<string name="library_sort_not_kept" formatted="true">"Niet bewaard door %s"</string>
 <string name="library_source">"Bibliotheekbron"</string>
 <string name="library_source_note">"Eén tegelijk · wisselen laadt opnieuw"</string>
 <string name="library_synced_format" formatted="true">"%s geleden gesynchroniseerd"</string>

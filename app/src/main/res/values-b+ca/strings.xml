@@ -192,6 +192,7 @@
 <string name="home_source_none_subtitle">"SENSE FILES · LES VOSTRES FILES ES QUEDEN"</string>
 <string name="library_not_connected">"No connectat"</string>
 <string name="library_on_device">"Al dispositiu"</string>
+<string name="library_sort_not_kept" formatted="true">"%s no ho desa"</string>
 <string name="library_source">"Font de la biblioteca"</string>
 <string name="library_source_note">"Una alhora · canviar torna a carregar"</string>
 <string name="library_synced_format" formatted="true">"Sincronitzat fa %s"</string>

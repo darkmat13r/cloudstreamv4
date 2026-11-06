@@ -421,6 +421,7 @@
 <string name="watch_quality_pref_data">Qualitat de vídeo preferida (dades mòbils)</string>
 <string name="library_not_connected">No connectat</string>
 <string name="library_on_device">Al dispositiu</string>
+<string name="library_sort_not_kept">%s no ho desa</string>
 <string name="library_source">Font de la biblioteca</string>
 <string name="library_source_note">Una alhora · canviar torna a carregar</string>
 <string name="library_synced_format">Sincronitzat fa %s</string>

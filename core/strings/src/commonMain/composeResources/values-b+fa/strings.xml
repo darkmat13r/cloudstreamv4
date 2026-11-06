@@ -202,6 +202,7 @@
 <string name="library">کتابخانه</string>
 <string name="library_not_connected">متصل نیست</string>
 <string name="library_on_device">روی دستگاه</string>
+<string name="library_sort_not_kept">%s این را نگه نمی‌دارد</string>
 <string name="library_source">منبع کتابخانه</string>
 <string name="library_source_note">هر بار یکی · تغییر، دوباره بارگذاری می‌کند</string>
 <string name="library_synced_format">%s پیش همگام‌سازی شد</string>

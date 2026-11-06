@@ -368,6 +368,7 @@
 <string name="library">Бібліятэка</string>
 <string name="library_not_connected">Не падключана</string>
 <string name="library_on_device">На прыладзе</string>
+<string name="library_sort_not_kept">%s гэтага не захоўвае</string>
 <string name="library_source">Крыніца бібліятэкі</string>
 <string name="library_source_note">Па адной · пераключэнне перазагружае</string>
 <string name="library_synced_format">Сінхранізавана %s таму</string>

@@ -369,6 +369,7 @@
 <string name="library">Библиотека</string>
 <string name="library_not_connected">Не подключено</string>
 <string name="library_on_device">На устройстве</string>
+<string name="library_sort_not_kept">%s этого не хранит</string>
 <string name="library_source">Источник библиотеки</string>
 <string name="library_source_note">По одному · переключение перезагружает</string>
 <string name="library_synced_format">Синхронизировано %s назад</string>

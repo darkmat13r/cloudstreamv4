@@ -107,6 +107,7 @@
 <string name="home_source_none_subtitle">"पङ्क्ति छैन · तपाईंका पङ्क्ति रहन्छन्"</string>
 <string name="library_not_connected">"जडान छैन"</string>
 <string name="library_on_device">"यन्त्रमा"</string>
+<string name="library_sort_not_kept" formatted="true">"%s ले यो राख्दैन"</string>
 <string name="library_source">"लाइब्रेरी स्रोत"</string>
 <string name="library_source_note">"एक पटकमा एउटा · बदल्दा फेरि लोड हुन्छ"</string>
 <string name="library_synced_format" formatted="true">"%s अघि सिंक गरियो"</string>

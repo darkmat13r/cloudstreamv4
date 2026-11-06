@@ -368,6 +368,7 @@
 <string name="library">라이브러리</string>
 <string name="library_not_connected">연결되지 않음</string>
 <string name="library_on_device">기기에 저장됨</string>
+<string name="library_sort_not_kept">%s에는 저장되지 않음</string>
 <string name="library_source">라이브러리 소스</string>
 <string name="library_source_note">한 번에 하나 · 전환하면 다시 불러옴</string>
 <string name="library_synced_format">%s 전에 동기화됨</string>

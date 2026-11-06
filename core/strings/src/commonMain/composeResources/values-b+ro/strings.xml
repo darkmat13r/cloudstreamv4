@@ -328,6 +328,7 @@
 <string name="library">Librărie</string>
 <string name="library_not_connected">Neconectat</string>
 <string name="library_on_device">Pe dispozitiv</string>
+<string name="library_sort_not_kept">Nu este păstrat de %s</string>
 <string name="library_source">Sursa bibliotecii</string>
 <string name="library_source_note">Câte una · schimbarea reîncarcă</string>
 <string name="library_synced_format">Sincronizat acum %s</string>

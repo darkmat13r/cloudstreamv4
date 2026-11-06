@@ -368,6 +368,7 @@
 <string name="library">Biblioteka</string>
 <string name="library_not_connected">Nije povezano</string>
 <string name="library_on_device">Na uređaju</string>
+<string name="library_sort_not_kept">%s to ne čuva</string>
 <string name="library_source">Izvor biblioteke</string>
 <string name="library_source_note">Jedan po jedan · promjena ponovno učitava</string>
 <string name="library_synced_format">Sinkronizirano prije %s</string>

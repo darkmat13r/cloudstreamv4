@@ -369,6 +369,7 @@
 <string name="library">"Pustaka"</string>
 <string name="library_not_connected">"Tidak terhubung"</string>
 <string name="library_on_device">"Di perangkat"</string>
+<string name="library_sort_not_kept" formatted="true">"Tidak disimpan oleh %s"</string>
 <string name="library_source">"Sumber pustaka"</string>
 <string name="library_source_note">"Satu per satu · beralih memuat ulang"</string>
 <string name="library_synced_format" formatted="true">"Disinkronkan %s lalu"</string>

@@ -301,6 +301,7 @@
 <string name="library">"Perpustakaan"</string>
 <string name="library_not_connected">"Tidak disambungkan"</string>
 <string name="library_on_device">"Pada peranti"</string>
+<string name="library_sort_not_kept" formatted="true">"Tidak disimpan oleh %s"</string>
 <string name="library_source">"Sumber perpustakaan"</string>
 <string name="library_source_note">"Satu demi satu · menukar memuat semula"</string>
 <string name="library_synced_format" formatted="true">"Disegerakkan %s lalu"</string>

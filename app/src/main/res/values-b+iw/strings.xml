@@ -279,6 +279,7 @@
 <string name="library">"ספריה"</string>
 <string name="library_not_connected">"לא מחובר"</string>
 <string name="library_on_device">"במכשיר"</string>
+<string name="library_sort_not_kept" formatted="true">"%s לא שומר את זה"</string>
 <string name="library_source">"מקור הספריה"</string>
 <string name="library_source_note">"אחד בכל פעם · החלפה טוענת מחדש"</string>
 <string name="library_synced_format" formatted="true">"סונכרן לפני %s"</string>

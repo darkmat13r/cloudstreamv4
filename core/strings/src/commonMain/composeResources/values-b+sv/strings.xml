@@ -369,6 +369,7 @@
 <string name="library">Bibliotek</string>
 <string name="library_not_connected">Inte ansluten</string>
 <string name="library_on_device">På enheten</string>
+<string name="library_sort_not_kept">Sparas inte av %s</string>
 <string name="library_source">Bibliotekskälla</string>
 <string name="library_source_note">En i taget · byte laddar om</string>
 <string name="library_synced_format">Synkroniserad för %s sedan</string>

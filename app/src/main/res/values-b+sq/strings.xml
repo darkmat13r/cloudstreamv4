@@ -369,6 +369,7 @@
 <string name="library">"Bilblioteka"</string>
 <string name="library_not_connected">"Nuk është lidhur"</string>
 <string name="library_on_device">"Në pajisje"</string>
+<string name="library_sort_not_kept" formatted="true">"Nuk ruhet nga %s"</string>
 <string name="library_source">"Burimi i bibliotekës"</string>
 <string name="library_source_note">"Një në një kohë · ndërrimi ringarkon"</string>
 <string name="library_synced_format" formatted="true">"Sinkronizuar para %s"</string>

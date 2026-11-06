@@ -394,6 +394,7 @@
 <string name="library_episodes_progress">%1$d / %2$d %3$s</string>
 <string name="library_not_connected">Not connected</string>
 <string name="library_on_device">On device</string>
+<string name="library_sort_not_kept">Not kept by %s</string>
 <string name="library_source">Library source</string>
 <string name="library_source_note">One at a time · switching reloads</string>
 <string name="library_synced_format">Synced %s ago</string>

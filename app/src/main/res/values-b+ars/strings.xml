@@ -203,6 +203,7 @@
 <string name="library">"مكتبة"</string>
 <string name="library_not_connected">"غير متصل"</string>
 <string name="library_on_device">"على الجهاز"</string>
+<string name="library_sort_not_kept" formatted="true">"لا يحفظه %s"</string>
 <string name="library_source">"مصدر المكتبة"</string>
 <string name="library_source_note">"مصدر واحد في كل مرة · التبديل يعيد التحميل"</string>
 <string name="library_synced_format" formatted="true">"تمت المزامنة قبل %s"</string>

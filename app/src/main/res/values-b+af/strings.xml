@@ -113,6 +113,7 @@
 <string name="home_source_none_subtitle">"GEEN RYE · JOU RYE BLY"</string>
 <string name="library_not_connected">"Nie gekoppel"</string>
 <string name="library_on_device">"Op toestel"</string>
+<string name="library_sort_not_kept" formatted="true">"Nie deur %s gehou nie"</string>
 <string name="library_source">"Biblioteekbron"</string>
 <string name="library_source_note">"Een op 'n slag · oorskakel herlaai"</string>
 <string name="library_synced_format" formatted="true">"%s gelede gesinkroniseer"</string>

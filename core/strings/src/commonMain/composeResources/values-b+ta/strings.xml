@@ -369,6 +369,7 @@
 <string name="library">நூலகம்</string>
 <string name="library_not_connected">இணைக்கப்படவில்லை</string>
 <string name="library_on_device">சாதனத்தில்</string>
+<string name="library_sort_not_kept">%s இதை வைத்திருக்காது</string>
 <string name="library_source">நூலக மூலம்</string>
 <string name="library_source_note">ஒரு நேரத்தில் ஒன்று · மாற்றினால் மீண்டும் ஏற்றும்</string>
 <string name="library_synced_format">%s முன்பு ஒத்திசைக்கப்பட்டது</string>

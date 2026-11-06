@@ -327,6 +327,7 @@
 <string name="library">"uuuuuuuh aaaoo o"</string>
 <string name="library_not_connected">"ooo-ahah aagg"</string>
 <string name="library_on_device">"uuhh ooo"</string>
+<string name="library_sort_not_kept" formatted="true">"ooo uuh %s"</string>
 <string name="library_source">"aaaghh ooo-ahah"</string>
 <string name="library_source_note">"ooo aagg · uuhh-ahah"</string>
 <string name="library_synced_format" formatted="true">"aaghh %s ooo"</string>

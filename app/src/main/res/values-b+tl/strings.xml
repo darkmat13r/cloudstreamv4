@@ -173,6 +173,7 @@
 <string name="kitsu_settings">"Ipakita ang posters mula sa Kitsu"</string>
 <string name="library_not_connected">"Hindi nakakonekta"</string>
 <string name="library_on_device">"Sa device"</string>
+<string name="library_sort_not_kept" formatted="true">"Hindi itinatabi ng %s"</string>
 <string name="library_source">"Pinagmulan ng library"</string>
 <string name="library_source_note">"Isa-isa · nagre-reload kapag nagpalit"</string>
 <string name="library_synced_format" formatted="true">"Na-sync %s ang nakalipas"</string>

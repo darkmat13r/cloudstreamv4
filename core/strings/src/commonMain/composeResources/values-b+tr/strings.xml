@@ -369,6 +369,7 @@
 <string name="library">Kütüphane</string>
 <string name="library_not_connected">Bağlı değil</string>
 <string name="library_on_device">Cihazda</string>
+<string name="library_sort_not_kept">%s bunu tutmuyor</string>
 <string name="library_source">Kütüphane kaynağı</string>
 <string name="library_source_note">Aynı anda bir tane · değiştirmek yeniden yükler</string>
 <string name="library_synced_format">%s önce eşitlendi</string>

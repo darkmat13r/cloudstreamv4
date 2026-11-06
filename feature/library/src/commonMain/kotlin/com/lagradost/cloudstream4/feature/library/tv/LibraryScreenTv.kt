@@ -74,7 +74,7 @@ val LibraryTvTabs: List<LibraryTab> = LibraryBucket.entries.map { LibraryTab.Buc
  * ## What is here for 5b, 5d and 5e to land in
  *
  * The chrome row keeps 5a's three slots even though only the field is built. The left slot holds a readout
- * that the provider control replaces, the right slot is empty until the sort control fills it, and the
+ * that the provider control replaces, the right slot holds the sort button (`KMP-50`) where there are sources, and the
  * field already has the middle width it has on the board. So those controls move nothing. A provider's
  * failure lands on the left slot and its `Retry` beside it, both inside this band.
  *
@@ -148,11 +148,16 @@ fun LibraryScreenTv(
         if (!screenHasFocus) focusMemory.left()
     }
 
+    // One panel at a time: each opens from its own button, which the other panel's scrim covers.
     SidePanelHost(
-        expanded = state.sourcesOpen,
-        onDismissRequest = { onAction(LibraryAction.SourcesDismissed) },
+        expanded = state.sourcesOpen || state.sortOpen,
+        onDismissRequest = {
+            onAction(if (state.sortOpen) LibraryAction.SortDismissed else LibraryAction.SourcesDismissed)
+        },
         modifier = modifier.fillMaxSize().onFocusChanged { screenHasFocus = it.hasFocus },
-        panel = { LibrarySourcePanelTv(state, now, onAction) },
+        panel = {
+            if (state.sortOpen) LibrarySortPanelTv(state, onAction) else LibrarySourcePanelTv(state, now, onAction)
+        },
     ) {
         Column(Modifier.fillMaxSize()) {
             Spacer(Modifier.height(CloudStreamDimens.ChromeRowTop))
@@ -212,6 +217,7 @@ private fun LibraryChromeRow(
 ) {
     val fieldFocus = remember { FocusRequester() }
     val providerFocus = remember { FocusRequester() }
+    val sortFocus = remember { FocusRequester() }
     val keyboard = LocalSoftwareKeyboardController.current
     Row(
         modifier = modifier.height(CloudStreamDimens.ChromeRowHeight),
@@ -242,7 +248,15 @@ private fun LibraryChromeRow(
             // The provider button is to its left where there is one; this is for when nothing is.
             onLeftEdge = onLeftEdge,
         )
-        Spacer(Modifier.width(LibraryScreenTvDefaults.ChromeSlotWidth))
+        if (state.sources.isEmpty()) {
+            Spacer(slot)
+        } else {
+            LibrarySortButton(
+                state = state,
+                onClick = { onAction(LibraryAction.SortOpened) },
+                modifier = slot.libraryStop(sortFocus, focusMemory),
+            )
+        }
     }
 }
 

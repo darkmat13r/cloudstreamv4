@@ -132,6 +132,7 @@
 <string name="library">ଲାଇବ୍ରେରୀ</string>
 <string name="library_not_connected">ସଂଯୁକ୍ତ ନାହିଁ</string>
 <string name="library_on_device">ଡିଭାଇସରେ</string>
+<string name="library_sort_not_kept">%s ଏହା ରଖେ ନାହିଁ</string>
 <string name="library_source">ଲାଇବ୍ରେରୀ ଉତ୍ସ</string>
 <string name="library_source_note">ଥରକେ ଗୋଟିଏ · ବଦଳାଇଲେ ପୁଣି ଲୋଡ୍ ହୁଏ</string>
 <string name="library_synced_format">%s ପୂର୍ବରୁ ସିଙ୍କ ହୋଇଛି</string>

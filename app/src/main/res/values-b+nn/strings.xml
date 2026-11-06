@@ -141,6 +141,7 @@
 <string name="kitsu_settings">"Vis miniatyrbilete frå Kitsu"</string>
 <string name="library_not_connected">"Ikkje tilkopla"</string>
 <string name="library_on_device">"På eininga"</string>
+<string name="library_sort_not_kept" formatted="true">"Ikkje lagra av %s"</string>
 <string name="library_source">"Bibliotekskjelde"</string>
 <string name="library_source_note">"Éin om gongen · byte lastar på nytt"</string>
 <string name="library_synced_format" formatted="true">"Synkronisert for %s sidan"</string>

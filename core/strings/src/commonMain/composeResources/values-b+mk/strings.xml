@@ -368,6 +368,7 @@
 <string name="library">Библиотека</string>
 <string name="library_not_connected">Не е поврзано</string>
 <string name="library_on_device">На уредот</string>
+<string name="library_sort_not_kept">%s не го чува</string>
 <string name="library_source">Извор на библиотеката</string>
 <string name="library_source_note">Еден по еден · менувањето превчитува</string>
 <string name="library_synced_format">Синхронизирано пред %s</string>

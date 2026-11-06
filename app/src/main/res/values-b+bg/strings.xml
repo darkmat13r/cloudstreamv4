@@ -362,6 +362,7 @@
 <string name="library">"Библиотека"</string>
 <string name="library_not_connected">"Не е свързан"</string>
 <string name="library_on_device">"На устройството"</string>
+<string name="library_sort_not_kept" formatted="true">"%s не го пази"</string>
 <string name="library_source">"Източник на библиотеката"</string>
 <string name="library_source_note">"Един по един · превключването презарежда"</string>
 <string name="library_synced_format" formatted="true">"Синхронизирано преди %s"</string>

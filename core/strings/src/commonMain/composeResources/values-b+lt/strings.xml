@@ -182,6 +182,7 @@
 <string name="library">Biblioteka</string>
 <string name="library_not_connected">Neprijungta</string>
 <string name="library_on_device">Įrenginyje</string>
+<string name="library_sort_not_kept">%s to nesaugo</string>
 <string name="library_source">Bibliotekos šaltinis</string>
 <string name="library_source_note">Po vieną · perjungus įkeliama iš naujo</string>
 <string name="library_synced_format">Sinchronizuota prieš %s</string>

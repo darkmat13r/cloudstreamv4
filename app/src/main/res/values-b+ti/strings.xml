@@ -70,6 +70,7 @@
 <string name="home_source_none_subtitle">"መስመራት የለን · መስመራትኩም ይጸንሑ"</string>
 <string name="library_not_connected">"ኣይተራኸበን"</string>
 <string name="library_on_device">"ኣብ መሳርሒ"</string>
+<string name="library_sort_not_kept" formatted="true">"%s ኣይሕዞን"</string>
 <string name="library_source">"ምንጪ ቤተ-መጻሕፍቲ"</string>
 <string name="library_source_note">"ሓደ ብሓደ · ምቕያር ዳግም ይጽዕን"</string>
 <string name="library_synced_format" formatted="true">"ቅድሚ %s ተሰማሚዑ"</string>

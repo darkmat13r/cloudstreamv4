@@ -211,6 +211,7 @@
 <string name="use">Gebruik</string>
 <string name="library_not_connected">Nie gekoppel</string>
 <string name="library_on_device">Op toestel</string>
+<string name="library_sort_not_kept">Nie deur %s gehou nie</string>
 <string name="library_source">Biblioteekbron</string>
 <string name="library_source_note">Een op 'n slag · oorskakel herlaai</string>
 <string name="library_synced_format">%s gelede gesinkroniseer</string>

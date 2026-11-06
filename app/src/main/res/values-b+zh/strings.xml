@@ -369,6 +369,7 @@
 <string name="library">"库"</string>
 <string name="library_not_connected">"未连接"</string>
 <string name="library_on_device">"本机"</string>
+<string name="library_sort_not_kept" formatted="true">"%s 不保存此项"</string>
 <string name="library_source">"媒体库来源"</string>
 <string name="library_source_note">"一次一个 · 切换会重新加载"</string>
 <string name="library_synced_format" formatted="true">"%s前已同步"</string>

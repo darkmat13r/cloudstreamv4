@@ -267,6 +267,7 @@
 <string name="library">Bibliotek</string>
 <string name="library_not_connected">Ikke tilkoblet</string>
 <string name="library_on_device">På enheten</string>
+<string name="library_sort_not_kept">Ikke lagret av %s</string>
 <string name="library_source">Bibliotekkilde</string>
 <string name="library_source_note">Én om gangen · bytte laster inn på nytt</string>
 <string name="library_synced_format">Synkronisert for %s siden</string>

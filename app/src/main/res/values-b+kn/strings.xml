@@ -112,6 +112,7 @@
 <string name="home_source_none_subtitle">"ಸಾಲುಗಳಿಲ್ಲ · ನಿಮ್ಮ ಸಾಲುಗಳು ಉಳಿಯುತ್ತವೆ"</string>
 <string name="library_not_connected">"ಸಂಪರ್ಕಗೊಂಡಿಲ್ಲ"</string>
 <string name="library_on_device">"ಸಾಧನದಲ್ಲಿ"</string>
+<string name="library_sort_not_kept" formatted="true">"%s ಇದನ್ನು ಇರಿಸುವುದಿಲ್ಲ"</string>
 <string name="library_source">"ಲೈಬ್ರರಿ ಮೂಲ"</string>
 <string name="library_source_note">"ಒಂದು ಬಾರಿಗೆ ಒಂದು · ಬದಲಿಸಿದರೆ ಮರುಲೋಡ್ ಆಗುತ್ತದೆ"</string>
 <string name="library_synced_format" formatted="true">"%s ಹಿಂದೆ ಸಿಂಕ್ ಮಾಡಲಾಗಿದೆ"</string>

@@ -107,6 +107,7 @@
 <string name="home_source_none_subtitle">"EBDA RINGIELI · IR-RINGIELI TIEGĦEK JIBQGĦU"</string>
 <string name="library_not_connected">"Mhux konness"</string>
 <string name="library_on_device">"Fuq l-apparat"</string>
+<string name="library_sort_not_kept" formatted="true">"Mhux miżmum minn %s"</string>
 <string name="library_source">"Sors tal-librerija"</string>
 <string name="library_source_note">"Wieħed kull darba · il-bidla tgħabbi mill-ġdid"</string>
 <string name="library_synced_format" formatted="true">"Sinkronizzat %s ilu"</string>

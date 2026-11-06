@@ -73,7 +73,28 @@ class LibraryViewModel(
             LibraryAction.SourcesOpened -> updateState { copy(sourcesOpen = this.sources.isNotEmpty()) }
             LibraryAction.SourcesDismissed -> updateState { copy(sourcesOpen = false) }
             is LibraryAction.SourceChosen -> chooseSource(action.id)
+            LibraryAction.SortOpened -> updateState { copy(sortOpen = true) }
+            LibraryAction.SortDismissed -> updateState { copy(sortOpen = false) }
+            is LibraryAction.SortChosen -> chooseSort(action.criterion)
         }
+    }
+
+    /**
+     * Applies a sort at once over what was read, and keeps the panel open, so pressing the same row again turns it the
+     * other way round. The host remembers it for every source.
+     */
+    private fun chooseSort(criterion: LibrarySortCriterion) {
+        val state = state.value
+        val shown = state.shownSource
+        if (shown != null && criterion !in shown.sorts) return
+        val applied = state.appliedSort
+        val sort = if (applied.criterion == criterion) applied.flipped() else LibrarySort.of(criterion)
+        updateState {
+            val next = copy(sort = sort)
+            if (status is LibraryStatus.Loading || status is LibraryStatus.Failed) next
+            else next.copy(status = next.statusFor(tab, filter))
+        }
+        sources?.let { host -> scope.launch { write { host.sortBy(sort) } } }
     }
 
     /**
@@ -168,17 +189,17 @@ class LibraryViewModel(
             loadStore(request)
             return
         }
-        val read = runCatching { host.sources() to host.current() }
+        val read = runCatching { Triple(host.sources(), host.current(), host.sort()) }
         val failure = read.exceptionOrNull()
         if (failure is CancellationException) throw failure
         if (request != generation) return
-        val (known, current) = read.getOrElse {
+        val (known, current, chosen) = read.getOrElse {
             // Without the sources there is still the store, which is what the screen showed before it had any.
             loadStore(request)
             return
         }
         val shown = known.firstOrNull { it.id == current }
-        updateState { copy(sources = known, source = shown?.id) }
+        updateState { copy(sources = known, source = shown?.id, sort = chosen ?: sort) }
         if (shown == null || shown.local) loadStore(request) else loadSynced(host, shown.id, request)
     }
 
@@ -245,12 +266,14 @@ class LibraryViewModel(
         }
     }
 
-    private fun statusFor(tab: LibraryTab, filter: String): LibraryStatus {
+    /** The status for [tab] in this state's sort: the one it applies to the source it shows. */
+    private fun LibraryState.statusFor(tab: LibraryTab, filter: String): LibraryStatus {
         val lists = synced
+        val sort = appliedSort
         val cards = if (tab is LibraryTab.Synced && lists != null) {
-            lists.firstOrNull { it.key == tab.key }?.let { LibraryShelf.syncedCards(it, filter) }.orEmpty()
+            lists.firstOrNull { it.key == tab.key }?.let { LibraryShelf.syncedCards(it, filter, sort) }.orEmpty()
         } else {
-            LibraryShelf.cards(tab, titles, positions, filter)
+            LibraryShelf.cards(tab, titles, positions, filter, sort)
         }
         return if (cards.isEmpty()) LibraryStatus.Empty else LibraryStatus.Showing(cards)
     }
