@@ -120,6 +120,32 @@ appears for all 87 requests, 2,349 cells. `report.txt` moved only in its counts:
 keys 789 -> 816, and 27 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
 `ANDROID_FALLBACK` at 172.** `expectedOwn` 33,005 -> 34,679.
 
+## Nineteenth move, 2026-11-07 — `I18N-12`, 2 new keys for board 7i's season chips
+
+New keys are approved in general (`I18N-09`). Additive, both authored in all 62 directories, neither a plural:
+`season_specials` for season 0 and `season_other` for episodes with no season.
+
+| file | before | after | added | changed | lost |
+|---|---|---|---|---|---|
+| `decoded.tsv` | 38,814 | 38,938 | 124 | 0 | 0 |
+| `emitted.tsv` | 40,923 | 41,051 | 128 | 0 | 0 |
+| `lookup.tsv` | 77,865 | 78,039 | 174 | 0 | 0 |
+| `requests.tsv` | 87 | 87 | 0 | 0 | 0 |
+| `findings.tsv` | 0 | 0 | 0 | 0 | 0 |
+
+Measured by whole-line set difference twice over, a multiset in Python and `sort | comm`: 0 lines lost in any
+file, and every added line names one of the two keys. Each delta is exactly what it should be — 124 is 2 x 62
+directories, 128 is that plus the two locale copies, 174 is 2 x the 87 parity requests. `report.txt` moved only
+in its counts: `OWN` 38,324 -> 38,448 (2 x 62), visible keys 882 -> 884, and 2 more values in each locale copy.
+**`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at 173.** `expectedOwn` 38,324 -> 38,448.
+
+**Redone from the live generator on train 1's baseline**, as the seventeenth move was. This was first measured
+against the pre-train-1 baseline, where it was the eighteenth move with different before-counts; train 1 landed
+`KMP-49`'s 6 keys first and took that number. On rebase the three `.tsv` files **auto-merged without a conflict**,
+interleaving two independent sets of additions into a file no generator ever emitted — plausible, and quite
+possibly green, since `OracleBaselineTest` compares bytes it would then be comparing against itself. They were
+discarded and regenerated instead. A baseline that was merged rather than produced is not a baseline.
+
 ## Eighteenth move, 2026-11-07 — Train 1 (`#170`, `#174`, `#175`), one move: `KMP-49`'s 6 new keys for the TV library's sources
 
 One combined baseline move for the train that merges `#170` (`KMP-38`), `#174` (`KMP-59`) and `#175` (`KMP-49`) together.
