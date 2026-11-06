@@ -10,6 +10,7 @@ import androidx.test.core.app.ActivityScenario
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.uiautomator.By
+import androidx.test.uiautomator.Configurator
 import androidx.test.uiautomator.UiDevice
 import androidx.test.uiautomator.Until
 import com.lagradost.cloudstream3.APIHolder
@@ -86,6 +87,7 @@ class TvHomeNavigationTest {
 
     @After
     fun restore() {
+        Configurator.getInstance().waitForIdleTimeout = DEFAULT_IDLE_TIMEOUT_MS
         listOf(one, two).forEach { it.gate?.complete(Unit) }
         forgetPlaying()
         forgetBookmarks()
@@ -598,6 +600,11 @@ class TvHomeNavigationTest {
         bookmark(one, BOOKMARKED, WatchType.WATCHING)
         val pages = CompletableDeferred<Unit>()
         one.gate = pages
+        // While the pages are held the skeleton pulses, so the window is never idle, and every UiAutomator read waits out
+        // its idle timeout first (10 s): measured, the presses alone took over 500 s and the held page timed out.
+        val configurator = Configurator.getInstance()
+        val idleTimeout = configurator.waitForIdleTimeout
+        configurator.waitForIdleTimeout = HELD_IDLE_TIMEOUT_MS
         launch {
             waitForHome()
             val watching = context.getString(R.string.type_watching)
@@ -609,6 +616,7 @@ class TvHomeNavigationTest {
             assertFalse("and leaves the nav rail", railHasFocus)
 
             pages.complete(Unit)
+            configurator.waitForIdleTimeout = idleTimeout
             waitFor("the hero's title is asked for") { "https://example.invalid/$ONE A 0" in one.loaded }
             Thread.sleep(SETTLE_MS)
             assertEquals("focus stays where the person put it", entered, dpad.focused())
@@ -715,6 +723,9 @@ class TvHomeNavigationTest {
         const val SCREEN_WAIT_MS = 15_000L
         const val POLL_MS = 200L
         const val SETTLE_MS = 1_500L
+        /** UiAutomator's own default, put back after any case that lowers it. */
+        const val DEFAULT_IDLE_TIMEOUT_MS = 10_000L
+        const val HELD_IDLE_TIMEOUT_MS = 500L
         const val TIMER_MARGIN_MS = 2_000L
         const val PLUGIN_STAGES_MS = 4_000L
         const val MAX_PRESSES = 6
