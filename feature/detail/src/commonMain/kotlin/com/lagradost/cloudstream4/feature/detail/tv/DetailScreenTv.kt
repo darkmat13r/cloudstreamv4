@@ -51,7 +51,6 @@ import com.lagradost.cloudstream4.core.designsystem.rows.RailHeader
 import com.lagradost.cloudstream4.core.designsystem.state.UiStateHost
 import com.lagradost.cloudstream4.core.designsystem.target.IconCell
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
-import com.lagradost.cloudstream4.core.strings.generated.resources.action_add_to_bookmarks
 import com.lagradost.cloudstream4.core.strings.generated.resources.episodes
 import com.lagradost.cloudstream4.core.strings.generated.resources.favorite
 import com.lagradost.cloudstream4.core.strings.generated.resources.go_back
@@ -537,9 +536,13 @@ private fun ChromeRow(
 /**
  * One chrome glyph: `muted` at rest, `ink` under focus, and `ink` while the state it reports is on.
  *
- * The boards draw all three cells as undifferentiated `muted` squares and say nothing about a selected
- * state, so the `ink` of a set bookmark or a favourite is a decision taken here and worth revisiting
- * with the design: without it a 48dp cell reports a two-state feature with one appearance.
+ * Two cells use it now — Back, which has no state, and Favourite, which has. The watch-status cell left
+ * this row for the action row under `DEC-17`, where it says its state by swapping glyph instead.
+ *
+ * The boards draw the cells as undifferentiated `muted` squares and say nothing about a selected state,
+ * so the `ink` of a set favourite is a decision taken here and worth revisiting with the design:
+ * without it a 48dp cell reports a two-state feature with one appearance. `DS-17` will make every
+ * icon-only glyph `muted` at rest app-wide, which is where that question is settled.
  */
 @Composable
 private fun ChromeGlyph(
@@ -807,10 +810,15 @@ object DetailScreenTvDefaults {
     const val CaptionLines = 2
 
     /**
-     * Caption ends at y480, the action row starts at y512. Mirrors
-     * `CloudStreamDimens.LiftedRowClearance` numerically only; nothing lifts here.
+     * Caption ends at y480; the action row's **cell box** starts at y496 and its text buttons at y512.
+     *
+     * 8dp, not 16, since `DEC-17` made the row a [CloudStreamDimens.IconTargetCell] (48dp) box with the
+     * 32dp text buttons centred in it: the cell puts 8dp above the buttons, so the gap before the box
+     * is the board's 16dp to the buttons less that 8. The buttons therefore stay on the board's y512
+     * and the ladder above them does not move — only what is below the row drops, by the 8dp the cell
+     * adds under them.
      */
-    val CaptionToActions: Dp = 16.dp
+    val CaptionToActions: Dp = 8.dp
 
     /**
      * Between a section and the next header: y576 to y640 on 7a, and the same 64px between 7a-ii's cast

@@ -49,7 +49,7 @@ import org.jetbrains.compose.resources.stringResource
  * thumb. So the primary is always first and always [DetailScreenTvDefaults.ResumeWidth] wide, and a
  * control that has nothing behind it is absent rather than dead.
  *
- ## The secondaries are icon-only (`DEC-17`, boards 7f and 7g)
+ * ## The secondaries are icon-only (`DEC-17`, boards 7f and 7g)
  *
  * Rule 4 of `ui-components.md` carries **one ruled exception** — this row — so Start over, Trailer and
  * the watchlist are [IconOnlyButton] cells that show their label on focus, and the primary keeps its
