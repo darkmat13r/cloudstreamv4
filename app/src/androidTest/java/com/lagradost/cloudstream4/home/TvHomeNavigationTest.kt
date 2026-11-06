@@ -525,7 +525,8 @@ class TvHomeNavigationTest {
                 instrumentation.runOnMainSync { kept = DataStoreHelper.homeBookmarkedList }
                 kept?.isEmpty() == true
             }
-            assertNotNull(device.findObject(By.text(context.getString(R.string.home_bookmarks_no_status_headline))))
+            val noStatus = context.getString(R.string.home_bookmarks_no_status_headline)
+            assertTrue("3f's words show", device.wait(Until.hasObject(By.text(noStatus)), SCREEN_WAIT_MS))
         }
     }
 
