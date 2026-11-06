@@ -158,7 +158,7 @@ object M3u8Helper2 {
             if (parsed != null || TS_EXTENSION_REGEX.containsMatchIn(response)) {
                 list += m3u8
             } else {
-                Log.i(TAG, "M3u8 Playlist is not a \"Master Playlist\" nor a \"Media Playlist\". Removing this link as it is invalid and will not open in player: ${m3u8.streamUrl}")
+                Log.i(TAG, "M3u8 Playlist is not a \"Master Playlist\" nor a \"Media Playlist\". Removing this link as it is invalid and will not open in player")
             }
         }
 

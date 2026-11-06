@@ -108,7 +108,7 @@ class SyncViewModel : ViewModel() {
     var hasAddedFromUrl: HashSet<String> = hashSetOf()
 
     fun addFromUrl(url: String?) = ioSafe {
-        Log.i(TAG, "addFromUrl = $url")
+        Log.i(TAG, "addFromUrl, url present: ${url != null}")
 
         if (url == null || hasAddedFromUrl.contains(url)) return@ioSafe
         if (!url.startsWith("http")) return@ioSafe

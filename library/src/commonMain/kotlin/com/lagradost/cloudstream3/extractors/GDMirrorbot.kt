@@ -95,7 +95,7 @@ open class GDMirrorbot : ExtractorApi() {
                     else -> loadExtractor(fullUrl, referer ?: mainUrl, subtitleCallback, callback)
                 }
             } catch (e: Exception) {
-                Log.e("GDMirrorbot", "Failed to extract from $friendlyName at $fullUrl: $e")
+                Log.e("GDMirrorbot", "Failed to extract from $friendlyName: ${e::class.simpleName}")
             }
         }
     }

@@ -23,12 +23,16 @@ fun interface StorageCorruptionListener {
     fun onCorruption(file: Path, quarantined: Path?, cause: Throwable)
 
     companion object {
-        /** Reports the paths and the exception's message on `System.err`. Never the file's contents. */
+        /**
+         * Reports the file names and the exception's class on `System.err`. Never the file's
+         * contents, its full path (it holds the user's home directory) or the exception's message
+         * (an I/O message quotes the path).
+         */
         val STDERR: StorageCorruptionListener = StorageCorruptionListener { file, quarantined, cause ->
             System.err.println(
-                "core:storage: $file could not be read (${cause::class.java.simpleName}: ${cause.message}); " +
+                "core:storage: ${file.fileName} could not be read (${cause::class.java.simpleName}); " +
                     "recovered as empty, damaged file " +
-                    if (quarantined != null) "kept at $quarantined" else "left in place",
+                    if (quarantined != null) "kept beside it as ${quarantined.fileName}" else "left in place",
             )
         }
     }

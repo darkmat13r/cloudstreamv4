@@ -85,7 +85,7 @@ open class VidStack : ExtractorApi() {
         return try {
             Url(url).let { "${it.protocol.name}://${it.host}" }
         } catch (e: Exception) {
-            Log.e("Vidstack", "getBaseUrl fallback: ${e.message}")
+            Log.e("Vidstack", "getBaseUrl fallback: ${e::class.simpleName}")
             mainUrl
         }
     }

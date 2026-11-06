@@ -106,7 +106,7 @@ object DownloadQueueManager {
 
     /** Adds an object to the internal persistent queue. It does not re-add an existing item. @return true if successfully added  */
     private fun add(downloadQueueWrapper: DownloadQueueWrapper): Boolean {
-        Log.d(TAG, "Download added to queue: $downloadQueueWrapper")
+        Log.d(TAG, "Download added to queue: ${downloadQueueWrapper.id}")
         val newQueue = _queue.updateAndGet { localQueue ->
             // Do not add the same episode twice
             if (downloadQueueWrapper.isCurrentlyDownloading() || localQueue.any { it.id == downloadQueueWrapper.id }) {

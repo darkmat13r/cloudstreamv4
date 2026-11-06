@@ -302,14 +302,14 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
                 if (str != null && this != null) {
                     if (str.startsWith("https://cs.repo")) {
                         val realUrl = "https://" + str.substringAfter("?")
-                        println("Repository url: $realUrl")
+                        println("Opening a repository link")
                         loadRepository(realUrl)
                         return true
                     } else if (str.contains(APP_STRING)) {
                         for (api in AccountManager.allApis) {
                             if (api.isValidRedirectUrl(str)) {
                                 ioSafe {
-                                    Log.i(TAG, "handleAppIntent $str")
+                                    Log.i(TAG, "handleAppIntent redirect for ${api.name}")
                                     try {
                                         val isSuccessful = api.login(str)
                                         if (isSuccessful) {
@@ -734,9 +734,9 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
         filesToDelete.forEach { path ->
             val result = File(path).deleteRecursively()
             if (result) {
-                Log.d(TAG, "Deleted temporary file: $path")
+                Log.d(TAG, "Deleted temporary file: ${File(path).name}")
             } else {
-                Log.d(TAG, "Failed to delete temporary file: $path")
+                Log.d(TAG, "Failed to delete temporary file: ${File(path).name}")
             }
         }
         filesToDelete = setOf()

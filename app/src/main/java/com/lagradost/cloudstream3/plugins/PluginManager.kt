@@ -169,7 +169,7 @@ object PluginManager {
         File("${context.filesDir}/${ONLINE_PLUGINS_FOLDER}").listFiles()?.forEach { repo ->
             repo.listFiles { file -> file.name == "oat" && file.isDirectory }?.forEach { file ->
                 val success = file.deleteRecursively()
-                Log.i(TAG, "Deleted oat directory: ${file.absolutePath} Success=$success")
+                Log.i(TAG, "Deleted oat directory in ${repo.name} Success=$success")
             }
         }
     }
@@ -216,7 +216,7 @@ object PluginManager {
                 PluginData(name, null, false, file.absolutePath, PLUGIN_VERSION_NOT_SET)
             )
         } else {
-            Log.i(TAG, "Skipping invalid plugin file: $file")
+            Log.i(TAG, "Skipping invalid plugin file: ${file.name}")
         }
     }
 
@@ -297,7 +297,7 @@ object PluginManager {
         }.flatten().distinctBy { it.onlineData.plugin.url }
 
         debugPrint {
-            "Outdated plugins: ${outdatedPlugins.filter { it.isOutdated }}"
+            "Outdated plugins: ${outdatedPlugins.filter { it.isOutdated }.map { it.onlineData.plugin.internalName }}"
         }
 
         val updatedPlugins = mutableListOf<String>()
@@ -594,7 +594,7 @@ object PluginManager {
         val fileName = file.nameWithoutExtension
         val filePath = file.absolutePath
         currentlyLoading = fileName
-        Log.i(TAG, "Loading plugin: $data")
+        Log.i(TAG, "Loading plugin: ${data.internalName} version=${data.version} online=${data.isOnline}")
 
         return try {
             // In case of Android 14+ then
@@ -675,7 +675,7 @@ object PluginManager {
             currentlyLoading = null
             true
         } catch (e: Throwable) {
-            Log.e(TAG, "Failed to load $file: ${Log.getStackTraceString(e)}")
+            Log.e(TAG, "Failed to load ${file.name}: ${Log.getStackTraceString(e)}")
             showToast(
                 // context.getActivity(), // we are not always on the main thread
                 context.getString(R.string.plugin_load_fail).format(fileName),
@@ -687,17 +687,17 @@ object PluginManager {
     }
 
     fun unloadPlugin(absolutePath: String) {
-        Log.i(TAG, "Unloading plugin: $absolutePath")
+        Log.i(TAG, "Unloading plugin: ${File(absolutePath).name}")
         val plugin = plugins[absolutePath]
         if (plugin == null) {
-            Log.w(TAG, "Couldn't find plugin $absolutePath")
+            Log.w(TAG, "Couldn't find plugin ${File(absolutePath).name}")
             return
         }
 
         try {
             plugin.beforeUnload()
         } catch (e: Throwable) {
-            Log.e(TAG, "Failed to run beforeUnload $absolutePath: ${Log.getStackTraceString(e)}")
+            Log.e(TAG, "Failed to run beforeUnload ${File(absolutePath).name}: ${Log.getStackTraceString(e)}")
         }
 
         // remove all registered apis
@@ -775,7 +775,7 @@ object PluginManager {
         loadPlugin: Boolean,
     ): Boolean {
         try {
-            Log.d(TAG, "Downloading plugin: $pluginUrl to ${file.absolutePath}")
+            Log.d(TAG, "Downloading plugin: ${file.name}")
             // The plugin file needs to be salted with the repository url hash as to allow multiple repositories with the same internal plugin names
             val newFile = downloadPluginToFile(activity, pluginUrl, file, pluginHash) ?: return false
 
