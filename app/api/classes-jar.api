@@ -37546,6 +37546,7 @@ public final class com/lagradost/cloudstream4/download/EngineVideoDownload : jav
 	public static final synthetic fun access$getDownloader$p (Lcom/lagradost/cloudstream4/download/EngineVideoDownload;)Lcom/lagradost/cloudstream4/media/download/SegmentedDownloader;
 	public static final synthetic fun access$getOnSnapshot$p (Lcom/lagradost/cloudstream4/download/EngineVideoDownload;)Lkotlin/jvm/functions/Function1;
 	public static final synthetic fun access$getStagingRoot$p (Lcom/lagradost/cloudstream4/download/EngineVideoDownload;)Ljava/io/File;
+	public static final synthetic fun access$logFailure (Lcom/lagradost/cloudstream4/download/EngineVideoDownload;Ljava/lang/String;Ljava/lang/Throwable;)V
 	public static final synthetic fun access$run (Lcom/lagradost/cloudstream4/download/EngineVideoDownload;Lcom/lagradost/cloudstream4/download/EngineVideoDownload$Call;Lcom/lagradost/cloudstream3/IDownloadableMinimum;ZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final synthetic fun access$setClient$cp (Lkotlin/Pair;)V
 	public static final synthetic fun access$stop (Lcom/lagradost/cloudstream4/download/EngineVideoDownload;Lcom/lagradost/cloudstream4/download/EngineVideoDownload$Call;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;

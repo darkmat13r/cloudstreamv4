@@ -410,6 +410,14 @@ internal class EngineVideoDownload(
         return status
     }
 
+    /**
+     * The exception's class and a fixed text only. Its message and stack trace can carry the destination
+     * path (the user's folder and file names), and this code never logs a URL, header or path.
+     */
+    private fun logFailure(what: String, t: Throwable) {
+        Log.w(TAG, "$what: ${t.javaClass.name}")
+    }
+
     private fun destinationPath(call: Call): String? =
         DownloadFacts.storagePathOf(call.basePath, Environment.getExternalStorageDirectory()?.path)
 
@@ -479,18 +487,11 @@ internal class EngineVideoDownload(
                     File(root, name).deleteRecursively()
                 }
             } catch (t: Throwable) {
-                logFailure("staging sweep failed", t)
+                // The class only, as in [logFailure]; a member there, so no synthetic accessor reaches classes.jar.
+                Log.w(TAG, "staging sweep failed: ${t.javaClass.name}")
             }
         }
 
         private const val TAG = "EngineVideoDownload"
-
-        /**
-         * The exception's class and a fixed text only. Its message and stack trace can carry the destination
-         * path (the user's folder and file names), and this code never logs a URL, header or path.
-         */
-        private fun logFailure(what: String, t: Throwable) {
-            Log.w(TAG, "$what: ${t.javaClass.name}")
-        }
     }
 }
