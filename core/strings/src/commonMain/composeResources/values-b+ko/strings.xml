@@ -4,6 +4,7 @@
 <string name="detail_load_failed_body">소스를 사용할 수 없을 수 있습니다.</string>
 <string name="detail_load_failed_headline">이 작품을 열 수 없습니다</string>
 <plurals name="downloads_active"><item quantity="other">%d 활성 다운로드</item></plurals>
+<plurals name="downloads_failed_count"><item quantity="other">%d개 실패</item></plurals>
 <plurals name="downloads_queued"><item quantity="other">%d 다운로드</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">섹션 %d개를 불러오지 못했습니다</item></plurals>
 <string name="account">계정</string>
@@ -196,6 +197,7 @@
 <string name="downloaded_file">다운로드한 파일</string>
 <string name="downloading">다운로드중</string>
 <string name="downloads_browse_library">라이브러리 둘러보기</string>
+<string name="downloads_delete_all">모두 삭제</string>
 <string name="downloads_delete_select">삭제할 항목을 선택하십시오</string>
 <string name="downloads_empty">현재 다운로드가 없습니다.</string>
 <string name="downloads_empty_body">작품의 에피소드 목록에서 시작한 다운로드가 여기에 표시되며 연결 없이 재생됩니다.</string>
@@ -204,11 +206,21 @@
 <string name="downloads_load_failed_body">다운로드한 파일은 변경되지 않았습니다.</string>
 <string name="downloads_load_failed_headline">다운로드를 읽을 수 없습니다</string>
 <string name="downloads_offline_pill">오프라인 · 연결 없음</string>
+<string name="downloads_on_disk">디스크 %s</string>
 <string name="downloads_play_from_link">링크에서 재생</string>
+<string name="downloads_play_next">다음 재생</string>
+<string name="downloads_reason_network">네트워크 끊김</string>
+<string name="downloads_reason_no_link">작동하는 링크 없음</string>
+<string name="downloads_reason_source">소스가 일찍 중단됨</string>
+<string name="downloads_reason_storage_full">저장공간 가득 참</string>
+<string name="downloads_reason_storage_unavailable">저장공간 사용 불가</string>
+<string name="downloads_retry_failed">실패 항목 다시 시도 (%d)</string>
 <string name="downloads_select">선택</string>
+<string name="downloads_state_queued">대기중</string>
 <string name="downloads_storage_full_headline">저장공간 부족</string>
 <string name="downloads_storage_legend">%1$s / %2$s 사용됨 · 다운로드 %3$s</string>
 <string name="downloads_storage_needs">%s 더 필요</string>
+<string name="downloads_watched">%d%% 시청함</string>
 <string name="duplicate_add">추가</string>
 <string name="duplicate_message_multiple">당신의 라이브러리에 잠재적으로 중복된 항목이 발견되었습니다: \n \n%s \n \n이 항목을 그래도 추가하시겠습니까, 기존 항목을 교체하시겠습니까, 아니면 작업을 취소하시겠습니까?</string>
 <string name="duplicate_message_single">당신의 라이브러리에 이미 잠재적으로 중복된 항목이 존재합니다: '%s'. \n \n이 항목을 그래도 추가하시겠습니까, 기존 항목을 교체하시겠습니까, 아니면 작업을 취소하시겠습니까?</string>

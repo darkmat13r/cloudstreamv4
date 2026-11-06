@@ -3,6 +3,7 @@
 <resources>
 <string name="detail_load_failed_body">Šaltinis gali būti nepasiekiamas.</string>
 <string name="detail_load_failed_headline">Nepavyko atidaryti šio pavadinimo</string>
+<plurals name="downloads_failed_count"><item quantity="one">%d nepavyko</item><item quantity="few">%d nepavyko</item><item quantity="many">%d nepavyko</item><item quantity="other">%d nepavyko</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Nepavyko įkelti %d skilties</item><item quantity="few">Nepavyko įkelti %d skilčių</item><item quantity="many">Nepavyko įkelti %d skilties</item><item quantity="other">Nepavyko įkelti %d skilčių</item></plurals>
 <string name="action_add_to_bookmarks">Nustatyti žiūrėjimo statusą</string>
 <string name="action_mark_as_watched">Pažymėti kaip žiūrima</string>
@@ -66,6 +67,7 @@
 <string name="downloaded">Atsisiųsta</string>
 <string name="downloading">Siunčiama</string>
 <string name="downloads_browse_library">Naršyti biblioteką</string>
+<string name="downloads_delete_all">Ištrinti visus</string>
 <string name="downloads_delete_select">Pasirinkite elementus, kuriuos norite pašalinti</string>
 <string name="downloads_empty">Šiuo metu atsisiuntimų nėra.</string>
 <string name="downloads_empty_body">Atsisiuntimai, pradėti iš pavadinimo epizodų sąrašo, rodomi čia ir paleidžiami be ryšio.</string>
@@ -74,11 +76,21 @@
 <string name="downloads_load_failed_body">Jūsų atsisiųsti failai nebuvo pakeisti.</string>
 <string name="downloads_load_failed_headline">Nepavyko nuskaityti atsisiuntimų</string>
 <string name="downloads_offline_pill">Neprisijungus · nėra ryšio</string>
+<string name="downloads_on_disk">%s diske</string>
 <string name="downloads_play_from_link">Paleisti iš nuorodos</string>
+<string name="downloads_play_next">Leisti kitą</string>
+<string name="downloads_reason_network">Ryšys nutrūko</string>
+<string name="downloads_reason_no_link">Nėra veikiančios nuorodos</string>
+<string name="downloads_reason_source">Šaltinis sustojo anksčiau</string>
+<string name="downloads_reason_storage_full">Atmintis pilna</string>
+<string name="downloads_reason_storage_unavailable">Atmintis nepasiekiama</string>
+<string name="downloads_retry_failed">Kartoti nepavykusius (%d)</string>
 <string name="downloads_select">Pasirinkti</string>
+<string name="downloads_state_queued">Eilėje</string>
 <string name="downloads_storage_full_headline">Nepakanka atminties</string>
 <string name="downloads_storage_legend">Naudojama %1$s iš %2$s · %3$s atsisiuntimuose</string>
 <string name="downloads_storage_needs">Reikia dar %s</string>
+<string name="downloads_watched">Peržiūrėta %d%%</string>
 <string name="duration_format">%d min</string>
 <string name="edit">Redaguoti</string>
 <string name="eigengraumode_settings">Atkūrimo sparta</string>
