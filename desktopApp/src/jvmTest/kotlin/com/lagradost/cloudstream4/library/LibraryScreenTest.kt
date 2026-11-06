@@ -286,7 +286,7 @@ class LibraryScreenTest {
         scene.settle()
         assertEquals("Home", at)
 
-        scene.click(Offset(LIBRARY_TAB_X, WINDOW_TAB_Y))
+        scene.click(Offset(SIDEBAR_ITEM_X, LIBRARY_ITEM_Y))
         repeat(WAIT_ROUNDS) {
             Thread.sleep(WAIT_MILLIS)
             scene.settle()
@@ -358,11 +358,11 @@ class LibraryScreenTest {
         /** Inside the panel, which is 360 wide and against the trailing edge. */
         const val PANEL_X = 1100f
 
-        /** In the window, the screen sits under a tab bar, so everything is lower. */
-        const val WINDOW_TAB_Y = 34f
-        const val LIBRARY_TAB_X = 215f
-        const val WINDOW_CARD_BUTTON_X = 230f
-        const val WINDOW_CARD_BUTTON_Y = 548f
+        /** In the window, the screen sits beside the 220 sidebar (`KMP-53`): its third row is Library. */
+        const val SIDEBAR_ITEM_X = 100f
+        const val LIBRARY_ITEM_Y = 112f
+        const val WINDOW_CARD_BUTTON_X = 433f
+        const val WINDOW_CARD_BUTTON_Y = 507f
         const val WAIT_ROUNDS = 6
         const val WAIT_MILLIS = 100L
         const val FIRST_PANEL_ROW_Y = 94f

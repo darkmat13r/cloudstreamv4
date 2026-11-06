@@ -4905,3 +4905,33 @@ that exist because the old downloader broke them:
 - No Android device run: a test APK would hit the same minSdk wall.
 - DNS rebinding, as above.
 - The engine's unthrottled slowdown is not profiled.
+
+## KMP-53 — The Mac window's shell: a sidebar, and its ⌘ keys · **step 1 built 2026-11-07**
+
+`docs/plans/desktop-design.md` kept three tabs while three did the job: "A sidebar is worth it at the fourth"
+(lines 117-118). Downloads is the fourth (`KMP-54`), so the bar becomes board D1's sidebar for every top-level screen.
+
+**Step 1, this change.**
+- `DesktopSidebar` in `:desktopApp`, `home/DesktopShell.kt`:
+  - a 220 column on `surface` with a hairline on its right edge;
+  - 32 rows with a 16 glyph and the destination's name, the chosen row `raised`;
+  - at its foot, the extensions notice, which sat at the end of the tab bar before.
+
+  `TopLevelScreen` keeps its signature, so no screen changed.
+- `DesktopShortcuts`, read by the window before any screen, as `EscapeHandler` is:
+  - ⌘1 to ⌘3 go to Home, Search and Library, at the top level only, where the sidebar is;
+  - ⌘[ goes back wherever there is something under.
+- Tests in `:desktopApp`:
+  - `DesktopShellTest` (3): the shortcuts, plain keys ignored, and a click on a row;
+  - the four window-level tests that clicked the old tab bar now click the sidebar, with coordinates measured from renders.
+
+**Next steps.**
+- **Downloads as the fourth row, and ⌘4.** It is the one-line wiring once `KMP-52` (#177) and `KMP-54` (#179) are on
+  master: `TopLevelDestination.Downloads`, its glyph `Download`, and the host composing `DownloadsScreenDesktop` over
+  `DesktopDownloadsSource`.
+- **The menu bar.** File, Go and Window menus list the same commands in words. The menu titles have no keys yet, so it
+  needs an `I18N` task first.
+- **Settings ⌘,.** Board D1 puts it at the sidebar's foot, but the Mac has no settings screen yet.
+
+**DECIDED.** The menu bar is split off. Options were (A) ship it now with English menu titles, or (B) defer it to an
+`I18N` task that adds the titles. Chose B: every word comes from `:core:strings`, and the shortcuts already work without it.

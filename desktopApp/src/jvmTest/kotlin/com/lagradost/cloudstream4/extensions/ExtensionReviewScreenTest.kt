@@ -217,7 +217,7 @@ class ExtensionReviewScreenTest {
         scene.settle()
         assertEquals("Home", at)
         scene.save("review-08-notice-on-home")
-        scene.click(Offset(NOTICE_X, TAB_Y))
+        scene.click(Offset(NOTICE_X, NOTICE_Y))
         assertEquals("Extensions", at)
         scene.settle()
         assertTrue(escape.handle(), "Escape goes back from the list")
@@ -225,10 +225,10 @@ class ExtensionReviewScreenTest {
         assertEquals("Home", at)
         assertFalse(escape.handle(), "and home has nothing under it")
 
-        scene.click(Offset(SEARCH_TAB_X, TAB_Y))
+        scene.click(Offset(SIDEBAR_ITEM_X, SEARCH_ITEM_Y))
         assertEquals("Search", at)
         scene.save("review-09-notice-on-search")
-        scene.click(Offset(NOTICE_X, TAB_Y))
+        scene.click(Offset(NOTICE_X, NOTICE_Y))
         assertEquals("Extensions", at)
         scene.close()
     }
@@ -241,7 +241,7 @@ class ExtensionReviewScreenTest {
         val approvals = ExtensionApprovals(RecordingControl(), report, CoroutineScope(SupervisorJob() + Dispatchers.Default))
         val scene = scene { DesktopApp(escape, EmptyHome, approvals, InMemoryLibraryStore(), onScreen = { at = it }) }
         scene.settle()
-        scene.click(Offset(NOTICE_X, TAB_Y))
+        scene.click(Offset(NOTICE_X, NOTICE_Y))
         assertEquals("Home", at)
         scene.close()
     }
@@ -255,7 +255,7 @@ class ExtensionReviewScreenTest {
         val scene = scene { DesktopApp(escape, EmptyHome, approvals, InMemoryLibraryStore(), onScreen = { at = it }) }
         scene.settle()
         scene.save("review-10-quiet-entry")
-        scene.click(Offset(NOTICE_X, TAB_Y))
+        scene.click(Offset(NOTICE_X, NOTICE_Y))
         assertEquals("Extensions", at)
         scene.close()
     }
@@ -457,8 +457,10 @@ class ExtensionReviewScreenTest {
         const val ALLOW_FROM_RIGHT = 37
         const val KEEP_OFF_FROM_RIGHT = 130
         const val LONE_BUTTON_FROM_RIGHT = 37
-        const val NOTICE_X = 1150f
-        const val TAB_Y = 34f
-        const val SEARCH_TAB_X = 130f
+        /** The notice sits at the foot of the sidebar (`KMP-53`): 24 up from the bottom, a 36 button. */
+        const val NOTICE_X = 60f
+        const val NOTICE_Y = 758f
+        const val SIDEBAR_ITEM_X = 100f
+        const val SEARCH_ITEM_Y = 76f
     }
 }
