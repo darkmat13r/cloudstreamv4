@@ -124,7 +124,9 @@ words and card labels; `Clear all searches` asks first; a `cloudstreamsearch://`
 Waiting on the owner, from that switch: **voice search is lost on TV**. The provider filter panel and
 the type chips came back with `KMP-42`, and a chip narrows a search. Since `KMP-47` typing suggests
 (boards 8a and 8b) through the old `SearchSuggestionApi`, behind the existing `search_suggestions_enabled`
-setting. The full behaviour table is in `docs/tasks/kmp.md`.
+setting. Since `KMP-48` Quick Search (`QuickSearchFragment.pushSearch`) opens on TV as a side panel over
+its caller (boards 8d and 8e): `navigation_quick_search` becomes a dialog destination with the same id.
+The full behaviour table is in `docs/tasks/kmp.md`.
 
 **Desktop runs extensions in a sandbox** (`KMP-14`, `docs/tasks/kmp.md`): one Seatbelt-confined child
 process per extension, scanned first, `.cs3` converted with dex2jar in a no-network sandbox. Plugin code

@@ -4781,3 +4781,61 @@ Why: it would query every provider on every keystroke, which costs their servers
 ### Published API
 
 Additions only. `app/api/classes-jar.api` gains 8 `R` fields (3 `R$plurals`, 5 `R$string`), 0 removed or changed.
+
+
+## KMP-48 — TV Quick Search is a side panel over its caller, boards 8d and 8e (queue `Q8`) · **measured 2026-11-06**
+
+**Status:** in pr, stacked on `KMP-47`'s branch (Q6–Q8 are serial in the audit). Boards 8d and 8e of `design/TV Search Suggestions.dc.html` on `Television_720p`, API 36.
+
+### What it adds
+
+- **The panel is drawn over the screen that opened it, which does not reflow.** On TV, `navigation_quick_search` is replaced at runtime by a `DialogFragmentNavigator` destination with the same id (`openQuickSearchOnTvScreen`, one line in `MainActivity`, which is the rollback). A fragment destination would replace the caller; the board's note is that the caller stays. The dialog window covers the nav host, not the rail, so the rail is dimmed by `SidePanelOutsideDim` once, as for 4d.
+- **Every `QuickSearchFragment.pushSearch` caller reaches it unchanged:** Home, the result pages and the library pass the same arguments (the query, trimmed of `(DUB)`/`(SUB)` there, and optionally the providers).
+- **8d, answering.** `SidePanel` with `Quick search`, `RESULTS STREAM IN AS SOURCES ANSWER` and `3 OF 12 ANSWERED · 2 FAILED`, which update as each source answers (`QuickSearchSource`, a `Flow`; `ApiRepositorySearchSource.quickSearchPanel` launches one search per provider and emits after each). Rows are `ListRow`s with the chassis disc and `PROVIDER · TYPE · QUALITY`, in the order the providers were asked, pinned first. Until a source answers the only stop is `Done`; the first answer moves focus to the first row, and later answers leave it where it is.
+- **8e, empty.** Every source answered and none carries it: `No matches`, the query quoted, and `Open full search` as the commit row, focused. It takes the query to the search screen through `nextSearchQuery` and the rail item, as the intent handler does.
+- **Every source failed** says `Search failed`, or `You are offline` when every failure was the network's, with `Try again`. Not drawn on the board; the copy is the search screen's 4b copy. Their glyphs are the pack's `Warning` and `Offline`; 8e's is `Search`, as 8b's is.
+- **OK on a row** opens the title. The navigation pops the dialog, so BACK from the title returns to the caller.
+- 7 new keys, in all 62 locales, none a plural.
+
+### Focus
+
+| Press | Goes to |
+|---|---|
+| Opening, before any answer | `Done` |
+| The first answer | The first row |
+| Down / Up | The next / previous row, then the commit row |
+| Left / Right, Down past the commit row | Stays (the panel's trap) |
+| BACK, `Done` | Closes; the caller keeps its focus and state |
+
+### Reduced from the boards
+
+- **No year in a row's line.** `SearchResultItem` carries no year, so the line is `VIDSRC · MOVIE · 4K`, not `VIDSRC · 2024 · MOVIE`. Adding one is a change to the shared item.
+- **8e's body does not spell the number.** `Every source answered and none of them carry “…”` instead of `All twelve sources answered…`: the status line above already says `12 OF 12`, and a number in the sentence would make it a plural in 62 locales.
+- **The meta line is left out once a source has failed,** since `ALL SOURCES ANSWERED` would not be true; the status line moves up into its place.
+- **No paging.** The old fragment's single-provider grid loaded more pages; the panel shows each provider's first page.
+- **It closes without sliding out.** The dialog goes with the press; `SidePanelHost` has no signal for the end of its exit.
+- The caller is the old fragment's callers' screens; the board draws the search screen behind the panel.
+- The board's panel title sits at y64; `SidePanel`'s header is at `ChromeRowTop` (y56), as 4d's is.
+- With no providers at all the panel says `Search failed`, as the search screen's `noTargets` does.
+
+### Tests
+
+- `QuickSearchViewModelTest` (JVM, 5): the trimmed query asked once, each answer replacing the last, a blank query asking nobody, `Try again` starting over, each action's effect, when a round is finished.
+- `QuickSearchPanelDeviceTest` (device, 12, the board's data): counting and the first row's focus; Down through the rows to `Done` and `Done` closing; OK on a row; a later answer keeping focus; 8e's copy and `Open full search`; every source failed and `Try again`; offline; screenshots `quick-search-asking`, `-answering`, `-empty`, `-failed`, `-offline`, each looked at before it was recorded.
+- `TvQuickSearchNavigationTest` (`:app`, the real path, 3): `pushSearch` from the new Home with two fake providers registered where plugins go, one answering and one failing. The panel is a `FloatingWindow` destination over the same, still drawn `HomeTvFragment`; it counts `1 OF 2 ANSWERED · 1 FAILED`; the `(DUB)` suffix is trimmed before the provider is asked; BACK and `Done` leave Home as it was; OK on a row loads that title through the provider, and BACK from the title returns to Home.
+
+### Found, not changed
+
+```
+Found: SidePanelHost has no callback for the end of its exit slide
+Suggest: an onClosed parameter, raised when the panel unmounts
+Why: a host in its own window (this dialog) cannot slide the panel out before closing the window.
+```
+
+### Not verified
+
+`TalkBack`, a real remote, a real provider's answer (the fakes stand in), the Home and result-page buttons that call `pushSearch` (the test calls it directly; the result page needs a loaded title), and the least-confident translations: `ti`, `am`, `ckb`, `my`, `or`, `as`, `mt`, `apc`.
+
+### Published API
+
+Additions only. `app/api/classes-jar.api` gains 60 lines: 7 `R$string` fields, `QuickSearchTvFragment` and its synthetic classes, `ApiRepositorySearchSource.quickSearchPanel`, and `openQuickSearchOnTvScreen`. 0 removed or changed.

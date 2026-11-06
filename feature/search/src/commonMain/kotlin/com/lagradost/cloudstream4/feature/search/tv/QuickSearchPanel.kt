@@ -21,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.layout
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -99,14 +100,17 @@ fun QuickSearchPanel(
         when (outcome) {
             Outcome.Answering, Outcome.Rows -> ResultRows(progress?.items.orEmpty(), onAction)
             Outcome.Empty -> PanelState(
+                glyph = CloudStreamIcons.Search,
                 headline = stringResource(Res.string.search_quick_empty_headline),
                 body = UiString.Resource(Res.string.search_quick_empty_body, listOf(state.query)).resolve(),
             )
             Outcome.Failed -> PanelState(
+                glyph = CloudStreamIcons.Warning,
                 headline = stringResource(Res.string.search_state_failed_headline),
                 body = stringResource(Res.string.search_state_failed_body),
             )
             Outcome.Offline -> PanelState(
+                glyph = CloudStreamIcons.Offline,
                 headline = stringResource(Res.string.search_state_offline_headline),
                 body = stringResource(Res.string.search_state_offline_body),
             )
@@ -222,9 +226,9 @@ private fun ResultDisc() {
     }
 }
 
-/** 8e's glyph, headline and body, centred in the panel, then the rule. */
+/** 8e's glyph, headline and body, centred in the panel, then the rule. The glyph says which state it is. */
 @Composable
-private fun ColumnScope.PanelState(headline: String, body: String) {
+private fun ColumnScope.PanelState(glyph: ImageVector, headline: String, body: String) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
     Column(
@@ -239,7 +243,7 @@ private fun ColumnScope.PanelState(headline: String, body: String) {
             contentAlignment = Alignment.Center,
         ) {
             CloudStreamIcon(
-                icon = CloudStreamIcons.Search,
+                icon = glyph,
                 contentDescription = null,
                 size = CloudStreamIconSize.Large,
                 tint = colors.muted,
