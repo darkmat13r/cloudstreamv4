@@ -163,6 +163,7 @@ fun SearchScreenTv(
                 firstChipFocus = firstChip,
                 contentDown = contentEntry,
                 stops = stops,
+                actionTakesFocus = state.status !is SearchStatus.NoSuggestions,
             )
 
             Spacer(Modifier.height(SearchScreenTvDefaults.ChipToContentGap))
