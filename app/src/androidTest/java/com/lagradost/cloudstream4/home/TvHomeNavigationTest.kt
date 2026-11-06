@@ -320,6 +320,55 @@ class TvHomeNavigationTest {
         }
     }
 
+    /** `None` (3h) chosen in the panel is kept under the old screen's name for it, and a restart opens on it (3i). */
+    @Test
+    fun noneChosenInThePanelAsksNothingAndSurvivesARestart() {
+        install(one)
+        launch {
+            waitForHome()
+            waitForHero(ONE)
+            pressToTheSourceControl(ONE)
+            dpad.center()
+            waitFor("the panel opens") { device.hasObject(By.text(sources)) }
+            waitForFocus(ONE)
+            pressUntil(Dpad.Up, NONE)
+            dpad.center()
+            waitFor("None applies at once") { device.hasObject(By.desc("$SOURCE · $NONE")) }
+            assertEquals(NONE, DataStoreHelper.currentHomePage)
+        }
+        one.asked.clear()
+        launch {
+            waitForHome()
+            waitFor("the control names None") { device.hasObject(By.desc("$SOURCE · $NONE")) }
+            Thread.sleep(SETTLE_MS)
+            assertTrue("nothing was asked of a source", one.asked.isEmpty())
+        }
+    }
+
+    /** 3j's Random opens a loaded title's real page, and Back puts focus back on Random. */
+    @Test
+    fun randomOpensALoadedTitlesRealPageAndFocusComesBackToIt() {
+        install(one)
+        launch {
+            waitForHome()
+            waitForHero(ONE)
+            pressToTheSourceControl(ONE)
+            pressUntil(Dpad.Right, RANDOM)
+            dpad.center()
+            waitFor("a title's page, was $fragmentClass") { fragmentClass == ResultFragmentTv::class.java }
+            waitFor("it asked the provider for a loaded title") { one.loaded.any { it.startsWith("https://example.invalid/$ONE ") } }
+            repeat(BACK_PRESSES) {
+                if (fragmentClass != HomeTvFragment::class.java) {
+                    device.pressBack()
+                    device.waitForIdle()
+                    Thread.sleep(SETTLE_MS)
+                }
+            }
+            waitForHome()
+            waitForFocus(RANDOM)
+        }
+    }
+
     /**
      * Closed before its view has finished coming up, its timer is not cancelled with it. It used to reach a detached
      * fragment and end the process, past the end of the test that did this, so this waits it out.
@@ -606,6 +655,8 @@ class TvHomeNavigationTest {
         const val SOURCE = "Source"
         const val MORE_INFO = "More info"
         const val CONTINUE = "Continue Watching"
+        const val NONE = "None"
+        const val RANDOM = "Random"
         const val PLAYED = "Played Before"
         const val BOOKMARKED = "Kept For Later"
         /** As [PLAYED_ID]: no real title here hashes to it. */
