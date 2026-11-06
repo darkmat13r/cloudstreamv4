@@ -109,7 +109,10 @@ internal class AndroidLibrarySources(
     /** What each title of a source's last read is, for the opener, kept beside [lastRead] so a cached read has its own. */
     private val titles = ConcurrentHashMap<LibrarySourceId, Map<LibraryTitleId, SyncedTitle>>()
 
-    /** The service whose lists were asked for last, from a read or from the cache: the one shown. */
+    /**
+     * The service whose lists were asked for last: the one shown. Set when asked, not when a read returns, so a slow read
+     * for one service that returns after switching back to another stores its titles and does not take this over.
+     */
     @Volatile
     private var shown: LibrarySourceId? = null
 
@@ -139,10 +142,8 @@ internal class AndroidLibrarySources(
     override suspend fun lists(id: LibrarySourceId): List<SyncedList> = withContext(io) {
         val source = all().first { it.id == id }
         val repo = source.repo
-        lastRead[id]?.takeIf { !repo.requireLibraryRefresh }?.let {
-            shown = id
-            return@withContext it
-        }
+        shown = id
+        lastRead[id]?.takeIf { !repo.requireLibraryRefresh }?.let { return@withContext it }
         val metadata = repo.library().getOrThrow() ?: throw IllegalStateException("Unable to fetch library")
         repo.requireLibraryRefresh = false
         records.synced(id.value, clock())
@@ -152,7 +153,6 @@ internal class AndroidLibrarySources(
         }
         titles[id] = read
         lastRead[id] = lists
-        shown = id
         lists
     }
 

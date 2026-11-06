@@ -4888,6 +4888,9 @@ list's are by `keptAt`, not in the order the service returns them.
 - **Switching back to a service shown from its cache opened the wrong titles.** The opener's map was one for all
   sources, replaced only by a fresh read, so A, then B, then A from the cache kept B's, and A's cards fell back to the
   local opener. It is kept per source now, with the one shown. The new JVM test fails on the old code.
+- **A late read could still take the shown source's place**: the shown one was set when a read returned, so a slow read
+  for B returning after switching back to A made B the shown one. It is set when a source is asked for now, and a late
+  read stores only its own titles. A second JVM test, with B's read held open, fails on the previous code.
 - **A service not read yet, or not readable, showed the local list's tabs** under its name: the first recording of the
   failure page had Watching to Favorites over AniList's error. It has no tabs now (`tvTabs`).
 - **The provider button** takes `ChromeButton`'s padding and inset outline. `insetOutline` was internal to
@@ -4910,9 +4913,9 @@ Temporary changes, each reverted, on `Television_720p`.
 
 ### Tested
 
-- **JVM.** `LibrarySourcesViewModelTest` 13, `LibraryShelfTest` (4 added), and `AndroidLibrarySourcesTest` 12 over a fake
+- **JVM.** `LibrarySourcesViewModelTest` 13, `LibraryShelfTest` (4 added), and `AndroidLibrarySourcesTest` 13 over a fake
   `SyncAPI`: the order, the source to open on, the lists and their words, sanitising, a rating of 0, the recorded time
-  and the service's cache, switching back to a cached service, both failures, and the opener's rule.
+  and the service's cache, switching back to a cached service and a late read for another, both failures, and the opener's rule.
 - **Device, `:feature:library`.** `LibrarySourcesTvDeviceTest`, 13 with fake sources: the button and Left from the field,
   the panel opening on the shown source with every source's state, a choice applying at once, reopening on the new
   choice, a disabled row that is a stop and chooses nothing, Done and BACK each closing with focus back on the button, a

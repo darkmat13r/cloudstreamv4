@@ -17,7 +17,10 @@ import com.lagradost.cloudstream3.utils.txt
 import com.lagradost.cloudstream4.feature.library.LibrarySourceId
 import com.lagradost.cloudstream4.feature.library.LibraryTitleId
 import com.lagradost.cloudstream4.search.encodeId
+import kotlinx.coroutines.CompletableDeferred
+import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
@@ -31,7 +34,7 @@ class AndroidLibrarySourcesTest {
     /** A tracking service that answers with what it is given, and counts how often it is asked. */
     private class FakeSyncApi(
         override val name: String,
-        var answer: () -> SyncAPI.LibraryMetadata?,
+        var answer: suspend () -> SyncAPI.LibraryMetadata?,
         val local: Boolean = false,
     ) : SyncAPI() {
         override val idPrefix = name.lowercase()
@@ -248,6 +251,32 @@ class AndroidLibrarySourcesTest {
         assertEquals("AniList came from its cache", 1, aniListApi.asked)
         assertEquals("sync-Frieren", host.synced(frierenId)?.item?.syncId)
         assertNull("Simkl is not shown any more", host.synced(mushishiId))
+    }
+
+    /** The reviewer's second case: a slow read for B that returns after switching back to A does not take A's place. */
+    @Test
+    fun `a late read for another service does not replace the shown one's titles`() = runBlocking {
+        val late = CompletableDeferred<Unit>()
+        val simklApi = FakeSyncApi("Simkl", {
+            late.await()
+            SyncAPI.LibraryMetadata(
+                listOf(SyncAPI.LibraryList(txt(R.string.type_watching), listOf(item("Mushishi", url = "https://simkl.com/anime/1")))),
+                emptySet(),
+            )
+        })
+        val simkl = SyncLibrarySource(SyncRepo(simklApi), connected = { true }, account = { "lagradost" })
+        val host = sources(aniList, simkl, local)
+        val frierenId = LibraryTitleId(encodeId("AniList", "https://anilist.co/anime/Frieren").value)
+
+        host.lists(LibrarySourceId("AniList"))
+        // Started at once, so the read for Simkl is under way and waiting when AniList is asked for again.
+        val slow = launch(start = CoroutineStart.UNDISPATCHED) { host.lists(LibrarySourceId("Simkl")) }
+        host.lists(LibrarySourceId("AniList"))
+        late.complete(Unit)
+        slow.join()
+
+        assertEquals(1, simklApi.asked)
+        assertEquals("AniList is still the one shown", "sync-Frieren", host.synced(frierenId)?.item?.syncId)
     }
 
     // The opener: `LibraryFragment.loadLibraryItem`'s rule.
