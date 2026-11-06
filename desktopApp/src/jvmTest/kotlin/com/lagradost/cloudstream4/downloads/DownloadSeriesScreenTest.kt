@@ -15,6 +15,7 @@ import androidx.compose.ui.InternalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.input.key.Key
 import androidx.compose.ui.input.key.KeyEvent
 import androidx.compose.ui.input.key.KeyEventType
@@ -41,6 +42,7 @@ import java.util.Locale
 import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import kotlinx.coroutines.CoroutineScope
@@ -49,6 +51,7 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import org.jetbrains.skia.Bitmap
 import org.jetbrains.skia.EncodedImageFormat
 
 /**
@@ -172,12 +175,21 @@ class DownloadSeriesScreenTest {
 
     private fun rowY(index: Int) = FIRST_ROW_Y + index * ROW_PITCH
 
+    /** The sheet is on `surface` where the page behind it is `bg`: a point inside it, right of the series' title. */
+    private fun ImageComposeScene.sheetOpen(): Boolean {
+        clock += FRAME_NANOS
+        val pixel = Bitmap.makeFromImage(render(clock)).getColor(SHEET_PROBE_X, SHEET_PROBE_Y)
+        return pixel != Color.Black.toArgb()
+    }
+
     @Test
     fun `hovering the running row offers Pause and Cancel, as the board draws`() {
         val harness = Harness()
         val scene = scene(harness)
         scene.settle()
         scene.sendPointerEvent(PointerEventType.Move, Offset(NAME_X, rowY(2)))
+        // Settled here, not only in save(): without renders save() returns at once, and the verbs would not be up yet.
+        scene.settle()
         scene.save("D4-series-hovered")
         // Pause, Cancel, Delete: no Play on a partial file.
         scene.press(Offset(FIRST_VERB_X, rowY(2)))
@@ -195,14 +207,35 @@ class DownloadSeriesScreenTest {
         scene.press(Offset(SECOND_VERB_X, rowY(2)))
         assertEquals(emptyList(), harness.source.calls, "412 MB are on the disk, so nothing is discarded yet")
         scene.save("D4-series-cancel-confirm")
+        assertTrue(scene.sheetOpen(), "the sheet is up")
         scene.sendKeyEvent(KeyEvent(Key.Enter, KeyEventType.KeyDown))
         scene.settle()
         assertEquals(emptyList(), harness.source.calls, "Return keeps downloading")
+        assertFalse(scene.sheetOpen(), "and closes the sheet")
         scene.sendPointerEvent(PointerEventType.Move, Offset(NAME_X, rowY(2)))
         scene.settle()
         scene.press(Offset(SECOND_VERB_X, rowY(2)))
         scene.press(Offset(SHEET_CANCEL_DOWNLOAD_X, SHEET_BUTTON_Y))
         assertEquals(listOf("cancel 3"), harness.source.calls)
+        scene.close()
+    }
+
+    @Test
+    fun `a download that finishes while the cancel sheet is open closes the sheet, and nothing is discarded`() {
+        val harness = Harness()
+        val scene = scene(harness)
+        scene.settle()
+        scene.sendPointerEvent(PointerEventType.Move, Offset(NAME_X, rowY(2)))
+        scene.settle()
+        scene.press(Offset(SECOND_VERB_X, rowY(2)))
+        assertTrue(scene.sheetOpen())
+        val finished = episodes.map { if (it.id.value == 3) it.copy(state = DownloadEpisodeState.Done, bytesDone = it.bytesTotal) else it }
+        harness.source.contents.value = DownloadSeriesContents("Breaking Bad", finished, freeBytes = 12_400 * MB)
+        scene.settle()
+        assertFalse(scene.sheetOpen(), "the sheet closes itself when the episode is done")
+        // Where the sheet's Cancel download was: whatever is under it now, no cancel goes out.
+        scene.press(Offset(SHEET_CANCEL_DOWNLOAD_X, SHEET_BUTTON_Y))
+        assertTrue(harness.source.calls.none { it.startsWith("cancel") }, harness.source.calls.toString())
         scene.close()
     }
 
@@ -286,6 +319,8 @@ class DownloadSeriesScreenTest {
         const val FIRST_VERB_X = 960f
         const val SHEET_CANCEL_DOWNLOAD_X = 447f
         const val SHEET_BUTTON_Y = 181f
+        const val SHEET_PROBE_X = 700
+        const val SHEET_PROBE_Y = 120
         const val SECOND_VERB_X = 992f
         const val DELETE_ALL_X = 515f
         const val HEADER_BUTTON_Y = 197f

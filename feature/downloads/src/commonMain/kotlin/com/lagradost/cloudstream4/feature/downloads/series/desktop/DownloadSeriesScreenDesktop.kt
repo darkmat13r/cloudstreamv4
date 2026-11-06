@@ -24,6 +24,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -156,10 +157,17 @@ fun DownloadSeriesScreenDesktop(
 ) {
     val back = { onAction(SeriesAction.BackRequested) }
     // Cancelling a download that has fetched something asks first; one with nothing on the disk cancels at once.
-    var cancelling by remember { mutableStateOf<DownloadEpisode?>(null) }
+    // The sheet holds the id, never a snapshot: it reads the live episode, closes itself the moment the episode stops
+    // being cancellable (a download that finishes while it is open must not then be discarded), and its confirm checks
+    // again before it sends anything.
+    var cancelling by remember { mutableStateOf<DownloadEpisodeId?>(null) }
     val cancel: (DownloadEpisode) -> Unit = { episode ->
-        if (episode.bytesDone > 0L) cancelling = episode else onAction(SeriesAction.CancelRequested(episode.id))
+        if (episode.bytesDone > 0L) cancelling = episode.id else onAction(SeriesAction.CancelRequested(episode.id))
     }
+    val cancellable: (DownloadEpisodeId) -> DownloadEpisode? = { id ->
+        state.episodes.firstOrNull { it.id == id }?.takeIf { it.state in CANCELLABLE }
+    }
+    cancelling?.let { id -> if (cancellable(id) == null) SideEffect { cancelling = null } }
     // The page holds focus so ⌘[ reaches it; nothing on it is a focus stop of its own until the shell's menu bar (KMP-53).
     val pageFocus = remember { FocusRequester() }
     LaunchedEffect(Unit) { pageFocus.requestFocus() }
@@ -234,13 +242,14 @@ fun DownloadSeriesScreenDesktop(
             }
             Footer(state.episodes, formatBytes)
         }
-        cancelling?.let { episode ->
+        cancelling?.let(cancellable)?.let { episode ->
             DesktopCancelDownloadSheet(
                 bytes = episode.bytesDone,
                 formatBytes = formatBytes,
                 onConfirm = {
                     cancelling = null
-                    onAction(SeriesAction.CancelRequested(episode.id))
+                    // Re-read at the click, not at the sheet's last composition.
+                    if (cancellable(episode.id) != null) onAction(SeriesAction.CancelRequested(episode.id))
                 },
                 onKeep = { cancelling = null },
             )
@@ -623,6 +632,9 @@ private fun size(episode: DownloadEpisode, formatBytes: (Long) -> String): Strin
 }
 
 private const val PERCENT = 100
+
+/** What a Cancel can act on. A finished episode is deleted, never cancelled. */
+private val CANCELLABLE = setOf(DownloadEpisodeState.Running, DownloadEpisodeState.Queued, DownloadEpisodeState.Paused)
 
 /** Values the series page needs that `DownloadsScreenDesktopDefaults` and `DesktopDimens` do not name. */
 object SeriesScreenDesktopDefaults {
