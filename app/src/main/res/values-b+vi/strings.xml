@@ -596,8 +596,12 @@
 <string name="search_provider_text_providers">"Tìm kiếm theo nguồn phim"</string>
 <string name="search_provider_text_types">"Tìm kiếm theo thể loại"</string>
 <string name="search_state_idle_body_desktop">"Nhập tiêu đề. Kết quả sẽ hiện dưới mỗi nguồn khi nguồn đó phản hồi."</string>
+<string name="search_state_no_results_type_filter" formatted="true">"Chỉ %s. Bộ lọc loại của bạn đang thu hẹp kết quả tìm kiếm."</string>
 <string name="search_suggestions">"Gợi ý tìm kiếm"</string>
 <string name="search_suggestions_des">"Hiển thị gợi ý tìm kiếm khi đang nhập"</string>
+<string name="search_tv_source_failed" formatted="true">"THẤT BẠI %s"</string>
+<string name="search_tv_source_pinned">"ĐÃ GHIM"</string>
+<string name="search_tv_sources_panel_meta" formatted="true">"%1$d TRÊN %2$d ĐÃ BẬT · THAY ĐỔI ÁP DỤNG KHI NHẤN HOÀN TẤT"</string>
 <string name="season">"Mùa"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"Mùa"</string>

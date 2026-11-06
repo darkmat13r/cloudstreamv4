@@ -596,8 +596,12 @@
 <string name="search_provider_text_providers">Recherche par fournisseur</string>
 <string name="search_provider_text_types">Recherche par types</string>
 <string name="search_state_idle_body_desktop">Saisissez un titre. Les résultats apparaissent sous chaque source dès qu'elle répond.</string>
+<string name="search_state_no_results_type_filter">%s uniquement. Votre filtre de type restreint la recherche.</string>
 <string name="search_suggestions">Suggestions de recherche</string>
 <string name="search_suggestions_des">Afficher des suggestions de recherche pendant la saisie</string>
+<string name="search_tv_source_failed">ÉCHEC %s</string>
+<string name="search_tv_source_pinned">ÉPINGLÉ</string>
+<string name="search_tv_sources_panel_meta">%1$d SUR %2$d ACTIVÉS · LES MODIFICATIONS PRENNENT EFFET AVEC FINIR</string>
 <string name="season">Saison</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">S</string>

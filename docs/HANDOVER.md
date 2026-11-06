@@ -94,9 +94,9 @@ the rail into the field and back; OK opens the keyboard; Enter searches and show
 its result and Back returns with focus somewhere sensible; a non-system app language shows translated
 words and card labels; `Clear all searches` asks first; a `cloudstreamsearch://` intent searches.
 
-Waiting on the owner, from that switch: **voice search and the provider filter sheet are lost on TV**
-until there is an icon pack (`DEC-11`) and artboard 4d; and whether the old type chips should narrow
-a search (they are ignored for now). The full behaviour table is in `docs/tasks/kmp.md`.
+Waiting on the owner, from that switch: **voice search is lost on TV**. The provider filter panel and
+the type chips came back with `KMP-42`, and a chip narrows a search. The full behaviour table is in
+`docs/tasks/kmp.md`.
 
 **Desktop runs extensions in a sandbox** (`KMP-14`, `docs/tasks/kmp.md`): one Seatbelt-confined child
 process per extension, scanned first, `.cs3` converted with dex2jar in a no-network sandbox. Plugin code
@@ -380,9 +380,9 @@ Nothing below can be settled by reading the code.
 - **Chip-row spacing: the design file contradicts itself.** Its CSS is `.chiprow { gap: 24px }`,
   which is 12dp at the design system's own `artboard px / 2 = dp`; its own prose says *"In Compose
   that is `wrapContentWidth` in a `Row` with **24dp** spacing"*. `CloudStreamDimens.ChipRowSpacing`
-  is 24dp and `SkeletonRail` uses it for the gap between rail cards, so `:feature:search`'s rails
-  follow the token — a rail at 12dp behind a skeleton at 24dp is the jump `UiStateHost` warns about.
-  If the CSS is right, the token, `SkeletonRail` and the search rails all move together.
+  is 24dp and `SkeletonRail` uses it for the gap between rail cards. `:feature:search`'s rails are at
+  12dp since `KMP-42`, so a rail behind a skeleton at 24dp is the jump `UiStateHost` warns about.
+  If the CSS is right, the token and `SkeletonRail` still have to move.
 - **`DebounceQuery` injectability.** `:core:ui`'s `DebounceQuery` hardcodes
   `.flowOn(Dispatchers.Default)` and `200.milliseconds`, neither injectable, so `advanceTimeBy` on a
   `TestDispatcher` does not move it and a debounce cannot be tested in virtual time. Reported, not

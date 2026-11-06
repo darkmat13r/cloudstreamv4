@@ -596,8 +596,12 @@
 <string name="search_provider_text_providers">Szukaj według źródeł</string>
 <string name="search_provider_text_types">Szukaj według typów</string>
 <string name="search_state_idle_body_desktop">Wpisz tytuł. Wyniki pojawiają się pod każdym źródłem, gdy odpowie.</string>
+<string name="search_state_no_results_type_filter">Tylko %s. Filtr typu zawęża wyszukiwanie.</string>
 <string name="search_suggestions">Sugestie wyszukiwania</string>
 <string name="search_suggestions_des">Pokaż sugestie wyszukiwania podczas pisania</string>
+<string name="search_tv_source_failed">BŁĄD %s</string>
+<string name="search_tv_source_pinned">PRZYPIĘTE</string>
+<string name="search_tv_sources_panel_meta">WŁĄCZONO %1$d Z %2$d · ZMIANY OBOWIĄZUJĄ PO GOTOWE</string>
 <string name="season">Sezon</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">S</string>

@@ -3,11 +3,13 @@ package com.lagradost.cloudstream4.search
 import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -182,12 +184,24 @@ class SearchTvFragment : BaseComposeFragment() {
         LaunchedEffect(viewModel) {
             viewModel.effect.collect { onEffect(it) }
         }
+        // Back on the open panel closes the panel. On API 36 the key goes to the dispatcher and not the view
+        // tree, so `SidePanelHost`'s key handler never sees it, and without this it closes the screen.
+        val panelOpen = state.sourcePanel != null
+        DisposableEffect(panelOpen) {
+            val closesPanel = object : OnBackPressedCallback(panelOpen) {
+                override fun handleOnBackPressed() = viewModel.onAction(SearchAction.SourcePanelDismissed)
+            }
+            requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, closesPanel)
+            onDispose { closesPanel.remove() }
+        }
         CloudStreamTheme {
             Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) {
                 SearchScreenTv(
                     state = state,
                     onAction = ::onAction,
                     artwork = { item -> PosterArtwork(item) },
+                    // The rail is a view outside this composition, and the field consumes Left (`BUG-34`).
+                    onLeftEdge = { view?.focusSearch(View.FOCUS_LEFT)?.requestFocus() },
                 )
             }
         }

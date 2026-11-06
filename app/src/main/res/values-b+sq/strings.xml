@@ -596,8 +596,12 @@
 <string name="search_provider_text_providers">"Kërko duke përdorur ofruesit"</string>
 <string name="search_provider_text_types">"Kërko duke përdorur tipet"</string>
 <string name="search_state_idle_body_desktop">"Shkruani një titull. Rezultatet shfaqen nën çdo burim sapo ai përgjigjet."</string>
+<string name="search_state_no_results_type_filter" formatted="true">"Vetëm %s. Filtri i llojit po e ngushton kërkimin."</string>
 <string name="search_suggestions">"Kërkime të sugjeruara"</string>
 <string name="search_suggestions_des">"Trego sugjerimet ndërkohë që shkruani"</string>
+<string name="search_tv_source_failed" formatted="true">"DËSHTOI %s"</string>
+<string name="search_tv_source_pinned">"I FIKSUAR"</string>
+<string name="search_tv_sources_panel_meta" formatted="true">"%1$d NGA %2$d AKTIVIZUAR · NDRYSHIMET ZBATOHEN ME U KRYE"</string>
 <string name="season">"Sezoni"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"S"</string>

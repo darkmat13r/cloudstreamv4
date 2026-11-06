@@ -295,6 +295,10 @@
 <string name="search_provider_text_providers">البحث باستخدام مقدمي الخدمات</string>
 <string name="search_provider_text_types">البحث باستخدام الأنواع</string>
 <string name="search_state_idle_body_desktop">اكتب عنوانًا. تظهر النتائج تحت كل مصدر عند استجابته.</string>
+<string name="search_state_no_results_type_filter">%s بس. فلتر النوع يضيّق البحث.</string>
+<string name="search_tv_source_failed">فشل %s</string>
+<string name="search_tv_source_pinned">مثبّت</string>
+<string name="search_tv_sources_panel_meta">%1$d من %2$d مفعّل · التغييرات تنطبق عند «تم»</string>
 <string name="season">موسم</string>
 <string name="season_format">%1$s%2$d%3$s</string>
 <string name="season_short">س</string>

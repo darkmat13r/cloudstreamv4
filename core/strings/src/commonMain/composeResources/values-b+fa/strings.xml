@@ -328,6 +328,10 @@
 <string name="search_provider_text_providers">جستجو از طریق ارائه‌دهنده‌ها</string>
 <string name="search_provider_text_types">جستجو از طریق انواع</string>
 <string name="search_state_idle_body_desktop">عنوانی را بنویسید. نتایج هر منبع پس از پاسخ آن، زیر نامش نمایش داده می‌شود.</string>
+<string name="search_state_no_results_type_filter">فقط %s. فیلتر نوع شما جستجو را محدود می‌کند.</string>
+<string name="search_tv_source_failed">ناموفق %s</string>
+<string name="search_tv_source_pinned">سنجاق‌شده</string>
+<string name="search_tv_sources_panel_meta">%1$d از %2$d فعال · تغییرات پس از «انجام شد» اعمال می‌شود</string>
 <string name="season">فصل</string>
 <string name="season_short">ف</string>
 <string name="seek_back_10_seconds">۱۰ ثانیه به عقب</string>

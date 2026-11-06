@@ -592,8 +592,12 @@
 <string name="search_provider_text_providers">عوزو المصادر لَ تنبّشو</string>
 <string name="search_provider_text_types">عوزو الأنواع ل تنبّشو</string>
 <string name="search_state_idle_body_desktop">اكتب عنوان. النتايج بتطلع تحت كل مصدر لما يرد.</string>
+<string name="search_state_no_results_type_filter">%s بس. فلتر النوع عم يضيّق البحث.</string>
 <string name="search_suggestions">اقتراحات التنبيش</string>
 <string name="search_suggestions_des">بت فرجي اقتراحات إنتا و عم بت نَبّش</string>
+<string name="search_tv_source_failed">فشل %s</string>
+<string name="search_tv_source_pinned">مثبّت</string>
+<string name="search_tv_sources_panel_meta">%1$d من %2$d مفعّل · التغييرات بتنطبق عند خلصت</string>
 <string name="season">جزء</string>
 <string name="season_format">%1$s%2$d%3$s</string>
 <string name="season_short">ج</string>

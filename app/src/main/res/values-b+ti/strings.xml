@@ -74,6 +74,10 @@
 <string name="player_source_switch">"ቀይር"</string>
 <string name="player_unmute">"ድምጺ ወልዕ"</string>
 <string name="search_state_idle_body_desktop">"ኣርእስቲ ጽሓፍ። ውጽኢታት ነፍሲ ወከፍ ምንጪ ምስ መለሰ ኣብ ትሕቲኡ ይርአዩ።"</string>
+<string name="search_state_no_results_type_filter" formatted="true">"%s ጥራይ። ማጣሪያ ዓይነትካ ፍለጋ የጽብብ ኣሎ።"</string>
+<string name="search_tv_source_failed" formatted="true">"ኣይተኻኣለን %s"</string>
+<string name="search_tv_source_pinned">"ተሰኪሉ"</string>
+<string name="search_tv_sources_panel_meta" formatted="true">"%1$d ካብ %2$d ተኸፊቱ · ለውጥታት ብተፈጸመ ይትግበሩ"</string>
 <string name="seek_back_10_seconds">"10 ካልኢት ንድሕሪት"</string>
 <string name="seek_forward_10_seconds">"10 ካልኢት ንቕድሚት"</string>
 <string name="subtitles_file_empty">"እዚ ፋይል ንኡስ ጽሑፍ ባዶ እዩ"</string>

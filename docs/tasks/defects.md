@@ -1506,7 +1506,7 @@ no test. A range still in flight keeps reading up to the end of its range after 
 
 ## BUG-37 — On TV search's history, the first row's focus ring is cut off at the top · **low** · measured 2026-11-05
 
-**Status:** open, not fixed · found by `INF-11`'s first screenshot run · `SearchRecentColumn.kt`
+**Status:** fixed in `KMP-42`: the list carries the ring's bleed as content padding, and with that padding removed `search-history-filled` fails with the top edge cut off · found by `INF-11`'s first screenshot run · `SearchRecentColumn.kt`
 
 When the first history row has focus, its ring has no top edge. In `search-history-focus-row.png` (`Television_720p`, 1280x720), the ring's sides
 start at y 250, and above the row at x 700 there is no ring pixel at all. The bottom edge is drawn, white at y 317 and 318. The row is the first item
@@ -1534,7 +1534,7 @@ behaviour that task had to keep.
 
 ## BUG-34 — On TV, LEFT from a text field never reaches the rail · **medium** · measured 2026-11-05
 
-**Status:** open. Measured on `Television_720p`, API 36, with the Compose rail, driven by `DpadDriver`.
+**Status:** fixed for search in `KMP-42`, and still open for the library's filter, which passes no `onLeftEdge`. The cause was as guessed below: `TextField` now handles Left before the cursor does, and calls `onLeftEdge` when nothing in the composition is to its left. Measured on `Television_720p`, API 36, with the Compose rail, driven by `DpadDriver`.
 
 From the search field or the library's filter, LEFT does nothing, however many times it is pressed. A person on the top
 row of either page has to go down a row first to reach the rail. Down still leaves the field, so it is not a trap.

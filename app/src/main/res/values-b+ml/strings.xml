@@ -264,6 +264,10 @@
 <string name="search_provider_text_providers">"സ്രോതസ് അടിസ്ഥാനത്തിൽ തിരയുക"</string>
 <string name="search_provider_text_types">"തരം അടിസ്ഥാനത്തിൽ തിരയുക"</string>
 <string name="search_state_idle_body_desktop">"ഒരു ശീർഷകം ടൈപ്പ് ചെയ്യുക. ഓരോ ഉറവിടവും മറുപടി നൽകുമ്പോൾ ഫലങ്ങൾ അതിനു താഴെ കാണിക്കും."</string>
+<string name="search_state_no_results_type_filter" formatted="true">"%s മാത്രം. നിങ്ങളുടെ തരം ഫിൽട്ടർ തിരയൽ ചുരുക്കുന്നു."</string>
+<string name="search_tv_source_failed" formatted="true">"പരാജയപ്പെട്ടു %s"</string>
+<string name="search_tv_source_pinned">"പിൻ ചെയ്തു"</string>
+<string name="search_tv_sources_panel_meta" formatted="true">"%2$d-ൽ %1$d പ്രവർത്തനക്ഷമം · പൂർത്തിയായി അമർത്തുമ്പോൾ മാറ്റങ്ങൾ ബാധകമാകും"</string>
 <string name="season">"സീസൺ"</string>
 <string name="seek_back_10_seconds">"10 സെക്കൻഡ് പിന്നോട്ട് പോകുക"</string>
 <string name="seek_forward_10_seconds">"10 സെക്കൻഡ് മുന്നോട്ട് പോകുക"</string>

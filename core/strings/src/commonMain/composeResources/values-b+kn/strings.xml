@@ -157,6 +157,10 @@
 <string name="search_provider_text_providers">ಪೂರೈಕೆದಾರರನ್ನು ಬಳಸಿಕೊಂಡು ಹುಡುಕಿ</string>
 <string name="search_provider_text_types">ಪ್ರಕಾರಗಳನ್ನು ಬಳಸಿಕೊಂಡು ಹುಡುಕಿ</string>
 <string name="search_state_idle_body_desktop">ಶೀರ್ಷಿಕೆಯನ್ನು ಟೈಪ್ ಮಾಡಿ. ಪ್ರತಿಯೊಂದು ಮೂಲ ಉತ್ತರಿಸಿದಂತೆ ಫಲಿತಾಂಶಗಳು ಅದರ ಕೆಳಗೆ ಕಾಣಿಸುತ್ತವೆ.</string>
+<string name="search_state_no_results_type_filter">%s ಮಾತ್ರ. ನಿಮ್ಮ ಪ್ರಕಾರದ ಫಿಲ್ಟರ್ ಹುಡುಕಾಟವನ್ನು ಕಿರಿದುಗೊಳಿಸುತ್ತಿದೆ.</string>
+<string name="search_tv_source_failed">ವಿಫಲ %s</string>
+<string name="search_tv_source_pinned">ಪಿನ್ ಮಾಡಲಾಗಿದೆ</string>
+<string name="search_tv_sources_panel_meta">%2$d ರಲ್ಲಿ %1$d ಸಕ್ರಿಯ · ಬದಲಾವಣೆಗಳು ಮುಗಿದಿದೆ ನಂತರ ಅನ್ವಯವಾಗುತ್ತವೆ</string>
 <string name="seek_back_10_seconds">10 ಸೆಕೆಂಡುಗಳು ಹಿಂದೆ ಹೋಗು</string>
 <string name="seek_forward_10_seconds">10 ಸೆಕೆಂಡುಗಳು ಮುಂದೆ ಹೋಗು</string>
 <string name="show_log_cat">ಲಾಗ್‌ಕ್ಯಾಟ್ 🐈 ತೋರಿಸಿ</string>

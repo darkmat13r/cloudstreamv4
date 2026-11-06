@@ -596,8 +596,12 @@
 <string name="search_provider_text_providers">Поиск с использованием поставщиков</string>
 <string name="search_provider_text_types">Поиск с использованием типов</string>
 <string name="search_state_idle_body_desktop">Введите название. Результаты появятся под каждым источником, когда он ответит.</string>
+<string name="search_state_no_results_type_filter">Только %s. Фильтр по типу сужает поиск.</string>
 <string name="search_suggestions">Поиск предложений</string>
 <string name="search_suggestions_des">Показывать подсказки поиска при вводе текста</string>
+<string name="search_tv_source_failed">СБОЙ %s</string>
+<string name="search_tv_source_pinned">ЗАКРЕПЛЕНО</string>
+<string name="search_tv_sources_panel_meta">ВКЛЮЧЕНО %1$d ИЗ %2$d · ИЗМЕНЕНИЯ ВСТУПЯТ В СИЛУ ПОСЛЕ НАЖАТИЯ ГОТОВО</string>
 <string name="season">Сезон</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">С</string>

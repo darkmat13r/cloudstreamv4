@@ -592,8 +592,12 @@
 <string name="search_provider_text_providers">Пошук праз пастаўшчыкоў</string>
 <string name="search_provider_text_types">Пошук праз тыпы</string>
 <string name="search_state_idle_body_desktop">Увядзіце назву. Вынікі з'яўляюцца пад кожнай крыніцай, калі яна адказвае.</string>
+<string name="search_state_no_results_type_filter">Толькі %s. Фільтр па тыпе звужае пошук.</string>
 <string name="search_suggestions">Прапановы пошуку</string>
 <string name="search_suggestions_des">Паказваць прапановы пошуку падчас уводу тэксту</string>
+<string name="search_tv_source_failed">ЗБОЙ %s</string>
+<string name="search_tv_source_pinned">ЗАМАЦАВАНА</string>
+<string name="search_tv_sources_panel_meta">%1$d З %2$d УКЛЮЧАНА · ЗМЕНЫ ПРЫМЯНЯЮЦЦА ПАСЛЯ ГАТОВА</string>
 <string name="season">Сезон</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">Сез</string>

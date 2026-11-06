@@ -532,8 +532,12 @@
 <string name="search_provider_text_providers">Keresés szolgáltatók szerint</string>
 <string name="search_provider_text_types">Keresés típusok szerint</string>
 <string name="search_state_idle_body_desktop">Írjon be egy címet. Az eredmények az egyes források alatt jelennek meg, amint válaszolnak.</string>
+<string name="search_state_no_results_type_filter">Csak %s. A típusszűrő szűkíti a keresést.</string>
 <string name="search_suggestions">Keresési javaslatok</string>
 <string name="search_suggestions_des">Mutasson keresési javaslatok gépelés közben</string>
+<string name="search_tv_source_failed">SIKERTELEN %s</string>
+<string name="search_tv_source_pinned">KITŰZVE</string>
+<string name="search_tv_sources_panel_meta">%2$d KÖZÜL %1$d ENGEDÉLYEZVE · A VÁLTOZÁSOK A KÉSZ GOMBBAL ÉRVÉNYESÜLNEK</string>
 <string name="season">Évad</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">Év</string>

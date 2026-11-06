@@ -596,8 +596,12 @@
 <string name="search_provider_text_providers">"プロバイダーから探す"</string>
 <string name="search_provider_text_types">"使用タイプの検索"</string>
 <string name="search_state_idle_body_desktop">"タイトルを入力してください。各ソースが応答すると、その下に結果が表示されます。"</string>
+<string name="search_state_no_results_type_filter" formatted="true">"%sのみ。種類フィルターで検索が絞り込まれています。"</string>
 <string name="search_suggestions">"検索候補"</string>
 <string name="search_suggestions_des">"入力中に検索候補を表示する"</string>
+<string name="search_tv_source_failed" formatted="true">"失敗 %s"</string>
+<string name="search_tv_source_pinned">"固定済み"</string>
+<string name="search_tv_sources_panel_meta" formatted="true">"%2$d件中%1$d件が有効 · 変更は「完了」で反映"</string>
 <string name="season">"シーズン"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"シーズン"</string>

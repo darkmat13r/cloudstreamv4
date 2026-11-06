@@ -153,6 +153,10 @@
 <string name="search_provider_text_providers">"Soek deur verskaffers te gebruik"</string>
 <string name="search_provider_text_types">"Soek met behulp van tipes"</string>
 <string name="search_state_idle_body_desktop">"Tik 'n titel. Resultate verskyn onder elke bron soos dit antwoord."</string>
+<string name="search_state_no_results_type_filter" formatted="true">"Slegs %s. Jou tipe-filter beperk die soektog."</string>
+<string name="search_tv_source_failed" formatted="true">"MISLUK %s"</string>
+<string name="search_tv_source_pinned">"VASGESPELD"</string>
+<string name="search_tv_sources_panel_meta" formatted="true">"%1$d VAN %2$d GEAKTIVEER · WYSIGINGS GELD BY KLAAR"</string>
 <string name="season">"Seisoen"</string>
 <string name="seek_back_10_seconds">"Spring 10 sekondes terug"</string>
 <string name="seek_forward_10_seconds">"Spring 10 sekondes vorentoe"</string>

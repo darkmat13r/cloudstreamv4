@@ -137,6 +137,10 @@
 <string name="search_hint_site">بگەڕێ بۆ%s…</string>
 <string name="search_poster_img_des">پۆستەر</string>
 <string name="search_state_idle_body_desktop">ناونیشانێک بنووسە. ئەنجامەکان لە ژێر هەر سەرچاوەیەک دەردەکەون کاتێک وەڵام دەداتەوە.</string>
+<string name="search_state_no_results_type_filter">تەنها %s. فلتەری جۆرەکەت گەڕانەکە سنووردار دەکات.</string>
+<string name="search_tv_source_failed">شکستی هێنا %s</string>
+<string name="search_tv_source_pinned">جێگیرکراو</string>
+<string name="search_tv_sources_panel_meta">%1$d لە %2$d چالاککراون · گۆڕانکارییەکان دوای تەواو جێبەجێ دەبن</string>
 <string name="seek_back_10_seconds">10 چرکە بگەڕێوە دواوە</string>
 <string name="seek_forward_10_seconds">10 چرکە بڕۆ پێشەوە</string>
 <string name="select_all">هەموو هەڵبژێرە</string>

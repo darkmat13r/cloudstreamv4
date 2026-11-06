@@ -596,8 +596,12 @@
 <string name="search_provider_text_providers">Пошук за постачальниками</string>
 <string name="search_provider_text_types">Пошук за типами</string>
 <string name="search_state_idle_body_desktop">Введіть назву. Результати з'являться під кожним джерелом, коли воно відповість.</string>
+<string name="search_state_no_results_type_filter">Лише %s. Фільтр за типом звужує пошук.</string>
 <string name="search_suggestions">Пропозиції пошуку</string>
 <string name="search_suggestions_des">Показувати підказки пошуку під час введення тексту</string>
+<string name="search_tv_source_failed">ЗБІЙ %s</string>
+<string name="search_tv_source_pinned">ЗАКРІПЛЕНО</string>
+<string name="search_tv_sources_panel_meta">УВІМКНЕНО %1$d З %2$d · ЗМІНИ ЗАСТОСОВУЮТЬСЯ ПІСЛЯ НАТИСКАННЯ ГОТОВО</string>
 <string name="season">Сезон</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">С</string>

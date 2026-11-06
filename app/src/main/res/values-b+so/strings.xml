@@ -436,8 +436,12 @@
 <string name="search_provider_text_providers">"Ku raadi qaybiyeyaasha"</string>
 <string name="search_provider_text_types">"Ku raadi noocyada"</string>
 <string name="search_state_idle_body_desktop">"Qor cinwaan. Natiijooyinku waxay ka muuqdaan xigasho kasta hoosteeda marka ay jawaabto."</string>
+<string name="search_state_no_results_type_filter" formatted="true">"Kaliya %s. Shaandhada nooca ayaa soo koobaya raadinta."</string>
 <string name="search_suggestions">"Talooyinka Raadinta"</string>
 <string name="search_suggestions_des">"Soo bandhig talooyinka inta aad wax qorayso"</string>
+<string name="search_tv_source_failed" formatted="true">"FASHILAY %s"</string>
+<string name="search_tv_source_pinned">"LA DHEJIYAY"</string>
+<string name="search_tv_sources_panel_meta" formatted="true">"%1$d KA %2$d LA HAWLGELIYAY · ISBEDDELADA WAXAY DHAQAN GALAAN MARKA LA DOOTO DHAN"</string>
 <string name="season">"Kalka"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"K"</string>

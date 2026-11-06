@@ -554,8 +554,12 @@
 <string name="search_provider_text_providers">Zoeken met providers</string>
 <string name="search_provider_text_types">Zoeken met types</string>
 <string name="search_state_idle_body_desktop">Typ een titel. Resultaten verschijnen onder elke bron zodra die antwoordt.</string>
+<string name="search_state_no_results_type_filter">Alleen %s. Je typefilter beperkt de zoekopdracht.</string>
 <string name="search_suggestions">Zoeksuggesties</string>
 <string name="search_suggestions_des">Zoeksuggesties laten zien tijdens het typen</string>
+<string name="search_tv_source_failed">MISLUKT %s</string>
+<string name="search_tv_source_pinned">VASTGEPIND</string>
+<string name="search_tv_sources_panel_meta">%1$d VAN %2$d INGESCHAKELD · WIJZIGINGEN GELDEN NA KLAAR</string>
 <string name="season">Seizoen</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">S</string>

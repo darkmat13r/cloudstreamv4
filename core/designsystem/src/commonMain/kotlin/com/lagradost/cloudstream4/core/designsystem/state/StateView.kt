@@ -77,8 +77,10 @@ object StateViewDefaults {
  *   ago, and a TV whose focus has nowhere to land answers the D-pad with nothing. Turn it off
  *   only when something else on the screen is deliberately taking focus instead.
  * @param glyph optional decoration, measured into a [StateViewDefaults.GlyphSize] box. Not
- *   focusable, not interactive — the design system ships no icon set, so the icon is the
- *   caller's.
+ *   focusable, not interactive. The caller chooses it, from `CloudStreamIcons`.
+ * @param showAction `false` when the caller draws [StatePrompt.action] somewhere else, which
+ *   `TV Search Suggestions` 8c does: its action rides the chip row. The caller then owes that action
+ *   a focus stop, and owes it [requestInitialFocus]'s job too. The exactly-one-action rule still holds.
  */
 @Composable
 fun StateView(
@@ -87,6 +89,7 @@ fun StateView(
     detail: String? = null,
     requestInitialFocus: Boolean = true,
     glyph: @Composable () -> Unit = {},
+    showAction: Boolean = true,
 ) {
     val actionFocus = remember { FocusRequester() }
     // Keyed on the flag alone, deliberately. `prompt.action` holds a lambda, so a ViewModel that
@@ -95,8 +98,8 @@ fun StateView(
     // leave it. "When this state appears" is entry into composition, which this key already means:
     // each `when` branch in `UiStateHost` is its own composition group, so Empty -> Error disposes
     // this `StateView` and the effect runs again on the new one.
-    LaunchedEffect(requestInitialFocus) {
-        if (requestInitialFocus) actionFocus.requestFocus()
+    LaunchedEffect(requestInitialFocus, showAction) {
+        if (requestInitialFocus && showAction) actionFocus.requestFocus()
     }
     Box(
         modifier = modifier.fillMaxSize(),
@@ -110,11 +113,13 @@ fun StateView(
             )
             Spacer(Modifier.height(StateViewDefaults.BlockGap))
             PromptText(prompt = prompt, detail = detail)
-            Spacer(Modifier.height(StateViewDefaults.BlockGap))
-            StateActionButton(
-                action = prompt.action,
-                modifier = Modifier.focusRequester(actionFocus),
-            )
+            if (showAction) {
+                Spacer(Modifier.height(StateViewDefaults.BlockGap))
+                StateActionButton(
+                    action = prompt.action,
+                    modifier = Modifier.focusRequester(actionFocus),
+                )
+            }
         }
     }
 }

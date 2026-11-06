@@ -592,8 +592,12 @@
 <string name="search_provider_text_providers">"소스로 검색"</string>
 <string name="search_provider_text_types">"유형을 사용하여 검색"</string>
 <string name="search_state_idle_body_desktop">"제목을 입력하세요. 각 소스가 응답하면 그 아래에 결과가 표시됩니다."</string>
+<string name="search_state_no_results_type_filter" formatted="true">"%s만. 유형 필터가 검색을 좁히고 있습니다."</string>
 <string name="search_suggestions">"검색어 제안"</string>
 <string name="search_suggestions_des">"입력하는 동안 검색어 제안 표시"</string>
+<string name="search_tv_source_failed" formatted="true">"실패 %s"</string>
+<string name="search_tv_source_pinned">"고정됨"</string>
+<string name="search_tv_sources_panel_meta" formatted="true">"%2$d개 중 %1$d개 사용 중 · 변경 사항은 완료를 누르면 적용됩니다"</string>
 <string name="season">"시즌"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"시즌"</string>

@@ -596,8 +596,12 @@
 <string name="search_provider_text_providers">"Suche anhand Anbietern"</string>
 <string name="search_provider_text_types">"Suche anhand Typen"</string>
 <string name="search_state_idle_body_desktop">"Titel eingeben. Ergebnisse erscheinen unter jeder Quelle, sobald sie antwortet."</string>
+<string name="search_state_no_results_type_filter" formatted="true">"Nur %s. Der Typfilter schränkt die Suche ein."</string>
 <string name="search_suggestions">"Empfehlungen suchen"</string>
 <string name="search_suggestions_des">"Beim Tippen Suchempfehlungen anzeigen"</string>
+<string name="search_tv_source_failed" formatted="true">"FEHLGESCHLAGEN %s"</string>
+<string name="search_tv_source_pinned">"ANGEPINNT"</string>
+<string name="search_tv_sources_panel_meta" formatted="true">"%1$d VON %2$d AKTIV · ÄNDERUNGEN WERDEN BEI FERTIG ÜBERNOMMEN"</string>
 <string name="season">"Staffel"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"S"</string>

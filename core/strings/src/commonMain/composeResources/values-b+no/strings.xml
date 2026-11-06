@@ -433,6 +433,10 @@
 <string name="search_provider_text_providers">Søk med leverandører</string>
 <string name="search_provider_text_types">Søk med typer</string>
 <string name="search_state_idle_body_desktop">Skriv inn en tittel. Resultatene vises under hver kilde når den svarer.</string>
+<string name="search_state_no_results_type_filter">Bare %s. Typefilteret ditt begrenser søket.</string>
+<string name="search_tv_source_failed">FEILET %s</string>
+<string name="search_tv_source_pinned">FESTET</string>
+<string name="search_tv_sources_panel_meta">%1$d AV %2$d AKTIVERT · ENDRINGER GJELDER ETTER FERDIG</string>
 <string name="season">Sesong</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">S</string>

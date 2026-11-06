@@ -199,7 +199,11 @@
 <string name="search_provider_text_providers">Serĉi uzante provizantojn</string>
 <string name="search_provider_text_types">Serĉi uzante tipojn</string>
 <string name="search_state_idle_body_desktop">Tajpu titolon. Rezultoj aperas sub ĉiu fonto kiam ĝi respondas.</string>
+<string name="search_state_no_results_type_filter">Nur %s. Via tipfiltrilo mallarĝigas la serĉon.</string>
 <string name="search_suggestions">Serĉaj Sugestoj</string>
+<string name="search_tv_source_failed">MALSUKCESIS %s</string>
+<string name="search_tv_source_pinned">FIKSITA</string>
+<string name="search_tv_sources_panel_meta">%1$d EL %2$d ŜALTITAJ · ŜANĜOJ APLIKIĜAS PER FARITE</string>
 <string name="season">Sezono</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">S</string>

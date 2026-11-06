@@ -596,8 +596,12 @@
 <string name="search_provider_text_providers">Sök med hjälp av leverantörer</string>
 <string name="search_provider_text_types">Sök med hjälp av typer</string>
 <string name="search_state_idle_body_desktop">Skriv en titel. Resultaten visas under varje källa när den svarar.</string>
+<string name="search_state_no_results_type_filter">Endast %s. Ditt typfilter begränsar sökningen.</string>
 <string name="search_suggestions">Sökförslag</string>
 <string name="search_suggestions_des">Visa sökförslag medan du skriver</string>
+<string name="search_tv_source_failed">MISSLYCKADES %s</string>
+<string name="search_tv_source_pinned">FASTSATT</string>
+<string name="search_tv_sources_panel_meta">%1$d AV %2$d AKTIVERADE · ÄNDRINGAR TILLÄMPAS VID KLAR</string>
 <string name="season">Säsong</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">S</string>
