@@ -3,6 +3,7 @@
 <resources>
 <string name="detail_load_failed_body">Maaaring hindi available ang source.</string>
 <string name="detail_load_failed_headline">Hindi mabuksan ang pamagat na ito</string>
+<plurals name="downloads_failed_count"><item quantity="one">%d nabigo</item><item quantity="other">%d nabigo</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Hindi na-load ang %d seksyon</item><item quantity="other">Hindi na-load ang %d seksyon</item></plurals>
 <string name="action_add_to_bookmarks">I-set ang Status</string>
 <string name="action_default">Default</string>
@@ -75,17 +76,28 @@
 <string name="downloaded">Downloaded</string>
 <string name="downloading">Downloading</string>
 <string name="downloads_browse_library">I-browse ang library</string>
+<string name="downloads_delete_all">Tanggalin lahat</string>
 <string name="downloads_empty_body">Lalabas dito ang mga download na sinimulan mo mula sa listahan ng episode ng isang pamagat at mapapanood nang walang koneksyon.</string>
 <string name="downloads_empty_headline">Wala pang mga download</string>
 <string name="downloads_free_up_space">Magbakante ng espasyo</string>
 <string name="downloads_load_failed_body">Hindi nabago ang mga na-download mong file.</string>
 <string name="downloads_load_failed_headline">Hindi mabasa ang iyong mga download</string>
 <string name="downloads_offline_pill">Offline · walang koneksyon</string>
+<string name="downloads_on_disk">%s sa disk</string>
 <string name="downloads_play_from_link">I-play mula sa link</string>
+<string name="downloads_play_next">I-play ang susunod</string>
+<string name="downloads_reason_network">Nawala ang network</string>
+<string name="downloads_reason_no_link">Walang gumaganang link</string>
+<string name="downloads_reason_source">Maagang huminto ang source</string>
+<string name="downloads_reason_storage_full">Puno na ang storage</string>
+<string name="downloads_reason_storage_unavailable">Hindi maabot ang storage</string>
+<string name="downloads_retry_failed">Subukang muli ang nabigo (%d)</string>
 <string name="downloads_select">Piliin</string>
+<string name="downloads_state_queued">Nakapila</string>
 <string name="downloads_storage_full_headline">Kulang ang storage</string>
 <string name="downloads_storage_legend">%1$s ng %2$s ang gamit · %3$s sa mga download</string>
 <string name="downloads_storage_needs">Kailangan ng %s pa</string>
+<string name="downloads_watched">%d%% napanood</string>
 <string name="duration">Tagal</string>
 <string name="duration_format">%d min</string>
 <string name="eigengraumode_settings">Eigengravy Mode</string>

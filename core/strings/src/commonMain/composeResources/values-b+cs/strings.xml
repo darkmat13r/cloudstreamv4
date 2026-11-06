@@ -4,6 +4,7 @@
 <string name="detail_load_failed_body">Zdroj možná není dostupný.</string>
 <string name="detail_load_failed_headline">Tento titul se nepodařilo otevřít</string>
 <plurals name="downloads_active"><item quantity="one">%d aktivní stahování</item><item quantity="few">%d aktivní stahování</item><item quantity="many">%d aktivních stahování</item><item quantity="other">%d aktivních stahování</item></plurals>
+<plurals name="downloads_failed_count"><item quantity="one">%d neúspěšné</item><item quantity="few">%d neúspěšná</item><item quantity="many">%d neúspěšných</item><item quantity="other">%d neúspěšných</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d stahování uloženo do fronty</item><item quantity="few">%d stahování uložena do fronty</item><item quantity="many">%d stahování uloženo do fronty</item><item quantity="other">%d stahování uloženo do fronty</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Nepodařilo se načíst %d sekci</item><item quantity="few">Nepodařilo se načíst %d sekce</item><item quantity="many">Nepodařilo se načíst %d sekcí</item><item quantity="other">Nepodařilo se načíst %d sekcí</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d skrytý odkaz</item><item quantity="few">%d skryté odkazy</item><item quantity="many">%d skrytých odkazů</item><item quantity="other">%d skrytých odkazů</item></plurals>
@@ -198,6 +199,7 @@
 <string name="downloaded_file">Stažen soubor</string>
 <string name="downloading">Stahování</string>
 <string name="downloads_browse_library">Procházet knihovnu</string>
+<string name="downloads_delete_all">Smazat vše</string>
 <string name="downloads_delete_select">Zvolte položky k odstranění</string>
 <string name="downloads_empty">Aktuálně neprobíhají žádná stahování.</string>
 <string name="downloads_empty_body">Stahování spuštěná ze seznamu epizod titulu se zobrazí zde a přehrají se bez připojení.</string>
@@ -206,11 +208,21 @@
 <string name="downloads_load_failed_body">Vaše stažené soubory nebyly změněny.</string>
 <string name="downloads_load_failed_headline">Stahování se nepodařilo načíst</string>
 <string name="downloads_offline_pill">Offline · bez připojení</string>
+<string name="downloads_on_disk">%s na disku</string>
 <string name="downloads_play_from_link">Přehrát z odkazu</string>
+<string name="downloads_play_next">Přehrát další</string>
+<string name="downloads_reason_network">Ztráta sítě</string>
+<string name="downloads_reason_no_link">Žádný funkční odkaz</string>
+<string name="downloads_reason_source">Zdroj skončil předčasně</string>
+<string name="downloads_reason_storage_full">Úložiště je plné</string>
+<string name="downloads_reason_storage_unavailable">Úložiště nedostupné</string>
+<string name="downloads_retry_failed">Zkusit znovu neúspěšné (%d)</string>
 <string name="downloads_select">Vybrat</string>
+<string name="downloads_state_queued">Ve frontě</string>
 <string name="downloads_storage_full_headline">Nedostatek úložiště</string>
 <string name="downloads_storage_legend">Použito %1$s z %2$s · %3$s ve stahování</string>
 <string name="downloads_storage_needs">Potřeba dalších %s</string>
+<string name="downloads_watched">Zhlédnuto %d%%</string>
 <string name="duplicate_add">Přidat</string>
 <string name="duplicate_message_multiple">Ve vaší knihovně byl nalezen potenciální duplikát: \n \n%s \n \nChcete přesto přidat tuto položku, nahradit existující nebo zrušit akci?</string>
 <string name="duplicate_message_single">Vypadá to, že ve vaší knihovně již existuje potenciální duplikát: „%s“. \n \nChcete přesto přidat tuto položku, nahradit existující nebo zrušit akci?</string>

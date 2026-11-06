@@ -4,6 +4,7 @@
 <string name="detail_load_failed_body">A fonte pode estar indisponível.</string>
 <string name="detail_load_failed_headline">Não foi possível abrir este título</string>
 <plurals name="downloads_active"><item quantity="one">%ddownload ativo</item><item quantity="many">%ddownloads ativos</item><item quantity="other">%ddownloads ativos</item></plurals>
+<plurals name="downloads_failed_count"><item quantity="one">%d falhou</item><item quantity="many">%d falharam</item><item quantity="other">%d falharam</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d download na sequência</item><item quantity="many">%d downloads na sequência</item><item quantity="other">%d downloads na sequência</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Falha ao carregar %d seção</item><item quantity="many">Falha ao carregar %d seções</item><item quantity="other">Falha ao carregar %d seções</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d link oculto</item><item quantity="many">%d link ocultos</item><item quantity="other">%d link ocultos</item></plurals>
@@ -198,6 +199,7 @@
 <string name="downloaded_file">Arquivo baixado</string>
 <string name="downloading">Baixando</string>
 <string name="downloads_browse_library">Explorar biblioteca</string>
+<string name="downloads_delete_all">Apagar tudo</string>
 <string name="downloads_delete_select">Selecionar itens para excluir</string>
 <string name="downloads_empty">Atualmente não há downloads disponíveis.</string>
 <string name="downloads_empty_body">Os downloads iniciados na lista de episódios de um título aparecem aqui e são reproduzidos sem conexão.</string>
@@ -206,11 +208,21 @@
 <string name="downloads_load_failed_body">Seus arquivos baixados não foram alterados.</string>
 <string name="downloads_load_failed_headline">Não foi possível ler seus downloads</string>
 <string name="downloads_offline_pill">Offline · sem conexão</string>
+<string name="downloads_on_disk">%s no disco</string>
 <string name="downloads_play_from_link">Reproduzir de link</string>
+<string name="downloads_play_next">Reproduzir próximo</string>
+<string name="downloads_reason_network">Rede perdida</string>
+<string name="downloads_reason_no_link">Nenhum link funcionando</string>
+<string name="downloads_reason_source">A fonte parou antes do fim</string>
+<string name="downloads_reason_storage_full">Armazenamento cheio</string>
+<string name="downloads_reason_storage_unavailable">Armazenamento indisponível</string>
+<string name="downloads_retry_failed">Repetir falhas (%d)</string>
 <string name="downloads_select">Selecionar</string>
+<string name="downloads_state_queued">Na fila</string>
 <string name="downloads_storage_full_headline">Armazenamento insuficiente</string>
 <string name="downloads_storage_legend">%1$s de %2$s usados · %3$s em downloads</string>
 <string name="downloads_storage_needs">Faltam %s</string>
+<string name="downloads_watched">%d%% assistido</string>
 <string name="duplicate_add">Adicionar</string>
 <string name="duplicate_message_multiple">Possíveis itens duplicados foram encontrados em sua biblioteca: \n \n %s \n \nGostaria de adicionar este item mesmo assim, substituir os existentes ou cancelar a ação?</string>
 <string name="duplicate_message_single">Parece que já existe um item potencialmente duplicado na sua biblioteca: '%s.' \n \nGostaria de adicionar este item mesmo assim, substituir o existente ou cancelar a ação?</string>

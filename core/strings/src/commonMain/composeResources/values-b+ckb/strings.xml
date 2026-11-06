@@ -3,6 +3,7 @@
 <resources>
 <string name="detail_load_failed_body">ڕەنگە سەرچاوەکە بەردەست نەبێت.</string>
 <string name="detail_load_failed_headline">نەتوانرا ئەم ناونیشانە بکرێتەوە</string>
+<plurals name="downloads_failed_count"><item quantity="one">%d شکستی هێنا</item><item quantity="other">%d شکستی هێنا</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d بەش بار نەکرا</item><item quantity="other">%d بەش بار نەکرا</item></plurals>
 <string name="action_add_to_bookmarks">دۆخی تەماشاکردن دابنێ</string>
 <string name="action_remove_from_bookmarks">لابردن</string>
@@ -28,6 +29,7 @@
 <string name="downloaded">دابەزێنراوە</string>
 <string name="downloading">دادەبەزێندرێت</string>
 <string name="downloads_browse_library">گەڕان لە کتێبخانە</string>
+<string name="downloads_delete_all">هەمووی بسڕەوە</string>
 <string name="downloads_delete_select">ئەو شتانە هەڵبژێرە کە دەتەوێت بیسڕیتەوە</string>
 <string name="downloads_empty">لە ئێستادا هیچ داونلۆدێک نییە.</string>
 <string name="downloads_empty_body">ئەو داونلۆدانەی لە لیستی ئەڵقەکانی ناونیشانێکەوە دەستی پێ دەکەیت لێرە دەردەکەون و بەبێ پەیوەندی لێدەدرێن.</string>
@@ -36,11 +38,21 @@
 <string name="downloads_load_failed_body">فایلە داونلۆدکراوەکانت نەگۆڕدراون.</string>
 <string name="downloads_load_failed_headline">نەتوانرا داونلۆدەکانت بخوێنرێنەوە</string>
 <string name="downloads_offline_pill">ئۆفلاین · پەیوەندی نییە</string>
+<string name="downloads_on_disk">%s لەسەر دیسک</string>
 <string name="downloads_play_from_link">لێدان لە بەستەر</string>
+<string name="downloads_play_next">دواتر لێبدە</string>
+<string name="downloads_reason_network">تۆڕ پچڕا</string>
+<string name="downloads_reason_no_link">هیچ بەستەرێکی کارا نییە</string>
+<string name="downloads_reason_source">سەرچاوە زوو وەستا</string>
+<string name="downloads_reason_storage_full">کۆگا پڕە</string>
+<string name="downloads_reason_storage_unavailable">کۆگا بەردەست نییە</string>
+<string name="downloads_retry_failed">دووبارە هەوڵبدەرەوە (%d)</string>
 <string name="downloads_select">هەڵبژێرە</string>
+<string name="downloads_state_queued">لە ڕیزدایە</string>
 <string name="downloads_storage_full_headline">کۆگا بەش ناکات</string>
 <string name="downloads_storage_legend">%1$s لە %2$s بەکارهاتووە · %3$s لە داونلۆدەکان</string>
 <string name="downloads_storage_needs">%s ی زیاتر پێویستە</string>
+<string name="downloads_watched">%d%% بینراوە</string>
 <string name="duration_format">min%d</string>
 <string name="duration_hours_minutes_format">%1$dh %2$dm</string>
 <string name="episode_more_options_des">هەڵبژاردنی زیاتر</string>

@@ -3191,6 +3191,7 @@ public final static class com/lagradost/cloudstream3/R$navigation : java/lang/Ob
 
 public final static class com/lagradost/cloudstream3/R$plurals : java/lang/Object {
 	public static field downloads_active I
+	public static field downloads_failed_count I
 	public static field downloads_queued I
 	public static field episodes I
 	public static field home_sections_failed I
@@ -3432,22 +3433,36 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field downloaded_file I
 	public static field downloading I
 	public static field downloads_browse_library I
+	public static field downloads_delete_all I
 	public static field downloads_delete_chosen I
 	public static field downloads_delete_select I
 	public static field downloads_empty I
 	public static field downloads_empty_body I
 	public static field downloads_empty_headline I
+	public static field downloads_episode_code I
 	public static field downloads_film_subtitle I
 	public static field downloads_free_up_space I
+	public static field downloads_joined I
 	public static field downloads_load_failed_body I
 	public static field downloads_load_failed_headline I
 	public static field downloads_offline_pill I
+	public static field downloads_on_disk I
 	public static field downloads_play_from_link I
+	public static field downloads_play_next I
+	public static field downloads_rate I
+	public static field downloads_reason_network I
+	public static field downloads_reason_no_link I
+	public static field downloads_reason_source I
+	public static field downloads_reason_storage_full I
+	public static field downloads_reason_storage_unavailable I
+	public static field downloads_retry_failed I
 	public static field downloads_select I
 	public static field downloads_series_subtitle I
+	public static field downloads_state_queued I
 	public static field downloads_storage_full_headline I
 	public static field downloads_storage_legend I
 	public static field downloads_storage_needs I
+	public static field downloads_watched I
 	public static field duplicate_add I
 	public static field duplicate_cancel I
 	public static field duplicate_message_multiple I
@@ -37194,6 +37209,27 @@ public interface com/lagradost/cloudstream4/detail/LocalDetailRecords : java/lan
 	public abstract fun writeWatchState (ILcom/lagradost/cloudstream3/ui/WatchType;Lcom/lagradost/cloudstream3/utils/DataStoreHelper$BookmarkedData;)V
 }
 
+public final class com/lagradost/cloudstream4/download/AndroidDownloadSeriesSource : java/lang/Object, com/lagradost/cloudstream4/feature/downloads/series/DownloadSeriesSource {
+	public static final field $stable I
+	public fun <init> (Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;Lkotlinx/coroutines/flow/Flow;)V
+	public synthetic fun <init> (Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;Lkotlinx/coroutines/flow/Flow;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public static final synthetic fun access$getAppContext$p (Lcom/lagradost/cloudstream4/download/AndroidDownloadSeriesSource;)Landroid/content/Context;
+	public static final synthetic fun access$getCached$p (Lcom/lagradost/cloudstream4/download/AndroidDownloadSeriesSource;)Ljava/util/Map;
+	public static final synthetic fun access$getFolder$p (Lcom/lagradost/cloudstream4/download/AndroidDownloadSeriesSource;)Ljava/lang/String;
+	public static final synthetic fun access$getName$p (Lcom/lagradost/cloudstream4/download/AndroidDownloadSeriesSource;)Ljava/lang/String;
+	public static final synthetic fun access$read (Lcom/lagradost/cloudstream4/download/AndroidDownloadSeriesSource;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final synthetic fun access$setCached$p (Lcom/lagradost/cloudstream4/download/AndroidDownloadSeriesSource;Ljava/util/Map;)V
+	public fun cancel (Lcom/lagradost/cloudstream4/feature/downloads/series/DownloadEpisodeId;)V
+	public fun getContents ()Lkotlinx/coroutines/flow/Flow;
+	public fun pause (Lcom/lagradost/cloudstream4/feature/downloads/series/DownloadEpisodeId;)V
+	public fun refresh ()V
+	public fun resume (Lcom/lagradost/cloudstream4/feature/downloads/series/DownloadEpisodeId;)V
+}
+
+public final static class com/lagradost/cloudstream4/download/AndroidDownloadSeriesSource$read$2$invokeSuspend$lambda$0$$inlined$getKey$1 : com/fasterxml/jackson/core/type/TypeReference {
+	public fun <init> ()V
+}
+
 public final class com/lagradost/cloudstream4/download/AndroidDownloadsSource : java/lang/Object, com/lagradost/cloudstream4/feature/downloads/DownloadsSource {
 	public static final field $stable I
 	public fun <init> (Landroid/content/Context;Lcom/lagradost/cloudstream3/ui/download/DownloadViewModel;Lkotlinx/coroutines/flow/Flow;)V
@@ -37293,6 +37329,80 @@ public final static class com/lagradost/cloudstream4/download/DownloadFacts$spec
 public final static class com/lagradost/cloudstream4/download/DownloadFacts$special$$inlined$map$2$2$1 : kotlin/coroutines/jvm/internal/ContinuationImpl {
 	public fun <init> (Lcom/lagradost/cloudstream4/download/DownloadFacts$special$$inlined$map$2$2;Lkotlin/coroutines/Continuation;)V
 	public final fun invokeSuspend (Ljava/lang/Object;)Ljava/lang/Object;
+}
+
+public final class com/lagradost/cloudstream4/download/DownloadSeriesTvFragment : com/lagradost/cloudstream3/utils/BaseComposeFragment {
+	public static final field $stable I
+	public static final field ARG_FOLDER Ljava/lang/String;
+	public static final field ARG_NAME Ljava/lang/String;
+	public fun <init> ()V
+	public fun Content (Landroidx/compose/runtime/Composer;I)V
+	public static final synthetic fun access$getViewModel (Lcom/lagradost/cloudstream4/download/DownloadSeriesTvFragment;)Lcom/lagradost/cloudstream4/feature/downloads/series/DownloadSeriesViewModel;
+	public static final synthetic fun access$onEffect (Lcom/lagradost/cloudstream4/download/DownloadSeriesTvFragment;Lcom/lagradost/cloudstream4/feature/downloads/series/SeriesEffect;)V
+	public fun onDestroyView ()V
+	public fun onResume ()V
+	public fun onViewCreated (Landroid/view/View;Landroid/os/Bundle;)V
+}
+
+public final static class com/lagradost/cloudstream4/download/DownloadSeriesTvFragment$Content$lambda$2$0$$inlined$getKey$1 : com/fasterxml/jackson/core/type/TypeReference {
+	public fun <init> ()V
+}
+
+public final static class com/lagradost/cloudstream4/download/DownloadSeriesTvFragment$episodeOf$$inlined$getKey$1 : com/fasterxml/jackson/core/type/TypeReference {
+	public fun <init> ()V
+}
+
+public final static class com/lagradost/cloudstream4/download/DownloadSeriesTvFragment$special$$inlined$activityViewModels$default$1 : kotlin/jvm/internal/Lambda, kotlin/jvm/functions/Function0 {
+	public fun <init> (Landroidx/fragment/app/Fragment;)V
+	public final fun invoke ()Landroidx/lifecycle/ViewModelStore;
+	public synthetic fun invoke ()Ljava/lang/Object;
+}
+
+public final static class com/lagradost/cloudstream4/download/DownloadSeriesTvFragment$special$$inlined$activityViewModels$default$2 : kotlin/jvm/internal/Lambda, kotlin/jvm/functions/Function0 {
+	public fun <init> (Lkotlin/jvm/functions/Function0;Landroidx/fragment/app/Fragment;)V
+	public final fun invoke ()Landroidx/lifecycle/viewmodel/CreationExtras;
+	public synthetic fun invoke ()Ljava/lang/Object;
+}
+
+public final static class com/lagradost/cloudstream4/download/DownloadSeriesTvFragment$special$$inlined$activityViewModels$default$3 : kotlin/jvm/internal/Lambda, kotlin/jvm/functions/Function0 {
+	public fun <init> (Landroidx/fragment/app/Fragment;)V
+	public final fun invoke ()Landroidx/lifecycle/ViewModelProvider$Factory;
+	public synthetic fun invoke ()Ljava/lang/Object;
+}
+
+public final static class com/lagradost/cloudstream4/download/DownloadSeriesTvFragment$special$$inlined$viewModels$default$1 : kotlin/jvm/internal/Lambda, kotlin/jvm/functions/Function0 {
+	public fun <init> (Landroidx/fragment/app/Fragment;)V
+	public final fun invoke ()Landroidx/fragment/app/Fragment;
+	public synthetic fun invoke ()Ljava/lang/Object;
+}
+
+public final static class com/lagradost/cloudstream4/download/DownloadSeriesTvFragment$special$$inlined$viewModels$default$2 : kotlin/jvm/internal/Lambda, kotlin/jvm/functions/Function0 {
+	public fun <init> (Lkotlin/jvm/functions/Function0;)V
+	public final fun invoke ()Landroidx/lifecycle/ViewModelStoreOwner;
+	public synthetic fun invoke ()Ljava/lang/Object;
+}
+
+public final static class com/lagradost/cloudstream4/download/DownloadSeriesTvFragment$special$$inlined$viewModels$default$3 : kotlin/jvm/internal/Lambda, kotlin/jvm/functions/Function0 {
+	public fun <init> (Lkotlin/Lazy;)V
+	public final fun invoke ()Landroidx/lifecycle/ViewModelStore;
+	public synthetic fun invoke ()Ljava/lang/Object;
+}
+
+public final static class com/lagradost/cloudstream4/download/DownloadSeriesTvFragment$special$$inlined$viewModels$default$4 : kotlin/jvm/internal/Lambda, kotlin/jvm/functions/Function0 {
+	public fun <init> (Lkotlin/jvm/functions/Function0;Lkotlin/Lazy;)V
+	public final fun invoke ()Landroidx/lifecycle/viewmodel/CreationExtras;
+	public synthetic fun invoke ()Ljava/lang/Object;
+}
+
+public final static class com/lagradost/cloudstream4/download/DownloadSeriesTvFragment$special$$inlined$viewModels$default$5 : kotlin/jvm/internal/Lambda, kotlin/jvm/functions/Function0 {
+	public fun <init> (Landroidx/fragment/app/Fragment;Lkotlin/Lazy;)V
+	public final fun invoke ()Landroidx/lifecycle/ViewModelProvider$Factory;
+	public synthetic fun invoke ()Ljava/lang/Object;
+}
+
+public final class com/lagradost/cloudstream4/download/DownloadSeriesTvFragmentKt : java/lang/Object {
+	public static final synthetic fun access$Poster (Ljava/lang/String;Landroidx/compose/runtime/Composer;I)V
+	public static final fun openDownloadSeriesOnTvScreen (Landroidx/navigation/NavGraph;)V
 }
 
 public final class com/lagradost/cloudstream4/download/DownloadsTvFragment : com/lagradost/cloudstream3/utils/BaseComposeFragment {

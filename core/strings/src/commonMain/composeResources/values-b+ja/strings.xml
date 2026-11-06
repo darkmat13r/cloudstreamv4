@@ -4,6 +4,7 @@
 <string name="detail_load_failed_body">ソースが利用できない可能性があります。</string>
 <string name="detail_load_failed_headline">このタイトルを開けませんでした</string>
 <plurals name="downloads_active"><item quantity="other">%d 件をダウンロード中</item></plurals>
+<plurals name="downloads_failed_count"><item quantity="other">%d 件失敗</item></plurals>
 <plurals name="downloads_queued"><item quantity="other">%d 件が待機中</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">%d 件のセクションを読み込めませんでした</item></plurals>
 <plurals name="links_hidden"><item quantity="other">%d件の非表示リンク</item></plurals>
@@ -198,6 +199,7 @@
 <string name="downloaded_file">ダウンロードしたファイル</string>
 <string name="downloading">ダウンロード中</string>
 <string name="downloads_browse_library">ライブラリを見る</string>
+<string name="downloads_delete_all">すべて削除</string>
 <string name="downloads_delete_select">削除する項目を選択</string>
 <string name="downloads_empty">現在ダウンロードはがありません。</string>
 <string name="downloads_empty_body">作品のエピソード一覧から開始したダウンロードはここに表示され、接続なしで再生できます。</string>
@@ -206,11 +208,21 @@
 <string name="downloads_load_failed_body">ダウンロード済みのファイルは変更されていません。</string>
 <string name="downloads_load_failed_headline">ダウンロードを読み込めませんでした</string>
 <string name="downloads_offline_pill">オフライン · 接続なし</string>
+<string name="downloads_on_disk">ディスク上 %s</string>
 <string name="downloads_play_from_link">リンクから再生</string>
+<string name="downloads_play_next">次を再生</string>
+<string name="downloads_reason_network">ネットワーク切断</string>
+<string name="downloads_reason_no_link">有効なリンクなし</string>
+<string name="downloads_reason_source">ソースが途中で終了</string>
+<string name="downloads_reason_storage_full">ストレージがいっぱい</string>
+<string name="downloads_reason_storage_unavailable">ストレージを利用できません</string>
+<string name="downloads_retry_failed">失敗分を再試行 (%d)</string>
 <string name="downloads_select">選択</string>
+<string name="downloads_state_queued">待機中</string>
 <string name="downloads_storage_full_headline">ストレージの空き容量が足りません</string>
 <string name="downloads_storage_legend">%1$s / %2$s 使用 · ダウンロード %3$s</string>
 <string name="downloads_storage_needs">あと %s 必要</string>
+<string name="downloads_watched">%d%% 視聴済み</string>
 <string name="duplicate_add">追加</string>
 <string name="duplicate_message_multiple">ライブラリに潜在的な重複アイテムが見つかりました: \n\n%s \n\nこのアイテムを追加しますか、既存のものを置き換えますか、それともアクションをキャンセルしますか？</string>
 <string name="duplicate_message_single">ライブラリに潜在的な重複アイテムがすでに存在します: '%s.' \n\nこのアイテムを追加しますか、既存のものを置き換えますか、それともアクションをキャンセルしますか？</string>

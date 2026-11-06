@@ -3,6 +3,7 @@
 <resources>
 <string name="detail_load_failed_body">Kjelda er kanskje ikkje tilgjengeleg.</string>
 <string name="detail_load_failed_headline">Kunne ikkje opne denne tittelen</string>
+<plurals name="downloads_failed_count"><item quantity="one">%d feila</item><item quantity="other">%d feila</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d del kunne ikkje lastast</item><item quantity="other">%d delar kunne ikkje lastast</item></plurals>
 <string name="action_add_to_bookmarks">Sett visingstatus</string>
 <string name="action_default">Standard</string>
@@ -49,17 +50,28 @@
 <string name="downloaded">Lasta ned</string>
 <string name="downloading">Nedlasting pågår</string>
 <string name="downloads_browse_library">Bla i biblioteket</string>
+<string name="downloads_delete_all">Slett alle</string>
 <string name="downloads_empty_body">Nedlastingar du startar frå episodelista til ein tittel, blir viste her og kan spelast av utan tilkopling.</string>
 <string name="downloads_empty_headline">Ingen nedlastingar enno</string>
 <string name="downloads_free_up_space">Frigjer plass</string>
 <string name="downloads_load_failed_body">Dei nedlasta filene dine er ikkje endra.</string>
 <string name="downloads_load_failed_headline">Kunne ikkje lese nedlastingane dine</string>
 <string name="downloads_offline_pill">Fråkopla · inga tilkopling</string>
+<string name="downloads_on_disk">%s på disk</string>
 <string name="downloads_play_from_link">Spel av frå lenkje</string>
+<string name="downloads_play_next">Spel av neste</string>
+<string name="downloads_reason_network">Mista nettverk</string>
+<string name="downloads_reason_no_link">Ingen lenke som verkar</string>
+<string name="downloads_reason_source">Kjelda stoppa tidleg</string>
+<string name="downloads_reason_storage_full">Lagringa er full</string>
+<string name="downloads_reason_storage_unavailable">Lagring utilgjengeleg</string>
+<string name="downloads_retry_failed">Prøv mislukka på nytt (%d)</string>
 <string name="downloads_select">Vel</string>
+<string name="downloads_state_queued">I kø</string>
 <string name="downloads_storage_full_headline">Ikkje nok lagringsplass</string>
 <string name="downloads_storage_legend">%1$s av %2$s brukt · %3$s i nedlastingar</string>
 <string name="downloads_storage_needs">Treng %s til</string>
+<string name="downloads_watched">%d%% sett</string>
 <string name="duration">Varigheit</string>
 <string name="duration_format">%d minutt</string>
 <string name="episode">Episode</string>

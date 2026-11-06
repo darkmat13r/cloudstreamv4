@@ -3,6 +3,7 @@
 <resources>
 <string name="detail_load_failed_body">সোর্সটি হয়তো পাওয়া যাচ্ছে না।</string>
 <string name="detail_load_failed_headline">এই শিরোনামটি খোলা যায়নি</string>
+<plurals name="downloads_failed_count"><item quantity="one">%dটি ব্যর্থ</item><item quantity="other">%dটি ব্যর্থ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%dটি বিভাগ লোড করা যায়নি</item><item quantity="other">%dটি বিভাগ লোড করা যায়নি</item></plurals>
 <string name="account">অ্যাকাউন্ট</string>
 <string name="action_add_to_bookmarks">বুকমার্ক করুন</string>
@@ -113,6 +114,7 @@
 <string name="downloaded">ডাউনলোড হয়েছে</string>
 <string name="downloading">ডাউনলোড চলছে</string>
 <string name="downloads_browse_library">লাইব্রেরী ব্রাউজ করুন</string>
+<string name="downloads_delete_all">সব ডিলিট</string>
 <string name="downloads_delete_select">ডিলিট করার জন্য আইটেম সিলেক্ট করুন</string>
 <string name="downloads_empty">বর্তমানে কোনো ডাউনলোড নেই।</string>
 <string name="downloads_empty_body">কোনো শিরোনামের এপিসোড তালিকা থেকে শুরু করা ডাউনলোডগুলো এখানে দেখা যাবে এবং সংযোগ ছাড়াই চলবে।</string>
@@ -121,11 +123,21 @@
 <string name="downloads_load_failed_body">আপনার ডাউনলোড করা ফাইলগুলো পরিবর্তন করা হয়নি।</string>
 <string name="downloads_load_failed_headline">আপনার ডাউনলোডগুলো পড়া যায়নি</string>
 <string name="downloads_offline_pill">অফলাইন · কোনো সংযোগ নেই</string>
+<string name="downloads_on_disk">ডিস্কে %s</string>
 <string name="downloads_play_from_link">লিংক থেকে চালান</string>
+<string name="downloads_play_next">পরবর্তী চালান</string>
+<string name="downloads_reason_network">নেটওয়ার্ক নেই</string>
+<string name="downloads_reason_no_link">কার্যকর লিংক নেই</string>
+<string name="downloads_reason_source">উৎস আগেই থেমে গেছে</string>
+<string name="downloads_reason_storage_full">স্টোরেজ পূর্ণ</string>
+<string name="downloads_reason_storage_unavailable">স্টোরেজ অনুপলব্ধ</string>
+<string name="downloads_retry_failed">ব্যর্থগুলো আবার চেষ্টা করুন (%d)</string>
 <string name="downloads_select">সিলেক্ট করুন</string>
+<string name="downloads_state_queued">অপেক্ষা করছে</string>
 <string name="downloads_storage_full_headline">যথেষ্ট স্টোরেজ নেই</string>
 <string name="downloads_storage_legend">%1$s / %2$s ব্যবহৃত · ডাউনলোডে %3$s</string>
 <string name="downloads_storage_needs">আরও %s প্রয়োজন</string>
+<string name="downloads_watched">%d%% দেখা হয়েছে</string>
 <string name="duration">সময়কাল</string>
 <string name="duration_format">%d মিনিট</string>
 <string name="duration_hours_minutes_format">%1$dঘন্টা %2$dমিনিট</string>
