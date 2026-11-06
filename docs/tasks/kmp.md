@@ -4003,7 +4003,7 @@ Nothing new.
 
 ## KMP-44 — Home's chrome named: Reload, Random and Search, and `None` as a source (`TV Home Extras` 3h to 3j, 3m) · **measured 2026-11-06**
 
-**Status:** in review, stacked on `KMP-45`. Boards `3h`, `3i`, `3j` and `3m` (`DS-13`) and the owner's rulings of 2026-11-05: no Random
+**Status:** in pr #165, stacked on `KMP-45` (#164). Boards `3h`, `3i`, `3j` and `3m` (`DS-13`) and the owner's rulings of 2026-11-05: no Random
 as a source, `None` stays; the Random button always shown, opening a random loaded title, absent when nothing is loaded; search in
 the top bar only; a failed reload keeps the local rows above the error; a single choice applies at once with no buttons. Android TV
 only; desktop's panel offers no `None` and its effect handler ignores the new effect.
