@@ -57,12 +57,12 @@ fun mergeSuggestions(
     if (words.isEmpty()) return emptyList()
     val recentByKey = LinkedHashMap<String, SearchHistoryEntry>()
     for (entry in recent) {
-        if (entry.query.contains(words, ignoreCase = true)) recentByKey.putIfAbsent(entry.query.key(), entry)
+        if (entry.query.contains(words, ignoreCase = true)) recentByKey.getOrPut(entry.query.key()) { entry }
     }
     val suggested = LinkedHashMap<String, String>()
     for (title in suggestions) {
         val clean = title.trim()
-        if (clean.isNotEmpty()) suggested.putIfAbsent(clean.key(), clean)
+        if (clean.isNotEmpty()) suggested.getOrPut(clean.key()) { clean }
     }
 
     val both = suggested.mapNotNull { (key, title) ->
