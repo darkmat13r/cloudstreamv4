@@ -4856,8 +4856,12 @@ desktop component layer (`DS-19`) comes later. Strings are `I18N-11` (#178), whi
 - **Open in the menu.** No word for it yet; double-click and Return open.
 - **The transfer rate.** `DownloadTitle` carries none.
 - **New components.** The tooltip, the context menu and the bottom rule are private here. They are candidates for `DS-19`.
-- **Shared words.** The episode title and the failure reason are copies of TV's private rules in `SeriesRows`, kept
-  identical until `KMP-65`.
+- **Shared words.** The failure reason and the episode code's fallback are copies of TV's private rules in `SeriesRows`,
+  kept identical until `KMP-65`. The line itself is the name alone, on purpose: D4 has a number column.
+- **Cancelling asks first when there is something to lose.** A running or waiting episode with bytes on the disk opens a
+  sheet before Cancel discards them ("Cancel this download?", with Keep downloading as the filled default); one with
+  nothing fetched cancels at once. This is the PM's call (2026-11-07), following rule 1's pattern for destructive
+  confirmations; the words are in `I18N-11`.
 - **"Show in Finder" is the Mac's word.** It sits in a shared key; Windows and Linux will need their own ("Show in folder")
   when those builds exist.
 
@@ -4883,7 +4887,9 @@ desktop component layer (`DS-19`) comes later. Strings are `I18N-11` (#178), whi
 ## KMP-65 — One source for a series' words on TV and the Mac · **open**, follow-up of `KMP-54`
 
 `DownloadSeriesScreenDesktop` copies two private rules from TV's `series/tv/SeriesRows.kt`: `titleOf` ("S1 · E3 ·
-Name") and `reason` (a `DownloadFailure` in words). They are kept identical meanwhile. To do:
+Name") and `reason` (a `DownloadFailure` in words). The reason mapping and the code's fallback logic are kept identical
+meanwhile. **The line's format differs on purpose**: TV draws "S1 · E3 · Name" in one line, and the Mac draws the name
+alone, because board D4 gives the number its own column (the code stands in only where there is no name). To do:
 1. Move both into one `internal` function in `series/`, and have both screens call it.
 2. Replace `"${episode_short}$number"`, the one-number fallback in both copies, with a key that takes the number as
    an argument, so a translation can place it.

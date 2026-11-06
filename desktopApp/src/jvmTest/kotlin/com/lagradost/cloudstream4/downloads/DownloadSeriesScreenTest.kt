@@ -181,10 +181,41 @@ class DownloadSeriesScreenTest {
         scene.save("D4-series-hovered")
         // Pause, Cancel, Delete: no Play on a partial file.
         scene.press(Offset(FIRST_VERB_X, rowY(2)))
+        assertEquals(listOf("pause 3"), harness.source.calls)
+        scene.close()
+    }
+
+    @Test
+    fun `cancelling a download that has fetched something asks first, and Keep downloading is the default`() {
+        val harness = Harness()
+        val scene = scene(harness)
+        scene.settle()
         scene.sendPointerEvent(PointerEventType.Move, Offset(NAME_X, rowY(2)))
         scene.settle()
         scene.press(Offset(SECOND_VERB_X, rowY(2)))
-        assertEquals(listOf("pause 3", "cancel 3"), harness.source.calls)
+        assertEquals(emptyList(), harness.source.calls, "412 MB are on the disk, so nothing is discarded yet")
+        scene.save("D4-series-cancel-confirm")
+        scene.sendKeyEvent(KeyEvent(Key.Enter, KeyEventType.KeyDown))
+        scene.settle()
+        assertEquals(emptyList(), harness.source.calls, "Return keeps downloading")
+        scene.sendPointerEvent(PointerEventType.Move, Offset(NAME_X, rowY(2)))
+        scene.settle()
+        scene.press(Offset(SECOND_VERB_X, rowY(2)))
+        scene.press(Offset(SHEET_CANCEL_DOWNLOAD_X, SHEET_BUTTON_Y))
+        assertEquals(listOf("cancel 3"), harness.source.calls)
+        scene.close()
+    }
+
+    @Test
+    fun `cancelling a waiting download with nothing fetched does it at once`() {
+        val harness = Harness()
+        val scene = scene(harness)
+        scene.settle()
+        scene.sendPointerEvent(PointerEventType.Move, Offset(NAME_X, rowY(3)))
+        scene.settle()
+        // Cancel, Delete.
+        scene.press(Offset(SECOND_VERB_X, rowY(3)))
+        assertEquals(listOf("cancel 4"), harness.source.calls)
         scene.close()
     }
 
@@ -253,6 +284,8 @@ class DownloadSeriesScreenTest {
         const val ROW_PITCH = 48f
         const val NAME_X = 120f
         const val FIRST_VERB_X = 960f
+        const val SHEET_CANCEL_DOWNLOAD_X = 447f
+        const val SHEET_BUTTON_Y = 181f
         const val SECOND_VERB_X = 992f
         const val DELETE_ALL_X = 515f
         const val HEADER_BUTTON_Y = 197f

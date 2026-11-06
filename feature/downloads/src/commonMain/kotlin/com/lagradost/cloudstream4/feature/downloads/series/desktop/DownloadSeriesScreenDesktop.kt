@@ -25,6 +25,8 @@ import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
@@ -108,6 +110,7 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.title_downloa
 import com.lagradost.cloudstream4.core.strings.resolve
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
+import com.lagradost.cloudstream4.feature.downloads.desktop.DesktopCancelDownloadSheet
 import com.lagradost.cloudstream4.feature.downloads.desktop.DesktopDeleteSheet
 import com.lagradost.cloudstream4.feature.downloads.desktop.DesktopVerb
 import com.lagradost.cloudstream4.feature.downloads.desktop.DownloadsScreenDesktopDefaults
@@ -152,6 +155,11 @@ fun DownloadSeriesScreenDesktop(
     artwork: @Composable () -> Unit = {},
 ) {
     val back = { onAction(SeriesAction.BackRequested) }
+    // Cancelling a download that has fetched something asks first; one with nothing on the disk cancels at once.
+    var cancelling by remember { mutableStateOf<DownloadEpisode?>(null) }
+    val cancel: (DownloadEpisode) -> Unit = { episode ->
+        if (episode.bytesDone > 0L) cancelling = episode else onAction(SeriesAction.CancelRequested(episode.id))
+    }
     // The page holds focus so ⌘[ reaches it; nothing on it is a focus stop of its own until the shell's menu bar (KMP-53).
     val pageFocus = remember { FocusRequester() }
     LaunchedEffect(Unit) { pageFocus.requestFocus() }
@@ -162,7 +170,7 @@ fun DownloadSeriesScreenDesktop(
             .focusRequester(pageFocus)
             .focusable()
             .onPreviewKeyEvent { event ->
-                val goesBack = event.type == KeyEventType.KeyDown && confirming == null &&
+                val goesBack = event.type == KeyEventType.KeyDown && confirming == null && cancelling == null &&
                     event.isMetaPressed && event.key == Key.LeftBracket
                 if (goesBack) back()
                 goesBack
@@ -216,7 +224,7 @@ fun DownloadSeriesScreenDesktop(
                                 canReveal = canReveal(episode),
                                 onPlay = { onAction(SeriesAction.PlayRequested(episode.id, SeriesVerb.Play, 0)) },
                                 onVerb = { onAction(SeriesAction.StateVerbRequested(episode.id)) },
-                                onCancel = { onAction(SeriesAction.CancelRequested(episode.id)) },
+                                onCancel = { cancel(episode) },
                                 onReveal = { onReveal(episode.id) },
                                 onDelete = { onAction(SeriesAction.DeleteRequested(episode.id, 0)) },
                             )
@@ -225,6 +233,17 @@ fun DownloadSeriesScreenDesktop(
                 }
             }
             Footer(state.episodes, formatBytes)
+        }
+        cancelling?.let { episode ->
+            DesktopCancelDownloadSheet(
+                bytes = episode.bytesDone,
+                formatBytes = formatBytes,
+                onConfirm = {
+                    cancelling = null
+                    onAction(SeriesAction.CancelRequested(episode.id))
+                },
+                onKeep = { cancelling = null },
+            )
         }
         confirming?.let { ids ->
             val bytes = state.episodes.filter { it.id in ids }.sumOf { it.bytesDone }
@@ -501,7 +520,7 @@ private fun EpisodeRow(
                     DownloadEpisodeState.Failed ->
                         DesktopVerb(CloudStreamIcons.Retry, stringResource(Res.string.player_source_retry), onVerb)
 
-                    DownloadEpisodeState.Queued -> DesktopVerb(CloudStreamIcons.Close, stringResource(Res.string.cancel), onVerb)
+                    DownloadEpisodeState.Queued -> DesktopVerb(CloudStreamIcons.Close, stringResource(Res.string.cancel), onCancel)
                 }
                 if (canReveal) DesktopVerb(CloudStreamIcons.Folder, stringResource(Res.string.downloads_show_in_finder), onReveal)
                 DesktopVerb(CloudStreamIcons.Delete, stringResource(Res.string.delete), onDelete)
@@ -557,8 +576,8 @@ private fun EpisodeStatus(episode: DownloadEpisode, formatBytes: (Long) -> Strin
 }
 
 /**
- * "S1 · E3 · Name", or as much of it as is known: a copy of TV's private rule in `SeriesRows`, kept identical until
- * `KMP-65` makes the two one function (which also replaces `episode_short` + number with a key that takes the number).
+ * The episode's name, or "S1 · E3" when it has none. The code's fallback logic is a copy of TV's private rule in
+ * `SeriesRows`, kept identical until `KMP-65`; the line's format differs on purpose, because TV has no number column.
  */
 @Composable
 private fun titleOf(episode: DownloadEpisode): String {
@@ -573,11 +592,9 @@ private fun titleOf(episode: DownloadEpisode): String {
         number != null -> "${stringResource(Res.string.episode_short)}$number"
         else -> null
     }
-    val name = episode.name
-    return when {
-        code != null && name != null -> UiString.Resource(Res.string.downloads_joined, listOf(code, name)).resolve()
-        else -> code ?: name.orEmpty()
-    }
+    // The Mac's line, on purpose not TV's: board D4 gives the number its own column, so the line is the name, and the
+    // code only stands in when there is no name (`KMP-65` records the difference).
+    return episode.name ?: code.orEmpty()
 }
 
 /** Why it failed: a copy of TV's private rule in `SeriesRows`, kept identical until `KMP-65`. Null where nothing recorded why. */
