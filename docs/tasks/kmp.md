@@ -3924,6 +3924,11 @@ live at `SubtitlePicker.kt:207`, so `CloudStreamIconsTest."one glyph per meaning
 `expected:<[]> but was:<[[Done, Added]]>`. Measured, not argued; `#169` is the answer and the test is
 untouched.
 
+The 48dp cell also moved two things the full device suite caught and the screenshot-only pass could
+not: `CaptionToActions` is 8dp rather than 16, because the board's 16 is measured to the text buttons
+and the cell now supplies 8 of it, and `DetailSkeletonDefaults.ActionCellPadding` adds that 8 back in
+the skeleton, which has no cell and whose bar stands for the row's 32dp of ink at the board's y512.
+
 `DetailSkeletonDefaults.ActionBarWidth` is re-derived as
 `ResumeWidth + 3 × (MinFocusGap + IconTargetCell) + MinFocusGap + TextButtonMinWidth` = **532dp** — the
 **film** row, which is now the shorter of the two, the opposite of the boards, because 7g's extra length
@@ -3932,11 +3937,12 @@ pixels apart; the old 784dp overhung by 46.
 
 ### Open after `#170`
 
-- **The cast row is 17.75 dp short of board 7a, and that is a live question.** Measured on the recorded
-  references: the avatars' first inked row moves 478 → **499 px**, identical on both the series and film
+- **The cast row is 25.25 dp short of board 7a, and that is a live question.** Measured on the recorded
+  references: the avatars' first inked row moves 478 → **489 px**, identical on both the series and film
   pages. The viewport is 540dp tall (`DetailFocusScrollTest.containerSize`), so 720/540 = 1.3333 px/dp and
-  cast sits at **374.25 dp** against the board's **392**. The +15.75dp of that move is exactly the row
-  growing 32dp → 48dp, so `#170` narrowed the gap from 33.5dp without touching the ladder. It is **not** a
+  cast sits at **366.75 dp** against the board's **392**. The +8.25dp of that move is what the 48dp cell
+  adds *below* the buttons once `CaptionToActions` absorbs the 8dp above them, so `#170` narrowed the gap
+  from 33.5dp without touching the ladder above the row. It is **not** a
   missing rail header — "Cast 3" draws normally at x33 — and it is **not** `BUG-40`, whose shift is a
   uniform 5dp inside the head block. It wants its own measurement against the board.
 - **Icon-only glyphs render `ink` at rest, not `muted`.** That is `DS-17`, app-wide; `#170` does not touch
