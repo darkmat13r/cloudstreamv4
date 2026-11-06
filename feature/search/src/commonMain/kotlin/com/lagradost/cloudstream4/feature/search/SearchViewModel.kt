@@ -17,6 +17,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
@@ -90,6 +93,14 @@ class SearchViewModel(
 
     /** [scope] when the host supplied one, `viewModelScope` otherwise. */
     private val work: CoroutineScope get() = scope ?: viewModelScope
+
+    /**
+     * [connectivity], subscribed for this view model's lifetime. `AndroidConnectivityFlow` shares `WhileSubscribed`, so
+     * reading its `value` with no collector gives what it read when it was made, and a network lost after search opened
+     * was never seen (review of `KMP-47`). Collecting here keeps its callback registered while search exists.
+     */
+    private val network: StateFlow<Connectivity> =
+        connectivity.status.stateIn(work, SharingStarted.Eagerly, connectivity.status.value)
 
     init {
         // Start on the idle prompt rather than Loading: the history read is fast and local, and a
@@ -302,7 +313,7 @@ class SearchViewModel(
                 if (rows.isEmpty()) {
                     // Offline also empties the suggestions, and saying nothing matches would be wrong. The fan-out only runs
                     // for quick-searchable sources, which most installs have none of, so the device is asked directly too.
-                    val offline = connectivity.status.value == Connectivity.OFFLINE || fanOut?.await() == SearchOutcome.Offline
+                    val offline = network.value == Connectivity.OFFLINE || fanOut?.await() == SearchOutcome.Offline
                     updateState {
                         copy(status = if (offline) SearchStatus.Offline else SearchStatus.NoSuggestions(query, sources.selected))
                     }

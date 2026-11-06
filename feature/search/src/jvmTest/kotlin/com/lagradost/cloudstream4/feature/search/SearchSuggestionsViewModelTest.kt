@@ -14,7 +14,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
@@ -174,6 +177,28 @@ class SearchSuggestionsViewModelTest {
 
         assertEquals(SearchStatus.Offline, vm.state.value.status)
         assertTrue(source.quickSearched.isEmpty())
+    }
+
+    /**
+     * Like `AndroidConnectivityFlow`: a cold source shared `WhileSubscribed`, so its `value` only follows the device while
+     * something collects it. Starts online and goes offline after the screen is made, before anything is typed.
+     */
+    @Test
+    fun `losing the network after search opened, nothing suggested says offline`() = runTest(dispatcher) {
+        val device = MutableStateFlow(Connectivity.ONLINE)
+        val shared = object : ConnectivityFlow {
+            override val status: StateFlow<Connectivity> =
+                flow { device.collect { emit(it) } }.stateIn(backgroundScope, SharingStarted.WhileSubscribed(), Connectivity.ONLINE)
+        }
+        val source = FakeSource(sources = SearchSources(selected = 12, total = 48, quickSearchable = false))
+        val vm = viewModel(source, FakeSuggestions(emptyList()), connectivity = shared)
+        settle()
+
+        device.value = Connectivity.OFFLINE
+        vm.onAction(SearchAction.QueryChanged("dune"))
+        settle()
+
+        assertEquals(SearchStatus.Offline, vm.state.value.status)
     }
 
     /** Unknown is never drawn as offline (`Connectivity.UNKNOWN`), and online with nothing suggested is 8b. */

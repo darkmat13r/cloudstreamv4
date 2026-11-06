@@ -76,7 +76,7 @@ class SearchTvFragment : BaseComposeFragment() {
         val app = requireContext().applicationContext
         viewModelFactory {
             initializer {
-                // Its own scope, ended with the view model: the connectivity flow stays subscribed only while search is.
+                // Owns the flow's shared callback and ends with the view model, which collects it for its whole life.
                 val network = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
                 SearchViewModel(
                     source = ApiRepositorySearchSource(app),
