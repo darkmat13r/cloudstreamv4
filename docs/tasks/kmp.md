@@ -4744,7 +4744,7 @@ that exist because the old downloader broke them:
 - History dates stay lower case (`2 days ago`), as in `KMP-42`.
 - Captions use the theme's caption face; the board draws them in mono.
 - **A suggestion service that is down reads as 8b.** `SearchSuggestionApi.getSuggestions` returns an empty list on any failure (it logs it), so "down" and "answered with nothing" cannot be told apart without changing it.
-- **Counts appear only when the selected sources can quick-search.** `MainAPI.hasQuickSearch` defaults to false, so on most installs typing runs no fan-out and the rows have no counts. Whether typing should run a full search per settled keystroke instead is a product question, raised with the PR.
+- **Counts appear only when the selected sources can quick-search.** `MainAPI.hasQuickSearch` defaults to false, so on most installs typing runs no fan-out and the rows have no counts. A full search per settled keystroke was ruled out: it would query every provider on every keystroke (Found, not changed).
 - The setting is read when the screen is made, so changing it applies on the next visit.
 
 ### Tests
@@ -4765,10 +4765,12 @@ Found: `SearchSuggestionApi.getSuggestions` returns an empty list on every failu
 Suggest: return a result that tells a failure from no suggestions
 Why: a suggestion service that is down shows 8b's "Nothing matches", which is not true.
 
-Found: while the keyboard is open, 8b's headline and body sit behind it; only the chip row's action shows
-Suggest: a design decision on where 8b's message goes while typing (on the chip row, or above the keyboard)
-Why: the user typing is the one 8b speaks to, and the keyboard is open while they type.
+Found: rows count only quick-searchable sources, and `MainAPI.hasQuickSearch` defaults to false, so most installs show no counts
+Suggest: nothing; a full search per settled keystroke was ruled out (app-10, 2026-11-06)
+Why: it would query every provider on every keystroke, which costs their servers and gets the app throttled.
 ```
+
+**A board correction, logged for the owner's next design pass:** 8b assumed no on-screen keyboard. While the keyboard is open, 8b's headline and body sit behind it; only the chip row's action shows. Recorded under "Owed on the boards" in `docs/plans/tv-screen-audit.md`; no change now (app-10, 2026-11-06).
 
 ### Not verified
 

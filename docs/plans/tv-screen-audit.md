@@ -218,6 +218,7 @@ Conventions:
 
 **Owed on the boards, with no ruling needed:**
 - `.chipn` on `TV Detail Player` is still 20/24. `TV Onboarding Extensions` says it must become 24/32, because a 24 box centred in the 48-tall chip lands at +12, off the 8px step. Its `must be propagated` note stays until this is done.
+- **`TV Search Suggestions` 8b with the keyboard up.** The board assumes no on-screen keyboard. On the device the open keyboard covers 8b's headline and body while the user types, and only the chip row's `Search all N sources` shows (`KMP-47`, measured). For the owner's next design pass: where 8b's message goes while the keyboard is up. No change in code until then (app-10, 2026-11-06).
 
 ## 4. Proposed queue
 
