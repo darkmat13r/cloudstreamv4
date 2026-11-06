@@ -493,6 +493,14 @@ values-b+af	string	player_fit_original	-	Oorspronklike beeldverhouding
 values-b+af	string	player_fit_screen	-	Vul skerm
 values-b+af	string	player_fit_title	-	Beeldgrootte
 values-b+af	string	player_fit_width	-	Vul breedte
+values-b+af	string	player_hud_buffering	-	BUFFER
+values-b+af	string	player_hud_failed_detail	-	Kies hieronder ’n ander bron.
+values-b+af	string	player_hud_offline_copy	-	Geen verbinding nie — die afgelaaide kopie speel
+values-b+af	string	player_hud_previous_episode	-	Vorige episode
+values-b+af	string	player_hud_seek_back	-	Spoel terug
+values-b+af	string	player_hud_seek_forward	-	Spoel vorentoe
+values-b+af	string	player_hud_speed	-	Spoed
+values-b+af	string	player_hud_up_next	-	Volgende · %s
 values-b+af	string	player_is_live	-	Live
 values-b+af	string	player_load_one_subtitle_online	-	Load first available
 values-b+af	string	player_load_subtitles	-	Load from file
@@ -1381,6 +1389,14 @@ values-b+am	string	player_fit_original	-	የመጀመሪያ ምጥጥነ ገጽ�
 values-b+am	string	player_fit_screen	-	ማያውን ሙላ
 values-b+am	string	player_fit_title	-	የምስል መጠን
 values-b+am	string	player_fit_width	-	ስፋቱን ሙላ
+values-b+am	string	player_hud_buffering	-	በመጫን ላይ
+values-b+am	string	player_hud_failed_detail	-	ከታች ሌላ ምንጭ ይምረጡ።
+values-b+am	string	player_hud_offline_copy	-	ግንኙነት የለም — የወረደው ቅጂ እየተጫወተ ነው
+values-b+am	string	player_hud_previous_episode	-	ቀዳሚ ክፍል
+values-b+am	string	player_hud_seek_back	-	ወደኋላ ዝለል
+values-b+am	string	player_hud_seek_forward	-	ወደፊት ዝለል
+values-b+am	string	player_hud_speed	-	ፍጥነት
+values-b+am	string	player_hud_up_next	-	ቀጣይ · %s
 values-b+am	string	player_is_live	-	Live
 values-b+am	string	player_load_one_subtitle_online	-	Load first available
 values-b+am	string	player_load_subtitles	-	Load from file
@@ -2269,6 +2285,14 @@ values-b+apc	string	player_fit_original	-	نسبة العرض الأصلية
 values-b+apc	string	player_fit_screen	-	عبّي الشاشة
 values-b+apc	string	player_fit_title	-	حجم الصورة
 values-b+apc	string	player_fit_width	-	عبّي العرض
+values-b+apc	string	player_hud_buffering	-	عم يحمّل
+values-b+apc	string	player_hud_failed_detail	-	اختار مصدر تاني تحت.
+values-b+apc	string	player_hud_offline_copy	-	ما في اتصال — عم يشتغل النسخة المحمّلة
+values-b+apc	string	player_hud_previous_episode	-	الحلقة السابقة
+values-b+apc	string	player_hud_seek_back	-	رجوع لورا
+values-b+apc	string	player_hud_seek_forward	-	تقديم لقدام
+values-b+apc	string	player_hud_speed	-	السرعة
+values-b+apc	string	player_hud_up_next	-	التالي · %s
 values-b+apc	string	player_is_live	-	لايڤ
 values-b+apc	string	player_load_one_subtitle_online	-	أفّي اللودينگ تلقائيًا
 values-b+apc	string	player_load_subtitles	-	فتاح من ملف
@@ -3177,6 +3201,14 @@ values-b+ar	string	player_fit_original	-	نسبة العرض إلى الارتف
 values-b+ar	string	player_fit_screen	-	ملء الشاشة
 values-b+ar	string	player_fit_title	-	حجم الصورة
 values-b+ar	string	player_fit_width	-	ملء العرض
+values-b+ar	string	player_hud_buffering	-	جارٍ التخزين المؤقت
+values-b+ar	string	player_hud_failed_detail	-	اختر مصدرًا آخر أدناه.
+values-b+ar	string	player_hud_offline_copy	-	لا يوجد اتصال — يتم تشغيل النسخة المنزّلة
+values-b+ar	string	player_hud_previous_episode	-	الحلقة السابقة
+values-b+ar	string	player_hud_seek_back	-	ترجيع
+values-b+ar	string	player_hud_seek_forward	-	تقديم
+values-b+ar	string	player_hud_speed	-	السرعة
+values-b+ar	string	player_hud_up_next	-	التالي · %s
 values-b+ar	string	player_is_live	-	البث قائم
 values-b+ar	string	player_load_one_subtitle_online	-	تحميل أول ترجمة متاحة
 values-b+ar	string	player_load_subtitles	-	إختيار ملف
@@ -4077,6 +4109,14 @@ values-b+ars	string	player_fit_original	-	نسبة العرض إلى الارت�
 values-b+ars	string	player_fit_screen	-	ملء الشاشة
 values-b+ars	string	player_fit_title	-	حجم الصورة
 values-b+ars	string	player_fit_width	-	ملء العرض
+values-b+ars	string	player_hud_buffering	-	جاري التحميل
+values-b+ars	string	player_hud_failed_detail	-	اختر مصدر ثاني تحت.
+values-b+ars	string	player_hud_offline_copy	-	ما فيه اتصال — يشتغل النسخة المحمّلة
+values-b+ars	string	player_hud_previous_episode	-	الحلقة السابقة
+values-b+ars	string	player_hud_seek_back	-	رجوع
+values-b+ars	string	player_hud_seek_forward	-	تقديم
+values-b+ars	string	player_hud_speed	-	السرعة
+values-b+ars	string	player_hud_up_next	-	التالي · %s
 values-b+ars	string	player_is_live	-	Live
 values-b+ars	string	player_load_one_subtitle_online	-	Load first available
 values-b+ars	string	player_load_subtitles	-	Load from file
@@ -4965,6 +5005,14 @@ values-b+as	string	player_fit_original	-	মূল আকাৰ অনুপা�
 values-b+as	string	player_fit_screen	-	স্ক্ৰীন পূৰণ কৰক
 values-b+as	string	player_fit_title	-	ছবিৰ আকাৰ
 values-b+as	string	player_fit_width	-	প্ৰস্থ পূৰণ কৰক
+values-b+as	string	player_hud_buffering	-	বাফাৰ হৈ আছে
+values-b+as	string	player_hud_failed_detail	-	তলত আন এটা উৎস বাছক।
+values-b+as	string	player_hud_offline_copy	-	সংযোগ নাই — ডাউনলোড কৰা কপি চলি আছে
+values-b+as	string	player_hud_previous_episode	-	আগৰ পৰ্ব
+values-b+as	string	player_hud_seek_back	-	পিছলৈ যাওক
+values-b+as	string	player_hud_seek_forward	-	আগলৈ যাওক
+values-b+as	string	player_hud_speed	-	গতি
+values-b+as	string	player_hud_up_next	-	পৰৱৰ্তী · %s
 values-b+as	string	player_is_live	-	Live
 values-b+as	string	player_load_one_subtitle_online	-	প্ৰথম উপলব্ধটো লোড কৰক
 values-b+as	string	player_load_subtitles	-	ফাইলৰ পৰা ল'ড কৰক
@@ -5853,6 +5901,14 @@ values-b+az	string	player_fit_original	-	Orijinal nisbət
 values-b+az	string	player_fit_screen	-	Ekranı doldur
 values-b+az	string	player_fit_title	-	Şəkil ölçüsü
 values-b+az	string	player_fit_width	-	Eni doldur
+values-b+az	string	player_hud_buffering	-	BUFERLƏMƏ
+values-b+az	string	player_hud_failed_detail	-	Aşağıda başqa mənbə seçin.
+values-b+az	string	player_hud_offline_copy	-	Bağlantı yoxdur — endirilmiş nüsxə oynadılır
+values-b+az	string	player_hud_previous_episode	-	Əvvəlki epizod
+values-b+az	string	player_hud_seek_back	-	Geri çək
+values-b+az	string	player_hud_seek_forward	-	İrəli çək
+values-b+az	string	player_hud_speed	-	Sürət
+values-b+az	string	player_hud_up_next	-	Növbəti · %s
 values-b+az	string	player_is_live	-	Live
 values-b+az	string	player_load_one_subtitle_online	-	Load first available
 values-b+az	string	player_load_subtitles	-	Load from file
@@ -6751,6 +6807,14 @@ values-b+be	string	player_fit_original	-	Зыходныя прапорцыі
 values-b+be	string	player_fit_screen	-	Запоўніць экран
 values-b+be	string	player_fit_title	-	Памер выявы
 values-b+be	string	player_fit_width	-	Запоўніць шырыню
+values-b+be	string	player_hud_buffering	-	БУФЕРЫЗАЦЫЯ
+values-b+be	string	player_hud_failed_detail	-	Выберыце іншую крыніцу ніжэй.
+values-b+be	string	player_hud_offline_copy	-	Няма злучэння — прайграецца спампаваная копія
+values-b+be	string	player_hud_previous_episode	-	Папярэдняя серыя
+values-b+be	string	player_hud_seek_back	-	Перамотка назад
+values-b+be	string	player_hud_seek_forward	-	Перамотка ўперад
+values-b+be	string	player_hud_speed	-	Хуткасць
+values-b+be	string	player_hud_up_next	-	Далей · %s
 values-b+be	string	player_is_live	-	Ужывую
 values-b+be	string	player_load_one_subtitle_online	-	Спампаваць першыя даступныя
 values-b+be	string	player_load_subtitles	-	Загрузіць з файла
@@ -7639,6 +7703,14 @@ values-b+bg	string	player_fit_original	-	Оригинално съотношен
 values-b+bg	string	player_fit_screen	-	Запълване на екрана
 values-b+bg	string	player_fit_title	-	Размер на картината
 values-b+bg	string	player_fit_width	-	Запълване по ширина
+values-b+bg	string	player_hud_buffering	-	БУФЕРИРАНЕ
+values-b+bg	string	player_hud_failed_detail	-	Изберете друг източник по-долу.
+values-b+bg	string	player_hud_offline_copy	-	Няма връзка — пуска се изтеглено копие
+values-b+bg	string	player_hud_previous_episode	-	Предишен епизод
+values-b+bg	string	player_hud_seek_back	-	Превъртане назад
+values-b+bg	string	player_hud_seek_forward	-	Превъртане напред
+values-b+bg	string	player_hud_speed	-	Скорост
+values-b+bg	string	player_hud_up_next	-	Следва · %s
 values-b+bg	string	player_is_live	-	Live
 values-b+bg	string	player_load_one_subtitle_online	-	Зареди първия наличен
 values-b+bg	string	player_load_subtitles	-	Зареди от файл
@@ -8527,6 +8599,14 @@ values-b+bn	string	player_fit_original	-	আসল অনুপাত
 values-b+bn	string	player_fit_screen	-	স্ক্রিন পূরণ করুন
 values-b+bn	string	player_fit_title	-	ছবির আকার
 values-b+bn	string	player_fit_width	-	প্রস্থ পূরণ করুন
+values-b+bn	string	player_hud_buffering	-	বাফার হচ্ছে
+values-b+bn	string	player_hud_failed_detail	-	নিচে অন্য একটি উৎস বেছে নিন।
+values-b+bn	string	player_hud_offline_copy	-	সংযোগ নেই — ডাউনলোড করা কপি চলছে
+values-b+bn	string	player_hud_previous_episode	-	আগের পর্ব
+values-b+bn	string	player_hud_seek_back	-	পিছিয়ে যান
+values-b+bn	string	player_hud_seek_forward	-	এগিয়ে যান
+values-b+bn	string	player_hud_speed	-	গতি
+values-b+bn	string	player_hud_up_next	-	পরবর্তী · %s
 values-b+bn	string	player_is_live	-	Live
 values-b+bn	string	player_load_one_subtitle_online	-	Load first available
 values-b+bn	string	player_load_subtitles	-	Load from file
@@ -9418,6 +9498,14 @@ values-b+ca	string	player_fit_original	-	Proporció original
 values-b+ca	string	player_fit_screen	-	Omple la pantalla
 values-b+ca	string	player_fit_title	-	Mida de la imatge
 values-b+ca	string	player_fit_width	-	Omple l’amplada
+values-b+ca	string	player_hud_buffering	-	CARREGANT
+values-b+ca	string	player_hud_failed_detail	-	Trieu una altra font a sota.
+values-b+ca	string	player_hud_offline_copy	-	Sense connexió — es reprodueix la còpia baixada
+values-b+ca	string	player_hud_previous_episode	-	Episodi anterior
+values-b+ca	string	player_hud_seek_back	-	Enrere
+values-b+ca	string	player_hud_seek_forward	-	Endavant
+values-b+ca	string	player_hud_speed	-	Velocitat
+values-b+ca	string	player_hud_up_next	-	Següent · %s
 values-b+ca	string	player_is_live	-	Live
 values-b+ca	string	player_load_one_subtitle_online	-	Carrega el primer disponible
 values-b+ca	string	player_load_subtitles	-	Carrega des del fitxer
@@ -10306,6 +10394,14 @@ values-b+ckb	string	player_fit_original	-	ڕێژەی ڕەسەن
 values-b+ckb	string	player_fit_screen	-	پڕکردنی شاشە
 values-b+ckb	string	player_fit_title	-	قەبارەی وێنە
 values-b+ckb	string	player_fit_width	-	پڕکردنی پانی
+values-b+ckb	string	player_hud_buffering	-	بارکردن
+values-b+ckb	string	player_hud_failed_detail	-	سەرچاوەیەکی تر لە خوارەوە هەڵبژێرە.
+values-b+ckb	string	player_hud_offline_copy	-	پەیوەندی نییە — کۆپییە داگیراوەکە لێدەدرێت
+values-b+ckb	string	player_hud_previous_episode	-	ئەڵقەی پێشوو
+values-b+ckb	string	player_hud_seek_back	-	گەڕانەوە بۆ دواوە
+values-b+ckb	string	player_hud_seek_forward	-	چوون بۆ پێشەوە
+values-b+ckb	string	player_hud_speed	-	خێرایی
+values-b+ckb	string	player_hud_up_next	-	دواتر · %s
 values-b+ckb	string	player_is_live	-	Live
 values-b+ckb	string	player_load_one_subtitle_online	-	Load first available
 values-b+ckb	string	player_load_subtitles	-	Load from file
@@ -11206,6 +11302,14 @@ values-b+cs	string	player_fit_original	-	Původní poměr stran
 values-b+cs	string	player_fit_screen	-	Vyplnit obrazovku
 values-b+cs	string	player_fit_title	-	Velikost obrazu
 values-b+cs	string	player_fit_width	-	Vyplnit šířku
+values-b+cs	string	player_hud_buffering	-	NAČÍTÁNÍ
+values-b+cs	string	player_hud_failed_detail	-	Vyberte níže jiný zdroj.
+values-b+cs	string	player_hud_offline_copy	-	Bez připojení — přehrává se stažená kopie
+values-b+cs	string	player_hud_previous_episode	-	Předchozí díl
+values-b+cs	string	player_hud_seek_back	-	Přetočit zpět
+values-b+cs	string	player_hud_seek_forward	-	Přetočit vpřed
+values-b+cs	string	player_hud_speed	-	Rychlost
+values-b+cs	string	player_hud_up_next	-	Další · %s
 values-b+cs	string	player_is_live	-	Živě
 values-b+cs	string	player_load_one_subtitle_online	-	Načíst první dostupné
 values-b+cs	string	player_load_subtitles	-	Načíst ze souboru
@@ -12094,6 +12198,14 @@ values-b+de	string	player_fit_original	-	Originales Seitenverhältnis
 values-b+de	string	player_fit_screen	-	Bildschirm ausfüllen
 values-b+de	string	player_fit_title	-	Bildgröße
 values-b+de	string	player_fit_width	-	Breite ausfüllen
+values-b+de	string	player_hud_buffering	-	PUFFERN
+values-b+de	string	player_hud_failed_detail	-	Wähle unten eine andere Quelle.
+values-b+de	string	player_hud_offline_copy	-	Keine Verbindung — die heruntergeladene Kopie wird abgespielt
+values-b+de	string	player_hud_previous_episode	-	Vorherige Folge
+values-b+de	string	player_hud_seek_back	-	Zurückspulen
+values-b+de	string	player_hud_seek_forward	-	Vorspulen
+values-b+de	string	player_hud_speed	-	Geschwindigkeit
+values-b+de	string	player_hud_up_next	-	Als Nächstes · %s
 values-b+de	string	player_is_live	-	Live
 values-b+de	string	player_load_one_subtitle_online	-	Erste verfügbare laden
 values-b+de	string	player_load_subtitles	-	Aus Datei laden
@@ -12982,6 +13094,14 @@ values-b+el	string	player_fit_original	-	Αρχική αναλογία
 values-b+el	string	player_fit_screen	-	Γέμισμα οθόνης
 values-b+el	string	player_fit_title	-	Μέγεθος εικόνας
 values-b+el	string	player_fit_width	-	Γέμισμα πλάτους
+values-b+el	string	player_hud_buffering	-	ΦΟΡΤΩΣΗ
+values-b+el	string	player_hud_failed_detail	-	Επιλέξτε άλλη πηγή παρακάτω.
+values-b+el	string	player_hud_offline_copy	-	Χωρίς σύνδεση — αναπαράγεται το ληφθέν αντίγραφο
+values-b+el	string	player_hud_previous_episode	-	Προηγούμενο επεισόδιο
+values-b+el	string	player_hud_seek_back	-	Πίσω
+values-b+el	string	player_hud_seek_forward	-	Μπροστά
+values-b+el	string	player_hud_speed	-	Ταχύτητα
+values-b+el	string	player_hud_up_next	-	Επόμενο · %s
 values-b+el	string	player_is_live	-	Live
 values-b+el	string	player_load_one_subtitle_online	-	Φορτώστε το πρώτο διαθέσιμο
 values-b+el	string	player_load_subtitles	-	Φόρτωση από αρχείο
@@ -13870,6 +13990,14 @@ values-b+eo	string	player_fit_original	-	Originala proporcio
 values-b+eo	string	player_fit_screen	-	Plenigi ekranon
 values-b+eo	string	player_fit_title	-	Bildgrando
 values-b+eo	string	player_fit_width	-	Plenigi larĝon
+values-b+eo	string	player_hud_buffering	-	BUFRADO
+values-b+eo	string	player_hud_failed_detail	-	Elektu alian fonton sube.
+values-b+eo	string	player_hud_offline_copy	-	Neniu konekto — ludiĝas la elŝutita kopio
+values-b+eo	string	player_hud_previous_episode	-	Antaŭa epizodo
+values-b+eo	string	player_hud_seek_back	-	Malantaŭen
+values-b+eo	string	player_hud_seek_forward	-	Antaŭen
+values-b+eo	string	player_hud_speed	-	Rapido
+values-b+eo	string	player_hud_up_next	-	Sekva · %s
 values-b+eo	string	player_is_live	-	Live
 values-b+eo	string	player_load_one_subtitle_online	-	Load first available
 values-b+eo	string	player_load_subtitles	-	Load from file
@@ -14764,6 +14892,14 @@ values-b+es	string	player_fit_original	-	Relación de aspecto original
 values-b+es	string	player_fit_screen	-	Llenar pantalla
 values-b+es	string	player_fit_title	-	Tamaño de imagen
 values-b+es	string	player_fit_width	-	Ajustar al ancho
+values-b+es	string	player_hud_buffering	-	CARGANDO
+values-b+es	string	player_hud_failed_detail	-	Elija otra fuente abajo.
+values-b+es	string	player_hud_offline_copy	-	Sin conexión — se reproduce la copia descargada
+values-b+es	string	player_hud_previous_episode	-	Episodio anterior
+values-b+es	string	player_hud_seek_back	-	Retroceder
+values-b+es	string	player_hud_seek_forward	-	Avanzar
+values-b+es	string	player_hud_speed	-	Velocidad
+values-b+es	string	player_hud_up_next	-	Siguiente · %s
 values-b+es	string	player_is_live	-	En Vivo
 values-b+es	string	player_load_one_subtitle_online	-	Cargar primero disponible
 values-b+es	string	player_load_subtitles	-	Cargar desde archivo
@@ -15652,6 +15788,14 @@ values-b+fa	string	player_fit_original	-	نسبت تصویر اصلی
 values-b+fa	string	player_fit_screen	-	پر کردن صفحه
 values-b+fa	string	player_fit_title	-	اندازه تصویر
 values-b+fa	string	player_fit_width	-	پر کردن عرض
+values-b+fa	string	player_hud_buffering	-	در حال بافر
+values-b+fa	string	player_hud_failed_detail	-	منبع دیگری را در پایین انتخاب کنید.
+values-b+fa	string	player_hud_offline_copy	-	اتصال نیست — نسخهٔ دانلودشده پخش می‌شود
+values-b+fa	string	player_hud_previous_episode	-	قسمت قبلی
+values-b+fa	string	player_hud_seek_back	-	عقب
+values-b+fa	string	player_hud_seek_forward	-	جلو
+values-b+fa	string	player_hud_speed	-	سرعت
+values-b+fa	string	player_hud_up_next	-	بعدی · %s
 values-b+fa	string	player_is_live	-	Live
 values-b+fa	string	player_load_one_subtitle_online	-	Load first available
 values-b+fa	string	player_load_subtitles	-	Load from file
@@ -16540,6 +16684,14 @@ values-b+fil	string	player_fit_original	-	Orihinal na aspect ratio
 values-b+fil	string	player_fit_screen	-	Punuin ang screen
 values-b+fil	string	player_fit_title	-	Laki ng larawan
 values-b+fil	string	player_fit_width	-	Punuin ang lapad
+values-b+fil	string	player_hud_buffering	-	NAGBA-BUFFER
+values-b+fil	string	player_hud_failed_detail	-	Pumili ng ibang source sa ibaba.
+values-b+fil	string	player_hud_offline_copy	-	Walang koneksyon — pinapatugtog ang na-download na kopya
+values-b+fil	string	player_hud_previous_episode	-	Nakaraang episode
+values-b+fil	string	player_hud_seek_back	-	I-rewind
+values-b+fil	string	player_hud_seek_forward	-	I-forward
+values-b+fil	string	player_hud_speed	-	Bilis
+values-b+fil	string	player_hud_up_next	-	Susunod · %s
 values-b+fil	string	player_is_live	-	Live
 values-b+fil	string	player_load_one_subtitle_online	-	Load first available
 values-b+fil	string	player_load_subtitles	-	Load from file
@@ -17434,6 +17586,14 @@ values-b+fr	string	player_fit_original	-	Proportions originales
 values-b+fr	string	player_fit_screen	-	Remplir l’écran
 values-b+fr	string	player_fit_title	-	Taille de la vidéo
 values-b+fr	string	player_fit_width	-	Remplir la largeur
+values-b+fr	string	player_hud_buffering	-	MISE EN MÉMOIRE
+values-b+fr	string	player_hud_failed_detail	-	Choisissez une autre source ci-dessous.
+values-b+fr	string	player_hud_offline_copy	-	Pas de connexion — lecture de la copie téléchargée
+values-b+fr	string	player_hud_previous_episode	-	Épisode précédent
+values-b+fr	string	player_hud_seek_back	-	Reculer
+values-b+fr	string	player_hud_seek_forward	-	Avancer
+values-b+fr	string	player_hud_speed	-	Vitesse
+values-b+fr	string	player_hud_up_next	-	À suivre · %s
 values-b+fr	string	player_is_live	-	Live
 values-b+fr	string	player_load_one_subtitle_online	-	Charger le premier disponible
 values-b+fr	string	player_load_subtitles	-	Charger depuis le fichier
@@ -18322,6 +18482,14 @@ values-b+gl	string	player_fit_original	-	Proporción orixinal
 values-b+gl	string	player_fit_screen	-	Encher a pantalla
 values-b+gl	string	player_fit_title	-	Tamaño da imaxe
 values-b+gl	string	player_fit_width	-	Encher o ancho
+values-b+gl	string	player_hud_buffering	-	CARGANDO
+values-b+gl	string	player_hud_failed_detail	-	Escolle outra fonte embaixo.
+values-b+gl	string	player_hud_offline_copy	-	Sen conexión — reprodúcese a copia descargada
+values-b+gl	string	player_hud_previous_episode	-	Episodio anterior
+values-b+gl	string	player_hud_seek_back	-	Retroceder
+values-b+gl	string	player_hud_seek_forward	-	Avanzar
+values-b+gl	string	player_hud_speed	-	Velocidade
+values-b+gl	string	player_hud_up_next	-	Seguinte · %s
 values-b+gl	string	player_is_live	-	Live
 values-b+gl	string	player_load_one_subtitle_online	-	Load first available
 values-b+gl	string	player_load_subtitles	-	Load from file
@@ -19210,6 +19378,14 @@ values-b+hi	string	player_fit_original	-	मूल आस्पेक्ट अ�
 values-b+hi	string	player_fit_screen	-	स्क्रीन भरें
 values-b+hi	string	player_fit_title	-	चित्र का आकार
 values-b+hi	string	player_fit_width	-	चौड़ाई भरें
+values-b+hi	string	player_hud_buffering	-	बफ़र हो रहा है
+values-b+hi	string	player_hud_failed_detail	-	नीचे कोई और स्रोत चुनें।
+values-b+hi	string	player_hud_offline_copy	-	कनेक्शन नहीं — डाउनलोड की गई कॉपी चल रही है
+values-b+hi	string	player_hud_previous_episode	-	पिछला एपिसोड
+values-b+hi	string	player_hud_seek_back	-	पीछे जाएँ
+values-b+hi	string	player_hud_seek_forward	-	आगे जाएँ
+values-b+hi	string	player_hud_speed	-	गति
+values-b+hi	string	player_hud_up_next	-	अगला · %s
 values-b+hi	string	player_is_live	-	Live
 values-b+hi	string	player_load_one_subtitle_online	-	Load first available
 values-b+hi	string	player_load_subtitles	-	Load from file
@@ -20103,6 +20279,14 @@ values-b+hr	string	player_fit_original	-	Izvorni omjer
 values-b+hr	string	player_fit_screen	-	Ispuni zaslon
 values-b+hr	string	player_fit_title	-	Veličina slike
 values-b+hr	string	player_fit_width	-	Ispuni širinu
+values-b+hr	string	player_hud_buffering	-	MEĐUSPREMANJE
+values-b+hr	string	player_hud_failed_detail	-	Odaberite drugi izvor ispod.
+values-b+hr	string	player_hud_offline_copy	-	Nema veze — reproducira se preuzeta kopija
+values-b+hr	string	player_hud_previous_episode	-	Prethodna epizoda
+values-b+hr	string	player_hud_seek_back	-	Premotaj natrag
+values-b+hr	string	player_hud_seek_forward	-	Premotaj naprijed
+values-b+hr	string	player_hud_speed	-	Brzina
+values-b+hr	string	player_hud_up_next	-	Sljedeće · %s
 values-b+hr	string	player_is_live	-	Uživo
 values-b+hr	string	player_load_one_subtitle_online	-	Učitaj prvi dostupni
 values-b+hr	string	player_load_subtitles	-	Učitaj iz datoteke
@@ -20991,6 +21175,14 @@ values-b+hu	string	player_fit_original	-	Eredeti képarány
 values-b+hu	string	player_fit_screen	-	Képernyő kitöltése
 values-b+hu	string	player_fit_title	-	Képméret
 values-b+hu	string	player_fit_width	-	Szélesség kitöltése
+values-b+hu	string	player_hud_buffering	-	PUFFERELÉS
+values-b+hu	string	player_hud_failed_detail	-	Válasszon lent másik forrást.
+values-b+hu	string	player_hud_offline_copy	-	Nincs kapcsolat — a letöltött példány szól
+values-b+hu	string	player_hud_previous_episode	-	Előző epizód
+values-b+hu	string	player_hud_seek_back	-	Visszatekerés
+values-b+hu	string	player_hud_seek_forward	-	Előretekerés
+values-b+hu	string	player_hud_speed	-	Sebesség
+values-b+hu	string	player_hud_up_next	-	Következik · %s
 values-b+hu	string	player_is_live	-	Live
 values-b+hu	string	player_load_one_subtitle_online	-	Töltse be az első létezőt
 values-b+hu	string	player_load_subtitles	-	Betöltés fájlból
@@ -21873,6 +22065,14 @@ values-b+in	string	player_fit_original	-	Rasio aspek asli
 values-b+in	string	player_fit_screen	-	Isi layar
 values-b+in	string	player_fit_title	-	Ukuran gambar
 values-b+in	string	player_fit_width	-	Isi lebar
+values-b+in	string	player_hud_buffering	-	BUFFERING
+values-b+in	string	player_hud_failed_detail	-	Pilih sumber lain di bawah.
+values-b+in	string	player_hud_offline_copy	-	Tidak ada koneksi — memutar salinan unduhan
+values-b+in	string	player_hud_previous_episode	-	Episode sebelumnya
+values-b+in	string	player_hud_seek_back	-	Mundur
+values-b+in	string	player_hud_seek_forward	-	Maju
+values-b+in	string	player_hud_speed	-	Kecepatan
+values-b+in	string	player_hud_up_next	-	Berikutnya · %s
 values-b+in	string	player_is_live	-	Live
 values-b+in	string	player_load_one_subtitle_online	-	Muat yang pertama tersedia
 values-b+in	string	player_load_subtitles	-	Muat dari file
@@ -22767,6 +22967,14 @@ values-b+it	string	player_fit_original	-	Proporzioni originali
 values-b+it	string	player_fit_screen	-	Riempi schermo
 values-b+it	string	player_fit_title	-	Dimensione immagine
 values-b+it	string	player_fit_width	-	Riempi larghezza
+values-b+it	string	player_hud_buffering	-	BUFFERING
+values-b+it	string	player_hud_failed_detail	-	Scegli un'altra fonte qui sotto.
+values-b+it	string	player_hud_offline_copy	-	Nessuna connessione — in riproduzione la copia scaricata
+values-b+it	string	player_hud_previous_episode	-	Episodio precedente
+values-b+it	string	player_hud_seek_back	-	Indietro
+values-b+it	string	player_hud_seek_forward	-	Avanti
+values-b+it	string	player_hud_speed	-	Velocità
+values-b+it	string	player_hud_up_next	-	Prossimo · %s
 values-b+it	string	player_is_live	-	Live
 values-b+it	string	player_load_one_subtitle_online	-	Carica il primo disponibile
 values-b+it	string	player_load_subtitles	-	Carica da file
@@ -23658,6 +23866,14 @@ values-b+iw	string	player_fit_original	-	יחס גובה־רוחב מקורי
 values-b+iw	string	player_fit_screen	-	מילוי מסך
 values-b+iw	string	player_fit_title	-	גודל תמונה
 values-b+iw	string	player_fit_width	-	מילוי רוחב
+values-b+iw	string	player_hud_buffering	-	טוען
+values-b+iw	string	player_hud_failed_detail	-	בחרו מקור אחר למטה.
+values-b+iw	string	player_hud_offline_copy	-	אין חיבור — מתנגן העותק שהורד
+values-b+iw	string	player_hud_previous_episode	-	הפרק הקודם
+values-b+iw	string	player_hud_seek_back	-	אחורה
+values-b+iw	string	player_hud_seek_forward	-	קדימה
+values-b+iw	string	player_hud_speed	-	מהירות
+values-b+iw	string	player_hud_up_next	-	הבא · %s
 values-b+iw	string	player_is_live	-	Live
 values-b+iw	string	player_load_one_subtitle_online	-	Load first available
 values-b+iw	string	player_load_subtitles	-	טען מקובץ
@@ -24540,6 +24756,14 @@ values-b+ja	string	player_fit_original	-	元のアスペクト比
 values-b+ja	string	player_fit_screen	-	画面全体に表示
 values-b+ja	string	player_fit_title	-	画像サイズ
 values-b+ja	string	player_fit_width	-	幅に合わせる
+values-b+ja	string	player_hud_buffering	-	バッファ中
+values-b+ja	string	player_hud_failed_detail	-	下で別のソースを選んでください。
+values-b+ja	string	player_hud_offline_copy	-	接続なし — ダウンロード済みのコピーを再生中
+values-b+ja	string	player_hud_previous_episode	-	前のエピソード
+values-b+ja	string	player_hud_seek_back	-	巻き戻し
+values-b+ja	string	player_hud_seek_forward	-	早送り
+values-b+ja	string	player_hud_speed	-	速度
+values-b+ja	string	player_hud_up_next	-	次へ · %s
 values-b+ja	string	player_is_live	-	ライブ
 values-b+ja	string	player_load_one_subtitle_online	-	最初に利用可能なものを読み込む
 values-b+ja	string	player_load_subtitles	-	ファイルから読み込む
@@ -25428,6 +25652,14 @@ values-b+kn	string	player_fit_original	-	ಮೂಲ ಅನುಪಾತ
 values-b+kn	string	player_fit_screen	-	ಸ್ಕ್ರೀನ್ ತುಂಬಿಸಿ
 values-b+kn	string	player_fit_title	-	ಚಿತ್ರದ ಗಾತ್ರ
 values-b+kn	string	player_fit_width	-	ಅಗಲ ತುಂಬಿಸಿ
+values-b+kn	string	player_hud_buffering	-	ಬಫರ್ ಆಗುತ್ತಿದೆ
+values-b+kn	string	player_hud_failed_detail	-	ಕೆಳಗೆ ಬೇರೆ ಮೂಲ ಆಯ್ಕೆಮಾಡಿ.
+values-b+kn	string	player_hud_offline_copy	-	ಸಂಪರ್ಕವಿಲ್ಲ — ಡೌನ್‌ಲೋಡ್ ಮಾಡಿದ ಪ್ರತಿ ಪ್ಲೇ ಆಗುತ್ತಿದೆ
+values-b+kn	string	player_hud_previous_episode	-	ಹಿಂದಿನ ಸಂಚಿಕೆ
+values-b+kn	string	player_hud_seek_back	-	ಹಿಂದಕ್ಕೆ
+values-b+kn	string	player_hud_seek_forward	-	ಮುಂದಕ್ಕೆ
+values-b+kn	string	player_hud_speed	-	ವೇಗ
+values-b+kn	string	player_hud_up_next	-	ಮುಂದಿನದು · %s
 values-b+kn	string	player_is_live	-	Live
 values-b+kn	string	player_load_one_subtitle_online	-	Load first available
 values-b+kn	string	player_load_subtitles	-	Load from file
@@ -26311,6 +26543,14 @@ values-b+ko	string	player_fit_original	-	원본 화면 비율
 values-b+ko	string	player_fit_screen	-	화면 채우기
 values-b+ko	string	player_fit_title	-	화면 크기
 values-b+ko	string	player_fit_width	-	너비 맞춤
+values-b+ko	string	player_hud_buffering	-	버퍼링 중
+values-b+ko	string	player_hud_failed_detail	-	아래에서 다른 소스를 선택하세요.
+values-b+ko	string	player_hud_offline_copy	-	연결 없음 — 다운로드한 사본 재생 중
+values-b+ko	string	player_hud_previous_episode	-	이전 에피소드
+values-b+ko	string	player_hud_seek_back	-	뒤로 이동
+values-b+ko	string	player_hud_seek_forward	-	앞으로 이동
+values-b+ko	string	player_hud_speed	-	속도
+values-b+ko	string	player_hud_up_next	-	다음 · %s
 values-b+ko	string	player_is_live	-	라이브
 values-b+ko	string	player_load_one_subtitle_online	-	사용 가능한 자막 불러오기
 values-b+ko	string	player_load_subtitles	-	파일에서 불러오기
@@ -27205,6 +27445,14 @@ values-b+lt	string	player_fit_original	-	Originalus kraštinių santykis
 values-b+lt	string	player_fit_screen	-	Užpildyti ekraną
 values-b+lt	string	player_fit_title	-	Vaizdo dydis
 values-b+lt	string	player_fit_width	-	Užpildyti plotį
+values-b+lt	string	player_hud_buffering	-	BUFERIZAVIMAS
+values-b+lt	string	player_hud_failed_detail	-	Žemiau pasirinkite kitą šaltinį.
+values-b+lt	string	player_hud_offline_copy	-	Nėra ryšio — leidžiama atsisiųsta kopija
+values-b+lt	string	player_hud_previous_episode	-	Ankstesnė serija
+values-b+lt	string	player_hud_seek_back	-	Atgal
+values-b+lt	string	player_hud_seek_forward	-	Pirmyn
+values-b+lt	string	player_hud_speed	-	Greitis
+values-b+lt	string	player_hud_up_next	-	Toliau · %s
 values-b+lt	string	player_is_live	-	Live
 values-b+lt	string	player_load_one_subtitle_online	-	Load first available
 values-b+lt	string	player_load_subtitles	-	Load from file
@@ -28097,6 +28345,14 @@ values-b+lv	string	player_fit_original	-	Sākotnējā attiecība
 values-b+lv	string	player_fit_screen	-	Aizpildīt ekrānu
 values-b+lv	string	player_fit_title	-	Attēla izmērs
 values-b+lv	string	player_fit_width	-	Aizpildīt platumu
+values-b+lv	string	player_hud_buffering	-	BUFERĒ
+values-b+lv	string	player_hud_failed_detail	-	Zemāk izvēlieties citu avotu.
+values-b+lv	string	player_hud_offline_copy	-	Nav savienojuma — tiek atskaņota lejupielādētā kopija
+values-b+lv	string	player_hud_previous_episode	-	Iepriekšējā sērija
+values-b+lv	string	player_hud_seek_back	-	Attīt atpakaļ
+values-b+lv	string	player_hud_seek_forward	-	Pārtīt uz priekšu
+values-b+lv	string	player_hud_speed	-	Ātrums
+values-b+lv	string	player_hud_up_next	-	Nākamais · %s
 values-b+lv	string	player_is_live	-	Live
 values-b+lv	string	player_load_one_subtitle_online	-	Lejupielādēt pirmo pieejamo
 values-b+lv	string	player_load_subtitles	-	Ielādēt no datnes
@@ -28985,6 +29241,14 @@ values-b+mk	string	player_fit_original	-	Оригинален сооднос
 values-b+mk	string	player_fit_screen	-	Пополни екран
 values-b+mk	string	player_fit_title	-	Големина на сликата
 values-b+mk	string	player_fit_width	-	Пополни ширина
+values-b+mk	string	player_hud_buffering	-	БАФЕРИРАЊЕ
+values-b+mk	string	player_hud_failed_detail	-	Изберете друг извор подолу.
+values-b+mk	string	player_hud_offline_copy	-	Нема врска — се пушта преземената копија
+values-b+mk	string	player_hud_previous_episode	-	Претходна епизода
+values-b+mk	string	player_hud_seek_back	-	Назад
+values-b+mk	string	player_hud_seek_forward	-	Напред
+values-b+mk	string	player_hud_speed	-	Брзина
+values-b+mk	string	player_hud_up_next	-	Следно · %s
 values-b+mk	string	player_is_live	-	Во живо
 values-b+mk	string	player_load_one_subtitle_online	-	Вчитај прво достапно
 values-b+mk	string	player_load_subtitles	-	Вчитај од датотека
@@ -29873,6 +30137,14 @@ values-b+ml	string	player_fit_original	-	യഥാർത്ഥ അനുപാ�
 values-b+ml	string	player_fit_screen	-	സ്ക്രീൻ നിറയ്ക്കുക
 values-b+ml	string	player_fit_title	-	ചിത്ര വലുപ്പം
 values-b+ml	string	player_fit_width	-	വീതി നിറയ്ക്കുക
+values-b+ml	string	player_hud_buffering	-	ബഫർ ചെയ്യുന്നു
+values-b+ml	string	player_hud_failed_detail	-	താഴെ മറ്റൊരു ഉറവിടം തിരഞ്ഞെടുക്കുക.
+values-b+ml	string	player_hud_offline_copy	-	കണക്ഷനില്ല — ഡൗൺലോഡ് ചെയ്ത പകർപ്പ് പ്ലേ ചെയ്യുന്നു
+values-b+ml	string	player_hud_previous_episode	-	മുൻ എപ്പിസോഡ്
+values-b+ml	string	player_hud_seek_back	-	പിന്നോട്ട്
+values-b+ml	string	player_hud_seek_forward	-	മുന്നോട്ട്
+values-b+ml	string	player_hud_speed	-	വേഗത
+values-b+ml	string	player_hud_up_next	-	അടുത്തത് · %s
 values-b+ml	string	player_is_live	-	തൽസമയം
 values-b+ml	string	player_load_one_subtitle_online	-	Load first available
 values-b+ml	string	player_load_subtitles	-	Load from file
@@ -30758,6 +31030,14 @@ values-b+ms	string	player_fit_original	-	Nisbah aspek asal
 values-b+ms	string	player_fit_screen	-	Isi skrin
 values-b+ms	string	player_fit_title	-	Saiz gambar
 values-b+ms	string	player_fit_width	-	Isi lebar
+values-b+ms	string	player_hud_buffering	-	MENIMBAL
+values-b+ms	string	player_hud_failed_detail	-	Pilih sumber lain di bawah.
+values-b+ms	string	player_hud_offline_copy	-	Tiada sambungan — memainkan salinan muat turun
+values-b+ms	string	player_hud_previous_episode	-	Episod sebelumnya
+values-b+ms	string	player_hud_seek_back	-	Undur
+values-b+ms	string	player_hud_seek_forward	-	Maju
+values-b+ms	string	player_hud_speed	-	Kelajuan
+values-b+ms	string	player_hud_up_next	-	Seterusnya · %s
 values-b+ms	string	player_is_live	-	Live
 values-b+ms	string	player_load_one_subtitle_online	-	Load first available
 values-b+ms	string	player_load_subtitles	-	Load from file
@@ -31655,6 +31935,14 @@ values-b+mt	string	player_fit_original	-	Proporzjon oriġinali
 values-b+mt	string	player_fit_screen	-	Imla l-iskrin
 values-b+mt	string	player_fit_title	-	Daqs tal-istampa
 values-b+mt	string	player_fit_width	-	Imla l-wisa’
+values-b+mt	string	player_hud_buffering	-	QED JITGĦABBA
+values-b+mt	string	player_hud_failed_detail	-	Agħżel sors ieħor hawn taħt.
+values-b+mt	string	player_hud_offline_copy	-	L-ebda konnessjoni — qed tindaqq il-kopja mniżżla
+values-b+mt	string	player_hud_previous_episode	-	Episodju preċedenti
+values-b+mt	string	player_hud_seek_back	-	Lura
+values-b+mt	string	player_hud_seek_forward	-	Il-quddiem
+values-b+mt	string	player_hud_speed	-	Veloċità
+values-b+mt	string	player_hud_up_next	-	Li jmiss · %s
 values-b+mt	string	player_is_live	-	Live
 values-b+mt	string	player_load_one_subtitle_online	-	Load first available
 values-b+mt	string	player_load_subtitles	-	Load from file
@@ -32540,6 +32828,14 @@ values-b+my	string	player_fit_original	-	မူရင်းအချိုး
 values-b+my	string	player_fit_screen	-	မျက်နှာပြင်ပြည့်
 values-b+my	string	player_fit_title	-	ပုံအရွယ်အစား
 values-b+my	string	player_fit_width	-	အကျယ်ပြည့်
+values-b+my	string	player_hud_buffering	-	ကြားခံနေသည်
+values-b+my	string	player_hud_failed_detail	-	အောက်တွင် အခြားရင်းမြစ်ကို ရွေးပါ။
+values-b+my	string	player_hud_offline_copy	-	ချိတ်ဆက်မှုမရှိ — ဒေါင်းလုဒ်လုပ်ထားသော မိတ္တူကို ဖွင့်နေသည်
+values-b+my	string	player_hud_previous_episode	-	ယခင်အပိုင်း
+values-b+my	string	player_hud_seek_back	-	နောက်သို့
+values-b+my	string	player_hud_seek_forward	-	ရှေ့သို့
+values-b+my	string	player_hud_speed	-	အမြန်နှုန်း
+values-b+my	string	player_hud_up_next	-	နောက်တစ်ခု · %s
 values-b+my	string	player_is_live	-	Live
 values-b+my	string	player_load_one_subtitle_online	-	Load first available
 values-b+my	string	player_load_subtitles	-	ဖိုင်မှတင်သွင်းပြီး
@@ -33428,6 +33724,14 @@ values-b+ne	string	player_fit_original	-	मूल अनुपात
 values-b+ne	string	player_fit_screen	-	स्क्रिन भर्नुहोस्
 values-b+ne	string	player_fit_title	-	चित्रको आकार
 values-b+ne	string	player_fit_width	-	चौडाइ भर्नुहोस्
+values-b+ne	string	player_hud_buffering	-	बफर हुँदैछ
+values-b+ne	string	player_hud_failed_detail	-	तल अर्को स्रोत छान्नुहोस्।
+values-b+ne	string	player_hud_offline_copy	-	जडान छैन — डाउनलोड गरिएको प्रति बजिरहेको छ
+values-b+ne	string	player_hud_previous_episode	-	अघिल्लो एपिसोड
+values-b+ne	string	player_hud_seek_back	-	पछाडि
+values-b+ne	string	player_hud_seek_forward	-	अगाडि
+values-b+ne	string	player_hud_speed	-	गति
+values-b+ne	string	player_hud_up_next	-	अर्को · %s
 values-b+ne	string	player_is_live	-	Live
 values-b+ne	string	player_load_one_subtitle_online	-	Load first available
 values-b+ne	string	player_load_subtitles	-	Load from file
@@ -34316,6 +34620,14 @@ values-b+nl	string	player_fit_original	-	Originele beeldverhouding
 values-b+nl	string	player_fit_screen	-	Scherm vullen
 values-b+nl	string	player_fit_title	-	Beeldformaat
 values-b+nl	string	player_fit_width	-	Breedte vullen
+values-b+nl	string	player_hud_buffering	-	BUFFEREN
+values-b+nl	string	player_hud_failed_detail	-	Kies hieronder een andere bron.
+values-b+nl	string	player_hud_offline_copy	-	Geen verbinding — de gedownloade kopie wordt afgespeeld
+values-b+nl	string	player_hud_previous_episode	-	Vorige aflevering
+values-b+nl	string	player_hud_seek_back	-	Terugspoelen
+values-b+nl	string	player_hud_seek_forward	-	Vooruitspoelen
+values-b+nl	string	player_hud_speed	-	Snelheid
+values-b+nl	string	player_hud_up_next	-	Hierna · %s
 values-b+nl	string	player_is_live	-	Live
 values-b+nl	string	player_load_one_subtitle_online	-	Laad eerst beschikbare
 values-b+nl	string	player_load_subtitles	-	Laden uit bestand
@@ -35204,6 +35516,14 @@ values-b+nn	string	player_fit_original	-	Opphavleg sideforhold
 values-b+nn	string	player_fit_screen	-	Fyll skjermen
 values-b+nn	string	player_fit_title	-	Biletstorleik
 values-b+nn	string	player_fit_width	-	Fyll breidda
+values-b+nn	string	player_hud_buffering	-	BUFRAR
+values-b+nn	string	player_hud_failed_detail	-	Vel ei anna kjelde nedanfor.
+values-b+nn	string	player_hud_offline_copy	-	Inga tilkopling — den nedlasta kopien blir spelt
+values-b+nn	string	player_hud_previous_episode	-	Førre episode
+values-b+nn	string	player_hud_seek_back	-	Spol tilbake
+values-b+nn	string	player_hud_seek_forward	-	Spol fram
+values-b+nn	string	player_hud_speed	-	Fart
+values-b+nn	string	player_hud_up_next	-	Neste · %s
 values-b+nn	string	player_is_live	-	Live
 values-b+nn	string	player_load_one_subtitle_online	-	Load first available
 values-b+nn	string	player_load_subtitles	-	Load from file
@@ -36092,6 +36412,14 @@ values-b+no	string	player_fit_original	-	Opprinnelig sideforhold
 values-b+no	string	player_fit_screen	-	Fyll skjermen
 values-b+no	string	player_fit_title	-	Bildestørrelse
 values-b+no	string	player_fit_width	-	Fyll bredden
+values-b+no	string	player_hud_buffering	-	BUFRER
+values-b+no	string	player_hud_failed_detail	-	Velg en annen kilde nedenfor.
+values-b+no	string	player_hud_offline_copy	-	Ingen tilkobling — den nedlastede kopien spilles
+values-b+no	string	player_hud_previous_episode	-	Forrige episode
+values-b+no	string	player_hud_seek_back	-	Spol tilbake
+values-b+no	string	player_hud_seek_forward	-	Spol fremover
+values-b+no	string	player_hud_speed	-	Hastighet
+values-b+no	string	player_hud_up_next	-	Neste · %s
 values-b+no	string	player_is_live	-	Live
 values-b+no	string	player_load_one_subtitle_online	-	Load first available
 values-b+no	string	player_load_subtitles	-	Last inn fra fil
@@ -36980,6 +37308,14 @@ values-b+or	string	player_fit_original	-	ମୂଳ ଅନୁପାତ
 values-b+or	string	player_fit_screen	-	ସ୍କ୍ରିନ ପୂରଣ କରନ୍ତୁ
 values-b+or	string	player_fit_title	-	ଚିତ୍ର ଆକାର
 values-b+or	string	player_fit_width	-	ପ୍ରସ୍ଥ ପୂରଣ କରନ୍ତୁ
+values-b+or	string	player_hud_buffering	-	ବଫର୍ ହେଉଛି
+values-b+or	string	player_hud_failed_detail	-	ତଳେ ଅନ୍ୟ ଏକ ଉତ୍ସ ବାଛନ୍ତୁ।
+values-b+or	string	player_hud_offline_copy	-	ସଂଯୋଗ ନାହିଁ — ଡାଉନଲୋଡ୍ ହୋଇଥିବା କପି ଚାଲୁଛି
+values-b+or	string	player_hud_previous_episode	-	ପୂର୍ବ ଏପିସୋଡ୍
+values-b+or	string	player_hud_seek_back	-	ପଛକୁ
+values-b+or	string	player_hud_seek_forward	-	ଆଗକୁ
+values-b+or	string	player_hud_speed	-	ଗତି
+values-b+or	string	player_hud_up_next	-	ପରବର୍ତ୍ତୀ · %s
 values-b+or	string	player_is_live	-	Live
 values-b+or	string	player_load_one_subtitle_online	-	Load first available
 values-b+or	string	player_load_subtitles	-	Load from file
@@ -37880,6 +38216,14 @@ values-b+pl	string	player_fit_original	-	Oryginalne proporcje
 values-b+pl	string	player_fit_screen	-	Wypełnij ekran
 values-b+pl	string	player_fit_title	-	Rozmiar obrazu
 values-b+pl	string	player_fit_width	-	Wypełnij szerokość
+values-b+pl	string	player_hud_buffering	-	BUFOROWANIE
+values-b+pl	string	player_hud_failed_detail	-	Wybierz poniżej inne źródło.
+values-b+pl	string	player_hud_offline_copy	-	Brak połączenia — odtwarzanie pobranej kopii
+values-b+pl	string	player_hud_previous_episode	-	Poprzedni odcinek
+values-b+pl	string	player_hud_seek_back	-	Przewiń do tyłu
+values-b+pl	string	player_hud_seek_forward	-	Przewiń do przodu
+values-b+pl	string	player_hud_speed	-	Prędkość
+values-b+pl	string	player_hud_up_next	-	Następnie · %s
 values-b+pl	string	player_is_live	-	Na żywo
 values-b+pl	string	player_load_one_subtitle_online	-	Wczytaj pierwsze dostępne
 values-b+pl	string	player_load_subtitles	-	Wczytaj z pliku
@@ -38774,6 +39118,14 @@ values-b+pt	string	player_fit_original	-	Proporção original
 values-b+pt	string	player_fit_screen	-	Preencher ecrã
 values-b+pt	string	player_fit_title	-	Tamanho da imagem
 values-b+pt	string	player_fit_width	-	Preencher largura
+values-b+pt	string	player_hud_buffering	-	A CARREGAR
+values-b+pt	string	player_hud_failed_detail	-	Escolha outra fonte abaixo.
+values-b+pt	string	player_hud_offline_copy	-	Sem ligação — a reproduzir a cópia transferida
+values-b+pt	string	player_hud_previous_episode	-	Episódio anterior
+values-b+pt	string	player_hud_seek_back	-	Recuar
+values-b+pt	string	player_hud_seek_forward	-	Avançar
+values-b+pt	string	player_hud_speed	-	Velocidade
+values-b+pt	string	player_hud_up_next	-	A seguir · %s
 values-b+pt	string	player_is_live	-	Ao Vivo
 values-b+pt	string	player_load_one_subtitle_online	-	Carregar o primeiro disponível
 values-b+pt	string	player_load_subtitles	-	Carregar de arquivo
@@ -39668,6 +40020,14 @@ values-b+pt+BR	string	player_fit_original	-	Proporção original
 values-b+pt+BR	string	player_fit_screen	-	Preencher tela
 values-b+pt+BR	string	player_fit_title	-	Tamanho da imagem
 values-b+pt+BR	string	player_fit_width	-	Preencher largura
+values-b+pt+BR	string	player_hud_buffering	-	CARREGANDO
+values-b+pt+BR	string	player_hud_failed_detail	-	Escolha outra fonte abaixo.
+values-b+pt+BR	string	player_hud_offline_copy	-	Sem conexão — reproduzindo a cópia baixada
+values-b+pt+BR	string	player_hud_previous_episode	-	Episódio anterior
+values-b+pt+BR	string	player_hud_seek_back	-	Voltar
+values-b+pt+BR	string	player_hud_seek_forward	-	Avançar
+values-b+pt+BR	string	player_hud_speed	-	Velocidade
+values-b+pt+BR	string	player_hud_up_next	-	A seguir · %s
 values-b+pt+BR	string	player_is_live	-	Ao vivo
 values-b+pt+BR	string	player_load_one_subtitle_online	-	Carregar primeiro disponível
 values-b+pt+BR	string	player_load_subtitles	-	Carregar de arquivo
@@ -40553,6 +40913,14 @@ values-b+qt	string	player_fit_original	-	oh aah
 values-b+qt	string	player_fit_screen	-	oouuh aah
 values-b+qt	string	player_fit_title	-	aaaaa oh
 values-b+qt	string	player_fit_width	-	haa oh
+values-b+qt	string	player_hud_buffering	-	OOHH AAGH
+values-b+qt	string	player_hud_failed_detail	-	oohh aagh uuk.
+values-b+qt	string	player_hud_offline_copy	-	aagh oohh — uuk aah oohh
+values-b+qt	string	player_hud_previous_episode	-	oohh aagh uuk
+values-b+qt	string	player_hud_seek_back	-	aagh ooh
+values-b+qt	string	player_hud_seek_forward	-	ooh aagh
+values-b+qt	string	player_hud_speed	-	uuk
+values-b+qt	string	player_hud_up_next	-	aagh · %s
 values-b+qt	string	player_is_live	-	Live
 values-b+qt	string	player_load_one_subtitle_online	-	Load first available
 values-b+qt	string	player_load_subtitles	-	aagg aahh uuuk
@@ -41444,6 +41812,14 @@ values-b+ro	string	player_fit_original	-	Raport de aspect original
 values-b+ro	string	player_fit_screen	-	Umple ecranul
 values-b+ro	string	player_fit_title	-	Dimensiune imagine
 values-b+ro	string	player_fit_width	-	Umple lățimea
+values-b+ro	string	player_hud_buffering	-	SE ÎNCARCĂ
+values-b+ro	string	player_hud_failed_detail	-	Alegeți altă sursă mai jos.
+values-b+ro	string	player_hud_offline_copy	-	Fără conexiune — se redă copia descărcată
+values-b+ro	string	player_hud_previous_episode	-	Episodul anterior
+values-b+ro	string	player_hud_seek_back	-	Înapoi
+values-b+ro	string	player_hud_seek_forward	-	Înainte
+values-b+ro	string	player_hud_speed	-	Viteză
+values-b+ro	string	player_hud_up_next	-	Urmează · %s
 values-b+ro	string	player_is_live	-	Live
 values-b+ro	string	player_load_one_subtitle_online	-	Încărcați prima disponibilă
 values-b+ro	string	player_load_subtitles	-	Încărcați din fișier
@@ -42344,6 +42720,14 @@ values-b+ru	string	player_fit_original	-	Исходные пропорции
 values-b+ru	string	player_fit_screen	-	На весь экран
 values-b+ru	string	player_fit_title	-	Размер изображения
 values-b+ru	string	player_fit_width	-	По ширине
+values-b+ru	string	player_hud_buffering	-	БУФЕРИЗАЦИЯ
+values-b+ru	string	player_hud_failed_detail	-	Выберите другой источник ниже.
+values-b+ru	string	player_hud_offline_copy	-	Нет подключения — воспроизводится скачанная копия
+values-b+ru	string	player_hud_previous_episode	-	Предыдущая серия
+values-b+ru	string	player_hud_seek_back	-	Перемотка назад
+values-b+ru	string	player_hud_seek_forward	-	Перемотка вперёд
+values-b+ru	string	player_hud_speed	-	Скорость
+values-b+ru	string	player_hud_up_next	-	Далее · %s
 values-b+ru	string	player_is_live	-	Прямой эфир
 values-b+ru	string	player_load_one_subtitle_online	-	Скачать первые доступные
 values-b+ru	string	player_load_subtitles	-	Загрузить из файла
@@ -43238,6 +43622,14 @@ values-b+sk	string	player_fit_original	-	Pôvodný pomer strán
 values-b+sk	string	player_fit_screen	-	Vyplniť obrazovku
 values-b+sk	string	player_fit_title	-	Veľkosť obrazu
 values-b+sk	string	player_fit_width	-	Vyplniť šírku
+values-b+sk	string	player_hud_buffering	-	NAČÍTAVANIE
+values-b+sk	string	player_hud_failed_detail	-	Nižšie vyberte iný zdroj.
+values-b+sk	string	player_hud_offline_copy	-	Bez pripojenia — prehráva sa stiahnutá kópia
+values-b+sk	string	player_hud_previous_episode	-	Predchádzajúca epizóda
+values-b+sk	string	player_hud_seek_back	-	Pretočiť späť
+values-b+sk	string	player_hud_seek_forward	-	Pretočiť dopredu
+values-b+sk	string	player_hud_speed	-	Rýchlosť
+values-b+sk	string	player_hud_up_next	-	Ďalej · %s
 values-b+sk	string	player_is_live	-	Live
 values-b+sk	string	player_load_one_subtitle_online	-	Načítať prvé k dispozícii
 values-b+sk	string	player_load_subtitles	-	Načítať z súboru
@@ -44126,6 +44518,14 @@ values-b+so	string	player_fit_original	-	Saamiga asalka ah
 values-b+so	string	player_fit_screen	-	Buuxi shaashadda
 values-b+so	string	player_fit_title	-	Cabbirka sawirka
 values-b+so	string	player_fit_width	-	Buuxi ballaca
+values-b+so	string	player_hud_buffering	-	WAA LA KAYDINAYAA
+values-b+so	string	player_hud_failed_detail	-	Hoos ka dooro il kale.
+values-b+so	string	player_hud_offline_copy	-	Xiriir ma jiro — waxaa socda nuqulka la soo dejiyay
+values-b+so	string	player_hud_previous_episode	-	Qaybtii hore
+values-b+so	string	player_hud_seek_back	-	Dib u celi
+values-b+so	string	player_hud_seek_forward	-	Hore u soco
+values-b+so	string	player_hud_speed	-	Xawaare
+values-b+so	string	player_hud_up_next	-	Xiga · %s
 values-b+so	string	player_is_live	-	Live
 values-b+so	string	player_load_one_subtitle_online	-	Load first available
 values-b+so	string	player_load_subtitles	-	Faylashaada ka keen
@@ -45014,6 +45414,14 @@ values-b+sq	string	player_fit_original	-	Raporti origjinal
 values-b+sq	string	player_fit_screen	-	Mbush ekranin
 values-b+sq	string	player_fit_title	-	Madhësia e figurës
 values-b+sq	string	player_fit_width	-	Mbush gjerësinë
+values-b+sq	string	player_hud_buffering	-	PO NGARKOHET
+values-b+sq	string	player_hud_failed_detail	-	Zgjidhni më poshtë një burim tjetër.
+values-b+sq	string	player_hud_offline_copy	-	Nuk ka lidhje — po luhet kopja e shkarkuar
+values-b+sq	string	player_hud_previous_episode	-	Episodi i mëparshëm
+values-b+sq	string	player_hud_seek_back	-	Prapa
+values-b+sq	string	player_hud_seek_forward	-	Përpara
+values-b+sq	string	player_hud_speed	-	Shpejtësia
+values-b+sq	string	player_hud_up_next	-	Në vijim · %s
 values-b+sq	string	player_is_live	-	Live
 values-b+sq	string	player_load_one_subtitle_online	-	Ngarko të parën e disponueshme
 values-b+sq	string	player_load_subtitles	-	Ngarko nga skedari
@@ -45902,6 +46310,14 @@ values-b+sv	string	player_fit_original	-	Ursprungligt bildförhållande
 values-b+sv	string	player_fit_screen	-	Fyll skärmen
 values-b+sv	string	player_fit_title	-	Bildstorlek
 values-b+sv	string	player_fit_width	-	Fyll bredden
+values-b+sv	string	player_hud_buffering	-	BUFFRAR
+values-b+sv	string	player_hud_failed_detail	-	Välj en annan källa nedan.
+values-b+sv	string	player_hud_offline_copy	-	Ingen anslutning — den nedladdade kopian spelas
+values-b+sv	string	player_hud_previous_episode	-	Föregående avsnitt
+values-b+sv	string	player_hud_seek_back	-	Spola bakåt
+values-b+sv	string	player_hud_seek_forward	-	Spola framåt
+values-b+sv	string	player_hud_speed	-	Hastighet
+values-b+sv	string	player_hud_up_next	-	Härnäst · %s
 values-b+sv	string	player_is_live	-	Live
 values-b+sv	string	player_load_one_subtitle_online	-	Ladda in första möjliga
 values-b+sv	string	player_load_subtitles	-	Importera från fil
@@ -46790,6 +47206,14 @@ values-b+ta	string	player_fit_original	-	அசல் விகிதம்
 values-b+ta	string	player_fit_screen	-	திரையை நிரப்பு
 values-b+ta	string	player_fit_title	-	பட அளவு
 values-b+ta	string	player_fit_width	-	அகலத்தை நிரப்பு
+values-b+ta	string	player_hud_buffering	-	இடையகப்படுத்துகிறது
+values-b+ta	string	player_hud_failed_detail	-	கீழே வேறு மூலத்தைத் தேர்ந்தெடுக்கவும்.
+values-b+ta	string	player_hud_offline_copy	-	இணைப்பு இல்லை — பதிவிறக்கிய நகல் இயங்குகிறது
+values-b+ta	string	player_hud_previous_episode	-	முந்தைய எபிசோடு
+values-b+ta	string	player_hud_seek_back	-	பின்னோக்கி
+values-b+ta	string	player_hud_seek_forward	-	முன்னோக்கி
+values-b+ta	string	player_hud_speed	-	வேகம்
+values-b+ta	string	player_hud_up_next	-	அடுத்து · %s
 values-b+ta	string	player_is_live	-	வாழ்க
 values-b+ta	string	player_load_one_subtitle_online	-	முதலில் கிடைக்கிறது
 values-b+ta	string	player_load_subtitles	-	கோப்பிலிருந்து ஏற்றவும்
@@ -47678,6 +48102,14 @@ values-b+ti	string	player_fit_original	-	መበቆል ዝምድና
 values-b+ti	string	player_fit_screen	-	ስክሪን ምላእ
 values-b+ti	string	player_fit_title	-	መጠን ስእሊ
 values-b+ti	string	player_fit_width	-	ስፍሓት ምላእ
+values-b+ti	string	player_hud_buffering	-	ይጽዕን ኣሎ
+values-b+ti	string	player_hud_failed_detail	-	ኣብ ታሕቲ ካልእ ምንጪ ምረጹ።
+values-b+ti	string	player_hud_offline_copy	-	ርክብ የለን — እቲ ዝወረደ ቅዳሕ ይጻወት ኣሎ
+values-b+ti	string	player_hud_previous_episode	-	ዝሓለፈ ክፋል
+values-b+ti	string	player_hud_seek_back	-	ንድሕሪት
+values-b+ti	string	player_hud_seek_forward	-	ንቕድሚት
+values-b+ti	string	player_hud_speed	-	ቅልጣፈ
+values-b+ti	string	player_hud_up_next	-	ቀጺሉ · %s
 values-b+ti	string	player_is_live	-	Live
 values-b+ti	string	player_load_one_subtitle_online	-	Load first available
 values-b+ti	string	player_load_subtitles	-	Load from file
@@ -48566,6 +48998,14 @@ values-b+tl	string	player_fit_original	-	Orihinal na aspect ratio
 values-b+tl	string	player_fit_screen	-	Punuin ang screen
 values-b+tl	string	player_fit_title	-	Laki ng larawan
 values-b+tl	string	player_fit_width	-	Punuin ang lapad
+values-b+tl	string	player_hud_buffering	-	NAGBA-BUFFER
+values-b+tl	string	player_hud_failed_detail	-	Pumili ng ibang source sa ibaba.
+values-b+tl	string	player_hud_offline_copy	-	Walang koneksyon — pinapatugtog ang na-download na kopya
+values-b+tl	string	player_hud_previous_episode	-	Nakaraang episode
+values-b+tl	string	player_hud_seek_back	-	I-rewind
+values-b+tl	string	player_hud_seek_forward	-	I-forward
+values-b+tl	string	player_hud_speed	-	Bilis
+values-b+tl	string	player_hud_up_next	-	Susunod · %s
 values-b+tl	string	player_is_live	-	Live
 values-b+tl	string	player_load_one_subtitle_online	-	Load first available
 values-b+tl	string	player_load_subtitles	-	Load from file
@@ -49454,6 +49894,14 @@ values-b+tr	string	player_fit_original	-	Orijinal en boy oranı
 values-b+tr	string	player_fit_screen	-	Ekranı doldur
 values-b+tr	string	player_fit_title	-	Görüntü boyutu
 values-b+tr	string	player_fit_width	-	Genişliği doldur
+values-b+tr	string	player_hud_buffering	-	ARABELLEĞE ALINIYOR
+values-b+tr	string	player_hud_failed_detail	-	Aşağıdan başka bir kaynak seçin.
+values-b+tr	string	player_hud_offline_copy	-	Bağlantı yok — indirilen kopya oynatılıyor
+values-b+tr	string	player_hud_previous_episode	-	Önceki bölüm
+values-b+tr	string	player_hud_seek_back	-	Geri sar
+values-b+tr	string	player_hud_seek_forward	-	İleri sar
+values-b+tr	string	player_hud_speed	-	Hız
+values-b+tr	string	player_hud_up_next	-	Sıradaki · %s
 values-b+tr	string	player_is_live	-	Canlı
 values-b+tr	string	player_load_one_subtitle_online	-	İlk kullanılabiliri yükle
 values-b+tr	string	player_load_subtitles	-	Dosyadan yükle
@@ -50354,6 +50802,14 @@ values-b+uk	string	player_fit_original	-	Початкові пропорції
 values-b+uk	string	player_fit_screen	-	Заповнити екран
 values-b+uk	string	player_fit_title	-	Розмір зображення
 values-b+uk	string	player_fit_width	-	Заповнити ширину
+values-b+uk	string	player_hud_buffering	-	БУФЕРИЗАЦІЯ
+values-b+uk	string	player_hud_failed_detail	-	Виберіть інше джерело нижче.
+values-b+uk	string	player_hud_offline_copy	-	Немає з’єднання — відтворюється завантажена копія
+values-b+uk	string	player_hud_previous_episode	-	Попередня серія
+values-b+uk	string	player_hud_seek_back	-	Перемотати назад
+values-b+uk	string	player_hud_seek_forward	-	Перемотати вперед
+values-b+uk	string	player_hud_speed	-	Швидкість
+values-b+uk	string	player_hud_up_next	-	Далі · %s
 values-b+uk	string	player_is_live	-	Наживо
 values-b+uk	string	player_load_one_subtitle_online	-	Завантажити перший доступний
 values-b+uk	string	player_load_subtitles	-	Завантажити з файлу
@@ -51242,6 +51698,14 @@ values-b+ur	string	player_fit_original	-	اصل تناسب
 values-b+ur	string	player_fit_screen	-	اسکرین بھریں
 values-b+ur	string	player_fit_title	-	تصویر کا سائز
 values-b+ur	string	player_fit_width	-	چوڑائی بھریں
+values-b+ur	string	player_hud_buffering	-	بفر ہو رہا ہے
+values-b+ur	string	player_hud_failed_detail	-	نیچے کوئی اور ذریعہ منتخب کریں۔
+values-b+ur	string	player_hud_offline_copy	-	کنکشن نہیں — ڈاؤن لوڈ کی گئی کاپی چل رہی ہے
+values-b+ur	string	player_hud_previous_episode	-	پچھلی قسط
+values-b+ur	string	player_hud_seek_back	-	پیچھے
+values-b+ur	string	player_hud_seek_forward	-	آگے
+values-b+ur	string	player_hud_speed	-	رفتار
+values-b+ur	string	player_hud_up_next	-	اگلا · %s
 values-b+ur	string	player_is_live	-	Live
 values-b+ur	string	player_load_one_subtitle_online	-	Load first available
 values-b+ur	string	player_load_subtitles	-	فائل سے لوڈ کریں
@@ -52124,6 +52588,14 @@ values-b+vi	string	player_fit_original	-	Tỷ lệ gốc
 values-b+vi	string	player_fit_screen	-	Lấp đầy màn hình
 values-b+vi	string	player_fit_title	-	Kích thước hình ảnh
 values-b+vi	string	player_fit_width	-	Lấp đầy chiều rộng
+values-b+vi	string	player_hud_buffering	-	ĐANG TẢI ĐỆM
+values-b+vi	string	player_hud_failed_detail	-	Chọn nguồn khác bên dưới.
+values-b+vi	string	player_hud_offline_copy	-	Không có kết nối — đang phát bản đã tải xuống
+values-b+vi	string	player_hud_previous_episode	-	Tập trước
+values-b+vi	string	player_hud_seek_back	-	Tua lại
+values-b+vi	string	player_hud_seek_forward	-	Tua tới
+values-b+vi	string	player_hud_speed	-	Tốc độ
+values-b+vi	string	player_hud_up_next	-	Tiếp theo · %s
 values-b+vi	string	player_is_live	-	Trực tiếp
 values-b+vi	string	player_load_one_subtitle_online	-	Tải phụ đề đầu tiên có sẵn
 values-b+vi	string	player_load_subtitles	-	Chọn từ tệp
@@ -53006,6 +53478,14 @@ values-b+zh	string	player_fit_original	-	原始宽高比
 values-b+zh	string	player_fit_screen	-	填满屏幕
 values-b+zh	string	player_fit_title	-	画面大小
 values-b+zh	string	player_fit_width	-	填满宽度
+values-b+zh	string	player_hud_buffering	-	缓冲中
+values-b+zh	string	player_hud_failed_detail	-	请在下方选择其他来源。
+values-b+zh	string	player_hud_offline_copy	-	无网络连接 — 正在播放已下载的副本
+values-b+zh	string	player_hud_previous_episode	-	上一集
+values-b+zh	string	player_hud_seek_back	-	后退
+values-b+zh	string	player_hud_seek_forward	-	快进
+values-b+zh	string	player_hud_speed	-	速度
+values-b+zh	string	player_hud_up_next	-	接下来 · %s
 values-b+zh	string	player_is_live	-	播放中
 values-b+zh	string	player_load_one_subtitle_online	-	加载第一个可用的字幕
 values-b+zh	string	player_load_subtitles	-	从文件加载
@@ -53889,6 +54369,14 @@ values-b+zh+TW	string	player_fit_original	-	原始長寬比
 values-b+zh+TW	string	player_fit_screen	-	填滿螢幕
 values-b+zh+TW	string	player_fit_title	-	畫面大小
 values-b+zh+TW	string	player_fit_width	-	填滿寬度
+values-b+zh+TW	string	player_hud_buffering	-	緩衝中
+values-b+zh+TW	string	player_hud_failed_detail	-	請在下方選擇其他來源。
+values-b+zh+TW	string	player_hud_offline_copy	-	沒有網路連線 — 正在播放已下載的副本
+values-b+zh+TW	string	player_hud_previous_episode	-	上一集
+values-b+zh+TW	string	player_hud_seek_back	-	倒轉
+values-b+zh+TW	string	player_hud_seek_forward	-	快轉
+values-b+zh+TW	string	player_hud_speed	-	速度
+values-b+zh+TW	string	player_hud_up_next	-	接下來 · %s
 values-b+zh+TW	string	player_is_live	-	播放中
 values-b+zh+TW	string	player_load_one_subtitle_online	-	載入第一個可用的
 values-b+zh+TW	string	player_load_subtitles	-	從檔案載入
@@ -54777,6 +55265,14 @@ en	string	player_fit_original	-	Original aspect ratio
 en	string	player_fit_screen	-	Fill screen
 en	string	player_fit_title	-	Picture size
 en	string	player_fit_width	-	Fill width
+en	string	player_hud_buffering	-	BUFFERING
+en	string	player_hud_failed_detail	-	Choose another source below.
+en	string	player_hud_offline_copy	-	No connection — playing the downloaded copy
+en	string	player_hud_previous_episode	-	Previous episode
+en	string	player_hud_seek_back	-	Seek back
+en	string	player_hud_seek_forward	-	Seek forward
+en	string	player_hud_speed	-	Speed
+en	string	player_hud_up_next	-	Up next · %s
 en	string	player_is_live	-	Live
 en	string	player_load_one_subtitle_online	-	Load first available
 en	string	player_load_subtitles	-	Load from file
@@ -55665,6 +56161,14 @@ en-US	string	player_fit_original	-	Original aspect ratio
 en-US	string	player_fit_screen	-	Fill screen
 en-US	string	player_fit_title	-	Picture size
 en-US	string	player_fit_width	-	Fill width
+en-US	string	player_hud_buffering	-	BUFFERING
+en-US	string	player_hud_failed_detail	-	Choose another source below.
+en-US	string	player_hud_offline_copy	-	No connection — playing the downloaded copy
+en-US	string	player_hud_previous_episode	-	Previous episode
+en-US	string	player_hud_seek_back	-	Seek back
+en-US	string	player_hud_seek_forward	-	Seek forward
+en-US	string	player_hud_speed	-	Speed
+en-US	string	player_hud_up_next	-	Up next · %s
 en-US	string	player_is_live	-	Live
 en-US	string	player_load_one_subtitle_online	-	Load first available
 en-US	string	player_load_subtitles	-	Load from file
@@ -56553,6 +57057,14 @@ en-GB	string	player_fit_original	-	Original aspect ratio
 en-GB	string	player_fit_screen	-	Fill screen
 en-GB	string	player_fit_title	-	Picture size
 en-GB	string	player_fit_width	-	Fill width
+en-GB	string	player_hud_buffering	-	BUFFERING
+en-GB	string	player_hud_failed_detail	-	Choose another source below.
+en-GB	string	player_hud_offline_copy	-	No connection — playing the downloaded copy
+en-GB	string	player_hud_previous_episode	-	Previous episode
+en-GB	string	player_hud_seek_back	-	Seek back
+en-GB	string	player_hud_seek_forward	-	Seek forward
+en-GB	string	player_hud_speed	-	Speed
+en-GB	string	player_hud_up_next	-	Up next · %s
 en-GB	string	player_is_live	-	Live
 en-GB	string	player_load_one_subtitle_online	-	Load first available
 en-GB	string	player_load_subtitles	-	Load from file
@@ -57447,6 +57959,14 @@ pt	string	player_fit_original	-	Proporção original
 pt	string	player_fit_screen	-	Preencher ecrã
 pt	string	player_fit_title	-	Tamanho da imagem
 pt	string	player_fit_width	-	Preencher largura
+pt	string	player_hud_buffering	-	A CARREGAR
+pt	string	player_hud_failed_detail	-	Escolha outra fonte abaixo.
+pt	string	player_hud_offline_copy	-	Sem ligação — a reproduzir a cópia transferida
+pt	string	player_hud_previous_episode	-	Episódio anterior
+pt	string	player_hud_seek_back	-	Recuar
+pt	string	player_hud_seek_forward	-	Avançar
+pt	string	player_hud_speed	-	Velocidade
+pt	string	player_hud_up_next	-	A seguir · %s
 pt	string	player_is_live	-	Ao Vivo
 pt	string	player_load_one_subtitle_online	-	Carregar o primeiro disponível
 pt	string	player_load_subtitles	-	Carregar de arquivo
@@ -58341,6 +58861,14 @@ pt-PT	string	player_fit_original	-	Proporção original
 pt-PT	string	player_fit_screen	-	Preencher ecrã
 pt-PT	string	player_fit_title	-	Tamanho da imagem
 pt-PT	string	player_fit_width	-	Preencher largura
+pt-PT	string	player_hud_buffering	-	A CARREGAR
+pt-PT	string	player_hud_failed_detail	-	Escolha outra fonte abaixo.
+pt-PT	string	player_hud_offline_copy	-	Sem ligação — a reproduzir a cópia transferida
+pt-PT	string	player_hud_previous_episode	-	Episódio anterior
+pt-PT	string	player_hud_seek_back	-	Recuar
+pt-PT	string	player_hud_seek_forward	-	Avançar
+pt-PT	string	player_hud_speed	-	Velocidade
+pt-PT	string	player_hud_up_next	-	A seguir · %s
 pt-PT	string	player_is_live	-	Ao Vivo
 pt-PT	string	player_load_one_subtitle_online	-	Carregar o primeiro disponível
 pt-PT	string	player_load_subtitles	-	Carregar de arquivo
@@ -59235,6 +59763,14 @@ pt-BR	string	player_fit_original	-	Proporção original
 pt-BR	string	player_fit_screen	-	Preencher tela
 pt-BR	string	player_fit_title	-	Tamanho da imagem
 pt-BR	string	player_fit_width	-	Preencher largura
+pt-BR	string	player_hud_buffering	-	CARREGANDO
+pt-BR	string	player_hud_failed_detail	-	Escolha outra fonte abaixo.
+pt-BR	string	player_hud_offline_copy	-	Sem conexão — reproduzindo a cópia baixada
+pt-BR	string	player_hud_previous_episode	-	Episódio anterior
+pt-BR	string	player_hud_seek_back	-	Voltar
+pt-BR	string	player_hud_seek_forward	-	Avançar
+pt-BR	string	player_hud_speed	-	Velocidade
+pt-BR	string	player_hud_up_next	-	A seguir · %s
 pt-BR	string	player_is_live	-	Ao vivo
 pt-BR	string	player_load_one_subtitle_online	-	Carregar primeiro disponível
 pt-BR	string	player_load_subtitles	-	Carregar de arquivo
@@ -60123,6 +60659,14 @@ fil	string	player_fit_original	-	Orihinal na aspect ratio
 fil	string	player_fit_screen	-	Punuin ang screen
 fil	string	player_fit_title	-	Laki ng larawan
 fil	string	player_fit_width	-	Punuin ang lapad
+fil	string	player_hud_buffering	-	NAGBA-BUFFER
+fil	string	player_hud_failed_detail	-	Pumili ng ibang source sa ibaba.
+fil	string	player_hud_offline_copy	-	Walang koneksyon — pinapatugtog ang na-download na kopya
+fil	string	player_hud_previous_episode	-	Nakaraang episode
+fil	string	player_hud_seek_back	-	I-rewind
+fil	string	player_hud_seek_forward	-	I-forward
+fil	string	player_hud_speed	-	Bilis
+fil	string	player_hud_up_next	-	Susunod · %s
 fil	string	player_is_live	-	Live
 fil	string	player_load_one_subtitle_online	-	Load first available
 fil	string	player_load_subtitles	-	Load from file
@@ -61011,6 +61555,14 @@ tl	string	player_fit_original	-	Orihinal na aspect ratio
 tl	string	player_fit_screen	-	Punuin ang screen
 tl	string	player_fit_title	-	Laki ng larawan
 tl	string	player_fit_width	-	Punuin ang lapad
+tl	string	player_hud_buffering	-	NAGBA-BUFFER
+tl	string	player_hud_failed_detail	-	Pumili ng ibang source sa ibaba.
+tl	string	player_hud_offline_copy	-	Walang koneksyon — pinapatugtog ang na-download na kopya
+tl	string	player_hud_previous_episode	-	Nakaraang episode
+tl	string	player_hud_seek_back	-	I-rewind
+tl	string	player_hud_seek_forward	-	I-forward
+tl	string	player_hud_speed	-	Bilis
+tl	string	player_hud_up_next	-	Susunod · %s
 tl	string	player_is_live	-	Live
 tl	string	player_load_one_subtitle_online	-	Load first available
 tl	string	player_load_subtitles	-	Load from file
@@ -61899,6 +62451,14 @@ fil-PH	string	player_fit_original	-	Orihinal na aspect ratio
 fil-PH	string	player_fit_screen	-	Punuin ang screen
 fil-PH	string	player_fit_title	-	Laki ng larawan
 fil-PH	string	player_fit_width	-	Punuin ang lapad
+fil-PH	string	player_hud_buffering	-	NAGBA-BUFFER
+fil-PH	string	player_hud_failed_detail	-	Pumili ng ibang source sa ibaba.
+fil-PH	string	player_hud_offline_copy	-	Walang koneksyon — pinapatugtog ang na-download na kopya
+fil-PH	string	player_hud_previous_episode	-	Nakaraang episode
+fil-PH	string	player_hud_seek_back	-	I-rewind
+fil-PH	string	player_hud_seek_forward	-	I-forward
+fil-PH	string	player_hud_speed	-	Bilis
+fil-PH	string	player_hud_up_next	-	Susunod · %s
 fil-PH	string	player_is_live	-	Live
 fil-PH	string	player_load_one_subtitle_online	-	Load first available
 fil-PH	string	player_load_subtitles	-	Load from file
@@ -62781,6 +63341,14 @@ zh	string	player_fit_original	-	原始宽高比
 zh	string	player_fit_screen	-	填满屏幕
 zh	string	player_fit_title	-	画面大小
 zh	string	player_fit_width	-	填满宽度
+zh	string	player_hud_buffering	-	缓冲中
+zh	string	player_hud_failed_detail	-	请在下方选择其他来源。
+zh	string	player_hud_offline_copy	-	无网络连接 — 正在播放已下载的副本
+zh	string	player_hud_previous_episode	-	上一集
+zh	string	player_hud_seek_back	-	后退
+zh	string	player_hud_seek_forward	-	快进
+zh	string	player_hud_speed	-	速度
+zh	string	player_hud_up_next	-	接下来 · %s
 zh	string	player_is_live	-	播放中
 zh	string	player_load_one_subtitle_online	-	加载第一个可用的字幕
 zh	string	player_load_subtitles	-	从文件加载
@@ -63663,6 +64231,14 @@ zh-CN	string	player_fit_original	-	原始宽高比
 zh-CN	string	player_fit_screen	-	填满屏幕
 zh-CN	string	player_fit_title	-	画面大小
 zh-CN	string	player_fit_width	-	填满宽度
+zh-CN	string	player_hud_buffering	-	缓冲中
+zh-CN	string	player_hud_failed_detail	-	请在下方选择其他来源。
+zh-CN	string	player_hud_offline_copy	-	无网络连接 — 正在播放已下载的副本
+zh-CN	string	player_hud_previous_episode	-	上一集
+zh-CN	string	player_hud_seek_back	-	后退
+zh-CN	string	player_hud_seek_forward	-	快进
+zh-CN	string	player_hud_speed	-	速度
+zh-CN	string	player_hud_up_next	-	接下来 · %s
 zh-CN	string	player_is_live	-	播放中
 zh-CN	string	player_load_one_subtitle_online	-	加载第一个可用的字幕
 zh-CN	string	player_load_subtitles	-	从文件加载
@@ -64545,6 +65121,14 @@ zh-Hans-CN	string	player_fit_original	-	原始宽高比
 zh-Hans-CN	string	player_fit_screen	-	填满屏幕
 zh-Hans-CN	string	player_fit_title	-	画面大小
 zh-Hans-CN	string	player_fit_width	-	填满宽度
+zh-Hans-CN	string	player_hud_buffering	-	缓冲中
+zh-Hans-CN	string	player_hud_failed_detail	-	请在下方选择其他来源。
+zh-Hans-CN	string	player_hud_offline_copy	-	无网络连接 — 正在播放已下载的副本
+zh-Hans-CN	string	player_hud_previous_episode	-	上一集
+zh-Hans-CN	string	player_hud_seek_back	-	后退
+zh-Hans-CN	string	player_hud_seek_forward	-	快进
+zh-Hans-CN	string	player_hud_speed	-	速度
+zh-Hans-CN	string	player_hud_up_next	-	接下来 · %s
 zh-Hans-CN	string	player_is_live	-	播放中
 zh-Hans-CN	string	player_load_one_subtitle_online	-	加载第一个可用的字幕
 zh-Hans-CN	string	player_load_subtitles	-	从文件加载
@@ -65428,6 +66012,14 @@ zh-TW	string	player_fit_original	-	原始長寬比
 zh-TW	string	player_fit_screen	-	填滿螢幕
 zh-TW	string	player_fit_title	-	畫面大小
 zh-TW	string	player_fit_width	-	填滿寬度
+zh-TW	string	player_hud_buffering	-	緩衝中
+zh-TW	string	player_hud_failed_detail	-	請在下方選擇其他來源。
+zh-TW	string	player_hud_offline_copy	-	沒有網路連線 — 正在播放已下載的副本
+zh-TW	string	player_hud_previous_episode	-	上一集
+zh-TW	string	player_hud_seek_back	-	倒轉
+zh-TW	string	player_hud_seek_forward	-	快轉
+zh-TW	string	player_hud_speed	-	速度
+zh-TW	string	player_hud_up_next	-	接下來 · %s
 zh-TW	string	player_is_live	-	播放中
 zh-TW	string	player_load_one_subtitle_online	-	載入第一個可用的
 zh-TW	string	player_load_subtitles	-	從檔案載入
@@ -66311,6 +66903,14 @@ zh-Hant-TW	string	player_fit_original	-	原始長寬比
 zh-Hant-TW	string	player_fit_screen	-	填滿螢幕
 zh-Hant-TW	string	player_fit_title	-	畫面大小
 zh-Hant-TW	string	player_fit_width	-	填滿寬度
+zh-Hant-TW	string	player_hud_buffering	-	緩衝中
+zh-Hant-TW	string	player_hud_failed_detail	-	請在下方選擇其他來源。
+zh-Hant-TW	string	player_hud_offline_copy	-	沒有網路連線 — 正在播放已下載的副本
+zh-Hant-TW	string	player_hud_previous_episode	-	上一集
+zh-Hant-TW	string	player_hud_seek_back	-	倒轉
+zh-Hant-TW	string	player_hud_seek_forward	-	快轉
+zh-Hant-TW	string	player_hud_speed	-	速度
+zh-Hant-TW	string	player_hud_up_next	-	接下來 · %s
 zh-Hant-TW	string	player_is_live	-	播放中
 zh-Hant-TW	string	player_load_one_subtitle_online	-	載入第一個可用的
 zh-Hant-TW	string	player_load_subtitles	-	從檔案載入
@@ -67194,6 +67794,14 @@ zh-HK	string	player_fit_original	-	原始長寬比
 zh-HK	string	player_fit_screen	-	填滿螢幕
 zh-HK	string	player_fit_title	-	畫面大小
 zh-HK	string	player_fit_width	-	填滿寬度
+zh-HK	string	player_hud_buffering	-	緩衝中
+zh-HK	string	player_hud_failed_detail	-	請在下方選擇其他來源。
+zh-HK	string	player_hud_offline_copy	-	沒有網路連線 — 正在播放已下載的副本
+zh-HK	string	player_hud_previous_episode	-	上一集
+zh-HK	string	player_hud_seek_back	-	倒轉
+zh-HK	string	player_hud_seek_forward	-	快轉
+zh-HK	string	player_hud_speed	-	速度
+zh-HK	string	player_hud_up_next	-	接下來 · %s
 zh-HK	string	player_is_live	-	播放中
 zh-HK	string	player_load_one_subtitle_online	-	載入第一個可用的
 zh-HK	string	player_load_subtitles	-	從檔案載入
@@ -68077,6 +68685,14 @@ zh-Hant-HK	string	player_fit_original	-	原始長寬比
 zh-Hant-HK	string	player_fit_screen	-	填滿螢幕
 zh-Hant-HK	string	player_fit_title	-	畫面大小
 zh-Hant-HK	string	player_fit_width	-	填滿寬度
+zh-Hant-HK	string	player_hud_buffering	-	緩衝中
+zh-Hant-HK	string	player_hud_failed_detail	-	請在下方選擇其他來源。
+zh-Hant-HK	string	player_hud_offline_copy	-	沒有網路連線 — 正在播放已下載的副本
+zh-Hant-HK	string	player_hud_previous_episode	-	上一集
+zh-Hant-HK	string	player_hud_seek_back	-	倒轉
+zh-Hant-HK	string	player_hud_seek_forward	-	快轉
+zh-Hant-HK	string	player_hud_speed	-	速度
+zh-Hant-HK	string	player_hud_up_next	-	接下來 · %s
 zh-Hant-HK	string	player_is_live	-	播放中
 zh-Hant-HK	string	player_load_one_subtitle_online	-	載入第一個可用的
 zh-Hant-HK	string	player_load_subtitles	-	從檔案載入
@@ -68965,6 +69581,14 @@ no	string	player_fit_original	-	Opprinnelig sideforhold
 no	string	player_fit_screen	-	Fyll skjermen
 no	string	player_fit_title	-	Bildestørrelse
 no	string	player_fit_width	-	Fyll bredden
+no	string	player_hud_buffering	-	BUFRER
+no	string	player_hud_failed_detail	-	Velg en annen kilde nedenfor.
+no	string	player_hud_offline_copy	-	Ingen tilkobling — den nedlastede kopien spilles
+no	string	player_hud_previous_episode	-	Forrige episode
+no	string	player_hud_seek_back	-	Spol tilbake
+no	string	player_hud_seek_forward	-	Spol fremover
+no	string	player_hud_speed	-	Hastighet
+no	string	player_hud_up_next	-	Neste · %s
 no	string	player_is_live	-	Live
 no	string	player_load_one_subtitle_online	-	Load first available
 no	string	player_load_subtitles	-	Last inn fra fil
@@ -69853,6 +70477,14 @@ nb	string	player_fit_original	-	Original aspect ratio
 nb	string	player_fit_screen	-	Fill screen
 nb	string	player_fit_title	-	Picture size
 nb	string	player_fit_width	-	Fill width
+nb	string	player_hud_buffering	-	BUFFERING
+nb	string	player_hud_failed_detail	-	Choose another source below.
+nb	string	player_hud_offline_copy	-	No connection — playing the downloaded copy
+nb	string	player_hud_previous_episode	-	Previous episode
+nb	string	player_hud_seek_back	-	Seek back
+nb	string	player_hud_seek_forward	-	Seek forward
+nb	string	player_hud_speed	-	Speed
+nb	string	player_hud_up_next	-	Up next · %s
 nb	string	player_is_live	-	Live
 nb	string	player_load_one_subtitle_online	-	Load first available
 nb	string	player_load_subtitles	-	Load from file
@@ -70741,6 +71373,14 @@ nb-NO	string	player_fit_original	-	Original aspect ratio
 nb-NO	string	player_fit_screen	-	Fill screen
 nb-NO	string	player_fit_title	-	Picture size
 nb-NO	string	player_fit_width	-	Fill width
+nb-NO	string	player_hud_buffering	-	BUFFERING
+nb-NO	string	player_hud_failed_detail	-	Choose another source below.
+nb-NO	string	player_hud_offline_copy	-	No connection — playing the downloaded copy
+nb-NO	string	player_hud_previous_episode	-	Previous episode
+nb-NO	string	player_hud_seek_back	-	Seek back
+nb-NO	string	player_hud_seek_forward	-	Seek forward
+nb-NO	string	player_hud_speed	-	Speed
+nb-NO	string	player_hud_up_next	-	Up next · %s
 nb-NO	string	player_is_live	-	Live
 nb-NO	string	player_load_one_subtitle_online	-	Load first available
 nb-NO	string	player_load_subtitles	-	Load from file
@@ -71632,6 +72272,14 @@ iw	string	player_fit_original	-	יחס גובה־רוחב מקורי
 iw	string	player_fit_screen	-	מילוי מסך
 iw	string	player_fit_title	-	גודל תמונה
 iw	string	player_fit_width	-	מילוי רוחב
+iw	string	player_hud_buffering	-	טוען
+iw	string	player_hud_failed_detail	-	בחרו מקור אחר למטה.
+iw	string	player_hud_offline_copy	-	אין חיבור — מתנגן העותק שהורד
+iw	string	player_hud_previous_episode	-	הפרק הקודם
+iw	string	player_hud_seek_back	-	אחורה
+iw	string	player_hud_seek_forward	-	קדימה
+iw	string	player_hud_speed	-	מהירות
+iw	string	player_hud_up_next	-	הבא · %s
 iw	string	player_is_live	-	Live
 iw	string	player_load_one_subtitle_online	-	Load first available
 iw	string	player_load_subtitles	-	טען מקובץ
@@ -72523,6 +73171,14 @@ he	string	player_fit_original	-	יחס גובה־רוחב מקורי
 he	string	player_fit_screen	-	מילוי מסך
 he	string	player_fit_title	-	גודל תמונה
 he	string	player_fit_width	-	מילוי רוחב
+he	string	player_hud_buffering	-	טוען
+he	string	player_hud_failed_detail	-	בחרו מקור אחר למטה.
+he	string	player_hud_offline_copy	-	אין חיבור — מתנגן העותק שהורד
+he	string	player_hud_previous_episode	-	הפרק הקודם
+he	string	player_hud_seek_back	-	אחורה
+he	string	player_hud_seek_forward	-	קדימה
+he	string	player_hud_speed	-	מהירות
+he	string	player_hud_up_next	-	הבא · %s
 he	string	player_is_live	-	Live
 he	string	player_load_one_subtitle_online	-	Load first available
 he	string	player_load_subtitles	-	טען מקובץ
@@ -73414,6 +74070,14 @@ he-IL	string	player_fit_original	-	יחס גובה־רוחב מקורי
 he-IL	string	player_fit_screen	-	מילוי מסך
 he-IL	string	player_fit_title	-	גודל תמונה
 he-IL	string	player_fit_width	-	מילוי רוחב
+he-IL	string	player_hud_buffering	-	טוען
+he-IL	string	player_hud_failed_detail	-	בחרו מקור אחר למטה.
+he-IL	string	player_hud_offline_copy	-	אין חיבור — מתנגן העותק שהורד
+he-IL	string	player_hud_previous_episode	-	הפרק הקודם
+he-IL	string	player_hud_seek_back	-	אחורה
+he-IL	string	player_hud_seek_forward	-	קדימה
+he-IL	string	player_hud_speed	-	מהירות
+he-IL	string	player_hud_up_next	-	הבא · %s
 he-IL	string	player_is_live	-	Live
 he-IL	string	player_load_one_subtitle_online	-	Load first available
 he-IL	string	player_load_subtitles	-	טען מקובץ
@@ -74296,6 +74960,14 @@ in	string	player_fit_original	-	Rasio aspek asli
 in	string	player_fit_screen	-	Isi layar
 in	string	player_fit_title	-	Ukuran gambar
 in	string	player_fit_width	-	Isi lebar
+in	string	player_hud_buffering	-	BUFFERING
+in	string	player_hud_failed_detail	-	Pilih sumber lain di bawah.
+in	string	player_hud_offline_copy	-	Tidak ada koneksi — memutar salinan unduhan
+in	string	player_hud_previous_episode	-	Episode sebelumnya
+in	string	player_hud_seek_back	-	Mundur
+in	string	player_hud_seek_forward	-	Maju
+in	string	player_hud_speed	-	Kecepatan
+in	string	player_hud_up_next	-	Berikutnya · %s
 in	string	player_is_live	-	Live
 in	string	player_load_one_subtitle_online	-	Muat yang pertama tersedia
 in	string	player_load_subtitles	-	Muat dari file
@@ -75178,6 +75850,14 @@ id	string	player_fit_original	-	Rasio aspek asli
 id	string	player_fit_screen	-	Isi layar
 id	string	player_fit_title	-	Ukuran gambar
 id	string	player_fit_width	-	Isi lebar
+id	string	player_hud_buffering	-	BUFFERING
+id	string	player_hud_failed_detail	-	Pilih sumber lain di bawah.
+id	string	player_hud_offline_copy	-	Tidak ada koneksi — memutar salinan unduhan
+id	string	player_hud_previous_episode	-	Episode sebelumnya
+id	string	player_hud_seek_back	-	Mundur
+id	string	player_hud_seek_forward	-	Maju
+id	string	player_hud_speed	-	Kecepatan
+id	string	player_hud_up_next	-	Berikutnya · %s
 id	string	player_is_live	-	Live
 id	string	player_load_one_subtitle_online	-	Muat yang pertama tersedia
 id	string	player_load_subtitles	-	Muat dari file
@@ -76060,6 +76740,14 @@ id-ID	string	player_fit_original	-	Rasio aspek asli
 id-ID	string	player_fit_screen	-	Isi layar
 id-ID	string	player_fit_title	-	Ukuran gambar
 id-ID	string	player_fit_width	-	Isi lebar
+id-ID	string	player_hud_buffering	-	BUFFERING
+id-ID	string	player_hud_failed_detail	-	Pilih sumber lain di bawah.
+id-ID	string	player_hud_offline_copy	-	Tidak ada koneksi — memutar salinan unduhan
+id-ID	string	player_hud_previous_episode	-	Episode sebelumnya
+id-ID	string	player_hud_seek_back	-	Mundur
+id-ID	string	player_hud_seek_forward	-	Maju
+id-ID	string	player_hud_speed	-	Kecepatan
+id-ID	string	player_hud_up_next	-	Berikutnya · %s
 id-ID	string	player_is_live	-	Live
 id-ID	string	player_load_one_subtitle_online	-	Muat yang pertama tersedia
 id-ID	string	player_load_subtitles	-	Muat dari file
@@ -76948,6 +77636,14 @@ arz	string	player_fit_original	-	Original aspect ratio
 arz	string	player_fit_screen	-	Fill screen
 arz	string	player_fit_title	-	Picture size
 arz	string	player_fit_width	-	Fill width
+arz	string	player_hud_buffering	-	BUFFERING
+arz	string	player_hud_failed_detail	-	Choose another source below.
+arz	string	player_hud_offline_copy	-	No connection — playing the downloaded copy
+arz	string	player_hud_previous_episode	-	Previous episode
+arz	string	player_hud_seek_back	-	Seek back
+arz	string	player_hud_seek_forward	-	Seek forward
+arz	string	player_hud_speed	-	Speed
+arz	string	player_hud_up_next	-	Up next · %s
 arz	string	player_is_live	-	Live
 arz	string	player_load_one_subtitle_online	-	Load first available
 arz	string	player_load_subtitles	-	Load from file

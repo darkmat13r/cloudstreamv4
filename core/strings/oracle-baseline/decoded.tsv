@@ -138,6 +138,14 @@ values-b+af/strings.xml	string	player_fit_original	-	STR	Oorspronklike beeldverh
 values-b+af/strings.xml	string	player_fit_screen	-	STR	Vul skerm	
 values-b+af/strings.xml	string	player_fit_title	-	STR	Beeldgrootte	
 values-b+af/strings.xml	string	player_fit_width	-	STR	Vul breedte	
+values-b+af/strings.xml	string	player_hud_buffering	-	STR	BUFFER	
+values-b+af/strings.xml	string	player_hud_failed_detail	-	STR	Kies hieronder ’n ander bron.	
+values-b+af/strings.xml	string	player_hud_offline_copy	-	STR	Geen verbinding nie — die afgelaaide kopie speel	
+values-b+af/strings.xml	string	player_hud_previous_episode	-	STR	Vorige episode	
+values-b+af/strings.xml	string	player_hud_seek_back	-	STR	Spoel terug	
+values-b+af/strings.xml	string	player_hud_seek_forward	-	STR	Spoel vorentoe	
+values-b+af/strings.xml	string	player_hud_speed	-	STR	Spoed	
+values-b+af/strings.xml	string	player_hud_up_next	-	STR	Volgende · %s	
 values-b+af/strings.xml	string	player_mute	-	STR	Demp	
 values-b+af/strings.xml	string	player_source_playing	-	STR	Speel	
 values-b+af/strings.xml	string	player_source_resumes_at	-	STR	Wissel behou jou posisie: gaan voort by %1$s	
@@ -340,6 +348,14 @@ values-b+am/strings.xml	string	player_fit_original	-	STR	የመጀመሪያ ም�
 values-b+am/strings.xml	string	player_fit_screen	-	STR	ማያውን ሙላ	
 values-b+am/strings.xml	string	player_fit_title	-	STR	የምስል መጠን	
 values-b+am/strings.xml	string	player_fit_width	-	STR	ስፋቱን ሙላ	
+values-b+am/strings.xml	string	player_hud_buffering	-	STR	በመጫን ላይ	
+values-b+am/strings.xml	string	player_hud_failed_detail	-	STR	ከታች ሌላ ምንጭ ይምረጡ።	
+values-b+am/strings.xml	string	player_hud_offline_copy	-	STR	ግንኙነት የለም — የወረደው ቅጂ እየተጫወተ ነው	
+values-b+am/strings.xml	string	player_hud_previous_episode	-	STR	ቀዳሚ ክፍል	
+values-b+am/strings.xml	string	player_hud_seek_back	-	STR	ወደኋላ ዝለል	
+values-b+am/strings.xml	string	player_hud_seek_forward	-	STR	ወደፊት ዝለል	
+values-b+am/strings.xml	string	player_hud_speed	-	STR	ፍጥነት	
+values-b+am/strings.xml	string	player_hud_up_next	-	STR	ቀጣይ · %s	
 values-b+am/strings.xml	string	player_mute	-	STR	ድምፅ አጥፋ	
 values-b+am/strings.xml	string	player_source_playing	-	STR	በመጫወት ላይ	
 values-b+am/strings.xml	string	player_source_resumes_at	-	STR	መቀየር ቦታዎን ይጠብቃል፦ ከ%1$s ይቀጥላል	
@@ -870,6 +886,14 @@ values-b+apc/strings.xml	string	player_fit_original	-	STR	نسبة العرض ا
 values-b+apc/strings.xml	string	player_fit_screen	-	STR	عبّي الشاشة	
 values-b+apc/strings.xml	string	player_fit_title	-	STR	حجم الصورة	
 values-b+apc/strings.xml	string	player_fit_width	-	STR	عبّي العرض	
+values-b+apc/strings.xml	string	player_hud_buffering	-	STR	عم يحمّل	
+values-b+apc/strings.xml	string	player_hud_failed_detail	-	STR	اختار مصدر تاني تحت.	
+values-b+apc/strings.xml	string	player_hud_offline_copy	-	STR	ما في اتصال — عم يشتغل النسخة المحمّلة	
+values-b+apc/strings.xml	string	player_hud_previous_episode	-	STR	الحلقة السابقة	
+values-b+apc/strings.xml	string	player_hud_seek_back	-	STR	رجوع لورا	
+values-b+apc/strings.xml	string	player_hud_seek_forward	-	STR	تقديم لقدام	
+values-b+apc/strings.xml	string	player_hud_speed	-	STR	السرعة	
+values-b+apc/strings.xml	string	player_hud_up_next	-	STR	التالي · %s	
 values-b+apc/strings.xml	string	player_is_live	-	STR	لايڤ	
 values-b+apc/strings.xml	string	player_load_one_subtitle_online	-	STR	أفّي اللودينگ تلقائيًا	
 values-b+apc/strings.xml	string	player_load_subtitles	-	STR	فتاح من ملف	
@@ -1714,6 +1738,14 @@ values-b+ar/strings.xml	string	player_fit_original	-	STR	نسبة العرض إ�
 values-b+ar/strings.xml	string	player_fit_screen	-	STR	ملء الشاشة	
 values-b+ar/strings.xml	string	player_fit_title	-	STR	حجم الصورة	
 values-b+ar/strings.xml	string	player_fit_width	-	STR	ملء العرض	
+values-b+ar/strings.xml	string	player_hud_buffering	-	STR	جارٍ التخزين المؤقت	
+values-b+ar/strings.xml	string	player_hud_failed_detail	-	STR	اختر مصدرًا آخر أدناه.	
+values-b+ar/strings.xml	string	player_hud_offline_copy	-	STR	لا يوجد اتصال — يتم تشغيل النسخة المنزّلة	
+values-b+ar/strings.xml	string	player_hud_previous_episode	-	STR	الحلقة السابقة	
+values-b+ar/strings.xml	string	player_hud_seek_back	-	STR	ترجيع	
+values-b+ar/strings.xml	string	player_hud_seek_forward	-	STR	تقديم	
+values-b+ar/strings.xml	string	player_hud_speed	-	STR	السرعة	
+values-b+ar/strings.xml	string	player_hud_up_next	-	STR	التالي · %s	
 values-b+ar/strings.xml	string	player_is_live	-	STR	البث قائم	
 values-b+ar/strings.xml	string	player_load_one_subtitle_online	-	STR	تحميل أول ترجمة متاحة	
 values-b+ar/strings.xml	string	player_load_subtitles	-	STR	إختيار ملف	
@@ -2348,6 +2380,14 @@ values-b+ars/strings.xml	string	player_fit_original	-	STR	نسبة العرض إ
 values-b+ars/strings.xml	string	player_fit_screen	-	STR	ملء الشاشة	
 values-b+ars/strings.xml	string	player_fit_title	-	STR	حجم الصورة	
 values-b+ars/strings.xml	string	player_fit_width	-	STR	ملء العرض	
+values-b+ars/strings.xml	string	player_hud_buffering	-	STR	جاري التحميل	
+values-b+ars/strings.xml	string	player_hud_failed_detail	-	STR	اختر مصدر ثاني تحت.	
+values-b+ars/strings.xml	string	player_hud_offline_copy	-	STR	ما فيه اتصال — يشتغل النسخة المحمّلة	
+values-b+ars/strings.xml	string	player_hud_previous_episode	-	STR	الحلقة السابقة	
+values-b+ars/strings.xml	string	player_hud_seek_back	-	STR	رجوع	
+values-b+ars/strings.xml	string	player_hud_seek_forward	-	STR	تقديم	
+values-b+ars/strings.xml	string	player_hud_speed	-	STR	السرعة	
+values-b+ars/strings.xml	string	player_hud_up_next	-	STR	التالي · %s	
 values-b+ars/strings.xml	string	player_mute	-	STR	كتم الصوت	
 values-b+ars/strings.xml	string	player_size_settings	-	STR	زر تغيير حجم المشغل	
 values-b+ars/strings.xml	string	player_size_settings_des	-	STR	إزالة الحدود السوداء	
@@ -2932,6 +2972,14 @@ values-b+as/strings.xml	string	player_fit_original	-	STR	মূল আকাৰ 
 values-b+as/strings.xml	string	player_fit_screen	-	STR	স্ক্ৰীন পূৰণ কৰক	
 values-b+as/strings.xml	string	player_fit_title	-	STR	ছবিৰ আকাৰ	
 values-b+as/strings.xml	string	player_fit_width	-	STR	প্ৰস্থ পূৰণ কৰক	
+values-b+as/strings.xml	string	player_hud_buffering	-	STR	বাফাৰ হৈ আছে	
+values-b+as/strings.xml	string	player_hud_failed_detail	-	STR	তলত আন এটা উৎস বাছক।	
+values-b+as/strings.xml	string	player_hud_offline_copy	-	STR	সংযোগ নাই — ডাউনলোড কৰা কপি চলি আছে	
+values-b+as/strings.xml	string	player_hud_previous_episode	-	STR	আগৰ পৰ্ব	
+values-b+as/strings.xml	string	player_hud_seek_back	-	STR	পিছলৈ যাওক	
+values-b+as/strings.xml	string	player_hud_seek_forward	-	STR	আগলৈ যাওক	
+values-b+as/strings.xml	string	player_hud_speed	-	STR	গতি	
+values-b+as/strings.xml	string	player_hud_up_next	-	STR	পৰৱৰ্তী · %s	
 values-b+as/strings.xml	string	player_load_one_subtitle_online	-	STR	প্ৰথম উপলব্ধটো লোড কৰক	
 values-b+as/strings.xml	string	player_load_subtitles	-	STR	ফাইলৰ পৰা ল'ড কৰক	
 values-b+as/strings.xml	string	player_load_subtitles_online	-	STR	ইণ্টাৰনেটৰ পৰা ল'ড কৰক	
@@ -3416,6 +3464,14 @@ values-b+az/strings.xml	string	player_fit_original	-	STR	Orijinal nisbət
 values-b+az/strings.xml	string	player_fit_screen	-	STR	Ekranı doldur	
 values-b+az/strings.xml	string	player_fit_title	-	STR	Şəkil ölçüsü	
 values-b+az/strings.xml	string	player_fit_width	-	STR	Eni doldur	
+values-b+az/strings.xml	string	player_hud_buffering	-	STR	BUFERLƏMƏ	
+values-b+az/strings.xml	string	player_hud_failed_detail	-	STR	Aşağıda başqa mənbə seçin.	
+values-b+az/strings.xml	string	player_hud_offline_copy	-	STR	Bağlantı yoxdur — endirilmiş nüsxə oynadılır	
+values-b+az/strings.xml	string	player_hud_previous_episode	-	STR	Əvvəlki epizod	
+values-b+az/strings.xml	string	player_hud_seek_back	-	STR	Geri çək	
+values-b+az/strings.xml	string	player_hud_seek_forward	-	STR	İrəli çək	
+values-b+az/strings.xml	string	player_hud_speed	-	STR	Sürət	
+values-b+az/strings.xml	string	player_hud_up_next	-	STR	Növbəti · %s	
 values-b+az/strings.xml	string	player_mute	-	STR	Səssizə al	
 values-b+az/strings.xml	string	player_size_settings	-	STR	Pleyeri yenidən ölçüləndirmə düyməsini	
 values-b+az/strings.xml	string	player_size_settings_des	-	STR	Qara sərhədləri, kənarları sil	
@@ -3955,6 +4011,14 @@ values-b+be/strings.xml	string	player_fit_original	-	STR	Зыходныя пра
 values-b+be/strings.xml	string	player_fit_screen	-	STR	Запоўніць экран	
 values-b+be/strings.xml	string	player_fit_title	-	STR	Памер выявы	
 values-b+be/strings.xml	string	player_fit_width	-	STR	Запоўніць шырыню	
+values-b+be/strings.xml	string	player_hud_buffering	-	STR	БУФЕРЫЗАЦЫЯ	
+values-b+be/strings.xml	string	player_hud_failed_detail	-	STR	Выберыце іншую крыніцу ніжэй.	
+values-b+be/strings.xml	string	player_hud_offline_copy	-	STR	Няма злучэння — прайграецца спампаваная копія	
+values-b+be/strings.xml	string	player_hud_previous_episode	-	STR	Папярэдняя серыя	
+values-b+be/strings.xml	string	player_hud_seek_back	-	STR	Перамотка назад	
+values-b+be/strings.xml	string	player_hud_seek_forward	-	STR	Перамотка ўперад	
+values-b+be/strings.xml	string	player_hud_speed	-	STR	Хуткасць	
+values-b+be/strings.xml	string	player_hud_up_next	-	STR	Далей · %s	
 values-b+be/strings.xml	string	player_is_live	-	STR	Ужывую	
 values-b+be/strings.xml	string	player_load_one_subtitle_online	-	STR	Спампаваць першыя даступныя	
 values-b+be/strings.xml	string	player_load_subtitles	-	STR	Загрузіць з файла	
@@ -4773,6 +4837,14 @@ values-b+bg/strings.xml	string	player_fit_original	-	STR	Оригинално с
 values-b+bg/strings.xml	string	player_fit_screen	-	STR	Запълване на екрана	
 values-b+bg/strings.xml	string	player_fit_title	-	STR	Размер на картината	
 values-b+bg/strings.xml	string	player_fit_width	-	STR	Запълване по ширина	
+values-b+bg/strings.xml	string	player_hud_buffering	-	STR	БУФЕРИРАНЕ	
+values-b+bg/strings.xml	string	player_hud_failed_detail	-	STR	Изберете друг източник по-долу.	
+values-b+bg/strings.xml	string	player_hud_offline_copy	-	STR	Няма връзка — пуска се изтеглено копие	
+values-b+bg/strings.xml	string	player_hud_previous_episode	-	STR	Предишен епизод	
+values-b+bg/strings.xml	string	player_hud_seek_back	-	STR	Превъртане назад	
+values-b+bg/strings.xml	string	player_hud_seek_forward	-	STR	Превъртане напред	
+values-b+bg/strings.xml	string	player_hud_speed	-	STR	Скорост	
+values-b+bg/strings.xml	string	player_hud_up_next	-	STR	Следва · %s	
 values-b+bg/strings.xml	string	player_load_one_subtitle_online	-	STR	Зареди първия наличен	
 values-b+bg/strings.xml	string	player_load_subtitles	-	STR	Зареди от файл	
 values-b+bg/strings.xml	string	player_load_subtitles_online	-	STR	Зареди от Интернет	
@@ -5430,6 +5502,14 @@ values-b+bn/strings.xml	string	player_fit_original	-	STR	আসল অনুপ�
 values-b+bn/strings.xml	string	player_fit_screen	-	STR	স্ক্রিন পূরণ করুন	
 values-b+bn/strings.xml	string	player_fit_title	-	STR	ছবির আকার	
 values-b+bn/strings.xml	string	player_fit_width	-	STR	প্রস্থ পূরণ করুন	
+values-b+bn/strings.xml	string	player_hud_buffering	-	STR	বাফার হচ্ছে	
+values-b+bn/strings.xml	string	player_hud_failed_detail	-	STR	নিচে অন্য একটি উৎস বেছে নিন।	
+values-b+bn/strings.xml	string	player_hud_offline_copy	-	STR	সংযোগ নেই — ডাউনলোড করা কপি চলছে	
+values-b+bn/strings.xml	string	player_hud_previous_episode	-	STR	আগের পর্ব	
+values-b+bn/strings.xml	string	player_hud_seek_back	-	STR	পিছিয়ে যান	
+values-b+bn/strings.xml	string	player_hud_seek_forward	-	STR	এগিয়ে যান	
+values-b+bn/strings.xml	string	player_hud_speed	-	STR	গতি	
+values-b+bn/strings.xml	string	player_hud_up_next	-	STR	পরবর্তী · %s	
 values-b+bn/strings.xml	string	player_mute	-	STR	মিউট করুন	
 values-b+bn/strings.xml	string	player_size_settings	-	STR	প্লেয়ারের সাইজ পরিবর্তন বাটন	
 values-b+bn/strings.xml	string	player_size_settings_des	-	STR	কালো প্রান্ত অপসারণ করুন	
@@ -5873,6 +5953,14 @@ values-b+ca/strings.xml	string	player_fit_original	-	STR	Proporció original
 values-b+ca/strings.xml	string	player_fit_screen	-	STR	Omple la pantalla	
 values-b+ca/strings.xml	string	player_fit_title	-	STR	Mida de la imatge	
 values-b+ca/strings.xml	string	player_fit_width	-	STR	Omple l’amplada	
+values-b+ca/strings.xml	string	player_hud_buffering	-	STR	CARREGANT	
+values-b+ca/strings.xml	string	player_hud_failed_detail	-	STR	Trieu una altra font a sota.	
+values-b+ca/strings.xml	string	player_hud_offline_copy	-	STR	Sense connexió — es reprodueix la còpia baixada	
+values-b+ca/strings.xml	string	player_hud_previous_episode	-	STR	Episodi anterior	
+values-b+ca/strings.xml	string	player_hud_seek_back	-	STR	Enrere	
+values-b+ca/strings.xml	string	player_hud_seek_forward	-	STR	Endavant	
+values-b+ca/strings.xml	string	player_hud_speed	-	STR	Velocitat	
+values-b+ca/strings.xml	string	player_hud_up_next	-	STR	Següent · %s	
 values-b+ca/strings.xml	string	player_load_one_subtitle_online	-	STR	Carrega el primer disponible	
 values-b+ca/strings.xml	string	player_load_subtitles	-	STR	Carrega des del fitxer	
 values-b+ca/strings.xml	string	player_load_subtitles_online	-	STR	Carrega des d'internet	
@@ -6179,6 +6267,14 @@ values-b+ckb/strings.xml	string	player_fit_original	-	STR	ڕێژەی ڕەسەن
 values-b+ckb/strings.xml	string	player_fit_screen	-	STR	پڕکردنی شاشە	
 values-b+ckb/strings.xml	string	player_fit_title	-	STR	قەبارەی وێنە	
 values-b+ckb/strings.xml	string	player_fit_width	-	STR	پڕکردنی پانی	
+values-b+ckb/strings.xml	string	player_hud_buffering	-	STR	بارکردن	
+values-b+ckb/strings.xml	string	player_hud_failed_detail	-	STR	سەرچاوەیەکی تر لە خوارەوە هەڵبژێرە.	
+values-b+ckb/strings.xml	string	player_hud_offline_copy	-	STR	پەیوەندی نییە — کۆپییە داگیراوەکە لێدەدرێت	
+values-b+ckb/strings.xml	string	player_hud_previous_episode	-	STR	ئەڵقەی پێشوو	
+values-b+ckb/strings.xml	string	player_hud_seek_back	-	STR	گەڕانەوە بۆ دواوە	
+values-b+ckb/strings.xml	string	player_hud_seek_forward	-	STR	چوون بۆ پێشەوە	
+values-b+ckb/strings.xml	string	player_hud_speed	-	STR	خێرایی	
+values-b+ckb/strings.xml	string	player_hud_up_next	-	STR	دواتر · %s	
 values-b+ckb/strings.xml	string	player_mute	-	STR	بێدەنگکردن	
 values-b+ckb/strings.xml	string	player_source_playing	-	STR	لێدەدرێت	
 values-b+ckb/strings.xml	string	player_source_resumes_at	-	STR	گۆڕین شوێنەکەت دەپارێزێت: لە %1$s بەردەوام دەبێت	
@@ -6701,6 +6797,14 @@ values-b+cs/strings.xml	string	player_fit_original	-	STR	Původní poměr stran
 values-b+cs/strings.xml	string	player_fit_screen	-	STR	Vyplnit obrazovku	
 values-b+cs/strings.xml	string	player_fit_title	-	STR	Velikost obrazu	
 values-b+cs/strings.xml	string	player_fit_width	-	STR	Vyplnit šířku	
+values-b+cs/strings.xml	string	player_hud_buffering	-	STR	NAČÍTÁNÍ	
+values-b+cs/strings.xml	string	player_hud_failed_detail	-	STR	Vyberte níže jiný zdroj.	
+values-b+cs/strings.xml	string	player_hud_offline_copy	-	STR	Bez připojení — přehrává se stažená kopie	
+values-b+cs/strings.xml	string	player_hud_previous_episode	-	STR	Předchozí díl	
+values-b+cs/strings.xml	string	player_hud_seek_back	-	STR	Přetočit zpět	
+values-b+cs/strings.xml	string	player_hud_seek_forward	-	STR	Přetočit vpřed	
+values-b+cs/strings.xml	string	player_hud_speed	-	STR	Rychlost	
+values-b+cs/strings.xml	string	player_hud_up_next	-	STR	Další · %s	
 values-b+cs/strings.xml	string	player_is_live	-	STR	Živě	
 values-b+cs/strings.xml	string	player_load_one_subtitle_online	-	STR	Načíst první dostupné	
 values-b+cs/strings.xml	string	player_load_subtitles	-	STR	Načíst ze souboru	
@@ -7532,6 +7636,14 @@ values-b+de/strings.xml	string	player_fit_original	-	STR	Originales Seitenverhä
 values-b+de/strings.xml	string	player_fit_screen	-	STR	Bildschirm ausfüllen	
 values-b+de/strings.xml	string	player_fit_title	-	STR	Bildgröße	
 values-b+de/strings.xml	string	player_fit_width	-	STR	Breite ausfüllen	
+values-b+de/strings.xml	string	player_hud_buffering	-	STR	PUFFERN	
+values-b+de/strings.xml	string	player_hud_failed_detail	-	STR	Wähle unten eine andere Quelle.	
+values-b+de/strings.xml	string	player_hud_offline_copy	-	STR	Keine Verbindung — die heruntergeladene Kopie wird abgespielt	
+values-b+de/strings.xml	string	player_hud_previous_episode	-	STR	Vorherige Folge	
+values-b+de/strings.xml	string	player_hud_seek_back	-	STR	Zurückspulen	
+values-b+de/strings.xml	string	player_hud_seek_forward	-	STR	Vorspulen	
+values-b+de/strings.xml	string	player_hud_speed	-	STR	Geschwindigkeit	
+values-b+de/strings.xml	string	player_hud_up_next	-	STR	Als Nächstes · %s	
 values-b+de/strings.xml	string	player_is_live	-	STR	Live	
 values-b+de/strings.xml	string	player_load_one_subtitle_online	-	STR	Erste verfügbare laden	
 values-b+de/strings.xml	string	player_load_subtitles	-	STR	Aus Datei laden	
@@ -8317,6 +8429,14 @@ values-b+el/strings.xml	string	player_fit_original	-	STR	Αρχική αναλο
 values-b+el/strings.xml	string	player_fit_screen	-	STR	Γέμισμα οθόνης	
 values-b+el/strings.xml	string	player_fit_title	-	STR	Μέγεθος εικόνας	
 values-b+el/strings.xml	string	player_fit_width	-	STR	Γέμισμα πλάτους	
+values-b+el/strings.xml	string	player_hud_buffering	-	STR	ΦΟΡΤΩΣΗ	
+values-b+el/strings.xml	string	player_hud_failed_detail	-	STR	Επιλέξτε άλλη πηγή παρακάτω.	
+values-b+el/strings.xml	string	player_hud_offline_copy	-	STR	Χωρίς σύνδεση — αναπαράγεται το ληφθέν αντίγραφο	
+values-b+el/strings.xml	string	player_hud_previous_episode	-	STR	Προηγούμενο επεισόδιο	
+values-b+el/strings.xml	string	player_hud_seek_back	-	STR	Πίσω	
+values-b+el/strings.xml	string	player_hud_seek_forward	-	STR	Μπροστά	
+values-b+el/strings.xml	string	player_hud_speed	-	STR	Ταχύτητα	
+values-b+el/strings.xml	string	player_hud_up_next	-	STR	Επόμενο · %s	
 values-b+el/strings.xml	string	player_load_one_subtitle_online	-	STR	Φορτώστε το πρώτο διαθέσιμο	
 values-b+el/strings.xml	string	player_load_subtitles	-	STR	Φόρτωση από αρχείο	
 values-b+el/strings.xml	string	player_load_subtitles_online	-	STR	Φόρτωση από το Ίντερνετ	
@@ -8834,6 +8954,14 @@ values-b+eo/strings.xml	string	player_fit_original	-	STR	Originala proporcio
 values-b+eo/strings.xml	string	player_fit_screen	-	STR	Plenigi ekranon	
 values-b+eo/strings.xml	string	player_fit_title	-	STR	Bildgrando	
 values-b+eo/strings.xml	string	player_fit_width	-	STR	Plenigi larĝon	
+values-b+eo/strings.xml	string	player_hud_buffering	-	STR	BUFRADO	
+values-b+eo/strings.xml	string	player_hud_failed_detail	-	STR	Elektu alian fonton sube.	
+values-b+eo/strings.xml	string	player_hud_offline_copy	-	STR	Neniu konekto — ludiĝas la elŝutita kopio	
+values-b+eo/strings.xml	string	player_hud_previous_episode	-	STR	Antaŭa epizodo	
+values-b+eo/strings.xml	string	player_hud_seek_back	-	STR	Malantaŭen	
+values-b+eo/strings.xml	string	player_hud_seek_forward	-	STR	Antaŭen	
+values-b+eo/strings.xml	string	player_hud_speed	-	STR	Rapido	
+values-b+eo/strings.xml	string	player_hud_up_next	-	STR	Sekva · %s	
 values-b+eo/strings.xml	string	player_mute	-	STR	Silentigi	
 values-b+eo/strings.xml	string	player_size_settings_des	-	STR	Forigi nigrajn borderaĵojn	
 values-b+eo/strings.xml	string	player_source_playing	-	STR	Ludanta	
@@ -9396,6 +9524,14 @@ values-b+es/strings.xml	string	player_fit_original	-	STR	Relación de aspecto or
 values-b+es/strings.xml	string	player_fit_screen	-	STR	Llenar pantalla	
 values-b+es/strings.xml	string	player_fit_title	-	STR	Tamaño de imagen	
 values-b+es/strings.xml	string	player_fit_width	-	STR	Ajustar al ancho	
+values-b+es/strings.xml	string	player_hud_buffering	-	STR	CARGANDO	
+values-b+es/strings.xml	string	player_hud_failed_detail	-	STR	Elija otra fuente abajo.	
+values-b+es/strings.xml	string	player_hud_offline_copy	-	STR	Sin conexión — se reproduce la copia descargada	
+values-b+es/strings.xml	string	player_hud_previous_episode	-	STR	Episodio anterior	
+values-b+es/strings.xml	string	player_hud_seek_back	-	STR	Retroceder	
+values-b+es/strings.xml	string	player_hud_seek_forward	-	STR	Avanzar	
+values-b+es/strings.xml	string	player_hud_speed	-	STR	Velocidad	
+values-b+es/strings.xml	string	player_hud_up_next	-	STR	Siguiente · %s	
 values-b+es/strings.xml	string	player_is_live	-	STR	En Vivo	
 values-b+es/strings.xml	string	player_load_one_subtitle_online	-	STR	Cargar primero disponible	
 values-b+es/strings.xml	string	player_load_subtitles	-	STR	Cargar desde archivo	
@@ -10028,6 +10164,14 @@ values-b+fa/strings.xml	string	player_fit_original	-	STR	نسبت تصویر ا�
 values-b+fa/strings.xml	string	player_fit_screen	-	STR	پر کردن صفحه	
 values-b+fa/strings.xml	string	player_fit_title	-	STR	اندازه تصویر	
 values-b+fa/strings.xml	string	player_fit_width	-	STR	پر کردن عرض	
+values-b+fa/strings.xml	string	player_hud_buffering	-	STR	در حال بافر	
+values-b+fa/strings.xml	string	player_hud_failed_detail	-	STR	منبع دیگری را در پایین انتخاب کنید.	
+values-b+fa/strings.xml	string	player_hud_offline_copy	-	STR	اتصال نیست — نسخهٔ دانلودشده پخش می‌شود	
+values-b+fa/strings.xml	string	player_hud_previous_episode	-	STR	قسمت قبلی	
+values-b+fa/strings.xml	string	player_hud_seek_back	-	STR	عقب	
+values-b+fa/strings.xml	string	player_hud_seek_forward	-	STR	جلو	
+values-b+fa/strings.xml	string	player_hud_speed	-	STR	سرعت	
+values-b+fa/strings.xml	string	player_hud_up_next	-	STR	بعدی · %s	
 values-b+fa/strings.xml	string	player_mute	-	STR	بی‌صدا	
 values-b+fa/strings.xml	string	player_pref	-	STR	پخش‌کننده ویدئو برگزیده	
 values-b+fa/strings.xml	string	player_size_settings	-	STR	دکمه تغییر‌اندازه پخش‌کننده	
@@ -10368,6 +10512,14 @@ values-b+fil/strings.xml	string	player_fit_original	-	STR	Orihinal na aspect rat
 values-b+fil/strings.xml	string	player_fit_screen	-	STR	Punuin ang screen	
 values-b+fil/strings.xml	string	player_fit_title	-	STR	Laki ng larawan	
 values-b+fil/strings.xml	string	player_fit_width	-	STR	Punuin ang lapad	
+values-b+fil/strings.xml	string	player_hud_buffering	-	STR	NAGBA-BUFFER	
+values-b+fil/strings.xml	string	player_hud_failed_detail	-	STR	Pumili ng ibang source sa ibaba.	
+values-b+fil/strings.xml	string	player_hud_offline_copy	-	STR	Walang koneksyon — pinapatugtog ang na-download na kopya	
+values-b+fil/strings.xml	string	player_hud_previous_episode	-	STR	Nakaraang episode	
+values-b+fil/strings.xml	string	player_hud_seek_back	-	STR	I-rewind	
+values-b+fil/strings.xml	string	player_hud_seek_forward	-	STR	I-forward	
+values-b+fil/strings.xml	string	player_hud_speed	-	STR	Bilis	
+values-b+fil/strings.xml	string	player_hud_up_next	-	STR	Susunod · %s	
 values-b+fil/strings.xml	string	player_mute	-	STR	I-mute	
 values-b+fil/strings.xml	string	player_notification_channel_description	-	STR	Ang abiso ng player para sa pagkontrol sa pag-playback mula sa background	
 values-b+fil/strings.xml	string	player_source_playing	-	STR	Nagpe-play	
@@ -10921,6 +11073,14 @@ values-b+fr/strings.xml	string	player_fit_original	-	STR	Proportions originales
 values-b+fr/strings.xml	string	player_fit_screen	-	STR	Remplir l’écran	
 values-b+fr/strings.xml	string	player_fit_title	-	STR	Taille de la vidéo	
 values-b+fr/strings.xml	string	player_fit_width	-	STR	Remplir la largeur	
+values-b+fr/strings.xml	string	player_hud_buffering	-	STR	MISE EN MÉMOIRE	
+values-b+fr/strings.xml	string	player_hud_failed_detail	-	STR	Choisissez une autre source ci-dessous.	
+values-b+fr/strings.xml	string	player_hud_offline_copy	-	STR	Pas de connexion — lecture de la copie téléchargée	
+values-b+fr/strings.xml	string	player_hud_previous_episode	-	STR	Épisode précédent	
+values-b+fr/strings.xml	string	player_hud_seek_back	-	STR	Reculer	
+values-b+fr/strings.xml	string	player_hud_seek_forward	-	STR	Avancer	
+values-b+fr/strings.xml	string	player_hud_speed	-	STR	Vitesse	
+values-b+fr/strings.xml	string	player_hud_up_next	-	STR	À suivre · %s	
 values-b+fr/strings.xml	string	player_is_live	-	STR	Live	
 values-b+fr/strings.xml	string	player_load_one_subtitle_online	-	STR	Charger le premier disponible	
 values-b+fr/strings.xml	string	player_load_subtitles	-	STR	Charger depuis le fichier	
@@ -11529,6 +11689,14 @@ values-b+gl/strings.xml	string	player_fit_original	-	STR	Proporción orixinal
 values-b+gl/strings.xml	string	player_fit_screen	-	STR	Encher a pantalla	
 values-b+gl/strings.xml	string	player_fit_title	-	STR	Tamaño da imaxe	
 values-b+gl/strings.xml	string	player_fit_width	-	STR	Encher o ancho	
+values-b+gl/strings.xml	string	player_hud_buffering	-	STR	CARGANDO	
+values-b+gl/strings.xml	string	player_hud_failed_detail	-	STR	Escolle outra fonte embaixo.	
+values-b+gl/strings.xml	string	player_hud_offline_copy	-	STR	Sen conexión — reprodúcese a copia descargada	
+values-b+gl/strings.xml	string	player_hud_previous_episode	-	STR	Episodio anterior	
+values-b+gl/strings.xml	string	player_hud_seek_back	-	STR	Retroceder	
+values-b+gl/strings.xml	string	player_hud_seek_forward	-	STR	Avanzar	
+values-b+gl/strings.xml	string	player_hud_speed	-	STR	Velocidade	
+values-b+gl/strings.xml	string	player_hud_up_next	-	STR	Seguinte · %s	
 values-b+gl/strings.xml	string	player_mute	-	STR	Silenciar	
 values-b+gl/strings.xml	string	player_size_settings	-	STR	Botón de cambio de tamaño do reprodutor	
 values-b+gl/strings.xml	string	player_size_settings_des	-	STR	Eliminar bordes negros	
@@ -11982,6 +12150,14 @@ values-b+hi/strings.xml	string	player_fit_original	-	STR	मूल आस्प�
 values-b+hi/strings.xml	string	player_fit_screen	-	STR	स्क्रीन भरें	
 values-b+hi/strings.xml	string	player_fit_title	-	STR	चित्र का आकार	
 values-b+hi/strings.xml	string	player_fit_width	-	STR	चौड़ाई भरें	
+values-b+hi/strings.xml	string	player_hud_buffering	-	STR	बफ़र हो रहा है	
+values-b+hi/strings.xml	string	player_hud_failed_detail	-	STR	नीचे कोई और स्रोत चुनें।	
+values-b+hi/strings.xml	string	player_hud_offline_copy	-	STR	कनेक्शन नहीं — डाउनलोड की गई कॉपी चल रही है	
+values-b+hi/strings.xml	string	player_hud_previous_episode	-	STR	पिछला एपिसोड	
+values-b+hi/strings.xml	string	player_hud_seek_back	-	STR	पीछे जाएँ	
+values-b+hi/strings.xml	string	player_hud_seek_forward	-	STR	आगे जाएँ	
+values-b+hi/strings.xml	string	player_hud_speed	-	STR	गति	
+values-b+hi/strings.xml	string	player_hud_up_next	-	STR	अगला · %s	
 values-b+hi/strings.xml	string	player_mute	-	STR	म्यूट करें	
 values-b+hi/strings.xml	string	player_size_settings	-	STR	प्लेयर आकार परिवर्तन बटन	
 values-b+hi/strings.xml	string	player_size_settings_des	-	STR	काले बॉर्डर हटाएँ	
@@ -12639,6 +12815,14 @@ values-b+hr/strings.xml	string	player_fit_original	-	STR	Izvorni omjer
 values-b+hr/strings.xml	string	player_fit_screen	-	STR	Ispuni zaslon	
 values-b+hr/strings.xml	string	player_fit_title	-	STR	Veličina slike	
 values-b+hr/strings.xml	string	player_fit_width	-	STR	Ispuni širinu	
+values-b+hr/strings.xml	string	player_hud_buffering	-	STR	MEĐUSPREMANJE	
+values-b+hr/strings.xml	string	player_hud_failed_detail	-	STR	Odaberite drugi izvor ispod.	
+values-b+hr/strings.xml	string	player_hud_offline_copy	-	STR	Nema veze — reproducira se preuzeta kopija	
+values-b+hr/strings.xml	string	player_hud_previous_episode	-	STR	Prethodna epizoda	
+values-b+hr/strings.xml	string	player_hud_seek_back	-	STR	Premotaj natrag	
+values-b+hr/strings.xml	string	player_hud_seek_forward	-	STR	Premotaj naprijed	
+values-b+hr/strings.xml	string	player_hud_speed	-	STR	Brzina	
+values-b+hr/strings.xml	string	player_hud_up_next	-	STR	Sljedeće · %s	
 values-b+hr/strings.xml	string	player_is_live	-	STR	Uživo	
 values-b+hr/strings.xml	string	player_load_one_subtitle_online	-	STR	Učitaj prvi dostupni	
 values-b+hr/strings.xml	string	player_load_subtitles	-	STR	Učitaj iz datoteke	
@@ -13411,6 +13595,14 @@ values-b+hu/strings.xml	string	player_fit_original	-	STR	Eredeti képarány
 values-b+hu/strings.xml	string	player_fit_screen	-	STR	Képernyő kitöltése	
 values-b+hu/strings.xml	string	player_fit_title	-	STR	Képméret	
 values-b+hu/strings.xml	string	player_fit_width	-	STR	Szélesség kitöltése	
+values-b+hu/strings.xml	string	player_hud_buffering	-	STR	PUFFERELÉS	
+values-b+hu/strings.xml	string	player_hud_failed_detail	-	STR	Válasszon lent másik forrást.	
+values-b+hu/strings.xml	string	player_hud_offline_copy	-	STR	Nincs kapcsolat — a letöltött példány szól	
+values-b+hu/strings.xml	string	player_hud_previous_episode	-	STR	Előző epizód	
+values-b+hu/strings.xml	string	player_hud_seek_back	-	STR	Visszatekerés	
+values-b+hu/strings.xml	string	player_hud_seek_forward	-	STR	Előretekerés	
+values-b+hu/strings.xml	string	player_hud_speed	-	STR	Sebesség	
+values-b+hu/strings.xml	string	player_hud_up_next	-	STR	Következik · %s	
 values-b+hu/strings.xml	string	player_load_one_subtitle_online	-	STR	Töltse be az első létezőt	
 values-b+hu/strings.xml	string	player_load_subtitles	-	STR	Betöltés fájlból	
 values-b+hu/strings.xml	string	player_load_subtitles_online	-	STR	Betöltés az internetről	
@@ -14186,6 +14378,14 @@ values-b+in/strings.xml	string	player_fit_original	-	STR	Rasio aspek asli
 values-b+in/strings.xml	string	player_fit_screen	-	STR	Isi layar	
 values-b+in/strings.xml	string	player_fit_title	-	STR	Ukuran gambar	
 values-b+in/strings.xml	string	player_fit_width	-	STR	Isi lebar	
+values-b+in/strings.xml	string	player_hud_buffering	-	STR	BUFFERING	
+values-b+in/strings.xml	string	player_hud_failed_detail	-	STR	Pilih sumber lain di bawah.	
+values-b+in/strings.xml	string	player_hud_offline_copy	-	STR	Tidak ada koneksi — memutar salinan unduhan	
+values-b+in/strings.xml	string	player_hud_previous_episode	-	STR	Episode sebelumnya	
+values-b+in/strings.xml	string	player_hud_seek_back	-	STR	Mundur	
+values-b+in/strings.xml	string	player_hud_seek_forward	-	STR	Maju	
+values-b+in/strings.xml	string	player_hud_speed	-	STR	Kecepatan	
+values-b+in/strings.xml	string	player_hud_up_next	-	STR	Berikutnya · %s	
 values-b+in/strings.xml	string	player_is_live	-	STR	Live	
 values-b+in/strings.xml	string	player_load_one_subtitle_online	-	STR	Muat yang pertama tersedia	
 values-b+in/strings.xml	string	player_load_subtitles	-	STR	Muat dari file	
@@ -15023,6 +15223,14 @@ values-b+it/strings.xml	string	player_fit_original	-	STR	Proporzioni originali
 values-b+it/strings.xml	string	player_fit_screen	-	STR	Riempi schermo	
 values-b+it/strings.xml	string	player_fit_title	-	STR	Dimensione immagine	
 values-b+it/strings.xml	string	player_fit_width	-	STR	Riempi larghezza	
+values-b+it/strings.xml	string	player_hud_buffering	-	STR	BUFFERING	
+values-b+it/strings.xml	string	player_hud_failed_detail	-	STR	Scegli un'altra fonte qui sotto.	
+values-b+it/strings.xml	string	player_hud_offline_copy	-	STR	Nessuna connessione — in riproduzione la copia scaricata	
+values-b+it/strings.xml	string	player_hud_previous_episode	-	STR	Episodio precedente	
+values-b+it/strings.xml	string	player_hud_seek_back	-	STR	Indietro	
+values-b+it/strings.xml	string	player_hud_seek_forward	-	STR	Avanti	
+values-b+it/strings.xml	string	player_hud_speed	-	STR	Velocità	
+values-b+it/strings.xml	string	player_hud_up_next	-	STR	Prossimo · %s	
 values-b+it/strings.xml	string	player_is_live	-	STR	Live	
 values-b+it/strings.xml	string	player_load_one_subtitle_online	-	STR	Carica il primo disponibile	
 values-b+it/strings.xml	string	player_load_subtitles	-	STR	Carica da file	
@@ -15742,6 +15950,14 @@ values-b+iw/strings.xml	string	player_fit_original	-	STR	יחס גובה־רוח
 values-b+iw/strings.xml	string	player_fit_screen	-	STR	מילוי מסך	
 values-b+iw/strings.xml	string	player_fit_title	-	STR	גודל תמונה	
 values-b+iw/strings.xml	string	player_fit_width	-	STR	מילוי רוחב	
+values-b+iw/strings.xml	string	player_hud_buffering	-	STR	טוען	
+values-b+iw/strings.xml	string	player_hud_failed_detail	-	STR	בחרו מקור אחר למטה.	
+values-b+iw/strings.xml	string	player_hud_offline_copy	-	STR	אין חיבור — מתנגן העותק שהורד	
+values-b+iw/strings.xml	string	player_hud_previous_episode	-	STR	הפרק הקודם	
+values-b+iw/strings.xml	string	player_hud_seek_back	-	STR	אחורה	
+values-b+iw/strings.xml	string	player_hud_seek_forward	-	STR	קדימה	
+values-b+iw/strings.xml	string	player_hud_speed	-	STR	מהירות	
+values-b+iw/strings.xml	string	player_hud_up_next	-	STR	הבא · %s	
 values-b+iw/strings.xml	string	player_load_subtitles	-	STR	טען מקובץ	
 values-b+iw/strings.xml	string	player_load_subtitles_online	-	STR	טען מהאינטרנט	
 values-b+iw/strings.xml	string	player_loaded_subtitles	-	STR	נטען %s	
@@ -16488,6 +16704,14 @@ values-b+ja/strings.xml	string	player_fit_original	-	STR	元のアスペクト�
 values-b+ja/strings.xml	string	player_fit_screen	-	STR	画面全体に表示	
 values-b+ja/strings.xml	string	player_fit_title	-	STR	画像サイズ	
 values-b+ja/strings.xml	string	player_fit_width	-	STR	幅に合わせる	
+values-b+ja/strings.xml	string	player_hud_buffering	-	STR	バッファ中	
+values-b+ja/strings.xml	string	player_hud_failed_detail	-	STR	下で別のソースを選んでください。	
+values-b+ja/strings.xml	string	player_hud_offline_copy	-	STR	接続なし — ダウンロード済みのコピーを再生中	
+values-b+ja/strings.xml	string	player_hud_previous_episode	-	STR	前のエピソード	
+values-b+ja/strings.xml	string	player_hud_seek_back	-	STR	巻き戻し	
+values-b+ja/strings.xml	string	player_hud_seek_forward	-	STR	早送り	
+values-b+ja/strings.xml	string	player_hud_speed	-	STR	速度	
+values-b+ja/strings.xml	string	player_hud_up_next	-	STR	次へ · %s	
 values-b+ja/strings.xml	string	player_is_live	-	STR	ライブ	
 values-b+ja/strings.xml	string	player_load_one_subtitle_online	-	STR	最初に利用可能なものを読み込む	
 values-b+ja/strings.xml	string	player_load_subtitles	-	STR	ファイルから読み込む	
@@ -16995,6 +17219,14 @@ values-b+kn/strings.xml	string	player_fit_original	-	STR	ಮೂಲ ಅನುಪ�
 values-b+kn/strings.xml	string	player_fit_screen	-	STR	ಸ್ಕ್ರೀನ್ ತುಂಬಿಸಿ	
 values-b+kn/strings.xml	string	player_fit_title	-	STR	ಚಿತ್ರದ ಗಾತ್ರ	
 values-b+kn/strings.xml	string	player_fit_width	-	STR	ಅಗಲ ತುಂಬಿಸಿ	
+values-b+kn/strings.xml	string	player_hud_buffering	-	STR	ಬಫರ್ ಆಗುತ್ತಿದೆ	
+values-b+kn/strings.xml	string	player_hud_failed_detail	-	STR	ಕೆಳಗೆ ಬೇರೆ ಮೂಲ ಆಯ್ಕೆಮಾಡಿ.	
+values-b+kn/strings.xml	string	player_hud_offline_copy	-	STR	ಸಂಪರ್ಕವಿಲ್ಲ — ಡೌನ್‌ಲೋಡ್ ಮಾಡಿದ ಪ್ರತಿ ಪ್ಲೇ ಆಗುತ್ತಿದೆ	
+values-b+kn/strings.xml	string	player_hud_previous_episode	-	STR	ಹಿಂದಿನ ಸಂಚಿಕೆ	
+values-b+kn/strings.xml	string	player_hud_seek_back	-	STR	ಹಿಂದಕ್ಕೆ	
+values-b+kn/strings.xml	string	player_hud_seek_forward	-	STR	ಮುಂದಕ್ಕೆ	
+values-b+kn/strings.xml	string	player_hud_speed	-	STR	ವೇಗ	
+values-b+kn/strings.xml	string	player_hud_up_next	-	STR	ಮುಂದಿನದು · %s	
 values-b+kn/strings.xml	string	player_mute	-	STR	ಮ್ಯೂಟ್ ಮಾಡಿ	
 values-b+kn/strings.xml	string	player_size_settings	-	STR	ಪ್ಲೇಯರ್ ಮರುಗಾತ್ರಗೊಳಿಸಿ ಬಟನ್	
 values-b+kn/strings.xml	string	player_size_settings_des	-	STR	ಕಪ್ಪು ಗಡಿಗಳನ್ನು ತೆಗೆದುಹಾಕಿ	
@@ -17532,6 +17764,14 @@ values-b+ko/strings.xml	string	player_fit_original	-	STR	원본 화면 비율
 values-b+ko/strings.xml	string	player_fit_screen	-	STR	화면 채우기	
 values-b+ko/strings.xml	string	player_fit_title	-	STR	화면 크기	
 values-b+ko/strings.xml	string	player_fit_width	-	STR	너비 맞춤	
+values-b+ko/strings.xml	string	player_hud_buffering	-	STR	버퍼링 중	
+values-b+ko/strings.xml	string	player_hud_failed_detail	-	STR	아래에서 다른 소스를 선택하세요.	
+values-b+ko/strings.xml	string	player_hud_offline_copy	-	STR	연결 없음 — 다운로드한 사본 재생 중	
+values-b+ko/strings.xml	string	player_hud_previous_episode	-	STR	이전 에피소드	
+values-b+ko/strings.xml	string	player_hud_seek_back	-	STR	뒤로 이동	
+values-b+ko/strings.xml	string	player_hud_seek_forward	-	STR	앞으로 이동	
+values-b+ko/strings.xml	string	player_hud_speed	-	STR	속도	
+values-b+ko/strings.xml	string	player_hud_up_next	-	STR	다음 · %s	
 values-b+ko/strings.xml	string	player_is_live	-	STR	라이브	
 values-b+ko/strings.xml	string	player_load_one_subtitle_online	-	STR	사용 가능한 자막 불러오기	
 values-b+ko/strings.xml	string	player_load_subtitles	-	STR	파일에서 불러오기	
@@ -18128,6 +18368,14 @@ values-b+lt/strings.xml	string	player_fit_original	-	STR	Originalus kraštinių 
 values-b+lt/strings.xml	string	player_fit_screen	-	STR	Užpildyti ekraną	
 values-b+lt/strings.xml	string	player_fit_title	-	STR	Vaizdo dydis	
 values-b+lt/strings.xml	string	player_fit_width	-	STR	Užpildyti plotį	
+values-b+lt/strings.xml	string	player_hud_buffering	-	STR	BUFERIZAVIMAS	
+values-b+lt/strings.xml	string	player_hud_failed_detail	-	STR	Žemiau pasirinkite kitą šaltinį.	
+values-b+lt/strings.xml	string	player_hud_offline_copy	-	STR	Nėra ryšio — leidžiama atsisiųsta kopija	
+values-b+lt/strings.xml	string	player_hud_previous_episode	-	STR	Ankstesnė serija	
+values-b+lt/strings.xml	string	player_hud_seek_back	-	STR	Atgal	
+values-b+lt/strings.xml	string	player_hud_seek_forward	-	STR	Pirmyn	
+values-b+lt/strings.xml	string	player_hud_speed	-	STR	Greitis	
+values-b+lt/strings.xml	string	player_hud_up_next	-	STR	Toliau · %s	
 values-b+lt/strings.xml	string	player_mute	-	STR	Nutildyti	
 values-b+lt/strings.xml	string	player_settings_play_in_app	-	STR	Integruotas grotuvas	
 values-b+lt/strings.xml	string	player_size_settings	-	STR	Grotuvo dydžio pakeitimo mygtukas	
@@ -18685,6 +18933,14 @@ values-b+lv/strings.xml	string	player_fit_original	-	STR	Sākotnējā attiecība
 values-b+lv/strings.xml	string	player_fit_screen	-	STR	Aizpildīt ekrānu	
 values-b+lv/strings.xml	string	player_fit_title	-	STR	Attēla izmērs	
 values-b+lv/strings.xml	string	player_fit_width	-	STR	Aizpildīt platumu	
+values-b+lv/strings.xml	string	player_hud_buffering	-	STR	BUFERĒ	
+values-b+lv/strings.xml	string	player_hud_failed_detail	-	STR	Zemāk izvēlieties citu avotu.	
+values-b+lv/strings.xml	string	player_hud_offline_copy	-	STR	Nav savienojuma — tiek atskaņota lejupielādētā kopija	
+values-b+lv/strings.xml	string	player_hud_previous_episode	-	STR	Iepriekšējā sērija	
+values-b+lv/strings.xml	string	player_hud_seek_back	-	STR	Attīt atpakaļ	
+values-b+lv/strings.xml	string	player_hud_seek_forward	-	STR	Pārtīt uz priekšu	
+values-b+lv/strings.xml	string	player_hud_speed	-	STR	Ātrums	
+values-b+lv/strings.xml	string	player_hud_up_next	-	STR	Nākamais · %s	
 values-b+lv/strings.xml	string	player_load_one_subtitle_online	-	STR	Lejupielādēt pirmo pieejamo	
 values-b+lv/strings.xml	string	player_load_subtitles	-	STR	Ielādēt no datnes	
 values-b+lv/strings.xml	string	player_load_subtitles_online	-	STR	Lejupielādēt no interneta	
@@ -19457,6 +19713,14 @@ values-b+mk/strings.xml	string	player_fit_original	-	STR	Оригинален с
 values-b+mk/strings.xml	string	player_fit_screen	-	STR	Пополни екран	
 values-b+mk/strings.xml	string	player_fit_title	-	STR	Големина на сликата	
 values-b+mk/strings.xml	string	player_fit_width	-	STR	Пополни ширина	
+values-b+mk/strings.xml	string	player_hud_buffering	-	STR	БАФЕРИРАЊЕ	
+values-b+mk/strings.xml	string	player_hud_failed_detail	-	STR	Изберете друг извор подолу.	
+values-b+mk/strings.xml	string	player_hud_offline_copy	-	STR	Нема врска — се пушта преземената копија	
+values-b+mk/strings.xml	string	player_hud_previous_episode	-	STR	Претходна епизода	
+values-b+mk/strings.xml	string	player_hud_seek_back	-	STR	Назад	
+values-b+mk/strings.xml	string	player_hud_seek_forward	-	STR	Напред	
+values-b+mk/strings.xml	string	player_hud_speed	-	STR	Брзина	
+values-b+mk/strings.xml	string	player_hud_up_next	-	STR	Следно · %s	
 values-b+mk/strings.xml	string	player_is_live	-	STR	Во живо	
 values-b+mk/strings.xml	string	player_load_one_subtitle_online	-	STR	Вчитај прво достапно	
 values-b+mk/strings.xml	string	player_load_subtitles	-	STR	Вчитај од датотека	
@@ -20049,6 +20313,14 @@ values-b+ml/strings.xml	string	player_fit_original	-	STR	യഥാർത്ഥ �
 values-b+ml/strings.xml	string	player_fit_screen	-	STR	സ്ക്രീൻ നിറയ്ക്കുക	
 values-b+ml/strings.xml	string	player_fit_title	-	STR	ചിത്ര വലുപ്പം	
 values-b+ml/strings.xml	string	player_fit_width	-	STR	വീതി നിറയ്ക്കുക	
+values-b+ml/strings.xml	string	player_hud_buffering	-	STR	ബഫർ ചെയ്യുന്നു	
+values-b+ml/strings.xml	string	player_hud_failed_detail	-	STR	താഴെ മറ്റൊരു ഉറവിടം തിരഞ്ഞെടുക്കുക.	
+values-b+ml/strings.xml	string	player_hud_offline_copy	-	STR	കണക്ഷനില്ല — ഡൗൺലോഡ് ചെയ്ത പകർപ്പ് പ്ലേ ചെയ്യുന്നു	
+values-b+ml/strings.xml	string	player_hud_previous_episode	-	STR	മുൻ എപ്പിസോഡ്	
+values-b+ml/strings.xml	string	player_hud_seek_back	-	STR	പിന്നോട്ട്	
+values-b+ml/strings.xml	string	player_hud_seek_forward	-	STR	മുന്നോട്ട്	
+values-b+ml/strings.xml	string	player_hud_speed	-	STR	വേഗത	
+values-b+ml/strings.xml	string	player_hud_up_next	-	STR	അടുത്തത് · %s	
 values-b+ml/strings.xml	string	player_is_live	-	STR	തൽസമയം	
 values-b+ml/strings.xml	string	player_mute	-	STR	നിശബ്‌ദമാക്കുക	
 values-b+ml/strings.xml	string	player_size_settings	-	STR	പ്ലേയറിന്റെ വലുപ്പം മാറ്റുന്ന ബട്ടൻ	
@@ -20573,6 +20845,14 @@ values-b+ms/strings.xml	string	player_fit_original	-	STR	Nisbah aspek asal
 values-b+ms/strings.xml	string	player_fit_screen	-	STR	Isi skrin	
 values-b+ms/strings.xml	string	player_fit_title	-	STR	Saiz gambar	
 values-b+ms/strings.xml	string	player_fit_width	-	STR	Isi lebar	
+values-b+ms/strings.xml	string	player_hud_buffering	-	STR	MENIMBAL	
+values-b+ms/strings.xml	string	player_hud_failed_detail	-	STR	Pilih sumber lain di bawah.	
+values-b+ms/strings.xml	string	player_hud_offline_copy	-	STR	Tiada sambungan — memainkan salinan muat turun	
+values-b+ms/strings.xml	string	player_hud_previous_episode	-	STR	Episod sebelumnya	
+values-b+ms/strings.xml	string	player_hud_seek_back	-	STR	Undur	
+values-b+ms/strings.xml	string	player_hud_seek_forward	-	STR	Maju	
+values-b+ms/strings.xml	string	player_hud_speed	-	STR	Kelajuan	
+values-b+ms/strings.xml	string	player_hud_up_next	-	STR	Seterusnya · %s	
 values-b+ms/strings.xml	string	player_mute	-	STR	Redam	
 values-b+ms/strings.xml	string	player_settings_play_in_app	-	STR	Pemain dalaman	
 values-b+ms/strings.xml	string	player_size_settings	-	STR	Saiz butang pemain	
@@ -20965,6 +21245,14 @@ values-b+mt/strings.xml	string	player_fit_original	-	STR	Proporzjon oriġinali
 values-b+mt/strings.xml	string	player_fit_screen	-	STR	Imla l-iskrin	
 values-b+mt/strings.xml	string	player_fit_title	-	STR	Daqs tal-istampa	
 values-b+mt/strings.xml	string	player_fit_width	-	STR	Imla l-wisa’	
+values-b+mt/strings.xml	string	player_hud_buffering	-	STR	QED JITGĦABBA	
+values-b+mt/strings.xml	string	player_hud_failed_detail	-	STR	Agħżel sors ieħor hawn taħt.	
+values-b+mt/strings.xml	string	player_hud_offline_copy	-	STR	L-ebda konnessjoni — qed tindaqq il-kopja mniżżla	
+values-b+mt/strings.xml	string	player_hud_previous_episode	-	STR	Episodju preċedenti	
+values-b+mt/strings.xml	string	player_hud_seek_back	-	STR	Lura	
+values-b+mt/strings.xml	string	player_hud_seek_forward	-	STR	Il-quddiem	
+values-b+mt/strings.xml	string	player_hud_speed	-	STR	Veloċità	
+values-b+mt/strings.xml	string	player_hud_up_next	-	STR	Li jmiss · %s	
 values-b+mt/strings.xml	string	player_mute	-	STR	Itfi l-ħoss	
 values-b+mt/strings.xml	string	player_source_playing	-	STR	Qed jindaqq	
 values-b+mt/strings.xml	string	player_source_resumes_at	-	STR	Il-bidla żżomm il-post tiegħek: ikompli minn %1$s	
@@ -21374,6 +21662,14 @@ values-b+my/strings.xml	string	player_fit_original	-	STR	မူရင်းအ�
 values-b+my/strings.xml	string	player_fit_screen	-	STR	မျက်နှာပြင်ပြည့်	
 values-b+my/strings.xml	string	player_fit_title	-	STR	ပုံအရွယ်အစား	
 values-b+my/strings.xml	string	player_fit_width	-	STR	အကျယ်ပြည့်	
+values-b+my/strings.xml	string	player_hud_buffering	-	STR	ကြားခံနေသည်	
+values-b+my/strings.xml	string	player_hud_failed_detail	-	STR	အောက်တွင် အခြားရင်းမြစ်ကို ရွေးပါ။	
+values-b+my/strings.xml	string	player_hud_offline_copy	-	STR	ချိတ်ဆက်မှုမရှိ — ဒေါင်းလုဒ်လုပ်ထားသော မိတ္တူကို ဖွင့်နေသည်	
+values-b+my/strings.xml	string	player_hud_previous_episode	-	STR	ယခင်အပိုင်း	
+values-b+my/strings.xml	string	player_hud_seek_back	-	STR	နောက်သို့	
+values-b+my/strings.xml	string	player_hud_seek_forward	-	STR	ရှေ့သို့	
+values-b+my/strings.xml	string	player_hud_speed	-	STR	အမြန်နှုန်း	
+values-b+my/strings.xml	string	player_hud_up_next	-	STR	နောက်တစ်ခု · %s	
 values-b+my/strings.xml	string	player_load_subtitles	-	STR	ဖိုင်မှတင်သွင်းပြီး	
 values-b+my/strings.xml	string	player_load_subtitles_online	-	STR	အင်တာနက်မှ တင်သွင်းမည်	
 values-b+my/strings.xml	string	player_loaded_subtitles	-	STR	တင်ပြီး %s	
@@ -21790,6 +22086,14 @@ values-b+ne/strings.xml	string	player_fit_original	-	STR	मूल अनुप�
 values-b+ne/strings.xml	string	player_fit_screen	-	STR	स्क्रिन भर्नुहोस्	
 values-b+ne/strings.xml	string	player_fit_title	-	STR	चित्रको आकार	
 values-b+ne/strings.xml	string	player_fit_width	-	STR	चौडाइ भर्नुहोस्	
+values-b+ne/strings.xml	string	player_hud_buffering	-	STR	बफर हुँदैछ	
+values-b+ne/strings.xml	string	player_hud_failed_detail	-	STR	तल अर्को स्रोत छान्नुहोस्।	
+values-b+ne/strings.xml	string	player_hud_offline_copy	-	STR	जडान छैन — डाउनलोड गरिएको प्रति बजिरहेको छ	
+values-b+ne/strings.xml	string	player_hud_previous_episode	-	STR	अघिल्लो एपिसोड	
+values-b+ne/strings.xml	string	player_hud_seek_back	-	STR	पछाडि	
+values-b+ne/strings.xml	string	player_hud_seek_forward	-	STR	अगाडि	
+values-b+ne/strings.xml	string	player_hud_speed	-	STR	गति	
+values-b+ne/strings.xml	string	player_hud_up_next	-	STR	अर्को · %s	
 values-b+ne/strings.xml	string	player_mute	-	STR	म्यूट गर्नुहोस्	
 values-b+ne/strings.xml	string	player_size_settings	-	STR	प्लेयर resize गर्ने वटन	
 values-b+ne/strings.xml	string	player_size_settings_des	-	STR	कालो सीमा हटाउनुहोस	
@@ -22299,6 +22603,14 @@ values-b+nl/strings.xml	string	player_fit_original	-	STR	Originele beeldverhoudi
 values-b+nl/strings.xml	string	player_fit_screen	-	STR	Scherm vullen	
 values-b+nl/strings.xml	string	player_fit_title	-	STR	Beeldformaat	
 values-b+nl/strings.xml	string	player_fit_width	-	STR	Breedte vullen	
+values-b+nl/strings.xml	string	player_hud_buffering	-	STR	BUFFEREN	
+values-b+nl/strings.xml	string	player_hud_failed_detail	-	STR	Kies hieronder een andere bron.	
+values-b+nl/strings.xml	string	player_hud_offline_copy	-	STR	Geen verbinding — de gedownloade kopie wordt afgespeeld	
+values-b+nl/strings.xml	string	player_hud_previous_episode	-	STR	Vorige aflevering	
+values-b+nl/strings.xml	string	player_hud_seek_back	-	STR	Terugspoelen	
+values-b+nl/strings.xml	string	player_hud_seek_forward	-	STR	Vooruitspoelen	
+values-b+nl/strings.xml	string	player_hud_speed	-	STR	Snelheid	
+values-b+nl/strings.xml	string	player_hud_up_next	-	STR	Hierna · %s	
 values-b+nl/strings.xml	string	player_load_one_subtitle_online	-	STR	Laad eerst beschikbare	
 values-b+nl/strings.xml	string	player_load_subtitles	-	STR	Laden uit bestand	
 values-b+nl/strings.xml	string	player_load_subtitles_online	-	STR	Laden vanaf internet	
@@ -22830,6 +23142,14 @@ values-b+nn/strings.xml	string	player_fit_original	-	STR	Opphavleg sideforhold
 values-b+nn/strings.xml	string	player_fit_screen	-	STR	Fyll skjermen	
 values-b+nn/strings.xml	string	player_fit_title	-	STR	Biletstorleik	
 values-b+nn/strings.xml	string	player_fit_width	-	STR	Fyll breidda	
+values-b+nn/strings.xml	string	player_hud_buffering	-	STR	BUFRAR	
+values-b+nn/strings.xml	string	player_hud_failed_detail	-	STR	Vel ei anna kjelde nedanfor.	
+values-b+nn/strings.xml	string	player_hud_offline_copy	-	STR	Inga tilkopling — den nedlasta kopien blir spelt	
+values-b+nn/strings.xml	string	player_hud_previous_episode	-	STR	Førre episode	
+values-b+nn/strings.xml	string	player_hud_seek_back	-	STR	Spol tilbake	
+values-b+nn/strings.xml	string	player_hud_seek_forward	-	STR	Spol fram	
+values-b+nn/strings.xml	string	player_hud_speed	-	STR	Fart	
+values-b+nn/strings.xml	string	player_hud_up_next	-	STR	Neste · %s	
 values-b+nn/strings.xml	string	player_mute	-	STR	Slå av lyd	
 values-b+nn/strings.xml	string	player_size_settings_des	-	STR	Fjern dei svarte kantane	
 values-b+nn/strings.xml	string	player_source_playing	-	STR	Spelar	
@@ -23265,6 +23585,14 @@ values-b+no/strings.xml	string	player_fit_original	-	STR	Opprinnelig sideforhold
 values-b+no/strings.xml	string	player_fit_screen	-	STR	Fyll skjermen	
 values-b+no/strings.xml	string	player_fit_title	-	STR	Bildestørrelse	
 values-b+no/strings.xml	string	player_fit_width	-	STR	Fyll bredden	
+values-b+no/strings.xml	string	player_hud_buffering	-	STR	BUFRER	
+values-b+no/strings.xml	string	player_hud_failed_detail	-	STR	Velg en annen kilde nedenfor.	
+values-b+no/strings.xml	string	player_hud_offline_copy	-	STR	Ingen tilkobling — den nedlastede kopien spilles	
+values-b+no/strings.xml	string	player_hud_previous_episode	-	STR	Forrige episode	
+values-b+no/strings.xml	string	player_hud_seek_back	-	STR	Spol tilbake	
+values-b+no/strings.xml	string	player_hud_seek_forward	-	STR	Spol fremover	
+values-b+no/strings.xml	string	player_hud_speed	-	STR	Hastighet	
+values-b+no/strings.xml	string	player_hud_up_next	-	STR	Neste · %s	
 values-b+no/strings.xml	string	player_load_subtitles	-	STR	Last inn fra fil	
 values-b+no/strings.xml	string	player_load_subtitles_online	-	STR	Last inn fra Internett	
 values-b+no/strings.xml	string	player_loaded_subtitles	-	STR	Lastet inn %s	
@@ -23700,6 +24028,14 @@ values-b+or/strings.xml	string	player_fit_original	-	STR	ମୂଳ ଅନୁପ�
 values-b+or/strings.xml	string	player_fit_screen	-	STR	ସ୍କ୍ରିନ ପୂରଣ କରନ୍ତୁ	
 values-b+or/strings.xml	string	player_fit_title	-	STR	ଚିତ୍ର ଆକାର	
 values-b+or/strings.xml	string	player_fit_width	-	STR	ପ୍ରସ୍ଥ ପୂରଣ କରନ୍ତୁ	
+values-b+or/strings.xml	string	player_hud_buffering	-	STR	ବଫର୍ ହେଉଛି	
+values-b+or/strings.xml	string	player_hud_failed_detail	-	STR	ତଳେ ଅନ୍ୟ ଏକ ଉତ୍ସ ବାଛନ୍ତୁ।	
+values-b+or/strings.xml	string	player_hud_offline_copy	-	STR	ସଂଯୋଗ ନାହିଁ — ଡାଉନଲୋଡ୍ ହୋଇଥିବା କପି ଚାଲୁଛି	
+values-b+or/strings.xml	string	player_hud_previous_episode	-	STR	ପୂର୍ବ ଏପିସୋଡ୍	
+values-b+or/strings.xml	string	player_hud_seek_back	-	STR	ପଛକୁ	
+values-b+or/strings.xml	string	player_hud_seek_forward	-	STR	ଆଗକୁ	
+values-b+or/strings.xml	string	player_hud_speed	-	STR	ଗତି	
+values-b+or/strings.xml	string	player_hud_up_next	-	STR	ପରବର୍ତ୍ତୀ · %s	
 values-b+or/strings.xml	string	player_mute	-	STR	ମ୍ୟୁଟ କରନ୍ତୁ	
 values-b+or/strings.xml	string	player_settings_play_in_app	-	STR	ଅନ୍ତଃ-ଚାଳକ	
 values-b+or/strings.xml	string	player_source_playing	-	STR	ଚାଲୁଛି	
@@ -24264,6 +24600,14 @@ values-b+pl/strings.xml	string	player_fit_original	-	STR	Oryginalne proporcje
 values-b+pl/strings.xml	string	player_fit_screen	-	STR	Wypełnij ekran	
 values-b+pl/strings.xml	string	player_fit_title	-	STR	Rozmiar obrazu	
 values-b+pl/strings.xml	string	player_fit_width	-	STR	Wypełnij szerokość	
+values-b+pl/strings.xml	string	player_hud_buffering	-	STR	BUFOROWANIE	
+values-b+pl/strings.xml	string	player_hud_failed_detail	-	STR	Wybierz poniżej inne źródło.	
+values-b+pl/strings.xml	string	player_hud_offline_copy	-	STR	Brak połączenia — odtwarzanie pobranej kopii	
+values-b+pl/strings.xml	string	player_hud_previous_episode	-	STR	Poprzedni odcinek	
+values-b+pl/strings.xml	string	player_hud_seek_back	-	STR	Przewiń do tyłu	
+values-b+pl/strings.xml	string	player_hud_seek_forward	-	STR	Przewiń do przodu	
+values-b+pl/strings.xml	string	player_hud_speed	-	STR	Prędkość	
+values-b+pl/strings.xml	string	player_hud_up_next	-	STR	Następnie · %s	
 values-b+pl/strings.xml	string	player_is_live	-	STR	Na żywo	
 values-b+pl/strings.xml	string	player_load_one_subtitle_online	-	STR	Wczytaj pierwsze dostępne	
 values-b+pl/strings.xml	string	player_load_subtitles	-	STR	Wczytaj z pliku	
@@ -25101,6 +25445,14 @@ values-b+pt+BR/strings.xml	string	player_fit_original	-	STR	Proporção original
 values-b+pt+BR/strings.xml	string	player_fit_screen	-	STR	Preencher tela	
 values-b+pt+BR/strings.xml	string	player_fit_title	-	STR	Tamanho da imagem	
 values-b+pt+BR/strings.xml	string	player_fit_width	-	STR	Preencher largura	
+values-b+pt+BR/strings.xml	string	player_hud_buffering	-	STR	CARREGANDO	
+values-b+pt+BR/strings.xml	string	player_hud_failed_detail	-	STR	Escolha outra fonte abaixo.	
+values-b+pt+BR/strings.xml	string	player_hud_offline_copy	-	STR	Sem conexão — reproduzindo a cópia baixada	
+values-b+pt+BR/strings.xml	string	player_hud_previous_episode	-	STR	Episódio anterior	
+values-b+pt+BR/strings.xml	string	player_hud_seek_back	-	STR	Voltar	
+values-b+pt+BR/strings.xml	string	player_hud_seek_forward	-	STR	Avançar	
+values-b+pt+BR/strings.xml	string	player_hud_speed	-	STR	Velocidade	
+values-b+pt+BR/strings.xml	string	player_hud_up_next	-	STR	A seguir · %s	
 values-b+pt+BR/strings.xml	string	player_is_live	-	STR	Ao vivo	
 values-b+pt+BR/strings.xml	string	player_load_one_subtitle_online	-	STR	Carregar primeiro disponível	
 values-b+pt+BR/strings.xml	string	player_load_subtitles	-	STR	Carregar de arquivo	
@@ -25935,6 +26287,14 @@ values-b+pt/strings.xml	string	player_fit_original	-	STR	Proporção original
 values-b+pt/strings.xml	string	player_fit_screen	-	STR	Preencher ecrã	
 values-b+pt/strings.xml	string	player_fit_title	-	STR	Tamanho da imagem	
 values-b+pt/strings.xml	string	player_fit_width	-	STR	Preencher largura	
+values-b+pt/strings.xml	string	player_hud_buffering	-	STR	A CARREGAR	
+values-b+pt/strings.xml	string	player_hud_failed_detail	-	STR	Escolha outra fonte abaixo.	
+values-b+pt/strings.xml	string	player_hud_offline_copy	-	STR	Sem ligação — a reproduzir a cópia transferida	
+values-b+pt/strings.xml	string	player_hud_previous_episode	-	STR	Episódio anterior	
+values-b+pt/strings.xml	string	player_hud_seek_back	-	STR	Recuar	
+values-b+pt/strings.xml	string	player_hud_seek_forward	-	STR	Avançar	
+values-b+pt/strings.xml	string	player_hud_speed	-	STR	Velocidade	
+values-b+pt/strings.xml	string	player_hud_up_next	-	STR	A seguir · %s	
 values-b+pt/strings.xml	string	player_is_live	-	STR	Ao Vivo	
 values-b+pt/strings.xml	string	player_load_one_subtitle_online	-	STR	Carregar o primeiro disponível	
 values-b+pt/strings.xml	string	player_load_subtitles	-	STR	Carregar de arquivo	
@@ -26702,6 +27062,14 @@ values-b+qt/strings.xml	string	player_fit_original	-	STR	oh aah
 values-b+qt/strings.xml	string	player_fit_screen	-	STR	oouuh aah	
 values-b+qt/strings.xml	string	player_fit_title	-	STR	aaaaa oh	
 values-b+qt/strings.xml	string	player_fit_width	-	STR	haa oh	
+values-b+qt/strings.xml	string	player_hud_buffering	-	STR	OOHH AAGH	
+values-b+qt/strings.xml	string	player_hud_failed_detail	-	STR	oohh aagh uuk.	
+values-b+qt/strings.xml	string	player_hud_offline_copy	-	STR	aagh oohh — uuk aah oohh	
+values-b+qt/strings.xml	string	player_hud_previous_episode	-	STR	oohh aagh uuk	
+values-b+qt/strings.xml	string	player_hud_seek_back	-	STR	aagh ooh	
+values-b+qt/strings.xml	string	player_hud_seek_forward	-	STR	ooh aagh	
+values-b+qt/strings.xml	string	player_hud_speed	-	STR	uuk	
+values-b+qt/strings.xml	string	player_hud_up_next	-	STR	aagh · %s	
 values-b+qt/strings.xml	string	player_load_subtitles	-	STR	aagg aahh uuuk	
 values-b+qt/strings.xml	string	player_load_subtitles_online	-	STR	eeek aahh oooohhhh	
 values-b+qt/strings.xml	string	player_loaded_subtitles	-	STR	oooohh %s	
@@ -27419,6 +27787,14 @@ values-b+ro/strings.xml	string	player_fit_original	-	STR	Raport de aspect origin
 values-b+ro/strings.xml	string	player_fit_screen	-	STR	Umple ecranul	
 values-b+ro/strings.xml	string	player_fit_title	-	STR	Dimensiune imagine	
 values-b+ro/strings.xml	string	player_fit_width	-	STR	Umple lățimea	
+values-b+ro/strings.xml	string	player_hud_buffering	-	STR	SE ÎNCARCĂ	
+values-b+ro/strings.xml	string	player_hud_failed_detail	-	STR	Alegeți altă sursă mai jos.	
+values-b+ro/strings.xml	string	player_hud_offline_copy	-	STR	Fără conexiune — se redă copia descărcată	
+values-b+ro/strings.xml	string	player_hud_previous_episode	-	STR	Episodul anterior	
+values-b+ro/strings.xml	string	player_hud_seek_back	-	STR	Înapoi	
+values-b+ro/strings.xml	string	player_hud_seek_forward	-	STR	Înainte	
+values-b+ro/strings.xml	string	player_hud_speed	-	STR	Viteză	
+values-b+ro/strings.xml	string	player_hud_up_next	-	STR	Urmează · %s	
 values-b+ro/strings.xml	string	player_load_one_subtitle_online	-	STR	Încărcați prima disponibilă	
 values-b+ro/strings.xml	string	player_load_subtitles	-	STR	Încărcați din fișier	
 values-b+ro/strings.xml	string	player_load_subtitles_online	-	STR	Încărcare de pe Internet	
@@ -28203,6 +28579,14 @@ values-b+ru/strings.xml	string	player_fit_original	-	STR	Исходные про
 values-b+ru/strings.xml	string	player_fit_screen	-	STR	На весь экран	
 values-b+ru/strings.xml	string	player_fit_title	-	STR	Размер изображения	
 values-b+ru/strings.xml	string	player_fit_width	-	STR	По ширине	
+values-b+ru/strings.xml	string	player_hud_buffering	-	STR	БУФЕРИЗАЦИЯ	
+values-b+ru/strings.xml	string	player_hud_failed_detail	-	STR	Выберите другой источник ниже.	
+values-b+ru/strings.xml	string	player_hud_offline_copy	-	STR	Нет подключения — воспроизводится скачанная копия	
+values-b+ru/strings.xml	string	player_hud_previous_episode	-	STR	Предыдущая серия	
+values-b+ru/strings.xml	string	player_hud_seek_back	-	STR	Перемотка назад	
+values-b+ru/strings.xml	string	player_hud_seek_forward	-	STR	Перемотка вперёд	
+values-b+ru/strings.xml	string	player_hud_speed	-	STR	Скорость	
+values-b+ru/strings.xml	string	player_hud_up_next	-	STR	Далее · %s	
 values-b+ru/strings.xml	string	player_is_live	-	STR	Прямой эфир	
 values-b+ru/strings.xml	string	player_load_one_subtitle_online	-	STR	Скачать первые доступные	
 values-b+ru/strings.xml	string	player_load_subtitles	-	STR	Загрузить из файла	
@@ -28904,6 +29288,14 @@ values-b+sk/strings.xml	string	player_fit_original	-	STR	Pôvodný pomer strán
 values-b+sk/strings.xml	string	player_fit_screen	-	STR	Vyplniť obrazovku	
 values-b+sk/strings.xml	string	player_fit_title	-	STR	Veľkosť obrazu	
 values-b+sk/strings.xml	string	player_fit_width	-	STR	Vyplniť šírku	
+values-b+sk/strings.xml	string	player_hud_buffering	-	STR	NAČÍTAVANIE	
+values-b+sk/strings.xml	string	player_hud_failed_detail	-	STR	Nižšie vyberte iný zdroj.	
+values-b+sk/strings.xml	string	player_hud_offline_copy	-	STR	Bez pripojenia — prehráva sa stiahnutá kópia	
+values-b+sk/strings.xml	string	player_hud_previous_episode	-	STR	Predchádzajúca epizóda	
+values-b+sk/strings.xml	string	player_hud_seek_back	-	STR	Pretočiť späť	
+values-b+sk/strings.xml	string	player_hud_seek_forward	-	STR	Pretočiť dopredu	
+values-b+sk/strings.xml	string	player_hud_speed	-	STR	Rýchlosť	
+values-b+sk/strings.xml	string	player_hud_up_next	-	STR	Ďalej · %s	
 values-b+sk/strings.xml	string	player_load_one_subtitle_online	-	STR	Načítať prvé k dispozícii	
 values-b+sk/strings.xml	string	player_load_subtitles	-	STR	Načítať z súboru	
 values-b+sk/strings.xml	string	player_load_subtitles_online	-	STR	Načítať z internetu	
@@ -29477,6 +29869,14 @@ values-b+so/strings.xml	string	player_fit_original	-	STR	Saamiga asalka ah
 values-b+so/strings.xml	string	player_fit_screen	-	STR	Buuxi shaashadda	
 values-b+so/strings.xml	string	player_fit_title	-	STR	Cabbirka sawirka	
 values-b+so/strings.xml	string	player_fit_width	-	STR	Buuxi ballaca	
+values-b+so/strings.xml	string	player_hud_buffering	-	STR	WAA LA KAYDINAYAA	
+values-b+so/strings.xml	string	player_hud_failed_detail	-	STR	Hoos ka dooro il kale.	
+values-b+so/strings.xml	string	player_hud_offline_copy	-	STR	Xiriir ma jiro — waxaa socda nuqulka la soo dejiyay	
+values-b+so/strings.xml	string	player_hud_previous_episode	-	STR	Qaybtii hore	
+values-b+so/strings.xml	string	player_hud_seek_back	-	STR	Dib u celi	
+values-b+so/strings.xml	string	player_hud_seek_forward	-	STR	Hore u soco	
+values-b+so/strings.xml	string	player_hud_speed	-	STR	Xawaare	
+values-b+so/strings.xml	string	player_hud_up_next	-	STR	Xiga · %s	
 values-b+so/strings.xml	string	player_load_subtitles	-	STR	Faylashaada ka keen	
 values-b+so/strings.xml	string	player_load_subtitles_online	-	STR	Internetka ka keen	
 values-b+so/strings.xml	string	player_loaded_subtitles	-	STR	Waxa laso kiciyey %s	
@@ -30202,6 +30602,14 @@ values-b+sq/strings.xml	string	player_fit_original	-	STR	Raporti origjinal
 values-b+sq/strings.xml	string	player_fit_screen	-	STR	Mbush ekranin	
 values-b+sq/strings.xml	string	player_fit_title	-	STR	Madhësia e figurës	
 values-b+sq/strings.xml	string	player_fit_width	-	STR	Mbush gjerësinë	
+values-b+sq/strings.xml	string	player_hud_buffering	-	STR	PO NGARKOHET	
+values-b+sq/strings.xml	string	player_hud_failed_detail	-	STR	Zgjidhni më poshtë një burim tjetër.	
+values-b+sq/strings.xml	string	player_hud_offline_copy	-	STR	Nuk ka lidhje — po luhet kopja e shkarkuar	
+values-b+sq/strings.xml	string	player_hud_previous_episode	-	STR	Episodi i mëparshëm	
+values-b+sq/strings.xml	string	player_hud_seek_back	-	STR	Prapa	
+values-b+sq/strings.xml	string	player_hud_seek_forward	-	STR	Përpara	
+values-b+sq/strings.xml	string	player_hud_speed	-	STR	Shpejtësia	
+values-b+sq/strings.xml	string	player_hud_up_next	-	STR	Në vijim · %s	
 values-b+sq/strings.xml	string	player_is_live	-	STR	Live	
 values-b+sq/strings.xml	string	player_load_one_subtitle_online	-	STR	Ngarko të parën e disponueshme	
 values-b+sq/strings.xml	string	player_load_subtitles	-	STR	Ngarko nga skedari	
@@ -31033,6 +31441,14 @@ values-b+sv/strings.xml	string	player_fit_original	-	STR	Ursprungligt bildförh�
 values-b+sv/strings.xml	string	player_fit_screen	-	STR	Fyll skärmen	
 values-b+sv/strings.xml	string	player_fit_title	-	STR	Bildstorlek	
 values-b+sv/strings.xml	string	player_fit_width	-	STR	Fyll bredden	
+values-b+sv/strings.xml	string	player_hud_buffering	-	STR	BUFFRAR	
+values-b+sv/strings.xml	string	player_hud_failed_detail	-	STR	Välj en annan källa nedan.	
+values-b+sv/strings.xml	string	player_hud_offline_copy	-	STR	Ingen anslutning — den nedladdade kopian spelas	
+values-b+sv/strings.xml	string	player_hud_previous_episode	-	STR	Föregående avsnitt	
+values-b+sv/strings.xml	string	player_hud_seek_back	-	STR	Spola bakåt	
+values-b+sv/strings.xml	string	player_hud_seek_forward	-	STR	Spola framåt	
+values-b+sv/strings.xml	string	player_hud_speed	-	STR	Hastighet	
+values-b+sv/strings.xml	string	player_hud_up_next	-	STR	Härnäst · %s	
 values-b+sv/strings.xml	string	player_is_live	-	STR	Live	
 values-b+sv/strings.xml	string	player_load_one_subtitle_online	-	STR	Ladda in första möjliga	
 values-b+sv/strings.xml	string	player_load_subtitles	-	STR	Importera från fil	
@@ -31864,6 +32280,14 @@ values-b+ta/strings.xml	string	player_fit_original	-	STR	அசல் விக�
 values-b+ta/strings.xml	string	player_fit_screen	-	STR	திரையை நிரப்பு	
 values-b+ta/strings.xml	string	player_fit_title	-	STR	பட அளவு	
 values-b+ta/strings.xml	string	player_fit_width	-	STR	அகலத்தை நிரப்பு	
+values-b+ta/strings.xml	string	player_hud_buffering	-	STR	இடையகப்படுத்துகிறது	
+values-b+ta/strings.xml	string	player_hud_failed_detail	-	STR	கீழே வேறு மூலத்தைத் தேர்ந்தெடுக்கவும்.	
+values-b+ta/strings.xml	string	player_hud_offline_copy	-	STR	இணைப்பு இல்லை — பதிவிறக்கிய நகல் இயங்குகிறது	
+values-b+ta/strings.xml	string	player_hud_previous_episode	-	STR	முந்தைய எபிசோடு	
+values-b+ta/strings.xml	string	player_hud_seek_back	-	STR	பின்னோக்கி	
+values-b+ta/strings.xml	string	player_hud_seek_forward	-	STR	முன்னோக்கி	
+values-b+ta/strings.xml	string	player_hud_speed	-	STR	வேகம்	
+values-b+ta/strings.xml	string	player_hud_up_next	-	STR	அடுத்து · %s	
 values-b+ta/strings.xml	string	player_is_live	-	STR	வாழ்க	
 values-b+ta/strings.xml	string	player_load_one_subtitle_online	-	STR	முதலில் கிடைக்கிறது	
 values-b+ta/strings.xml	string	player_load_subtitles	-	STR	கோப்பிலிருந்து ஏற்றவும்	
@@ -32311,6 +32735,14 @@ values-b+ti/strings.xml	string	player_fit_original	-	STR	መበቆል ዝምድ�
 values-b+ti/strings.xml	string	player_fit_screen	-	STR	ስክሪን ምላእ	
 values-b+ti/strings.xml	string	player_fit_title	-	STR	መጠን ስእሊ	
 values-b+ti/strings.xml	string	player_fit_width	-	STR	ስፍሓት ምላእ	
+values-b+ti/strings.xml	string	player_hud_buffering	-	STR	ይጽዕን ኣሎ	
+values-b+ti/strings.xml	string	player_hud_failed_detail	-	STR	ኣብ ታሕቲ ካልእ ምንጪ ምረጹ።	
+values-b+ti/strings.xml	string	player_hud_offline_copy	-	STR	ርክብ የለን — እቲ ዝወረደ ቅዳሕ ይጻወት ኣሎ	
+values-b+ti/strings.xml	string	player_hud_previous_episode	-	STR	ዝሓለፈ ክፋል	
+values-b+ti/strings.xml	string	player_hud_seek_back	-	STR	ንድሕሪት	
+values-b+ti/strings.xml	string	player_hud_seek_forward	-	STR	ንቕድሚት	
+values-b+ti/strings.xml	string	player_hud_speed	-	STR	ቅልጣፈ	
+values-b+ti/strings.xml	string	player_hud_up_next	-	STR	ቀጺሉ · %s	
 values-b+ti/strings.xml	string	player_mute	-	STR	ድምጺ ኣጥፍእ	
 values-b+ti/strings.xml	string	player_source_playing	-	STR	ይጻወት ኣሎ	
 values-b+ti/strings.xml	string	player_source_resumes_at	-	STR	ምቕያር ቦታኻ ይሕልው፦ ካብ %1$s ይቕጽል	
@@ -32540,6 +32972,14 @@ values-b+tl/strings.xml	string	player_fit_original	-	STR	Orihinal na aspect rati
 values-b+tl/strings.xml	string	player_fit_screen	-	STR	Punuin ang screen	
 values-b+tl/strings.xml	string	player_fit_title	-	STR	Laki ng larawan	
 values-b+tl/strings.xml	string	player_fit_width	-	STR	Punuin ang lapad	
+values-b+tl/strings.xml	string	player_hud_buffering	-	STR	NAGBA-BUFFER	
+values-b+tl/strings.xml	string	player_hud_failed_detail	-	STR	Pumili ng ibang source sa ibaba.	
+values-b+tl/strings.xml	string	player_hud_offline_copy	-	STR	Walang koneksyon — pinapatugtog ang na-download na kopya	
+values-b+tl/strings.xml	string	player_hud_previous_episode	-	STR	Nakaraang episode	
+values-b+tl/strings.xml	string	player_hud_seek_back	-	STR	I-rewind	
+values-b+tl/strings.xml	string	player_hud_seek_forward	-	STR	I-forward	
+values-b+tl/strings.xml	string	player_hud_speed	-	STR	Bilis	
+values-b+tl/strings.xml	string	player_hud_up_next	-	STR	Susunod · %s	
 values-b+tl/strings.xml	string	player_mute	-	STR	I-mute	
 values-b+tl/strings.xml	string	player_size_settings	-	STR	Pindutan upang baguhin ang laki	
 values-b+tl/strings.xml	string	player_size_settings_des	-	STR	Alisin ang black borders	
@@ -33132,6 +33572,14 @@ values-b+tr/strings.xml	string	player_fit_original	-	STR	Orijinal en boy oranı
 values-b+tr/strings.xml	string	player_fit_screen	-	STR	Ekranı doldur	
 values-b+tr/strings.xml	string	player_fit_title	-	STR	Görüntü boyutu	
 values-b+tr/strings.xml	string	player_fit_width	-	STR	Genişliği doldur	
+values-b+tr/strings.xml	string	player_hud_buffering	-	STR	ARABELLEĞE ALINIYOR	
+values-b+tr/strings.xml	string	player_hud_failed_detail	-	STR	Aşağıdan başka bir kaynak seçin.	
+values-b+tr/strings.xml	string	player_hud_offline_copy	-	STR	Bağlantı yok — indirilen kopya oynatılıyor	
+values-b+tr/strings.xml	string	player_hud_previous_episode	-	STR	Önceki bölüm	
+values-b+tr/strings.xml	string	player_hud_seek_back	-	STR	Geri sar	
+values-b+tr/strings.xml	string	player_hud_seek_forward	-	STR	İleri sar	
+values-b+tr/strings.xml	string	player_hud_speed	-	STR	Hız	
+values-b+tr/strings.xml	string	player_hud_up_next	-	STR	Sıradaki · %s	
 values-b+tr/strings.xml	string	player_is_live	-	STR	Canlı	
 values-b+tr/strings.xml	string	player_load_one_subtitle_online	-	STR	İlk kullanılabiliri yükle	
 values-b+tr/strings.xml	string	player_load_subtitles	-	STR	Dosyadan yükle	
@@ -33975,6 +34423,14 @@ values-b+uk/strings.xml	string	player_fit_original	-	STR	Початкові пр
 values-b+uk/strings.xml	string	player_fit_screen	-	STR	Заповнити екран	
 values-b+uk/strings.xml	string	player_fit_title	-	STR	Розмір зображення	
 values-b+uk/strings.xml	string	player_fit_width	-	STR	Заповнити ширину	
+values-b+uk/strings.xml	string	player_hud_buffering	-	STR	БУФЕРИЗАЦІЯ	
+values-b+uk/strings.xml	string	player_hud_failed_detail	-	STR	Виберіть інше джерело нижче.	
+values-b+uk/strings.xml	string	player_hud_offline_copy	-	STR	Немає з’єднання — відтворюється завантажена копія	
+values-b+uk/strings.xml	string	player_hud_previous_episode	-	STR	Попередня серія	
+values-b+uk/strings.xml	string	player_hud_seek_back	-	STR	Перемотати назад	
+values-b+uk/strings.xml	string	player_hud_seek_forward	-	STR	Перемотати вперед	
+values-b+uk/strings.xml	string	player_hud_speed	-	STR	Швидкість	
+values-b+uk/strings.xml	string	player_hud_up_next	-	STR	Далі · %s	
 values-b+uk/strings.xml	string	player_is_live	-	STR	Наживо	
 values-b+uk/strings.xml	string	player_load_one_subtitle_online	-	STR	Завантажити перший доступний	
 values-b+uk/strings.xml	string	player_load_subtitles	-	STR	Завантажити з файлу	
@@ -34734,6 +35190,14 @@ values-b+ur/strings.xml	string	player_fit_original	-	STR	اصل تناسب
 values-b+ur/strings.xml	string	player_fit_screen	-	STR	اسکرین بھریں	
 values-b+ur/strings.xml	string	player_fit_title	-	STR	تصویر کا سائز	
 values-b+ur/strings.xml	string	player_fit_width	-	STR	چوڑائی بھریں	
+values-b+ur/strings.xml	string	player_hud_buffering	-	STR	بفر ہو رہا ہے	
+values-b+ur/strings.xml	string	player_hud_failed_detail	-	STR	نیچے کوئی اور ذریعہ منتخب کریں۔	
+values-b+ur/strings.xml	string	player_hud_offline_copy	-	STR	کنکشن نہیں — ڈاؤن لوڈ کی گئی کاپی چل رہی ہے	
+values-b+ur/strings.xml	string	player_hud_previous_episode	-	STR	پچھلی قسط	
+values-b+ur/strings.xml	string	player_hud_seek_back	-	STR	پیچھے	
+values-b+ur/strings.xml	string	player_hud_seek_forward	-	STR	آگے	
+values-b+ur/strings.xml	string	player_hud_speed	-	STR	رفتار	
+values-b+ur/strings.xml	string	player_hud_up_next	-	STR	اگلا · %s	
 values-b+ur/strings.xml	string	player_load_subtitles	-	STR	فائل سے لوڈ کریں	
 values-b+ur/strings.xml	string	player_load_subtitles_online	-	STR	انٹرنیٹ سے لوڈ کریں	
 values-b+ur/strings.xml	string	player_loaded_subtitles	-	STR	لوڈ %s	
@@ -35492,6 +35956,14 @@ values-b+vi/strings.xml	string	player_fit_original	-	STR	Tỷ lệ gốc
 values-b+vi/strings.xml	string	player_fit_screen	-	STR	Lấp đầy màn hình	
 values-b+vi/strings.xml	string	player_fit_title	-	STR	Kích thước hình ảnh	
 values-b+vi/strings.xml	string	player_fit_width	-	STR	Lấp đầy chiều rộng	
+values-b+vi/strings.xml	string	player_hud_buffering	-	STR	ĐANG TẢI ĐỆM	
+values-b+vi/strings.xml	string	player_hud_failed_detail	-	STR	Chọn nguồn khác bên dưới.	
+values-b+vi/strings.xml	string	player_hud_offline_copy	-	STR	Không có kết nối — đang phát bản đã tải xuống	
+values-b+vi/strings.xml	string	player_hud_previous_episode	-	STR	Tập trước	
+values-b+vi/strings.xml	string	player_hud_seek_back	-	STR	Tua lại	
+values-b+vi/strings.xml	string	player_hud_seek_forward	-	STR	Tua tới	
+values-b+vi/strings.xml	string	player_hud_speed	-	STR	Tốc độ	
+values-b+vi/strings.xml	string	player_hud_up_next	-	STR	Tiếp theo · %s	
 values-b+vi/strings.xml	string	player_is_live	-	STR	Trực tiếp	
 values-b+vi/strings.xml	string	player_load_one_subtitle_online	-	STR	Tải phụ đề đầu tiên có sẵn	
 values-b+vi/strings.xml	string	player_load_subtitles	-	STR	Chọn từ tệp	
@@ -36316,6 +36788,14 @@ values-b+zh+TW/strings.xml	string	player_fit_original	-	STR	原始長寬比
 values-b+zh+TW/strings.xml	string	player_fit_screen	-	STR	填滿螢幕	
 values-b+zh+TW/strings.xml	string	player_fit_title	-	STR	畫面大小	
 values-b+zh+TW/strings.xml	string	player_fit_width	-	STR	填滿寬度	
+values-b+zh+TW/strings.xml	string	player_hud_buffering	-	STR	緩衝中	
+values-b+zh+TW/strings.xml	string	player_hud_failed_detail	-	STR	請在下方選擇其他來源。	
+values-b+zh+TW/strings.xml	string	player_hud_offline_copy	-	STR	沒有網路連線 — 正在播放已下載的副本	
+values-b+zh+TW/strings.xml	string	player_hud_previous_episode	-	STR	上一集	
+values-b+zh+TW/strings.xml	string	player_hud_seek_back	-	STR	倒轉	
+values-b+zh+TW/strings.xml	string	player_hud_seek_forward	-	STR	快轉	
+values-b+zh+TW/strings.xml	string	player_hud_speed	-	STR	速度	
+values-b+zh+TW/strings.xml	string	player_hud_up_next	-	STR	接下來 · %s	
 values-b+zh+TW/strings.xml	string	player_is_live	-	STR	播放中	
 values-b+zh+TW/strings.xml	string	player_load_one_subtitle_online	-	STR	載入第一個可用的	
 values-b+zh+TW/strings.xml	string	player_load_subtitles	-	STR	從檔案載入	
@@ -37136,6 +37616,14 @@ values-b+zh/strings.xml	string	player_fit_original	-	STR	原始宽高比
 values-b+zh/strings.xml	string	player_fit_screen	-	STR	填满屏幕	
 values-b+zh/strings.xml	string	player_fit_title	-	STR	画面大小	
 values-b+zh/strings.xml	string	player_fit_width	-	STR	填满宽度	
+values-b+zh/strings.xml	string	player_hud_buffering	-	STR	缓冲中	
+values-b+zh/strings.xml	string	player_hud_failed_detail	-	STR	请在下方选择其他来源。	
+values-b+zh/strings.xml	string	player_hud_offline_copy	-	STR	无网络连接 — 正在播放已下载的副本	
+values-b+zh/strings.xml	string	player_hud_previous_episode	-	STR	上一集	
+values-b+zh/strings.xml	string	player_hud_seek_back	-	STR	后退	
+values-b+zh/strings.xml	string	player_hud_seek_forward	-	STR	快进	
+values-b+zh/strings.xml	string	player_hud_speed	-	STR	速度	
+values-b+zh/strings.xml	string	player_hud_up_next	-	STR	接下来 · %s	
 values-b+zh/strings.xml	string	player_is_live	-	STR	播放中	
 values-b+zh/strings.xml	string	player_load_one_subtitle_online	-	STR	加载第一个可用的字幕	
 values-b+zh/strings.xml	string	player_load_subtitles	-	STR	从文件加载	
@@ -38108,6 +38596,14 @@ values/strings.xml	string	player_fit_original	-	STR	Original aspect ratio
 values/strings.xml	string	player_fit_screen	-	STR	Fill screen	
 values/strings.xml	string	player_fit_title	-	STR	Picture size	
 values/strings.xml	string	player_fit_width	-	STR	Fill width	
+values/strings.xml	string	player_hud_buffering	-	STR	BUFFERING	
+values/strings.xml	string	player_hud_failed_detail	-	STR	Choose another source below.	
+values/strings.xml	string	player_hud_offline_copy	-	STR	No connection — playing the downloaded copy	
+values/strings.xml	string	player_hud_previous_episode	-	STR	Previous episode	
+values/strings.xml	string	player_hud_seek_back	-	STR	Seek back	
+values/strings.xml	string	player_hud_seek_forward	-	STR	Seek forward	
+values/strings.xml	string	player_hud_speed	-	STR	Speed	
+values/strings.xml	string	player_hud_up_next	-	STR	Up next · %s	
 values/strings.xml	string	player_is_live	-	STR	Live	
 values/strings.xml	string	player_load_one_subtitle_online	-	STR	Load first available	
 values/strings.xml	string	player_load_subtitles	-	STR	Load from file	
