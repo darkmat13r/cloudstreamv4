@@ -37695,8 +37695,9 @@ public final class com/lagradost/cloudstream4/library/AndroidLibrarySources : ja
 	public static final synthetic fun access$getLastRead$p (Lcom/lagradost/cloudstream4/library/AndroidLibrarySources;)Ljava/util/concurrent/ConcurrentHashMap;
 	public static final synthetic fun access$getLocalCount$p (Lcom/lagradost/cloudstream4/library/AndroidLibrarySources;)Lkotlin/jvm/functions/Function1;
 	public static final synthetic fun access$getRecords$p (Lcom/lagradost/cloudstream4/library/AndroidLibrarySources;)Lcom/lagradost/cloudstream4/library/LibrarySourceRecords;
+	public static final synthetic fun access$getTitles$p (Lcom/lagradost/cloudstream4/library/AndroidLibrarySources;)Ljava/util/concurrent/ConcurrentHashMap;
 	public static final synthetic fun access$getTypeLabels$p (Lcom/lagradost/cloudstream4/library/AndroidLibrarySources;)Lkotlin/jvm/functions/Function0;
-	public static final synthetic fun access$setTitles$p (Lcom/lagradost/cloudstream4/library/AndroidLibrarySources;Ljava/util/Map;)V
+	public static final synthetic fun access$setShown$p (Lcom/lagradost/cloudstream4/library/AndroidLibrarySources;Ljava/lang/String;)V
 	public fun choose-rmBC984 (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun current-lELlgS8 (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun lists-rmBC984 (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
