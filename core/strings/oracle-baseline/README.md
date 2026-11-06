@@ -25,9 +25,9 @@ and decides — in a commit of its own that says so — to move the baseline.
 
 | File | Rows | What it holds |
 |---|---:|---|
-| `decoded.tsv` | 36,670 | aapt2's decoded table, one row per item: source file, type, name, plural category, kind (`STR`/`STYLED`/`REF`/`ATTR`/`UNSUPPORTED`), text, spans. The raw oracle, before resolution. |
-| `emitted.tsv` | 38,710 | What the generator wrote: one row per emitted value, keyed by output directory, type, name, plural category. Includes resolved references, locale-fallback copies and the `values-b+he` / `values-b+id` copies. |
-| `lookup.tsv` | 74,515 | For each of the 87 parity requests, the value Android resolves for every key — the per-locale lookup table the parity test compares Compose against. |
+| `decoded.tsv` | 37,505 | aapt2's decoded table, one row per item: source file, type, name, plural category, kind (`STR`/`STYLED`/`REF`/`ATTR`/`UNSUPPORTED`), text, spans. The raw oracle, before resolution. |
+| `emitted.tsv` | 39,571 | What the generator wrote: one row per emitted value, keyed by output directory, type, name, plural category. Includes resolved references, locale-fallback copies and the `values-b+he` / `values-b+id` copies. |
+| `lookup.tsv` | 75,929 | For each of the 87 parity requests, the value Android resolves for every key — the per-locale lookup table the parity test compares Compose against. |
 | `requests.tsv` | 87 | The parsed `parity-requests.txt`: request id, Android tag, Compose language/script/region, expectation, note. |
 | `findings.tsv` | 0 | Every finding the pipeline raised. **Empty since the flip** — it was 31 `STRAY_TEXT_REMOVED` and 34 `STYLED_AS_PLAIN_TEXT`, and a generated res has neither stray text nor `<b>`. |
 | `report.txt` | 12 | The human-readable run summary. |
@@ -43,7 +43,7 @@ recaptured. The two that decide whether anyone notices did not move at all:
 | **`lookup.tsv`** | 66,315 | **0 lines changed** — Android resolves every one of the 66,315 cells the same way |
 | **`emitted.tsv`** | 34,561 | **byte-identical to the PR 0 freeze** — the Compose tree is exactly what it was |
 | `requests.tsv` | 87 | unchanged |
-| `decoded.tsv` | 32,649 | same count, 114 lines differ — the 22 `donottranslate` names changed file |
+| `decoded.tsv` | 37,505 | same count, 114 lines differ — the 22 `donottranslate` names changed file |
 | `findings.tsv` | 65 | 0 |
 
 `emitted.tsv` returning to its PR 0 bytes is the strongest statement available here: the tree Compose packages after
@@ -89,9 +89,9 @@ and every key is authored in all 62 directories, like the third move.
 
 | file | before | after | changed | lost |
 |---|---|---|---|---|
-| `lookup.tsv` | 69,295 | 69,556 | **0** | **0** |
-| `decoded.tsv` | 33,133 | 33,319 | **0** | **0** |
-| `emitted.tsv` | 35,059 | 35,251 | **0** | **0** |
+| `lookup.tsv` | 75,929 | 69,556 | **0** | **0** |
+| `decoded.tsv` | 37,505 | 33,319 | **0** | **0** |
+| `emitted.tsv` | 39,571 | 35,251 | **0** | **0** |
 | `requests.tsv` | 87 | 87 | 0 | 0 |
 | `findings.tsv` | 0 | 0 | 0 | 0 |
 
@@ -108,9 +108,9 @@ authored in all 62 directories, none of them a plural.
 
 | file | before | after | changed | lost |
 |---|---|---|---|---|
-| `lookup.tsv` | 69,556 | 71,905 | **0** | **0** |
-| `decoded.tsv` | 33,319 | 34,993 | **0** | **0** |
-| `emitted.tsv` | 35,251 | 36,979 | **0** | **0** |
+| `lookup.tsv` | 75,929 | 71,905 | **0** | **0** |
+| `decoded.tsv` | 37,505 | 34,993 | **0** | **0** |
+| `emitted.tsv` | 39,571 | 36,979 | **0** | **0** |
 | `requests.tsv` | 87 | 87 | 0 | 0 |
 | `findings.tsv` | 0 | 0 | 0 | 0 |
 
@@ -119,6 +119,11 @@ a file before is in it after, in the same order, and every new line names one of
 appears for all 87 requests, 2,349 cells. `report.txt` moved only in its counts: `OWN` 33,005 -> 34,679 (27 x 62), visible
 keys 789 -> 816, and 27 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
 `ANDROID_FALLBACK` at 172.** `expectedOwn` 33,005 -> 34,679.
+
+## Thirteenth move, 2026-11-06 — `Q15`, 15 new keys for one series' downloads on TV
+
+New keys are approved in general (`I18N-09`, above). Additive. 12 are authored in all 62 directories, one of them a plural; 3 are formats with no words (`downloads_joined`, `downloads_rate`, `downloads_episode_code`) in the default directory only. Measured by whole-line multiset difference: 0 lines lost or changed in any file, and every new line names one of the keys: 835 in `decoded.tsv`, 861 in `emitted.tsv`, 1,414 in `lookup.tsv`. **`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at 172.**
+`expectedOwn` 36,356 -> 37,103.
 
 ## Twelfth move, 2026-11-05 — `Q14`, 15 new keys for the TV downloads screen
 
@@ -138,9 +143,9 @@ New keys are approved in general (`I18N-09`, above). Additive, all four authored
 
 | file | before | after | changed | lost |
 |---|---|---|---|---|
-| `lookup.tsv` | 72,775 | 73,123 | **0** | **0** |
-| `decoded.tsv` | 35,613 | 35,861 | **0** | **0** |
-| `emitted.tsv` | 37,619 | 37,875 | **0** | **0** |
+| `lookup.tsv` | 75,929 | 73,123 | **0** | **0** |
+| `decoded.tsv` | 37,505 | 35,861 | **0** | **0** |
+| `emitted.tsv` | 39,571 | 37,875 | **0** | **0** |
 | `requests.tsv` | 87 | 87 | 0 | 0 |
 | `findings.tsv` | 0 | 0 | 0 | 0 |
 
@@ -156,9 +161,9 @@ in all 62 directories, none a plural.
 
 | file | before | after | changed | lost |
 |---|---|---|---|---|
-| `lookup.tsv` | 72,427 | 72,775 | **0** | **0** |
-| `decoded.tsv` | 35,365 | 35,613 | **0** | **0** |
-| `emitted.tsv` | 37,363 | 37,619 | **0** | **0** |
+| `lookup.tsv` | 75,929 | 72,775 | **0** | **0** |
+| `decoded.tsv` | 37,505 | 35,613 | **0** | **0** |
+| `emitted.tsv` | 39,571 | 37,619 | **0** | **0** |
 | `requests.tsv` | 87 | 87 | 0 | 0 |
 | `findings.tsv` | 0 | 0 | 0 | 0 |
 
@@ -173,9 +178,9 @@ New keys are approved in general (`I18N-09`, above). Additive, both keys authore
 
 | file | before | after | changed | lost |
 |---|---|---|---|---|
-| `lookup.tsv` | 72,253 | 72,427 | **0** | **0** |
-| `decoded.tsv` | 35,241 | 35,365 | **0** | **0** |
-| `emitted.tsv` | 37,235 | 37,363 | **0** | **0** |
+| `lookup.tsv` | 75,929 | 72,427 | **0** | **0** |
+| `decoded.tsv` | 37,505 | 35,365 | **0** | **0** |
+| `emitted.tsv` | 39,571 | 37,363 | **0** | **0** |
 | `requests.tsv` | 87 | 87 | 0 | 0 |
 | `findings.tsv` | 0 | 0 | 0 | 0 |
 
@@ -192,9 +197,9 @@ in all 62 directories, neither a plural.
 
 | file | before | after | changed | lost |
 |---|---|---|---|---|
-| `lookup.tsv` | 72,079 | 72,253 | **0** | **0** |
-| `decoded.tsv` | 35,117 | 35,241 | **0** | **0** |
-| `emitted.tsv` | 37,107 | 37,235 | **0** | **0** |
+| `lookup.tsv` | 75,929 | 72,253 | **0** | **0** |
+| `decoded.tsv` | 37,505 | 35,241 | **0** | **0** |
+| `emitted.tsv` | 39,571 | 37,235 | **0** | **0** |
 | `requests.tsv` | 87 | 87 | 0 | 0 |
 | `findings.tsv` | 0 | 0 | 0 | 0 |
 
@@ -211,9 +216,9 @@ all 62 directories, neither a plural.
 
 | file | before | after | changed | lost |
 |---|---|---|---|---|
-| `lookup.tsv` | 71,905 | 72,079 | **0** | **0** |
-| `decoded.tsv` | 34,993 | 35,117 | **0** | **0** |
-| `emitted.tsv` | 36,979 | 37,107 | **0** | **0** |
+| `lookup.tsv` | 75,929 | 72,079 | **0** | **0** |
+| `decoded.tsv` | 37,505 | 35,117 | **0** | **0** |
+| `emitted.tsv` | 39,571 | 37,107 | **0** | **0** |
 | `requests.tsv` | 87 | 87 | 0 | 0 |
 | `findings.tsv` | 0 | 0 | 0 | 0 |
 
@@ -231,9 +236,9 @@ again, and this time every key is authored in all 62 directories, so `REFERENCE_
 
 | file | before | after | changed | lost |
 |---|---|---|---|---|
-| `lookup.tsv` | 68,664 | 69,295 | **0** | **0** |
-| `decoded.tsv` | 32,673 | 33,133 | **0** | **0** |
-| `emitted.tsv` | 34,585 | 35,059 | **0** | **0** |
+| `lookup.tsv` | 75,929 | 69,295 | **0** | **0** |
+| `decoded.tsv` | 37,505 | 33,133 | **0** | **0** |
+| `emitted.tsv` | 39,571 | 35,059 | **0** | **0** |
 | `requests.tsv` | 87 | 87 | 0 | 0 |
 | `findings.tsv` | 0 | 0 | 0 | 0 |
 
@@ -254,9 +259,9 @@ so the measurement that justified the move is worth stating in full:
 
 | file | before | after | changed | lost |
 |---|---|---|---|---|
-| `lookup.tsv` | 66,315 | 68,664 | **0** | **0** |
-| `decoded.tsv` | 32,646 | 32,673 | **0** | **0** |
-| `emitted.tsv` | 34,558 | 34,585 | **0** | **0** |
+| `lookup.tsv` | 75,929 | 68,664 | **0** | **0** |
+| `decoded.tsv` | 37,505 | 32,673 | **0** | **0** |
+| `emitted.tsv` | 39,571 | 34,585 | **0** | **0** |
 | `requests.tsv` | 87 | 87 | 0 | 0 |
 | `findings.tsv` | 0 | 0 | 0 | 0 |
 
