@@ -163,10 +163,13 @@
 <string name="home_main_poster_img_des">Main Poster</string>
 <string name="home_more_info">More Info</string>
 <string name="home_next_random_img_des">Next Random</string>
+<string name="home_none_body">Pumili ng source para makita rito ang mga row nito. Nananatili ang Ituloy ang panonood at ang mga bookmark mo kahit wala nito.</string>
+<string name="home_none_headline">Walang napiling source</string>
 <string name="home_offline_bookmarks_body">Naka-save sa device na ito ang mga bookmark mo.</string>
 <string name="home_offline_source_headline">Kailangan ng %1$s ng koneksyon</string>
 <string name="home_play">I-play</string>
 <string name="home_search_only_body">Wala sa mga extension mo ang may home page, pero puwede ka pa ring maghanap sa mga ito.</string>
+<string name="home_source_none_subtitle">WALANG ROW · NANANATILI ANG MGA ROW MO</string>
 <string name="kitsu_settings">Ipakita ang posters mula sa Kitsu</string>
 <string name="lightnovel">Light novel app ng parehong devs</string>
 <string name="load_more">Mag-load pa</string>

@@ -350,12 +350,15 @@
 <string name="home_main_poster_img_des">"Poster Utama"</string>
 <string name="home_more_info">"Lebih banyak info"</string>
 <string name="home_next_random_img_des">"Acak selanjutnya"</string>
+<string name="home_none_body">"Pilih sumber untuk melihat barisnya di sini. Lanjutkan menonton dan markah Anda tetap ada tanpa sumber."</string>
+<string name="home_none_headline">"Tidak ada sumber dipilih"</string>
 <string name="home_offline_bookmarks_body">"Markah Anda tersimpan di perangkat ini."</string>
 <string name="home_offline_source_headline" formatted="true">"%1$s memerlukan koneksi"</string>
 <string name="home_play">"Putar"</string>
 <string name="home_random">"Acak"</string>
 <string name="home_search_only_body">"Tidak ada ekstensi Anda yang memiliki beranda, tetapi Anda tetap dapat mencari di dalamnya."</string>
 <string name="home_source">"Sumber"</string>
+<string name="home_source_none_subtitle">"TANPA BARIS · BARIS ANDA TETAP"</string>
 <string name="install_prerelease">"Pasang versi pra-rilis"</string>
 <string name="is_adult">"18+"</string>
 <string name="jsdelivr_enabled">"Gagal terhubung ke GitHub. Mengaktifkan proksi jsDelivr…"</string>

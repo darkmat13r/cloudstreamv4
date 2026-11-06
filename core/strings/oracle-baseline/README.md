@@ -120,6 +120,24 @@ appears for all 87 requests, 2,349 cells. `report.txt` moved only in its counts:
 keys 789 -> 816, and 27 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
 `ANDROID_FALLBACK` at 172.** `expectedOwn` 33,005 -> 34,679.
 
+## Seventeenth move, 2026-11-06 — `KMP-44`, 3 new keys for `None` as Home's source
+
+New keys are approved in general (`I18N-09`). Additive, all three authored in all 62 directories, none a plural. Redone from the
+live generator on master's baseline with the sixteenth move (`KMP-45`) in it.
+
+| file | before | after | added | changed | lost |
+|---|---|---|---|---|---|
+| `decoded.tsv` | 38,317 | 38,503 | 186 | 0 | 0 |
+| `emitted.tsv` | 40,410 | 40,602 | 192 | 0 | 0 |
+| `lookup.tsv` | 77,082 | 77,343 | 261 | 0 | 0 |
+| `requests.tsv` | 87 | 87 | 0 | 0 | 0 |
+| `findings.tsv` | 0 | 0 | 0 | 0 | 0 |
+
+Measured by whole-line set difference twice over, a multiset in Python and `sort | comm`: 0 lines lost in any file, and every
+added line names one of the three keys. `report.txt` moved only in its counts: `OWN` 37,827 -> 38,013 (3 x 62), visible keys
+873 -> 876, and 3 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at
+173.** `expectedOwn` 37,827 -> 38,013.
+
 ## Sixteenth move, 2026-11-06 — `KMP-45`, 5 new keys for Home's bookmarks rail
 
 New keys are approved in general (`I18N-09`). Additive, authored in all 62 directories: four strings and one plural,

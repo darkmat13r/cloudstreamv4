@@ -350,12 +350,15 @@
 <string name="home_main_poster_img_des">"主封面"</string>
 <string name="home_more_info">"更多信息"</string>
 <string name="home_next_random_img_des">"随机下一个"</string>
+<string name="home_none_body">"选择一个来源即可在此查看它的行。继续观看和你的书签在没有来源时也会保留。"</string>
+<string name="home_none_headline">"未选择来源"</string>
 <string name="home_offline_bookmarks_body">"你的书签保存在此设备上。"</string>
 <string name="home_offline_source_headline" formatted="true">"%1$s 需要网络连接"</string>
 <string name="home_play">"播放"</string>
 <string name="home_random">"随机"</string>
 <string name="home_search_only_body">"你的扩展都没有主页，但仍可在其中搜索。"</string>
 <string name="home_source">"来源"</string>
+<string name="home_source_none_subtitle">"无行 · 你的行保留"</string>
 <string name="install_prerelease">"安装预发行版"</string>
 <string name="is_adult">"18+"</string>
 <string name="jsdelivr_enabled">"无法访问 GitHub。正在开启 jsDelivr 代理…"</string>

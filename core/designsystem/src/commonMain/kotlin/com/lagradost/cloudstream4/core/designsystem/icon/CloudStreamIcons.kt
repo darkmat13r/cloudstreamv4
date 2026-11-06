@@ -14,6 +14,7 @@ import compose.icons.tablericons.CircleX
 import compose.icons.tablericons.Clock
 import compose.icons.tablericons.Database
 import compose.icons.tablericons.Dots
+import compose.icons.tablericons.Dice
 import compose.icons.tablericons.Download
 import compose.icons.tablericons.ExternalLink
 import compose.icons.tablericons.Gauge
@@ -123,6 +124,8 @@ object CloudStreamIcons {
     val Star: ImageVector get() = TablerIcons.Star
     val Lock: ImageVector get() = TablerIcons.Lock
     val Offline: ImageVector get() = TablerIcons.WifiOff
+    /** Home's Random: one title chosen from what is loaded (`TV Home Extras` 3j). */
+    val Random: ImageVector get() = TablerIcons.Dice
 
     // Sources
     val Source: ImageVector get() = TablerIcons.Server

@@ -252,12 +252,15 @@
 <string name="home_main_poster_img_des">မိန်း ပိုစတာ</string>
 <string name="home_more_info">ပိုမို၍</string>
 <string name="home_next_random_img_des">နောက် ကျပန်း</string>
+<string name="home_none_body">ဤနေရာတွင် ၎င်း၏အတန်းများကို ကြည့်ရန် ရင်းမြစ်တစ်ခု ရွေးပါ။ ဆက်ကြည့်ရန်နှင့် သင့်စာမှတ်များသည် ရင်းမြစ်မပါဘဲ ကျန်ရှိနေမည်။</string>
+<string name="home_none_headline">ရင်းမြစ် မရွေးရသေးပါ</string>
 <string name="home_offline_bookmarks_body">သင့်စာမှတ်များကို ဤစက်ပေါ်တွင် သိမ်းထားသည်။</string>
 <string name="home_offline_source_headline">%1$s သည် ချိတ်ဆက်မှု လိုအပ်သည်</string>
 <string name="home_play">ကြည့်မည်</string>
 <string name="home_random">ကျပန်း</string>
 <string name="home_search_only_body">သင့်အဆက်များတွင် ပင်မစာမျက်နှာ မရှိပါ၊ သို့သော် ၎င်းတို့တွင် ရှာဖွေနိုင်ပါသေးသည်။</string>
 <string name="home_source">ရင်းမြစ်</string>
+<string name="home_source_none_subtitle">အတန်းမရှိ · သင့်အတန်းများ ကျန်ရှိ</string>
 <string name="is_adult">အသက်ပြည့်ပြီးသူများသာ</string>
 <string name="jsdelivr_enabled">GitHub သို့ မရောက်ရှိနိုင်ပါ။ jsDelivr ပရောက်စီကို ဖွင့်နေသည်…</string>
 <string name="jsdelivr_proxy">raw.githubusercontent.com ပရောက်စီ</string>

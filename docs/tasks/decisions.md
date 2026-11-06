@@ -676,6 +676,12 @@ The rule and the glyph table are in `.claude/rules/ui-components.md`, "Buttons".
 
 **2026-11-06, the owner,** asked by the coordinator whether board 6d's icon-only row verbs break the rule above: **trailing actions on a list row are icon-only**, as 6d draws them, each showing its label under the cell when focused and carrying it as a content description. A second ruled exception to rule 4, beside the title detail action row, in `.claude/rules/ui-components.md`. First used by `KMP-43` (Play, the state's verb and Delete beside each episode).
 
+
+**2026-11-06, the owner,** relayed through the coordinator on `KMP-44` (#165): **Reload and Random in Home's top bar stay icon-only
+with the label on focus, as built** (`TV Home Extras` 3j). A third ruled exception in `ui-components.md` rule 4, beside the detail
+row and a list row's trailing actions: "Home top bar: Reload, Random". Their glyph at rest is the `muted` of the 2026-11-06 line
+above; that change is `DS-17`'s own PR, after `KMP-44` and `KMP-45` merge, and nothing in `KMP-44` changes `IconOnlyButton`.
+
 ---
 
 ## DEC-18 — The app moves to Android 7 (minSdk 24); the extension library stays on 23 · **decided 2026-11-06**

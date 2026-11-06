@@ -350,12 +350,15 @@
 <string name="home_main_poster_img_des">"Posteri kryesor"</string>
 <string name="home_more_info">"Më shumë info"</string>
 <string name="home_next_random_img_des">"Tjetër rastësore"</string>
+<string name="home_none_body">"Zgjidhni një burim për të parë këtu rreshtat e tij. Vazhdo shikimin dhe të ruajturat tuaja mbeten edhe pa të."</string>
+<string name="home_none_headline">"Nuk është zgjedhur asnjë burim"</string>
 <string name="home_offline_bookmarks_body">"Të ruajturat tuaja janë në këtë pajisje."</string>
 <string name="home_offline_source_headline" formatted="true">"%1$s ka nevojë për lidhje"</string>
 <string name="home_play">"Luaj"</string>
 <string name="home_random">"Rastësor"</string>
 <string name="home_search_only_body">"Asnjë nga shtesat tuaja nuk ka faqe kryesore, por mund të kërkoni ende në to."</string>
 <string name="home_source">"Burimi"</string>
+<string name="home_source_none_subtitle">"PA RRESHTA · RRESHTAT TUAJ MBETEN"</string>
 <string name="install_prerelease">"Instalo versione beta"</string>
 <string name="is_adult">"18+"</string>
 <string name="jsdelivr_enabled">"Nuk mund të arrihej GitHub. Po aktivizohet proxy jsDelivr…"</string>

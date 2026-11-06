@@ -350,12 +350,15 @@
 <string name="home_main_poster_img_des">Medienvorschaubild</string>
 <string name="home_more_info">Mehr Infos</string>
 <string name="home_next_random_img_des">Nächstes zufällig</string>
+<string name="home_none_body">Wählen Sie eine Quelle, um ihre Reihen hier zu sehen. Weiterschauen und Ihre Lesezeichen bleiben auch ohne.</string>
+<string name="home_none_headline">Keine Quelle gewählt</string>
 <string name="home_offline_bookmarks_body">Ihre Lesezeichen sind auf diesem Gerät gespeichert.</string>
 <string name="home_offline_source_headline">%1$s braucht eine Verbindung</string>
 <string name="home_play">Abspielen</string>
 <string name="home_random">Zufällig</string>
 <string name="home_search_only_body">Keine Ihrer Erweiterungen hat eine Startseite, aber Sie können trotzdem darin suchen.</string>
 <string name="home_source">Quelle</string>
+<string name="home_source_none_subtitle">KEINE REIHEN · IHRE REIHEN BLEIBEN</string>
 <string name="install_prerelease">Vorabversion installieren</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">GitHub konnte nicht erreicht werden. Der jsDelivr-Proxy wird aktiviert …</string>

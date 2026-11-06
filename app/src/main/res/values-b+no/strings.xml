@@ -250,12 +250,15 @@
 <string name="home_main_poster_img_des">"Main Plakat"</string>
 <string name="home_more_info">"Mer informasjon"</string>
 <string name="home_next_random_img_des">"Neste tilfeldig"</string>
+<string name="home_none_body">"Velg en kilde for å se radene her. Fortsett å se og bokmerkene dine blir værende uten."</string>
+<string name="home_none_headline">"Ingen kilde valgt"</string>
 <string name="home_offline_bookmarks_body">"Bokmerkene dine er lagret på denne enheten."</string>
 <string name="home_offline_source_headline" formatted="true">"%1$s trenger tilkobling"</string>
 <string name="home_play">"Spille"</string>
 <string name="home_random">"Tilfeldig"</string>
 <string name="home_search_only_body">"Ingen av utvidelsene dine har en hjemmeside, men du kan fortsatt søke i dem."</string>
 <string name="home_source">"Kilde"</string>
+<string name="home_source_none_subtitle">"INGEN RADER · RADENE DINE BLIR"</string>
 <string name="is_adult">"18+"</string>
 <string name="jsdelivr_enabled">"Kunne ikke nå GitHub. Skrur på jsDelivr-mellomtjener …"</string>
 <string name="jsdelivr_proxy">"raw.githubusercontent.com-mellomtjener"</string>

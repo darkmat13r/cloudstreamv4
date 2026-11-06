@@ -33,6 +33,7 @@ import com.lagradost.cloudstream3.R
 import com.lagradost.cloudstream3.USER_AGENT
 import com.lagradost.cloudstream3.ui.account.AccountHelper.showAccountSelectLinear
 import com.lagradost.cloudstream3.ui.home.HomeFragment
+import com.lagradost.cloudstream3.ui.quicksearch.QuickSearchFragment
 import com.lagradost.cloudstream3.utils.AppContextUtils.loadResult
 import com.lagradost.cloudstream3.utils.BackPressedCallbackHelper.attachBackPressedCallback
 import com.lagradost.cloudstream3.utils.BackPressedCallbackHelper.detachBackPressedCallback
@@ -172,6 +173,8 @@ class HomeTvFragment : BaseComposeFragment() {
             }
             HomeEffect.OpenExtensions -> activity?.navigate(R.id.navigation_settings_extensions)
             HomeEffect.OpenAccounts -> activity?.showAccountSelectLinear()
+            // The old TV page's search button: Quick Search on this source with nothing typed (`HomeViewModel.kt:473`).
+            is HomeEffect.OpenSourceSearch -> QuickSearchFragment.pushSearch(activity, "", arrayOf(effect.source.value))
         }
     }
 

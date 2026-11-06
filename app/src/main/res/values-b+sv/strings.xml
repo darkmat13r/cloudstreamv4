@@ -350,12 +350,15 @@
 <string name="home_main_poster_img_des">@string/result_poster_img_des</string>
 <string name="home_more_info">"Mer information"</string>
 <string name="home_next_random_img_des">"Nästa slumpvis"</string>
+<string name="home_none_body">"Välj en källa för att se dess rader här. Fortsätt titta och dina bokmärken finns kvar utan."</string>
+<string name="home_none_headline">"Ingen källa vald"</string>
 <string name="home_offline_bookmarks_body">"Dina bokmärken sparas på den här enheten."</string>
 <string name="home_offline_source_headline" formatted="true">"%1$s behöver en anslutning"</string>
 <string name="home_play">"Spela upp"</string>
 <string name="home_random">"Slumpmässig"</string>
 <string name="home_search_only_body">"Inget av dina tillägg har en startsida, men du kan fortfarande söka i dem."</string>
 <string name="home_source">"Källa"</string>
+<string name="home_source_none_subtitle">"INGA RADER · DINA RADER BLIR KVAR"</string>
 <string name="install_prerelease">"Installera förhandsversionen"</string>
 <string name="is_adult">"18+"</string>
 <string name="jsdelivr_enabled">"Kunde inte nå GitHub, sätter på jsDelivr proxy…"</string>

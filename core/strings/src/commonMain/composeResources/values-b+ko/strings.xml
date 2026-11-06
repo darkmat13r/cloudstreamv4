@@ -349,12 +349,15 @@
 <string name="home_main_poster_img_des">메인 포스터</string>
 <string name="home_more_info">상세 정보</string>
 <string name="home_next_random_img_des">다음 추천</string>
+<string name="home_none_body">소스를 선택하면 여기에 해당 줄이 표시됩니다. 이어 보기와 북마크는 소스 없이도 남습니다.</string>
+<string name="home_none_headline">선택한 소스 없음</string>
 <string name="home_offline_bookmarks_body">북마크는 이 기기에 저장되어 있습니다.</string>
 <string name="home_offline_source_headline">%1$s에 연결이 필요합니다</string>
 <string name="home_play">재생</string>
 <string name="home_random">랜덤</string>
 <string name="home_search_only_body">홈 페이지가 있는 확장 기능은 없지만 검색은 계속 사용할 수 있습니다.</string>
 <string name="home_source">소스</string>
+<string name="home_source_none_subtitle">줄 없음 · 내 줄은 유지</string>
 <string name="install_prerelease">출시 전 버전 설치</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">GitHub에 연결할 수 없습니다. jsDelivr 프록시를 켜는 중…</string>

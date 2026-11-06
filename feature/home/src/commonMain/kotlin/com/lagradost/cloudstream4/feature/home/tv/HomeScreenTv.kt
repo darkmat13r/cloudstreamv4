@@ -2,6 +2,7 @@ package com.lagradost.cloudstream4.feature.home.tv
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.LocalBringIntoViewSpec
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -12,6 +13,7 @@ import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -37,7 +39,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
@@ -62,12 +67,17 @@ import com.lagradost.cloudstream4.core.designsystem.state.StateView
 import com.lagradost.cloudstream4.core.designsystem.state.UiState
 import com.lagradost.cloudstream4.core.designsystem.state.failureNotice
 import com.lagradost.cloudstream4.core.designsystem.target.IconCell
+import com.lagradost.cloudstream4.core.designsystem.target.IconOnlyButton
 import com.lagradost.cloudstream4.core.strings.UiString
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.extensions
 import com.lagradost.cloudstream4.core.strings.generated.resources.home_bookmarks_count
 import com.lagradost.cloudstream4.core.strings.generated.resources.home_offline_bookmarks_body
 import com.lagradost.cloudstream4.core.strings.generated.resources.home_offline_source_headline
+import com.lagradost.cloudstream4.core.strings.generated.resources.home_random
+import com.lagradost.cloudstream4.core.strings.generated.resources.none
+import com.lagradost.cloudstream4.core.strings.generated.resources.reload_provider
+import com.lagradost.cloudstream4.core.strings.generated.resources.search
 import com.lagradost.cloudstream4.core.strings.generated.resources.home_source
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_state_offline_headline
 import com.lagradost.cloudstream4.core.strings.generated.resources.switch_account
@@ -154,6 +164,7 @@ fun HomeScreenTv(
     val itemsBeforeBookmarks = if (hasContinue) ITEMS_BEFORE_CONTINUE + 1 else ITEMS_BEFORE_CONTINUE
     val itemsBeforeRails = if (hasBookmarks) itemsBeforeBookmarks + 1 else itemsBeforeBookmarks
     val offline = state.status is HomeStatus.Offline
+    val unsourced = state.status == HomeStatus.Unsourced
     val scope = rememberCoroutineScope()
     val stops = remember { HomeStops() }
 
@@ -165,6 +176,8 @@ fun HomeScreenTv(
             HomeRowKey.Hero -> hero?.takeIf { it.featured.id == returnTo.id }?.let { heroTarget(it.featured) }
             HomeRowKey.Continue -> resume.firstOrNull { it.id == returnTo.id }?.let { continueTarget(it) }
             HomeRowKey.Bookmarks -> shownBookmarks.firstOrNull { it.id == returnTo.id }?.let { bookmarkTarget(it) }
+            // Random's cell, which is there only beside rows.
+            HomeRowKey.Chrome -> HomeFocusTarget(HomeRowKey.Chrome, returnTo.id).takeIf { hasRows }
             else -> row?.items?.firstOrNull { it.id == returnTo.id }?.let { HomeFocusTarget(row.key, it.id) }
         }
         val fallback = back ?: landingTarget(hero, resume, shownBookmarks, rows)
@@ -179,8 +192,10 @@ fun HomeScreenTv(
     }
 
     // Rows landing, on a page that opened with none or whose focus went with what they replaced.
-    LaunchedEffect(hasRows, state.appeared, returnTo == null, heroSettled) {
-        if (!hasRows || !state.appeared || returnTo != null || !heroSettled) return@LaunchedEffect
+    // With `None` chosen nothing comes from a source, so what the device keeps is what lands (3i).
+    val landable = hasRows || (state.unsourced && (hasContinue || shownBookmarks.isNotEmpty()))
+    LaunchedEffect(landable, state.appeared, returnTo == null, heroSettled) {
+        if (!landable || !state.appeared || returnTo != null || !heroSettled) return@LaunchedEffect
         // After a frame, so that a button these rows replaced has given focus up.
         withFrameNanos { }
         val free = (state.landingOwed || landingInView || !screenHasFocus) && !continueHasFocus && !bookmarksHaveFocus
@@ -260,6 +275,20 @@ fun HomeScreenTv(
                                     offlineBookmarks = bookmarks.all.size.takeIf { offline && hasBookmarks },
                                     stops = stops,
                                     onAction = onAction,
+                                    focusTarget = focusTarget,
+                                    onFocusTaken = onFocusTaken,
+                                    onRandom = {
+                                        onAction(
+                                            HomeAction.RandomRequested(
+                                                from = HomeReturn(
+                                                    id = RANDOM_CELL,
+                                                    rowKey = HomeRowKey.Chrome,
+                                                    firstVisibleRow = list.firstVisibleItemIndex,
+                                                    firstVisibleRowOffset = list.firstVisibleItemScrollOffset,
+                                                ),
+                                            ),
+                                        )
+                                    },
                                     modifier = Modifier.contentInset(),
                                 )
                                 hero?.let {
@@ -358,8 +387,11 @@ fun HomeScreenTv(
                     }
                     when (content) {
                         is UiState.Loading -> items(SKELETON_RAILS, key = { "skeleton/$it" }) { HomeRailSkeleton() }
-                        is UiState.Empty -> item(key = STATE_KEY) {
-                            HomeStatePrompt(content.prompt, content.detail, promptHeight, hasLocalRails, state, mayTakeFocus, promptModifier)
+                        // `None` with something kept on the device is 3i: the kept rows alone, and no prompt under them.
+                        is UiState.Empty -> if (!(unsourced && hasLocalRails)) {
+                            item(key = STATE_KEY) {
+                                HomeStatePrompt(content.prompt, content.detail, promptHeight, hasLocalRails, state, mayTakeFocus, promptModifier)
+                            }
                         }
                         is UiState.Offline -> item(key = STATE_KEY) {
                             // Under Continue watching the headline says it alone: the body is four lines, 80dp more than
@@ -369,7 +401,13 @@ fun HomeScreenTv(
                             HomeStatePrompt(prompt, null, promptHeight, hasLocalRails, state, mayTakeFocus, promptModifier)
                         }
                         is UiState.Error -> item(key = STATE_KEY) {
-                            HomeStatePrompt(content.prompt, content.detail, promptHeight, hasLocalRails, state, mayTakeFocus, promptModifier)
+                            // 3m: under what the device keeps, the failure is a 48dp band where the source's rails were,
+                            // not a page. With neither local rail it is the built full-page error.
+                            if (hasLocalRails) {
+                                HomeFailureBand(content.prompt, content.detail, state, mayTakeFocus, stops, promptModifier)
+                            } else {
+                                HomeStatePrompt(content.prompt, content.detail, promptHeight, hasLocalRails, state, mayTakeFocus, promptModifier)
+                            }
                         }
                         // A row's key is a string, because a lazy list's key must fit in a Bundle on Android.
                         is UiState.Partial, is UiState.Content -> Unit
@@ -378,7 +416,7 @@ fun HomeScreenTv(
                     // list scrolls only as far as its content reaches: without this it stopped at the state's own overflow,
                     // 15px, and left the chrome in the overscan (measured).
                     val isState = content is UiState.Empty || content is UiState.Offline || content is UiState.Error
-                    if (hasLocalRails && isState) {
+                    if (hasLocalRails && isState && !unsourced) {
                         item(key = STATE_ROOM_KEY) { Spacer(Modifier.height(CloudStreamDimens.ChromeRowBottom)) }
                     }
                     when (content) {
@@ -482,6 +520,45 @@ private fun HomeStatePrompt(
 }
 
 /**
+ * 3m's `.slot.notice`: a failure under the rails the device keeps, as one 48dp band where the source's rails were. It is
+ * [HomeFailureNotice], the chrome's partial-failure notice: the hollow marker, what failed ("Could not load <source>"), the
+ * source's mono detail, and Try again, here at the band's end. Try again takes focus when the band appears, as the
+ * full-page state's button does.
+ */
+@Composable
+private fun HomeFailureBand(
+    prompt: StatePrompt,
+    detail: String?,
+    state: HomeState,
+    mayTakeFocus: () -> Boolean,
+    stops: HomeStops,
+    modifier: Modifier = Modifier,
+) {
+    val colors = CloudStreamTheme.colors
+    val shape = CloudStreamTheme.shapes.small
+    val takeFocus = remember(state.appeared) { state.appeared && !state.pickerOpen && mayTakeFocus() }
+    val retry = remember { FocusRequester() }
+    LaunchedEffect(takeFocus) {
+        if (!takeFocus) return@LaunchedEffect
+        withFrameNanos { }
+        retry.requestFocusIfAttached()
+    }
+    HomeFailureNotice(
+        notice = FailureNotice(headline = prompt.body, detail = detail.orEmpty(), retry = prompt.action),
+        stops = stops,
+        retryAtEnd = true,
+        retryModifier = Modifier.focusRequester(retry),
+        modifier = modifier
+            .fillMaxWidth()
+            .contentInset()
+            .height(CloudStreamDimens.ChipFocusCell)
+            .background(colors.surface, shape)
+            .border(CloudStreamDimens.Hairline, colors.line, shape)
+            .padding(start = HomeScreenTvDefaults.FailureBandPaddingStart, end = HomeScreenTvDefaults.FailureBandPaddingEnd),
+    )
+}
+
+/**
  * The top of the page: what failed on the left, as `TV Search` 4b draws a shortfall inside a row rather than in a band of
  * its own, and 3c's source control and account cell on the right.
  *
@@ -494,8 +571,13 @@ private fun HomeChromeRow(
     offlineBookmarks: Int?,
     stops: HomeStops,
     onAction: (HomeAction) -> Unit,
+    focusTarget: HomeFocusTarget?,
+    onFocusTaken: () -> Unit,
+    onRandom: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val hasRows = state.status.rows.isNotEmpty() && !state.unsourced
+    val searchable = state.selectedOption != null && state.status !is HomeStatus.Offline
     Row(
         modifier = modifier.fillMaxWidth().height(CloudStreamDimens.ChromeRowHeight),
         horizontalArrangement = Arrangement.spacedBy(CloudStreamDimens.MinFocusGap),
@@ -508,8 +590,25 @@ private fun HomeChromeRow(
             offlineBookmarks != null -> HomeOfflineNotice(offlineBookmarks, Modifier.weight(1f))
             else -> Spacer(Modifier.weight(1f))
         }
-        state.selectedOption?.let { selected ->
-            HomeSourceControl(name = selected.name, stops, onClick = { onAction(HomeAction.PickerOpened) })
+        val sourceName = if (state.unsourced) stringResource(Res.string.none) else state.selectedOption?.name
+        sourceName?.let { name ->
+            HomeSourceControl(name = name, stops, onClick = { onAction(HomeAction.PickerOpened) })
+        }
+        // 3j's cells, in the old TV order. Reload and Random need loaded rows, and Search a source and a connection: where
+        // they cannot work they are absent, and the state's own button does the job.
+        val cell: @Composable (ImageVector, String, String, () -> Unit) -> Unit = { icon, label, name, onClick ->
+            HomeChromeCell(icon, label, name, stops, focusTarget, onFocusTaken, onClick)
+        }
+        if (hasRows) {
+            cell(CloudStreamIcons.Retry, stringResource(Res.string.reload_provider), RELOAD_CELL) {
+                onAction(HomeAction.ReloadRequested)
+            }
+            cell(CloudStreamIcons.Random, stringResource(Res.string.home_random), RANDOM_CELL, onRandom)
+        }
+        if (searchable) {
+            cell(CloudStreamIcons.Search, stringResource(Res.string.search), SEARCH_CELL) {
+                onAction(HomeAction.SourceSearchRequested)
+            }
         }
         val accounts = stringResource(Res.string.switch_account)
         val colors = CloudStreamTheme.colors
@@ -525,18 +624,53 @@ private fun HomeChromeRow(
 }
 
 /**
- * `FailureBanner`'s content: a hollow neutral marker, which is what `DEC-17` rules a failure looks like, and the retry as the
- * `ink` primary, as `FailureBanner` draws it since `DS-14` (`TV Search` 4b's `.bbtn`).
+ * One of 3j's icon-only cells. `IconOnlyButton` names it under the cell while focused, and carries it as a description.
+ * Takes focus when [focusTarget] names it, which is how Random's cell gets focus back when its title closes.
  */
 @Composable
-private fun HomeFailureNotice(notice: FailureNotice, stops: HomeStops, modifier: Modifier = Modifier) {
+private fun HomeChromeCell(
+    icon: ImageVector,
+    label: String,
+    cell: String,
+    stops: HomeStops,
+    focusTarget: HomeFocusTarget?,
+    onFocusTaken: () -> Unit,
+    onClick: () -> Unit,
+) {
+    val requester = remember { FocusRequester() }
+    val takeFocus = focusTarget == HomeFocusTarget(HomeRowKey.Chrome, cell)
+    LaunchedEffect(takeFocus) {
+        if (!takeFocus) return@LaunchedEffect
+        withFrameNanos { }
+        requester.requestFocusIfAttached()
+        onFocusTaken()
+    }
+    IconOnlyButton(
+        icon = icon,
+        label = label,
+        onClick = onClick,
+        modifier = Modifier.focusRequester(requester).onFocusChanged { if (it.isFocused) stops.last = requester },
+    )
+}
+
+/**
+ * `FailureBanner`'s content: a hollow neutral marker, which is what `DEC-17` rules a failure looks like, and the retry as the
+ * `ink` primary, as `FailureBanner` draws it since `DS-14` (`TV Search` 4b's `.bbtn`).
+ *
+ * @param retryAtEnd puts the retry at the row's end rather than beside the detail, as 3m's band draws it.
+ * @param retryModifier applied to the retry, after its focus stop.
+ */
+@Composable
+private fun HomeFailureNotice(
+    notice: FailureNotice,
+    stops: HomeStops,
+    modifier: Modifier = Modifier,
+    retryAtEnd: Boolean = false,
+    retryModifier: Modifier = Modifier,
+) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
-    Row(
-        modifier = modifier,
-        horizontalArrangement = Arrangement.spacedBy(CloudStreamDimens.ListRowPadding),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
+    val labels: @Composable RowScope.() -> Unit = {
         StatusDot(StatusDotState.Failed)
         BasicText(
             text = notice.headline,
@@ -552,8 +686,26 @@ private fun HomeFailureNotice(notice: FailureNotice, stops: HomeStops, modifier:
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier.widthIn(max = HomeScreenTvDefaults.FailureDetailMaxWidth),
         )
-        Spacer(Modifier.width(CloudStreamDimens.ListRowPadding))
-        StateActionButton(notice.retry, Modifier.homeStop(stops), StateActionEmphasis.Primary)
+    }
+    Row(
+        modifier = modifier,
+        horizontalArrangement = Arrangement.spacedBy(CloudStreamDimens.ListRowPadding),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        if (retryAtEnd) {
+            // The labels take the free width as one group, so the retry sits at the row's end and the headline still
+            // ellipsizes rather than pushing it off.
+            Row(
+                modifier = Modifier.weight(1f),
+                horizontalArrangement = Arrangement.spacedBy(CloudStreamDimens.ListRowPadding),
+                verticalAlignment = Alignment.CenterVertically,
+                content = labels,
+            )
+        } else {
+            labels()
+            Spacer(Modifier.width(CloudStreamDimens.ListRowPadding))
+        }
+        StateActionButton(notice.retry, Modifier.homeStop(stops).then(retryModifier), StateActionEmphasis.Primary)
     }
 }
 
@@ -668,6 +820,12 @@ object HomeScreenTvDefaults {
     /** Mirrors `FailureBannerDefaults.DetailMaxWidth`. */
     val FailureDetailMaxWidth: Dp = 240.dp
 
+    /** 3m's `.slot.notice` left padding, 32px: from the band's edge to its hollow marker. */
+    val FailureBandPaddingStart: Dp = 16.dp
+
+    /** 3m's `.slot.notice` right padding, 24px: from Try again to the band's edge. Mirrors `dimens.MinFocusGap`. */
+    val FailureBandPaddingEnd: Dp = CloudStreamDimens.MinFocusGap
+
     /** 3c's `.art`, 608px from the top of the screen. */
     val HeroArtHeight: Dp = 304.dp
 
@@ -712,6 +870,9 @@ private const val ITEMS_BEFORE_CONTINUE = 1
 private const val CHROME_KEY = "chrome"
 private const val CONTINUE_KEY = "continue"
 private const val BOOKMARKS_KEY = "bookmarks"
+private const val RELOAD_CELL = "reload"
+private const val RANDOM_CELL = "random"
+private const val SEARCH_CELL = "search"
 
 /** What the bands above a state can add up to in pixel rounding: under this a state fits. */
 private const val ROUNDING_PX = 2f
