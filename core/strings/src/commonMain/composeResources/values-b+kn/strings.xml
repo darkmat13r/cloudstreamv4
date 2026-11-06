@@ -161,6 +161,13 @@
 <string name="search_poster_img_des">ಪೋಸ್ಟರ್</string>
 <string name="search_provider_text_providers">ಪೂರೈಕೆದಾರರನ್ನು ಬಳಸಿಕೊಂಡು ಹುಡುಕಿ</string>
 <string name="search_provider_text_types">ಪ್ರಕಾರಗಳನ್ನು ಬಳಸಿಕೊಂಡು ಹುಡುಕಿ</string>
+<string name="search_quick_empty_body">ಎಲ್ಲಾ ಮೂಲಗಳು ಉತ್ತರಿಸಿವೆ, ಆದರೆ ಯಾವುದರಲ್ಲೂ “%s” ಇಲ್ಲ. ಚಿಕ್ಕ ಹುಡುಕಾಟ ಪ್ರಯತ್ನಿಸಿ, ಅಥವಾ ಮೂಲಗಳನ್ನು ಬದಲಿಸಲು ಪೂರ್ಣ ಹುಡುಕಾಟ ತೆರೆಯಿರಿ.</string>
+<string name="search_quick_empty_headline">ಯಾವುದೇ ಹೊಂದಾಣಿಕೆ ಇಲ್ಲ</string>
+<string name="search_quick_meta_answered">ಎಲ್ಲಾ ಮೂಲಗಳು ಉತ್ತರಿಸಿವೆ</string>
+<string name="search_quick_meta_answering">ಮೂಲಗಳು ಉತ್ತರಿಸಿದಂತೆ ಫಲಿತಾಂಶಗಳು ಬರುತ್ತವೆ</string>
+<string name="search_quick_open_full">ಪೂರ್ಣ ಹುಡುಕಾಟ ತೆರೆಯಿರಿ</string>
+<string name="search_quick_status">%2$d ರಲ್ಲಿ %1$d ಉತ್ತರಿಸಿವೆ · %3$d ವಿಫಲ</string>
+<string name="search_quick_title">ತ್ವರಿತ ಹುಡುಕಾಟ</string>
 <string name="search_state_idle_body_desktop">ಶೀರ್ಷಿಕೆಯನ್ನು ಟೈಪ್ ಮಾಡಿ. ಪ್ರತಿಯೊಂದು ಮೂಲ ಉತ್ತರಿಸಿದಂತೆ ಫಲಿತಾಂಶಗಳು ಅದರ ಕೆಳಗೆ ಕಾಣಿಸುತ್ತವೆ.</string>
 <string name="search_state_no_results_type_filter">%s ಮಾತ್ರ. ನಿಮ್ಮ ಪ್ರಕಾರದ ಫಿಲ್ಟರ್ ಹುಡುಕಾಟವನ್ನು ಕಿರಿದುಗೊಳಿಸುತ್ತಿದೆ.</string>
 <string name="search_state_no_suggestions_detail">0 ಸಲಹೆಗಳು · 0 ಇತ್ತೀಚಿನ ಹೊಂದಾಣಿಕೆಗಳು</string>

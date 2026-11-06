@@ -332,6 +332,13 @@
 <string name="search_poster_img_des">"پوستر"</string>
 <string name="search_provider_text_providers">"جستجو از طریق ارائه‌دهنده‌ها"</string>
 <string name="search_provider_text_types">"جستجو از طریق انواع"</string>
+<string name="search_quick_empty_body" formatted="true">"همه منابع پاسخ دادند و هیچ‌کدام «%s» را ندارند. جستجوی کوتاه‌تری را امتحان کنید یا برای تغییر منابع، جستجوی کامل را باز کنید."</string>
+<string name="search_quick_empty_headline">"موردی مطابقت ندارد"</string>
+<string name="search_quick_meta_answered">"همه منابع پاسخ دادند"</string>
+<string name="search_quick_meta_answering">"نتایج با پاسخ منابع می‌رسند"</string>
+<string name="search_quick_open_full">"باز کردن جستجوی کامل"</string>
+<string name="search_quick_status" formatted="true">"%1$d از %2$d پاسخ دادند · %3$d ناموفق"</string>
+<string name="search_quick_title">"جستجوی سریع"</string>
 <string name="search_state_idle_body_desktop">"عنوانی را بنویسید. نتایج هر منبع پس از پاسخ آن، زیر نامش نمایش داده می‌شود."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"فقط %s. فیلتر نوع شما جستجو را محدود می‌کند."</string>
 <string name="search_state_no_suggestions_detail">"0 پیشنهاد · 0 مورد منطبق اخیر"</string>

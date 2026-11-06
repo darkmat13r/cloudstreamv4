@@ -475,6 +475,13 @@
 <string name="search_poster_img_des">Poster</string>
 <string name="search_provider_text_providers">Carian mengikut sumber</string>
 <string name="search_provider_text_types">Carian mengikut jenis</string>
+<string name="search_quick_empty_body">Semua sumber menjawab dan tiada satu pun yang mempunyai “%s”. Cuba carian yang lebih pendek, atau buka carian penuh untuk menukar sumber.</string>
+<string name="search_quick_empty_headline">Tiada padanan</string>
+<string name="search_quick_meta_answered">SEMUA SUMBER TELAH MENJAWAB</string>
+<string name="search_quick_meta_answering">HASIL TIBA APABILA SUMBER MENJAWAB</string>
+<string name="search_quick_open_full">Buka carian penuh</string>
+<string name="search_quick_status">%1$d DARIPADA %2$d MENJAWAB · %3$d GAGAL</string>
+<string name="search_quick_title">Carian pantas</string>
 <string name="search_state_idle_body_desktop">Taip tajuk. Hasil muncul di bawah setiap sumber apabila ia menjawab.</string>
 <string name="search_state_no_results_type_filter">Hanya %s. Penapis jenis anda mengecilkan carian.</string>
 <string name="search_state_no_suggestions_detail">0 CADANGAN · 0 PADANAN TERKINI</string>

@@ -279,6 +279,13 @@
 <string name="search_poster_img_des">"Cartel"</string>
 <string name="search_provider_text_providers">"Procurar usando proveedores"</string>
 <string name="search_provider_text_types">"Procurar por tipos"</string>
+<string name="search_quick_empty_body" formatted="true">"Todas as fontes responderon e ningunha ten «%s». Proba unha busca máis curta ou abre a busca completa para cambiar as fontes."</string>
+<string name="search_quick_empty_headline">"Sen coincidencias"</string>
+<string name="search_quick_meta_answered">"TODAS AS FONTES RESPONDERON"</string>
+<string name="search_quick_meta_answering">"OS RESULTADOS CHEGAN SEGUNDO RESPONDEN AS FONTES"</string>
+<string name="search_quick_open_full">"Abrir a busca completa"</string>
+<string name="search_quick_status" formatted="true">"%1$d DE %2$d RESPONDERON · %3$d FALLARON"</string>
+<string name="search_quick_title">"Busca rápida"</string>
 <string name="search_state_idle_body_desktop">"Escriba un título. Os resultados aparecen baixo cada fonte cando responde."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"Só %s. O filtro de tipo está limitando a busca."</string>
 <string name="search_state_no_suggestions_detail">"0 SUXESTIÓNS · 0 COINCIDENCIAS RECENTES"</string>

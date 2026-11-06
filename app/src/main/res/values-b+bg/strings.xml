@@ -590,6 +590,13 @@
 <string name="search_poster_img_des">"Постер"</string>
 <string name="search_provider_text_providers">"Търсене чрез доставчици"</string>
 <string name="search_provider_text_types">"Търсене с помощта на типове"</string>
+<string name="search_quick_empty_body" formatted="true">"Всички източници отговориха и никой няма „%s“. Опитайте по-кратко търсене или отворете пълното търсене, за да смените източниците."</string>
+<string name="search_quick_empty_headline">"Няма съвпадения"</string>
+<string name="search_quick_meta_answered">"ВСИЧКИ ИЗТОЧНИЦИ ОТГОВОРИХА"</string>
+<string name="search_quick_meta_answering">"РЕЗУЛТАТИТЕ ИДВАТ С ОТГОВОРИТЕ НА ИЗТОЧНИЦИТЕ"</string>
+<string name="search_quick_open_full">"Отвори пълното търсене"</string>
+<string name="search_quick_status" formatted="true">"ОТГОВОРИЛИ %1$d ОТ %2$d · НЕУСПЕШНИ %3$d"</string>
+<string name="search_quick_title">"Бързо търсене"</string>
 <string name="search_state_idle_body_desktop">"Въведете заглавие. Резултатите се появяват под всеки източник, когато той отговори."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"Само %s. Филтърът по тип стеснява търсенето."</string>
 <string name="search_state_no_suggestions_detail">"0 ПРЕДЛОЖЕНИЯ · 0 СКОРОШНИ СЪВПАДЕНИЯ"</string>

@@ -601,6 +601,13 @@
 <string name="search_poster_img_des">封面</string>
 <string name="search_provider_text_providers">按片源搜索</string>
 <string name="search_provider_text_types">按类型搜索</string>
+<string name="search_quick_empty_body">所有来源均已响应，但都没有“%s”。请尝试更短的搜索词，或打开完整搜索以更改来源。</string>
+<string name="search_quick_empty_headline">无匹配</string>
+<string name="search_quick_meta_answered">所有来源均已响应</string>
+<string name="search_quick_meta_answering">结果随来源响应陆续出现</string>
+<string name="search_quick_open_full">打开完整搜索</string>
+<string name="search_quick_status">%2$d 个中 %1$d 个已响应 · %3$d 个失败</string>
+<string name="search_quick_title">快速搜索</string>
 <string name="search_state_idle_body_desktop">输入标题。每个来源响应后，结果会显示在其下方。</string>
 <string name="search_state_no_results_type_filter">仅限%s。类型筛选正在缩小搜索范围。</string>
 <string name="search_state_no_suggestions_detail">0 个建议 · 0 个最近匹配</string>

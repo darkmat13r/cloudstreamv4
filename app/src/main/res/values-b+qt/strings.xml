@@ -531,6 +531,13 @@
 <string name="search_poster_img_des">"aaaaaah"</string>
 <string name="search_provider_text_providers">"aauuhaauugghhahhh ohaauugghhouuhhh"</string>
 <string name="search_provider_text_types">"ahhhahoooohhaa ahhhoohahh"</string>
+<string name="search_quick_empty_body" formatted="true">"oohh aagh uuk “%s”. ooh aak oohh, aagh uuk oohh aah."</string>
+<string name="search_quick_empty_headline">"ooh aagg"</string>
+<string name="search_quick_meta_answered">"OOHH AAGH UUK"</string>
+<string name="search_quick_meta_answering">"AAGH OOHH UUK AAH"</string>
+<string name="search_quick_open_full">"oohh aagh"</string>
+<string name="search_quick_status" formatted="true">"%1$d OOHH %2$d AAGH · %3$d UUK"</string>
+<string name="search_quick_title">"oohh aak"</string>
 <string name="search_state_idle_body_desktop">"oouuh aaaaggg uuuk ooh"</string>
 <string name="search_state_no_results_type_filter" formatted="true">"%s uuhaa. oouuh aagggh uuk."</string>
 <string name="search_state_no_suggestions_detail">"0 AAAHHUU · 0 AAOOH UUGH"</string>

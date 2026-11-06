@@ -601,6 +601,13 @@
 <string name="search_poster_img_des">Posteri</string>
 <string name="search_provider_text_providers">Kërko duke përdorur ofruesit</string>
 <string name="search_provider_text_types">Kërko duke përdorur tipet</string>
+<string name="search_quick_empty_body">Të gjitha burimet u përgjigjën dhe asnjë nuk ka “%s”. Provoni një kërkim më të shkurtër ose hapni kërkimin e plotë për të ndryshuar burimet.</string>
+<string name="search_quick_empty_headline">Asnjë përputhje</string>
+<string name="search_quick_meta_answered">TË GJITHA BURIMET U PËRGJIGJËN</string>
+<string name="search_quick_meta_answering">REZULTATET VIJNË NDËRSA BURIMET PËRGJIGJEN</string>
+<string name="search_quick_open_full">Hap kërkimin e plotë</string>
+<string name="search_quick_status">U PËRGJIGJËN %1$d NGA %2$d · DËSHTUAN %3$d</string>
+<string name="search_quick_title">Kërkim i shpejtë</string>
 <string name="search_state_idle_body_desktop">Shkruani një titull. Rezultatet shfaqen nën çdo burim sapo ai përgjigjet.</string>
 <string name="search_state_no_results_type_filter">Vetëm %s. Filtri i llojit po e ngushton kërkimin.</string>
 <string name="search_state_no_suggestions_detail">0 SUGJERIME · 0 PËRPUTHJE TË FUNDIT</string>

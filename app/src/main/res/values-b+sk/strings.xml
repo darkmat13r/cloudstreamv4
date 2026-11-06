@@ -421,6 +421,13 @@
 <string name="search_poster_img_des">"Plagát"</string>
 <string name="search_provider_text_providers">"Hľadať pomocou poskytovateľov"</string>
 <string name="search_provider_text_types">"Hľadať pomocou typov"</string>
+<string name="search_quick_empty_body" formatted="true">"Všetky zdroje odpovedali a žiadny nemá „%s“. Skúste kratší dopyt alebo otvorte úplné hľadanie a zmeňte zdroje."</string>
+<string name="search_quick_empty_headline">"Žiadne zhody"</string>
+<string name="search_quick_meta_answered">"VŠETKY ZDROJE ODPOVEDALI"</string>
+<string name="search_quick_meta_answering">"VÝSLEDKY PRIBÚDAJÚ, AKO ZDROJE ODPOVEDAJÚ"</string>
+<string name="search_quick_open_full">"Otvoriť úplné hľadanie"</string>
+<string name="search_quick_status" formatted="true">"ODPOVEDALO %1$d Z %2$d · ZLYHALO %3$d"</string>
+<string name="search_quick_title">"Rýchle hľadanie"</string>
 <string name="search_state_idle_body_desktop">"Zadajte názov. Výsledky sa zobrazia pod každým zdrojom, keď odpovie."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"Iba %s. Filter typov zužuje hľadanie."</string>
 <string name="search_state_no_suggestions_detail">"0 NÁVRHOV · 0 NEDÁVNYCH ZHÔD"</string>

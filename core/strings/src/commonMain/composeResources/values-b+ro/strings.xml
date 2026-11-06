@@ -532,6 +532,13 @@
 <string name="search_poster_img_des">Poster</string>
 <string name="search_provider_text_providers">Căutare în funcție de furnizor</string>
 <string name="search_provider_text_types">Căutare în funcție de tip</string>
+<string name="search_quick_empty_body">Toate sursele au răspuns și niciuna nu are „%s”. Încercați o căutare mai scurtă sau deschideți căutarea completă pentru a schimba sursele.</string>
+<string name="search_quick_empty_headline">Nicio potrivire</string>
+<string name="search_quick_meta_answered">TOATE SURSELE AU RĂSPUNS</string>
+<string name="search_quick_meta_answering">REZULTATELE SOSESC PE MĂSURĂ CE SURSELE RĂSPUND</string>
+<string name="search_quick_open_full">Deschide căutarea completă</string>
+<string name="search_quick_status">AU RĂSPUNS %1$d DIN %2$d · %3$d EȘUATE</string>
+<string name="search_quick_title">Căutare rapidă</string>
 <string name="search_state_idle_body_desktop">Tastați un titlu. Rezultatele apar sub fiecare sursă când răspunde.</string>
 <string name="search_state_no_results_type_filter">Doar %s. Filtrul de tip restrânge căutarea.</string>
 <string name="search_state_no_suggestions_detail">0 SUGESTII · 0 POTRIVIRI RECENTE</string>

@@ -601,6 +601,13 @@
 <string name="search_poster_img_des">"போச்டர்"</string>
 <string name="search_provider_text_providers">"வழங்குபவர்கள் பயன்படுத்தி தேடுங்கள்"</string>
 <string name="search_provider_text_types">"வகைகளைப் பயன்படுத்தி தேடுங்கள்"</string>
+<string name="search_quick_empty_body" formatted="true">"எல்லா மூலங்களும் பதிலளித்தன, ஆனால் எதிலும் “%s” இல்லை. சிறிய தேடலை முயலவும், அல்லது மூலங்களை மாற்ற முழுத் தேடலைத் திறக்கவும்."</string>
+<string name="search_quick_empty_headline">"பொருத்தங்கள் இல்லை"</string>
+<string name="search_quick_meta_answered">"எல்லா மூலங்களும் பதிலளித்தன"</string>
+<string name="search_quick_meta_answering">"மூலங்கள் பதிலளிக்கும்போது முடிவுகள் வருகின்றன"</string>
+<string name="search_quick_open_full">"முழுத் தேடலைத் திற"</string>
+<string name="search_quick_status" formatted="true">"%2$d இல் %1$d பதிலளித்தன · %3$d தோல்வி"</string>
+<string name="search_quick_title">"விரைவுத் தேடல்"</string>
 <string name="search_state_idle_body_desktop">"ஒரு தலைப்பைத் தட்டச்சு செய்யவும். ஒவ்வொரு மூலமும் பதிலளிக்கும்போது முடிவுகள் அதன் கீழ் தோன்றும்."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"%s மட்டும். உங்கள் வகை வடிப்பான் தேடலைக் குறுக்குகிறது."</string>
 <string name="search_state_no_suggestions_detail">"0 பரிந்துரைகள் · 0 சமீபத்திய பொருத்தங்கள்"</string>

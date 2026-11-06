@@ -148,6 +148,13 @@
 <string name="search_poster_img_des">"ፖስተር"</string>
 <string name="search_provider_text_providers">"አቅራቢዎችን በመጠቀም ይፈልጉ"</string>
 <string name="search_provider_text_types">"ዓይነቶችን በመጠቀም ይፈልጉ"</string>
+<string name="search_quick_empty_body" formatted="true">"ሁሉም ምንጮች መልሰዋል፣ ግን አንዳቸውም «%s» የላቸውም። አጭር ፍለጋ ይሞክሩ፣ ወይም ምንጮቹን ለመቀየር ሙሉ ፍለጋን ይክፈቱ።"</string>
+<string name="search_quick_empty_headline">"ምንም ተዛማጅ የለም"</string>
+<string name="search_quick_meta_answered">"ሁሉም ምንጮች መልሰዋል"</string>
+<string name="search_quick_meta_answering">"ምንጮች ሲመልሱ ውጤቶች ይመጣሉ"</string>
+<string name="search_quick_open_full">"ሙሉ ፍለጋን ክፈት"</string>
+<string name="search_quick_status" formatted="true">"ከ%2$d ውስጥ %1$d መልሰዋል · %3$d አልተሳኩም"</string>
+<string name="search_quick_title">"ፈጣን ፍለጋ"</string>
 <string name="search_state_idle_body_desktop">"ርዕስ ይተይቡ። ውጤቶች እያንዳንዱ ምንጭ ሲመልስ ከሱ ስር ይታያሉ።"</string>
 <string name="search_state_no_results_type_filter" formatted="true">"%s ብቻ። የአይነት ማጣሪያዎ ፍለጋውን እያጠበበው ነው።"</string>
 <string name="search_state_no_suggestions_detail">"0 ጥቆማዎች · 0 የቅርብ ጊዜ ተዛማጆች"</string>

@@ -157,6 +157,13 @@
 <string name="search_poster_img_des">Plakkaat</string>
 <string name="search_provider_text_providers">Soek deur verskaffers te gebruik</string>
 <string name="search_provider_text_types">Soek met behulp van tipes</string>
+<string name="search_quick_empty_body">Elke bron het geantwoord en nie een het “%s” nie. Probeer ’n korter soektog, of maak die volle soektog oop om die bronne te verander.</string>
+<string name="search_quick_empty_headline">Geen passende resultate nie</string>
+<string name="search_quick_meta_answered">ALLE BRONNE HET GEANTWOORD</string>
+<string name="search_quick_meta_answering">RESULTATE KOM IN SOOS BRONNE ANTWOORD</string>
+<string name="search_quick_open_full">Maak volle soektog oop</string>
+<string name="search_quick_status">%1$d VAN %2$d GEANTWOORD · %3$d MISLUK</string>
+<string name="search_quick_title">Vinnige soektog</string>
 <string name="search_state_idle_body_desktop">Tik 'n titel. Resultate verskyn onder elke bron soos dit antwoord.</string>
 <string name="search_state_no_results_type_filter">Slegs %s. Jou tipe-filter beperk die soektog.</string>
 <string name="search_state_no_suggestions_detail">0 VOORSTELLE · 0 ONLANGSE OOREENKOMSTE</string>

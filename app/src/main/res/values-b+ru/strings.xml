@@ -601,6 +601,13 @@
 <string name="search_poster_img_des">"Плакат"</string>
 <string name="search_provider_text_providers">"Поиск с использованием поставщиков"</string>
 <string name="search_provider_text_types">"Поиск с использованием типов"</string>
+<string name="search_quick_empty_body" formatted="true">"Все источники ответили, и ни в одном нет «%s». Попробуйте запрос короче или откройте полный поиск, чтобы сменить источники."</string>
+<string name="search_quick_empty_headline">"Нет совпадений"</string>
+<string name="search_quick_meta_answered">"ВСЕ ИСТОЧНИКИ ОТВЕТИЛИ"</string>
+<string name="search_quick_meta_answering">"РЕЗУЛЬТАТЫ ПРИХОДЯТ ПО МЕРЕ ОТВЕТОВ ИСТОЧНИКОВ"</string>
+<string name="search_quick_open_full">"Открыть полный поиск"</string>
+<string name="search_quick_status" formatted="true">"ОТВЕТИЛИ %1$d ИЗ %2$d · СБОЙ %3$d"</string>
+<string name="search_quick_title">"Быстрый поиск"</string>
 <string name="search_state_idle_body_desktop">"Введите название. Результаты появятся под каждым источником, когда он ответит."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"Только %s. Фильтр по типу сужает поиск."</string>
 <string name="search_state_no_suggestions_detail">"0 ПОДСКАЗОК · 0 НЕДАВНИХ СОВПАДЕНИЙ"</string>

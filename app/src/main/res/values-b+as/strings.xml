@@ -538,6 +538,13 @@
 <string name="search_poster_img_des">"পোস্টাৰ"</string>
 <string name="search_provider_text_providers">"প্ৰদানকাৰীৰে সন্ধান কৰক"</string>
 <string name="search_provider_text_types">"প্ৰকাৰৰ দ্বাৰা সন্ধান কৰক"</string>
+<string name="search_quick_empty_body" formatted="true">"সকলো উৎসই উত্তৰ দিলে কিন্তু কাৰো ওচৰত “%s” নাই। চুটি সন্ধান চেষ্টা কৰক, বা উৎস সলনি কৰিবলৈ সম্পূৰ্ণ সন্ধান খোলক।"</string>
+<string name="search_quick_empty_headline">"কোনো মিল নাই"</string>
+<string name="search_quick_meta_answered">"সকলো উৎসই উত্তৰ দিলে"</string>
+<string name="search_quick_meta_answering">"উৎসসমূহে উত্তৰ দিয়াৰ লগে লগে ফলাফল আহে"</string>
+<string name="search_quick_open_full">"সম্পূৰ্ণ সন্ধান খোলক"</string>
+<string name="search_quick_status" formatted="true">"%2$dৰ ভিতৰত %1$dয়ে উত্তৰ দিলে · %3$d ব্যৰ্থ"</string>
+<string name="search_quick_title">"দ্ৰুত সন্ধান"</string>
 <string name="search_state_idle_body_desktop">"এটা শিৰোনাম টাইপ কৰক। প্ৰতিটো উৎসই উত্তৰ দিয়াৰ লগে লগে ফলাফল তাৰ তলত দেখা যাব।"</string>
 <string name="search_state_no_results_type_filter" formatted="true">"কেৱল %s। আপোনাৰ ধৰণৰ ফিল্টাৰে সন্ধান সংকীৰ্ণ কৰিছে।"</string>
 <string name="search_state_no_suggestions_detail">"0 টা পৰামৰ্শ · 0 টা শেহতীয়া মিল"</string>

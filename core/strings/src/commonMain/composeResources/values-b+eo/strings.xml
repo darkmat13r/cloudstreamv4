@@ -204,6 +204,13 @@
 <string name="search_poster_img_des">Afiŝo</string>
 <string name="search_provider_text_providers">Serĉi uzante provizantojn</string>
 <string name="search_provider_text_types">Serĉi uzante tipojn</string>
+<string name="search_quick_empty_body">Ĉiuj fontoj respondis kaj neniu havas “%s”. Provu pli mallongan serĉon, aŭ malfermu la plenan serĉon por ŝanĝi la fontojn.</string>
+<string name="search_quick_empty_headline">Neniu kongruo</string>
+<string name="search_quick_meta_answered">ĈIUJ FONTOJ RESPONDIS</string>
+<string name="search_quick_meta_answering">REZULTOJ ALVENAS DUM FONTOJ RESPONDAS</string>
+<string name="search_quick_open_full">Malfermi plenan serĉon</string>
+<string name="search_quick_status">%1$d EL %2$d RESPONDIS · %3$d MALSUKCESIS</string>
+<string name="search_quick_title">Rapida serĉo</string>
 <string name="search_state_idle_body_desktop">Tajpu titolon. Rezultoj aperas sub ĉiu fonto kiam ĝi respondas.</string>
 <string name="search_state_no_results_type_filter">Nur %s. Via tipfiltrilo mallarĝigas la serĉon.</string>
 <string name="search_state_no_suggestions_detail">0 SUGESTOJ · 0 LASTATEMPAJ KONGRUOJ</string>

@@ -142,6 +142,13 @@
 <string name="search_hint">"گەڕان…"</string>
 <string name="search_hint_site" formatted="true">"بگەڕێ بۆ%s…"</string>
 <string name="search_poster_img_des">"پۆستەر"</string>
+<string name="search_quick_empty_body" formatted="true">"هەموو سەرچاوەکان وەڵامیان دایەوە و هیچیان «%s»ـیان نییە. گەڕانێکی کورتتر تاقی بکەرەوە، یان گەڕانی تەواو بکەرەوە بۆ گۆڕینی سەرچاوەکان."</string>
+<string name="search_quick_empty_headline">"هیچ گونجانێک نییە"</string>
+<string name="search_quick_meta_answered">"هەموو سەرچاوەکان وەڵامیان دایەوە"</string>
+<string name="search_quick_meta_answering">"ئەنجامەکان لەگەڵ وەڵامدانەوەی سەرچاوەکان دێن"</string>
+<string name="search_quick_open_full">"کردنەوەی گەڕانی تەواو"</string>
+<string name="search_quick_status" formatted="true">"%1$d لە %2$d وەڵامیان دایەوە · %3$d شکستیان هێنا"</string>
+<string name="search_quick_title">"گەڕانی خێرا"</string>
 <string name="search_state_idle_body_desktop">"ناونیشانێک بنووسە. ئەنجامەکان لە ژێر هەر سەرچاوەیەک دەردەکەون کاتێک وەڵام دەداتەوە."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"تەنها %s. فلتەری جۆرەکەت گەڕانەکە سنووردار دەکات."</string>
 <string name="search_state_no_suggestions_detail">"0 پێشنیار · 0 هاوتای دوایین"</string>

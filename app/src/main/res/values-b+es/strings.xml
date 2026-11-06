@@ -601,6 +601,13 @@
 <string name="search_poster_img_des">"Póster"</string>
 <string name="search_provider_text_providers">"Buscar usando proveedores"</string>
 <string name="search_provider_text_types">"Buscar por tipos"</string>
+<string name="search_quick_empty_body" formatted="true">"Todas las fuentes respondieron y ninguna tiene «%s». Pruebe una búsqueda más corta o abra la búsqueda completa para cambiar las fuentes."</string>
+<string name="search_quick_empty_headline">"Sin coincidencias"</string>
+<string name="search_quick_meta_answered">"TODAS LAS FUENTES HAN RESPONDIDO"</string>
+<string name="search_quick_meta_answering">"LOS RESULTADOS LLEGAN SEGÚN RESPONDEN LAS FUENTES"</string>
+<string name="search_quick_open_full">"Abrir búsqueda completa"</string>
+<string name="search_quick_status" formatted="true">"%1$d DE %2$d RESPONDIERON · %3$d FALLARON"</string>
+<string name="search_quick_title">"Búsqueda rápida"</string>
 <string name="search_state_idle_body_desktop">"Escriba un título. Los resultados aparecen bajo cada fuente cuando responde."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"Solo %s. Su filtro de tipo está reduciendo la búsqueda."</string>
 <string name="search_state_no_suggestions_detail">"0 SUGERENCIAS · 0 COINCIDENCIAS RECIENTES"</string>

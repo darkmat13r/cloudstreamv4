@@ -630,6 +630,13 @@
 <string name="search_poster_img_des">"Poster"</string>
 <string name="search_provider_text_providers">"Search using providers"</string>
 <string name="search_provider_text_types">"Search using types"</string>
+<string name="search_quick_empty_body" formatted="true">"Every source answered and none of them carry “%s”. Try a shorter query, or open full search to change the source set."</string>
+<string name="search_quick_empty_headline">"No matches"</string>
+<string name="search_quick_meta_answered">"ALL SOURCES ANSWERED"</string>
+<string name="search_quick_meta_answering">"RESULTS STREAM IN AS SOURCES ANSWER"</string>
+<string name="search_quick_open_full">"Open full search"</string>
+<string name="search_quick_status" formatted="true">"%1$d OF %2$d ANSWERED · %3$d FAILED"</string>
+<string name="search_quick_title">"Quick search"</string>
 <string name="search_state_failed_body">"None of your sources answered."</string>
 <string name="search_state_failed_headline">"Search failed"</string>
 <string name="search_state_idle_action">"Browse home"</string>

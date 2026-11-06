@@ -21,6 +21,8 @@ import com.lagradost.cloudstream3.utils.AppContextUtils.filterSearchResultByFilm
 import com.lagradost.cloudstream3.utils.AppContextUtils.getApiSettings
 import com.lagradost.cloudstream3.utils.DataStoreHelper
 import com.lagradost.cloudstream3.utils.DataStoreHelper.fixVisual
+import com.lagradost.cloudstream4.feature.search.QuickSearchProgress
+import com.lagradost.cloudstream4.feature.search.QuickSearchSource
 import com.lagradost.cloudstream4.feature.search.SearchOutcome
 import com.lagradost.cloudstream4.feature.search.SearchResultId
 import com.lagradost.cloudstream4.feature.search.SearchResultItem
@@ -32,6 +34,11 @@ import com.lagradost.cloudstream4.feature.search.SearchTypeFilter
 import com.lagradost.cloudstream4.feature.search.SearchTypeFilters
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.channelFlow
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 import java.util.Locale
 import java.util.concurrent.ConcurrentHashMap
@@ -171,6 +178,52 @@ internal class ApiRepositorySearchSource(
     override suspend fun search(query: String): SearchOutcome = fanOut(query, quick = false)
 
     override suspend fun quickSearch(query: String): SearchOutcome = fanOut(query, quick = true)
+
+    /**
+     * Artboard 8d's panel: one full search over [providers], reported after every answer so the panel can count them
+     * as they come. With no [providers] it asks every eligible provider, as the old `QuickSearchFragment` did with
+     * `filterProviderByPreferredMedia`; the search screen's own selection is not the panel's.
+     *
+     * Rows keep the order the providers were asked in, pinned first, whatever order they answer in.
+     */
+    fun quickSearchPanel(providers: Set<String>?): QuickSearchSource = QuickSearchSource { query ->
+        channelFlow {
+            val eligible = eligibleProviders(context.getApiSettings())
+            val asked = if (providers == null) eligible else apis.withLock { apis.mapNotNull { it } }.filter { it.name in providers }
+            val targets = pinnedFirst(asked, DataStoreHelper.pinnedProviders) { it.name }.map { APIRepository(it) }
+            val replies = arrayOfNulls<Resource<SearchResponseList>>(targets.size)
+            val lock = Mutex()
+            if (targets.isEmpty()) send(QuickSearchProgress(emptyList(), answered = 0, failed = 0, total = 0))
+            targets.forEachIndexed { index, repo ->
+                launch {
+                    val reply = repo.search(query, FIRST_PAGE)
+                    lock.withLock {
+                        replies[index] = reply
+                        providerHealth[repo.name] = ProviderHealth(failedAt = System.currentTimeMillis().takeIf { reply !is Resource.Success })
+                        send(progressOf(replies))
+                    }
+                }
+            }
+        }.flowOn(io)
+    }
+
+    /** What has answered so far, counted the way [fold] counts a finished round. */
+    private fun progressOf(replies: Array<Resource<SearchResponseList>?>): QuickSearchProgress {
+        val labels = labelContext()
+        val done = replies.filterNotNull()
+        val failures = done.filter { it !is Resource.Success }
+        val items = done
+            .flatMap { if (it is Resource.Success) it.value.items else emptyList() }
+            .let { context.filterSearchResultByFilmQuality(it) }
+            .map { it.toItem(labels) }
+        return QuickSearchProgress(
+            items = items,
+            answered = done.size - failures.size,
+            failed = failures.size,
+            total = replies.size,
+            offline = failures.size == replies.size && failures.all { it is Resource.Failure && it.isNetworkError },
+        )
+    }
 
     /**
      * One rail's next page. Among what a search would ask right now, so a provider since turned off is not

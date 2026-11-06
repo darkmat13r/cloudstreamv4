@@ -597,6 +597,13 @@
 <string name="search_poster_img_des">"Постер"</string>
 <string name="search_provider_text_providers">"Пребарувај користејќи провајдери"</string>
 <string name="search_provider_text_types">"Пребарувај користејќи типови"</string>
+<string name="search_quick_empty_body" formatted="true">"Сите извори одговорија и ниеден нема „%s“. Обидете се со пократко пребарување или отворете го целото пребарување за да ги смените изворите."</string>
+<string name="search_quick_empty_headline">"Нема совпаѓања"</string>
+<string name="search_quick_meta_answered">"СИТЕ ИЗВОРИ ОДГОВОРИЈА"</string>
+<string name="search_quick_meta_answering">"РЕЗУЛТАТИТЕ ПРИСТИГНУВААТ КАКО ШТО ОДГОВАРААТ ИЗВОРИТЕ"</string>
+<string name="search_quick_open_full">"Отвори го целото пребарување"</string>
+<string name="search_quick_status" formatted="true">"ОДГОВОРИЈА %1$d ОД %2$d · НЕУСПЕШНИ %3$d"</string>
+<string name="search_quick_title">"Брзо пребарување"</string>
 <string name="search_state_idle_body_desktop">"Внеси наслов. Резултатите се појавуваат под секој извор кога ќе одговори."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"Само %s. Вашиот филтер за тип го стеснува пребарувањето."</string>
 <string name="search_state_no_suggestions_detail">"0 ПРЕДЛОЗИ · 0 НЕОДАМНЕШНИ СОВПАЃАЊА"</string>

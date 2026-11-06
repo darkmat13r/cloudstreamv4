@@ -601,6 +601,13 @@
 <string name="search_poster_img_des">Pôster</string>
 <string name="search_provider_text_providers">Pesquisar usando fornecedor</string>
 <string name="search_provider_text_types">Pesquisar usando tipos</string>
+<string name="search_quick_empty_body">Todas as fontes responderam e nenhuma tem “%s”. Tente uma pesquisa mais curta ou abra a pesquisa completa para mudar as fontes.</string>
+<string name="search_quick_empty_headline">Nenhuma correspondência</string>
+<string name="search_quick_meta_answered">TODAS AS FONTES RESPONDERAM</string>
+<string name="search_quick_meta_answering">OS RESULTADOS CHEGAM CONFORME AS FONTES RESPONDEM</string>
+<string name="search_quick_open_full">Abrir pesquisa completa</string>
+<string name="search_quick_status">%1$d DE %2$d RESPONDERAM · %3$d FALHARAM</string>
+<string name="search_quick_title">Pesquisa rápida</string>
 <string name="search_state_idle_body_desktop">Digite um título. Os resultados aparecem abaixo de cada fonte assim que ela responde.</string>
 <string name="search_state_no_results_type_filter">Somente %s. O filtro de tipo está restringindo a pesquisa.</string>
 <string name="search_state_no_suggestions_detail">0 SUGESTÕES · 0 CORRESPONDÊNCIAS RECENTES</string>

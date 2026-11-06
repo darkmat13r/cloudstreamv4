@@ -537,6 +537,13 @@
 <string name="search_poster_img_des">"Poszter"</string>
 <string name="search_provider_text_providers">"Keresés szolgáltatók szerint"</string>
 <string name="search_provider_text_types">"Keresés típusok szerint"</string>
+<string name="search_quick_empty_body" formatted="true">"Minden forrás válaszolt, és egyiknél sincs meg ez: „%s”. Próbáljon rövidebb keresést, vagy nyissa meg a teljes keresést a források módosításához."</string>
+<string name="search_quick_empty_headline">"Nincs egyezés"</string>
+<string name="search_quick_meta_answered">"MINDEN FORRÁS VÁLASZOLT"</string>
+<string name="search_quick_meta_answering">"AZ EREDMÉNYEK A FORRÁSOK VÁLASZAIVAL ÉRKEZNEK"</string>
+<string name="search_quick_open_full">"Teljes keresés megnyitása"</string>
+<string name="search_quick_status" formatted="true">"%2$d KÖZÜL %1$d VÁLASZOLT · %3$d SIKERTELEN"</string>
+<string name="search_quick_title">"Gyorskeresés"</string>
 <string name="search_state_idle_body_desktop">"Írjon be egy címet. Az eredmények az egyes források alatt jelennek meg, amint válaszolnak."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"Csak %s. A típusszűrő szűkíti a keresést."</string>
 <string name="search_state_no_suggestions_detail">"0 JAVASLAT · 0 LEGUTÓBBI TALÁLAT"</string>

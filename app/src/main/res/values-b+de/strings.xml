@@ -601,6 +601,13 @@
 <string name="search_poster_img_des">"Vorschaubild"</string>
 <string name="search_provider_text_providers">"Suche anhand Anbietern"</string>
 <string name="search_provider_text_types">"Suche anhand Typen"</string>
+<string name="search_quick_empty_body" formatted="true">"Alle Quellen haben geantwortet, und keine hat „%s“. Versuche eine kürzere Suche oder öffne die vollständige Suche, um die Quellen zu ändern."</string>
+<string name="search_quick_empty_headline">"Keine Treffer"</string>
+<string name="search_quick_meta_answered">"ALLE QUELLEN HABEN GEANTWORTET"</string>
+<string name="search_quick_meta_answering">"ERGEBNISSE KOMMEN, SOBALD QUELLEN ANTWORTEN"</string>
+<string name="search_quick_open_full">"Vollständige Suche öffnen"</string>
+<string name="search_quick_status" formatted="true">"%1$d VON %2$d GEANTWORTET · %3$d FEHLGESCHLAGEN"</string>
+<string name="search_quick_title">"Schnellsuche"</string>
 <string name="search_state_idle_body_desktop">"Titel eingeben. Ergebnisse erscheinen unter jeder Quelle, sobald sie antwortet."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"Nur %s. Der Typfilter schränkt die Suche ein."</string>
 <string name="search_state_no_suggestions_detail">"0 VORSCHLÄGE · 0 TREFFER IM VERLAUF"</string>

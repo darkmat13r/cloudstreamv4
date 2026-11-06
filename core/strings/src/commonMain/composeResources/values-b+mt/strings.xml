@@ -156,6 +156,13 @@
 <string name="search_poster_img_des">Kartellun</string>
 <string name="search_provider_text_providers">Fittex bl-użu ta' fornituri</string>
 <string name="search_provider_text_types">Fittex bl-użu ta 'tipi</string>
+<string name="search_quick_empty_body">Is-sorsi kollha wieġbu u l-ebda wieħed ma għandu “%s”. Ipprova tfittxija iqsar, jew iftaħ it-tfittxija sħiħa biex tibdel is-sorsi.</string>
+<string name="search_quick_empty_headline">L-ebda qbil</string>
+<string name="search_quick_meta_answered">IS-SORSI KOLLHA WIEĠBU</string>
+<string name="search_quick_meta_answering">IR-RIŻULTATI JASLU HEKK KIF IS-SORSI JWIEĠBU</string>
+<string name="search_quick_open_full">Iftaħ it-tfittxija sħiħa</string>
+<string name="search_quick_status">WIEĠBU %1$d MINN %2$d · FALLEW %3$d</string>
+<string name="search_quick_title">Tfittxija mgħaġġla</string>
 <string name="search_state_idle_body_desktop">Ikteb titlu. Ir-riżultati jidhru taħt kull sors meta jwieġeb.</string>
 <string name="search_state_no_results_type_filter">%s biss. Il-filtru tat-tip qed jirrestrinġi l-fittxija.</string>
 <string name="search_state_no_suggestions_detail">0 SUĠĠERIMENTI · 0 TAQBIL REĊENTI</string>

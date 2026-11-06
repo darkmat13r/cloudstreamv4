@@ -445,6 +445,13 @@
 <string name="search_poster_img_des">"ပိုစတာ"</string>
 <string name="search_provider_text_providers">"ပ့ံပိုးပေးသောဝန်ဆောင်မှုများအသုံးပြု၍ရှာရန်"</string>
 <string name="search_provider_text_types">"အမျိုးအစားများအသုံးပြု၍ရှာရန်"</string>
+<string name="search_quick_empty_body" formatted="true">"ရင်းမြစ်အားလုံး ဖြေကြားပြီး “%s” ပါသည့် ရင်းမြစ် မရှိပါ။ ပိုတိုသော ရှာဖွေမှုကို စမ်းကြည့်ပါ၊ သို့မဟုတ် ရင်းမြစ်များ ပြောင်းရန် အပြည့်အစုံ ရှာဖွေမှုကို ဖွင့်ပါ။"</string>
+<string name="search_quick_empty_headline">"ကိုက်ညီမှု မရှိပါ"</string>
+<string name="search_quick_meta_answered">"ရင်းမြစ်အားလုံး ဖြေကြားပြီး"</string>
+<string name="search_quick_meta_answering">"ရင်းမြစ်များ ဖြေကြားသလို ရလဒ်များ ရောက်လာမည်"</string>
+<string name="search_quick_open_full">"အပြည့်အစုံ ရှာဖွေမှု ဖွင့်ရန်"</string>
+<string name="search_quick_status" formatted="true">"%2$d ခုအနက် %1$d ခု ဖြေကြား · %3$d ခု မအောင်မြင်"</string>
+<string name="search_quick_title">"အမြန်ရှာဖွေမှု"</string>
 <string name="search_state_idle_body_desktop">"ခေါင်းစဉ်တစ်ခု ရိုက်ထည့်ပါ။ ရင်းမြစ်တစ်ခုစီ တုံ့ပြန်သည်နှင့် ရလဒ်များကို ၎င်းအောက်တွင် ပြသပါမည်။"</string>
 <string name="search_state_no_results_type_filter" formatted="true">"%s သာ။ သင့်အမျိုးအစား စစ်ထုတ်မှုက ရှာဖွေမှုကို ကျဉ်းစေနေသည်။"</string>
 <string name="search_state_no_suggestions_detail">"အကြံပြုချက် 0 ခု · မကြာသေးမီ ကိုက်ညီမှု 0 ခု"</string>

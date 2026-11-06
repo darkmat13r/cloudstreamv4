@@ -78,6 +78,13 @@
 <string name="player_source_retry">"እንደገና ፈትን"</string>
 <string name="player_source_switch">"ቀይር"</string>
 <string name="player_unmute">"ድምጺ ወልዕ"</string>
+<string name="search_quick_empty_body" formatted="true">"ኩሎም ምንጭታት መሊሶም፣ ሓደ ካብኦም ግን «%s» የብሉን። ሓጺር ምድላይ ፈትኑ፣ ወይ ምንጭታት ንምቕያር ምሉእ ምድላይ ክፈቱ።"</string>
+<string name="search_quick_empty_headline">"ዝሰማማዕ የለን"</string>
+<string name="search_quick_meta_answered">"ኩሎም ምንጭታት መሊሶም"</string>
+<string name="search_quick_meta_answering">"ምንጭታት ክምልሱ ከለዉ ውጽኢታት ይመጹ"</string>
+<string name="search_quick_open_full">"ምሉእ ምድላይ ክፈት"</string>
+<string name="search_quick_status" formatted="true">"ካብ %2$d %1$d መሊሶም · %3$d ፈሺሎም"</string>
+<string name="search_quick_title">"ቅልጡፍ ምድላይ"</string>
 <string name="search_state_idle_body_desktop">"ኣርእስቲ ጽሓፍ። ውጽኢታት ነፍሲ ወከፍ ምንጪ ምስ መለሰ ኣብ ትሕቲኡ ይርአዩ።"</string>
 <string name="search_state_no_results_type_filter" formatted="true">"%s ጥራይ። ማጣሪያ ዓይነትካ ፍለጋ የጽብብ ኣሎ።"</string>
 <string name="search_state_no_suggestions_detail">"0 ሓሳባት · 0 ናይ ቀረባ ተመሳሰልቲ"</string>

@@ -311,6 +311,13 @@
 <string name="search_poster_img_des">"Cartell"</string>
 <string name="search_provider_text_providers">"Cerca amb proveïdors"</string>
 <string name="search_provider_text_types">"Cerca per tipus"</string>
+<string name="search_quick_empty_body" formatted="true">"Totes les fonts han respost i cap no té «%s». Proveu una cerca més curta o obriu la cerca completa per canviar les fonts."</string>
+<string name="search_quick_empty_headline">"Cap coincidència"</string>
+<string name="search_quick_meta_answered">"TOTES LES FONTS HAN RESPOST"</string>
+<string name="search_quick_meta_answering">"ELS RESULTATS ARRIBEN A MESURA QUE RESPONEN LES FONTS"</string>
+<string name="search_quick_open_full">"Obre la cerca completa"</string>
+<string name="search_quick_status" formatted="true">"%1$d DE %2$d HAN RESPOST · %3$d HAN FALLAT"</string>
+<string name="search_quick_title">"Cerca ràpida"</string>
 <string name="search_state_idle_body_desktop">"Escriu un títol. Els resultats apareixen sota cada font quan respon."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"Només %s. El filtre de tipus està limitant la cerca."</string>
 <string name="search_state_no_suggestions_detail">"0 SUGGERIMENTS · 0 COINCIDÈNCIES RECENTS"</string>

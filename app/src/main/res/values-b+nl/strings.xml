@@ -559,6 +559,13 @@
 <string name="search_poster_img_des">"Poster"</string>
 <string name="search_provider_text_providers">"Zoeken met providers"</string>
 <string name="search_provider_text_types">"Zoeken met types"</string>
+<string name="search_quick_empty_body" formatted="true">"Alle bronnen hebben geantwoord en geen enkele heeft “%s”. Probeer een kortere zoekopdracht, of open volledig zoeken om de bronnen te wijzigen."</string>
+<string name="search_quick_empty_headline">"Geen overeenkomsten"</string>
+<string name="search_quick_meta_answered">"ALLE BRONNEN HEBBEN GEANTWOORD"</string>
+<string name="search_quick_meta_answering">"RESULTATEN KOMEN BINNEN ZODRA BRONNEN ANTWOORDEN"</string>
+<string name="search_quick_open_full">"Volledig zoeken openen"</string>
+<string name="search_quick_status" formatted="true">"%1$d VAN %2$d GEANTWOORD · %3$d MISLUKT"</string>
+<string name="search_quick_title">"Snel zoeken"</string>
 <string name="search_state_idle_body_desktop">"Typ een titel. Resultaten verschijnen onder elke bron zodra die antwoordt."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"Alleen %s. Je typefilter beperkt de zoekopdracht."</string>
 <string name="search_state_no_suggestions_detail">"0 SUGGESTIES · 0 RECENTE OVEREENKOMSTEN"</string>

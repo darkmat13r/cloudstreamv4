@@ -509,6 +509,13 @@
 <string name="search_poster_img_des">پروموشنل تصویر</string>
 <string name="search_provider_text_providers">ذرائع کا استعمال کرتے ہوئے تلاش کریں</string>
 <string name="search_provider_text_types">انواع کا استعمال کرتے ہوئے تلاش کریں</string>
+<string name="search_quick_empty_body">تمام ذرائع نے جواب دیا اور کسی کے پاس “%s” نہیں ہے۔ مختصر تلاش آزمائیں، یا ذرائع بدلنے کے لیے مکمل تلاش کھولیں۔</string>
+<string name="search_quick_empty_headline">کوئی مماثلت نہیں</string>
+<string name="search_quick_meta_answered">تمام ذرائع نے جواب دیا</string>
+<string name="search_quick_meta_answering">ذرائع کے جواب کے ساتھ نتائج آتے ہیں</string>
+<string name="search_quick_open_full">مکمل تلاش کھولیں</string>
+<string name="search_quick_status">%2$d میں سے %1$d نے جواب دیا · %3$d ناکام</string>
+<string name="search_quick_title">فوری تلاش</string>
 <string name="search_state_idle_body_desktop">عنوان لکھیں۔ ہر ذریعہ کے جواب دینے پر نتائج اس کے نیچے ظاہر ہوں گے۔</string>
 <string name="search_state_no_results_type_filter">صرف %s۔ آپ کا قسم فلٹر تلاش کو محدود کر رہا ہے۔</string>
 <string name="search_state_no_suggestions_detail">0 تجاویز · 0 حالیہ مماثلتیں</string>

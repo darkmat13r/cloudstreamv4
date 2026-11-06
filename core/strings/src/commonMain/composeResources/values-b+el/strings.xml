@@ -546,6 +546,13 @@
 <string name="search_poster_img_des">Αφίσα</string>
 <string name="search_provider_text_providers">Αναζήτηση βάσει παρόχων</string>
 <string name="search_provider_text_types">Αναζήτηση βάσει τύπων</string>
+<string name="search_quick_empty_body">Όλες οι πηγές απάντησαν και καμία δεν έχει «%s». Δοκιμάστε μικρότερη αναζήτηση ή ανοίξτε την πλήρη αναζήτηση για να αλλάξετε τις πηγές.</string>
+<string name="search_quick_empty_headline">Καμία αντιστοιχία</string>
+<string name="search_quick_meta_answered">ΑΠΑΝΤΗΣΑΝ ΟΛΕΣ ΟΙ ΠΗΓΕΣ</string>
+<string name="search_quick_meta_answering">ΤΑ ΑΠΟΤΕΛΕΣΜΑΤΑ ΕΡΧΟΝΤΑΙ ΚΑΘΩΣ ΑΠΑΝΤΟΥΝ ΟΙ ΠΗΓΕΣ</string>
+<string name="search_quick_open_full">Άνοιγμα πλήρους αναζήτησης</string>
+<string name="search_quick_status">ΑΠΑΝΤΗΣΑΝ %1$d ΑΠΟ %2$d · ΑΠΕΤΥΧΑΝ %3$d</string>
+<string name="search_quick_title">Γρήγορη αναζήτηση</string>
 <string name="search_state_idle_body_desktop">Πληκτρολογήστε έναν τίτλο. Τα αποτελέσματα εμφανίζονται κάτω από κάθε πηγή μόλις απαντήσει.</string>
 <string name="search_state_no_results_type_filter">Μόνο %s. Το φίλτρο τύπου περιορίζει την αναζήτηση.</string>
 <string name="search_state_no_suggestions_detail">0 ΠΡΟΤΑΣΕΙΣ · 0 ΠΡΟΣΦΑΤΕΣ ΑΝΤΙΣΤΟΙΧΙΕΣ</string>

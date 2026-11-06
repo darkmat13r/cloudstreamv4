@@ -601,6 +601,13 @@
 <string name="search_poster_img_des">"Plakát"</string>
 <string name="search_provider_text_providers">"Hledat pomocí poskytovatelů"</string>
 <string name="search_provider_text_types">"Hledat pomocí typů"</string>
+<string name="search_quick_empty_body" formatted="true">"Všechny zdroje odpověděly a žádný nemá „%s“. Zkuste kratší dotaz nebo otevřete úplné hledání a změňte zdroje."</string>
+<string name="search_quick_empty_headline">"Žádné shody"</string>
+<string name="search_quick_meta_answered">"VŠECHNY ZDROJE ODPOVĚDĚLY"</string>
+<string name="search_quick_meta_answering">"VÝSLEDKY PŘIBÝVAJÍ, JAK ZDROJE ODPOVÍDAJÍ"</string>
+<string name="search_quick_open_full">"Otevřít úplné hledání"</string>
+<string name="search_quick_status" formatted="true">"ODPOVĚDĚLO %1$d Z %2$d · SELHALO %3$d"</string>
+<string name="search_quick_title">"Rychlé hledání"</string>
 <string name="search_state_idle_body_desktop">"Zadejte název. Výsledky se zobrazí pod každým zdrojem, jakmile odpoví."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"Pouze %s. Filtr typů zužuje hledání."</string>
 <string name="search_state_no_suggestions_detail">"0 NÁVRHŮ · 0 NEDÁVNÝCH SHOD"</string>

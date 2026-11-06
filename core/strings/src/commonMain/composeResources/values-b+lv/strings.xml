@@ -515,6 +515,13 @@
 <string name="search_poster_img_des">Plakāts</string>
 <string name="search_provider_text_providers">Meklēt izmantojot devējus</string>
 <string name="search_provider_text_types">Meklēt izmantojot tipus</string>
+<string name="search_quick_empty_body">Visi avoti atbildēja, un nevienā nav „%s”. Mēģiniet īsāku vaicājumu vai atveriet pilno meklēšanu, lai mainītu avotus.</string>
+<string name="search_quick_empty_headline">Nav atbilstību</string>
+<string name="search_quick_meta_answered">VISI AVOTI IR ATBILDĒJUŠI</string>
+<string name="search_quick_meta_answering">REZULTĀTI IENĀK, KAD AVOTI ATBILD</string>
+<string name="search_quick_open_full">Atvērt pilno meklēšanu</string>
+<string name="search_quick_status">ATBILDĒJA %1$d NO %2$d · NEIZDEVĀS %3$d</string>
+<string name="search_quick_title">Ātrā meklēšana</string>
 <string name="search_state_idle_body_desktop">Ievadiet nosaukumu. Rezultāti parādās zem katra devēja, tiklīdz tas atbild.</string>
 <string name="search_state_no_results_type_filter">Tikai %s. Jūsu veida filtrs sašaurina meklēšanu.</string>
 <string name="search_state_no_suggestions_detail">0 IETEIKUMU · 0 NESENU ATBILSTĪBU</string>

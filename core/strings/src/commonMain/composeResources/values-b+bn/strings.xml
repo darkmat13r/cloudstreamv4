@@ -367,6 +367,13 @@
 <string name="search_poster_img_des">পোস্টার</string>
 <string name="search_provider_text_providers">প্রভাইডার অনুযায়ি খুঁজুন</string>
 <string name="search_provider_text_types">ধরণ অনুযায়ি খুঁজুন</string>
+<string name="search_quick_empty_body">সব উৎস উত্তর দিয়েছে কিন্তু কারও কাছে “%s” নেই। ছোট অনুসন্ধান চেষ্টা করুন, অথবা উৎস বদলাতে পূর্ণ অনুসন্ধান খুলুন।</string>
+<string name="search_quick_empty_headline">কোনো মিল নেই</string>
+<string name="search_quick_meta_answered">সব উৎস উত্তর দিয়েছে</string>
+<string name="search_quick_meta_answering">উৎসগুলো উত্তর দিলেই ফলাফল আসে</string>
+<string name="search_quick_open_full">পূর্ণ অনুসন্ধান খুলুন</string>
+<string name="search_quick_status">%2$d-এর মধ্যে %1$d উত্তর দিয়েছে · %3$d ব্যর্থ</string>
+<string name="search_quick_title">দ্রুত অনুসন্ধান</string>
 <string name="search_state_idle_body_desktop">একটি শিরোনাম লিখুন। প্রতিটি সোর্স উত্তর দিলে ফলাফল তার নিচে দেখা যাবে।</string>
 <string name="search_state_no_results_type_filter">শুধু %s। আপনার ধরনের ফিল্টার অনুসন্ধান সীমিত করছে।</string>
 <string name="search_state_no_suggestions_detail">0টি সাজেশন · 0টি সাম্প্রতিক মিল</string>

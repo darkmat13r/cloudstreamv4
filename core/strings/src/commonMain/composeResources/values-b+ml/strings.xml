@@ -269,6 +269,13 @@
 <string name="search_poster_img_des">പോസ്റ്റർ</string>
 <string name="search_provider_text_providers">സ്രോതസ് അടിസ്ഥാനത്തിൽ തിരയുക</string>
 <string name="search_provider_text_types">തരം അടിസ്ഥാനത്തിൽ തിരയുക</string>
+<string name="search_quick_empty_body">എല്ലാ ഉറവിടങ്ങളും മറുപടി നൽകി, പക്ഷേ ഒന്നിലും “%s” ഇല്ല. ചെറിയ തിരയൽ പരീക്ഷിക്കുക, അല്ലെങ്കിൽ ഉറവിടങ്ങൾ മാറ്റാൻ പൂർണ്ണ തിരയൽ തുറക്കുക.</string>
+<string name="search_quick_empty_headline">പൊരുത്തങ്ങളില്ല</string>
+<string name="search_quick_meta_answered">എല്ലാ ഉറവിടങ്ങളും മറുപടി നൽകി</string>
+<string name="search_quick_meta_answering">ഉറവിടങ്ങൾ മറുപടി നൽകുന്നതനുസരിച്ച് ഫലങ്ങൾ വരുന്നു</string>
+<string name="search_quick_open_full">പൂർണ്ണ തിരയൽ തുറക്കുക</string>
+<string name="search_quick_status">%2$d-ൽ %1$d മറുപടി നൽകി · %3$d പരാജയപ്പെട്ടു</string>
+<string name="search_quick_title">ദ്രുത തിരയൽ</string>
 <string name="search_state_idle_body_desktop">ഒരു ശീർഷകം ടൈപ്പ് ചെയ്യുക. ഓരോ ഉറവിടവും മറുപടി നൽകുമ്പോൾ ഫലങ്ങൾ അതിനു താഴെ കാണിക്കും.</string>
 <string name="search_state_no_results_type_filter">%s മാത്രം. നിങ്ങളുടെ തരം ഫിൽട്ടർ തിരയൽ ചുരുക്കുന്നു.</string>
 <string name="search_state_no_suggestions_detail">0 നിർദ്ദേശങ്ങൾ · 0 സമീപകാല പൊരുത്തങ്ങൾ</string>

@@ -441,6 +441,13 @@
 <string name="search_poster_img_des">Sawirka</string>
 <string name="search_provider_text_providers">Ku raadi qaybiyeyaasha</string>
 <string name="search_provider_text_types">Ku raadi noocyada</string>
+<string name="search_quick_empty_body">Dhammaan ilaha way ka jawaabeen midkoodna ma laha “%s”. Isku day raadin gaaban, ama fur raadinta buuxda si aad u beddesho ilaha.</string>
+<string name="search_quick_empty_headline">Wax isku mid ah ma jiro</string>
+<string name="search_quick_meta_answered">DHAMMAAN ILAHA WAY KA JAWAABEEN</string>
+<string name="search_quick_meta_answering">NATIIJOOYINKU WAY YIMAADAAN MARKA ILAHA KA JAWAABAAN</string>
+<string name="search_quick_open_full">Fur raadinta buuxda</string>
+<string name="search_quick_status">%1$d KA MID AH %2$d AYAA KA JAWAABAY · %3$d WAY FASHILMEEN</string>
+<string name="search_quick_title">Raadin degdeg ah</string>
 <string name="search_state_idle_body_desktop">Qor cinwaan. Natiijooyinku waxay ka muuqdaan xigasho kasta hoosteeda marka ay jawaabto.</string>
 <string name="search_state_no_results_type_filter">Kaliya %s. Shaandhada nooca ayaa soo koobaya raadinta.</string>
 <string name="search_state_no_suggestions_detail">0 TALOOYIN · 0 ISKU-EG DHOWAAN</string>

@@ -252,6 +252,13 @@
 <string name="search_poster_img_des">@string/result_poster_img_des</string>
 <string name="search_provider_text_providers">"Search using providers"</string>
 <string name="search_provider_text_types">"Search using types"</string>
+<string name="search_quick_empty_body" formatted="true">"Sumagot ang lahat ng source at wala ni isang may “%s”. Subukan ang mas maikling paghahanap, o buksan ang buong paghahanap para palitan ang mga source."</string>
+<string name="search_quick_empty_headline">"Walang tugma"</string>
+<string name="search_quick_meta_answered">"SUMAGOT NA ANG LAHAT NG SOURCE"</string>
+<string name="search_quick_meta_answering">"DUMARATING ANG MGA RESULTA HABANG SUMASAGOT ANG MGA SOURCE"</string>
+<string name="search_quick_open_full">"Buksan ang buong paghahanap"</string>
+<string name="search_quick_status" formatted="true">"%1$d SA %2$d ANG SUMAGOT · %3$d ANG NABIGO"</string>
+<string name="search_quick_title">"Mabilis na paghahanap"</string>
 <string name="search_state_idle_body_desktop">"Mag-type ng pamagat. Lalabas ang mga resulta sa ilalim ng bawat source kapag sumagot ito."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"%s lang. Pinipigilan ng type filter mo ang paghahanap."</string>
 <string name="search_state_no_suggestions_detail">"0 MUNGKAHI · 0 KAMAKAILANG TUGMA"</string>

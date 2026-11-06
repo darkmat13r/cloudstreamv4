@@ -189,6 +189,13 @@
 <string name="search">Axtar</string>
 <string name="search_hint">Axtar…</string>
 <string name="search_poster_img_des">Afişa</string>
+<string name="search_quick_empty_body">Bütün mənbələr cavab verdi və heç birində «%s» yoxdur. Daha qısa sorğu yoxlayın və ya mənbələri dəyişmək üçün tam axtarışı açın.</string>
+<string name="search_quick_empty_headline">Uyğunluq yoxdur</string>
+<string name="search_quick_meta_answered">BÜTÜN MƏNBƏLƏR CAVAB VERDİ</string>
+<string name="search_quick_meta_answering">MƏNBƏLƏR CAVAB VERDİKCƏ NƏTİCƏLƏR GƏLİR</string>
+<string name="search_quick_open_full">Tam axtarışı aç</string>
+<string name="search_quick_status">%2$d İÇİNDƏN %1$d CAVAB VERDİ · %3$d UĞURSUZ</string>
+<string name="search_quick_title">Sürətli axtarış</string>
 <string name="search_state_idle_body_desktop">Başlıq yazın. Hər mənbə cavab verdikcə nəticələr onun altında görünür.</string>
 <string name="search_state_no_results_type_filter">Yalnız %s. Növ filtriniz axtarışı daraldır.</string>
 <string name="search_state_no_suggestions_detail">0 TƏKLİF · 0 SON UYĞUNLUQ</string>

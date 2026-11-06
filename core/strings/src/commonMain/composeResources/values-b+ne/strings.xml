@@ -161,6 +161,13 @@
 <string name="search_poster_img_des">पोस्टर</string>
 <string name="search_provider_text_providers">प्रोभाईडर उपयोग गरी खोज्नुहोस्</string>
 <string name="search_provider_text_types">प्रकारको उपयोग गरी खोज्नुहोस्</string>
+<string name="search_quick_empty_body">सबै स्रोतहरूले जवाफ दिए तर कसैसँग “%s” छैन। छोटो खोजी प्रयास गर्नुहोस्, वा स्रोत बदल्न पूर्ण खोज खोल्नुहोस्।</string>
+<string name="search_quick_empty_headline">कुनै मेल छैन</string>
+<string name="search_quick_meta_answered">सबै स्रोतहरूले जवाफ दिए</string>
+<string name="search_quick_meta_answering">स्रोतहरूले जवाफ दिँदै गर्दा नतिजा आउँछन्</string>
+<string name="search_quick_open_full">पूर्ण खोज खोल्नुहोस्</string>
+<string name="search_quick_status">%2$d मध्ये %1$d ले जवाफ दिए · %3$d असफल</string>
+<string name="search_quick_title">छिटो खोज</string>
 <string name="search_state_idle_body_desktop">शीर्षक टाइप गर्नुहोस्। प्रत्येक स्रोतले जवाफ दिएपछि नतिजा त्यसको तल देखिन्छ।</string>
 <string name="search_state_no_results_type_filter">%s मात्र। तपाईंको प्रकार फिल्टरले खोजी साँघुरो बनाइरहेको छ।</string>
 <string name="search_state_no_suggestions_detail">0 सुझाव · 0 हालैका मेल</string>

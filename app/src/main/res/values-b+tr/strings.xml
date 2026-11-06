@@ -601,6 +601,13 @@
 <string name="search_poster_img_des">"Afiş"</string>
 <string name="search_provider_text_providers">"Sağlayıcıları kullanarak ara"</string>
 <string name="search_provider_text_types">"Türleri kullanarak ara"</string>
+<string name="search_quick_empty_body" formatted="true">"Tüm kaynaklar yanıt verdi ve hiçbirinde “%s” yok. Daha kısa bir arama deneyin veya kaynakları değiştirmek için tam aramayı açın."</string>
+<string name="search_quick_empty_headline">"Eşleşme yok"</string>
+<string name="search_quick_meta_answered">"TÜM KAYNAKLAR YANIT VERDİ"</string>
+<string name="search_quick_meta_answering">"KAYNAKLAR YANIT VERDİKÇE SONUÇLAR GELİR"</string>
+<string name="search_quick_open_full">"Tam aramayı aç"</string>
+<string name="search_quick_status" formatted="true">"%2$d KAYNAKTAN %1$d YANIT VERDİ · %3$d BAŞARISIZ"</string>
+<string name="search_quick_title">"Hızlı arama"</string>
 <string name="search_state_idle_body_desktop">"Bir başlık yazın. Sonuçlar, her kaynak yanıt verdikçe onun altında görünür."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"Yalnızca %s. Tür filtreniz aramayı daraltıyor."</string>
 <string name="search_state_no_suggestions_detail">"0 ÖNERİ · 0 YAKIN ZAMANLI EŞLEŞME"</string>
