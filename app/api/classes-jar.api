@@ -3191,6 +3191,8 @@ public final static class com/lagradost/cloudstream3/R$navigation : java/lang/Ob
 
 public final static class com/lagradost/cloudstream3/R$plurals : java/lang/Object {
 	public static field downloads_active I
+	public static field downloads_count_downloading I
+	public static field downloads_count_queued I
 	public static field downloads_delete_confirm_title I
 	public static field downloads_episode_count I
 	public static field downloads_failed_count I
@@ -3447,6 +3449,7 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field downloads_empty_headline I
 	public static field downloads_episode_code I
 	public static field downloads_film_subtitle I
+	public static field downloads_free I
 	public static field downloads_free_up_space I
 	public static field downloads_joined I
 	public static field downloads_load_failed_body I
