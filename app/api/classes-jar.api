@@ -3439,6 +3439,9 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field downloaded_file I
 	public static field downloading I
 	public static field downloads_browse_library I
+	public static field downloads_cancel_confirm_body I
+	public static field downloads_cancel_confirm_title I
+	public static field downloads_cancel_download I
 	public static field downloads_column_size I
 	public static field downloads_delete_all I
 	public static field downloads_delete_chosen I
@@ -3452,6 +3455,7 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field downloads_free I
 	public static field downloads_free_up_space I
 	public static field downloads_joined I
+	public static field downloads_keep_downloading I
 	public static field downloads_load_failed_body I
 	public static field downloads_load_failed_headline I
 	public static field downloads_offline_pill I
