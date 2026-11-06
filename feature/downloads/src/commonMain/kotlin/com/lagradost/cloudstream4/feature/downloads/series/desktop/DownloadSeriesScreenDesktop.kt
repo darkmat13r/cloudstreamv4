@@ -2,6 +2,7 @@ package com.lagradost.cloudstream4.feature.downloads.series.desktop
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.hoverable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -42,6 +43,7 @@ import androidx.compose.ui.input.pointer.PointerEventPass
 import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.input.pointer.isPrimaryPressed
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
@@ -69,20 +71,21 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.download_paus
 import com.lagradost.cloudstream4.core.strings.generated.resources.download_size_format
 import com.lagradost.cloudstream4.core.strings.generated.resources.downloaded
 import com.lagradost.cloudstream4.core.strings.generated.resources.downloading
-import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_active
+import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_count_downloading
+import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_count_queued
 import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_delete_all
 import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_empty_body
 import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_empty_headline
 import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_episode_code
 import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_episode_count
 import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_failed_count
+import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_free
 import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_joined
 import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_load_failed_body
 import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_load_failed_headline
 import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_offline_pill
 import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_on_disk
 import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_play_next
-import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_queued
 import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_rate
 import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_reason_network
 import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_reason_no_link
@@ -196,7 +199,7 @@ fun DownloadSeriesScreenDesktop(
                 )
 
                 is SeriesStatus.Showing -> LazyColumn(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier.weight(1f).fillMaxWidth(),
                     contentPadding = PaddingValues(
                         start = DesktopDimens.WindowMargin - DesktopDimens.RowPadding,
                         end = DesktopDimens.WindowMargin - DesktopDimens.RowPadding,
@@ -213,6 +216,7 @@ fun DownloadSeriesScreenDesktop(
                                 canReveal = canReveal(episode),
                                 onPlay = { onAction(SeriesAction.PlayRequested(episode.id, SeriesVerb.Play, 0)) },
                                 onVerb = { onAction(SeriesAction.StateVerbRequested(episode.id)) },
+                                onCancel = { onAction(SeriesAction.CancelRequested(episode.id)) },
                                 onReveal = { onReveal(episode.id) },
                                 onDelete = { onAction(SeriesAction.DeleteRequested(episode.id, 0)) },
                             )
@@ -220,6 +224,7 @@ fun DownloadSeriesScreenDesktop(
                     }
                 }
             }
+            Footer(state.episodes, formatBytes)
         }
         confirming?.let { ids ->
             val bytes = state.episodes.filter { it.id in ids }.sumOf { it.bytesDone }
@@ -228,7 +233,7 @@ fun DownloadSeriesScreenDesktop(
     }
 }
 
-/** Back, then the path: Downloads, which also goes back, then the series. */
+/** Back, then the path: Downloads, a muted link that also goes back, then the series (board D4). */
 @Composable
 private fun Toolbar(name: String, back: () -> Unit) {
     val colors = CloudStreamTheme.colors
@@ -247,7 +252,7 @@ private fun Toolbar(name: String, back: () -> Unit) {
             onClick = back,
             tone = DesktopButtonTone.Quiet,
         )
-        DesktopButton(label = stringResource(Res.string.title_downloads), onClick = back)
+        PathLink(stringResource(Res.string.title_downloads), back)
         // Decoration: the path's separator.
         CloudStreamIcon(CloudStreamIcons.Disclosure, null, size = CloudStreamIconSize.Medium, tint = colors.muted)
         BasicText(
@@ -290,8 +295,9 @@ private fun Header(
             }
             val count = UiString.Plural(Res.plurals.downloads_episode_count, episodes.size).resolve()
             val onDisk = UiString.Resource(Res.string.downloads_on_disk, listOf(formatBytes(episodes.sumOf { it.bytesDone }))).resolve()
+            val free = state.freeBytes?.let { UiString.Resource(Res.string.downloads_free, listOf(formatBytes(it))).resolve() }
             BasicText(
-                text = UiString.Resource(Res.string.downloads_joined, listOf(count, onDisk)).resolve().uppercase(),
+                text = joined(listOfNotNull(count, onDisk, free)).uppercase(),
                 style = typography.captionMono.copy(color = colors.muted),
                 maxLines = 1,
             )
@@ -323,18 +329,68 @@ private fun Header(
     }
 }
 
-/** "1 active download · 1 download queued · 1 failed", leaving out what is none, or null when all of it is none. */
+/** Board D4's "1 downloading · 1 queued · 1 failed", leaving out what is none, or null when all of it is none. */
 @Composable
 private fun counts(episodes: List<DownloadEpisode>): String? {
     val running = episodes.count { it.state == DownloadEpisodeState.Running }
     val queued = episodes.count { it.state == DownloadEpisodeState.Queued }
     val failed = episodes.count { it.state == DownloadEpisodeState.Failed }
     val parts = listOfNotNull(
-        running.takeIf { it > 0 }?.let { UiString.Plural(Res.plurals.downloads_active, it).resolve() },
-        queued.takeIf { it > 0 }?.let { UiString.Plural(Res.plurals.downloads_queued, it).resolve() },
+        running.takeIf { it > 0 }?.let { UiString.Plural(Res.plurals.downloads_count_downloading, it).resolve() },
+        queued.takeIf { it > 0 }?.let { UiString.Plural(Res.plurals.downloads_count_queued, it).resolve() },
         failed.takeIf { it > 0 }?.let { UiString.Plural(Res.plurals.downloads_failed_count, it).resolve() },
     )
-    return parts.takeIf { it.isNotEmpty() }?.reduce { a, b -> UiString.Resource(Res.string.downloads_joined, listOf(a, b)).resolve() }
+    return parts.takeIf { it.isNotEmpty() }?.let { joined(it) }
+}
+
+/** Parts joined by the shared separator key, so a translation and RTL order them. */
+@Composable
+private fun joined(parts: List<String>): String =
+    parts.reduce { a, b -> UiString.Resource(Res.string.downloads_joined, listOf(a, b)).resolve() }
+
+@Composable
+private fun PathLink(label: String, onClick: () -> Unit) {
+    val colors = CloudStreamTheme.colors
+    val source = remember { MutableInteractionSource() }
+    val hovered by source.collectIsHoveredAsState()
+    BasicText(
+        text = label,
+        style = CloudStreamTheme.typography.label.copy(color = if (hovered) colors.ink else colors.muted),
+        maxLines = 1,
+        modifier = Modifier
+            .clickable(interactionSource = source, indication = null, role = Role.Button, onClick = onClick)
+            .padding(horizontal = DesktopDimens.RelatedGap),
+    )
+}
+
+/**
+ * Finder's status bar, as on the titles page: "Season 1 · 7 episodes · 5.66 GB" for one season, and without the season
+ * where there are several or none.
+ */
+@Composable
+private fun Footer(episodes: List<DownloadEpisode>, formatBytes: (Long) -> String) {
+    if (episodes.isEmpty()) return
+    val colors = CloudStreamTheme.colors
+    val seasons = episodes.mapNotNull { it.season }.distinct()
+    val season = seasons.singleOrNull()?.takeIf { episodes.all { e -> e.season != null } }?.let {
+        UiString.Resource(Res.string.season_format, listOf(stringResource(Res.string.season), it, "")).resolve()
+    }
+    val count = UiString.Plural(Res.plurals.downloads_episode_count, episodes.size).resolve()
+    Box(
+        contentAlignment = Alignment.CenterStart,
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(DownloadsScreenDesktopDefaults.FooterHeight)
+            .background(colors.surface)
+            .border(CloudStreamDimens.Hairline, colors.line)
+            .padding(horizontal = DesktopDimens.WindowMargin),
+    ) {
+        BasicText(
+            text = joined(listOfNotNull(season, count, formatBytes(episodes.sumOf { it.bytesDone }))),
+            style = CloudStreamTheme.typography.caption.copy(color = colors.ink2),
+            maxLines = 1,
+        )
+    }
 }
 
 /** "Season 1", and how many of its episodes are here, which the new plural lets this page say in every language. */
@@ -368,6 +424,7 @@ private fun EpisodeRow(
     canReveal: Boolean,
     onPlay: () -> Unit,
     onVerb: () -> Unit,
+    onCancel: () -> Unit,
     onReveal: () -> Unit,
     onDelete: () -> Unit,
 ) {
@@ -430,16 +487,21 @@ private fun EpisodeRow(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.width(SeriesScreenDesktopDefaults.VerbsWidth),
         ) {
+            // Board D4: a finished row offers Play; a running one Pause and Cancel; a paused one Resume; a failed one Retry;
+            // a waiting one Cancel. Delete is always last, and Show in Finder once the file is on the disk.
             if (hovered) {
-                if (episode.isPlayable) DesktopVerb(CloudStreamIcons.Play, stringResource(Res.string.home_play), onPlay)
                 when (episode.state) {
-                    DownloadEpisodeState.Running -> DesktopVerb(CloudStreamIcons.Pause, stringResource(Res.string.pause), onVerb)
-                    DownloadEpisodeState.Paused -> DesktopVerb(CloudStreamIcons.Download, stringResource(Res.string.resume), onVerb)
+                    DownloadEpisodeState.Done -> DesktopVerb(CloudStreamIcons.Play, stringResource(Res.string.home_play), onPlay)
+                    DownloadEpisodeState.Running -> {
+                        DesktopVerb(CloudStreamIcons.Pause, stringResource(Res.string.pause), onVerb)
+                        DesktopVerb(CloudStreamIcons.Close, stringResource(Res.string.cancel), onCancel)
+                    }
+
+                    DownloadEpisodeState.Paused -> DesktopVerb(CloudStreamIcons.Play, stringResource(Res.string.resume), onVerb)
                     DownloadEpisodeState.Failed ->
                         DesktopVerb(CloudStreamIcons.Retry, stringResource(Res.string.player_source_retry), onVerb)
 
                     DownloadEpisodeState.Queued -> DesktopVerb(CloudStreamIcons.Close, stringResource(Res.string.cancel), onVerb)
-                    DownloadEpisodeState.Done -> Unit
                 }
                 if (canReveal) DesktopVerb(CloudStreamIcons.Folder, stringResource(Res.string.downloads_show_in_finder), onReveal)
                 DesktopVerb(CloudStreamIcons.Delete, stringResource(Res.string.delete), onDelete)
@@ -495,9 +557,8 @@ private fun EpisodeStatus(episode: DownloadEpisode, formatBytes: (Long) -> Strin
 }
 
 /**
- * The episode's name, or "S1 · E3" when it has none. The number has its own column here, so the code is only the
- * fallback; TV's `SeriesRows` joins the two in one line. Its private rules and these should become one shared function
- * when the TV suites can be rerun for it (noted in `KMP-54`).
+ * "S1 · E3 · Name", or as much of it as is known: a copy of TV's private rule in `SeriesRows`, kept identical until
+ * `KMP-64` makes the two one function (which also replaces `episode_short` + number with a key that takes the number).
  */
 @Composable
 private fun titleOf(episode: DownloadEpisode): String {
@@ -514,12 +575,12 @@ private fun titleOf(episode: DownloadEpisode): String {
     }
     val name = episode.name
     return when {
-        name != null -> name
-        else -> code.orEmpty()
+        code != null && name != null -> UiString.Resource(Res.string.downloads_joined, listOf(code, name)).resolve()
+        else -> code ?: name.orEmpty()
     }
 }
 
-/** Why it failed, in the words TV's `SeriesRows` uses. Null where nothing recorded why. */
+/** Why it failed: a copy of TV's private rule in `SeriesRows`, kept identical until `KMP-64`. Null where nothing recorded why. */
 @Composable
 private fun reason(failure: DownloadFailure): String? = when (failure) {
     DownloadFailure.NetworkLost -> stringResource(Res.string.downloads_reason_network)

@@ -4830,8 +4830,12 @@ desktop component layer (`DS-19`) comes later. Strings are `I18N-11` (#178), whi
   - The toolbar has Back (⌘[) and the path, Downloads › the series.
   - Below the art and counts: Play next, Retry failed (when there is one), and Delete all, through the same sheet.
   - Episodes sit under season headers, which now give the count through `downloads_episode_count`.
-  - Each row's hover verbs: Play when there is something on the disk, the state's verb (Pause, Resume, Retry or Cancel),
-    Show in Finder, and Delete. A double-click plays.
+  - Each row's hover verbs follow the board: Play on a finished row; Pause and Cancel on a running one; Resume (the `Play`
+    glyph, one glyph per meaning) on a paused one; Retry on a failed one; Cancel on a waiting one. Show in Finder appears
+    once the file is on the disk, and Delete is always last. A double-click plays.
+  - The meta line reads "7 EPISODES · 3.94 GB ON DISK · 12.40 GB FREE", the counts read "1 downloading · 1 queued · 1
+    failed", the footer reads "Season 1 · 7 episodes · 3.94 GB", and the breadcrumb's Downloads is a muted link. The new
+    keys are in `I18N-11`.
   - **A failure names its reason.** The owner ruled on `KMP-52` that a resume asks the extension for a fresh link, so a resume
     that finds none reads "Download Failed · No working link" and offers Retry.
 - **Keys:** ⌘A, ⌘⌫ (asks first), Return opens the one selected title, ⌘R shows it in Finder, and Escape clears.
@@ -4852,10 +4856,18 @@ desktop component layer (`DS-19`) comes later. Strings are `I18N-11` (#178), whi
 - **Open in the menu.** No word for it yet; double-click and Return open.
 - **The transfer rate.** `DownloadTitle` carries none.
 - **New components.** The tooltip, the context menu and the bottom rule are private here. They are candidates for `DS-19`.
-- **Shared words.** The episode title and the failure reason duplicate TV's private rules in `SeriesRows`. Making them one
-  function means rerunning the TV suites, so it waits until the TV PRs settle.
+- **Shared words.** The episode title and the failure reason are copies of TV's private rules in `SeriesRows`, kept
+  identical until `KMP-64`.
 - **"Show in Finder" is the Mac's word.** It sits in a shared key; Windows and Linux will need their own ("Show in folder")
   when those builds exist.
+
+**DECIDED** (small calls on the recommended option, the owner's standing rule of 2026-11-07):
+- **Cancel on a running episode.** Options were (A) an additive `SeriesAction.CancelRequested` that calls the source's
+  `cancel`, (B) routing Cancel through Delete, or (C) leaving Cancel off the running row. Chose A: the board draws it, and
+  `KMP-52`'s host cancels in any state. TV never sends it.
+- **Free space on D4.** Options were (A) an optional `DownloadSeriesContents.freeBytes`, defaulting to null so every host
+  compiles unchanged, or (B) a second source for the disk. Chose A: one emission carries the page. `KMP-52` fills it,
+  and the line leaves it out while it is null.
 
 **Reductions from the board**, where existing copy was reused rather than adding keys:
 - "Download Failed" and "Download Paused · 40%" for D1's "1 failed" and "Paused · 40%".
@@ -4867,3 +4879,13 @@ desktop component layer (`DS-19`) comes later. Strings are `I18N-11` (#178), whi
 - "Free up space" for "Open Storage Settings".
 - D5's empty copy is TV's.
 - The D3 sheet's body gives the size freed without the titles' names.
+
+## KMP-64 — One source for a series' words on TV and the Mac · **open**, follow-up of `KMP-54`
+
+`DownloadSeriesScreenDesktop` copies two private rules from TV's `series/tv/SeriesRows.kt`: `titleOf` ("S1 · E3 ·
+Name") and `reason` (a `DownloadFailure` in words). They are kept identical meanwhile. To do:
+1. Move both into one `internal` function in `series/`, and have both screens call it.
+2. Replace `"${episode_short}$number"`, the one-number fallback in both copies, with a key that takes the number as
+   an argument, so a translation can place it.
+3. Rerun the TV downloads device suite and keep its screenshots at 0/0, because this touches a `tv/` file.
+

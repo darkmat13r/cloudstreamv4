@@ -72,7 +72,8 @@ class DownloadSeriesScreenTest {
         episode(2, "Cat's in the Bag…", DownloadEpisodeState.Done, 980, 980),
         episode(3, "…And the Bag's in the River", DownloadEpisodeState.Running, 412, 1_000, rate = 2_100),
         episode(4, "Cancer Man", DownloadEpisodeState.Queued, 0, 0),
-        // The owner on KMP-52: a resume asks the extension for a fresh link, and this one found none.
+        // NoUsableLink on purpose: the owner's ruling on KMP-52 is that a resume asks the extension for a fresh link, and
+        // this is how a resume that finds none must read.
         episode(5, "Gray Matter", DownloadEpisodeState.Failed, 220, 960, failure = DownloadFailure.NoUsableLink),
         episode(6, "Crazy Handful of Nothin'", DownloadEpisodeState.Done, 1_010, 1_010),
         episode(7, "A No-Rough-Stuff-Type Deal", DownloadEpisodeState.Paused, 300, 1_030),
@@ -106,7 +107,7 @@ class DownloadSeriesScreenTest {
     }
 
     private inner class Harness {
-        val source = FakeSource(DownloadSeriesContents("Breaking Bad", episodes))
+        val source = FakeSource(DownloadSeriesContents("Breaking Bad", episodes, freeBytes = 12_400 * MB))
         val viewModel = DownloadSeriesViewModel(source, Online(), scope)
         val effects = mutableListOf<SeriesEffect>()
         var confirming by mutableStateOf<List<DownloadEpisodeId>?>(null)
@@ -172,15 +173,18 @@ class DownloadSeriesScreenTest {
     private fun rowY(index: Int) = FIRST_ROW_Y + index * ROW_PITCH
 
     @Test
-    fun `hovering the running row offers Pause, and a press pauses it`() {
+    fun `hovering the running row offers Pause and Cancel, as the board draws`() {
         val harness = Harness()
         val scene = scene(harness)
         scene.settle()
         scene.sendPointerEvent(PointerEventType.Move, Offset(NAME_X, rowY(2)))
         scene.save("D4-series-hovered")
-        // 412 MB is on the disk, so the row offers Play first, then its state verb, Pause.
+        // Pause, Cancel, Delete: no Play on a partial file.
+        scene.press(Offset(FIRST_VERB_X, rowY(2)))
+        scene.sendPointerEvent(PointerEventType.Move, Offset(NAME_X, rowY(2)))
+        scene.settle()
         scene.press(Offset(SECOND_VERB_X, rowY(2)))
-        assertEquals(listOf("pause 3"), harness.source.calls)
+        assertEquals(listOf("pause 3", "cancel 3"), harness.source.calls)
         scene.close()
     }
 
@@ -192,6 +196,7 @@ class DownloadSeriesScreenTest {
         scene.sendPointerEvent(PointerEventType.Move, Offset(NAME_X, rowY(4)))
         scene.settle()
         scene.save("D4-series-failed-no-link")
+        // Retry, Delete.
         scene.press(Offset(SECOND_VERB_X, rowY(4)))
         assertEquals(listOf("resume 5"), harness.source.calls)
         scene.close()
@@ -247,6 +252,7 @@ class DownloadSeriesScreenTest {
         const val FIRST_ROW_Y = 312f
         const val ROW_PITCH = 48f
         const val NAME_X = 120f
+        const val FIRST_VERB_X = 960f
         const val SECOND_VERB_X = 992f
         const val DELETE_ALL_X = 515f
         const val HEADER_BUTTON_Y = 197f
