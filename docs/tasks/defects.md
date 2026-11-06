@@ -1518,7 +1518,7 @@ missing, so the comparison passes today. A fix will fail that case: look at the 
 
 Not checked: whether the last row is cut off at the bottom when the list is full, and whether other TV screens with a `LazyColumn` do the same.
 
-## BUG-39 — The TV detail page's text ladder runs about 5dp high against its boards · **low** · measured 2026-11-06
+## BUG-40 — The TV detail page's text ladder runs about 5dp high against its boards · **low** · measured 2026-11-06
 
 **Status:** found, not fixed · found 2026-11-06 while fixing the head block's height for `KMP-38` (pr #153) ·
 `feature/detail/.../tv/DetailScreenTv.kt`, the `HeadColumn` ladder

@@ -349,6 +349,11 @@ private fun TitlePage(
  * y88, and every spacer after it is the gap the board measures. The board's single 52dp from the plot
  * to the actions is split into 12 + the 24dp caption box + 16, which is what adds the caption without
  * moving anything else.
+ *
+ * The *gaps* are right, and `DetailScreenTvDeviceTest` asserts every one of them. The *absolutes* run
+ * about 5dp high, uniformly, because `typography.h1` and `typography.label` do not render into the 44dp
+ * and 16dp boxes the board assumed for them — measured against the references, and filed as `BUG-40`
+ * for the typography work rather than adjusted here.
  */
 @Composable
 private fun HeadBlock(
