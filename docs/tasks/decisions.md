@@ -667,3 +667,5 @@ would fail closed: no plugins rather than unsandboxed plugins. `SandboxEscapeAtt
 - **Tablet and phone, planned, no boards yet:** phone stacks a full-width Play or Resume with time left under it, then Start over, then a row of glyphs with labels underneath (Watchlist, Trailer, Download, Share, More); tablet keeps that order in one row with labels always shown.
 
 The rule and the glyph table are in `.claude/rules/ui-components.md`, "Buttons". Done in `DS-16`.
+
+**2026-11-06, the owner,** asked by the coordinator whether board 6d's icon-only row verbs break the rule above: **trailing actions on a list row are icon-only**, as 6d draws them, each showing its label under the cell when focused and carrying it as a content description. A fourth named exception to rule 4 in `.claude/rules/ui-components.md`. First used by `KMP-43` (Play, the state's verb and Delete beside each episode).

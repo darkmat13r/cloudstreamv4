@@ -70,6 +70,9 @@ meaning, icon buttons are for toggles and overflow, and a screen has one primary
    **Three named exceptions**, which are standard TV conventions: the chrome's Back cell, the
    player's transport controls (board 7d) and the nav rail are icon-only without showing a label on
    focus. Each still carries a content description, and the rail shows its labels when expanded.
+   **A fourth, the owner's (2026-11-06, `DEC-17`): trailing actions on a list row** (board 6d's play,
+   state verb and delete beside each episode) are `IconOnlyButton`s. Unlike the three above they
+   **do** show their label under the cell when focused, as `IconOnlyButton` always does.
    Anywhere else on TV, a glyph never replaces a label.
 5. **Targets keep the three settled classes** (`screen-implementation-handover.md` §5,
    `CloudStreamDimens`): an icon in a 48 dp cell (`IconTargetCell`), so `IconOnlyButton` is one; a
