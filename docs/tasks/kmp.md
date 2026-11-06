@@ -4501,3 +4501,110 @@ Found: `focusRestorer`-style default entry, measured again: a rebuilt view's fir
 Suggest: nothing more here; noted because every page with a chrome row will meet it (search's and the library's do)
 Why: `KMP-34`'s `LibraryFocusMemory` and this page's landing both work around the same window behaviour
 ```
+
+---
+
+## KMP-46 — `:media:download`: a segmented downloader in commonMain, on FileKit · **measured 2026-11-06**
+
+New module, new code. It downloads one file over several ranged connections at once and joins them.
+Nothing depends on it yet: no `:app` or `:desktopApp` wiring, no UI, and HLS is out of scope. The
+Android downloader is untouched.
+
+**What it does.**
+- **Probe:** a `GET` with `Range: bytes=0-0`, because HEAD lies.
+- **Parts:** up to 8 by default, 32 at most, equal ranges. A worker with nothing left to do splits the
+  part with the most bytes left, at or above that part's write cursor.
+- **No ranges or no length:** one stream, which restarts from zero on every attempt.
+- **Final file:** appears only after the checks of rule 4 below.
+- **Progress:** a `Flow<DownloadSnapshot>` carrying bytes, total, rate, ETA and per-part state.
+- **Pause, resume and cancel:** cancelling the collector pauses; `discard` cancels and removes the temp files.
+- **Failures:** typed. `DownloadFailure` gains `ServerRefused`, `SourceChanged`, `SizeMismatch`,
+  `HashMismatch`, `InsufficientSpace`, `AddressRefused` and `DestinationExists`. No exhaustive `when`
+  exists on master.
+
+The design contract is the KDoc of `DownloadRun`, `PartFetcher`, `PartTable` and `Join`. These are the rules
+that exist because the old downloader broke them:
+- **Rule 1:** the resume offset is always the part file's size, read from disk at every attempt.
+- **Rule 3:** a single stream never appends.
+- **Rule 4:** a file is reported complete only when every range is present, `size(joined) == total`,
+  the hash (when given) matches the bytes re-read from disk, the move is atomic and `size(final) == total`.
+- **Rule 5:** a 206 is accepted only when its range and validators match.
+- **Rule 8:** storage errors are never retried.
+- **Rule 17:** a transient probe failure never deletes a partial.
+
+**Joining: part files, then an append-join.**
+- *Chosen because* FileKit has no random-access write, and the rule "the offset is the file's size"
+  falls out of it.
+- *Peak space* is the total plus the largest part.
+- *Join time, measured directly* (`joinParts` on 256 MiB, 3 runs; a temporary test, not committed):
+  0 ms for 1 part (a move), and 132–180, 159–217 and 193–206 ms for 4, 8 and 16 parts.
+- *Throughput at 4 MiB/s per connection* (256 MiB, medians of 3): 1, 4, 8 and 16 parts take 64.1, 16.2,
+  8.3 and 4.3 s. A preallocated `RandomAccessFile` prototype is within 1–3% at every count.
+- *Unthrottled on loopback* (server in the same JVM): the engine takes 0.82–1.13 s against the
+  prototype's 0.28–0.35 s. The join explains about 0.2 s of that gap; the rest is the fetch pipeline,
+  not yet profiled. On a real network the throttled numbers are the relevant ones.
+- *Peak heap above baseline:* 10–15 MiB throttled. Unthrottled, 11, 18, 48 and 59 MiB for 1, 4, 8 and 16
+  parts. Each connection holds Ktor's 1 MiB channel plus 8 × 64 KiB of queue, and the figures include
+  uncollected garbage.
+
+**FileKit 0.17.0** (`filekit-core` only), chosen by the owner.
+- *0.14.2 is the newest version that forces no bumps.*
+- *0.17.0 forces* stdlib 2.4.21, serialization 1.12.0 and minSdk 24, and it brings JNA on the JVM.
+  `:app` is on minSdk 23, so `:app:processPrereleaseDebugMainManifest` fails if `:app` depends on this
+  module. That is why nothing does yet.
+- *Trap:* FileKit's inline `list { }` and `withScopedAccess { }` do not compile against JVM target 11.
+  Use `list()`.
+
+**Security.**
+- Only `http` and `https`, with no userinfo.
+- Literal and resolved addresses are refused when private, loopback or link-local, in every IPv4
+  spelling and in IPv6, including v4-mapped, NAT64 and 6to4. Tests opt in with `allowPrivateAddresses`.
+- Redirects are followed by hand and every hop is re-checked. `Authorization` and `Cookie` are dropped
+  when the origin changes.
+- The file name is sanitised, with no path traversal.
+- The number of parts and the state file are capped (64 KiB).
+- Nothing logs. No URL, header or referer reaches a `toString`, an exception, the state file or a snapshot.
+- *Known residue:* DNS rebinding between the check and the connect. The fix is an OkHttp `Dns` in the
+  transport.
+
+**Tests.**
+- JVM against a raw `ServerSocket` server, which can lie about lengths, reset mid-body and close
+  without a length. No new dependency and no real network.
+- `KillSuiteTest` kills a child JVM with `destroyForcibly` and resumes from what is on disk.
+- Every completion is compared byte for byte with the source, and a watcher thread fails any run in
+  which the final file was visible at a partial size.
+- The rules were shown to guard by breaking each one and running its suite:
+
+| Break | Tests that fail |
+|---|---|
+| rule 1: the offset cached across attempts instead of re-read | 15 in `FaultSuiteTest`, including both mid-part drop tests |
+| rule 3: `runSingle` stops deleting before a retry | the single-stream drop test |
+| rule 4: no hash check before the move | `wrong SHA-256 fails with HashMismatch…` |
+| rule 4: no `size(joined)` check | nothing: the post-move `size(final)` check catches the same short file |
+| rule 4: neither size check | `a join that comes out short…`, added for this |
+| state file: `recordedDone` trusted over the disk | `a state file claiming every part is done…` |
+| rule 8: a write error retried as a network one | 4 storage tests in `FaultSuiteTest` |
+
+**A flaky test fixed on the way.** `splitting stops at maxPartFiles` failed 1 run in 5: its fourth split sat on the `left >= 2 × minPartBytes` edge. It now uses `minPartBytes` = 32 KiB, and passed 8 runs out of 8.
+
+**Ktor loses bytes on a dropped connection.**
+- Ktor's `ByteChannel` buffer is 1 MiB (`javap`, ktor-io-jvm 3.6.0). When the engine fails a body, the
+  unread contents of that buffer are discarded, so up to about 1 MiB of received bytes can be re-fetched.
+- A raw socket received all 1,000,003 bytes in 15 of 15 attempts. A bare Ktor read loop got 270,336
+  to 1,000,003.
+- The tests allow for this loss with a named tolerance. Fixing it means reading below Ktor.
+
+**Adopting it.**
+- *Android:*
+  - minSdk 24, or `tools:overrideLibrary`, plus the stdlib and serialization bumps.
+  - kotlinx-io's `atomicMove` on API 23–25 and SAF `content://` (where FileKit's move is copy and
+    delete) are untested.
+  - It still needs wiring to the foreground service and to `DownloadFacts` (`KMP-36`).
+- *Mac:* JNA comes with FileKit on the JVM; a Java 17 runtime; wiring into `:desktopApp`.
+
+**Not verified.**
+- iOS runs the pure rules only (`commonTest` on the simulator gate), not a download.
+- iOS `getaddrinfo` and free space are compiled, not exercised.
+- No Android device run: a test APK would hit the same minSdk wall.
+- DNS rebinding, as above.
+- The engine's unthrottled slowdown is not profiled.
