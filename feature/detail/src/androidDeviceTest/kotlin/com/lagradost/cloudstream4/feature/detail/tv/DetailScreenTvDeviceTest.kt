@@ -12,6 +12,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.toPixelMap
 import androidx.compose.ui.test.SemanticsNodeInteraction
+import androidx.compose.ui.test.assertIsNotSelected
+import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.captureToImage
 import androidx.compose.ui.test.hasClickAction
 import androidx.activity.ComponentActivity
@@ -477,6 +479,89 @@ class DetailScreenTvDeviceTest {
     }
 
     /**
+     * Board 7i's second line, as far as the data reaches: the code, then the runtime.
+     *
+     * The code is still on the row because the season chips that would carry the season are a later
+     * task; see `episodeSubtitle`. The air date 7i also draws is not here — `DetailEpisode.airDateMs`
+     * says why it is carried and not drawn.
+     */
+    @Test
+    fun anEpisodeRowNamesItsRuntimeAfterItsCode() {
+        show(DetailFixtures.RuntimeEpisodes)
+        awaitFocus(RESUME)
+        // DOWN to the row first: the episode list is the last section of a `LazyColumn`, so at entry
+        // focus none of it is composed and no query can see it.
+        val second = DetailFixtures.episodeName(1)
+        assertEquals(second, pressUntil(Dpad.Down, second))
+
+        rule.onNodeWithText("${SEASON_SHORT}1:${EPISODE_SHORT}2 $SEPARATOR ${DetailFixtures.EPISODE_MINUTES} min")
+            .assertExists()
+    }
+
+    /**
+     * A provider that sent no runtime: the row keeps its code and gains nothing.
+     *
+     * Its own test rather than a second assertion above, because `show` goes through
+     * `ComposeTestRule.setContent`, which may be called once per test.
+     */
+    @Test
+    fun anEpisodeRowWithoutARuntimeShowsOnlyItsCode() {
+        show(DetailFixtures.Show)
+        awaitFocus(RESUME)
+        val second = DetailFixtures.episodeName(1)
+        assertEquals(second, pressUntil(Dpad.Down, second))
+
+        rule.onNodeWithText("${SEASON_SHORT}1:${EPISODE_SHORT}2").assertExists()
+        assertNoText("${DetailFixtures.EPISODE_MINUTES} min")
+    }
+
+    /**
+     * 7i's pill marks the row the primary would act on, and marks exactly one.
+     *
+     * `ListRow` puts this in the semantics tree as `selectable(selected = …)`, so the fact is
+     * assertable here; the picture is a screenshot case, because the marker and the selected row's
+     * `raised` fill are drawn rather than laid out.
+     */
+    @Test
+    fun exactlyOneEpisodeRowIsMarkedAndItIsThePrimarysTarget() {
+        show(DetailFixtures.RuntimeEpisodes)
+        awaitFocus(RESUME)
+        // Walking to the middle row composes all three, which is what lets the two negatives below
+        // be asserted at all.
+        val second = DetailFixtures.episodeName(1)
+        assertEquals(second, pressUntil(Dpad.Down, second))
+
+        // Resume is "e1", the middle episode, so this is neither "always row 1" nor "always the last".
+        rule.onNodeWithText(DetailFixtures.episodeName(1)).assertIsSelected()
+        rule.onNodeWithText(DetailFixtures.episodeName(0)).assertIsNotSelected()
+        rule.onNodeWithText(DetailFixtures.episodeName(2)).assertIsNotSelected()
+    }
+
+    /**
+     * What DOWN does at the last episode row: **nothing**, and focus stays on it.
+     *
+     * Measured rather than argued, because board 7i says "DOWN past the last row loads the next page
+     * of episodes" and nothing in the contract can do that: `DetailSource.details` returns every
+     * episode in one answer and `DetailSeason.episodeCount` is counted from that same list, so there
+     * is no page to load. The episode list is also the column's last section, so there is nothing
+     * below it to take focus either. This test is what pins both halves of that.
+     *
+     * `pressUntil` stops at its first match, so reaching the last row would never press *past* it;
+     * these presses are deliberately made after arriving.
+     */
+    @Test
+    fun downAtTheLastEpisodeRowStaysOnIt() {
+        show(DetailFixtures.RuntimeEpisodes)
+        awaitFocus(RESUME)
+
+        val last = DetailFixtures.episodeName(LAST_OF_THREE)
+        assertEquals(last, pressUntil(Dpad.Down, last))
+        repeat(PRESSES_PAST_THE_END) {
+            assertEquals("DOWN past the last row moved focus", last, dpad.press(Dpad.Down))
+        }
+    }
+
+    /**
      * A stored position of zero is not a resume.
      *
      * `DetailResume.fraction` returns null for a zero or negative position, which is the guard
@@ -757,6 +842,15 @@ class DetailScreenTvDeviceTest {
         const val MAX_PRESSES = 10
         const val FORTY_PRESSES = 60
         const val LAST_OF_FORTY = 39
+        const val LAST_OF_THREE = 2
+
+        /** Enough to show DOWN is saturated at the last row, not merely slow to move. */
+        const val PRESSES_PAST_THE_END = 3
+
+        // `season_short`, `episode_short` and the boards' meta separator, as the screen resolves them.
+        const val SEASON_SHORT = "S"
+        const val EPISODE_SHORT = "E"
+        const val SEPARATOR = "\u00b7"
         const val WALK_STOPS = 16
         const val VOICED = 2
         const val CHANNELS = 3f

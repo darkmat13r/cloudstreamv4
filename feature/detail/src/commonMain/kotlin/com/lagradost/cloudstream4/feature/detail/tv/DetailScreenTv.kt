@@ -71,6 +71,7 @@ import com.lagradost.cloudstream4.feature.detail.META_SEPARATOR
 import com.lagradost.cloudstream4.feature.detail.StreamLink
 import com.lagradost.cloudstream4.feature.detail.TitleDetail
 import com.lagradost.cloudstream4.feature.detail.code
+import com.lagradost.cloudstream4.feature.detail.episodeSubtitle
 import com.lagradost.cloudstream4.feature.detail.metaRun
 import com.lagradost.cloudstream4.feature.detail.resumeCaption
 import com.lagradost.cloudstream4.feature.detail.toLinksUiState
@@ -224,6 +225,7 @@ private fun TitlePage(
     val scope = rememberCoroutineScope()
     val returnTo = state.returnTo
     val episodesIndex = episodesHeaderIndex(detail)
+    val selectedEpisode = selectedEpisodeIndex(detail)
     // Set once the jump has landed, and cleared when the first episode row has taken focus. Hoisted
     // here because the button that starts the jump is in item 0, which the jump itself disposes.
     var jumpedToEpisodes by remember { mutableStateOf(false) }
@@ -316,7 +318,11 @@ private fun TitlePage(
                     Spacer(Modifier.height(DetailScreenTvDefaults.SectionGap))
                     RailHeader(
                         title = stringResource(Res.string.episodes),
-                        count = detail.episodes.size.toString(),
+                        // 7i writes "24 · HDREZKA": the count, then the provider, in the separator
+                        // the related rail already uses. Count first is 7a-ii's order — the leading
+                        // element must not change when a provider name is missing.
+                        count = listOfNotNull(detail.episodes.size.toString(), detail.providerName)
+                            .joinToString(META_SEPARATOR),
                     )
                 }
             }
@@ -325,6 +331,7 @@ private fun TitlePage(
                 EpisodeRow(
                     episode = detail.episodes[index],
                     index = index,
+                    selected = index == selectedEpisode,
                     onAction = onAction,
                     takeFocus = index == FIRST_ROW && (
                         jumpedToEpisodes ||
@@ -632,6 +639,7 @@ private fun Hero(imageUrl: String?, artwork: @Composable (String?) -> Unit) {
 private fun EpisodeRow(
     episode: DetailEpisode,
     index: Int,
+    selected: Boolean,
     onAction: (DetailAction) -> Unit,
     takeFocus: Boolean,
     onFocusTaken: () -> Unit,
@@ -645,10 +653,12 @@ private fun EpisodeRow(
         onFocusTaken()
     }
     val code = episode.code(index)
+    val codeInTitle = episode.name == null
     ListRow(
         state = ListRowState(
             title = episode.name ?: code,
-            subtitle = code.takeIf { episode.name != null },
+            subtitle = episodeSubtitle(episode, code, codeInTitle),
+            selected = selected,
         ),
         onClick = { onAction(DetailAction.PlaybackRequested(episode.data, fromStart = false)) },
         modifier = Modifier
@@ -714,6 +724,22 @@ private fun episodesHeaderIndex(detail: TitleDetail): Int =
         (if (detail.recommendations.isNotEmpty()) ONE_ITEM else NO_ITEM)
 
 /**
+ * Which episode row board 7i's pill marks: the one the primary button would act on.
+ *
+ * [TitleDetail.primaryData] is the resume target, else the title's own play data, else the first
+ * episode, so the mark lands on the row Resume or Play Episode would play. 7i draws it on episode 1,
+ * which is that row for a title nobody has started.
+ *
+ * The **first** match, not every equal one: provider data can repeat, which is why the list's lazy
+ * keys carry the index too, and two rows both marked selected would be worse than none. Returns
+ * [NO_SELECTED_ROW] when nothing is playable, so no row is marked.
+ */
+private fun selectedEpisodeIndex(detail: TitleDetail): Int {
+    val data = detail.primaryData ?: return NO_SELECTED_ROW
+    return detail.episodes.indexOfFirst { it.data == data }
+}
+
+/**
  * The marker above a failure's headline: 7a's ERROR glyph, 96x96 on the artboard.
  *
  * Hollow and neutral, which `DEC-17` asks for and which `LibraryEmptyGlyph` is the precedent for: the
@@ -772,6 +798,9 @@ private const val HEAD_ITEMS = 1
 private const val ONE_ITEM = 1
 private const val NO_ITEM = 0
 private const val FIRST_ROW = 0
+
+/** No episode is the primary's target, so 7i's pill marks nothing. `indexOfFirst`'s own miss value. */
+private const val NO_SELECTED_ROW = -1
 
 /**
  * Artboard 7a/7b/7a-ii's geometry at px/2. Every value is a multiple of 4dp, and every one that a

@@ -53,10 +53,16 @@ import org.junit.runner.RunWith
  * | `detail-error-focus-retry` | `DEC-17`'s hollow neutral failure marker and its reachable Retry — the legibility case the rule names |
  * | `detail-scrolled-recommendations` | the rails below the fold, which only exist once the page has scrolled |
  * | `detail-synopsis-panel-open` | the side panel over the page, the only state where two surfaces overlap |
+ * | `detail-episodes-selected-row` | board 7i's episode rows: the pill on the row the primary would play, and the runtime line |
  *
  * Not drawn here and deliberately: the forty-episode list, one episode, no episodes and the long-text
  * case. Those are **assertions about layout** — a fixed box, an ellipsis, a plural — which
  * `DetailScreenTvDeviceTest` measures in dp and would be permutation filler as images.
+ *
+ * `detail-episodes-selected-row` is the one episode-list case, and it is here for the opposite reason:
+ * a **selected** row is not layout. `SelectionMarker`'s muted pill and the row's `raised` fill are
+ * painted, so `assertIsSelected` can pin the fact and only an image can show what a viewer sees. It is
+ * also the only reference on this page that shows selection at all.
  *
  * ## Why this host is not the behaviour suite's
  *
@@ -235,6 +241,32 @@ class DetailScreenTvScreenshotTest {
         rule.waitForIdle()
         assertTrue("the panel is still open", viewModel.state.value.synopsisOpen)
         rule.assertScreenshot("detail-synopsis-panel-open")
+    }
+
+    /**
+     * Board 7i's rows: the pill on the row the primary would play, and the runtime after each code.
+     *
+     * Focus is walked to the **last** row, which is what puts the whole list in frame. Stopping at the
+     * first row instead left the selected one clipped to ten pixels at the bottom edge — the reference
+     * was recorded that way once and guarded nothing, which is what looking at it caught.
+     *
+     * So the ring is on episode 3 and the pill is on episode 2, and the frame carries both halves of
+     * rule 4 at once: **colour says focus, shape says state**, on two different rows of one list. The
+     * fixture resumes the middle episode precisely so those two can never be the same row.
+     */
+    @Test
+    fun screenshotEpisodeListWithTheSelectedRowMarked() {
+        show(DetailFixtures.RuntimeEpisodes)
+        awaitText(DetailFixtures.RuntimeEpisodes.title)
+        awaitFocus(RESUME)
+        val last = DetailFixtures.episodeName(DetailFixtures.RuntimeEpisodes.episodes.lastIndex)
+        val (landed, trail) = pressUntilOneOf(listOf(last))
+        assertTrue(
+            "the last episode row never took focus. DOWN went: ${trail.joinToString(" -> ")}",
+            landed?.contains(last) == true,
+        )
+        rule.waitForIdle()
+        rule.assertScreenshot("detail-episodes-selected-row")
     }
 
     private companion object {

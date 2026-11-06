@@ -4905,3 +4905,41 @@ that exist because the old downloader broke them:
 - No Android device run: a test APK would hit the same minSdk wall.
 - DNS rebinding, as above.
 - The engine's unthrottled slowdown is not profiled.
+
+## KMP-63 — Per-episode watch state across the detail seam (board 7i's `WATCHED` and `24 MIN LEFT`) · **measured 2026-11-07**
+
+**Status:** open · **Found by:** `KMP-38`'s PR 2a, measuring board 7i before building it.
+
+Board 7i draws two readouts on an episode row that nothing in the tree can supply: `WATCHED` on a
+finished episode and `24 MIN LEFT` on a started one. 7i's other two row fields were simply discarded
+in one mapping and are carried as of PR 2a (`DetailEpisode.runTimeMinutes`, `.airDateMs`). These two
+are **not a mapping fix**, and that is the whole content of this task.
+
+### Why it is a contract question
+
+Per-episode progress is `LocalDetailRecords.viewPosition(id)` (`AndroidDetailSource.kt:288`), keyed on
+`:app`'s **episode id**. `DetailEpisode` carries no id, and that is deliberate: its `data` is opaque and
+"goes back to `DetailSource.links` unread" by its own KDoc, which is what keeps `:feature:detail` free
+of any `:app` or `:library` edge. The only progress this seam carries is `DetailResume`, and that is
+**title-level** — one resume for the last-watched episode, not one per row.
+
+So the question is what crosses the seam, not how to format it:
+
+| Option | Shape | Cost |
+|---|---|---|
+| A | `DetailEpisode.progress: DetailResume?` per row | No id leaves `:app`; the host does the lookup it already does for `resume`. No new concept. |
+| B | `DetailEpisode.watched: Boolean` + `remainingMinutes: Int?` | Smallest surface, but two derived fields the host must keep consistent with each other. |
+| C | An id on `DetailEpisode` plus a `progress(id)` call on `DetailSource` | Puts `:app`'s id into the contract and adds a round trip per row. |
+
+**Recommendation: A.** `resumeOf` (`AndroidDetailSource.kt:591`) already builds a `DetailResume` from a
+stored position, so a per-episode one is that function called per row rather than a new mapping, and
+`DetailResume` already owns the zero-duration guard that `ResultEpisode.getWatchProgress()` lacks
+(`DetailContracts.kt:72-75`). B re-derives in the host what `DetailResume.remainingMinutes` already
+computes in the module. C is last because it is the only one that changes what the seam *means*.
+
+**`classes-jar.api`:** A and B add fields to a type that is not in it — `DetailEpisode` appears nowhere
+in `app/api/classes-jar.api`, and `toTitleDetail` takes an erased `List`, so no published line changes.
+Verified by grep, not assumed.
+
+**Why PR 2a does not do it:** a readout whose data does not exist is worse than none — the same reason
+`KMP-38` left Download and Mark watched out of the action row.
