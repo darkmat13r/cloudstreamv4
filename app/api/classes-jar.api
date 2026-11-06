@@ -3191,8 +3191,11 @@ public final static class com/lagradost/cloudstream3/R$navigation : java/lang/Ob
 
 public final static class com/lagradost/cloudstream3/R$plurals : java/lang/Object {
 	public static field downloads_active I
+	public static field downloads_delete_confirm_title I
+	public static field downloads_episode_count I
 	public static field downloads_failed_count I
 	public static field downloads_queued I
+	public static field downloads_titles_status I
 	public static field episodes I
 	public static field home_bookmarks_count I
 	public static field home_sections_failed I
@@ -3434,8 +3437,10 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field downloaded_file I
 	public static field downloading I
 	public static field downloads_browse_library I
+	public static field downloads_column_size I
 	public static field downloads_delete_all I
 	public static field downloads_delete_chosen I
+	public static field downloads_delete_confirm_body I
 	public static field downloads_delete_select I
 	public static field downloads_empty I
 	public static field downloads_empty_body I
@@ -3458,7 +3463,9 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field downloads_reason_storage_unavailable I
 	public static field downloads_retry_failed I
 	public static field downloads_select I
+	public static field downloads_selected_status I
 	public static field downloads_series_subtitle I
+	public static field downloads_show_in_finder I
 	public static field downloads_state_queued I
 	public static field downloads_storage_full_headline I
 	public static field downloads_storage_legend I
