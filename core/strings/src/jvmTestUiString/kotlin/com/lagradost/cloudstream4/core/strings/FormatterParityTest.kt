@@ -108,8 +108,9 @@ class FormatterParityTest {
         }
         assertTrue(supported.size > 1000, "only ${supported.size} supported values; the corpus looks wrong")
         val conversions = supported.flatMap { scan(it.value) }.map { it.conversion }.toSortedSet()
-        // No `%%` anywhere in app/src/main/res: the only literal percents are bare, as in `…100%`.
-        assertEquals(sortedSetOf('d', 'f', 's'), conversions, "the corpus stopped exercising a conversion")
+        // One `%%` since `KMP-43`, `downloads_watched` ("%d%% watched"), in all 62 directories; every other literal percent is bare,
+        // as in `…100%`.
+        assertEquals(sortedSetOf('%', 'd', 'f', 's'), conversions, "the corpus stopped exercising a conversion")
         for ((key, pattern) in supported) {
             for (arguments in ARGUMENT_SETS) {
                 val args = argumentsFor(pattern, arguments)

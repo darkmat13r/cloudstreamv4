@@ -3,6 +3,7 @@
 <resources>
 <string name="detail_load_failed_body">ممکن است منبع در دسترس نباشد.</string>
 <string name="detail_load_failed_headline">این عنوان باز نشد</string>
+<plurals name="downloads_failed_count"><item quantity="one">%d ناموفق</item><item quantity="other">%d ناموفق</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d نشانک</item><item quantity="other">%d نشانک</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d بخش بارگیری نشد</item><item quantity="other">%d بخش بارگیری نشد</item></plurals>
 <string name="action_add_to_bookmarks">تنظیم وضعیت تماشا</string>
@@ -99,6 +100,7 @@
 <string name="downloaded">دانلود شده</string>
 <string name="downloading">در حال دانلود</string>
 <string name="downloads_browse_library">مرور کتابخانه</string>
+<string name="downloads_delete_all">حذف همه</string>
 <string name="downloads_delete_select">انتخاب برای حذف</string>
 <string name="downloads_empty">در حال حاضر دانلودی وجود ندارد.</string>
 <string name="downloads_empty_body">دانلودهایی که از فهرست قسمت‌های یک عنوان شروع می‌کنید اینجا نمایش داده می‌شوند و بدون اتصال پخش می‌شوند.</string>
@@ -107,11 +109,21 @@
 <string name="downloads_load_failed_body">فایل‌های دانلودشده شما تغییر نکرده‌اند.</string>
 <string name="downloads_load_failed_headline">دانلودهای شما خوانده نشد</string>
 <string name="downloads_offline_pill">آفلاین · بدون اتصال</string>
+<string name="downloads_on_disk">%s روی دیسک</string>
 <string name="downloads_play_from_link">پخش از پیوند</string>
+<string name="downloads_play_next">پخش بعدی</string>
+<string name="downloads_reason_network">شبکه قطع شد</string>
+<string name="downloads_reason_no_link">پیوند سالمی نیست</string>
+<string name="downloads_reason_source">منبع زود متوقف شد</string>
+<string name="downloads_reason_storage_full">حافظه پر است</string>
+<string name="downloads_reason_storage_unavailable">حافظه در دسترس نیست</string>
+<string name="downloads_retry_failed">تلاش دوباره (%d)</string>
 <string name="downloads_select">انتخاب</string>
+<string name="downloads_state_queued">در صف</string>
 <string name="downloads_storage_full_headline">حافظه کافی نیست</string>
 <string name="downloads_storage_legend">%1$s از %2$s استفاده شده · %3$s در دانلودها</string>
 <string name="downloads_storage_needs">%s بیشتر لازم است</string>
+<string name="downloads_watched">%d%% دیده شده</string>
 <string name="duration">طول</string>
 <string name="duration_format">%d دقیقه</string>
 <string name="eigengraumode_settings">سرعت پخش</string>

@@ -16,7 +16,6 @@ import com.lagradost.cloudstream3.CloudStreamApp.Companion.setKey
 import com.lagradost.cloudstream3.MainActivity
 import com.lagradost.cloudstream3.R
 import com.lagradost.cloudstream3.TvType
-import com.lagradost.cloudstream3.ui.download.DownloadChildFragment
 import com.lagradost.cloudstream3.ui.download.DownloadFragment
 import com.lagradost.cloudstream3.ui.download.queue.DownloadQueueFragment
 import com.lagradost.cloudstream3.ui.settings.Globals.updateTv
@@ -171,7 +170,8 @@ class DownloadsTvNavigationTest {
             pressToTheTitle()
             dpad.center()
             device.wait(Until.gone(By.text(SELECT)), SCREEN_WAIT_MS)
-            assertEquals(DownloadChildFragment::class.java, scenario.currentFragment()?.javaClass)
+            // Since `KMP-43` a series opens its new TV page; `DownloadSeriesTvNavigationTest` keeps the phone on the old one.
+            assertEquals(DownloadSeriesTvFragment::class.java, scenario.currentFragment()?.javaClass)
 
             device.pressBack()
             device.wait(Until.hasObject(By.text(SELECT)), SCREEN_WAIT_MS)
