@@ -616,7 +616,9 @@
 <string name="search_tv_sources_panel_meta">%1$d З %2$d УКЛЮЧАНА · ЗМЕНЫ ПРЫМЯНЯЮЦЦА ПАСЛЯ ГАТОВА</string>
 <string name="season">Сезон</string>
 <string name="season_format">%1$s %2$d%3$s</string>
+<string name="season_other">Іншае</string>
 <string name="season_short">Сез</string>
+<string name="season_specials">Спецвыпускі</string>
 <string name="seek_back_10_seconds">Перамотаць назад на 10 секунд</string>
 <string name="seek_forward_10_seconds">Перамотаць наперад на 10 секунд</string>
 <string name="select_all">Выбраць ўсё</string>

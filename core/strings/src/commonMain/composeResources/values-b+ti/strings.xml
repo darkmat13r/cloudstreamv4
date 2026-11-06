@@ -88,6 +88,8 @@
 <string name="search_tv_source_failed">ኣይተኻኣለን %s</string>
 <string name="search_tv_source_pinned">ተሰኪሉ</string>
 <string name="search_tv_sources_panel_meta">%1$d ካብ %2$d ተኸፊቱ · ለውጥታት ብተፈጸመ ይትግበሩ</string>
+<string name="season_other">ካልእ</string>
+<string name="season_specials">ፍሉይ</string>
 <string name="seek_back_10_seconds">10 ካልኢት ንድሕሪት</string>
 <string name="seek_forward_10_seconds">10 ካልኢት ንቕድሚት</string>
 <string name="subtitles_file_empty">እዚ ፋይል ንኡስ ጽሑፍ ባዶ እዩ</string>

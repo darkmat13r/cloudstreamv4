@@ -462,7 +462,9 @@
 <string name="search_tv_sources_panel_meta">%2$d ခုအနက် %1$d ခု ဖွင့်ထား · ပြောင်းလဲမှုများကို ပြီးပြီ တွင် အသုံးပြုမည်</string>
 <string name="season">အတွဲ</string>
 <string name="season_format">%1$s %2$d%3$s</string>
+<string name="season_other">အခြား</string>
 <string name="season_short">အတွဲ</string>
+<string name="season_specials">အထူး</string>
 <string name="seek_back_10_seconds">10 စက္ကန့် နောက်သို့ရစ်ရန်</string>
 <string name="seek_forward_10_seconds">10 စက္ကန့် ရှေ့သို့ကျော်ရန်</string>
 <string name="select_library">လိုက်ဘရီရွေးချယ်ရန်</string>

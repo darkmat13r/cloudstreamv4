@@ -166,6 +166,8 @@
 <string name="search_tv_source_failed">FALLA %s</string>
 <string name="search_tv_source_pinned">IPPINJAT</string>
 <string name="search_tv_sources_panel_meta">%1$d MINN %2$d ATTIVATI · IL-BIDLIET JIDĦLU FIS-SEĦĦ META TAGĦFAS LEST</string>
+<string name="season_other">Oħrajn</string>
+<string name="season_specials">Speċjali</string>
 <string name="seek_back_10_seconds">Mur lura 10 sekondi</string>
 <string name="seek_forward_10_seconds">Mur 'il quddiem 10 sekondi</string>
 <string name="show_log_cat">Uri Logcat 🐈</string>

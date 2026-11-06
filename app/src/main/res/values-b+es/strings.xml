@@ -620,7 +620,9 @@
 <string name="search_tv_sources_panel_meta" formatted="true">"%1$d DE %2$d ACTIVADOS · LOS CAMBIOS SE APLICAN AL PULSAR HECHO"</string>
 <string name="season">"Temporada"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
+<string name="season_other">"Otros"</string>
 <string name="season_short">"T"</string>
+<string name="season_specials">"Especiales"</string>
 <string name="seek_back_10_seconds">"Retroceder 10 segundos"</string>
 <string name="seek_forward_10_seconds">"Avanzar 10 segundos"</string>
 <string name="select_all">"Seleccionar todo"</string>

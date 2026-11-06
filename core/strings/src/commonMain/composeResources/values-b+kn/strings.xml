@@ -171,6 +171,8 @@
 <string name="search_tv_source_failed">ವಿಫಲ %s</string>
 <string name="search_tv_source_pinned">ಪಿನ್ ಮಾಡಲಾಗಿದೆ</string>
 <string name="search_tv_sources_panel_meta">%2$d ರಲ್ಲಿ %1$d ಸಕ್ರಿಯ · ಬದಲಾವಣೆಗಳು ಮುಗಿದಿದೆ ನಂತರ ಅನ್ವಯವಾಗುತ್ತವೆ</string>
+<string name="season_other">ಇತರೆ</string>
+<string name="season_specials">ವಿಶೇಷ</string>
 <string name="seek_back_10_seconds">10 ಸೆಕೆಂಡುಗಳು ಹಿಂದೆ ಹೋಗು</string>
 <string name="seek_forward_10_seconds">10 ಸೆಕೆಂಡುಗಳು ಮುಂದೆ ಹೋಗು</string>
 <string name="show_log_cat">ಲಾಗ್‌ಕ್ಯಾಟ್ 🐈 ತೋರಿಸಿ</string>

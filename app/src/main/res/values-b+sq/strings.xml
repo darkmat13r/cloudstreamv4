@@ -620,7 +620,9 @@
 <string name="search_tv_sources_panel_meta" formatted="true">"%1$d NGA %2$d AKTIVIZUAR · NDRYSHIMET ZBATOHEN ME U KRYE"</string>
 <string name="season">"Sezoni"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
+<string name="season_other">"Të tjera"</string>
 <string name="season_short">"S"</string>
+<string name="season_specials">"Speciale"</string>
 <string name="seek_back_10_seconds">"Kalo 10 sekonda mbrapa"</string>
 <string name="seek_forward_10_seconds">"Kalo 10 sekonda para"</string>
 <string name="select_all">"Zgjidh të gjitha"</string>

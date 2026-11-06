@@ -229,7 +229,9 @@
 <string name="search_tv_sources_panel_meta" formatted="true">"%1$d AV %2$d AKTIVERTE · ENDRINGAR GJELD ETTER FERDIG"</string>
 <string name="season">"Sesong"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
+<string name="season_other">"Anna"</string>
 <string name="season_short">"S"</string>
+<string name="season_specials">"Spesialar"</string>
 <string name="seek_back_10_seconds">"Hopp 10 sekund bakover"</string>
 <string name="seek_forward_10_seconds">"Hopp 10 sekund framover"</string>
 <string name="settings_info">"Informasjon"</string>

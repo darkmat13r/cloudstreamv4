@@ -348,7 +348,9 @@
 <string name="search_tv_source_pinned">سنجاق‌شده</string>
 <string name="search_tv_sources_panel_meta">%1$d از %2$d فعال · تغییرات پس از «انجام شد» اعمال می‌شود</string>
 <string name="season">فصل</string>
+<string name="season_other">سایر</string>
 <string name="season_short">ف</string>
+<string name="season_specials">ویژه</string>
 <string name="seek_back_10_seconds">۱۰ ثانیه به عقب</string>
 <string name="seek_forward_10_seconds">۱۰ ثانیه به جلو</string>
 <string name="select_all">انتخاب همه</string>

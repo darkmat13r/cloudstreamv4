@@ -620,7 +620,9 @@
 <string name="search_tv_sources_panel_meta" formatted="true">"%2$d件中%1$d件が有効 · 変更は「完了」で反映"</string>
 <string name="season">"シーズン"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
+<string name="season_other">"その他"</string>
 <string name="season_short">"シーズン"</string>
+<string name="season_specials">"スペシャル"</string>
 <string name="seek_back_10_seconds">"10 秒戻る"</string>
 <string name="seek_forward_10_seconds">"10 秒進む"</string>
 <string name="select_all">"全選択"</string>

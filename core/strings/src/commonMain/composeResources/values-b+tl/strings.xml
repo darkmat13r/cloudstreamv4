@@ -263,7 +263,9 @@
 <string name="search_tv_source_pinned">NAKA-PIN</string>
 <string name="search_tv_sources_panel_meta">%1$d SA %2$d ANG NAKA-ENABLE · ILALAPAT ANG MGA PAGBABAGO KAPAG PININDOT ANG TAPOS NA</string>
 <string name="season">Season</string>
+<string name="season_other">Iba pa</string>
 <string name="season_short">S</string>
+<string name="season_specials">Espesyal</string>
 <string name="seek_back_10_seconds">Bumalik ng 10 segundo</string>
 <string name="seek_forward_10_seconds">Umabante ng 10 segundo</string>
 <string name="settings_info">Impormasyon</string>

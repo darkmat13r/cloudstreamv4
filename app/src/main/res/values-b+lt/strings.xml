@@ -294,6 +294,8 @@
 <string name="search_tv_source_pinned">"PRISEGTA"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"ĮJUNGTA %1$d IŠ %2$d · PAKEITIMAI TAIKOMI PASPAUDUS BAIGTA"</string>
 <string name="season">"Sezonas"</string>
+<string name="season_other">"Kita"</string>
+<string name="season_specials">"Specialieji"</string>
 <string name="seek_back_10_seconds">"Atsukti 10 sekundžių atgal"</string>
 <string name="seek_forward_10_seconds">"Persukti 10 sekundžių į priekį"</string>
 <string name="select_all">"Pasirinkti viską"</string>

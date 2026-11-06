@@ -205,7 +205,9 @@
 <string name="search_tv_source_pinned">SABİTLƏNİB</string>
 <string name="search_tv_sources_panel_meta">%2$d İÇİNDƏN %1$d AKTİV · DƏYİŞİKLİKLƏR HAZIR İLƏ TƏTBİQ OLUNUR</string>
 <string name="season">Sezon</string>
+<string name="season_other">Digər</string>
 <string name="season_short">S</string>
+<string name="season_specials">Xüsusi</string>
 <string name="seek_back_10_seconds">10 saniyə geri keç</string>
 <string name="seek_forward_10_seconds">10 saniyə irəli keç</string>
 <string name="settings_info">Məlumat</string>

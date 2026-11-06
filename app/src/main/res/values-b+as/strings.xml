@@ -555,7 +555,9 @@
 <string name="search_tv_sources_panel_meta" formatted="true">"%2$dৰ ভিতৰত %1$d সক্ষম · পৰিৱৰ্তনসমূহ সম্পূৰ্ণ ত প্ৰয়োগ হয়"</string>
 <string name="season">"চিজন"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
+<string name="season_other">"অন্যান্য"</string>
 <string name="season_short">"চি"</string>
+<string name="season_specials">"বিশেষ"</string>
 <string name="seek_back_10_seconds">"১০ ছেকেণ্ড পাছুৱাওক"</string>
 <string name="seek_forward_10_seconds">"১০ ছেকেণ্ড আগুৱাওক"</string>
 <string name="select_all">"সকলো বাছক"</string>

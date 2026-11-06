@@ -620,7 +620,9 @@
 <string name="search_tv_sources_panel_meta" formatted="true">"WŁĄCZONO %1$d Z %2$d · ZMIANY OBOWIĄZUJĄ PO GOTOWE"</string>
 <string name="season">"Sezon"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
+<string name="season_other">"Inne"</string>
 <string name="season_short">"S"</string>
+<string name="season_specials">"Specjalne"</string>
 <string name="seek_back_10_seconds">"Przewiń do tyłu o 10 sekund"</string>
 <string name="seek_forward_10_seconds">"Przewiń do przodu o 10 sekund"</string>
 <string name="select_all">"Zaznacz wszystkie"</string>

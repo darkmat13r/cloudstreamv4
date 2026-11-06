@@ -619,7 +619,9 @@
 <string name="search_tv_sources_panel_meta">%1$d من %2$d مفعّل · تُطبَّق التغييرات عند «تم»</string>
 <string name="season">موسم</string>
 <string name="season_format">%1$s %2$d%3$s</string>
+<string name="season_other">أخرى</string>
 <string name="season_short">م</string>
+<string name="season_specials">حلقات خاصة</string>
 <string name="seek_back_10_seconds">ترجيع ١٠ ثوانٍ</string>
 <string name="seek_forward_10_seconds">تقديم ١٠ ثوانٍ</string>
 <string name="select_all">تحديد الكل</string>

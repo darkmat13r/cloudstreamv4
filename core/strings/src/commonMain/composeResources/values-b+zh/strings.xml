@@ -620,7 +620,9 @@
 <string name="search_tv_sources_panel_meta">已启用 %1$d / %2$d · 更改将在点击完成后生效</string>
 <string name="season">季</string>
 <string name="season_format">%1$s %2$d%3$s</string>
+<string name="season_other">其他</string>
 <string name="season_short">S</string>
+<string name="season_specials">特别篇</string>
 <string name="seek_back_10_seconds">快退 10 秒</string>
 <string name="seek_forward_10_seconds">快进 10 秒</string>
 <string name="select_all">全选</string>

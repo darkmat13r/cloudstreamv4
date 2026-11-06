@@ -173,6 +173,8 @@
 <string name="search_tv_source_pinned">"VASGESPELD"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"%1$d VAN %2$d GEAKTIVEER · WYSIGINGS GELD BY KLAAR"</string>
 <string name="season">"Seisoen"</string>
+<string name="season_other">"Ander"</string>
+<string name="season_specials">"Spesiaal"</string>
 <string name="seek_back_10_seconds">"Spring 10 sekondes terug"</string>
 <string name="seek_forward_10_seconds">"Spring 10 sekondes vorentoe"</string>
 <string name="select_all">"Kies Alles"</string>

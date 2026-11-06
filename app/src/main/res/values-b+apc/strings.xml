@@ -616,7 +616,9 @@
 <string name="search_tv_sources_panel_meta" formatted="true">"%1$d من %2$d مفعّل · التغييرات بتنطبق عند خلصت"</string>
 <string name="season">"جزء"</string>
 <string name="season_format" formatted="true">"%1$s%2$d%3$s"</string>
+<string name="season_other">"أخرى"</string>
 <string name="season_short">"ج"</string>
+<string name="season_specials">"خاصة"</string>
 <string name="seek_back_10_seconds">"رجّع 10 ثواني"</string>
 <string name="seek_forward_10_seconds">"قدّم 10 ثواني"</string>
 <string name="select_all">"نقي كل شي"</string>

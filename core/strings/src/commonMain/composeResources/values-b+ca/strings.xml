@@ -321,6 +321,8 @@
 <string name="search_tv_source_failed">HA FALLAT %s</string>
 <string name="search_tv_source_pinned">FIXAT</string>
 <string name="search_tv_sources_panel_meta">%1$d DE %2$d ACTIVATS · ELS CANVIS ES REGISTREN AMB FET</string>
+<string name="season_other">Altres</string>
+<string name="season_specials">Especials</string>
 <string name="seek_back_10_seconds">Retrocedeix 10 segons</string>
 <string name="seek_forward_10_seconds">Avança 10 segons</string>
 <string name="select_all">Seleccionar tot</string>

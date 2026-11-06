@@ -549,7 +549,9 @@
 <string name="search_tv_sources_panel_meta">%1$d DIN %2$d ACTIVATE · MODIFICĂRILE SE APLICĂ LA TERMINAT</string>
 <string name="season">Sezonul</string>
 <string name="season_format">%1$s %2$d%3$s</string>
+<string name="season_other">Altele</string>
 <string name="season_short">S</string>
+<string name="season_specials">Speciale</string>
 <string name="seek_back_10_seconds">Derulează înapoi 10 secunde</string>
 <string name="seek_forward_10_seconds">Derulează înainte 10 secunde</string>
 <string name="select_all">Selectionati totul</string>

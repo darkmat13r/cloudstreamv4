@@ -620,7 +620,9 @@
 <string name="search_tv_sources_panel_meta">%1$d DARI %2$d DIAKTIFKAN · PERUBAHAN BERLAKU SETELAH SELESAI</string>
 <string name="season">Season</string>
 <string name="season_format">%1$s %2$d%3$s</string>
+<string name="season_other">Lainnya</string>
 <string name="season_short">S</string>
+<string name="season_specials">Spesial</string>
 <string name="seek_back_10_seconds">Mundur 10 detik</string>
 <string name="seek_forward_10_seconds">Maju 10 detik</string>
 <string name="select_all">Pilih Semua</string>

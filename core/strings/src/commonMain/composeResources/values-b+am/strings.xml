@@ -158,6 +158,8 @@
 <string name="search_tv_source_failed">አልተሳካም %s</string>
 <string name="search_tv_source_pinned">ተሰክቷል</string>
 <string name="search_tv_sources_panel_meta">ከ%2$d ውስጥ %1$d ነቅተዋል · ለውጦች በተከናውኗል ላይ ይተገበራሉ</string>
+<string name="season_other">ሌላ</string>
+<string name="season_specials">ልዩ</string>
 <string name="seek_back_10_seconds">10 ሰከንድ ወደ ኋላ</string>
 <string name="seek_forward_10_seconds">10 ሰከንድ ወደ ፊት</string>
 <string name="skip_loading">መጫንን ዝለል</string>

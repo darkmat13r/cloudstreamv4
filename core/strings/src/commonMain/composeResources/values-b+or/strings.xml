@@ -198,7 +198,9 @@
 <string name="search_tv_source_pinned">ପିନ୍ କରାଯାଇଛି</string>
 <string name="search_tv_sources_panel_meta">%2$d ମଧ୍ୟରୁ %1$d ସକ୍ରିୟ · ହେଲା ଦବାଇଲେ ପରିବର୍ତ୍ତନ ଲାଗୁ ହେବ</string>
 <string name="season">ଋତୁ</string>
+<string name="season_other">ଅନ୍ୟାନ୍ୟ</string>
 <string name="season_short">ଋ</string>
+<string name="season_specials">ବିଶେଷ</string>
 <string name="seek_back_10_seconds">୧୦ ସେକେଣ୍ଡ ପଛକୁ ଯାଅ</string>
 <string name="seek_forward_10_seconds">୧୦ ସେକେଣ୍ଡ ଆଗକୁ ଯାଅ</string>
 <string name="setup_done">ହେଲା</string>

@@ -620,7 +620,9 @@
 <string name="search_tv_sources_panel_meta">%1$d VON %2$d AKTIV · ÄNDERUNGEN WERDEN BEI FERTIG ÜBERNOMMEN</string>
 <string name="season">Staffel</string>
 <string name="season_format">%1$s %2$d%3$s</string>
+<string name="season_other">Sonstige</string>
 <string name="season_short">S</string>
+<string name="season_specials">Specials</string>
 <string name="seek_back_10_seconds">10 Sekunden zurückspulen</string>
 <string name="seek_forward_10_seconds">10 Sekunden vorspulen</string>
 <string name="select_all">Alle auswählen</string>

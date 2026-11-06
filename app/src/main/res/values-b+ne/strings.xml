@@ -176,6 +176,8 @@
 <string name="search_tv_source_failed" formatted="true">"असफल %s"</string>
 <string name="search_tv_source_pinned">"पिन गरिएको"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"%2$d मध्ये %1$d सक्रिय · सकियो थिच्दा परिवर्तन लागू हुन्छ"</string>
+<string name="season_other">"अन्य"</string>
+<string name="season_specials">"विशेष"</string>
 <string name="seek_back_10_seconds">"10 सेकेन्ड पछाडि जानुहोस्"</string>
 <string name="seek_forward_10_seconds">"10 सेकेन्ड अगाडि जानुहोस्"</string>
 <string name="show_log_cat">"Logcat देखाउनुहोस"</string>
