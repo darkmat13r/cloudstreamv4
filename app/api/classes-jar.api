@@ -3194,6 +3194,7 @@ public final static class com/lagradost/cloudstream3/R$plurals : java/lang/Objec
 	public static field downloads_failed_count I
 	public static field downloads_queued I
 	public static field episodes I
+	public static field home_bookmarks_count I
 	public static field home_sections_failed I
 	public static field links_hidden I
 	public static field search_state_no_results_body I
@@ -3594,12 +3595,16 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field hide_player_control_names_key I
 	public static field history I
 	public static field hls_playlist I
+	public static field home_bookmarks_no_status_body I
+	public static field home_bookmarks_no_status_headline I
 	public static field home_change_provider_img_des I
 	public static field home_expanded_hide I
 	public static field home_info I
 	public static field home_main_poster_img_des I
 	public static field home_more_info I
 	public static field home_next_random_img_des I
+	public static field home_offline_bookmarks_body I
+	public static field home_offline_source_headline I
 	public static field home_play I
 	public static field home_random I
 	public static field home_search_only_body I
@@ -37629,6 +37634,31 @@ public final class com/lagradost/cloudstream4/home/HomeTvFragmentKt : java/lang/
 	public static final synthetic fun access$HomePoster (Lcom/lagradost/cloudstream4/feature/home/HomeItem;Landroidx/compose/runtime/Composer;I)V
 }
 
+public final class com/lagradost/cloudstream4/home/LibraryHomeBookmarks : java/lang/Object, com/lagradost/cloudstream4/feature/home/HomeBookmarkStore {
+	public static final field $stable I
+	public static final field MAX_BADGE_CHARS I
+	public static final field MAX_ID_CHARS I
+	public fun <init> (Landroid/content/Context;)V
+	public fun <init> (Lcom/lagradost/cloudstream4/library/AndroidLibraryStore;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;)V
+	public synthetic fun <init> (Lcom/lagradost/cloudstream4/library/AndroidLibraryStore;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun choose (Lcom/lagradost/cloudstream4/feature/home/HomeWatchStatus;)V
+	public fun chosen ()Lcom/lagradost/cloudstream4/feature/home/HomeWatchStatus;
+	public fun read (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class com/lagradost/cloudstream4/home/LibraryHomeBookmarksKt : java/lang/Object {
+	public static final synthetic fun access$qualityLabels (Landroid/content/Context;)Lkotlin/jvm/functions/Function1;
+	public static final synthetic fun access$toStatus (Lcom/lagradost/cloudstream3/ui/WatchType;)Lcom/lagradost/cloudstream4/feature/home/HomeWatchStatus;
+	public static final synthetic fun access$toStatus (Lcom/lagradost/cloudstream4/feature/library/LibraryBucket;)Lcom/lagradost/cloudstream4/feature/home/HomeWatchStatus;
+	public static final synthetic fun access$toWatchType (Lcom/lagradost/cloudstream4/feature/home/HomeWatchStatus;)Lcom/lagradost/cloudstream3/ui/WatchType;
+}
+
+public final static synthetic class com/lagradost/cloudstream4/home/LibraryHomeBookmarksKt$WhenMappings : java/lang/Object {
+	public static final synthetic field $EnumSwitchMapping$0 [I
+	public static final synthetic field $EnumSwitchMapping$1 [I
+	public static final synthetic field $EnumSwitchMapping$2 [I
+}
+
 public final class com/lagradost/cloudstream4/home/LibraryHomeHistory : java/lang/Object, com/lagradost/cloudstream4/feature/home/HomeWatchHistory {
 	public static final field $stable I
 	public fun <init> (Lcom/lagradost/cloudstream4/library/AndroidLibraryStore;)V
@@ -37660,6 +37690,7 @@ public final class com/lagradost/cloudstream4/library/AndroidLibraryStore : java
 	public static final synthetic fun access$positionOf (Lcom/lagradost/cloudstream4/library/AndroidLibraryStore;Lcom/lagradost/cloudstream4/library/AndroidLibraryStore$Row;)Lcom/lagradost/cloudstream4/feature/library/WatchPosition;
 	public static final synthetic fun access$resumingOf (Lcom/lagradost/cloudstream4/library/AndroidLibraryStore;Lcom/lagradost/cloudstream3/utils/downloader/DownloadObjects$ResumeWatching;)Lcom/lagradost/cloudstream4/library/Resuming;
 	public static final synthetic fun access$rows (Lcom/lagradost/cloudstream4/library/AndroidLibraryStore;)Ljava/util/List;
+	public final fun bookmarked (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun clearPositions-SGee5UE (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun positions (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun record (Lcom/lagradost/cloudstream4/feature/library/WatchPosition;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -37667,6 +37698,11 @@ public final class com/lagradost/cloudstream4/library/AndroidLibraryStore : java
 	public final fun resuming (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun setBucket-DToEV4Y (Ljava/lang/String;Lcom/lagradost/cloudstream4/feature/library/LibraryBucket;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun titles (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final static class com/lagradost/cloudstream4/library/AndroidLibraryStore$bookmarked$2$invokeSuspend$$inlined$sortedByDescending$1 : java/lang/Object, java/util/Comparator {
+	public fun <init> ()V
+	public final fun compare (Ljava/lang/Object;Ljava/lang/Object;)I
 }
 
 public final static class com/lagradost/cloudstream4/library/AndroidLibraryStore$resuming$2$invokeSuspend$$inlined$sortedByDescending$1 : java/lang/Object, java/util/Comparator {
@@ -37687,6 +37723,20 @@ public final class com/lagradost/cloudstream4/library/AndroidLibraryStoreKt : ja
 
 public final static synthetic class com/lagradost/cloudstream4/library/AndroidLibraryStoreKt$WhenMappings : java/lang/Object {
 	public static final synthetic field $EnumSwitchMapping$0 [I
+}
+
+public final class com/lagradost/cloudstream4/library/Bookmarked : java/lang/Object {
+	public static final field $stable I
+	public fun <init> (Lcom/lagradost/cloudstream4/feature/library/LibraryTitle;Lcom/lagradost/cloudstream3/SearchQuality;)V
+	public final fun component1 ()Lcom/lagradost/cloudstream4/feature/library/LibraryTitle;
+	public final fun component2 ()Lcom/lagradost/cloudstream3/SearchQuality;
+	public final fun copy (Lcom/lagradost/cloudstream4/feature/library/LibraryTitle;Lcom/lagradost/cloudstream3/SearchQuality;)Lcom/lagradost/cloudstream4/library/Bookmarked;
+	public static synthetic fun copy$default (Lcom/lagradost/cloudstream4/library/Bookmarked;Lcom/lagradost/cloudstream4/feature/library/LibraryTitle;Lcom/lagradost/cloudstream3/SearchQuality;ILjava/lang/Object;)Lcom/lagradost/cloudstream4/library/Bookmarked;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getQuality ()Lcom/lagradost/cloudstream3/SearchQuality;
+	public final fun getTitle ()Lcom/lagradost/cloudstream4/feature/library/LibraryTitle;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class com/lagradost/cloudstream4/library/ComposableSingletons$LibraryTvFragmentKt : java/lang/Object {

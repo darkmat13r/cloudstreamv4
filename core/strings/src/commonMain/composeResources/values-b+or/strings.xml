@@ -4,6 +4,7 @@
 <string name="detail_load_failed_body">ଉତ୍ସ ଉପଲବ୍ଧ ନ ହୋଇପାରେ।</string>
 <string name="detail_load_failed_headline">ଏହି ଶୀର୍ଷକ ଖୋଲିହେଲା ନାହିଁ</string>
 <plurals name="downloads_failed_count"><item quantity="one">%d ଵିଫଳ ହେଲା</item><item quantity="other">%d ଵିଫଳ ହେଲା</item></plurals>
+<plurals name="home_bookmarks_count"><item quantity="one">%d ବୁକମାର୍କ</item><item quantity="other">%d ବୁକମାର୍କ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d ଵିଭାଗ ଲୋଡ୍ ହୋଇପାରିଲା ନାହିଁ</item><item quantity="other">%d ଵିଭାଗ ଲୋଡ୍ ହୋଇପାରିଲା ନାହିଁ</item></plurals>
 <string name="action_default">ଡିଫଲ୍ଟ</string>
 <string name="added_sync_format">%s ଯୋଡ଼ାଗଲା</string>
@@ -114,11 +115,15 @@
 <string name="go_forward_30">+୩୦</string>
 <string name="history">ଇତିଵୃତ୍ତି</string>
 <string name="hls_playlist">HLS ଚାଳନାତାଲିକା</string>
+<string name="home_bookmarks_no_status_body">ସେହି ବୁକମାର୍କଗୁଡ଼ିକ ଦେଖିବାକୁ ଉପରୁ ଗୋଟିଏ ବାଛନ୍ତୁ।</string>
+<string name="home_bookmarks_no_status_headline">କୌଣସି ସ୍ଥିତି ବଛାଯାଇନାହିଁ</string>
 <string name="home_change_provider_img_des">ପ୍ରଦାତା ବଦଳାଅ</string>
 <string name="home_expanded_hide">ଲୁଚାଅ</string>
 <string name="home_info">ସୂଚନା</string>
 <string name="home_main_poster_img_des">ମୁଖ୍ୟ ପୋଷ୍ଟର୍</string>
 <string name="home_more_info">ଅଧିକ ସୂଚନା</string>
+<string name="home_offline_bookmarks_body">ଆପଣଙ୍କ ବୁକମାର୍କଗୁଡ଼ିକ ଏହି ଡିଭାଇସରେ ସଞ୍ଚିତ ଅଛି।</string>
+<string name="home_offline_source_headline">%1$s ପାଇଁ ସଂଯୋଗ ଆବଶ୍ୟକ</string>
 <string name="home_play">ଚଲାଅ</string>
 <string name="home_search_only_body">ଆପଣଙ୍କର କୌଣସି ଏକ୍ସଟେନସନରେ ହୋମ୍ ପୃଷ୍ଠା ନାହିଁ, କିନ୍ତୁ ଆପଣ ସେଗୁଡ଼ିକରେ ସନ୍ଧାନ କରିପାରିବେ।</string>
 <string name="library">ଲାଇବ୍ରେରୀ</string>

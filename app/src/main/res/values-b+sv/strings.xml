@@ -4,6 +4,7 @@
 <plurals name="downloads_active"><item quantity="one">"%d aktiv nedladdning"</item><item quantity="other">"%d aktiva nedladdningar"</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">"%d misslyckades"</item><item quantity="other">"%d misslyckades"</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">"%d nedladdning i kö"</item><item quantity="other">"%d nedladdningar i kö"</item></plurals>
+<plurals name="home_bookmarks_count"><item quantity="one">"%d BOKMÄRKE"</item><item quantity="other">"%d BOKMÄRKEN"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d sektion kunde inte laddas"</item><item quantity="other">"%d sektioner kunde inte laddas"</item></plurals>
 <plurals name="links_hidden"><item quantity="one">"%d dold länk"</item><item quantity="other">"%d dolda länkar"</item></plurals>
 <string name="account">"konto"</string>
@@ -341,12 +342,16 @@
 <string name="hide_player_control_names">"Dölj namnen på spelarens kontroller"</string>
 <string name="history">"Historik"</string>
 <string name="hls_playlist">"HLS spellista"</string>
+<string name="home_bookmarks_no_status_body">"Välj en ovan för att se de bokmärkena."</string>
+<string name="home_bookmarks_no_status_headline">"Ingen status vald"</string>
 <string name="home_change_provider_img_des">"Byt leverantör"</string>
 <string name="home_expanded_hide">"Göm"</string>
 <string name="home_info">"Info"</string>
 <string name="home_main_poster_img_des">@string/result_poster_img_des</string>
 <string name="home_more_info">"Mer information"</string>
 <string name="home_next_random_img_des">"Nästa slumpvis"</string>
+<string name="home_offline_bookmarks_body">"Dina bokmärken sparas på den här enheten."</string>
+<string name="home_offline_source_headline" formatted="true">"%1$s behöver en anslutning"</string>
 <string name="home_play">"Spela upp"</string>
 <string name="home_random">"Slumpmässig"</string>
 <string name="home_search_only_body">"Inget av dina tillägg har en startsida, men du kan fortfarande söka i dem."</string>

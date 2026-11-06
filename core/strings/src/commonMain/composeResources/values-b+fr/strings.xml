@@ -6,6 +6,7 @@
 <plurals name="downloads_active"><item quantity="one">%d téléchargement actif</item><item quantity="many">%d téléchargements actifs</item><item quantity="other">%d téléchargements actifs</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d échec</item><item quantity="many">%d échecs</item><item quantity="other">%d échecs</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d téléchargement en attente</item><item quantity="many">%d téléchargements en attente</item><item quantity="other">%d téléchargements en attente</item></plurals>
+<plurals name="home_bookmarks_count"><item quantity="one">%d MARQUE-PAGE</item><item quantity="many">%d DE MARQUE-PAGES</item><item quantity="other">%d MARQUE-PAGES</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d section n'a pas pu être chargée</item><item quantity="many">%d sections n'ont pas pu être chargées</item><item quantity="other">%d sections n'ont pas pu être chargées</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d lien caché</item><item quantity="many">%d liens cachés</item><item quantity="other">%d liens cachés</item></plurals>
 <string name="account">compte</string>
@@ -341,12 +342,16 @@
 <string name="hide_player_control_names">Masquer les noms des commandes du lecteur</string>
 <string name="history">Historique</string>
 <string name="hls_playlist">Playlist HLS</string>
+<string name="home_bookmarks_no_status_body">Choisissez-en un ci-dessus pour voir ces marque-pages.</string>
+<string name="home_bookmarks_no_status_headline">Aucun statut choisi</string>
 <string name="home_change_provider_img_des">Changer le fournisseur</string>
 <string name="home_expanded_hide">Cacher</string>
 <string name="home_info">Infos</string>
 <string name="home_main_poster_img_des">Affiche principale</string>
 <string name="home_more_info">Plus d'information</string>
 <string name="home_next_random_img_des">Aléatoire suivant</string>
+<string name="home_offline_bookmarks_body">Vos marque-pages sont enregistrés sur cet appareil.</string>
+<string name="home_offline_source_headline">%1$s a besoin d'une connexion</string>
 <string name="home_play">Lecture</string>
 <string name="home_random">Aléatoire</string>
 <string name="home_search_only_body">Aucune de vos extensions n'a de page d'accueil, mais vous pouvez quand même y effectuer une recherche.</string>

@@ -4,6 +4,7 @@
 <plurals name="downloads_active"><item quantity="other">"%d unduhan aktif"</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="other">"%d gagal"</item></plurals>
 <plurals name="downloads_queued"><item quantity="other">"%d unduhan dalam antrean"</item></plurals>
+<plurals name="home_bookmarks_count"><item quantity="other">"%d MARKAH"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">"%d bagian gagal dimuat"</item></plurals>
 <plurals name="links_hidden"><item quantity="other">"%d link tersembunyi"</item></plurals>
 <string name="account">"akun"</string>
@@ -341,12 +342,16 @@
 <string name="hide_player_control_names">"Sembunyikan Nama Kontrol Pemain"</string>
 <string name="history">"Riwayat"</string>
 <string name="hls_playlist">"Daftar putar HLS"</string>
+<string name="home_bookmarks_no_status_body">"Pilih salah satu di atas untuk melihat markah tersebut."</string>
+<string name="home_bookmarks_no_status_headline">"Tidak ada status dipilih"</string>
 <string name="home_change_provider_img_des">"Ganti Penyedia"</string>
 <string name="home_expanded_hide">"Sembunyikan"</string>
 <string name="home_info">"Info"</string>
 <string name="home_main_poster_img_des">"Poster Utama"</string>
 <string name="home_more_info">"Lebih banyak info"</string>
 <string name="home_next_random_img_des">"Acak selanjutnya"</string>
+<string name="home_offline_bookmarks_body">"Markah Anda tersimpan di perangkat ini."</string>
+<string name="home_offline_source_headline" formatted="true">"%1$s memerlukan koneksi"</string>
 <string name="home_play">"Putar"</string>
 <string name="home_random">"Acak"</string>
 <string name="home_search_only_body">"Tidak ada ekstensi Anda yang memiliki beranda, tetapi Anda tetap dapat mencari di dalamnya."</string>

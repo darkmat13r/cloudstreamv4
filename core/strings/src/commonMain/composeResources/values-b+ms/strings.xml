@@ -4,6 +4,7 @@
 <string name="detail_load_failed_body">Sumber mungkin tidak tersedia.</string>
 <string name="detail_load_failed_headline">Tajuk ini tidak dapat dibuka</string>
 <plurals name="downloads_failed_count"><item quantity="other">%d gagal</item></plurals>
+<plurals name="home_bookmarks_count"><item quantity="other">%d PENANDA HALAMAN</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">%d bahagian gagal dimuatkan</item></plurals>
 <string name="account">akaun</string>
 <string name="action_add_to_bookmarks">Tetapkan status tontonan</string>
@@ -275,12 +276,16 @@
 <string name="go_forward_30">+30</string>
 <string name="help">Bantuan</string>
 <string name="history">Sejarah</string>
+<string name="home_bookmarks_no_status_body">Pilih satu di atas untuk melihat penanda halaman tersebut.</string>
+<string name="home_bookmarks_no_status_headline">Tiada status dipilih</string>
 <string name="home_change_provider_img_des">Tukar Pembekal</string>
 <string name="home_expanded_hide">Sembunyi</string>
 <string name="home_info">Info</string>
 <string name="home_main_poster_img_des">Poster Utama</string>
 <string name="home_more_info">Lebih maklumat</string>
 <string name="home_next_random_img_des">Seterusnya Rawak</string>
+<string name="home_offline_bookmarks_body">Penanda halaman anda disimpan pada peranti ini.</string>
+<string name="home_offline_source_headline">%1$s memerlukan sambungan</string>
 <string name="home_play">Pasang</string>
 <string name="home_random">Rawak</string>
 <string name="home_search_only_body">Tiada tambahan anda yang mempunyai halaman utama, tetapi anda masih boleh mencari di dalamnya.</string>

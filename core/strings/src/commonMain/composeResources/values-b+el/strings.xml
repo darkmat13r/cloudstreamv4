@@ -4,6 +4,7 @@
 <string name="detail_load_failed_body">Η πηγή ίσως δεν είναι διαθέσιμη.</string>
 <string name="detail_load_failed_headline">Δεν ήταν δυνατό το άνοιγμα αυτού του τίτλου</string>
 <plurals name="downloads_failed_count"><item quantity="one">%d απέτυχε</item><item quantity="other">%d απέτυχαν</item></plurals>
+<plurals name="home_bookmarks_count"><item quantity="one">%d ΣΕΛΙΔΟΔΕΙΚΤΗΣ</item><item quantity="other">%d ΣΕΛΙΔΟΔΕΙΚΤΕΣ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Αποτυχία φόρτωσης %d ενότητας</item><item quantity="other">Αποτυχία φόρτωσης %d ενοτήτων</item></plurals>
 <string name="account">Λογαριασμός</string>
 <string name="action_add_to_bookmarks">Ορισμός κατάστασης θέασης</string>
@@ -309,12 +310,16 @@
 <string name="hide_player_control_names">Απόκρυψη των ονομάτων των χειρισμών του παίκτη</string>
 <string name="history">Ιστορικό</string>
 <string name="hls_playlist">HLS Playlist</string>
+<string name="home_bookmarks_no_status_body">Επιλέξτε μία παραπάνω για να δείτε αυτούς τους σελιδοδείκτες.</string>
+<string name="home_bookmarks_no_status_headline">Δεν επιλέχθηκε κατάσταση</string>
 <string name="home_change_provider_img_des">Αλλαγή Παρόχου</string>
 <string name="home_expanded_hide">Απόκρυψη</string>
 <string name="home_info">Πληροφορίες</string>
 <string name="home_main_poster_img_des">Κύρια αφίσα</string>
 <string name="home_more_info">Περαιτέρω πληροφορίες</string>
 <string name="home_next_random_img_des">Next Random</string>
+<string name="home_offline_bookmarks_body">Οι σελιδοδείκτες σας είναι αποθηκευμένοι σε αυτή τη συσκευή.</string>
+<string name="home_offline_source_headline">Το %1$s χρειάζεται σύνδεση</string>
 <string name="home_play">Αναπαραγωγή</string>
 <string name="home_random">Τυχαίο</string>
 <string name="home_search_only_body">Καμία από τις επεκτάσεις σας δεν έχει αρχική σελίδα, αλλά μπορείτε να αναζητήσετε σε αυτές.</string>

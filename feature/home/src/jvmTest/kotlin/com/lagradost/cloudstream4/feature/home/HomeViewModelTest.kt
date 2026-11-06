@@ -662,4 +662,102 @@ class HomeViewModelTest {
         vm.onAction(HomeAction.Reappeared)
         assertEquals(listOf(entry), vm.state.value.history.resume)
     }
+
+    // ---- Bookmarks (`TV Home Extras` 3e, 3f) -----------------------------------------------------------------------
+
+    private class Shelf(var all: List<HomeBookmark>, var kept: HomeWatchStatus? = null) : HomeBookmarkStore {
+        var reads = 0
+        var fail = false
+        val chosenLog = mutableListOf<HomeWatchStatus?>()
+
+        override suspend fun read(): List<HomeBookmark> {
+            reads++
+            if (fail) error("unreadable")
+            return all
+        }
+
+        override fun chosen() = kept
+
+        override fun choose(status: HomeWatchStatus?) {
+            kept = status
+            chosenLog += status
+        }
+    }
+
+    private fun mark(id: String, status: HomeWatchStatus, at: Long) = HomeBookmark(HomeItem(id, id), status, at)
+
+    private fun TestScope.withShelf(shelf: HomeBookmarkStore, answer: HomePageReply = page("A", "1")) = HomeViewModel(
+        Fake(listOf(option(a))) { _, _, _ -> answer },
+        TestScope(UnconfinedTestDispatcher(testScheduler)),
+        bookmarkStore = shelf,
+    )
+
+    @Test
+    fun `bookmarks show the kept status's titles, newest first, with a chip only for a status that holds one`() = runTest {
+        val shelf = Shelf(
+            listOf(
+                mark("old", HomeWatchStatus.Watching, 1),
+                mark("new", HomeWatchStatus.Watching, 3),
+                mark("later", HomeWatchStatus.Completed, 2),
+            ),
+            kept = HomeWatchStatus.Watching,
+        )
+        val vm = withShelf(shelf)
+        val bookmarks = vm.state.value.bookmarks
+        assertEquals(listOf(HomeWatchStatus.Watching, HomeWatchStatus.Completed), bookmarks.statuses)
+        assertEquals(listOf("new", "old"), bookmarks.shown.map { it.id })
+    }
+
+    @Test
+    fun `pressing another chip shows its titles and keeps it, and pressing the chosen one clears it`() = runTest {
+        val shelf = Shelf(
+            listOf(mark("w", HomeWatchStatus.Watching, 1), mark("c", HomeWatchStatus.Completed, 2)),
+            kept = HomeWatchStatus.Watching,
+        )
+        val vm = withShelf(shelf)
+        vm.onAction(HomeAction.BookmarkFilterPressed(HomeWatchStatus.Completed))
+        assertEquals(listOf("c"), vm.state.value.bookmarks.shown.map { it.id })
+        vm.onAction(HomeAction.BookmarkFilterPressed(HomeWatchStatus.Completed))
+        assertNull(vm.state.value.bookmarks.applied)
+        assertEquals(emptyList(), vm.state.value.bookmarks.shown)
+        // The rail is still there, with its chips: 3f.
+        assertEquals(2, vm.state.value.bookmarks.statuses.size)
+        assertEquals(listOf(HomeWatchStatus.Completed, null), shelf.chosenLog)
+    }
+
+    @Test
+    fun `a kept status that holds nothing now is no choice, and nothing kept is none chosen`() = runTest {
+        val gone = withShelf(Shelf(listOf(mark("w", HomeWatchStatus.Watching, 1)), kept = HomeWatchStatus.Dropped))
+        assertNull(gone.state.value.bookmarks.applied)
+        val never = withShelf(Shelf(listOf(mark("w", HomeWatchStatus.Watching, 1))))
+        assertNull(never.state.value.bookmarks.applied)
+        assertEquals(listOf(HomeWatchStatus.Watching), never.state.value.bookmarks.statuses)
+    }
+
+    @Test
+    fun `bookmarks are read when history is, stay offline, and a failed read leaves what is on screen`() = runTest {
+        val shelf = Shelf(listOf(mark("w", HomeWatchStatus.Watching, 1)), kept = HomeWatchStatus.Watching)
+        val vm = withShelf(shelf, HomePageReply.Offline)
+        assertEquals(HomeStatus.Offline, vm.state.value.status)
+        assertEquals(listOf("w"), vm.state.value.bookmarks.shown.map { it.id })
+
+        vm.onAction(HomeAction.Reappeared)
+        vm.onAction(HomeAction.SourcesChanged)
+        assertEquals(3, shelf.reads)
+
+        shelf.fail = true
+        vm.onAction(HomeAction.Reappeared)
+        assertEquals(listOf("w"), vm.state.value.bookmarks.shown.map { it.id })
+    }
+
+    @Test
+    fun `one title in one status twice is one card`() = runTest {
+        val vm = withShelf(
+            Shelf(
+                listOf(mark("w", HomeWatchStatus.Watching, 1), mark("w", HomeWatchStatus.Watching, 2)),
+                kept = HomeWatchStatus.Watching,
+            ),
+        )
+        assertEquals(listOf("w"), vm.state.value.bookmarks.shown.map { it.id })
+    }
 }

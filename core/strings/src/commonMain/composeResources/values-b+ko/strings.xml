@@ -6,6 +6,7 @@
 <plurals name="downloads_active"><item quantity="other">%d 활성 다운로드</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="other">%d개 실패</item></plurals>
 <plurals name="downloads_queued"><item quantity="other">%d 다운로드</item></plurals>
+<plurals name="home_bookmarks_count"><item quantity="other">북마크 %d개</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">섹션 %d개를 불러오지 못했습니다</item></plurals>
 <string name="account">계정</string>
 <string name="action_add_to_bookmarks">시청 상태 설정</string>
@@ -340,12 +341,16 @@
 <string name="hide_player_control_names">플레이어 내 버튼명 숨기기</string>
 <string name="history">기록</string>
 <string name="hls_playlist">HLS 재생목록</string>
+<string name="home_bookmarks_no_status_body">위에서 하나를 선택하면 해당 북마크가 표시됩니다.</string>
+<string name="home_bookmarks_no_status_headline">선택한 상태 없음</string>
 <string name="home_change_provider_img_des">소스 변경</string>
 <string name="home_expanded_hide">숨기기</string>
 <string name="home_info">정보</string>
 <string name="home_main_poster_img_des">메인 포스터</string>
 <string name="home_more_info">상세 정보</string>
 <string name="home_next_random_img_des">다음 추천</string>
+<string name="home_offline_bookmarks_body">북마크는 이 기기에 저장되어 있습니다.</string>
+<string name="home_offline_source_headline">%1$s에 연결이 필요합니다</string>
 <string name="home_play">재생</string>
 <string name="home_random">랜덤</string>
 <string name="home_search_only_body">홈 페이지가 있는 확장 기능은 없지만 검색은 계속 사용할 수 있습니다.</string>
