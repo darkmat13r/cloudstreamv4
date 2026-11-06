@@ -4525,6 +4525,9 @@ default), `HomeAction.BookmarkFilterPressed`, `HomeRowKey.Bookmarks`, and `tv/Ho
 - **A chip only for a status that holds a title.** A kept status that no longer does reads as none chosen; the old one left an
   invisible chip checked.
 - **A bookmark opens from its own source**, by the same `encodeId` as a card, whichever source the page shows.
+- **Bookmarks are read locally, so they arrive before the source's rows.** Nothing reserves their band while the read runs; if
+  that read ever became slower than the source's, everything below would jump down by `BookmarksRailHeight` (184dp: the 48dp chip
+  cell, 16dp clearance and a 120dp poster).
 
 ### Every reduction from the boards
 
@@ -4560,11 +4563,13 @@ Five new keys, each in all 62 directories, with translator notes in `docs/string
 
 ### Tested
 
-JVM: `HomeViewModelTest` 47 (5 new). Device, `Television_720p`: `HomeScreenTvDeviceTest` 63 (13 new), including three
-screenshot cases, `home-bookmarks-focus-card`, `home-bookmarks-no-status-focus-chip`, `home-offline-bookmarks-focus-retry`.
-`TvHomeNavigationTest` gains one through real navigation: a title given a watch status under the keys the app writes is on the
-rail with its chip chosen, opens its real `ResultFragmentTv` page, Back puts focus back on it, and the chosen chip pressed
-empties the old home's key.
+JVM: `HomeViewModelTest` 47 (5 new). Device, `Television_720p`: `HomeScreenTvDeviceTest` 64 (14 new), including four
+screenshot cases, `home-bookmarks-focus-card`, `home-bookmarks-no-status-focus-chip`, `home-offline-bookmarks-focus-retry`, and
+`home-offline-continue-bookmarks-focus-retry` (review): offline with Continue watching and the bookmarks both above the prompt,
+the tightest page at 720p and the one path that drops the bookmarks' offline body, with Try again focused and out of the bottom
+focus band. `TvHomeNavigationTest` gains one through real navigation: a title given a watch status under the keys the app writes
+is on the rail with its chip chosen, opens its real title page (`DetailTvFragment` since `KMP-38`, #153, merged in; it was
+`ResultFragmentTv` before), Back puts focus back on it, and the chosen chip pressed empties the old home's key.
 
 **Each critical test was shown failing**, in two control runs. Six mutations together (the rail dropped under a state, a
 bookmark's return target, bookmarks out of the landing, the wall, the dim, the filter never clearing, and the fragment given no

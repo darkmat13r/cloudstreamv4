@@ -1421,6 +1421,26 @@ class HomeScreenTvDeviceTest {
         rule.assertScreenshot("home-offline-bookmarks-focus-retry")
     }
 
+    /**
+     * 3g at its tightest at 720p: offline with Continue watching and the bookmarks both above the prompt. The prompt keeps
+     * the source's headline and drops its body, and Try again is focused, on screen and out of the bottom focus band.
+     */
+    @Test
+    fun screenshotOfflineWithContinueWatchingAndBookmarksFocusOnRetry() {
+        shot3c()
+        shotBookmarks()
+        source.answer = { _, _, _ -> HomePageReply.Offline }
+        showForScreenshot()
+        awaitFocus(RETRY)
+        rule.waitForIdle()
+        rule.onNodeWithText("${ONE.name} needs a connection").assertIsDisplayed()
+        rule.onNodeWithText("Your bookmarks are saved on this device.").assertDoesNotExist()
+        rule.onNode(isFocused()).assertIsDisplayed()
+        val retry = rule.onNode(isFocused()).getUnclippedBoundsInRoot()
+        assertTrue("the button is inside the band, bottom ${retry.bottom}", retry.bottom.value <= SCREEN_HEIGHT_DP - 28f + GEOMETRY_SLACK)
+        rule.assertScreenshot("home-offline-continue-bookmarks-focus-retry")
+    }
+
     /** 3e's nine bookmarks, two with a quality badge, and one Completed so that two chips show. */
     private fun shotBookmarks(kept: HomeWatchStatus? = HomeWatchStatus.Watching) {
         shelf.all = ShotMarks.mapIndexed { index, title ->
