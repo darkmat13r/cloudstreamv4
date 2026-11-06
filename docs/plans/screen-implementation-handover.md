@@ -53,6 +53,8 @@ https://claude.ai/design/p/c5fd7e44-70f5-41b6-8a48-e850eb88334b, holds the same 
 | `TV Search Suggestions.dc.html` | Suggestions while typing, nothing matches, no results, Quick Search answering / empty |
 | `TV Library.dc.html` | Grid, provider unreachable, empty page, sort panel, provider panel |
 | `TV Episodes Downloads.dc.html` | Episode panel, episode-row board, downloads ×3 |
+| `Desktop Downloads.dc.html` | `DS-18`. Downloads on the Mac: titles, multi-select and menu, confirm, one series, empty/offline/full, minimum window. 1 px = 1 dp |
+| `Phone Downloads.dc.html` | `DS-18`. Downloads on phone and tablet: titles, swipe, choosing, one series, the verb sheet, empty/offline/full, two-pane tablet. 1 px = 1 dp |
 | `TV Detail Player.dc.html` | Show detail, movie detail, link loading, player HUD, selectors |
 | `TV Onboarding Extensions.dc.html` | First run, first run offline, extensions ×2, account select |
 | `Design System.dc.html`, `TV Directions.dc.html`, `TV Screens.dc.html` | **Superseded.** Do not build from these. `TV Screens` still contains the banned 320×180 rung. |
