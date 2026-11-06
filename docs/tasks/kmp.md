@@ -4653,7 +4653,9 @@ Reused: `reload_provider`, `home_random`, `search`, `none`, `pick_source`.
 
 JVM: `HomeViewModelTest` 53 (6 new), `DataStoreHomeSourceMemoryTest` 6 (1 new, 1 changed: `None` is now a choice),
 `CloudStreamIconsTest` 6 unchanged (no glyph shared). Device, `Television_720p`: `HomeScreenTvDeviceTest` 76 (13 new, 2 changed for
-the new cells and the panel's first row); four screenshot cases, `home-chrome-focus-random`, `home-source-panel-focus-none`,
+the new cells and the panel's first row), 78 on top of `KMP-45`'s review (its one new case, and 3m's review here: one new,
+`aFailureWithALongDetailUnderContinueWatchingIsOneBandAndNothingMoves`, and two changed, the reload failure asserting the band and
+its ring, and `KMP-41`'s too-tall case moved to offline under both rails); four screenshot cases, `home-chrome-focus-random`, `home-source-panel-focus-none`,
 `home-none-focus-source`, `home-reload-failed-focus-retry`. `TvHomeNavigationTest` 17 (2 new, through real navigation: `None`
 chosen in the panel asks nothing and survives a restart; Random opens a loaded title's real page and Back puts focus on Random).
 
@@ -4663,7 +4665,8 @@ module and both `:app` cases (`expected None but was null`; `expected Random but
 restored and a real run replaced that XML.
 
 **Screenshots.** Ten references changed, each looked at: every page with rows gains Reload, Random and Search in the chrome; loading
-gains Search; the source panel gains `None` as its first row.
+gains Search; the source panel gains `None` as its first row. After review, `home-reload-failed-focus-retry` changed once more, on purpose: 3m's band in place of the
+full-page state, looked at; it is the only reference this PR re-recorded after the first build.
 
 ### Published API
 
