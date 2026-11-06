@@ -59,7 +59,10 @@ The owner, 2026-11-05 (`DEC-17`). The basis is Android TV's button guidance: the
 meaning, icon buttons are for toggles and overflow, and a screen has one primary action, first.
 
 1. **Exactly one primary, first.** `PrimaryTextButton`, with a glyph when its action has one in the
-   table below. Play and Resume are the primary on a title.
+   table below. Play and Resume are the primary on a title. **In a destructive confirmation the
+   primary is Cancel** (the owner, 2026-11-06, `DEC-19`; board D3 in `design/Desktop Downloads.dc.html`):
+   the safe choice is the filled default, and the destructive one is a secondary named for what it
+   does (*Delete*). Return and Escape both land on Cancel.
 2. **Secondary common actions are outlined, with a glyph and a label.** `GhostTextButton(icon = …)`.
 3. **A button whose meaning no glyph conveys stays text-only.** A glyph that has to be explained is
    worse than none. The ones decided so far are listed under the table.
@@ -82,6 +85,14 @@ meaning, icon buttons are for toggles and overflow, and a screen has one primary
      only; a series downloads and marks from its episode list.
    - **Trailing actions on a list row** (board 6d's Play, state verb and Delete beside each episode)
      are `IconOnlyButton`s, each naming itself under its cell.
+     **On the Mac and the tablet too** (the owner, 2026-11-06, `DEC-19`; boards D1, D4 and T1 in
+     `design/Desktop Downloads.dc.html` and `design/Phone Downloads.dc.html`). The label moves into a
+     tooltip, because neither has focus to show it under: on the Mac a row's verbs appear on hover in
+     24 dp cells (`DesktopDimens.FieldActionSize`) holding a 16 dp glyph, and the tooltip shows on
+     hover; on the tablet they are 48 dp cells (`IconTargetCell`) holding a 24 dp glyph, and the
+     tooltip shows on long-press. Each carries its label as a content description. On the Mac the
+     same verbs are also named in words in the context menu and the menu bar. A phone row has no
+     trailing verbs: it swipes and opens a sheet (boards P2 and P5).
    Anywhere else on TV, a glyph never replaces a label.
 5. **Targets keep the three settled classes** (`screen-implementation-handover.md` §5,
    `CloudStreamDimens`): an icon in a 48 dp cell (`IconTargetCell`), so `IconOnlyButton` is one; a
@@ -113,6 +124,7 @@ meaning, icon buttons are for toggles and overflow, and a screen has one primary
 | Sources | `Source` | `Server` |
 | Share | `Share` | `Share` |
 | Open in browser | `OpenExternal` | `ExternalLink` |
+| Show in Finder (desktop: a download's file on disk; `DEC-19`, first used by `KMP-54`) | `Folder` | `Folder` |
 | Play from link | `Link` | `Link` |
 | Stop and go back, Cancel | `Close` | `X` |
 | Bookmark, Watchlist, Library (add to library): an icon-only toggle, or outlined with its label | `Bookmark` | `Bookmark` |

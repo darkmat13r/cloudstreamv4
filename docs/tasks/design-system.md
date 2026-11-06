@@ -725,7 +725,7 @@ redraw had made wrong (7a LOADING and EMPTY, 7b PARTIAL and its band list, the c
 
 ## DS-18 — Boards: downloads on desktop, phone and tablet
 
-**Status:** in review · boards only, no Kotlin
+**Status:** approved by the owner 2026-11-06 (*"build them"*), PR open · boards only, no Kotlin · `DEC-19`
 
 The owner asked on 2026-11-06 for every feature to be designed for TV, desktop and phone/tablet. Each platform gets the best
 design for its own input; sharing comes second. Downloads is the pilot (`KMP-54` builds the desktop screen from it).
@@ -741,11 +741,12 @@ tablet 375 boxes; the only ones off the step are two families derived from the s
 the bottom navigation (103 at 412) and P4's two equal secondaries (186). Neither is a typed number. 0 overflowing, and all 19
 glyph URLs answer 200. Renders are in `/private/tmp/cloudstream-shared/review/boards/DS18-*.png`.
 
-Open for the owner, as the boards' notes say:
-- `Folder` as a new `CloudStreamIcons` entry for Show in Finder.
-- Glyph-only trailing verbs on desktop and tablet rows (24 cells on the Mac, `DesktopDimens.FieldActionSize`), which extends
-  rule 4's ruled exception for list-row actions beyond TV.
-- Cancel as the filled default in the delete confirmation.
-- New strings, through `:core:strings`, listed in the desktop note.
-- The transfer rate in D4, which needs `KMP-52` to report it.
+Answered by the owner, 2026-11-06, relayed by the coordinator, and recorded in `DEC-19` and `.claude/rules/ui-components.md`:
+- `Folder` is a new `CloudStreamIcons` entry (Tabler `Folder`) for Show in Finder. It is in the glyph table now; the code
+  entry lands with `KMP-54`, its first user.
+- Glyph-only trailing verbs on Mac and tablet rows, each naming itself in a tooltip: yes. Rule 4's ruled exception for
+  list-row actions now covers them.
+- Cancel is the filled default in the delete confirmation: yes, now in rule 1.
 
+Still open, not the owner's: the new strings go through `:core:strings` with `KMP-54`, and the transfer rate in D4 waits on
+`KMP-52` to report it.
