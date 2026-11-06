@@ -25,9 +25,9 @@ and decides — in a commit of its own that says so — to move the baseline.
 
 | File | Rows | What it holds |
 |---|---:|---|
-| `decoded.tsv` | 35,923 | aapt2's decoded table, one row per item: source file, type, name, plural category, kind (`STR`/`STYLED`/`REF`/`ATTR`/`UNSUPPORTED`), text, spans. The raw oracle, before resolution. |
-| `emitted.tsv` | 37,939 | What the generator wrote: one row per emitted value, keyed by output directory, type, name, plural category. Includes resolved references, locale-fallback copies and the `values-b+he` / `values-b+id` copies. |
-| `lookup.tsv` | 73,210 | For each of the 87 parity requests, the value Android resolves for every key — the per-locale lookup table the parity test compares Compose against. |
+| `decoded.tsv` | 36,321 | aapt2's decoded table, one row per item: source file, type, name, plural category, kind (`STR`/`STYLED`/`REF`/`ATTR`/`UNSUPPORTED`), text, spans. The raw oracle, before resolution. |
+| `emitted.tsv` | 38,349 | What the generator wrote: one row per emitted value, keyed by output directory, type, name, plural category. Includes resolved references, locale-fallback copies and the `values-b+he` / `values-b+id` copies. |
+| `lookup.tsv` | 73,754 | For each of the 87 parity requests, the value Android resolves for every key — the per-locale lookup table the parity test compares Compose against. |
 | `requests.tsv` | 87 | The parsed `parity-requests.txt`: request id, Android tag, Compose language/script/region, expectation, note. |
 | `findings.tsv` | 0 | Every finding the pipeline raised. **Empty since the flip** — it was 31 `STRAY_TEXT_REMOVED` and 34 `STYLED_AS_PLAIN_TEXT`, and a generated res has neither stray text nor `<b>`. |
 | `report.txt` | 12 | The human-readable run summary. |
@@ -119,6 +119,14 @@ a file before is in it after, in the same order, and every new line names one of
 appears for all 87 requests, 2,349 cells. `report.txt` moved only in its counts: `OWN` 33,005 -> 34,679 (27 x 62), visible
 keys 789 -> 816, and 27 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
 `ANDROID_FALLBACK` at 172.** `expectedOwn` 33,005 -> 34,679.
+
+## Twelfth move, 2026-11-06 — `KMP-43`, 5 new keys for Home's bookmarks rail
+
+New keys are approved in general (`I18N-09`). Additive, authored in all 62 directories: four strings and one plural,
+`home_bookmarks_count`, with each directory's own plural categories (the set `home_sections_failed` declares there). Measured by
+whole-line multiset difference against the live oracle: 0 lines lost in any file, and every new line names one of the five keys:
+398 in `decoded.tsv`, 410 in `emitted.tsv`, 544 in `lookup.tsv`. **`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at
+172.** `expectedOwn` 35,609 -> 35,919.
 
 ## Eleventh move, 2026-11-04 — `BUG-28`, 1 new key for a plugin's new version
 
