@@ -517,6 +517,27 @@ class DesktopDownloadsTest {
         assertNull(server.ranges["waiting.bin"], "never fetched")
     }
 
+    /** D4 sends Cancel for a running download too: it stops, and nothing of it stays on disk or in the file. */
+    @Test
+    fun `a running download can be cancelled and leaves nothing`() = runBlocking {
+        server.add("running.bin", 2 * 1024 * 1024)
+        server.chunkDelayMillis.set(10)
+        val host = host()
+        host.enqueue(film(1, "Running", server.url("running.bin")))
+        host.awaitEpisode(100, 1) { it.state == DownloadEpisodeState.Running && it.bytesDone >= 256 * 1024 }
+        assertTrue(partFiles().isNotEmpty(), "parts exist before the cancel")
+
+        host.cancel(DownloadEpisodeId(1))
+        host.awaitContents { it.titles.isEmpty() }
+        assertNull(host.fileOf(DownloadEpisodeId(1)))
+        assertEquals(emptyList(), partFiles(), "no part file kept")
+        assertFalse(File(root, "Running").walkTopDown().any { it.isFile }, "no file kept")
+        assertFalse("Running" in stateFile.readText(), "no record kept")
+        val requestsAfter = server.ranges["running.bin"]?.size ?: 0
+        delay(500)
+        assertEquals(requestsAfter, server.ranges["running.bin"]?.size ?: 0, "no request after the cancel")
+    }
+
     @Test
     fun `deleting a title and an episode removes their files and records`() = runBlocking {
         val filmBody = server.add("film.bin", 128 * 1024)

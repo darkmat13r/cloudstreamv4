@@ -4833,6 +4833,8 @@ download sources. There is no UI: that is `KMP-54`, which wires `source()` and `
   for an episode. `fileOf` is null until done and on disk; for a series it gives the folder.
 - Ids are stable across restarts.
 - `contents` emits at most once every 250 ms while running, and not at all when idle.
+- **TODO when #179 (`KMP-54`) lands:** fill `DownloadSeriesContents.freeBytes` from the download root's volume in
+  `DesktopDownloadSeriesSource`, the same figure as `DownloadsContents.storage`. It is null until then, which the screen hides.
 - There are no changes to `:feature:downloads`, except one KDoc line on `DownloadTitleState.Paused`. The PM cleared it: it now says that only Android reads a failure as Paused after a restart, until `KMP-60`/`KMP-62`.
 
 **Shape.**
@@ -4876,13 +4878,14 @@ download sources. There is no UI: that is `KMP-54`, which wires `source()` and `
 - *What stays out:* no `toString` includes the source or the link.
 
 **Tests** (local, none CI). Counted from the XML:
-- `DesktopDownloadsTest`: 19/19, against a JDK `HttpServer` with Range and ETag support; every completion is compared byte for byte.
+- `DesktopDownloadsTest`: 20/20, against a JDK `HttpServer` with Range and ETag support; every completion is compared byte for byte.
   It covers:
   - done, and `fileOf` only at done
   - at most 3 running
   - pause and resume continuing from disk, with a ranged request after 0
   - a restart with a new host over the same files: same ids, Paused, then resumed and byte-identical
-  - cancel; delete of a title and of an episode
+  - cancel of a waiting download, and of a running one (it stops, and no part, file or record is left); delete of a title and of an
+    episode
   - a file deleted outside the app, noticed on `refresh`
   - the emission rate: 2.64–2.68/s while running, every gap ≥ 240 ms, nothing over 1.25 s idle
   - the file's permissions are `rw-------`
