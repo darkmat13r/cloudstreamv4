@@ -263,7 +263,9 @@
 <string name="search_tv_suggestion_suggested">"SUGESTITA"</string>
 <string name="season">"Sezono"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
+<string name="season_other">"Aliaj"</string>
 <string name="season_short">"S"</string>
+<string name="season_specials">"Specialaĵoj"</string>
 <string name="seek_back_10_seconds">"Salti 10 sekundojn malantaŭen"</string>
 <string name="seek_forward_10_seconds">"Salti 10 sekundojn antaŭen"</string>
 <string name="select_all">"Selekti Ĉion"</string>

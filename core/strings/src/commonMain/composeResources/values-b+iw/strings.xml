@@ -520,7 +520,9 @@
 <string name="search_tv_suggestion_suggested">מוצע</string>
 <string name="season">עונה</string>
 <string name="season_format">%1$s %2$d%3$s</string>
+<string name="season_other">אחר</string>
 <string name="season_short">עו</string>
+<string name="season_specials">מיוחדים</string>
 <string name="seek_back_10_seconds">דלג 10 שניות אחורה</string>
 <string name="seek_forward_10_seconds">דלג 10 שניות קדימה</string>
 <string name="select_all">בחר הכל</string>

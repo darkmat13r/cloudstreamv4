@@ -357,7 +357,9 @@
 <string name="search_tv_suggestion_suggested">مقترح</string>
 <string name="season">موسم</string>
 <string name="season_format">%1$s%2$d%3$s</string>
+<string name="season_other">أخرى</string>
 <string name="season_short">س</string>
+<string name="season_specials">حلقات خاصة</string>
 <string name="seek_back_10_seconds">ترجيع 10 ثوانٍ</string>
 <string name="seek_forward_10_seconds">تقديم 10 ثوانٍ</string>
 <string name="select_library">حدد المكتبة</string>

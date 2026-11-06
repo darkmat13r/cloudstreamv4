@@ -389,7 +389,9 @@
 <string name="search_tv_suggestion_recent_suggested">"اخیر · پیشنهادشده نیز"</string>
 <string name="search_tv_suggestion_suggested">"پیشنهادشده"</string>
 <string name="season">"فصل"</string>
+<string name="season_other">"سایر"</string>
 <string name="season_short">"ف"</string>
+<string name="season_specials">"ویژه"</string>
 <string name="seek_back_10_seconds">"۱۰ ثانیه به عقب"</string>
 <string name="seek_forward_10_seconds">"۱۰ ثانیه به جلو"</string>
 <string name="select_all">"انتخاب همه"</string>

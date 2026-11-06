@@ -661,7 +661,9 @@
 <string name="search_tv_suggestion_suggested">SUGERIDO</string>
 <string name="season">Temporada</string>
 <string name="season_format">%1$s %2$d%3$s</string>
+<string name="season_other">Outros</string>
 <string name="season_short">T</string>
+<string name="season_specials">Especiais</string>
 <string name="seek_back_10_seconds">Voltar 10 segundos</string>
 <string name="seek_forward_10_seconds">Avançar 10 segundos</string>
 <string name="select_all">Selecionar todos</string>

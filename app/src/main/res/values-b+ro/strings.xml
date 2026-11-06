@@ -590,7 +590,9 @@
 <string name="search_tv_suggestion_suggested">"SUGERAT"</string>
 <string name="season">"Sezonul"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
+<string name="season_other">"Altele"</string>
 <string name="season_short">"S"</string>
+<string name="season_specials">"Speciale"</string>
 <string name="seek_back_10_seconds">"Derulează înapoi 10 secunde"</string>
 <string name="seek_forward_10_seconds">"Derulează înainte 10 secunde"</string>
 <string name="select_all">"Selectionati totul"</string>

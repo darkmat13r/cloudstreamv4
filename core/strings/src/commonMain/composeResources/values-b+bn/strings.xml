@@ -427,7 +427,9 @@
 <string name="search_tv_suggestion_suggested">প্রস্তাবিত</string>
 <string name="season">সিজন</string>
 <string name="season_format">%1$s %2$d%3$s</string>
+<string name="season_other">অন্যান্য</string>
 <string name="season_short">S</string>
+<string name="season_specials">বিশেষ</string>
 <string name="seek_back_10_seconds">১০ সেকেন্ড পিছিয়ে যান</string>
 <string name="seek_forward_10_seconds">১০ সেকেন্ড এগিয়ে যান</string>
 <string name="select_all">সব সিলেক্ট করুন</string>

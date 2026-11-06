@@ -321,6 +321,8 @@
 <string name="search_tv_suggestion_recent_suggested">സമീപകാലം · നിർദ്ദേശിച്ചതും</string>
 <string name="search_tv_suggestion_suggested">നിർദ്ദേശിച്ചത്</string>
 <string name="season">സീസൺ</string>
+<string name="season_other">മറ്റുള്ളവ</string>
+<string name="season_specials">പ്രത്യേകം</string>
 <string name="seek_back_10_seconds">10 സെക്കൻഡ് പിന്നോട്ട് പോകുക</string>
 <string name="seek_forward_10_seconds">10 സെക്കൻഡ് മുന്നോട്ട് പോകുക</string>
 <string name="select_all">എല്ലാം തിരഞ്ഞെടുക്കുക</string>

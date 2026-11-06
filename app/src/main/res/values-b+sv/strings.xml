@@ -661,7 +661,9 @@
 <string name="search_tv_suggestion_suggested">"FÖRESLAGEN"</string>
 <string name="season">"Säsong"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
+<string name="season_other">"Övrigt"</string>
 <string name="season_short">"S"</string>
+<string name="season_specials">"Specialer"</string>
 <string name="seek_back_10_seconds">"Hoppa bakåt 10 sekunder"</string>
 <string name="seek_forward_10_seconds">"Hoppa framåt 10 sekunder"</string>
 <string name="select_all">"Välj alla"</string>

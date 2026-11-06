@@ -129,6 +129,8 @@
 <string name="search_tv_suggestion_recent">ናይ ቀረባ · %s</string>
 <string name="search_tv_suggestion_recent_suggested">ናይ ቀረባ · ከምኡውን ዝተመኽረ</string>
 <string name="search_tv_suggestion_suggested">ዝተመኽረ</string>
+<string name="season_other">ካልእ</string>
+<string name="season_specials">ፍሉይ</string>
 <string name="seek_back_10_seconds">10 ካልኢት ንድሕሪት</string>
 <string name="seek_forward_10_seconds">10 ካልኢት ንቕድሚት</string>
 <string name="subtitles_file_empty">እዚ ፋይል ንኡስ ጽሑፍ ባዶ እዩ</string>

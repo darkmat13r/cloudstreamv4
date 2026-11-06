@@ -661,7 +661,9 @@
 <string name="search_tv_suggestion_suggested">ЗАПРОПОНОВАНО</string>
 <string name="season">Сезон</string>
 <string name="season_format">%1$s %2$d%3$s</string>
+<string name="season_other">Інше</string>
 <string name="season_short">С</string>
+<string name="season_specials">Спецвипуски</string>
 <string name="seek_back_10_seconds">Перемотати назад на 10 секунд</string>
 <string name="seek_forward_10_seconds">Перемотати вперед на 10 секунд</string>
 <string name="select_all">Обрати все</string>

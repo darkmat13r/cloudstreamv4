@@ -239,7 +239,9 @@
 <string name="search_tv_suggestion_recent_suggested">ସାମ୍ପ୍ରତିକ · ପରାମର୍ଶିତ ମଧ୍ୟ</string>
 <string name="search_tv_suggestion_suggested">ପରାମର୍ଶିତ</string>
 <string name="season">ଋତୁ</string>
+<string name="season_other">ଅନ୍ୟାନ୍ୟ</string>
 <string name="season_short">ଋ</string>
+<string name="season_specials">ବିଶେଷ</string>
 <string name="seek_back_10_seconds">୧୦ ସେକେଣ୍ଡ ପଛକୁ ଯାଅ</string>
 <string name="seek_forward_10_seconds">୧୦ ସେକେଣ୍ଡ ଆଗକୁ ଯାଅ</string>
 <string name="setup_done">ହେଲା</string>

@@ -362,6 +362,8 @@
 <string name="search_tv_suggestion_recent">RECENT · %s</string>
 <string name="search_tv_suggestion_recent_suggested">RECENT · TAMBÉ SUGGERIT</string>
 <string name="search_tv_suggestion_suggested">SUGGERIT</string>
+<string name="season_other">Altres</string>
+<string name="season_specials">Especials</string>
 <string name="seek_back_10_seconds">Retrocedeix 10 segons</string>
 <string name="seek_forward_10_seconds">Avança 10 segons</string>
 <string name="select_all">Seleccionar tot</string>

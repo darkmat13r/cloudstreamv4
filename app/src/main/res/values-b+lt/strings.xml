@@ -335,6 +335,8 @@
 <string name="search_tv_suggestion_recent_suggested">"NESENIAI · TAIP PAT SIŪLOMA"</string>
 <string name="search_tv_suggestion_suggested">"SIŪLOMA"</string>
 <string name="season">"Sezonas"</string>
+<string name="season_other">"Kita"</string>
+<string name="season_specials">"Specialieji"</string>
 <string name="seek_back_10_seconds">"Atsukti 10 sekundžių atgal"</string>
 <string name="seek_forward_10_seconds">"Persukti 10 sekundžių į priekį"</string>
 <string name="select_all">"Pasirinkti viską"</string>

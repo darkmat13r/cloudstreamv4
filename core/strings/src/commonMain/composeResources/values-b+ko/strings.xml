@@ -657,7 +657,9 @@
 <string name="search_tv_suggestion_suggested">추천</string>
 <string name="season">시즌</string>
 <string name="season_format">%1$s %2$d%3$s</string>
+<string name="season_other">기타</string>
 <string name="season_short">시즌</string>
+<string name="season_specials">스페셜</string>
 <string name="seek_back_10_seconds">10초 뒤로</string>
 <string name="seek_forward_10_seconds">10초 앞으로</string>
 <string name="select_all">모두 선택</string>
