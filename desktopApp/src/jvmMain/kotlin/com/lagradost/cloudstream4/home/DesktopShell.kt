@@ -17,6 +17,8 @@ import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -26,15 +28,13 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.key.Key
-import androidx.compose.ui.input.key.KeyEvent
-import androidx.compose.ui.input.key.KeyEventType
-import androidx.compose.ui.input.key.isMetaPressed
-import androidx.compose.ui.input.key.key
-import androidx.compose.ui.input.key.type
+import androidx.compose.ui.input.key.KeyShortcut
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.FrameWindowScope
+import androidx.compose.ui.window.MenuBar
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
 import com.lagradost.cloudstream4.core.designsystem.desktop.desktopFeedback
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
@@ -42,7 +42,11 @@ import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIconSize
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
+import com.lagradost.cloudstream4.core.strings.generated.resources.Res
+import com.lagradost.cloudstream4.core.strings.generated.resources.desktop_menu_go
+import com.lagradost.cloudstream4.core.strings.generated.resources.go_back
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
+import org.jetbrains.compose.resources.stringResource
 
 /**
  * The window's sidebar (`KMP-53`): every destination with its glyph and name, the one shown filled, and at its foot
@@ -51,8 +55,8 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
  * `docs/plans/desktop-design.md` kept three tabs while three did the job, and said "a sidebar is worth it at the
  * fourth". Downloads is the fourth (`KMP-54`, board D1 of `design/Desktop Downloads.dc.html`), so this replaces the bar
  * for every top-level screen. Its look is board D1's: a 220 column on `surface` with a hairline on its right edge, 32
- * rows with a 16 glyph, and the chosen row `raised`. ⌘1 to ⌘3 reach the rows from the keyboard ([DesktopShortcuts]); the
- * menu bar that will list them in words needs strings of its own, so it is a later step (noted in `KMP-53`).
+ * rows with a 16 glyph, and the chosen row `raised`. ⌘1 to ⌘3 reach the rows from the keyboard, through the menu bar's
+ * Go menu ([DesktopMenuBar]).
  */
 @Composable
 internal fun DesktopSidebar(
@@ -138,26 +142,78 @@ private fun Modifier.rightRule(color: Color): Modifier = drawBehind {
 }
 
 /**
- * The window's own shortcuts, read before any screen sees the key, as [com.lagradost.cloudstream4.EscapeHandler] is:
- * ⌘1 to ⌘3 go to a destination in the sidebar's order, and ⌘[ goes back where there is something to go back to. The
- * host sets what each does; a screen that has its own ⌘ keys (the downloads page's ⌘A, ⌘R) does not collide with these.
+ * The window's destinations and Back, and their keys (`KMP-53`). The menu bar ([DesktopMenuBar]) owns the keys, so they
+ * work wherever focus is and each is listed in words; nothing else in the window reads them, which is what keeps a key
+ * from firing twice (a doubled ⌘[ would pop two screens).
+ *
+ * The host sets what each does for the screen on top: [onDestination] only at the top level, where the sidebar is, and
+ * [onBack] only where something is under. [atTop] and [canGoBack] are observable, so the menu greys what does nothing.
  */
 internal class DesktopShortcuts {
     var onDestination: ((TopLevelDestination) -> Unit)? = null
-    var onBack: (() -> Unit)? = null
-
-    fun handle(event: KeyEvent): Boolean {
-        if (event.type != KeyEventType.KeyDown || !event.isMetaPressed) return false
-        val destination = when (event.key) {
-            Key.One -> TopLevelDestination.Home
-            Key.Two -> TopLevelDestination.Search
-            Key.Three -> TopLevelDestination.Library
-            else -> null
+        set(value) {
+            field = value
+            atTop = value != null
         }
-        return when {
-            destination != null -> onDestination?.let { it(destination); true } ?: false
-            event.key == Key.LeftBracket -> onBack?.let { it(); true } ?: false
-            else -> false
+    var onBack: (() -> Unit)? = null
+        set(value) {
+            field = value
+            canGoBack = value != null
+        }
+
+    var atTop by mutableStateOf(false)
+        private set
+    var canGoBack by mutableStateOf(false)
+        private set
+
+    fun go(destination: TopLevelDestination) {
+        onDestination?.invoke(destination)
+    }
+
+    fun back() {
+        onBack?.invoke()
+    }
+
+    companion object {
+        /** The Mac's keys on a Mac, and the platform's own elsewhere. */
+        val onMac: Boolean = System.getProperty("os.name").orEmpty().startsWith("Mac")
+
+        /** ⌘1 to ⌘3 on a Mac, Ctrl+1 to Ctrl+3 elsewhere, in the sidebar's order. */
+        fun keyFor(destination: TopLevelDestination, mac: Boolean = onMac): KeyShortcut {
+            val key = when (destination) {
+                TopLevelDestination.Home -> Key.One
+                TopLevelDestination.Search -> Key.Two
+                TopLevelDestination.Library -> Key.Three
+            }
+            return KeyShortcut(key, meta = mac, ctrl = !mac)
+        }
+
+        /** ⌘[ on a Mac, as Finder and Safari; Alt+Left elsewhere, as Windows' and GNOME's file browsers. */
+        fun backKey(mac: Boolean = onMac): KeyShortcut =
+            if (mac) KeyShortcut(Key.LeftBracket, meta = true) else KeyShortcut(Key.DirectionLeft, alt = true)
+    }
+}
+
+/**
+ * The menu bar's Go menu: every destination, then Back, each with its key. On a Mac this is the screen's menu bar, where
+ * a Mac user looks for a command they cannot see.
+ */
+@Composable
+internal fun FrameWindowScope.DesktopMenuBar(shortcuts: DesktopShortcuts, label: @Composable (TopLevelDestination) -> String) {
+    val labels = TopLevelDestination.entries.associateWith { label(it) }
+    val goBack = stringResource(Res.string.go_back)
+    MenuBar {
+        Menu(stringResource(Res.string.desktop_menu_go)) {
+            TopLevelDestination.entries.forEach { destination ->
+                Item(
+                    text = labels.getValue(destination),
+                    shortcut = DesktopShortcuts.keyFor(destination),
+                    enabled = shortcuts.atTop,
+                    onClick = { shortcuts.go(destination) },
+                )
+            }
+            Separator()
+            Item(text = goBack, shortcut = DesktopShortcuts.backKey(), enabled = shortcuts.canGoBack, onClick = shortcuts::back)
         }
     }
 }

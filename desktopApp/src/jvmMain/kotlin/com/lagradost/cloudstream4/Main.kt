@@ -61,7 +61,9 @@ import com.lagradost.cloudstream4.feature.search.SearchEffect
 import com.lagradost.cloudstream4.feature.search.SearchViewModel
 import com.lagradost.cloudstream4.feature.search.desktop.SearchScreenDesktop
 import com.lagradost.cloudstream4.home.DesktopHomeSource
+import com.lagradost.cloudstream4.home.DesktopMenuBar
 import com.lagradost.cloudstream4.home.DesktopShortcuts
+import com.lagradost.cloudstream4.home.label
 import com.lagradost.cloudstream4.home.HomeHost
 import com.lagradost.cloudstream4.home.TopLevelScreen
 import com.lagradost.cloudstream4.home.TopLevelTab
@@ -167,9 +169,11 @@ fun main(args: Array<String>) {
             state = windowState,
             // At the window, because it has to work wherever focus is, including nowhere at all.
             onPreviewKeyEvent = { event ->
-                (event.key == Key.Escape && event.type == KeyEventType.KeyDown && escape.handle()) || shortcuts.handle(event)
+                event.key == Key.Escape && event.type == KeyEventType.KeyDown && escape.handle()
             },
         ) {
+            // The window's ⌘ keys live here and nowhere else, so none fires twice.
+            DesktopMenuBar(shortcuts) { it.label() }
             LaunchedEffect(window) {
                 window.minimumSize = java.awt.Dimension(MIN_WINDOW_WIDTH, MIN_WINDOW_HEIGHT)
             }
@@ -222,7 +226,7 @@ private sealed interface Screen {
  * @param onScreen told where the window is, for a test to read.
  * @param window what the player puts in full screen. Null where there is no window, as in a test.
  * @param homeMemory the home source chosen last. Keeps nothing by default, so a test cannot write to a real home.
- * @param shortcuts what the window's ⌘ keys do; this sets it for the screen on top (`KMP-53`).
+ * @param shortcuts what the menu bar's Go menu and its keys do; this sets it for the screen on top (`KMP-53`).
  */
 @Composable
 internal fun DesktopApp(
