@@ -120,6 +120,25 @@ appears for all 87 requests, 2,349 cells. `report.txt` moved only in its counts:
 keys 789 -> 816, and 27 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
 `ANDROID_FALLBACK` at 172.** `expectedOwn` 33,005 -> 34,679.
 
+## Nineteenth move, 2026-11-07 — `I18N-13`, 1 new key for the Mac menu bar
+
+New keys are approved in general (`I18N-09`). `desktop_menu_go`, the title of the Go menu (`KMP-53`), authored in all 62
+directories. Captured from the live generator with `--rerun-tasks -Pcloudstream.strings.guards=fail` on master after the
+eighteenth. If another move lands first, this one is redone from the live generator, as the sixteenth was.
+
+| file | before | after | added | changed | lost |
+|---|---|---|---|---|---|
+| `decoded.tsv` | 38,814 | 38,876 | 62 | 0 | 0 |
+| `emitted.tsv` | 40,923 | 40,987 | 64 | 0 | 0 |
+| `lookup.tsv` | 77,865 | 77,952 | 87 | 0 | 0 |
+| `requests.tsv` | 87 | 87 | 0 | 0 | 0 |
+| `findings.tsv` | 0 | 0 | 0 | 0 | 0 |
+
+Measured by whole-line multiset difference: 0 lines lost in any file, every added line names the key, and removing the added
+lines gives the old file in the same order. It appears for all 87 requests. `report.txt` moved only in its counts: `OWN`
+38,324 -> 38,386 (62), visible keys 882 -> 883, and one more value in each locale copy. **`REFERENCE_IN_LOCALE` stayed at
+500 and `ANDROID_FALLBACK` at 173.** `expectedOwn` 38,324 -> 38,386.
+
 ## Eighteenth move, 2026-11-07 — Train 1 (`#170`, `#174`, `#175`), one move: `KMP-49`'s 6 new keys for the TV library's sources
 
 One combined baseline move for the train that merges `#170` (`KMP-38`), `#174` (`KMP-59`) and `#175` (`KMP-49`) together.

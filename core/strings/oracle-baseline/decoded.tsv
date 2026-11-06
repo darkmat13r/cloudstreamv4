@@ -22,6 +22,7 @@ values-b+af/strings.xml	string	cast_format	-	STR	Rolverdeling: %s
 values-b+af/strings.xml	string	category_providers	-	STR	Verskaffers	
 values-b+af/strings.xml	string	continue_watching	-	STR	Kyk verder	
 values-b+af/strings.xml	string	delete	-	STR	Wis Uit	
+values-b+af/strings.xml	string	desktop_menu_go	-	STR	Gaan	
 values-b+af/strings.xml	string	detail_load_failed_body	-	STR	Die bron is dalk nie beskikbaar nie.	
 values-b+af/strings.xml	string	detail_load_failed_headline	-	STR	Kon nie hierdie titel oopmaak nie	
 values-b+af/strings.xml	string	download	-	STR	Laai af	
@@ -235,6 +236,7 @@ values-b+am/strings.xml	string	browser	-	STR	አሳሽ
 values-b+am/strings.xml	string	cast	-	STR	ተዋናዮች	
 values-b+am/strings.xml	string	cast_format	-	STR	ተዋናዮች: %s	
 values-b+am/strings.xml	string	continue_watching	-	STR	መመልከትዎን ይቀጥሉ	
+values-b+am/strings.xml	string	desktop_menu_go	-	STR	ሂድ	
 values-b+am/strings.xml	string	detail_load_failed_body	-	STR	ምንጩ ላይገኝ ይችላል።	
 values-b+am/strings.xml	string	detail_load_failed_headline	-	STR	ይህን ርዕስ መክፈት አልተቻለም	
 values-b+am/strings.xml	string	download	-	STR	ማውረጃ	
@@ -581,6 +583,7 @@ values-b+apc/strings.xml	string	delete_plugin	-	STR	محي الإضافة
 values-b+apc/strings.xml	string	delete_repository	-	STR	محي الريپو	
 values-b+apc/strings.xml	string	delete_repository_plugins	-	STR	محي الريپو كمان بمحي الإضافات يللي فيه	
 values-b+apc/strings.xml	string	deselect_all	-	STR	شيل التنقاية	
+values-b+apc/strings.xml	string	desktop_menu_go	-	STR	روح	
 values-b+apc/strings.xml	string	detail_load_failed_body	-	STR	يمكن المصدر مو متوفر.	
 values-b+apc/strings.xml	string	detail_load_failed_headline	-	STR	ما قدرنا نفتح هالعنوان	
 values-b+apc/strings.xml	string	device_pin_counter_text	-	STR	بتخلص مدة الپِن ب %1$d دقايق و%2$d ثانية	
@@ -1430,6 +1433,7 @@ values-b+ar/strings.xml	string	delete_plugin	-	STR	حذف الإضافة
 values-b+ar/strings.xml	string	delete_repository	-	STR	ازالة مستودع	
 values-b+ar/strings.xml	string	delete_repository_plugins	-	STR	سوف يتم محو جميع إضافات المستودع	
 values-b+ar/strings.xml	string	deselect_all	-	STR	إلغاء تحديد الكل	
+values-b+ar/strings.xml	string	desktop_menu_go	-	STR	انتقال	
 values-b+ar/strings.xml	string	detail_load_failed_body	-	STR	قد يكون مصدره غير متاح.	
 values-b+ar/strings.xml	string	detail_load_failed_headline	-	STR	تعذّر فتح هذا العنوان	
 values-b+ar/strings.xml	string	device_pin_counter_text	-	STR	تنتهي صلاحية الرمز خلال %1$dm %2$ds	
@@ -2186,6 +2190,7 @@ values-b+ars/strings.xml	string	delayed_update_notice	-	STR	سيتم تحديث 
 values-b+ars/strings.xml	string	delete	-	STR	مسح	
 values-b+ars/strings.xml	string	delete_file	-	STR	حذف ملف	
 values-b+ars/strings.xml	string	delete_message	-	STR	نهائيا %sسيؤدي هذا الى حذف \nهل أنت متأكد؟	
+values-b+ars/strings.xml	string	desktop_menu_go	-	STR	انتقال	
 values-b+ars/strings.xml	string	detail_load_failed_body	-	STR	يمكن المصدر مو متاح.	
 values-b+ars/strings.xml	string	detail_load_failed_headline	-	STR	ما قدرنا نفتح هالعنوان	
 values-b+ars/strings.xml	string	discord	-	STR	انضم إلى الديسكورد	
@@ -2688,6 +2693,7 @@ values-b+as/strings.xml	string	delete_plugin	-	STR	প্লাগইন ডি�
 values-b+as/strings.xml	string	delete_repository	-	STR	ৰিপ'জিট'ৰি ডিলিট কৰক	
 values-b+as/strings.xml	string	delete_repository_plugins	-	STR	এইটোয়ে সমস্ত ৰিপ'জিট'ৰি প্লাগইনসমূহও ডিলিট কৰিব	
 values-b+as/strings.xml	string	deselect_all	-	STR	সকলো বাদ দিয়ক	
+values-b+as/strings.xml	string	desktop_menu_go	-	STR	যাওক	
 values-b+as/strings.xml	string	detail_load_failed_body	-	STR	উৎসটো পোৱা নাযাব পাৰে।	
 values-b+as/strings.xml	string	detail_load_failed_headline	-	STR	এই শিৰোনামটো খুলিব নোৱাৰিলোঁ	
 values-b+as/strings.xml	string	device_pin_counter_text	-	STR	ক'ড মেয়াদ শেষ হব %1$dm %2$ds	
@@ -3317,6 +3323,7 @@ values-b+az/strings.xml	string	delete_format	-	STR	Sil (%1$d | %2$s)
 values-b+az/strings.xml	string	delete_message	-	STR	%s həmişəlik silinəcək\nƏminsiniz?	
 values-b+az/strings.xml	string	delete_message_multiple	-	STR	Aşağıdakı faylları həmişəlik silmək istədiyinizə əminsinizmi?\n\n%s	
 values-b+az/strings.xml	string	delete_message_series_episodes	-	STR	%1$s içindəki aşağıdakı bölümləri həmişəlik silmək istədiyinizdən əminsinizmi?\n\n%2$s	
+values-b+az/strings.xml	string	desktop_menu_go	-	STR	Keç	
 values-b+az/strings.xml	string	detail_load_failed_body	-	STR	Mənbə əlçatmaz ola bilər.	
 values-b+az/strings.xml	string	detail_load_failed_headline	-	STR	Bu başlıq açıla bilmədi	
 values-b+az/strings.xml	string	documentaries	-	STR	Sənədli filmlər	
@@ -3691,6 +3698,7 @@ values-b+be/strings.xml	string	delete_plugin	-	STR	Выдаліць убудов
 values-b+be/strings.xml	string	delete_repository	-	STR	Выдаліць рэпазіторый	
 values-b+be/strings.xml	string	delete_repository_plugins	-	STR	Гэта таксама прывядзе да выдалення ўсіх убудоў рэпазіторыя	
 values-b+be/strings.xml	string	deselect_all	-	STR	Зняць выбар	
+values-b+be/strings.xml	string	desktop_menu_go	-	STR	Пераход	
 values-b+be/strings.xml	string	detail_load_failed_body	-	STR	Крыніца можа быць недаступная.	
 values-b+be/strings.xml	string	detail_load_failed_headline	-	STR	Не ўдалося адкрыць гэты загаловак	
 values-b+be/strings.xml	string	device_pin_counter_text	-	STR	Код мінуе праз %1$dхв %2$dс	
@@ -4520,6 +4528,7 @@ values-b+bg/strings.xml	string	delete_plugin	-	STR	Изтриване на пл�
 values-b+bg/strings.xml	string	delete_repository	-	STR	Изтриване на хранилище	
 values-b+bg/strings.xml	string	delete_repository_plugins	-	STR	Това също ще изтрие всички хранилища за плъгини	
 values-b+bg/strings.xml	string	deselect_all	-	STR	Премахване на избора на всички	
+values-b+bg/strings.xml	string	desktop_menu_go	-	STR	Отиди	
 values-b+bg/strings.xml	string	detail_load_failed_body	-	STR	Източникът може да не е наличен.	
 values-b+bg/strings.xml	string	detail_load_failed_headline	-	STR	Заглавието не можа да се отвори	
 values-b+bg/strings.xml	string	device_pin_counter_text	-	STR	Кодът изтича след %1$dm %2$ds	
@@ -5265,6 +5274,7 @@ values-b+bn/strings.xml	string	delete_message_series_episodes	-	STR	আপনি
 values-b+bn/strings.xml	string	delete_message_series_only	-	STR	আপনি কি নিশ্চিত যে আপনি নিচের সিরিজটির সব এপিসোড স্থায়ীভাবে মুছে ফেলতে চান?\n\n%s	
 values-b+bn/strings.xml	string	delete_message_series_section	-	STR	আপনি নিচের সিরিজগুলোর সব এপিসোডও স্থায়ীভাবে মুছে ফেলবেন:\n\n%s	
 values-b+bn/strings.xml	string	deselect_all	-	STR	সব ডিসিলেক্ট করুন	
+values-b+bn/strings.xml	string	desktop_menu_go	-	STR	যান	
 values-b+bn/strings.xml	string	detail_load_failed_body	-	STR	সোর্সটি হয়তো পাওয়া যাচ্ছে না।	
 values-b+bn/strings.xml	string	detail_load_failed_headline	-	STR	এই শিরোনামটি খোলা যায়নি	
 values-b+bn/strings.xml	string	discord	-	STR	ডিসকর্ডে যোগ দিন	
@@ -5734,6 +5744,7 @@ values-b+ca/strings.xml	string	continue_watching	-	STR	Continua mirant
 values-b+ca/strings.xml	string	create_account	-	STR	Crea un compte	
 values-b+ca/strings.xml	string	custom_media_singular	-	STR	Mitjà	
 values-b+ca/strings.xml	string	deselect_all	-	STR	Deseleccionar tot	
+values-b+ca/strings.xml	string	desktop_menu_go	-	STR	Vés	
 values-b+ca/strings.xml	string	detail_load_failed_body	-	STR	Potser la font no està disponible.	
 values-b+ca/strings.xml	string	detail_load_failed_headline	-	STR	No s'ha pogut obrir aquest títol	
 values-b+ca/strings.xml	string	disable	-	STR	Deshabilita	
@@ -6122,6 +6133,7 @@ values-b+ckb/strings.xml	string	browser	-	STR	براوزەر
 values-b+ckb/strings.xml	string	cast	-	STR	تیم	
 values-b+ckb/strings.xml	string	cast_format	-	STR	تیم:%s	
 values-b+ckb/strings.xml	string	deselect_all	-	STR	هەمووی لابدە	
+values-b+ckb/strings.xml	string	desktop_menu_go	-	STR	بڕۆ	
 values-b+ckb/strings.xml	string	detail_load_failed_body	-	STR	ڕەنگە سەرچاوەکە بەردەست نەبێت.	
 values-b+ckb/strings.xml	string	detail_load_failed_headline	-	STR	نەتوانرا ئەم ناونیشانە بکرێتەوە	
 values-b+ckb/strings.xml	string	download	-	STR	داونلۆد	
@@ -6462,6 +6474,7 @@ values-b+cs/strings.xml	string	delete_plugin	-	STR	Odstranit doplněk
 values-b+cs/strings.xml	string	delete_repository	-	STR	Odstranit repozitář	
 values-b+cs/strings.xml	string	delete_repository_plugins	-	STR	Tímto také odstraníte všechny doplňky repozitářů	
 values-b+cs/strings.xml	string	deselect_all	-	STR	Zrušit výběr všeho	
+values-b+cs/strings.xml	string	desktop_menu_go	-	STR	Přejít	
 values-b+cs/strings.xml	string	detail_load_failed_body	-	STR	Zdroj možná není dostupný.	
 values-b+cs/strings.xml	string	detail_load_failed_headline	-	STR	Tento titul se nepodařilo otevřít	
 values-b+cs/strings.xml	string	device_pin_counter_text	-	STR	Kód vyprší za %1$dm %2$ds	
@@ -7298,6 +7311,7 @@ values-b+de/strings.xml	string	delete_plugin	-	STR	Plugin löschen
 values-b+de/strings.xml	string	delete_repository	-	STR	Repository löschen	
 values-b+de/strings.xml	string	delete_repository_plugins	-	STR	Dadurch werden auch alle Repository-Plugins gelöscht	
 values-b+de/strings.xml	string	deselect_all	-	STR	Alle abwählen	
+values-b+de/strings.xml	string	desktop_menu_go	-	STR	Gehe zu	
 values-b+de/strings.xml	string	detail_load_failed_body	-	STR	Die Quelle ist möglicherweise nicht verfügbar.	
 values-b+de/strings.xml	string	detail_load_failed_headline	-	STR	Titel konnte nicht geöffnet werden	
 values-b+de/strings.xml	string	device_pin_counter_text	-	STR	Code läuft ab in %1$dm %2$ds	
@@ -8117,6 +8131,7 @@ values-b+el/strings.xml	string	delete_plugin	-	STR	Διαγραφή πρόσθε
 values-b+el/strings.xml	string	delete_repository	-	STR	Διαγραφή αποθετηρίου	
 values-b+el/strings.xml	string	delete_repository_plugins	-	STR	Αυτό θα διαγράψει όλα τα πρόσθετα του αποθετηρίου	
 values-b+el/strings.xml	string	deselect_all	-	STR	Αποεπιλογή Όλων	
+values-b+el/strings.xml	string	desktop_menu_go	-	STR	Μετάβαση	
 values-b+el/strings.xml	string	detail_load_failed_body	-	STR	Η πηγή ίσως δεν είναι διαθέσιμη.	
 values-b+el/strings.xml	string	detail_load_failed_headline	-	STR	Δεν ήταν δυνατό το άνοιγμα αυτού του τίτλου	
 values-b+el/strings.xml	string	device_pin_counter_text	-	STR	Ο Κωδικός λήγει σε %1$dm %2$ds	
@@ -8755,6 +8770,7 @@ values-b+eo/strings.xml	string	delete_file	-	STR	Forigi Dosieron
 values-b+eo/strings.xml	string	delete_files	-	STR	Forigi Dosierojn	
 values-b+eo/strings.xml	string	delete_format	-	STR	Forigi (%1$d | %2$s)	
 values-b+eo/strings.xml	string	deselect_all	-	STR	Malselekti Ĉion	
+values-b+eo/strings.xml	string	desktop_menu_go	-	STR	Iri	
 values-b+eo/strings.xml	string	detail_load_failed_body	-	STR	La fonto eble ne disponeblas.	
 values-b+eo/strings.xml	string	detail_load_failed_headline	-	STR	Ne eblis malfermi ĉi tiun titolon	
 values-b+eo/strings.xml	string	discord	-	STR	Aligi Diskordon	
@@ -9177,6 +9193,7 @@ values-b+es/strings.xml	string	delete_plugin	-	STR	Eliminar complemento
 values-b+es/strings.xml	string	delete_repository	-	STR	Borrar repositorio	
 values-b+es/strings.xml	string	delete_repository_plugins	-	STR	Esto también eliminará todos los plugins del repositorio	
 values-b+es/strings.xml	string	deselect_all	-	STR	Deseleccionar todo	
+values-b+es/strings.xml	string	desktop_menu_go	-	STR	Ir	
 values-b+es/strings.xml	string	detail_load_failed_body	-	STR	Puede que la fuente no esté disponible.	
 values-b+es/strings.xml	string	detail_load_failed_headline	-	STR	No se pudo abrir este título	
 values-b+es/strings.xml	string	device_pin_counter_text	-	STR	El código caduca en %1$d mín y %2$d s	
@@ -9927,6 +9944,7 @@ values-b+fa/strings.xml	string	delete_plugin	-	STR	حذف افزونه
 values-b+fa/strings.xml	string	delete_repository	-	STR	حذف مخزن	
 values-b+fa/strings.xml	string	delete_repository_plugins	-	STR	این همچنین تمام مخزن افزونه‌ها را پاک می‌کند	
 values-b+fa/strings.xml	string	deselect_all	-	STR	انتخاب نکردن همه	
+values-b+fa/strings.xml	string	desktop_menu_go	-	STR	رفتن	
 values-b+fa/strings.xml	string	detail_load_failed_body	-	STR	ممکن است منبع در دسترس نباشد.	
 values-b+fa/strings.xml	string	detail_load_failed_headline	-	STR	این عنوان باز نشد	
 values-b+fa/strings.xml	string	discord	-	STR	عضویت در دیسکورد	
@@ -10325,6 +10343,7 @@ values-b+fil/strings.xml	string	cast_format	-	STR	Tauhan: %s
 values-b+fil/strings.xml	string	confirm_before_exiting_desc	-	STR	Ipakita ang dialog bago lumabas sa app	
 values-b+fil/strings.xml	string	confirm_before_exiting_title	-	STR	Kumpirmahin bago lumabas	
 values-b+fil/strings.xml	string	deselect_all	-	STR	Alisin sa pagkakapili ang Lahat	
+values-b+fil/strings.xml	string	desktop_menu_go	-	STR	Pumunta	
 values-b+fil/strings.xml	string	detail_load_failed_body	-	STR	Maaaring hindi available ang source.	
 values-b+fil/strings.xml	string	detail_load_failed_headline	-	STR	Hindi mabuksan ang pamagat na ito	
 values-b+fil/strings.xml	string	download	-	STR	I-download	
@@ -10717,6 +10736,7 @@ values-b+fr/strings.xml	string	delete_plugin	-	STR	Supprimer l'extension
 values-b+fr/strings.xml	string	delete_repository	-	STR	Supprimer le repository	
 values-b+fr/strings.xml	string	delete_repository_plugins	-	STR	Cela supprimera également tous les plugins du repository	
 values-b+fr/strings.xml	string	deselect_all	-	STR	Tout désélectionner	
+values-b+fr/strings.xml	string	desktop_menu_go	-	STR	Aller	
 values-b+fr/strings.xml	string	detail_load_failed_body	-	STR	La source est peut-être indisponible.	
 values-b+fr/strings.xml	string	detail_load_failed_headline	-	STR	Impossible d'ouvrir ce titre	
 values-b+fr/strings.xml	string	device_pin_counter_text	-	STR	Code expire dans %1$dm %2$ds	
@@ -11456,6 +11476,7 @@ values-b+gl/strings.xml	string	delete_message_series_episodes	-	STR	Está seguro
 values-b+gl/strings.xml	string	delete_message_series_only	-	STR	Está seguro de querer borrar permanentemente todos os episodios da serie?\n\n%s	
 values-b+gl/strings.xml	string	delete_message_series_section	-	STR	Tamén borrará permanentemente todos os capítulos das seguintes series:\n\n%s	
 values-b+gl/strings.xml	string	deselect_all	-	STR	Deseleccionar todo	
+values-b+gl/strings.xml	string	desktop_menu_go	-	STR	Ir	
 values-b+gl/strings.xml	string	detail_load_failed_body	-	STR	Pode que a fonte non estea dispoñible.	
 values-b+gl/strings.xml	string	detail_load_failed_headline	-	STR	Non se puido abrir este título	
 values-b+gl/strings.xml	string	discord	-	STR	Únete o Discord	
@@ -11865,6 +11886,7 @@ values-b+hi/strings.xml	string	delete_message_series_episodes	-	STR	क्या
 values-b+hi/strings.xml	string	delete_message_series_only	-	STR	क्या आप वाकई निम्नलिखित श्रृंखला के सभी प्रकरण को स्थायी रूप से हटाना चाहते हैं?\n\n%s	
 values-b+hi/strings.xml	string	delete_message_series_section	-	STR	आप निम्नलिखित श्रृंखला के सभी प्रकरण भी स्थायी रूप से हटा देंगे:\n\n%s	
 values-b+hi/strings.xml	string	deselect_all	-	STR	सभी अचयनित करें	
+values-b+hi/strings.xml	string	desktop_menu_go	-	STR	जाएँ	
 values-b+hi/strings.xml	string	detail_load_failed_body	-	STR	हो सकता है स्रोत उपलब्ध न हो।	
 values-b+hi/strings.xml	string	detail_load_failed_headline	-	STR	यह शीर्षक नहीं खुल सका	
 values-b+hi/strings.xml	string	discord	-	STR	Discord से जुड़िये	
@@ -12450,6 +12472,7 @@ values-b+hr/strings.xml	string	delete_plugin	-	STR	Izbriši dodatak
 values-b+hr/strings.xml	string	delete_repository	-	STR	Izbriši repozitorij	
 values-b+hr/strings.xml	string	delete_repository_plugins	-	STR	Ovo će također izbrisati sve dodatke repozitorija	
 values-b+hr/strings.xml	string	deselect_all	-	STR	Odznači sve	
+values-b+hr/strings.xml	string	desktop_menu_go	-	STR	Idi	
 values-b+hr/strings.xml	string	detail_load_failed_body	-	STR	Izvor možda nije dostupan.	
 values-b+hr/strings.xml	string	detail_load_failed_headline	-	STR	Naslov se nije mogao otvoriti	
 values-b+hr/strings.xml	string	device_pin_counter_text	-	STR	Kod isteče za %1$d min %2$d s	
@@ -13251,6 +13274,7 @@ values-b+hu/strings.xml	string	delete_plugin	-	STR	Plugin törlése
 values-b+hu/strings.xml	string	delete_repository	-	STR	Tároló törlése	
 values-b+hu/strings.xml	string	delete_repository_plugins	-	STR	Ez az összes tároló bővítményt is törli	
 values-b+hu/strings.xml	string	deselect_all	-	STR	Mindent Kijelölés Eltávolítása	
+values-b+hu/strings.xml	string	desktop_menu_go	-	STR	Ugrás	
 values-b+hu/strings.xml	string	detail_load_failed_body	-	STR	Lehet, hogy a forrás nem érhető el.	
 values-b+hu/strings.xml	string	detail_load_failed_headline	-	STR	Ezt a címet nem sikerült megnyitni	
 values-b+hu/strings.xml	string	device_pin_counter_text	-	STR	A kód %1$dm %2$ds után lejár	
@@ -14007,6 +14031,7 @@ values-b+in/strings.xml	string	delete_plugin	-	STR	Hapus plugin
 values-b+in/strings.xml	string	delete_repository	-	STR	Hapus repositori	
 values-b+in/strings.xml	string	delete_repository_plugins	-	STR	Pilih ini untuk menghapus semua repositori plugin	
 values-b+in/strings.xml	string	deselect_all	-	STR	Batal Pilih Semua	
+values-b+in/strings.xml	string	desktop_menu_go	-	STR	Buka	
 values-b+in/strings.xml	string	detail_load_failed_body	-	STR	Sumbernya mungkin tidak tersedia.	
 values-b+in/strings.xml	string	detail_load_failed_headline	-	STR	Tidak dapat membuka judul ini	
 values-b+in/strings.xml	string	device_pin_counter_text	-	STR	Kode kedaluwarsa dalam %1$dm %2$dd	
@@ -14849,6 +14874,7 @@ values-b+it/strings.xml	string	delete_plugin	-	STR	Elimina plugin
 values-b+it/strings.xml	string	delete_repository	-	STR	Elimina repository	
 values-b+it/strings.xml	string	delete_repository_plugins	-	STR	Questo eliminerà anche tutti i plugin del repository	
 values-b+it/strings.xml	string	deselect_all	-	STR	Deseleziona tutto	
+values-b+it/strings.xml	string	desktop_menu_go	-	STR	Vai	
 values-b+it/strings.xml	string	detail_load_failed_body	-	STR	La fonte potrebbe non essere disponibile.	
 values-b+it/strings.xml	string	detail_load_failed_headline	-	STR	Impossibile aprire questo titolo	
 values-b+it/strings.xml	string	device_pin_counter_text	-	STR	Il codice scadrà tra %1$dm %2$ds	
@@ -15634,6 +15660,7 @@ values-b+iw/strings.xml	string	delete_message	-	STR	‬פעולה זאת תמח�
 values-b+iw/strings.xml	string	delete_repository	-	STR	מחק מאגר	
 values-b+iw/strings.xml	string	delete_repository_plugins	-	STR	פעולה זו תמחק גם את כל תוספי המאגר	
 values-b+iw/strings.xml	string	deselect_all	-	STR	הסר בחירה מהכל	
+values-b+iw/strings.xml	string	desktop_menu_go	-	STR	מעבר	
 values-b+iw/strings.xml	string	detail_load_failed_body	-	STR	ייתכן שהמקור אינו זמין.	
 values-b+iw/strings.xml	string	detail_load_failed_headline	-	STR	לא ניתן לפתוח את הכותר הזה	
 values-b+iw/strings.xml	string	disable	-	STR	ביטול	
@@ -16324,6 +16351,7 @@ values-b+ja/strings.xml	string	delete_plugin	-	STR	プラグインを削除
 values-b+ja/strings.xml	string	delete_repository	-	STR	リポジトリ削除	
 values-b+ja/strings.xml	string	delete_repository_plugins	-	STR	これにより、リポジトリのすべてのプラグインも削除されます	
 values-b+ja/strings.xml	string	deselect_all	-	STR	すべて選択解除	
+values-b+ja/strings.xml	string	desktop_menu_go	-	STR	移動	
 values-b+ja/strings.xml	string	detail_load_failed_body	-	STR	ソースが利用できない可能性があります。	
 values-b+ja/strings.xml	string	detail_load_failed_headline	-	STR	このタイトルを開けませんでした	
 values-b+ja/strings.xml	string	device_pin_counter_text	-	STR	%1$dm %2$ds でコードが切れます	
@@ -17021,6 +17049,7 @@ values-b+kn/strings.xml	string	cast_format	-	STR	ಕ್ಯಾಸ್ಟ್:%s
 values-b+kn/strings.xml	string	chromecast_subtitles_settings	-	STR	ಕ್ರೋಮ್ ಕ್ಯಾಸ್ಟ್ ಸಬ್ ಟೈಟಲ್ಸ್	
 values-b+kn/strings.xml	string	chromecast_subtitles_settings_des	-	STR	ಕ್ರೋಮ್ ಕ್ಯಾಸ್ಟ್ ಸಬ್ ಟೈಟಲ್ಸ್ ಸೆಟ್ಟಿಂಗ್ಸ್	
 values-b+kn/strings.xml	string	continue_watching	-	STR	ಕಂಟಿನ್ಯೂ ವಾಟಚಿಂಗ್	
+values-b+kn/strings.xml	string	desktop_menu_go	-	STR	ಹೋಗಿ	
 values-b+kn/strings.xml	string	detail_load_failed_body	-	STR	ಮೂಲ ಲಭ್ಯವಿಲ್ಲದಿರಬಹುದು.	
 values-b+kn/strings.xml	string	detail_load_failed_headline	-	STR	ಈ ಶೀರ್ಷಿಕೆಯನ್ನು ತೆರೆಯಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ	
 values-b+kn/strings.xml	string	double_tap_to_seek_settings	-	STR	ಮುಂದೂಡಲು ಅಥವಾ ಇಂದೂಡಲು ಎರಡು ಬಾರಿ ಟ್ಯಾಪ್ ಮಾಡಿ	
@@ -17378,6 +17407,7 @@ values-b+ko/strings.xml	string	delete_plugin	-	STR	플러그인 삭제
 values-b+ko/strings.xml	string	delete_repository	-	STR	저장소 삭제	
 values-b+ko/strings.xml	string	delete_repository_plugins	-	STR	이렇게 하면 모든 저장소의 플러그인도 삭제됩니다	
 values-b+ko/strings.xml	string	deselect_all	-	STR	모두 선택해제	
+values-b+ko/strings.xml	string	desktop_menu_go	-	STR	이동	
 values-b+ko/strings.xml	string	detail_load_failed_body	-	STR	소스를 사용할 수 없을 수 있습니다.	
 values-b+ko/strings.xml	string	detail_load_failed_headline	-	STR	이 작품을 열 수 없습니다	
 values-b+ko/strings.xml	string	device_pin_counter_text	-	STR	코드 만료까지 남은 시간: %1$dm %2$ds	
@@ -18105,6 +18135,7 @@ values-b+lt/strings.xml	string	delayed_update_notice	-	STR	Programa bus atnaujin
 values-b+lt/strings.xml	string	delete	-	STR	Ištrinti	
 values-b+lt/strings.xml	string	delete_file	-	STR	Ištrinti failą	
 values-b+lt/strings.xml	string	deselect_all	-	STR	Panaikinti visus pasirinkimus	
+values-b+lt/strings.xml	string	desktop_menu_go	-	STR	Eiti	
 values-b+lt/strings.xml	string	detail_load_failed_body	-	STR	Šaltinis gali būti nepasiekiamas.	
 values-b+lt/strings.xml	string	detail_load_failed_headline	-	STR	Nepavyko atidaryti šio pavadinimo	
 values-b+lt/strings.xml	string	disable	-	STR	Išjungti	
@@ -18572,6 +18603,7 @@ values-b+lv/strings.xml	string	delete_message_series_section	-	STR	Jūs arī nea
 values-b+lv/strings.xml	string	delete_plugin	-	STR	Dzēst papildinājumu	
 values-b+lv/strings.xml	string	delete_repository	-	STR	Dzēst repozitoriju	
 values-b+lv/strings.xml	string	delete_repository_plugins	-	STR	Tiks izdzēsti arī visi repozitorija papildinājumi	
+values-b+lv/strings.xml	string	desktop_menu_go	-	STR	Doties	
 values-b+lv/strings.xml	string	detail_load_failed_body	-	STR	Avots, iespējams, nav pieejams.	
 values-b+lv/strings.xml	string	detail_load_failed_headline	-	STR	Šo nosaukumu neizdevās atvērt	
 values-b+lv/strings.xml	string	disable	-	STR	Atspējot	
@@ -19318,6 +19350,7 @@ values-b+mk/strings.xml	string	delete_plugin	-	STR	Избриши го прик�
 values-b+mk/strings.xml	string	delete_repository	-	STR	Избриши извор	
 values-b+mk/strings.xml	string	delete_repository_plugins	-	STR	Ова исто така ќе ги избрише сите приклучоци	
 values-b+mk/strings.xml	string	deselect_all	-	STR	Деселектирај сѐ	
+values-b+mk/strings.xml	string	desktop_menu_go	-	STR	Оди	
 values-b+mk/strings.xml	string	detail_load_failed_body	-	STR	Изворот можеби не е достапен.	
 values-b+mk/strings.xml	string	detail_load_failed_headline	-	STR	Насловот не може да се отвори	
 values-b+mk/strings.xml	string	device_pin_counter_text	-	STR	Кодот истекува за %1$d минута/и и %2$d секунда/и	
@@ -20039,6 +20072,7 @@ values-b+ml/strings.xml	string	delete_message	-	STR	സ്ഥിരമായി 
 values-b+ml/strings.xml	string	delete_repository	-	STR	ശേഖരം ഇല്ലാതാക്കുക	
 values-b+ml/strings.xml	string	delete_repository_plugins	-	STR	ഇത് എല്ലാ റിപ്പോസിറ്ററി പ്ലഗിന്നുകളും ഇല്ലാതാക്കും	
 values-b+ml/strings.xml	string	deselect_all	-	STR	തിരഞ്ഞെടുത്തവയെല്ലാം ഒഴിവാക്കു	
+values-b+ml/strings.xml	string	desktop_menu_go	-	STR	പോകുക	
 values-b+ml/strings.xml	string	detail_load_failed_body	-	STR	ഉറവിടം ലഭ്യമല്ലായിരിക്കാം.	
 values-b+ml/strings.xml	string	detail_load_failed_headline	-	STR	ഈ ശീർഷകം തുറക്കാനായില്ല	
 values-b+ml/strings.xml	string	discord	-	STR	ഡിസ്‌കോർഡിലേക്ക് സ്വാഗതം	
@@ -20488,6 +20522,7 @@ values-b+ms/strings.xml	string	delete_message_series_only	-	STR	Adakah anda past
 values-b+ms/strings.xml	string	delete_message_series_section	-	STR	Anda juga akan memadamkan semua episod dalam siri berikut secara kekal:\n\n%s	
 values-b+ms/strings.xml	string	delete_repository	-	STR	Padam repositori	
 values-b+ms/strings.xml	string	deselect_all	-	STR	Nyahpilih semua	
+values-b+ms/strings.xml	string	desktop_menu_go	-	STR	Pergi	
 values-b+ms/strings.xml	string	detail_load_failed_body	-	STR	Sumber mungkin tidak tersedia.	
 values-b+ms/strings.xml	string	detail_load_failed_headline	-	STR	Tajuk ini tidak dapat dibuka	
 values-b+ms/strings.xml	string	device_pin_counter_text	-	STR	Kod luput dalam %1$dm%2$ds	
@@ -21026,6 +21061,7 @@ values-b+mt/strings.xml	string	browser	-	STR	Brawser
 values-b+mt/strings.xml	string	cast	-	STR	Atturi	
 values-b+mt/strings.xml	string	cast_format	-	STR	Atturi: %s	
 values-b+mt/strings.xml	string	continue_watching	-	STR	Kompli Ara	
+values-b+mt/strings.xml	string	desktop_menu_go	-	STR	Mur	
 values-b+mt/strings.xml	string	detail_load_failed_body	-	STR	Is-sors jista' jkun mhux disponibbli.	
 values-b+mt/strings.xml	string	detail_load_failed_headline	-	STR	It-titlu ma setax jinfetaħ	
 values-b+mt/strings.xml	string	download	-	STR	Niżżel	
@@ -21327,6 +21363,7 @@ values-b+my/strings.xml	string	delete_file	-	STR	ဖိုင်ကိုဖျ�
 values-b+my/strings.xml	string	delete_message	-	STR	ဒါကအပြီးဖျက်ခြင်းဖြစ်ပါသည် %s \nသင်သေချာပါသလား။	
 values-b+my/strings.xml	string	delete_repository	-	STR	ရီပိုစစ်ထရီ ကိုဖျက်ရန်	
 values-b+my/strings.xml	string	delete_repository_plugins	-	STR	ရီပိုစစ်ထရီ ဖြည့်စွက်များအားလုံးကိုဖျက်မည်ဖြစ်သည်	
+values-b+my/strings.xml	string	desktop_menu_go	-	STR	သွားရန်	
 values-b+my/strings.xml	string	detail_load_failed_body	-	STR	ရင်းမြစ်ကို မရနိုင်ဘဲ ဖြစ်နေနိုင်သည်။	
 values-b+my/strings.xml	string	detail_load_failed_headline	-	STR	ဤခေါင်းစဉ်ကို ဖွင့်၍မရပါ	
 values-b+my/strings.xml	string	disable	-	STR	ပိတ်ပါ	
@@ -21860,6 +21897,7 @@ values-b+ne/strings.xml	string	cast	-	STR	अभिनेता
 values-b+ne/strings.xml	string	cast_format	-	STR	अभिनेता:%s	
 values-b+ne/strings.xml	string	chromecast_subtitles_settings	-	STR	Chromecast को उपशीर्षकहरु	
 values-b+ne/strings.xml	string	continue_watching	-	STR	हेर्न सुचारु राख्नुहोस	
+values-b+ne/strings.xml	string	desktop_menu_go	-	STR	जानुहोस्	
 values-b+ne/strings.xml	string	detail_load_failed_body	-	STR	स्रोत उपलब्ध नहुन सक्छ।	
 values-b+ne/strings.xml	string	detail_load_failed_headline	-	STR	यो शीर्षक खोल्न सकिएन	
 values-b+ne/strings.xml	string	download	-	STR	डाउनलोड	
@@ -22205,6 +22243,7 @@ values-b+nl/strings.xml	string	delete_plugin	-	STR	Verwijder plug-in
 values-b+nl/strings.xml	string	delete_repository	-	STR	Wis repository	
 values-b+nl/strings.xml	string	delete_repository_plugins	-	STR	Dit zal ook alle repository plugins verwijderen	
 values-b+nl/strings.xml	string	deselect_all	-	STR	Deselecteer alles	
+values-b+nl/strings.xml	string	desktop_menu_go	-	STR	Ga	
 values-b+nl/strings.xml	string	detail_load_failed_body	-	STR	De bron is mogelijk niet beschikbaar.	
 values-b+nl/strings.xml	string	detail_load_failed_headline	-	STR	Deze titel kon niet worden geopend	
 values-b+nl/strings.xml	string	device_pin_counter_text	-	STR	Code verloopt in %1$dm %2$ds	
@@ -22876,6 +22915,7 @@ values-b+nn/strings.xml	string	copy_link_toast	-	STR	Kopiert lenke til utklippta
 values-b+nn/strings.xml	string	delete	-	STR	Slett	
 values-b+nn/strings.xml	string	delete_file	-	STR	Slett fil	
 values-b+nn/strings.xml	string	delete_message	-	STR	Dette vil slette %s permanent. \nEr du sikker på dette?	
+values-b+nn/strings.xml	string	desktop_menu_go	-	STR	Gå	
 values-b+nn/strings.xml	string	detail_load_failed_body	-	STR	Kjelda er kanskje ikkje tilgjengeleg.	
 values-b+nn/strings.xml	string	detail_load_failed_headline	-	STR	Kunne ikkje opne denne tittelen	
 values-b+nn/strings.xml	string	discord	-	STR	Bli med i Discord	
@@ -23241,6 +23281,7 @@ values-b+no/strings.xml	string	delete_file	-	STR	Slett fil
 values-b+no/strings.xml	string	delete_message	-	STR	Dette vil slette %s \nEr du sikker?	
 values-b+no/strings.xml	string	delete_repository	-	STR	Slett pakkebrønn	
 values-b+no/strings.xml	string	delete_repository_plugins	-	STR	Dette vil også slette alle pakkebrønnsprogramtillegg	
+values-b+no/strings.xml	string	desktop_menu_go	-	STR	Gå	
 values-b+no/strings.xml	string	detail_load_failed_body	-	STR	Kilden er kanskje ikke tilgjengelig.	
 values-b+no/strings.xml	string	detail_load_failed_headline	-	STR	Kunne ikke åpne denne tittelen	
 values-b+no/strings.xml	string	discord	-	STR	Bli med Discord	
@@ -23777,6 +23818,7 @@ values-b+or/strings.xml	string	coming_soon	-	STR	ଶୀଘ୍ର ଆସୁଅଛ
 values-b+or/strings.xml	string	copy_link_toast	-	STR	ଲିଙ୍କ୍ କ୍ଲିପ୍‌ବୋର୍ଡରେ କପି କରିନିଆଗଲା	
 values-b+or/strings.xml	string	delete	-	STR	ଵିଲୋପ କର	
 values-b+or/strings.xml	string	delete_file	-	STR	ଫାଇଲ୍ ଵିଲୋପ କରିବେ	
+values-b+or/strings.xml	string	desktop_menu_go	-	STR	ଯାଆନ୍ତୁ	
 values-b+or/strings.xml	string	detail_load_failed_body	-	STR	ଉତ୍ସ ଉପଲବ୍ଧ ନ ହୋଇପାରେ।	
 values-b+or/strings.xml	string	detail_load_failed_headline	-	STR	ଏହି ଶୀର୍ଷକ ଖୋଲିହେଲା ନାହିଁ	
 values-b+or/strings.xml	string	documentaries	-	STR	ଵୃତ୍ତଚିତ୍ର	
@@ -24175,6 +24217,7 @@ values-b+pl/strings.xml	string	delete_plugin	-	STR	Usuń wtyczkę
 values-b+pl/strings.xml	string	delete_repository	-	STR	Usuń repozytorium	
 values-b+pl/strings.xml	string	delete_repository_plugins	-	STR	Ta akcja usunie także wszystkie rozszerzenia z repozytorium	
 values-b+pl/strings.xml	string	deselect_all	-	STR	Odznacz wszystkie	
+values-b+pl/strings.xml	string	desktop_menu_go	-	STR	Idź	
 values-b+pl/strings.xml	string	detail_load_failed_body	-	STR	Źródło może być niedostępne.	
 values-b+pl/strings.xml	string	detail_load_failed_headline	-	STR	Nie udało się otworzyć tego tytułu	
 values-b+pl/strings.xml	string	device_pin_counter_text	-	STR	Kod wygasa za %1$dm %2$ds	
@@ -25017,6 +25060,7 @@ values-b+pt+BR/strings.xml	string	delete_plugin	-	STR	Excluir plugin
 values-b+pt+BR/strings.xml	string	delete_repository	-	STR	Apagar repositório	
 values-b+pt+BR/strings.xml	string	delete_repository_plugins	-	STR	Isto irá apagar todos os repositórios de plugins	
 values-b+pt+BR/strings.xml	string	deselect_all	-	STR	Desmarcar todos	
+values-b+pt+BR/strings.xml	string	desktop_menu_go	-	STR	Ir	
 values-b+pt+BR/strings.xml	string	detail_load_failed_body	-	STR	A fonte pode estar indisponível.	
 values-b+pt+BR/strings.xml	string	detail_load_failed_headline	-	STR	Não foi possível abrir este título	
 values-b+pt+BR/strings.xml	string	device_pin_counter_text	-	STR	O código expira em %1$dm %2$ds	
@@ -25856,6 +25900,7 @@ values-b+pt/strings.xml	string	delete_plugin	-	STR	Eliminar plugin
 values-b+pt/strings.xml	string	delete_repository	-	STR	Apagar repositório	
 values-b+pt/strings.xml	string	delete_repository_plugins	-	STR	Isto irá apagar todos os repositórios de plugins	
 values-b+pt/strings.xml	string	deselect_all	-	STR	Desselecionar todos	
+values-b+pt/strings.xml	string	desktop_menu_go	-	STR	Ir	
 values-b+pt/strings.xml	string	detail_load_failed_body	-	STR	A fonte pode estar indisponível.	
 values-b+pt/strings.xml	string	detail_load_failed_headline	-	STR	Não foi possível abrir este título	
 values-b+pt/strings.xml	string	device_pin_counter_text	-	STR	O código expira em %1$dm %2$ds	
@@ -26660,6 +26705,7 @@ values-b+qt/strings.xml	string	delete_plugin	-	STR	oooogg oooogg
 values-b+qt/strings.xml	string	delete_repository	-	STR	oooohh oooogggoog	
 values-b+qt/strings.xml	string	delete_repository_plugins	-	STR	eeek oohh uuhh oooohh oog oooogggooh aaaahhh	
 values-b+qt/strings.xml	string	deselect_all	-	STR	eeeeeekh uug	
+values-b+qt/strings.xml	string	desktop_menu_go	-	STR	ooh	
 values-b+qt/strings.xml	string	detail_load_failed_body	-	STR	uhaauauau ahuuouaha oooohhaaaghh.	
 values-b+qt/strings.xml	string	detail_load_failed_headline	-	STR	ahooo uuhh ahhhaauugghh oouuh	
 values-b+qt/strings.xml	string	device_pin_counter_text	-	STR	aagg uuuuggg og %1$dm %2$ds	
@@ -27382,6 +27428,7 @@ values-b+ro/strings.xml	string	delete_plugin	-	STR	Șterge pluginul
 values-b+ro/strings.xml	string	delete_repository	-	STR	Ștergeți depozitul	
 values-b+ro/strings.xml	string	delete_repository_plugins	-	STR	Acest lucru va șterge, de asemenea, toate plugin-urile din depozit	
 values-b+ro/strings.xml	string	deselect_all	-	STR	Deselectionati totul	
+values-b+ro/strings.xml	string	desktop_menu_go	-	STR	Mergi	
 values-b+ro/strings.xml	string	detail_load_failed_body	-	STR	Sursa poate fi indisponibilă.	
 values-b+ro/strings.xml	string	detail_load_failed_headline	-	STR	Titlul nu a putut fi deschis	
 values-b+ro/strings.xml	string	disable	-	STR	Dezactivați	
@@ -28139,6 +28186,7 @@ values-b+ru/strings.xml	string	delete_plugin	-	STR	Удалить модуль
 values-b+ru/strings.xml	string	delete_repository	-	STR	Удалить репозиторий	
 values-b+ru/strings.xml	string	delete_repository_plugins	-	STR	Это также удалит все дополнения из источника	
 values-b+ru/strings.xml	string	deselect_all	-	STR	Отменить выбор	
+values-b+ru/strings.xml	string	desktop_menu_go	-	STR	Переход	
 values-b+ru/strings.xml	string	detail_load_failed_body	-	STR	Источник может быть недоступен.	
 values-b+ru/strings.xml	string	detail_load_failed_headline	-	STR	Не удалось открыть это название	
 values-b+ru/strings.xml	string	device_pin_counter_text	-	STR	Код истекает через %1$dмин %2$dсек	
@@ -28919,6 +28967,7 @@ values-b+sk/strings.xml	string	delete_message_series_section	-	STR	Takisto aj tr
 values-b+sk/strings.xml	string	delete_repository	-	STR	Zmazať repozitár	
 values-b+sk/strings.xml	string	delete_repository_plugins	-	STR	Toto tiež odstráni všetky doplnky repozitára	
 values-b+sk/strings.xml	string	deselect_all	-	STR	Zrušiť výber všetkých	
+values-b+sk/strings.xml	string	desktop_menu_go	-	STR	Prejsť	
 values-b+sk/strings.xml	string	detail_load_failed_body	-	STR	Zdroj možno nie je dostupný.	
 values-b+sk/strings.xml	string	detail_load_failed_headline	-	STR	Tento titul sa nepodarilo otvoriť	
 values-b+sk/strings.xml	string	disable	-	STR	Zakázať	
@@ -29492,6 +29541,7 @@ values-b+so/strings.xml	string	delete_message	-	STR	Dhamaantii waa la saari doon
 values-b+so/strings.xml	string	delete_repository	-	STR	Saar kayd-weynaha	
 values-b+so/strings.xml	string	delete_repository_plugins	-	STR	Waxa la saarayaa dhammaan sidkanayaasha kayd-weynaha	
 values-b+so/strings.xml	string	deselect_all	-	STR	Ha dooran dhammaan	
+values-b+so/strings.xml	string	desktop_menu_go	-	STR	Tag	
 values-b+so/strings.xml	string	detail_load_failed_body	-	STR	Isha waxaa laga yaabaa inaysan diyaar ahayn.	
 values-b+so/strings.xml	string	detail_load_failed_headline	-	STR	Cinwaankan lama furi karo	
 values-b+so/strings.xml	string	discord	-	STR	Discord naga soo qabo	
@@ -30153,6 +30203,7 @@ values-b+sq/strings.xml	string	delete_plugin	-	STR	Fshi shtesën
 values-b+sq/strings.xml	string	delete_repository	-	STR	Fshi repository-n	
 values-b+sq/strings.xml	string	delete_repository_plugins	-	STR	Kjo do të heqë të gjitha shtesat	
 values-b+sq/strings.xml	string	deselect_all	-	STR	Çzgjidh të gjitha	
+values-b+sq/strings.xml	string	desktop_menu_go	-	STR	Shko	
 values-b+sq/strings.xml	string	detail_load_failed_body	-	STR	Burimi mund të mos jetë i disponueshëm.	
 values-b+sq/strings.xml	string	detail_load_failed_headline	-	STR	Titulli nuk mund të hapej	
 values-b+sq/strings.xml	string	device_pin_counter_text	-	STR	Kodi skadon pas %1$dm %2$ds	
@@ -30989,6 +31040,7 @@ values-b+sv/strings.xml	string	delete_plugin	-	STR	Ta bort insticksprogram
 values-b+sv/strings.xml	string	delete_repository	-	STR	Radera databasen	
 values-b+sv/strings.xml	string	delete_repository_plugins	-	STR	Detta kommer också att ta bort alla tillägg för databasen	
 values-b+sv/strings.xml	string	deselect_all	-	STR	Avmarkera alla	
+values-b+sv/strings.xml	string	desktop_menu_go	-	STR	Gå	
 values-b+sv/strings.xml	string	detail_load_failed_body	-	STR	Källan kanske inte är tillgänglig.	
 values-b+sv/strings.xml	string	detail_load_failed_headline	-	STR	Titeln kunde inte öppnas	
 values-b+sv/strings.xml	string	device_pin_counter_text	-	STR	Koden löper ut om %1$dm %2$ds	
@@ -31825,6 +31877,7 @@ values-b+ta/strings.xml	string	delete_plugin	-	STR	சொருகி நீக�
 values-b+ta/strings.xml	string	delete_repository	-	STR	களஞ்சியத்தை நீக்கு	
 values-b+ta/strings.xml	string	delete_repository_plugins	-	STR	இது அனைத்து களஞ்சிய செருகுநிரல்களையும் நீக்கிவிடும்	
 values-b+ta/strings.xml	string	deselect_all	-	STR	அனைத்தையும் தேர்வு செய்யுங்கள்	
+values-b+ta/strings.xml	string	desktop_menu_go	-	STR	செல்	
 values-b+ta/strings.xml	string	detail_load_failed_body	-	STR	மூலம் கிடைக்காமல் இருக்கலாம்.	
 values-b+ta/strings.xml	string	detail_load_failed_headline	-	STR	இந்தத் தலைப்பைத் திறக்க முடியவில்லை	
 values-b+ta/strings.xml	string	device_pin_counter_text	-	STR	குறியீடு %1$dm %2$ds இல் காலாவதியாகிறது	
@@ -32506,6 +32559,7 @@ values-b+ti/strings.xml	plurals	home_sections_failed	other	STR	%d ክፍሊ ክ�
 values-b+ti/strings.xml	string	app_dub_sub_episode_text_format	-	STR	%1$s ክፋል %2$d	
 values-b+ti/strings.xml	string	cast	-	STR	ተዋሳእቲ	
 values-b+ti/strings.xml	string	cast_format	-	STR	ተዋሳእቲ፡ %s	
+values-b+ti/strings.xml	string	desktop_menu_go	-	STR	ኪድ	
 values-b+ti/strings.xml	string	detail_load_failed_body	-	STR	ምንጪ ኣይርከብ ይኸውን።	
 values-b+ti/strings.xml	string	detail_load_failed_headline	-	STR	እዚ ኣርእስቲ ክኽፈት ኣይከኣለን	
 values-b+ti/strings.xml	string	downloads_browse_library	-	STR	ቤተ-መጻሕፍቲ ድለ	
@@ -32655,6 +32709,7 @@ values-b+tl/strings.xml	string	create_account	-	STR	Gumawa ng account
 values-b+tl/strings.xml	string	delete	-	STR	Tanggalin	
 values-b+tl/strings.xml	string	delete_file	-	STR	Burahin ang file	
 values-b+tl/strings.xml	string	delete_message	-	STR	This will permanently delete %s \nAre you sure?	
+values-b+tl/strings.xml	string	desktop_menu_go	-	STR	Pumunta	
 values-b+tl/strings.xml	string	detail_load_failed_body	-	STR	Maaaring hindi available ang source.	
 values-b+tl/strings.xml	string	detail_load_failed_headline	-	STR	Hindi mabuksan ang pamagat na ito	
 values-b+tl/strings.xml	string	discord	-	STR	Sumali sa Discord	
@@ -33108,6 +33163,7 @@ values-b+tr/strings.xml	string	delete_plugin	-	STR	Eklentiyi sil
 values-b+tr/strings.xml	string	delete_repository	-	STR	Depoyu sil	
 values-b+tr/strings.xml	string	delete_repository_plugins	-	STR	Bu aynı zamanda tüm depo eklentilerini de siler	
 values-b+tr/strings.xml	string	deselect_all	-	STR	Tüm Seçimi Kaldır	
+values-b+tr/strings.xml	string	desktop_menu_go	-	STR	Git	
 values-b+tr/strings.xml	string	detail_load_failed_body	-	STR	Kaynak kullanılamıyor olabilir.	
 values-b+tr/strings.xml	string	detail_load_failed_headline	-	STR	Bu başlık açılamadı	
 values-b+tr/strings.xml	string	device_pin_counter_text	-	STR	Kodun süresi %1$dm %2$ds içinde doluyor	
@@ -33956,6 +34012,7 @@ values-b+uk/strings.xml	string	delete_plugin	-	STR	Видалити розшир
 values-b+uk/strings.xml	string	delete_repository	-	STR	Видалити сховище	
 values-b+uk/strings.xml	string	delete_repository_plugins	-	STR	Це також призведе до видалення всіх розширень сховища	
 values-b+uk/strings.xml	string	deselect_all	-	STR	Зняти виділення	
+values-b+uk/strings.xml	string	desktop_menu_go	-	STR	Перейти	
 values-b+uk/strings.xml	string	detail_load_failed_body	-	STR	Джерело може бути недоступним.	
 values-b+uk/strings.xml	string	detail_load_failed_headline	-	STR	Не вдалося відкрити цю назву	
 values-b+uk/strings.xml	string	device_pin_counter_text	-	STR	Термін дії коду закінчується через %1$d хв %2$d с	
@@ -34760,6 +34817,7 @@ values-b+ur/strings.xml	string	delete_message	-	STR	یہ مستقل طور پر 
 values-b+ur/strings.xml	string	delete_repository	-	STR	ذخیرہ کو حذف کریں	
 values-b+ur/strings.xml	string	delete_repository_plugins	-	STR	اس سے تمام ریپوزٹری پلگ ان بھی حذف ہو جائیں گے	
 values-b+ur/strings.xml	string	deselect_all	-	STR	سب غیر منتخب کریں	
+values-b+ur/strings.xml	string	desktop_menu_go	-	STR	جائیں	
 values-b+ur/strings.xml	string	detail_load_failed_body	-	STR	ممکن ہے ذریعہ دستیاب نہ ہو۔	
 values-b+ur/strings.xml	string	detail_load_failed_headline	-	STR	یہ عنوان نہیں کھل سکا	
 values-b+ur/strings.xml	string	device_pin_url_message	-	STR	اپنے اسمارٹ فون یا کمپیوٹر پر یہ %s وزٹ کریں اور مندرجہ بالا کوڈ ڈالیں	
@@ -35483,6 +35541,7 @@ values-b+vi/strings.xml	string	delete_plugin	-	STR	Xóa tiện ích mở rộng
 values-b+vi/strings.xml	string	delete_repository	-	STR	Xoá kho nguồn phim	
 values-b+vi/strings.xml	string	delete_repository_plugins	-	STR	Việc này sẽ xóa tất cả tiện ích mở rộng trong kho nguồn phim	
 values-b+vi/strings.xml	string	deselect_all	-	STR	Bỏ chọn tất cả	
+values-b+vi/strings.xml	string	desktop_menu_go	-	STR	Đi	
 values-b+vi/strings.xml	string	detail_load_failed_body	-	STR	Nguồn có thể không khả dụng.	
 values-b+vi/strings.xml	string	detail_load_failed_headline	-	STR	Không thể mở tựa này	
 values-b+vi/strings.xml	string	device_pin_counter_text	-	STR	Mã sẽ hết hạn trong %1$d phút %2$d giây	
@@ -36312,6 +36371,7 @@ values-b+zh+TW/strings.xml	string	delete_plugin	-	STR	刪除外掛程式
 values-b+zh+TW/strings.xml	string	delete_repository	-	STR	刪除資源庫	
 values-b+zh+TW/strings.xml	string	delete_repository_plugins	-	STR	這也將刪除所有在資源庫中的外掛	
 values-b+zh+TW/strings.xml	string	deselect_all	-	STR	取消全選	
+values-b+zh+TW/strings.xml	string	desktop_menu_go	-	STR	前往	
 values-b+zh+TW/strings.xml	string	detail_load_failed_body	-	STR	來源可能無法使用。	
 values-b+zh+TW/strings.xml	string	detail_load_failed_headline	-	STR	無法開啟此內容	
 values-b+zh+TW/strings.xml	string	device_pin_counter_text	-	STR	驗證碼將在 %1$d 分 %2$d 秒後過期	
@@ -37137,6 +37197,7 @@ values-b+zh/strings.xml	string	delete_plugin	-	STR	删除插件
 values-b+zh/strings.xml	string	delete_repository	-	STR	删除仓库	
 values-b+zh/strings.xml	string	delete_repository_plugins	-	STR	这也将删除所有仓库插件	
 values-b+zh/strings.xml	string	deselect_all	-	STR	全不选	
+values-b+zh/strings.xml	string	desktop_menu_go	-	STR	前往	
 values-b+zh/strings.xml	string	detail_load_failed_body	-	STR	来源可能不可用。	
 values-b+zh/strings.xml	string	detail_load_failed_headline	-	STR	无法打开此内容	
 values-b+zh/strings.xml	string	device_pin_counter_text	-	STR	验证码 %1$dm %2$ds 后过期	
@@ -38098,6 +38159,7 @@ values/strings.xml	string	delete_plugin	-	STR	Delete plugin
 values/strings.xml	string	delete_repository	-	STR	Delete repository	
 values/strings.xml	string	delete_repository_plugins	-	STR	This will also delete all repository plugins	
 values/strings.xml	string	deselect_all	-	STR	Deselect All	
+values/strings.xml	string	desktop_menu_go	-	STR	Go	
 values/strings.xml	string	detail_load_failed_body	-	STR	Its source may be unavailable.	
 values/strings.xml	string	detail_load_failed_headline	-	STR	Couldn't open this title	
 values/strings.xml	string	device_pin_counter_text	-	STR	Code expires in %1$dm %2$ds	

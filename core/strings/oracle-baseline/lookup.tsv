@@ -178,6 +178,7 @@ values-b+af	string	delete_plugin	-	Delete plugin
 values-b+af	string	delete_repository	-	Delete repository
 values-b+af	string	delete_repository_plugins	-	This will also delete all repository plugins
 values-b+af	string	deselect_all	-	Deselect All
+values-b+af	string	desktop_menu_go	-	Gaan
 values-b+af	string	detail_load_failed_body	-	Die bron is dalk nie beskikbaar nie.
 values-b+af	string	detail_load_failed_headline	-	Kon nie hierdie titel oopmaak nie
 values-b+af	string	device_pin_counter_text	-	Code expires in %1$dm %2$ds
@@ -1072,6 +1073,7 @@ values-b+am	string	delete_plugin	-	Delete plugin
 values-b+am	string	delete_repository	-	Delete repository
 values-b+am	string	delete_repository_plugins	-	This will also delete all repository plugins
 values-b+am	string	deselect_all	-	Deselect All
+values-b+am	string	desktop_menu_go	-	ሂድ
 values-b+am	string	detail_load_failed_body	-	ምንጩ ላይገኝ ይችላል።
 values-b+am	string	detail_load_failed_headline	-	ይህን ርዕስ መክፈት አልተቻለም
 values-b+am	string	device_pin_counter_text	-	Code expires in %1$dm %2$ds
@@ -1966,6 +1968,7 @@ values-b+apc	string	delete_plugin	-	محي الإضافة
 values-b+apc	string	delete_repository	-	محي الريپو
 values-b+apc	string	delete_repository_plugins	-	محي الريپو كمان بمحي الإضافات يللي فيه
 values-b+apc	string	deselect_all	-	شيل التنقاية
+values-b+apc	string	desktop_menu_go	-	روح
 values-b+apc	string	detail_load_failed_body	-	يمكن المصدر مو متوفر.
 values-b+apc	string	detail_load_failed_headline	-	ما قدرنا نفتح هالعنوان
 values-b+apc	string	device_pin_counter_text	-	بتخلص مدة الپِن ب %1$d دقايق و%2$d ثانية
@@ -2880,6 +2883,7 @@ values-b+ar	string	delete_plugin	-	حذف الإضافة
 values-b+ar	string	delete_repository	-	ازالة مستودع
 values-b+ar	string	delete_repository_plugins	-	سوف يتم محو جميع إضافات المستودع
 values-b+ar	string	deselect_all	-	إلغاء تحديد الكل
+values-b+ar	string	desktop_menu_go	-	انتقال
 values-b+ar	string	detail_load_failed_body	-	قد يكون مصدره غير متاح.
 values-b+ar	string	detail_load_failed_headline	-	تعذّر فتح هذا العنوان
 values-b+ar	string	device_pin_counter_text	-	تنتهي صلاحية الرمز خلال %1$dm %2$ds
@@ -3786,6 +3790,7 @@ values-b+ars	string	delete_plugin	-	Delete plugin
 values-b+ars	string	delete_repository	-	Delete repository
 values-b+ars	string	delete_repository_plugins	-	This will also delete all repository plugins
 values-b+ars	string	deselect_all	-	Deselect All
+values-b+ars	string	desktop_menu_go	-	انتقال
 values-b+ars	string	detail_load_failed_body	-	يمكن المصدر مو متاح.
 values-b+ars	string	detail_load_failed_headline	-	ما قدرنا نفتح هالعنوان
 values-b+ars	string	device_pin_counter_text	-	Code expires in %1$dm %2$ds
@@ -4680,6 +4685,7 @@ values-b+as	string	delete_plugin	-	প্লাগইন ডিলিট কৰ�
 values-b+as	string	delete_repository	-	ৰিপ'জিট'ৰি ডিলিট কৰক
 values-b+as	string	delete_repository_plugins	-	এইটোয়ে সমস্ত ৰিপ'জিট'ৰি প্লাগইনসমূহও ডিলিট কৰিব
 values-b+as	string	deselect_all	-	সকলো বাদ দিয়ক
+values-b+as	string	desktop_menu_go	-	যাওক
 values-b+as	string	detail_load_failed_body	-	উৎসটো পোৱা নাযাব পাৰে।
 values-b+as	string	detail_load_failed_headline	-	এই শিৰোনামটো খুলিব নোৱাৰিলোঁ
 values-b+as	string	device_pin_counter_text	-	ক'ড মেয়াদ শেষ হব %1$dm %2$ds
@@ -5574,6 +5580,7 @@ values-b+az	string	delete_plugin	-	Delete plugin
 values-b+az	string	delete_repository	-	Delete repository
 values-b+az	string	delete_repository_plugins	-	This will also delete all repository plugins
 values-b+az	string	deselect_all	-	Deselect All
+values-b+az	string	desktop_menu_go	-	Keç
 values-b+az	string	detail_load_failed_body	-	Mənbə əlçatmaz ola bilər.
 values-b+az	string	detail_load_failed_headline	-	Bu başlıq açıla bilmədi
 values-b+az	string	device_pin_counter_text	-	Code expires in %1$dm %2$ds
@@ -6478,6 +6485,7 @@ values-b+be	string	delete_plugin	-	Выдаліць убудову
 values-b+be	string	delete_repository	-	Выдаліць рэпазіторый
 values-b+be	string	delete_repository_plugins	-	Гэта таксама прывядзе да выдалення ўсіх убудоў рэпазіторыя
 values-b+be	string	deselect_all	-	Зняць выбар
+values-b+be	string	desktop_menu_go	-	Пераход
 values-b+be	string	detail_load_failed_body	-	Крыніца можа быць недаступная.
 values-b+be	string	detail_load_failed_headline	-	Не ўдалося адкрыць гэты загаловак
 values-b+be	string	device_pin_counter_text	-	Код мінуе праз %1$dхв %2$dс
@@ -7372,6 +7380,7 @@ values-b+bg	string	delete_plugin	-	Изтриване на плъгин
 values-b+bg	string	delete_repository	-	Изтриване на хранилище
 values-b+bg	string	delete_repository_plugins	-	Това също ще изтрие всички хранилища за плъгини
 values-b+bg	string	deselect_all	-	Премахване на избора на всички
+values-b+bg	string	desktop_menu_go	-	Отиди
 values-b+bg	string	detail_load_failed_body	-	Източникът може да не е наличен.
 values-b+bg	string	detail_load_failed_headline	-	Заглавието не можа да се отвори
 values-b+bg	string	device_pin_counter_text	-	Кодът изтича след %1$dm %2$ds
@@ -8266,6 +8275,7 @@ values-b+bn	string	delete_plugin	-	Delete plugin
 values-b+bn	string	delete_repository	-	Delete repository
 values-b+bn	string	delete_repository_plugins	-	This will also delete all repository plugins
 values-b+bn	string	deselect_all	-	সব ডিসিলেক্ট করুন
+values-b+bn	string	desktop_menu_go	-	যান
 values-b+bn	string	detail_load_failed_body	-	সোর্সটি হয়তো পাওয়া যাচ্ছে না।
 values-b+bn	string	detail_load_failed_headline	-	এই শিরোনামটি খোলা যায়নি
 values-b+bn	string	device_pin_counter_text	-	Code expires in %1$dm %2$ds
@@ -9163,6 +9173,7 @@ values-b+ca	string	delete_plugin	-	Delete plugin
 values-b+ca	string	delete_repository	-	Delete repository
 values-b+ca	string	delete_repository_plugins	-	This will also delete all repository plugins
 values-b+ca	string	deselect_all	-	Deseleccionar tot
+values-b+ca	string	desktop_menu_go	-	Vés
 values-b+ca	string	detail_load_failed_body	-	Potser la font no està disponible.
 values-b+ca	string	detail_load_failed_headline	-	No s'ha pogut obrir aquest títol
 values-b+ca	string	device_pin_counter_text	-	Code expires in %1$dm %2$ds
@@ -10057,6 +10068,7 @@ values-b+ckb	string	delete_plugin	-	Delete plugin
 values-b+ckb	string	delete_repository	-	Delete repository
 values-b+ckb	string	delete_repository_plugins	-	This will also delete all repository plugins
 values-b+ckb	string	deselect_all	-	هەمووی لابدە
+values-b+ckb	string	desktop_menu_go	-	بڕۆ
 values-b+ckb	string	detail_load_failed_body	-	ڕەنگە سەرچاوەکە بەردەست نەبێت.
 values-b+ckb	string	detail_load_failed_headline	-	نەتوانرا ئەم ناونیشانە بکرێتەوە
 values-b+ckb	string	device_pin_counter_text	-	Code expires in %1$dm %2$ds
@@ -10963,6 +10975,7 @@ values-b+cs	string	delete_plugin	-	Odstranit doplněk
 values-b+cs	string	delete_repository	-	Odstranit repozitář
 values-b+cs	string	delete_repository_plugins	-	Tímto také odstraníte všechny doplňky repozitářů
 values-b+cs	string	deselect_all	-	Zrušit výběr všeho
+values-b+cs	string	desktop_menu_go	-	Přejít
 values-b+cs	string	detail_load_failed_body	-	Zdroj možná není dostupný.
 values-b+cs	string	detail_load_failed_headline	-	Tento titul se nepodařilo otevřít
 values-b+cs	string	device_pin_counter_text	-	Kód vyprší za %1$dm %2$ds
@@ -11857,6 +11870,7 @@ values-b+de	string	delete_plugin	-	Plugin löschen
 values-b+de	string	delete_repository	-	Repository löschen
 values-b+de	string	delete_repository_plugins	-	Dadurch werden auch alle Repository-Plugins gelöscht
 values-b+de	string	deselect_all	-	Alle abwählen
+values-b+de	string	desktop_menu_go	-	Gehe zu
 values-b+de	string	detail_load_failed_body	-	Die Quelle ist möglicherweise nicht verfügbar.
 values-b+de	string	detail_load_failed_headline	-	Titel konnte nicht geöffnet werden
 values-b+de	string	device_pin_counter_text	-	Code läuft ab in %1$dm %2$ds
@@ -12751,6 +12765,7 @@ values-b+el	string	delete_plugin	-	Διαγραφή πρόσθετου
 values-b+el	string	delete_repository	-	Διαγραφή αποθετηρίου
 values-b+el	string	delete_repository_plugins	-	Αυτό θα διαγράψει όλα τα πρόσθετα του αποθετηρίου
 values-b+el	string	deselect_all	-	Αποεπιλογή Όλων
+values-b+el	string	desktop_menu_go	-	Μετάβαση
 values-b+el	string	detail_load_failed_body	-	Η πηγή ίσως δεν είναι διαθέσιμη.
 values-b+el	string	detail_load_failed_headline	-	Δεν ήταν δυνατό το άνοιγμα αυτού του τίτλου
 values-b+el	string	device_pin_counter_text	-	Ο Κωδικός λήγει σε %1$dm %2$ds
@@ -13645,6 +13660,7 @@ values-b+eo	string	delete_plugin	-	Delete plugin
 values-b+eo	string	delete_repository	-	Delete repository
 values-b+eo	string	delete_repository_plugins	-	This will also delete all repository plugins
 values-b+eo	string	deselect_all	-	Malselekti Ĉion
+values-b+eo	string	desktop_menu_go	-	Iri
 values-b+eo	string	detail_load_failed_body	-	La fonto eble ne disponeblas.
 values-b+eo	string	detail_load_failed_headline	-	Ne eblis malfermi ĉi tiun titolon
 values-b+eo	string	device_pin_counter_text	-	Code expires in %1$dm %2$ds
@@ -14545,6 +14561,7 @@ values-b+es	string	delete_plugin	-	Eliminar complemento
 values-b+es	string	delete_repository	-	Borrar repositorio
 values-b+es	string	delete_repository_plugins	-	Esto también eliminará todos los plugins del repositorio
 values-b+es	string	deselect_all	-	Deseleccionar todo
+values-b+es	string	desktop_menu_go	-	Ir
 values-b+es	string	detail_load_failed_body	-	Puede que la fuente no esté disponible.
 values-b+es	string	detail_load_failed_headline	-	No se pudo abrir este título
 values-b+es	string	device_pin_counter_text	-	El código caduca en %1$d mín y %2$d s
@@ -15439,6 +15456,7 @@ values-b+fa	string	delete_plugin	-	حذف افزونه
 values-b+fa	string	delete_repository	-	حذف مخزن
 values-b+fa	string	delete_repository_plugins	-	این همچنین تمام مخزن افزونه‌ها را پاک می‌کند
 values-b+fa	string	deselect_all	-	انتخاب نکردن همه
+values-b+fa	string	desktop_menu_go	-	رفتن
 values-b+fa	string	detail_load_failed_body	-	ممکن است منبع در دسترس نباشد.
 values-b+fa	string	detail_load_failed_headline	-	این عنوان باز نشد
 values-b+fa	string	device_pin_counter_text	-	Code expires in %1$dm %2$ds
@@ -16333,6 +16351,7 @@ values-b+fil	string	delete_plugin	-	Delete plugin
 values-b+fil	string	delete_repository	-	Delete repository
 values-b+fil	string	delete_repository_plugins	-	This will also delete all repository plugins
 values-b+fil	string	deselect_all	-	Alisin sa pagkakapili ang Lahat
+values-b+fil	string	desktop_menu_go	-	Pumunta
 values-b+fil	string	detail_load_failed_body	-	Maaaring hindi available ang source.
 values-b+fil	string	detail_load_failed_headline	-	Hindi mabuksan ang pamagat na ito
 values-b+fil	string	device_pin_counter_text	-	Code expires in %1$dm %2$ds
@@ -17233,6 +17252,7 @@ values-b+fr	string	delete_plugin	-	Supprimer l'extension
 values-b+fr	string	delete_repository	-	Supprimer le repository
 values-b+fr	string	delete_repository_plugins	-	Cela supprimera également tous les plugins du repository
 values-b+fr	string	deselect_all	-	Tout désélectionner
+values-b+fr	string	desktop_menu_go	-	Aller
 values-b+fr	string	detail_load_failed_body	-	La source est peut-être indisponible.
 values-b+fr	string	detail_load_failed_headline	-	Impossible d'ouvrir ce titre
 values-b+fr	string	device_pin_counter_text	-	Code expire dans %1$dm %2$ds
@@ -18127,6 +18147,7 @@ values-b+gl	string	delete_plugin	-	Delete plugin
 values-b+gl	string	delete_repository	-	Delete repository
 values-b+gl	string	delete_repository_plugins	-	This will also delete all repository plugins
 values-b+gl	string	deselect_all	-	Deseleccionar todo
+values-b+gl	string	desktop_menu_go	-	Ir
 values-b+gl	string	detail_load_failed_body	-	Pode que a fonte non estea dispoñible.
 values-b+gl	string	detail_load_failed_headline	-	Non se puido abrir este título
 values-b+gl	string	device_pin_counter_text	-	Code expires in %1$dm %2$ds
@@ -19021,6 +19042,7 @@ values-b+hi	string	delete_plugin	-	Delete plugin
 values-b+hi	string	delete_repository	-	Delete repository
 values-b+hi	string	delete_repository_plugins	-	This will also delete all repository plugins
 values-b+hi	string	deselect_all	-	सभी अचयनित करें
+values-b+hi	string	desktop_menu_go	-	जाएँ
 values-b+hi	string	detail_load_failed_body	-	हो सकता है स्रोत उपलब्ध न हो।
 values-b+hi	string	detail_load_failed_headline	-	यह शीर्षक नहीं खुल सका
 values-b+hi	string	device_pin_counter_text	-	Code expires in %1$dm %2$ds
@@ -19920,6 +19942,7 @@ values-b+hr	string	delete_plugin	-	Izbriši dodatak
 values-b+hr	string	delete_repository	-	Izbriši repozitorij
 values-b+hr	string	delete_repository_plugins	-	Ovo će također izbrisati sve dodatke repozitorija
 values-b+hr	string	deselect_all	-	Odznači sve
+values-b+hr	string	desktop_menu_go	-	Idi
 values-b+hr	string	detail_load_failed_body	-	Izvor možda nije dostupan.
 values-b+hr	string	detail_load_failed_headline	-	Naslov se nije mogao otvoriti
 values-b+hr	string	device_pin_counter_text	-	Kod isteče za %1$d min %2$d s
@@ -20814,6 +20837,7 @@ values-b+hu	string	delete_plugin	-	Plugin törlése
 values-b+hu	string	delete_repository	-	Tároló törlése
 values-b+hu	string	delete_repository_plugins	-	Ez az összes tároló bővítményt is törli
 values-b+hu	string	deselect_all	-	Mindent Kijelölés Eltávolítása
+values-b+hu	string	desktop_menu_go	-	Ugrás
 values-b+hu	string	detail_load_failed_body	-	Lehet, hogy a forrás nem érhető el.
 values-b+hu	string	detail_load_failed_headline	-	Ezt a címet nem sikerült megnyitni
 values-b+hu	string	device_pin_counter_text	-	A kód %1$dm %2$ds után lejár
@@ -21702,6 +21726,7 @@ values-b+in	string	delete_plugin	-	Hapus plugin
 values-b+in	string	delete_repository	-	Hapus repositori
 values-b+in	string	delete_repository_plugins	-	Pilih ini untuk menghapus semua repositori plugin
 values-b+in	string	deselect_all	-	Batal Pilih Semua
+values-b+in	string	desktop_menu_go	-	Buka
 values-b+in	string	detail_load_failed_body	-	Sumbernya mungkin tidak tersedia.
 values-b+in	string	detail_load_failed_headline	-	Tidak dapat membuka judul ini
 values-b+in	string	device_pin_counter_text	-	Kode kedaluwarsa dalam %1$dm %2$dd
@@ -22602,6 +22627,7 @@ values-b+it	string	delete_plugin	-	Elimina plugin
 values-b+it	string	delete_repository	-	Elimina repository
 values-b+it	string	delete_repository_plugins	-	Questo eliminerà anche tutti i plugin del repository
 values-b+it	string	deselect_all	-	Deseleziona tutto
+values-b+it	string	desktop_menu_go	-	Vai
 values-b+it	string	detail_load_failed_body	-	La fonte potrebbe non essere disponibile.
 values-b+it	string	detail_load_failed_headline	-	Impossibile aprire questo titolo
 values-b+it	string	device_pin_counter_text	-	Il codice scadrà tra %1$dm %2$ds
@@ -23499,6 +23525,7 @@ values-b+iw	string	delete_plugin	-	Delete plugin
 values-b+iw	string	delete_repository	-	מחק מאגר
 values-b+iw	string	delete_repository_plugins	-	פעולה זו תמחק גם את כל תוספי המאגר
 values-b+iw	string	deselect_all	-	הסר בחירה מהכל
+values-b+iw	string	desktop_menu_go	-	מעבר
 values-b+iw	string	detail_load_failed_body	-	ייתכן שהמקור אינו זמין.
 values-b+iw	string	detail_load_failed_headline	-	לא ניתן לפתוח את הכותר הזה
 values-b+iw	string	device_pin_counter_text	-	Code expires in %1$dm %2$ds
@@ -24387,6 +24414,7 @@ values-b+ja	string	delete_plugin	-	プラグインを削除
 values-b+ja	string	delete_repository	-	リポジトリ削除
 values-b+ja	string	delete_repository_plugins	-	これにより、リポジトリのすべてのプラグインも削除されます
 values-b+ja	string	deselect_all	-	すべて選択解除
+values-b+ja	string	desktop_menu_go	-	移動
 values-b+ja	string	detail_load_failed_body	-	ソースが利用できない可能性があります。
 values-b+ja	string	detail_load_failed_headline	-	このタイトルを開けませんでした
 values-b+ja	string	device_pin_counter_text	-	%1$dm %2$ds でコードが切れます
@@ -25281,6 +25309,7 @@ values-b+kn	string	delete_plugin	-	Delete plugin
 values-b+kn	string	delete_repository	-	Delete repository
 values-b+kn	string	delete_repository_plugins	-	This will also delete all repository plugins
 values-b+kn	string	deselect_all	-	Deselect All
+values-b+kn	string	desktop_menu_go	-	ಹೋಗಿ
 values-b+kn	string	detail_load_failed_body	-	ಮೂಲ ಲಭ್ಯವಿಲ್ಲದಿರಬಹುದು.
 values-b+kn	string	detail_load_failed_headline	-	ಈ ಶೀರ್ಷಿಕೆಯನ್ನು ತೆರೆಯಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ
 values-b+kn	string	device_pin_counter_text	-	Code expires in %1$dm %2$ds
@@ -26170,6 +26199,7 @@ values-b+ko	string	delete_plugin	-	플러그인 삭제
 values-b+ko	string	delete_repository	-	저장소 삭제
 values-b+ko	string	delete_repository_plugins	-	이렇게 하면 모든 저장소의 플러그인도 삭제됩니다
 values-b+ko	string	deselect_all	-	모두 선택해제
+values-b+ko	string	desktop_menu_go	-	이동
 values-b+ko	string	detail_load_failed_body	-	소스를 사용할 수 없을 수 있습니다.
 values-b+ko	string	detail_load_failed_headline	-	이 작품을 열 수 없습니다
 values-b+ko	string	device_pin_counter_text	-	코드 만료까지 남은 시간: %1$dm %2$ds
@@ -27070,6 +27100,7 @@ values-b+lt	string	delete_plugin	-	Delete plugin
 values-b+lt	string	delete_repository	-	Delete repository
 values-b+lt	string	delete_repository_plugins	-	This will also delete all repository plugins
 values-b+lt	string	deselect_all	-	Panaikinti visus pasirinkimus
+values-b+lt	string	desktop_menu_go	-	Eiti
 values-b+lt	string	detail_load_failed_body	-	Šaltinis gali būti nepasiekiamas.
 values-b+lt	string	detail_load_failed_headline	-	Nepavyko atidaryti šio pavadinimo
 values-b+lt	string	device_pin_counter_text	-	Code expires in %1$dm %2$ds
@@ -27968,6 +27999,7 @@ values-b+lv	string	delete_plugin	-	Dzēst papildinājumu
 values-b+lv	string	delete_repository	-	Dzēst repozitoriju
 values-b+lv	string	delete_repository_plugins	-	Tiks izdzēsti arī visi repozitorija papildinājumi
 values-b+lv	string	deselect_all	-	Deselect All
+values-b+lv	string	desktop_menu_go	-	Doties
 values-b+lv	string	detail_load_failed_body	-	Avots, iespējams, nav pieejams.
 values-b+lv	string	detail_load_failed_headline	-	Šo nosaukumu neizdevās atvērt
 values-b+lv	string	device_pin_counter_text	-	Code expires in %1$dm %2$ds
@@ -28862,6 +28894,7 @@ values-b+mk	string	delete_plugin	-	Избриши го приклучокот
 values-b+mk	string	delete_repository	-	Избриши извор
 values-b+mk	string	delete_repository_plugins	-	Ова исто така ќе ги избрише сите приклучоци
 values-b+mk	string	deselect_all	-	Деселектирај сѐ
+values-b+mk	string	desktop_menu_go	-	Оди
 values-b+mk	string	detail_load_failed_body	-	Изворот можеби не е достапен.
 values-b+mk	string	detail_load_failed_headline	-	Насловот не може да се отвори
 values-b+mk	string	device_pin_counter_text	-	Кодот истекува за %1$d минута/и и %2$d секунда/и
@@ -29756,6 +29789,7 @@ values-b+ml	string	delete_plugin	-	Delete plugin
 values-b+ml	string	delete_repository	-	ശേഖരം ഇല്ലാതാക്കുക
 values-b+ml	string	delete_repository_plugins	-	ഇത് എല്ലാ റിപ്പോസിറ്ററി പ്ലഗിന്നുകളും ഇല്ലാതാക്കും
 values-b+ml	string	deselect_all	-	തിരഞ്ഞെടുത്തവയെല്ലാം ഒഴിവാക്കു
+values-b+ml	string	desktop_menu_go	-	പോകുക
 values-b+ml	string	detail_load_failed_body	-	ഉറവിടം ലഭ്യമല്ലായിരിക്കാം.
 values-b+ml	string	detail_load_failed_headline	-	ഈ ശീർഷകം തുറക്കാനായില്ല
 values-b+ml	string	device_pin_counter_text	-	Code expires in %1$dm %2$ds
@@ -30647,6 +30681,7 @@ values-b+ms	string	delete_plugin	-	Delete plugin
 values-b+ms	string	delete_repository	-	Padam repositori
 values-b+ms	string	delete_repository_plugins	-	This will also delete all repository plugins
 values-b+ms	string	deselect_all	-	Nyahpilih semua
+values-b+ms	string	desktop_menu_go	-	Pergi
 values-b+ms	string	detail_load_failed_body	-	Sumber mungkin tidak tersedia.
 values-b+ms	string	detail_load_failed_headline	-	Tajuk ini tidak dapat dibuka
 values-b+ms	string	device_pin_counter_text	-	Kod luput dalam %1$dm%2$ds
@@ -31550,6 +31585,7 @@ values-b+mt	string	delete_plugin	-	Delete plugin
 values-b+mt	string	delete_repository	-	Delete repository
 values-b+mt	string	delete_repository_plugins	-	This will also delete all repository plugins
 values-b+mt	string	deselect_all	-	Deselect All
+values-b+mt	string	desktop_menu_go	-	Mur
 values-b+mt	string	detail_load_failed_body	-	Is-sors jista' jkun mhux disponibbli.
 values-b+mt	string	detail_load_failed_headline	-	It-titlu ma setax jinfetaħ
 values-b+mt	string	device_pin_counter_text	-	Code expires in %1$dm %2$ds
@@ -32441,6 +32477,7 @@ values-b+my	string	delete_plugin	-	Delete plugin
 values-b+my	string	delete_repository	-	ရီပိုစစ်ထရီ ကိုဖျက်ရန်
 values-b+my	string	delete_repository_plugins	-	ရီပိုစစ်ထရီ ဖြည့်စွက်များအားလုံးကိုဖျက်မည်ဖြစ်သည်
 values-b+my	string	deselect_all	-	Deselect All
+values-b+my	string	desktop_menu_go	-	သွားရန်
 values-b+my	string	detail_load_failed_body	-	ရင်းမြစ်ကို မရနိုင်ဘဲ ဖြစ်နေနိုင်သည်။
 values-b+my	string	detail_load_failed_headline	-	ဤခေါင်းစဉ်ကို ဖွင့်၍မရပါ
 values-b+my	string	device_pin_counter_text	-	Code expires in %1$dm %2$ds
@@ -33335,6 +33372,7 @@ values-b+ne	string	delete_plugin	-	Delete plugin
 values-b+ne	string	delete_repository	-	Delete repository
 values-b+ne	string	delete_repository_plugins	-	This will also delete all repository plugins
 values-b+ne	string	deselect_all	-	Deselect All
+values-b+ne	string	desktop_menu_go	-	जानुहोस्
 values-b+ne	string	detail_load_failed_body	-	स्रोत उपलब्ध नहुन सक्छ।
 values-b+ne	string	detail_load_failed_headline	-	यो शीर्षक खोल्न सकिएन
 values-b+ne	string	device_pin_counter_text	-	Code expires in %1$dm %2$ds
@@ -34229,6 +34267,7 @@ values-b+nl	string	delete_plugin	-	Verwijder plug-in
 values-b+nl	string	delete_repository	-	Wis repository
 values-b+nl	string	delete_repository_plugins	-	Dit zal ook alle repository plugins verwijderen
 values-b+nl	string	deselect_all	-	Deselecteer alles
+values-b+nl	string	desktop_menu_go	-	Ga
 values-b+nl	string	detail_load_failed_body	-	De bron is mogelijk niet beschikbaar.
 values-b+nl	string	detail_load_failed_headline	-	Deze titel kon niet worden geopend
 values-b+nl	string	device_pin_counter_text	-	Code verloopt in %1$dm %2$ds
@@ -35123,6 +35162,7 @@ values-b+nn	string	delete_plugin	-	Delete plugin
 values-b+nn	string	delete_repository	-	Delete repository
 values-b+nn	string	delete_repository_plugins	-	This will also delete all repository plugins
 values-b+nn	string	deselect_all	-	Deselect All
+values-b+nn	string	desktop_menu_go	-	Gå
 values-b+nn	string	detail_load_failed_body	-	Kjelda er kanskje ikkje tilgjengeleg.
 values-b+nn	string	detail_load_failed_headline	-	Kunne ikkje opne denne tittelen
 values-b+nn	string	device_pin_counter_text	-	Code expires in %1$dm %2$ds
@@ -36017,6 +36057,7 @@ values-b+no	string	delete_plugin	-	Delete plugin
 values-b+no	string	delete_repository	-	Slett pakkebrønn
 values-b+no	string	delete_repository_plugins	-	Dette vil også slette alle pakkebrønnsprogramtillegg
 values-b+no	string	deselect_all	-	Deselect All
+values-b+no	string	desktop_menu_go	-	Gå
 values-b+no	string	detail_load_failed_body	-	Kilden er kanskje ikke tilgjengelig.
 values-b+no	string	detail_load_failed_headline	-	Kunne ikke åpne denne tittelen
 values-b+no	string	device_pin_counter_text	-	Code expires in %1$dm %2$ds
@@ -36911,6 +36952,7 @@ values-b+or	string	delete_plugin	-	Delete plugin
 values-b+or	string	delete_repository	-	Delete repository
 values-b+or	string	delete_repository_plugins	-	This will also delete all repository plugins
 values-b+or	string	deselect_all	-	Deselect All
+values-b+or	string	desktop_menu_go	-	ଯାଆନ୍ତୁ
 values-b+or	string	detail_load_failed_body	-	ଉତ୍ସ ଉପଲବ୍ଧ ନ ହୋଇପାରେ।
 values-b+or	string	detail_load_failed_headline	-	ଏହି ଶୀର୍ଷକ ଖୋଲିହେଲା ନାହିଁ
 values-b+or	string	device_pin_counter_text	-	Code expires in %1$dm %2$ds
@@ -37817,6 +37859,7 @@ values-b+pl	string	delete_plugin	-	Usuń wtyczkę
 values-b+pl	string	delete_repository	-	Usuń repozytorium
 values-b+pl	string	delete_repository_plugins	-	Ta akcja usunie także wszystkie rozszerzenia z repozytorium
 values-b+pl	string	deselect_all	-	Odznacz wszystkie
+values-b+pl	string	desktop_menu_go	-	Idź
 values-b+pl	string	detail_load_failed_body	-	Źródło może być niedostępne.
 values-b+pl	string	detail_load_failed_headline	-	Nie udało się otworzyć tego tytułu
 values-b+pl	string	device_pin_counter_text	-	Kod wygasa za %1$dm %2$ds
@@ -38717,6 +38760,7 @@ values-b+pt	string	delete_plugin	-	Eliminar plugin
 values-b+pt	string	delete_repository	-	Apagar repositório
 values-b+pt	string	delete_repository_plugins	-	Isto irá apagar todos os repositórios de plugins
 values-b+pt	string	deselect_all	-	Desselecionar todos
+values-b+pt	string	desktop_menu_go	-	Ir
 values-b+pt	string	detail_load_failed_body	-	A fonte pode estar indisponível.
 values-b+pt	string	detail_load_failed_headline	-	Não foi possível abrir este título
 values-b+pt	string	device_pin_counter_text	-	O código expira em %1$dm %2$ds
@@ -39617,6 +39661,7 @@ values-b+pt+BR	string	delete_plugin	-	Excluir plugin
 values-b+pt+BR	string	delete_repository	-	Apagar repositório
 values-b+pt+BR	string	delete_repository_plugins	-	Isto irá apagar todos os repositórios de plugins
 values-b+pt+BR	string	deselect_all	-	Desmarcar todos
+values-b+pt+BR	string	desktop_menu_go	-	Ir
 values-b+pt+BR	string	detail_load_failed_body	-	A fonte pode estar indisponível.
 values-b+pt+BR	string	detail_load_failed_headline	-	Não foi possível abrir este título
 values-b+pt+BR	string	device_pin_counter_text	-	O código expira em %1$dm %2$ds
@@ -40508,6 +40553,7 @@ values-b+qt	string	delete_plugin	-	oooogg oooogg
 values-b+qt	string	delete_repository	-	oooohh oooogggoog
 values-b+qt	string	delete_repository_plugins	-	eeek oohh uuhh oooohh oog oooogggooh aaaahhh
 values-b+qt	string	deselect_all	-	eeeeeekh uug
+values-b+qt	string	desktop_menu_go	-	ooh
 values-b+qt	string	detail_load_failed_body	-	uhaauauau ahuuouaha oooohhaaaghh.
 values-b+qt	string	detail_load_failed_headline	-	ahooo uuhh ahhhaauugghh oouuh
 values-b+qt	string	device_pin_counter_text	-	aagg uuuuggg og %1$dm %2$ds
@@ -41405,6 +41451,7 @@ values-b+ro	string	delete_plugin	-	Șterge pluginul
 values-b+ro	string	delete_repository	-	Ștergeți depozitul
 values-b+ro	string	delete_repository_plugins	-	Acest lucru va șterge, de asemenea, toate plugin-urile din depozit
 values-b+ro	string	deselect_all	-	Deselectionati totul
+values-b+ro	string	desktop_menu_go	-	Mergi
 values-b+ro	string	detail_load_failed_body	-	Sursa poate fi indisponibilă.
 values-b+ro	string	detail_load_failed_headline	-	Titlul nu a putut fi deschis
 values-b+ro	string	device_pin_counter_text	-	Code expires in %1$dm %2$ds
@@ -42311,6 +42358,7 @@ values-b+ru	string	delete_plugin	-	Удалить модуль
 values-b+ru	string	delete_repository	-	Удалить репозиторий
 values-b+ru	string	delete_repository_plugins	-	Это также удалит все дополнения из источника
 values-b+ru	string	deselect_all	-	Отменить выбор
+values-b+ru	string	desktop_menu_go	-	Переход
 values-b+ru	string	detail_load_failed_body	-	Источник может быть недоступен.
 values-b+ru	string	detail_load_failed_headline	-	Не удалось открыть это название
 values-b+ru	string	device_pin_counter_text	-	Код истекает через %1$dмин %2$dсек
@@ -43211,6 +43259,7 @@ values-b+sk	string	delete_plugin	-	Delete plugin
 values-b+sk	string	delete_repository	-	Zmazať repozitár
 values-b+sk	string	delete_repository_plugins	-	Toto tiež odstráni všetky doplnky repozitára
 values-b+sk	string	deselect_all	-	Zrušiť výber všetkých
+values-b+sk	string	desktop_menu_go	-	Prejsť
 values-b+sk	string	detail_load_failed_body	-	Zdroj možno nie je dostupný.
 values-b+sk	string	detail_load_failed_headline	-	Tento titul sa nepodarilo otvoriť
 values-b+sk	string	device_pin_counter_text	-	Code expires in %1$dm %2$ds
@@ -44105,6 +44154,7 @@ values-b+so	string	delete_plugin	-	Delete plugin
 values-b+so	string	delete_repository	-	Saar kayd-weynaha
 values-b+so	string	delete_repository_plugins	-	Waxa la saarayaa dhammaan sidkanayaasha kayd-weynaha
 values-b+so	string	deselect_all	-	Ha dooran dhammaan
+values-b+so	string	desktop_menu_go	-	Tag
 values-b+so	string	detail_load_failed_body	-	Isha waxaa laga yaabaa inaysan diyaar ahayn.
 values-b+so	string	detail_load_failed_headline	-	Cinwaankan lama furi karo
 values-b+so	string	device_pin_counter_text	-	Code expires in %1$dm %2$ds
@@ -44999,6 +45049,7 @@ values-b+sq	string	delete_plugin	-	Fshi shtesën
 values-b+sq	string	delete_repository	-	Fshi repository-n
 values-b+sq	string	delete_repository_plugins	-	Kjo do të heqë të gjitha shtesat
 values-b+sq	string	deselect_all	-	Çzgjidh të gjitha
+values-b+sq	string	desktop_menu_go	-	Shko
 values-b+sq	string	detail_load_failed_body	-	Burimi mund të mos jetë i disponueshëm.
 values-b+sq	string	detail_load_failed_headline	-	Titulli nuk mund të hapej
 values-b+sq	string	device_pin_counter_text	-	Kodi skadon pas %1$dm %2$ds
@@ -45893,6 +45944,7 @@ values-b+sv	string	delete_plugin	-	Ta bort insticksprogram
 values-b+sv	string	delete_repository	-	Radera databasen
 values-b+sv	string	delete_repository_plugins	-	Detta kommer också att ta bort alla tillägg för databasen
 values-b+sv	string	deselect_all	-	Avmarkera alla
+values-b+sv	string	desktop_menu_go	-	Gå
 values-b+sv	string	detail_load_failed_body	-	Källan kanske inte är tillgänglig.
 values-b+sv	string	detail_load_failed_headline	-	Titeln kunde inte öppnas
 values-b+sv	string	device_pin_counter_text	-	Koden löper ut om %1$dm %2$ds
@@ -46787,6 +46839,7 @@ values-b+ta	string	delete_plugin	-	சொருகி நீக்கு
 values-b+ta	string	delete_repository	-	களஞ்சியத்தை நீக்கு
 values-b+ta	string	delete_repository_plugins	-	இது அனைத்து களஞ்சிய செருகுநிரல்களையும் நீக்கிவிடும்
 values-b+ta	string	deselect_all	-	அனைத்தையும் தேர்வு செய்யுங்கள்
+values-b+ta	string	desktop_menu_go	-	செல்
 values-b+ta	string	detail_load_failed_body	-	மூலம் கிடைக்காமல் இருக்கலாம்.
 values-b+ta	string	detail_load_failed_headline	-	இந்தத் தலைப்பைத் திறக்க முடியவில்லை
 values-b+ta	string	device_pin_counter_text	-	குறியீடு %1$dm %2$ds இல் காலாவதியாகிறது
@@ -47681,6 +47734,7 @@ values-b+ti	string	delete_plugin	-	Delete plugin
 values-b+ti	string	delete_repository	-	Delete repository
 values-b+ti	string	delete_repository_plugins	-	This will also delete all repository plugins
 values-b+ti	string	deselect_all	-	Deselect All
+values-b+ti	string	desktop_menu_go	-	ኪድ
 values-b+ti	string	detail_load_failed_body	-	ምንጪ ኣይርከብ ይኸውን።
 values-b+ti	string	detail_load_failed_headline	-	እዚ ኣርእስቲ ክኽፈት ኣይከኣለን
 values-b+ti	string	device_pin_counter_text	-	Code expires in %1$dm %2$ds
@@ -48575,6 +48629,7 @@ values-b+tl	string	delete_plugin	-	Delete plugin
 values-b+tl	string	delete_repository	-	Delete repository
 values-b+tl	string	delete_repository_plugins	-	This will also delete all repository plugins
 values-b+tl	string	deselect_all	-	Alisin sa pagkakapili ang Lahat
+values-b+tl	string	desktop_menu_go	-	Pumunta
 values-b+tl	string	detail_load_failed_body	-	Maaaring hindi available ang source.
 values-b+tl	string	detail_load_failed_headline	-	Hindi mabuksan ang pamagat na ito
 values-b+tl	string	device_pin_counter_text	-	Code expires in %1$dm %2$ds
@@ -49469,6 +49524,7 @@ values-b+tr	string	delete_plugin	-	Eklentiyi sil
 values-b+tr	string	delete_repository	-	Depoyu sil
 values-b+tr	string	delete_repository_plugins	-	Bu aynı zamanda tüm depo eklentilerini de siler
 values-b+tr	string	deselect_all	-	Tüm Seçimi Kaldır
+values-b+tr	string	desktop_menu_go	-	Git
 values-b+tr	string	detail_load_failed_body	-	Kaynak kullanılamıyor olabilir.
 values-b+tr	string	detail_load_failed_headline	-	Bu başlık açılamadı
 values-b+tr	string	device_pin_counter_text	-	Kodun süresi %1$dm %2$ds içinde doluyor
@@ -50375,6 +50431,7 @@ values-b+uk	string	delete_plugin	-	Видалити розширення
 values-b+uk	string	delete_repository	-	Видалити сховище
 values-b+uk	string	delete_repository_plugins	-	Це також призведе до видалення всіх розширень сховища
 values-b+uk	string	deselect_all	-	Зняти виділення
+values-b+uk	string	desktop_menu_go	-	Перейти
 values-b+uk	string	detail_load_failed_body	-	Джерело може бути недоступним.
 values-b+uk	string	detail_load_failed_headline	-	Не вдалося відкрити цю назву
 values-b+uk	string	device_pin_counter_text	-	Термін дії коду закінчується через %1$d хв %2$d с
@@ -51269,6 +51326,7 @@ values-b+ur	string	delete_plugin	-	Delete plugin
 values-b+ur	string	delete_repository	-	ذخیرہ کو حذف کریں
 values-b+ur	string	delete_repository_plugins	-	اس سے تمام ریپوزٹری پلگ ان بھی حذف ہو جائیں گے
 values-b+ur	string	deselect_all	-	سب غیر منتخب کریں
+values-b+ur	string	desktop_menu_go	-	جائیں
 values-b+ur	string	detail_load_failed_body	-	ممکن ہے ذریعہ دستیاب نہ ہو۔
 values-b+ur	string	detail_load_failed_headline	-	یہ عنوان نہیں کھل سکا
 values-b+ur	string	device_pin_counter_text	-	Code expires in %1$dm %2$ds
@@ -52157,6 +52215,7 @@ values-b+vi	string	delete_plugin	-	Xóa tiện ích mở rộng
 values-b+vi	string	delete_repository	-	Xoá kho nguồn phim
 values-b+vi	string	delete_repository_plugins	-	Việc này sẽ xóa tất cả tiện ích mở rộng trong kho nguồn phim
 values-b+vi	string	deselect_all	-	Bỏ chọn tất cả
+values-b+vi	string	desktop_menu_go	-	Đi
 values-b+vi	string	detail_load_failed_body	-	Nguồn có thể không khả dụng.
 values-b+vi	string	detail_load_failed_headline	-	Không thể mở tựa này
 values-b+vi	string	device_pin_counter_text	-	Mã sẽ hết hạn trong %1$d phút %2$d giây
@@ -53045,6 +53104,7 @@ values-b+zh	string	delete_plugin	-	删除插件
 values-b+zh	string	delete_repository	-	删除仓库
 values-b+zh	string	delete_repository_plugins	-	这也将删除所有仓库插件
 values-b+zh	string	deselect_all	-	全不选
+values-b+zh	string	desktop_menu_go	-	前往
 values-b+zh	string	detail_load_failed_body	-	来源可能不可用。
 values-b+zh	string	detail_load_failed_headline	-	无法打开此内容
 values-b+zh	string	device_pin_counter_text	-	验证码 %1$dm %2$ds 后过期
@@ -53934,6 +53994,7 @@ values-b+zh+TW	string	delete_plugin	-	刪除外掛程式
 values-b+zh+TW	string	delete_repository	-	刪除資源庫
 values-b+zh+TW	string	delete_repository_plugins	-	這也將刪除所有在資源庫中的外掛
 values-b+zh+TW	string	deselect_all	-	取消全選
+values-b+zh+TW	string	desktop_menu_go	-	前往
 values-b+zh+TW	string	detail_load_failed_body	-	來源可能無法使用。
 values-b+zh+TW	string	detail_load_failed_headline	-	無法開啟此內容
 values-b+zh+TW	string	device_pin_counter_text	-	驗證碼將在 %1$d 分 %2$d 秒後過期
@@ -54828,6 +54889,7 @@ en	string	delete_plugin	-	Delete plugin
 en	string	delete_repository	-	Delete repository
 en	string	delete_repository_plugins	-	This will also delete all repository plugins
 en	string	deselect_all	-	Deselect All
+en	string	desktop_menu_go	-	Go
 en	string	detail_load_failed_body	-	Its source may be unavailable.
 en	string	detail_load_failed_headline	-	Couldn't open this title
 en	string	device_pin_counter_text	-	Code expires in %1$dm %2$ds
@@ -55722,6 +55784,7 @@ en-US	string	delete_plugin	-	Delete plugin
 en-US	string	delete_repository	-	Delete repository
 en-US	string	delete_repository_plugins	-	This will also delete all repository plugins
 en-US	string	deselect_all	-	Deselect All
+en-US	string	desktop_menu_go	-	Go
 en-US	string	detail_load_failed_body	-	Its source may be unavailable.
 en-US	string	detail_load_failed_headline	-	Couldn't open this title
 en-US	string	device_pin_counter_text	-	Code expires in %1$dm %2$ds
@@ -56616,6 +56679,7 @@ en-GB	string	delete_plugin	-	Delete plugin
 en-GB	string	delete_repository	-	Delete repository
 en-GB	string	delete_repository_plugins	-	This will also delete all repository plugins
 en-GB	string	deselect_all	-	Deselect All
+en-GB	string	desktop_menu_go	-	Go
 en-GB	string	detail_load_failed_body	-	Its source may be unavailable.
 en-GB	string	detail_load_failed_headline	-	Couldn't open this title
 en-GB	string	device_pin_counter_text	-	Code expires in %1$dm %2$ds
@@ -57516,6 +57580,7 @@ pt	string	delete_plugin	-	Eliminar plugin
 pt	string	delete_repository	-	Apagar repositório
 pt	string	delete_repository_plugins	-	Isto irá apagar todos os repositórios de plugins
 pt	string	deselect_all	-	Desselecionar todos
+pt	string	desktop_menu_go	-	Ir
 pt	string	detail_load_failed_body	-	A fonte pode estar indisponível.
 pt	string	detail_load_failed_headline	-	Não foi possível abrir este título
 pt	string	device_pin_counter_text	-	O código expira em %1$dm %2$ds
@@ -58416,6 +58481,7 @@ pt-PT	string	delete_plugin	-	Eliminar plugin
 pt-PT	string	delete_repository	-	Apagar repositório
 pt-PT	string	delete_repository_plugins	-	Isto irá apagar todos os repositórios de plugins
 pt-PT	string	deselect_all	-	Desselecionar todos
+pt-PT	string	desktop_menu_go	-	Ir
 pt-PT	string	detail_load_failed_body	-	A fonte pode estar indisponível.
 pt-PT	string	detail_load_failed_headline	-	Não foi possível abrir este título
 pt-PT	string	device_pin_counter_text	-	O código expira em %1$dm %2$ds
@@ -59316,6 +59382,7 @@ pt-BR	string	delete_plugin	-	Excluir plugin
 pt-BR	string	delete_repository	-	Apagar repositório
 pt-BR	string	delete_repository_plugins	-	Isto irá apagar todos os repositórios de plugins
 pt-BR	string	deselect_all	-	Desmarcar todos
+pt-BR	string	desktop_menu_go	-	Ir
 pt-BR	string	detail_load_failed_body	-	A fonte pode estar indisponível.
 pt-BR	string	detail_load_failed_headline	-	Não foi possível abrir este título
 pt-BR	string	device_pin_counter_text	-	O código expira em %1$dm %2$ds
@@ -60210,6 +60277,7 @@ fil	string	delete_plugin	-	Delete plugin
 fil	string	delete_repository	-	Delete repository
 fil	string	delete_repository_plugins	-	This will also delete all repository plugins
 fil	string	deselect_all	-	Alisin sa pagkakapili ang Lahat
+fil	string	desktop_menu_go	-	Pumunta
 fil	string	detail_load_failed_body	-	Maaaring hindi available ang source.
 fil	string	detail_load_failed_headline	-	Hindi mabuksan ang pamagat na ito
 fil	string	device_pin_counter_text	-	Code expires in %1$dm %2$ds
@@ -61104,6 +61172,7 @@ tl	string	delete_plugin	-	Delete plugin
 tl	string	delete_repository	-	Delete repository
 tl	string	delete_repository_plugins	-	This will also delete all repository plugins
 tl	string	deselect_all	-	Alisin sa pagkakapili ang Lahat
+tl	string	desktop_menu_go	-	Pumunta
 tl	string	detail_load_failed_body	-	Maaaring hindi available ang source.
 tl	string	detail_load_failed_headline	-	Hindi mabuksan ang pamagat na ito
 tl	string	device_pin_counter_text	-	Code expires in %1$dm %2$ds
@@ -61998,6 +62067,7 @@ fil-PH	string	delete_plugin	-	Delete plugin
 fil-PH	string	delete_repository	-	Delete repository
 fil-PH	string	delete_repository_plugins	-	This will also delete all repository plugins
 fil-PH	string	deselect_all	-	Alisin sa pagkakapili ang Lahat
+fil-PH	string	desktop_menu_go	-	Pumunta
 fil-PH	string	detail_load_failed_body	-	Maaaring hindi available ang source.
 fil-PH	string	detail_load_failed_headline	-	Hindi mabuksan ang pamagat na ito
 fil-PH	string	device_pin_counter_text	-	Code expires in %1$dm %2$ds
@@ -62886,6 +62956,7 @@ zh	string	delete_plugin	-	删除插件
 zh	string	delete_repository	-	删除仓库
 zh	string	delete_repository_plugins	-	这也将删除所有仓库插件
 zh	string	deselect_all	-	全不选
+zh	string	desktop_menu_go	-	前往
 zh	string	detail_load_failed_body	-	来源可能不可用。
 zh	string	detail_load_failed_headline	-	无法打开此内容
 zh	string	device_pin_counter_text	-	验证码 %1$dm %2$ds 后过期
@@ -63774,6 +63845,7 @@ zh-CN	string	delete_plugin	-	删除插件
 zh-CN	string	delete_repository	-	删除仓库
 zh-CN	string	delete_repository_plugins	-	这也将删除所有仓库插件
 zh-CN	string	deselect_all	-	全不选
+zh-CN	string	desktop_menu_go	-	前往
 zh-CN	string	detail_load_failed_body	-	来源可能不可用。
 zh-CN	string	detail_load_failed_headline	-	无法打开此内容
 zh-CN	string	device_pin_counter_text	-	验证码 %1$dm %2$ds 后过期
@@ -64662,6 +64734,7 @@ zh-Hans-CN	string	delete_plugin	-	删除插件
 zh-Hans-CN	string	delete_repository	-	删除仓库
 zh-Hans-CN	string	delete_repository_plugins	-	这也将删除所有仓库插件
 zh-Hans-CN	string	deselect_all	-	全不选
+zh-Hans-CN	string	desktop_menu_go	-	前往
 zh-Hans-CN	string	detail_load_failed_body	-	来源可能不可用。
 zh-Hans-CN	string	detail_load_failed_headline	-	无法打开此内容
 zh-Hans-CN	string	device_pin_counter_text	-	验证码 %1$dm %2$ds 后过期
@@ -65551,6 +65624,7 @@ zh-TW	string	delete_plugin	-	刪除外掛程式
 zh-TW	string	delete_repository	-	刪除資源庫
 zh-TW	string	delete_repository_plugins	-	這也將刪除所有在資源庫中的外掛
 zh-TW	string	deselect_all	-	取消全選
+zh-TW	string	desktop_menu_go	-	前往
 zh-TW	string	detail_load_failed_body	-	來源可能無法使用。
 zh-TW	string	detail_load_failed_headline	-	無法開啟此內容
 zh-TW	string	device_pin_counter_text	-	驗證碼將在 %1$d 分 %2$d 秒後過期
@@ -66440,6 +66514,7 @@ zh-Hant-TW	string	delete_plugin	-	刪除外掛程式
 zh-Hant-TW	string	delete_repository	-	刪除資源庫
 zh-Hant-TW	string	delete_repository_plugins	-	這也將刪除所有在資源庫中的外掛
 zh-Hant-TW	string	deselect_all	-	取消全選
+zh-Hant-TW	string	desktop_menu_go	-	前往
 zh-Hant-TW	string	detail_load_failed_body	-	來源可能無法使用。
 zh-Hant-TW	string	detail_load_failed_headline	-	無法開啟此內容
 zh-Hant-TW	string	device_pin_counter_text	-	驗證碼將在 %1$d 分 %2$d 秒後過期
@@ -67329,6 +67404,7 @@ zh-HK	string	delete_plugin	-	刪除外掛程式
 zh-HK	string	delete_repository	-	刪除資源庫
 zh-HK	string	delete_repository_plugins	-	這也將刪除所有在資源庫中的外掛
 zh-HK	string	deselect_all	-	取消全選
+zh-HK	string	desktop_menu_go	-	前往
 zh-HK	string	detail_load_failed_body	-	來源可能無法使用。
 zh-HK	string	detail_load_failed_headline	-	無法開啟此內容
 zh-HK	string	device_pin_counter_text	-	驗證碼將在 %1$d 分 %2$d 秒後過期
@@ -68218,6 +68294,7 @@ zh-Hant-HK	string	delete_plugin	-	刪除外掛程式
 zh-Hant-HK	string	delete_repository	-	刪除資源庫
 zh-Hant-HK	string	delete_repository_plugins	-	這也將刪除所有在資源庫中的外掛
 zh-Hant-HK	string	deselect_all	-	取消全選
+zh-Hant-HK	string	desktop_menu_go	-	前往
 zh-Hant-HK	string	detail_load_failed_body	-	來源可能無法使用。
 zh-Hant-HK	string	detail_load_failed_headline	-	無法開啟此內容
 zh-Hant-HK	string	device_pin_counter_text	-	驗證碼將在 %1$d 分 %2$d 秒後過期
@@ -69112,6 +69189,7 @@ no	string	delete_plugin	-	Delete plugin
 no	string	delete_repository	-	Slett pakkebrønn
 no	string	delete_repository_plugins	-	Dette vil også slette alle pakkebrønnsprogramtillegg
 no	string	deselect_all	-	Deselect All
+no	string	desktop_menu_go	-	Gå
 no	string	detail_load_failed_body	-	Kilden er kanskje ikke tilgjengelig.
 no	string	detail_load_failed_headline	-	Kunne ikke åpne denne tittelen
 no	string	device_pin_counter_text	-	Code expires in %1$dm %2$ds
@@ -70006,6 +70084,7 @@ nb	string	delete_plugin	-	Delete plugin
 nb	string	delete_repository	-	Delete repository
 nb	string	delete_repository_plugins	-	This will also delete all repository plugins
 nb	string	deselect_all	-	Deselect All
+nb	string	desktop_menu_go	-	Go
 nb	string	detail_load_failed_body	-	Its source may be unavailable.
 nb	string	detail_load_failed_headline	-	Couldn't open this title
 nb	string	device_pin_counter_text	-	Code expires in %1$dm %2$ds
@@ -70900,6 +70979,7 @@ nb-NO	string	delete_plugin	-	Delete plugin
 nb-NO	string	delete_repository	-	Delete repository
 nb-NO	string	delete_repository_plugins	-	This will also delete all repository plugins
 nb-NO	string	deselect_all	-	Deselect All
+nb-NO	string	desktop_menu_go	-	Go
 nb-NO	string	detail_load_failed_body	-	Its source may be unavailable.
 nb-NO	string	detail_load_failed_headline	-	Couldn't open this title
 nb-NO	string	device_pin_counter_text	-	Code expires in %1$dm %2$ds
@@ -71797,6 +71877,7 @@ iw	string	delete_plugin	-	Delete plugin
 iw	string	delete_repository	-	מחק מאגר
 iw	string	delete_repository_plugins	-	פעולה זו תמחק גם את כל תוספי המאגר
 iw	string	deselect_all	-	הסר בחירה מהכל
+iw	string	desktop_menu_go	-	מעבר
 iw	string	detail_load_failed_body	-	ייתכן שהמקור אינו זמין.
 iw	string	detail_load_failed_headline	-	לא ניתן לפתוח את הכותר הזה
 iw	string	device_pin_counter_text	-	Code expires in %1$dm %2$ds
@@ -72694,6 +72775,7 @@ he	string	delete_plugin	-	Delete plugin
 he	string	delete_repository	-	מחק מאגר
 he	string	delete_repository_plugins	-	פעולה זו תמחק גם את כל תוספי המאגר
 he	string	deselect_all	-	הסר בחירה מהכל
+he	string	desktop_menu_go	-	מעבר
 he	string	detail_load_failed_body	-	ייתכן שהמקור אינו זמין.
 he	string	detail_load_failed_headline	-	לא ניתן לפתוח את הכותר הזה
 he	string	device_pin_counter_text	-	Code expires in %1$dm %2$ds
@@ -73591,6 +73673,7 @@ he-IL	string	delete_plugin	-	Delete plugin
 he-IL	string	delete_repository	-	מחק מאגר
 he-IL	string	delete_repository_plugins	-	פעולה זו תמחק גם את כל תוספי המאגר
 he-IL	string	deselect_all	-	הסר בחירה מהכל
+he-IL	string	desktop_menu_go	-	מעבר
 he-IL	string	detail_load_failed_body	-	ייתכן שהמקור אינו זמין.
 he-IL	string	detail_load_failed_headline	-	לא ניתן לפתוח את הכותר הזה
 he-IL	string	device_pin_counter_text	-	Code expires in %1$dm %2$ds
@@ -74479,6 +74562,7 @@ in	string	delete_plugin	-	Hapus plugin
 in	string	delete_repository	-	Hapus repositori
 in	string	delete_repository_plugins	-	Pilih ini untuk menghapus semua repositori plugin
 in	string	deselect_all	-	Batal Pilih Semua
+in	string	desktop_menu_go	-	Buka
 in	string	detail_load_failed_body	-	Sumbernya mungkin tidak tersedia.
 in	string	detail_load_failed_headline	-	Tidak dapat membuka judul ini
 in	string	device_pin_counter_text	-	Kode kedaluwarsa dalam %1$dm %2$dd
@@ -75367,6 +75451,7 @@ id	string	delete_plugin	-	Hapus plugin
 id	string	delete_repository	-	Hapus repositori
 id	string	delete_repository_plugins	-	Pilih ini untuk menghapus semua repositori plugin
 id	string	deselect_all	-	Batal Pilih Semua
+id	string	desktop_menu_go	-	Buka
 id	string	detail_load_failed_body	-	Sumbernya mungkin tidak tersedia.
 id	string	detail_load_failed_headline	-	Tidak dapat membuka judul ini
 id	string	device_pin_counter_text	-	Kode kedaluwarsa dalam %1$dm %2$dd
@@ -76255,6 +76340,7 @@ id-ID	string	delete_plugin	-	Hapus plugin
 id-ID	string	delete_repository	-	Hapus repositori
 id-ID	string	delete_repository_plugins	-	Pilih ini untuk menghapus semua repositori plugin
 id-ID	string	deselect_all	-	Batal Pilih Semua
+id-ID	string	desktop_menu_go	-	Buka
 id-ID	string	detail_load_failed_body	-	Sumbernya mungkin tidak tersedia.
 id-ID	string	detail_load_failed_headline	-	Tidak dapat membuka judul ini
 id-ID	string	device_pin_counter_text	-	Kode kedaluwarsa dalam %1$dm %2$dd
@@ -77149,6 +77235,7 @@ arz	string	delete_plugin	-	Delete plugin
 arz	string	delete_repository	-	Delete repository
 arz	string	delete_repository_plugins	-	This will also delete all repository plugins
 arz	string	deselect_all	-	Deselect All
+arz	string	desktop_menu_go	-	Go
 arz	string	detail_load_failed_body	-	Its source may be unavailable.
 arz	string	detail_load_failed_headline	-	Couldn't open this title
 arz	string	device_pin_counter_text	-	Code expires in %1$dm %2$ds
