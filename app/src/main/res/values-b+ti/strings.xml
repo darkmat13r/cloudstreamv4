@@ -4,6 +4,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">"%d ኣይተዓወተን"</item><item quantity="other">"%d ኣይተዓወቱን"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d ክፍሊ ክጽዓን ኣይከኣለን"</item><item quantity="other">"%d ክፍሊ ክጽዓን ኣይከኣለን"</item></plurals>
 <string name="app_dub_sub_episode_text_format" formatted="true">"%1$s ክፋል %2$d"</string>
+<string name="cast">"ተዋሳእቲ"</string>
 <string name="cast_format" formatted="true">"ተዋሳእቲ፡ %s"</string>
 <string name="detail_load_failed_body">"ምንጪ ኣይርከብ ይኸውን።"</string>
 <string name="detail_load_failed_headline">"እዚ ኣርእስቲ ክኽፈት ኣይከኣለን"</string>
@@ -60,6 +61,7 @@
 <string name="extensions_waiting_count" formatted="true">"ንዓኻ ዝጽበዩ መስፋሕፋሕቲ: %d"</string>
 <string name="home_search_only_body">"ካብ መስፋሕፋሕትኻ ሓደ እኳ መበገሲ ገጽ የብሉን፡ ግን ሕጂ'ውን ኣብኡ ክትደሊ ትኽእል ኢኻ።"</string>
 <string name="load_more">"ተወሳኺ ጽዓን"</string>
+<string name="more_like_this">"ተመሳሳሊ"</string>
 <string name="next_episode_format" formatted="true">"ክፋል %d በ ላይ ይወጣል"</string>
 <string name="player_enter_fullscreen">"ናብ ምሉእ ስክሪን እቶ"</string>
 <string name="player_exit_fullscreen">"ካብ ምሉእ ስክሪን ውጻእ"</string>

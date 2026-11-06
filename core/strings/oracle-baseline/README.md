@@ -25,9 +25,9 @@ and decides — in a commit of its own that says so — to move the baseline.
 
 | File | Rows | What it holds |
 |---|---:|---|
-| `decoded.tsv` | 36,918 | aapt2's decoded table, one row per item: source file, type, name, plural category, kind (`STR`/`STYLED`/`REF`/`ATTR`/`UNSUPPORTED`), text, spans. The raw oracle, before resolution. |
-| `emitted.tsv` | 38,966 | What the generator wrote: one row per emitted value, keyed by output directory, type, name, plural category. Includes resolved references, locale-fallback copies and the `values-b+he` / `values-b+id` copies. |
-| `lookup.tsv` | 74,863 | For each of the 87 parity requests, the value Android resolves for every key — the per-locale lookup table the parity test compares Compose against. |
+| `decoded.tsv` | 37,084 | aapt2's decoded table, one row per item: source file, type, name, plural category, kind (`STR`/`STYLED`/`REF`/`ATTR`/`UNSUPPORTED`), text, spans. The raw oracle, before resolution. |
+| `emitted.tsv` | 39,139 | What the generator wrote: one row per emitted value, keyed by output directory, type, name, plural category. Includes resolved references, locale-fallback copies and the `values-b+he` / `values-b+id` copies. |
+| `lookup.tsv` | 75,124 | For each of the 87 parity requests, the value Android resolves for every key — the per-locale lookup table the parity test compares Compose against. |
 | `requests.tsv` | 87 | The parsed `parity-requests.txt`: request id, Android tag, Compose language/script/region, expectation, note. |
 | `findings.tsv` | 0 | Every finding the pipeline raised. **Empty since the flip** — it was 31 `STRAY_TEXT_REMOVED` and 34 `STYLED_AS_PLAIN_TEXT`, and a generated res has neither stray text nor `<b>`. |
 | `report.txt` | 12 | The human-readable run summary. |
@@ -120,10 +120,54 @@ appears for all 87 requests, 2,349 cells. `report.txt` moved only in its counts:
 keys 789 -> 816, and 27 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
 `ANDROID_FALLBACK` at 172.** `expectedOwn` 33,005 -> 34,679.
 
-## Fourteenth move, 2026-11-06 — `Q15`, 15 new keys for one series' downloads on TV
+## Fifteenth move, 2026-11-06 — `Q15`, 15 new keys for one series' downloads on TV
 
-New keys are approved in general (`I18N-09`, above). Additive. 12 are authored in all 62 directories, one of them a plural (`downloads_failed_count`); 3 are formats with no words (`downloads_joined`, `downloads_rate`, `downloads_episode_code`) in the default directory only. Measured by whole-line multiset difference against master after the thirteenth: 0 lines lost or changed in any file, and every new line names one of the keys: 835 in `decoded.tsv`, 861 in `emitted.tsv`, 1,414 in `lookup.tsv`; `requests.tsv` and `findings.tsv` unchanged. **`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at 172.**
-`expectedOwn` 36,604 -> 37,351, on top of the thirteenth.
+New keys are approved in general (`I18N-09`, above). Additive. 12 are authored in all 62 directories, one of them a plural (`downloads_failed_count`); 3 are formats with no words (`downloads_joined`, `downloads_rate`, `downloads_episode_code`) in the default directory only. Measured by whole-line multiset difference against master after the fourteenth: 0 lines lost or changed in any file, and every new line names one of the keys: 835 in `decoded.tsv`, 861 in `emitted.tsv`, 1,414 in `lookup.tsv`; `requests.tsv` and `findings.tsv` unchanged. **`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at 173.** The first `%%` in the corpus is this move's `downloads_watched`, which is why `FormatterParityTest` now expects `%`.
+`expectedOwn` 36,770 -> 37,517, on top of the fourteenth.
+
+## Fourteenth move, 2026-11-06 — `KMP-38`, 3 new keys for the TV detail page
+
+New keys are approved in general (`I18N-09`, above). Additive, none a plural. Measured by whole-line set difference twice over,
+a multiset in Python and `sort | comm`: **0 lines lost or changed in any file.** `expectedOwn` 36,604 -> 36,770.
+
+This move branched from 35,609, the same point as the twelfth and thirteenth below, and the counts here are stated
+**against master with both of those already in it**. Merged as a whole-line multiset union and checked both ways: 0
+lines lost from either side, every line this branch contributed still present, and every line the merge added one of
+this move's own three keys.
+
+| file | before | after | added | changed | lost |
+|---|---|---|---|---|---|
+| `decoded.tsv` | 36,918 | 37,084 | 166 | 0 | 0 |
+| `emitted.tsv` | 38,966 | 39,139 | 173 | 0 | 0 |
+| `lookup.tsv` | 74,863 | 75,124 | 261 | 0 | 0 |
+| `requests.tsv` | 87 | 87 | 0 | 0 | 0 |
+| `findings.tsv` | 0 | 0 | 0 | 0 | 0 |
+
+Every added line names one of the three keys, and all three appear, checked by set difference rather than by eye. The counts
+are exact and each is accounted for:
+
+- **`decoded.tsv` +166** = `cast` 62 + `more_like_this` 62 + `duration_hours_minutes_format` 42. The first two are authored in
+  all 62 directories; the third is authored only where its source key is, which is the 42 directories that have
+  `download_time_left_hour_min_sec_format`. The other 20 resolve to the `values` form, which is what Android does anyway and
+  what leaves room for a real translation later.
+- **`lookup.tsv` +261** = 87 parity requests x 3 keys. Every request resolves all three.
+- **`emitted.tsv` +173** = 166 own + 6 locale copies (`values-b+he` <- `values-b+iw` and `values-b+id` <- `values-b+in`, three
+  keys each) + **1 Android fallback**.
+
+**`REFERENCE_IN_LOCALE` stayed at 500. `ANDROID_FALLBACK` moved 172 -> 173**, and that one row is the only count in this move
+that is not a plain addition, so it is named: `values-b+tl` resolves `duration_hours_minutes_format` to `%1$do %2$dm` from
+`values-b+fil`. `tl` is the legacy code for Filipino and Android resolves one from the other; `fil` declares the key because
+its own `download_time_left_hour_min_sec_format` does, and `tl` does not. No existing key's locale fallback changed.
+
+**On the values themselves.** `cast` was not translated: it is each directory's own `cast_format` with the format argument and
+its separator removed, so all 62 come from this project's existing human translations of the same word in the same sense. Three
+were corrected rather than copied — `values-b+lt` ("Skleisti" is the verb, to spread), `values-b+ars` ("بث" is broadcast) and
+`values-b+ti` (its separator is the Ethiopic word mark U+1361, which the strip missed). The first two are **pre-existing wrong
+senses in `cast_format` itself**, reported rather than changed here. `duration_hours_minutes_format` is likewise derived, from
+each directory's `download_time_left_hour_min_sec_format` with the seconds component removed, so it keeps each locale's own unit
+letters — Filipino's `%1$do` for *oras*, German's `%1$dstd`, Japanese's `%1$d時間 %2$d分`. Only `more_like_this` is new
+translation, and like `I18N-09`'s it has not been reviewed by a native speaker; every entry was checked to be in the same script
+as that directory's existing strings, which caught one error.
 
 ## Thirteenth move, 2026-11-05 — `KMP-42`, 4 new keys for TV search's source panel
 

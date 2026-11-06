@@ -117,6 +117,7 @@
 <string name="cancel_queue_message">Möchtest du alle Downloads in der Warteschlange abbrechen?</string>
 <string name="cartoons">Trickfilme</string>
 <string name="cartoons_singular">Trickfilm</string>
+<string name="cast">Besetzung</string>
 <string name="cast_format">Besetzung: %s</string>
 <string name="category_account">Konten und Sicherheit</string>
 <string name="category_general">Allgemein</string>
@@ -230,6 +231,7 @@
 <string name="duplicate_title">Potentielles Duplikat gefunden</string>
 <string name="duration">Länge</string>
 <string name="duration_format">%d Min</string>
+<string name="duration_hours_minutes_format">%1$dstd%2$dm</string>
 <string name="edit">Bearbeiten</string>
 <string name="edit_account">Konto bearbeiten</string>
 <string name="edit_profile_image_error_empty">Keine URL gefunden</string>
@@ -377,6 +379,7 @@
 <string name="middle_right">Mitte rechts</string>
 <string name="min">Min</string>
 <string name="mobile_data">Mobile Daten</string>
+<string name="more_like_this">Ähnliche Titel</string>
 <string name="movies">Filme</string>
 <string name="movies_singular">Film</string>
 <string name="music_singular">Musik</string>

@@ -15,6 +15,7 @@
 <string name="benene_count_text_none">"Geen Benenes gegee"</string>
 <string name="browser">"Blaaier"</string>
 <string name="cancel">"Kanselleer"</string>
+<string name="cast">"Rolverdeling"</string>
 <string name="cast_format" formatted="true">"Rolverdeling: %s"</string>
 <string name="category_providers">"Verskaffers"</string>
 <string name="continue_watching">"Kyk verder"</string>
@@ -104,6 +105,7 @@
 <string name="home_search_only_body">"Geen van jou uitbreidings het 'n tuisblad nie, maar jy kan steeds daarin soek."</string>
 <string name="load_more">"Laai meer"</string>
 <string name="loading">"Laai tans…"</string>
+<string name="more_like_this">"Meer soos hierdie"</string>
 <string name="new_update_format" formatted="true">"Nuwe opdatering gevind! \n%1$s -&gt; %2$s"</string>
 <string name="next_episode">"Volgende episode"</string>
 <string name="next_episode_format" formatted="true">"Episode %d sal vrygestel word in"</string>

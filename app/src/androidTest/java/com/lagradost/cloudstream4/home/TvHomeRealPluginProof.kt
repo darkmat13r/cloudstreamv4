@@ -12,7 +12,7 @@ import com.lagradost.cloudstream3.MainActivity
 import com.lagradost.cloudstream3.R
 import com.lagradost.cloudstream3.plugins.PLUGINS_KEY
 import com.lagradost.cloudstream3.plugins.PluginData
-import com.lagradost.cloudstream3.ui.result.ResultFragmentTv
+import com.lagradost.cloudstream4.detail.DetailTvFragment
 import com.lagradost.cloudstream3.ui.setup.HAS_DONE_SETUP_KEY
 import com.lagradost.cloudstream3.utils.DataStoreHelper
 import com.lagradost.cloudstream4.core.devicetest.Dpad
@@ -112,7 +112,8 @@ class TvHomeRealPluginProof {
 
             dpad.center()
             val opening = System.currentTimeMillis()
-            while (System.currentTimeMillis() < opening + OPEN_WAIT_MS && fragment() != ResultFragmentTv::class.java) {
+            // KMP-38: TV opens the new detail page at this destination.
+            while (System.currentTimeMillis() < opening + OPEN_WAIT_MS && fragment() != DetailTvFragment::class.java) {
                 Thread.sleep(POLL_MS)
             }
             log("after OK: ${fragment()?.simpleName}")

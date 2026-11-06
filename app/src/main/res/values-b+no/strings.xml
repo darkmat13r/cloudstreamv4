@@ -77,6 +77,7 @@
 <string name="cancel">"Avbryt"</string>
 <string name="cartoons">"Tegneserier"</string>
 <string name="cartoons_singular">"Tegnefilm"</string>
+<string name="cast">"Besetning"</string>
 <string name="cast_format" formatted="true">"Besetning: %s"</string>
 <string name="category_account">"Kontoer"</string>
 <string name="category_general">"Grunnleggende"</string>
@@ -269,6 +270,7 @@
 <string name="logout">"Logg ut"</string>
 <string name="max">"Maks"</string>
 <string name="min">"Min"</string>
+<string name="more_like_this">"Lignende"</string>
 <string name="movies">"Filmer"</string>
 <string name="movies_singular">"Film"</string>
 <string name="network_adress_example">"Lenke til strøm"</string>

@@ -23,6 +23,7 @@
 <string name="cancel">"Avbryt"</string>
 <string name="cartoons">"Teikneseriar"</string>
 <string name="cartoons_singular">"Teiknefilm"</string>
+<string name="cast">"Rollebesetning"</string>
 <string name="cast_format" formatted="true">"Rollebesetning: %s"</string>
 <string name="category_account">"Kontoar"</string>
 <string name="category_updates">"Oppdateringar og sikkerheitskopiering av data"</string>
@@ -135,6 +136,7 @@
 <string name="livestreams">"Direktesendingar"</string>
 <string name="load_more">"Last inn fleire"</string>
 <string name="loading">"Laster inn…"</string>
+<string name="more_like_this">"Liknande"</string>
 <string name="movies">"Filmar"</string>
 <string name="movies_singular">"Film"</string>
 <string name="new_update_format" formatted="true">"Ny oppdatering tilgjengeleg! \n%1$s -&gt; %2$s"</string>

@@ -180,6 +180,7 @@ import com.lagradost.cloudstream3.utils.setText
 import com.lagradost.cloudstream3.utils.setTextHtml
 import com.lagradost.cloudstream3.utils.txt
 import com.lagradost.safefile.SafeFile
+import com.lagradost.cloudstream4.detail.openDetailOnTvScreen
 import com.lagradost.cloudstream4.home.TvHomeFragmentFactory
 import com.lagradost.cloudstream4.home.TvHomeSwitch
 import com.lagradost.cloudstream4.library.openLibraryOnTvScreen
@@ -608,7 +609,15 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
                 }
             }
         }
-        tvRail?.onNavBarUpdated(destination.id, visible = isNavVisible && isLandscape())
+        // KMP-38: the new TV detail page shows the rail, as boards 7a and 7b draw it, and it is the one
+        // destination outside `isNavVisible` that does. Deliberately not added to `isNavVisible` itself:
+        // that list drives the XML rail too, which the old result page and the emulator layout still use,
+        // and `TvRailSwitch.useComposeRail = false` has to keep this page rail-less exactly as it was.
+        val railOnDetail = destination.id == R.id.navigation_results_tv
+        tvRail?.onNavBarUpdated(
+            destination.id,
+            visible = (isNavVisible || railOnDetail) && isLandscape(),
+        )
     }
 
     //private var mCastSession: CastSession? = null
@@ -1695,6 +1704,8 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
         if (isLayout(TV)) navController.graph.openSearchOnTvScreen()
         // KMP-34: TV opens the new library screen. Removing this one line is the rollback.
         if (isLayout(TV)) navController.graph.openLibraryOnTvScreen()
+        // KMP-38: TV opens the new detail screen. Removing this one line is the rollback.
+        if (isLayout(TV)) navController.graph.openDetailOnTvScreen()
         // Q14: TV opens the new downloads screen. Removing this one line is the rollback.
         if (isLayout(TV)) navController.graph.openDownloadsOnTvScreen()
         // Q15: TV opens the new page for one series' downloads. Removing this one line is the rollback.

@@ -17,6 +17,7 @@
 <string name="benene_count_text" formatted="true">"%d ಡೇವ್‌ಗಳಿಗೆ ಬೆನೆನೆಸ್ ನೀಡಲಾಗಿದೆ"</string>
 <string name="benene_count_text_none">"ಯಾವುದೇ ಬೆನೆನ್ಸ್ ನೀಡಿಲ್ಲ"</string>
 <string name="browser">"ಬ್ರೌಸರ್"</string>
+<string name="cast">"ಕ್ಯಾಸ್ಟ್"</string>
 <string name="cast_format" formatted="true">"ಕ್ಯಾಸ್ಟ್:%s"</string>
 <string name="chromecast_subtitles_settings">"ಕ್ರೋಮ್ ಕ್ಯಾಸ್ಟ್ ಸಬ್ ಟೈಟಲ್ಸ್"</string>
 <string name="chromecast_subtitles_settings_des">"ಕ್ರೋಮ್ ಕ್ಯಾಸ್ಟ್ ಸಬ್ ಟೈಟಲ್ಸ್ ಸೆಟ್ಟಿಂಗ್ಸ್"</string>
@@ -103,6 +104,7 @@
 <string name="home_search_only_body">"ನಿಮ್ಮ ಯಾವುದೇ ವಿಸ್ತರಣೆಗೆ ಹೋಂ ಪುಟವಿಲ್ಲ, ಆದರೆ ನೀವು ಅವುಗಳಲ್ಲಿ ಹುಡುಕಬಹುದು."</string>
 <string name="load_more">"ಇನ್ನಷ್ಟು ಲೋಡ್ ಮಾಡಿ"</string>
 <string name="loading">"ಲೋಡಿಂಗ್…"</string>
+<string name="more_like_this">"ಇಂತಹ ಇನ್ನಷ್ಟು"</string>
 <string name="new_update_format" formatted="true">"ಹೊಸ ಅಪ್ಡೇಟ್ ಬಂದಿದೆ \n%1$s-%2$s"</string>
 <string name="next_episode">"ಮುಂದಿನ ಸಂಚಿಕೆ"</string>
 <string name="next_episode_format" formatted="true">"ಸಂಚಿಕೆ%d ಬಿಡುಗಡೆಯಾಗಲಿದೆ"</string>

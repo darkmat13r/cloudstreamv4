@@ -20,6 +20,7 @@
 <string name="backup_failed_error_format" formatted="true">"%s ବ୍ୟାକଅପ୍ ନେବାରେ ତ୍ରୁଟି ଘଟିଲା"</string>
 <string name="backup_settings">"ତଥ୍ୟର ବ୍ୟାକଅପ୍ ନେବା"</string>
 <string name="backup_success">"ତଥ୍ୟ ଗଚ୍ଛିତ ହୋଇଛି"</string>
+<string name="cast">"ପାତ୍ର"</string>
 <string name="cast_format" formatted="true">"ପାତ୍ର: %s"</string>
 <string name="category_general">"ସାଧାରଣ"</string>
 <string name="category_player">"ଚାଳକ"</string>
@@ -61,6 +62,7 @@
 <string name="downloads_watched" formatted="true">"%d%% ଦେଖାଯାଇଛି"</string>
 <string name="duration">"ଅଵଧି"</string>
 <string name="duration_format" formatted="true">"%d ମିନିଟ୍"</string>
+<string name="duration_hours_minutes_format" formatted="true">"%1$dଘଣ୍ଟା %2$dମିନିଟ୍"</string>
 <string name="episode">"ଅଧ୍ୟାୟ"</string>
 <string name="episode_action_auto_download">"ସ୍ୱତଃ ଡାଉନଲୋଡ୍"</string>
 <string name="episode_action_chromecast_episode">"Chromecast ଅଧ୍ୟାୟ"</string>
@@ -123,6 +125,7 @@
 <string name="live_singular">"ସିଧାପ୍ରସାରଣ"</string>
 <string name="livestreams">"ସିଧାପ୍ରସାରଣ"</string>
 <string name="load_more">"ଅଧିକ ଲୋଡ୍ କର"</string>
+<string name="more_like_this">"ଏହିପରି ଆଉ"</string>
 <string name="movies">"ଚଳଚ୍ଚିତ୍ର"</string>
 <string name="movies_singular">"ଚଳଚ୍ଚିତ୍ର"</string>
 <string name="new_update_format" formatted="true">"ନୂଆ ଅଦ୍ୟତନ ମିଳିଲା! \n%1$s -&gt; %2$s"</string>

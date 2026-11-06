@@ -64,6 +64,7 @@
 <string name="cancel">"रद्द करें"</string>
 <string name="cartoons">"कार्टून"</string>
 <string name="cartoons_singular">"हास्यचित्र"</string>
+<string name="cast">"Cast"</string>
 <string name="cast_format" formatted="true">"Cast: %s"</string>
 <string name="category_account">"खाते और सुरक्षा"</string>
 <string name="category_general">"सामान्य"</string>
@@ -149,6 +150,7 @@
 <string name="duplicate_title">"संभावित डुप्लिकेट मिला"</string>
 <string name="duration">"अवधि"</string>
 <string name="duration_format" formatted="true">"%d मिनट"</string>
+<string name="duration_hours_minutes_format" formatted="true">"%1$dh %2$dm"</string>
 <string name="eigengraumode_settings">"प्रतिश्रवण गति"</string>
 <string name="emulator_layout">"एमुलेटर रुप दर्शन"</string>
 <string name="enable_nsfw_on_providers">"सपोर्टेड एक्सटेंशन पर एन एस एफ डब्ल्यू (NSFW) चालू करें"</string>
@@ -250,6 +252,7 @@
 <string name="login">"लॉग इन"</string>
 <string name="login_format" formatted="true">"%1$s %2$s"</string>
 <string name="logout">"लॉग आउट"</string>
+<string name="more_like_this">"इस जैसे और"</string>
 <string name="movies">"मूवीज"</string>
 <string name="movies_singular">"फिल्म"</string>
 <string name="music_singular">"संगीत"</string>

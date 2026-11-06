@@ -87,6 +87,7 @@
 <string name="cancel">Batal</string>
 <string name="cartoons">Kartun</string>
 <string name="cartoons_singular">Kartun</string>
+<string name="cast">Pelakon</string>
 <string name="cast_format">Pelakon:%s</string>
 <string name="category_account">Akaun dan Sekuriti</string>
 <string name="category_general">Umum</string>
@@ -184,6 +185,7 @@
 <string name="duplicate_title">Potensi Duplikasi Dijumpai</string>
 <string name="duration">Durasi</string>
 <string name="duration_format">%d min</string>
+<string name="duration_hours_minutes_format">%1$dj %2$dm</string>
 <string name="edit">Sunting</string>
 <string name="edit_account">Sunting Akaun</string>
 <string name="eigengraumode_settings">Kelajuan pemain</string>
@@ -306,6 +308,7 @@
 <string name="max">Maks</string>
 <string name="min">Min</string>
 <string name="mobile_data">Data mudah alih</string>
+<string name="more_like_this">Lagi seperti ini</string>
 <string name="movies">Filem</string>
 <string name="movies_singular">Movie</string>
 <string name="music_singular">Musik</string>

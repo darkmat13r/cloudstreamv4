@@ -93,6 +93,7 @@
 <string name="cancel">"Mégse"</string>
 <string name="cartoons">"Rajzfilmek"</string>
 <string name="cartoons_singular">"Rajzfilm"</string>
+<string name="cast">"Stáblista"</string>
 <string name="cast_format" formatted="true">"Stáblista: %s"</string>
 <string name="category_account">"Fiókok és Biztonság"</string>
 <string name="category_general">"Általános"</string>
@@ -199,6 +200,7 @@
 <string name="duplicate_title">"Potenciális Dupla Találat"</string>
 <string name="duration">"Időtartam"</string>
 <string name="duration_format" formatted="true">"%d perc"</string>
+<string name="duration_hours_minutes_format" formatted="true">"%1$dh %2$dm"</string>
 <string name="edit">"Szerkeszt"</string>
 <string name="edit_account">"Fiók módosítása"</string>
 <string name="eigengraumode_settings">"Visszajátszás sebessége"</string>
@@ -335,6 +337,7 @@
 <string name="max">"Max"</string>
 <string name="min">"Min"</string>
 <string name="mobile_data">"Mobil adat"</string>
+<string name="more_like_this">"Hasonlók"</string>
 <string name="movies">"Filmek"</string>
 <string name="movies_singular">"Film"</string>
 <string name="music_singular">"Zene"</string>

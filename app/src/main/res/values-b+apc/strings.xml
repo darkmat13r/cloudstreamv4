@@ -114,6 +114,7 @@
 <string name="cancel_queue_message">"بدك تلغي كل شي عم يتنَزَّل؟"</string>
 <string name="cartoons">"رسوم مُتَحَرِكة"</string>
 <string name="cartoons_singular">"رسوم مُتَحَرِكة"</string>
+<string name="cast">"ممثلين"</string>
 <string name="cast_format" formatted="true">"ممثلين: %s"</string>
 <string name="category_account">"الحسابات وال أمان"</string>
 <string name="category_general">"عام"</string>
@@ -229,6 +230,7 @@
 <string name="duplicate_title">"معقول يكون موجود أصلًا"</string>
 <string name="duration">"طولو"</string>
 <string name="duration_format" formatted="true">"دقايق: %d"</string>
+<string name="duration_hours_minutes_format" formatted="true">"%1$dساعة %2$dد"</string>
 <string name="edit">"عَدِل"</string>
 <string name="edit_account">"عدلو الأكونت"</string>
 <string name="edit_profile_image_error_empty">"م لقينا الرابط"</string>
@@ -376,6 +378,7 @@
 <string name="middle_right">"نُص، عال يمين"</string>
 <string name="min">"الحد الأدنى"</string>
 <string name="mobile_data">"3G/4G…"</string>
+<string name="more_like_this">"المزيد متل هيك"</string>
 <string name="movies">"أفلام"</string>
 <string name="movies_singular">"فيلم"</string>
 <string name="music_singular">"موسيقى"</string>

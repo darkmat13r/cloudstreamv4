@@ -115,6 +115,7 @@
 <string name="cancel_queue_message">"Czy chcesz anulować wszystkie pliki do pobrania z kolejki?"</string>
 <string name="cartoons">"Kreskówki"</string>
 <string name="cartoons_singular">"Kreskówka"</string>
+<string name="cast">"Obsada"</string>
 <string name="cast_format" formatted="true">"Obsada: %s"</string>
 <string name="category_account">"Konta i zabezpieczenia"</string>
 <string name="category_general">"Ogólne"</string>
@@ -230,6 +231,7 @@
 <string name="duplicate_title">"Znaleziono potencjalny duplikat"</string>
 <string name="duration">"Czas trwania"</string>
 <string name="duration_format" formatted="true">"%d min"</string>
+<string name="duration_hours_minutes_format" formatted="true">"%1$dh %2$dm"</string>
 <string name="edit">"Edytuj"</string>
 <string name="edit_account">"Edytuj konto"</string>
 <string name="edit_profile_image_error_empty">"Nie znaleziono adresu URL"</string>
@@ -377,6 +379,7 @@
 <string name="middle_right">"Środkowe prawe"</string>
 <string name="min">"Min"</string>
 <string name="mobile_data">"Dane mobilne"</string>
+<string name="more_like_this">"Podobne"</string>
 <string name="movies">"Filmy"</string>
 <string name="movies_singular">"Film"</string>
 <string name="music_singular">"Muzyka"</string>

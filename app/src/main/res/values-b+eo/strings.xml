@@ -16,6 +16,7 @@
 <string name="begin_speaking">"Komencu paroli…"</string>
 <string name="browser">"Retumilo"</string>
 <string name="cancel">"Nuligi"</string>
+<string name="cast">"Rolantaro"</string>
 <string name="cast_format" formatted="true">"Rolantaro: %s"</string>
 <string name="category_account">"Kontoj kaj Sekureco"</string>
 <string name="delete">"Forigi"</string>
@@ -64,6 +65,7 @@
 <string name="downloads_watched" formatted="true">"%d%% spektita"</string>
 <string name="duration">"Daŭro"</string>
 <string name="duration_format" formatted="true">"%d min"</string>
+<string name="duration_hours_minutes_format" formatted="true">"%1$dh %2$dm"</string>
 <string name="episode">"Epizodo"</string>
 <string name="episode_format" formatted="true">"%1$d %2$s"</string>
 <string name="episode_more_options_des">"Pli da Opcioj"</string>
@@ -134,6 +136,7 @@
 <string name="loading">"Ŝarĝante…"</string>
 <string name="login">"Saluti"</string>
 <string name="logout">"Adiaŭi"</string>
+<string name="more_like_this">"Pli similaj"</string>
 <string name="movies">"Filmoj"</string>
 <string name="movies_singular">"Filmo"</string>
 <string name="new_update_format" formatted="true">"Nova ĝisdatigo trovita! \n%1$s -&gt; %2$s"</string>

@@ -36,6 +36,7 @@
 <string name="browser">"Naršyklė"</string>
 <string name="cancel">"Atšaukti"</string>
 <string name="cartoons_singular">"Filmukas"</string>
+<string name="cast">"Aktoriai"</string>
 <string name="cast_format" formatted="true">"Skleisti: %s"</string>
 <string name="category_account">"Paskyros"</string>
 <string name="chromecast_subtitles_settings">"Chromecast subtitrai"</string>
@@ -179,6 +180,7 @@
 <string name="login">"Prisijungti"</string>
 <string name="logout">"Atsijungti"</string>
 <string name="mobile_data">"Mobilūs duomenys"</string>
+<string name="more_like_this">"Panašūs"</string>
 <string name="movies_singular">"Filmas"</string>
 <string name="new_update_format" formatted="true">"Rastas atnaujinimas!\n%1$s -&gt; %2$s"</string>
 <string name="next">"Kitas"</string>

@@ -25,9 +25,12 @@ private const val PULSE_MAX_ALPHA = 1.0f
  * Call it **once** at the root of a skeleton and thread the result down, rather than once per
  * block: a rail of six cards driven by six independent infinite transitions would drift out of
  * phase and shimmer like noise instead of like one surface.
+ *
+ * Public with [SkeletonBlock], so a screen whose loading state is not a rail of cards can build the
+ * skeleton its own board draws. The generic [SkeletonRail] stays the default.
  */
 @Composable
-internal fun rememberSkeletonAlpha(): Float {
+fun rememberSkeletonAlpha(): Float {
     val transition = rememberInfiniteTransition(label = PULSE_LABEL)
     val alpha by transition.animateFloat(
         initialValue = PULSE_MIN_ALPHA,
@@ -54,7 +57,7 @@ internal fun rememberSkeletonAlpha(): Float {
  *   the whole point — it is the real content's size.
  */
 @Composable
-internal fun SkeletonBlock(
+fun SkeletonBlock(
     alpha: Float,
     shape: Shape,
     modifier: Modifier = Modifier,
