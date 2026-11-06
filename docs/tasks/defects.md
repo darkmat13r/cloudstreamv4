@@ -1543,6 +1543,8 @@ and the host's first focus request, which is why the same commit passed 17/17 at
 | the class alone, from a cleared app (each run boots the `-read-only` AVD and installs fresh), unfixed master x3 | `Television_720p` | 17/17 each time (18:41, 18:48, 18:56Z): the race went the hero's way |
 | a module case that fixes the order, unfixed: bookmarks on screen, pages held, the host view asked for focus as `onResume` does, then the pages released | `Television_720p` | **red**, `what holds focus expected:<More info · The Long Dark> but was:<[Watching]>`, the app's symptom |
 | the same case with the fix, and the whole module suite | `Television_720p` | 79/79, 18 screenshots `same` at 0/0 |
+| the full `:app` suite with the fix | `Television_720p_2` | 93 run, 92 passed, 0 failed, 1 skipped (`TvHomeRealPluginProof`), 21:10:32Z; `TvHomeNavigationTest` 17/17 |
+| the class alone with the fix, x2 | `Television_720p_2` | 17/17 each time (21:20, 21:33Z) |
 
 The module case's first assertion is the precondition: the host's focus request does put focus on the chip. It is what makes the
 race deterministic, and what the fix is shown against.
@@ -1553,7 +1555,7 @@ hero, the first Continue card or the first bookmark as before. A person who has 
 there. The assert is unchanged, and no retry was added.
 
 **Not verified.** A failing in-app run on unfixed master on this machine: 0 of 3 class-alone runs hit the race. worker-2's two
-failures are the in-app evidence. Whether `Television_720p_2` makes it likelier: all four runs here took slot 1.
+failures are the in-app evidence. The unfixed runs here all took slot 1 and the fixed `:app` runs slot 2, so neither slot is shown to make it likelier.
 
 ---
 
