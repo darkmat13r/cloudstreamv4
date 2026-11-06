@@ -205,6 +205,9 @@
 <string name="downloaded_file">Tệp đã tải xuống</string>
 <string name="downloading">Đang tải xuống</string>
 <string name="downloads_browse_library">Duyệt thư viện</string>
+<string name="downloads_cancel_confirm_body">Thao tác này sẽ bỏ %s đã tải xuống.</string>
+<string name="downloads_cancel_confirm_title">Hủy bản tải xuống này?</string>
+<string name="downloads_cancel_download">Hủy tải xuống</string>
 <string name="downloads_column_size">Kích thước</string>
 <string name="downloads_delete_all">Xóa tất cả</string>
 <string name="downloads_delete_confirm_body">Thao tác này giải phóng %s và không thể hoàn tác.</string>
@@ -214,6 +217,7 @@
 <string name="downloads_empty_headline">Chưa có tải xuống nào</string>
 <string name="downloads_free">Còn trống %s</string>
 <string name="downloads_free_up_space">Giải phóng dung lượng</string>
+<string name="downloads_keep_downloading">Tiếp tục tải xuống</string>
 <string name="downloads_load_failed_body">Các tệp đã tải xuống của bạn không bị thay đổi.</string>
 <string name="downloads_load_failed_headline">Không thể đọc các tải xuống của bạn</string>
 <string name="downloads_offline_pill">Ngoại tuyến · không có kết nối</string>

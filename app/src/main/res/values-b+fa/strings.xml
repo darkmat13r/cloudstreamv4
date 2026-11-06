@@ -105,6 +105,9 @@
 <string name="downloaded">"دانلود شده"</string>
 <string name="downloading">"در حال دانلود"</string>
 <string name="downloads_browse_library">"مرور کتابخانه"</string>
+<string name="downloads_cancel_confirm_body" formatted="true">"این کار %s بارگیری‌شده تا اکنون را دور می‌ریزد."</string>
+<string name="downloads_cancel_confirm_title">"این بارگیری لغو شود؟"</string>
+<string name="downloads_cancel_download">"لغو بارگیری"</string>
 <string name="downloads_column_size">"اندازه"</string>
 <string name="downloads_delete_all">"حذف همه"</string>
 <string name="downloads_delete_confirm_body" formatted="true">"این کار %s فضا آزاد می‌کند و قابل بازگشت نیست."</string>
@@ -114,6 +117,7 @@
 <string name="downloads_empty_headline">"هنوز دانلودی وجود ندارد"</string>
 <string name="downloads_free" formatted="true">"%s آزاد"</string>
 <string name="downloads_free_up_space">"آزاد کردن فضا"</string>
+<string name="downloads_keep_downloading">"ادامهٔ بارگیری"</string>
 <string name="downloads_load_failed_body">"فایل‌های دانلودشده شما تغییر نکرده‌اند."</string>
 <string name="downloads_load_failed_headline">"دانلودهای شما خوانده نشد"</string>
 <string name="downloads_offline_pill">"آفلاین · بدون اتصال"</string>

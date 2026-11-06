@@ -204,6 +204,9 @@
 <string name="downloaded_file">"下載的檔案"</string>
 <string name="downloading">"下載中"</string>
 <string name="downloads_browse_library">"瀏覽媒體庫"</string>
+<string name="downloads_cancel_confirm_body" formatted="true">"將捨棄目前已下載的 %s。"</string>
+<string name="downloads_cancel_confirm_title">"要取消此下載嗎？"</string>
+<string name="downloads_cancel_download">"取消下載"</string>
 <string name="downloads_column_size">"大小"</string>
 <string name="downloads_delete_all">"全部刪除"</string>
 <string name="downloads_delete_confirm_body" formatted="true">"這將釋放 %s，且無法復原。"</string>
@@ -213,6 +216,7 @@
 <string name="downloads_empty_headline">"尚無下載"</string>
 <string name="downloads_free" formatted="true">"可用 %s"</string>
 <string name="downloads_free_up_space">"釋放空間"</string>
+<string name="downloads_keep_downloading">"繼續下載"</string>
 <string name="downloads_load_failed_body">"你已下載的檔案未變更。"</string>
 <string name="downloads_load_failed_headline">"無法讀取你的下載"</string>
 <string name="downloads_offline_pill">"離線 · 無連線"</string>

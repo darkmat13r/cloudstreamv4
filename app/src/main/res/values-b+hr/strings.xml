@@ -204,6 +204,9 @@
 <string name="downloaded_file">"Preuzeta datoteka"</string>
 <string name="downloading">"Preuzimanje u tijeku"</string>
 <string name="downloads_browse_library">"Pregledaj biblioteku"</string>
+<string name="downloads_cancel_confirm_body" formatted="true">"Time se odbacuje dosad preuzetih %s."</string>
+<string name="downloads_cancel_confirm_title">"Otkazati ovo preuzimanje?"</string>
+<string name="downloads_cancel_download">"Otkaži preuzimanje"</string>
 <string name="downloads_column_size">"Veličina"</string>
 <string name="downloads_delete_all">"Izbriši sve"</string>
 <string name="downloads_delete_confirm_body" formatted="true">"Time se oslobađa %s i to se ne može poništiti."</string>
@@ -213,6 +216,7 @@
 <string name="downloads_empty_headline">"Još nema preuzimanja"</string>
 <string name="downloads_free" formatted="true">"%s slobodno"</string>
 <string name="downloads_free_up_space">"Oslobodi prostor"</string>
+<string name="downloads_keep_downloading">"Nastavi preuzimanje"</string>
 <string name="downloads_load_failed_body">"Vaše preuzete datoteke nisu promijenjene."</string>
 <string name="downloads_load_failed_headline">"Nije moguće pročitati vaša preuzimanja"</string>
 <string name="downloads_offline_pill">"Offline · nema veze"</string>

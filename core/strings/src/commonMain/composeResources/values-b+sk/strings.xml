@@ -137,6 +137,9 @@
 <string name="downloaded_file">Stiahnutý súbor</string>
 <string name="downloading">Sťahovanie</string>
 <string name="downloads_browse_library">Prehľadávať knižnicu</string>
+<string name="downloads_cancel_confirm_body">Tým sa zahodí doteraz stiahnutých %s.</string>
+<string name="downloads_cancel_confirm_title">Zrušiť toto sťahovanie?</string>
+<string name="downloads_cancel_download">Zrušiť sťahovanie</string>
 <string name="downloads_column_size">Veľkosť</string>
 <string name="downloads_delete_all">Zmazať všetko</string>
 <string name="downloads_delete_confirm_body">Uvoľní sa tým %s a nedá sa to vrátiť späť.</string>
@@ -146,6 +149,7 @@
 <string name="downloads_empty_headline">Zatiaľ žiadne stiahnutia</string>
 <string name="downloads_free">%s voľné</string>
 <string name="downloads_free_up_space">Uvoľniť miesto</string>
+<string name="downloads_keep_downloading">Pokračovať v sťahovaní</string>
 <string name="downloads_load_failed_body">Vaše stiahnuté súbory neboli zmenené.</string>
 <string name="downloads_load_failed_headline">Stiahnutia sa nepodarilo načítať</string>
 <string name="downloads_offline_pill">Offline · bez pripojenia</string>

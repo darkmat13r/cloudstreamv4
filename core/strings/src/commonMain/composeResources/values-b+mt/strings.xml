@@ -36,6 +36,9 @@
 <string name="downloaded">Imniżżel</string>
 <string name="downloading">Qed jinżlu</string>
 <string name="downloads_browse_library">Esplora l-librerija</string>
+<string name="downloads_cancel_confirm_body">Dan jarmi l-%s imniżżla s'issa.</string>
+<string name="downloads_cancel_confirm_title">Tikkanċella dan it-tniżżil?</string>
+<string name="downloads_cancel_download">Ikkanċella t-tniżżil</string>
 <string name="downloads_column_size">Daqs</string>
 <string name="downloads_delete_all">Ħassar kollox</string>
 <string name="downloads_delete_confirm_body">Dan jillibera %s u ma jistax jitreġġa' lura.</string>
@@ -43,6 +46,7 @@
 <string name="downloads_empty_headline">Għad m'hemmx tniżżil</string>
 <string name="downloads_free">%s liberi</string>
 <string name="downloads_free_up_space">Ħeles l-ispazju</string>
+<string name="downloads_keep_downloading">Kompli niżżel</string>
 <string name="downloads_load_failed_body">Il-fajls imniżżla tiegħek ma nbidlux.</string>
 <string name="downloads_load_failed_headline">Ma setax jinqara t-tniżżil tiegħek</string>
 <string name="downloads_offline_pill">Offline · l-ebda konnessjoni</string>

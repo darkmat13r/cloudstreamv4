@@ -205,6 +205,9 @@
 <string name="downloaded_file">"Pobrano plik"</string>
 <string name="downloading">"Pobieranie"</string>
 <string name="downloads_browse_library">"Przeglądaj bibliotekę"</string>
+<string name="downloads_cancel_confirm_body" formatted="true">"Spowoduje to odrzucenie pobranych dotąd %s."</string>
+<string name="downloads_cancel_confirm_title">"Anulować to pobieranie?"</string>
+<string name="downloads_cancel_download">"Anuluj pobieranie"</string>
 <string name="downloads_column_size">"Rozmiar"</string>
 <string name="downloads_delete_all">"Usuń wszystkie"</string>
 <string name="downloads_delete_confirm_body" formatted="true">"Zwolni to %s i nie można tego cofnąć."</string>
@@ -214,6 +217,7 @@
 <string name="downloads_empty_headline">"Nie ma jeszcze pobranych"</string>
 <string name="downloads_free" formatted="true">"%s wolne"</string>
 <string name="downloads_free_up_space">"Zwolnij miejsce"</string>
+<string name="downloads_keep_downloading">"Pobieraj dalej"</string>
 <string name="downloads_load_failed_body">"Pobrane pliki nie zostały zmienione."</string>
 <string name="downloads_load_failed_headline">"Nie udało się odczytać pobranych"</string>
 <string name="downloads_offline_pill">"Offline · brak połączenia"</string>

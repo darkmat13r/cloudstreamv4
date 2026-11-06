@@ -205,6 +205,9 @@
 <string name="downloaded_file">"Скачано файл"</string>
 <string name="downloading">"Скачивание"</string>
 <string name="downloads_browse_library">"Открыть библиотеку"</string>
+<string name="downloads_cancel_confirm_body" formatted="true">"Загруженные к этому моменту %s будут удалены."</string>
+<string name="downloads_cancel_confirm_title">"Отменить эту загрузку?"</string>
+<string name="downloads_cancel_download">"Отменить загрузку"</string>
 <string name="downloads_column_size">"Размер"</string>
 <string name="downloads_delete_all">"Удалить все"</string>
 <string name="downloads_delete_confirm_body" formatted="true">"Это освободит %s, и отменить это нельзя."</string>
@@ -214,6 +217,7 @@
 <string name="downloads_empty_headline">"Скачанного пока нет"</string>
 <string name="downloads_free" formatted="true">"свободно %s"</string>
 <string name="downloads_free_up_space">"Освободить место"</string>
+<string name="downloads_keep_downloading">"Продолжить загрузку"</string>
 <string name="downloads_load_failed_body">"Ваши скачанные файлы не изменены."</string>
 <string name="downloads_load_failed_headline">"Не удалось прочитать скачанное"</string>
 <string name="downloads_offline_pill">"Без сети · нет соединения"</string>

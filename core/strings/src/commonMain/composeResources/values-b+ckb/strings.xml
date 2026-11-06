@@ -35,6 +35,9 @@
 <string name="downloaded">دابەزێنراوە</string>
 <string name="downloading">دادەبەزێندرێت</string>
 <string name="downloads_browse_library">گەڕان لە کتێبخانە</string>
+<string name="downloads_cancel_confirm_body">ئەمە ئەو %s ـەی تا ئێستا داگیراوە فڕێ دەدات.</string>
+<string name="downloads_cancel_confirm_title">ئەم داگرتنە هەڵبوەشێنرێتەوە؟</string>
+<string name="downloads_cancel_download">هەڵوەشاندنەوەی داگرتن</string>
 <string name="downloads_column_size">قەبارە</string>
 <string name="downloads_delete_all">هەمووی بسڕەوە</string>
 <string name="downloads_delete_confirm_body">ئەمە %s ئازاد دەکات و ناگەڕێتەوە.</string>
@@ -44,6 +47,7 @@
 <string name="downloads_empty_headline">هێشتا هیچ داونلۆدێک نییە</string>
 <string name="downloads_free">%s بەتاڵ</string>
 <string name="downloads_free_up_space">بۆشایی چۆڵ بکە</string>
+<string name="downloads_keep_downloading">بەردەوامبوون لە داگرتن</string>
 <string name="downloads_load_failed_body">فایلە داونلۆدکراوەکانت نەگۆڕدراون.</string>
 <string name="downloads_load_failed_headline">نەتوانرا داونلۆدەکانت بخوێنرێنەوە</string>
 <string name="downloads_offline_pill">ئۆفلاین · پەیوەندی نییە</string>

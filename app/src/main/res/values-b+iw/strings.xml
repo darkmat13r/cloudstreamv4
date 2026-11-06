@@ -144,6 +144,9 @@
 <string name="downloaded_file">"קובץ שהורד"</string>
 <string name="downloading">"מוריד"</string>
 <string name="downloads_browse_library">"עיון בספריה"</string>
+<string name="downloads_cancel_confirm_body" formatted="true">"פעולה זו תמחק את %s שהורדו עד כה."</string>
+<string name="downloads_cancel_confirm_title">"לבטל את ההורדה הזו?"</string>
+<string name="downloads_cancel_download">"ביטול ההורדה"</string>
 <string name="downloads_column_size">"גודל"</string>
 <string name="downloads_delete_all">"מחק הכל"</string>
 <string name="downloads_delete_confirm_body" formatted="true">"פעולה זו תפנה %s ולא ניתן לבטל אותה."</string>
@@ -153,6 +156,7 @@
 <string name="downloads_empty_headline">"אין עדיין הורדות"</string>
 <string name="downloads_free" formatted="true">"%s פנויים"</string>
 <string name="downloads_free_up_space">"פינוי מקום"</string>
+<string name="downloads_keep_downloading">"המשך בהורדה"</string>
 <string name="downloads_load_failed_body">"הקבצים שהורדת לא שונו."</string>
 <string name="downloads_load_failed_headline">"לא ניתן לקרוא את ההורדות שלך"</string>
 <string name="downloads_offline_pill">"אופליין · אין חיבור"</string>

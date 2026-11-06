@@ -184,6 +184,9 @@
 <string name="downloaded_file">"Λήψη αρχείου"</string>
 <string name="downloading">"Κατεβαίνει"</string>
 <string name="downloads_browse_library">"Περιήγηση στη βιβλιοθήκη"</string>
+<string name="downloads_cancel_confirm_body" formatted="true">"Θα απορριφθούν τα %s που έχουν ληφθεί μέχρι τώρα."</string>
+<string name="downloads_cancel_confirm_title">"Ακύρωση αυτής της λήψης;"</string>
+<string name="downloads_cancel_download">"Ακύρωση λήψης"</string>
 <string name="downloads_column_size">"Μέγεθος"</string>
 <string name="downloads_delete_all">"Διαγραφή όλων"</string>
 <string name="downloads_delete_confirm_body" formatted="true">"Έτσι ελευθερώνονται %s και δεν μπορεί να αναιρεθεί."</string>
@@ -193,6 +196,7 @@
 <string name="downloads_empty_headline">"Δεν υπάρχουν ακόμα λήψεις"</string>
 <string name="downloads_free" formatted="true">"%s ελεύθερα"</string>
 <string name="downloads_free_up_space">"Απελευθέρωση χώρου"</string>
+<string name="downloads_keep_downloading">"Συνέχεια λήψης"</string>
 <string name="downloads_load_failed_body">"Τα ληφθέντα αρχεία σας δεν έχουν αλλάξει."</string>
 <string name="downloads_load_failed_headline">"Δεν ήταν δυνατή η ανάγνωση των λήψεών σας"</string>
 <string name="downloads_offline_pill">"Εκτός σύνδεσης · δεν υπάρχει σύνδεση"</string>

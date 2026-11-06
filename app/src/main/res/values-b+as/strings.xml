@@ -180,6 +180,9 @@
 <string name="downloaded_file">"ডাউনলোড কৰা ফাইল"</string>
 <string name="downloading">"ডাউনলোড হৈ আছে"</string>
 <string name="downloads_browse_library">"পুথিভঁৰাল ব্ৰাউজ কৰক"</string>
+<string name="downloads_cancel_confirm_body" formatted="true">"ইয়াৰ ফলত এতিয়ালৈকে ডাউনলোড হোৱা %s বাদ পৰিব।"</string>
+<string name="downloads_cancel_confirm_title">"এই ডাউনলোড বাতিল কৰিবনে?"</string>
+<string name="downloads_cancel_download">"ডাউনলোড বাতিল কৰক"</string>
 <string name="downloads_column_size">"আকাৰ"</string>
 <string name="downloads_delete_all">"সকলো ডিলিট কৰক"</string>
 <string name="downloads_delete_confirm_body" formatted="true">"ই %s মুকলি কৰিব আৰু ইয়াক পূৰ্বাৱস্থালৈ ঘূৰাই নিব নোৱাৰি।"</string>
@@ -189,6 +192,7 @@
 <string name="downloads_empty_headline">"এতিয়ালৈকে কোনো ডাউনলোড নাই"</string>
 <string name="downloads_free" formatted="true">"%s খালী"</string>
 <string name="downloads_free_up_space">"ঠাই খালী কৰক"</string>
+<string name="downloads_keep_downloading">"ডাউনলোড চলাই যাওক"</string>
 <string name="downloads_load_failed_body">"আপোনাৰ ডাউনলোড কৰা ফাইলসমূহ সলনি কৰা হোৱা নাই।"</string>
 <string name="downloads_load_failed_headline">"আপোনাৰ ডাউনলোডসমূহ পঢ়িব নোৱাৰিলোঁ"</string>
 <string name="downloads_offline_pill">"অফলাইন · সংযোগ নাই"</string>

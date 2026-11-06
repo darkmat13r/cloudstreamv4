@@ -201,6 +201,9 @@
 <string name="downloaded_file">Изтеглен файл</string>
 <string name="downloading">Изтегля се</string>
 <string name="downloads_browse_library">Преглед на библиотеката</string>
+<string name="downloads_cancel_confirm_body">Така ще се изхвърлят изтеглените досега %s.</string>
+<string name="downloads_cancel_confirm_title">Отказване на това изтегляне?</string>
+<string name="downloads_cancel_download">Отказ на изтеглянето</string>
 <string name="downloads_column_size">Размер</string>
 <string name="downloads_delete_all">Изтрий всички</string>
 <string name="downloads_delete_confirm_body">Това освобождава %s и не може да бъде отменено.</string>
@@ -210,6 +213,7 @@
 <string name="downloads_empty_headline">Все още няма изтегляния</string>
 <string name="downloads_free">%s свободни</string>
 <string name="downloads_free_up_space">Освобождаване на място</string>
+<string name="downloads_keep_downloading">Продължи изтеглянето</string>
 <string name="downloads_load_failed_body">Изтеглените ви файлове не са променени.</string>
 <string name="downloads_load_failed_headline">Изтеглянията ви не можаха да се прочетат</string>
 <string name="downloads_offline_pill">Офлайн · няма връзка</string>

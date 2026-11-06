@@ -35,6 +35,9 @@
 <string name="downloaded">ወርዷል</string>
 <string name="downloading">በማውረድ ላይ</string>
 <string name="downloads_browse_library">ቤተ-መጽሐፍት አስስ</string>
+<string name="downloads_cancel_confirm_body">ይህ እስካሁን የወረደውን %s ያስወግዳል።</string>
+<string name="downloads_cancel_confirm_title">ይህን ውርድ ይሰርዙ?</string>
+<string name="downloads_cancel_download">ውርድን ሰርዝ</string>
 <string name="downloads_column_size">መጠን</string>
 <string name="downloads_delete_all">ሁሉንም ሰርዝ</string>
 <string name="downloads_delete_confirm_body">ይህ %s ነጻ ያደርጋል እና መቀልበስ አይቻልም።</string>
@@ -42,6 +45,7 @@
 <string name="downloads_empty_headline">እስካሁን ምንም ውርዶች የሉም</string>
 <string name="downloads_free">%s ነጻ</string>
 <string name="downloads_free_up_space">ቦታ አስለቅቅ</string>
+<string name="downloads_keep_downloading">ማውረድ ቀጥል</string>
 <string name="downloads_load_failed_body">የወረዱ ፋይሎችዎ አልተቀየሩም።</string>
 <string name="downloads_load_failed_headline">ውርዶችዎን ማንበብ አልተቻለም</string>
 <string name="downloads_offline_pill">ከመስመር ውጭ · ግንኙነት የለም</string>

@@ -91,6 +91,9 @@
 <string name="downloaded">"Descargado"</string>
 <string name="downloading">"Descargando"</string>
 <string name="downloads_browse_library">"Explorar biblioteca"</string>
+<string name="downloads_cancel_confirm_body" formatted="true">"Isto descarta os %s descargados ata agora."</string>
+<string name="downloads_cancel_confirm_title">"Cancelar esta descarga?"</string>
+<string name="downloads_cancel_download">"Cancelar a descarga"</string>
 <string name="downloads_column_size">"Tamaño"</string>
 <string name="downloads_delete_all">"Borrar todo"</string>
 <string name="downloads_delete_confirm_body" formatted="true">"Isto libera %s e non se pode desfacer."</string>
@@ -100,6 +103,7 @@
 <string name="downloads_empty_headline">"Aínda non hai descargas"</string>
 <string name="downloads_free" formatted="true">"%s libres"</string>
 <string name="downloads_free_up_space">"Liberar espazo"</string>
+<string name="downloads_keep_downloading">"Seguir descargando"</string>
 <string name="downloads_load_failed_body">"Os teus ficheiros descargados non se modificaron."</string>
 <string name="downloads_load_failed_headline">"Non se puideron ler as túas descargas"</string>
 <string name="downloads_offline_pill">"Sen conexión · sen rede"</string>

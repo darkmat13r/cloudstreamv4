@@ -204,6 +204,9 @@
 <string name="downloaded_file">Преземена датотека</string>
 <string name="downloading">Преземање</string>
 <string name="downloads_browse_library">Прелистај библиотека</string>
+<string name="downloads_cancel_confirm_body">Ова ги отфрла досега преземените %s.</string>
+<string name="downloads_cancel_confirm_title">Да се откаже ова преземање?</string>
+<string name="downloads_cancel_download">Откажи преземање</string>
 <string name="downloads_column_size">Големина</string>
 <string name="downloads_delete_all">Избриши ги сите</string>
 <string name="downloads_delete_confirm_body">Ова ослободува %s и не може да се врати.</string>
@@ -213,6 +216,7 @@
 <string name="downloads_empty_headline">Сè уште нема преземања</string>
 <string name="downloads_free">%s слободно</string>
 <string name="downloads_free_up_space">Ослободи простор</string>
+<string name="downloads_keep_downloading">Продолжи со преземање</string>
 <string name="downloads_load_failed_body">Вашите преземени датотеки не се променети.</string>
 <string name="downloads_load_failed_headline">Не може да се прочитаат вашите преземања</string>
 <string name="downloads_offline_pill">Офлајн · нема врска</string>

@@ -139,6 +139,9 @@
 <string name="downloaded_file">Waa ka dejiyey faylka</string>
 <string name="downloading">Soo degaya</string>
 <string name="downloads_browse_library">Baadh kaydka</string>
+<string name="downloads_cancel_confirm_body">Tani waxay tuuraysaa %s ee ilaa hadda la soo dejiyey.</string>
+<string name="downloads_cancel_confirm_title">Ma joojinaysaa soo dejintan?</string>
+<string name="downloads_cancel_download">Jooji soo dejinta</string>
 <string name="downloads_column_size">Cabbir</string>
 <string name="downloads_delete_all">Tirtir dhammaan</string>
 <string name="downloads_delete_confirm_body">Tani waxay xoreyn doontaa %s dibna looma celin karo.</string>
@@ -148,6 +151,7 @@
 <string name="downloads_empty_headline">Weli ma jiraan soo dejin</string>
 <string name="downloads_free">%s bannaan</string>
 <string name="downloads_free_up_space">Bannee meel</string>
+<string name="downloads_keep_downloading">Sii wad soo dejinta</string>
 <string name="downloads_load_failed_body">Faylasha aad soo dejisay lama beddelin.</string>
 <string name="downloads_load_failed_headline">Lama akhrin karo soo dejintaada</string>
 <string name="downloads_offline_pill">Khad la'aan · ma jiro isku xir</string>

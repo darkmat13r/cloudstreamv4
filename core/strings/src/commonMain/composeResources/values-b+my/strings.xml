@@ -138,6 +138,9 @@
 <string name="downloaded_file">ဖိုင်ဒေါင်းလုဒ်လုပ်ပြီး</string>
 <string name="downloading">ဒေါင်းလုဒ် လုပ်နေသည်</string>
 <string name="downloads_browse_library">လိုက်ဘရီကို ကြည့်ရှုရန်</string>
+<string name="downloads_cancel_confirm_body">ယခုထိ ဒေါင်းလုဒ်ဆွဲထားသော %s ကို ဖယ်ရှားပါမည်။</string>
+<string name="downloads_cancel_confirm_title">ဤဒေါင်းလုဒ်ကို ပယ်ဖျက်မလား။</string>
+<string name="downloads_cancel_download">ဒေါင်းလုဒ် ပယ်ဖျက်ရန်</string>
 <string name="downloads_column_size">အရွယ်အစား</string>
 <string name="downloads_delete_all">အားလုံးဖျက်ရန်</string>
 <string name="downloads_delete_confirm_body">၎င်းသည် %s ကို လွတ်စေပြီး ပြန်ပြင်၍မရပါ။</string>
@@ -145,6 +148,7 @@
 <string name="downloads_empty_headline">ဒေါင်းလုဒ် မရှိသေးပါ</string>
 <string name="downloads_free">%s လွတ်</string>
 <string name="downloads_free_up_space">နေရာလွတ်ယူရန်</string>
+<string name="downloads_keep_downloading">ဆက်လက် ဒေါင်းလုဒ်ဆွဲရန်</string>
 <string name="downloads_load_failed_body">ဒေါင်းလုဒ်လုပ်ထားသော ဖိုင်များကို မပြောင်းလဲထားပါ။</string>
 <string name="downloads_load_failed_headline">ဒေါင်းလုဒ်များကို ဖတ်၍မရပါ</string>
 <string name="downloads_offline_pill">အော့ဖ်လိုင်း · ချိတ်ဆက်မှုမရှိပါ</string>

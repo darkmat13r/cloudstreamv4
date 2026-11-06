@@ -15,6 +15,9 @@
 <string name="cast">ተዋሳእቲ</string>
 <string name="cast_format">ተዋሳእቲ፡ %s</string>
 <string name="downloads_browse_library">ቤተ-መጻሕፍቲ ድለ</string>
+<string name="downloads_cancel_confirm_body">እዚ ክሳብ ሕጂ ዝወረደ %s ይድርብዮ።</string>
+<string name="downloads_cancel_confirm_title">እዚ ውርዲ ይሰረዝ?</string>
+<string name="downloads_cancel_download">ውርዲ ሰርዝ</string>
 <string name="downloads_column_size">ዓቐን</string>
 <string name="downloads_delete_all">ኩሉ ሰርዝ</string>
 <string name="downloads_delete_confirm_body">እዚ %s ነጻ ይገብር፣ ክምለስ ኣይክእልን።</string>
@@ -22,6 +25,7 @@
 <string name="downloads_empty_headline">ክሳብ ሕጂ ውርዳት የለዉን</string>
 <string name="downloads_free">%s ነጻ</string>
 <string name="downloads_free_up_space">ቦታ ኣናጽፍ</string>
+<string name="downloads_keep_downloading">ምውራድ ቀጽል</string>
 <string name="downloads_load_failed_body">ዝወረዱ ፋይላትካ ኣይተቐየሩን።</string>
 <string name="downloads_load_failed_headline">ውርዳትካ ክንበብ ኣይከኣለን</string>
 <string name="downloads_offline_pill">ካብ መስመር ወጻኢ · መራኸቢ የለን</string>

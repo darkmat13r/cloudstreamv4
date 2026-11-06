@@ -205,6 +205,9 @@
 <string name="downloaded_file">"Завантажений файл"</string>
 <string name="downloading">"Завантаження"</string>
 <string name="downloads_browse_library">"Переглянути бібліотеку"</string>
+<string name="downloads_cancel_confirm_body" formatted="true">"Завантажені досі %s буде відкинуто."</string>
+<string name="downloads_cancel_confirm_title">"Скасувати це завантаження?"</string>
+<string name="downloads_cancel_download">"Скасувати завантаження"</string>
 <string name="downloads_column_size">"Розмір"</string>
 <string name="downloads_delete_all">"Видалити все"</string>
 <string name="downloads_delete_confirm_body" formatted="true">"Це звільнить %s, і цю дію не можна скасувати."</string>
@@ -214,6 +217,7 @@
 <string name="downloads_empty_headline">"Завантажень ще немає"</string>
 <string name="downloads_free" formatted="true">"вільно %s"</string>
 <string name="downloads_free_up_space">"Звільнити місце"</string>
+<string name="downloads_keep_downloading">"Продовжити завантаження"</string>
 <string name="downloads_load_failed_body">"Ваші завантажені файли не змінено."</string>
 <string name="downloads_load_failed_headline">"Не вдалося прочитати завантаження"</string>
 <string name="downloads_offline_pill">"Поза мережею · немає з'єднання"</string>

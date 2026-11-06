@@ -205,6 +205,9 @@
 <string name="downloaded_file">"File scaricato"</string>
 <string name="downloading">"Download in corso"</string>
 <string name="downloads_browse_library">"Sfoglia libreria"</string>
+<string name="downloads_cancel_confirm_body" formatted="true">"Verranno scartati i %s scaricati finora."</string>
+<string name="downloads_cancel_confirm_title">"Annullare questo download?"</string>
+<string name="downloads_cancel_download">"Annulla download"</string>
 <string name="downloads_column_size">"Dimensione"</string>
 <string name="downloads_delete_all">"Elimina tutto"</string>
 <string name="downloads_delete_confirm_body" formatted="true">"Così si liberano %s e non si può annullare."</string>
@@ -214,6 +217,7 @@
 <string name="downloads_empty_headline">"Ancora nessun download"</string>
 <string name="downloads_free" formatted="true">"%s liberi"</string>
 <string name="downloads_free_up_space">"Libera spazio"</string>
+<string name="downloads_keep_downloading">"Continua a scaricare"</string>
 <string name="downloads_load_failed_body">"I file scaricati non sono stati modificati."</string>
 <string name="downloads_load_failed_headline">"Impossibile leggere i download"</string>
 <string name="downloads_offline_pill">"Offline · nessuna connessione"</string>

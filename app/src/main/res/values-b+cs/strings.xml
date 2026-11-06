@@ -205,6 +205,9 @@
 <string name="downloaded_file">"Stažen soubor"</string>
 <string name="downloading">"Stahování"</string>
 <string name="downloads_browse_library">"Procházet knihovnu"</string>
+<string name="downloads_cancel_confirm_body" formatted="true">"Tím se zahodí dosud stažených %s."</string>
+<string name="downloads_cancel_confirm_title">"Zrušit toto stahování?"</string>
+<string name="downloads_cancel_download">"Zrušit stahování"</string>
 <string name="downloads_column_size">"Velikost"</string>
 <string name="downloads_delete_all">"Smazat vše"</string>
 <string name="downloads_delete_confirm_body" formatted="true">"Tím se uvolní %s a nelze to vrátit zpět."</string>
@@ -214,6 +217,7 @@
 <string name="downloads_empty_headline">"Zatím žádná stahování"</string>
 <string name="downloads_free" formatted="true">"%s volné"</string>
 <string name="downloads_free_up_space">"Uvolnit místo"</string>
+<string name="downloads_keep_downloading">"Pokračovat ve stahování"</string>
 <string name="downloads_load_failed_body">"Vaše stažené soubory nebyly změněny."</string>
 <string name="downloads_load_failed_headline">"Stahování se nepodařilo načíst"</string>
 <string name="downloads_offline_pill">"Offline · bez připojení"</string>

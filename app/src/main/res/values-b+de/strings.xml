@@ -205,6 +205,9 @@
 <string name="downloaded_file">"Heruntergeladene Datei"</string>
 <string name="downloading">"Lädt herunter"</string>
 <string name="downloads_browse_library">"Bibliothek durchsuchen"</string>
+<string name="downloads_cancel_confirm_body" formatted="true">"Die bisher geladenen %s werden verworfen."</string>
+<string name="downloads_cancel_confirm_title">"Diesen Download abbrechen?"</string>
+<string name="downloads_cancel_download">"Download abbrechen"</string>
 <string name="downloads_column_size">"Größe"</string>
 <string name="downloads_delete_all">"Alle löschen"</string>
 <string name="downloads_delete_confirm_body" formatted="true">"Dadurch werden %s frei. Das kann nicht rückgängig gemacht werden."</string>
@@ -214,6 +217,7 @@
 <string name="downloads_empty_headline">"Noch keine Downloads"</string>
 <string name="downloads_free" formatted="true">"%s frei"</string>
 <string name="downloads_free_up_space">"Speicher freigeben"</string>
+<string name="downloads_keep_downloading">"Weiter laden"</string>
 <string name="downloads_load_failed_body">"Deine heruntergeladenen Dateien wurden nicht verändert."</string>
 <string name="downloads_load_failed_headline">"Downloads konnten nicht gelesen werden"</string>
 <string name="downloads_offline_pill">"Offline · keine Verbindung"</string>

@@ -161,6 +161,9 @@
 <string name="downloaded_file">"Fail dimuat turun"</string>
 <string name="downloading">"Memuat turun"</string>
 <string name="downloads_browse_library">"Layari perpustakaan"</string>
+<string name="downloads_cancel_confirm_body" formatted="true">"Ini akan membuang %s yang telah dimuat turun."</string>
+<string name="downloads_cancel_confirm_title">"Batalkan muat turun ini?"</string>
+<string name="downloads_cancel_download">"Batalkan muat turun"</string>
 <string name="downloads_column_size">"Saiz"</string>
 <string name="downloads_delete_all">"Padam semua"</string>
 <string name="downloads_delete_confirm_body" formatted="true">"Ini mengosongkan %s dan tidak boleh dibuat asal."</string>
@@ -170,6 +173,7 @@
 <string name="downloads_empty_headline">"Belum ada muat turun"</string>
 <string name="downloads_free" formatted="true">"%s kosong"</string>
 <string name="downloads_free_up_space">"Kosongkan ruang"</string>
+<string name="downloads_keep_downloading">"Teruskan muat turun"</string>
 <string name="downloads_load_failed_body">"Fail muat turun anda tidak diubah."</string>
 <string name="downloads_load_failed_headline">"Tidak dapat membaca muat turun anda"</string>
 <string name="downloads_offline_pill">"Luar talian · tiada sambungan"</string>

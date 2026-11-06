@@ -205,6 +205,9 @@
 <string name="downloaded_file">"Nedladdad fil"</string>
 <string name="downloading">"Laddar ner"</string>
 <string name="downloads_browse_library">"Bläddra i biblioteket"</string>
+<string name="downloads_cancel_confirm_body" formatted="true">"Det slänger de %s som har laddats ned hittills."</string>
+<string name="downloads_cancel_confirm_title">"Avbryta den här nedladdningen?"</string>
+<string name="downloads_cancel_download">"Avbryt nedladdning"</string>
 <string name="downloads_column_size">"Storlek"</string>
 <string name="downloads_delete_all">"Ta bort alla"</string>
 <string name="downloads_delete_confirm_body" formatted="true">"Det frigör %s och kan inte ångras."</string>
@@ -214,6 +217,7 @@
 <string name="downloads_empty_headline">"Inga nerladdningar ännu"</string>
 <string name="downloads_free" formatted="true">"%s ledigt"</string>
 <string name="downloads_free_up_space">"Frigör utrymme"</string>
+<string name="downloads_keep_downloading">"Fortsätt ladda ned"</string>
 <string name="downloads_load_failed_body">"Dina nerladdade filer har inte ändrats."</string>
 <string name="downloads_load_failed_headline">"Kunde inte läsa dina nerladdningar"</string>
 <string name="downloads_offline_pill">"Offline · ingen anslutning"</string>

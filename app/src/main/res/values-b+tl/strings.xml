@@ -82,6 +82,9 @@
 <string name="downloaded">"Downloaded"</string>
 <string name="downloading">"Downloading"</string>
 <string name="downloads_browse_library">"I-browse ang library"</string>
+<string name="downloads_cancel_confirm_body" formatted="true">"Itatapon nito ang %s na na-download na."</string>
+<string name="downloads_cancel_confirm_title">"Kanselahin ang download na ito?"</string>
+<string name="downloads_cancel_download">"Kanselahin ang download"</string>
 <string name="downloads_column_size">"Laki"</string>
 <string name="downloads_delete_all">"Tanggalin lahat"</string>
 <string name="downloads_delete_confirm_body" formatted="true">"Magpapalaya ito ng %s at hindi na ito maaaring bawiin."</string>
@@ -89,6 +92,7 @@
 <string name="downloads_empty_headline">"Wala pang mga download"</string>
 <string name="downloads_free" formatted="true">"%s libre"</string>
 <string name="downloads_free_up_space">"Magbakante ng espasyo"</string>
+<string name="downloads_keep_downloading">"Ituloy ang pag-download"</string>
 <string name="downloads_load_failed_body">"Hindi nabago ang mga na-download mong file."</string>
 <string name="downloads_load_failed_headline">"Hindi mabasa ang iyong mga download"</string>
 <string name="downloads_offline_pill">"Offline · walang koneksyon"</string>

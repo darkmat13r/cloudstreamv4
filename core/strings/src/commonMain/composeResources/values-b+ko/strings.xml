@@ -204,6 +204,9 @@
 <string name="downloaded_file">다운로드한 파일</string>
 <string name="downloading">다운로드중</string>
 <string name="downloads_browse_library">라이브러리 둘러보기</string>
+<string name="downloads_cancel_confirm_body">지금까지 다운로드한 %s이(가) 삭제됩니다.</string>
+<string name="downloads_cancel_confirm_title">이 다운로드를 취소할까요?</string>
+<string name="downloads_cancel_download">다운로드 취소</string>
 <string name="downloads_column_size">크기</string>
 <string name="downloads_delete_all">모두 삭제</string>
 <string name="downloads_delete_confirm_body">%s의 공간이 확보되며 되돌릴 수 없습니다.</string>
@@ -213,6 +216,7 @@
 <string name="downloads_empty_headline">아직 다운로드가 없습니다</string>
 <string name="downloads_free">%s 남음</string>
 <string name="downloads_free_up_space">공간 확보</string>
+<string name="downloads_keep_downloading">계속 다운로드</string>
 <string name="downloads_load_failed_body">다운로드한 파일은 변경되지 않았습니다.</string>
 <string name="downloads_load_failed_headline">다운로드를 읽을 수 없습니다</string>
 <string name="downloads_offline_pill">오프라인 · 연결 없음</string>

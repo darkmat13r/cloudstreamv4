@@ -75,6 +75,9 @@
 <string name="downloaded_file">Fitxer descarregat</string>
 <string name="downloading">Descarregant</string>
 <string name="downloads_browse_library">Explora la biblioteca</string>
+<string name="downloads_cancel_confirm_body">Això descarta els %s baixats fins ara.</string>
+<string name="downloads_cancel_confirm_title">Voleu cancel·lar aquesta baixada?</string>
+<string name="downloads_cancel_download">Cancel·la la baixada</string>
 <string name="downloads_column_size">Mida</string>
 <string name="downloads_delete_all">Esborra-ho tot</string>
 <string name="downloads_delete_confirm_body">Això allibera %s i no es pot desfer.</string>
@@ -84,6 +87,7 @@
 <string name="downloads_empty_headline">Encara no hi ha descàrregues</string>
 <string name="downloads_free">%s lliures</string>
 <string name="downloads_free_up_space">Allibera espai</string>
+<string name="downloads_keep_downloading">Continua baixant</string>
 <string name="downloads_load_failed_body">Els fitxers descarregats no s'han modificat.</string>
 <string name="downloads_load_failed_headline">No s'han pogut llegir les descàrregues</string>
 <string name="downloads_offline_pill">Fora de línia · sense connexió</string>

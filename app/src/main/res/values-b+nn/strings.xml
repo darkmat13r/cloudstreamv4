@@ -56,6 +56,9 @@
 <string name="downloaded">"Lasta ned"</string>
 <string name="downloading">"Nedlasting pågår"</string>
 <string name="downloads_browse_library">"Bla i biblioteket"</string>
+<string name="downloads_cancel_confirm_body" formatted="true">"Dette forkastar dei %s som er lasta ned så langt."</string>
+<string name="downloads_cancel_confirm_title">"Avbryte denne nedlastinga?"</string>
+<string name="downloads_cancel_download">"Avbryt nedlasting"</string>
 <string name="downloads_column_size">"Storleik"</string>
 <string name="downloads_delete_all">"Slett alle"</string>
 <string name="downloads_delete_confirm_body" formatted="true">"Dette frigjer %s og kan ikkje angrast."</string>
@@ -63,6 +66,7 @@
 <string name="downloads_empty_headline">"Ingen nedlastingar enno"</string>
 <string name="downloads_free" formatted="true">"%s ledig"</string>
 <string name="downloads_free_up_space">"Frigjer plass"</string>
+<string name="downloads_keep_downloading">"Hald fram med nedlastinga"</string>
 <string name="downloads_load_failed_body">"Dei nedlasta filene dine er ikkje endra."</string>
 <string name="downloads_load_failed_headline">"Kunne ikkje lese nedlastingane dine"</string>
 <string name="downloads_offline_pill">"Fråkopla · inga tilkopling"</string>

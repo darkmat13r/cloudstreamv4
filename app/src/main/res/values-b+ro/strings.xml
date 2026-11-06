@@ -175,6 +175,9 @@
 <string name="downloaded_file">"Fișier descărcat"</string>
 <string name="downloading">"Se descarcă"</string>
 <string name="downloads_browse_library">"Răsfoiește biblioteca"</string>
+<string name="downloads_cancel_confirm_body" formatted="true">"Se vor elimina cei %s descărcați până acum."</string>
+<string name="downloads_cancel_confirm_title">"Anulezi această descărcare?"</string>
+<string name="downloads_cancel_download">"Anulează descărcarea"</string>
 <string name="downloads_column_size">"Dimensiune"</string>
 <string name="downloads_delete_all">"Șterge tot"</string>
 <string name="downloads_delete_confirm_body" formatted="true">"Astfel se eliberează %s și nu se poate anula."</string>
@@ -184,6 +187,7 @@
 <string name="downloads_empty_headline">"Încă nu există descărcări"</string>
 <string name="downloads_free" formatted="true">"%s liberi"</string>
 <string name="downloads_free_up_space">"Eliberează spațiu"</string>
+<string name="downloads_keep_downloading">"Continuă descărcarea"</string>
 <string name="downloads_load_failed_body">"Fișierele descărcate nu au fost modificate."</string>
 <string name="downloads_load_failed_headline">"Descărcările nu au putut fi citite"</string>
 <string name="downloads_offline_pill">"Offline · fără conexiune"</string>

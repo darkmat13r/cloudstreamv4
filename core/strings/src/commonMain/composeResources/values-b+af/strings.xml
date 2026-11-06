@@ -38,6 +38,9 @@
 <string name="downloaded">Afgelaai</string>
 <string name="downloading">Laai tans af</string>
 <string name="downloads_browse_library">Blaai deur biblioteek</string>
+<string name="downloads_cancel_confirm_body">Dit gooi die %s wat reeds afgelaai is weg.</string>
+<string name="downloads_cancel_confirm_title">Kanselleer hierdie aflaai?</string>
+<string name="downloads_cancel_download">Kanselleer aflaai</string>
 <string name="downloads_column_size">Grootte</string>
 <string name="downloads_delete_all">Wis alles uit</string>
 <string name="downloads_delete_confirm_body">Dit maak %s vry en kan nie ontdoen word nie.</string>
@@ -46,6 +49,7 @@
 <string name="downloads_empty_headline">Nog geen aflaaie nie</string>
 <string name="downloads_free">%s vry</string>
 <string name="downloads_free_up_space">Maak spasie vry</string>
+<string name="downloads_keep_downloading">Hou aan aflaai</string>
 <string name="downloads_load_failed_body">Jou afgelaaide lêers is nie verander nie.</string>
 <string name="downloads_load_failed_headline">Kon nie jou aflaaie lees nie</string>
 <string name="downloads_offline_pill">Vanlyn · geen verbinding nie</string>

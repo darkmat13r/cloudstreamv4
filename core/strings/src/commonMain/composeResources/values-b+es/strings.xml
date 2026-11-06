@@ -205,6 +205,9 @@
 <string name="downloaded_file">Archivo descargado</string>
 <string name="downloading">Descargando</string>
 <string name="downloads_browse_library">Explorar biblioteca</string>
+<string name="downloads_cancel_confirm_body">Se descartarán los %s descargados hasta ahora.</string>
+<string name="downloads_cancel_confirm_title">¿Cancelar esta descarga?</string>
+<string name="downloads_cancel_download">Cancelar descarga</string>
 <string name="downloads_column_size">Tamaño</string>
 <string name="downloads_delete_all">Borrar todo</string>
 <string name="downloads_delete_confirm_body">Esto libera %s y no se puede deshacer.</string>
@@ -214,6 +217,7 @@
 <string name="downloads_empty_headline">Aún no hay descargas</string>
 <string name="downloads_free">%s libres</string>
 <string name="downloads_free_up_space">Liberar espacio</string>
+<string name="downloads_keep_downloading">Seguir descargando</string>
 <string name="downloads_load_failed_body">Tus archivos descargados no se han modificado.</string>
 <string name="downloads_load_failed_headline">No se pudieron leer tus descargas</string>
 <string name="downloads_offline_pill">Sin conexión · sin red</string>

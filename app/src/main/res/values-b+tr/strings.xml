@@ -205,6 +205,9 @@
 <string name="downloaded_file">"İndirilen dosya"</string>
 <string name="downloading">"İndiriliyor"</string>
 <string name="downloads_browse_library">"Kütüphaneye göz at"</string>
+<string name="downloads_cancel_confirm_body" formatted="true">"Şimdiye kadar indirilen %s silinir."</string>
+<string name="downloads_cancel_confirm_title">"Bu indirme iptal edilsin mi?"</string>
+<string name="downloads_cancel_download">"İndirmeyi iptal et"</string>
 <string name="downloads_column_size">"Boyut"</string>
 <string name="downloads_delete_all">"Tümünü sil"</string>
 <string name="downloads_delete_confirm_body" formatted="true">"Bu işlem %s yer açar ve geri alınamaz."</string>
@@ -214,6 +217,7 @@
 <string name="downloads_empty_headline">"Henüz indirme yok"</string>
 <string name="downloads_free" formatted="true">"%s boş"</string>
 <string name="downloads_free_up_space">"Yer aç"</string>
+<string name="downloads_keep_downloading">"İndirmeye devam et"</string>
 <string name="downloads_load_failed_body">"İndirilen dosyalarınız değiştirilmedi."</string>
 <string name="downloads_load_failed_headline">"İndirmeleriniz okunamadı"</string>
 <string name="downloads_offline_pill">"Çevrimdışı · bağlantı yok"</string>

@@ -174,6 +174,9 @@
 <string name="downloaded_file">Letöltött fájl</string>
 <string name="downloading">Letöltés</string>
 <string name="downloads_browse_library">Könyvtár böngészése</string>
+<string name="downloads_cancel_confirm_body">Ezzel elveted az eddig letöltött %s adatot.</string>
+<string name="downloads_cancel_confirm_title">Megszakítod ezt a letöltést?</string>
+<string name="downloads_cancel_download">Letöltés megszakítása</string>
 <string name="downloads_column_size">Méret</string>
 <string name="downloads_delete_all">Összes törlése</string>
 <string name="downloads_delete_confirm_body">Ezzel %s szabadul fel, és nem vonható vissza.</string>
@@ -183,6 +186,7 @@
 <string name="downloads_empty_headline">Még nincs letöltés</string>
 <string name="downloads_free">%s szabad</string>
 <string name="downloads_free_up_space">Hely felszabadítása</string>
+<string name="downloads_keep_downloading">Letöltés folytatása</string>
 <string name="downloads_load_failed_body">A letöltött fájlok nem változtak.</string>
 <string name="downloads_load_failed_headline">Nem sikerült beolvasni a letöltéseket</string>
 <string name="downloads_offline_pill">Offline · nincs kapcsolat</string>

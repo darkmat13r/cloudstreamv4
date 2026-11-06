@@ -124,6 +124,9 @@
 <string name="downloaded">डाउनलोड किया गया</string>
 <string name="downloading">डाउनलोड हो रहा</string>
 <string name="downloads_browse_library">लाइब्रेरी ब्राउज़ करें</string>
+<string name="downloads_cancel_confirm_body">इससे अब तक डाउनलोड हुए %s हटा दिए जाएँगे।</string>
+<string name="downloads_cancel_confirm_title">यह डाउनलोड रद्द करें?</string>
+<string name="downloads_cancel_download">डाउनलोड रद्द करें</string>
 <string name="downloads_column_size">आकार</string>
 <string name="downloads_delete_all">सभी डिलीट करें</string>
 <string name="downloads_delete_confirm_body">इससे %s खाली होगा और इसे पूर्ववत नहीं किया जा सकता।</string>
@@ -133,6 +136,7 @@
 <string name="downloads_empty_headline">अभी तक कोई डाउनलोड नहीं</string>
 <string name="downloads_free">%s खाली</string>
 <string name="downloads_free_up_space">जगह ख़ाली करें</string>
+<string name="downloads_keep_downloading">डाउनलोड जारी रखें</string>
 <string name="downloads_load_failed_body">आपकी डाउनलोड की गई फ़ाइलें नहीं बदली गई हैं।</string>
 <string name="downloads_load_failed_headline">आपके डाउनलोड पढ़े नहीं जा सके</string>
 <string name="downloads_offline_pill">ऑफ़लाइन · कोई कनेक्शन नहीं</string>

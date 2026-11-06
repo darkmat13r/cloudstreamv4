@@ -46,6 +46,9 @@
 <string name="downloaded">"Elŝutite"</string>
 <string name="downloading">"Elŝutante"</string>
 <string name="downloads_browse_library">"Foliumi bibliotekon"</string>
+<string name="downloads_cancel_confirm_body" formatted="true">"Tio forĵetas la ĝis nun elŝutitajn %s."</string>
+<string name="downloads_cancel_confirm_title">"Ĉu nuligi ĉi tiun elŝuton?"</string>
+<string name="downloads_cancel_download">"Nuligi elŝuton"</string>
 <string name="downloads_column_size">"Grandeco"</string>
 <string name="downloads_delete_all">"Forigi ĉiujn"</string>
 <string name="downloads_delete_confirm_body" formatted="true">"Tio liberigas %s kaj ne povas esti malfarita."</string>
@@ -54,6 +57,7 @@
 <string name="downloads_empty_headline">"Ankoraŭ neniu elŝuto"</string>
 <string name="downloads_free" formatted="true">"%s libera"</string>
 <string name="downloads_free_up_space">"Liberigi spacon"</string>
+<string name="downloads_keep_downloading">"Daŭrigi elŝuton"</string>
 <string name="downloads_load_failed_body">"Viaj elŝutitaj dosieroj ne ŝanĝiĝis."</string>
 <string name="downloads_load_failed_headline">"Ne eblis legi viajn elŝutojn"</string>
 <string name="downloads_offline_pill">"Eksterrete · neniu konekto"</string>

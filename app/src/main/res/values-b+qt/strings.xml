@@ -177,6 +177,9 @@
 <string name="downloaded_file">"aaaagggaah aagg"</string>
 <string name="downloading">"oohahaaoouuh"</string>
 <string name="downloads_browse_library">"ooh uuuuuuuh"</string>
+<string name="downloads_cancel_confirm_body" formatted="true">"ooo-ahahaaaaa %s oooohh"</string>
+<string name="downloads_cancel_confirm_title">"oooohh ouuhhuhooh?"</string>
+<string name="downloads_cancel_download">"oooohh ouuhhuhooh"</string>
 <string name="downloads_column_size">"oogg"</string>
 <string name="downloads_delete_all">"oooooah aag"</string>
 <string name="downloads_delete_confirm_body" formatted="true">"ooo-ahahaaaaa %s oooohh"</string>
@@ -186,6 +189,7 @@
 <string name="downloads_empty_headline">"uuuhh aauuhah"</string>
 <string name="downloads_free" formatted="true">"%s ooh"</string>
 <string name="downloads_free_up_space">"ooo-ahahaaaaa oh"</string>
+<string name="downloads_keep_downloading">"ouuhhuhooh ooh"</string>
 <string name="downloads_load_failed_body">"ouuhhuhooh ooh uuh ahooo."</string>
 <string name="downloads_load_failed_headline">"ahooo uuhh ouuhhuhooh ooh"</string>
 <string name="downloads_offline_pill">"aaaagggoh ooh · uuuhh"</string>

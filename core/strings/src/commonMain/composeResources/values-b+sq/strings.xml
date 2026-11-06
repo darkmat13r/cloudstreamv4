@@ -205,6 +205,9 @@
 <string name="downloaded_file">Skedar i shkarkuar</string>
 <string name="downloading">Duke u shkarkuar</string>
 <string name="downloads_browse_library">Shfleto bibliotekën</string>
+<string name="downloads_cancel_confirm_body">Kjo hedh poshtë %s e shkarkuara deri tani.</string>
+<string name="downloads_cancel_confirm_title">Të anulohet ky shkarkim?</string>
+<string name="downloads_cancel_download">Anulo shkarkimin</string>
 <string name="downloads_column_size">Madhësia</string>
 <string name="downloads_delete_all">Fshiji të gjitha</string>
 <string name="downloads_delete_confirm_body">Kjo liron %s dhe nuk mund të zhbëhet.</string>
@@ -214,6 +217,7 @@
 <string name="downloads_empty_headline">Ende nuk ka shkarkime</string>
 <string name="downloads_free">%s të lira</string>
 <string name="downloads_free_up_space">Liro hapësirë</string>
+<string name="downloads_keep_downloading">Vazhdo shkarkimin</string>
 <string name="downloads_load_failed_body">Skedarët e shkarkuar nuk janë ndryshuar.</string>
 <string name="downloads_load_failed_headline">Shkarkimet nuk mund të lexoheshin</string>
 <string name="downloads_offline_pill">Offline · pa lidhje</string>

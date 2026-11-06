@@ -204,6 +204,9 @@
 <string name="downloaded_file">الملف الذي تم تنزيله</string>
 <string name="downloading">جاري التنزيل</string>
 <string name="downloads_browse_library">تصفّح المكتبة</string>
+<string name="downloads_cancel_confirm_body">سيؤدي هذا إلى تجاهل %s تم تنزيلها حتى الآن.</string>
+<string name="downloads_cancel_confirm_title">هل تريد إلغاء هذا التنزيل؟</string>
+<string name="downloads_cancel_download">إلغاء التنزيل</string>
 <string name="downloads_column_size">الحجم</string>
 <string name="downloads_delete_all">حذف الكل</string>
 <string name="downloads_delete_confirm_body">سيؤدي هذا إلى تحرير %s ولا يمكن التراجع عنه.</string>
@@ -213,6 +216,7 @@
 <string name="downloads_empty_headline">لا توجد تنزيلات بعد</string>
 <string name="downloads_free">%s متاحة</string>
 <string name="downloads_free_up_space">إخلاء مساحة</string>
+<string name="downloads_keep_downloading">متابعة التنزيل</string>
 <string name="downloads_load_failed_body">لم تتغيّر ملفاتك التي تم تنزيلها.</string>
 <string name="downloads_load_failed_headline">تعذّرت قراءة تنزيلاتك</string>
 <string name="downloads_offline_pill">غير متصل · لا يوجد اتصال</string>

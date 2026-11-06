@@ -44,6 +44,9 @@
 <string name="download_storage_text">"ଅନ୍ତଃ-ଷ୍ଟୋରେଜ୍"</string>
 <string name="download_time_left_hour_min_sec_format" formatted="true">"%1$dଘଣ୍ଟା %2$dମିନିଟ୍ %3$dସେକେଣ୍ଡ"</string>
 <string name="downloads_browse_library">"ଲାଇବ୍ରେରୀ ବ୍ରାଉଜ୍ କର"</string>
+<string name="downloads_cancel_confirm_body" formatted="true">"ଏହା ଏପର୍ଯ୍ୟନ୍ତ ଡାଉନଲୋଡ୍ ହୋଇଥିବା %s କୁ ହଟାଇଦେବ।"</string>
+<string name="downloads_cancel_confirm_title">"ଏହି ଡାଉନଲୋଡ୍ ବାତିଲ କରିବେ?"</string>
+<string name="downloads_cancel_download">"ଡାଉନଲୋଡ୍ ବାତିଲ କରନ୍ତୁ"</string>
 <string name="downloads_column_size">"ଆକାର"</string>
 <string name="downloads_delete_all">"ସବୁ ଵିଲୋପ କର"</string>
 <string name="downloads_delete_confirm_body" formatted="true">"ଏହା %s ଖାଲି କରିବ ଏବଂ ଏହାକୁ ପୂର୍ବାବସ୍ଥାକୁ ଫେରାଇ ହେବ ନାହିଁ।"</string>
@@ -51,6 +54,7 @@
 <string name="downloads_empty_headline">"ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ଡାଉନଲୋଡ୍ ନାହିଁ"</string>
 <string name="downloads_free" formatted="true">"%s ଖାଲି"</string>
 <string name="downloads_free_up_space">"ସ୍ଥାନ ଖାଲି କର"</string>
+<string name="downloads_keep_downloading">"ଡାଉନଲୋଡ୍ ଜାରି ରଖନ୍ତୁ"</string>
 <string name="downloads_load_failed_body">"ଆପଣଙ୍କ ଡାଉନଲୋଡ୍ ହୋଇଥିବା ଫାଇଲଗୁଡ଼ିକ ବଦଳାଯାଇନାହିଁ।"</string>
 <string name="downloads_load_failed_headline">"ଆପଣଙ୍କ ଡାଉନଲୋଡ୍ ପଢ଼ିହେଲା ନାହିଁ"</string>
 <string name="downloads_offline_pill">"ଅଫଲାଇନ୍ · ସଂଯୋଗ ନାହିଁ"</string>

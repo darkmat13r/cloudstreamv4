@@ -41,6 +41,9 @@
 <string name="downloaded">"ಡೌನ್‌ಲೋಡ್ ಮಾಡಲಾಗಿದೆ"</string>
 <string name="downloading">"ಡೌನ್‌ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ"</string>
 <string name="downloads_browse_library">"ಲೈಬ್ರರಿ ಬ್ರೌಸ್ ಮಾಡಿ"</string>
+<string name="downloads_cancel_confirm_body" formatted="true">"ಇದು ಇಲ್ಲಿಯವರೆಗೆ ಡೌನ್‌ಲೋಡ್ ಆದ %s ಅನ್ನು ತ್ಯಜಿಸುತ್ತದೆ."</string>
+<string name="downloads_cancel_confirm_title">"ಈ ಡೌನ್‌ಲೋಡ್ ರದ್ದುಗೊಳಿಸುವುದೇ?"</string>
+<string name="downloads_cancel_download">"ಡೌನ್‌ಲೋಡ್ ರದ್ದುಮಾಡಿ"</string>
 <string name="downloads_column_size">"ಗಾತ್ರ"</string>
 <string name="downloads_delete_all">"ಎಲ್ಲವನ್ನೂ ಅಳಿಸಿ"</string>
 <string name="downloads_delete_confirm_body" formatted="true">"ಇದು %s ಮುಕ್ತಗೊಳಿಸುತ್ತದೆ ಮತ್ತು ರದ್ದುಗೊಳಿಸಲಾಗುವುದಿಲ್ಲ."</string>
@@ -48,6 +51,7 @@
 <string name="downloads_empty_headline">"ಇನ್ನೂ ಡೌನ್‌ಲೋಡ್‌ಗಳಿಲ್ಲ"</string>
 <string name="downloads_free" formatted="true">"%s ಖಾಲಿ"</string>
 <string name="downloads_free_up_space">"ಸ್ಥಳವನ್ನು ಖಾಲಿ ಮಾಡಿ"</string>
+<string name="downloads_keep_downloading">"ಡೌನ್‌ಲೋಡ್ ಮುಂದುವರಿಸಿ"</string>
 <string name="downloads_load_failed_body">"ನಿಮ್ಮ ಡೌನ್‌ಲೋಡ್ ಮಾಡಿದ ಫೈಲ್‌ಗಳನ್ನು ಬದಲಾಯಿಸಲಾಗಿಲ್ಲ."</string>
 <string name="downloads_load_failed_headline">"ನಿಮ್ಮ ಡೌನ್‌ಲೋಡ್‌ಗಳನ್ನು ಓದಲಾಗಲಿಲ್ಲ"</string>
 <string name="downloads_offline_pill">"ಆಫ್‌ಲೈನ್ · ಸಂಪರ್ಕವಿಲ್ಲ"</string>

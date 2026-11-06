@@ -205,6 +205,9 @@
 <string name="downloaded_file">"Fichier téléchargé"</string>
 <string name="downloading">"Téléchargement"</string>
 <string name="downloads_browse_library">"Parcourir la bibliothèque"</string>
+<string name="downloads_cancel_confirm_body" formatted="true">"Les %s déjà téléchargés seront supprimés."</string>
+<string name="downloads_cancel_confirm_title">"Annuler ce téléchargement ?"</string>
+<string name="downloads_cancel_download">"Annuler le téléchargement"</string>
 <string name="downloads_column_size">"Taille"</string>
 <string name="downloads_delete_all">"Tout supprimer"</string>
 <string name="downloads_delete_confirm_body" formatted="true">"Cela libère %s et ne peut pas être annulé."</string>
@@ -214,6 +217,7 @@
 <string name="downloads_empty_headline">"Aucun téléchargement pour l'instant"</string>
 <string name="downloads_free" formatted="true">"%s libres"</string>
 <string name="downloads_free_up_space">"Libérer de l'espace"</string>
+<string name="downloads_keep_downloading">"Continuer le téléchargement"</string>
 <string name="downloads_load_failed_body">"Vos fichiers téléchargés n'ont pas été modifiés."</string>
 <string name="downloads_load_failed_headline">"Impossible de lire vos téléchargements"</string>
 <string name="downloads_offline_pill">"Hors-ligne · pas de connexion"</string>

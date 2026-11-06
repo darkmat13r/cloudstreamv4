@@ -204,6 +204,9 @@
 <string name="downloaded_file">"Спампаваны файл"</string>
 <string name="downloading">"Ідзе спампоўванне"</string>
 <string name="downloads_browse_library">"Агляд бібліятэкі"</string>
+<string name="downloads_cancel_confirm_body" formatted="true">"Спампаванае дагэтуль (%s) будзе адкінута."</string>
+<string name="downloads_cancel_confirm_title">"Скасаваць гэтую спампоўку?"</string>
+<string name="downloads_cancel_download">"Скасаваць спампоўку"</string>
 <string name="downloads_column_size">"Памер"</string>
 <string name="downloads_delete_all">"Выдаліць усе"</string>
 <string name="downloads_delete_confirm_body" formatted="true">"Гэта вызваліць %s, і гэта нельга адрабіць."</string>
@@ -213,6 +216,7 @@
 <string name="downloads_empty_headline">"Спамповак пакуль няма"</string>
 <string name="downloads_free" formatted="true">"%s вольна"</string>
 <string name="downloads_free_up_space">"Вызваліць месца"</string>
+<string name="downloads_keep_downloading">"Працягваць спампоўку"</string>
 <string name="downloads_load_failed_body">"Вашы спампаваныя файлы не зменены."</string>
 <string name="downloads_load_failed_headline">"Не ўдалося прачытаць спампоўкі"</string>
 <string name="downloads_offline_pill">"Па-за сеткай · няма злучэння"</string>

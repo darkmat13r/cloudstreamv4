@@ -159,6 +159,9 @@
 <string name="downloaded_file">Lejupielādēta datne</string>
 <string name="downloading">Lādējas</string>
 <string name="downloads_browse_library">Pārlūkot bibliotēku</string>
+<string name="downloads_cancel_confirm_body">Līdz šim lejupielādētie %s tiks atmesti.</string>
+<string name="downloads_cancel_confirm_title">Atcelt šo lejupielādi?</string>
+<string name="downloads_cancel_download">Atcelt lejupielādi</string>
 <string name="downloads_column_size">Izmērs</string>
 <string name="downloads_delete_all">Dzēst visu</string>
 <string name="downloads_delete_confirm_body">Tas atbrīvos %s, un to nevarēs atsaukt.</string>
@@ -168,6 +171,7 @@
 <string name="downloads_empty_headline">Vēl nav lejupielāžu</string>
 <string name="downloads_free">%s brīvi</string>
 <string name="downloads_free_up_space">Atbrīvot vietu</string>
+<string name="downloads_keep_downloading">Turpināt lejupielādi</string>
 <string name="downloads_load_failed_body">Jūsu lejupielādētie faili nav mainīti.</string>
 <string name="downloads_load_failed_headline">Neizdevās nolasīt lejupielādes</string>
 <string name="downloads_offline_pill">Bezsaistē · nav savienojuma</string>

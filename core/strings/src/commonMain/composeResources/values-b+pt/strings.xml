@@ -204,6 +204,9 @@
 <string name="downloaded_file">Arquivo baixado</string>
 <string name="downloading">Baixando</string>
 <string name="downloads_browse_library">Explorar biblioteca</string>
+<string name="downloads_cancel_confirm_body">Isto descarta os %s transferidos até agora.</string>
+<string name="downloads_cancel_confirm_title">Cancelar esta transferência?</string>
+<string name="downloads_cancel_download">Cancelar transferência</string>
 <string name="downloads_column_size">Tamanho</string>
 <string name="downloads_delete_all">Eliminar tudo</string>
 <string name="downloads_delete_confirm_body">Isto liberta %s e não pode ser anulado.</string>
@@ -213,6 +216,7 @@
 <string name="downloads_empty_headline">Ainda não existem downloads</string>
 <string name="downloads_free">%s livres</string>
 <string name="downloads_free_up_space">Libertar espaço</string>
+<string name="downloads_keep_downloading">Continuar a transferir</string>
 <string name="downloads_load_failed_body">Os seus ficheiros transferidos não foram alterados.</string>
 <string name="downloads_load_failed_headline">Não foi possível ler os seus downloads</string>
 <string name="downloads_offline_pill">Offline · sem ligação</string>

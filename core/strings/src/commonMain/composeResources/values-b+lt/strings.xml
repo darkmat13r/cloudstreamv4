@@ -74,6 +74,9 @@
 <string name="downloaded">Atsisiųsta</string>
 <string name="downloading">Siunčiama</string>
 <string name="downloads_browse_library">Naršyti biblioteką</string>
+<string name="downloads_cancel_confirm_body">Bus atmesta iki šiol atsisiųsta %s.</string>
+<string name="downloads_cancel_confirm_title">Atšaukti šį atsisiuntimą?</string>
+<string name="downloads_cancel_download">Atšaukti atsisiuntimą</string>
 <string name="downloads_column_size">Dydis</string>
 <string name="downloads_delete_all">Ištrinti visus</string>
 <string name="downloads_delete_confirm_body">Tai atlaisvins %s ir to nebus galima atšaukti.</string>
@@ -83,6 +86,7 @@
 <string name="downloads_empty_headline">Atsisiuntimų dar nėra</string>
 <string name="downloads_free">%s laisva</string>
 <string name="downloads_free_up_space">Atlaisvinti vietos</string>
+<string name="downloads_keep_downloading">Tęsti atsisiuntimą</string>
 <string name="downloads_load_failed_body">Jūsų atsisiųsti failai nebuvo pakeisti.</string>
 <string name="downloads_load_failed_headline">Nepavyko nuskaityti atsisiuntimų</string>
 <string name="downloads_offline_pill">Neprisijungus · nėra ryšio</string>

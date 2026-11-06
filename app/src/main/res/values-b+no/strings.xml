@@ -135,6 +135,9 @@
 <string name="downloaded_file">"Nedlastet fil"</string>
 <string name="downloading">"Nedlasting pågår"</string>
 <string name="downloads_browse_library">"Bla i biblioteket"</string>
+<string name="downloads_cancel_confirm_body" formatted="true">"Dette forkaster de %s som er lastet ned så langt."</string>
+<string name="downloads_cancel_confirm_title">"Avbryte denne nedlastingen?"</string>
+<string name="downloads_cancel_download">"Avbryt nedlasting"</string>
 <string name="downloads_column_size">"Størrelse"</string>
 <string name="downloads_delete_all">"Slett alle"</string>
 <string name="downloads_delete_confirm_body" formatted="true">"Dette frigjør %s og kan ikke angres."</string>
@@ -142,6 +145,7 @@
 <string name="downloads_empty_headline">"Ingen nedlastinger ennå"</string>
 <string name="downloads_free" formatted="true">"%s ledig"</string>
 <string name="downloads_free_up_space">"Frigjør plass"</string>
+<string name="downloads_keep_downloading">"Fortsett nedlastingen"</string>
 <string name="downloads_load_failed_body">"De nedlastede filene dine er ikke endret."</string>
 <string name="downloads_load_failed_headline">"Kunne ikke lese nedlastingene dine"</string>
 <string name="downloads_offline_pill">"Frakoblet · ingen tilkobling"</string>

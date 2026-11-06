@@ -205,6 +205,9 @@
 <string name="downloaded_file">下载的文件</string>
 <string name="downloading">下载中</string>
 <string name="downloads_browse_library">浏览库</string>
+<string name="downloads_cancel_confirm_body">将丢弃目前已下载的 %s。</string>
+<string name="downloads_cancel_confirm_title">要取消此下载吗？</string>
+<string name="downloads_cancel_download">取消下载</string>
 <string name="downloads_column_size">大小</string>
 <string name="downloads_delete_all">全部删除</string>
 <string name="downloads_delete_confirm_body">这将释放 %s，且无法撤销。</string>
@@ -214,6 +217,7 @@
 <string name="downloads_empty_headline">尚无下载</string>
 <string name="downloads_free">可用 %s</string>
 <string name="downloads_free_up_space">释放空间</string>
+<string name="downloads_keep_downloading">继续下载</string>
 <string name="downloads_load_failed_body">你已下载的文件未被更改。</string>
 <string name="downloads_load_failed_headline">无法读取你的下载</string>
 <string name="downloads_offline_pill">脱机 · 无连接</string>

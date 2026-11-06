@@ -164,6 +164,9 @@
 <string name="downloaded_file">"ڈاؤن لوڈڈ فائل"</string>
 <string name="downloading">"ڈاؤن لوڈ ہو رہا ہے"</string>
 <string name="downloads_browse_library">"لائبریری براؤز کریں"</string>
+<string name="downloads_cancel_confirm_body" formatted="true">"اس سے اب تک ڈاؤن لوڈ ہونے والا %s ضائع ہو جائے گا۔"</string>
+<string name="downloads_cancel_confirm_title">"یہ ڈاؤن لوڈ منسوخ کریں؟"</string>
+<string name="downloads_cancel_download">"ڈاؤن لوڈ منسوخ کریں"</string>
 <string name="downloads_column_size">"سائز"</string>
 <string name="downloads_delete_all">"سب مٹا دیں"</string>
 <string name="downloads_delete_confirm_body" formatted="true">"اس سے %s خالی ہو جائے گا اور اسے کالعدم نہیں کیا جا سکتا۔"</string>
@@ -173,6 +176,7 @@
 <string name="downloads_empty_headline">"ابھی تک کوئی ڈاؤن لوڈ نہیں"</string>
 <string name="downloads_free" formatted="true">"%s خالی"</string>
 <string name="downloads_free_up_space">"جگہ خالی کریں"</string>
+<string name="downloads_keep_downloading">"ڈاؤن لوڈ جاری رکھیں"</string>
 <string name="downloads_load_failed_body">"آپ کی ڈاؤن لوڈ کردہ فائلیں تبدیل نہیں ہوئیں۔"</string>
 <string name="downloads_load_failed_headline">"آپ کے ڈاؤن لوڈ پڑھے نہیں جا سکے"</string>
 <string name="downloads_offline_pill">"آف لائن · کوئی کنکشن نہیں"</string>

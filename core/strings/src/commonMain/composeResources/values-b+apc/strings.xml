@@ -204,6 +204,9 @@
 <string name="downloaded_file">الملفات المنزلة</string>
 <string name="downloading">عم يتنَزَل</string>
 <string name="downloads_browse_library">تصفّح الرفّ</string>
+<string name="downloads_cancel_confirm_body">هيك بتخسر الـ %s اللي نزلوا لهلأ.</string>
+<string name="downloads_cancel_confirm_title">بدك تلغي هالتنزيل؟</string>
+<string name="downloads_cancel_download">إلغاء التنزيل</string>
 <string name="downloads_column_size">الحجم</string>
 <string name="downloads_delete_all">امحي الكل</string>
 <string name="downloads_delete_confirm_body">هيك بتفضّي %s وما فيك ترجّعها.</string>
@@ -213,6 +216,7 @@
 <string name="downloads_empty_headline">لسا مافي تنزيلات</string>
 <string name="downloads_free">%s فاضي</string>
 <string name="downloads_free_up_space">فضّي مساحة</string>
+<string name="downloads_keep_downloading">كمّل التنزيل</string>
 <string name="downloads_load_failed_body">ملفاتك المنزّلة ما تغيّرت.</string>
 <string name="downloads_load_failed_headline">ما قدرنا نقرا تنزيلاتك</string>
 <string name="downloads_offline_pill">بلا إنترنت · مافي اتصال</string>

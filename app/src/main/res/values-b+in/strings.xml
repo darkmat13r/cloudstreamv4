@@ -205,6 +205,9 @@
 <string name="downloaded_file">"Berkas terunduh"</string>
 <string name="downloading">"Mengunduh"</string>
 <string name="downloads_browse_library">"Jelajahi pustaka"</string>
+<string name="downloads_cancel_confirm_body" formatted="true">"Ini membuang %s yang sudah diunduh."</string>
+<string name="downloads_cancel_confirm_title">"Batalkan unduhan ini?"</string>
+<string name="downloads_cancel_download">"Batalkan unduhan"</string>
 <string name="downloads_column_size">"Ukuran"</string>
 <string name="downloads_delete_all">"Hapus semua"</string>
 <string name="downloads_delete_confirm_body" formatted="true">"Ini mengosongkan %s dan tidak dapat diurungkan."</string>
@@ -214,6 +217,7 @@
 <string name="downloads_empty_headline">"Belum ada unduhan"</string>
 <string name="downloads_free" formatted="true">"%s kosong"</string>
 <string name="downloads_free_up_space">"Kosongkan ruang"</string>
+<string name="downloads_keep_downloading">"Lanjutkan mengunduh"</string>
 <string name="downloads_load_failed_body">"File unduhan Anda tidak berubah."</string>
 <string name="downloads_load_failed_headline">"Tidak dapat membaca unduhan Anda"</string>
 <string name="downloads_offline_pill">"Luring · tidak ada koneksi"</string>

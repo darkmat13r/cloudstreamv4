@@ -205,6 +205,9 @@
 <string name="downloaded_file">"ダウンロードしたファイル"</string>
 <string name="downloading">"ダウンロード中"</string>
 <string name="downloads_browse_library">"ライブラリを見る"</string>
+<string name="downloads_cancel_confirm_body" formatted="true">"これまでにダウンロードした%sは破棄されます。"</string>
+<string name="downloads_cancel_confirm_title">"このダウンロードをキャンセルしますか？"</string>
+<string name="downloads_cancel_download">"ダウンロードをキャンセル"</string>
 <string name="downloads_column_size">"サイズ"</string>
 <string name="downloads_delete_all">"すべて削除"</string>
 <string name="downloads_delete_confirm_body" formatted="true">"%sが解放されます。この操作は取り消せません。"</string>
@@ -214,6 +217,7 @@
 <string name="downloads_empty_headline">"ダウンロードはまだありません"</string>
 <string name="downloads_free" formatted="true">"空き %s"</string>
 <string name="downloads_free_up_space">"空き容量を増やす"</string>
+<string name="downloads_keep_downloading">"ダウンロードを続ける"</string>
 <string name="downloads_load_failed_body">"ダウンロード済みのファイルは変更されていません。"</string>
 <string name="downloads_load_failed_headline">"ダウンロードを読み込めませんでした"</string>
 <string name="downloads_offline_pill">"オフライン · 接続なし"</string>

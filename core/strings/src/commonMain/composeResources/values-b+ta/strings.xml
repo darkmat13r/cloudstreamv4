@@ -205,6 +205,9 @@
 <string name="downloaded_file">பதிவிறக்கம் செய்யப்பட்ட கோப்பு</string>
 <string name="downloading">பதிவிறக்குகிறது</string>
 <string name="downloads_browse_library">நூலகத்தை உலாவு</string>
+<string name="downloads_cancel_confirm_body">இதுவரை பதிவிறக்கிய %s நிராகரிக்கப்படும்.</string>
+<string name="downloads_cancel_confirm_title">இந்தப் பதிவிறக்கத்தை ரத்துசெய்யவா?</string>
+<string name="downloads_cancel_download">பதிவிறக்கத்தை ரத்துசெய்</string>
 <string name="downloads_column_size">அளவு</string>
 <string name="downloads_delete_all">அனைத்தையும் அழி</string>
 <string name="downloads_delete_confirm_body">இது %s இடத்தை விடுவிக்கும், இதைச் செயல்தவிர்க்க முடியாது.</string>
@@ -214,6 +217,7 @@
 <string name="downloads_empty_headline">இன்னும் பதிவிறக்கங்கள் இல்லை</string>
 <string name="downloads_free">%s காலி</string>
 <string name="downloads_free_up_space">இடத்தை விடுவி</string>
+<string name="downloads_keep_downloading">பதிவிறக்கத்தைத் தொடர்</string>
 <string name="downloads_load_failed_body">நீங்கள் பதிவிறக்கிய கோப்புகள் மாற்றப்படவில்லை.</string>
 <string name="downloads_load_failed_headline">உங்கள் பதிவிறக்கங்களைப் படிக்க முடியவில்லை</string>
 <string name="downloads_offline_pill">ஆஃப்லைன் · இணைப்பு இல்லை</string>

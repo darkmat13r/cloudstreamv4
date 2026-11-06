@@ -36,6 +36,9 @@
 <string name="downloaded">"डाउनलोड भयो"</string>
 <string name="downloading">"डाउनलोड हुदैछ"</string>
 <string name="downloads_browse_library">"लाइब्रेरी हेर्नुहोस्"</string>
+<string name="downloads_cancel_confirm_body" formatted="true">"यसले अहिलेसम्म डाउनलोड भएको %s हटाउँछ।"</string>
+<string name="downloads_cancel_confirm_title">"यो डाउनलोड रद्द गर्ने?"</string>
+<string name="downloads_cancel_download">"डाउनलोड रद्द गर्नुहोस्"</string>
 <string name="downloads_column_size">"आकार"</string>
 <string name="downloads_delete_all">"सबै मेटाउनुहोस्"</string>
 <string name="downloads_delete_confirm_body" formatted="true">"यसले %s खाली गर्छ र यसलाई पूर्ववत गर्न सकिँदैन।"</string>
@@ -43,6 +46,7 @@
 <string name="downloads_empty_headline">"अहिलेसम्म कुनै डाउनलोड छैन"</string>
 <string name="downloads_free" formatted="true">"%s खाली"</string>
 <string name="downloads_free_up_space">"ठाउँ खाली गर्नुहोस्"</string>
+<string name="downloads_keep_downloading">"डाउनलोड जारी राख्नुहोस्"</string>
 <string name="downloads_load_failed_body">"तपाईंका डाउनलोड गरिएका फाइलहरू परिवर्तन गरिएका छैनन्।"</string>
 <string name="downloads_load_failed_headline">"तपाईंका डाउनलोडहरू पढ्न सकिएन"</string>
 <string name="downloads_offline_pill">"अफलाइन · जडान छैन"</string>

@@ -185,6 +185,9 @@
 <string name="downloaded_file">"Gedownload bestand"</string>
 <string name="downloading">"Downloaden"</string>
 <string name="downloads_browse_library">"Bibliotheek bekijken"</string>
+<string name="downloads_cancel_confirm_body" formatted="true">"De %s die al is gedownload, wordt weggegooid."</string>
+<string name="downloads_cancel_confirm_title">"Deze download annuleren?"</string>
+<string name="downloads_cancel_download">"Download annuleren"</string>
 <string name="downloads_column_size">"Grootte"</string>
 <string name="downloads_delete_all">"Alles verwijderen"</string>
 <string name="downloads_delete_confirm_body" formatted="true">"Dit maakt %s vrij en kan niet ongedaan worden gemaakt."</string>
@@ -194,6 +197,7 @@
 <string name="downloads_empty_headline">"Nog geen downloads"</string>
 <string name="downloads_free" formatted="true">"%s vrij"</string>
 <string name="downloads_free_up_space">"Ruimte vrijmaken"</string>
+<string name="downloads_keep_downloading">"Doorgaan met downloaden"</string>
 <string name="downloads_load_failed_body">"Je gedownloade bestanden zijn niet gewijzigd."</string>
 <string name="downloads_load_failed_headline">"Kon je downloads niet lezen"</string>
 <string name="downloads_offline_pill">"Offline · geen verbinding"</string>
