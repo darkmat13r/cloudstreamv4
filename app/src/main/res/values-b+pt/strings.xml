@@ -6,6 +6,9 @@
 <plurals name="downloads_queued"><item quantity="one">"%d download na fila"</item><item quantity="many">"%d downloads na fila"</item><item quantity="other">"%d downloads na fila"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d MARCADOR"</item><item quantity="many">"%d DE MARCADORES"</item><item quantity="other">"%d MARCADORES"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"Falha ao carregar %d secção"</item><item quantity="many">"Falha ao carregar %d secções"</item><item quantity="other">"Falha ao carregar %d secções"</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">"Pesquisar em %d fonte"</item><item quantity="many">"Pesquisar em todas as %d fontes"</item><item quantity="other">"Pesquisar em todas as %d fontes"</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">"Prima a tecla de pesquisa do teclado para pesquisar mesmo assim em %d fonte."</item><item quantity="many">"Prima a tecla de pesquisa do teclado para pesquisar mesmo assim em todas as %d fontes."</item><item quantity="other">"Prima a tecla de pesquisa do teclado para pesquisar mesmo assim em todas as %d fontes."</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">"%d FONTE"</item><item quantity="many">"%d FONTES"</item><item quantity="other">"%d FONTES"</item></plurals>
 <string name="account">"Conta"</string>
 <string name="action_add_to_bookmarks">"Marcar como visto/não visto"</string>
 <string name="action_add_to_favorites">"Adicionar aos favoritos"</string>
@@ -609,11 +612,16 @@
 <string name="search_provider_text_types">"Procurar usando tipos"</string>
 <string name="search_state_idle_body_desktop">"Escreva um título. Os resultados aparecem sob cada fonte assim que ela responde."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"Apenas %s. O filtro de tipo está a limitar a pesquisa."</string>
+<string name="search_state_no_suggestions_detail">"0 SUGESTÕES · 0 CORRESPONDÊNCIAS RECENTES"</string>
+<string name="search_state_no_suggestions_headline" formatted="true">"Nada corresponde a «%s»"</string>
 <string name="search_suggestions">"Sugestões de pesquisa"</string>
 <string name="search_suggestions_des">"Mostrar sugestões de pesquisa enquanto digita"</string>
 <string name="search_tv_source_failed" formatted="true">"FALHOU %s"</string>
 <string name="search_tv_source_pinned">"FIXADO"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"%1$d DE %2$d ATIVADOS · AS ALTERAÇÕES APLICAM-SE APÓS FEITO"</string>
+<string name="search_tv_suggestion_recent" formatted="true">"RECENTE · %s"</string>
+<string name="search_tv_suggestion_recent_suggested">"RECENTE · TAMBÉM SUGERIDO"</string>
+<string name="search_tv_suggestion_suggested">"SUGERIDO"</string>
 <string name="season">"Temporada"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"T"</string>

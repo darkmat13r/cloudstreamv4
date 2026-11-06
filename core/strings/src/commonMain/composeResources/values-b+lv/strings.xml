@@ -7,6 +7,9 @@
 <plurals name="downloads_failed_count"><item quantity="zero">%d neizdevās</item><item quantity="one">%d neizdevās</item><item quantity="other">%d neizdevās</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="zero">%d GRĀMATZĪMJU</item><item quantity="one">%d GRĀMATZĪME</item><item quantity="other">%d GRĀMATZĪMES</item></plurals>
 <plurals name="home_sections_failed"><item quantity="zero">Neizdevās ielādēt %d sadaļu</item><item quantity="one">Neizdevās ielādēt %d sadaļu</item><item quantity="other">Neizdevās ielādēt %d sadaļas</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="zero">Meklēt visos %d devējos</item><item quantity="one">Meklēt %d devējā</item><item quantity="other">Meklēt visos %d devējos</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="zero">Nospiediet tastatūras meklēšanas taustiņu, lai tomēr meklētu visos %d devējos.</item><item quantity="one">Nospiediet tastatūras meklēšanas taustiņu, lai tomēr meklētu %d devējā.</item><item quantity="other">Nospiediet tastatūras meklēšanas taustiņu, lai tomēr meklētu visos %d devējos.</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="zero">%d DEVĒJU</item><item quantity="one">%d DEVĒJS</item><item quantity="other">%d DEVĒJI</item></plurals>
 <string name="account">Konts</string>
 <string name="action_add_to_bookmarks">Ieliec skatīšanās statusu</string>
 <string name="action_default">Parastais</string>
@@ -527,10 +530,15 @@
 <string name="search_provider_text_types">Meklēt izmantojot tipus</string>
 <string name="search_state_idle_body_desktop">Ievadiet nosaukumu. Rezultāti parādās zem katra devēja, tiklīdz tas atbild.</string>
 <string name="search_state_no_results_type_filter">Tikai %s. Jūsu veida filtrs sašaurina meklēšanu.</string>
+<string name="search_state_no_suggestions_detail">0 IETEIKUMU · 0 NESENU ATBILSTĪBU</string>
+<string name="search_state_no_suggestions_headline">Nekas neatbilst „%s”</string>
 <string name="search_suggestions">Meklēšanas ieteikumi</string>
 <string name="search_tv_source_failed">NEIZDEVĀS %s</string>
 <string name="search_tv_source_pinned">PIESPRAUSTS</string>
 <string name="search_tv_sources_panel_meta">IESLĒGTI %1$d NO %2$d · IZMAIŅAS TIEK PIEMĒROTAS, NOSPIEŽOT PABEIGTS</string>
+<string name="search_tv_suggestion_recent">NESEN · %s</string>
+<string name="search_tv_suggestion_recent_suggested">NESEN · ARĪ IETEIKTS</string>
+<string name="search_tv_suggestion_suggested">IETEIKTS</string>
 <string name="season">Sezona</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">S</string>

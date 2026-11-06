@@ -8,6 +8,9 @@
 <plurals name="downloads_queued"><item quantity="one">%d преземање во редицата</item><item quantity="other">%d преземања во редицата</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ОБЕЛЕЖУВАЧ</item><item quantity="other">%d ОБЕЛЕЖУВАЧИ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d дел не се вчита</item><item quantity="other">%d делови не се вчитаа</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">Барај во %d извор</item><item quantity="other">Барај во сите %d извори</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">Притиснете го копчето за пребарување на тастатурата за сепак да пребарувате во %d извор.</item><item quantity="other">Притиснете го копчето за пребарување на тастатурата за сепак да пребарувате во сите %d извори.</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">%d ИЗВОР</item><item quantity="other">%d ИЗВОРИ</item></plurals>
 <string name="account">Корисничко име</string>
 <string name="action_add_to_bookmarks">Постави статус на пратење</string>
 <string name="action_add_to_favorites">Додади во омилени</string>
@@ -609,11 +612,16 @@
 <string name="search_provider_text_types">Пребарувај користејќи типови</string>
 <string name="search_state_idle_body_desktop">Внеси наслов. Резултатите се појавуваат под секој извор кога ќе одговори.</string>
 <string name="search_state_no_results_type_filter">Само %s. Вашиот филтер за тип го стеснува пребарувањето.</string>
+<string name="search_state_no_suggestions_detail">0 ПРЕДЛОЗИ · 0 НЕОДАМНЕШНИ СОВПАЃАЊА</string>
+<string name="search_state_no_suggestions_headline">Ништо не одговара на „%s“</string>
 <string name="search_suggestions">Предлози за пребарување</string>
 <string name="search_suggestions_des">Прикажувај предлози за пребарување додека пишуваш</string>
 <string name="search_tv_source_failed">НЕУСПЕШНО %s</string>
 <string name="search_tv_source_pinned">ЗАКАЧЕНО</string>
 <string name="search_tv_sources_panel_meta">%1$d ОД %2$d ОВОЗМОЖЕНИ · ПРОМЕНИТЕ СЕ ПРИМЕНУВААТ ПО ГОТОВО</string>
+<string name="search_tv_suggestion_recent">НЕОДАМНА · %s</string>
+<string name="search_tv_suggestion_recent_suggested">НЕОДАМНА · ИСТО ТАКА ПРЕДЛОЖЕНО</string>
+<string name="search_tv_suggestion_suggested">ПРЕДЛОЖЕНО</string>
 <string name="season">Сезона</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">С</string>

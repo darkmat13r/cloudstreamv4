@@ -8,6 +8,9 @@
 <plurals name="downloads_queued"><item quantity="one">%d preuzimanje u redu čekanja</item><item quantity="few">%d preuzimanja u redu čekanja</item><item quantity="other">%d preuzimanja u redu čekanja</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d OZNAKA</item><item quantity="few">%d OZNAKE</item><item quantity="other">%d OZNAKA</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Nije učitan %d odjeljak</item><item quantity="few">Nisu učitana %d odjeljka</item><item quantity="other">Nije učitano %d odjeljaka</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">Pretraži %d izvor</item><item quantity="few">Pretraži sva %d izvora</item><item quantity="other">Pretraži svih %d izvora</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">Pritisnite tipku za pretraživanje na tipkovnici da biste ipak pretražili %d izvor.</item><item quantity="few">Pritisnite tipku za pretraživanje na tipkovnici da biste ipak pretražili sva %d izvora.</item><item quantity="other">Pritisnite tipku za pretraživanje na tipkovnici da biste ipak pretražili svih %d izvora.</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">%d IZVOR</item><item quantity="few">%d IZVORA</item><item quantity="other">%d IZVORA</item></plurals>
 <string name="account">račun</string>
 <string name="action_add_to_bookmarks">Postavi status gledanja</string>
 <string name="action_add_to_favorites">Dodaj u favorite</string>
@@ -609,11 +612,16 @@
 <string name="search_provider_text_types">Traži koristeći vrste</string>
 <string name="search_state_idle_body_desktop">Upišite naslov. Rezultati se pojavljuju ispod svakog izvora kad odgovori.</string>
 <string name="search_state_no_results_type_filter">Samo %s. Vaš filtar vrste sužava pretraživanje.</string>
+<string name="search_state_no_suggestions_detail">0 PRIJEDLOGA · 0 NEDAVNIH PODUDARANJA</string>
+<string name="search_state_no_suggestions_headline">Ništa ne odgovara „%s“</string>
 <string name="search_suggestions">Prijedlozi za pretraživanje</string>
 <string name="search_suggestions_des">Prikaži prijedloge za pretraživanje tijekom tipkanja</string>
 <string name="search_tv_source_failed">NEUSPJELO %s</string>
 <string name="search_tv_source_pinned">PRIKVAČENO</string>
 <string name="search_tv_sources_panel_meta">%1$d OD %2$d UKLJUČENO · PROMJENE VRIJEDE NAKON GOTOVO</string>
+<string name="search_tv_suggestion_recent">NEDAVNO · %s</string>
+<string name="search_tv_suggestion_recent_suggested">NEDAVNO · TAKOĐER PREDLOŽENO</string>
+<string name="search_tv_suggestion_suggested">PREDLOŽENO</string>
 <string name="season">Sezona</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">S</string>

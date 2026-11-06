@@ -9,6 +9,9 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d TË RUAJTURA</item><item quantity="other">%d TË RUAJTURA</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Nuk mund të ngarkohej %d seksion</item><item quantity="other">Nuk mund të ngarkoheshin %d seksione</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d link i fshehur</item><item quantity="other">%d linqe të fshehura</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">Kërko në %d burim</item><item quantity="other">Kërko në të gjitha %d burimet</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">Shtyp tastin e kërkimit të tastierës për të kërkuar gjithsesi në %d burim.</item><item quantity="other">Shtyp tastin e kërkimit të tastierës për të kërkuar gjithsesi në të gjitha %d burimet.</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">%d BURIM</item><item quantity="other">%d BURIME</item></plurals>
 <string name="account">llogaria</string>
 <string name="action_add_to_bookmarks">Vendos statusin e shikueshmërisë</string>
 <string name="action_add_to_favorites">Shto te të preferuarat</string>
@@ -613,11 +616,16 @@
 <string name="search_provider_text_types">Kërko duke përdorur tipet</string>
 <string name="search_state_idle_body_desktop">Shkruani një titull. Rezultatet shfaqen nën çdo burim sapo ai përgjigjet.</string>
 <string name="search_state_no_results_type_filter">Vetëm %s. Filtri i llojit po e ngushton kërkimin.</string>
+<string name="search_state_no_suggestions_detail">0 SUGJERIME · 0 PËRPUTHJE TË FUNDIT</string>
+<string name="search_state_no_suggestions_headline">Asgjë nuk përputhet me “%s”</string>
 <string name="search_suggestions">Kërkime të sugjeruara</string>
 <string name="search_suggestions_des">Trego sugjerimet ndërkohë që shkruani</string>
 <string name="search_tv_source_failed">DËSHTOI %s</string>
 <string name="search_tv_source_pinned">I FIKSUAR</string>
 <string name="search_tv_sources_panel_meta">%1$d NGA %2$d AKTIVIZUAR · NDRYSHIMET ZBATOHEN ME U KRYE</string>
+<string name="search_tv_suggestion_recent">SË FUNDI · %s</string>
+<string name="search_tv_suggestion_recent_suggested">SË FUNDI · GJITHASHTU E SUGJERUAR</string>
+<string name="search_tv_suggestion_suggested">E SUGJERUAR</string>
 <string name="season">Sezoni</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">S</string>

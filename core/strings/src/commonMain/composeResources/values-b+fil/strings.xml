@@ -6,6 +6,9 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d nabigo</item><item quantity="other">%d nabigo</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d BOOKMARK</item><item quantity="other">%d BOOKMARK</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Hindi na-load ang %d seksyon</item><item quantity="other">Hindi na-load ang %d seksyon</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">Maghanap sa %d mapagkukunan</item><item quantity="other">Maghanap sa lahat ng %d mapagkukunan</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">Pindutin ang search key ng keyboard para maghanap pa rin sa %d mapagkukunan.</item><item quantity="other">Pindutin ang search key ng keyboard para maghanap pa rin sa lahat ng %d mapagkukunan.</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">%d MAPAGKUKUNAN</item><item quantity="other">%d MAPAGKUKUNAN</item></plurals>
 <string name="action_add_to_bookmarks">Itakda ang kapalaran ng panonood</string>
 <string name="action_add_to_favorites">Idagdag sa mga paborito &lt;3</string>
 <string name="action_remove_from_bookmarks">Alisin</string>
@@ -197,9 +200,14 @@
 <string name="search_provider_text_types">Maghanap gamit ang mga uri</string>
 <string name="search_state_idle_body_desktop">Mag-type ng pamagat. Lalabas ang mga resulta sa ilalim ng bawat source kapag sumagot ito.</string>
 <string name="search_state_no_results_type_filter">%s lang. Pinipigilan ng type filter mo ang paghahanap.</string>
+<string name="search_state_no_suggestions_detail">0 MUNGKAHI · 0 KAMAKAILANG TUGMA</string>
+<string name="search_state_no_suggestions_headline">Walang tumutugma sa “%s”</string>
 <string name="search_tv_source_failed">NABIGO %s</string>
 <string name="search_tv_source_pinned">NAKA-PIN</string>
 <string name="search_tv_sources_panel_meta">%1$d SA %2$d ANG NAKA-ENABLE · ILALAPAT ANG MGA PAGBABAGO KAPAG PININDOT ANG TAPOS NA</string>
+<string name="search_tv_suggestion_recent">KAMAKAILAN · %s</string>
+<string name="search_tv_suggestion_recent_suggested">KAMAKAILAN · IMINUNGKAHI RIN</string>
+<string name="search_tv_suggestion_suggested">IMINUNGKAHI</string>
 <string name="seek_back_10_seconds">Bumalik ng 10 segundo</string>
 <string name="seek_forward_10_seconds">Umabante ng 10 segundo</string>
 <string name="select_all">Piliin Lahat</string>

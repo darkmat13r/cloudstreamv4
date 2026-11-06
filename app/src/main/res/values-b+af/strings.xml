@@ -4,6 +4,9 @@
 <plurals name="downloads_failed_count"><item quantity="one">"%d het misluk"</item><item quantity="other">"%d het misluk"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d BOEKMERK"</item><item quantity="other">"%d BOEKMERKE"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d afdeling kon nie laai nie"</item><item quantity="other">"%d afdelings kon nie laai nie"</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">"Soek %d bron"</item><item quantity="other">"Soek al %d bronne"</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">"Druk die sleutelbord se soeksleutel om tog %d bron te deursoek."</item><item quantity="other">"Druk die sleutelbord se soeksleutel om tog al %d bronne te deursoek."</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">"%d BRON"</item><item quantity="other">"%d BRONNE"</item></plurals>
 <string name="action_add_to_bookmarks">"Stel kykstatus"</string>
 <string name="action_remove_from_bookmarks">"Verwyder"</string>
 <string name="action_remove_watching">"Verwyder"</string>
@@ -169,9 +172,14 @@
 <string name="search_provider_text_types">"Soek met behulp van tipes"</string>
 <string name="search_state_idle_body_desktop">"Tik 'n titel. Resultate verskyn onder elke bron soos dit antwoord."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"Slegs %s. Jou tipe-filter beperk die soektog."</string>
+<string name="search_state_no_suggestions_detail">"0 VOORSTELLE · 0 ONLANGSE OOREENKOMSTE"</string>
+<string name="search_state_no_suggestions_headline" formatted="true">"Niks stem ooreen met “%s” nie"</string>
 <string name="search_tv_source_failed" formatted="true">"MISLUK %s"</string>
 <string name="search_tv_source_pinned">"VASGESPELD"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"%1$d VAN %2$d GEAKTIVEER · WYSIGINGS GELD BY KLAAR"</string>
+<string name="search_tv_suggestion_recent" formatted="true">"ONLANGS · %s"</string>
+<string name="search_tv_suggestion_recent_suggested">"ONLANGS · OOK VOORGESTEL"</string>
+<string name="search_tv_suggestion_suggested">"VOORGESTEL"</string>
 <string name="season">"Seisoen"</string>
 <string name="seek_back_10_seconds">"Spring 10 sekondes terug"</string>
 <string name="seek_forward_10_seconds">"Spring 10 sekondes vorentoe"</string>

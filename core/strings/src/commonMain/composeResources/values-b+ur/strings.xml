@@ -6,6 +6,9 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d ناکام</item><item quantity="other">%d ناکام</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d بک مارک</item><item quantity="other">%d بک مارکس</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d سیکشن لوڈ نہیں ہو سکا</item><item quantity="other">%d سیکشنز لوڈ نہیں ہو سکے</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">%d ذریعے میں تلاش کریں</item><item quantity="other">تمام %d ذرائع میں تلاش کریں</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">پھر بھی %d ذریعے میں تلاش کرنے کے لیے کی بورڈ کی تلاش کی کلید دبائیں۔</item><item quantity="other">پھر بھی تمام %d ذرائع میں تلاش کرنے کے لیے کی بورڈ کی تلاش کی کلید دبائیں۔</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">%d ذریعہ</item><item quantity="other">%d ذرائع</item></plurals>
 <string name="account">اكاؤنٹ</string>
 <string name="action_add_to_bookmarks">واچ اسٹیٹس کو سیٹ کریں</string>
 <string name="action_add_to_favorites">پسندیدہ میں شامل کریں</string>
@@ -521,9 +524,14 @@
 <string name="search_provider_text_types">انواع کا استعمال کرتے ہوئے تلاش کریں</string>
 <string name="search_state_idle_body_desktop">عنوان لکھیں۔ ہر ذریعہ کے جواب دینے پر نتائج اس کے نیچے ظاہر ہوں گے۔</string>
 <string name="search_state_no_results_type_filter">صرف %s۔ آپ کا قسم فلٹر تلاش کو محدود کر رہا ہے۔</string>
+<string name="search_state_no_suggestions_detail">0 تجاویز · 0 حالیہ مماثلتیں</string>
+<string name="search_state_no_suggestions_headline">“%s” سے کچھ بھی مماثل نہیں</string>
 <string name="search_tv_source_failed">ناکام %s</string>
 <string name="search_tv_source_pinned">پن کیا گیا</string>
 <string name="search_tv_sources_panel_meta">%2$d میں سے %1$d فعال · تبدیلیاں ہو گیا پر لاگو ہوں گی</string>
+<string name="search_tv_suggestion_recent">حالیہ · %s</string>
+<string name="search_tv_suggestion_recent_suggested">حالیہ · تجویز کردہ بھی</string>
+<string name="search_tv_suggestion_suggested">تجویز کردہ</string>
 <string name="season">سیزن</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">S</string>

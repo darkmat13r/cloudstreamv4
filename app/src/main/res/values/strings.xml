@@ -9,10 +9,13 @@
 <plurals name="home_sections_failed"><item quantity="one">"%d section failed to load"</item><item quantity="other">"%d sections failed to load"</item></plurals>
 <plurals name="links_hidden"><item quantity="one">"%d hidden link"</item><item quantity="other">"%d hidden links"</item></plurals>
 <plurals name="search_state_no_results_body"><item quantity="one">"%d selected source answered and it does not carry it."</item><item quantity="other">"All %d selected sources answered and none of them carry it."</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">"Search %d source"</item><item quantity="other">"Search all %d sources"</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">"Press the keyboard’s search key to search %d source anyway."</item><item quantity="other">"Press the keyboard’s search key to search all %d sources anyway."</item></plurals>
 <plurals name="search_state_partial_headline"><item quantity="one">"%d source failed"</item><item quantity="other">"%d sources failed"</item></plurals>
 <plurals name="search_tv_recent_count"><item quantity="one">"%d SAVED"</item><item quantity="other">"%d SAVED"</item></plurals>
 <plurals name="search_tv_result_count"><item quantity="one">"%d RESULT"</item><item quantity="other">"%d RESULTS"</item></plurals>
 <plurals name="search_tv_sources_count"><item quantity="one">"%1$d / %2$d"</item><item quantity="other">"%1$d / %2$d"</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">"%d SOURCE"</item><item quantity="other">"%d SOURCES"</item></plurals>
 <string name="account">"account"</string>
 <string name="action_add_to_bookmarks">"Set watch status"</string>
 <string name="action_add_to_favorites">"Add to favorites"</string>
@@ -652,6 +655,8 @@
 <string name="search_state_no_results_detail" formatted="true">"%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS"</string>
 <string name="search_state_no_results_headline">"No results"</string>
 <string name="search_state_no_results_type_filter" formatted="true">"%s only. Your type filter is narrowing the search."</string>
+<string name="search_state_no_suggestions_detail">"0 SUGGESTIONS · 0 RECENT MATCHES"</string>
+<string name="search_state_no_suggestions_headline" formatted="true">"Nothing matches “%s”"</string>
 <string name="search_state_offline_body">"Search needs a connection. Your downloads are still available."</string>
 <string name="search_state_offline_headline">"You are offline"</string>
 <string name="search_state_retry">"Try again"</string>
@@ -665,6 +670,9 @@
 <string name="search_tv_source_pinned">"PINNED"</string>
 <string name="search_tv_sources_label">"Sources"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"%1$d OF %2$d ENABLED · CHANGES APPLY ON DONE"</string>
+<string name="search_tv_suggestion_recent" formatted="true">"RECENT · %s"</string>
+<string name="search_tv_suggestion_recent_suggested">"RECENT · ALSO SUGGESTED"</string>
+<string name="search_tv_suggestion_suggested">"SUGGESTED"</string>
 <string name="season">"Season"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"S"</string>

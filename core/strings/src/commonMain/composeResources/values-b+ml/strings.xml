@@ -6,6 +6,9 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d പരാജയപ്പെട്ടു</item><item quantity="other">%d പരാജയപ്പെട്ടു</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ബുക്ക്‌മാർക്ക്</item><item quantity="other">%d ബുക്ക്‌മാർക്കുകൾ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d വിഭാഗം ലോഡ് ചെയ്യാനായില്ല</item><item quantity="other">%d വിഭാഗങ്ങൾ ലോഡ് ചെയ്യാനായില്ല</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">%d ഉറവിടത്തിൽ തിരയുക</item><item quantity="other">എല്ലാ %d ഉറവിടങ്ങളിലും തിരയുക</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">എന്നിട്ടും %d ഉറവിടത്തിൽ തിരയാൻ കീബോർഡിലെ തിരയൽ കീ അമർത്തുക.</item><item quantity="other">എന്നിട്ടും എല്ലാ %d ഉറവിടങ്ങളിലും തിരയാൻ കീബോർഡിലെ തിരയൽ കീ അമർത്തുക.</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">%d ഉറവിടം</item><item quantity="other">%d ഉറവിടങ്ങൾ</item></plurals>
 <string name="action_add_to_bookmarks">വാച്ച് സ്റ്റാറ്റസ് സജ്ജീകരിക്കുക</string>
 <string name="action_mark_as_watched">കണ്ടതാണെന്ന് അടയാളപ്പെടുത്തുക</string>
 <string name="action_open_play">പ്ലേയ്</string>
@@ -276,9 +279,14 @@
 <string name="search_provider_text_types">തരം അടിസ്ഥാനത്തിൽ തിരയുക</string>
 <string name="search_state_idle_body_desktop">ഒരു ശീർഷകം ടൈപ്പ് ചെയ്യുക. ഓരോ ഉറവിടവും മറുപടി നൽകുമ്പോൾ ഫലങ്ങൾ അതിനു താഴെ കാണിക്കും.</string>
 <string name="search_state_no_results_type_filter">%s മാത്രം. നിങ്ങളുടെ തരം ഫിൽട്ടർ തിരയൽ ചുരുക്കുന്നു.</string>
+<string name="search_state_no_suggestions_detail">0 നിർദ്ദേശങ്ങൾ · 0 സമീപകാല പൊരുത്തങ്ങൾ</string>
+<string name="search_state_no_suggestions_headline">“%s” എന്നതുമായി ഒന്നും പൊരുത്തപ്പെടുന്നില്ല</string>
 <string name="search_tv_source_failed">പരാജയപ്പെട്ടു %s</string>
 <string name="search_tv_source_pinned">പിൻ ചെയ്തു</string>
 <string name="search_tv_sources_panel_meta">%2$d-ൽ %1$d പ്രവർത്തനക്ഷമം · പൂർത്തിയായി അമർത്തുമ്പോൾ മാറ്റങ്ങൾ ബാധകമാകും</string>
+<string name="search_tv_suggestion_recent">സമീപകാലം · %s</string>
+<string name="search_tv_suggestion_recent_suggested">സമീപകാലം · നിർദ്ദേശിച്ചതും</string>
+<string name="search_tv_suggestion_suggested">നിർദ്ദേശിച്ചത്</string>
 <string name="season">സീസൺ</string>
 <string name="seek_back_10_seconds">10 സെക്കൻഡ് പിന്നോട്ട് പോകുക</string>
 <string name="seek_forward_10_seconds">10 സെക്കൻഡ് മുന്നോട്ട് പോകുക</string>

@@ -4,6 +4,9 @@
 <plurals name="downloads_failed_count"><item quantity="one">"%d টা বিফল"</item><item quantity="other">"%d টা বিফল"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d টা বুকমাৰ্ক"</item><item quantity="other">"%d টা বুকমাৰ্ক"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d টা অংশ লোড কৰিব পৰা নগ'ল"</item><item quantity="other">"%d টা অংশ লোড কৰিব পৰা নগ'ল"</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">"%dটা উৎস সন্ধান কৰক"</item><item quantity="other">"আটাইকেইটা %dটা উৎস সন্ধান কৰক"</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">"তথাপি %dটা উৎস সন্ধান কৰিবলৈ কীব'ৰ্ডৰ সন্ধান কী টিপক।"</item><item quantity="other">"তথাপি আটাইকেইটা %dটা উৎস সন্ধান কৰিবলৈ কীব'ৰ্ডৰ সন্ধান কী টিপক।"</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">"%d উৎস"</item><item quantity="other">"%d উৎস"</item></plurals>
 <string name="account">"একাউন্ট"</string>
 <string name="action_add_to_bookmarks">"দেখাৰ অৱস্থা নিৰ্ধাৰণ কৰক"</string>
 <string name="action_add_to_favorites">"প্ৰিয় তালিকালৈ যোগ কৰক"</string>
@@ -550,9 +553,14 @@
 <string name="search_provider_text_types">"প্ৰকাৰৰ দ্বাৰা সন্ধান কৰক"</string>
 <string name="search_state_idle_body_desktop">"এটা শিৰোনাম টাইপ কৰক। প্ৰতিটো উৎসই উত্তৰ দিয়াৰ লগে লগে ফলাফল তাৰ তলত দেখা যাব।"</string>
 <string name="search_state_no_results_type_filter" formatted="true">"কেৱল %s। আপোনাৰ ধৰণৰ ফিল্টাৰে সন্ধান সংকীৰ্ণ কৰিছে।"</string>
+<string name="search_state_no_suggestions_detail">"0 টা পৰামৰ্শ · 0 টা শেহতীয়া মিল"</string>
+<string name="search_state_no_suggestions_headline" formatted="true">"“%s”ৰ সৈতে একো নিমিলে"</string>
 <string name="search_tv_source_failed" formatted="true">"ব্যৰ্থ %s"</string>
 <string name="search_tv_source_pinned">"পিন কৰা হৈছে"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"%2$dৰ ভিতৰত %1$d সক্ষম · পৰিৱৰ্তনসমূহ সম্পূৰ্ণ ত প্ৰয়োগ হয়"</string>
+<string name="search_tv_suggestion_recent" formatted="true">"শেহতীয়া · %s"</string>
+<string name="search_tv_suggestion_recent_suggested">"শেহতীয়া · পৰামৰ্শিতো"</string>
+<string name="search_tv_suggestion_suggested">"পৰামৰ্শিত"</string>
 <string name="season">"চিজন"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"চি"</string>

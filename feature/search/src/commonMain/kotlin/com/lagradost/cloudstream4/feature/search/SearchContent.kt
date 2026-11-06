@@ -39,6 +39,14 @@ sealed interface SearchContent {
      */
     @Immutable
     data class Results(val groups: List<SearchResultGroup>) : SearchContent
+
+    /**
+     * What to search for, while typing: artboard **8a** of `design/TV Search Suggestions.dc.html`.
+     *
+     * Only with a [SearchSuggestionSource]. Never empty: with no rows the status is [SearchStatus.NoSuggestions].
+     */
+    @Immutable
+    data class Suggestions(val rows: List<SearchSuggestion>) : SearchContent
 }
 
 /**

@@ -4,6 +4,9 @@
 <plurals name="downloads_failed_count"><item quantity="one">"%d malsukcesis"</item><item quantity="other">"%d malsukcesis"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d LEGOSIGNO"</item><item quantity="other">"%d LEGOSIGNOJ"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d sekcio ne ŝargiĝis"</item><item quantity="other">"%d sekcioj ne ŝargiĝis"</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">"Serĉi en %d fonto"</item><item quantity="other">"Serĉi en ĉiuj %d fontoj"</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">"Premu la serĉoklavon de la klavaro por tamen serĉi en %d fonto."</item><item quantity="other">"Premu la serĉoklavon de la klavaro por tamen serĉi en ĉiuj %d fontoj."</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">"%d FONTO"</item><item quantity="other">"%d FONTOJ"</item></plurals>
 <string name="account">"konto"</string>
 <string name="action_open_play">@string/home_play</string>
 <string name="action_open_watching">"Pli da informoj"</string>
@@ -216,10 +219,15 @@
 <string name="search_provider_text_types">"Serĉi uzante tipojn"</string>
 <string name="search_state_idle_body_desktop">"Tajpu titolon. Rezultoj aperas sub ĉiu fonto kiam ĝi respondas."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"Nur %s. Via tipfiltrilo mallarĝigas la serĉon."</string>
+<string name="search_state_no_suggestions_detail">"0 SUGESTOJ · 0 LASTATEMPAJ KONGRUOJ"</string>
+<string name="search_state_no_suggestions_headline" formatted="true">"Nenio kongruas kun “%s”"</string>
 <string name="search_suggestions">"Serĉaj Sugestoj"</string>
 <string name="search_tv_source_failed" formatted="true">"MALSUKCESIS %s"</string>
 <string name="search_tv_source_pinned">"FIKSITA"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"%1$d EL %2$d ŜALTITAJ · ŜANĜOJ APLIKIĜAS PER FARITE"</string>
+<string name="search_tv_suggestion_recent" formatted="true">"LASTATEMPA · %s"</string>
+<string name="search_tv_suggestion_recent_suggested">"LASTATEMPA · ANKAŬ SUGESTITA"</string>
+<string name="search_tv_suggestion_suggested">"SUGESTITA"</string>
 <string name="season">"Sezono"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"S"</string>

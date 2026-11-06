@@ -8,6 +8,9 @@
 <plurals name="downloads_queued"><item quantity="other">%d 다운로드</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="other">북마크 %d개</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">섹션 %d개를 불러오지 못했습니다</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="other">소스 %d개 모두 검색</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="other">그래도 소스 %d개를 모두 검색하려면 키보드의 검색 키를 누르세요.</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="other">%d 소스</item></plurals>
 <string name="account">계정</string>
 <string name="action_add_to_bookmarks">시청 상태 설정</string>
 <string name="action_add_to_favorites">즐겨찾기에 추가</string>
@@ -609,11 +612,16 @@
 <string name="search_provider_text_types">유형을 사용하여 검색</string>
 <string name="search_state_idle_body_desktop">제목을 입력하세요. 각 소스가 응답하면 그 아래에 결과가 표시됩니다.</string>
 <string name="search_state_no_results_type_filter">%s만. 유형 필터가 검색을 좁히고 있습니다.</string>
+<string name="search_state_no_suggestions_detail">추천 0개 · 최근 일치 0개</string>
+<string name="search_state_no_suggestions_headline">“%s”와(과) 일치하는 항목이 없습니다</string>
 <string name="search_suggestions">검색어 제안</string>
 <string name="search_suggestions_des">입력하는 동안 검색어 제안 표시</string>
 <string name="search_tv_source_failed">실패 %s</string>
 <string name="search_tv_source_pinned">고정됨</string>
 <string name="search_tv_sources_panel_meta">%2$d개 중 %1$d개 사용 중 · 변경 사항은 완료를 누르면 적용됩니다</string>
+<string name="search_tv_suggestion_recent">최근 · %s</string>
+<string name="search_tv_suggestion_recent_suggested">최근 · 추천 항목</string>
+<string name="search_tv_suggestion_suggested">추천</string>
 <string name="season">시즌</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">시즌</string>

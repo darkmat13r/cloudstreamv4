@@ -6,6 +6,9 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d شکستی هێنا</item><item quantity="other">%d شکستی هێنا</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ئاماژە</item><item quantity="other">%d ئاماژە</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d بەش بار نەکرا</item><item quantity="other">%d بەش بار نەکرا</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">گەڕان لە %d سەرچاوە</item><item quantity="other">گەڕان لە هەموو %d سەرچاوەکە</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">کلیلی گەڕانی تەختەکلیل دابگرە بۆ ئەوەی هەر لە %d سەرچاوە بگەڕێیت.</item><item quantity="other">کلیلی گەڕانی تەختەکلیل دابگرە بۆ ئەوەی هەر لە هەموو %d سەرچاوەکە بگەڕێیت.</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">%d سەرچاوە</item><item quantity="other">%d سەرچاوە</item></plurals>
 <string name="action_add_to_bookmarks">دۆخی تەماشاکردن دابنێ</string>
 <string name="action_remove_from_bookmarks">لابردن</string>
 <string name="app_dub_sub_episode_text_format">%1$sئەڵقەى%2$d</string>
@@ -149,9 +152,14 @@
 <string name="search_poster_img_des">پۆستەر</string>
 <string name="search_state_idle_body_desktop">ناونیشانێک بنووسە. ئەنجامەکان لە ژێر هەر سەرچاوەیەک دەردەکەون کاتێک وەڵام دەداتەوە.</string>
 <string name="search_state_no_results_type_filter">تەنها %s. فلتەری جۆرەکەت گەڕانەکە سنووردار دەکات.</string>
+<string name="search_state_no_suggestions_detail">0 پێشنیار · 0 هاوتای دوایین</string>
+<string name="search_state_no_suggestions_headline">هیچ شتێک لەگەڵ «%s» ناگونجێت</string>
 <string name="search_tv_source_failed">شکستی هێنا %s</string>
 <string name="search_tv_source_pinned">جێگیرکراو</string>
 <string name="search_tv_sources_panel_meta">%1$d لە %2$d چالاککراون · گۆڕانکارییەکان دوای تەواو جێبەجێ دەبن</string>
+<string name="search_tv_suggestion_recent">دوایین · %s</string>
+<string name="search_tv_suggestion_recent_suggested">دوایین · هەروەها پێشنیارکراو</string>
+<string name="search_tv_suggestion_suggested">پێشنیارکراو</string>
 <string name="seek_back_10_seconds">10 چرکە بگەڕێوە دواوە</string>
 <string name="seek_forward_10_seconds">10 چرکە بڕۆ پێشەوە</string>
 <string name="select_all">هەموو هەڵبژێرە</string>
