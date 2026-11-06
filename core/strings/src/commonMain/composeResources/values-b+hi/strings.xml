@@ -3,6 +3,8 @@
 <resources>
 <string name="detail_load_failed_body">हो सकता है स्रोत उपलब्ध न हो।</string>
 <string name="detail_load_failed_headline">यह शीर्षक नहीं खुल सका</string>
+<plurals name="downloads_count_downloading"><item quantity="one">%d डाउनलोड हो रहे हैं</item><item quantity="other">%d डाउनलोड हो रहे हैं</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d कतार में</item><item quantity="other">%d कतार में</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">%d डाउनलोड हटाएँ?</item><item quantity="other">%d डाउनलोड हटाएँ?</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%d एपिसोड</item><item quantity="other">%d एपिसोड</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d विफल</item><item quantity="other">%d विफल</item></plurals>
@@ -129,6 +131,7 @@
 <string name="downloads_empty">वर्तमान में कोई डाउनलोड नहीं है।</string>
 <string name="downloads_empty_body">किसी शीर्षक की एपिसोड सूची से शुरू किए गए डाउनलोड यहाँ दिखते हैं और बिना कनेक्शन के चलते हैं।</string>
 <string name="downloads_empty_headline">अभी तक कोई डाउनलोड नहीं</string>
+<string name="downloads_free">%s खाली</string>
 <string name="downloads_free_up_space">जगह ख़ाली करें</string>
 <string name="downloads_load_failed_body">आपकी डाउनलोड की गई फ़ाइलें नहीं बदली गई हैं।</string>
 <string name="downloads_load_failed_headline">आपके डाउनलोड पढ़े नहीं जा सके</string>

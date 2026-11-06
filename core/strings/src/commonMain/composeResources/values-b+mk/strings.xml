@@ -4,6 +4,8 @@
 <string name="detail_load_failed_body">Изворот можеби не е достапен.</string>
 <string name="detail_load_failed_headline">Насловот не може да се отвори</string>
 <plurals name="downloads_active"><item quantity="one">%d активно преземање</item><item quantity="other">%d активни преземања</item></plurals>
+<plurals name="downloads_count_downloading"><item quantity="one">%d се презема</item><item quantity="other">%d се презема</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d во ред</item><item quantity="other">%d во ред</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">Да се избрише %d преземање?</item><item quantity="other">Да се избришат %d преземања?</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%d епизода</item><item quantity="other">%d епизоди</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d неуспешно</item><item quantity="other">%d неуспешни</item></plurals>
@@ -209,6 +211,7 @@
 <string name="downloads_empty">Во моментов нема преземања.</string>
 <string name="downloads_empty_body">Преземањата што ќе ги започнете од списокот со епизоди на насловот се појавуваат тука и се пуштаат без врска.</string>
 <string name="downloads_empty_headline">Сè уште нема преземања</string>
+<string name="downloads_free">%s слободно</string>
 <string name="downloads_free_up_space">Ослободи простор</string>
 <string name="downloads_load_failed_body">Вашите преземени датотеки не се променети.</string>
 <string name="downloads_load_failed_headline">Не може да се прочитаат вашите преземања</string>

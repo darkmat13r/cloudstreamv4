@@ -4,6 +4,8 @@
 <string name="detail_load_failed_body">Its source may be unavailable.</string>
 <string name="detail_load_failed_headline">Couldn't open this title</string>
 <plurals name="downloads_active"><item quantity="one">%d active download</item><item quantity="other">%d active downloads</item></plurals>
+<plurals name="downloads_count_downloading"><item quantity="one">%d downloading</item><item quantity="other">%d downloading</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d queued</item><item quantity="other">%d queued</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">Delete %d download?</item><item quantity="other">Delete %d downloads?</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%d episode</item><item quantity="other">%d episodes</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d failed</item><item quantity="other">%d failed</item></plurals>
@@ -224,6 +226,7 @@
 <string name="downloads_empty_headline">No downloads yet</string>
 <string name="downloads_episode_code">%1$s%2$d · %3$s%4$d</string>
 <string name="downloads_film_subtitle">%1$s · %2$s</string>
+<string name="downloads_free">%s free</string>
 <string name="downloads_free_up_space">Free up space</string>
 <string name="downloads_joined">%1$s · %2$s</string>
 <string name="downloads_load_failed_body">Your downloaded files have not been changed.</string>

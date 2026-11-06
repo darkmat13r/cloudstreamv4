@@ -4,6 +4,8 @@
 <string name="detail_load_failed_body">来源可能不可用。</string>
 <string name="detail_load_failed_headline">无法打开此内容</string>
 <plurals name="downloads_active"><item quantity="other">%d 个活跃下载</item></plurals>
+<plurals name="downloads_count_downloading"><item quantity="other">%d 个正在下载</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="other">%d 个排队中</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="other">删除 %d 个下载项？</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="other">%d 集</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="other">%d 个失败</item></plurals>
@@ -210,6 +212,7 @@
 <string name="downloads_empty">目前尚无下载。</string>
 <string name="downloads_empty_body">从内容的剧集列表开始的下载会显示在这里，无需连接即可播放。</string>
 <string name="downloads_empty_headline">尚无下载</string>
+<string name="downloads_free">可用 %s</string>
 <string name="downloads_free_up_space">释放空间</string>
 <string name="downloads_load_failed_body">你已下载的文件未被更改。</string>
 <string name="downloads_load_failed_headline">无法读取你的下载</string>

@@ -3,6 +3,8 @@
 <resources>
 <string name="detail_load_failed_body">Mənbə əlçatmaz ola bilər.</string>
 <string name="detail_load_failed_headline">Bu başlıq açıla bilmədi</string>
+<plurals name="downloads_count_downloading"><item quantity="one">%d endirilir</item><item quantity="other">%d endirilir</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d növbədə</item><item quantity="other">%d növbədə</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">%d endirmə silinsin?</item><item quantity="other">%d endirmə silinsin?</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%d bölüm</item><item quantity="other">%d bölüm</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d uğursuz</item><item quantity="other">%d uğursuz</item></plurals>
@@ -61,6 +63,7 @@
 <string name="downloads_empty">Hal-hazırda heç bir yükləmə yoxdur.</string>
 <string name="downloads_empty_body">Başlığın bölüm siyahısından başlatdığınız yükləmələr burada görünür və bağlantı olmadan oynadılır.</string>
 <string name="downloads_empty_headline">Hələ yükləmə yoxdur</string>
+<string name="downloads_free">%s boş</string>
 <string name="downloads_free_up_space">Yer boşalt</string>
 <string name="downloads_load_failed_body">Yüklənmiş fayllarınız dəyişdirilməyib.</string>
 <string name="downloads_load_failed_headline">Yükləmələriniz oxuna bilmədi</string>

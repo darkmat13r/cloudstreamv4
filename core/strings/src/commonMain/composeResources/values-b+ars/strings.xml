@@ -3,6 +3,8 @@
 <resources>
 <string name="detail_load_failed_body">يمكن المصدر مو متاح.</string>
 <string name="detail_load_failed_headline">ما قدرنا نفتح هالعنوان</string>
+<plurals name="downloads_count_downloading"><item quantity="zero">%d قيد التنزيل</item><item quantity="one">%d قيد التنزيل</item><item quantity="two">%d قيد التنزيل</item><item quantity="few">%d قيد التنزيل</item><item quantity="many">%d قيد التنزيل</item><item quantity="other">%d قيد التنزيل</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="zero">%d في قائمة الانتظار</item><item quantity="one">%d في قائمة الانتظار</item><item quantity="two">%d في قائمة الانتظار</item><item quantity="few">%d في قائمة الانتظار</item><item quantity="many">%d في قائمة الانتظار</item><item quantity="other">%d في قائمة الانتظار</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="zero">حذف %d تنزيل؟</item><item quantity="one">حذف %d تنزيل؟</item><item quantity="two">حذف %d تنزيلين؟</item><item quantity="few">حذف %d تنزيلات؟</item><item quantity="many">حذف %d تنزيلًا؟</item><item quantity="other">حذف %d تنزيل؟</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="zero">%d حلقة</item><item quantity="one">%d حلقة</item><item quantity="two">%d حلقتان</item><item quantity="few">%d حلقات</item><item quantity="many">%d حلقة</item><item quantity="other">%d حلقة</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="zero">فشل %d</item><item quantity="one">فشل %d</item><item quantity="two">فشل %d</item><item quantity="few">فشل %d</item><item quantity="many">فشل %d</item><item quantity="other">فشل %d</item></plurals>
@@ -103,6 +105,7 @@
 <string name="downloads_delete_confirm_body">سيؤدي هذا إلى تحرير %s ولا يمكن التراجع عنه.</string>
 <string name="downloads_empty_body">التحميلات اللي تبداها من قائمة حلقات العنوان تطلع هنا وتشتغل بدون اتصال.</string>
 <string name="downloads_empty_headline">ما فيه تحميلات للحين</string>
+<string name="downloads_free">%s متاحة</string>
 <string name="downloads_free_up_space">فضّ مساحة</string>
 <string name="downloads_load_failed_body">ملفاتك المحمّلة ما تغيّرت.</string>
 <string name="downloads_load_failed_headline">ما قدرنا نقرأ تحميلاتك</string>

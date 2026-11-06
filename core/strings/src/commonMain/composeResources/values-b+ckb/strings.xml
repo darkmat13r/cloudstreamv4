@@ -3,6 +3,8 @@
 <resources>
 <string name="detail_load_failed_body">ڕەنگە سەرچاوەکە بەردەست نەبێت.</string>
 <string name="detail_load_failed_headline">نەتوانرا ئەم ناونیشانە بکرێتەوە</string>
+<plurals name="downloads_count_downloading"><item quantity="one">%d دادەگیرێت</item><item quantity="other">%d دادەگیرێت</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d لە ڕیزدا</item><item quantity="other">%d لە ڕیزدا</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">%d داگرتن بسڕدرێتەوە؟</item><item quantity="other">%d داگرتن بسڕدرێتەوە؟</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%d ئەڵقە</item><item quantity="other">%d ئەڵقە</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d شکستی هێنا</item><item quantity="other">%d شکستی هێنا</item></plurals>
@@ -40,6 +42,7 @@
 <string name="downloads_empty">لە ئێستادا هیچ داونلۆدێک نییە.</string>
 <string name="downloads_empty_body">ئەو داونلۆدانەی لە لیستی ئەڵقەکانی ناونیشانێکەوە دەستی پێ دەکەیت لێرە دەردەکەون و بەبێ پەیوەندی لێدەدرێن.</string>
 <string name="downloads_empty_headline">هێشتا هیچ داونلۆدێک نییە</string>
+<string name="downloads_free">%s بەتاڵ</string>
 <string name="downloads_free_up_space">بۆشایی چۆڵ بکە</string>
 <string name="downloads_load_failed_body">فایلە داونلۆدکراوەکانت نەگۆڕدراون.</string>
 <string name="downloads_load_failed_headline">نەتوانرا داونلۆدەکانت بخوێنرێنەوە</string>

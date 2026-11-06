@@ -4,6 +4,8 @@
 <string name="detail_load_failed_body">Källan kanske inte är tillgänglig.</string>
 <string name="detail_load_failed_headline">Titeln kunde inte öppnas</string>
 <plurals name="downloads_active"><item quantity="one">%d aktiv nedladdning</item><item quantity="other">%d aktiva nedladdningar</item></plurals>
+<plurals name="downloads_count_downloading"><item quantity="one">%d laddas ned</item><item quantity="other">%d laddas ned</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d i kö</item><item quantity="other">%d i kö</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">Radera %d nedladdning?</item><item quantity="other">Radera %d nedladdningar?</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%d avsnitt</item><item quantity="other">%d avsnitt</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d misslyckades</item><item quantity="other">%d misslyckades</item></plurals>
@@ -210,6 +212,7 @@
 <string name="downloads_empty">Det finns för närvarande inga nedladdningar.</string>
 <string name="downloads_empty_body">Nerladdningar du startar från en titels avsnittslista visas här och spelas upp utan anslutning.</string>
 <string name="downloads_empty_headline">Inga nerladdningar ännu</string>
+<string name="downloads_free">%s ledigt</string>
 <string name="downloads_free_up_space">Frigör utrymme</string>
 <string name="downloads_load_failed_body">Dina nerladdade filer har inte ändrats.</string>
 <string name="downloads_load_failed_headline">Kunde inte läsa dina nerladdningar</string>

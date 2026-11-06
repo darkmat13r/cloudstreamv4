@@ -3,6 +3,8 @@
 <resources>
 <string name="detail_load_failed_body">ممکن ہے ذریعہ دستیاب نہ ہو۔</string>
 <string name="detail_load_failed_headline">یہ عنوان نہیں کھل سکا</string>
+<plurals name="downloads_count_downloading"><item quantity="one">%d ڈاؤن لوڈ ہو رہے ہیں</item><item quantity="other">%d ڈاؤن لوڈ ہو رہے ہیں</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d قطار میں</item><item quantity="other">%d قطار میں</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">%d ڈاؤن لوڈز حذف کریں؟</item><item quantity="other">%d ڈاؤن لوڈز حذف کریں؟</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%d اقساط</item><item quantity="other">%d اقساط</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d ناکام</item><item quantity="other">%d ناکام</item></plurals>
@@ -169,6 +171,7 @@
 <string name="downloads_empty">فی الحال کوئی ڈاونلوڈ نہیں۔</string>
 <string name="downloads_empty_body">کسی عنوان کی اقساط کی فہرست سے شروع کیے گئے ڈاؤن لوڈ یہاں نظر آتے ہیں اور کنکشن کے بغیر چلتے ہیں۔</string>
 <string name="downloads_empty_headline">ابھی تک کوئی ڈاؤن لوڈ نہیں</string>
+<string name="downloads_free">%s خالی</string>
 <string name="downloads_free_up_space">جگہ خالی کریں</string>
 <string name="downloads_load_failed_body">آپ کی ڈاؤن لوڈ کردہ فائلیں تبدیل نہیں ہوئیں۔</string>
 <string name="downloads_load_failed_headline">آپ کے ڈاؤن لوڈ پڑھے نہیں جا سکے</string>

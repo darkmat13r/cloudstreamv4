@@ -3,6 +3,8 @@
 <resources>
 <string name="detail_load_failed_body">Zdroj možno nie je dostupný.</string>
 <string name="detail_load_failed_headline">Tento titul sa nepodarilo otvoriť</string>
+<plurals name="downloads_count_downloading"><item quantity="one">sťahuje sa %d</item><item quantity="few">sťahuje sa %d</item><item quantity="many">sťahuje sa %d</item><item quantity="other">sťahuje sa %d</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d v poradí</item><item quantity="few">%d v poradí</item><item quantity="many">%d v poradí</item><item quantity="other">%d v poradí</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">Odstrániť %d stiahnutý súbor?</item><item quantity="few">Odstrániť %d stiahnuté súbory?</item><item quantity="many">Odstrániť %d stiahnutého súboru?</item><item quantity="other">Odstrániť %d stiahnutých súborov?</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%d epizóda</item><item quantity="few">%d epizódy</item><item quantity="many">%d epizódy</item><item quantity="other">%d epizód</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d neúspešné</item><item quantity="few">%d neúspešné</item><item quantity="many">%d neúspešných</item><item quantity="other">%d neúspešných</item></plurals>
@@ -142,6 +144,7 @@
 <string name="downloads_empty">Momentálne nie sú žiadne stiahnutia.</string>
 <string name="downloads_empty_body">Sťahovania spustené zo zoznamu epizód titulu sa zobrazia tu a prehrajú sa bez pripojenia.</string>
 <string name="downloads_empty_headline">Zatiaľ žiadne stiahnutia</string>
+<string name="downloads_free">%s voľné</string>
 <string name="downloads_free_up_space">Uvoľniť miesto</string>
 <string name="downloads_load_failed_body">Vaše stiahnuté súbory neboli zmenené.</string>
 <string name="downloads_load_failed_headline">Stiahnutia sa nepodarilo načítať</string>

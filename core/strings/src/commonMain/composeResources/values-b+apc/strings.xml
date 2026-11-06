@@ -4,6 +4,8 @@
 <string name="detail_load_failed_body">يمكن المصدر مو متوفر.</string>
 <string name="detail_load_failed_headline">ما قدرنا نفتح هالعنوان</string>
 <plurals name="downloads_active"><item quantity="one">م شي عم يتنزل</item><item quantity="other">شي واحد عم يتنزل</item></plurals>
+<plurals name="downloads_count_downloading"><item quantity="one">%d عم ينزل</item><item quantity="other">%d عم ينزل</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d بالدور</item><item quantity="other">%d بالدور</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">بدك تمحي %d تنزيل؟</item><item quantity="other">بدك تمحي %d تنزيلات؟</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%d حلقة</item><item quantity="other">%d حلقات</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">فشل %d</item><item quantity="other">فشلوا %d</item></plurals>
@@ -209,6 +211,7 @@
 <string name="downloads_empty">مافي تنزيلات هلّق.</string>
 <string name="downloads_empty_body">التنزيلات اللي بتبلّشها من قائمة حلقات العنوان بتطلع هون وبتمشي بلا إنترنت.</string>
 <string name="downloads_empty_headline">لسا مافي تنزيلات</string>
+<string name="downloads_free">%s فاضي</string>
 <string name="downloads_free_up_space">فضّي مساحة</string>
 <string name="downloads_load_failed_body">ملفاتك المنزّلة ما تغيّرت.</string>
 <string name="downloads_load_failed_headline">ما قدرنا نقرا تنزيلاتك</string>

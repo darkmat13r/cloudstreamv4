@@ -3,6 +3,8 @@
 <resources>
 <string name="detail_load_failed_body">ഉറവിടം ലഭ്യമല്ലായിരിക്കാം.</string>
 <string name="detail_load_failed_headline">ഈ ശീർഷകം തുറക്കാനായില്ല</string>
+<plurals name="downloads_count_downloading"><item quantity="one">%d ഡൗൺലോഡ് ചെയ്യുന്നു</item><item quantity="other">%d ഡൗൺലോഡ് ചെയ്യുന്നു</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d ക്യൂവിൽ</item><item quantity="other">%d ക്യൂവിൽ</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">%d ഡൗൺലോഡുകൾ ഇല്ലാതാക്കണോ?</item><item quantity="other">%d ഡൗൺലോഡുകൾ ഇല്ലാതാക്കണോ?</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%d എപ്പിസോഡുകൾ</item><item quantity="other">%d എപ്പിസോഡുകൾ</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d പരാജയപ്പെട്ടു</item><item quantity="other">%d പരാജയപ്പെട്ടു</item></plurals>
@@ -87,6 +89,7 @@
 <string name="downloads_empty">നിലവിൽ ഡൗൺലോഡുകൾ ഒന്നും തന്നെയില്ല.</string>
 <string name="downloads_empty_body">ഒരു ശീർഷകത്തിന്റെ എപ്പിസോഡ് ലിസ്റ്റിൽ നിന്ന് ആരംഭിക്കുന്ന ഡൗൺലോഡുകൾ ഇവിടെ കാണാം, കണക്ഷനില്ലാതെ പ്ലേ ചെയ്യാം.</string>
 <string name="downloads_empty_headline">ഇതുവരെ ഡൗൺലോഡുകളൊന്നുമില്ല</string>
+<string name="downloads_free">%s ശൂന്യം</string>
 <string name="downloads_free_up_space">ഇടം ഒഴിവാക്കുക</string>
 <string name="downloads_load_failed_body">നിങ്ങൾ ഡൗൺലോഡ് ചെയ്ത ഫയലുകൾ മാറ്റിയിട്ടില്ല.</string>
 <string name="downloads_load_failed_headline">നിങ്ങളുടെ ഡൗൺലോഡുകൾ വായിക്കാനായില്ല</string>

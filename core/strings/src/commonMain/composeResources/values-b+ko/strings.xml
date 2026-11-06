@@ -4,6 +4,8 @@
 <string name="detail_load_failed_body">소스를 사용할 수 없을 수 있습니다.</string>
 <string name="detail_load_failed_headline">이 작품을 열 수 없습니다</string>
 <plurals name="downloads_active"><item quantity="other">%d 활성 다운로드</item></plurals>
+<plurals name="downloads_count_downloading"><item quantity="other">%d개 다운로드 중</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="other">%d개 대기 중</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="other">다운로드 %d개를 삭제할까요?</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="other">%d화</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="other">%d개 실패</item></plurals>
@@ -209,6 +211,7 @@
 <string name="downloads_empty">현재 다운로드가 없습니다.</string>
 <string name="downloads_empty_body">작품의 에피소드 목록에서 시작한 다운로드가 여기에 표시되며 연결 없이 재생됩니다.</string>
 <string name="downloads_empty_headline">아직 다운로드가 없습니다</string>
+<string name="downloads_free">%s 남음</string>
 <string name="downloads_free_up_space">공간 확보</string>
 <string name="downloads_load_failed_body">다운로드한 파일은 변경되지 않았습니다.</string>
 <string name="downloads_load_failed_headline">다운로드를 읽을 수 없습니다</string>

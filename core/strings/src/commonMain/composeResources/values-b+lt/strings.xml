@@ -3,6 +3,8 @@
 <resources>
 <string name="detail_load_failed_body">Šaltinis gali būti nepasiekiamas.</string>
 <string name="detail_load_failed_headline">Nepavyko atidaryti šio pavadinimo</string>
+<plurals name="downloads_count_downloading"><item quantity="one">%d siunčiama</item><item quantity="few">%d siunčiama</item><item quantity="many">%d siunčiama</item><item quantity="other">%d siunčiama</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d eilėje</item><item quantity="few">%d eilėje</item><item quantity="many">%d eilėje</item><item quantity="other">%d eilėje</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">Ištrinti %d atsisiuntimą?</item><item quantity="few">Ištrinti %d atsisiuntimus?</item><item quantity="many">Ištrinti %d atsisiuntimo?</item><item quantity="other">Ištrinti %d atsisiuntimų?</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%d serija</item><item quantity="few">%d serijos</item><item quantity="many">%d serijos</item><item quantity="other">%d serijų</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d nepavyko</item><item quantity="few">%d nepavyko</item><item quantity="many">%d nepavyko</item><item quantity="other">%d nepavyko</item></plurals>
@@ -79,6 +81,7 @@
 <string name="downloads_empty">Šiuo metu atsisiuntimų nėra.</string>
 <string name="downloads_empty_body">Atsisiuntimai, pradėti iš pavadinimo epizodų sąrašo, rodomi čia ir paleidžiami be ryšio.</string>
 <string name="downloads_empty_headline">Atsisiuntimų dar nėra</string>
+<string name="downloads_free">%s laisva</string>
 <string name="downloads_free_up_space">Atlaisvinti vietos</string>
 <string name="downloads_load_failed_body">Jūsų atsisiųsti failai nebuvo pakeisti.</string>
 <string name="downloads_load_failed_headline">Nepavyko nuskaityti atsisiuntimų</string>

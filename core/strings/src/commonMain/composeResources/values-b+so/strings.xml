@@ -3,6 +3,8 @@
 <resources>
 <string name="detail_load_failed_body">Isha waxaa laga yaabaa inaysan diyaar ahayn.</string>
 <string name="detail_load_failed_headline">Cinwaankan lama furi karo</string>
+<plurals name="downloads_count_downloading"><item quantity="one">%d ayaa la soo dejinayaa</item><item quantity="other">%d ayaa la soo dejinayaa</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d safka ku jira</item><item quantity="other">%d safka ku jira</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">Ma tirtirtaa %d soo dejin?</item><item quantity="other">Ma tirtirtaa %d soo dejin?</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%d qaybood</item><item quantity="other">%d qaybood</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d ayaa fashilmay</item><item quantity="other">%d ayaa fashilmay</item></plurals>
@@ -144,6 +146,7 @@
 <string name="downloads_empty">Ma jiro muuqaal aad soo degsatay.</string>
 <string name="downloads_empty_body">Soo dejinta aad ka bilowdo liiska qaybaha cinwaanka halkan ayay ka muuqdaan oo waxay shaqeeyaan khad la'aan.</string>
 <string name="downloads_empty_headline">Weli ma jiraan soo dejin</string>
+<string name="downloads_free">%s bannaan</string>
 <string name="downloads_free_up_space">Bannee meel</string>
 <string name="downloads_load_failed_body">Faylasha aad soo dejisay lama beddelin.</string>
 <string name="downloads_load_failed_headline">Lama akhrin karo soo dejintaada</string>

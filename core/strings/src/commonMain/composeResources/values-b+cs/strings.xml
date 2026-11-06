@@ -4,6 +4,8 @@
 <string name="detail_load_failed_body">Zdroj možná není dostupný.</string>
 <string name="detail_load_failed_headline">Tento titul se nepodařilo otevřít</string>
 <plurals name="downloads_active"><item quantity="one">%d aktivní stahování</item><item quantity="few">%d aktivní stahování</item><item quantity="many">%d aktivních stahování</item><item quantity="other">%d aktivních stahování</item></plurals>
+<plurals name="downloads_count_downloading"><item quantity="one">stahuje se %d</item><item quantity="few">stahuje se %d</item><item quantity="many">stahuje se %d</item><item quantity="other">stahuje se %d</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d ve frontě</item><item quantity="few">%d ve frontě</item><item quantity="many">%d ve frontě</item><item quantity="other">%d ve frontě</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">Smazat %d stažený soubor?</item><item quantity="few">Smazat %d stažené soubory?</item><item quantity="many">Smazat %d staženého souboru?</item><item quantity="other">Smazat %d stažených souborů?</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%d epizoda</item><item quantity="few">%d epizody</item><item quantity="many">%d epizody</item><item quantity="other">%d epizod</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d neúspěšné</item><item quantity="few">%d neúspěšná</item><item quantity="many">%d neúspěšných</item><item quantity="other">%d neúspěšných</item></plurals>
@@ -210,6 +212,7 @@
 <string name="downloads_empty">Aktuálně neprobíhají žádná stahování.</string>
 <string name="downloads_empty_body">Stahování spuštěná ze seznamu epizod titulu se zobrazí zde a přehrají se bez připojení.</string>
 <string name="downloads_empty_headline">Zatím žádná stahování</string>
+<string name="downloads_free">%s volné</string>
 <string name="downloads_free_up_space">Uvolnit místo</string>
 <string name="downloads_load_failed_body">Vaše stažené soubory nebyly změněny.</string>
 <string name="downloads_load_failed_headline">Stahování se nepodařilo načíst</string>

@@ -3,6 +3,8 @@
 <resources>
 <string name="detail_load_failed_body">ምንጪ ኣይርከብ ይኸውን።</string>
 <string name="detail_load_failed_headline">እዚ ኣርእስቲ ክኽፈት ኣይከኣለን</string>
+<plurals name="downloads_count_downloading"><item quantity="one">%d ይወርድ ኣሎ</item><item quantity="other">%d ይወርድ ኣሎ</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d ኣብ መስርዕ</item><item quantity="other">%d ኣብ መስርዕ</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">%d ውርዳት ይደምሰሱ?</item><item quantity="other">%d ውርዳት ይደምሰሱ?</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%d ክፍልታት</item><item quantity="other">%d ክፍልታት</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d ኣይተዓወተን</item><item quantity="other">%d ኣይተዓወቱን</item></plurals>
@@ -18,6 +20,7 @@
 <string name="downloads_delete_confirm_body">እዚ %s ነጻ ይገብር፣ ክምለስ ኣይክእልን።</string>
 <string name="downloads_empty_body">ካብ ዝርዝር ክፋላት ናይ ሓደ ኣርእስቲ እትጅምሮም ውርዳት ኣብዚ ይርአዩ፣ ብዘይ መራኸቢ ድማ ይጻወቱ።</string>
 <string name="downloads_empty_headline">ክሳብ ሕጂ ውርዳት የለዉን</string>
+<string name="downloads_free">%s ነጻ</string>
 <string name="downloads_free_up_space">ቦታ ኣናጽፍ</string>
 <string name="downloads_load_failed_body">ዝወረዱ ፋይላትካ ኣይተቐየሩን።</string>
 <string name="downloads_load_failed_headline">ውርዳትካ ክንበብ ኣይከኣለን</string>

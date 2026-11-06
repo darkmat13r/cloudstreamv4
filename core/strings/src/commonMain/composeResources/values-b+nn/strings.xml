@@ -3,6 +3,8 @@
 <resources>
 <string name="detail_load_failed_body">Kjelda er kanskje ikkje tilgjengeleg.</string>
 <string name="detail_load_failed_headline">Kunne ikkje opne denne tittelen</string>
+<plurals name="downloads_count_downloading"><item quantity="one">%d lastar ned</item><item quantity="other">%d lastar ned</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d i kø</item><item quantity="other">%d i kø</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">Slette %d nedlasting?</item><item quantity="other">Slette %d nedlastingar?</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%d episode</item><item quantity="other">%d episodar</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d feila</item><item quantity="other">%d feila</item></plurals>
@@ -59,6 +61,7 @@
 <string name="downloads_delete_confirm_body">Dette frigjer %s og kan ikkje angrast.</string>
 <string name="downloads_empty_body">Nedlastingar du startar frå episodelista til ein tittel, blir viste her og kan spelast av utan tilkopling.</string>
 <string name="downloads_empty_headline">Ingen nedlastingar enno</string>
+<string name="downloads_free">%s ledig</string>
 <string name="downloads_free_up_space">Frigjer plass</string>
 <string name="downloads_load_failed_body">Dei nedlasta filene dine er ikkje endra.</string>
 <string name="downloads_load_failed_headline">Kunne ikkje lese nedlastingane dine</string>

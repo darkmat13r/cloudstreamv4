@@ -3,6 +3,8 @@
 <resources>
 <string name="detail_load_failed_body">ምንጩ ላይገኝ ይችላል።</string>
 <string name="detail_load_failed_headline">ይህን ርዕስ መክፈት አልተቻለም</string>
+<plurals name="downloads_count_downloading"><item quantity="one">%d በማውረድ ላይ</item><item quantity="other">%d በማውረድ ላይ</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d በወረፋ</item><item quantity="other">%d በወረፋ</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">%d ውርዶችን ይሰርዙ?</item><item quantity="other">%d ውርዶችን ይሰርዙ?</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%d ክፍሎች</item><item quantity="other">%d ክፍሎች</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d አልተሳካም</item><item quantity="other">%d አልተሳኩም</item></plurals>
@@ -38,6 +40,7 @@
 <string name="downloads_delete_confirm_body">ይህ %s ነጻ ያደርጋል እና መቀልበስ አይቻልም።</string>
 <string name="downloads_empty_body">ከርዕስ የክፍሎች ዝርዝር የጀመሯቸው ውርዶች እዚህ ይታያሉ፣ ያለ ግንኙነትም ይጫወታሉ።</string>
 <string name="downloads_empty_headline">እስካሁን ምንም ውርዶች የሉም</string>
+<string name="downloads_free">%s ነጻ</string>
 <string name="downloads_free_up_space">ቦታ አስለቅቅ</string>
 <string name="downloads_load_failed_body">የወረዱ ፋይሎችዎ አልተቀየሩም።</string>
 <string name="downloads_load_failed_headline">ውርዶችዎን ማንበብ አልተቻለም</string>

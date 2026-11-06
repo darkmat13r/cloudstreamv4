@@ -3,6 +3,8 @@
 <resources>
 <string name="detail_load_failed_body">Is-sors jista' jkun mhux disponibbli.</string>
 <string name="detail_load_failed_headline">It-titlu ma setax jinfetaħ</string>
+<plurals name="downloads_count_downloading"><item quantity="one">%d qed jitniżżlu</item><item quantity="two">%d qed jitniżżlu</item><item quantity="few">%d qed jitniżżlu</item><item quantity="many">%d qed jitniżżlu</item><item quantity="other">%d qed jitniżżlu</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d fil-kju</item><item quantity="two">%d fil-kju</item><item quantity="few">%d fil-kju</item><item quantity="many">%d fil-kju</item><item quantity="other">%d fil-kju</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">Tħassar %d tniżżila?</item><item quantity="two">Tħassar %d tniżżiliet?</item><item quantity="few">Tħassar %d tniżżiliet?</item><item quantity="many">Tħassar %d tniżżiliet?</item><item quantity="other">Tħassar %d tniżżiliet?</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%d episodju</item><item quantity="two">%d episodji</item><item quantity="few">%d episodji</item><item quantity="many">%d episodji</item><item quantity="other">%d episodji</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d falla</item><item quantity="two">%d fallew</item><item quantity="few">%d fallew</item><item quantity="many">%d fallew</item><item quantity="other">%d fallew</item></plurals>
@@ -39,6 +41,7 @@
 <string name="downloads_delete_confirm_body">Dan jillibera %s u ma jistax jitreġġa' lura.</string>
 <string name="downloads_empty_body">It-tniżżil li tibda mil-lista tal-episodji ta' titlu jidher hawn u jindaqq mingħajr konnessjoni.</string>
 <string name="downloads_empty_headline">Għad m'hemmx tniżżil</string>
+<string name="downloads_free">%s liberi</string>
 <string name="downloads_free_up_space">Ħeles l-ispazju</string>
 <string name="downloads_load_failed_body">Il-fajls imniżżla tiegħek ma nbidlux.</string>
 <string name="downloads_load_failed_headline">Ma setax jinqara t-tniżżil tiegħek</string>

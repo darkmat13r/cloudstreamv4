@@ -3,6 +3,8 @@
 <resources>
 <string name="detail_load_failed_body">ಮೂಲ ಲಭ್ಯವಿಲ್ಲದಿರಬಹುದು.</string>
 <string name="detail_load_failed_headline">ಈ ಶೀರ್ಷಿಕೆಯನ್ನು ತೆರೆಯಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ</string>
+<plurals name="downloads_count_downloading"><item quantity="one">%d ಡೌನ್‌ಲೋಡ್ ಆಗುತ್ತಿದೆ</item><item quantity="other">%d ಡೌನ್‌ಲೋಡ್ ಆಗುತ್ತಿದೆ</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d ಸರದಿಯಲ್ಲಿ</item><item quantity="other">%d ಸರದಿಯಲ್ಲಿ</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">%d ಡೌನ್‌ಲೋಡ್‌ಗಳನ್ನು ಅಳಿಸುವುದೇ?</item><item quantity="other">%d ಡೌನ್‌ಲೋಡ್‌ಗಳನ್ನು ಅಳಿಸುವುದೇ?</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%d ಸಂಚಿಕೆಗಳು</item><item quantity="other">%d ಸಂಚಿಕೆಗಳು</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d ವಿಫಲವಾಗಿದೆ</item><item quantity="other">%d ವಿಫಲವಾಗಿವೆ</item></plurals>
@@ -44,6 +46,7 @@
 <string name="downloads_delete_confirm_body">ಇದು %s ಮುಕ್ತಗೊಳಿಸುತ್ತದೆ ಮತ್ತು ರದ್ದುಗೊಳಿಸಲಾಗುವುದಿಲ್ಲ.</string>
 <string name="downloads_empty_body">ಶೀರ್ಷಿಕೆಯ ಸಂಚಿಕೆ ಪಟ್ಟಿಯಿಂದ ನೀವು ಪ್ರಾರಂಭಿಸುವ ಡೌನ್‌ಲೋಡ್‌ಗಳು ಇಲ್ಲಿ ಕಾಣಿಸುತ್ತವೆ ಮತ್ತು ಸಂಪರ್ಕವಿಲ್ಲದೆ ಪ್ಲೇ ಆಗುತ್ತವೆ.</string>
 <string name="downloads_empty_headline">ಇನ್ನೂ ಡೌನ್‌ಲೋಡ್‌ಗಳಿಲ್ಲ</string>
+<string name="downloads_free">%s ಖಾಲಿ</string>
 <string name="downloads_free_up_space">ಸ್ಥಳವನ್ನು ಖಾಲಿ ಮಾಡಿ</string>
 <string name="downloads_load_failed_body">ನಿಮ್ಮ ಡೌನ್‌ಲೋಡ್ ಮಾಡಿದ ಫೈಲ್‌ಗಳನ್ನು ಬದಲಾಯಿಸಲಾಗಿಲ್ಲ.</string>
 <string name="downloads_load_failed_headline">ನಿಮ್ಮ ಡೌನ್‌ಲೋಡ್‌ಗಳನ್ನು ಓದಲಾಗಲಿಲ್ಲ</string>

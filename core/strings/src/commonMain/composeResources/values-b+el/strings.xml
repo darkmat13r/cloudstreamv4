@@ -3,6 +3,8 @@
 <resources>
 <string name="detail_load_failed_body">Η πηγή ίσως δεν είναι διαθέσιμη.</string>
 <string name="detail_load_failed_headline">Δεν ήταν δυνατό το άνοιγμα αυτού του τίτλου</string>
+<plurals name="downloads_count_downloading"><item quantity="one">%d σε λήψη</item><item quantity="other">%d σε λήψη</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d σε αναμονή</item><item quantity="other">%d σε αναμονή</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">Διαγραφή %d λήψης;</item><item quantity="other">Διαγραφή %d λήψεων;</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%d επεισόδιο</item><item quantity="other">%d επεισόδια</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d απέτυχε</item><item quantity="other">%d απέτυχαν</item></plurals>
@@ -189,6 +191,7 @@
 <string name="downloads_empty">Δεν υπάρχουν προς το παρόν λήψεις.</string>
 <string name="downloads_empty_body">Οι λήψεις που ξεκινάτε από τη λίστα επεισοδίων ενός τίτλου εμφανίζονται εδώ και αναπαράγονται χωρίς σύνδεση.</string>
 <string name="downloads_empty_headline">Δεν υπάρχουν ακόμα λήψεις</string>
+<string name="downloads_free">%s ελεύθερα</string>
 <string name="downloads_free_up_space">Απελευθέρωση χώρου</string>
 <string name="downloads_load_failed_body">Τα ληφθέντα αρχεία σας δεν έχουν αλλάξει.</string>
 <string name="downloads_load_failed_headline">Δεν ήταν δυνατή η ανάγνωση των λήψεών σας</string>

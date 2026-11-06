@@ -3,6 +3,8 @@
 <resources>
 <string name="detail_load_failed_body">Pode que a fonte non estea dispoñible.</string>
 <string name="detail_load_failed_headline">Non se puido abrir este título</string>
+<plurals name="downloads_count_downloading"><item quantity="one">%d descargando</item><item quantity="other">%d descargando</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d na cola</item><item quantity="other">%d na cola</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">Eliminar %d descarga?</item><item quantity="other">Eliminar %d descargas?</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%d episodio</item><item quantity="other">%d episodios</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d fallida</item><item quantity="other">%d fallidas</item></plurals>
@@ -96,6 +98,7 @@
 <string name="downloads_empty">Non hay descargas dispoñíbeis</string>
 <string name="downloads_empty_body">As descargas que inicies desde a lista de episodios dun título aparecen aquí e reprodúcense sen conexión.</string>
 <string name="downloads_empty_headline">Aínda non hai descargas</string>
+<string name="downloads_free">%s libres</string>
 <string name="downloads_free_up_space">Liberar espazo</string>
 <string name="downloads_load_failed_body">Os teus ficheiros descargados non se modificaron.</string>
 <string name="downloads_load_failed_headline">Non se puideron ler as túas descargas</string>

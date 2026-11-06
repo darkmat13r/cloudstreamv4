@@ -3,6 +3,8 @@
 <resources>
 <string name="detail_load_failed_body">Potser la font no està disponible.</string>
 <string name="detail_load_failed_headline">No s'ha pogut obrir aquest títol</string>
+<plurals name="downloads_count_downloading"><item quantity="one">%d en baixada</item><item quantity="many">%d en baixada</item><item quantity="other">%d en baixada</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d a la cua</item><item quantity="many">%d a la cua</item><item quantity="other">%d a la cua</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">Voleu suprimir %d baixada?</item><item quantity="many">Voleu suprimir %d baixades?</item><item quantity="other">Voleu suprimir %d baixades?</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%d episodi</item><item quantity="many">%d episodis</item><item quantity="other">%d episodis</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d fallida</item><item quantity="many">%d fallides</item><item quantity="other">%d fallides</item></plurals>
@@ -80,6 +82,7 @@
 <string name="downloads_empty">No hi ha descàrregues en curs.</string>
 <string name="downloads_empty_body">Les descàrregues que inicieu des de la llista d'episodis d'un títol apareixen aquí i es reprodueixen sense connexió.</string>
 <string name="downloads_empty_headline">Encara no hi ha descàrregues</string>
+<string name="downloads_free">%s lliures</string>
 <string name="downloads_free_up_space">Allibera espai</string>
 <string name="downloads_load_failed_body">Els fitxers descarregats no s'han modificat.</string>
 <string name="downloads_load_failed_headline">No s'han pogut llegir les descàrregues</string>

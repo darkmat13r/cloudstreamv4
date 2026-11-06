@@ -4,6 +4,8 @@
 <string name="detail_load_failed_body">قد يكون مصدره غير متاح.</string>
 <string name="detail_load_failed_headline">تعذّر فتح هذا العنوان</string>
 <plurals name="downloads_active"><item quantity="zero">%d لا يوجد تنزيل نشط</item><item quantity="one">%d تنزيل واحد نشط</item><item quantity="two">%d تنزيلان نشطان</item><item quantity="few">%d تنزيلات نشطة</item><item quantity="many">%d تنزيل نشط</item><item quantity="other">%d تنزيل نشط</item></plurals>
+<plurals name="downloads_count_downloading"><item quantity="zero">%d قيد التنزيل</item><item quantity="one">%d قيد التنزيل</item><item quantity="two">%d قيد التنزيل</item><item quantity="few">%d قيد التنزيل</item><item quantity="many">%d قيد التنزيل</item><item quantity="other">%d قيد التنزيل</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="zero">%d في قائمة الانتظار</item><item quantity="one">%d في قائمة الانتظار</item><item quantity="two">%d في قائمة الانتظار</item><item quantity="few">%d في قائمة الانتظار</item><item quantity="many">%d في قائمة الانتظار</item><item quantity="other">%d في قائمة الانتظار</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="zero">حذف %d تنزيل؟</item><item quantity="one">حذف %d تنزيل؟</item><item quantity="two">حذف %d تنزيلين؟</item><item quantity="few">حذف %d تنزيلات؟</item><item quantity="many">حذف %d تنزيلًا؟</item><item quantity="other">حذف %d تنزيل؟</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="zero">%d حلقة</item><item quantity="one">%d حلقة</item><item quantity="two">%d حلقتان</item><item quantity="few">%d حلقات</item><item quantity="many">%d حلقة</item><item quantity="other">%d حلقة</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="zero">فشل %d</item><item quantity="one">فشل %d</item><item quantity="two">فشل %d</item><item quantity="few">فشل %d</item><item quantity="many">فشل %d</item><item quantity="other">فشل %d</item></plurals>
@@ -209,6 +211,7 @@
 <string name="downloads_empty">لا يوجد حالياً اى تنزيلات.</string>
 <string name="downloads_empty_body">تظهر هنا التنزيلات التي تبدأها من قائمة حلقات العنوان، ويمكن تشغيلها دون اتصال.</string>
 <string name="downloads_empty_headline">لا توجد تنزيلات بعد</string>
+<string name="downloads_free">%s متاحة</string>
 <string name="downloads_free_up_space">إخلاء مساحة</string>
 <string name="downloads_load_failed_body">لم تتغيّر ملفاتك التي تم تنزيلها.</string>
 <string name="downloads_load_failed_headline">تعذّرت قراءة تنزيلاتك</string>

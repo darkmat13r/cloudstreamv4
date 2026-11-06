@@ -3,6 +3,8 @@
 <resources>
 <string name="detail_load_failed_body">Maaaring hindi available ang source.</string>
 <string name="detail_load_failed_headline">Hindi mabuksan ang pamagat na ito</string>
+<plurals name="downloads_count_downloading"><item quantity="one">%d nagda-download</item><item quantity="other">%d nagda-download</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d nakapila</item><item quantity="other">%d nakapila</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">Burahin ang %d download?</item><item quantity="other">Burahin ang %d download?</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%d episode</item><item quantity="other">%d episode</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d nabigo</item><item quantity="other">%d nabigo</item></plurals>
@@ -57,6 +59,7 @@
 <string name="downloads_empty">Kasalukuyang walang mga dina-download.</string>
 <string name="downloads_empty_body">Lalabas dito ang mga download na sinimulan mo mula sa listahan ng episode ng isang pamagat at mapapanood nang walang koneksyon.</string>
 <string name="downloads_empty_headline">Wala pang mga download</string>
+<string name="downloads_free">%s libre</string>
 <string name="downloads_free_up_space">Magbakante ng espasyo</string>
 <string name="downloads_load_failed_body">Hindi nabago ang mga na-download mong file.</string>
 <string name="downloads_load_failed_headline">Hindi mabasa ang iyong mga download</string>

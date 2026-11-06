@@ -4,6 +4,8 @@
 <string name="detail_load_failed_body">Puede que la fuente no esté disponible.</string>
 <string name="detail_load_failed_headline">No se pudo abrir este título</string>
 <plurals name="downloads_active"><item quantity="one">%d descarga activa</item><item quantity="many">%d descargas activas</item><item quantity="other">%d descargas activas</item></plurals>
+<plurals name="downloads_count_downloading"><item quantity="one">%d descargando</item><item quantity="many">%d descargando</item><item quantity="other">%d descargando</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d en cola</item><item quantity="many">%d en cola</item><item quantity="other">%d en cola</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">¿Eliminar %d descarga?</item><item quantity="many">¿Eliminar %d descargas?</item><item quantity="other">¿Eliminar %d descargas?</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%d episodio</item><item quantity="many">%d episodios</item><item quantity="other">%d episodios</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d fallida</item><item quantity="many">%d fallidas</item><item quantity="other">%d fallidas</item></plurals>
@@ -210,6 +212,7 @@
 <string name="downloads_empty">Actualmente no hay descargas disponibles.</string>
 <string name="downloads_empty_body">Las descargas que inicies desde la lista de episodios de un título aparecen aquí y se reproducen sin conexión.</string>
 <string name="downloads_empty_headline">Aún no hay descargas</string>
+<string name="downloads_free">%s libres</string>
 <string name="downloads_free_up_space">Liberar espacio</string>
 <string name="downloads_load_failed_body">Tus archivos descargados no se han modificado.</string>
 <string name="downloads_load_failed_headline">No se pudieron leer tus descargas</string>

@@ -4,6 +4,8 @@
 <string name="detail_load_failed_body">Джерело може бути недоступним.</string>
 <string name="detail_load_failed_headline">Не вдалося відкрити цю назву</string>
 <plurals name="downloads_active"><item quantity="one">%d активне завантаження</item><item quantity="few">%d активні завантаження</item><item quantity="many">%d активних завантажень</item><item quantity="other">%d активних завантажень</item></plurals>
+<plurals name="downloads_count_downloading"><item quantity="one">завантажується: %d</item><item quantity="few">завантажується: %d</item><item quantity="many">завантажується: %d</item><item quantity="other">завантажується: %d</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">у черзі: %d</item><item quantity="few">у черзі: %d</item><item quantity="many">у черзі: %d</item><item quantity="other">у черзі: %d</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">Видалити %d завантаження?</item><item quantity="few">Видалити %d завантаження?</item><item quantity="many">Видалити %d завантажень?</item><item quantity="other">Видалити %d завантаження?</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%d серія</item><item quantity="few">%d серії</item><item quantity="many">%d серій</item><item quantity="other">%d серії</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d невдале</item><item quantity="few">%d невдалі</item><item quantity="many">%d невдалих</item><item quantity="other">%d невдалих</item></plurals>
@@ -210,6 +212,7 @@
 <string name="downloads_empty">Наразі завантажень немає.</string>
 <string name="downloads_empty_body">Завантаження, розпочаті зі списку серій, з'являються тут і відтворюються без мережі.</string>
 <string name="downloads_empty_headline">Завантажень ще немає</string>
+<string name="downloads_free">вільно %s</string>
 <string name="downloads_free_up_space">Звільнити місце</string>
 <string name="downloads_load_failed_body">Ваші завантажені файли не змінено.</string>
 <string name="downloads_load_failed_headline">Не вдалося прочитати завантаження</string>
