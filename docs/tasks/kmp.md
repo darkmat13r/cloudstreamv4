@@ -4833,7 +4833,7 @@ download sources. There is no UI: that is `KMP-54`, which wires `source()` and `
   for an episode. `fileOf` is null until done and on disk; for a series it gives the folder.
 - Ids are stable across restarts.
 - `contents` emits at most once every 250 ms while running, and not at all when idle.
-- There are no changes to `:feature:downloads`.
+- There are no changes to `:feature:downloads`, except one KDoc line on `DownloadTitleState.Paused`. The PM cleared it: it now says that only Android reads a failure as Paused after a restart, until `KMP-60`/`KMP-62`.
 
 **Shape.**
 - `enqueue(DesktopDownloadRequest)` accepts VIDEO links only; HLS, DASH and torrents are refused with a typed `EnqueueRefusal`.
@@ -4852,11 +4852,15 @@ download sources. There is no UI: that is `KMP-54`, which wires `source()` and `
   A finished episode whose file is gone is dropped.
 - Logging: the exception class and a fixed text only.
 
-**Persisted: `~/.cloudstream4/downloads.json`, format 2, `0600`, written atomically. No link (owner's ruling, 2026-11-06).**
+**Persisted: `~/.cloudstream4/downloads.json`, format 3, `0600`, written atomically. No link (owner's ruling, 2026-11-06).**
 - *What it holds:*
   - ids, metadata, folder and file name, state, byte counts and queue order;
   - the episode's source: `provider` (the extension's name) and `episodeData`, the string the player passes to
-    `SandboxedProvider.links(data)`.
+    `SandboxedProvider.links(data)`. **Unfinished episodes only:** both are cleared when an episode reaches Done, and a Done record
+    reads back without them (any other record without a source is dropped);
+  - a failure's typed reason: the `DownloadFailure` variant name plus its numbers (status code, byte counts), never text. So a
+    Failed episode stays Failed with its reason after a restart. `StoredFailure`'s `when` is exhaustive, so a new variant will not
+    compile until it is named.
 - *Not a link, but not "no URL at all":* `episodeData` is the same episode reference that watch history and bookmarks keep. It is often
   an episode-page URL on the provider's site, and sometimes JSON with URLs inside.
 - *What it never holds:* the media link's `url`, `headers` or `referer`. Those stay in memory for the current process only.
@@ -4864,14 +4868,15 @@ download sources. There is no UI: that is `KMP-54`, which wires `source()` and `
   `SandboxLinkResolver`, which works the player's way: provider by name, then `links(data)`, then `isPublic`, then quality rank. The first
   VIDEO link is used.
   - No usable link: `NoUsableLink`.
-  - The resolver throws or takes more than 60 s: `SourceFailed`.
+  - The resolver throws or takes more than 60 s: `SourceFailed`. The call runs under `runInterruptible`, so a resolver that blocks
+    a thread is interrupted too. `SandboxedProvider.links` already suspends and sends `OP_CANCEL` to the plugin host when cancelled.
   - Either way the part files stay.
 - *Resume after a pause* in the same process reuses the link in memory.
 - *Reading it back:* everything is validated again (path segments, enum names), a bad record is dropped, and a format-1 file is refused.
 - *What stays out:* no `toString` includes the source or the link.
 
 **Tests** (local, none CI). Counted from the XML:
-- `DesktopDownloadsTest`: 14/14, against a JDK `HttpServer` with Range and ETag support; every completion is compared byte for byte.
+- `DesktopDownloadsTest`: 19/19, against a JDK `HttpServer` with Range and ETag support; every completion is compared byte for byte.
   It covers:
   - done, and `fileOf` only at done
   - at most 3 running
@@ -4888,13 +4893,21 @@ download sources. There is no UI: that is `KMP-54`, which wires `source()` and `
   - after a restart, the resolver is asked once with the stored provider and data; a fresh URL resumes from the parts, byte-identical
   - a resolver with nothing, only HLS, or an exception: `NoUsableLink` or `SourceFailed`, with the parts unchanged
   - a retry asks again; a resume after a pause does not
+  - a resolver that never answers, and one that blocks its thread, both fail `SourceFailed` within the (injected) timeout with
+    the parts kept; the blocked thread is released
+  - a failed `NoUsableLink` survives a restart as Failed, then a retry completes; every failure variant round-trips
+  - a finished episode leaves no provider or data marker on disk, is still Done with its file after a restart, and is gone after delete
+- **A real run with an official extension** (InternetArchive, in a throwaway `user.home`; nothing played, and no link or data
+  printed). The "big buck bunny" episode gave 4 VIDEO links. The download was enqueued with its source only. It fetched 5,301,880
+  bytes in 5 parts, then the host closed. A new host listed it Paused. Resume asked the extension once, and the fresh link resumed
+  **from the parts**: every one of the 8 fetches started at its part's planned start plus its bytes on disk, and none at 0. The ETag
+  and Last-Modified matched across the two runs, and both went through the same hosts. It was stopped at 15.4 MB of 645 MB.
+  The live links call answered in 4 ms, so the timeout could not be seen cutting it there.
 - Without the 250 ms throttle and with a fourth slot, 3 of these fail.
-- Full `:desktopApp:jvmTest`: 409/0. `:desktopApp:createDistributable` builds; the app was not launched.
+- Full `:desktopApp:jvmTest`: 414/0. `:desktopApp:createDistributable` builds; the app was not launched.
 
 **Not verified.**
-- The production client against a real host, and `SandboxLinkResolver` against a real loaded extension (compiled only).
-- The resolver's 60 s timeout.
+- A whole download from a real host to the end, and a CDN that changes its ETag between resolves.
 - A full disk.
 - An unreadable downloads file, where `contents` throws and `enqueue` returns `StoreUnreadable`.
 - A process kill, as opposed to `close()`.
-- A failure's reason is in memory only, so after a restart a failed episode reads as Paused, as the contract says.

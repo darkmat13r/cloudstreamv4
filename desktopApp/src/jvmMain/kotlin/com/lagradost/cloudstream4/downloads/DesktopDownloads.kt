@@ -48,9 +48,11 @@ import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.runInterruptible
 import kotlinx.coroutines.withTimeoutOrNull
 
-/** Where one episode stands. Only [Done] is written back as itself after a restart; the rest read as [Paused]. */
+/** Where one episode stands. [Done] and [Failed] read back as themselves after a restart; the rest as [Paused]. */
 internal enum class Phase { Queued, Running, Paused, Failed, Done }
 
 /** One episode as readers outside the queue see it: an immutable copy, replaced whenever anything changes. */
@@ -100,8 +102,8 @@ internal class EpisodeView(
  *
  * ## After a restart
  *
- * Nothing starts on its own. An episode that was waiting, running or failed is paused, as the contract says a
- * failure reads after a restart, and its bytes are what the engine's parts hold on disk. A finished episode whose
+ * Nothing starts on its own. An episode that was waiting or running is paused; a failed one stays failed, with its
+ * stored reason. Either way its bytes are what the engine's parts hold on disk. A finished episode whose
  * file is gone is dropped, as Android's list readers drop one.
  *
  * ## Links
@@ -111,6 +113,8 @@ internal class EpisodeView(
  * resumes with it. With none in memory (after a restart) and on every retry of a failure, the run first asks the
  * [LinkResolver] and takes the first VIDEO link with an http(s) URL. None, a throw or a timeout fails the episode,
  * [DownloadFailure.NoUsableLink] or [DownloadFailure.SourceFailed], and its parts stay on disk.
+ *
+ * A failure is written with its typed reason (see [StoredFailure]) and still reads Failed after a restart.
  *
  * ## Security
  *
@@ -127,6 +131,8 @@ class DesktopDownloads internal constructor(
     /** The engine's options. Production takes the defaults; only a test may pass `allowPrivateAddresses`. */
     private val options: DownloadOptions,
     private val maxRunning: Int,
+    /** How long [resolver] has to answer. [RESOLVE_TIMEOUT_MILLIS] in production; shorter only in a test. */
+    private val resolveTimeoutMillis: Long,
     private val log: (String) -> Unit,
     private val ownsClient: Boolean,
 ) {
@@ -144,6 +150,7 @@ class DesktopDownloads internal constructor(
         resolver = SandboxLinkResolver(),
         options = DownloadOptions(),
         maxRunning = MAX_RUNNING,
+        resolveTimeoutMillis = RESOLVE_TIMEOUT_MILLIS,
         log = ::defaultLog,
         ownsClient = true,
     )
@@ -441,7 +448,8 @@ class DesktopDownloads internal constructor(
         val episodeName: String?,
         val folderName: String,
         var fileName: String,
-        val source: DownloadSourceRef,
+        /** How to ask for links again. Null once [Phase.Done]: a finished file is never resumed, so nothing keeps it. */
+        var source: DownloadSourceRef?,
         /** In memory only: never written. Null after a restart and before a retry, until the resolver answers. */
         var link: DesktopDownloadLink?,
         var phase: Phase,
@@ -477,10 +485,12 @@ class DesktopDownloads internal constructor(
             state = phase.name,
             bytesDone = bytesOnDisk,
             bytesTotal = bytesTotal,
+            failure = failure?.takeIf { phase == Phase.Failed }?.let(StoredFailure::name),
+            failureNumbers = failure?.takeIf { phase == Phase.Failed }?.let(StoredFailure::numbers).orEmpty(),
             addedSeq = addedSeq,
             queueSeq = queueSeq,
-            provider = source.providerName,
-            episodeData = source.episodeData,
+            provider = source?.takeIf { phase != Phase.Done }?.providerName,
+            episodeData = source?.takeIf { phase != Phase.Done }?.episodeData,
         )
     }
 
@@ -522,9 +532,13 @@ class DesktopDownloads internal constructor(
                     return@forEach
                 }
                 if (item.phase != Phase.Done) {
-                    // Nothing starts on its own after a restart, and a failure from before it reads as paused.
-                    if (item.phase != Phase.Paused) changed = true
-                    item.phase = Phase.Paused
+                    // Nothing starts on its own after a restart. A failure stays one, with its stored reason.
+                    if (item.phase != Phase.Failed) {
+                        if (item.phase != Phase.Paused) changed = true
+                        item.phase = Phase.Paused
+                    } else if (item.failure == null) {
+                        item.failure = DownloadFailure.Unknown
+                    }
                     item.bytesOnDisk = measureParts(item)
                 } else {
                     item.bytesOnDisk = item.file.length()
@@ -552,7 +566,13 @@ class DesktopDownloads internal constructor(
         if (!stored.fileName.endsWith(".${DownloadPaths.EXTENSION}")) return null
         val kind = DownloadTitleKind.entries.firstOrNull { it.name == stored.kind } ?: return null
         val phase = Phase.entries.firstOrNull { it.name == stored.state } ?: return null
-        val source = sourceOf(stored.provider, stored.episodeData) ?: return null
+        // Only a finished episode may have none: anything else could never be resumed.
+        val source = if (stored.provider == null && stored.episodeData == null) {
+            null
+        } else {
+            sourceOf(stored.provider.orEmpty(), stored.episodeData.orEmpty()) ?: return null
+        }
+        if (source == null && phase != Phase.Done) return null
         return Item(
             episodeId = stored.episodeId,
             titleId = stored.titleId,
@@ -570,6 +590,7 @@ class DesktopDownloads internal constructor(
             bytesTotal = stored.bytesTotal?.takeIf { it >= 0L },
             addedSeq = stored.addedSeq,
             queueSeq = stored.queueSeq,
+            failure = if (phase == Phase.Failed) StoredFailure.decode(stored.failure, stored.failureNumbers) else null,
         )
     }
 
@@ -688,6 +709,9 @@ class DesktopDownloads internal constructor(
                     item.phase = Phase.Done
                     item.bytesOnDisk = length
                     item.bytesTotal = length
+                    // Nothing resumes a finished file, so the reference to the extension goes, and the link with it.
+                    item.source = null
+                    item.link = null
                 } else {
                     item.phase = Phase.Failed
                     item.failure = DownloadFailure.Unknown
@@ -726,7 +750,7 @@ class DesktopDownloads internal constructor(
         val folder = PlatformFile(item.folder)
         val fileName = item.fileName
         run.job = scope.launch(start = CoroutineStart.LAZY) {
-            val link = known ?: when (val resolved = resolve(source)) {
+            val link = known ?: when (val resolved = source?.let { resolve(it) } ?: Resolved.Failed(DownloadFailure.NoUsableLink)) {
                 is Resolved.Link -> resolved.link
                 is Resolved.Failed -> {
                     run.outcome = Outcome(null, resolved.failure)
@@ -776,17 +800,24 @@ class DesktopDownloads internal constructor(
 
     /**
      * The first usable VIDEO link the extension offers now. None is [DownloadFailure.NoUsableLink]; a throw or no
-     * answer within [RESOLVE_TIMEOUT_MILLIS] is [DownloadFailure.SourceFailed]. Cancellation (a pause) passes through.
+     * answer within [resolveTimeoutMillis] is [DownloadFailure.SourceFailed]. Cancellation (a pause) passes through.
      */
     private suspend fun resolve(source: DownloadSourceRef): Resolved {
         val links = try {
-            withTimeoutOrNull(RESOLVE_TIMEOUT_MILLIS) { resolver.resolve(source) }
+            withTimeoutOrNull(resolveTimeoutMillis) {
+                // On a thread of its own that a timeout or a pause interrupts, so a resolver that blocks rather than
+                // suspends is stopped too. One that suspends (the sandbox's `links`) is cancelled inside it as usual.
+                runInterruptible(Dispatchers.IO) { runBlocking { resolver.resolve(source) } }
+            }
         } catch (e: CancellationException) {
             if (currentCoroutineContext().isActive) {
                 log("asking the extension for links ended by a cancellation")
                 return Resolved.Failed(DownloadFailure.SourceFailed)
             }
             throw e
+        } catch (e: InterruptedException) {
+            log("asking the extension for links was interrupted")
+            return Resolved.Failed(DownloadFailure.SourceFailed)
         } catch (e: Throwable) {
             log("asking the extension for links failed: ${e.javaClass.name}")
             return Resolved.Failed(DownloadFailure.SourceFailed)

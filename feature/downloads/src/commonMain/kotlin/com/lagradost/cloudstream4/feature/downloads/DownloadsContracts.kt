@@ -17,7 +17,7 @@ enum class DownloadTitleState {
     /** Moving, or in line to. */
     Running,
 
-    /** Short of its total with nothing running: the row offers Resume. Also what a failure is after a restart. */
+    /** Short of its total with nothing running: the row offers Resume. On Android, also a failure after a restart (until KMP-60/KMP-62); the Mac keeps it Failed. */
     Paused,
 
     /** Everything is on the disk. */

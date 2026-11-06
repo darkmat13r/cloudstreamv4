@@ -17,10 +17,13 @@ import java.nio.file.attribute.PosixFilePermissions
  * One episode as it is written to the downloads file.
  *
  * No link is written: no URL, header or referer (the owner's ruling on `KMP-52`). A resume after a restart asks the
- * extension again with [provider] and [episodeData]. [episodeData] is the provider's own string, often an episode
+ * extension again with [provider] and [episodeData], and a finished episode keeps neither: both are null once it is
+ * `Done`, since nothing resumes a finished file. [episodeData] is the provider's own string, often an episode
  * page's URL, so [toString] leaves it out and nothing logs this class.
  *
- * [state] is a [Phase] name. Only `Done` survives a restart as itself: anything else reads back as paused.
+ * [state] is a [Phase] name. `Done` and `Failed` survive a restart as themselves; anything else reads back as paused.
+ * A failure is [failure], a `DownloadFailure` variant's name, and [failureNumbers], its numbers (a status code, byte
+ * counts) in declaration order: never text from a link, a server or an exception.
  */
 @Serializable
 internal class StoredEpisode(
@@ -38,14 +41,16 @@ internal class StoredEpisode(
     val state: String,
     val bytesDone: Long = 0L,
     val bytesTotal: Long? = null,
+    val failure: String? = null,
+    val failureNumbers: List<Long> = emptyList(),
     /** When it was first enqueued, as a sequence number. Orders the list. */
     val addedSeq: Long,
     /** When it last went into the queue, as a sequence number. Orders the queue. */
     val queueSeq: Long,
-    /** The extension's provider name, as `SandboxedProvider.name`. */
-    val provider: String,
+    /** The extension's provider name, as `SandboxedProvider.name`. Null once `Done`. */
+    val provider: String? = null,
     /** What the player passes to `SandboxedProvider.links` for this episode. */
-    val episodeData: String,
+    val episodeData: String? = null,
 ) {
     override fun toString(): String = "StoredEpisode(episodeId=$episodeId, titleId=$titleId, state=$state)"
 }
@@ -59,8 +64,11 @@ internal class StoredDownloads(
     override fun toString(): String = "StoredDownloads(episodes=${episodes.size})"
 
     companion object {
-        /** 2: no link fields; the source to ask again instead. A format-1 file is refused, not migrated (unreleased). */
-        const val FORMAT = 2
+        /**
+         * 2: no link fields; the source to ask again instead. 3: no source on a finished episode. An older file is
+         * refused, not migrated (unreleased).
+         */
+        const val FORMAT = 3
     }
 }
 
@@ -118,7 +126,7 @@ internal class DesktopDownloadStore(private val file: File) {
     companion object {
         private const val STAGING_SUFFIX = ".part"
 
-        /** Thousands of episodes with long signed URLs, and still a file read whole in one go. */
+        /** Thousands of episodes, each with its provider's episode data, and still a file read whole in one go. */
         private const val MAX_BYTES = 16L * 1024 * 1024
 
         private val OWNER_ONLY: Set<PosixFilePermission> = PosixFilePermissions.fromString("rw-------")

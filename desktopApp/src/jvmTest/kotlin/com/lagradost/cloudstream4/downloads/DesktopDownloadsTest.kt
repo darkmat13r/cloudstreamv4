@@ -57,6 +57,7 @@ class DesktopDownloadsTest {
         stateFile: File = this.stateFile,
         log: (String) -> Unit = {},
         resolver: LinkResolver = LinkResolver { error("no test here expects to be asked") },
+        resolveTimeoutMillis: Long = DesktopDownloads.RESOLVE_TIMEOUT_MILLIS,
     ) = DesktopDownloads(
         downloadRoot = root,
         stateFile = stateFile,
@@ -64,6 +65,7 @@ class DesktopDownloadsTest {
         resolver = resolver,
         options = DownloadOptions(parts = 1, allowPrivateAddresses = true, backoffBaseMillis = 10, backoffMaxMillis = 50),
         maxRunning = maxRunning,
+        resolveTimeoutMillis = resolveTimeoutMillis,
         log = log,
         ownsClient = true,
     ).also { hosts += it }
@@ -261,6 +263,168 @@ class DesktopDownloadsTest {
     }
 
     @Test
+    fun `a resolver that never answers times out as SourceFailed and keeps the parts`() = runBlocking {
+        server.add("silent.bin", 2 * 1024 * 1024)
+        server.chunkDelayMillis.set(10)
+        val held = interruptedPartWay(film(10, "Silent", server.url("silent.bin")))
+        assertTrue(held > 0L)
+
+        val asked = java.util.concurrent.atomic.AtomicInteger()
+        val host = host(resolveTimeoutMillis = 300, resolver = { asked.incrementAndGet(); kotlinx.coroutines.awaitCancellation() })
+        val started = System.nanoTime()
+        host.resume(DownloadEpisodeId(10))
+        val failed = host.awaitEpisode(1000, 10) { it.state == DownloadEpisodeState.Failed }
+        val tookMillis = (System.nanoTime() - started) / 1_000_000
+        assertEquals(DownloadFailure.SourceFailed, failed.failure)
+        assertEquals(1, asked.get())
+        assertTrue(tookMillis in 300..10_000, "failed by the timeout, after $tookMillis ms")
+        assertEquals(held, partFiles().sumOf { it.length() }, "the parts are untouched")
+        assertTrue(failed.bytesDone > 0L)
+    }
+
+    @Test
+    fun `a resolver that blocks its thread times out as SourceFailed, keeps the parts and leaves no thread stuck`() =
+        runBlocking {
+            server.add("blocked.bin", 2 * 1024 * 1024)
+            server.chunkDelayMillis.set(10)
+            val held = interruptedPartWay(film(11, "Blocked", server.url("blocked.bin")))
+            assertTrue(held > 0L)
+
+            val never = java.util.concurrent.CountDownLatch(1)
+            val blockedThread = java.util.concurrent.atomic.AtomicReference<Thread>()
+            val released = java.util.concurrent.CountDownLatch(1)
+            val host = host(resolveTimeoutMillis = 300, resolver = {
+                blockedThread.set(Thread.currentThread())
+                try {
+                    never.await() // blocks the thread; never counted down
+                    emptyList()
+                } finally {
+                    released.countDown()
+                }
+            })
+            val started = System.nanoTime()
+            host.resume(DownloadEpisodeId(11))
+            val failed = host.awaitEpisode(1100, 11) { it.state == DownloadEpisodeState.Failed }
+            val tookMillis = (System.nanoTime() - started) / 1_000_000
+            assertEquals(DownloadFailure.SourceFailed, failed.failure)
+            assertTrue(tookMillis in 300..10_000, "failed by the timeout, after $tookMillis ms")
+            assertTrue(released.await(5, java.util.concurrent.TimeUnit.SECONDS), "the blocked resolver was interrupted")
+            val thread = assertNotNull(blockedThread.get())
+            val deadline = System.nanoTime() + 5_000_000_000L
+            while (thread.state == Thread.State.WAITING && "await" in thread.stackTrace.joinToString { it.methodName } &&
+                System.nanoTime() < deadline
+            ) {
+                Thread.sleep(20)
+            }
+            assertFalse(thread.stackTrace.any { it.className.startsWith("java.util.concurrent.CountDownLatch") }, "still blocked")
+            assertEquals(held, partFiles().sumOf { it.length() }, "the parts are untouched")
+        }
+
+    @Test
+    fun `a failure keeps its reason across a restart, and a retry then completes`() = runBlocking {
+        val body = server.add("reason.bin", 2 * 1024 * 1024)
+        server.chunkDelayMillis.set(10)
+        val held = interruptedPartWay(film(12, "Reason", server.url("reason.bin")))
+        assertTrue(held > 0L)
+
+        val empty = host(resolver = { emptyList() })
+        empty.resume(DownloadEpisodeId(12))
+        assertEquals(DownloadFailure.NoUsableLink, empty.awaitEpisode(1200, 12) { it.state == DownloadEpisodeState.Failed }.failure)
+        empty.close()
+        hosts.remove(empty)
+
+        server.chunkDelayMillis.set(0)
+        val asked = java.util.concurrent.atomic.AtomicInteger()
+        val again = host(resolver = { asked.incrementAndGet(); listOf(DesktopDownloadLink(server.url("reason.bin"))) })
+        val reread = again.awaitEpisode(1200, 12) { true }
+        assertEquals(DownloadEpisodeState.Failed, reread.state, "a failure is still one after a restart")
+        assertEquals(DownloadFailure.NoUsableLink, reread.failure)
+        assertEquals(DownloadTitleState.Failed, again.awaitContents { it.titles.isNotEmpty() }.titles.single().state)
+        assertEquals(0, asked.get(), "nothing asked before the retry")
+
+        again.retry(DownloadEpisodeId(12))
+        again.awaitDone(1200, 12)
+        assertEquals(1, asked.get())
+        assertContentEquals(body, again.fileOf(DownloadEpisodeId(12))!!.readBytes())
+    }
+
+    @Test
+    fun `a finished download keeps no source in the file, survives a restart, and deletes cleanly`() = runBlocking {
+        val body = server.add("clear.bin", 256 * 1024)
+        val providerMarker = "PROVIDERMARKER9Z"
+        val dataMarker = "EPISODEDATAMARKER9Z"
+        val request = DesktopDownloadRequest(
+            episodeId = 13, titleId = 1300, titleName = "Cleared", kind = DownloadTitleKind.Film,
+            season = null, episode = null, episodeName = null,
+            source = DownloadSourceRef(providerMarker, "https://provider.example/$dataMarker"),
+            link = DesktopDownloadLink(server.url("clear.bin")),
+        )
+        server.add("waiting-clear.bin", 1024 * 1024) // about 3 s at the pace below, so the pause lands mid-run
+        val host = host()
+        // A second, unfinished episode, so the file is shown to keep a source where one is still needed.
+        host.enqueue(request)
+        host.awaitDone(1300, 13)
+        val paused = DesktopDownloadRequest(14, 1400, "Kept", DownloadTitleKind.Film, null, null, null,
+            DownloadSourceRef("KeptProvider", "kept-data-14"), DesktopDownloadLink(server.url("waiting-clear.bin")))
+        server.chunkDelayMillis.set(50)
+        host.enqueue(paused)
+        host.awaitEpisode(1400, 14) { it.state == DownloadEpisodeState.Running }
+        host.pause(DownloadEpisodeId(14))
+        host.awaitEpisode(1400, 14) { it.state == DownloadEpisodeState.Paused }
+
+        // (a) The raw bytes: no trace of the finished one's source, and its record is there.
+        val raw = stateFile.readBytes().toString(Charsets.ISO_8859_1)
+        assertFalse(providerMarker in raw, "the provider of a finished episode is gone")
+        assertFalse(dataMarker in raw, "the episode data of a finished episode is gone")
+        assertTrue("\"episodeId\":13" in raw && "\"state\":\"Done\"" in raw && "Cleared.mp4" in raw, "its record stays")
+        assertTrue("kept-data-14" in raw && "KeptProvider" in raw, "an unfinished one keeps its source")
+        stateFile.parentFile.listFiles()!!.forEach { file ->
+            val text = file.readBytes().toString(Charsets.ISO_8859_1)
+            assertFalse(providerMarker in text || dataMarker in text, "a marker is in ${file.name}")
+        }
+        // Resume and retry on a finished episode do nothing.
+        host.resume(DownloadEpisodeId(13))
+        host.retry(DownloadEpisodeId(13))
+        assertEquals(EnqueueResult.AlreadyPresent, host.enqueue(request))
+        host.refresh()
+        assertEquals(DownloadEpisodeState.Done, host.awaitEpisode(1300, 13) { true }.state)
+        host.close()
+        hosts.remove(host)
+
+        // (b) A restart: still listed, still Done, still its file.
+        val again = host()
+        val reread = again.awaitContents { it.titles.size == 2 }
+        assertEquals(DownloadTitleState.Done, reread.titles.first { it.id == DownloadTitleId(1300) }.state)
+        assertEquals(DownloadEpisodeState.Done, again.awaitEpisode(1300, 13) { true }.state)
+        assertContentEquals(body, assertNotNull(again.fileOf(DownloadEpisodeId(13))).readBytes())
+        assertEquals(DownloadEpisodeState.Paused, again.awaitEpisode(1400, 14) { true }.state)
+        val rewritten = stateFile.readBytes().toString(Charsets.ISO_8859_1)
+        assertFalse(providerMarker in rewritten || dataMarker in rewritten)
+
+        // (c) Delete: the record goes.
+        again.delete(setOf(DownloadTitleId(1300)))
+        assertNull(again.fileOf(DownloadEpisodeId(13)))
+        assertTrue(again.awaitContents { true }.titles.none { it.id == DownloadTitleId(1300) })
+        assertFalse("\"episodeId\":13," in stateFile.readText(), "the record is gone from the file")
+    }
+
+    @Test
+    fun `every failure round-trips through the stored form, with numbers only`() {
+        val all = listOf(
+            DownloadFailure.NetworkLost, DownloadFailure.StorageFull(123L), DownloadFailure.StorageFull(null),
+            DownloadFailure.StorageUnavailable, DownloadFailure.NoUsableLink, DownloadFailure.SourceFailed,
+            DownloadFailure.Unknown, DownloadFailure.ServerRefused(403), DownloadFailure.SourceChanged,
+            DownloadFailure.SizeMismatch(10L, 9L), DownloadFailure.HashMismatch,
+            DownloadFailure.InsufficientSpace(100L, 50L), DownloadFailure.AddressRefused, DownloadFailure.DestinationExists,
+        )
+        all.forEach { failure ->
+            assertEquals(failure, StoredFailure.decode(StoredFailure.name(failure), StoredFailure.numbers(failure)))
+        }
+        assertEquals(DownloadFailure.Unknown, StoredFailure.decode("SomethingElse", emptyList()))
+        assertEquals(DownloadFailure.Unknown, StoredFailure.decode("ServerRefused", listOf(-1L)))
+    }
+
+    @Test
     fun `a retry asks the extension again, a resume of a pause does not`() = runBlocking {
         val body = server.add("retry.bin", 1024 * 1024)
         server.chunkDelayMillis.set(5)
@@ -330,7 +494,9 @@ class DesktopDownloadsTest {
         host.enqueue(marked(3, "marked-missing.bin"))
         host.awaitEpisode(300, 3) { it.state == DownloadEpisodeState.Failed }
         scan("failed", "Failed")
-        assertTrue("episode-data-2" in stateFile.readText(), "the source to ask again is what is kept")
+        val kept = stateFile.readText()
+        assertTrue("episode-data-3" in kept, "a failed episode keeps the source to ask again")
+        assertFalse("episode-data-2" in kept, "a finished one keeps none")
     }
 
     @Test
