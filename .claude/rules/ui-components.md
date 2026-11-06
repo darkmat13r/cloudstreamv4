@@ -39,6 +39,11 @@ Dialogs and bottom sheets: **TV never uses a bottom sheet**. Use `SidePanel` —
 right edge, content behind scrimmed but still mounted, focus trapped, BACK returning focus to the
 control that opened it.
 
+**Every `SidePanelHost` caller on Android also registers a platform BACK callback**, enabled while
+the panel is open, that closes it (`DetailTvFragment.wirePanelBack`, `LibraryTvFragment`).
+`SidePanelHost` only sees BACK as a key event; without the callback the window's back dispatcher
+takes it and BACK leaves the screen with the panel open (`KMP-49`).
+
 ## Tokens, never literals
 
 - Dimensions: `CloudStreamDimens.*` — named by role (`ListRowHeight`, `ChipFocusCell`,
