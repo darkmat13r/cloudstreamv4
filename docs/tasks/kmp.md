@@ -4806,6 +4806,21 @@ that exist because the old downloader broke them:
 - DNS rebinding, as above.
 - The engine's unthrottled slowdown is not profiled.
 
+## KMP-62 — The old downloader keeps whole links in `KEY_RESUME_PACKAGES` · **approved 2026-11-06**, scheduled after `KMP-52`
+
+This entry replaces the open one that `KMP-59`'s PR added. It was found while checking `KMP-59` against the no-link ruling for `KMP-52`.
+- **What is stored.** `DownloadManager.kt:1923-1927` writes `DownloadResumePackage(item, index)` to `KEY_RESUME_PACKAGES` before every
+  attempt. `DownloadItem.links` is `List<ExtractorLink>`, serialised with `url`, `referer` and `headers`
+  (`library/.../ExtractorApi.kt:700-708`). It is written to SharedPreferences.
+- **When.** With `KMP-59`'s switch on or off. The engine path adds no link of its own: its marker holds a size and a name, and its state
+  file holds the size, ETag, Last-Modified and the ranges.
+- **The owner's ruling (2026-11-06): the same no-link rule as `KMP-52`.** Keep `ep`, the provider and the episode's `loadLinks` data, and
+  run `loadLinks` again on resume, including the start-up re-queue in `DownloadQueueManager.init`.
+- **Notes for the build:**
+  - A resume package saved before the update keeps its old data until it finishes or is removed.
+  - After a successful migration, the stored `ExtractorLink`s are deleted from SharedPreferences.
+  - Behaviour change: a source that no longer answers fails that resume.
+
 ## KMP-52 — The Mac download service and its data · **measured 2026-11-06**
 
 `:media:download` runs on the JVM in `:desktopApp`, in package `com.lagradost.cloudstream4.downloads`, with a queue, persistence and the two
