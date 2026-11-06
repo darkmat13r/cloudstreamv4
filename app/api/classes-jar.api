@@ -37801,6 +37801,7 @@ public final class com/lagradost/cloudstream4/library/LibraryTvFragment : com/la
 	public static final synthetic fun access$getViewModel (Lcom/lagradost/cloudstream4/library/LibraryTvFragment;)Lcom/lagradost/cloudstream4/feature/library/LibraryViewModel;
 	public static final synthetic fun access$onEffect (Lcom/lagradost/cloudstream4/library/LibraryTvFragment;Lcom/lagradost/cloudstream4/feature/library/LibraryEffect;)V
 	public fun onResume ()V
+	public fun onViewCreated (Landroid/view/View;Landroid/os/Bundle;)V
 }
 
 public final static class com/lagradost/cloudstream4/library/LibraryTvFragment$special$$inlined$viewModels$default$1 : kotlin/jvm/internal/Lambda, kotlin/jvm/functions/Function0 {
@@ -37831,6 +37832,10 @@ public final static class com/lagradost/cloudstream4/library/LibraryTvFragment$s
 	public fun <init> (Landroidx/fragment/app/Fragment;Lkotlin/Lazy;)V
 	public final fun invoke ()Landroidx/lifecycle/ViewModelProvider$Factory;
 	public synthetic fun invoke ()Ljava/lang/Object;
+}
+
+public final static class com/lagradost/cloudstream4/library/LibraryTvFragment$wirePanelBack$callback$1 : androidx/activity/OnBackPressedCallback {
+	public fun handleOnBackPressed ()V
 }
 
 public final class com/lagradost/cloudstream4/library/LibraryTvFragmentKt : java/lang/Object {
