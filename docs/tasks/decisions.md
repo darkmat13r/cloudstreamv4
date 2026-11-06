@@ -715,3 +715,34 @@ Raising `:library` to 24, or giving it 2.4.21, would be a separate decision for 
 - `app/src/main/res/drawable-v24/`: its `ic_banner_foreground.xml` and `ic_launcher_foreground.xml` now always win, so the copies in `drawable/` are dead.
 - `tools:targetApi="n"` in `app/src/main/res/layout/settings_title_top.xml:21` is now moot.
 - Already dead at minSdk 23, so not new: 10 `SDK_INT >= M` checks and `PowerManagerAPI.kt:26`'s `SDK_INT >= 23`.
+
+---
+
+## DEC-19 — Each platform gets its own best design; code is shared by meaning · **decided 2026-11-06**
+
+**Status:** **decided 2026-11-06 by the owner**, relayed through the coordinator.
+
+The owner's direction, the same day: *"start another session for desktop in parallel and each feature is design should work on
+mobile, desktop and tv … make sure the code is shared mostly"*, then, clarifying: *"design for desktop and mobile can change
+based on platform so each have best experience based on each platform"*.
+
+**What that means for the code:**
+- The best experience on each platform comes first; sharing comes second. The Mac uses pointer, hover, shortcuts, menus and
+  resizable windows (`docs/plans/desktop-design.md`); the phone uses touch, gestures, bottom navigation and sheets; TV keeps
+  its focus model.
+- Share what behaves the same: state, logic and data (the MVI view models and their sources), tokens, and components whose
+  meaning is the same. Where a platform behaves differently, it gets its own section or component, not a shared one bent
+  with flags.
+- The boards come first and decide the split, one board file per platform per feature (`DS-18` is the first).
+- When an input mode is introduced to the design system (`DS-19`), it defaults to **Focus**, so Android phones stay on today's
+  focus behaviour until a phone layout opts out.
+
+**Four answers on the downloads boards (`DS-18`), the same day:**
+
+| Question | Ruling | Where it is written |
+|---|---|---|
+| Are the boards right? | **Yes, "build them".** | `DS-18`; `KMP-54` builds the desktop screen |
+| Glyph-only trailing verbs on Mac and tablet list rows, with tooltips | **Yes.** Rule 4's list-row exception extends to them | `ui-components.md` rule 4 |
+| Cancel as the default in a destructive confirmation | **Yes.** The safe choice is the filled one | `ui-components.md` rule 1 |
+| A `Folder` glyph for Show in Finder | **Yes**, `CloudStreamIcons.Folder`, Tabler `Folder` | `ui-components.md` glyph table; code with `KMP-54` |
+

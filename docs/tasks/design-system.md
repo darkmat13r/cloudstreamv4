@@ -721,3 +721,32 @@ redraw had made wrong (7a LOADING and EMPTY, 7b PARTIAL and its band list, the c
 - Fold in the account cell on Home's top bar, which is still `IconCell` (a smaller filled tile with a muted glyph, ringing its cell) beside `IconOnlyButton`s, so one row shows two icon styles. Raised by the reviewer on #165.
 - Every screenshot reference that shows an icon-only control at rest changes. Each diff is looked at, not re-recorded blind.
 
+---
+
+## DS-18 — Boards: downloads on desktop, phone and tablet
+
+**Status:** approved by the owner 2026-11-06 (*"build them"*), PR open · boards only, no Kotlin · `DEC-19`
+
+The owner asked on 2026-11-06 for every feature to be designed for TV, desktop and phone/tablet. Each platform gets the best
+design for its own input; sharing comes second. Downloads is the pilot (`KMP-54` builds the desktop screen from it).
+`design/Desktop Downloads.dc.html` holds D1 to D6: titles with a hovered row, multi-select and the context menu, the delete
+confirmation, one series, empty + offline + disk full together, and the 800×520 minimum window. Downloads is the fourth
+destination, so the desktop bar becomes a sidebar (`desktop-design.md`: "a sidebar is worth it at the fourth").
+`design/Phone Downloads.dc.html` holds P1 to P6 and T1: titles, swipe to delete, choosing several, one series, an episode's
+verbs as a bottom sheet, empty + offline + disk full, and the two-pane tablet at 840 dp and wider.
+
+Both are drawn at 1 px = 1 dp, not the TV's px ÷ 2. Glyphs are the Tabler pack itself, loaded at 1.119.0 from jsdelivr, never
+drawn. Measured from `getBoundingClientRect` in Chromium: desktop 343 boxes, 0 off the 4 dp step, 0 overflowing. Phone and
+tablet 375 boxes; the only ones off the step are two families derived from the screen's width, the four `weight(1f)` cells of
+the bottom navigation (103 at 412) and P4's two equal secondaries (186). Neither is a typed number. 0 overflowing, and all 19
+glyph URLs answer 200. Renders are in `/private/tmp/cloudstream-shared/review/boards/DS18-*.png`.
+
+Answered by the owner, 2026-11-06, relayed by the coordinator, and recorded in `DEC-19` and `.claude/rules/ui-components.md`:
+- `Folder` is a new `CloudStreamIcons` entry (Tabler `Folder`) for Show in Finder. It is in the glyph table now; the code
+  entry lands with `KMP-54`, its first user.
+- Glyph-only trailing verbs on Mac and tablet rows, each naming itself in a tooltip: yes. Rule 4's ruled exception for
+  list-row actions now covers them.
+- Cancel is the filled default in the delete confirmation: yes, now in rule 1.
+
+Still open, not the owner's: the new strings go through `:core:strings` with `KMP-54`, and the transfer rate in D4 waits on
+`KMP-52` to report it.
