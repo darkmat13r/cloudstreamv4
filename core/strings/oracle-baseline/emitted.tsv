@@ -231,6 +231,9 @@ values	string	downloaded	-	Downloaded
 values	string	downloaded_file	-	Downloaded file
 values	string	downloading	-	Downloading
 values	string	downloads_browse_library	-	Browse library
+values	string	downloads_cancel_confirm_body	-	This discards the %s downloaded so far.
+values	string	downloads_cancel_confirm_title	-	Cancel this download?
+values	string	downloads_cancel_download	-	Cancel download
 values	string	downloads_column_size	-	Size
 values	string	downloads_delete_all	-	Delete all
 values	string	downloads_delete_chosen	-	%1$s (%2$d · %3$s)
@@ -244,6 +247,7 @@ values	string	downloads_film_subtitle	-	%1$s · %2$s
 values	string	downloads_free	-	%s free
 values	string	downloads_free_up_space	-	Free up space
 values	string	downloads_joined	-	%1$s · %2$s
+values	string	downloads_keep_downloading	-	Keep downloading
 values	string	downloads_load_failed_body	-	Your downloaded files have not been changed.
 values	string	downloads_load_failed_headline	-	Couldn't read your downloads
 values	string	downloads_offline_pill	-	Offline · no connection
@@ -946,6 +950,9 @@ values-b+af	string	download_storage_text	-	Interne Berging
 values-b+af	string	downloaded	-	Afgelaai
 values-b+af	string	downloading	-	Laai tans af
 values-b+af	string	downloads_browse_library	-	Blaai deur biblioteek
+values-b+af	string	downloads_cancel_confirm_body	-	Dit gooi die %s wat reeds afgelaai is weg.
+values-b+af	string	downloads_cancel_confirm_title	-	Kanselleer hierdie aflaai?
+values-b+af	string	downloads_cancel_download	-	Kanselleer aflaai
 values-b+af	string	downloads_column_size	-	Grootte
 values-b+af	string	downloads_delete_all	-	Wis alles uit
 values-b+af	string	downloads_delete_confirm_body	-	Dit maak %s vry en kan nie ontdoen word nie.
@@ -954,6 +961,7 @@ values-b+af	string	downloads_empty_body	-	Aflaaie wat jy vanaf 'n titel se episo
 values-b+af	string	downloads_empty_headline	-	Nog geen aflaaie nie
 values-b+af	string	downloads_free	-	%s vry
 values-b+af	string	downloads_free_up_space	-	Maak spasie vry
+values-b+af	string	downloads_keep_downloading	-	Hou aan aflaai
 values-b+af	string	downloads_load_failed_body	-	Jou afgelaaide lêers is nie verander nie.
 values-b+af	string	downloads_load_failed_headline	-	Kon nie jou aflaaie lees nie
 values-b+af	string	downloads_offline_pill	-	Vanlyn · geen verbinding nie
@@ -1171,6 +1179,9 @@ values-b+am	string	download_storage_text	-	ውስጣዊ ማከማቻ
 values-b+am	string	downloaded	-	ወርዷል
 values-b+am	string	downloading	-	በማውረድ ላይ
 values-b+am	string	downloads_browse_library	-	ቤተ-መጽሐፍት አስስ
+values-b+am	string	downloads_cancel_confirm_body	-	ይህ እስካሁን የወረደውን %s ያስወግዳል።
+values-b+am	string	downloads_cancel_confirm_title	-	ይህን ውርድ ይሰርዙ?
+values-b+am	string	downloads_cancel_download	-	ውርድን ሰርዝ
 values-b+am	string	downloads_column_size	-	መጠን
 values-b+am	string	downloads_delete_all	-	ሁሉንም ሰርዝ
 values-b+am	string	downloads_delete_confirm_body	-	ይህ %s ነጻ ያደርጋል እና መቀልበስ አይቻልም።
@@ -1178,6 +1189,7 @@ values-b+am	string	downloads_empty_body	-	ከርዕስ የክፍሎች ዝርዝ
 values-b+am	string	downloads_empty_headline	-	እስካሁን ምንም ውርዶች የሉም
 values-b+am	string	downloads_free	-	%s ነጻ
 values-b+am	string	downloads_free_up_space	-	ቦታ አስለቅቅ
+values-b+am	string	downloads_keep_downloading	-	ማውረድ ቀጥል
 values-b+am	string	downloads_load_failed_body	-	የወረዱ ፋይሎችዎ አልተቀየሩም።
 values-b+am	string	downloads_load_failed_headline	-	ውርዶችዎን ማንበብ አልተቻለም
 values-b+am	string	downloads_offline_pill	-	ከመስመር ውጭ · ግንኙነት የለም
@@ -1559,6 +1571,9 @@ values-b+apc	string	downloaded	-	منَزَل
 values-b+apc	string	downloaded_file	-	الملفات المنزلة
 values-b+apc	string	downloading	-	عم يتنَزَل
 values-b+apc	string	downloads_browse_library	-	تصفّح الرفّ
+values-b+apc	string	downloads_cancel_confirm_body	-	هيك بتخسر الـ %s اللي نزلوا لهلأ.
+values-b+apc	string	downloads_cancel_confirm_title	-	بدك تلغي هالتنزيل؟
+values-b+apc	string	downloads_cancel_download	-	إلغاء التنزيل
 values-b+apc	string	downloads_column_size	-	الحجم
 values-b+apc	string	downloads_delete_all	-	امحي الكل
 values-b+apc	string	downloads_delete_confirm_body	-	هيك بتفضّي %s وما فيك ترجّعها.
@@ -1568,6 +1583,7 @@ values-b+apc	string	downloads_empty_body	-	التنزيلات اللي بتبل�
 values-b+apc	string	downloads_empty_headline	-	لسا مافي تنزيلات
 values-b+apc	string	downloads_free	-	%s فاضي
 values-b+apc	string	downloads_free_up_space	-	فضّي مساحة
+values-b+apc	string	downloads_keep_downloading	-	كمّل التنزيل
 values-b+apc	string	downloads_load_failed_body	-	ملفاتك المنزّلة ما تغيّرت.
 values-b+apc	string	downloads_load_failed_headline	-	ما قدرنا نقرا تنزيلاتك
 values-b+apc	string	downloads_offline_pill	-	بلا إنترنت · مافي اتصال
@@ -2446,6 +2462,9 @@ values-b+ar	string	downloaded	-	تم التنزيل
 values-b+ar	string	downloaded_file	-	الملف الذي تم تنزيله
 values-b+ar	string	downloading	-	جاري التنزيل
 values-b+ar	string	downloads_browse_library	-	تصفّح المكتبة
+values-b+ar	string	downloads_cancel_confirm_body	-	سيؤدي هذا إلى تجاهل %s تم تنزيلها حتى الآن.
+values-b+ar	string	downloads_cancel_confirm_title	-	هل تريد إلغاء هذا التنزيل؟
+values-b+ar	string	downloads_cancel_download	-	إلغاء التنزيل
 values-b+ar	string	downloads_column_size	-	الحجم
 values-b+ar	string	downloads_delete_all	-	حذف الكل
 values-b+ar	string	downloads_delete_confirm_body	-	سيؤدي هذا إلى تحرير %s ولا يمكن التراجع عنه.
@@ -2455,6 +2474,7 @@ values-b+ar	string	downloads_empty_body	-	تظهر هنا التنزيلات ا�
 values-b+ar	string	downloads_empty_headline	-	لا توجد تنزيلات بعد
 values-b+ar	string	downloads_free	-	%s متاحة
 values-b+ar	string	downloads_free_up_space	-	إخلاء مساحة
+values-b+ar	string	downloads_keep_downloading	-	متابعة التنزيل
 values-b+ar	string	downloads_load_failed_body	-	لم تتغيّر ملفاتك التي تم تنزيلها.
 values-b+ar	string	downloads_load_failed_headline	-	تعذّرت قراءة تنزيلاتك
 values-b+ar	string	downloads_offline_pill	-	غير متصل · لا يوجد اتصال
@@ -3225,6 +3245,9 @@ values-b+ars	string	download_storage_text	-	التخزين الداخلي
 values-b+ars	string	downloaded	-	تنززل
 values-b+ars	string	downloading	-	جارى التحميل
 values-b+ars	string	downloads_browse_library	-	تصفّح المكتبة
+values-b+ars	string	downloads_cancel_confirm_body	-	سيؤدي هذا إلى تجاهل %s تم تنزيلها حتى الآن.
+values-b+ars	string	downloads_cancel_confirm_title	-	هل تريد إلغاء هذا التنزيل؟
+values-b+ars	string	downloads_cancel_download	-	إلغاء التنزيل
 values-b+ars	string	downloads_column_size	-	الحجم
 values-b+ars	string	downloads_delete_all	-	مسح الكل
 values-b+ars	string	downloads_delete_confirm_body	-	سيؤدي هذا إلى تحرير %s ولا يمكن التراجع عنه.
@@ -3232,6 +3255,7 @@ values-b+ars	string	downloads_empty_body	-	التحميلات اللي تبدا�
 values-b+ars	string	downloads_empty_headline	-	ما فيه تحميلات للحين
 values-b+ars	string	downloads_free	-	%s متاحة
 values-b+ars	string	downloads_free_up_space	-	فضّ مساحة
+values-b+ars	string	downloads_keep_downloading	-	متابعة التنزيل
 values-b+ars	string	downloads_load_failed_body	-	ملفاتك المحمّلة ما تغيّرت.
 values-b+ars	string	downloads_load_failed_headline	-	ما قدرنا نقرأ تحميلاتك
 values-b+ars	string	downloads_offline_pill	-	غير متصل · ما فيه اتصال
@@ -3752,6 +3776,9 @@ values-b+as	string	downloaded	-	ডাউনলোড সম্পূৰ্ণ
 values-b+as	string	downloaded_file	-	ডাউনলোড কৰা ফাইল
 values-b+as	string	downloading	-	ডাউনলোড হৈ আছে
 values-b+as	string	downloads_browse_library	-	পুথিভঁৰাল ব্ৰাউজ কৰক
+values-b+as	string	downloads_cancel_confirm_body	-	ইয়াৰ ফলত এতিয়ালৈকে ডাউনলোড হোৱা %s বাদ পৰিব।
+values-b+as	string	downloads_cancel_confirm_title	-	এই ডাউনলোড বাতিল কৰিবনে?
+values-b+as	string	downloads_cancel_download	-	ডাউনলোড বাতিল কৰক
 values-b+as	string	downloads_column_size	-	আকাৰ
 values-b+as	string	downloads_delete_all	-	সকলো ডিলিট কৰক
 values-b+as	string	downloads_delete_confirm_body	-	ই %s মুকলি কৰিব আৰু ইয়াক পূৰ্বাৱস্থালৈ ঘূৰাই নিব নোৱাৰি।
@@ -3761,6 +3788,7 @@ values-b+as	string	downloads_empty_body	-	কোনো শিৰোনামৰ 
 values-b+as	string	downloads_empty_headline	-	এতিয়ালৈকে কোনো ডাউনলোড নাই
 values-b+as	string	downloads_free	-	%s খালী
 values-b+as	string	downloads_free_up_space	-	ঠাই খালী কৰক
+values-b+as	string	downloads_keep_downloading	-	ডাউনলোড চলাই যাওক
 values-b+as	string	downloads_load_failed_body	-	আপোনাৰ ডাউনলোড কৰা ফাইলসমূহ সলনি কৰা হোৱা নাই।
 values-b+as	string	downloads_load_failed_headline	-	আপোনাৰ ডাউনলোডসমূহ পঢ়িব নোৱাৰিলোঁ
 values-b+as	string	downloads_offline_pill	-	অফলাইন · সংযোগ নাই
@@ -4375,6 +4403,9 @@ values-b+az	string	download_started	-	Yükləmə başladıldı
 values-b+az	string	downloaded	-	Yükləndi
 values-b+az	string	downloading	-	Yüklənir
 values-b+az	string	downloads_browse_library	-	Kitabxanaya bax
+values-b+az	string	downloads_cancel_confirm_body	-	Bu, indiyədək endirilmiş %s-ı siləcək.
+values-b+az	string	downloads_cancel_confirm_title	-	Bu endirmə ləğv edilsin?
+values-b+az	string	downloads_cancel_download	-	Endirməni ləğv et
 values-b+az	string	downloads_column_size	-	Ölçü
 values-b+az	string	downloads_delete_all	-	Hamısını sil
 values-b+az	string	downloads_delete_confirm_body	-	Bu, %s boşaldacaq və geri qaytarıla bilməz.
@@ -4384,6 +4415,7 @@ values-b+az	string	downloads_empty_body	-	Başlığın bölüm siyahısından ba
 values-b+az	string	downloads_empty_headline	-	Hələ yükləmə yoxdur
 values-b+az	string	downloads_free	-	%s boş
 values-b+az	string	downloads_free_up_space	-	Yer boşalt
+values-b+az	string	downloads_keep_downloading	-	Endirməyə davam et
 values-b+az	string	downloads_load_failed_body	-	Yüklənmiş fayllarınız dəyişdirilməyib.
 values-b+az	string	downloads_load_failed_headline	-	Yükləmələriniz oxuna bilmədi
 values-b+az	string	downloads_offline_pill	-	Oflayn · bağlantı yoxdur
@@ -4801,6 +4833,9 @@ values-b+be	string	downloaded	-	Спампавана
 values-b+be	string	downloaded_file	-	Спампаваны файл
 values-b+be	string	downloading	-	Ідзе спампоўванне
 values-b+be	string	downloads_browse_library	-	Агляд бібліятэкі
+values-b+be	string	downloads_cancel_confirm_body	-	Спампаванае дагэтуль (%s) будзе адкінута.
+values-b+be	string	downloads_cancel_confirm_title	-	Скасаваць гэтую спампоўку?
+values-b+be	string	downloads_cancel_download	-	Скасаваць спампоўку
 values-b+be	string	downloads_column_size	-	Памер
 values-b+be	string	downloads_delete_all	-	Выдаліць усе
 values-b+be	string	downloads_delete_confirm_body	-	Гэта вызваліць %s, і гэта нельга адрабіць.
@@ -4810,6 +4845,7 @@ values-b+be	string	downloads_empty_body	-	Спампоўкі, запушчаны
 values-b+be	string	downloads_empty_headline	-	Спамповак пакуль няма
 values-b+be	string	downloads_free	-	%s вольна
 values-b+be	string	downloads_free_up_space	-	Вызваліць месца
+values-b+be	string	downloads_keep_downloading	-	Працягваць спампоўку
 values-b+be	string	downloads_load_failed_body	-	Вашы спампаваныя файлы не зменены.
 values-b+be	string	downloads_load_failed_headline	-	Не ўдалося прачытаць спампоўкі
 values-b+be	string	downloads_offline_pill	-	Па-за сеткай · няма злучэння
@@ -5645,6 +5681,9 @@ values-b+bg	string	downloaded	-	Изтеглено
 values-b+bg	string	downloaded_file	-	Изтеглен файл
 values-b+bg	string	downloading	-	Изтегля се
 values-b+bg	string	downloads_browse_library	-	Преглед на библиотеката
+values-b+bg	string	downloads_cancel_confirm_body	-	Така ще се изхвърлят изтеглените досега %s.
+values-b+bg	string	downloads_cancel_confirm_title	-	Отказване на това изтегляне?
+values-b+bg	string	downloads_cancel_download	-	Отказ на изтеглянето
 values-b+bg	string	downloads_column_size	-	Размер
 values-b+bg	string	downloads_delete_all	-	Изтрий всички
 values-b+bg	string	downloads_delete_confirm_body	-	Това освобождава %s и не може да бъде отменено.
@@ -5654,6 +5693,7 @@ values-b+bg	string	downloads_empty_body	-	Изтеглянията, старти
 values-b+bg	string	downloads_empty_headline	-	Все още няма изтегляния
 values-b+bg	string	downloads_free	-	%s свободни
 values-b+bg	string	downloads_free_up_space	-	Освобождаване на място
+values-b+bg	string	downloads_keep_downloading	-	Продължи изтеглянето
 values-b+bg	string	downloads_load_failed_body	-	Изтеглените ви файлове не са променени.
 values-b+bg	string	downloads_load_failed_headline	-	Изтеглянията ви не можаха да се прочетат
 values-b+bg	string	downloads_offline_pill	-	Офлайн · няма връзка
@@ -6399,6 +6439,9 @@ values-b+bn	string	download_time_left_sec_format	-	%1$dসেকেন্ড
 values-b+bn	string	downloaded	-	ডাউনলোড হয়েছে
 values-b+bn	string	downloading	-	ডাউনলোড চলছে
 values-b+bn	string	downloads_browse_library	-	লাইব্রেরী ব্রাউজ করুন
+values-b+bn	string	downloads_cancel_confirm_body	-	এতে এখন পর্যন্ত ডাউনলোড হওয়া %s বাদ যাবে।
+values-b+bn	string	downloads_cancel_confirm_title	-	এই ডাউনলোড বাতিল করবেন?
+values-b+bn	string	downloads_cancel_download	-	ডাউনলোড বাতিল করুন
 values-b+bn	string	downloads_column_size	-	আকার
 values-b+bn	string	downloads_delete_all	-	সব ডিলিট
 values-b+bn	string	downloads_delete_confirm_body	-	এটি %s খালি করবে এবং পূর্বাবস্থায় ফেরানো যাবে না।
@@ -6408,6 +6451,7 @@ values-b+bn	string	downloads_empty_body	-	কোনো শিরোনামে�
 values-b+bn	string	downloads_empty_headline	-	এখনো কোনো ডাউনলোড নেই
 values-b+bn	string	downloads_free	-	%s খালি
 values-b+bn	string	downloads_free_up_space	-	জায়গা খালি করুন
+values-b+bn	string	downloads_keep_downloading	-	ডাউনলোড চালিয়ে যান
 values-b+bn	string	downloads_load_failed_body	-	আপনার ডাউনলোড করা ফাইলগুলো পরিবর্তন করা হয়নি।
 values-b+bn	string	downloads_load_failed_headline	-	আপনার ডাউনলোডগুলো পড়া যায়নি
 values-b+bn	string	downloads_offline_pill	-	অফলাইন · কোনো সংযোগ নেই
@@ -6873,6 +6917,9 @@ values-b+ca	string	download_time_left_sec_format	-	%1$ds
 values-b+ca	string	downloaded_file	-	Fitxer descarregat
 values-b+ca	string	downloading	-	Descarregant
 values-b+ca	string	downloads_browse_library	-	Explora la biblioteca
+values-b+ca	string	downloads_cancel_confirm_body	-	Això descarta els %s baixats fins ara.
+values-b+ca	string	downloads_cancel_confirm_title	-	Voleu cancel·lar aquesta baixada?
+values-b+ca	string	downloads_cancel_download	-	Cancel·la la baixada
 values-b+ca	string	downloads_column_size	-	Mida
 values-b+ca	string	downloads_delete_all	-	Esborra-ho tot
 values-b+ca	string	downloads_delete_confirm_body	-	Això allibera %s i no es pot desfer.
@@ -6882,6 +6929,7 @@ values-b+ca	string	downloads_empty_body	-	Les descàrregues que inicieu des de l
 values-b+ca	string	downloads_empty_headline	-	Encara no hi ha descàrregues
 values-b+ca	string	downloads_free	-	%s lliures
 values-b+ca	string	downloads_free_up_space	-	Allibera espai
+values-b+ca	string	downloads_keep_downloading	-	Continua baixant
 values-b+ca	string	downloads_load_failed_body	-	Els fitxers descarregats no s'han modificat.
 values-b+ca	string	downloads_load_failed_headline	-	No s'han pogut llegir les descàrregues
 values-b+ca	string	downloads_offline_pill	-	Fora de línia · sense connexió
@@ -7270,6 +7318,9 @@ values-b+ckb	string	download_time_left_sec_format	-	%1$ds
 values-b+ckb	string	downloaded	-	دابەزێنراوە
 values-b+ckb	string	downloading	-	دادەبەزێندرێت
 values-b+ckb	string	downloads_browse_library	-	گەڕان لە کتێبخانە
+values-b+ckb	string	downloads_cancel_confirm_body	-	ئەمە ئەو %s ـەی تا ئێستا داگیراوە فڕێ دەدات.
+values-b+ckb	string	downloads_cancel_confirm_title	-	ئەم داگرتنە هەڵبوەشێنرێتەوە؟
+values-b+ckb	string	downloads_cancel_download	-	هەڵوەشاندنەوەی داگرتن
 values-b+ckb	string	downloads_column_size	-	قەبارە
 values-b+ckb	string	downloads_delete_all	-	هەمووی بسڕەوە
 values-b+ckb	string	downloads_delete_confirm_body	-	ئەمە %s ئازاد دەکات و ناگەڕێتەوە.
@@ -7279,6 +7330,7 @@ values-b+ckb	string	downloads_empty_body	-	ئەو داونلۆدانەی لە ل
 values-b+ckb	string	downloads_empty_headline	-	هێشتا هیچ داونلۆدێک نییە
 values-b+ckb	string	downloads_free	-	%s بەتاڵ
 values-b+ckb	string	downloads_free_up_space	-	بۆشایی چۆڵ بکە
+values-b+ckb	string	downloads_keep_downloading	-	بەردەوامبوون لە داگرتن
 values-b+ckb	string	downloads_load_failed_body	-	فایلە داونلۆدکراوەکانت نەگۆڕدراون.
 values-b+ckb	string	downloads_load_failed_headline	-	نەتوانرا داونلۆدەکانت بخوێنرێنەوە
 values-b+ckb	string	downloads_offline_pill	-	ئۆفلاین · پەیوەندی نییە
@@ -7658,6 +7710,9 @@ values-b+cs	string	downloaded	-	Stáhnuto
 values-b+cs	string	downloaded_file	-	Stažen soubor
 values-b+cs	string	downloading	-	Stahování
 values-b+cs	string	downloads_browse_library	-	Procházet knihovnu
+values-b+cs	string	downloads_cancel_confirm_body	-	Tím se zahodí dosud stažených %s.
+values-b+cs	string	downloads_cancel_confirm_title	-	Zrušit toto stahování?
+values-b+cs	string	downloads_cancel_download	-	Zrušit stahování
 values-b+cs	string	downloads_column_size	-	Velikost
 values-b+cs	string	downloads_delete_all	-	Smazat vše
 values-b+cs	string	downloads_delete_confirm_body	-	Tím se uvolní %s a nelze to vrátit zpět.
@@ -7667,6 +7722,7 @@ values-b+cs	string	downloads_empty_body	-	Stahování spuštěná ze seznamu epi
 values-b+cs	string	downloads_empty_headline	-	Zatím žádná stahování
 values-b+cs	string	downloads_free	-	%s volné
 values-b+cs	string	downloads_free_up_space	-	Uvolnit místo
+values-b+cs	string	downloads_keep_downloading	-	Pokračovat ve stahování
 values-b+cs	string	downloads_load_failed_body	-	Vaše stažené soubory nebyly změněny.
 values-b+cs	string	downloads_load_failed_headline	-	Stahování se nepodařilo načíst
 values-b+cs	string	downloads_offline_pill	-	Offline · bez připojení
@@ -8512,6 +8568,9 @@ values-b+de	string	downloaded	-	Heruntergeladen
 values-b+de	string	downloaded_file	-	Heruntergeladene Datei
 values-b+de	string	downloading	-	Lädt herunter
 values-b+de	string	downloads_browse_library	-	Bibliothek durchsuchen
+values-b+de	string	downloads_cancel_confirm_body	-	Die bisher geladenen %s werden verworfen.
+values-b+de	string	downloads_cancel_confirm_title	-	Diesen Download abbrechen?
+values-b+de	string	downloads_cancel_download	-	Download abbrechen
 values-b+de	string	downloads_column_size	-	Größe
 values-b+de	string	downloads_delete_all	-	Alle löschen
 values-b+de	string	downloads_delete_confirm_body	-	Dadurch werden %s frei. Das kann nicht rückgängig gemacht werden.
@@ -8521,6 +8580,7 @@ values-b+de	string	downloads_empty_body	-	Downloads, die du in der Episodenliste
 values-b+de	string	downloads_empty_headline	-	Noch keine Downloads
 values-b+de	string	downloads_free	-	%s frei
 values-b+de	string	downloads_free_up_space	-	Speicher freigeben
+values-b+de	string	downloads_keep_downloading	-	Weiter laden
 values-b+de	string	downloads_load_failed_body	-	Deine heruntergeladenen Dateien wurden nicht verändert.
 values-b+de	string	downloads_load_failed_headline	-	Downloads konnten nicht gelesen werden
 values-b+de	string	downloads_offline_pill	-	Offline · keine Verbindung
@@ -9342,6 +9402,9 @@ values-b+el	string	downloaded	-	Ληφθέν
 values-b+el	string	downloaded_file	-	Λήψη αρχείου
 values-b+el	string	downloading	-	Κατεβαίνει
 values-b+el	string	downloads_browse_library	-	Περιήγηση στη βιβλιοθήκη
+values-b+el	string	downloads_cancel_confirm_body	-	Θα απορριφθούν τα %s που έχουν ληφθεί μέχρι τώρα.
+values-b+el	string	downloads_cancel_confirm_title	-	Ακύρωση αυτής της λήψης;
+values-b+el	string	downloads_cancel_download	-	Ακύρωση λήψης
 values-b+el	string	downloads_column_size	-	Μέγεθος
 values-b+el	string	downloads_delete_all	-	Διαγραφή όλων
 values-b+el	string	downloads_delete_confirm_body	-	Έτσι ελευθερώνονται %s και δεν μπορεί να αναιρεθεί.
@@ -9351,6 +9414,7 @@ values-b+el	string	downloads_empty_body	-	Οι λήψεις που ξεκινά�
 values-b+el	string	downloads_empty_headline	-	Δεν υπάρχουν ακόμα λήψεις
 values-b+el	string	downloads_free	-	%s ελεύθερα
 values-b+el	string	downloads_free_up_space	-	Απελευθέρωση χώρου
+values-b+el	string	downloads_keep_downloading	-	Συνέχεια λήψης
 values-b+el	string	downloads_load_failed_body	-	Τα ληφθέντα αρχεία σας δεν έχουν αλλάξει.
 values-b+el	string	downloads_load_failed_headline	-	Δεν ήταν δυνατή η ανάγνωση των λήψεών σας
 values-b+el	string	downloads_offline_pill	-	Εκτός σύνδεσης · δεν υπάρχει σύνδεση
@@ -9978,6 +10042,9 @@ values-b+eo	string	download_time_left_sec_format	-	%1$ds
 values-b+eo	string	downloaded	-	Elŝutite
 values-b+eo	string	downloading	-	Elŝutante
 values-b+eo	string	downloads_browse_library	-	Foliumi bibliotekon
+values-b+eo	string	downloads_cancel_confirm_body	-	Tio forĵetas la ĝis nun elŝutitajn %s.
+values-b+eo	string	downloads_cancel_confirm_title	-	Ĉu nuligi ĉi tiun elŝuton?
+values-b+eo	string	downloads_cancel_download	-	Nuligi elŝuton
 values-b+eo	string	downloads_column_size	-	Grandeco
 values-b+eo	string	downloads_delete_all	-	Forigi ĉiujn
 values-b+eo	string	downloads_delete_confirm_body	-	Tio liberigas %s kaj ne povas esti malfarita.
@@ -9986,6 +10053,7 @@ values-b+eo	string	downloads_empty_body	-	Elŝutoj, kiujn vi komencas el la epiz
 values-b+eo	string	downloads_empty_headline	-	Ankoraŭ neniu elŝuto
 values-b+eo	string	downloads_free	-	%s libera
 values-b+eo	string	downloads_free_up_space	-	Liberigi spacon
+values-b+eo	string	downloads_keep_downloading	-	Daŭrigi elŝuton
 values-b+eo	string	downloads_load_failed_body	-	Viaj elŝutitaj dosieroj ne ŝanĝiĝis.
 values-b+eo	string	downloads_load_failed_headline	-	Ne eblis legi viajn elŝutojn
 values-b+eo	string	downloads_offline_pill	-	Eksterrete · neniu konekto
@@ -10448,6 +10516,9 @@ values-b+es	string	downloaded	-	Descargado
 values-b+es	string	downloaded_file	-	Archivo descargado
 values-b+es	string	downloading	-	Descargando
 values-b+es	string	downloads_browse_library	-	Explorar biblioteca
+values-b+es	string	downloads_cancel_confirm_body	-	Se descartarán los %s descargados hasta ahora.
+values-b+es	string	downloads_cancel_confirm_title	-	¿Cancelar esta descarga?
+values-b+es	string	downloads_cancel_download	-	Cancelar descarga
 values-b+es	string	downloads_column_size	-	Tamaño
 values-b+es	string	downloads_delete_all	-	Borrar todo
 values-b+es	string	downloads_delete_confirm_body	-	Esto libera %s y no se puede deshacer.
@@ -10457,6 +10528,7 @@ values-b+es	string	downloads_empty_body	-	Las descargas que inicies desde la lis
 values-b+es	string	downloads_empty_headline	-	Aún no hay descargas
 values-b+es	string	downloads_free	-	%s libres
 values-b+es	string	downloads_free_up_space	-	Liberar espacio
+values-b+es	string	downloads_keep_downloading	-	Seguir descargando
 values-b+es	string	downloads_load_failed_body	-	Tus archivos descargados no se han modificado.
 values-b+es	string	downloads_load_failed_headline	-	No se pudieron leer tus descargas
 values-b+es	string	downloads_offline_pill	-	Sin conexión · sin red
@@ -11199,6 +11271,9 @@ values-b+fa	string	download_storage_text	-	حافظه درونی(داخلی)
 values-b+fa	string	downloaded	-	دانلود شده
 values-b+fa	string	downloading	-	در حال دانلود
 values-b+fa	string	downloads_browse_library	-	مرور کتابخانه
+values-b+fa	string	downloads_cancel_confirm_body	-	این کار %s بارگیری‌شده تا اکنون را دور می‌ریزد.
+values-b+fa	string	downloads_cancel_confirm_title	-	این بارگیری لغو شود؟
+values-b+fa	string	downloads_cancel_download	-	لغو بارگیری
 values-b+fa	string	downloads_column_size	-	اندازه
 values-b+fa	string	downloads_delete_all	-	حذف همه
 values-b+fa	string	downloads_delete_confirm_body	-	این کار %s فضا آزاد می‌کند و قابل بازگشت نیست.
@@ -11208,6 +11283,7 @@ values-b+fa	string	downloads_empty_body	-	دانلودهایی که از فهر�
 values-b+fa	string	downloads_empty_headline	-	هنوز دانلودی وجود ندارد
 values-b+fa	string	downloads_free	-	%s آزاد
 values-b+fa	string	downloads_free_up_space	-	آزاد کردن فضا
+values-b+fa	string	downloads_keep_downloading	-	ادامهٔ بارگیری
 values-b+fa	string	downloads_load_failed_body	-	فایل‌های دانلودشده شما تغییر نکرده‌اند.
 values-b+fa	string	downloads_load_failed_headline	-	دانلودهای شما خوانده نشد
 values-b+fa	string	downloads_offline_pill	-	آفلاین · بدون اتصال
@@ -11643,6 +11719,9 @@ values-b+fil	string	download_time_left_sec_format	-	%1$ds
 values-b+fil	string	downloaded	-	Na-download
 values-b+fil	string	downloading	-	Dina-download
 values-b+fil	string	downloads_browse_library	-	I-browse ang library
+values-b+fil	string	downloads_cancel_confirm_body	-	Itatapon nito ang %s na na-download na.
+values-b+fil	string	downloads_cancel_confirm_title	-	Kanselahin ang download na ito?
+values-b+fil	string	downloads_cancel_download	-	Kanselahin ang download
 values-b+fil	string	downloads_column_size	-	Laki
 values-b+fil	string	downloads_delete_all	-	Burahin lahat
 values-b+fil	string	downloads_delete_confirm_body	-	Magpapalaya ito ng %s at hindi na ito maaaring bawiin.
@@ -11652,6 +11731,7 @@ values-b+fil	string	downloads_empty_body	-	Lalabas dito ang mga download na sini
 values-b+fil	string	downloads_empty_headline	-	Wala pang mga download
 values-b+fil	string	downloads_free	-	%s libre
 values-b+fil	string	downloads_free_up_space	-	Magbakante ng espasyo
+values-b+fil	string	downloads_keep_downloading	-	Ituloy ang pag-download
 values-b+fil	string	downloads_load_failed_body	-	Hindi nabago ang mga na-download mong file.
 values-b+fil	string	downloads_load_failed_headline	-	Hindi mabasa ang iyong mga download
 values-b+fil	string	downloads_offline_pill	-	Offline · walang koneksyon
@@ -12152,6 +12232,9 @@ values-b+fr	string	downloaded	-	Téléchargé
 values-b+fr	string	downloaded_file	-	Fichier téléchargé
 values-b+fr	string	downloading	-	Téléchargement
 values-b+fr	string	downloads_browse_library	-	Parcourir la bibliothèque
+values-b+fr	string	downloads_cancel_confirm_body	-	Les %s déjà téléchargés seront supprimés.
+values-b+fr	string	downloads_cancel_confirm_title	-	Annuler ce téléchargement ?
+values-b+fr	string	downloads_cancel_download	-	Annuler le téléchargement
 values-b+fr	string	downloads_column_size	-	Taille
 values-b+fr	string	downloads_delete_all	-	Tout supprimer
 values-b+fr	string	downloads_delete_confirm_body	-	Cela libère %s et ne peut pas être annulé.
@@ -12161,6 +12244,7 @@ values-b+fr	string	downloads_empty_body	-	Les téléchargements lancés depuis l
 values-b+fr	string	downloads_empty_headline	-	Aucun téléchargement pour l'instant
 values-b+fr	string	downloads_free	-	%s libres
 values-b+fr	string	downloads_free_up_space	-	Libérer de l'espace
+values-b+fr	string	downloads_keep_downloading	-	Continuer le téléchargement
 values-b+fr	string	downloads_load_failed_body	-	Vos fichiers téléchargés n'ont pas été modifiés.
 values-b+fr	string	downloads_load_failed_headline	-	Impossible de lire vos téléchargements
 values-b+fr	string	downloads_offline_pill	-	Hors-ligne · pas de connexion
@@ -12888,6 +12972,9 @@ values-b+gl	string	download_storage_text	-	Almacenamento Interno
 values-b+gl	string	downloaded	-	Descargado
 values-b+gl	string	downloading	-	Descargando
 values-b+gl	string	downloads_browse_library	-	Explorar biblioteca
+values-b+gl	string	downloads_cancel_confirm_body	-	Isto descarta os %s descargados ata agora.
+values-b+gl	string	downloads_cancel_confirm_title	-	Cancelar esta descarga?
+values-b+gl	string	downloads_cancel_download	-	Cancelar a descarga
 values-b+gl	string	downloads_column_size	-	Tamaño
 values-b+gl	string	downloads_delete_all	-	Borrar todo
 values-b+gl	string	downloads_delete_confirm_body	-	Isto libera %s e non se pode desfacer.
@@ -12897,6 +12984,7 @@ values-b+gl	string	downloads_empty_body	-	As descargas que inicies desde a lista
 values-b+gl	string	downloads_empty_headline	-	Aínda non hai descargas
 values-b+gl	string	downloads_free	-	%s libres
 values-b+gl	string	downloads_free_up_space	-	Liberar espazo
+values-b+gl	string	downloads_keep_downloading	-	Seguir descargando
 values-b+gl	string	downloads_load_failed_body	-	Os teus ficheiros descargados non se modificaron.
 values-b+gl	string	downloads_load_failed_headline	-	Non se puideron ler as túas descargas
 values-b+gl	string	downloads_offline_pill	-	Sen conexión · sen rede
@@ -13349,6 +13437,9 @@ values-b+he	string	downloaded	-	הורד
 values-b+he	string	downloaded_file	-	קובץ שהורד
 values-b+he	string	downloading	-	מוריד
 values-b+he	string	downloads_browse_library	-	עיון בספריה
+values-b+he	string	downloads_cancel_confirm_body	-	פעולה זו תמחק את %s שהורדו עד כה.
+values-b+he	string	downloads_cancel_confirm_title	-	לבטל את ההורדה הזו?
+values-b+he	string	downloads_cancel_download	-	ביטול ההורדה
 values-b+he	string	downloads_column_size	-	גודל
 values-b+he	string	downloads_delete_all	-	מחק הכל
 values-b+he	string	downloads_delete_confirm_body	-	פעולה זו תפנה %s ולא ניתן לבטל אותה.
@@ -13358,6 +13449,7 @@ values-b+he	string	downloads_empty_body	-	הורדות שתתחיל מרשימת
 values-b+he	string	downloads_empty_headline	-	אין עדיין הורדות
 values-b+he	string	downloads_free	-	%s פנויים
 values-b+he	string	downloads_free_up_space	-	פינוי מקום
+values-b+he	string	downloads_keep_downloading	-	המשך בהורדה
 values-b+he	string	downloads_load_failed_body	-	הקבצים שהורדת לא שונו.
 values-b+he	string	downloads_load_failed_headline	-	לא ניתן לקרוא את ההורדות שלך
 values-b+he	string	downloads_offline_pill	-	אופליין · אין חיבור
@@ -13989,6 +14081,9 @@ values-b+hi	string	download_time_left_sec_format	-	%1$d सेकंड
 values-b+hi	string	downloaded	-	डाउनलोड किया गया
 values-b+hi	string	downloading	-	डाउनलोड हो रहा
 values-b+hi	string	downloads_browse_library	-	लाइब्रेरी ब्राउज़ करें
+values-b+hi	string	downloads_cancel_confirm_body	-	इससे अब तक डाउनलोड हुए %s हटा दिए जाएँगे।
+values-b+hi	string	downloads_cancel_confirm_title	-	यह डाउनलोड रद्द करें?
+values-b+hi	string	downloads_cancel_download	-	डाउनलोड रद्द करें
 values-b+hi	string	downloads_column_size	-	आकार
 values-b+hi	string	downloads_delete_all	-	सभी डिलीट करें
 values-b+hi	string	downloads_delete_confirm_body	-	इससे %s खाली होगा और इसे पूर्ववत नहीं किया जा सकता।
@@ -13998,6 +14093,7 @@ values-b+hi	string	downloads_empty_body	-	किसी शीर्षक की
 values-b+hi	string	downloads_empty_headline	-	अभी तक कोई डाउनलोड नहीं
 values-b+hi	string	downloads_free	-	%s खाली
 values-b+hi	string	downloads_free_up_space	-	जगह ख़ाली करें
+values-b+hi	string	downloads_keep_downloading	-	डाउनलोड जारी रखें
 values-b+hi	string	downloads_load_failed_body	-	आपकी डाउनलोड की गई फ़ाइलें नहीं बदली गई हैं।
 values-b+hi	string	downloads_load_failed_headline	-	आपके डाउनलोड पढ़े नहीं जा सके
 values-b+hi	string	downloads_offline_pill	-	ऑफ़लाइन · कोई कनेक्शन नहीं
@@ -14607,6 +14703,9 @@ values-b+hr	string	downloaded	-	Preuzeto
 values-b+hr	string	downloaded_file	-	Preuzeta datoteka
 values-b+hr	string	downloading	-	Preuzimanje u tijeku
 values-b+hr	string	downloads_browse_library	-	Pregledaj biblioteku
+values-b+hr	string	downloads_cancel_confirm_body	-	Time se odbacuje dosad preuzetih %s.
+values-b+hr	string	downloads_cancel_confirm_title	-	Otkazati ovo preuzimanje?
+values-b+hr	string	downloads_cancel_download	-	Otkaži preuzimanje
 values-b+hr	string	downloads_column_size	-	Veličina
 values-b+hr	string	downloads_delete_all	-	Izbriši sve
 values-b+hr	string	downloads_delete_confirm_body	-	Time se oslobađa %s i to se ne može poništiti.
@@ -14616,6 +14715,7 @@ values-b+hr	string	downloads_empty_body	-	Preuzimanja pokrenuta s popisa epizoda
 values-b+hr	string	downloads_empty_headline	-	Još nema preuzimanja
 values-b+hr	string	downloads_free	-	%s slobodno
 values-b+hr	string	downloads_free_up_space	-	Oslobodi prostor
+values-b+hr	string	downloads_keep_downloading	-	Nastavi preuzimanje
 values-b+hr	string	downloads_load_failed_body	-	Vaše preuzete datoteke nisu promijenjene.
 values-b+hr	string	downloads_load_failed_headline	-	Nije moguće pročitati vaša preuzimanja
 values-b+hr	string	downloads_offline_pill	-	Offline · nema veze
@@ -15422,6 +15522,9 @@ values-b+hu	string	downloaded	-	Letöltve
 values-b+hu	string	downloaded_file	-	Letöltött fájl
 values-b+hu	string	downloading	-	Letöltés
 values-b+hu	string	downloads_browse_library	-	Könyvtár böngészése
+values-b+hu	string	downloads_cancel_confirm_body	-	Ezzel elveted az eddig letöltött %s adatot.
+values-b+hu	string	downloads_cancel_confirm_title	-	Megszakítod ezt a letöltést?
+values-b+hu	string	downloads_cancel_download	-	Letöltés megszakítása
 values-b+hu	string	downloads_column_size	-	Méret
 values-b+hu	string	downloads_delete_all	-	Összes törlése
 values-b+hu	string	downloads_delete_confirm_body	-	Ezzel %s szabadul fel, és nem vonható vissza.
@@ -15431,6 +15534,7 @@ values-b+hu	string	downloads_empty_body	-	A cím epizódlistájából indított 
 values-b+hu	string	downloads_empty_headline	-	Még nincs letöltés
 values-b+hu	string	downloads_free	-	%s szabad
 values-b+hu	string	downloads_free_up_space	-	Hely felszabadítása
+values-b+hu	string	downloads_keep_downloading	-	Letöltés folytatása
 values-b+hu	string	downloads_load_failed_body	-	A letöltött fájlok nem változtak.
 values-b+hu	string	downloads_load_failed_headline	-	Nem sikerült beolvasni a letöltéseket
 values-b+hu	string	downloads_offline_pill	-	Offline · nincs kapcsolat
@@ -16193,6 +16297,9 @@ values-b+id	string	downloaded	-	Terunduh
 values-b+id	string	downloaded_file	-	Berkas terunduh
 values-b+id	string	downloading	-	Mengunduh
 values-b+id	string	downloads_browse_library	-	Jelajahi pustaka
+values-b+id	string	downloads_cancel_confirm_body	-	Ini membuang %s yang sudah diunduh.
+values-b+id	string	downloads_cancel_confirm_title	-	Batalkan unduhan ini?
+values-b+id	string	downloads_cancel_download	-	Batalkan unduhan
 values-b+id	string	downloads_column_size	-	Ukuran
 values-b+id	string	downloads_delete_all	-	Hapus semua
 values-b+id	string	downloads_delete_confirm_body	-	Ini mengosongkan %s dan tidak dapat diurungkan.
@@ -16202,6 +16309,7 @@ values-b+id	string	downloads_empty_body	-	Unduhan yang Anda mulai dari daftar ep
 values-b+id	string	downloads_empty_headline	-	Belum ada unduhan
 values-b+id	string	downloads_free	-	%s kosong
 values-b+id	string	downloads_free_up_space	-	Kosongkan ruang
+values-b+id	string	downloads_keep_downloading	-	Lanjutkan mengunduh
 values-b+id	string	downloads_load_failed_body	-	File unduhan Anda tidak berubah.
 values-b+id	string	downloads_load_failed_headline	-	Tidak dapat membaca unduhan Anda
 values-b+id	string	downloads_offline_pill	-	Luring · tidak ada koneksi
@@ -17034,6 +17142,9 @@ values-b+in	string	downloaded	-	Terunduh
 values-b+in	string	downloaded_file	-	Berkas terunduh
 values-b+in	string	downloading	-	Mengunduh
 values-b+in	string	downloads_browse_library	-	Jelajahi pustaka
+values-b+in	string	downloads_cancel_confirm_body	-	Ini membuang %s yang sudah diunduh.
+values-b+in	string	downloads_cancel_confirm_title	-	Batalkan unduhan ini?
+values-b+in	string	downloads_cancel_download	-	Batalkan unduhan
 values-b+in	string	downloads_column_size	-	Ukuran
 values-b+in	string	downloads_delete_all	-	Hapus semua
 values-b+in	string	downloads_delete_confirm_body	-	Ini mengosongkan %s dan tidak dapat diurungkan.
@@ -17043,6 +17154,7 @@ values-b+in	string	downloads_empty_body	-	Unduhan yang Anda mulai dari daftar ep
 values-b+in	string	downloads_empty_headline	-	Belum ada unduhan
 values-b+in	string	downloads_free	-	%s kosong
 values-b+in	string	downloads_free_up_space	-	Kosongkan ruang
+values-b+in	string	downloads_keep_downloading	-	Lanjutkan mengunduh
 values-b+in	string	downloads_load_failed_body	-	File unduhan Anda tidak berubah.
 values-b+in	string	downloads_load_failed_headline	-	Tidak dapat membaca unduhan Anda
 values-b+in	string	downloads_offline_pill	-	Luring · tidak ada koneksi
@@ -17897,6 +18009,9 @@ values-b+it	string	downloaded	-	Scaricato
 values-b+it	string	downloaded_file	-	File scaricato
 values-b+it	string	downloading	-	Download in corso
 values-b+it	string	downloads_browse_library	-	Sfoglia libreria
+values-b+it	string	downloads_cancel_confirm_body	-	Verranno scartati i %s scaricati finora.
+values-b+it	string	downloads_cancel_confirm_title	-	Annullare questo download?
+values-b+it	string	downloads_cancel_download	-	Annulla download
 values-b+it	string	downloads_column_size	-	Dimensione
 values-b+it	string	downloads_delete_all	-	Elimina tutto
 values-b+it	string	downloads_delete_confirm_body	-	Così si liberano %s e non si può annullare.
@@ -17906,6 +18021,7 @@ values-b+it	string	downloads_empty_body	-	I download avviati dall'elenco degli e
 values-b+it	string	downloads_empty_headline	-	Ancora nessun download
 values-b+it	string	downloads_free	-	%s liberi
 values-b+it	string	downloads_free_up_space	-	Libera spazio
+values-b+it	string	downloads_keep_downloading	-	Continua a scaricare
 values-b+it	string	downloads_load_failed_body	-	I file scaricati non sono stati modificati.
 values-b+it	string	downloads_load_failed_headline	-	Impossibile leggere i download
 values-b+it	string	downloads_offline_pill	-	Offline · nessuna connessione
@@ -18695,6 +18811,9 @@ values-b+iw	string	downloaded	-	הורד
 values-b+iw	string	downloaded_file	-	קובץ שהורד
 values-b+iw	string	downloading	-	מוריד
 values-b+iw	string	downloads_browse_library	-	עיון בספריה
+values-b+iw	string	downloads_cancel_confirm_body	-	פעולה זו תמחק את %s שהורדו עד כה.
+values-b+iw	string	downloads_cancel_confirm_title	-	לבטל את ההורדה הזו?
+values-b+iw	string	downloads_cancel_download	-	ביטול ההורדה
 values-b+iw	string	downloads_column_size	-	גודל
 values-b+iw	string	downloads_delete_all	-	מחק הכל
 values-b+iw	string	downloads_delete_confirm_body	-	פעולה זו תפנה %s ולא ניתן לבטל אותה.
@@ -18704,6 +18823,7 @@ values-b+iw	string	downloads_empty_body	-	הורדות שתתחיל מרשימת
 values-b+iw	string	downloads_empty_headline	-	אין עדיין הורדות
 values-b+iw	string	downloads_free	-	%s פנויים
 values-b+iw	string	downloads_free_up_space	-	פינוי מקום
+values-b+iw	string	downloads_keep_downloading	-	המשך בהורדה
 values-b+iw	string	downloads_load_failed_body	-	הקבצים שהורדת לא שונו.
 values-b+iw	string	downloads_load_failed_headline	-	לא ניתן לקרוא את ההורדות שלך
 values-b+iw	string	downloads_offline_pill	-	אופליין · אין חיבור
@@ -19408,6 +19528,9 @@ values-b+ja	string	downloaded	-	ダウンロード済
 values-b+ja	string	downloaded_file	-	ダウンロードしたファイル
 values-b+ja	string	downloading	-	ダウンロード中
 values-b+ja	string	downloads_browse_library	-	ライブラリを見る
+values-b+ja	string	downloads_cancel_confirm_body	-	これまでにダウンロードした%sは破棄されます。
+values-b+ja	string	downloads_cancel_confirm_title	-	このダウンロードをキャンセルしますか？
+values-b+ja	string	downloads_cancel_download	-	ダウンロードをキャンセル
 values-b+ja	string	downloads_column_size	-	サイズ
 values-b+ja	string	downloads_delete_all	-	すべて削除
 values-b+ja	string	downloads_delete_confirm_body	-	%sが解放されます。この操作は取り消せません。
@@ -19417,6 +19540,7 @@ values-b+ja	string	downloads_empty_body	-	作品のエピソード一覧から�
 values-b+ja	string	downloads_empty_headline	-	ダウンロードはまだありません
 values-b+ja	string	downloads_free	-	空き %s
 values-b+ja	string	downloads_free_up_space	-	空き容量を増やす
+values-b+ja	string	downloads_keep_downloading	-	ダウンロードを続ける
 values-b+ja	string	downloads_load_failed_body	-	ダウンロード済みのファイルは変更されていません。
 values-b+ja	string	downloads_load_failed_headline	-	ダウンロードを読み込めませんでした
 values-b+ja	string	downloads_offline_pill	-	オフライン · 接続なし
@@ -20091,6 +20215,9 @@ values-b+kn	string	download_storage_text	-	ಇಂಟರ್ನಲ್ ಸ್ಟೋ
 values-b+kn	string	downloaded	-	ಡೌನ್‌ಲೋಡ್ ಮಾಡಲಾಗಿದೆ
 values-b+kn	string	downloading	-	ಡೌನ್‌ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ
 values-b+kn	string	downloads_browse_library	-	ಲೈಬ್ರರಿ ಬ್ರೌಸ್ ಮಾಡಿ
+values-b+kn	string	downloads_cancel_confirm_body	-	ಇದು ಇಲ್ಲಿಯವರೆಗೆ ಡೌನ್‌ಲೋಡ್ ಆದ %s ಅನ್ನು ತ್ಯಜಿಸುತ್ತದೆ.
+values-b+kn	string	downloads_cancel_confirm_title	-	ಈ ಡೌನ್‌ಲೋಡ್ ರದ್ದುಗೊಳಿಸುವುದೇ?
+values-b+kn	string	downloads_cancel_download	-	ಡೌನ್‌ಲೋಡ್ ರದ್ದುಮಾಡಿ
 values-b+kn	string	downloads_column_size	-	ಗಾತ್ರ
 values-b+kn	string	downloads_delete_all	-	ಎಲ್ಲವನ್ನೂ ಅಳಿಸಿ
 values-b+kn	string	downloads_delete_confirm_body	-	ಇದು %s ಮುಕ್ತಗೊಳಿಸುತ್ತದೆ ಮತ್ತು ರದ್ದುಗೊಳಿಸಲಾಗುವುದಿಲ್ಲ.
@@ -20098,6 +20225,7 @@ values-b+kn	string	downloads_empty_body	-	ಶೀರ್ಷಿಕೆಯ ಸಂಚ�
 values-b+kn	string	downloads_empty_headline	-	ಇನ್ನೂ ಡೌನ್‌ಲೋಡ್‌ಗಳಿಲ್ಲ
 values-b+kn	string	downloads_free	-	%s ಖಾಲಿ
 values-b+kn	string	downloads_free_up_space	-	ಸ್ಥಳವನ್ನು ಖಾಲಿ ಮಾಡಿ
+values-b+kn	string	downloads_keep_downloading	-	ಡೌನ್‌ಲೋಡ್ ಮುಂದುವರಿಸಿ
 values-b+kn	string	downloads_load_failed_body	-	ನಿಮ್ಮ ಡೌನ್‌ಲೋಡ್ ಮಾಡಿದ ಫೈಲ್‌ಗಳನ್ನು ಬದಲಾಯಿಸಲಾಗಿಲ್ಲ.
 values-b+kn	string	downloads_load_failed_headline	-	ನಿಮ್ಮ ಡೌನ್‌ಲೋಡ್‌ಗಳನ್ನು ಓದಲಾಗಲಿಲ್ಲ
 values-b+kn	string	downloads_offline_pill	-	ಆಫ್‌ಲೈನ್ · ಸಂಪರ್ಕವಿಲ್ಲ
@@ -20484,6 +20612,9 @@ values-b+ko	string	downloaded	-	다운로드됨
 values-b+ko	string	downloaded_file	-	다운로드한 파일
 values-b+ko	string	downloading	-	다운로드중
 values-b+ko	string	downloads_browse_library	-	라이브러리 둘러보기
+values-b+ko	string	downloads_cancel_confirm_body	-	지금까지 다운로드한 %s이(가) 삭제됩니다.
+values-b+ko	string	downloads_cancel_confirm_title	-	이 다운로드를 취소할까요?
+values-b+ko	string	downloads_cancel_download	-	다운로드 취소
 values-b+ko	string	downloads_column_size	-	크기
 values-b+ko	string	downloads_delete_all	-	모두 삭제
 values-b+ko	string	downloads_delete_confirm_body	-	%s의 공간이 확보되며 되돌릴 수 없습니다.
@@ -20493,6 +20624,7 @@ values-b+ko	string	downloads_empty_body	-	작품의 에피소드 목록에서 �
 values-b+ko	string	downloads_empty_headline	-	아직 다운로드가 없습니다
 values-b+ko	string	downloads_free	-	%s 남음
 values-b+ko	string	downloads_free_up_space	-	공간 확보
+values-b+ko	string	downloads_keep_downloading	-	계속 다운로드
 values-b+ko	string	downloads_load_failed_body	-	다운로드한 파일은 변경되지 않았습니다.
 values-b+ko	string	downloads_load_failed_headline	-	다운로드를 읽을 수 없습니다
 values-b+ko	string	downloads_offline_pill	-	오프라인 · 연결 없음
@@ -21214,6 +21346,9 @@ values-b+lt	string	download_storage_text	-	Vidinė atmintis
 values-b+lt	string	downloaded	-	Atsisiųsta
 values-b+lt	string	downloading	-	Siunčiama
 values-b+lt	string	downloads_browse_library	-	Naršyti biblioteką
+values-b+lt	string	downloads_cancel_confirm_body	-	Bus atmesta iki šiol atsisiųsta %s.
+values-b+lt	string	downloads_cancel_confirm_title	-	Atšaukti šį atsisiuntimą?
+values-b+lt	string	downloads_cancel_download	-	Atšaukti atsisiuntimą
 values-b+lt	string	downloads_column_size	-	Dydis
 values-b+lt	string	downloads_delete_all	-	Ištrinti visus
 values-b+lt	string	downloads_delete_confirm_body	-	Tai atlaisvins %s ir to nebus galima atšaukti.
@@ -21223,6 +21358,7 @@ values-b+lt	string	downloads_empty_body	-	Atsisiuntimai, pradėti iš pavadinimo
 values-b+lt	string	downloads_empty_headline	-	Atsisiuntimų dar nėra
 values-b+lt	string	downloads_free	-	%s laisva
 values-b+lt	string	downloads_free_up_space	-	Atlaisvinti vietos
+values-b+lt	string	downloads_keep_downloading	-	Tęsti atsisiuntimą
 values-b+lt	string	downloads_load_failed_body	-	Jūsų atsisiųsti failai nebuvo pakeisti.
 values-b+lt	string	downloads_load_failed_headline	-	Nepavyko nuskaityti atsisiuntimų
 values-b+lt	string	downloads_offline_pill	-	Neprisijungus · nėra ryšio
@@ -21716,6 +21852,9 @@ values-b+lv	string	downloaded	-	Ieladēts
 values-b+lv	string	downloaded_file	-	Lejupielādēta datne
 values-b+lv	string	downloading	-	Lādējas
 values-b+lv	string	downloads_browse_library	-	Pārlūkot bibliotēku
+values-b+lv	string	downloads_cancel_confirm_body	-	Līdz šim lejupielādētie %s tiks atmesti.
+values-b+lv	string	downloads_cancel_confirm_title	-	Atcelt šo lejupielādi?
+values-b+lv	string	downloads_cancel_download	-	Atcelt lejupielādi
 values-b+lv	string	downloads_column_size	-	Izmērs
 values-b+lv	string	downloads_delete_all	-	Dzēst visu
 values-b+lv	string	downloads_delete_confirm_body	-	Tas atbrīvos %s, un to nevarēs atsaukt.
@@ -21725,6 +21864,7 @@ values-b+lv	string	downloads_empty_body	-	Lejupielādes, kuras sākat no nosauku
 values-b+lv	string	downloads_empty_headline	-	Vēl nav lejupielāžu
 values-b+lv	string	downloads_free	-	%s brīvi
 values-b+lv	string	downloads_free_up_space	-	Atbrīvot vietu
+values-b+lv	string	downloads_keep_downloading	-	Turpināt lejupielādi
 values-b+lv	string	downloads_load_failed_body	-	Jūsu lejupielādētie faili nav mainīti.
 values-b+lv	string	downloads_load_failed_headline	-	Neizdevās nolasīt lejupielādes
 values-b+lv	string	downloads_offline_pill	-	Bezsaistē · nav savienojuma
@@ -22489,6 +22629,9 @@ values-b+mk	string	downloaded	-	Преземено
 values-b+mk	string	downloaded_file	-	Преземена датотека
 values-b+mk	string	downloading	-	Преземање
 values-b+mk	string	downloads_browse_library	-	Прелистај библиотека
+values-b+mk	string	downloads_cancel_confirm_body	-	Ова ги отфрла досега преземените %s.
+values-b+mk	string	downloads_cancel_confirm_title	-	Да се откаже ова преземање?
+values-b+mk	string	downloads_cancel_download	-	Откажи преземање
 values-b+mk	string	downloads_column_size	-	Големина
 values-b+mk	string	downloads_delete_all	-	Избриши ги сите
 values-b+mk	string	downloads_delete_confirm_body	-	Ова ослободува %s и не може да се врати.
@@ -22498,6 +22641,7 @@ values-b+mk	string	downloads_empty_body	-	Преземањата што ќе г�
 values-b+mk	string	downloads_empty_headline	-	Сè уште нема преземања
 values-b+mk	string	downloads_free	-	%s слободно
 values-b+mk	string	downloads_free_up_space	-	Ослободи простор
+values-b+mk	string	downloads_keep_downloading	-	Продолжи со преземање
 values-b+mk	string	downloads_load_failed_body	-	Вашите преземени датотеки не се променети.
 values-b+mk	string	downloads_load_failed_headline	-	Не може да се прочитаат вашите преземања
 values-b+mk	string	downloads_offline_pill	-	Офлајн · нема врска
@@ -23210,6 +23354,9 @@ values-b+ml	string	download_time_left_sec_format	-	%1$ds
 values-b+ml	string	downloaded	-	ഡൌൺലോഡ് ചെയ്തവ
 values-b+ml	string	downloading	-	ഡൌൺലോഡ് ചെയ്യുന്നു
 values-b+ml	string	downloads_browse_library	-	ലൈബ്രറി ബ്രൗസ് ചെയ്യുക
+values-b+ml	string	downloads_cancel_confirm_body	-	ഇതുവരെ ഡൗൺലോഡ് ചെയ്ത %s ഉപേക്ഷിക്കും.
+values-b+ml	string	downloads_cancel_confirm_title	-	ഈ ഡൗൺലോഡ് റദ്ദാക്കണോ?
+values-b+ml	string	downloads_cancel_download	-	ഡൗൺലോഡ് റദ്ദാക്കുക
 values-b+ml	string	downloads_column_size	-	വലുപ്പം
 values-b+ml	string	downloads_delete_all	-	എല്ലാം ഡിലീറ്റ് ചെയ്യുക
 values-b+ml	string	downloads_delete_confirm_body	-	ഇത് %s ഒഴിവാക്കും, ഇത് പഴയപടിയാക്കാനാകില്ല.
@@ -23219,6 +23366,7 @@ values-b+ml	string	downloads_empty_body	-	ഒരു ശീർഷകത്തി�
 values-b+ml	string	downloads_empty_headline	-	ഇതുവരെ ഡൗൺലോഡുകളൊന്നുമില്ല
 values-b+ml	string	downloads_free	-	%s ശൂന്യം
 values-b+ml	string	downloads_free_up_space	-	ഇടം ഒഴിവാക്കുക
+values-b+ml	string	downloads_keep_downloading	-	ഡൗൺലോഡ് തുടരുക
 values-b+ml	string	downloads_load_failed_body	-	നിങ്ങൾ ഡൗൺലോഡ് ചെയ്ത ഫയലുകൾ മാറ്റിയിട്ടില്ല.
 values-b+ml	string	downloads_load_failed_headline	-	നിങ്ങളുടെ ഡൗൺലോഡുകൾ വായിക്കാനായില്ല
 values-b+ml	string	downloads_offline_pill	-	ഓഫ്‌ലൈൻ · കണക്ഷനില്ല
@@ -23678,6 +23826,9 @@ values-b+ms	string	downloaded	-	Dimuat turun
 values-b+ms	string	downloaded_file	-	Fail dimuat turun
 values-b+ms	string	downloading	-	Memuat turun
 values-b+ms	string	downloads_browse_library	-	Layari perpustakaan
+values-b+ms	string	downloads_cancel_confirm_body	-	Ini akan membuang %s yang telah dimuat turun.
+values-b+ms	string	downloads_cancel_confirm_title	-	Batalkan muat turun ini?
+values-b+ms	string	downloads_cancel_download	-	Batalkan muat turun
 values-b+ms	string	downloads_column_size	-	Saiz
 values-b+ms	string	downloads_delete_all	-	Padam semua
 values-b+ms	string	downloads_delete_confirm_body	-	Ini mengosongkan %s dan tidak boleh dibuat asal.
@@ -23687,6 +23838,7 @@ values-b+ms	string	downloads_empty_body	-	Muat turun yang anda mulakan daripada 
 values-b+ms	string	downloads_empty_headline	-	Belum ada muat turun
 values-b+ms	string	downloads_free	-	%s kosong
 values-b+ms	string	downloads_free_up_space	-	Kosongkan ruang
+values-b+ms	string	downloads_keep_downloading	-	Teruskan muat turun
 values-b+ms	string	downloads_load_failed_body	-	Fail muat turun anda tidak diubah.
 values-b+ms	string	downloads_load_failed_headline	-	Tidak dapat membaca muat turun anda
 values-b+ms	string	downloads_offline_pill	-	Luar talian · tiada sambungan
@@ -24222,6 +24374,9 @@ values-b+mt	string	download_storage_text	-	Ħażna Interna
 values-b+mt	string	downloaded	-	Imniżżel
 values-b+mt	string	downloading	-	Qed jinżlu
 values-b+mt	string	downloads_browse_library	-	Esplora l-librerija
+values-b+mt	string	downloads_cancel_confirm_body	-	Dan jarmi l-%s imniżżla s'issa.
+values-b+mt	string	downloads_cancel_confirm_title	-	Tikkanċella dan it-tniżżil?
+values-b+mt	string	downloads_cancel_download	-	Ikkanċella t-tniżżil
 values-b+mt	string	downloads_column_size	-	Daqs
 values-b+mt	string	downloads_delete_all	-	Ħassar kollox
 values-b+mt	string	downloads_delete_confirm_body	-	Dan jillibera %s u ma jistax jitreġġa' lura.
@@ -24229,6 +24384,7 @@ values-b+mt	string	downloads_empty_body	-	It-tniżżil li tibda mil-lista tal-ep
 values-b+mt	string	downloads_empty_headline	-	Għad m'hemmx tniżżil
 values-b+mt	string	downloads_free	-	%s liberi
 values-b+mt	string	downloads_free_up_space	-	Ħeles l-ispazju
+values-b+mt	string	downloads_keep_downloading	-	Kompli niżżel
 values-b+mt	string	downloads_load_failed_body	-	Il-fajls imniżżla tiegħek ma nbidlux.
 values-b+mt	string	downloads_load_failed_headline	-	Ma setax jinqara t-tniżżil tiegħek
 values-b+mt	string	downloads_offline_pill	-	Offline · l-ebda konnessjoni
@@ -24547,6 +24703,9 @@ values-b+my	string	downloaded	-	ဒေါင်းလုဒ် လုပ်ပ�
 values-b+my	string	downloaded_file	-	ဖိုင်ဒေါင်းလုဒ်လုပ်ပြီး
 values-b+my	string	downloading	-	ဒေါင်းလုဒ် လုပ်နေသည်
 values-b+my	string	downloads_browse_library	-	လိုက်ဘရီကို ကြည့်ရှုရန်
+values-b+my	string	downloads_cancel_confirm_body	-	ယခုထိ ဒေါင်းလုဒ်ဆွဲထားသော %s ကို ဖယ်ရှားပါမည်။
+values-b+my	string	downloads_cancel_confirm_title	-	ဤဒေါင်းလုဒ်ကို ပယ်ဖျက်မလား။
+values-b+my	string	downloads_cancel_download	-	ဒေါင်းလုဒ် ပယ်ဖျက်ရန်
 values-b+my	string	downloads_column_size	-	အရွယ်အစား
 values-b+my	string	downloads_delete_all	-	အားလုံးဖျက်ရန်
 values-b+my	string	downloads_delete_confirm_body	-	၎င်းသည် %s ကို လွတ်စေပြီး ပြန်ပြင်၍မရပါ။
@@ -24554,6 +24713,7 @@ values-b+my	string	downloads_empty_body	-	ခေါင်းစဉ်တစ်�
 values-b+my	string	downloads_empty_headline	-	ဒေါင်းလုဒ် မရှိသေးပါ
 values-b+my	string	downloads_free	-	%s လွတ်
 values-b+my	string	downloads_free_up_space	-	နေရာလွတ်ယူရန်
+values-b+my	string	downloads_keep_downloading	-	ဆက်လက် ဒေါင်းလုဒ်ဆွဲရန်
 values-b+my	string	downloads_load_failed_body	-	ဒေါင်းလုဒ်လုပ်ထားသော ဖိုင်များကို မပြောင်းလဲထားပါ။
 values-b+my	string	downloads_load_failed_headline	-	ဒေါင်းလုဒ်များကို ဖတ်၍မရပါ
 values-b+my	string	downloads_offline_pill	-	အော့ဖ်လိုင်း · ချိတ်ဆက်မှုမရှိပါ
@@ -25079,6 +25239,9 @@ values-b+ne	string	download_storage_text	-	भित्री स्टोरे
 values-b+ne	string	downloaded	-	डाउनलोड भयो
 values-b+ne	string	downloading	-	डाउनलोड हुदैछ
 values-b+ne	string	downloads_browse_library	-	लाइब्रेरी हेर्नुहोस्
+values-b+ne	string	downloads_cancel_confirm_body	-	यसले अहिलेसम्म डाउनलोड भएको %s हटाउँछ।
+values-b+ne	string	downloads_cancel_confirm_title	-	यो डाउनलोड रद्द गर्ने?
+values-b+ne	string	downloads_cancel_download	-	डाउनलोड रद्द गर्नुहोस्
 values-b+ne	string	downloads_column_size	-	आकार
 values-b+ne	string	downloads_delete_all	-	सबै मेटाउनुहोस्
 values-b+ne	string	downloads_delete_confirm_body	-	यसले %s खाली गर्छ र यसलाई पूर्ववत गर्न सकिँदैन।
@@ -25086,6 +25249,7 @@ values-b+ne	string	downloads_empty_body	-	शीर्षकको एपिस�
 values-b+ne	string	downloads_empty_headline	-	अहिलेसम्म कुनै डाउनलोड छैन
 values-b+ne	string	downloads_free	-	%s खाली
 values-b+ne	string	downloads_free_up_space	-	ठाउँ खाली गर्नुहोस्
+values-b+ne	string	downloads_keep_downloading	-	डाउनलोड जारी राख्नुहोस्
 values-b+ne	string	downloads_load_failed_body	-	तपाईंका डाउनलोड गरिएका फाइलहरू परिवर्तन गरिएका छैनन्।
 values-b+ne	string	downloads_load_failed_headline	-	तपाईंका डाउनलोडहरू पढ्न सकिएन
 values-b+ne	string	downloads_offline_pill	-	अफलाइन · जडान छैन
@@ -25464,6 +25628,9 @@ values-b+nl	string	downloaded	-	Gedownload
 values-b+nl	string	downloaded_file	-	Gedownload bestand
 values-b+nl	string	downloading	-	Downloaden
 values-b+nl	string	downloads_browse_library	-	Bibliotheek bekijken
+values-b+nl	string	downloads_cancel_confirm_body	-	De %s die al is gedownload, wordt weggegooid.
+values-b+nl	string	downloads_cancel_confirm_title	-	Deze download annuleren?
+values-b+nl	string	downloads_cancel_download	-	Download annuleren
 values-b+nl	string	downloads_column_size	-	Grootte
 values-b+nl	string	downloads_delete_all	-	Alles verwijderen
 values-b+nl	string	downloads_delete_confirm_body	-	Dit maakt %s vrij en kan niet ongedaan worden gemaakt.
@@ -25473,6 +25640,7 @@ values-b+nl	string	downloads_empty_body	-	Downloads die je start vanuit de aflev
 values-b+nl	string	downloads_empty_headline	-	Nog geen downloads
 values-b+nl	string	downloads_free	-	%s vrij
 values-b+nl	string	downloads_free_up_space	-	Ruimte vrijmaken
+values-b+nl	string	downloads_keep_downloading	-	Doorgaan met downloaden
 values-b+nl	string	downloads_load_failed_body	-	Je gedownloade bestanden zijn niet gewijzigd.
 values-b+nl	string	downloads_load_failed_headline	-	Kon je downloads niet lezen
 values-b+nl	string	downloads_offline_pill	-	Offline · geen verbinding
@@ -26133,6 +26301,9 @@ values-b+nn	string	download_storage_text	-	Internlagring
 values-b+nn	string	downloaded	-	Lasta ned
 values-b+nn	string	downloading	-	Nedlasting pågår
 values-b+nn	string	downloads_browse_library	-	Bla i biblioteket
+values-b+nn	string	downloads_cancel_confirm_body	-	Dette forkastar dei %s som er lasta ned så langt.
+values-b+nn	string	downloads_cancel_confirm_title	-	Avbryte denne nedlastinga?
+values-b+nn	string	downloads_cancel_download	-	Avbryt nedlasting
 values-b+nn	string	downloads_column_size	-	Storleik
 values-b+nn	string	downloads_delete_all	-	Slett alle
 values-b+nn	string	downloads_delete_confirm_body	-	Dette frigjer %s og kan ikkje angrast.
@@ -26140,6 +26311,7 @@ values-b+nn	string	downloads_empty_body	-	Nedlastingar du startar frå episodeli
 values-b+nn	string	downloads_empty_headline	-	Ingen nedlastingar enno
 values-b+nn	string	downloads_free	-	%s ledig
 values-b+nn	string	downloads_free_up_space	-	Frigjer plass
+values-b+nn	string	downloads_keep_downloading	-	Hald fram med nedlastinga
 values-b+nn	string	downloads_load_failed_body	-	Dei nedlasta filene dine er ikkje endra.
 values-b+nn	string	downloads_load_failed_headline	-	Kunne ikkje lese nedlastingane dine
 values-b+nn	string	downloads_offline_pill	-	Fråkopla · inga tilkopling
@@ -26523,6 +26695,9 @@ values-b+no	string	downloaded	-	Lastet ned
 values-b+no	string	downloaded_file	-	Nedlastet fil
 values-b+no	string	downloading	-	Nedlasting pågår
 values-b+no	string	downloads_browse_library	-	Bla i biblioteket
+values-b+no	string	downloads_cancel_confirm_body	-	Dette forkaster de %s som er lastet ned så langt.
+values-b+no	string	downloads_cancel_confirm_title	-	Avbryte denne nedlastingen?
+values-b+no	string	downloads_cancel_download	-	Avbryt nedlasting
 values-b+no	string	downloads_column_size	-	Størrelse
 values-b+no	string	downloads_delete_all	-	Slett alle
 values-b+no	string	downloads_delete_confirm_body	-	Dette frigjør %s og kan ikke angres.
@@ -26530,6 +26705,7 @@ values-b+no	string	downloads_empty_body	-	Nedlastinger du starter fra episodelis
 values-b+no	string	downloads_empty_headline	-	Ingen nedlastinger ennå
 values-b+no	string	downloads_free	-	%s ledig
 values-b+no	string	downloads_free_up_space	-	Frigjør plass
+values-b+no	string	downloads_keep_downloading	-	Fortsett nedlastingen
 values-b+no	string	downloads_load_failed_body	-	De nedlastede filene dine er ikke endret.
 values-b+no	string	downloads_load_failed_headline	-	Kunne ikke lese nedlastingene dine
 values-b+no	string	downloads_offline_pill	-	Frakoblet · ingen tilkobling
@@ -27059,6 +27235,9 @@ values-b+or	string	dont_show_again	-	ପୁନଃ ଦେଖାଅନି
 values-b+or	string	download_storage_text	-	ଅନ୍ତଃ-ଷ୍ଟୋରେଜ୍
 values-b+or	string	download_time_left_hour_min_sec_format	-	%1$dଘଣ୍ଟା %2$dମିନିଟ୍ %3$dସେକେଣ୍ଡ
 values-b+or	string	downloads_browse_library	-	ଲାଇବ୍ରେରୀ ବ୍ରାଉଜ୍ କର
+values-b+or	string	downloads_cancel_confirm_body	-	ଏହା ଏପର୍ଯ୍ୟନ୍ତ ଡାଉନଲୋଡ୍ ହୋଇଥିବା %s କୁ ହଟାଇଦେବ।
+values-b+or	string	downloads_cancel_confirm_title	-	ଏହି ଡାଉନଲୋଡ୍ ବାତିଲ କରିବେ?
+values-b+or	string	downloads_cancel_download	-	ଡାଉନଲୋଡ୍ ବାତିଲ କରନ୍ତୁ
 values-b+or	string	downloads_column_size	-	ଆକାର
 values-b+or	string	downloads_delete_all	-	ସବୁ ଵିଲୋପ କର
 values-b+or	string	downloads_delete_confirm_body	-	ଏହା %s ଖାଲି କରିବ ଏବଂ ଏହାକୁ ପୂର୍ବାବସ୍ଥାକୁ ଫେରାଇ ହେବ ନାହିଁ।
@@ -27066,6 +27245,7 @@ values-b+or	string	downloads_empty_body	-	ଶୀର୍ଷକର ଏପିସୋ�
 values-b+or	string	downloads_empty_headline	-	ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ଡାଉନଲୋଡ୍ ନାହିଁ
 values-b+or	string	downloads_free	-	%s ଖାଲି
 values-b+or	string	downloads_free_up_space	-	ସ୍ଥାନ ଖାଲି କର
+values-b+or	string	downloads_keep_downloading	-	ଡାଉନଲୋଡ୍ ଜାରି ରଖନ୍ତୁ
 values-b+or	string	downloads_load_failed_body	-	ଆପଣଙ୍କ ଡାଉନଲୋଡ୍ ହୋଇଥିବା ଫାଇଲଗୁଡ଼ିକ ବଦଳାଯାଇନାହିଁ।
 values-b+or	string	downloads_load_failed_headline	-	ଆପଣଙ୍କ ଡାଉନଲୋଡ୍ ପଢ଼ିହେଲା ନାହିଁ
 values-b+or	string	downloads_offline_pill	-	ଅଫଲାଇନ୍ · ସଂଯୋଗ ନାହିଁ
@@ -27513,6 +27693,9 @@ values-b+pl	string	downloaded	-	Pobrane
 values-b+pl	string	downloaded_file	-	Pobrano plik
 values-b+pl	string	downloading	-	Pobieranie
 values-b+pl	string	downloads_browse_library	-	Przeglądaj bibliotekę
+values-b+pl	string	downloads_cancel_confirm_body	-	Spowoduje to odrzucenie pobranych dotąd %s.
+values-b+pl	string	downloads_cancel_confirm_title	-	Anulować to pobieranie?
+values-b+pl	string	downloads_cancel_download	-	Anuluj pobieranie
 values-b+pl	string	downloads_column_size	-	Rozmiar
 values-b+pl	string	downloads_delete_all	-	Usuń wszystkie
 values-b+pl	string	downloads_delete_confirm_body	-	Zwolni to %s i nie można tego cofnąć.
@@ -27522,6 +27705,7 @@ values-b+pl	string	downloads_empty_body	-	Pobrania rozpoczęte z listy odcinków
 values-b+pl	string	downloads_empty_headline	-	Nie ma jeszcze pobranych
 values-b+pl	string	downloads_free	-	%s wolne
 values-b+pl	string	downloads_free_up_space	-	Zwolnij miejsce
+values-b+pl	string	downloads_keep_downloading	-	Pobieraj dalej
 values-b+pl	string	downloads_load_failed_body	-	Pobrane pliki nie zostały zmienione.
 values-b+pl	string	downloads_load_failed_headline	-	Nie udało się odczytać pobranych
 values-b+pl	string	downloads_offline_pill	-	Offline · brak połączenia
@@ -28378,6 +28562,9 @@ values-b+pt	string	downloaded	-	Baixado
 values-b+pt	string	downloaded_file	-	Arquivo baixado
 values-b+pt	string	downloading	-	Baixando
 values-b+pt	string	downloads_browse_library	-	Explorar biblioteca
+values-b+pt	string	downloads_cancel_confirm_body	-	Isto descarta os %s transferidos até agora.
+values-b+pt	string	downloads_cancel_confirm_title	-	Cancelar esta transferência?
+values-b+pt	string	downloads_cancel_download	-	Cancelar transferência
 values-b+pt	string	downloads_column_size	-	Tamanho
 values-b+pt	string	downloads_delete_all	-	Eliminar tudo
 values-b+pt	string	downloads_delete_confirm_body	-	Isto liberta %s e não pode ser anulado.
@@ -28387,6 +28574,7 @@ values-b+pt	string	downloads_empty_body	-	Os downloads iniciados na lista de epi
 values-b+pt	string	downloads_empty_headline	-	Ainda não existem downloads
 values-b+pt	string	downloads_free	-	%s livres
 values-b+pt	string	downloads_free_up_space	-	Libertar espaço
+values-b+pt	string	downloads_keep_downloading	-	Continuar a transferir
 values-b+pt	string	downloads_load_failed_body	-	Os seus ficheiros transferidos não foram alterados.
 values-b+pt	string	downloads_load_failed_headline	-	Não foi possível ler os seus downloads
 values-b+pt	string	downloads_offline_pill	-	Offline · sem ligação
@@ -29239,6 +29427,9 @@ values-b+pt+BR	string	downloaded	-	Baixado
 values-b+pt+BR	string	downloaded_file	-	Arquivo baixado
 values-b+pt+BR	string	downloading	-	Baixando
 values-b+pt+BR	string	downloads_browse_library	-	Explorar biblioteca
+values-b+pt+BR	string	downloads_cancel_confirm_body	-	Isso descarta os %s baixados até agora.
+values-b+pt+BR	string	downloads_cancel_confirm_title	-	Cancelar este download?
+values-b+pt+BR	string	downloads_cancel_download	-	Cancelar download
 values-b+pt+BR	string	downloads_column_size	-	Tamanho
 values-b+pt+BR	string	downloads_delete_all	-	Apagar tudo
 values-b+pt+BR	string	downloads_delete_confirm_body	-	Isso libera %s e não pode ser desfeito.
@@ -29248,6 +29439,7 @@ values-b+pt+BR	string	downloads_empty_body	-	Os downloads iniciados na lista de 
 values-b+pt+BR	string	downloads_empty_headline	-	Ainda não há downloads
 values-b+pt+BR	string	downloads_free	-	%s livres
 values-b+pt+BR	string	downloads_free_up_space	-	Liberar espaço
+values-b+pt+BR	string	downloads_keep_downloading	-	Continuar baixando
 values-b+pt+BR	string	downloads_load_failed_body	-	Seus arquivos baixados não foram alterados.
 values-b+pt+BR	string	downloads_load_failed_headline	-	Não foi possível ler seus downloads
 values-b+pt+BR	string	downloads_offline_pill	-	Offline · sem conexão
@@ -30050,6 +30242,9 @@ values-b+qt	string	downloaded	-	ooo-ahahaaaghh
 values-b+qt	string	downloaded_file	-	aaaagggaah aagg
 values-b+qt	string	downloading	-	oohahaaoouuh
 values-b+qt	string	downloads_browse_library	-	ooh uuuuuuuh
+values-b+qt	string	downloads_cancel_confirm_body	-	ooo-ahahaaaaa %s oooohh
+values-b+qt	string	downloads_cancel_confirm_title	-	oooohh ouuhhuhooh?
+values-b+qt	string	downloads_cancel_download	-	oooohh ouuhhuhooh
 values-b+qt	string	downloads_column_size	-	oogg
 values-b+qt	string	downloads_delete_all	-	oooooah aag
 values-b+qt	string	downloads_delete_confirm_body	-	ooo-ahahaaaaa %s oooohh
@@ -30059,6 +30254,7 @@ values-b+qt	string	downloads_empty_body	-	uuuhh aah uuuugggog ug aaaagggog aaaag
 values-b+qt	string	downloads_empty_headline	-	uuuhh aauuhah
 values-b+qt	string	downloads_free	-	%s ooh
 values-b+qt	string	downloads_free_up_space	-	ooo-ahahaaaaa oh
+values-b+qt	string	downloads_keep_downloading	-	ouuhhuhooh ooh
 values-b+qt	string	downloads_load_failed_body	-	ouuhhuhooh ooh uuh ahooo.
 values-b+qt	string	downloads_load_failed_headline	-	ahooo uuhh ouuhhuhooh ooh
 values-b+qt	string	downloads_offline_pill	-	aaaagggoh ooh · uuuhh
@@ -30793,6 +30989,9 @@ values-b+ro	string	downloaded	-	Descărcat
 values-b+ro	string	downloaded_file	-	Fișier descărcat
 values-b+ro	string	downloading	-	Se descarcă
 values-b+ro	string	downloads_browse_library	-	Răsfoiește biblioteca
+values-b+ro	string	downloads_cancel_confirm_body	-	Se vor elimina cei %s descărcați până acum.
+values-b+ro	string	downloads_cancel_confirm_title	-	Anulezi această descărcare?
+values-b+ro	string	downloads_cancel_download	-	Anulează descărcarea
 values-b+ro	string	downloads_column_size	-	Dimensiune
 values-b+ro	string	downloads_delete_all	-	Șterge tot
 values-b+ro	string	downloads_delete_confirm_body	-	Astfel se eliberează %s și nu se poate anula.
@@ -30802,6 +31001,7 @@ values-b+ro	string	downloads_empty_body	-	Descărcările pornite din lista de ep
 values-b+ro	string	downloads_empty_headline	-	Încă nu există descărcări
 values-b+ro	string	downloads_free	-	%s liberi
 values-b+ro	string	downloads_free_up_space	-	Eliberează spațiu
+values-b+ro	string	downloads_keep_downloading	-	Continuă descărcarea
 values-b+ro	string	downloads_load_failed_body	-	Fișierele descărcate nu au fost modificate.
 values-b+ro	string	downloads_load_failed_headline	-	Descărcările nu au putut fi citite
 values-b+ro	string	downloads_offline_pill	-	Offline · fără conexiune
@@ -31587,6 +31787,9 @@ values-b+ru	string	downloaded	-	Скачано
 values-b+ru	string	downloaded_file	-	Скачано файл
 values-b+ru	string	downloading	-	Скачивание
 values-b+ru	string	downloads_browse_library	-	Открыть библиотеку
+values-b+ru	string	downloads_cancel_confirm_body	-	Загруженные к этому моменту %s будут удалены.
+values-b+ru	string	downloads_cancel_confirm_title	-	Отменить эту загрузку?
+values-b+ru	string	downloads_cancel_download	-	Отменить загрузку
 values-b+ru	string	downloads_column_size	-	Размер
 values-b+ru	string	downloads_delete_all	-	Удалить все
 values-b+ru	string	downloads_delete_confirm_body	-	Это освободит %s, и отменить это нельзя.
@@ -31596,6 +31799,7 @@ values-b+ru	string	downloads_empty_body	-	Скачивания, начатые �
 values-b+ru	string	downloads_empty_headline	-	Скачанного пока нет
 values-b+ru	string	downloads_free	-	свободно %s
 values-b+ru	string	downloads_free_up_space	-	Освободить место
+values-b+ru	string	downloads_keep_downloading	-	Продолжить загрузку
 values-b+ru	string	downloads_load_failed_body	-	Ваши скачанные файлы не изменены.
 values-b+ru	string	downloads_load_failed_headline	-	Не удалось прочитать скачанное
 values-b+ru	string	downloads_offline_pill	-	Без сети · нет соединения
@@ -32386,6 +32590,9 @@ values-b+sk	string	downloaded	-	Stiahnuté
 values-b+sk	string	downloaded_file	-	Stiahnutý súbor
 values-b+sk	string	downloading	-	Sťahovanie
 values-b+sk	string	downloads_browse_library	-	Prehľadávať knižnicu
+values-b+sk	string	downloads_cancel_confirm_body	-	Tým sa zahodí doteraz stiahnutých %s.
+values-b+sk	string	downloads_cancel_confirm_title	-	Zrušiť toto sťahovanie?
+values-b+sk	string	downloads_cancel_download	-	Zrušiť sťahovanie
 values-b+sk	string	downloads_column_size	-	Veľkosť
 values-b+sk	string	downloads_delete_all	-	Zmazať všetko
 values-b+sk	string	downloads_delete_confirm_body	-	Uvoľní sa tým %s a nedá sa to vrátiť späť.
@@ -32395,6 +32602,7 @@ values-b+sk	string	downloads_empty_body	-	Sťahovania spustené zo zoznamu epiz�
 values-b+sk	string	downloads_empty_headline	-	Zatiaľ žiadne stiahnutia
 values-b+sk	string	downloads_free	-	%s voľné
 values-b+sk	string	downloads_free_up_space	-	Uvoľniť miesto
+values-b+sk	string	downloads_keep_downloading	-	Pokračovať v sťahovaní
 values-b+sk	string	downloads_load_failed_body	-	Vaše stiahnuté súbory neboli zmenené.
 values-b+sk	string	downloads_load_failed_headline	-	Stiahnutia sa nepodarilo načítať
 values-b+sk	string	downloads_offline_pill	-	Offline · bez pripojenia
@@ -32976,6 +33184,9 @@ values-b+so	string	downloaded	-	La degtay
 values-b+so	string	downloaded_file	-	Waa ka dejiyey faylka
 values-b+so	string	downloading	-	Soo degaya
 values-b+so	string	downloads_browse_library	-	Baadh kaydka
+values-b+so	string	downloads_cancel_confirm_body	-	Tani waxay tuuraysaa %s ee ilaa hadda la soo dejiyey.
+values-b+so	string	downloads_cancel_confirm_title	-	Ma joojinaysaa soo dejintan?
+values-b+so	string	downloads_cancel_download	-	Jooji soo dejinta
 values-b+so	string	downloads_column_size	-	Cabbir
 values-b+so	string	downloads_delete_all	-	Tirtir dhammaan
 values-b+so	string	downloads_delete_confirm_body	-	Tani waxay xoreyn doontaa %s dibna looma celin karo.
@@ -32985,6 +33196,7 @@ values-b+so	string	downloads_empty_body	-	Soo dejinta aad ka bilowdo liiska qayb
 values-b+so	string	downloads_empty_headline	-	Weli ma jiraan soo dejin
 values-b+so	string	downloads_free	-	%s bannaan
 values-b+so	string	downloads_free_up_space	-	Bannee meel
+values-b+so	string	downloads_keep_downloading	-	Sii wad soo dejinta
 values-b+so	string	downloads_load_failed_body	-	Faylasha aad soo dejisay lama beddelin.
 values-b+so	string	downloads_load_failed_headline	-	Lama akhrin karo soo dejintaada
 values-b+so	string	downloads_offline_pill	-	Khad la'aan · ma jiro isku xir
@@ -33665,6 +33877,9 @@ values-b+sq	string	downloaded	-	U shkarkua
 values-b+sq	string	downloaded_file	-	Skedar i shkarkuar
 values-b+sq	string	downloading	-	Duke u shkarkuar
 values-b+sq	string	downloads_browse_library	-	Shfleto bibliotekën
+values-b+sq	string	downloads_cancel_confirm_body	-	Kjo hedh poshtë %s e shkarkuara deri tani.
+values-b+sq	string	downloads_cancel_confirm_title	-	Të anulohet ky shkarkim?
+values-b+sq	string	downloads_cancel_download	-	Anulo shkarkimin
 values-b+sq	string	downloads_column_size	-	Madhësia
 values-b+sq	string	downloads_delete_all	-	Fshiji të gjitha
 values-b+sq	string	downloads_delete_confirm_body	-	Kjo liron %s dhe nuk mund të zhbëhet.
@@ -33674,6 +33889,7 @@ values-b+sq	string	downloads_empty_body	-	Shkarkimet që nis nga lista e episode
 values-b+sq	string	downloads_empty_headline	-	Ende nuk ka shkarkime
 values-b+sq	string	downloads_free	-	%s të lira
 values-b+sq	string	downloads_free_up_space	-	Liro hapësirë
+values-b+sq	string	downloads_keep_downloading	-	Vazhdo shkarkimin
 values-b+sq	string	downloads_load_failed_body	-	Skedarët e shkarkuar nuk janë ndryshuar.
 values-b+sq	string	downloads_load_failed_headline	-	Shkarkimet nuk mund të lexoheshin
 values-b+sq	string	downloads_offline_pill	-	Offline · pa lidhje
@@ -34519,6 +34735,9 @@ values-b+sv	string	downloaded	-	Nerladdad
 values-b+sv	string	downloaded_file	-	Nedladdad fil
 values-b+sv	string	downloading	-	Laddar ner
 values-b+sv	string	downloads_browse_library	-	Bläddra i biblioteket
+values-b+sv	string	downloads_cancel_confirm_body	-	Det slänger de %s som har laddats ned hittills.
+values-b+sv	string	downloads_cancel_confirm_title	-	Avbryta den här nedladdningen?
+values-b+sv	string	downloads_cancel_download	-	Avbryt nedladdning
 values-b+sv	string	downloads_column_size	-	Storlek
 values-b+sv	string	downloads_delete_all	-	Ta bort alla
 values-b+sv	string	downloads_delete_confirm_body	-	Det frigör %s och kan inte ångras.
@@ -34528,6 +34747,7 @@ values-b+sv	string	downloads_empty_body	-	Nerladdningar du startar från en tite
 values-b+sv	string	downloads_empty_headline	-	Inga nerladdningar ännu
 values-b+sv	string	downloads_free	-	%s ledigt
 values-b+sv	string	downloads_free_up_space	-	Frigör utrymme
+values-b+sv	string	downloads_keep_downloading	-	Fortsätt ladda ned
 values-b+sv	string	downloads_load_failed_body	-	Dina nerladdade filer har inte ändrats.
 values-b+sv	string	downloads_load_failed_headline	-	Kunde inte läsa dina nerladdningar
 values-b+sv	string	downloads_offline_pill	-	Offline · ingen anslutning
@@ -35373,6 +35593,9 @@ values-b+ta	string	downloaded	-	பதிவிறக்கப்பட்டத
 values-b+ta	string	downloaded_file	-	பதிவிறக்கம் செய்யப்பட்ட கோப்பு
 values-b+ta	string	downloading	-	பதிவிறக்குகிறது
 values-b+ta	string	downloads_browse_library	-	நூலகத்தை உலாவு
+values-b+ta	string	downloads_cancel_confirm_body	-	இதுவரை பதிவிறக்கிய %s நிராகரிக்கப்படும்.
+values-b+ta	string	downloads_cancel_confirm_title	-	இந்தப் பதிவிறக்கத்தை ரத்துசெய்யவா?
+values-b+ta	string	downloads_cancel_download	-	பதிவிறக்கத்தை ரத்துசெய்
 values-b+ta	string	downloads_column_size	-	அளவு
 values-b+ta	string	downloads_delete_all	-	அனைத்தையும் அழி
 values-b+ta	string	downloads_delete_confirm_body	-	இது %s இடத்தை விடுவிக்கும், இதைச் செயல்தவிர்க்க முடியாது.
@@ -35382,6 +35605,7 @@ values-b+ta	string	downloads_empty_body	-	தலைப்பின் எபி�
 values-b+ta	string	downloads_empty_headline	-	இன்னும் பதிவிறக்கங்கள் இல்லை
 values-b+ta	string	downloads_free	-	%s காலி
 values-b+ta	string	downloads_free_up_space	-	இடத்தை விடுவி
+values-b+ta	string	downloads_keep_downloading	-	பதிவிறக்கத்தைத் தொடர்
 values-b+ta	string	downloads_load_failed_body	-	நீங்கள் பதிவிறக்கிய கோப்புகள் மாற்றப்படவில்லை.
 values-b+ta	string	downloads_load_failed_headline	-	உங்கள் பதிவிறக்கங்களைப் படிக்க முடியவில்லை
 values-b+ta	string	downloads_offline_pill	-	ஆஃப்லைன் · இணைப்பு இல்லை
@@ -36029,6 +36253,9 @@ values-b+ti	string	cast_format	-	ተዋሳእቲ፡ %s
 values-b+ti	string	detail_load_failed_body	-	ምንጪ ኣይርከብ ይኸውን።
 values-b+ti	string	detail_load_failed_headline	-	እዚ ኣርእስቲ ክኽፈት ኣይከኣለን
 values-b+ti	string	downloads_browse_library	-	ቤተ-መጻሕፍቲ ድለ
+values-b+ti	string	downloads_cancel_confirm_body	-	እዚ ክሳብ ሕጂ ዝወረደ %s ይድርብዮ።
+values-b+ti	string	downloads_cancel_confirm_title	-	እዚ ውርዲ ይሰረዝ?
+values-b+ti	string	downloads_cancel_download	-	ውርዲ ሰርዝ
 values-b+ti	string	downloads_column_size	-	ዓቐን
 values-b+ti	string	downloads_delete_all	-	ኩሉ ሰርዝ
 values-b+ti	string	downloads_delete_confirm_body	-	እዚ %s ነጻ ይገብር፣ ክምለስ ኣይክእልን።
@@ -36036,6 +36263,7 @@ values-b+ti	string	downloads_empty_body	-	ካብ ዝርዝር ክፋላት ና�
 values-b+ti	string	downloads_empty_headline	-	ክሳብ ሕጂ ውርዳት የለዉን
 values-b+ti	string	downloads_free	-	%s ነጻ
 values-b+ti	string	downloads_free_up_space	-	ቦታ ኣናጽፍ
+values-b+ti	string	downloads_keep_downloading	-	ምውራድ ቀጽል
 values-b+ti	string	downloads_load_failed_body	-	ዝወረዱ ፋይላትካ ኣይተቐየሩን።
 values-b+ti	string	downloads_load_failed_headline	-	ውርዳትካ ክንበብ ኣይከኣለን
 values-b+ti	string	downloads_offline_pill	-	ካብ መስመር ወጻኢ · መራኸቢ የለን
@@ -36221,6 +36449,9 @@ values-b+tl	string	download_time_left_hour_min_sec_format	-	%1$do %2$dm %3$ds
 values-b+tl	string	downloaded	-	Downloaded
 values-b+tl	string	downloading	-	Downloading
 values-b+tl	string	downloads_browse_library	-	I-browse ang library
+values-b+tl	string	downloads_cancel_confirm_body	-	Itatapon nito ang %s na na-download na.
+values-b+tl	string	downloads_cancel_confirm_title	-	Kanselahin ang download na ito?
+values-b+tl	string	downloads_cancel_download	-	Kanselahin ang download
 values-b+tl	string	downloads_column_size	-	Laki
 values-b+tl	string	downloads_delete_all	-	Tanggalin lahat
 values-b+tl	string	downloads_delete_confirm_body	-	Magpapalaya ito ng %s at hindi na ito maaaring bawiin.
@@ -36230,6 +36461,7 @@ values-b+tl	string	downloads_empty_body	-	Lalabas dito ang mga download na sinim
 values-b+tl	string	downloads_empty_headline	-	Wala pang mga download
 values-b+tl	string	downloads_free	-	%s libre
 values-b+tl	string	downloads_free_up_space	-	Magbakante ng espasyo
+values-b+tl	string	downloads_keep_downloading	-	Ituloy ang pag-download
 values-b+tl	string	downloads_load_failed_body	-	Hindi nabago ang mga na-download mong file.
 values-b+tl	string	downloads_load_failed_headline	-	Hindi mabasa ang iyong mga download
 values-b+tl	string	downloads_offline_pill	-	Offline · walang koneksyon
@@ -36749,6 +36981,9 @@ values-b+tr	string	downloaded	-	İndirildi
 values-b+tr	string	downloaded_file	-	İndirilen dosya
 values-b+tr	string	downloading	-	İndiriliyor
 values-b+tr	string	downloads_browse_library	-	Kütüphaneye göz at
+values-b+tr	string	downloads_cancel_confirm_body	-	Şimdiye kadar indirilen %s silinir.
+values-b+tr	string	downloads_cancel_confirm_title	-	Bu indirme iptal edilsin mi?
+values-b+tr	string	downloads_cancel_download	-	İndirmeyi iptal et
 values-b+tr	string	downloads_column_size	-	Boyut
 values-b+tr	string	downloads_delete_all	-	Tümünü sil
 values-b+tr	string	downloads_delete_confirm_body	-	Bu işlem %s yer açar ve geri alınamaz.
@@ -36758,6 +36993,7 @@ values-b+tr	string	downloads_empty_body	-	Bir başlığın bölüm listesinden b
 values-b+tr	string	downloads_empty_headline	-	Henüz indirme yok
 values-b+tr	string	downloads_free	-	%s boş
 values-b+tr	string	downloads_free_up_space	-	Yer aç
+values-b+tr	string	downloads_keep_downloading	-	İndirmeye devam et
 values-b+tr	string	downloads_load_failed_body	-	İndirilen dosyalarınız değiştirilmedi.
 values-b+tr	string	downloads_load_failed_headline	-	İndirmeleriniz okunamadı
 values-b+tr	string	downloads_offline_pill	-	Çevrimdışı · bağlantı yok
@@ -37625,6 +37861,9 @@ values-b+uk	string	downloaded	-	Завантажено
 values-b+uk	string	downloaded_file	-	Завантажений файл
 values-b+uk	string	downloading	-	Завантаження
 values-b+uk	string	downloads_browse_library	-	Переглянути бібліотеку
+values-b+uk	string	downloads_cancel_confirm_body	-	Завантажені досі %s буде відкинуто.
+values-b+uk	string	downloads_cancel_confirm_title	-	Скасувати це завантаження?
+values-b+uk	string	downloads_cancel_download	-	Скасувати завантаження
 values-b+uk	string	downloads_column_size	-	Розмір
 values-b+uk	string	downloads_delete_all	-	Видалити все
 values-b+uk	string	downloads_delete_confirm_body	-	Це звільнить %s, і цю дію не можна скасувати.
@@ -37634,6 +37873,7 @@ values-b+uk	string	downloads_empty_body	-	Завантаження, розпоч
 values-b+uk	string	downloads_empty_headline	-	Завантажень ще немає
 values-b+uk	string	downloads_free	-	вільно %s
 values-b+uk	string	downloads_free_up_space	-	Звільнити місце
+values-b+uk	string	downloads_keep_downloading	-	Продовжити завантаження
 values-b+uk	string	downloads_load_failed_body	-	Ваші завантажені файли не змінено.
 values-b+uk	string	downloads_load_failed_headline	-	Не вдалося прочитати завантаження
 values-b+uk	string	downloads_offline_pill	-	Поза мережею · немає з'єднання
@@ -38435,6 +38675,9 @@ values-b+ur	string	downloaded	-	ڈاؤن لوڈ کردہ ویڈیوز
 values-b+ur	string	downloaded_file	-	ڈاؤن لوڈڈ فائل
 values-b+ur	string	downloading	-	ڈاؤن لوڈ ہو رہا ہے
 values-b+ur	string	downloads_browse_library	-	لائبریری براؤز کریں
+values-b+ur	string	downloads_cancel_confirm_body	-	اس سے اب تک ڈاؤن لوڈ ہونے والا %s ضائع ہو جائے گا۔
+values-b+ur	string	downloads_cancel_confirm_title	-	یہ ڈاؤن لوڈ منسوخ کریں؟
+values-b+ur	string	downloads_cancel_download	-	ڈاؤن لوڈ منسوخ کریں
 values-b+ur	string	downloads_column_size	-	سائز
 values-b+ur	string	downloads_delete_all	-	سب مٹا دیں
 values-b+ur	string	downloads_delete_confirm_body	-	اس سے %s خالی ہو جائے گا اور اسے کالعدم نہیں کیا جا سکتا۔
@@ -38444,6 +38687,7 @@ values-b+ur	string	downloads_empty_body	-	کسی عنوان کی اقساط کی
 values-b+ur	string	downloads_empty_headline	-	ابھی تک کوئی ڈاؤن لوڈ نہیں
 values-b+ur	string	downloads_free	-	%s خالی
 values-b+ur	string	downloads_free_up_space	-	جگہ خالی کریں
+values-b+ur	string	downloads_keep_downloading	-	ڈاؤن لوڈ جاری رکھیں
 values-b+ur	string	downloads_load_failed_body	-	آپ کی ڈاؤن لوڈ کردہ فائلیں تبدیل نہیں ہوئیں۔
 values-b+ur	string	downloads_load_failed_headline	-	آپ کے ڈاؤن لوڈ پڑھے نہیں جا سکے
 values-b+ur	string	downloads_offline_pill	-	آف لائن · کوئی کنکشن نہیں
@@ -39183,6 +39427,9 @@ values-b+vi	string	downloaded	-	Đã tải xuống
 values-b+vi	string	downloaded_file	-	Tệp đã tải xuống
 values-b+vi	string	downloading	-	Đang tải xuống
 values-b+vi	string	downloads_browse_library	-	Duyệt thư viện
+values-b+vi	string	downloads_cancel_confirm_body	-	Thao tác này sẽ bỏ %s đã tải xuống.
+values-b+vi	string	downloads_cancel_confirm_title	-	Hủy bản tải xuống này?
+values-b+vi	string	downloads_cancel_download	-	Hủy tải xuống
 values-b+vi	string	downloads_column_size	-	Kích thước
 values-b+vi	string	downloads_delete_all	-	Xóa tất cả
 values-b+vi	string	downloads_delete_confirm_body	-	Thao tác này giải phóng %s và không thể hoàn tác.
@@ -39192,6 +39439,7 @@ values-b+vi	string	downloads_empty_body	-	Các mục tải xuống bạn bắt �
 values-b+vi	string	downloads_empty_headline	-	Chưa có tải xuống nào
 values-b+vi	string	downloads_free	-	Còn trống %s
 values-b+vi	string	downloads_free_up_space	-	Giải phóng dung lượng
+values-b+vi	string	downloads_keep_downloading	-	Tiếp tục tải xuống
 values-b+vi	string	downloads_load_failed_body	-	Các tệp đã tải xuống của bạn không bị thay đổi.
 values-b+vi	string	downloads_load_failed_headline	-	Không thể đọc các tải xuống của bạn
 values-b+vi	string	downloads_offline_pill	-	Ngoại tuyến · không có kết nối
@@ -40026,6 +40274,9 @@ values-b+zh	string	downloaded	-	已下载
 values-b+zh	string	downloaded_file	-	下载的文件
 values-b+zh	string	downloading	-	下载中
 values-b+zh	string	downloads_browse_library	-	浏览库
+values-b+zh	string	downloads_cancel_confirm_body	-	将丢弃目前已下载的 %s。
+values-b+zh	string	downloads_cancel_confirm_title	-	要取消此下载吗？
+values-b+zh	string	downloads_cancel_download	-	取消下载
 values-b+zh	string	downloads_column_size	-	大小
 values-b+zh	string	downloads_delete_all	-	全部删除
 values-b+zh	string	downloads_delete_confirm_body	-	这将释放 %s，且无法撤销。
@@ -40035,6 +40286,7 @@ values-b+zh	string	downloads_empty_body	-	从内容的剧集列表开始的下�
 values-b+zh	string	downloads_empty_headline	-	尚无下载
 values-b+zh	string	downloads_free	-	可用 %s
 values-b+zh	string	downloads_free_up_space	-	释放空间
+values-b+zh	string	downloads_keep_downloading	-	继续下载
 values-b+zh	string	downloads_load_failed_body	-	你已下载的文件未被更改。
 values-b+zh	string	downloads_load_failed_headline	-	无法读取你的下载
 values-b+zh	string	downloads_offline_pill	-	脱机 · 无连接
@@ -40867,6 +41119,9 @@ values-b+zh+TW	string	downloaded	-	已下載
 values-b+zh+TW	string	downloaded_file	-	下載的檔案
 values-b+zh+TW	string	downloading	-	下載中
 values-b+zh+TW	string	downloads_browse_library	-	瀏覽媒體庫
+values-b+zh+TW	string	downloads_cancel_confirm_body	-	將捨棄目前已下載的 %s。
+values-b+zh+TW	string	downloads_cancel_confirm_title	-	要取消此下載嗎？
+values-b+zh+TW	string	downloads_cancel_download	-	取消下載
 values-b+zh+TW	string	downloads_column_size	-	大小
 values-b+zh+TW	string	downloads_delete_all	-	全部刪除
 values-b+zh+TW	string	downloads_delete_confirm_body	-	這將釋放 %s，且無法復原。
@@ -40876,6 +41131,7 @@ values-b+zh+TW	string	downloads_empty_body	-	從內容的集數清單開始的�
 values-b+zh+TW	string	downloads_empty_headline	-	尚無下載
 values-b+zh+TW	string	downloads_free	-	可用 %s
 values-b+zh+TW	string	downloads_free_up_space	-	釋放空間
+values-b+zh+TW	string	downloads_keep_downloading	-	繼續下載
 values-b+zh+TW	string	downloads_load_failed_body	-	你已下載的檔案未變更。
 values-b+zh+TW	string	downloads_load_failed_headline	-	無法讀取你的下載
 values-b+zh+TW	string	downloads_offline_pill	-	離線 · 無連線

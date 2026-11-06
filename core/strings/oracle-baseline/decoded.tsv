@@ -44,6 +44,9 @@ values-b+af/strings.xml	string	download_storage_text	-	STR	Interne Berging
 values-b+af/strings.xml	string	downloaded	-	STR	Afgelaai	
 values-b+af/strings.xml	string	downloading	-	STR	Laai tans af	
 values-b+af/strings.xml	string	downloads_browse_library	-	STR	Blaai deur biblioteek	
+values-b+af/strings.xml	string	downloads_cancel_confirm_body	-	STR	Dit gooi die %s wat reeds afgelaai is weg.	
+values-b+af/strings.xml	string	downloads_cancel_confirm_title	-	STR	Kanselleer hierdie aflaai?	
+values-b+af/strings.xml	string	downloads_cancel_download	-	STR	Kanselleer aflaai	
 values-b+af/strings.xml	string	downloads_column_size	-	STR	Grootte	
 values-b+af/strings.xml	string	downloads_delete_all	-	STR	Wis alles uit	
 values-b+af/strings.xml	string	downloads_delete_confirm_body	-	STR	Dit maak %s vry en kan nie ontdoen word nie.	
@@ -52,6 +55,7 @@ values-b+af/strings.xml	string	downloads_empty_body	-	STR	Aflaaie wat jy vanaf '
 values-b+af/strings.xml	string	downloads_empty_headline	-	STR	Nog geen aflaaie nie	
 values-b+af/strings.xml	string	downloads_free	-	STR	%s vry	
 values-b+af/strings.xml	string	downloads_free_up_space	-	STR	Maak spasie vry	
+values-b+af/strings.xml	string	downloads_keep_downloading	-	STR	Hou aan aflaai	
 values-b+af/strings.xml	string	downloads_load_failed_body	-	STR	Jou afgelaaide lêers is nie verander nie.	
 values-b+af/strings.xml	string	downloads_load_failed_headline	-	STR	Kon nie jou aflaaie lees nie	
 values-b+af/strings.xml	string	downloads_offline_pill	-	STR	Vanlyn · geen verbinding nie	
@@ -264,6 +268,9 @@ values-b+am/strings.xml	string	download_storage_text	-	STR	ውስጣዊ ማከ�
 values-b+am/strings.xml	string	downloaded	-	STR	ወርዷል	
 values-b+am/strings.xml	string	downloading	-	STR	በማውረድ ላይ	
 values-b+am/strings.xml	string	downloads_browse_library	-	STR	ቤተ-መጽሐፍት አስስ	
+values-b+am/strings.xml	string	downloads_cancel_confirm_body	-	STR	ይህ እስካሁን የወረደውን %s ያስወግዳል።	
+values-b+am/strings.xml	string	downloads_cancel_confirm_title	-	STR	ይህን ውርድ ይሰርዙ?	
+values-b+am/strings.xml	string	downloads_cancel_download	-	STR	ውርድን ሰርዝ	
 values-b+am/strings.xml	string	downloads_column_size	-	STR	መጠን	
 values-b+am/strings.xml	string	downloads_delete_all	-	STR	ሁሉንም ሰርዝ	
 values-b+am/strings.xml	string	downloads_delete_confirm_body	-	STR	ይህ %s ነጻ ያደርጋል እና መቀልበስ አይቻልም።	
@@ -271,6 +278,7 @@ values-b+am/strings.xml	string	downloads_empty_body	-	STR	ከርዕስ የክፍ
 values-b+am/strings.xml	string	downloads_empty_headline	-	STR	እስካሁን ምንም ውርዶች የሉም	
 values-b+am/strings.xml	string	downloads_free	-	STR	%s ነጻ	
 values-b+am/strings.xml	string	downloads_free_up_space	-	STR	ቦታ አስለቅቅ	
+values-b+am/strings.xml	string	downloads_keep_downloading	-	STR	ማውረድ ቀጥል	
 values-b+am/strings.xml	string	downloads_load_failed_body	-	STR	የወረዱ ፋይሎችዎ አልተቀየሩም።	
 values-b+am/strings.xml	string	downloads_load_failed_headline	-	STR	ውርዶችዎን ማንበብ አልተቻለም	
 values-b+am/strings.xml	string	downloads_offline_pill	-	STR	ከመስመር ውጭ · ግንኙነት የለም	
@@ -646,6 +654,9 @@ values-b+apc/strings.xml	string	downloaded	-	STR	منَزَل
 values-b+apc/strings.xml	string	downloaded_file	-	STR	الملفات المنزلة	
 values-b+apc/strings.xml	string	downloading	-	STR	عم يتنَزَل	
 values-b+apc/strings.xml	string	downloads_browse_library	-	STR	تصفّح الرفّ	
+values-b+apc/strings.xml	string	downloads_cancel_confirm_body	-	STR	هيك بتخسر الـ %s اللي نزلوا لهلأ.	
+values-b+apc/strings.xml	string	downloads_cancel_confirm_title	-	STR	بدك تلغي هالتنزيل؟	
+values-b+apc/strings.xml	string	downloads_cancel_download	-	STR	إلغاء التنزيل	
 values-b+apc/strings.xml	string	downloads_column_size	-	STR	الحجم	
 values-b+apc/strings.xml	string	downloads_delete_all	-	STR	امحي الكل	
 values-b+apc/strings.xml	string	downloads_delete_confirm_body	-	STR	هيك بتفضّي %s وما فيك ترجّعها.	
@@ -655,6 +666,7 @@ values-b+apc/strings.xml	string	downloads_empty_body	-	STR	التنزيلات ا
 values-b+apc/strings.xml	string	downloads_empty_headline	-	STR	لسا مافي تنزيلات	
 values-b+apc/strings.xml	string	downloads_free	-	STR	%s فاضي	
 values-b+apc/strings.xml	string	downloads_free_up_space	-	STR	فضّي مساحة	
+values-b+apc/strings.xml	string	downloads_keep_downloading	-	STR	كمّل التنزيل	
 values-b+apc/strings.xml	string	downloads_load_failed_body	-	STR	ملفاتك المنزّلة ما تغيّرت.	
 values-b+apc/strings.xml	string	downloads_load_failed_headline	-	STR	ما قدرنا نقرا تنزيلاتك	
 values-b+apc/strings.xml	string	downloads_offline_pill	-	STR	بلا إنترنت · مافي اتصال	
@@ -1522,6 +1534,9 @@ values-b+ar/strings.xml	string	downloaded	-	STR	تم التنزيل
 values-b+ar/strings.xml	string	downloaded_file	-	STR	الملف الذي تم تنزيله	
 values-b+ar/strings.xml	string	downloading	-	STR	جاري التنزيل	
 values-b+ar/strings.xml	string	downloads_browse_library	-	STR	تصفّح المكتبة	
+values-b+ar/strings.xml	string	downloads_cancel_confirm_body	-	STR	سيؤدي هذا إلى تجاهل %s تم تنزيلها حتى الآن.	
+values-b+ar/strings.xml	string	downloads_cancel_confirm_title	-	STR	هل تريد إلغاء هذا التنزيل؟	
+values-b+ar/strings.xml	string	downloads_cancel_download	-	STR	إلغاء التنزيل	
 values-b+ar/strings.xml	string	downloads_column_size	-	STR	الحجم	
 values-b+ar/strings.xml	string	downloads_delete_all	-	STR	حذف الكل	
 values-b+ar/strings.xml	string	downloads_delete_confirm_body	-	STR	سيؤدي هذا إلى تحرير %s ولا يمكن التراجع عنه.	
@@ -1531,6 +1546,7 @@ values-b+ar/strings.xml	string	downloads_empty_body	-	STR	تظهر هنا الت
 values-b+ar/strings.xml	string	downloads_empty_headline	-	STR	لا توجد تنزيلات بعد	
 values-b+ar/strings.xml	string	downloads_free	-	STR	%s متاحة	
 values-b+ar/strings.xml	string	downloads_free_up_space	-	STR	إخلاء مساحة	
+values-b+ar/strings.xml	string	downloads_keep_downloading	-	STR	متابعة التنزيل	
 values-b+ar/strings.xml	string	downloads_load_failed_body	-	STR	لم تتغيّر ملفاتك التي تم تنزيلها.	
 values-b+ar/strings.xml	string	downloads_load_failed_headline	-	STR	تعذّرت قراءة تنزيلاتك	
 values-b+ar/strings.xml	string	downloads_offline_pill	-	STR	غير متصل · لا يوجد اتصال	
@@ -2289,6 +2305,9 @@ values-b+ars/strings.xml	string	download_storage_text	-	STR	التخزين ال�
 values-b+ars/strings.xml	string	downloaded	-	STR	تنززل	
 values-b+ars/strings.xml	string	downloading	-	STR	جارى التحميل	
 values-b+ars/strings.xml	string	downloads_browse_library	-	STR	تصفّح المكتبة	
+values-b+ars/strings.xml	string	downloads_cancel_confirm_body	-	STR	سيؤدي هذا إلى تجاهل %s تم تنزيلها حتى الآن.	
+values-b+ars/strings.xml	string	downloads_cancel_confirm_title	-	STR	هل تريد إلغاء هذا التنزيل؟	
+values-b+ars/strings.xml	string	downloads_cancel_download	-	STR	إلغاء التنزيل	
 values-b+ars/strings.xml	string	downloads_column_size	-	STR	الحجم	
 values-b+ars/strings.xml	string	downloads_delete_all	-	STR	مسح الكل	
 values-b+ars/strings.xml	string	downloads_delete_confirm_body	-	STR	سيؤدي هذا إلى تحرير %s ولا يمكن التراجع عنه.	
@@ -2296,6 +2315,7 @@ values-b+ars/strings.xml	string	downloads_empty_body	-	STR	التحميلات ا
 values-b+ars/strings.xml	string	downloads_empty_headline	-	STR	ما فيه تحميلات للحين	
 values-b+ars/strings.xml	string	downloads_free	-	STR	%s متاحة	
 values-b+ars/strings.xml	string	downloads_free_up_space	-	STR	فضّ مساحة	
+values-b+ars/strings.xml	string	downloads_keep_downloading	-	STR	متابعة التنزيل	
 values-b+ars/strings.xml	string	downloads_load_failed_body	-	STR	ملفاتك المحمّلة ما تغيّرت.	
 values-b+ars/strings.xml	string	downloads_load_failed_headline	-	STR	ما قدرنا نقرأ تحميلاتك	
 values-b+ars/strings.xml	string	downloads_offline_pill	-	STR	غير متصل · ما فيه اتصال	
@@ -2807,6 +2827,9 @@ values-b+as/strings.xml	string	downloaded	-	STR	ডাউনলোড সম্�
 values-b+as/strings.xml	string	downloaded_file	-	STR	ডাউনলোড কৰা ফাইল	
 values-b+as/strings.xml	string	downloading	-	STR	ডাউনলোড হৈ আছে	
 values-b+as/strings.xml	string	downloads_browse_library	-	STR	পুথিভঁৰাল ব্ৰাউজ কৰক	
+values-b+as/strings.xml	string	downloads_cancel_confirm_body	-	STR	ইয়াৰ ফলত এতিয়ালৈকে ডাউনলোড হোৱা %s বাদ পৰিব।	
+values-b+as/strings.xml	string	downloads_cancel_confirm_title	-	STR	এই ডাউনলোড বাতিল কৰিবনে?	
+values-b+as/strings.xml	string	downloads_cancel_download	-	STR	ডাউনলোড বাতিল কৰক	
 values-b+as/strings.xml	string	downloads_column_size	-	STR	আকাৰ	
 values-b+as/strings.xml	string	downloads_delete_all	-	STR	সকলো ডিলিট কৰক	
 values-b+as/strings.xml	string	downloads_delete_confirm_body	-	STR	ই %s মুকলি কৰিব আৰু ইয়াক পূৰ্বাৱস্থালৈ ঘূৰাই নিব নোৱাৰি।	
@@ -2816,6 +2839,7 @@ values-b+as/strings.xml	string	downloads_empty_body	-	STR	কোনো শিৰ
 values-b+as/strings.xml	string	downloads_empty_headline	-	STR	এতিয়ালৈকে কোনো ডাউনলোড নাই	
 values-b+as/strings.xml	string	downloads_free	-	STR	%s খালী	
 values-b+as/strings.xml	string	downloads_free_up_space	-	STR	ঠাই খালী কৰক	
+values-b+as/strings.xml	string	downloads_keep_downloading	-	STR	ডাউনলোড চলাই যাওক	
 values-b+as/strings.xml	string	downloads_load_failed_body	-	STR	আপোনাৰ ডাউনলোড কৰা ফাইলসমূহ সলনি কৰা হোৱা নাই।	
 values-b+as/strings.xml	string	downloads_load_failed_headline	-	STR	আপোনাৰ ডাউনলোডসমূহ পঢ়িব নোৱাৰিলোঁ	
 values-b+as/strings.xml	string	downloads_offline_pill	-	STR	অফলাইন · সংযোগ নাই	
@@ -3423,6 +3447,9 @@ values-b+az/strings.xml	string	download_started	-	STR	Yükləmə başladıldı
 values-b+az/strings.xml	string	downloaded	-	STR	Yükləndi	
 values-b+az/strings.xml	string	downloading	-	STR	Yüklənir	
 values-b+az/strings.xml	string	downloads_browse_library	-	STR	Kitabxanaya bax	
+values-b+az/strings.xml	string	downloads_cancel_confirm_body	-	STR	Bu, indiyədək endirilmiş %s-ı siləcək.	
+values-b+az/strings.xml	string	downloads_cancel_confirm_title	-	STR	Bu endirmə ləğv edilsin?	
+values-b+az/strings.xml	string	downloads_cancel_download	-	STR	Endirməni ləğv et	
 values-b+az/strings.xml	string	downloads_column_size	-	STR	Ölçü	
 values-b+az/strings.xml	string	downloads_delete_all	-	STR	Hamısını sil	
 values-b+az/strings.xml	string	downloads_delete_confirm_body	-	STR	Bu, %s boşaldacaq və geri qaytarıla bilməz.	
@@ -3432,6 +3459,7 @@ values-b+az/strings.xml	string	downloads_empty_body	-	STR	Başlığın bölüm s
 values-b+az/strings.xml	string	downloads_empty_headline	-	STR	Hələ yükləmə yoxdur	
 values-b+az/strings.xml	string	downloads_free	-	STR	%s boş	
 values-b+az/strings.xml	string	downloads_free_up_space	-	STR	Yer boşalt	
+values-b+az/strings.xml	string	downloads_keep_downloading	-	STR	Endirməyə davam et	
 values-b+az/strings.xml	string	downloads_load_failed_body	-	STR	Yüklənmiş fayllarınız dəyişdirilməyib.	
 values-b+az/strings.xml	string	downloads_load_failed_headline	-	STR	Yükləmələriniz oxuna bilmədi	
 values-b+az/strings.xml	string	downloads_offline_pill	-	STR	Oflayn · bağlantı yoxdur	
@@ -3841,6 +3869,9 @@ values-b+be/strings.xml	string	downloaded	-	STR	Спампавана
 values-b+be/strings.xml	string	downloaded_file	-	STR	Спампаваны файл	
 values-b+be/strings.xml	string	downloading	-	STR	Ідзе спампоўванне	
 values-b+be/strings.xml	string	downloads_browse_library	-	STR	Агляд бібліятэкі	
+values-b+be/strings.xml	string	downloads_cancel_confirm_body	-	STR	Спампаванае дагэтуль (%s) будзе адкінута.	
+values-b+be/strings.xml	string	downloads_cancel_confirm_title	-	STR	Скасаваць гэтую спампоўку?	
+values-b+be/strings.xml	string	downloads_cancel_download	-	STR	Скасаваць спампоўку	
 values-b+be/strings.xml	string	downloads_column_size	-	STR	Памер	
 values-b+be/strings.xml	string	downloads_delete_all	-	STR	Выдаліць усе	
 values-b+be/strings.xml	string	downloads_delete_confirm_body	-	STR	Гэта вызваліць %s, і гэта нельга адрабіць.	
@@ -3850,6 +3881,7 @@ values-b+be/strings.xml	string	downloads_empty_body	-	STR	Спампоўкі, з
 values-b+be/strings.xml	string	downloads_empty_headline	-	STR	Спамповак пакуль няма	
 values-b+be/strings.xml	string	downloads_free	-	STR	%s вольна	
 values-b+be/strings.xml	string	downloads_free_up_space	-	STR	Вызваліць месца	
+values-b+be/strings.xml	string	downloads_keep_downloading	-	STR	Працягваць спампоўку	
 values-b+be/strings.xml	string	downloads_load_failed_body	-	STR	Вашы спампаваныя файлы не зменены.	
 values-b+be/strings.xml	string	downloads_load_failed_headline	-	STR	Не ўдалося прачытаць спампоўкі	
 values-b+be/strings.xml	string	downloads_offline_pill	-	STR	Па-за сеткай · няма злучэння	
@@ -4674,6 +4706,9 @@ values-b+bg/strings.xml	string	downloaded	-	STR	Изтеглено
 values-b+bg/strings.xml	string	downloaded_file	-	STR	Изтеглен файл	
 values-b+bg/strings.xml	string	downloading	-	STR	Изтегля се	
 values-b+bg/strings.xml	string	downloads_browse_library	-	STR	Преглед на библиотеката	
+values-b+bg/strings.xml	string	downloads_cancel_confirm_body	-	STR	Така ще се изхвърлят изтеглените досега %s.	
+values-b+bg/strings.xml	string	downloads_cancel_confirm_title	-	STR	Отказване на това изтегляне?	
+values-b+bg/strings.xml	string	downloads_cancel_download	-	STR	Отказ на изтеглянето	
 values-b+bg/strings.xml	string	downloads_column_size	-	STR	Размер	
 values-b+bg/strings.xml	string	downloads_delete_all	-	STR	Изтрий всички	
 values-b+bg/strings.xml	string	downloads_delete_confirm_body	-	STR	Това освобождава %s и не може да бъде отменено.	
@@ -4683,6 +4718,7 @@ values-b+bg/strings.xml	string	downloads_empty_body	-	STR	Изтегляният
 values-b+bg/strings.xml	string	downloads_empty_headline	-	STR	Все още няма изтегляния	
 values-b+bg/strings.xml	string	downloads_free	-	STR	%s свободни	
 values-b+bg/strings.xml	string	downloads_free_up_space	-	STR	Освобождаване на място	
+values-b+bg/strings.xml	string	downloads_keep_downloading	-	STR	Продължи изтеглянето	
 values-b+bg/strings.xml	string	downloads_load_failed_body	-	STR	Изтеглените ви файлове не са променени.	
 values-b+bg/strings.xml	string	downloads_load_failed_headline	-	STR	Изтеглянията ви не можаха да се прочетат	
 values-b+bg/strings.xml	string	downloads_offline_pill	-	STR	Офлайн · няма връзка	
@@ -5417,6 +5453,9 @@ values-b+bn/strings.xml	string	download_time_left_sec_format	-	STR	%1$dসেক
 values-b+bn/strings.xml	string	downloaded	-	STR	ডাউনলোড হয়েছে	
 values-b+bn/strings.xml	string	downloading	-	STR	ডাউনলোড চলছে	
 values-b+bn/strings.xml	string	downloads_browse_library	-	STR	লাইব্রেরী ব্রাউজ করুন	
+values-b+bn/strings.xml	string	downloads_cancel_confirm_body	-	STR	এতে এখন পর্যন্ত ডাউনলোড হওয়া %s বাদ যাবে।	
+values-b+bn/strings.xml	string	downloads_cancel_confirm_title	-	STR	এই ডাউনলোড বাতিল করবেন?	
+values-b+bn/strings.xml	string	downloads_cancel_download	-	STR	ডাউনলোড বাতিল করুন	
 values-b+bn/strings.xml	string	downloads_column_size	-	STR	আকার	
 values-b+bn/strings.xml	string	downloads_delete_all	-	STR	সব ডিলিট	
 values-b+bn/strings.xml	string	downloads_delete_confirm_body	-	STR	এটি %s খালি করবে এবং পূর্বাবস্থায় ফেরানো যাবে না।	
@@ -5426,6 +5465,7 @@ values-b+bn/strings.xml	string	downloads_empty_body	-	STR	কোনো শির
 values-b+bn/strings.xml	string	downloads_empty_headline	-	STR	এখনো কোনো ডাউনলোড নেই	
 values-b+bn/strings.xml	string	downloads_free	-	STR	%s খালি	
 values-b+bn/strings.xml	string	downloads_free_up_space	-	STR	জায়গা খালি করুন	
+values-b+bn/strings.xml	string	downloads_keep_downloading	-	STR	ডাউনলোড চালিয়ে যান	
 values-b+bn/strings.xml	string	downloads_load_failed_body	-	STR	আপনার ডাউনলোড করা ফাইলগুলো পরিবর্তন করা হয়নি।	
 values-b+bn/strings.xml	string	downloads_load_failed_headline	-	STR	আপনার ডাউনলোডগুলো পড়া যায়নি	
 values-b+bn/strings.xml	string	downloads_offline_pill	-	STR	অফলাইন · কোনো সংযোগ নেই	
@@ -5886,6 +5926,9 @@ values-b+ca/strings.xml	string	download_time_left_sec_format	-	STR	%1$ds
 values-b+ca/strings.xml	string	downloaded_file	-	STR	Fitxer descarregat	
 values-b+ca/strings.xml	string	downloading	-	STR	Descarregant	
 values-b+ca/strings.xml	string	downloads_browse_library	-	STR	Explora la biblioteca	
+values-b+ca/strings.xml	string	downloads_cancel_confirm_body	-	STR	Això descarta els %s baixats fins ara.	
+values-b+ca/strings.xml	string	downloads_cancel_confirm_title	-	STR	Voleu cancel·lar aquesta baixada?	
+values-b+ca/strings.xml	string	downloads_cancel_download	-	STR	Cancel·la la baixada	
 values-b+ca/strings.xml	string	downloads_column_size	-	STR	Mida	
 values-b+ca/strings.xml	string	downloads_delete_all	-	STR	Esborra-ho tot	
 values-b+ca/strings.xml	string	downloads_delete_confirm_body	-	STR	Això allibera %s i no es pot desfer.	
@@ -5895,6 +5938,7 @@ values-b+ca/strings.xml	string	downloads_empty_body	-	STR	Les descàrregues que 
 values-b+ca/strings.xml	string	downloads_empty_headline	-	STR	Encara no hi ha descàrregues	
 values-b+ca/strings.xml	string	downloads_free	-	STR	%s lliures	
 values-b+ca/strings.xml	string	downloads_free_up_space	-	STR	Allibera espai	
+values-b+ca/strings.xml	string	downloads_keep_downloading	-	STR	Continua baixant	
 values-b+ca/strings.xml	string	downloads_load_failed_body	-	STR	Els fitxers descarregats no s'han modificat.	
 values-b+ca/strings.xml	string	downloads_load_failed_headline	-	STR	No s'han pogut llegir les descàrregues	
 values-b+ca/strings.xml	string	downloads_offline_pill	-	STR	Fora de línia · sense connexió	
@@ -6279,6 +6323,9 @@ values-b+ckb/strings.xml	string	download_time_left_sec_format	-	STR	%1$ds
 values-b+ckb/strings.xml	string	downloaded	-	STR	دابەزێنراوە	
 values-b+ckb/strings.xml	string	downloading	-	STR	دادەبەزێندرێت	
 values-b+ckb/strings.xml	string	downloads_browse_library	-	STR	گەڕان لە کتێبخانە	
+values-b+ckb/strings.xml	string	downloads_cancel_confirm_body	-	STR	ئەمە ئەو %s ـەی تا ئێستا داگیراوە فڕێ دەدات.	
+values-b+ckb/strings.xml	string	downloads_cancel_confirm_title	-	STR	ئەم داگرتنە هەڵبوەشێنرێتەوە؟	
+values-b+ckb/strings.xml	string	downloads_cancel_download	-	STR	هەڵوەشاندنەوەی داگرتن	
 values-b+ckb/strings.xml	string	downloads_column_size	-	STR	قەبارە	
 values-b+ckb/strings.xml	string	downloads_delete_all	-	STR	هەمووی بسڕەوە	
 values-b+ckb/strings.xml	string	downloads_delete_confirm_body	-	STR	ئەمە %s ئازاد دەکات و ناگەڕێتەوە.	
@@ -6288,6 +6335,7 @@ values-b+ckb/strings.xml	string	downloads_empty_body	-	STR	ئەو داونلۆد
 values-b+ckb/strings.xml	string	downloads_empty_headline	-	STR	هێشتا هیچ داونلۆدێک نییە	
 values-b+ckb/strings.xml	string	downloads_free	-	STR	%s بەتاڵ	
 values-b+ckb/strings.xml	string	downloads_free_up_space	-	STR	بۆشایی چۆڵ بکە	
+values-b+ckb/strings.xml	string	downloads_keep_downloading	-	STR	بەردەوامبوون لە داگرتن	
 values-b+ckb/strings.xml	string	downloads_load_failed_body	-	STR	فایلە داونلۆدکراوەکانت نەگۆڕدراون.	
 values-b+ckb/strings.xml	string	downloads_load_failed_headline	-	STR	نەتوانرا داونلۆدەکانت بخوێنرێنەوە	
 values-b+ckb/strings.xml	string	downloads_offline_pill	-	STR	ئۆفلاین · پەیوەندی نییە	
@@ -6662,6 +6710,9 @@ values-b+cs/strings.xml	string	downloaded	-	STR	Stáhnuto
 values-b+cs/strings.xml	string	downloaded_file	-	STR	Stažen soubor	
 values-b+cs/strings.xml	string	downloading	-	STR	Stahování	
 values-b+cs/strings.xml	string	downloads_browse_library	-	STR	Procházet knihovnu	
+values-b+cs/strings.xml	string	downloads_cancel_confirm_body	-	STR	Tím se zahodí dosud stažených %s.	
+values-b+cs/strings.xml	string	downloads_cancel_confirm_title	-	STR	Zrušit toto stahování?	
+values-b+cs/strings.xml	string	downloads_cancel_download	-	STR	Zrušit stahování	
 values-b+cs/strings.xml	string	downloads_column_size	-	STR	Velikost	
 values-b+cs/strings.xml	string	downloads_delete_all	-	STR	Smazat vše	
 values-b+cs/strings.xml	string	downloads_delete_confirm_body	-	STR	Tím se uvolní %s a nelze to vrátit zpět.	
@@ -6671,6 +6722,7 @@ values-b+cs/strings.xml	string	downloads_empty_body	-	STR	Stahování spuštěn�
 values-b+cs/strings.xml	string	downloads_empty_headline	-	STR	Zatím žádná stahování	
 values-b+cs/strings.xml	string	downloads_free	-	STR	%s volné	
 values-b+cs/strings.xml	string	downloads_free_up_space	-	STR	Uvolnit místo	
+values-b+cs/strings.xml	string	downloads_keep_downloading	-	STR	Pokračovat ve stahování	
 values-b+cs/strings.xml	string	downloads_load_failed_body	-	STR	Vaše stažené soubory nebyly změněny.	
 values-b+cs/strings.xml	string	downloads_load_failed_headline	-	STR	Stahování se nepodařilo načíst	
 values-b+cs/strings.xml	string	downloads_offline_pill	-	STR	Offline · bez připojení	
@@ -7505,6 +7557,9 @@ values-b+de/strings.xml	string	downloaded	-	STR	Heruntergeladen
 values-b+de/strings.xml	string	downloaded_file	-	STR	Heruntergeladene Datei	
 values-b+de/strings.xml	string	downloading	-	STR	Lädt herunter	
 values-b+de/strings.xml	string	downloads_browse_library	-	STR	Bibliothek durchsuchen	
+values-b+de/strings.xml	string	downloads_cancel_confirm_body	-	STR	Die bisher geladenen %s werden verworfen.	
+values-b+de/strings.xml	string	downloads_cancel_confirm_title	-	STR	Diesen Download abbrechen?	
+values-b+de/strings.xml	string	downloads_cancel_download	-	STR	Download abbrechen	
 values-b+de/strings.xml	string	downloads_column_size	-	STR	Größe	
 values-b+de/strings.xml	string	downloads_delete_all	-	STR	Alle löschen	
 values-b+de/strings.xml	string	downloads_delete_confirm_body	-	STR	Dadurch werden %s frei. Das kann nicht rückgängig gemacht werden.	
@@ -7514,6 +7569,7 @@ values-b+de/strings.xml	string	downloads_empty_body	-	STR	Downloads, die du in d
 values-b+de/strings.xml	string	downloads_empty_headline	-	STR	Noch keine Downloads	
 values-b+de/strings.xml	string	downloads_free	-	STR	%s frei	
 values-b+de/strings.xml	string	downloads_free_up_space	-	STR	Speicher freigeben	
+values-b+de/strings.xml	string	downloads_keep_downloading	-	STR	Weiter laden	
 values-b+de/strings.xml	string	downloads_load_failed_body	-	STR	Deine heruntergeladenen Dateien wurden nicht verändert.	
 values-b+de/strings.xml	string	downloads_load_failed_headline	-	STR	Downloads konnten nicht gelesen werden	
 values-b+de/strings.xml	string	downloads_offline_pill	-	STR	Offline · keine Verbindung	
@@ -8324,6 +8380,9 @@ values-b+el/strings.xml	string	downloaded	-	STR	Ληφθέν
 values-b+el/strings.xml	string	downloaded_file	-	STR	Λήψη αρχείου	
 values-b+el/strings.xml	string	downloading	-	STR	Κατεβαίνει	
 values-b+el/strings.xml	string	downloads_browse_library	-	STR	Περιήγηση στη βιβλιοθήκη	
+values-b+el/strings.xml	string	downloads_cancel_confirm_body	-	STR	Θα απορριφθούν τα %s που έχουν ληφθεί μέχρι τώρα.	
+values-b+el/strings.xml	string	downloads_cancel_confirm_title	-	STR	Ακύρωση αυτής της λήψης;	
+values-b+el/strings.xml	string	downloads_cancel_download	-	STR	Ακύρωση λήψης	
 values-b+el/strings.xml	string	downloads_column_size	-	STR	Μέγεθος	
 values-b+el/strings.xml	string	downloads_delete_all	-	STR	Διαγραφή όλων	
 values-b+el/strings.xml	string	downloads_delete_confirm_body	-	STR	Έτσι ελευθερώνονται %s και δεν μπορεί να αναιρεθεί.	
@@ -8333,6 +8392,7 @@ values-b+el/strings.xml	string	downloads_empty_body	-	STR	Οι λήψεις πο
 values-b+el/strings.xml	string	downloads_empty_headline	-	STR	Δεν υπάρχουν ακόμα λήψεις	
 values-b+el/strings.xml	string	downloads_free	-	STR	%s ελεύθερα	
 values-b+el/strings.xml	string	downloads_free_up_space	-	STR	Απελευθέρωση χώρου	
+values-b+el/strings.xml	string	downloads_keep_downloading	-	STR	Συνέχεια λήψης	
 values-b+el/strings.xml	string	downloads_load_failed_body	-	STR	Τα ληφθέντα αρχεία σας δεν έχουν αλλάξει.	
 values-b+el/strings.xml	string	downloads_load_failed_headline	-	STR	Δεν ήταν δυνατή η ανάγνωση των λήψεών σας	
 values-b+el/strings.xml	string	downloads_offline_pill	-	STR	Εκτός σύνδεσης · δεν υπάρχει σύνδεση	
@@ -8951,6 +9011,9 @@ values-b+eo/strings.xml	string	download_time_left_sec_format	-	STR	%1$ds
 values-b+eo/strings.xml	string	downloaded	-	STR	Elŝutite	
 values-b+eo/strings.xml	string	downloading	-	STR	Elŝutante	
 values-b+eo/strings.xml	string	downloads_browse_library	-	STR	Foliumi bibliotekon	
+values-b+eo/strings.xml	string	downloads_cancel_confirm_body	-	STR	Tio forĵetas la ĝis nun elŝutitajn %s.	
+values-b+eo/strings.xml	string	downloads_cancel_confirm_title	-	STR	Ĉu nuligi ĉi tiun elŝuton?	
+values-b+eo/strings.xml	string	downloads_cancel_download	-	STR	Nuligi elŝuton	
 values-b+eo/strings.xml	string	downloads_column_size	-	STR	Grandeco	
 values-b+eo/strings.xml	string	downloads_delete_all	-	STR	Forigi ĉiujn	
 values-b+eo/strings.xml	string	downloads_delete_confirm_body	-	STR	Tio liberigas %s kaj ne povas esti malfarita.	
@@ -8959,6 +9022,7 @@ values-b+eo/strings.xml	string	downloads_empty_body	-	STR	Elŝutoj, kiujn vi kom
 values-b+eo/strings.xml	string	downloads_empty_headline	-	STR	Ankoraŭ neniu elŝuto	
 values-b+eo/strings.xml	string	downloads_free	-	STR	%s libera	
 values-b+eo/strings.xml	string	downloads_free_up_space	-	STR	Liberigi spacon	
+values-b+eo/strings.xml	string	downloads_keep_downloading	-	STR	Daŭrigi elŝuton	
 values-b+eo/strings.xml	string	downloads_load_failed_body	-	STR	Viaj elŝutitaj dosieroj ne ŝanĝiĝis.	
 values-b+eo/strings.xml	string	downloads_load_failed_headline	-	STR	Ne eblis legi viajn elŝutojn	
 values-b+eo/strings.xml	string	downloads_offline_pill	-	STR	Eksterrete · neniu konekto	
@@ -9410,6 +9474,9 @@ values-b+es/strings.xml	string	downloaded	-	STR	Descargado
 values-b+es/strings.xml	string	downloaded_file	-	STR	Archivo descargado	
 values-b+es/strings.xml	string	downloading	-	STR	Descargando	
 values-b+es/strings.xml	string	downloads_browse_library	-	STR	Explorar biblioteca	
+values-b+es/strings.xml	string	downloads_cancel_confirm_body	-	STR	Se descartarán los %s descargados hasta ahora.	
+values-b+es/strings.xml	string	downloads_cancel_confirm_title	-	STR	¿Cancelar esta descarga?	
+values-b+es/strings.xml	string	downloads_cancel_download	-	STR	Cancelar descarga	
 values-b+es/strings.xml	string	downloads_column_size	-	STR	Tamaño	
 values-b+es/strings.xml	string	downloads_delete_all	-	STR	Borrar todo	
 values-b+es/strings.xml	string	downloads_delete_confirm_body	-	STR	Esto libera %s y no se puede deshacer.	
@@ -9419,6 +9486,7 @@ values-b+es/strings.xml	string	downloads_empty_body	-	STR	Las descargas que inic
 values-b+es/strings.xml	string	downloads_empty_headline	-	STR	Aún no hay descargas	
 values-b+es/strings.xml	string	downloads_free	-	STR	%s libres	
 values-b+es/strings.xml	string	downloads_free_up_space	-	STR	Liberar espacio	
+values-b+es/strings.xml	string	downloads_keep_downloading	-	STR	Seguir descargando	
 values-b+es/strings.xml	string	downloads_load_failed_body	-	STR	Tus archivos descargados no se han modificado.	
 values-b+es/strings.xml	string	downloads_load_failed_headline	-	STR	No se pudieron leer tus descargas	
 values-b+es/strings.xml	string	downloads_offline_pill	-	STR	Sin conexión · sin red	
@@ -10150,6 +10218,9 @@ values-b+fa/strings.xml	string	download_storage_text	-	STR	حافظه درونی
 values-b+fa/strings.xml	string	downloaded	-	STR	دانلود شده	
 values-b+fa/strings.xml	string	downloading	-	STR	در حال دانلود	
 values-b+fa/strings.xml	string	downloads_browse_library	-	STR	مرور کتابخانه	
+values-b+fa/strings.xml	string	downloads_cancel_confirm_body	-	STR	این کار %s بارگیری‌شده تا اکنون را دور می‌ریزد.	
+values-b+fa/strings.xml	string	downloads_cancel_confirm_title	-	STR	این بارگیری لغو شود؟	
+values-b+fa/strings.xml	string	downloads_cancel_download	-	STR	لغو بارگیری	
 values-b+fa/strings.xml	string	downloads_column_size	-	STR	اندازه	
 values-b+fa/strings.xml	string	downloads_delete_all	-	STR	حذف همه	
 values-b+fa/strings.xml	string	downloads_delete_confirm_body	-	STR	این کار %s فضا آزاد می‌کند و قابل بازگشت نیست.	
@@ -10159,6 +10230,7 @@ values-b+fa/strings.xml	string	downloads_empty_body	-	STR	دانلودهایی �
 values-b+fa/strings.xml	string	downloads_empty_headline	-	STR	هنوز دانلودی وجود ندارد	
 values-b+fa/strings.xml	string	downloads_free	-	STR	%s آزاد	
 values-b+fa/strings.xml	string	downloads_free_up_space	-	STR	آزاد کردن فضا	
+values-b+fa/strings.xml	string	downloads_keep_downloading	-	STR	ادامهٔ بارگیری	
 values-b+fa/strings.xml	string	downloads_load_failed_body	-	STR	فایل‌های دانلودشده شما تغییر نکرده‌اند.	
 values-b+fa/strings.xml	string	downloads_load_failed_headline	-	STR	دانلودهای شما خوانده نشد	
 values-b+fa/strings.xml	string	downloads_offline_pill	-	STR	آفلاین · بدون اتصال	
@@ -10548,6 +10620,9 @@ values-b+fil/strings.xml	string	download_time_left_sec_format	-	STR	%1$ds
 values-b+fil/strings.xml	string	downloaded	-	STR	Na-download	
 values-b+fil/strings.xml	string	downloading	-	STR	Dina-download	
 values-b+fil/strings.xml	string	downloads_browse_library	-	STR	I-browse ang library	
+values-b+fil/strings.xml	string	downloads_cancel_confirm_body	-	STR	Itatapon nito ang %s na na-download na.	
+values-b+fil/strings.xml	string	downloads_cancel_confirm_title	-	STR	Kanselahin ang download na ito?	
+values-b+fil/strings.xml	string	downloads_cancel_download	-	STR	Kanselahin ang download	
 values-b+fil/strings.xml	string	downloads_column_size	-	STR	Laki	
 values-b+fil/strings.xml	string	downloads_delete_all	-	STR	Burahin lahat	
 values-b+fil/strings.xml	string	downloads_delete_confirm_body	-	STR	Magpapalaya ito ng %s at hindi na ito maaaring bawiin.	
@@ -10557,6 +10632,7 @@ values-b+fil/strings.xml	string	downloads_empty_body	-	STR	Lalabas dito ang mga 
 values-b+fil/strings.xml	string	downloads_empty_headline	-	STR	Wala pang mga download	
 values-b+fil/strings.xml	string	downloads_free	-	STR	%s libre	
 values-b+fil/strings.xml	string	downloads_free_up_space	-	STR	Magbakante ng espasyo	
+values-b+fil/strings.xml	string	downloads_keep_downloading	-	STR	Ituloy ang pag-download	
 values-b+fil/strings.xml	string	downloads_load_failed_body	-	STR	Hindi nabago ang mga na-download mong file.	
 values-b+fil/strings.xml	string	downloads_load_failed_headline	-	STR	Hindi mabasa ang iyong mga download	
 values-b+fil/strings.xml	string	downloads_offline_pill	-	STR	Offline · walang koneksyon	
@@ -10976,6 +11052,9 @@ values-b+fr/strings.xml	string	downloaded	-	STR	Téléchargé
 values-b+fr/strings.xml	string	downloaded_file	-	STR	Fichier téléchargé	
 values-b+fr/strings.xml	string	downloading	-	STR	Téléchargement	
 values-b+fr/strings.xml	string	downloads_browse_library	-	STR	Parcourir la bibliothèque	
+values-b+fr/strings.xml	string	downloads_cancel_confirm_body	-	STR	Les %s déjà téléchargés seront supprimés.	
+values-b+fr/strings.xml	string	downloads_cancel_confirm_title	-	STR	Annuler ce téléchargement ?	
+values-b+fr/strings.xml	string	downloads_cancel_download	-	STR	Annuler le téléchargement	
 values-b+fr/strings.xml	string	downloads_column_size	-	STR	Taille	
 values-b+fr/strings.xml	string	downloads_delete_all	-	STR	Tout supprimer	
 values-b+fr/strings.xml	string	downloads_delete_confirm_body	-	STR	Cela libère %s et ne peut pas être annulé.	
@@ -10985,6 +11064,7 @@ values-b+fr/strings.xml	string	downloads_empty_body	-	STR	Les téléchargements 
 values-b+fr/strings.xml	string	downloads_empty_headline	-	STR	Aucun téléchargement pour l'instant	
 values-b+fr/strings.xml	string	downloads_free	-	STR	%s libres	
 values-b+fr/strings.xml	string	downloads_free_up_space	-	STR	Libérer de l'espace	
+values-b+fr/strings.xml	string	downloads_keep_downloading	-	STR	Continuer le téléchargement	
 values-b+fr/strings.xml	string	downloads_load_failed_body	-	STR	Vos fichiers téléchargés n'ont pas été modifiés.	
 values-b+fr/strings.xml	string	downloads_load_failed_headline	-	STR	Impossible de lire vos téléchargements	
 values-b+fr/strings.xml	string	downloads_offline_pill	-	STR	Hors-ligne · pas de connexion	
@@ -11702,6 +11782,9 @@ values-b+gl/strings.xml	string	download_storage_text	-	STR	Almacenamento Interno
 values-b+gl/strings.xml	string	downloaded	-	STR	Descargado	
 values-b+gl/strings.xml	string	downloading	-	STR	Descargando	
 values-b+gl/strings.xml	string	downloads_browse_library	-	STR	Explorar biblioteca	
+values-b+gl/strings.xml	string	downloads_cancel_confirm_body	-	STR	Isto descarta os %s descargados ata agora.	
+values-b+gl/strings.xml	string	downloads_cancel_confirm_title	-	STR	Cancelar esta descarga?	
+values-b+gl/strings.xml	string	downloads_cancel_download	-	STR	Cancelar a descarga	
 values-b+gl/strings.xml	string	downloads_column_size	-	STR	Tamaño	
 values-b+gl/strings.xml	string	downloads_delete_all	-	STR	Borrar todo	
 values-b+gl/strings.xml	string	downloads_delete_confirm_body	-	STR	Isto libera %s e non se pode desfacer.	
@@ -11711,6 +11794,7 @@ values-b+gl/strings.xml	string	downloads_empty_body	-	STR	As descargas que inici
 values-b+gl/strings.xml	string	downloads_empty_headline	-	STR	Aínda non hai descargas	
 values-b+gl/strings.xml	string	downloads_free	-	STR	%s libres	
 values-b+gl/strings.xml	string	downloads_free_up_space	-	STR	Liberar espazo	
+values-b+gl/strings.xml	string	downloads_keep_downloading	-	STR	Seguir descargando	
 values-b+gl/strings.xml	string	downloads_load_failed_body	-	STR	Os teus ficheiros descargados non se modificaron.	
 values-b+gl/strings.xml	string	downloads_load_failed_headline	-	STR	Non se puideron ler as túas descargas	
 values-b+gl/strings.xml	string	downloads_offline_pill	-	STR	Sen conexión · sen rede	
@@ -12126,6 +12210,9 @@ values-b+hi/strings.xml	string	download_time_left_sec_format	-	STR	%1$d से�
 values-b+hi/strings.xml	string	downloaded	-	STR	डाउनलोड किया गया	
 values-b+hi/strings.xml	string	downloading	-	STR	डाउनलोड हो रहा	
 values-b+hi/strings.xml	string	downloads_browse_library	-	STR	लाइब्रेरी ब्राउज़ करें	
+values-b+hi/strings.xml	string	downloads_cancel_confirm_body	-	STR	इससे अब तक डाउनलोड हुए %s हटा दिए जाएँगे।	
+values-b+hi/strings.xml	string	downloads_cancel_confirm_title	-	STR	यह डाउनलोड रद्द करें?	
+values-b+hi/strings.xml	string	downloads_cancel_download	-	STR	डाउनलोड रद्द करें	
 values-b+hi/strings.xml	string	downloads_column_size	-	STR	आकार	
 values-b+hi/strings.xml	string	downloads_delete_all	-	STR	सभी डिलीट करें	
 values-b+hi/strings.xml	string	downloads_delete_confirm_body	-	STR	इससे %s खाली होगा और इसे पूर्ववत नहीं किया जा सकता।	
@@ -12135,6 +12222,7 @@ values-b+hi/strings.xml	string	downloads_empty_body	-	STR	किसी शीर
 values-b+hi/strings.xml	string	downloads_empty_headline	-	STR	अभी तक कोई डाउनलोड नहीं	
 values-b+hi/strings.xml	string	downloads_free	-	STR	%s खाली	
 values-b+hi/strings.xml	string	downloads_free_up_space	-	STR	जगह ख़ाली करें	
+values-b+hi/strings.xml	string	downloads_keep_downloading	-	STR	डाउनलोड जारी रखें	
 values-b+hi/strings.xml	string	downloads_load_failed_body	-	STR	आपकी डाउनलोड की गई फ़ाइलें नहीं बदली गई हैं।	
 values-b+hi/strings.xml	string	downloads_load_failed_headline	-	STR	आपके डाउनलोड पढ़े नहीं जा सके	
 values-b+hi/strings.xml	string	downloads_offline_pill	-	STR	ऑफ़लाइन · कोई कनेक्शन नहीं	
@@ -12735,6 +12823,9 @@ values-b+hr/strings.xml	string	downloaded	-	STR	Preuzeto
 values-b+hr/strings.xml	string	downloaded_file	-	STR	Preuzeta datoteka	
 values-b+hr/strings.xml	string	downloading	-	STR	Preuzimanje u tijeku	
 values-b+hr/strings.xml	string	downloads_browse_library	-	STR	Pregledaj biblioteku	
+values-b+hr/strings.xml	string	downloads_cancel_confirm_body	-	STR	Time se odbacuje dosad preuzetih %s.	
+values-b+hr/strings.xml	string	downloads_cancel_confirm_title	-	STR	Otkazati ovo preuzimanje?	
+values-b+hr/strings.xml	string	downloads_cancel_download	-	STR	Otkaži preuzimanje	
 values-b+hr/strings.xml	string	downloads_column_size	-	STR	Veličina	
 values-b+hr/strings.xml	string	downloads_delete_all	-	STR	Izbriši sve	
 values-b+hr/strings.xml	string	downloads_delete_confirm_body	-	STR	Time se oslobađa %s i to se ne može poništiti.	
@@ -12744,6 +12835,7 @@ values-b+hr/strings.xml	string	downloads_empty_body	-	STR	Preuzimanja pokrenuta 
 values-b+hr/strings.xml	string	downloads_empty_headline	-	STR	Još nema preuzimanja	
 values-b+hr/strings.xml	string	downloads_free	-	STR	%s slobodno	
 values-b+hr/strings.xml	string	downloads_free_up_space	-	STR	Oslobodi prostor	
+values-b+hr/strings.xml	string	downloads_keep_downloading	-	STR	Nastavi preuzimanje	
 values-b+hr/strings.xml	string	downloads_load_failed_body	-	STR	Vaše preuzete datoteke nisu promijenjene.	
 values-b+hr/strings.xml	string	downloads_load_failed_headline	-	STR	Nije moguće pročitati vaša preuzimanja	
 values-b+hr/strings.xml	string	downloads_offline_pill	-	STR	Offline · nema veze	
@@ -13539,6 +13631,9 @@ values-b+hu/strings.xml	string	downloaded	-	STR	Letöltve
 values-b+hu/strings.xml	string	downloaded_file	-	STR	Letöltött fájl	
 values-b+hu/strings.xml	string	downloading	-	STR	Letöltés	
 values-b+hu/strings.xml	string	downloads_browse_library	-	STR	Könyvtár böngészése	
+values-b+hu/strings.xml	string	downloads_cancel_confirm_body	-	STR	Ezzel elveted az eddig letöltött %s adatot.	
+values-b+hu/strings.xml	string	downloads_cancel_confirm_title	-	STR	Megszakítod ezt a letöltést?	
+values-b+hu/strings.xml	string	downloads_cancel_download	-	STR	Letöltés megszakítása	
 values-b+hu/strings.xml	string	downloads_column_size	-	STR	Méret	
 values-b+hu/strings.xml	string	downloads_delete_all	-	STR	Összes törlése	
 values-b+hu/strings.xml	string	downloads_delete_confirm_body	-	STR	Ezzel %s szabadul fel, és nem vonható vissza.	
@@ -13548,6 +13643,7 @@ values-b+hu/strings.xml	string	downloads_empty_body	-	STR	A cím epizódlistáj�
 values-b+hu/strings.xml	string	downloads_empty_headline	-	STR	Még nincs letöltés	
 values-b+hu/strings.xml	string	downloads_free	-	STR	%s szabad	
 values-b+hu/strings.xml	string	downloads_free_up_space	-	STR	Hely felszabadítása	
+values-b+hu/strings.xml	string	downloads_keep_downloading	-	STR	Letöltés folytatása	
 values-b+hu/strings.xml	string	downloads_load_failed_body	-	STR	A letöltött fájlok nem változtak.	
 values-b+hu/strings.xml	string	downloads_load_failed_headline	-	STR	Nem sikerült beolvasni a letöltéseket	
 values-b+hu/strings.xml	string	downloads_offline_pill	-	STR	Offline · nincs kapcsolat	
@@ -14301,6 +14397,9 @@ values-b+in/strings.xml	string	downloaded	-	STR	Terunduh
 values-b+in/strings.xml	string	downloaded_file	-	STR	Berkas terunduh	
 values-b+in/strings.xml	string	downloading	-	STR	Mengunduh	
 values-b+in/strings.xml	string	downloads_browse_library	-	STR	Jelajahi pustaka	
+values-b+in/strings.xml	string	downloads_cancel_confirm_body	-	STR	Ini membuang %s yang sudah diunduh.	
+values-b+in/strings.xml	string	downloads_cancel_confirm_title	-	STR	Batalkan unduhan ini?	
+values-b+in/strings.xml	string	downloads_cancel_download	-	STR	Batalkan unduhan	
 values-b+in/strings.xml	string	downloads_column_size	-	STR	Ukuran	
 values-b+in/strings.xml	string	downloads_delete_all	-	STR	Hapus semua	
 values-b+in/strings.xml	string	downloads_delete_confirm_body	-	STR	Ini mengosongkan %s dan tidak dapat diurungkan.	
@@ -14310,6 +14409,7 @@ values-b+in/strings.xml	string	downloads_empty_body	-	STR	Unduhan yang Anda mula
 values-b+in/strings.xml	string	downloads_empty_headline	-	STR	Belum ada unduhan	
 values-b+in/strings.xml	string	downloads_free	-	STR	%s kosong	
 values-b+in/strings.xml	string	downloads_free_up_space	-	STR	Kosongkan ruang	
+values-b+in/strings.xml	string	downloads_keep_downloading	-	STR	Lanjutkan mengunduh	
 values-b+in/strings.xml	string	downloads_load_failed_body	-	STR	File unduhan Anda tidak berubah.	
 values-b+in/strings.xml	string	downloads_load_failed_headline	-	STR	Tidak dapat membaca unduhan Anda	
 values-b+in/strings.xml	string	downloads_offline_pill	-	STR	Luring · tidak ada koneksi	
@@ -15155,6 +15255,9 @@ values-b+it/strings.xml	string	downloaded	-	STR	Scaricato
 values-b+it/strings.xml	string	downloaded_file	-	STR	File scaricato	
 values-b+it/strings.xml	string	downloading	-	STR	Download in corso	
 values-b+it/strings.xml	string	downloads_browse_library	-	STR	Sfoglia libreria	
+values-b+it/strings.xml	string	downloads_cancel_confirm_body	-	STR	Verranno scartati i %s scaricati finora.	
+values-b+it/strings.xml	string	downloads_cancel_confirm_title	-	STR	Annullare questo download?	
+values-b+it/strings.xml	string	downloads_cancel_download	-	STR	Annulla download	
 values-b+it/strings.xml	string	downloads_column_size	-	STR	Dimensione	
 values-b+it/strings.xml	string	downloads_delete_all	-	STR	Elimina tutto	
 values-b+it/strings.xml	string	downloads_delete_confirm_body	-	STR	Così si liberano %s e non si può annullare.	
@@ -15164,6 +15267,7 @@ values-b+it/strings.xml	string	downloads_empty_body	-	STR	I download avviati dal
 values-b+it/strings.xml	string	downloads_empty_headline	-	STR	Ancora nessun download	
 values-b+it/strings.xml	string	downloads_free	-	STR	%s liberi	
 values-b+it/strings.xml	string	downloads_free_up_space	-	STR	Libera spazio	
+values-b+it/strings.xml	string	downloads_keep_downloading	-	STR	Continua a scaricare	
 values-b+it/strings.xml	string	downloads_load_failed_body	-	STR	I file scaricati non sono stati modificati.	
 values-b+it/strings.xml	string	downloads_load_failed_headline	-	STR	Impossibile leggere i download	
 values-b+it/strings.xml	string	downloads_offline_pill	-	STR	Offline · nessuna connessione	
@@ -15942,6 +16046,9 @@ values-b+iw/strings.xml	string	downloaded	-	STR	הורד
 values-b+iw/strings.xml	string	downloaded_file	-	STR	קובץ שהורד	
 values-b+iw/strings.xml	string	downloading	-	STR	מוריד	
 values-b+iw/strings.xml	string	downloads_browse_library	-	STR	עיון בספריה	
+values-b+iw/strings.xml	string	downloads_cancel_confirm_body	-	STR	פעולה זו תמחק את %s שהורדו עד כה.	
+values-b+iw/strings.xml	string	downloads_cancel_confirm_title	-	STR	לבטל את ההורדה הזו?	
+values-b+iw/strings.xml	string	downloads_cancel_download	-	STR	ביטול ההורדה	
 values-b+iw/strings.xml	string	downloads_column_size	-	STR	גודל	
 values-b+iw/strings.xml	string	downloads_delete_all	-	STR	מחק הכל	
 values-b+iw/strings.xml	string	downloads_delete_confirm_body	-	STR	פעולה זו תפנה %s ולא ניתן לבטל אותה.	
@@ -15951,6 +16058,7 @@ values-b+iw/strings.xml	string	downloads_empty_body	-	STR	הורדות שתתח�
 values-b+iw/strings.xml	string	downloads_empty_headline	-	STR	אין עדיין הורדות	
 values-b+iw/strings.xml	string	downloads_free	-	STR	%s פנויים	
 values-b+iw/strings.xml	string	downloads_free_up_space	-	STR	פינוי מקום	
+values-b+iw/strings.xml	string	downloads_keep_downloading	-	STR	המשך בהורדה	
 values-b+iw/strings.xml	string	downloads_load_failed_body	-	STR	הקבצים שהורדת לא שונו.	
 values-b+iw/strings.xml	string	downloads_load_failed_headline	-	STR	לא ניתן לקרוא את ההורדות שלך	
 values-b+iw/strings.xml	string	downloads_offline_pill	-	STR	אופליין · אין חיבור	
@@ -16644,6 +16752,9 @@ values-b+ja/strings.xml	string	downloaded	-	STR	ダウンロード済
 values-b+ja/strings.xml	string	downloaded_file	-	STR	ダウンロードしたファイル	
 values-b+ja/strings.xml	string	downloading	-	STR	ダウンロード中	
 values-b+ja/strings.xml	string	downloads_browse_library	-	STR	ライブラリを見る	
+values-b+ja/strings.xml	string	downloads_cancel_confirm_body	-	STR	これまでにダウンロードした%sは破棄されます。	
+values-b+ja/strings.xml	string	downloads_cancel_confirm_title	-	STR	このダウンロードをキャンセルしますか？	
+values-b+ja/strings.xml	string	downloads_cancel_download	-	STR	ダウンロードをキャンセル	
 values-b+ja/strings.xml	string	downloads_column_size	-	STR	サイズ	
 values-b+ja/strings.xml	string	downloads_delete_all	-	STR	すべて削除	
 values-b+ja/strings.xml	string	downloads_delete_confirm_body	-	STR	%sが解放されます。この操作は取り消せません。	
@@ -16653,6 +16764,7 @@ values-b+ja/strings.xml	string	downloads_empty_body	-	STR	作品のエピソー�
 values-b+ja/strings.xml	string	downloads_empty_headline	-	STR	ダウンロードはまだありません	
 values-b+ja/strings.xml	string	downloads_free	-	STR	空き %s	
 values-b+ja/strings.xml	string	downloads_free_up_space	-	STR	空き容量を増やす	
+values-b+ja/strings.xml	string	downloads_keep_downloading	-	STR	ダウンロードを続ける	
 values-b+ja/strings.xml	string	downloads_load_failed_body	-	STR	ダウンロード済みのファイルは変更されていません。	
 values-b+ja/strings.xml	string	downloads_load_failed_headline	-	STR	ダウンロードを読み込めませんでした	
 values-b+ja/strings.xml	string	downloads_offline_pill	-	STR	オフライン · 接続なし	
@@ -17320,6 +17432,9 @@ values-b+kn/strings.xml	string	download_storage_text	-	STR	ಇಂಟರ್ನಲ
 values-b+kn/strings.xml	string	downloaded	-	STR	ಡೌನ್‌ಲೋಡ್ ಮಾಡಲಾಗಿದೆ	
 values-b+kn/strings.xml	string	downloading	-	STR	ಡೌನ್‌ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ	
 values-b+kn/strings.xml	string	downloads_browse_library	-	STR	ಲೈಬ್ರರಿ ಬ್ರೌಸ್ ಮಾಡಿ	
+values-b+kn/strings.xml	string	downloads_cancel_confirm_body	-	STR	ಇದು ಇಲ್ಲಿಯವರೆಗೆ ಡೌನ್‌ಲೋಡ್ ಆದ %s ಅನ್ನು ತ್ಯಜಿಸುತ್ತದೆ.	
+values-b+kn/strings.xml	string	downloads_cancel_confirm_title	-	STR	ಈ ಡೌನ್‌ಲೋಡ್ ರದ್ದುಗೊಳಿಸುವುದೇ?	
+values-b+kn/strings.xml	string	downloads_cancel_download	-	STR	ಡೌನ್‌ಲೋಡ್ ರದ್ದುಮಾಡಿ	
 values-b+kn/strings.xml	string	downloads_column_size	-	STR	ಗಾತ್ರ	
 values-b+kn/strings.xml	string	downloads_delete_all	-	STR	ಎಲ್ಲವನ್ನೂ ಅಳಿಸಿ	
 values-b+kn/strings.xml	string	downloads_delete_confirm_body	-	STR	ಇದು %s ಮುಕ್ತಗೊಳಿಸುತ್ತದೆ ಮತ್ತು ರದ್ದುಗೊಳಿಸಲಾಗುವುದಿಲ್ಲ.	
@@ -17327,6 +17442,7 @@ values-b+kn/strings.xml	string	downloads_empty_body	-	STR	ಶೀರ್ಷಿಕ�
 values-b+kn/strings.xml	string	downloads_empty_headline	-	STR	ಇನ್ನೂ ಡೌನ್‌ಲೋಡ್‌ಗಳಿಲ್ಲ	
 values-b+kn/strings.xml	string	downloads_free	-	STR	%s ಖಾಲಿ	
 values-b+kn/strings.xml	string	downloads_free_up_space	-	STR	ಸ್ಥಳವನ್ನು ಖಾಲಿ ಮಾಡಿ	
+values-b+kn/strings.xml	string	downloads_keep_downloading	-	STR	ಡೌನ್‌ಲೋಡ್ ಮುಂದುವರಿಸಿ	
 values-b+kn/strings.xml	string	downloads_load_failed_body	-	STR	ನಿಮ್ಮ ಡೌನ್‌ಲೋಡ್ ಮಾಡಿದ ಫೈಲ್‌ಗಳನ್ನು ಬದಲಾಯಿಸಲಾಗಿಲ್ಲ.	
 values-b+kn/strings.xml	string	downloads_load_failed_headline	-	STR	ನಿಮ್ಮ ಡೌನ್‌ಲೋಡ್‌ಗಳನ್ನು ಓದಲಾಗಲಿಲ್ಲ	
 values-b+kn/strings.xml	string	downloads_offline_pill	-	STR	ಆಫ್‌ಲೈನ್ · ಸಂಪರ್ಕವಿಲ್ಲ	
@@ -17707,6 +17823,9 @@ values-b+ko/strings.xml	string	downloaded	-	STR	다운로드됨
 values-b+ko/strings.xml	string	downloaded_file	-	STR	다운로드한 파일	
 values-b+ko/strings.xml	string	downloading	-	STR	다운로드중	
 values-b+ko/strings.xml	string	downloads_browse_library	-	STR	라이브러리 둘러보기	
+values-b+ko/strings.xml	string	downloads_cancel_confirm_body	-	STR	지금까지 다운로드한 %s이(가) 삭제됩니다.	
+values-b+ko/strings.xml	string	downloads_cancel_confirm_title	-	STR	이 다운로드를 취소할까요?	
+values-b+ko/strings.xml	string	downloads_cancel_download	-	STR	다운로드 취소	
 values-b+ko/strings.xml	string	downloads_column_size	-	STR	크기	
 values-b+ko/strings.xml	string	downloads_delete_all	-	STR	모두 삭제	
 values-b+ko/strings.xml	string	downloads_delete_confirm_body	-	STR	%s의 공간이 확보되며 되돌릴 수 없습니다.	
@@ -17716,6 +17835,7 @@ values-b+ko/strings.xml	string	downloads_empty_body	-	STR	작품의 에피소드
 values-b+ko/strings.xml	string	downloads_empty_headline	-	STR	아직 다운로드가 없습니다	
 values-b+ko/strings.xml	string	downloads_free	-	STR	%s 남음	
 values-b+ko/strings.xml	string	downloads_free_up_space	-	STR	공간 확보	
+values-b+ko/strings.xml	string	downloads_keep_downloading	-	STR	계속 다운로드	
 values-b+ko/strings.xml	string	downloads_load_failed_body	-	STR	다운로드한 파일은 변경되지 않았습니다.	
 values-b+ko/strings.xml	string	downloads_load_failed_headline	-	STR	다운로드를 읽을 수 없습니다	
 values-b+ko/strings.xml	string	downloads_offline_pill	-	STR	오프라인 · 연결 없음	
@@ -18427,6 +18547,9 @@ values-b+lt/strings.xml	string	download_storage_text	-	STR	Vidinė atmintis
 values-b+lt/strings.xml	string	downloaded	-	STR	Atsisiųsta	
 values-b+lt/strings.xml	string	downloading	-	STR	Siunčiama	
 values-b+lt/strings.xml	string	downloads_browse_library	-	STR	Naršyti biblioteką	
+values-b+lt/strings.xml	string	downloads_cancel_confirm_body	-	STR	Bus atmesta iki šiol atsisiųsta %s.	
+values-b+lt/strings.xml	string	downloads_cancel_confirm_title	-	STR	Atšaukti šį atsisiuntimą?	
+values-b+lt/strings.xml	string	downloads_cancel_download	-	STR	Atšaukti atsisiuntimą	
 values-b+lt/strings.xml	string	downloads_column_size	-	STR	Dydis	
 values-b+lt/strings.xml	string	downloads_delete_all	-	STR	Ištrinti visus	
 values-b+lt/strings.xml	string	downloads_delete_confirm_body	-	STR	Tai atlaisvins %s ir to nebus galima atšaukti.	
@@ -18436,6 +18559,7 @@ values-b+lt/strings.xml	string	downloads_empty_body	-	STR	Atsisiuntimai, pradėt
 values-b+lt/strings.xml	string	downloads_empty_headline	-	STR	Atsisiuntimų dar nėra	
 values-b+lt/strings.xml	string	downloads_free	-	STR	%s laisva	
 values-b+lt/strings.xml	string	downloads_free_up_space	-	STR	Atlaisvinti vietos	
+values-b+lt/strings.xml	string	downloads_keep_downloading	-	STR	Tęsti atsisiuntimą	
 values-b+lt/strings.xml	string	downloads_load_failed_body	-	STR	Jūsų atsisiųsti failai nebuvo pakeisti.	
 values-b+lt/strings.xml	string	downloads_load_failed_headline	-	STR	Nepavyko nuskaityti atsisiuntimų	
 values-b+lt/strings.xml	string	downloads_offline_pill	-	STR	Neprisijungus · nėra ryšio	
@@ -18921,6 +19045,9 @@ values-b+lv/strings.xml	string	downloaded	-	STR	Ieladēts
 values-b+lv/strings.xml	string	downloaded_file	-	STR	Lejupielādēta datne	
 values-b+lv/strings.xml	string	downloading	-	STR	Lādējas	
 values-b+lv/strings.xml	string	downloads_browse_library	-	STR	Pārlūkot bibliotēku	
+values-b+lv/strings.xml	string	downloads_cancel_confirm_body	-	STR	Līdz šim lejupielādētie %s tiks atmesti.	
+values-b+lv/strings.xml	string	downloads_cancel_confirm_title	-	STR	Atcelt šo lejupielādi?	
+values-b+lv/strings.xml	string	downloads_cancel_download	-	STR	Atcelt lejupielādi	
 values-b+lv/strings.xml	string	downloads_column_size	-	STR	Izmērs	
 values-b+lv/strings.xml	string	downloads_delete_all	-	STR	Dzēst visu	
 values-b+lv/strings.xml	string	downloads_delete_confirm_body	-	STR	Tas atbrīvos %s, un to nevarēs atsaukt.	
@@ -18930,6 +19057,7 @@ values-b+lv/strings.xml	string	downloads_empty_body	-	STR	Lejupielādes, kuras s
 values-b+lv/strings.xml	string	downloads_empty_headline	-	STR	Vēl nav lejupielāžu	
 values-b+lv/strings.xml	string	downloads_free	-	STR	%s brīvi	
 values-b+lv/strings.xml	string	downloads_free_up_space	-	STR	Atbrīvot vietu	
+values-b+lv/strings.xml	string	downloads_keep_downloading	-	STR	Turpināt lejupielādi	
 values-b+lv/strings.xml	string	downloads_load_failed_body	-	STR	Jūsu lejupielādētie faili nav mainīti.	
 values-b+lv/strings.xml	string	downloads_load_failed_headline	-	STR	Neizdevās nolasīt lejupielādes	
 values-b+lv/strings.xml	string	downloads_offline_pill	-	STR	Bezsaistē · nav savienojuma	
@@ -19683,6 +19811,9 @@ values-b+mk/strings.xml	string	downloaded	-	STR	Преземено
 values-b+mk/strings.xml	string	downloaded_file	-	STR	Преземена датотека	
 values-b+mk/strings.xml	string	downloading	-	STR	Преземање	
 values-b+mk/strings.xml	string	downloads_browse_library	-	STR	Прелистај библиотека	
+values-b+mk/strings.xml	string	downloads_cancel_confirm_body	-	STR	Ова ги отфрла досега преземените %s.	
+values-b+mk/strings.xml	string	downloads_cancel_confirm_title	-	STR	Да се откаже ова преземање?	
+values-b+mk/strings.xml	string	downloads_cancel_download	-	STR	Откажи преземање	
 values-b+mk/strings.xml	string	downloads_column_size	-	STR	Големина	
 values-b+mk/strings.xml	string	downloads_delete_all	-	STR	Избриши ги сите	
 values-b+mk/strings.xml	string	downloads_delete_confirm_body	-	STR	Ова ослободува %s и не може да се врати.	
@@ -19692,6 +19823,7 @@ values-b+mk/strings.xml	string	downloads_empty_body	-	STR	Преземањата
 values-b+mk/strings.xml	string	downloads_empty_headline	-	STR	Сè уште нема преземања	
 values-b+mk/strings.xml	string	downloads_free	-	STR	%s слободно	
 values-b+mk/strings.xml	string	downloads_free_up_space	-	STR	Ослободи простор	
+values-b+mk/strings.xml	string	downloads_keep_downloading	-	STR	Продолжи со преземање	
 values-b+mk/strings.xml	string	downloads_load_failed_body	-	STR	Вашите преземени датотеки не се променети.	
 values-b+mk/strings.xml	string	downloads_load_failed_headline	-	STR	Не може да се прочитаат вашите преземања	
 values-b+mk/strings.xml	string	downloads_offline_pill	-	STR	Офлајн · нема врска	
@@ -20395,6 +20527,9 @@ values-b+ml/strings.xml	string	download_time_left_sec_format	-	STR	%1$ds
 values-b+ml/strings.xml	string	downloaded	-	STR	ഡൌൺലോഡ് ചെയ്തവ	
 values-b+ml/strings.xml	string	downloading	-	STR	ഡൌൺലോഡ് ചെയ്യുന്നു	
 values-b+ml/strings.xml	string	downloads_browse_library	-	STR	ലൈബ്രറി ബ്രൗസ് ചെയ്യുക	
+values-b+ml/strings.xml	string	downloads_cancel_confirm_body	-	STR	ഇതുവരെ ഡൗൺലോഡ് ചെയ്ത %s ഉപേക്ഷിക്കും.	
+values-b+ml/strings.xml	string	downloads_cancel_confirm_title	-	STR	ഈ ഡൗൺലോഡ് റദ്ദാക്കണോ?	
+values-b+ml/strings.xml	string	downloads_cancel_download	-	STR	ഡൗൺലോഡ് റദ്ദാക്കുക	
 values-b+ml/strings.xml	string	downloads_column_size	-	STR	വലുപ്പം	
 values-b+ml/strings.xml	string	downloads_delete_all	-	STR	എല്ലാം ഡിലീറ്റ് ചെയ്യുക	
 values-b+ml/strings.xml	string	downloads_delete_confirm_body	-	STR	ഇത് %s ഒഴിവാക്കും, ഇത് പഴയപടിയാക്കാനാകില്ല.	
@@ -20404,6 +20539,7 @@ values-b+ml/strings.xml	string	downloads_empty_body	-	STR	ഒരു ശീർഷ
 values-b+ml/strings.xml	string	downloads_empty_headline	-	STR	ഇതുവരെ ഡൗൺലോഡുകളൊന്നുമില്ല	
 values-b+ml/strings.xml	string	downloads_free	-	STR	%s ശൂന്യം	
 values-b+ml/strings.xml	string	downloads_free_up_space	-	STR	ഇടം ഒഴിവാക്കുക	
+values-b+ml/strings.xml	string	downloads_keep_downloading	-	STR	ഡൗൺലോഡ് തുടരുക	
 values-b+ml/strings.xml	string	downloads_load_failed_body	-	STR	നിങ്ങൾ ഡൗൺലോഡ് ചെയ്ത ഫയലുകൾ മാറ്റിയിട്ടില്ല.	
 values-b+ml/strings.xml	string	downloads_load_failed_headline	-	STR	നിങ്ങളുടെ ഡൗൺലോഡുകൾ വായിക്കാനായില്ല	
 values-b+ml/strings.xml	string	downloads_offline_pill	-	STR	ഓഫ്‌ലൈൻ · കണക്ഷനില്ല	
@@ -20856,6 +20992,9 @@ values-b+ms/strings.xml	string	downloaded	-	STR	Dimuat turun
 values-b+ms/strings.xml	string	downloaded_file	-	STR	Fail dimuat turun	
 values-b+ms/strings.xml	string	downloading	-	STR	Memuat turun	
 values-b+ms/strings.xml	string	downloads_browse_library	-	STR	Layari perpustakaan	
+values-b+ms/strings.xml	string	downloads_cancel_confirm_body	-	STR	Ini akan membuang %s yang telah dimuat turun.	
+values-b+ms/strings.xml	string	downloads_cancel_confirm_title	-	STR	Batalkan muat turun ini?	
+values-b+ms/strings.xml	string	downloads_cancel_download	-	STR	Batalkan muat turun	
 values-b+ms/strings.xml	string	downloads_column_size	-	STR	Saiz	
 values-b+ms/strings.xml	string	downloads_delete_all	-	STR	Padam semua	
 values-b+ms/strings.xml	string	downloads_delete_confirm_body	-	STR	Ini mengosongkan %s dan tidak boleh dibuat asal.	
@@ -20865,6 +21004,7 @@ values-b+ms/strings.xml	string	downloads_empty_body	-	STR	Muat turun yang anda m
 values-b+ms/strings.xml	string	downloads_empty_headline	-	STR	Belum ada muat turun	
 values-b+ms/strings.xml	string	downloads_free	-	STR	%s kosong	
 values-b+ms/strings.xml	string	downloads_free_up_space	-	STR	Kosongkan ruang	
+values-b+ms/strings.xml	string	downloads_keep_downloading	-	STR	Teruskan muat turun	
 values-b+ms/strings.xml	string	downloads_load_failed_body	-	STR	Fail muat turun anda tidak diubah.	
 values-b+ms/strings.xml	string	downloads_load_failed_headline	-	STR	Tidak dapat membaca muat turun anda	
 values-b+ms/strings.xml	string	downloads_offline_pill	-	STR	Luar talian · tiada sambungan	
@@ -21393,6 +21533,9 @@ values-b+mt/strings.xml	string	download_storage_text	-	STR	Ħażna Interna
 values-b+mt/strings.xml	string	downloaded	-	STR	Imniżżel	
 values-b+mt/strings.xml	string	downloading	-	STR	Qed jinżlu	
 values-b+mt/strings.xml	string	downloads_browse_library	-	STR	Esplora l-librerija	
+values-b+mt/strings.xml	string	downloads_cancel_confirm_body	-	STR	Dan jarmi l-%s imniżżla s'issa.	
+values-b+mt/strings.xml	string	downloads_cancel_confirm_title	-	STR	Tikkanċella dan it-tniżżil?	
+values-b+mt/strings.xml	string	downloads_cancel_download	-	STR	Ikkanċella t-tniżżil	
 values-b+mt/strings.xml	string	downloads_column_size	-	STR	Daqs	
 values-b+mt/strings.xml	string	downloads_delete_all	-	STR	Ħassar kollox	
 values-b+mt/strings.xml	string	downloads_delete_confirm_body	-	STR	Dan jillibera %s u ma jistax jitreġġa' lura.	
@@ -21400,6 +21543,7 @@ values-b+mt/strings.xml	string	downloads_empty_body	-	STR	It-tniżżil li tibda 
 values-b+mt/strings.xml	string	downloads_empty_headline	-	STR	Għad m'hemmx tniżżil	
 values-b+mt/strings.xml	string	downloads_free	-	STR	%s liberi	
 values-b+mt/strings.xml	string	downloads_free_up_space	-	STR	Ħeles l-ispazju	
+values-b+mt/strings.xml	string	downloads_keep_downloading	-	STR	Kompli niżżel	
 values-b+mt/strings.xml	string	downloads_load_failed_body	-	STR	Il-fajls imniżżla tiegħek ma nbidlux.	
 values-b+mt/strings.xml	string	downloads_load_failed_headline	-	STR	Ma setax jinqara t-tniżżil tiegħek	
 values-b+mt/strings.xml	string	downloads_offline_pill	-	STR	Offline · l-ebda konnessjoni	
@@ -21712,6 +21856,9 @@ values-b+my/strings.xml	string	downloaded	-	STR	ဒေါင်းလုဒ် �
 values-b+my/strings.xml	string	downloaded_file	-	STR	ဖိုင်ဒေါင်းလုဒ်လုပ်ပြီး	
 values-b+my/strings.xml	string	downloading	-	STR	ဒေါင်းလုဒ် လုပ်နေသည်	
 values-b+my/strings.xml	string	downloads_browse_library	-	STR	လိုက်ဘရီကို ကြည့်ရှုရန်	
+values-b+my/strings.xml	string	downloads_cancel_confirm_body	-	STR	ယခုထိ ဒေါင်းလုဒ်ဆွဲထားသော %s ကို ဖယ်ရှားပါမည်။	
+values-b+my/strings.xml	string	downloads_cancel_confirm_title	-	STR	ဤဒေါင်းလုဒ်ကို ပယ်ဖျက်မလား။	
+values-b+my/strings.xml	string	downloads_cancel_download	-	STR	ဒေါင်းလုဒ် ပယ်ဖျက်ရန်	
 values-b+my/strings.xml	string	downloads_column_size	-	STR	အရွယ်အစား	
 values-b+my/strings.xml	string	downloads_delete_all	-	STR	အားလုံးဖျက်ရန်	
 values-b+my/strings.xml	string	downloads_delete_confirm_body	-	STR	၎င်းသည် %s ကို လွတ်စေပြီး ပြန်ပြင်၍မရပါ။	
@@ -21719,6 +21866,7 @@ values-b+my/strings.xml	string	downloads_empty_body	-	STR	ခေါင်းစ�
 values-b+my/strings.xml	string	downloads_empty_headline	-	STR	ဒေါင်းလုဒ် မရှိသေးပါ	
 values-b+my/strings.xml	string	downloads_free	-	STR	%s လွတ်	
 values-b+my/strings.xml	string	downloads_free_up_space	-	STR	နေရာလွတ်ယူရန်	
+values-b+my/strings.xml	string	downloads_keep_downloading	-	STR	ဆက်လက် ဒေါင်းလုဒ်ဆွဲရန်	
 values-b+my/strings.xml	string	downloads_load_failed_body	-	STR	ဒေါင်းလုဒ်လုပ်ထားသော ဖိုင်များကို မပြောင်းလဲထားပါ။	
 values-b+my/strings.xml	string	downloads_load_failed_headline	-	STR	ဒေါင်းလုဒ်များကို ဖတ်၍မရပါ	
 values-b+my/strings.xml	string	downloads_offline_pill	-	STR	အော့ဖ်လိုင်း · ချိတ်ဆက်မှုမရှိပါ	
@@ -22236,6 +22384,9 @@ values-b+ne/strings.xml	string	download_storage_text	-	STR	भित्री �
 values-b+ne/strings.xml	string	downloaded	-	STR	डाउनलोड भयो	
 values-b+ne/strings.xml	string	downloading	-	STR	डाउनलोड हुदैछ	
 values-b+ne/strings.xml	string	downloads_browse_library	-	STR	लाइब्रेरी हेर्नुहोस्	
+values-b+ne/strings.xml	string	downloads_cancel_confirm_body	-	STR	यसले अहिलेसम्म डाउनलोड भएको %s हटाउँछ।	
+values-b+ne/strings.xml	string	downloads_cancel_confirm_title	-	STR	यो डाउनलोड रद्द गर्ने?	
+values-b+ne/strings.xml	string	downloads_cancel_download	-	STR	डाउनलोड रद्द गर्नुहोस्	
 values-b+ne/strings.xml	string	downloads_column_size	-	STR	आकार	
 values-b+ne/strings.xml	string	downloads_delete_all	-	STR	सबै मेटाउनुहोस्	
 values-b+ne/strings.xml	string	downloads_delete_confirm_body	-	STR	यसले %s खाली गर्छ र यसलाई पूर्ववत गर्न सकिँदैन।	
@@ -22243,6 +22394,7 @@ values-b+ne/strings.xml	string	downloads_empty_body	-	STR	शीर्षकक�
 values-b+ne/strings.xml	string	downloads_empty_headline	-	STR	अहिलेसम्म कुनै डाउनलोड छैन	
 values-b+ne/strings.xml	string	downloads_free	-	STR	%s खाली	
 values-b+ne/strings.xml	string	downloads_free_up_space	-	STR	ठाउँ खाली गर्नुहोस्	
+values-b+ne/strings.xml	string	downloads_keep_downloading	-	STR	डाउनलोड जारी राख्नुहोस्	
 values-b+ne/strings.xml	string	downloads_load_failed_body	-	STR	तपाईंका डाउनलोड गरिएका फाइलहरू परिवर्तन गरिएका छैनन्।	
 values-b+ne/strings.xml	string	downloads_load_failed_headline	-	STR	तपाईंका डाउनलोडहरू पढ्न सकिएन	
 values-b+ne/strings.xml	string	downloads_offline_pill	-	STR	अफलाइन · जडान छैन	
@@ -22615,6 +22767,9 @@ values-b+nl/strings.xml	string	downloaded	-	STR	Gedownload
 values-b+nl/strings.xml	string	downloaded_file	-	STR	Gedownload bestand	
 values-b+nl/strings.xml	string	downloading	-	STR	Downloaden	
 values-b+nl/strings.xml	string	downloads_browse_library	-	STR	Bibliotheek bekijken	
+values-b+nl/strings.xml	string	downloads_cancel_confirm_body	-	STR	De %s die al is gedownload, wordt weggegooid.	
+values-b+nl/strings.xml	string	downloads_cancel_confirm_title	-	STR	Deze download annuleren?	
+values-b+nl/strings.xml	string	downloads_cancel_download	-	STR	Download annuleren	
 values-b+nl/strings.xml	string	downloads_column_size	-	STR	Grootte	
 values-b+nl/strings.xml	string	downloads_delete_all	-	STR	Alles verwijderen	
 values-b+nl/strings.xml	string	downloads_delete_confirm_body	-	STR	Dit maakt %s vrij en kan niet ongedaan worden gemaakt.	
@@ -22624,6 +22779,7 @@ values-b+nl/strings.xml	string	downloads_empty_body	-	STR	Downloads die je start
 values-b+nl/strings.xml	string	downloads_empty_headline	-	STR	Nog geen downloads	
 values-b+nl/strings.xml	string	downloads_free	-	STR	%s vrij	
 values-b+nl/strings.xml	string	downloads_free_up_space	-	STR	Ruimte vrijmaken	
+values-b+nl/strings.xml	string	downloads_keep_downloading	-	STR	Doorgaan met downloaden	
 values-b+nl/strings.xml	string	downloads_load_failed_body	-	STR	Je gedownloade bestanden zijn niet gewijzigd.	
 values-b+nl/strings.xml	string	downloads_load_failed_headline	-	STR	Kon je downloads niet lezen	
 values-b+nl/strings.xml	string	downloads_offline_pill	-	STR	Offline · geen verbinding	
@@ -23272,6 +23428,9 @@ values-b+nn/strings.xml	string	download_storage_text	-	STR	Internlagring
 values-b+nn/strings.xml	string	downloaded	-	STR	Lasta ned	
 values-b+nn/strings.xml	string	downloading	-	STR	Nedlasting pågår	
 values-b+nn/strings.xml	string	downloads_browse_library	-	STR	Bla i biblioteket	
+values-b+nn/strings.xml	string	downloads_cancel_confirm_body	-	STR	Dette forkastar dei %s som er lasta ned så langt.	
+values-b+nn/strings.xml	string	downloads_cancel_confirm_title	-	STR	Avbryte denne nedlastinga?	
+values-b+nn/strings.xml	string	downloads_cancel_download	-	STR	Avbryt nedlasting	
 values-b+nn/strings.xml	string	downloads_column_size	-	STR	Storleik	
 values-b+nn/strings.xml	string	downloads_delete_all	-	STR	Slett alle	
 values-b+nn/strings.xml	string	downloads_delete_confirm_body	-	STR	Dette frigjer %s og kan ikkje angrast.	
@@ -23279,6 +23438,7 @@ values-b+nn/strings.xml	string	downloads_empty_body	-	STR	Nedlastingar du starta
 values-b+nn/strings.xml	string	downloads_empty_headline	-	STR	Ingen nedlastingar enno	
 values-b+nn/strings.xml	string	downloads_free	-	STR	%s ledig	
 values-b+nn/strings.xml	string	downloads_free_up_space	-	STR	Frigjer plass	
+values-b+nn/strings.xml	string	downloads_keep_downloading	-	STR	Hald fram med nedlastinga	
 values-b+nn/strings.xml	string	downloads_load_failed_body	-	STR	Dei nedlasta filene dine er ikkje endra.	
 values-b+nn/strings.xml	string	downloads_load_failed_headline	-	STR	Kunne ikkje lese nedlastingane dine	
 values-b+nn/strings.xml	string	downloads_offline_pill	-	STR	Fråkopla · inga tilkopling	
@@ -23653,6 +23813,9 @@ values-b+no/strings.xml	string	downloaded	-	STR	Lastet ned
 values-b+no/strings.xml	string	downloaded_file	-	STR	Nedlastet fil	
 values-b+no/strings.xml	string	downloading	-	STR	Nedlasting pågår	
 values-b+no/strings.xml	string	downloads_browse_library	-	STR	Bla i biblioteket	
+values-b+no/strings.xml	string	downloads_cancel_confirm_body	-	STR	Dette forkaster de %s som er lastet ned så langt.	
+values-b+no/strings.xml	string	downloads_cancel_confirm_title	-	STR	Avbryte denne nedlastingen?	
+values-b+no/strings.xml	string	downloads_cancel_download	-	STR	Avbryt nedlasting	
 values-b+no/strings.xml	string	downloads_column_size	-	STR	Størrelse	
 values-b+no/strings.xml	string	downloads_delete_all	-	STR	Slett alle	
 values-b+no/strings.xml	string	downloads_delete_confirm_body	-	STR	Dette frigjør %s og kan ikke angres.	
@@ -23660,6 +23823,7 @@ values-b+no/strings.xml	string	downloads_empty_body	-	STR	Nedlastinger du starte
 values-b+no/strings.xml	string	downloads_empty_headline	-	STR	Ingen nedlastinger ennå	
 values-b+no/strings.xml	string	downloads_free	-	STR	%s ledig	
 values-b+no/strings.xml	string	downloads_free_up_space	-	STR	Frigjør plass	
+values-b+no/strings.xml	string	downloads_keep_downloading	-	STR	Fortsett nedlastingen	
 values-b+no/strings.xml	string	downloads_load_failed_body	-	STR	De nedlastede filene dine er ikke endret.	
 values-b+no/strings.xml	string	downloads_load_failed_headline	-	STR	Kunne ikke lese nedlastingene dine	
 values-b+no/strings.xml	string	downloads_offline_pill	-	STR	Frakoblet · ingen tilkobling	
@@ -24177,6 +24341,9 @@ values-b+or/strings.xml	string	dont_show_again	-	STR	ପୁନଃ ଦେଖା�
 values-b+or/strings.xml	string	download_storage_text	-	STR	ଅନ୍ତଃ-ଷ୍ଟୋରେଜ୍	
 values-b+or/strings.xml	string	download_time_left_hour_min_sec_format	-	STR	%1$dଘଣ୍ଟା %2$dମିନିଟ୍ %3$dସେକେଣ୍ଡ	
 values-b+or/strings.xml	string	downloads_browse_library	-	STR	ଲାଇବ୍ରେରୀ ବ୍ରାଉଜ୍ କର	
+values-b+or/strings.xml	string	downloads_cancel_confirm_body	-	STR	ଏହା ଏପର୍ଯ୍ୟନ୍ତ ଡାଉନଲୋଡ୍ ହୋଇଥିବା %s କୁ ହଟାଇଦେବ।	
+values-b+or/strings.xml	string	downloads_cancel_confirm_title	-	STR	ଏହି ଡାଉନଲୋଡ୍ ବାତିଲ କରିବେ?	
+values-b+or/strings.xml	string	downloads_cancel_download	-	STR	ଡାଉନଲୋଡ୍ ବାତିଲ କରନ୍ତୁ	
 values-b+or/strings.xml	string	downloads_column_size	-	STR	ଆକାର	
 values-b+or/strings.xml	string	downloads_delete_all	-	STR	ସବୁ ଵିଲୋପ କର	
 values-b+or/strings.xml	string	downloads_delete_confirm_body	-	STR	ଏହା %s ଖାଲି କରିବ ଏବଂ ଏହାକୁ ପୂର୍ବାବସ୍ଥାକୁ ଫେରାଇ ହେବ ନାହିଁ।	
@@ -24184,6 +24351,7 @@ values-b+or/strings.xml	string	downloads_empty_body	-	STR	ଶୀର୍ଷକର 
 values-b+or/strings.xml	string	downloads_empty_headline	-	STR	ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ଡାଉନଲୋଡ୍ ନାହିଁ	
 values-b+or/strings.xml	string	downloads_free	-	STR	%s ଖାଲି	
 values-b+or/strings.xml	string	downloads_free_up_space	-	STR	ସ୍ଥାନ ଖାଲି କର	
+values-b+or/strings.xml	string	downloads_keep_downloading	-	STR	ଡାଉନଲୋଡ୍ ଜାରି ରଖନ୍ତୁ	
 values-b+or/strings.xml	string	downloads_load_failed_body	-	STR	ଆପଣଙ୍କ ଡାଉନଲୋଡ୍ ହୋଇଥିବା ଫାଇଲଗୁଡ଼ିକ ବଦଳାଯାଇନାହିଁ।	
 values-b+or/strings.xml	string	downloads_load_failed_headline	-	STR	ଆପଣଙ୍କ ଡାଉନଲୋଡ୍ ପଢ଼ିହେଲା ନାହିଁ	
 values-b+or/strings.xml	string	downloads_offline_pill	-	STR	ଅଫଲାଇନ୍ · ସଂଯୋଗ ନାହିଁ	
@@ -24625,6 +24793,9 @@ values-b+pl/strings.xml	string	downloaded	-	STR	Pobrane
 values-b+pl/strings.xml	string	downloaded_file	-	STR	Pobrano plik	
 values-b+pl/strings.xml	string	downloading	-	STR	Pobieranie	
 values-b+pl/strings.xml	string	downloads_browse_library	-	STR	Przeglądaj bibliotekę	
+values-b+pl/strings.xml	string	downloads_cancel_confirm_body	-	STR	Spowoduje to odrzucenie pobranych dotąd %s.	
+values-b+pl/strings.xml	string	downloads_cancel_confirm_title	-	STR	Anulować to pobieranie?	
+values-b+pl/strings.xml	string	downloads_cancel_download	-	STR	Anuluj pobieranie	
 values-b+pl/strings.xml	string	downloads_column_size	-	STR	Rozmiar	
 values-b+pl/strings.xml	string	downloads_delete_all	-	STR	Usuń wszystkie	
 values-b+pl/strings.xml	string	downloads_delete_confirm_body	-	STR	Zwolni to %s i nie można tego cofnąć.	
@@ -24634,6 +24805,7 @@ values-b+pl/strings.xml	string	downloads_empty_body	-	STR	Pobrania rozpoczęte z
 values-b+pl/strings.xml	string	downloads_empty_headline	-	STR	Nie ma jeszcze pobranych	
 values-b+pl/strings.xml	string	downloads_free	-	STR	%s wolne	
 values-b+pl/strings.xml	string	downloads_free_up_space	-	STR	Zwolnij miejsce	
+values-b+pl/strings.xml	string	downloads_keep_downloading	-	STR	Pobieraj dalej	
 values-b+pl/strings.xml	string	downloads_load_failed_body	-	STR	Pobrane pliki nie zostały zmienione.	
 values-b+pl/strings.xml	string	downloads_load_failed_headline	-	STR	Nie udało się odczytać pobranych	
 values-b+pl/strings.xml	string	downloads_offline_pill	-	STR	Offline · brak połączenia	
@@ -25479,6 +25651,9 @@ values-b+pt+BR/strings.xml	string	downloaded	-	STR	Baixado
 values-b+pt+BR/strings.xml	string	downloaded_file	-	STR	Arquivo baixado	
 values-b+pt+BR/strings.xml	string	downloading	-	STR	Baixando	
 values-b+pt+BR/strings.xml	string	downloads_browse_library	-	STR	Explorar biblioteca	
+values-b+pt+BR/strings.xml	string	downloads_cancel_confirm_body	-	STR	Isso descarta os %s baixados até agora.	
+values-b+pt+BR/strings.xml	string	downloads_cancel_confirm_title	-	STR	Cancelar este download?	
+values-b+pt+BR/strings.xml	string	downloads_cancel_download	-	STR	Cancelar download	
 values-b+pt+BR/strings.xml	string	downloads_column_size	-	STR	Tamanho	
 values-b+pt+BR/strings.xml	string	downloads_delete_all	-	STR	Apagar tudo	
 values-b+pt+BR/strings.xml	string	downloads_delete_confirm_body	-	STR	Isso libera %s e não pode ser desfeito.	
@@ -25488,6 +25663,7 @@ values-b+pt+BR/strings.xml	string	downloads_empty_body	-	STR	Os downloads inicia
 values-b+pt+BR/strings.xml	string	downloads_empty_headline	-	STR	Ainda não há downloads	
 values-b+pt+BR/strings.xml	string	downloads_free	-	STR	%s livres	
 values-b+pt+BR/strings.xml	string	downloads_free_up_space	-	STR	Liberar espaço	
+values-b+pt+BR/strings.xml	string	downloads_keep_downloading	-	STR	Continuar baixando	
 values-b+pt+BR/strings.xml	string	downloads_load_failed_body	-	STR	Seus arquivos baixados não foram alterados.	
 values-b+pt+BR/strings.xml	string	downloads_load_failed_headline	-	STR	Não foi possível ler seus downloads	
 values-b+pt+BR/strings.xml	string	downloads_offline_pill	-	STR	Offline · sem conexão	
@@ -26330,6 +26506,9 @@ values-b+pt/strings.xml	string	downloaded	-	STR	Baixado
 values-b+pt/strings.xml	string	downloaded_file	-	STR	Arquivo baixado	
 values-b+pt/strings.xml	string	downloading	-	STR	Baixando	
 values-b+pt/strings.xml	string	downloads_browse_library	-	STR	Explorar biblioteca	
+values-b+pt/strings.xml	string	downloads_cancel_confirm_body	-	STR	Isto descarta os %s transferidos até agora.	
+values-b+pt/strings.xml	string	downloads_cancel_confirm_title	-	STR	Cancelar esta transferência?	
+values-b+pt/strings.xml	string	downloads_cancel_download	-	STR	Cancelar transferência	
 values-b+pt/strings.xml	string	downloads_column_size	-	STR	Tamanho	
 values-b+pt/strings.xml	string	downloads_delete_all	-	STR	Eliminar tudo	
 values-b+pt/strings.xml	string	downloads_delete_confirm_body	-	STR	Isto liberta %s e não pode ser anulado.	
@@ -26339,6 +26518,7 @@ values-b+pt/strings.xml	string	downloads_empty_body	-	STR	Os downloads iniciados
 values-b+pt/strings.xml	string	downloads_empty_headline	-	STR	Ainda não existem downloads	
 values-b+pt/strings.xml	string	downloads_free	-	STR	%s livres	
 values-b+pt/strings.xml	string	downloads_free_up_space	-	STR	Libertar espaço	
+values-b+pt/strings.xml	string	downloads_keep_downloading	-	STR	Continuar a transferir	
 values-b+pt/strings.xml	string	downloads_load_failed_body	-	STR	Os seus ficheiros transferidos não foram alterados.	
 values-b+pt/strings.xml	string	downloads_load_failed_headline	-	STR	Não foi possível ler os seus downloads	
 values-b+pt/strings.xml	string	downloads_offline_pill	-	STR	Offline · sem ligação	
@@ -27129,6 +27309,9 @@ values-b+qt/strings.xml	string	downloaded	-	STR	ooo-ahahaaaghh
 values-b+qt/strings.xml	string	downloaded_file	-	STR	aaaagggaah aagg	
 values-b+qt/strings.xml	string	downloading	-	STR	oohahaaoouuh	
 values-b+qt/strings.xml	string	downloads_browse_library	-	STR	ooh uuuuuuuh	
+values-b+qt/strings.xml	string	downloads_cancel_confirm_body	-	STR	ooo-ahahaaaaa %s oooohh	
+values-b+qt/strings.xml	string	downloads_cancel_confirm_title	-	STR	oooohh ouuhhuhooh?	
+values-b+qt/strings.xml	string	downloads_cancel_download	-	STR	oooohh ouuhhuhooh	
 values-b+qt/strings.xml	string	downloads_column_size	-	STR	oogg	
 values-b+qt/strings.xml	string	downloads_delete_all	-	STR	oooooah aag	
 values-b+qt/strings.xml	string	downloads_delete_confirm_body	-	STR	ooo-ahahaaaaa %s oooohh	
@@ -27138,6 +27321,7 @@ values-b+qt/strings.xml	string	downloads_empty_body	-	STR	uuuhh aah uuuugggog ug
 values-b+qt/strings.xml	string	downloads_empty_headline	-	STR	uuuhh aauuhah	
 values-b+qt/strings.xml	string	downloads_free	-	STR	%s ooh	
 values-b+qt/strings.xml	string	downloads_free_up_space	-	STR	ooo-ahahaaaaa oh	
+values-b+qt/strings.xml	string	downloads_keep_downloading	-	STR	ouuhhuhooh ooh	
 values-b+qt/strings.xml	string	downloads_load_failed_body	-	STR	ouuhhuhooh ooh uuh ahooo.	
 values-b+qt/strings.xml	string	downloads_load_failed_headline	-	STR	ahooo uuhh ouuhhuhooh ooh	
 values-b+qt/strings.xml	string	downloads_offline_pill	-	STR	aaaagggoh ooh · uuuhh	
@@ -27861,6 +28045,9 @@ values-b+ro/strings.xml	string	downloaded	-	STR	Descărcat
 values-b+ro/strings.xml	string	downloaded_file	-	STR	Fișier descărcat	
 values-b+ro/strings.xml	string	downloading	-	STR	Se descarcă	
 values-b+ro/strings.xml	string	downloads_browse_library	-	STR	Răsfoiește biblioteca	
+values-b+ro/strings.xml	string	downloads_cancel_confirm_body	-	STR	Se vor elimina cei %s descărcați până acum.	
+values-b+ro/strings.xml	string	downloads_cancel_confirm_title	-	STR	Anulezi această descărcare?	
+values-b+ro/strings.xml	string	downloads_cancel_download	-	STR	Anulează descărcarea	
 values-b+ro/strings.xml	string	downloads_column_size	-	STR	Dimensiune	
 values-b+ro/strings.xml	string	downloads_delete_all	-	STR	Șterge tot	
 values-b+ro/strings.xml	string	downloads_delete_confirm_body	-	STR	Astfel se eliberează %s și nu se poate anula.	
@@ -27870,6 +28057,7 @@ values-b+ro/strings.xml	string	downloads_empty_body	-	STR	Descărcările pornite
 values-b+ro/strings.xml	string	downloads_empty_headline	-	STR	Încă nu există descărcări	
 values-b+ro/strings.xml	string	downloads_free	-	STR	%s liberi	
 values-b+ro/strings.xml	string	downloads_free_up_space	-	STR	Eliberează spațiu	
+values-b+ro/strings.xml	string	downloads_keep_downloading	-	STR	Continuă descărcarea	
 values-b+ro/strings.xml	string	downloads_load_failed_body	-	STR	Fișierele descărcate nu au fost modificate.	
 values-b+ro/strings.xml	string	downloads_load_failed_headline	-	STR	Descărcările nu au putut fi citite	
 values-b+ro/strings.xml	string	downloads_offline_pill	-	STR	Offline · fără conexiune	
@@ -28644,6 +28832,9 @@ values-b+ru/strings.xml	string	downloaded	-	STR	Скачано
 values-b+ru/strings.xml	string	downloaded_file	-	STR	Скачано файл	
 values-b+ru/strings.xml	string	downloading	-	STR	Скачивание	
 values-b+ru/strings.xml	string	downloads_browse_library	-	STR	Открыть библиотеку	
+values-b+ru/strings.xml	string	downloads_cancel_confirm_body	-	STR	Загруженные к этому моменту %s будут удалены.	
+values-b+ru/strings.xml	string	downloads_cancel_confirm_title	-	STR	Отменить эту загрузку?	
+values-b+ru/strings.xml	string	downloads_cancel_download	-	STR	Отменить загрузку	
 values-b+ru/strings.xml	string	downloads_column_size	-	STR	Размер	
 values-b+ru/strings.xml	string	downloads_delete_all	-	STR	Удалить все	
 values-b+ru/strings.xml	string	downloads_delete_confirm_body	-	STR	Это освободит %s, и отменить это нельзя.	
@@ -28653,6 +28844,7 @@ values-b+ru/strings.xml	string	downloads_empty_body	-	STR	Скачивания, 
 values-b+ru/strings.xml	string	downloads_empty_headline	-	STR	Скачанного пока нет	
 values-b+ru/strings.xml	string	downloads_free	-	STR	свободно %s	
 values-b+ru/strings.xml	string	downloads_free_up_space	-	STR	Освободить место	
+values-b+ru/strings.xml	string	downloads_keep_downloading	-	STR	Продолжить загрузку	
 values-b+ru/strings.xml	string	downloads_load_failed_body	-	STR	Ваши скачанные файлы не изменены.	
 values-b+ru/strings.xml	string	downloads_load_failed_headline	-	STR	Не удалось прочитать скачанное	
 values-b+ru/strings.xml	string	downloads_offline_pill	-	STR	Без сети · нет соединения	
@@ -29432,6 +29624,9 @@ values-b+sk/strings.xml	string	downloaded	-	STR	Stiahnuté
 values-b+sk/strings.xml	string	downloaded_file	-	STR	Stiahnutý súbor	
 values-b+sk/strings.xml	string	downloading	-	STR	Sťahovanie	
 values-b+sk/strings.xml	string	downloads_browse_library	-	STR	Prehľadávať knižnicu	
+values-b+sk/strings.xml	string	downloads_cancel_confirm_body	-	STR	Tým sa zahodí doteraz stiahnutých %s.	
+values-b+sk/strings.xml	string	downloads_cancel_confirm_title	-	STR	Zrušiť toto sťahovanie?	
+values-b+sk/strings.xml	string	downloads_cancel_download	-	STR	Zrušiť sťahovanie	
 values-b+sk/strings.xml	string	downloads_column_size	-	STR	Veľkosť	
 values-b+sk/strings.xml	string	downloads_delete_all	-	STR	Zmazať všetko	
 values-b+sk/strings.xml	string	downloads_delete_confirm_body	-	STR	Uvoľní sa tým %s a nedá sa to vrátiť späť.	
@@ -29441,6 +29636,7 @@ values-b+sk/strings.xml	string	downloads_empty_body	-	STR	Sťahovania spustené 
 values-b+sk/strings.xml	string	downloads_empty_headline	-	STR	Zatiaľ žiadne stiahnutia	
 values-b+sk/strings.xml	string	downloads_free	-	STR	%s voľné	
 values-b+sk/strings.xml	string	downloads_free_up_space	-	STR	Uvoľniť miesto	
+values-b+sk/strings.xml	string	downloads_keep_downloading	-	STR	Pokračovať v sťahovaní	
 values-b+sk/strings.xml	string	downloads_load_failed_body	-	STR	Vaše stiahnuté súbory neboli zmenené.	
 values-b+sk/strings.xml	string	downloads_load_failed_headline	-	STR	Stiahnutia sa nepodarilo načítať	
 values-b+sk/strings.xml	string	downloads_offline_pill	-	STR	Offline · bez pripojenia	
@@ -30011,6 +30207,9 @@ values-b+so/strings.xml	string	downloaded	-	STR	La degtay
 values-b+so/strings.xml	string	downloaded_file	-	STR	Waa ka dejiyey faylka	
 values-b+so/strings.xml	string	downloading	-	STR	Soo degaya	
 values-b+so/strings.xml	string	downloads_browse_library	-	STR	Baadh kaydka	
+values-b+so/strings.xml	string	downloads_cancel_confirm_body	-	STR	Tani waxay tuuraysaa %s ee ilaa hadda la soo dejiyey.	
+values-b+so/strings.xml	string	downloads_cancel_confirm_title	-	STR	Ma joojinaysaa soo dejintan?	
+values-b+so/strings.xml	string	downloads_cancel_download	-	STR	Jooji soo dejinta	
 values-b+so/strings.xml	string	downloads_column_size	-	STR	Cabbir	
 values-b+so/strings.xml	string	downloads_delete_all	-	STR	Tirtir dhammaan	
 values-b+so/strings.xml	string	downloads_delete_confirm_body	-	STR	Tani waxay xoreyn doontaa %s dibna looma celin karo.	
@@ -30020,6 +30219,7 @@ values-b+so/strings.xml	string	downloads_empty_body	-	STR	Soo dejinta aad ka bil
 values-b+so/strings.xml	string	downloads_empty_headline	-	STR	Weli ma jiraan soo dejin	
 values-b+so/strings.xml	string	downloads_free	-	STR	%s bannaan	
 values-b+so/strings.xml	string	downloads_free_up_space	-	STR	Bannee meel	
+values-b+so/strings.xml	string	downloads_keep_downloading	-	STR	Sii wad soo dejinta	
 values-b+so/strings.xml	string	downloads_load_failed_body	-	STR	Faylasha aad soo dejisay lama beddelin.	
 values-b+so/strings.xml	string	downloads_load_failed_headline	-	STR	Lama akhrin karo soo dejintaada	
 values-b+so/strings.xml	string	downloads_offline_pill	-	STR	Khad la'aan · ma jiro isku xir	
@@ -30689,6 +30889,9 @@ values-b+sq/strings.xml	string	downloaded	-	STR	U shkarkua
 values-b+sq/strings.xml	string	downloaded_file	-	STR	Skedar i shkarkuar	
 values-b+sq/strings.xml	string	downloading	-	STR	Duke u shkarkuar	
 values-b+sq/strings.xml	string	downloads_browse_library	-	STR	Shfleto bibliotekën	
+values-b+sq/strings.xml	string	downloads_cancel_confirm_body	-	STR	Kjo hedh poshtë %s e shkarkuara deri tani.	
+values-b+sq/strings.xml	string	downloads_cancel_confirm_title	-	STR	Të anulohet ky shkarkim?	
+values-b+sq/strings.xml	string	downloads_cancel_download	-	STR	Anulo shkarkimin	
 values-b+sq/strings.xml	string	downloads_column_size	-	STR	Madhësia	
 values-b+sq/strings.xml	string	downloads_delete_all	-	STR	Fshiji të gjitha	
 values-b+sq/strings.xml	string	downloads_delete_confirm_body	-	STR	Kjo liron %s dhe nuk mund të zhbëhet.	
@@ -30698,6 +30901,7 @@ values-b+sq/strings.xml	string	downloads_empty_body	-	STR	Shkarkimet që nis nga
 values-b+sq/strings.xml	string	downloads_empty_headline	-	STR	Ende nuk ka shkarkime	
 values-b+sq/strings.xml	string	downloads_free	-	STR	%s të lira	
 values-b+sq/strings.xml	string	downloads_free_up_space	-	STR	Liro hapësirë	
+values-b+sq/strings.xml	string	downloads_keep_downloading	-	STR	Vazhdo shkarkimin	
 values-b+sq/strings.xml	string	downloads_load_failed_body	-	STR	Skedarët e shkarkuar nuk janë ndryshuar.	
 values-b+sq/strings.xml	string	downloads_load_failed_headline	-	STR	Shkarkimet nuk mund të lexoheshin	
 values-b+sq/strings.xml	string	downloads_offline_pill	-	STR	Offline · pa lidhje	
@@ -31532,6 +31736,9 @@ values-b+sv/strings.xml	string	downloaded	-	STR	Nerladdad
 values-b+sv/strings.xml	string	downloaded_file	-	STR	Nedladdad fil	
 values-b+sv/strings.xml	string	downloading	-	STR	Laddar ner	
 values-b+sv/strings.xml	string	downloads_browse_library	-	STR	Bläddra i biblioteket	
+values-b+sv/strings.xml	string	downloads_cancel_confirm_body	-	STR	Det slänger de %s som har laddats ned hittills.	
+values-b+sv/strings.xml	string	downloads_cancel_confirm_title	-	STR	Avbryta den här nedladdningen?	
+values-b+sv/strings.xml	string	downloads_cancel_download	-	STR	Avbryt nedladdning	
 values-b+sv/strings.xml	string	downloads_column_size	-	STR	Storlek	
 values-b+sv/strings.xml	string	downloads_delete_all	-	STR	Ta bort alla	
 values-b+sv/strings.xml	string	downloads_delete_confirm_body	-	STR	Det frigör %s och kan inte ångras.	
@@ -31541,6 +31748,7 @@ values-b+sv/strings.xml	string	downloads_empty_body	-	STR	Nerladdningar du start
 values-b+sv/strings.xml	string	downloads_empty_headline	-	STR	Inga nerladdningar ännu	
 values-b+sv/strings.xml	string	downloads_free	-	STR	%s ledigt	
 values-b+sv/strings.xml	string	downloads_free_up_space	-	STR	Frigör utrymme	
+values-b+sv/strings.xml	string	downloads_keep_downloading	-	STR	Fortsätt ladda ned	
 values-b+sv/strings.xml	string	downloads_load_failed_body	-	STR	Dina nerladdade filer har inte ändrats.	
 values-b+sv/strings.xml	string	downloads_load_failed_headline	-	STR	Kunde inte läsa dina nerladdningar	
 values-b+sv/strings.xml	string	downloads_offline_pill	-	STR	Offline · ingen anslutning	
@@ -32375,6 +32583,9 @@ values-b+ta/strings.xml	string	downloaded	-	STR	பதிவிறக்கப�
 values-b+ta/strings.xml	string	downloaded_file	-	STR	பதிவிறக்கம் செய்யப்பட்ட கோப்பு	
 values-b+ta/strings.xml	string	downloading	-	STR	பதிவிறக்குகிறது	
 values-b+ta/strings.xml	string	downloads_browse_library	-	STR	நூலகத்தை உலாவு	
+values-b+ta/strings.xml	string	downloads_cancel_confirm_body	-	STR	இதுவரை பதிவிறக்கிய %s நிராகரிக்கப்படும்.	
+values-b+ta/strings.xml	string	downloads_cancel_confirm_title	-	STR	இந்தப் பதிவிறக்கத்தை ரத்துசெய்யவா?	
+values-b+ta/strings.xml	string	downloads_cancel_download	-	STR	பதிவிறக்கத்தை ரத்துசெய்	
 values-b+ta/strings.xml	string	downloads_column_size	-	STR	அளவு	
 values-b+ta/strings.xml	string	downloads_delete_all	-	STR	அனைத்தையும் அழி	
 values-b+ta/strings.xml	string	downloads_delete_confirm_body	-	STR	இது %s இடத்தை விடுவிக்கும், இதைச் செயல்தவிர்க்க முடியாது.	
@@ -32384,6 +32595,7 @@ values-b+ta/strings.xml	string	downloads_empty_body	-	STR	தலைப்பி�
 values-b+ta/strings.xml	string	downloads_empty_headline	-	STR	இன்னும் பதிவிறக்கங்கள் இல்லை	
 values-b+ta/strings.xml	string	downloads_free	-	STR	%s காலி	
 values-b+ta/strings.xml	string	downloads_free_up_space	-	STR	இடத்தை விடுவி	
+values-b+ta/strings.xml	string	downloads_keep_downloading	-	STR	பதிவிறக்கத்தைத் தொடர்	
 values-b+ta/strings.xml	string	downloads_load_failed_body	-	STR	நீங்கள் பதிவிறக்கிய கோப்புகள் மாற்றப்படவில்லை.	
 values-b+ta/strings.xml	string	downloads_load_failed_headline	-	STR	உங்கள் பதிவிறக்கங்களைப் படிக்க முடியவில்லை	
 values-b+ta/strings.xml	string	downloads_offline_pill	-	STR	ஆஃப்லைன் · இணைப்பு இல்லை	
@@ -33025,6 +33237,9 @@ values-b+ti/strings.xml	string	cast_format	-	STR	ተዋሳእቲ፡ %s
 values-b+ti/strings.xml	string	detail_load_failed_body	-	STR	ምንጪ ኣይርከብ ይኸውን።	
 values-b+ti/strings.xml	string	detail_load_failed_headline	-	STR	እዚ ኣርእስቲ ክኽፈት ኣይከኣለን	
 values-b+ti/strings.xml	string	downloads_browse_library	-	STR	ቤተ-መጻሕፍቲ ድለ	
+values-b+ti/strings.xml	string	downloads_cancel_confirm_body	-	STR	እዚ ክሳብ ሕጂ ዝወረደ %s ይድርብዮ።	
+values-b+ti/strings.xml	string	downloads_cancel_confirm_title	-	STR	እዚ ውርዲ ይሰረዝ?	
+values-b+ti/strings.xml	string	downloads_cancel_download	-	STR	ውርዲ ሰርዝ	
 values-b+ti/strings.xml	string	downloads_column_size	-	STR	ዓቐን	
 values-b+ti/strings.xml	string	downloads_delete_all	-	STR	ኩሉ ሰርዝ	
 values-b+ti/strings.xml	string	downloads_delete_confirm_body	-	STR	እዚ %s ነጻ ይገብር፣ ክምለስ ኣይክእልን።	
@@ -33032,6 +33247,7 @@ values-b+ti/strings.xml	string	downloads_empty_body	-	STR	ካብ ዝርዝር �
 values-b+ti/strings.xml	string	downloads_empty_headline	-	STR	ክሳብ ሕጂ ውርዳት የለዉን	
 values-b+ti/strings.xml	string	downloads_free	-	STR	%s ነጻ	
 values-b+ti/strings.xml	string	downloads_free_up_space	-	STR	ቦታ ኣናጽፍ	
+values-b+ti/strings.xml	string	downloads_keep_downloading	-	STR	ምውራድ ቀጽል	
 values-b+ti/strings.xml	string	downloads_load_failed_body	-	STR	ዝወረዱ ፋይላትካ ኣይተቐየሩን።	
 values-b+ti/strings.xml	string	downloads_load_failed_headline	-	STR	ውርዳትካ ክንበብ ኣይከኣለን	
 values-b+ti/strings.xml	string	downloads_offline_pill	-	STR	ካብ መስመር ወጻኢ · መራኸቢ የለን	
@@ -33199,6 +33415,9 @@ values-b+tl/strings.xml	string	download_storage_text	-	STR	Internal Storage
 values-b+tl/strings.xml	string	downloaded	-	STR	Downloaded	
 values-b+tl/strings.xml	string	downloading	-	STR	Downloading	
 values-b+tl/strings.xml	string	downloads_browse_library	-	STR	I-browse ang library	
+values-b+tl/strings.xml	string	downloads_cancel_confirm_body	-	STR	Itatapon nito ang %s na na-download na.	
+values-b+tl/strings.xml	string	downloads_cancel_confirm_title	-	STR	Kanselahin ang download na ito?	
+values-b+tl/strings.xml	string	downloads_cancel_download	-	STR	Kanselahin ang download	
 values-b+tl/strings.xml	string	downloads_column_size	-	STR	Laki	
 values-b+tl/strings.xml	string	downloads_delete_all	-	STR	Tanggalin lahat	
 values-b+tl/strings.xml	string	downloads_delete_confirm_body	-	STR	Magpapalaya ito ng %s at hindi na ito maaaring bawiin.	
@@ -33206,6 +33425,7 @@ values-b+tl/strings.xml	string	downloads_empty_body	-	STR	Lalabas dito ang mga d
 values-b+tl/strings.xml	string	downloads_empty_headline	-	STR	Wala pang mga download	
 values-b+tl/strings.xml	string	downloads_free	-	STR	%s libre	
 values-b+tl/strings.xml	string	downloads_free_up_space	-	STR	Magbakante ng espasyo	
+values-b+tl/strings.xml	string	downloads_keep_downloading	-	STR	Ituloy ang pag-download	
 values-b+tl/strings.xml	string	downloads_load_failed_body	-	STR	Hindi nabago ang mga na-download mong file.	
 values-b+tl/strings.xml	string	downloads_load_failed_headline	-	STR	Hindi mabasa ang iyong mga download	
 values-b+tl/strings.xml	string	downloads_offline_pill	-	STR	Offline · walang koneksyon	
@@ -33679,6 +33899,9 @@ values-b+tr/strings.xml	string	downloaded	-	STR	İndirildi
 values-b+tr/strings.xml	string	downloaded_file	-	STR	İndirilen dosya	
 values-b+tr/strings.xml	string	downloading	-	STR	İndiriliyor	
 values-b+tr/strings.xml	string	downloads_browse_library	-	STR	Kütüphaneye göz at	
+values-b+tr/strings.xml	string	downloads_cancel_confirm_body	-	STR	Şimdiye kadar indirilen %s silinir.	
+values-b+tr/strings.xml	string	downloads_cancel_confirm_title	-	STR	Bu indirme iptal edilsin mi?	
+values-b+tr/strings.xml	string	downloads_cancel_download	-	STR	İndirmeyi iptal et	
 values-b+tr/strings.xml	string	downloads_column_size	-	STR	Boyut	
 values-b+tr/strings.xml	string	downloads_delete_all	-	STR	Tümünü sil	
 values-b+tr/strings.xml	string	downloads_delete_confirm_body	-	STR	Bu işlem %s yer açar ve geri alınamaz.	
@@ -33688,6 +33911,7 @@ values-b+tr/strings.xml	string	downloads_empty_body	-	STR	Bir başlığın böl�
 values-b+tr/strings.xml	string	downloads_empty_headline	-	STR	Henüz indirme yok	
 values-b+tr/strings.xml	string	downloads_free	-	STR	%s boş	
 values-b+tr/strings.xml	string	downloads_free_up_space	-	STR	Yer aç	
+values-b+tr/strings.xml	string	downloads_keep_downloading	-	STR	İndirmeye devam et	
 values-b+tr/strings.xml	string	downloads_load_failed_body	-	STR	İndirilen dosyalarınız değiştirilmedi.	
 values-b+tr/strings.xml	string	downloads_load_failed_headline	-	STR	İndirmeleriniz okunamadı	
 values-b+tr/strings.xml	string	downloads_offline_pill	-	STR	Çevrimdışı · bağlantı yok	
@@ -34544,6 +34768,9 @@ values-b+uk/strings.xml	string	downloaded	-	STR	Завантажено
 values-b+uk/strings.xml	string	downloaded_file	-	STR	Завантажений файл	
 values-b+uk/strings.xml	string	downloading	-	STR	Завантаження	
 values-b+uk/strings.xml	string	downloads_browse_library	-	STR	Переглянути бібліотеку	
+values-b+uk/strings.xml	string	downloads_cancel_confirm_body	-	STR	Завантажені досі %s буде відкинуто.	
+values-b+uk/strings.xml	string	downloads_cancel_confirm_title	-	STR	Скасувати це завантаження?	
+values-b+uk/strings.xml	string	downloads_cancel_download	-	STR	Скасувати завантаження	
 values-b+uk/strings.xml	string	downloads_column_size	-	STR	Розмір	
 values-b+uk/strings.xml	string	downloads_delete_all	-	STR	Видалити все	
 values-b+uk/strings.xml	string	downloads_delete_confirm_body	-	STR	Це звільнить %s, і цю дію не можна скасувати.	
@@ -34553,6 +34780,7 @@ values-b+uk/strings.xml	string	downloads_empty_body	-	STR	Завантаженн
 values-b+uk/strings.xml	string	downloads_empty_headline	-	STR	Завантажень ще немає	
 values-b+uk/strings.xml	string	downloads_free	-	STR	вільно %s	
 values-b+uk/strings.xml	string	downloads_free_up_space	-	STR	Звільнити місце	
+values-b+uk/strings.xml	string	downloads_keep_downloading	-	STR	Продовжити завантаження	
 values-b+uk/strings.xml	string	downloads_load_failed_body	-	STR	Ваші завантажені файли не змінено.	
 values-b+uk/strings.xml	string	downloads_load_failed_headline	-	STR	Не вдалося прочитати завантаження	
 values-b+uk/strings.xml	string	downloads_offline_pill	-	STR	Поза мережею · немає з'єднання	
@@ -35343,6 +35571,9 @@ values-b+ur/strings.xml	string	downloaded	-	STR	ڈاؤن لوڈ کردہ ویڈ�
 values-b+ur/strings.xml	string	downloaded_file	-	STR	ڈاؤن لوڈڈ فائل	
 values-b+ur/strings.xml	string	downloading	-	STR	ڈاؤن لوڈ ہو رہا ہے	
 values-b+ur/strings.xml	string	downloads_browse_library	-	STR	لائبریری براؤز کریں	
+values-b+ur/strings.xml	string	downloads_cancel_confirm_body	-	STR	اس سے اب تک ڈاؤن لوڈ ہونے والا %s ضائع ہو جائے گا۔	
+values-b+ur/strings.xml	string	downloads_cancel_confirm_title	-	STR	یہ ڈاؤن لوڈ منسوخ کریں؟	
+values-b+ur/strings.xml	string	downloads_cancel_download	-	STR	ڈاؤن لوڈ منسوخ کریں	
 values-b+ur/strings.xml	string	downloads_column_size	-	STR	سائز	
 values-b+ur/strings.xml	string	downloads_delete_all	-	STR	سب مٹا دیں	
 values-b+ur/strings.xml	string	downloads_delete_confirm_body	-	STR	اس سے %s خالی ہو جائے گا اور اسے کالعدم نہیں کیا جا سکتا۔	
@@ -35352,6 +35583,7 @@ values-b+ur/strings.xml	string	downloads_empty_body	-	STR	کسی عنوان کی
 values-b+ur/strings.xml	string	downloads_empty_headline	-	STR	ابھی تک کوئی ڈاؤن لوڈ نہیں	
 values-b+ur/strings.xml	string	downloads_free	-	STR	%s خالی	
 values-b+ur/strings.xml	string	downloads_free_up_space	-	STR	جگہ خالی کریں	
+values-b+ur/strings.xml	string	downloads_keep_downloading	-	STR	ڈاؤن لوڈ جاری رکھیں	
 values-b+ur/strings.xml	string	downloads_load_failed_body	-	STR	آپ کی ڈاؤن لوڈ کردہ فائلیں تبدیل نہیں ہوئیں۔	
 values-b+ur/strings.xml	string	downloads_load_failed_headline	-	STR	آپ کے ڈاؤن لوڈ پڑھے نہیں جا سکے	
 values-b+ur/strings.xml	string	downloads_offline_pill	-	STR	آف لائن · کوئی کنکشن نہیں	
@@ -36080,6 +36312,9 @@ values-b+vi/strings.xml	string	downloaded	-	STR	Đã tải xuống
 values-b+vi/strings.xml	string	downloaded_file	-	STR	Tệp đã tải xuống	
 values-b+vi/strings.xml	string	downloading	-	STR	Đang tải xuống	
 values-b+vi/strings.xml	string	downloads_browse_library	-	STR	Duyệt thư viện	
+values-b+vi/strings.xml	string	downloads_cancel_confirm_body	-	STR	Thao tác này sẽ bỏ %s đã tải xuống.	
+values-b+vi/strings.xml	string	downloads_cancel_confirm_title	-	STR	Hủy bản tải xuống này?	
+values-b+vi/strings.xml	string	downloads_cancel_download	-	STR	Hủy tải xuống	
 values-b+vi/strings.xml	string	downloads_column_size	-	STR	Kích thước	
 values-b+vi/strings.xml	string	downloads_delete_all	-	STR	Xóa tất cả	
 values-b+vi/strings.xml	string	downloads_delete_confirm_body	-	STR	Thao tác này giải phóng %s và không thể hoàn tác.	
@@ -36089,6 +36324,7 @@ values-b+vi/strings.xml	string	downloads_empty_body	-	STR	Các mục tải xuố
 values-b+vi/strings.xml	string	downloads_empty_headline	-	STR	Chưa có tải xuống nào	
 values-b+vi/strings.xml	string	downloads_free	-	STR	Còn trống %s	
 values-b+vi/strings.xml	string	downloads_free_up_space	-	STR	Giải phóng dung lượng	
+values-b+vi/strings.xml	string	downloads_keep_downloading	-	STR	Tiếp tục tải xuống	
 values-b+vi/strings.xml	string	downloads_load_failed_body	-	STR	Các tệp đã tải xuống của bạn không bị thay đổi.	
 values-b+vi/strings.xml	string	downloads_load_failed_headline	-	STR	Không thể đọc các tải xuống của bạn	
 values-b+vi/strings.xml	string	downloads_offline_pill	-	STR	Ngoại tuyến · không có kết nối	
@@ -36911,6 +37147,9 @@ values-b+zh+TW/strings.xml	string	downloaded	-	STR	已下載
 values-b+zh+TW/strings.xml	string	downloaded_file	-	STR	下載的檔案	
 values-b+zh+TW/strings.xml	string	downloading	-	STR	下載中	
 values-b+zh+TW/strings.xml	string	downloads_browse_library	-	STR	瀏覽媒體庫	
+values-b+zh+TW/strings.xml	string	downloads_cancel_confirm_body	-	STR	將捨棄目前已下載的 %s。	
+values-b+zh+TW/strings.xml	string	downloads_cancel_confirm_title	-	STR	要取消此下載嗎？	
+values-b+zh+TW/strings.xml	string	downloads_cancel_download	-	STR	取消下載	
 values-b+zh+TW/strings.xml	string	downloads_column_size	-	STR	大小	
 values-b+zh+TW/strings.xml	string	downloads_delete_all	-	STR	全部刪除	
 values-b+zh+TW/strings.xml	string	downloads_delete_confirm_body	-	STR	這將釋放 %s，且無法復原。	
@@ -36920,6 +37159,7 @@ values-b+zh+TW/strings.xml	string	downloads_empty_body	-	STR	從內容的集數�
 values-b+zh+TW/strings.xml	string	downloads_empty_headline	-	STR	尚無下載	
 values-b+zh+TW/strings.xml	string	downloads_free	-	STR	可用 %s	
 values-b+zh+TW/strings.xml	string	downloads_free_up_space	-	STR	釋放空間	
+values-b+zh+TW/strings.xml	string	downloads_keep_downloading	-	STR	繼續下載	
 values-b+zh+TW/strings.xml	string	downloads_load_failed_body	-	STR	你已下載的檔案未變更。	
 values-b+zh+TW/strings.xml	string	downloads_load_failed_headline	-	STR	無法讀取你的下載	
 values-b+zh+TW/strings.xml	string	downloads_offline_pill	-	STR	離線 · 無連線	
@@ -37738,6 +37978,9 @@ values-b+zh/strings.xml	string	downloaded	-	STR	已下载
 values-b+zh/strings.xml	string	downloaded_file	-	STR	下载的文件	
 values-b+zh/strings.xml	string	downloading	-	STR	下载中	
 values-b+zh/strings.xml	string	downloads_browse_library	-	STR	浏览库	
+values-b+zh/strings.xml	string	downloads_cancel_confirm_body	-	STR	将丢弃目前已下载的 %s。	
+values-b+zh/strings.xml	string	downloads_cancel_confirm_title	-	STR	要取消此下载吗？	
+values-b+zh/strings.xml	string	downloads_cancel_download	-	STR	取消下载	
 values-b+zh/strings.xml	string	downloads_column_size	-	STR	大小	
 values-b+zh/strings.xml	string	downloads_delete_all	-	STR	全部删除	
 values-b+zh/strings.xml	string	downloads_delete_confirm_body	-	STR	这将释放 %s，且无法撤销。	
@@ -37747,6 +37990,7 @@ values-b+zh/strings.xml	string	downloads_empty_body	-	STR	从内容的剧集列�
 values-b+zh/strings.xml	string	downloads_empty_headline	-	STR	尚无下载	
 values-b+zh/strings.xml	string	downloads_free	-	STR	可用 %s	
 values-b+zh/strings.xml	string	downloads_free_up_space	-	STR	释放空间	
+values-b+zh/strings.xml	string	downloads_keep_downloading	-	STR	继续下载	
 values-b+zh/strings.xml	string	downloads_load_failed_body	-	STR	你已下载的文件未被更改。	
 values-b+zh/strings.xml	string	downloads_load_failed_headline	-	STR	无法读取你的下载	
 values-b+zh/strings.xml	string	downloads_offline_pill	-	STR	脱机 · 无连接	
@@ -38708,6 +38952,9 @@ values/strings.xml	string	downloaded	-	STR	Downloaded
 values/strings.xml	string	downloaded_file	-	STR	Downloaded file	
 values/strings.xml	string	downloading	-	STR	Downloading	
 values/strings.xml	string	downloads_browse_library	-	STR	Browse library	
+values/strings.xml	string	downloads_cancel_confirm_body	-	STR	This discards the %s downloaded so far.	
+values/strings.xml	string	downloads_cancel_confirm_title	-	STR	Cancel this download?	
+values/strings.xml	string	downloads_cancel_download	-	STR	Cancel download	
 values/strings.xml	string	downloads_column_size	-	STR	Size	
 values/strings.xml	string	downloads_delete_all	-	STR	Delete all	
 values/strings.xml	string	downloads_delete_chosen	-	STR	%1$s (%2$d · %3$s)	
@@ -38721,6 +38968,7 @@ values/strings.xml	string	downloads_film_subtitle	-	STR	%1$s · %2$s
 values/strings.xml	string	downloads_free	-	STR	%s free	
 values/strings.xml	string	downloads_free_up_space	-	STR	Free up space	
 values/strings.xml	string	downloads_joined	-	STR	%1$s · %2$s	
+values/strings.xml	string	downloads_keep_downloading	-	STR	Keep downloading	
 values/strings.xml	string	downloads_load_failed_body	-	STR	Your downloaded files have not been changed.	
 values/strings.xml	string	downloads_load_failed_headline	-	STR	Couldn't read your downloads	
 values/strings.xml	string	downloads_offline_pill	-	STR	Offline · no connection	
