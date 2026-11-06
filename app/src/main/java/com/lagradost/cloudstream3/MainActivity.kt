@@ -183,6 +183,7 @@ import com.lagradost.safefile.SafeFile
 import com.lagradost.cloudstream4.home.TvHomeFragmentFactory
 import com.lagradost.cloudstream4.home.TvHomeSwitch
 import com.lagradost.cloudstream4.library.openLibraryOnTvScreen
+import com.lagradost.cloudstream4.download.openDownloadSeriesOnTvScreen
 import com.lagradost.cloudstream4.download.openDownloadsOnTvScreen
 import com.lagradost.cloudstream4.search.openSearchOnTvScreen
 import com.lagradost.cloudstream4.shell.TvRail
@@ -1696,6 +1697,8 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
         if (isLayout(TV)) navController.graph.openLibraryOnTvScreen()
         // Q14: TV opens the new downloads screen. Removing this one line is the rollback.
         if (isLayout(TV)) navController.graph.openDownloadsOnTvScreen()
+        // Q15: TV opens the new page for one series' downloads. Removing this one line is the rollback.
+        if (isLayout(TV)) navController.graph.openDownloadSeriesOnTvScreen()
         // KMP-33: TV shows the Compose rail. TvRailSwitch is the rollback to the XML rail.
         if (isLayout(TV) && TvRailSwitch.useComposeRail) tvRail = binding?.let { TvRail(this, it) }
 
