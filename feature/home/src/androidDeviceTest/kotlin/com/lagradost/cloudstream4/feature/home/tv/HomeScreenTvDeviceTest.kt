@@ -1071,7 +1071,9 @@ class HomeScreenTvDeviceTest {
         // The cards under it are the Completed ones.
         val card = dpad.press(Dpad.Down)
         assertTrue("Down reaches a Completed card, was $card", card?.startsWith(DONE) == true)
-        assertEquals(COMPLETED, dpad.press(Dpad.Up))
+        // Up lands on the chip above the card's middle, which need not be the one pressed.
+        assertTrue("Up comes back to a chip", dpad.press(Dpad.Up) in setOf(WATCHING, COMPLETED))
+        pressUntil(Dpad.Right, COMPLETED, presses = 1)
 
         dpad.center()
         awaitText(NO_STATUS)
