@@ -117,6 +117,7 @@
 <string name="cancel_queue_message">Você gostaria de cancelar todos os downloads da fila?</string>
 <string name="cartoons">Desenhos animados</string>
 <string name="cartoons_singular">Desenho Animado</string>
+<string name="cast">Elenco</string>
 <string name="cast_format">Elenco: %s</string>
 <string name="category_account">Contas e Segurança</string>
 <string name="category_general">Geral</string>
@@ -197,8 +198,20 @@
 <string name="downloaded">Baixado</string>
 <string name="downloaded_file">Arquivo baixado</string>
 <string name="downloading">Baixando</string>
+<string name="downloads_browse_library">Explorar biblioteca</string>
 <string name="downloads_delete_select">Selecionar itens para excluir</string>
 <string name="downloads_empty">Atualmente não há downloads disponíveis.</string>
+<string name="downloads_empty_body">Os downloads iniciados na lista de episódios de um título aparecem aqui e são reproduzidos sem conexão.</string>
+<string name="downloads_empty_headline">Ainda não há downloads</string>
+<string name="downloads_free_up_space">Liberar espaço</string>
+<string name="downloads_load_failed_body">Seus arquivos baixados não foram alterados.</string>
+<string name="downloads_load_failed_headline">Não foi possível ler seus downloads</string>
+<string name="downloads_offline_pill">Offline · sem conexão</string>
+<string name="downloads_play_from_link">Reproduzir de link</string>
+<string name="downloads_select">Selecionar</string>
+<string name="downloads_storage_full_headline">Armazenamento insuficiente</string>
+<string name="downloads_storage_legend">%1$s de %2$s usados · %3$s em downloads</string>
+<string name="downloads_storage_needs">Faltam %s</string>
 <string name="duplicate_add">Adicionar</string>
 <string name="duplicate_message_multiple">Possíveis itens duplicados foram encontrados em sua biblioteca: \n \n %s \n \nGostaria de adicionar este item mesmo assim, substituir os existentes ou cancelar a ação?</string>
 <string name="duplicate_message_single">Parece que já existe um item potencialmente duplicado na sua biblioteca: '%s.' \n \nGostaria de adicionar este item mesmo assim, substituir o existente ou cancelar a ação?</string>
@@ -207,6 +220,7 @@
 <string name="duplicate_title">Duplicata em potencial encontrada</string>
 <string name="duration">Duração</string>
 <string name="duration_format">%d min</string>
+<string name="duration_hours_minutes_format">%1$dh %2$dm</string>
 <string name="edit">Editar</string>
 <string name="edit_account">Editar conta</string>
 <string name="edit_profile_image_error_empty">Nenhum URL Encontrado</string>
@@ -361,6 +375,7 @@
 <string name="middle_right">Centro direito</string>
 <string name="min">Min</string>
 <string name="mobile_data">Dados móveis</string>
+<string name="more_like_this">Títulos semelhantes</string>
 <string name="movies">Filmes</string>
 <string name="movies_singular">Filme</string>
 <string name="music_singular">Música</string>
@@ -580,8 +595,12 @@
 <string name="search_provider_text_providers">Pesquisar usando fornecedor</string>
 <string name="search_provider_text_types">Pesquisar usando tipos</string>
 <string name="search_state_idle_body_desktop">Digite um título. Os resultados aparecem abaixo de cada fonte assim que ela responde.</string>
+<string name="search_state_no_results_type_filter">Somente %s. O filtro de tipo está restringindo a pesquisa.</string>
 <string name="search_suggestions">Sugestões de Busca</string>
 <string name="search_suggestions_des">Exibir sugestões de pesquisa durante a digitação</string>
+<string name="search_tv_source_failed">FALHOU %s</string>
+<string name="search_tv_source_pinned">FIXADO</string>
+<string name="search_tv_sources_panel_meta">%1$d DE %2$d ATIVADOS · AS ALTERAÇÕES SÃO APLICADAS APÓS FEITO</string>
 <string name="season">Temporada</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">T</string>

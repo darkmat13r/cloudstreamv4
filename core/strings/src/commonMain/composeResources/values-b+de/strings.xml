@@ -117,6 +117,7 @@
 <string name="cancel_queue_message">Möchtest du alle Downloads in der Warteschlange abbrechen?</string>
 <string name="cartoons">Trickfilme</string>
 <string name="cartoons_singular">Trickfilm</string>
+<string name="cast">Besetzung</string>
 <string name="cast_format">Besetzung: %s</string>
 <string name="category_account">Konten und Sicherheit</string>
 <string name="category_general">Allgemein</string>
@@ -197,8 +198,20 @@
 <string name="downloaded">Heruntergeladen</string>
 <string name="downloaded_file">Heruntergeladene Datei</string>
 <string name="downloading">Lädt herunter</string>
+<string name="downloads_browse_library">Bibliothek durchsuchen</string>
 <string name="downloads_delete_select">Elemente zum Löschen auswählen</string>
 <string name="downloads_empty">Zur Zeit sind keine Downloads verfügbar.</string>
+<string name="downloads_empty_body">Downloads, die du in der Episodenliste eines Titels startest, erscheinen hier und lassen sich ohne Verbindung abspielen.</string>
+<string name="downloads_empty_headline">Noch keine Downloads</string>
+<string name="downloads_free_up_space">Speicher freigeben</string>
+<string name="downloads_load_failed_body">Deine heruntergeladenen Dateien wurden nicht verändert.</string>
+<string name="downloads_load_failed_headline">Downloads konnten nicht gelesen werden</string>
+<string name="downloads_offline_pill">Offline · keine Verbindung</string>
+<string name="downloads_play_from_link">Von Link abspielen</string>
+<string name="downloads_select">Auswählen</string>
+<string name="downloads_storage_full_headline">Nicht genug Speicher</string>
+<string name="downloads_storage_legend">%1$s von %2$s belegt · %3$s in Downloads</string>
+<string name="downloads_storage_needs">%s mehr benötigt</string>
 <string name="duplicate_add">Hinzufügen</string>
 <string name="duplicate_message_multiple">Es wurden potentielle Duplikate in deiner Bibliothek gefunden: \n \n%s \n \nMöchtest du dieses Element dennoch hinzufügen, das existierende ersetzen oder diese Aktion abbrechen?</string>
 <string name="duplicate_message_single">Deine Bibliothek enthält möglicherweise schon ein Duplikat dieses Elements: '%s' \n \nMöchtest du dieses Element dennoch hinzufügen, das existierende ersetzen oder diese Aktion abbrechen?</string>
@@ -207,6 +220,7 @@
 <string name="duplicate_title">Potentielles Duplikat gefunden</string>
 <string name="duration">Länge</string>
 <string name="duration_format">%d Min</string>
+<string name="duration_hours_minutes_format">%1$dstd%2$dm</string>
 <string name="edit">Bearbeiten</string>
 <string name="edit_account">Konto bearbeiten</string>
 <string name="edit_profile_image_error_empty">Keine URL gefunden</string>
@@ -361,6 +375,7 @@
 <string name="middle_right">Mitte rechts</string>
 <string name="min">Min</string>
 <string name="mobile_data">Mobile Daten</string>
+<string name="more_like_this">Ähnliche Titel</string>
 <string name="movies">Filme</string>
 <string name="movies_singular">Film</string>
 <string name="music_singular">Musik</string>
@@ -580,8 +595,12 @@
 <string name="search_provider_text_providers">Suche anhand Anbietern</string>
 <string name="search_provider_text_types">Suche anhand Typen</string>
 <string name="search_state_idle_body_desktop">Titel eingeben. Ergebnisse erscheinen unter jeder Quelle, sobald sie antwortet.</string>
+<string name="search_state_no_results_type_filter">Nur %s. Der Typfilter schränkt die Suche ein.</string>
 <string name="search_suggestions">Empfehlungen suchen</string>
 <string name="search_suggestions_des">Beim Tippen Suchempfehlungen anzeigen</string>
+<string name="search_tv_source_failed">FEHLGESCHLAGEN %s</string>
+<string name="search_tv_source_pinned">ANGEPINNT</string>
+<string name="search_tv_sources_panel_meta">%1$d VON %2$d AKTIV · ÄNDERUNGEN WERDEN BEI FERTIG ÜBERNOMMEN</string>
 <string name="season">Staffel</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">S</string>

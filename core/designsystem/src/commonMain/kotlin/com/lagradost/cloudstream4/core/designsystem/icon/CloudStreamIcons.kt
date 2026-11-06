@@ -11,6 +11,7 @@ import compose.icons.tablericons.Cast
 import compose.icons.tablericons.Check
 import compose.icons.tablericons.ChevronRight
 import compose.icons.tablericons.CircleX
+import compose.icons.tablericons.Clock
 import compose.icons.tablericons.Database
 import compose.icons.tablericons.Dots
 import compose.icons.tablericons.Dice
@@ -90,6 +91,8 @@ object CloudStreamIcons {
     // Navigation and chrome
     val Back: ImageVector get() = TablerIcons.ArrowLeft
     val Close: ImageVector get() = TablerIcons.X
+    /** Something done before: a recent search. */
+    val History: ImageVector get() = TablerIcons.Clock
     /** Empties a field. Not [Close]: nothing goes away, and Mac search fields draw it circled. */
     val Clear: ImageVector get() = TablerIcons.CircleX
     val Search: ImageVector get() = TablerIcons.Search

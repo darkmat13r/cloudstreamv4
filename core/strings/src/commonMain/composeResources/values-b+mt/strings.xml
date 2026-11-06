@@ -17,6 +17,7 @@
 <string name="benene_count_text">%d Benenes mogħtija lil devs</string>
 <string name="benene_count_text_none">Ebda Benenes mogħtija</string>
 <string name="browser">Brawser</string>
+<string name="cast">Atturi</string>
 <string name="cast_format">Atturi: %s</string>
 <string name="continue_watching">Kompli Ara</string>
 <string name="download">Niżżel</string>
@@ -28,6 +29,18 @@
 <string name="download_storage_text">Ħażna Interna</string>
 <string name="downloaded">Imniżżel</string>
 <string name="downloading">Qed jinżlu</string>
+<string name="downloads_browse_library">Esplora l-librerija</string>
+<string name="downloads_empty_body">It-tniżżil li tibda mil-lista tal-episodji ta' titlu jidher hawn u jindaqq mingħajr konnessjoni.</string>
+<string name="downloads_empty_headline">Għad m'hemmx tniżżil</string>
+<string name="downloads_free_up_space">Ħeles l-ispazju</string>
+<string name="downloads_load_failed_body">Il-fajls imniżżla tiegħek ma nbidlux.</string>
+<string name="downloads_load_failed_headline">Ma setax jinqara t-tniżżil tiegħek</string>
+<string name="downloads_offline_pill">Offline · l-ebda konnessjoni</string>
+<string name="downloads_play_from_link">Indaqq minn ħolqa</string>
+<string name="downloads_select">Agħżel</string>
+<string name="downloads_storage_full_headline">M'hemmx biżżejjed ħażna</string>
+<string name="downloads_storage_legend">%1$s minn %2$s użati · %3$s fit-tniżżil</string>
+<string name="downloads_storage_needs">Hemm bżonn %s oħra</string>
 <string name="duration_format">%d min</string>
 <string name="episode_more_options_des">Iktar Preferenzi</string>
 <string name="episode_poster_img_des">Kartellun tal-episodju</string>
@@ -83,6 +96,7 @@
 <string name="links_reloaded_toast">Links regaw gew mogħbija</string>
 <string name="load_more">Għabbi iktar</string>
 <string name="loading">Tagħbija…</string>
+<string name="more_like_this">Aktar bħal dan</string>
 <string name="new_update_format">Aġġornament ġdid misjub! \n%1$s -&gt; %2$s</string>
 <string name="next_episode">L-episodju li'jmiss</string>
 <string name="next_episode_format">L-episodju %d ha johrog fil</string>
@@ -136,6 +150,10 @@
 <string name="search_provider_text_providers">Fittex bl-użu ta' fornituri</string>
 <string name="search_provider_text_types">Fittex bl-użu ta 'tipi</string>
 <string name="search_state_idle_body_desktop">Ikteb titlu. Ir-riżultati jidhru taħt kull sors meta jwieġeb.</string>
+<string name="search_state_no_results_type_filter">%s biss. Il-filtru tat-tip qed jirrestrinġi l-fittxija.</string>
+<string name="search_tv_source_failed">FALLA %s</string>
+<string name="search_tv_source_pinned">IPPINJAT</string>
+<string name="search_tv_sources_panel_meta">%1$d MINN %2$d ATTIVATI · IL-BIDLIET JIDĦLU FIS-SEĦĦ META TAGĦFAS LEST</string>
 <string name="seek_back_10_seconds">Mur lura 10 sekondi</string>
 <string name="seek_forward_10_seconds">Mur 'il quddiem 10 sekondi</string>
 <string name="show_log_cat">Uri Logcat 🐈</string>

@@ -71,6 +71,9 @@ internal class KeyboardOnOk {
             }
         }
 
+    /** Whether the user has asked for the keyboard, so a D-pad key belongs to the field. */
+    val isOpen: Boolean get() = open
+
     /** The field has done with the keyboard: the action key was pressed. */
     fun close() {
         open = false

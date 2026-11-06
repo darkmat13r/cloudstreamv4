@@ -117,6 +117,7 @@
 <string name="cancel_queue_message">Вы хотите отменить всё запланированные загрузки?</string>
 <string name="cartoons">Мультфильмы</string>
 <string name="cartoons_singular">Мультфильм</string>
+<string name="cast">В ролях</string>
 <string name="cast_format">В ролях: %s</string>
 <string name="category_account">Учётные записи и Безопасность</string>
 <string name="category_general">Общие</string>
@@ -197,8 +198,20 @@
 <string name="downloaded">Скачано</string>
 <string name="downloaded_file">Скачано файл</string>
 <string name="downloading">Скачивание</string>
+<string name="downloads_browse_library">Открыть библиотеку</string>
 <string name="downloads_delete_select">Выберите элементы для удаления</string>
 <string name="downloads_empty">В данный момент скачиваний нет.</string>
+<string name="downloads_empty_body">Скачивания, начатые из списка серий, появляются здесь и воспроизводятся без сети.</string>
+<string name="downloads_empty_headline">Скачанного пока нет</string>
+<string name="downloads_free_up_space">Освободить место</string>
+<string name="downloads_load_failed_body">Ваши скачанные файлы не изменены.</string>
+<string name="downloads_load_failed_headline">Не удалось прочитать скачанное</string>
+<string name="downloads_offline_pill">Без сети · нет соединения</string>
+<string name="downloads_play_from_link">Смотреть по ссылке</string>
+<string name="downloads_select">Выбрать</string>
+<string name="downloads_storage_full_headline">Недостаточно памяти</string>
+<string name="downloads_storage_legend">Использовано %1$s из %2$s · %3$s в скачанном</string>
+<string name="downloads_storage_needs">Нужно ещё %s</string>
 <string name="duplicate_add">Добавить</string>
 <string name="duplicate_message_multiple">В вашей библиотеке есть возможно повторяющиеся элементы: \n \n'%s.' \n \nХотите ли вы всё равно добавить этот элемент в библиотеку, заменить уже существующий или отменить действие?</string>
 <string name="duplicate_message_single">Кажется, что в вашей библиотеке уже есть такой элемент: '%s.' \n \nВы хотите всё равно добавить его, заменить уже существующий или отменить действие?</string>
@@ -207,6 +220,7 @@
 <string name="duplicate_title">Найден потенциальный дубликат</string>
 <string name="duration">Продолжительность</string>
 <string name="duration_format">%d мин</string>
+<string name="duration_hours_minutes_format">%1$dч %2$dм</string>
 <string name="edit">Изменить</string>
 <string name="edit_account">Изменить учётную запись</string>
 <string name="edit_profile_image_error_empty">URL не найден</string>
@@ -361,6 +375,7 @@
 <string name="middle_right">Средний правый</string>
 <string name="min">Мин</string>
 <string name="mobile_data">Мобильный интернет</string>
+<string name="more_like_this">Похожее</string>
 <string name="movies">Фильмы</string>
 <string name="movies_singular">Фильм</string>
 <string name="music_singular">Музыка</string>
@@ -580,8 +595,12 @@
 <string name="search_provider_text_providers">Поиск с использованием поставщиков</string>
 <string name="search_provider_text_types">Поиск с использованием типов</string>
 <string name="search_state_idle_body_desktop">Введите название. Результаты появятся под каждым источником, когда он ответит.</string>
+<string name="search_state_no_results_type_filter">Только %s. Фильтр по типу сужает поиск.</string>
 <string name="search_suggestions">Поиск предложений</string>
 <string name="search_suggestions_des">Показывать подсказки поиска при вводе текста</string>
+<string name="search_tv_source_failed">СБОЙ %s</string>
+<string name="search_tv_source_pinned">ЗАКРЕПЛЕНО</string>
+<string name="search_tv_sources_panel_meta">ВКЛЮЧЕНО %1$d ИЗ %2$d · ИЗМЕНЕНИЯ ВСТУПЯТ В СИЛУ ПОСЛЕ НАЖАТИЯ ГОТОВО</string>
 <string name="season">Сезон</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">С</string>

@@ -7,6 +7,7 @@ import com.lagradost.cloudstream4.feature.search.SearchResultGroup
 import com.lagradost.cloudstream4.feature.search.SearchResultId
 import com.lagradost.cloudstream4.feature.search.SearchResultItem
 import com.lagradost.cloudstream4.feature.search.SearchStatus
+import com.lagradost.cloudstream4.feature.search.SearchTypeFilter
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull
@@ -86,5 +87,35 @@ class SearchProviderSelectionTest {
         assertEquals("Dune", SearchStatus.Partial(results, 1, 2, "d").titleOf(id))
         assertNull(SearchStatus.Showing(results).titleOf(SearchResultId("gone")))
         assertNull(SearchStatus.Idle.titleOf(id))
+    }
+
+    @Test
+    fun `a lit chip narrows the search to the providers serving it`() {
+        val picked = selectSearchProviders(installed, allNames, defaultTypes, allNames, types = listOf(TvType.Anime))
+        assertEquals(listOf("Anime"), picked.map { it.name })
+    }
+
+    @Test
+    fun `a chip nobody serves does not empty the search`() {
+        val picked = selectSearchProviders(installed, allNames, defaultTypes, setOf("Movies"), types = listOf(TvType.Anime))
+        assertEquals(listOf("Movies"), picked.map { it.name })
+    }
+
+    @Test
+    fun `no chip lit is no narrowing`() {
+        val picked = selectSearchProviders(installed, allNames, defaultTypes, allNames, types = emptyList())
+        assertEquals(listOf("Movies", "Anime"), picked.map { it.name })
+    }
+
+    @Test
+    fun `the anime chip stands for the three anime types`() {
+        assertEquals(listOf(TvType.Anime, TvType.OVA, TvType.AnimeMovie), SearchTypeFilter.Anime.tvTypes())
+        assertEquals(SearchTypeFilter.entries.size, SearchTypeFilter.entries.map { it.tvTypes().first() }.toSet().size)
+    }
+
+    @Test
+    fun `provider text loses control characters and is capped`() {
+        assertEquals("EvilName", cleanProviderText(" Evil\nName\u0007 "))
+        assertEquals(60, cleanProviderText("x".repeat(500)).length)
     }
 }

@@ -4,12 +4,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
+import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.designsystem.state.FailureNotice
 import com.lagradost.cloudstream4.core.designsystem.state.StateAction
 import com.lagradost.cloudstream4.core.designsystem.state.StatePrompt
 import com.lagradost.cloudstream4.core.designsystem.state.UiState
 import com.lagradost.cloudstream4.core.strings.UiString
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
+import com.lagradost.cloudstream4.core.strings.generated.resources.anime
+import com.lagradost.cloudstream4.core.strings.generated.resources.asian_drama
+import com.lagradost.cloudstream4.core.strings.generated.resources.cartoons
+import com.lagradost.cloudstream4.core.strings.generated.resources.documentaries
+import com.lagradost.cloudstream4.core.strings.generated.resources.livestreams
+import com.lagradost.cloudstream4.core.strings.generated.resources.movies
+import com.lagradost.cloudstream4.core.strings.generated.resources.nsfw
+import com.lagradost.cloudstream4.core.strings.generated.resources.others
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_state_failed_body
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_state_failed_headline
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_state_idle_action
@@ -23,11 +32,15 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.search_state_
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_state_offline_body
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_state_offline_headline
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_state_partial_headline
+import com.lagradost.cloudstream4.core.strings.generated.resources.search_state_no_results_type_filter
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_state_retry
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_state_retry_failed
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_recent_count
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_result_count
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_sources_count
+import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_sources_panel_meta
+import com.lagradost.cloudstream4.core.strings.generated.resources.torrent
+import com.lagradost.cloudstream4.core.strings.generated.resources.tv_series
 import com.lagradost.cloudstream4.core.strings.resolve
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
@@ -40,15 +53,18 @@ import org.jetbrains.compose.resources.stringResource
  *
  * @param idleBody what the idle screen says about where results go, which is the one thing here that
  *   depends on the host's layout. The default describes the TV screen's rails.
+ * @param narrowedBy the lit type chips, which 8c's second sentence names. Empty for a host with no chips.
  */
 @Composable
 fun SearchStatus.toUiState(
     onAction: (SearchAction) -> Unit,
     idleBody: StringResource = Res.string.search_state_idle_body,
+    narrowedBy: Set<SearchTypeFilter> = emptySet(),
 ): UiState<SearchContent> {
     val latest by rememberUpdatedState(onAction)
     val retry = remember { { latest(SearchAction.Retry) } }
     val browse = remember { { latest(SearchAction.BrowseRequested) } }
+    val everything = remember { { latest(SearchAction.SearchEverything) } }
     return when (this) {
         SearchStatus.Loading -> UiState.Loading
         is SearchStatus.Showing -> UiState.Content(content)
@@ -57,7 +73,7 @@ fun SearchStatus.toUiState(
             notice = FailureNotice(
                 headline = UiString.Plural(Res.plurals.search_state_partial_headline, total - answered).resolve(),
                 detail = detail,
-                retry = StateAction(stringResource(Res.string.search_state_retry_failed), retry),
+                retry = StateAction(stringResource(Res.string.search_state_retry_failed), CloudStreamIcons.Retry, retry),
             ),
         )
 
@@ -65,7 +81,7 @@ fun SearchStatus.toUiState(
             StatePrompt(
                 headline = stringResource(Res.string.search_state_idle_headline),
                 body = stringResource(idleBody),
-                action = StateAction(stringResource(Res.string.search_state_idle_action), browse),
+                action = StateAction(stringResource(Res.string.search_state_idle_action), CloudStreamIcons.Home, browse),
             ),
         )
 
@@ -73,12 +89,16 @@ fun SearchStatus.toUiState(
             prompt = StatePrompt(
                 headline = stringResource(Res.string.search_state_no_results_headline),
                 // Zero while the source list is still being read, which has no number worth quoting.
-                body = if (queried > 0) {
-                    UiString.Plural(Res.plurals.search_state_no_results_body, queried).resolve()
-                } else {
-                    stringResource(Res.string.search_state_no_results_body_unknown)
-                },
-                action = StateAction(stringResource(Res.string.search_state_no_results_action), retry),
+                body = listOfNotNull(
+                    if (queried > 0) {
+                        UiString.Plural(Res.plurals.search_state_no_results_body, queried).resolve()
+                    } else {
+                        stringResource(Res.string.search_state_no_results_body_unknown)
+                    },
+                    narrowingSentence(narrowedBy),
+                ).joinToString("\n"),
+                // 8c's note: the label names both halves of what it clears, so the binding has to clear both.
+                action = StateAction(stringResource(Res.string.search_state_no_results_action), CloudStreamIcons.Search, everything),
             ),
             // 8c's mono line. Every number is final and the arithmetic closes: this status means every
             // queried source answered and none failed.
@@ -106,6 +126,37 @@ fun SearchStatus.toUiState(
         )
     }
 }
+
+/** 8c's *"Movies only — your type filter is narrowing the search."* `null` with no chip lit. */
+@Composable
+private fun narrowingSentence(types: Set<SearchTypeFilter>): String? {
+    if (types.isEmpty()) return null
+    val names = SearchTypeFilter.entries.filter { it in types }.map { typeFilterLabel(it) }
+    // Through `UiString`, because `stringResource` only substitutes `%1$s` and the authored key has `%s`.
+    return UiString.Resource(Res.string.search_state_no_results_type_filter, listOf(names.joinToString(", "))).resolve()
+}
+
+/** A type chip's word. Existing keys, the same ones the old screen's chips use. */
+@Composable
+internal fun typeFilterLabel(type: SearchTypeFilter): String = stringResource(
+    when (type) {
+        SearchTypeFilter.Movies -> Res.string.movies
+        SearchTypeFilter.TvSeries -> Res.string.tv_series
+        SearchTypeFilter.Anime -> Res.string.anime
+        SearchTypeFilter.AsianDrama -> Res.string.asian_drama
+        SearchTypeFilter.Cartoons -> Res.string.cartoons
+        SearchTypeFilter.Documentaries -> Res.string.documentaries
+        SearchTypeFilter.Live -> Res.string.livestreams
+        SearchTypeFilter.Torrents -> Res.string.torrent
+        SearchTypeFilter.Nsfw -> Res.string.nsfw
+        SearchTypeFilter.Others -> Res.string.others
+    },
+)
+
+/** The panel's mono line: `12 OF 48 ENABLED · CHANGES APPLY ON DONE`. */
+@Composable
+internal fun sourcePanelMetaText(enabled: Int, total: Int): String =
+    UiString.Resource(Res.string.search_tv_sources_panel_meta, listOf(enabled, total)).resolve()
 
 /** The source chip's count, e.g. "12 / 48". Both numbers, because the ratio is the point. */
 @Composable

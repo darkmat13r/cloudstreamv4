@@ -51,6 +51,7 @@
 <string name="cancel">"لغو"</string>
 <string name="cartoons">"کارتون‌ها"</string>
 <string name="cartoons_singular">"کارتون"</string>
+<string name="cast">"بازیگران"</string>
 <string name="cast_format" formatted="true">"بازیگران: %s"</string>
 <string name="category_account">"حساب‌ها و امنیت"</string>
 <string name="category_general">"کلی"</string>
@@ -97,8 +98,20 @@
 <string name="download_storage_text">"حافظه درونی(داخلی)"</string>
 <string name="downloaded">"دانلود شده"</string>
 <string name="downloading">"در حال دانلود"</string>
+<string name="downloads_browse_library">"مرور کتابخانه"</string>
 <string name="downloads_delete_select">"انتخاب برای حذف"</string>
 <string name="downloads_empty">"در حال حاضر دانلودی وجود ندارد."</string>
+<string name="downloads_empty_body">"دانلودهایی که از فهرست قسمت‌های یک عنوان شروع می‌کنید اینجا نمایش داده می‌شوند و بدون اتصال پخش می‌شوند."</string>
+<string name="downloads_empty_headline">"هنوز دانلودی وجود ندارد"</string>
+<string name="downloads_free_up_space">"آزاد کردن فضا"</string>
+<string name="downloads_load_failed_body">"فایل‌های دانلودشده شما تغییر نکرده‌اند."</string>
+<string name="downloads_load_failed_headline">"دانلودهای شما خوانده نشد"</string>
+<string name="downloads_offline_pill">"آفلاین · بدون اتصال"</string>
+<string name="downloads_play_from_link">"پخش از پیوند"</string>
+<string name="downloads_select">"انتخاب"</string>
+<string name="downloads_storage_full_headline">"حافظه کافی نیست"</string>
+<string name="downloads_storage_legend" formatted="true">"%1$s از %2$s استفاده شده · %3$s در دانلودها"</string>
+<string name="downloads_storage_needs" formatted="true">"%s بیشتر لازم است"</string>
 <string name="duration">"طول"</string>
 <string name="duration_format" formatted="true">"%d دقیقه"</string>
 <string name="eigengraumode_settings">"سرعت پخش"</string>
@@ -186,6 +199,7 @@
 <string name="logout">"خروج"</string>
 <string name="max">"حداکثر"</string>
 <string name="mobile_data">"دیتای گوشی"</string>
+<string name="more_like_this">"موارد مشابه"</string>
 <string name="movies">"فیلم‌ها"</string>
 <string name="movies_singular">"فیلم"</string>
 <string name="music_singular">"موسیقی"</string>
@@ -312,6 +326,10 @@
 <string name="search_provider_text_providers">"جستجو از طریق ارائه‌دهنده‌ها"</string>
 <string name="search_provider_text_types">"جستجو از طریق انواع"</string>
 <string name="search_state_idle_body_desktop">"عنوانی را بنویسید. نتایج هر منبع پس از پاسخ آن، زیر نامش نمایش داده می‌شود."</string>
+<string name="search_state_no_results_type_filter" formatted="true">"فقط %s. فیلتر نوع شما جستجو را محدود می‌کند."</string>
+<string name="search_tv_source_failed" formatted="true">"ناموفق %s"</string>
+<string name="search_tv_source_pinned">"سنجاق‌شده"</string>
+<string name="search_tv_sources_panel_meta" formatted="true">"%1$d از %2$d فعال · تغییرات پس از «انجام شد» اعمال می‌شود"</string>
 <string name="season">"فصل"</string>
 <string name="season_short">"ف"</string>
 <string name="seek_back_10_seconds">"۱۰ ثانیه به عقب"</string>

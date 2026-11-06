@@ -81,6 +81,7 @@
 <string name="cancel">"בטל"</string>
 <string name="cartoons">"סדרות/סרטים מצוירים"</string>
 <string name="cartoons_singular">"סדרה/סרט מצויר"</string>
+<string name="cast">"צוות שחקנים"</string>
 <string name="cast_format" formatted="true">"צוות שחקנים: %s"</string>
 <string name="category_account">"חשבונות ובטיחות"</string>
 <string name="category_general">"כללי"</string>
@@ -136,10 +137,23 @@
 <string name="downloaded">"הורד"</string>
 <string name="downloaded_file">"קובץ שהורד"</string>
 <string name="downloading">"מוריד"</string>
+<string name="downloads_browse_library">"עיון בספריה"</string>
 <string name="downloads_delete_select">"בחר פריטים למחוק"</string>
 <string name="downloads_empty">"אין הורדות כרגע."</string>
+<string name="downloads_empty_body">"הורדות שתתחיל מרשימת הפרקים של כותר יופיעו כאן ויופעלו ללא חיבור."</string>
+<string name="downloads_empty_headline">"אין עדיין הורדות"</string>
+<string name="downloads_free_up_space">"פינוי מקום"</string>
+<string name="downloads_load_failed_body">"הקבצים שהורדת לא שונו."</string>
+<string name="downloads_load_failed_headline">"לא ניתן לקרוא את ההורדות שלך"</string>
+<string name="downloads_offline_pill">"אופליין · אין חיבור"</string>
+<string name="downloads_play_from_link">"הפעל מקישור"</string>
+<string name="downloads_select">"בחר"</string>
+<string name="downloads_storage_full_headline">"אין מספיק אחסון"</string>
+<string name="downloads_storage_legend" formatted="true">"%1$s מתוך %2$s בשימוש · %3$s בהורדות"</string>
+<string name="downloads_storage_needs" formatted="true">"נדרשים עוד %s"</string>
 <string name="duration">"משך זמן"</string>
 <string name="duration_format" formatted="true">"%d דקות"</string>
+<string name="duration_hours_minutes_format" formatted="true">"%1$d שעות %2$d דקות"</string>
 <string name="edit">"עריכה"</string>
 <string name="eigengraumode_settings">"מהירות ניגון"</string>
 <string name="empty_library_logged_in_message">"נראה שהרשימה הזו ריקה, נסו לעבור לרשימה אחרת."</string>
@@ -265,6 +279,7 @@
 <string name="max">"מקסימום"</string>
 <string name="min">"מינימום"</string>
 <string name="mobile_data">"רשת סלולארית"</string>
+<string name="more_like_this">"כותרים דומים"</string>
 <string name="movies">"סרטים"</string>
 <string name="movies_singular">"סרט"</string>
 <string name="network_adress_example">"קישור לשידור"</string>
@@ -441,6 +456,10 @@
 <string name="search_provider_text_providers">"חפש באמצעות הספקים"</string>
 <string name="search_provider_text_types">"חפש באמצעות סוגים"</string>
 <string name="search_state_idle_body_desktop">"הקלד כותרת. התוצאות יופיעו מתחת לכל מקור כשיענה."</string>
+<string name="search_state_no_results_type_filter" formatted="true">"%s בלבד. מסנן הסוג מצמצם את החיפוש."</string>
+<string name="search_tv_source_failed" formatted="true">"נכשל %s"</string>
+<string name="search_tv_source_pinned">"מוצמד"</string>
+<string name="search_tv_sources_panel_meta" formatted="true">"%1$d מתוך %2$d פעילים · השינויים יחולו בלחיצה על סוים"</string>
 <string name="season">"עונה"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"עו"</string>

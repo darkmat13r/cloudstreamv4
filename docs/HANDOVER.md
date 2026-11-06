@@ -1,4 +1,4 @@
-# Handover — 2026-11-03
+# Handover — 2026-11-04
 
 This file orients a new session. It records what is done, what is open, what waits on the owner, and
 the local facts that cost an hour each when someone rediscovers them.
@@ -24,8 +24,37 @@ when twenty-three more had merged since. **Trust `git log` over this heading.**
 
 **Android TV opens the new home since `KMP-37`,** the first screen here to have run against a real plugin. `TvHomeSwitch.useComposeHome = false` is the rollback to `HomeFragment`, kept for one release. Phone and the emulator layout are unchanged. Since `KMP-41` it has 3c's hero, Continue watching from the old home's resume records (read through the library's store), and watch progress on its cards; focus lands on the hero's button.
 
+**Android TV opens the new downloads screen since `KMP-40`**, boards 6c and 6e. Deleting one line in `MainActivity` is the rollback, and `DownloadFragment` stays on every other layout.
+
 **Android TV shows the Compose rail since `KMP-33`.** `TvRailSwitch.useComposeRail = false` is the rollback to the XML
 rail, kept for one release. Phone and the emulator layout are unchanged.
+
+**Android TV opens the new detail page since `KMP-38`** (queue `Q20`, boards 7a / 7b / 7a-ii). Deleting the one
+`openDetailOnTvScreen()` line at `MainActivity.kt:1688` is the rollback; `ResultFragmentTv` stays for one release.
+Phone and `EMULATOR` are unchanged, and **note the audit was wrong about how**: `getResultsId` branches on
+`TV or EMULATOR`, so `navigation_results_tv` **cannot** be repointed in XML without moving the emulator layout
+too — the runtime `setClassName` form is the only mechanism that moves TV alone, and **no** nav node can be
+repointed in XML. `Q21` and `Q22` inherit that.
+
+**`KMP-38`'s `setLastWatched` regression is fixed, and the fix is the thing to know before `Q21`.** Playback
+from the new detail page used to write no `setLastWatched`: the player writes it only for a `ResultEpisode` or
+`ExtractorUri` meta (`DataStoreHelper.kt:693-742`) and the host played through a `NoVideoGenerator`, whose
+`videos` list is empty. The owner chose the first of the two candidate fixes, so **`ResultViewModel2`'s
+per-response-type episode-id arithmetic is now lifted** into `episodeSlots(mainId)` in
+`app/.../ui/result/EpisodeSlots.kt`, which both the old result page and the new detail page call. `postEpisodes`
+consumes it; nothing is copied.
+
+Three things follow for anyone touching this area:
+
+- **That id is a storage key, so never derive one.** It keys the stored position, the watched marker, the
+  download record and the Continue Watching entry. Call `episodeSlots`. A derivation that differs by one does
+  not render slightly differently — it files the viewer's progress where nothing reads it.
+- **The walk order is part of the formula.** `episode ?: (index + 1)` numbers an unnumbered part by where it
+  sits, so the sort (series: sorted; anime: insertion order) cannot be changed without moving stored positions.
+  `EpisodeSlotsTest` pins all of it against the pre-lift expression and against ids worked out by hand.
+- **Playback now goes through `RepoLinkGenerator`**, which is the old page's own generator, so the player's
+  next and previous episode and the twenty-minute link cache came back with it. Those were listed as losses and
+  are not losses any more.
 
 Master is at `26acd8f8` (#104). **One pull request is open: #91**, a **draft** — `KMP-12` steps 3 and 4,
 Android TV opening the new search screen. `DEC-17` accepts passing UI tests on the `Television_720p` emulator as proof for
@@ -91,9 +120,9 @@ the rail into the field and back; OK opens the keyboard; Enter searches and show
 its result and Back returns with focus somewhere sensible; a non-system app language shows translated
 words and card labels; `Clear all searches` asks first; a `cloudstreamsearch://` intent searches.
 
-Waiting on the owner, from that switch: **voice search and the provider filter sheet are lost on TV**
-until there is an icon pack (`DEC-11`) and artboard 4d; and whether the old type chips should narrow
-a search (they are ignored for now). The full behaviour table is in `docs/tasks/kmp.md`.
+Waiting on the owner, from that switch: **voice search is lost on TV**. The provider filter panel and
+the type chips came back with `KMP-42`, and a chip narrows a search. The full behaviour table is in
+`docs/tasks/kmp.md`.
 
 **Desktop runs extensions in a sandbox** (`KMP-14`, `docs/tasks/kmp.md`): one Seatbelt-confined child
 process per extension, scanned first, `.cs3` converted with dex2jar in a no-network sandbox. Plugin code
@@ -377,9 +406,9 @@ Nothing below can be settled by reading the code.
 - **Chip-row spacing: the design file contradicts itself.** Its CSS is `.chiprow { gap: 24px }`,
   which is 12dp at the design system's own `artboard px / 2 = dp`; its own prose says *"In Compose
   that is `wrapContentWidth` in a `Row` with **24dp** spacing"*. `CloudStreamDimens.ChipRowSpacing`
-  is 24dp and `SkeletonRail` uses it for the gap between rail cards, so `:feature:search`'s rails
-  follow the token — a rail at 12dp behind a skeleton at 24dp is the jump `UiStateHost` warns about.
-  If the CSS is right, the token, `SkeletonRail` and the search rails all move together.
+  is 24dp and `SkeletonRail` uses it for the gap between rail cards. `:feature:search`'s rails are at
+  12dp since `KMP-42`, so a rail behind a skeleton at 24dp is the jump `UiStateHost` warns about.
+  If the CSS is right, the token and `SkeletonRail` still have to move.
 - **`DebounceQuery` injectability.** `:core:ui`'s `DebounceQuery` hardcodes
   `.flowOn(Dispatchers.Default)` and `200.milliseconds`, neither injectable, so `advanceTimeBy` on a
   `TestDispatcher` does not move it and a debounce cannot be tested in virtual time. Reported, not

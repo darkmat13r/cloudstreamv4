@@ -115,6 +115,7 @@
 <string name="cancel_queue_message">"Apakah kamu ingin membatalkan semua unduhan dalam antrean?"</string>
 <string name="cartoons">"Kartun"</string>
 <string name="cartoons_singular">"Kartun"</string>
+<string name="cast">"Pemeran"</string>
 <string name="cast_format" formatted="true">"Pemeran: %s"</string>
 <string name="category_account">"Akun dan Keamanan"</string>
 <string name="category_general">"Umum"</string>
@@ -197,8 +198,20 @@
 <string name="downloaded">"Terunduh"</string>
 <string name="downloaded_file">"Berkas terunduh"</string>
 <string name="downloading">"Mengunduh"</string>
+<string name="downloads_browse_library">"Jelajahi pustaka"</string>
 <string name="downloads_delete_select">"Pilih item untuk Dihapus"</string>
 <string name="downloads_empty">"Tidak ada unduhan."</string>
+<string name="downloads_empty_body">"Unduhan yang Anda mulai dari daftar episode judul muncul di sini dan dapat diputar tanpa koneksi."</string>
+<string name="downloads_empty_headline">"Belum ada unduhan"</string>
+<string name="downloads_free_up_space">"Kosongkan ruang"</string>
+<string name="downloads_load_failed_body">"File unduhan Anda tidak berubah."</string>
+<string name="downloads_load_failed_headline">"Tidak dapat membaca unduhan Anda"</string>
+<string name="downloads_offline_pill">"Luring · tidak ada koneksi"</string>
+<string name="downloads_play_from_link">"Putar dari tautan"</string>
+<string name="downloads_select">"Pilih"</string>
+<string name="downloads_storage_full_headline">"Penyimpanan tidak cukup"</string>
+<string name="downloads_storage_legend" formatted="true">"%1$s dari %2$s terpakai · %3$s di unduhan"</string>
+<string name="downloads_storage_needs" formatted="true">"Perlu %s lagi"</string>
 <string name="duplicate_add">"Tambahkan"</string>
 <string name="duplicate_message_multiple" formatted="true">"Item duplikat potensial telah ditemukan di pustaka Anda: \n \n%s \n \nApakah Anda tetap ingin menambahkan item ini, mengganti item yang sudah ada, atau membatalkan tindakan?"</string>
 <string name="duplicate_message_single" formatted="true">"Tampaknya item yang berpotensi duplikat sudah ada di pustaka Anda: '%s.' \n \nApakah Anda tetap ingin menambahkan item ini, mengganti item yang sudah ada, atau membatalkan tindakan?"</string>
@@ -207,6 +220,7 @@
 <string name="duplicate_title">"Ditemukan Potensi Duplikat"</string>
 <string name="duration">"Durasi"</string>
 <string name="duration_format" formatted="true">"%d mnt"</string>
+<string name="duration_hours_minutes_format" formatted="true">"%1$dj %2$dm"</string>
 <string name="edit">"Edit"</string>
 <string name="edit_account">"Edit akun"</string>
 <string name="edit_profile_image_error_empty">"URL Tidak Ditemukan"</string>
@@ -361,6 +375,7 @@
 <string name="middle_right">"Tengah kanan"</string>
 <string name="min">"Min"</string>
 <string name="mobile_data">"Data seluler"</string>
+<string name="more_like_this">"Serupa dengan ini"</string>
 <string name="movies">"Movie"</string>
 <string name="movies_singular">"Movie"</string>
 <string name="music_singular">"Musik"</string>
@@ -580,8 +595,12 @@
 <string name="search_provider_text_providers">"Cari menggunakan penyedia"</string>
 <string name="search_provider_text_types">"Cari menggunakan jenis"</string>
 <string name="search_state_idle_body_desktop">"Ketik judul. Hasil muncul di bawah setiap sumber saat sumber itu menjawab."</string>
+<string name="search_state_no_results_type_filter" formatted="true">"Hanya %s. Filter jenis Anda mempersempit pencarian."</string>
 <string name="search_suggestions">"Saran pencarian"</string>
 <string name="search_suggestions_des">"Tampilkan saran pencarian saat mengetik"</string>
+<string name="search_tv_source_failed" formatted="true">"GAGAL %s"</string>
+<string name="search_tv_source_pinned">"DISEMATKAN"</string>
+<string name="search_tv_sources_panel_meta" formatted="true">"%1$d DARI %2$d DIAKTIFKAN · PERUBAHAN BERLAKU SETELAH SELESAI"</string>
 <string name="season">"Season"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"S"</string>

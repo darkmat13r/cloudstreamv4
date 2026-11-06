@@ -115,6 +115,7 @@
 <string name="cancel_queue_message">"வரிசைப்படுத்தப்பட்ட அனைத்து பதிவிறக்கங்களையும் ரத்துசெய்ய விரும்புகிறீர்களா?"</string>
 <string name="cartoons">"கார்ட்டூன்கள்"</string>
 <string name="cartoons_singular">"கார்ட்டூன்"</string>
+<string name="cast">"நடிகர்கள்"</string>
 <string name="cast_format" formatted="true">"நடிகர்கள்: %s"</string>
 <string name="category_account">"கணக்குகள் மற்றும் பாதுகாப்பு"</string>
 <string name="category_general">"பொது"</string>
@@ -197,8 +198,20 @@
 <string name="downloaded">"பதிவிறக்கப்பட்டது"</string>
 <string name="downloaded_file">"பதிவிறக்கம் செய்யப்பட்ட கோப்பு"</string>
 <string name="downloading">"பதிவிறக்குகிறது"</string>
+<string name="downloads_browse_library">"நூலகத்தை உலாவு"</string>
 <string name="downloads_delete_select">"அழிப்பதற்கு தேர்ந்தெடுக்கவும்"</string>
 <string name="downloads_empty">"தற்போது பதிவிறக்கங்கள் எதுவும் இல்லை."</string>
+<string name="downloads_empty_body">"தலைப்பின் எபிசோட் பட்டியலிலிருந்து நீங்கள் தொடங்கும் பதிவிறக்கங்கள் இங்கே தோன்றும், இணைப்பு இல்லாமல் இயங்கும்."</string>
+<string name="downloads_empty_headline">"இன்னும் பதிவிறக்கங்கள் இல்லை"</string>
+<string name="downloads_free_up_space">"இடத்தை விடுவி"</string>
+<string name="downloads_load_failed_body">"நீங்கள் பதிவிறக்கிய கோப்புகள் மாற்றப்படவில்லை."</string>
+<string name="downloads_load_failed_headline">"உங்கள் பதிவிறக்கங்களைப் படிக்க முடியவில்லை"</string>
+<string name="downloads_offline_pill">"ஆஃப்லைன் · இணைப்பு இல்லை"</string>
+<string name="downloads_play_from_link">"இணைப்பிலிருந்து இயக்கு"</string>
+<string name="downloads_select">"தேர்ந்தெடு"</string>
+<string name="downloads_storage_full_headline">"போதுமான சேமிப்பகம் இல்லை"</string>
+<string name="downloads_storage_legend" formatted="true">"%1$s / %2$s பயன்படுத்தப்பட்டது · பதிவிறக்கங்களில் %3$s"</string>
+<string name="downloads_storage_needs" formatted="true">"மேலும் %s தேவை"</string>
 <string name="duplicate_add">"கூட்டு"</string>
 <string name="duplicate_message_multiple" formatted="true">"உங்கள் நூலகத்தில் சாத்தியமான நகல் உருப்படிகள் கண்டறியப்பட்டுள்ளன:\n\n %s\n\n இந்த உருப்படியை எப்படியும் சேர்க்க விரும்புகிறீர்களா, ஏற்கனவே உள்ளவற்றை மாற்ற விரும்புகிறீர்களா அல்லது செயலை ரத்து செய்ய விரும்புகிறீர்களா?"</string>
 <string name="duplicate_message_single" formatted="true">"உங்கள் நூலகத்தில் ஏற்கனவே ஒரு நகல் உருப்படி இருப்பதாகத் தெரிகிறது: '%s.'\n\n இந்த உருப்படியை எப்படியும் சேர்க்க விரும்புகிறீர்களா, இருக்கும் ஒன்றை மாற்ற விரும்புகிறீர்களா அல்லது செயலை ரத்து செய்ய விரும்புகிறீர்களா?"</string>
@@ -207,6 +220,7 @@
 <string name="duplicate_title">"சாத்தியமான நகல் காணப்படுகிறது"</string>
 <string name="duration">"காலம்"</string>
 <string name="duration_format" formatted="true">"%d நிமி"</string>
+<string name="duration_hours_minutes_format" formatted="true">"%1$d மணி %2$d நிமிடம்"</string>
 <string name="edit">"தொகு"</string>
 <string name="edit_account">"கணக்கைத் திருத்தவும்"</string>
 <string name="edit_profile_image_error_empty">"முகவரி இல்லை"</string>
@@ -361,6 +375,7 @@
 <string name="middle_right">"நடுத்தர வலது"</string>
 <string name="min">"மணித்துளி"</string>
 <string name="mobile_data">"மொபைல் தரவு"</string>
+<string name="more_like_this">"இது போன்றவை"</string>
 <string name="movies">"திரைப்படங்கள்"</string>
 <string name="movies_singular">"படம்"</string>
 <string name="music_singular">"இசை"</string>
@@ -580,8 +595,12 @@
 <string name="search_provider_text_providers">"வழங்குபவர்கள் பயன்படுத்தி தேடுங்கள்"</string>
 <string name="search_provider_text_types">"வகைகளைப் பயன்படுத்தி தேடுங்கள்"</string>
 <string name="search_state_idle_body_desktop">"ஒரு தலைப்பைத் தட்டச்சு செய்யவும். ஒவ்வொரு மூலமும் பதிலளிக்கும்போது முடிவுகள் அதன் கீழ் தோன்றும்."</string>
+<string name="search_state_no_results_type_filter" formatted="true">"%s மட்டும். உங்கள் வகை வடிப்பான் தேடலைக் குறுக்குகிறது."</string>
 <string name="search_suggestions">"தேடல் பரிந்துரைகள்"</string>
 <string name="search_suggestions_des">"தட்டச்சு செய்யும் போது தேடல் பரிந்துரைகளைக் காட்டு"</string>
+<string name="search_tv_source_failed" formatted="true">"தோல்வி %s"</string>
+<string name="search_tv_source_pinned">"பின் செய்யப்பட்டது"</string>
+<string name="search_tv_sources_panel_meta" formatted="true">"%2$d இல் %1$d இயக்கப்பட்டது · முடிந்தது அழுத்தியதும் மாற்றங்கள் பொருந்தும்"</string>
 <string name="season">"பருவம்"</string>
 <string name="season_format" formatted="true">"%1$s %2$d %3$s"</string>
 <string name="season_short">"கள்"</string>

@@ -115,6 +115,7 @@
 <string name="cancel_queue_message">"Chcete zrušit všechna stahování ve frontě?"</string>
 <string name="cartoons">"Animované"</string>
 <string name="cartoons_singular">"Animovaný"</string>
+<string name="cast">"Hrají"</string>
 <string name="cast_format" formatted="true">"Hrají: %s"</string>
 <string name="category_account">"Účty a zabezpečení"</string>
 <string name="category_general">"Obecné"</string>
@@ -197,8 +198,20 @@
 <string name="downloaded">"Stáhnuto"</string>
 <string name="downloaded_file">"Stažen soubor"</string>
 <string name="downloading">"Stahování"</string>
+<string name="downloads_browse_library">"Procházet knihovnu"</string>
 <string name="downloads_delete_select">"Zvolte položky k odstranění"</string>
 <string name="downloads_empty">"Aktuálně neprobíhají žádná stahování."</string>
+<string name="downloads_empty_body">"Stahování spuštěná ze seznamu epizod titulu se zobrazí zde a přehrají se bez připojení."</string>
+<string name="downloads_empty_headline">"Zatím žádná stahování"</string>
+<string name="downloads_free_up_space">"Uvolnit místo"</string>
+<string name="downloads_load_failed_body">"Vaše stažené soubory nebyly změněny."</string>
+<string name="downloads_load_failed_headline">"Stahování se nepodařilo načíst"</string>
+<string name="downloads_offline_pill">"Offline · bez připojení"</string>
+<string name="downloads_play_from_link">"Přehrát z odkazu"</string>
+<string name="downloads_select">"Vybrat"</string>
+<string name="downloads_storage_full_headline">"Nedostatek úložiště"</string>
+<string name="downloads_storage_legend" formatted="true">"Použito %1$s z %2$s · %3$s ve stahování"</string>
+<string name="downloads_storage_needs" formatted="true">"Potřeba dalších %s"</string>
 <string name="duplicate_add">"Přidat"</string>
 <string name="duplicate_message_multiple" formatted="true">"Ve vaší knihovně byl nalezen potenciální duplikát: \n \n%s \n \nChcete přesto přidat tuto položku, nahradit existující nebo zrušit akci?"</string>
 <string name="duplicate_message_single" formatted="true">"Vypadá to, že ve vaší knihovně již existuje potenciální duplikát: „%s“. \n \nChcete přesto přidat tuto položku, nahradit existující nebo zrušit akci?"</string>
@@ -207,6 +220,7 @@
 <string name="duplicate_title">"Nalezena potenciální duplicita"</string>
 <string name="duration">"Trvání"</string>
 <string name="duration_format" formatted="true">"%d min"</string>
+<string name="duration_hours_minutes_format" formatted="true">"%1$dh %2$dmin"</string>
 <string name="edit">"Upravit"</string>
 <string name="edit_account">"Upravit účet"</string>
 <string name="edit_profile_image_error_empty">"Adresa nenalezena"</string>
@@ -361,6 +375,7 @@
 <string name="middle_right">"Vpravo uprostřed"</string>
 <string name="min">"Min"</string>
 <string name="mobile_data">"Mobilní data"</string>
+<string name="more_like_this">"Podobné"</string>
 <string name="movies">"Filmy"</string>
 <string name="movies_singular">"Film"</string>
 <string name="music_singular">"Hudba"</string>
@@ -580,8 +595,12 @@
 <string name="search_provider_text_providers">"Hledat pomocí poskytovatelů"</string>
 <string name="search_provider_text_types">"Hledat pomocí typů"</string>
 <string name="search_state_idle_body_desktop">"Zadejte název. Výsledky se zobrazí pod každým zdrojem, jakmile odpoví."</string>
+<string name="search_state_no_results_type_filter" formatted="true">"Pouze %s. Filtr typů zužuje hledání."</string>
 <string name="search_suggestions">"Návrhy vyhledávání"</string>
 <string name="search_suggestions_des">"Zobrazit návrhy vyhledávání během psaní"</string>
+<string name="search_tv_source_failed" formatted="true">"SELHALO %s"</string>
+<string name="search_tv_source_pinned">"PŘIPNUTO"</string>
+<string name="search_tv_sources_panel_meta" formatted="true">"%1$d Z %2$d ZAPNUTO · ZMĚNY SE UPLATNÍ STISKNUTÍM HOTOVO"</string>
 <string name="season">"Sezóna"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"S"</string>

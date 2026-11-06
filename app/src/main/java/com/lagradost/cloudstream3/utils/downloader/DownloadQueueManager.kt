@@ -229,7 +229,7 @@ object DownloadQueueManager {
                 // Assure no division by 0
                 fileInfo.totalBytes > 0 &&
                 // If more than 98% downloaded then do not add to queue
-                (fileInfo.fileLength.toFloat() / fileInfo.totalBytes.toFloat()) > 0.98f
+                ((VideoDownloadManager.fileLengthOnDisk(context, fileInfo.path) ?: fileInfo.fileLength).toFloat() / fileInfo.totalBytes.toFloat()) > 0.98f
         // Do not queue completed files!
         if (isComplete) return@safe
 

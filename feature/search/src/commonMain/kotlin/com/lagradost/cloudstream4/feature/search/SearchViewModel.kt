@@ -13,6 +13,8 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 
 /**
  * The search screen's state machine. No Android, no display strings, no navigation.
@@ -58,6 +60,11 @@ class SearchViewModel(
 
     private val debounce = DebounceQuery()
     private val inFlight = SingleActiveQuery(dispatcher)
+    private val filterWrites = Mutex()
+
+    /** The last page loaded per provider, for the rail's card. A new search starts them again. */
+    private val pages = HashMap<String, Int>()
+    private val loadingMore = HashSet<String>()
 
     /**
      * The query a full search has already started for, until the next keystroke.
@@ -108,6 +115,24 @@ class SearchViewModel(
                 work.launch { postEffect { SearchEffect.OpenResult(action.id) } }
 
             SearchAction.SourcesChanged -> work.launch { refreshSources() }
+
+            is SearchAction.RailMoreRequested -> loadMore(action.providerName)
+
+            SearchAction.SourcePanelOpened -> work.launch { openSourcePanel() }
+
+            is SearchAction.SourceToggled -> updateState {
+                val panel = sourcePanel ?: return@updateState this
+                val draft = if (action.id in panel.draft) panel.draft - action.id else panel.draft + action.id
+                copy(sourcePanel = panel.copy(draft = draft))
+            }
+
+            SearchAction.SourcePanelDone -> commitSourcePanel()
+
+            SearchAction.SourcePanelDismissed -> updateState { copy(sourcePanel = null) }
+
+            is SearchAction.TypeFilterToggled -> toggleType(action.type)
+
+            SearchAction.SearchEverything -> applyFiltersThenSearch { source.clearFilters() }
 
             is SearchAction.RecentActivated -> {
                 submitted = action.query
@@ -181,32 +206,150 @@ class SearchViewModel(
 
     private suspend fun refreshSources() {
         val sources = source.sources()
-        updateState { copy(sources = sources) }
+        val filters = source.typeFilters()
+        updateState { copy(sources = sources, typeFilters = filters) }
+    }
+
+    private suspend fun openSourcePanel() {
+        val choices = source.choices()
+        updateState {
+            copy(
+                sourcePanel = SourcePanelState(
+                    choices = choices,
+                    draft = choices.filter { it.selected }.mapTo(HashSet()) { it.id },
+                ),
+            )
+        }
+    }
+
+    /** Closes on the press. A Done that changed nothing writes nothing and does not search again. */
+    private fun commitSourcePanel() {
+        val panel = state.value.sourcePanel ?: return
+        updateState { copy(sourcePanel = null) }
+        val before = panel.choices.filter { it.selected }.mapTo(HashSet()) { it.id }
+        if (panel.draft == before) return
+        applyFiltersThenSearch { source.selectSources(panel.draft) }
+    }
+
+    /** The chip lights on the press, in state; the write and the search follow. */
+    private fun toggleType(type: SearchTypeFilter) {
+        val current = state.value.typeFilters
+        val selected = if (type in current.selected) current.selected - type else current.selected + type
+        updateState { copy(typeFilters = current.copy(selected = selected)) }
+        applyFiltersThenSearch { source.selectTypes(selected) }
+    }
+
+    /**
+     * The write finishes before the search starts, and the counts are read in between, or the search
+     * asks the old providers and the no-results copy quotes the old number. Writes queue on [filterWrites]
+     * so two quick presses land in order.
+     */
+    private fun applyFiltersThenSearch(write: suspend () -> Unit) {
+        val query = state.value.query
+        if (query.isNotBlank()) {
+            submitted = query
+            updateState { copy(status = SearchStatus.Loading) }
+        }
+        work.launch {
+            filterWrites.withLock {
+                write()
+                refreshSources()
+            }
+            val current = state.value.query
+            if (current.isNotBlank() && current == query) runSearch(current, quick = false)
+        }
     }
 
     private suspend fun runSearch(query: String, quick: Boolean) {
+        pages.clear()
         inFlight.launch {
             val outcome = if (quick) source.quickSearch(query) else source.search(query)
             updateState { copy(status = outcome.toStatus(sources.selected)) }
         }
     }
 
+    /**
+     * One rail's next page, appended where it is. A press while a page is on its way does nothing, and a reply
+     * for results that have since been replaced is dropped: [content] is the state it was asked from.
+     */
+    private fun loadMore(provider: String) {
+        val query = state.value.query
+        val content = state.value.status.resultsOrNull() ?: return
+        if (!loadingMore.add(provider)) return
+        val page = (pages[provider] ?: FIRST_PAGE) + 1
+        work.launch {
+            val outcome = try {
+                source.searchMore(query, provider, page)
+            } finally {
+                loadingMore.remove(provider)
+            }
+            updateState {
+                if (status.resultsOrNull() !== content && status.resultsOrNull() != content) return@updateState this
+                when (outcome) {
+                    is SearchOutcome.Complete -> {
+                        pages[provider] = page
+                        copy(status = status.withResults(content.withPage(provider, outcome.items, provider in outcome.morePages)))
+                    }
+                    is SearchOutcome.Partial -> {
+                        pages[provider] = page
+                        copy(status = status.withResults(content.withPage(provider, outcome.items, provider in outcome.morePages)))
+                    }
+                    // What is on screen stays, and the shortfall rides the chip row like any other.
+                    is SearchOutcome.Failed -> copy(status = SearchStatus.Partial(content, 0, 1, outcome.detail))
+                    SearchOutcome.Offline -> copy(status = SearchStatus.Partial(content, 0, 1, OFFLINE_DETAIL))
+                }
+            }
+        }
+    }
+
+    private fun SearchStatus.resultsOrNull(): SearchContent.Results? = when (this) {
+        is SearchStatus.Showing -> content as? SearchContent.Results
+        is SearchStatus.Partial -> content as? SearchContent.Results
+        else -> null
+    }
+
+    private fun SearchStatus.withResults(results: SearchContent.Results): SearchStatus = when (this) {
+        is SearchStatus.Partial -> copy(content = results)
+        else -> SearchStatus.Showing(results)
+    }
+
+    /** Repeats are dropped, because a provider's pages can overlap and a rail's keys are the ids. */
+    private fun SearchContent.Results.withPage(
+        provider: String,
+        items: List<SearchResultItem>,
+        hasMore: Boolean,
+    ) = copy(
+        groups = groups.map { group ->
+            if (group.providerName != provider) {
+                group
+            } else {
+                val seen = group.items.mapTo(HashSet()) { it.id }
+                group.copy(items = group.items + items.filter { seen.add(it.id) }, hasMore = hasMore)
+            }
+        },
+    )
+
     private fun SearchOutcome.toStatus(queried: Int): SearchStatus = when (this) {
         is SearchOutcome.Complete ->
             if (items.isEmpty()) {
                 SearchStatus.NoResults(queried)
             } else {
-                SearchStatus.Showing(SearchContent.Results(items.groupByProvider()))
+                SearchStatus.Showing(SearchContent.Results(items.groupByProvider(morePages)))
             }
 
         // Content that arrived is shown; the shortfall rides the chip row as a notice. Deliberately
         // not Failed: the results are usable, and replacing them with a failure band is what
         // `UiState`'s KDoc says Partial exists to prevent.
         is SearchOutcome.Partial ->
-            SearchStatus.Partial(SearchContent.Results(items.groupByProvider()), answered, total, detail)
+            SearchStatus.Partial(SearchContent.Results(items.groupByProvider(morePages)), answered, total, detail)
 
         is SearchOutcome.Failed -> SearchStatus.Failed(detail)
 
         SearchOutcome.Offline -> SearchStatus.Offline
     }
 }
+
+private const val FIRST_PAGE = 1
+
+/** A status code for the mono line, like `SearchOutcome.Failed.detail`, so not translated. */
+private const val OFFLINE_DETAIL = "OFFLINE"

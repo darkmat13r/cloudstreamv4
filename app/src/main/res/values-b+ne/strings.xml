@@ -14,6 +14,7 @@
 <string name="benene_count_text" formatted="true">"%d केरा डेभलपर लाई दिइयो"</string>
 <string name="benene_count_text_none">"एउटै पनी केरा दिइएन"</string>
 <string name="browser">"ब्राउजर"</string>
+<string name="cast">"अभिनेता"</string>
 <string name="cast_format" formatted="true">"अभिनेता:%s"</string>
 <string name="chromecast_subtitles_settings">"Chromecast को उपशीर्षकहरु"</string>
 <string name="continue_watching">"हेर्न सुचारु राख्नुहोस"</string>
@@ -28,6 +29,18 @@
 <string name="download_storage_text">"भित्री स्टोरेज"</string>
 <string name="downloaded">"डाउनलोड भयो"</string>
 <string name="downloading">"डाउनलोड हुदैछ"</string>
+<string name="downloads_browse_library">"लाइब्रेरी हेर्नुहोस्"</string>
+<string name="downloads_empty_body">"शीर्षकको एपिसोड सूचीबाट सुरु गरिएका डाउनलोडहरू यहाँ देखिन्छन् र जडान बिना प्ले हुन्छन्।"</string>
+<string name="downloads_empty_headline">"अहिलेसम्म कुनै डाउनलोड छैन"</string>
+<string name="downloads_free_up_space">"ठाउँ खाली गर्नुहोस्"</string>
+<string name="downloads_load_failed_body">"तपाईंका डाउनलोड गरिएका फाइलहरू परिवर्तन गरिएका छैनन्।"</string>
+<string name="downloads_load_failed_headline">"तपाईंका डाउनलोडहरू पढ्न सकिएन"</string>
+<string name="downloads_offline_pill">"अफलाइन · जडान छैन"</string>
+<string name="downloads_play_from_link">"लिङ्कबाट प्ले गर्नुहोस्"</string>
+<string name="downloads_select">"चयन गर्नुहोस्"</string>
+<string name="downloads_storage_full_headline">"पर्याप्त स्टोरेज छैन"</string>
+<string name="downloads_storage_legend" formatted="true">"%1$s / %2$s प्रयोग भयो · डाउनलोडमा %3$s"</string>
+<string name="downloads_storage_needs" formatted="true">"थप %s चाहिन्छ"</string>
 <string name="duration_format" formatted="true">"%d मिनेट"</string>
 <string name="episode_more_options_des">"थप विकल्पहरू"</string>
 <string name="episode_poster_img_des">"एपिसोडको पोस्टर"</string>
@@ -83,6 +96,7 @@
 <string name="links_reloaded_toast">"लिङ्कहरू रिलोड गरियो"</string>
 <string name="load_more">"थप लोड गर्नुहोस्"</string>
 <string name="loading">"लोड हुँदै…"</string>
+<string name="more_like_this">"यस्तै अरू"</string>
 <string name="new_update_format" formatted="true">"नयाँ अपडेट भेटियो! \n%1$s -&gt; %2$s"</string>
 <string name="next_episode">"अर्को एपिसोड"</string>
 <string name="next_episode_format" formatted="true">"एपिसोड %d रिलीज हुने समय"</string>
@@ -141,6 +155,10 @@
 <string name="search_provider_text_providers">"प्रोभाईडर उपयोग गरी खोज्नुहोस्"</string>
 <string name="search_provider_text_types">"प्रकारको उपयोग गरी खोज्नुहोस्"</string>
 <string name="search_state_idle_body_desktop">"शीर्षक टाइप गर्नुहोस्। प्रत्येक स्रोतले जवाफ दिएपछि नतिजा त्यसको तल देखिन्छ।"</string>
+<string name="search_state_no_results_type_filter" formatted="true">"%s मात्र। तपाईंको प्रकार फिल्टरले खोजी साँघुरो बनाइरहेको छ।"</string>
+<string name="search_tv_source_failed" formatted="true">"असफल %s"</string>
+<string name="search_tv_source_pinned">"पिन गरिएको"</string>
+<string name="search_tv_sources_panel_meta" formatted="true">"%2$d मध्ये %1$d सक्रिय · सकियो थिच्दा परिवर्तन लागू हुन्छ"</string>
 <string name="seek_back_10_seconds">"10 सेकेन्ड पछाडि जानुहोस्"</string>
 <string name="seek_forward_10_seconds">"10 सेकेन्ड अगाडि जानुहोस्"</string>
 <string name="show_log_cat">"Logcat देखाउनुहोस"</string>

@@ -16,6 +16,7 @@
 <string name="benene_count_text">%d ሙዝ ለዴቭሎፐሮቹ ተሰጥቷል</string>
 <string name="benene_count_text_none">ምንም ሙዝ አልተሰጠም</string>
 <string name="browser">አሳሽ</string>
+<string name="cast">ተዋናዮች</string>
 <string name="cast_format">ተዋናዮች: %s</string>
 <string name="continue_watching">መመልከትዎን ይቀጥሉ</string>
 <string name="download">ማውረጃ</string>
@@ -27,6 +28,18 @@
 <string name="download_storage_text">ውስጣዊ ማከማቻ</string>
 <string name="downloaded">ወርዷል</string>
 <string name="downloading">በማውረድ ላይ</string>
+<string name="downloads_browse_library">ቤተ-መጽሐፍት አስስ</string>
+<string name="downloads_empty_body">ከርዕስ የክፍሎች ዝርዝር የጀመሯቸው ውርዶች እዚህ ይታያሉ፣ ያለ ግንኙነትም ይጫወታሉ።</string>
+<string name="downloads_empty_headline">እስካሁን ምንም ውርዶች የሉም</string>
+<string name="downloads_free_up_space">ቦታ አስለቅቅ</string>
+<string name="downloads_load_failed_body">የወረዱ ፋይሎችዎ አልተቀየሩም።</string>
+<string name="downloads_load_failed_headline">ውርዶችዎን ማንበብ አልተቻለም</string>
+<string name="downloads_offline_pill">ከመስመር ውጭ · ግንኙነት የለም</string>
+<string name="downloads_play_from_link">ከሊንክ አጫውት</string>
+<string name="downloads_select">ምረጥ</string>
+<string name="downloads_storage_full_headline">በቂ ማከማቻ የለም</string>
+<string name="downloads_storage_legend">%1$s ከ%2$s ጥቅም ላይ ውሏል · %3$s በውርዶች ውስጥ</string>
+<string name="downloads_storage_needs">ተጨማሪ %s ያስፈልጋል</string>
 <string name="duration_format">%d ደቂቃ</string>
 <string name="episode_more_options_des">ተጨማሪ አማራጮች</string>
 <string name="episode_poster_img_des">የክፍሉ ፖስተር</string>
@@ -81,6 +94,7 @@
 <string name="home_source_none_subtitle">ረድፎች የሉም · የእርስዎ ረድፎች ይቆያሉ</string>
 <string name="load_more">ተጨማሪ ጫን</string>
 <string name="loading">በመጫን ላይ…</string>
+<string name="more_like_this">ተጨማሪ እንደዚህ ያሉ</string>
 <string name="new_update_format">አዲስ ማሻሻያ ተገኝቷል! \n%1$s -&gt; %2$s</string>
 <string name="next_episode">ቀጣይ ክፍል</string>
 <string name="next_episode_format">ክፍል %d በ ይለቀቃል</string>
@@ -128,6 +142,10 @@
 <string name="search_provider_text_providers">አቅራቢዎችን በመጠቀም ይፈልጉ</string>
 <string name="search_provider_text_types">ዓይነቶችን በመጠቀም ይፈልጉ</string>
 <string name="search_state_idle_body_desktop">ርዕስ ይተይቡ። ውጤቶች እያንዳንዱ ምንጭ ሲመልስ ከሱ ስር ይታያሉ።</string>
+<string name="search_state_no_results_type_filter">%s ብቻ። የአይነት ማጣሪያዎ ፍለጋውን እያጠበበው ነው።</string>
+<string name="search_tv_source_failed">አልተሳካም %s</string>
+<string name="search_tv_source_pinned">ተሰክቷል</string>
+<string name="search_tv_sources_panel_meta">ከ%2$d ውስጥ %1$d ነቅተዋል · ለውጦች በተከናውኗል ላይ ይተገበራሉ</string>
 <string name="seek_back_10_seconds">10 ሰከንድ ወደ ኋላ</string>
 <string name="seek_forward_10_seconds">10 ሰከንድ ወደ ፊት</string>
 <string name="skip_loading">መጫንን ዝለል</string>

@@ -121,6 +121,7 @@
 <string name="cancel_queue_message">"Do you want to cancel all queued downloads?"</string>
 <string name="cartoons">"Cartoons"</string>
 <string name="cartoons_singular">"Cartoon"</string>
+<string name="cast">"Cast"</string>
 <string name="cast_format" formatted="true">"Cast: %s"</string>
 <string name="category_account">"Accounts and Security"</string>
 <string name="category_general">"General"</string>
@@ -208,8 +209,23 @@
 <string name="downloaded">"Downloaded"</string>
 <string name="downloaded_file">"Downloaded file"</string>
 <string name="downloading">"Downloading"</string>
+<string name="downloads_browse_library">"Browse library"</string>
+<string name="downloads_delete_chosen" formatted="true">"%1$s (%2$d · %3$s)"</string>
 <string name="downloads_delete_select">"Select Items to Delete"</string>
 <string name="downloads_empty">"There are currently no downloads."</string>
+<string name="downloads_empty_body">"Downloads you start from a title's episode list appear here and play with no connection."</string>
+<string name="downloads_empty_headline">"No downloads yet"</string>
+<string name="downloads_film_subtitle" formatted="true">"%1$s · %2$s"</string>
+<string name="downloads_free_up_space">"Free up space"</string>
+<string name="downloads_load_failed_body">"Your downloaded files have not been changed."</string>
+<string name="downloads_load_failed_headline">"Couldn't read your downloads"</string>
+<string name="downloads_offline_pill">"Offline · no connection"</string>
+<string name="downloads_play_from_link">"Play from link"</string>
+<string name="downloads_select">"Select"</string>
+<string name="downloads_series_subtitle" formatted="true">"%1$d %2$s · %3$s"</string>
+<string name="downloads_storage_full_headline">"Not enough storage"</string>
+<string name="downloads_storage_legend" formatted="true">"%1$s of %2$s used · %3$s in downloads"</string>
+<string name="downloads_storage_needs" formatted="true">"Needs %s more"</string>
 <string name="duplicate_add">"Add"</string>
 <string name="duplicate_cancel">@string/cancel</string>
 <string name="duplicate_message_multiple" formatted="true">"Potential duplicate items have been found in your library: \n\n%s \n\nWould you like to add this item anyway, replace the existing ones, or cancel the action?"</string>
@@ -219,6 +235,7 @@
 <string name="duplicate_title">"Potential Duplicate Found"</string>
 <string name="duration">"Duration"</string>
 <string name="duration_format" formatted="true">"%d min"</string>
+<string name="duration_hours_minutes_format" formatted="true">"%1$dh %2$dm"</string>
 <string name="edit">"Edit"</string>
 <string name="edit_account">"Edit account"</string>
 <string name="edit_profile_image_error_empty">"No URL Found"</string>
@@ -380,6 +397,7 @@
 <string name="middle_right">"Middle right"</string>
 <string name="min">"Min"</string>
 <string name="mobile_data">"Mobile data"</string>
+<string name="more_like_this">"More like this"</string>
 <string name="movies">"Movies"</string>
 <string name="movies_singular">"Movie"</string>
 <string name="music_singular">"Music"</string>
@@ -612,6 +630,7 @@
 <string name="search_state_no_results_body_unknown">"Every selected source answered and none of them carry it."</string>
 <string name="search_state_no_results_detail" formatted="true">"%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS"</string>
 <string name="search_state_no_results_headline">"No results"</string>
+<string name="search_state_no_results_type_filter" formatted="true">"%s only. Your type filter is narrowing the search."</string>
 <string name="search_state_offline_body">"Search needs a connection. Your downloads are still available."</string>
 <string name="search_state_offline_headline">"You are offline"</string>
 <string name="search_state_retry">"Try again"</string>
@@ -621,7 +640,10 @@
 <string name="search_tv_clear_all">"Clear all searches"</string>
 <string name="search_tv_field_placeholder">"Search all sources"</string>
 <string name="search_tv_recent_headline">"Recent searches"</string>
+<string name="search_tv_source_failed" formatted="true">"FAILED %s"</string>
+<string name="search_tv_source_pinned">"PINNED"</string>
 <string name="search_tv_sources_label">"Sources"</string>
+<string name="search_tv_sources_panel_meta" formatted="true">"%1$d OF %2$d ENABLED · CHANGES APPLY ON DONE"</string>
 <string name="season">"Season"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"S"</string>

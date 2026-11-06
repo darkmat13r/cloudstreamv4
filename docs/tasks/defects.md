@@ -1500,13 +1500,13 @@ changes for them until they act on it.
 so that path is unchanged. A document-tree folder. A real queue service: the slot is measured as `currentDownloads` letting go of the id and `isFailed`, which is what the
 service filters on. The UI above was read, not driven. An unknown-length source that ends uncleanly after its last byte now fails where it used to finish: that follows from fix 2 and has
 no test. A range still in flight keeps reading up to the end of its range after a failure before its job ends, at most 10 MiB; on loopback that took 303 ms, and a slow source will take longer.
-**Unexplained:** the length read straight after a retry was once still the earlier one, and correct a moment later, so the test now waits up to 10 s for it. The cause was not established.
+**Explained by `BUG-39`:** the length read straight after a retry was once still the earlier one, and correct a moment later, so the test waits up to 10 s for it.
 
 ---
 
 ## BUG-37 — On TV search's history, the first row's focus ring is cut off at the top · **low** · measured 2026-11-05
 
-**Status:** open, not fixed · found by `INF-11`'s first screenshot run · `SearchRecentColumn.kt`
+**Status:** fixed in `KMP-42`: the list carries the ring's bleed as content padding, and with that padding removed `search-history-filled` fails with the top edge cut off · found by `INF-11`'s first screenshot run · `SearchRecentColumn.kt`
 
 When the first history row has focus, its ring has no top edge. In `search-history-focus-row.png` (`Television_720p`, 1280x720), the ring's sides
 start at y 250, and above the row at x 700 there is no ring pixel at all. The bottom edge is drawn, white at y 317 and 318. The row is the first item
@@ -1517,6 +1517,132 @@ a focusable. The ring is in the 4 dp above the row, so it is outside the viewpor
 missing, so the comparison passes today. A fix will fail that case: look at the diff, check that the only change is the ring's top edge, and re-record it.
 
 Not checked: whether the last row is cut off at the bottom when the list is full, and whether other TV screens with a `LazyColumn` do the same.
+
+## BUG-40 — The TV detail page's text ladder runs about 5dp high against its boards · **low** · measured 2026-11-06
+
+**Status:** found, not fixed · found 2026-11-06 while fixing the head block's height for `KMP-38` (pr #153) ·
+`feature/detail/.../tv/DetailScreenTv.kt`, the `HeadColumn` ladder
+
+**Nothing is out of place relative to anything else** — the whole block below the title simply sits about 5dp
+higher than boards 7a and 7b draw it. Measured off the committed references at density 1.3333, calibrated
+against the 220dp `ResumeWidth` rather than assumed:
+
+| element | measured | board | delta |
+|---|---|---|---|
+| chrome row cell | 28..76dp | 28..76 | 0 |
+| action row top | 250.8dp | 256 | −5.2 |
+| cast header ink | 318.8..332.2dp | header box 320..348 | ≈ −5 |
+| cast avatars top | 358.5dp | 364 | −5.5 |
+
+The deltas are the same number all the way down, which is what says it is one cause and not several.
+
+**The cause is the ladder's assumed text boxes.** Every spacer in `HeadColumn` is a gap between *text*, and the
+board's boxes for that text — the title at 44dp and the meta at 16dp — are not what `typography.h1` and
+`typography.label` actually render into on this device. The spacers are right; the things they sit between are
+not the height the board assumed. `CloudStreamTypography`'s measured line boxes are 1.375x rather than 1.3,
+which `docs/memory/cloudstream4-type-metrics.md` already records as the source of most off-grid geometry in
+this project.
+
+**Not fixed here, deliberately.** Correcting it means changing either the type metrics or the board's assumed
+boxes, both of which reach well past this screen; the typography work owns that. `KMP-38` fixed the one error
+that was *not* typography — the head block taking the hero's 300dp so the next section's `SectionGap` counted
+from the hero's foot instead of the action row's bottom, which was a separate 12dp and is gone: the measured
+gap from the action row to the avatars is now 75.7dp against the board's 76.
+
+**Why nothing caught it.** The same reason `BUG-38` went unseen: `DetailScreenTvDeviceTest` asserts the gaps
+between elements, and every gap here is correct. Only an absolute y against the board shows it, and the only
+absolute the suite pins is the chrome row's, which is exact.
+
+## BUG-38 — On TV, the detail page arrives with its chrome row scrolled off the top · **medium** · measured 2026-11-05
+
+**Status:** fixed · found 2026-11-05 by `KMP-38`'s own screenshot cases (pr #153), cause established by the
+design review the same day, fixed in the same PR · `feature/detail/.../tv/DetailFocusScroll.kt`
+
+**Changes what users see on TV.** On arrival the viewer has **no visible way back**, no favourite and no
+watch-status control: the whole chrome row is above the top edge. The three loaded-page references show it,
+and the loading and error states — which draw their chrome row from the other call site — do not.
+
+**Measured**, in the screen's own device-test host on `Television_720p_2`:
+
+```
+the back cell is laid out at -76.0..-12.0 in a root 720 tall, but only 0.0 of it
+survives the column's clip
+```
+
+The ladder in `HeadBlock` puts that cell at 28..76dp, which is 37..101px here, so the page arrives about
+113px — roughly 85dp — already scrolled. The row is 64px (48dp) tall and every pixel of it is clipped.
+
+**The cause: the page had no `BringIntoViewSpec`.** Entry focus landing on the primary asked Compose to bring
+it into view, and with no spec of its own the page got the default TV pivot — which put Resume's top, and a
+focused poster's top, at 0.3 of a 720px viewport, or y216. The chrome row rides item 0 up with it. It was
+never the focus or the ladder: the screen's KDoc is right that the hero and the chrome row scrolling away as
+item 0 leaves **is** the design, and the fault was only that it had already happened before the viewer did
+anything.
+
+**The fix** is `HomeNoScrollSpec`'s, which `TV Home` had already needed for the same reason: the list refuses
+to scroll for focus (`DetailNoScrollSpec`) and each band asks for the stop its board draws instead
+(`DetailFocusScroll.stopFor`, pure and unit-tested). The three stops are 7a's — the head block and the cast
+row at the page's origin, and anything below the cast at 7a-ii, which is the cast row whole at the top of the
+band. The same cause was cutting the cast row off on 7a-ii, with the focused poster's top at 162dp against
+the board's 268.
+
+**One claim it disproves.** `DetailScreenTv`'s KDoc said 7a and 7a-ii are "the same page at one scroll offset
+… There is no fixed 292dp jump." The boards draw the cast avatars at 364dp on 7a and 72dp on 7a-ii, which is
+a fixed 292dp jump exactly. The KDoc is corrected.
+
+**Why nothing caught it.** `DetailScreenTvDeviceTest` asserts the gaps *between* elements and never an
+absolute top, so a page shifted up as a whole passes all of it. The images are what raised it.
+
+**A trap worth keeping, for anyone writing the assertion.** `SemanticsNode.boundsInRoot` is **clipped**: a row
+scrolled out from under a `LazyColumn`'s clip reports an empty rect at y=0, so the obvious
+`top >= 0 && bottom <= root` can never fail. Measure `positionInRoot` + `size` and compare the clipped
+rect's height against it. Two earlier versions of this measurement also passed for reasons unrelated to the
+page — one matched the side panel's "Go Back" *text* instead of the chrome icon's content description, and one
+read bounds before the bring-into-view scroll had settled.
+
+## BUG-36 — `SidePanelHost` returns focus to the content's first stop, not to the control that opened the panel · **medium**
+
+**Status:** found, not fixed · found 2026-11-05 by `KMP-38`'s device suite (pr #153), the component's first production
+caller · `core/designsystem/.../panel/SidePanelHost.kt:168-207`
+
+**Changes what users see on TV.** Dismissing a side panel drops focus on the first focusable in the content
+group instead of the cell the viewer opened the panel from, so they lose their place in the row every time.
+On a 10-foot UI focus is the only cursor there is.
+
+Measured on `Television_720p` by `DetailScreenTvDeviceTest.theWatchStatusPickerOpensIsTrappedAndCommitsOnARowPress`,
+on both dismiss paths — platform BACK, and the row press that commits under `DEC-17`:
+
+```
+expected:<[Set watch status]> but was:<[Go Back]>
+```
+
+The KDoc promises *"on close, focus returns to the control that opened the panel"* via
+`Modifier.focusRestorer()` on the content group, and that *"It needs no wiring from the caller"*. The
+component's own jvmTest `closing the panel gives focus back to the control that opened it` **passes**, so
+this is not a regression in the restore — it is a limit of it. The difference is **depth**:
+
+| | opener |
+|---|---|
+| jvmTest (passes) | a direct child of the content group, held by a `FocusRequester` |
+| TV detail page (fails) | an `IconCell` inside a `Row` inside a `LazyColumn`'s keyed item |
+
+`focusRestorer()` restores the child it recorded; that child then enters at its own first stop rather than
+replaying the chain down to the cell. So the promise holds for a flat opener and silently degrades for a
+nested one, which is the ordinary shape of a real screen.
+
+**Why it was not fixed with the finding:** `SidePanelHost` is working shared code and
+`.claude/rules/no-unsolicited-changes.md` says to propose a change to it rather than make one. Four more
+hosts are queued behind it — `TV Search` 4d, `TV Library` 5d and 5e, the player's 7e — so whatever is done
+should be done once, in the component. Two candidates: `focusRestorer()` on the nested groups, or an opener
+`FocusRequester` the caller hands in — the second contradicts the "no wiring from the caller" promise, so it
+is a contract decision and not a patch.
+
+The TV detail page's test asserts the **current** behaviour, the way `SidePanelMotionTest` pins its own
+exit-window focus hole, so fixing this fails that test and the fix gets looked at rather than landing silently.
+
+Not to be confused with the separate, already-recorded defect in the same component: a D-pad move during the
+240 ms exit drops focus entirely (`SidePanelMotionTest`, *"a D-pad move during the exit does not re-enter the
+leaving panel"*).
 
 ## BUG-33 — Choosing a list after a failed read says the list is empty · **low** · read 2026-11-04
 
@@ -1534,7 +1660,7 @@ behaviour that task had to keep.
 
 ## BUG-34 — On TV, LEFT from a text field never reaches the rail · **medium** · measured 2026-11-05
 
-**Status:** open. Measured on `Television_720p`, API 36, with the Compose rail, driven by `DpadDriver`.
+**Status:** fixed for search in `KMP-42`, and still open for the library's filter, which passes no `onLeftEdge`. The cause was as guessed below: `TextField` now handles Left before the cursor does, and calls `onLeftEdge` when nothing in the composition is to its left. Measured on `Television_720p`, API 36, with the Compose rail, driven by `DpadDriver`.
 
 From the search field or the library's filter, LEFT does nothing, however many times it is pressed. A person on the top
 row of either page has to go down a row first to reach the rail. Down still leaves the field, so it is not a trap.
@@ -1559,3 +1685,74 @@ route was **not established**. The probe above took a different route and did no
 **Not established either:** the cause. The likely place is Compose's D-pad handling in a text field, which may consume the
 key when nothing in the Compose page lies to the left, so the view system never searches for the rail. That is a guess from
 the symptom, and those sources were not read.
+
+---
+
+## BUG-39 — A download could duplicate bytes in its file, or report success with no file, through two MediaStore races · **high** · measured 2026-11-05
+
+**Status:** both fixed in the PR that adds this entry, on the owner's decision. `Q14`'s screen is not involved.
+
+**The defect.** `setupStream` took a resume's `startAt` from `SafeFile.lengthOrThrow()`, which on `MediaFile` reads MediaStore's `_size` column (from SafeFile 0.0.8's bytecode), and `_size` trails the file. The stream then opens in append mode. `EpisodeDownloadInstance` retries by itself on `retrySame`, 1 to 8 ms after the close. So a short read asked for bytes the file already had and appended them. The download reported the right count over a wrong file, with a stretch repeated from the point the connection dropped, and nothing said so.
+
+**The fix.** `setupStream` and `addToQueue`'s "over 98% is complete" check read the file's own length, `openFileDescriptor().statSize`, through `fileLengthOnDisk`. If that cannot be read, they fall back to the old read. No published signature changes.
+
+### Measured
+
+All of it on TV emulators (`Television_720p`, `Television_720p_2`) against a fake server on loopback. **One kind of emulator over loopback is not a real device.** The scenario: a first mirror drops at 12 MiB of 15, a second at 5 MiB.
+
+| | Rounds | Corrupt | Success with no file (below) |
+|---|---|---|---|
+| Before the fix, three runs | 900 | **53** (20, 11, 22) | 29 |
+| After the length fix | 300 | **0** | 6 |
+| After both fixes | 300 | **0** | **0** |
+
+- After the fix, 294 rounds ended with a file. Every one held exactly what `bytesWritten` reported, read back and checked byte by byte. All 272 that resumed asked for exactly 5,242,880.
+- Before it, the worst case asked for `GET 65536-` and left 10,420,224 bytes against 5,242,880 reported. The first wrong byte was at exactly 5,242,880 every time.
+- The same scenario with one mirror and a larger file, 120 rounds before the fix: every automatic retry was correct. Why the second mirror's case is the one that goes wrong was not established.
+
+**Other measurements of the lag, before the fix:** short in 15 of 150 failures polled for 2 s, all caught up by 33 ms, none wrong at 2 s; `fstat` read 62,300,160 where the app read 60,465,152; a failure of the old assertion read 1,441,792 against 15,728,640 written, timing not measured.
+
+### The tests
+
+- `DownloadFactsDeviceTest` compared `fileInfo.fileLength` with `bytesWritten` straight after the end, so it failed on the lag alone, including in unrelated full `:app` runs. It now asserts what is guaranteed: the bytes read back equal `bytesWritten`, and `_size` catches up within 10 s. `awaitFileLength` returns the value it compared, because a second read can be short again. A planted one-byte mismatch turned all 6 tests red.
+- `aRetryAppendsNothingTheFileAlreadyHolds` runs 80 rounds. Each must end failed, keep its file, hold exactly what was reported, and have every byte right. Control runs: on the unfixed downloader it went red at round 18 on corruption; with only the length fix, red at rounds 30, 78, 5 and 34 on `completed=true`. **It is probabilistic:** at the measured rates 80 rounds catch the duplication about 99% and the false success about 90% of the time. A test that forces a short `_size` was tried, by resuming with the stream still open. It passed on the unfixed code, so it was dropped.
+
+### What else reads `_size`, not changed
+
+`getDownloadFileInfo().fileLength` is still `lengthOrThrow()`. It can read short for a moment after a download ends, and these read it:
+
+| Where | Decides |
+|---|---|
+| `BaseFetchButton.kt:85` | The bar, and with no status in memory, whether the button shows done or paused |
+| `DownloadViewModel.kt:309`, `:312` | Hides a file of 1 byte or less, and sums sizes |
+| `DownloadViewModel.kt:382` | The bytes shown on a row |
+| `DownloadButtonSetup.kt:99` | Whether a long press shows the snackbar |
+
+None of them starts, resumes or finishes a transfer. `setupStream`'s other callers (`BackupUtils`, `SettingsUpdates`, `LogcatDialog`) all pass `tryResume = false`, so they never reach the length change; they do now truncate an existing file rather than delete it.
+
+**Not exercised:** a document-tree folder, HLS's resume, a real device, a slow disk, and `addToQueue`'s check, which was changed from reading the code, with no test of its own. Starting over by truncating also reaches backups, logcat export and the updater (`tryResume = false`); they were read, not run.
+
+### The second race: success with no file
+
+**What happened.** **29 of 900 rounds before either fix and 6 of 300 after the first** ended `isCompleted` with no file, record or fact. A
+person would see a finished download with nothing to play.
+
+**The cause, from MediaProvider's own log in one such round, all within 9 ms.**
+
+1. Starting over on the next mirror deleted the first mirror's file (`Deleted ... 1 ... items`).
+2. That delete triggered a scan, which found the path gone (`ENOENT`).
+3. `setupStream` then made a new file at the same path.
+4. The scan's update of the old row failed (`Expected 1 rows but actual 0`), and the scanner deleted the new row (`1 deletes`).
+
+At that moment MediaStore held no row at all for the folder, while the transfer still wrote through its open stream. `stream.exists`
+then read false, which `downloadThing` takes as the person deleting the file, so it stopped, deleted what it had written and returned
+`DOWNLOAD_STOPPED`, whose `success` is `true`. The other order of the same race is the `UNIQUE constraint failed: files._data` that another
+agent's runs logged on the same create, after the same `ENOENT`. Here that order never showed: in 1,288 rounds counted for it (900 before the fixes, 300 after the first, 88 earlier) the second mirror was always asked.
+
+**The fix.** Starting over truncates the existing file in place, opening it with `"wt"` (SafeFile's mode when not appending, from its
+bytecode), instead of deleting it and making another at the same path. The same goes for a source that cannot resume.
+
+**Tried first and dropped:** checking a miss against `openFileDescriptor`. It changed nothing, because the row was gone, so there was no uri to open.
+
+**After both fixes,** the test below ran 300 rounds with every check on: each round ended failed with its file kept, the bytes read back equal
+to `bytesWritten`, and every byte right. The log had 0 `ENOENT` and 0 `UNIQUE constraint` lines.

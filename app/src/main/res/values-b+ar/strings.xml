@@ -114,6 +114,7 @@
 <string name="cancel_queue_message">"هل ترغب في إلغاء جميع التنزيلات قيد الانتظار؟"</string>
 <string name="cartoons">"رسوم متحركة"</string>
 <string name="cartoons_singular">"كرتون"</string>
+<string name="cast">"طاقم العمل"</string>
 <string name="cast_format" formatted="true">"طاقم العمل: %s"</string>
 <string name="category_account">"الحسابات والأمن"</string>
 <string name="category_general">"عام"</string>
@@ -196,8 +197,20 @@
 <string name="downloaded">"تم التنزيل"</string>
 <string name="downloaded_file">"الملف الذي تم تنزيله"</string>
 <string name="downloading">"جاري التنزيل"</string>
+<string name="downloads_browse_library">"تصفّح المكتبة"</string>
 <string name="downloads_delete_select">"الرجاء تحديد العناصر للحذف"</string>
 <string name="downloads_empty">"لا يوجد حالياً اى تنزيلات."</string>
+<string name="downloads_empty_body">"تظهر هنا التنزيلات التي تبدأها من قائمة حلقات العنوان، ويمكن تشغيلها دون اتصال."</string>
+<string name="downloads_empty_headline">"لا توجد تنزيلات بعد"</string>
+<string name="downloads_free_up_space">"إخلاء مساحة"</string>
+<string name="downloads_load_failed_body">"لم تتغيّر ملفاتك التي تم تنزيلها."</string>
+<string name="downloads_load_failed_headline">"تعذّرت قراءة تنزيلاتك"</string>
+<string name="downloads_offline_pill">"غير متصل · لا يوجد اتصال"</string>
+<string name="downloads_play_from_link">"تشغيل من رابط"</string>
+<string name="downloads_select">"تحديد"</string>
+<string name="downloads_storage_full_headline">"مساحة التخزين غير كافية"</string>
+<string name="downloads_storage_legend" formatted="true">"%1$s من %2$s مستخدم · %3$s في التنزيلات"</string>
+<string name="downloads_storage_needs" formatted="true">"يلزم %s إضافية"</string>
 <string name="duplicate_add">"اضافة"</string>
 <string name="duplicate_message_multiple" formatted="true">"احتمال وجود تكرارات في مكتبتك. \n \n%s \n \nهل تريد الاضافة على اي حال مستبدلاً النسخة الموجودة بالفعل, أم تفضل إلغاء العملية؟"</string>
 <string name="duplicate_message_single" formatted="true">"يبدو أن هناك عنصرًا مكررًا موجود بالفعل في مكتبتك: '%s'. \n \nهل ترغب في إضافة هذا العنصر على أية حال، أو استبدال العنصر الموجود، أو إلغاء الإجراء؟"</string>
@@ -206,6 +219,7 @@
 <string name="duplicate_title">"احتمال أن يكون موجود بالفعل"</string>
 <string name="duration">"المدة الزمنية"</string>
 <string name="duration_format" formatted="true">"%d دقيقة"</string>
+<string name="duration_hours_minutes_format" formatted="true">"%1$dh %2$dm"</string>
 <string name="edit">"تعديل"</string>
 <string name="edit_account">"تعديل الحساب"</string>
 <string name="edit_profile_image_error_empty">"لم يتم العثور على الرابط"</string>
@@ -360,6 +374,7 @@
 <string name="middle_right">"منتصف يمين"</string>
 <string name="min">"الحد الأدنى"</string>
 <string name="mobile_data">"بيانات الهاتف"</string>
+<string name="more_like_this">"المزيد مثل هذا"</string>
 <string name="movies">"أفلام"</string>
 <string name="movies_singular">"فيلم"</string>
 <string name="music_singular">"موسيقى"</string>
@@ -579,8 +594,12 @@
 <string name="search_provider_text_providers">"البحث باستخدام المصادر"</string>
 <string name="search_provider_text_types">"البحث باستخدام الأنواع"</string>
 <string name="search_state_idle_body_desktop">"اكتب عنوانًا. تظهر النتائج تحت كل مصدر عند استجابته."</string>
+<string name="search_state_no_results_type_filter" formatted="true">"%s فقط. عامل تصفية النوع يضيّق نطاق البحث."</string>
 <string name="search_suggestions">"اقتراحات البحث"</string>
 <string name="search_suggestions_des">"عرض اقتراحات البحث أثناء الكتابة"</string>
+<string name="search_tv_source_failed" formatted="true">"فشل %s"</string>
+<string name="search_tv_source_pinned">"مثبّت"</string>
+<string name="search_tv_sources_panel_meta" formatted="true">"%1$d من %2$d مفعّل · تُطبَّق التغييرات عند «تم»"</string>
 <string name="season">"موسم"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"م"</string>

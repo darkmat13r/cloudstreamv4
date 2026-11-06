@@ -47,7 +47,7 @@ data class DownloadProgressRowState(
  *
  * **Departs from the boards on failure.** They draw a `live` rule on a failed row's leading edge, and `DEC-17`
  * has since ruled that a failure is a hollow neutral marker, never `live`. So the marker is a hollow [StatusDot]
- * beside the value, and the words carry the rest.
+ * beside the value, and the words carry the rest, in `ink2` (6c's closing note).
  *
  * The verbs on 6d (play, pause or retry, delete) are separate focus stops beside this row on the board, not
  * inside it, so they are the screen's to lay out.
@@ -104,7 +104,7 @@ private fun DownloadTrailing(value: String?, failed: Boolean) {
             TargetLabel(
                 text = value,
                 style = CloudStreamTheme.typography.labelMono,
-                color = if (failed) colors.muted else colors.ink,
+                color = if (failed) colors.ink2 else colors.ink,
             )
         }
     }

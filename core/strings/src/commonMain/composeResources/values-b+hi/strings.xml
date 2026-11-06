@@ -66,6 +66,7 @@
 <string name="cancel">रद्द करें</string>
 <string name="cartoons">कार्टून</string>
 <string name="cartoons_singular">हास्यचित्र</string>
+<string name="cast">Cast</string>
 <string name="cast_format">Cast: %s</string>
 <string name="category_account">खाते और सुरक्षा</string>
 <string name="category_general">सामान्य</string>
@@ -116,8 +117,20 @@
 <string name="download_time_left_sec_format">%1$d सेकंड</string>
 <string name="downloaded">डाउनलोड किया गया</string>
 <string name="downloading">डाउनलोड हो रहा</string>
+<string name="downloads_browse_library">लाइब्रेरी ब्राउज़ करें</string>
 <string name="downloads_delete_select">मिटाने के लिए वस्तु चुनें</string>
 <string name="downloads_empty">वर्तमान में कोई डाउनलोड नहीं है।</string>
+<string name="downloads_empty_body">किसी शीर्षक की एपिसोड सूची से शुरू किए गए डाउनलोड यहाँ दिखते हैं और बिना कनेक्शन के चलते हैं।</string>
+<string name="downloads_empty_headline">अभी तक कोई डाउनलोड नहीं</string>
+<string name="downloads_free_up_space">जगह ख़ाली करें</string>
+<string name="downloads_load_failed_body">आपकी डाउनलोड की गई फ़ाइलें नहीं बदली गई हैं।</string>
+<string name="downloads_load_failed_headline">आपके डाउनलोड पढ़े नहीं जा सके</string>
+<string name="downloads_offline_pill">ऑफ़लाइन · कोई कनेक्शन नहीं</string>
+<string name="downloads_play_from_link">लिंक से चलाएं</string>
+<string name="downloads_select">चुनें</string>
+<string name="downloads_storage_full_headline">पर्याप्त स्टोरेज नहीं है</string>
+<string name="downloads_storage_legend">%1$s / %2$s इस्तेमाल में · डाउनलोड में %3$s</string>
+<string name="downloads_storage_needs">%s और चाहिए</string>
 <string name="duplicate_add">जोड़े</string>
 <string name="duplicate_message_multiple">आपकी लाइब्रेरी में संभावित डुप्लिकेट आइटम पाए गए हैं: \n \n%s \n \nक्या आप किसी भी तरह इस आइटम को जोड़ना चाहेंगे, मौजूदा आइटम को बदलना चाहेंगे, या कार्रवाई रद्द करना चाहेंगे?</string>
 <string name="duplicate_message_single">ऐसा प्रतीत होता है कि संभावित रूप से डुप्लिकेट आइटम आपकी लाइब्रेरी में पहले से मौजूद है: '%s.' \n \nक्या आप किसी भी तरह इस आइटम को जोड़ना चाहेंगे, मौजूदा आइटम को बदलना चाहेंगे, या कार्रवाई रद्द करना चाहेंगे?</string>
@@ -126,6 +139,7 @@
 <string name="duplicate_title">संभावित डुप्लिकेट मिला</string>
 <string name="duration">अवधि</string>
 <string name="duration_format">%d मिनट</string>
+<string name="duration_hours_minutes_format">%1$dh %2$dm</string>
 <string name="eigengraumode_settings">प्रतिश्रवण गति</string>
 <string name="emulator_layout">एमुलेटर रुप दर्शन</string>
 <string name="enable_nsfw_on_providers">सपोर्टेड एक्सटेंशन पर एन एस एफ डब्ल्यू (NSFW) चालू करें</string>
@@ -234,6 +248,7 @@
 <string name="login">लॉग इन</string>
 <string name="login_format">%1$s %2$s</string>
 <string name="logout">लॉग आउट</string>
+<string name="more_like_this">इस जैसे और</string>
 <string name="movies">मूवीज</string>
 <string name="movies_singular">फिल्म</string>
 <string name="music_singular">संगीत</string>
@@ -362,6 +377,10 @@
 <string name="search_provider_text_providers">प्रोवाइडरों का उपयोग कर खोजें</string>
 <string name="search_provider_text_types">प्रकार का उपयोग करके खोजें</string>
 <string name="search_state_idle_body_desktop">कोई शीर्षक लिखें। हर स्रोत के जवाब देने पर नतीजे उसके नीचे दिखेंगे।</string>
+<string name="search_state_no_results_type_filter">सिर्फ़ %s। आपका प्रकार फ़िल्टर खोज को सीमित कर रहा है।</string>
+<string name="search_tv_source_failed">विफल %s</string>
+<string name="search_tv_source_pinned">पिन किया गया</string>
+<string name="search_tv_sources_panel_meta">%2$d में से %1$d चालू · बदलाव हो गया दबाने पर लागू होंगे</string>
 <string name="season">सत्र</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">S</string>

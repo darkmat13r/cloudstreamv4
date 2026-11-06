@@ -81,6 +81,7 @@
 <string name="cancel">ပယ်ဖျက်ရန်</string>
 <string name="cartoons">ကာတွန်းများ</string>
 <string name="cartoons_singular">ကာတွန်း</string>
+<string name="cast">သရုပ်ဆောင်များ</string>
 <string name="cast_format">သရုပ်ဆောင်များ: %s</string>
 <string name="category_account">အကောင့်များ</string>
 <string name="category_general">အထွေထွေ</string>
@@ -130,6 +131,18 @@
 <string name="downloaded">ဒေါင်းလုဒ် လုပ်ပြီး</string>
 <string name="downloaded_file">ဖိုင်ဒေါင်းလုဒ်လုပ်ပြီး</string>
 <string name="downloading">ဒေါင်းလုဒ် လုပ်နေသည်</string>
+<string name="downloads_browse_library">လိုက်ဘရီကို ကြည့်ရှုရန်</string>
+<string name="downloads_empty_body">ခေါင်းစဉ်တစ်ခု၏ အပိုင်းစာရင်းမှ စတင်သော ဒေါင်းလုဒ်များသည် ဤနေရာတွင် ပေါ်လာပြီး အင်တာနက်မလိုဘဲ ဖွင့်နိုင်သည်။</string>
+<string name="downloads_empty_headline">ဒေါင်းလုဒ် မရှိသေးပါ</string>
+<string name="downloads_free_up_space">နေရာလွတ်ယူရန်</string>
+<string name="downloads_load_failed_body">ဒေါင်းလုဒ်လုပ်ထားသော ဖိုင်များကို မပြောင်းလဲထားပါ။</string>
+<string name="downloads_load_failed_headline">ဒေါင်းလုဒ်များကို ဖတ်၍မရပါ</string>
+<string name="downloads_offline_pill">အော့ဖ်လိုင်း · ချိတ်ဆက်မှုမရှိပါ</string>
+<string name="downloads_play_from_link">လင့်ခ်မှ ဖွင့်ရန်</string>
+<string name="downloads_select">ရွေးချယ်ရန်</string>
+<string name="downloads_storage_full_headline">သိုလှောင်ရုံ မလုံလောက်ပါ</string>
+<string name="downloads_storage_legend">%1$s / %2$s အသုံးပြုပြီး · ဒေါင်းလုဒ်တွင် %3$s</string>
+<string name="downloads_storage_needs">%s ထပ်လိုအပ်သည်</string>
 <string name="duration">ကြာချိန်</string>
 <string name="duration_format">%d မိနစ်</string>
 <string name="edit">တည်းဖြတ်ရန်</string>
@@ -256,6 +269,7 @@
 <string name="max">အပြည့်</string>
 <string name="min">အနည်းဆုံး</string>
 <string name="mobile_data">မိုဘိုင်းဒေတာ</string>
+<string name="more_like_this">ဤကဲ့သို့ နောက်ထပ်</string>
 <string name="movies">ရုပ်ရှင်များ</string>
 <string name="movies_singular">ရုပ်ရှင်</string>
 <string name="network_adress_example">ထုတ်လွှင့်ရန် လင့်ခ် နှင့်ချိတ်ပါ</string>
@@ -425,6 +439,10 @@
 <string name="search_provider_text_providers">ပ့ံပိုးပေးသောဝန်ဆောင်မှုများအသုံးပြု၍ရှာရန်</string>
 <string name="search_provider_text_types">အမျိုးအစားများအသုံးပြု၍ရှာရန်</string>
 <string name="search_state_idle_body_desktop">ခေါင်းစဉ်တစ်ခု ရိုက်ထည့်ပါ။ ရင်းမြစ်တစ်ခုစီ တုံ့ပြန်သည်နှင့် ရလဒ်များကို ၎င်းအောက်တွင် ပြသပါမည်။</string>
+<string name="search_state_no_results_type_filter">%s သာ။ သင့်အမျိုးအစား စစ်ထုတ်မှုက ရှာဖွေမှုကို ကျဉ်းစေနေသည်။</string>
+<string name="search_tv_source_failed">မအောင်မြင်ပါ %s</string>
+<string name="search_tv_source_pinned">ပင်ထိုးထား</string>
+<string name="search_tv_sources_panel_meta">%2$d ခုအနက် %1$d ခု ဖွင့်ထား · ပြောင်းလဲမှုများကို ပြီးပြီ တွင် အသုံးပြုမည်</string>
 <string name="season">အတွဲ</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">အတွဲ</string>

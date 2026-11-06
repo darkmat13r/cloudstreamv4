@@ -30,7 +30,7 @@ import com.lagradost.cloudstream3.plugins.PLUGINS_KEY
 import com.lagradost.cloudstream3.plugins.PluginData
 import com.lagradost.cloudstream3.ui.WatchType
 import com.lagradost.cloudstream3.ui.home.HomeFragment
-import com.lagradost.cloudstream3.ui.result.ResultFragmentTv
+import com.lagradost.cloudstream4.detail.DetailTvFragment
 import com.lagradost.cloudstream3.ui.settings.Globals.updateTv
 import com.lagradost.cloudstream3.ui.setup.HAS_DONE_SETUP_KEY
 import com.lagradost.cloudstream3.utils.DOWNLOAD_HEADER_CACHE
@@ -355,7 +355,8 @@ class TvHomeNavigationTest {
             pressToTheSourceControl(ONE)
             pressUntil(Dpad.Right, RANDOM)
             dpad.center()
-            waitFor("a title's page, was $fragmentClass") { fragmentClass == ResultFragmentTv::class.java }
+            // KMP-38 (#153) made this destination the Compose detail page; Random opens it as a card does.
+            waitFor("a title's page, was $fragmentClass") { fragmentClass == DetailTvFragment::class.java }
             // Which title is random, and `APIRepository` keeps a page it has loaded, so the provider may not be asked again.
             assertEquals(R.id.navigation_results_tv, destination)
             repeat(BACK_PRESSES) {
@@ -431,7 +432,9 @@ class TvHomeNavigationTest {
             pressUntil(Dpad.Right, "$ONE B 2")
             dpad.center()
 
-            waitFor("the title's page, was $fragmentClass") { fragmentClass == ResultFragmentTv::class.java }
+            // KMP-38: TV opens the new detail page at this destination, so the title's page is no
+            // longer `ResultFragmentTv`. The destination id below is unchanged.
+            waitFor("the title's page, was $fragmentClass") { fragmentClass == DetailTvFragment::class.java }
             assertEquals(R.id.navigation_results_tv, destination)
             waitFor("it asked the provider for that title") { one.loaded.isNotEmpty() }
             // After the hero's own title, which was asked for first.
@@ -519,7 +522,9 @@ class TvHomeNavigationTest {
             assertEquals(PLAYED, dpad.press(Dpad.Up))
             dpad.center()
 
-            waitFor("the title's page, was $fragmentClass") { fragmentClass == ResultFragmentTv::class.java }
+            // KMP-38, as above: this destination now hosts the Compose detail page. `KMP-41` added this
+            // case against `ResultFragmentTv`, which this branch had already repointed.
+            waitFor("the title's page, was $fragmentClass") { fragmentClass == DetailTvFragment::class.java }
             assertEquals(R.id.navigation_results_tv, destination)
             waitFor("it asked the provider for that title") { "https://example.invalid/$ONE A 1" in one.loaded }
 
@@ -554,7 +559,8 @@ class TvHomeNavigationTest {
             assertEquals(BOOKMARKED, dpad.press(Dpad.Down))
             dpad.center()
 
-            waitFor("the title's page, was $fragmentClass") { fragmentClass == ResultFragmentTv::class.java }
+            // KMP-38 (#153) made this destination the Compose detail page; the bookmark opens it as a card does.
+            waitFor("the title's page, was $fragmentClass") { fragmentClass == DetailTvFragment::class.java }
             waitFor("it asked the provider for that title") { "https://example.invalid/$BOOKMARKED" in one.loaded }
             repeat(BACK_PRESSES) {
                 if (fragmentClass != HomeTvFragment::class.java) {

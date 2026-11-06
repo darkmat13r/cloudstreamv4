@@ -98,6 +98,7 @@
 <string name="cancel">"oooohh"</string>
 <string name="cartoons">"ahoooouuhhh"</string>
 <string name="cartoons_singular">"uuuuggg"</string>
+<string name="cast">"oouaaahh"</string>
 <string name="cast_format" formatted="true">"oouaaahh %s"</string>
 <string name="category_account">"oooogggg aah aaaaaakh"</string>
 <string name="category_general">"a ahu uoo uoahuo uo"</string>
@@ -169,8 +170,20 @@
 <string name="downloaded">"ooo-ahahaaaghh"</string>
 <string name="downloaded_file">"aaaagggaah aagg"</string>
 <string name="downloading">"oohahaaoouuh"</string>
+<string name="downloads_browse_library">"ooh uuuuuuuh"</string>
 <string name="downloads_delete_select">"eeeeek uuuhh oh aaaagg"</string>
 <string name="downloads_empty">"uuuhh aah uuuugggog ug aaaagggog"</string>
+<string name="downloads_empty_body">"uuuhh aah uuuugggog ug aaaagggog aaaagggoh ooh uuuugggh uuuuhhh."</string>
+<string name="downloads_empty_headline">"uuuhh aauuhah"</string>
+<string name="downloads_free_up_space">"ooo-ahahaaaaa oh"</string>
+<string name="downloads_load_failed_body">"ouuhhuhooh ooh uuh ahooo."</string>
+<string name="downloads_load_failed_headline">"ahooo uuhh ouuhhuhooh ooh"</string>
+<string name="downloads_offline_pill">"aaaagggoh ooh · uuuhh"</string>
+<string name="downloads_play_from_link">"aaaaa uuuuhhh"</string>
+<string name="downloads_select">"uuuugg"</string>
+<string name="downloads_storage_full_headline">"uuuhh aauugghhahahhah"</string>
+<string name="downloads_storage_legend" formatted="true">"%1$s oh %2$s ahhahhh · %3$s ouuhhuhooh"</string>
+<string name="downloads_storage_needs" formatted="true">"aah %s oh"</string>
 <string name="duplicate_add">"oog"</string>
 <string name="duplicate_message_multiple" formatted="true">"uuuuggguk uuuuhhhoh uuugg aahh aaak uuugg ag oohh library: \n \n%s \n \nWould aag aagg og uuk uugg oogg anyway, aaaahhh ooh uuuugggh ones, ek uuuuhh aah action?"</string>
 <string name="duplicate_message_single" formatted="true">"oh ooooggg oogg k uuuuuukaahh uuuugggag uuhh ooooggg oooogg ah oogg library: '%s' \n \n \nWould uug uugg uh aak oogg oohh anyway, oooohhh uuh oooohhhg one, oh aaaagg eek action?"</string>
@@ -317,6 +330,7 @@
 <string name="max">"aah"</string>
 <string name="min">"oog"</string>
 <string name="mobile_data">"aaaahh uugg"</string>
+<string name="more_like_this">"ahooo aaaahhhaahh"</string>
 <string name="movies">"a oouuh"</string>
 <string name="movies_singular">"oooouuuh"</string>
 <string name="music_singular">"aaahh"</string>
@@ -511,6 +525,10 @@
 <string name="search_provider_text_providers">"aauuhaauugghhahhh ohaauugghhouuhhh"</string>
 <string name="search_provider_text_types">"ahhhahoooohhaa ahhhoohahh"</string>
 <string name="search_state_idle_body_desktop">"oouuh aaaaggg uuuk ooh"</string>
+<string name="search_state_no_results_type_filter" formatted="true">"%s uuhaa. oouuh aagggh uuk."</string>
+<string name="search_tv_source_failed" formatted="true">"AAGGH %s"</string>
+<string name="search_tv_source_pinned">"OOHHAA"</string>
+<string name="search_tv_sources_panel_meta" formatted="true">"%1$d OOHH %2$d AAHH · UUGH AAK EEEK"</string>
 <string name="season">"ooo-ahah"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"H"</string>

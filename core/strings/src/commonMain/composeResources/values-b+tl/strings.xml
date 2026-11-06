@@ -45,6 +45,7 @@
 <string name="bottom_title_settings_des">Ilagay ang title sa ibaba ng poster</string>
 <string name="cancel">Kanselahin</string>
 <string name="cartoons">Cartoons</string>
+<string name="cast">I-Cast</string>
 <string name="cast_format">I-Cast: %s</string>
 <string name="category_general">Pangkalahatan</string>
 <string name="check_for_update">Tingnan kung may bagong update</string>
@@ -74,6 +75,18 @@
 <string name="download_storage_text">Internal Storage</string>
 <string name="downloaded">Downloaded</string>
 <string name="downloading">Downloading</string>
+<string name="downloads_browse_library">I-browse ang library</string>
+<string name="downloads_empty_body">Lalabas dito ang mga download na sinimulan mo mula sa listahan ng episode ng isang pamagat at mapapanood nang walang koneksyon.</string>
+<string name="downloads_empty_headline">Wala pang mga download</string>
+<string name="downloads_free_up_space">Magbakante ng espasyo</string>
+<string name="downloads_load_failed_body">Hindi nabago ang mga na-download mong file.</string>
+<string name="downloads_load_failed_headline">Hindi mabasa ang iyong mga download</string>
+<string name="downloads_offline_pill">Offline · walang koneksyon</string>
+<string name="downloads_play_from_link">I-play mula sa link</string>
+<string name="downloads_select">Piliin</string>
+<string name="downloads_storage_full_headline">Kulang ang storage</string>
+<string name="downloads_storage_legend">%1$s ng %2$s ang gamit · %3$s sa mga download</string>
+<string name="downloads_storage_needs">Kailangan ng %s pa</string>
 <string name="duration">Tagal</string>
 <string name="duration_format">%d min</string>
 <string name="eigengraumode_settings">Eigengravy Mode</string>
@@ -150,6 +163,7 @@
 <string name="load_more">Mag-load pa</string>
 <string name="loading">Loading…</string>
 <string name="logout">Mag log out</string>
+<string name="more_like_this">Higit pang katulad nito</string>
 <string name="movies">Pelikula</string>
 <string name="new_update_format">Bagong update! \n%1$s -&gt; %2$s</string>
 <string name="next_episode">Susunod na Episode</string>
@@ -232,6 +246,10 @@
 <string name="search_provider_text_providers">Search using providers</string>
 <string name="search_provider_text_types">Search using types</string>
 <string name="search_state_idle_body_desktop">Mag-type ng pamagat. Lalabas ang mga resulta sa ilalim ng bawat source kapag sumagot ito.</string>
+<string name="search_state_no_results_type_filter">%s lang. Pinipigilan ng type filter mo ang paghahanap.</string>
+<string name="search_tv_source_failed">NABIGO %s</string>
+<string name="search_tv_source_pinned">NAKA-PIN</string>
+<string name="search_tv_sources_panel_meta">%1$d SA %2$d ANG NAKA-ENABLE · ILALAPAT ANG MGA PAGBABAGO KAPAG PININDOT ANG TAPOS NA</string>
 <string name="season">Season</string>
 <string name="season_short">S</string>
 <string name="seek_back_10_seconds">Bumalik ng 10 segundo</string>

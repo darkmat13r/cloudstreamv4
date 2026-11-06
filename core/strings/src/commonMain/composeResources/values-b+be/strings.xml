@@ -116,6 +116,7 @@
 <string name="cancel_queue_message">Скасаваць усе спампоўванні ў чарзе?</string>
 <string name="cartoons">Мультфільмы</string>
 <string name="cartoons_singular">Мультфільм</string>
+<string name="cast">Склад</string>
 <string name="cast_format">Склад: %s</string>
 <string name="category_account">Уліковыя запісы і бяспека</string>
 <string name="category_general">Агульныя</string>
@@ -196,8 +197,20 @@
 <string name="downloaded">Спампавана</string>
 <string name="downloaded_file">Спампаваны файл</string>
 <string name="downloading">Ідзе спампоўванне</string>
+<string name="downloads_browse_library">Агляд бібліятэкі</string>
 <string name="downloads_delete_select">Выберыце элементы для выдалення</string>
 <string name="downloads_empty">Спамповак пакуль што няма.</string>
+<string name="downloads_empty_body">Спампоўкі, запушчаныя са спіса серый, з'яўляюцца тут і прайграюцца без злучэння.</string>
+<string name="downloads_empty_headline">Спамповак пакуль няма</string>
+<string name="downloads_free_up_space">Вызваліць месца</string>
+<string name="downloads_load_failed_body">Вашы спампаваныя файлы не зменены.</string>
+<string name="downloads_load_failed_headline">Не ўдалося прачытаць спампоўкі</string>
+<string name="downloads_offline_pill">Па-за сеткай · няма злучэння</string>
+<string name="downloads_play_from_link">Прайграць па спасылцы</string>
+<string name="downloads_select">Выбраць</string>
+<string name="downloads_storage_full_headline">Недастаткова месца ў сховішчы</string>
+<string name="downloads_storage_legend">Ужыта %1$s з %2$s · %3$s у спампоўках</string>
+<string name="downloads_storage_needs">Патрабуецца яшчэ %s</string>
 <string name="duplicate_add">Дадаць</string>
 <string name="duplicate_message_multiple">У вашай бібліятэцы знойдзены магчымыя дублікаты: \n\n%s \n\nЦі хочаце вы ўсё роўна яго дадаць, замяніць ужо існуючыя, або скасаваць дзеянне?</string>
 <string name="duplicate_message_single">Падобна на тое, што ў вашай бібліятэцы ёсць дублікат гэтага элемента: ‹%s.›\n\nЦі хочаце вы ўсё роўна яго дадаць, замяніць ужо існуючы, або скасаваць дзеянне?</string>
@@ -206,6 +219,7 @@
 <string name="duplicate_title">Знойдзены магчымы дублікат</string>
 <string name="duration">Працягласць</string>
 <string name="duration_format">%d хвіл</string>
+<string name="duration_hours_minutes_format">%1$d гадз %2$d хв</string>
 <string name="edit">Рэдагаваць</string>
 <string name="edit_account">Рэдагаваць уліковы запіс</string>
 <string name="edit_profile_image_error_empty">URL-адрас не знойдзены</string>
@@ -360,6 +374,7 @@
 <string name="middle_right">У сярэдзіне справа</string>
 <string name="min">Мін.</string>
 <string name="mobile_data">Мабільная перадача дадзеных</string>
+<string name="more_like_this">Падобнае</string>
 <string name="movies">Фільмы</string>
 <string name="movies_singular">Фільм</string>
 <string name="music_singular">Музыка</string>
@@ -576,8 +591,12 @@
 <string name="search_provider_text_providers">Пошук праз пастаўшчыкоў</string>
 <string name="search_provider_text_types">Пошук праз тыпы</string>
 <string name="search_state_idle_body_desktop">Увядзіце назву. Вынікі з'яўляюцца пад кожнай крыніцай, калі яна адказвае.</string>
+<string name="search_state_no_results_type_filter">Толькі %s. Фільтр па тыпе звужае пошук.</string>
 <string name="search_suggestions">Прапановы пошуку</string>
 <string name="search_suggestions_des">Паказваць прапановы пошуку падчас уводу тэксту</string>
+<string name="search_tv_source_failed">ЗБОЙ %s</string>
+<string name="search_tv_source_pinned">ЗАМАЦАВАНА</string>
+<string name="search_tv_sources_panel_meta">%1$d З %2$d УКЛЮЧАНА · ЗМЕНЫ ПРЫМЯНЯЮЦЦА ПАСЛЯ ГАТОВА</string>
 <string name="season">Сезон</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">Сез</string>
