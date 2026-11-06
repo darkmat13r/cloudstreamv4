@@ -21,6 +21,7 @@ import com.lagradost.cloudstream3.utils.downloader.VideoDownloadManager.download
 import com.lagradost.cloudstream3.utils.downloader.VideoDownloadManager.getDownloadFileInfo
 import com.lagradost.cloudstream3.utils.downloader.VideoDownloadManager.getDownloadQueuePackage
 import com.lagradost.cloudstream3.utils.downloader.VideoDownloadManager.getDownloadResumePackage
+import com.lagradost.cloudstream4.download.EngineVideoDownload
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.getAndUpdate
@@ -81,6 +82,8 @@ object DownloadQueueManager {
 
             // Once added to the queue they can be safely removed
             removeKeys(KEY_RESUME_IN_QUEUE)
+
+            EngineVideoDownload.sweepOrphanedStaging(context, newQueue.map { it.id })
 
             // Make sure the download buttons display a pending status
             newQueue.forEach { obj ->

@@ -4960,3 +4960,139 @@ that exist because the old downloader broke them:
 - No Android device run: a test APK would hit the same minSdk wall.
 - DNS rebinding, as above.
 - The engine's unthrottled slowdown is not profiled.
+
+## KMP-59 — The Android downloader runs `:media:download` behind a switch · **measured 2026-11-06**
+
+`ExtractorLinkType.VIDEO` downloads can go through the segmented engine (`KMP-46`) instead of `downloadThing`.
+The switch is `EngineDownloadSwitch.useSegmentedEngine`. **It defaults to `false`**, so nothing changes for users until it is turned on.
+Subtitles, HLS, DASH and torrents stay on their own paths. Builds on `DEC-18` (minSdk 24). Android only:
+the Mac service is `KMP-52`.
+
+**Shape.**
+- `DownloadManager`'s `VIDEO` arm gets one `if`, and `DownloadQueueManager.init` gets one call (the sweep below). Nothing else in an existing file changes.
+- `EngineVideoDownload` reports through the same `DownloadMetaData` as `downloadThing`. So events, `DownloadFacts` (`KMP-36`),
+  the notification and the foreground service hear what they always heard.
+- `EngineDownloadRules` holds the pure decisions and has 19 unit tests.
+- **Staging.** Every destination (MediaStore, a document tree, a path) gets a staged copy first, in `noBackupFilesDir/downloads/<episode id>/`.
+  This is because the engine needs a real directory with atomic moves.
+- **On COMPLETED, in this order:**
+  1. Write the marker `complete`.
+  2. Copy into the destination that `setupStream` resolves (truncating).
+  3. Check the copy's length on disk.
+  4. Write `KEY_DOWNLOAD_INFO`.
+  5. Delete the staging directory.
+- **If it crashes:**
+  - *After the copy:* one visible file. The restart copies again without fetching.
+  - *During the copy:* the restart copies over the partial.
+  - *A wrong length:* the destination is deleted, the staged file is kept, and the result is `SizeMismatch` with no next mirror.
+- **Space.** The peak is about 2× the file, checked at the first snapshot that carries a total and again before the copy (`InsufficientSpace`).
+- **Sweep.** At start-up, staging whose episode is gone (stopped, deleted, or pruned after a failure) is removed. It never touches an id that is
+  running, queued, or has a resume package and an episode entry.
+
+**API 24/25: kotlinx-io has no atomic move there.**
+- kotlinx-io 0.9.1 picks its mover with `Class.forName("java.nio.file.Files")`. Below API 26 that class does not exist, so it throws
+  `UnsupportedOperationException`. This was measured on an API 25 emulator, for kotlinx-io directly and through FileKit.
+- Desugaring does not help: it rewrites class references to `j$.nio.file.Files` but not the string.
+- **The fix:** `FileKitStorage.atomicMove` falls back to `File.renameTo` only on that exception. A `false` from it becomes an
+  `IOException`, and the source is kept.
+- Before the fix, 3 of the 5 move tests failed on API 25.
+- `media/download` now applies `cloudstream.kmp.device-test`. `AtomicMoveDeviceTest` passes 6/6 on `Api25_Test` (7.1.1).
+  The JVM's `AtomicMoveFallbackTest` adds 6 more, and `jvmTest` passes 203/0.
+
+**What changes when the switch is on.** TLS and the LAN refusal first.
+
+| Old behaviour | New behaviour | Who notices |
+|---|---|---|
+| — | **Switch off too:** `DownloadQueueManager.init` runs the staging sweep at every start. With nothing staged it reads one directory listing (null when the directory does not exist) and returns | Nobody |
+| TLS not checked (`verify = false`) | Checked, over `app.baseClient`: self-signed or expired hosts fail | Users of sources with broken certificates |
+| LAN, loopback and private addresses allowed | Refused (`AddressRefused`, next mirror) | Users downloading from LAN or self-hosted servers |
+| The partial file is visible and listed in Downloads | Nothing is visible or listed until the copy ends. Every list reader drops an episode with no file. The fix is a reader change (below) | Everyone |
+| Peak space ≈ 1× the file | ≈ 2×, always on internal storage, even when downloads go to an SD card, USB drive or document tree | TV boxes with small internal storage. Likely the most visible |
+| Done at the last byte | Plus a full local copy; the notification sits at 100% meanwhile | Big files on slow storage |
+| A failed download keeps its file | Its staged parts stay on internal storage until the next start after the episode is stopped, deleted or pruned | Users with failed downloads |
+| 3 connections (`download_concurrent_key`) | 8; the setting is ignored | Throttling hosts; users who set it |
+| Under 10 MiB is invalid; over 50 MB a failure keeps the file and tries no other mirror | Neither rule. HTML is refused by content (`NoUsableLink`) | Users of short clips |
+| Resume needs ranges | Also needs an ETag or Last-Modified, or it starts again from 0 | Users of minimal servers |
+| An old-path partial resumes | Ignored; the engine starts again in staging, and the old partial stays visible until the copy overwrites it | Users mid-download when the switch flips |
+| OkHttp follows 20 redirects | 5, each re-checked; HTTPS→HTTP refused | Long redirect chains |
+| Extension headers sent as given | `Range`, `If-Range`, `Accept-Encoding`, `Host`, `Content-Length`, `Transfer-Encoding`, `Connection` and non-ASCII values are dropped | Extensions that set those |
+| Name from `getFileName` | Engine sanitising on top (control and bidi characters, reserved names, 200 bytes) | Rare; subtitle matching by name in those cases |
+| Deleting the file mid-download stops it (`fileChecker`) | No file exists yet to delete | — |
+| A running queue item offers "Delete file" | Offers "Cancel", which cleans up staging | Queue users |
+| Pause keeps connections open | Pause closes them | Servers |
+| Work stealing (engine) | A split can fetch an in-flight range's tail twice (seen as `GET 32153500-33554431` inside `GET 30687232-33554431`) | Bandwidth on metered links (`KMP-61`) |
+
+**"Not listed until done" needs a reader change.** The smallest one: a `getDownloadListInfo(id)` that falls back to
+`KEY_DOWNLOAD_INFO` and the staged length when the file is missing. It would be used in `DownloadViewModel.calculateDownloadStats`,
+`DownloadViewModel.updateChildList`, `AndroidDownloadsSource.readEpisodes` and `AndroidDownloadSeriesSource`.
+Their `fileLength <= 1` filters and the play actions would need to handle it. Not done here, because it changes the list readers: that is `KMP-60`, which blocks turning the switch on.
+
+**Tests** (all local, none CI).
+- **Unit:** `:app:testPrereleaseDebugUnitTest` 230/0; `EngineDownloadRulesTest` 19/19.
+- **`EngineDownloadDeviceTest`:** 8/8 on `Television_720p` (API 36) and 8/8 on `Api25_Test` (API 25).
+  - Switch on: byte-identical. Switch off: still `downloadThing`.
+  - Cut off midway and resumed from disk in a fresh instance, with no held byte fetched again.
+  - A dropped connection resumed within its part.
+  - A full disk: `StorageFull`, no visible file, parts kept.
+  - A crash after the copy, and one during it: each restart copies without fetching.
+  - The start-up sweep.
+- Below API 29 the test grants storage permission with `pm grant`.
+- The full `:app` device suite: 97 tests, 0 failures, 1 skipped (`TvHomeRealPluginProof`).
+- **`checkExtensionApi`:** additions only, for the new classes. No existing line removed or changed.
+
+**Not verified.**
+- A real process kill on Android. The device test cancels and resumes in a fresh instance; the engine's JVM `KillSuiteTest` kills a process.
+- Document-tree folders, SD cards and a real full partition (only an injected quota).
+- The sweep inside a real `DownloadQueueManager.init` at app start; the test calls it directly.
+- A pause or resume sent through `downloadEvent` during a run.
+- A DNS setting change rebuilding the client.
+- The two space refusals on a device (unit tests only).
+
+## KMP-60 — Engine downloads listed while they run · **open**, blocks turning `KMP-59`'s switch on
+
+With `EngineDownloadSwitch.useSegmentedEngine` on, a download appears in no Downloads list until its copy finishes:
+- `getDownloadFileInfo` returns null while the destination file is missing (`DownloadManager.kt` ~1699).
+- All four list readers drop null.
+- The pruning in `calculateDownloadStats` keys off the same null.
+
+Writing `KEY_DOWNLOAD_INFO` at start changes nothing by itself. Smallest fix, as reported in `KMP-59`:
+- Add a `getDownloadListInfo(id)` that falls back to `KEY_DOWNLOAD_INFO`, with the staged length and an empty path.
+- Use it in `DownloadViewModel.calculateDownloadStats`, `DownloadViewModel.updateChildList`, `AndroidDownloadsSource.readEpisodes` and `AndroidDownloadSeriesSource`.
+- The `fileLength <= 1` filters must let a just-started download through.
+- The play actions must refuse the empty path.
+
+Tests to write before the switch goes on (not needed for `KMP-59`'s merge):
+- Stop or Cancel during the fetch, and during the copy. The staging and the destination must both be gone.
+- Pause and Resume sent through `downloadEvent` during a run. Resume must go on from disk.
+
+## KMP-61 — Engine: a work steal refetches an in-flight range's tail · **open**, measured, no fix
+
+Seen in `EngineDownloadDeviceTest` (`aDownloadCutOffMidway…`): the split's new request started inside a range already in flight, so 1,400,932 bytes were fetched twice on a 32 MiB file.
+- The range in flight was `#18 GET 30687232-33554431`.
+- The new request was `#19 GET 32153500-33554431`.
+
+The test now bounds the union of the requested ranges, not their sum, so it still proves a resume. The cause is not investigated. The first place to look is where `PartScheduler` picks the split point against the victim's open request.
+
+## KMP-62 — The old downloader keeps whole links in `KEY_RESUME_PACKAGES` · **open**, waits on the owner
+
+Found while checking `KMP-59` against the owner's no-link ruling for `KMP-52` (2026-11-06). Not changed.
+- **What is stored.** `DownloadManager.kt:1923-1927` writes `DownloadResumePackage(item, index)` to `KEY_RESUME_PACKAGES` before every
+  attempt. `DownloadItem.links` is `List<ExtractorLink>`, serialised with `url`, `referer` and `headers`
+  (`library/.../ExtractorApi.kt:700-708`). It goes to SharedPreferences.
+- **Which paths store it.** Both: the write comes before `downloadSingleEpisode`, so it happens with `KMP-59`'s switch on or off. The
+  engine path adds no link of its own. Its marker holds a size and a name, and its state file holds the size, ETag, Last-Modified and ranges.
+- **Applying the ruling.** Keep `ep`, the provider and the episode's `loadLinks` data. Run `loadLinks` again on resume, and on start-up
+  re-queueing from `DownloadQueueManager.init`.
+- **Waiting on the owner.** That changes the existing downloader for every user, so the owner decides before anyone builds it.
+
+## KMP-52 — The Mac download service and its data · **open**
+
+`:media:download` on the JVM in `:desktopApp`, with real paths, a queue, persistence and data flows. No UI: the Downloads UI is `KMP-54`.
+The contract with `KMP-54`, all in `:desktopApp` under `com.lagradost.cloudstream4.downloads`:
+- `DesktopDownloadsSource : DownloadsSource`. Its storage is the volume holding the download folder, non-null from the first emission.
+- `DesktopDownloadSeriesSource : DownloadSeriesSource`.
+- A host class `DesktopDownloads` with `delete(ids: Set<DownloadTitleId>)`, `deleteEpisodes(ids: Set<DownloadEpisodeId>)`,
+  and `fileOf(id)`, which is null until the download is complete.
+- Ids stay the same across restarts.
+- `contents` emits at most about 4 times a second while running, and not at all when idle.
+- No change to `:feature:downloads`.
