@@ -76,9 +76,43 @@
       .bbtn.foc { outline:4px solid var(--ink); outline-offset:4px; }
       .bgl { width:32px; height:32px; border-radius:8px; background:currentColor; flex:none; margin-right:16px; }
 
+      /* ---- glyphs: the real Tabler 1.1.1 outlines, not drawn here ----
+         Each mask below is the path data read out of the pinned artifact
+         (tabler-icons 1.1.1, `compose/icons/tablericons/<Name>Kt.class`) with javap, so the board
+         carries the pack's own geometry rather than a CSS approximation of it. Every path in the
+         pack is fill=transparent, stroke=opaque, width 2, round cap and join — hence the stroke
+         attributes here. 32 px = 16 dp = `CloudStreamIconSize.Small`. `background:currentColor`
+         keeps the tint inherited, never a parameter: --mut at rest, --ink on focus. */
+      .g { width:32px; height:32px; flex:none; margin-right:16px; background:currentColor;
+        -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat;
+        -webkit-mask-position:center; mask-position:center;
+        -webkit-mask-size:32px 32px; mask-size:32px 32px; }
+      /* CloudStreamIcons.Play = Tabler PlayerPlay */
+      .g-play { -webkit-mask-image:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M 7 4 v 16 l 13 -8 Z'/></svg>"); mask-image:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M 7 4 v 16 l 13 -8 Z'/></svg>"); }
+      /* CloudStreamIcons.StartOver = Tabler Rotate */
+      .g-startover { -webkit-mask-image:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M 19.95 11 a 8 8 0 1 0 -0.5 4 m 0.5 5 v -5 h -5'/></svg>"); mask-image:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M 19.95 11 a 8 8 0 1 0 -0.5 4 m 0.5 5 v -5 h -5'/></svg>"); }
+      /* CloudStreamIcons.Trailer = Tabler Movie */
+      .g-trailer { -webkit-mask-image:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M 6 4 L 18 4 A 2 2 0 0 1 20 6 L 20 18 A 2 2 0 0 1 18 20 L 6 20 A 2 2 0 0 1 4 18 L 4 6 A 2 2 0 0 1 6 4 Z M 8 4 L 8 20 M 16 4 L 16 20 M 4 8 L 8 8 M 4 16 L 8 16 M 4 12 L 20 12 M 16 8 L 20 8 M 16 16 L 20 16'/></svg>"); mask-image:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M 6 4 L 18 4 A 2 2 0 0 1 20 6 L 20 18 A 2 2 0 0 1 18 20 L 6 20 A 2 2 0 0 1 4 18 L 4 6 A 2 2 0 0 1 6 4 Z M 8 4 L 8 20 M 16 4 L 16 20 M 4 8 L 8 8 M 4 16 L 8 16 M 4 12 L 20 12 M 16 8 L 20 8 M 16 16 L 20 16'/></svg>"); }
+      /* CloudStreamIcons.Download = Tabler Download */
+      .g-download { -webkit-mask-image:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M 4 17 v 2 a 2 2 0 0 0 2 2 h 12 a 2 2 0 0 0 2 -2 v -2 M 7 11 l 5 5 l 5 -5 M 12 4 L 12 16'/></svg>"); mask-image:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M 4 17 v 2 a 2 2 0 0 0 2 2 h 12 a 2 2 0 0 0 2 -2 v -2 M 7 11 l 5 5 l 5 -5 M 12 4 L 12 16'/></svg>"); }
+      /* CloudStreamIcons.MarkWatched = Tabler EyeCheck */
+      .g-markwatched { -webkit-mask-image:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M 12 12 m -2 0 a 2 2 0 1 1 4 0 a 2 2 0 1 1 -4 0 M 12 19 c -4 0 -7.333 -2.333 -10 -7 c 2.667 -4.667 6 -7 10 -7 s 7.333 2.333 10 7 c -0.42 0.736 -0.858 1.414 -1.311 2.033 M 15 19 l 2 2 l 4 -4'/></svg>"); mask-image:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M 12 12 m -2 0 a 2 2 0 1 1 4 0 a 2 2 0 1 1 -4 0 M 12 19 c -4 0 -7.333 -2.333 -10 -7 c 2.667 -4.667 6 -7 10 -7 s 7.333 2.333 10 7 c -0.42 0.736 -0.858 1.414 -1.311 2.033 M 15 19 l 2 2 l 4 -4'/></svg>"); }
+      /* CloudStreamIcons.Add = Tabler Plus */
+      .g-add { -webkit-mask-image:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M 12 5 L 12 19 M 5 12 L 19 12'/></svg>"); mask-image:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M 12 5 L 12 19 M 5 12 L 19 12'/></svg>"); }
+      /* CloudStreamIcons.Added = Tabler Check */
+      .g-added { -webkit-mask-image:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M 5 12 l 5 5 l 10 -10'/></svg>"); mask-image:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M 5 12 l 5 5 l 10 -10'/></svg>"); }
+      /* CloudStreamIcons.More = Tabler Dots */
+      .g-more { -webkit-mask-image:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M 5 12 m -1 0 a 1 1 0 1 1 2 0 a 1 1 0 1 1 -2 0 M 12 12 m -1 0 a 1 1 0 1 1 2 0 a 1 1 0 1 1 -2 0 M 19 12 m -1 0 a 1 1 0 1 1 2 0 a 1 1 0 1 1 -2 0'/></svg>"); mask-image:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M 5 12 m -1 0 a 1 1 0 1 1 2 0 a 1 1 0 1 1 -2 0 M 12 12 m -1 0 a 1 1 0 1 1 2 0 a 1 1 0 1 1 -2 0 M 19 12 m -1 0 a 1 1 0 1 1 2 0 a 1 1 0 1 1 -2 0'/></svg>"); }
+      /* CloudStreamIcons.Retry = Tabler Refresh */
+      .g-retry { -webkit-mask-image:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M 20 11 a 8.1 8.1 0 0 0 -15.5 -2 m -0.5 -4 v 4 h 4 M 4 13 a 8.1 8.1 0 0 0 15.5 2 m 0.5 4 v -4 h -4'/></svg>"); mask-image:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M 20 11 a 8.1 8.1 0 0 0 -15.5 -2 m -0.5 -4 v 4 h 4 M 4 13 a 8.1 8.1 0 0 0 15.5 2 m 0.5 4 v -4 h -4'/></svg>"); }
+      .itile .g { margin-right:0; }
+
       /* ---- icon-only cells: 96 cell, 64 tile, 32 glyph, 32 label reserve ----
-         OWNER RULING 2026-11-06: the glyph is --mut at rest and --ink on focus, whatever the
-         toggle state. The raised fill is what still carries checked/unchecked. */
+         `ui-components.md` rule 4 as merged in #168 (DEC-17, DS-17, the owner 2026-11-06):
+         COLOUR SAYS FOCUS, SHAPE SAYS STATE. The glyph is --mut at rest and --ink on focus
+         whatever the state, so state is carried by swapping glyph — the watchlist is Add (Plus)
+         off and Added (Check) on. The --raised fill is now only the fallback rule 4 leaves to a
+         toggle "with no such pair yet", so the watchlist, which has its pair, draws no fill. */
       .icell { position:absolute; width:96px; height:96px; display:flex; align-items:center; justify-content:center; }
       .itile { width:64px; height:64px; box-sizing:border-box; border-radius:16px;
         display:flex; align-items:center; justify-content:center;
@@ -193,11 +227,11 @@
           dark, a salvage crew picks up a repeating signal from a station decommissioned forty years ago…</div>
 
         <!-- the row: primary 200..640, then 96 cells on the 24 MinFocusGap -->
-        <div class="abs bbtn foc" style="left:200px;top:512px;width:440px"><span class="bgl"></span>Resume S1 E4</div>
-        <div class="icell" style="left:664px;top:496px"><div class="itile"><span class="bgl"></span></div></div>
-        <div class="icell" style="left:784px;top:496px"><div class="itile"><span class="bgl"></span></div></div>
-        <div class="icell" style="left:904px;top:496px"><div class="itile"><span class="bgl"></span></div></div>
-        <div class="icell" style="left:1024px;top:496px"><div class="itile"><span class="bgl"></span></div></div>
+        <div class="abs bbtn foc" style="left:200px;top:512px;width:440px"><span class="g g-play"></span>Resume S1 E4</div>
+        <div class="icell" style="left:664px;top:496px"><div class="itile"><span class="g g-startover"></span></div></div>
+        <div class="icell" style="left:784px;top:496px"><div class="itile"><span class="g g-trailer"></span></div></div>
+        <div class="icell" style="left:904px;top:496px"><div class="itile"><span class="g g-add"></span></div></div>
+        <div class="icell" style="left:1024px;top:496px"><div class="itile"><span class="g g-more"></span></div></div>
         <div class="abs rprog" style="left:200px;top:592px;width:440px"><i style="width:272px"></i></div>
         <div class="abs cap" style="left:200px;top:608px;width:440px">24 min left</div>
 
@@ -215,7 +249,7 @@
       </div></div>
       <div class="stt">
         <b>ROW</b><span>Resume 200..640 (440 = 220 dp, <code>ResumeWidth</code>), then four 96 cells at 664, 784, 904, 1024, each gap 24 px = 12 dp = <code>MinFocusGap</code>. Cells y496..592 so their 64 tiles centre on the 64 text button at y512..576. L→R: Resume → Start over → Trailer → watchlist → More. <b>Row ends at x1120</b> (cell edge); the last visible tile edge is <b>x1104</b> = 552 dp.</span>
-        <b>GLYPHS</b><span>Play, StartOver, Trailer, Bookmark, More — all five already in the <code>ui-components.md</code> table, one glyph per meaning. Grey at rest, white on focus, per the owner's 2026-11-06 ruling.</span>
+        <b>GLYPHS</b><span>Play, StartOver, Trailer, <b>Add</b>, More — the real Tabler 1.1.1 outlines, read out of the pinned artifact with <code>javap</code> rather than approximated in CSS: <code>PlayerPlay</code>, <code>Rotate</code>, <code>Movie</code>, <code>Plus</code>, <code>Dots</code>. <code>--mut</code> at rest and <code>--ink</code> on focus (rule 4, #168). The watchlist is drawn <b>off</b> here, so it is the Plus; 7g draws it on.</span>
         <b>LADDER</b><span>Unchanged from 7a and that is the point: progress 592..600, caption 608..632, <code>SectionGap</code> 64, rail header 696..752, cast 784..1024. Cast opens at <b>392 dp</b>, exactly as 7a.</span>
       </div>
     </div>
@@ -245,13 +279,13 @@
         <div class="abs plot" style="left:200px;top:328px;width:1064px;height:80px">A lighthouse keeper and the pilot he
           pulls from the water spend one winter deciding whether either of them is telling the truth…</div>
 
-        <div class="abs bbtn" style="left:200px;top:512px;width:440px"><span class="bgl"></span>Resume</div>
-        <div class="icell" style="left:664px;top:496px"><div class="itile"><span class="bgl"></span></div></div>
-        <div class="icell" style="left:784px;top:496px"><div class="itile"><span class="bgl"></span></div></div>
-        <div class="icell foc" style="left:904px;top:496px"><div class="itile"><span class="bgl"></span></div><div class="ilbl">Download</div></div>
-        <div class="icell" style="left:1024px;top:496px"><div class="itile"><span class="bgl"></span></div></div>
-        <div class="icell" style="left:1144px;top:496px"><div class="itile on"><span class="bgl"></span></div></div>
-        <div class="icell" style="left:1264px;top:496px"><div class="itile"><span class="bgl"></span></div></div>
+        <div class="abs bbtn" style="left:200px;top:512px;width:440px"><span class="g g-play"></span>Resume</div>
+        <div class="icell" style="left:664px;top:496px"><div class="itile"><span class="g g-startover"></span></div></div>
+        <div class="icell" style="left:784px;top:496px"><div class="itile"><span class="g g-trailer"></span></div></div>
+        <div class="icell foc" style="left:904px;top:496px"><div class="itile"><span class="g g-download"></span></div><div class="ilbl">Download</div></div>
+        <div class="icell" style="left:1024px;top:496px"><div class="itile"><span class="g g-markwatched"></span></div></div>
+        <div class="icell" style="left:1144px;top:496px"><div class="itile"><span class="g g-added"></span></div></div>
+        <div class="icell" style="left:1264px;top:496px"><div class="itile"><span class="g g-more"></span></div></div>
         <div class="abs rprog" style="left:200px;top:592px;width:440px"><i style="width:144px"></i></div>
         <div class="abs cap" style="left:200px;top:608px;width:440px">79 min left</div>
 
@@ -270,58 +304,66 @@
       <div class="stt">
         <b>ROW</b><span>Resume 200..640, then six cells at 664, 784, 904, 1024, 1144, 1264: Start over → Trailer → <b>Download</b> → <b>Mark watched</b> → watchlist → More. <b>Row ends at x1360</b>; last visible tile edge <b>x1344</b> = 672 dp. Series (7f) ends at 1104 — the two types end at different x, which the skeleton has to account for.</span>
         <b>FILMS ONLY</b><span>Download and Mark watched appear for a film and for nothing else. A series downloads and marks per episode, in the episode row (6b), not for the whole title.</span>
-        <b>WATCHLIST</b><span>Drawn checked here (the <code>raised</code> fill at x1144) and unchecked in 7f, so the two read side by side.</span>
+        <b>WATCHLIST</b><span>Drawn <b>on</b> here — the <code>Added</code> glyph (Tabler <code>Check</code>) at x1144 — and <b>off</b> in 7f with <code>Add</code> (Tabler <code>Plus</code>). <b>No <code>raised</code> fill on either:</b> rule 4 leaves the fill to a toggle with no glyph pair yet, and this one has its pair, so shape alone says state. Both cells are <code>--mut</code> because neither is focused, which is the whole point of the change — checked still reads at rest.</span>
+        <b>MARK WATCHED</b><span>Tabler <code>EyeCheck</code> at x1024, as <code>CloudStreamIcons.MarkWatched</code> — the glyph-table row #168 added. Verified present in the pinned artifact.</span>
       </div>
-      <div class="note ask"><p><b>This board asks a question it cannot answer: "Mark watched" has no glyph.</b>
-        <code>ui-components.md</code>'s table is one glyph per meaning and Mark watched is not in it. Its rule 3 says a
-        button whose meaning no glyph conveys <i>stays text-only</i>, and its "Text-only, and why" list exists for
-        exactly this case. The cell at x1024 is drawn with the neutral placeholder every board uses, which is not a
-        proposal — <b>it needs either a named Tabler glyph added to the table, or Mark watched stays a text button and
-        this row has five cells, not six.</b> Nothing should be built from this cell until that is settled.</p></div>
+      <div class="note"><p><b>Settled: Mark watched has a glyph.</b> This board previously asked for one, because
+        <code>ui-components.md</code>'s table is one glyph per meaning and Mark watched was not in it. <code>DEC-17</code>
+        answered it and <b>#168</b> added the row: <b>Mark watched → <code>CloudStreamIcons.MarkWatched</code> → Tabler
+        <code>EyeCheck</code></b>, which was confirmed present in the pinned artifact before this board was drawn. The
+        film row therefore has six cells, not five, and nothing here is a placeholder any more.</p></div>
     </div>
 
     <!-- ============================== 7h ============================== -->
     <div class="shot">
-      <div class="shotl"><span class="shotn">7h · Watchlist toggle — four states</span><span>The
-        <code>IconOnlyToggle</code> at 1:1, in the four states it ships: unchecked and checked, each at rest and
-        focused. <b>Checked is <code>status != None</code></b> — any watch status at all, not a separate flag — and the
-        focused label is <b>"Set watch status"</b>, because OK opens the status panel rather than toggling silently.</span></div>
+      <div class="shotl"><span class="shotn">7h · Watchlist toggle — four states, state by shape</span><span>The
+        <code>IconOnlyToggle</code> at 1:1, in the four states it ships: off and on, each at rest and
+        focused. <b>On is <code>status != None</code></b> — any watch status at all, not a separate flag — and the
+        focused label is <b>"Set watch status"</b>, because OK opens the status panel rather than toggling silently.
+        <b>The pair is <code>Add</code> (Tabler <code>Plus</code>) off and <code>Added</code> (Tabler <code>Check</code>)
+        on</b>, so the two rest states differ by shape and are told apart without focus or colour.</span></div>
       <div class="shotc"><div class="tv" data-screen-label="Watchlist toggle states">
         <div class="abs spechd" style="left:200px;top:112px">IconOnlyToggle · watchlist</div>
-        <div class="abs specsub" style="left:200px;top:168px;width:1500px">48 dp cell, 32 dp tile, 16 dp glyph, 16 dp label reserve below the cell. The glyph is grey at rest and white on focus (owner, 2026-11-06); the <span style="color:#CCCCCC">raised</span> fill is what says checked.</div>
+        <div class="abs specsub" style="left:200px;top:168px;width:1500px">48 dp cell, 32 dp tile, 16 dp glyph, 16 dp label reserve below the cell. <span style="color:#CCCCCC">Colour says focus, shape says state</span> (rule 4, #168): <code>--mut</code> at rest and <code>--ink</code> on focus in every state, and the glyph itself swaps Plus → Check. No fill in either state.</div>
 
         <div class="abs specbox" style="left:200px;top:304px;width:1520px;height:360px"></div>
 
-        <!-- unchecked, rest -->
-        <div class="icell" style="left:336px;top:400px"><div class="itile"><span class="bgl"></span></div></div>
-        <div class="abs speccap" style="left:224px;top:584px">unchecked<br/>at rest</div>
-        <!-- unchecked, focused -->
-        <div class="icell foc" style="left:712px;top:400px"><div class="itile"><span class="bgl"></span></div><div class="ilbl">Set watch status</div></div>
-        <div class="abs speccap" style="left:600px;top:584px">unchecked<br/>focused</div>
-        <!-- checked, rest -->
-        <div class="icell" style="left:1088px;top:400px"><div class="itile on"><span class="bgl"></span></div></div>
-        <div class="abs speccap" style="left:976px;top:584px">checked<br/>at rest</div>
-        <!-- checked, focused -->
-        <div class="icell foc" style="left:1464px;top:400px"><div class="itile on"><span class="bgl"></span></div><div class="ilbl">Set watch status</div></div>
-        <div class="abs speccap" style="left:1352px;top:584px">checked<br/>focused</div>
+        <!-- off, rest: Add -->
+        <div class="icell" style="left:336px;top:400px"><div class="itile"><span class="g g-add"></span></div></div>
+        <div class="abs speccap" style="left:224px;top:584px">off, at rest<br/><code>Add</code> · Plus</div>
+        <!-- off, focused -->
+        <div class="icell foc" style="left:712px;top:400px"><div class="itile"><span class="g g-add"></span></div><div class="ilbl">Set watch status</div></div>
+        <div class="abs speccap" style="left:600px;top:584px">off, focused<br/><code>Add</code> · Plus</div>
+        <!-- on, rest: Added -->
+        <div class="icell" style="left:1088px;top:400px"><div class="itile"><span class="g g-added"></span></div></div>
+        <div class="abs speccap" style="left:976px;top:584px">on, at rest<br/><code>Added</code> · Check</div>
+        <!-- on, focused -->
+        <div class="icell foc" style="left:1464px;top:400px"><div class="itile"><span class="g g-added"></span></div><div class="ilbl">Set watch status</div></div>
+        <div class="abs speccap" style="left:1352px;top:584px">on, focused<br/><code>Added</code> · Check</div>
 
         <div class="abs specsub" style="left:200px;top:744px;width:1520px">The label is drawn, not laid out: it occupies the 32 px (16 dp) reserve under the cell and appears only while focused, so the row's height never changes. Content description is carried in every state, focused or not.</div>
-        <div class="abs specsub" style="left:200px;top:840px;width:1520px;color:#858585">Checked = <span style="color:#CCCCCC">status != None</span> — Watching, Completed, On hold, Dropped or Plan to watch all read as checked. There is no separate "bookmarked" boolean on this page.</div>
+        <div class="abs specsub" style="left:200px;top:840px;width:1520px;color:#858585">On = <span style="color:#CCCCCC">status != None</span> — Watching, Completed, On hold, Dropped or Plan to watch all read as on. There is no separate "bookmarked" boolean on this page.</div>
       </div></div>
       <div class="stt">
         <b>STATES</b><span>Four, and they are all of them: the toggle has no disabled state on this page because a title that loaded always has a status to set.</span>
         <b>OK</b><span>Opens the watch-status side panel (280 dp from the right, focus trapped, BACK returns focus to this cell). It does not cycle status in place — five values cannot be cycled on a remote.</span>
       </div>
-      <div class="note ask"><p><b>The owner's ruling and <code>ui-components.md</code> rule 4 do not currently agree,
-        and this board follows the ruling.</b> Rule 4 says a toggle that is on is an <code>ink</code> glyph on a
-        <code>raised</code> fill, and off is a <code>muted</code> glyph with no fill — so the glyph colour carries
-        checked. The 2026-11-06 ruling says the glyph is grey at rest and white on focus, which makes the glyph
-        colour carry <i>focus</i> instead, and leaves the fill alone to carry checked. Both cannot hold. Drawn here
-        the new way, with the fill doing the work; <code>IconOnlyToggle</code>'s KDoc and rule 4 both need editing to
-        match, and that edit is the owner's to approve.</p>
-        <p>Worth knowing before ruling: the KDoc's reason for colouring the glyph was that <b>a fill alone is about
-        1.15:1 against the page</b>, which is why unchecked had no fill and a muted glyph. If the fill is now the only
-        signal, checked-at-rest and unchecked-at-rest differ by that 1.15:1 and nothing else.</p></div>
+      <div class="note"><p><b>Settled, and the contradiction this board used to carry is gone.</b> It previously drew
+        the glyph colour as focus while rule 4 still said an on toggle is an <code>ink</code> glyph on a
+        <code>raised</code> fill, and noted that if the fill became the only signal then on-at-rest and off-at-rest
+        would differ by about <b>1.15:1</b> and nothing else. That is exactly what <code>DEC-17</code> fixed: the fill
+        is not the signal, the <b>shape</b> is. Off is <code>Add</code> and on is <code>Added</code>, a difference that
+        survives at three metres and does not depend on contrast at all. Rule 4 now reads "colour says focus, shape
+        says state" (#168), so board and rule agree.</p>
+        <p><b>One reading to confirm.</b> Rule 4 says a toggle "with no such pair yet keeps today's <code>raised</code>
+        fill for on until its pair is named here". The watchlist's pair <i>is</i> named, so this board takes the fill
+        away and lets shape carry state alone — otherwise state would be said twice, once of them by the 1.15:1 the
+        decision just removed. If the owner meant the fill to stay as well, this is the one cell to change, and only
+        <code>.itile.on</code> comes back.</p>
+        <p>The first choice was an outline bookmark against a filled one. It cannot be built: Tabler 1.1.1 is the last
+        release of this Compose port and has <b>no filled family at all</b> — no <code>BookmarkFilled</code>, no
+        <code>HeartFilled</code>; read out of the artifact, not the docs. Plus → Check is Netflix's "My List" pattern
+        and needs no glyph the pack does not have.</p></div>
     </div>
 
     <!-- ============================== 7i ============================== -->
@@ -509,7 +551,7 @@
         <div class="abs stglyph" style="left:968px;top:360px"><i></i></div>
         <div class="abs sthd" style="left:432px;top:544px;width:1200px">Couldn't open this title</div>
         <div class="abs stbd" style="left:432px;top:632px;width:1200px">Its source may be unavailable.</div>
-        <div class="abs bbtn foc" style="left:912px;top:720px;width:240px"><span class="bgl"></span>Try again</div>
+        <div class="abs bbtn foc" style="left:912px;top:720px;width:240px"><span class="g g-retry"></span>Try again</div>
       </div></div>
       <div class="stt">
         <b>CHANGE</b><span>One line: <code>StateAction(stringResource(Res.string.search_state_retry), retry)</code> becomes <code>StateAction(…, CloudStreamIcons.Retry, retry)</code> in <code>DetailCopy.kt:98</code>. The glyph is the label's colour — <code>bg</code> on the white primary — and is never a parameter.</span>
@@ -545,14 +587,14 @@
   <code>BUG-40</code>, whose shift is a uniform 5 dp inside the head block's text ladder. It wants its own
   measurement against this board before any of this is built.</p></div>
 
-  <div class="note ask"><p><b>The one thing this whole set is really asking.</b> Rule 2 of
-  <code>ui-components.md</code> says secondary common actions are <i>outlined, with a glyph and a label</i>, and rule 4
-  says icon-only is allowed <i>only</i> for toggles, overflow and search, with three named exceptions — the chrome's
-  Back cell, the player transport, and the nav rail. 7f and 7g make Start over, Trailer, Download and Mark watched
-  icon-only, which is none of those. That is the request as it was given and it is drawn faithfully, but it is a
-  change to <code>DEC-17</code>, taken on 2026-11-05, not an application of it. <b>If the owner wants this row, rule 2
-  and rule 4 need rewriting in the same breath</b> — otherwise the next screen that reaches for an icon-only
-  secondary has a rule saying no and a board saying yes.</p></div>
+  <div class="note"><p><b>Answered: the row is now a named exception, in the rules.</b> This set used to close by
+  asking how an icon-only Start over, Trailer, Download and Mark watched could stand when rule 2 made secondaries
+  outlined-with-a-label and rule 4 allowed icon-only only for toggles, overflow and search plus three named TV
+  conventions. <b>#168</b> settled it rather than leaving the board and the rule disagreeing: rule 4 now carries
+  <b>one ruled exception</b> — the title detail action row — worded as the owner's call (<code>DEC-17</code>) and
+  deliberately <i>not</i> as a convention, so it does not read as licence for the next screen that wants an
+  icon-only secondary. Download and Mark watched are films-only there too; a series keeps both in its episode
+  list.</p></div>
 </div>
 </x-dc>
 </body></html>
