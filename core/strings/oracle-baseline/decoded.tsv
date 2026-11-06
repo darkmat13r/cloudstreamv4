@@ -162,7 +162,7 @@ values-b+af/strings.xml	string	search_provider_text_providers	-	STR	Soek deur ve
 values-b+af/strings.xml	string	search_provider_text_types	-	STR	Soek met behulp van tipes	
 values-b+af/strings.xml	string	search_state_idle_body_desktop	-	STR	Tik 'n titel. Resultate verskyn onder elke bron soos dit antwoord.	
 values-b+af/strings.xml	string	search_state_no_results_type_filter	-	STR	Slegs %s. Jou tipe-filter beperk die soektog.	
-values-b+af/strings.xml	string	search_state_no_suggestions_detail	-	STR	VOORSTELLE BEANTWOORD · 0 OOREENKOMSTE	
+values-b+af/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 VOORSTELLE · 0 ONLANGSE OOREENKOMSTE	
 values-b+af/strings.xml	string	search_state_no_suggestions_headline	-	STR	Niks stem ooreen met “%s” nie	
 values-b+af/strings.xml	string	search_tv_source_failed	-	STR	MISLUK %s	
 values-b+af/strings.xml	string	search_tv_source_pinned	-	STR	VASGESPELD	
@@ -366,7 +366,7 @@ values-b+am/strings.xml	string	search_provider_text_providers	-	STR	አቅራቢ
 values-b+am/strings.xml	string	search_provider_text_types	-	STR	ዓይነቶችን በመጠቀም ይፈልጉ	
 values-b+am/strings.xml	string	search_state_idle_body_desktop	-	STR	ርዕስ ይተይቡ። ውጤቶች እያንዳንዱ ምንጭ ሲመልስ ከሱ ስር ይታያሉ።	
 values-b+am/strings.xml	string	search_state_no_results_type_filter	-	STR	%s ብቻ። የአይነት ማጣሪያዎ ፍለጋውን እያጠበበው ነው።	
-values-b+am/strings.xml	string	search_state_no_suggestions_detail	-	STR	ጥቆማዎች ምላሽ ሰጥተዋል · 0 ተዛማጆች	
+values-b+am/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 ጥቆማዎች · 0 የቅርብ ጊዜ ተዛማጆች	
 values-b+am/strings.xml	string	search_state_no_suggestions_headline	-	STR	ከ«%s» ጋር የሚዛመድ ምንም የለም	
 values-b+am/strings.xml	string	search_tv_source_failed	-	STR	አልተሳካም %s	
 values-b+am/strings.xml	string	search_tv_source_pinned	-	STR	ተሰክቷል	
@@ -1018,7 +1018,7 @@ values-b+apc/strings.xml	string	search_provider_text_providers	-	STR	عوزو ا
 values-b+apc/strings.xml	string	search_provider_text_types	-	STR	عوزو الأنواع ل تنبّشو	
 values-b+apc/strings.xml	string	search_state_idle_body_desktop	-	STR	اكتب عنوان. النتايج بتطلع تحت كل مصدر لما يرد.	
 values-b+apc/strings.xml	string	search_state_no_results_type_filter	-	STR	%s بس. فلتر النوع عم يضيّق البحث.	
-values-b+apc/strings.xml	string	search_state_no_suggestions_detail	-	STR	ردّت الاقتراحات · 0 تطابق	
+values-b+apc/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 اقتراحات · 0 تطابق مؤخراً	
 values-b+apc/strings.xml	string	search_state_no_suggestions_headline	-	STR	ما في شي بيطابق «%s»	
 values-b+apc/strings.xml	string	search_suggestions	-	STR	اقتراحات التنبيش	
 values-b+apc/strings.xml	string	search_suggestions_des	-	STR	بت فرجي اقتراحات إنتا و عم بت نَبّش	
@@ -1875,7 +1875,7 @@ values-b+ar/strings.xml	string	search_provider_text_providers	-	STR	البحث �
 values-b+ar/strings.xml	string	search_provider_text_types	-	STR	البحث باستخدام الأنواع	
 values-b+ar/strings.xml	string	search_state_idle_body_desktop	-	STR	اكتب عنوانًا. تظهر النتائج تحت كل مصدر عند استجابته.	
 values-b+ar/strings.xml	string	search_state_no_results_type_filter	-	STR	%s فقط. عامل تصفية النوع يضيّق نطاق البحث.	
-values-b+ar/strings.xml	string	search_state_no_suggestions_detail	-	STR	ردّت الاقتراحات · 0 تطابق	
+values-b+ar/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 اقتراحات · 0 تطابق حديث	
 values-b+ar/strings.xml	string	search_state_no_suggestions_headline	-	STR	لا شيء يطابق «%s»	
 values-b+ar/strings.xml	string	search_suggestions	-	STR	اقتراحات البحث	
 values-b+ar/strings.xml	string	search_suggestions_des	-	STR	عرض اقتراحات البحث أثناء الكتابة	
@@ -2423,7 +2423,7 @@ values-b+ars/strings.xml	string	search_provider_text_providers	-	STR	البحث 
 values-b+ars/strings.xml	string	search_provider_text_types	-	STR	البحث باستخدام الأنواع	
 values-b+ars/strings.xml	string	search_state_idle_body_desktop	-	STR	اكتب عنوانًا. تظهر النتائج تحت كل مصدر عند استجابته.	
 values-b+ars/strings.xml	string	search_state_no_results_type_filter	-	STR	%s بس. فلتر النوع يضيّق البحث.	
-values-b+ars/strings.xml	string	search_state_no_suggestions_detail	-	STR	ردّت الاقتراحات · 0 تطابق	
+values-b+ars/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 اقتراحات · 0 تطابق حديث	
 values-b+ars/strings.xml	string	search_state_no_suggestions_headline	-	STR	لا شيء يطابق «%s»	
 values-b+ars/strings.xml	string	search_tv_source_failed	-	STR	فشل %s	
 values-b+ars/strings.xml	string	search_tv_source_pinned	-	STR	مثبّت	
@@ -3090,7 +3090,7 @@ values-b+as/strings.xml	string	search_provider_text_providers	-	STR	প্ৰদ
 values-b+as/strings.xml	string	search_provider_text_types	-	STR	প্ৰকাৰৰ দ্বাৰা সন্ধান কৰক	
 values-b+as/strings.xml	string	search_state_idle_body_desktop	-	STR	এটা শিৰোনাম টাইপ কৰক। প্ৰতিটো উৎসই উত্তৰ দিয়াৰ লগে লগে ফলাফল তাৰ তলত দেখা যাব।	
 values-b+as/strings.xml	string	search_state_no_results_type_filter	-	STR	কেৱল %s। আপোনাৰ ধৰণৰ ফিল্টাৰে সন্ধান সংকীৰ্ণ কৰিছে।	
-values-b+as/strings.xml	string	search_state_no_suggestions_detail	-	STR	পৰামৰ্শই উত্তৰ দিলে · 0 টা মিল	
+values-b+as/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 টা পৰামৰ্শ · 0 টা শেহতীয়া মিল	
 values-b+as/strings.xml	string	search_state_no_suggestions_headline	-	STR	“%s”ৰ সৈতে একো নিমিলে	
 values-b+as/strings.xml	string	search_tv_source_failed	-	STR	ব্যৰ্থ %s	
 values-b+as/strings.xml	string	search_tv_source_pinned	-	STR	পিন কৰা হৈছে	
@@ -3471,7 +3471,7 @@ values-b+az/strings.xml	string	search_hint	-	STR	Axtar…
 values-b+az/strings.xml	string	search_poster_img_des	-	STR	Afişa	
 values-b+az/strings.xml	string	search_state_idle_body_desktop	-	STR	Başlıq yazın. Hər mənbə cavab verdikcə nəticələr onun altında görünür.	
 values-b+az/strings.xml	string	search_state_no_results_type_filter	-	STR	Yalnız %s. Növ filtriniz axtarışı daraldır.	
-values-b+az/strings.xml	string	search_state_no_suggestions_detail	-	STR	TƏKLİFLƏR CAVAB VERDİ · 0 UYĞUNLUQ	
+values-b+az/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 TƏKLİF · 0 SON UYĞUNLUQ	
 values-b+az/strings.xml	string	search_state_no_suggestions_headline	-	STR	«%s» ilə uyğun heç nə yoxdur	
 values-b+az/strings.xml	string	search_tv_source_failed	-	STR	UĞURSUZ %s	
 values-b+az/strings.xml	string	search_tv_source_pinned	-	STR	SABİTLƏNİB	
@@ -4133,7 +4133,7 @@ values-b+be/strings.xml	string	search_provider_text_providers	-	STR	Пошук �
 values-b+be/strings.xml	string	search_provider_text_types	-	STR	Пошук праз тыпы	
 values-b+be/strings.xml	string	search_state_idle_body_desktop	-	STR	Увядзіце назву. Вынікі з'яўляюцца пад кожнай крыніцай, калі яна адказвае.	
 values-b+be/strings.xml	string	search_state_no_results_type_filter	-	STR	Толькі %s. Фільтр па тыпе звужае пошук.	
-values-b+be/strings.xml	string	search_state_no_suggestions_detail	-	STR	ПРАПАНОВЫ АДКАЗАЛІ · 0 СУПАДЗЕННЯЎ	
+values-b+be/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 ПРАПАНОЎ · 0 НЯДАЎНІХ СУПАДЗЕННЯЎ	
 values-b+be/strings.xml	string	search_state_no_suggestions_headline	-	STR	Нічога не адпавядае «%s»	
 values-b+be/strings.xml	string	search_suggestions	-	STR	Прапановы пошуку	
 values-b+be/strings.xml	string	search_suggestions_des	-	STR	Паказваць прапановы пошуку падчас уводу тэксту	
@@ -4952,7 +4952,7 @@ values-b+bg/strings.xml	string	search_provider_text_providers	-	STR	Търсен
 values-b+bg/strings.xml	string	search_provider_text_types	-	STR	Търсене с помощта на типове	
 values-b+bg/strings.xml	string	search_state_idle_body_desktop	-	STR	Въведете заглавие. Резултатите се появяват под всеки източник, когато той отговори.	
 values-b+bg/strings.xml	string	search_state_no_results_type_filter	-	STR	Само %s. Филтърът по тип стеснява търсенето.	
-values-b+bg/strings.xml	string	search_state_no_suggestions_detail	-	STR	ПРЕДЛОЖЕНИЯТА ОТГОВОРИХА · 0 СЪВПАДЕНИЯ	
+values-b+bg/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 ПРЕДЛОЖЕНИЯ · 0 СКОРОШНИ СЪВПАДЕНИЯ	
 values-b+bg/strings.xml	string	search_state_no_suggestions_headline	-	STR	Нищо не съответства на „%s“	
 values-b+bg/strings.xml	string	search_suggestions	-	STR	Предложения за търсене	
 values-b+bg/strings.xml	string	search_suggestions_des	-	STR	Показвай предложения за търсене по време на писане	
@@ -5543,7 +5543,7 @@ values-b+bn/strings.xml	string	search_provider_text_providers	-	STR	প্রভ
 values-b+bn/strings.xml	string	search_provider_text_types	-	STR	ধরণ অনুযায়ি খুঁজুন	
 values-b+bn/strings.xml	string	search_state_idle_body_desktop	-	STR	একটি শিরোনাম লিখুন। প্রতিটি সোর্স উত্তর দিলে ফলাফল তার নিচে দেখা যাবে।	
 values-b+bn/strings.xml	string	search_state_no_results_type_filter	-	STR	শুধু %s। আপনার ধরনের ফিল্টার অনুসন্ধান সীমিত করছে।	
-values-b+bn/strings.xml	string	search_state_no_suggestions_detail	-	STR	সাজেশন উত্তর দিয়েছে · 0টি মিল	
+values-b+bn/strings.xml	string	search_state_no_suggestions_detail	-	STR	0টি সাজেশন · 0টি সাম্প্রতিক মিল	
 values-b+bn/strings.xml	string	search_state_no_suggestions_headline	-	STR	“%s”-এর সাথে কিছুই মেলেনি	
 values-b+bn/strings.xml	string	search_suggestions	-	STR	সার্চ সাজেশন	
 values-b+bn/strings.xml	string	search_suggestions_des	-	STR	টাইপ করার সময় সার্চ সাজেশন দেখান	
@@ -5988,7 +5988,7 @@ values-b+ca/strings.xml	string	search_provider_text_providers	-	STR	Cerca amb pr
 values-b+ca/strings.xml	string	search_provider_text_types	-	STR	Cerca per tipus	
 values-b+ca/strings.xml	string	search_state_idle_body_desktop	-	STR	Escriu un títol. Els resultats apareixen sota cada font quan respon.	
 values-b+ca/strings.xml	string	search_state_no_results_type_filter	-	STR	Només %s. El filtre de tipus està limitant la cerca.	
-values-b+ca/strings.xml	string	search_state_no_suggestions_detail	-	STR	SUGGERIMENTS RESPOSTOS · 0 COINCIDÈNCIES	
+values-b+ca/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SUGGERIMENTS · 0 COINCIDÈNCIES RECENTS	
 values-b+ca/strings.xml	string	search_state_no_suggestions_headline	-	STR	Res no coincideix amb «%s»	
 values-b+ca/strings.xml	string	search_tv_source_failed	-	STR	HA FALLAT %s	
 values-b+ca/strings.xml	string	search_tv_source_pinned	-	STR	FIXAT	
@@ -6242,7 +6242,7 @@ values-b+ckb/strings.xml	string	search_hint_site	-	STR	بگەڕێ بۆ%s…
 values-b+ckb/strings.xml	string	search_poster_img_des	-	STR	پۆستەر	
 values-b+ckb/strings.xml	string	search_state_idle_body_desktop	-	STR	ناونیشانێک بنووسە. ئەنجامەکان لە ژێر هەر سەرچاوەیەک دەردەکەون کاتێک وەڵام دەداتەوە.	
 values-b+ckb/strings.xml	string	search_state_no_results_type_filter	-	STR	تەنها %s. فلتەری جۆرەکەت گەڕانەکە سنووردار دەکات.	
-values-b+ckb/strings.xml	string	search_state_no_suggestions_detail	-	STR	پێشنیارەکان وەڵامیان دایەوە · 0 هاوتا	
+values-b+ckb/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 پێشنیار · 0 هاوتای دوایین	
 values-b+ckb/strings.xml	string	search_state_no_suggestions_headline	-	STR	هیچ شتێک لەگەڵ «%s» ناگونجێت	
 values-b+ckb/strings.xml	string	search_tv_source_failed	-	STR	شکستی هێنا %s	
 values-b+ckb/strings.xml	string	search_tv_source_pinned	-	STR	جێگیرکراو	
@@ -6898,7 +6898,7 @@ values-b+cs/strings.xml	string	search_provider_text_providers	-	STR	Hledat pomoc
 values-b+cs/strings.xml	string	search_provider_text_types	-	STR	Hledat pomocí typů	
 values-b+cs/strings.xml	string	search_state_idle_body_desktop	-	STR	Zadejte název. Výsledky se zobrazí pod každým zdrojem, jakmile odpoví.	
 values-b+cs/strings.xml	string	search_state_no_results_type_filter	-	STR	Pouze %s. Filtr typů zužuje hledání.	
-values-b+cs/strings.xml	string	search_state_no_suggestions_detail	-	STR	NÁVRHY ODPOVĚDĚLY · 0 SHOD	
+values-b+cs/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 NÁVRHŮ · 0 NEDÁVNÝCH SHOD	
 values-b+cs/strings.xml	string	search_state_no_suggestions_headline	-	STR	Nic neodpovídá „%s“	
 values-b+cs/strings.xml	string	search_suggestions	-	STR	Návrhy vyhledávání	
 values-b+cs/strings.xml	string	search_suggestions_des	-	STR	Zobrazit návrhy vyhledávání během psaní	
@@ -7731,7 +7731,7 @@ values-b+de/strings.xml	string	search_provider_text_providers	-	STR	Suche anhand
 values-b+de/strings.xml	string	search_provider_text_types	-	STR	Suche anhand Typen	
 values-b+de/strings.xml	string	search_state_idle_body_desktop	-	STR	Titel eingeben. Ergebnisse erscheinen unter jeder Quelle, sobald sie antwortet.	
 values-b+de/strings.xml	string	search_state_no_results_type_filter	-	STR	Nur %s. Der Typfilter schränkt die Suche ein.	
-values-b+de/strings.xml	string	search_state_no_suggestions_detail	-	STR	VORSCHLÄGE BEANTWORTET · 0 TREFFER	
+values-b+de/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 VORSCHLÄGE · 0 TREFFER IM VERLAUF	
 values-b+de/strings.xml	string	search_state_no_suggestions_headline	-	STR	Nichts passt zu „%s“	
 values-b+de/strings.xml	string	search_suggestions	-	STR	Empfehlungen suchen	
 values-b+de/strings.xml	string	search_suggestions_des	-	STR	Beim Tippen Suchempfehlungen anzeigen	
@@ -8506,7 +8506,7 @@ values-b+el/strings.xml	string	search_provider_text_providers	-	STR	Αναζήτ
 values-b+el/strings.xml	string	search_provider_text_types	-	STR	Αναζήτηση βάσει τύπων	
 values-b+el/strings.xml	string	search_state_idle_body_desktop	-	STR	Πληκτρολογήστε έναν τίτλο. Τα αποτελέσματα εμφανίζονται κάτω από κάθε πηγή μόλις απαντήσει.	
 values-b+el/strings.xml	string	search_state_no_results_type_filter	-	STR	Μόνο %s. Το φίλτρο τύπου περιορίζει την αναζήτηση.	
-values-b+el/strings.xml	string	search_state_no_suggestions_detail	-	STR	ΟΙ ΠΡΟΤΑΣΕΙΣ ΑΠΑΝΤΗΣΑΝ · 0 ΑΝΤΙΣΤΟΙΧΙΕΣ	
+values-b+el/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 ΠΡΟΤΑΣΕΙΣ · 0 ΠΡΟΣΦΑΤΕΣ ΑΝΤΙΣΤΟΙΧΙΕΣ	
 values-b+el/strings.xml	string	search_state_no_suggestions_headline	-	STR	Τίποτα δεν ταιριάζει με «%s»	
 values-b+el/strings.xml	string	search_tv_source_failed	-	STR	ΑΠΟΤΥΧΙΑ %s	
 values-b+el/strings.xml	string	search_tv_source_pinned	-	STR	ΚΑΡΦΙΤΣΩΜΕΝΟ	
@@ -8919,7 +8919,7 @@ values-b+eo/strings.xml	string	search_provider_text_providers	-	STR	Serĉi uzant
 values-b+eo/strings.xml	string	search_provider_text_types	-	STR	Serĉi uzante tipojn	
 values-b+eo/strings.xml	string	search_state_idle_body_desktop	-	STR	Tajpu titolon. Rezultoj aperas sub ĉiu fonto kiam ĝi respondas.	
 values-b+eo/strings.xml	string	search_state_no_results_type_filter	-	STR	Nur %s. Via tipfiltrilo mallarĝigas la serĉon.	
-values-b+eo/strings.xml	string	search_state_no_suggestions_detail	-	STR	SUGESTOJ RESPONDIS · 0 KONGRUOJ	
+values-b+eo/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SUGESTOJ · 0 LASTATEMPAJ KONGRUOJ	
 values-b+eo/strings.xml	string	search_state_no_suggestions_headline	-	STR	Nenio kongruas kun “%s”	
 values-b+eo/strings.xml	string	search_suggestions	-	STR	Serĉaj Sugestoj	
 values-b+eo/strings.xml	string	search_tv_source_failed	-	STR	MALSUKCESIS %s	
@@ -9603,7 +9603,7 @@ values-b+es/strings.xml	string	search_provider_text_providers	-	STR	Buscar usand
 values-b+es/strings.xml	string	search_provider_text_types	-	STR	Buscar por tipos	
 values-b+es/strings.xml	string	search_state_idle_body_desktop	-	STR	Escriba un título. Los resultados aparecen bajo cada fuente cuando responde.	
 values-b+es/strings.xml	string	search_state_no_results_type_filter	-	STR	Solo %s. Su filtro de tipo está reduciendo la búsqueda.	
-values-b+es/strings.xml	string	search_state_no_suggestions_detail	-	STR	SUGERENCIAS RESPONDIDAS · 0 COINCIDENCIAS	
+values-b+es/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SUGERENCIAS · 0 COINCIDENCIAS RECIENTES	
 values-b+es/strings.xml	string	search_state_no_suggestions_headline	-	STR	Nada coincide con «%s»	
 values-b+es/strings.xml	string	search_suggestions	-	STR	Sugerencias de Búsqueda	
 values-b+es/strings.xml	string	search_suggestions_des	-	STR	Mostrar sugerencias de búsqueda mientras escribe	
@@ -10164,7 +10164,7 @@ values-b+fa/strings.xml	string	search_provider_text_providers	-	STR	جستجو �
 values-b+fa/strings.xml	string	search_provider_text_types	-	STR	جستجو از طریق انواع	
 values-b+fa/strings.xml	string	search_state_idle_body_desktop	-	STR	عنوانی را بنویسید. نتایج هر منبع پس از پاسخ آن، زیر نامش نمایش داده می‌شود.	
 values-b+fa/strings.xml	string	search_state_no_results_type_filter	-	STR	فقط %s. فیلتر نوع شما جستجو را محدود می‌کند.	
-values-b+fa/strings.xml	string	search_state_no_suggestions_detail	-	STR	پیشنهادها پاسخ دادند · 0 مورد منطبق	
+values-b+fa/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 پیشنهاد · 0 مورد منطبق اخیر	
 values-b+fa/strings.xml	string	search_state_no_suggestions_headline	-	STR	هیچ چیزی با «%s» مطابقت ندارد	
 values-b+fa/strings.xml	string	search_tv_source_failed	-	STR	ناموفق %s	
 values-b+fa/strings.xml	string	search_tv_source_pinned	-	STR	سنجاق‌شده	
@@ -10463,7 +10463,7 @@ values-b+fil/strings.xml	string	search_provider_text_providers	-	STR	Maghanap ga
 values-b+fil/strings.xml	string	search_provider_text_types	-	STR	Maghanap gamit ang mga uri	
 values-b+fil/strings.xml	string	search_state_idle_body_desktop	-	STR	Mag-type ng pamagat. Lalabas ang mga resulta sa ilalim ng bawat source kapag sumagot ito.	
 values-b+fil/strings.xml	string	search_state_no_results_type_filter	-	STR	%s lang. Pinipigilan ng type filter mo ang paghahanap.	
-values-b+fil/strings.xml	string	search_state_no_suggestions_detail	-	STR	SUMAGOT ANG MGA MUNGKAHI · 0 TUGMA	
+values-b+fil/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 MUNGKAHI · 0 KAMAKAILANG TUGMA	
 values-b+fil/strings.xml	string	search_state_no_suggestions_headline	-	STR	Walang tumutugma sa “%s”	
 values-b+fil/strings.xml	string	search_tv_source_failed	-	STR	NABIGO %s	
 values-b+fil/strings.xml	string	search_tv_source_pinned	-	STR	NAKA-PIN	
@@ -11136,7 +11136,7 @@ values-b+fr/strings.xml	string	search_provider_text_providers	-	STR	Recherche pa
 values-b+fr/strings.xml	string	search_provider_text_types	-	STR	Recherche par types	
 values-b+fr/strings.xml	string	search_state_idle_body_desktop	-	STR	Saisissez un titre. Les résultats apparaissent sous chaque source dès qu'elle répond.	
 values-b+fr/strings.xml	string	search_state_no_results_type_filter	-	STR	%s uniquement. Votre filtre de type restreint la recherche.	
-values-b+fr/strings.xml	string	search_state_no_suggestions_detail	-	STR	SUGGESTIONS REÇUES · 0 CORRESPONDANCE	
+values-b+fr/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SUGGESTION · 0 CORRESPONDANCE RÉCENTE	
 values-b+fr/strings.xml	string	search_state_no_suggestions_headline	-	STR	Aucun résultat pour « %s »	
 values-b+fr/strings.xml	string	search_suggestions	-	STR	Suggestions de recherche	
 values-b+fr/strings.xml	string	search_suggestions_des	-	STR	Afficher des suggestions de recherche pendant la saisie	
@@ -11644,7 +11644,7 @@ values-b+gl/strings.xml	string	search_provider_text_providers	-	STR	Procurar usa
 values-b+gl/strings.xml	string	search_provider_text_types	-	STR	Procurar por tipos	
 values-b+gl/strings.xml	string	search_state_idle_body_desktop	-	STR	Escriba un título. Os resultados aparecen baixo cada fonte cando responde.	
 values-b+gl/strings.xml	string	search_state_no_results_type_filter	-	STR	Só %s. O filtro de tipo está limitando a busca.	
-values-b+gl/strings.xml	string	search_state_no_suggestions_detail	-	STR	SUXESTIÓNS RESPONDIDAS · 0 COINCIDENCIAS	
+values-b+gl/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SUXESTIÓNS · 0 COINCIDENCIAS RECENTES	
 values-b+gl/strings.xml	string	search_state_no_suggestions_headline	-	STR	Nada coincide con «%s»	
 values-b+gl/strings.xml	string	search_tv_source_failed	-	STR	FALLOU %s	
 values-b+gl/strings.xml	string	search_tv_source_pinned	-	STR	FIXADO	
@@ -12129,7 +12129,7 @@ values-b+hi/strings.xml	string	search_provider_text_providers	-	STR	प्रो
 values-b+hi/strings.xml	string	search_provider_text_types	-	STR	प्रकार का उपयोग करके खोजें	
 values-b+hi/strings.xml	string	search_state_idle_body_desktop	-	STR	कोई शीर्षक लिखें। हर स्रोत के जवाब देने पर नतीजे उसके नीचे दिखेंगे।	
 values-b+hi/strings.xml	string	search_state_no_results_type_filter	-	STR	सिर्फ़ %s। आपका प्रकार फ़िल्टर खोज को सीमित कर रहा है।	
-values-b+hi/strings.xml	string	search_state_no_suggestions_detail	-	STR	सुझावों ने जवाब दिया · 0 मिलान	
+values-b+hi/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 सुझाव · 0 हालिया मिलान	
 values-b+hi/strings.xml	string	search_state_no_suggestions_headline	-	STR	“%s” से कुछ भी मेल नहीं खाता	
 values-b+hi/strings.xml	string	search_tv_source_failed	-	STR	विफल %s	
 values-b+hi/strings.xml	string	search_tv_source_pinned	-	STR	पिन किया गया	
@@ -12859,7 +12859,7 @@ values-b+hr/strings.xml	string	search_provider_text_providers	-	STR	Traži koris
 values-b+hr/strings.xml	string	search_provider_text_types	-	STR	Traži koristeći vrste	
 values-b+hr/strings.xml	string	search_state_idle_body_desktop	-	STR	Upišite naslov. Rezultati se pojavljuju ispod svakog izvora kad odgovori.	
 values-b+hr/strings.xml	string	search_state_no_results_type_filter	-	STR	Samo %s. Vaš filtar vrste sužava pretraživanje.	
-values-b+hr/strings.xml	string	search_state_no_suggestions_detail	-	STR	PRIJEDLOZI SU ODGOVORILI · 0 PODUDARANJA	
+values-b+hr/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 PRIJEDLOGA · 0 NEDAVNIH PODUDARANJA	
 values-b+hr/strings.xml	string	search_state_no_suggestions_headline	-	STR	Ništa ne odgovara „%s“	
 values-b+hr/strings.xml	string	search_suggestions	-	STR	Prijedlozi za pretraživanje	
 values-b+hr/strings.xml	string	search_suggestions_des	-	STR	Prikaži prijedloge za pretraživanje tijekom tipkanja	
@@ -13623,7 +13623,7 @@ values-b+hu/strings.xml	string	search_provider_text_providers	-	STR	Keresés szo
 values-b+hu/strings.xml	string	search_provider_text_types	-	STR	Keresés típusok szerint	
 values-b+hu/strings.xml	string	search_state_idle_body_desktop	-	STR	Írjon be egy címet. Az eredmények az egyes források alatt jelennek meg, amint válaszolnak.	
 values-b+hu/strings.xml	string	search_state_no_results_type_filter	-	STR	Csak %s. A típusszűrő szűkíti a keresést.	
-values-b+hu/strings.xml	string	search_state_no_suggestions_detail	-	STR	A JAVASLATOK MEGÉRKEZTEK · 0 TALÁLAT	
+values-b+hu/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 JAVASLAT · 0 LEGUTÓBBI TALÁLAT	
 values-b+hu/strings.xml	string	search_state_no_suggestions_headline	-	STR	Semmi sem egyezik ezzel: „%s”	
 values-b+hu/strings.xml	string	search_suggestions	-	STR	Keresési javaslatok	
 values-b+hu/strings.xml	string	search_suggestions_des	-	STR	Mutasson keresési javaslatok gépelés közben	
@@ -14411,7 +14411,7 @@ values-b+in/strings.xml	string	search_provider_text_providers	-	STR	Cari menggun
 values-b+in/strings.xml	string	search_provider_text_types	-	STR	Cari menggunakan jenis	
 values-b+in/strings.xml	string	search_state_idle_body_desktop	-	STR	Ketik judul. Hasil muncul di bawah setiap sumber saat sumber itu menjawab.	
 values-b+in/strings.xml	string	search_state_no_results_type_filter	-	STR	Hanya %s. Filter jenis Anda mempersempit pencarian.	
-values-b+in/strings.xml	string	search_state_no_suggestions_detail	-	STR	SARAN TERJAWAB · 0 COCOK	
+values-b+in/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SARAN · 0 COCOK TERBARU	
 values-b+in/strings.xml	string	search_state_no_suggestions_headline	-	STR	Tidak ada yang cocok dengan “%s”	
 values-b+in/strings.xml	string	search_suggestions	-	STR	Saran pencarian	
 values-b+in/strings.xml	string	search_suggestions_des	-	STR	Tampilkan saran pencarian saat mengetik	
@@ -15252,7 +15252,7 @@ values-b+it/strings.xml	string	search_provider_text_providers	-	STR	Cerca per pr
 values-b+it/strings.xml	string	search_provider_text_types	-	STR	Cerca per tipo	
 values-b+it/strings.xml	string	search_state_idle_body_desktop	-	STR	Digita un titolo. I risultati compaiono sotto ogni fonte quando risponde.	
 values-b+it/strings.xml	string	search_state_no_results_type_filter	-	STR	Solo %s. Il filtro per tipo sta restringendo la ricerca.	
-values-b+it/strings.xml	string	search_state_no_suggestions_detail	-	STR	SUGGERIMENTI RICEVUTI · 0 CORRISPONDENZE	
+values-b+it/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SUGGERIMENTI · 0 CORRISPONDENZE RECENTI	
 values-b+it/strings.xml	string	search_state_no_suggestions_headline	-	STR	Nessun risultato per «%s»	
 values-b+it/strings.xml	string	search_suggestions	-	STR	Suggerimenti per la ricerca	
 values-b+it/strings.xml	string	search_suggestions_des	-	STR	Mostra suggerimenti di ricerca durante la digitazione	
@@ -15948,7 +15948,7 @@ values-b+iw/strings.xml	string	search_provider_text_providers	-	STR	חפש בא�
 values-b+iw/strings.xml	string	search_provider_text_types	-	STR	חפש באמצעות סוגים	
 values-b+iw/strings.xml	string	search_state_idle_body_desktop	-	STR	הקלד כותרת. התוצאות יופיעו מתחת לכל מקור כשיענה.	
 values-b+iw/strings.xml	string	search_state_no_results_type_filter	-	STR	%s בלבד. מסנן הסוג מצמצם את החיפוש.	
-values-b+iw/strings.xml	string	search_state_no_suggestions_detail	-	STR	ההצעות התקבלו · 0 התאמות	
+values-b+iw/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 הצעות · 0 התאמות אחרונות	
 values-b+iw/strings.xml	string	search_state_no_suggestions_headline	-	STR	שום דבר לא תואם ל-“%s”	
 values-b+iw/strings.xml	string	search_tv_source_failed	-	STR	נכשל %s	
 values-b+iw/strings.xml	string	search_tv_source_pinned	-	STR	מוצמד	
@@ -16721,7 +16721,7 @@ values-b+ja/strings.xml	string	search_provider_text_providers	-	STR	プロバイ
 values-b+ja/strings.xml	string	search_provider_text_types	-	STR	使用タイプの検索	
 values-b+ja/strings.xml	string	search_state_idle_body_desktop	-	STR	タイトルを入力してください。各ソースが応答すると、その下に結果が表示されます。	
 values-b+ja/strings.xml	string	search_state_no_results_type_filter	-	STR	%sのみ。種類フィルターで検索が絞り込まれています。	
-values-b+ja/strings.xml	string	search_state_no_suggestions_detail	-	STR	候補の応答あり · 一致 0 件	
+values-b+ja/strings.xml	string	search_state_no_suggestions_detail	-	STR	候補 0 件 · 最近の一致 0 件	
 values-b+ja/strings.xml	string	search_state_no_suggestions_headline	-	STR	「%s」に一致するものはありません	
 values-b+ja/strings.xml	string	search_suggestions	-	STR	検索候補	
 values-b+ja/strings.xml	string	search_suggestions_des	-	STR	入力中に検索候補を表示する	
@@ -17111,7 +17111,7 @@ values-b+kn/strings.xml	string	search_provider_text_providers	-	STR	ಪೂರೈ
 values-b+kn/strings.xml	string	search_provider_text_types	-	STR	ಪ್ರಕಾರಗಳನ್ನು ಬಳಸಿಕೊಂಡು ಹುಡುಕಿ	
 values-b+kn/strings.xml	string	search_state_idle_body_desktop	-	STR	ಶೀರ್ಷಿಕೆಯನ್ನು ಟೈಪ್ ಮಾಡಿ. ಪ್ರತಿಯೊಂದು ಮೂಲ ಉತ್ತರಿಸಿದಂತೆ ಫಲಿತಾಂಶಗಳು ಅದರ ಕೆಳಗೆ ಕಾಣಿಸುತ್ತವೆ.	
 values-b+kn/strings.xml	string	search_state_no_results_type_filter	-	STR	%s ಮಾತ್ರ. ನಿಮ್ಮ ಪ್ರಕಾರದ ಫಿಲ್ಟರ್ ಹುಡುಕಾಟವನ್ನು ಕಿರಿದುಗೊಳಿಸುತ್ತಿದೆ.	
-values-b+kn/strings.xml	string	search_state_no_suggestions_detail	-	STR	ಸಲಹೆಗಳು ಉತ್ತರಿಸಿವೆ · 0 ಹೊಂದಾಣಿಕೆಗಳು	
+values-b+kn/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 ಸಲಹೆಗಳು · 0 ಇತ್ತೀಚಿನ ಹೊಂದಾಣಿಕೆಗಳು	
 values-b+kn/strings.xml	string	search_state_no_suggestions_headline	-	STR	“%s” ಗೆ ಯಾವುದೂ ಹೊಂದುವುದಿಲ್ಲ	
 values-b+kn/strings.xml	string	search_tv_source_failed	-	STR	ವಿಫಲ %s	
 values-b+kn/strings.xml	string	search_tv_source_pinned	-	STR	ಪಿನ್ ಮಾಡಲಾಗಿದೆ	
@@ -17764,7 +17764,7 @@ values-b+ko/strings.xml	string	search_provider_text_providers	-	STR	소스로 �
 values-b+ko/strings.xml	string	search_provider_text_types	-	STR	유형을 사용하여 검색	
 values-b+ko/strings.xml	string	search_state_idle_body_desktop	-	STR	제목을 입력하세요. 각 소스가 응답하면 그 아래에 결과가 표시됩니다.	
 values-b+ko/strings.xml	string	search_state_no_results_type_filter	-	STR	%s만. 유형 필터가 검색을 좁히고 있습니다.	
-values-b+ko/strings.xml	string	search_state_no_suggestions_detail	-	STR	추천 응답 완료 · 일치 0개	
+values-b+ko/strings.xml	string	search_state_no_suggestions_detail	-	STR	추천 0개 · 최근 일치 0개	
 values-b+ko/strings.xml	string	search_state_no_suggestions_headline	-	STR	“%s”와(과) 일치하는 항목이 없습니다	
 values-b+ko/strings.xml	string	search_suggestions	-	STR	검색어 제안	
 values-b+ko/strings.xml	string	search_suggestions_des	-	STR	입력하는 동안 검색어 제안 표시	
@@ -18279,7 +18279,7 @@ values-b+lt/strings.xml	string	search_provider_text_providers	-	STR	Ieškoti nau
 values-b+lt/strings.xml	string	search_provider_text_types	-	STR	Ieškoti naudojant tipus	
 values-b+lt/strings.xml	string	search_state_idle_body_desktop	-	STR	Įveskite pavadinimą. Rezultatai rodomi po kiekvienu šaltiniu, kai šis atsako.	
 values-b+lt/strings.xml	string	search_state_no_results_type_filter	-	STR	Tik %s. Jūsų tipų filtras siaurina paiešką.	
-values-b+lt/strings.xml	string	search_state_no_suggestions_detail	-	STR	PASIŪLYMAI GAUTI · 0 ATITIKMENŲ	
+values-b+lt/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 PASIŪLYMŲ · 0 NESENIŲ ATITIKMENŲ	
 values-b+lt/strings.xml	string	search_state_no_suggestions_headline	-	STR	Niekas neatitinka „%s“	
 values-b+lt/strings.xml	string	search_tv_source_failed	-	STR	NEPAVYKO %s	
 values-b+lt/strings.xml	string	search_tv_source_pinned	-	STR	PRISEGTA	
@@ -18912,7 +18912,7 @@ values-b+lv/strings.xml	string	search_provider_text_providers	-	STR	Meklēt izma
 values-b+lv/strings.xml	string	search_provider_text_types	-	STR	Meklēt izmantojot tipus	
 values-b+lv/strings.xml	string	search_state_idle_body_desktop	-	STR	Ievadiet nosaukumu. Rezultāti parādās zem katra devēja, tiklīdz tas atbild.	
 values-b+lv/strings.xml	string	search_state_no_results_type_filter	-	STR	Tikai %s. Jūsu veida filtrs sašaurina meklēšanu.	
-values-b+lv/strings.xml	string	search_state_no_suggestions_detail	-	STR	IETEIKUMI SAŅEMTI · 0 ATBILSTĪBU	
+values-b+lv/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 IETEIKUMU · 0 NESENU ATBILSTĪBU	
 values-b+lv/strings.xml	string	search_state_no_suggestions_headline	-	STR	Nekas neatbilst „%s”	
 values-b+lv/strings.xml	string	search_suggestions	-	STR	Meklēšanas ieteikumi	
 values-b+lv/strings.xml	string	search_tv_source_failed	-	STR	NEIZDEVĀS %s	
@@ -19701,7 +19701,7 @@ values-b+mk/strings.xml	string	search_provider_text_providers	-	STR	Пребар
 values-b+mk/strings.xml	string	search_provider_text_types	-	STR	Пребарувај користејќи типови	
 values-b+mk/strings.xml	string	search_state_idle_body_desktop	-	STR	Внеси наслов. Резултатите се појавуваат под секој извор кога ќе одговори.	
 values-b+mk/strings.xml	string	search_state_no_results_type_filter	-	STR	Само %s. Вашиот филтер за тип го стеснува пребарувањето.	
-values-b+mk/strings.xml	string	search_state_no_suggestions_detail	-	STR	ПРЕДЛОЗИТЕ ОДГОВОРИЈА · 0 СОВПАЃАЊА	
+values-b+mk/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 ПРЕДЛОЗИ · 0 НЕОДАМНЕШНИ СОВПАЃАЊА	
 values-b+mk/strings.xml	string	search_state_no_suggestions_headline	-	STR	Ништо не одговара на „%s“	
 values-b+mk/strings.xml	string	search_suggestions	-	STR	Предлози за пребарување	
 values-b+mk/strings.xml	string	search_suggestions_des	-	STR	Прикажувај предлози за пребарување додека пишуваш	
@@ -20197,7 +20197,7 @@ values-b+ml/strings.xml	string	search_provider_text_providers	-	STR	സ്രോ
 values-b+ml/strings.xml	string	search_provider_text_types	-	STR	തരം അടിസ്ഥാനത്തിൽ തിരയുക	
 values-b+ml/strings.xml	string	search_state_idle_body_desktop	-	STR	ഒരു ശീർഷകം ടൈപ്പ് ചെയ്യുക. ഓരോ ഉറവിടവും മറുപടി നൽകുമ്പോൾ ഫലങ്ങൾ അതിനു താഴെ കാണിക്കും.	
 values-b+ml/strings.xml	string	search_state_no_results_type_filter	-	STR	%s മാത്രം. നിങ്ങളുടെ തരം ഫിൽട്ടർ തിരയൽ ചുരുക്കുന്നു.	
-values-b+ml/strings.xml	string	search_state_no_suggestions_detail	-	STR	നിർദ്ദേശങ്ങൾ മറുപടി നൽകി · 0 പൊരുത്തങ്ങൾ	
+values-b+ml/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 നിർദ്ദേശങ്ങൾ · 0 സമീപകാല പൊരുത്തങ്ങൾ	
 values-b+ml/strings.xml	string	search_state_no_suggestions_headline	-	STR	“%s” എന്നതുമായി ഒന്നും പൊരുത്തപ്പെടുന്നില്ല	
 values-b+ml/strings.xml	string	search_tv_source_failed	-	STR	പരാജയപ്പെട്ടു %s	
 values-b+ml/strings.xml	string	search_tv_source_pinned	-	STR	പിൻ ചെയ്തു	
@@ -20778,7 +20778,7 @@ values-b+ms/strings.xml	string	search_provider_text_providers	-	STR	Carian mengi
 values-b+ms/strings.xml	string	search_provider_text_types	-	STR	Carian mengikut jenis	
 values-b+ms/strings.xml	string	search_state_idle_body_desktop	-	STR	Taip tajuk. Hasil muncul di bawah setiap sumber apabila ia menjawab.	
 values-b+ms/strings.xml	string	search_state_no_results_type_filter	-	STR	Hanya %s. Penapis jenis anda mengecilkan carian.	
-values-b+ms/strings.xml	string	search_state_no_suggestions_detail	-	STR	CADANGAN DIJAWAB · 0 PADANAN	
+values-b+ms/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 CADANGAN · 0 PADANAN TERKINI	
 values-b+ms/strings.xml	string	search_state_no_suggestions_headline	-	STR	Tiada yang sepadan dengan “%s”	
 values-b+ms/strings.xml	string	search_tv_source_failed	-	STR	GAGAL %s	
 values-b+ms/strings.xml	string	search_tv_source_pinned	-	STR	DISEMATKAN	
@@ -21102,7 +21102,7 @@ values-b+mt/strings.xml	string	search_provider_text_providers	-	STR	Fittex bl-u�
 values-b+mt/strings.xml	string	search_provider_text_types	-	STR	Fittex bl-użu ta 'tipi	
 values-b+mt/strings.xml	string	search_state_idle_body_desktop	-	STR	Ikteb titlu. Ir-riżultati jidhru taħt kull sors meta jwieġeb.	
 values-b+mt/strings.xml	string	search_state_no_results_type_filter	-	STR	%s biss. Il-filtru tat-tip qed jirrestrinġi l-fittxija.	
-values-b+mt/strings.xml	string	search_state_no_suggestions_detail	-	STR	IS-SUĠĠERIMENTI WIEĠBU · 0 TAQBIL	
+values-b+mt/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SUĠĠERIMENTI · 0 TAQBIL REĊENTI	
 values-b+mt/strings.xml	string	search_state_no_suggestions_headline	-	STR	Xejn ma jaqbel ma' “%s”	
 values-b+mt/strings.xml	string	search_tv_source_failed	-	STR	FALLA %s	
 values-b+mt/strings.xml	string	search_tv_source_pinned	-	STR	IPPINJAT	
@@ -21601,7 +21601,7 @@ values-b+my/strings.xml	string	search_provider_text_providers	-	STR	ပ့ံပ
 values-b+my/strings.xml	string	search_provider_text_types	-	STR	အမျိုးအစားများအသုံးပြု၍ရှာရန်	
 values-b+my/strings.xml	string	search_state_idle_body_desktop	-	STR	ခေါင်းစဉ်တစ်ခု ရိုက်ထည့်ပါ။ ရင်းမြစ်တစ်ခုစီ တုံ့ပြန်သည်နှင့် ရလဒ်များကို ၎င်းအောက်တွင် ပြသပါမည်။	
 values-b+my/strings.xml	string	search_state_no_results_type_filter	-	STR	%s သာ။ သင့်အမျိုးအစား စစ်ထုတ်မှုက ရှာဖွေမှုကို ကျဉ်းစေနေသည်။	
-values-b+my/strings.xml	string	search_state_no_suggestions_detail	-	STR	အကြံပြုချက်များ ပြန်ဖြေပြီး · ကိုက်ညီမှု 0 ခု	
+values-b+my/strings.xml	string	search_state_no_suggestions_detail	-	STR	အကြံပြုချက် 0 ခု · မကြာသေးမီ ကိုက်ညီမှု 0 ခု	
 values-b+my/strings.xml	string	search_state_no_suggestions_headline	-	STR	“%s” နှင့် ကိုက်ညီသည့်အရာ မရှိပါ	
 values-b+my/strings.xml	string	search_tv_source_failed	-	STR	မအောင်မြင်ပါ %s	
 values-b+my/strings.xml	string	search_tv_source_pinned	-	STR	ပင်ထိုးထား	
@@ -21933,7 +21933,7 @@ values-b+ne/strings.xml	string	search_provider_text_providers	-	STR	प्रो
 values-b+ne/strings.xml	string	search_provider_text_types	-	STR	प्रकारको उपयोग गरी खोज्नुहोस्	
 values-b+ne/strings.xml	string	search_state_idle_body_desktop	-	STR	शीर्षक टाइप गर्नुहोस्। प्रत्येक स्रोतले जवाफ दिएपछि नतिजा त्यसको तल देखिन्छ।	
 values-b+ne/strings.xml	string	search_state_no_results_type_filter	-	STR	%s मात्र। तपाईंको प्रकार फिल्टरले खोजी साँघुरो बनाइरहेको छ।	
-values-b+ne/strings.xml	string	search_state_no_suggestions_detail	-	STR	सुझावहरूले जवाफ दिए · 0 मेल	
+values-b+ne/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 सुझाव · 0 हालैका मेल	
 values-b+ne/strings.xml	string	search_state_no_suggestions_headline	-	STR	“%s” सँग केही पनि मेल खाँदैन	
 values-b+ne/strings.xml	string	search_tv_source_failed	-	STR	असफल %s	
 values-b+ne/strings.xml	string	search_tv_source_pinned	-	STR	पिन गरिएको	
@@ -22551,7 +22551,7 @@ values-b+nl/strings.xml	string	search_provider_text_providers	-	STR	Zoeken met p
 values-b+nl/strings.xml	string	search_provider_text_types	-	STR	Zoeken met types	
 values-b+nl/strings.xml	string	search_state_idle_body_desktop	-	STR	Typ een titel. Resultaten verschijnen onder elke bron zodra die antwoordt.	
 values-b+nl/strings.xml	string	search_state_no_results_type_filter	-	STR	Alleen %s. Je typefilter beperkt de zoekopdracht.	
-values-b+nl/strings.xml	string	search_state_no_suggestions_detail	-	STR	SUGGESTIES ONTVANGEN · 0 OVEREENKOMSTEN	
+values-b+nl/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SUGGESTIES · 0 RECENTE OVEREENKOMSTEN	
 values-b+nl/strings.xml	string	search_state_no_suggestions_headline	-	STR	Niets komt overeen met “%s”	
 values-b+nl/strings.xml	string	search_suggestions	-	STR	Zoeksuggesties	
 values-b+nl/strings.xml	string	search_suggestions_des	-	STR	Zoeksuggesties laten zien tijdens het typen	
@@ -22980,7 +22980,7 @@ values-b+nn/strings.xml	string	search_provider_text_providers	-	STR	Søk basert 
 values-b+nn/strings.xml	string	search_provider_text_types	-	STR	Søk ved bruk av typer	
 values-b+nn/strings.xml	string	search_state_idle_body_desktop	-	STR	Skriv ein tittel. Resultata kjem under kvar kjelde når ho svarar.	
 values-b+nn/strings.xml	string	search_state_no_results_type_filter	-	STR	Berre %s. Typefilteret ditt avgrensar søket.	
-values-b+nn/strings.xml	string	search_state_no_suggestions_detail	-	STR	FORSLAG SVARTE · 0 TREFF	
+values-b+nn/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 FORSLAG · 0 NYLEGE TREFF	
 values-b+nn/strings.xml	string	search_state_no_suggestions_headline	-	STR	Ingenting samsvarar med «%s»	
 values-b+nn/strings.xml	string	search_tv_source_failed	-	STR	FEILA %s	
 values-b+nn/strings.xml	string	search_tv_source_pinned	-	STR	FESTA	
@@ -23497,7 +23497,7 @@ values-b+no/strings.xml	string	search_provider_text_providers	-	STR	Søk med lev
 values-b+no/strings.xml	string	search_provider_text_types	-	STR	Søk med typer	
 values-b+no/strings.xml	string	search_state_idle_body_desktop	-	STR	Skriv inn en tittel. Resultatene vises under hver kilde når den svarer.	
 values-b+no/strings.xml	string	search_state_no_results_type_filter	-	STR	Bare %s. Typefilteret ditt begrenser søket.	
-values-b+no/strings.xml	string	search_state_no_suggestions_detail	-	STR	FORSLAG SVARTE · 0 TREFF	
+values-b+no/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 FORSLAG · 0 NYLIGE TREFF	
 values-b+no/strings.xml	string	search_state_no_suggestions_headline	-	STR	Ingenting samsvarer med «%s»	
 values-b+no/strings.xml	string	search_tv_source_failed	-	STR	FEILET %s	
 values-b+no/strings.xml	string	search_tv_source_pinned	-	STR	FESTET	
@@ -23847,7 +23847,7 @@ values-b+or/strings.xml	string	search_poster_img_des	-	STR	ପୋଷ୍ଟର୍
 values-b+or/strings.xml	string	search_provider_text_providers	-	STR	ପ୍ରଦାତା ଵ୍ୟଵହାର କରି ଖୋଜିବା	
 values-b+or/strings.xml	string	search_state_idle_body_desktop	-	STR	ଏକ ଶୀର୍ଷକ ଟାଇପ୍ କରନ୍ତୁ। ପ୍ରତ୍ୟେକ ଉତ୍ସ ଉତ୍ତର ଦେଲେ ଫଳାଫଳ ତା ତଳେ ଦେଖାଯିବ।	
 values-b+or/strings.xml	string	search_state_no_results_type_filter	-	STR	କେବଳ %s। ଆପଣଙ୍କ ପ୍ରକାର ଫିଲ୍ଟର ସନ୍ଧାନକୁ ସଂକୁଚିତ କରୁଛି।	
-values-b+or/strings.xml	string	search_state_no_suggestions_detail	-	STR	ପରାମର୍ଶ ଉତ୍ତର ଦେଲା · 0 ମେଳ	
+values-b+or/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 ପରାମର୍ଶ · 0 ସାମ୍ପ୍ରତିକ ମେଳ	
 values-b+or/strings.xml	string	search_state_no_suggestions_headline	-	STR	“%s” ସହ କିଛି ମେଳ ଖାଉନାହିଁ	
 values-b+or/strings.xml	string	search_tv_source_failed	-	STR	ବିଫଳ %s	
 values-b+or/strings.xml	string	search_tv_source_pinned	-	STR	ପିନ୍ କରାଯାଇଛି	
@@ -24537,7 +24537,7 @@ values-b+pl/strings.xml	string	search_provider_text_providers	-	STR	Szukaj wedł
 values-b+pl/strings.xml	string	search_provider_text_types	-	STR	Szukaj według typów	
 values-b+pl/strings.xml	string	search_state_idle_body_desktop	-	STR	Wpisz tytuł. Wyniki pojawiają się pod każdym źródłem, gdy odpowie.	
 values-b+pl/strings.xml	string	search_state_no_results_type_filter	-	STR	Tylko %s. Filtr typu zawęża wyszukiwanie.	
-values-b+pl/strings.xml	string	search_state_no_suggestions_detail	-	STR	SUGESTIE ODPOWIEDZIAŁY · 0 DOPASOWAŃ	
+values-b+pl/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SUGESTII · 0 OSTATNICH DOPASOWAŃ	
 values-b+pl/strings.xml	string	search_state_no_suggestions_headline	-	STR	Nic nie pasuje do „%s”	
 values-b+pl/strings.xml	string	search_suggestions	-	STR	Sugestie wyszukiwania	
 values-b+pl/strings.xml	string	search_suggestions_des	-	STR	Pokaż sugestie wyszukiwania podczas pisania	
@@ -25378,7 +25378,7 @@ values-b+pt+BR/strings.xml	string	search_provider_text_providers	-	STR	Pesquisar
 values-b+pt+BR/strings.xml	string	search_provider_text_types	-	STR	Pesquisar usando tipos	
 values-b+pt+BR/strings.xml	string	search_state_idle_body_desktop	-	STR	Digite um título. Os resultados aparecem abaixo de cada fonte assim que ela responde.	
 values-b+pt+BR/strings.xml	string	search_state_no_results_type_filter	-	STR	Somente %s. O filtro de tipo está restringindo a pesquisa.	
-values-b+pt+BR/strings.xml	string	search_state_no_suggestions_detail	-	STR	SUGESTÕES RESPONDERAM · 0 CORRESPONDÊNCIAS	
+values-b+pt+BR/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SUGESTÕES · 0 CORRESPONDÊNCIAS RECENTES	
 values-b+pt+BR/strings.xml	string	search_state_no_suggestions_headline	-	STR	Nada corresponde a “%s”	
 values-b+pt+BR/strings.xml	string	search_suggestions	-	STR	Sugestões de Busca	
 values-b+pt+BR/strings.xml	string	search_suggestions_des	-	STR	Exibir sugestões de pesquisa durante a digitação	
@@ -26213,7 +26213,7 @@ values-b+pt/strings.xml	string	search_provider_text_providers	-	STR	Procurar usa
 values-b+pt/strings.xml	string	search_provider_text_types	-	STR	Procurar usando tipos	
 values-b+pt/strings.xml	string	search_state_idle_body_desktop	-	STR	Escreva um título. Os resultados aparecem sob cada fonte assim que ela responde.	
 values-b+pt/strings.xml	string	search_state_no_results_type_filter	-	STR	Apenas %s. O filtro de tipo está a limitar a pesquisa.	
-values-b+pt/strings.xml	string	search_state_no_suggestions_detail	-	STR	SUGESTÕES RESPONDERAM · 0 CORRESPONDÊNCIAS	
+values-b+pt/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SUGESTÕES · 0 CORRESPONDÊNCIAS RECENTES	
 values-b+pt/strings.xml	string	search_state_no_suggestions_headline	-	STR	Nada corresponde a «%s»	
 values-b+pt/strings.xml	string	search_suggestions	-	STR	Sugestões de pesquisa	
 values-b+pt/strings.xml	string	search_suggestions_des	-	STR	Mostrar sugestões de pesquisa enquanto digita	
@@ -26966,7 +26966,7 @@ values-b+qt/strings.xml	string	search_provider_text_providers	-	STR	aauuhaauuggh
 values-b+qt/strings.xml	string	search_provider_text_types	-	STR	ahhhahoooohhaa ahhhoohahh	
 values-b+qt/strings.xml	string	search_state_idle_body_desktop	-	STR	oouuh aaaaggg uuuk ooh	
 values-b+qt/strings.xml	string	search_state_no_results_type_filter	-	STR	%s uuhaa. oouuh aagggh uuk.	
-values-b+qt/strings.xml	string	search_state_no_suggestions_detail	-	STR	AAAHHUU OOGG · 0 UUGH	
+values-b+qt/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 AAAHHUU · 0 AAOOH UUGH	
 values-b+qt/strings.xml	string	search_state_no_suggestions_headline	-	STR	ooh aagg “%s”	
 values-b+qt/strings.xml	string	search_tv_source_failed	-	STR	AAGGH %s	
 values-b+qt/strings.xml	string	search_tv_source_pinned	-	STR	OOHHAA	
@@ -27688,7 +27688,7 @@ values-b+ro/strings.xml	string	search_provider_text_providers	-	STR	Căutare în
 values-b+ro/strings.xml	string	search_provider_text_types	-	STR	Căutare în funcție de tip	
 values-b+ro/strings.xml	string	search_state_idle_body_desktop	-	STR	Tastați un titlu. Rezultatele apar sub fiecare sursă când răspunde.	
 values-b+ro/strings.xml	string	search_state_no_results_type_filter	-	STR	Doar %s. Filtrul de tip restrânge căutarea.	
-values-b+ro/strings.xml	string	search_state_no_suggestions_detail	-	STR	SUGESTII PRIMITE · 0 POTRIVIRI	
+values-b+ro/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SUGESTII · 0 POTRIVIRI RECENTE	
 values-b+ro/strings.xml	string	search_state_no_suggestions_headline	-	STR	Nimic nu se potrivește cu „%s”	
 values-b+ro/strings.xml	string	search_tv_source_failed	-	STR	EȘUAT %s	
 values-b+ro/strings.xml	string	search_tv_source_pinned	-	STR	FIXAT	
@@ -28494,7 +28494,7 @@ values-b+ru/strings.xml	string	search_provider_text_providers	-	STR	Поиск �
 values-b+ru/strings.xml	string	search_provider_text_types	-	STR	Поиск с использованием типов	
 values-b+ru/strings.xml	string	search_state_idle_body_desktop	-	STR	Введите название. Результаты появятся под каждым источником, когда он ответит.	
 values-b+ru/strings.xml	string	search_state_no_results_type_filter	-	STR	Только %s. Фильтр по типу сужает поиск.	
-values-b+ru/strings.xml	string	search_state_no_suggestions_detail	-	STR	ПОДСКАЗКИ ПОЛУЧЕНЫ · 0 СОВПАДЕНИЙ	
+values-b+ru/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 ПОДСКАЗОК · 0 НЕДАВНИХ СОВПАДЕНИЙ	
 values-b+ru/strings.xml	string	search_state_no_suggestions_headline	-	STR	Ничего не найдено по запросу «%s»	
 values-b+ru/strings.xml	string	search_suggestions	-	STR	Поиск предложений	
 values-b+ru/strings.xml	string	search_suggestions_des	-	STR	Показывать подсказки поиска при вводе текста	
@@ -29154,7 +29154,7 @@ values-b+sk/strings.xml	string	search_provider_text_providers	-	STR	Hľadať pom
 values-b+sk/strings.xml	string	search_provider_text_types	-	STR	Hľadať pomocou typov	
 values-b+sk/strings.xml	string	search_state_idle_body_desktop	-	STR	Zadajte názov. Výsledky sa zobrazia pod každým zdrojom, keď odpovie.	
 values-b+sk/strings.xml	string	search_state_no_results_type_filter	-	STR	Iba %s. Filter typov zužuje hľadanie.	
-values-b+sk/strings.xml	string	search_state_no_suggestions_detail	-	STR	NÁVRHY ODPOVEDALI · 0 ZHÔD	
+values-b+sk/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 NÁVRHOV · 0 NEDÁVNYCH ZHÔD	
 values-b+sk/strings.xml	string	search_state_no_suggestions_headline	-	STR	Nič nezodpovedá „%s“	
 values-b+sk/strings.xml	string	search_suggestions	-	STR	Návrhy vyhľadávania	
 values-b+sk/strings.xml	string	search_suggestions_des	-	STR	Zobraziť návrhy vyhľadávania pri písaní	
@@ -29741,7 +29741,7 @@ values-b+so/strings.xml	string	search_provider_text_providers	-	STR	Ku raadi qay
 values-b+so/strings.xml	string	search_provider_text_types	-	STR	Ku raadi noocyada	
 values-b+so/strings.xml	string	search_state_idle_body_desktop	-	STR	Qor cinwaan. Natiijooyinku waxay ka muuqdaan xigasho kasta hoosteeda marka ay jawaabto.	
 values-b+so/strings.xml	string	search_state_no_results_type_filter	-	STR	Kaliya %s. Shaandhada nooca ayaa soo koobaya raadinta.	
-values-b+so/strings.xml	string	search_state_no_suggestions_detail	-	STR	TALOOYINKA WAA LA HELAY · 0 ISKU-EG	
+values-b+so/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 TALOOYIN · 0 ISKU-EG DHOWAAN	
 values-b+so/strings.xml	string	search_state_no_suggestions_headline	-	STR	Waxba kuma habboona “%s”	
 values-b+so/strings.xml	string	search_suggestions	-	STR	Talooyinka Raadinta	
 values-b+so/strings.xml	string	search_suggestions_des	-	STR	Soo bandhig talooyinka inta aad wax qorayso	
@@ -30503,7 +30503,7 @@ values-b+sq/strings.xml	string	search_provider_text_providers	-	STR	Kërko duke 
 values-b+sq/strings.xml	string	search_provider_text_types	-	STR	Kërko duke përdorur tipet	
 values-b+sq/strings.xml	string	search_state_idle_body_desktop	-	STR	Shkruani një titull. Rezultatet shfaqen nën çdo burim sapo ai përgjigjet.	
 values-b+sq/strings.xml	string	search_state_no_results_type_filter	-	STR	Vetëm %s. Filtri i llojit po e ngushton kërkimin.	
-values-b+sq/strings.xml	string	search_state_no_suggestions_detail	-	STR	SUGJERIMET U PËRGJIGJËN · 0 PËRPUTHJE	
+values-b+sq/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SUGJERIME · 0 PËRPUTHJE TË FUNDIT	
 values-b+sq/strings.xml	string	search_state_no_suggestions_headline	-	STR	Asgjë nuk përputhet me “%s”	
 values-b+sq/strings.xml	string	search_suggestions	-	STR	Kërkime të sugjeruara	
 values-b+sq/strings.xml	string	search_suggestions_des	-	STR	Trego sugjerimet ndërkohë që shkruani	
@@ -31336,7 +31336,7 @@ values-b+sv/strings.xml	string	search_provider_text_providers	-	STR	Sök med hj�
 values-b+sv/strings.xml	string	search_provider_text_types	-	STR	Sök med hjälp av typer	
 values-b+sv/strings.xml	string	search_state_idle_body_desktop	-	STR	Skriv en titel. Resultaten visas under varje källa när den svarar.	
 values-b+sv/strings.xml	string	search_state_no_results_type_filter	-	STR	Endast %s. Ditt typfilter begränsar sökningen.	
-values-b+sv/strings.xml	string	search_state_no_suggestions_detail	-	STR	FÖRSLAG BESVARADE · 0 TRÄFFAR	
+values-b+sv/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 FÖRSLAG · 0 NYLIGA TRÄFFAR	
 values-b+sv/strings.xml	string	search_state_no_suggestions_headline	-	STR	Inget matchar ”%s”	
 values-b+sv/strings.xml	string	search_suggestions	-	STR	Sökförslag	
 values-b+sv/strings.xml	string	search_suggestions_des	-	STR	Visa sökförslag medan du skriver	
@@ -32169,7 +32169,7 @@ values-b+ta/strings.xml	string	search_provider_text_providers	-	STR	வழங்
 values-b+ta/strings.xml	string	search_provider_text_types	-	STR	வகைகளைப் பயன்படுத்தி தேடுங்கள்	
 values-b+ta/strings.xml	string	search_state_idle_body_desktop	-	STR	ஒரு தலைப்பைத் தட்டச்சு செய்யவும். ஒவ்வொரு மூலமும் பதிலளிக்கும்போது முடிவுகள் அதன் கீழ் தோன்றும்.	
 values-b+ta/strings.xml	string	search_state_no_results_type_filter	-	STR	%s மட்டும். உங்கள் வகை வடிப்பான் தேடலைக் குறுக்குகிறது.	
-values-b+ta/strings.xml	string	search_state_no_suggestions_detail	-	STR	பரிந்துரைகள் பதிலளித்தன · 0 பொருத்தங்கள்	
+values-b+ta/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 பரிந்துரைகள் · 0 சமீபத்திய பொருத்தங்கள்	
 values-b+ta/strings.xml	string	search_state_no_suggestions_headline	-	STR	“%s” உடன் எதுவும் பொருந்தவில்லை	
 values-b+ta/strings.xml	string	search_suggestions	-	STR	தேடல் பரிந்துரைகள்	
 values-b+ta/strings.xml	string	search_suggestions_des	-	STR	தட்டச்சு செய்யும் போது தேடல் பரிந்துரைகளைக் காட்டு	
@@ -32476,7 +32476,7 @@ values-b+ti/strings.xml	string	player_source_switch	-	STR	ቀይር
 values-b+ti/strings.xml	string	player_unmute	-	STR	ድምጺ ወልዕ	
 values-b+ti/strings.xml	string	search_state_idle_body_desktop	-	STR	ኣርእስቲ ጽሓፍ። ውጽኢታት ነፍሲ ወከፍ ምንጪ ምስ መለሰ ኣብ ትሕቲኡ ይርአዩ።	
 values-b+ti/strings.xml	string	search_state_no_results_type_filter	-	STR	%s ጥራይ። ማጣሪያ ዓይነትካ ፍለጋ የጽብብ ኣሎ።	
-values-b+ti/strings.xml	string	search_state_no_suggestions_detail	-	STR	ሓሳባት መለሱ · 0 ተመሳሰልቲ	
+values-b+ti/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 ሓሳባት · 0 ናይ ቀረባ ተመሳሰልቲ	
 values-b+ti/strings.xml	string	search_state_no_suggestions_headline	-	STR	ምስ «%s» ዝሰማማዕ የለን	
 values-b+ti/strings.xml	string	search_tv_source_failed	-	STR	ኣይተኻኣለን %s	
 values-b+ti/strings.xml	string	search_tv_source_pinned	-	STR	ተሰኪሉ	
@@ -32747,7 +32747,7 @@ values-b+tl/strings.xml	string	search_provider_text_providers	-	STR	Search using
 values-b+tl/strings.xml	string	search_provider_text_types	-	STR	Search using types	
 values-b+tl/strings.xml	string	search_state_idle_body_desktop	-	STR	Mag-type ng pamagat. Lalabas ang mga resulta sa ilalim ng bawat source kapag sumagot ito.	
 values-b+tl/strings.xml	string	search_state_no_results_type_filter	-	STR	%s lang. Pinipigilan ng type filter mo ang paghahanap.	
-values-b+tl/strings.xml	string	search_state_no_suggestions_detail	-	STR	SUMAGOT ANG MGA MUNGKAHI · 0 TUGMA	
+values-b+tl/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 MUNGKAHI · 0 KAMAKAILANG TUGMA	
 values-b+tl/strings.xml	string	search_state_no_suggestions_headline	-	STR	Walang tumutugma sa “%s”	
 values-b+tl/strings.xml	string	search_tv_source_failed	-	STR	NABIGO %s	
 values-b+tl/strings.xml	string	search_tv_source_pinned	-	STR	NAKA-PIN	
@@ -33443,7 +33443,7 @@ values-b+tr/strings.xml	string	search_provider_text_providers	-	STR	Sağlayıcı
 values-b+tr/strings.xml	string	search_provider_text_types	-	STR	Türleri kullanarak ara	
 values-b+tr/strings.xml	string	search_state_idle_body_desktop	-	STR	Bir başlık yazın. Sonuçlar, her kaynak yanıt verdikçe onun altında görünür.	
 values-b+tr/strings.xml	string	search_state_no_results_type_filter	-	STR	Yalnızca %s. Tür filtreniz aramayı daraltıyor.	
-values-b+tr/strings.xml	string	search_state_no_suggestions_detail	-	STR	ÖNERİLER YANITLANDI · 0 EŞLEŞME	
+values-b+tr/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 ÖNERİ · 0 YAKIN ZAMANLI EŞLEŞME	
 values-b+tr/strings.xml	string	search_state_no_suggestions_headline	-	STR	“%s” ile eşleşen bir şey yok	
 values-b+tr/strings.xml	string	search_suggestions	-	STR	Arama Önerileri	
 values-b+tr/strings.xml	string	search_suggestions_des	-	STR	Yazarken arama önerilerini göster	
@@ -34292,7 +34292,7 @@ values-b+uk/strings.xml	string	search_provider_text_providers	-	STR	Пошук �
 values-b+uk/strings.xml	string	search_provider_text_types	-	STR	Пошук за типами	
 values-b+uk/strings.xml	string	search_state_idle_body_desktop	-	STR	Введіть назву. Результати з'являться під кожним джерелом, коли воно відповість.	
 values-b+uk/strings.xml	string	search_state_no_results_type_filter	-	STR	Лише %s. Фільтр за типом звужує пошук.	
-values-b+uk/strings.xml	string	search_state_no_suggestions_detail	-	STR	ПІДКАЗКИ ОТРИМАНО · 0 ЗБІГІВ	
+values-b+uk/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 ПІДКАЗОК · 0 НЕЩОДАВНІХ ЗБІГІВ	
 values-b+uk/strings.xml	string	search_state_no_suggestions_headline	-	STR	Нічого не відповідає «%s»	
 values-b+uk/strings.xml	string	search_suggestions	-	STR	Пропозиції пошуку	
 values-b+uk/strings.xml	string	search_suggestions_des	-	STR	Показувати підказки пошуку під час введення тексту	
@@ -35030,7 +35030,7 @@ values-b+ur/strings.xml	string	search_provider_text_providers	-	STR	ذرائع �
 values-b+ur/strings.xml	string	search_provider_text_types	-	STR	انواع کا استعمال کرتے ہوئے تلاش کریں	
 values-b+ur/strings.xml	string	search_state_idle_body_desktop	-	STR	عنوان لکھیں۔ ہر ذریعہ کے جواب دینے پر نتائج اس کے نیچے ظاہر ہوں گے۔	
 values-b+ur/strings.xml	string	search_state_no_results_type_filter	-	STR	صرف %s۔ آپ کا قسم فلٹر تلاش کو محدود کر رہا ہے۔	
-values-b+ur/strings.xml	string	search_state_no_suggestions_detail	-	STR	تجاویز کا جواب آ گیا · 0 مماثلتیں	
+values-b+ur/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 تجاویز · 0 حالیہ مماثلتیں	
 values-b+ur/strings.xml	string	search_state_no_suggestions_headline	-	STR	“%s” سے کچھ بھی مماثل نہیں	
 values-b+ur/strings.xml	string	search_tv_source_failed	-	STR	ناکام %s	
 values-b+ur/strings.xml	string	search_tv_source_pinned	-	STR	پن کیا گیا	
@@ -35811,7 +35811,7 @@ values-b+vi/strings.xml	string	search_provider_text_providers	-	STR	Tìm kiếm 
 values-b+vi/strings.xml	string	search_provider_text_types	-	STR	Tìm kiếm theo thể loại	
 values-b+vi/strings.xml	string	search_state_idle_body_desktop	-	STR	Nhập tiêu đề. Kết quả sẽ hiện dưới mỗi nguồn khi nguồn đó phản hồi.	
 values-b+vi/strings.xml	string	search_state_no_results_type_filter	-	STR	Chỉ %s. Bộ lọc loại của bạn đang thu hẹp kết quả tìm kiếm.	
-values-b+vi/strings.xml	string	search_state_no_suggestions_detail	-	STR	ĐÃ CÓ GỢI Ý · 0 KẾT QUẢ KHỚP	
+values-b+vi/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 GỢI Ý · 0 KẾT QUẢ GẦN ĐÂY KHỚP	
 values-b+vi/strings.xml	string	search_state_no_suggestions_headline	-	STR	Không có gì khớp với “%s”	
 values-b+vi/strings.xml	string	search_suggestions	-	STR	Gợi ý tìm kiếm	
 values-b+vi/strings.xml	string	search_suggestions_des	-	STR	Hiển thị gợi ý tìm kiếm khi đang nhập	
@@ -36632,7 +36632,7 @@ values-b+zh+TW/strings.xml	string	search_provider_text_providers	-	STR	按片源
 values-b+zh+TW/strings.xml	string	search_provider_text_types	-	STR	按類型搜尋	
 values-b+zh+TW/strings.xml	string	search_state_idle_body_desktop	-	STR	輸入標題。每個來源回應後，結果會顯示在其下方。	
 values-b+zh+TW/strings.xml	string	search_state_no_results_type_filter	-	STR	僅限%s。類型篩選器正在縮小搜尋範圍。	
-values-b+zh+TW/strings.xml	string	search_state_no_suggestions_detail	-	STR	建議已回應 · 0 個相符	
+values-b+zh+TW/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 個建議 · 0 個最近相符	
 values-b+zh+TW/strings.xml	string	search_state_no_suggestions_headline	-	STR	沒有符合「%s」的內容	
 values-b+zh+TW/strings.xml	string	search_suggestions	-	STR	搜尋建議	
 values-b+zh+TW/strings.xml	string	search_suggestions_des	-	STR	輸入時顯示搜尋建議	
@@ -37455,7 +37455,7 @@ values-b+zh/strings.xml	string	search_provider_text_providers	-	STR	按片源搜
 values-b+zh/strings.xml	string	search_provider_text_types	-	STR	按类型搜索	
 values-b+zh/strings.xml	string	search_state_idle_body_desktop	-	STR	输入标题。每个来源响应后，结果会显示在其下方。	
 values-b+zh/strings.xml	string	search_state_no_results_type_filter	-	STR	仅限%s。类型筛选正在缩小搜索范围。	
-values-b+zh/strings.xml	string	search_state_no_suggestions_detail	-	STR	建议已返回 · 0 个匹配	
+values-b+zh/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 个建议 · 0 个最近匹配	
 values-b+zh/strings.xml	string	search_state_no_suggestions_headline	-	STR	没有与“%s”匹配的内容	
 values-b+zh/strings.xml	string	search_suggestions	-	STR	搜索建议	
 values-b+zh/strings.xml	string	search_suggestions_des	-	STR	输入时显示搜索建议	
@@ -38442,7 +38442,7 @@ values/strings.xml	string	search_state_no_results_body_unknown	-	STR	Every selec
 values/strings.xml	string	search_state_no_results_detail	-	STR	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS	
 values/strings.xml	string	search_state_no_results_headline	-	STR	No results	
 values/strings.xml	string	search_state_no_results_type_filter	-	STR	%s only. Your type filter is narrowing the search.	
-values/strings.xml	string	search_state_no_suggestions_detail	-	STR	SUGGESTIONS ANSWERED · 0 MATCHES	
+values/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SUGGESTIONS · 0 RECENT MATCHES	
 values/strings.xml	string	search_state_no_suggestions_headline	-	STR	Nothing matches “%s”	
 values/strings.xml	string	search_state_offline_body	-	STR	Search needs a connection. Your downloads are still available.	
 values/strings.xml	string	search_state_offline_headline	-	STR	You are offline	

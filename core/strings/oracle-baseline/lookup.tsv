@@ -653,7 +653,7 @@ values-b+af	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+af	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+af	string	search_state_no_results_headline	-	No results
 values-b+af	string	search_state_no_results_type_filter	-	Slegs %s. Jou tipe-filter beperk die soektog.
-values-b+af	string	search_state_no_suggestions_detail	-	VOORSTELLE BEANTWOORD · 0 OOREENKOMSTE
+values-b+af	string	search_state_no_suggestions_detail	-	0 VOORSTELLE · 0 ONLANGSE OOREENKOMSTE
 values-b+af	string	search_state_no_suggestions_headline	-	Niks stem ooreen met “%s” nie
 values-b+af	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+af	string	search_state_offline_headline	-	You are offline
@@ -1543,7 +1543,7 @@ values-b+am	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+am	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+am	string	search_state_no_results_headline	-	No results
 values-b+am	string	search_state_no_results_type_filter	-	%s ብቻ። የአይነት ማጣሪያዎ ፍለጋውን እያጠበበው ነው።
-values-b+am	string	search_state_no_suggestions_detail	-	ጥቆማዎች ምላሽ ሰጥተዋል · 0 ተዛማጆች
+values-b+am	string	search_state_no_suggestions_detail	-	0 ጥቆማዎች · 0 የቅርብ ጊዜ ተዛማጆች
 values-b+am	string	search_state_no_suggestions_headline	-	ከ«%s» ጋር የሚዛመድ ምንም የለም
 values-b+am	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+am	string	search_state_offline_headline	-	You are offline
@@ -2433,7 +2433,7 @@ values-b+apc	string	search_state_no_results_body_unknown	-	Every selected source
 values-b+apc	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+apc	string	search_state_no_results_headline	-	No results
 values-b+apc	string	search_state_no_results_type_filter	-	%s بس. فلتر النوع عم يضيّق البحث.
-values-b+apc	string	search_state_no_suggestions_detail	-	ردّت الاقتراحات · 0 تطابق
+values-b+apc	string	search_state_no_suggestions_detail	-	0 اقتراحات · 0 تطابق مؤخراً
 values-b+apc	string	search_state_no_suggestions_headline	-	ما في شي بيطابق «%s»
 values-b+apc	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+apc	string	search_state_offline_headline	-	You are offline
@@ -3351,7 +3351,7 @@ values-b+ar	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+ar	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+ar	string	search_state_no_results_headline	-	No results
 values-b+ar	string	search_state_no_results_type_filter	-	%s فقط. عامل تصفية النوع يضيّق نطاق البحث.
-values-b+ar	string	search_state_no_suggestions_detail	-	ردّت الاقتراحات · 0 تطابق
+values-b+ar	string	search_state_no_suggestions_detail	-	0 اقتراحات · 0 تطابق حديث
 values-b+ar	string	search_state_no_suggestions_headline	-	لا شيء يطابق «%s»
 values-b+ar	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+ar	string	search_state_offline_headline	-	You are offline
@@ -4261,7 +4261,7 @@ values-b+ars	string	search_state_no_results_body_unknown	-	Every selected source
 values-b+ars	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+ars	string	search_state_no_results_headline	-	No results
 values-b+ars	string	search_state_no_results_type_filter	-	%s بس. فلتر النوع يضيّق البحث.
-values-b+ars	string	search_state_no_suggestions_detail	-	ردّت الاقتراحات · 0 تطابق
+values-b+ars	string	search_state_no_suggestions_detail	-	0 اقتراحات · 0 تطابق حديث
 values-b+ars	string	search_state_no_suggestions_headline	-	لا شيء يطابق «%s»
 values-b+ars	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+ars	string	search_state_offline_headline	-	You are offline
@@ -5151,7 +5151,7 @@ values-b+as	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+as	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+as	string	search_state_no_results_headline	-	No results
 values-b+as	string	search_state_no_results_type_filter	-	কেৱল %s। আপোনাৰ ধৰণৰ ফিল্টাৰে সন্ধান সংকীৰ্ণ কৰিছে।
-values-b+as	string	search_state_no_suggestions_detail	-	পৰামৰ্শই উত্তৰ দিলে · 0 টা মিল
+values-b+as	string	search_state_no_suggestions_detail	-	0 টা পৰামৰ্শ · 0 টা শেহতীয়া মিল
 values-b+as	string	search_state_no_suggestions_headline	-	“%s”ৰ সৈতে একো নিমিলে
 values-b+as	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+as	string	search_state_offline_headline	-	You are offline
@@ -6041,7 +6041,7 @@ values-b+az	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+az	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+az	string	search_state_no_results_headline	-	No results
 values-b+az	string	search_state_no_results_type_filter	-	Yalnız %s. Növ filtriniz axtarışı daraldır.
-values-b+az	string	search_state_no_suggestions_detail	-	TƏKLİFLƏR CAVAB VERDİ · 0 UYĞUNLUQ
+values-b+az	string	search_state_no_suggestions_detail	-	0 TƏKLİF · 0 SON UYĞUNLUQ
 values-b+az	string	search_state_no_suggestions_headline	-	«%s» ilə uyğun heç nə yoxdur
 values-b+az	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+az	string	search_state_offline_headline	-	You are offline
@@ -6945,7 +6945,7 @@ values-b+be	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+be	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+be	string	search_state_no_results_headline	-	No results
 values-b+be	string	search_state_no_results_type_filter	-	Толькі %s. Фільтр па тыпе звужае пошук.
-values-b+be	string	search_state_no_suggestions_detail	-	ПРАПАНОВЫ АДКАЗАЛІ · 0 СУПАДЗЕННЯЎ
+values-b+be	string	search_state_no_suggestions_detail	-	0 ПРАПАНОЎ · 0 НЯДАЎНІХ СУПАДЗЕННЯЎ
 values-b+be	string	search_state_no_suggestions_headline	-	Нічога не адпавядае «%s»
 values-b+be	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+be	string	search_state_offline_headline	-	You are offline
@@ -7835,7 +7835,7 @@ values-b+bg	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+bg	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+bg	string	search_state_no_results_headline	-	No results
 values-b+bg	string	search_state_no_results_type_filter	-	Само %s. Филтърът по тип стеснява търсенето.
-values-b+bg	string	search_state_no_suggestions_detail	-	ПРЕДЛОЖЕНИЯТА ОТГОВОРИХА · 0 СЪВПАДЕНИЯ
+values-b+bg	string	search_state_no_suggestions_detail	-	0 ПРЕДЛОЖЕНИЯ · 0 СКОРОШНИ СЪВПАДЕНИЯ
 values-b+bg	string	search_state_no_suggestions_headline	-	Нищо не съответства на „%s“
 values-b+bg	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+bg	string	search_state_offline_headline	-	You are offline
@@ -8725,7 +8725,7 @@ values-b+bn	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+bn	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+bn	string	search_state_no_results_headline	-	No results
 values-b+bn	string	search_state_no_results_type_filter	-	শুধু %s। আপনার ধরনের ফিল্টার অনুসন্ধান সীমিত করছে।
-values-b+bn	string	search_state_no_suggestions_detail	-	সাজেশন উত্তর দিয়েছে · 0টি মিল
+values-b+bn	string	search_state_no_suggestions_detail	-	0টি সাজেশন · 0টি সাম্প্রতিক মিল
 values-b+bn	string	search_state_no_suggestions_headline	-	“%s”-এর সাথে কিছুই মেলেনি
 values-b+bn	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+bn	string	search_state_offline_headline	-	You are offline
@@ -9620,7 +9620,7 @@ values-b+ca	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+ca	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+ca	string	search_state_no_results_headline	-	No results
 values-b+ca	string	search_state_no_results_type_filter	-	Només %s. El filtre de tipus està limitant la cerca.
-values-b+ca	string	search_state_no_suggestions_detail	-	SUGGERIMENTS RESPOSTOS · 0 COINCIDÈNCIES
+values-b+ca	string	search_state_no_suggestions_detail	-	0 SUGGERIMENTS · 0 COINCIDÈNCIES RECENTS
 values-b+ca	string	search_state_no_suggestions_headline	-	Res no coincideix amb «%s»
 values-b+ca	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+ca	string	search_state_offline_headline	-	You are offline
@@ -10510,7 +10510,7 @@ values-b+ckb	string	search_state_no_results_body_unknown	-	Every selected source
 values-b+ckb	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+ckb	string	search_state_no_results_headline	-	No results
 values-b+ckb	string	search_state_no_results_type_filter	-	تەنها %s. فلتەری جۆرەکەت گەڕانەکە سنووردار دەکات.
-values-b+ckb	string	search_state_no_suggestions_detail	-	پێشنیارەکان وەڵامیان دایەوە · 0 هاوتا
+values-b+ckb	string	search_state_no_suggestions_detail	-	0 پێشنیار · 0 هاوتای دوایین
 values-b+ckb	string	search_state_no_suggestions_headline	-	هیچ شتێک لەگەڵ «%s» ناگونجێت
 values-b+ckb	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+ckb	string	search_state_offline_headline	-	You are offline
@@ -11416,7 +11416,7 @@ values-b+cs	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+cs	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+cs	string	search_state_no_results_headline	-	No results
 values-b+cs	string	search_state_no_results_type_filter	-	Pouze %s. Filtr typů zužuje hledání.
-values-b+cs	string	search_state_no_suggestions_detail	-	NÁVRHY ODPOVĚDĚLY · 0 SHOD
+values-b+cs	string	search_state_no_suggestions_detail	-	0 NÁVRHŮ · 0 NEDÁVNÝCH SHOD
 values-b+cs	string	search_state_no_suggestions_headline	-	Nic neodpovídá „%s“
 values-b+cs	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+cs	string	search_state_offline_headline	-	You are offline
@@ -12306,7 +12306,7 @@ values-b+de	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+de	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+de	string	search_state_no_results_headline	-	No results
 values-b+de	string	search_state_no_results_type_filter	-	Nur %s. Der Typfilter schränkt die Suche ein.
-values-b+de	string	search_state_no_suggestions_detail	-	VORSCHLÄGE BEANTWORTET · 0 TREFFER
+values-b+de	string	search_state_no_suggestions_detail	-	0 VORSCHLÄGE · 0 TREFFER IM VERLAUF
 values-b+de	string	search_state_no_suggestions_headline	-	Nichts passt zu „%s“
 values-b+de	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+de	string	search_state_offline_headline	-	You are offline
@@ -13196,7 +13196,7 @@ values-b+el	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+el	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+el	string	search_state_no_results_headline	-	No results
 values-b+el	string	search_state_no_results_type_filter	-	Μόνο %s. Το φίλτρο τύπου περιορίζει την αναζήτηση.
-values-b+el	string	search_state_no_suggestions_detail	-	ΟΙ ΠΡΟΤΑΣΕΙΣ ΑΠΑΝΤΗΣΑΝ · 0 ΑΝΤΙΣΤΟΙΧΙΕΣ
+values-b+el	string	search_state_no_suggestions_detail	-	0 ΠΡΟΤΑΣΕΙΣ · 0 ΠΡΟΣΦΑΤΕΣ ΑΝΤΙΣΤΟΙΧΙΕΣ
 values-b+el	string	search_state_no_suggestions_headline	-	Τίποτα δεν ταιριάζει με «%s»
 values-b+el	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+el	string	search_state_offline_headline	-	You are offline
@@ -14086,7 +14086,7 @@ values-b+eo	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+eo	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+eo	string	search_state_no_results_headline	-	No results
 values-b+eo	string	search_state_no_results_type_filter	-	Nur %s. Via tipfiltrilo mallarĝigas la serĉon.
-values-b+eo	string	search_state_no_suggestions_detail	-	SUGESTOJ RESPONDIS · 0 KONGRUOJ
+values-b+eo	string	search_state_no_suggestions_detail	-	0 SUGESTOJ · 0 LASTATEMPAJ KONGRUOJ
 values-b+eo	string	search_state_no_suggestions_headline	-	Nenio kongruas kun “%s”
 values-b+eo	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+eo	string	search_state_offline_headline	-	You are offline
@@ -14984,7 +14984,7 @@ values-b+es	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+es	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+es	string	search_state_no_results_headline	-	No results
 values-b+es	string	search_state_no_results_type_filter	-	Solo %s. Su filtro de tipo está reduciendo la búsqueda.
-values-b+es	string	search_state_no_suggestions_detail	-	SUGERENCIAS RESPONDIDAS · 0 COINCIDENCIAS
+values-b+es	string	search_state_no_suggestions_detail	-	0 SUGERENCIAS · 0 COINCIDENCIAS RECIENTES
 values-b+es	string	search_state_no_suggestions_headline	-	Nada coincide con «%s»
 values-b+es	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+es	string	search_state_offline_headline	-	You are offline
@@ -15874,7 +15874,7 @@ values-b+fa	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+fa	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+fa	string	search_state_no_results_headline	-	No results
 values-b+fa	string	search_state_no_results_type_filter	-	فقط %s. فیلتر نوع شما جستجو را محدود می‌کند.
-values-b+fa	string	search_state_no_suggestions_detail	-	پیشنهادها پاسخ دادند · 0 مورد منطبق
+values-b+fa	string	search_state_no_suggestions_detail	-	0 پیشنهاد · 0 مورد منطبق اخیر
 values-b+fa	string	search_state_no_suggestions_headline	-	هیچ چیزی با «%s» مطابقت ندارد
 values-b+fa	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+fa	string	search_state_offline_headline	-	You are offline
@@ -16764,7 +16764,7 @@ values-b+fil	string	search_state_no_results_body_unknown	-	Every selected source
 values-b+fil	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+fil	string	search_state_no_results_headline	-	No results
 values-b+fil	string	search_state_no_results_type_filter	-	%s lang. Pinipigilan ng type filter mo ang paghahanap.
-values-b+fil	string	search_state_no_suggestions_detail	-	SUMAGOT ANG MGA MUNGKAHI · 0 TUGMA
+values-b+fil	string	search_state_no_suggestions_detail	-	0 MUNGKAHI · 0 KAMAKAILANG TUGMA
 values-b+fil	string	search_state_no_suggestions_headline	-	Walang tumutugma sa “%s”
 values-b+fil	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+fil	string	search_state_offline_headline	-	You are offline
@@ -17662,7 +17662,7 @@ values-b+fr	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+fr	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+fr	string	search_state_no_results_headline	-	No results
 values-b+fr	string	search_state_no_results_type_filter	-	%s uniquement. Votre filtre de type restreint la recherche.
-values-b+fr	string	search_state_no_suggestions_detail	-	SUGGESTIONS REÇUES · 0 CORRESPONDANCE
+values-b+fr	string	search_state_no_suggestions_detail	-	0 SUGGESTION · 0 CORRESPONDANCE RÉCENTE
 values-b+fr	string	search_state_no_suggestions_headline	-	Aucun résultat pour « %s »
 values-b+fr	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+fr	string	search_state_offline_headline	-	You are offline
@@ -18552,7 +18552,7 @@ values-b+gl	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+gl	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+gl	string	search_state_no_results_headline	-	No results
 values-b+gl	string	search_state_no_results_type_filter	-	Só %s. O filtro de tipo está limitando a busca.
-values-b+gl	string	search_state_no_suggestions_detail	-	SUXESTIÓNS RESPONDIDAS · 0 COINCIDENCIAS
+values-b+gl	string	search_state_no_suggestions_detail	-	0 SUXESTIÓNS · 0 COINCIDENCIAS RECENTES
 values-b+gl	string	search_state_no_suggestions_headline	-	Nada coincide con «%s»
 values-b+gl	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+gl	string	search_state_offline_headline	-	You are offline
@@ -19442,7 +19442,7 @@ values-b+hi	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+hi	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+hi	string	search_state_no_results_headline	-	No results
 values-b+hi	string	search_state_no_results_type_filter	-	सिर्फ़ %s। आपका प्रकार फ़िल्टर खोज को सीमित कर रहा है।
-values-b+hi	string	search_state_no_suggestions_detail	-	सुझावों ने जवाब दिया · 0 मिलान
+values-b+hi	string	search_state_no_suggestions_detail	-	0 सुझाव · 0 हालिया मिलान
 values-b+hi	string	search_state_no_suggestions_headline	-	“%s” से कुछ भी मेल नहीं खाता
 values-b+hi	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+hi	string	search_state_offline_headline	-	You are offline
@@ -20339,7 +20339,7 @@ values-b+hr	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+hr	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+hr	string	search_state_no_results_headline	-	No results
 values-b+hr	string	search_state_no_results_type_filter	-	Samo %s. Vaš filtar vrste sužava pretraživanje.
-values-b+hr	string	search_state_no_suggestions_detail	-	PRIJEDLOZI SU ODGOVORILI · 0 PODUDARANJA
+values-b+hr	string	search_state_no_suggestions_detail	-	0 PRIJEDLOGA · 0 NEDAVNIH PODUDARANJA
 values-b+hr	string	search_state_no_suggestions_headline	-	Ništa ne odgovara „%s“
 values-b+hr	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+hr	string	search_state_offline_headline	-	You are offline
@@ -21229,7 +21229,7 @@ values-b+hu	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+hu	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+hu	string	search_state_no_results_headline	-	No results
 values-b+hu	string	search_state_no_results_type_filter	-	Csak %s. A típusszűrő szűkíti a keresést.
-values-b+hu	string	search_state_no_suggestions_detail	-	A JAVASLATOK MEGÉRKEZTEK · 0 TALÁLAT
+values-b+hu	string	search_state_no_suggestions_detail	-	0 JAVASLAT · 0 LEGUTÓBBI TALÁLAT
 values-b+hu	string	search_state_no_suggestions_headline	-	Semmi sem egyezik ezzel: „%s”
 values-b+hu	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+hu	string	search_state_offline_headline	-	You are offline
@@ -22111,7 +22111,7 @@ values-b+in	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+in	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+in	string	search_state_no_results_headline	-	No results
 values-b+in	string	search_state_no_results_type_filter	-	Hanya %s. Filter jenis Anda mempersempit pencarian.
-values-b+in	string	search_state_no_suggestions_detail	-	SARAN TERJAWAB · 0 COCOK
+values-b+in	string	search_state_no_suggestions_detail	-	0 SARAN · 0 COCOK TERBARU
 values-b+in	string	search_state_no_suggestions_headline	-	Tidak ada yang cocok dengan “%s”
 values-b+in	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+in	string	search_state_offline_headline	-	You are offline
@@ -23009,7 +23009,7 @@ values-b+it	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+it	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+it	string	search_state_no_results_headline	-	No results
 values-b+it	string	search_state_no_results_type_filter	-	Solo %s. Il filtro per tipo sta restringendo la ricerca.
-values-b+it	string	search_state_no_suggestions_detail	-	SUGGERIMENTI RICEVUTI · 0 CORRISPONDENZE
+values-b+it	string	search_state_no_suggestions_detail	-	0 SUGGERIMENTI · 0 CORRISPONDENZE RECENTI
 values-b+it	string	search_state_no_suggestions_headline	-	Nessun risultato per «%s»
 values-b+it	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+it	string	search_state_offline_headline	-	You are offline
@@ -23904,7 +23904,7 @@ values-b+iw	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+iw	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+iw	string	search_state_no_results_headline	-	No results
 values-b+iw	string	search_state_no_results_type_filter	-	%s בלבד. מסנן הסוג מצמצם את החיפוש.
-values-b+iw	string	search_state_no_suggestions_detail	-	ההצעות התקבלו · 0 התאמות
+values-b+iw	string	search_state_no_suggestions_detail	-	0 הצעות · 0 התאמות אחרונות
 values-b+iw	string	search_state_no_suggestions_headline	-	שום דבר לא תואם ל-“%s”
 values-b+iw	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+iw	string	search_state_offline_headline	-	You are offline
@@ -24786,7 +24786,7 @@ values-b+ja	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+ja	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+ja	string	search_state_no_results_headline	-	No results
 values-b+ja	string	search_state_no_results_type_filter	-	%sのみ。種類フィルターで検索が絞り込まれています。
-values-b+ja	string	search_state_no_suggestions_detail	-	候補の応答あり · 一致 0 件
+values-b+ja	string	search_state_no_suggestions_detail	-	候補 0 件 · 最近の一致 0 件
 values-b+ja	string	search_state_no_suggestions_headline	-	「%s」に一致するものはありません
 values-b+ja	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+ja	string	search_state_offline_headline	-	You are offline
@@ -25676,7 +25676,7 @@ values-b+kn	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+kn	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+kn	string	search_state_no_results_headline	-	No results
 values-b+kn	string	search_state_no_results_type_filter	-	%s ಮಾತ್ರ. ನಿಮ್ಮ ಪ್ರಕಾರದ ಫಿಲ್ಟರ್ ಹುಡುಕಾಟವನ್ನು ಕಿರಿದುಗೊಳಿಸುತ್ತಿದೆ.
-values-b+kn	string	search_state_no_suggestions_detail	-	ಸಲಹೆಗಳು ಉತ್ತರಿಸಿವೆ · 0 ಹೊಂದಾಣಿಕೆಗಳು
+values-b+kn	string	search_state_no_suggestions_detail	-	0 ಸಲಹೆಗಳು · 0 ಇತ್ತೀಚಿನ ಹೊಂದಾಣಿಕೆಗಳು
 values-b+kn	string	search_state_no_suggestions_headline	-	“%s” ಗೆ ಯಾವುದೂ ಹೊಂದುವುದಿಲ್ಲ
 values-b+kn	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+kn	string	search_state_offline_headline	-	You are offline
@@ -26559,7 +26559,7 @@ values-b+ko	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+ko	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+ko	string	search_state_no_results_headline	-	No results
 values-b+ko	string	search_state_no_results_type_filter	-	%s만. 유형 필터가 검색을 좁히고 있습니다.
-values-b+ko	string	search_state_no_suggestions_detail	-	추천 응답 완료 · 일치 0개
+values-b+ko	string	search_state_no_suggestions_detail	-	추천 0개 · 최근 일치 0개
 values-b+ko	string	search_state_no_suggestions_headline	-	“%s”와(과) 일치하는 항목이 없습니다
 values-b+ko	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+ko	string	search_state_offline_headline	-	You are offline
@@ -27459,7 +27459,7 @@ values-b+lt	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+lt	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+lt	string	search_state_no_results_headline	-	No results
 values-b+lt	string	search_state_no_results_type_filter	-	Tik %s. Jūsų tipų filtras siaurina paiešką.
-values-b+lt	string	search_state_no_suggestions_detail	-	PASIŪLYMAI GAUTI · 0 ATITIKMENŲ
+values-b+lt	string	search_state_no_suggestions_detail	-	0 PASIŪLYMŲ · 0 NESENIŲ ATITIKMENŲ
 values-b+lt	string	search_state_no_suggestions_headline	-	Niekas neatitinka „%s“
 values-b+lt	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+lt	string	search_state_offline_headline	-	You are offline
@@ -28355,7 +28355,7 @@ values-b+lv	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+lv	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+lv	string	search_state_no_results_headline	-	No results
 values-b+lv	string	search_state_no_results_type_filter	-	Tikai %s. Jūsu veida filtrs sašaurina meklēšanu.
-values-b+lv	string	search_state_no_suggestions_detail	-	IETEIKUMI SAŅEMTI · 0 ATBILSTĪBU
+values-b+lv	string	search_state_no_suggestions_detail	-	0 IETEIKUMU · 0 NESENU ATBILSTĪBU
 values-b+lv	string	search_state_no_suggestions_headline	-	Nekas neatbilst „%s”
 values-b+lv	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+lv	string	search_state_offline_headline	-	You are offline
@@ -29245,7 +29245,7 @@ values-b+mk	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+mk	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+mk	string	search_state_no_results_headline	-	No results
 values-b+mk	string	search_state_no_results_type_filter	-	Само %s. Вашиот филтер за тип го стеснува пребарувањето.
-values-b+mk	string	search_state_no_suggestions_detail	-	ПРЕДЛОЗИТЕ ОДГОВОРИЈА · 0 СОВПАЃАЊА
+values-b+mk	string	search_state_no_suggestions_detail	-	0 ПРЕДЛОЗИ · 0 НЕОДАМНЕШНИ СОВПАЃАЊА
 values-b+mk	string	search_state_no_suggestions_headline	-	Ништо не одговара на „%s“
 values-b+mk	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+mk	string	search_state_offline_headline	-	You are offline
@@ -30135,7 +30135,7 @@ values-b+ml	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+ml	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+ml	string	search_state_no_results_headline	-	No results
 values-b+ml	string	search_state_no_results_type_filter	-	%s മാത്രം. നിങ്ങളുടെ തരം ഫിൽട്ടർ തിരയൽ ചുരുക്കുന്നു.
-values-b+ml	string	search_state_no_suggestions_detail	-	നിർദ്ദേശങ്ങൾ മറുപടി നൽകി · 0 പൊരുത്തങ്ങൾ
+values-b+ml	string	search_state_no_suggestions_detail	-	0 നിർദ്ദേശങ്ങൾ · 0 സമീപകാല പൊരുത്തങ്ങൾ
 values-b+ml	string	search_state_no_suggestions_headline	-	“%s” എന്നതുമായി ഒന്നും പൊരുത്തപ്പെടുന്നില്ല
 values-b+ml	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+ml	string	search_state_offline_headline	-	You are offline
@@ -31020,7 +31020,7 @@ values-b+ms	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+ms	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+ms	string	search_state_no_results_headline	-	No results
 values-b+ms	string	search_state_no_results_type_filter	-	Hanya %s. Penapis jenis anda mengecilkan carian.
-values-b+ms	string	search_state_no_suggestions_detail	-	CADANGAN DIJAWAB · 0 PADANAN
+values-b+ms	string	search_state_no_suggestions_detail	-	0 CADANGAN · 0 PADANAN TERKINI
 values-b+ms	string	search_state_no_suggestions_headline	-	Tiada yang sepadan dengan “%s”
 values-b+ms	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+ms	string	search_state_offline_headline	-	You are offline
@@ -31925,7 +31925,7 @@ values-b+mt	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+mt	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+mt	string	search_state_no_results_headline	-	No results
 values-b+mt	string	search_state_no_results_type_filter	-	%s biss. Il-filtru tat-tip qed jirrestrinġi l-fittxija.
-values-b+mt	string	search_state_no_suggestions_detail	-	IS-SUĠĠERIMENTI WIEĠBU · 0 TAQBIL
+values-b+mt	string	search_state_no_suggestions_detail	-	0 SUĠĠERIMENTI · 0 TAQBIL REĊENTI
 values-b+mt	string	search_state_no_suggestions_headline	-	Xejn ma jaqbel ma' “%s”
 values-b+mt	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+mt	string	search_state_offline_headline	-	You are offline
@@ -32810,7 +32810,7 @@ values-b+my	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+my	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+my	string	search_state_no_results_headline	-	No results
 values-b+my	string	search_state_no_results_type_filter	-	%s သာ။ သင့်အမျိုးအစား စစ်ထုတ်မှုက ရှာဖွေမှုကို ကျဉ်းစေနေသည်။
-values-b+my	string	search_state_no_suggestions_detail	-	အကြံပြုချက်များ ပြန်ဖြေပြီး · ကိုက်ညီမှု 0 ခု
+values-b+my	string	search_state_no_suggestions_detail	-	အကြံပြုချက် 0 ခု · မကြာသေးမီ ကိုက်ညီမှု 0 ခု
 values-b+my	string	search_state_no_suggestions_headline	-	“%s” နှင့် ကိုက်ညီသည့်အရာ မရှိပါ
 values-b+my	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+my	string	search_state_offline_headline	-	You are offline
@@ -33700,7 +33700,7 @@ values-b+ne	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+ne	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+ne	string	search_state_no_results_headline	-	No results
 values-b+ne	string	search_state_no_results_type_filter	-	%s मात्र। तपाईंको प्रकार फिल्टरले खोजी साँघुरो बनाइरहेको छ।
-values-b+ne	string	search_state_no_suggestions_detail	-	सुझावहरूले जवाफ दिए · 0 मेल
+values-b+ne	string	search_state_no_suggestions_detail	-	0 सुझाव · 0 हालैका मेल
 values-b+ne	string	search_state_no_suggestions_headline	-	“%s” सँग केही पनि मेल खाँदैन
 values-b+ne	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+ne	string	search_state_offline_headline	-	You are offline
@@ -34590,7 +34590,7 @@ values-b+nl	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+nl	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+nl	string	search_state_no_results_headline	-	No results
 values-b+nl	string	search_state_no_results_type_filter	-	Alleen %s. Je typefilter beperkt de zoekopdracht.
-values-b+nl	string	search_state_no_suggestions_detail	-	SUGGESTIES ONTVANGEN · 0 OVEREENKOMSTEN
+values-b+nl	string	search_state_no_suggestions_detail	-	0 SUGGESTIES · 0 RECENTE OVEREENKOMSTEN
 values-b+nl	string	search_state_no_suggestions_headline	-	Niets komt overeen met “%s”
 values-b+nl	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+nl	string	search_state_offline_headline	-	You are offline
@@ -35480,7 +35480,7 @@ values-b+nn	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+nn	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+nn	string	search_state_no_results_headline	-	No results
 values-b+nn	string	search_state_no_results_type_filter	-	Berre %s. Typefilteret ditt avgrensar søket.
-values-b+nn	string	search_state_no_suggestions_detail	-	FORSLAG SVARTE · 0 TREFF
+values-b+nn	string	search_state_no_suggestions_detail	-	0 FORSLAG · 0 NYLEGE TREFF
 values-b+nn	string	search_state_no_suggestions_headline	-	Ingenting samsvarar med «%s»
 values-b+nn	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+nn	string	search_state_offline_headline	-	You are offline
@@ -36370,7 +36370,7 @@ values-b+no	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+no	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+no	string	search_state_no_results_headline	-	No results
 values-b+no	string	search_state_no_results_type_filter	-	Bare %s. Typefilteret ditt begrenser søket.
-values-b+no	string	search_state_no_suggestions_detail	-	FORSLAG SVARTE · 0 TREFF
+values-b+no	string	search_state_no_suggestions_detail	-	0 FORSLAG · 0 NYLIGE TREFF
 values-b+no	string	search_state_no_suggestions_headline	-	Ingenting samsvarer med «%s»
 values-b+no	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+no	string	search_state_offline_headline	-	You are offline
@@ -37260,7 +37260,7 @@ values-b+or	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+or	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+or	string	search_state_no_results_headline	-	No results
 values-b+or	string	search_state_no_results_type_filter	-	କେବଳ %s। ଆପଣଙ୍କ ପ୍ରକାର ଫିଲ୍ଟର ସନ୍ଧାନକୁ ସଂକୁଚିତ କରୁଛି।
-values-b+or	string	search_state_no_suggestions_detail	-	ପରାମର୍ଶ ଉତ୍ତର ଦେଲା · 0 ମେଳ
+values-b+or	string	search_state_no_suggestions_detail	-	0 ପରାମର୍ଶ · 0 ସାମ୍ପ୍ରତିକ ମେଳ
 values-b+or	string	search_state_no_suggestions_headline	-	“%s” ସହ କିଛି ମେଳ ଖାଉନାହିଁ
 values-b+or	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+or	string	search_state_offline_headline	-	You are offline
@@ -38166,7 +38166,7 @@ values-b+pl	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+pl	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+pl	string	search_state_no_results_headline	-	No results
 values-b+pl	string	search_state_no_results_type_filter	-	Tylko %s. Filtr typu zawęża wyszukiwanie.
-values-b+pl	string	search_state_no_suggestions_detail	-	SUGESTIE ODPOWIEDZIAŁY · 0 DOPASOWAŃ
+values-b+pl	string	search_state_no_suggestions_detail	-	0 SUGESTII · 0 OSTATNICH DOPASOWAŃ
 values-b+pl	string	search_state_no_suggestions_headline	-	Nic nie pasuje do „%s”
 values-b+pl	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+pl	string	search_state_offline_headline	-	You are offline
@@ -39064,7 +39064,7 @@ values-b+pt	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+pt	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+pt	string	search_state_no_results_headline	-	No results
 values-b+pt	string	search_state_no_results_type_filter	-	Apenas %s. O filtro de tipo está a limitar a pesquisa.
-values-b+pt	string	search_state_no_suggestions_detail	-	SUGESTÕES RESPONDERAM · 0 CORRESPONDÊNCIAS
+values-b+pt	string	search_state_no_suggestions_detail	-	0 SUGESTÕES · 0 CORRESPONDÊNCIAS RECENTES
 values-b+pt	string	search_state_no_suggestions_headline	-	Nada corresponde a «%s»
 values-b+pt	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+pt	string	search_state_offline_headline	-	You are offline
@@ -39962,7 +39962,7 @@ values-b+pt+BR	string	search_state_no_results_body_unknown	-	Every selected sour
 values-b+pt+BR	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+pt+BR	string	search_state_no_results_headline	-	No results
 values-b+pt+BR	string	search_state_no_results_type_filter	-	Somente %s. O filtro de tipo está restringindo a pesquisa.
-values-b+pt+BR	string	search_state_no_suggestions_detail	-	SUGESTÕES RESPONDERAM · 0 CORRESPONDÊNCIAS
+values-b+pt+BR	string	search_state_no_suggestions_detail	-	0 SUGESTÕES · 0 CORRESPONDÊNCIAS RECENTES
 values-b+pt+BR	string	search_state_no_suggestions_headline	-	Nada corresponde a “%s”
 values-b+pt+BR	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+pt+BR	string	search_state_offline_headline	-	You are offline
@@ -40847,7 +40847,7 @@ values-b+qt	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+qt	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+qt	string	search_state_no_results_headline	-	No results
 values-b+qt	string	search_state_no_results_type_filter	-	%s uuhaa. oouuh aagggh uuk.
-values-b+qt	string	search_state_no_suggestions_detail	-	AAAHHUU OOGG · 0 UUGH
+values-b+qt	string	search_state_no_suggestions_detail	-	0 AAAHHUU · 0 AAOOH UUGH
 values-b+qt	string	search_state_no_suggestions_headline	-	ooh aagg “%s”
 values-b+qt	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+qt	string	search_state_offline_headline	-	You are offline
@@ -41742,7 +41742,7 @@ values-b+ro	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+ro	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+ro	string	search_state_no_results_headline	-	No results
 values-b+ro	string	search_state_no_results_type_filter	-	Doar %s. Filtrul de tip restrânge căutarea.
-values-b+ro	string	search_state_no_suggestions_detail	-	SUGESTII PRIMITE · 0 POTRIVIRI
+values-b+ro	string	search_state_no_suggestions_detail	-	0 SUGESTII · 0 POTRIVIRI RECENTE
 values-b+ro	string	search_state_no_suggestions_headline	-	Nimic nu se potrivește cu „%s”
 values-b+ro	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+ro	string	search_state_offline_headline	-	You are offline
@@ -42648,7 +42648,7 @@ values-b+ru	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+ru	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+ru	string	search_state_no_results_headline	-	No results
 values-b+ru	string	search_state_no_results_type_filter	-	Только %s. Фильтр по типу сужает поиск.
-values-b+ru	string	search_state_no_suggestions_detail	-	ПОДСКАЗКИ ПОЛУЧЕНЫ · 0 СОВПАДЕНИЙ
+values-b+ru	string	search_state_no_suggestions_detail	-	0 ПОДСКАЗОК · 0 НЕДАВНИХ СОВПАДЕНИЙ
 values-b+ru	string	search_state_no_suggestions_headline	-	Ничего не найдено по запросу «%s»
 values-b+ru	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+ru	string	search_state_offline_headline	-	You are offline
@@ -43548,7 +43548,7 @@ values-b+sk	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+sk	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+sk	string	search_state_no_results_headline	-	No results
 values-b+sk	string	search_state_no_results_type_filter	-	Iba %s. Filter typov zužuje hľadanie.
-values-b+sk	string	search_state_no_suggestions_detail	-	NÁVRHY ODPOVEDALI · 0 ZHÔD
+values-b+sk	string	search_state_no_suggestions_detail	-	0 NÁVRHOV · 0 NEDÁVNYCH ZHÔD
 values-b+sk	string	search_state_no_suggestions_headline	-	Nič nezodpovedá „%s“
 values-b+sk	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+sk	string	search_state_offline_headline	-	You are offline
@@ -44438,7 +44438,7 @@ values-b+so	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+so	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+so	string	search_state_no_results_headline	-	No results
 values-b+so	string	search_state_no_results_type_filter	-	Kaliya %s. Shaandhada nooca ayaa soo koobaya raadinta.
-values-b+so	string	search_state_no_suggestions_detail	-	TALOOYINKA WAA LA HELAY · 0 ISKU-EG
+values-b+so	string	search_state_no_suggestions_detail	-	0 TALOOYIN · 0 ISKU-EG DHOWAAN
 values-b+so	string	search_state_no_suggestions_headline	-	Waxba kuma habboona “%s”
 values-b+so	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+so	string	search_state_offline_headline	-	You are offline
@@ -45328,7 +45328,7 @@ values-b+sq	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+sq	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+sq	string	search_state_no_results_headline	-	No results
 values-b+sq	string	search_state_no_results_type_filter	-	Vetëm %s. Filtri i llojit po e ngushton kërkimin.
-values-b+sq	string	search_state_no_suggestions_detail	-	SUGJERIMET U PËRGJIGJËN · 0 PËRPUTHJE
+values-b+sq	string	search_state_no_suggestions_detail	-	0 SUGJERIME · 0 PËRPUTHJE TË FUNDIT
 values-b+sq	string	search_state_no_suggestions_headline	-	Asgjë nuk përputhet me “%s”
 values-b+sq	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+sq	string	search_state_offline_headline	-	You are offline
@@ -46218,7 +46218,7 @@ values-b+sv	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+sv	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+sv	string	search_state_no_results_headline	-	No results
 values-b+sv	string	search_state_no_results_type_filter	-	Endast %s. Ditt typfilter begränsar sökningen.
-values-b+sv	string	search_state_no_suggestions_detail	-	FÖRSLAG BESVARADE · 0 TRÄFFAR
+values-b+sv	string	search_state_no_suggestions_detail	-	0 FÖRSLAG · 0 NYLIGA TRÄFFAR
 values-b+sv	string	search_state_no_suggestions_headline	-	Inget matchar ”%s”
 values-b+sv	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+sv	string	search_state_offline_headline	-	You are offline
@@ -47108,7 +47108,7 @@ values-b+ta	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+ta	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+ta	string	search_state_no_results_headline	-	No results
 values-b+ta	string	search_state_no_results_type_filter	-	%s மட்டும். உங்கள் வகை வடிப்பான் தேடலைக் குறுக்குகிறது.
-values-b+ta	string	search_state_no_suggestions_detail	-	பரிந்துரைகள் பதிலளித்தன · 0 பொருத்தங்கள்
+values-b+ta	string	search_state_no_suggestions_detail	-	0 பரிந்துரைகள் · 0 சமீபத்திய பொருத்தங்கள்
 values-b+ta	string	search_state_no_suggestions_headline	-	“%s” உடன் எதுவும் பொருந்தவில்லை
 values-b+ta	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+ta	string	search_state_offline_headline	-	You are offline
@@ -47998,7 +47998,7 @@ values-b+ti	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+ti	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+ti	string	search_state_no_results_headline	-	No results
 values-b+ti	string	search_state_no_results_type_filter	-	%s ጥራይ። ማጣሪያ ዓይነትካ ፍለጋ የጽብብ ኣሎ።
-values-b+ti	string	search_state_no_suggestions_detail	-	ሓሳባት መለሱ · 0 ተመሳሰልቲ
+values-b+ti	string	search_state_no_suggestions_detail	-	0 ሓሳባት · 0 ናይ ቀረባ ተመሳሰልቲ
 values-b+ti	string	search_state_no_suggestions_headline	-	ምስ «%s» ዝሰማማዕ የለን
 values-b+ti	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+ti	string	search_state_offline_headline	-	You are offline
@@ -48888,7 +48888,7 @@ values-b+tl	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+tl	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+tl	string	search_state_no_results_headline	-	No results
 values-b+tl	string	search_state_no_results_type_filter	-	%s lang. Pinipigilan ng type filter mo ang paghahanap.
-values-b+tl	string	search_state_no_suggestions_detail	-	SUMAGOT ANG MGA MUNGKAHI · 0 TUGMA
+values-b+tl	string	search_state_no_suggestions_detail	-	0 MUNGKAHI · 0 KAMAKAILANG TUGMA
 values-b+tl	string	search_state_no_suggestions_headline	-	Walang tumutugma sa “%s”
 values-b+tl	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+tl	string	search_state_offline_headline	-	You are offline
@@ -49778,7 +49778,7 @@ values-b+tr	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+tr	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+tr	string	search_state_no_results_headline	-	No results
 values-b+tr	string	search_state_no_results_type_filter	-	Yalnızca %s. Tür filtreniz aramayı daraltıyor.
-values-b+tr	string	search_state_no_suggestions_detail	-	ÖNERİLER YANITLANDI · 0 EŞLEŞME
+values-b+tr	string	search_state_no_suggestions_detail	-	0 ÖNERİ · 0 YAKIN ZAMANLI EŞLEŞME
 values-b+tr	string	search_state_no_suggestions_headline	-	“%s” ile eşleşen bir şey yok
 values-b+tr	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+tr	string	search_state_offline_headline	-	You are offline
@@ -50684,7 +50684,7 @@ values-b+uk	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+uk	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+uk	string	search_state_no_results_headline	-	No results
 values-b+uk	string	search_state_no_results_type_filter	-	Лише %s. Фільтр за типом звужує пошук.
-values-b+uk	string	search_state_no_suggestions_detail	-	ПІДКАЗКИ ОТРИМАНО · 0 ЗБІГІВ
+values-b+uk	string	search_state_no_suggestions_detail	-	0 ПІДКАЗОК · 0 НЕЩОДАВНІХ ЗБІГІВ
 values-b+uk	string	search_state_no_suggestions_headline	-	Нічого не відповідає «%s»
 values-b+uk	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+uk	string	search_state_offline_headline	-	You are offline
@@ -51574,7 +51574,7 @@ values-b+ur	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+ur	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+ur	string	search_state_no_results_headline	-	No results
 values-b+ur	string	search_state_no_results_type_filter	-	صرف %s۔ آپ کا قسم فلٹر تلاش کو محدود کر رہا ہے۔
-values-b+ur	string	search_state_no_suggestions_detail	-	تجاویز کا جواب آ گیا · 0 مماثلتیں
+values-b+ur	string	search_state_no_suggestions_detail	-	0 تجاویز · 0 حالیہ مماثلتیں
 values-b+ur	string	search_state_no_suggestions_headline	-	“%s” سے کچھ بھی مماثل نہیں
 values-b+ur	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+ur	string	search_state_offline_headline	-	You are offline
@@ -52456,7 +52456,7 @@ values-b+vi	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+vi	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+vi	string	search_state_no_results_headline	-	No results
 values-b+vi	string	search_state_no_results_type_filter	-	Chỉ %s. Bộ lọc loại của bạn đang thu hẹp kết quả tìm kiếm.
-values-b+vi	string	search_state_no_suggestions_detail	-	ĐÃ CÓ GỢI Ý · 0 KẾT QUẢ KHỚP
+values-b+vi	string	search_state_no_suggestions_detail	-	0 GỢI Ý · 0 KẾT QUẢ GẦN ĐÂY KHỚP
 values-b+vi	string	search_state_no_suggestions_headline	-	Không có gì khớp với “%s”
 values-b+vi	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+vi	string	search_state_offline_headline	-	You are offline
@@ -53338,7 +53338,7 @@ values-b+zh	string	search_state_no_results_body_unknown	-	Every selected source 
 values-b+zh	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+zh	string	search_state_no_results_headline	-	No results
 values-b+zh	string	search_state_no_results_type_filter	-	仅限%s。类型筛选正在缩小搜索范围。
-values-b+zh	string	search_state_no_suggestions_detail	-	建议已返回 · 0 个匹配
+values-b+zh	string	search_state_no_suggestions_detail	-	0 个建议 · 0 个最近匹配
 values-b+zh	string	search_state_no_suggestions_headline	-	没有与“%s”匹配的内容
 values-b+zh	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+zh	string	search_state_offline_headline	-	You are offline
@@ -54221,7 +54221,7 @@ values-b+zh+TW	string	search_state_no_results_body_unknown	-	Every selected sour
 values-b+zh+TW	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values-b+zh+TW	string	search_state_no_results_headline	-	No results
 values-b+zh+TW	string	search_state_no_results_type_filter	-	僅限%s。類型篩選器正在縮小搜尋範圍。
-values-b+zh+TW	string	search_state_no_suggestions_detail	-	建議已回應 · 0 個相符
+values-b+zh+TW	string	search_state_no_suggestions_detail	-	0 個建議 · 0 個最近相符
 values-b+zh+TW	string	search_state_no_suggestions_headline	-	沒有符合「%s」的內容
 values-b+zh+TW	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values-b+zh+TW	string	search_state_offline_headline	-	You are offline
@@ -55111,7 +55111,7 @@ en	string	search_state_no_results_body_unknown	-	Every selected source answered 
 en	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 en	string	search_state_no_results_headline	-	No results
 en	string	search_state_no_results_type_filter	-	%s only. Your type filter is narrowing the search.
-en	string	search_state_no_suggestions_detail	-	SUGGESTIONS ANSWERED · 0 MATCHES
+en	string	search_state_no_suggestions_detail	-	0 SUGGESTIONS · 0 RECENT MATCHES
 en	string	search_state_no_suggestions_headline	-	Nothing matches “%s”
 en	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 en	string	search_state_offline_headline	-	You are offline
@@ -56001,7 +56001,7 @@ en-US	string	search_state_no_results_body_unknown	-	Every selected source answer
 en-US	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 en-US	string	search_state_no_results_headline	-	No results
 en-US	string	search_state_no_results_type_filter	-	%s only. Your type filter is narrowing the search.
-en-US	string	search_state_no_suggestions_detail	-	SUGGESTIONS ANSWERED · 0 MATCHES
+en-US	string	search_state_no_suggestions_detail	-	0 SUGGESTIONS · 0 RECENT MATCHES
 en-US	string	search_state_no_suggestions_headline	-	Nothing matches “%s”
 en-US	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 en-US	string	search_state_offline_headline	-	You are offline
@@ -56891,7 +56891,7 @@ en-GB	string	search_state_no_results_body_unknown	-	Every selected source answer
 en-GB	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 en-GB	string	search_state_no_results_headline	-	No results
 en-GB	string	search_state_no_results_type_filter	-	%s only. Your type filter is narrowing the search.
-en-GB	string	search_state_no_suggestions_detail	-	SUGGESTIONS ANSWERED · 0 MATCHES
+en-GB	string	search_state_no_suggestions_detail	-	0 SUGGESTIONS · 0 RECENT MATCHES
 en-GB	string	search_state_no_suggestions_headline	-	Nothing matches “%s”
 en-GB	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 en-GB	string	search_state_offline_headline	-	You are offline
@@ -57789,7 +57789,7 @@ pt	string	search_state_no_results_body_unknown	-	Every selected source answered 
 pt	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 pt	string	search_state_no_results_headline	-	No results
 pt	string	search_state_no_results_type_filter	-	Apenas %s. O filtro de tipo está a limitar a pesquisa.
-pt	string	search_state_no_suggestions_detail	-	SUGESTÕES RESPONDERAM · 0 CORRESPONDÊNCIAS
+pt	string	search_state_no_suggestions_detail	-	0 SUGESTÕES · 0 CORRESPONDÊNCIAS RECENTES
 pt	string	search_state_no_suggestions_headline	-	Nada corresponde a «%s»
 pt	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 pt	string	search_state_offline_headline	-	You are offline
@@ -58687,7 +58687,7 @@ pt-PT	string	search_state_no_results_body_unknown	-	Every selected source answer
 pt-PT	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 pt-PT	string	search_state_no_results_headline	-	No results
 pt-PT	string	search_state_no_results_type_filter	-	Apenas %s. O filtro de tipo está a limitar a pesquisa.
-pt-PT	string	search_state_no_suggestions_detail	-	SUGESTÕES RESPONDERAM · 0 CORRESPONDÊNCIAS
+pt-PT	string	search_state_no_suggestions_detail	-	0 SUGESTÕES · 0 CORRESPONDÊNCIAS RECENTES
 pt-PT	string	search_state_no_suggestions_headline	-	Nada corresponde a «%s»
 pt-PT	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 pt-PT	string	search_state_offline_headline	-	You are offline
@@ -59585,7 +59585,7 @@ pt-BR	string	search_state_no_results_body_unknown	-	Every selected source answer
 pt-BR	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 pt-BR	string	search_state_no_results_headline	-	No results
 pt-BR	string	search_state_no_results_type_filter	-	Somente %s. O filtro de tipo está restringindo a pesquisa.
-pt-BR	string	search_state_no_suggestions_detail	-	SUGESTÕES RESPONDERAM · 0 CORRESPONDÊNCIAS
+pt-BR	string	search_state_no_suggestions_detail	-	0 SUGESTÕES · 0 CORRESPONDÊNCIAS RECENTES
 pt-BR	string	search_state_no_suggestions_headline	-	Nada corresponde a “%s”
 pt-BR	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 pt-BR	string	search_state_offline_headline	-	You are offline
@@ -60475,7 +60475,7 @@ fil	string	search_state_no_results_body_unknown	-	Every selected source answered
 fil	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 fil	string	search_state_no_results_headline	-	No results
 fil	string	search_state_no_results_type_filter	-	%s lang. Pinipigilan ng type filter mo ang paghahanap.
-fil	string	search_state_no_suggestions_detail	-	SUMAGOT ANG MGA MUNGKAHI · 0 TUGMA
+fil	string	search_state_no_suggestions_detail	-	0 MUNGKAHI · 0 KAMAKAILANG TUGMA
 fil	string	search_state_no_suggestions_headline	-	Walang tumutugma sa “%s”
 fil	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 fil	string	search_state_offline_headline	-	You are offline
@@ -61365,7 +61365,7 @@ tl	string	search_state_no_results_body_unknown	-	Every selected source answered 
 tl	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 tl	string	search_state_no_results_headline	-	No results
 tl	string	search_state_no_results_type_filter	-	%s lang. Pinipigilan ng type filter mo ang paghahanap.
-tl	string	search_state_no_suggestions_detail	-	SUMAGOT ANG MGA MUNGKAHI · 0 TUGMA
+tl	string	search_state_no_suggestions_detail	-	0 MUNGKAHI · 0 KAMAKAILANG TUGMA
 tl	string	search_state_no_suggestions_headline	-	Walang tumutugma sa “%s”
 tl	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 tl	string	search_state_offline_headline	-	You are offline
@@ -62255,7 +62255,7 @@ fil-PH	string	search_state_no_results_body_unknown	-	Every selected source answe
 fil-PH	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 fil-PH	string	search_state_no_results_headline	-	No results
 fil-PH	string	search_state_no_results_type_filter	-	%s lang. Pinipigilan ng type filter mo ang paghahanap.
-fil-PH	string	search_state_no_suggestions_detail	-	SUMAGOT ANG MGA MUNGKAHI · 0 TUGMA
+fil-PH	string	search_state_no_suggestions_detail	-	0 MUNGKAHI · 0 KAMAKAILANG TUGMA
 fil-PH	string	search_state_no_suggestions_headline	-	Walang tumutugma sa “%s”
 fil-PH	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 fil-PH	string	search_state_offline_headline	-	You are offline
@@ -63137,7 +63137,7 @@ zh	string	search_state_no_results_body_unknown	-	Every selected source answered 
 zh	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 zh	string	search_state_no_results_headline	-	No results
 zh	string	search_state_no_results_type_filter	-	仅限%s。类型筛选正在缩小搜索范围。
-zh	string	search_state_no_suggestions_detail	-	建议已返回 · 0 个匹配
+zh	string	search_state_no_suggestions_detail	-	0 个建议 · 0 个最近匹配
 zh	string	search_state_no_suggestions_headline	-	没有与“%s”匹配的内容
 zh	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 zh	string	search_state_offline_headline	-	You are offline
@@ -64019,7 +64019,7 @@ zh-CN	string	search_state_no_results_body_unknown	-	Every selected source answer
 zh-CN	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 zh-CN	string	search_state_no_results_headline	-	No results
 zh-CN	string	search_state_no_results_type_filter	-	仅限%s。类型筛选正在缩小搜索范围。
-zh-CN	string	search_state_no_suggestions_detail	-	建议已返回 · 0 个匹配
+zh-CN	string	search_state_no_suggestions_detail	-	0 个建议 · 0 个最近匹配
 zh-CN	string	search_state_no_suggestions_headline	-	没有与“%s”匹配的内容
 zh-CN	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 zh-CN	string	search_state_offline_headline	-	You are offline
@@ -64901,7 +64901,7 @@ zh-Hans-CN	string	search_state_no_results_body_unknown	-	Every selected source a
 zh-Hans-CN	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 zh-Hans-CN	string	search_state_no_results_headline	-	No results
 zh-Hans-CN	string	search_state_no_results_type_filter	-	仅限%s。类型筛选正在缩小搜索范围。
-zh-Hans-CN	string	search_state_no_suggestions_detail	-	建议已返回 · 0 个匹配
+zh-Hans-CN	string	search_state_no_suggestions_detail	-	0 个建议 · 0 个最近匹配
 zh-Hans-CN	string	search_state_no_suggestions_headline	-	没有与“%s”匹配的内容
 zh-Hans-CN	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 zh-Hans-CN	string	search_state_offline_headline	-	You are offline
@@ -65784,7 +65784,7 @@ zh-TW	string	search_state_no_results_body_unknown	-	Every selected source answer
 zh-TW	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 zh-TW	string	search_state_no_results_headline	-	No results
 zh-TW	string	search_state_no_results_type_filter	-	僅限%s。類型篩選器正在縮小搜尋範圍。
-zh-TW	string	search_state_no_suggestions_detail	-	建議已回應 · 0 個相符
+zh-TW	string	search_state_no_suggestions_detail	-	0 個建議 · 0 個最近相符
 zh-TW	string	search_state_no_suggestions_headline	-	沒有符合「%s」的內容
 zh-TW	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 zh-TW	string	search_state_offline_headline	-	You are offline
@@ -66667,7 +66667,7 @@ zh-Hant-TW	string	search_state_no_results_body_unknown	-	Every selected source a
 zh-Hant-TW	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 zh-Hant-TW	string	search_state_no_results_headline	-	No results
 zh-Hant-TW	string	search_state_no_results_type_filter	-	僅限%s。類型篩選器正在縮小搜尋範圍。
-zh-Hant-TW	string	search_state_no_suggestions_detail	-	建議已回應 · 0 個相符
+zh-Hant-TW	string	search_state_no_suggestions_detail	-	0 個建議 · 0 個最近相符
 zh-Hant-TW	string	search_state_no_suggestions_headline	-	沒有符合「%s」的內容
 zh-Hant-TW	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 zh-Hant-TW	string	search_state_offline_headline	-	You are offline
@@ -67550,7 +67550,7 @@ zh-HK	string	search_state_no_results_body_unknown	-	Every selected source answer
 zh-HK	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 zh-HK	string	search_state_no_results_headline	-	No results
 zh-HK	string	search_state_no_results_type_filter	-	僅限%s。類型篩選器正在縮小搜尋範圍。
-zh-HK	string	search_state_no_suggestions_detail	-	建議已回應 · 0 個相符
+zh-HK	string	search_state_no_suggestions_detail	-	0 個建議 · 0 個最近相符
 zh-HK	string	search_state_no_suggestions_headline	-	沒有符合「%s」的內容
 zh-HK	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 zh-HK	string	search_state_offline_headline	-	You are offline
@@ -68433,7 +68433,7 @@ zh-Hant-HK	string	search_state_no_results_body_unknown	-	Every selected source a
 zh-Hant-HK	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 zh-Hant-HK	string	search_state_no_results_headline	-	No results
 zh-Hant-HK	string	search_state_no_results_type_filter	-	僅限%s。類型篩選器正在縮小搜尋範圍。
-zh-Hant-HK	string	search_state_no_suggestions_detail	-	建議已回應 · 0 個相符
+zh-Hant-HK	string	search_state_no_suggestions_detail	-	0 個建議 · 0 個最近相符
 zh-Hant-HK	string	search_state_no_suggestions_headline	-	沒有符合「%s」的內容
 zh-Hant-HK	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 zh-Hant-HK	string	search_state_offline_headline	-	You are offline
@@ -69323,7 +69323,7 @@ no	string	search_state_no_results_body_unknown	-	Every selected source answered 
 no	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 no	string	search_state_no_results_headline	-	No results
 no	string	search_state_no_results_type_filter	-	Bare %s. Typefilteret ditt begrenser søket.
-no	string	search_state_no_suggestions_detail	-	FORSLAG SVARTE · 0 TREFF
+no	string	search_state_no_suggestions_detail	-	0 FORSLAG · 0 NYLIGE TREFF
 no	string	search_state_no_suggestions_headline	-	Ingenting samsvarer med «%s»
 no	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 no	string	search_state_offline_headline	-	You are offline
@@ -70213,7 +70213,7 @@ nb	string	search_state_no_results_body_unknown	-	Every selected source answered 
 nb	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 nb	string	search_state_no_results_headline	-	No results
 nb	string	search_state_no_results_type_filter	-	%s only. Your type filter is narrowing the search.
-nb	string	search_state_no_suggestions_detail	-	SUGGESTIONS ANSWERED · 0 MATCHES
+nb	string	search_state_no_suggestions_detail	-	0 SUGGESTIONS · 0 RECENT MATCHES
 nb	string	search_state_no_suggestions_headline	-	Nothing matches “%s”
 nb	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 nb	string	search_state_offline_headline	-	You are offline
@@ -71103,7 +71103,7 @@ nb-NO	string	search_state_no_results_body_unknown	-	Every selected source answer
 nb-NO	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 nb-NO	string	search_state_no_results_headline	-	No results
 nb-NO	string	search_state_no_results_type_filter	-	%s only. Your type filter is narrowing the search.
-nb-NO	string	search_state_no_suggestions_detail	-	SUGGESTIONS ANSWERED · 0 MATCHES
+nb-NO	string	search_state_no_suggestions_detail	-	0 SUGGESTIONS · 0 RECENT MATCHES
 nb-NO	string	search_state_no_suggestions_headline	-	Nothing matches “%s”
 nb-NO	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 nb-NO	string	search_state_offline_headline	-	You are offline
@@ -71998,7 +71998,7 @@ iw	string	search_state_no_results_body_unknown	-	Every selected source answered 
 iw	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 iw	string	search_state_no_results_headline	-	No results
 iw	string	search_state_no_results_type_filter	-	%s בלבד. מסנן הסוג מצמצם את החיפוש.
-iw	string	search_state_no_suggestions_detail	-	ההצעות התקבלו · 0 התאמות
+iw	string	search_state_no_suggestions_detail	-	0 הצעות · 0 התאמות אחרונות
 iw	string	search_state_no_suggestions_headline	-	שום דבר לא תואם ל-“%s”
 iw	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 iw	string	search_state_offline_headline	-	You are offline
@@ -72893,7 +72893,7 @@ he	string	search_state_no_results_body_unknown	-	Every selected source answered 
 he	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 he	string	search_state_no_results_headline	-	No results
 he	string	search_state_no_results_type_filter	-	%s בלבד. מסנן הסוג מצמצם את החיפוש.
-he	string	search_state_no_suggestions_detail	-	ההצעות התקבלו · 0 התאמות
+he	string	search_state_no_suggestions_detail	-	0 הצעות · 0 התאמות אחרונות
 he	string	search_state_no_suggestions_headline	-	שום דבר לא תואם ל-“%s”
 he	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 he	string	search_state_offline_headline	-	You are offline
@@ -73788,7 +73788,7 @@ he-IL	string	search_state_no_results_body_unknown	-	Every selected source answer
 he-IL	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 he-IL	string	search_state_no_results_headline	-	No results
 he-IL	string	search_state_no_results_type_filter	-	%s בלבד. מסנן הסוג מצמצם את החיפוש.
-he-IL	string	search_state_no_suggestions_detail	-	ההצעות התקבלו · 0 התאמות
+he-IL	string	search_state_no_suggestions_detail	-	0 הצעות · 0 התאמות אחרונות
 he-IL	string	search_state_no_suggestions_headline	-	שום דבר לא תואם ל-“%s”
 he-IL	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 he-IL	string	search_state_offline_headline	-	You are offline
@@ -74670,7 +74670,7 @@ in	string	search_state_no_results_body_unknown	-	Every selected source answered 
 in	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 in	string	search_state_no_results_headline	-	No results
 in	string	search_state_no_results_type_filter	-	Hanya %s. Filter jenis Anda mempersempit pencarian.
-in	string	search_state_no_suggestions_detail	-	SARAN TERJAWAB · 0 COCOK
+in	string	search_state_no_suggestions_detail	-	0 SARAN · 0 COCOK TERBARU
 in	string	search_state_no_suggestions_headline	-	Tidak ada yang cocok dengan “%s”
 in	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 in	string	search_state_offline_headline	-	You are offline
@@ -75552,7 +75552,7 @@ id	string	search_state_no_results_body_unknown	-	Every selected source answered 
 id	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 id	string	search_state_no_results_headline	-	No results
 id	string	search_state_no_results_type_filter	-	Hanya %s. Filter jenis Anda mempersempit pencarian.
-id	string	search_state_no_suggestions_detail	-	SARAN TERJAWAB · 0 COCOK
+id	string	search_state_no_suggestions_detail	-	0 SARAN · 0 COCOK TERBARU
 id	string	search_state_no_suggestions_headline	-	Tidak ada yang cocok dengan “%s”
 id	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 id	string	search_state_offline_headline	-	You are offline
@@ -76434,7 +76434,7 @@ id-ID	string	search_state_no_results_body_unknown	-	Every selected source answer
 id-ID	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 id-ID	string	search_state_no_results_headline	-	No results
 id-ID	string	search_state_no_results_type_filter	-	Hanya %s. Filter jenis Anda mempersempit pencarian.
-id-ID	string	search_state_no_suggestions_detail	-	SARAN TERJAWAB · 0 COCOK
+id-ID	string	search_state_no_suggestions_detail	-	0 SARAN · 0 COCOK TERBARU
 id-ID	string	search_state_no_suggestions_headline	-	Tidak ada yang cocok dengan “%s”
 id-ID	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 id-ID	string	search_state_offline_headline	-	You are offline
@@ -77324,7 +77324,7 @@ arz	string	search_state_no_results_body_unknown	-	Every selected source answered
 arz	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 arz	string	search_state_no_results_headline	-	No results
 arz	string	search_state_no_results_type_filter	-	%s only. Your type filter is narrowing the search.
-arz	string	search_state_no_suggestions_detail	-	SUGGESTIONS ANSWERED · 0 MATCHES
+arz	string	search_state_no_suggestions_detail	-	0 SUGGESTIONS · 0 RECENT MATCHES
 arz	string	search_state_no_suggestions_headline	-	Nothing matches “%s”
 arz	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 arz	string	search_state_offline_headline	-	You are offline

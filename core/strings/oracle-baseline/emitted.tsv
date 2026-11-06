@@ -653,7 +653,7 @@ values	string	search_state_no_results_body_unknown	-	Every selected source answe
 values	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values	string	search_state_no_results_headline	-	No results
 values	string	search_state_no_results_type_filter	-	%s only. Your type filter is narrowing the search.
-values	string	search_state_no_suggestions_detail	-	SUGGESTIONS ANSWERED · 0 MATCHES
+values	string	search_state_no_suggestions_detail	-	0 SUGGESTIONS · 0 RECENT MATCHES
 values	string	search_state_no_suggestions_headline	-	Nothing matches “%s”
 values	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values	string	search_state_offline_headline	-	You are offline
@@ -1056,7 +1056,7 @@ values-b+af	string	search_provider_text_providers	-	Soek deur verskaffers te geb
 values-b+af	string	search_provider_text_types	-	Soek met behulp van tipes
 values-b+af	string	search_state_idle_body_desktop	-	Tik 'n titel. Resultate verskyn onder elke bron soos dit antwoord.
 values-b+af	string	search_state_no_results_type_filter	-	Slegs %s. Jou tipe-filter beperk die soektog.
-values-b+af	string	search_state_no_suggestions_detail	-	VOORSTELLE BEANTWOORD · 0 OOREENKOMSTE
+values-b+af	string	search_state_no_suggestions_detail	-	0 VOORSTELLE · 0 ONLANGSE OOREENKOMSTE
 values-b+af	string	search_state_no_suggestions_headline	-	Niks stem ooreen met “%s” nie
 values-b+af	string	search_tv_source_failed	-	MISLUK %s
 values-b+af	string	search_tv_source_pinned	-	VASGESPELD
@@ -1264,7 +1264,7 @@ values-b+am	string	search_provider_text_providers	-	አቅራቢዎችን በመ
 values-b+am	string	search_provider_text_types	-	ዓይነቶችን በመጠቀም ይፈልጉ
 values-b+am	string	search_state_idle_body_desktop	-	ርዕስ ይተይቡ። ውጤቶች እያንዳንዱ ምንጭ ሲመልስ ከሱ ስር ይታያሉ።
 values-b+am	string	search_state_no_results_type_filter	-	%s ብቻ። የአይነት ማጣሪያዎ ፍለጋውን እያጠበበው ነው።
-values-b+am	string	search_state_no_suggestions_detail	-	ጥቆማዎች ምላሽ ሰጥተዋል · 0 ተዛማጆች
+values-b+am	string	search_state_no_suggestions_detail	-	0 ጥቆማዎች · 0 የቅርብ ጊዜ ተዛማጆች
 values-b+am	string	search_state_no_suggestions_headline	-	ከ«%s» ጋር የሚዛመድ ምንም የለም
 values-b+am	string	search_tv_source_failed	-	አልተሳካም %s
 values-b+am	string	search_tv_source_pinned	-	ተሰክቷል
@@ -1924,7 +1924,7 @@ values-b+apc	string	search_provider_text_providers	-	عوزو المصادر ل�
 values-b+apc	string	search_provider_text_types	-	عوزو الأنواع ل تنبّشو
 values-b+apc	string	search_state_idle_body_desktop	-	اكتب عنوان. النتايج بتطلع تحت كل مصدر لما يرد.
 values-b+apc	string	search_state_no_results_type_filter	-	%s بس. فلتر النوع عم يضيّق البحث.
-values-b+apc	string	search_state_no_suggestions_detail	-	ردّت الاقتراحات · 0 تطابق
+values-b+apc	string	search_state_no_suggestions_detail	-	0 اقتراحات · 0 تطابق مؤخراً
 values-b+apc	string	search_state_no_suggestions_headline	-	ما في شي بيطابق «%s»
 values-b+apc	string	search_suggestions	-	اقتراحات التنبيش
 values-b+apc	string	search_suggestions_des	-	بت فرجي اقتراحات إنتا و عم بت نَبّش
@@ -2792,7 +2792,7 @@ values-b+ar	string	search_provider_text_providers	-	البحث باستخدام 
 values-b+ar	string	search_provider_text_types	-	البحث باستخدام الأنواع
 values-b+ar	string	search_state_idle_body_desktop	-	اكتب عنوانًا. تظهر النتائج تحت كل مصدر عند استجابته.
 values-b+ar	string	search_state_no_results_type_filter	-	%s فقط. عامل تصفية النوع يضيّق نطاق البحث.
-values-b+ar	string	search_state_no_suggestions_detail	-	ردّت الاقتراحات · 0 تطابق
+values-b+ar	string	search_state_no_suggestions_detail	-	0 اقتراحات · 0 تطابق حديث
 values-b+ar	string	search_state_no_suggestions_headline	-	لا شيء يطابق «%s»
 values-b+ar	string	search_suggestions	-	اقتراحات البحث
 values-b+ar	string	search_suggestions_des	-	عرض اقتراحات البحث أثناء الكتابة
@@ -3352,7 +3352,7 @@ values-b+ars	string	search_provider_text_providers	-	البحث باستخدام
 values-b+ars	string	search_provider_text_types	-	البحث باستخدام الأنواع
 values-b+ars	string	search_state_idle_body_desktop	-	اكتب عنوانًا. تظهر النتائج تحت كل مصدر عند استجابته.
 values-b+ars	string	search_state_no_results_type_filter	-	%s بس. فلتر النوع يضيّق البحث.
-values-b+ars	string	search_state_no_suggestions_detail	-	ردّت الاقتراحات · 0 تطابق
+values-b+ars	string	search_state_no_suggestions_detail	-	0 اقتراحات · 0 تطابق حديث
 values-b+ars	string	search_state_no_suggestions_headline	-	لا شيء يطابق «%s»
 values-b+ars	string	search_tv_source_failed	-	فشل %s
 values-b+ars	string	search_tv_source_pinned	-	مثبّت
@@ -4028,7 +4028,7 @@ values-b+as	string	search_provider_text_providers	-	প্ৰদানকাৰ�
 values-b+as	string	search_provider_text_types	-	প্ৰকাৰৰ দ্বাৰা সন্ধান কৰক
 values-b+as	string	search_state_idle_body_desktop	-	এটা শিৰোনাম টাইপ কৰক। প্ৰতিটো উৎসই উত্তৰ দিয়াৰ লগে লগে ফলাফল তাৰ তলত দেখা যাব।
 values-b+as	string	search_state_no_results_type_filter	-	কেৱল %s। আপোনাৰ ধৰণৰ ফিল্টাৰে সন্ধান সংকীৰ্ণ কৰিছে।
-values-b+as	string	search_state_no_suggestions_detail	-	পৰামৰ্শই উত্তৰ দিলে · 0 টা মিল
+values-b+as	string	search_state_no_suggestions_detail	-	0 টা পৰামৰ্শ · 0 টা শেহতীয়া মিল
 values-b+as	string	search_state_no_suggestions_headline	-	“%s”ৰ সৈতে একো নিমিলে
 values-b+as	string	search_tv_source_failed	-	ব্যৰ্থ %s
 values-b+as	string	search_tv_source_pinned	-	পিন কৰা হৈছে
@@ -4415,7 +4415,7 @@ values-b+az	string	search_hint	-	Axtar…
 values-b+az	string	search_poster_img_des	-	Afişa
 values-b+az	string	search_state_idle_body_desktop	-	Başlıq yazın. Hər mənbə cavab verdikcə nəticələr onun altında görünür.
 values-b+az	string	search_state_no_results_type_filter	-	Yalnız %s. Növ filtriniz axtarışı daraldır.
-values-b+az	string	search_state_no_suggestions_detail	-	TƏKLİFLƏR CAVAB VERDİ · 0 UYĞUNLUQ
+values-b+az	string	search_state_no_suggestions_detail	-	0 TƏKLİF · 0 SON UYĞUNLUQ
 values-b+az	string	search_state_no_suggestions_headline	-	«%s» ilə uyğun heç nə yoxdur
 values-b+az	string	search_tv_source_failed	-	UĞURSUZ %s
 values-b+az	string	search_tv_source_pinned	-	SABİTLƏNİB
@@ -5086,7 +5086,7 @@ values-b+be	string	search_provider_text_providers	-	Пошук праз паст
 values-b+be	string	search_provider_text_types	-	Пошук праз тыпы
 values-b+be	string	search_state_idle_body_desktop	-	Увядзіце назву. Вынікі з'яўляюцца пад кожнай крыніцай, калі яна адказвае.
 values-b+be	string	search_state_no_results_type_filter	-	Толькі %s. Фільтр па тыпе звужае пошук.
-values-b+be	string	search_state_no_suggestions_detail	-	ПРАПАНОВЫ АДКАЗАЛІ · 0 СУПАДЗЕННЯЎ
+values-b+be	string	search_state_no_suggestions_detail	-	0 ПРАПАНОЎ · 0 НЯДАЎНІХ СУПАДЗЕННЯЎ
 values-b+be	string	search_state_no_suggestions_headline	-	Нічога не адпавядае «%s»
 values-b+be	string	search_suggestions	-	Прапановы пошуку
 values-b+be	string	search_suggestions_des	-	Паказваць прапановы пошуку падчас уводу тэксту
@@ -5916,7 +5916,7 @@ values-b+bg	string	search_provider_text_providers	-	Търсене чрез до
 values-b+bg	string	search_provider_text_types	-	Търсене с помощта на типове
 values-b+bg	string	search_state_idle_body_desktop	-	Въведете заглавие. Резултатите се появяват под всеки източник, когато той отговори.
 values-b+bg	string	search_state_no_results_type_filter	-	Само %s. Филтърът по тип стеснява търсенето.
-values-b+bg	string	search_state_no_suggestions_detail	-	ПРЕДЛОЖЕНИЯТА ОТГОВОРИХА · 0 СЪВПАДЕНИЯ
+values-b+bg	string	search_state_no_suggestions_detail	-	0 ПРЕДЛОЖЕНИЯ · 0 СКОРОШНИ СЪВПАДЕНИЯ
 values-b+bg	string	search_state_no_suggestions_headline	-	Нищо не съответства на „%s“
 values-b+bg	string	search_suggestions	-	Предложения за търсене
 values-b+bg	string	search_suggestions_des	-	Показвай предложения за търсене по време на писане
@@ -6518,7 +6518,7 @@ values-b+bn	string	search_provider_text_providers	-	প্রভাইডার 
 values-b+bn	string	search_provider_text_types	-	ধরণ অনুযায়ি খুঁজুন
 values-b+bn	string	search_state_idle_body_desktop	-	একটি শিরোনাম লিখুন। প্রতিটি সোর্স উত্তর দিলে ফলাফল তার নিচে দেখা যাবে।
 values-b+bn	string	search_state_no_results_type_filter	-	শুধু %s। আপনার ধরনের ফিল্টার অনুসন্ধান সীমিত করছে।
-values-b+bn	string	search_state_no_suggestions_detail	-	সাজেশন উত্তর দিয়েছে · 0টি মিল
+values-b+bn	string	search_state_no_suggestions_detail	-	0টি সাজেশন · 0টি সাম্প্রতিক মিল
 values-b+bn	string	search_state_no_suggestions_headline	-	“%s”-এর সাথে কিছুই মেলেনি
 values-b+bn	string	search_suggestions	-	সার্চ সাজেশন
 values-b+bn	string	search_suggestions_des	-	টাইপ করার সময় সার্চ সাজেশন দেখান
@@ -6966,7 +6966,7 @@ values-b+ca	string	search_provider_text_providers	-	Cerca amb proveïdors
 values-b+ca	string	search_provider_text_types	-	Cerca per tipus
 values-b+ca	string	search_state_idle_body_desktop	-	Escriu un títol. Els resultats apareixen sota cada font quan respon.
 values-b+ca	string	search_state_no_results_type_filter	-	Només %s. El filtre de tipus està limitant la cerca.
-values-b+ca	string	search_state_no_suggestions_detail	-	SUGGERIMENTS RESPOSTOS · 0 COINCIDÈNCIES
+values-b+ca	string	search_state_no_suggestions_detail	-	0 SUGGERIMENTS · 0 COINCIDÈNCIES RECENTS
 values-b+ca	string	search_state_no_suggestions_headline	-	Res no coincideix amb «%s»
 values-b+ca	string	search_tv_source_failed	-	HA FALLAT %s
 values-b+ca	string	search_tv_source_pinned	-	FIXAT
@@ -7223,7 +7223,7 @@ values-b+ckb	string	search_hint_site	-	بگەڕێ بۆ%s…
 values-b+ckb	string	search_poster_img_des	-	پۆستەر
 values-b+ckb	string	search_state_idle_body_desktop	-	ناونیشانێک بنووسە. ئەنجامەکان لە ژێر هەر سەرچاوەیەک دەردەکەون کاتێک وەڵام دەداتەوە.
 values-b+ckb	string	search_state_no_results_type_filter	-	تەنها %s. فلتەری جۆرەکەت گەڕانەکە سنووردار دەکات.
-values-b+ckb	string	search_state_no_suggestions_detail	-	پێشنیارەکان وەڵامیان دایەوە · 0 هاوتا
+values-b+ckb	string	search_state_no_suggestions_detail	-	0 پێشنیار · 0 هاوتای دوایین
 values-b+ckb	string	search_state_no_suggestions_headline	-	هیچ شتێک لەگەڵ «%s» ناگونجێت
 values-b+ckb	string	search_tv_source_failed	-	شکستی هێنا %s
 values-b+ckb	string	search_tv_source_pinned	-	جێگیرکراو
@@ -7887,7 +7887,7 @@ values-b+cs	string	search_provider_text_providers	-	Hledat pomocí poskytovatel�
 values-b+cs	string	search_provider_text_types	-	Hledat pomocí typů
 values-b+cs	string	search_state_idle_body_desktop	-	Zadejte název. Výsledky se zobrazí pod každým zdrojem, jakmile odpoví.
 values-b+cs	string	search_state_no_results_type_filter	-	Pouze %s. Filtr typů zužuje hledání.
-values-b+cs	string	search_state_no_suggestions_detail	-	NÁVRHY ODPOVĚDĚLY · 0 SHOD
+values-b+cs	string	search_state_no_suggestions_detail	-	0 NÁVRHŮ · 0 NEDÁVNÝCH SHOD
 values-b+cs	string	search_state_no_suggestions_headline	-	Nic neodpovídá „%s“
 values-b+cs	string	search_suggestions	-	Návrhy vyhledávání
 values-b+cs	string	search_suggestions_des	-	Zobrazit návrhy vyhledávání během psaní
@@ -8731,7 +8731,7 @@ values-b+de	string	search_provider_text_providers	-	Suche anhand Anbietern
 values-b+de	string	search_provider_text_types	-	Suche anhand Typen
 values-b+de	string	search_state_idle_body_desktop	-	Titel eingeben. Ergebnisse erscheinen unter jeder Quelle, sobald sie antwortet.
 values-b+de	string	search_state_no_results_type_filter	-	Nur %s. Der Typfilter schränkt die Suche ein.
-values-b+de	string	search_state_no_suggestions_detail	-	VORSCHLÄGE BEANTWORTET · 0 TREFFER
+values-b+de	string	search_state_no_suggestions_detail	-	0 VORSCHLÄGE · 0 TREFFER IM VERLAUF
 values-b+de	string	search_state_no_suggestions_headline	-	Nichts passt zu „%s“
 values-b+de	string	search_suggestions	-	Empfehlungen suchen
 values-b+de	string	search_suggestions_des	-	Beim Tippen Suchempfehlungen anzeigen
@@ -9517,7 +9517,7 @@ values-b+el	string	search_provider_text_providers	-	Αναζήτηση βάσε�
 values-b+el	string	search_provider_text_types	-	Αναζήτηση βάσει τύπων
 values-b+el	string	search_state_idle_body_desktop	-	Πληκτρολογήστε έναν τίτλο. Τα αποτελέσματα εμφανίζονται κάτω από κάθε πηγή μόλις απαντήσει.
 values-b+el	string	search_state_no_results_type_filter	-	Μόνο %s. Το φίλτρο τύπου περιορίζει την αναζήτηση.
-values-b+el	string	search_state_no_suggestions_detail	-	ΟΙ ΠΡΟΤΑΣΕΙΣ ΑΠΑΝΤΗΣΑΝ · 0 ΑΝΤΙΣΤΟΙΧΙΕΣ
+values-b+el	string	search_state_no_suggestions_detail	-	0 ΠΡΟΤΑΣΕΙΣ · 0 ΠΡΟΣΦΑΤΕΣ ΑΝΤΙΣΤΟΙΧΙΕΣ
 values-b+el	string	search_state_no_suggestions_headline	-	Τίποτα δεν ταιριάζει με «%s»
 values-b+el	string	search_tv_source_failed	-	ΑΠΟΤΥΧΙΑ %s
 values-b+el	string	search_tv_source_pinned	-	ΚΑΡΦΙΤΣΩΜΕΝΟ
@@ -9939,7 +9939,7 @@ values-b+eo	string	search_provider_text_providers	-	Serĉi uzante provizantojn
 values-b+eo	string	search_provider_text_types	-	Serĉi uzante tipojn
 values-b+eo	string	search_state_idle_body_desktop	-	Tajpu titolon. Rezultoj aperas sub ĉiu fonto kiam ĝi respondas.
 values-b+eo	string	search_state_no_results_type_filter	-	Nur %s. Via tipfiltrilo mallarĝigas la serĉon.
-values-b+eo	string	search_state_no_suggestions_detail	-	SUGESTOJ RESPONDIS · 0 KONGRUOJ
+values-b+eo	string	search_state_no_suggestions_detail	-	0 SUGESTOJ · 0 LASTATEMPAJ KONGRUOJ
 values-b+eo	string	search_state_no_suggestions_headline	-	Nenio kongruas kun “%s”
 values-b+eo	string	search_suggestions	-	Serĉaj Sugestoj
 values-b+eo	string	search_tv_source_failed	-	MALSUKCESIS %s
@@ -10634,7 +10634,7 @@ values-b+es	string	search_provider_text_providers	-	Buscar usando proveedores
 values-b+es	string	search_provider_text_types	-	Buscar por tipos
 values-b+es	string	search_state_idle_body_desktop	-	Escriba un título. Los resultados aparecen bajo cada fuente cuando responde.
 values-b+es	string	search_state_no_results_type_filter	-	Solo %s. Su filtro de tipo está reduciendo la búsqueda.
-values-b+es	string	search_state_no_suggestions_detail	-	SUGERENCIAS RESPONDIDAS · 0 COINCIDENCIAS
+values-b+es	string	search_state_no_suggestions_detail	-	0 SUGERENCIAS · 0 COINCIDENCIAS RECIENTES
 values-b+es	string	search_state_no_suggestions_headline	-	Nada coincide con «%s»
 values-b+es	string	search_suggestions	-	Sugerencias de Búsqueda
 values-b+es	string	search_suggestions_des	-	Mostrar sugerencias de búsqueda mientras escribe
@@ -11205,7 +11205,7 @@ values-b+fa	string	search_provider_text_providers	-	جستجو از طریق ا�
 values-b+fa	string	search_provider_text_types	-	جستجو از طریق انواع
 values-b+fa	string	search_state_idle_body_desktop	-	عنوانی را بنویسید. نتایج هر منبع پس از پاسخ آن، زیر نامش نمایش داده می‌شود.
 values-b+fa	string	search_state_no_results_type_filter	-	فقط %s. فیلتر نوع شما جستجو را محدود می‌کند.
-values-b+fa	string	search_state_no_suggestions_detail	-	پیشنهادها پاسخ دادند · 0 مورد منطبق
+values-b+fa	string	search_state_no_suggestions_detail	-	0 پیشنهاد · 0 مورد منطبق اخیر
 values-b+fa	string	search_state_no_suggestions_headline	-	هیچ چیزی با «%s» مطابقت ندارد
 values-b+fa	string	search_tv_source_failed	-	ناموفق %s
 values-b+fa	string	search_tv_source_pinned	-	سنجاق‌شده
@@ -11592,7 +11592,7 @@ values-b+fil	string	search_provider_text_providers	-	Maghanap gamit ang mga taga
 values-b+fil	string	search_provider_text_types	-	Maghanap gamit ang mga uri
 values-b+fil	string	search_state_idle_body_desktop	-	Mag-type ng pamagat. Lalabas ang mga resulta sa ilalim ng bawat source kapag sumagot ito.
 values-b+fil	string	search_state_no_results_type_filter	-	%s lang. Pinipigilan ng type filter mo ang paghahanap.
-values-b+fil	string	search_state_no_suggestions_detail	-	SUMAGOT ANG MGA MUNGKAHI · 0 TUGMA
+values-b+fil	string	search_state_no_suggestions_detail	-	0 MUNGKAHI · 0 KAMAKAILANG TUGMA
 values-b+fil	string	search_state_no_suggestions_headline	-	Walang tumutugma sa “%s”
 values-b+fil	string	search_tv_source_failed	-	NABIGO %s
 values-b+fil	string	search_tv_source_pinned	-	NAKA-PIN
@@ -12304,7 +12304,7 @@ values-b+fr	string	search_provider_text_providers	-	Recherche par fournisseur
 values-b+fr	string	search_provider_text_types	-	Recherche par types
 values-b+fr	string	search_state_idle_body_desktop	-	Saisissez un titre. Les résultats apparaissent sous chaque source dès qu'elle répond.
 values-b+fr	string	search_state_no_results_type_filter	-	%s uniquement. Votre filtre de type restreint la recherche.
-values-b+fr	string	search_state_no_suggestions_detail	-	SUGGESTIONS REÇUES · 0 CORRESPONDANCE
+values-b+fr	string	search_state_no_suggestions_detail	-	0 SUGGESTION · 0 CORRESPONDANCE RÉCENTE
 values-b+fr	string	search_state_no_suggestions_headline	-	Aucun résultat pour « %s »
 values-b+fr	string	search_suggestions	-	Suggestions de recherche
 values-b+fr	string	search_suggestions_des	-	Afficher des suggestions de recherche pendant la saisie
@@ -12823,7 +12823,7 @@ values-b+gl	string	search_provider_text_providers	-	Procurar usando proveedores
 values-b+gl	string	search_provider_text_types	-	Procurar por tipos
 values-b+gl	string	search_state_idle_body_desktop	-	Escriba un título. Os resultados aparecen baixo cada fonte cando responde.
 values-b+gl	string	search_state_no_results_type_filter	-	Só %s. O filtro de tipo está limitando a busca.
-values-b+gl	string	search_state_no_suggestions_detail	-	SUXESTIÓNS RESPONDIDAS · 0 COINCIDENCIAS
+values-b+gl	string	search_state_no_suggestions_detail	-	0 SUXESTIÓNS · 0 COINCIDENCIAS RECENTES
 values-b+gl	string	search_state_no_suggestions_headline	-	Nada coincide con «%s»
 values-b+gl	string	search_tv_source_failed	-	FALLOU %s
 values-b+gl	string	search_tv_source_pinned	-	FIXADO
@@ -13401,7 +13401,7 @@ values-b+he	string	search_provider_text_providers	-	חפש באמצעות הספ
 values-b+he	string	search_provider_text_types	-	חפש באמצעות סוגים
 values-b+he	string	search_state_idle_body_desktop	-	הקלד כותרת. התוצאות יופיעו מתחת לכל מקור כשיענה.
 values-b+he	string	search_state_no_results_type_filter	-	%s בלבד. מסנן הסוג מצמצם את החיפוש.
-values-b+he	string	search_state_no_suggestions_detail	-	ההצעות התקבלו · 0 התאמות
+values-b+he	string	search_state_no_suggestions_detail	-	0 הצעות · 0 התאמות אחרונות
 values-b+he	string	search_state_no_suggestions_headline	-	שום דבר לא תואם ל-“%s”
 values-b+he	string	search_tv_source_failed	-	נכשל %s
 values-b+he	string	search_tv_source_pinned	-	מוצמד
@@ -13972,7 +13972,7 @@ values-b+hi	string	search_provider_text_providers	-	प्रोवाइडर�
 values-b+hi	string	search_provider_text_types	-	प्रकार का उपयोग करके खोजें
 values-b+hi	string	search_state_idle_body_desktop	-	कोई शीर्षक लिखें। हर स्रोत के जवाब देने पर नतीजे उसके नीचे दिखेंगे।
 values-b+hi	string	search_state_no_results_type_filter	-	सिर्फ़ %s। आपका प्रकार फ़िल्टर खोज को सीमित कर रहा है।
-values-b+hi	string	search_state_no_suggestions_detail	-	सुझावों ने जवाब दिया · 0 मिलान
+values-b+hi	string	search_state_no_suggestions_detail	-	0 सुझाव · 0 हालिया मिलान
 values-b+hi	string	search_state_no_suggestions_headline	-	“%s” से कुछ भी मेल नहीं खाता
 values-b+hi	string	search_tv_source_failed	-	विफल %s
 values-b+hi	string	search_tv_source_pinned	-	पिन किया गया
@@ -14711,7 +14711,7 @@ values-b+hr	string	search_provider_text_providers	-	Traži koristeći pružatelj
 values-b+hr	string	search_provider_text_types	-	Traži koristeći vrste
 values-b+hr	string	search_state_idle_body_desktop	-	Upišite naslov. Rezultati se pojavljuju ispod svakog izvora kad odgovori.
 values-b+hr	string	search_state_no_results_type_filter	-	Samo %s. Vaš filtar vrste sužava pretraživanje.
-values-b+hr	string	search_state_no_suggestions_detail	-	PRIJEDLOZI SU ODGOVORILI · 0 PODUDARANJA
+values-b+hr	string	search_state_no_suggestions_detail	-	0 PRIJEDLOGA · 0 NEDAVNIH PODUDARANJA
 values-b+hr	string	search_state_no_suggestions_headline	-	Ništa ne odgovara „%s“
 values-b+hr	string	search_suggestions	-	Prijedlozi za pretraživanje
 values-b+hr	string	search_suggestions_des	-	Prikaži prijedloge za pretraživanje tijekom tipkanja
@@ -15486,7 +15486,7 @@ values-b+hu	string	search_provider_text_providers	-	Keresés szolgáltatók szer
 values-b+hu	string	search_provider_text_types	-	Keresés típusok szerint
 values-b+hu	string	search_state_idle_body_desktop	-	Írjon be egy címet. Az eredmények az egyes források alatt jelennek meg, amint válaszolnak.
 values-b+hu	string	search_state_no_results_type_filter	-	Csak %s. A típusszűrő szűkíti a keresést.
-values-b+hu	string	search_state_no_suggestions_detail	-	A JAVASLATOK MEGÉRKEZTEK · 0 TALÁLAT
+values-b+hu	string	search_state_no_suggestions_detail	-	0 JAVASLAT · 0 LEGUTÓBBI TALÁLAT
 values-b+hu	string	search_state_no_suggestions_headline	-	Semmi sem egyezik ezzel: „%s”
 values-b+hu	string	search_suggestions	-	Keresési javaslatok
 values-b+hu	string	search_suggestions_des	-	Mutasson keresési javaslatok gépelés közben
@@ -16283,7 +16283,7 @@ values-b+id	string	search_provider_text_providers	-	Cari menggunakan penyedia
 values-b+id	string	search_provider_text_types	-	Cari menggunakan jenis
 values-b+id	string	search_state_idle_body_desktop	-	Ketik judul. Hasil muncul di bawah setiap sumber saat sumber itu menjawab.
 values-b+id	string	search_state_no_results_type_filter	-	Hanya %s. Filter jenis Anda mempersempit pencarian.
-values-b+id	string	search_state_no_suggestions_detail	-	SARAN TERJAWAB · 0 COCOK
+values-b+id	string	search_state_no_suggestions_detail	-	0 SARAN · 0 COCOK TERBARU
 values-b+id	string	search_state_no_suggestions_headline	-	Tidak ada yang cocok dengan “%s”
 values-b+id	string	search_suggestions	-	Saran pencarian
 values-b+id	string	search_suggestions_des	-	Tampilkan saran pencarian saat mengetik
@@ -17117,7 +17117,7 @@ values-b+in	string	search_provider_text_providers	-	Cari menggunakan penyedia
 values-b+in	string	search_provider_text_types	-	Cari menggunakan jenis
 values-b+in	string	search_state_idle_body_desktop	-	Ketik judul. Hasil muncul di bawah setiap sumber saat sumber itu menjawab.
 values-b+in	string	search_state_no_results_type_filter	-	Hanya %s. Filter jenis Anda mempersempit pencarian.
-values-b+in	string	search_state_no_suggestions_detail	-	SARAN TERJAWAB · 0 COCOK
+values-b+in	string	search_state_no_suggestions_detail	-	0 SARAN · 0 COCOK TERBARU
 values-b+in	string	search_state_no_suggestions_headline	-	Tidak ada yang cocok dengan “%s”
 values-b+in	string	search_suggestions	-	Saran pencarian
 values-b+in	string	search_suggestions_des	-	Tampilkan saran pencarian saat mengetik
@@ -17967,7 +17967,7 @@ values-b+it	string	search_provider_text_providers	-	Cerca per provider
 values-b+it	string	search_provider_text_types	-	Cerca per tipo
 values-b+it	string	search_state_idle_body_desktop	-	Digita un titolo. I risultati compaiono sotto ogni fonte quando risponde.
 values-b+it	string	search_state_no_results_type_filter	-	Solo %s. Il filtro per tipo sta restringendo la ricerca.
-values-b+it	string	search_state_no_suggestions_detail	-	SUGGERIMENTI RICEVUTI · 0 CORRISPONDENZE
+values-b+it	string	search_state_no_suggestions_detail	-	0 SUGGERIMENTI · 0 CORRISPONDENZE RECENTI
 values-b+it	string	search_state_no_suggestions_headline	-	Nessun risultato per «%s»
 values-b+it	string	search_suggestions	-	Suggerimenti per la ricerca
 values-b+it	string	search_suggestions_des	-	Mostra suggerimenti di ricerca durante la digitazione
@@ -18674,7 +18674,7 @@ values-b+iw	string	search_provider_text_providers	-	חפש באמצעות הספ
 values-b+iw	string	search_provider_text_types	-	חפש באמצעות סוגים
 values-b+iw	string	search_state_idle_body_desktop	-	הקלד כותרת. התוצאות יופיעו מתחת לכל מקור כשיענה.
 values-b+iw	string	search_state_no_results_type_filter	-	%s בלבד. מסנן הסוג מצמצם את החיפוש.
-values-b+iw	string	search_state_no_suggestions_detail	-	ההצעות התקבלו · 0 התאמות
+values-b+iw	string	search_state_no_suggestions_detail	-	0 הצעות · 0 התאמות אחרונות
 values-b+iw	string	search_state_no_suggestions_headline	-	שום דבר לא תואם ל-“%s”
 values-b+iw	string	search_tv_source_failed	-	נכשל %s
 values-b+iw	string	search_tv_source_pinned	-	מוצמד
@@ -19458,7 +19458,7 @@ values-b+ja	string	search_provider_text_providers	-	プロバイダーから探�
 values-b+ja	string	search_provider_text_types	-	使用タイプの検索
 values-b+ja	string	search_state_idle_body_desktop	-	タイトルを入力してください。各ソースが応答すると、その下に結果が表示されます。
 values-b+ja	string	search_state_no_results_type_filter	-	%sのみ。種類フィルターで検索が絞り込まれています。
-values-b+ja	string	search_state_no_suggestions_detail	-	候補の応答あり · 一致 0 件
+values-b+ja	string	search_state_no_suggestions_detail	-	候補 0 件 · 最近の一致 0 件
 values-b+ja	string	search_state_no_suggestions_headline	-	「%s」に一致するものはありません
 values-b+ja	string	search_suggestions	-	検索候補
 values-b+ja	string	search_suggestions_des	-	入力中に検索候補を表示する
@@ -19853,7 +19853,7 @@ values-b+kn	string	search_provider_text_providers	-	ಪೂರೈಕೆದಾರ�
 values-b+kn	string	search_provider_text_types	-	ಪ್ರಕಾರಗಳನ್ನು ಬಳಸಿಕೊಂಡು ಹುಡುಕಿ
 values-b+kn	string	search_state_idle_body_desktop	-	ಶೀರ್ಷಿಕೆಯನ್ನು ಟೈಪ್ ಮಾಡಿ. ಪ್ರತಿಯೊಂದು ಮೂಲ ಉತ್ತರಿಸಿದಂತೆ ಫಲಿತಾಂಶಗಳು ಅದರ ಕೆಳಗೆ ಕಾಣಿಸುತ್ತವೆ.
 values-b+kn	string	search_state_no_results_type_filter	-	%s ಮಾತ್ರ. ನಿಮ್ಮ ಪ್ರಕಾರದ ಫಿಲ್ಟರ್ ಹುಡುಕಾಟವನ್ನು ಕಿರಿದುಗೊಳಿಸುತ್ತಿದೆ.
-values-b+kn	string	search_state_no_suggestions_detail	-	ಸಲಹೆಗಳು ಉತ್ತರಿಸಿವೆ · 0 ಹೊಂದಾಣಿಕೆಗಳು
+values-b+kn	string	search_state_no_suggestions_detail	-	0 ಸಲಹೆಗಳು · 0 ಇತ್ತೀಚಿನ ಹೊಂದಾಣಿಕೆಗಳು
 values-b+kn	string	search_state_no_suggestions_headline	-	“%s” ಗೆ ಯಾವುದೂ ಹೊಂದುವುದಿಲ್ಲ
 values-b+kn	string	search_tv_source_failed	-	ವಿಫಲ %s
 values-b+kn	string	search_tv_source_pinned	-	ಪಿನ್ ಮಾಡಲಾಗಿದೆ
@@ -20514,7 +20514,7 @@ values-b+ko	string	search_provider_text_providers	-	소스로 검색
 values-b+ko	string	search_provider_text_types	-	유형을 사용하여 검색
 values-b+ko	string	search_state_idle_body_desktop	-	제목을 입력하세요. 각 소스가 응답하면 그 아래에 결과가 표시됩니다.
 values-b+ko	string	search_state_no_results_type_filter	-	%s만. 유형 필터가 검색을 좁히고 있습니다.
-values-b+ko	string	search_state_no_suggestions_detail	-	추천 응답 완료 · 일치 0개
+values-b+ko	string	search_state_no_suggestions_detail	-	추천 0개 · 최근 일치 0개
 values-b+ko	string	search_state_no_suggestions_headline	-	“%s”와(과) 일치하는 항목이 없습니다
 values-b+ko	string	search_suggestions	-	검색어 제안
 values-b+ko	string	search_suggestions_des	-	입력하는 동안 검색어 제안 표시
@@ -21038,7 +21038,7 @@ values-b+lt	string	search_provider_text_providers	-	Ieškoti naudojant tiekėjus
 values-b+lt	string	search_provider_text_types	-	Ieškoti naudojant tipus
 values-b+lt	string	search_state_idle_body_desktop	-	Įveskite pavadinimą. Rezultatai rodomi po kiekvienu šaltiniu, kai šis atsako.
 values-b+lt	string	search_state_no_results_type_filter	-	Tik %s. Jūsų tipų filtras siaurina paiešką.
-values-b+lt	string	search_state_no_suggestions_detail	-	PASIŪLYMAI GAUTI · 0 ATITIKMENŲ
+values-b+lt	string	search_state_no_suggestions_detail	-	0 PASIŪLYMŲ · 0 NESENIŲ ATITIKMENŲ
 values-b+lt	string	search_state_no_suggestions_headline	-	Niekas neatitinka „%s“
 values-b+lt	string	search_tv_source_failed	-	NEPAVYKO %s
 values-b+lt	string	search_tv_source_pinned	-	PRISEGTA
@@ -21680,7 +21680,7 @@ values-b+lv	string	search_provider_text_providers	-	Meklēt izmantojot devējus
 values-b+lv	string	search_provider_text_types	-	Meklēt izmantojot tipus
 values-b+lv	string	search_state_idle_body_desktop	-	Ievadiet nosaukumu. Rezultāti parādās zem katra devēja, tiklīdz tas atbild.
 values-b+lv	string	search_state_no_results_type_filter	-	Tikai %s. Jūsu veida filtrs sašaurina meklēšanu.
-values-b+lv	string	search_state_no_suggestions_detail	-	IETEIKUMI SAŅEMTI · 0 ATBILSTĪBU
+values-b+lv	string	search_state_no_suggestions_detail	-	0 IETEIKUMU · 0 NESENU ATBILSTĪBU
 values-b+lv	string	search_state_no_suggestions_headline	-	Nekas neatbilst „%s”
 values-b+lv	string	search_suggestions	-	Meklēšanas ieteikumi
 values-b+lv	string	search_tv_source_failed	-	NEIZDEVĀS %s
@@ -22480,7 +22480,7 @@ values-b+mk	string	search_provider_text_providers	-	Пребарувај кор�
 values-b+mk	string	search_provider_text_types	-	Пребарувај користејќи типови
 values-b+mk	string	search_state_idle_body_desktop	-	Внеси наслов. Резултатите се појавуваат под секој извор кога ќе одговори.
 values-b+mk	string	search_state_no_results_type_filter	-	Само %s. Вашиот филтер за тип го стеснува пребарувањето.
-values-b+mk	string	search_state_no_suggestions_detail	-	ПРЕДЛОЗИТЕ ОДГОВОРИЈА · 0 СОВПАЃАЊА
+values-b+mk	string	search_state_no_suggestions_detail	-	0 ПРЕДЛОЗИ · 0 НЕОДАМНЕШНИ СОВПАЃАЊА
 values-b+mk	string	search_state_no_suggestions_headline	-	Ништо не одговара на „%s“
 values-b+mk	string	search_suggestions	-	Предлози за пребарување
 values-b+mk	string	search_suggestions_des	-	Прикажувај предлози за пребарување додека пишуваш
@@ -22985,7 +22985,7 @@ values-b+ml	string	search_provider_text_providers	-	സ്രോതസ് അട
 values-b+ml	string	search_provider_text_types	-	തരം അടിസ്ഥാനത്തിൽ തിരയുക
 values-b+ml	string	search_state_idle_body_desktop	-	ഒരു ശീർഷകം ടൈപ്പ് ചെയ്യുക. ഓരോ ഉറവിടവും മറുപടി നൽകുമ്പോൾ ഫലങ്ങൾ അതിനു താഴെ കാണിക്കും.
 values-b+ml	string	search_state_no_results_type_filter	-	%s മാത്രം. നിങ്ങളുടെ തരം ഫിൽട്ടർ തിരയൽ ചുരുക്കുന്നു.
-values-b+ml	string	search_state_no_suggestions_detail	-	നിർദ്ദേശങ്ങൾ മറുപടി നൽകി · 0 പൊരുത്തങ്ങൾ
+values-b+ml	string	search_state_no_suggestions_detail	-	0 നിർദ്ദേശങ്ങൾ · 0 സമീപകാല പൊരുത്തങ്ങൾ
 values-b+ml	string	search_state_no_suggestions_headline	-	“%s” എന്നതുമായി ഒന്നും പൊരുത്തപ്പെടുന്നില്ല
 values-b+ml	string	search_tv_source_failed	-	പരാജയപ്പെട്ടു %s
 values-b+ml	string	search_tv_source_pinned	-	പിൻ ചെയ്തു
@@ -23573,7 +23573,7 @@ values-b+ms	string	search_provider_text_providers	-	Carian mengikut sumber
 values-b+ms	string	search_provider_text_types	-	Carian mengikut jenis
 values-b+ms	string	search_state_idle_body_desktop	-	Taip tajuk. Hasil muncul di bawah setiap sumber apabila ia menjawab.
 values-b+ms	string	search_state_no_results_type_filter	-	Hanya %s. Penapis jenis anda mengecilkan carian.
-values-b+ms	string	search_state_no_suggestions_detail	-	CADANGAN DIJAWAB · 0 PADANAN
+values-b+ms	string	search_state_no_suggestions_detail	-	0 CADANGAN · 0 PADANAN TERKINI
 values-b+ms	string	search_state_no_suggestions_headline	-	Tiada yang sepadan dengan “%s”
 values-b+ms	string	search_tv_source_failed	-	GAGAL %s
 values-b+ms	string	search_tv_source_pinned	-	DISEMATKAN
@@ -23902,7 +23902,7 @@ values-b+mt	string	search_provider_text_providers	-	Fittex bl-użu ta' fornituri
 values-b+mt	string	search_provider_text_types	-	Fittex bl-użu ta 'tipi
 values-b+mt	string	search_state_idle_body_desktop	-	Ikteb titlu. Ir-riżultati jidhru taħt kull sors meta jwieġeb.
 values-b+mt	string	search_state_no_results_type_filter	-	%s biss. Il-filtru tat-tip qed jirrestrinġi l-fittxija.
-values-b+mt	string	search_state_no_suggestions_detail	-	IS-SUĠĠERIMENTI WIEĠBU · 0 TAQBIL
+values-b+mt	string	search_state_no_suggestions_detail	-	0 SUĠĠERIMENTI · 0 TAQBIL REĊENTI
 values-b+mt	string	search_state_no_suggestions_headline	-	Xejn ma jaqbel ma' “%s”
 values-b+mt	string	search_tv_source_failed	-	FALLA %s
 values-b+mt	string	search_tv_source_pinned	-	IPPINJAT
@@ -24409,7 +24409,7 @@ values-b+my	string	search_provider_text_providers	-	ပ့ံပိုးပေ�
 values-b+my	string	search_provider_text_types	-	အမျိုးအစားများအသုံးပြု၍ရှာရန်
 values-b+my	string	search_state_idle_body_desktop	-	ခေါင်းစဉ်တစ်ခု ရိုက်ထည့်ပါ။ ရင်းမြစ်တစ်ခုစီ တုံ့ပြန်သည်နှင့် ရလဒ်များကို ၎င်းအောက်တွင် ပြသပါမည်။
 values-b+my	string	search_state_no_results_type_filter	-	%s သာ။ သင့်အမျိုးအစား စစ်ထုတ်မှုက ရှာဖွေမှုကို ကျဉ်းစေနေသည်။
-values-b+my	string	search_state_no_suggestions_detail	-	အကြံပြုချက်များ ပြန်ဖြေပြီး · ကိုက်ညီမှု 0 ခု
+values-b+my	string	search_state_no_suggestions_detail	-	အကြံပြုချက် 0 ခု · မကြာသေးမီ ကိုက်ညီမှု 0 ခု
 values-b+my	string	search_state_no_suggestions_headline	-	“%s” နှင့် ကိုက်ညီသည့်အရာ မရှိပါ
 values-b+my	string	search_tv_source_failed	-	မအောင်မြင်ပါ %s
 values-b+my	string	search_tv_source_pinned	-	ပင်ထိုးထား
@@ -24747,7 +24747,7 @@ values-b+ne	string	search_provider_text_providers	-	प्रोभाईडर 
 values-b+ne	string	search_provider_text_types	-	प्रकारको उपयोग गरी खोज्नुहोस्
 values-b+ne	string	search_state_idle_body_desktop	-	शीर्षक टाइप गर्नुहोस्। प्रत्येक स्रोतले जवाफ दिएपछि नतिजा त्यसको तल देखिन्छ।
 values-b+ne	string	search_state_no_results_type_filter	-	%s मात्र। तपाईंको प्रकार फिल्टरले खोजी साँघुरो बनाइरहेको छ।
-values-b+ne	string	search_state_no_suggestions_detail	-	सुझावहरूले जवाफ दिए · 0 मेल
+values-b+ne	string	search_state_no_suggestions_detail	-	0 सुझाव · 0 हालैका मेल
 values-b+ne	string	search_state_no_suggestions_headline	-	“%s” सँग केही पनि मेल खाँदैन
 values-b+ne	string	search_tv_source_failed	-	असफल %s
 values-b+ne	string	search_tv_source_pinned	-	पिन गरिएको
@@ -25373,7 +25373,7 @@ values-b+nl	string	search_provider_text_providers	-	Zoeken met providers
 values-b+nl	string	search_provider_text_types	-	Zoeken met types
 values-b+nl	string	search_state_idle_body_desktop	-	Typ een titel. Resultaten verschijnen onder elke bron zodra die antwoordt.
 values-b+nl	string	search_state_no_results_type_filter	-	Alleen %s. Je typefilter beperkt de zoekopdracht.
-values-b+nl	string	search_state_no_suggestions_detail	-	SUGGESTIES ONTVANGEN · 0 OVEREENKOMSTEN
+values-b+nl	string	search_state_no_suggestions_detail	-	0 SUGGESTIES · 0 RECENTE OVEREENKOMSTEN
 values-b+nl	string	search_state_no_suggestions_headline	-	Niets komt overeen met “%s”
 values-b+nl	string	search_suggestions	-	Zoeksuggesties
 values-b+nl	string	search_suggestions_des	-	Zoeksuggesties laten zien tijdens het typen
@@ -25814,7 +25814,7 @@ values-b+nn	string	search_provider_text_providers	-	Søk basert på leverandør
 values-b+nn	string	search_provider_text_types	-	Søk ved bruk av typer
 values-b+nn	string	search_state_idle_body_desktop	-	Skriv ein tittel. Resultata kjem under kvar kjelde når ho svarar.
 values-b+nn	string	search_state_no_results_type_filter	-	Berre %s. Typefilteret ditt avgrensar søket.
-values-b+nn	string	search_state_no_suggestions_detail	-	FORSLAG SVARTE · 0 TREFF
+values-b+nn	string	search_state_no_suggestions_detail	-	0 FORSLAG · 0 NYLEGE TREFF
 values-b+nn	string	search_state_no_suggestions_headline	-	Ingenting samsvarar med «%s»
 values-b+nn	string	search_tv_source_failed	-	FEILA %s
 values-b+nn	string	search_tv_source_pinned	-	FESTA
@@ -26340,7 +26340,7 @@ values-b+no	string	search_provider_text_providers	-	Søk med leverandører
 values-b+no	string	search_provider_text_types	-	Søk med typer
 values-b+no	string	search_state_idle_body_desktop	-	Skriv inn en tittel. Resultatene vises under hver kilde når den svarer.
 values-b+no	string	search_state_no_results_type_filter	-	Bare %s. Typefilteret ditt begrenser søket.
-values-b+no	string	search_state_no_suggestions_detail	-	FORSLAG SVARTE · 0 TREFF
+values-b+no	string	search_state_no_suggestions_detail	-	0 FORSLAG · 0 NYLIGE TREFF
 values-b+no	string	search_state_no_suggestions_headline	-	Ingenting samsvarer med «%s»
 values-b+no	string	search_tv_source_failed	-	FEILET %s
 values-b+no	string	search_tv_source_pinned	-	FESTET
@@ -26700,7 +26700,7 @@ values-b+or	string	search_poster_img_des	-	ପୋଷ୍ଟର୍
 values-b+or	string	search_provider_text_providers	-	ପ୍ରଦାତା ଵ୍ୟଵହାର କରି ଖୋଜିବା
 values-b+or	string	search_state_idle_body_desktop	-	ଏକ ଶୀର୍ଷକ ଟାଇପ୍ କରନ୍ତୁ। ପ୍ରତ୍ୟେକ ଉତ୍ସ ଉତ୍ତର ଦେଲେ ଫଳାଫଳ ତା ତଳେ ଦେଖାଯିବ।
 values-b+or	string	search_state_no_results_type_filter	-	କେବଳ %s। ଆପଣଙ୍କ ପ୍ରକାର ଫିଲ୍ଟର ସନ୍ଧାନକୁ ସଂକୁଚିତ କରୁଛି।
-values-b+or	string	search_state_no_suggestions_detail	-	ପରାମର୍ଶ ଉତ୍ତର ଦେଲା · 0 ମେଳ
+values-b+or	string	search_state_no_suggestions_detail	-	0 ପରାମର୍ଶ · 0 ସାମ୍ପ୍ରତିକ ମେଳ
 values-b+or	string	search_state_no_suggestions_headline	-	“%s” ସହ କିଛି ମେଳ ଖାଉନାହିଁ
 values-b+or	string	search_tv_source_failed	-	ବିଫଳ %s
 values-b+or	string	search_tv_source_pinned	-	ପିନ୍ କରାଯାଇଛି
@@ -27398,7 +27398,7 @@ values-b+pl	string	search_provider_text_providers	-	Szukaj według źródeł
 values-b+pl	string	search_provider_text_types	-	Szukaj według typów
 values-b+pl	string	search_state_idle_body_desktop	-	Wpisz tytuł. Wyniki pojawiają się pod każdym źródłem, gdy odpowie.
 values-b+pl	string	search_state_no_results_type_filter	-	Tylko %s. Filtr typu zawęża wyszukiwanie.
-values-b+pl	string	search_state_no_suggestions_detail	-	SUGESTIE ODPOWIEDZIAŁY · 0 DOPASOWAŃ
+values-b+pl	string	search_state_no_suggestions_detail	-	0 SUGESTII · 0 OSTATNICH DOPASOWAŃ
 values-b+pl	string	search_state_no_suggestions_headline	-	Nic nie pasuje do „%s”
 values-b+pl	string	search_suggestions	-	Sugestie wyszukiwania
 values-b+pl	string	search_suggestions_des	-	Pokaż sugestie wyszukiwania podczas pisania
@@ -28250,7 +28250,7 @@ values-b+pt	string	search_provider_text_providers	-	Procurar usando fornecedores
 values-b+pt	string	search_provider_text_types	-	Procurar usando tipos
 values-b+pt	string	search_state_idle_body_desktop	-	Escreva um título. Os resultados aparecem sob cada fonte assim que ela responde.
 values-b+pt	string	search_state_no_results_type_filter	-	Apenas %s. O filtro de tipo está a limitar a pesquisa.
-values-b+pt	string	search_state_no_suggestions_detail	-	SUGESTÕES RESPONDERAM · 0 CORRESPONDÊNCIAS
+values-b+pt	string	search_state_no_suggestions_detail	-	0 SUGESTÕES · 0 CORRESPONDÊNCIAS RECENTES
 values-b+pt	string	search_state_no_suggestions_headline	-	Nada corresponde a «%s»
 values-b+pt	string	search_suggestions	-	Sugestões de pesquisa
 values-b+pt	string	search_suggestions_des	-	Mostrar sugestões de pesquisa enquanto digita
@@ -29095,7 +29095,7 @@ values-b+pt+BR	string	search_provider_text_providers	-	Pesquisar usando forneced
 values-b+pt+BR	string	search_provider_text_types	-	Pesquisar usando tipos
 values-b+pt+BR	string	search_state_idle_body_desktop	-	Digite um título. Os resultados aparecem abaixo de cada fonte assim que ela responde.
 values-b+pt+BR	string	search_state_no_results_type_filter	-	Somente %s. O filtro de tipo está restringindo a pesquisa.
-values-b+pt+BR	string	search_state_no_suggestions_detail	-	SUGESTÕES RESPONDERAM · 0 CORRESPONDÊNCIAS
+values-b+pt+BR	string	search_state_no_suggestions_detail	-	0 SUGESTÕES · 0 CORRESPONDÊNCIAS RECENTES
 values-b+pt+BR	string	search_state_no_suggestions_headline	-	Nada corresponde a “%s”
 values-b+pt+BR	string	search_suggestions	-	Sugestões de Busca
 values-b+pt+BR	string	search_suggestions_des	-	Exibir sugestões de pesquisa durante a digitação
@@ -29860,7 +29860,7 @@ values-b+qt	string	search_provider_text_providers	-	aauuhaauugghhahhh ohaauugghh
 values-b+qt	string	search_provider_text_types	-	ahhhahoooohhaa ahhhoohahh
 values-b+qt	string	search_state_idle_body_desktop	-	oouuh aaaaggg uuuk ooh
 values-b+qt	string	search_state_no_results_type_filter	-	%s uuhaa. oouuh aagggh uuk.
-values-b+qt	string	search_state_no_suggestions_detail	-	AAAHHUU OOGG · 0 UUGH
+values-b+qt	string	search_state_no_suggestions_detail	-	0 AAAHHUU · 0 AAOOH UUGH
 values-b+qt	string	search_state_no_suggestions_headline	-	ooh aagg “%s”
 values-b+qt	string	search_tv_source_failed	-	AAGGH %s
 values-b+qt	string	search_tv_source_pinned	-	OOHHAA
@@ -30593,7 +30593,7 @@ values-b+ro	string	search_provider_text_providers	-	Căutare în funcție de fur
 values-b+ro	string	search_provider_text_types	-	Căutare în funcție de tip
 values-b+ro	string	search_state_idle_body_desktop	-	Tastați un titlu. Rezultatele apar sub fiecare sursă când răspunde.
 values-b+ro	string	search_state_no_results_type_filter	-	Doar %s. Filtrul de tip restrânge căutarea.
-values-b+ro	string	search_state_no_suggestions_detail	-	SUGESTII PRIMITE · 0 POTRIVIRI
+values-b+ro	string	search_state_no_suggestions_detail	-	0 SUGESTII · 0 POTRIVIRI RECENTE
 values-b+ro	string	search_state_no_suggestions_headline	-	Nimic nu se potrivește cu „%s”
 values-b+ro	string	search_tv_source_failed	-	EȘUAT %s
 values-b+ro	string	search_tv_source_pinned	-	FIXAT
@@ -31410,7 +31410,7 @@ values-b+ru	string	search_provider_text_providers	-	Поиск с использ
 values-b+ru	string	search_provider_text_types	-	Поиск с использованием типов
 values-b+ru	string	search_state_idle_body_desktop	-	Введите название. Результаты появятся под каждым источником, когда он ответит.
 values-b+ru	string	search_state_no_results_type_filter	-	Только %s. Фильтр по типу сужает поиск.
-values-b+ru	string	search_state_no_suggestions_detail	-	ПОДСКАЗКИ ПОЛУЧЕНЫ · 0 СОВПАДЕНИЙ
+values-b+ru	string	search_state_no_suggestions_detail	-	0 ПОДСКАЗОК · 0 НЕДАВНИХ СОВПАДЕНИЙ
 values-b+ru	string	search_state_no_suggestions_headline	-	Ничего не найдено по запросу «%s»
 values-b+ru	string	search_suggestions	-	Поиск предложений
 values-b+ru	string	search_suggestions_des	-	Показывать подсказки поиска при вводе текста
@@ -32081,7 +32081,7 @@ values-b+sk	string	search_provider_text_providers	-	Hľadať pomocou poskytovate
 values-b+sk	string	search_provider_text_types	-	Hľadať pomocou typov
 values-b+sk	string	search_state_idle_body_desktop	-	Zadajte názov. Výsledky sa zobrazia pod každým zdrojom, keď odpovie.
 values-b+sk	string	search_state_no_results_type_filter	-	Iba %s. Filter typov zužuje hľadanie.
-values-b+sk	string	search_state_no_suggestions_detail	-	NÁVRHY ODPOVEDALI · 0 ZHÔD
+values-b+sk	string	search_state_no_suggestions_detail	-	0 NÁVRHOV · 0 NEDÁVNYCH ZHÔD
 values-b+sk	string	search_state_no_suggestions_headline	-	Nič nezodpovedá „%s“
 values-b+sk	string	search_suggestions	-	Návrhy vyhľadávania
 values-b+sk	string	search_suggestions_des	-	Zobraziť návrhy vyhľadávania pri písaní
@@ -32679,7 +32679,7 @@ values-b+so	string	search_provider_text_providers	-	Ku raadi qaybiyeyaasha
 values-b+so	string	search_provider_text_types	-	Ku raadi noocyada
 values-b+so	string	search_state_idle_body_desktop	-	Qor cinwaan. Natiijooyinku waxay ka muuqdaan xigasho kasta hoosteeda marka ay jawaabto.
 values-b+so	string	search_state_no_results_type_filter	-	Kaliya %s. Shaandhada nooca ayaa soo koobaya raadinta.
-values-b+so	string	search_state_no_suggestions_detail	-	TALOOYINKA WAA LA HELAY · 0 ISKU-EG
+values-b+so	string	search_state_no_suggestions_detail	-	0 TALOOYIN · 0 ISKU-EG DHOWAAN
 values-b+so	string	search_state_no_suggestions_headline	-	Waxba kuma habboona “%s”
 values-b+so	string	search_suggestions	-	Talooyinka Raadinta
 values-b+so	string	search_suggestions_des	-	Soo bandhig talooyinka inta aad wax qorayso
@@ -33452,7 +33452,7 @@ values-b+sq	string	search_provider_text_providers	-	Kërko duke përdorur ofrues
 values-b+sq	string	search_provider_text_types	-	Kërko duke përdorur tipet
 values-b+sq	string	search_state_idle_body_desktop	-	Shkruani një titull. Rezultatet shfaqen nën çdo burim sapo ai përgjigjet.
 values-b+sq	string	search_state_no_results_type_filter	-	Vetëm %s. Filtri i llojit po e ngushton kërkimin.
-values-b+sq	string	search_state_no_suggestions_detail	-	SUGJERIMET U PËRGJIGJËN · 0 PËRPUTHJE
+values-b+sq	string	search_state_no_suggestions_detail	-	0 SUGJERIME · 0 PËRPUTHJE TË FUNDIT
 values-b+sq	string	search_state_no_suggestions_headline	-	Asgjë nuk përputhet me “%s”
 values-b+sq	string	search_suggestions	-	Kërkime të sugjeruara
 values-b+sq	string	search_suggestions_des	-	Trego sugjerimet ndërkohë që shkruani
@@ -34296,7 +34296,7 @@ values-b+sv	string	search_provider_text_providers	-	Sök med hjälp av leverant�
 values-b+sv	string	search_provider_text_types	-	Sök med hjälp av typer
 values-b+sv	string	search_state_idle_body_desktop	-	Skriv en titel. Resultaten visas under varje källa när den svarar.
 values-b+sv	string	search_state_no_results_type_filter	-	Endast %s. Ditt typfilter begränsar sökningen.
-values-b+sv	string	search_state_no_suggestions_detail	-	FÖRSLAG BESVARADE · 0 TRÄFFAR
+values-b+sv	string	search_state_no_suggestions_detail	-	0 FÖRSLAG · 0 NYLIGA TRÄFFAR
 values-b+sv	string	search_state_no_suggestions_headline	-	Inget matchar ”%s”
 values-b+sv	string	search_suggestions	-	Sökförslag
 values-b+sv	string	search_suggestions_des	-	Visa sökförslag medan du skriver
@@ -35140,7 +35140,7 @@ values-b+ta	string	search_provider_text_providers	-	வழங்குபவர�
 values-b+ta	string	search_provider_text_types	-	வகைகளைப் பயன்படுத்தி தேடுங்கள்
 values-b+ta	string	search_state_idle_body_desktop	-	ஒரு தலைப்பைத் தட்டச்சு செய்யவும். ஒவ்வொரு மூலமும் பதிலளிக்கும்போது முடிவுகள் அதன் கீழ் தோன்றும்.
 values-b+ta	string	search_state_no_results_type_filter	-	%s மட்டும். உங்கள் வகை வடிப்பான் தேடலைக் குறுக்குகிறது.
-values-b+ta	string	search_state_no_suggestions_detail	-	பரிந்துரைகள் பதிலளித்தன · 0 பொருத்தங்கள்
+values-b+ta	string	search_state_no_suggestions_detail	-	0 பரிந்துரைகள் · 0 சமீபத்திய பொருத்தங்கள்
 values-b+ta	string	search_state_no_suggestions_headline	-	“%s” உடன் எதுவும் பொருந்தவில்லை
 values-b+ta	string	search_suggestions	-	தேடல் பரிந்துரைகள்
 values-b+ta	string	search_suggestions_des	-	தட்டச்சு செய்யும் போது தேடல் பரிந்துரைகளைக் காட்டு
@@ -35450,7 +35450,7 @@ values-b+ti	string	player_source_switch	-	ቀይር
 values-b+ti	string	player_unmute	-	ድምጺ ወልዕ
 values-b+ti	string	search_state_idle_body_desktop	-	ኣርእስቲ ጽሓፍ። ውጽኢታት ነፍሲ ወከፍ ምንጪ ምስ መለሰ ኣብ ትሕቲኡ ይርአዩ።
 values-b+ti	string	search_state_no_results_type_filter	-	%s ጥራይ። ማጣሪያ ዓይነትካ ፍለጋ የጽብብ ኣሎ።
-values-b+ti	string	search_state_no_suggestions_detail	-	ሓሳባት መለሱ · 0 ተመሳሰልቲ
+values-b+ti	string	search_state_no_suggestions_detail	-	0 ሓሳባት · 0 ናይ ቀረባ ተመሳሰልቲ
 values-b+ti	string	search_state_no_suggestions_headline	-	ምስ «%s» ዝሰማማዕ የለን
 values-b+ti	string	search_tv_source_failed	-	ኣይተኻኣለን %s
 values-b+ti	string	search_tv_source_pinned	-	ተሰኪሉ
@@ -35769,7 +35769,7 @@ values-b+tl	string	search_provider_text_providers	-	Search using providers
 values-b+tl	string	search_provider_text_types	-	Search using types
 values-b+tl	string	search_state_idle_body_desktop	-	Mag-type ng pamagat. Lalabas ang mga resulta sa ilalim ng bawat source kapag sumagot ito.
 values-b+tl	string	search_state_no_results_type_filter	-	%s lang. Pinipigilan ng type filter mo ang paghahanap.
-values-b+tl	string	search_state_no_suggestions_detail	-	SUMAGOT ANG MGA MUNGKAHI · 0 TUGMA
+values-b+tl	string	search_state_no_suggestions_detail	-	0 MUNGKAHI · 0 KAMAKAILANG TUGMA
 values-b+tl	string	search_state_no_suggestions_headline	-	Walang tumutugma sa “%s”
 values-b+tl	string	search_tv_source_failed	-	NABIGO %s
 values-b+tl	string	search_tv_source_pinned	-	NAKA-PIN
@@ -36486,7 +36486,7 @@ values-b+tr	string	search_provider_text_providers	-	Sağlayıcıları kullanarak
 values-b+tr	string	search_provider_text_types	-	Türleri kullanarak ara
 values-b+tr	string	search_state_idle_body_desktop	-	Bir başlık yazın. Sonuçlar, her kaynak yanıt verdikçe onun altında görünür.
 values-b+tr	string	search_state_no_results_type_filter	-	Yalnızca %s. Tür filtreniz aramayı daraltıyor.
-values-b+tr	string	search_state_no_suggestions_detail	-	ÖNERİLER YANITLANDI · 0 EŞLEŞME
+values-b+tr	string	search_state_no_suggestions_detail	-	0 ÖNERİ · 0 YAKIN ZAMANLI EŞLEŞME
 values-b+tr	string	search_state_no_suggestions_headline	-	“%s” ile eşleşen bir şey yok
 values-b+tr	string	search_suggestions	-	Arama Önerileri
 values-b+tr	string	search_suggestions_des	-	Yazarken arama önerilerini göster
@@ -37346,7 +37346,7 @@ values-b+uk	string	search_provider_text_providers	-	Пошук за постач
 values-b+uk	string	search_provider_text_types	-	Пошук за типами
 values-b+uk	string	search_state_idle_body_desktop	-	Введіть назву. Результати з'являться під кожним джерелом, коли воно відповість.
 values-b+uk	string	search_state_no_results_type_filter	-	Лише %s. Фільтр за типом звужує пошук.
-values-b+uk	string	search_state_no_suggestions_detail	-	ПІДКАЗКИ ОТРИМАНО · 0 ЗБІГІВ
+values-b+uk	string	search_state_no_suggestions_detail	-	0 ПІДКАЗОК · 0 НЕЩОДАВНІХ ЗБІГІВ
 values-b+uk	string	search_state_no_suggestions_headline	-	Нічого не відповідає «%s»
 values-b+uk	string	search_suggestions	-	Пропозиції пошуку
 values-b+uk	string	search_suggestions_des	-	Показувати підказки пошуку під час введення тексту
@@ -38095,7 +38095,7 @@ values-b+ur	string	search_provider_text_providers	-	ذرائع کا استعما
 values-b+ur	string	search_provider_text_types	-	انواع کا استعمال کرتے ہوئے تلاش کریں
 values-b+ur	string	search_state_idle_body_desktop	-	عنوان لکھیں۔ ہر ذریعہ کے جواب دینے پر نتائج اس کے نیچے ظاہر ہوں گے۔
 values-b+ur	string	search_state_no_results_type_filter	-	صرف %s۔ آپ کا قسم فلٹر تلاش کو محدود کر رہا ہے۔
-values-b+ur	string	search_state_no_suggestions_detail	-	تجاویز کا جواب آ گیا · 0 مماثلتیں
+values-b+ur	string	search_state_no_suggestions_detail	-	0 تجاویز · 0 حالیہ مماثلتیں
 values-b+ur	string	search_state_no_suggestions_headline	-	“%s” سے کچھ بھی مماثل نہیں
 values-b+ur	string	search_tv_source_failed	-	ناکام %s
 values-b+ur	string	search_tv_source_pinned	-	پن کیا گیا
@@ -38887,7 +38887,7 @@ values-b+vi	string	search_provider_text_providers	-	Tìm kiếm theo nguồn phi
 values-b+vi	string	search_provider_text_types	-	Tìm kiếm theo thể loại
 values-b+vi	string	search_state_idle_body_desktop	-	Nhập tiêu đề. Kết quả sẽ hiện dưới mỗi nguồn khi nguồn đó phản hồi.
 values-b+vi	string	search_state_no_results_type_filter	-	Chỉ %s. Bộ lọc loại của bạn đang thu hẹp kết quả tìm kiếm.
-values-b+vi	string	search_state_no_suggestions_detail	-	ĐÃ CÓ GỢI Ý · 0 KẾT QUẢ KHỚP
+values-b+vi	string	search_state_no_suggestions_detail	-	0 GỢI Ý · 0 KẾT QUẢ GẦN ĐÂY KHỚP
 values-b+vi	string	search_state_no_suggestions_headline	-	Không có gì khớp với “%s”
 values-b+vi	string	search_suggestions	-	Gợi ý tìm kiếm
 values-b+vi	string	search_suggestions_des	-	Hiển thị gợi ý tìm kiếm khi đang nhập
@@ -39723,7 +39723,7 @@ values-b+zh	string	search_provider_text_providers	-	按片源搜索
 values-b+zh	string	search_provider_text_types	-	按类型搜索
 values-b+zh	string	search_state_idle_body_desktop	-	输入标题。每个来源响应后，结果会显示在其下方。
 values-b+zh	string	search_state_no_results_type_filter	-	仅限%s。类型筛选正在缩小搜索范围。
-values-b+zh	string	search_state_no_suggestions_detail	-	建议已返回 · 0 个匹配
+values-b+zh	string	search_state_no_suggestions_detail	-	0 个建议 · 0 个最近匹配
 values-b+zh	string	search_state_no_suggestions_headline	-	没有与“%s”匹配的内容
 values-b+zh	string	search_suggestions	-	搜索建议
 values-b+zh	string	search_suggestions_des	-	输入时显示搜索建议
@@ -40556,7 +40556,7 @@ values-b+zh+TW	string	search_provider_text_providers	-	按片源搜尋
 values-b+zh+TW	string	search_provider_text_types	-	按類型搜尋
 values-b+zh+TW	string	search_state_idle_body_desktop	-	輸入標題。每個來源回應後，結果會顯示在其下方。
 values-b+zh+TW	string	search_state_no_results_type_filter	-	僅限%s。類型篩選器正在縮小搜尋範圍。
-values-b+zh+TW	string	search_state_no_suggestions_detail	-	建議已回應 · 0 個相符
+values-b+zh+TW	string	search_state_no_suggestions_detail	-	0 個建議 · 0 個最近相符
 values-b+zh+TW	string	search_state_no_suggestions_headline	-	沒有符合「%s」的內容
 values-b+zh+TW	string	search_suggestions	-	搜尋建議
 values-b+zh+TW	string	search_suggestions_des	-	輸入時顯示搜尋建議

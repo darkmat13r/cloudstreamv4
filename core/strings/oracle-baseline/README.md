@@ -120,6 +120,13 @@ appears for all 87 requests, 2,349 cells. `report.txt` moved only in its counts:
 keys 789 -> 816, and 27 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
 `ANDROID_FALLBACK` at 172.** `expectedOwn` 33,005 -> 34,679.
 
+## Seventeenth move, 2026-11-06 — `KMP-47` review, one key reworded
+
+`search_state_no_suggestions_detail` reads `0 SUGGESTIONS · 0 RECENT MATCHES` in all 62 directories instead of
+`SUGGESTIONS ANSWERED · 0 MATCHES`, which was false when the suggestion service fails. A reword, so lines change and none are
+added or lost: measured by `sort | comm`, 62 lines replaced in `decoded.tsv`, 64 in `emitted.tsv`, 87 in `lookup.tsv`, every
+one naming that key; row counts, `requests.tsv`, `findings.tsv`, `report.txt` and `expectedOwn` (38,013) unchanged.
+
 ## Sixteenth move, 2026-11-06 — `KMP-47`, 8 new keys for TV search's suggestions while typing
 
 New keys are approved in general (`I18N-09`, above). Additive, all eight authored in all 62 directories; three are plurals
