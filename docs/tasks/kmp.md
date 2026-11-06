@@ -4793,8 +4793,9 @@ Additions only. `app/api/classes-jar.api` gains 8 `R` fields (3 `R$plurals`, 5 `
 - **Every `QuickSearchFragment.pushSearch` caller reaches it unchanged:** Home, the result pages and the library pass the same arguments (the query, trimmed of `(DUB)`/`(SUB)` there, and optionally the providers).
 - **8d, answering.** `SidePanel` with `Quick search`, `RESULTS STREAM IN AS SOURCES ANSWER` and `3 OF 12 ANSWERED · 2 FAILED`, which update as each source answers (`QuickSearchSource`, a `Flow`; `ApiRepositorySearchSource.quickSearchPanel` launches one search per provider and emits after each). Rows are `ListRow`s with the chassis disc and `PROVIDER · TYPE · QUALITY`, in the order the providers were asked, pinned first. Until a source answers the only stop is `Done`; the first answer moves focus to the first row, and later answers leave it where it is.
 - **8e, empty.** Every source answered and none carries it: `No matches`, the query quoted, and `Open full search` as the commit row, focused. It takes the query to the search screen through `nextSearchQuery` and the rail item, as the intent handler does.
-- **Every source failed** says `Search failed`, or `You are offline` when every failure was the network's, with `Try again`. Not drawn on the board; the copy is the search screen's 4b copy. Their glyphs are the pack's `Warning` and `Offline`; 8e's is `Search`, as 8b's is.
+- **Every source failed** says `Search failed`, or `You are offline` when every failure was the network's, with `Try again`, which carries `Retry` (`DEC-17`). Not drawn on the board; the copy is the search screen's 4b copy. Their glyphs are the pack's `Warning` and `Offline`; 8e's is `Search`, as 8b's is.
 - **OK on a row** opens the title. The navigation pops the dialog, so BACK from the title returns to the caller.
+- **More rows than fit scroll by whole rows** with `RowScroll`, moved from `:feature:downloads` to `:core:designsystem` in its own commit (approved by app-10; the downloads call sites change only names and imports, and the downloads suite stays 61/0 with its 17 screenshots 0/0). Five rows fit whole and do not move the list.
 - 7 new keys, in all 62 locales, none a plural.
 
 ### Focus
@@ -4812,7 +4813,8 @@ Additions only. `app/api/classes-jar.api` gains 8 `R` fields (3 `R$plurals`, 5 `
 - **No year in a row's line.** `SearchResultItem` carries no year, so the line is `VIDSRC · MOVIE · 4K`, not `VIDSRC · 2024 · MOVIE`. Adding one is a change to the shared item.
 - **8e's body does not spell the number.** `Every source answered and none of them carry “…”` instead of `All twelve sources answered…`: the status line above already says `12 OF 12`, and a number in the sentence would make it a plural in 62 locales.
 - **The meta line is left out once a source has failed,** since `ALL SOURCES ANSWERED` would not be true; the status line moves up into its place.
-- **No paging.** The old fragment's single-provider grid loaded more pages; the panel shows each provider's first page.
+- **No paging, and one search for every caller.** The old fragment gave a single provider with `hasQuickSearch` a quick search as you typed and a paged grid. The panel runs every provider's full first-page search, a single provider included.
+- **8e and every-source-failed have no `Done`.** Their action takes `Done`'s slot, as 8e draws it, so BACK is the only way to close the panel from those two states.
 - **It closes without sliding out.** The dialog goes with the press; `SidePanelHost` has no signal for the end of its exit.
 - The caller is the old fragment's callers' screens; the board draws the search screen behind the panel.
 - The board's panel title sits at y64; `SidePanel`'s header is at `ChromeRowTop` (y56), as 4d's is.
@@ -4821,8 +4823,10 @@ Additions only. `app/api/classes-jar.api` gains 8 `R` fields (3 `R$plurals`, 5 `
 ### Tests
 
 - `QuickSearchViewModelTest` (JVM, 5): the trimmed query asked once, each answer replacing the last, a blank query asking nobody, `Try again` starting over, each action's effect, when a round is finished.
-- `QuickSearchPanelDeviceTest` (device, 12, the board's data): counting and the first row's focus; Down through the rows to `Done` and `Done` closing; OK on a row; a later answer keeping focus; 8e's copy and `Open full search`; every source failed and `Try again`; offline; screenshots `quick-search-asking`, `-answering`, `-empty`, `-failed`, `-offline`, each looked at before it was recorded.
-- `TvQuickSearchNavigationTest` (`:app`, the real path, 3): `pushSearch` from the new Home with two fake providers registered where plugins go, one answering and one failing. The panel is a `FloatingWindow` destination over the same, still drawn `HomeTvFragment`; it counts `1 OF 2 ANSWERED · 1 FAILED`; the `(DUB)` suffix is trimmed before the provider is asked; BACK and `Done` leave Home as it was; OK on a row loads that title through the provider, and BACK from the title returns to Home.
+- `QuickSearchPanelDeviceTest` (device, 14, the board's data): a sixth row moving the list by exactly one row and back; counting and the first row's focus; Down through the rows to `Done` and `Done` closing; OK on a row; a later answer keeping focus; 8e's copy and `Open full search`; every source failed and `Try again`; offline; screenshots `quick-search-asking`, `-answering`, `-scrolled`, `-empty`, `-failed`, `-offline`, each looked at before it was recorded.
+
+**The scroll test caught a layout bug.** Its first run failed at "a row that fits moved the list". Logging the spec's inputs showed a 379px viewport, not 395px: `SidePanel`'s rows slot spaces its children `RowGap` apart, and the list and the rule were two children, so the list was 12dp short and cut the fifth row's foot. They are one child now.
+- `TvQuickSearchNavigationTest` (`:app`, the real path, 4): 8e's `Open full search` lands on the real search screen with the query in the field and the Compose rail (`TvRailSwitch.useComposeRail`) on Search; and `pushSearch` from the new Home with two fake providers registered where plugins go, one answering and one failing. The panel is a `FloatingWindow` destination over the same, still drawn `HomeTvFragment`; it counts `1 OF 2 ANSWERED · 1 FAILED`; the `(DUB)` suffix is trimmed before the provider is asked; BACK and `Done` leave Home as it was; OK on a row loads that title through the provider, and BACK from the title returns to Home.
 
 ### Found, not changed
 
