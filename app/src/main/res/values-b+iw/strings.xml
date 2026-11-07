@@ -15,6 +15,24 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת ב-%d מקור."</item><item quantity="two">"יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת בכל %d המקורות."</item><item quantity="other">"יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת בכל %d המקורות."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d מקור"</item><item quantity="two">"%d מקורות"</item><item quantity="other">"%d מקורות"</item></plurals>
 <string name="account">"חשבון"</string>
+<string name="account_add_profile">"הוספת פרופיל"</string>
+<string name="account_manage_profiles">"ניהול פרופילים"</string>
+<string name="account_pair_code">"הקוד שלך"</string>
+<string name="account_pair_instructions">"פתחו את זה בטלפון והזינו את הקוד שלמטה."</string>
+<string name="account_pair_new_code">"קבלת קוד חדש"</string>
+<string name="account_pair_title" formatted="true">"צימוד %s"</string>
+<string name="account_profile_current">"נוכחי"</string>
+<string name="account_profile_locked">"נעול · PIN"</string>
+<string name="account_profile_no_sync">"ללא סנכרון"</string>
+<string name="account_select_note">"היסטוריית צפייה נפרדת · לא התחברויות"</string>
+<string name="account_select_title">"מי צופה?"</string>
+<string name="account_sync_connected">"מחובר · מחובר במכשיר הזה"</string>
+<string name="account_sync_needs_browser">"ההתחברות דורשת דפדפן אינטרנט. אין במכשיר הזה."</string>
+<string name="account_sync_note">"אופציונלי. מסנכרן את התקדמות הצפייה עם חשבון שכבר יש לך."</string>
+<string name="account_sync_pair">"צימוד עם קוד"</string>
+<string name="account_sync_remove">"הסרה מהמכשיר הזה"</string>
+<string name="account_sync_title">"שירותי סנכרון"</string>
+<string name="account_sync_unavailable">"לא זמין כאן"</string>
 <string name="action_add_to_bookmarks">"הגדר מצב צפייה"</string>
 <string name="action_default">"ברירת מחדל"</string>
 <string name="action_mark_as_watched">"סימון כנצפה"</string>
@@ -392,6 +410,14 @@
 <string name="player_fit_screen">"מילוי מסך"</string>
 <string name="player_fit_title">"גודל תמונה"</string>
 <string name="player_fit_width">"מילוי רוחב"</string>
+<string name="player_hud_buffering">"טוען"</string>
+<string name="player_hud_failed_detail">"בחרו מקור אחר למטה."</string>
+<string name="player_hud_offline_copy">"אין חיבור — מתנגן העותק שהורד"</string>
+<string name="player_hud_previous_episode">"הפרק הקודם"</string>
+<string name="player_hud_seek_back">"אחורה"</string>
+<string name="player_hud_seek_forward">"קדימה"</string>
+<string name="player_hud_speed">"מהירות"</string>
+<string name="player_hud_up_next" formatted="true">"הבא · %s"</string>
 <string name="player_load_subtitles">"טען מקובץ"</string>
 <string name="player_load_subtitles_online">"טען מהאינטרנט"</string>
 <string name="player_loaded_subtitles" formatted="true">"נטען %s"</string>

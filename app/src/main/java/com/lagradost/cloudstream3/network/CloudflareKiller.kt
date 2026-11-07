@@ -62,7 +62,7 @@ class CloudflareKiller : Interceptor {
                 } else {
                     response.close()
                     bypassCloudflare(request)?.let {
-                        Log.d(TAG, "Succeeded bypassing cloudflare: ${request.url}")
+                        Log.d(TAG, "Succeeded bypassing cloudflare: ${request.url.host}")
                         return@runBlocking it
                     }
                 }
@@ -72,7 +72,7 @@ class CloudflareKiller : Interceptor {
             }
         }
 
-        debugWarning({ true }) { "Failed cloudflare at: ${request.url}" }
+        debugWarning({ true }) { "Failed cloudflare at: ${request.url.host}" }
         return@runBlocking chain.proceed(request)
     }
 
@@ -115,7 +115,7 @@ class CloudflareKiller : Interceptor {
         // If no cookies then try to get them
         // Remove this if statement if cookies expire
         if (!trySolveWithSavedCookies(request)) {
-            Log.d(TAG, "Loading webview to solve cloudflare for ${request.url}")
+            Log.d(TAG, "Loading webview to solve cloudflare for ${request.url.host}")
             WebViewResolver(
                 // Never exit based on url
                 Regex(".^"),

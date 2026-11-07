@@ -5073,17 +5073,38 @@ Seen in `EngineDownloadDeviceTest` (`aDownloadCutOffMidway…`): the split's new
 
 The test now bounds the union of the requested ranges, not their sum, so it still proves a resume. The cause is not investigated. The first place to look is where `PartScheduler` picks the split point against the victim's open request.
 
-## KMP-62 — The old downloader keeps whole links in `KEY_RESUME_PACKAGES` · **open**, waits on the owner
+## KMP-62 — The old downloader stores no link · **built 2026-11-07**, waits on review
 
-Found while checking `KMP-59` against the owner's no-link ruling for `KMP-52` (2026-11-06). Not changed.
-- **What is stored.** `DownloadManager.kt:1923-1927` writes `DownloadResumePackage(item, index)` to `KEY_RESUME_PACKAGES` before every
-  attempt. `DownloadItem.links` is `List<ExtractorLink>`, serialised with `url`, `referer` and `headers`
-  (`library/.../ExtractorApi.kt:700-708`). It goes to SharedPreferences.
-- **Which paths store it.** Both: the write comes before `downloadSingleEpisode`, so it happens with `KMP-59`'s switch on or off. The
-  engine path adds no link of its own. Its marker holds a size and a name, and its state file holds the size, ETag, Last-Modified and ranges.
-- **Applying the ruling.** Keep `ep`, the provider and the episode's `loadLinks` data. Run `loadLinks` again on resume, and on start-up
-  re-queueing from `DownloadQueueManager.init`.
-- **Waiting on the owner.** That changes the existing downloader for every user, so the owner decides before anyone builds it.
+Found while checking `KMP-59` against the no-link ruling for `KMP-52`; the owner approved applying it here (2026-11-06). The old downloader keeps what it needs to ask the provider again, not the links.
+No `DownloadObjects` class changed, and `:app:checkExtensionApi` shows no diff.
+- **What was stored.**
+  - `KEY_RESUME_PACKAGES` held each `ExtractorLink` (url, referer, headers, audio tracks).
+  - `KEY_RESUME_IN_QUEUE` and `QUEUE_KEY` held the same, plus `SubtitleData` (url, headers) for a picked mirror.
+- **Now.**
+  - Those three keys are written with `links` empty and `subs` null.
+  - A side record under the private key `download_resume_source/<id>/` holds:
+    - `item`: the `DownloadQueueItem` without links or subs, which carries the episode's `data` and the provider;
+    - `mirror`: the SHA-256 of the picked mirror's `source` and `name`, which are the provider's and can hold a host;
+    - `attempt`: the same hash for the link the partial file came from.
+  - A resume with no links runs `RepoLinkGenerator` again, with the same `LOADTYPE_INAPP_DOWNLOAD` filter and profile
+    order as a first download. A picked mirror is kept if the provider still offers it, otherwise the profile's top
+    link is used. The partial file resumes only on the link it came from.
+  - Links the user just picked stay in memory for the running process.
+- **Removed** with `KEY_RESUME_PACKAGES` (the queue service's Stop handling and `PieFetchButton`), on every file
+  delete (`deleteFileAndUpdateSettings`, which every delete in the app reaches, so it holds with no service running),
+  and when a download completes. It is kept out of backups. A finished download reads nothing from it.
+- **Migration** runs at `DownloadQueueManager.init`. It is idempotent, and it writes the side record before it strips
+  the package that needs it.
+  - A package whose queued item survives gets a side record and loses its links.
+  - Queued items lose theirs.
+  - A package with nothing to ask the provider with keeps its links until it finishes or is removed.
+- **Behaviour change.** A source that no longer answers now fails that resume with `DownloadFailure.NoUsableLink`, and
+  the partial file is kept.
+- **Tests.** `NoStoredLinksDeviceTest`, 9 cases. They read every `shared_prefs/*.xml` raw and look for markers in a
+  link's url, referer, headers, source and name and in a subtitle's url and headers. The checks run after enqueue, run, fail,
+  stop, finish, restart and migration.
+- **Known and left.** `KEY_DOWNLOAD_INFO.linkHash` (`url.hashCode()`) and `DOWNLOAD_HEADER_CACHE.url` (the result
+  page URL).
 
 ## KMP-52 — The Mac download service and its data · **open**
 
@@ -5728,3 +5749,69 @@ Temporary changes, each reverted, on the JVM.
   of it is tested with a fake.
 - **A held read across a configuration change**: it lives with the ViewModel, so it should survive one, but no test
   rotates.
+
+
+## KMP-64 — The TV player HUD, artboard 7d (queue `Q24`) · **measured 2026-11-07**
+
+**Status:** in pr. Board 7d of `design/TV Detail Player.dc.html` on `Television_720p`, API 36, over the existing player.
+
+### What it adds
+
+- **New `:feature:player`** (commonMain): `PlayerHudState` (labels and numbers only), `PlayerHudController` (7d's visibility and key rules), `PlayerHudTv` (the screen). In the iOS canary.
+- **`:app` hosts it over `FullScreenPlayer` on TV** (`TvPlayerHud`, one line in `onBindingCreated`), behind `TvPlayerHudSwitch.useComposeHud` (on; off is the old controller, tested). The Media3 controller is off while it is up; the video, subtitles and pre-roll overlay are the old player's.
+- **Every 7d readout from what the player already knows** (measured before building): title and `S1:E4 · Powder · 1080p · AVC · English 5.1`, `DOWNLOADED`, the clock, elapsed / remaining / total, played and **buffered** bands in one track, skip stamps as ticks, `Skip opening`, transport, `Up next · S1:E5 …` (from the generator's episode list), and SOURCE, SUBTITLES, AUDIO, SPEED as value over label.
+- **States:** shown; hidden with the scrub readout (`+00:30 → 42:43`) over its rule; buffering (badge, auto-hide suspended); a playback error banner whose action is the SOURCE selector; offline over a downloaded copy.
+- **Keys** keep the old player's settings and feel: auto-hide 3000 ms while playing; hidden, Left/Right scrub by `android_tv_interface_off_seek_key` (10 s default) without revealing; Up/Down reveal; Centre toggles and reveals, or takes an offered skip; shown, the seek cell moves by `android_tv_interface_on_seek_key`. The activity's key listener asks the HUD first; keys it does not use, other than the D-pad and OK, still reach the old handler (MENU, keyboard shortcuts).
+- **The one published addition:** `CS3IPlayer.getBufferedPosition()`, on the final class only, not on `IPlayer` (app-10's ruling: no new member for implementers of the published interface).
+- 8 new keys in all 62 locales, none a plural.
+
+### Security
+
+`TvHudFacts.toHudState` is the boundary. The link goes in for its display name and quality; its URL, headers and referer never come out. A downloaded file comes in as a flag only, so its path never enters. Provider text loses control characters, and a name that reads as an address (`://`, `/…`, `content:`, `file:`) is dropped. The HUD code logs nothing.
+
+### Focus
+
+| Press | Goes to |
+|---|---|
+| Reveal | Play/pause |
+| Down from the chrome row or `Skip` | The seek cell |
+| Down from the seek cell | Play/pause |
+| Along the transport | Back, forward, previous, next; Right past next and Left past play/pause stay |
+| Down from the transport | SOURCE |
+| Up from AUDIO or SPEED | The seek cell, which spans them |
+
+### Reduced from the board
+
+- **Buffering keeps the play/pause glyph:** 7d draws an indeterminate ring in the cell, and the pack has none; drawing one is a design-system component.
+- **The transport's four cells** are seek back, seek forward, previous and next episode, the pack's glyphs; 7d draws them unlabelled.
+- **One dialog for SOURCE and SUBTITLES,** the old sources-and-subtitles picker; AUDIO opens the tracks picker and SPEED the speed dialog. 7e's panels are `Q25`.
+- **`Skip opening`, not `Skip intro`:** the label is the skip stamp's own.
+- **The skip ticks are skip stamps:** the player has no chapters.
+- **Ticks are 2dp** (7d's 4px), a stroke weight.
+- **Empty (no usable link)** is the old player's toast and exit, not 7d's full-screen state; it happens before the HUD exists.
+- **Previous episode played the next one,** an existing bug: fixed separately in `BUG-42` (#182), so this cell works once that merges.
+
+### Tests
+
+- `HudTimeTest` (common, 4) and `PlayerHudControllerTest` (JVM, 7): the board's times; auto-hide re-armed by keys, held while paused or buffering; a hidden scrub burst and its readout clearing after 1500 ms; scrubs kept inside the title; Up/Down/Centre while hidden; Centre taking an offered skip.
+- `TvHudFactsTest` (`:app` JVM, 5): the board's lines from the board's facts; a link whose URL, referer and headers carry markers leaves none in the state; names that read as addresses are dropped; control characters go; the offline banner needs a download.
+- `PlayerHudTvDeviceTest` (device, 14, no video so no sound): every readout; reveal focus; the transport and its ends; Up to the seek cell; the seek cell's Left/Right; each control's action; a disabled previous cell; hidden draws only the skip and readout; screenshots `player-hud-shown`, `-hidden-scrub`, `-buffering`, `-failed`, `-offline`, `-nothing-known`, each looked at before it was kept.
+- `TvPlayerHudNavigationTest` (`:app`, the real path, 4): a downloaded file played through `GeneratorPlayer` over `DownloadFileGenerator`. The file is `hud-silent.mp4` (28 KB, digitally silent, -91 dB, made with `ffmpeg`) and the media volume is 0 for the test. The HUD draws and the old controller is off; the file's path, which carries a marker, is nowhere on screen; it hides while playing, a hidden Right shows the readout without revealing, and Up reveals with focus on Pause; with the switch off the old controller is back.
+
+**The device run caught three things.** `IconOnlyButton` shows its label on focus, so `Pause` sat over SOURCE: the cells are `IconCell`, icon-only with a content description, as the design system rules for 7d's transport. Right from the last cell and Down from the seek cell went where geometry led, not where 7d says. And the real-path scrub test looked for a readout after `DpadDriver.press`, which waits on the accessibility tree longer than the readout lives.
+
+### Found, not changed
+
+```
+Found: GeneratorPlayer.playerError logs the stream URL, headers and referer (Log.e)
+Suggest: drop them from the line
+Why: headers can be credentials; the owner's rule is no URLs, headers or paths in logs. Taken by the security sweep, BUG-43.
+```
+
+### Not verified
+
+`TalkBack`, a real remote, a real provider's stream (only the local file), the episodes overlay on MENU with the HUD up, chapters (the player has none), and the least-confident translations: `ti`, `am`, `ckb`, `my`, `or`, `as`, `mt`, `apc`.
+
+### Published API
+
+Additions only. `app/api/classes-jar.api` +70 / −0: 8 `R$string` fields, `CS3IPlayer.getBufferedPosition`, `FullScreenPlayer`'s `playerError` override and failure flag, `GeneratorPlayer`'s facts override, and the HUD host classes.

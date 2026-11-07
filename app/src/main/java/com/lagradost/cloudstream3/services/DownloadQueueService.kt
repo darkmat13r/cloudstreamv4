@@ -13,6 +13,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.app.PendingIntentCompat
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.removeKey
+import com.lagradost.cloudstream3.CloudStreamApp.Companion.removeKeys
 import com.lagradost.cloudstream3.MainActivity
 import com.lagradost.cloudstream3.MainActivity.Companion.lastError
 import com.lagradost.cloudstream3.MainActivity.Companion.setLastError
@@ -133,6 +134,8 @@ class DownloadQueueService : Service() {
         when (event.second) {
             VideoDownloadManager.DownloadActionType.Stop -> {
                 removeKey(KEY_RESUME_PACKAGES, event.first.toString())
+                // KMP-62: the side record a resume asks the provider with (VideoDownloadManager.KEY_RESUME_SOURCE)
+                removeKeys("download_resume_source/${event.first}")
                 removeKey(KEY_RESUME_IN_QUEUE, event.first.toString())
                 DownloadQueueManager.cancelDownload(event.first)
             }

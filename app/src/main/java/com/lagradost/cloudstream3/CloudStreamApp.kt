@@ -30,6 +30,7 @@ import com.lagradost.cloudstream3.utils.DataStore.removeKey
 import com.lagradost.cloudstream3.utils.DataStore.removeKeys
 import com.lagradost.cloudstream3.utils.DataStore.setKey
 import com.lagradost.cloudstream3.utils.ImageLoader.buildImageLoader
+import com.lagradost.cloudstream3.utils.redactedStackTrace
 import kotlinx.coroutines.runBlocking
 import java.io.File
 import java.io.FileNotFoundException
@@ -54,9 +55,7 @@ class ExceptionHandler(
             }
 
             PrintStream(errorFile).use { ps ->
-                ps.println("Currently loading extension: ${PluginManager.currentlyLoading ?: "none"}")
-                ps.println("Fatal exception on thread ${thread.name} ($threadId)")
-                error.printStackTrace(ps)
+                writeReport(ps, PluginManager.currentlyLoading, thread.name, threadId, error)
             }
         } catch (_: FileNotFoundException) {
         }
@@ -65,6 +64,24 @@ class ExceptionHandler(
         } catch (_: Exception) {
         }
         exitProcess(1)
+    }
+
+    /**
+     * The crash file's text. People attach it to bug reports, so whoever receives one reads it.
+     * BUG-44: the trace is the one `printStackTrace` wrote, with the urls and user paths in every
+     * message redacted. A separate member so a JVM test can write it: [uncaughtException] reads
+     * `PluginManager`, whose initialiser needs Android's external storage.
+     */
+    internal fun writeReport(
+        ps: PrintStream,
+        currentlyLoading: String?,
+        threadName: String,
+        threadId: Long,
+        error: Throwable,
+    ) {
+        ps.println("Currently loading extension: ${currentlyLoading ?: "none"}")
+        ps.println("Fatal exception on thread $threadName ($threadId)")
+        ps.println(redactedStackTrace(error))
     }
 }
 

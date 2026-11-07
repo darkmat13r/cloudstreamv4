@@ -17,6 +17,24 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="zero">"اضغط مفتاح البحث في لوحة المفاتيح للبحث في %d مصدر على أي حال."</item><item quantity="one">"اضغط مفتاح البحث في لوحة المفاتيح للبحث في %d مصدر على أي حال."</item><item quantity="two">"اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال."</item><item quantity="few">"اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال."</item><item quantity="many">"اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال."</item><item quantity="other">"اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="zero">"%d مصدر"</item><item quantity="one">"%d مصدر"</item><item quantity="two">"%d مصدران"</item><item quantity="few">"%d مصادر"</item><item quantity="many">"%d مصدرًا"</item><item quantity="other">"%d مصدر"</item></plurals>
 <string name="account">"حساب"</string>
+<string name="account_add_profile">"إضافة ملف شخصي"</string>
+<string name="account_manage_profiles">"إدارة الملفات الشخصية"</string>
+<string name="account_pair_code">"رمزك"</string>
+<string name="account_pair_instructions">"افتح هذا على هاتفك وأدخل الرمز أدناه."</string>
+<string name="account_pair_new_code">"الحصول على رمز جديد"</string>
+<string name="account_pair_title" formatted="true">"ربط %s"</string>
+<string name="account_profile_current">"الحالي"</string>
+<string name="account_profile_locked">"مقفل · رمز PIN"</string>
+<string name="account_profile_no_sync">"بلا مزامنة"</string>
+<string name="account_select_note">"سجل مشاهدة منفصل · ليس تسجيلات دخول"</string>
+<string name="account_select_title">"من يشاهد؟"</string>
+<string name="account_sync_connected">"متصل · تم تسجيل الدخول على هذا الجهاز"</string>
+<string name="account_sync_needs_browser">"يتطلب تسجيل الدخول متصفح ويب. لا يوجد متصفح على هذا الجهاز."</string>
+<string name="account_sync_note">"اختياري. يزامن تقدّم المشاهدة مع حساب لديك بالفعل."</string>
+<string name="account_sync_pair">"الربط برمز"</string>
+<string name="account_sync_remove">"إزالة من هذا الجهاز"</string>
+<string name="account_sync_title">"خدمات المزامنة"</string>
+<string name="account_sync_unavailable">"غير متاح هنا"</string>
 <string name="action_add_to_bookmarks">"إعداد حالة المشاهدة"</string>
 <string name="action_add_to_favorites">"اضافة الى المفضلة"</string>
 <string name="action_default">"الإفتراضي"</string>
@@ -503,6 +521,14 @@
 <string name="player_fit_screen">"ملء الشاشة"</string>
 <string name="player_fit_title">"حجم الصورة"</string>
 <string name="player_fit_width">"ملء العرض"</string>
+<string name="player_hud_buffering">"جارٍ التخزين المؤقت"</string>
+<string name="player_hud_failed_detail">"اختر مصدرًا آخر أدناه."</string>
+<string name="player_hud_offline_copy">"لا يوجد اتصال — يتم تشغيل النسخة المنزّلة"</string>
+<string name="player_hud_previous_episode">"الحلقة السابقة"</string>
+<string name="player_hud_seek_back">"ترجيع"</string>
+<string name="player_hud_seek_forward">"تقديم"</string>
+<string name="player_hud_speed">"السرعة"</string>
+<string name="player_hud_up_next" formatted="true">"التالي · %s"</string>
 <string name="player_is_live">"البث قائم"</string>
 <string name="player_load_one_subtitle_online">"تحميل أول ترجمة متاحة"</string>
 <string name="player_load_subtitles">"إختيار ملف"</string>

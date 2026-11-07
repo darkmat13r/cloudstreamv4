@@ -92,7 +92,7 @@ object InAppUpdater {
                 else -> getReleaseUpdate()
             }
         } catch (e: Exception) {
-            Log.e(LOG_TAG, Log.getStackTraceString(e))
+            Log.e(LOG_TAG, redactedStackTrace(e))
             Update(false, null, null, null, null)
         }
     }
@@ -188,7 +188,7 @@ object InAppUpdater {
 
     private suspend fun Activity.downloadUpdate(url: String): Boolean {
         try {
-            Log.d(LOG_TAG, "Downloading update: $url")
+            Log.d(LOG_TAG, "Downloading update")
             val appUpdateName = "CloudStream"
             val appUpdateSuffix = "apk"
 

@@ -27,6 +27,7 @@ import com.lagradost.cloudstream3.utils.SubtitleHelper.getNameNextToFlagEmoji
 import com.lagradost.cloudstream3.utils.UIHelper.colorFromAttribute
 import com.lagradost.cloudstream3.utils.UIHelper.fixSystemBarsPadding
 import com.lagradost.cloudstream3.utils.UIHelper.toPx
+import com.lagradost.cloudstream3.utils.redactedStackTrace
 
 class PluginDetailsFragment(val data: PluginViewData) : BaseBottomSheetDialogFragment<FragmentPluginDetailsBinding>(
     BaseFragment.BindingCreator.Inflate(FragmentPluginDetailsBinding::inflate)
@@ -106,7 +107,7 @@ class PluginDetailsFragment(val data: PluginViewData) : BaseBottomSheetDialogFra
                             Log.e(
                                 "PluginAdapter",
                                 "Failed to open ${metadata.name} settings: ${
-                                    Log.getStackTraceString(e)
+                                    redactedStackTrace(e)
                                 }"
                             )
                         }

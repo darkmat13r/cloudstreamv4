@@ -24,7 +24,7 @@ class HubCloud : ExtractorApi() {
     ) {
         val tag = "HubCloud"
         val realUrl = url.takeIf {
-            try { Url(it); true } catch (e: Exception) { Log.e(tag, "Invalid URL: ${e.message}"); false }
+            try { Url(it); true } catch (e: Exception) { Log.e(tag, "Invalid URL: ${e::class.simpleName}"); false }
         } ?: return
 
         val baseUrl=getBaseUrl(realUrl)
@@ -41,7 +41,7 @@ class HubCloud : ExtractorApi() {
                 }
             }
         } catch (e: Exception) {
-            Log.e(tag, "Failed to extract href: ${e.message}")
+            Log.e(tag, "Failed to extract href: ${e::class.simpleName}")
             ""
         }
 

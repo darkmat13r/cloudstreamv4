@@ -15,6 +15,24 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Premu la serĉoklavon de la klavaro por tamen serĉi en %d fonto."</item><item quantity="other">"Premu la serĉoklavon de la klavaro por tamen serĉi en ĉiuj %d fontoj."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d FONTO"</item><item quantity="other">"%d FONTOJ"</item></plurals>
 <string name="account">"konto"</string>
+<string name="account_add_profile">"Aldoni profilon"</string>
+<string name="account_manage_profiles">"Administri profilojn"</string>
+<string name="account_pair_code">"Via kodo"</string>
+<string name="account_pair_instructions">"Malfermu ĉi tion en via telefono kaj enigu la suban kodon."</string>
+<string name="account_pair_new_code">"Ricevi novan kodon"</string>
+<string name="account_pair_title" formatted="true">"Pari %s"</string>
+<string name="account_profile_current">"Nuna"</string>
+<string name="account_profile_locked">"Ŝlosita · PIN"</string>
+<string name="account_profile_no_sync">"Sen sinkronigo"</string>
+<string name="account_select_note">"Aparta spekta historio · ne ensalutoj"</string>
+<string name="account_select_title">"Kiu spektas?"</string>
+<string name="account_sync_connected">"Konektita · ensalutinta en ĉi tiu aparato"</string>
+<string name="account_sync_needs_browser">"Ensaluto bezonas retumilon. Ĉi tiu aparato ne havas."</string>
+<string name="account_sync_note">"Laŭvola. Sinkronigas spektan progreson kun konto, kiun vi jam havas."</string>
+<string name="account_sync_pair">"Pari per kodo"</string>
+<string name="account_sync_remove">"Forigi el ĉi tiu aparato"</string>
+<string name="account_sync_title">"Sinkronigaj servoj"</string>
+<string name="account_sync_unavailable">"Ne disponebla ĉi tie"</string>
 <string name="action_open_play">@string/home_play</string>
 <string name="action_open_watching">"Pli da informoj"</string>
 <string name="action_remove_from_bookmarks">"Forigi"</string>
@@ -225,6 +243,14 @@
 <string name="player_fit_screen">"Plenigi ekranon"</string>
 <string name="player_fit_title">"Bildgrando"</string>
 <string name="player_fit_width">"Plenigi larĝon"</string>
+<string name="player_hud_buffering">"BUFRADO"</string>
+<string name="player_hud_failed_detail">"Elektu alian fonton sube."</string>
+<string name="player_hud_offline_copy">"Neniu konekto — ludiĝas la elŝutita kopio"</string>
+<string name="player_hud_previous_episode">"Antaŭa epizodo"</string>
+<string name="player_hud_seek_back">"Malantaŭen"</string>
+<string name="player_hud_seek_forward">"Antaŭen"</string>
+<string name="player_hud_speed">"Rapido"</string>
+<string name="player_hud_up_next" formatted="true">"Sekva · %s"</string>
 <string name="player_mute">"Silentigi"</string>
 <string name="player_size_settings_des">"Forigi nigrajn borderaĵojn"</string>
 <string name="player_source_playing">"Ludanta"</string>

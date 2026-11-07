@@ -15,6 +15,24 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"फिर भी %d स्रोत में खोजने के लिए कीबोर्ड की सर्च कुंजी दबाएँ।"</item><item quantity="other">"फिर भी सभी %d स्रोतों में खोजने के लिए कीबोर्ड की सर्च कुंजी दबाएँ।"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d स्रोत"</item><item quantity="other">"%d स्रोत"</item></plurals>
 <string name="account">"खाता"</string>
+<string name="account_add_profile">"प्रोफ़ाइल जोड़ें"</string>
+<string name="account_manage_profiles">"प्रोफ़ाइल प्रबंधित करें"</string>
+<string name="account_pair_code">"आपका कोड"</string>
+<string name="account_pair_instructions">"इसे अपने फ़ोन पर खोलें और नीचे दिया कोड डालें।"</string>
+<string name="account_pair_new_code">"नया कोड लें"</string>
+<string name="account_pair_title" formatted="true">"%s जोड़ें"</string>
+<string name="account_profile_current">"मौजूदा"</string>
+<string name="account_profile_locked">"लॉक · पिन"</string>
+<string name="account_profile_no_sync">"कोई सिंक नहीं"</string>
+<string name="account_select_note">"अलग देखने का इतिहास · लॉगिन नहीं"</string>
+<string name="account_select_title">"कौन देख रहा है?"</string>
+<string name="account_sync_connected">"कनेक्टेड · इस डिवाइस पर साइन इन"</string>
+<string name="account_sync_needs_browser">"साइन इन के लिए वेब ब्राउज़र चाहिए। इस डिवाइस में नहीं है।"</string>
+<string name="account_sync_note">"वैकल्पिक। देखने की प्रगति को आपके पहले से मौजूद खाते से सिंक करता है।"</string>
+<string name="account_sync_pair">"कोड से जोड़ें"</string>
+<string name="account_sync_remove">"इस डिवाइस से हटाएँ"</string>
+<string name="account_sync_title">"सिंक सेवाएँ"</string>
+<string name="account_sync_unavailable">"यहाँ उपलब्ध नहीं"</string>
 <string name="action_add_to_bookmarks">"दर्शन स्थिति सेट करें"</string>
 <string name="action_default">"डिफॉल्ट"</string>
 <string name="action_mark_as_watched">"देखा हुआ चिह्नित करें"</string>
@@ -358,6 +376,14 @@
 <string name="player_fit_screen">"स्क्रीन भरें"</string>
 <string name="player_fit_title">"चित्र का आकार"</string>
 <string name="player_fit_width">"चौड़ाई भरें"</string>
+<string name="player_hud_buffering">"बफ़र हो रहा है"</string>
+<string name="player_hud_failed_detail">"नीचे कोई और स्रोत चुनें।"</string>
+<string name="player_hud_offline_copy">"कनेक्शन नहीं — डाउनलोड की गई कॉपी चल रही है"</string>
+<string name="player_hud_previous_episode">"पिछला एपिसोड"</string>
+<string name="player_hud_seek_back">"पीछे जाएँ"</string>
+<string name="player_hud_seek_forward">"आगे जाएँ"</string>
+<string name="player_hud_speed">"गति"</string>
+<string name="player_hud_up_next" formatted="true">"अगला · %s"</string>
 <string name="player_mute">"म्यूट करें"</string>
 <string name="player_size_settings">"प्लेयर आकार परिवर्तन बटन"</string>
 <string name="player_size_settings_des">"काले बॉर्डर हटाएँ"</string>

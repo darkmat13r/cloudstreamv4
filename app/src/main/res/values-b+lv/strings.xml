@@ -16,6 +16,24 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="zero">"Nospiediet tastatūras meklēšanas taustiņu, lai tomēr meklētu visos %d devējos."</item><item quantity="one">"Nospiediet tastatūras meklēšanas taustiņu, lai tomēr meklētu %d devējā."</item><item quantity="other">"Nospiediet tastatūras meklēšanas taustiņu, lai tomēr meklētu visos %d devējos."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="zero">"%d DEVĒJU"</item><item quantity="one">"%d DEVĒJS"</item><item quantity="other">"%d DEVĒJI"</item></plurals>
 <string name="account">"Konts"</string>
+<string name="account_add_profile">"Pievienot profilu"</string>
+<string name="account_manage_profiles">"Pārvaldīt profilus"</string>
+<string name="account_pair_code">"Jūsu kods"</string>
+<string name="account_pair_instructions">"Atveriet to tālrunī un ievadiet tālāk redzamo kodu."</string>
+<string name="account_pair_new_code">"Saņemt jaunu kodu"</string>
+<string name="account_pair_title" formatted="true">"Savienot %s"</string>
+<string name="account_profile_current">"Pašreizējais"</string>
+<string name="account_profile_locked">"Bloķēts · PIN"</string>
+<string name="account_profile_no_sync">"Bez sinhronizācijas"</string>
+<string name="account_select_note">"Atsevišķa skatīšanās vēsture · nav pieteikšanās"</string>
+<string name="account_select_title">"Kas skatās?"</string>
+<string name="account_sync_connected">"Savienots · pieteicies šajā ierīcē"</string>
+<string name="account_sync_needs_browser">"Pieteikšanās prasa tīmekļa pārlūku. Šajā ierīcē tāda nav."</string>
+<string name="account_sync_note">"Neobligāti. Sinhronizē skatīšanās progresu ar kontu, kas jums jau ir."</string>
+<string name="account_sync_pair">"Savienot ar kodu"</string>
+<string name="account_sync_remove">"Noņemt no šīs ierīces"</string>
+<string name="account_sync_title">"Sinhronizācijas pakalpojumi"</string>
+<string name="account_sync_unavailable">"Šeit nav pieejams"</string>
 <string name="action_add_to_bookmarks">"Ieliec skatīšanās statusu"</string>
 <string name="action_default">"Parastais"</string>
 <string name="action_mark_as_watched">"Atzīmēt kā skatītu"</string>
@@ -436,6 +454,14 @@
 <string name="player_fit_screen">"Aizpildīt ekrānu"</string>
 <string name="player_fit_title">"Attēla izmērs"</string>
 <string name="player_fit_width">"Aizpildīt platumu"</string>
+<string name="player_hud_buffering">"BUFERĒ"</string>
+<string name="player_hud_failed_detail">"Zemāk izvēlieties citu avotu."</string>
+<string name="player_hud_offline_copy">"Nav savienojuma — tiek atskaņota lejupielādētā kopija"</string>
+<string name="player_hud_previous_episode">"Iepriekšējā sērija"</string>
+<string name="player_hud_seek_back">"Attīt atpakaļ"</string>
+<string name="player_hud_seek_forward">"Pārtīt uz priekšu"</string>
+<string name="player_hud_speed">"Ātrums"</string>
+<string name="player_hud_up_next" formatted="true">"Nākamais · %s"</string>
 <string name="player_load_one_subtitle_online">"Lejupielādēt pirmo pieejamo"</string>
 <string name="player_load_subtitles">"Ielādēt no datnes"</string>
 <string name="player_load_subtitles_online">"Lejupielādēt no interneta"</string>

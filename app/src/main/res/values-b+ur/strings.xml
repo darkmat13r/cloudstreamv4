@@ -15,6 +15,24 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"پھر بھی %d ذریعے میں تلاش کرنے کے لیے کی بورڈ کی تلاش کی کلید دبائیں۔"</item><item quantity="other">"پھر بھی تمام %d ذرائع میں تلاش کرنے کے لیے کی بورڈ کی تلاش کی کلید دبائیں۔"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d ذریعہ"</item><item quantity="other">"%d ذرائع"</item></plurals>
 <string name="account">"اكاؤنٹ"</string>
+<string name="account_add_profile">"پروفائل شامل کریں"</string>
+<string name="account_manage_profiles">"پروفائلز کا نظم کریں"</string>
+<string name="account_pair_code">"آپ کا کوڈ"</string>
+<string name="account_pair_instructions">"اسے اپنے فون پر کھولیں اور نیچے دیا گیا کوڈ درج کریں۔"</string>
+<string name="account_pair_new_code">"نیا کوڈ حاصل کریں"</string>
+<string name="account_pair_title" formatted="true">"%s جوڑیں"</string>
+<string name="account_profile_current">"موجودہ"</string>
+<string name="account_profile_locked">"مقفل · PIN"</string>
+<string name="account_profile_no_sync">"کوئی ہم آہنگی نہیں"</string>
+<string name="account_select_note">"الگ دیکھنے کی سرگزشت · لاگ ان نہیں"</string>
+<string name="account_select_title">"کون دیکھ رہا ہے؟"</string>
+<string name="account_sync_connected">"منسلک · اس آلے پر سائن ان"</string>
+<string name="account_sync_needs_browser">"سائن ان کے لیے ویب براؤزر درکار ہے۔ اس آلے میں نہیں ہے۔"</string>
+<string name="account_sync_note">"اختیاری۔ دیکھنے کی پیش رفت کو آپ کے پہلے سے موجود اکاؤنٹ سے ہم آہنگ کرتا ہے۔"</string>
+<string name="account_sync_pair">"کوڈ سے جوڑیں"</string>
+<string name="account_sync_remove">"اس آلے سے ہٹائیں"</string>
+<string name="account_sync_title">"ہم آہنگی کی خدمات"</string>
+<string name="account_sync_unavailable">"یہاں دستیاب نہیں"</string>
 <string name="action_add_to_bookmarks">"واچ اسٹیٹس کو سیٹ کریں"</string>
 <string name="action_add_to_favorites">"پسندیدہ میں شامل کریں"</string>
 <string name="action_default">"ڈیفالٹ"</string>
@@ -435,6 +453,14 @@
 <string name="player_fit_screen">"اسکرین بھریں"</string>
 <string name="player_fit_title">"تصویر کا سائز"</string>
 <string name="player_fit_width">"چوڑائی بھریں"</string>
+<string name="player_hud_buffering">"بفر ہو رہا ہے"</string>
+<string name="player_hud_failed_detail">"نیچے کوئی اور ذریعہ منتخب کریں۔"</string>
+<string name="player_hud_offline_copy">"کنکشن نہیں — ڈاؤن لوڈ کی گئی کاپی چل رہی ہے"</string>
+<string name="player_hud_previous_episode">"پچھلی قسط"</string>
+<string name="player_hud_seek_back">"پیچھے"</string>
+<string name="player_hud_seek_forward">"آگے"</string>
+<string name="player_hud_speed">"رفتار"</string>
+<string name="player_hud_up_next" formatted="true">"اگلا · %s"</string>
 <string name="player_load_subtitles">"فائل سے لوڈ کریں"</string>
 <string name="player_load_subtitles_online">"انٹرنیٹ سے لوڈ کریں"</string>
 <string name="player_loaded_subtitles" formatted="true">"لوڈ %s"</string>

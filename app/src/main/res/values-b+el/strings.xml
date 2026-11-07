@@ -15,6 +15,24 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Πατήστε το πλήκτρο αναζήτησης του πληκτρολογίου για αναζήτηση σε %d πηγή ούτως ή άλλως."</item><item quantity="other">"Πατήστε το πλήκτρο αναζήτησης του πληκτρολογίου για αναζήτηση σε όλες τις %d πηγές ούτως ή άλλως."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d ΠΗΓΗ"</item><item quantity="other">"%d ΠΗΓΕΣ"</item></plurals>
 <string name="account">"Λογαριασμός"</string>
+<string name="account_add_profile">"Προσθήκη προφίλ"</string>
+<string name="account_manage_profiles">"Διαχείριση προφίλ"</string>
+<string name="account_pair_code">"Ο κωδικός σας"</string>
+<string name="account_pair_instructions">"Ανοίξτε το στο τηλέφωνό σας και εισαγάγετε τον παρακάτω κωδικό."</string>
+<string name="account_pair_new_code">"Νέος κωδικός"</string>
+<string name="account_pair_title" formatted="true">"Σύζευξη %s"</string>
+<string name="account_profile_current">"Τρέχον"</string>
+<string name="account_profile_locked">"Κλειδωμένο · PIN"</string>
+<string name="account_profile_no_sync">"Χωρίς συγχρονισμό"</string>
+<string name="account_select_note">"Ξεχωριστό ιστορικό προβολής · όχι συνδέσεις"</string>
+<string name="account_select_title">"Ποιος βλέπει;"</string>
+<string name="account_sync_connected">"Συνδεδεμένο · σε αυτή τη συσκευή"</string>
+<string name="account_sync_needs_browser">"Η σύνδεση χρειάζεται πρόγραμμα περιήγησης. Αυτή η συσκευή δεν έχει."</string>
+<string name="account_sync_note">"Προαιρετικό. Συγχρονίζει την πρόοδο προβολής με έναν λογαριασμό που ήδη έχετε."</string>
+<string name="account_sync_pair">"Σύζευξη με κωδικό"</string>
+<string name="account_sync_remove">"Αφαίρεση από αυτή τη συσκευή"</string>
+<string name="account_sync_title">"Υπηρεσίες συγχρονισμού"</string>
+<string name="account_sync_unavailable">"Δεν είναι διαθέσιμο εδώ"</string>
 <string name="action_add_to_bookmarks">"Ορισμός κατάστασης θέασης"</string>
 <string name="action_add_to_favorites">"Προσθήκη στα Αγαπημένα"</string>
 <string name="action_default">"Προεπιλεγμένοι υπότιτλοι"</string>
@@ -461,6 +479,14 @@
 <string name="player_fit_screen">"Γέμισμα οθόνης"</string>
 <string name="player_fit_title">"Μέγεθος εικόνας"</string>
 <string name="player_fit_width">"Γέμισμα πλάτους"</string>
+<string name="player_hud_buffering">"ΦΟΡΤΩΣΗ"</string>
+<string name="player_hud_failed_detail">"Επιλέξτε άλλη πηγή παρακάτω."</string>
+<string name="player_hud_offline_copy">"Χωρίς σύνδεση — αναπαράγεται το ληφθέν αντίγραφο"</string>
+<string name="player_hud_previous_episode">"Προηγούμενο επεισόδιο"</string>
+<string name="player_hud_seek_back">"Πίσω"</string>
+<string name="player_hud_seek_forward">"Μπροστά"</string>
+<string name="player_hud_speed">"Ταχύτητα"</string>
+<string name="player_hud_up_next" formatted="true">"Επόμενο · %s"</string>
 <string name="player_load_one_subtitle_online">"Φορτώστε το πρώτο διαθέσιμο"</string>
 <string name="player_load_subtitles">"Φόρτωση από αρχείο"</string>
 <string name="player_load_subtitles_online">"Φόρτωση από το Ίντερνετ"</string>

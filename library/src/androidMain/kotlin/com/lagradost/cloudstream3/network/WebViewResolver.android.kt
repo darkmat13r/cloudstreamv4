@@ -104,7 +104,7 @@ actual class WebViewResolver actual constructor(
     ): Pair<Request?, List<Request>> {
         val url = request.url.toString()
         val headers = request.headers
-        Log.i(TAG, "Initial web-view request: $url")
+        Log.i(TAG, "Initial web-view request: ${request.url.host}")
         var webView: WebView? = null
         // Extra assurance it exits as it should.
         var shouldExit = false
@@ -147,7 +147,7 @@ actual class WebViewResolver actual constructor(
                         request: WebResourceRequest
                     ): WebResourceResponse? = runBlocking {
                         val webViewUrl = request.url.toString()
-                        Log.i(TAG, "Loading WebView URL: $webViewUrl")
+                        Log.i(TAG, "Loading WebView URL: ${request.url.host}")
 
                         if (script != null) {
                             runOnMainThread {
@@ -160,7 +160,7 @@ actual class WebViewResolver actual constructor(
                             fixedRequest = request.toRequest()?.also {
                                 requestCallBack(it)
                             }
-                            Log.i(TAG, "Web-view request finished: $webViewUrl")
+                            Log.i(TAG, "Web-view request finished: ${request.url.host}")
                             destroyWebView()
                             return@runBlocking null
                         }

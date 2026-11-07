@@ -15,6 +15,24 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"তথাপি %dটা উৎস সন্ধান কৰিবলৈ কীব'ৰ্ডৰ সন্ধান কী টিপক।"</item><item quantity="other">"তথাপি আটাইকেইটা %dটা উৎস সন্ধান কৰিবলৈ কীব'ৰ্ডৰ সন্ধান কী টিপক।"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d উৎস"</item><item quantity="other">"%d উৎস"</item></plurals>
 <string name="account">"একাউন্ট"</string>
+<string name="account_add_profile">"প্ৰফাইল যোগ কৰক"</string>
+<string name="account_manage_profiles">"প্ৰফাইল পৰিচালনা কৰক"</string>
+<string name="account_pair_code">"আপোনাৰ ক'ড"</string>
+<string name="account_pair_instructions">"এইটো আপোনাৰ ফোনত খোলক আৰু তলৰ ক'ডটো দিয়ক।"</string>
+<string name="account_pair_new_code">"নতুন ক'ড লওক"</string>
+<string name="account_pair_title" formatted="true">"%s যোৰা লগাওক"</string>
+<string name="account_profile_current">"বৰ্তমান"</string>
+<string name="account_profile_locked">"লক কৰা · PIN"</string>
+<string name="account_profile_no_sync">"ছিংক নাই"</string>
+<string name="account_select_note">"পৃথক চোৱাৰ ইতিহাস · লগইন নহয়"</string>
+<string name="account_select_title">"কোনে চাই আছে?"</string>
+<string name="account_sync_connected">"সংযুক্ত · এই ডিভাইচত ছাইন ইন কৰা"</string>
+<string name="account_sync_needs_browser">"ছাইন-ইনৰ বাবে ৱেব ব্ৰাউজাৰ লাগে। এই ডিভাইচত নাই।"</string>
+<string name="account_sync_note">"বৈকল্পিক। আপোনাৰ আগৰে পৰা থকা একাউণ্টলৈ চোৱাৰ অগ্ৰগতি ছিংক কৰে।"</string>
+<string name="account_sync_pair">"ক'ডেৰে যোৰা লগাওক"</string>
+<string name="account_sync_remove">"এই ডিভাইচৰ পৰা আঁতৰাওক"</string>
+<string name="account_sync_title">"ছিংক সেৱাসমূহ"</string>
+<string name="account_sync_unavailable">"ইয়াত উপলব্ধ নহয়"</string>
 <string name="action_add_to_bookmarks">"দেখাৰ অৱস্থা নিৰ্ধাৰণ কৰক"</string>
 <string name="action_add_to_favorites">"প্ৰিয় তালিকালৈ যোগ কৰক"</string>
 <string name="action_default">"ডিফল্ট"</string>
@@ -456,6 +474,14 @@
 <string name="player_fit_screen">"স্ক্ৰীন পূৰণ কৰক"</string>
 <string name="player_fit_title">"ছবিৰ আকাৰ"</string>
 <string name="player_fit_width">"প্ৰস্থ পূৰণ কৰক"</string>
+<string name="player_hud_buffering">"বাফাৰ হৈ আছে"</string>
+<string name="player_hud_failed_detail">"তলত আন এটা উৎস বাছক।"</string>
+<string name="player_hud_offline_copy">"সংযোগ নাই — ডাউনলোড কৰা কপি চলি আছে"</string>
+<string name="player_hud_previous_episode">"আগৰ পৰ্ব"</string>
+<string name="player_hud_seek_back">"পিছলৈ যাওক"</string>
+<string name="player_hud_seek_forward">"আগলৈ যাওক"</string>
+<string name="player_hud_speed">"গতি"</string>
+<string name="player_hud_up_next" formatted="true">"পৰৱৰ্তী · %s"</string>
 <string name="player_load_one_subtitle_online">"প্ৰথম উপলব্ধটো লোড কৰক"</string>
 <string name="player_load_subtitles">"ফাইলৰ পৰা ল'ড কৰক"</string>
 <string name="player_load_subtitles_online">"ইণ্টাৰনেটৰ পৰা ল'ড কৰক"</string>

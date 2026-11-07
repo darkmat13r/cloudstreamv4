@@ -17,6 +17,24 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"اكبس زر التنبيش بالكيبورد لتنبّش بـ%d مصدر على كل حال."</item><item quantity="other">"اكبس زر التنبيش بالكيبورد لتنبّش بكل المصادر الـ%d على كل حال."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d مصدر"</item><item quantity="other">"%d مصادر"</item></plurals>
 <string name="account">"أكونت"</string>
+<string name="account_add_profile">"زيد بروفايل"</string>
+<string name="account_manage_profiles">"إدارة البروفايلات"</string>
+<string name="account_pair_code">"الكود تبعك"</string>
+<string name="account_pair_instructions">"افتح هاد على تلفونك وفوّت الكود اللي تحت."</string>
+<string name="account_pair_new_code">"خود كود جديد"</string>
+<string name="account_pair_title" formatted="true">"اربط %s"</string>
+<string name="account_profile_current">"الحالي"</string>
+<string name="account_profile_locked">"مقفول · PIN"</string>
+<string name="account_profile_no_sync">"ما في مزامنة"</string>
+<string name="account_select_note">"سجل مشاهدة منفصل · مش تسجيل دخول"</string>
+<string name="account_select_title">"مين عم يحضر؟"</string>
+<string name="account_sync_connected">"متصل · مسجّل دخول على هالجهاز"</string>
+<string name="account_sync_needs_browser">"تسجيل الدخول بدو متصفح ويب. هالجهاز ما فيه."</string>
+<string name="account_sync_note">"اختياري. بيزامن تقدّم المشاهدة مع حساب عندك أصلاً."</string>
+<string name="account_sync_pair">"اربط بكود"</string>
+<string name="account_sync_remove">"شيل من هالجهاز"</string>
+<string name="account_sync_title">"خدمات المزامنة"</string>
+<string name="account_sync_unavailable">"مش متوفر هون"</string>
 <string name="action_add_to_bookmarks">"عدل حالة الحَضِر"</string>
 <string name="action_add_to_favorites">"زيدو ع المفضل"</string>
 <string name="action_default">"الإفتراضي"</string>
@@ -503,6 +521,14 @@
 <string name="player_fit_screen">"عبّي الشاشة"</string>
 <string name="player_fit_title">"حجم الصورة"</string>
 <string name="player_fit_width">"عبّي العرض"</string>
+<string name="player_hud_buffering">"عم يحمّل"</string>
+<string name="player_hud_failed_detail">"اختار مصدر تاني تحت."</string>
+<string name="player_hud_offline_copy">"ما في اتصال — عم يشتغل النسخة المحمّلة"</string>
+<string name="player_hud_previous_episode">"الحلقة السابقة"</string>
+<string name="player_hud_seek_back">"رجوع لورا"</string>
+<string name="player_hud_seek_forward">"تقديم لقدام"</string>
+<string name="player_hud_speed">"السرعة"</string>
+<string name="player_hud_up_next" formatted="true">"التالي · %s"</string>
 <string name="player_is_live">"لايڤ"</string>
 <string name="player_load_one_subtitle_online">"أفّي اللودينگ تلقائيًا"</string>
 <string name="player_load_subtitles">"فتاح من ملف"</string>

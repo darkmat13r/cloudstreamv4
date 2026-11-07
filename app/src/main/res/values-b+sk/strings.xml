@@ -15,6 +15,24 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Stlačte na klávesnici kláves vyhľadávania a aj tak prehľadajte %d zdroj."</item><item quantity="few">"Stlačte na klávesnici kláves vyhľadávania a aj tak prehľadajte všetky %d zdroje."</item><item quantity="many">"Stlačte na klávesnici kláves vyhľadávania a aj tak prehľadajte všetkých %d zdrojov."</item><item quantity="other">"Stlačte na klávesnici kláves vyhľadávania a aj tak prehľadajte všetkých %d zdrojov."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d ZDROJ"</item><item quantity="few">"%d ZDROJE"</item><item quantity="many">"%d ZDROJA"</item><item quantity="other">"%d ZDROJOV"</item></plurals>
 <string name="account">"účet"</string>
+<string name="account_add_profile">"Pridať profil"</string>
+<string name="account_manage_profiles">"Spravovať profily"</string>
+<string name="account_pair_code">"Váš kód"</string>
+<string name="account_pair_instructions">"Otvorte to v telefóne a zadajte kód nižšie."</string>
+<string name="account_pair_new_code">"Získať nový kód"</string>
+<string name="account_pair_title" formatted="true">"Spárovať %s"</string>
+<string name="account_profile_current">"Aktuálny"</string>
+<string name="account_profile_locked">"Zamknuté · PIN"</string>
+<string name="account_profile_no_sync">"Bez synchronizácie"</string>
+<string name="account_select_note">"Samostatná história pozerania · nie sú to prihlásenia"</string>
+<string name="account_select_title">"Kto sa pozerá?"</string>
+<string name="account_sync_connected">"Pripojené · prihlásené na tomto zariadení"</string>
+<string name="account_sync_needs_browser">"Prihlásenie vyžaduje webový prehliadač. Toto zariadenie ho nemá."</string>
+<string name="account_sync_note">"Voliteľné. Synchronizuje postup pozerania s účtom, ktorý už máte."</string>
+<string name="account_sync_pair">"Spárovať kódom"</string>
+<string name="account_sync_remove">"Odstrániť z tohto zariadenia"</string>
+<string name="account_sync_title">"Synchronizačné služby"</string>
+<string name="account_sync_unavailable">"Tu nie je k dispozícii"</string>
 <string name="action_add_to_bookmarks">"Nastaviť stav sledovania"</string>
 <string name="action_default">"Predvolené"</string>
 <string name="action_open_play">@string/home_play</string>
@@ -371,6 +389,14 @@
 <string name="player_fit_screen">"Vyplniť obrazovku"</string>
 <string name="player_fit_title">"Veľkosť obrazu"</string>
 <string name="player_fit_width">"Vyplniť šírku"</string>
+<string name="player_hud_buffering">"NAČÍTAVANIE"</string>
+<string name="player_hud_failed_detail">"Nižšie vyberte iný zdroj."</string>
+<string name="player_hud_offline_copy">"Bez pripojenia — prehráva sa stiahnutá kópia"</string>
+<string name="player_hud_previous_episode">"Predchádzajúca epizóda"</string>
+<string name="player_hud_seek_back">"Pretočiť späť"</string>
+<string name="player_hud_seek_forward">"Pretočiť dopredu"</string>
+<string name="player_hud_speed">"Rýchlosť"</string>
+<string name="player_hud_up_next" formatted="true">"Ďalej · %s"</string>
 <string name="player_load_one_subtitle_online">"Načítať prvé k dispozícii"</string>
 <string name="player_load_subtitles">"Načítať z súboru"</string>
 <string name="player_load_subtitles_online">"Načítať z internetu"</string>

@@ -18,6 +18,24 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Нажмите клавишу поиска на клавиатуре, чтобы всё равно искать в %d источнике."</item><item quantity="few">"Нажмите клавишу поиска на клавиатуре, чтобы всё равно искать во всех %d источниках."</item><item quantity="many">"Нажмите клавишу поиска на клавиатуре, чтобы всё равно искать во всех %d источниках."</item><item quantity="other">"Нажмите клавишу поиска на клавиатуре, чтобы всё равно искать во всех %d источниках."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d ИСТОЧНИК"</item><item quantity="few">"%d ИСТОЧНИКА"</item><item quantity="many">"%d ИСТОЧНИКОВ"</item><item quantity="other">"%d ИСТОЧНИКА"</item></plurals>
 <string name="account">"учётная запись"</string>
+<string name="account_add_profile">"Добавить профиль"</string>
+<string name="account_manage_profiles">"Управление профилями"</string>
+<string name="account_pair_code">"Ваш код"</string>
+<string name="account_pair_instructions">"Откройте это на телефоне и введите код ниже."</string>
+<string name="account_pair_new_code">"Получить новый код"</string>
+<string name="account_pair_title" formatted="true">"Связать %s"</string>
+<string name="account_profile_current">"Текущий"</string>
+<string name="account_profile_locked">"Заблокирован · PIN"</string>
+<string name="account_profile_no_sync">"Без синхронизации"</string>
+<string name="account_select_note">"Отдельная история просмотра · не входы в аккаунт"</string>
+<string name="account_select_title">"Кто смотрит?"</string>
+<string name="account_sync_connected">"Подключено · вход выполнен на этом устройстве"</string>
+<string name="account_sync_needs_browser">"Для входа нужен веб-браузер. На этом устройстве его нет."</string>
+<string name="account_sync_note">"Необязательно. Синхронизирует прогресс просмотра с уже имеющимся аккаунтом."</string>
+<string name="account_sync_pair">"Связать по коду"</string>
+<string name="account_sync_remove">"Удалить с этого устройства"</string>
+<string name="account_sync_title">"Сервисы синхронизации"</string>
+<string name="account_sync_unavailable">"Здесь недоступно"</string>
 <string name="action_add_to_bookmarks">"Установите смотреть состояние"</string>
 <string name="action_add_to_favorites">"Добавить в любимое"</string>
 <string name="action_default">"По умолчанию"</string>
@@ -504,6 +522,14 @@
 <string name="player_fit_screen">"На весь экран"</string>
 <string name="player_fit_title">"Размер изображения"</string>
 <string name="player_fit_width">"По ширине"</string>
+<string name="player_hud_buffering">"БУФЕРИЗАЦИЯ"</string>
+<string name="player_hud_failed_detail">"Выберите другой источник ниже."</string>
+<string name="player_hud_offline_copy">"Нет подключения — воспроизводится скачанная копия"</string>
+<string name="player_hud_previous_episode">"Предыдущая серия"</string>
+<string name="player_hud_seek_back">"Перемотка назад"</string>
+<string name="player_hud_seek_forward">"Перемотка вперёд"</string>
+<string name="player_hud_speed">"Скорость"</string>
+<string name="player_hud_up_next" formatted="true">"Далее · %s"</string>
 <string name="player_is_live">"Прямой эфир"</string>
 <string name="player_load_one_subtitle_online">"Скачать первые доступные"</string>
 <string name="player_load_subtitles">"Загрузить из файла"</string>

@@ -15,6 +15,24 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Riix furaha raadinta ee kiiboodhka si aad u raadiso %d il si kastaba ha ahaatee."</item><item quantity="other">"Riix furaha raadinta ee kiiboodhka si aad u raadiso dhammaan %d ilood si kastaba ha ahaatee."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d IL"</item><item quantity="other">"%d ILOOD"</item></plurals>
 <string name="account">"Akoonka"</string>
+<string name="account_add_profile">"Ku dar astaan"</string>
+<string name="account_manage_profiles">"Maamul astaanta"</string>
+<string name="account_pair_code">"Koodkaaga"</string>
+<string name="account_pair_instructions">"Ku fur kan taleefankaaga oo geli koodka hoose."</string>
+<string name="account_pair_new_code">"Hel kood cusub"</string>
+<string name="account_pair_title" formatted="true">"Ku xir %s"</string>
+<string name="account_profile_current">"Hadda"</string>
+<string name="account_profile_locked">"La xiray · PIN"</string>
+<string name="account_profile_no_sync">"Isku-dhafid ma jirto"</string>
+<string name="account_select_note">"Taariikh daawasho gooni ah · ma aha gelitaan"</string>
+<string name="account_select_title">"Yaa daawanaya?"</string>
+<string name="account_sync_connected">"Waa ku xiran yahay · lagu galay qalabkan"</string>
+<string name="account_sync_needs_browser">"Gelitaanku wuxuu u baahan yahay biraawsar. Qalabkan ma laha."</string>
+<string name="account_sync_note">"Ikhtiyaari. Waxay isku dhafaysaa horumarka daawashada iyo akoon aad horey u leedahay."</string>
+<string name="account_sync_pair">"Ku xir kood"</string>
+<string name="account_sync_remove">"Ka saar qalabkan"</string>
+<string name="account_sync_title">"Adeegyada isku-dhafidda"</string>
+<string name="account_sync_unavailable">"Halkan lagama heli karo"</string>
 <string name="action_add_to_bookmarks">"Xagee marinaysaa"</string>
 <string name="action_default">"Sidiisaa"</string>
 <string name="action_mark_as_watched">"Ku caalamadi in la daawaday"</string>
@@ -379,6 +397,14 @@
 <string name="player_fit_screen">"Buuxi shaashadda"</string>
 <string name="player_fit_title">"Cabbirka sawirka"</string>
 <string name="player_fit_width">"Buuxi ballaca"</string>
+<string name="player_hud_buffering">"WAA LA KAYDINAYAA"</string>
+<string name="player_hud_failed_detail">"Hoos ka dooro il kale."</string>
+<string name="player_hud_offline_copy">"Xiriir ma jiro — waxaa socda nuqulka la soo dejiyay"</string>
+<string name="player_hud_previous_episode">"Qaybtii hore"</string>
+<string name="player_hud_seek_back">"Dib u celi"</string>
+<string name="player_hud_seek_forward">"Hore u soco"</string>
+<string name="player_hud_speed">"Xawaare"</string>
+<string name="player_hud_up_next" formatted="true">"Xiga · %s"</string>
 <string name="player_load_subtitles">"Faylashaada ka keen"</string>
 <string name="player_load_subtitles_online">"Internetka ka keen"</string>
 <string name="player_loaded_subtitles" formatted="true">"Waxa laso kiciyey %s"</string>

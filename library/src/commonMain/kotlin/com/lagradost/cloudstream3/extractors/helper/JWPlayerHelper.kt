@@ -64,7 +64,7 @@ object JwPlayerHelper {
                         headers = headers,
                     )
                 } catch (e: Exception) {
-                    Log.d("JW_PLAYER_HELPER", "Error generating M3U8 links: ${e.message}")
+                    Log.d("JW_PLAYER_HELPER", "Error generating M3U8 links: ${e::class.simpleName}")
                     emptyList()
                 }
             } else {

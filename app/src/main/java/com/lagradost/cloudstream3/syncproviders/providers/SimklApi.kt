@@ -598,7 +598,7 @@ class SimklApi : SyncAPI() {
                 else -> return null
             }
 
-            debugPrint { "Requesting episodes from $url" }
+            debugPrint { "Requesting episodes for $type $simklId" }
             return app.get(url, params = mapOf("client_id" to CLIENT_ID))
                 .parsedSafe<Array<EpisodeMetadata>>()?.also {
                     val cacheTime =

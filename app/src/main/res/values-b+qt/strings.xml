@@ -15,6 +15,24 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="other">"uuh aagg oooh aaahh uug %d ooogg aah."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="other">"%d OOGAH"</item></plurals>
 <string name="account">"aaaaggg"</string>
+<string name="account_add_profile">"aah ooooggk"</string>
+<string name="account_manage_profiles">"aaaagg ooooggk"</string>
+<string name="account_pair_code">"ooh aagg"</string>
+<string name="account_pair_instructions">"oooh aah ooh aaagg oooh."</string>
+<string name="account_pair_new_code">"oooh aah aagg"</string>
+<string name="account_pair_title" formatted="true">"ooh %s"</string>
+<string name="account_profile_current">"oooh"</string>
+<string name="account_profile_locked">"oooh-aah · ooh"</string>
+<string name="account_profile_no_sync">"aah oooh"</string>
+<string name="account_select_note">"oooh-aah aagg · ooh aah"</string>
+<string name="account_select_title">"ooh oooh aah?"</string>
+<string name="account_sync_connected">"oooh-aah · ooh aagg"</string>
+<string name="account_sync_needs_browser">"oooh aaagg aah. ooh oooh aah."</string>
+<string name="account_sync_note">"ooh. oooh-aah aagg ooh aaaagg aah."</string>
+<string name="account_sync_pair">"ooh aah oooh"</string>
+<string name="account_sync_remove">"aaagh ooh aagg"</string>
+<string name="account_sync_title">"oooh-aah aaagg"</string>
+<string name="account_sync_unavailable">"aah ooh-ooh"</string>
 <string name="action_add_to_bookmarks">"auugggguuuuuuhhh uuuu hhhhhhhhuhggghggg"</string>
 <string name="action_add_to_favorites">"uuh ah aaaahhhag"</string>
 <string name="action_default">"ahooooh"</string>
@@ -451,6 +469,14 @@
 <string name="player_fit_screen">"oouuh aah"</string>
 <string name="player_fit_title">"aaaaa oh"</string>
 <string name="player_fit_width">"haa oh"</string>
+<string name="player_hud_buffering">"OOHH AAGH"</string>
+<string name="player_hud_failed_detail">"oohh aagh uuk."</string>
+<string name="player_hud_offline_copy">"aagh oohh — uuk aah oohh"</string>
+<string name="player_hud_previous_episode">"oohh aagh uuk"</string>
+<string name="player_hud_seek_back">"aagh ooh"</string>
+<string name="player_hud_seek_forward">"ooh aagh"</string>
+<string name="player_hud_speed">"uuk"</string>
+<string name="player_hud_up_next" formatted="true">"aagh · %s"</string>
 <string name="player_load_subtitles">"aagg aahh uuuk"</string>
 <string name="player_load_subtitles_online">"eeek aahh oooohhhh"</string>
 <string name="player_loaded_subtitles" formatted="true">"oooohh %s"</string>

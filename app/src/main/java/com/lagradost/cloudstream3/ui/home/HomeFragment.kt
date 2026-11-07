@@ -86,6 +86,7 @@ import com.lagradost.cloudstream3.utils.UIHelper.getSpanCount
 import com.lagradost.cloudstream3.utils.UIHelper.navigate
 import com.lagradost.cloudstream3.utils.UIHelper.popupMenuNoIconsAndNoStringRes
 import com.lagradost.cloudstream3.utils.UIHelper.toPx
+import com.lagradost.cloudstream3.utils.redactedText
 
 private const val TAG = "HomeFragment"
 
@@ -577,7 +578,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
                 Log.d(TAG, "Channel does not exist")
             }
         } catch (e: Exception) {
-            Log.e(TAG, "Error adding movies: $e")
+            Log.e(TAG, "Error adding movies: ${redactedText(e.toString())}")
         }
     }
 
@@ -596,7 +597,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
                 Log.d(TAG, "Channel does not exist")
             }
         } catch (e: Exception) {
-            Log.e(TAG, "Error deleting programs: ${e.message}")
+            Log.e(TAG, "Error deleting programs: ${redactedText(e.message)}")
         }
     }
 

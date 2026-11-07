@@ -15,6 +15,24 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="other">"မည်သို့ပင်ဖြစ်စေ ရင်းမြစ် %d ခုလုံးတွင် ရှာရန် ကီးဘုတ်၏ ရှာဖွေရေးခလုတ်ကို နှိပ်ပါ။"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="other">"%d ရင်းမြစ်"</item></plurals>
 <string name="account">"အကောင့်"</string>
+<string name="account_add_profile">"ပရိုဖိုင် ထည့်ရန်"</string>
+<string name="account_manage_profiles">"ပရိုဖိုင်များ စီမံရန်"</string>
+<string name="account_pair_code">"သင့်ကုဒ်"</string>
+<string name="account_pair_instructions">"၎င်းကို သင့်ဖုန်းတွင်ဖွင့်ပြီး အောက်ပါကုဒ်ကို ထည့်ပါ။"</string>
+<string name="account_pair_new_code">"ကုဒ်အသစ် ယူရန်"</string>
+<string name="account_pair_title" formatted="true">"%s တွဲချိတ်ရန်"</string>
+<string name="account_profile_current">"လက်ရှိ"</string>
+<string name="account_profile_locked">"လော့ခ်ချထား · PIN"</string>
+<string name="account_profile_no_sync">"စင့်ခ်မရှိ"</string>
+<string name="account_select_note">"သီးခြားကြည့်ရှုမှုမှတ်တမ်း · ဝင်ရောက်မှုမဟုတ်"</string>
+<string name="account_select_title">"ဘယ်သူကြည့်နေလဲ?"</string>
+<string name="account_sync_connected">"ချိတ်ဆက်ထား · ဤစက်တွင် ဝင်ထား"</string>
+<string name="account_sync_needs_browser">"ဝင်ရောက်ရန် ဝဘ်ဘရောက်ဆာ လိုအပ်သည်။ ဤစက်တွင် မရှိပါ။"</string>
+<string name="account_sync_note">"ရွေးချယ်နိုင်သည်။ ကြည့်ရှုမှုတိုးတက်မှုကို သင့်တွင်ရှိပြီးသားအကောင့်နှင့် စင့်ခ်လုပ်သည်။"</string>
+<string name="account_sync_pair">"ကုဒ်ဖြင့် တွဲချိတ်ရန်"</string>
+<string name="account_sync_remove">"ဤစက်မှ ဖယ်ရှားရန်"</string>
+<string name="account_sync_title">"စင့်ခ်ဝန်ဆောင်မှုများ"</string>
+<string name="account_sync_unavailable">"ဤနေရာတွင် မရနိုင်ပါ"</string>
 <string name="action_add_to_bookmarks">"ကြည့်ရှုမှုအခြေအနေသတ်မှတ်ခြင်း"</string>
 <string name="action_default">"ပုံသေ"</string>
 <string name="action_mark_as_watched">"ကြည့်ပြီးအဖြစ်မှတ်ရန်"</string>
@@ -378,6 +396,14 @@
 <string name="player_fit_screen">"မျက်နှာပြင်ပြည့်"</string>
 <string name="player_fit_title">"ပုံအရွယ်အစား"</string>
 <string name="player_fit_width">"အကျယ်ပြည့်"</string>
+<string name="player_hud_buffering">"ကြားခံနေသည်"</string>
+<string name="player_hud_failed_detail">"အောက်တွင် အခြားရင်းမြစ်ကို ရွေးပါ။"</string>
+<string name="player_hud_offline_copy">"ချိတ်ဆက်မှုမရှိ — ဒေါင်းလုဒ်လုပ်ထားသော မိတ္တူကို ဖွင့်နေသည်"</string>
+<string name="player_hud_previous_episode">"ယခင်အပိုင်း"</string>
+<string name="player_hud_seek_back">"နောက်သို့"</string>
+<string name="player_hud_seek_forward">"ရှေ့သို့"</string>
+<string name="player_hud_speed">"အမြန်နှုန်း"</string>
+<string name="player_hud_up_next" formatted="true">"နောက်တစ်ခု · %s"</string>
 <string name="player_load_subtitles">"ဖိုင်မှတင်သွင်းပြီး"</string>
 <string name="player_load_subtitles_online">"အင်တာနက်မှ တင်သွင်းမည်"</string>
 <string name="player_loaded_subtitles" formatted="true">"တင်ပြီး %s"</string>

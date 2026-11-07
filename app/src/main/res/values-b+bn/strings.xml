@@ -15,6 +15,24 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"তবুও %dটি উৎসে খুঁজতে কীবোর্ডের সার্চ কী চাপুন।"</item><item quantity="other">"তবুও সব %dটি উৎসে খুঁজতে কীবোর্ডের সার্চ কী চাপুন।"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d উৎস"</item><item quantity="other">"%d উৎস"</item></plurals>
 <string name="account">"অ্যাকাউন্ট"</string>
+<string name="account_add_profile">"প্রোফাইল যোগ করুন"</string>
+<string name="account_manage_profiles">"প্রোফাইল পরিচালনা করুন"</string>
+<string name="account_pair_code">"আপনার কোড"</string>
+<string name="account_pair_instructions">"এটি আপনার ফোনে খুলুন এবং নিচের কোডটি লিখুন।"</string>
+<string name="account_pair_new_code">"নতুন কোড নিন"</string>
+<string name="account_pair_title" formatted="true">"%s যুক্ত করুন"</string>
+<string name="account_profile_current">"বর্তমান"</string>
+<string name="account_profile_locked">"লক করা · পিন"</string>
+<string name="account_profile_no_sync">"সিঙ্ক নেই"</string>
+<string name="account_select_note">"আলাদা দেখার ইতিহাস · লগইন নয়"</string>
+<string name="account_select_title">"কে দেখছে?"</string>
+<string name="account_sync_connected">"সংযুক্ত · এই ডিভাইসে সাইন ইন করা"</string>
+<string name="account_sync_needs_browser">"সাইন-ইনের জন্য ওয়েব ব্রাউজার লাগে। এই ডিভাইসে নেই।"</string>
+<string name="account_sync_note">"ঐচ্ছিক। আপনার আগে থেকে থাকা অ্যাকাউন্টে দেখার অগ্রগতি সিঙ্ক করে।"</string>
+<string name="account_sync_pair">"কোড দিয়ে যুক্ত করুন"</string>
+<string name="account_sync_remove">"এই ডিভাইস থেকে সরান"</string>
+<string name="account_sync_title">"সিঙ্ক পরিষেবা"</string>
+<string name="account_sync_unavailable">"এখানে উপলব্ধ নয়"</string>
 <string name="action_add_to_bookmarks">"বুকমার্ক করুন"</string>
 <string name="action_default">"ডিফল্ট"</string>
 <string name="action_open_play">@string/home_play</string>
@@ -342,6 +360,14 @@
 <string name="player_fit_screen">"স্ক্রিন পূরণ করুন"</string>
 <string name="player_fit_title">"ছবির আকার"</string>
 <string name="player_fit_width">"প্রস্থ পূরণ করুন"</string>
+<string name="player_hud_buffering">"বাফার হচ্ছে"</string>
+<string name="player_hud_failed_detail">"নিচে অন্য একটি উৎস বেছে নিন।"</string>
+<string name="player_hud_offline_copy">"সংযোগ নেই — ডাউনলোড করা কপি চলছে"</string>
+<string name="player_hud_previous_episode">"আগের পর্ব"</string>
+<string name="player_hud_seek_back">"পিছিয়ে যান"</string>
+<string name="player_hud_seek_forward">"এগিয়ে যান"</string>
+<string name="player_hud_speed">"গতি"</string>
+<string name="player_hud_up_next" formatted="true">"পরবর্তী · %s"</string>
 <string name="player_mute">"মিউট করুন"</string>
 <string name="player_size_settings">"প্লেয়ারের সাইজ পরিবর্তন বাটন"</string>
 <string name="player_size_settings_des">"কালো প্রান্ত অপসারণ করুন"</string>

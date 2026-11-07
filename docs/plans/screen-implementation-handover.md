@@ -32,17 +32,13 @@ hand-rolled TV focus engine. Nothing has been migrated out of it yet.
 
 **1. The designs** — Claude Design project *CloudStream 4 — Redesign (TV / Mobile / Desktop)*:
 
-**Destination: `design/` at the repo root.** Every file below lives there, exported from the
-project on 2026-10-14. Read and update the `.dc.html` files in `design/`; they open in a browser,
-with `support.js` beside them.
-
-The origin is the Claude Design project,
-https://claude.ai/design/p/a9ab3c83-bcc5-4ef4-854b-846c95da8438. Per file, append `?file=<name>`,
-e.g. `?file=TV+Home.dc.html`. A change made only in the project is not in `design/` until someone
-re-exports it.
-A second Claude Design project, *Project file storage*,
-https://claude.ai/design/p/c5fd7e44-70f5-41b6-8a48-e850eb88334b, holds the same 13 files as
-`design/` (12 `.dc.html` + `support.js`, every size identical, checked 2026-10-15); it is a copy, not a newer version.
+**The origin is the owner's Claude Design project.** Every file below lives there. A local export, exported on
+2026-10-14, sits in `design/` at the repo root on the owner's machine: the `.dc.html` files open in a browser, with
+`support.js` beside them. A change made only in the project is not in that export until someone re-exports it.
+**None of it is in the repository** (`INF-12`, owner, 2026-11-07: the repo is public; `/design/` is in
+`.gitignore`). A `design/X.dc.html` named in these docs is that board file in the owner's Claude Design project.
+A second project in the owner's Claude Design account, *Project file storage*, holds a copy of the same 13 files
+(12 `.dc.html` + `support.js`, every size identical, checked 2026-10-15); it is not a newer version.
 
 | File | Contents |
 |---|---|
@@ -55,6 +51,12 @@ https://claude.ai/design/p/c5fd7e44-70f5-41b6-8a48-e850eb88334b, holds the same 
 | `TV Episodes Downloads.dc.html` | Episode panel, episode-row board, downloads ×3 |
 | `Desktop Downloads.dc.html` | `DS-18`. Downloads on the Mac: titles, multi-select and menu, confirm, one series, empty/offline/full, minimum window. 1 px = 1 dp |
 | `Phone Downloads.dc.html` | `DS-18`. Downloads on phone and tablet: titles, swipe, choosing, one series, the verb sheet, empty/offline/full, two-pane tablet. 1 px = 1 dp |
+| `Desktop Home.dc.html` | `DS-21`. Home on the Mac: hero, Continue watching, bookmarks with status chips, a card's menu, the source panel with None, offline and a failed reload, no source, minimum window. 1 px = 1 dp |
+| `Desktop Detail.dc.html` | `DS-21`. A title's page on the Mac: series and film, an episode's hover verbs, the sources panel as links arrive, loading, failed, minimum window. 1 px = 1 dp |
+| `Phone Home Detail.dc.html` | `DS-21`. Home and a title's page on phone (source sheet, offline, the glyph row, the sources sheet) and tablet (rail, two columns). 1 px = 1 dp |
+| `Desktop Search.dc.html` | `DS-22`. Search on the Mac: recent searches, results by source, a partial search, the sources panel, suggestions while typing, no results, minimum window. 1 px = 1 dp |
+| `Desktop Library.dc.html` | `DS-22`. Library on the Mac: a list, a sync that failed, an empty list, Sort, the library's source, moving a card, minimum window. 1 px = 1 dp |
+| `Phone Search Library.dc.html` | `DS-22`. Search and Library on phone (sheets, chips, three-column grids) and tablet (rail, six columns). 1 px = 1 dp |
 | `TV Detail Player.dc.html` | Show detail, movie detail, link loading, player HUD, selectors |
 | `TV Onboarding Extensions.dc.html` | First run, first run offline, extensions ×2, account select |
 | `Design System.dc.html`, `TV Directions.dc.html`, `TV Screens.dc.html` | **Superseded.** Do not build from these. `TV Screens` still contains the banned 320×180 rung. |

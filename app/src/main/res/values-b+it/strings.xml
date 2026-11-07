@@ -18,6 +18,24 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Premi il tasto di ricerca della tastiera per cercare comunque in %d fonte."</item><item quantity="many">"Premi il tasto di ricerca della tastiera per cercare comunque in tutte le %d fonti."</item><item quantity="other">"Premi il tasto di ricerca della tastiera per cercare comunque in tutte le %d fonti."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d FONTE"</item><item quantity="many">"%d FONTI"</item><item quantity="other">"%d FONTI"</item></plurals>
 <string name="account">"account"</string>
+<string name="account_add_profile">"Aggiungi profilo"</string>
+<string name="account_manage_profiles">"Gestisci profili"</string>
+<string name="account_pair_code">"Il tuo codice"</string>
+<string name="account_pair_instructions">"Apri questa pagina sul telefono e inserisci il codice qui sotto."</string>
+<string name="account_pair_new_code">"Ottieni un nuovo codice"</string>
+<string name="account_pair_title" formatted="true">"Associa %s"</string>
+<string name="account_profile_current">"Attuale"</string>
+<string name="account_profile_locked">"Bloccato · PIN"</string>
+<string name="account_profile_no_sync">"Nessuna sincronizzazione"</string>
+<string name="account_select_note">"Cronologia di visione separata · non sono accessi"</string>
+<string name="account_select_title">"Chi sta guardando?"</string>
+<string name="account_sync_connected">"Connesso · accesso eseguito su questo dispositivo"</string>
+<string name="account_sync_needs_browser">"L'accesso richiede un browser web. Questo dispositivo non ne ha."</string>
+<string name="account_sync_note">"Facoltativo. Sincronizza i progressi con un account che hai già."</string>
+<string name="account_sync_pair">"Associa con un codice"</string>
+<string name="account_sync_remove">"Rimuovi da questo dispositivo"</string>
+<string name="account_sync_title">"Servizi di sincronizzazione"</string>
+<string name="account_sync_unavailable">"Non disponibile qui"</string>
 <string name="action_add_to_bookmarks">"Imposta stato riproduzione"</string>
 <string name="action_add_to_favorites">"Aggiungi ai preferiti"</string>
 <string name="action_default">"Default"</string>
@@ -504,6 +522,14 @@
 <string name="player_fit_screen">"Riempi schermo"</string>
 <string name="player_fit_title">"Dimensione immagine"</string>
 <string name="player_fit_width">"Riempi larghezza"</string>
+<string name="player_hud_buffering">"BUFFERING"</string>
+<string name="player_hud_failed_detail">"Scegli un'altra fonte qui sotto."</string>
+<string name="player_hud_offline_copy">"Nessuna connessione — in riproduzione la copia scaricata"</string>
+<string name="player_hud_previous_episode">"Episodio precedente"</string>
+<string name="player_hud_seek_back">"Indietro"</string>
+<string name="player_hud_seek_forward">"Avanti"</string>
+<string name="player_hud_speed">"Velocità"</string>
+<string name="player_hud_up_next" formatted="true">"Prossimo · %s"</string>
 <string name="player_is_live">"Live"</string>
 <string name="player_load_one_subtitle_online">"Carica il primo disponibile"</string>
 <string name="player_load_subtitles">"Carica da file"</string>

@@ -161,7 +161,7 @@ object UIHelper {
                 }
             }
         } catch (t: Throwable) {
-            Log.e("ClipboardService", "$t")
+            Log.e("ClipboardService", redactedText(t.toString()))
             when (t) {
                 is SecurityException -> {
                     showToast(R.string.clipboard_permission_error)

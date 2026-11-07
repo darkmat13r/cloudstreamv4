@@ -81,8 +81,8 @@ object ImageLoader {
             eventListener(object : EventListener() {
                 override fun onError(request: ImageRequest, result: ErrorResult) {
                     super.onError(request, result)
-                    Log.e(TAG, "Image load error: ${result.throwable.message ?: result.throwable}")
-                    Log.e(TAG, "  URL: ${request.data}")
+                    Log.e(TAG, "Image load error: ${result.throwable.javaClass.name}")
+                    Log.e(TAG, "  data type: ${request.data.javaClass.simpleName}")
                     Log.e(TAG, "  allowHardware: ${request.allowHardware}")
                     Log.e(TAG, "  hardware: ${Build.HARDWARE}, board: ${Build.BOARD}")
                 }

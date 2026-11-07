@@ -35,14 +35,14 @@ object VotingApi {
     private suspend fun readVote(pluginUrl: String): Int {
         val id = transformUrl(pluginUrl)
         val url = "$API_DOMAIN/get-total/$id"
-        Log.d(LOGKEY, "Requesting GET: $url")
+        Log.d(LOGKEY, "Requesting GET: vote count")
         return app.get(url).parsedSafe<CountifyResult>()?.count ?: 0
     }
 
     private suspend fun writeVote(pluginUrl: String): Boolean {
         val id = transformUrl(pluginUrl)
         val url = "$API_DOMAIN/increment/$id"
-        Log.d(LOGKEY, "Requesting POST: $url")
+        Log.d(LOGKEY, "Requesting POST: vote")
         return app.post(url, emptyMap<String, String>())
             .parsedSafe<CountifyResult>()?.count != null
     }

@@ -17,6 +17,24 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Притиснете го копчето за пребарување на тастатурата за сепак да пребарувате во %d извор."</item><item quantity="other">"Притиснете го копчето за пребарување на тастатурата за сепак да пребарувате во сите %d извори."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d ИЗВОР"</item><item quantity="other">"%d ИЗВОРИ"</item></plurals>
 <string name="account">"Корисничко име"</string>
+<string name="account_add_profile">"Додај профил"</string>
+<string name="account_manage_profiles">"Управувај со профили"</string>
+<string name="account_pair_code">"Вашиот код"</string>
+<string name="account_pair_instructions">"Отворете го ова на телефонот и внесете го кодот подолу."</string>
+<string name="account_pair_new_code">"Добиј нов код"</string>
+<string name="account_pair_title" formatted="true">"Поврзи %s"</string>
+<string name="account_profile_current">"Тековен"</string>
+<string name="account_profile_locked">"Заклучен · PIN"</string>
+<string name="account_profile_no_sync">"Без синхронизација"</string>
+<string name="account_select_note">"Посебна историја на гледање · не се најавувања"</string>
+<string name="account_select_title">"Кој гледа?"</string>
+<string name="account_sync_connected">"Поврзано · најавено на овој уред"</string>
+<string name="account_sync_needs_browser">"За најава е потребен веб-прелистувач. Овој уред нема."</string>
+<string name="account_sync_note">"Опционално. Го синхронизира напредокот со сметка што веќе ја имате."</string>
+<string name="account_sync_pair">"Поврзи со код"</string>
+<string name="account_sync_remove">"Отстрани од овој уред"</string>
+<string name="account_sync_title">"Услуги за синхронизација"</string>
+<string name="account_sync_unavailable">"Не е достапно тука"</string>
 <string name="action_add_to_bookmarks">"Постави статус на пратење"</string>
 <string name="action_add_to_favorites">"Додади во омилени"</string>
 <string name="action_default">"Стандардно"</string>
@@ -503,6 +521,14 @@
 <string name="player_fit_screen">"Пополни екран"</string>
 <string name="player_fit_title">"Големина на сликата"</string>
 <string name="player_fit_width">"Пополни ширина"</string>
+<string name="player_hud_buffering">"БАФЕРИРАЊЕ"</string>
+<string name="player_hud_failed_detail">"Изберете друг извор подолу."</string>
+<string name="player_hud_offline_copy">"Нема врска — се пушта преземената копија"</string>
+<string name="player_hud_previous_episode">"Претходна епизода"</string>
+<string name="player_hud_seek_back">"Назад"</string>
+<string name="player_hud_seek_forward">"Напред"</string>
+<string name="player_hud_speed">"Брзина"</string>
+<string name="player_hud_up_next" formatted="true">"Следно · %s"</string>
 <string name="player_is_live">"Во живо"</string>
 <string name="player_load_one_subtitle_online">"Вчитај прво достапно"</string>
 <string name="player_load_subtitles">"Вчитај од датотека"</string>
