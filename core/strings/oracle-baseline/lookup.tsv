@@ -566,6 +566,15 @@ values-b+af	string	player_loaded_subtitles	-	Loaded %s
 values-b+af	string	player_mute	-	Demp
 values-b+af	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+af	string	player_notification_channel_name	-	Player notifications
+values-b+af	string	player_panel_failed	-	misluk
+values-b+af	string	player_panel_keeps	-	behou %s
+values-b+af	string	player_panel_on	-	Aan
+values-b+af	string	player_panel_open	-	Maak oop
+values-b+af	string	player_panel_quality_profile	-	Kwaliteitsprofiel
+values-b+af	string	player_panel_quality_unknown	-	kwaliteit onbekend
+values-b+af	string	player_panel_retry_all	-	Probeer alle bronne weer
+values-b+af	string	player_panel_style	-	Onderskrifstyl
+values-b+af	string	player_panel_use	-	Gebruik
 values-b+af	string	player_pref	-	Preferred video player
 values-b+af	string	player_settings_always_ask	-	Always ask
 values-b+af	string	player_settings_play_in_app	-	Internal player
@@ -1534,6 +1543,15 @@ values-b+am	string	player_loaded_subtitles	-	Loaded %s
 values-b+am	string	player_mute	-	ድምፅ አጥፋ
 values-b+am	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+am	string	player_notification_channel_name	-	Player notifications
+values-b+am	string	player_panel_failed	-	አልተሳካም
+values-b+am	string	player_panel_keeps	-	%s ይቆያል
+values-b+am	string	player_panel_on	-	በርቷል
+values-b+am	string	player_panel_open	-	ክፈት
+values-b+am	string	player_panel_quality_profile	-	የጥራት መገለጫ
+values-b+am	string	player_panel_quality_unknown	-	ጥራት አይታወቅም
+values-b+am	string	player_panel_retry_all	-	ሁሉንም ምንጮች እንደገና ሞክር
+values-b+am	string	player_panel_style	-	የንዑስ ርዕስ ዘይቤ
+values-b+am	string	player_panel_use	-	ተጠቀም
 values-b+am	string	player_pref	-	Preferred video player
 values-b+am	string	player_settings_always_ask	-	Always ask
 values-b+am	string	player_settings_play_in_app	-	Internal player
@@ -2502,6 +2520,15 @@ values-b+apc	string	player_loaded_subtitles	-	نفَتح %s
 values-b+apc	string	player_mute	-	كتّم الصوت
 values-b+apc	string	player_notification_channel_description	-	نوتيفيكايشن بت خليك تتحكم بال ڤيديو لما م يكون الآپ مفتوح
 values-b+apc	string	player_notification_channel_name	-	شغل الڤيديو عبر النوتيفيكايشنز
+values-b+apc	string	player_panel_failed	-	فشل
+values-b+apc	string	player_panel_keeps	-	بيحافظ على %s
+values-b+apc	string	player_panel_on	-	شغّال
+values-b+apc	string	player_panel_open	-	افتح
+values-b+apc	string	player_panel_quality_profile	-	ملف الجودة
+values-b+apc	string	player_panel_quality_unknown	-	الجودة مش معروفة
+values-b+apc	string	player_panel_retry_all	-	جرّب كل المصادر من جديد
+values-b+apc	string	player_panel_style	-	شكل الترجمة
+values-b+apc	string	player_panel_use	-	استخدم
 values-b+apc	string	player_pref	-	مشغل الڤيديو المفضل
 values-b+apc	string	player_settings_always_ask	-	دايمًا سئالوني
 values-b+apc	string	player_settings_play_in_app	-	المشغل يللي ب "كلود ستريم"
@@ -3530,6 +3557,15 @@ values-b+ar	string	player_loaded_subtitles	-	تم تحميل %s
 values-b+ar	string	player_mute	-	كتم الصوت
 values-b+ar	string	player_notification_channel_description	-	تنبيه المشغل المسؤول عن تشغيل الميديا في الخلفية
 values-b+ar	string	player_notification_channel_name	-	تنبيهات المشغل
+values-b+ar	string	player_panel_failed	-	فشل
+values-b+ar	string	player_panel_keeps	-	يحافظ على %s
+values-b+ar	string	player_panel_on	-	مُفعّل
+values-b+ar	string	player_panel_open	-	فتح
+values-b+ar	string	player_panel_quality_profile	-	ملف الجودة
+values-b+ar	string	player_panel_quality_unknown	-	الجودة غير معروفة
+values-b+ar	string	player_panel_retry_all	-	إعادة محاولة جميع المصادر
+values-b+ar	string	player_panel_style	-	نمط الترجمة
+values-b+ar	string	player_panel_use	-	استخدام
 values-b+ar	string	player_pref	-	مُشغل الفيديو المفضل
 values-b+ar	string	player_settings_always_ask	-	أسال دائما
 values-b+ar	string	player_settings_play_in_app	-	مشغل داخلي
@@ -4550,6 +4586,15 @@ values-b+ars	string	player_loaded_subtitles	-	Loaded %s
 values-b+ars	string	player_mute	-	كتم الصوت
 values-b+ars	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+ars	string	player_notification_channel_name	-	Player notifications
+values-b+ars	string	player_panel_failed	-	فشل
+values-b+ars	string	player_panel_keeps	-	يحافظ على %s
+values-b+ars	string	player_panel_on	-	مفعّل
+values-b+ars	string	player_panel_open	-	افتح
+values-b+ars	string	player_panel_quality_profile	-	ملف الجودة
+values-b+ars	string	player_panel_quality_unknown	-	الجودة غير معروفة
+values-b+ars	string	player_panel_retry_all	-	جرّب كل المصادر مرة ثانية
+values-b+ars	string	player_panel_style	-	شكل الترجمة
+values-b+ars	string	player_panel_use	-	استخدم
 values-b+ars	string	player_pref	-	Preferred video player
 values-b+ars	string	player_settings_always_ask	-	Always ask
 values-b+ars	string	player_settings_play_in_app	-	Internal player
@@ -5518,6 +5563,15 @@ values-b+as	string	player_loaded_subtitles	-	%s ল'ড হৈছে
 values-b+as	string	player_mute	-	মৌন কৰক
 values-b+as	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+as	string	player_notification_channel_name	-	Player notifications
+values-b+as	string	player_panel_failed	-	ব্যৰ্থ
+values-b+as	string	player_panel_keeps	-	%s ৰাখে
+values-b+as	string	player_panel_on	-	অন
+values-b+as	string	player_panel_open	-	খোলক
+values-b+as	string	player_panel_quality_profile	-	গুণমান প্ৰফাইল
+values-b+as	string	player_panel_quality_unknown	-	গুণমান অজ্ঞাত
+values-b+as	string	player_panel_retry_all	-	সকলো উৎস পুনৰ চেষ্টা কৰক
+values-b+as	string	player_panel_style	-	উপশিৰোনামৰ শৈলী
+values-b+as	string	player_panel_use	-	ব্যৱহাৰ কৰক
 values-b+as	string	player_pref	-	পছন্দৰ ভিডিঅ' প্লেয়াৰ
 values-b+as	string	player_settings_always_ask	-	Always ask
 values-b+as	string	player_settings_play_in_app	-	আভ্যন্তৰীণ প্লেয়াৰ
@@ -6486,6 +6540,15 @@ values-b+az	string	player_loaded_subtitles	-	Loaded %s
 values-b+az	string	player_mute	-	Səssizə al
 values-b+az	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+az	string	player_notification_channel_name	-	Player notifications
+values-b+az	string	player_panel_failed	-	uğursuz
+values-b+az	string	player_panel_keeps	-	%s saxlanılır
+values-b+az	string	player_panel_on	-	Açıq
+values-b+az	string	player_panel_open	-	Aç
+values-b+az	string	player_panel_quality_profile	-	Keyfiyyət profili
+values-b+az	string	player_panel_quality_unknown	-	keyfiyyət bilinmir
+values-b+az	string	player_panel_retry_all	-	Bütün mənbələri yenidən sına
+values-b+az	string	player_panel_style	-	Altyazı üslubu
+values-b+az	string	player_panel_use	-	İstifadə et
 values-b+az	string	player_pref	-	Preferred video player
 values-b+az	string	player_settings_always_ask	-	Always ask
 values-b+az	string	player_settings_play_in_app	-	Internal player
@@ -7484,6 +7547,15 @@ values-b+be	string	player_loaded_subtitles	-	Загружана %s
 values-b+be	string	player_mute	-	Выключыць гук
 values-b+be	string	player_notification_channel_description	-	Апавяшчэнне прайгравальніка для кіравання прайграваннем у фонавым рэжыме
 values-b+be	string	player_notification_channel_name	-	Апавяшчэнні прайгравальніка
+values-b+be	string	player_panel_failed	-	збой
+values-b+be	string	player_panel_keeps	-	захоўвае %s
+values-b+be	string	player_panel_on	-	Укл.
+values-b+be	string	player_panel_open	-	Адкрыць
+values-b+be	string	player_panel_quality_profile	-	Профіль якасці
+values-b+be	string	player_panel_quality_unknown	-	якасць невядомая
+values-b+be	string	player_panel_retry_all	-	Паўтарыць усе крыніцы
+values-b+be	string	player_panel_style	-	Стыль субцітраў
+values-b+be	string	player_panel_use	-	Выкарыстаць
 values-b+be	string	player_pref	-	Прыярытэтны прайгравальнік
 values-b+be	string	player_settings_always_ask	-	Заўсёды пытацца
 values-b+be	string	player_settings_play_in_app	-	Убудаваны прайгравальнік
@@ -8452,6 +8524,15 @@ values-b+bg	string	player_loaded_subtitles	-	Заредено %s
 values-b+bg	string	player_mute	-	Без звук
 values-b+bg	string	player_notification_channel_description	-	Известие на плейъра за контролиране на възпроизвеждането от фона
 values-b+bg	string	player_notification_channel_name	-	Известия на плейъра
+values-b+bg	string	player_panel_failed	-	неуспешно
+values-b+bg	string	player_panel_keeps	-	запазва %s
+values-b+bg	string	player_panel_on	-	Вкл.
+values-b+bg	string	player_panel_open	-	Отвори
+values-b+bg	string	player_panel_quality_profile	-	Профил за качество
+values-b+bg	string	player_panel_quality_unknown	-	неизвестно качество
+values-b+bg	string	player_panel_retry_all	-	Опитай всички източници отново
+values-b+bg	string	player_panel_style	-	Стил на субтитрите
+values-b+bg	string	player_panel_use	-	Използвай
 values-b+bg	string	player_pref	-	Предпочитан видео плеър
 values-b+bg	string	player_settings_always_ask	-	Винаги изпращай запитване
 values-b+bg	string	player_settings_play_in_app	-	Вътрешен плеър
@@ -9420,6 +9501,15 @@ values-b+bn	string	player_loaded_subtitles	-	Loaded %s
 values-b+bn	string	player_mute	-	মিউট করুন
 values-b+bn	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+bn	string	player_notification_channel_name	-	Player notifications
+values-b+bn	string	player_panel_failed	-	ব্যর্থ
+values-b+bn	string	player_panel_keeps	-	%s রাখে
+values-b+bn	string	player_panel_on	-	চালু
+values-b+bn	string	player_panel_open	-	খুলুন
+values-b+bn	string	player_panel_quality_profile	-	মানের প্রোফাইল
+values-b+bn	string	player_panel_quality_unknown	-	মান অজানা
+values-b+bn	string	player_panel_retry_all	-	সব উৎস আবার চেষ্টা করুন
+values-b+bn	string	player_panel_style	-	সাবটাইটেলের স্টাইল
+values-b+bn	string	player_panel_use	-	ব্যবহার করুন
 values-b+bn	string	player_pref	-	Preferred video player
 values-b+bn	string	player_settings_always_ask	-	Always ask
 values-b+bn	string	player_settings_play_in_app	-	Internal player
@@ -10401,6 +10491,15 @@ values-b+ca	string	player_loaded_subtitles	-	%s carregat
 values-b+ca	string	player_mute	-	Silencia
 values-b+ca	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+ca	string	player_notification_channel_name	-	Player notifications
+values-b+ca	string	player_panel_failed	-	ha fallat
+values-b+ca	string	player_panel_keeps	-	manté %s
+values-b+ca	string	player_panel_on	-	Activat
+values-b+ca	string	player_panel_open	-	Obre
+values-b+ca	string	player_panel_quality_profile	-	Perfil de qualitat
+values-b+ca	string	player_panel_quality_unknown	-	qualitat desconeguda
+values-b+ca	string	player_panel_retry_all	-	Torna a provar totes les fonts
+values-b+ca	string	player_panel_style	-	Estil dels subtítols
+values-b+ca	string	player_panel_use	-	Fes servir
 values-b+ca	string	player_pref	-	Preferred video player
 values-b+ca	string	player_settings_always_ask	-	Always ask
 values-b+ca	string	player_settings_play_in_app	-	Internal player
@@ -11369,6 +11468,15 @@ values-b+ckb	string	player_loaded_subtitles	-	Loaded %s
 values-b+ckb	string	player_mute	-	بێدەنگکردن
 values-b+ckb	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+ckb	string	player_notification_channel_name	-	Player notifications
+values-b+ckb	string	player_panel_failed	-	شکستی هێنا
+values-b+ckb	string	player_panel_keeps	-	%s دەهێڵێتەوە
+values-b+ckb	string	player_panel_on	-	چالاک
+values-b+ckb	string	player_panel_open	-	کردنەوە
+values-b+ckb	string	player_panel_quality_profile	-	پرۆفایلی کوالیتی
+values-b+ckb	string	player_panel_quality_unknown	-	کوالیتی نەزانراو
+values-b+ckb	string	player_panel_retry_all	-	هەموو سەرچاوەکان دووبارە تاقی بکەرەوە
+values-b+ckb	string	player_panel_style	-	شێوازی ژێرنووس
+values-b+ckb	string	player_panel_use	-	بەکارهێنان
 values-b+ckb	string	player_pref	-	Preferred video player
 values-b+ckb	string	player_settings_always_ask	-	Always ask
 values-b+ckb	string	player_settings_play_in_app	-	Internal player
@@ -12369,6 +12477,15 @@ values-b+cs	string	player_loaded_subtitles	-	Načteno %s
 values-b+cs	string	player_mute	-	Vypnout zvuk
 values-b+cs	string	player_notification_channel_description	-	Oznámení přehrávače pro ovládání přehrávání na pozadí
 values-b+cs	string	player_notification_channel_name	-	Oznámení přehrávače
+values-b+cs	string	player_panel_failed	-	selhalo
+values-b+cs	string	player_panel_keeps	-	zachová %s
+values-b+cs	string	player_panel_on	-	Zapnuto
+values-b+cs	string	player_panel_open	-	Otevřít
+values-b+cs	string	player_panel_quality_profile	-	Profil kvality
+values-b+cs	string	player_panel_quality_unknown	-	neznámá kvalita
+values-b+cs	string	player_panel_retry_all	-	Zkusit znovu všechny zdroje
+values-b+cs	string	player_panel_style	-	Styl titulků
+values-b+cs	string	player_panel_use	-	Použít
 values-b+cs	string	player_pref	-	Preferovaný přehrávač videí
 values-b+cs	string	player_settings_always_ask	-	Vždy se zeptat
 values-b+cs	string	player_settings_play_in_app	-	Interní přehrávač
@@ -13337,6 +13454,15 @@ values-b+de	string	player_loaded_subtitles	-	%s geladen
 values-b+de	string	player_mute	-	Stummschalten
 values-b+de	string	player_notification_channel_description	-	Player-Benachrichtigung zur Steuerung der Hintergrundwiedergabe
 values-b+de	string	player_notification_channel_name	-	Player-Benachrichtigung
+values-b+de	string	player_panel_failed	-	fehlgeschlagen
+values-b+de	string	player_panel_keeps	-	behält %s
+values-b+de	string	player_panel_on	-	An
+values-b+de	string	player_panel_open	-	Öffnen
+values-b+de	string	player_panel_quality_profile	-	Qualitätsprofil
+values-b+de	string	player_panel_quality_unknown	-	Qualität unbekannt
+values-b+de	string	player_panel_retry_all	-	Alle Quellen erneut versuchen
+values-b+de	string	player_panel_style	-	Untertitelstil
+values-b+de	string	player_panel_use	-	Verwenden
 values-b+de	string	player_pref	-	Bevorzugter Videoplayer
 values-b+de	string	player_settings_always_ask	-	Immer fragen
 values-b+de	string	player_settings_play_in_app	-	Interner Player
@@ -14305,6 +14431,15 @@ values-b+el	string	player_loaded_subtitles	-	Φόρτωση %s
 values-b+el	string	player_mute	-	Σίγαση
 values-b+el	string	player_notification_channel_description	-	Η ειδοποίηση παίκτη για τον έλεγχο του playback από το φόντο
 values-b+el	string	player_notification_channel_name	-	Ειδοποίησεις αναπαραγωγής
+values-b+el	string	player_panel_failed	-	απέτυχε
+values-b+el	string	player_panel_keeps	-	κρατά %s
+values-b+el	string	player_panel_on	-	Ενεργό
+values-b+el	string	player_panel_open	-	Άνοιγμα
+values-b+el	string	player_panel_quality_profile	-	Προφίλ ποιότητας
+values-b+el	string	player_panel_quality_unknown	-	άγνωστη ποιότητα
+values-b+el	string	player_panel_retry_all	-	Επανάληψη όλων των πηγών
+values-b+el	string	player_panel_style	-	Στυλ υποτίτλων
+values-b+el	string	player_panel_use	-	Χρήση
 values-b+el	string	player_pref	-	Προτεινόμενο πρόγραμμα αναπαραγωγής
 values-b+el	string	player_settings_always_ask	-	Always ask
 values-b+el	string	player_settings_play_in_app	-	Ενσωματωμένο πρόγραμμα αναπαραγωγής
@@ -15273,6 +15408,15 @@ values-b+eo	string	player_loaded_subtitles	-	Loaded %s
 values-b+eo	string	player_mute	-	Silentigi
 values-b+eo	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+eo	string	player_notification_channel_name	-	Player notifications
+values-b+eo	string	player_panel_failed	-	malsukcesis
+values-b+eo	string	player_panel_keeps	-	konservas %s
+values-b+eo	string	player_panel_on	-	Ŝaltita
+values-b+eo	string	player_panel_open	-	Malfermi
+values-b+eo	string	player_panel_quality_profile	-	Kvalita profilo
+values-b+eo	string	player_panel_quality_unknown	-	nekonata kvalito
+values-b+eo	string	player_panel_retry_all	-	Reprovi ĉiujn fontojn
+values-b+eo	string	player_panel_style	-	Stilo de subtekstoj
+values-b+eo	string	player_panel_use	-	Uzi
 values-b+eo	string	player_pref	-	Preferred video player
 values-b+eo	string	player_settings_always_ask	-	Always ask
 values-b+eo	string	player_settings_play_in_app	-	Internal player
@@ -16257,6 +16401,15 @@ values-b+es	string	player_loaded_subtitles	-	%s Cargado
 values-b+es	string	player_mute	-	Silenciar
 values-b+es	string	player_notification_channel_description	-	La notificación del reproductor para controlar la reproducción en segundo plano
 values-b+es	string	player_notification_channel_name	-	Notificaciones del reproductor
+values-b+es	string	player_panel_failed	-	falló
+values-b+es	string	player_panel_keeps	-	mantiene %s
+values-b+es	string	player_panel_on	-	Activado
+values-b+es	string	player_panel_open	-	Abrir
+values-b+es	string	player_panel_quality_profile	-	Perfil de calidad
+values-b+es	string	player_panel_quality_unknown	-	calidad desconocida
+values-b+es	string	player_panel_retry_all	-	Reintentar todas las fuentes
+values-b+es	string	player_panel_style	-	Estilo de subtítulos
+values-b+es	string	player_panel_use	-	Usar
 values-b+es	string	player_pref	-	Reproductor de video preferido
 values-b+es	string	player_settings_always_ask	-	Preguntar siempre
 values-b+es	string	player_settings_play_in_app	-	Reproductor interno
@@ -17225,6 +17378,15 @@ values-b+fa	string	player_loaded_subtitles	-	Loaded %s
 values-b+fa	string	player_mute	-	بی‌صدا
 values-b+fa	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+fa	string	player_notification_channel_name	-	Player notifications
+values-b+fa	string	player_panel_failed	-	ناموفق
+values-b+fa	string	player_panel_keeps	-	%s را نگه می‌دارد
+values-b+fa	string	player_panel_on	-	روشن
+values-b+fa	string	player_panel_open	-	باز کردن
+values-b+fa	string	player_panel_quality_profile	-	نمایهٔ کیفیت
+values-b+fa	string	player_panel_quality_unknown	-	کیفیت نامشخص
+values-b+fa	string	player_panel_retry_all	-	تلاش دوباره برای همه منابع
+values-b+fa	string	player_panel_style	-	سبک زیرنویس
+values-b+fa	string	player_panel_use	-	استفاده
 values-b+fa	string	player_pref	-	پخش‌کننده ویدئو برگزیده
 values-b+fa	string	player_settings_always_ask	-	Always ask
 values-b+fa	string	player_settings_play_in_app	-	Internal player
@@ -18193,6 +18355,15 @@ values-b+fil	string	player_loaded_subtitles	-	Loaded %s
 values-b+fil	string	player_mute	-	I-mute
 values-b+fil	string	player_notification_channel_description	-	Ang abiso ng player para sa pagkontrol sa pag-playback mula sa background
 values-b+fil	string	player_notification_channel_name	-	Player notifications
+values-b+fil	string	player_panel_failed	-	nabigo
+values-b+fil	string	player_panel_keeps	-	pinapanatili ang %s
+values-b+fil	string	player_panel_on	-	Naka-on
+values-b+fil	string	player_panel_open	-	Buksan
+values-b+fil	string	player_panel_quality_profile	-	Profile ng kalidad
+values-b+fil	string	player_panel_quality_unknown	-	hindi alam ang kalidad
+values-b+fil	string	player_panel_retry_all	-	Subukang muli ang lahat ng source
+values-b+fil	string	player_panel_style	-	Estilo ng subtitle
+values-b+fil	string	player_panel_use	-	Gamitin
 values-b+fil	string	player_pref	-	Preferred video player
 values-b+fil	string	player_settings_always_ask	-	Always ask
 values-b+fil	string	player_settings_play_in_app	-	Internal player
@@ -19177,6 +19348,15 @@ values-b+fr	string	player_loaded_subtitles	-	%s chargé
 values-b+fr	string	player_mute	-	Couper le son
 values-b+fr	string	player_notification_channel_description	-	La notification du lecteur pour contrôler la lecture en arrière-plan
 values-b+fr	string	player_notification_channel_name	-	Notifications du lecteur
+values-b+fr	string	player_panel_failed	-	échec
+values-b+fr	string	player_panel_keeps	-	garde %s
+values-b+fr	string	player_panel_on	-	Activé
+values-b+fr	string	player_panel_open	-	Ouvrir
+values-b+fr	string	player_panel_quality_profile	-	Profil de qualité
+values-b+fr	string	player_panel_quality_unknown	-	qualité inconnue
+values-b+fr	string	player_panel_retry_all	-	Réessayer toutes les sources
+values-b+fr	string	player_panel_style	-	Style des sous-titres
+values-b+fr	string	player_panel_use	-	Utiliser
 values-b+fr	string	player_pref	-	Lecteur vidéo préféré
 values-b+fr	string	player_settings_always_ask	-	Demandez toujours
 values-b+fr	string	player_settings_play_in_app	-	Lecteur interne
@@ -20145,6 +20325,15 @@ values-b+gl	string	player_loaded_subtitles	-	Loaded %s
 values-b+gl	string	player_mute	-	Silenciar
 values-b+gl	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+gl	string	player_notification_channel_name	-	Player notifications
+values-b+gl	string	player_panel_failed	-	fallou
+values-b+gl	string	player_panel_keeps	-	mantén %s
+values-b+gl	string	player_panel_on	-	Activado
+values-b+gl	string	player_panel_open	-	Abrir
+values-b+gl	string	player_panel_quality_profile	-	Perfil de calidade
+values-b+gl	string	player_panel_quality_unknown	-	calidade descoñecida
+values-b+gl	string	player_panel_retry_all	-	Tentar de novo todas as fontes
+values-b+gl	string	player_panel_style	-	Estilo dos subtítulos
+values-b+gl	string	player_panel_use	-	Usar
 values-b+gl	string	player_pref	-	Preferred video player
 values-b+gl	string	player_settings_always_ask	-	Always ask
 values-b+gl	string	player_settings_play_in_app	-	Internal player
@@ -21113,6 +21302,15 @@ values-b+hi	string	player_loaded_subtitles	-	Loaded %s
 values-b+hi	string	player_mute	-	म्यूट करें
 values-b+hi	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+hi	string	player_notification_channel_name	-	Player notifications
+values-b+hi	string	player_panel_failed	-	विफल
+values-b+hi	string	player_panel_keeps	-	%s बनाए रखता है
+values-b+hi	string	player_panel_on	-	चालू
+values-b+hi	string	player_panel_open	-	खोलें
+values-b+hi	string	player_panel_quality_profile	-	गुणवत्ता प्रोफ़ाइल
+values-b+hi	string	player_panel_quality_unknown	-	गुणवत्ता अज्ञात
+values-b+hi	string	player_panel_retry_all	-	सभी स्रोत फिर से आज़माएँ
+values-b+hi	string	player_panel_style	-	सबटाइटल शैली
+values-b+hi	string	player_panel_use	-	उपयोग करें
 values-b+hi	string	player_pref	-	Preferred video player
 values-b+hi	string	player_settings_always_ask	-	Always ask
 values-b+hi	string	player_settings_play_in_app	-	Internal player
@@ -22096,6 +22294,15 @@ values-b+hr	string	player_loaded_subtitles	-	Učitano %s
 values-b+hr	string	player_mute	-	Isključi zvuk
 values-b+hr	string	player_notification_channel_description	-	Obavijest reproduktora za upravljanje reprodukcijom iz pozadine
 values-b+hr	string	player_notification_channel_name	-	Obavijesti reproduktora
+values-b+hr	string	player_panel_failed	-	neuspjelo
+values-b+hr	string	player_panel_keeps	-	zadržava %s
+values-b+hr	string	player_panel_on	-	Uključeno
+values-b+hr	string	player_panel_open	-	Otvori
+values-b+hr	string	player_panel_quality_profile	-	Profil kvalitete
+values-b+hr	string	player_panel_quality_unknown	-	nepoznata kvaliteta
+values-b+hr	string	player_panel_retry_all	-	Ponovi sve izvore
+values-b+hr	string	player_panel_style	-	Stil titlova
+values-b+hr	string	player_panel_use	-	Koristi
 values-b+hr	string	player_pref	-	Preferirani video player
 values-b+hr	string	player_settings_always_ask	-	Uvijek pitaj
 values-b+hr	string	player_settings_play_in_app	-	Interni player
@@ -23064,6 +23271,15 @@ values-b+hu	string	player_loaded_subtitles	-	%s betöltve
 values-b+hu	string	player_mute	-	Némítás
 values-b+hu	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+hu	string	player_notification_channel_name	-	Player notifications
+values-b+hu	string	player_panel_failed	-	sikertelen
+values-b+hu	string	player_panel_keeps	-	megtartja: %s
+values-b+hu	string	player_panel_on	-	Be
+values-b+hu	string	player_panel_open	-	Megnyitás
+values-b+hu	string	player_panel_quality_profile	-	Minőségi profil
+values-b+hu	string	player_panel_quality_unknown	-	ismeretlen minőség
+values-b+hu	string	player_panel_retry_all	-	Összes forrás újrapróbálása
+values-b+hu	string	player_panel_style	-	Feliratstílus
+values-b+hu	string	player_panel_use	-	Használat
 values-b+hu	string	player_pref	-	Előnyben részesített videolejátszó
 values-b+hu	string	player_settings_always_ask	-	Mindig kérdezzen
 values-b+hu	string	player_settings_play_in_app	-	Belső lejátszó
@@ -24016,6 +24232,15 @@ values-b+in	string	player_loaded_subtitles	-	Memuat %s
 values-b+in	string	player_mute	-	Bisukan
 values-b+in	string	player_notification_channel_description	-	Pemberitahuan pemutar untuk mengontrol pemutaran dari latar belakang
 values-b+in	string	player_notification_channel_name	-	Notifikasi pemain
+values-b+in	string	player_panel_failed	-	gagal
+values-b+in	string	player_panel_keeps	-	mempertahankan %s
+values-b+in	string	player_panel_on	-	Aktif
+values-b+in	string	player_panel_open	-	Buka
+values-b+in	string	player_panel_quality_profile	-	Profil kualitas
+values-b+in	string	player_panel_quality_unknown	-	kualitas tidak diketahui
+values-b+in	string	player_panel_retry_all	-	Coba lagi semua sumber
+values-b+in	string	player_panel_style	-	Gaya subtitel
+values-b+in	string	player_panel_use	-	Gunakan
 values-b+in	string	player_pref	-	Pemutar video utama
 values-b+in	string	player_settings_always_ask	-	Selalu tanya
 values-b+in	string	player_settings_play_in_app	-	Pemutar Bawaan
@@ -25000,6 +25225,15 @@ values-b+it	string	player_loaded_subtitles	-	Caricato %s
 values-b+it	string	player_mute	-	Disattiva audio
 values-b+it	string	player_notification_channel_description	-	La notifica del lettore per controllare la riproduzione in background
 values-b+it	string	player_notification_channel_name	-	Notifiche lettore
+values-b+it	string	player_panel_failed	-	non riuscito
+values-b+it	string	player_panel_keeps	-	mantiene %s
+values-b+it	string	player_panel_on	-	Attivo
+values-b+it	string	player_panel_open	-	Apri
+values-b+it	string	player_panel_quality_profile	-	Profilo qualità
+values-b+it	string	player_panel_quality_unknown	-	qualità sconosciuta
+values-b+it	string	player_panel_retry_all	-	Riprova tutte le fonti
+values-b+it	string	player_panel_style	-	Stile sottotitoli
+values-b+it	string	player_panel_use	-	Usa
 values-b+it	string	player_pref	-	Video lettore preferito
 values-b+it	string	player_settings_always_ask	-	Chiedi sempre
 values-b+it	string	player_settings_play_in_app	-	Lettore interno
@@ -25981,6 +26215,15 @@ values-b+iw	string	player_loaded_subtitles	-	נטען %s
 values-b+iw	string	player_mute	-	השתקה
 values-b+iw	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+iw	string	player_notification_channel_name	-	Player notifications
+values-b+iw	string	player_panel_failed	-	נכשל
+values-b+iw	string	player_panel_keeps	-	שומר על %s
+values-b+iw	string	player_panel_on	-	פועל
+values-b+iw	string	player_panel_open	-	פתיחה
+values-b+iw	string	player_panel_quality_profile	-	פרופיל איכות
+values-b+iw	string	player_panel_quality_unknown	-	איכות לא ידועה
+values-b+iw	string	player_panel_retry_all	-	לנסות שוב את כל המקורות
+values-b+iw	string	player_panel_style	-	סגנון כתוביות
+values-b+iw	string	player_panel_use	-	שימוש
 values-b+iw	string	player_pref	-	נגן וידאו מועדף
 values-b+iw	string	player_settings_always_ask	-	Always ask
 values-b+iw	string	player_settings_play_in_app	-	נגן פנימי
@@ -26933,6 +27176,15 @@ values-b+ja	string	player_loaded_subtitles	-	%s を読み込みました
 values-b+ja	string	player_mute	-	ミュート
 values-b+ja	string	player_notification_channel_description	-	バックグラウンドから再生を制御するためのプレーヤー通知
 values-b+ja	string	player_notification_channel_name	-	プレーヤー通知
+values-b+ja	string	player_panel_failed	-	失敗
+values-b+ja	string	player_panel_keeps	-	%s を維持
+values-b+ja	string	player_panel_on	-	オン
+values-b+ja	string	player_panel_open	-	開く
+values-b+ja	string	player_panel_quality_profile	-	画質プロファイル
+values-b+ja	string	player_panel_quality_unknown	-	画質不明
+values-b+ja	string	player_panel_retry_all	-	すべてのソースを再試行
+values-b+ja	string	player_panel_style	-	字幕スタイル
+values-b+ja	string	player_panel_use	-	使用
 values-b+ja	string	player_pref	-	優先ビデオプレーヤー
 values-b+ja	string	player_settings_always_ask	-	常に尋ねること
 values-b+ja	string	player_settings_play_in_app	-	内部プレーヤー
@@ -27901,6 +28153,15 @@ values-b+kn	string	player_loaded_subtitles	-	Loaded %s
 values-b+kn	string	player_mute	-	ಮ್ಯೂಟ್ ಮಾಡಿ
 values-b+kn	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+kn	string	player_notification_channel_name	-	Player notifications
+values-b+kn	string	player_panel_failed	-	ವಿಫಲ
+values-b+kn	string	player_panel_keeps	-	%s ಉಳಿಸುತ್ತದೆ
+values-b+kn	string	player_panel_on	-	ಆನ್
+values-b+kn	string	player_panel_open	-	ತೆರೆಯಿರಿ
+values-b+kn	string	player_panel_quality_profile	-	ಗುಣಮಟ್ಟದ ಪ್ರೊಫೈಲ್
+values-b+kn	string	player_panel_quality_unknown	-	ಗುಣಮಟ್ಟ ಅಜ್ಞಾತ
+values-b+kn	string	player_panel_retry_all	-	ಎಲ್ಲಾ ಮೂಲಗಳನ್ನು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ
+values-b+kn	string	player_panel_style	-	ಉಪಶೀರ್ಷಿಕೆ ಶೈಲಿ
+values-b+kn	string	player_panel_use	-	ಬಳಸಿ
 values-b+kn	string	player_pref	-	Preferred video player
 values-b+kn	string	player_settings_always_ask	-	Always ask
 values-b+kn	string	player_settings_play_in_app	-	Internal player
@@ -28854,6 +29115,15 @@ values-b+ko	string	player_loaded_subtitles	-	로드됨 %s
 values-b+ko	string	player_mute	-	음소거
 values-b+ko	string	player_notification_channel_description	-	백그라운드에서 재생을 제어하기 위한 플레이어 알림
 values-b+ko	string	player_notification_channel_name	-	플레이어 알림
+values-b+ko	string	player_panel_failed	-	실패
+values-b+ko	string	player_panel_keeps	-	%s 유지
+values-b+ko	string	player_panel_on	-	켜짐
+values-b+ko	string	player_panel_open	-	열기
+values-b+ko	string	player_panel_quality_profile	-	화질 프로필
+values-b+ko	string	player_panel_quality_unknown	-	화질 알 수 없음
+values-b+ko	string	player_panel_retry_all	-	모든 소스 다시 시도
+values-b+ko	string	player_panel_style	-	자막 스타일
+values-b+ko	string	player_panel_use	-	사용
 values-b+ko	string	player_pref	-	선호하는 동영상 플레이어
 values-b+ko	string	player_settings_always_ask	-	항상 묻기
 values-b+ko	string	player_settings_play_in_app	-	내부 플레이어
@@ -29848,6 +30118,15 @@ values-b+lt	string	player_loaded_subtitles	-	Loaded %s
 values-b+lt	string	player_mute	-	Nutildyti
 values-b+lt	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+lt	string	player_notification_channel_name	-	Player notifications
+values-b+lt	string	player_panel_failed	-	nepavyko
+values-b+lt	string	player_panel_keeps	-	išlaiko %s
+values-b+lt	string	player_panel_on	-	Įjungta
+values-b+lt	string	player_panel_open	-	Atidaryti
+values-b+lt	string	player_panel_quality_profile	-	Kokybės profilis
+values-b+lt	string	player_panel_quality_unknown	-	kokybė nežinoma
+values-b+lt	string	player_panel_retry_all	-	Bandyti visus šaltinius iš naujo
+values-b+lt	string	player_panel_style	-	Subtitrų stilius
+values-b+lt	string	player_panel_use	-	Naudoti
 values-b+lt	string	player_pref	-	Preferred video player
 values-b+lt	string	player_settings_always_ask	-	Always ask
 values-b+lt	string	player_settings_play_in_app	-	Integruotas grotuvas
@@ -30830,6 +31109,15 @@ values-b+lv	string	player_loaded_subtitles	-	Ielādēti %s
 values-b+lv	string	player_mute	-	Izslēgt skaņu
 values-b+lv	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+lv	string	player_notification_channel_name	-	Player notifications
+values-b+lv	string	player_panel_failed	-	neizdevās
+values-b+lv	string	player_panel_keeps	-	saglabā %s
+values-b+lv	string	player_panel_on	-	Ieslēgts
+values-b+lv	string	player_panel_open	-	Atvērt
+values-b+lv	string	player_panel_quality_profile	-	Kvalitātes profils
+values-b+lv	string	player_panel_quality_unknown	-	kvalitāte nezināma
+values-b+lv	string	player_panel_retry_all	-	Mēģināt visus avotus vēlreiz
+values-b+lv	string	player_panel_style	-	Subtitru stils
+values-b+lv	string	player_panel_use	-	Izmantot
 values-b+lv	string	player_pref	-	Vēlamais video atskaņotājs
 values-b+lv	string	player_settings_always_ask	-	Always ask
 values-b+lv	string	player_settings_play_in_app	-	Iekšējais atskaņotājs
@@ -31798,6 +32086,15 @@ values-b+mk	string	player_loaded_subtitles	-	Вчитан %s
 values-b+mk	string	player_mute	-	Исклучи звук
 values-b+mk	string	player_notification_channel_description	-	Известување од плеерот за контрола на репродукцијата од позадина
 values-b+mk	string	player_notification_channel_name	-	Известувања од плеерот
+values-b+mk	string	player_panel_failed	-	неуспешно
+values-b+mk	string	player_panel_keeps	-	задржува %s
+values-b+mk	string	player_panel_on	-	Вклучено
+values-b+mk	string	player_panel_open	-	Отвори
+values-b+mk	string	player_panel_quality_profile	-	Профил за квалитет
+values-b+mk	string	player_panel_quality_unknown	-	непознат квалитет
+values-b+mk	string	player_panel_retry_all	-	Обиди ги сите извори повторно
+values-b+mk	string	player_panel_style	-	Стил на преводот
+values-b+mk	string	player_panel_use	-	Користи
 values-b+mk	string	player_pref	-	Префериран видео плеер
 values-b+mk	string	player_settings_always_ask	-	Секогаш прашувај
 values-b+mk	string	player_settings_play_in_app	-	Внатрешен плеер
@@ -32766,6 +33063,15 @@ values-b+ml	string	player_loaded_subtitles	-	Loaded %s
 values-b+ml	string	player_mute	-	നിശബ്‌ദമാക്കുക
 values-b+ml	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+ml	string	player_notification_channel_name	-	Player notifications
+values-b+ml	string	player_panel_failed	-	പരാജയപ്പെട്ടു
+values-b+ml	string	player_panel_keeps	-	%s നിലനിർത്തുന്നു
+values-b+ml	string	player_panel_on	-	ഓൺ
+values-b+ml	string	player_panel_open	-	തുറക്കുക
+values-b+ml	string	player_panel_quality_profile	-	ഗുണനിലവാര പ്രൊഫൈൽ
+values-b+ml	string	player_panel_quality_unknown	-	ഗുണനിലവാരം അറിയില്ല
+values-b+ml	string	player_panel_retry_all	-	എല്ലാ ഉറവിടങ്ങളും വീണ്ടും ശ്രമിക്കുക
+values-b+ml	string	player_panel_style	-	സബ്‌ടൈറ്റിൽ ശൈലി
+values-b+ml	string	player_panel_use	-	ഉപയോഗിക്കുക
 values-b+ml	string	player_pref	-	Preferred video player
 values-b+ml	string	player_settings_always_ask	-	Always ask
 values-b+ml	string	player_settings_play_in_app	-	Internal player
@@ -33721,6 +34027,15 @@ values-b+ms	string	player_loaded_subtitles	-	Loaded %s
 values-b+ms	string	player_mute	-	Redam
 values-b+ms	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+ms	string	player_notification_channel_name	-	Player notifications
+values-b+ms	string	player_panel_failed	-	gagal
+values-b+ms	string	player_panel_keeps	-	kekalkan %s
+values-b+ms	string	player_panel_on	-	Hidup
+values-b+ms	string	player_panel_open	-	Buka
+values-b+ms	string	player_panel_quality_profile	-	Profil kualiti
+values-b+ms	string	player_panel_quality_unknown	-	kualiti tidak diketahui
+values-b+ms	string	player_panel_retry_all	-	Cuba semula semua sumber
+values-b+ms	string	player_panel_style	-	Gaya sari kata
+values-b+ms	string	player_panel_use	-	Guna
 values-b+ms	string	player_pref	-	Preferred video player
 values-b+ms	string	player_settings_always_ask	-	Always ask
 values-b+ms	string	player_settings_play_in_app	-	Pemain dalaman
@@ -34728,6 +35043,15 @@ values-b+mt	string	player_loaded_subtitles	-	Loaded %s
 values-b+mt	string	player_mute	-	Itfi l-ħoss
 values-b+mt	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+mt	string	player_notification_channel_name	-	Player notifications
+values-b+mt	string	player_panel_failed	-	falla
+values-b+mt	string	player_panel_keeps	-	iżomm %s
+values-b+mt	string	player_panel_on	-	Mixgħul
+values-b+mt	string	player_panel_open	-	Iftaħ
+values-b+mt	string	player_panel_quality_profile	-	Profil tal-kwalità
+values-b+mt	string	player_panel_quality_unknown	-	kwalità mhux magħrufa
+values-b+mt	string	player_panel_retry_all	-	Erġa' pprova s-sorsi kollha
+values-b+mt	string	player_panel_style	-	Stil tas-sottotitli
+values-b+mt	string	player_panel_use	-	Uża
 values-b+mt	string	player_pref	-	Preferred video player
 values-b+mt	string	player_settings_always_ask	-	Always ask
 values-b+mt	string	player_settings_play_in_app	-	Internal player
@@ -35683,6 +36007,15 @@ values-b+my	string	player_loaded_subtitles	-	တင်ပြီး %s
 values-b+my	string	player_mute	-	အသံပိတ်ရန်
 values-b+my	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+my	string	player_notification_channel_name	-	Player notifications
+values-b+my	string	player_panel_failed	-	မအောင်မြင်ပါ
+values-b+my	string	player_panel_keeps	-	%s ကို ထိန်းထားသည်
+values-b+my	string	player_panel_on	-	ဖွင့်
+values-b+my	string	player_panel_open	-	ဖွင့်ရန်
+values-b+my	string	player_panel_quality_profile	-	အရည်အသွေး ပရိုဖိုင်
+values-b+my	string	player_panel_quality_unknown	-	အရည်အသွေး မသိ
+values-b+my	string	player_panel_retry_all	-	ရင်းမြစ်အားလုံး ထပ်စမ်းရန်
+values-b+my	string	player_panel_style	-	စာတန်းထိုး ပုံစံ
+values-b+my	string	player_panel_use	-	သုံးရန်
 values-b+my	string	player_pref	-	ဦးစားပေး ဗီဒီယိုဖွင့်စက်
 values-b+my	string	player_settings_always_ask	-	Always ask
 values-b+my	string	player_settings_play_in_app	-	ဖုန်းတွင်းကြည့်ရှုမှု
@@ -36651,6 +36984,15 @@ values-b+ne	string	player_loaded_subtitles	-	Loaded %s
 values-b+ne	string	player_mute	-	म्यूट गर्नुहोस्
 values-b+ne	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+ne	string	player_notification_channel_name	-	Player notifications
+values-b+ne	string	player_panel_failed	-	असफल
+values-b+ne	string	player_panel_keeps	-	%s राख्छ
+values-b+ne	string	player_panel_on	-	अन
+values-b+ne	string	player_panel_open	-	खोल्नुहोस्
+values-b+ne	string	player_panel_quality_profile	-	गुणस्तर प्रोफाइल
+values-b+ne	string	player_panel_quality_unknown	-	गुणस्तर अज्ञात
+values-b+ne	string	player_panel_retry_all	-	सबै स्रोत फेरि प्रयास गर्नुहोस्
+values-b+ne	string	player_panel_style	-	सबटाइटल शैली
+values-b+ne	string	player_panel_use	-	प्रयोग गर्नुहोस्
 values-b+ne	string	player_pref	-	Preferred video player
 values-b+ne	string	player_settings_always_ask	-	Always ask
 values-b+ne	string	player_settings_play_in_app	-	Internal player
@@ -37619,6 +37961,15 @@ values-b+nl	string	player_loaded_subtitles	-	Geladen %s
 values-b+nl	string	player_mute	-	Dempen
 values-b+nl	string	player_notification_channel_description	-	De speler melding om de kijkervaring van de achtergrond de besturen
 values-b+nl	string	player_notification_channel_name	-	Speler meldingen
+values-b+nl	string	player_panel_failed	-	mislukt
+values-b+nl	string	player_panel_keeps	-	behoudt %s
+values-b+nl	string	player_panel_on	-	Aan
+values-b+nl	string	player_panel_open	-	Openen
+values-b+nl	string	player_panel_quality_profile	-	Kwaliteitsprofiel
+values-b+nl	string	player_panel_quality_unknown	-	kwaliteit onbekend
+values-b+nl	string	player_panel_retry_all	-	Alle bronnen opnieuw proberen
+values-b+nl	string	player_panel_style	-	Ondertitelstijl
+values-b+nl	string	player_panel_use	-	Gebruiken
 values-b+nl	string	player_pref	-	Gewenste videospeler
 values-b+nl	string	player_settings_always_ask	-	Vraag altijd
 values-b+nl	string	player_settings_play_in_app	-	Interne speler
@@ -38587,6 +38938,15 @@ values-b+nn	string	player_loaded_subtitles	-	Loaded %s
 values-b+nn	string	player_mute	-	Slå av lyd
 values-b+nn	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+nn	string	player_notification_channel_name	-	Player notifications
+values-b+nn	string	player_panel_failed	-	feila
+values-b+nn	string	player_panel_keeps	-	held på %s
+values-b+nn	string	player_panel_on	-	På
+values-b+nn	string	player_panel_open	-	Opne
+values-b+nn	string	player_panel_quality_profile	-	Kvalitetsprofil
+values-b+nn	string	player_panel_quality_unknown	-	ukjend kvalitet
+values-b+nn	string	player_panel_retry_all	-	Prøv alle kjeldene på nytt
+values-b+nn	string	player_panel_style	-	Stil for undertekstar
+values-b+nn	string	player_panel_use	-	Bruk
 values-b+nn	string	player_pref	-	Preferred video player
 values-b+nn	string	player_settings_always_ask	-	Always ask
 values-b+nn	string	player_settings_play_in_app	-	Internal player
@@ -39555,6 +39915,15 @@ values-b+no	string	player_loaded_subtitles	-	Lastet inn %s
 values-b+no	string	player_mute	-	Slå av lyden
 values-b+no	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+no	string	player_notification_channel_name	-	Player notifications
+values-b+no	string	player_panel_failed	-	feilet
+values-b+no	string	player_panel_keeps	-	beholder %s
+values-b+no	string	player_panel_on	-	På
+values-b+no	string	player_panel_open	-	Åpne
+values-b+no	string	player_panel_quality_profile	-	Kvalitetsprofil
+values-b+no	string	player_panel_quality_unknown	-	ukjent kvalitet
+values-b+no	string	player_panel_retry_all	-	Prøv alle kildene på nytt
+values-b+no	string	player_panel_style	-	Undertekststil
+values-b+no	string	player_panel_use	-	Bruk
 values-b+no	string	player_pref	-	Foretrukket videospiller
 values-b+no	string	player_settings_always_ask	-	Always ask
 values-b+no	string	player_settings_play_in_app	-	Intern spiller
@@ -40523,6 +40892,15 @@ values-b+or	string	player_loaded_subtitles	-	Loaded %s
 values-b+or	string	player_mute	-	ମ୍ୟୁଟ କରନ୍ତୁ
 values-b+or	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+or	string	player_notification_channel_name	-	Player notifications
+values-b+or	string	player_panel_failed	-	ବିଫଳ
+values-b+or	string	player_panel_keeps	-	%s ରଖେ
+values-b+or	string	player_panel_on	-	ଅନ୍
+values-b+or	string	player_panel_open	-	ଖୋଲନ୍ତୁ
+values-b+or	string	player_panel_quality_profile	-	ଗୁଣବତ୍ତା ପ୍ରୋଫାଇଲ୍
+values-b+or	string	player_panel_quality_unknown	-	ଗୁଣବତ୍ତା ଅଜଣା
+values-b+or	string	player_panel_retry_all	-	ସମସ୍ତ ଉତ୍ସ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ
+values-b+or	string	player_panel_style	-	ସବଟାଇଟଲ୍ ଶୈଳୀ
+values-b+or	string	player_panel_use	-	ବ୍ୟବହାର କରନ୍ତୁ
 values-b+or	string	player_pref	-	Preferred video player
 values-b+or	string	player_settings_always_ask	-	Always ask
 values-b+or	string	player_settings_play_in_app	-	ଅନ୍ତଃ-ଚାଳକ
@@ -41523,6 +41901,15 @@ values-b+pl	string	player_loaded_subtitles	-	Załadowano %s
 values-b+pl	string	player_mute	-	Wycisz
 values-b+pl	string	player_notification_channel_description	-	Powiadomienie odtwarzacza umożliwiające sterowanie odtwarzaniem w tle
 values-b+pl	string	player_notification_channel_name	-	Powiadomienia odtwarzacza
+values-b+pl	string	player_panel_failed	-	błąd
+values-b+pl	string	player_panel_keeps	-	zachowuje %s
+values-b+pl	string	player_panel_on	-	Wł.
+values-b+pl	string	player_panel_open	-	Otwórz
+values-b+pl	string	player_panel_quality_profile	-	Profil jakości
+values-b+pl	string	player_panel_quality_unknown	-	nieznana jakość
+values-b+pl	string	player_panel_retry_all	-	Ponów wszystkie źródła
+values-b+pl	string	player_panel_style	-	Styl napisów
+values-b+pl	string	player_panel_use	-	Użyj
 values-b+pl	string	player_pref	-	Preferowany odtwarzacz wideo
 values-b+pl	string	player_settings_always_ask	-	Zawsze pytaj
 values-b+pl	string	player_settings_play_in_app	-	Odtwarzacz wewnętrzny
@@ -42507,6 +42894,15 @@ values-b+pt	string	player_loaded_subtitles	-	%s carregada
 values-b+pt	string	player_mute	-	Desativar som
 values-b+pt	string	player_notification_channel_description	-	Notificação do player para controlar a reprodução em segundo plano
 values-b+pt	string	player_notification_channel_name	-	Notificações de reprodução
+values-b+pt	string	player_panel_failed	-	falhou
+values-b+pt	string	player_panel_keeps	-	mantém %s
+values-b+pt	string	player_panel_on	-	Ativado
+values-b+pt	string	player_panel_open	-	Abrir
+values-b+pt	string	player_panel_quality_profile	-	Perfil de qualidade
+values-b+pt	string	player_panel_quality_unknown	-	qualidade desconhecida
+values-b+pt	string	player_panel_retry_all	-	Tentar novamente todas as fontes
+values-b+pt	string	player_panel_style	-	Estilo das legendas
+values-b+pt	string	player_panel_use	-	Usar
 values-b+pt	string	player_pref	-	Player de vídeo preferido
 values-b+pt	string	player_settings_always_ask	-	Sempre perguntar
 values-b+pt	string	player_settings_play_in_app	-	Player interno
@@ -43491,6 +43887,15 @@ values-b+pt+BR	string	player_loaded_subtitles	-	%s carregada
 values-b+pt+BR	string	player_mute	-	Desativar som
 values-b+pt+BR	string	player_notification_channel_description	-	Notificação do player para controlar a reprodução em segundo plano
 values-b+pt+BR	string	player_notification_channel_name	-	Notificações de reprodução
+values-b+pt+BR	string	player_panel_failed	-	falhou
+values-b+pt+BR	string	player_panel_keeps	-	mantém %s
+values-b+pt+BR	string	player_panel_on	-	Ativado
+values-b+pt+BR	string	player_panel_open	-	Abrir
+values-b+pt+BR	string	player_panel_quality_profile	-	Perfil de qualidade
+values-b+pt+BR	string	player_panel_quality_unknown	-	qualidade desconhecida
+values-b+pt+BR	string	player_panel_retry_all	-	Tentar todas as fontes de novo
+values-b+pt+BR	string	player_panel_style	-	Estilo das legendas
+values-b+pt+BR	string	player_panel_use	-	Usar
 values-b+pt+BR	string	player_pref	-	Player de vídeo preferido
 values-b+pt+BR	string	player_settings_always_ask	-	Perguntar sempre
 values-b+pt+BR	string	player_settings_play_in_app	-	Player interno
@@ -44446,6 +44851,15 @@ values-b+qt	string	player_loaded_subtitles	-	oooohh %s
 values-b+qt	string	player_mute	-	ooh oh
 values-b+qt	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+qt	string	player_notification_channel_name	-	Player notifications
+values-b+qt	string	player_panel_failed	-	aagh
+values-b+qt	string	player_panel_keeps	-	ooh %s
+values-b+qt	string	player_panel_on	-	Ook
+values-b+qt	string	player_panel_open	-	Aah
+values-b+qt	string	player_panel_quality_profile	-	Oohh aagh
+values-b+qt	string	player_panel_quality_unknown	-	oohh uuk
+values-b+qt	string	player_panel_retry_all	-	Aagh oohh uuk
+values-b+qt	string	player_panel_style	-	Oohh aak
+values-b+qt	string	player_panel_use	-	Uuk
 values-b+qt	string	player_pref	-	aaaagggah uuugg uuuugg
 values-b+qt	string	player_settings_always_ask	-	Always ask
 values-b+qt	string	player_settings_play_in_app	-	aaaagggh uuuugg
@@ -45427,6 +45841,15 @@ values-b+ro	string	player_loaded_subtitles	-	A fost încărcat %s
 values-b+ro	string	player_mute	-	Dezactivează sunetul
 values-b+ro	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+ro	string	player_notification_channel_name	-	Player notifications
+values-b+ro	string	player_panel_failed	-	eșuat
+values-b+ro	string	player_panel_keeps	-	păstrează %s
+values-b+ro	string	player_panel_on	-	Activat
+values-b+ro	string	player_panel_open	-	Deschide
+values-b+ro	string	player_panel_quality_profile	-	Profil de calitate
+values-b+ro	string	player_panel_quality_unknown	-	calitate necunoscută
+values-b+ro	string	player_panel_retry_all	-	Reîncearcă toate sursele
+values-b+ro	string	player_panel_style	-	Stilul subtitrărilor
+values-b+ro	string	player_panel_use	-	Folosește
 values-b+ro	string	player_pref	-	Player video preferat
 values-b+ro	string	player_settings_always_ask	-	Always ask
 values-b+ro	string	player_settings_play_in_app	-	Player intern
@@ -46427,6 +46850,15 @@ values-b+ru	string	player_loaded_subtitles	-	Загружено %s
 values-b+ru	string	player_mute	-	Выключить звук
 values-b+ru	string	player_notification_channel_description	-	Уведомление проигрывателя для управления воспроизведением в фоновом режиме
 values-b+ru	string	player_notification_channel_name	-	Уведомления плеера
+values-b+ru	string	player_panel_failed	-	сбой
+values-b+ru	string	player_panel_keeps	-	сохраняет %s
+values-b+ru	string	player_panel_on	-	Вкл.
+values-b+ru	string	player_panel_open	-	Открыть
+values-b+ru	string	player_panel_quality_profile	-	Профиль качества
+values-b+ru	string	player_panel_quality_unknown	-	качество неизвестно
+values-b+ru	string	player_panel_retry_all	-	Повторить все источники
+values-b+ru	string	player_panel_style	-	Стиль субтитров
+values-b+ru	string	player_panel_use	-	Использовать
 values-b+ru	string	player_pref	-	Предпочитаемый видеоплеер
 values-b+ru	string	player_settings_always_ask	-	Спрашивать всегда
 values-b+ru	string	player_settings_play_in_app	-	Внутренний проигрыватель
@@ -47421,6 +47853,15 @@ values-b+sk	string	player_loaded_subtitles	-	Načítané %s
 values-b+sk	string	player_mute	-	Vypnúť zvuk
 values-b+sk	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+sk	string	player_notification_channel_name	-	Player notifications
+values-b+sk	string	player_panel_failed	-	zlyhalo
+values-b+sk	string	player_panel_keeps	-	zachová %s
+values-b+sk	string	player_panel_on	-	Zapnuté
+values-b+sk	string	player_panel_open	-	Otvoriť
+values-b+sk	string	player_panel_quality_profile	-	Profil kvality
+values-b+sk	string	player_panel_quality_unknown	-	neznáma kvalita
+values-b+sk	string	player_panel_retry_all	-	Skúsiť znova všetky zdroje
+values-b+sk	string	player_panel_style	-	Štýl titulkov
+values-b+sk	string	player_panel_use	-	Použiť
 values-b+sk	string	player_pref	-	Preferred video player
 values-b+sk	string	player_settings_always_ask	-	Always ask
 values-b+sk	string	player_settings_play_in_app	-	Internal player
@@ -48389,6 +48830,15 @@ values-b+so	string	player_loaded_subtitles	-	Waxa laso kiciyey %s
 values-b+so	string	player_mute	-	Aamusi
 values-b+so	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+so	string	player_notification_channel_name	-	Player notifications
+values-b+so	string	player_panel_failed	-	fashilay
+values-b+so	string	player_panel_keeps	-	wuxuu hayaa %s
+values-b+so	string	player_panel_on	-	Shidan
+values-b+so	string	player_panel_open	-	Fur
+values-b+so	string	player_panel_quality_profile	-	Astaanta tayada
+values-b+so	string	player_panel_quality_unknown	-	tayada lama yaqaan
+values-b+so	string	player_panel_retry_all	-	Isku day mar kale dhammaan ilaha
+values-b+so	string	player_panel_style	-	Qaabka qoraalka hoose
+values-b+so	string	player_panel_use	-	Isticmaal
 values-b+so	string	player_pref	-	Muqaal daaraha aad doorbiddo
 values-b+so	string	player_settings_always_ask	-	Always ask
 values-b+so	string	player_settings_play_in_app	-	Muqaal daaraha appka
@@ -49357,6 +49807,15 @@ values-b+sq	string	player_loaded_subtitles	-	U ngarkua %s
 values-b+sq	string	player_mute	-	Hiq zërin
 values-b+sq	string	player_notification_channel_description	-	Njoftimi për kontrollin e luajtjes nga sfondi
 values-b+sq	string	player_notification_channel_name	-	Njoftimet e luajtësit
+values-b+sq	string	player_panel_failed	-	dështoi
+values-b+sq	string	player_panel_keeps	-	ruan %s
+values-b+sq	string	player_panel_on	-	Aktiv
+values-b+sq	string	player_panel_open	-	Hap
+values-b+sq	string	player_panel_quality_profile	-	Profili i cilësisë
+values-b+sq	string	player_panel_quality_unknown	-	cilësi e panjohur
+values-b+sq	string	player_panel_retry_all	-	Riprovo të gjitha burimet
+values-b+sq	string	player_panel_style	-	Stili i titrave
+values-b+sq	string	player_panel_use	-	Përdor
 values-b+sq	string	player_pref	-	Luajtësi i preferuar i videove
 values-b+sq	string	player_settings_always_ask	-	Pyet gjithmonë
 values-b+sq	string	player_settings_play_in_app	-	Luajtësi i integruar
@@ -50325,6 +50784,15 @@ values-b+sv	string	player_loaded_subtitles	-	Laddat %s
 values-b+sv	string	player_mute	-	Stäng av ljudet
 values-b+sv	string	player_notification_channel_description	-	Spelarnotisen för att styra uppspelningen i bakgrunden
 values-b+sv	string	player_notification_channel_name	-	Spelarnotiser
+values-b+sv	string	player_panel_failed	-	misslyckades
+values-b+sv	string	player_panel_keeps	-	behåller %s
+values-b+sv	string	player_panel_on	-	På
+values-b+sv	string	player_panel_open	-	Öppna
+values-b+sv	string	player_panel_quality_profile	-	Kvalitetsprofil
+values-b+sv	string	player_panel_quality_unknown	-	okänd kvalitet
+values-b+sv	string	player_panel_retry_all	-	Försök med alla källor igen
+values-b+sv	string	player_panel_style	-	Undertextstil
+values-b+sv	string	player_panel_use	-	Använd
 values-b+sv	string	player_pref	-	Önskad videospelare
 values-b+sv	string	player_settings_always_ask	-	Fråga alltid
 values-b+sv	string	player_settings_play_in_app	-	Intern spelare
@@ -51293,6 +51761,15 @@ values-b+ta	string	player_loaded_subtitles	-	ஏற்றப்பட்ட %s
 values-b+ta	string	player_mute	-	ஒலியடக்கு
 values-b+ta	string	player_notification_channel_description	-	பின்னணியில் இருந்து பின்னணியைக் கட்டுப்படுத்துவதற்கான பிளேயர் அறிவிப்பு
 values-b+ta	string	player_notification_channel_name	-	பிளேயர் அறிவிப்புகள்
+values-b+ta	string	player_panel_failed	-	தோல்வி
+values-b+ta	string	player_panel_keeps	-	%s ஐத் தக்கவைக்கிறது
+values-b+ta	string	player_panel_on	-	இயக்கம்
+values-b+ta	string	player_panel_open	-	திற
+values-b+ta	string	player_panel_quality_profile	-	தர சுயவிவரம்
+values-b+ta	string	player_panel_quality_unknown	-	தரம் தெரியவில்லை
+values-b+ta	string	player_panel_retry_all	-	எல்லா மூலங்களையும் மீண்டும் முயலவும்
+values-b+ta	string	player_panel_style	-	வசன நடை
+values-b+ta	string	player_panel_use	-	பயன்படுத்து
 values-b+ta	string	player_pref	-	விருப்பமான வீடியோ பிளேயர்
 values-b+ta	string	player_settings_always_ask	-	எப்போதும் கேளுங்கள்
 values-b+ta	string	player_settings_play_in_app	-	உள் வீரர்
@@ -52261,6 +52738,15 @@ values-b+ti	string	player_loaded_subtitles	-	Loaded %s
 values-b+ti	string	player_mute	-	ድምጺ ኣጥፍእ
 values-b+ti	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+ti	string	player_notification_channel_name	-	Player notifications
+values-b+ti	string	player_panel_failed	-	ፈሺሉ
+values-b+ti	string	player_panel_keeps	-	%s ይሕዝ
+values-b+ti	string	player_panel_on	-	ክፉት
+values-b+ti	string	player_panel_open	-	ክፈት
+values-b+ti	string	player_panel_quality_profile	-	ናይ ዓይነት መገለጺ
+values-b+ti	string	player_panel_quality_unknown	-	ዓይነት ኣይፍለጥን
+values-b+ti	string	player_panel_retry_all	-	ኩሎም ምንጭታት ደጊምካ ፈትን
+values-b+ti	string	player_panel_style	-	ቅዲ ንኡስ ጽሑፍ
+values-b+ti	string	player_panel_use	-	ተጠቐም
 values-b+ti	string	player_pref	-	Preferred video player
 values-b+ti	string	player_settings_always_ask	-	Always ask
 values-b+ti	string	player_settings_play_in_app	-	Internal player
@@ -53229,6 +53715,15 @@ values-b+tl	string	player_loaded_subtitles	-	Loaded %s
 values-b+tl	string	player_mute	-	I-mute
 values-b+tl	string	player_notification_channel_description	-	Ang abiso ng player para sa pagkontrol sa pag-playback mula sa background
 values-b+tl	string	player_notification_channel_name	-	Player notifications
+values-b+tl	string	player_panel_failed	-	nabigo
+values-b+tl	string	player_panel_keeps	-	pinapanatili ang %s
+values-b+tl	string	player_panel_on	-	Naka-on
+values-b+tl	string	player_panel_open	-	Buksan
+values-b+tl	string	player_panel_quality_profile	-	Profile ng kalidad
+values-b+tl	string	player_panel_quality_unknown	-	hindi alam ang kalidad
+values-b+tl	string	player_panel_retry_all	-	Subukang muli ang lahat ng source
+values-b+tl	string	player_panel_style	-	Estilo ng subtitle
+values-b+tl	string	player_panel_use	-	Gamitin
 values-b+tl	string	player_pref	-	Preferred video player
 values-b+tl	string	player_settings_always_ask	-	Always ask
 values-b+tl	string	player_settings_play_in_app	-	Internal player
@@ -54197,6 +54692,15 @@ values-b+tr	string	player_loaded_subtitles	-	%s eklendi
 values-b+tr	string	player_mute	-	Sesi kapat
 values-b+tr	string	player_notification_channel_description	-	Oynatıcı bildirimi arka planda oynatmasını kontrol etmek içindir
 values-b+tr	string	player_notification_channel_name	-	Oynatıcı bildirimleri
+values-b+tr	string	player_panel_failed	-	başarısız
+values-b+tr	string	player_panel_keeps	-	%s korunur
+values-b+tr	string	player_panel_on	-	Açık
+values-b+tr	string	player_panel_open	-	Aç
+values-b+tr	string	player_panel_quality_profile	-	Kalite profili
+values-b+tr	string	player_panel_quality_unknown	-	kalite bilinmiyor
+values-b+tr	string	player_panel_retry_all	-	Tüm kaynakları yeniden dene
+values-b+tr	string	player_panel_style	-	Altyazı stili
+values-b+tr	string	player_panel_use	-	Kullan
 values-b+tr	string	player_pref	-	Tercih edilen video oynatıcısı
 values-b+tr	string	player_settings_always_ask	-	Her zaman sor
 values-b+tr	string	player_settings_play_in_app	-	Dahili oynatıcı
@@ -55197,6 +55701,15 @@ values-b+uk	string	player_loaded_subtitles	-	Завантажено %s
 values-b+uk	string	player_mute	-	Вимкнути звук
 values-b+uk	string	player_notification_channel_description	-	Сповіщення програвача для керування відтворенням у фоновому режимі
 values-b+uk	string	player_notification_channel_name	-	Сповіщення програвача
+values-b+uk	string	player_panel_failed	-	збій
+values-b+uk	string	player_panel_keeps	-	зберігає %s
+values-b+uk	string	player_panel_on	-	Увімк.
+values-b+uk	string	player_panel_open	-	Відкрити
+values-b+uk	string	player_panel_quality_profile	-	Профіль якості
+values-b+uk	string	player_panel_quality_unknown	-	якість невідома
+values-b+uk	string	player_panel_retry_all	-	Повторити всі джерела
+values-b+uk	string	player_panel_style	-	Стиль субтитрів
+values-b+uk	string	player_panel_use	-	Використати
 values-b+uk	string	player_pref	-	Бажаний відеопрогравач
 values-b+uk	string	player_settings_always_ask	-	Завжди запитувати
 values-b+uk	string	player_settings_play_in_app	-	Вбудований програвач
@@ -56165,6 +56678,15 @@ values-b+ur	string	player_loaded_subtitles	-	لوڈ %s
 values-b+ur	string	player_mute	-	خاموش کریں
 values-b+ur	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+ur	string	player_notification_channel_name	-	Player notifications
+values-b+ur	string	player_panel_failed	-	ناکام
+values-b+ur	string	player_panel_keeps	-	%s برقرار رکھتا ہے
+values-b+ur	string	player_panel_on	-	آن
+values-b+ur	string	player_panel_open	-	کھولیں
+values-b+ur	string	player_panel_quality_profile	-	معیار کی پروفائل
+values-b+ur	string	player_panel_quality_unknown	-	معیار نامعلوم
+values-b+ur	string	player_panel_retry_all	-	تمام ذرائع دوبارہ آزمائیں
+values-b+ur	string	player_panel_style	-	سب ٹائٹل کا انداز
+values-b+ur	string	player_panel_use	-	استعمال کریں
 values-b+ur	string	player_pref	-	ترجیحی ویڈیو پلیئر
 values-b+ur	string	player_settings_always_ask	-	Always ask
 values-b+ur	string	player_settings_play_in_app	-	اندرونی پلیئر
@@ -57117,6 +57639,15 @@ values-b+vi	string	player_loaded_subtitles	-	Đã tải %s
 values-b+vi	string	player_mute	-	Tắt tiếng
 values-b+vi	string	player_notification_channel_description	-	Điều khiển phát lại trong nền bằng thông báo của trình phát
 values-b+vi	string	player_notification_channel_name	-	Thông báo trình phát
+values-b+vi	string	player_panel_failed	-	thất bại
+values-b+vi	string	player_panel_keeps	-	giữ %s
+values-b+vi	string	player_panel_on	-	Bật
+values-b+vi	string	player_panel_open	-	Mở
+values-b+vi	string	player_panel_quality_profile	-	Hồ sơ chất lượng
+values-b+vi	string	player_panel_quality_unknown	-	chất lượng không rõ
+values-b+vi	string	player_panel_retry_all	-	Thử lại mọi nguồn
+values-b+vi	string	player_panel_style	-	Kiểu phụ đề
+values-b+vi	string	player_panel_use	-	Dùng
 values-b+vi	string	player_pref	-	Trình phát ưu tiên
 values-b+vi	string	player_settings_always_ask	-	Luôn hỏi
 values-b+vi	string	player_settings_play_in_app	-	Trình phát tích hợp
@@ -58069,6 +58600,15 @@ values-b+zh	string	player_loaded_subtitles	-	已加载 %s
 values-b+zh	string	player_mute	-	静音
 values-b+zh	string	player_notification_channel_description	-	控制后台播放的播放器通知
 values-b+zh	string	player_notification_channel_name	-	播放器通知
+values-b+zh	string	player_panel_failed	-	失败
+values-b+zh	string	player_panel_keeps	-	保留 %s
+values-b+zh	string	player_panel_on	-	开
+values-b+zh	string	player_panel_open	-	打开
+values-b+zh	string	player_panel_quality_profile	-	画质配置
+values-b+zh	string	player_panel_quality_unknown	-	画质未知
+values-b+zh	string	player_panel_retry_all	-	重试所有来源
+values-b+zh	string	player_panel_style	-	字幕样式
+values-b+zh	string	player_panel_use	-	使用
 values-b+zh	string	player_pref	-	首选视频播放器
 values-b+zh	string	player_settings_always_ask	-	始终询问
 values-b+zh	string	player_settings_play_in_app	-	内部播放器
@@ -59022,6 +59562,15 @@ values-b+zh+TW	string	player_loaded_subtitles	-	已載入 %s
 values-b+zh+TW	string	player_mute	-	靜音
 values-b+zh+TW	string	player_notification_channel_description	-	控制背景播放的通知
 values-b+zh+TW	string	player_notification_channel_name	-	播放器通知
+values-b+zh+TW	string	player_panel_failed	-	失敗
+values-b+zh+TW	string	player_panel_keeps	-	保留 %s
+values-b+zh+TW	string	player_panel_on	-	開
+values-b+zh+TW	string	player_panel_open	-	開啟
+values-b+zh+TW	string	player_panel_quality_profile	-	畫質設定檔
+values-b+zh+TW	string	player_panel_quality_unknown	-	畫質不明
+values-b+zh+TW	string	player_panel_retry_all	-	重試所有來源
+values-b+zh+TW	string	player_panel_style	-	字幕樣式
+values-b+zh+TW	string	player_panel_use	-	使用
 values-b+zh+TW	string	player_pref	-	偏好影片播放器
 values-b+zh+TW	string	player_settings_always_ask	-	總是詢問
 values-b+zh+TW	string	player_settings_play_in_app	-	內部播放器
@@ -59990,6 +60539,15 @@ en	string	player_loaded_subtitles	-	Loaded %s
 en	string	player_mute	-	Mute
 en	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 en	string	player_notification_channel_name	-	Player notifications
+en	string	player_panel_failed	-	failed
+en	string	player_panel_keeps	-	keeps %s
+en	string	player_panel_on	-	On
+en	string	player_panel_open	-	Open
+en	string	player_panel_quality_profile	-	Quality profile
+en	string	player_panel_quality_unknown	-	quality unknown
+en	string	player_panel_retry_all	-	Retry all sources
+en	string	player_panel_style	-	Subtitle style
+en	string	player_panel_use	-	Use
 en	string	player_pref	-	Preferred video player
 en	string	player_settings_always_ask	-	Always ask
 en	string	player_settings_play_in_app	-	Internal player
@@ -60958,6 +61516,15 @@ en-US	string	player_loaded_subtitles	-	Loaded %s
 en-US	string	player_mute	-	Mute
 en-US	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 en-US	string	player_notification_channel_name	-	Player notifications
+en-US	string	player_panel_failed	-	failed
+en-US	string	player_panel_keeps	-	keeps %s
+en-US	string	player_panel_on	-	On
+en-US	string	player_panel_open	-	Open
+en-US	string	player_panel_quality_profile	-	Quality profile
+en-US	string	player_panel_quality_unknown	-	quality unknown
+en-US	string	player_panel_retry_all	-	Retry all sources
+en-US	string	player_panel_style	-	Subtitle style
+en-US	string	player_panel_use	-	Use
 en-US	string	player_pref	-	Preferred video player
 en-US	string	player_settings_always_ask	-	Always ask
 en-US	string	player_settings_play_in_app	-	Internal player
@@ -61926,6 +62493,15 @@ en-GB	string	player_loaded_subtitles	-	Loaded %s
 en-GB	string	player_mute	-	Mute
 en-GB	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 en-GB	string	player_notification_channel_name	-	Player notifications
+en-GB	string	player_panel_failed	-	failed
+en-GB	string	player_panel_keeps	-	keeps %s
+en-GB	string	player_panel_on	-	On
+en-GB	string	player_panel_open	-	Open
+en-GB	string	player_panel_quality_profile	-	Quality profile
+en-GB	string	player_panel_quality_unknown	-	quality unknown
+en-GB	string	player_panel_retry_all	-	Retry all sources
+en-GB	string	player_panel_style	-	Subtitle style
+en-GB	string	player_panel_use	-	Use
 en-GB	string	player_pref	-	Preferred video player
 en-GB	string	player_settings_always_ask	-	Always ask
 en-GB	string	player_settings_play_in_app	-	Internal player
@@ -62910,6 +63486,15 @@ pt	string	player_loaded_subtitles	-	%s carregada
 pt	string	player_mute	-	Desativar som
 pt	string	player_notification_channel_description	-	Notificação do player para controlar a reprodução em segundo plano
 pt	string	player_notification_channel_name	-	Notificações de reprodução
+pt	string	player_panel_failed	-	falhou
+pt	string	player_panel_keeps	-	mantém %s
+pt	string	player_panel_on	-	Ativado
+pt	string	player_panel_open	-	Abrir
+pt	string	player_panel_quality_profile	-	Perfil de qualidade
+pt	string	player_panel_quality_unknown	-	qualidade desconhecida
+pt	string	player_panel_retry_all	-	Tentar novamente todas as fontes
+pt	string	player_panel_style	-	Estilo das legendas
+pt	string	player_panel_use	-	Usar
 pt	string	player_pref	-	Player de vídeo preferido
 pt	string	player_settings_always_ask	-	Sempre perguntar
 pt	string	player_settings_play_in_app	-	Player interno
@@ -63894,6 +64479,15 @@ pt-PT	string	player_loaded_subtitles	-	%s carregada
 pt-PT	string	player_mute	-	Desativar som
 pt-PT	string	player_notification_channel_description	-	Notificação do player para controlar a reprodução em segundo plano
 pt-PT	string	player_notification_channel_name	-	Notificações de reprodução
+pt-PT	string	player_panel_failed	-	falhou
+pt-PT	string	player_panel_keeps	-	mantém %s
+pt-PT	string	player_panel_on	-	Ativado
+pt-PT	string	player_panel_open	-	Abrir
+pt-PT	string	player_panel_quality_profile	-	Perfil de qualidade
+pt-PT	string	player_panel_quality_unknown	-	qualidade desconhecida
+pt-PT	string	player_panel_retry_all	-	Tentar novamente todas as fontes
+pt-PT	string	player_panel_style	-	Estilo das legendas
+pt-PT	string	player_panel_use	-	Usar
 pt-PT	string	player_pref	-	Player de vídeo preferido
 pt-PT	string	player_settings_always_ask	-	Sempre perguntar
 pt-PT	string	player_settings_play_in_app	-	Player interno
@@ -64878,6 +65472,15 @@ pt-BR	string	player_loaded_subtitles	-	%s carregada
 pt-BR	string	player_mute	-	Desativar som
 pt-BR	string	player_notification_channel_description	-	Notificação do player para controlar a reprodução em segundo plano
 pt-BR	string	player_notification_channel_name	-	Notificações de reprodução
+pt-BR	string	player_panel_failed	-	falhou
+pt-BR	string	player_panel_keeps	-	mantém %s
+pt-BR	string	player_panel_on	-	Ativado
+pt-BR	string	player_panel_open	-	Abrir
+pt-BR	string	player_panel_quality_profile	-	Perfil de qualidade
+pt-BR	string	player_panel_quality_unknown	-	qualidade desconhecida
+pt-BR	string	player_panel_retry_all	-	Tentar todas as fontes de novo
+pt-BR	string	player_panel_style	-	Estilo das legendas
+pt-BR	string	player_panel_use	-	Usar
 pt-BR	string	player_pref	-	Player de vídeo preferido
 pt-BR	string	player_settings_always_ask	-	Perguntar sempre
 pt-BR	string	player_settings_play_in_app	-	Player interno
@@ -65846,6 +66449,15 @@ fil	string	player_loaded_subtitles	-	Loaded %s
 fil	string	player_mute	-	I-mute
 fil	string	player_notification_channel_description	-	Ang abiso ng player para sa pagkontrol sa pag-playback mula sa background
 fil	string	player_notification_channel_name	-	Player notifications
+fil	string	player_panel_failed	-	nabigo
+fil	string	player_panel_keeps	-	pinapanatili ang %s
+fil	string	player_panel_on	-	Naka-on
+fil	string	player_panel_open	-	Buksan
+fil	string	player_panel_quality_profile	-	Profile ng kalidad
+fil	string	player_panel_quality_unknown	-	hindi alam ang kalidad
+fil	string	player_panel_retry_all	-	Subukang muli ang lahat ng source
+fil	string	player_panel_style	-	Estilo ng subtitle
+fil	string	player_panel_use	-	Gamitin
 fil	string	player_pref	-	Preferred video player
 fil	string	player_settings_always_ask	-	Always ask
 fil	string	player_settings_play_in_app	-	Internal player
@@ -66814,6 +67426,15 @@ tl	string	player_loaded_subtitles	-	Loaded %s
 tl	string	player_mute	-	I-mute
 tl	string	player_notification_channel_description	-	Ang abiso ng player para sa pagkontrol sa pag-playback mula sa background
 tl	string	player_notification_channel_name	-	Player notifications
+tl	string	player_panel_failed	-	nabigo
+tl	string	player_panel_keeps	-	pinapanatili ang %s
+tl	string	player_panel_on	-	Naka-on
+tl	string	player_panel_open	-	Buksan
+tl	string	player_panel_quality_profile	-	Profile ng kalidad
+tl	string	player_panel_quality_unknown	-	hindi alam ang kalidad
+tl	string	player_panel_retry_all	-	Subukang muli ang lahat ng source
+tl	string	player_panel_style	-	Estilo ng subtitle
+tl	string	player_panel_use	-	Gamitin
 tl	string	player_pref	-	Preferred video player
 tl	string	player_settings_always_ask	-	Always ask
 tl	string	player_settings_play_in_app	-	Internal player
@@ -67782,6 +68403,15 @@ fil-PH	string	player_loaded_subtitles	-	Loaded %s
 fil-PH	string	player_mute	-	I-mute
 fil-PH	string	player_notification_channel_description	-	Ang abiso ng player para sa pagkontrol sa pag-playback mula sa background
 fil-PH	string	player_notification_channel_name	-	Player notifications
+fil-PH	string	player_panel_failed	-	nabigo
+fil-PH	string	player_panel_keeps	-	pinapanatili ang %s
+fil-PH	string	player_panel_on	-	Naka-on
+fil-PH	string	player_panel_open	-	Buksan
+fil-PH	string	player_panel_quality_profile	-	Profile ng kalidad
+fil-PH	string	player_panel_quality_unknown	-	hindi alam ang kalidad
+fil-PH	string	player_panel_retry_all	-	Subukang muli ang lahat ng source
+fil-PH	string	player_panel_style	-	Estilo ng subtitle
+fil-PH	string	player_panel_use	-	Gamitin
 fil-PH	string	player_pref	-	Preferred video player
 fil-PH	string	player_settings_always_ask	-	Always ask
 fil-PH	string	player_settings_play_in_app	-	Internal player
@@ -68734,6 +69364,15 @@ zh	string	player_loaded_subtitles	-	已加载 %s
 zh	string	player_mute	-	静音
 zh	string	player_notification_channel_description	-	控制后台播放的播放器通知
 zh	string	player_notification_channel_name	-	播放器通知
+zh	string	player_panel_failed	-	失败
+zh	string	player_panel_keeps	-	保留 %s
+zh	string	player_panel_on	-	开
+zh	string	player_panel_open	-	打开
+zh	string	player_panel_quality_profile	-	画质配置
+zh	string	player_panel_quality_unknown	-	画质未知
+zh	string	player_panel_retry_all	-	重试所有来源
+zh	string	player_panel_style	-	字幕样式
+zh	string	player_panel_use	-	使用
 zh	string	player_pref	-	首选视频播放器
 zh	string	player_settings_always_ask	-	始终询问
 zh	string	player_settings_play_in_app	-	内部播放器
@@ -69686,6 +70325,15 @@ zh-CN	string	player_loaded_subtitles	-	已加载 %s
 zh-CN	string	player_mute	-	静音
 zh-CN	string	player_notification_channel_description	-	控制后台播放的播放器通知
 zh-CN	string	player_notification_channel_name	-	播放器通知
+zh-CN	string	player_panel_failed	-	失败
+zh-CN	string	player_panel_keeps	-	保留 %s
+zh-CN	string	player_panel_on	-	开
+zh-CN	string	player_panel_open	-	打开
+zh-CN	string	player_panel_quality_profile	-	画质配置
+zh-CN	string	player_panel_quality_unknown	-	画质未知
+zh-CN	string	player_panel_retry_all	-	重试所有来源
+zh-CN	string	player_panel_style	-	字幕样式
+zh-CN	string	player_panel_use	-	使用
 zh-CN	string	player_pref	-	首选视频播放器
 zh-CN	string	player_settings_always_ask	-	始终询问
 zh-CN	string	player_settings_play_in_app	-	内部播放器
@@ -70638,6 +71286,15 @@ zh-Hans-CN	string	player_loaded_subtitles	-	已加载 %s
 zh-Hans-CN	string	player_mute	-	静音
 zh-Hans-CN	string	player_notification_channel_description	-	控制后台播放的播放器通知
 zh-Hans-CN	string	player_notification_channel_name	-	播放器通知
+zh-Hans-CN	string	player_panel_failed	-	失败
+zh-Hans-CN	string	player_panel_keeps	-	保留 %s
+zh-Hans-CN	string	player_panel_on	-	开
+zh-Hans-CN	string	player_panel_open	-	打开
+zh-Hans-CN	string	player_panel_quality_profile	-	画质配置
+zh-Hans-CN	string	player_panel_quality_unknown	-	画质未知
+zh-Hans-CN	string	player_panel_retry_all	-	重试所有来源
+zh-Hans-CN	string	player_panel_style	-	字幕样式
+zh-Hans-CN	string	player_panel_use	-	使用
 zh-Hans-CN	string	player_pref	-	首选视频播放器
 zh-Hans-CN	string	player_settings_always_ask	-	始终询问
 zh-Hans-CN	string	player_settings_play_in_app	-	内部播放器
@@ -71591,6 +72248,15 @@ zh-TW	string	player_loaded_subtitles	-	已載入 %s
 zh-TW	string	player_mute	-	靜音
 zh-TW	string	player_notification_channel_description	-	控制背景播放的通知
 zh-TW	string	player_notification_channel_name	-	播放器通知
+zh-TW	string	player_panel_failed	-	失敗
+zh-TW	string	player_panel_keeps	-	保留 %s
+zh-TW	string	player_panel_on	-	開
+zh-TW	string	player_panel_open	-	開啟
+zh-TW	string	player_panel_quality_profile	-	畫質設定檔
+zh-TW	string	player_panel_quality_unknown	-	畫質不明
+zh-TW	string	player_panel_retry_all	-	重試所有來源
+zh-TW	string	player_panel_style	-	字幕樣式
+zh-TW	string	player_panel_use	-	使用
 zh-TW	string	player_pref	-	偏好影片播放器
 zh-TW	string	player_settings_always_ask	-	總是詢問
 zh-TW	string	player_settings_play_in_app	-	內部播放器
@@ -72544,6 +73210,15 @@ zh-Hant-TW	string	player_loaded_subtitles	-	已載入 %s
 zh-Hant-TW	string	player_mute	-	靜音
 zh-Hant-TW	string	player_notification_channel_description	-	控制背景播放的通知
 zh-Hant-TW	string	player_notification_channel_name	-	播放器通知
+zh-Hant-TW	string	player_panel_failed	-	失敗
+zh-Hant-TW	string	player_panel_keeps	-	保留 %s
+zh-Hant-TW	string	player_panel_on	-	開
+zh-Hant-TW	string	player_panel_open	-	開啟
+zh-Hant-TW	string	player_panel_quality_profile	-	畫質設定檔
+zh-Hant-TW	string	player_panel_quality_unknown	-	畫質不明
+zh-Hant-TW	string	player_panel_retry_all	-	重試所有來源
+zh-Hant-TW	string	player_panel_style	-	字幕樣式
+zh-Hant-TW	string	player_panel_use	-	使用
 zh-Hant-TW	string	player_pref	-	偏好影片播放器
 zh-Hant-TW	string	player_settings_always_ask	-	總是詢問
 zh-Hant-TW	string	player_settings_play_in_app	-	內部播放器
@@ -73497,6 +74172,15 @@ zh-HK	string	player_loaded_subtitles	-	已載入 %s
 zh-HK	string	player_mute	-	靜音
 zh-HK	string	player_notification_channel_description	-	控制背景播放的通知
 zh-HK	string	player_notification_channel_name	-	播放器通知
+zh-HK	string	player_panel_failed	-	失敗
+zh-HK	string	player_panel_keeps	-	保留 %s
+zh-HK	string	player_panel_on	-	開
+zh-HK	string	player_panel_open	-	開啟
+zh-HK	string	player_panel_quality_profile	-	畫質設定檔
+zh-HK	string	player_panel_quality_unknown	-	畫質不明
+zh-HK	string	player_panel_retry_all	-	重試所有來源
+zh-HK	string	player_panel_style	-	字幕樣式
+zh-HK	string	player_panel_use	-	使用
 zh-HK	string	player_pref	-	偏好影片播放器
 zh-HK	string	player_settings_always_ask	-	總是詢問
 zh-HK	string	player_settings_play_in_app	-	內部播放器
@@ -74450,6 +75134,15 @@ zh-Hant-HK	string	player_loaded_subtitles	-	已載入 %s
 zh-Hant-HK	string	player_mute	-	靜音
 zh-Hant-HK	string	player_notification_channel_description	-	控制背景播放的通知
 zh-Hant-HK	string	player_notification_channel_name	-	播放器通知
+zh-Hant-HK	string	player_panel_failed	-	失敗
+zh-Hant-HK	string	player_panel_keeps	-	保留 %s
+zh-Hant-HK	string	player_panel_on	-	開
+zh-Hant-HK	string	player_panel_open	-	開啟
+zh-Hant-HK	string	player_panel_quality_profile	-	畫質設定檔
+zh-Hant-HK	string	player_panel_quality_unknown	-	畫質不明
+zh-Hant-HK	string	player_panel_retry_all	-	重試所有來源
+zh-Hant-HK	string	player_panel_style	-	字幕樣式
+zh-Hant-HK	string	player_panel_use	-	使用
 zh-Hant-HK	string	player_pref	-	偏好影片播放器
 zh-Hant-HK	string	player_settings_always_ask	-	總是詢問
 zh-Hant-HK	string	player_settings_play_in_app	-	內部播放器
@@ -75418,6 +76111,15 @@ no	string	player_loaded_subtitles	-	Lastet inn %s
 no	string	player_mute	-	Slå av lyden
 no	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 no	string	player_notification_channel_name	-	Player notifications
+no	string	player_panel_failed	-	feilet
+no	string	player_panel_keeps	-	beholder %s
+no	string	player_panel_on	-	På
+no	string	player_panel_open	-	Åpne
+no	string	player_panel_quality_profile	-	Kvalitetsprofil
+no	string	player_panel_quality_unknown	-	ukjent kvalitet
+no	string	player_panel_retry_all	-	Prøv alle kildene på nytt
+no	string	player_panel_style	-	Undertekststil
+no	string	player_panel_use	-	Bruk
 no	string	player_pref	-	Foretrukket videospiller
 no	string	player_settings_always_ask	-	Always ask
 no	string	player_settings_play_in_app	-	Intern spiller
@@ -76386,6 +77088,15 @@ nb	string	player_loaded_subtitles	-	Loaded %s
 nb	string	player_mute	-	Mute
 nb	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 nb	string	player_notification_channel_name	-	Player notifications
+nb	string	player_panel_failed	-	failed
+nb	string	player_panel_keeps	-	keeps %s
+nb	string	player_panel_on	-	On
+nb	string	player_panel_open	-	Open
+nb	string	player_panel_quality_profile	-	Quality profile
+nb	string	player_panel_quality_unknown	-	quality unknown
+nb	string	player_panel_retry_all	-	Retry all sources
+nb	string	player_panel_style	-	Subtitle style
+nb	string	player_panel_use	-	Use
 nb	string	player_pref	-	Preferred video player
 nb	string	player_settings_always_ask	-	Always ask
 nb	string	player_settings_play_in_app	-	Internal player
@@ -77354,6 +78065,15 @@ nb-NO	string	player_loaded_subtitles	-	Loaded %s
 nb-NO	string	player_mute	-	Mute
 nb-NO	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 nb-NO	string	player_notification_channel_name	-	Player notifications
+nb-NO	string	player_panel_failed	-	failed
+nb-NO	string	player_panel_keeps	-	keeps %s
+nb-NO	string	player_panel_on	-	On
+nb-NO	string	player_panel_open	-	Open
+nb-NO	string	player_panel_quality_profile	-	Quality profile
+nb-NO	string	player_panel_quality_unknown	-	quality unknown
+nb-NO	string	player_panel_retry_all	-	Retry all sources
+nb-NO	string	player_panel_style	-	Subtitle style
+nb-NO	string	player_panel_use	-	Use
 nb-NO	string	player_pref	-	Preferred video player
 nb-NO	string	player_settings_always_ask	-	Always ask
 nb-NO	string	player_settings_play_in_app	-	Internal player
@@ -78335,6 +79055,15 @@ iw	string	player_loaded_subtitles	-	נטען %s
 iw	string	player_mute	-	השתקה
 iw	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 iw	string	player_notification_channel_name	-	Player notifications
+iw	string	player_panel_failed	-	נכשל
+iw	string	player_panel_keeps	-	שומר על %s
+iw	string	player_panel_on	-	פועל
+iw	string	player_panel_open	-	פתיחה
+iw	string	player_panel_quality_profile	-	פרופיל איכות
+iw	string	player_panel_quality_unknown	-	איכות לא ידועה
+iw	string	player_panel_retry_all	-	לנסות שוב את כל המקורות
+iw	string	player_panel_style	-	סגנון כתוביות
+iw	string	player_panel_use	-	שימוש
 iw	string	player_pref	-	נגן וידאו מועדף
 iw	string	player_settings_always_ask	-	Always ask
 iw	string	player_settings_play_in_app	-	נגן פנימי
@@ -79316,6 +80045,15 @@ he	string	player_loaded_subtitles	-	נטען %s
 he	string	player_mute	-	השתקה
 he	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 he	string	player_notification_channel_name	-	Player notifications
+he	string	player_panel_failed	-	נכשל
+he	string	player_panel_keeps	-	שומר על %s
+he	string	player_panel_on	-	פועל
+he	string	player_panel_open	-	פתיחה
+he	string	player_panel_quality_profile	-	פרופיל איכות
+he	string	player_panel_quality_unknown	-	איכות לא ידועה
+he	string	player_panel_retry_all	-	לנסות שוב את כל המקורות
+he	string	player_panel_style	-	סגנון כתוביות
+he	string	player_panel_use	-	שימוש
 he	string	player_pref	-	נגן וידאו מועדף
 he	string	player_settings_always_ask	-	Always ask
 he	string	player_settings_play_in_app	-	נגן פנימי
@@ -80297,6 +81035,15 @@ he-IL	string	player_loaded_subtitles	-	נטען %s
 he-IL	string	player_mute	-	השתקה
 he-IL	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 he-IL	string	player_notification_channel_name	-	Player notifications
+he-IL	string	player_panel_failed	-	נכשל
+he-IL	string	player_panel_keeps	-	שומר על %s
+he-IL	string	player_panel_on	-	פועל
+he-IL	string	player_panel_open	-	פתיחה
+he-IL	string	player_panel_quality_profile	-	פרופיל איכות
+he-IL	string	player_panel_quality_unknown	-	איכות לא ידועה
+he-IL	string	player_panel_retry_all	-	לנסות שוב את כל המקורות
+he-IL	string	player_panel_style	-	סגנון כתוביות
+he-IL	string	player_panel_use	-	שימוש
 he-IL	string	player_pref	-	נגן וידאו מועדף
 he-IL	string	player_settings_always_ask	-	Always ask
 he-IL	string	player_settings_play_in_app	-	נגן פנימי
@@ -81249,6 +81996,15 @@ in	string	player_loaded_subtitles	-	Memuat %s
 in	string	player_mute	-	Bisukan
 in	string	player_notification_channel_description	-	Pemberitahuan pemutar untuk mengontrol pemutaran dari latar belakang
 in	string	player_notification_channel_name	-	Notifikasi pemain
+in	string	player_panel_failed	-	gagal
+in	string	player_panel_keeps	-	mempertahankan %s
+in	string	player_panel_on	-	Aktif
+in	string	player_panel_open	-	Buka
+in	string	player_panel_quality_profile	-	Profil kualitas
+in	string	player_panel_quality_unknown	-	kualitas tidak diketahui
+in	string	player_panel_retry_all	-	Coba lagi semua sumber
+in	string	player_panel_style	-	Gaya subtitel
+in	string	player_panel_use	-	Gunakan
 in	string	player_pref	-	Pemutar video utama
 in	string	player_settings_always_ask	-	Selalu tanya
 in	string	player_settings_play_in_app	-	Pemutar Bawaan
@@ -82201,6 +82957,15 @@ id	string	player_loaded_subtitles	-	Memuat %s
 id	string	player_mute	-	Bisukan
 id	string	player_notification_channel_description	-	Pemberitahuan pemutar untuk mengontrol pemutaran dari latar belakang
 id	string	player_notification_channel_name	-	Notifikasi pemain
+id	string	player_panel_failed	-	gagal
+id	string	player_panel_keeps	-	mempertahankan %s
+id	string	player_panel_on	-	Aktif
+id	string	player_panel_open	-	Buka
+id	string	player_panel_quality_profile	-	Profil kualitas
+id	string	player_panel_quality_unknown	-	kualitas tidak diketahui
+id	string	player_panel_retry_all	-	Coba lagi semua sumber
+id	string	player_panel_style	-	Gaya subtitel
+id	string	player_panel_use	-	Gunakan
 id	string	player_pref	-	Pemutar video utama
 id	string	player_settings_always_ask	-	Selalu tanya
 id	string	player_settings_play_in_app	-	Pemutar Bawaan
@@ -83153,6 +83918,15 @@ id-ID	string	player_loaded_subtitles	-	Memuat %s
 id-ID	string	player_mute	-	Bisukan
 id-ID	string	player_notification_channel_description	-	Pemberitahuan pemutar untuk mengontrol pemutaran dari latar belakang
 id-ID	string	player_notification_channel_name	-	Notifikasi pemain
+id-ID	string	player_panel_failed	-	gagal
+id-ID	string	player_panel_keeps	-	mempertahankan %s
+id-ID	string	player_panel_on	-	Aktif
+id-ID	string	player_panel_open	-	Buka
+id-ID	string	player_panel_quality_profile	-	Profil kualitas
+id-ID	string	player_panel_quality_unknown	-	kualitas tidak diketahui
+id-ID	string	player_panel_retry_all	-	Coba lagi semua sumber
+id-ID	string	player_panel_style	-	Gaya subtitel
+id-ID	string	player_panel_use	-	Gunakan
 id-ID	string	player_pref	-	Pemutar video utama
 id-ID	string	player_settings_always_ask	-	Selalu tanya
 id-ID	string	player_settings_play_in_app	-	Pemutar Bawaan
@@ -84121,6 +84895,15 @@ arz	string	player_loaded_subtitles	-	Loaded %s
 arz	string	player_mute	-	Mute
 arz	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 arz	string	player_notification_channel_name	-	Player notifications
+arz	string	player_panel_failed	-	failed
+arz	string	player_panel_keeps	-	keeps %s
+arz	string	player_panel_on	-	On
+arz	string	player_panel_open	-	Open
+arz	string	player_panel_quality_profile	-	Quality profile
+arz	string	player_panel_quality_unknown	-	quality unknown
+arz	string	player_panel_retry_all	-	Retry all sources
+arz	string	player_panel_style	-	Subtitle style
+arz	string	player_panel_use	-	Use
 arz	string	player_pref	-	Preferred video player
 arz	string	player_settings_always_ask	-	Always ask
 arz	string	player_settings_play_in_app	-	Internal player
