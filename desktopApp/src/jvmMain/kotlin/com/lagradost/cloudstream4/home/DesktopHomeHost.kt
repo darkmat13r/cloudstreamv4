@@ -71,6 +71,7 @@ internal fun HomeHost(
         onAction = viewModel::onAction,
         // Only public http(s) addresses get this far. See `posterHttpClient`.
         artwork = { item -> PosterImage(url = item.posterUrl, modifier = Modifier.fillMaxSize()) },
+        picture = { url -> PosterImage(url = url, modifier = Modifier.fillMaxSize()) },
     )
 }
 
