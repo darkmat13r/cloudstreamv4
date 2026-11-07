@@ -570,6 +570,11 @@ private fun List<Episode>.toDetailEpisodes(): List<DetailEpisode> =
                 season = episode.season,
                 // What `postEpisodes` falls back to when a provider numbered nothing (`:2226`).
                 episode = episode.episode ?: (index + 1),
+                // Both already reach `ResultEpisode` for the player (`:466-467`); the page dropped
+                // them. Board 7i draws the runtime, and `DetailEpisode.airDateMs` says why the date
+                // is carried but not drawn. A non-positive runtime is a provider saying nothing.
+                runTimeMinutes = episode.runTime?.takeIf { it > 0 },
+                airDateMs = episode.date,
             )
         }
 

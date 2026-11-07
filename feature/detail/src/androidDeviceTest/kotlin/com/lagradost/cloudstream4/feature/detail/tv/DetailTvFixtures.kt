@@ -91,6 +91,9 @@ internal object DetailFixtures {
 
     private const val PAD = 2
     private const val FORTY = 40
+
+    /** Board 7i's own runtime, the one it writes as `24 min`. */
+    const val EPISODE_MINUTES = 24
     private const val PLOT_REPEATS = 4
 
     /** Opaque to this module; the fake never reads it. */
@@ -118,8 +121,10 @@ internal object DetailFixtures {
     /** Zero-padded, so `Chapter 04` and `Chapter 40` are never prefixes of one another. */
     fun episodeName(index: Int): String = "Chapter ${(index + 1).toString().padStart(PAD, '0')}"
 
-    fun episodes(count: Int): List<DetailEpisode> =
-        List(count) { index -> DetailEpisode(episodeName(index), "e$index", 1, index + 1) }
+    fun episodes(count: Int, runTimeMinutes: Int? = null): List<DetailEpisode> =
+        List(count) { index ->
+            DetailEpisode(episodeName(index), "e$index", 1, index + 1, runTimeMinutes)
+        }
 
     /**
      * 7a: a series, three episodes in one season, two thirds of the way through episode 3.
@@ -203,6 +208,23 @@ internal object DetailFixtures {
         episodes = episodes(1),
         seasons = listOf(DetailSeason(number = 1, episodeCount = 1)),
         resume = null,
+    )
+
+    /**
+     * 7i's rows: a provider that sent runtimes, so a row's second line reads `S1:E2 · 24 min`.
+     *
+     * Resume is **episode 2**, the middle one, so the pill marks a row that is neither the first nor
+     * the last. A fixture resuming nothing could not tell "marks the primary's target" apart from
+     * "always marks row 1", and one resuming the last could not tell it from "marks the last".
+     */
+    val RuntimeEpisodes = Show.copy(
+        episodes = episodes(3, runTimeMinutes = EPISODE_MINUTES),
+        resume = DetailResume(
+            "e1",
+            positionMs = 1_000_000L,
+            durationMs = 2_620_000L,
+            episode = episodes(3)[1],
+        ),
     )
 
     /** Forty, so the list has to scroll and the last row still has to be reachable. */

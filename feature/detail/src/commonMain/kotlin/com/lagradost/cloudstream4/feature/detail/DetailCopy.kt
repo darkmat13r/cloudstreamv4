@@ -115,6 +115,28 @@ internal fun DetailEpisode.code(index: Int): String {
     ).joinToString(":")
 }
 
+/**
+ * The second line of an episode row: the episode's code where the title is not already the code, and
+ * its runtime where the provider sent one. Null when it would say nothing.
+ *
+ * ## Why the code is still here, when board 7i does not draw it
+ *
+ * 7i puts the episode number in a leading cell and gives this line to `24 min · 12 Mar 2019`, because
+ * the board also has **season chips**: the chip says which season the list is showing, so a row only
+ * has to say which episode. The chips are a later task, and until they exist the code has to stay in
+ * this line — on a multi-season list it is the only thing on a row that says which season an episode
+ * belongs to, and [TitleDetail.namedSeason] deliberately names no season above a list holding more
+ * than one. Taking it out first would make a two-season list unreadable to buy a board match.
+ *
+ * The air date 7i draws is absent for the reason [DetailEpisode.airDateMs] gives.
+ */
+@Composable
+internal fun episodeSubtitle(episode: DetailEpisode, code: String, codeInTitle: Boolean): String? =
+    listOfNotNull(
+        code.takeIf { !codeInTitle },
+        episode.runTimeMinutes?.let { runtimeLabel(it) },
+    ).takeIf { it.isNotEmpty() }?.joinToString(META_SEPARATOR)
+
 private val TYPE_LABELS: Map<String, StringResource> = mapOf(
     "Movie" to Res.string.movies_singular,
     "AnimeMovie" to Res.string.movies_singular,
