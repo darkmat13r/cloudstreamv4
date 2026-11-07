@@ -309,6 +309,7 @@
 <string name="player_mute">"كتم الصوت"</string>
 <string name="player_panel_failed">"فشل"</string>
 <string name="player_panel_keeps" formatted="true">"يحافظ على %s"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
 <string name="player_panel_on">"مفعّل"</string>
 <string name="player_panel_open">"افتح"</string>
 <string name="player_panel_quality_profile">"ملف الجودة"</string>

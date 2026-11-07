@@ -285,6 +285,7 @@
 <string name="player_mute">"നിശബ്‌ദമാക്കുക"</string>
 <string name="player_panel_failed">"പരാജയപ്പെട്ടു"</string>
 <string name="player_panel_keeps" formatted="true">"%s നിലനിർത്തുന്നു"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
 <string name="player_panel_on">"ഓൺ"</string>
 <string name="player_panel_open">"തുറക്കുക"</string>
 <string name="player_panel_quality_profile">"ഗുണനിലവാര പ്രൊഫൈൽ"</string>

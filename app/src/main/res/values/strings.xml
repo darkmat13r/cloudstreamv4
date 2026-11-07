@@ -548,6 +548,7 @@
 <string name="player_notification_channel_name">"Player notifications"</string>
 <string name="player_panel_failed">"failed"</string>
 <string name="player_panel_keeps" formatted="true">"keeps %s"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
 <string name="player_panel_on">"On"</string>
 <string name="player_panel_open">"Open"</string>
 <string name="player_panel_quality_profile">"Quality profile"</string>

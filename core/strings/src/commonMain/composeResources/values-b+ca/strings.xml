@@ -12,6 +12,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d FAVORIT</item><item quantity="many">%d DE FAVORITS</item><item quantity="other">%d FAVORITS</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">No s'ha pogut carregar %d secció</item><item quantity="many">No s'han pogut carregar %d seccions</item><item quantity="other">No s'han pogut carregar %d seccions</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d títol</item><item quantity="many">%d títols</item><item quantity="other">%d títols</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Cercar a %d font</item><item quantity="many">Cercar a totes les %d fonts</item><item quantity="other">Cercar a totes les %d fonts</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Prem la tecla de cerca del teclat per cercar igualment a %d font.</item><item quantity="many">Prem la tecla de cerca del teclat per cercar igualment a totes les %d fonts.</item><item quantity="other">Prem la tecla de cerca del teclat per cercar igualment a totes les %d fonts.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d FONT</item><item quantity="many">%d FONTS</item><item quantity="other">%d FONTS</item></plurals>

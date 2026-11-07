@@ -12,6 +12,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d बुकमार्क</item><item quantity="other">%d बुकमार्क</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d अनुभाग लोड नहीं हो सका</item><item quantity="other">%d अनुभाग लोड नहीं हो सके</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d शीर्षक</item><item quantity="other">%d शीर्षक</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">%d स्रोत में खोजें</item><item quantity="other">सभी %d स्रोतों में खोजें</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">फिर भी %d स्रोत में खोजने के लिए कीबोर्ड की सर्च कुंजी दबाएँ।</item><item quantity="other">फिर भी सभी %d स्रोतों में खोजने के लिए कीबोर्ड की सर्च कुंजी दबाएँ।</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d स्रोत</item><item quantity="other">%d स्रोत</item></plurals>

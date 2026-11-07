@@ -184,6 +184,7 @@
 <string name="player_mute">"بێدەنگکردن"</string>
 <string name="player_panel_failed">"شکستی هێنا"</string>
 <string name="player_panel_keeps" formatted="true">"%s دەهێڵێتەوە"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
 <string name="player_panel_on">"چالاک"</string>
 <string name="player_panel_open">"کردنەوە"</string>
 <string name="player_panel_quality_profile">"پرۆفایلی کوالیتی"</string>

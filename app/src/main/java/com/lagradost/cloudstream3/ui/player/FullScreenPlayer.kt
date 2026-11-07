@@ -1371,7 +1371,16 @@ open class FullScreenPlayer : AbstractPlayerFragment<FragmentPlayerBinding>(
         // dispatcher asks the newest callback first, and the player adds its own after this, so it is added again each
         // time a panel opens: measured, a callback added once at start was passed over and BACK left the player.
         val closesPanel = object : OnBackPressedCallback(false) {
-            override fun handleOnBackPressed() = hud.panelBack()
+            override fun handleOnBackPressed() {
+                // A second BACK can arrive before the collector below has seen the panel close; swallowing it would
+                // leave the person pressing BACK twice to leave the player. Pass it on to the next callback instead.
+                if (!hud.isPanelOpenNow) {
+                    isEnabled = false
+                    requireActivity().onBackPressedDispatcher.onBackPressed()
+                    return
+                }
+                hud.panelBack()
+            }
         }
         viewLifecycleOwner.lifecycleScope.launch {
             hud.panelOpen.collect { open ->

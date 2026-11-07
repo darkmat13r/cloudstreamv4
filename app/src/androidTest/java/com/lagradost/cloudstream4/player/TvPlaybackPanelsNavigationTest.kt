@@ -4,6 +4,7 @@ import android.content.Context
 import android.media.AudioManager
 import android.net.Uri
 import android.view.KeyEvent
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import androidx.test.core.app.ActivityScenario
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -37,6 +38,8 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.io.File
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlin.math.abs
 
 /**
@@ -210,6 +213,29 @@ class TvPlaybackPanelsNavigationTest {
             device.pressBack()
             assertTrue("Back left the panel up", device.wait(Until.gone(By.text(context.getString(R.string.player_panel_quality_profile))), WAIT_MS))
             assertTrue("Back left the player", runCatching { scenario.player() }.isSuccess)
+        }
+    }
+
+    /**
+     * Two BACKs faster than the panel's close reaches the callback's collector: the first closes the panel, and the second
+     * leaves the player rather than being swallowed by a callback still enabled for a panel that is gone.
+     *
+     * Both are sent from one coroutine on `Main.immediate`. That is what makes the collector late: measured, two BACKs
+     * sent from plain main-thread code let it run in between, and the old callback passed. Inside a coroutine the
+     * collector's resume waits for the coroutine to finish, so the second BACK meets a callback still enabled.
+     */
+    @Test
+    fun twoFastBacksCloseThePanelThenLeaveThePlayer() {
+        ActivityScenario.launch(MainActivity::class.java).use { scenario ->
+            scenario.play()
+            openSourcePanel()
+            scenario.onActivity { activity ->
+                activity.lifecycleScope.launch(Dispatchers.Main.immediate) {
+                    activity.onBackPressedDispatcher.onBackPressed()
+                    activity.onBackPressedDispatcher.onBackPressed()
+                }
+            }
+            waitFor("The second BACK was swallowed: still in the player") { runCatching { scenario.player() }.isFailure }
         }
     }
 

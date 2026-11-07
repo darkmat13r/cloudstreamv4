@@ -16,6 +16,7 @@
 <plurals name="home_source_sections"><item quantity="one">%d sección</item><item quantity="many">%d secciones</item><item quantity="other">%d secciones</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d título</item><item quantity="many">%d títulos</item><item quantity="other">%d títulos</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d enlace oculto</item><item quantity="many">%d enlaces ocultos</item><item quantity="other">%d enlaces ocultos</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Buscar en %d fuente</item><item quantity="many">Buscar en las %d fuentes</item><item quantity="other">Buscar en las %d fuentes</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Pulsa la tecla de búsqueda del teclado para buscar igualmente en %d fuente.</item><item quantity="many">Pulsa la tecla de búsqueda del teclado para buscar igualmente en las %d fuentes.</item><item quantity="other">Pulsa la tecla de búsqueda del teclado para buscar igualmente en las %d fuentes.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d FUENTE</item><item quantity="many">%d FUENTES</item><item quantity="other">%d FUENTES</item></plurals>

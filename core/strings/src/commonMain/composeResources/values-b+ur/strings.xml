@@ -12,6 +12,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d بک مارک</item><item quantity="other">%d بک مارکس</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d سیکشن لوڈ نہیں ہو سکا</item><item quantity="other">%d سیکشنز لوڈ نہیں ہو سکے</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d عنوان</item><item quantity="other">%d عنوانات</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">%d ذریعے میں تلاش کریں</item><item quantity="other">تمام %d ذرائع میں تلاش کریں</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">پھر بھی %d ذریعے میں تلاش کرنے کے لیے کی بورڈ کی تلاش کی کلید دبائیں۔</item><item quantity="other">پھر بھی تمام %d ذرائع میں تلاش کرنے کے لیے کی بورڈ کی تلاش کی کلید دبائیں۔</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d ذریعہ</item><item quantity="other">%d ذرائع</item></plurals>

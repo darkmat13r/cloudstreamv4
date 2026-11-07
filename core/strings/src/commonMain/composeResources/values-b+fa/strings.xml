@@ -12,6 +12,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d نشانک</item><item quantity="other">%d نشانک</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d بخش بارگیری نشد</item><item quantity="other">%d بخش بارگیری نشد</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d عنوان</item><item quantity="other">%d عنوان</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">جست‌وجو در %d منبع</item><item quantity="other">جست‌وجو در همهٔ %d منبع</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">برای جست‌وجو در %d منبع، به‌هرحال کلید جست‌وجوی صفحه‌کلید را فشار دهید.</item><item quantity="other">برای جست‌وجو در همهٔ %d منبع، به‌هرحال کلید جست‌وجوی صفحه‌کلید را فشار دهید.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d منبع</item><item quantity="other">%d منبع</item></plurals>

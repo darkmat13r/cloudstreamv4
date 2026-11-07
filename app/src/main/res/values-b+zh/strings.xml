@@ -522,6 +522,7 @@
 <string name="player_notification_channel_name">"播放器通知"</string>
 <string name="player_panel_failed">"失败"</string>
 <string name="player_panel_keeps" formatted="true">"保留 %s"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
 <string name="player_panel_on">"开"</string>
 <string name="player_panel_open">"打开"</string>
 <string name="player_panel_quality_profile">"画质配置"</string>

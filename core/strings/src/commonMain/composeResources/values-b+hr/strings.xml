@@ -14,6 +14,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d OZNAKA</item><item quantity="few">%d OZNAKE</item><item quantity="other">%d OZNAKA</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Nije učitan %d odjeljak</item><item quantity="few">Nisu učitana %d odjeljka</item><item quantity="other">Nije učitano %d odjeljaka</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d naslov</item><item quantity="few">%d naslova</item><item quantity="other">%d naslova</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Pretraži %d izvor</item><item quantity="few">Pretraži sva %d izvora</item><item quantity="other">Pretraži svih %d izvora</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Pritisnite tipku za pretraživanje na tipkovnici da biste ipak pretražili %d izvor.</item><item quantity="few">Pritisnite tipku za pretraživanje na tipkovnici da biste ipak pretražili sva %d izvora.</item><item quantity="other">Pritisnite tipku za pretraživanje na tipkovnici da biste ipak pretražili svih %d izvora.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d IZVOR</item><item quantity="few">%d IZVORA</item><item quantity="other">%d IZVORA</item></plurals>

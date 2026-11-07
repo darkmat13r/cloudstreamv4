@@ -12,6 +12,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d BOKMERKE</item><item quantity="other">%d BOKMERKE</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d del kunne ikkje lastast</item><item quantity="other">%d delar kunne ikkje lastast</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d tittel</item><item quantity="other">%d titlar</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Søk i %d kjelde</item><item quantity="other">Søk i alle %d kjeldene</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Trykk på søkjeknappen på tastaturet for å søkje i %d kjelde likevel.</item><item quantity="other">Trykk på søkjeknappen på tastaturet for å søkje i alle %d kjeldene likevel.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d KJELDE</item><item quantity="other">%d KJELDER</item></plurals>

@@ -14,6 +14,7 @@
 <plurals name="home_bookmarks_count"><item quantity="other">북마크 %d개</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">섹션 %d개를 불러오지 못했습니다</item></plurals>
 <plurals name="library_title_count"><item quantity="other">%d개 작품</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="search_state_no_suggestions_action"><item quantity="other">소스 %d개 모두 검색</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="other">그래도 소스 %d개를 모두 검색하려면 키보드의 검색 키를 누르세요.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="other">%d 소스</item></plurals>

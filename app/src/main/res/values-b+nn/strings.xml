@@ -239,6 +239,7 @@
 <string name="player_mute">"Slå av lyd"</string>
 <string name="player_panel_failed">"feila"</string>
 <string name="player_panel_keeps" formatted="true">"held på %s"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
 <string name="player_panel_on">"På"</string>
 <string name="player_panel_open">"Opne"</string>
 <string name="player_panel_quality_profile">"Kvalitetsprofil"</string>

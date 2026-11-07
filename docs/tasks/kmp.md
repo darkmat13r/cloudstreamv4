@@ -5630,6 +5630,11 @@ alone, because board D4 gives the number its own column (the code stands in only
    for the season, so both read the same in every language.
 3. Rerun the TV downloads device suite and keep its screenshots at 0/0, because this touches a `tv/` file.
 
+**Done in `KMP-66` (#205):** the player panels' numbered fallbacks take `player_panel_numbered` (`%1$s %2$d`), so a
+translation can place the number. The sites, all in `GeneratorPlayer.kt`: the Source row's `"${video_source} ${index + 1}"`,
+the two Subtitles group rows' `"$title ${index + 1}"`, and the Audio row's `"${audio_singular} ${index + 1}"`. Step 2's
+episode and season numbers want their own keys, since "E3" is not "Episode 3"; they stay to do here.
+
 ## KMP-69 — Engine: a dropped body loses up to 1 MiB already received · **open**, low, follow-up to `KMP-61`
 
 Measured in `KMP-46`: Ktor's `ByteChannel` buffer is 1 MiB (ktor-io-jvm 3.6.0). When the engine fails a body, the
@@ -6095,7 +6100,6 @@ though. To do:
 - **A failed row says `failed`, not `failed · code 2004`:** the player records that a link failed, not why.
 - **Loading, not Partial:** the player has no "still looking" state beyond loading, so there is no `Keep looking` row.
 - **No source count line:** `4 sources · all shown` would be a plural in 62 locales; the hidden count and the resume line are kept.
-- **A sixth row scrolls the default way,** not by whole rows: `RowScroll` comes with #176, which this stack does not include.
 - **The failed row's title is not dimmed;** the marker says it.
 - **The style editor, online search, sync, encoding and the quality-profile editor stay the old dialogs** (undrawn).
 
@@ -6106,11 +6110,18 @@ though. To do:
 - **Focus landed on `Done`** when a panel opened before its lazy rows existed; the panel asks again a frame later.
 - **The sixth subtitle row sat cut against `Done`** until the list ended at 7e's rule.
 
+### After the rebase onto train 6
+
+- **The list scrolls by whole rows** through `RowScroll` (#176), with the focus ring's bleed kept inside the list.
+- **`BUG-36`'s opener:** the panel host is handed the selector that opened the panel, latched through the exit. Measured: the HUD without the opener already passes the new focus test, because no lazy list sits between the content and the selectors. So the opener is a guard, not a fix of something seen here.
+- **Two fast BACKs:** the panel's callback now asks the panel itself whether it is open, not `panelOpen`, which reaches its collector later, and passes a BACK on when it isn't. Measured: two BACKs sent from plain main-thread code already left the player on the old code, since the collector runs in between. Sent from one coroutine on `Main.immediate`, the old code swallowed the second ("still in the player") and the new one leaves. Separate key presses on a real remote come one per main-thread turn, the first case, so this guards a case not seen from a remote.
+- **`player_panel_numbered`** (`%1$s %2$d`), so a translation can place the number; the sites are listed under `KMP-65`.
+
 ### Tests
 
 - `TvPanelRowsTest` (`:app` JVM, 3): row words; no URL, token or header in a source row or a subtitle row; address names dropped to the fallback.
-- `PlaybackPanelTvDeviceTest` (device, 8): SOURCE opens the panel with focus on the playing row, Up/Down only, Done returns focus to SOURCE; a press is the commit; SUBTITLES opens its own; screenshots `playback-panel-source`, `-subtitles`, `-subtitle-variants`, `-audio`, `-empty-offline`, each looked at.
-- `TvPlaybackPanelsNavigationTest` (`:app`, the real path, 4): one episode from two sources, each a silent local copy (-91 dB, volume 0). Switching while playing keeps playing at the position; switching while paused stays paused at the position; BACK closes the panel and stays in the player; no path on screen.
+- `PlaybackPanelTvDeviceTest` (device, 9): SOURCE opens the panel with focus on the playing row, Up/Down only, Done returns focus to SOURCE; a press is the commit; SUBTITLES opens its own; closing a panel gives focus back to the AUDIO or SUBTITLES selector that opened it, compared by node, since AUDIO's value and the Audio panel's first row read the same; screenshots `playback-panel-source`, `-subtitles`, `-subtitle-variants`, `-audio`, `-empty-offline`, each looked at.
+- `TvPlaybackPanelsNavigationTest` (`:app`, the real path, 5): one episode from two sources, each a silent local copy (-91 dB, volume 0). Switching while playing keeps playing at the position; switching while paused stays paused at the position; BACK closes the panel and stays in the player; two fast BACKs close the panel and then leave; no path on screen.
 - `KMP-64`'s own: HUD device 14/0 with its six screenshots unchanged, real path 4/0, `TvHudFactsTest` 8/0 with the review's title cases (`Dr.Stone`, `Mr.Robot`, `Vol.II` kept).
 
 ### Not verified
@@ -6119,4 +6130,4 @@ though. To do:
 
 ### Published API
 
-Additions only. `app/api/classes-jar.api` +90 / −0 over #189: 9 `R$string` fields, the panel hooks on `FullScreenPlayer` and `GeneratorPlayer`, `PanelStep`, `TvPanelRows`, and `TvPlayerHud`'s new constructors; its six-argument one from #189 is kept by `@JvmOverloads`.
+Additions only. `app/api/classes-jar.api` +92 / −0 over master after the rebase: 10 `R$string` fields, the panel hooks on `FullScreenPlayer` and `GeneratorPlayer`, `PanelStep`, `TvPanelRows`, and `TvPlayerHud`'s new constructors; its six-argument one from #189 is kept by `@JvmOverloads`.

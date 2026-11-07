@@ -87,6 +87,12 @@ internal class TvPlayerHud @JvmOverloads constructor(
     /** Whether a 7e panel is open: the host's BACK closes it instead of leaving the player. */
     val panelOpen: StateFlow<Boolean> = panel.map { it != null }.stateIn(owner.lifecycleScope, SharingStarted.Eagerly, false)
 
+    /**
+     * Whether a panel is open right now, read from the panel itself. [panelOpen] reaches its collectors a dispatch later,
+     * so a BACK handler deciding whether to consume the press asks this.
+     */
+    val isPanelOpenNow: Boolean get() = panel.value != null
+
     /** BACK while a panel is open: up a level, or closed. */
     fun panelBack() = handle(PlayerHudAction.PanelBack)
 

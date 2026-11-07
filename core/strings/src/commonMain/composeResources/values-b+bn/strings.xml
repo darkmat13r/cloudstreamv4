@@ -12,6 +12,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d টি বুকমার্ক</item><item quantity="other">%d টি বুকমার্ক</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%dটি বিভাগ লোড করা যায়নি</item><item quantity="other">%dটি বিভাগ লোড করা যায়নি</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%dটি শিরোনাম</item><item quantity="other">%dটি শিরোনাম</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">%dটি উৎসে খুঁজুন</item><item quantity="other">সব %dটি উৎসে খুঁজুন</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">তবুও %dটি উৎসে খুঁজতে কীবোর্ডের সার্চ কী চাপুন।</item><item quantity="other">তবুও সব %dটি উৎসে খুঁজতে কীবোর্ডের সার্চ কী চাপুন।</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d উৎস</item><item quantity="other">%d উৎস</item></plurals>

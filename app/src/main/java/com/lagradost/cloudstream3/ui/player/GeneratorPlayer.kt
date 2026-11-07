@@ -2251,7 +2251,7 @@ class GeneratorPlayer : FullScreenPlayer() {
             val quality = TvPanelRows.sourceQuality(link.first)
             PanelRow(
                 key = "$SOURCE_KEY$index",
-                title = TvPanelRows.sourceTitle(link.first, link.second, "${ctx.getString(R.string.video_source)} ${index + 1}"),
+                title = TvPanelRows.sourceTitle(link.first, link.second, ctx.getString(R.string.player_panel_numbered, ctx.getString(R.string.video_source), index + 1)),
                 detail = when {
                     active -> hudDecoded?.let { (w, h) -> "$w×$h" }
                     failed -> ctx.getString(R.string.player_panel_failed)
@@ -2314,7 +2314,7 @@ class GeneratorPlayer : FullScreenPlayer() {
             val index = groups.indexOf(opened)
             return PlaybackPanelState(
                 kind = PanelKind.Subtitles,
-                title = TvPanelRows.subtitleGroupTitle(opened.first(), "$title ${index + 1}"),
+                title = TvPanelRows.subtitleGroupTitle(opened.first(), ctx.getString(R.string.player_panel_numbered, title, index + 1)),
                 nested = true,
                 rows = opened.mapIndexed { variant, subtitle ->
                     PanelRow(
@@ -2334,7 +2334,7 @@ class GeneratorPlayer : FullScreenPlayer() {
                 add(
                     PanelRow(
                         key = "$GROUP_KEY$index",
-                        title = TvPanelRows.subtitleGroupTitle(group.first(), "$title ${index + 1}"),
+                        title = TvPanelRows.subtitleGroupTitle(group.first(), ctx.getString(R.string.player_panel_numbered, title, index + 1)),
                         detail = ctx.getString(originOf(group.first())),
                         verb = if (group.size > 1) RowVerb.Open else use(on),
                         active = on,
@@ -2385,7 +2385,7 @@ class GeneratorPlayer : FullScreenPlayer() {
             ).joinToString(" · ")
             PanelRow(
                 key = "$AUDIO_KEY$index",
-                title = words.ifBlank { "${ctx.getString(R.string.audio_singular)} ${index + 1}" },
+                title = words.ifBlank { ctx.getString(R.string.player_panel_numbered, ctx.getString(R.string.audio_singular), index + 1) },
                 verb = use(on),
                 active = on,
             )

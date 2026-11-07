@@ -468,6 +468,7 @@
 <string name="player_mute">"Némítás"</string>
 <string name="player_panel_failed">"sikertelen"</string>
 <string name="player_panel_keeps" formatted="true">"megtartja: %s"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
 <string name="player_panel_on">"Be"</string>
 <string name="player_panel_open">"Megnyitás"</string>
 <string name="player_panel_quality_profile">"Minőségi profil"</string>

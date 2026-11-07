@@ -194,6 +194,7 @@
 <string name="player_mute">"ಮ್ಯೂಟ್ ಮಾಡಿ"</string>
 <string name="player_panel_failed">"ವಿಫಲ"</string>
 <string name="player_panel_keeps" formatted="true">"%s ಉಳಿಸುತ್ತದೆ"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
 <string name="player_panel_on">"ಆನ್"</string>
 <string name="player_panel_open">"ತೆರೆಯಿರಿ"</string>
 <string name="player_panel_quality_profile">"ಗುಣಮಟ್ಟದ ಪ್ರೊಫೈಲ್"</string>

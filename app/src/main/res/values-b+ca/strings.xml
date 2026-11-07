@@ -303,6 +303,7 @@
 <string name="player_mute">"Silencia"</string>
 <string name="player_panel_failed">"ha fallat"</string>
 <string name="player_panel_keeps" formatted="true">"manté %s"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
 <string name="player_panel_on">"Activat"</string>
 <string name="player_panel_open">"Obre"</string>
 <string name="player_panel_quality_profile">"Perfil de qualitat"</string>

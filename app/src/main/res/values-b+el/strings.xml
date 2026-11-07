@@ -478,6 +478,7 @@
 <string name="player_notification_channel_name">"Ειδοποίησεις αναπαραγωγής"</string>
 <string name="player_panel_failed">"απέτυχε"</string>
 <string name="player_panel_keeps" formatted="true">"κρατά %s"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
 <string name="player_panel_on">"Ενεργό"</string>
 <string name="player_panel_open">"Άνοιγμα"</string>
 <string name="player_panel_quality_profile">"Προφίλ ποιότητας"</string>

@@ -16,6 +16,7 @@
 <plurals name="home_source_sections"><item quantity="one">%d பிரிவு</item><item quantity="other">%d பிரிவுகள்</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d தலைப்பு</item><item quantity="other">%d தலைப்புகள்</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d மறைக்கப்பட்ட இணைப்பு</item><item quantity="other">%d மறைக்கப்பட்ட இணைப்புகள்</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">%d மூலத்தில் தேடு</item><item quantity="other">அனைத்து %d மூலங்களிலும் தேடு</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">இருந்தாலும் %d மூலத்தில் தேட, விசைப்பலகையின் தேடல் விசையை அழுத்தவும்.</item><item quantity="other">இருந்தாலும் அனைத்து %d மூலங்களிலும் தேட, விசைப்பலகையின் தேடல் விசையை அழுத்தவும்.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d மூலம்</item><item quantity="other">%d மூலங்கள்</item></plurals>

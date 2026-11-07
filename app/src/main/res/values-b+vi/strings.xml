@@ -522,6 +522,7 @@
 <string name="player_notification_channel_name">"Thông báo trình phát"</string>
 <string name="player_panel_failed">"thất bại"</string>
 <string name="player_panel_keeps" formatted="true">"giữ %s"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
 <string name="player_panel_on">"Bật"</string>
 <string name="player_panel_open">"Mở"</string>
 <string name="player_panel_quality_profile">"Hồ sơ chất lượng"</string>

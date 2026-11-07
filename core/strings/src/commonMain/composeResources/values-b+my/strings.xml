@@ -12,6 +12,7 @@
 <plurals name="home_bookmarks_count"><item quantity="other">စာမှတ် %d ခု</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">အပိုင်း %d ခု တင်သွင်း၍မရပါ</item></plurals>
 <plurals name="library_title_count"><item quantity="other">ခေါင်းစဉ် %d ခု</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="search_state_no_suggestions_action"><item quantity="other">ရင်းမြစ် %d ခုလုံးတွင် ရှာရန်</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="other">မည်သို့ပင်ဖြစ်စေ ရင်းမြစ် %d ခုလုံးတွင် ရှာရန် ကီးဘုတ်၏ ရှာဖွေရေးခလုတ်ကို နှိပ်ပါ။</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="other">%d ရင်းမြစ်</item></plurals>

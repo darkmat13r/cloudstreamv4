@@ -521,6 +521,7 @@
 <string name="player_notification_channel_name">"Известувања од плеерот"</string>
 <string name="player_panel_failed">"неуспешно"</string>
 <string name="player_panel_keeps" formatted="true">"задржува %s"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
 <string name="player_panel_on">"Вклучено"</string>
 <string name="player_panel_open">"Отвори"</string>
 <string name="player_panel_quality_profile">"Профил за квалитет"</string>

@@ -1,10 +1,14 @@
 package com.lagradost.cloudstream4.feature.player.tv
 
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.gestures.LocalBringIntoViewSpec
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
@@ -12,6 +16,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.withFrameNanos
@@ -20,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.layout.layout
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -30,6 +36,8 @@ import com.lagradost.cloudstream4.core.designsystem.primitive.StatusDot
 import com.lagradost.cloudstream4.core.designsystem.primitive.StatusDotState
 import com.lagradost.cloudstream4.core.designsystem.rows.ListRow
 import com.lagradost.cloudstream4.core.designsystem.rows.ListRowState
+import com.lagradost.cloudstream4.core.designsystem.scroll.RowScroll
+import com.lagradost.cloudstream4.core.designsystem.scroll.RowScrollSpec
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_offline_pill
 import com.lagradost.cloudstream4.core.strings.generated.resources.player_panel_on
@@ -57,12 +65,13 @@ import org.jetbrains.compose.resources.stringResource
  * - **A failed source keeps its row**, dimmed with the failed marker; pressing it retries.
  * - `Done` is pinned at the panel's foot. BACK is the host's: up a level from a nested list, or closed.
  *
- * Rows are `SidePanel`'s, on its 60dp pitch from `SidePanelFirstRowY`; more than fit scroll.
+ * Rows are `SidePanel`'s, on its 60dp pitch from `SidePanelFirstRowY`; more than fit scroll, by whole rows ([RowScroll]).
  *
  * **Focus lands on the active row**, what plays or the track in use, or the first row when nothing is. The host puts
  * focus into the panel on the frame it opens, before a lazy list has composed its rows, which left it on `Done`
  * (measured); so the panel asks again once its rows exist.
  */
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun PlaybackPanelTv(
     panel: PlaybackPanelState,
@@ -70,6 +79,15 @@ fun PlaybackPanelTv(
     modifier: Modifier = Modifier,
 ) {
     val entry = remember { FocusRequester() }
+    val density = LocalDensity.current
+    val bleed = with(density) { CloudStreamDimens.FocusRingBleed.roundToPx() }
+    val gap = with(density) { SidePanelDefaults.RowGap.roundToPx() }
+    // The same rounding `spacedBy` and the row's own height get, so a pitch here is a pitch on screen.
+    val rowHeight = with(density) { CloudStreamDimens.ListRowHeight.roundToPx() }
+    val pitch = rowHeight + gap
+    val scrollSpec = remember(bleed, rowHeight, pitch) {
+        RowScrollSpec(bleed.toFloat(), bleed.toFloat(), rowHeight.toFloat(), pitch.toFloat())
+    }
     val entryKey = panel.rows.firstOrNull { it.active }?.key ?: panel.rows.firstOrNull()?.key
     LaunchedEffect(panel.kind, panel.title, panel.nested) {
         withFrameNanos { }
@@ -89,20 +107,32 @@ fun PlaybackPanelTv(
         // One child of the rows slot, list and rule together: the slot spaces its children `RowGap` apart, which would
         // cost the list 12dp (Quick Search's panel found it the hard way).
         Column(Modifier.weight(1f).fillMaxWidth()) {
-            LazyColumn(
-                modifier = Modifier
+            BoxWithConstraints(
+                Modifier
                     .weight(1f)
                     .fillMaxWidth()
                     .bleedPastSlot(CloudStreamDimens.FocusRingBleed),
-                contentPadding = PaddingValues(vertical = CloudStreamDimens.FocusRingBleed),
-                verticalArrangement = Arrangement.spacedBy(SidePanelDefaults.RowGap),
             ) {
-                items(items = panel.rows, key = { it.key }) { row ->
-                    PanelRowItem(
-                        row,
-                        onPress = { onAction(PlayerHudAction.PanelRowPressed(panel.kind, row.key)) },
-                        modifier = if (row.key == entryKey) Modifier.focusRequester(entry) else Modifier,
-                    )
+                // Scrolling is RowScroll's, as Quick Search's and the downloads list's: a row that fits does not move
+                // the list, and one that does not moves it by whole rows, so no row is cut against the header or rule.
+                val endPadding = RowScroll.listEndPadding(constraints.maxHeight, panel.rows.size, bleed, bleed, pitch, gap)
+                CompositionLocalProvider(LocalBringIntoViewSpec provides scrollSpec) {
+                    LazyColumn(
+                        modifier = Modifier.fillMaxSize(),
+                        contentPadding = PaddingValues(
+                            top = CloudStreamDimens.FocusRingBleed,
+                            bottom = with(density) { endPadding.toDp() },
+                        ),
+                        verticalArrangement = Arrangement.spacedBy(SidePanelDefaults.RowGap),
+                    ) {
+                        items(items = panel.rows, key = { it.key }) { row ->
+                            PanelRowItem(
+                                row,
+                                onPress = { onAction(PlayerHudAction.PanelRowPressed(panel.kind, row.key)) },
+                                modifier = if (row.key == entryKey) Modifier.focusRequester(entry) else Modifier,
+                            )
+                        }
+                    }
                 }
             }
             // 7e's `.rule` at y880: five rows show whole above it, and a sixth scrolls in under the pinned Done.

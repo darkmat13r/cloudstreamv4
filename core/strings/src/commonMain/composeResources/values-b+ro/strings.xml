@@ -12,6 +12,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d MARCAJ</item><item quantity="few">%d MARCAJE</item><item quantity="other">%d DE MARCAJE</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Nu s-a putut încărca %d secțiune</item><item quantity="few">Nu s-au putut încărca %d secțiuni</item><item quantity="other">Nu s-au putut încărca %d de secțiuni</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d titlu</item><item quantity="few">%d titluri</item><item quantity="other">%d de titluri</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Caută în %d sursă</item><item quantity="few">Caută în toate cele %d surse</item><item quantity="other">Caută în toate cele %d de surse</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Apăsați tasta de căutare a tastaturii pentru a căuta oricum în %d sursă.</item><item quantity="few">Apăsați tasta de căutare a tastaturii pentru a căuta oricum în toate cele %d surse.</item><item quantity="other">Apăsați tasta de căutare a tastaturii pentru a căuta oricum în toate cele %d de surse.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d SURSĂ</item><item quantity="few">%d SURSE</item><item quantity="other">%d DE SURSE</item></plurals>

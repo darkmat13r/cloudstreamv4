@@ -8,6 +8,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.test.isFocused
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -120,6 +121,38 @@ class PlaybackPanelTvDeviceTest {
         rule.waitForIdle()
         assertEquals(listOf(PlayerHudAction.OpenSubtitles), actions.filter { it is PlayerHudAction.OpenSubtitles })
     }
+
+    /**
+     * `BUG-36`: closing a panel gives focus back to the selector that opened it, not to the first focusable in the HUD.
+     * The host closes it here as BACK does, by the panel going away, so the opener has to outlive the panel's state.
+     *
+     * A guard, not a reproduction: measured, the HUD without the opener passes this too. Unlike the screens BUG-36 was
+     * found on, no lazy list sits between the content and the selectors. The opener keeps this passing however the HUD's
+     * groups change.
+     */
+    @Test
+    fun closingAPanelGivesFocusBackToTheSelectorThatOpenedIt() {
+        show()
+        dpad.press(Dpad.Down)
+        val subtitles = dpad.press(Dpad.Right)
+        val audio = dpad.press(Dpad.Right)
+        assertTrue("No AUDIO selector", audio != null && audio != subtitles)
+
+        // Focus is compared by node, not label: AUDIO's value and the Audio panel's first row read the same.
+        for (selector in listOf(audio, subtitles)) {
+            repeat(3) { if (dpad.focused() != selector) dpad.press(if (selector == subtitles) Dpad.Left else Dpad.Right) }
+            assertEquals(selector, dpad.focused())
+            val opener = focusedNode()
+            dpad.center()
+            rule.waitUntil(WAIT_MS) { open != null && focusedNode().let { it != null && it != opener } }
+            open = null
+            rule.waitForIdle()
+            runCatching { rule.waitUntil(WAIT_MS) { focusedNode() == opener } }
+            assertEquals("Focus did not go back to the selector that opened the panel ($selector)", opener, focusedNode())
+        }
+    }
+
+    private fun focusedNode(): Int? = rule.onAllNodes(isFocused()).fetchSemanticsNodes().firstOrNull()?.id
 
     // ---- Screenshots ----
 

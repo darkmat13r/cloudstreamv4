@@ -236,6 +236,7 @@
 <string name="player_mute">"Silentigi"</string>
 <string name="player_panel_failed">"malsukcesis"</string>
 <string name="player_panel_keeps" formatted="true">"konservas %s"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
 <string name="player_panel_on">"Ŝaltita"</string>
 <string name="player_panel_open">"Malfermi"</string>
 <string name="player_panel_quality_profile">"Kvalita profilo"</string>

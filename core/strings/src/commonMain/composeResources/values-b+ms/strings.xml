@@ -12,6 +12,7 @@
 <plurals name="home_bookmarks_count"><item quantity="other">%d PENANDA HALAMAN</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">%d bahagian gagal dimuatkan</item></plurals>
 <plurals name="library_title_count"><item quantity="other">%d tajuk</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="search_state_no_suggestions_action"><item quantity="other">Cari dalam semua %d sumber</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="other">Tekan kekunci carian papan kekunci untuk tetap mencari dalam semua %d sumber.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="other">%d SUMBER</item></plurals>

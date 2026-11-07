@@ -466,6 +466,7 @@
 <string name="player_mute">"Dezactivează sunetul"</string>
 <string name="player_panel_failed">"eșuat"</string>
 <string name="player_panel_keeps" formatted="true">"păstrează %s"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
 <string name="player_panel_on">"Activat"</string>
 <string name="player_panel_open">"Deschide"</string>
 <string name="player_panel_quality_profile">"Profil de calitate"</string>

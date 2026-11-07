@@ -522,6 +522,7 @@
 <string name="player_notification_channel_name">"Notifiche lettore"</string>
 <string name="player_panel_failed">"non riuscito"</string>
 <string name="player_panel_keeps" formatted="true">"mantiene %s"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
 <string name="player_panel_on">"Attivo"</string>
 <string name="player_panel_open">"Apri"</string>
 <string name="player_panel_quality_profile">"Profilo qualità"</string>

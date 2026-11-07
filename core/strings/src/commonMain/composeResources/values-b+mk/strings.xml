@@ -14,6 +14,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d ОБЕЛЕЖУВАЧ</item><item quantity="other">%d ОБЕЛЕЖУВАЧИ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d дел не се вчита</item><item quantity="other">%d делови не се вчитаа</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d наслов</item><item quantity="other">%d наслови</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Барај во %d извор</item><item quantity="other">Барај во сите %d извори</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Притиснете го копчето за пребарување на тастатурата за сепак да пребарувате во %d извор.</item><item quantity="other">Притиснете го копчето за пребарување на тастатурата за сепак да пребарувате во сите %d извори.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d ИЗВОР</item><item quantity="other">%d ИЗВОРИ</item></plurals>

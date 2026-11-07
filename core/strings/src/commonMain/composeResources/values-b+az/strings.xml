@@ -12,6 +12,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d ƏLFƏCİN</item><item quantity="other">%d ƏLFƏCİN</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d bölmə yüklənmədi</item><item quantity="other">%d bölmə yüklənmədi</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d başlıq</item><item quantity="other">%d başlıq</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">%d mənbədə axtar</item><item quantity="other">Bütün %d mənbədə axtar</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Yenə də %d mənbədə axtarmaq üçün klaviaturanın axtarış düyməsini basın.</item><item quantity="other">Yenə də bütün %d mənbədə axtarmaq üçün klaviaturanın axtarış düyməsini basın.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d MƏNBƏ</item><item quantity="other">%d MƏNBƏ</item></plurals>

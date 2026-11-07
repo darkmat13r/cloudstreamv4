@@ -369,6 +369,7 @@
 <string name="player_mute">"म्यूट करें"</string>
 <string name="player_panel_failed">"विफल"</string>
 <string name="player_panel_keeps" formatted="true">"%s बनाए रखता है"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
 <string name="player_panel_on">"चालू"</string>
 <string name="player_panel_open">"खोलें"</string>
 <string name="player_panel_quality_profile">"गुणवत्ता प्रोफ़ाइल"</string>
