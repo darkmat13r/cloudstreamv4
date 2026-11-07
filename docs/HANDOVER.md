@@ -24,6 +24,8 @@ when twenty-three more had merged since. **Trust `git log` over this heading.**
 
 **Android TV opens the new home since `KMP-37`,** the first screen here to have run against a real plugin. `TvHomeSwitch.useComposeHome = false` is the rollback to `HomeFragment`, kept for one release. Phone and the emulator layout are unchanged. Since `KMP-41` it has 3c's hero, Continue watching from the old home's resume records (read through the library's store), and watch progress on its cards; focus lands on the hero's button.
 
+**Android TV's account select is artboard 8d since `KMP-73`.** `TvAccountSwitch.useComposeAccountSelect = false` is the rollback to the old grid. It runs over the same `AccountViewModel`, so selecting, the PIN check and the hand-off are unchanged; the profile editor, the PIN prompt and Kitsu's form are still the old dialogs. The picker now shows with one added profile plus the default (it skipped before).
+
 **Android TV opens the new downloads screen since `KMP-40`**, boards 6c and 6e. Deleting one line in `MainActivity` is the rollback, and `DownloadFragment` stays on every other layout.
 **The TV library reads its sources since `KMP-49`**: the provider button and 5e's panel over `AccountManager.syncApis`, a service's own lists as tabs, and its titles through the old opener. The owner's rulings are `DEC-20`.
 **The TV library sorts since `KMP-50`**: 5d's panel and the sort button, one choice for every source under the old screen's own key (`library_sorting_mode`), falling back to last updated where a source cannot sort by it (`DEC-20`). Focus after the panel closes is `BUG-36`, pinned.

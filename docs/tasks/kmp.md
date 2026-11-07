@@ -5815,3 +5815,75 @@ Why: headers can be credentials; the owner's rule is no URLs, headers or paths i
 ### Published API
 
 Additions only. `app/api/classes-jar.api` +70 / −0: 8 `R$string` fields, `CS3IPlayer.getBufferedPosition`, `FullScreenPlayer`'s `playerError` override and failure flag, `GeneratorPlayer`'s facts override, and the HUD host classes.
+
+
+## KMP-73 — TV account select, artboard 8d (queue `Q16`) · **measured 2026-11-07**
+
+**Status:** in pr, stacked on `BUG-50` (#215), with `BUG-49` (#213), `I18N-16` (#217) and `BUG-36` (#212) merged in. Board
+8d of `TV Onboarding Extensions.dc.html` (a board file in the owner's Claude Design project), on `Television_720p`, API 36.
+
+### What it adds
+
+- **`:feature:account`**, a new module: `AccountSelectScreenTv` and `PairingPanelTv` over a plain state
+  (`AccountSelectState`), so it needs no `:app`.
+- **`AccountSelectActivity` draws 8d on TV**, behind `TvAccountSwitch`, over the same `AccountViewModel` the old grid used:
+  selecting, the PIN check and the hand-off to `MainActivity` are unchanged.
+- **Profiles are a card row.** Focus starts on the current profile, which rests filled; a focused card lifts and takes a
+  ring with no offset. A locked profile says only "Locked · PIN" (what it syncs with is its own business until the PIN);
+  the others say whether they are current and which services they use.
+- **Sync services are a list with their true state**: Simkl pairs with a code; MyAnimeList and AniList offer a browser
+  sign-in where the device has a browser and say "Not available here" where it does not; Kitsu signs in with its form; a
+  connected service offers "Remove from this device", behind a confirmation.
+- **Pairing is a side panel** with the code, a QR code of the address and the countdown. It reuses `BUG-49`'s
+  `DevicePinPoll`, so every way out ends the pairing, and focus goes back to the row that opened it (`BUG-36`'s `opener`).
+- What 8d does not draw stays the old dialogs: the profile editor, the PIN prompt, Kitsu's form, the remove confirmation.
+
+### Behaviour changes
+
+| Before | Now | Why |
+|---|---|---|
+| **One added profile plus the default skipped the picker** (the stored list, which omits the default, had one entry) | The picker shows; a single profile still skips it | The audit's finding; counted as `getAccounts`, the default included |
+| The same count decided `MainActivity`'s biometric prompt | It uses the same count | Otherwise a phone with one added profile would be asked twice |
+| A browser-only service offered a sign-in that silently failed on a TV with no browser | It says "Not available here" | 8d |
+| Signing out of a service on TV said "Log out" | "Remove from this device", after a confirmation | No provider revokes a token; the words say what happens (owner's ruling) |
+
+### Security
+
+- **Sign-in state is read by presence** through `CredentialStore` (`BUG-50`): a token is never parsed for this screen. A
+  sign-out leaves its key holding an empty array, so an empty array counts as signed out; the value is compared, never
+  parsed or logged.
+- **The pairing code** is shown because the person has to read it, and is never logged; the screenshots use a fixture
+  (`FAKE00`) and a checkerboard in place of the QR.
+
+### Measured on the way
+
+- **BACK on the pairing panel closed the whole screen.** API 36 sends BACK to the back dispatcher, not to
+  `SidePanelHost`'s key handler, as its KDoc warns; the host adds an `OnBackPressedCallback` while pairing.
+- **Closing the panel put focus on the first card**, not the row that opened it (measured: "Focus is on Main, not
+  Simkl"): `BUG-36`. Fixed with its `opener`, latched so it survives the exit.
+- **The cards drew no ring**: focus was read through an interaction source shared by two focus targets. One target now,
+  read with `onFocusChanged`.
+- **The panel title read "Pair %s"**: Compose's `stringResource(res, args)` does not fill a bare `%s`. `UiString` does.
+
+### Reduced from the board
+
+- **No "last sync" age**: none is recorded (owner's ruling).
+- **No service logos** in the rows' disc.
+- **A profile picture from an address shows initials**; the bundled pictures show.
+- **The add card's glyph is the 24 dp `Add` icon** centred in 8d's 32 dp cell; the pack has no 32.
+- **Kitsu's sign-in and the profile editor are the old dialogs**: 8d does not draw them.
+
+### Tests
+
+- `ProfileLineTest` (common, 2): what a card's line says.
+- `AccountSelectScreenTvDeviceTest` (device, 6): focus starts on the current profile; Manage, then cards, then rows; a card
+  press selects; pairing takes focus to *Get a new code*, BACK cancels and focus returns to the Simkl row; screenshots
+  `account-select` and `account-select-pairing`, each looked at.
+- `AccountSelectTvNavigationTest` (`:app`, the real path, 4): one added profile shows the picker (**fails with the old
+  count**: "8d did not show with two profiles"); one profile still skips; choosing a profile hands over as that profile; a
+  marker sign-in shows as "Current · Simkl" and its value never reaches the screen.
+
+### Not verified
+
+BACK on the real pairing panel (the panel needs Simkl's live code endpoint; the feature test covers the same callback),
+a real browser sign-in, Kitsu's form, `TalkBack`, a real remote.
