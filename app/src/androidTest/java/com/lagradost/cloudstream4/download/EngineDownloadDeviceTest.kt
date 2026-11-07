@@ -329,7 +329,10 @@ class EngineDownloadDeviceTest {
         val source = SeededSource(seed = 4, size = 16 * MIB)
         EngineTestServer(source).use { server ->
             val bodyRequests = AtomicInteger()
-            val dropAfter = 256 * 1024L
+            // BUG-45: past Ktor's 1 MiB channel, which a dropped body discards unread (KMP-46), so at least
+            // 512 KiB of the 2 MiB part is on disk and the resume has to start inside it. At 256 KiB the whole cut
+            // could be discarded and the part refetched from its start, which is correct and failed this test.
+            val dropAfter = 3 * MIB / 2
             server.fault = { served ->
                 if (!served.isProbe && served.method == "GET" && bodyRequests.incrementAndGet() == 3) {
                     Fault.DropAfter(dropAfter)
