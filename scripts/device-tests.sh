@@ -79,6 +79,12 @@ fi
 # DELETE_FAILED_INTERNAL_ERROR on two cores.
 sleep 20
 
+# Every run starts with animations at their normal speed, whatever a case or an earlier run left: a case may turn
+# the animator scale off for itself (`BUG-41`), and no run should depend on whether it put it back.
+for scale in animator_duration_scale transition_animation_scale window_animation_scale; do
+    "$adb" -s $ANDROID_SERIAL shell settings put global $scale 1
+done
+
 TZ=UTC taskpolicy -c utility ./gradlew $flags $tasks
 gradle_exit=$?
 

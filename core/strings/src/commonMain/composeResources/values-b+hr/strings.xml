@@ -13,6 +13,7 @@
 <plurals name="downloads_titles_status"><item quantity="one">%1$d naslov · %2$s</item><item quantity="few">%1$d naslova · %2$s</item><item quantity="other">%1$d naslova · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d OZNAKA</item><item quantity="few">%d OZNAKE</item><item quantity="other">%d OZNAKA</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Nije učitan %d odjeljak</item><item quantity="few">Nisu učitana %d odjeljka</item><item quantity="other">Nije učitano %d odjeljaka</item></plurals>
+<plurals name="library_title_count"><item quantity="one">%d naslov</item><item quantity="few">%d naslova</item><item quantity="other">%d naslova</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Pretraži %d izvor</item><item quantity="few">Pretraži sva %d izvora</item><item quantity="other">Pretraži svih %d izvora</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Pritisnite tipku za pretraživanje na tipkovnici da biste ipak pretražili %d izvor.</item><item quantity="few">Pritisnite tipku za pretraživanje na tipkovnici da biste ipak pretražili sva %d izvora.</item><item quantity="other">Pritisnite tipku za pretraživanje na tipkovnici da biste ipak pretražili svih %d izvora.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d IZVOR</item><item quantity="few">%d IZVORA</item><item quantity="other">%d IZVORA</item></plurals>
@@ -395,10 +396,21 @@
 <string name="kitsu_settings">Prikaži postere iz Kitsua</string>
 <string name="legal_notice">Pravna obavijest</string>
 <string name="library">Biblioteka</string>
+<string name="library_go_to_list">Idi na %s</string>
+<string name="library_list_empty_body">Ovdje se pojavljuju naslovi koje dodate u %s.</string>
+<string name="library_list_empty_headline">Ništa u popisu %s</string>
 <string name="library_not_connected">Nije povezano</string>
 <string name="library_on_device">Na uređaju</string>
+<string name="library_sort_current">Poredak: %s</string>
+<string name="library_sort_supported">%1$s podržava %2$d od %3$d</string>
+<string name="library_sort_not_kept">%s to ne čuva</string>
 <string name="library_source">Izvor biblioteke</string>
 <string name="library_source_note">Jedan po jedan · promjena ponovno učitava</string>
+<string name="library_sync_cached">Iz predmemorije</string>
+<string name="library_sync_failed">Nije moguće sinkronizirati %1$s. Ovo je od prije %2$s.</string>
+<string name="library_sync_offline">Izvan mreže · predmemorirano prije %s</string>
+<string name="library_sync_retry">Ponovno sinkroniziraj</string>
+<string name="library_sync_unreachable">Nedostupno · predmemorirano prije %s</string>
 <string name="library_synced_format">Sinkronizirano prije %s</string>
 <string name="lightnovel">Aplikacija za romane od istih programera</string>
 <string name="limit_title">Maksimalni broj znakova u naslovu video playera</string>
@@ -491,6 +503,14 @@
 <string name="player_fit_screen">Ispuni zaslon</string>
 <string name="player_fit_title">Veličina slike</string>
 <string name="player_fit_width">Ispuni širinu</string>
+<string name="player_hud_buffering">MEĐUSPREMANJE</string>
+<string name="player_hud_failed_detail">Odaberite drugi izvor ispod.</string>
+<string name="player_hud_offline_copy">Nema veze — reproducira se preuzeta kopija</string>
+<string name="player_hud_previous_episode">Prethodna epizoda</string>
+<string name="player_hud_seek_back">Premotaj natrag</string>
+<string name="player_hud_seek_forward">Premotaj naprijed</string>
+<string name="player_hud_speed">Brzina</string>
+<string name="player_hud_up_next">Sljedeće · %s</string>
 <string name="player_is_live">Uživo</string>
 <string name="player_load_one_subtitle_online">Učitaj prvi dostupni</string>
 <string name="player_load_subtitles">Učitaj iz datoteke</string>
@@ -649,6 +669,7 @@
 <string name="search_state_no_suggestions_headline">Ništa ne odgovara „%s“</string>
 <string name="search_suggestions">Prijedlozi za pretraživanje</string>
 <string name="search_suggestions_des">Prikaži prijedloge za pretraživanje tijekom tipkanja</string>
+<string name="search_suggestions_return_hint">Return pretražuje sve</string>
 <string name="search_tv_source_failed">NEUSPJELO %s</string>
 <string name="search_tv_source_pinned">PRIKVAČENO</string>
 <string name="search_tv_sources_panel_meta">%1$d OD %2$d UKLJUČENO · PROMJENE VRIJEDE NAKON GOTOVO</string>
@@ -657,7 +678,9 @@
 <string name="search_tv_suggestion_suggested">PREDLOŽENO</string>
 <string name="season">Sezona</string>
 <string name="season_format">%1$s %2$d%3$s</string>
+<string name="season_other">Ostalo</string>
 <string name="season_short">S</string>
+<string name="season_specials">Specijali</string>
 <string name="seek_back_10_seconds">Pomakni natrag 10 sekundi</string>
 <string name="seek_forward_10_seconds">Pomakni naprijed 10 sekundi</string>
 <string name="select_all">Označi sve</string>

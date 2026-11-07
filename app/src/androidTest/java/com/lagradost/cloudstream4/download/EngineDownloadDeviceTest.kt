@@ -49,6 +49,13 @@ import java.util.concurrent.atomic.AtomicInteger
 import java.util.concurrent.atomic.AtomicReference
 
 private const val MIB = 1_048_576L
+
+/**
+ * The most a dropped body can lose before it reaches the part file: Ktor's 1 MiB `ByteChannel`, whose unread bytes
+ * are discarded when the engine fails the body (`KMP-46`, logged as `KMP-69`). A resume that starts further back than
+ * this re-fetches bytes that were on disk.
+ */
+private const val CHANNEL_DISCARD = MIB
 private const val FOLDER = "EngineDownloadDeviceTest"
 private const val TAG = "EngineDownloadDeviceTest"
 
@@ -329,7 +336,10 @@ class EngineDownloadDeviceTest {
         val source = SeededSource(seed = 4, size = 16 * MIB)
         EngineTestServer(source).use { server ->
             val bodyRequests = AtomicInteger()
-            val dropAfter = 256 * 1024L
+            // BUG-45: past Ktor's 1 MiB channel, which a dropped body discards unread (KMP-46), so at least
+            // 512 KiB of the 2 MiB part is on disk and the resume has to start inside it. At 256 KiB the whole cut
+            // could be discarded and the part refetched from its start, which is correct and failed this test.
+            val dropAfter = 3 * MIB / 2
             server.fault = { served ->
                 if (!served.isProbe && served.method == "GET" && bodyRequests.incrementAndGet() == 3) {
                     Fault.DropAfter(dropAfter)
@@ -345,9 +355,13 @@ class EngineDownloadDeviceTest {
             val dropped = server.bodyRequests().single { it.bytesSent == dropAfter && it.rangeEnd != null &&
                 it.rangeEnd!! - it.rangeStart!! + 1 > dropAfter }
             val start = dropped.rangeStart!!
+            // The part file is joined away by the time the run ends, so its length at the drop cannot be read here.
+            // Pin the lower bound instead: a resume may refetch at most the channel's discard, never more.
             assertTrue(
-                "no request carried on inside the dropped part",
-                server.bodyRequests().any { it.index > dropped.index && it.rangeStart!! in (start + 1)..(start + dropAfter) },
+                "no request carried on inside the dropped part, within the channel's discard",
+                server.bodyRequests().any {
+                    it.index > dropped.index && it.rangeStart!! in (start + dropAfter - CHANNEL_DISCARD)..(start + dropAfter)
+                },
             )
         }
     }

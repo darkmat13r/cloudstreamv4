@@ -52,6 +52,7 @@ internal fun LibraryGridTv(
     onAction: (LibraryAction) -> Unit,
     artwork: @Composable (LibraryCard) -> Unit,
     modifier: Modifier = Modifier,
+    cached: String? = null,
 ) {
     val gridState = rememberLazyGridState(initialFirstVisibleItemIndex = returnTo?.firstVisibleIndex ?: 0)
 
@@ -85,6 +86,7 @@ internal fun LibraryGridTv(
                 focusMemory = focusMemory,
                 takeFocus = returnTo?.ready == true && card.id == returnTo.id,
                 onFocusTaken = { onAction(LibraryAction.ReturnHandled) },
+                cached = cached,
             )
         }
     }
@@ -93,6 +95,8 @@ internal fun LibraryGridTv(
 /**
  * One poster: the kind of title top left, the user's own rating top right where there is one, the title and a line
  * revealed on focus, and how far through it is.
+ *
+ * @param cached the word for a held read's card (5b, `KMP-51`), which takes the type's badge, or null for a live one.
  *
  * The line is a tracking service's `12 / 28 Episodes` where it has the count, else the provider. The bar is the last
  * played part's position on a local list and episodes seen over episodes in all on a service's. Local bookmarks hold
@@ -112,6 +116,7 @@ private fun LibraryGridCard(
     takeFocus: Boolean,
     onFocusTaken: () -> Unit,
     modifier: Modifier = Modifier,
+    cached: String? = null,
 ) {
     var focused by remember { mutableStateOf(false) }
     val focusRequester = remember { FocusRequester() }
@@ -122,8 +127,9 @@ private fun LibraryGridCard(
         focusRequester.requestFocusIfAttached()
         onFocusTaken()
     }
-    val slots = remember(card.typeLabel, card.rating) {
-        val type = card.typeLabel
+    val slots = remember(card.typeLabel, card.rating, cached) {
+        // 5b marks every card of a held read in the type's place, so nothing on it pretends to be live.
+        val type = cached ?: card.typeLabel
         val rating = card.rating
         if (type == null && rating == null) {
             MediaCardSlots.None

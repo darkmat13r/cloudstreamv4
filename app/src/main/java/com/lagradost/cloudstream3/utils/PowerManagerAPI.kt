@@ -52,7 +52,7 @@ object BatteryOptimizationChecker {
                 }
                 .show()
         } catch (t: Throwable) {
-            Log.e(TAG, "Error showing battery optimization dialog", t)
+            Log.e(TAG, "Error showing battery optimization dialog\n${redactedStackTrace(t)}")
         }
     }
 
@@ -71,7 +71,7 @@ object BatteryOptimizationChecker {
             }
             startActivity(intent)
         } catch (t: Throwable) {
-            Log.e(TAG, "Unable to invoke APP_DETAILS intent", t)
+            Log.e(TAG, "Unable to invoke APP_DETAILS intent\n${redactedStackTrace(t)}")
             if (t is ActivityNotFoundException) {
                 showToast("Exception: Activity Not Found")
             } else {

@@ -11,9 +11,12 @@ import com.lagradost.cloudstream3.syncproviders.SyncIdName
 import com.lagradost.cloudstream3.syncproviders.SyncRepo
 import com.lagradost.cloudstream3.ui.library.LibraryOpener
 import com.lagradost.cloudstream3.ui.library.LibraryOpenerType
+import com.lagradost.cloudstream3.ui.library.ListSorting
 import com.lagradost.cloudstream3.ui.library.ProviderLibraryData
 import com.lagradost.cloudstream3.utils.UiText
 import com.lagradost.cloudstream3.utils.txt
+import com.lagradost.cloudstream4.feature.library.LibrarySort
+import com.lagradost.cloudstream4.feature.library.LibrarySortCriterion
 import com.lagradost.cloudstream4.feature.library.LibrarySourceId
 import com.lagradost.cloudstream4.feature.library.LibraryTitleId
 import com.lagradost.cloudstream4.search.encodeId
@@ -55,6 +58,9 @@ class AndroidLibrarySourcesTest {
         override fun choose(name: String) { chosen = name }
         override fun syncedAt(name: String) = times[name]
         override fun synced(name: String, at: Long) { times[name] = at }
+        var mode: Int? = null
+        override fun sortingMode() = mode
+        override fun sortBy(mode: Int) { this.mode = mode }
     }
 
     private fun item(
@@ -277,6 +283,94 @@ class AndroidLibrarySourcesTest {
 
         assertEquals(1, simklApi.asked)
         assertEquals("AniList is still the one shown", "sync-Frieren", host.synced(frierenId)?.item?.syncId)
+    }
+
+    // ---- `KMP-50`: sort ------------------------------------------------------------------------------------------
+
+    /**
+     * The choice is stored as the old screen's `ListSorting` ordinal, so the two screens agree only while the ordinals
+     * do. Pinned, all nine: reordering the enum would change what every stored choice means.
+     */
+    @Test
+    fun `the old screen's sort ordinals are pinned`() {
+        assertEquals(
+            listOf(
+                "Query" to 0, "RatingHigh" to 1, "RatingLow" to 2, "UpdatedNew" to 3, "UpdatedOld" to 4,
+                "AlphabeticalA" to 5, "AlphabeticalZ" to 6, "ReleaseDateNew" to 7, "ReleaseDateOld" to 8,
+            ),
+            ListSorting.entries.map { it.name to it.ordinal },
+        )
+    }
+
+    @Test
+    fun `each of the eight is one criterion one way round, and Query is none`() {
+        with(AndroidLibrarySources) {
+            assertNull(ListSorting.Query.toLibrarySort())
+            val sorts = ListSorting.entries.mapNotNull { it.toLibrarySort() }
+            assertEquals(8, sorts.toSet().size)
+            sorts.forEach { assertEquals(it, it.toListSorting().toLibrarySort()) }
+            assertEquals(LibrarySort.Default, ListSorting.UpdatedNew.toLibrarySort())
+            assertEquals(LibrarySort(LibrarySortCriterion.Title, descending = false), ListSorting.AlphabeticalA.toLibrarySort())
+        }
+    }
+
+    @Test
+    fun `the sort is kept under the old screen's ordinal, and none kept is the default`() = runBlocking {
+        val host = sources(aniList, local)
+        assertNull(host.sort())
+        host.sortBy(LibrarySort(LibrarySortCriterion.Released, descending = false))
+        assertEquals(ListSorting.ReleaseDateOld.ordinal, records.mode)
+        assertEquals(LibrarySort(LibrarySortCriterion.Released, descending = false), host.sort())
+        records.mode = ListSorting.Query.ordinal
+        assertNull("the old screen's no sort", host.sort())
+        records.mode = 99
+        assertNull("an ordinal from a later enum", host.sort())
+    }
+
+    @Test
+    fun `a service sorts by what its read says, and the local list by all but a rating`() = runBlocking {
+        aniListApi.answer = {
+            SyncAPI.LibraryMetadata(listOf(watching), setOf(ListSorting.AlphabeticalA, ListSorting.UpdatedOld))
+        }
+        val host = sources(aniList, local)
+        assertEquals(
+            "before a read nothing is ruled out",
+            LibrarySortCriterion.entries.toSet(),
+            host.sources().first { it.name == "AniList" }.sorts,
+        )
+        host.lists(LibrarySourceId("AniList"))
+        assertEquals(
+            setOf(LibrarySortCriterion.Title, LibrarySortCriterion.Updated),
+            host.sources().first { it.name == "AniList" }.sorts,
+        )
+        assertEquals(
+            setOf(LibrarySortCriterion.Updated, LibrarySortCriterion.Title, LibrarySortCriterion.Released),
+            host.sources().first { it.local }.sorts,
+        )
+    }
+
+    @Test
+    fun `a service's title carries its year and its rating out of 100, and no rating is none`() = runBlocking {
+        val released = java.util.Calendar.getInstance().apply { set(2023, 8, 29) }.time
+        aniListApi.answer = {
+            SyncAPI.LibraryMetadata(
+                listOf(
+                    SyncAPI.LibraryList(
+                        txt(R.string.type_watching),
+                        listOf(
+                            item("Frieren", rating = Score.from(9.1, 10)).copy(releaseDate = released),
+                            item("Zero", rating = Score.from(0.0, 10)),
+                        ),
+                    ),
+                ),
+                emptySet(),
+            )
+        }
+        val (frieren, zero) = sources(aniList, local).lists(LibrarySourceId("AniList")).single().titles
+        assertEquals(2023, frieren.releaseYear)
+        assertEquals(91, frieren.ratingValue)
+        assertNull(zero.releaseYear)
+        assertNull("0 is not rated, and sorts last", zero.ratingValue)
     }
 
     // The opener: `LibraryFragment.loadLibraryItem`'s rule.

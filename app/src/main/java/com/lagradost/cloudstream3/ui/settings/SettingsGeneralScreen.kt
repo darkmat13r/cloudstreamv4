@@ -68,7 +68,7 @@ object SettingsGeneralScreen : SearchableSettings {
                     context.contentResolver.takePersistableUriPermission(uri, flags)
 
                     val filePath = SafeFile.fromUri(context, uri)?.filePath()
-                    println("Selected URI path: $uri - Full path: $filePath")
+                    println("Selected a directory, path resolved: ${filePath != null}")
 
                     // store the actual URI instead of the path due to permissions.
                     // filePath should only be used for cosmetic purposes.

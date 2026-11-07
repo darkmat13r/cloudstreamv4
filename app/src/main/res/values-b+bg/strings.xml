@@ -12,6 +12,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">"%d ОТМЕТКА"</item><item quantity="other">"%d ОТМЕТКИ"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d секция не се зареди"</item><item quantity="other">"%d секции не се заредиха"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d раздел"</item><item quantity="other">"%d раздела"</item></plurals>
+<plurals name="library_title_count"><item quantity="one">"%d заглавие"</item><item quantity="other">"%d заглавия"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Търсене в %d източник"</item><item quantity="other">"Търсене във всички %d източника"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Натиснете клавиша за търсене на клавиатурата, за да търсите въпреки това в %d източник."</item><item quantity="other">"Натиснете клавиша за търсене на клавиатурата, за да търсите въпреки това във всички %d източника."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d ИЗТОЧНИК"</item><item quantity="other">"%d ИЗТОЧНИКА"</item></plurals>
@@ -389,10 +390,21 @@
 <string name="kitsu_settings">"Покажете плакати от Kitsu"</string>
 <string name="legal_notice">"Опровержение"</string>
 <string name="library">"Библиотека"</string>
+<string name="library_go_to_list" formatted="true">"Към „%s“"</string>
+<string name="library_list_empty_body" formatted="true">"Заглавията, които добавите в „%s“, се появяват тук."</string>
+<string name="library_list_empty_headline" formatted="true">"Няма нищо в „%s“"</string>
 <string name="library_not_connected">"Не е свързан"</string>
 <string name="library_on_device">"На устройството"</string>
+<string name="library_sort_current" formatted="true">"Подреждане: %s"</string>
+<string name="library_sort_not_kept" formatted="true">"%s не го пази"</string>
+<string name="library_sort_supported" formatted="true">"%1$s поддържа %2$d от %3$d"</string>
 <string name="library_source">"Източник на библиотеката"</string>
 <string name="library_source_note">"Един по един · превключването презарежда"</string>
+<string name="library_sync_cached">"Кеширано"</string>
+<string name="library_sync_failed" formatted="true">"%1$s не можа да се синхронизира. Това е отпреди %2$s."</string>
+<string name="library_sync_offline" formatted="true">"Офлайн · кеширано преди %s"</string>
+<string name="library_sync_retry">"Нова синхронизация"</string>
+<string name="library_sync_unreachable" formatted="true">"Недостъпен · кеширано преди %s"</string>
 <string name="library_synced_format" formatted="true">"Синхронизирано преди %s"</string>
 <string name="lightnovel">"Light novel - приложение от същите разработчици"</string>
 <string name="limit_title">"Максимален брой знаци за заглавие във видеоплейъра"</string>
@@ -485,6 +497,14 @@
 <string name="player_fit_screen">"Запълване на екрана"</string>
 <string name="player_fit_title">"Размер на картината"</string>
 <string name="player_fit_width">"Запълване по ширина"</string>
+<string name="player_hud_buffering">"БУФЕРИРАНЕ"</string>
+<string name="player_hud_failed_detail">"Изберете друг източник по-долу."</string>
+<string name="player_hud_offline_copy">"Няма връзка — пуска се изтеглено копие"</string>
+<string name="player_hud_previous_episode">"Предишен епизод"</string>
+<string name="player_hud_seek_back">"Превъртане назад"</string>
+<string name="player_hud_seek_forward">"Превъртане напред"</string>
+<string name="player_hud_speed">"Скорост"</string>
+<string name="player_hud_up_next" formatted="true">"Следва · %s"</string>
 <string name="player_load_one_subtitle_online">"Зареди първия наличен"</string>
 <string name="player_load_subtitles">"Зареди от файл"</string>
 <string name="player_load_subtitles_online">"Зареди от Интернет"</string>
@@ -642,6 +662,7 @@
 <string name="search_state_no_suggestions_headline" formatted="true">"Нищо не съответства на „%s“"</string>
 <string name="search_suggestions">"Предложения за търсене"</string>
 <string name="search_suggestions_des">"Показвай предложения за търсене по време на писане"</string>
+<string name="search_suggestions_return_hint">"Return търси навсякъде"</string>
 <string name="search_tv_source_failed" formatted="true">"НЕУСПЕШНО %s"</string>
 <string name="search_tv_source_pinned">"ЗАКАЧЕН"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"%1$d ОТ %2$d ВКЛЮЧЕНИ · ПРОМЕНИТЕ СЕ ПРИЛАГАТ СЛЕД КРАЙ"</string>
@@ -650,7 +671,9 @@
 <string name="search_tv_suggestion_suggested">"ПРЕДЛОЖЕНО"</string>
 <string name="season">"Сезон"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
+<string name="season_other">"Други"</string>
 <string name="season_short">"С"</string>
+<string name="season_specials">"Специални"</string>
 <string name="seek_back_10_seconds">"Превърти назад с 10 секунди"</string>
 <string name="seek_forward_10_seconds">"Превърти напред с 10 секунди"</string>
 <string name="select_all">"Изберете всички"</string>

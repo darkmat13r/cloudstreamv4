@@ -26,6 +26,8 @@ when twenty-three more had merged since. **Trust `git log` over this heading.**
 
 **Android TV opens the new downloads screen since `KMP-40`**, boards 6c and 6e. Deleting one line in `MainActivity` is the rollback, and `DownloadFragment` stays on every other layout.
 **The TV library reads its sources since `KMP-49`**: the provider button and 5e's panel over `AccountManager.syncApis`, a service's own lists as tabs, and its titles through the old opener. The owner's rulings are `DEC-20`.
+**The TV library sorts since `KMP-50`**: 5d's panel and the sort button, one choice for every source under the old screen's own key (`library_sorting_mode`), falling back to last updated where a source cannot sort by it (`DEC-20`). Focus after the panel closes is `BUG-36`, pinned.
+**The TV library says when a service cannot be read since `KMP-51`**: 5b's held read, marked `Cached` with Retry beside the provider button, and offline without asking the service; the held read is in memory only. `BUG-33` is fixed.
 
 **One series' downloads open the new page on Android TV since `KMP-43`**, boards 6d and 6b, from the same destination and arguments. Deleting one line in `MainActivity` is the rollback, and `DownloadChildFragment` stays on every other layout.
 
@@ -129,6 +131,10 @@ the type chips came back with `KMP-42`, and a chip narrows a search. Since `KMP-
 setting. Since `KMP-48` Quick Search (`QuickSearchFragment.pushSearch`) opens on TV as a side panel over
 its caller (boards 8d and 8e): `navigation_quick_search` becomes a dialog destination with the same id.
 The full behaviour table is in `docs/tasks/kmp.md`.
+
+**The TV player draws artboard 7d since `KMP-64`**: a Compose HUD over the existing player (`FullScreenPlayer`), with
+the old Media3 controller off; `TvPlayerHudSwitch.useComposeHud = false` is the rollback. The pickers it opens are the old
+dialogs until `Q25`. It shows titles, source names, quality and track labels only, never a URL, header or path.
 
 **Desktop runs extensions in a sandbox** (`KMP-14`, `docs/tasks/kmp.md`): one Seatbelt-confined child
 process per extension, scanned first, `.cs3` converted with dex2jar in a no-network sandbox. Plugin code

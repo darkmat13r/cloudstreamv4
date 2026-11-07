@@ -11,6 +11,7 @@
 <plurals name="downloads_titles_status"><item quantity="one">%1$d titlu · %2$s</item><item quantity="few">%1$d titluri · %2$s</item><item quantity="other">%1$d de titluri · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d MARCAJ</item><item quantity="few">%d MARCAJE</item><item quantity="other">%d DE MARCAJE</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Nu s-a putut încărca %d secțiune</item><item quantity="few">Nu s-au putut încărca %d secțiuni</item><item quantity="other">Nu s-au putut încărca %d de secțiuni</item></plurals>
+<plurals name="library_title_count"><item quantity="one">%d titlu</item><item quantity="few">%d titluri</item><item quantity="other">%d de titluri</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Caută în %d sursă</item><item quantity="few">Caută în toate cele %d surse</item><item quantity="other">Caută în toate cele %d de surse</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Apăsați tasta de căutare a tastaturii pentru a căuta oricum în %d sursă.</item><item quantity="few">Apăsați tasta de căutare a tastaturii pentru a căuta oricum în toate cele %d surse.</item><item quantity="other">Apăsați tasta de căutare a tastaturii pentru a căuta oricum în toate cele %d de surse.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d SURSĂ</item><item quantity="few">%d SURSE</item><item quantity="other">%d DE SURSE</item></plurals>
@@ -355,10 +356,21 @@
 <string name="kitsu_settings">Arată afișele de la Kitsu</string>
 <string name="legal_notice">Aviz juridic (declinarea responsabilității și drepturi de autor)</string>
 <string name="library">Librărie</string>
+<string name="library_go_to_list">Mergi la %s</string>
+<string name="library_list_empty_body">Titlurile pe care le adaugi în %s apar aici.</string>
+<string name="library_list_empty_headline">Nimic în %s</string>
 <string name="library_not_connected">Neconectat</string>
 <string name="library_on_device">Pe dispozitiv</string>
+<string name="library_sort_current">Sortare: %s</string>
+<string name="library_sort_supported">%1$s acceptă %2$d din %3$d</string>
+<string name="library_sort_not_kept">Nu este păstrat de %s</string>
 <string name="library_source">Sursa bibliotecii</string>
 <string name="library_source_note">Câte una · schimbarea reîncarcă</string>
+<string name="library_sync_cached">Din cache</string>
+<string name="library_sync_failed">%1$s nu a putut fi sincronizat. Sunt de acum %2$s.</string>
+<string name="library_sync_offline">Offline · în cache de acum %s</string>
+<string name="library_sync_retry">Resincronizează</string>
+<string name="library_sync_unreachable">Inaccesibil · în cache de acum %s</string>
 <string name="library_synced_format">Sincronizat acum %s</string>
 <string name="lightnovel">&gt;Aplicație Light Novel realizată de aceiași dezvoltator</string>
 <string name="limit_title">Limitarea caracterelor de titlu în player</string>
@@ -439,6 +451,14 @@
 <string name="player_fit_screen">Umple ecranul</string>
 <string name="player_fit_title">Dimensiune imagine</string>
 <string name="player_fit_width">Umple lățimea</string>
+<string name="player_hud_buffering">SE ÎNCARCĂ</string>
+<string name="player_hud_failed_detail">Alegeți altă sursă mai jos.</string>
+<string name="player_hud_offline_copy">Fără conexiune — se redă copia descărcată</string>
+<string name="player_hud_previous_episode">Episodul anterior</string>
+<string name="player_hud_seek_back">Înapoi</string>
+<string name="player_hud_seek_forward">Înainte</string>
+<string name="player_hud_speed">Viteză</string>
+<string name="player_hud_up_next">Urmează · %s</string>
 <string name="player_load_one_subtitle_online">Încărcați prima disponibilă</string>
 <string name="player_load_subtitles">Încărcați din fișier</string>
 <string name="player_load_subtitles_online">Încărcare de pe Internet</string>
@@ -582,6 +602,7 @@
 <string name="search_state_no_results_type_filter">Doar %s. Filtrul de tip restrânge căutarea.</string>
 <string name="search_state_no_suggestions_detail">0 SUGESTII · 0 POTRIVIRI RECENTE</string>
 <string name="search_state_no_suggestions_headline">Nimic nu se potrivește cu „%s”</string>
+<string name="search_suggestions_return_hint">Return caută peste tot</string>
 <string name="search_tv_source_failed">EȘUAT %s</string>
 <string name="search_tv_source_pinned">FIXAT</string>
 <string name="search_tv_sources_panel_meta">%1$d DIN %2$d ACTIVATE · MODIFICĂRILE SE APLICĂ LA TERMINAT</string>
@@ -590,7 +611,9 @@
 <string name="search_tv_suggestion_suggested">SUGERAT</string>
 <string name="season">Sezonul</string>
 <string name="season_format">%1$s %2$d%3$s</string>
+<string name="season_other">Altele</string>
 <string name="season_short">S</string>
+<string name="season_specials">Speciale</string>
 <string name="seek_back_10_seconds">Derulează înapoi 10 secunde</string>
 <string name="seek_forward_10_seconds">Derulează înainte 10 secunde</string>
 <string name="select_all">Selectionati totul</string>

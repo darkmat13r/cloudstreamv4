@@ -9,6 +9,8 @@ import com.lagradost.cloudstream3.ui.result.ResultEpisode
 import com.lagradost.cloudstream3.utils.AppContextUtils.html
 import com.lagradost.cloudstream3.utils.ExtractorLink
 import com.lagradost.cloudstream3.utils.ExtractorLinkType
+import com.lagradost.cloudstream3.utils.redactedLinkInfo
+import com.lagradost.cloudstream3.utils.redactedSubtitleInfo
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicInteger
 
@@ -110,7 +112,7 @@ class RepoLinkGenerator(
             current.data,
             isCasting = isCasting,
             subtitleCallback = { file ->
-                Log.d(TAG, "Loaded SubtitleFile: $file")
+                Log.d(TAG, "Loaded SubtitleFile: ${redactedSubtitleInfo(file)}")
                 val correctFile = PlayerSubtitleHelper.getSubtitleData(file)
                 if (correctFile.url.isBlank() || !currentSubsUrls.add(correctFile.url)) {
                     return@loadLinks
@@ -133,7 +135,7 @@ class RepoLinkGenerator(
                 }
             },
             callback = { link ->
-                Log.d(TAG, "Loaded ExtractorLink: $link")
+                Log.d(TAG, "Loaded ExtractorLink: ${redactedLinkInfo(link)}")
                 if (link.url.isBlank() || !currentLinksUrls.add(link.url)) {
                     return@loadLinks
                 }

@@ -5,6 +5,7 @@ import android.util.Log
 import com.lagradost.cloudstream3.services.DownloadQueueService
 import com.lagradost.cloudstream3.utils.downloader.DownloadQueueManager
 import com.lagradost.cloudstream3.utils.downloader.VideoDownloadManager.DownloadType
+import com.lagradost.cloudstream3.utils.redactedStackTrace
 import com.lagradost.cloudstream4.media.model.DownloadFailure
 import com.lagradost.cloudstream4.media.model.DownloadProgress
 import com.lagradost.cloudstream4.media.model.DownloadState
@@ -271,7 +272,7 @@ internal object DownloadFacts {
         try {
             block()
         } catch (t: Throwable) {
-            Log.e(TAG, "A download fact was lost", t)
+            Log.e(TAG, "A download fact was lost\n${redactedStackTrace(t)}")
         }
     }
 

@@ -18,6 +18,8 @@ value class LibrarySourceId(val value: String)
  *   Null where no read has been recorded, which includes every read before the record existed: an age the app did
  *   not record is never shown.
  * @property titleCount how many titles it holds, where the host knows that without a network: the local list's.
+ * @property sorts what its lists can be sorted by. A criterion it holds no data for is not among them, and its row in
+ *   5d is disabled with the reason. Every criterion, the default, is a source with no such gap.
  */
 @Immutable
 data class LibrarySource(
@@ -28,6 +30,7 @@ data class LibrarySource(
     val account: String? = null,
     val syncedAt: Long? = null,
     val titleCount: Int? = null,
+    val sorts: Set<LibrarySortCriterion> = LibrarySortCriterion.entries.toSet(),
 )
 
 /**
@@ -66,4 +69,10 @@ interface LibrarySources {
      * Never called for the [LibrarySource.local] source, whose lists are [LibraryStore]'s.
      */
     suspend fun lists(id: LibrarySourceId): List<SyncedList>
+
+    /** The sort chosen last, for every source, or null where none was. A host that keeps none has the default. */
+    suspend fun sort(): LibrarySort? = null
+
+    /** Remembers [sort] as the choice for every source. */
+    suspend fun sortBy(sort: LibrarySort) = Unit
 }

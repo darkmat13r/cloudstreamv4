@@ -176,6 +176,7 @@ import com.lagradost.cloudstream3.utils.UIHelper.toPx
 import com.lagradost.cloudstream3.utils.USER_PROVIDER_API
 import com.lagradost.cloudstream3.utils.USER_SELECTED_HOMEPAGE_API
 import com.lagradost.cloudstream3.utils.downloader.DownloadQueueManager
+import com.lagradost.cloudstream3.utils.redactedThrowable
 import com.lagradost.cloudstream3.utils.setText
 import com.lagradost.cloudstream3.utils.setTextHtml
 import com.lagradost.cloudstream3.utils.txt
@@ -303,14 +304,14 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
                 if (str != null && this != null) {
                     if (str.startsWith("https://cs.repo")) {
                         val realUrl = "https://" + str.substringAfter("?")
-                        println("Repository url: $realUrl")
+                        println("Opening a repository link")
                         loadRepository(realUrl)
                         return true
                     } else if (str.contains(APP_STRING)) {
                         for (api in AccountManager.allApis) {
                             if (api.isValidRedirectUrl(str)) {
                                 ioSafe {
-                                    Log.i(TAG, "handleAppIntent $str")
+                                    Log.i(TAG, "handleAppIntent redirect for ${api.name}")
                                     try {
                                         val isSuccessful = api.login(str)
                                         if (isSuccessful) {
@@ -735,9 +736,9 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
         filesToDelete.forEach { path ->
             val result = File(path).deleteRecursively()
             if (result) {
-                Log.d(TAG, "Deleted temporary file: $path")
+                Log.d(TAG, "Deleted temporary file: ${File(path).name}")
             } else {
-                Log.d(TAG, "Failed to delete temporary file: $path")
+                Log.d(TAG, "Failed to delete temporary file: ${File(path).name}")
             }
         }
         filesToDelete = setOf()
@@ -823,7 +824,7 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
             navController.navigate(destinationId, null, builder.build())
             navController.currentDestination?.matchDestination(destinationId) == true
         } catch (e: IllegalArgumentException) {
-            Log.e("NavigationError", "Failed to navigate: ${e.message}")
+            Log.e("NavigationError", "Failed to navigate: ${redactedThrowable(e)}")
             false
         }
     }

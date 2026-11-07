@@ -14,6 +14,7 @@ import androidx.core.content.withStyledAttributes
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.removeKey
+import com.lagradost.cloudstream3.CloudStreamApp.Companion.removeKeys
 import com.lagradost.cloudstream3.R
 import com.lagradost.cloudstream3.mvvm.logError
 import com.lagradost.cloudstream3.services.DownloadQueueService.Companion.downloadInstances
@@ -192,6 +193,8 @@ open class PieFetchButton(context: Context, attributeSet: AttributeSet) :
                 } else {
                     // Otherwise just start a download instantly
                     removeKey(KEY_RESUME_PACKAGES, card.id.toString())
+                    // KMP-62: the side record a resume asks the provider with (VideoDownloadManager.KEY_RESUME_SOURCE)
+                    removeKeys("download_resume_source/${card.id}")
                     callback(DownloadClickEvent(DOWNLOAD_ACTION_DOWNLOAD, card))
                 }
             } else {

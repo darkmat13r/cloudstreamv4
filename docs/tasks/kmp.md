@@ -5073,17 +5073,38 @@ Seen in `EngineDownloadDeviceTest` (`aDownloadCutOffMidway…`): the split's new
 
 The test now bounds the union of the requested ranges, not their sum, so it still proves a resume. The cause is not investigated. The first place to look is where `PartScheduler` picks the split point against the victim's open request.
 
-## KMP-62 — The old downloader keeps whole links in `KEY_RESUME_PACKAGES` · **open**, waits on the owner
+## KMP-62 — The old downloader stores no link · **built 2026-11-07**, waits on review
 
-Found while checking `KMP-59` against the owner's no-link ruling for `KMP-52` (2026-11-06). Not changed.
-- **What is stored.** `DownloadManager.kt:1923-1927` writes `DownloadResumePackage(item, index)` to `KEY_RESUME_PACKAGES` before every
-  attempt. `DownloadItem.links` is `List<ExtractorLink>`, serialised with `url`, `referer` and `headers`
-  (`library/.../ExtractorApi.kt:700-708`). It goes to SharedPreferences.
-- **Which paths store it.** Both: the write comes before `downloadSingleEpisode`, so it happens with `KMP-59`'s switch on or off. The
-  engine path adds no link of its own. Its marker holds a size and a name, and its state file holds the size, ETag, Last-Modified and ranges.
-- **Applying the ruling.** Keep `ep`, the provider and the episode's `loadLinks` data. Run `loadLinks` again on resume, and on start-up
-  re-queueing from `DownloadQueueManager.init`.
-- **Waiting on the owner.** That changes the existing downloader for every user, so the owner decides before anyone builds it.
+Found while checking `KMP-59` against the no-link ruling for `KMP-52`; the owner approved applying it here (2026-11-06). The old downloader keeps what it needs to ask the provider again, not the links.
+No `DownloadObjects` class changed, and `:app:checkExtensionApi` shows no diff.
+- **What was stored.**
+  - `KEY_RESUME_PACKAGES` held each `ExtractorLink` (url, referer, headers, audio tracks).
+  - `KEY_RESUME_IN_QUEUE` and `QUEUE_KEY` held the same, plus `SubtitleData` (url, headers) for a picked mirror.
+- **Now.**
+  - Those three keys are written with `links` empty and `subs` null.
+  - A side record under the private key `download_resume_source/<id>/` holds:
+    - `item`: the `DownloadQueueItem` without links or subs, which carries the episode's `data` and the provider;
+    - `mirror`: the SHA-256 of the picked mirror's `source` and `name`, which are the provider's and can hold a host;
+    - `attempt`: the same hash for the link the partial file came from.
+  - A resume with no links runs `RepoLinkGenerator` again, with the same `LOADTYPE_INAPP_DOWNLOAD` filter and profile
+    order as a first download. A picked mirror is kept if the provider still offers it, otherwise the profile's top
+    link is used. The partial file resumes only on the link it came from.
+  - Links the user just picked stay in memory for the running process.
+- **Removed** with `KEY_RESUME_PACKAGES` (the queue service's Stop handling and `PieFetchButton`), on every file
+  delete (`deleteFileAndUpdateSettings`, which every delete in the app reaches, so it holds with no service running),
+  and when a download completes. It is kept out of backups. A finished download reads nothing from it.
+- **Migration** runs at `DownloadQueueManager.init`. It is idempotent, and it writes the side record before it strips
+  the package that needs it.
+  - A package whose queued item survives gets a side record and loses its links.
+  - Queued items lose theirs.
+  - A package with nothing to ask the provider with keeps its links until it finishes or is removed.
+- **Behaviour change.** A source that no longer answers now fails that resume with `DownloadFailure.NoUsableLink`, and
+  the partial file is kept.
+- **Tests.** `NoStoredLinksDeviceTest`, 9 cases. They read every `shared_prefs/*.xml` raw and look for markers in a
+  link's url, referer, headers, source and name and in a subtitle's url and headers. The checks run after enqueue, run, fail,
+  stop, finish, restart and migration.
+- **Known and left.** `KEY_DOWNLOAD_INFO.linkHash` (`url.hashCode()`) and `DOWNLOAD_HEADER_CACHE.url` (the result
+  page URL).
 
 ## KMP-52 — The Mac download service and its data · **open**
 
@@ -5530,3 +5551,267 @@ alone, because board D4 gives the number its own column (the code stands in only
    an argument, so a translation can place it.
 3. Rerun the TV downloads device suite and keep its screenshots at 0/0, because this touches a `tv/` file.
 
+## KMP-69 — Engine: a dropped body loses up to 1 MiB already received · **open**, low, follow-up to `KMP-61`
+
+Measured in `KMP-46`: Ktor's `ByteChannel` buffer is 1 MiB (ktor-io-jvm 3.6.0). When the engine fails a body, the
+unread bytes in it are discarded. A raw socket received all 1,000,003 bytes in 15 of 15 attempts, and a bare Ktor
+read loop got 270,336 to 1,000,003. So each dropped connection can refetch up to about 1 MiB. `BUG-45` hit this in a
+device test.
+- Like `KMP-61` (a work steal refetching a tail), it wastes bandwidth and does not corrupt anything: the bytes on
+  disk are always the truth.
+- The fix means reading below Ktor (draining the channel into the part file before failing, or a smaller channel).
+  Not started; measure the cost on a metered link first.
+
+## KMP-68 — A reload that fails keeps the last rows, in memory, for the Mac's H4
+
+**Status:** in review · `:feature:home` only · ahead of `KMP-55`'s H4 (`DS-21`) · the PM's call, option (B), 2026-11-07
+
+`DS-21`'s H4 keeps the source's rows after a failed reload and says how old they are (`I18N-14`'s `home_reload_failed`).
+The view model followed TV 3m instead: a failed reload became `Failed` or `Offline`, and the rows were gone. That is now
+`HomeStatus.Stale(failure, kept, loadedAt)`:
+- `failure` is what the reload said, a `Failed` or an `Offline`, and the only thing TV draws.
+- `kept` are the rows from before, in memory only, never written anywhere.
+- `loadedAt` is when they loaded, from a clock the view model takes as `now` (a test passes its own).
+
+**TV does not change.** `Stale.rows` is empty, as it was for the failure. `toUiState` maps `Stale` to its failure's state.
+`HomeScreenTv` reads `status.shown` where it asked `is Offline`, so 3m draws exactly as before. TV's Reload is shown only
+with rows on screen, so TV never reloads from `Stale`; the Mac can, and a reload that fails again keeps the same rows and
+the same time.
+
+Tests:
+- `HomeViewModelTest`: a failed reload after one that loaded is `Stale` with the old rows and their time. Offline and then
+  failed both keep the first time, and a reload that succeeds swaps the rows in.
+- The existing failed-reload test now asserts `Stale`, whose `shown` is the old `Failed`.
+- `HomeScreenTvDeviceTest` and the 18 Home shots are unchanged.
+
+## KMP-50 — The TV library's sort: 5d's panel and 5a's sort button (queue `Q12`, second slice) · **measured 2026-11-07**
+
+**Status:** in pr, on master after `KMP-49` (`#175`, train 1). Android TV only. The owner's ruling is `DEC-20`'s last row: **one sort
+for every source, as the old screen keeps it, with a fallback for a source that cannot sort by it.**
+
+**The seam.** `LibrarySort` is a criterion (`Updated`, `Title`, `Released`, `Rating`) and a direction: the old
+screen's eight `ListSorting` entries, four criteria each both ways. A `LibrarySource` says which criteria it can sort by.
+`LibrarySources` gains `sort()` and `sortBy()`, both with defaults, so a host that keeps none has the default.
+`LibraryTitle` gains `releaseYear` and `ratingValue` (out of 100), both null by default. Desktop has no sources and
+shows no sort button; its cards are in the same order as before, and its tests pass unchanged.
+
+**The rules, each in one place.**
+
+- **The default** is `LibrarySort.Default`, last updated, newest first. It is the order a list had before this, so
+  `KMP-34`'s screenshots are unchanged.
+- **The fallback** is `appliedTo`: the choice where the shown source can sort by it, else the default. The choice is
+  kept, not overwritten, so a source that can sort by it shows it again. The button names the applied sort, never one
+  the grid is not in.
+- **A press** (`chooseSort`) applies at once and leaves the panel open (`DEC-17`, a single choice). The row already
+  applied turns the other way round. A criterion the shown source keeps nothing for is refused.
+- **Ties and gaps** (`LibraryShelf.sortedFor`): titles are put newest kept first before the sort, so a tie keeps that
+  order. A title with no year, or no rating, goes last both ways round. A name sorts ignoring case. Continue watching is
+  always newest watched first.
+
+**On Android.**
+
+- **The choice is the old screen's own key**, `"$currentAccount/library_sorting_mode"`, as the `ListSorting` ordinal,
+  so both screens read the same choice. The key is read raw: `DataStoreHelper.librarySortingMode` answers
+  `AlphabeticalA` where nothing is stored, and nothing stored is this screen's default. The old screen writes the key
+  as soon as it shows a list, so **a user who has opened it gets the order it showed them**, A to Z unless they chose
+  another. `Query` (no sort) and an ordinal this build does not know read as the default. All nine ordinals are
+  pinned by a test.
+- **What a service can sort by** is its read's `supportedListSorting`. Before the first read nothing is ruled out, and
+  the panel's rows are read again with the sources after it. The local list sorts by everything but a rating,
+  `LocalList`'s own set.
+- **A service's title** carries the year of its `releaseDate`, and its rating out of 100 only where it shows one: 0 is
+  AniList's and MAL's "not rated". **A local title** carries its bookmark's `year`, one line in `AndroidLibraryStore`.
+
+### What the board draws that this does not, or draws differently
+
+| Board | Drawn | Here | Why |
+|---|---|---|---|
+| 5d | Four rows, each a criterion over a second line, with the direction trailing | Four rows, each one of the app's eight labels, e.g. `Updated (New to Old)` | The eight are translated in every language already. One new string in all, for the reason below |
+| 5d | `LOCAL SUPPORTS 3 OF 4 CRITERIA` | Not drawn | The disabled row and its reason say which |
+| 5d | `NOT STORED BY LOCAL LISTS` | `Not kept by Local`, disabled and still a stop | `library_sort_not_kept`, with the source's name |
+| 5a | `Sort` / `LAST UPDATED · NEWEST` | `Sort` / `Updated (New to Old)` | The applied sort, in the same label as its row |
+
+### Measured, a wrong turn first
+
+- **Focus after BACK goes to the provider button, not to Sort.** That is `BUG-36`: `SidePanelHost` restores a nested
+  opener at its first stop. The source panel never showed it, because the provider button is the row's first stop.
+  The device test pins it as it is, as the detail page's does, so the component's fix fails it and gets looked at.
+  It is not patched here: `BUG-36` names 5d among the hosts the fix should be made once for.
+
+### Each critical test shown to fail
+
+Temporary changes, each reverted, on the JVM.
+
+| Change | What went red |
+|---|---|
+| `appliedTo` returns the choice unchanged (no fallback) | `LibrarySortShelfTest`'s fallback test and `LibrarySortViewModelTest`'s fallback test |
+| A press never flips (always the criterion's first direction) | `pressing the applied row again turns it the other way round` |
+
+### Tested
+
+- **JVM.** `LibrarySortShelfTest` 9 (each criterion both ways, gaps last, ties, a service's list, continue watching,
+  the fallback), `LibrarySortViewModelTest` 8, and 5 added to `AndroidLibrarySourcesTest`: the nine ordinals, the
+  mapping, the stored choice, what a service and the local list can sort by, a title's year and rating.
+- **Device, `:feature:library`.** 5 added to `LibrarySourcesTvDeviceTest`: the button names the applied sort and the
+  panel opens on it, a press applies at once and a second turns it round, a criterion the source keeps nothing for
+  is a stop that chooses nothing, BACK closes with the choice applied (`BUG-36` pinned), and a screenshot.
+- **Device, `:app`.** `theSortIsKeptUnderTheOldScreensKeyAsItsOrdinal`: the real key, read back by the old screen's
+  own delegate.
+
+**Screenshots:** `library-sort-panel` is new. `library-service-grid-focus-card` and `library-service-failed-focus-retry`
+change only by the sort button in the right slot, which was empty. Each looked at.
+
+### Not verified
+
+- **The old phone screen reading a choice made here**, on a device. The key and the ordinal are tested; the old
+  screen's own reading of them was not run.
+- **A real service's `supportedListSorting`.** Every service read in a test is a fake.
+- **A native speaker reading the new string** in any language.
+
+## KMP-51 — The TV library when a service cannot be read (5b), offline, and `BUG-33` (queue `Q12`, third slice) · **measured 2026-11-07**
+
+**Status:** in pr, stacked on `KMP-50` (`#195`) with `#196` (`I18N-15`) merged in for its words. Android TV only.
+
+**What the screen does now.**
+
+| The shown tracking service | Before | Now |
+|---|---|---|
+| Fails, after a good read in this session | the failure page | **that read stays up, marked:** every card's top-left badge is `Cached`, the provider button has a failed dot and `Unreachable · cached 2h ago`, and `Retry sync` is the next stop to its right (5b) |
+| Fails, with nothing held | the failure page | the same |
+| The device is offline, a read held | it was asked, and failed | **not asked:** that read, with `Offline · cached 2h ago` |
+| The device is offline, nothing held | it was asked, and failed | **not asked:** `You are offline` / `AniList needs a connection`, with Retry |
+| The device comes back online | — | **read again once,** after the connection has held for 2 s, where what it shows is held or offline |
+
+The local list never depends on the network: offline it reads as before. Connectivity is `:core:connectivity`'s
+`ConnectivityFlow`, the one the downloads screens use. `UNKNOWN` is never offline.
+
+**`BUG-33`, fixed.** After a failed read, choosing another tab or typing a filter kept the failure off the screen and said
+the list was empty. Both now keep the failure. This reaches desktop too, as `BUG-33` says it should.
+
+**The rules, each in one place.**
+
+- **What is held** (`LibraryViewModel.held`): each service's last good read **in this session, in memory only**. A
+  service's lists are the user's account on someone else's site, and nothing here writes them to disk. After the
+  process dies nothing is held, and a failure is the failure page, as before.
+- **The age** is the source's `syncedAt`, recorded when that read was made (`KMP-49`), so `2h` is a fact. Without a
+  clock the button keeps its usual line beside the failed dot.
+- **Coming back** (`reconnected`): only the shown service, only where it shows a held read or the offline page, and
+  only once the connection has held for `RECONNECT_SETTLE_MS`. The collector takes the latest status, so a network that
+  flaps cancels the wait each time and makes one read when it settles, not one per flap.
+- **The failure is the words and the dot's shape, not a colour** (`DEC-17`): the meta line stays muted, as the board's
+  red would break that ruling.
+
+### The words
+
+`KMP-51` adds no keys. It uses `#196`'s, agreed with `I18N-15` so each sentence has one owner and the age sits where
+each language puts it: `library_sync_unreachable` and `library_sync_offline` ("… · cached %s ago"),
+`library_sync_cached` ("Cached") and `library_sync_retry` ("Retry sync"). The offline page reuses Search's
+`You are offline` and Home's `%1$s needs a connection`. The age reuses the formats `KMP-49`'s `Synced %s ago` uses.
+
+### What the board draws that this does not, or draws differently
+
+| Board | Drawn | Here | Why |
+|---|---|---|---|
+| 5b | The meta line in red | Muted, with the failed dot | `DEC-17`: a failure is a hollow neutral marker, never a colour |
+| 5b | `CACHED` on every card | `Cached` in the type badge's place | The type is not the fact that matters while the read is old |
+| 5b | `UNREACHABLE · CACHED 2H` | `Unreachable · cached 2h ago` | `#196`'s sentence, one per reason |
+| 5b | The field narrowed to make room | The field takes what is left | It is weighted already, so Retry's width comes out of it |
+
+### Measured, a wrong turn first
+
+- **The first read did not see a starting OFFLINE.** It ran before the connectivity collector had stored the status,
+  so the service was asked. It reads the flow's current value now, which is never stale while the ViewModel collects.
+  Three JVM tests went red on it, and green after.
+
+### Each critical test shown to fail
+
+Temporary changes, each reverted, on the JVM.
+
+| Change | What went red |
+|---|---|
+| A failed read never shows the held one | `a service that fails after a good read shows that read, marked unreachable` |
+| No settle before reading again | `back online, the shown service is read once, after the connection has held` and `a network that flaps is one read when it settles, not one per flap` |
+
+### Tested
+
+- **JVM.** `LibraryOfflineViewModelTest` 9: a failure after a good read keeps it marked, and a good read clears it; a
+  failure with nothing held; offline with and without a held read, the service not asked; `UNKNOWN` is online; one read
+  after the connection holds, none before; **a flapping network is one read**; a live service or the local list is not
+  read again; and `BUG-33` on a tab and a filter.
+- **Device, `:feature:library`.** 3 added to `LibrarySourcesTvDeviceTest`: 5b's held read with its badges, Retry as the
+  button's next stop, and Retry clearing it; offline with nothing held, the service not asked; and a screenshot.
+
+**Screenshots:** `library-service-unreachable-focus-retry` is new, looked at.
+
+### Not verified
+
+- **A real network dropping and coming back** on a device. The flow is the downloads screens' own; this screen's use
+  of it is tested with a fake.
+- **A held read across a configuration change**: it lives with the ViewModel, so it should survive one, but no test
+  rotates.
+
+
+## KMP-64 — The TV player HUD, artboard 7d (queue `Q24`) · **measured 2026-11-07**
+
+**Status:** in pr. Board 7d of `design/TV Detail Player.dc.html` on `Television_720p`, API 36, over the existing player.
+
+### What it adds
+
+- **New `:feature:player`** (commonMain): `PlayerHudState` (labels and numbers only), `PlayerHudController` (7d's visibility and key rules), `PlayerHudTv` (the screen). In the iOS canary.
+- **`:app` hosts it over `FullScreenPlayer` on TV** (`TvPlayerHud`, one line in `onBindingCreated`), behind `TvPlayerHudSwitch.useComposeHud` (on; off is the old controller, tested). The Media3 controller is off while it is up; the video, subtitles and pre-roll overlay are the old player's.
+- **Every 7d readout from what the player already knows** (measured before building): title and `S1:E4 · Powder · 1080p · AVC · English 5.1`, `DOWNLOADED`, the clock, elapsed / remaining / total, played and **buffered** bands in one track, skip stamps as ticks, `Skip opening`, transport, `Up next · S1:E5 …` (from the generator's episode list), and SOURCE, SUBTITLES, AUDIO, SPEED as value over label.
+- **States:** shown; hidden with the scrub readout (`+00:30 → 42:43`) over its rule; buffering (badge, auto-hide suspended); a playback error banner whose action is the SOURCE selector; offline over a downloaded copy.
+- **Keys** keep the old player's settings and feel: auto-hide 3000 ms while playing; hidden, Left/Right scrub by `android_tv_interface_off_seek_key` (10 s default) without revealing; Up/Down reveal; Centre toggles and reveals, or takes an offered skip; shown, the seek cell moves by `android_tv_interface_on_seek_key`. The activity's key listener asks the HUD first; keys it does not use, other than the D-pad and OK, still reach the old handler (MENU, keyboard shortcuts).
+- **The one published addition:** `CS3IPlayer.getBufferedPosition()`, on the final class only, not on `IPlayer` (app-10's ruling: no new member for implementers of the published interface).
+- 8 new keys in all 62 locales, none a plural.
+
+### Security
+
+`TvHudFacts.toHudState` is the boundary. The link goes in for its display name and quality; its URL, headers and referer never come out. A downloaded file comes in as a flag only, so its path never enters. Provider text loses control characters, and a name that reads as an address (`://`, `/…`, `content:`, `file:`) is dropped. The HUD code logs nothing.
+
+### Focus
+
+| Press | Goes to |
+|---|---|
+| Reveal | Play/pause |
+| Down from the chrome row or `Skip` | The seek cell |
+| Down from the seek cell | Play/pause |
+| Along the transport | Back, forward, previous, next; Right past next and Left past play/pause stay |
+| Down from the transport | SOURCE |
+| Up from AUDIO or SPEED | The seek cell, which spans them |
+
+### Reduced from the board
+
+- **Buffering keeps the play/pause glyph:** 7d draws an indeterminate ring in the cell, and the pack has none; drawing one is a design-system component.
+- **The transport's four cells** are seek back, seek forward, previous and next episode, the pack's glyphs; 7d draws them unlabelled.
+- **One dialog for SOURCE and SUBTITLES,** the old sources-and-subtitles picker; AUDIO opens the tracks picker and SPEED the speed dialog. 7e's panels are `Q25`.
+- **`Skip opening`, not `Skip intro`:** the label is the skip stamp's own.
+- **The skip ticks are skip stamps:** the player has no chapters.
+- **Ticks are 2dp** (7d's 4px), a stroke weight.
+- **Empty (no usable link)** is the old player's toast and exit, not 7d's full-screen state; it happens before the HUD exists.
+- **Previous episode played the next one,** an existing bug: fixed separately in `BUG-42` (#182), so this cell works once that merges.
+
+### Tests
+
+- `HudTimeTest` (common, 4) and `PlayerHudControllerTest` (JVM, 7): the board's times; auto-hide re-armed by keys, held while paused or buffering; a hidden scrub burst and its readout clearing after 1500 ms; scrubs kept inside the title; Up/Down/Centre while hidden; Centre taking an offered skip.
+- `TvHudFactsTest` (`:app` JVM, 5): the board's lines from the board's facts; a link whose URL, referer and headers carry markers leaves none in the state; names that read as addresses are dropped; control characters go; the offline banner needs a download.
+- `PlayerHudTvDeviceTest` (device, 14, no video so no sound): every readout; reveal focus; the transport and its ends; Up to the seek cell; the seek cell's Left/Right; each control's action; a disabled previous cell; hidden draws only the skip and readout; screenshots `player-hud-shown`, `-hidden-scrub`, `-buffering`, `-failed`, `-offline`, `-nothing-known`, each looked at before it was kept.
+- `TvPlayerHudNavigationTest` (`:app`, the real path, 4): a downloaded file played through `GeneratorPlayer` over `DownloadFileGenerator`. The file is `hud-silent.mp4` (28 KB, digitally silent, -91 dB, made with `ffmpeg`) and the media volume is 0 for the test. The HUD draws and the old controller is off; the file's path, which carries a marker, is nowhere on screen; it hides while playing, a hidden Right shows the readout without revealing, and Up reveals with focus on Pause; with the switch off the old controller is back.
+
+**The device run caught three things.** `IconOnlyButton` shows its label on focus, so `Pause` sat over SOURCE: the cells are `IconCell`, icon-only with a content description, as the design system rules for 7d's transport. Right from the last cell and Down from the seek cell went where geometry led, not where 7d says. And the real-path scrub test looked for a readout after `DpadDriver.press`, which waits on the accessibility tree longer than the readout lives.
+
+### Found, not changed
+
+```
+Found: GeneratorPlayer.playerError logs the stream URL, headers and referer (Log.e)
+Suggest: drop them from the line
+Why: headers can be credentials; the owner's rule is no URLs, headers or paths in logs. Taken by the security sweep, BUG-43.
+```
+
+### Not verified
+
+`TalkBack`, a real remote, a real provider's stream (only the local file), the episodes overlay on MENU with the HUD up, chapters (the player has none), and the least-confident translations: `ti`, `am`, `ckb`, `my`, `or`, `as`, `mt`, `apc`.
+
+### Published API
+
+Additions only. `app/api/classes-jar.api` +70 / −0: 8 `R$string` fields, `CS3IPlayer.getBufferedPosition`, `FullScreenPlayer`'s `playerError` override and failure flag, `GeneratorPlayer`'s facts override, and the HUD host classes.

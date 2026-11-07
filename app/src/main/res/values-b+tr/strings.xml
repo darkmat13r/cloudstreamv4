@@ -12,6 +12,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">"%d YER İMİ"</item><item quantity="other">"%d YER İMİ"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d kısım yüklenemedi"</item><item quantity="other">"%d kısım yüklenemedi"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d bölüm"</item><item quantity="other">"%d bölüm"</item></plurals>
+<plurals name="library_title_count"><item quantity="one">"%d başlık"</item><item quantity="other">"%d başlık"</item></plurals>
 <plurals name="links_hidden"><item quantity="one">"%d gizli bağlantı"</item><item quantity="other">"%d gizli bağlantı"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"%d kaynakta ara"</item><item quantity="other">"Tüm %d kaynakta ara"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Yine de %d kaynakta aramak için klavyenin arama tuşuna basın."</item><item quantity="other">"Yine de tüm %d kaynakta aramak için klavyenin arama tuşuna basın."</item></plurals>
@@ -396,10 +397,21 @@
 <string name="kitsu_settings">"Kitsu posterlerini göster"</string>
 <string name="legal_notice">"Yasal uyarı"</string>
 <string name="library">"Kütüphane"</string>
+<string name="library_go_to_list" formatted="true">"%s listesine git"</string>
+<string name="library_list_empty_body" formatted="true">"%s listesine eklediğin başlıklar burada görünür."</string>
+<string name="library_list_empty_headline" formatted="true">"%s listesinde bir şey yok"</string>
 <string name="library_not_connected">"Bağlı değil"</string>
 <string name="library_on_device">"Cihazda"</string>
+<string name="library_sort_current" formatted="true">"Sıralama: %s"</string>
+<string name="library_sort_not_kept" formatted="true">"%s bunu tutmuyor"</string>
+<string name="library_sort_supported" formatted="true">"%1$s, %3$d ölçütten %2$d tanesini destekler"</string>
 <string name="library_source">"Kütüphane kaynağı"</string>
 <string name="library_source_note">"Aynı anda bir tane · değiştirmek yeniden yükler"</string>
+<string name="library_sync_cached">"Önbellekten"</string>
+<string name="library_sync_failed" formatted="true">"%1$s eşitlenemedi. Bunlar %2$s öncesine ait."</string>
+<string name="library_sync_offline" formatted="true">"Çevrimdışı · %s önce önbelleğe alındı"</string>
+<string name="library_sync_retry">"Yeniden eşitle"</string>
+<string name="library_sync_unreachable" formatted="true">"Ulaşılamıyor · %s önce önbelleğe alındı"</string>
 <string name="library_synced_format" formatted="true">"%s önce eşitlendi"</string>
 <string name="lightnovel">"Aynı geliştiricilerin Lightnovel Crawler uygulaması"</string>
 <string name="limit_title">"Video oynatıcı başlığı karakter üst sınırı"</string>
@@ -492,6 +504,14 @@
 <string name="player_fit_screen">"Ekranı doldur"</string>
 <string name="player_fit_title">"Görüntü boyutu"</string>
 <string name="player_fit_width">"Genişliği doldur"</string>
+<string name="player_hud_buffering">"ARABELLEĞE ALINIYOR"</string>
+<string name="player_hud_failed_detail">"Aşağıdan başka bir kaynak seçin."</string>
+<string name="player_hud_offline_copy">"Bağlantı yok — indirilen kopya oynatılıyor"</string>
+<string name="player_hud_previous_episode">"Önceki bölüm"</string>
+<string name="player_hud_seek_back">"Geri sar"</string>
+<string name="player_hud_seek_forward">"İleri sar"</string>
+<string name="player_hud_speed">"Hız"</string>
+<string name="player_hud_up_next" formatted="true">"Sıradaki · %s"</string>
 <string name="player_is_live">"Canlı"</string>
 <string name="player_load_one_subtitle_online">"İlk kullanılabiliri yükle"</string>
 <string name="player_load_subtitles">"Dosyadan yükle"</string>
@@ -653,6 +673,7 @@
 <string name="search_state_no_suggestions_headline" formatted="true">"“%s” ile eşleşen bir şey yok"</string>
 <string name="search_suggestions">"Arama Önerileri"</string>
 <string name="search_suggestions_des">"Yazarken arama önerilerini göster"</string>
+<string name="search_suggestions_return_hint">"Return her yerde arar"</string>
 <string name="search_tv_source_failed" formatted="true">"BAŞARISIZ %s"</string>
 <string name="search_tv_source_pinned">"SABİTLENDİ"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"%2$d İÇİNDEN %1$d ETKİN · DEĞİŞİKLİKLER BİTTİ İLE UYGULANIR"</string>
@@ -661,7 +682,9 @@
 <string name="search_tv_suggestion_suggested">"ÖNERİLEN"</string>
 <string name="season">"Sezon"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
+<string name="season_other">"Diğer"</string>
 <string name="season_short">"S"</string>
+<string name="season_specials">"Özel"</string>
 <string name="seek_back_10_seconds">"10 saniye geri atla"</string>
 <string name="seek_forward_10_seconds">"10 saniye ileri atla"</string>
 <string name="select_all">"Tümünü Seç"</string>
