@@ -804,7 +804,7 @@ PR 2a draws the rest of 7i and leaves this line alone, which is why it is writte
 
 This is DS-21's second half, the PM's call of 2026-11-07, drawn from the TV boards as DS-18 and DS-21 were.
 
-- `design/Desktop Search.dc.html`, S1 to S7. Drawn from TV Search 4a to 4d, Suggestions 8a to 8c and the built
+- `Desktop Search.dc.html` (a board file in the owner's Claude Design project), S1 to S7. Drawn from TV Search 4a to 4d, Suggestions 8a to 8c and the built
   `SearchScreenDesktop`.
   - S1: recent searches before typing.
   - S2: results grouped by source, each group with its count.
@@ -813,7 +813,7 @@ This is DS-21's second half, the PM's call of 2026-11-07, drawn from the TV boar
   - S5: suggestions as a popover under the field.
   - S6: no results, naming the filter that narrowed the search.
   - S7: the 800×520 minimum window.
-- `design/Desktop Library.dc.html`, L1 to L7. Drawn from TV Library 5a to 5e and the built `LibraryScreenDesktop`.
+- `Desktop Library.dc.html` (a board file in the owner's Claude Design project), L1 to L7. Drawn from TV Library 5a to 5e and the built `LibraryScreenDesktop`.
   - L1: a list, with the source and its sync in the bar, filter, Sort, the lists as buttons, and a hovered card with Remove.
   - L2: a sync that failed, the cards kept and dimmed.
   - L3: an empty list.
@@ -821,7 +821,7 @@ This is DS-21's second half, the PM's call of 2026-11-07, drawn from the TV boar
   - L5: the library's source.
   - L6: moving a card, using the built list picker.
   - L7: the minimum window.
-- `design/Phone Search Library.dc.html`:
+- `Phone Search Library.dc.html` (a board file in the owner's Claude Design project):
   - PS1 to PS3: phone Search (recent searches, a three-column grid, the sources sheet).
   - PL1 to PL3: phone Library (chips, Sort sheet, failed sync).
   - TS1 and TL1: the tablet, with the navigation rail.
@@ -832,7 +832,7 @@ This is DS-21's second half, the PM's call of 2026-11-07, drawn from the TV boar
 - All 34 glyph URLs answer 200, checked with curl.
 - Poster heights are 2:3 rounded to the step (188→280, 164→248, 116→176), as DS-21's were.
 
-Renders are in `/private/tmp/cloudstream-shared/review/boards/DS22-*.png`.
+Renders: in the shared local review folder (not published).
 
 **Decisions taken here** (reported to the PM):
 - Sources is a button that opens the side panel on every platform. The built screen's read-out stands only until
