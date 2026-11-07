@@ -44,6 +44,7 @@ import com.lagradost.cloudstream3.utils.DataStoreHelper
 import com.lagradost.cloudstream3.utils.ExtractorLink
 import com.lagradost.cloudstream3.utils.Qualities
 import com.lagradost.cloudstream3.utils.UIHelper.dismissSafe
+import com.lagradost.cloudstream3.utils.redactedText
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import org.json.JSONObject
@@ -333,7 +334,7 @@ class SelectSourceController(val view: ImageView, val activity: ControllerActivi
                 }
             }
         } catch (e: Exception) {
-            println(e)
+            println(redactedText(e.toString()))
         }
     }
 

@@ -42,6 +42,9 @@ import org.schabi.newpipe.extractor.NewPipe
  * - `serve <storeDir> <jarName> <dataDir>`
  */
 object PluginHost {
+    /** BUG-44: any `scheme://…` up to the next whitespace, as `:desktopApp`'s `withoutUrls`. */
+    private val URL_IN_TEXT = Regex("(?i)\\b[a-z][a-z0-9+.-]*://\\S+")
+
 
     /** Passed first on the command line. It is how a packaged launcher knows to become a host. */
     const val ARGUMENT = "--plugin-host"
@@ -70,7 +73,7 @@ object PluginHost {
                 else -> EXIT_USAGE
             }
         } catch (failure: Throwable) {
-            System.err.println("plugin host: ${failure::class.java.name}: ${failure.message}")
+            System.err.println("plugin host: ${failure::class.java.name}: ${failure.message?.replace(URL_IN_TEXT, "<url>")}")
             EXIT_FAILED
         }
         // halt, not exit: a plugin's shutdown hook or stuck thread must not be able to outlive us.

@@ -18,6 +18,21 @@ import com.lagradost.cloudstream3.ui.player.SubtitleData
 
 private const val MAX_CAUSES = 8
 
+/** Any `scheme://…` up to the next whitespace. The same pattern as `:desktopApp`'s `withoutUrls`. */
+private val URL_IN_TEXT = Regex("(?i)\\b[a-z][a-z0-9+.-]*://\\S+")
+
+/** BUG-44: [text] with every `scheme://…` replaced by `<url>`. `null` stays `"null"`, as interpolation printed it. */
+internal fun redactedText(text: String?): String = text?.replace(URL_IN_TEXT, "<url>") ?: "null"
+
+/**
+ * BUG-44: [throwable]'s stack trace, as `printStackTrace` and `Log.getStackTraceString` print it (class,
+ * message, frames, `Caused by:` and `Suppressed:`), with every URL in a message replaced by `<url>`.
+ * Use it where a throwable would otherwise go to the platform's `Log.x(tag, msg, throwable)`:
+ * `Log.e(TAG, "$msg\n${redactedStackTrace(t)}")` prints the same lines.
+ */
+internal fun redactedStackTrace(throwable: Throwable): String =
+    redactedText(throwable.stackTraceToString())
+
 /** `source=<provider> quality=<q> type=<type>`, or `link=none`. */
 internal fun redactedLinkInfo(link: ExtractorLink?): String =
     if (link == null) "link=none"

@@ -15717,6 +15717,7 @@ public final class com/lagradost/cloudstream3/mvvm/ArchComponentExtKt : java/lan
 
 public final class com/lagradost/cloudstream3/mvvm/ArchComponentExt_jvmCommonKt : java/lang/Object {
 	public static final fun platformThrowAbleToResource (Ljava/lang/Throwable;)Lcom/lagradost/cloudstream3/mvvm/Resource;
+	public static final fun printToStandardError (Ljava/lang/String;)V
 }
 
 public final class com/lagradost/cloudstream3/mvvm/DebugException : java/lang/Exception {
@@ -34191,8 +34192,10 @@ public final class com/lagradost/cloudstream3/utils/LogRedactionKt : java/lang/O
 	public static final fun redactedLinkInfo (Lcom/lagradost/cloudstream3/ui/player/ExtractorUri;)Ljava/lang/String;
 	public static final fun redactedLinkInfo (Lcom/lagradost/cloudstream3/utils/ExtractorLink;)Ljava/lang/String;
 	public static final fun redactedLinkInfo (Lkotlin/Pair;)Ljava/lang/String;
+	public static final fun redactedStackTrace (Ljava/lang/Throwable;)Ljava/lang/String;
 	public static final fun redactedSubtitleInfo (Lcom/lagradost/cloudstream3/SubtitleFile;)Ljava/lang/String;
 	public static final fun redactedSubtitleInfo (Lcom/lagradost/cloudstream3/ui/player/SubtitleData;)Ljava/lang/String;
+	public static final fun redactedText (Ljava/lang/String;)Ljava/lang/String;
 	public static final fun redactedThrowable (Ljava/lang/Throwable;)Ljava/lang/String;
 }
 

@@ -68,10 +68,17 @@ sealed class Resource<out T> {
 
 fun logError(throwable: Throwable) {
     Log.d("ApiError", "-------------------------------------------------------------------")
-    Log.d("ApiError", "safeApiCall: " + throwable.message)
-    throwable.printStackTrace()
+    Log.d("ApiError", "safeApiCall: " + throwable.message?.withoutUrls())
+    // BUG-44: the trace printStackTrace() wrote, class and frames kept, with every URL in a message
+    // (this one's, its causes', its suppressed ones') replaced by <url>. Same stream on Android and JVM.
+    printToStandardError(throwable.stackTraceToString().withoutUrls())
     Log.d("ApiError", "-------------------------------------------------------------------")
 }
+
+/** Any `scheme://…` up to the next whitespace. The same pattern as `:desktopApp`'s `withoutUrls`. */
+private val URL_IN_TEXT = Regex("(?i)\\b[a-z][a-z0-9+.-]*://\\S+")
+
+private fun String.withoutUrls(): String = replace(URL_IN_TEXT, "<url>")
 
 @Deprecated(
     "Outdated function, use `safe` instead",
@@ -163,6 +170,9 @@ fun CoroutineScope.launchSafe(
 }
 
 expect fun <T> platformThrowAbleToResource(throwable: Throwable): Resource<T>
+
+/** Writes [text] where `Throwable.printStackTrace()` writes on this platform: standard error. */
+internal expect fun printToStandardError(text: String)
 
 fun <T> throwAbleToResource(
     throwable: Throwable

@@ -92,7 +92,7 @@ object InAppUpdater {
                 else -> getReleaseUpdate()
             }
         } catch (e: Exception) {
-            Log.e(LOG_TAG, Log.getStackTraceString(e))
+            Log.e(LOG_TAG, redactedStackTrace(e))
             Update(false, null, null, null, null)
         }
     }
