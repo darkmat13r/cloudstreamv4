@@ -5073,32 +5073,6 @@ Seen in `EngineDownloadDeviceTest` (`aDownloadCutOffMidway…`): the split's new
 
 The test now bounds the union of the requested ranges, not their sum, so it still proves a resume. The cause is not investigated. The first place to look is where `PartScheduler` picks the split point against the victim's open request.
 
-## KMP-62 — The old downloader keeps whole links in `KEY_RESUME_PACKAGES` · **open**, waits on the owner
-
-Found while checking `KMP-59` against the owner's no-link ruling for `KMP-52` (2026-11-06). Not changed.
-- **What is stored.** `DownloadManager.kt:1923-1927` writes `DownloadResumePackage(item, index)` to `KEY_RESUME_PACKAGES` before every
-  attempt. `DownloadItem.links` is `List<ExtractorLink>`, serialised with `url`, `referer` and `headers`
-  (`library/.../ExtractorApi.kt:700-708`). It goes to SharedPreferences.
-- **Which paths store it.** Both: the write comes before `downloadSingleEpisode`, so it happens with `KMP-59`'s switch on or off. The
-  engine path adds no link of its own. Its marker holds a size and a name, and its state file holds the size, ETag, Last-Modified and ranges.
-- **Applying the ruling.** Keep `ep`, the provider and the episode's `loadLinks` data. Run `loadLinks` again on resume, and on start-up
-  re-queueing from `DownloadQueueManager.init`.
-- **Waiting on the owner.** That changes the existing downloader for every user, so the owner decides before anyone builds it.
-
-## KMP-52 — The Mac download service and its data · **open**
-
-`:media:download` on the JVM in `:desktopApp`, with real paths, a queue, persistence and data flows. No UI: the Downloads UI is `KMP-54`.
-The contract with `KMP-54`, all in `:desktopApp` under `com.lagradost.cloudstream4.downloads`:
-- `DesktopDownloadsSource : DownloadsSource`. Its storage is the volume holding the download folder, non-null from the first emission.
-- `DesktopDownloadSeriesSource : DownloadSeriesSource`.
-- A host class `DesktopDownloads` with `delete(ids: Set<DownloadTitleId>)`, `deleteEpisodes(ids: Set<DownloadEpisodeId>)`,
-  and `fileOf(id)`, which is null until the download is complete.
-- Ids stay the same across restarts.
-- `contents` emits at most about 4 times a second while running, and not at all when idle.
-- No change to `:feature:downloads`.
-
----
-
 ## KMP-49 — The TV library's sources: 5e's panel, 5a's provider button, a service's lists (queue `Q12`, first slice) · **measured 2026-11-06**
 
 **Status:** in pr · Android TV only. The library opens on the source chosen last, as the old screen does, and shows the
@@ -5530,3 +5504,113 @@ alone, because board D4 gives the number its own column (the code stands in only
    an argument, so a translation can place it.
 3. Rerun the TV downloads device suite and keep its screenshots at 0/0, because this touches a `tv/` file.
 
+## KMP-62 — The old downloader keeps whole links in `KEY_RESUME_PACKAGES` · **approved 2026-11-06**, scheduled after `KMP-52`
+
+It was found while checking `KMP-59` against the no-link ruling for `KMP-52`.
+- **What is stored.** `DownloadManager.kt:1923-1927` writes `DownloadResumePackage(item, index)` to `KEY_RESUME_PACKAGES` before every
+  attempt. `DownloadItem.links` is `List<ExtractorLink>`, serialised with `url`, `referer` and `headers`
+  (`library/.../ExtractorApi.kt:700-708`). It is written to SharedPreferences.
+- **When.** With `KMP-59`'s switch on or off. The engine path adds no link of its own: its marker holds a size and a name, and its state
+  file holds the size, ETag, Last-Modified and the ranges.
+- **The owner's ruling (2026-11-06): the same no-link rule as `KMP-52`.** Keep `ep`, the provider and the episode's `loadLinks` data, and
+  run `loadLinks` again on resume, including the start-up re-queue in `DownloadQueueManager.init`.
+- **Notes for the build:**
+  - A resume package saved before the update keeps its old data until it finishes or is removed.
+  - After a successful migration, the stored `ExtractorLink`s are deleted from SharedPreferences.
+  - Behaviour change: a source that no longer answers fails that resume.
+
+## KMP-52 — The Mac download service and its data · **measured 2026-11-06**
+
+`:media:download` runs on the JVM in `:desktopApp`, in package `com.lagradost.cloudstream4.downloads`, with a queue, persistence and the two
+download sources. There is no UI: that is `KMP-54`, which wires `source()` and `series(id)` into its screen. No caller enqueues anything yet.
+
+**The contract with `KMP-54`.**
+- `DesktopDownloadsSource : DownloadsSource`. `storage` is the volume holding the download folder, non-null from the first emission.
+- `DesktopDownloadSeriesSource : DownloadSeriesSource`.
+- The host `DesktopDownloads` has `delete(Set<DownloadTitleId>)`, `deleteEpisodes(Set<DownloadEpisodeId>)`, and `fileOf` for a title and
+  for an episode. `fileOf` is null until done and on disk; for a series it gives the folder.
+- Ids are stable across restarts.
+- `contents` emits at most once every 250 ms while running, and not at all when idle.
+- `DownloadSeriesContents.freeBytes` (added by `KMP-54`) is filled from the download root's volume: the titles page's own
+  `total - used`, so the two pages agree. It is null only while the disk is unread.
+- There are no changes to `:feature:downloads`, except one KDoc line on `DownloadTitleState.Paused`. The PM cleared it: it now says that only Android reads a failure as Paused after a restart, until `KMP-60`/`KMP-62`.
+
+**Shape.**
+- `enqueue(DesktopDownloadRequest)` accepts VIDEO links only; HLS, DASH and torrents are refused with a typed `EnqueueRefusal`.
+  `DesktopDownloadLink.of(RemoteLink)` adapts the sandbox's link. A request names its source (`DownloadSourceRef`: provider and episode
+  data); its link is optional and only ever in memory.
+- At most 3 downloads run at once, first in, first out. Pause frees the slot (on Android a paused download keeps it).
+- Cancel discards the parts and the record.
+- Enqueuing a paused or failed episode again takes the new link, because signed URLs expire. A blank source is `EnqueueRefusal.NoSource`.
+- The engine writes straight into `~/Downloads/CloudStream/<title>/`. On the JVM its atomic move works, so there is no staging (unlike `KMP-59`).
+- File names are `S01E02 Name.mp4`, or the title for a film, with ` (2)` on a clash. `DownloadPaths` restates the engine's internal name
+  rules more strictly, so the result is always one safe path segment.
+- The HTTP client is `HttpClientFactory(posterHttpClient())`. It verifies TLS and checks the resolved and connected addresses, which also
+  closes the engine's DNS-rebinding gap on the Mac.
+- Delete removes only empty folders, and refuses a folder whose real path is not directly inside the download root.
+- After a restart nothing starts by itself. An unfinished episode comes back Paused, with its bytes measured from the engine's part files.
+  A finished episode whose file is gone is dropped.
+- Logging: the exception class and a fixed text only.
+
+**Persisted: `~/.cloudstream4/downloads.json`, format 3, `0600`, written atomically. No link (owner's ruling, 2026-11-06).**
+- *What it holds:*
+  - ids, metadata, folder and file name, state, byte counts and queue order;
+  - the episode's source: `provider` (the extension's name) and `episodeData`, the string the player passes to
+    `SandboxedProvider.links(data)`. **Unfinished episodes only:** both are cleared when an episode reaches Done, and a Done record
+    reads back without them (any other record without a source is dropped);
+  - a failure's typed reason: the `DownloadFailure` variant name plus its numbers (status code, byte counts), never text. So a
+    Failed episode stays Failed with its reason after a restart. `StoredFailure`'s `when` is exhaustive, so a new variant will not
+    compile until it is named.
+- *Not a link, but not "no URL at all":* `episodeData` is the same episode reference that watch history and bookmarks keep. It is often
+  an episode-page URL on the provider's site, and sometimes JSON with URLs inside.
+- *What it never holds:* the media link's `url`, `headers` or `referer`. Those stay in memory for the current process only.
+- *Resume and retry:* a resume after a restart, and every retry, asks the extension again through `LinkResolver`. In production that is
+  `SandboxLinkResolver`, which works the player's way: provider by name, then `links(data)`, then `isPublic`, then quality rank. The first
+  VIDEO link is used.
+  - No usable link: `NoUsableLink`.
+  - The resolver throws or takes more than 60 s: `SourceFailed`. The call runs under `runInterruptible`, so a resolver that blocks
+    a thread is interrupted too. `SandboxedProvider.links` already suspends and sends `OP_CANCEL` to the plugin host when cancelled.
+  - Either way the part files stay.
+- *Resume after a pause* in the same process reuses the link in memory.
+- *Reading it back:* everything is validated again (path segments, enum names), a bad record is dropped, and a format-1 file is refused.
+- *What stays out:* no `toString` includes the source or the link.
+
+**Tests** (local, none CI). Counted from the XML:
+- `DesktopDownloadsTest`: 23/23 (the 22 before it ran 10 times in a row), against a JDK `HttpServer` with Range and ETag support; every completion is compared byte for byte.
+  It covers:
+  - done, and `fileOf` only at done
+  - at most 3 running
+  - pause and resume continuing from disk, with a ranged request after 0
+  - a restart with a new host over the same files: same ids, Paused, then resumed and byte-identical
+  - cancel of a waiting download, and of a running one (it stops, and no part, file or record is left); a cancel of a finished one
+    is refused and keeps its file and record; delete of a title and of an episode
+  - the series page's `freeBytes` equals the titles page's free figure
+  - closing the host while a resolve is in flight leaves `downloads.json` byte-identical, and a new host reads the episode Paused
+  - a file deleted outside the app, noticed on `refresh`
+  - the emission rate: 2.64–2.68/s while running, every gap ≥ 240 ms, nothing over 1.25 s idle
+  - the file's permissions are `rw-------`
+  - no link text in logs, stdout, stderr or any public `toString`
+  - no link text on disk: marker strings in the url, a header, the user agent and the referer never appear in the raw bytes of
+    `downloads.json`, any other file in its folder, or any file under the download root (the engine's state and parts). This is checked
+    after each of Queued, Running, Running past the engine's state rewrite, Paused, Done and Failed.
+  - after a restart, the resolver is asked once with the stored provider and data; a fresh URL resumes from the parts, byte-identical
+  - a resolver with nothing, only HLS, or an exception: `NoUsableLink` or `SourceFailed`, with the parts unchanged
+  - a retry asks again; a resume after a pause does not
+  - a resolver that never answers, and one that blocks its thread, both fail `SourceFailed` within the (injected) timeout with
+    the parts kept; the blocked thread is released
+  - a failed `NoUsableLink` survives a restart as Failed, then a retry completes; every failure variant round-trips
+  - a finished episode leaves no provider or data marker on disk, is still Done with its file after a restart, and is gone after delete
+- **A real run with an official extension** (InternetArchive, in a throwaway `user.home`; nothing played, and no link or data
+  printed). The "big buck bunny" episode gave 4 VIDEO links. The download was enqueued with its source only. It fetched 5,301,880
+  bytes in 5 parts, then the host closed. A new host listed it Paused. Resume asked the extension once, and the fresh link resumed
+  **from the parts**: every one of the 8 fetches started at its part's planned start plus its bytes on disk, and none at 0. The ETag
+  and Last-Modified matched across the two runs, and both went through the same hosts. It was stopped at 15.4 MB of 645 MB.
+  The live links call answered in 4 ms, so the timeout could not be seen cutting it there.
+- Without the 250 ms throttle and with a fourth slot, 3 of these fail.
+- Full `:desktopApp:jvmTest`: 417/0. `:desktopApp:createDistributable` builds; the app was not launched.
+
+**Not verified.**
+- A whole download from a real host to the end, and a CDN that changes its ETag between resolves.
+- A full disk.
+- An unreadable downloads file, where `contents` throws and `enqueue` returns `StoreUnreadable`.
+- A process kill, as opposed to `close()`.
