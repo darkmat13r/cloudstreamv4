@@ -846,24 +846,12 @@ class DetailScreenTvDeviceTest {
         val landedOnCommit = awaitOneOf(WATCH_STATUS, BACK, FAVOURITE, RESUME, TRAILER)
         assertEquals("the panel is closed after the commit", false, viewModel.state.value.panelOpen)
 
-        // A known defect, asserted so that fixing it fails here — the idiom `SidePanelMotionTest` uses
-        // for the exit-window focus hole.
-        //
-        // `SidePanelHost` promises *the control that opened the panel*, and its own jvmTest
-        // (`closing the panel gives focus back to the control that opened it`) proves that for a flat
-        // opener held by a `FocusRequester`, with `expanded` flipped from outside — exactly this
-        // dismiss path. **It does not hold here.** Measured on `Television_720p`: both dismiss paths
-        // land on `Go Back`, the chrome row's first cell, not on the cell that opened the panel. The
-        // difference from the jvmTest is depth — here the opener is an `IconCell` inside a `Row`
-        // inside the `LazyColumn`'s keyed head item, and `focusRestorer()` on the content group hands
-        // focus to the child it recorded, which enters at its own first stop rather than replaying the
-        // whole chain. Recorded in `KMP-38`; fixing it belongs in `:core:designsystem`, because four
-        // more hosts (4d, 5d/5e, 7e) will each hit it.
-        //
-        // What the page does guarantee, and what the assertions above pin, is `DEC-17`'s rule: the
-        // panel closes, BACK commits nothing, the pick does commit, and focus is back on the page.
-        assertEquals("BACK leaves focus on the chrome row's first cell", BACK, landedOnBack)
-        assertEquals("and so does the commit", BACK, landedOnCommit)
+        // `BUG-36`, fixed: `DetailPanelsTv` hands the cell that opened the picker to `SidePanelHost` as `opener`. This
+        // pinned the defect until then: both dismiss paths landed on `Go Back`, the chrome row's first cell, because the
+        // host's `focusRestorer` records only its direct child and the cell is an `IconCell` in a `Row` in the
+        // `LazyColumn`'s keyed head item.
+        assertEquals("BACK gives focus back to the cell that opened the panel", WATCH_STATUS, landedOnBack)
+        assertEquals("and so does the commit", WATCH_STATUS, landedOnCommit)
     }
 
     /**

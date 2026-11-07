@@ -151,20 +151,32 @@ fun LibraryScreenTv(
         if (!screenHasFocus) focusMemory.left()
     }
 
-    // One panel at a time: each opens from its own button, which the other panel's scrim covers.
+    // One panel at a time: each opens from its own button, which the other panel's scrim covers. Each button gets focus
+    // back when its panel closes (`BUG-36`), so both are held here and handed to the host.
+    val providerFocus = remember { FocusRequester() }
+    val sortFocus = remember { FocusRequester() }
+    // Which panel was shown last, held through its exit: by the time it slides out the state that chose it is gone, and
+    // reading the live state drew the other panel leaving and handed focus to the other button. A plain holder, as
+    // `DetailPanelsTv`'s `PanelLatch` is: written while composing and read in the same pass.
+    val shown = remember { LibraryPanelLatch() }
+    if (state.sortOpen) shown.sort = true else if (state.sourcesOpen) shown.sort = false
     SidePanelHost(
         expanded = state.sourcesOpen || state.sortOpen,
         onDismissRequest = {
             onAction(if (state.sortOpen) LibraryAction.SortDismissed else LibraryAction.SourcesDismissed)
         },
         modifier = modifier.fillMaxSize().onFocusChanged { screenHasFocus = it.hasFocus },
+        opener = if (shown.sort) sortFocus else providerFocus,
         panel = {
-            if (state.sortOpen) LibrarySortPanelTv(state, onAction) else LibrarySourcePanelTv(state, now, onAction)
+            if (shown.sort) LibrarySortPanelTv(state, onAction) else LibrarySourcePanelTv(state, now, onAction)
         },
     ) {
         Column(Modifier.fillMaxSize()) {
             Spacer(Modifier.height(CloudStreamDimens.ChromeRowTop))
-            LibraryChromeRow(state, focusMemory, onAction, now, onLeftEdge, Modifier.contentInset().fillMaxWidth())
+            LibraryChromeRow(
+                state, focusMemory, providerFocus, sortFocus, onAction, now, onLeftEdge,
+                Modifier.contentInset().fillMaxWidth(),
+            )
             Spacer(Modifier.height(LibraryScreenTvDefaults.ChromeToTabGap))
             LibraryTabRow(state, tabs, tabFocus, focusMemory, onAction)
 
@@ -205,6 +217,11 @@ fun LibraryScreenTv(
     }
 }
 
+/** Whether the panel shown last was the sort panel (5d) rather than the source panel (5e). */
+private class LibraryPanelLatch {
+    var sort: Boolean = false
+}
+
 /**
  * 5a's chrome row, y56 to y152 on the artboard: the provider button where there are sources, the field, and the
  * sort button's slot.
@@ -217,14 +234,14 @@ fun LibraryScreenTv(
 private fun LibraryChromeRow(
     state: LibraryState,
     focusMemory: LibraryFocusMemory,
+    providerFocus: FocusRequester,
+    sortFocus: FocusRequester,
     onAction: (LibraryAction) -> Unit,
     now: (() -> Long)?,
     onLeftEdge: (() -> Unit)?,
     modifier: Modifier = Modifier,
 ) {
     val fieldFocus = remember { FocusRequester() }
-    val providerFocus = remember { FocusRequester() }
-    val sortFocus = remember { FocusRequester() }
     val retryFocus = remember { FocusRequester() }
     val keyboard = LocalSoftwareKeyboardController.current
     Row(
