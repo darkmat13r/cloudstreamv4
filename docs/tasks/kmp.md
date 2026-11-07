@@ -5540,3 +5540,25 @@ device test.
   disk are always the truth.
 - The fix means reading below Ktor (draining the channel into the part file before failing, or a smaller channel).
   Not started; measure the cost on a metered link first.
+
+## KMP-68 — A reload that fails keeps the last rows, in memory, for the Mac's H4
+
+**Status:** in review · `:feature:home` only · ahead of `KMP-55`'s H4 (`DS-21`) · the PM's call, option (B), 2026-11-07
+
+`DS-21`'s H4 keeps the source's rows after a failed reload and says how old they are (`I18N-14`'s `home_reload_failed`).
+The view model followed TV 3m instead: a failed reload became `Failed` or `Offline`, and the rows were gone. That is now
+`HomeStatus.Stale(failure, kept, loadedAt)`:
+- `failure` is what the reload said, a `Failed` or an `Offline`, and the only thing TV draws.
+- `kept` are the rows from before, in memory only, never written anywhere.
+- `loadedAt` is when they loaded, from a clock the view model takes as `now` (a test passes its own).
+
+**TV does not change.** `Stale.rows` is empty, as it was for the failure. `toUiState` maps `Stale` to its failure's state.
+`HomeScreenTv` reads `status.shown` where it asked `is Offline`, so 3m draws exactly as before. TV's Reload is shown only
+with rows on screen, so TV never reloads from `Stale`; the Mac can, and a reload that fails again keeps the same rows and
+the same time.
+
+Tests:
+- `HomeViewModelTest`: a failed reload after one that loaded is `Stale` with the old rows and their time. Offline and then
+  failed both keep the first time, and a reload that succeeds swaps the rows in.
+- The existing failed-reload test now asserts `Stale`, whose `shown` is the old `Failed`.
+- `HomeScreenTvDeviceTest` and the 18 Home shots are unchanged.
