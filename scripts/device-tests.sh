@@ -12,7 +12,7 @@
 # what it may use, and ANDROID_SERIAL keeps Gradle off any other emulator or device on this machine. In a git worktree add -x :app:generateGitHash.
 #
 # Screenshots: what assertScreenshot wrote comes off the device before the emulator stops, to <module>/build/screenshots and
-# /private/tmp/cloudstream-shared/review/shots/<module>. With -Pandroid.testInstrumentationRunnerArguments.screenshots=record,
+# shots/<module> in the shared local review folder. With -Pandroid.testInstrumentationRunnerArguments.screenshots=record,
 # the recorded PNGs also replace the module's references, for a person to look at in `git diff` and commit.
 : ${ANDROID_HOME:=$HOME/Library/Android/sdk}
 export ANDROID_HOME

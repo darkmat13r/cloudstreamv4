@@ -365,7 +365,7 @@ into the baseline.**
 
 Reference, so the same half-hour is not lost twice.
 
-**Worktrees.** One per PR, under `/Volumes/Projects/CloudStream/app-*`, with `local.properties`
+**Worktrees.** One per PR, beside the primary checkout, with `local.properties`
 copied. Gradle in a worktree needs `-x :app:generateGitHash`, because `.git` is a file there rather
 than a directory.
 
@@ -723,3 +723,26 @@ reference holds that state and stays as it is; the fix will re-record it.
 
 **After `#150` merged** (the chip and segment ring on the visual), a compare run on the merged tree differed in 0 pixels in all six cases. None of them
 focuses a chip or a segment, and an unfocused chip draws no ring, so nothing was re-recorded.
+
+## INF-12 — The public repo: no designs, no project or session links, no local paths · **done 2026-11-07**
+
+The owner's rulings of 2026-11-07, after `#204` made the repo public:
+- **Designs stay out of the repo.** The 16 tracked files under `design/` are untracked with `git rm --cached -r design`.
+  `#204` already ignores `/design/`. The files stay on the owner's disk and in the Claude Design project. A
+  `design/X.dc.html` in these docs now means that board file in the owner's Claude Design project, as
+  `docs/HANDOVER.md` and `screen-implementation-handover.md` §2 say.
+- **No Claude Design project links.** The two project URLs in each of `docs/HANDOVER.md` and
+  `docs/plans/screen-implementation-handover.md` are now "the owner's Claude Design project". No `claude.ai/code` link was
+  tracked.
+- **No local paths in docs or comments:**
+  - The shared review folder is "the shared local review folder" (`HANDOVER.md`, `design-system.md`, the comment in
+    `scripts/device-tests.sh`).
+  - The claim script is "the shared claim script".
+  - The checkout and the worktrees are named by role (`HANDOVER.md`, `infrastructure.md`, two plans).
+- **Left, on purpose:**
+  - `docs/tasks/defects.md:1239` and `:2047–2060`, plus the redaction and sandbox tests: they are the paths a sandbox
+    or a redaction must handle, not this machine's.
+  - `scripts/device-tests.sh:91`, the `review=` line that names the folder's absolute path: code, not a comment. Moving the folder is a behaviour change
+    for every session that reads it, so it is not in this PR.
+- Pushed history keeps its commit footers (owner: leave history). New commits carry only the `Co-Authored-By` line, and
+  PR bodies carry no local paths or session links.
