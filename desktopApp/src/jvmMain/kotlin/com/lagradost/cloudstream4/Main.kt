@@ -60,6 +60,8 @@ import com.lagradost.cloudstream4.feature.search.SearchAction
 import com.lagradost.cloudstream4.feature.search.SearchEffect
 import com.lagradost.cloudstream4.feature.search.SearchViewModel
 import com.lagradost.cloudstream4.feature.search.desktop.SearchScreenDesktop
+import com.lagradost.cloudstream4.home.DesktopHomeBookmarks
+import com.lagradost.cloudstream4.home.DesktopHomeHistory
 import com.lagradost.cloudstream4.home.DesktopHomeSource
 import com.lagradost.cloudstream4.home.HomeHost
 import com.lagradost.cloudstream4.home.TopLevelScreen
@@ -240,7 +242,10 @@ internal fun DesktopApp(
     // when made, so it is rebuilt; `SearchViewModel` is told with `SourcesChanged` instead (BUG-24),
     // which keeps the results and the typed query the user is looking at.
     val providerChanges = review?.providerChanges ?: 0
-    val homeViewModel = remember(providerChanges) { HomeViewModel(home, scope, homeMemory) }
+    val homeViewModel = remember(providerChanges) {
+        // KMP-55: Continue watching and Bookmarks come from the same store the library page reads.
+        HomeViewModel(home, scope, homeMemory, DesktopHomeHistory(library), DesktopHomeBookmarks(library))
+    }
     // Outlives the tab so that changing list is instant; `LibraryHost` refreshes it on arrival. It
     // reads no providers, so it does not need resetting when what is installed changes.
     val libraryViewModel = remember { LibraryViewModel(library, scope) }

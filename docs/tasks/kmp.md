@@ -5226,3 +5226,51 @@ Temporary changes, each reverted, on `Television_720p`.
 - **Logging in or out while the page is open.** The next arrival reads the sources again.
 - **Any language but English on a device**, or a native speaker reading the five new translations. Least sure: `ti`,
   `am`, `so`, `mt`, `ckb`, `my`, `or`, `as`, `kn`, `ml`, `ne`, `eo` and `apc`.
+
+## KMP-55 — The Mac's Home, built from `DS-21`
+
+**Status:** in review · stacked on `#191` (`I18N-14`) · H4 waits on `KMP-68` (`#197`)
+
+`HomeScreenDesktop` draws what the device keeps above the source's rows:
+- **The hero** (H1) is a card in the page, with More info.
+- **Continue watching** (3c) is one line of 16:9 cards, each with its resume rule in `live`.
+- **Bookmarks** (3e, 3f) are the status chips, with the chosen one outlined, and its titles. With no status chosen, the
+  prompt to choose one.
+
+These are local, so they stay through every state of the source's. The source's state draws where its rows would be:
+loading, a failure, offline, or None (H5, in `home_none_*` with `home_choose_source`). With none of them on screen, the
+page is exactly what it was, and every coordinate in the existing tests still holds.
+
+The bar:
+- the source, or None;
+- the offline pill (H4), `downloads_offline_pill`, beside the source;
+- Reload and Random (3j) as icon buttons, while the source's rows are on screen.
+
+The source panel (H3):
+- `home_source_picker_title` and its line;
+- None first, with `home_source_none_line`;
+- each source with its section count (`home_source_sections`);
+- a check on the chosen one;
+- Done.
+
+The Mac's library store now feeds Home, as Android's does: `DesktopHomeHistory` (resumable positions, newest first) and
+`DesktopHomeBookmarks` (a bucket is a status; Favourites is not one).
+
+**Measured** in real renders (`HomeScreenTest`'s `15`-`21`):
+- At 800×520 offline (`21-kept-minimum-offline`), the pill fits beside the source button with room to spare.
+- At 1280 the hero is 320 tall; under a 720 content width it is the compact 240 one, with the title a size down and no
+  synopsis (H6).
+
+Tests:
+- `DesktopHomeLibraryTest` (2).
+- `HomeScreenTest`'s picker case now also chooses None, and its coordinates are measured from `18-kept-picker`.
+- `:desktopApp` 397, `:feature:home` 68, 0 failures.
+
+**DECIDED** (reported to the PM):
+- **The hero has More info and no Play.** The shared contract has no "play from home"; TV's hero opens the title too.
+  Options: (A) More info only, (B) Play that opens the title, (C) a new play action. Chose A, because a button named Play
+  that opens a page says something untrue.
+- **The card context menu (H2) is deferred.** "Add to bookmarks" has no action in the contract, and the menu API is
+  desktop-only. It wants its own task, with the action added to the shared model. Hover lift is in.
+- **The bookmark filter is kept while the window is open.** There is no desktop preference store yet.
+- **H4's kept rows and their age** wait on `KMP-68`. Until then, a failed reload draws as 3m, under the device's rails.

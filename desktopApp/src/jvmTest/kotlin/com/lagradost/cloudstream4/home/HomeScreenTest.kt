@@ -24,7 +24,13 @@ import com.lagradost.cloudstream4.core.designsystem.desktop.forDesktop
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
 import com.lagradost.cloudstream4.feature.home.HomeAction
+import com.lagradost.cloudstream4.feature.home.HomeBookmark
+import com.lagradost.cloudstream4.feature.home.HomeBookmarks
+import com.lagradost.cloudstream4.feature.home.HomeFeatured
+import com.lagradost.cloudstream4.feature.home.HomeHero
+import com.lagradost.cloudstream4.feature.home.HomeHistory
 import com.lagradost.cloudstream4.feature.home.HomeItem
+import com.lagradost.cloudstream4.feature.home.HomeResume
 import com.lagradost.cloudstream4.feature.home.HomeMore
 import com.lagradost.cloudstream4.feature.home.HomePageReply
 import com.lagradost.cloudstream4.feature.home.HomeRow
@@ -36,6 +42,7 @@ import com.lagradost.cloudstream4.feature.home.HomeSourceOption
 import com.lagradost.cloudstream4.feature.home.HomeSources
 import com.lagradost.cloudstream4.feature.home.HomeState
 import com.lagradost.cloudstream4.feature.home.HomeStatus
+import com.lagradost.cloudstream4.feature.home.HomeWatchStatus
 import com.lagradost.cloudstream4.feature.home.desktop.HomeScreenDesktop
 import com.lagradost.cloudstream4.feature.home.desktop.HomeScreenDesktopDefaults
 import com.lagradost.cloudstream4.library.InMemoryLibraryStore
@@ -222,8 +229,13 @@ class HomeScreenTest {
         actions.clear()
         val open = screen(state(HomeStatus.Loading, pickerOpen = true), { actions += it })
         open.settle()
-        open.click(Offset(WIDTH - 100f, FIRST_PANEL_ROW_Y + DesktopRowStep))
+        open.click(Offset(WIDTH - 100f, PANEL_NONE_Y + PANEL_ROW_STEP * 2))
         assertEquals(listOf<HomeAction>(HomeAction.SourceSelected(options[1].id)), actions)
+
+        // H3: None is the first row, above every source.
+        actions.clear()
+        open.click(Offset(WIDTH - 100f, PANEL_NONE_Y))
+        assertEquals(listOf<HomeAction>(HomeAction.SourceSelected(HomeSourceId.None)), actions)
 
         actions.clear()
         open.click(Offset(100f, HEIGHT - 20f))
@@ -276,7 +288,61 @@ class HomeScreenTest {
         }
         small.save("13-minimum-window")
         small.close()
+
+        // KMP-55: what the device keeps above the source's rows, in each state that matters, full size and minimum.
+        val kept = withKept(state(HomeStatus.Showing(rows)))
+        mapOf(
+            "15-kept-content" to kept,
+            "16-kept-offline" to kept.copy(status = HomeStatus.Offline),
+            "17-kept-unsourced" to kept.copy(selected = HomeSourceId.None, status = HomeStatus.Unsourced, hero = HomeHero.None),
+            "18-kept-picker" to kept.copy(pickerOpen = true),
+            "19-kept-no-status" to kept.copy(bookmarks = kept.bookmarks.copy(chosen = null)),
+        ).forEach { (name, value) ->
+            val scene = screen(value)
+            scene.save(name)
+            scene.close()
+        }
+        mapOf(
+            "20-kept-minimum" to kept,
+            "21-kept-minimum-offline" to kept.copy(status = HomeStatus.Offline),
+        ).forEach { (name, value) ->
+            val scene = scene(800, 520) {
+                HomeScreenDesktop(value, {}, artwork = { Box(Modifier.fillMaxSize().background(Color.DarkGray)) })
+            }
+            scene.save(name)
+            scene.close()
+        }
     }
+
+    /** A hero, two to resume and bookmarks in three statuses, Watching chosen. */
+    private fun withKept(base: HomeState) = base.copy(
+        hero = HomeHero.Shown(
+            HomeFeatured(
+                id = "hero",
+                title = "The Last Signal",
+                year = 2019,
+                genres = listOf("Drama", "Thriller"),
+                score = "8.4",
+                contentRating = "TV-MA",
+                synopsis = "Six months after the broadcast went dark, a salvage crew picks up a repeating signal from a station decommissioned forty years ago.",
+            ),
+        ),
+        history = HomeHistory(
+            resume = listOf(
+                HomeResume("r1", "Severance", progress = 0.62f, season = 2, episode = 4, sourceName = "YouTube"),
+                HomeResume("r2", "Arcane", progress = 0.35f, sourceName = "Internet Archive"),
+            ),
+        ),
+        bookmarks = HomeBookmarks(
+            all = listOf(
+                HomeBookmark(HomeItem("b1", "Deep Signal"), HomeWatchStatus.Watching, 3),
+                HomeBookmark(HomeItem("b2", "Quiet Harbor"), HomeWatchStatus.Watching, 2),
+                HomeBookmark(HomeItem("b3", "Nine Lives"), HomeWatchStatus.PlanToWatch, 1),
+                HomeBookmark(HomeItem("b4", "Salt Road"), HomeWatchStatus.Completed, 1),
+            ),
+            chosen = HomeWatchStatus.Watching,
+        ),
+    )
 
     private class FakeHome : HomeSource {
         override suspend fun sources() = HomeSources(listOf(HomeSourceOption(HomeSourceId("Fake"), "Fake")), 1)
@@ -357,8 +423,9 @@ class HomeScreenTest {
         const val PAST_ROW_TITLE = 80
         const val CARD_Y = 200f
         const val SECOND_LINE_Y = 480f
-        const val FIRST_PANEL_ROW_Y = 88f
-        const val DesktopRowStep = 64f
+        /** Measured from `18-kept-picker.png`: the panel's title, its line, then None, then each source. */
+        const val PANEL_NONE_Y = 120f
+        const val PANEL_ROW_STEP = 49f
         const val TAB_BAR_HEIGHT = 52f
         const val TAB_Y = 34f
         const val HOME_TAB_X = 50f
