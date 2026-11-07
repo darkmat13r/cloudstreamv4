@@ -56,10 +56,11 @@ kotlin {
     }
 }
 
-// Where HomeScreenTest and DownloadsScreenTest write their PNGs, when asked with -Pcloudstream.<screen>.renders=<directory>.
+// Where HomeScreenTest, DownloadsScreenTest and SearchScreenTest write their PNGs, when asked with -Pcloudstream.<screen>.renders=<directory>.
 tasks.withType<Test> {
     providers.gradleProperty("cloudstream.home.renders").orNull?.let { systemProperty("cloudstream.home.renders", it) }
     providers.gradleProperty("cloudstream.downloads.renders").orNull?.let { systemProperty("cloudstream.downloads.renders", it) }
+    providers.gradleProperty("cloudstream.search.renders").orNull?.let { systemProperty("cloudstream.search.renders", it) }
 }
 
 // java.lang.System::load has been called by org.jetbrains.skiko.LibraryLoader in an unnamed module
