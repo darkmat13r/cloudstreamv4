@@ -6063,3 +6063,60 @@ though. To do:
 2. Give each reason a key with its plain, translated words (an `I18N` task first). A screen draws the words; the type
    stays only as the pasteable detail.
 3. Keep the rule that no message, address or path reaches the screen. Rerun the TV Home device suite.
+
+## KMP-66 — The TV playback panels, artboard 7e (queue `Q25`) · **measured 2026-11-07**
+
+**Status:** in pr, stacked on `KMP-64` (#189). Board 7e of `design/TV Detail Player.dc.html` on `Television_720p`, API 36.
+
+### What it adds
+
+- **SOURCE, SUBTITLES and AUDIO open 7e's side panels** over 7d, the HUD staying mounted under them. Pressing a row is the commit: no Apply, no Cancel. `Done` is pinned under 7e's rule. BACK goes up a level or closes, never out of the player, and focus goes back to the selector that opened the panel. Focus enters on the active row (what plays, the track in use), or the first.
+- **Source:** the links in the quality profile's order, the playing one kept even when the profile would hide it and marked three ways (marker, fill, `Playing`); a failed link keeps its row (`failed`, the failed marker, `Retry`); `N hidden links` and `Switching keeps your position: resumes at 42:13` in the header; the quality profile's row opens the old editor. **A switch keeps the position and the play state**: playing stays playing, paused stays paused, both tested.
+- **Subtitles:** Off, the groups (a group's variants are a second level in the same panel), `Load from file`, `Load from Internet` when a provider is on, and `Subtitle Settings`, a level with the three editors that today live in three places: style, sync and encoding.
+- **Audio:** the tracks, committed with no reload (track overrides); `Video tracks` as a second level when there is more than one.
+- **Empty** is `Retry all sources` first; **offline** is a line in the header, no row moving.
+- 9 new keys in all 62 locales, none a plural.
+
+### Behaviour changes
+
+| Before | Now | Why |
+|---|---|---|
+| A long press on a source copied its URL to the clipboard | No counterpart on the panel; the old dialog keeps it with `TvPlayerHudSwitch` off | A row never carries an address (app-10's ruling); some users relied on it |
+| Rows were picked, then `Apply` | Pressing a row commits | 7e; a dismiss can no longer swallow a pending edit |
+| Opening the dialog paused playback | The panel opens over playing video | 7e draws it over still-playing video |
+| Sync, encoding and style were three separate places | One `Subtitle Settings` level opens each | 7e's "single door" |
+
+### Security
+
+`TvPanelRows` is the panels' boundary, as `toHudState` is the HUD's: a link and a subtitle go in with their URL and headers, and only a display name and quality come out, through `hudLabel`. Tested with markers in the URL, referer and headers, and on the real path with a file whose path carries a marker.
+
+### Reduced from the board
+
+- **A failed row says `failed`, not `failed · code 2004`:** the player records that a link failed, not why.
+- **Loading, not Partial:** the player has no "still looking" state beyond loading, so there is no `Keep looking` row.
+- **No source count line:** `4 sources · all shown` would be a plural in 62 locales; the hidden count and the resume line are kept.
+- **A sixth row scrolls the default way,** not by whole rows: `RowScroll` comes with #176, which this stack does not include.
+- **The failed row's title is not dimmed;** the marker says it.
+- **The style editor, online search, sync, encoding and the quality-profile editor stay the old dialogs** (undrawn).
+
+### Measured on the way
+
+- **A switch could not keep the play state by passing it.** Releasing the old player clears its playing flag only when it has to pause it: playing, the new player always loaded paused (the old dialog plays again on dismiss); paused, `autoPlay`'s default started it. Both halves are needed: `autoPlay = wasPlaying`, then `Play` if it was playing. `loadLink` takes `autoPlay`, defaulting to the old behaviour.
+- **BACK left the player.** On API 36 BACK goes to the dispatcher, not the key listener, and the dispatcher asks the newest callback first: one added at start was passed over. It is added again each time a panel opens, as `SearchTvFragment`'s is.
+- **Focus landed on `Done`** when a panel opened before its lazy rows existed; the panel asks again a frame later.
+- **The sixth subtitle row sat cut against `Done`** until the list ended at 7e's rule.
+
+### Tests
+
+- `TvPanelRowsTest` (`:app` JVM, 3): row words; no URL, token or header in a source row or a subtitle row; address names dropped to the fallback.
+- `PlaybackPanelTvDeviceTest` (device, 8): SOURCE opens the panel with focus on the playing row, Up/Down only, Done returns focus to SOURCE; a press is the commit; SUBTITLES opens its own; screenshots `playback-panel-source`, `-subtitles`, `-subtitle-variants`, `-audio`, `-empty-offline`, each looked at.
+- `TvPlaybackPanelsNavigationTest` (`:app`, the real path, 4): one episode from two sources, each a silent local copy (-91 dB, volume 0). Switching while playing keeps playing at the position; switching while paused stays paused at the position; BACK closes the panel and stays in the player; no path on screen.
+- `KMP-64`'s own: HUD device 14/0 with its six screenshots unchanged, real path 4/0, `TvHudFactsTest` 8/0 with the review's title cases (`Dr.Stone`, `Mr.Robot`, `Vol.II` kept).
+
+### Not verified
+
+`TalkBack`, a real remote, a real provider's links (two local copies only), the video-track level with real multi-track media, online subtitle search from the panel, and the least-confident translations: `ti`, `am`, `ckb`, `my`, `or`, `as`, `mt`, `apc`.
+
+### Published API
+
+Additions only. `app/api/classes-jar.api` +90 / −0 over #189: 9 `R$string` fields, the panel hooks on `FullScreenPlayer` and `GeneratorPlayer`, `PanelStep`, `TvPanelRows`, and `TvPlayerHud`'s new constructors; its six-argument one from #189 is kept by `@JvmOverloads`.

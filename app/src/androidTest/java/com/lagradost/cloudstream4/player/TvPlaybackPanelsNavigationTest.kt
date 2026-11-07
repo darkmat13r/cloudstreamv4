@@ -166,6 +166,8 @@ class TvPlaybackPanelsNavigationTest {
             scenario.play()
             waitFor("It did not start playing") { scenario.isPlaying() && scenario.position() > SETTLED_MS }
             val before = scenario.playing() ?: error("Nothing playing")
+            // The clip is 30 s and every D-pad press waits on the screen: start the walk near its beginning.
+            scenario.onPlayer { it.player.seekTo(REWIND_TO_MS) }
 
             openSourcePanel()
             focusTheOther(before)
@@ -173,7 +175,7 @@ class TvPlaybackPanelsNavigationTest {
             dpad.center()
 
             waitFor("The switch did not happen") { scenario.playing() != before }
-            waitFor("It did not play again after the switch") { scenario.isPlaying() }
+            waitFor("It did not play again after the switch, at ${scenario.position()} of a 30 s clip") { scenario.isPlaying() }
             assertTrue("Position lost: was $at, now ${scenario.position()}", abs(scenario.position() - at) < TOLERANCE_MS)
             assertTrue("The panel stayed", device.wait(Until.gone(By.text(context.getString(R.string.player_panel_quality_profile))), WAIT_MS))
         }
@@ -217,7 +219,9 @@ class TvPlaybackPanelsNavigationTest {
             scenario.play()
             openSourcePanel()
             assertTrue(device.hasObject(By.textStartsWith(FIRST)))
-            val screen = device.findObjects(By.pkg(context.packageName)).flatMap { listOfNotNull(it.text, it.contentDescription) }
+            // The HUD's times redraw under the read, so a node can go stale between finding it and reading it.
+            val screen = device.findObjects(By.pkg(context.packageName))
+                .flatMap { node -> runCatching { listOfNotNull(node.text, node.contentDescription) }.getOrDefault(emptyList()) }
             for (leak in listOf(MARKER, "file:", context.cacheDir.path, "a.mp4", "b.mp4")) {
                 assertTrue("`$leak` is on screen: $screen", screen.none { leak in it })
             }
@@ -237,5 +241,6 @@ class TvPlaybackPanelsNavigationTest {
         /** A reload rebuffers: allow its few hundred milliseconds and the keys' own time, not a restart from zero. */
         const val TOLERANCE_MS = 3_000L
         const val MAX_ROWS = 4
+        const val REWIND_TO_MS = 1_000L
     }
 }

@@ -135,6 +135,8 @@ The full behaviour table is in `docs/tasks/kmp.md`.
 **The TV player draws artboard 7d since `KMP-64`**: a Compose HUD over the existing player (`FullScreenPlayer`), with
 the old Media3 controller off; `TvPlayerHudSwitch.useComposeHud = false` is the rollback. The pickers it opens are the old
 dialogs until `Q25`. It shows titles, source names, quality and track labels only, never a URL, header or path.
+Since `KMP-66` SOURCE, SUBTITLES and AUDIO open artboard 7e's panels over it; the style editor, online search, sync,
+encoding and the quality-profile editor are still the old dialogs, opened from the panels.
 
 **Desktop runs extensions in a sandbox** (`KMP-14`, `docs/tasks/kmp.md`): one Seatbelt-confined child
 process per extension, scanned first, `.cs3` converted with dex2jar in a no-network sandbox. Plugin code

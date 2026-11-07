@@ -24,6 +24,7 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AlphaAnimation
 import android.view.animation.DecelerateInterpolator
 import android.widget.LinearLayout
+import androidx.activity.OnBackPressedCallback
 import androidx.annotation.OptIn
 import androidx.appcompat.app.AlertDialog
 import androidx.core.graphics.blue
@@ -33,6 +34,7 @@ import androidx.core.view.children
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
+import androidx.lifecycle.lifecycleScope
 import androidx.media3.common.MimeTypes
 import androidx.media3.common.util.UnstableApi
 import androidx.preference.PreferenceManager
@@ -73,6 +75,7 @@ import com.lagradost.cloudstream4.player.TvHudFacts
 import com.lagradost.cloudstream4.player.TvPlayerHud
 import com.lagradost.cloudstream4.player.TvPlayerHudSwitch
 import kotlin.math.roundToInt
+import kotlinx.coroutines.launch
 
 private const val SUBTITLE_DELAY_BUNDLE_KEY = "subtitle_delay"
 
@@ -1352,7 +1355,7 @@ open class FullScreenPlayer : AbstractPlayerFragment<FragmentPlayerBinding>(
 
     private fun startTvHud(binding: FragmentPlayerBinding) {
         playerHostView?.exoPlayerView?.useController = false
-        tvHud = TvPlayerHud(
+        val hud = TvPlayerHud(
             container = binding.root,
             owner = viewLifecycleOwner,
             hiddenSeekMs = androidTVInterfaceOffSeekTime,
@@ -1362,6 +1365,21 @@ open class FullScreenPlayer : AbstractPlayerFragment<FragmentPlayerBinding>(
             panels = ::tvPanel,
             onPanelRow = ::onTvPanelRow,
         )
+        tvHud = hud
+        // 7e: BACK on an open panel closes it, or goes up a level. On API 36 BACK goes to the dispatcher, not to the
+        // activity's key listener, so the host's own key handling never sees it (as SearchTvFragment found). The
+        // dispatcher asks the newest callback first, and the player adds its own after this, so it is added again each
+        // time a panel opens: measured, a callback added once at start was passed over and BACK left the player.
+        val closesPanel = object : OnBackPressedCallback(false) {
+            override fun handleOnBackPressed() = hud.panelBack()
+        }
+        viewLifecycleOwner.lifecycleScope.launch {
+            hud.panelOpen.collect { open ->
+                closesPanel.remove()
+                closesPanel.isEnabled = open
+                if (open) requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, closesPanel)
+            }
+        }
     }
 
     /** 7d's controls, each onto what the old controls did. */

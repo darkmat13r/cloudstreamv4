@@ -121,7 +121,7 @@ fun PlayerHudTv(
         modifier = modifier,
         panel = { lastPanel?.let { PlaybackPanelTv(it, onAction) } },
     ) {
-        Hud(state, shown, readout, clock, shownSeekMs, onAction)
+        Hud(state, shown, readout, clock, shownSeekMs, onAction, panelOpen = panel != null)
     }
 }
 
@@ -141,6 +141,7 @@ private fun Hud(
     clock: String,
     shownSeekMs: Long,
     onAction: (PlayerHudAction) -> Unit,
+    panelOpen: Boolean,
 ) {
     val playPause = remember { FocusRequester() }
     val seekCell = remember { FocusRequester() }
@@ -168,8 +169,8 @@ private fun Hud(
             }
         }
     }
-    // 7d: entry focus on reveal is play/pause.
-    LaunchedEffect(shown) { if (shown) runCatching { playPause.requestFocus() } }
+    // 7d: entry focus on reveal is play/pause. Not under an open panel, which holds focus itself (7e).
+    LaunchedEffect(shown) { if (shown && !panelOpen) runCatching { playPause.requestFocus() } }
 }
 
 /** `.scrimtop` and `.scrimbot`: the `bg` token at the board's 0.88 and 0.92, fading to nothing. */

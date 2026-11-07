@@ -536,7 +536,7 @@ class GeneratorPlayer : FullScreenPlayer() {
         }
     }
 
-    /** @param autoPlay whether it plays once loaded: 7e's switch keeps a paused player paused (`KMP-66`). */
+    /** @param autoPlay what the new player starts as; 7e's switch passes whether it was playing (`KMP-66`). */
     private fun loadLink(link: VideoLink?, sameEpisode: Boolean, autoPlay: Boolean = true) {
         if (link == null) return
         isPlayerActive.set(true)
@@ -2408,8 +2408,13 @@ class GeneratorPlayer : FullScreenPlayer() {
             key.startsWith(SOURCE_KEY) -> {
                 val link = indexAfter(SOURCE_KEY)?.let { hudSources.getOrNull(it) } ?: return PanelStep.Close
                 if (link == currentSelectedLink) return PanelStep.Close
-                // Keeps the position (same episode) and the play state: a paused player stays paused.
-                loadLink(link, sameEpisode = true, autoPlay = player.getIsPlaying())
+                // Keeps the position (same episode) and the play state, both measured. Two halves, because releasing the
+                // old player clears its playing flag only when it has to pause it: playing, the new player loads paused
+                // whatever autoPlay says, and Play brings it back, as the old dialog's dismiss does; paused, autoPlay's
+                // default would have started it, so it is told not to.
+                val wasPlaying = player.getIsPlaying()
+                loadLink(link, sameEpisode = true, autoPlay = wasPlaying)
+                if (wasPlaying) player.handleEvent(CSPlayerEvent.Play)
                 return PanelStep.Close
             }
             key == RETRY_ALL_KEY -> viewModel.loadLinks()

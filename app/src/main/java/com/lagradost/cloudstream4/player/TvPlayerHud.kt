@@ -20,6 +20,10 @@ import com.lagradost.cloudstream4.feature.player.tv.PlayerHudTv
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import java.util.Date
@@ -79,6 +83,12 @@ internal class TvPlayerHud @JvmOverloads constructor(
     private var panelKind: PanelKind? = null
     private var panelLevel: String? = null
     private val panel = MutableStateFlow<PlaybackPanelState?>(null)
+
+    /** Whether a 7e panel is open: the host's BACK closes it instead of leaving the player. */
+    val panelOpen: StateFlow<Boolean> = panel.map { it != null }.stateIn(owner.lifecycleScope, SharingStarted.Eagerly, false)
+
+    /** BACK while a panel is open: up a level, or closed. */
+    fun panelBack() = handle(PlayerHudAction.PanelBack)
 
     /** Key codes whose down was used here, so their up is used here too and never reaches a view on its own. */
     private val consumedDowns = HashSet<Int>()
