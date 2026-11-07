@@ -120,9 +120,11 @@ appears for all 87 requests, 2,349 cells. `report.txt` moved only in its counts:
 keys 789 -> 816, and 27 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
 `ANDROID_FALLBACK` at 172.** `expectedOwn` 33,005 -> 34,679.
 
-## Move for `I18N-16`, 2026-11-07 — 18 new keys for TV account select (board 8d)
+## Twenty-third move, 2026-11-08 — Train 7 (`#213`, `#216`, `#219`, `#217`), one move: `I18N-16`'s 18 new keys for TV account select (board 8d)
 
-Branched from master's twenty-second move (Train 5); a train that lands others first renumbers this and regenerates once.
+One combined baseline move for the train that merges `#213` (`BUG-49`), `#216` (`BUG-41`), `#219` (`BUG-45`) and `#217` (`I18N-16`)
+together. Only `#217` adds strings; the other three add none. `#217` branched from master's twenty-second move (Train 5), which is
+still master's latest, and the train's single regeneration from the live generator reproduced its files byte for byte.
 New keys are approved in general (`I18N-09`). Additive, all eighteen authored in all 62 directories, none a plural:
 `account_select_title`, `account_select_note`, `account_manage_profiles`, `account_add_profile`, `account_profile_current`,
 `account_profile_locked`, `account_profile_no_sync`, `account_sync_title`, `account_sync_note`, `account_sync_pair`,
