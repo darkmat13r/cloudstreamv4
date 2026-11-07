@@ -25561,6 +25561,14 @@ public final class com/lagradost/cloudstream3/ui/account/AccountViewModel : andr
 	public final fun toggleIsEditing ()V
 }
 
+public final class com/lagradost/cloudstream3/ui/account/ProfileSignIns : java/lang/Object {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/lagradost/cloudstream3/ui/account/ProfileSignIns;
+	public final fun nextKeyIndex (Ljava/util/List;)I
+	public final fun removeFor (I)V
+	public final fun removeOrphans ()I
+}
+
 public final class com/lagradost/cloudstream3/ui/download/DownloadAdapter : com/lagradost/cloudstream3/ui/NoStateAdapter {
 	public static final field $stable I
 	public static final field Companion Lcom/lagradost/cloudstream3/ui/download/DownloadAdapter$Companion;

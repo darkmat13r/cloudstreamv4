@@ -71,6 +71,7 @@ class AccountViewModel : ViewModel() {
         context: Context
     ) {
         removeKeys(account.keyIndex.toString())
+        ProfileSignIns.removeFor(account.keyIndex)
 
         val currentAccounts = getAccounts(context).toMutableList()
 

@@ -155,7 +155,7 @@ class AccountAdapter(
                         remainingImages.randomOrNull()
                             ?: DataStoreHelper.profileImages.random()
                     )
-                val keyIndex = (accounts.maxOfOrNull { it.keyIndex } ?: 0) + 1
+                val keyIndex = ProfileSignIns.nextKeyIndex(accounts)
 
                 val accountName = root.context.getString(R.string.account)
 
