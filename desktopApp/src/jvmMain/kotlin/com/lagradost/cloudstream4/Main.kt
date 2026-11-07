@@ -46,6 +46,10 @@ import com.lagradost.cloudstream4.feature.library.LibraryTitle
 import com.lagradost.cloudstream4.feature.library.LibraryTitleId
 import com.lagradost.cloudstream4.feature.library.LibraryViewModel
 import com.lagradost.cloudstream4.home.FileHomeSourceMemory
+import com.lagradost.cloudstream4.downloads.DesktopDownloads
+import com.lagradost.cloudstream4.downloads.DownloadSeriesHost
+import com.lagradost.cloudstream4.downloads.DownloadsHost
+import com.lagradost.cloudstream4.feature.downloads.DownloadTitleId
 import com.lagradost.cloudstream4.home.TopLevelDestination
 import com.lagradost.cloudstream4.library.DesktopLibraryStore
 import com.lagradost.cloudstream4.library.LibraryHost
@@ -159,6 +163,10 @@ fun main(args: Array<String>) {
     report.lines().forEach(::println)
     Runtime.getRuntime().addShutdownHook(Thread { extensions.close() })
     val approvals = ExtensionApprovals(extensions, report, CoroutineScope(SupervisorJob() + Dispatchers.Default))
+    // `KMP-52`'s service: ~/Downloads/CloudStream and ~/.cloudstream4/downloads.json. Closed on the way out, so a running
+    // download stops cleanly and comes back Paused.
+    val downloads = DesktopDownloads()
+    Runtime.getRuntime().addShutdownHook(Thread { runBlocking { downloads.close() } })
 
     application {
         val escape = remember { EscapeHandler() }
@@ -182,7 +190,14 @@ fun main(args: Array<String>) {
             CloudStreamTheme {
                 CompositionLocalProvider(LocalCloudStreamTypography provides CloudStreamTheme.typography.forDesktop()) {
                     Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) {
-                        DesktopApp(escape, approvals = approvals, window = windowState, homeMemory = homeMemory, shortcuts = shortcuts)
+                        DesktopApp(
+                            escape,
+                            approvals = approvals,
+                            window = windowState,
+                            homeMemory = homeMemory,
+                            shortcuts = shortcuts,
+                            downloads = downloads,
+                        )
                     }
                 }
             }
@@ -195,6 +210,10 @@ private sealed interface Screen {
     data object Home : Screen
     data object Search : Screen
     data object Library : Screen
+    data object Downloads : Screen
+
+    /** Board D4: one series' episodes, over the list. */
+    data class DownloadSeries(val id: DownloadTitleId) : Screen
     data object Extensions : Screen
 
     /** @param resume non-null when the library asked to come back to where this title was left. */
@@ -229,6 +248,8 @@ private sealed interface Screen {
  * @param window what the player puts in full screen. Null where there is no window, as in a test.
  * @param homeMemory the home source chosen last. Keeps nothing by default, so a test cannot write to a real home.
  * @param shortcuts what the menu bar's Go menu and its keys do; this sets it for the screen on top (`KMP-53`).
+ * @param downloads the download service. Null by default, so a test cannot read or write a real downloads file, and the
+ *   page is then empty; the app passes the real one.
  */
 @Composable
 internal fun DesktopApp(
@@ -241,6 +262,7 @@ internal fun DesktopApp(
     window: WindowState? = null,
     homeMemory: HomeSourceMemory = HomeSourceMemory.None,
     shortcuts: DesktopShortcuts = remember { DesktopShortcuts() },
+    downloads: DesktopDownloads? = null,
 ) {
     val scope = remember { CoroutineScope(SupervisorJob() + Dispatchers.Default) }
     DisposableEffect(scope) { onDispose { scope.cancel() } }
@@ -291,10 +313,11 @@ internal fun DesktopApp(
                     TopLevelDestination.Home -> Screen.Home
                     TopLevelDestination.Search -> Screen.Search
                     TopLevelDestination.Library -> Screen.Library
+                    TopLevelDestination.Downloads -> Screen.Downloads
                 },
             )
         }
-        // ⌘1 to ⌘3 work only at the top level, as the sidebar is only there; ⌘[ wherever there is something under.
+        // ⌘1 to ⌘4 work only at the top level, as the sidebar is only there; ⌘[ wherever there is something under.
         SideEffect {
             shortcuts.onDestination = if (stack.size == 1) toTab else null
             shortcuts.onBack = if (stack.size > 1) ({ back(screen) }) else null
@@ -320,6 +343,22 @@ internal fun DesktopApp(
                     onResume = resume,
                     onSearch = { top(Screen.Search) },
                 )
+            }
+            Screen.Downloads -> TopLevelScreen(TopLevelDestination.Downloads, toTab, trailing = notice) {
+                if (downloads != null) {
+                    DownloadsHost(
+                        downloads,
+                        scope,
+                        setEscape = { escape.onEscape = it },
+                        onOpenTitle = { id -> if (stack.last() !is Screen.DownloadSeries) stack += Screen.DownloadSeries(id) },
+                        onLibrary = { top(Screen.Library) },
+                    )
+                }
+            }
+            is Screen.DownloadSeries -> key(screen.id) {
+                if (downloads != null) {
+                    DownloadSeriesHost(downloads, screen.id, scope, setEscape = { escape.onEscape = it }, onClose = { back(screen) })
+                }
             }
             Screen.Extensions -> {
                 SideEffect { escape.onEscape = { back(screen) } }

@@ -133,6 +133,7 @@ private fun TopLevelDestination.icon(): ImageVector = when (this) {
     TopLevelDestination.Home -> CloudStreamIcons.Home
     TopLevelDestination.Search -> CloudStreamIcons.Search
     TopLevelDestination.Library -> CloudStreamIcons.Library
+    TopLevelDestination.Downloads -> CloudStreamIcons.Download
 }
 
 /** A hairline down the right edge, where the sidebar meets the page. A stroke, so it is exempt from the 4 dp step. */
@@ -178,12 +179,13 @@ internal class DesktopShortcuts {
         /** The Mac's keys on a Mac, and the platform's own elsewhere. */
         val onMac: Boolean = System.getProperty("os.name").orEmpty().startsWith("Mac")
 
-        /** ⌘1 to ⌘3 on a Mac, Ctrl+1 to Ctrl+3 elsewhere, in the sidebar's order. */
+        /** ⌘1 to ⌘4 on a Mac, Ctrl+1 to Ctrl+4 elsewhere, in the sidebar's order. */
         fun keyFor(destination: TopLevelDestination, mac: Boolean = onMac): KeyShortcut {
             val key = when (destination) {
                 TopLevelDestination.Home -> Key.One
                 TopLevelDestination.Search -> Key.Two
                 TopLevelDestination.Library -> Key.Three
+                TopLevelDestination.Downloads -> Key.Four
             }
             return KeyShortcut(key, meta = mac, ctrl = !mac)
         }
