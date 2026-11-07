@@ -120,6 +120,27 @@ appears for all 87 requests, 2,349 cells. `report.txt` moved only in its counts:
 keys 789 -> 816, and 27 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
 `ANDROID_FALLBACK` at 172.** `expectedOwn` 33,005 -> 34,679.
 
+## Next move after the eighteenth, 2026-11-07 — `I18N-14`, 11 new keys for Home and a title's page (`DS-21`)
+
+New keys are approved in general (`I18N-09`). The words the `DS-21` boards use that had no key, for `KMP-55` (Home) and
+`KMP-58` (Detail), authored in all 62 directories. Captured from the live generator with `--rerun-tasks
+-Pcloudstream.strings.guards=fail` on master after the eighteenth. Its ordinal is left to the train: `I18N-11` and `I18N-13`
+also branch from the eighteenth, and whichever lands later is redone from the live generator, as the sixteenth was.
+
+| file | before | after | added | changed | lost |
+|---|---|---|---|---|---|
+| `decoded.tsv` | 38,814 | 39,584 | 770 | 0 | 0 |
+| `emitted.tsv` | 40,923 | 41,717 | 794 | 0 | 0 |
+| `lookup.tsv` | 77,865 | 78,931 | 1,066 | 0 | 0 |
+| `requests.tsv` | 87 | 87 | 0 | 0 | 0 |
+| `findings.tsv` | 0 | 0 | 0 | 0 | 0 |
+
+Measured by whole-line multiset difference: 0 lines lost in any file, every added line names one of the eleven keys, and
+removing the added lines gives the old file in the same order. Each key appears for all 87 requests (the plural
+`home_source_sections` once per category, 196 cells). `report.txt` moved only in its counts: `OWN` 38,324 -> 39,006 (682),
+visible keys 882 -> 893 (plurals 12 -> 13), and eleven more values in each locale copy. **`REFERENCE_IN_LOCALE` stayed at
+500 and `ANDROID_FALLBACK` at 173.** `expectedOwn` 38,324 -> 39,006.
+
 ## Eighteenth move, 2026-11-07 — Train 1 (`#170`, `#174`, `#175`), one move: `KMP-49`'s 6 new keys for the TV library's sources
 
 One combined baseline move for the train that merges `#170` (`KMP-38`), `#174` (`KMP-59`) and `#175` (`KMP-49`) together.
