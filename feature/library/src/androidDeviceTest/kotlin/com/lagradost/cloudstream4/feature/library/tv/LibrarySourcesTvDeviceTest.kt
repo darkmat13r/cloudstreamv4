@@ -434,12 +434,12 @@ class LibrarySourcesTvDeviceTest {
     }
 
     /**
-     * BACK closes it with the choice applied. Focus then lands on the chrome row's first stop, the provider button, not
-     * on Sort: that is `BUG-36`, `SidePanelHost`'s restore entering a nested opener at its first stop. Pinned as it is,
-     * as `DetailScreenTvDeviceTest` pins it, so the component's fix fails this and is looked at.
+     * BACK closes it with the choice applied, and focus comes back to Sort, the button that opened it. Until `BUG-36`'s
+     * fix this pinned the defect: focus landed on the chrome row's first stop, the provider button, because
+     * `SidePanelHost` could not find a nested opener without being handed it.
      */
     @Test
-    fun backClosesTheSortPanelWithTheChoiceAppliedAndFocusOnTheRowsFirstStop() {
+    fun backClosesTheSortPanelWithTheChoiceAppliedAndFocusBackOnSort() {
         showScreen()
         openSortPanel()
         assertEquals(TITLE_A, dpad.press(Dpad.Down))
@@ -448,7 +448,7 @@ class LibrarySourcesTvDeviceTest {
         rule.waitUntil(WAIT_MS) { rule.onAllNodesWithText(SORT_PANEL).fetchSemanticsNodes().isEmpty() }
         rule.waitUntil(WAIT_MS) { rule.focusedLabel() != null }
         rule.waitForIdle()
-        assertEquals("BUG-36: the row's first stop", ANILIST, rule.focusedLabel())
+        assertEquals("BUG-36, fixed: the button that opened it", SORT, rule.focusedLabel())
         awaitText(TITLE_A)
     }
 

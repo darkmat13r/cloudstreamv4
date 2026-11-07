@@ -1,14 +1,18 @@
 package com.lagradost.cloudstream4.core.designsystem.panel
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.focusGroup
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.FocusRequester
@@ -188,6 +192,153 @@ class SidePanelMotionTest {
     }
 
     /**
+     * `BUG-36`: an opener that is not the content group's own child, handed in as `opener`. The library's Sort button is
+     * the second stop in its chrome row, and the detail page's watch-status cell is in a row inside a lazy list's item.
+     * Without `opener` focus came back to the content's first stop; see `SidePanelHost`'s KDoc for what else was measured.
+     */
+    @Test
+    fun `closing gives focus back to an opener nested in a row`() {
+        assertNestedOpenerGetsFocusBack(lazy = false)
+    }
+
+    @Test
+    fun `closing gives focus back to an opener in a row inside a lazy list's item`() {
+        assertNestedOpenerGetsFocusBack(lazy = true)
+    }
+
+    /** Pinned the other way: without `opener`, a nested opener is not reached, which is why the parameter exists. */
+    @Test
+    fun `without opener, a nested opener loses focus to the content's first stop`() {
+        val expanded = mutableStateOf(false)
+        val focused = mutableMapOf<String, Boolean>()
+        Harness { NestedHost(expanded, focused, lazy = false, handOpener = false) }.use { harness ->
+            harness.settle()
+            expanded.value = true
+            harness.settle()
+            expanded.value = false
+            harness.settle()
+            assertEquals(true, focused[ELSEWHERE], "the group's restore reaches only a direct child: $focused")
+        }
+    }
+
+    /** An opener gone from the screen by the time the panel closes: focus falls back to the group's restore. */
+    @Test
+    fun `an opener that has left the screen falls back to the content`() {
+        val expanded = mutableStateOf(false)
+        val focused = mutableMapOf<String, Boolean>()
+        val shown = mutableStateOf(true)
+        Harness { NestedHost(expanded, focused, lazy = false, handOpener = true, openerShown = shown) }.use { harness ->
+            harness.settle()
+            expanded.value = true
+            harness.settle()
+            shown.value = false
+            harness.settle()
+            expanded.value = false
+            harness.settle()
+            assertTrue(
+                focused[ELSEWHERE] == true || focused[ROW_FIRST] == true,
+                "focus is somewhere in the content, not lost: $focused",
+            )
+        }
+    }
+
+    private fun assertNestedOpenerGetsFocusBack(lazy: Boolean) {
+        val expanded = mutableStateOf(false)
+        val focused = mutableMapOf<String, Boolean>()
+        Harness { NestedHost(expanded, focused, lazy, handOpener = true) }.use { harness ->
+            harness.settle()
+            assertEquals(true, focused[OPENER], "the nested opener starts focused: $focused")
+
+            expanded.value = true
+            harness.settle()
+            assertEquals(true, focused[PANEL_ROW], "the panel has focus: $focused")
+
+            expanded.value = false
+            harness.settle()
+            assertEquals(true, focused[OPENER], "focus must come back to the nested opener: $focused")
+            assertFalse(focused[ROW_FIRST] == true, "not to its row's first stop: $focused")
+            assertFalse(focused[ELSEWHERE] == true, "and not to the content's first stop: $focused")
+        }
+    }
+
+    /**
+     * The content's first stop, then a row whose second stop opens the panel; in a lazy list's item where [lazy]. The
+     * opener is handed to the host where [handOpener], and taken off the screen when [openerShown] goes false.
+     */
+    @Composable
+    private fun NestedHost(
+        expanded: MutableState<Boolean>,
+        focused: MutableMap<String, Boolean>,
+        lazy: Boolean,
+        handOpener: Boolean,
+        openerShown: MutableState<Boolean> = mutableStateOf(true),
+    ) {
+        val opener = remember { FocusRequester() }
+        val row: @Composable () -> Unit = {
+            Row(Modifier.focusGroup()) {
+                GhostTextButton(
+                    label = "Back",
+                    onClick = {},
+                    modifier = Modifier.onFocusChanged { focused[ROW_FIRST] = it.isFocused },
+                )
+                if (openerShown.value) {
+                    GhostTextButton(
+                        label = "Status",
+                        onClick = { expanded.value = true },
+                        modifier = Modifier.focusRequester(opener).onFocusChanged { focused[OPENER] = it.isFocused },
+                    )
+                }
+            }
+        }
+        val panel: @Composable () -> Unit = {
+            SidePanel {
+                ListRow(
+                    state = ListRowState(title = "Watching"),
+                    onClick = {},
+                    modifier = Modifier.onFocusChanged { focused[PANEL_ROW] = it.isFocused },
+                )
+            }
+        }
+        val content: @Composable () -> Unit = {
+            Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) {
+                Column {
+                    GhostTextButton(
+                        label = "Elsewhere",
+                        onClick = {},
+                        modifier = Modifier.onFocusChanged { focused[ELSEWHERE] = it.isFocused },
+                    )
+                    if (lazy) LazyColumn { item(key = "row") { row() } } else row()
+                }
+            }
+            // A lazy list's item is composed a frame after the list, so this tries until the opener is there.
+            LaunchedEffect(Unit) {
+                repeat(FOCUS_TRIES) {
+                    withFrameNanos { }
+                    if (focused[OPENER] == true) return@LaunchedEffect
+                    runCatching { opener.requestFocus() }
+                }
+            }
+        }
+        // Both overloads: the one that is handed the opener, and the one every caller had before.
+        if (handOpener) {
+            SidePanelHost(
+                expanded = expanded.value,
+                onDismissRequest = { expanded.value = false },
+                opener = opener,
+                panel = panel,
+                content = content,
+            )
+        } else {
+            SidePanelHost(
+                expanded = expanded.value,
+                onDismissRequest = { expanded.value = false },
+                panel = panel,
+                content = content,
+            )
+        }
+    }
+
+    /**
      * The handover happens when the exit **starts**, which is the half of it a user would notice:
      * at no point in the 240ms is the screen without a focus owner.
      *
@@ -336,6 +487,8 @@ class SidePanelMotionTest {
          */
         const val FRAMES_INTO_EXIT = 3
         const val OPENER = "opener"
+        const val ROW_FIRST = "row first"
+        const val FOCUS_TRIES = 10
         /** The content's *first* focusable, which is not the one that opened the panel. */
         const val ELSEWHERE = "elsewhere"
         const val PANEL_ROW = "panel-row"

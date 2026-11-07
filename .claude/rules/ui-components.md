@@ -44,6 +44,12 @@ the panel is open, that closes it (`DetailTvFragment.wirePanelBack`, `LibraryTvF
 `SidePanelHost` only sees BACK as a key event; without the callback the window's back dispatcher
 takes it and BACK leaves the screen with the panel open (`KMP-49`).
 
+**Every `SidePanelHost` caller also hands the control that opened the panel in as `opener`**,
+unless that control is a direct child of the content: the host's own restore reaches only a direct
+child, and anything in a `Row` or a lazy list is not one (`BUG-36`). The one exception is a screen
+that already sends focus back to its last stop itself, as Home's `homeStopsGroup` does: handing the
+opener in as well fights that, measured.
+
 ## Tokens, never literals
 
 - Dimensions: `CloudStreamDimens.*` — named by role (`ListRowHeight`, `ChipFocusCell`,

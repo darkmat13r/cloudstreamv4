@@ -10,10 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -214,11 +211,12 @@ fun SearchScreenTv(
         }
 
         // The screen is a sibling of the host rather than its content: [SearchStops] brings the rail's RIGHT
-        // back, and the host's `focusRestorer` would be a second answer to that. So closing gives focus back
-        // here, to what opened the panel.
+        // back, and the host's `focusRestorer` would be a second answer to that. So the host is handed what
+        // opened the panel, and closing gives focus back to it (`BUG-36`'s `opener`).
         SidePanelHost(
             expanded = panelOpen,
             onDismissRequest = { onAction(SearchAction.SourcePanelDismissed) },
+            opener = sourcesFocus,
             panel = {
                 // Composed for the slide after the state goes null, so hold the last panel to slide out with.
                 val panel = rememberLastNonNull(state.sourcePanel)
@@ -228,11 +226,6 @@ fun SearchScreenTv(
         )
     }
 
-    var panelWasOpen by remember { mutableStateOf(false) }
-    LaunchedEffect(panelOpen) {
-        if (panelWasOpen && !panelOpen) sourcesFocus.requestFocus()
-        panelWasOpen = panelOpen
-    }
 }
 
 /**

@@ -1677,8 +1677,43 @@ read bounds before the bring-into-view scroll had settled.
 
 ## BUG-36 — `SidePanelHost` returns focus to the content's first stop, not to the control that opened the panel · **medium**
 
-**Status:** found, not fixed · found 2026-11-05 by `KMP-38`'s device suite (pr #153), the component's first production
-caller · `core/designsystem/.../panel/SidePanelHost.kt:168-207`
+**Status:** **fixed 2026-11-07**, by an `opener` handed to `SidePanelHost` (the owner's coordinator chose option (b)
+from the measurement below) · found 2026-11-05 by `KMP-38`'s device suite (pr #153), the component's first production
+caller · `core/designsystem/.../panel/SidePanelHost.kt`
+
+**The fix.** A second `SidePanelHost` overload takes `opener: FocusRequester`: on close, focus goes to it, and where it
+has left the screen, to the content group's restore as before. The first overload is unchanged, so a caller with no
+opener behaves exactly as it did. An overload rather than a defaulted parameter, measured: a parameter changes the shape
+of every call, and with it a Compose-generated lambda name in `QuickSearchTvFragment` that `classes-jar.api` lists, so
+the dump lost a line; with the overload it is unchanged. The detail
+page (the watch-status cell and the synopsis control), Search's Sources control (which replaced the restore it wrote by
+hand) and the library's provider and Sort buttons hand their opener in. **Home does not, on purpose:** its
+`homeStopsGroup` already sends focus entering the page to the last stop it held, which is the source control, and
+handing the control in as well collided with Home's own landing logic: measured, three `HomeScreenTvDeviceTest` cases
+and `TvHomeNavigationTest.backClosesThePickerAndNotTheApp` found focus on a card instead. Home keeps master's code.
+Quick Search (`QuickSearchTvFragment`) hands none: what opened it is a view on the screen below, outside its dialog's
+window, and Android gives focus back to that view when the dialog goes. It is left untouched: even a comment there moves
+a Compose lambda's generated name in `classes-jar.api`. Both pins are
+flipped to the opener: the detail page's watch-status picker, and the library's sort panel (5d), which now hands in the
+Sort button for 5d and the provider button for 5e. The library holds which panel was shown last through its exit, as
+the detail page does, so the leaving panel and the focus both belong to the one that was open.
+
+**Measured before choosing**, in `SidePanelMotionTest`, with the opener the second stop in a `Row`, and that row in a
+`LazyColumn`'s item:
+
+| | in a row | in a lazy item |
+|---|---|---|
+| the component as it was | content's first stop | content's first stop |
+| plus `FocusRequester.saveFocusedChild` / `restoreFocusedChild` | content's first stop | content's first stop |
+| (a) `focusRestorer` on the row | the opener | content's first stop |
+| (a) `focusRestorer` on the row and the list | the opener | the opener |
+| (b) the opener handed in | the opener | the opener |
+
+The restorer, and the save API, record only the group's direct child; a `Row` or `LazyColumn` group cannot take focus
+itself, so the restore fails and focus enters at the first stop. (a) works only with a restorer on every group between
+the content and the opener, which is wiring in every caller that breaks silently when someone adds a group.
+
+Was: found, not fixed.
 
 **Changes what users see on TV.** Dismissing a side panel drops focus on the first focusable in the content
 group instead of the cell the viewer opened the panel from, so they lose their place in the row every time.
@@ -1715,11 +1750,10 @@ is a contract decision and not a patch.
 The TV detail page's test asserts the **current** behaviour, the way `SidePanelMotionTest` pins its own
 exit-window focus hole, so fixing this fails that test and the fix gets looked at rather than landing silently.
 
-**Second pinned caller, `KMP-50`** (2026-11-07): the library's sort panel (5d). BACK lands on the chrome row's first
-stop, the provider button, not on Sort, the button that opened it. `LibrarySourcesTvDeviceTest.
-backClosesTheSortPanelWithTheChoiceAppliedAndFocusOnTheRowsFirstStop` pins it, at the assertion
-`"BUG-36: the row's first stop"`: **the component's fix flips that assertion to `SORT`.** The source panel (5e) never showed it,
-because its button is that first stop.
+**Second pinned caller, `KMP-50`** (2026-11-07): the library's sort panel (5d). BACK landed on the chrome row's first
+stop, the provider button, not on Sort, the button that opened it. Pinned until the fix, now flipped:
+`LibrarySourcesTvDeviceTest.backClosesTheSortPanelWithTheChoiceAppliedAndFocusBackOnSort` asserts `SORT`. The source
+panel (5e) never showed it, because its button is that first stop.
 
 Not to be confused with the separate, already-recorded defect in the same component: a D-pad move during the
 240 ms exit drops focus entirely (`SidePanelMotionTest`, *"a D-pad move during the exit does not re-enter the
