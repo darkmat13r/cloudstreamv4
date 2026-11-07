@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.graphics.Bitmap
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.view.View
 import android.view.View.FOCUS_DOWN
 import android.view.inputmethod.EditorInfo
@@ -14,6 +13,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.content.edit
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.lifecycleScope
 import androidx.preference.PreferenceManager
 import androidx.preference.SwitchPreference
 import androidx.recyclerview.widget.RecyclerView
@@ -37,6 +38,7 @@ import com.lagradost.cloudstream3.syncproviders.AccountManager.Companion.subDlAp
 import com.lagradost.cloudstream3.syncproviders.AuthLoginResponse
 import com.lagradost.cloudstream3.syncproviders.AuthRepo
 import com.lagradost.cloudstream3.syncproviders.AuthUser
+import com.lagradost.cloudstream3.syncproviders.DevicePinPoll
 import com.lagradost.cloudstream3.syncproviders.PlainAuthRepo
 import com.lagradost.cloudstream3.syncproviders.SubtitleRepo
 import com.lagradost.cloudstream3.syncproviders.SyncRepo
@@ -69,6 +71,9 @@ import com.lagradost.cloudstream3.utils.UIHelper.hideProgress
 import com.lagradost.cloudstream3.utils.UIHelper.showProgress
 import com.lagradost.cloudstream3.utils.setText
 import com.lagradost.cloudstream3.utils.txt
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import qrcode.QRCode
 
 class SettingsAccount : BasePreferenceFragmentCompat(), BiometricCallback {
@@ -230,44 +235,33 @@ class SettingsAccount : BasePreferenceFragmentCompat(), BiometricCallback {
                         deviceAuthQrcode.loadImage(qrCodeImage)
                     }
 
-                    val expirationMillis =
-                        pinCodeData.expiresIn.times(1000).toLong()
-
-                    object : CountDownTimer(expirationMillis, 1000) {
-                        override fun onTick(millisUntilFinished: Long) {
-                            val secondsUntilFinished =
-                                millisUntilFinished.div(1000).toInt()
-
+                    // BUG-49: every way out of the dialog (Cancel, BACK, outside, success, expiry) stops the poll, and a
+                    // screen that goes away takes the poll's scope with it.
+                    val poll = DevicePinPoll(pinCodeData, { pin, stillWanted -> api.login(pin, stillWanted) })
+                    dialog.setOnDismissListener { poll.cancel() }
+                    poll.start(
+                        scope = (activity as? LifecycleOwner)?.lifecycleScope ?: CoroutineScope(SupervisorJob()),
+                        ui = Dispatchers.Main,
+                        io = Dispatchers.IO,
+                        onTick = { secondsLeft ->
                             binding.deviceAuthValidationCounter.setText(
                                 txt(
                                     R.string.device_pin_counter_text,
-                                    secondsUntilFinished.div(60),
-                                    secondsUntilFinished.rem(60)
+                                    secondsLeft.div(60),
+                                    secondsLeft.rem(60)
                                 )
                             )
-
-                            ioSafe {
-                                if (secondsUntilFinished.rem(pinCodeData.interval) == 0 && api.login(
-                                        pinCodeData
-                                    )
-                                ) {
-                                    showToast(
-                                        txt(
-                                            R.string.authenticated_user,
-                                            api.name
-                                        )
-                                    )
-                                    dialog.dismissSafe(activity)
-                                    cancel()
-                                }
-                            }
-                        }
-
-                        override fun onFinish() {
+                        },
+                        onSignedIn = {
+                            showToast(txt(R.string.authenticated_user, api.name))
+                            dialog.dismissSafe(activity)
+                        },
+                        onExpired = {
                             showToast(R.string.device_pin_expired_message)
                             dialog.dismissSafe(activity)
-                        }
-                    }.start()
+                        },
+                        onError = { logError(it) },
+                    )
                 }
             }
         }

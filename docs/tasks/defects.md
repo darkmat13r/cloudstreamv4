@@ -1866,3 +1866,39 @@ failed about 1 run in 2 on master `5e103443b`, and 3 runs in 3 on #190's branch.
   bytes on disk are never fetched again. The engine is unchanged.
 - **Not hidden.** The discard is still an engine trait. It costs up to 1 MiB of refetch per dropped connection and is
   logged as `KMP-69`.
+
+## BUG-49 — Cancelling a device-code pairing still signed the TV in · **high, security** · measured 2026-11-07
+
+**Status:** fixed in pr · found 2026-11-07 while measuring `Q16` (account select, 8d), whose Simkl panel reuses the
+wait · `app/.../ui/settings/SettingsAccount.kt`, `showPin`
+
+The pairing dialog's Cancel was a no-op lambda, and its `CountDownTimer` was cancelled only on success. So after Cancel,
+BACK or a tap outside, the dialog kept polling until the code expired, and a code entered on the phone in that time
+signed the TV in. A poll already in flight when the user left was saved too: `AuthRepo.login(pin)` asks the provider
+and saves the token in one call.
+
+**Fix:**
+- `DevicePinPoll` replaces the timer. Every way out of the dialog (Cancel, BACK, outside, success, expiry) cancels it,
+  and the poll runs in the screen's lifecycle scope, so a screen that goes away takes the poll with it. Polls run one at
+  a time; the old timer could start a new request every interval while the last was still out.
+- `AuthRepo.login(pin, stillWanted)` asks `stillWanted` after the provider answers and before anything is saved, so a
+  response that lands after Cancel saves nothing.
+
+### Behaviour changes
+
+| Before | Now | Why |
+|---|---|---|
+| Cancel left the pairing live until the code expired | Cancel ends it | A cancelled pairing must not sign in |
+| A code entered after Cancel signed the TV in | It does not | Same |
+| A new poll could start while the last was still out | One poll at a time | No overlapping requests; the countdown can run a little slower than wall time by each request's length |
+
+**Tests:**
+- `DevicePinCancelTest` (`:app` device, 1): the real dialog with a fake provider (fixture code `FAKE00`, marker token, no
+  network); BACK, then the code is "entered": not signed in, and no further polls. **Failed on master** ("A cancelled
+  pairing signed in expected:<0> but was:<1>"), measured before the fix on a tree that was master plus the test.
+- `DevicePinPollTest` (`:app` JVM, 5): a poll in flight when the user cancels, with the code entered after and a
+  network call that ignores cancellation, saves nothing; the same when the screen goes; no poll after Cancel; a code
+  entered while open signs in once; an unentered code expires once, after one poll per interval.
+
+**Published API:** `classes-jar.api` +13 / −5. The 5 removed lines are the compiler-generated anonymous timer class
+`SettingsAccount$Companion$showPin$2$1$2`, approved for removal by the owner on 2026-11-07.
