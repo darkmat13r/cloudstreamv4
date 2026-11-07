@@ -99,7 +99,36 @@ class DeleteProfileSignInsTest {
         assertGone(token("simkl", DELETED)); assertGone(token("mal", DELETED)); assertGone(id("simkl", DELETED))
     }
 
+    /** The reviewer's case: a stored list that does not parse must not read as "no profiles" and wipe them all. */
+    @Test
+    fun anUnreadableProfileListSkipsTheCleanup() {
+        profiles(KEPT, selected = KEPT)
+        signIn(token("simkl", UNLISTED))
+        instrumentation.runOnMainSync { setKey("${DataStoreHelper.TAG}/account", "not a profile list") }
+
+        val removed = ProfileSignIns.removeOrphans()
+
+        assertEquals(0, removed)
+        assertKept(token("simkl", UNLISTED))
+    }
+
+    /** Deleting the default is the user's act: it resets fully, and the synthesized default comes back signed out. */
+    @Test
+    fun deletingTheDefaultProfileClearsItsSignIns() {
+        profiles(0, KEPT, selected = 0)
+        signIn(token("simkl", 0), token("mal", 0), id("simkl", 0))
+        signIn(token("simkl", KEPT))
+
+        instrumentation.runOnMainSync { AccountViewModel().handleAccountDelete(account(0), context) }
+
+        assertGone(token("simkl", 0)); assertGone(token("mal", 0)); assertGone(id("simkl", 0))
+        assertKept(token("simkl", KEPT))
+        assertEquals(0, DataStoreHelper.getAccounts(context).first().keyIndex)
+        assertEquals(0, DataStoreHelper.selectedKeyIndex)
+    }
+
     private companion object {
+        const val UNLISTED = 7
         const val KEPT = 4241
         const val DELETED = 4242
         const val NEIGHBOUR = 14242

@@ -1798,7 +1798,10 @@ profile signed in to the deleted one's MAL, AniList, Simkl and subtitle accounts
 - **Once at startup** (`MainActivity.onCreate`), sign-ins no profile can reach are removed: an index that is not 0 (the
   default profile, synthesized when the stored list is empty, as on a fresh install), not in the stored list, and not
   the selected one. These are left by deletes before this fix, or detached by a backup restore, which brings the
-  profile list but not the sign-ins.
+  profile list but not the sign-ins. **If the stored list exists but does not parse, the cleanup does nothing**: the
+  app's reader turns an unparseable list into an empty one, which would make every profile's sign-ins look unreachable.
+- **The default profile is protected from the automatic cleanup only.** Deleting it is the user's own act and resets it
+  fully, sign-ins included; the synthesized default that replaces it starts signed out.
 
 ### Behaviour changes
 
@@ -1808,12 +1811,15 @@ profile signed in to the deleted one's MAL, AniList, Simkl and subtitle accounts
 | A new profile could be signed in to a deleted one's services | It never is | Security |
 | Sign-ins left by old deletes stayed forever | Removed at the next start | Same; the default and the selected profile are never touched |
 | After a backup restore, sign-ins on an index the restored list lacks stayed | Removed at the next start | No listed profile could use them |
+| Deleting the default profile kept its sign-ins, and the default that came back was still signed in | The new default starts signed out | Deleting is the user's act; same no-inheritance outcome |
 
-**Test:** `DeleteProfileSignInsTest` (`:app` device, 3), marker values only:
+**Test:** `DeleteProfileSignInsTest` (`:app` device, 5), marker values only:
 - delete removes the profile's tokens and ids and keeps another profile's and the 14242 neighbour's (failed on master,
   measured before the fix);
 - a sign-in above every profile pushes the next index past it;
-- the startup cleanup keeps 0, a listed index, the selected index and 14242, and removes the unreachable one.
+- the startup cleanup keeps 0, a listed index, the selected index and 14242, and removes the unreachable one;
+- with an unparseable profile list stored, the cleanup removes nothing and a sign-in at index 7 survives;
+- deleting the default profile clears its sign-ins, keeps another profile's, and the default comes back at index 0.
 
 **Not covered:** the TV audit's other account finding, that the account screen never shows on a fresh install
 (`skipStartup` tests the empty stored array, `AccountSelectActivity`), is `Q16`'s to measure, not this fix's.
