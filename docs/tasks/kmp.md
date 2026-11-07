@@ -5299,7 +5299,7 @@ Why: it would query every provider on every keystroke, which costs their servers
 
 Additions only. `app/api/classes-jar.api` gains 8 `R` fields (3 `R$plurals`, 5 `R$string`), 0 removed or changed.
 
-## KMP-53 — The Mac window's shell: a sidebar, and its ⌘ keys · **step 1 built 2026-11-07**
+## KMP-53 — The Mac window's shell: a sidebar, a menu bar and their keys · **steps 1 and 2 built 2026-11-07**
 
 `docs/plans/desktop-design.md` kept three tabs while three did the job: "A sidebar is worth it at the fourth"
 (lines 117-118). Downloads is the fourth (`KMP-54`), so the bar becomes board D1's sidebar for every top-level screen.
@@ -5322,9 +5322,22 @@ Additions only. `app/api/classes-jar.api` gains 8 `R` fields (3 `R$plurals`, 5 `
 - **Downloads as the fourth row, and ⌘4.** It is the one-line wiring once `KMP-52` (#177) and `KMP-54` (#179) are on
   master: `TopLevelDestination.Downloads`, its glyph `Download`, and the host composing `DownloadsScreenDesktop` over
   `DesktopDownloadsSource`.
-- **The menu bar.** File, Go and Window menus list the same commands in words. The menu titles have no keys yet, so it
-  needs an `I18N` task first.
 - **Settings ⌘,.** Board D1 puts it at the sidebar's foot, but the Mac has no settings screen yet.
+
+**Step 2, the menu bar.** Its one new word is `I18N-13` (#185).
+- `DesktopMenuBar` puts the screen's menu bar in the window. Its Go menu lists Home, Search and Library with their keys, a
+  separator, then Back. What does nothing is greyed: the destinations away from the top level, and Back where nothing is
+  under.
+- **The menu owns the keys, and nothing else reads them.** Compose's `MenuBar` binds each item's shortcut. The window's
+  `onPreviewKeyEvent` from step 1 would have fired each key a second time, and a doubled ⌘[ pops two screens. So it now
+  handles only Escape.
+- **Keys per platform.** On a Mac, ⌘1 to ⌘3 and ⌘[, as Finder and Safari. Elsewhere, Ctrl+1 to Ctrl+3 and Alt+Left, as
+  Windows' and GNOME's file browsers.
+- `DesktopShellTest`: the Go menu's routing and greying, and the key table on both platforms. A `MenuBar` needs a real
+  window, so the menu itself is not drawn in a test.
+
+**DECIDED.** The menu has only Go. Options were (A) also File (Play from link) and Window, or (B) Go alone. Chose B:
+Play from link has no Mac host yet, and macOS gives every app its own app and Window menus.
 
 **DECIDED.** The menu bar is split off. Options were (A) ship it now with English menu titles, or (B) defer it to an
 `I18N` task that adds the titles. Chose B: every word comes from `:core:strings`, and the shortcuts already work without it.

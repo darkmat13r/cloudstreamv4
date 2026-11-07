@@ -109,7 +109,7 @@ internal fun TopLevelScreen(
 }
 
 @Composable
-private fun TopLevelDestination.label(): String = when (this) {
+internal fun TopLevelDestination.label(): String = when (this) {
     TopLevelDestination.Home -> stringResource(Res.string.title_home)
     TopLevelDestination.Search -> stringResource(Res.string.title_search)
     TopLevelDestination.Library -> stringResource(Res.string.library)

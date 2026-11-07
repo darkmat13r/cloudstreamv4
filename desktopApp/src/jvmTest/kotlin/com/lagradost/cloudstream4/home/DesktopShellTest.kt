@@ -10,8 +10,7 @@ import androidx.compose.ui.InternalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.input.key.Key
-import androidx.compose.ui.input.key.KeyEvent
-import androidx.compose.ui.input.key.KeyEventType
+import androidx.compose.ui.input.key.KeyShortcut
 import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.unit.Density
 import com.lagradost.cloudstream4.DesktopApp
@@ -29,7 +28,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
-/** The window's sidebar and its ⌘ keys (`KMP-53`), through the whole app with nothing installed. */
+/** The window's sidebar and the Go menu's routing and keys (`KMP-53`), through the whole app with nothing installed. */
 @OptIn(ExperimentalComposeUiApi::class, InternalComposeUiApi::class)
 class DesktopShellTest {
 
@@ -54,33 +53,33 @@ class DesktopShellTest {
 
     private fun ImageComposeScene.settle() = repeat(SETTLE_FRAMES) { render(it * FRAME_NANOS) }
 
-    private fun command(key: Key) = shortcuts.handle(KeyEvent(key, KeyEventType.KeyDown, isMetaPressed = true))
-
     @Test
-    fun `command 1 to 3 go to the sidebar's destinations in order`() {
+    fun `the Go menu's destinations go there in the sidebar's order, at the top level only`() {
         val scene = scene()
         scene.settle()
         assertEquals("Home", at)
-        assertTrue(command(Key.Two))
+        assertTrue(shortcuts.atTop)
+        assertFalse(shortcuts.canGoBack, "nothing is under home, so Back is greyed")
+        shortcuts.go(TopLevelDestination.Search)
         scene.settle()
         assertEquals("Search", at)
-        assertTrue(command(Key.Three))
+        shortcuts.go(TopLevelDestination.Library)
         scene.settle()
         assertEquals("Library", at)
-        assertTrue(command(Key.One))
+        shortcuts.go(TopLevelDestination.Home)
         scene.settle()
         assertEquals("Home", at)
         scene.close()
     }
 
     @Test
-    fun `command left bracket does nothing where nothing is under, and a plain 2 is not a shortcut`() {
-        val scene = scene()
-        scene.settle()
-        assertFalse(command(Key.LeftBracket))
-        assertFalse(shortcuts.handle(KeyEvent(Key.Two, KeyEventType.KeyDown)))
-        assertEquals("Home", at)
-        scene.close()
+    fun `the keys are the Mac's on a Mac and the platform's own elsewhere`() {
+        assertEquals(KeyShortcut(Key.Two, meta = true), DesktopShortcuts.keyFor(TopLevelDestination.Search, mac = true))
+        assertEquals(KeyShortcut(Key.Two, ctrl = true), DesktopShortcuts.keyFor(TopLevelDestination.Search, mac = false))
+        assertEquals(KeyShortcut(Key.LeftBracket, meta = true), DesktopShortcuts.backKey(mac = true))
+        assertEquals(KeyShortcut(Key.DirectionLeft, alt = true), DesktopShortcuts.backKey(mac = false))
+        val keys = TopLevelDestination.entries.map { DesktopShortcuts.keyFor(it, mac = true) }
+        assertEquals(listOf(Key.One, Key.Two, Key.Three).map { KeyShortcut(it, meta = true) }, keys, "in the sidebar's order")
     }
 
     @Test
