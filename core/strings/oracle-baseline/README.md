@@ -120,7 +120,7 @@ appears for all 87 requests, 2,349 cells. `report.txt` moved only in its counts:
 keys 789 -> 816, and 27 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
 `ANDROID_FALLBACK` at 172.** `expectedOwn` 33,005 -> 34,679.
 
-## Next move after the nineteenth, 2026-11-07 — `I18N-15`, 11 new keys for Search and Library (`DS-22`)
+## Next move after the nineteenth, 2026-11-07 — `I18N-15`, 12 new keys for Search and Library (`DS-22`)
 
 New keys are approved in general (`I18N-09`). The words the `DS-22` boards use that had no key, for `KMP-56` (Search) and
 `KMP-57` (Library), authored in all 62 directories. Captured from the live generator with `--rerun-tasks
@@ -129,17 +129,17 @@ from the same baseline, and whichever lands later is redone from the live genera
 
 | file | before | after | added | changed | lost |
 |---|---|---|---|---|---|
-| `decoded.tsv` | 39,574 | 40,344 | 770 | 0 | 0 |
-| `emitted.tsv` | 41,705 | 42,499 | 794 | 0 | 0 |
-| `lookup.tsv` | 78,888 | 79,954 | 1,066 | 0 | 0 |
+| `decoded.tsv` | 39,574 | 40,406 | 832 | 0 | 0 |
+| `emitted.tsv` | 41,705 | 42,563 | 858 | 0 | 0 |
+| `lookup.tsv` | 78,888 | 80,041 | 1,153 | 0 | 0 |
 | `requests.tsv` | 87 | 87 | 0 | 0 | 0 |
 | `findings.tsv` | 0 | 0 | 0 | 0 | 0 |
 
-Measured by whole-line multiset difference: 0 lines lost in any file, every added line names one of the eleven keys, and
+Measured by whole-line multiset difference: 0 lines lost in any file, every added line names one of the twelve keys, and
 removing the added lines gives the old file in the same order. Each key appears for all 87 requests (the plural
-`library_title_count` once per category, 196 cells). `report.txt` moved only in its counts: `OWN` 38,820 -> 39,502 (682),
-visible keys 890 -> 901 (plurals 15 -> 16), and eleven more values in each locale copy. **`REFERENCE_IN_LOCALE` stayed at
-500 and `ANDROID_FALLBACK` at 173.** `expectedOwn` 38,820 -> 39,502.
+`library_title_count` once per category, 196 cells). `report.txt` moved only in its counts: `OWN` 38,820 -> 39,564 (744),
+visible keys 890 -> 902 (plurals 15 -> 16), and twelve more values in each locale copy. **`REFERENCE_IN_LOCALE` stayed at
+500 and `ANDROID_FALLBACK` at 173.** `expectedOwn` 38,820 -> 39,564.
 
 ## Nineteenth move, 2026-11-07 — Train 2 (`#173`, `#182`, `#180`), one move: `KMP-47`'s 8 new keys for TV search's suggestions
 

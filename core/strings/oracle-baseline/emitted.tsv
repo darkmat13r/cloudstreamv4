@@ -417,10 +417,11 @@ values	string	library_not_connected	-	Not connected
 values	string	library_on_device	-	On device
 values	string	library_sort_current	-	Sort: %s
 values	string	library_sort_supported	-	%1$s supports %2$d of %3$d
-values	string	library_sort_unsupported	-	Not stored by %s
 values	string	library_source	-	Library source
 values	string	library_source_note	-	One at a time · switching reloads
+values	string	library_sync_cached	-	Cached
 values	string	library_sync_failed	-	Couldn't sync %1$s. These are from %2$s ago.
+values	string	library_sync_offline	-	Offline · cached %s ago
 values	string	library_sync_retry	-	Retry sync
 values	string	library_sync_unreachable	-	Unreachable · cached %s ago
 values	string	library_synced_format	-	Synced %s ago
@@ -1048,10 +1049,11 @@ values-b+af	string	library_not_connected	-	Nie gekoppel
 values-b+af	string	library_on_device	-	Op toestel
 values-b+af	string	library_sort_current	-	Sorteer: %s
 values-b+af	string	library_sort_supported	-	%1$s ondersteun %2$d van %3$d
-values-b+af	string	library_sort_unsupported	-	Nie deur %s gestoor nie
 values-b+af	string	library_source	-	Biblioteekbron
 values-b+af	string	library_source_note	-	Een op 'n slag · oorskakel herlaai
+values-b+af	string	library_sync_cached	-	Gekas
 values-b+af	string	library_sync_failed	-	Kon %1$s nie sinkroniseer nie. Hierdie is van %2$s gelede.
+values-b+af	string	library_sync_offline	-	Vanlyn · %s gelede gekas
 values-b+af	string	library_sync_retry	-	Probeer weer sinkroniseer
 values-b+af	string	library_sync_unreachable	-	Onbereikbaar · %s gelede gekas
 values-b+af	string	library_synced_format	-	%s gelede gesinkroniseer
@@ -1284,10 +1286,11 @@ values-b+am	string	library_not_connected	-	አልተገናኘም
 values-b+am	string	library_on_device	-	በመሣሪያ ላይ
 values-b+am	string	library_sort_current	-	ደርድር፦ %s
 values-b+am	string	library_sort_supported	-	%1$s ከ%3$d %2$d ይደግፋል
-values-b+am	string	library_sort_unsupported	-	በ%s አይቀመጥም
 values-b+am	string	library_source	-	የቤተ-መጽሐፍት ምንጭ
 values-b+am	string	library_source_note	-	አንድ በአንድ · መቀየር እንደገና ይጭናል
+values-b+am	string	library_sync_cached	-	የተቀመጠ
 values-b+am	string	library_sync_failed	-	%1$sን ማመሳሰል አልተቻለም። እነዚህ ከ%2$s በፊት የነበሩ ናቸው።
+values-b+am	string	library_sync_offline	-	ከመስመር ውጭ · ከ%s በፊት የተቀመጠ
 values-b+am	string	library_sync_retry	-	እንደገና አመሳስል
 values-b+am	string	library_sync_unreachable	-	ሊደረስበት አልቻለም · ከ%s በፊት የተቀመጠ
 values-b+am	string	library_synced_format	-	ከ%s በፊት ተመሳስሏል
@@ -1782,10 +1785,11 @@ values-b+apc	string	library_not_connected	-	مش متصل
 values-b+apc	string	library_on_device	-	عالجهاز
 values-b+apc	string	library_sort_current	-	الترتيب: %s
 values-b+apc	string	library_sort_supported	-	%1$s بيدعم %2$d من %3$d
-values-b+apc	string	library_sort_unsupported	-	%s ما بيخزّنه
 values-b+apc	string	library_source	-	مصدر الرفّ
 values-b+apc	string	library_source_note	-	وحدة بكل مرة · التبديل بيعيد التحميل
+values-b+apc	string	library_sync_cached	-	محفوظ
 values-b+apc	string	library_sync_failed	-	ما قدرنا نزامن %1$s. هدول من قبل %2$s.
+values-b+apc	string	library_sync_offline	-	بلا إنترنت · محفوظ من %s
 values-b+apc	string	library_sync_retry	-	رجّع زامن
 values-b+apc	string	library_sync_unreachable	-	ما فينا نوصل · محفوظ من %s
 values-b+apc	string	library_synced_format	-	تزامن من %s
@@ -2681,10 +2685,11 @@ values-b+ar	string	library_not_connected	-	غير متصل
 values-b+ar	string	library_on_device	-	على الجهاز
 values-b+ar	string	library_sort_current	-	الترتيب: %s
 values-b+ar	string	library_sort_supported	-	يدعم %1$s %2$d من %3$d
-values-b+ar	string	library_sort_unsupported	-	لا يخزّنه %s
 values-b+ar	string	library_source	-	مصدر المكتبة
 values-b+ar	string	library_source_note	-	مصدر واحد في كل مرة · التبديل يعيد التحميل
+values-b+ar	string	library_sync_cached	-	مخزّن
 values-b+ar	string	library_sync_failed	-	تعذّرت مزامنة %1$s. هذه من قبل %2$s.
+values-b+ar	string	library_sync_offline	-	غير متصل · مخزّن منذ %s
 values-b+ar	string	library_sync_retry	-	إعادة المزامنة
 values-b+ar	string	library_sync_unreachable	-	تعذّر الوصول · مخزّن منذ %s
 values-b+ar	string	library_synced_format	-	تمت المزامنة منذ %s
@@ -3411,10 +3416,11 @@ values-b+ars	string	library_not_connected	-	غير متصل
 values-b+ars	string	library_on_device	-	على الجهاز
 values-b+ars	string	library_sort_current	-	الترتيب: %s
 values-b+ars	string	library_sort_supported	-	يدعم %1$s %2$d من %3$d
-values-b+ars	string	library_sort_unsupported	-	لا يخزّنه %s
 values-b+ars	string	library_source	-	مصدر المكتبة
 values-b+ars	string	library_source_note	-	مصدر واحد في كل مرة · التبديل يعيد التحميل
+values-b+ars	string	library_sync_cached	-	مخزّن
 values-b+ars	string	library_sync_failed	-	تعذّرت مزامنة %1$s. هذه من قبل %2$s.
+values-b+ars	string	library_sync_offline	-	غير متصل · مخزّن منذ %s
 values-b+ars	string	library_sync_retry	-	إعادة المزامنة
 values-b+ars	string	library_sync_unreachable	-	تعذّر الوصول · مخزّن منذ %s
 values-b+ars	string	library_synced_format	-	تمت المزامنة قبل %s
@@ -4003,10 +4009,11 @@ values-b+as	string	library_not_connected	-	সংযোগ নাই
 values-b+as	string	library_on_device	-	ডিভাইচত
 values-b+as	string	library_sort_current	-	সজোৱা: %s
 values-b+as	string	library_sort_supported	-	%1$s-এ %3$d টাৰ %2$d টা সমৰ্থন কৰে
-values-b+as	string	library_sort_unsupported	-	%s-এ সংৰক্ষণ নকৰে
 values-b+as	string	library_source	-	পুথিভঁৰালৰ উৎস
 values-b+as	string	library_source_note	-	এবাৰত এটা · সলনি কৰিলে পুনৰ লোড হয়
+values-b+as	string	library_sync_cached	-	কেশ্ব কৰা
 values-b+as	string	library_sync_failed	-	%1$s ছিংক কৰিব পৰা নগ'ল। এইবোৰ %2$s আগৰ।
+values-b+as	string	library_sync_offline	-	অফলাইন · %s আগতে কেশ্ব কৰা
 values-b+as	string	library_sync_retry	-	পুনৰ ছিংক কৰক
 values-b+as	string	library_sync_unreachable	-	পাব পৰা নাই · %s আগতে কেশ্ব কৰা
 values-b+as	string	library_synced_format	-	%s আগতে ছিংক কৰা হৈছে
@@ -4564,10 +4571,11 @@ values-b+az	string	library_not_connected	-	Qoşulmayıb
 values-b+az	string	library_on_device	-	Cihazda
 values-b+az	string	library_sort_current	-	Sırala: %s
 values-b+az	string	library_sort_supported	-	%1$s %3$d meyardan %2$d-ni dəstəkləyir
-values-b+az	string	library_sort_unsupported	-	%s tərəfindən saxlanmır
 values-b+az	string	library_source	-	Kitabxana mənbəyi
 values-b+az	string	library_source_note	-	Eyni anda bir · dəyişmək yenidən yükləyir
+values-b+az	string	library_sync_cached	-	Keşlənib
 values-b+az	string	library_sync_failed	-	%1$s sinxronlaşdırılmadı. Bunlar %2$s əvvəlkidir.
+values-b+az	string	library_sync_offline	-	Oflayn · %s əvvəl keşlənib
 values-b+az	string	library_sync_retry	-	Yenidən sinxronlaşdır
 values-b+az	string	library_sync_unreachable	-	Əlçatmazdır · %s əvvəl keşlənib
 values-b+az	string	library_synced_format	-	%s əvvəl sinxronlaşdırılıb
@@ -5094,10 +5102,11 @@ values-b+be	string	library_not_connected	-	Не падключана
 values-b+be	string	library_on_device	-	На прыладзе
 values-b+be	string	library_sort_current	-	Парадак: %s
 values-b+be	string	library_sort_supported	-	%1$s падтрымлівае %2$d з %3$d
-values-b+be	string	library_sort_unsupported	-	Не захоўваецца ў %s
 values-b+be	string	library_source	-	Крыніца бібліятэкі
 values-b+be	string	library_source_note	-	Па адной · пераключэнне перазагружае
+values-b+be	string	library_sync_cached	-	З кэша
 values-b+be	string	library_sync_failed	-	Не ўдалося сінхранізаваць %1$s. Гэта даныя %2$s таму.
+values-b+be	string	library_sync_offline	-	Па-за сеткай · кэш %s таму
 values-b+be	string	library_sync_retry	-	Паўтарыць сінхранізацыю
 values-b+be	string	library_sync_unreachable	-	Недаступна · кэш %s таму
 values-b+be	string	library_synced_format	-	Сінхранізавана %s таму
@@ -5951,10 +5960,11 @@ values-b+bg	string	library_not_connected	-	Не е свързан
 values-b+bg	string	library_on_device	-	На устройството
 values-b+bg	string	library_sort_current	-	Подреждане: %s
 values-b+bg	string	library_sort_supported	-	%1$s поддържа %2$d от %3$d
-values-b+bg	string	library_sort_unsupported	-	Не се пази от %s
 values-b+bg	string	library_source	-	Източник на библиотеката
 values-b+bg	string	library_source_note	-	Един по един · превключването презарежда
+values-b+bg	string	library_sync_cached	-	Кеширано
 values-b+bg	string	library_sync_failed	-	%1$s не можа да се синхронизира. Това е отпреди %2$s.
+values-b+bg	string	library_sync_offline	-	Офлайн · кеширано преди %s
 values-b+bg	string	library_sync_retry	-	Нова синхронизация
 values-b+bg	string	library_sync_unreachable	-	Недостъпен · кеширано преди %s
 values-b+bg	string	library_synced_format	-	Синхронизирано преди %s
@@ -6678,10 +6688,11 @@ values-b+bn	string	library_not_connected	-	সংযুক্ত নয়
 values-b+bn	string	library_on_device	-	ডিভাইসে
 values-b+bn	string	library_sort_current	-	সাজান: %s
 values-b+bn	string	library_sort_supported	-	%1$s %3$dটির মধ্যে %2$dটি সমর্থন করে
-values-b+bn	string	library_sort_unsupported	-	%s সংরক্ষণ করে না
 values-b+bn	string	library_source	-	লাইব্রেরির উৎস
 values-b+bn	string	library_source_note	-	একবারে একটি · পরিবর্তন করলে আবার লোড হয়
+values-b+bn	string	library_sync_cached	-	ক্যাশ করা
 values-b+bn	string	library_sync_failed	-	%1$s সিঙ্ক করা যায়নি। এগুলি %2$s আগের।
+values-b+bn	string	library_sync_offline	-	অফলাইন · %s আগে ক্যাশ করা
 values-b+bn	string	library_sync_retry	-	আবার সিঙ্ক করুন
 values-b+bn	string	library_sync_unreachable	-	পৌঁছানো যাচ্ছে না · %s আগে ক্যাশ করা
 values-b+bn	string	library_synced_format	-	%s আগে সিঙ্ক হয়েছে
@@ -7165,10 +7176,11 @@ values-b+ca	string	library_not_connected	-	No connectat
 values-b+ca	string	library_on_device	-	Al dispositiu
 values-b+ca	string	library_sort_current	-	Ordre: %s
 values-b+ca	string	library_sort_supported	-	%1$s admet %2$d de %3$d
-values-b+ca	string	library_sort_unsupported	-	%s no ho desa
 values-b+ca	string	library_source	-	Font de la biblioteca
 values-b+ca	string	library_source_note	-	Una alhora · canviar torna a carregar
+values-b+ca	string	library_sync_cached	-	A la memòria cau
 values-b+ca	string	library_sync_failed	-	No s'ha pogut sincronitzar %1$s. Són de fa %2$s.
+values-b+ca	string	library_sync_offline	-	Sense connexió · a la memòria cau fa %s
 values-b+ca	string	library_sync_retry	-	Torna a sincronitzar
 values-b+ca	string	library_sync_unreachable	-	Inaccessible · a la memòria cau fa %s
 values-b+ca	string	library_synced_format	-	Sincronitzat fa %s
@@ -7532,10 +7544,11 @@ values-b+ckb	string	library_not_connected	-	پەیوەست نییە
 values-b+ckb	string	library_on_device	-	لەسەر ئامێر
 values-b+ckb	string	library_sort_current	-	ڕیزکردن: %s
 values-b+ckb	string	library_sort_supported	-	%1$s پشتگیری %2$d لە %3$d دەکات
-values-b+ckb	string	library_sort_unsupported	-	%s پاشەکەوتی ناکات
 values-b+ckb	string	library_source	-	سەرچاوەی کتێبخانە
 values-b+ckb	string	library_source_note	-	یەک بە یەک · گۆڕین دووبارە باری دەکاتەوە
+values-b+ckb	string	library_sync_cached	-	هەڵگیراوە
 values-b+ckb	string	library_sync_failed	-	نەتوانرا %1$s هاوکات بکرێت. ئەمانە هی %2$s لەمەوبەرن.
+values-b+ckb	string	library_sync_offline	-	دەرهێڵ · %s لەمەوبەر هەڵگیراوە
 values-b+ckb	string	library_sync_retry	-	دووبارە هاوکاتکردن
 values-b+ckb	string	library_sync_unreachable	-	نەگەیشترا · %s لەمەوبەر هەڵگیراوە
 values-b+ckb	string	library_synced_format	-	%s لەمەوبەر هاوکات کرا
@@ -8028,10 +8041,11 @@ values-b+cs	string	library_not_connected	-	Nepřipojeno
 values-b+cs	string	library_on_device	-	V zařízení
 values-b+cs	string	library_sort_current	-	Řazení: %s
 values-b+cs	string	library_sort_supported	-	%1$s podporuje %2$d z %3$d
-values-b+cs	string	library_sort_unsupported	-	%s neukládá
 values-b+cs	string	library_source	-	Zdroj knihovny
 values-b+cs	string	library_source_note	-	Jeden po druhém · přepnutí znovu načte
+values-b+cs	string	library_sync_cached	-	Z mezipaměti
 values-b+cs	string	library_sync_failed	-	%1$s se nepodařilo synchronizovat. Tato data jsou z doby před %2$s.
+values-b+cs	string	library_sync_offline	-	Offline · v mezipaměti před %s
 values-b+cs	string	library_sync_retry	-	Znovu synchronizovat
 values-b+cs	string	library_sync_unreachable	-	Nedostupné · v mezipaměti před %s
 values-b+cs	string	library_synced_format	-	Synchronizováno před %s
@@ -8898,10 +8912,11 @@ values-b+de	string	library_not_connected	-	Nicht verbunden
 values-b+de	string	library_on_device	-	Auf dem Gerät
 values-b+de	string	library_sort_current	-	Sortierung: %s
 values-b+de	string	library_sort_supported	-	%1$s unterstützt %2$d von %3$d
-values-b+de	string	library_sort_unsupported	-	Nicht von %s gespeichert
 values-b+de	string	library_source	-	Bibliotheksquelle
 values-b+de	string	library_source_note	-	Jeweils eine · Wechsel lädt neu
+values-b+de	string	library_sync_cached	-	Zwischengespeichert
 values-b+de	string	library_sync_failed	-	%1$s konnte nicht synchronisiert werden. Das ist der Stand von vor %2$s.
+values-b+de	string	library_sync_offline	-	Offline · zwischengespeichert vor %s
 values-b+de	string	library_sync_retry	-	Erneut synchronisieren
 values-b+de	string	library_sync_unreachable	-	Nicht erreichbar · zwischengespeichert vor %s
 values-b+de	string	library_synced_format	-	Vor %s synchronisiert
@@ -9732,10 +9747,11 @@ values-b+el	string	library_not_connected	-	Δεν έχει συνδεθεί
 values-b+el	string	library_on_device	-	Στη συσκευή
 values-b+el	string	library_sort_current	-	Ταξινόμηση: %s
 values-b+el	string	library_sort_supported	-	Το %1$s υποστηρίζει %2$d από %3$d
-values-b+el	string	library_sort_unsupported	-	Δεν αποθηκεύεται από το %s
 values-b+el	string	library_source	-	Πηγή βιβλιοθήκης
 values-b+el	string	library_source_note	-	Μία κάθε φορά · η εναλλαγή επαναφορτώνει
+values-b+el	string	library_sync_cached	-	Από προσωρινή μνήμη
 values-b+el	string	library_sync_failed	-	Δεν ήταν δυνατός ο συγχρονισμός του %1$s. Αυτά είναι από πριν από %2$s.
+values-b+el	string	library_sync_offline	-	Εκτός σύνδεσης · στην προσωρινή μνήμη πριν από %s
 values-b+el	string	library_sync_retry	-	Επανάληψη συγχρονισμού
 values-b+el	string	library_sync_unreachable	-	Μη προσβάσιμο · στην προσωρινή μνήμη πριν από %s
 values-b+el	string	library_synced_format	-	Συγχρονίστηκε πριν από %s
@@ -10328,10 +10344,11 @@ values-b+eo	string	library_not_connected	-	Ne konektita
 values-b+eo	string	library_on_device	-	En aparato
 values-b+eo	string	library_sort_current	-	Ordigo: %s
 values-b+eo	string	library_sort_supported	-	%1$s subtenas %2$d el %3$d
-values-b+eo	string	library_sort_unsupported	-	Ne konservata de %s
 values-b+eo	string	library_source	-	Fonto de biblioteko
 values-b+eo	string	library_source_note	-	Po unu · ŝanĝo reŝargas
+values-b+eo	string	library_sync_cached	-	Kaŝmemorita
 values-b+eo	string	library_sync_failed	-	Ne eblis sinkronigi %1$s. Ĉi tiuj estas de antaŭ %2$s.
+values-b+eo	string	library_sync_offline	-	Senkonekte · kaŝmemorita antaŭ %s
 values-b+eo	string	library_sync_retry	-	Resinkronigi
 values-b+eo	string	library_sync_unreachable	-	Neatingebla · kaŝmemorita antaŭ %s
 values-b+eo	string	library_synced_format	-	Sinkronigita antaŭ %s
@@ -10881,10 +10898,11 @@ values-b+es	string	library_not_connected	-	No conectado
 values-b+es	string	library_on_device	-	En el dispositivo
 values-b+es	string	library_sort_current	-	Orden: %s
 values-b+es	string	library_sort_supported	-	%1$s admite %2$d de %3$d
-values-b+es	string	library_sort_unsupported	-	%s no lo guarda
 values-b+es	string	library_source	-	Origen de la biblioteca
 values-b+es	string	library_source_note	-	Uno a la vez · cambiar recarga
+values-b+es	string	library_sync_cached	-	En caché
 values-b+es	string	library_sync_failed	-	No se pudo sincronizar %1$s. Son de hace %2$s.
+values-b+es	string	library_sync_offline	-	Sin conexión · en caché hace %s
 values-b+es	string	library_sync_retry	-	Volver a sincronizar
 values-b+es	string	library_sync_unreachable	-	Inaccesible · en caché hace %s
 values-b+es	string	library_synced_format	-	Sincronizado hace %s
@@ -11581,10 +11599,11 @@ values-b+fa	string	library_not_connected	-	متصل نیست
 values-b+fa	string	library_on_device	-	روی دستگاه
 values-b+fa	string	library_sort_current	-	ترتیب: %s
 values-b+fa	string	library_sort_supported	-	%1$s از %3$d مورد %2$d را پشتیبانی می‌کند
-values-b+fa	string	library_sort_unsupported	-	توسط %s ذخیره نمی‌شود
 values-b+fa	string	library_source	-	منبع کتابخانه
 values-b+fa	string	library_source_note	-	هر بار یکی · تغییر، دوباره بارگذاری می‌کند
+values-b+fa	string	library_sync_cached	-	ذخیره‌شده
 values-b+fa	string	library_sync_failed	-	همگام‌سازی %1$s ممکن نشد. این‌ها مال %2$s پیش هستند.
+values-b+fa	string	library_sync_offline	-	آفلاین · %s پیش ذخیره شده
 values-b+fa	string	library_sync_retry	-	همگام‌سازی دوباره
 values-b+fa	string	library_sync_unreachable	-	در دسترس نیست · %s پیش ذخیره شده
 values-b+fa	string	library_synced_format	-	%s پیش همگام‌سازی شد
@@ -12036,10 +12055,11 @@ values-b+fil	string	library_not_connected	-	Hindi nakakonekta
 values-b+fil	string	library_on_device	-	Sa device
 values-b+fil	string	library_sort_current	-	Pagkakasunod: %s
 values-b+fil	string	library_sort_supported	-	Sinusuportahan ng %1$s ang %2$d sa %3$d
-values-b+fil	string	library_sort_unsupported	-	Hindi iniimbak ng %s
 values-b+fil	string	library_source	-	Pinagmulan ng library
 values-b+fil	string	library_source_note	-	Isa-isa · nagre-reload kapag nagpalit
+values-b+fil	string	library_sync_cached	-	Naka-cache
 values-b+fil	string	library_sync_failed	-	Hindi ma-sync ang %1$s. Mula %2$s na ang nakalipas ang mga ito.
+values-b+fil	string	library_sync_offline	-	Offline · naka-cache %s ang nakalipas
 values-b+fil	string	library_sync_retry	-	Subukang i-sync ulit
 values-b+fil	string	library_sync_unreachable	-	Hindi maabot · naka-cache %s ang nakalipas
 values-b+fil	string	library_synced_format	-	Na-sync %s ang nakalipas
@@ -12632,10 +12652,11 @@ values-b+fr	string	library_not_connected	-	Non connecté
 values-b+fr	string	library_on_device	-	Sur l'appareil
 values-b+fr	string	library_sort_current	-	Tri : %s
 values-b+fr	string	library_sort_supported	-	%1$s prend en charge %2$d sur %3$d
-values-b+fr	string	library_sort_unsupported	-	Non stocké par %s
 values-b+fr	string	library_source	-	Source de la bibliothèque
 values-b+fr	string	library_source_note	-	Une à la fois · changer recharge
+values-b+fr	string	library_sync_cached	-	En cache
 values-b+fr	string	library_sync_failed	-	Impossible de synchroniser %1$s. Ces données datent d'il y a %2$s.
+values-b+fr	string	library_sync_offline	-	Hors ligne · en cache depuis %s
 values-b+fr	string	library_sync_retry	-	Resynchroniser
 values-b+fr	string	library_sync_unreachable	-	Injoignable · en cache depuis %s
 values-b+fr	string	library_synced_format	-	Synchronisé il y a %s
@@ -13317,10 +13338,11 @@ values-b+gl	string	library_not_connected	-	Non conectado
 values-b+gl	string	library_on_device	-	No dispositivo
 values-b+gl	string	library_sort_current	-	Orde: %s
 values-b+gl	string	library_sort_supported	-	%1$s admite %2$d de %3$d
-values-b+gl	string	library_sort_unsupported	-	%s non o garda
 values-b+gl	string	library_source	-	Orixe da biblioteca
 values-b+gl	string	library_source_note	-	Unha de cada vez · cambiar recarga
+values-b+gl	string	library_sync_cached	-	Na caché
 values-b+gl	string	library_sync_failed	-	Non se puido sincronizar %1$s. Son de hai %2$s.
+values-b+gl	string	library_sync_offline	-	Sen conexión · na caché hai %s
 values-b+gl	string	library_sync_retry	-	Volver sincronizar
 values-b+gl	string	library_sync_unreachable	-	Inaccesible · na caché hai %s
 values-b+gl	string	library_synced_format	-	Sincronizado hai %s
@@ -13831,10 +13853,11 @@ values-b+he	string	library_not_connected	-	לא מחובר
 values-b+he	string	library_on_device	-	במכשיר
 values-b+he	string	library_sort_current	-	מיון: %s
 values-b+he	string	library_sort_supported	-	%1$s תומך ב-%2$d מתוך %3$d
-values-b+he	string	library_sort_unsupported	-	לא נשמר ב-%s
 values-b+he	string	library_source	-	מקור הספריה
 values-b+he	string	library_source_note	-	אחד בכל פעם · החלפה טוענת מחדש
+values-b+he	string	library_sync_cached	-	מהמטמון
 values-b+he	string	library_sync_failed	-	לא ניתן לסנכרן את %1$s. הנתונים האלה מלפני %2$s.
+values-b+he	string	library_sync_offline	-	לא מקוון · במטמון מלפני %s
 values-b+he	string	library_sync_retry	-	סנכרון מחדש
 values-b+he	string	library_sync_unreachable	-	לא זמין · במטמון מלפני %s
 values-b+he	string	library_synced_format	-	סונכרן לפני %s
@@ -14478,10 +14501,11 @@ values-b+hi	string	library_not_connected	-	कनेक्ट नहीं ह�
 values-b+hi	string	library_on_device	-	डिवाइस पर
 values-b+hi	string	library_sort_current	-	क्रम: %s
 values-b+hi	string	library_sort_supported	-	%1$s %3$d में से %2$d का समर्थन करता है
-values-b+hi	string	library_sort_unsupported	-	%s इसे सहेजता नहीं
 values-b+hi	string	library_source	-	लाइब्रेरी स्रोत
 values-b+hi	string	library_source_note	-	एक समय में एक · बदलने पर फिर से लोड होता है
+values-b+hi	string	library_sync_cached	-	कैश किया
 values-b+hi	string	library_sync_failed	-	%1$s सिंक नहीं हो सका। ये %2$s पहले के हैं।
+values-b+hi	string	library_sync_offline	-	ऑफ़लाइन · %s पहले कैश किया
 values-b+hi	string	library_sync_retry	-	फिर से सिंक करें
 values-b+hi	string	library_sync_unreachable	-	पहुँच नहीं · %s पहले कैश किया
 values-b+hi	string	library_synced_format	-	%s पहले सिंक हुआ
@@ -15149,10 +15173,11 @@ values-b+hr	string	library_not_connected	-	Nije povezano
 values-b+hr	string	library_on_device	-	Na uređaju
 values-b+hr	string	library_sort_current	-	Poredak: %s
 values-b+hr	string	library_sort_supported	-	%1$s podržava %2$d od %3$d
-values-b+hr	string	library_sort_unsupported	-	%s to ne sprema
 values-b+hr	string	library_source	-	Izvor biblioteke
 values-b+hr	string	library_source_note	-	Jedan po jedan · promjena ponovno učitava
+values-b+hr	string	library_sync_cached	-	Iz predmemorije
 values-b+hr	string	library_sync_failed	-	Nije moguće sinkronizirati %1$s. Ovo je od prije %2$s.
+values-b+hr	string	library_sync_offline	-	Izvan mreže · predmemorirano prije %s
 values-b+hr	string	library_sync_retry	-	Ponovno sinkroniziraj
 values-b+hr	string	library_sync_unreachable	-	Nedostupno · predmemorirano prije %s
 values-b+hr	string	library_synced_format	-	Sinkronizirano prije %s
@@ -15972,10 +15997,11 @@ values-b+hu	string	library_not_connected	-	Nincs csatlakoztatva
 values-b+hu	string	library_on_device	-	Az eszközön
 values-b+hu	string	library_sort_current	-	Rendezés: %s
 values-b+hu	string	library_sort_supported	-	A(z) %1$s %3$d szempontból %2$d-t támogat
-values-b+hu	string	library_sort_unsupported	-	A(z) %s nem tárolja
 values-b+hu	string	library_source	-	Könyvtár forrása
 values-b+hu	string	library_source_note	-	Egyszerre egy · váltáskor újratölt
+values-b+hu	string	library_sync_cached	-	Gyorsítótárból
 values-b+hu	string	library_sync_failed	-	A(z) %1$s nem szinkronizálható. Ezek %2$s előttiek.
+values-b+hu	string	library_sync_offline	-	Offline · %s óta gyorsítótárban
 values-b+hu	string	library_sync_retry	-	Szinkronizálás újra
 values-b+hu	string	library_sync_unreachable	-	Nem érhető el · %s óta gyorsítótárban
 values-b+hu	string	library_synced_format	-	%s ezelőtt szinkronizálva
@@ -16768,10 +16794,11 @@ values-b+id	string	library_not_connected	-	Tidak terhubung
 values-b+id	string	library_on_device	-	Di perangkat
 values-b+id	string	library_sort_current	-	Urutan: %s
 values-b+id	string	library_sort_supported	-	%1$s mendukung %2$d dari %3$d
-values-b+id	string	library_sort_unsupported	-	Tidak disimpan oleh %s
 values-b+id	string	library_source	-	Sumber pustaka
 values-b+id	string	library_source_note	-	Satu per satu · beralih memuat ulang
+values-b+id	string	library_sync_cached	-	Tersimpan
 values-b+id	string	library_sync_failed	-	Tidak dapat menyinkronkan %1$s. Ini dari %2$s yang lalu.
+values-b+id	string	library_sync_offline	-	Offline · disimpan %s yang lalu
 values-b+id	string	library_sync_retry	-	Sinkronkan ulang
 values-b+id	string	library_sync_unreachable	-	Tidak terjangkau · disimpan %s yang lalu
 values-b+id	string	library_synced_format	-	Disinkronkan %s lalu
@@ -17626,10 +17653,11 @@ values-b+in	string	library_not_connected	-	Tidak terhubung
 values-b+in	string	library_on_device	-	Di perangkat
 values-b+in	string	library_sort_current	-	Urutan: %s
 values-b+in	string	library_sort_supported	-	%1$s mendukung %2$d dari %3$d
-values-b+in	string	library_sort_unsupported	-	Tidak disimpan oleh %s
 values-b+in	string	library_source	-	Sumber pustaka
 values-b+in	string	library_source_note	-	Satu per satu · beralih memuat ulang
+values-b+in	string	library_sync_cached	-	Tersimpan
 values-b+in	string	library_sync_failed	-	Tidak dapat menyinkronkan %1$s. Ini dari %2$s yang lalu.
+values-b+in	string	library_sync_offline	-	Offline · disimpan %s yang lalu
 values-b+in	string	library_sync_retry	-	Sinkronkan ulang
 values-b+in	string	library_sync_unreachable	-	Tidak terjangkau · disimpan %s yang lalu
 values-b+in	string	library_synced_format	-	Disinkronkan %s lalu
@@ -18504,10 +18532,11 @@ values-b+it	string	library_not_connected	-	Non connesso
 values-b+it	string	library_on_device	-	Sul dispositivo
 values-b+it	string	library_sort_current	-	Ordine: %s
 values-b+it	string	library_sort_supported	-	%1$s supporta %2$d di %3$d
-values-b+it	string	library_sort_unsupported	-	Non salvato da %s
 values-b+it	string	library_source	-	Origine della libreria
 values-b+it	string	library_source_note	-	Una alla volta · cambiare ricarica
+values-b+it	string	library_sync_cached	-	In cache
 values-b+it	string	library_sync_failed	-	Impossibile sincronizzare %1$s. Sono di %2$s fa.
+values-b+it	string	library_sync_offline	-	Offline · in cache da %s
 values-b+it	string	library_sync_retry	-	Risincronizza
 values-b+it	string	library_sync_unreachable	-	Non raggiungibile · in cache da %s
 values-b+it	string	library_synced_format	-	Sincronizzato %s fa
@@ -19288,10 +19317,11 @@ values-b+iw	string	library_not_connected	-	לא מחובר
 values-b+iw	string	library_on_device	-	במכשיר
 values-b+iw	string	library_sort_current	-	מיון: %s
 values-b+iw	string	library_sort_supported	-	%1$s תומך ב-%2$d מתוך %3$d
-values-b+iw	string	library_sort_unsupported	-	לא נשמר ב-%s
 values-b+iw	string	library_source	-	מקור הספריה
 values-b+iw	string	library_source_note	-	אחד בכל פעם · החלפה טוענת מחדש
+values-b+iw	string	library_sync_cached	-	מהמטמון
 values-b+iw	string	library_sync_failed	-	לא ניתן לסנכרן את %1$s. הנתונים האלה מלפני %2$s.
+values-b+iw	string	library_sync_offline	-	לא מקוון · במטמון מלפני %s
 values-b+iw	string	library_sync_retry	-	סנכרון מחדש
 values-b+iw	string	library_sync_unreachable	-	לא זמין · במטמון מלפני %s
 values-b+iw	string	library_synced_format	-	סונכרן לפני %s
@@ -20047,10 +20077,11 @@ values-b+ja	string	library_not_connected	-	未接続
 values-b+ja	string	library_on_device	-	このデバイス
 values-b+ja	string	library_sort_current	-	並べ替え：%s
 values-b+ja	string	library_sort_supported	-	%1$s は %3$d 項目中 %2$d 項目に対応
-values-b+ja	string	library_sort_unsupported	-	%s には保存されません
 values-b+ja	string	library_source	-	ライブラリのソース
 values-b+ja	string	library_source_note	-	一度に1つ · 切り替えると再読み込み
+values-b+ja	string	library_sync_cached	-	キャッシュ
 values-b+ja	string	library_sync_failed	-	%1$s を同期できませんでした。%2$s 前のデータです。
+values-b+ja	string	library_sync_offline	-	オフライン · %s 前のキャッシュ
 values-b+ja	string	library_sync_retry	-	再同期
 values-b+ja	string	library_sync_unreachable	-	接続できません · %s 前のキャッシュ
 values-b+ja	string	library_synced_format	-	%s前に同期
@@ -20652,10 +20683,11 @@ values-b+kn	string	library_not_connected	-	ಸಂಪರ್ಕಗೊಂಡಿಲ�
 values-b+kn	string	library_on_device	-	ಸಾಧನದಲ್ಲಿ
 values-b+kn	string	library_sort_current	-	ವಿಂಗಡಣೆ: %s
 values-b+kn	string	library_sort_supported	-	%1$s %3$d ರಲ್ಲಿ %2$d ಬೆಂಬಲಿಸುತ್ತದೆ
-values-b+kn	string	library_sort_unsupported	-	%s ಇದನ್ನು ಉಳಿಸುವುದಿಲ್ಲ
 values-b+kn	string	library_source	-	ಲೈಬ್ರರಿ ಮೂಲ
 values-b+kn	string	library_source_note	-	ಒಂದು ಬಾರಿಗೆ ಒಂದು · ಬದಲಿಸಿದರೆ ಮರುಲೋಡ್ ಆಗುತ್ತದೆ
+values-b+kn	string	library_sync_cached	-	ಕ್ಯಾಶ್
 values-b+kn	string	library_sync_failed	-	%1$s ಸಿಂಕ್ ಮಾಡಲಾಗಲಿಲ್ಲ. ಇವು %2$s ಹಿಂದಿನವು.
+values-b+kn	string	library_sync_offline	-	ಆಫ್‌ಲೈನ್ · %s ಹಿಂದೆ ಕ್ಯಾಶ್
 values-b+kn	string	library_sync_retry	-	ಮತ್ತೆ ಸಿಂಕ್ ಮಾಡಿ
 values-b+kn	string	library_sync_unreachable	-	ತಲುಪಲಾಗುತ್ತಿಲ್ಲ · %s ಹಿಂದೆ ಕ್ಯಾಶ್
 values-b+kn	string	library_synced_format	-	%s ಹಿಂದೆ ಸಿಂಕ್ ಮಾಡಲಾಗಿದೆ
@@ -21156,10 +21188,11 @@ values-b+ko	string	library_not_connected	-	연결되지 않음
 values-b+ko	string	library_on_device	-	기기에 저장됨
 values-b+ko	string	library_sort_current	-	정렬: %s
 values-b+ko	string	library_sort_supported	-	%1$s은(는) %3$d개 중 %2$d개 지원
-values-b+ko	string	library_sort_unsupported	-	%s에 저장되지 않음
 values-b+ko	string	library_source	-	라이브러리 소스
 values-b+ko	string	library_source_note	-	한 번에 하나 · 전환하면 다시 불러옴
+values-b+ko	string	library_sync_cached	-	캐시됨
 values-b+ko	string	library_sync_failed	-	%1$s을(를) 동기화하지 못했습니다. %2$s 전 데이터입니다.
+values-b+ko	string	library_sync_offline	-	오프라인 · %s 전 캐시
 values-b+ko	string	library_sync_retry	-	다시 동기화
 values-b+ko	string	library_sync_unreachable	-	연결할 수 없음 · %s 전 캐시
 values-b+ko	string	library_synced_format	-	%s 전에 동기화됨
@@ -21844,10 +21877,11 @@ values-b+lt	string	library_not_connected	-	Neprijungta
 values-b+lt	string	library_on_device	-	Įrenginyje
 values-b+lt	string	library_sort_current	-	Rikiavimas: %s
 values-b+lt	string	library_sort_supported	-	%1$s palaiko %2$d iš %3$d
-values-b+lt	string	library_sort_unsupported	-	%s to nesaugo
 values-b+lt	string	library_source	-	Bibliotekos šaltinis
 values-b+lt	string	library_source_note	-	Po vieną · perjungus įkeliama iš naujo
+values-b+lt	string	library_sync_cached	-	Iš podėlio
 values-b+lt	string	library_sync_failed	-	Nepavyko sinchronizuoti %1$s. Tai duomenys prieš %2$s.
+values-b+lt	string	library_sync_offline	-	Neprisijungus · podėlyje prieš %s
 values-b+lt	string	library_sync_retry	-	Sinchronizuoti iš naujo
 values-b+lt	string	library_sync_unreachable	-	Nepasiekiama · podėlyje prieš %s
 values-b+lt	string	library_synced_format	-	Sinchronizuota prieš %s
@@ -22404,10 +22438,11 @@ values-b+lv	string	library_not_connected	-	Nav savienots
 values-b+lv	string	library_on_device	-	Ierīcē
 values-b+lv	string	library_sort_current	-	Kārtošana: %s
 values-b+lv	string	library_sort_supported	-	%1$s atbalsta %2$d no %3$d
-values-b+lv	string	library_sort_unsupported	-	%s to neglabā
 values-b+lv	string	library_source	-	Bibliotēkas avots
 values-b+lv	string	library_source_note	-	Pa vienam · pārslēgšana pārlādē
+values-b+lv	string	library_sync_cached	-	No kešatmiņas
 values-b+lv	string	library_sync_failed	-	Neizdevās sinhronizēt %1$s. Šie dati ir no pirms %2$s.
+values-b+lv	string	library_sync_offline	-	Bezsaistē · kešatmiņā pirms %s
 values-b+lv	string	library_sync_retry	-	Sinhronizēt vēlreiz
 values-b+lv	string	library_sync_unreachable	-	Nav sasniedzams · kešatmiņā pirms %s
 values-b+lv	string	library_synced_format	-	Sinhronizēts pirms %s
@@ -23206,10 +23241,11 @@ values-b+mk	string	library_not_connected	-	Не е поврзано
 values-b+mk	string	library_on_device	-	На уредот
 values-b+mk	string	library_sort_current	-	Подредување: %s
 values-b+mk	string	library_sort_supported	-	%1$s поддржува %2$d од %3$d
-values-b+mk	string	library_sort_unsupported	-	%s не го зачувува
 values-b+mk	string	library_source	-	Извор на библиотеката
 values-b+mk	string	library_source_note	-	Еден по еден · менувањето превчитува
+values-b+mk	string	library_sync_cached	-	Кеширано
 values-b+mk	string	library_sync_failed	-	%1$s не може да се синхронизира. Ова е од пред %2$s.
+values-b+mk	string	library_sync_offline	-	Офлајн · кеширано пред %s
 values-b+mk	string	library_sync_retry	-	Повторно синхронизирај
 values-b+mk	string	library_sync_unreachable	-	Недостапно · кеширано пред %s
 values-b+mk	string	library_synced_format	-	Синхронизирано пред %s
@@ -23875,10 +23911,11 @@ values-b+ml	string	library_not_connected	-	കണക്റ്റ് ചെയ്
 values-b+ml	string	library_on_device	-	ഉപകരണത്തിൽ
 values-b+ml	string	library_sort_current	-	ക്രമം: %s
 values-b+ml	string	library_sort_supported	-	%1$s %3$d-ൽ %2$d പിന്തുണയ്ക്കുന്നു
-values-b+ml	string	library_sort_unsupported	-	%s ഇത് സൂക്ഷിക്കുന്നില്ല
 values-b+ml	string	library_source	-	ലൈബ്രറി ഉറവിടം
 values-b+ml	string	library_source_note	-	ഒരേ സമയം ഒന്ന് · മാറ്റിയാൽ വീണ്ടും ലോഡ് ചെയ്യും
+values-b+ml	string	library_sync_cached	-	കാഷെ ചെയ്തത്
 values-b+ml	string	library_sync_failed	-	%1$s സമന്വയിപ്പിക്കാനായില്ല. ഇവ %2$s മുമ്പുള്ളതാണ്.
+values-b+ml	string	library_sync_offline	-	ഓഫ്‌ലൈൻ · %s മുമ്പ് കാഷെ ചെയ്തത്
 values-b+ml	string	library_sync_retry	-	വീണ്ടും സമന്വയിപ്പിക്കുക
 values-b+ml	string	library_sync_unreachable	-	എത്താനാകുന്നില്ല · %s മുമ്പ് കാഷെ ചെയ്തത്
 values-b+ml	string	library_synced_format	-	%s മുമ്പ് സമന്വയിപ്പിച്ചു
@@ -24404,10 +24441,11 @@ values-b+ms	string	library_not_connected	-	Tidak disambungkan
 values-b+ms	string	library_on_device	-	Pada peranti
 values-b+ms	string	library_sort_current	-	Isih: %s
 values-b+ms	string	library_sort_supported	-	%1$s menyokong %2$d daripada %3$d
-values-b+ms	string	library_sort_unsupported	-	Tidak disimpan oleh %s
 values-b+ms	string	library_source	-	Sumber perpustakaan
 values-b+ms	string	library_source_note	-	Satu demi satu · menukar memuat semula
+values-b+ms	string	library_sync_cached	-	Dicache
 values-b+ms	string	library_sync_failed	-	Tidak dapat menyegerakkan %1$s. Ini dari %2$s yang lalu.
+values-b+ms	string	library_sync_offline	-	Luar talian · dicache %s yang lalu
 values-b+ms	string	library_sync_retry	-	Segerak semula
 values-b+ms	string	library_sync_unreachable	-	Tidak dapat dicapai · dicache %s yang lalu
 values-b+ms	string	library_synced_format	-	Disegerakkan %s lalu
@@ -24891,10 +24929,11 @@ values-b+mt	string	library_not_connected	-	Mhux konness
 values-b+mt	string	library_on_device	-	Fuq l-apparat
 values-b+mt	string	library_sort_current	-	Ordni: %s
 values-b+mt	string	library_sort_supported	-	%1$s jappoġġja %2$d minn %3$d
-values-b+mt	string	library_sort_unsupported	-	Mhux maħżun minn %s
 values-b+mt	string	library_source	-	Sors tal-librerija
 values-b+mt	string	library_source_note	-	Wieħed kull darba · il-bidla tgħabbi mill-ġdid
+values-b+mt	string	library_sync_cached	-	Fil-cache
 values-b+mt	string	library_sync_failed	-	Ma setax jiġi sinkronizzat %1$s. Dawn huma minn %2$s ilu.
+values-b+mt	string	library_sync_offline	-	Offline · fil-cache minn %s ilu
 values-b+mt	string	library_sync_retry	-	Erġa' ssinkronizza
 values-b+mt	string	library_sync_unreachable	-	Ma jintlaħaqx · fil-cache minn %s ilu
 values-b+mt	string	library_synced_format	-	Sinkronizzat %s ilu
@@ -25295,10 +25334,11 @@ values-b+my	string	library_not_connected	-	ချိတ်ဆက်မထား�
 values-b+my	string	library_on_device	-	စက်ပေါ်တွင်
 values-b+my	string	library_sort_current	-	စီရန်: %s
 values-b+my	string	library_sort_supported	-	%1$s သည် %3$d ခုအနက် %2$d ခုကို ပံ့ပိုးသည်
-values-b+my	string	library_sort_unsupported	-	%s တွင် မသိမ်းပါ
 values-b+my	string	library_source	-	လိုက်ဘရီ ရင်းမြစ်
 values-b+my	string	library_source_note	-	တစ်ကြိမ်လျှင် တစ်ခု · ပြောင်းလျှင် ပြန်ဖွင့်သည်
+values-b+my	string	library_sync_cached	-	သိမ်းထားသည်
 values-b+my	string	library_sync_failed	-	%1$s ကို ချိန်ကိုက်၍မရပါ။ ဤအရာများသည် လွန်ခဲ့သော %2$s ကဖြစ်သည်။
+values-b+my	string	library_sync_offline	-	အော့ဖ်လိုင်း · လွန်ခဲ့သော %s က သိမ်းထားသည်
 values-b+my	string	library_sync_retry	-	ပြန်ချိန်ကိုက်ရန်
 values-b+my	string	library_sync_unreachable	-	ချိတ်ဆက်၍မရ · လွန်ခဲ့သော %s က သိမ်းထားသည်
 values-b+my	string	library_synced_format	-	%s က ချိန်ကိုက်ခဲ့သည်
@@ -25781,10 +25821,11 @@ values-b+ne	string	library_not_connected	-	जडान छैन
 values-b+ne	string	library_on_device	-	यन्त्रमा
 values-b+ne	string	library_sort_current	-	क्रम: %s
 values-b+ne	string	library_sort_supported	-	%1$s ले %3$d मध्ये %2$d समर्थन गर्छ
-values-b+ne	string	library_sort_unsupported	-	%s ले यसलाई सुरक्षित गर्दैन
 values-b+ne	string	library_source	-	लाइब्रेरी स्रोत
 values-b+ne	string	library_source_note	-	एक पटकमा एउटा · बदल्दा फेरि लोड हुन्छ
+values-b+ne	string	library_sync_cached	-	क्यास गरिएको
 values-b+ne	string	library_sync_failed	-	%1$s सिंक गर्न सकिएन। यी %2$s अघिका हुन्।
+values-b+ne	string	library_sync_offline	-	अफलाइन · %s अघि क्यास गरिएको
 values-b+ne	string	library_sync_retry	-	फेरि सिंक गर्नुहोस्
 values-b+ne	string	library_sync_unreachable	-	पुग्न सकिएन · %s अघि क्यास गरिएको
 values-b+ne	string	library_synced_format	-	%s अघि सिंक गरियो
@@ -26270,10 +26311,11 @@ values-b+nl	string	library_not_connected	-	Niet verbonden
 values-b+nl	string	library_on_device	-	Op apparaat
 values-b+nl	string	library_sort_current	-	Sorteren: %s
 values-b+nl	string	library_sort_supported	-	%1$s ondersteunt %2$d van %3$d
-values-b+nl	string	library_sort_unsupported	-	Niet opgeslagen door %s
 values-b+nl	string	library_source	-	Bibliotheekbron
 values-b+nl	string	library_source_note	-	Eén tegelijk · wisselen laadt opnieuw
+values-b+nl	string	library_sync_cached	-	Uit cache
 values-b+nl	string	library_sync_failed	-	%1$s kon niet worden gesynchroniseerd. Dit is van %2$s geleden.
+values-b+nl	string	library_sync_offline	-	Offline · %s geleden in cache
 values-b+nl	string	library_sync_retry	-	Opnieuw synchroniseren
 values-b+nl	string	library_sync_unreachable	-	Niet bereikbaar · %s geleden in cache
 values-b+nl	string	library_synced_format	-	%s geleden gesynchroniseerd
@@ -26882,10 +26924,11 @@ values-b+nn	string	library_not_connected	-	Ikkje tilkopla
 values-b+nn	string	library_on_device	-	På eininga
 values-b+nn	string	library_sort_current	-	Sortering: %s
 values-b+nn	string	library_sort_supported	-	%1$s støttar %2$d av %3$d
-values-b+nn	string	library_sort_unsupported	-	Ikkje lagra av %s
 values-b+nn	string	library_source	-	Bibliotekskjelde
 values-b+nn	string	library_source_note	-	Éin om gongen · byte lastar på nytt
+values-b+nn	string	library_sync_cached	-	Mellomlagra
 values-b+nn	string	library_sync_failed	-	Kunne ikkje synkronisera %1$s. Desse er frå for %2$s sidan.
+values-b+nn	string	library_sync_offline	-	Fråkopla · mellomlagra for %s sidan
 values-b+nn	string	library_sync_retry	-	Synkroniser på nytt
 values-b+nn	string	library_sync_unreachable	-	Utilgjengeleg · mellomlagra for %s sidan
 values-b+nn	string	library_synced_format	-	Synkronisert for %s sidan
@@ -27335,10 +27378,11 @@ values-b+no	string	library_not_connected	-	Ikke tilkoblet
 values-b+no	string	library_on_device	-	På enheten
 values-b+no	string	library_sort_current	-	Sortering: %s
 values-b+no	string	library_sort_supported	-	%1$s støtter %2$d av %3$d
-values-b+no	string	library_sort_unsupported	-	Ikke lagret av %s
 values-b+no	string	library_source	-	Bibliotekkilde
 values-b+no	string	library_source_note	-	Én om gangen · bytte laster inn på nytt
+values-b+no	string	library_sync_cached	-	Mellomlagret
 values-b+no	string	library_sync_failed	-	Kunne ikke synkronisere %1$s. Disse er fra for %2$s siden.
+values-b+no	string	library_sync_offline	-	Frakoblet · mellomlagret for %s siden
 values-b+no	string	library_sync_retry	-	Synkroniser på nytt
 values-b+no	string	library_sync_unreachable	-	Utilgjengelig · mellomlagret for %s siden
 values-b+no	string	library_synced_format	-	Synkronisert for %s siden
@@ -27842,10 +27886,11 @@ values-b+or	string	library_not_connected	-	ସଂଯୁକ୍ତ ନାହିଁ
 values-b+or	string	library_on_device	-	ଡିଭାଇସରେ
 values-b+or	string	library_sort_current	-	କ୍ରମ: %s
 values-b+or	string	library_sort_supported	-	%1$s %3$d ମଧ୍ୟରୁ %2$d ସମର୍ଥନ କରେ
-values-b+or	string	library_sort_unsupported	-	%s ଏହାକୁ ସଞ୍ଚୟ କରେ ନାହିଁ
 values-b+or	string	library_source	-	ଲାଇବ୍ରେରୀ ଉତ୍ସ
 values-b+or	string	library_source_note	-	ଥରକେ ଗୋଟିଏ · ବଦଳାଇଲେ ପୁଣି ଲୋଡ୍ ହୁଏ
+values-b+or	string	library_sync_cached	-	କ୍ୟାଶ୍
 values-b+or	string	library_sync_failed	-	%1$s ସିଙ୍କ୍ ହୋଇପାରିଲା ନାହିଁ। ଏଗୁଡ଼ିକ %2$s ପୂର୍ବର।
+values-b+or	string	library_sync_offline	-	ଅଫଲାଇନ୍ · %s ପୂର୍ବରୁ କ୍ୟାଶ୍
 values-b+or	string	library_sync_retry	-	ପୁଣି ସିଙ୍କ୍ କରନ୍ତୁ
 values-b+or	string	library_sync_unreachable	-	ପହଞ୍ଚି ହେଉନାହିଁ · %s ପୂର୍ବରୁ କ୍ୟାଶ୍
 values-b+or	string	library_synced_format	-	%s ପୂର୍ବରୁ ସିଙ୍କ ହୋଇଛି
@@ -28387,10 +28432,11 @@ values-b+pl	string	library_not_connected	-	Nie połączono
 values-b+pl	string	library_on_device	-	Na urządzeniu
 values-b+pl	string	library_sort_current	-	Sortowanie: %s
 values-b+pl	string	library_sort_supported	-	%1$s obsługuje %2$d z %3$d
-values-b+pl	string	library_sort_unsupported	-	Nie jest przechowywane przez %s
 values-b+pl	string	library_source	-	Źródło biblioteki
 values-b+pl	string	library_source_note	-	Jedno naraz · przełączenie wczytuje ponownie
+values-b+pl	string	library_sync_cached	-	Z pamięci podręcznej
 values-b+pl	string	library_sync_failed	-	Nie udało się zsynchronizować %1$s. To dane sprzed %2$s.
+values-b+pl	string	library_sync_offline	-	Offline · w pamięci podręcznej od %s
 values-b+pl	string	library_sync_retry	-	Synchronizuj ponownie
 values-b+pl	string	library_sync_unreachable	-	Niedostępne · w pamięci podręcznej od %s
 values-b+pl	string	library_synced_format	-	Zsynchronizowano %s temu
@@ -29267,10 +29313,11 @@ values-b+pt	string	library_not_connected	-	Não conectado
 values-b+pt	string	library_on_device	-	No dispositivo
 values-b+pt	string	library_sort_current	-	Ordenar: %s
 values-b+pt	string	library_sort_supported	-	%1$s suporta %2$d de %3$d
-values-b+pt	string	library_sort_unsupported	-	Não guardado por %s
 values-b+pt	string	library_source	-	Origem da biblioteca
 values-b+pt	string	library_source_note	-	Uma de cada vez · mudar recarrega
+values-b+pt	string	library_sync_cached	-	Em cache
 values-b+pt	string	library_sync_failed	-	Não foi possível sincronizar %1$s. São de há %2$s.
+values-b+pt	string	library_sync_offline	-	Offline · em cache há %s
 values-b+pt	string	library_sync_retry	-	Sincronizar novamente
 values-b+pt	string	library_sync_unreachable	-	Inacessível · em cache há %s
 values-b+pt	string	library_synced_format	-	Sincronizado há %s
@@ -30141,10 +30188,11 @@ values-b+pt+BR	string	library_not_connected	-	Não conectado
 values-b+pt+BR	string	library_on_device	-	No dispositivo
 values-b+pt+BR	string	library_sort_current	-	Ordenar: %s
 values-b+pt+BR	string	library_sort_supported	-	%1$s suporta %2$d de %3$d
-values-b+pt+BR	string	library_sort_unsupported	-	Não armazenado por %s
 values-b+pt+BR	string	library_source	-	Fonte da biblioteca
 values-b+pt+BR	string	library_source_note	-	Uma por vez · trocar recarrega
+values-b+pt+BR	string	library_sync_cached	-	Em cache
 values-b+pt+BR	string	library_sync_failed	-	Não foi possível sincronizar %1$s. Estes são de %2$s atrás.
+values-b+pt+BR	string	library_sync_offline	-	Offline · em cache há %s
 values-b+pt+BR	string	library_sync_retry	-	Sincronizar de novo
 values-b+pt+BR	string	library_sync_unreachable	-	Inacessível · em cache há %s
 values-b+pt+BR	string	library_synced_format	-	Sincronizado há %s
@@ -30957,10 +31005,11 @@ values-b+qt	string	library_not_connected	-	ooo-ahah aagg
 values-b+qt	string	library_on_device	-	uuhh ooo
 values-b+qt	string	library_sort_current	-	Oouh: %s
 values-b+qt	string	library_sort_supported	-	%1$s ooh %2$d uuh %3$d
-values-b+qt	string	library_sort_unsupported	-	Ahh %s
 values-b+qt	string	library_source	-	aaaghh ooo-ahah
 values-b+qt	string	library_source_note	-	ooo aagg · uuhh-ahah
+values-b+qt	string	library_sync_cached	-	Uuh
 values-b+qt	string	library_sync_failed	-	Ooh %1$s uuh. Ahh %2$s.
+values-b+qt	string	library_sync_offline	-	Ooh · uuh %s
 values-b+qt	string	library_sync_retry	-	Oouh ahh
 values-b+qt	string	library_sync_unreachable	-	Uuh · ooh %s
 values-b+qt	string	library_synced_format	-	aaghh %s ooo
@@ -31718,10 +31767,11 @@ values-b+ro	string	library_not_connected	-	Neconectat
 values-b+ro	string	library_on_device	-	Pe dispozitiv
 values-b+ro	string	library_sort_current	-	Sortare: %s
 values-b+ro	string	library_sort_supported	-	%1$s acceptă %2$d din %3$d
-values-b+ro	string	library_sort_unsupported	-	Nu este stocat de %s
 values-b+ro	string	library_source	-	Sursa bibliotecii
 values-b+ro	string	library_source_note	-	Câte una · schimbarea reîncarcă
+values-b+ro	string	library_sync_cached	-	Din cache
 values-b+ro	string	library_sync_failed	-	%1$s nu a putut fi sincronizat. Sunt de acum %2$s.
+values-b+ro	string	library_sync_offline	-	Offline · în cache de acum %s
 values-b+ro	string	library_sync_retry	-	Resincronizează
 values-b+ro	string	library_sync_unreachable	-	Inaccesibil · în cache de acum %s
 values-b+ro	string	library_synced_format	-	Sincronizat acum %s
@@ -32537,10 +32587,11 @@ values-b+ru	string	library_not_connected	-	Не подключено
 values-b+ru	string	library_on_device	-	На устройстве
 values-b+ru	string	library_sort_current	-	Сортировка: %s
 values-b+ru	string	library_sort_supported	-	%1$s поддерживает %2$d из %3$d
-values-b+ru	string	library_sort_unsupported	-	Не хранится в %s
 values-b+ru	string	library_source	-	Источник библиотеки
 values-b+ru	string	library_source_note	-	По одному · переключение перезагружает
+values-b+ru	string	library_sync_cached	-	Из кеша
 values-b+ru	string	library_sync_failed	-	Не удалось синхронизировать %1$s. Это данные %2$s назад.
+values-b+ru	string	library_sync_offline	-	Офлайн · кеш %s назад
 values-b+ru	string	library_sync_retry	-	Синхронизировать снова
 values-b+ru	string	library_sync_unreachable	-	Недоступно · кеш %s назад
 values-b+ru	string	library_synced_format	-	Синхронизировано %s назад
@@ -33309,10 +33360,11 @@ values-b+sk	string	library_not_connected	-	Nepripojené
 values-b+sk	string	library_on_device	-	V zariadení
 values-b+sk	string	library_sort_current	-	Zoradenie: %s
 values-b+sk	string	library_sort_supported	-	%1$s podporuje %2$d z %3$d
-values-b+sk	string	library_sort_unsupported	-	%s neukladá
 values-b+sk	string	library_source	-	Zdroj knižnice
 values-b+sk	string	library_source_note	-	Jeden naraz · prepnutie znova načíta
+values-b+sk	string	library_sync_cached	-	Z vyrovnávacej pamäte
 values-b+sk	string	library_sync_failed	-	%1$s sa nepodarilo synchronizovať. Sú to údaje spred %2$s.
+values-b+sk	string	library_sync_offline	-	Offline · vo vyrovnávacej pamäti spred %s
 values-b+sk	string	library_sync_retry	-	Znova synchronizovať
 values-b+sk	string	library_sync_unreachable	-	Nedostupné · vo vyrovnávacej pamäti spred %s
 values-b+sk	string	library_synced_format	-	Synchronizované pred %s
@@ -33923,10 +33975,11 @@ values-b+so	string	library_not_connected	-	Lama xiriirin
 values-b+so	string	library_on_device	-	Qalabka ku jira
 values-b+so	string	library_sort_current	-	Kala soocid: %s
 values-b+so	string	library_sort_supported	-	%1$s wuxuu taageeraa %2$d ka mid ah %3$d
-values-b+so	string	library_sort_unsupported	-	Ma kaydiyo %s
 values-b+so	string	library_source	-	Isha kaydka
 values-b+so	string	library_source_note	-	Mid mid · beddelku wuu dib u soo raraa
+values-b+so	string	library_sync_cached	-	La kaydiyay
 values-b+so	string	library_sync_failed	-	Lama isku waafajin karin %1$s. Kuwani waa kuwii %2$s ka hor.
+values-b+so	string	library_sync_offline	-	Khadka ka maqan · la kaydiyay %s ka hor
 values-b+so	string	library_sync_retry	-	Mar kale isku waafaji
 values-b+so	string	library_sync_unreachable	-	Lama gaari karo · la kaydiyay %s ka hor
 values-b+so	string	library_synced_format	-	La waafajiyay %s kahor
@@ -34661,10 +34714,11 @@ values-b+sq	string	library_not_connected	-	Nuk është lidhur
 values-b+sq	string	library_on_device	-	Në pajisje
 values-b+sq	string	library_sort_current	-	Renditja: %s
 values-b+sq	string	library_sort_supported	-	%1$s mbështet %2$d nga %3$d
-values-b+sq	string	library_sort_unsupported	-	Nuk ruhet nga %s
 values-b+sq	string	library_source	-	Burimi i bibliotekës
 values-b+sq	string	library_source_note	-	Një në një kohë · ndërrimi ringarkon
+values-b+sq	string	library_sync_cached	-	Nga memoria
 values-b+sq	string	library_sync_failed	-	%1$s nuk u sinkronizua dot. Këto janë para %2$s.
+values-b+sq	string	library_sync_offline	-	Jashtë linje · në memorie para %s
 values-b+sq	string	library_sync_retry	-	Sinkronizo sërish
 values-b+sq	string	library_sync_unreachable	-	E paarritshme · në memorie para %s
 values-b+sq	string	library_synced_format	-	Sinkronizuar para %s
@@ -35531,10 +35585,11 @@ values-b+sv	string	library_not_connected	-	Inte ansluten
 values-b+sv	string	library_on_device	-	På enheten
 values-b+sv	string	library_sort_current	-	Sortering: %s
 values-b+sv	string	library_sort_supported	-	%1$s stöder %2$d av %3$d
-values-b+sv	string	library_sort_unsupported	-	Sparas inte av %s
 values-b+sv	string	library_source	-	Bibliotekskälla
 values-b+sv	string	library_source_note	-	En i taget · byte laddar om
+values-b+sv	string	library_sync_cached	-	Cachad
 values-b+sv	string	library_sync_failed	-	Det gick inte att synkronisera %1$s. Detta är från för %2$s sedan.
+values-b+sv	string	library_sync_offline	-	Offline · cachad för %s sedan
 values-b+sv	string	library_sync_retry	-	Synkronisera igen
 values-b+sv	string	library_sync_unreachable	-	Går inte att nå · cachad för %s sedan
 values-b+sv	string	library_synced_format	-	Synkroniserad för %s sedan
@@ -36401,10 +36456,11 @@ values-b+ta	string	library_not_connected	-	இணைக்கப்படவி�
 values-b+ta	string	library_on_device	-	சாதனத்தில்
 values-b+ta	string	library_sort_current	-	வரிசை: %s
 values-b+ta	string	library_sort_supported	-	%1$s %3$d இல் %2$d ஐ ஆதரிக்கிறது
-values-b+ta	string	library_sort_unsupported	-	%s இதைச் சேமிப்பதில்லை
 values-b+ta	string	library_source	-	நூலக மூலம்
 values-b+ta	string	library_source_note	-	ஒரு நேரத்தில் ஒன்று · மாற்றினால் மீண்டும் ஏற்றும்
+values-b+ta	string	library_sync_cached	-	தேக்கியது
 values-b+ta	string	library_sync_failed	-	%1$s ஐ ஒத்திசைக்க முடியவில்லை. இவை %2$s முன்பு உள்ளவை.
+values-b+ta	string	library_sync_offline	-	ஆஃப்லைன் · %s முன்பு தேக்கியது
 values-b+ta	string	library_sync_retry	-	மீண்டும் ஒத்திசை
 values-b+ta	string	library_sync_unreachable	-	அணுக முடியவில்லை · %s முன்பு தேக்கியது
 values-b+ta	string	library_synced_format	-	%s முன்பு ஒத்திசைக்கப்பட்டது
@@ -36962,10 +37018,11 @@ values-b+ti	string	library_not_connected	-	ኣይተራኸበን
 values-b+ti	string	library_on_device	-	ኣብ መሳርሒ
 values-b+ti	string	library_sort_current	-	ስርዓት፦ %s
 values-b+ti	string	library_sort_supported	-	%1$s ካብ %3$d %2$d ይድግፍ
-values-b+ti	string	library_sort_unsupported	-	ብ%s ኣይዕቀብን
 values-b+ti	string	library_source	-	ምንጪ ቤተ-መጻሕፍቲ
 values-b+ti	string	library_source_note	-	ሓደ ብሓደ · ምቕያር ዳግም ይጽዕን
+values-b+ti	string	library_sync_cached	-	ዝተዓቀበ
 values-b+ti	string	library_sync_failed	-	%1$s ክሰማማዕ ኣይከኣለን። እዚኦም ቅድሚ %2$s ዝነበሩ እዮም።
+values-b+ti	string	library_sync_offline	-	ካብ መስመር ወጻኢ · ቅድሚ %s ዝተዓቀበ
 values-b+ti	string	library_sync_retry	-	ደጊምካ ኣሰማምዕ
 values-b+ti	string	library_sync_unreachable	-	ክብጻሕ ኣይከኣለን · ቅድሚ %s ዝተዓቀበ
 values-b+ti	string	library_synced_format	-	ቅድሚ %s ተሰማሚዑ
@@ -37217,10 +37274,11 @@ values-b+tl	string	library_not_connected	-	Hindi nakakonekta
 values-b+tl	string	library_on_device	-	Sa device
 values-b+tl	string	library_sort_current	-	Pagkakasunod: %s
 values-b+tl	string	library_sort_supported	-	Sinusuportahan ng %1$s ang %2$d sa %3$d
-values-b+tl	string	library_sort_unsupported	-	Hindi iniimbak ng %s
 values-b+tl	string	library_source	-	Pinagmulan ng library
 values-b+tl	string	library_source_note	-	Isa-isa · nagre-reload kapag nagpalit
+values-b+tl	string	library_sync_cached	-	Naka-cache
 values-b+tl	string	library_sync_failed	-	Hindi ma-sync ang %1$s. Mula %2$s na ang nakalipas ang mga ito.
+values-b+tl	string	library_sync_offline	-	Offline · naka-cache %s ang nakalipas
 values-b+tl	string	library_sync_retry	-	Subukang i-sync ulit
 values-b+tl	string	library_sync_unreachable	-	Hindi maabot · naka-cache %s ang nakalipas
 values-b+tl	string	library_synced_format	-	Na-sync %s ang nakalipas
@@ -37825,10 +37883,11 @@ values-b+tr	string	library_not_connected	-	Bağlı değil
 values-b+tr	string	library_on_device	-	Cihazda
 values-b+tr	string	library_sort_current	-	Sıralama: %s
 values-b+tr	string	library_sort_supported	-	%1$s, %3$d ölçütten %2$d tanesini destekler
-values-b+tr	string	library_sort_unsupported	-	%s tarafından saklanmaz
 values-b+tr	string	library_source	-	Kütüphane kaynağı
 values-b+tr	string	library_source_note	-	Aynı anda bir tane · değiştirmek yeniden yükler
+values-b+tr	string	library_sync_cached	-	Önbellekten
 values-b+tr	string	library_sync_failed	-	%1$s eşitlenemedi. Bunlar %2$s öncesine ait.
+values-b+tr	string	library_sync_offline	-	Çevrimdışı · %s önce önbelleğe alındı
 values-b+tr	string	library_sync_retry	-	Yeniden eşitle
 values-b+tr	string	library_sync_unreachable	-	Ulaşılamıyor · %s önce önbelleğe alındı
 values-b+tr	string	library_synced_format	-	%s önce eşitlendi
@@ -38715,10 +38774,11 @@ values-b+uk	string	library_not_connected	-	Не підключено
 values-b+uk	string	library_on_device	-	На пристрої
 values-b+uk	string	library_sort_current	-	Сортування: %s
 values-b+uk	string	library_sort_supported	-	%1$s підтримує %2$d з %3$d
-values-b+uk	string	library_sort_unsupported	-	Не зберігається в %s
 values-b+uk	string	library_source	-	Джерело бібліотеки
 values-b+uk	string	library_source_note	-	По одному · перемикання перезавантажує
+values-b+uk	string	library_sync_cached	-	З кешу
 values-b+uk	string	library_sync_failed	-	Не вдалося синхронізувати %1$s. Це дані %2$s тому.
+values-b+uk	string	library_sync_offline	-	Офлайн · кеш %s тому
 values-b+uk	string	library_sync_retry	-	Синхронізувати знову
 values-b+uk	string	library_sync_unreachable	-	Недоступно · кеш %s тому
 values-b+uk	string	library_synced_format	-	Синхронізовано %s тому
@@ -39526,10 +39586,11 @@ values-b+ur	string	library_not_connected	-	منسلک نہیں
 values-b+ur	string	library_on_device	-	ڈیوائس پر
 values-b+ur	string	library_sort_current	-	ترتیب: %s
 values-b+ur	string	library_sort_supported	-	%1$s %3$d میں سے %2$d کی معاونت کرتا ہے
-values-b+ur	string	library_sort_unsupported	-	%s اسے محفوظ نہیں کرتا
 values-b+ur	string	library_source	-	لائبریری کا ذریعہ
 values-b+ur	string	library_source_note	-	ایک وقت میں ایک · تبدیل کرنے پر دوبارہ لوڈ ہوتا ہے
+values-b+ur	string	library_sync_cached	-	کیش شدہ
 values-b+ur	string	library_sync_failed	-	%1$s کو ہم آہنگ نہیں کیا جا سکا۔ یہ %2$s پہلے کے ہیں۔
+values-b+ur	string	library_sync_offline	-	آف لائن · %s پہلے کیش کیا گیا
 values-b+ur	string	library_sync_retry	-	دوبارہ ہم آہنگ کریں
 values-b+ur	string	library_sync_unreachable	-	رسائی نہیں · %s پہلے کیش کیا گیا
 values-b+ur	string	library_synced_format	-	%s پہلے ہم آہنگ کیا گیا
@@ -40306,10 +40367,11 @@ values-b+vi	string	library_not_connected	-	Chưa kết nối
 values-b+vi	string	library_on_device	-	Trên thiết bị
 values-b+vi	string	library_sort_current	-	Sắp xếp: %s
 values-b+vi	string	library_sort_supported	-	%1$s hỗ trợ %2$d/%3$d
-values-b+vi	string	library_sort_unsupported	-	%s không lưu mục này
 values-b+vi	string	library_source	-	Nguồn thư viện
 values-b+vi	string	library_source_note	-	Mỗi lần một nguồn · chuyển sẽ tải lại
+values-b+vi	string	library_sync_cached	-	Đã lưu đệm
 values-b+vi	string	library_sync_failed	-	Không thể đồng bộ %1$s. Đây là dữ liệu từ %2$s trước.
+values-b+vi	string	library_sync_offline	-	Ngoại tuyến · đã lưu bộ nhớ đệm %s trước
 values-b+vi	string	library_sync_retry	-	Đồng bộ lại
 values-b+vi	string	library_sync_unreachable	-	Không truy cập được · đã lưu bộ nhớ đệm %s trước
 values-b+vi	string	library_synced_format	-	Đã đồng bộ %s trước
@@ -41166,10 +41228,11 @@ values-b+zh	string	library_not_connected	-	未连接
 values-b+zh	string	library_on_device	-	本机
 values-b+zh	string	library_sort_current	-	排序：%s
 values-b+zh	string	library_sort_supported	-	%1$s 支持 %3$d 项中的 %2$d 项
-values-b+zh	string	library_sort_unsupported	-	%s 不保存此项
 values-b+zh	string	library_source	-	媒体库来源
 values-b+zh	string	library_source_note	-	一次一个 · 切换会重新加载
+values-b+zh	string	library_sync_cached	-	已缓存
 values-b+zh	string	library_sync_failed	-	无法同步 %1$s。这些是 %2$s 前的内容。
+values-b+zh	string	library_sync_offline	-	离线 · %s 前的缓存
 values-b+zh	string	library_sync_retry	-	重新同步
 values-b+zh	string	library_sync_unreachable	-	无法连接 · %s 前的缓存
 values-b+zh	string	library_synced_format	-	%s前已同步
@@ -42023,10 +42086,11 @@ values-b+zh+TW	string	library_not_connected	-	未連線
 values-b+zh+TW	string	library_on_device	-	本機
 values-b+zh+TW	string	library_sort_current	-	排序：%s
 values-b+zh+TW	string	library_sort_supported	-	%1$s 支援 %3$d 項中的 %2$d 項
-values-b+zh+TW	string	library_sort_unsupported	-	%s 不會儲存此項
 values-b+zh+TW	string	library_source	-	媒體庫來源
 values-b+zh+TW	string	library_source_note	-	一次一個 · 切換會重新載入
+values-b+zh+TW	string	library_sync_cached	-	已快取
 values-b+zh+TW	string	library_sync_failed	-	無法同步 %1$s。這些是 %2$s 前的內容。
+values-b+zh+TW	string	library_sync_offline	-	離線 · %s 前的快取
 values-b+zh+TW	string	library_sync_retry	-	重新同步
 values-b+zh+TW	string	library_sync_unreachable	-	無法連線 · %s 前的快取
 values-b+zh+TW	string	library_synced_format	-	%s前已同步

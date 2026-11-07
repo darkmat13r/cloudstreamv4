@@ -127,10 +127,11 @@ values-b+af/strings.xml	string	library_not_connected	-	STR	Nie gekoppel
 values-b+af/strings.xml	string	library_on_device	-	STR	Op toestel	
 values-b+af/strings.xml	string	library_sort_current	-	STR	Sorteer: %s	
 values-b+af/strings.xml	string	library_sort_supported	-	STR	%1$s ondersteun %2$d van %3$d	
-values-b+af/strings.xml	string	library_sort_unsupported	-	STR	Nie deur %s gestoor nie	
 values-b+af/strings.xml	string	library_source	-	STR	Biblioteekbron	
 values-b+af/strings.xml	string	library_source_note	-	STR	Een op 'n slag · oorskakel herlaai	
+values-b+af/strings.xml	string	library_sync_cached	-	STR	Gekas	
 values-b+af/strings.xml	string	library_sync_failed	-	STR	Kon %1$s nie sinkroniseer nie. Hierdie is van %2$s gelede.	
+values-b+af/strings.xml	string	library_sync_offline	-	STR	Vanlyn · %s gelede gekas	
 values-b+af/strings.xml	string	library_sync_retry	-	STR	Probeer weer sinkroniseer	
 values-b+af/strings.xml	string	library_sync_unreachable	-	STR	Onbereikbaar · %s gelede gekas	
 values-b+af/strings.xml	string	library_synced_format	-	STR	%s gelede gesinkroniseer	
@@ -359,10 +360,11 @@ values-b+am/strings.xml	string	library_not_connected	-	STR	አልተገናኘም
 values-b+am/strings.xml	string	library_on_device	-	STR	በመሣሪያ ላይ	
 values-b+am/strings.xml	string	library_sort_current	-	STR	ደርድር፦ %s	
 values-b+am/strings.xml	string	library_sort_supported	-	STR	%1$s ከ%3$d %2$d ይደግፋል	
-values-b+am/strings.xml	string	library_sort_unsupported	-	STR	በ%s አይቀመጥም	
 values-b+am/strings.xml	string	library_source	-	STR	የቤተ-መጽሐፍት ምንጭ	
 values-b+am/strings.xml	string	library_source_note	-	STR	አንድ በአንድ · መቀየር እንደገና ይጭናል	
+values-b+am/strings.xml	string	library_sync_cached	-	STR	የተቀመጠ	
 values-b+am/strings.xml	string	library_sync_failed	-	STR	%1$sን ማመሳሰል አልተቻለም። እነዚህ ከ%2$s በፊት የነበሩ ናቸው።	
+values-b+am/strings.xml	string	library_sync_offline	-	STR	ከመስመር ውጭ · ከ%s በፊት የተቀመጠ	
 values-b+am/strings.xml	string	library_sync_retry	-	STR	እንደገና አመሳስል	
 values-b+am/strings.xml	string	library_sync_unreachable	-	STR	ሊደረስበት አልቻለም · ከ%s በፊት የተቀመጠ	
 values-b+am/strings.xml	string	library_synced_format	-	STR	ከ%s በፊት ተመሳስሏል	
@@ -850,10 +852,11 @@ values-b+apc/strings.xml	string	library_not_connected	-	STR	مش متصل
 values-b+apc/strings.xml	string	library_on_device	-	STR	عالجهاز	
 values-b+apc/strings.xml	string	library_sort_current	-	STR	الترتيب: %s	
 values-b+apc/strings.xml	string	library_sort_supported	-	STR	%1$s بيدعم %2$d من %3$d	
-values-b+apc/strings.xml	string	library_sort_unsupported	-	STR	%s ما بيخزّنه	
 values-b+apc/strings.xml	string	library_source	-	STR	مصدر الرفّ	
 values-b+apc/strings.xml	string	library_source_note	-	STR	وحدة بكل مرة · التبديل بيعيد التحميل	
+values-b+apc/strings.xml	string	library_sync_cached	-	STR	محفوظ	
 values-b+apc/strings.xml	string	library_sync_failed	-	STR	ما قدرنا نزامن %1$s. هدول من قبل %2$s.	
+values-b+apc/strings.xml	string	library_sync_offline	-	STR	بلا إنترنت · محفوظ من %s	
 values-b+apc/strings.xml	string	library_sync_retry	-	STR	رجّع زامن	
 values-b+apc/strings.xml	string	library_sync_unreachable	-	STR	ما فينا نوصل · محفوظ من %s	
 values-b+apc/strings.xml	string	library_synced_format	-	STR	تزامن من %s	
@@ -1738,10 +1741,11 @@ values-b+ar/strings.xml	string	library_not_connected	-	STR	غير متصل
 values-b+ar/strings.xml	string	library_on_device	-	STR	على الجهاز	
 values-b+ar/strings.xml	string	library_sort_current	-	STR	الترتيب: %s	
 values-b+ar/strings.xml	string	library_sort_supported	-	STR	يدعم %1$s %2$d من %3$d	
-values-b+ar/strings.xml	string	library_sort_unsupported	-	STR	لا يخزّنه %s	
 values-b+ar/strings.xml	string	library_source	-	STR	مصدر المكتبة	
 values-b+ar/strings.xml	string	library_source_note	-	STR	مصدر واحد في كل مرة · التبديل يعيد التحميل	
+values-b+ar/strings.xml	string	library_sync_cached	-	STR	مخزّن	
 values-b+ar/strings.xml	string	library_sync_failed	-	STR	تعذّرت مزامنة %1$s. هذه من قبل %2$s.	
+values-b+ar/strings.xml	string	library_sync_offline	-	STR	غير متصل · مخزّن منذ %s	
 values-b+ar/strings.xml	string	library_sync_retry	-	STR	إعادة المزامنة	
 values-b+ar/strings.xml	string	library_sync_unreachable	-	STR	تعذّر الوصول · مخزّن منذ %s	
 values-b+ar/strings.xml	string	library_synced_format	-	STR	تمت المزامنة منذ %s	
@@ -2456,10 +2460,11 @@ values-b+ars/strings.xml	string	library_not_connected	-	STR	غير متصل
 values-b+ars/strings.xml	string	library_on_device	-	STR	على الجهاز	
 values-b+ars/strings.xml	string	library_sort_current	-	STR	الترتيب: %s	
 values-b+ars/strings.xml	string	library_sort_supported	-	STR	يدعم %1$s %2$d من %3$d	
-values-b+ars/strings.xml	string	library_sort_unsupported	-	STR	لا يخزّنه %s	
 values-b+ars/strings.xml	string	library_source	-	STR	مصدر المكتبة	
 values-b+ars/strings.xml	string	library_source_note	-	STR	مصدر واحد في كل مرة · التبديل يعيد التحميل	
+values-b+ars/strings.xml	string	library_sync_cached	-	STR	مخزّن	
 values-b+ars/strings.xml	string	library_sync_failed	-	STR	تعذّرت مزامنة %1$s. هذه من قبل %2$s.	
+values-b+ars/strings.xml	string	library_sync_offline	-	STR	غير متصل · مخزّن منذ %s	
 values-b+ars/strings.xml	string	library_sync_retry	-	STR	إعادة المزامنة	
 values-b+ars/strings.xml	string	library_sync_unreachable	-	STR	تعذّر الوصول · مخزّن منذ %s	
 values-b+ars/strings.xml	string	library_synced_format	-	STR	تمت المزامنة قبل %s	
@@ -3039,10 +3044,11 @@ values-b+as/strings.xml	string	library_not_connected	-	STR	সংযোগ ন�
 values-b+as/strings.xml	string	library_on_device	-	STR	ডিভাইচত	
 values-b+as/strings.xml	string	library_sort_current	-	STR	সজোৱা: %s	
 values-b+as/strings.xml	string	library_sort_supported	-	STR	%1$s-এ %3$d টাৰ %2$d টা সমৰ্থন কৰে	
-values-b+as/strings.xml	string	library_sort_unsupported	-	STR	%s-এ সংৰক্ষণ নকৰে	
 values-b+as/strings.xml	string	library_source	-	STR	পুথিভঁৰালৰ উৎস	
 values-b+as/strings.xml	string	library_source_note	-	STR	এবাৰত এটা · সলনি কৰিলে পুনৰ লোড হয়	
+values-b+as/strings.xml	string	library_sync_cached	-	STR	কেশ্ব কৰা	
 values-b+as/strings.xml	string	library_sync_failed	-	STR	%1$s ছিংক কৰিব পৰা নগ'ল। এইবোৰ %2$s আগৰ।	
+values-b+as/strings.xml	string	library_sync_offline	-	STR	অফলাইন · %s আগতে কেশ্ব কৰা	
 values-b+as/strings.xml	string	library_sync_retry	-	STR	পুনৰ ছিংক কৰক	
 values-b+as/strings.xml	string	library_sync_unreachable	-	STR	পাব পৰা নাই · %s আগতে কেশ্ব কৰা	
 values-b+as/strings.xml	string	library_synced_format	-	STR	%s আগতে ছিংক কৰা হৈছে	
@@ -3593,10 +3599,11 @@ values-b+az/strings.xml	string	library_not_connected	-	STR	Qoşulmayıb
 values-b+az/strings.xml	string	library_on_device	-	STR	Cihazda	
 values-b+az/strings.xml	string	library_sort_current	-	STR	Sırala: %s	
 values-b+az/strings.xml	string	library_sort_supported	-	STR	%1$s %3$d meyardan %2$d-ni dəstəkləyir	
-values-b+az/strings.xml	string	library_sort_unsupported	-	STR	%s tərəfindən saxlanmır	
 values-b+az/strings.xml	string	library_source	-	STR	Kitabxana mənbəyi	
 values-b+az/strings.xml	string	library_source_note	-	STR	Eyni anda bir · dəyişmək yenidən yükləyir	
+values-b+az/strings.xml	string	library_sync_cached	-	STR	Keşlənib	
 values-b+az/strings.xml	string	library_sync_failed	-	STR	%1$s sinxronlaşdırılmadı. Bunlar %2$s əvvəlkidir.	
+values-b+az/strings.xml	string	library_sync_offline	-	STR	Oflayn · %s əvvəl keşlənib	
 values-b+az/strings.xml	string	library_sync_retry	-	STR	Yenidən sinxronlaşdır	
 values-b+az/strings.xml	string	library_sync_unreachable	-	STR	Əlçatmazdır · %s əvvəl keşlənib	
 values-b+az/strings.xml	string	library_synced_format	-	STR	%s əvvəl sinxronlaşdırılıb	
@@ -4115,10 +4122,11 @@ values-b+be/strings.xml	string	library_not_connected	-	STR	Не падключа
 values-b+be/strings.xml	string	library_on_device	-	STR	На прыладзе	
 values-b+be/strings.xml	string	library_sort_current	-	STR	Парадак: %s	
 values-b+be/strings.xml	string	library_sort_supported	-	STR	%1$s падтрымлівае %2$d з %3$d	
-values-b+be/strings.xml	string	library_sort_unsupported	-	STR	Не захоўваецца ў %s	
 values-b+be/strings.xml	string	library_source	-	STR	Крыніца бібліятэкі	
 values-b+be/strings.xml	string	library_source_note	-	STR	Па адной · пераключэнне перазагружае	
+values-b+be/strings.xml	string	library_sync_cached	-	STR	З кэша	
 values-b+be/strings.xml	string	library_sync_failed	-	STR	Не ўдалося сінхранізаваць %1$s. Гэта даныя %2$s таму.	
+values-b+be/strings.xml	string	library_sync_offline	-	STR	Па-за сеткай · кэш %s таму	
 values-b+be/strings.xml	string	library_sync_retry	-	STR	Паўтарыць сінхранізацыю	
 values-b+be/strings.xml	string	library_sync_unreachable	-	STR	Недаступна · кэш %s таму	
 values-b+be/strings.xml	string	library_synced_format	-	STR	Сінхранізавана %s таму	
@@ -4961,10 +4969,11 @@ values-b+bg/strings.xml	string	library_not_connected	-	STR	Не е свърза�
 values-b+bg/strings.xml	string	library_on_device	-	STR	На устройството	
 values-b+bg/strings.xml	string	library_sort_current	-	STR	Подреждане: %s	
 values-b+bg/strings.xml	string	library_sort_supported	-	STR	%1$s поддържа %2$d от %3$d	
-values-b+bg/strings.xml	string	library_sort_unsupported	-	STR	Не се пази от %s	
 values-b+bg/strings.xml	string	library_source	-	STR	Източник на библиотеката	
 values-b+bg/strings.xml	string	library_source_note	-	STR	Един по един · превключването презарежда	
+values-b+bg/strings.xml	string	library_sync_cached	-	STR	Кеширано	
 values-b+bg/strings.xml	string	library_sync_failed	-	STR	%1$s не можа да се синхронизира. Това е отпреди %2$s.	
+values-b+bg/strings.xml	string	library_sync_offline	-	STR	Офлайн · кеширано преди %s	
 values-b+bg/strings.xml	string	library_sync_retry	-	STR	Нова синхронизация	
 values-b+bg/strings.xml	string	library_sync_unreachable	-	STR	Недостъпен · кеширано преди %s	
 values-b+bg/strings.xml	string	library_synced_format	-	STR	Синхронизирано преди %s	
@@ -5677,10 +5686,11 @@ values-b+bn/strings.xml	string	library_not_connected	-	STR	সংযুক্ত
 values-b+bn/strings.xml	string	library_on_device	-	STR	ডিভাইসে	
 values-b+bn/strings.xml	string	library_sort_current	-	STR	সাজান: %s	
 values-b+bn/strings.xml	string	library_sort_supported	-	STR	%1$s %3$dটির মধ্যে %2$dটি সমর্থন করে	
-values-b+bn/strings.xml	string	library_sort_unsupported	-	STR	%s সংরক্ষণ করে না	
 values-b+bn/strings.xml	string	library_source	-	STR	লাইব্রেরির উৎস	
 values-b+bn/strings.xml	string	library_source_note	-	STR	একবারে একটি · পরিবর্তন করলে আবার লোড হয়	
+values-b+bn/strings.xml	string	library_sync_cached	-	STR	ক্যাশ করা	
 values-b+bn/strings.xml	string	library_sync_failed	-	STR	%1$s সিঙ্ক করা যায়নি। এগুলি %2$s আগের।	
+values-b+bn/strings.xml	string	library_sync_offline	-	STR	অফলাইন · %s আগে ক্যাশ করা	
 values-b+bn/strings.xml	string	library_sync_retry	-	STR	আবার সিঙ্ক করুন	
 values-b+bn/strings.xml	string	library_sync_unreachable	-	STR	পৌঁছানো যাচ্ছে না · %s আগে ক্যাশ করা	
 values-b+bn/strings.xml	string	library_synced_format	-	STR	%s আগে সিঙ্ক হয়েছে	
@@ -6160,10 +6170,11 @@ values-b+ca/strings.xml	string	library_not_connected	-	STR	No connectat
 values-b+ca/strings.xml	string	library_on_device	-	STR	Al dispositiu	
 values-b+ca/strings.xml	string	library_sort_current	-	STR	Ordre: %s	
 values-b+ca/strings.xml	string	library_sort_supported	-	STR	%1$s admet %2$d de %3$d	
-values-b+ca/strings.xml	string	library_sort_unsupported	-	STR	%s no ho desa	
 values-b+ca/strings.xml	string	library_source	-	STR	Font de la biblioteca	
 values-b+ca/strings.xml	string	library_source_note	-	STR	Una alhora · canviar torna a carregar	
+values-b+ca/strings.xml	string	library_sync_cached	-	STR	A la memòria cau	
 values-b+ca/strings.xml	string	library_sync_failed	-	STR	No s'ha pogut sincronitzar %1$s. Són de fa %2$s.	
+values-b+ca/strings.xml	string	library_sync_offline	-	STR	Sense connexió · a la memòria cau fa %s	
 values-b+ca/strings.xml	string	library_sync_retry	-	STR	Torna a sincronitzar	
 values-b+ca/strings.xml	string	library_sync_unreachable	-	STR	Inaccessible · a la memòria cau fa %s	
 values-b+ca/strings.xml	string	library_synced_format	-	STR	Sincronitzat fa %s	
@@ -6524,10 +6535,11 @@ values-b+ckb/strings.xml	string	library_not_connected	-	STR	پەیوەست نی�
 values-b+ckb/strings.xml	string	library_on_device	-	STR	لەسەر ئامێر	
 values-b+ckb/strings.xml	string	library_sort_current	-	STR	ڕیزکردن: %s	
 values-b+ckb/strings.xml	string	library_sort_supported	-	STR	%1$s پشتگیری %2$d لە %3$d دەکات	
-values-b+ckb/strings.xml	string	library_sort_unsupported	-	STR	%s پاشەکەوتی ناکات	
 values-b+ckb/strings.xml	string	library_source	-	STR	سەرچاوەی کتێبخانە	
 values-b+ckb/strings.xml	string	library_source_note	-	STR	یەک بە یەک · گۆڕین دووبارە باری دەکاتەوە	
+values-b+ckb/strings.xml	string	library_sync_cached	-	STR	هەڵگیراوە	
 values-b+ckb/strings.xml	string	library_sync_failed	-	STR	نەتوانرا %1$s هاوکات بکرێت. ئەمانە هی %2$s لەمەوبەرن.	
+values-b+ckb/strings.xml	string	library_sync_offline	-	STR	دەرهێڵ · %s لەمەوبەر هەڵگیراوە	
 values-b+ckb/strings.xml	string	library_sync_retry	-	STR	دووبارە هاوکاتکردن	
 values-b+ckb/strings.xml	string	library_sync_unreachable	-	STR	نەگەیشترا · %s لەمەوبەر هەڵگیراوە	
 values-b+ckb/strings.xml	string	library_synced_format	-	STR	%s لەمەوبەر هاوکات کرا	
@@ -7013,10 +7025,11 @@ values-b+cs/strings.xml	string	library_not_connected	-	STR	Nepřipojeno
 values-b+cs/strings.xml	string	library_on_device	-	STR	V zařízení	
 values-b+cs/strings.xml	string	library_sort_current	-	STR	Řazení: %s	
 values-b+cs/strings.xml	string	library_sort_supported	-	STR	%1$s podporuje %2$d z %3$d	
-values-b+cs/strings.xml	string	library_sort_unsupported	-	STR	%s neukládá	
 values-b+cs/strings.xml	string	library_source	-	STR	Zdroj knihovny	
 values-b+cs/strings.xml	string	library_source_note	-	STR	Jeden po druhém · přepnutí znovu načte	
+values-b+cs/strings.xml	string	library_sync_cached	-	STR	Z mezipaměti	
 values-b+cs/strings.xml	string	library_sync_failed	-	STR	%1$s se nepodařilo synchronizovat. Tato data jsou z doby před %2$s.	
+values-b+cs/strings.xml	string	library_sync_offline	-	STR	Offline · v mezipaměti před %s	
 values-b+cs/strings.xml	string	library_sync_retry	-	STR	Znovu synchronizovat	
 values-b+cs/strings.xml	string	library_sync_unreachable	-	STR	Nedostupné · v mezipaměti před %s	
 values-b+cs/strings.xml	string	library_synced_format	-	STR	Synchronizováno před %s	
@@ -7872,10 +7885,11 @@ values-b+de/strings.xml	string	library_not_connected	-	STR	Nicht verbunden
 values-b+de/strings.xml	string	library_on_device	-	STR	Auf dem Gerät	
 values-b+de/strings.xml	string	library_sort_current	-	STR	Sortierung: %s	
 values-b+de/strings.xml	string	library_sort_supported	-	STR	%1$s unterstützt %2$d von %3$d	
-values-b+de/strings.xml	string	library_sort_unsupported	-	STR	Nicht von %s gespeichert	
 values-b+de/strings.xml	string	library_source	-	STR	Bibliotheksquelle	
 values-b+de/strings.xml	string	library_source_note	-	STR	Jeweils eine · Wechsel lädt neu	
+values-b+de/strings.xml	string	library_sync_cached	-	STR	Zwischengespeichert	
 values-b+de/strings.xml	string	library_sync_failed	-	STR	%1$s konnte nicht synchronisiert werden. Das ist der Stand von vor %2$s.	
+values-b+de/strings.xml	string	library_sync_offline	-	STR	Offline · zwischengespeichert vor %s	
 values-b+de/strings.xml	string	library_sync_retry	-	STR	Erneut synchronisieren	
 values-b+de/strings.xml	string	library_sync_unreachable	-	STR	Nicht erreichbar · zwischengespeichert vor %s	
 values-b+de/strings.xml	string	library_synced_format	-	STR	Vor %s synchronisiert	
@@ -8695,10 +8709,11 @@ values-b+el/strings.xml	string	library_not_connected	-	STR	Δεν έχει συ�
 values-b+el/strings.xml	string	library_on_device	-	STR	Στη συσκευή	
 values-b+el/strings.xml	string	library_sort_current	-	STR	Ταξινόμηση: %s	
 values-b+el/strings.xml	string	library_sort_supported	-	STR	Το %1$s υποστηρίζει %2$d από %3$d	
-values-b+el/strings.xml	string	library_sort_unsupported	-	STR	Δεν αποθηκεύεται από το %s	
 values-b+el/strings.xml	string	library_source	-	STR	Πηγή βιβλιοθήκης	
 values-b+el/strings.xml	string	library_source_note	-	STR	Μία κάθε φορά · η εναλλαγή επαναφορτώνει	
+values-b+el/strings.xml	string	library_sync_cached	-	STR	Από προσωρινή μνήμη	
 values-b+el/strings.xml	string	library_sync_failed	-	STR	Δεν ήταν δυνατός ο συγχρονισμός του %1$s. Αυτά είναι από πριν από %2$s.	
+values-b+el/strings.xml	string	library_sync_offline	-	STR	Εκτός σύνδεσης · στην προσωρινή μνήμη πριν από %s	
 values-b+el/strings.xml	string	library_sync_retry	-	STR	Επανάληψη συγχρονισμού	
 values-b+el/strings.xml	string	library_sync_unreachable	-	STR	Μη προσβάσιμο · στην προσωρινή μνήμη πριν από %s	
 values-b+el/strings.xml	string	library_synced_format	-	STR	Συγχρονίστηκε πριν από %s	
@@ -9282,10 +9297,11 @@ values-b+eo/strings.xml	string	library_not_connected	-	STR	Ne konektita
 values-b+eo/strings.xml	string	library_on_device	-	STR	En aparato	
 values-b+eo/strings.xml	string	library_sort_current	-	STR	Ordigo: %s	
 values-b+eo/strings.xml	string	library_sort_supported	-	STR	%1$s subtenas %2$d el %3$d	
-values-b+eo/strings.xml	string	library_sort_unsupported	-	STR	Ne konservata de %s	
 values-b+eo/strings.xml	string	library_source	-	STR	Fonto de biblioteko	
 values-b+eo/strings.xml	string	library_source_note	-	STR	Po unu · ŝanĝo reŝargas	
+values-b+eo/strings.xml	string	library_sync_cached	-	STR	Kaŝmemorita	
 values-b+eo/strings.xml	string	library_sync_failed	-	STR	Ne eblis sinkronigi %1$s. Ĉi tiuj estas de antaŭ %2$s.	
+values-b+eo/strings.xml	string	library_sync_offline	-	STR	Senkonekte · kaŝmemorita antaŭ %s	
 values-b+eo/strings.xml	string	library_sync_retry	-	STR	Resinkronigi	
 values-b+eo/strings.xml	string	library_sync_unreachable	-	STR	Neatingebla · kaŝmemorita antaŭ %s	
 values-b+eo/strings.xml	string	library_synced_format	-	STR	Sinkronigita antaŭ %s	
@@ -9824,10 +9840,11 @@ values-b+es/strings.xml	string	library_not_connected	-	STR	No conectado
 values-b+es/strings.xml	string	library_on_device	-	STR	En el dispositivo	
 values-b+es/strings.xml	string	library_sort_current	-	STR	Orden: %s	
 values-b+es/strings.xml	string	library_sort_supported	-	STR	%1$s admite %2$d de %3$d	
-values-b+es/strings.xml	string	library_sort_unsupported	-	STR	%s no lo guarda	
 values-b+es/strings.xml	string	library_source	-	STR	Origen de la biblioteca	
 values-b+es/strings.xml	string	library_source_note	-	STR	Uno a la vez · cambiar recarga	
+values-b+es/strings.xml	string	library_sync_cached	-	STR	En caché	
 values-b+es/strings.xml	string	library_sync_failed	-	STR	No se pudo sincronizar %1$s. Son de hace %2$s.	
+values-b+es/strings.xml	string	library_sync_offline	-	STR	Sin conexión · en caché hace %s	
 values-b+es/strings.xml	string	library_sync_retry	-	STR	Volver a sincronizar	
 values-b+es/strings.xml	string	library_sync_unreachable	-	STR	Inaccesible · en caché hace %s	
 values-b+es/strings.xml	string	library_synced_format	-	STR	Sincronizado hace %s	
@@ -10513,10 +10530,11 @@ values-b+fa/strings.xml	string	library_not_connected	-	STR	متصل نیست
 values-b+fa/strings.xml	string	library_on_device	-	STR	روی دستگاه	
 values-b+fa/strings.xml	string	library_sort_current	-	STR	ترتیب: %s	
 values-b+fa/strings.xml	string	library_sort_supported	-	STR	%1$s از %3$d مورد %2$d را پشتیبانی می‌کند	
-values-b+fa/strings.xml	string	library_sort_unsupported	-	STR	توسط %s ذخیره نمی‌شود	
 values-b+fa/strings.xml	string	library_source	-	STR	منبع کتابخانه	
 values-b+fa/strings.xml	string	library_source_note	-	STR	هر بار یکی · تغییر، دوباره بارگذاری می‌کند	
+values-b+fa/strings.xml	string	library_sync_cached	-	STR	ذخیره‌شده	
 values-b+fa/strings.xml	string	library_sync_failed	-	STR	همگام‌سازی %1$s ممکن نشد. این‌ها مال %2$s پیش هستند.	
+values-b+fa/strings.xml	string	library_sync_offline	-	STR	آفلاین · %s پیش ذخیره شده	
 values-b+fa/strings.xml	string	library_sync_retry	-	STR	همگام‌سازی دوباره	
 values-b+fa/strings.xml	string	library_sync_unreachable	-	STR	در دسترس نیست · %s پیش ذخیره شده	
 values-b+fa/strings.xml	string	library_synced_format	-	STR	%s پیش همگام‌سازی شد	
@@ -10908,10 +10926,11 @@ values-b+fil/strings.xml	string	library_not_connected	-	STR	Hindi nakakonekta
 values-b+fil/strings.xml	string	library_on_device	-	STR	Sa device	
 values-b+fil/strings.xml	string	library_sort_current	-	STR	Pagkakasunod: %s	
 values-b+fil/strings.xml	string	library_sort_supported	-	STR	Sinusuportahan ng %1$s ang %2$d sa %3$d	
-values-b+fil/strings.xml	string	library_sort_unsupported	-	STR	Hindi iniimbak ng %s	
 values-b+fil/strings.xml	string	library_source	-	STR	Pinagmulan ng library	
 values-b+fil/strings.xml	string	library_source_note	-	STR	Isa-isa · nagre-reload kapag nagpalit	
+values-b+fil/strings.xml	string	library_sync_cached	-	STR	Naka-cache	
 values-b+fil/strings.xml	string	library_sync_failed	-	STR	Hindi ma-sync ang %1$s. Mula %2$s na ang nakalipas ang mga ito.	
+values-b+fil/strings.xml	string	library_sync_offline	-	STR	Offline · naka-cache %s ang nakalipas	
 values-b+fil/strings.xml	string	library_sync_retry	-	STR	Subukang i-sync ulit	
 values-b+fil/strings.xml	string	library_sync_unreachable	-	STR	Hindi maabot · naka-cache %s ang nakalipas	
 values-b+fil/strings.xml	string	library_synced_format	-	STR	Na-sync %s ang nakalipas	
@@ -11437,10 +11456,11 @@ values-b+fr/strings.xml	string	library_not_connected	-	STR	Non connecté
 values-b+fr/strings.xml	string	library_on_device	-	STR	Sur l'appareil	
 values-b+fr/strings.xml	string	library_sort_current	-	STR	Tri : %s	
 values-b+fr/strings.xml	string	library_sort_supported	-	STR	%1$s prend en charge %2$d sur %3$d	
-values-b+fr/strings.xml	string	library_sort_unsupported	-	STR	Non stocké par %s	
 values-b+fr/strings.xml	string	library_source	-	STR	Source de la bibliothèque	
 values-b+fr/strings.xml	string	library_source_note	-	STR	Une à la fois · changer recharge	
+values-b+fr/strings.xml	string	library_sync_cached	-	STR	En cache	
 values-b+fr/strings.xml	string	library_sync_failed	-	STR	Impossible de synchroniser %1$s. Ces données datent d'il y a %2$s.	
+values-b+fr/strings.xml	string	library_sync_offline	-	STR	Hors ligne · en cache depuis %s	
 values-b+fr/strings.xml	string	library_sync_retry	-	STR	Resynchroniser	
 values-b+fr/strings.xml	string	library_sync_unreachable	-	STR	Injoignable · en cache depuis %s	
 values-b+fr/strings.xml	string	library_synced_format	-	STR	Synchronisé il y a %s	
@@ -12112,10 +12132,11 @@ values-b+gl/strings.xml	string	library_not_connected	-	STR	Non conectado
 values-b+gl/strings.xml	string	library_on_device	-	STR	No dispositivo	
 values-b+gl/strings.xml	string	library_sort_current	-	STR	Orde: %s	
 values-b+gl/strings.xml	string	library_sort_supported	-	STR	%1$s admite %2$d de %3$d	
-values-b+gl/strings.xml	string	library_sort_unsupported	-	STR	%s non o garda	
 values-b+gl/strings.xml	string	library_source	-	STR	Orixe da biblioteca	
 values-b+gl/strings.xml	string	library_source_note	-	STR	Unha de cada vez · cambiar recarga	
+values-b+gl/strings.xml	string	library_sync_cached	-	STR	Na caché	
 values-b+gl/strings.xml	string	library_sync_failed	-	STR	Non se puido sincronizar %1$s. Son de hai %2$s.	
+values-b+gl/strings.xml	string	library_sync_offline	-	STR	Sen conexión · na caché hai %s	
 values-b+gl/strings.xml	string	library_sync_retry	-	STR	Volver sincronizar	
 values-b+gl/strings.xml	string	library_sync_unreachable	-	STR	Inaccesible · na caché hai %s	
 values-b+gl/strings.xml	string	library_synced_format	-	STR	Sincronizado hai %s	
@@ -12581,10 +12602,11 @@ values-b+hi/strings.xml	string	library_not_connected	-	STR	कनेक्ट �
 values-b+hi/strings.xml	string	library_on_device	-	STR	डिवाइस पर	
 values-b+hi/strings.xml	string	library_sort_current	-	STR	क्रम: %s	
 values-b+hi/strings.xml	string	library_sort_supported	-	STR	%1$s %3$d में से %2$d का समर्थन करता है	
-values-b+hi/strings.xml	string	library_sort_unsupported	-	STR	%s इसे सहेजता नहीं	
 values-b+hi/strings.xml	string	library_source	-	STR	लाइब्रेरी स्रोत	
 values-b+hi/strings.xml	string	library_source_note	-	STR	एक समय में एक · बदलने पर फिर से लोड होता है	
+values-b+hi/strings.xml	string	library_sync_cached	-	STR	कैश किया	
 values-b+hi/strings.xml	string	library_sync_failed	-	STR	%1$s सिंक नहीं हो सका। ये %2$s पहले के हैं।	
+values-b+hi/strings.xml	string	library_sync_offline	-	STR	ऑफ़लाइन · %s पहले कैश किया	
 values-b+hi/strings.xml	string	library_sync_retry	-	STR	फिर से सिंक करें	
 values-b+hi/strings.xml	string	library_sync_unreachable	-	STR	पहुँच नहीं · %s पहले कैश किया	
 values-b+hi/strings.xml	string	library_synced_format	-	STR	%s पहले सिंक हुआ	
@@ -13243,10 +13265,11 @@ values-b+hr/strings.xml	string	library_not_connected	-	STR	Nije povezano
 values-b+hr/strings.xml	string	library_on_device	-	STR	Na uređaju	
 values-b+hr/strings.xml	string	library_sort_current	-	STR	Poredak: %s	
 values-b+hr/strings.xml	string	library_sort_supported	-	STR	%1$s podržava %2$d od %3$d	
-values-b+hr/strings.xml	string	library_sort_unsupported	-	STR	%s to ne sprema	
 values-b+hr/strings.xml	string	library_source	-	STR	Izvor biblioteke	
 values-b+hr/strings.xml	string	library_source_note	-	STR	Jedan po jedan · promjena ponovno učitava	
+values-b+hr/strings.xml	string	library_sync_cached	-	STR	Iz predmemorije	
 values-b+hr/strings.xml	string	library_sync_failed	-	STR	Nije moguće sinkronizirati %1$s. Ovo je od prije %2$s.	
+values-b+hr/strings.xml	string	library_sync_offline	-	STR	Izvan mreže · predmemorirano prije %s	
 values-b+hr/strings.xml	string	library_sync_retry	-	STR	Ponovno sinkroniziraj	
 values-b+hr/strings.xml	string	library_sync_unreachable	-	STR	Nedostupno · predmemorirano prije %s	
 values-b+hr/strings.xml	string	library_synced_format	-	STR	Sinkronizirano prije %s	
@@ -14055,10 +14078,11 @@ values-b+hu/strings.xml	string	library_not_connected	-	STR	Nincs csatlakoztatva
 values-b+hu/strings.xml	string	library_on_device	-	STR	Az eszközön	
 values-b+hu/strings.xml	string	library_sort_current	-	STR	Rendezés: %s	
 values-b+hu/strings.xml	string	library_sort_supported	-	STR	A(z) %1$s %3$d szempontból %2$d-t támogat	
-values-b+hu/strings.xml	string	library_sort_unsupported	-	STR	A(z) %s nem tárolja	
 values-b+hu/strings.xml	string	library_source	-	STR	Könyvtár forrása	
 values-b+hu/strings.xml	string	library_source_note	-	STR	Egyszerre egy · váltáskor újratölt	
+values-b+hu/strings.xml	string	library_sync_cached	-	STR	Gyorsítótárból	
 values-b+hu/strings.xml	string	library_sync_failed	-	STR	A(z) %1$s nem szinkronizálható. Ezek %2$s előttiek.	
+values-b+hu/strings.xml	string	library_sync_offline	-	STR	Offline · %s óta gyorsítótárban	
 values-b+hu/strings.xml	string	library_sync_retry	-	STR	Szinkronizálás újra	
 values-b+hu/strings.xml	string	library_sync_unreachable	-	STR	Nem érhető el · %s óta gyorsítótárban	
 values-b+hu/strings.xml	string	library_synced_format	-	STR	%s ezelőtt szinkronizálva	
@@ -14842,10 +14866,11 @@ values-b+in/strings.xml	string	library_not_connected	-	STR	Tidak terhubung
 values-b+in/strings.xml	string	library_on_device	-	STR	Di perangkat	
 values-b+in/strings.xml	string	library_sort_current	-	STR	Urutan: %s	
 values-b+in/strings.xml	string	library_sort_supported	-	STR	%1$s mendukung %2$d dari %3$d	
-values-b+in/strings.xml	string	library_sort_unsupported	-	STR	Tidak disimpan oleh %s	
 values-b+in/strings.xml	string	library_source	-	STR	Sumber pustaka	
 values-b+in/strings.xml	string	library_source_note	-	STR	Satu per satu · beralih memuat ulang	
+values-b+in/strings.xml	string	library_sync_cached	-	STR	Tersimpan	
 values-b+in/strings.xml	string	library_sync_failed	-	STR	Tidak dapat menyinkronkan %1$s. Ini dari %2$s yang lalu.	
+values-b+in/strings.xml	string	library_sync_offline	-	STR	Offline · disimpan %s yang lalu	
 values-b+in/strings.xml	string	library_sync_retry	-	STR	Sinkronkan ulang	
 values-b+in/strings.xml	string	library_sync_unreachable	-	STR	Tidak terjangkau · disimpan %s yang lalu	
 values-b+in/strings.xml	string	library_synced_format	-	STR	Disinkronkan %s lalu	
@@ -15711,10 +15736,11 @@ values-b+it/strings.xml	string	library_not_connected	-	STR	Non connesso
 values-b+it/strings.xml	string	library_on_device	-	STR	Sul dispositivo	
 values-b+it/strings.xml	string	library_sort_current	-	STR	Ordine: %s	
 values-b+it/strings.xml	string	library_sort_supported	-	STR	%1$s supporta %2$d di %3$d	
-values-b+it/strings.xml	string	library_sort_unsupported	-	STR	Non salvato da %s	
 values-b+it/strings.xml	string	library_source	-	STR	Origine della libreria	
 values-b+it/strings.xml	string	library_source_note	-	STR	Una alla volta · cambiare ricarica	
+values-b+it/strings.xml	string	library_sync_cached	-	STR	In cache	
 values-b+it/strings.xml	string	library_sync_failed	-	STR	Impossibile sincronizzare %1$s. Sono di %2$s fa.	
+values-b+it/strings.xml	string	library_sync_offline	-	STR	Offline · in cache da %s	
 values-b+it/strings.xml	string	library_sync_retry	-	STR	Risincronizza	
 values-b+it/strings.xml	string	library_sync_unreachable	-	STR	Non raggiungibile · in cache da %s	
 values-b+it/strings.xml	string	library_synced_format	-	STR	Sincronizzato %s fa	
@@ -16484,10 +16510,11 @@ values-b+iw/strings.xml	string	library_not_connected	-	STR	לא מחובר
 values-b+iw/strings.xml	string	library_on_device	-	STR	במכשיר	
 values-b+iw/strings.xml	string	library_sort_current	-	STR	מיון: %s	
 values-b+iw/strings.xml	string	library_sort_supported	-	STR	%1$s תומך ב-%2$d מתוך %3$d	
-values-b+iw/strings.xml	string	library_sort_unsupported	-	STR	לא נשמר ב-%s	
 values-b+iw/strings.xml	string	library_source	-	STR	מקור הספריה	
 values-b+iw/strings.xml	string	library_source_note	-	STR	אחד בכל פעם · החלפה טוענת מחדש	
+values-b+iw/strings.xml	string	library_sync_cached	-	STR	מהמטמון	
 values-b+iw/strings.xml	string	library_sync_failed	-	STR	לא ניתן לסנכרן את %1$s. הנתונים האלה מלפני %2$s.	
+values-b+iw/strings.xml	string	library_sync_offline	-	STR	לא מקוון · במטמון מלפני %s	
 values-b+iw/strings.xml	string	library_sync_retry	-	STR	סנכרון מחדש	
 values-b+iw/strings.xml	string	library_sync_unreachable	-	STR	לא זמין · במטמון מלפני %s	
 values-b+iw/strings.xml	string	library_synced_format	-	STR	סונכרן לפני %s	
@@ -17232,10 +17259,11 @@ values-b+ja/strings.xml	string	library_not_connected	-	STR	未接続
 values-b+ja/strings.xml	string	library_on_device	-	STR	このデバイス	
 values-b+ja/strings.xml	string	library_sort_current	-	STR	並べ替え：%s	
 values-b+ja/strings.xml	string	library_sort_supported	-	STR	%1$s は %3$d 項目中 %2$d 項目に対応	
-values-b+ja/strings.xml	string	library_sort_unsupported	-	STR	%s には保存されません	
 values-b+ja/strings.xml	string	library_source	-	STR	ライブラリのソース	
 values-b+ja/strings.xml	string	library_source_note	-	STR	一度に1つ · 切り替えると再読み込み	
+values-b+ja/strings.xml	string	library_sync_cached	-	STR	キャッシュ	
 values-b+ja/strings.xml	string	library_sync_failed	-	STR	%1$s を同期できませんでした。%2$s 前のデータです。	
+values-b+ja/strings.xml	string	library_sync_offline	-	STR	オフライン · %s 前のキャッシュ	
 values-b+ja/strings.xml	string	library_sync_retry	-	STR	再同期	
 values-b+ja/strings.xml	string	library_sync_unreachable	-	STR	接続できません · %s 前のキャッシュ	
 values-b+ja/strings.xml	string	library_synced_format	-	STR	%s前に同期	
@@ -17831,10 +17859,11 @@ values-b+kn/strings.xml	string	library_not_connected	-	STR	ಸಂಪರ್ಕಗ
 values-b+kn/strings.xml	string	library_on_device	-	STR	ಸಾಧನದಲ್ಲಿ	
 values-b+kn/strings.xml	string	library_sort_current	-	STR	ವಿಂಗಡಣೆ: %s	
 values-b+kn/strings.xml	string	library_sort_supported	-	STR	%1$s %3$d ರಲ್ಲಿ %2$d ಬೆಂಬಲಿಸುತ್ತದೆ	
-values-b+kn/strings.xml	string	library_sort_unsupported	-	STR	%s ಇದನ್ನು ಉಳಿಸುವುದಿಲ್ಲ	
 values-b+kn/strings.xml	string	library_source	-	STR	ಲೈಬ್ರರಿ ಮೂಲ	
 values-b+kn/strings.xml	string	library_source_note	-	STR	ಒಂದು ಬಾರಿಗೆ ಒಂದು · ಬದಲಿಸಿದರೆ ಮರುಲೋಡ್ ಆಗುತ್ತದೆ	
+values-b+kn/strings.xml	string	library_sync_cached	-	STR	ಕ್ಯಾಶ್	
 values-b+kn/strings.xml	string	library_sync_failed	-	STR	%1$s ಸಿಂಕ್ ಮಾಡಲಾಗಲಿಲ್ಲ. ಇವು %2$s ಹಿಂದಿನವು.	
+values-b+kn/strings.xml	string	library_sync_offline	-	STR	ಆಫ್‌ಲೈನ್ · %s ಹಿಂದೆ ಕ್ಯಾಶ್	
 values-b+kn/strings.xml	string	library_sync_retry	-	STR	ಮತ್ತೆ ಸಿಂಕ್ ಮಾಡಿ	
 values-b+kn/strings.xml	string	library_sync_unreachable	-	STR	ತಲುಪಲಾಗುತ್ತಿಲ್ಲ · %s ಹಿಂದೆ ಕ್ಯಾಶ್	
 values-b+kn/strings.xml	string	library_synced_format	-	STR	%s ಹಿಂದೆ ಸಿಂಕ್ ಮಾಡಲಾಗಿದೆ	
@@ -18328,10 +18357,11 @@ values-b+ko/strings.xml	string	library_not_connected	-	STR	연결되지 않음
 values-b+ko/strings.xml	string	library_on_device	-	STR	기기에 저장됨	
 values-b+ko/strings.xml	string	library_sort_current	-	STR	정렬: %s	
 values-b+ko/strings.xml	string	library_sort_supported	-	STR	%1$s은(는) %3$d개 중 %2$d개 지원	
-values-b+ko/strings.xml	string	library_sort_unsupported	-	STR	%s에 저장되지 않음	
 values-b+ko/strings.xml	string	library_source	-	STR	라이브러리 소스	
 values-b+ko/strings.xml	string	library_source_note	-	STR	한 번에 하나 · 전환하면 다시 불러옴	
+values-b+ko/strings.xml	string	library_sync_cached	-	STR	캐시됨	
 values-b+ko/strings.xml	string	library_sync_failed	-	STR	%1$s을(를) 동기화하지 못했습니다. %2$s 전 데이터입니다.	
+values-b+ko/strings.xml	string	library_sync_offline	-	STR	오프라인 · %s 전 캐시	
 values-b+ko/strings.xml	string	library_sync_retry	-	STR	다시 동기화	
 values-b+ko/strings.xml	string	library_sync_unreachable	-	STR	연결할 수 없음 · %s 전 캐시	
 values-b+ko/strings.xml	string	library_synced_format	-	STR	%s 전에 동기화됨	
@@ -19006,10 +19036,11 @@ values-b+lt/strings.xml	string	library_not_connected	-	STR	Neprijungta
 values-b+lt/strings.xml	string	library_on_device	-	STR	Įrenginyje	
 values-b+lt/strings.xml	string	library_sort_current	-	STR	Rikiavimas: %s	
 values-b+lt/strings.xml	string	library_sort_supported	-	STR	%1$s palaiko %2$d iš %3$d	
-values-b+lt/strings.xml	string	library_sort_unsupported	-	STR	%s to nesaugo	
 values-b+lt/strings.xml	string	library_source	-	STR	Bibliotekos šaltinis	
 values-b+lt/strings.xml	string	library_source_note	-	STR	Po vieną · perjungus įkeliama iš naujo	
+values-b+lt/strings.xml	string	library_sync_cached	-	STR	Iš podėlio	
 values-b+lt/strings.xml	string	library_sync_failed	-	STR	Nepavyko sinchronizuoti %1$s. Tai duomenys prieš %2$s.	
+values-b+lt/strings.xml	string	library_sync_offline	-	STR	Neprisijungus · podėlyje prieš %s	
 values-b+lt/strings.xml	string	library_sync_retry	-	STR	Sinchronizuoti iš naujo	
 values-b+lt/strings.xml	string	library_sync_unreachable	-	STR	Nepasiekiama · podėlyje prieš %s	
 values-b+lt/strings.xml	string	library_synced_format	-	STR	Sinchronizuota prieš %s	
@@ -19558,10 +19589,11 @@ values-b+lv/strings.xml	string	library_not_connected	-	STR	Nav savienots
 values-b+lv/strings.xml	string	library_on_device	-	STR	Ierīcē	
 values-b+lv/strings.xml	string	library_sort_current	-	STR	Kārtošana: %s	
 values-b+lv/strings.xml	string	library_sort_supported	-	STR	%1$s atbalsta %2$d no %3$d	
-values-b+lv/strings.xml	string	library_sort_unsupported	-	STR	%s to neglabā	
 values-b+lv/strings.xml	string	library_source	-	STR	Bibliotēkas avots	
 values-b+lv/strings.xml	string	library_source_note	-	STR	Pa vienam · pārslēgšana pārlādē	
+values-b+lv/strings.xml	string	library_sync_cached	-	STR	No kešatmiņas	
 values-b+lv/strings.xml	string	library_sync_failed	-	STR	Neizdevās sinhronizēt %1$s. Šie dati ir no pirms %2$s.	
+values-b+lv/strings.xml	string	library_sync_offline	-	STR	Bezsaistē · kešatmiņā pirms %s	
 values-b+lv/strings.xml	string	library_sync_retry	-	STR	Sinhronizēt vēlreiz	
 values-b+lv/strings.xml	string	library_sync_unreachable	-	STR	Nav sasniedzams · kešatmiņā pirms %s	
 values-b+lv/strings.xml	string	library_synced_format	-	STR	Sinhronizēts pirms %s	
@@ -20349,10 +20381,11 @@ values-b+mk/strings.xml	string	library_not_connected	-	STR	Не е поврза�
 values-b+mk/strings.xml	string	library_on_device	-	STR	На уредот	
 values-b+mk/strings.xml	string	library_sort_current	-	STR	Подредување: %s	
 values-b+mk/strings.xml	string	library_sort_supported	-	STR	%1$s поддржува %2$d од %3$d	
-values-b+mk/strings.xml	string	library_sort_unsupported	-	STR	%s не го зачувува	
 values-b+mk/strings.xml	string	library_source	-	STR	Извор на библиотеката	
 values-b+mk/strings.xml	string	library_source_note	-	STR	Еден по еден · менувањето превчитува	
+values-b+mk/strings.xml	string	library_sync_cached	-	STR	Кеширано	
 values-b+mk/strings.xml	string	library_sync_failed	-	STR	%1$s не може да се синхронизира. Ова е од пред %2$s.	
+values-b+mk/strings.xml	string	library_sync_offline	-	STR	Офлајн · кеширано пред %s	
 values-b+mk/strings.xml	string	library_sync_retry	-	STR	Повторно синхронизирај	
 values-b+mk/strings.xml	string	library_sync_unreachable	-	STR	Недостапно · кеширано пред %s	
 values-b+mk/strings.xml	string	library_synced_format	-	STR	Синхронизирано пред %s	
@@ -21009,10 +21042,11 @@ values-b+ml/strings.xml	string	library_not_connected	-	STR	കണക്റ്റ
 values-b+ml/strings.xml	string	library_on_device	-	STR	ഉപകരണത്തിൽ	
 values-b+ml/strings.xml	string	library_sort_current	-	STR	ക്രമം: %s	
 values-b+ml/strings.xml	string	library_sort_supported	-	STR	%1$s %3$d-ൽ %2$d പിന്തുണയ്ക്കുന്നു	
-values-b+ml/strings.xml	string	library_sort_unsupported	-	STR	%s ഇത് സൂക്ഷിക്കുന്നില്ല	
 values-b+ml/strings.xml	string	library_source	-	STR	ലൈബ്രറി ഉറവിടം	
 values-b+ml/strings.xml	string	library_source_note	-	STR	ഒരേ സമയം ഒന്ന് · മാറ്റിയാൽ വീണ്ടും ലോഡ് ചെയ്യും	
+values-b+ml/strings.xml	string	library_sync_cached	-	STR	കാഷെ ചെയ്തത്	
 values-b+ml/strings.xml	string	library_sync_failed	-	STR	%1$s സമന്വയിപ്പിക്കാനായില്ല. ഇവ %2$s മുമ്പുള്ളതാണ്.	
+values-b+ml/strings.xml	string	library_sync_offline	-	STR	ഓഫ്‌ലൈൻ · %s മുമ്പ് കാഷെ ചെയ്തത്	
 values-b+ml/strings.xml	string	library_sync_retry	-	STR	വീണ്ടും സമന്വയിപ്പിക്കുക	
 values-b+ml/strings.xml	string	library_sync_unreachable	-	STR	എത്താനാകുന്നില്ല · %s മുമ്പ് കാഷെ ചെയ്തത്	
 values-b+ml/strings.xml	string	library_synced_format	-	STR	%s മുമ്പ് സമന്വയിപ്പിച്ചു	
@@ -21531,10 +21565,11 @@ values-b+ms/strings.xml	string	library_not_connected	-	STR	Tidak disambungkan
 values-b+ms/strings.xml	string	library_on_device	-	STR	Pada peranti	
 values-b+ms/strings.xml	string	library_sort_current	-	STR	Isih: %s	
 values-b+ms/strings.xml	string	library_sort_supported	-	STR	%1$s menyokong %2$d daripada %3$d	
-values-b+ms/strings.xml	string	library_sort_unsupported	-	STR	Tidak disimpan oleh %s	
 values-b+ms/strings.xml	string	library_source	-	STR	Sumber perpustakaan	
 values-b+ms/strings.xml	string	library_source_note	-	STR	Satu demi satu · menukar memuat semula	
+values-b+ms/strings.xml	string	library_sync_cached	-	STR	Dicache	
 values-b+ms/strings.xml	string	library_sync_failed	-	STR	Tidak dapat menyegerakkan %1$s. Ini dari %2$s yang lalu.	
+values-b+ms/strings.xml	string	library_sync_offline	-	STR	Luar talian · dicache %s yang lalu	
 values-b+ms/strings.xml	string	library_sync_retry	-	STR	Segerak semula	
 values-b+ms/strings.xml	string	library_sync_unreachable	-	STR	Tidak dapat dicapai · dicache %s yang lalu	
 values-b+ms/strings.xml	string	library_synced_format	-	STR	Disegerakkan %s lalu	
@@ -22012,10 +22047,11 @@ values-b+mt/strings.xml	string	library_not_connected	-	STR	Mhux konness
 values-b+mt/strings.xml	string	library_on_device	-	STR	Fuq l-apparat	
 values-b+mt/strings.xml	string	library_sort_current	-	STR	Ordni: %s	
 values-b+mt/strings.xml	string	library_sort_supported	-	STR	%1$s jappoġġja %2$d minn %3$d	
-values-b+mt/strings.xml	string	library_sort_unsupported	-	STR	Mhux maħżun minn %s	
 values-b+mt/strings.xml	string	library_source	-	STR	Sors tal-librerija	
 values-b+mt/strings.xml	string	library_source_note	-	STR	Wieħed kull darba · il-bidla tgħabbi mill-ġdid	
+values-b+mt/strings.xml	string	library_sync_cached	-	STR	Fil-cache	
 values-b+mt/strings.xml	string	library_sync_failed	-	STR	Ma setax jiġi sinkronizzat %1$s. Dawn huma minn %2$s ilu.	
+values-b+mt/strings.xml	string	library_sync_offline	-	STR	Offline · fil-cache minn %s ilu	
 values-b+mt/strings.xml	string	library_sync_retry	-	STR	Erġa' ssinkronizza	
 values-b+mt/strings.xml	string	library_sync_unreachable	-	STR	Ma jintlaħaqx · fil-cache minn %s ilu	
 values-b+mt/strings.xml	string	library_synced_format	-	STR	Sinkronizzat %s ilu	
@@ -22409,10 +22445,11 @@ values-b+my/strings.xml	string	library_not_connected	-	STR	ချိတ်ဆက
 values-b+my/strings.xml	string	library_on_device	-	STR	စက်ပေါ်တွင်	
 values-b+my/strings.xml	string	library_sort_current	-	STR	စီရန်: %s	
 values-b+my/strings.xml	string	library_sort_supported	-	STR	%1$s သည် %3$d ခုအနက် %2$d ခုကို ပံ့ပိုးသည်	
-values-b+my/strings.xml	string	library_sort_unsupported	-	STR	%s တွင် မသိမ်းပါ	
 values-b+my/strings.xml	string	library_source	-	STR	လိုက်ဘရီ ရင်းမြစ်	
 values-b+my/strings.xml	string	library_source_note	-	STR	တစ်ကြိမ်လျှင် တစ်ခု · ပြောင်းလျှင် ပြန်ဖွင့်သည်	
+values-b+my/strings.xml	string	library_sync_cached	-	STR	သိမ်းထားသည်	
 values-b+my/strings.xml	string	library_sync_failed	-	STR	%1$s ကို ချိန်ကိုက်၍မရပါ။ ဤအရာများသည် လွန်ခဲ့သော %2$s ကဖြစ်သည်။	
+values-b+my/strings.xml	string	library_sync_offline	-	STR	အော့ဖ်လိုင်း · လွန်ခဲ့သော %s က သိမ်းထားသည်	
 values-b+my/strings.xml	string	library_sync_retry	-	STR	ပြန်ချိန်ကိုက်ရန်	
 values-b+my/strings.xml	string	library_sync_unreachable	-	STR	ချိတ်ဆက်၍မရ · လွန်ခဲ့သော %s က သိမ်းထားသည်	
 values-b+my/strings.xml	string	library_synced_format	-	STR	%s က ချိန်ကိုက်ခဲ့သည်	
@@ -22888,10 +22925,11 @@ values-b+ne/strings.xml	string	library_not_connected	-	STR	जडान छै�
 values-b+ne/strings.xml	string	library_on_device	-	STR	यन्त्रमा	
 values-b+ne/strings.xml	string	library_sort_current	-	STR	क्रम: %s	
 values-b+ne/strings.xml	string	library_sort_supported	-	STR	%1$s ले %3$d मध्ये %2$d समर्थन गर्छ	
-values-b+ne/strings.xml	string	library_sort_unsupported	-	STR	%s ले यसलाई सुरक्षित गर्दैन	
 values-b+ne/strings.xml	string	library_source	-	STR	लाइब्रेरी स्रोत	
 values-b+ne/strings.xml	string	library_source_note	-	STR	एक पटकमा एउटा · बदल्दा फेरि लोड हुन्छ	
+values-b+ne/strings.xml	string	library_sync_cached	-	STR	क्यास गरिएको	
 values-b+ne/strings.xml	string	library_sync_failed	-	STR	%1$s सिंक गर्न सकिएन। यी %2$s अघिका हुन्।	
+values-b+ne/strings.xml	string	library_sync_offline	-	STR	अफलाइन · %s अघि क्यास गरिएको	
 values-b+ne/strings.xml	string	library_sync_retry	-	STR	फेरि सिंक गर्नुहोस्	
 values-b+ne/strings.xml	string	library_sync_unreachable	-	STR	पुग्न सकिएन · %s अघि क्यास गरिएको	
 values-b+ne/strings.xml	string	library_synced_format	-	STR	%s अघि सिंक गरियो	
@@ -23370,10 +23408,11 @@ values-b+nl/strings.xml	string	library_not_connected	-	STR	Niet verbonden
 values-b+nl/strings.xml	string	library_on_device	-	STR	Op apparaat	
 values-b+nl/strings.xml	string	library_sort_current	-	STR	Sorteren: %s	
 values-b+nl/strings.xml	string	library_sort_supported	-	STR	%1$s ondersteunt %2$d van %3$d	
-values-b+nl/strings.xml	string	library_sort_unsupported	-	STR	Niet opgeslagen door %s	
 values-b+nl/strings.xml	string	library_source	-	STR	Bibliotheekbron	
 values-b+nl/strings.xml	string	library_source_note	-	STR	Eén tegelijk · wisselen laadt opnieuw	
+values-b+nl/strings.xml	string	library_sync_cached	-	STR	Uit cache	
 values-b+nl/strings.xml	string	library_sync_failed	-	STR	%1$s kon niet worden gesynchroniseerd. Dit is van %2$s geleden.	
+values-b+nl/strings.xml	string	library_sync_offline	-	STR	Offline · %s geleden in cache	
 values-b+nl/strings.xml	string	library_sync_retry	-	STR	Opnieuw synchroniseren	
 values-b+nl/strings.xml	string	library_sync_unreachable	-	STR	Niet bereikbaar · %s geleden in cache	
 values-b+nl/strings.xml	string	library_synced_format	-	STR	%s geleden gesynchroniseerd	
@@ -23970,10 +24009,11 @@ values-b+nn/strings.xml	string	library_not_connected	-	STR	Ikkje tilkopla
 values-b+nn/strings.xml	string	library_on_device	-	STR	På eininga	
 values-b+nn/strings.xml	string	library_sort_current	-	STR	Sortering: %s	
 values-b+nn/strings.xml	string	library_sort_supported	-	STR	%1$s støttar %2$d av %3$d	
-values-b+nn/strings.xml	string	library_sort_unsupported	-	STR	Ikkje lagra av %s	
 values-b+nn/strings.xml	string	library_source	-	STR	Bibliotekskjelde	
 values-b+nn/strings.xml	string	library_source_note	-	STR	Éin om gongen · byte lastar på nytt	
+values-b+nn/strings.xml	string	library_sync_cached	-	STR	Mellomlagra	
 values-b+nn/strings.xml	string	library_sync_failed	-	STR	Kunne ikkje synkronisera %1$s. Desse er frå for %2$s sidan.	
+values-b+nn/strings.xml	string	library_sync_offline	-	STR	Fråkopla · mellomlagra for %s sidan	
 values-b+nn/strings.xml	string	library_sync_retry	-	STR	Synkroniser på nytt	
 values-b+nn/strings.xml	string	library_sync_unreachable	-	STR	Utilgjengeleg · mellomlagra for %s sidan	
 values-b+nn/strings.xml	string	library_synced_format	-	STR	Synkronisert for %s sidan	
@@ -24414,10 +24454,11 @@ values-b+no/strings.xml	string	library_not_connected	-	STR	Ikke tilkoblet
 values-b+no/strings.xml	string	library_on_device	-	STR	På enheten	
 values-b+no/strings.xml	string	library_sort_current	-	STR	Sortering: %s	
 values-b+no/strings.xml	string	library_sort_supported	-	STR	%1$s støtter %2$d av %3$d	
-values-b+no/strings.xml	string	library_sort_unsupported	-	STR	Ikke lagret av %s	
 values-b+no/strings.xml	string	library_source	-	STR	Bibliotekkilde	
 values-b+no/strings.xml	string	library_source_note	-	STR	Én om gangen · bytte laster inn på nytt	
+values-b+no/strings.xml	string	library_sync_cached	-	STR	Mellomlagret	
 values-b+no/strings.xml	string	library_sync_failed	-	STR	Kunne ikke synkronisere %1$s. Disse er fra for %2$s siden.	
+values-b+no/strings.xml	string	library_sync_offline	-	STR	Frakoblet · mellomlagret for %s siden	
 values-b+no/strings.xml	string	library_sync_retry	-	STR	Synkroniser på nytt	
 values-b+no/strings.xml	string	library_sync_unreachable	-	STR	Utilgjengelig · mellomlagret for %s siden	
 values-b+no/strings.xml	string	library_synced_format	-	STR	Synkronisert for %s siden	
@@ -24910,10 +24951,11 @@ values-b+or/strings.xml	string	library_not_connected	-	STR	ସଂଯୁକ୍ତ
 values-b+or/strings.xml	string	library_on_device	-	STR	ଡିଭାଇସରେ	
 values-b+or/strings.xml	string	library_sort_current	-	STR	କ୍ରମ: %s	
 values-b+or/strings.xml	string	library_sort_supported	-	STR	%1$s %3$d ମଧ୍ୟରୁ %2$d ସମର୍ଥନ କରେ	
-values-b+or/strings.xml	string	library_sort_unsupported	-	STR	%s ଏହାକୁ ସଞ୍ଚୟ କରେ ନାହିଁ	
 values-b+or/strings.xml	string	library_source	-	STR	ଲାଇବ୍ରେରୀ ଉତ୍ସ	
 values-b+or/strings.xml	string	library_source_note	-	STR	ଥରକେ ଗୋଟିଏ · ବଦଳାଇଲେ ପୁଣି ଲୋଡ୍ ହୁଏ	
+values-b+or/strings.xml	string	library_sync_cached	-	STR	କ୍ୟାଶ୍	
 values-b+or/strings.xml	string	library_sync_failed	-	STR	%1$s ସିଙ୍କ୍ ହୋଇପାରିଲା ନାହିଁ। ଏଗୁଡ଼ିକ %2$s ପୂର୍ବର।	
+values-b+or/strings.xml	string	library_sync_offline	-	STR	ଅଫଲାଇନ୍ · %s ପୂର୍ବରୁ କ୍ୟାଶ୍	
 values-b+or/strings.xml	string	library_sync_retry	-	STR	ପୁଣି ସିଙ୍କ୍ କରନ୍ତୁ	
 values-b+or/strings.xml	string	library_sync_unreachable	-	STR	ପହଞ୍ଚି ହେଉନାହିଁ · %s ପୂର୍ବରୁ କ୍ୟାଶ୍	
 values-b+or/strings.xml	string	library_synced_format	-	STR	%s ପୂର୍ବରୁ ସିଙ୍କ ହୋଇଛି	
@@ -25448,10 +25490,11 @@ values-b+pl/strings.xml	string	library_not_connected	-	STR	Nie połączono
 values-b+pl/strings.xml	string	library_on_device	-	STR	Na urządzeniu	
 values-b+pl/strings.xml	string	library_sort_current	-	STR	Sortowanie: %s	
 values-b+pl/strings.xml	string	library_sort_supported	-	STR	%1$s obsługuje %2$d z %3$d	
-values-b+pl/strings.xml	string	library_sort_unsupported	-	STR	Nie jest przechowywane przez %s	
 values-b+pl/strings.xml	string	library_source	-	STR	Źródło biblioteki	
 values-b+pl/strings.xml	string	library_source_note	-	STR	Jedno naraz · przełączenie wczytuje ponownie	
+values-b+pl/strings.xml	string	library_sync_cached	-	STR	Z pamięci podręcznej	
 values-b+pl/strings.xml	string	library_sync_failed	-	STR	Nie udało się zsynchronizować %1$s. To dane sprzed %2$s.	
+values-b+pl/strings.xml	string	library_sync_offline	-	STR	Offline · w pamięci podręcznej od %s	
 values-b+pl/strings.xml	string	library_sync_retry	-	STR	Synchronizuj ponownie	
 values-b+pl/strings.xml	string	library_sync_unreachable	-	STR	Niedostępne · w pamięci podręcznej od %s	
 values-b+pl/strings.xml	string	library_synced_format	-	STR	Zsynchronizowano %s temu	
@@ -26317,10 +26360,11 @@ values-b+pt+BR/strings.xml	string	library_not_connected	-	STR	Não conectado
 values-b+pt+BR/strings.xml	string	library_on_device	-	STR	No dispositivo	
 values-b+pt+BR/strings.xml	string	library_sort_current	-	STR	Ordenar: %s	
 values-b+pt+BR/strings.xml	string	library_sort_supported	-	STR	%1$s suporta %2$d de %3$d	
-values-b+pt+BR/strings.xml	string	library_sort_unsupported	-	STR	Não armazenado por %s	
 values-b+pt+BR/strings.xml	string	library_source	-	STR	Fonte da biblioteca	
 values-b+pt+BR/strings.xml	string	library_source_note	-	STR	Uma por vez · trocar recarrega	
+values-b+pt+BR/strings.xml	string	library_sync_cached	-	STR	Em cache	
 values-b+pt+BR/strings.xml	string	library_sync_failed	-	STR	Não foi possível sincronizar %1$s. Estes são de %2$s atrás.	
+values-b+pt+BR/strings.xml	string	library_sync_offline	-	STR	Offline · em cache há %s	
 values-b+pt+BR/strings.xml	string	library_sync_retry	-	STR	Sincronizar de novo	
 values-b+pt+BR/strings.xml	string	library_sync_unreachable	-	STR	Inacessível · em cache há %s	
 values-b+pt+BR/strings.xml	string	library_synced_format	-	STR	Sincronizado há %s	
@@ -27183,10 +27227,11 @@ values-b+pt/strings.xml	string	library_not_connected	-	STR	Não conectado
 values-b+pt/strings.xml	string	library_on_device	-	STR	No dispositivo	
 values-b+pt/strings.xml	string	library_sort_current	-	STR	Ordenar: %s	
 values-b+pt/strings.xml	string	library_sort_supported	-	STR	%1$s suporta %2$d de %3$d	
-values-b+pt/strings.xml	string	library_sort_unsupported	-	STR	Não guardado por %s	
 values-b+pt/strings.xml	string	library_source	-	STR	Origem da biblioteca	
 values-b+pt/strings.xml	string	library_source_note	-	STR	Uma de cada vez · mudar recarrega	
+values-b+pt/strings.xml	string	library_sync_cached	-	STR	Em cache	
 values-b+pt/strings.xml	string	library_sync_failed	-	STR	Não foi possível sincronizar %1$s. São de há %2$s.	
+values-b+pt/strings.xml	string	library_sync_offline	-	STR	Offline · em cache há %s	
 values-b+pt/strings.xml	string	library_sync_retry	-	STR	Sincronizar novamente	
 values-b+pt/strings.xml	string	library_sync_unreachable	-	STR	Inacessível · em cache há %s	
 values-b+pt/strings.xml	string	library_synced_format	-	STR	Sincronizado há %s	
@@ -27985,10 +28030,11 @@ values-b+qt/strings.xml	string	library_not_connected	-	STR	ooo-ahah aagg
 values-b+qt/strings.xml	string	library_on_device	-	STR	uuhh ooo	
 values-b+qt/strings.xml	string	library_sort_current	-	STR	Oouh: %s	
 values-b+qt/strings.xml	string	library_sort_supported	-	STR	%1$s ooh %2$d uuh %3$d	
-values-b+qt/strings.xml	string	library_sort_unsupported	-	STR	Ahh %s	
 values-b+qt/strings.xml	string	library_source	-	STR	aaaghh ooo-ahah	
 values-b+qt/strings.xml	string	library_source_note	-	STR	ooo aagg · uuhh-ahah	
+values-b+qt/strings.xml	string	library_sync_cached	-	STR	Uuh	
 values-b+qt/strings.xml	string	library_sync_failed	-	STR	Ooh %1$s uuh. Ahh %2$s.	
+values-b+qt/strings.xml	string	library_sync_offline	-	STR	Ooh · uuh %s	
 values-b+qt/strings.xml	string	library_sync_retry	-	STR	Oouh ahh	
 values-b+qt/strings.xml	string	library_sync_unreachable	-	STR	Uuh · ooh %s	
 values-b+qt/strings.xml	string	library_synced_format	-	STR	aaghh %s ooo	
@@ -28735,10 +28781,11 @@ values-b+ro/strings.xml	string	library_not_connected	-	STR	Neconectat
 values-b+ro/strings.xml	string	library_on_device	-	STR	Pe dispozitiv	
 values-b+ro/strings.xml	string	library_sort_current	-	STR	Sortare: %s	
 values-b+ro/strings.xml	string	library_sort_supported	-	STR	%1$s acceptă %2$d din %3$d	
-values-b+ro/strings.xml	string	library_sort_unsupported	-	STR	Nu este stocat de %s	
 values-b+ro/strings.xml	string	library_source	-	STR	Sursa bibliotecii	
 values-b+ro/strings.xml	string	library_source_note	-	STR	Câte una · schimbarea reîncarcă	
+values-b+ro/strings.xml	string	library_sync_cached	-	STR	Din cache	
 values-b+ro/strings.xml	string	library_sync_failed	-	STR	%1$s nu a putut fi sincronizat. Sunt de acum %2$s.	
+values-b+ro/strings.xml	string	library_sync_offline	-	STR	Offline · în cache de acum %s	
 values-b+ro/strings.xml	string	library_sync_retry	-	STR	Resincronizează	
 values-b+ro/strings.xml	string	library_sync_unreachable	-	STR	Inaccesibil · în cache de acum %s	
 values-b+ro/strings.xml	string	library_synced_format	-	STR	Sincronizat acum %s	
@@ -29543,10 +29590,11 @@ values-b+ru/strings.xml	string	library_not_connected	-	STR	Не подключе
 values-b+ru/strings.xml	string	library_on_device	-	STR	На устройстве	
 values-b+ru/strings.xml	string	library_sort_current	-	STR	Сортировка: %s	
 values-b+ru/strings.xml	string	library_sort_supported	-	STR	%1$s поддерживает %2$d из %3$d	
-values-b+ru/strings.xml	string	library_sort_unsupported	-	STR	Не хранится в %s	
 values-b+ru/strings.xml	string	library_source	-	STR	Источник библиотеки	
 values-b+ru/strings.xml	string	library_source_note	-	STR	По одному · переключение перезагружает	
+values-b+ru/strings.xml	string	library_sync_cached	-	STR	Из кеша	
 values-b+ru/strings.xml	string	library_sync_failed	-	STR	Не удалось синхронизировать %1$s. Это данные %2$s назад.	
+values-b+ru/strings.xml	string	library_sync_offline	-	STR	Офлайн · кеш %s назад	
 values-b+ru/strings.xml	string	library_sync_retry	-	STR	Синхронизировать снова	
 values-b+ru/strings.xml	string	library_sync_unreachable	-	STR	Недоступно · кеш %s назад	
 values-b+ru/strings.xml	string	library_synced_format	-	STR	Синхронизировано %s назад	
@@ -30304,10 +30352,11 @@ values-b+sk/strings.xml	string	library_not_connected	-	STR	Nepripojené
 values-b+sk/strings.xml	string	library_on_device	-	STR	V zariadení	
 values-b+sk/strings.xml	string	library_sort_current	-	STR	Zoradenie: %s	
 values-b+sk/strings.xml	string	library_sort_supported	-	STR	%1$s podporuje %2$d z %3$d	
-values-b+sk/strings.xml	string	library_sort_unsupported	-	STR	%s neukladá	
 values-b+sk/strings.xml	string	library_source	-	STR	Zdroj knižnice	
 values-b+sk/strings.xml	string	library_source_note	-	STR	Jeden naraz · prepnutie znova načíta	
+values-b+sk/strings.xml	string	library_sync_cached	-	STR	Z vyrovnávacej pamäte	
 values-b+sk/strings.xml	string	library_sync_failed	-	STR	%1$s sa nepodarilo synchronizovať. Sú to údaje spred %2$s.	
+values-b+sk/strings.xml	string	library_sync_offline	-	STR	Offline · vo vyrovnávacej pamäti spred %s	
 values-b+sk/strings.xml	string	library_sync_retry	-	STR	Znova synchronizovať	
 values-b+sk/strings.xml	string	library_sync_unreachable	-	STR	Nedostupné · vo vyrovnávacej pamäti spred %s	
 values-b+sk/strings.xml	string	library_synced_format	-	STR	Synchronizované pred %s	
@@ -30907,10 +30956,11 @@ values-b+so/strings.xml	string	library_not_connected	-	STR	Lama xiriirin
 values-b+so/strings.xml	string	library_on_device	-	STR	Qalabka ku jira	
 values-b+so/strings.xml	string	library_sort_current	-	STR	Kala soocid: %s	
 values-b+so/strings.xml	string	library_sort_supported	-	STR	%1$s wuxuu taageeraa %2$d ka mid ah %3$d	
-values-b+so/strings.xml	string	library_sort_unsupported	-	STR	Ma kaydiyo %s	
 values-b+so/strings.xml	string	library_source	-	STR	Isha kaydka	
 values-b+so/strings.xml	string	library_source_note	-	STR	Mid mid · beddelku wuu dib u soo raraa	
+values-b+so/strings.xml	string	library_sync_cached	-	STR	La kaydiyay	
 values-b+so/strings.xml	string	library_sync_failed	-	STR	Lama isku waafajin karin %1$s. Kuwani waa kuwii %2$s ka hor.	
+values-b+so/strings.xml	string	library_sync_offline	-	STR	Khadka ka maqan · la kaydiyay %s ka hor	
 values-b+so/strings.xml	string	library_sync_retry	-	STR	Mar kale isku waafaji	
 values-b+so/strings.xml	string	library_sync_unreachable	-	STR	Lama gaari karo · la kaydiyay %s ka hor	
 values-b+so/strings.xml	string	library_synced_format	-	STR	La waafajiyay %s kahor	
@@ -31634,10 +31684,11 @@ values-b+sq/strings.xml	string	library_not_connected	-	STR	Nuk është lidhur
 values-b+sq/strings.xml	string	library_on_device	-	STR	Në pajisje	
 values-b+sq/strings.xml	string	library_sort_current	-	STR	Renditja: %s	
 values-b+sq/strings.xml	string	library_sort_supported	-	STR	%1$s mbështet %2$d nga %3$d	
-values-b+sq/strings.xml	string	library_sort_unsupported	-	STR	Nuk ruhet nga %s	
 values-b+sq/strings.xml	string	library_source	-	STR	Burimi i bibliotekës	
 values-b+sq/strings.xml	string	library_source_note	-	STR	Një në një kohë · ndërrimi ringarkon	
+values-b+sq/strings.xml	string	library_sync_cached	-	STR	Nga memoria	
 values-b+sq/strings.xml	string	library_sync_failed	-	STR	%1$s nuk u sinkronizua dot. Këto janë para %2$s.	
+values-b+sq/strings.xml	string	library_sync_offline	-	STR	Jashtë linje · në memorie para %s	
 values-b+sq/strings.xml	string	library_sync_retry	-	STR	Sinkronizo sërish	
 values-b+sq/strings.xml	string	library_sync_unreachable	-	STR	E paarritshme · në memorie para %s	
 values-b+sq/strings.xml	string	library_synced_format	-	STR	Sinkronizuar para %s	
@@ -32493,10 +32544,11 @@ values-b+sv/strings.xml	string	library_not_connected	-	STR	Inte ansluten
 values-b+sv/strings.xml	string	library_on_device	-	STR	På enheten	
 values-b+sv/strings.xml	string	library_sort_current	-	STR	Sortering: %s	
 values-b+sv/strings.xml	string	library_sort_supported	-	STR	%1$s stöder %2$d av %3$d	
-values-b+sv/strings.xml	string	library_sort_unsupported	-	STR	Sparas inte av %s	
 values-b+sv/strings.xml	string	library_source	-	STR	Bibliotekskälla	
 values-b+sv/strings.xml	string	library_source_note	-	STR	En i taget · byte laddar om	
+values-b+sv/strings.xml	string	library_sync_cached	-	STR	Cachad	
 values-b+sv/strings.xml	string	library_sync_failed	-	STR	Det gick inte att synkronisera %1$s. Detta är från för %2$s sedan.	
+values-b+sv/strings.xml	string	library_sync_offline	-	STR	Offline · cachad för %s sedan	
 values-b+sv/strings.xml	string	library_sync_retry	-	STR	Synkronisera igen	
 values-b+sv/strings.xml	string	library_sync_unreachable	-	STR	Går inte att nå · cachad för %s sedan	
 values-b+sv/strings.xml	string	library_synced_format	-	STR	Synkroniserad för %s sedan	
@@ -33352,10 +33404,11 @@ values-b+ta/strings.xml	string	library_not_connected	-	STR	இணைக்கப
 values-b+ta/strings.xml	string	library_on_device	-	STR	சாதனத்தில்	
 values-b+ta/strings.xml	string	library_sort_current	-	STR	வரிசை: %s	
 values-b+ta/strings.xml	string	library_sort_supported	-	STR	%1$s %3$d இல் %2$d ஐ ஆதரிக்கிறது	
-values-b+ta/strings.xml	string	library_sort_unsupported	-	STR	%s இதைச் சேமிப்பதில்லை	
 values-b+ta/strings.xml	string	library_source	-	STR	நூலக மூலம்	
 values-b+ta/strings.xml	string	library_source_note	-	STR	ஒரு நேரத்தில் ஒன்று · மாற்றினால் மீண்டும் ஏற்றும்	
+values-b+ta/strings.xml	string	library_sync_cached	-	STR	தேக்கியது	
 values-b+ta/strings.xml	string	library_sync_failed	-	STR	%1$s ஐ ஒத்திசைக்க முடியவில்லை. இவை %2$s முன்பு உள்ளவை.	
+values-b+ta/strings.xml	string	library_sync_offline	-	STR	ஆஃப்லைன் · %s முன்பு தேக்கியது	
 values-b+ta/strings.xml	string	library_sync_retry	-	STR	மீண்டும் ஒத்திசை	
 values-b+ta/strings.xml	string	library_sync_unreachable	-	STR	அணுக முடியவில்லை · %s முன்பு தேக்கியது	
 values-b+ta/strings.xml	string	library_synced_format	-	STR	%s முன்பு ஒத்திசைக்கப்பட்டது	
@@ -33909,10 +33962,11 @@ values-b+ti/strings.xml	string	library_not_connected	-	STR	ኣይተራኸበን
 values-b+ti/strings.xml	string	library_on_device	-	STR	ኣብ መሳርሒ	
 values-b+ti/strings.xml	string	library_sort_current	-	STR	ስርዓት፦ %s	
 values-b+ti/strings.xml	string	library_sort_supported	-	STR	%1$s ካብ %3$d %2$d ይድግፍ	
-values-b+ti/strings.xml	string	library_sort_unsupported	-	STR	ብ%s ኣይዕቀብን	
 values-b+ti/strings.xml	string	library_source	-	STR	ምንጪ ቤተ-መጻሕፍቲ	
 values-b+ti/strings.xml	string	library_source_note	-	STR	ሓደ ብሓደ · ምቕያር ዳግም ይጽዕን	
+values-b+ti/strings.xml	string	library_sync_cached	-	STR	ዝተዓቀበ	
 values-b+ti/strings.xml	string	library_sync_failed	-	STR	%1$s ክሰማማዕ ኣይከኣለን። እዚኦም ቅድሚ %2$s ዝነበሩ እዮም።	
+values-b+ti/strings.xml	string	library_sync_offline	-	STR	ካብ መስመር ወጻኢ · ቅድሚ %s ዝተዓቀበ	
 values-b+ti/strings.xml	string	library_sync_retry	-	STR	ደጊምካ ኣሰማምዕ	
 values-b+ti/strings.xml	string	library_sync_unreachable	-	STR	ክብጻሕ ኣይከኣለን · ቅድሚ %s ዝተዓቀበ	
 values-b+ti/strings.xml	string	library_synced_format	-	STR	ቅድሚ %s ተሰማሚዑ	
@@ -34135,10 +34189,11 @@ values-b+tl/strings.xml	string	library_not_connected	-	STR	Hindi nakakonekta
 values-b+tl/strings.xml	string	library_on_device	-	STR	Sa device	
 values-b+tl/strings.xml	string	library_sort_current	-	STR	Pagkakasunod: %s	
 values-b+tl/strings.xml	string	library_sort_supported	-	STR	Sinusuportahan ng %1$s ang %2$d sa %3$d	
-values-b+tl/strings.xml	string	library_sort_unsupported	-	STR	Hindi iniimbak ng %s	
 values-b+tl/strings.xml	string	library_source	-	STR	Pinagmulan ng library	
 values-b+tl/strings.xml	string	library_source_note	-	STR	Isa-isa · nagre-reload kapag nagpalit	
+values-b+tl/strings.xml	string	library_sync_cached	-	STR	Naka-cache	
 values-b+tl/strings.xml	string	library_sync_failed	-	STR	Hindi ma-sync ang %1$s. Mula %2$s na ang nakalipas ang mga ito.	
+values-b+tl/strings.xml	string	library_sync_offline	-	STR	Offline · naka-cache %s ang nakalipas	
 values-b+tl/strings.xml	string	library_sync_retry	-	STR	Subukang i-sync ulit	
 values-b+tl/strings.xml	string	library_sync_unreachable	-	STR	Hindi maabot · naka-cache %s ang nakalipas	
 values-b+tl/strings.xml	string	library_synced_format	-	STR	Na-sync %s ang nakalipas	
@@ -34704,10 +34759,11 @@ values-b+tr/strings.xml	string	library_not_connected	-	STR	Bağlı değil
 values-b+tr/strings.xml	string	library_on_device	-	STR	Cihazda	
 values-b+tr/strings.xml	string	library_sort_current	-	STR	Sıralama: %s	
 values-b+tr/strings.xml	string	library_sort_supported	-	STR	%1$s, %3$d ölçütten %2$d tanesini destekler	
-values-b+tr/strings.xml	string	library_sort_unsupported	-	STR	%s tarafından saklanmaz	
 values-b+tr/strings.xml	string	library_source	-	STR	Kütüphane kaynağı	
 values-b+tr/strings.xml	string	library_source_note	-	STR	Aynı anda bir tane · değiştirmek yeniden yükler	
+values-b+tr/strings.xml	string	library_sync_cached	-	STR	Önbellekten	
 values-b+tr/strings.xml	string	library_sync_failed	-	STR	%1$s eşitlenemedi. Bunlar %2$s öncesine ait.	
+values-b+tr/strings.xml	string	library_sync_offline	-	STR	Çevrimdışı · %s önce önbelleğe alındı	
 values-b+tr/strings.xml	string	library_sync_retry	-	STR	Yeniden eşitle	
 values-b+tr/strings.xml	string	library_sync_unreachable	-	STR	Ulaşılamıyor · %s önce önbelleğe alındı	
 values-b+tr/strings.xml	string	library_synced_format	-	STR	%s önce eşitlendi	
@@ -35583,10 +35639,11 @@ values-b+uk/strings.xml	string	library_not_connected	-	STR	Не підключе
 values-b+uk/strings.xml	string	library_on_device	-	STR	На пристрої	
 values-b+uk/strings.xml	string	library_sort_current	-	STR	Сортування: %s	
 values-b+uk/strings.xml	string	library_sort_supported	-	STR	%1$s підтримує %2$d з %3$d	
-values-b+uk/strings.xml	string	library_sort_unsupported	-	STR	Не зберігається в %s	
 values-b+uk/strings.xml	string	library_source	-	STR	Джерело бібліотеки	
 values-b+uk/strings.xml	string	library_source_note	-	STR	По одному · перемикання перезавантажує	
+values-b+uk/strings.xml	string	library_sync_cached	-	STR	З кешу	
 values-b+uk/strings.xml	string	library_sync_failed	-	STR	Не вдалося синхронізувати %1$s. Це дані %2$s тому.	
+values-b+uk/strings.xml	string	library_sync_offline	-	STR	Офлайн · кеш %s тому	
 values-b+uk/strings.xml	string	library_sync_retry	-	STR	Синхронізувати знову	
 values-b+uk/strings.xml	string	library_sync_unreachable	-	STR	Недоступно · кеш %s тому	
 values-b+uk/strings.xml	string	library_synced_format	-	STR	Синхронізовано %s тому	
@@ -36383,10 +36440,11 @@ values-b+ur/strings.xml	string	library_not_connected	-	STR	منسلک نہیں
 values-b+ur/strings.xml	string	library_on_device	-	STR	ڈیوائس پر	
 values-b+ur/strings.xml	string	library_sort_current	-	STR	ترتیب: %s	
 values-b+ur/strings.xml	string	library_sort_supported	-	STR	%1$s %3$d میں سے %2$d کی معاونت کرتا ہے	
-values-b+ur/strings.xml	string	library_sort_unsupported	-	STR	%s اسے محفوظ نہیں کرتا	
 values-b+ur/strings.xml	string	library_source	-	STR	لائبریری کا ذریعہ	
 values-b+ur/strings.xml	string	library_source_note	-	STR	ایک وقت میں ایک · تبدیل کرنے پر دوبارہ لوڈ ہوتا ہے	
+values-b+ur/strings.xml	string	library_sync_cached	-	STR	کیش شدہ	
 values-b+ur/strings.xml	string	library_sync_failed	-	STR	%1$s کو ہم آہنگ نہیں کیا جا سکا۔ یہ %2$s پہلے کے ہیں۔	
+values-b+ur/strings.xml	string	library_sync_offline	-	STR	آف لائن · %s پہلے کیش کیا گیا	
 values-b+ur/strings.xml	string	library_sync_retry	-	STR	دوبارہ ہم آہنگ کریں	
 values-b+ur/strings.xml	string	library_sync_unreachable	-	STR	رسائی نہیں · %s پہلے کیش کیا گیا	
 values-b+ur/strings.xml	string	library_synced_format	-	STR	%s پہلے ہم آہنگ کیا گیا	
@@ -37152,10 +37210,11 @@ values-b+vi/strings.xml	string	library_not_connected	-	STR	Chưa kết nối
 values-b+vi/strings.xml	string	library_on_device	-	STR	Trên thiết bị	
 values-b+vi/strings.xml	string	library_sort_current	-	STR	Sắp xếp: %s	
 values-b+vi/strings.xml	string	library_sort_supported	-	STR	%1$s hỗ trợ %2$d/%3$d	
-values-b+vi/strings.xml	string	library_sort_unsupported	-	STR	%s không lưu mục này	
 values-b+vi/strings.xml	string	library_source	-	STR	Nguồn thư viện	
 values-b+vi/strings.xml	string	library_source_note	-	STR	Mỗi lần một nguồn · chuyển sẽ tải lại	
+values-b+vi/strings.xml	string	library_sync_cached	-	STR	Đã lưu đệm	
 values-b+vi/strings.xml	string	library_sync_failed	-	STR	Không thể đồng bộ %1$s. Đây là dữ liệu từ %2$s trước.	
+values-b+vi/strings.xml	string	library_sync_offline	-	STR	Ngoại tuyến · đã lưu bộ nhớ đệm %s trước	
 values-b+vi/strings.xml	string	library_sync_retry	-	STR	Đồng bộ lại	
 values-b+vi/strings.xml	string	library_sync_unreachable	-	STR	Không truy cập được · đã lưu bộ nhớ đệm %s trước	
 values-b+vi/strings.xml	string	library_synced_format	-	STR	Đã đồng bộ %s trước	
@@ -38000,10 +38059,11 @@ values-b+zh+TW/strings.xml	string	library_not_connected	-	STR	未連線
 values-b+zh+TW/strings.xml	string	library_on_device	-	STR	本機	
 values-b+zh+TW/strings.xml	string	library_sort_current	-	STR	排序：%s	
 values-b+zh+TW/strings.xml	string	library_sort_supported	-	STR	%1$s 支援 %3$d 項中的 %2$d 項	
-values-b+zh+TW/strings.xml	string	library_sort_unsupported	-	STR	%s 不會儲存此項	
 values-b+zh+TW/strings.xml	string	library_source	-	STR	媒體庫來源	
 values-b+zh+TW/strings.xml	string	library_source_note	-	STR	一次一個 · 切換會重新載入	
+values-b+zh+TW/strings.xml	string	library_sync_cached	-	STR	已快取	
 values-b+zh+TW/strings.xml	string	library_sync_failed	-	STR	無法同步 %1$s。這些是 %2$s 前的內容。	
+values-b+zh+TW/strings.xml	string	library_sync_offline	-	STR	離線 · %s 前的快取	
 values-b+zh+TW/strings.xml	string	library_sync_retry	-	STR	重新同步	
 values-b+zh+TW/strings.xml	string	library_sync_unreachable	-	STR	無法連線 · %s 前的快取	
 values-b+zh+TW/strings.xml	string	library_synced_format	-	STR	%s前已同步	
@@ -38844,10 +38904,11 @@ values-b+zh/strings.xml	string	library_not_connected	-	STR	未连接
 values-b+zh/strings.xml	string	library_on_device	-	STR	本机	
 values-b+zh/strings.xml	string	library_sort_current	-	STR	排序：%s	
 values-b+zh/strings.xml	string	library_sort_supported	-	STR	%1$s 支持 %3$d 项中的 %2$d 项	
-values-b+zh/strings.xml	string	library_sort_unsupported	-	STR	%s 不保存此项	
 values-b+zh/strings.xml	string	library_source	-	STR	媒体库来源	
 values-b+zh/strings.xml	string	library_source_note	-	STR	一次一个 · 切换会重新加载	
+values-b+zh/strings.xml	string	library_sync_cached	-	STR	已缓存	
 values-b+zh/strings.xml	string	library_sync_failed	-	STR	无法同步 %1$s。这些是 %2$s 前的内容。	
+values-b+zh/strings.xml	string	library_sync_offline	-	STR	离线 · %s 前的缓存	
 values-b+zh/strings.xml	string	library_sync_retry	-	STR	重新同步	
 values-b+zh/strings.xml	string	library_sync_unreachable	-	STR	无法连接 · %s 前的缓存	
 values-b+zh/strings.xml	string	library_synced_format	-	STR	%s前已同步	
@@ -39844,10 +39905,11 @@ values/strings.xml	string	library_not_connected	-	STR	Not connected
 values/strings.xml	string	library_on_device	-	STR	On device	
 values/strings.xml	string	library_sort_current	-	STR	Sort: %s	
 values/strings.xml	string	library_sort_supported	-	STR	%1$s supports %2$d of %3$d	
-values/strings.xml	string	library_sort_unsupported	-	STR	Not stored by %s	
 values/strings.xml	string	library_source	-	STR	Library source	
 values/strings.xml	string	library_source_note	-	STR	One at a time · switching reloads	
+values/strings.xml	string	library_sync_cached	-	STR	Cached	
 values/strings.xml	string	library_sync_failed	-	STR	Couldn't sync %1$s. These are from %2$s ago.	
+values/strings.xml	string	library_sync_offline	-	STR	Offline · cached %s ago	
 values/strings.xml	string	library_sync_retry	-	STR	Retry sync	
 values/strings.xml	string	library_sync_unreachable	-	STR	Unreachable · cached %s ago	
 values/strings.xml	string	library_synced_format	-	STR	Synced %s ago	
