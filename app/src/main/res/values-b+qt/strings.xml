@@ -4,6 +4,10 @@
 <plurals name="downloads_failed_count"><item quantity="other">"%d oooogg"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="other">"%d OOUUH OOH"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">"%d oooogg ooh aaahhu"</item></plurals>
+<plurals name="library_title_count"><item quantity="other">"%d oouh"</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="other">"aaoog %d ooh uugg"</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="other">"uuh aagg oooh aaahh uug %d ooogg aah."</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="other">"%d OOGAH"</item></plurals>
 <string name="account">"aaaaggg"</string>
 <string name="action_add_to_bookmarks">"auugggguuuuuuhhh uuuu hhhhhhhhuhggghggg"</string>
 <string name="action_add_to_favorites">"uuh ah aaaahhhag"</string>
@@ -325,11 +329,21 @@
 <string name="kitsu_settings">"oohh uuuuggg uuhh uuugg"</string>
 <string name="legal_notice">"ah huu oouhhau aoaoaaohoo ha"</string>
 <string name="library">"uuuuuuuh aaaoo o"</string>
+<string name="library_go_to_list" formatted="true">"Uuh %s"</string>
+<string name="library_list_empty_body" formatted="true">"Ooh uuh %s ahh."</string>
+<string name="library_list_empty_headline" formatted="true">"Ahh %s"</string>
 <string name="library_not_connected">"ooo-ahah aagg"</string>
 <string name="library_on_device">"uuhh ooo"</string>
+<string name="library_sort_current" formatted="true">"Oouh: %s"</string>
 <string name="library_sort_not_kept" formatted="true">"ooo uuh %s"</string>
+<string name="library_sort_supported" formatted="true">"%1$s ooh %2$d uuh %3$d"</string>
 <string name="library_source">"aaaghh ooo-ahah"</string>
 <string name="library_source_note">"ooo aagg · uuhh-ahah"</string>
+<string name="library_sync_cached">"Uuh"</string>
+<string name="library_sync_failed" formatted="true">"Ooh %1$s uuh. Ahh %2$s."</string>
+<string name="library_sync_offline" formatted="true">"Ooh · uuh %s"</string>
+<string name="library_sync_retry">"Oouh ahh"</string>
+<string name="library_sync_unreachable" formatted="true">"Uuh · ooh %s"</string>
 <string name="library_synced_format" formatted="true">"aaghh %s ooo"</string>
 <string name="lightnovel">"ooo-ahahoh ohaaauugghh ahhh haaahooo"</string>
 <string name="limit_title">"aaahh aaaahh ooohh uuk uuugg"</string>
@@ -544,9 +558,15 @@
 <string name="search_provider_text_types">"ahhhahoooohhaa ahhhoohahh"</string>
 <string name="search_state_idle_body_desktop">"oouuh aaaaggg uuuk ooh"</string>
 <string name="search_state_no_results_type_filter" formatted="true">"%s uuhaa. oouuh aagggh uuk."</string>
+<string name="search_state_no_suggestions_detail">"0 AAAHHUU · 0 AAOOH UUGH"</string>
+<string name="search_state_no_suggestions_headline" formatted="true">"ooh aagg “%s”"</string>
+<string name="search_suggestions_return_hint">"Ooh uuh ahh"</string>
 <string name="search_tv_source_failed" formatted="true">"AAGGH %s"</string>
 <string name="search_tv_source_pinned">"OOHHAA"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"%1$d OOHH %2$d AAHH · UUGH AAK EEEK"</string>
+<string name="search_tv_suggestion_recent" formatted="true">"AAOOH · %s"</string>
+<string name="search_tv_suggestion_recent_suggested">"AAOOH · UUGG AAH"</string>
+<string name="search_tv_suggestion_suggested">"UUGGAH"</string>
 <string name="season">"ooo-ahah"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"H"</string>

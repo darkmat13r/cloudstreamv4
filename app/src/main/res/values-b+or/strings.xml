@@ -4,6 +4,10 @@
 <plurals name="downloads_failed_count"><item quantity="one">"%d ଵିଫଳ ହେଲା"</item><item quantity="other">"%d ଵିଫଳ ହେଲା"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d ବୁକମାର୍କ"</item><item quantity="other">"%d ବୁକମାର୍କ"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d ଵିଭାଗ ଲୋଡ୍ ହୋଇପାରିଲା ନାହିଁ"</item><item quantity="other">"%d ଵିଭାଗ ଲୋଡ୍ ହୋଇପାରିଲା ନାହିଁ"</item></plurals>
+<plurals name="library_title_count"><item quantity="one">"%d ଶୀର୍ଷକ"</item><item quantity="other">"%d ଶୀର୍ଷକ"</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">"%d ଉତ୍ସରେ ସନ୍ଧାନ କରନ୍ତୁ"</item><item quantity="other">"ସମସ୍ତ %d ଉତ୍ସରେ ସନ୍ଧାନ କରନ୍ତୁ"</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">"ତଥାପି %d ଉତ୍ସରେ ସନ୍ଧାନ କରିବାକୁ କୀବୋର୍ଡର ସନ୍ଧାନ କୀ ଦବାନ୍ତୁ।"</item><item quantity="other">"ତଥାପି ସମସ୍ତ %d ଉତ୍ସରେ ସନ୍ଧାନ କରିବାକୁ କୀବୋର୍ଡର ସନ୍ଧାନ କୀ ଦବାନ୍ତୁ।"</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">"%d ଉତ୍ସ"</item><item quantity="other">"%d ଉତ୍ସ"</item></plurals>
 <string name="action_default">"ଡିଫଲ୍ଟ"</string>
 <string name="added_sync_format" formatted="true">"%s ଯୋଡ଼ାଗଲା"</string>
 <string name="all_languages_preference">"ସବୁ ଭାଷା"</string>
@@ -130,11 +134,21 @@
 <string name="home_search_only_body">"ଆପଣଙ୍କର କୌଣସି ଏକ୍ସଟେନସନରେ ହୋମ୍ ପୃଷ୍ଠା ନାହିଁ, କିନ୍ତୁ ଆପଣ ସେଗୁଡ଼ିକରେ ସନ୍ଧାନ କରିପାରିବେ।"</string>
 <string name="home_source_none_subtitle">"ଧାଡ଼ି ନାହିଁ · ଆପଣଙ୍କ ଧାଡ଼ି ରହେ"</string>
 <string name="library">"ଲାଇବ୍ରେରୀ"</string>
+<string name="library_go_to_list" formatted="true">"%s କୁ ଯାଆନ୍ତୁ"</string>
+<string name="library_list_empty_body" formatted="true">"ଆପଣ %s ରେ ଯୋଡ଼ୁଥିବା ଶୀର୍ଷକଗୁଡ଼ିକ ଏଠାରେ ଆସେ।"</string>
+<string name="library_list_empty_headline" formatted="true">"%s ରେ କିଛି ନାହିଁ"</string>
 <string name="library_not_connected">"ସଂଯୁକ୍ତ ନାହିଁ"</string>
 <string name="library_on_device">"ଡିଭାଇସରେ"</string>
+<string name="library_sort_current" formatted="true">"କ୍ରମ: %s"</string>
 <string name="library_sort_not_kept" formatted="true">"%s ଏହା ରଖେ ନାହିଁ"</string>
+<string name="library_sort_supported" formatted="true">"%1$s %3$d ମଧ୍ୟରୁ %2$d ସମର୍ଥନ କରେ"</string>
 <string name="library_source">"ଲାଇବ୍ରେରୀ ଉତ୍ସ"</string>
 <string name="library_source_note">"ଥରକେ ଗୋଟିଏ · ବଦଳାଇଲେ ପୁଣି ଲୋଡ୍ ହୁଏ"</string>
+<string name="library_sync_cached">"କ୍ୟାଶ୍"</string>
+<string name="library_sync_failed" formatted="true">"%1$s ସିଙ୍କ୍ ହୋଇପାରିଲା ନାହିଁ। ଏଗୁଡ଼ିକ %2$s ପୂର୍ବର।"</string>
+<string name="library_sync_offline" formatted="true">"ଅଫଲାଇନ୍ · %s ପୂର୍ବରୁ କ୍ୟାଶ୍"</string>
+<string name="library_sync_retry">"ପୁଣି ସିଙ୍କ୍ କରନ୍ତୁ"</string>
+<string name="library_sync_unreachable" formatted="true">"ପହଞ୍ଚି ହେଉନାହିଁ · %s ପୂର୍ବରୁ କ୍ୟାଶ୍"</string>
 <string name="library_synced_format" formatted="true">"%s ପୂର୍ବରୁ ସିଙ୍କ ହୋଇଛି"</string>
 <string name="live_singular">"ସିଧାପ୍ରସାରଣ"</string>
 <string name="livestreams">"ସିଧାପ୍ରସାରଣ"</string>
@@ -195,9 +209,15 @@
 <string name="search_provider_text_providers">"ପ୍ରଦାତା ଵ୍ୟଵହାର କରି ଖୋଜିବା"</string>
 <string name="search_state_idle_body_desktop">"ଏକ ଶୀର୍ଷକ ଟାଇପ୍ କରନ୍ତୁ। ପ୍ରତ୍ୟେକ ଉତ୍ସ ଉତ୍ତର ଦେଲେ ଫଳାଫଳ ତା ତଳେ ଦେଖାଯିବ।"</string>
 <string name="search_state_no_results_type_filter" formatted="true">"କେବଳ %s। ଆପଣଙ୍କ ପ୍ରକାର ଫିଲ୍ଟର ସନ୍ଧାନକୁ ସଂକୁଚିତ କରୁଛି।"</string>
+<string name="search_state_no_suggestions_detail">"0 ପରାମର୍ଶ · 0 ସାମ୍ପ୍ରତିକ ମେଳ"</string>
+<string name="search_state_no_suggestions_headline" formatted="true">"“%s” ସହ କିଛି ମେଳ ଖାଉନାହିଁ"</string>
+<string name="search_suggestions_return_hint">"Return ସବୁଠି ଖୋଜେ"</string>
 <string name="search_tv_source_failed" formatted="true">"ବିଫଳ %s"</string>
 <string name="search_tv_source_pinned">"ପିନ୍ କରାଯାଇଛି"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"%2$d ମଧ୍ୟରୁ %1$d ସକ୍ରିୟ · ହେଲା ଦବାଇଲେ ପରିବର୍ତ୍ତନ ଲାଗୁ ହେବ"</string>
+<string name="search_tv_suggestion_recent" formatted="true">"ସାମ୍ପ୍ରତିକ · %s"</string>
+<string name="search_tv_suggestion_recent_suggested">"ସାମ୍ପ୍ରତିକ · ପରାମର୍ଶିତ ମଧ୍ୟ"</string>
+<string name="search_tv_suggestion_suggested">"ପରାମର୍ଶିତ"</string>
 <string name="season">"ଋତୁ"</string>
 <string name="season_short">"ଋ"</string>
 <string name="seek_back_10_seconds">"୧୦ ସେକେଣ୍ଡ ପଛକୁ ଯାଅ"</string>

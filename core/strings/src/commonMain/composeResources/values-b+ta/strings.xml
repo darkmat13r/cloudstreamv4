@@ -8,7 +8,11 @@
 <plurals name="downloads_queued"><item quantity="one">%d பதிவிறக்கம் வரிசையில் உள்ளது</item><item quantity="other">%d பதிவிறக்கங்கள் வரிசையில் உள்ளன</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d புக்மார்க்</item><item quantity="other">%d புக்மார்க்குகள்</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d பிரிவை ஏற்ற முடியவில்லை</item><item quantity="other">%d பிரிவுகளை ஏற்ற முடியவில்லை</item></plurals>
+<plurals name="library_title_count"><item quantity="one">%d தலைப்பு</item><item quantity="other">%d தலைப்புகள்</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d மறைக்கப்பட்ட இணைப்பு</item><item quantity="other">%d மறைக்கப்பட்ட இணைப்புகள்</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">%d மூலத்தில் தேடு</item><item quantity="other">அனைத்து %d மூலங்களிலும் தேடு</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">இருந்தாலும் %d மூலத்தில் தேட, விசைப்பலகையின் தேடல் விசையை அழுத்தவும்.</item><item quantity="other">இருந்தாலும் அனைத்து %d மூலங்களிலும் தேட, விசைப்பலகையின் தேடல் விசையை அழுத்தவும்.</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">%d மூலம்</item><item quantity="other">%d மூலங்கள்</item></plurals>
 <string name="account">கணக்கு</string>
 <string name="action_add_to_bookmarks">கடிகார நிலையை அமைக்கவும்</string>
 <string name="action_add_to_favorites">பிடித்தவையில் சேர்</string>
@@ -367,11 +371,21 @@
 <string name="kitsu_settings">கிட்சுவிலிருந்து சுவரொட்டிகளைக் காட்டு</string>
 <string name="legal_notice">மறுப்பு</string>
 <string name="library">நூலகம்</string>
+<string name="library_go_to_list">%s க்குச் செல்</string>
+<string name="library_list_empty_body">நீங்கள் %s இல் சேர்க்கும் தலைப்புகள் இங்கே வரும்.</string>
+<string name="library_list_empty_headline">%s இல் எதுவும் இல்லை</string>
 <string name="library_not_connected">இணைக்கப்படவில்லை</string>
 <string name="library_on_device">சாதனத்தில்</string>
+<string name="library_sort_current">வரிசை: %s</string>
 <string name="library_sort_not_kept">%s இதை வைத்திருக்காது</string>
+<string name="library_sort_supported">%1$s %3$d இல் %2$d ஐ ஆதரிக்கிறது</string>
 <string name="library_source">நூலக மூலம்</string>
 <string name="library_source_note">ஒரு நேரத்தில் ஒன்று · மாற்றினால் மீண்டும் ஏற்றும்</string>
+<string name="library_sync_cached">தேக்கியது</string>
+<string name="library_sync_failed">%1$s ஐ ஒத்திசைக்க முடியவில்லை. இவை %2$s முன்பு உள்ளவை.</string>
+<string name="library_sync_offline">ஆஃப்லைன் · %s முன்பு தேக்கியது</string>
+<string name="library_sync_retry">மீண்டும் ஒத்திசை</string>
+<string name="library_sync_unreachable">அணுக முடியவில்லை · %s முன்பு தேக்கியது</string>
 <string name="library_synced_format">%s முன்பு ஒத்திசைக்கப்பட்டது</string>
 <string name="lightnovel">அதே தேவ்சின் ஒளி நாவல் பயன்பாடு</string>
 <string name="limit_title">வீடியோ பிளேயர் தலைப்பு மேக்ச் சார்ச்</string>
@@ -614,11 +628,17 @@
 <string name="search_provider_text_types">வகைகளைப் பயன்படுத்தி தேடுங்கள்</string>
 <string name="search_state_idle_body_desktop">ஒரு தலைப்பைத் தட்டச்சு செய்யவும். ஒவ்வொரு மூலமும் பதிலளிக்கும்போது முடிவுகள் அதன் கீழ் தோன்றும்.</string>
 <string name="search_state_no_results_type_filter">%s மட்டும். உங்கள் வகை வடிப்பான் தேடலைக் குறுக்குகிறது.</string>
+<string name="search_state_no_suggestions_detail">0 பரிந்துரைகள் · 0 சமீபத்திய பொருத்தங்கள்</string>
+<string name="search_state_no_suggestions_headline">“%s” உடன் எதுவும் பொருந்தவில்லை</string>
 <string name="search_suggestions">தேடல் பரிந்துரைகள்</string>
 <string name="search_suggestions_des">தட்டச்சு செய்யும் போது தேடல் பரிந்துரைகளைக் காட்டு</string>
+<string name="search_suggestions_return_hint">Return எல்லாவற்றிலும் தேடும்</string>
 <string name="search_tv_source_failed">தோல்வி %s</string>
 <string name="search_tv_source_pinned">பின் செய்யப்பட்டது</string>
 <string name="search_tv_sources_panel_meta">%2$d இல் %1$d இயக்கப்பட்டது · முடிந்தது அழுத்தியதும் மாற்றங்கள் பொருந்தும்</string>
+<string name="search_tv_suggestion_recent">சமீபத்தியது · %s</string>
+<string name="search_tv_suggestion_recent_suggested">சமீபத்தியது · பரிந்துரைக்கப்பட்டதும்</string>
+<string name="search_tv_suggestion_suggested">பரிந்துரைக்கப்பட்டது</string>
 <string name="season">பருவம்</string>
 <string name="season_format">%1$s %2$d %3$s</string>
 <string name="season_short">கள்</string>

@@ -4,6 +4,10 @@
 <plurals name="downloads_failed_count"><item quantity="one">"%d mislyktes"</item><item quantity="other">"%d mislyktes"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d BOKMERKE"</item><item quantity="other">"%d BOKMERKER"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d del kunne ikke lastes inn"</item><item quantity="other">"%d deler kunne ikke lastes inn"</item></plurals>
+<plurals name="library_title_count"><item quantity="one">"%d tittel"</item><item quantity="other">"%d titler"</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">"Søk i %d kilde"</item><item quantity="other">"Søk i alle %d kilder"</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">"Trykk på søketasten på tastaturet for å søke i %d kilde likevel."</item><item quantity="other">"Trykk på søketasten på tastaturet for å søke i alle %d kilder likevel."</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">"%d KILDE"</item><item quantity="other">"%d KILDER"</item></plurals>
 <string name="account">"konto"</string>
 <string name="action_add_to_bookmarks">"Sett visningsstatus"</string>
 <string name="action_default">"Misligholde"</string>
@@ -265,11 +269,21 @@
 <string name="jsdelivr_proxy_summary">"Omgår blokkering av GitHub ved hjelp av jsDelivr. Dette kan forårsake forsinkelser på oppdateringer med noen få dager."</string>
 <string name="kitsu_settings">"Vis plakater fra Kitsu"</string>
 <string name="library">"Bibliotek"</string>
+<string name="library_go_to_list" formatted="true">"Gå til %s"</string>
+<string name="library_list_empty_body" formatted="true">"Titler du legger til i %s, havner her."</string>
+<string name="library_list_empty_headline" formatted="true">"Ingenting i %s"</string>
 <string name="library_not_connected">"Ikke tilkoblet"</string>
 <string name="library_on_device">"På enheten"</string>
+<string name="library_sort_current" formatted="true">"Sortering: %s"</string>
 <string name="library_sort_not_kept" formatted="true">"Ikke lagret av %s"</string>
+<string name="library_sort_supported" formatted="true">"%1$s støtter %2$d av %3$d"</string>
 <string name="library_source">"Bibliotekkilde"</string>
 <string name="library_source_note">"Én om gangen · bytte laster inn på nytt"</string>
+<string name="library_sync_cached">"Mellomlagret"</string>
+<string name="library_sync_failed" formatted="true">"Kunne ikke synkronisere %1$s. Disse er fra for %2$s siden."</string>
+<string name="library_sync_offline" formatted="true">"Frakoblet · mellomlagret for %s siden"</string>
+<string name="library_sync_retry">"Synkroniser på nytt"</string>
+<string name="library_sync_unreachable" formatted="true">"Utilgjengelig · mellomlagret for %s siden"</string>
 <string name="library_synced_format" formatted="true">"Synkronisert for %s siden"</string>
 <string name="lightnovel">"Light novel app av samme devs"</string>
 <string name="limit_title">"Maks. antall tegn for navn i videospiller"</string>
@@ -450,9 +464,15 @@
 <string name="search_provider_text_types">"Søk med typer"</string>
 <string name="search_state_idle_body_desktop">"Skriv inn en tittel. Resultatene vises under hver kilde når den svarer."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"Bare %s. Typefilteret ditt begrenser søket."</string>
+<string name="search_state_no_suggestions_detail">"0 FORSLAG · 0 NYLIGE TREFF"</string>
+<string name="search_state_no_suggestions_headline" formatted="true">"Ingenting samsvarer med «%s»"</string>
+<string name="search_suggestions_return_hint">"Return søker overalt"</string>
 <string name="search_tv_source_failed" formatted="true">"FEILET %s"</string>
 <string name="search_tv_source_pinned">"FESTET"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"%1$d AV %2$d AKTIVERT · ENDRINGER GJELDER ETTER FERDIG"</string>
+<string name="search_tv_suggestion_recent" formatted="true">"NYLIG · %s"</string>
+<string name="search_tv_suggestion_recent_suggested">"NYLIG · OGSÅ FORESLÅTT"</string>
+<string name="search_tv_suggestion_suggested">"FORESLÅTT"</string>
 <string name="season">"Sesong"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"S"</string>

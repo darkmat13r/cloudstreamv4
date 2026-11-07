@@ -6,7 +6,11 @@
 <plurals name="downloads_queued"><item quantity="other">"队列中有 %d 个下载"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="other">"%d 个书签"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">"%d 个分区加载失败"</item></plurals>
+<plurals name="library_title_count"><item quantity="other">"%d 部作品"</item></plurals>
 <plurals name="links_hidden"><item quantity="other">"%d 条隐藏链接"</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="other">"搜索全部 %d 个来源"</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="other">"按键盘上的搜索键，仍然搜索全部 %d 个来源。"</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="other">"%d 来源"</item></plurals>
 <string name="account">"账户"</string>
 <string name="action_add_to_bookmarks">"设置观看状态"</string>
 <string name="action_add_to_favorites">"添加到收藏夹"</string>
@@ -367,11 +371,21 @@
 <string name="kitsu_settings">"显示来自 Kitsu 的封面"</string>
 <string name="legal_notice">"免责声明"</string>
 <string name="library">"库"</string>
+<string name="library_go_to_list" formatted="true">"前往“%s”"</string>
+<string name="library_list_empty_body" formatted="true">"你添加到“%s”的作品会显示在这里。"</string>
+<string name="library_list_empty_headline" formatted="true">"“%s”中没有内容"</string>
 <string name="library_not_connected">"未连接"</string>
 <string name="library_on_device">"本机"</string>
+<string name="library_sort_current" formatted="true">"排序：%s"</string>
 <string name="library_sort_not_kept" formatted="true">"%s 不保存此项"</string>
+<string name="library_sort_supported" formatted="true">"%1$s 支持 %3$d 项中的 %2$d 项"</string>
 <string name="library_source">"媒体库来源"</string>
 <string name="library_source_note">"一次一个 · 切换会重新加载"</string>
+<string name="library_sync_cached">"已缓存"</string>
+<string name="library_sync_failed" formatted="true">"无法同步 %1$s。这些是 %2$s 前的内容。"</string>
+<string name="library_sync_offline" formatted="true">"离线 · %s 前的缓存"</string>
+<string name="library_sync_retry">"重新同步"</string>
+<string name="library_sync_unreachable" formatted="true">"无法连接 · %s 前的缓存"</string>
 <string name="library_synced_format" formatted="true">"%s前已同步"</string>
 <string name="lightnovel">"由相同开发者开发的轻小说应用"</string>
 <string name="limit_title">"视频播放器标题最多字符"</string>
@@ -614,11 +628,17 @@
 <string name="search_provider_text_types">"按类型搜索"</string>
 <string name="search_state_idle_body_desktop">"输入标题。每个来源响应后，结果会显示在其下方。"</string>
 <string name="search_state_no_results_type_filter" formatted="true">"仅限%s。类型筛选正在缩小搜索范围。"</string>
+<string name="search_state_no_suggestions_detail">"0 个建议 · 0 个最近匹配"</string>
+<string name="search_state_no_suggestions_headline" formatted="true">"没有与“%s”匹配的内容"</string>
 <string name="search_suggestions">"搜索建议"</string>
 <string name="search_suggestions_des">"输入时显示搜索建议"</string>
+<string name="search_suggestions_return_hint">"按 Return 搜索全部"</string>
 <string name="search_tv_source_failed" formatted="true">"失败 %s"</string>
 <string name="search_tv_source_pinned">"已置顶"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"已启用 %1$d / %2$d · 更改将在点击完成后生效"</string>
+<string name="search_tv_suggestion_recent" formatted="true">"最近 · %s"</string>
+<string name="search_tv_suggestion_recent_suggested">"最近 · 也是建议"</string>
+<string name="search_tv_suggestion_suggested">"建议"</string>
 <string name="season">"季"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"S"</string>

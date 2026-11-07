@@ -4,6 +4,10 @@
 <plurals name="downloads_failed_count"><item quantity="one">"%d malsukcesis"</item><item quantity="other">"%d malsukcesis"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d LEGOSIGNO"</item><item quantity="other">"%d LEGOSIGNOJ"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d sekcio ne ŝargiĝis"</item><item quantity="other">"%d sekcioj ne ŝargiĝis"</item></plurals>
+<plurals name="library_title_count"><item quantity="one">"%d titolo"</item><item quantity="other">"%d titoloj"</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">"Serĉi en %d fonto"</item><item quantity="other">"Serĉi en ĉiuj %d fontoj"</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">"Premu la serĉoklavon de la klavaro por tamen serĉi en %d fonto."</item><item quantity="other">"Premu la serĉoklavon de la klavaro por tamen serĉi en ĉiuj %d fontoj."</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">"%d FONTO"</item><item quantity="other">"%d FONTOJ"</item></plurals>
 <string name="account">"konto"</string>
 <string name="action_open_play">@string/home_play</string>
 <string name="action_open_watching">"Pli da informoj"</string>
@@ -140,11 +144,21 @@
 <string name="home_play">"Spekti"</string>
 <string name="home_search_only_body">"Neniu el viaj kromprogramoj havas hejmpaĝon, sed vi ankoraŭ povas serĉi en ili."</string>
 <string name="home_source_none_subtitle">"NENIUJ VICOJ · VIAJ VICOJ RESTAS"</string>
+<string name="library_go_to_list" formatted="true">"Iri al %s"</string>
+<string name="library_list_empty_body" formatted="true">"Titoloj, kiujn vi aldonas al %s, aperas ĉi tie."</string>
+<string name="library_list_empty_headline" formatted="true">"Nenio en %s"</string>
 <string name="library_not_connected">"Ne konektita"</string>
 <string name="library_on_device">"En aparato"</string>
+<string name="library_sort_current" formatted="true">"Ordigo: %s"</string>
 <string name="library_sort_not_kept" formatted="true">"%s ne konservas tion"</string>
+<string name="library_sort_supported" formatted="true">"%1$s subtenas %2$d el %3$d"</string>
 <string name="library_source">"Fonto de biblioteko"</string>
 <string name="library_source_note">"Po unu · ŝanĝo reŝargas"</string>
+<string name="library_sync_cached">"Kaŝmemorita"</string>
+<string name="library_sync_failed" formatted="true">"Ne eblis sinkronigi %1$s. Ĉi tiuj estas de antaŭ %2$s."</string>
+<string name="library_sync_offline" formatted="true">"Senkonekte · kaŝmemorita antaŭ %s"</string>
+<string name="library_sync_retry">"Resinkronigi"</string>
+<string name="library_sync_unreachable" formatted="true">"Neatingebla · kaŝmemorita antaŭ %s"</string>
 <string name="library_synced_format" formatted="true">"Sinkronigita antaŭ %s"</string>
 <string name="load_more">"Ŝargi pli"</string>
 <string name="loading">"Ŝarĝante…"</string>
@@ -217,10 +231,16 @@
 <string name="search_provider_text_types">"Serĉi uzante tipojn"</string>
 <string name="search_state_idle_body_desktop">"Tajpu titolon. Rezultoj aperas sub ĉiu fonto kiam ĝi respondas."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"Nur %s. Via tipfiltrilo mallarĝigas la serĉon."</string>
+<string name="search_state_no_suggestions_detail">"0 SUGESTOJ · 0 LASTATEMPAJ KONGRUOJ"</string>
+<string name="search_state_no_suggestions_headline" formatted="true">"Nenio kongruas kun “%s”"</string>
 <string name="search_suggestions">"Serĉaj Sugestoj"</string>
+<string name="search_suggestions_return_hint">"Enigo serĉas ĉie"</string>
 <string name="search_tv_source_failed" formatted="true">"MALSUKCESIS %s"</string>
 <string name="search_tv_source_pinned">"FIKSITA"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"%1$d EL %2$d ŜALTITAJ · ŜANĜOJ APLIKIĜAS PER FARITE"</string>
+<string name="search_tv_suggestion_recent" formatted="true">"LASTATEMPA · %s"</string>
+<string name="search_tv_suggestion_recent_suggested">"LASTATEMPA · ANKAŬ SUGESTITA"</string>
+<string name="search_tv_suggestion_suggested">"SUGESTITA"</string>
 <string name="season">"Sezono"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"S"</string>

@@ -8,6 +8,10 @@
 <plurals name="downloads_queued"><item quantity="other">%d 다운로드</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="other">북마크 %d개</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">섹션 %d개를 불러오지 못했습니다</item></plurals>
+<plurals name="library_title_count"><item quantity="other">%d개 작품</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="other">소스 %d개 모두 검색</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="other">그래도 소스 %d개를 모두 검색하려면 키보드의 검색 키를 누르세요.</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="other">%d 소스</item></plurals>
 <string name="account">계정</string>
 <string name="action_add_to_bookmarks">시청 상태 설정</string>
 <string name="action_add_to_favorites">즐겨찾기에 추가</string>
@@ -366,11 +370,21 @@
 <string name="kitsu_settings">Kitsu에서 포스터 가져오기</string>
 <string name="legal_notice">거부</string>
 <string name="library">라이브러리</string>
+<string name="library_go_to_list">%s(으)로 이동</string>
+<string name="library_list_empty_body">%s에 추가한 작품이 여기에 표시됩니다.</string>
+<string name="library_list_empty_headline">%s에 항목 없음</string>
 <string name="library_not_connected">연결되지 않음</string>
 <string name="library_on_device">기기에 저장됨</string>
+<string name="library_sort_current">정렬: %s</string>
 <string name="library_sort_not_kept">%s에는 저장되지 않음</string>
+<string name="library_sort_supported">%1$s은(는) %3$d개 중 %2$d개 지원</string>
 <string name="library_source">라이브러리 소스</string>
 <string name="library_source_note">한 번에 하나 · 전환하면 다시 불러옴</string>
+<string name="library_sync_cached">캐시됨</string>
+<string name="library_sync_failed">%1$s을(를) 동기화하지 못했습니다. %2$s 전 데이터입니다.</string>
+<string name="library_sync_offline">오프라인 · %s 전 캐시</string>
+<string name="library_sync_retry">다시 동기화</string>
+<string name="library_sync_unreachable">연결할 수 없음 · %s 전 캐시</string>
 <string name="library_synced_format">%s 전에 동기화됨</string>
 <string name="lightnovel">같은 개발자가 만든 라이트 노벨 앱</string>
 <string name="limit_title">플레이어 내 표시 제목의 최대 글자 수</string>
@@ -610,11 +624,17 @@
 <string name="search_provider_text_types">유형을 사용하여 검색</string>
 <string name="search_state_idle_body_desktop">제목을 입력하세요. 각 소스가 응답하면 그 아래에 결과가 표시됩니다.</string>
 <string name="search_state_no_results_type_filter">%s만. 유형 필터가 검색을 좁히고 있습니다.</string>
+<string name="search_state_no_suggestions_detail">추천 0개 · 최근 일치 0개</string>
+<string name="search_state_no_suggestions_headline">“%s”와(과) 일치하는 항목이 없습니다</string>
 <string name="search_suggestions">검색어 제안</string>
 <string name="search_suggestions_des">입력하는 동안 검색어 제안 표시</string>
+<string name="search_suggestions_return_hint">Return으로 전체 검색</string>
 <string name="search_tv_source_failed">실패 %s</string>
 <string name="search_tv_source_pinned">고정됨</string>
 <string name="search_tv_sources_panel_meta">%2$d개 중 %1$d개 사용 중 · 변경 사항은 완료를 누르면 적용됩니다</string>
+<string name="search_tv_suggestion_recent">최근 · %s</string>
+<string name="search_tv_suggestion_recent_suggested">최근 · 추천 항목</string>
+<string name="search_tv_suggestion_suggested">추천</string>
 <string name="season">시즌</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">시즌</string>

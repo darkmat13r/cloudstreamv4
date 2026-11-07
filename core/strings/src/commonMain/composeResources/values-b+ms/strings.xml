@@ -6,6 +6,10 @@
 <plurals name="downloads_failed_count"><item quantity="other">%d gagal</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="other">%d PENANDA HALAMAN</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">%d bahagian gagal dimuatkan</item></plurals>
+<plurals name="library_title_count"><item quantity="other">%d tajuk</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="other">Cari dalam semua %d sumber</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="other">Tekan kekunci carian papan kekunci untuk tetap mencari dalam semua %d sumber.</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="other">%d SUMBER</item></plurals>
 <string name="account">akaun</string>
 <string name="action_add_to_bookmarks">Tetapkan status tontonan</string>
 <string name="action_add_to_favorites">Tambah ke kegemaran</string>
@@ -299,11 +303,21 @@
 <string name="kitsu_settings">Tunjuk poster dari Kitsu</string>
 <string name="legal_notice">Penafian</string>
 <string name="library">Perpustakaan</string>
+<string name="library_go_to_list">Pergi ke %s</string>
+<string name="library_list_empty_body">Tajuk yang anda tambah ke %s muncul di sini.</string>
+<string name="library_list_empty_headline">Tiada apa-apa dalam %s</string>
 <string name="library_not_connected">Tidak disambungkan</string>
 <string name="library_on_device">Pada peranti</string>
+<string name="library_sort_current">Isih: %s</string>
 <string name="library_sort_not_kept">Tidak disimpan oleh %s</string>
+<string name="library_sort_supported">%1$s menyokong %2$d daripada %3$d</string>
 <string name="library_source">Sumber perpustakaan</string>
 <string name="library_source_note">Satu demi satu · menukar memuat semula</string>
+<string name="library_sync_cached">Dicache</string>
+<string name="library_sync_failed">Tidak dapat menyegerakkan %1$s. Ini dari %2$s yang lalu.</string>
+<string name="library_sync_offline">Luar talian · dicache %s yang lalu</string>
+<string name="library_sync_retry">Segerak semula</string>
+<string name="library_sync_unreachable">Tidak dapat dicapai · dicache %s yang lalu</string>
 <string name="library_synced_format">Disegerakkan %s lalu</string>
 <string name="lightnovel">Aplikasi Light novel oleh pembangun sama</string>
 <string name="limit_title">char maximum tajuk pemain video</string>
@@ -488,9 +502,15 @@
 <string name="search_provider_text_types">Carian mengikut jenis</string>
 <string name="search_state_idle_body_desktop">Taip tajuk. Hasil muncul di bawah setiap sumber apabila ia menjawab.</string>
 <string name="search_state_no_results_type_filter">Hanya %s. Penapis jenis anda mengecilkan carian.</string>
+<string name="search_state_no_suggestions_detail">0 CADANGAN · 0 PADANAN TERKINI</string>
+<string name="search_state_no_suggestions_headline">Tiada yang sepadan dengan “%s”</string>
+<string name="search_suggestions_return_hint">Return mencari semua</string>
 <string name="search_tv_source_failed">GAGAL %s</string>
 <string name="search_tv_source_pinned">DISEMATKAN</string>
 <string name="search_tv_sources_panel_meta">%1$d DARIPADA %2$d DIDAYAKAN · PERUBAHAN DIGUNAKAN SELEPAS TAMAT</string>
+<string name="search_tv_suggestion_recent">TERKINI · %s</string>
+<string name="search_tv_suggestion_recent_suggested">TERKINI · JUGA DICADANGKAN</string>
+<string name="search_tv_suggestion_suggested">DICADANGKAN</string>
 <string name="season">Musim</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">S</string>

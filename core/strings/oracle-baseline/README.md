@@ -120,24 +120,74 @@ appears for all 87 requests, 2,349 cells. `report.txt` moved only in its counts:
 keys 789 -> 816, and 27 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
 `ANDROID_FALLBACK` at 172.** `expectedOwn` 33,005 -> 34,679.
 
-## Nineteenth move, 2026-11-07 — `KMP-50`, 1 new key for the TV library's sort
+## On a stacked branch, 2026-11-07 — `KMP-51` over `#196` and `#195`: `KMP-50`'s 1 key on `#196`'s baseline
 
-New keys are approved in general (`I18N-09`, above). Additive: `library_sort_not_kept` ("Not kept by %s"), authored in all
-62 directories, not a plural. The sort's other words are the app's own eight `sort_*` labels. Regenerated from the live
-generator on master's baseline with the eighteenth move (train 1) in it, and measured by whole-line set difference twice
-over, a multiset in Python and `sort | comm`: 0 lines lost in any file, and every added line names the key.
+Not a move of its own. `KMP-51` adds no keys: it uses `#196`'s four `library_sync_*` keys, merged in from `#196`'s branch
+so they exist once. It is stacked on `#195` (`KMP-50`), which master does not have yet, so this baseline is `#196`'s
+with `#195`'s one key, `library_sort_not_kept`, on top. Regenerated from the live generator, and measured against
+`#196`'s baseline by whole-line set difference twice over, a multiset in Python and `sort | comm`: 0 lines lost, and
+every added line names that key.
 
 | file | before | after | added | changed | lost |
 |---|---|---|---|---|---|
-| `decoded.tsv` | 38,814 | 38,876 | 62 | 0 | 0 |
-| `emitted.tsv` | 40,923 | 40,987 | 64 | 0 | 0 |
-| `lookup.tsv` | 77,865 | 77,952 | 87 | 0 | 0 |
+| `decoded.tsv` | 40,406 | 40,468 | 62 | 0 | 0 |
+| `emitted.tsv` | 42,563 | 42,627 | 64 | 0 | 0 |
+| `lookup.tsv` | 80,041 | 80,128 | 87 | 0 | 0 |
 | `requests.tsv` | 87 | 87 | 0 | 0 | 0 |
 | `findings.tsv` | 0 | 0 | 0 | 0 | 0 |
 
-`decoded` +62 = 1 x 62; `emitted` +64 = 1 x 64 (the two locale copies); `lookup` +87 = 1 x 87 requests. `report.txt` moved
-only in its counts: `OWN` 38,324 -> 38,386, visible keys 882 -> 883, and 1 more value in each of the two locale copies.
-**`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at 173.** `expectedOwn` 38,324 -> 38,386.
+`OWN` 39,564 -> 39,626, visible keys 902 -> 903. **`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at 173.**
+`expectedOwn` 39,564 -> 39,626. The train that merges `#195`, `#196` and this regenerates once and records the move.
+
+## Next move after the nineteenth, 2026-11-07 — `I18N-15`, 12 new keys for Search and Library (`DS-22`)
+
+New keys are approved in general (`I18N-09`). The words the `DS-22` boards use that had no key, for `KMP-56` (Search) and
+`KMP-57` (Library), authored in all 62 directories. Captured from the live generator with `--rerun-tasks
+-Pcloudstream.strings.guards=fail` on master after the nineteenth. Its ordinal is left to the train: other open moves branch
+from the same baseline, and whichever lands later is redone from the live generator, as the sixteenth was.
+
+| file | before | after | added | changed | lost |
+|---|---|---|---|---|---|
+| `decoded.tsv` | 39,574 | 40,406 | 832 | 0 | 0 |
+| `emitted.tsv` | 41,705 | 42,563 | 858 | 0 | 0 |
+| `lookup.tsv` | 78,888 | 80,041 | 1,153 | 0 | 0 |
+| `requests.tsv` | 87 | 87 | 0 | 0 | 0 |
+| `findings.tsv` | 0 | 0 | 0 | 0 | 0 |
+
+Measured by whole-line multiset difference: 0 lines lost in any file, every added line names one of the twelve keys, and
+removing the added lines gives the old file in the same order. Each key appears for all 87 requests (the plural
+`library_title_count` once per category, 196 cells). `report.txt` moved only in its counts: `OWN` 38,820 -> 39,564 (744),
+visible keys 890 -> 902 (plurals 15 -> 16), and twelve more values in each locale copy. **`REFERENCE_IN_LOCALE` stayed at
+500 and `ANDROID_FALLBACK` at 173.** `expectedOwn` 38,820 -> 39,564.
+
+## Nineteenth move, 2026-11-07 — Train 2 (`#173`, `#182`, `#180`), one move: `KMP-47`'s 8 new keys for TV search's suggestions
+
+One combined baseline move for the train that merges `#173` (`KMP-47`), `#182` (`BUG-42`) and `#180` (`KMP-53`) together.
+Only `#173` adds strings; `#182` and `#180` add none, and the regenerated oracle confirms that. `#173` recorded its keys as
+its own sixteenth move and its review's reword of `search_state_no_suggestions_detail` (now `0 SUGGESTIONS · 0 RECENT
+MATCHES` in all 62 directories) as its seventeenth, both branched from master's fifteenth. Master's sixteenth to eighteenth
+landed first, so the train regenerated once from the live generator on master's baseline with the eighteenth in it, and the
+whole of `#173` is recorded here as one move.
+
+New keys are approved in general (`I18N-09`, above). Additive, all eight authored in all 62 directories; three are plurals
+(`search_state_no_suggestions_action`, `search_state_no_suggestions_body`, `search_tv_suggestion_sources`), whose categories
+follow each locale's own other plurals. The other five are `search_state_no_suggestions_detail`,
+`search_state_no_suggestions_headline`, `search_tv_suggestion_recent`, `search_tv_suggestion_recent_suggested` and
+`search_tv_suggestion_suggested`.
+
+| file | before | after | added | changed | lost |
+|---|---|---|---|---|---|
+| `decoded.tsv` | 38,814 | 39,574 | 760 | 0 | 0 |
+| `emitted.tsv` | 40,923 | 41,705 | 782 | 0 | 0 |
+| `lookup.tsv` | 77,865 | 78,888 | 1,023 | 0 | 0 |
+| `requests.tsv` | 87 | 87 | 0 | 0 | 0 |
+| `findings.tsv` | 0 | 0 | 0 | 0 | 0 |
+
+Measured against master's baseline by whole-line set difference twice over, a multiset in Python and `sort | comm`:
+0 lines lost in any file, and every added line names one of the eight keys, all eight present. These are the additions `#173`
+measured on its own branch (760, 782, 1,023). `report.txt` moved only in its counts: `OWN` 38,324 -> 38,820 (8 x 62), visible
+keys 882 -> 890, plurals 12 -> 15, and 8 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500
+and `ANDROID_FALLBACK` at 173.** `expectedOwn` 38,324 -> 38,820.
 
 ## Eighteenth move, 2026-11-07 — Train 1 (`#170`, `#174`, `#175`), one move: `KMP-49`'s 6 new keys for the TV library's sources
 

@@ -6,6 +6,10 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d neúspešné</item><item quantity="few">%d neúspešné</item><item quantity="many">%d neúspešných</item><item quantity="other">%d neúspešných</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ZÁLOŽKA</item><item quantity="few">%d ZÁLOŽKY</item><item quantity="many">%d ZÁLOŽKY</item><item quantity="other">%d ZÁLOŽIEK</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Nepodarilo sa načítať %d sekciu</item><item quantity="few">Nepodarilo sa načítať %d sekcie</item><item quantity="many">Nepodarilo sa načítať %d sekcií</item><item quantity="other">Nepodarilo sa načítať %d sekcií</item></plurals>
+<plurals name="library_title_count"><item quantity="one">%d titul</item><item quantity="few">%d tituly</item><item quantity="many">%d titulu</item><item quantity="other">%d titulov</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">Hľadať v %d zdroji</item><item quantity="few">Hľadať vo všetkých %d zdrojoch</item><item quantity="many">Hľadať vo všetkých %d zdrojoch</item><item quantity="other">Hľadať vo všetkých %d zdrojoch</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">Stlačte na klávesnici kláves vyhľadávania a aj tak prehľadajte %d zdroj.</item><item quantity="few">Stlačte na klávesnici kláves vyhľadávania a aj tak prehľadajte všetky %d zdroje.</item><item quantity="many">Stlačte na klávesnici kláves vyhľadávania a aj tak prehľadajte všetkých %d zdrojov.</item><item quantity="other">Stlačte na klávesnici kláves vyhľadávania a aj tak prehľadajte všetkých %d zdrojov.</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">%d ZDROJ</item><item quantity="few">%d ZDROJE</item><item quantity="many">%d ZDROJA</item><item quantity="other">%d ZDROJOV</item></plurals>
 <string name="account">účet</string>
 <string name="action_add_to_bookmarks">Nastaviť stav sledovania</string>
 <string name="action_default">Predvolené</string>
@@ -258,11 +262,21 @@
 <string name="kitsu_settings">Zobraziť plagáty z Kitsu</string>
 <string name="legal_notice">Vylúčenie zodpovednosti</string>
 <string name="library">Knižnica</string>
+<string name="library_go_to_list">Prejsť na %s</string>
+<string name="library_list_empty_body">Sem pribúdajú tituly, ktoré pridáte do zoznamu %s.</string>
+<string name="library_list_empty_headline">V zozname %s nič nie je</string>
 <string name="library_not_connected">Nepripojené</string>
 <string name="library_on_device">V zariadení</string>
+<string name="library_sort_current">Zoradenie: %s</string>
 <string name="library_sort_not_kept">%s toto neuchováva</string>
+<string name="library_sort_supported">%1$s podporuje %2$d z %3$d</string>
 <string name="library_source">Zdroj knižnice</string>
 <string name="library_source_note">Jeden naraz · prepnutie znova načíta</string>
+<string name="library_sync_cached">Z vyrovnávacej pamäte</string>
+<string name="library_sync_failed">%1$s sa nepodarilo synchronizovať. Sú to údaje spred %2$s.</string>
+<string name="library_sync_offline">Offline · vo vyrovnávacej pamäti spred %s</string>
+<string name="library_sync_retry">Znova synchronizovať</string>
+<string name="library_sync_unreachable">Nedostupné · vo vyrovnávacej pamäti spred %s</string>
 <string name="library_synced_format">Synchronizované pred %s</string>
 <string name="lightnovel">Nenáročná aplikácia pre romány od rovnakých vývojárov</string>
 <string name="limit_title">Maximálny počet znakov v názve prehrávača</string>
@@ -434,11 +448,17 @@
 <string name="search_provider_text_types">Hľadať pomocou typov</string>
 <string name="search_state_idle_body_desktop">Zadajte názov. Výsledky sa zobrazia pod každým zdrojom, keď odpovie.</string>
 <string name="search_state_no_results_type_filter">Iba %s. Filter typov zužuje hľadanie.</string>
+<string name="search_state_no_suggestions_detail">0 NÁVRHOV · 0 NEDÁVNYCH ZHÔD</string>
+<string name="search_state_no_suggestions_headline">Nič nezodpovedá „%s“</string>
 <string name="search_suggestions">Návrhy vyhľadávania</string>
 <string name="search_suggestions_des">Zobraziť návrhy vyhľadávania pri písaní</string>
+<string name="search_suggestions_return_hint">Return hľadá všade</string>
 <string name="search_tv_source_failed">ZLYHALO %s</string>
 <string name="search_tv_source_pinned">PRIPNUTÉ</string>
 <string name="search_tv_sources_panel_meta">%1$d Z %2$d ZAPNUTÝCH · ZMENY SA UPLATNIA PO STLAČENÍ HOTOVO</string>
+<string name="search_tv_suggestion_recent">NEDÁVNE · %s</string>
+<string name="search_tv_suggestion_recent_suggested">NEDÁVNE · TIEŽ NAVRHNUTÉ</string>
+<string name="search_tv_suggestion_suggested">NAVRHNUTÉ</string>
 <string name="season">Sezóna</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">S</string>

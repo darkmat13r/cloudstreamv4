@@ -1762,3 +1762,16 @@ bytecode), instead of deleting it and making another at the same path. The same 
 
 **After both fixes,** the test below ran 300 rounds with every check on: each round ended failed with its file kept, the bytes read back equal
 to `bytesWritten`, and every byte right. The log had 0 `ENOENT` and 0 `UNIQUE constraint` lines.
+
+## BUG-42 — The player's previous episode plays the next one · **medium** · measured 2026-11-07
+
+**Status:** fixed in pr · found 2026-11-07 while building `KMP-64`'s HUD, whose previous-episode cell calls it ·
+`app/.../ui/player/PlayerGeneratorViewModel.kt`, `loadLinksPrev`
+
+`loadLinksPrev` checked `generator.hasPrev(episodeIndex)` and then did `episodeIndex += 1`, the same step as
+`loadLinksNext`. So from any episode but the first, "previous" loaded the next episode; from the last it would step
+past the end of the list (read from the code, not run). The fix is `-= 1`.
+
+**Test:** `PreviousEpisodeTest` (`:app` device, 3), on a fake generator of three episodes that asks nobody for links:
+previous from the second lands on the first, previous from the first stays, and next from the second still lands on
+the third. The first failed on the old code, measured before the fix.

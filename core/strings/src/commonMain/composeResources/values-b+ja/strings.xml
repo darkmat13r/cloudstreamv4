@@ -8,7 +8,11 @@
 <plurals name="downloads_queued"><item quantity="other">%d 件が待機中</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="other">%d 件のブックマーク</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">%d 件のセクションを読み込めませんでした</item></plurals>
+<plurals name="library_title_count"><item quantity="other">%d 作品</item></plurals>
 <plurals name="links_hidden"><item quantity="other">%d件の非表示リンク</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="other">全 %d ソースを検索</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="other">それでも全 %d ソースを検索するには、キーボードの検索キーを押してください。</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="other">%d ソース</item></plurals>
 <string name="account">アカウント</string>
 <string name="action_add_to_bookmarks">視聴状態を設定</string>
 <string name="action_add_to_favorites">お気に入りに追加</string>
@@ -367,11 +371,21 @@
 <string name="kitsu_settings">Kitsuのポスターを表示</string>
 <string name="legal_notice">免責</string>
 <string name="library">ライブラリ</string>
+<string name="library_go_to_list">「%s」へ</string>
+<string name="library_list_empty_body">「%s」に追加した作品がここに表示されます。</string>
+<string name="library_list_empty_headline">「%s」には何もありません</string>
 <string name="library_not_connected">未接続</string>
 <string name="library_on_device">このデバイス</string>
+<string name="library_sort_current">並べ替え：%s</string>
 <string name="library_sort_not_kept">%sには保存されません</string>
+<string name="library_sort_supported">%1$s は %3$d 項目中 %2$d 項目に対応</string>
 <string name="library_source">ライブラリのソース</string>
 <string name="library_source_note">一度に1つ · 切り替えると再読み込み</string>
+<string name="library_sync_cached">キャッシュ</string>
+<string name="library_sync_failed">%1$s を同期できませんでした。%2$s 前のデータです。</string>
+<string name="library_sync_offline">オフライン · %s 前のキャッシュ</string>
+<string name="library_sync_retry">再同期</string>
+<string name="library_sync_unreachable">接続できません · %s 前のキャッシュ</string>
 <string name="library_synced_format">%s前に同期</string>
 <string name="lightnovel">同じ開発者によるライトノベルアプリ</string>
 <string name="limit_title">ビデオプレーヤーのタイトル最大文字数</string>
@@ -614,11 +628,17 @@
 <string name="search_provider_text_types">使用タイプの検索</string>
 <string name="search_state_idle_body_desktop">タイトルを入力してください。各ソースが応答すると、その下に結果が表示されます。</string>
 <string name="search_state_no_results_type_filter">%sのみ。種類フィルターで検索が絞り込まれています。</string>
+<string name="search_state_no_suggestions_detail">候補 0 件 · 最近の一致 0 件</string>
+<string name="search_state_no_suggestions_headline">「%s」に一致するものはありません</string>
 <string name="search_suggestions">検索候補</string>
 <string name="search_suggestions_des">入力中に検索候補を表示する</string>
+<string name="search_suggestions_return_hint">Return ですべてを検索</string>
 <string name="search_tv_source_failed">失敗 %s</string>
 <string name="search_tv_source_pinned">固定済み</string>
 <string name="search_tv_sources_panel_meta">%2$d件中%1$d件が有効 · 変更は「完了」で反映</string>
+<string name="search_tv_suggestion_recent">最近 · %s</string>
+<string name="search_tv_suggestion_recent_suggested">最近 · 候補にもあり</string>
+<string name="search_tv_suggestion_suggested">候補</string>
 <string name="season">シーズン</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">シーズン</string>

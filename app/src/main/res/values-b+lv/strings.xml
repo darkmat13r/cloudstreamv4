@@ -5,6 +5,10 @@
 <plurals name="downloads_failed_count"><item quantity="zero">"%d neizdevās"</item><item quantity="one">"%d neizdevās"</item><item quantity="other">"%d neizdevās"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="zero">"%d GRĀMATZĪMJU"</item><item quantity="one">"%d GRĀMATZĪME"</item><item quantity="other">"%d GRĀMATZĪMES"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="zero">"Neizdevās ielādēt %d sadaļu"</item><item quantity="one">"Neizdevās ielādēt %d sadaļu"</item><item quantity="other">"Neizdevās ielādēt %d sadaļas"</item></plurals>
+<plurals name="library_title_count"><item quantity="zero">"%d nosaukumu"</item><item quantity="one">"%d nosaukums"</item><item quantity="other">"%d nosaukumi"</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="zero">"Meklēt visos %d devējos"</item><item quantity="one">"Meklēt %d devējā"</item><item quantity="other">"Meklēt visos %d devējos"</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="zero">"Nospiediet tastatūras meklēšanas taustiņu, lai tomēr meklētu visos %d devējos."</item><item quantity="one">"Nospiediet tastatūras meklēšanas taustiņu, lai tomēr meklētu %d devējā."</item><item quantity="other">"Nospiediet tastatūras meklēšanas taustiņu, lai tomēr meklētu visos %d devējos."</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="zero">"%d DEVĒJU"</item><item quantity="one">"%d DEVĒJS"</item><item quantity="other">"%d DEVĒJI"</item></plurals>
 <string name="account">"Konts"</string>
 <string name="action_add_to_bookmarks">"Ieliec skatīšanās statusu"</string>
 <string name="action_default">"Parastais"</string>
@@ -308,11 +312,21 @@
 <string name="kitsu_settings">"Rādīt Kitsu vietnes plakātus"</string>
 <string name="legal_notice">"Atruna"</string>
 <string name="library">"Library"</string>
+<string name="library_go_to_list" formatted="true">"Uz „%s“"</string>
+<string name="library_list_empty_body" formatted="true">"Šeit parādās nosaukumi, ko pievienojat sarakstam „%s“."</string>
+<string name="library_list_empty_headline" formatted="true">"Sarakstā „%s“ nekā nav"</string>
 <string name="library_not_connected">"Nav savienots"</string>
 <string name="library_on_device">"Ierīcē"</string>
+<string name="library_sort_current" formatted="true">"Kārtošana: %s"</string>
 <string name="library_sort_not_kept" formatted="true">"%s to neglabā"</string>
+<string name="library_sort_supported" formatted="true">"%1$s atbalsta %2$d no %3$d"</string>
 <string name="library_source">"Bibliotēkas avots"</string>
 <string name="library_source_note">"Pa vienam · pārslēgšana pārlādē"</string>
+<string name="library_sync_cached">"No kešatmiņas"</string>
+<string name="library_sync_failed" formatted="true">"Neizdevās sinhronizēt %1$s. Šie dati ir no pirms %2$s."</string>
+<string name="library_sync_offline" formatted="true">"Bezsaistē · kešatmiņā pirms %s"</string>
+<string name="library_sync_retry">"Sinhronizēt vēlreiz"</string>
+<string name="library_sync_unreachable" formatted="true">"Nav sasniedzams · kešatmiņā pirms %s"</string>
 <string name="library_synced_format" formatted="true">"Sinhronizēts pirms %s"</string>
 <string name="lightnovel">"Viegla romānu lietotne no šiem pašiem izstrādātājiem"</string>
 <string name="limit_title">"Video players nosaukuma maksimālie burti"</string>
@@ -528,10 +542,16 @@
 <string name="search_provider_text_types">"Meklēt izmantojot tipus"</string>
 <string name="search_state_idle_body_desktop">"Ievadiet nosaukumu. Rezultāti parādās zem katra devēja, tiklīdz tas atbild."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"Tikai %s. Jūsu veida filtrs sašaurina meklēšanu."</string>
+<string name="search_state_no_suggestions_detail">"0 IETEIKUMU · 0 NESENU ATBILSTĪBU"</string>
+<string name="search_state_no_suggestions_headline" formatted="true">"Nekas neatbilst „%s”"</string>
 <string name="search_suggestions">"Meklēšanas ieteikumi"</string>
+<string name="search_suggestions_return_hint">"Return meklē visur"</string>
 <string name="search_tv_source_failed" formatted="true">"NEIZDEVĀS %s"</string>
 <string name="search_tv_source_pinned">"PIESPRAUSTS"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"IESLĒGTI %1$d NO %2$d · IZMAIŅAS TIEK PIEMĒROTAS, NOSPIEŽOT PABEIGTS"</string>
+<string name="search_tv_suggestion_recent" formatted="true">"NESEN · %s"</string>
+<string name="search_tv_suggestion_recent_suggested">"NESEN · ARĪ IETEIKTS"</string>
+<string name="search_tv_suggestion_suggested">"IETEIKTS"</string>
 <string name="season">"Sezona"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"S"</string>

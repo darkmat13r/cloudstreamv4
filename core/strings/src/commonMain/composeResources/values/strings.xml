@@ -9,12 +9,16 @@
 <plurals name="episodes"><item quantity="one">Episode</item><item quantity="other">Episodes</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d BOOKMARK</item><item quantity="other">%d BOOKMARKS</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d section failed to load</item><item quantity="other">%d sections failed to load</item></plurals>
+<plurals name="library_title_count"><item quantity="one">%d title</item><item quantity="other">%d titles</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d hidden link</item><item quantity="other">%d hidden links</item></plurals>
 <plurals name="search_state_no_results_body"><item quantity="one">%d selected source answered and it does not carry it.</item><item quantity="other">All %d selected sources answered and none of them carry it.</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">Search %d source</item><item quantity="other">Search all %d sources</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">Press the keyboard’s search key to search %d source anyway.</item><item quantity="other">Press the keyboard’s search key to search all %d sources anyway.</item></plurals>
 <plurals name="search_state_partial_headline"><item quantity="one">%d source failed</item><item quantity="other">%d sources failed</item></plurals>
 <plurals name="search_tv_recent_count"><item quantity="one">%d SAVED</item><item quantity="other">%d SAVED</item></plurals>
 <plurals name="search_tv_result_count"><item quantity="one">%d RESULT</item><item quantity="other">%d RESULTS</item></plurals>
 <plurals name="search_tv_sources_count"><item quantity="one">%1$d / %2$d</item><item quantity="other">%1$d / %2$d</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">%d SOURCE</item><item quantity="other">%d SOURCES</item></plurals>
 <string name="account">account</string>
 <string name="action_add_to_bookmarks">Set watch status</string>
 <string name="action_add_to_favorites">Add to favorites</string>
@@ -392,11 +396,21 @@
 <string name="legal_notice_text">Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.</string>
 <string name="library">Library</string>
 <string name="library_episodes_progress">%1$d / %2$d %3$s</string>
+<string name="library_go_to_list">Go to %s</string>
+<string name="library_list_empty_body">Titles you add to %s land here.</string>
+<string name="library_list_empty_headline">Nothing in %s</string>
 <string name="library_not_connected">Not connected</string>
 <string name="library_on_device">On device</string>
+<string name="library_sort_current">Sort: %s</string>
 <string name="library_sort_not_kept">Not kept by %s</string>
+<string name="library_sort_supported">%1$s supports %2$d of %3$d</string>
 <string name="library_source">Library source</string>
 <string name="library_source_note">One at a time · switching reloads</string>
+<string name="library_sync_cached">Cached</string>
+<string name="library_sync_failed">Couldn't sync %1$s. These are from %2$s ago.</string>
+<string name="library_sync_offline">Offline · cached %s ago</string>
+<string name="library_sync_retry">Retry sync</string>
+<string name="library_sync_unreachable">Unreachable · cached %s ago</string>
 <string name="library_synced_format">Synced %s ago</string>
 <string name="lightnovel">Light novel app by the same devs</string>
 <string name="limit_title">Video player title max chars</string>
@@ -653,12 +667,15 @@
 <string name="search_state_no_results_detail">%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS</string>
 <string name="search_state_no_results_headline">No results</string>
 <string name="search_state_no_results_type_filter">%s only. Your type filter is narrowing the search.</string>
+<string name="search_state_no_suggestions_detail">0 SUGGESTIONS · 0 RECENT MATCHES</string>
+<string name="search_state_no_suggestions_headline">Nothing matches “%s”</string>
 <string name="search_state_offline_body">Search needs a connection. Your downloads are still available.</string>
 <string name="search_state_offline_headline">You are offline</string>
 <string name="search_state_retry">Try again</string>
 <string name="search_state_retry_failed">Retry failed</string>
 <string name="search_suggestions">Search Suggestions</string>
 <string name="search_suggestions_des">Show search suggestions while typing</string>
+<string name="search_suggestions_return_hint">Return searches all</string>
 <string name="search_tv_clear_all">Clear all searches</string>
 <string name="search_tv_field_placeholder">Search all sources</string>
 <string name="search_tv_recent_headline">Recent searches</string>
@@ -666,6 +683,9 @@
 <string name="search_tv_source_pinned">PINNED</string>
 <string name="search_tv_sources_label">Sources</string>
 <string name="search_tv_sources_panel_meta">%1$d OF %2$d ENABLED · CHANGES APPLY ON DONE</string>
+<string name="search_tv_suggestion_recent">RECENT · %s</string>
+<string name="search_tv_suggestion_recent_suggested">RECENT · ALSO SUGGESTED</string>
+<string name="search_tv_suggestion_suggested">SUGGESTED</string>
 <string name="season">Season</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">S</string>

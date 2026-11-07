@@ -8,7 +8,11 @@
 <plurals name="downloads_queued"><item quantity="one">%d pobieranie w kolejce</item><item quantity="few">%d pobierania w kolejce</item><item quantity="many">%d pobierań w kolejce</item><item quantity="other">%d pobierań w kolejce</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ZAKŁADKA</item><item quantity="few">%d ZAKŁADKI</item><item quantity="many">%d ZAKŁADEK</item><item quantity="other">%d ZAKŁADKI</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Nie udało się załadować %d sekcji</item><item quantity="few">Nie udało się załadować %d sekcji</item><item quantity="many">Nie udało się załadować %d sekcji</item><item quantity="other">Nie udało się załadować %d sekcji</item></plurals>
+<plurals name="library_title_count"><item quantity="one">%d tytuł</item><item quantity="few">%d tytuły</item><item quantity="many">%d tytułów</item><item quantity="other">%d tytułów</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d ukryty odnośnik</item><item quantity="few">%d ukryte odnośniki</item><item quantity="many">%d ukrytych odnośników</item><item quantity="other">%d ukrytych odnośników</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">Szukaj w %d źródle</item><item quantity="few">Szukaj we wszystkich %d źródłach</item><item quantity="many">Szukaj we wszystkich %d źródłach</item><item quantity="other">Szukaj we wszystkich %d źródłach</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">Naciśnij klawisz wyszukiwania na klawiaturze, aby mimo to przeszukać %d źródło.</item><item quantity="few">Naciśnij klawisz wyszukiwania na klawiaturze, aby mimo to przeszukać wszystkie %d źródła.</item><item quantity="many">Naciśnij klawisz wyszukiwania na klawiaturze, aby mimo to przeszukać wszystkie %d źródeł.</item><item quantity="other">Naciśnij klawisz wyszukiwania na klawiaturze, aby mimo to przeszukać wszystkie %d źródła.</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">%d ŹRÓDŁO</item><item quantity="few">%d ŹRÓDŁA</item><item quantity="many">%d ŹRÓDEŁ</item><item quantity="other">%d ŹRÓDŁA</item></plurals>
 <string name="account">konto</string>
 <string name="action_add_to_bookmarks">Ustaw status oglądania</string>
 <string name="action_add_to_favorites">Dodaj do ulubionych</string>
@@ -367,11 +371,21 @@
 <string name="kitsu_settings">Pokaż obrazki z Kitsu</string>
 <string name="legal_notice">Zastrzeżenie</string>
 <string name="library">Biblioteka</string>
+<string name="library_go_to_list">Przejdź do: %s</string>
+<string name="library_list_empty_body">Tu pojawiają się tytuły dodane do listy %s.</string>
+<string name="library_list_empty_headline">Pusto: %s</string>
 <string name="library_not_connected">Nie połączono</string>
 <string name="library_on_device">Na urządzeniu</string>
+<string name="library_sort_current">Sortowanie: %s</string>
 <string name="library_sort_not_kept">%s tego nie przechowuje</string>
+<string name="library_sort_supported">%1$s obsługuje %2$d z %3$d</string>
 <string name="library_source">Źródło biblioteki</string>
 <string name="library_source_note">Jedno naraz · przełączenie wczytuje ponownie</string>
+<string name="library_sync_cached">Z pamięci podręcznej</string>
+<string name="library_sync_failed">Nie udało się zsynchronizować %1$s. To dane sprzed %2$s.</string>
+<string name="library_sync_offline">Offline · w pamięci podręcznej od %s</string>
+<string name="library_sync_retry">Synchronizuj ponownie</string>
+<string name="library_sync_unreachable">Niedostępne · w pamięci podręcznej od %s</string>
 <string name="library_synced_format">Zsynchronizowano %s temu</string>
 <string name="lightnovel">Aplikacja do light novel od nas</string>
 <string name="limit_title">Maksymalna liczba znaków w tytule odtwarzacza</string>
@@ -614,11 +628,17 @@
 <string name="search_provider_text_types">Szukaj według typów</string>
 <string name="search_state_idle_body_desktop">Wpisz tytuł. Wyniki pojawiają się pod każdym źródłem, gdy odpowie.</string>
 <string name="search_state_no_results_type_filter">Tylko %s. Filtr typu zawęża wyszukiwanie.</string>
+<string name="search_state_no_suggestions_detail">0 SUGESTII · 0 OSTATNICH DOPASOWAŃ</string>
+<string name="search_state_no_suggestions_headline">Nic nie pasuje do „%s”</string>
 <string name="search_suggestions">Sugestie wyszukiwania</string>
 <string name="search_suggestions_des">Pokaż sugestie wyszukiwania podczas pisania</string>
+<string name="search_suggestions_return_hint">Return szuka wszędzie</string>
 <string name="search_tv_source_failed">BŁĄD %s</string>
 <string name="search_tv_source_pinned">PRZYPIĘTE</string>
 <string name="search_tv_sources_panel_meta">WŁĄCZONO %1$d Z %2$d · ZMIANY OBOWIĄZUJĄ PO GOTOWE</string>
+<string name="search_tv_suggestion_recent">OSTATNIE · %s</string>
+<string name="search_tv_suggestion_recent_suggested">OSTATNIE · RÓWNIEŻ SUGEROWANE</string>
+<string name="search_tv_suggestion_suggested">SUGEROWANE</string>
 <string name="season">Sezon</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">S</string>

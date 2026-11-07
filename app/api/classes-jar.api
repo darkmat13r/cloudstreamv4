@@ -3196,12 +3196,16 @@ public final static class com/lagradost/cloudstream3/R$plurals : java/lang/Objec
 	public static field episodes I
 	public static field home_bookmarks_count I
 	public static field home_sections_failed I
+	public static field library_title_count I
 	public static field links_hidden I
 	public static field search_state_no_results_body I
+	public static field search_state_no_suggestions_action I
+	public static field search_state_no_suggestions_body I
 	public static field search_state_partial_headline I
 	public static field search_tv_recent_count I
 	public static field search_tv_result_count I
 	public static field search_tv_sources_count I
+	public static field search_tv_suggestion_sources I
 }
 
 public final static class com/lagradost/cloudstream3/R$string : java/lang/Object {
@@ -3626,11 +3630,21 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field legal_notice_text I
 	public static field library I
 	public static field library_episodes_progress I
+	public static field library_go_to_list I
+	public static field library_list_empty_body I
+	public static field library_list_empty_headline I
 	public static field library_not_connected I
 	public static field library_on_device I
+	public static field library_sort_current I
 	public static field library_sort_not_kept I
+	public static field library_sort_supported I
 	public static field library_source I
 	public static field library_source_note I
+	public static field library_sync_cached I
+	public static field library_sync_failed I
+	public static field library_sync_offline I
+	public static field library_sync_retry I
+	public static field library_sync_unreachable I
 	public static field library_synced_format I
 	public static field lightnovel I
 	public static field limit_title I
@@ -3920,12 +3934,15 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field search_state_no_results_detail I
 	public static field search_state_no_results_headline I
 	public static field search_state_no_results_type_filter I
+	public static field search_state_no_suggestions_detail I
+	public static field search_state_no_suggestions_headline I
 	public static field search_state_offline_body I
 	public static field search_state_offline_headline I
 	public static field search_state_retry I
 	public static field search_state_retry_failed I
 	public static field search_suggestions I
 	public static field search_suggestions_des I
+	public static field search_suggestions_return_hint I
 	public static field search_tv_clear_all I
 	public static field search_tv_field_placeholder I
 	public static field search_tv_recent_headline I
@@ -3933,6 +3950,9 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field search_tv_source_pinned I
 	public static field search_tv_sources_label I
 	public static field search_tv_sources_panel_meta I
+	public static field search_tv_suggestion_recent I
+	public static field search_tv_suggestion_recent_suggested I
+	public static field search_tv_suggestion_suggested I
 	public static field search_types_list_key I
 	public static field season I
 	public static field season_format I

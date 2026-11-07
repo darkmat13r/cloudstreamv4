@@ -4,6 +4,10 @@
 <plurals name="downloads_failed_count"><item quantity="one">"%d ኣይተዓወተን"</item><item quantity="other">"%d ኣይተዓወቱን"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d ምልክታት"</item><item quantity="other">"%d ምልክታት"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d ክፍሊ ክጽዓን ኣይከኣለን"</item><item quantity="other">"%d ክፍሊ ክጽዓን ኣይከኣለን"</item></plurals>
+<plurals name="library_title_count"><item quantity="one">"%d ኣርእስቲ"</item><item quantity="other">"%d ኣርእስትታት"</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">"ኣብ %d ምንጪ ድለ"</item><item quantity="other">"ኣብ ኩሎም %d ምንጭታት ድለ"</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">"ብዝኾነ ኣብ %d ምንጪ ንምድላይ ናይ ኪቦርድ መድለዪ መጠወቒ ጠውቑ።"</item><item quantity="other">"ብዝኾነ ኣብ ኩሎም %d ምንጭታት ንምድላይ ናይ ኪቦርድ መድለዪ መጠወቒ ጠውቑ።"</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">"%d ምንጪ"</item><item quantity="other">"%d ምንጭታት"</item></plurals>
 <string name="app_dub_sub_episode_text_format" formatted="true">"%1$s ክፋል %2$d"</string>
 <string name="cast">"ተዋሳእቲ"</string>
 <string name="cast_format" formatted="true">"ተዋሳእቲ፡ %s"</string>
@@ -68,11 +72,21 @@
 <string name="home_offline_source_headline" formatted="true">"%1$s ምትእስሳር የድልዮ"</string>
 <string name="home_search_only_body">"ካብ መስፋሕፋሕትኻ ሓደ እኳ መበገሲ ገጽ የብሉን፡ ግን ሕጂ'ውን ኣብኡ ክትደሊ ትኽእል ኢኻ።"</string>
 <string name="home_source_none_subtitle">"መስመራት የለን · መስመራትኩም ይጸንሑ"</string>
+<string name="library_go_to_list" formatted="true">"ናብ %s ኪድ"</string>
+<string name="library_list_empty_body" formatted="true">"ናብ %s እትውስኾም ኣርእስትታት ኣብዚ ይርከቡ።"</string>
+<string name="library_list_empty_headline" formatted="true">"ኣብ %s ዋላ ሓንቲ የለን"</string>
 <string name="library_not_connected">"ኣይተራኸበን"</string>
 <string name="library_on_device">"ኣብ መሳርሒ"</string>
+<string name="library_sort_current" formatted="true">"ስርዓት፦ %s"</string>
 <string name="library_sort_not_kept" formatted="true">"%s ኣይሕዞን"</string>
+<string name="library_sort_supported" formatted="true">"%1$s ካብ %3$d %2$d ይድግፍ"</string>
 <string name="library_source">"ምንጪ ቤተ-መጻሕፍቲ"</string>
 <string name="library_source_note">"ሓደ ብሓደ · ምቕያር ዳግም ይጽዕን"</string>
+<string name="library_sync_cached">"ዝተዓቀበ"</string>
+<string name="library_sync_failed" formatted="true">"%1$s ክሰማማዕ ኣይከኣለን። እዚኦም ቅድሚ %2$s ዝነበሩ እዮም።"</string>
+<string name="library_sync_offline" formatted="true">"ካብ መስመር ወጻኢ · ቅድሚ %s ዝተዓቀበ"</string>
+<string name="library_sync_retry">"ደጊምካ ኣሰማምዕ"</string>
+<string name="library_sync_unreachable" formatted="true">"ክብጻሕ ኣይከኣለን · ቅድሚ %s ዝተዓቀበ"</string>
 <string name="library_synced_format" formatted="true">"ቅድሚ %s ተሰማሚዑ"</string>
 <string name="load_more">"ተወሳኺ ጽዓን"</string>
 <string name="more_like_this">"ተመሳሳሊ"</string>
@@ -91,9 +105,15 @@
 <string name="player_unmute">"ድምጺ ወልዕ"</string>
 <string name="search_state_idle_body_desktop">"ኣርእስቲ ጽሓፍ። ውጽኢታት ነፍሲ ወከፍ ምንጪ ምስ መለሰ ኣብ ትሕቲኡ ይርአዩ።"</string>
 <string name="search_state_no_results_type_filter" formatted="true">"%s ጥራይ። ማጣሪያ ዓይነትካ ፍለጋ የጽብብ ኣሎ።"</string>
+<string name="search_state_no_suggestions_detail">"0 ሓሳባት · 0 ናይ ቀረባ ተመሳሰልቲ"</string>
+<string name="search_state_no_suggestions_headline" formatted="true">"ምስ «%s» ዝሰማማዕ የለን"</string>
+<string name="search_suggestions_return_hint">"Return ኣብ ኩሉ ይደሊ"</string>
 <string name="search_tv_source_failed" formatted="true">"ኣይተኻኣለን %s"</string>
 <string name="search_tv_source_pinned">"ተሰኪሉ"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"%1$d ካብ %2$d ተኸፊቱ · ለውጥታት ብተፈጸመ ይትግበሩ"</string>
+<string name="search_tv_suggestion_recent" formatted="true">"ናይ ቀረባ · %s"</string>
+<string name="search_tv_suggestion_recent_suggested">"ናይ ቀረባ · ከምኡውን ዝተመኽረ"</string>
+<string name="search_tv_suggestion_suggested">"ዝተመኽረ"</string>
 <string name="seek_back_10_seconds">"10 ካልኢት ንድሕሪት"</string>
 <string name="seek_forward_10_seconds">"10 ካልኢት ንቕድሚት"</string>
 <string name="subtitles_file_empty">"እዚ ፋይል ንኡስ ጽሑፍ ባዶ እዩ"</string>

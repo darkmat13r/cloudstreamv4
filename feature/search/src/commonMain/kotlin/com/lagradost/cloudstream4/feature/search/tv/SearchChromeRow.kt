@@ -132,6 +132,7 @@ internal fun SearchChipRow(
     contentDown: FocusRequester,
     stops: SearchStops,
     modifier: Modifier = Modifier,
+    actionTakesFocus: Boolean = true,
 ) {
     val hasTrailing = notice != null || action != null
     Row(
@@ -173,7 +174,8 @@ internal fun SearchChipRow(
             FailureBanner(notice = notice, modifier = trailing)
         } else if (action != null) {
             StateActionButton(action = action, modifier = trailing)
-            LaunchedEffect(Unit) { trailingFocus.requestFocus() }
+            // 8c's action takes the focus; 8b's leaves it in the field, where the user is still typing.
+            if (actionTakesFocus) LaunchedEffect(Unit) { trailingFocus.requestFocus() }
         }
     }
 }
