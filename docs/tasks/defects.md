@@ -1572,7 +1572,12 @@ person's rather than infer it.
 **Holding the rows on the real path needs animations off.** While a page is held the loading skeleton pulses for ever, so the
 main thread is never idle, and `ActivityScenario`, which waits for idle, sat until the held page timed out: measured, 480 s before
 the first step ran, after which there were no rows and no hero. The case turns the animator scale to 0 for itself and puts it
-back in `@After`; it then takes 11.5 s.
+back in `@After`; it then takes 11.5 s. `scripts/device-tests.sh` sets all three animation scales to 1 after boot, before Gradle,
+so no run depends on what an earlier one left.
+
+**Follow-up, not done here:** a test hook that stops the skeleton's pulse, so this case touches no device setting. Nothing in the
+codebase pins reduced motion today, so it means a new public switch in `:core:designsystem`, read by the composition the real
+`MainActivity` hosts. That is its own change.
 
 **Not verified.** A failing in-app run on unfixed master on this machine: 0 of 3 class-alone runs hit the race. worker-2's two
 failures are the in-app evidence. The unfixed runs here all took slot 1 and the fixed `:app` runs slot 2, so neither slot is shown to make it likelier.
