@@ -11,6 +11,7 @@
 <plurals name="downloads_titles_status"><item quantity="one">%1$d τίτλος · %2$s</item><item quantity="other">%1$d τίτλοι · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ΣΕΛΙΔΟΔΕΙΚΤΗΣ</item><item quantity="other">%d ΣΕΛΙΔΟΔΕΙΚΤΕΣ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Αποτυχία φόρτωσης %d ενότητας</item><item quantity="other">Αποτυχία φόρτωσης %d ενοτήτων</item></plurals>
+<plurals name="library_title_count"><item quantity="one">%d τίτλος</item><item quantity="other">%d τίτλοι</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Αναζήτηση σε %d πηγή</item><item quantity="other">Αναζήτηση σε όλες τις %d πηγές</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Πατήστε το πλήκτρο αναζήτησης του πληκτρολογίου για αναζήτηση σε %d πηγή ούτως ή άλλως.</item><item quantity="other">Πατήστε το πλήκτρο αναζήτησης του πληκτρολογίου για αναζήτηση σε όλες τις %d πηγές ούτως ή άλλως.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d ΠΗΓΗ</item><item quantity="other">%d ΠΗΓΕΣ</item></plurals>
@@ -363,10 +364,21 @@
 <string name="kitsu_settings">Εμφάνιση αφισών από Kitsu</string>
 <string name="legal_notice">Αποποίηση ευθυνών</string>
 <string name="library">Βιβλιοθήκη</string>
+<string name="library_go_to_list">Μετάβαση σε «%s»</string>
+<string name="library_list_empty_body">Οι τίτλοι που προσθέτετε στο «%s» εμφανίζονται εδώ.</string>
+<string name="library_list_empty_headline">Τίποτα στο «%s»</string>
 <string name="library_not_connected">Δεν έχει συνδεθεί</string>
 <string name="library_on_device">Στη συσκευή</string>
+<string name="library_sort_current">Ταξινόμηση: %s</string>
+<string name="library_sort_supported">Το %1$s υποστηρίζει %2$d από %3$d</string>
+<string name="library_sort_not_kept">Δεν το κρατά το %s</string>
 <string name="library_source">Πηγή βιβλιοθήκης</string>
 <string name="library_source_note">Μία κάθε φορά · η εναλλαγή επαναφορτώνει</string>
+<string name="library_sync_cached">Από προσωρινή μνήμη</string>
+<string name="library_sync_failed">Δεν ήταν δυνατός ο συγχρονισμός του %1$s. Αυτά είναι από πριν από %2$s.</string>
+<string name="library_sync_offline">Εκτός σύνδεσης · στην προσωρινή μνήμη πριν από %s</string>
+<string name="library_sync_retry">Επανάληψη συγχρονισμού</string>
+<string name="library_sync_unreachable">Μη προσβάσιμο · στην προσωρινή μνήμη πριν από %s</string>
 <string name="library_synced_format">Συγχρονίστηκε πριν από %s</string>
 <string name="lightnovel">Εφαρμογή βιβλίων από τους ίδιους προγραμματιστές</string>
 <string name="limit_title">Μέγιστος αριθμός χαρακτήρων τίτλου</string>
@@ -596,6 +608,7 @@
 <string name="search_state_no_results_type_filter">Μόνο %s. Το φίλτρο τύπου περιορίζει την αναζήτηση.</string>
 <string name="search_state_no_suggestions_detail">0 ΠΡΟΤΑΣΕΙΣ · 0 ΠΡΟΣΦΑΤΕΣ ΑΝΤΙΣΤΟΙΧΙΕΣ</string>
 <string name="search_state_no_suggestions_headline">Τίποτα δεν ταιριάζει με «%s»</string>
+<string name="search_suggestions_return_hint">Το Return αναζητά παντού</string>
 <string name="search_tv_source_failed">ΑΠΟΤΥΧΙΑ %s</string>
 <string name="search_tv_source_pinned">ΚΑΡΦΙΤΣΩΜΕΝΟ</string>
 <string name="search_tv_sources_panel_meta">%1$d ΑΠΟ %2$d ΕΝΕΡΓΕΣ · ΟΙ ΑΛΛΑΓΕΣ ΕΦΑΡΜΟΖΟΝΤΑΙ ΜΕ ΤΟ ΕΓΙΝΕ</string>
@@ -604,7 +617,9 @@
 <string name="search_tv_suggestion_suggested">ΠΡΟΤΕΙΝΕΤΑΙ</string>
 <string name="season">Κύκλος</string>
 <string name="season_format">%1$s %2$d%3$s</string>
+<string name="season_other">Άλλα</string>
 <string name="season_short">Σ</string>
+<string name="season_specials">Ειδικά</string>
 <string name="seek_back_10_seconds">Μετάβαση 10 δευτερόλεπτα πίσω</string>
 <string name="seek_forward_10_seconds">Μετάβαση 10 δευτερόλεπτα μπροστά</string>
 <string name="select_all">Επιλογή όλων</string>

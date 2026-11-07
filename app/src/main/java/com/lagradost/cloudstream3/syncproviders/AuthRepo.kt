@@ -157,6 +157,17 @@ abstract class AuthRepo(open val api: AuthAPI) {
         return setupLogin(api.login(payload) ?: return false)
     }
 
+    /**
+     * `BUG-49`: as [login], but [stillWanted] is asked after the provider answers and before anything is saved, so a
+     * pairing the user cancelled while a poll was in flight is not signed in.
+     */
+    @Throws
+    suspend fun login(payload: AuthPinData, stillWanted: () -> Boolean): Boolean {
+        val token = api.login(payload) ?: return false
+        if (!stillWanted()) return false
+        return setupLogin(token)
+    }
+
     @Throws
     suspend fun login(redirectUrl: String): Boolean {
         return setupLogin(

@@ -59,6 +59,8 @@ fun HomeStatus.toUiState(
     val choose = remember { { latest(HomeAction.PickerOpened) } }
     val tryAgain = StateAction(stringResource(Res.string.search_state_retry), CloudStreamIcons.Retry, retry)
     return when (this) {
+        // 3m: what the reload said, as if the rows had never been kept. A screen that keeps them reads `kept` itself.
+        is HomeStatus.Stale -> failure.toUiState(sourceName, install, onAction)
         HomeStatus.Loading -> UiState.Loading
         is HomeStatus.Showing -> UiState.Content(rows)
         is HomeStatus.Partial -> UiState.Partial(

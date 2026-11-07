@@ -11,6 +11,7 @@
 <plurals name="downloads_titles_status"><item quantity="one">%1$d عنوان · %2$s</item><item quantity="other">%1$d عنوان · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d نشانک</item><item quantity="other">%d نشانک</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d بخش بارگیری نشد</item><item quantity="other">%d بخش بارگیری نشد</item></plurals>
+<plurals name="library_title_count"><item quantity="one">%d عنوان</item><item quantity="other">%d عنوان</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">جست‌وجو در %d منبع</item><item quantity="other">جست‌وجو در همهٔ %d منبع</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">برای جست‌وجو در %d منبع، به‌هرحال کلید جست‌وجوی صفحه‌کلید را فشار دهید.</item><item quantity="other">برای جست‌وجو در همهٔ %d منبع، به‌هرحال کلید جست‌وجوی صفحه‌کلید را فشار دهید.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d منبع</item><item quantity="other">%d منبع</item></plurals>
@@ -229,10 +230,21 @@
 <string name="kitsu_settings">نمیش پوستر از kitsu</string>
 <string name="legal_notice">هشدار</string>
 <string name="library">کتابخانه</string>
+<string name="library_go_to_list">رفتن به %s</string>
+<string name="library_list_empty_body">عنوان‌هایی که به %s اضافه می‌کنید اینجا می‌آیند.</string>
+<string name="library_list_empty_headline">چیزی در %s نیست</string>
 <string name="library_not_connected">متصل نیست</string>
 <string name="library_on_device">روی دستگاه</string>
+<string name="library_sort_current">ترتیب: %s</string>
+<string name="library_sort_supported">%1$s از %3$d مورد %2$d را پشتیبانی می‌کند</string>
+<string name="library_sort_not_kept">%s این را نگه نمی‌دارد</string>
 <string name="library_source">منبع کتابخانه</string>
 <string name="library_source_note">هر بار یکی · تغییر، دوباره بارگذاری می‌کند</string>
+<string name="library_sync_cached">ذخیره‌شده</string>
+<string name="library_sync_failed">همگام‌سازی %1$s ممکن نشد. این‌ها مال %2$s پیش هستند.</string>
+<string name="library_sync_offline">آفلاین · %s پیش ذخیره شده</string>
+<string name="library_sync_retry">همگام‌سازی دوباره</string>
+<string name="library_sync_unreachable">در دسترس نیست · %s پیش ذخیره شده</string>
 <string name="library_synced_format">%s پیش همگام‌سازی شد</string>
 <string name="lightnovel">برنامه سبک رمان از توسعه دهندگان یکسان</string>
 <string name="limit_title_rez">کیفیت پخش‌کننده ویدئو</string>
@@ -382,6 +394,7 @@
 <string name="search_state_no_results_type_filter">فقط %s. فیلتر نوع شما جستجو را محدود می‌کند.</string>
 <string name="search_state_no_suggestions_detail">0 پیشنهاد · 0 مورد منطبق اخیر</string>
 <string name="search_state_no_suggestions_headline">هیچ چیزی با «%s» مطابقت ندارد</string>
+<string name="search_suggestions_return_hint">Return همه را جست‌وجو می‌کند</string>
 <string name="search_tv_source_failed">ناموفق %s</string>
 <string name="search_tv_source_pinned">سنجاق‌شده</string>
 <string name="search_tv_sources_panel_meta">%1$d از %2$d فعال · تغییرات پس از «انجام شد» اعمال می‌شود</string>
@@ -389,7 +402,9 @@
 <string name="search_tv_suggestion_recent_suggested">اخیر · پیشنهادشده نیز</string>
 <string name="search_tv_suggestion_suggested">پیشنهادشده</string>
 <string name="season">فصل</string>
+<string name="season_other">سایر</string>
 <string name="season_short">ف</string>
+<string name="season_specials">ویژه</string>
 <string name="seek_back_10_seconds">۱۰ ثانیه به عقب</string>
 <string name="seek_forward_10_seconds">۱۰ ثانیه به جلو</string>
 <string name="select_all">انتخاب همه</string>

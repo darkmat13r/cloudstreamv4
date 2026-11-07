@@ -119,6 +119,9 @@ class HomeScreenTvDeviceTest {
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
     private var onScreen by mutableStateOf(true)
     private var mayTakeFocus = true
+    /** The view hosting the screen, which `HomeTvFragment.onResume` asks for focus as the page first opens. */
+    private var hostView: android.view.View? = null
+    private val hostFocus = HomeHostFocus()
 
     private val viewModel by lazy { HomeViewModel(source, scope, memory, history, shelf) }
 
@@ -128,6 +131,8 @@ class HomeScreenTvDeviceTest {
     private fun showScreen(resume: Boolean = true) {
         rule.setContent {
             val state by viewModel.state.collectAsState()
+            val view = androidx.compose.ui.platform.LocalView.current
+            androidx.compose.runtime.SideEffect { hostView = view }
             ObserveEffect(viewModel.effect) { effects += it }
             // What `HomeTvFragment` does: on this API level Back can finish the activity past the panel's own key handler.
             val dispatcher = (LocalContext.current as ComponentActivity).onBackPressedDispatcher
@@ -141,7 +146,12 @@ class HomeScreenTvDeviceTest {
             CloudStreamTheme {
                 Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) {
                     if (onScreen) {
-                        HomeScreenTv(state = state, onAction = viewModel::onAction, mayTakeFocus = { mayTakeFocus })
+                        HomeScreenTv(
+                            state = state,
+                            onAction = viewModel::onAction,
+                            mayTakeFocus = { mayTakeFocus },
+                            hostFocus = hostFocus,
+                        )
                     }
                 }
             }
@@ -1107,6 +1117,81 @@ class HomeScreenTvDeviceTest {
         assertTrue("Up comes back to a chip", dpad.press(Dpad.Up) in setOf(WATCHING, COMPLETED))
     }
 
+    /**
+     * `BUG-41`. The bookmarks are one local read, so at launch they can be on screen before the source's rows and the hero.
+     * The page then asks for focus as `HomeTvFragment.onResume` does, through [HomeHostFocus], and the window gives it to
+     * the first stop it finds, a chip. That is not a person choosing the bookmarks, so when the hero lands it takes focus.
+     */
+    @Test
+    fun focusTheWindowGaveTheBookmarksBeforeTheHeroLandedStillGoesToTheHero() {
+        rails(1)
+        featuring(FEATURED)
+        bookmarking(2)
+        val pages = kotlinx.coroutines.CompletableDeferred<Unit>()
+        source.gate = pages
+        showScreen()
+        awaitText(WATCHING)
+        rule.runOnIdle { hostFocus.request { hostView!!.requestFocus() } }
+        rule.waitForIdle()
+        // The precondition the launch race produces: focus sits in the bookmarks rail, nothing pressed.
+        val given = dpad.focused()
+        assertTrue("the window gave focus to the bookmarks rail, was $given", given == WATCHING || given?.startsWith(SAVED) == true)
+
+        pages.complete(Unit)
+        awaitFocus(HERO)
+    }
+
+    /**
+     * `BUG-41` on the other local rail: Continue watching is one local read too, so at launch it can be on screen before
+     * the hero, and the host's first request then lands on its first card (worker-2's run: "was Played Before"). Not a
+     * person's choice either, so when the hero lands it takes focus.
+     */
+    @Test
+    fun focusTheWindowGaveContinueWatchingBeforeTheHeroLandedStillGoesToTheHero() {
+        rails(1)
+        featuring(FEATURED)
+        resuming(2)
+        val pages = kotlinx.coroutines.CompletableDeferred<Unit>()
+        source.gate = pages
+        showScreen()
+        rule.waitUntil(WAIT_MS) { rule.onAllNodesWithContentDescription("$RESUME 0").fetchSemanticsNodes().isNotEmpty() }
+        rule.runOnIdle { hostFocus.request { hostView!!.requestFocus() } }
+        rule.waitForIdle()
+        val given = dpad.focused()
+        assertTrue("the window gave focus to Continue watching, was $given", given?.startsWith(RESUME) == true)
+
+        pages.complete(Unit)
+        awaitFocus(HERO)
+    }
+
+    /**
+     * `BUG-41`'s other side: a person who presses into the bookmarks while the rows are still loading has chosen them, so
+     * the hero landing later leaves focus where they put it.
+     */
+    @Test
+    fun aPersonWhoPressedIntoTheBookmarksBeforeTheHeroLandedKeepsFocusThere() {
+        rails(1)
+        featuring(FEATURED)
+        // Enough cards to reach under the chrome's cells, which sit at the right.
+        bookmarking(12)
+        val pages = kotlinx.coroutines.CompletableDeferred<Unit>()
+        source.gate = pages
+        showScreen()
+        awaitText(WATCHING)
+        rule.onNodeWithContentDescription(ACCOUNTS).performSemanticsAction(SemanticsActions.RequestFocus)
+        awaitFocus(ACCOUNTS)
+        val entered = dpad.press(Dpad.Down)
+        assertTrue("DOWN enters the bookmarks rail, was $entered", entered == WATCHING || entered?.startsWith(SAVED) == true)
+
+        pages.complete(Unit)
+        // The hero is found from the rows' first title, so it being shown means the rows landed too.
+        rule.waitUntil(WAIT_MS) { viewModel.state.value.hero is HomeHero.Shown }
+        awaitText("A")
+        rule.waitForIdle()
+        assertEquals("focus stays where the person put it", entered, dpad.focused())
+    }
+
+
     @Test
     fun noBookmarksIsNoRail() {
         rails(1)
@@ -1723,6 +1808,8 @@ class HomeScreenTvDeviceTest {
         @Volatile var stillLoading = false
         /** Every page waits forever. */
         @Volatile var hold = false
+        /** Every page waits until this completes. */
+        @Volatile var gate: kotlinx.coroutines.CompletableDeferred<Unit>? = null
         @Volatile var answer: (HomeSourceId, Int, Int) -> HomePageReply = { _, _, _ -> loaded("A", listOf("A 0")) }
         /** The hero's facts by title id. None by default, which is a host that cannot ask: no hero. */
         @Volatile var featured: (HomeItem) -> HomeFeatured? = { null }
@@ -1735,6 +1822,7 @@ class HomeScreenTvDeviceTest {
         override suspend fun page(source: HomeSourceId, section: Int, page: Int): HomePageReply {
             calls += Call(source, section, page)
             if (hold) awaitCancellation()
+            gate?.await()
             return answer(source, section, page)
         }
     }
