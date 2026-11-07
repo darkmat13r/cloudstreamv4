@@ -10,6 +10,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">"%d CALAAMAD"</item><item quantity="other">"%d CALAAMADOOD"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"Waa ka keeni kari waayey %d qayb"</item><item quantity="other">"Waa ka keeni kari waayey %d qaybood"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d qayb"</item><item quantity="other">"%d qaybood"</item></plurals>
+<plurals name="library_title_count"><item quantity="one">"%d cinwaan"</item><item quantity="other">"%d cinwaan"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Ka raadi %d il"</item><item quantity="other">"Ka raadi dhammaan %d ilood"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Riix furaha raadinta ee kiiboodhka si aad u raadiso %d il si kastaba ha ahaatee."</item><item quantity="other">"Riix furaha raadinta ee kiiboodhka si aad u raadiso dhammaan %d ilood si kastaba ha ahaatee."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d IL"</item><item quantity="other">"%d ILOOD"</item></plurals>
@@ -297,10 +298,21 @@
 <string name="kitsu_settings">"Tusi Boodhka Kitsu"</string>
 <string name="legal_notice">"Aaraar"</string>
 <string name="library">"Kaydka"</string>
+<string name="library_go_to_list" formatted="true">"U gudub %s"</string>
+<string name="library_list_empty_body" formatted="true">"Cinwaannada aad ku darto %s halkan ayay ka muuqdaan."</string>
+<string name="library_list_empty_headline" formatted="true">"Waxba kuma jiraan %s"</string>
 <string name="library_not_connected">"Lama xiriirin"</string>
 <string name="library_on_device">"Qalabka ku jira"</string>
+<string name="library_sort_current" formatted="true">"Kala soocid: %s"</string>
+<string name="library_sort_not_kept" formatted="true">"%s ma kaydiyo"</string>
+<string name="library_sort_supported" formatted="true">"%1$s wuxuu taageeraa %2$d ka mid ah %3$d"</string>
 <string name="library_source">"Isha kaydka"</string>
 <string name="library_source_note">"Mid mid · beddelku wuu dib u soo raraa"</string>
+<string name="library_sync_cached">"La kaydiyay"</string>
+<string name="library_sync_failed" formatted="true">"Lama isku waafajin karin %1$s. Kuwani waa kuwii %2$s ka hor."</string>
+<string name="library_sync_offline" formatted="true">"Khadka ka maqan · la kaydiyay %s ka hor"</string>
+<string name="library_sync_retry">"Mar kale isku waafaji"</string>
+<string name="library_sync_unreachable" formatted="true">"Lama gaari karo · la kaydiyay %s ka hor"</string>
 <string name="library_synced_format" formatted="true">"La waafajiyay %s kahor"</string>
 <string name="lightnovel">"Light novel app, isla dhiseyaasha appkan baa leh"</string>
 <string name="limit_title">"Tirada inta ka muuqanaysa magaca filinka"</string>
@@ -501,6 +513,7 @@
 <string name="search_state_no_suggestions_headline" formatted="true">"Waxba kuma habboona “%s”"</string>
 <string name="search_suggestions">"Talooyinka Raadinta"</string>
 <string name="search_suggestions_des">"Soo bandhig talooyinka inta aad wax qorayso"</string>
+<string name="search_suggestions_return_hint">"Return wuxuu raadiyaa dhammaan"</string>
 <string name="search_tv_source_failed" formatted="true">"FASHILAY %s"</string>
 <string name="search_tv_source_pinned">"LA DHEJIYAY"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"%1$d KA %2$d LA HAWLGELIYAY · ISBEDDELADA WAXAY DHAQAN GALAAN MARKA LA DOOTO DHAN"</string>
@@ -509,7 +522,9 @@
 <string name="search_tv_suggestion_suggested">"LA SOO JEEDIYAY"</string>
 <string name="season">"Kalka"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
+<string name="season_other">"Kale"</string>
 <string name="season_short">"K"</string>
+<string name="season_specials">"Gaar ah"</string>
 <string name="seek_back_10_seconds">"Dib u noqo 10 ilbiriqsi"</string>
 <string name="seek_forward_10_seconds">"Hore u gudub 10 ilbiriqsi"</string>
 <string name="select_all">"Dooro dhammaan"</string>

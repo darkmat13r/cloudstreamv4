@@ -11,6 +11,7 @@
 <plurals name="downloads_titles_status"><item quantity="one">%1$d ኣርእስቲ · %2$s</item><item quantity="other">%1$d ኣርእስቲ · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ምልክታት</item><item quantity="other">%d ምልክታት</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d ክፍሊ ክጽዓን ኣይከኣለን</item><item quantity="other">%d ክፍሊ ክጽዓን ኣይከኣለን</item></plurals>
+<plurals name="library_title_count"><item quantity="one">%d ኣርእስቲ</item><item quantity="other">%d ኣርእስትታት</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">ኣብ %d ምንጪ ድለ</item><item quantity="other">ኣብ ኩሎም %d ምንጭታት ድለ</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">ብዝኾነ ኣብ %d ምንጪ ንምድላይ ናይ ኪቦርድ መድለዪ መጠወቒ ጠውቑ።</item><item quantity="other">ብዝኾነ ኣብ ኩሎም %d ምንጭታት ንምድላይ ናይ ኪቦርድ መድለዪ መጠወቒ ጠውቑ።</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d ምንጪ</item><item quantity="other">%d ምንጭታት</item></plurals>
@@ -97,6 +98,9 @@
 <string name="home_source_picker_body">መስርዕታት ብሓደ እዋን ካብ ሓደ ተወሳኺ ይመጹ።</string>
 <string name="home_source_picker_title">ምንጪ ቀንዲ</string>
 <string name="home_source_unreachable">ዝሓለፈ ግዜ ክብጻሕ ኣይከኣለን</string>
+<string name="library_go_to_list">ናብ %s ኪድ</string>
+<string name="library_list_empty_body">ናብ %s እትውስኾም ኣርእስትታት ኣብዚ ይርከቡ።</string>
+<string name="library_list_empty_headline">ኣብ %s ዋላ ሓንቲ የለን</string>
 <string name="load_more">ተወሳኺ ጽዓን</string>
 <string name="more_like_this">ተመሳሳሊ</string>
 <string name="next_episode_format">ክፋል %d በ ላይ ይወጣል</string>
@@ -137,6 +141,8 @@
 <string name="search_tv_suggestion_recent">ናይ ቀረባ · %s</string>
 <string name="search_tv_suggestion_recent_suggested">ናይ ቀረባ · ከምኡውን ዝተመኽረ</string>
 <string name="search_tv_suggestion_suggested">ዝተመኽረ</string>
+<string name="season_other">ካልእ</string>
+<string name="season_specials">ፍሉይ</string>
 <string name="seek_back_10_seconds">10 ካልኢት ንድሕሪት</string>
 <string name="seek_forward_10_seconds">10 ካልኢት ንቕድሚት</string>
 <string name="subtitles_file_empty">እዚ ፋይል ንኡስ ጽሑፍ ባዶ እዩ</string>
@@ -144,7 +150,16 @@
 <string name="subtitles_load_failed">ነዚ ንኡስ ጽሑፋት ክጽዓን ኣይተኻእለን</string>
 <string name="library_not_connected">ኣይተራኸበን</string>
 <string name="library_on_device">ኣብ መሳርሒ</string>
+<string name="library_sort_current">ስርዓት፦ %s</string>
+<string name="library_sort_supported">%1$s ካብ %3$d %2$d ይድግፍ</string>
+<string name="library_sort_not_kept">%s ኣይሕዞን</string>
 <string name="library_source">ምንጪ ቤተ-መጻሕፍቲ</string>
 <string name="library_source_note">ሓደ ብሓደ · ምቕያር ዳግም ይጽዕን</string>
+<string name="library_sync_cached">ዝተዓቀበ</string>
+<string name="library_sync_failed">%1$s ክሰማማዕ ኣይከኣለን። እዚኦም ቅድሚ %2$s ዝነበሩ እዮም።</string>
+<string name="library_sync_offline">ካብ መስመር ወጻኢ · ቅድሚ %s ዝተዓቀበ</string>
+<string name="library_sync_retry">ደጊምካ ኣሰማምዕ</string>
+<string name="library_sync_unreachable">ክብጻሕ ኣይከኣለን · ቅድሚ %s ዝተዓቀበ</string>
 <string name="library_synced_format">ቅድሚ %s ተሰማሚዑ</string>
+<string name="search_suggestions_return_hint">Return ኣብ ኩሉ ይደሊ</string>
 </resources>

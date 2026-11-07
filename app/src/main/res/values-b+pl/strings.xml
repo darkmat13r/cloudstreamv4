@@ -12,6 +12,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">"%d ZAKŁADKA"</item><item quantity="few">"%d ZAKŁADKI"</item><item quantity="many">"%d ZAKŁADEK"</item><item quantity="other">"%d ZAKŁADKI"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"Nie udało się załadować %d sekcji"</item><item quantity="few">"Nie udało się załadować %d sekcji"</item><item quantity="many">"Nie udało się załadować %d sekcji"</item><item quantity="other">"Nie udało się załadować %d sekcji"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d sekcja"</item><item quantity="few">"%d sekcje"</item><item quantity="many">"%d sekcji"</item><item quantity="other">"%d sekcji"</item></plurals>
+<plurals name="library_title_count"><item quantity="one">"%d tytuł"</item><item quantity="few">"%d tytuły"</item><item quantity="many">"%d tytułów"</item><item quantity="other">"%d tytułów"</item></plurals>
 <plurals name="links_hidden"><item quantity="one">"%d ukryty odnośnik"</item><item quantity="few">"%d ukryte odnośniki"</item><item quantity="many">"%d ukrytych odnośników"</item><item quantity="other">"%d ukrytych odnośników"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Szukaj w %d źródle"</item><item quantity="few">"Szukaj we wszystkich %d źródłach"</item><item quantity="many">"Szukaj we wszystkich %d źródłach"</item><item quantity="other">"Szukaj we wszystkich %d źródłach"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Naciśnij klawisz wyszukiwania na klawiaturze, aby mimo to przeszukać %d źródło."</item><item quantity="few">"Naciśnij klawisz wyszukiwania na klawiaturze, aby mimo to przeszukać wszystkie %d źródła."</item><item quantity="many">"Naciśnij klawisz wyszukiwania na klawiaturze, aby mimo to przeszukać wszystkie %d źródeł."</item><item quantity="other">"Naciśnij klawisz wyszukiwania na klawiaturze, aby mimo to przeszukać wszystkie %d źródła."</item></plurals>
@@ -396,10 +397,21 @@
 <string name="kitsu_settings">"Pokaż obrazki z Kitsu"</string>
 <string name="legal_notice">"Zastrzeżenie"</string>
 <string name="library">"Biblioteka"</string>
+<string name="library_go_to_list" formatted="true">"Przejdź do: %s"</string>
+<string name="library_list_empty_body" formatted="true">"Tu pojawiają się tytuły dodane do listy %s."</string>
+<string name="library_list_empty_headline" formatted="true">"Pusto: %s"</string>
 <string name="library_not_connected">"Nie połączono"</string>
 <string name="library_on_device">"Na urządzeniu"</string>
+<string name="library_sort_current" formatted="true">"Sortowanie: %s"</string>
+<string name="library_sort_not_kept" formatted="true">"%s tego nie przechowuje"</string>
+<string name="library_sort_supported" formatted="true">"%1$s obsługuje %2$d z %3$d"</string>
 <string name="library_source">"Źródło biblioteki"</string>
 <string name="library_source_note">"Jedno naraz · przełączenie wczytuje ponownie"</string>
+<string name="library_sync_cached">"Z pamięci podręcznej"</string>
+<string name="library_sync_failed" formatted="true">"Nie udało się zsynchronizować %1$s. To dane sprzed %2$s."</string>
+<string name="library_sync_offline" formatted="true">"Offline · w pamięci podręcznej od %s"</string>
+<string name="library_sync_retry">"Synchronizuj ponownie"</string>
+<string name="library_sync_unreachable" formatted="true">"Niedostępne · w pamięci podręcznej od %s"</string>
 <string name="library_synced_format" formatted="true">"Zsynchronizowano %s temu"</string>
 <string name="lightnovel">"Aplikacja do light novel od nas"</string>
 <string name="limit_title">"Maksymalna liczba znaków w tytule odtwarzacza"</string>
@@ -661,6 +673,7 @@
 <string name="search_state_no_suggestions_headline" formatted="true">"Nic nie pasuje do „%s”"</string>
 <string name="search_suggestions">"Sugestie wyszukiwania"</string>
 <string name="search_suggestions_des">"Pokaż sugestie wyszukiwania podczas pisania"</string>
+<string name="search_suggestions_return_hint">"Return szuka wszędzie"</string>
 <string name="search_tv_source_failed" formatted="true">"BŁĄD %s"</string>
 <string name="search_tv_source_pinned">"PRZYPIĘTE"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"WŁĄCZONO %1$d Z %2$d · ZMIANY OBOWIĄZUJĄ PO GOTOWE"</string>
@@ -669,7 +682,9 @@
 <string name="search_tv_suggestion_suggested">"SUGEROWANE"</string>
 <string name="season">"Sezon"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
+<string name="season_other">"Inne"</string>
 <string name="season_short">"S"</string>
+<string name="season_specials">"Specjalne"</string>
 <string name="seek_back_10_seconds">"Przewiń do tyłu o 10 sekund"</string>
 <string name="seek_forward_10_seconds">"Przewiń do przodu o 10 sekund"</string>
 <string name="select_all">"Zaznacz wszystkie"</string>

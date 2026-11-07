@@ -10,6 +10,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">"%d BOOKMARK"</item><item quantity="two">"%d BOOKMARKS"</item><item quantity="few">"%d BOOKMARKS"</item><item quantity="many">"%d BOOKMARKS"</item><item quantity="other">"%d BOOKMARKS"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"Ma setgħetx tiġi mgħobbija %d taqsima"</item><item quantity="two">"Ma setgħux jiġu mgħobbija %d taqsimat"</item><item quantity="few">"Ma setgħux jiġu mgħobbija %d taqsimat"</item><item quantity="many">"Ma setgħux jiġu mgħobbija %d taqsima"</item><item quantity="other">"Ma setgħux jiġu mgħobbija %d taqsima"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d taqsima"</item><item quantity="two">"%d taqsimiet"</item><item quantity="few">"%d taqsimiet"</item><item quantity="many">"%d-il taqsima"</item><item quantity="other">"%d taqsima"</item></plurals>
+<plurals name="library_title_count"><item quantity="one">"%d titlu"</item><item quantity="two">"%d titli"</item><item quantity="few">"%d titli"</item><item quantity="many">"%d-il titlu"</item><item quantity="other">"%d titlu"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Fittex f'%d sors"</item><item quantity="two">"Fittex fil-%d sorsi kollha"</item><item quantity="few">"Fittex fil-%d sorsi kollha"</item><item quantity="many">"Fittex fil-%d sors kollha"</item><item quantity="other">"Fittex fil-%d sors kollha"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Agħfas il-buttuna tat-tiftix tat-tastiera biex tfittex xorta f'%d sors."</item><item quantity="two">"Agħfas il-buttuna tat-tiftix tat-tastiera biex tfittex xorta fil-%d sorsi kollha."</item><item quantity="few">"Agħfas il-buttuna tat-tiftix tat-tastiera biex tfittex xorta fil-%d sorsi kollha."</item><item quantity="many">"Agħfas il-buttuna tat-tiftix tat-tastiera biex tfittex xorta fil-%d sors kollha."</item><item quantity="other">"Agħfas il-buttuna tat-tiftix tat-tastiera biex tfittex xorta fil-%d sors kollha."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d SORS"</item><item quantity="two">"%d SORSI"</item><item quantity="few">"%d SORSI"</item><item quantity="many">"%d SORS"</item><item quantity="other">"%d SORS"</item></plurals>
@@ -134,10 +135,21 @@
 <string name="home_source_picker_body">"Ir-ringieli jiġu minn estensjoni waħda kull darba."</string>
 <string name="home_source_picker_title">"Sors tad-dar"</string>
 <string name="home_source_unreachable">"Ma setax jintlaħaq l-aħħar darba"</string>
+<string name="library_go_to_list" formatted="true">"Mur għal %s"</string>
+<string name="library_list_empty_body" formatted="true">"It-titli li żżid ma' %s jidhru hawn."</string>
+<string name="library_list_empty_headline" formatted="true">"M'hemm xejn f'%s"</string>
 <string name="library_not_connected">"Mhux konness"</string>
 <string name="library_on_device">"Fuq l-apparat"</string>
+<string name="library_sort_current" formatted="true">"Ordni: %s"</string>
+<string name="library_sort_not_kept" formatted="true">"Mhux miżmum minn %s"</string>
+<string name="library_sort_supported" formatted="true">"%1$s jappoġġja %2$d minn %3$d"</string>
 <string name="library_source">"Sors tal-librerija"</string>
 <string name="library_source_note">"Wieħed kull darba · il-bidla tgħabbi mill-ġdid"</string>
+<string name="library_sync_cached">"Fil-cache"</string>
+<string name="library_sync_failed" formatted="true">"Ma setax jiġi sinkronizzat %1$s. Dawn huma minn %2$s ilu."</string>
+<string name="library_sync_offline" formatted="true">"Offline · fil-cache minn %s ilu"</string>
+<string name="library_sync_retry">"Erġa' ssinkronizza"</string>
+<string name="library_sync_unreachable" formatted="true">"Ma jintlaħaqx · fil-cache minn %s ilu"</string>
 <string name="library_synced_format" formatted="true">"Sinkronizzat %s ilu"</string>
 <string name="links_reloaded_toast">"Links regaw gew mogħbija"</string>
 <string name="load_more">"Għabbi iktar"</string>
@@ -214,12 +226,15 @@
 <string name="search_state_no_results_type_filter" formatted="true">"%s biss. Il-filtru tat-tip qed jirrestrinġi l-fittxija."</string>
 <string name="search_state_no_suggestions_detail">"0 SUĠĠERIMENTI · 0 TAQBIL REĊENTI"</string>
 <string name="search_state_no_suggestions_headline" formatted="true">"Xejn ma jaqbel ma' “%s”"</string>
+<string name="search_suggestions_return_hint">"Return ifittex kollox"</string>
 <string name="search_tv_source_failed" formatted="true">"FALLA %s"</string>
 <string name="search_tv_source_pinned">"IPPINJAT"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"%1$d MINN %2$d ATTIVATI · IL-BIDLIET JIDĦLU FIS-SEĦĦ META TAGĦFAS LEST"</string>
 <string name="search_tv_suggestion_recent" formatted="true">"REĊENTI · %s"</string>
 <string name="search_tv_suggestion_recent_suggested">"REĊENTI · SUĠĠERIT UKOLL"</string>
 <string name="search_tv_suggestion_suggested">"SUĠĠERIT"</string>
+<string name="season_other">"Oħrajn"</string>
+<string name="season_specials">"Speċjali"</string>
 <string name="seek_back_10_seconds">"Mur lura 10 sekondi"</string>
 <string name="seek_forward_10_seconds">"Mur 'il quddiem 10 sekondi"</string>
 <string name="show_log_cat">"Uri Logcat 🐈"</string>

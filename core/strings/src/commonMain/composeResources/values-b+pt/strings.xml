@@ -13,6 +13,7 @@
 <plurals name="downloads_titles_status"><item quantity="one">%1$d título · %2$s</item><item quantity="many">%1$d títulos · %2$s</item><item quantity="other">%1$d títulos · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d MARCADOR</item><item quantity="many">%d DE MARCADORES</item><item quantity="other">%d MARCADORES</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Falha ao carregar %d secção</item><item quantity="many">Falha ao carregar %d secções</item><item quantity="other">Falha ao carregar %d secções</item></plurals>
+<plurals name="library_title_count"><item quantity="one">%d título</item><item quantity="many">%d títulos</item><item quantity="other">%d títulos</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Pesquisar em %d fonte</item><item quantity="many">Pesquisar em todas as %d fontes</item><item quantity="other">Pesquisar em todas as %d fontes</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Prima a tecla de pesquisa do teclado para pesquisar mesmo assim em %d fonte.</item><item quantity="many">Prima a tecla de pesquisa do teclado para pesquisar mesmo assim em todas as %d fontes.</item><item quantity="other">Prima a tecla de pesquisa do teclado para pesquisar mesmo assim em todas as %d fontes.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d FONTE</item><item quantity="many">%d FONTES</item><item quantity="other">%d FONTES</item></plurals>
@@ -395,10 +396,21 @@
 <string name="kitsu_settings">Mostrar posters do kitsu</string>
 <string name="legal_notice">Aviso Legal</string>
 <string name="library">Biblioteca</string>
+<string name="library_go_to_list">Ir para %s</string>
+<string name="library_list_empty_body">Os títulos que adicionar a %s aparecem aqui.</string>
+<string name="library_list_empty_headline">Nada em %s</string>
 <string name="library_not_connected">Não conectado</string>
 <string name="library_on_device">No dispositivo</string>
+<string name="library_sort_current">Ordenar: %s</string>
+<string name="library_sort_supported">%1$s suporta %2$d de %3$d</string>
+<string name="library_sort_not_kept">Não guardado por %s</string>
 <string name="library_source">Origem da biblioteca</string>
 <string name="library_source_note">Uma de cada vez · mudar recarrega</string>
+<string name="library_sync_cached">Em cache</string>
+<string name="library_sync_failed">Não foi possível sincronizar %1$s. São de há %2$s.</string>
+<string name="library_sync_offline">Offline · em cache há %s</string>
+<string name="library_sync_retry">Sincronizar novamente</string>
+<string name="library_sync_unreachable">Inacessível · em cache há %s</string>
 <string name="library_synced_format">Sincronizado há %s</string>
 <string name="lightnovel">App light novel pelos mesmos devs</string>
 <string name="limit_title">Máximo de caracteres do título no player de video</string>
@@ -657,6 +669,7 @@
 <string name="search_state_no_suggestions_headline">Nada corresponde a «%s»</string>
 <string name="search_suggestions">Sugestões de pesquisa</string>
 <string name="search_suggestions_des">Mostrar sugestões de pesquisa enquanto digita</string>
+<string name="search_suggestions_return_hint">Enter pesquisa tudo</string>
 <string name="search_tv_source_failed">FALHOU %s</string>
 <string name="search_tv_source_pinned">FIXADO</string>
 <string name="search_tv_sources_panel_meta">%1$d DE %2$d ATIVADOS · AS ALTERAÇÕES APLICAM-SE APÓS FEITO</string>
@@ -665,7 +678,9 @@
 <string name="search_tv_suggestion_suggested">SUGERIDO</string>
 <string name="season">Temporada</string>
 <string name="season_format">%1$s %2$d%3$s</string>
+<string name="season_other">Outros</string>
 <string name="season_short">T</string>
+<string name="season_specials">Especiais</string>
 <string name="seek_back_10_seconds">Recuar 10 segundos</string>
 <string name="seek_forward_10_seconds">Avançar 10 segundos</string>
 <string name="select_all">Selecionar Todos</string>

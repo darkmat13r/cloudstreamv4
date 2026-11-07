@@ -11,6 +11,7 @@
 <plurals name="downloads_titles_status"><item quantity="one">%1$d tittel · %2$s</item><item quantity="other">%1$d titler · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d BOKMERKE</item><item quantity="other">%d BOKMERKER</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d del kunne ikke lastes inn</item><item quantity="other">%d deler kunne ikke lastes inn</item></plurals>
+<plurals name="library_title_count"><item quantity="one">%d tittel</item><item quantity="other">%d titler</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Søk i %d kilde</item><item quantity="other">Søk i alle %d kilder</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Trykk på søketasten på tastaturet for å søke i %d kilde likevel.</item><item quantity="other">Trykk på søketasten på tastaturet for å søke i alle %d kilder likevel.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d KILDE</item><item quantity="other">%d KILDER</item></plurals>
@@ -294,10 +295,21 @@
 <string name="jsdelivr_proxy_summary">Omgår blokkering av GitHub ved hjelp av jsDelivr. Dette kan forårsake forsinkelser på oppdateringer med noen få dager.</string>
 <string name="kitsu_settings">Vis plakater fra Kitsu</string>
 <string name="library">Bibliotek</string>
+<string name="library_go_to_list">Gå til %s</string>
+<string name="library_list_empty_body">Titler du legger til i %s, havner her.</string>
+<string name="library_list_empty_headline">Ingenting i %s</string>
 <string name="library_not_connected">Ikke tilkoblet</string>
 <string name="library_on_device">På enheten</string>
+<string name="library_sort_current">Sortering: %s</string>
+<string name="library_sort_supported">%1$s støtter %2$d av %3$d</string>
+<string name="library_sort_not_kept">Ikke lagret av %s</string>
 <string name="library_source">Bibliotekkilde</string>
 <string name="library_source_note">Én om gangen · bytte laster inn på nytt</string>
+<string name="library_sync_cached">Mellomlagret</string>
+<string name="library_sync_failed">Kunne ikke synkronisere %1$s. Disse er fra for %2$s siden.</string>
+<string name="library_sync_offline">Frakoblet · mellomlagret for %s siden</string>
+<string name="library_sync_retry">Synkroniser på nytt</string>
+<string name="library_sync_unreachable">Utilgjengelig · mellomlagret for %s siden</string>
 <string name="library_synced_format">Synkronisert for %s siden</string>
 <string name="lightnovel">Light novel app av samme devs</string>
 <string name="limit_title">Maks. antall tegn for navn i videospiller</string>
@@ -495,6 +507,7 @@
 <string name="search_state_no_results_type_filter">Bare %s. Typefilteret ditt begrenser søket.</string>
 <string name="search_state_no_suggestions_detail">0 FORSLAG · 0 NYLIGE TREFF</string>
 <string name="search_state_no_suggestions_headline">Ingenting samsvarer med «%s»</string>
+<string name="search_suggestions_return_hint">Return søker overalt</string>
 <string name="search_tv_source_failed">FEILET %s</string>
 <string name="search_tv_source_pinned">FESTET</string>
 <string name="search_tv_sources_panel_meta">%1$d AV %2$d AKTIVERT · ENDRINGER GJELDER ETTER FERDIG</string>
@@ -503,7 +516,9 @@
 <string name="search_tv_suggestion_suggested">FORESLÅTT</string>
 <string name="season">Sesong</string>
 <string name="season_format">%1$s %2$d%3$s</string>
+<string name="season_other">Annet</string>
 <string name="season_short">S</string>
+<string name="season_specials">Spesialer</string>
 <string name="seek_back_10_seconds">Hopp 10 sekunder bakover</string>
 <string name="seek_forward_10_seconds">Hopp 10 sekunder fremover</string>
 <string name="select_library">Velg bibliotek</string>

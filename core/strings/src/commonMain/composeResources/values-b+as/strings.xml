@@ -11,6 +11,7 @@
 <plurals name="downloads_titles_status"><item quantity="one">%1$d টা শিৰোনাম · %2$s</item><item quantity="other">%1$d টা শিৰোনাম · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d টা বুকমাৰ্ক</item><item quantity="other">%d টা বুকমাৰ্ক</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d টা অংশ লোড কৰিব পৰা নগ'ল</item><item quantity="other">%d টা অংশ লোড কৰিব পৰা নগ'ল</item></plurals>
+<plurals name="library_title_count"><item quantity="one">%d টা শিৰোনাম</item><item quantity="other">%d টা শিৰোনাম</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">%dটা উৎস সন্ধান কৰক</item><item quantity="other">আটাইকেইটা %dটা উৎস সন্ধান কৰক</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">তথাপি %dটা উৎস সন্ধান কৰিবলৈ কীব'ৰ্ডৰ সন্ধান কী টিপক।</item><item quantity="other">তথাপি আটাইকেইটা %dটা উৎস সন্ধান কৰিবলৈ কীব'ৰ্ডৰ সন্ধান কী টিপক।</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d উৎস</item><item quantity="other">%d উৎস</item></plurals>
@@ -359,10 +360,21 @@
 <string name="kitsu_settings">কিৎসুৰ পৰা প'ষ্টাৰ দেখুৱাওক</string>
 <string name="legal_notice">দায়ৱলী</string>
 <string name="library">পুথিভঁৰাল</string>
+<string name="library_go_to_list">%s-লৈ যাওক</string>
+<string name="library_list_empty_body">আপুনি %s-ত যোগ কৰা শিৰোনামবোৰ ইয়াত থাকে।</string>
+<string name="library_list_empty_headline">%s-ত একো নাই</string>
 <string name="library_not_connected">সংযোগ নাই</string>
 <string name="library_on_device">ডিভাইচত</string>
+<string name="library_sort_current">সজোৱা: %s</string>
+<string name="library_sort_supported">%1$s-এ %3$d টাৰ %2$d টা সমৰ্থন কৰে</string>
+<string name="library_sort_not_kept">%s-এ ৰখা নহয়</string>
 <string name="library_source">পুথিভঁৰালৰ উৎস</string>
 <string name="library_source_note">এবাৰত এটা · সলনি কৰিলে পুনৰ লোড হয়</string>
+<string name="library_sync_cached">কেশ্ব কৰা</string>
+<string name="library_sync_failed">%1$s ছিংক কৰিব পৰা নগ'ল। এইবোৰ %2$s আগৰ।</string>
+<string name="library_sync_offline">অফলাইন · %s আগতে কেশ্ব কৰা</string>
+<string name="library_sync_retry">পুনৰ ছিংক কৰক</string>
+<string name="library_sync_unreachable">পাব পৰা নাই · %s আগতে কেশ্ব কৰা</string>
 <string name="library_synced_format">%s আগতে ছিংক কৰা হৈছে</string>
 <string name="lightnovel">একেই ডেভেলপাৰৰ দ্বাৰা লাইট নভেল এপ্‌</string>
 <string name="limit_title">ভিডিঅ' প্লেয়াৰৰ শিৰোনামৰ সৰ্বাধিক অক্ষৰ</string>
@@ -596,6 +608,7 @@
 <string name="search_state_no_results_type_filter">কেৱল %s। আপোনাৰ ধৰণৰ ফিল্টাৰে সন্ধান সংকীৰ্ণ কৰিছে।</string>
 <string name="search_state_no_suggestions_detail">0 টা পৰামৰ্শ · 0 টা শেহতীয়া মিল</string>
 <string name="search_state_no_suggestions_headline">“%s”ৰ সৈতে একো নিমিলে</string>
+<string name="search_suggestions_return_hint">Return-এ সকলো বিচাৰে</string>
 <string name="search_tv_source_failed">ব্যৰ্থ %s</string>
 <string name="search_tv_source_pinned">পিন কৰা হৈছে</string>
 <string name="search_tv_sources_panel_meta">%2$dৰ ভিতৰত %1$d সক্ষম · পৰিৱৰ্তনসমূহ সম্পূৰ্ণ ত প্ৰয়োগ হয়</string>
@@ -604,7 +617,9 @@
 <string name="search_tv_suggestion_suggested">পৰামৰ্শিত</string>
 <string name="season">চিজন</string>
 <string name="season_format">%1$s %2$d%3$s</string>
+<string name="season_other">অন্যান্য</string>
 <string name="season_short">চি</string>
+<string name="season_specials">বিশেষ</string>
 <string name="seek_back_10_seconds">১০ ছেকেণ্ড পাছুৱাওক</string>
 <string name="seek_forward_10_seconds">১০ ছেকেণ্ড আগুৱাওক</string>
 <string name="select_all">সকলো বাছক</string>

@@ -11,6 +11,7 @@
 <plurals name="downloads_titles_status"><item quantity="one">%1$d titel · %2$s</item><item quantity="other">%1$d titels · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d BLADWIJZER</item><item quantity="other">%d BLADWIJZERS</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d sectie kon niet worden geladen</item><item quantity="other">%d secties konden niet worden geladen</item></plurals>
+<plurals name="library_title_count"><item quantity="one">%d titel</item><item quantity="other">%d titels</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Zoek in %d bron</item><item quantity="other">Zoek in alle %d bronnen</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Druk op de zoektoets van het toetsenbord om toch in %d bron te zoeken.</item><item quantity="other">Druk op de zoektoets van het toetsenbord om toch in alle %d bronnen te zoeken.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d BRON</item><item quantity="other">%d BRONNEN</item></plurals>
@@ -370,10 +371,21 @@
 <string name="kitsu_settings">Toon posters van Kitsu</string>
 <string name="legal_notice">Disclaimer</string>
 <string name="library">Bibliotheek</string>
+<string name="library_go_to_list">Naar %s</string>
+<string name="library_list_empty_body">Titels die je aan %s toevoegt, verschijnen hier.</string>
+<string name="library_list_empty_headline">Niets in %s</string>
 <string name="library_not_connected">Niet verbonden</string>
 <string name="library_on_device">Op apparaat</string>
+<string name="library_sort_current">Sorteren: %s</string>
+<string name="library_sort_supported">%1$s ondersteunt %2$d van %3$d</string>
+<string name="library_sort_not_kept">Niet bewaard door %s</string>
 <string name="library_source">Bibliotheekbron</string>
 <string name="library_source_note">Eén tegelijk · wisselen laadt opnieuw</string>
+<string name="library_sync_cached">Uit cache</string>
+<string name="library_sync_failed">%1$s kon niet worden gesynchroniseerd. Dit is van %2$s geleden.</string>
+<string name="library_sync_offline">Offline · %s geleden in cache</string>
+<string name="library_sync_retry">Opnieuw synchroniseren</string>
+<string name="library_sync_unreachable">Niet bereikbaar · %s geleden in cache</string>
 <string name="library_synced_format">%s geleden gesynchroniseerd</string>
 <string name="lightnovel">Light novel app van dezelfde ontwikkelaars</string>
 <string name="limit_title">Maximaal aantal tekens voor titel van videospeler</string>
@@ -619,6 +631,7 @@
 <string name="search_state_no_suggestions_headline">Niets komt overeen met “%s”</string>
 <string name="search_suggestions">Zoeksuggesties</string>
 <string name="search_suggestions_des">Zoeksuggesties laten zien tijdens het typen</string>
+<string name="search_suggestions_return_hint">Return zoekt overal</string>
 <string name="search_tv_source_failed">MISLUKT %s</string>
 <string name="search_tv_source_pinned">VASTGEPIND</string>
 <string name="search_tv_sources_panel_meta">%1$d VAN %2$d INGESCHAKELD · WIJZIGINGEN GELDEN NA KLAAR</string>
@@ -627,7 +640,9 @@
 <string name="search_tv_suggestion_suggested">VOORGESTELD</string>
 <string name="season">Seizoen</string>
 <string name="season_format">%1$s %2$d%3$s</string>
+<string name="season_other">Overig</string>
 <string name="season_short">S</string>
+<string name="season_specials">Specials</string>
 <string name="seek_back_10_seconds">10 seconden terugspoelen</string>
 <string name="seek_forward_10_seconds">10 seconden vooruitspoelen</string>
 <string name="select_all">Selecteer alles</string>

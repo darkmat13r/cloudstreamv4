@@ -11,6 +11,7 @@
 <plurals name="downloads_titles_status"><item quantity="one">%1$d عنوانات · %2$s</item><item quantity="other">%1$d عنوانات · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d بک مارک</item><item quantity="other">%d بک مارکس</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d سیکشن لوڈ نہیں ہو سکا</item><item quantity="other">%d سیکشنز لوڈ نہیں ہو سکے</item></plurals>
+<plurals name="library_title_count"><item quantity="one">%d عنوان</item><item quantity="other">%d عنوانات</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">%d ذریعے میں تلاش کریں</item><item quantity="other">تمام %d ذرائع میں تلاش کریں</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">پھر بھی %d ذریعے میں تلاش کرنے کے لیے کی بورڈ کی تلاش کی کلید دبائیں۔</item><item quantity="other">پھر بھی تمام %d ذرائع میں تلاش کرنے کے لیے کی بورڈ کی تلاش کی کلید دبائیں۔</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d ذریعہ</item><item quantity="other">%d ذرائع</item></plurals>
@@ -340,10 +341,21 @@
 <string name="kitsu_settings">کٹسو سے پوسٹر نمایش کریں</string>
 <string name="legal_notice">دستبرداری</string>
 <string name="library">لائبریری</string>
+<string name="library_go_to_list">%s پر جائیں</string>
+<string name="library_list_empty_body">جو عنوانات آپ %s میں شامل کرتے ہیں وہ یہاں آتے ہیں۔</string>
+<string name="library_list_empty_headline">%s میں کچھ نہیں</string>
 <string name="library_not_connected">منسلک نہیں</string>
 <string name="library_on_device">ڈیوائس پر</string>
+<string name="library_sort_current">ترتیب: %s</string>
+<string name="library_sort_supported">%1$s %3$d میں سے %2$d کی معاونت کرتا ہے</string>
+<string name="library_sort_not_kept">%s اسے نہیں رکھتا</string>
 <string name="library_source">لائبریری کا ذریعہ</string>
 <string name="library_source_note">ایک وقت میں ایک · تبدیل کرنے پر دوبارہ لوڈ ہوتا ہے</string>
+<string name="library_sync_cached">کیش شدہ</string>
+<string name="library_sync_failed">%1$s کو ہم آہنگ نہیں کیا جا سکا۔ یہ %2$s پہلے کے ہیں۔</string>
+<string name="library_sync_offline">آف لائن · %s پہلے کیش کیا گیا</string>
+<string name="library_sync_retry">دوبارہ ہم آہنگ کریں</string>
+<string name="library_sync_unreachable">رسائی نہیں · %s پہلے کیش کیا گیا</string>
 <string name="library_synced_format">%s پہلے ہم آہنگ کیا گیا</string>
 <string name="lightnovel">یہ لائٹ ناول ایپ وہی ڈویلپرز نے تیار کی ہے جو اس ایپ کو ڈویلپ کیا ہے</string>
 <string name="limit_title">ویڈیو پلیئر کے عنوان کے زیادہ سے زیادہ حروف</string>
@@ -567,6 +579,7 @@
 <string name="search_state_no_results_type_filter">صرف %s۔ آپ کا قسم فلٹر تلاش کو محدود کر رہا ہے۔</string>
 <string name="search_state_no_suggestions_detail">0 تجاویز · 0 حالیہ مماثلتیں</string>
 <string name="search_state_no_suggestions_headline">“%s” سے کچھ بھی مماثل نہیں</string>
+<string name="search_suggestions_return_hint">Return سب جگہ تلاش کرتا ہے</string>
 <string name="search_tv_source_failed">ناکام %s</string>
 <string name="search_tv_source_pinned">پن کیا گیا</string>
 <string name="search_tv_sources_panel_meta">%2$d میں سے %1$d فعال · تبدیلیاں ہو گیا پر لاگو ہوں گی</string>
@@ -575,7 +588,9 @@
 <string name="search_tv_suggestion_suggested">تجویز کردہ</string>
 <string name="season">سیزن</string>
 <string name="season_format">%1$s %2$d%3$s</string>
+<string name="season_other">دیگر</string>
 <string name="season_short">S</string>
+<string name="season_specials">خصوصی</string>
 <string name="seek_back_10_seconds">10 سیکنڈ پیچھے جائیں</string>
 <string name="seek_forward_10_seconds">10 سیکنڈ آگے جائیں</string>
 <string name="select_all">سب چُنیں</string>

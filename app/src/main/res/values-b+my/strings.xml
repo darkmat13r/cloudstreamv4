@@ -10,6 +10,7 @@
 <plurals name="home_bookmarks_count"><item quantity="other">"စာမှတ် %d ခု"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">"အပိုင်း %d ခု တင်သွင်း၍မရပါ"</item></plurals>
 <plurals name="home_source_sections"><item quantity="other">"ကဏ္ဍ %d ခု"</item></plurals>
+<plurals name="library_title_count"><item quantity="other">"ခေါင်းစဉ် %d ခု"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="other">"ရင်းမြစ် %d ခုလုံးတွင် ရှာရန်"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="other">"မည်သို့ပင်ဖြစ်စေ ရင်းမြစ် %d ခုလုံးတွင် ရှာရန် ကီးဘုတ်၏ ရှာဖွေရေးခလုတ်ကို နှိပ်ပါ။"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="other">"%d ရင်းမြစ်"</item></plurals>
@@ -297,10 +298,21 @@
 <string name="kitsu_settings">"Kitsu မှ ပိုစတာများကိုပြရန်"</string>
 <string name="legal_notice">"ရှင်းလင်းချက်"</string>
 <string name="library">"လိုက်ဘရီ"</string>
+<string name="library_go_to_list" formatted="true">"%s သို့ သွားရန်"</string>
+<string name="library_list_empty_body" formatted="true">"%s သို့ ထည့်သော ခေါင်းစဉ်များ ဤနေရာတွင် ပေါ်လာမည်။"</string>
+<string name="library_list_empty_headline" formatted="true">"%s တွင် ဘာမျှမရှိ"</string>
 <string name="library_not_connected">"ချိတ်ဆက်မထားပါ"</string>
 <string name="library_on_device">"စက်ပေါ်တွင်"</string>
+<string name="library_sort_current" formatted="true">"စီရန်: %s"</string>
+<string name="library_sort_not_kept" formatted="true">"%s က ဒါကို မသိမ်းထားပါ"</string>
+<string name="library_sort_supported" formatted="true">"%1$s သည် %3$d ခုအနက် %2$d ခုကို ပံ့ပိုးသည်"</string>
 <string name="library_source">"လိုက်ဘရီ ရင်းမြစ်"</string>
 <string name="library_source_note">"တစ်ကြိမ်လျှင် တစ်ခု · ပြောင်းလျှင် ပြန်ဖွင့်သည်"</string>
+<string name="library_sync_cached">"သိမ်းထားသည်"</string>
+<string name="library_sync_failed" formatted="true">"%1$s ကို ချိန်ကိုက်၍မရပါ။ ဤအရာများသည် လွန်ခဲ့သော %2$s ကဖြစ်သည်။"</string>
+<string name="library_sync_offline" formatted="true">"အော့ဖ်လိုင်း · လွန်ခဲ့သော %s က သိမ်းထားသည်"</string>
+<string name="library_sync_retry">"ပြန်ချိန်ကိုက်ရန်"</string>
+<string name="library_sync_unreachable" formatted="true">"ချိတ်ဆက်၍မရ · လွန်ခဲ့သော %s က သိမ်းထားသည်"</string>
 <string name="library_synced_format" formatted="true">"%s က ချိန်ကိုက်ခဲ့သည်"</string>
 <string name="lightnovel">"တူညီသောအက်ပ်ရေးသားသူများ၏ ဝတ္ထုရှည်များဖတ်နိုင်သည့် အက်ပ်"</string>
 <string name="limit_title">"ခေါင်းစဥ်အတွက်စာလုံးရေပြည့်ခြင်း"</string>
@@ -503,6 +515,7 @@
 <string name="search_state_no_results_type_filter" formatted="true">"%s သာ။ သင့်အမျိုးအစား စစ်ထုတ်မှုက ရှာဖွေမှုကို ကျဉ်းစေနေသည်။"</string>
 <string name="search_state_no_suggestions_detail">"အကြံပြုချက် 0 ခု · မကြာသေးမီ ကိုက်ညီမှု 0 ခု"</string>
 <string name="search_state_no_suggestions_headline" formatted="true">"“%s” နှင့် ကိုက်ညီသည့်အရာ မရှိပါ"</string>
+<string name="search_suggestions_return_hint">"Return ဖြင့် အားလုံးရှာသည်"</string>
 <string name="search_tv_source_failed" formatted="true">"မအောင်မြင်ပါ %s"</string>
 <string name="search_tv_source_pinned">"ပင်ထိုးထား"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"%2$d ခုအနက် %1$d ခု ဖွင့်ထား · ပြောင်းလဲမှုများကို ပြီးပြီ တွင် အသုံးပြုမည်"</string>
@@ -511,7 +524,9 @@
 <string name="search_tv_suggestion_suggested">"အကြံပြုထားသည်"</string>
 <string name="season">"အတွဲ"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
+<string name="season_other">"အခြား"</string>
 <string name="season_short">"အတွဲ"</string>
+<string name="season_specials">"အထူး"</string>
 <string name="seek_back_10_seconds">"10 စက္ကန့် နောက်သို့ရစ်ရန်"</string>
 <string name="seek_forward_10_seconds">"10 စက္ကန့် ရှေ့သို့ကျော်ရန်"</string>
 <string name="select_library">"လိုက်ဘရီရွေးချယ်ရန်"</string>

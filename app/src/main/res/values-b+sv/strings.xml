@@ -12,6 +12,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">"%d BOKMÄRKE"</item><item quantity="other">"%d BOKMÄRKEN"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d sektion kunde inte laddas"</item><item quantity="other">"%d sektioner kunde inte laddas"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d avsnitt"</item><item quantity="other">"%d avsnitt"</item></plurals>
+<plurals name="library_title_count"><item quantity="one">"%d titel"</item><item quantity="other">"%d titlar"</item></plurals>
 <plurals name="links_hidden"><item quantity="one">"%d dold länk"</item><item quantity="other">"%d dolda länkar"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Sök i %d källa"</item><item quantity="other">"Sök i alla %d källor"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Tryck på tangentbordets söktangent för att söka i %d källa ändå."</item><item quantity="other">"Tryck på tangentbordets söktangent för att söka i alla %d källor ändå."</item></plurals>
@@ -396,10 +397,21 @@
 <string name="kitsu_settings">"Visa bilder från Kitsu"</string>
 <string name="legal_notice">"Ansvarsfriskrivning"</string>
 <string name="library">"Bibliotek"</string>
+<string name="library_go_to_list" formatted="true">"Gå till %s"</string>
+<string name="library_list_empty_body" formatted="true">"Titlar du lägger till i %s visas här."</string>
+<string name="library_list_empty_headline" formatted="true">"Inget i %s"</string>
 <string name="library_not_connected">"Inte ansluten"</string>
 <string name="library_on_device">"På enheten"</string>
+<string name="library_sort_current" formatted="true">"Sortering: %s"</string>
+<string name="library_sort_not_kept" formatted="true">"Sparas inte av %s"</string>
+<string name="library_sort_supported" formatted="true">"%1$s stöder %2$d av %3$d"</string>
 <string name="library_source">"Bibliotekskälla"</string>
 <string name="library_source_note">"En i taget · byte laddar om"</string>
+<string name="library_sync_cached">"Cachad"</string>
+<string name="library_sync_failed" formatted="true">"Det gick inte att synkronisera %1$s. Detta är från för %2$s sedan."</string>
+<string name="library_sync_offline" formatted="true">"Offline · cachad för %s sedan"</string>
+<string name="library_sync_retry">"Synkronisera igen"</string>
+<string name="library_sync_unreachable" formatted="true">"Går inte att nå · cachad för %s sedan"</string>
 <string name="library_synced_format" formatted="true">"Synkroniserad för %s sedan"</string>
 <string name="lightnovel">"Lightnovel app av samma utvecklare"</string>
 <string name="limit_title">"Max tecken i videospelartiteln"</string>
@@ -661,6 +673,7 @@
 <string name="search_state_no_suggestions_headline" formatted="true">"Inget matchar ”%s”"</string>
 <string name="search_suggestions">"Sökförslag"</string>
 <string name="search_suggestions_des">"Visa sökförslag medan du skriver"</string>
+<string name="search_suggestions_return_hint">"Return söker överallt"</string>
 <string name="search_tv_source_failed" formatted="true">"MISSLYCKADES %s"</string>
 <string name="search_tv_source_pinned">"FASTSATT"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"%1$d AV %2$d AKTIVERADE · ÄNDRINGAR TILLÄMPAS VID KLAR"</string>
@@ -669,7 +682,9 @@
 <string name="search_tv_suggestion_suggested">"FÖRESLAGEN"</string>
 <string name="season">"Säsong"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
+<string name="season_other">"Övrigt"</string>
 <string name="season_short">"S"</string>
+<string name="season_specials">"Specialer"</string>
 <string name="seek_back_10_seconds">"Hoppa bakåt 10 sekunder"</string>
 <string name="seek_forward_10_seconds">"Hoppa framåt 10 sekunder"</string>
 <string name="select_all">"Välj alla"</string>

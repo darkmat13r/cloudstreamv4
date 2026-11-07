@@ -10,6 +10,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">"%d BOEKMERK"</item><item quantity="other">"%d BOEKMERKE"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d afdeling kon nie laai nie"</item><item quantity="other">"%d afdelings kon nie laai nie"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d afdeling"</item><item quantity="other">"%d afdelings"</item></plurals>
+<plurals name="library_title_count"><item quantity="one">"%d titel"</item><item quantity="other">"%d titels"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Soek %d bron"</item><item quantity="other">"Soek al %d bronne"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Druk die sleutelbord se soeksleutel om tog %d bron te deursoek."</item><item quantity="other">"Druk die sleutelbord se soeksleutel om tog al %d bronne te deursoek."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d BRON"</item><item quantity="other">"%d BRONNE"</item></plurals>
@@ -140,10 +141,21 @@
 <string name="home_source_picker_body">"Rye kom van een uitbreiding op 'n slag."</string>
 <string name="home_source_picker_title">"Tuisbron"</string>
 <string name="home_source_unreachable">"Kon dit laas nie bereik nie"</string>
+<string name="library_go_to_list" formatted="true">"Gaan na %s"</string>
+<string name="library_list_empty_body" formatted="true">"Titels wat jy by %s voeg, kom hier."</string>
+<string name="library_list_empty_headline" formatted="true">"Niks in %s nie"</string>
 <string name="library_not_connected">"Nie gekoppel"</string>
 <string name="library_on_device">"Op toestel"</string>
+<string name="library_sort_current" formatted="true">"Sorteer: %s"</string>
+<string name="library_sort_not_kept" formatted="true">"Nie deur %s gehou nie"</string>
+<string name="library_sort_supported" formatted="true">"%1$s ondersteun %2$d van %3$d"</string>
 <string name="library_source">"Biblioteekbron"</string>
 <string name="library_source_note">"Een op 'n slag · oorskakel herlaai"</string>
+<string name="library_sync_cached">"Gekas"</string>
+<string name="library_sync_failed" formatted="true">"Kon %1$s nie sinkroniseer nie. Hierdie is van %2$s gelede."</string>
+<string name="library_sync_offline" formatted="true">"Vanlyn · %s gelede gekas"</string>
+<string name="library_sync_retry">"Probeer weer sinkroniseer"</string>
+<string name="library_sync_unreachable" formatted="true">"Onbereikbaar · %s gelede gekas"</string>
 <string name="library_synced_format" formatted="true">"%s gelede gesinkroniseer"</string>
 <string name="load_more">"Laai meer"</string>
 <string name="loading">"Laai tans…"</string>
@@ -215,6 +227,7 @@
 <string name="search_state_no_results_type_filter" formatted="true">"Slegs %s. Jou tipe-filter beperk die soektog."</string>
 <string name="search_state_no_suggestions_detail">"0 VOORSTELLE · 0 ONLANGSE OOREENKOMSTE"</string>
 <string name="search_state_no_suggestions_headline" formatted="true">"Niks stem ooreen met “%s” nie"</string>
+<string name="search_suggestions_return_hint">"Return soek alles"</string>
 <string name="search_tv_source_failed" formatted="true">"MISLUK %s"</string>
 <string name="search_tv_source_pinned">"VASGESPELD"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"%1$d VAN %2$d GEAKTIVEER · WYSIGINGS GELD BY KLAAR"</string>
@@ -222,6 +235,8 @@
 <string name="search_tv_suggestion_recent_suggested">"ONLANGS · OOK VOORGESTEL"</string>
 <string name="search_tv_suggestion_suggested">"VOORGESTEL"</string>
 <string name="season">"Seisoen"</string>
+<string name="season_other">"Ander"</string>
+<string name="season_specials">"Spesiaal"</string>
 <string name="seek_back_10_seconds">"Spring 10 sekondes terug"</string>
 <string name="seek_forward_10_seconds">"Spring 10 sekondes vorentoe"</string>
 <string name="select_all">"Kies Alles"</string>
