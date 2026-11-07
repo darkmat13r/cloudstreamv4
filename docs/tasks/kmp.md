@@ -5942,21 +5942,6 @@ Why: headers can be credentials; the owner's rule is no URLs, headers or paths i
 
 Additions only. `app/api/classes-jar.api` +70 / −0: 8 `R$string` fields, `CS3IPlayer.getBufferedPosition`, `FullScreenPlayer`'s `playerError` override and failure flag, `GeneratorPlayer`'s facts override, and the HUD host classes.
 
-## KMP-62 — The old downloader keeps whole links in `KEY_RESUME_PACKAGES` · **approved 2026-11-06**, scheduled after `KMP-52`
-
-It was found while checking `KMP-59` against the no-link ruling for `KMP-52`.
-- **What is stored.** `DownloadManager.kt:1923-1927` writes `DownloadResumePackage(item, index)` to `KEY_RESUME_PACKAGES` before every
-  attempt. `DownloadItem.links` is `List<ExtractorLink>`, serialised with `url`, `referer` and `headers`
-  (`library/.../ExtractorApi.kt:700-708`). It is written to SharedPreferences.
-- **When.** With `KMP-59`'s switch on or off. The engine path adds no link of its own: its marker holds a size and a name, and its state
-  file holds the size, ETag, Last-Modified and the ranges.
-- **The owner's ruling (2026-11-06): the same no-link rule as `KMP-52`.** Keep `ep`, the provider and the episode's `loadLinks` data, and
-  run `loadLinks` again on resume, including the start-up re-queue in `DownloadQueueManager.init`.
-- **Notes for the build:**
-  - A resume package saved before the update keeps its old data until it finishes or is removed.
-  - After a successful migration, the stored `ExtractorLink`s are deleted from SharedPreferences.
-  - Behaviour change: a source that no longer answers fails that resume.
-
 ## KMP-52 — The Mac download service and its data · **measured 2026-11-06**
 
 `:media:download` runs on the JVM in `:desktopApp`, in package `com.lagradost.cloudstream4.downloads`, with a queue, persistence and the two
@@ -5982,7 +5967,8 @@ download sources. There is no UI: that is `KMP-54`, which wires `source()` and `
 - Enqueuing a paused or failed episode again takes the new link, because signed URLs expire. A blank source is `EnqueueRefusal.NoSource`.
 - The engine writes straight into `~/Downloads/CloudStream/<title>/`. On the JVM its atomic move works, so there is no staging (unlike `KMP-59`).
 - File names are `S01E02 Name.mp4`, or the title for a film, with ` (2)` on a clash. `DownloadPaths` restates the engine's internal name
-  rules more strictly, so the result is always one safe path segment.
+  rules more strictly, so the result is always one safe path segment. A title or episode name that reads as an address is dropped
+  before it is stored or names anything (`KMP-71`).
 - The HTTP client is `HttpClientFactory(posterHttpClient())`. It verifies TLS and checks the resolved and connected addresses, which also
   closes the engine's DNS-rebinding gap on the Mac.
 - Delete removes only empty folders, and refuses a folder whose real path is not directly inside the download root.
@@ -6052,6 +6038,32 @@ download sources. There is no UI: that is `KMP-54`, which wires `source()` and `
 - A full disk.
 - An unreadable downloads file, where `contents` throws and `enqueue` returns `StoreUnreadable`.
 - A process kill, as opposed to `close()`.
+
+## KMP-71 — Mac downloads: a title or episode name that is an address never reaches disk · **built 2026-11-08**, waits on review
+
+A follow-up to `KMP-52`. A plugin's `titleName` and `episodeName` became the folder and file names and were written to
+`downloads.json`. A plugin can put a signed link there, so it could end up on disk as a file name.
+
+- **The rule** is the TV HUD's title rule as `KMP-66` tightens it, restated in `DownloadPaths.looksLikeAddress`:
+  - a scheme anywhere, or a path, `content:` or `file:` at the start;
+  - a host at the start followed by a port, path, query or fragment.
+  A dotted title on its own (`Dr.Stone`, `Mr.Robot`, `Vol.II`) stays. Only a source's name gets the HUD's stricter rule (a bare host,
+  `sig=`, a backslash path), and a title never does.
+- **Where it applies.** It goes in `DownloadPaths.displayText`, which every title and episode name already passes through:
+  - on enqueue, before the name is stored or names a folder or file;
+  - on reading `downloads.json` back, so a hand-edited file is checked too (not tested with an edited file).
+- **Fallbacks:**
+  - A title that is an address becomes `Download`, both as the row's name and as the folder. A blank title stays blank, as before.
+  - An episode name that is an address is dropped, so the file is `S01E05.mp4` and the list shows the episode's code.
+- **Not handled:** a record written before this change keeps its folder and file names. No caller enqueues anything yet (that is
+  `KMP-54`), so no such record exists.
+
+**Tests** (local, none CI). Counted from the XML:
+- `DownloadPathsTest`, new, 4/4. The address samples are copied from `TvHudFactsTest` (`KMP-64`); the dotted titles are `KMP-66`'s.
+- `DesktopDownloadsTest`, 24/24. The new test enqueues a series episode whose title is a link and whose name is a link carrying a
+  token, and runs it to Done. The file is `Download/S01E05.mp4`. Neither marker appears in `downloads.json`, in any other file in its
+  folder, or in any file's bytes or any path name under the download root, either then or after a restart.
+- With `looksLikeAddress` forced to false, 3 of these fail: 2 in `DownloadPathsTest` and the new one in `DesktopDownloadsTest`.
 
 ## KMP-55 — The Mac's Home, built from `DS-21`
 

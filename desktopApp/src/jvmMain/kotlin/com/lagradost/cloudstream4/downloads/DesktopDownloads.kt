@@ -584,7 +584,7 @@ class DesktopDownloads internal constructor(
         return Item(
             episodeId = stored.episodeId,
             titleId = stored.titleId,
-            titleName = DownloadPaths.displayText(stored.titleName).orEmpty(),
+            titleName = DownloadPaths.titleText(stored.titleName),
             kind = kind,
             season = stored.season,
             episode = stored.episode,
@@ -622,7 +622,7 @@ class DesktopDownloads internal constructor(
             return EnqueueResult.Queued
         }
 
-        val titleName = DownloadPaths.displayText(request.titleName).orEmpty()
+        val titleName = DownloadPaths.titleText(request.titleName)
         val folderName = items.values.firstOrNull { it.titleId == request.titleId }?.folderName
             ?: DownloadPaths.segment(titleName)
         val folder = File(root, folderName)
