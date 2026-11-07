@@ -45,6 +45,10 @@ import com.lagradost.cloudstream4.feature.home.HomeStatus
 import com.lagradost.cloudstream4.feature.home.HomeWatchStatus
 import com.lagradost.cloudstream4.feature.home.desktop.HomeScreenDesktop
 import com.lagradost.cloudstream4.feature.home.desktop.HomeScreenDesktopDefaults
+import com.lagradost.cloudstream4.feature.library.LibraryBucket
+import com.lagradost.cloudstream4.feature.library.LibraryTitle
+import com.lagradost.cloudstream4.feature.library.LibraryTitleId
+import com.lagradost.cloudstream4.feature.library.WatchPosition
 import com.lagradost.cloudstream4.library.InMemoryLibraryStore
 import java.io.File
 import java.util.Locale
@@ -351,6 +355,48 @@ class HomeScreenTest {
             listOf(HomeRowPage("Popular", false, List(12) { HomeItem(com.lagradost.cloudstream4.search.DesktopSearchSource.encodeId("Fake", "u$it"), "Title $it") })),
             hasNext = false,
         )
+    }
+
+    /** The device's library, as the window's own store reads it: two to resume and bookmarks in two statuses. */
+    private fun keptLibrary() = InMemoryLibraryStore(
+        titles = listOf("Severance", "Arcane", "Deep Signal", "Nine Lives").mapIndexed { index, name ->
+            LibraryTitle(
+                LibraryTitleId("k$index"),
+                name,
+                bucket = if (index < 2) null else if (index == 2) LibraryBucket.Watching else LibraryBucket.PlanToWatch,
+                keptAt = index.toLong(),
+                providerName = "Fake",
+            )
+        },
+        positions = listOf(
+            WatchPosition(LibraryTitleId("k0"), null, positionMillis = 30 * 60_000L, durationMillis = 50 * 60_000L, watchedAt = 2),
+            WatchPosition(LibraryTitleId("k1"), null, positionMillis = 10 * 60_000L, durationMillis = 40 * 60_000L, watchedAt = 1),
+        ),
+    )
+
+    /** A source that is there and offline: what H4's pill is for. */
+    private class OfflineHome : HomeSource {
+        override suspend fun sources() = HomeSources(listOf(HomeSourceOption(HomeSourceId("YouTube"), "YouTube")), 1)
+
+        override suspend fun page(source: HomeSourceId, section: Int, page: Int) = HomePageReply.Offline
+    }
+
+    /**
+     * H6 as the whole window, toolbar and all, at the 800×520 minimum (`KMP-55`): offline, where the pill sits beside the
+     * source, and with rows, where Reload and Random do. Renders only; the window's behaviour has its own tests.
+     */
+    @Test
+    fun `whole window renders at the minimum`() {
+        if (System.getProperty("cloudstream.home.renders") == null) return
+        listOf("22-window-minimum-offline" to OfflineHome(), "23-window-minimum-content" to FakeHome()).forEach { (name, home) ->
+            val scene = scene(800, 520) { DesktopApp(EscapeHandler(), home, library = keptLibrary()) }
+            repeat(WAIT_ROUNDS) {
+                scene.settle()
+                Thread.sleep(WAIT_MILLIS)
+            }
+            scene.save(name)
+            scene.close()
+        }
     }
 
     /** The whole window: where it opens, opening a title, and Back and Escape from there. */
