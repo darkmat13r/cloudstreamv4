@@ -59,7 +59,10 @@ data class Pairing(
     val userCode: String,
     val secondsLeft: Int,
     val qr: ImageBitmap?,
-)
+) {
+    /** Never the code: a state logged by accident must not carry it. */
+    override fun toString(): String = "Pairing(serviceName=$serviceName, secondsLeft=$secondsLeft, userCode=<hidden>)"
+}
 
 data class AccountSelectState(
     val profiles: List<ProfileCard>,

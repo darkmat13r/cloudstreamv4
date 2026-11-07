@@ -5846,6 +5846,7 @@ Additions only. `app/api/classes-jar.api` +70 / −0: 8 `R$string` fields, `CS3I
 | The same count decided `MainActivity`'s biometric prompt | It uses the same count | Otherwise a phone with one added profile would be asked twice |
 | A browser-only service offered a sign-in that silently failed on a TV with no browser | It says "Not available here" | 8d |
 | Signing out of a service on TV said "Log out" | "Remove from this device", after a confirmation | No provider revokes a token; the words say what happens (owner's ruling) |
+| Editing a profile opened from `MainActivity` switched to it and went back | Unchanged on the new screen | The review: match the old grid (PM's call) |
 
 ### Security
 
@@ -5853,7 +5854,10 @@ Additions only. `app/api/classes-jar.api` +70 / −0: 8 `R$string` fields, `CS3I
   sign-out leaves its key holding an empty array, so an empty array counts as signed out; the value is compared, never
   parsed or logged.
 - **The pairing code** is shown because the person has to read it, and is never logged; the screenshots use a fixture
-  (`FAKE00`) and a checkerboard in place of the QR.
+  (`FAKE00`) and a checkerboard in place of the QR. `Pairing.toString` leaves the code out, so a state logged by accident
+  cannot carry it.
+- **`hasBrowser`** asks the package manager for an `https` `VIEW` handler; the manifest's `<queries>` now names that
+  intent, which Android 11+ (Google TV 14 included) needs for the answer to be accurate.
 
 ### Measured on the way
 
@@ -5876,14 +5880,18 @@ Additions only. `app/api/classes-jar.api` +70 / −0: 8 `R$string` fields, `CS3I
 ### Tests
 
 - `ProfileLineTest` (common, 2): what a card's line says.
+- `PairingTest` (common, 2): the fixture code is in neither `Pairing`'s nor the screen state's `toString`.
 - `AccountSelectScreenTvDeviceTest` (device, 6): focus starts on the current profile; Manage, then cards, then rows; a card
   press selects; pairing takes focus to *Get a new code*, BACK cancels and focus returns to the Simkl row; screenshots
   `account-select` and `account-select-pairing`, each looked at.
-- `AccountSelectTvNavigationTest` (`:app`, the real path, 4): one added profile shows the picker (**fails with the old
+- `AccountSelectTvNavigationTest` (`:app`, the real path, 6): one added profile shows the picker (**fails with the old
   count**: "8d did not show with two profiles"); one profile still skips; choosing a profile hands over as that profile; a
-  marker sign-in shows as "Current · Simkl" and its value never reaches the screen.
+  marker sign-in shows as "Current · Simkl" and its value never reaches the screen; an empty array reads "Current · No
+  sync"; an edit opened from `MainActivity` switches to that profile and goes back (**fails without the fix**: "It did
+  not go back to MainActivity").
 
 ### Not verified
 
-BACK on the real pairing panel (the panel needs Simkl's live code endpoint; the feature test covers the same callback),
-a real browser sign-in, Kitsu's form, `TalkBack`, a real remote.
+**The production BACK callback** (`closesPairing`, removed and re-added in `AccountSelectTv.attach`) is not covered: the
+real panel needs Simkl's live code endpoint, and the feature test builds its own callback, so it covers the same BACK
+handling, not this code. Also: a real browser sign-in, Kitsu's form, `TalkBack`, a real remote.

@@ -74,6 +74,9 @@ internal class AccountSelectTv(
     private val state = MutableStateFlow(AccountSelectState(profiles = emptyList(), services = emptyList()))
     private var poll: DevicePinPoll? = null
 
+    /** The profiles as last read, by index; read once per refresh, not on every card's composition. */
+    private var accounts: Map<Int, DataStoreHelper.Account> = emptyMap()
+
     /** The sync services 8d lists, in its order. */
     private val repos: List<AuthRepo>
         get() = listOf(AccountManager.simklApi, AccountManager.malApi, AccountManager.aniListApi, AccountManager.kitsuApi)
@@ -104,6 +107,7 @@ internal class AccountSelectTv(
 
     private fun refresh() {
         val profiles = DataStoreHelper.getAccounts(activity)
+        accounts = profiles.associateBy { it.keyIndex }
         val selected = DataStoreHelper.selectedKeyIndex
         state.update { old ->
             old.copy(
@@ -126,7 +130,7 @@ internal class AccountSelectTv(
     /** A profile's picture when it is one of the bundled ones; a picture from an address shows its initials. */
     @androidx.compose.runtime.Composable
     private fun Picture(card: ProfileCard) {
-        val account = DataStoreHelper.getAccounts(activity).firstOrNull { it.keyIndex == card.id } ?: return
+        val account = accounts[card.id] ?: return
         if (account.customImage != null) return
         val drawable = DataStoreHelper.profileImages.getOrNull(account.defaultImageIndex) ?: return
         Image(painterResource(drawable), contentDescription = null, contentScale = ContentScale.Crop, modifier = Modifier.fillMaxSize())
@@ -150,7 +154,14 @@ internal class AccountSelectTv(
                 if (state.value.managing) {
                     showAccountEditDialog(
                         activity, account, isNewAccount = false,
-                        accountEditCallback = { viewModel.handleAccountUpdate(it, activity) },
+                        accountEditCallback = { edited ->
+                            viewModel.handleAccountUpdate(edited, activity)
+                            // Opened from MainActivity: switch to the edited profile and go back there, as the old grid did.
+                            onManageDone?.let { done ->
+                                DataStoreHelper.setAccount(edited)
+                                done()
+                            }
+                        },
                         accountDeleteCallback = { viewModel.handleAccountDelete(it, activity) },
                     )
                 } else {

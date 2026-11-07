@@ -69,9 +69,11 @@ class AccountSelectTvNavigationTest {
      * As the launcher starts it. Not `ActivityScenario`: skipping finishes the activity inside `onCreate`, which a
      * scenario reports as a launch that never reached a state.
      */
-    private fun launch() {
+    private fun launch(fromMainToEdit: Boolean = false) {
         context.startActivity(
-            Intent(context, AccountSelectActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK),
+            Intent(context, AccountSelectActivity::class.java)
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                .apply { if (fromMainToEdit) putExtra("isEditingFromMainActivity", true) },
         )
     }
 
@@ -125,6 +127,34 @@ class AccountSelectTvNavigationTest {
         assertNotNull("The current profile's card does not say Simkl",
             device.wait(Until.findObject(By.text("Current · Simkl")), 5_000))
         assertNull("A stored sign-in value reached the screen", device.findObject(By.textContains(MARKER)))
+    }
+
+    /** A sign-out leaves an empty array behind; that is signed out, not a sync. */
+    @Test
+    fun anEmptySignInCountsAsSignedOut() {
+        profiles(DataStoreHelper.Account(TESTER, "Tester", defaultImageIndex = 0))
+        CredentialStore.write(signIn, emptyArray<String>())
+        launch()
+        assertTrue(screenShown())
+        assertNotNull("The current profile's card does not say No sync",
+            device.wait(Until.findObject(By.text("Current · No sync")), 5_000))
+        assertNull("An empty sign-in reads as Simkl", device.findObject(By.text("Current · Simkl")))
+    }
+
+    /** As the old grid: editing a profile when opened from MainActivity switches to it and goes back to MainActivity. */
+    @Test
+    fun anEditFromMainSwitchesToThatProfileAndReturns() {
+        profiles(DataStoreHelper.Account(TESTER, "Tester", defaultImageIndex = 0))
+        launch(fromMainToEdit = true)
+        assertTrue(screenShown())
+        device.pressKeyCode(KeyEvent.KEYCODE_DPAD_RIGHT)
+        device.waitForIdle()
+        device.pressKeyCode(KeyEvent.KEYCODE_DPAD_CENTER)
+        val apply = device.wait(Until.findObject(By.res(context.packageName, "apply_btt")), 5_000)
+        assertNotNull("The profile editor did not open", apply)
+        apply.click()
+        assertTrue("It did not go back to MainActivity", handedOver())
+        assertEquals(TESTER, DataStoreHelper.selectedKeyIndex)
     }
 
     private companion object {
