@@ -1527,6 +1527,72 @@ y614..615 and y686..687. Its bottom edge sits 32 px above the frame — **24.00 
 top edge, working at the other end. It does **not** generalise: the figure is this page's list with its
 own bottom padding, and a `LazyColumn` without that padding would still clip.
 
+## BUG-41 — On TV, Home's first focus could stay on the bookmarks' first chip instead of landing on the hero · **medium** · measured 2026-11-06
+
+**Status:** fixed, in a PR of its own · found by `TvHomeNavigationTest.aBookmarkIsOnItsRailOpensItsRealPageAndFocusComesBackAndAChipIsKept`
+on master `d0b21dc56` (worker-2, twice on `Television_720p`: in #175's full run, and alone at 18:29:22) ·
+`feature/home/.../tv/HomeScreenTv.kt`, the landing's `free`
+
+**What a person saw.** With a bookmark kept and a source that gives a hero, a launch could open with focus on the bookmarks rail's
+`Watching` chip, not on the hero's button, as 3c draws it at rest. The test's message: `the hero of Fake One holds focus, was
+Watching`.
+
+**The cause, in the app, from `KMP-45`.** The landing gave way whenever focus was already in Continue watching or the bookmarks
+(`!continueHasFocus && !bookmarksHaveFocus`), which is meant to leave a person who has moved there alone. But it did not ask
+whether a person moved. On its first `onResume` `HomeTvFragment` asks its view for focus (nothing has been pressed, so the page
+takes it from the nav rail), and Compose gives that focus to the first stop it finds. The bookmarks are one local read, so they
+can be on screen before the source's rows and the hero; when they are, that first stop is a chip. `bookmarksHaveFocus` was then
+true, and the landing never moved focus to the hero. Whether the bookmarks have composed by then is a race between a local read
+and the host's first focus request, which is why the same commit passed 17/17 at 14:56 and failed at 18:29.
+
+**Evidence.**
+
+| run | where | result |
+|---|---|---|
+| the class alone, from a cleared app (each run boots the `-read-only` AVD and installs fresh), unfixed master x3 | `Television_720p` | 17/17 each time (18:41, 18:48, 18:56Z): the race went the hero's way |
+| a module case that fixes the order, unfixed: bookmarks on screen, pages held, the host view asked for focus as `onResume` does, then the pages released | `Television_720p` | **red**, `what holds focus expected:<More info · The Long Dark> but was:<[Watching]>`, the app's symptom |
+| the same case with the fix, and the whole module suite | `Television_720p` | 79/79, 18 screenshots `same` at 0/0 |
+| `c5f3b18d3` (first fix), the reviewer's real-path case: rows held, LEFT to the nav rail, RIGHT into the bookmarks, release | `Television_720p_2` | **green**, 11.5 s: LEFT's key-down had reached Home |
+| the full `:app` suite with the first fix | `Television_720p_2` | 93 run, 92 passed, 0 failed, 1 skipped (`TvHomeRealPluginProof`), 21:10:32Z; `TvHomeNavigationTest` 17/17 |
+| the class alone with the first fix, x2 | `Television_720p_2` | 17/17 each time (21:20, 21:33Z) |
+| the final fix (`10c26f324` gated; later commits touch only device tests and docs) | both | gates all 0, 188 results; `HomeScreenTvDeviceTest` 81/81 on `156bd62cb` (`Television_720p`, 03:04Z), 18 screenshots `same`; the class alone 18/18 and the full `:app` 94 run, 93 passed, 1 skipped, on `72ce30aeb` (`Television_720p_2`, 01:50Z and 02:38Z) |
+
+Continue watching is the same race on the other local rail: worker-2's `:app` run also failed
+`somethingPlayedIsOnContinueWatchingAndOpensItsRealPageAndFocusComesBack` with `was Played Before`. The guard and the fix cover
+both rails alike, and a second module case forces that order too.
+
+The module case's first assertion is the precondition: the host's focus request does put focus on the chip. It is what makes the
+race deterministic, and what the fix is shown against.
+
+**The fix.** The host's own request is marked. `HomeTvFragment.onResume` makes it through `HomeHostFocus.request`, and when the
+page next gains focus it records whether that arrival was the host's. Only that arrival, with no key pressed on the page since,
+is not a person's: the landing then goes to the hero, the first Continue card or the first bookmark as before. Every other
+arrival in Continue watching or the bookmarks is a choice, whether by a key on the page or from the nav rail, which is a view of
+its own and sends Home no key. The first landing clears the mark, so a request that gave the page nothing cannot mislabel a
+later arrival. The assert is unchanged, and no retry was added.
+
+**Review: the first fix guessed from keys.** `c5f3b18d3` counted focus in a rail as a person's only after a key-down reached
+Home. The reviewer pointed out that the nav rail is its own view: RIGHT from it into a chip sends Home no key. On a real remote,
+though, the LEFT that reaches the nav rail starts on Home, so its key-down had already been seen, and the reviewer's case is
+green on `c5f3b18d3` (below). A rail with no key ever pressed on Home was tried too: RIGHT from it enters the chrome
+(`Switch account`), not a rail, so that path does not exist. The fix was still changed, to name the one arrival that is not a
+person's rather than infer it.
+
+**Holding the rows on the real path needs animations off.** While a page is held the loading skeleton pulses for ever, so the
+main thread is never idle, and `ActivityScenario`, which waits for idle, sat until the held page timed out: measured, 480 s before
+the first step ran, after which there were no rows and no hero. The case turns the animator scale to 0 for itself and puts it
+back in `@After`; it then takes 11.5 s. `scripts/device-tests.sh` sets all three animation scales to 1 after boot, before Gradle,
+so no run depends on what an earlier one left.
+
+**Follow-up, not done here:** a test hook that stops the skeleton's pulse, so this case touches no device setting. Nothing in the
+codebase pins reduced motion today, so it means a new public switch in `:core:designsystem`, read by the composition the real
+`MainActivity` hosts. That is its own change.
+
+**Not verified.** A failing in-app run on unfixed master on this machine: 0 of 3 class-alone runs hit the race. worker-2's two
+failures are the in-app evidence. The unfixed runs here all took slot 1 and the fixed `:app` runs slot 2, so neither slot is shown to make it likelier.
+
+---
+
 ## BUG-40 — The TV detail page's text ladder runs about 5dp high against its boards · **low** · measured 2026-11-06
 
 **Status:** found, not fixed · found 2026-11-06 while fixing the head block's height for `KMP-38` (pr #153) ·
