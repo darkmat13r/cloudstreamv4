@@ -31,6 +31,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.getAndUpdate
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.flow.updateAndGet
+import java.security.MessageDigest
 import java.util.concurrent.ConcurrentHashMap
 
 // 1. Put a download on the queue
@@ -45,6 +46,7 @@ object DownloadQueueManager {
     private const val ITEM = "item"
     private const val MIRROR = "mirror"
     private const val ATTEMPT = "attempt"
+    private const val HEX = "0123456789abcdef"
 
     /**
      * KMP-62: the links each queued item was handed, for this process only. The queue on disk leaves them out,
@@ -277,8 +279,13 @@ object DownloadQueueManager {
 
     private fun hasResumeSource(id: Int) = CloudStreamApp.context?.containsKey(resumeSourceKey(id, ITEM)) == true
 
-    /** Restates `EpisodeDownloadInstance.linkLabel`: a link named without its url or headers. */
-    private fun linkLabel(link: ExtractorLink) = "${link.source}\u001F${link.name}"
+    /** Restates `EpisodeDownloadInstance.linkLabel`: the SHA-256 of a link's source and name, never the text. */
+    private fun linkLabel(link: ExtractorLink): String {
+        val digest = MessageDigest.getInstance("SHA-256").digest("${link.source}\u001F${link.name}".toByteArray())
+        val hex = StringBuilder(digest.size * 2)
+        for (byte in digest) hex.append(HEX[(byte.toInt() shr 4) and 0xF]).append(HEX[byte.toInt() and 0xF])
+        return hex.toString()
+    }
 
     /** Restates `EpisodeDownloadInstance.withoutLinks`: what may be stored of a queued item. */
     private fun withoutLinks(wrapper: DownloadQueueWrapper) = DownloadQueueWrapper(

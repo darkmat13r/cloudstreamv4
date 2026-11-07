@@ -5084,14 +5084,15 @@ No `DownloadObjects` class changed, and `:app:checkExtensionApi` shows no diff.
   - Those three keys are written with `links` empty and `subs` null.
   - A side record under the private key `download_resume_source/<id>/` holds:
     - `item`: the `DownloadQueueItem` without links or subs, which carries the episode's `data` and the provider;
-    - `mirror`: the picked mirror's `source`/`name`;
-    - `attempt`: the `source`/`name` of the link the partial file came from.
+    - `mirror`: the SHA-256 of the picked mirror's `source` and `name`, which are the provider's and can hold a host;
+    - `attempt`: the same hash for the link the partial file came from.
   - A resume with no links runs `RepoLinkGenerator` again, with the same `LOADTYPE_INAPP_DOWNLOAD` filter and profile
     order as a first download. A picked mirror is kept if the provider still offers it, otherwise the profile's top
     link is used. The partial file resumes only on the link it came from.
   - Links the user just picked stay in memory for the running process.
-- **Removed** with `KEY_RESUME_PACKAGES` (the queue service's Stop handling and `PieFetchButton`), and when a download
-  completes. It is kept out of backups. A finished download reads nothing from it.
+- **Removed** with `KEY_RESUME_PACKAGES` (the queue service's Stop handling and `PieFetchButton`), on every file
+  delete (`deleteFileAndUpdateSettings`, which every delete in the app reaches, so it holds with no service running),
+  and when a download completes. It is kept out of backups. A finished download reads nothing from it.
 - **Migration** runs at `DownloadQueueManager.init`. It is idempotent, and it writes the side record before it strips
   the package that needs it.
   - A package whose queued item survives gets a side record and loses its links.
@@ -5099,8 +5100,8 @@ No `DownloadObjects` class changed, and `:app:checkExtensionApi` shows no diff.
   - A package with nothing to ask the provider with keeps its links until it finishes or is removed.
 - **Behaviour change.** A source that no longer answers now fails that resume with `DownloadFailure.NoUsableLink`, and
   the partial file is kept.
-- **Tests.** `NoStoredLinksDeviceTest`, 8 cases. They read every `shared_prefs/*.xml` raw and look for markers in a
-  link's url, referer and headers and in a subtitle's url and headers. The checks run after enqueue, run, fail,
+- **Tests.** `NoStoredLinksDeviceTest`, 9 cases. They read every `shared_prefs/*.xml` raw and look for markers in a
+  link's url, referer, headers, source and name and in a subtitle's url and headers. The checks run after enqueue, run, fail,
   stop, finish, restart and migration.
 - **Known and left.** `KEY_DOWNLOAD_INFO.linkHash` (`url.hashCode()`) and `DOWNLOAD_HEADER_CACHE.url` (the result
   page URL).

@@ -40,6 +40,7 @@ import com.lagradost.cloudstream3.utils.downloader.VideoDownloadManager.Download
 import com.lagradost.cloudstream3.utils.newExtractorLink
 import com.lagradost.cloudstream4.media.model.DownloadFailure
 import com.lagradost.cloudstream4.media.model.DownloadState
+import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 import org.junit.After
@@ -215,8 +216,16 @@ class NoStoredLinksDeviceTest {
 
     // --- what goes in ---
 
-    private suspend fun markedLink(server: Server, name: String = "Mirror A"): ExtractorLink =
-        newExtractorLink(PROVIDER, name, "${server.base}?u=${marker("URL")}", ExtractorLinkType.VIDEO) {
+    /**
+     * A link's source and name are the provider's and can hold a host, so they carry markers too. They stay the
+     * same for one mirror within a test, as a provider's would, so a picked mirror can still be recognised.
+     */
+    private val source by lazy { "src-${marker("SRC")}" }
+    private val mirrorNames = mutableMapOf<String, String>()
+    private fun mirrorName(tag: String) = mirrorNames.getOrPut(tag) { "Mirror $tag ${marker("NAME")}" }
+
+    private suspend fun markedLink(server: Server, mirror: String = "A"): ExtractorLink =
+        newExtractorLink(source, mirrorName(mirror), "${server.base}?u=${marker("URL")}", ExtractorLinkType.VIDEO) {
             referer = "http://127.0.0.1/${marker("REF")}"
             headers = mapOf("X-Kmp62" to marker("HDR"))
         }
@@ -514,7 +523,7 @@ class NoStoredLinksDeviceTest {
 
             server.dropPast = null
             // The source still offers the picked mirror, beside a better-ranked one it must not switch to.
-            provider.answer = listOf(markedLink(otherMirror, name = "Mirror B"), markedLink(server))
+            provider.answer = listOf(markedLink(otherMirror, mirror = "B"), markedLink(server))
             val instance = DownloadQueueManager.popQueue(context)!!
             instance.startDownload()
             assertTrue("did not end", instance.awaitEnd())
@@ -568,6 +577,32 @@ class NoStoredLinksDeviceTest {
             assertNull(storedResume(id))
             assertTrue(sideKeys(id).isEmpty())
             assertNoMarkers("kept-removed")
+        }
+    }
+
+    /** Deleting a failed episode with no queue service running leaves neither its package nor its side record. */
+    @Test
+    fun deletingAFailedDownloadWithNoServiceRemovesItsPackageAndSideRecord() = runBlocking {
+        Server(dropPast = 12 * MIB).use { server ->
+            val id = 920_009
+            provider.answer = listOf(markedLink(server))
+            val instance = start(queueItem(id, marker("DATA")).toWrapper())
+            assertTrue("did not end", instance.awaitEnd())
+            assertTrue(instance.isFailed)
+            assertNotNull(storedResume(id))
+            assertTrue(context.containsKey("$SIDE/$id/item"))
+
+            // The app's delete, as every screen calls it; no DownloadQueueService exists to hear the Stop.
+            val deleted = CompletableDeferred<Set<Int>>()
+            VideoDownloadManager.deleteFilesAndUpdateSettings(context, setOf(id), this) { deleted.complete(it) }
+            assertEquals(setOf(id), deleted.await())
+
+            val disk = prefsOnDisk()
+            assertFalse("the side record survived the delete", disk.contains("$SIDE/$id/"))
+            assertFalse("the resume package survived the delete", disk.contains("${VideoDownloadManager.KEY_RESUME_PACKAGES}/$id\""))
+            assertNull(storedResume(id))
+            assertNull(VideoDownloadManager.getDownloadFileInfo(context, id))
+            assertNoMarkers("delete")
         }
     }
 

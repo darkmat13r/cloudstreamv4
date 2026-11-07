@@ -60,6 +60,7 @@ import com.lagradost.cloudstream3.utils.DataStore.containsKey
 import com.lagradost.cloudstream3.utils.DataStore.getFolderName
 import com.lagradost.cloudstream3.utils.DataStore.getKey
 import com.lagradost.cloudstream3.utils.DataStore.removeKey
+import com.lagradost.cloudstream3.utils.DataStore.removeKeys
 import com.lagradost.cloudstream3.utils.Event
 import com.lagradost.cloudstream3.utils.ExtractorLink
 import com.lagradost.cloudstream3.utils.ExtractorLinkType
@@ -116,6 +117,7 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 import java.io.Closeable
+import java.security.MessageDigest
 import java.io.IOException
 import java.io.OutputStream
 
@@ -223,8 +225,8 @@ object VideoDownloadManager {
     /**
      * KMP-62: what a resume asks the provider with, so no stored package needs a link. One folder per
      * episode id: `item` is the [DownloadObjects.DownloadQueueItem] without `links` and `subs`, `mirror`
-     * the `source` and `name` of a link the user picked, and `attempt` those of the link the partial
-     * file came from. It goes with [KEY_RESUME_PACKAGES], and when the download completes.
+     * the SHA-256 of the `source` and `name` of a link the user picked, and `attempt` that of the link the
+     * partial file came from. It goes with [KEY_RESUME_PACKAGES], on every delete, and when the download completes.
      * [DownloadQueueManager] and `BackupUtils` restate the name: a shared constant would be classes.jar API.
      */
     private const val KEY_RESUME_SOURCE = "download_resume_source"
@@ -1762,7 +1764,12 @@ object VideoDownloadManager {
 
     private fun deleteFileAndUpdateSettings(context: Context, id: Int): Boolean {
         val success = deleteFile(context, id)
-        if (success) context.removeKey(KEY_DOWNLOAD_INFO, id.toString())
+        if (success) {
+            context.removeKey(KEY_DOWNLOAD_INFO, id.toString())
+            // KMP-62: every delete comes through here, and the queue service's Stop handling only runs while it does
+            context.removeKey(KEY_RESUME_PACKAGES, id.toString())
+            context.removeKeys("$KEY_RESUME_SOURCE/$id")
+        }
         return success
     }
 
@@ -1905,6 +1912,7 @@ object VideoDownloadManager {
             private const val ITEM = "item"
             private const val MIRROR = "mirror"
             private const val ATTEMPT = "attempt"
+            private const val HEX = "0123456789abcdef"
 
             private fun displayNotification(context: Context, id: Int, notification: Notification) {
                 safe {
@@ -2284,8 +2292,16 @@ object VideoDownloadManager {
         private fun readLabel(id: Int, part: String): String? =
             getKeyClass(resumeSourceKey(id, part), String::class.java)
 
-        /** Names a link without its url or headers. [DownloadQueueManager] restates it. */
-        private fun linkLabel(link: ExtractorLink) = "${link.source}\u001F${link.name}"
+        /**
+         * Names a link for an equality check only. A source or name is the provider's and can hold a host or a
+         * url, so what is stored is the SHA-256 of them, never the text. [DownloadQueueManager] restates it.
+         */
+        private fun linkLabel(link: ExtractorLink): String {
+            val digest = MessageDigest.getInstance("SHA-256").digest("${link.source}\u001F${link.name}".toByteArray())
+            val hex = StringBuilder(digest.size * 2)
+            for (byte in digest) hex.append(HEX[(byte.toInt() shr 4) and 0xF]).append(HEX[byte.toInt() and 0xF])
+            return hex.toString()
+        }
 
         /**
          * A picked mirror's links if the provider still offers them, else every link: the fallback is the
