@@ -18,6 +18,24 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Pressione a tecla de pesquisa do teclado para pesquisar mesmo assim em %d fonte."</item><item quantity="many">"Pressione a tecla de pesquisa do teclado para pesquisar mesmo assim em todas as %d fontes."</item><item quantity="other">"Pressione a tecla de pesquisa do teclado para pesquisar mesmo assim em todas as %d fontes."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d FONTE"</item><item quantity="many">"%d FONTES"</item><item quantity="other">"%d FONTES"</item></plurals>
 <string name="account">"Conta"</string>
+<string name="account_add_profile">"Adicionar perfil"</string>
+<string name="account_manage_profiles">"Gerenciar perfis"</string>
+<string name="account_pair_code">"Seu código"</string>
+<string name="account_pair_instructions">"Abra isto no celular e digite o código abaixo."</string>
+<string name="account_pair_new_code">"Obter um novo código"</string>
+<string name="account_pair_title" formatted="true">"Parear %s"</string>
+<string name="account_profile_current">"Atual"</string>
+<string name="account_profile_locked">"Bloqueado · PIN"</string>
+<string name="account_profile_no_sync">"Sem sincronização"</string>
+<string name="account_select_note">"Histórico separado · não são logins"</string>
+<string name="account_select_title">"Quem está assistindo?"</string>
+<string name="account_sync_connected">"Conectado · logado neste dispositivo"</string>
+<string name="account_sync_needs_browser">"O login precisa de um navegador. Este dispositivo não tem."</string>
+<string name="account_sync_note">"Opcional. Sincroniza o progresso com uma conta que você já tem."</string>
+<string name="account_sync_pair">"Parear com um código"</string>
+<string name="account_sync_remove">"Remover deste dispositivo"</string>
+<string name="account_sync_title">"Serviços de sincronização"</string>
+<string name="account_sync_unavailable">"Indisponível aqui"</string>
 <string name="action_add_to_bookmarks">"Adicionar a lista"</string>
 <string name="action_add_to_favorites">"Adicionar aos favoritos"</string>
 <string name="action_default">"Padrão"</string>

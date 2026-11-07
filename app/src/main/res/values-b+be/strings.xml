@@ -17,6 +17,24 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Націсніце клавішу пошуку на клавіятуры, каб усё роўна шукаць у %d крыніцы."</item><item quantity="few">"Націсніце клавішу пошуку на клавіятуры, каб усё роўна шукаць ва ўсіх %d крыніцах."</item><item quantity="many">"Націсніце клавішу пошуку на клавіятуры, каб усё роўна шукаць ва ўсіх %d крыніцах."</item><item quantity="other">"Націсніце клавішу пошуку на клавіятуры, каб усё роўна шукаць ва ўсіх %d крыніцах."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d КРЫНІЦА"</item><item quantity="few">"%d КРЫНІЦЫ"</item><item quantity="many">"%d КРЫНІЦ"</item><item quantity="other">"%d КРЫНІЦЫ"</item></plurals>
 <string name="account">"уліковы запіс"</string>
+<string name="account_add_profile">"Дадаць профіль"</string>
+<string name="account_manage_profiles">"Кіраваць профілямі"</string>
+<string name="account_pair_code">"Ваш код"</string>
+<string name="account_pair_instructions">"Адкрыйце гэта на тэлефоне і ўвядзіце код ніжэй."</string>
+<string name="account_pair_new_code">"Атрымаць новы код"</string>
+<string name="account_pair_title" formatted="true">"Звязаць %s"</string>
+<string name="account_profile_current">"Бягучы"</string>
+<string name="account_profile_locked">"Заблакіраваны · PIN"</string>
+<string name="account_profile_no_sync">"Без сінхранізацыі"</string>
+<string name="account_select_note">"Асобная гісторыя прагляду · не ўваходы"</string>
+<string name="account_select_title">"Хто глядзіць?"</string>
+<string name="account_sync_connected">"Падключана · уваход на гэтай прыладзе"</string>
+<string name="account_sync_needs_browser">"Для ўваходу патрэбны вэб-браўзер. На гэтай прыладзе яго няма."</string>
+<string name="account_sync_note">"Неабавязкова. Сінхранізуе прагрэс прагляду з уліковым запісам, які ў вас ужо ёсць."</string>
+<string name="account_sync_pair">"Звязаць з кодам"</string>
+<string name="account_sync_remove">"Выдаліць з гэтай прылады"</string>
+<string name="account_sync_title">"Сэрвісы сінхранізацыі"</string>
+<string name="account_sync_unavailable">"Тут недаступна"</string>
 <string name="action_add_to_bookmarks">"Задаць статус прагляду"</string>
 <string name="action_add_to_favorites">"Дадаць у абранае"</string>
 <string name="action_default">"Прадвызначаны"</string>

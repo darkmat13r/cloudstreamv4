@@ -18,6 +18,24 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Appuyez sur la touche de recherche du clavier pour rechercher quand même dans %d source."</item><item quantity="many">"Appuyez sur la touche de recherche du clavier pour rechercher quand même dans les %d sources."</item><item quantity="other">"Appuyez sur la touche de recherche du clavier pour rechercher quand même dans les %d sources."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d SOURCE"</item><item quantity="many">"%d SOURCES"</item><item quantity="other">"%d SOURCES"</item></plurals>
 <string name="account">"compte"</string>
+<string name="account_add_profile">"Ajouter un profil"</string>
+<string name="account_manage_profiles">"Gérer les profils"</string>
+<string name="account_pair_code">"Votre code"</string>
+<string name="account_pair_instructions">"Ouvrez ceci sur votre téléphone et saisissez le code ci-dessous."</string>
+<string name="account_pair_new_code">"Obtenir un nouveau code"</string>
+<string name="account_pair_title" formatted="true">"Associer %s"</string>
+<string name="account_profile_current">"Actuel"</string>
+<string name="account_profile_locked">"Verrouillé · PIN"</string>
+<string name="account_profile_no_sync">"Pas de synchronisation"</string>
+<string name="account_select_note">"Historique de visionnage séparé · pas des connexions"</string>
+<string name="account_select_title">"Qui regarde ?"</string>
+<string name="account_sync_connected">"Connecté · sur cet appareil"</string>
+<string name="account_sync_needs_browser">"La connexion nécessite un navigateur web. Cet appareil n'en a pas."</string>
+<string name="account_sync_note">"Facultatif. Synchronise votre progression avec un compte que vous avez déjà."</string>
+<string name="account_sync_pair">"Associer avec un code"</string>
+<string name="account_sync_remove">"Retirer de cet appareil"</string>
+<string name="account_sync_title">"Services de synchronisation"</string>
+<string name="account_sync_unavailable">"Indisponible ici"</string>
 <string name="action_add_to_bookmarks">"Définir le statut de visionage"</string>
 <string name="action_add_to_favorites">"Ajouter aux favoris"</string>
 <string name="action_default">"Défault"</string>

@@ -18,6 +18,24 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Drücke die Suchtaste der Tastatur, um trotzdem %d Quelle zu durchsuchen."</item><item quantity="other">"Drücke die Suchtaste der Tastatur, um trotzdem alle %d Quellen zu durchsuchen."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d QUELLE"</item><item quantity="other">"%d QUELLEN"</item></plurals>
 <string name="account">"Account"</string>
+<string name="account_add_profile">"Profil hinzufügen"</string>
+<string name="account_manage_profiles">"Profile verwalten"</string>
+<string name="account_pair_code">"Dein Code"</string>
+<string name="account_pair_instructions">"Öffne das auf deinem Handy und gib den Code unten ein."</string>
+<string name="account_pair_new_code">"Neuen Code holen"</string>
+<string name="account_pair_title" formatted="true">"%s koppeln"</string>
+<string name="account_profile_current">"Aktuell"</string>
+<string name="account_profile_locked">"Gesperrt · PIN"</string>
+<string name="account_profile_no_sync">"Keine Synchronisierung"</string>
+<string name="account_select_note">"Eigener Wiedergabeverlauf · keine Anmeldungen"</string>
+<string name="account_select_title">"Wer schaut?"</string>
+<string name="account_sync_connected">"Verbunden · auf diesem Gerät angemeldet"</string>
+<string name="account_sync_needs_browser">"Die Anmeldung braucht einen Webbrowser. Dieses Gerät hat keinen."</string>
+<string name="account_sync_note">"Optional. Synchronisiert den Fortschritt mit einem Konto, das du schon hast."</string>
+<string name="account_sync_pair">"Mit Code koppeln"</string>
+<string name="account_sync_remove">"Von diesem Gerät entfernen"</string>
+<string name="account_sync_title">"Synchronisierungsdienste"</string>
+<string name="account_sync_unavailable">"Hier nicht verfügbar"</string>
 <string name="action_add_to_bookmarks">"Status setzen"</string>
 <string name="action_add_to_favorites">"Zu Favoriten hinzufügen"</string>
 <string name="action_default">"Standard"</string>

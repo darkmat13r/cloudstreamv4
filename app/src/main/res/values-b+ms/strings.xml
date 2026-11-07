@@ -15,6 +15,24 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="other">"Tekan kekunci carian papan kekunci untuk tetap mencari dalam semua %d sumber."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="other">"%d SUMBER"</item></plurals>
 <string name="account">"akaun"</string>
+<string name="account_add_profile">"Tambah profil"</string>
+<string name="account_manage_profiles">"Urus profil"</string>
+<string name="account_pair_code">"Kod anda"</string>
+<string name="account_pair_instructions">"Buka ini pada telefon anda dan masukkan kod di bawah."</string>
+<string name="account_pair_new_code">"Dapatkan kod baharu"</string>
+<string name="account_pair_title" formatted="true">"Pasangkan %s"</string>
+<string name="account_profile_current">"Semasa"</string>
+<string name="account_profile_locked">"Dikunci · PIN"</string>
+<string name="account_profile_no_sync">"Tiada penyegerakan"</string>
+<string name="account_select_note">"Sejarah tontonan berasingan · bukan log masuk"</string>
+<string name="account_select_title">"Siapa yang menonton?"</string>
+<string name="account_sync_connected">"Bersambung · log masuk pada peranti ini"</string>
+<string name="account_sync_needs_browser">"Log masuk memerlukan pelayar web. Peranti ini tiada."</string>
+<string name="account_sync_note">"Pilihan. Menyegerakkan kemajuan tontonan dengan akaun yang anda sudah ada."</string>
+<string name="account_sync_pair">"Pasangkan dengan kod"</string>
+<string name="account_sync_remove">"Alih keluar daripada peranti ini"</string>
+<string name="account_sync_title">"Perkhidmatan penyegerakan"</string>
+<string name="account_sync_unavailable">"Tidak tersedia di sini"</string>
 <string name="action_add_to_bookmarks">"Tetapkan status tontonan"</string>
 <string name="action_add_to_favorites">"Tambah ke kegemaran"</string>
 <string name="action_mark_as_watched">"Tanda sebagai sudah ditonton"</string>

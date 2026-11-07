@@ -14,6 +14,24 @@
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"جست‌وجو در %d منبع"</item><item quantity="other">"جست‌وجو در همهٔ %d منبع"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"برای جست‌وجو در %d منبع، به‌هرحال کلید جست‌وجوی صفحه‌کلید را فشار دهید."</item><item quantity="other">"برای جست‌وجو در همهٔ %d منبع، به‌هرحال کلید جست‌وجوی صفحه‌کلید را فشار دهید."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d منبع"</item><item quantity="other">"%d منبع"</item></plurals>
+<string name="account_add_profile">"افزودن نمایه"</string>
+<string name="account_manage_profiles">"مدیریت نمایه‌ها"</string>
+<string name="account_pair_code">"کد شما"</string>
+<string name="account_pair_instructions">"این را در تلفن خود باز کنید و کد زیر را وارد کنید."</string>
+<string name="account_pair_new_code">"دریافت کد جدید"</string>
+<string name="account_pair_title" formatted="true">"جفت‌سازی %s"</string>
+<string name="account_profile_current">"فعلی"</string>
+<string name="account_profile_locked">"قفل‌شده · PIN"</string>
+<string name="account_profile_no_sync">"بدون همگام‌سازی"</string>
+<string name="account_select_note">"تاریخچهٔ تماشای جدا · ورود به حساب نیست"</string>
+<string name="account_select_title">"چه کسی تماشا می‌کند؟"</string>
+<string name="account_sync_connected">"متصل · واردشده در این دستگاه"</string>
+<string name="account_sync_needs_browser">"ورود به مرورگر وب نیاز دارد. این دستگاه مرورگر ندارد."</string>
+<string name="account_sync_note">"اختیاری. پیشرفت تماشا را با حسابی که از قبل دارید همگام می‌کند."</string>
+<string name="account_sync_pair">"جفت‌سازی با کد"</string>
+<string name="account_sync_remove">"حذف از این دستگاه"</string>
+<string name="account_sync_title">"سرویس‌های همگام‌سازی"</string>
+<string name="account_sync_unavailable">"اینجا در دسترس نیست"</string>
 <string name="action_add_to_bookmarks">"تنظیم وضعیت تماشا"</string>
 <string name="action_default">"پیش‌فرض"</string>
 <string name="action_open_play">@string/home_play</string>
