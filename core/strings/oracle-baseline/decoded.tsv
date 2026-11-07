@@ -224,6 +224,8 @@ values-b+af/strings.xml	string	search_tv_suggestion_recent	-	STR	ONLANGS · %s
 values-b+af/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	ONLANGS · OOK VOORGESTEL	
 values-b+af/strings.xml	string	search_tv_suggestion_suggested	-	STR	VOORGESTEL	
 values-b+af/strings.xml	string	season	-	STR	Seisoen	
+values-b+af/strings.xml	string	season_other	-	STR	Ander	
+values-b+af/strings.xml	string	season_specials	-	STR	Spesiaal	
 values-b+af/strings.xml	string	seek_back_10_seconds	-	STR	Spring 10 sekondes terug	
 values-b+af/strings.xml	string	seek_forward_10_seconds	-	STR	Spring 10 sekondes vorentoe	
 values-b+af/strings.xml	string	select_all	-	STR	Kies Alles	
@@ -480,6 +482,8 @@ values-b+am/strings.xml	string	search_tv_sources_panel_meta	-	STR	ከ%2$d ውስ
 values-b+am/strings.xml	string	search_tv_suggestion_recent	-	STR	የቅርብ ጊዜ · %s	
 values-b+am/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	የቅርብ ጊዜ · የተጠቆመም	
 values-b+am/strings.xml	string	search_tv_suggestion_suggested	-	STR	የተጠቆመ	
+values-b+am/strings.xml	string	season_other	-	STR	ሌላ	
+values-b+am/strings.xml	string	season_specials	-	STR	ልዩ	
 values-b+am/strings.xml	string	seek_back_10_seconds	-	STR	10 ሰከንድ ወደ ኋላ	
 values-b+am/strings.xml	string	seek_forward_10_seconds	-	STR	10 ሰከንድ ወደ ፊት	
 values-b+am/strings.xml	string	skip_loading	-	STR	መጫንን ዝለል	
@@ -1189,7 +1193,9 @@ values-b+apc/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	مؤ
 values-b+apc/strings.xml	string	search_tv_suggestion_suggested	-	STR	مقترح	
 values-b+apc/strings.xml	string	season	-	STR	جزء	
 values-b+apc/strings.xml	string	season_format	-	STR	%1$s%2$d%3$s	
+values-b+apc/strings.xml	string	season_other	-	STR	أخرى	
 values-b+apc/strings.xml	string	season_short	-	STR	ج	
+values-b+apc/strings.xml	string	season_specials	-	STR	خاصة	
 values-b+apc/strings.xml	string	seek_back_10_seconds	-	STR	رجّع 10 ثواني	
 values-b+apc/strings.xml	string	seek_forward_10_seconds	-	STR	قدّم 10 ثواني	
 values-b+apc/strings.xml	string	select_all	-	STR	نقي كل شي	
@@ -2127,7 +2133,9 @@ values-b+ar/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	حد�
 values-b+ar/strings.xml	string	search_tv_suggestion_suggested	-	STR	مقترح	
 values-b+ar/strings.xml	string	season	-	STR	موسم	
 values-b+ar/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values-b+ar/strings.xml	string	season_other	-	STR	أخرى	
 values-b+ar/strings.xml	string	season_short	-	STR	م	
+values-b+ar/strings.xml	string	season_specials	-	STR	حلقات خاصة	
 values-b+ar/strings.xml	string	seek_back_10_seconds	-	STR	ترجيع ١٠ ثوانٍ	
 values-b+ar/strings.xml	string	seek_forward_10_seconds	-	STR	تقديم ١٠ ثوانٍ	
 values-b+ar/strings.xml	string	select_all	-	STR	تحديد الكل	
@@ -2754,7 +2762,9 @@ values-b+ars/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	حد
 values-b+ars/strings.xml	string	search_tv_suggestion_suggested	-	STR	مقترح	
 values-b+ars/strings.xml	string	season	-	STR	موسم	
 values-b+ars/strings.xml	string	season_format	-	STR	%1$s%2$d%3$s	
+values-b+ars/strings.xml	string	season_other	-	STR	أخرى	
 values-b+ars/strings.xml	string	season_short	-	STR	س	
+values-b+ars/strings.xml	string	season_specials	-	STR	حلقات خاصة	
 values-b+ars/strings.xml	string	seek_back_10_seconds	-	STR	ترجيع 10 ثوانٍ	
 values-b+ars/strings.xml	string	seek_forward_10_seconds	-	STR	تقديم 10 ثوانٍ	
 values-b+ars/strings.xml	string	select_library	-	STR	حدد المكتبة	
@@ -3474,7 +3484,9 @@ values-b+as/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	শ�
 values-b+as/strings.xml	string	search_tv_suggestion_suggested	-	STR	পৰামৰ্শিত	
 values-b+as/strings.xml	string	season	-	STR	চিজন	
 values-b+as/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values-b+as/strings.xml	string	season_other	-	STR	অন্যান্য	
 values-b+as/strings.xml	string	season_short	-	STR	চি	
+values-b+as/strings.xml	string	season_specials	-	STR	বিশেষ	
 values-b+as/strings.xml	string	seek_back_10_seconds	-	STR	১০ ছেকেণ্ড পাছুৱাওক	
 values-b+as/strings.xml	string	seek_forward_10_seconds	-	STR	১০ ছেকেণ্ড আগুৱাওক	
 values-b+as/strings.xml	string	select_all	-	STR	সকলো বাছক	
@@ -3907,7 +3919,9 @@ values-b+az/strings.xml	string	search_tv_suggestion_recent	-	STR	SON · %s
 values-b+az/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	SON · HƏM DƏ TƏKLİF OLUNUB	
 values-b+az/strings.xml	string	search_tv_suggestion_suggested	-	STR	TƏKLİF OLUNUB	
 values-b+az/strings.xml	string	season	-	STR	Sezon	
+values-b+az/strings.xml	string	season_other	-	STR	Digər	
 values-b+az/strings.xml	string	season_short	-	STR	S	
+values-b+az/strings.xml	string	season_specials	-	STR	Xüsusi	
 values-b+az/strings.xml	string	seek_back_10_seconds	-	STR	10 saniyə geri keç	
 values-b+az/strings.xml	string	seek_forward_10_seconds	-	STR	10 saniyə irəli keç	
 values-b+az/strings.xml	string	settings_info	-	STR	Məlumat	
@@ -4639,7 +4653,9 @@ values-b+be/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	НЯ�
 values-b+be/strings.xml	string	search_tv_suggestion_suggested	-	STR	ПРАПАНАВАНА	
 values-b+be/strings.xml	string	season	-	STR	Сезон	
 values-b+be/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values-b+be/strings.xml	string	season_other	-	STR	Іншае	
 values-b+be/strings.xml	string	season_short	-	STR	Сез	
+values-b+be/strings.xml	string	season_specials	-	STR	Спецвыпускі	
 values-b+be/strings.xml	string	seek_back_10_seconds	-	STR	Перамотаць назад на 10 секунд	
 values-b+be/strings.xml	string	seek_forward_10_seconds	-	STR	Перамотаць наперад на 10 секунд	
 values-b+be/strings.xml	string	select_all	-	STR	Выбраць ўсё	
@@ -5511,7 +5527,9 @@ values-b+bg/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	СК�
 values-b+bg/strings.xml	string	search_tv_suggestion_suggested	-	STR	ПРЕДЛОЖЕНО	
 values-b+bg/strings.xml	string	season	-	STR	Сезон	
 values-b+bg/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values-b+bg/strings.xml	string	season_other	-	STR	Други	
 values-b+bg/strings.xml	string	season_short	-	STR	С	
+values-b+bg/strings.xml	string	season_specials	-	STR	Специални	
 values-b+bg/strings.xml	string	seek_back_10_seconds	-	STR	Превърти назад с 10 секунди	
 values-b+bg/strings.xml	string	seek_forward_10_seconds	-	STR	Превърти напред с 10 секунди	
 values-b+bg/strings.xml	string	select_all	-	STR	Изберете всички	
@@ -6155,7 +6173,9 @@ values-b+bn/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	স�
 values-b+bn/strings.xml	string	search_tv_suggestion_suggested	-	STR	প্রস্তাবিত	
 values-b+bn/strings.xml	string	season	-	STR	সিজন	
 values-b+bn/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values-b+bn/strings.xml	string	season_other	-	STR	অন্যান্য	
 values-b+bn/strings.xml	string	season_short	-	STR	S	
+values-b+bn/strings.xml	string	season_specials	-	STR	বিশেষ	
 values-b+bn/strings.xml	string	seek_back_10_seconds	-	STR	১০ সেকেন্ড পিছিয়ে যান	
 values-b+bn/strings.xml	string	seek_forward_10_seconds	-	STR	১০ সেকেন্ড এগিয়ে যান	
 values-b+bn/strings.xml	string	select_all	-	STR	সব সিলেক্ট করুন	
@@ -6656,6 +6676,8 @@ values-b+ca/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d DE %2$d A
 values-b+ca/strings.xml	string	search_tv_suggestion_recent	-	STR	RECENT · %s	
 values-b+ca/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	RECENT · TAMBÉ SUGGERIT	
 values-b+ca/strings.xml	string	search_tv_suggestion_suggested	-	STR	SUGGERIT	
+values-b+ca/strings.xml	string	season_other	-	STR	Altres	
+values-b+ca/strings.xml	string	season_specials	-	STR	Especials	
 values-b+ca/strings.xml	string	seek_back_10_seconds	-	STR	Retrocedeix 10 segons	
 values-b+ca/strings.xml	string	seek_forward_10_seconds	-	STR	Avança 10 segons	
 values-b+ca/strings.xml	string	select_all	-	STR	Seleccionar tot	
@@ -6963,6 +6985,8 @@ values-b+ckb/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d لە %2$
 values-b+ckb/strings.xml	string	search_tv_suggestion_recent	-	STR	دوایین · %s	
 values-b+ckb/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	دوایین · هەروەها پێشنیارکراو	
 values-b+ckb/strings.xml	string	search_tv_suggestion_suggested	-	STR	پێشنیارکراو	
+values-b+ckb/strings.xml	string	season_other	-	STR	ئەوانی تر	
+values-b+ckb/strings.xml	string	season_specials	-	STR	تایبەت	
 values-b+ckb/strings.xml	string	seek_back_10_seconds	-	STR	10 چرکە بگەڕێوە دواوە	
 values-b+ckb/strings.xml	string	seek_forward_10_seconds	-	STR	10 چرکە بڕۆ پێشەوە	
 values-b+ckb/strings.xml	string	select_all	-	STR	هەموو هەڵبژێرە	
@@ -7690,7 +7714,9 @@ values-b+cs/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	NEDÁ
 values-b+cs/strings.xml	string	search_tv_suggestion_suggested	-	STR	NAVRŽENO	
 values-b+cs/strings.xml	string	season	-	STR	Sezóna	
 values-b+cs/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values-b+cs/strings.xml	string	season_other	-	STR	Ostatní	
 values-b+cs/strings.xml	string	season_short	-	STR	S	
+values-b+cs/strings.xml	string	season_specials	-	STR	Speciály	
 values-b+cs/strings.xml	string	seek_back_10_seconds	-	STR	Posunout o 10 sekund zpět	
 values-b+cs/strings.xml	string	seek_forward_10_seconds	-	STR	Posunout o 10 sekund vpřed	
 values-b+cs/strings.xml	string	select_all	-	STR	Vybrat vše	
@@ -8576,7 +8602,9 @@ values-b+de/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	ZULET
 values-b+de/strings.xml	string	search_tv_suggestion_suggested	-	STR	VORGESCHLAGEN	
 values-b+de/strings.xml	string	season	-	STR	Staffel	
 values-b+de/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values-b+de/strings.xml	string	season_other	-	STR	Sonstige	
 values-b+de/strings.xml	string	season_short	-	STR	S	
+values-b+de/strings.xml	string	season_specials	-	STR	Specials	
 values-b+de/strings.xml	string	seek_back_10_seconds	-	STR	10 Sekunden zurückspulen	
 values-b+de/strings.xml	string	seek_forward_10_seconds	-	STR	10 Sekunden vorspulen	
 values-b+de/strings.xml	string	select_all	-	STR	Alle auswählen	
@@ -9402,7 +9430,9 @@ values-b+el/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	ΠΡ�
 values-b+el/strings.xml	string	search_tv_suggestion_suggested	-	STR	ΠΡΟΤΕΙΝΕΤΑΙ	
 values-b+el/strings.xml	string	season	-	STR	Κύκλος	
 values-b+el/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values-b+el/strings.xml	string	season_other	-	STR	Άλλα	
 values-b+el/strings.xml	string	season_short	-	STR	Σ	
+values-b+el/strings.xml	string	season_specials	-	STR	Ειδικά	
 values-b+el/strings.xml	string	seek_back_10_seconds	-	STR	Μετάβαση 10 δευτερόλεπτα πίσω	
 values-b+el/strings.xml	string	seek_forward_10_seconds	-	STR	Μετάβαση 10 δευτερόλεπτα μπροστά	
 values-b+el/strings.xml	string	select_all	-	STR	Επιλογή όλων	
@@ -9869,7 +9899,9 @@ values-b+eo/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	LASTA
 values-b+eo/strings.xml	string	search_tv_suggestion_suggested	-	STR	SUGESTITA	
 values-b+eo/strings.xml	string	season	-	STR	Sezono	
 values-b+eo/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values-b+eo/strings.xml	string	season_other	-	STR	Aliaj	
 values-b+eo/strings.xml	string	season_short	-	STR	S	
+values-b+eo/strings.xml	string	season_specials	-	STR	Specialaĵoj	
 values-b+eo/strings.xml	string	seek_back_10_seconds	-	STR	Salti 10 sekundojn malantaŭen	
 values-b+eo/strings.xml	string	seek_forward_10_seconds	-	STR	Salti 10 sekundojn antaŭen	
 values-b+eo/strings.xml	string	select_all	-	STR	Selekti Ĉion	
@@ -10614,7 +10646,9 @@ values-b+es/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	RECIE
 values-b+es/strings.xml	string	search_tv_suggestion_suggested	-	STR	SUGERIDO	
 values-b+es/strings.xml	string	season	-	STR	Temporada	
 values-b+es/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values-b+es/strings.xml	string	season_other	-	STR	Otros	
 values-b+es/strings.xml	string	season_short	-	STR	T	
+values-b+es/strings.xml	string	season_specials	-	STR	Especiales	
 values-b+es/strings.xml	string	seek_back_10_seconds	-	STR	Retroceder 10 segundos	
 values-b+es/strings.xml	string	seek_forward_10_seconds	-	STR	Avanzar 10 segundos	
 values-b+es/strings.xml	string	select_all	-	STR	Seleccionar todo	
@@ -11225,7 +11259,9 @@ values-b+fa/strings.xml	string	search_tv_suggestion_recent	-	STR	اخیر · %s
 values-b+fa/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	اخیر · پیشنهادشده نیز	
 values-b+fa/strings.xml	string	search_tv_suggestion_suggested	-	STR	پیشنهادشده	
 values-b+fa/strings.xml	string	season	-	STR	فصل	
+values-b+fa/strings.xml	string	season_other	-	STR	سایر	
 values-b+fa/strings.xml	string	season_short	-	STR	ف	
+values-b+fa/strings.xml	string	season_specials	-	STR	ویژه	
 values-b+fa/strings.xml	string	seek_back_10_seconds	-	STR	۱۰ ثانیه به عقب	
 values-b+fa/strings.xml	string	seek_forward_10_seconds	-	STR	۱۰ ثانیه به جلو	
 values-b+fa/strings.xml	string	select_all	-	STR	انتخاب همه	
@@ -11576,6 +11612,8 @@ values-b+fil/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d SA %2$d 
 values-b+fil/strings.xml	string	search_tv_suggestion_recent	-	STR	KAMAKAILAN · %s	
 values-b+fil/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	KAMAKAILAN · IMINUNGKAHI RIN	
 values-b+fil/strings.xml	string	search_tv_suggestion_suggested	-	STR	IMINUNGKAHI	
+values-b+fil/strings.xml	string	season_other	-	STR	Iba pa	
+values-b+fil/strings.xml	string	season_specials	-	STR	Espesyal	
 values-b+fil/strings.xml	string	seek_back_10_seconds	-	STR	Bumalik ng 10 segundo	
 values-b+fil/strings.xml	string	seek_forward_10_seconds	-	STR	Umabante ng 10 segundo	
 values-b+fil/strings.xml	string	select_all	-	STR	Piliin Lahat	
@@ -12313,7 +12351,9 @@ values-b+fr/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	RÉCE
 values-b+fr/strings.xml	string	search_tv_suggestion_suggested	-	STR	SUGGÉRÉ	
 values-b+fr/strings.xml	string	season	-	STR	Saison	
 values-b+fr/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values-b+fr/strings.xml	string	season_other	-	STR	Autres	
 values-b+fr/strings.xml	string	season_short	-	STR	S	
+values-b+fr/strings.xml	string	season_specials	-	STR	Spéciaux	
 values-b+fr/strings.xml	string	seek_back_10_seconds	-	STR	Reculer de 10 secondes	
 values-b+fr/strings.xml	string	seek_forward_10_seconds	-	STR	Avancer de 10 secondes	
 values-b+fr/strings.xml	string	select_all	-	STR	Tout sélectionner	
@@ -12872,7 +12912,9 @@ values-b+gl/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	RECEN
 values-b+gl/strings.xml	string	search_tv_suggestion_suggested	-	STR	SUXERIDO	
 values-b+gl/strings.xml	string	season	-	STR	Temporada	
 values-b+gl/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values-b+gl/strings.xml	string	season_other	-	STR	Outros	
 values-b+gl/strings.xml	string	season_short	-	STR	T	
+values-b+gl/strings.xml	string	season_specials	-	STR	Especiais	
 values-b+gl/strings.xml	string	seek_back_10_seconds	-	STR	Retroceder 10 segundos	
 values-b+gl/strings.xml	string	seek_forward_10_seconds	-	STR	Avanzar 10 segundos	
 values-b+gl/strings.xml	string	select_all	-	STR	Seleccionar todo	
@@ -13410,7 +13452,9 @@ values-b+hi/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	ह�
 values-b+hi/strings.xml	string	search_tv_suggestion_suggested	-	STR	सुझाया गया	
 values-b+hi/strings.xml	string	season	-	STR	सत्र	
 values-b+hi/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values-b+hi/strings.xml	string	season_other	-	STR	अन्य	
 values-b+hi/strings.xml	string	season_short	-	STR	S	
+values-b+hi/strings.xml	string	season_specials	-	STR	विशेष	
 values-b+hi/strings.xml	string	seek_back_10_seconds	-	STR	१० सेकंड पीछे जाएं	
 values-b+hi/strings.xml	string	seek_forward_10_seconds	-	STR	१० सेकंड आगे जाएं	
 values-b+hi/strings.xml	string	select_all	-	STR	सभी चुनें	
@@ -14202,7 +14246,9 @@ values-b+hr/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	NEDAV
 values-b+hr/strings.xml	string	search_tv_suggestion_suggested	-	STR	PREDLOŽENO	
 values-b+hr/strings.xml	string	season	-	STR	Sezona	
 values-b+hr/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values-b+hr/strings.xml	string	season_other	-	STR	Ostalo	
 values-b+hr/strings.xml	string	season_short	-	STR	S	
+values-b+hr/strings.xml	string	season_specials	-	STR	Specijali	
 values-b+hr/strings.xml	string	seek_back_10_seconds	-	STR	Pomakni natrag 10 sekundi	
 values-b+hr/strings.xml	string	seek_forward_10_seconds	-	STR	Pomakni naprijed 10 sekundi	
 values-b+hr/strings.xml	string	select_all	-	STR	Označi sve	
@@ -15019,7 +15065,9 @@ values-b+hu/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	LEGUT
 values-b+hu/strings.xml	string	search_tv_suggestion_suggested	-	STR	JAVASOLT	
 values-b+hu/strings.xml	string	season	-	STR	Évad	
 values-b+hu/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values-b+hu/strings.xml	string	season_other	-	STR	Egyéb	
 values-b+hu/strings.xml	string	season_short	-	STR	Év	
+values-b+hu/strings.xml	string	season_specials	-	STR	Különkiadások	
 values-b+hu/strings.xml	string	seek_back_10_seconds	-	STR	Ugrás 10 másodpercet hátra	
 values-b+hu/strings.xml	string	seek_forward_10_seconds	-	STR	Ugrás 10 másodpercet előre	
 values-b+hu/strings.xml	string	select_all	-	STR	Mindet Kiválaszt	
@@ -15853,7 +15901,9 @@ values-b+in/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	TERBA
 values-b+in/strings.xml	string	search_tv_suggestion_suggested	-	STR	DISARANKAN	
 values-b+in/strings.xml	string	season	-	STR	Season	
 values-b+in/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values-b+in/strings.xml	string	season_other	-	STR	Lainnya	
 values-b+in/strings.xml	string	season_short	-	STR	S	
+values-b+in/strings.xml	string	season_specials	-	STR	Spesial	
 values-b+in/strings.xml	string	seek_back_10_seconds	-	STR	Mundur 10 detik	
 values-b+in/strings.xml	string	seek_forward_10_seconds	-	STR	Maju 10 detik	
 values-b+in/strings.xml	string	select_all	-	STR	Pilih Semua	
@@ -16754,7 +16804,9 @@ values-b+it/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	RECEN
 values-b+it/strings.xml	string	search_tv_suggestion_suggested	-	STR	SUGGERITO	
 values-b+it/strings.xml	string	season	-	STR	Stagione	
 values-b+it/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values-b+it/strings.xml	string	season_other	-	STR	Altri	
 values-b+it/strings.xml	string	season_short	-	STR	S	
+values-b+it/strings.xml	string	season_specials	-	STR	Speciali	
 values-b+it/strings.xml	string	seek_back_10_seconds	-	STR	Indietro di 10 secondi	
 values-b+it/strings.xml	string	seek_forward_10_seconds	-	STR	Avanti di 10 secondi	
 values-b+it/strings.xml	string	select_all	-	STR	Seleziona tutto	
@@ -17508,7 +17560,9 @@ values-b+iw/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	לא�
 values-b+iw/strings.xml	string	search_tv_suggestion_suggested	-	STR	מוצע	
 values-b+iw/strings.xml	string	season	-	STR	עונה	
 values-b+iw/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values-b+iw/strings.xml	string	season_other	-	STR	אחר	
 values-b+iw/strings.xml	string	season_short	-	STR	עו	
+values-b+iw/strings.xml	string	season_specials	-	STR	מיוחדים	
 values-b+iw/strings.xml	string	seek_back_10_seconds	-	STR	דלג 10 שניות אחורה	
 values-b+iw/strings.xml	string	seek_forward_10_seconds	-	STR	דלג 10 שניות קדימה	
 values-b+iw/strings.xml	string	select_all	-	STR	בחר הכל	
@@ -18329,7 +18383,9 @@ values-b+ja/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	最�
 values-b+ja/strings.xml	string	search_tv_suggestion_suggested	-	STR	候補	
 values-b+ja/strings.xml	string	season	-	STR	シーズン	
 values-b+ja/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values-b+ja/strings.xml	string	season_other	-	STR	その他	
 values-b+ja/strings.xml	string	season_short	-	STR	シーズン	
+values-b+ja/strings.xml	string	season_specials	-	STR	スペシャル	
 values-b+ja/strings.xml	string	seek_back_10_seconds	-	STR	10 秒戻る	
 values-b+ja/strings.xml	string	seek_forward_10_seconds	-	STR	10 秒進む	
 values-b+ja/strings.xml	string	select_all	-	STR	全選択	
@@ -18768,6 +18824,8 @@ values-b+kn/strings.xml	string	search_tv_sources_panel_meta	-	STR	%2$d ರಲ್
 values-b+kn/strings.xml	string	search_tv_suggestion_recent	-	STR	ಇತ್ತೀಚಿನ · %s	
 values-b+kn/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	ಇತ್ತೀಚಿನ · ಸೂಚಿಸಲಾಗಿದೆ ಕೂಡ	
 values-b+kn/strings.xml	string	search_tv_suggestion_suggested	-	STR	ಸೂಚಿಸಲಾಗಿದೆ	
+values-b+kn/strings.xml	string	season_other	-	STR	ಇತರೆ	
+values-b+kn/strings.xml	string	season_specials	-	STR	ವಿಶೇಷ	
 values-b+kn/strings.xml	string	seek_back_10_seconds	-	STR	10 ಸೆಕೆಂಡುಗಳು ಹಿಂದೆ ಹೋಗು	
 values-b+kn/strings.xml	string	seek_forward_10_seconds	-	STR	10 ಸೆಕೆಂಡುಗಳು ಮುಂದೆ ಹೋಗು	
 values-b+kn/strings.xml	string	show_log_cat	-	STR	ಲಾಗ್‌ಕ್ಯಾಟ್ 🐈 ತೋರಿಸಿ	
@@ -19471,7 +19529,9 @@ values-b+ko/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	최�
 values-b+ko/strings.xml	string	search_tv_suggestion_suggested	-	STR	추천	
 values-b+ko/strings.xml	string	season	-	STR	시즌	
 values-b+ko/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values-b+ko/strings.xml	string	season_other	-	STR	기타	
 values-b+ko/strings.xml	string	season_short	-	STR	시즌	
+values-b+ko/strings.xml	string	season_specials	-	STR	스페셜	
 values-b+ko/strings.xml	string	seek_back_10_seconds	-	STR	10초 뒤로	
 values-b+ko/strings.xml	string	seek_forward_10_seconds	-	STR	10초 앞으로	
 values-b+ko/strings.xml	string	select_all	-	STR	모두 선택	
@@ -20050,6 +20110,8 @@ values-b+lt/strings.xml	string	search_tv_suggestion_recent	-	STR	NESENIAI · %s
 values-b+lt/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	NESENIAI · TAIP PAT SIŪLOMA	
 values-b+lt/strings.xml	string	search_tv_suggestion_suggested	-	STR	SIŪLOMA	
 values-b+lt/strings.xml	string	season	-	STR	Sezonas	
+values-b+lt/strings.xml	string	season_other	-	STR	Kita	
+values-b+lt/strings.xml	string	season_specials	-	STR	Specialieji	
 values-b+lt/strings.xml	string	seek_back_10_seconds	-	STR	Atsukti 10 sekundžių atgal	
 values-b+lt/strings.xml	string	seek_forward_10_seconds	-	STR	Persukti 10 sekundžių į priekį	
 values-b+lt/strings.xml	string	select_all	-	STR	Pasirinkti viską	
@@ -20745,7 +20807,9 @@ values-b+lv/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	NESEN
 values-b+lv/strings.xml	string	search_tv_suggestion_suggested	-	STR	IETEIKTS	
 values-b+lv/strings.xml	string	season	-	STR	Sezona	
 values-b+lv/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values-b+lv/strings.xml	string	season_other	-	STR	Citi	
 values-b+lv/strings.xml	string	season_short	-	STR	S	
+values-b+lv/strings.xml	string	season_specials	-	STR	Speciālie	
 values-b+lv/strings.xml	string	seek_back_10_seconds	-	STR	Pārtīt atpakaļ 10 sekundes	
 values-b+lv/strings.xml	string	seek_forward_10_seconds	-	STR	Pārtīt uz priekšu 10 sekundes	
 values-b+lv/strings.xml	string	select_an_account	-	STR	Atlasiet kontu	
@@ -21588,7 +21652,9 @@ values-b+mk/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	НЕ�
 values-b+mk/strings.xml	string	search_tv_suggestion_suggested	-	STR	ПРЕДЛОЖЕНО	
 values-b+mk/strings.xml	string	season	-	STR	Сезона	
 values-b+mk/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values-b+mk/strings.xml	string	season_other	-	STR	Други	
 values-b+mk/strings.xml	string	season_short	-	STR	С	
+values-b+mk/strings.xml	string	season_specials	-	STR	Специјални	
 values-b+mk/strings.xml	string	seek_back_10_seconds	-	STR	Премотај назад 10 секунди	
 values-b+mk/strings.xml	string	seek_forward_10_seconds	-	STR	Премотај напред 10 секунди	
 values-b+mk/strings.xml	string	select_all	-	STR	Одбери ги сите	
@@ -22134,6 +22200,8 @@ values-b+ml/strings.xml	string	search_tv_suggestion_recent	-	STR	സമീപക
 values-b+ml/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	സമീപകാലം · നിർദ്ദേശിച്ചതും	
 values-b+ml/strings.xml	string	search_tv_suggestion_suggested	-	STR	നിർദ്ദേശിച്ചത്	
 values-b+ml/strings.xml	string	season	-	STR	സീസൺ	
+values-b+ml/strings.xml	string	season_other	-	STR	മറ്റുള്ളവ	
+values-b+ml/strings.xml	string	season_specials	-	STR	പ്രത്യേകം	
 values-b+ml/strings.xml	string	seek_back_10_seconds	-	STR	10 സെക്കൻഡ് പിന്നോട്ട് പോകുക	
 values-b+ml/strings.xml	string	seek_forward_10_seconds	-	STR	10 സെക്കൻഡ് മുന്നോട്ട് പോകുക	
 values-b+ml/strings.xml	string	select_all	-	STR	എല്ലാം തിരഞ്ഞെടുക്കുക	
@@ -22762,7 +22830,9 @@ values-b+ms/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	TERKI
 values-b+ms/strings.xml	string	search_tv_suggestion_suggested	-	STR	DICADANGKAN	
 values-b+ms/strings.xml	string	season	-	STR	Musim	
 values-b+ms/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values-b+ms/strings.xml	string	season_other	-	STR	Lain-lain	
 values-b+ms/strings.xml	string	season_short	-	STR	S	
+values-b+ms/strings.xml	string	season_specials	-	STR	Istimewa	
 values-b+ms/strings.xml	string	seek_back_10_seconds	-	STR	Undur 10 saat	
 values-b+ms/strings.xml	string	seek_forward_10_seconds	-	STR	Maju 10 saat	
 values-b+ms/strings.xml	string	select_all	-	STR	Pilih semua	
@@ -23158,6 +23228,8 @@ values-b+mt/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d MINN %2$d
 values-b+mt/strings.xml	string	search_tv_suggestion_recent	-	STR	REĊENTI · %s	
 values-b+mt/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	REĊENTI · SUĠĠERIT UKOLL	
 values-b+mt/strings.xml	string	search_tv_suggestion_suggested	-	STR	SUĠĠERIT	
+values-b+mt/strings.xml	string	season_other	-	STR	Oħrajn	
+values-b+mt/strings.xml	string	season_specials	-	STR	Speċjali	
 values-b+mt/strings.xml	string	seek_back_10_seconds	-	STR	Mur lura 10 sekondi	
 values-b+mt/strings.xml	string	seek_forward_10_seconds	-	STR	Mur 'il quddiem 10 sekondi	
 values-b+mt/strings.xml	string	show_log_cat	-	STR	Uri Logcat 🐈	
@@ -23705,7 +23777,9 @@ values-b+my/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	မ�
 values-b+my/strings.xml	string	search_tv_suggestion_suggested	-	STR	အကြံပြုထားသည်	
 values-b+my/strings.xml	string	season	-	STR	အတွဲ	
 values-b+my/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values-b+my/strings.xml	string	season_other	-	STR	အခြား	
 values-b+my/strings.xml	string	season_short	-	STR	အတွဲ	
+values-b+my/strings.xml	string	season_specials	-	STR	အထူး	
 values-b+my/strings.xml	string	seek_back_10_seconds	-	STR	10 စက္ကန့် နောက်သို့ရစ်ရန်	
 values-b+my/strings.xml	string	seek_forward_10_seconds	-	STR	10 စက္ကန့် ရှေ့သို့ကျော်ရန်	
 values-b+my/strings.xml	string	select_library	-	STR	လိုက်ဘရီရွေးချယ်ရန်	
@@ -24088,6 +24162,8 @@ values-b+ne/strings.xml	string	search_tv_sources_panel_meta	-	STR	%2$d मध्
 values-b+ne/strings.xml	string	search_tv_suggestion_recent	-	STR	हालैको · %s	
 values-b+ne/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	हालैको · सुझाव पनि गरिएको	
 values-b+ne/strings.xml	string	search_tv_suggestion_suggested	-	STR	सुझाव गरिएको	
+values-b+ne/strings.xml	string	season_other	-	STR	अन्य	
+values-b+ne/strings.xml	string	season_specials	-	STR	विशेष	
 values-b+ne/strings.xml	string	seek_back_10_seconds	-	STR	10 सेकेन्ड पछाडि जानुहोस्	
 values-b+ne/strings.xml	string	seek_forward_10_seconds	-	STR	10 सेकेन्ड अगाडि जानुहोस्	
 values-b+ne/strings.xml	string	show_log_cat	-	STR	Logcat देखाउनुहोस	
@@ -24763,7 +24839,9 @@ values-b+nl/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	RECEN
 values-b+nl/strings.xml	string	search_tv_suggestion_suggested	-	STR	VOORGESTELD	
 values-b+nl/strings.xml	string	season	-	STR	Seizoen	
 values-b+nl/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values-b+nl/strings.xml	string	season_other	-	STR	Overig	
 values-b+nl/strings.xml	string	season_short	-	STR	S	
+values-b+nl/strings.xml	string	season_specials	-	STR	Specials	
 values-b+nl/strings.xml	string	seek_back_10_seconds	-	STR	10 seconden terugspoelen	
 values-b+nl/strings.xml	string	seek_forward_10_seconds	-	STR	10 seconden vooruitspoelen	
 values-b+nl/strings.xml	string	select_all	-	STR	Selecteer alles	
@@ -25243,7 +25321,9 @@ values-b+nn/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	NYLEG
 values-b+nn/strings.xml	string	search_tv_suggestion_suggested	-	STR	FORESLÅTT	
 values-b+nn/strings.xml	string	season	-	STR	Sesong	
 values-b+nn/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values-b+nn/strings.xml	string	season_other	-	STR	Anna	
 values-b+nn/strings.xml	string	season_short	-	STR	S	
+values-b+nn/strings.xml	string	season_specials	-	STR	Spesialar	
 values-b+nn/strings.xml	string	seek_back_10_seconds	-	STR	Hopp 10 sekund bakover	
 values-b+nn/strings.xml	string	seek_forward_10_seconds	-	STR	Hopp 10 sekund framover	
 values-b+nn/strings.xml	string	settings_info	-	STR	Informasjon	
@@ -25813,7 +25893,9 @@ values-b+no/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	NYLIG
 values-b+no/strings.xml	string	search_tv_suggestion_suggested	-	STR	FORESLÅTT	
 values-b+no/strings.xml	string	season	-	STR	Sesong	
 values-b+no/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values-b+no/strings.xml	string	season_other	-	STR	Annet	
 values-b+no/strings.xml	string	season_short	-	STR	S	
+values-b+no/strings.xml	string	season_specials	-	STR	Spesialer	
 values-b+no/strings.xml	string	seek_back_10_seconds	-	STR	Hopp 10 sekunder bakover	
 values-b+no/strings.xml	string	seek_forward_10_seconds	-	STR	Hopp 10 sekunder fremover	
 values-b+no/strings.xml	string	select_library	-	STR	Velg bibliotek	
@@ -26215,7 +26297,9 @@ values-b+or/strings.xml	string	search_tv_suggestion_recent	-	STR	ସାମ୍ପ
 values-b+or/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	ସାମ୍ପ୍ରତିକ · ପରାମର୍ଶିତ ମଧ୍ୟ	
 values-b+or/strings.xml	string	search_tv_suggestion_suggested	-	STR	ପରାମର୍ଶିତ	
 values-b+or/strings.xml	string	season	-	STR	ଋତୁ	
+values-b+or/strings.xml	string	season_other	-	STR	ଅନ୍ୟାନ୍ୟ	
 values-b+or/strings.xml	string	season_short	-	STR	ଋ	
+values-b+or/strings.xml	string	season_specials	-	STR	ବିଶେଷ	
 values-b+or/strings.xml	string	seek_back_10_seconds	-	STR	୧୦ ସେକେଣ୍ଡ ପଛକୁ ଯାଅ	
 values-b+or/strings.xml	string	seek_forward_10_seconds	-	STR	୧୦ ସେକେଣ୍ଡ ଆଗକୁ ଯାଅ	
 values-b+or/strings.xml	string	setup_done	-	STR	ହେଲା	
@@ -26975,7 +27059,9 @@ values-b+pl/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	OSTAT
 values-b+pl/strings.xml	string	search_tv_suggestion_suggested	-	STR	SUGEROWANE	
 values-b+pl/strings.xml	string	season	-	STR	Sezon	
 values-b+pl/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values-b+pl/strings.xml	string	season_other	-	STR	Inne	
 values-b+pl/strings.xml	string	season_short	-	STR	S	
+values-b+pl/strings.xml	string	season_specials	-	STR	Specjalne	
 values-b+pl/strings.xml	string	seek_back_10_seconds	-	STR	Przewiń do tyłu o 10 sekund	
 values-b+pl/strings.xml	string	seek_forward_10_seconds	-	STR	Przewiń do przodu o 10 sekund	
 values-b+pl/strings.xml	string	select_all	-	STR	Zaznacz wszystkie	
@@ -27876,7 +27962,9 @@ values-b+pt+BR/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	RE
 values-b+pt+BR/strings.xml	string	search_tv_suggestion_suggested	-	STR	SUGERIDO	
 values-b+pt+BR/strings.xml	string	season	-	STR	Temporada	
 values-b+pt+BR/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values-b+pt+BR/strings.xml	string	season_other	-	STR	Outros	
 values-b+pt+BR/strings.xml	string	season_short	-	STR	T	
+values-b+pt+BR/strings.xml	string	season_specials	-	STR	Especiais	
 values-b+pt+BR/strings.xml	string	seek_back_10_seconds	-	STR	Voltar 10 segundos	
 values-b+pt+BR/strings.xml	string	seek_forward_10_seconds	-	STR	Avançar 10 segundos	
 values-b+pt+BR/strings.xml	string	select_all	-	STR	Selecionar todos	
@@ -28771,7 +28859,9 @@ values-b+pt/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	RECEN
 values-b+pt/strings.xml	string	search_tv_suggestion_suggested	-	STR	SUGERIDO	
 values-b+pt/strings.xml	string	season	-	STR	Temporada	
 values-b+pt/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values-b+pt/strings.xml	string	season_other	-	STR	Outros	
 values-b+pt/strings.xml	string	season_short	-	STR	T	
+values-b+pt/strings.xml	string	season_specials	-	STR	Especiais	
 values-b+pt/strings.xml	string	seek_back_10_seconds	-	STR	Recuar 10 segundos	
 values-b+pt/strings.xml	string	seek_forward_10_seconds	-	STR	Avançar 10 segundos	
 values-b+pt/strings.xml	string	select_all	-	STR	Selecionar Todos	
@@ -29568,7 +29658,9 @@ values-b+qt/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	AAOOH
 values-b+qt/strings.xml	string	search_tv_suggestion_suggested	-	STR	UUGGAH	
 values-b+qt/strings.xml	string	season	-	STR	ooo-ahah	
 values-b+qt/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values-b+qt/strings.xml	string	season_other	-	STR	oogg	
 values-b+qt/strings.xml	string	season_short	-	STR	H	
+values-b+qt/strings.xml	string	season_specials	-	STR	aaaagg ooh	
 values-b+qt/strings.xml	string	seek_back_10_seconds	-	STR	oooogggh 10 oooohh	
 values-b+qt/strings.xml	string	seek_forward_10_seconds	-	STR	aagg 10 oooohh	
 values-b+qt/strings.xml	string	select_all	-	STR	uuuugg uuh	
@@ -30350,7 +30442,9 @@ values-b+ro/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	RECEN
 values-b+ro/strings.xml	string	search_tv_suggestion_suggested	-	STR	SUGERAT	
 values-b+ro/strings.xml	string	season	-	STR	Sezonul	
 values-b+ro/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values-b+ro/strings.xml	string	season_other	-	STR	Altele	
 values-b+ro/strings.xml	string	season_short	-	STR	S	
+values-b+ro/strings.xml	string	season_specials	-	STR	Speciale	
 values-b+ro/strings.xml	string	seek_back_10_seconds	-	STR	Derulează înapoi 10 secunde	
 values-b+ro/strings.xml	string	seek_forward_10_seconds	-	STR	Derulează înainte 10 secunde	
 values-b+ro/strings.xml	string	select_all	-	STR	Selectionati totul	
@@ -31225,7 +31319,9 @@ values-b+ru/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	НЕ�
 values-b+ru/strings.xml	string	search_tv_suggestion_suggested	-	STR	ПРЕДЛОЖЕНО	
 values-b+ru/strings.xml	string	season	-	STR	Сезон	
 values-b+ru/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values-b+ru/strings.xml	string	season_other	-	STR	Другое	
 values-b+ru/strings.xml	string	season_short	-	STR	С	
+values-b+ru/strings.xml	string	season_specials	-	STR	Спецвыпуски	
 values-b+ru/strings.xml	string	seek_back_10_seconds	-	STR	Перемотать назад на 10 секунд	
 values-b+ru/strings.xml	string	seek_forward_10_seconds	-	STR	Перемотать вперёд на 10 секунд	
 values-b+ru/strings.xml	string	select_all	-	STR	Выбрать всё	
@@ -31952,7 +32048,9 @@ values-b+sk/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	NEDÁ
 values-b+sk/strings.xml	string	search_tv_suggestion_suggested	-	STR	NAVRHNUTÉ	
 values-b+sk/strings.xml	string	season	-	STR	Sezóna	
 values-b+sk/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values-b+sk/strings.xml	string	season_other	-	STR	Ostatné	
 values-b+sk/strings.xml	string	season_short	-	STR	S	
+values-b+sk/strings.xml	string	season_specials	-	STR	Špeciály	
 values-b+sk/strings.xml	string	seek_back_10_seconds	-	STR	Pretočiť o 10 sekúnd späť	
 values-b+sk/strings.xml	string	seek_forward_10_seconds	-	STR	Pretočiť o 10 sekúnd vpred	
 values-b+sk/strings.xml	string	select_all	-	STR	Vybrať Všetko	
@@ -32592,7 +32690,9 @@ values-b+so/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	DHOWA
 values-b+so/strings.xml	string	search_tv_suggestion_suggested	-	STR	LA SOO JEEDIYAY	
 values-b+so/strings.xml	string	season	-	STR	Kalka	
 values-b+so/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values-b+so/strings.xml	string	season_other	-	STR	Kale	
 values-b+so/strings.xml	string	season_short	-	STR	K	
+values-b+so/strings.xml	string	season_specials	-	STR	Gaar ah	
 values-b+so/strings.xml	string	seek_back_10_seconds	-	STR	Dib u noqo 10 ilbiriqsi	
 values-b+so/strings.xml	string	seek_forward_10_seconds	-	STR	Hore u gudub 10 ilbiriqsi	
 values-b+so/strings.xml	string	select_all	-	STR	Dooro dhammaan	
@@ -33407,7 +33507,9 @@ values-b+sq/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	SË F
 values-b+sq/strings.xml	string	search_tv_suggestion_suggested	-	STR	E SUGJERUAR	
 values-b+sq/strings.xml	string	season	-	STR	Sezoni	
 values-b+sq/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values-b+sq/strings.xml	string	season_other	-	STR	Të tjera	
 values-b+sq/strings.xml	string	season_short	-	STR	S	
+values-b+sq/strings.xml	string	season_specials	-	STR	Speciale	
 values-b+sq/strings.xml	string	seek_back_10_seconds	-	STR	Kalo 10 sekonda mbrapa	
 values-b+sq/strings.xml	string	seek_forward_10_seconds	-	STR	Kalo 10 sekonda para	
 values-b+sq/strings.xml	string	select_all	-	STR	Zgjidh të gjitha	
@@ -34293,7 +34395,9 @@ values-b+sv/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	NYLIG
 values-b+sv/strings.xml	string	search_tv_suggestion_suggested	-	STR	FÖRESLAGEN	
 values-b+sv/strings.xml	string	season	-	STR	Säsong	
 values-b+sv/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values-b+sv/strings.xml	string	season_other	-	STR	Övrigt	
 values-b+sv/strings.xml	string	season_short	-	STR	S	
+values-b+sv/strings.xml	string	season_specials	-	STR	Specialer	
 values-b+sv/strings.xml	string	seek_back_10_seconds	-	STR	Hoppa bakåt 10 sekunder	
 values-b+sv/strings.xml	string	seek_forward_10_seconds	-	STR	Hoppa framåt 10 sekunder	
 values-b+sv/strings.xml	string	select_all	-	STR	Välj alla	
@@ -35179,7 +35283,9 @@ values-b+ta/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	ச�
 values-b+ta/strings.xml	string	search_tv_suggestion_suggested	-	STR	பரிந்துரைக்கப்பட்டது	
 values-b+ta/strings.xml	string	season	-	STR	பருவம்	
 values-b+ta/strings.xml	string	season_format	-	STR	%1$s %2$d %3$s	
+values-b+ta/strings.xml	string	season_other	-	STR	மற்றவை	
 values-b+ta/strings.xml	string	season_short	-	STR	கள்	
+values-b+ta/strings.xml	string	season_specials	-	STR	சிறப்பு	
 values-b+ta/strings.xml	string	seek_back_10_seconds	-	STR	10 விநாடிகள் பின்னோக்கிச் செல்லவும்	
 values-b+ta/strings.xml	string	seek_forward_10_seconds	-	STR	10 விநாடிகள் முன்னோக்கிச் செல்லவும்	
 values-b+ta/strings.xml	string	select_all	-	STR	அனைத்தையும் தேர்ந்தெடுக்கவும்	
@@ -35535,6 +35641,8 @@ values-b+ti/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d ካብ %2
 values-b+ti/strings.xml	string	search_tv_suggestion_recent	-	STR	ናይ ቀረባ · %s	
 values-b+ti/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	ናይ ቀረባ · ከምኡውን ዝተመኽረ	
 values-b+ti/strings.xml	string	search_tv_suggestion_suggested	-	STR	ዝተመኽረ	
+values-b+ti/strings.xml	string	season_other	-	STR	ካልእ	
+values-b+ti/strings.xml	string	season_specials	-	STR	ፍሉይ	
 values-b+ti/strings.xml	string	seek_back_10_seconds	-	STR	10 ካልኢት ንድሕሪት	
 values-b+ti/strings.xml	string	seek_forward_10_seconds	-	STR	10 ካልኢት ንቕድሚት	
 values-b+ti/strings.xml	string	subtitles_file_empty	-	STR	እዚ ፋይል ንኡስ ጽሑፍ ባዶ እዩ	
@@ -35860,7 +35968,9 @@ values-b+tl/strings.xml	string	search_tv_suggestion_recent	-	STR	KAMAKAILAN · %
 values-b+tl/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	KAMAKAILAN · IMINUNGKAHI RIN	
 values-b+tl/strings.xml	string	search_tv_suggestion_suggested	-	STR	IMINUNGKAHI	
 values-b+tl/strings.xml	string	season	-	STR	Season	
+values-b+tl/strings.xml	string	season_other	-	STR	Iba pa	
 values-b+tl/strings.xml	string	season_short	-	STR	S	
+values-b+tl/strings.xml	string	season_specials	-	STR	Espesyal	
 values-b+tl/strings.xml	string	seek_back_10_seconds	-	STR	Bumalik ng 10 segundo	
 values-b+tl/strings.xml	string	seek_forward_10_seconds	-	STR	Umabante ng 10 segundo	
 values-b+tl/strings.xml	string	settings_info	-	STR	Impormasyon	
@@ -36612,7 +36722,9 @@ values-b+tr/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	YAKIN
 values-b+tr/strings.xml	string	search_tv_suggestion_suggested	-	STR	ÖNERİLEN	
 values-b+tr/strings.xml	string	season	-	STR	Sezon	
 values-b+tr/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values-b+tr/strings.xml	string	season_other	-	STR	Diğer	
 values-b+tr/strings.xml	string	season_short	-	STR	S	
+values-b+tr/strings.xml	string	season_specials	-	STR	Özel	
 values-b+tr/strings.xml	string	seek_back_10_seconds	-	STR	10 saniye geri atla	
 values-b+tr/strings.xml	string	seek_forward_10_seconds	-	STR	10 saniye ileri atla	
 values-b+tr/strings.xml	string	select_all	-	STR	Tümünü Seç	
@@ -37528,7 +37640,9 @@ values-b+uk/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	НЕ�
 values-b+uk/strings.xml	string	search_tv_suggestion_suggested	-	STR	ЗАПРОПОНОВАНО	
 values-b+uk/strings.xml	string	season	-	STR	Сезон	
 values-b+uk/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values-b+uk/strings.xml	string	season_other	-	STR	Інше	
 values-b+uk/strings.xml	string	season_short	-	STR	С	
+values-b+uk/strings.xml	string	season_specials	-	STR	Спецвипуски	
 values-b+uk/strings.xml	string	seek_back_10_seconds	-	STR	Перемотати назад на 10 секунд	
 values-b+uk/strings.xml	string	seek_forward_10_seconds	-	STR	Перемотати вперед на 10 секунд	
 values-b+uk/strings.xml	string	select_all	-	STR	Обрати все	
@@ -38317,7 +38431,9 @@ values-b+ur/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	حا�
 values-b+ur/strings.xml	string	search_tv_suggestion_suggested	-	STR	تجویز کردہ	
 values-b+ur/strings.xml	string	season	-	STR	سیزن	
 values-b+ur/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values-b+ur/strings.xml	string	season_other	-	STR	دیگر	
 values-b+ur/strings.xml	string	season_short	-	STR	S	
+values-b+ur/strings.xml	string	season_specials	-	STR	خصوصی	
 values-b+ur/strings.xml	string	seek_back_10_seconds	-	STR	10 سیکنڈ پیچھے جائیں	
 values-b+ur/strings.xml	string	seek_forward_10_seconds	-	STR	10 سیکنڈ آگے جائیں	
 values-b+ur/strings.xml	string	select_all	-	STR	سب چُنیں	
@@ -39146,7 +39262,9 @@ values-b+vi/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	GẦN
 values-b+vi/strings.xml	string	search_tv_suggestion_suggested	-	STR	ĐƯỢC GỢI Ý	
 values-b+vi/strings.xml	string	season	-	STR	Mùa	
 values-b+vi/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values-b+vi/strings.xml	string	season_other	-	STR	Khác	
 values-b+vi/strings.xml	string	season_short	-	STR	Mùa	
+values-b+vi/strings.xml	string	season_specials	-	STR	Đặc biệt	
 values-b+vi/strings.xml	string	seek_back_10_seconds	-	STR	Tua lùi 10 giây	
 values-b+vi/strings.xml	string	seek_forward_10_seconds	-	STR	Tua tới 10 giây	
 values-b+vi/strings.xml	string	select_all	-	STR	Chọn tất cả	
@@ -40013,7 +40131,9 @@ values-b+zh+TW/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	�
 values-b+zh+TW/strings.xml	string	search_tv_suggestion_suggested	-	STR	建議	
 values-b+zh+TW/strings.xml	string	season	-	STR	季	
 values-b+zh+TW/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values-b+zh+TW/strings.xml	string	season_other	-	STR	其他	
 values-b+zh+TW/strings.xml	string	season_short	-	STR	S	
+values-b+zh+TW/strings.xml	string	season_specials	-	STR	特別篇	
 values-b+zh+TW/strings.xml	string	seek_back_10_seconds	-	STR	倒轉 10 秒	
 values-b+zh+TW/strings.xml	string	seek_forward_10_seconds	-	STR	快轉 10 秒	
 values-b+zh+TW/strings.xml	string	select_all	-	STR	全選	
@@ -40882,7 +41002,9 @@ values-b+zh/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	最�
 values-b+zh/strings.xml	string	search_tv_suggestion_suggested	-	STR	建议	
 values-b+zh/strings.xml	string	season	-	STR	季	
 values-b+zh/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values-b+zh/strings.xml	string	season_other	-	STR	其他	
 values-b+zh/strings.xml	string	season_short	-	STR	S	
+values-b+zh/strings.xml	string	season_specials	-	STR	特别篇	
 values-b+zh/strings.xml	string	seek_back_10_seconds	-	STR	快退 10 秒	
 values-b+zh/strings.xml	string	seek_forward_10_seconds	-	STR	快进 10 秒	
 values-b+zh/strings.xml	string	select_all	-	STR	全选	
@@ -41931,7 +42053,9 @@ values/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	RECENT · 
 values/strings.xml	string	search_tv_suggestion_suggested	-	STR	SUGGESTED	
 values/strings.xml	string	season	-	STR	Season	
 values/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
+values/strings.xml	string	season_other	-	STR	Other	
 values/strings.xml	string	season_short	-	STR	S	
+values/strings.xml	string	season_specials	-	STR	Specials	
 values/strings.xml	string	seek_back_10_seconds	-	STR	Skip back 10 seconds	
 values/strings.xml	string	seek_forward_10_seconds	-	STR	Skip forward 10 seconds	
 values/strings.xml	string	select_all	-	STR	Select All	
